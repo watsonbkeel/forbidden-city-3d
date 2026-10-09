@@ -148,6 +148,9 @@ export const PLAYER = {
   JOYSTICK_RUN_DELAY: 2000,     // 持续同一方向多久后开始跑（毫秒）
   JOYSTICK_RUN_ANGLE: 0.6,      // 判定"同一方向"的允许偏差（弧度，约 35°）
   STEP_UP: 0.6,                 // 单帧可直接踏上的最大台阶高度（米）
+  JUMP_VELOCITY: 7.2,           // 起跳竖直速度（米/秒）：配合 GRAVITY 跳高约 1.85m，走路速度也能越过 1.1m 汉白玉栏杆
+  GRAVITY: 14,                  // 重力加速度（米/秒²，略大于 9.8，手感更利落）
+  MAX_FALL_SPEED: 30,           // 最大下落速度（米/秒）
 };
 
 // 后处理参数

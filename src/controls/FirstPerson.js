@@ -52,6 +52,11 @@ export class FirstPersonControls {
     // 脚面高度与竖直速度：相机 y = feetY + PLAYER.HEIGHT；上台阶平滑跟随，下落按重力
     this.feetY = 0;
     this.verticalVelocity = 0;
+    // 空中状态（跳跃或从高处走下）：空中按真实脚面做碰撞，可越过矮栏杆；落地后恢复贴地
+    this.airborne = false;
+    this.jumpQueued = false;
+    this.jumpButton = null;
+    this._landed = false;
     
     // 镜头起伏：bobOffset 是上一帧叠加在相机上的偏移，下一帧开始时先扣除，碰撞只用无偏移的位置
     this.headBobEnabled = true;
@@ -106,9 +111,50 @@ export class FirstPersonControls {
       // 解锁时立即清空输入和速度
       this.controls.addEventListener('unlock', this._onStop);
     } else {
-      // 移动端：视角锁定按钮 + 右半屏拖动视角
+      // 移动端：视角锁定按钮 + 右半屏拖动视角 + 跳跃按钮
       this.createLookLockButton();
+      this.createJumpButton();
     }
+  }
+
+  /** 请求起跳（PC 空格 / 移动端"跳"按钮），在下一帧 update 里执行 */
+  jump() {
+    this.jumpQueued = true;
+  }
+
+  /** 移动端右下角圆形"跳"按钮（在锁定视角按钮上方） */
+  createJumpButton() {
+    const btn = document.createElement('button');
+    btn.className = 'jump-button';
+    btn.textContent = '跳';
+    btn.setAttribute('aria-label', '跳跃');
+    btn.style.cssText = `
+      position: fixed;
+      right: calc(28px + env(safe-area-inset-right, 0px));
+      bottom: calc(108px + env(safe-area-inset-bottom, 0px));
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.22);
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      color: #fff; font-size: 22px; font-weight: bold;
+      z-index: 1000;
+      touch-action: none;
+      -webkit-user-select: none; user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    `;
+    // touchstart 立即起跳（不等 click 的 300ms 延迟）；阻止冒泡，避免同时被当成"拖视角"
+    this._onJumpTouch = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      this.jump();
+      btn.style.background = 'rgba(255, 215, 120, 0.45)';
+      clearTimeout(this._jumpFlash);
+      this._jumpFlash = setTimeout(() => { btn.style.background = 'rgba(255, 255, 255, 0.22)'; }, 160);
+    };
+    btn.addEventListener('touchstart', this._onJumpTouch, { passive: false });
+    btn.addEventListener('click', () => this.jump());
+    this.jumpButton = btn;
+    this.domElement.appendChild(btn);
   }
   
   /**
@@ -197,6 +243,11 @@ export class FirstPersonControls {
   onKeyDown(event) {
     if (!this.controls.isLocked) return;
     const code = event.code;
+    if (code === 'Space') {
+      event.preventDefault();
+      if (!event.repeat) this.jump();
+      return;
+    }
     // 记录方向键按下时间
     if (!this.pressedKeys.has(code) && this.isMovementKey(code)) {
       this.keyPressTimes.set(code, performance.now());
@@ -320,8 +371,22 @@ export class FirstPersonControls {
     this.camera.position.sub(this.bobOffset);
     this.bobOffset.set(0, 0, 0);
     
+    // 起跳：只有站在地面上才能跳（空中不能二段跳）
+    this._landed = false;
+    if (this.jumpQueued) {
+      this.jumpQueued = false;
+      const onGround = !this.airborne && this.feetY >= (this.groundY ?? 0) - 0.08;
+      if (onGround) {
+        this.airborne = true;
+        this.verticalVelocity = PLAYER.JUMP_VELOCITY ?? 6.7;
+        this.groundY = this.feetY;
+      }
+    }
+    const air = this.airborne;
+    
     let speed = 0;
-    const baseFeet = Math.max(this.feetY, this.groundY ?? 0);
+    // 空中：碰撞按真实脚面（可越过矮栏杆）；地面：按逻辑地面（上楼梯不滞后）
+    const baseFeet = air ? this.feetY : Math.max(this.feetY, this.groundY ?? 0);
     const eyeY = baseFeet + PLAYER.HEIGHT;
     this._trackedGround = null;
     // 速度很小时直接归零，避免无意义的碰撞计算
@@ -343,8 +408,9 @@ export class FirstPersonControls {
         currentPosition,
         newPosition,
         0.5,
-        baseFeet,
-        PLAYER.STEP_UP ?? 0.6
+        air ? (this.groundY ?? 0) : baseFeet,
+        PLAYER.STEP_UP ?? 0.6,
+        (air || this.onSupport) ? this.feetY : null
       );
       this._trackedGround = this.collisionManager.lastGroundY ?? null;
       
@@ -362,7 +428,8 @@ export class FirstPersonControls {
     const sprint = this.isMobile
       ? mobileRunning && speed > PLAYER.MOVE_SPEED * 0.5
       : this.canSprint && speed > PLAYER.MOVE_SPEED * 0.5;
-    const footstep = this.updateHeadBob(delta, speed);
+    // 空中不计脚步、不晃镜头；落地那一帧补一声脚步
+    const footstep = this.updateHeadBob(delta, this.airborne ? 0 : speed) || this._landed;
     this.motion.speed = speed;
     this.motion.sprint = sprint;
     this.motion.footstep = footstep;
@@ -375,10 +442,44 @@ export class FirstPersonControls {
     // 以"逻辑地面"（上一帧所站的面）为基准查询，避免上长楼梯时镜头平滑滞后超过可迈高度而误判掉落
     const base = Math.max(this.feetY, this.groundY ?? 0);
     // 本帧移动过：用移动过程中逐小步追踪得到的地面；否则在原地查询
-    const groundY = this._trackedGround ?? this.collisionManager.getGroundHeight(
-      this.camera.position.x, this.camera.position.z, base, PLAYER.STEP_UP ?? 0.6
+    const walkY = this._trackedGround ?? this.collisionManager.getGroundHeight(
+      this.camera.position.x, this.camera.position.z, this.airborne ? this.feetY : base, PLAYER.STEP_UP ?? 0.6
     );
+    // 栏杆 / 家具 / 矮墙顶面也能站（只认脚下方的，不会"走上"高物体）
+    const sup = this.collisionManager.supportHeight?.(
+      this.camera.position.x, this.camera.position.z, this.feetY + 0.05
+    ) ?? -Infinity;
+    const groundY = Math.max(walkY, sup);
+    this.onSupport = sup > walkY + 0.01;
     this.groundY = groundY;
+    // 地面骤降（从台基边缘、栏杆上走下去）转入空中状态：按真实身体高度判碰撞，不会卡进栏杆
+    if (!this.airborne && groundY < this.feetY - (PLAYER.STEP_UP ?? 0.6)) {
+      this.airborne = true;
+      this.verticalVelocity = 0;
+    }
+    if (this.airborne) {
+      // 跳到略高于脚面的台面上：脚面抬到台面，不陷进去
+      if (this.feetY < groundY) {
+        this.feetY = groundY;
+        if (this.verticalVelocity <= 0) {
+          this.verticalVelocity = 0;
+          this.airborne = false;
+          this._landed = true;
+          return;
+        }
+      }
+      // 跳跃中：竖直速度受重力，下落到脚下地面即落地
+      const g = PLAYER.GRAVITY ?? 14;
+      this.verticalVelocity = Math.max(this.verticalVelocity - g * delta, -(PLAYER.MAX_FALL_SPEED ?? 30));
+      this.feetY += this.verticalVelocity * delta;
+      if (this.verticalVelocity <= 0 && this.feetY <= groundY) {
+        this.feetY = groundY;
+        this.verticalVelocity = 0;
+        this.airborne = false;
+        this._landed = true;
+      }
+      return;
+    }
     if (groundY >= this.feetY - 0.02) {
       // 上行或贴地：快速平滑跟随，避免台阶处抖动
       this.verticalVelocity = 0;
@@ -485,6 +586,9 @@ export class FirstPersonControls {
     // 传入的 y 视为视点高度；脚面取其下 PLAYER.HEIGHT，再贴合该处地面
     this.feetY = Math.max(0, y - PLAYER.HEIGHT);
     this.verticalVelocity = 0;
+    this.airborne = false;
+    this.onSupport = false;
+    this.jumpQueued = false;
     if (this.collisionManager?.getGroundHeight) {
       this.feetY = this.collisionManager.getGroundHeight(x, z, this.feetY, PLAYER.STEP_UP ?? 0.6);
       this.camera.position.y = this.feetY + PLAYER.HEIGHT;
@@ -552,6 +656,11 @@ export class FirstPersonControls {
       this.lookLockButton.removeEventListener('click', this._onLookLockClick);
       this.lookLockButton.remove();
       this.lookLockButton = null;
+    }
+    if (this.jumpButton) {
+      this.jumpButton.removeEventListener('touchstart', this._onJumpTouch);
+      this.jumpButton.remove();
+      this.jumpButton = null;
     }
     if (this.joystick) {
       this.joystick.dispose();

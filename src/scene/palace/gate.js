@@ -4,6 +4,7 @@ import { buildRoof } from '../RoofBuilder.js';
 import { buildHallBody, buildSumeruBase, buildStuddedDoor } from '../HallKit.js';
 import { mergeByMaterial } from '../../utils/MergeUtils.js';
 import { worldBox } from './colliders.js';
+import { buildGateAscent } from './gateAscent.js';
 
 /**
  * 午门：中央城台（红墙，三个拱券门洞）+ 重檐城楼 + 两侧雁翅楼
@@ -99,23 +100,14 @@ export function buildWumen(lib, data) {
     }
   });
 
-  // 城台顶部栏杆/宇墙（汉白玉栏板，沿边缘一圈）
-  const railH = 1.2;
-  for (const [dx, dz, len, rot] of [
-    [0, -platformD / 2, platformW, 0],
-    [0, platformD / 2, platformW, Math.PI],
-    [-platformW / 2, 0, platformD, Math.PI / 2],
-    [platformW / 2, 0, platformD, -Math.PI / 2]
-  ]) {
-    const rail = new THREE.Mesh(
-      applyBandUV(new THREE.BoxGeometry(len, railH, 0.2), lib.tileSize('balustrade')),
-      lib.material('balustrade', { alphaTest: 0.5 })
-    );
-    rail.position.set(dx, platformH + railH / 2, dz);
-    rail.rotation.y = rot;
-    rail.castShadow = true;
-    group.add(rail);
-  }
+  // 登城马道：城台北面（宫内一侧）东西两端各一条，沿城台端头向外下行到太和门广场；
+  // 城台顶四周汉白玉栏杆（带碰撞），在马道到达处开口。顶面可行走，可绕城楼一圈远眺。
+  const ascent = buildGateAscent(lib, group, {
+    W: platformW, D: platformD, topY: platformH,
+    band: [platformD / 2 - 6, platformD / 2], edge: 'rail',
+  });
+  colliders.push(...ascent.colliders);
+  const walkables = ascent.walkables;
 
   // 城楼（重檐庑殿，建在城台顶部中央）
   const towerW = 48;
@@ -179,5 +171,5 @@ export function buildWumen(lib, data) {
   group.position.set(p.x, p.y, p.z);
   group.updateMatrixWorld(true);
 
-  return { group: mergeByMaterial(group), colliders, ownedMaterials };
+  return { group: mergeByMaterial(group), colliders, walkables, ownedMaterials };
 }

@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { COLORS } from '../config/constants.js';
 import { buildWumen } from './palace/gate.js';
+import { buildGateAscent, toWorld } from './palace/gateAscent.js';
 import { buildRoof } from './RoofBuilder.js';
 import { buildHallBody, buildBalustrade, buildStuddedDoor } from './HallKit.js';
 import { mergeByMaterial } from '../utils/MergeUtils.js';
@@ -712,12 +713,14 @@ export class PalaceBuilder {
 
   buildGate(data) {
     if (data.name === '午门') {
-      const { group, colliders, ownedMaterials } = buildWumen(this.library, data);
+      const { group, colliders, walkables, ownedMaterials } = buildWumen(this.library, data);
       this.addObject(group);
       // buildWumen 在设置 group.position 之前计算碰撞盒，得到的是局部坐标，这里平移到世界坐标
       const p = data.position;
       const shift = new THREE.Vector3(p.x, p.y ?? 0, p.z);
       this.colliders.push(...colliders.map(b => b.clone().translate(shift)));
+      this.walkables.push(...toWorld({ colliders: [], walkables: walkables ?? [] },
+        new THREE.Matrix4().makeTranslation(shift.x, shift.y, shift.z)).walkables);
       this.ownedMaterials.push(...(ownedMaterials ?? []));
       return;
     }
@@ -759,13 +762,20 @@ export class PalaceBuilder {
       }
     }
     this.libBox(g, 'stone_slab', W + 0.4, 0.3, D + 0.4, 0, PH + 0.15, 0, 'box');
-    for (const s of [-1, 1]) {
-      this.libBox(g, 'wall_red', W, 1.2, 0.6, 0, PH + 0.9, s * (D / 2 - 0.3), 'box');
-      this.libBox(g, 'wall_red', 0.6, 1.2, D, s * (W / 2 - 0.3), PH + 0.9, 0, 'box');
-    }
+    // 登城马道：城台南面（宫内一侧）东西两端各一条；城台顶四周红色宇墙（带碰撞），马道处开口
+    const top = PH + 0.3;
+    const asc = toWorld(buildGateAscent(this.library, g, {
+      W, D, topY: top, band: [-D / 2, -D / 2 + 5], edge: 'wall',
+    }), new THREE.Matrix4().makeTranslation(this.ox, 0, this.oz));
+    this.colliders.push(...asc.colliders);
+    this.walkables.push(...asc.walkables);
     const body = buildHallBody(this.library, { width: W * 0.62, depth: D * 0.55, height: 7, bays: 5, facade: 'lattice' });
-    body.position.y = PH + 0.3;
+    body.position.y = top;
     g.add(body);
+    // 城楼屋身碰撞（在城台顶面上），绕城楼一圈可走
+    for (const b of body.userData.colliders ?? []) {
+      this.col(b.min.x, b.min.y + top, b.min.z, b.max.x, b.max.y + top, b.max.z);
+    }
     const roof = buildRoof(this.library, {
       type: 'wudian', width: W * 0.62 + 0.6, depth: D * 0.55 + 0.6,
       baseY: PH + 0.3 + body.userData.topY, layers: 2, brackets: true,

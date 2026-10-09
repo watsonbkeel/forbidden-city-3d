@@ -35,7 +35,8 @@ export class CollisionManager {
     if (!walkable) return;
     if (walkable.type === 'box') {
       const box = walkable.box.isBox3 ? walkable.box.clone() : new THREE.Box3().setFromObject(walkable.box);
-      if (!box.isEmpty()) this.walkables.push({ type: 'box', box });
+      // rescue: false —— 不做"钻进台基托回台面"（城台顶面下方有门洞，从门洞穿过时不能被托上城台）
+      if (!box.isEmpty()) this.walkables.push({ type: 'box', box, rescue: walkable.rescue !== false });
       return;
     }
     if (walkable.type === 'ramp') {
@@ -70,7 +71,7 @@ export class CollisionManager {
         top = b.max.y;
         // 台基是实心的：脚点已深入台基投影内部却低于台面，说明从台阶口"钻"进了台基，直接托回台面，
         // 杜绝"走到楼梯顶掉到宫殿底下"。
-        if (top > limit && x > b.min.x + m && x < b.max.x - m && z > b.min.z + m && z < b.max.z - m) {
+        if (w.rescue && top > limit && x > b.min.x + m && x < b.max.x - m && z > b.min.z + m && z < b.max.z - m) {
           rescue = Math.max(rescue, top);
         }
       } else {
@@ -130,6 +131,24 @@ export class CollisionManager {
     return [...out];
   }
 
+  /**
+   * 脚下碰撞体能提供的支撑高度：脚印（半径 r）范围内、顶面不高于 maxTop 的碰撞体顶面最大值。
+   * 跳到栏杆、家具、矮墙上时用它当"地面"，避免从上方落进碰撞体里卡死。没有则返回 -Infinity。
+   */
+  supportHeight(x, z, maxTop, r = 0.3) {
+    this._footBox ??= new THREE.Box3();
+    this._footBox.min.set(x - r, -1e3, z - r);
+    this._footBox.max.set(x + r, 1e3, z + r);
+    let best = -Infinity;
+    for (const c of this.queryBox(this._footBox)) {
+      const b = c.box;
+      if (b.max.y > maxTop || b.max.y <= best) continue;
+      if (x + r < b.min.x || x - r > b.max.x || z + r < b.min.z || z - r > b.max.z) continue;
+      best = b.max.y;
+    }
+    return best;
+  }
+
   checkBoundary(position, radius = 0.5) {
     const { minX, maxX, minZ, maxZ } = LAYOUT.BOUNDARY;
     return position.x - radius >= minX && position.x + radius <= maxX &&
@@ -156,7 +175,9 @@ export class CollisionManager {
    * 继续以地面高度从楼梯口钻进台基内部（表现为走到楼梯顶突然掉到台基下面）。
    * 结果的地面高度写入 this.lastGroundY。
    */
-  getValidPosition(currentPosition, targetPosition, radius = 0.5, feetY = null, stepUp = PLAYER.STEP_UP ?? 0.6) {
+  getValidPosition(currentPosition, targetPosition, radius = 0.5, feetY = null, stepUp = PLAYER.STEP_UP ?? 0.6, airFeet = null) {
+    // airFeet：空中（跳跃/下落）时的实际脚面高度。碰撞按身体真实高度判定（可越过矮栏杆），
+    // 落脚面按真实脚面查询（跳到高于原地面的台面上也能落住）。
     const distance = Math.hypot(targetPosition.x - currentPosition.x, targetPosition.z - currentPosition.z);
     const steps = Math.max(1, Math.ceil(distance / Math.max(radius * 0.5, 0.05)));
     const dx = (targetPosition.x - currentPosition.x) / steps;
@@ -165,9 +186,11 @@ export class CollisionManager {
     const candidate = currentPosition.clone();
     const track = feetY !== null && feetY !== undefined;
     let ground = track ? feetY : 0;
+    const air = track && airFeet !== null && airFeet !== undefined;
     const tryMove = (x, z) => {
-      const g = track ? this.getGroundHeight(x, z, ground, stepUp) : 0;
-      candidate.set(x, track ? g + PLAYER.HEIGHT : valid.y, z);
+      const g = track ? this.getGroundHeight(x, z, air ? Math.max(airFeet, ground) : ground, stepUp) : 0;
+      const bodyFeet = air ? Math.max(g, airFeet) : g;
+      candidate.set(x, track ? bodyFeet + PLAYER.HEIGHT : valid.y, z);
       if (this.checkCollision(candidate, radius)) return false;
       valid.copy(candidate);
       if (track) ground = g;
