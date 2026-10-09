@@ -247,6 +247,11 @@ body {
   }
 }
 
+/* 打开全图时隐藏横屏提示，避免遮挡地图 */
+body.map-open::before {
+  display: none !important;
+}
+
 @keyframes fadeInOut {
   0%, 100% {
     opacity: 0.5;

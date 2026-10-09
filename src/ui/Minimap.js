@@ -6,8 +6,10 @@ import { PALACE_LAYOUT } from '../scene/Layout.js';
  */
 
 export class Minimap {
-  constructor({ items = [] } = {}) {
+  constructor({ items = [], preview = false } = {}) {
     this.visible = false;
+    this.previewEnabled = preview; // 移动端：右上角常驻小地图预览，点击展开全图
+    this.lastPreviewDraw = 0;
     this.container = null;
     this.canvas = null;
     this.ctx = null;
@@ -35,6 +37,7 @@ export class Minimap {
       left: 50%;
       transform: translate(-50%, -50%);
       width: ${this.mapSize}px;
+      max-width: 94vw;
       max-height: 96vh;
       overflow: auto;
       background: rgba(20, 20, 20, 0.92);
@@ -65,6 +68,8 @@ export class Minimap {
     this.canvas.height = this.mapHeight;
     this.canvas.style.cssText = `
       display: block;
+      width: 100%;
+      height: auto;
       background: rgba(240, 235, 220, 0.95);
       border: 1px solid rgba(100, 80, 60, 0.4);
     `;
@@ -73,7 +78,7 @@ export class Minimap {
     
     // 提示文字
     const hint = document.createElement('div');
-    hint.textContent = '按 M 键关闭';
+    hint.textContent = this.previewEnabled ? '点击地图关闭' : '按 M 键关闭';
     hint.style.cssText = `
       color: #999;
       font-size: 12px;
@@ -85,19 +90,87 @@ export class Minimap {
     document.body.appendChild(this.container);
     
     // 监听 M 键
-    window.addEventListener('keydown', (e) => {
+    this._onKeyDown = (e) => {
       if (e.key === 'm' || e.key === 'M') {
         this.toggle();
       }
-    });
+    };
+    window.addEventListener('keydown', this._onKeyDown);
+    
+    // 底图只画一次到高分辨率离屏画布，全图和预览都从这里取，避免每帧重绘全部建筑
+    this.baseScale = 3;
+    this.baseCanvas = document.createElement('canvas');
+    this.baseCanvas.width = this.mapSize * this.baseScale;
+    this.baseCanvas.height = this.mapHeight * this.baseScale;
+    this.renderBase();
+    
+    if (this.previewEnabled) {
+      this.createPreview();
+      // 展开的全图点一下就关闭
+      this.container.addEventListener('click', () => this.toggle());
+    }
     
     // 初始绘制
     this.drawMap();
   }
   
+  /**
+   * 右上角常驻小地图预览（以玩家为中心，北朝上），点击展开全图
+   */
+  createPreview() {
+    const SIZE = 118;
+    this.previewSize = SIZE;
+    this.previewView = 120; // 预览窗口覆盖的地图像素范围（约 120 米宽）
+    const dpr = Math.min(window.devicePixelRatio || 1, 3);
+    
+    this.preview = document.createElement('div');
+    this.preview.id = 'minimap-preview';
+    this.preview.setAttribute('role', 'button');
+    this.preview.style.cssText = `
+      position: fixed;
+      top: calc(16px + env(safe-area-inset-top, 0px));
+      right: calc(16px + env(safe-area-inset-right, 0px));
+      width: ${SIZE}px;
+      height: ${SIZE}px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid rgba(255, 215, 100, 0.85);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+      background: #f0ebdc;
+      opacity: 0.92;
+      z-index: 1000;
+      touch-action: manipulation;
+    `;
+    this.previewCanvas = document.createElement('canvas');
+    this.previewCanvas.width = SIZE * dpr;
+    this.previewCanvas.height = SIZE * dpr;
+    this.previewCanvas.style.cssText = `display: block; width: ${SIZE}px; height: ${SIZE}px; pointer-events: none;`;
+    this.previewCtx = this.previewCanvas.getContext('2d');
+    this.preview.appendChild(this.previewCanvas);
+    
+    const tag = document.createElement('div');
+    tag.textContent = '点开全图';
+    tag.style.cssText = `
+      position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 2px 0; text-align: center; font-size: 10px;
+      color: #fff; background: rgba(0, 0, 0, 0.45); pointer-events: none;
+    `;
+    this.preview.appendChild(tag);
+    
+    this._onPreviewClick = (e) => {
+      e.stopPropagation();
+      this.toggle();
+    };
+    this.preview.addEventListener('click', this._onPreviewClick);
+    document.body.appendChild(this.preview);
+    this.drawPreview();
+  }
+  
   toggle() {
     this.visible = !this.visible;
     this.container.style.display = this.visible ? 'block' : 'none';
+    if (this.preview) this.preview.style.display = this.visible ? 'none' : 'block';
+    document.body.classList.toggle('map-open', this.visible);
     if (this.visible) {
       this.drawMap();
     }
@@ -164,7 +237,82 @@ export class Minimap {
     }
   }
   
+  /**
+   * 静态底图（建筑/河道/文字）绘制到高分辨率离屏画布，只执行一次
+   */
+  renderBase() {
+    const mainCtx = this.ctx;
+    const ctx = this.baseCanvas.getContext('2d');
+    ctx.setTransform(this.baseScale, 0, 0, this.baseScale, 0, 0);
+    this.ctx = ctx; // drawLabel / drawSideItems 复用 this.ctx
+    try {
+      this.drawStatic();
+    } finally {
+      this.ctx = mainCtx;
+    }
+  }
+
   drawMap() {
+    const ctx = this.ctx;
+    ctx.drawImage(this.baseCanvas, 0, 0, this.mapSize, this.mapHeight);
+    this.drawPlayer(ctx, this.worldToMap(this.playerPosition.x, this.playerPosition.z), 5, 14);
+  }
+
+  /**
+   * 预览：以玩家为中心裁一块底图，北朝上
+   */
+  drawPreview() {
+    if (!this.previewCtx) return;
+    const ctx = this.previewCtx;
+    const cw = this.previewCanvas.width;
+    const ch = this.previewCanvas.height;
+    const view = this.previewView;
+    const pm = this.worldToMap(this.playerPosition.x, this.playerPosition.z);
+    const s = this.baseScale;
+    ctx.fillStyle = '#f0ebdc';
+    ctx.fillRect(0, 0, cw, ch);
+    ctx.drawImage(this.baseCanvas, (pm.x - view / 2) * s, (pm.y - view / 2) * s, view * s, view * s, 0, 0, cw, ch);
+    const k = cw / this.previewSize;
+    ctx.save();
+    ctx.scale(k, k);
+    this.drawPlayer(ctx, { x: this.previewSize / 2, y: this.previewSize / 2 }, 5, 16);
+    ctx.fillStyle = 'rgba(120, 30, 30, 0.9)';
+    ctx.font = 'bold 11px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    ctx.fillText('北', this.previewSize / 2, 3);
+    ctx.restore();
+  }
+
+  drawPlayer(ctx, pm, radius, arrowLen) {
+    // 视线方向（世界）→ 地图：x 翻转、z 向上
+    const len = Math.hypot(this.playerDir.x, this.playerDir.z) || 1;
+    const dx = -this.playerDir.x / len;
+    const dy = -this.playerDir.z / len;
+    // 视野扇形
+    const ang = Math.atan2(dy, dx);
+    ctx.fillStyle = 'rgba(255, 60, 60, 0.18)';
+    ctx.beginPath();
+    ctx.moveTo(pm.x, pm.y);
+    ctx.arc(pm.x, pm.y, arrowLen * 1.8, ang - 0.6, ang + 0.6);
+    ctx.closePath();
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255, 60, 60, 0.95)';
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(pm.x, pm.y);
+    ctx.lineTo(pm.x + dx * arrowLen, pm.y + dy * arrowLen);
+    ctx.stroke();
+    ctx.fillStyle = 'rgba(255, 60, 60, 0.95)';
+    ctx.beginPath();
+    ctx.arc(pm.x, pm.y, radius, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.95)';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  }
+
+  drawStatic() {
     const ctx = this.ctx;
     const w = this.mapSize;
     const h = this.mapHeight;
@@ -248,26 +396,6 @@ export class Minimap {
     ctx.fillText('南', w / 2, h - 10);
     ctx.fillText('东', w - 10, h / 2);
     ctx.fillText('西', 10, h / 2);
-
-    // 玩家位置（红点 + 朝向箭头）
-    const pm = this.worldToMap(this.playerPosition.x, this.playerPosition.z);
-    ctx.fillStyle = 'rgba(255, 60, 60, 0.95)';
-    ctx.beginPath();
-    ctx.arc(pm.x, pm.y, 5, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.95)';
-    ctx.lineWidth = 2;
-    ctx.stroke();
-    // 视线方向（世界）→ 地图：x 翻转、z 向上
-    const len = Math.hypot(this.playerDir.x, this.playerDir.z) || 1;
-    const ax = pm.x - (this.playerDir.x / len) * 14;
-    const ay = pm.y - (this.playerDir.z / len) * 14;
-    ctx.strokeStyle = 'rgba(255, 60, 60, 0.95)';
-    ctx.lineWidth = 2.5;
-    ctx.beginPath();
-    ctx.moveTo(pm.x, pm.y);
-    ctx.lineTo(ax, ay);
-    ctx.stroke();
   }
   
   update(camera) {
@@ -276,10 +404,20 @@ export class Minimap {
     
     if (this.visible) {
       this.drawMap();
+    } else if (this.preview) {
+      // 预览约 15 fps 刷新就够，省手机性能
+      const now = performance.now();
+      if (now - this.lastPreviewDraw >= 66) {
+        this.lastPreviewDraw = now;
+        this.drawPreview();
+      }
     }
   }
   
   dispose() {
+    window.removeEventListener('keydown', this._onKeyDown);
+    this.preview?.removeEventListener('click', this._onPreviewClick);
+    this.preview?.remove();
     this.container?.remove();
   }
 }

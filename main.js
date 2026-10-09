@@ -56,6 +56,21 @@ class ForbiddenCityApp {
     // 显示加载界面
     this.showLoading();
     
+    // 尺寸监听必须在加载前注册：之前放在加载完成后，手机在加载过程中转横屏，
+    // 画布会停留在竖屏尺寸，横屏时只占左半边、右边黑屏。
+    // 微信 / iOS 转屏时 resize 可能不触发或触发时尺寸还没更新，所以再加 orientationchange、
+    // visualViewport 两路兜底，并在转屏后延迟复查；动画循环里也会每帧比对尺寸。
+    this._onOrientationChange = () => {
+      this.onResize();
+      clearTimeout(this._resizeTimer1);
+      clearTimeout(this._resizeTimer2);
+      this._resizeTimer1 = setTimeout(this._onResize, 200);
+      this._resizeTimer2 = setTimeout(this._onResize, 600);
+    };
+    window.addEventListener('resize', this._onResize);
+    window.addEventListener('orientationchange', this._onOrientationChange);
+    window.visualViewport?.addEventListener('resize', this._onResize);
+    
     // 说明：本项目的纹理（Canvas）和几何体都是程序化同步生成的，不经过任何 Loader，
     // LoadingManager 不会自动收到进度，onLoad 也不会触发（之前加载界面卡在 0% 的根因）。
     // 这里把每个构建步骤手动登记到 LoadingManager：先全部 itemStart，每完成一步 itemEnd，
@@ -150,8 +165,8 @@ class ForbiddenCityApp {
       throw err;
     }
     
-    // 窗口大小调整
-    window.addEventListener('resize', this._onResize);
+    // 加载期间可能已经转过屏，进入渲染前按当前窗口尺寸校正一次
+    this.onResize();
     
     // 开始动画循环
     this.animate();
@@ -271,7 +286,9 @@ class ForbiddenCityApp {
       helpPanel.innerHTML = `
         <strong>操作说明</strong><br>
         左下角方向盘：前后左右移动<br>
+        同一方向推住2秒：跑起来<br>
         手指拖动屏幕：调整视角<br>
+        右上角地图：点开看全图<br>
         右下角按钮：锁定视角
       `;
       // 手机屏幕小，说明面板 8 秒后自动淡出，避免遮挡画面
@@ -290,7 +307,8 @@ class ForbiddenCityApp {
     document.body.appendChild(helpPanel);
     
     // 小地图（按 M 键显示/隐藏）
-    this.minimap = new Minimap({ items: this.sideCourts.getMapItems() });
+    // 移动端额外常驻右上角预览，点击展开全图
+    this.minimap = new Minimap({ items: this.sideCourts.getMapItems(), preview: this.isMobile });
     
     // 设置菜单（按 ESC 显示）
     this.settingsMenu = new SettingsMenu(document.body);
@@ -432,16 +450,24 @@ class ForbiddenCityApp {
   /**
    * 窗口大小调整
    */
+  getViewportSize() {
+    // 以布局视口为准；部分安卓 WebView 转屏后 innerWidth 更新滞后，取 documentElement 兜底
+    const width = Math.max(1, Math.round(window.innerWidth || document.documentElement.clientWidth));
+    const height = Math.max(1, Math.round(window.innerHeight || document.documentElement.clientHeight));
+    return { width, height };
+  }
+  
   onResize() {
-    const width = Math.max(1, window.innerWidth);
-    const height = Math.max(1, window.innerHeight);
+    if (this.disposed || !this.camera || !this.renderer) return;
+    const { width, height } = this.getViewportSize();
+    this._lastSize = `${width}x${height}`;
     
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
     
     this.renderer.setPixelRatio(this.getPixelRatio(this.currentQuality));
     this.renderer.setSize(width, height);
-    this.postProcessing.onResize(width, height);
+    this.postProcessing?.onResize(width, height);
   }
   
   /**
@@ -454,6 +480,10 @@ class ForbiddenCityApp {
     const now = performance.now();
     const dt = Math.min((now - (this.lastFrameTime ?? now)) / 1000, 0.1);
     this.lastFrameTime = now;
+    
+    // 兜底：任何原因漏掉 resize 事件（微信/iOS 转屏）时，发现尺寸变了就立即校正
+    const { width, height } = this.getViewportSize();
+    if (this._lastSize !== `${width}x${height}`) this.onResize();
 
     // 更新控制器（含走路镜头起伏；motion = { speed, sprint, footstep }）
     this.controls.update();
@@ -488,6 +518,10 @@ class ForbiddenCityApp {
     cancelAnimationFrame(this.animationFrame);
     clearTimeout(this.loadingTimeout);
     window.removeEventListener('resize', this._onResize);
+    window.removeEventListener('orientationchange', this._onOrientationChange);
+    window.visualViewport?.removeEventListener('resize', this._onResize);
+    clearTimeout(this._resizeTimer1);
+    clearTimeout(this._resizeTimer2);
     window.removeEventListener('touchstart', this._startAudio);
     window.removeEventListener('pointerdown', this._startAudio);
     if (this.controls) {

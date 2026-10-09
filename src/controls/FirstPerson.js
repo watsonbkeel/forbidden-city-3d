@@ -42,6 +42,10 @@ export class FirstPersonControls {
     this.lookLocked = false;
     this.lookTouchId = null;
     this.lookLockButton = null;
+    // 移动端奔跑判定：记录当前推的方向和开始时间
+    this.runDirAngle = null;
+    this.runStartTime = 0;
+    this.mobileRunning = false;
     
     // 当前速度（x = 右移速度，z = 前进速度，单位：米/秒）
     this.velocity = new THREE.Vector3();
@@ -147,7 +151,7 @@ export class FirstPersonControls {
       for (const touch of e.changedTouches) {
         if (this.joystick && (touch.identifier === this.joystick.touchId ||
             this.joystick.hitTest(touch.clientX, touch.clientY))) continue;
-        if (!touch.target?.closest?.('button, a, input, select, textarea, [role="button"], #minimap, #settings-overlay, #settings-panel')) {
+        if (!touch.target?.closest?.('button, a, input, select, textarea, [role="button"], #minimap, #minimap-preview, #settings-overlay, #settings-panel')) {
           this.lookTouchId = touch.identifier;
           lastX = touch.clientX;
           lastY = touch.clientY;
@@ -273,11 +277,39 @@ export class FirstPersonControls {
     }
     
     // 移动端：摇杆（向上推 = 前进，屏幕坐标 y 向下为正，所以取反）
+    // 持续朝同一方向推满 2 秒以上 → 奔跑；换方向、松手或推得太轻都会回到走路
+    let mobileRunning = false;
     if (this.isMobile && this.joystick && this.joystick.isActive()) {
       const d = this.joystick.getDelta();
-      targetForward = -d.y * PLAYER.JOYSTICK_SPEED;
-      targetRight = d.x * PLAYER.JOYSTICK_SPEED;
+      const mag = Math.hypot(d.x, d.y);
+      if (mag > 0.5) {
+        const angle = Math.atan2(d.x, -d.y);
+        let diff = 0;
+        if (this.runDirAngle !== null) {
+          diff = Math.abs(angle - this.runDirAngle);
+          if (diff > Math.PI) diff = 2 * Math.PI - diff;
+        }
+        if (this.runDirAngle === null || diff > (PLAYER.JOYSTICK_RUN_ANGLE ?? 0.6)) {
+          this.runDirAngle = angle;
+          this.runStartTime = time;
+        }
+        mobileRunning = time - this.runStartTime >= (PLAYER.JOYSTICK_RUN_DELAY ?? 2000);
+      } else {
+        this.runDirAngle = null;
+      }
+      if (mobileRunning) {
+        // 奔跑时按满速，方向取当前推的方向
+        targetForward = (-d.y / mag) * PLAYER.JOYSTICK_RUN_SPEED;
+        targetRight = (d.x / mag) * PLAYER.JOYSTICK_RUN_SPEED;
+      } else {
+        targetForward = -d.y * PLAYER.JOYSTICK_SPEED;
+        targetRight = d.x * PLAYER.JOYSTICK_SPEED;
+      }
+    } else {
+      this.runDirAngle = null;
     }
+    if (this.joystick && this.mobileRunning !== mobileRunning) this.joystick.setRunning(mobileRunning);
+    this.mobileRunning = mobileRunning;
     
     // 速度平滑（指数插值，起步/停步更自然）
     const smoothing = 1 - Math.exp(-10 * delta);
@@ -327,7 +359,9 @@ export class FirstPersonControls {
     this.updateGround(delta);
     this.camera.position.y = this.feetY + PLAYER.HEIGHT;
     
-    const sprint = !this.isMobile && this.canSprint && speed > PLAYER.MOVE_SPEED * 0.5;
+    const sprint = this.isMobile
+      ? mobileRunning && speed > PLAYER.MOVE_SPEED * 0.5
+      : this.canSprint && speed > PLAYER.MOVE_SPEED * 0.5;
     const footstep = this.updateHeadBob(delta, speed);
     this.motion.speed = speed;
     this.motion.sprint = sprint;

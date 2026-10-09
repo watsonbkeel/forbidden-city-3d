@@ -143,7 +143,10 @@ export const PLAYER = {
   MOVE_SPEED: 5.0,              // 移动速度（米/秒）
   SPRINT_SPEED: 10.0,           // 冲刺速度
   MOUSE_SENSITIVITY: 0.002,     // 鼠标灵敏度
-  JOYSTICK_SPEED: 3.0,          // 虚拟摇杆速度
+  JOYSTICK_SPEED: 3.0,          // 虚拟摇杆速度（走）
+  JOYSTICK_RUN_SPEED: 7.5,      // 方向盘持续推同一方向后的奔跑速度
+  JOYSTICK_RUN_DELAY: 2000,     // 持续同一方向多久后开始跑（毫秒）
+  JOYSTICK_RUN_ANGLE: 0.6,      // 判定"同一方向"的允许偏差（弧度，约 35°）
   STEP_UP: 0.6,                 // 单帧可直接踏上的最大台阶高度（米）
 };
 

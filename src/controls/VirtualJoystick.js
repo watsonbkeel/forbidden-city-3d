@@ -76,6 +76,12 @@ export class VirtualJoystick {
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
       transform: translate(-50%, -50%);
       pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #7a4a00;
+      font-size: 16px;
+      font-weight: bold;
     `;
 
     this.base.appendChild(this.stick);
@@ -174,6 +180,19 @@ export class VirtualJoystick {
       this.base.style.opacity = '0.75';
       this.base.style.background = 'radial-gradient(circle, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.22) 100%)';
     }
+  }
+
+  /**
+   * 奔跑状态：圆盘边框变金色并显示"跑"字提示
+   */
+  setRunning(running) {
+    this.running = !!running;
+    if (!this.base) return;
+    this.base.style.borderColor = running ? 'rgba(255, 200, 60, 0.95)' : 'rgba(255, 255, 255, 0.45)';
+    this.base.style.boxShadow = running
+      ? '0 0 16px rgba(255, 200, 60, 0.7)'
+      : '0 2px 12px rgba(0, 0, 0, 0.25)';
+    this.stick.textContent = running ? '跑' : '';
   }
 
   getDelta() {
