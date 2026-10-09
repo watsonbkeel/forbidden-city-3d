@@ -270,11 +270,13 @@ class ForbiddenCityApp {
     if (this.isMobile) {
       helpPanel.innerHTML = `
         <strong>操作说明</strong><br>
-        左下角摇杆：移动<br>
-        右半屏拖动：视角<br>
-        右下角按钮：锁定视角<br>
-        M键：小地图
+        左下角方向盘：前后左右移动<br>
+        手指拖动屏幕：调整视角<br>
+        右下角按钮：锁定视角
       `;
+      // 手机屏幕小，说明面板 8 秒后自动淡出，避免遮挡画面
+      helpPanel.style.transition = 'opacity 0.6s ease';
+      setTimeout(() => { helpPanel.style.opacity = '0'; }, 8000);
     } else {
       helpPanel.innerHTML = `
         <strong>操作说明</strong><br>

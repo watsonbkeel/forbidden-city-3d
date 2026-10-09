@@ -116,9 +116,9 @@ export class FirstPersonControls {
     button.textContent = '锁定视角';
     button.style.cssText = `
       position: fixed;
-      bottom: 40px;
-      right: 40px;
-      padding: 15px 20px;
+      bottom: calc(40px + env(safe-area-inset-bottom, 0px));
+      right: calc(24px + env(safe-area-inset-right, 0px));
+      padding: 12px 16px;
       background: rgba(255, 255, 255, 0.3);
       border: 2px solid rgba(255, 255, 255, 0.5);
       border-radius: 10px;
@@ -141,11 +141,13 @@ export class FirstPersonControls {
     let lastX = 0;
     let lastY = 0;
     
+    // 全屏任意位置拖动都可转视角，只排除：方向盘认领的手指、方向盘区域、按钮和浮层面板
     this._onLookTouchStart = (e) => {
       if (this.lookLocked || this.lookTouchId !== null) return;
       for (const touch of e.changedTouches) {
-        if (touch.clientX > window.innerWidth / 2 &&
-            !touch.target?.closest?.('button, a, input, select, textarea, [role="button"]')) {
+        if (this.joystick && (touch.identifier === this.joystick.touchId ||
+            this.joystick.hitTest(touch.clientX, touch.clientY))) continue;
+        if (!touch.target?.closest?.('button, a, input, select, textarea, [role="button"], #minimap, #settings-overlay, #settings-panel')) {
           this.lookTouchId = touch.identifier;
           lastX = touch.clientX;
           lastY = touch.clientY;
@@ -166,8 +168,8 @@ export class FirstPersonControls {
         
         // 从相机当前朝向出发累加，避免第一次拖动时视角跳变
         _euler.setFromQuaternion(this.camera.quaternion);
-        _euler.y -= deltaX * 0.004;
-        _euler.x -= deltaY * 0.004;
+        _euler.y -= deltaX * 0.005;
+        _euler.x -= deltaY * 0.005;
         _euler.x = Math.max(-Math.PI / 2 + 0.01, Math.min(Math.PI / 2 - 0.01, _euler.x));
         this.camera.quaternion.setFromEuler(_euler);
       }

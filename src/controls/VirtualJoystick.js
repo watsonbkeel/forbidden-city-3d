@@ -1,7 +1,12 @@
 /**
- * 虚拟摇杆控制器
- * 用于移动端触摸控制
+ * 虚拟方向盘（移动端）
+ * 常驻显示在左下角的半透明圆盘：按住圆盘拖动即可前后左右移动，松手归零。
+ * 只认领落在圆盘附近的那根手指，其余手指留给视角拖动。
  */
+
+const SIZE = 120;          // 底座直径（px）
+const KNOB = 54;           // 摇杆头直径（px）
+const HIT_PADDING = 45;    // 圆盘外扩的可触发范围（px），手指没按准也能用
 
 export class VirtualJoystick {
   constructor(container) {
@@ -14,56 +19,69 @@ export class VirtualJoystick {
     this.deltaX = 0;
     this.deltaY = 0;
     this.touchId = null;
-    
-    this.maxRadius = 50;
-    
+
+    this.maxRadius = (SIZE - KNOB) / 2 + 10;
+
     this.createElements();
     this.bindEvents();
   }
-  
+
   /**
-   * 创建 DOM 元素
+   * 创建 DOM 元素（常驻显示）
    */
   createElements() {
-    // 摇杆底座
     this.base = document.createElement('div');
     this.base.className = 'joystick-base';
     this.base.style.cssText = `
       position: fixed;
-      bottom: 80px;
-      left: 80px;
-      width: 100px;
-      height: 100px;
-      background: rgba(255, 255, 255, 0.2);
-      border: 2px solid rgba(255, 255, 255, 0.4);
+      left: calc(28px + env(safe-area-inset-left, 0px));
+      bottom: calc(36px + env(safe-area-inset-bottom, 0px));
+      width: ${SIZE}px;
+      height: ${SIZE}px;
+      background: radial-gradient(circle, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.22) 100%);
+      border: 2px solid rgba(255, 255, 255, 0.45);
       border-radius: 50%;
-      display: none;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
       z-index: 1000;
+      pointer-events: none;
+      transition: opacity 0.2s ease, background 0.2s ease;
+      opacity: 0.75;
     `;
-    
-    // 摇杆
+
+    // 上下左右方向箭头
+    const arrows = [
+      { ch: '▲', css: 'top: 6px; left: 50%; transform: translateX(-50%);' },
+      { ch: '▼', css: 'bottom: 6px; left: 50%; transform: translateX(-50%);' },
+      { ch: '◀', css: 'left: 8px; top: 50%; transform: translateY(-50%);' },
+      { ch: '▶', css: 'right: 8px; top: 50%; transform: translateY(-50%);' },
+    ];
+    for (const a of arrows) {
+      const el = document.createElement('span');
+      el.textContent = a.ch;
+      el.style.cssText = `position: absolute; ${a.css} font-size: 12px; line-height: 1; color: rgba(255,255,255,0.75); pointer-events: none;`;
+      this.base.appendChild(el);
+    }
+
     this.stick = document.createElement('div');
     this.stick.className = 'joystick-stick';
     this.stick.style.cssText = `
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 50px;
-      height: 50px;
-      background: rgba(255, 255, 255, 0.6);
-      border: 2px solid rgba(255, 255, 255, 0.8);
+      width: ${KNOB}px;
+      height: ${KNOB}px;
+      background: rgba(255, 255, 255, 0.55);
+      border: 2px solid rgba(255, 255, 255, 0.85);
       border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
       transform: translate(-50%, -50%);
       pointer-events: none;
     `;
-    
+
     this.base.appendChild(this.stick);
     this.container.appendChild(this.base);
   }
-  
-  /**
-   * 绑定事件
-   */
+
   bindEvents() {
     this._onTouchStart = this.onTouchStart.bind(this);
     this._onTouchMove = this.onTouchMove.bind(this);
@@ -73,50 +91,54 @@ export class VirtualJoystick {
     this.container.addEventListener('touchend', this._onTouchEnd, { passive: false });
     this.container.addEventListener('touchcancel', this._onTouchEnd, { passive: false });
   }
-  
+
   /**
-   * 触摸开始处理
+   * 圆盘中心（屏幕坐标），每次按下时实时读取，兼容横竖屏切换
    */
+  getCenter() {
+    const r = this.base.getBoundingClientRect();
+    return { x: r.left + r.width / 2, y: r.top + r.height / 2, radius: r.width / 2 };
+  }
+
+  /**
+   * 某个触点是否落在方向盘可触发范围内
+   */
+  hitTest(x, y) {
+    const c = this.getCenter();
+    return Math.hypot(x - c.x, y - c.y) <= c.radius + HIT_PADDING;
+  }
+
   onTouchStart(e) {
     if (this.active) return;
     const touch = Array.from(e.changedTouches).find(t =>
-      t.clientX < window.innerWidth / 3 &&
-      t.clientY > window.innerHeight * 2 / 3 &&
-      !t.target?.closest?.('button, a, input, select, textarea, [role="button"]')
+      !t.target?.closest?.('button, a, input, select, textarea, [role="button"]') &&
+      this.hitTest(t.clientX, t.clientY)
     );
     if (!touch) return;
     e.preventDefault();
     this.touchId = touch.identifier;
-    
-    this.baseX = touch.clientX;
-    this.baseY = touch.clientY;
-    this.stickX = 0;
-    this.stickY = 0;
-    this.deltaX = 0;
-    this.deltaY = 0;
-    this.stick.style.transform = 'translate(-50%, -50%)';
-    
-    this.base.style.display = 'block';
-    this.base.style.left = `${this.baseX - 50}px`;
-    this.base.style.top = `${this.baseY - 50}px`;
-    
+
+    const c = this.getCenter();
+    this.baseX = c.x;
+    this.baseY = c.y;
     this.active = true;
+    this.base.style.opacity = '1';
+    this.base.style.background = 'radial-gradient(circle, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.32) 100%)';
+    this.updateStick(touch.clientX, touch.clientY);
   }
-  
-  /**
-   * 触摸移动处理
-   */
+
   onTouchMove(e) {
     if (!this.active) return;
-    
     const touch = Array.from(e.changedTouches).find(t => t.identifier === this.touchId);
     if (!touch) return;
     e.preventDefault();
-    
-    const dx = touch.clientX - this.baseX;
-    const dy = touch.clientY - this.baseY;
-    const distance = Math.sqrt(dx * dx + dy * dy);
-    
+    this.updateStick(touch.clientX, touch.clientY);
+  }
+
+  updateStick(x, y) {
+    const dx = x - this.baseX;
+    const dy = y - this.baseY;
+    const distance = Math.hypot(dx, dy);
     if (distance > this.maxRadius) {
       this.stickX = (dx / distance) * this.maxRadius;
       this.stickY = (dy / distance) * this.maxRadius;
@@ -124,24 +146,19 @@ export class VirtualJoystick {
       this.stickX = dx;
       this.stickY = dy;
     }
-    
-    // 更新摇杆位置
     this.stick.style.transform = `translate(calc(-50% + ${this.stickX}px), calc(-50% + ${this.stickY}px))`;
-    
-    // 计算归一化的偏移量（-1 到 1）
-    this.deltaX = this.stickX / this.maxRadius;
-    this.deltaY = this.stickY / this.maxRadius;
+
+    // 归一化偏移（-1 ~ 1），中心留一点死区，防止手指微抖导致漂移
+    let nx = this.stickX / this.maxRadius;
+    let ny = this.stickY / this.maxRadius;
+    if (Math.hypot(nx, ny) < 0.12) { nx = 0; ny = 0; }
+    this.deltaX = nx;
+    this.deltaY = ny;
   }
-  
-  /**
-   * 触摸结束处理
-   */
+
   onTouchEnd(e) {
-    const touches = Array.from(e.changedTouches);
-    const touch = touches.find(t => t.identifier === this.touchId);
-    
+    const touch = Array.from(e.changedTouches).find(t => t.identifier === this.touchId);
     if (!touch) return;
-    
     this.reset();
   }
 
@@ -152,30 +169,21 @@ export class VirtualJoystick {
     this.stickY = 0;
     this.deltaX = 0;
     this.deltaY = 0;
-    this.base.style.display = 'none';
     this.stick.style.transform = 'translate(-50%, -50%)';
+    if (this.base) {
+      this.base.style.opacity = '0.75';
+      this.base.style.background = 'radial-gradient(circle, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.22) 100%)';
+    }
   }
-  
-  /**
-   * 获取当前偏移量
-   */
+
   getDelta() {
-    return {
-      x: this.deltaX,
-      y: this.deltaY,
-    };
+    return { x: this.deltaX, y: this.deltaY };
   }
-  
-  /**
-   * 检查是否激活
-   */
+
   isActive() {
     return this.active;
   }
-  
-  /**
-   * 销毁
-   */
+
   dispose() {
     this.container.removeEventListener('touchstart', this._onTouchStart);
     this.container.removeEventListener('touchmove', this._onTouchMove);
