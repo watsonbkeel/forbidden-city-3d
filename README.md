@@ -163,7 +163,7 @@ k.gate({ x: -80, z: 140, rot: FACE.east, style: 'wall', name: '某某门' });
 
 ## 开源协议
 
-MIT License
+MIT License，详见 [LICENSE](./LICENSE)。
 
 ## 致谢
 
