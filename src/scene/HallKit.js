@@ -147,9 +147,10 @@ export function buildBalustrade(lib, { length, height = 1.1 }) {
  * @returns {THREE.Mesh}
  */
 export function buildStuddedDoor(lib, { width, height }) {
+  // 几何体底面平移到原点，调用方 position.set(x, 0, z) 时门扇正好落地（不会被埋掉一半）
   const geo = new THREE.BoxGeometry(width, height, 0.25);
+  geo.translate(0, height / 2, 0);
   const door = new THREE.Mesh(geo, lib.material('door_studded'));
-  door.position.y = height / 2;
   door.castShadow = true;
   return door;
 }

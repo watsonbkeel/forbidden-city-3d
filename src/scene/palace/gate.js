@@ -168,7 +168,8 @@ export function buildWumen(lib, data) {
     
     const wingRoof = buildRoof(lib, {
       type: 'xieshan', width: wingW, depth: wingL - 2,
-      baseY: wingH + wingHall.userData.topY, layers: 1, brackets: true, detail: 'low'
+      // 屋顶整体已平移到 wingH，baseY 只需屋身高度（否则屋顶会悬空 wingH）
+      baseY: wingHall.userData.topY, layers: 1, brackets: true, detail: 'low'
     });
     wingRoof.position.set(wingX, wingH, wingZ);
     group.add(wingRoof);
