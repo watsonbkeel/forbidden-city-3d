@@ -129,6 +129,8 @@ class ForbiddenCityApp {
         this.collisionManager.addColliders(this.sideCourts.getColliders());
         this.collisionManager.addWalkables(this.sideCourts.getWalkables());
         this.collisionManager.setRegions(this.sideCourts.getRegions());
+        // 所有可进入房间（世界坐标，含门/掩体/刷怪点），后续玩法从这里取
+        this.rooms = this.sideCourts.getRooms();
       }],
       ['控制器', () => {
         this.controls = new FirstPersonControls(this.camera, document.body, this.collisionManager);

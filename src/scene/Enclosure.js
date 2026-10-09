@@ -295,9 +295,7 @@ export class Enclosure {
    * 庑房（廊庑）
    */
   buildCorridorHalls(parent) {
-    // 午门外朝房：x=±45，z 从 -215 到 -165
-    this.addCorridorSection(parent, { x: 45, z1: -215, z2: -165, w: 8, d: 6, h: 5 });
-    this.addCorridorSection(parent, { x: -45, z1: -215, z2: -165, w: 8, d: 6, h: 5 });
+    // 午门外朝房已改由 SideCourts 用 CourtKit.corridor 建造（可进入、带室内）。保留此方法供扩展。
   }
 
   /**

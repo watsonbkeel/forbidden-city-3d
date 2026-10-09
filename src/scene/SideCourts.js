@@ -67,7 +67,7 @@ export class SideCourts {
       k.wall(s * 17.5, 170, X, 170, { h: 7, gaps: [{ at: s * 45, w: w7 }] });
 
       // 两庑（面向院内）
-      for (const [z0, z1] of [[-146, -122], [-108, -80.5], [-79.5, -57], [-43, 6.5], [33.5, 47.5], [48.5, 136.5]]) {
+      for (const [z0, z1] of [[-146, -122], [-108, -88], [-79.5, -57], [-43, 6.5], [33.5, 47.5], [48.5, 136.5]]) {
         k.corridor(cx, z0, cx, z1, facing);
       }
       // 太和门两侧廊（面向南）
@@ -89,6 +89,8 @@ export class SideCourts {
       k.region(E ? '东一长街' : '西一长街', s * 40, s * 50, 170, 305);
       k.region(E ? '景运门外' : '隆宗门外', s * 75, s * 123, 137, 176);
     }
+    // 午门外朝房（东西各一排，面向御道，可进入）
+    for (const s of [-1, 1]) k.corridor(s * 45, -215, s * 45, -165, s < 0 ? 'x+' : 'x-', { depth: 6, colH: 4, name: '朝房' });
     k.region('太和门广场', -75, 75, -146, -80);
     k.region('乾清门广场', -75, 75, 137, 170);
   }
@@ -311,6 +313,11 @@ export class SideCourts {
 
   getRegions() {
     return [...this.kit.regions];
+  }
+
+  /** 所有可进入房间（世界坐标：min/max/doors/cover/spawns），为后续玩法预留 */
+  getRooms() {
+    return [...this.kit.rooms];
   }
 
   update() {}

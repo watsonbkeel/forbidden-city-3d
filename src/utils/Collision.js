@@ -94,7 +94,40 @@ export class CollisionManager {
     this.playerSize.set(radius * 2, top - bottom, radius * 2);
     this.playerCenter.set(position.x, (top + bottom) / 2, position.z);
     this.playerBox.setFromCenterAndSize(this.playerCenter, this.playerSize);
-    return this.colliders.some(collider => this.playerBox.intersectsBox(collider.box));
+    return this.queryBox(this.playerBox).some(collider => this.playerBox.intersectsBox(collider.box));
+  }
+
+  /**
+   * 空间网格（XZ 平面，CELL 米一格）：碰撞体多了以后只检查附近格子里的，射线/子弹检测也可复用。
+   * 碰撞体增删后自动失效重建。
+   */
+  _buildGrid() {
+    const CELL = 8;
+    const grid = new Map();
+    for (const c of this.colliders) {
+      const b = c.box;
+      const i0 = Math.floor(b.min.x / CELL), i1 = Math.floor(b.max.x / CELL);
+      const k0 = Math.floor(b.min.z / CELL), k1 = Math.floor(b.max.z / CELL);
+      for (let i = i0; i <= i1; i++) for (let k = k0; k <= k1; k++) {
+        const key = i * 100003 + k;
+        let list = grid.get(key);
+        if (!list) grid.set(key, list = []);
+        list.push(c);
+      }
+    }
+    this._grid = { CELL, grid, count: this.colliders.length };
+  }
+
+  /** 返回与 box 的 XZ 投影可能相交的碰撞体（去重） */
+  queryBox(box) {
+    if (!this._grid || this._grid.count !== this.colliders.length) this._buildGrid();
+    const { CELL, grid } = this._grid;
+    const i0 = Math.floor(box.min.x / CELL), i1 = Math.floor(box.max.x / CELL);
+    const k0 = Math.floor(box.min.z / CELL), k1 = Math.floor(box.max.z / CELL);
+    if (i0 === i1 && k0 === k1) return grid.get(i0 * 100003 + k0) ?? [];
+    const out = new Set();
+    for (let i = i0; i <= i1; i++) for (let k = k0; k <= k1; k++) grid.get(i * 100003 + k)?.forEach(c => out.add(c));
+    return [...out];
   }
 
   checkBoundary(position, radius = 0.5) {
@@ -154,12 +187,14 @@ export class CollisionManager {
     if (collider) {
       if (object.isBox3) collider.box.copy(object);
       else collider.box.setFromObject(object);
+      this._grid = null;
     }
   }
 
   clear() {
     this.colliders.length = 0;
     this.walkables.length = 0;
+    this._grid = null;
   }
 
   /** 两侧宫院的命名区域（世界坐标矩形），优先于中轴 z 分段判断 */

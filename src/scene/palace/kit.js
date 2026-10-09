@@ -3,6 +3,7 @@ import { applyBoxUV, applyBandUV } from '../../utils/GeometryUV.js';
 import { buildRoof, buildWallCap } from '../RoofBuilder.js';
 import { buildStuddedDoor } from '../HallKit.js';
 import { mergeByMaterial } from '../../utils/MergeUtils.js';
+import { furnishRoom } from './interiors.js';
 
 const STEP_RUN = 1.6; // 台阶水平长 / 高
 const _v = new THREE.Vector3();
@@ -26,6 +27,8 @@ export class CourtKit {
     this.mapItems = [];
     this.regions = [];
     this.plaques = [];
+    /** 可进入的房间（世界坐标），供小地图 / 位置显示 / 未来玩法（刷怪点、掩体、巷战区域）使用 */
+    this.rooms = [];
     this.ridge = new THREE.MeshStandardMaterial({ color: 0xc98f2c, roughness: 0.36, metalness: 0.05, name: 'kit_ridge' });
     this.gold = new THREE.MeshStandardMaterial({ color: 0xe2b048, roughness: 0.28, metalness: 0.8, name: 'kit_gold' });
     this.lacquer = new THREE.MeshStandardMaterial({ color: 0x7a1d12, roughness: 0.4, metalness: 0.1, name: 'kit_lacquer' });
@@ -121,6 +124,53 @@ export class CourtKit {
     const c = new THREE.Vector3().applyMatrix4(f.matrixWorld);
     const q = Math.abs(Math.sin(f.rotation.y)) > 0.5;
     this.mapItems.push({ kind, name, x: c.x, z: c.z, w: q ? d : w, d: q ? w : d, ...extra });
+  }
+
+  // ───────────────────────── 室内 ─────────────────────────
+
+  interiorMaterials() {
+    if (!this._interiorMats) {
+      const mk = (name, color, roughness = 0.6) => {
+        const m = new THREE.MeshStandardMaterial({ color, roughness, metalness: 0.05, name });
+        this.owned.push(m);
+        return m;
+      };
+      this._interiorMats = {
+        wood: mk('kit_furn_wood', 0x5a2f1c, 0.55),
+        crate: mk('kit_furn_crate', 0x7a5634, 0.85),
+        cloth: mk('kit_furn_cloth', 0xb98a2e, 0.9),
+        lacquer: this.lacquer,
+        gold: this.gold,
+      };
+    }
+    return this._interiorMats;
+  }
+
+  furnish(f, kind, room) {
+    const seed = Math.round(Math.abs(f.position.x * 131 + f.position.z * 17 + room.x0 * 7));
+    const res = furnishRoom(this, f, kind, room, seed);
+    this._lastFurnish = res;
+    return res;
+  }
+
+  /** 登记一个房间：局部矩形 → 世界 AABB，门 / 掩体 / 刷怪点 → 世界坐标 */
+  registerRoom(f, { name, kind, x0, x1, z0, z1, y, h, doors }) {
+    const toW = (x, z) => new THREE.Vector3(x, 0, z).applyMatrix4(f.matrixWorld);
+    const a = toW(x0, z0), b = toW(x1, z1);
+    const pt = p => { const v = toW(p.x, p.z); return { x: +v.x.toFixed(2), z: +v.z.toFixed(2) }; };
+    const extra = kind === 'throne' ? { cover: [], spawns: [] } : (this._lastFurnish ?? { cover: [], spawns: [] });
+    this._lastFurnish = null;
+    if (name) this.region(name, a.x, b.x, a.z, b.z);
+    this.rooms.push({
+      id: this.rooms.length,
+      name, kind,
+      min: { x: Math.min(a.x, b.x), y, z: Math.min(a.z, b.z) },
+      max: { x: Math.max(a.x, b.x), y: y + h, z: Math.max(a.z, b.z) },
+      floorY: y,
+      doors: doors.map(pt),
+      cover: extra.cover.map(pt),
+      spawns: (extra.spawns.length ? extra.spawns : [{ x: (x0 + x1) / 2, z: (z0 + z1) / 2 }]).map(pt),
+    });
   }
 
   region(name, x0, x1, z0, z1) {
@@ -314,12 +364,25 @@ export class CourtKit {
     const {
       x, z, rot = 0, w, d, colH = 4.6, ph = 0.9, pad = 1.0,
       roof = 'xieshan', layers = 1, brackets = true, roofH,
-      enter = false, backDoor = false, open = false, throne = false,
+      enter: enterOpt, backDoor = false, open = false, throne = false,
       name, plaque = true, map = 'hall', bays,
+      interior, roomBays = 0,
     } = o;
+    // 默认所有殿座都可进入（open 敞厅本来就能穿行）
+    const enter = !open && enterOpt !== false;
     const f = this.frame(x, z, rot);
     const n = bays ?? Math.max(3, Math.round(w / 3.6) | 1);
     const bay = w / n;
+    // 房间划分：roomBays>0 时每 roomBays 间隔成一个房间（不足 2 间的尾巴并入上一间），每间房正中一扇门
+    const segs = [];
+    if (enter && roomBays > 0 && n > roomBays + 1) {
+      for (let a = 0; a < n; a += roomBays) segs.push([a, Math.min(n, a + roomBays)]);
+      const last = segs[segs.length - 1];
+      if (last[1] - last[0] < 2 && segs.length > 1) { segs.pop(); segs[segs.length - 1][1] = n; }
+    } else {
+      segs.push([0, n]);
+    }
+    const doorBays = new Set(segs.map(([a, b]) => Math.floor((a + b - 1) / 2)));
     const PW = w + 2 * pad;
     const PD = d + 2 * pad;
     const y0 = ph;
@@ -329,7 +392,8 @@ export class CourtKit {
     this.box(f, big ? 'sumeru_band' : 'wall_brick', PW, ph, PD, 0, ph / 2, 0, big ? 'band' : 'box');
     this.box(f, 'stone_slab', PW + 0.12, 0.08, PD + 0.12, 0, ph - 0.03, 0);
     this.walkBox(f, -PW / 2, -PD / 2, PW / 2, PD / 2, ph);
-    if (ph > 0.3) this.col(f, -PW / 2 + 0.05, 0, -PD / 2 + 0.05, PW / 2 - 0.05, Math.min(ph, 3), PD / 2 - 0.05);
+    // 低于可迈高度（0.55m）的台明直接跨上去，不做实体（否则玩家半径会被台沿挡住）
+    if (ph > 0.55) this.col(f, -PW / 2 + 0.05, 0, -PD / 2 + 0.05, PW / 2 - 0.05, Math.min(ph, 3), PD / 2 - 0.05);
     if (ph > 0.55) {
       const sw = Math.min(Math.max(bay * 1.05, 2.4), 4.6);
       const dirs = open ? [-1, 1] : backDoor ? [-1, 1] : [-1];
@@ -372,7 +436,7 @@ export class CourtKit {
         }
         for (let i = 0; i < n; i++) {
           const xc = -w / 2 + (i + 0.5) * bay;
-          if (openFace && i === (n - 1) / 2) {
+          if (openFace && doorBays.has(i)) {
             // 敞开的明间：两扇隔扇门折向两侧，贴在柱边
             for (const s of [-1, 1]) {
               const leaf = this.box(f, 'lattice_doors', bay * 0.26, doorH, 0.1, xc + s * (bay / 2 - r - 0.08), y0 + doorH / 2, zf - side * (bay * 0.13 + 0.2), 'band');
@@ -384,7 +448,17 @@ export class CourtKit {
           if (enter) this.col(f, xc - bay / 2, y0, zf - 0.25, xc + bay / 2, y0 + 3, zf + 0.25);
         }
         this.box(f, 'wall_red', w, colH - beamH - doorH, 0.3, 0, y0 + doorH + (colH - beamH - doorH) / 2, zf);
-        if (openFace) this.box(f, 'wood_column', bay - 2 * r, 0.22, 0.3, -w / 2 + (n / 2) * bay, y0 + 0.11, zf);
+        if (openFace) {
+          for (const i of doorBays) this.box(f, 'wood_column', bay - 2 * r, 0.22, 0.3, -w / 2 + (i + 0.5) * bay, y0 + 0.11, zf);
+        }
+      }
+      // 房间隔墙（贯通进深，到额枋下）
+      if (enter) {
+        for (let k = 1; k < segs.length; k++) {
+          const xb = -w / 2 + segs[k][0] * bay;
+          this.box(f, 'wall_red', 0.3, colH - beamH, d - 0.2, xb, y0 + (colH - beamH) / 2, 0);
+          this.col(f, xb - 0.15, y0, -d / 2, xb + 0.15, y0 + 3, d / 2);
+        }
       }
       if (!enter) this.col(f, -w / 2 - 0.3, y0, -d / 2 - 0.3, w / 2 + 0.3, y0 + 3, d / 2 + 0.3);
     }
@@ -410,6 +484,23 @@ export class CourtKit {
       this.col(f, -tw / 2, y0, tz - 1.2, tw / 2, y0 + 3, tz + 1.3);
     }
 
+    // 室内陈设 + 房间登记（宝座殿以外的每个房间）
+    if (enter) {
+      const kind = interior ?? (throne ? 'throne' : map === 'corridor' ? 'room' : w >= 14 ? 'hall' : 'room');
+      segs.forEach(([a, b], idx) => {
+        const x0 = -w / 2 + a * bay + (a > 0 ? 0.15 : 0.35);
+        const x1 = -w / 2 + b * bay - (b < n ? 0.15 : 0.35);
+        const doorX = -w / 2 + (Math.floor((a + b - 1) / 2) + 0.5) * bay;
+        const roomKind = kind === 'room' && segs.length > 2 && idx % 3 === 2 ? 'storage' : kind;
+        if (roomKind !== 'throne') this.furnish(f, roomKind, { x0, x1, z0: -d / 2 + 0.3, z1: d / 2 - 0.3, y: y0, doorX, h: colH - beamH, backDoor });
+        this.registerRoom(f, {
+          name: name ? (segs.length > 1 && map !== 'corridor' ? `${name}·${idx + 1}` : name) : null,
+          kind: roomKind, x0, x1, z0: -d / 2, z1: d / 2, y: y0, h: colH - beamH,
+          doors: [{ x: doorX, z: -d / 2 }, ...(backDoor ? [{ x: doorX, z: d / 2 }] : [])],
+        });
+      });
+    }
+
     this.roof(f, {
       type: roof, width: w + 0.5, depth: d + 0.5, baseY: y0 + colH, layers, brackets,
       ...(roofH ? { height: roofH } : {}),
@@ -422,15 +513,16 @@ export class CourtKit {
     return { f, PW, PD, top: y0 };
   }
 
-  /** 庑房（廊房）：沿 x1→x2 或 z1→z2 的长条，正面朝 facing（'x+'|'x-'|'z+'|'z-'），整体为实体 */
-  corridor(x1, z1, x2, z2, facing, { depth = 4.2, colH = 3.6 } = {}) {
+  /** 庑房（廊房）：沿 x1→x2 或 z1→z2 的长条，正面朝 facing（'x+'|'x-'|'z+'|'z-'），每 3 间隔成一个可进入的房间 */
+  corridor(x1, z1, x2, z2, facing, { depth = 4.2, colH = 3.6, name } = {}) {
     const alongX = Math.abs(x2 - x1) >= Math.abs(z2 - z1);
     const len = alongX ? Math.abs(x2 - x1) : Math.abs(z2 - z1);
     if (len < 4) return;
     const rot = { 'z-': 0, 'z+': Math.PI, 'x+': -Math.PI / 2, 'x-': Math.PI / 2 }[facing];
     this.hall({
       x: (x1 + x2) / 2, z: (z1 + z2) / 2, rot, w: len - 1.0, d: depth, pad: 0.5, ph: 0.45, colH,
-      roof: 'gable', brackets: false, enter: false, map: 'corridor', bays: Math.max(3, Math.round(len / 3.4) | 1),
+      roof: 'gable', brackets: false, enter: true, roomBays: 3, interior: 'room', plaque: false, name: name ?? '庑房',
+      map: 'corridor', bays: Math.max(3, Math.round(len / 3.4) | 1),
     });
   }
 
