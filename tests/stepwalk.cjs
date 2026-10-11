@@ -70,7 +70,8 @@ const SIDE_ROUTES = [
       const [x0, z0] = pts[0];
       // 传送到起点后先把该处分区建好（真实游玩中靠 40m 预载，传送是瞬移所以要补齐）
       a.camera.position.set(x0, a.camera.position.y, z0);
-      for (let i = 0; i < 20; i++) tickZones();
+      a.zoneManager?.ensureLoadedAt(x0, z0);
+      tickZones();
       c.setPosition(x0, 300, z0); // 起点取该处最高可行走面（起点在台基上时站在台面上）
       c.velocity.set(0, 0, 0);
       c.moveForward = true;

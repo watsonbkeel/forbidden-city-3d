@@ -21,6 +21,8 @@ const fs = require('node:fs');
       const a = window.__forbiddenCityApp;
       const THREE = await import('/node_modules/three/build/three.module.js');
       const v = (x, z) => new THREE.Vector3(x, 1.7, z);
+      // 分区流式加载：下面要查询远离出生点的碰撞（如御花园 z=350），先确保这些点所在分区已加载
+      for (const [x, z] of [[0, -150], [0, 170], [0, 350], [0, 420]]) a.zoneManager?.ensureLoadedAt(x, z);
       const gates = [-150, -80, 170, 420];
       const through = gates.every(z => {
         for (let sample = z - 18; sample <= z + 18; sample += 0.5) if (a.collisionManager.checkCollision(v(0, sample))) return false;

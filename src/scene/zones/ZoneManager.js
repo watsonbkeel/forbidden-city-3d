@@ -153,6 +153,22 @@ export class ZoneManager {
   }
 
   /**
+   * 同步保证点 (x, z) 所在区及其邻区已加载（含碰撞）。
+   * 用于传送/瞬移/测试：目标点可能远离当前已加载范围，不能等分帧队列。
+   * @returns {string|null} 该点所在区 id
+   */
+  ensureLoadedAt(x, z) {
+    const id = this.findZone(x, z);
+    if (!id) return null;
+    const ids = [id, ...(this.zones.get(id).neighbors ?? [])];
+    for (const zid of ids) {
+      this.loadZone(zid);
+      this.buildQueue = this.buildQueue.filter(b => b.zoneId !== zid);
+    }
+    return id;
+  }
+
+  /**
    * 进入新区时触发：将该区 + neighbors 加入构建队列
    */
   onEnterZone(zoneId) {

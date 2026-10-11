@@ -107,11 +107,24 @@
 ```js
 class ZoneBase {
   constructor(library, zoneJson)
-  build(): { group, colliders, walkables, rooms, mapItems, silhouette }
+  build(): { group, colliders, walkables, rooms, mapItems, regions, silhouette }  // P0b 增 regions（位置提示必需）
   update(dt)
   dispose()
 }
+
+class ZoneManager {                       // P0b 定稿
+  register(zoneJson, BuilderClass = ZoneBase)
+  init(scene, library, collisionManager, initialPos)   // 同步；启动时 dry-build 全部区收集 regions/mapItems/rooms
+  update(playerPos)                       // 当前区+neighbors 常驻；距 bounds ≤40m 预载；>60m 卸载；分帧 8ms
+  ensureLoadedAt(x, z)                    // 传送/测试用：同步加载该点所在区+邻区
+  getRegions() / getMapItems() / getRooms() / getLoadedIds() / getCurrentId()
+  onLoad / onUnload                       // 回调 (id, group)，main.js 用于维护阴影 LOD 列表
+  dispose()
+}
 ```
+- zone JSON 的 bounds 字段为 `{ x0, x1, z0, z1 }`（P0b 定稿，与 CourtKit.region 参数一致）。
+- 分区清单入口 `data/zones/index.js`（静态 import，构建期打包）。新增分区只在此登记。
+- 等价性门禁：`npm run test:zone-equiv`（SideCourts 删除前有效）+ `npm run test:zones`（schema lint）。
 
 ### 2.3 坐标约定（不变）
 +Z 北，-X 东；单位米，**1:1 真实尺寸**；原点 = 太和殿中心。
