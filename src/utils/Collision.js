@@ -22,21 +22,21 @@ export class CollisionManager {
     this.rivers = PALACE_LAYOUT.filter(item => item.type === 'river');
   }
 
-  addCollider(object) {
+  addCollider(object, tag) {
     const box = object.isBox3 ? object.clone() : new THREE.Box3().setFromObject(object);
-    if (!box.isEmpty()) this.colliders.push({ mesh: object, box });
+    if (!box.isEmpty()) this.colliders.push({ mesh: object, box, tag });
   }
 
-  addColliders(objects) {
-    objects.forEach(object => this.addCollider(object));
+  addColliders(objects, tag) {
+    objects.forEach(object => this.addCollider(object, tag));
   }
 
-  addWalkable(walkable) {
+  addWalkable(walkable, tag) {
     if (!walkable) return;
     if (walkable.type === 'box') {
       const box = walkable.box.isBox3 ? walkable.box.clone() : new THREE.Box3().setFromObject(walkable.box);
       // rescue: false —— 不做"钻进台基托回台面"（城台顶面下方有门洞，从门洞穿过时不能被托上城台）
-      if (!box.isEmpty()) this.walkables.push({ type: 'box', box, rescue: walkable.rescue !== false });
+      if (!box.isEmpty()) this.walkables.push({ type: 'box', box, rescue: walkable.rescue !== false, tag });
       return;
     }
     if (walkable.type === 'ramp') {
@@ -46,12 +46,29 @@ export class CollisionManager {
         minX: Math.min(r.minX, r.maxX), maxX: Math.max(r.minX, r.maxX),
         minZ: Math.min(r.minZ, r.maxZ), maxZ: Math.max(r.minZ, r.maxZ),
         axis: r.axis === 'x' ? 'x' : 'z', a0: r.a0, a1: r.a1, y0: r.y0, y1: r.y1,
+        tag,
       });
     }
   }
 
-  addWalkables(list) {
-    (list ?? []).forEach(item => this.addWalkable(item));
+  addWalkables(list, tag) {
+    (list ?? []).forEach(item => this.addWalkable(item, tag));
+  }
+
+  /**
+   * 删除带指定 tag 的所有 colliders 和 walkables（用于区域卸载）
+   */
+  removeByTag(tag) {
+    if (!tag) return;
+    const beforeC = this.colliders.length;
+    const beforeW = this.walkables.length;
+    this.colliders = this.colliders.filter(c => c.tag !== tag);
+    this.walkables = this.walkables.filter(w => w.tag !== tag);
+    const removedC = beforeC - this.colliders.length;
+    const removedW = beforeW - this.walkables.length;
+    if (removedC > 0 || removedW > 0) {
+      this._grid = null; // 重建网格
+    }
   }
 
   /**
