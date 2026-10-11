@@ -11,7 +11,8 @@ const fs = require('node:fs');
   const [name = 'shot', ...rest] = process.argv.slice(2);
   const views = [];
   for (let i = 0; i + 1 < rest.length; i += 2) views.push([rest[i].split(',').map(Number), rest[i + 1].split(',').map(Number)]);
-  if (!views.length) views.push([[0, 1.7, -120], [0, 8, 0]]);
+  // 默认机位：金水桥南 20m（LAYOUT.JINSHUI_RIVER_Z −310.8 − 20）望太和殿
+  if (!views.length) views.push([[0, 1.7, -330.8], [0, 8, 0]]);
   const outDir = path.resolve(__dirname, '../../outputs/dev');
   fs.mkdirSync(outDir, { recursive: true });
   const browser = await chromium.launch({

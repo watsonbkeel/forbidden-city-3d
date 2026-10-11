@@ -2,6 +2,9 @@ const { chromium } = require('playwright');
 const assert = require('node:assert/strict');
 
 // 在场感验收：镜头起伏、脚步节奏、碰撞无漂移、环境音效生命周期。
+// 机位为真实米制（P0c 起）：LAYOUT.START_POSITION.z = −470、LAYOUT.WUMEN_Z = −419.6、午门城台进深 25
+const START_Z = -470;
+const WUMEN_Z = -419.6;
 (async () => {
   const browser = await chromium.launch({
     executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
@@ -46,10 +49,10 @@ const assert = require('node:assert/strict');
     });
 
     // 1) 开阔地直行 3 秒
-    const walk = await page.evaluate(async () => {
+    const walk = await page.evaluate(async ({ START_Z, WUMEN_Z }) => {
       const a = window.__forbiddenCityApp;
-      a.controls.setPosition(0, 1.7, -205);
-      a.controls.lookAt(0, -150);
+      a.controls.setPosition(0, 1.7, START_Z - 5);
+      a.controls.lookAt(0, WUMEN_Z);
       const frames = window.__walk(['KeyW'], 3, 1);
       const moving = frames.filter(f => !f.released);
       const after = frames.filter(f => f.released);
@@ -71,7 +74,7 @@ const assert = require('node:assert/strict');
         footstepAfterRelease: after.slice(-3).some(f => f.footstep),
         motion: a.controls.motion,
       };
-    });
+    }, { START_Z, WUMEN_Z });
     results.walk = walk;
     check('行走时相机有上下起伏（振幅 >0.02）', walk.yMax - walk.yMin > 0.04 && walk.yMax - walk.yMin < 0.08);
     check('脚步次数与步频一致', walk.footsteps >= Math.floor(walk.expectedFootsteps) - 1 && walk.footsteps <= Math.ceil(walk.expectedFootsteps) + 1 && walk.footsteps >= 2);
@@ -79,11 +82,11 @@ const assert = require('node:assert/strict');
     check('松开后高度回到 1.7±0.002', Math.abs(walk.yAfterRelease - 1.7) <= 0.002);
     check('静止时 speed=0 且无脚步', walk.speedAfterRelease === 0 && !walk.footstepAfterRelease);
 
-    // 2) 走向午门侧墙 (15, -150)：停在墙前，y 不漂移
-    const wall = await page.evaluate(async () => {
+    // 2) 走向午门侧墙 (15, WUMEN_Z)：停在墙前，y 不漂移
+    const wall = await page.evaluate(async ({ WUMEN_Z }) => {
       const a = window.__forbiddenCityApp;
-      a.controls.setPosition(15, 1.7, -172);
-      a.controls.lookAt(15, -150);
+      a.controls.setPosition(15, 1.7, WUMEN_Z - 22);
+      a.controls.lookAt(15, WUMEN_Z);
       const frames = window.__walk(['KeyW'], 5, 1);
       const pressing = frames.filter(f => !f.released);
       const tail = pressing.slice(-Math.max(3, Math.floor(pressing.length / 4)));
@@ -95,19 +98,19 @@ const assert = require('node:assert/strict');
         blockedFootsteps: tail.filter(f => f.footstep).length,
         yRangeWhileBlocked: +(Math.max(...tail.map(f => f.y)) - Math.min(...tail.map(f => f.y))).toFixed(4),
       };
-    });
+    }, { WUMEN_Z });
     results.wall = wall;
-    check('走向午门侧墙被挡住', wall.finalZ < -160 && !wall.insideWall);
+    check('走向午门侧墙被挡住', wall.finalZ < WUMEN_Z - 10 && !wall.insideWall);
     check('撞墙后 x 不漂移', Math.abs(wall.finalX - 15) < 0.05);
     check('撞墙后 y 无累积漂移', Math.abs(wall.finalY - 1.7) <= 0.002);
     check('顶墙时实际速度约 0 不再计步', wall.blockedSpeedMean < 0.3 && wall.blockedFootsteps === 0);
 
     // 3) setHeadBob 开关 / setPosition 清零
-    const toggle = await page.evaluate(async () => {
+    const toggle = await page.evaluate(async ({ START_Z, WUMEN_Z }) => {
       const a = window.__forbiddenCityApp;
       const c = a.controls;
-      c.setPosition(0, 1.7, -205);
-      c.lookAt(0, -150);
+      c.setPosition(0, 1.7, START_Z - 5);
+      c.lookAt(0, WUMEN_Z);
       const step = n => { for (let i = 0; i < n; i++) { c.prevTime = performance.now() - 1000 / 60; c.update(); } };
       c.controls.isLocked = true;
       c.onKeyDown({ code: 'KeyW' });
@@ -120,11 +123,11 @@ const assert = require('node:assert/strict');
       const footstepsWhileOff = (() => { let n = 0; for (let i = 0; i < 60; i++) { step(1); if (c.motion.footstep) n++; } return n; })();
       c.setHeadBob(true);
       c.onKeyUp({ code: 'KeyW' });
-      c.setPosition(3, 1.7, -200);
+      c.setPosition(3, 1.7, START_Z);
       const afterSet = { y: a.camera.position.y, bob: c.bobOffset.length() };
       c.controls.isLocked = false;
       return { yBobbing, yOff, yStillOff, footstepsWhileOff, afterSet };
-    });
+    }, { START_Z, WUMEN_Z });
     results.toggle = toggle;
     check('关闭起伏后立即无偏移（脚步事件仍输出）', toggle.yBobbing !== 1.7 && toggle.yOff === 1.7 && toggle.yStillOff === 1.7 && toggle.footstepsWhileOff >= 1);
     check('setPosition 清零起伏偏移', toggle.afterSet.y === 1.7 && toggle.afterSet.bob === 0);

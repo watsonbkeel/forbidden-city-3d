@@ -9,16 +9,27 @@ const path = require('node:path');
 const fs = require('node:fs');
 const { execSync } = require('node:child_process');
 
+const { pathToFileURL } = require('node:url');
+
 // yaw：水平朝向（度），0 = 朝北(+Z)，90 = 朝西(+X)，-90 = 朝东(-X)，180 = 朝南(-Z)
-// 坐标取当前（pre-1to1）场景：constants.js LAYOUT.*_Z、SideCourts.js 各院落
-const POINTS = [
-  { point: '午门前', pos: [0, -200], yaw: 0 },          // LAYOUT.START_POSITION，面向午门(z=-150)
-  { point: '太和殿前', pos: [0, -50], yaw: 0 },         // 太和门(z=-80)与太和殿(z=0)之间广场
-  { point: '乾清门', pos: [0, 150], yaw: 0 },           // 乾清门广场(z 137~170)，面向乾清门(z=170)
-  { point: '东六宫中', pos: [-83, 225], yaw: 0 },       // 东二长街(x -80~-86)，两列六宫(x=-65/-101)之间
-  { point: '宁寿宫', pos: [-137, 180], yaw: 0 },        // 皇极门(z=172)内，面向皇极殿(z=198)
-  { point: '御花园', pos: [0, 318], yaw: 0 },           // 坤宁门北入园，面向钦安殿(z~350)
-];
+// P0c-2 起为真实米制：点位从 LAYOUT / data/anchors.json / data/zones 推导，语义与 P0a/P0b 六点一致
+const ROOT = path.resolve(__dirname, '..');
+const A = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/anchors.json'), 'utf8'));
+const SANTAI_SOUTH_Z = -54;            // 三台南沿（PalaceBuilder 三台底层 z −54 ~ 178）
+const DONGER_STREET_X = (-127.2 + -114.4) / 2; // 东二长街中线（zones/east-six region 东二长街）
+const EAST_SIX_Z = (303.2 + 462) / 2;  // 东六宫两列院落（景仁门南沿 ~ 钟粹宫北沿）南北中点
+async function loadPoints() {
+  const { LAYOUT: L } = await import(pathToFileURL(path.join(ROOT, 'src/config/constants.js')).href);
+  const hj = A['皇极门'];
+  return [
+    { point: '午门前', pos: [0, L.START_POSITION.z], yaw: 0 },                    // 出生点，面向午门
+    { point: '太和殿前', pos: [0, SANTAI_SOUTH_Z - 20], yaw: 0 },                  // 太和门与三台之间广场，面向太和殿
+    { point: '乾清门', pos: [0, +(L.QIANQING_GATE_Z - 20).toFixed(1)], yaw: 0 },  // 乾清门广场，面向乾清门
+    { point: '东六宫中', pos: [+DONGER_STREET_X.toFixed(1), +EAST_SIX_Z.toFixed(1)], yaw: 0 }, // 东二长街，两列六宫之间
+    { point: '宁寿宫', pos: [hj.x, +(hj.z + 10).toFixed(1)], yaw: 0 },            // 皇极门内，面向宁寿门/皇极殿
+    { point: '御花园', pos: [0, +(L.IMPERIAL_GARDEN_Z - 95.6 / 2 + 11).toFixed(1)], yaw: 0 }, // 坤宁门北入园，面向钦安殿
+  ];
+}
 
 const percentile = (arr, p) => {
   const s = [...arr].sort((a, b) => a - b);
@@ -26,6 +37,7 @@ const percentile = (arr, p) => {
 };
 
 (async () => {
+  const POINTS = await loadPoints();
   const outFile = path.resolve(process.argv[2] || path.join(__dirname, 'perf-baseline.json'));
   const FRAMES = Number(process.env.FRAMES || 60);
   const browser = await chromium.launch({
