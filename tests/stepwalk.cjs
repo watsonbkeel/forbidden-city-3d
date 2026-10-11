@@ -53,7 +53,8 @@ const SIDE_ROUTES = [
     const cm = a.collisionManager;
     Object.defineProperty(c.controls, 'isLocked', { get: () => true, configurable: true });
     // 台基投影（box 型可行走面中顶面 >= 1m 的），用于判断"在台基里面却站在 0 高度"
-    const terraces = cm.walkables.filter(w => w.type === 'box' && w.box.max.y >= 1).map(w => w.box);
+    // rescue:false 的是城台顶面（下方有门洞贯通），穿门洞时脚点在 0 属正常，不算"掉到台下"
+    const terraces = cm.walkables.filter(w => w.type === 'box' && w.rescue !== false && w.box.max.y >= 1).map(w => w.box);
     const under = (x, z, feet) => terraces.some(b => x > b.min.x + 1 && x < b.max.x - 1 && z > b.min.z + 1 && z < b.max.z - 1 && feet < b.max.y - 1.2);
     const out = [];
     for (const fps of fpsList) for (const sprint of sprints) for (const [name, pts] of ROUTES) {
