@@ -11,6 +11,9 @@
     "test:perf": "node tests/perf.cjs",
     "test:zones": "node tests/zone-lint.cjs",
     "test:anchors": "node tests/anchor-check.cjs",
+    "test:smoke": "node tests/smoke.cjs",
+    "test:regression": "node tests/regression.cjs",
+    "test:walk": "node tests/stepwalk.cjs 60,10 0,1 all",
     "test:zone-equiv": "node tests/zone-equiv.cjs"
   },
   "dependencies": {
