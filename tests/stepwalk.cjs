@@ -54,11 +54,23 @@ const SIDE_ROUTES = [
     Object.defineProperty(c.controls, 'isLocked', { get: () => true, configurable: true });
     // 台基投影（box 型可行走面中顶面 >= 1m 的），用于判断"在台基里面却站在 0 高度"
     // rescue:false 的是城台顶面（下方有门洞贯通），穿门洞时脚点在 0 属正常，不算"掉到台下"
-    const terraces = cm.walkables.filter(w => w.type === 'box' && w.rescue !== false && w.box.max.y >= 1).map(w => w.box);
-    const under = (x, z, feet) => terraces.some(b => x > b.min.x + 1 && x < b.max.x - 1 && z > b.min.z + 1 && z < b.max.z - 1 && feet < b.max.y - 1.2);
+    // 分区流式加载会增删 walkables：已加载分区集合变化时重算台基列表
+    let terraces = [], terraceKey = null;
+    const refreshTerraces = () => {
+      const key = a.zoneManager ? a.zoneManager.getLoadedIds().join(',') : 'static';
+      if (key === terraceKey) return;
+      terraceKey = key;
+      terraces = cm.walkables.filter(w => w.type === 'box' && w.rescue !== false && w.box.max.y >= 1).map(w => w.box);
+    };
+    const under = (x, z, feet) => { refreshTerraces(); return terraces.some(b => x > b.min.x + 1 && x < b.max.x - 1 && z > b.min.z + 1 && z < b.max.z - 1 && feet < b.max.y - 1.2); };
+    // 主循环已停，由本脚本代为推进分区加载（与 animate() 中的调用一致）
+    const tickZones = () => a.zoneManager?.update({ x: a.camera.position.x, z: a.camera.position.z });
     const out = [];
     for (const fps of fpsList) for (const sprint of sprints) for (const [name, pts] of ROUTES) {
       const [x0, z0] = pts[0];
+      // 传送到起点后先把该处分区建好（真实游玩中靠 40m 预载，传送是瞬移所以要补齐）
+      a.camera.position.set(x0, a.camera.position.y, z0);
+      for (let i = 0; i < 20; i++) tickZones();
       c.setPosition(x0, 300, z0); // 起点取该处最高可行走面（起点在台基上时站在台面上）
       c.velocity.set(0, 0, 0);
       c.moveForward = true;
@@ -74,6 +86,7 @@ const SIDE_ROUTES = [
         for (let f = 0; f < limit; f++) {
           c.prevTime = performance.now() - dt * 1000;
           a.camera.lookAt(x1, a.camera.position.y, z1);
+          tickZones();
           c.update();
           const p = a.camera.position;
           maxFeet = Math.max(maxFeet, c.feetY);

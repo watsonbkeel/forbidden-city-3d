@@ -9,8 +9,8 @@ import { ShadowSetup } from './src/render/ShadowSetup.js';
 import { TextureLibrary } from './src/utils/TextureLibrary.js';
 import { Enclosure } from './src/scene/Enclosure.js';
 import { GardenBuilder } from './src/scene/GardenBuilder.js';
-import { SideCourts } from './src/scene/SideCourts.js'; // @deprecated 由 ZoneManager 取代
 import { ZoneManager } from './src/scene/zones/ZoneManager.js';
+import { ZONES } from './data/zones/index.js';
 import { Ambience } from './src/audio/Ambience.js';
 import { Minimap } from './src/ui/Minimap.js';
 import { SettingsMenu } from './src/ui/SettingsMenu.js';
@@ -111,48 +111,38 @@ class ForbiddenCityApp {
       ['宫墙与庑房', () => {
         this.enclosure = new Enclosure(this.scene, this.library).build();
       }],
-      ['东西六宫与两路宫殿', async () => {
-        // 初始化 ZoneManager 并注册所有区
-        this.zoneManager = new ZoneManager();
-        
-        // 加载并注册 7 个 zone JSON
-        const zoneFiles = [
-          'axis-courts', 'east-six', 'west-six', 
-          'ningshou', 'outer-east', 'outer-west', 'garden'
-        ];
-        
-        for (const zoneFile of zoneFiles) {
-          const response = await fetch(`/data/zones/${zoneFile}.json`);
-          const zoneJson = await response.json();
-          this.zoneManager.register(zoneJson);
-        }
-        
-        // 初始化：收集 regions/mapItems，加载初始区
-        const startPos = LAYOUT.START_POSITION;
-        await this.zoneManager.init(
-          this.scene, 
-          this.library, 
-          this.collisionManager,
-          { x: startPos.x, z: startPos.z }
-        );
-      }],
       ['御花园', () => {
         const garden = PALACE_LAYOUT.find(item => item.type === 'garden');
         this.garden = new GardenBuilder(this.scene, this.library).build(garden);
+        // 静态场景（中轴/宫墙/御花园）进入阴影 LOD 列表；分区网格由 ZoneManager 回调增删
         this.scene.traverse(object => {
           if (object.isMesh) this.shadowObjects.push(object);
         });
       }],
-      ['碰撞检测', () => {
+      ['东西六宫与两路宫殿', () => {
+        // 碰撞管理器先建：ZoneManager 加载区时要往里注册带 tag 的碰撞体
         this.collisionManager = new CollisionManager();
+        this.zoneManager = new ZoneManager();
+        this.zoneManager.onLoad = (_id, group) => group.traverse(o => { if (o.isMesh) this.shadowObjects.push(o); });
+        this.zoneManager.onUnload = (_id, group) => {
+          const gone = new Set();
+          group.traverse(o => { if (o.isMesh) gone.add(o); });
+          this.shadowObjects = this.shadowObjects.filter(o => !gone.has(o));
+        };
+        ZONES.forEach(zone => this.zoneManager.register(zone));
+        const start = LAYOUT.START_POSITION;
+        this.zoneManager.init(this.scene, this.library, this.collisionManager, { x: start.x, z: start.z });
+      }],
+      ['碰撞检测', () => {
         this.collisionManager.addColliders(this.palaceBuilder.getColliders());
         this.collisionManager.addWalkables(this.palaceBuilder.getWalkables());
         this.collisionManager.addColliders(this.enclosure.getColliders());
         this.collisionManager.addColliders(this.garden.getColliders());
         this.collisionManager.addWalkables(this.garden.getWalkables());
-        // ZoneManager 的 colliders/walkables 已在 init() 时通过带 tag 的方式注册
-        // regions 由 ZoneManager 提供
+        // 分区的 colliders/walkables 由 ZoneManager 带 tag 注册/移除；regions 启动时已覆盖全部分区
         this.collisionManager.setRegions(this.zoneManager.getRegions());
+        // 所有可进入房间（世界坐标，含门/掩体/刷怪点），后续玩法从这里取
+        this.rooms = this.zoneManager.getRooms();
       }],
       ['控制器', () => {
         this.controls = new FirstPersonControls(this.camera, document.body, this.collisionManager);

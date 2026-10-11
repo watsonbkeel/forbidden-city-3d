@@ -35,6 +35,13 @@ export class ZoneManager {
     this.building = null;
     /** 构建开始时间（performance.now()） */
     this.buildStartTime = 0;
+    /** 所有区的 rooms（启动时收集，供后续玩法使用） */
+    this.allRooms = [];
+    /** 单区构建耗时记录：id → ms（最近一次） */
+    this.buildTimes = new Map();
+    /** 可选回调：区加载/卸载时通知外部（如阴影 LOD 列表维护） */
+    this.onLoad = null;
+    this.onUnload = null;
   }
 
   /**
@@ -58,7 +65,7 @@ export class ZoneManager {
    * @param {object} collisionManager - 碰撞管理器
    * @param {object} initialPos - 玩家初始位置 { x, z }
    */
-  async init(scene, library, collisionManager, initialPos) {
+  init(scene, library, collisionManager, initialPos) {
     this.scene = scene;
     this.library = library;
     this.collisionManager = collisionManager;
@@ -70,6 +77,7 @@ export class ZoneManager {
       const data = builder.build();
       this.allRegions.push(...data.regions);
       this.allMapItems.push(...data.mapItems);
+      this.allRooms.push(...data.rooms);
       // 立即 dispose，不加入场景
       builder.dispose();
     }
@@ -94,9 +102,9 @@ export class ZoneManager {
       return;
     }
 
-    // 正常模式：加载初始区 + neighbors
+    // 正常模式：初始区同步加载（出生点脚下的碰撞体必须第一帧就在），neighbors 进队列分帧加载
     const initial = this.zones.get(this.currentId);
-    this.buildQueue.push({ zoneId: this.currentId, priority: 0 });
+    this.loadZone(this.currentId);
     for (const nid of initial.neighbors ?? []) {
       this.buildQueue.push({ zoneId: nid, priority: 1 });
     }
@@ -117,14 +125,15 @@ export class ZoneManager {
       this.onEnterZone(newId);
     }
 
-    // 预载：距离 ≤ 40m 的区
+    // 预载：距离 ≤ 40m 的区（已在队列中的不重复入队）
     for (const [id, config] of this.zones) {
-      if (this.loaded.has(id)) continue;
+      if (this.loaded.has(id) || this.buildQueue.some(b => b.zoneId === id)) continue;
       const dist = this.distanceToZone(playerPos.x, playerPos.z, config.bounds);
       if (dist <= 40) {
         this.buildQueue.push({ zoneId: id, priority: dist });
       }
     }
+    this.buildQueue.sort((a, b) => a.priority - b.priority);
 
     // 卸载：不在 current + neighbors 且距离 > 60m
     if (this.currentId) {
@@ -199,6 +208,8 @@ export class ZoneManager {
     this.collisionManager.addWalkables(data.walkables, zoneId);
 
     this.loaded.set(zoneId, { builder, data });
+    this.buildTimes.set(zoneId, +elapsed.toFixed(1));
+    this.onLoad?.(zoneId, data.group);
     console.log(`[ZoneManager] 加载区域 ${zoneId}（${config.name}），耗时 ${elapsed.toFixed(1)}ms`);
   }
 
@@ -210,6 +221,7 @@ export class ZoneManager {
     if (!entry) return;
 
     const { builder, data } = entry;
+    this.onUnload?.(zoneId, data.group);
     data.group.removeFromParent();
     this.collisionManager.removeByTag(zoneId);
     builder.dispose();
@@ -270,6 +282,13 @@ export class ZoneManager {
    */
   getMapItems() {
     return this.allMapItems;
+  }
+
+  /**
+   * 获取所有区的 rooms（启动时收集，替代原 SideCourts.getRooms()）
+   */
+  getRooms() {
+    return this.allRooms;
   }
 
   /**

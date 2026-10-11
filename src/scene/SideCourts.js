@@ -1,3 +1,4 @@
+/** @deprecated 由 data/zones/*.json + ZoneManager 取代，Phase 2 删除；保留仅供 tests/zone-equiv.cjs 做等价对比 */
 import * as THREE from 'three';
 import { CourtKit, FACE } from './palace/kit.js';
 
