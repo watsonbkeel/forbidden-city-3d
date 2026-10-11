@@ -9,7 +9,8 @@ import { ShadowSetup } from './src/render/ShadowSetup.js';
 import { TextureLibrary } from './src/utils/TextureLibrary.js';
 import { Enclosure } from './src/scene/Enclosure.js';
 import { GardenBuilder } from './src/scene/GardenBuilder.js';
-import { SideCourts } from './src/scene/SideCourts.js';
+import { SideCourts } from './src/scene/SideCourts.js'; // @deprecated 由 ZoneManager 取代
+import { ZoneManager } from './src/scene/zones/ZoneManager.js';
 import { Ambience } from './src/audio/Ambience.js';
 import { Minimap } from './src/ui/Minimap.js';
 import { SettingsMenu } from './src/ui/SettingsMenu.js';
@@ -110,8 +111,30 @@ class ForbiddenCityApp {
       ['宫墙与庑房', () => {
         this.enclosure = new Enclosure(this.scene, this.library).build();
       }],
-      ['东西六宫与两路宫殿', () => {
-        this.sideCourts = new SideCourts(this.scene, this.library).build();
+      ['东西六宫与两路宫殿', async () => {
+        // 初始化 ZoneManager 并注册所有区
+        this.zoneManager = new ZoneManager();
+        
+        // 加载并注册 7 个 zone JSON
+        const zoneFiles = [
+          'axis-courts', 'east-six', 'west-six', 
+          'ningshou', 'outer-east', 'outer-west', 'garden'
+        ];
+        
+        for (const zoneFile of zoneFiles) {
+          const response = await fetch(`/data/zones/${zoneFile}.json`);
+          const zoneJson = await response.json();
+          this.zoneManager.register(zoneJson);
+        }
+        
+        // 初始化：收集 regions/mapItems，加载初始区
+        const startPos = LAYOUT.START_POSITION;
+        await this.zoneManager.init(
+          this.scene, 
+          this.library, 
+          this.collisionManager,
+          { x: startPos.x, z: startPos.z }
+        );
       }],
       ['御花园', () => {
         const garden = PALACE_LAYOUT.find(item => item.type === 'garden');
@@ -127,11 +150,9 @@ class ForbiddenCityApp {
         this.collisionManager.addColliders(this.enclosure.getColliders());
         this.collisionManager.addColliders(this.garden.getColliders());
         this.collisionManager.addWalkables(this.garden.getWalkables());
-        this.collisionManager.addColliders(this.sideCourts.getColliders());
-        this.collisionManager.addWalkables(this.sideCourts.getWalkables());
-        this.collisionManager.setRegions(this.sideCourts.getRegions());
-        // 所有可进入房间（世界坐标，含门/掩体/刷怪点），后续玩法从这里取
-        this.rooms = this.sideCourts.getRooms();
+        // ZoneManager 的 colliders/walkables 已在 init() 时通过带 tag 的方式注册
+        // regions 由 ZoneManager 提供
+        this.collisionManager.setRegions(this.zoneManager.getRegions());
       }],
       ['控制器', () => {
         this.controls = new FirstPersonControls(this.camera, document.body, this.collisionManager);
@@ -150,7 +171,12 @@ class ForbiddenCityApp {
         this.ambience = new Ambience();
         this.createUI();
         this.bindAudioStart();
-        this.perfHUD = new PerfHUD(this.renderer);
+        this.perfHUD = new PerfHUD(this.renderer, {
+          zoneProvider: () => ({
+            current: this.zoneManager?.getCurrentId() ?? '-',
+            loaded: this.zoneManager?.getLoadedIds() ?? []
+          })
+        });
       }],
     ];
     
@@ -316,7 +342,7 @@ class ForbiddenCityApp {
     
     // 小地图（按 M 键显示/隐藏）
     // 移动端额外常驻右上角预览，点击展开全图
-    this.minimap = new Minimap({ items: this.sideCourts.getMapItems(), preview: this.isMobile });
+    this.minimap = new Minimap({ items: this.zoneManager.getMapItems(), preview: this.isMobile });
     
     // 设置菜单（按 ESC 显示）
     this.settingsMenu = new SettingsMenu(document.body);
@@ -504,7 +530,7 @@ class ForbiddenCityApp {
     this.palaceBuilder.update?.(dt);
     this.enclosure.update(dt);
     this.garden.update(dt);
-    this.sideCourts.update(dt);
+    this.zoneManager.update({ x: this.camera.position.x, z: this.camera.position.z });
     this.ambience.update({
       dt,
       speed: motion.speed,
@@ -546,7 +572,7 @@ class ForbiddenCityApp {
     this.palaceBuilder?.dispose();
     this.enclosure?.dispose();
     this.garden?.dispose();
-    this.sideCourts?.dispose();
+    this.zoneManager?.dispose();
     this.environment?.dispose();
     // 贴图库拥有共享材质与贴图，必须在所有使用方移除后最后释放
     this.library?.dispose();
