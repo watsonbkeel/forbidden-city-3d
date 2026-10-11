@@ -13,6 +13,7 @@ import { SideCourts } from './src/scene/SideCourts.js';
 import { Ambience } from './src/audio/Ambience.js';
 import { Minimap } from './src/ui/Minimap.js';
 import { SettingsMenu } from './src/ui/SettingsMenu.js';
+import { PerfHUD } from './src/ui/PerfHUD.js';
 import { LAYOUT, PERFORMANCE } from './src/config/constants.js';
 
 /**
@@ -149,6 +150,7 @@ class ForbiddenCityApp {
         this.ambience = new Ambience();
         this.createUI();
         this.bindAudioStart();
+        this.perfHUD = new PerfHUD(this.renderer);
       }],
     ];
     
@@ -517,6 +519,7 @@ class ForbiddenCityApp {
       this.lastShadowUpdate = now;
     }
     this.postProcessing.render();
+    this.perfHUD?.update(now);
   }
 
   dispose() {
@@ -537,6 +540,7 @@ class ForbiddenCityApp {
       this.controls.dispose();
     }
     this.ambience?.dispose();
+    this.perfHUD?.dispose();
     this.minimap?.dispose();
     this.postProcessing?.dispose();
     this.palaceBuilder?.dispose();
@@ -560,5 +564,7 @@ class ForbiddenCityApp {
 // 本地开发暴露实例用于回归测试；生产页面不增加调试入口。
 const app = new ForbiddenCityApp();
 if (import.meta.env?.DEV) window.__forbiddenCityApp = app;
+// 性能读数只读钩子（tests/perf.cjs 使用）：返回最近一个完整帧的快照副本
+if (import.meta.env?.DEV) window.__perf = () => app.perfHUD?.snapshot() ?? null;
 app.init().catch(error => console.error('故宫 3D 初始化失败', error));
 if (import.meta.hot) import.meta.hot.dispose(() => app.dispose());
