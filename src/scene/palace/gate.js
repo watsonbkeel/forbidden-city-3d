@@ -9,10 +9,10 @@ import { buildGateAscent } from './gateAscent.js';
 /**
  * 午门：中央城台（红墙，三个拱券门洞）+ 重檐城楼 + 两侧雁翅楼
  * 
- * 回归测试要求：
- * - (15, -150) 阻挡（侧墙实体）
- * - (40, -164) 不阻挡（翼楼之间空地）
- * - 中轴 x=0, z ∈ [-168, -132] 可通行（中门洞贯通）
+ * 回归测试要求（相对午门中心 p，P0c-1 起 p.z = LAYOUT.WUMEN_Z = −419.6）：
+ * - (p.x + 15, p.z) 阻挡（侧墙实体）
+ * - (p.x + 40, p.z − 14) 不阻挡（翼楼之间空地）
+ * - 中轴 x=0, z ∈ [p.z − 18, p.z + 18] 可通行（中门洞贯通）
  */
 export function buildWumen(lib, data) {
   const { position: p, dimensions: d, features } = data;
@@ -21,8 +21,8 @@ export function buildWumen(lib, data) {
   const colliders = [];
   const ownedMaterials = [];
 
-  // 中央城台尺寸：宽 78m（x ∈ [-39, 39]），深 30m，高 13m
-  const platformW = 78;
+  // 中央城台尺寸：宽 platformWidth（默认 78，x ∈ [-39, 39]），深 = d.depth，高 13m
+  const platformW = d.platformWidth ?? 78;
   const platformD = d.depth;
   const platformH = 13;
   

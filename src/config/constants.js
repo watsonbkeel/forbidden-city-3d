@@ -23,14 +23,25 @@ export const COLORS = {
   WATER_BLUE: 0x4A90E2,         // 金水河颜色
 };
 
-// 建筑尺寸参数（单位：米，适度压缩比例）
+// 建筑尺寸参数（单位：米，P0c-1 起为真实米制；来源 data/anchors.json / docs/research/dimensions.md）
+// height / baseHeight 仍为原工程值（未逐项实测核对），标"沿用"
 export const DIMENSIONS = {
-  // 午门
+  // 午门（城楼面阔 60.05、进深 25，anchors.json）
   WUMEN: {
     width: 60,
-    depth: 30,
+    depth: 25,
     height: 25,
     wallThickness: 8,
+    // 中央城台东西宽：沿用旧值 78（真实墩台凹形东西约 120 m 含两观，dimensions.md:79；
+    // 受 axis-courts 朝房/雁翅楼布局约束，P0c-2 再细化）
+    platformWidth: 78,
+  },
+
+  // 太和门（48.06 × 20.54，anchors.json conf 高；高度沿用）
+  TAIHE_GATE: {
+    width: 48,
+    depth: 20.5,
+    height: 20,
   },
   
   // 太和殿
@@ -53,33 +64,40 @@ export const DIMENSIONS = {
   
   // 保和殿
   BAOHE: {
-    width: 55,
-    depth: 34,
+    width: 49.7,
+    depth: 25,
     height: 29,
     baseHeight: 7,
     baseLayers: 2,
   },
+
+  // 乾清门（面阔 37.3 anchors.json；进深/高度沿用旧值，估）
+  QIANQING_GATE: {
+    width: 37.3,
+    depth: 18,
+    height: 18,
+  },
   
   // 乾清宫
   QIANQING: {
-    width: 42,
-    depth: 28,
+    width: 46,
+    depth: 25,
     height: 26,
     baseHeight: 5,
   },
   
   // 交泰殿
   JIAOTAI: {
-    width: 20,
-    depth: 20,
+    width: 19,
+    depth: 19,
     height: 22,
     baseHeight: 4,
   },
   
   // 坤宁宫
   KUNNING: {
-    width: 42,
-    depth: 28,
+    width: 46,
+    depth: 20,
     height: 26,
     baseHeight: 5,
   },
@@ -92,29 +110,37 @@ export const DIMENSIONS = {
   },
 };
 
-// 中轴线布局（Z轴坐标）
+// 中轴线布局（Z 轴坐标，真实米制；原点 = 太和殿中心，+Z 北，x 负 = 东）
+// 数值取自 data/anchors.json
 export const LAYOUT = {
-  START_POSITION: { x: 0, y: 1.7, z: -200 },  // 玩家出生位置
-  
-  WUMEN_Z: -150,              // 午门
-  TAIHE_GATE_Z: -80,          // 太和门
-  JINSHUI_RIVER_Z: -100,      // 金水河
+  START_POSITION: { x: 0, y: 1.7, z: -470 },  // 玩家出生位置：午门南约 50m
+
+  WUMEN_Z: -419.6,            // 午门
+  TAIHE_GATE_Z: -214.2,       // 太和门
+  JINSHUI_RIVER_Z: -310.8,    // 内金水河（金水桥处）
   TAIHE_Z: 0,                 // 太和殿
-  ZHONGHE_Z: 60,              // 中和殿
-  BAOHE_Z: 110,               // 保和殿
-  QIANQING_GATE_Z: 170,       // 乾清门
-  QIANQING_Z: 210,            // 乾清宫
-  JIAOTAI_Z: 250,             // 交泰殿
-  KUNNING_Z: 285,             // 坤宁宫
-  IMPERIAL_GARDEN_Z: 350,     // 御花园
-  SHENWU_Z: 420,              // 神武门
-  
-  // 场景边界
+  ZHONGHE_Z: 65,              // 中和殿
+  BAOHE_Z: 123.2,             // 保和殿
+  QIANQING_GATE_Z: 215.3,     // 乾清门
+  QIANQING_Z: 316.8,          // 乾清宫
+  JIAOTAI_Z: 354.1,           // 交泰殿
+  KUNNING_Z: 386.1,           // 坤宁宫
+  IMPERIAL_GARDEN_Z: 470.5,   // 御花园（园墙 z 422.7~518.3 的中点）
+  SHENWU_Z: 531,              // 神武门
+
+  // 宫城外廓（城墙外皮）
+  PALACE_RECT: {
+    halfX: 376.5,
+    minZ: -425,
+    maxZ: 536,
+  },
+
+  // 场景边界：外廓 + 街面余量（东华门/西华门外、午门南、神武门北可走）
   BOUNDARY: {
-    minX: -175,   // 东华门 / 西华门外留出一段街面
-    maxX: 175,
-    minZ: -220,
-    maxZ: 450,
+    minX: -400,
+    maxX: 400,
+    minZ: -500,
+    maxZ: 560,
   },
 };
 

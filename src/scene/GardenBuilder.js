@@ -7,6 +7,7 @@ import { mergeByMaterial } from '../utils/MergeUtils.js';
 import { mulberry32 } from './garden/noise.js';
 import { buildTreeVariant, createFoliageMaterial } from './garden/trees.js';
 import { buildRockery } from './garden/rocks.js';
+import { LAYOUT } from '../config/constants.js';
 
 const PATH_HW = 1.8; // 甬路半宽
 const GRASS_Y = 0.012;
@@ -41,17 +42,20 @@ export class GardenBuilder {
   build(data) {
     const lib = this.library;
     const cx = data?.position?.x ?? 0;
-    const cz = data?.position?.z ?? 350;
-    const w = data?.dimensions?.width ?? 130;
-    const d = data?.dimensions?.depth ?? 90;
+    const cz = data?.position?.z ?? LAYOUT.IMPERIAL_GARDEN_Z;
+    const w = data?.dimensions?.width ?? 136;
+    const d = data?.dimensions?.depth ?? 95.6;
     this.bounds = { x0: cx - w / 2, x1: cx + w / 2, z0: cz - d / 2, z1: cz + d / 2 };
     const el = name => data?.elements?.find(e => e.name === name);
     const hallEl = el('钦安殿');
     const rockEl = el('堆秀山');
-    this.hallPos = new THREE.Vector3(cx + (hallEl?.position.x ?? 0), 0, cz + (hallEl?.position.z ?? 0));
-    this.hallDim = hallEl?.dimensions ?? { width: 15, depth: 15, height: 18 };
-    this.rockPos = new THREE.Vector3(cx + (rockEl?.position.x ?? 30), 0, cz + (rockEl?.position.z ?? 20));
-    this.rockDim = rockEl?.dimensions ?? { width: 10, depth: 10, height: 8 };
+    this.hallPos = new THREE.Vector3(cx + (hallEl?.position.x ?? 0), 0, cz + (hallEl?.position.z ?? 22.6));
+    this.hallDim = hallEl?.dimensions ?? { width: 24.1, depth: 14.1, height: 18 };
+    this.rockPos = new THREE.Vector3(cx + (rockEl?.position.x ?? -29.1), 0, cz + (rockEl?.position.z ?? 38.6));
+    this.rockDim = rockEl?.dimensions ?? { width: 19.3, depth: 15.1, height: 10 };
+    // 堆秀山占地（与 buildRockeryAndTop 的椭圆半径一致，外扩 1 m）：甬路、花坛避让
+    const rx = this.rockDim.width * 0.65 + 1, rz = this.rockDim.depth * 0.55 + 1;
+    this.rockRect = [this.rockPos.x - rx, this.rockPos.x + rx, this.rockPos.z - rz, this.rockPos.z + rz];
 
     // 自有材质
     this.goldMat = this.own(new THREE.MeshStandardMaterial({ color: 0xd8a83a, metalness: 0.85, roughness: 0.32, name: 'garden_gold' }));
@@ -106,46 +110,63 @@ export class GardenBuilder {
 
   /** group 局部 Box3[] → 世界坐标碰撞 */
   addLocalColliders(object, boxes = []) {
-    object.updateWorldMatrix(true, false); // 必须包含父级变换（钦安殿 hall 组位于 z=350）
+    object.updateWorldMatrix(true, false); // 必须包含父级变换（组可能不在原点）
     boxes.forEach(b => this.addCollider(b.clone().applyMatrix4(object.matrixWorld)));
   }
 
   /* ---------------------------------------------------------------- 地面 */
 
-  /** 花园布局：甬路矩形、花坛矩形、障碍区 */
+  /**
+   * 花园布局：甬路矩形、花坛矩形。
+   * 南北向尺度从园墙 z0/z1 推（南横路 z0+7、北横路 z1−9，花坛 z0+9.6 ~ z1−11.6），
+   * 钦安殿四周铺装跟 hallPos，万春/千秋亭一排跟园中心 pz = cz（真实 z≈472）；
+   * 与堆秀山占地相交的甬路切断、花坛截短；退化（长或宽 < 1 m）的花坛丢弃。
+   */
   planLayout(cx, cz) {
     const { x0, x1, z0, z1 } = this.bounds;
     const hw = PATH_HW;
     const hz = this.hallPos.z;
+    const pz = this.pavilionZ(cz);
+    const zs0 = z0 + 9.6, zs1 = z0 + 15.6;  // 南侧花坛
+    const zn = z1 - 11.6, zn2 = z1 - 16.4;  // 北侧花坛
     const paths = [
       [cx - hw, cx + hw, z0, hz - 12.5],
       [cx - hw, cx + hw, hz + 12.5, z1],
-      [x0 + 1, x1 - 1, cz - 38 - hw, cz - 38 + hw],
-      [x0 + 1, x1 - 1, cz + 36 - hw, cz + 36 + hw],
+      [x0 + 1, x1 - 1, z0 + 7 - hw, z0 + 7 + hw],
+      [x0 + 1, x1 - 1, z1 - 9 - hw, z1 - 9 + hw],
       [cx - 15.2, cx + 15.2, hz - 15.5, hz + 15.5], // 钦安殿四周铺装
     ];
     for (const s of [-1, 1]) {
       paths.push(rectX(s, cx, 17 - hw, 17 + hw, z0, z1));
       paths.push(rectX(s, cx, 48 - hw, 48 + hw, z0, z1));
-      paths.push(rectX(s, cx, 17 + hw, 48 - hw, hz - hw, hz + hw));
+      paths.push(rectX(s, cx, 17 + hw, 48 - hw, pz - hw, pz + hw));
     }
     const beds = [];
     for (const s of [-1, 1]) {
-      beds.push(rectX(s, cx, 2.6, 14.4, cz - 35.4, hz - 16.3));
-      beds.push(rectX(s, cx, 2.6, 14.4, hz + 16.3, cz + 33.4));
-      beds.push(rectX(s, cx, 19.6, 45.4, cz - 35.4, cz - 29.4));
-      beds.push(rectX(s, cx, 19.6, 26.6, hz - 13.8, hz - 2.6));
-      beds.push(rectX(s, cx, 37.4, 45.4, hz - 13.8, hz - 2.6));
+      beds.push(rectX(s, cx, 2.6, 14.4, zs0, hz - 16.3));
+      beds.push(rectX(s, cx, 2.6, 14.4, hz + 16.3, zn));
+      beds.push(rectX(s, cx, 19.6, 45.4, zs0, zs1));
+      beds.push(rectX(s, cx, 19.6, 26.6, pz - 13.8, pz - 2.6));
+      beds.push(rectX(s, cx, 37.4, 45.4, pz - 13.8, pz - 2.6));
       if (s > 0) {
-        beds.push(rectX(s, cx, 40.2, 45.4, hz + 6, cz + 33.4));
-        beds.push(rectX(s, cx, 19.6, 40.2, cz + 28.6, cz + 33.4));
-        beds.push(rectX(s, cx, 19.6, 22.2, hz + 6, cz + 28.6));
+        beds.push(rectX(s, cx, 40.2, 45.4, pz + 6, zn));
+        beds.push(rectX(s, cx, 19.6, 40.2, zn2, zn));
+        beds.push(rectX(s, cx, 19.6, 22.2, pz + 6, zn2));
       } else {
-        beds.push(rectX(s, cx, 19.6, 45.4, hz + 6, cz + 33.4));
+        beds.push(rectX(s, cx, 19.6, 45.4, pz + 6, zn));
       }
-      beds.push(rectX(s, cx, 50.6, x1 - cx - 2.6, cz - 35.4, cz + 33.4));
+      beds.push(rectX(s, cx, 50.6, x1 - cx - 2.6, zs0, zn));
     }
-    return { paths, beds };
+    const ok = ([a, b, c, e]) => b - a >= 1 && e - c >= 1;
+    return {
+      paths: paths.flatMap(r => cutRect(r, this.rockRect, true)).filter(ok),
+      beds: beds.filter(ok).flatMap(r => cutRect(r, this.rockRect, false)).filter(ok),
+    };
+  }
+
+  /** 万春亭 / 千秋亭一排的 z（园中心） */
+  pavilionZ(cz) {
+    return cz;
   }
 
   buildGround(root, cx, cz) {
@@ -299,14 +320,14 @@ export class GardenBuilder {
     }
   }
 
-  buildPavilions(root, cx) {
-    const hz = this.hallPos.z;
+  buildPavilions(root, cx, cz) {
+    const pz = this.pavilionZ(cz);
     for (const p of this.pondSpecs(cx)) {
       this.makePavilion(root, { x: p.x, z: p.z, size: PAVILION_POND_BASE - 1.6, baseH: PAVILION_POND_BASE_H, colH: 3.3, cols: 'square4', sides: 4, layers: 1, pier: true });
     }
     // 万春亭（东）、千秋亭（西）：方形重檐攒尖，八柱
     for (const s of [1, -1]) {
-      this.makePavilion(root, { x: cx + s * 32, z: hz, size: 7, baseH: 0.75, colH: 3.8, cols: 'square8', sides: 4, layers: 2, steps: true });
+      this.makePavilion(root, { x: cx + s * 32, z: pz, size: 7, baseH: 0.75, colH: 3.8, cols: 'square8', sides: 4, layers: 2, steps: true });
     }
   }
 
@@ -485,11 +506,12 @@ export class GardenBuilder {
     for (const z of [hz - 30, hz - 22]) {
       for (const s of [-1, 1]) this.makeLantern(root, cx + s * 3.3, z, marble);
     }
-    // 铜香炉：钦安殿台阶前两侧（地面）
+    // 铜香炉：钦安殿台阶前两侧（地面），距殿身南缘 7 m
+    const bz = hz - (this.hallDim.depth ?? 11) / 2 - 7;
     for (const s of [-1, 1]) {
       const g = new THREE.Group();
-      g.position.set(cx + s * 5, 0, hz - 12);
-      this.addCollider(new THREE.Box3(new THREE.Vector3(cx + s * 5 - 0.6, 0, hz - 12.6), new THREE.Vector3(cx + s * 5 + 0.6, 2, hz - 11.4)));
+      g.position.set(cx + s * 5, 0, bz);
+      this.addCollider(new THREE.Box3(new THREE.Vector3(cx + s * 5 - 0.6, 0, bz - 0.6), new THREE.Vector3(cx + s * 5 + 0.6, 2, bz + 0.6)));
       root.add(g);
       const ped = new THREE.Mesh(applyBoxUV(new THREE.BoxGeometry(1.1, 0.5, 1.1), lib.tileSize('marble')), marble);
       ped.position.y = 0.25;
@@ -635,6 +657,20 @@ export class GardenBuilder {
 /** 按 s（±1）镜像 x 范围的矩形 */
 function rectX(s, cx, a, b, c, e) {
   return s > 0 ? [cx + a, cx + b, c, e] : [cx - b, cx - a, c, e];
+}
+
+/**
+ * 从矩形 r 中挖去矩形 hole：不相交原样返回；
+ * keepBoth（甬路）沿长边方向切成两段；否则（花坛）只保留面积最大的一侧。
+ */
+function cutRect(r, hole, keepBoth) {
+  const [a, b, c, e] = r;
+  const [A, B, C, E] = hole;
+  if (b <= A || a >= B || e <= C || c >= E) return [r];
+  const sides = [[a, Math.min(b, A), c, e], [Math.max(a, B), b, c, e], [a, b, c, Math.min(e, C)], [a, b, Math.max(c, E), e]];
+  if (keepBoth) return b - a > e - c ? sides.slice(0, 2) : sides.slice(2);
+  const area = ([p, q, u, v]) => Math.max(0, q - p) * Math.max(0, v - u);
+  return [sides.reduce((m, s) => (area(s) > area(m) ? s : m))];
 }
 
 /** 水平四边形（世界坐标 UV，法线朝上） */

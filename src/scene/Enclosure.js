@@ -3,6 +3,13 @@ import { buildRoof, buildWallCap, buildCornerTower } from './RoofBuilder.js';
 import { buildHallBody } from './HallKit.js';
 import { applyBoxUV } from '../utils/GeometryUV.js';
 import { mergeByMaterial } from '../utils/MergeUtils.js';
+import { LAYOUT } from '../config/constants.js';
+import { getBuildingData } from './Layout.js';
+
+// 东华门 / 西华门门洞中心 z（data/anchors.json；城台由 zone outer-east / outer-west 的 cityGate 建造）
+const EAST_GATE_Z = -257;
+const WEST_GATE_Z = -260.6;
+const CITY_GATE_W = 30; // CourtKit.cityGate 默认城台宽
 
 /**
  * 宫城围合：外城墙与角楼、院落隔墙、两侧庑房、午门前朝房。
@@ -48,30 +55,46 @@ export class Enclosure {
     return this;
   }
 
+  /** 城墙规格：取 Layout 外围城墙条目 */
+  wallSpec() {
+    const d = getBuildingData('外围城墙').dimensions;
+    return { wallH: d.wallHeight, wallT: d.wallThickness };
+  }
+
+  /** 城墙中线：外廓（LAYOUT.PALACE_RECT，城墙外皮）向内收半个墙厚 */
+  wallLines() {
+    const { wallT } = this.wallSpec();
+    const { halfX, minZ, maxZ } = LAYOUT.PALACE_RECT;
+    return { x: halfX - wallT / 2, zS: minZ + wallT / 2, zN: maxZ - wallT / 2 };
+  }
+
   /**
-   * 建外城墙：矩形围合，南墙在午门处断开，北墙在神武门处断开
+   * 建外城墙：矩形围合，南墙在午门处断开，北墙在神武门处断开，东西墙在东华门 / 西华门处断开
    */
   buildOuterWalls(parent) {
-    const wallH = 10;
-    const wallT = 8;
+    const { wallH, wallT } = this.wallSpec();
     const brickH = 1.5; // 下碱高度
-    
+    const { x: X, zS, zN } = this.wallLines();
+
     const redMat = this.library.material('wall_red');
     const brickMat = this.library.material('wall_brick');
-    
-    // 南墙：z=-150，从 x=60 到 155（东段）、x=-155 到 -60（西段）
-    this.addWallSegment(parent, { x1: 60, x2: 155, z: -150, h: wallH, t: wallT, brickH }, redMat, brickMat);
-    this.addWallSegment(parent, { x1: -155, x2: -60, z: -150, h: wallH, t: wallT, brickH }, redMat, brickMat);
-    
-    // 北墙：z=420，从 x=25 到 155（东段）、x=-155 到 -25（西段）
-    this.addWallSegment(parent, { x1: 25, x2: 155, z: 420, h: wallH, t: wallT, brickH }, redMat, brickMat);
-    this.addWallSegment(parent, { x1: -155, x2: -25, z: 420, h: wallH, t: wallT, brickH }, redMat, brickMat);
-    
-    // 东西墙：x=±155，z 从 -150 到 420；z=-115 处为东华门 / 西华门城台（由 SideCourts 建造），墙在此断开
-    const gate0 = -130, gate1 = -100;
-    for (const x of [155, -155]) {
-      this.addWallSegmentZ(parent, { z1: -150, z2: gate0, x, h: wallH, t: wallT, brickH }, redMat, brickMat);
-      this.addWallSegmentZ(parent, { z1: gate1, z2: 420, x, h: wallH, t: wallT, brickH }, redMat, brickMat);
+
+    // 南墙：午门城台两侧接出（开口 = 午门城台宽）
+    const wm = getBuildingData('午门');
+    const wHalf = (wm.dimensions.platformWidth ?? wm.dimensions.width) / 2;
+    this.addWallSegment(parent, { x1: wm.position.x + wHalf, x2: X, z: zS, h: wallH, t: wallT, brickH }, redMat, brickMat);
+    this.addWallSegment(parent, { x1: -X, x2: wm.position.x - wHalf, z: zS, h: wallH, t: wallT, brickH }, redMat, brickMat);
+
+    // 北墙：神武门城台两侧接出（开口 = 神武门面阔）
+    const sw = getBuildingData('神武门');
+    const sHalf = sw.dimensions.width / 2;
+    this.addWallSegment(parent, { x1: sw.position.x + sHalf, x2: X, z: zN, h: wallH, t: wallT, brickH }, redMat, brickMat);
+    this.addWallSegment(parent, { x1: -X, x2: sw.position.x - sHalf, z: zN, h: wallH, t: wallT, brickH }, redMat, brickMat);
+
+    // 东西墙：东华门 / 西华门城台（zone outer-east / outer-west 的 cityGate，W = 30）处断开
+    for (const [x, gz] of [[-X, EAST_GATE_Z], [X, WEST_GATE_Z]]) {
+      this.addWallSegmentZ(parent, { z1: zS, z2: gz - CITY_GATE_W / 2, x, h: wallH, t: wallT, brickH }, redMat, brickMat);
+      this.addWallSegmentZ(parent, { z1: gz + CITY_GATE_W / 2, z2: zN, x, h: wallH, t: wallT, brickH }, redMat, brickMat);
     }
   }
 
@@ -182,113 +205,22 @@ export class Enclosure {
   }
 
   /**
-   * 四个角楼
+   * 四个角楼：落在城墙中线交点（anchors.json 的四角楼坐标与外廓不自洽，见 P0.md P0c-1 遗留）
    */
   buildCornerTowers(parent) {
-    const wallH = 10;
+    const { wallH } = this.wallSpec();
+    const { x, zS, zN } = this.wallLines();
     const corners = [
-      { x: 155, z: -150 },
-      { x: -155, z: -150 },
-      { x: 155, z: 420 },
-      { x: -155, z: 420 },
+      { x, z: zS },
+      { x: -x, z: zS },
+      { x, z: zN },
+      { x: -x, z: zN },
     ];
     for (const pos of corners) {
       const tower = buildCornerTower(this.library, { size: 14 });
       tower.position.set(pos.x, wallH, pos.z);
       parent.add(tower);
     }
-  }
-
-  /**
-   * 院落隔墙
-   */
-  buildCourtYardWalls(parent) {
-    const h = 8;
-    const t = 0.6;
-    const redMat = this.library.material('wall_red');
-    
-    // 太和殿院落东墙：x=75，z 从 -70 到 135
-    this.addCourtWall(parent, { x: 75, z1: -70, z2: 135, h, t }, redMat);
-    
-    // 太和殿院落西墙：x=-75
-    this.addCourtWall(parent, { x: -75, z1: -70, z2: 135, h, t }, redMat);
-    
-    // 乾清门两侧隔墙：z=170，x 从 17.5 到 75（东）、-75 到 -17.5（西）
-    this.addCourtWallX(parent, { z: 170, x1: 17.5, x2: 75, h, t }, redMat);
-    this.addCourtWallX(parent, { z: 170, x1: -75, x2: -17.5, h, t }, redMat);
-    
-    // 内廷东墙：x=40，z 从 175 到 320
-    this.addCourtWall(parent, { x: 40, z1: 175, z2: 320, h, t }, redMat);
-    
-    // 内廷西墙：x=-40
-    this.addCourtWall(parent, { x: -40, z1: 175, z2: 320, h, t }, redMat);
-    
-    // 御花园四周墙：x=±67，z∈[305,395]
-    this.addCourtWall(parent, { x: 67, z1: 305, z2: 395, h, t }, redMat);
-    this.addCourtWall(parent, { x: -67, z1: 305, z2: 395, h, t }, redMat);
-    
-    // 御花园南墙：z=305，x 从 -67 到 -10（西段）、10 到 67（东段，中间留通道）
-    this.addCourtWallX(parent, { z: 305, x1: -67, x2: -10, h, t }, redMat);
-    this.addCourtWallX(parent, { z: 305, x1: 10, x2: 67, h, t }, redMat);
-    
-    // 御花园北墙：z=395，x 从 -67 到 -10、10 到 67
-    this.addCourtWallX(parent, { z: 395, x1: -67, x2: -10, h, t }, redMat);
-    this.addCourtWallX(parent, { z: 395, x1: 10, x2: 67, h, t }, redMat);
-  }
-
-  /**
-   * 添加院落隔墙（沿 Z，固定 x）
-   */
-  addCourtWall(parent, { x, z1, z2, h, t }, redMat) {
-    const len = Math.abs(z2 - z1);
-    const cz = (z1 + z2) / 2;
-    
-    const wall = new THREE.Mesh(
-      applyBoxUV(new THREE.BoxGeometry(t, h, len), this.library.tileSize('wall_red')),
-      redMat
-    );
-    wall.position.set(x, h / 2, cz);
-    wall.castShadow = wall.receiveShadow = true;
-    parent.add(wall);
-    
-    // 墙帽
-    const cap = buildWallCap(this.library, { length: len, thickness: t });
-    cap.position.set(x, h, cz);
-    cap.rotation.y = Math.PI / 2;
-    parent.add(cap);
-    
-    // 碰撞体
-    this.colliders.push(new THREE.Box3(
-      new THREE.Vector3(x - t / 2, 0, Math.min(z1, z2)),
-      new THREE.Vector3(x + t / 2, Math.min(h, 3), Math.max(z1, z2))
-    ));
-  }
-
-  /**
-   * 添加院落隔墙（沿 X，固定 z）
-   */
-  addCourtWallX(parent, { z, x1, x2, h, t }, redMat) {
-    const len = Math.abs(x2 - x1);
-    const cx = (x1 + x2) / 2;
-    
-    const wall = new THREE.Mesh(
-      applyBoxUV(new THREE.BoxGeometry(len, h, t), this.library.tileSize('wall_red')),
-      redMat
-    );
-    wall.position.set(cx, h / 2, z);
-    wall.castShadow = wall.receiveShadow = true;
-    parent.add(wall);
-    
-    // 墙帽
-    const cap = buildWallCap(this.library, { length: len, thickness: t });
-    cap.position.set(cx, h, z);
-    parent.add(cap);
-    
-    // 碰撞体
-    this.colliders.push(new THREE.Box3(
-      new THREE.Vector3(Math.min(x1, x2), 0, z - t / 2),
-      new THREE.Vector3(Math.max(x1, x2), Math.min(h, 3), z + t / 2)
-    ));
   }
 
   /**

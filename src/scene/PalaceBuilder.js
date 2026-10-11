@@ -10,7 +10,9 @@ import { applyBoxUV, applyBandUV, applyPlanarUV } from '../utils/GeometryUV.js';
 /**
  * 真实形制参数（按故宫现状）：
  * bays 面阔间数；roof/layers 屋顶形式；throne 是否设宝座；inner 殿内匾额；open 前后敞开可进出的间数；
- * 门的 depth/baseH/margin/apron 为场景压缩比例下的修正，避免与金水河、乾清宫台阶冲突。
+ * 门的 baseH/margin/apron 为台基修正（margin/apron 与 tools/p0c-relocate.mjs TERRACE 表的墙线起点对应）。
+ * P0c-1 起场景为真实米制，原先为避让金水河/乾清宫台阶而压缩的门 depth 覆盖已去掉，进深取 DIMENSIONS。
+ * baseH 仍为 1.5（真实太和门台基 3.44、乾清门 1.5，dimensions.md:88/108；太和门待 P0c-2 核对台阶与两侧墙）。
  */
 /**
  * plinth：殿座自身台明高度（米）。同一大台基上相邻两殿之间是"下台阶 → 台面 → 上台阶"，
@@ -20,8 +22,8 @@ const REAL = {
   太和殿: { bays: 11, roof: 'wudian', layers: 2, throne: true, inner: '建极绥猷', open: 3, plinth: 2.2 },
   中和殿: { bays: 5, roof: 'pavilion', layers: 1, throne: true, inner: '允执厥中', open: 3, plinth: 1.6 },
   保和殿: { bays: 9, roof: 'xieshan', layers: 2, throne: true, inner: '皇建有极', open: 3, plinth: 2.0 },
-  太和门: { bays: 9, roof: 'xieshan', layers: 2, open: 3, depth: 14, baseH: 1.5, margin: 1, apron: 1 },
-  乾清门: { bays: 5, roof: 'xieshan', layers: 1, open: 3, depth: 12, baseH: 1.5, margin: 0, apron: 1 },
+  太和门: { bays: 9, roof: 'xieshan', layers: 2, open: 3, baseH: 1.5, margin: 1, apron: 1 },
+  乾清门: { bays: 5, roof: 'xieshan', layers: 1, open: 3, baseH: 1.5, margin: 0, apron: 1 },
   乾清宫: { bays: 9, roof: 'wudian', layers: 2, throne: true, inner: '正大光明', open: 3, plinth: 2.0 },
   交泰殿: { bays: 3, roof: 'pavilion', layers: 1, throne: true, inner: '无为', open: 3, plinth: 1.5 },
   坤宁宫: { bays: 9, roof: 'wudian', layers: 2, open: 3, plinth: 2.0 },
@@ -327,7 +329,9 @@ export class PalaceBuilder {
   /** 中轴宫殿群：三台（太和/中和/保和）、后三宫（乾清/交泰/坤宁），其他宫殿各自成台 */
   buildPalaces(list) {
     const groups = [
-      { names: ['太和殿', '中和殿', '保和殿'], name: '三台', apron: 14, margin: 4 },
+      // 三台底层外廓按傅熹年模数 130 × 232（dimensions.md B1，conf 中）：中心约 (0, +62)，南缘 z≈−54、北缘 z≈+178。
+      // bottom 为底层外缘；顶层 = 底层每边内收 (layers−1) × setback。东西 130 只施加在太和殿段（土字形最宽处）。
+      { names: ['太和殿', '中和殿', '保和殿'], name: '三台', apron: 14, margin: 4, bottom: { halfW: 65, z0: -54, z1: 178 } },
       { names: ['乾清宫', '交泰殿', '坤宁宫'], name: '后三宫', apron: 6, margin: 4 },
     ];
     const used = new Set();
@@ -340,7 +344,7 @@ export class PalaceBuilder {
     list.filter(p => !used.has(p)).forEach(p => this.buildComplex([p], { name: p.name, apron: 6, margin: 4 }));
   }
 
-  buildComplex(halls, { name, apron, margin, maxH }) {
+  buildComplex(halls, { name, apron, margin, maxH, bottom }) {
     this.ox = 0;
     this.oz = 0;
     const g = new THREE.Group();
@@ -362,6 +366,12 @@ export class PalaceBuilder {
       if (k === 0) r.z0 = z - d / 2 - ap;
       return r;
     });
+    if (bottom) {
+      const inset = (layers - 1) * setback;
+      rects[0].hw = Math.max(rects[0].hw, bottom.halfW - inset);
+      rects[0].z0 = Math.min(rects[0].z0, bottom.z0 + inset);
+      rects[rects.length - 1].z1 = Math.max(rects[rects.length - 1].z1, bottom.z1 - inset);
+    }
     for (let k = 1; k < rects.length; k++) rects[k].z0 = rects[k - 1].z1;
 
     const bayW = first.width / (spec0.bays ?? 9);

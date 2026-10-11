@@ -248,10 +248,11 @@ export class CollisionManager {
     const { x, z } = position;
     const hit = this.regions?.find(r => x >= r.minX && x <= r.maxX && z >= r.minZ && z <= r.maxZ);
     if (hit) return hit.name;
-    if (x < -159 || x > 159) return x < 0 ? '东华门外' : '西华门外';
-    if (Math.abs(x) > 75 && z > -146 && z < 170) return x < 0 ? '东路·文华殿一带' : '西路·武英殿一带';
-    if (Math.abs(x) > 40 && z >= 170 && z < 305) return x < 0 ? '东六宫' : '西六宫';
-    if (Math.abs(x) > 67 && z >= 305) return x < 0 ? '东路·宁寿宫一带' : '西路·建福宫一带';
+    // 兜底分段（真实米制）：外朝东西庑墙 ≈ ±106.5 / 110.7，内廷东西一长街墙 ±54.25，御花园墙 ±68
+    if (Math.abs(x) > LAYOUT.PALACE_RECT.halfX) return x < 0 ? '东华门外' : '西华门外';
+    if (Math.abs(x) > 106 && z > LAYOUT.WUMEN_Z + 4 && z < 204) return x < 0 ? '东路·文华殿一带' : '西路·武英殿一带';
+    if (Math.abs(x) > 54 && z >= 204 && z < 422.7) return x < 0 ? '东六宫' : '西六宫';
+    if (Math.abs(x) > 68 && z >= 422.7) return x < 0 ? '东路·宁寿宫一带' : '西路·建福宫一带';
     if (z < LAYOUT.WUMEN_Z - 30) return '午门外广场';
     if (z < LAYOUT.TAIHE_GATE_Z - 20) return '午门';
     if (z < LAYOUT.TAIHE_Z - 30) return '太和门广场';

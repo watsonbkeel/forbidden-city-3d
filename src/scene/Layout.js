@@ -1,34 +1,42 @@
-import { LAYOUT } from '../config/constants.js';
+import { LAYOUT, DIMENSIONS } from '../config/constants.js';
 
 /**
- * 故宫中轴线建筑布局数据
- * 包含每个建筑的位置、尺寸、类型等信息
+ * 故宫中轴线建筑布局数据（P0c-1 起为真实米制，原点 = 太和殿中心，+Z 北，x 负 = 东）
+ * 包含每个建筑的位置、尺寸、类型等信息；中轴位置取 LAYOUT，尺寸取 DIMENSIONS。
  */
 
+const { halfX: PALACE_HALF_X, minZ: PALACE_MIN_Z, maxZ: PALACE_MAX_Z } = LAYOUT.PALACE_RECT;
+const PALACE_CZ = (PALACE_MIN_Z + PALACE_MAX_Z) / 2; // 55.5
+const CITY_WALL_T = 8.6; // 宫城城墙厚（底宽 8.62，dimensions.md）
+
+// 御花园：园墙 z 422.7（坤宁门）~ 518.3（顺贞门），东西墙 x ±68
+const GARDEN_Z0 = 422.7;
+const GARDEN_Z1 = 518.3;
+
 export const PALACE_LAYOUT = [
-  // 护城河（筒子河）- 环绕整个紫禁城
+  // 护城河（筒子河）- 环绕整个紫禁城（anchors.json：外缘 940.5 × 1147.5，中心 (−0.4, 88.9)）
   {
     name: '筒子河',
     type: 'moat',
-    position: { x: 0, y: -0.5, z: 125 }, // 中心位置
+    position: { x: -0.4, y: -0.5, z: 88.9 }, // 中心位置
     dimensions: {
-      width: 460,  // 外围总宽（含河道）
-      depth: 720,  // 外围总深（含河道）
+      width: 940.5,  // 外围总宽（含河道）
+      depth: 1147.5, // 外围总深（含河道）
       riverWidth: 52, // 河道宽度
       height: 0.8,
     },
   },
   
-  // 外围城墙 - 紫禁城最外层
+  // 外围城墙 - 紫禁城最外层（外皮 x ±376.5、z −425 ~ 536；内侧尺寸 = 外皮 − 2 × 墙厚）
   {
     name: '外围城墙',
     type: 'outer_wall',
-    position: { x: 0, y: 0, z: 125 },
+    position: { x: 0, y: 0, z: PALACE_CZ },
     dimensions: {
-      width: 380,  // 内侧总宽
-      depth: 640,  // 内侧总深
+      width: PALACE_HALF_X * 2 - CITY_WALL_T * 2,                // ≈ 735.8 内侧总宽
+      depth: PALACE_MAX_Z - PALACE_MIN_Z - CITY_WALL_T * 2,      // ≈ 943.8 内侧总深
       wallHeight: 10,
-      wallThickness: 6,
+      wallThickness: CITY_WALL_T,
     },
   },
   
@@ -37,12 +45,7 @@ export const PALACE_LAYOUT = [
     name: '午门',
     type: 'gate',
     position: { x: 0, y: 0, z: LAYOUT.WUMEN_Z },
-    dimensions: {
-      width: 60,
-      depth: 30,
-      height: 25,
-      wallThickness: 8,
-    },
+    dimensions: { ...DIMENSIONS.WUMEN },
     features: {
       hasWings: true,      // 雁翅楼
       roofType: 'wudian',  // 庑殿顶
@@ -50,13 +53,14 @@ export const PALACE_LAYOUT = [
     },
   },
   
-  // 金水河和金水桥
+  // 内金水河和金水桥（中桥 (0.7, −310.8)；五桥 x = 0、±13、±30）
+  // 估：河段宽 100 使 buildRiver 五桥落在 0、±15、±30（与真实 ±13 差 2 m）；河道南北宽 15 沿用旧值，未查到实测
   {
     name: '金水河',
     type: 'river',
     position: { x: 0, y: -0.3, z: LAYOUT.JINSHUI_RIVER_Z },
     dimensions: {
-      width: 120,
+      width: 100,
       depth: 15,
       height: 0.5,
     },
@@ -67,11 +71,7 @@ export const PALACE_LAYOUT = [
     name: '太和门',
     type: 'gate',
     position: { x: 0, y: 0, z: LAYOUT.TAIHE_GATE_Z },
-    dimensions: {
-      width: 40,
-      depth: 20,
-      height: 20,
-    },
+    dimensions: { ...DIMENSIONS.TAIHE_GATE },
     features: {
       roofType: 'wudian',
       roofLayers: 1,
@@ -83,13 +83,7 @@ export const PALACE_LAYOUT = [
     name: '太和殿',
     type: 'palace',
     position: { x: 0, y: 0, z: LAYOUT.TAIHE_Z },
-    dimensions: {
-      width: 63,
-      depth: 37,
-      height: 35,
-      baseHeight: 8,
-      baseLayers: 3,
-    },
+    dimensions: { ...DIMENSIONS.TAIHE },
     features: {
       roofType: 'wudian',
       roofLayers: 2,
@@ -104,13 +98,7 @@ export const PALACE_LAYOUT = [
     name: '中和殿',
     type: 'palace',
     position: { x: 0, y: 0, z: LAYOUT.ZHONGHE_Z },
-    dimensions: {
-      width: 25,
-      depth: 25,
-      height: 27,
-      baseHeight: 6,
-      baseLayers: 2,
-    },
+    dimensions: { ...DIMENSIONS.ZHONGHE },
     features: {
       roofType: 'xieshan',  // 歇山顶
       roofLayers: 1,
@@ -125,13 +113,7 @@ export const PALACE_LAYOUT = [
     name: '保和殿',
     type: 'palace',
     position: { x: 0, y: 0, z: LAYOUT.BAOHE_Z },
-    dimensions: {
-      width: 55,
-      depth: 34,
-      height: 29,
-      baseHeight: 7,
-      baseLayers: 2,
-    },
+    dimensions: { ...DIMENSIONS.BAOHE },
     features: {
       roofType: 'wudian',
       roofLayers: 2,
@@ -146,11 +128,7 @@ export const PALACE_LAYOUT = [
     name: '乾清门',
     type: 'gate',
     position: { x: 0, y: 0, z: LAYOUT.QIANQING_GATE_Z },
-    dimensions: {
-      width: 35,
-      depth: 18,
-      height: 18,
-    },
+    dimensions: { ...DIMENSIONS.QIANQING_GATE },
     features: {
       roofType: 'wudian',
       roofLayers: 1,
@@ -162,13 +140,7 @@ export const PALACE_LAYOUT = [
     name: '乾清宫',
     type: 'palace',
     position: { x: 0, y: 0, z: LAYOUT.QIANQING_Z },
-    dimensions: {
-      width: 42,
-      depth: 28,
-      height: 26,
-      baseHeight: 5,
-      baseLayers: 1,
-    },
+    dimensions: { ...DIMENSIONS.QIANQING, baseLayers: 1 },
     features: {
       roofType: 'wudian',
       roofLayers: 2,
@@ -183,13 +155,7 @@ export const PALACE_LAYOUT = [
     name: '交泰殿',
     type: 'palace',
     position: { x: 0, y: 0, z: LAYOUT.JIAOTAI_Z },
-    dimensions: {
-      width: 20,
-      depth: 20,
-      height: 22,
-      baseHeight: 4,
-      baseLayers: 1,
-    },
+    dimensions: { ...DIMENSIONS.JIAOTAI, baseLayers: 1 },
     features: {
       roofType: 'xieshan',
       roofLayers: 1,
@@ -204,13 +170,7 @@ export const PALACE_LAYOUT = [
     name: '坤宁宫',
     type: 'palace',
     position: { x: 0, y: 0, z: LAYOUT.KUNNING_Z },
-    dimensions: {
-      width: 42,
-      depth: 28,
-      height: 26,
-      baseHeight: 5,
-      baseLayers: 1,
-    },
+    dimensions: { ...DIMENSIONS.KUNNING, baseLayers: 1 },
     features: {
       roofType: 'wudian',
       roofLayers: 2,
@@ -220,14 +180,14 @@ export const PALACE_LAYOUT = [
     },
   },
   
-  // 御花园
+  // 御花园（园墙 136 × 95.6，中心 z 470.5；elements 的 position 为相对园中心的偏移）
   {
     name: '御花园',
     type: 'garden',
     position: { x: 0, y: 0, z: LAYOUT.IMPERIAL_GARDEN_Z },
     dimensions: {
-      width: 130,
-      depth: 90,
+      width: 136,
+      depth: GARDEN_Z1 - GARDEN_Z0,
     },
     features: {
       hasTrees: true,
@@ -235,26 +195,26 @@ export const PALACE_LAYOUT = [
       hasPavilions: true,
     },
     elements: [
-      // 钦安殿
+      // 钦安殿（anchors.json (0, 493.1) 24.1 × 14.1；高度沿用旧值）
       {
         name: '钦安殿',
         type: 'pavilion',
-        position: { x: 0, y: 0, z: 0 },
+        position: { x: 0, y: 0, z: 493.1 - LAYOUT.IMPERIAL_GARDEN_Z },
         dimensions: {
-          width: 15,
-          depth: 15,
+          width: 24.1,
+          depth: 14.1,
           height: 18,
         },
       },
-      // 堆秀山
+      // 堆秀山（anchors.json (−29.1, 509.1) 19.3 × 15.1；高约 10）
       {
         name: '堆秀山',
         type: 'rockery',
-        position: { x: 30, y: 0, z: 20 },
+        position: { x: -29.1, y: 0, z: 509.1 - LAYOUT.IMPERIAL_GARDEN_Z },
         dimensions: {
-          width: 10,
-          depth: 10,
-          height: 8,
+          width: 19.3,
+          depth: 15.1,
+          height: 10,
         },
       },
     ],
@@ -265,11 +225,7 @@ export const PALACE_LAYOUT = [
     name: '神武门',
     type: 'gate',
     position: { x: 0, y: 0, z: LAYOUT.SHENWU_Z },
-    dimensions: {
-      width: 50,
-      depth: 20,
-      height: 22,
-    },
+    dimensions: { ...DIMENSIONS.SHENWU },
     features: {
       roofType: 'wudian',
       roofLayers: 2,

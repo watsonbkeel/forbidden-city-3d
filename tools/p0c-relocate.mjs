@@ -114,7 +114,7 @@ const LINES = {
 // 中轴大殿台基外缘（PalaceBuilder.buildComplex 按 Layout 真实尺寸推得）：墙从这里接出
 const TERRACE = {
   taihemenHalf: 48 / 2 + 1 + 0.5,     // 太和门 48 m，margin 1
-  sanTaiAtZhongzuo: 48,               // 三台底层半宽 ≈ 63/2 + 5 + 2×5.47 = 47.4
+  sanTaiAtZhongzuo: 65.5,             // 三台底层东西 130（傅熹年模数，PalaceBuilder 三台 bottom.halfW 65）+ 0.5
   sanTaiAtHouzuo: 40.5,               // 保和殿段底层半宽 ≈ 49.7/2 + 4 + 2×5.47 = 39.8
   qqmHalf: 37.3 / 2 + 0.65,           // 乾清门 37.3 m，margin 0
 };
