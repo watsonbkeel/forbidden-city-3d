@@ -1,6 +1,6 @@
 // 性能基线：在 6 个固定点各等场景稳定后采 60 帧，输出 tests/perf-baseline.json。
 // 用法：node tests/perf.cjs [输出文件=tests/perf-baseline.json]
-// 环境变量：PALACE_URL（默认 http://127.0.0.1:5173）、SCALE（写入 json 顶层，默认 pre-1to1）、FRAMES（默认 60）
+// 环境变量：PALACE_URL（默认 http://127.0.0.1:5173）、QUERY_STRING（追加到 URL，如 ?zones=all）、SCALE（写入 json 顶层，默认 pre-1to1）、FRAMES（默认 60）
 // 启动方式与 tests/shot.cjs 相同（系统 Chrome + swiftshader，1280×720 @DPR1，桌面高画质）。
 // 与 shot.cjs 不同的是不停主循环：让真实 animate()（含阴影 LOD、环境更新）逐帧跑，由 PerfHUD 在整帧后读数。
 // 注意：headless swiftshader 是 CPU 软渲染，fps 不代表真机，只看 calls / tris / geometries / textures。
@@ -40,7 +40,9 @@ const percentile = (arr, p) => {
   page.on('console', m => { if (m.type() === 'error') errors.push('console: ' + m.text()); });
   page.on('response', r => { if (r.status() >= 400) errors.push(`http ${r.status()} ${r.url()}`); });
   const t0 = Date.now();
-  await page.goto(process.env.PALACE_URL || 'http://127.0.0.1:5173', { waitUntil: 'load' });
+  const baseUrl = process.env.PALACE_URL || 'http://127.0.0.1:5173';
+  const url = process.env.QUERY_STRING ? `${baseUrl}${process.env.QUERY_STRING}` : baseUrl;
+  await page.goto(url, { waitUntil: 'load' });
   await page.waitForFunction(() => window.__forbiddenCityApp?.postProcessing?.composer && window.__perf?.() && document.querySelector('#loading-screen').style.display === 'none', null, { timeout: 240000 });
   const loadMs = Date.now() - t0;
   page.setDefaultTimeout(600000);
