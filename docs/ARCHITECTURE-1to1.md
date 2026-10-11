@@ -66,6 +66,8 @@
 | 档 | 范围 | 做法 |
 |---|---|---|
 | S 高保真 | 太和殿、乾清宫、养心殿、坤宁宫、皇极殿、慈宁宫（6 座） | GLB 模型（Blender 建）+ KTX2 贴图，进殿加载 |
+
+> 工具环境（2026-10-11 确认）：Blender 5.2.2 LTS 已装于 `/Applications/Blender.app/Contents/MacOS/Blender`，可用 `--background --python <脚本>` 无头建模导出。`gltf-transform` 未装，P1-I 启动时安装到 `/Users/watson/.workbuddy/binaries/node/workspace`（禁止 `npm install -g`）。watson 已确认 S 档走 Blender 路线。
 | A 模板 | 东西六宫前殿、各门殿等约 40 座 | 参数化内廷模板：宝座/屏风/匾额/藻井/金砖地 |
 | B 简化 | 其余 | 现有 `interiors.js` 盒子陈设 |
 

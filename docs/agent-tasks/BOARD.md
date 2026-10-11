@@ -6,8 +6,8 @@
 ## Phase 0（串行）
 | ID | 任务 | 模型 | 分支 | 状态 | 备注 |
 |---|---|---|---|---|---|
-| P0 | 底座：米制坐标 + zone schema + ZoneManager + PerfHUD + perf 基线 | opus5.5 high | feat/p0-foundation | ⬜ | 阻塞全部 P1 代码任务 |
-| P1-D | 测绘/内景资料（可与 P0 并行） | kimi-k3 | docs/p1-research | ⬜ | 不依赖代码 |
+| P0 | 底座：米制坐标 + zone schema + ZoneManager + PerfHUD + perf 基线 | opus5.5 high | feat/p0-foundation | 🔵 | 2026-10-11 17:40 启动；tag pre-1to1 = 5337ef9 |
+| P1-D | 测绘/内景资料（可与 P0 并行） | ~~kimi-k3~~ → gpt-6.1-sol | — | ✅ | kimi 两次 524 超时无产出，gpt 接手后完成：dimensions 380 行 + 6 殿内景 + sources，验收 4/4 |
 
 ## Phase 1（并行，P0 合入后启动）
 | ID | 任务 | 模型 | 交叉审 | 分支 | 状态 |
