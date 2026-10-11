@@ -40,8 +40,19 @@
 5. 新增 `tests/anchor-check.cjs`（纯 node，不开浏览器）：zone JSON 与 Layout 中每个出现在 anchors.json 的命名建筑，中心偏差 ≤ 5 m（置信度"低"的 ≤ 15 m），输出表格；加入 package.json `test:anchors`。
 6. 验收（本段）：`npx vite build --outDir /tmp/fc-build-p0c` 成功；`npm run test:zones` 0 错；`npm run test:anchors` 全过；`/tmp/run-with-vite.sh node tests/smoke.cjs` 页面无报错。**stepwalk/regression 本段允许失败**（坐标还没同步），但要把失败清单写进报告。
 
-### P0c-2（下一个 Agent，P0c-1 合格后由总控启动）
-测试路线同步（stepwalk 96 条、regression 坐标、perf 6 点）→ 修复碰撞/台阶/门洞问题 → 全绿 → 1:1 perf 基线 `tests/perf-p0c.json` → P0 总报告 → 合入 main。
+### P0c-2（总控 2026-10-12 06:10 细化；P0c-1 已验收 344964a）
+起点：场景已是真实米制，build / test:zones / test:anchors / smoke 绿；stepwalk 24 条中 16 条、regression 5 条因测试写死旧坐标而失败（清单见 REPORTS/P0.md「P0c-1 step6」）。上一段的临时脚本已存入 `tests/_handoff-p0c/`（regression-newcoords.cjs = 已验证 24/24 的真实坐标版；stepwalk-real*.cjs = 14 条真实路线抽检）。
+
+步骤（每步 commit `P0c-2: stepN`，并在 REPORTS/P0.md 新建「## P0c-2」逐步追加进度）：
+1. **regression**：以 `_handoff-p0c/regression-newcoords.cjs` 为准替换 `tests/regression.cjs` 的坐标；坐标一律从 `LAYOUT` / `data/anchors.json` 推导或写成命名常量+注释，不留裸数字。24/24。
+2. **stepwalk 路线重写**：`AXIS_ROUTES` 与 `SIDE_ROUTES` 每条按**原路线语义**（名称所写的起止建筑、绕宝座、偏中轴、穿殿）用真实坐标重写；途经点优先从 anchors 推导。路线数量不得减少（仍 24 条 × fps × sprint = 96 次）；可以吸收 `_handoff-p0c/stepwalk-real*.cjs` 里的新路线作为**追加**路线（午门门洞、东侧金水桥、东华门/西华门出宫、顺贞门→神武门出宫）。`node tests/stepwalk.cjs 60,10 0,1 all` 全部 PASS。
+3. **修场景缺陷**：第 2 步中若有路线因场景本身（门洞宽、台阶、碰撞、掉台）失败，修场景而不是改路线绕开；修 zone 数据只能改 `tools/p0c-relocate.mjs` 再重跑。每个修复在报告写"现象 / 根因 / 改动"。
+4. **其余测试**：`tests/perf.cjs` 6 个点位改真实坐标（午门前、太和殿前、乾清门、东六宫中、宁寿宫、御花园，语义同 P0a），录 `tests/perf-p0c.json`（`?zones=` 默认流式），与 `perf-p0b-stream.json` 对照写进报告；`walk/sense/probe/realwalk/shot` 中的默认机位改真实坐标（只改坐标，不改逻辑）。
+5. **门禁脚本**：package.json 增 `test:walk`（stepwalk 60,10 0,1 all）与 `test:regression`；README 或报告里写一键验收顺序：build → test:zones → test:anchors → smoke → regression → stepwalk → perf。
+6. **P0 总报告**：REPORTS/P0.md 末尾「## P0 总结」：P0a/b/c 成果、最终接口、性能基线三版对照（P0a 压缩 / P0b 流式 / P0c 真实）、遗留问题清单按归属拆给 P1-R / P1-Z / P1-U / P1-I。
+7. **不要合并到 main**。完成后保持在 `feat/p0-foundation`，由总控复核后合并。
+
+本段不做（已记为遗留，归 Phase 1）：午门墩台 120 m 与雁翅楼位置、太和门台基 3.44、御花园内部按锚点布置、角楼坐标、金水河五桥位置、天际线/雾随尺度调整、三台分层尺寸——除非它们直接导致第 2 步路线失败。
 
 ## 3. 测试环境（必读，前几轮踩过的坑）
 - 5173/5174 被占；一律用 `/tmp/run-with-vite.sh <命令>`（在 5180 起停 vite，同一条 shell 命令内完成；后台 vite 跨命令会被杀）。
