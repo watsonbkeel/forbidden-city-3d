@@ -3,6 +3,17 @@
 > 本任务阻塞所有 Phase 1 任务。完成前不得启动任何并行任务。
 > 控制文件：`docs/ARCHITECTURE-1to1.md`，先完整阅读第 1、2、3 节。
 
+## ⚠️ 执行拆分（2026-10-11 19:00 总控修订）
+首次单会话执行在 1 个 commit 后中断、无产出。改为 3 段串行，每段独立 Agent、独立验收：
+
+| 段 | 内容 | 原则 |
+|---|---|---|
+| **P0a** | P0-5 PerfHUD + P0-6 perf.cjs，在**当前尺度**采集"迁移前"基线 | 不改场景 |
+| **P0b** | P0-2 schema + P0-3 ZoneBase/ZoneManager + P0-4 SideCourts→JSON，**仍用当前坐标** | 纯重构，行为零变化：stepwalk/regression 结果必须与 P0a 基线完全一致 |
+| **P0c** | P0-1 米制 1:1 坐标迁移（改 constants/Layout/zone JSON/测试路线），以 `docs/research/dimensions.md` 为准 | 只改尺度不改结构 |
+
+工作方式：直接在当前目录 `feat/p0-foundation` 分支工作（不另建 worktree）；每个子步骤 commit；进度实时追加到 `REPORTS/P0.md`，中断后下一个 Agent 可从报告续接。
+
 ## 背景
 项目 `forbidden-city-3d/` 是 Three.js r162 + Vite 的故宫第一人称漫游，全程序化生成。
 当前宫城尺度约真实 0.5 倍（内皮 380×640m，真实 753×961m）。目标：1:1 复刻 + 分区加载。
