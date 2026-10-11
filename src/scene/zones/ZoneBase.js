@@ -1,0 +1,244 @@
+import * as THREE from 'three';
+import { CourtKit, FACE } from '../palace/kit.js';
+
+/**
+ * 分区构建器基类：从 zone JSON 构建一个区域的所有建筑。
+ * 
+ * 每个 zone 有唯一 id、边界、邻区列表，以及一组构件清单（items）。
+ * ZoneBase 按 kind 分发到 CourtKit 对应方法，最终返回合并的 group、碰撞体、
+ * 可行走面、房间、地图标注、命名区域、silhouette（远处替身低模）。
+ */
+export class ZoneBase {
+  /**
+   * @param {object} library - 材质与贴图库
+   * @param {object} zoneJson - zone 数据（含 id, name, bounds, neighbors, items）
+   */
+  constructor(library, zoneJson) {
+    this.library = library;
+    this.zoneJson = zoneJson;
+    this.kit = new CourtKit(library, zoneJson.id);
+    this.group = null;
+    /** gate name → 返回的开口宽度（用于 wall gaps 引用） */
+    this.gateWidths = new Map();
+  }
+
+  /**
+   * 构建本区所有构件。
+   * @returns {{ group, colliders, walkables, rooms, mapItems, regions, silhouette }}
+   */
+  build() {
+    const items = this.zoneJson.items ?? [];
+    
+    // 第一遍：构建所有 gate，记录开口宽度
+    for (const item of items) {
+      if (item.kind === 'gate') {
+        const w = this.buildGate(item);
+        if (item.name) this.gateWidths.set(item.name, w);
+      }
+    }
+    
+    // 第二遍：构建其他构件（wall/courtWalls 可引用 gate 宽度）
+    for (const item of items) {
+      switch (item.kind) {
+        case 'hall':
+          this.buildHall(item);
+          break;
+        case 'gate':
+          // 已在第一遍构建
+          break;
+        case 'wall':
+          this.buildWall(item);
+          break;
+        case 'courtWalls':
+          this.buildCourtWalls(item);
+          break;
+        case 'corridor':
+          this.buildCorridor(item);
+          break;
+        case 'cityGate':
+          this.buildCityGate(item);
+          break;
+        case 'region':
+          this.buildRegion(item);
+          break;
+        case 'nineDragonWall':
+          this.buildNineDragonWall(item);
+          break;
+        default:
+          console.warn(`[ZoneBase] 未知 kind: ${item.kind}，跳过`);
+      }
+    }
+    
+    // 合并几何
+    this.group = this.kit.finish();
+    
+    // silhouette：本区屋顶的合并低模（Phase 1 优化时实现，当前返回 null）
+    // 实在拿不到屋顶网格就先返回 null，不强求改 kit 内部
+    const silhouette = null;
+    
+    return {
+      group: this.group,
+      colliders: [...this.kit.colliders],
+      walkables: [...this.kit.walkables],
+      rooms: [...this.kit.rooms],
+      mapItems: [...this.kit.mapItems],
+      regions: [...this.kit.regions],
+      silhouette,
+    };
+  }
+
+  update(dt) {
+    // 当前无动画需求，预留接口
+  }
+
+  dispose() {
+    if (this.group) {
+      this.kit.dispose(this.group);
+      this.group.removeFromParent();
+      this.group = null;
+    }
+    this.gateWidths.clear();
+  }
+
+  // ───────────────────────── 各 kind 构建方法 ─────────────────────────
+
+  buildHall(item) {
+    const params = {
+      x: item.x,
+      z: item.z,
+      rot: this.parseRot(item.rot),
+      w: item.w,
+      d: item.d,
+      pad: item.pad,
+      ph: item.ph,
+      colH: item.colH,
+      roof: item.roof,
+      layers: item.layers,
+      brackets: item.brackets,
+      enter: item.enter,
+      throne: item.throne,
+      backDoor: item.backDoor,
+      open: item.open,
+      name: item.name,
+      plaque: item.plaque,
+      map: item.map,
+    };
+    // 过滤 undefined 参数，让 kit 方法使用默认值
+    Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
+    this.kit.hall(params);
+  }
+
+  buildGate(item) {
+    const params = {
+      x: item.x,
+      z: item.z,
+      rot: this.parseRot(item.rot),
+      w: item.w,
+      h: item.h,
+      t: item.t,
+      style: item.style,
+      name: item.name,
+      roof: item.roof,
+      brackets: item.brackets,
+      layers: item.layers,
+    };
+    Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
+    return this.kit.gate(params); // 返回开口宽度
+  }
+
+  buildWall(item) {
+    const [x1, z1] = item.from;
+    const [x2, z2] = item.to;
+    const gaps = this.resolveGaps(item.gaps);
+    const params = { h: item.h, t: item.t, gaps };
+    Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
+    this.kit.wall(x1, z1, x2, z2, params);
+  }
+
+  buildCourtWalls(item) {
+    const gates = (item.gates ?? []).map(g => ({
+      side: g.side,
+      at: g.at,
+      w: g.gate ? this.gateWidths.get(g.gate) : g.w,
+    }));
+    const params = { h: item.h, t: item.t };
+    Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
+    this.kit.courtWalls(item.x0, item.x1, item.z0, item.z1, gates, params);
+  }
+
+  buildCorridor(item) {
+    const [x1, z1] = item.from;
+    const [x2, z2] = item.to;
+    const params = { facing: item.facing, depth: item.depth, colH: item.colH, name: item.name };
+    Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
+    this.kit.corridor(x1, z1, x2, z2, item.facing, params);
+  }
+
+  buildCityGate(item) {
+    const params = {
+      x: item.x,
+      z: item.z,
+      rot: this.parseRot(item.rot),
+      name: item.name,
+    };
+    Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
+    this.kit.cityGate(params);
+  }
+
+  buildRegion(item) {
+    this.kit.region(item.name, item.x0, item.x1, item.z0, item.z1);
+  }
+
+  buildNineDragonWall(item) {
+    // 九龙壁是 SideCourts 私有函数，需直接内联或在 kit 注册为方法
+    // 这里直接复制 SideCourts.nineDragonWall 的实现
+    const k = this.kit;
+    const x = item.x;
+    const z = item.z;
+    const len = item.length;
+    const rot = this.parseRot(item.rot ?? Math.PI); // 默认朝北
+    
+    const f = k.frame(x, z, rot);
+    const h = 4.2;
+    k.box(f, 'sumeru_band', len + 0.6, 0.9, 1.6, 0, 0.45, 0, 'band');
+    const glaze = new THREE.MeshStandardMaterial({ color: 0x1f5f7a, roughness: 0.3, metalness: 0.1, name: 'kit_glaze_blue' });
+    const wave = new THREE.MeshStandardMaterial({ color: 0x2e8a6e, roughness: 0.3, metalness: 0.1, name: 'kit_glaze_green' });
+    k.owned.push(glaze, wave);
+    k.mesh(f, new THREE.BoxGeometry(len, h, 1.1), glaze, 0, 0.9 + h / 2, 0);
+    k.mesh(f, new THREE.BoxGeometry(len - 0.2, 0.8, 1.16), wave, 0, 1.4, 0);
+    const knot = new THREE.TorusKnotGeometry(0.62, 0.16, 48, 6, 2, 3);
+    for (let i = 0; i < 9; i++) {
+      const m = k.mesh(f, knot, k.gold, (i - 4) * (len / 9.6), 0.9 + h * 0.58 + (i % 2 ? 0.25 : -0.15), -0.62);
+      m.scale.set(1.25, 0.75, 0.5);
+      m.rotation.z = (i % 2 ? 1 : -1) * 0.35;
+    }
+    k.roof(f, { type: 'gable', width: len + 0.4, depth: 1.6, baseY: 0.9 + h, brackets: false, height: 0.7 });
+    k.col(f, -len / 2, 0, -0.8, len / 2, 3, 0.8);
+    k.mapRect(f, 'hall', item.name ?? '九龙壁', len, 1.6);
+  }
+
+  // ───────────────────────── 辅助方法 ─────────────────────────
+
+  /**
+   * 解析旋转角：支持弧度数值或字符串 "south"|"north"|"east"|"west"
+   */
+  parseRot(rot) {
+    if (rot === undefined || rot === null) return 0;
+    if (typeof rot === 'number') return rot;
+    const map = { south: FACE.south, north: FACE.north, east: FACE.east, west: FACE.west };
+    if (rot in map) return map[rot];
+    console.warn(`[ZoneBase] 无效的 rot 值: ${rot}，使用默认 0`);
+    return 0;
+  }
+
+  /**
+   * 解析 wall gaps：将 { at, gate } 转为 { at, w }
+   */
+  resolveGaps(gaps) {
+    if (!gaps) return [];
+    return gaps.map(g => ({
+      at: g.at,
+      w: g.gate ? this.gateWidths.get(g.gate) : g.w,
+    }));
+  }
+}
