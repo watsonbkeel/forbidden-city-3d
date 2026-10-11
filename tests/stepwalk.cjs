@@ -1,46 +1,120 @@
 // 确定性步行：用固定帧间隔逐帧调用真实 FirstPersonControls.update，复现低帧率/冲刺下的台阶问题。
-// 用法：node tests/stepwalk.cjs [fps=60,20,10] [sprint=0,1]
+// 用法：node tests/stepwalk.cjs [fps=60,20,10] [sprint=0,1] [axis|side|all|路线名子串]
 //   内置路线覆盖中轴、偏中轴、侧门；报告每条路线的终点、最高脚点、是否"掉到台下"（站在台基投影内却脚点为 0）。
+//   P0c-2 起为真实米制（原点太和殿中心，+Z 北，x 负=东）；途经点从 LAYOUT / data/anchors.json / 殿座几何推导。
 const { chromium } = require('playwright');
+const path = require('node:path');
+const fs = require('node:fs');
+const { pathToFileURL } = require('node:url');
 
-// 每条路线是一串途经点 [x, z]；殿内宝座挡在中轴，按真实参观路线从宝座侧面绕过
-const AXIS_ROUTES = [
-  ['午门→太和门', [[0, -200], [0, -60]]],
-  ['太和门→太和殿内', [[0, -60], [0, 5]]],
-  // 过殿门时走中间一间（x≈0），进殿后从宝座侧面绕过
-  ['太和殿→中和殿→保和殿', [[0, 3], [0, 0], [6.2, 0], [6.2, 16], [0, 16.5], [0, 50], [5, 51], [5, 71], [0, 71], [0, 103], [6.1, 103], [6.1, 125], [0, 125]]],
-  ['保和殿→北下台→乾清门', [[0, 125], [0, 160]]],
-  ['乾清门→乾清宫', [[0, 160], [0, 204]]],
-  ['乾清宫→交泰殿→坤宁宫', [[0, 204], [4.7, 204], [4.7, 222], [0, 222], [0, 245.3], [6.5, 245.3], [6.5, 258], [0, 258], [0, 295]]],
-  ['坤宁宫→御花园→神武门', [[0, 295], [0, 328], [17, 332], [17, 368], [0, 372], [0, 445]]],
-  ['乾清宫偏中轴(x=2.3)', [[2.3, 176], [2.3, 194.8]]],
-  ['太和殿后→中和殿前(x=2.5)', [[2.5, 21], [2.5, 45]]],
-];
+const ROOT = path.resolve(__dirname, '..');
+const A = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/anchors.json'), 'utf8'));
+const r1 = v => Math.round(v * 10) / 10;
 
-// 两侧宫院路线（node tests/stepwalk.cjs 60 0 side）
-const SIDE_ROUTES = [
-  ['协和门→文华门→文华殿内', [[-30, -115], [-90, -115], [-110, -112], [-110, -83], [-113.5, -83], [-113.5, -76.5]]],
-  ['协和门→东华门→出宫', [[-30, -115], [-90, -115], [-172, -115]]],
-  ['熙和门→武英门→武英殿内', [[30, -115], [90, -115], [111, -112], [111, -83]]],
-  ['熙和门→西华门→出宫', [[30, -115], [90, -115], [172, -115]]],
-  ['左翼门→文渊阁一带', [[-40, -50], [-80, -50]]],
-  ['内左门→东一长街→景仁宫内', [[-45, 150], [-45, 173], [-65, 173], [-65, 187]]],
-  ['内右门→养心殿内', [[45, 150], [45, 184], [70, 180], [85, 180], [85, 188]]],
-  ['西一长街→月华门→乾清宫院', [[45, 150], [45, 205], [30, 205]]],
-  ['乾清宫院→日精门→东一长街→基化门', [[-30, 205], [-45, 205], [-45, 284], [-30, 284]]],
-  ['御花园→钦安殿内→穿殿北出', [[0, 316], [0, 330], [0, 349], [3.5, 349], [3.5, 354.6], [0, 354.6], [0, 366]]],
-  ['御花园→万春/千秋亭', [[0, 316], [0, 313.3], [17, 313.3], [17, 340], [32, 340], [32, 354]]],
-  ['御花园→千秋亭(西)', [[0, 316], [0, 313.3], [-17, 313.3], [-17, 340], [-32, 340], [-32, 354]]],
-  ['御花园→浮碧亭(桥)', [[0, 316], [0, 313.3], [32, 313.3], [32, 337]]],
-  ['御花园→澄瑞亭(桥)', [[0, 316], [0, 313.3], [-32, 313.3], [-32, 337]]],
-  ['景运门→箭亭→东路', [[-30, 153], [-85, 153], [-85, 143], [-100, 143], [-100, 153]]],
-];
+// —— 殿座几何（与场景代码一致，改场景时同步）——
+// 中轴殿进深（PalaceBuilder 用 anchors 的 d；宝座碰撞 = 殿心 z+[-0.3, +8]（d≈25 的三间进深殿），太和殿见下）
+const HALL_D = { 太和殿: A['太和殿'].d, 中和殿: A['中和殿'].d, 保和殿: A['保和殿'].d, 乾清宫: A['乾清宫'].d, 交泰殿: A['交泰殿'].d, 坤宁宫: A['坤宁宫'].d };
+const TAIHE_DETOUR_X = 6.2;   // 太和殿宝座半宽 4.58，内柱 ±8.59
+const ZHONGHE_DETOUR_X = 5;   // 中和殿宝座半宽 3.13，内柱 ±7.5
+const BAOHE_DETOUR_X = 6.1;   // 保和殿宝座半宽 4.42，内柱 ±8.28
+const QIANQING_DETOUR_X = 5.7; // 乾清宫宝座半宽 4.09（真实面阔 46 → 间宽 5.11），内柱内皮 ±7.26，取中线
+const JIAOTAI_DETOUR_X = 6.5; // 交泰殿宝座半宽 2.38，殿身半宽 9.5
+const IN_FRONT = 7;           // 殿内宝座前（距殿心南 7m；三间进深殿宝座前沿在殿心 −0.3）
+const OFF_AXIS_GAP = 2.5;     // 偏中轴路线离殿身前后檐的余量
+// 御花园（GardenBuilder：园墙 z 422.7~518.3，南横路 z0+7，亭一排在园中心 pz，浮碧/澄瑞池在 z0+23，东西甬路 x=±17）
+const GARDEN_PATH_X = 17;
+const GARDEN_PAVILION_X = 32;
+const GARDEN_S_ROAD = 7;      // 南横路距南园墙
+const GARDEN_POND_DZ = 23;    // 池中亭距南园墙
+const PAVILION_APPROACH = 15; // 亭南花坛（pz−13.8 起）以南的东西向通行线
+// CourtKit 殿（kit.js）：backDoor 殿宝座碰撞 rel z = d/2−3.4 ±(1.2,1.3)，半宽 min(间宽×1.4, 5)/2
+const KIT_DETOUR_X = 3.5;
+const GATE_CLEAR = 20;        // 门前/门后取点余量
+
+async function buildRoutes() {
+  const { LAYOUT: L } = await import(pathToFileURL(path.join(ROOT, 'src/config/constants.js')).href);
+  const front = n => (n === '太和殿' ? L.TAIHE_Z : n === '中和殿' ? L.ZHONGHE_Z : n === '保和殿' ? L.BAOHE_Z : n === '乾清宫' ? L.QIANQING_Z : n === '交泰殿' ? L.JIAOTAI_Z : L.KUNNING_Z) - HALL_D[n] / 2;
+  const back = n => front(n) + HALL_D[n];
+  const gz0 = L.IMPERIAL_GARDEN_Z - 95.6 / 2;   // 御花园南园墙 422.7（GardenBuilder 默认进深 95.6）
+  const gz1 = L.IMPERIAL_GARDEN_Z + 95.6 / 2;   // 北园墙 518.3
+  const pz = L.IMPERIAL_GARDEN_Z;               // 万春/千秋亭一排
+  const qinan = A['钦安殿'];                     // backDoor 殿：宝座 rel z 2.45~4.95，后墙 rel 7.05
+  const zh = L.ZHONGHE_Z, bh = L.BAOHE_Z, qq = L.QIANQING_Z, jt = L.JIAOTAI_Z;
+
+  const AXIS_ROUTES = [
+    ['午门→太和门', [[0, L.START_POSITION.z], [0, L.TAIHE_GATE_Z + GATE_CLEAR]]],
+    ['太和门→太和殿内', [[0, L.TAIHE_GATE_Z + GATE_CLEAR], [0, 5]]],
+    // 过殿门时走中间一间（x≈0），进殿后从宝座侧面绕过；各殿取点相对殿心
+    ['太和殿→中和殿→保和殿', [[0, 3], [0, 0], [TAIHE_DETOUR_X, 0], [TAIHE_DETOUR_X, 16], [0, 16.5],
+      [0, zh - 10], [ZHONGHE_DETOUR_X, zh - 9], [ZHONGHE_DETOUR_X, zh + 11], [0, zh + 11],
+      [0, bh - IN_FRONT], [BAOHE_DETOUR_X, bh - IN_FRONT], [BAOHE_DETOUR_X, back('保和殿') - 2], [0, back('保和殿') - 2]]],
+    ['保和殿→北下台→乾清门', [[0, back('保和殿') - 2], [0, L.QIANQING_GATE_Z - 10]]],
+    ['乾清门→乾清宫', [[0, L.QIANQING_GATE_Z - 10], [0, qq - 6]]],
+    ['乾清宫→交泰殿→坤宁宫', [[0, qq - 6], [QIANQING_DETOUR_X, qq - 6], [QIANQING_DETOUR_X, back('乾清宫') - 1.5], [0, back('乾清宫') - 1.5],
+      [0, jt - 4.7], [JIAOTAI_DETOUR_X, jt - 4.7], [JIAOTAI_DETOUR_X, back('交泰殿') - 1.5], [0, back('交泰殿') - 1.5], [0, back('坤宁宫') - 2]]],
+    // 出坤宁宫北门 → 坤宁门 → 西侧甬路绕过钦安殿 → 北横路 → 顺贞门 → 神武门外
+    ['坤宁宫→御花园→神武门', [[0, back('坤宁宫') - 2], [0, gz0 + GARDEN_S_ROAD], [GARDEN_PATH_X, gz0 + GARDEN_S_ROAD + 3],
+      [GARDEN_PATH_X, gz1 - 9], [0, gz1 - 9], [0, L.BOUNDARY.maxZ - 10]]],
+    ['乾清宫偏中轴(x=2.3)', [[2.3, L.QIANQING_GATE_Z + 6], [2.3, r1(front('乾清宫') - 1.2)]]],
+    ['太和殿后→中和殿前(x=2.5)', [[OFF_AXIS_GAP, r1(back('太和殿') + OFF_AXIS_GAP)], [OFF_AXIS_GAP, front('中和殿') - OFF_AXIS_GAP]]],
+  ];
+
+  const xh = A['协和门'], xi = A['熙和门'], wh = A['文华门'], whd = A['文华殿'], wy = A['武英门'], wyd = A['武英殿'];
+  const dh = A['东华门'], xhm = A['西华门'], zy = A['左翼门'], nz = A['内左门'], ny = A['内右门'];
+  const jrm = A['景仁门'], jrg = A['景仁宫'], zyi = A['遵义门'], yxd = A['养心殿'], yh = A['月华门'], rj = A['日精门'];
+  const jy = A['景运门'], jt2 = A['箭亭'];
+  const KIT_D = 16;                 // 文华殿/武英殿 进深（zones：d 16，backDoor）
+  const kitIn = KIT_D / 2 - 3.4;    // 宝座中心 rel z
+  const STREET_E = -63.3;           // 东一长街中线（x −72.4 ~ −54.25）
+  const JIHUA_Z = 410;              // 基化门（东一长街内墙门，zones/garden 墙洞 at 410；anchors 未收录）
+  const SIDE_ROUTES = [
+    ['协和门→文华门→文华殿内', [[-30, xh.z], [xh.x - GATE_CLEAR, xh.z], [wh.x, wh.z - 8], [whd.x, whd.z - kitIn + 2],
+      [whd.x - KIT_DETOUR_X, whd.z - kitIn + 2], [whd.x - KIT_DETOUR_X, r1(whd.z + KIT_D / 2 - 1.2)]]],
+    ['协和门→东华门→出宫', [[-30, xh.z], [xh.x - GATE_CLEAR, xh.z], [dh.x + 25, dh.z], [L.BOUNDARY.minX + 10, dh.z]]],
+    ['熙和门→武英门→武英殿内', [[30, xi.z], [xi.x + GATE_CLEAR, xi.z], [wy.x, wy.z - 8], [wy.x, wy.z + 8], [wyd.x, wyd.z - kitIn + 2]]],
+    // 南薰殿院（z ≤ −286.6）与武英殿院（z ≥ −249.8）之间斜穿
+    ['熙和门→西华门→出宫', [[30, xi.z], [xi.x + GATE_CLEAR, xi.z], [xhm.x - 25, xhm.z], [L.BOUNDARY.maxX - 10, xhm.z]]],
+    // 起点在三台（半宽 65）以东的广场地面
+    ['左翼门→文渊阁一带', [[-75, zy.z], [zy.x - GATE_CLEAR - 3, zy.z]]],
+    ['内左门→东一长街→景仁宫内', [[nz.x, nz.z - GATE_CLEAR], [nz.x, jrm.z - 7], [jrm.x, jrm.z - 7], [jrm.x, jrm.z + 7], [jrg.x, jrg.z - 2]]],
+    ['内右门→养心殿内', [[ny.x, ny.z - GATE_CLEAR], [ny.x, zyi.z], [zyi.x + 15, zyi.z], [yxd.x, yxd.z - 17.5], [yxd.x, yxd.z - 2]]],
+    ['西一长街→月华门→乾清宫院', [[ny.x, ny.z - GATE_CLEAR], [ny.x, yh.z], [yh.x - 13.3, yh.z]]],
+    ['乾清宫院→日精门→东一长街→基化门', [[rj.x + 12.9, rj.z], [STREET_E, rj.z], [STREET_E, JIHUA_Z], [rj.x + 12.9, JIHUA_Z]]],
+    // 钦安殿（backDoor）：殿内宝座前 → 侧绕 → 宝座后 → 穿后门北出
+    ['御花园→钦安殿内→穿殿北出', [[0, gz0 + 11], [0, qinan.z - 20], [0, qinan.z - 1], [KIT_DETOUR_X, qinan.z - 1],
+      [KIT_DETOUR_X, qinan.z + 6], [0, qinan.z + 6], [0, qinan.z + 16]]],
+    ['御花园→万春/千秋亭', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [GARDEN_PATH_X, gz0 + GARDEN_S_ROAD],
+      [GARDEN_PATH_X, pz - PAVILION_APPROACH], [GARDEN_PAVILION_X, pz - PAVILION_APPROACH], [GARDEN_PAVILION_X, pz]]],
+    ['御花园→千秋亭(西)', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [-GARDEN_PATH_X, gz0 + GARDEN_S_ROAD],
+      [-GARDEN_PATH_X, pz - PAVILION_APPROACH], [-GARDEN_PAVILION_X, pz - PAVILION_APPROACH], [-GARDEN_PAVILION_X, pz]]],
+    ['御花园→浮碧亭(桥)', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [GARDEN_PAVILION_X, gz0 + GARDEN_S_ROAD], [GARDEN_PAVILION_X, gz0 + GARDEN_POND_DZ]]],
+    ['御花园→澄瑞亭(桥)', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [-GARDEN_PAVILION_X, gz0 + GARDEN_S_ROAD], [-GARDEN_PAVILION_X, gz0 + GARDEN_POND_DZ]]],
+    // 乾清门广场 → 景运门 → 门外南行 → 箭亭南 → 进箭亭（敞厅）
+    ['景运门→箭亭→东路', [[-80, jy.z], [jy.x - 18.5, jy.z], [jy.x - 18.5, r1(jt2.z - 18)], [jt2.x, r1(jt2.z - 18)], [jt2.x, jt2.z]]],
+  ];
+
+  // P0c 追加：真实尺度新增通道（tests/_handoff-p0c 中已验证的路线）
+  const EXTRA_ROUTES = [
+    ['午门外→午门门洞→金水桥北', [[0, L.START_POSITION.z], [0, L.JINSHUI_RIVER_Z - 20]]],
+    ['东侧金水桥(x=-15)', [[-15, L.JINSHUI_RIVER_Z - 20], [-15, L.JINSHUI_RIVER_Z + 20]]],
+    ['顺贞门→神武门→出宫', [[0, gz1 - 6], [0, L.BOUNDARY.maxZ - 10]]],
+    ['东华门出宫', [[dh.x + 25, dh.z], [L.BOUNDARY.minX + 10, dh.z]]],
+    ['西华门出宫', [[xhm.x - 25, xhm.z], [L.BOUNDARY.maxX - 10, xhm.z]]],
+    ['中左门过(台外)', [[-72, -30], [A['中左门'].x, -30], [A['中左门'].x, 5]]],
+    ['后左门过(台外)', [[-72, 110], [A['后左门'].x, 110], [A['后左门'].x, 140]]],
+  ];
+  const round = rs => rs.map(([n, pts]) => [n, pts.map(([x, z]) => [r1(x), r1(z)])]);
+  return { AXIS_ROUTES: round(AXIS_ROUTES), SIDE_ROUTES: round([...SIDE_ROUTES, ...EXTRA_ROUTES]) };
+}
 
 (async () => {
+  const { AXIS_ROUTES, SIDE_ROUTES } = await buildRoutes();
   const fpsList = (process.argv[2] || '60,20,10').split(',').map(Number);
   const sprints = (process.argv[3] || '0,1').split(',').map(v => v === '1');
   const which = process.argv[4] || 'axis';
-  const ROUTES_RUN = which === 'side' ? SIDE_ROUTES : which === 'all' ? [...AXIS_ROUTES, ...SIDE_ROUTES] : AXIS_ROUTES;
+  const ALL = [...AXIS_ROUTES, ...SIDE_ROUTES];
+  const ROUTES_RUN = which === 'side' ? SIDE_ROUTES : which === 'all' ? ALL : which === 'axis' ? AXIS_ROUTES : ALL.filter(([n]) => n.includes(which));
+  if (process.env.DUMP) { for (const [n, p] of ROUTES_RUN) console.log(n, JSON.stringify(p)); process.exit(0); }
   const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   const page = await browser.newPage({ viewport: { width: 320, height: 200 } });
   await page.goto(process.env.PALACE_URL || 'http://127.0.0.1:5173', { waitUntil: 'load' });
