@@ -229,12 +229,12 @@ class ForbiddenCityApp {
    * 创建相机
    */
   createCamera() {
-    // 70° 视场更接近人眼观感；远裁剪面 1200 米，容纳天际线远景环
+    // 70° 视场更接近人眼观感；远裁剪面 2500 米：真实米制下宫城南北 961 m，从午门外要能看到神武门与天际线远景环
     this.camera = new THREE.PerspectiveCamera(
       70,
       window.innerWidth / window.innerHeight,
       0.1,
-      1200
+      2500
     );
   }
   

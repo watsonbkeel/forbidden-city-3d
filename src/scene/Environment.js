@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { COLORS } from '../config/constants.js';
+import { COLORS, LAYOUT } from '../config/constants.js';
 import { PALACE_LAYOUT } from './Layout.js';
 import { createSky, getSunPosition, updateSkyUniforms, generatePMREM } from './sky/SkySetup.js';
 import { createSkylineRing } from './sky/Skyline.js';
@@ -58,12 +58,14 @@ export class Environment {
    * 设置地面（ground_brick 贴图，带河道孔洞）+ 中轴御道（stone_slab）
    */
   setupGround() {
-    // 主地面：XY 平面旋转到 XZ，河道用孔而非被完整地面遮住
+    // 主地面：XY 平面旋转到 XZ（shape y = 世界 −z），河道用孔而非被完整地面遮住
+    // 范围覆盖宫城 + 筒子河 + 街面：世界 x ±600、z −650 ~ +800
+    const GX = 600, GZ0 = -650, GZ1 = 800;
     const shape = new THREE.Shape();
-    shape.moveTo(-500, -500);
-    shape.lineTo(500, -500);
-    shape.lineTo(500, 500);
-    shape.lineTo(-500, 500);
+    shape.moveTo(-GX, -GZ1);
+    shape.lineTo(GX, -GZ1);
+    shape.lineTo(GX, -GZ0);
+    shape.lineTo(-GX, -GZ0);
     shape.closePath();
     for (const river of PALACE_LAYOUT.filter(item => item.type === 'river')) {
       const { position: p, dimensions: d } = river;
@@ -94,18 +96,21 @@ export class Environment {
     ground.receiveShadow = true;
     this.addObject(ground);
     
-    // 中轴御道（stone_slab，沿 z 轴从午门到神武门）
+    // 中轴御道（stone_slab，沿 z 轴从场景南界（午门外）到神武门）
     const roadWidth = 8;
-    const roadGeometry = new THREE.PlaneGeometry(roadWidth, 600);
+    const roadZ0 = LAYOUT.BOUNDARY.minZ;
+    const roadZ1 = LAYOUT.SHENWU_Z;
+    const roadLen = roadZ1 - roadZ0;
+    const roadGeometry = new THREE.PlaneGeometry(roadWidth, roadLen);
     const roadTileSize = this.library.tileSize('stone_slab');
     const roadUV = roadGeometry.attributes.uv;
     for (let i = 0; i < roadUV.count; i++) {
-      roadUV.setXY(i, roadUV.getX(i) * roadWidth / roadTileSize, roadUV.getY(i) * 600 / roadTileSize);
+      roadUV.setXY(i, roadUV.getX(i) * roadWidth / roadTileSize, roadUV.getY(i) * roadLen / roadTileSize);
     }
     const roadMaterial = this.library.material('stone_slab', { roughness: 0.75, metalness: 0 });
     const road = new THREE.Mesh(roadGeometry, roadMaterial);
     road.rotation.x = -Math.PI / 2;
-    road.position.set(0, 0.01, 0); // 略高于地面，避免 z-fighting
+    road.position.set(0, 0.01, (roadZ0 + roadZ1) / 2); // 略高于地面，避免 z-fighting
     road.receiveShadow = true;
     this.addObject(road);
   }

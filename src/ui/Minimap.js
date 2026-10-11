@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { PALACE_LAYOUT } from '../scene/Layout.js';
+import { LAYOUT } from '../config/constants.js';
 
 /**
  * 小地图：按 M 键显示/隐藏，显示当前位置和建筑名称
@@ -17,12 +18,15 @@ export class Minimap {
     this.playerDir = new THREE.Vector3(0, 0, 1);
     this.items = items; // 两侧宫院：{ kind: 'hall'|'gate'|'corridor', name, x, z, w, d }
     
-    // 地图范围：宫城 + 筒子河，竖长方形（与紫禁城南北长、东西窄的比例一致）
-    this.worldBounds = { minX: -200, maxX: 200, minZ: -240, maxZ: 470 };
+    // 地图范围：取场景边界 LAYOUT.BOUNDARY（宫城外廓 + 街面），竖长方形（与紫禁城南北长、东西窄的比例一致）
+    const { minX, maxX, minZ, maxZ } = LAYOUT.BOUNDARY;
+    this.worldBounds = { minX, maxX, minZ, maxZ };
+    const spanX = maxX - minX;
+    const spanZ = maxZ - minZ;
     this.mapSize = 400; // 宽
-    this.mapHeight = Math.round(this.mapSize * (710 / 400) * 0.82);
-    this.scaleX = this.mapSize / 400;
-    this.scaleZ = this.mapHeight / 710;
+    this.mapHeight = Math.round(this.mapSize * (spanZ / spanX) * 0.82);
+    this.scaleX = this.mapSize / spanX;
+    this.scaleZ = this.mapHeight / spanZ;
     
     this.init();
   }
