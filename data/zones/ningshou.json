@@ -1,37 +1,28 @@
 {
   "id": "ningshou",
   "name": "宁寿宫区",
-  "bounds": {
-    "x0": -151,
-    "x1": -116,
-    "z0": 140,
-    "z1": 415
-  },
-  "neighbors": ["east-six"],
+  "bounds": {"x0": -366.5, "x1": -222.45, "z0": 111.5, "z1": 526.5},
+  "neighbors": ["east-six", "outer-east"],
   "items": [
-    {"kind": "gate", "name": "锡庆门", "x": -123, "z": 157, "rot": "west", "style": "hall"},
-    {"kind": "gate", "name": "皇极门", "x": -137, "z": 172, "style": "hall"},
-    {"kind": "gate", "name": "养性门", "x": -137, "z": 242},
-    
-    {"kind": "wall", "from": [-151, 140], "to": [-123, 140], "h": 7},
-    {"kind": "wall", "from": [-123, 140], "to": [-123, 412], "h": 7, "gaps": [{"at": 157, "gate": "锡庆门"}]},
-    {"kind": "wall", "from": [-151, 412], "to": [-123, 412], "h": 7},
-    {"kind": "wall", "from": [-151, 172], "to": [-123, 172], "h": 7, "gaps": [{"at": -137, "gate": "皇极门"}]},
-    {"kind": "wall", "from": [-151, 242], "to": [-123, 242], "h": 7, "gaps": [{"at": -137, "gate": "养性门"}]},
-    
-    {"kind": "nineDragonWall", "name": "九龙壁", "x": -137, "z": 145, "length": 22, "rot": "north"},
-    
-    {"kind": "hall", "name": "皇极殿", "x": -137, "z": 198, "w": 19, "d": 11, "pad": 1.2, "ph": 1.5, "colH": 5.4, "roof": "wudian", "layers": 2, "enter": true, "throne": true},
-    {"kind": "hall", "name": "宁寿宫", "x": -137, "z": 226, "w": 19, "d": 9, "pad": 1, "ph": 1.0, "colH": 4.8, "roof": "xieshan", "enter": true},
-    {"kind": "hall", "name": "养性殿", "x": -137, "z": 258, "w": 17, "d": 9, "pad": 1, "ph": 0.9, "colH": 4.6, "roof": "xieshan", "enter": true, "throne": true},
-    {"kind": "hall", "name": "乐寿堂", "x": -137, "z": 284, "w": 17, "d": 9, "pad": 1, "ph": 0.9, "colH": 4.6, "roof": "xieshan", "layers": 2, "enter": true},
-    {"kind": "hall", "name": "颐和轩", "x": -137, "z": 310, "w": 15, "d": 8, "pad": 0.8, "ph": 0.6, "colH": 4.2, "roof": "xieshan"},
-    {"kind": "hall", "name": "景祺阁", "x": -137, "z": 340, "w": 15, "d": 8, "pad": 0.8, "ph": 0.6, "colH": 6.4, "roof": "xieshan", "layers": 2},
-    {"kind": "hall", "name": "畅音阁", "x": -137, "z": 372, "w": 12, "d": 10, "pad": 0.8, "ph": 0.9, "colH": 7.5, "roof": "xieshan", "layers": 2},
-    
-    {"kind": "region", "name": "九龙壁", "x0": -151, "x1": -123, "z0": 140, "z1": 172},
-    {"kind": "region", "name": "宁寿宫", "x0": -151, "x1": -123, "z0": 172, "z1": 242},
-    {"kind": "region", "name": "养性殿·乐寿堂", "x0": -151, "x1": -123, "z0": 242, "z1": 412},
-    {"kind": "region", "name": "东筒子", "x0": -123, "x1": -116, "z0": 170, "z1": 412}
+    {"kind": "gate", "name": "锡庆门", "x": -233.3, "z": 135.5, "rot": "west", "style": "hall"},
+    {"kind": "gate", "name": "皇极门", "x": -293.2, "z": 154.1, "style": "hall", "w": 14.9},
+    {"kind": "gate", "name": "养性门", "x": -293.3, "z": 354.8},
+    {"kind": "wall", "from": [-360, 118], "to": [-233.3, 118], "h": 7, "source": "estimated"},
+    {"kind": "wall", "from": [-233.3, 118], "to": [-233.3, 520], "h": 7, "gaps": [{"at": 135.5, "gate": "锡庆门"}]},
+    {"kind": "wall", "from": [-360, 520], "to": [-233.3, 520], "h": 7, "source": "estimated"},
+    {"kind": "wall", "from": [-360, 154.1], "to": [-233.3, 154.1], "h": 7, "gaps": [{"at": -293.2, "gate": "皇极门"}]},
+    {"kind": "wall", "from": [-360, 354.8], "to": [-233.3, 354.8], "h": 7, "gaps": [{"at": -293.3, "gate": "养性门"}]},
+    {"kind": "nineDragonWall", "name": "九龙壁", "x": -295, "z": 123, "length": 29.4, "rot": "north"},
+    {"kind": "hall", "name": "皇极殿", "x": -293.2, "z": 287.7, "w": 49.8, "d": 26.3, "pad": 1.2, "ph": 1.5, "colH": 8.64, "roof": "wudian", "layers": 2, "enter": true, "throne": true},
+    {"kind": "hall", "name": "宁寿宫", "x": -294.5, "z": 319.1, "w": 48.8, "d": 19.7, "pad": 1, "ph": 1, "colH": 7.68, "roof": "xieshan", "enter": true},
+    {"kind": "hall", "name": "养性殿", "x": -293.8, "z": 386.3, "w": 37.9, "d": 20.06, "pad": 1, "ph": 0.9, "colH": 7.36, "roof": "xieshan", "enter": true, "throne": true, "source": "estimated"},
+    {"kind": "hall", "name": "乐寿堂", "x": -293.4, "z": 435.3, "w": 36.15, "d": 23.2, "pad": 1, "ph": 0.9, "colH": 7.36, "roof": "xieshan", "layers": 2, "enter": true},
+    {"kind": "hall", "name": "颐和轩", "x": -293.7, "z": 470.8, "w": 34.1, "d": 18.19, "pad": 0.8, "ph": 0.6, "colH": 6.72, "roof": "xieshan", "source": "estimated"},
+    {"kind": "hall", "name": "景祺阁", "x": -293.3, "z": 496.8, "w": 31, "d": 16.53, "pad": 0.8, "ph": 0.6, "colH": 10.24, "roof": "xieshan", "layers": 2, "source": "estimated"},
+    {"kind": "hall", "name": "畅音阁", "x": -336.6, "z": 365.5, "w": 15.5, "d": 14.7, "pad": 0.8, "ph": 0.9, "colH": 9.69, "roof": "xieshan", "layers": 2},
+    {"kind": "region", "name": "九龙壁", "x0": -360, "x1": -233.3, "z0": 118, "z1": 154.1},
+    {"kind": "region", "name": "宁寿宫", "x0": -360, "x1": -233.3, "z0": 154.1, "z1": 354.8},
+    {"kind": "region", "name": "养性殿·乐寿堂", "x0": -360, "x1": -233.3, "z0": 354.8, "z1": 520},
+    {"kind": "region", "name": "东筒子", "x0": -233.3, "x1": -222.5, "z0": 130, "z1": 520, "source": "estimated"}
   ]
 }

@@ -1,44 +1,29 @@
 {
   "id": "outer-east",
   "name": "东路外朝",
-  "bounds": {
-    "x0": -170,
-    "x1": -75,
-    "z0": -146,
-    "z1": 170
-  },
-  "neighbors": ["axis-courts"],
+  "bounds": {"x0": -382, "x1": -131.95, "z0": -278, "z1": 94.6},
+  "neighbors": ["axis-courts", "ningshou"],
   "items": [
-    {"kind": "gate", "name": "文华门", "x": -110, "z": -104, "style": "hall"},
-    {"kind": "courtWalls", "x0": -136, "x1": -84, "z0": -104, "z1": -40, "gates": [{"side": "s", "at": -110, "gate": "文华门"}]},
-    {"kind": "hall", "name": "文华殿", "x": -110, "z": -80, "w": 20, "d": 10, "pad": 1, "ph": 0.9, "colH": 4.8, "roof": "xieshan", "enter": true, "throne": true, "backDoor": true},
-    {"kind": "hall", "name": "主敬殿", "x": -110, "z": -55, "w": 16, "d": 8, "pad": 0.8, "ph": 0.6, "colH": 4.2, "roof": "xieshan", "enter": true},
-    {"kind": "region", "name": "文华殿", "x0": -136, "x1": -84, "z0": -104, "z1": -40},
-    
-    {"kind": "gate", "name": "文渊阁", "x": -110, "z": -34},
-    {"kind": "courtWalls", "x0": -136, "x1": -84, "z0": -34, "z1": -4, "gates": [{"side": "s", "at": -110, "gate": "文渊阁"}]},
-    {"kind": "hall", "name": "文渊阁", "x": -110, "z": -17, "w": 20, "d": 9, "pad": 0.8, "ph": 0.6, "colH": 6.4, "roof": "xieshan", "layers": 2, "plaque": false},
-    {"kind": "region", "name": "文渊阁", "x0": -136, "x1": -84, "z0": -34, "z1": -4},
-    
-    {"kind": "gate", "name": "南三所", "x": -110, "z": 4},
-    {"kind": "courtWalls", "x0": -136, "x1": -84, "z0": 4, "z1": 50, "gates": [{"side": "s", "at": -110, "gate": "南三所"}]},
-    {"kind": "hall", "x": -94, "z": 22, "w": 11, "d": 6, "pad": 0.6, "ph": 0.45, "colH": 3.6, "roof": "gable", "brackets": false, "map": "hall"},
-    {"kind": "hall", "x": -94, "z": 39, "w": 11, "d": 6, "pad": 0.6, "ph": 0.45, "colH": 3.6, "roof": "gable", "brackets": false, "map": "hall"},
-    {"kind": "hall", "x": -110, "z": 22, "w": 11, "d": 6, "pad": 0.6, "ph": 0.45, "colH": 3.6, "roof": "gable", "brackets": false, "map": "hall"},
-    {"kind": "hall", "x": -110, "z": 39, "w": 11, "d": 6, "pad": 0.6, "ph": 0.45, "colH": 3.6, "roof": "gable", "brackets": false, "map": "hall"},
-    {"kind": "hall", "x": -126, "z": 22, "w": 11, "d": 6, "pad": 0.6, "ph": 0.45, "colH": 3.6, "roof": "gable", "brackets": false, "map": "hall"},
-    {"kind": "hall", "x": -126, "z": 39, "w": 11, "d": 6, "pad": 0.6, "ph": 0.45, "colH": 3.6, "roof": "gable", "brackets": false, "map": "hall"},
-    {"kind": "region", "name": "南三所", "x0": -136, "x1": -84, "z0": 4, "z1": 50},
-    
-    {"kind": "gate", "name": "奉先门", "x": -110, "z": 58, "style": "hall"},
-    {"kind": "courtWalls", "x0": -136, "x1": -84, "z0": 58, "z1": 128, "gates": [{"side": "s", "at": -110, "gate": "奉先门"}]},
-    {"kind": "hall", "name": "奉先殿", "x": -110, "z": 82, "w": 24, "d": 12, "pad": 1.2, "ph": 1.2, "colH": 5.2, "roof": "wudian", "layers": 1, "enter": true, "throne": true},
-    {"kind": "hall", "x": -110, "z": 110, "w": 24, "d": 10, "pad": 1, "ph": 0.9, "colH": 4.6, "roof": "wudian", "map": "hall"},
-    {"kind": "region", "name": "奉先殿", "x0": -136, "x1": -84, "z0": 58, "z1": 128},
-    
-    {"kind": "hall", "name": "箭亭", "x": -100, "z": 153, "w": 15, "d": 8, "pad": 1, "ph": 0.6, "colH": 5, "roof": "xieshan", "open": true},
-    
-    {"kind": "cityGate", "name": "东华门", "x": -155, "z": -115, "rot": "east"},
-    {"kind": "region", "name": "东华门", "x0": -170, "x1": -136, "z0": -130, "z1": -100}
+    {"kind": "gate", "name": "文华门", "x": -186.3, "z": -245.2, "style": "hall", "w": 24.3},
+    {"kind": "courtWalls", "x0": -219, "x1": -153, "z0": -245.2, "z1": -152, "gates": [{"side": "s", "at": -186.3, "gate": "文华门"}]},
+    {"kind": "hall", "name": "文华殿", "x": -186.4, "z": -186.1, "w": 32, "d": 16, "pad": 1, "ph": 0.9, "colH": 7.68, "roof": "xieshan", "enter": true, "throne": true, "backDoor": true},
+    {"kind": "hall", "name": "主敬殿", "x": -186, "z": -168, "w": 25.6, "d": 12.8, "pad": 0.8, "ph": 0.6, "colH": 6.72, "roof": "xieshan", "enter": true},
+    {"kind": "region", "name": "文华殿", "x0": -219, "x1": -153, "z0": -245.2, "z1": -152, "source": "estimated"},
+    {"kind": "gate", "name": "文渊阁", "x": -186.5, "z": -150, "source": "estimated"},
+    {"kind": "courtWalls", "x0": -219, "x1": -153, "z0": -150, "z1": -115, "gates": [{"side": "s", "at": -186.5, "gate": "文渊阁"}], "source": "estimated"},
+    {"kind": "hall", "name": "文渊阁", "x": -186.5, "z": -132.8, "w": 40.5, "d": 17.9, "pad": 0.8, "ph": 0.6, "colH": 10.24, "roof": "xieshan", "layers": 2, "plaque": false},
+    {"kind": "region", "name": "文渊阁", "x0": -219, "x1": -153, "z0": -150, "z1": -115, "source": "estimated"},
+    {"kind": "gate", "name": "南三所", "x": -285, "z": 20},
+    {"kind": "courtWalls", "x0": -335, "x1": -234, "z0": 20, "z1": 85, "gates": [{"side": "s", "at": -285, "gate": "南三所"}]},
+    {"kind": "hall", "x": -251.8, "z": 39, "w": 15.4, "d": 10.6, "pad": 0.6, "ph": 0.45, "colH": 5.04, "roof": "gable", "brackets": false, "map": "hall"},
+    {"kind": "hall", "x": -252, "z": 68.9, "w": 19, "d": 10.3, "pad": 0.6, "ph": 0.45, "colH": 5.04, "roof": "gable", "brackets": false, "map": "hall"},
+    {"kind": "hall", "x": -285.4, "z": 39, "w": 15.4, "d": 10.6, "pad": 0.6, "ph": 0.45, "colH": 5.04, "roof": "gable", "brackets": false, "map": "hall"},
+    {"kind": "hall", "x": -285.1, "z": 68.9, "w": 19, "d": 10.3, "pad": 0.6, "ph": 0.45, "colH": 5.04, "roof": "gable", "brackets": false, "map": "hall"},
+    {"kind": "hall", "x": -317.4, "z": 39, "w": 15.4, "d": 10.6, "pad": 0.6, "ph": 0.45, "colH": 5.04, "roof": "gable", "brackets": false, "map": "hall"},
+    {"kind": "hall", "x": -317, "z": 68.9, "w": 19, "d": 10.3, "pad": 0.6, "ph": 0.45, "colH": 5.04, "roof": "gable", "brackets": false, "map": "hall"},
+    {"kind": "region", "name": "南三所", "x0": -335, "x1": -234, "z0": 20, "z1": 85},
+    {"kind": "hall", "name": "箭亭", "x": -154.7, "z": 78.8, "w": 31.5, "d": 17.6, "pad": 1, "ph": 0.6, "colH": 8, "roof": "xieshan", "open": true},
+    {"kind": "cityGate", "name": "东华门", "x": -365.8, "z": -257, "rot": "east"},
+    {"kind": "region", "name": "东华门", "x0": -376, "x1": -345, "z0": -272, "z1": -242, "source": "estimated"}
   ]
 }

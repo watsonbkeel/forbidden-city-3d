@@ -1,110 +1,58 @@
 {
   "id": "axis-courts",
-  "name": "中轴院落",
-  "bounds": {
-    "x0": -76,
-    "x1": 76,
-    "z0": -220,
-    "z1": 310
-  },
-  "neighbors": ["east-six", "west-six", "outer-east", "outer-west", "garden"],
+  "name": "外朝（午门—乾清门广场）",
+  "bounds": {"x0": -130, "x1": 157.5, "z0": -493.6, "z1": 204.6},
+  "neighbors": ["east-six", "outer-east", "outer-west", "garden"],
   "items": [
-    {"kind": "gate", "name": "协和门", "x": -75, "z": -115, "rot": "east", "style": "hall"},
-    {"kind": "gate", "name": "熙和门", "x": 75, "z": -115, "rot": "west", "style": "hall"},
-    {"kind": "gate", "name": "左翼门", "x": -75, "z": -50, "rot": "east", "style": "hall"},
-    {"kind": "gate", "name": "右翼门", "x": 75, "z": -50, "rot": "west", "style": "hall"},
-    {"kind": "gate", "name": "景运门", "x": -75, "z": 153, "rot": "east", "style": "hall"},
-    {"kind": "gate", "name": "隆宗门", "x": 75, "z": 153, "rot": "west", "style": "hall"},
-    
-    {"kind": "wall", "from": [-75, -146], "to": [-75, 170], "h": 7, "gaps": [
-      {"at": -115, "gate": "协和门"},
-      {"at": -50, "gate": "左翼门"},
-      {"at": 153, "gate": "景运门"}
-    ]},
-    {"kind": "wall", "from": [75, -146], "to": [75, 170], "h": 7, "gaps": [
-      {"at": -115, "gate": "熙和门"},
-      {"at": -50, "gate": "右翼门"},
-      {"at": 153, "gate": "隆宗门"}
-    ]},
-    
-    {"kind": "gate", "name": "昭德门", "x": -48, "z": -80, "style": "hall"},
-    {"kind": "wall", "from": [-21.5, -80], "to": [-75, -80], "h": 7, "gaps": [{"at": -48, "gate": "昭德门"}]},
-    {"kind": "gate", "name": "贞度门", "x": 48, "z": -80, "style": "hall"},
-    {"kind": "wall", "from": [21.5, -80], "to": [75, -80], "h": 7, "gaps": [{"at": 48, "gate": "贞度门"}]},
-    
-    {"kind": "gate", "name": "中左门", "x": -52, "z": 48, "style": "hall"},
-    {"kind": "wall", "from": [-27.4, 48], "to": [-75, 48], "h": 7, "gaps": [{"at": -52, "gate": "中左门"}]},
-    {"kind": "gate", "name": "中右门", "x": 52, "z": 48, "style": "hall"},
-    {"kind": "wall", "from": [27.4, 48], "to": [75, 48], "h": 7, "gaps": [{"at": 52, "gate": "中右门"}]},
-    
-    {"kind": "gate", "name": "后左门", "x": -60, "z": 137},
-    {"kind": "wall", "from": [-42.4, 137], "to": [-75, 137], "h": 7, "gaps": [{"at": -60, "gate": "后左门"}]},
-    {"kind": "gate", "name": "后右门", "x": 60, "z": 137},
-    {"kind": "wall", "from": [42.4, 137], "to": [75, 137], "h": 7, "gaps": [{"at": 60, "gate": "后右门"}]},
-    
-    {"kind": "gate", "name": "内左门", "x": -45, "z": 170},
-    {"kind": "wall", "from": [-17.5, 170], "to": [-75, 170], "h": 7, "gaps": [{"at": -45, "gate": "内左门"}]},
-    {"kind": "gate", "name": "内右门", "x": 45, "z": 170},
-    {"kind": "wall", "from": [17.5, 170], "to": [75, 170], "h": 7, "gaps": [{"at": 45, "gate": "内右门"}]},
-    
-    {"kind": "corridor", "from": [-71.9, -146], "to": [-71.9, -122], "facing": "x+"},
-    {"kind": "corridor", "from": [-71.9, -108], "to": [-71.9, -88], "facing": "x+"},
-    {"kind": "corridor", "from": [-71.9, -79.5], "to": [-71.9, -57], "facing": "x+"},
-    {"kind": "corridor", "from": [-71.9, -43], "to": [-71.9, 6.5], "facing": "x+"},
-    {"kind": "corridor", "from": [-71.9, 33.5], "to": [-71.9, 47.5], "facing": "x+"},
-    {"kind": "corridor", "from": [-71.9, 48.5], "to": [-71.9, 136.5], "facing": "x+"},
-    
-    {"kind": "corridor", "from": [71.9, -146], "to": [71.9, -122], "facing": "x-"},
-    {"kind": "corridor", "from": [71.9, -108], "to": [71.9, -88], "facing": "x-"},
-    {"kind": "corridor", "from": [71.9, -79.5], "to": [71.9, -57], "facing": "x-"},
-    {"kind": "corridor", "from": [71.9, -43], "to": [71.9, 6.5], "facing": "x-"},
-    {"kind": "corridor", "from": [71.9, 33.5], "to": [71.9, 47.5], "facing": "x-"},
-    {"kind": "corridor", "from": [71.9, 48.5], "to": [71.9, 136.5], "facing": "x-"},
-    
-    {"kind": "corridor", "from": [-22.5, -83.1], "to": [-41.2, -83.1], "facing": "z-"},
-    {"kind": "corridor", "from": [-54.8, -83.1], "to": [-74.5, -83.1], "facing": "z-"},
-    {"kind": "corridor", "from": [22.5, -83.1], "to": [41.2, -83.1], "facing": "z-"},
-    {"kind": "corridor", "from": [54.8, -83.1], "to": [74.5, -83.1], "facing": "z-"},
-    
-    {"kind": "hall", "name": "体仁阁", "x": -68.5, "z": 20, "rot": "west", "w": 24, "d": 10, "pad": 1, "ph": 1.2, "colH": 6.5, "roof": "xieshan", "layers": 2},
-    {"kind": "hall", "name": "弘义阁", "x": 68.5, "z": 20, "rot": "east", "w": 24, "d": 10, "pad": 1, "ph": 1.2, "colH": 6.5, "roof": "xieshan", "layers": 2},
-    
-    {"kind": "gate", "name": "日精门", "x": -40, "z": 205, "rot": "east"},
-    {"kind": "gate", "name": "龙光门", "x": -40, "z": 248, "rot": "east"},
-    {"kind": "gate", "name": "基化门", "x": -40, "z": 284, "rot": "east"},
-    {"kind": "wall", "from": [-40, 170], "to": [-40, 305], "h": 7, "gaps": [
-      {"at": 205, "gate": "日精门"},
-      {"at": 248, "gate": "龙光门"},
-      {"at": 284, "gate": "基化门"}
-    ]},
-    
-    {"kind": "gate", "name": "月华门", "x": 40, "z": 205, "rot": "west"},
-    {"kind": "gate", "name": "凤彩门", "x": 40, "z": 248, "rot": "west"},
-    {"kind": "gate", "name": "端则门", "x": 40, "z": 284, "rot": "west"},
-    {"kind": "wall", "from": [40, 170], "to": [40, 305], "h": 7, "gaps": [
-      {"at": 205, "gate": "月华门"},
-      {"at": 248, "gate": "凤彩门"},
-      {"at": 284, "gate": "端则门"}
-    ]},
-    
-    {"kind": "corridor", "from": [-36.9, 176], "to": [-36.9, 199], "facing": "x+", "depth": 3.6, "colH": 3.4},
-    {"kind": "corridor", "from": [-36.9, 211], "to": [-36.9, 242], "facing": "x+", "depth": 3.6, "colH": 3.4},
-    {"kind": "corridor", "from": [-36.9, 254], "to": [-36.9, 278], "facing": "x+", "depth": 3.6, "colH": 3.4},
-    {"kind": "corridor", "from": [-36.9, 290], "to": [-36.9, 303], "facing": "x+", "depth": 3.6, "colH": 3.4},
-    
-    {"kind": "corridor", "from": [36.9, 176], "to": [36.9, 199], "facing": "x-", "depth": 3.6, "colH": 3.4},
-    {"kind": "corridor", "from": [36.9, 211], "to": [36.9, 242], "facing": "x-", "depth": 3.6, "colH": 3.4},
-    {"kind": "corridor", "from": [36.9, 254], "to": [36.9, 278], "facing": "x-", "depth": 3.6, "colH": 3.4},
-    {"kind": "corridor", "from": [36.9, 290], "to": [36.9, 303], "facing": "x-", "depth": 3.6, "colH": 3.4},
-    
-    {"kind": "corridor", "from": [-45, -215], "to": [-45, -165], "facing": "x+", "depth": 6, "colH": 4, "name": "朝房"},
-    {"kind": "corridor", "from": [45, -215], "to": [45, -165], "facing": "x-", "depth": 6, "colH": 4, "name": "朝房"},
-    
-    {"kind": "region", "name": "太和门广场", "x0": -75, "x1": 75, "z0": -146, "z1": -80},
-    {"kind": "region", "name": "乾清门广场", "x0": -75, "x1": 75, "z0": 137, "z1": 170},
-    {"kind": "region", "name": "东一长街", "x0": -50, "x1": -40, "z0": 170, "z1": 305},
-    {"kind": "region", "name": "西一长街", "x0": 40, "x1": 50, "z0": 170, "z1": 305},
-    {"kind": "region", "name": "景运门外", "x0": -123, "x1": -75, "z0": 137, "z1": 176},
-    {"kind": "region", "name": "隆宗门外", "x0": 75, "x1": 123, "z0": 137, "z1": 176}
+    {"kind": "gate", "name": "协和门", "x": -106.47, "z": -300.3, "rot": "east", "style": "hall"},
+    {"kind": "gate", "name": "熙和门", "x": 110.7, "z": -301.1, "rot": "west", "style": "hall"},
+    {"kind": "gate", "name": "左翼门", "x": -106.47, "z": -53.1, "rot": "east", "style": "hall"},
+    {"kind": "gate", "name": "右翼门", "x": 110.7, "z": -52.8, "rot": "west", "style": "hall"},
+    {"kind": "gate", "name": "景运门", "x": -106.47, "z": 174.1, "rot": "east", "style": "hall"},
+    {"kind": "gate", "name": "隆宗门", "x": 110.7, "z": 173.7, "rot": "west", "style": "hall"},
+    {"kind": "wall", "from": [-106.47, -416], "to": [-106.47, 203.85], "h": 7, "gaps": [{"at": -300.3, "gate": "协和门"}, {"at": -53.1, "gate": "左翼门"}, {"at": 174.1, "gate": "景运门"}]},
+    {"kind": "wall", "from": [110.7, -416], "to": [110.7, 203.85], "h": 7, "gaps": [{"at": -301.1, "gate": "熙和门"}, {"at": -52.8, "gate": "右翼门"}, {"at": 173.7, "gate": "隆宗门"}]},
+    {"kind": "gate", "name": "昭德门", "x": -62.4, "z": -214.2, "style": "hall"},
+    {"kind": "wall", "from": [-25.5, -214.2], "to": [-106.47, -214.2], "h": 7, "gaps": [{"at": -62.4, "gate": "昭德门"}]},
+    {"kind": "gate", "name": "贞度门", "x": 64.4, "z": -214.2, "style": "hall"},
+    {"kind": "wall", "from": [25.5, -214.2], "to": [110.7, -214.2], "h": 7, "gaps": [{"at": 64.4, "gate": "贞度门"}]},
+    {"kind": "gate", "name": "中左门", "x": -77, "z": -12.2, "style": "hall"},
+    {"kind": "wall", "from": [-48, -12.2], "to": [-106.47, -12.2], "h": 7, "gaps": [{"at": -77, "gate": "中左门"}]},
+    {"kind": "gate", "name": "中右门", "x": 80, "z": -12.2, "style": "hall"},
+    {"kind": "wall", "from": [48, -12.2], "to": [110.7, -12.2], "h": 7, "gaps": [{"at": 80, "gate": "中右门"}]},
+    {"kind": "gate", "name": "后左门", "x": -76.4, "z": 123},
+    {"kind": "wall", "from": [-40.5, 123], "to": [-106.47, 123], "h": 7, "gaps": [{"at": -76.4, "gate": "后左门"}]},
+    {"kind": "gate", "name": "后右门", "x": 79.4, "z": 123},
+    {"kind": "wall", "from": [40.5, 123], "to": [110.7, 123], "h": 7, "gaps": [{"at": 79.4, "gate": "后右门"}]},
+    {"kind": "gate", "name": "内左门", "x": -62.4, "z": 203.85},
+    {"kind": "wall", "from": [-54.25, 203.85], "to": [-106.47, 203.85], "h": 7, "gaps": [{"at": -62.4, "gate": "内左门"}]},
+    {"kind": "gate", "name": "内右门", "x": 65.4, "z": 203.85},
+    {"kind": "wall", "from": [54.25, 203.85], "to": [110.7, 203.85], "h": 7, "gaps": [{"at": 65.4, "gate": "内右门"}]},
+    {"kind": "hall", "name": "体仁阁", "x": -98.4, "z": -109.3, "rot": "west", "w": 44.1, "d": 12, "pad": 1, "ph": 1.2, "colH": 10.4, "roof": "xieshan", "layers": 2},
+    {"kind": "hall", "name": "弘义阁", "x": 102.1, "z": -110.4, "rot": "east", "w": 39.2, "d": 12, "pad": 1, "ph": 1.2, "colH": 10.4, "roof": "xieshan", "layers": 2},
+    {"kind": "corridor", "from": [-103.37, -415.5], "to": [-103.37, -307.1], "facing": "x+"},
+    {"kind": "corridor", "from": [-103.37, -293.5], "to": [-103.37, -222.2], "facing": "x+"},
+    {"kind": "corridor", "from": [-103.37, -213.7], "to": [-103.37, -132.35], "facing": "x+"},
+    {"kind": "corridor", "from": [-103.37, -86.25], "to": [-103.37, -59.9], "facing": "x+"},
+    {"kind": "corridor", "from": [-103.37, -46.3], "to": [-103.37, -12.7], "facing": "x+"},
+    {"kind": "corridor", "from": [-103.37, -11.7], "to": [-103.37, 122.5], "facing": "x+"},
+    {"kind": "corridor", "from": [107.6, -415.5], "to": [107.6, -307.9], "facing": "x-"},
+    {"kind": "corridor", "from": [107.6, -294.3], "to": [107.6, -222.2], "facing": "x-"},
+    {"kind": "corridor", "from": [107.6, -213.7], "to": [107.6, -131], "facing": "x-"},
+    {"kind": "corridor", "from": [107.6, -89.8], "to": [107.6, -59.6], "facing": "x-"},
+    {"kind": "corridor", "from": [107.6, -46], "to": [107.6, -12.7], "facing": "x-"},
+    {"kind": "corridor", "from": [107.6, -11.7], "to": [107.6, 122.5], "facing": "x-"},
+    {"kind": "corridor", "from": [-105.97, -217.3], "to": [-69.2, -217.3], "facing": "z-"},
+    {"kind": "corridor", "from": [-55.6, -217.3], "to": [-26.5, -217.3], "facing": "z-"},
+    {"kind": "corridor", "from": [26.5, -217.3], "to": [57.6, -217.3], "facing": "z-"},
+    {"kind": "corridor", "from": [71.2, -217.3], "to": [110.2, -217.3], "facing": "z-"},
+    {"kind": "corridor", "from": [-45, -484.6], "to": [-45, -434.6], "facing": "x+", "depth": 6, "colH": 4, "name": "朝房", "source": "estimated"},
+    {"kind": "corridor", "from": [45, -484.6], "to": [45, -434.6], "facing": "x-", "depth": 6, "colH": 4, "name": "朝房", "source": "estimated"},
+    {"kind": "gate", "name": "永康左门", "x": 150, "z": 155, "rot": "east"},
+    {"kind": "wall", "from": [150, 140], "to": [150, 170], "h": 7, "gaps": [{"at": 155, "gate": "永康左门"}], "source": "estimated"},
+    {"kind": "region", "name": "太和门广场", "x0": -106.47, "x1": 110.7, "z0": -416, "z1": -214.2},
+    {"kind": "region", "name": "乾清门广场", "x0": -106.47, "x1": 110.7, "z0": 123, "z1": 203.85},
+    {"kind": "region", "name": "景运门外", "x0": -124, "x1": -106.47, "z0": 160, "z1": 188, "source": "estimated"},
+    {"kind": "region", "name": "隆宗门外", "x0": 110.7, "x1": 150, "z0": 140, "z1": 188, "source": "estimated"}
   ]
 }
