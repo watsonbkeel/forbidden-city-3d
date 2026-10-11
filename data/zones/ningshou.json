@@ -1,0 +1,37 @@
+{
+  "id": "ningshou",
+  "name": "宁寿宫区",
+  "bounds": {
+    "x0": -151,
+    "x1": -116,
+    "z0": 140,
+    "z1": 415
+  },
+  "neighbors": ["east-six"],
+  "items": [
+    {"kind": "gate", "name": "锡庆门", "x": -123, "z": 157, "rot": "west", "style": "hall"},
+    {"kind": "gate", "name": "皇极门", "x": -137, "z": 172, "style": "hall"},
+    {"kind": "gate", "name": "养性门", "x": -137, "z": 242},
+    
+    {"kind": "wall", "from": [-151, 140], "to": [-123, 140], "h": 7},
+    {"kind": "wall", "from": [-123, 140], "to": [-123, 412], "h": 7, "gaps": [{"at": 157, "gate": "锡庆门"}]},
+    {"kind": "wall", "from": [-151, 412], "to": [-123, 412], "h": 7},
+    {"kind": "wall", "from": [-151, 172], "to": [-123, 172], "h": 7, "gaps": [{"at": -137, "gate": "皇极门"}]},
+    {"kind": "wall", "from": [-151, 242], "to": [-123, 242], "h": 7, "gaps": [{"at": -137, "gate": "养性门"}]},
+    
+    {"kind": "nineDragonWall", "name": "九龙壁", "x": -137, "z": 145, "length": 22, "rot": "north"},
+    
+    {"kind": "hall", "name": "皇极殿", "x": -137, "z": 198, "w": 19, "d": 11, "pad": 1.2, "ph": 1.5, "colH": 5.4, "roof": "wudian", "layers": 2, "enter": true, "throne": true},
+    {"kind": "hall", "name": "宁寿宫", "x": -137, "z": 226, "w": 19, "d": 9, "pad": 1, "ph": 1.0, "colH": 4.8, "roof": "xieshan", "enter": true},
+    {"kind": "hall", "name": "养性殿", "x": -137, "z": 258, "w": 17, "d": 9, "pad": 1, "ph": 0.9, "colH": 4.6, "roof": "xieshan", "enter": true, "throne": true},
+    {"kind": "hall", "name": "乐寿堂", "x": -137, "z": 284, "w": 17, "d": 9, "pad": 1, "ph": 0.9, "colH": 4.6, "roof": "xieshan", "layers": 2, "enter": true},
+    {"kind": "hall", "name": "颐和轩", "x": -137, "z": 310, "w": 15, "d": 8, "pad": 0.8, "ph": 0.6, "colH": 4.2, "roof": "xieshan"},
+    {"kind": "hall", "name": "景祺阁", "x": -137, "z": 340, "w": 15, "d": 8, "pad": 0.8, "ph": 0.6, "colH": 6.4, "roof": "xieshan", "layers": 2},
+    {"kind": "hall", "name": "畅音阁", "x": -137, "z": 372, "w": 12, "d": 10, "pad": 0.8, "ph": 0.9, "colH": 7.5, "roof": "xieshan", "layers": 2},
+    
+    {"kind": "region", "name": "九龙壁", "x0": -151, "x1": -123, "z0": 140, "z1": 172},
+    {"kind": "region", "name": "宁寿宫", "x0": -151, "x1": -123, "z0": 172, "z1": 242},
+    {"kind": "region", "name": "养性殿·乐寿堂", "x0": -151, "x1": -123, "z0": 242, "z1": 412},
+    {"kind": "region", "name": "东筒子", "x0": -123, "x1": -116, "z0": 170, "z1": 412}
+  ]
+}

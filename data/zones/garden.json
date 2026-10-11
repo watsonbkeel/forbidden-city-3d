@@ -1,0 +1,25 @@
+{
+  "id": "garden",
+  "name": "御花园",
+  "bounds": {
+    "x0": -70,
+    "x1": 70,
+    "z0": 305,
+    "z1": 400
+  },
+  "neighbors": ["axis-courts"],
+  "items": [
+    {"kind": "gate", "name": "琼苑东门", "x": -67, "z": 312, "rot": "east"},
+    {"kind": "gate", "name": "琼苑西门", "x": 67, "z": 312, "rot": "west"},
+    {"kind": "gate", "name": "顺贞门", "x": 0, "z": 395, "w": 5, "h": 5},
+    
+    {"kind": "wall", "from": [-67, 305], "to": [-10, 305], "h": 7},
+    {"kind": "wall", "from": [10, 305], "to": [67, 305], "h": 7},
+    {"kind": "wall", "from": [-67, 395], "to": [67, 395], "h": 7, "gaps": [{"at": 0, "gate": "顺贞门"}]},
+    {"kind": "wall", "from": [-67, 305], "to": [-67, 395], "h": 7, "gaps": [{"at": 312, "gate": "琼苑东门"}]},
+    {"kind": "wall", "from": [67, 305], "to": [67, 395], "h": 7, "gaps": [{"at": 312, "gate": "琼苑西门"}]},
+    
+    {"kind": "hall", "name": "钦安殿", "x": 0, "z": 350, "w": 15, "d": 11, "pad": 1.5, "ph": 1.5, "colH": 5.5, "roof": "wudian", "layers": 2, "enter": true, "throne": true, "backDoor": true},
+    {"kind": "region", "name": "钦安殿", "x0": -9, "x1": 9, "z0": 340, "z1": 360}
+  ]
+}

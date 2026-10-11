@@ -1,0 +1,44 @@
+{
+  "id": "outer-east",
+  "name": "东路外朝",
+  "bounds": {
+    "x0": -170,
+    "x1": -75,
+    "z0": -146,
+    "z1": 170
+  },
+  "neighbors": ["axis-courts"],
+  "items": [
+    {"kind": "gate", "name": "文华门", "x": -110, "z": -104, "style": "hall"},
+    {"kind": "courtWalls", "x0": -136, "x1": -84, "z0": -104, "z1": -40, "gates": [{"side": "s", "at": -110, "gate": "文华门"}]},
+    {"kind": "hall", "name": "文华殿", "x": -110, "z": -80, "w": 20, "d": 10, "pad": 1, "ph": 0.9, "colH": 4.8, "roof": "xieshan", "enter": true, "throne": true, "backDoor": true},
+    {"kind": "hall", "name": "主敬殿", "x": -110, "z": -55, "w": 16, "d": 8, "pad": 0.8, "ph": 0.6, "colH": 4.2, "roof": "xieshan", "enter": true},
+    {"kind": "region", "name": "文华殿", "x0": -136, "x1": -84, "z0": -104, "z1": -40},
+    
+    {"kind": "gate", "name": "文渊阁", "x": -110, "z": -34},
+    {"kind": "courtWalls", "x0": -136, "x1": -84, "z0": -34, "z1": -4, "gates": [{"side": "s", "at": -110, "gate": "文渊阁"}]},
+    {"kind": "hall", "name": "文渊阁", "x": -110, "z": -17, "w": 20, "d": 9, "pad": 0.8, "ph": 0.6, "colH": 6.4, "roof": "xieshan", "layers": 2, "plaque": false},
+    {"kind": "region", "name": "文渊阁", "x0": -136, "x1": -84, "z0": -34, "z1": -4},
+    
+    {"kind": "gate", "name": "南三所", "x": -110, "z": 4},
+    {"kind": "courtWalls", "x0": -136, "x1": -84, "z0": 4, "z1": 50, "gates": [{"side": "s", "at": -110, "gate": "南三所"}]},
+    {"kind": "hall", "x": -94, "z": 22, "w": 11, "d": 6, "pad": 0.6, "ph": 0.45, "colH": 3.6, "roof": "gable", "brackets": false, "map": "hall"},
+    {"kind": "hall", "x": -94, "z": 39, "w": 11, "d": 6, "pad": 0.6, "ph": 0.45, "colH": 3.6, "roof": "gable", "brackets": false, "map": "hall"},
+    {"kind": "hall", "x": -110, "z": 22, "w": 11, "d": 6, "pad": 0.6, "ph": 0.45, "colH": 3.6, "roof": "gable", "brackets": false, "map": "hall"},
+    {"kind": "hall", "x": -110, "z": 39, "w": 11, "d": 6, "pad": 0.6, "ph": 0.45, "colH": 3.6, "roof": "gable", "brackets": false, "map": "hall"},
+    {"kind": "hall", "x": -126, "z": 22, "w": 11, "d": 6, "pad": 0.6, "ph": 0.45, "colH": 3.6, "roof": "gable", "brackets": false, "map": "hall"},
+    {"kind": "hall", "x": -126, "z": 39, "w": 11, "d": 6, "pad": 0.6, "ph": 0.45, "colH": 3.6, "roof": "gable", "brackets": false, "map": "hall"},
+    {"kind": "region", "name": "南三所", "x0": -136, "x1": -84, "z0": 4, "z1": 50},
+    
+    {"kind": "gate", "name": "奉先门", "x": -110, "z": 58, "style": "hall"},
+    {"kind": "courtWalls", "x0": -136, "x1": -84, "z0": 58, "z1": 128, "gates": [{"side": "s", "at": -110, "gate": "奉先门"}]},
+    {"kind": "hall", "name": "奉先殿", "x": -110, "z": 82, "w": 24, "d": 12, "pad": 1.2, "ph": 1.2, "colH": 5.2, "roof": "wudian", "layers": 1, "enter": true, "throne": true},
+    {"kind": "hall", "x": -110, "z": 110, "w": 24, "d": 10, "pad": 1, "ph": 0.9, "colH": 4.6, "roof": "wudian", "map": "hall"},
+    {"kind": "region", "name": "奉先殿", "x0": -136, "x1": -84, "z0": 58, "z1": 128},
+    
+    {"kind": "hall", "name": "箭亭", "x": -100, "z": 153, "w": 15, "d": 8, "pad": 1, "ph": 0.6, "colH": 5, "roof": "xieshan", "open": true},
+    
+    {"kind": "cityGate", "name": "东华门", "x": -155, "z": -115, "rot": "east"},
+    {"kind": "region", "name": "东华门", "x0": -170, "x1": -136, "z0": -130, "z1": -100}
+  ]
+}
