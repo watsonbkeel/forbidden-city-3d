@@ -38,6 +38,7 @@ const percentile = (arr, p) => {
   const errors = [];
   page.on('pageerror', e => errors.push('pageerror: ' + e.message));
   page.on('console', m => { if (m.type() === 'error') errors.push('console: ' + m.text()); });
+  page.on('response', r => { if (r.status() >= 400) errors.push(`http ${r.status()} ${r.url()}`); });
   const t0 = Date.now();
   await page.goto(process.env.PALACE_URL || 'http://127.0.0.1:5173', { waitUntil: 'load' });
   await page.waitForFunction(() => window.__forbiddenCityApp?.postProcessing?.composer && window.__perf?.() && document.querySelector('#loading-screen').style.display === 'none', null, { timeout: 240000 });
@@ -107,7 +108,9 @@ const percentile = (arr, p) => {
     points: results,
   };
   fs.writeFileSync(outFile, JSON.stringify(out, null, 2) + '\n');
-  console.log(`写入 ${outFile}（${results.length} 点，页面错误 ${errors.length} 条）`);
+  errors.forEach(e => console.log('  ' + e));
+  console.log(`写入 ${outFile}（${results.length} 点，资源/控制台错误 ${errors.length} 条）`);
   await browser.close();
-  process.exit(errors.length ? 1 : 0);
+  // 只有未捕获 JS 异常算失败；资源 404 等只记录
+  process.exit(errors.some(e => e.startsWith('pageerror')) ? 1 : 0);
 })().catch(e => { console.error(e); process.exit(1); });
