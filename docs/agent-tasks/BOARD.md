@@ -6,7 +6,7 @@
 ## Phase 0（串行）
 | ID | 任务 | 模型 | 分支 | 状态 | 备注 |
 |---|---|---|---|---|---|
-| P0 | 底座：米制坐标 + zone schema + ZoneManager + PerfHUD + perf 基线 | opus5.5 high | feat/p0-foundation | 🔵 | 首次执行中断（仅 23be8d6）；拆为 P0a→P0b→P0c。P0a ✅ c079f37（PerfHUD + 6 点基线）；P0b ✅ 11e9bb9（opus 半成品，总控补完：修 3 个阻塞 bug + 24 处数据错误，zone-equiv 全等、stepwalk 96/0、regression 24/24）；P0c ⬜ 待启动（1:1 坐标迁移） |
+| P0 | 底座：米制坐标 + zone schema + ZoneManager + PerfHUD + perf 基线 | opus5.5 high | feat/p0-foundation | 🔵 | 首次执行中断（仅 23be8d6）；拆为 P0a→P0b→P0c。P0a ✅ c079f37（PerfHUD + 6 点基线）；P0b ✅ 11e9bb9（opus 半成品，总控补完：修 3 个阻塞 bug + 24 处数据错误，zone-equiv 全等、stepwalk 96/0、regression 24/24）；P0c 拆 P0c-1（锚点+重定位脚本+中轴常量）→ P0c-2（测试路线同步+全绿+合 main），任务卡 `P0c-relocate.md`；P0c-1 🔵 opus |
 | P1-D | 测绘/内景资料（可与 P0 并行） | ~~kimi-k3~~ → gpt-6.1-sol | — | ✅ | kimi 两次 524 超时无产出，gpt 接手后完成：dimensions 380 行 + 6 殿内景 + sources，验收 4/4 |
 
 ## Phase 1（并行，P0 合入后启动）
