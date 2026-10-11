@@ -102,6 +102,9 @@ async function buildRoutes() {
     ['西华门出宫', [[xhm.x - 25, xhm.z], [L.BOUNDARY.maxX - 10, xhm.z]]],
     ['中左门过(台外)', [[-72, -30], [A['中左门'].x, -30], [A['中左门'].x, 5]]],
     ['后左门过(台外)', [[-72, 110], [A['后左门'].x, 110], [A['后左门'].x, 140]]],
+    // P0c-2 step3 修复守护：养心殿院北墙与永寿门/太极门之间的东西夹道、文华殿院与文渊阁院之间的夹道
+    ['西一长街→夹道→永寿门', [[ny.x - 2.4, A['永寿门'].z - 2.8], [A['永寿门'].x, A['永寿门'].z - 2.8], [A['永寿门'].x, A['永寿门'].z + 8]]],
+    ['文华殿院北夹道→文渊阁院', [[whd.x + 36.4, -153], [A['文渊阁'].x, -153], [A['文渊阁'].x, -145]]],
   ];
   const round = rs => rs.map(([n, pts]) => [n, pts.map(([x, z]) => [r1(x), r1(z)])]);
   return { AXIS_ROUTES: round(AXIS_ROUTES), SIDE_ROUTES: round([...SIDE_ROUTES, ...EXTRA_ROUTES]) };
