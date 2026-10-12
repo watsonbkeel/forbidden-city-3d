@@ -9,7 +9,6 @@ export class BatchedBuilder {
     this.signature = '';
     this.container = new THREE.Group();
     this.container.name = 'render-batches';
-    this.matrix = new THREE.Matrix4();
   }
 
   collect() {

@@ -77,10 +77,15 @@ const ROOT = path.resolve(__dirname, '..');
     for (const p of points) {
       settle(p.pos[0], p.pos[1]);
       const whole = measure(() => a.postProcessing.render());
-      const renderPass = measure(() => renderer.render(a.scene, camera));
+      const drawScene = () => {
+        a.postProcessing.batchedBuilder?.begin();
+        try { renderer.render(a.scene, camera); }
+        finally { a.postProcessing.batchedBuilder?.end(); }
+      };
+      const renderPass = measure(drawScene);
       const dirLight = a.environment.dirLight;
       dirLight.castShadow = false;
-      const main = measure(() => renderer.render(a.scene, camera));
+      const main = measure(drawScene);
       dirLight.castShadow = true;
       results.push({
         point: p.point,

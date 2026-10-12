@@ -48,10 +48,12 @@ export class ShadowSetup {
     light.shadow.bias = -0.0001;
     
     if (light.isDirectionalLight) {
-      light.shadow.camera.left = -200;
-      light.shadow.camera.right = 200;
-      light.shadow.camera.top = 200;
-      light.shadow.camera.bottom = -200;
+      const radius = this.quality === 'high' ? 120 : 60;
+      light.shadow.camera.left = -radius;
+      light.shadow.camera.right = radius;
+      light.shadow.camera.top = radius;
+      light.shadow.camera.bottom = -radius;
+      light.shadow.camera.updateProjectionMatrix();
     }
   }
   
