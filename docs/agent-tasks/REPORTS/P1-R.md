@@ -12,6 +12,13 @@
 | 阴影 pass | 126 | 0.35M | 17% |
 | 后期（SSAO 法线全场景重绘 + 全屏 quad） | 382 | 0.99M | 51% |
 
+## 已完成静态验收
+- 最终构建：PASS，67 modules（仅既有大chunk警告）。
+- test:zones：PASS，7文件0错误0警告。
+- test:anchors：PASS，108条比较0超差。
+- BatchedBuilder生命周期/卸载恢复与SilhouetteBuilder轮廓/无投影约束：纯node断言PASS。
+- 运行中桌面回归截图可见173calls/853789tris，未见缺面；移动端截图未见渲染异常。浏览器完整门禁结果仍待任务返回，不提前宣称PASS。
+
 ## 第三次接手阶段数据（待完整门禁）
 | 阶段 | 太和殿calls | tris | 相对P0 calls |
 |---|---:|---:|---:|

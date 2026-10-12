@@ -28,6 +28,10 @@ export class DepthSSAOPass extends SSAOPass {
   renderOverride() {}
 
   render(renderer, writeBuffer, readBuffer, deltaTime, maskActive) {
+    this.ssaoMaterial.uniforms.cameraNear.value = this.camera.near;
+    this.ssaoMaterial.uniforms.cameraFar.value = this.camera.far;
+    this.ssaoMaterial.uniforms.cameraProjectionMatrix.value.copy(this.camera.projectionMatrix);
+    this.ssaoMaterial.uniforms.cameraInverseProjectionMatrix.value.copy(this.camera.projectionMatrixInverse);
     this.ssaoMaterial.uniforms.tDepth.value = readBuffer.depthTexture;
     this.depthRenderMaterial.uniforms.tDepth.value = readBuffer.depthTexture;
     super.render(renderer, writeBuffer, readBuffer, deltaTime, maskActive);
