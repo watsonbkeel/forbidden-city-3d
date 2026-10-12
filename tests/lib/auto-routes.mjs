@@ -16,6 +16,12 @@ export const DETOUR_GAP = 3;     // 绕殿时离台明外沿
 const r1 = v => Math.round(v * 10) / 10;
 const inRect = (x, z, R, m = 0) => x > R.x0 + m && x < R.x1 - m && z > R.z0 + m && z < R.z1 - m;
 const legOk = (W, p, q) => { const w = walkStraight(W, p, q); return w.reached >= w.total - 0.5; };
+/** 线段 p→q 是否穿过矩形 R（按 0.5 m 采样） */
+const segHitsRect = (p, q, R) => {
+  const n = Math.max(1, Math.ceil(Math.hypot(q[0] - p[0], q[1] - p[1]) / 0.5));
+  for (let i = 0; i <= n; i++) { const t = i / n; if (inRect(p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t, R)) return true; }
+  return false;
+};
 
 /** 殿台明（含台阶）世界 AABB */
 function hallRect(h) {
@@ -157,12 +163,24 @@ export function zoneRoutes(W, zone) {
     // 门内 → 殿前：先沿门通行方向对齐，再横移（L 形），各段被殿挡住时侧绕
     const g = gateGeom(pick.gate);
     const gateAlongZ = Math.abs(g.dir[1]) >= Math.abs(g.dir[0]);
-    const corner = gateAlongZ ? [inner[0], hallFront[1]] : [hallFront[0], inner[1]];
-    const alt = gateAlongZ ? [hallFront[0], inner[1]] : [inner[0], hallFront[1]];
-    let mid = null;
-    for (const c of [alt, corner]) {
-      const d1 = detour(W, halls, inner, c, plan), d2 = d1 && detour(W, halls, c, hallFront, plan);
-      if (d1 && d2) { mid = [...d1, c, ...d2]; break; }
+    const planMid = (to) => {
+      const corner = gateAlongZ ? [inner[0], to[1]] : [to[0], inner[1]];
+      const alt = gateAlongZ ? [to[0], inner[1]] : [inner[0], to[1]];
+      for (const c of [alt, corner]) {
+        const d1 = detour(W, halls, inner, c, plan), d2 = d1 && detour(W, halls, c, to, plan);
+        if (d1 && d2) return { mid: [...d1, c, ...d2], alt };
+      }
+      return { mid: null, alt };
+    };
+    let { mid, alt } = planMid(hallFront);
+    // 工字殿两殿台明不相接（中间留空地，如武英殿/敬思殿）：门内→殿前被带后门的前殿挡住且无法侧绕时，同样穿前殿
+    if (!mid && !H2) {
+      const B = halls.find(o => o !== h && o.enter === true && o.backDoor && segHitsRect(inner, hallFront, hallRect(o)));
+      if (B) {
+        const t = throughFrontHall(B, h, inside, plan);
+        const r = planMid(t.front);
+        if (r.mid) { mid = r.mid; tail = [t.front, ...t.pts]; }
+      }
     }
     if (!mid) { plan.push('门内→殿前直线/侧绕均受阻（交由浏览器步行判定）'); mid = [alt]; }
     const go = simplify(W, [...leg, ...mid, ...tail]);
