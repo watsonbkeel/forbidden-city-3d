@@ -1,7 +1,8 @@
 import * as THREE from 'three';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
-import { SSAOPass } from 'three/examples/jsm/postprocessing/SSAOPass.js';
+import { DepthSSAOPass } from './DepthSSAOPass.js';
+import { BatchedBuilder } from './BatchedBuilder.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass.js';
@@ -33,7 +34,11 @@ export class PostProcessing {
     const size = this.renderer.getSize(new THREE.Vector2());
     
     // 创建 Composer
-    this.composer = new EffectComposer(this.renderer);
+    const target = new THREE.WebGLRenderTarget(size.x, size.y, {
+      type: THREE.HalfFloatType,
+      depthTexture: new THREE.DepthTexture(size.x, size.y),
+    });
+    this.composer = new EffectComposer(this.renderer, target);
     this.pixelRatio = this.renderer.getPixelRatio();
     
     // 基础渲染 Pass
@@ -42,7 +47,7 @@ export class PostProcessing {
     
     // SSAO Pass
     if (quality === 'high') {
-      this.ssaoPass = new SSAOPass(this.scene, this.camera, size.x, size.y);
+      this.ssaoPass = new DepthSSAOPass(this.scene, this.camera, size.x, size.y);
       this.ssaoPass.kernelRadius = POST_PROCESSING.SSAO.kernelRadius;
       this.ssaoPass.minDistance = POST_PROCESSING.SSAO.minDistance;
       this.ssaoPass.maxDistance = POST_PROCESSING.SSAO.maxDistance;
