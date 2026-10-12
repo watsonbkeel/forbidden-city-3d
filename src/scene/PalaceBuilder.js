@@ -11,7 +11,7 @@ import { applyBoxUV, applyBandUV, applyPlanarUV } from '../utils/GeometryUV.js';
  * bays 面阔间数；roof/layers 屋顶形式；throne 是否设宝座；inner 殿内匾额；open 前后敞开可进出的间数；
  * 门的 baseH/margin/apron 为台基修正（margin/apron 与 tools/p0c-relocate.mjs TERRACE 表的墙线起点对应）。
  * P0c-1 起场景为真实米制，原先为避让金水河/乾清宫台阶而压缩的门 depth 覆盖已去掉，进深取 DIMENSIONS。
- * baseH 仍为 1.5（真实太和门台基 3.44、乾清门 1.5，dimensions.md:88/108；太和门待 P0c-2 核对台阶与两侧墙）。
+ * baseH：太和门 3.44（P1-Z-axis A2）、乾清门 1.5（dimensions.md:88/108）。
  */
 /**
  * plinth：殿座自身台明高度（米）。同一大台基上相邻两殿之间是"下台阶 → 台面 → 上台阶"，
@@ -21,7 +21,7 @@ const REAL = {
   太和殿: { bays: 11, roof: 'wudian', layers: 2, throne: true, inner: '建极绥猷', open: 3, plinth: 2.2 },
   中和殿: { bays: 5, roof: 'pavilion', layers: 1, throne: true, inner: '允执厥中', open: 3, plinth: 1.6 },
   保和殿: { bays: 9, roof: 'xieshan', layers: 2, throne: true, inner: '皇建有极', open: 3, plinth: 2.0 },
-  太和门: { bays: 9, roof: 'xieshan', layers: 2, open: 3, baseH: 1.5, margin: 1, apron: 1 },
+  太和门: { bays: 9, roof: 'xieshan', layers: 2, open: 3, baseH: 3.44, margin: 1, apron: 1 }, // 台基 3.44（dimensions.md:88，P1-Z-axis A2）
   乾清门: { bays: 5, roof: 'xieshan', layers: 1, open: 3, baseH: 1.5, margin: 0, apron: 1 },
   乾清宫: { bays: 9, roof: 'wudian', layers: 2, throne: true, inner: '正大光明', open: 3, plinth: 2.0 },
   交泰殿: { bays: 3, roof: 'pavilion', layers: 1, throne: true, inner: '无为', open: 3, plinth: 1.5 },

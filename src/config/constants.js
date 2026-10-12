@@ -45,11 +45,11 @@ export const DIMENSIONS = {
     cornerPavilion: 11,       // 四角方亭边长：未查到，估（dimensions.md:82）
   },
 
-  // 太和门（48.06 × 20.54，anchors.json conf 高；高度沿用）
+  // 太和门（48.06 × 20.54，通高 23.80，台基 3.44：dimensions.md:88；台基高在 PalaceBuilder REAL 表）
   TAIHE_GATE: {
-    width: 48,
-    depth: 20.5,
-    height: 20,
+    width: 48.06,
+    depth: 20.54,
+    height: 23.8,
   },
   
   // 太和殿
