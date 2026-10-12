@@ -421,12 +421,14 @@ class ForbiddenCityApp {
   updateLocationInfo() {
     const position = this.controls.getPosition();
     const location = this.collisionManager.getCurrentLocation(position);
-    if (location === this.lastLocation) return;
-    this.lastLocation = location;
-    this.locationPanel.innerHTML = `
-      <strong>当前位置</strong><br>
-      ${location}
-    `;
+    const zone = ZONES.find(item => item.id === this.zoneManager.getCurrentId())?.name ?? '宫城';
+    const label = `${zone} › ${location}`;
+    if (label === this.lastLocation) return;
+    this.lastLocation = label;
+    this.locationPanel.replaceChildren();
+    const heading = document.createElement('strong');
+    heading.textContent = '当前位置';
+    this.locationPanel.append(heading, document.createElement('br'), document.createTextNode(label));
   }
   
   /**
