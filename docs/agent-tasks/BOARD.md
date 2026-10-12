@@ -16,7 +16,7 @@
 | ID | 任务 | 模型 | 交叉审 | 分支 | 状态 |
 |---|---|---|---|---|---|
 | P1-R | 渲染性能：BatchedMesh / 阴影 / 遮挡 | ~~sonnet5.5 → glm-5.3~~ → gpt-6.1-sol（用户 10-12 11:05 指定） | sonnet5.5（原交叉审 gpt 已改为执行） | feat/p1-render | ✅ 已合入 main 938109e |
-| P1-I | 内景管线：GLB loader + A 档模板 + 2 座 S 档样板 | sonnet5.5（I-1~I-3）→ 总控接手（I-4 + 门禁） | gpt-6.1-sol | feat/p1-interior | 🟡 待合并 @ b69c188（12:45）。sonnet 完成 I-3 后被杀，总控接手：太和殿 40.8k tris / 乾清宫 33.4k tris，各 0.26 / 0.23 MB；门禁 build/zones/anchors/smoke/regression 24/24/stepwalk 132/132/perf 全绿；p1i-loader 两殿 PASS、p1i-presets PASS。REPORTS/P1-I.md 已写。**合并时需顺手接 main.js**（REQUESTS 第 1 条） |
+| P1-I | 内景管线：GLB loader + A 档模板 + 2 座 S 档样板 | sonnet5.5（I-1~I-3）→ 总控接手（I-4 + 门禁） | gpt-6.1-sol | feat/p1-interior | ✅ 已合入 main e385ca2 |
 | P1-U | 传送 / 快捷点 / 步速 / 位置提示 | gpt-6.1-sol（10-12 opus 503 后用户改回） | sonnet5.5 | feat/p1-ux | ✅ 已合入 main a894d5c |
 | P1-T | 一键门禁 / 路线扩展 / 截图回归 | ~~gpt-6.1-sol → glm-flash~~ → opus5.5（用户 10-12 指定） | — | feat/p1-tests | ✅ 已合入 main 1fa53ec（T-1~T-5 完成，报告 d84be47） |
 | P1-Z-axis | 中轴与宫城外围：午门/太和门/御花园内部/金水桥/角楼 | opus5.5 | sonnet 抽审 | feat/p1-zone-axis | ✅ 已合入 main a4f893d（A1–A6）；R1 Collision 改法 / R3 stepwalk 御花园路线待处理 |
