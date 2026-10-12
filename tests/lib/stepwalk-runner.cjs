@@ -34,6 +34,13 @@ async function runRoutes(page, routes, fpsList, sprints) {
     const under = (x, z, feet) => { refreshTerraces(); return terraces.some(b => x > b.min.x + 1 && x < b.max.x - 1 && z > b.min.z + 1 && z < b.max.z - 1 && feet < b.max.y - 1.2); };
     // 主循环已停，由本脚本代为推进分区加载（与 animate() 中的调用一致）
     const tickZones = () => zm?.update({ x: a.camera.position.x, z: a.camera.position.z });
+    // 碰撞体 tag 集合（碰撞体数量变化时重算）
+    let tagSet = new Set(), tagCount = -1;
+    const colliderTags = () => {
+      const cs = a.collisionManager.colliders;
+      if (cs.length !== tagCount) { tagCount = cs.length; tagSet = new Set(cs.map(c => c.tag)); }
+      return tagSet;
+    };
     // 分区事件记录（包一层 loadZone/unloadZone，不改行为）
     const events = [];
     if (zm && !zm.__p1tWrapped) {
@@ -73,7 +80,8 @@ async function runRoutes(page, routes, fpsList, sprints) {
           if (zm) {
             const zid = zm.findZone(p.x, p.z);
             if (zid && zonesSeen[zonesSeen.length - 1] !== zid) zonesSeen.push(zid);
-            if (zid && !zm.loaded.has(zid)) unloadedWalk += Math.hypot(p.x - bx, p.z - bz);
+            // 直接查碰撞体：所在区没有任何带该区 tag 的碰撞体 = 碰撞缺失
+            if (zid && !colliderTags().has(zid)) unloadedWalk += Math.hypot(p.x - bx, p.z - bz);
           }
           maxFeet = Math.max(maxFeet, c.feetY);
           if (f % Math.max(1, Math.round(fps / 2)) === 0) profile.push(+c.feetY.toFixed(1));
