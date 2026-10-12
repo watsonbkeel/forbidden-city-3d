@@ -14,7 +14,7 @@ export class BatchedBuilder {
   collect() {
     const meshes = [];
     this.scene.traverse(obj => {
-      if (obj.isMesh && !obj.isInstancedMesh && !obj.isBatchedMesh &&
+      if (obj.isMesh && !obj.isInstancedMesh && !obj.isBatchedMesh && !obj.isSkinnedMesh &&
           !obj.userData.noMerge && !Array.isArray(obj.material) && !obj.material.transparent && !obj.material.isShaderMaterial &&
           obj.geometry.attributes.position && !Object.keys(obj.geometry.morphAttributes).length) meshes.push(obj);
     });
