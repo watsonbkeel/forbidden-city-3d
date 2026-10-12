@@ -10,6 +10,7 @@
 //   PERF_BASELINE=tests/perf-p0c.json     perf 对比基线
 //   PERF_FPS_STRICT=1         fpsP5 下降 >15% 判失败（默认只警告，见 docs/TESTING.md「fps 规则」）
 //   GATE_SKIP=perf,regression 跳过若干步（调试用；被跳过的步在汇总表标"跳过"，退出码仍可为 0）
+//   GATE_VISUAL=1             追加截图回归 tests/visual.cjs（只警告，不影响退出码）
 // 日志：/tmp/fc-gate-<PORT>/<步骤>.log
 const { spawn, spawnSync } = require('node:child_process');
 const http = require('node:http');
@@ -132,6 +133,12 @@ const STEPS = [
       + (cmp.fails.length ? `\n  ✗ ${cmp.fails.join('\n  ✗ ')}` : '') + (cmp.warns.length ? `\n  ⚠ ${cmp.warns.join('\n  ⚠ ')}` : '');
     return { ...r, ok: cmp.fails.length === 0, detail: `${cmp.fails.length ? cmp.fails.length + ' 点劣化' : 'calls/tris 无劣化'}${cmp.warns.length ? `，fps 警告 ${cmp.warns.length}` : ''}`, extra };
   } },
+  // 截图回归：GATE_VISUAL=1 才跑，且只警告不判失败（画面改动是各任务的正常产出，需人工看差异图后再更新基线）
+  { name: 'visual', browser: true, warnOnly: true, optional: process.env.GATE_VISUAL !== '1', exec: () => {
+    const r = run('visual', ['tests/visual.cjs'], 900);
+    const n = pick(r.out, /或无基线 (\d+) 个/);
+    return { ...r, ok: r.code === 0, detail: n === undefined ? 'visual.cjs 失败' : `超阈值 ${n} 机位（差异图 tests/visual/<分支>/）` };
+  } },
 ];
 
 (async () => {
@@ -150,10 +157,11 @@ const STEPS = [
       if (s.browser && !vite) await startVite();
       r = s.exec();
     } catch (e) { r = { ok: false, detail: e.message, out: String(e.stack), secs: 0 }; }
-    console.log(`${r.ok ? '✅' : '❌'} ${r.detail}（${r.secs}s）`);
+    const mark = r.ok ? '✅' : s.warnOnly ? '⚠' : '❌';
+    console.log(`${mark} ${r.detail}（${r.secs}s）`);
     if (r.extra) console.log(r.extra);
-    if (!r.ok) { failed = true; console.log(`  日志尾部（${LOG_DIR}/${s.name}.log）：\n${tail(r.out || '')}`); }
-    results.push({ name: s.name, status: r.ok ? '✅' : '❌', detail: r.detail, secs: r.secs });
+    if (!r.ok) { if (!s.warnOnly) failed = true; console.log(`  日志尾部（${LOG_DIR}/${s.name}.log）：\n${tail(r.out || '')}`); }
+    results.push({ name: s.name, status: mark, detail: r.detail, secs: r.secs });
   }
   stopVite();
   console.log(`\n| 步骤 | 结果 | 说明 | 耗时 |\n|---|---|---|---|`);
