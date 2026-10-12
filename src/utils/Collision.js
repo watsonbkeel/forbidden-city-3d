@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { LAYOUT, PLAYER } from '../config/constants.js';
 import { PALACE_LAYOUT } from '../scene/Layout.js';
+import { isOnBridge } from '../scene/palace/river.js';
 
 /** 玩家碰撞盒底部离脚面的抬升量：低于此高度的台阶/门槛直接跨过，不当成墙。 */
 const STEP_CLEARANCE = 0.35;
@@ -173,14 +174,13 @@ export class CollisionManager {
   }
 
   checkRiverCrossing(position, radius) {
-    for (const { position: p, dimensions: d } of this.rivers) {
+    for (const river of this.rivers) {
+      const { position: p, dimensions: d } = river;
       const insideX = position.x + radius > p.x - d.width / 2 && position.x - radius < p.x + d.width / 2;
       const insideZ = position.z + radius > p.z - d.depth / 2 && position.z - radius < p.z + d.depth / 2;
       if (!insideX || !insideZ) continue;
-      // 与五座桥的中心与宽度保持一致；水域本身不是可行走地面。
-      const onBridge = Array.from({ length: 5 }, (_, i) => p.x - d.width * 0.3 + i / 4 * d.width * 0.6)
-        .some(x => Math.abs(position.x - x) + radius < 2.4);
-      if (!onBridge) return false;
+      // 桥位 / 桥宽唯一数据源：src/scene/palace/river.js（Layout 金水河条目 bridges）
+      if (!isOnBridge(river, position.x, radius)) return false;
     }
     return true;
   }
