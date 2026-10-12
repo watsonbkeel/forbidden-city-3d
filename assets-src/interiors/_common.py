@@ -103,6 +103,34 @@ def tri_count():
             n += len(me.loop_triangles)
     return n
 
+def merge_by_material(skip_prefix='COL_'):
+    """导出前把同材质的普通 mesh 合并成一个对象（COL_ 代理不合并）→ 每种材质 1 个 draw call。
+    世界矩阵（位置/旋转/缩放）烘进顶点；顶点色层随 bmesh 一起带过去（同材质组内层集合一致）。"""
+    bpy.context.view_layer.update()
+    groups = {}
+    for ob in list(bpy.context.scene.objects):
+        if ob.type != 'MESH' or ob.name.startswith(skip_prefix): continue
+        key = ob.data.materials[0].name if ob.data.materials else ''
+        groups.setdefault(key, []).append(ob)
+    for key, obs in groups.items():
+        if len(obs) < 2: continue
+        bm = bmesh.new()
+        m = obs[0].data.materials[0] if obs[0].data.materials else None
+        for ob in obs:
+            n0 = len(bm.verts)
+            bm.from_mesh(ob.data)
+            bm.verts.ensure_lookup_table()
+            bmesh.ops.transform(bm, matrix=ob.matrix_world, verts=bm.verts[n0:])
+        bm.normal_update()
+        me = bpy.data.meshes.new(f'merged_{key or "none"}')
+        bm.to_mesh(me); bm.free()
+        add_obj(f'merged_{key or "none"}', me, m)
+        for ob in obs:
+            old = ob.data
+            bpy.data.objects.remove(ob, do_unlink=True)
+            if old.users == 0: bpy.data.meshes.remove(old)
+    print(f'[merge] objects={len([o for o in bpy.context.scene.objects if o.type == "MESH"])}')
+
 def export_glb(path, draco=False):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     kw = dict(filepath=path, export_format='GLB', export_apply=True, export_yup=True,
