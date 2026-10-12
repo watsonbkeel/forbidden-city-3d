@@ -205,20 +205,43 @@ export class Enclosure {
   }
 
   /**
-   * 四个角楼：落在城墙中线交点（anchors.json 的四角楼坐标与外廓不自洽，见 P0.md P0c-1 遗留）
+   * 四个角楼（P1-Z-axis A4）。
+   *
+   * 位置：anchors.json 的四角楼坐标是 OSM 坐标系（比官方外廓整体偏北 20–30 m，dimensions.md:41–42），
+   * 北侧两座直接用会落到城墙外，故不取绝对坐标，而取"相对城墙"的内收量：
+   *   OSM 各角楼中心相对同源 OSM 城墙中线向宫内内收 —— 东南 (10.4, 12.1)、西南 (11.0, 9.8)、
+   *   东北 x 11.6、西北 x 11.6（dimensions.md:48–51/143–146；北墙 OSM 中线未给出，z 向取对称）→ 均值 ≈ 11.1 m。
+   *   这正好等于 角楼外廓半宽 14.5 − 半墙厚 4.3：角楼外皮与城墙外皮齐平，楼身向宫内伸出（与实物一致）。
+   *   本场景角楼中心 = 城墙中线交点向内各收 CORNER_INSET。
+   * 尺寸：通高 27.5 含城墙 10 → 墙顶以上 17.5；平面含抱厦约 29 × 29（dimensions.md:142）。
+   * 墙角加转角墩台（实心，顶面与墙顶平，外皮与城墙外皮齐平），角楼坐其上。
    */
   buildCornerTowers(parent) {
-    const { wallH } = this.wallSpec();
+    const { wallH, wallT } = this.wallSpec();
     const { x, zS, zN } = this.wallLines();
-    const corners = [
-      { x, z: zS },
-      { x: -x, z: zS },
-      { x, z: zN },
-      { x: -x, z: zN },
-    ];
-    for (const pos of corners) {
-      const tower = buildCornerTower(this.library, { size: 14 });
-      tower.position.set(pos.x, wallH, pos.z);
+    const CORNER_INSET = 11.1;
+    const TOWER_SPAN = 29;
+    const TOWER_H = 27.5 - wallH;
+    const half = CORNER_INSET + wallT / 2; // 墩台半宽：外皮与城墙外皮齐平
+    const redMat = this.library.material('wall_red');
+    const brickMat = this.library.material('wall_brick');
+    for (const [sx, z, sz] of [[1, zS, 1], [-1, zS, 1], [1, zN, -1], [-1, zN, -1]]) {
+      const cx = sx * (x - CORNER_INSET);
+      const cz = z + sz * CORNER_INSET;
+      const base = new THREE.Mesh(applyBoxUV(new THREE.BoxGeometry(half * 2, 1.5, half * 2), this.library.tileSize('wall_brick')), brickMat);
+      base.position.set(cx, 0.75, cz);
+      parent.add(base);
+      const body = new THREE.Mesh(applyBoxUV(new THREE.BoxGeometry(half * 2 - 0.1, wallH - 1.5, half * 2 - 0.1), this.library.tileSize('wall_red')), redMat);
+      body.position.set(cx, 1.5 + (wallH - 1.5) / 2, cz);
+      parent.add(body);
+      this.colliders.push(new THREE.Box3(
+        new THREE.Vector3(cx - half, 0, cz - half), new THREE.Vector3(cx + half, 3, cz + half)));
+
+      const tower = buildCornerTower(this.library, { size: 20 });
+      const b = new THREE.Box3().setFromObject(tower);
+      tower.scale.set(TOWER_SPAN / (b.max.x - b.min.x), TOWER_H / b.max.y, TOWER_SPAN / (b.max.z - b.min.z));
+      tower.position.set(cx, wallH, cz);
+      this.ownedMaterials.push(...(tower.userData.ownedMaterials ?? []));
       parent.add(tower);
     }
   }
