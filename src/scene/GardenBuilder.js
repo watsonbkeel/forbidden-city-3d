@@ -8,7 +8,7 @@ import { mulberry32 } from './garden/noise.js';
 import { buildTreeVariant, createFoliageMaterial } from './garden/trees.js';
 import { buildRockery } from './garden/rocks.js';
 import { LAYOUT } from '../config/constants.js';
-import anchors from '../../data/anchors.json';
+import anchors from '../../data/anchors.json' with { type: 'json' };
 
 const PATH_HW = 1.8; // 甬路半宽
 const GRASS_Y = 0.012;
