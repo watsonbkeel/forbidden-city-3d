@@ -40,7 +40,7 @@ export class Minimap {
     this.container.id = 'minimap';
     this.container.style.cssText = `
       position: fixed;
-      top: 50%;
+      top: ${this.previewEnabled ? '42%' : '50%'};
       left: 50%;
       transform: translate(-50%, -50%);
       width: ${this.mapSize}px;

@@ -17,8 +17,11 @@ export class Teleport {
     }
     for (const zone of ZONES) {
       for (const item of zone.items) {
-        if (['hall', 'gate'].includes(item.kind) && item.name) this.targets.set(item.name, item);
+        if (['hall', 'gate', 'cityGate'].includes(item.kind) && item.name) this.targets.set(item.name, item);
       }
+    }
+    for (const item of zoneManager.getMapItems()) {
+      if (item.name && item.kind !== 'corridor' && !this.targets.has(item.name)) this.targets.set(item.name, item);
     }
     this.overlay = document.createElement('div');
     this.overlay.id = 'teleport-overlay';
@@ -44,6 +47,7 @@ export class Teleport {
     this.overlay.style.display = 'block';
     clearTimeout(this.overlayTimer);
     this.overlayTimer = setTimeout(() => { this.overlay.style.display = 'none'; }, TELEPORT.OVERLAY_MS);
+    this.zoneManager.ensureLoadedAt(point.lookAtX, point.lookAtZ);
     this.zoneManager.ensureLoadedAt(point.x, point.z);
     const ground = this.collisionManager.getGroundHeight(point.x, point.z, Infinity);
     if (this.collisionManager.checkCollision(new THREE.Vector3(point.x, ground + PLAYER.HEIGHT, point.z))) {

@@ -14,12 +14,17 @@ const { chromium } = require('playwright');
       return names.map(name => {
         const point = a.teleport.go(name);
         const landing = a.teleport.landingFor(name);
-        if (!point) return { name, ...landing, pass: false, reason: '落点碰撞' };
+        if (!point) {
+          const cm = a.collisionManager;
+          const y = cm.getGroundHeight(landing.x, landing.z, Infinity);
+          const overlaps = cm.colliders.filter(c => c.box.min.x < landing.x + 0.5 && c.box.max.x > landing.x - 0.5 && c.box.min.z < landing.z + 0.5 && c.box.max.z > landing.z - 0.5 && c.box.min.y < y + PLAYER.HEIGHT && c.box.max.y > y + 0.35).map(c => ({ name: c.object?.name ?? c.tag, min: c.box.min.toArray(), max: c.box.max.toArray() }));
+          return { name, ...landing, y, overlaps, pass: false, reason: '落点碰撞' };
+        }
         const p = a.controls.getPosition();
         const feet = a.controls.getFeetY();
         const ground = a.collisionManager.getGroundHeight(p.x, p.z, Infinity);
         const facing = a.camera.getWorldDirection(new Vector3()).dot(new Vector3(landing.lookAtX - p.x, 0, landing.lookAtZ - p.z).normalize());
-        const zone = a.zoneManager.findZone(p.x, p.z);
+        const zone = a.zoneManager.findZone(landing.lookAtX, landing.lookAtZ) ?? a.zoneManager.findZone(p.x, p.z);
         const loaded = !zone || a.zoneManager.getLoadedIds().includes(zone);
         const dir = new Vector3(landing.lookAtX - p.x, 0, landing.lookAtZ - p.z).normalize();
         const end = a.collisionManager.getValidPosition(p, new Vector3(p.x + dir.x * 5, p.y, p.z + dir.z * 5), 0.5, feet, PLAYER.STEP_UP);
