@@ -15,21 +15,21 @@
 > **双总控分工（10-12 11:25 起）**：P1-R、P1-I 由另一对话总控负责启动/续跑/验收，本对话不再派 agent、不碰 fc-render / fc-interior。P1-T、P1-U、P1-Z-axis 及后续 Z×5 由本对话负责。合入 main 统一由本对话按序执行（T → R → U → Z-axis → Z×5 → I），另一对话验收完 R/I 后在本表把状态改为「🟡 待合并」即可。两边改 BOARD.md 只改自己负责的行，避免冲突。
 | ID | 任务 | 模型 | 交叉审 | 分支 | 状态 |
 |---|---|---|---|---|---|
-| P1-R | 渲染性能：BatchedMesh / 阴影 / 遮挡 | ~~sonnet5.5 → glm-5.3~~ → gpt-6.1-sol（用户 10-12 11:05 指定） | sonnet5.5（原交叉审 gpt 已改为执行） | feat/p1-render | 🟡 待合并 @ 8147d7e（12:44 总控复验）。build/regression 24/24/stepwalk 132/132 全绿；perf 六点 calls 604→172、746→165、412→157、256→129、260→118、278→150（太和殿前 −78%，tris 1.97M→0.85M）。REQUESTS 有「严格 8 ms 分片」权限申请待总控裁决。合并后需对照 P0c 六机位截图核对远景壳色差 |
+| P1-R | 渲染性能：BatchedMesh / 阴影 / 遮挡 | ~~sonnet5.5 → glm-5.3~~ → gpt-6.1-sol（用户 10-12 11:05 指定） | sonnet5.5（原交叉审 gpt 已改为执行） | feat/p1-render | ✅ 已合入 main 938109e |
 | P1-I | 内景管线：GLB loader + A 档模板 + 2 座 S 档样板 | sonnet5.5（I-1~I-3）→ 总控接手（I-4 + 门禁） | gpt-6.1-sol | feat/p1-interior | 🟡 待合并 @ b69c188（12:45）。sonnet 完成 I-3 后被杀，总控接手：太和殿 40.8k tris / 乾清宫 33.4k tris，各 0.26 / 0.23 MB；门禁 build/zones/anchors/smoke/regression 24/24/stepwalk 132/132/perf 全绿；p1i-loader 两殿 PASS、p1i-presets PASS。REPORTS/P1-I.md 已写。**合并时需顺手接 main.js**（REQUESTS 第 1 条） |
-| P1-U | 传送 / 快捷点 / 步速 / 位置提示 | gpt-6.1-sol（10-12 opus 503 后用户改回） | sonnet5.5 | feat/p1-ux | ✅ 待合并 feat/p1-ux（gpt 断流，总控收尾落点搜索）：传送 88/88、数字键 1–8、stepwalk 132/132、regression 24/24 |
-| P1-T | 一键门禁 / 路线扩展 / 截图回归 | ~~gpt-6.1-sol → glm-flash~~ → opus5.5（用户 10-12 指定） | — | feat/p1-tests | 🔵 opus 进行中：T-3 4d31a89（lint 增强）、T-1 d90fb4b（test:gate）、T-2 eb9b4e1（自动路线 7 区 30 条+跨区 2 条，128/128）；剩 T-4 截图对比、T-5 TESTING.md |
-| P1-Z-axis | 中轴与宫城外围：午门/太和门/御花园内部/金水桥/角楼 | opus5.5 | sonnet 抽审 | feat/p1-zone-axis | 🔵 opus 进行中：A1 6397d2f 午门凹形墩台、A2 ef4648f 太和门台基 3.44、A3 9ec4a10 金水桥（Collision 改法见 REQUESTS）、A4 ed2ba79 角楼；剩 A5 御花园、A6 验收 |
-| P1-Z-east-six | 东六宫 zone | glm-5.3 | opus 抽审 | feat/p1-zone-east-six | ⬜ |
-| P1-Z-west-six | 西六宫 zone | glm-5.3 | opus 抽审 | feat/p1-zone-west-six | ⬜ |
-| P1-Z-ningshou | 宁寿宫 zone | glm-5.3 | opus 抽审 | feat/p1-zone-ningshou | ⬜ |
-| P1-Z-outer-east | 外东路 zone | glm-5.3 | opus 抽审 | feat/p1-zone-outer-east | ⬜ |
-| P1-Z-outer-west | 外西路 zone | glm-5.3 | opus 抽审 | feat/p1-zone-outer-west | ⬜ |
+| P1-U | 传送 / 快捷点 / 步速 / 位置提示 | gpt-6.1-sol（10-12 opus 503 后用户改回） | sonnet5.5 | feat/p1-ux | ✅ 已合入 main a894d5c |
+| P1-T | 一键门禁 / 路线扩展 / 截图回归 | ~~gpt-6.1-sol → glm-flash~~ → opus5.5（用户 10-12 指定） | — | feat/p1-tests | ✅ 已合入 main 1fa53ec（T-1~T-5 完成，报告 d84be47） |
+| P1-Z-axis | 中轴与宫城外围：午门/太和门/御花园内部/金水桥/角楼 | opus5.5 | sonnet 抽审 | feat/p1-zone-axis | ✅ 已合入 main a4f893d（A1–A6）；R1 Collision 改法 / R3 stepwalk 御花园路线待处理 |
+| P1-Z-east-six | 东六宫 zone | glm-5.3 | opus 抽审 | feat/p1-zone-east-six | ✅ 已合入 main 6c07fef（总控代提交 a17ab91；越界改动 package.json/tests/shot.cjs 未合入） |
+| P1-Z-west-six | 西六宫 zone | glm-5.3 | opus 抽审 | feat/p1-zone-west-six | ✅ 已合入 main 6356eb3 |
+| P1-Z-ningshou | 宁寿宫 zone | glm-5.3 | opus 抽审 | feat/p1-zone-ningshou | ✅ 已合入 main 0e84718 |
+| P1-Z-outer-east | 外东路 zone | glm-5.3 | opus 抽审 | feat/p1-zone-outer-east | 🔵 开发中（报告已出，待提交） |
+| P1-Z-outer-west | 外西路 zone | glm-5.3 | opus 抽审 | feat/p1-zone-outer-west | 🔵 开发中 |
 
 ## Phase 2（集成）
 | ID | 任务 | 模型 | 状态 |
 |---|---|---|---|
-| P2-M | 按序合并：P1-T → P1-R → P1-U → P1-Z-axis → P1-Z×5 → P1-I；每合一个跑 test:gate | 总控 + glm-flash | ⬜ |
+| P2-M | 按序合并：P1-T → P1-R → P1-U → P1-Z-axis → P1-Z×5 → P1-I；每合一个跑 test:gate | 总控 + glm-flash | 🔵 10-12 17:15 已合 T/R/U/Z-axis/east-six/west-six/ningshou → main da32eb8；gate：build/zones/anchors/smoke/regression ✅，stepwalk ❌ 118/132（协和门/熙和门东西出宫 4 路线×多档，止步 x≈±32，转 L2 诊断）；待合 outer-east/outer-west/P1-I |
 | P2-A | 终审：架构一致性、死代码清理（删 SideCourts.js）、README 更新 | opus5.5 | ⬜ |
 | P2-S | S 档内景扩展：养心殿 / 坤宁宫 / 皇极殿 / 慈宁宫 | sonnet5.5 | ⬜ |
 
