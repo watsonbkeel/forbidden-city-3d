@@ -4,5 +4,6 @@
  */
 import taihe from '../../../data/interiors/taihe.json';
 import qianqing from '../../../data/interiors/qianqing.json';
+import huangji from '../../../data/interiors/huangji.json';
 
-export const INTERIORS = { taihe, qianqing };
+export const INTERIORS = { taihe, qianqing, huangji };
