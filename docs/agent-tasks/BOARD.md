@@ -12,13 +12,14 @@
 ## Phase 1（并行，P0 合入后启动）
 > 先读 `P1-COMMON.md`（覆盖各任务卡中 P0 之前写的过时条目：测试端口、数据源规则、测试文件所有权、新增 P1-Z-axis）。
 > 机器 10 核 16G，浏览器测试为软渲染：分两波启动。第一波 T/R/U/I/Z-axis，第二波 Z×5。
+> **双总控分工（10-12 11:25 起）**：P1-R、P1-I 由另一对话总控负责启动/续跑/验收，本对话不再派 agent、不碰 fc-render / fc-interior。P1-T、P1-U、P1-Z-axis 及后续 Z×5 由本对话负责。合入 main 统一由本对话按序执行（T → R → U → Z-axis → Z×5 → I），另一对话验收完 R/I 后在本表把状态改为「🟡 待合并」即可。两边改 BOARD.md 只改自己负责的行，避免冲突。
 | ID | 任务 | 模型 | 交叉审 | 分支 | 状态 |
 |---|---|---|---|---|---|
 | P1-R | 渲染性能：BatchedMesh / 阴影 / 遮挡 | ~~sonnet5.5 → glm-5.3~~ → gpt-6.1-sol（用户 10-12 11:05 指定） | sonnet5.5（原交叉审 gpt 已改为执行） | feat/p1-render | 🔵 11:05 第三次启动（gpt）；glm 18 分钟后 429 限流；R-0 profile 已入库 0d455b3（后期 SSAO 占整帧 51% calls）|
 | P1-I | 内景管线：GLB loader + A 档模板 + 2 座 S 档样板 | sonnet5.5 | gpt-6.1-sol | feat/p1-interior | 🔵 11:05 第三次启动（sonnet）；前两次 503 |
 | P1-U | 传送 / 快捷点 / 步速 / 位置提示 | gpt-6.1-sol（10-12 opus 503 后用户改回） | sonnet5.5 | feat/p1-ux | ✅ 待合并 feat/p1-ux（gpt 断流，总控收尾落点搜索）：传送 88/88、数字键 1–8、stepwalk 132/132、regression 24/24 |
-| P1-T | 一键门禁 / 路线扩展 / 截图回归 | ~~gpt-6.1-sol → glm-flash~~ → opus5.5（用户 10-12 指定） | — | feat/p1-tests | 🔵 10-12 启动（10:1x 首轮 5 个全部 503 无产出，重启） |
-| P1-Z-axis | 中轴与宫城外围：午门/太和门/御花园内部/金水桥/角楼 | opus5.5 | sonnet 抽审 | feat/p1-zone-axis | 🔵 10-12 启动（10:1x 首轮 5 个全部 503 无产出，重启） |
+| P1-T | 一键门禁 / 路线扩展 / 截图回归 | ~~gpt-6.1-sol → glm-flash~~ → opus5.5（用户 10-12 指定） | — | feat/p1-tests | 🔵 opus 进行中：T-3 4d31a89（lint 增强）、T-1 d90fb4b（test:gate）、T-2 eb9b4e1（自动路线 7 区 30 条+跨区 2 条，128/128）；剩 T-4 截图对比、T-5 TESTING.md |
+| P1-Z-axis | 中轴与宫城外围：午门/太和门/御花园内部/金水桥/角楼 | opus5.5 | sonnet 抽审 | feat/p1-zone-axis | 🔵 opus 进行中：A1 6397d2f 午门凹形墩台、A2 ef4648f 太和门台基 3.44、A3 9ec4a10 金水桥（Collision 改法见 REQUESTS）、A4 ed2ba79 角楼；剩 A5 御花园、A6 验收 |
 | P1-Z-east-six | 东六宫 zone | glm-5.3 | opus 抽审 | feat/p1-zone-east-six | ⬜ |
 | P1-Z-west-six | 西六宫 zone | glm-5.3 | opus 抽审 | feat/p1-zone-west-six | ⬜ |
 | P1-Z-ningshou | 宁寿宫 zone | glm-5.3 | opus 抽审 | feat/p1-zone-ningshou | ⬜ |
