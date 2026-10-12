@@ -24,7 +24,7 @@
 | P1-Z-west-six | 西六宫 zone | glm-5.3 | opus 抽审 | feat/p1-zone-west-six | ✅ 已合入 main 6356eb3 |
 | P1-Z-ningshou | 宁寿宫 zone | glm-5.3 | opus 抽审 | feat/p1-zone-ningshou | ✅ 已合入 main 0e84718 |
 | P1-Z-outer-east | 外东路 zone | glm-5.3 | opus 抽审 | feat/p1-zone-outer-east | ✅ 已合入 main 220e418 |
-| P1-Z-outer-west | 外西路 zone | glm-5.3 | opus 抽审 | feat/p1-zone-outer-west | ✅ 已合入 main（P2-M 早期） |
+| P1-Z-outer-west | 外西路 zone | glm-5.3 | opus 抽审 | feat/p1-zone-outer-west | ✅ 已合入 main 2c5bb35（**2026-10-13 L0 补合**：此前误标「P2-M 早期已合」，实际 6a1fe35/f40923c 一直未合；合入后修 3 处数据 11d1112） |
 
 ## Phase 2（集成）
 | ID | 任务 | 模型 | 分支/对话 | 状态 |
@@ -33,7 +33,8 @@
 | P2-A1 | 已知问题修复：outer-east 文华殿院 + ningshou 蹈和门区域碰撞盒，恢复 stepwalk 路线 | 小B（L0 复核 + 实测修复） | L1 对话 | ✅ 完成（stepwalk 132/132、stepwalk-auto 144/144、zones/anchors 绿；a278a08~867d701） |
 | P2-A2 | REQUESTS 遗留项：R1 金水桥桥位 + R3 御花园四亭路线 | opus5.5 | L1 对话 | ✅ 完成（报告 fd58feb；R3 取点 @b960b82，四亭可通行由 P2-A1 修复 2f909ae）⚠️ **R1 曾被漏掉**：1feceed 只提交到悬空提交、未进 main，已于 2026-10-13 补落 |
 | P2-A3 | 架构审查：一致性审查 + 死代码清理 + README 更新 + 性能分析 + 手动测试 | opus5.5 | L1 对话 | ✅ 完成（8a7dd0a 删 SideCourts.js、a066f56 更新 README、1a9092a 审查报告）—— 于 10-12 21:5x 执行（早于 P2-A1）；报告内 stepwalk 117/132 为当时基线，P2-A1 后 132/132 |
-| P2-S | S 档内景扩展：养心殿 / 坤宁宫 / 皇极殿 / 慈宁宫 | sonnet5.5 | L1 对话 | ⬜ 待启动（可与 P2-A 并行） |
+| P2-L0 | P2-A 收尾：核查 R1 / 补合 outer-west / 全量门禁 / 打标签 | 小B（L0） | 总控对话 | ✅ 完成（标签 p2a-done；test:gate 8/8，stepwalk 132/132、stepwalk-auto 152/152，无 knownIssue） |
+| P2-S | S 档内景扩展：养心殿 / 坤宁宫 / 皇极殿 / 慈宁宫 | sonnet5.5 | L1 对话 | ⬜ 待启动（从 p2a-done 拉分支） |
 
 > **执行顺序说明（2026-10-13 核对）**：P2-A2 / P2-A3 实际于 10-12 21:5x 执行完毕并各自留了报告与提交，**早于** P2-A1（10-13 00:2x）；表中「依赖」列描述的是逻辑顺序，实际未按此串行。三者均已完成。
 
