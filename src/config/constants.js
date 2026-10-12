@@ -28,22 +28,30 @@ export const COLORS = {
 // 建筑尺寸参数（单位：米，P0c-1 起为真实米制；来源 data/anchors.json / docs/research/dimensions.md）
 // height / baseHeight 仍为原工程值（未逐项实测核对），标"沿用"
 export const DIMENSIONS = {
-  // 午门（城楼面阔 60.05、进深 25，anchors.json）
+  // 午门（正楼面阔 60.05、进深 25，anchors.json / dimensions.md:79）
+  // P1-Z-axis A1：凹形墩台（平面"凹"字，开口朝南）。z 均为相对午门中心（LAYOUT.WUMEN_Z）的局部值。
   WUMEN: {
-    width: 60,
+    width: 60.05,
     depth: 25,
     height: 25,
     wallThickness: 8,
-    // 中央城台东西宽：沿用旧值 78（真实墩台凹形东西约 120 m 含两观，dimensions.md:79；
-    // 受 axis-courts 朝房/雁翅楼布局约束，P0c-2 再细化）
-    platformWidth: 78,
+    platformWidth: 120,       // 墩台东西总宽（含两翼），dimensions.md:79「凹形东西约 120」
+    platformHeight: 12,       // 墩台高 12.00（dimensions.md:79，dpm 另载 13）
+    platformSouth: -13.3,     // 主墩台南皮（世界 −432.9）：估，正楼南檐柱 −432.1 外留 0.8
+    platformNorth: 18.6,      // 主墩台北皮（世界 −401）：估
+    wingSouth: -62.4,         // 两翼墩台南端（世界 −482）：雁翅楼长约 60、中心 z≈−450（dimensions.md:80）
+    // 两翼墩台内皮 ±40.6：真实雁翅楼中心 ±45、宽约 13（内皮约 ±38.5），为保持 regression
+    // WUMEN_WING_GAP (40, −433.6) 为空地取 40.6（偏差约 2 m，见 REPORTS/P1-Z-axis.md A1）
+    wingInnerX: 40.6,
+    wingHallWidth: 13,        // 雁翅楼进深约 13（dimensions.md:80）
+    cornerPavilion: 11,       // 四角方亭边长：未查到，估（dimensions.md:82）
   },
 
-  // 太和门（48.06 × 20.54，anchors.json conf 高；高度沿用）
+  // 太和门（48.06 × 20.54，通高 23.80，台基 3.44：dimensions.md:88；台基高在 PalaceBuilder REAL 表）
   TAIHE_GATE: {
-    width: 48,
-    depth: 20.5,
-    height: 20,
+    width: 48.06,
+    depth: 20.54,
+    height: 23.8,
   },
   
   // 太和殿
