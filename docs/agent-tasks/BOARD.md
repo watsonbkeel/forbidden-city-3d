@@ -23,14 +23,14 @@
 | P1-Z-east-six | 东六宫 zone | glm-5.3 | opus 抽审 | feat/p1-zone-east-six | ✅ 已合入 main 6c07fef（总控代提交 a17ab91；越界改动 package.json/tests/shot.cjs 未合入） |
 | P1-Z-west-six | 西六宫 zone | glm-5.3 | opus 抽审 | feat/p1-zone-west-six | ✅ 已合入 main 6356eb3 |
 | P1-Z-ningshou | 宁寿宫 zone | glm-5.3 | opus 抽审 | feat/p1-zone-ningshou | ✅ 已合入 main 0e84718 |
-| P1-Z-outer-east | 外东路 zone | glm-5.3 | opus 抽审 | feat/p1-zone-outer-east | 🔵 开发中（报告已出，待提交） |
-| P1-Z-outer-west | 外西路 zone | glm-5.3 | opus 抽审 | feat/p1-zone-outer-west | 🔵 开发中 |
+| P1-Z-outer-east | 外东路 zone | glm-5.3 | opus 抽审 | feat/p1-zone-outer-east | ✅ 已合入 main 220e418 |
+| P1-Z-outer-west | 外西路 zone | glm-5.3 | opus 抽审 | feat/p1-zone-outer-west | ✅ 已合入 main（P2-M 早期） |
 
 ## Phase 2（集成）
 | ID | 任务 | 模型 | 状态 |
 |---|---|---|---|
-| P2-M | 按序合并：P1-T → P1-R → P1-U → P1-Z-axis → P1-Z×5 → P1-I；每合一个跑 test:gate | 总控 + glm-flash | 🔵 10-12 17:15 已合 T/R/U/Z-axis/east-six/west-six/ningshou → main da32eb8；gate：build/zones/anchors/smoke/regression ✅，stepwalk ❌ 118/132（协和门/熙和门东西出宫 4 路线×多档，止步 x≈±32，转 L2 诊断）；待合 outer-east/outer-west/P1-I |
-| P2-A | 终审：架构一致性、死代码清理（删 SideCourts.js）、README 更新 | opus5.5 | ⬜ |
+| P2-M | 按序合并：P1-T → P1-R → P1-U → P1-Z-axis → P1-Z×5 → P1-I；每合一个跑 test:gate | 总控 | ✅ 全部完成（标签 p1-done @ 7166826） |
+| P2-A | 终审：架构一致性、死代码清理、README 更新、修复已知问题 | opus5.5 | ⬜ 待启动 |
 | P2-S | S 档内景扩展：养心殿 / 坤宁宫 / 皇极殿 / 慈宁宫 | sonnet5.5 | ⬜ |
 
 ## 合并顺序理由
