@@ -11,11 +11,7 @@ const ROOT = path.resolve(__dirname, '..');
 const A = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/anchors.json'), 'utf8'));
 const r1 = v => Math.round(v * 10) / 10;
 
-// 已知问题路线（P1-Z-outer-east 场景缺陷，待 P2 修复）
-const SKIP_ROUTES = new Set([
-  '文华殿院北夹道→文渊阁院'
-]);
-
+// 已知问题路线（已在 P2-A1 修复）
 // —— 殿座几何（与场景代码一致，改场景时同步）——
 // 中轴殿进深（PalaceBuilder 用 anchors 的 d；宝座碰撞 = 殿心 z+[-0.3, +8]（d≈25 的三间进深殿），太和殿见下）
 const HALL_D = { 太和殿: A['太和殿'].d, 中和殿: A['中和殿'].d, 保和殿: A['保和殿'].d, 乾清宫: A['乾清宫'].d, 交泰殿: A['交泰殿'].d, 坤宁宫: A['坤宁宫'].d };
@@ -91,14 +87,12 @@ async function buildRoutes() {
     // 钦安殿（backDoor）：殿内宝座前 → 侧绕 → 宝座后 → 穿后门北出
     ['御花园→钦安殿内→穿殿北出', [[0, gz0 + 11], [0, qinan.z - 20], [0, qinan.z - 1], [KIT_DETOUR_X, qinan.z - 1],
       [KIT_DETOUR_X, qinan.z + 6], [0, qinan.z + 6], [0, qinan.z + 16]]],
-    ['御花园→万春亭', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [-GARDEN_PATH_X, gz0 + GARDEN_S_ROAD],
-      [-GARDEN_PATH_X, wanchun.z], [wanchun.x, wanchun.z - PAVILION_APPROACH], [wanchun.x, wanchun.z]]],
-    ['御花园→千秋亭(西)', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [GARDEN_PATH_X, gz0 + GARDEN_S_ROAD],
-      [GARDEN_PATH_X, qianqiu.z], [qianqiu.x, qianqiu.z - PAVILION_APPROACH], [qianqiu.x, qianqiu.z]]],
-    ['御花园→浮碧亭(桥)', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [-GARDEN_PATH_X, gz0 + GARDEN_S_ROAD],
-      [-GARDEN_PATH_X, fubi.z - POND_BRIDGE_OFFSET], [fubi.x, fubi.z - POND_BRIDGE_OFFSET], [fubi.x, fubi.z]]],
-    ['御花园→澄瑞亭(桥)', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [GARDEN_PATH_X, gz0 + GARDEN_S_ROAD],
-      [GARDEN_PATH_X, chengrui.z - POND_BRIDGE_OFFSET], [chengrui.x, chengrui.z - POND_BRIDGE_OFFSET], [chengrui.x, chengrui.z]]],
+    ['御花园→万春亭', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [GARDEN_PATH_X, gz0 + GARDEN_S_ROAD],
+      [GARDEN_PATH_X, wanchun.z - PAVILION_APPROACH], [wanchun.x, wanchun.z - PAVILION_APPROACH], [wanchun.x, wanchun.z]]],
+    ['御花园→千秋亭(西)', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [-GARDEN_PATH_X, gz0 + GARDEN_S_ROAD],
+      [-GARDEN_PATH_X, qianqiu.z - PAVILION_APPROACH], [qianqiu.x, qianqiu.z - PAVILION_APPROACH], [qianqiu.x, qianqiu.z]]],
+    ['御花园→浮碧亭(桥)', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [fubi.x, gz0 + GARDEN_S_ROAD], [fubi.x, fubi.z]]],
+    ['御花园→澄瑞亭(桥)', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [chengrui.x, gz0 + GARDEN_S_ROAD], [chengrui.x, chengrui.z]]],
     // 乾清门广场 → 景运门 → 门外南行 → 箭亭南 → 进箭亭（敞厅）
     ['景运门→箭亭→东路', [[-80, jy.z], [jy.x - 18.5, jy.z], [jy.x - 18.5, r1(jt2.z - 18)], [jt2.x, r1(jt2.z - 18)], [jt2.x, jt2.z]]],
   ];
@@ -127,11 +121,10 @@ async function buildRoutes() {
   const which = process.argv[4] || 'axis';
   const ALL = [...AXIS_ROUTES, ...SIDE_ROUTES];
   const ROUTES_RUN = which === 'side' ? SIDE_ROUTES : which === 'all' ? ALL : which === 'axis' ? AXIS_ROUTES : ALL.filter(([n]) => n.includes(which));
-  const ROUTES_FILTERED = ROUTES_RUN.filter(([n]) => !SKIP_ROUTES.has(n));
-  if (process.env.DUMP) { for (const [n, p] of ROUTES_FILTERED) console.log(n, JSON.stringify(p)); process.exit(0); }
+  if (process.env.DUMP) { for (const [n, p] of ROUTES_RUN) console.log(n, JSON.stringify(p)); process.exit(0); }
   // 执行器与 stepwalk-auto.cjs 共用（tests/lib/stepwalk-runner.cjs，逻辑与 P0c-2 版本相同，只多记录分区事件）
   const { browser, page } = await openPage();
-  const result = await runRoutes(page, ROUTES_FILTERED, fpsList, sprints);
+  const result = await runRoutes(page, ROUTES_RUN, fpsList, sprints);
   let fail = 0;
   for (const r of result) {
     const ok = r.arrived && !r.fellUnder;
