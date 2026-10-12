@@ -9,11 +9,11 @@ import * as THREE from 'three';
 
 export function createSkylineRing(library) {
   const texture = library.color('skyline');
-  const radius = 900; // 略小于天空球，避免 z-fighting
+  const radius = 1800; // 略小于天空球，避免 z-fighting
   const height = texture.image?.height ?? 301; // hd manifest 记录为 301
   const width = texture.image?.width ?? 1211;
   const aspect = width / height;
-  const bandHeight = 50; // 视觉高度（米），控制远山在地平线上下的跨度
+  const bandHeight = 100; // 视觉高度（米），控制远山在地平线上下的跨度
   
   // CylinderGeometry：上下半径相同 = 直筒，不加盖
   const geometry = new THREE.CylinderGeometry(radius, radius, bandHeight, 64, 1, true);

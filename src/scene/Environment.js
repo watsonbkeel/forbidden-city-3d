@@ -142,10 +142,10 @@ export class Environment {
     dirLight.castShadow = true;
     
     // 阴影配置
-    dirLight.shadow.camera.left = -200;
-    dirLight.shadow.camera.right = 200;
-    dirLight.shadow.camera.top = 200;
-    dirLight.shadow.camera.bottom = -200;
+    dirLight.shadow.camera.left = -120;
+    dirLight.shadow.camera.right = 120;
+    dirLight.shadow.camera.top = 120;
+    dirLight.shadow.camera.bottom = -120;
     dirLight.shadow.camera.near = 0.5;
     dirLight.shadow.camera.far = 500;
     dirLight.shadow.mapSize.width = 2048;
@@ -178,6 +178,9 @@ export class Environment {
    */
   setQuality(isHighQuality) {
     if (!this.dirLight) return;
+    const radius = isHighQuality ? 120 : 60;
+    Object.assign(this.dirLight.shadow.camera, { left: -radius, right: radius, top: radius, bottom: -radius });
+    this.dirLight.shadow.camera.updateProjectionMatrix();
     const size = isHighQuality ? 2048 : 512;
     if (this.dirLight.shadow.mapSize.width === size) return;
     

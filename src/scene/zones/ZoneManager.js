@@ -1,4 +1,5 @@
 import { ZoneBase } from './ZoneBase.js';
+import { buildSilhouette } from '../../render/SilhouetteBuilder.js';
 
 /**
  * 分区管理器：按玩家位置动态加载/卸载区域。
@@ -67,6 +68,9 @@ export class ZoneManager {
    */
   init(scene, library, collisionManager, initialPos) {
     this.scene = scene;
+    scene.userData.zoneManager = this;
+    this.prebuilt = new Map();
+    this.silhouettes = new Map();
     this.library = library;
     this.collisionManager = collisionManager;
 
@@ -78,8 +82,15 @@ export class ZoneManager {
       this.allRegions.push(...data.regions);
       this.allMapItems.push(...data.mapItems);
       this.allRooms.push(...data.rooms);
-      // 立即 dispose，不加入场景
-      builder.dispose();
+      // 启动时预合并；流式加载只提交已完成的结果，不再重复构建。
+      this.prebuilt.set(id, { builder, data });
+      const silhouette = buildSilhouette(data.group);
+      if (silhouette) {
+        data.silhouette = silhouette;
+        this.silhouettes.set(id, silhouette);
+        silhouette.visible = true;
+        scene.add(silhouette);
+      }
     }
     console.log(`[ZoneManager] 共 ${this.allRegions.length} 个 region, ${this.allMapItems.length} 个 mapItem`);
 
@@ -212,12 +223,16 @@ export class ZoneManager {
     if (!config || this.loaded.has(zoneId)) return;
 
     const start = performance.now();
-    const builder = new config.BuilderClass(this.library, config);
-    const data = builder.build();
+    const cached = this.prebuilt.get(zoneId);
+    const builder = cached?.builder ?? new config.BuilderClass(this.library, config);
+    const data = cached?.data ?? builder.build();
+    this.prebuilt.delete(zoneId);
     const elapsed = performance.now() - start;
 
     // 加入场景
     this.scene.add(data.group);
+    const silhouette = this.silhouettes.get(zoneId);
+    if (silhouette) silhouette.visible = false;
 
     // 注册碰撞（带 tag，用于卸载时删除）
     this.collisionManager.addColliders(data.colliders, zoneId);
@@ -241,6 +256,8 @@ export class ZoneManager {
     data.group.removeFromParent();
     this.collisionManager.removeByTag(zoneId);
     builder.dispose();
+    const silhouette = this.silhouettes.get(zoneId);
+    if (silhouette) silhouette.visible = true;
     this.loaded.delete(zoneId);
 
     console.log(`[ZoneManager] 卸载区域 ${zoneId}`);
@@ -328,6 +345,15 @@ export class ZoneManager {
     for (const id of this.loaded.keys()) {
       this.unloadZone(id);
     }
+    for (const { builder } of this.prebuilt.values()) builder.dispose();
+    this.prebuilt.clear();
+    for (const silhouette of this.silhouettes.values()) {
+      silhouette.removeFromParent();
+      silhouette.geometry.dispose();
+      silhouette.material.dispose();
+    }
+    this.silhouettes.clear();
+    delete this.scene.userData.zoneManager;
     this.zones.clear();
     this.buildQueue.length = 0;
   }

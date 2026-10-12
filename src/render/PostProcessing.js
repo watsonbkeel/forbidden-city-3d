@@ -1,7 +1,9 @@
 import * as THREE from 'three';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
-import { SSAOPass } from 'three/examples/jsm/postprocessing/SSAOPass.js';
+import { DepthSSAOPass } from './DepthSSAOPass.js';
+import { BatchedBuilder } from './BatchedBuilder.js';
+import { OcclusionByWall } from './OcclusionByWall.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass.js';
@@ -19,6 +21,8 @@ export class PostProcessing {
     this.scene = scene;
     this.camera = camera;
     this.enabled = true;
+    this.batchedBuilder = new BatchedBuilder(scene);
+    this.occlusion = new OcclusionByWall();
     
     this.composer = null;
     this.ssaoPass = null;
@@ -33,7 +37,11 @@ export class PostProcessing {
     const size = this.renderer.getSize(new THREE.Vector2());
     
     // 创建 Composer
-    this.composer = new EffectComposer(this.renderer);
+    const target = new THREE.WebGLRenderTarget(size.x, size.y, {
+      type: THREE.HalfFloatType,
+      depthTexture: new THREE.DepthTexture(size.x, size.y),
+    });
+    this.composer = new EffectComposer(this.renderer, target);
     this.pixelRatio = this.renderer.getPixelRatio();
     
     // 基础渲染 Pass
@@ -42,7 +50,7 @@ export class PostProcessing {
     
     // SSAO Pass
     if (quality === 'high') {
-      this.ssaoPass = new SSAOPass(this.scene, this.camera, size.x, size.y);
+      this.ssaoPass = new DepthSSAOPass(this.scene, this.camera, size.x, size.y);
       this.ssaoPass.kernelRadius = POST_PROCESSING.SSAO.kernelRadius;
       this.ssaoPass.minDistance = POST_PROCESSING.SSAO.minDistance;
       this.ssaoPass.maxDistance = POST_PROCESSING.SSAO.maxDistance;
@@ -78,10 +86,18 @@ export class PostProcessing {
    * 渲染
    */
   render() {
-    if (this.enabled && this.composer) {
-      this.composer.render();
-    } else {
-      this.renderer.render(this.scene, this.camera);
+    this.camera.updateMatrixWorld();
+    const manager = this.scene.userData.zoneManager;
+    if (manager && !manager.loadAll) this.occlusion.update(manager, this.camera.position, this.camera);
+    this.batchedBuilder.begin();
+    try {
+      if (this.enabled && this.composer) {
+        this.composer.render();
+      } else {
+        this.renderer.render(this.scene, this.camera);
+      }
+    } finally {
+      this.batchedBuilder.end();
     }
   }
   
@@ -167,6 +183,7 @@ export class PostProcessing {
    * 清理资源
    */
   dispose() {
+    this.batchedBuilder.dispose();
     if (this.composer) {
       this.composer.passes.forEach(pass => {
         // r162 SSAOPass.dispose 漏掉噪声纹理和 SSAO 材质，需由管线补全。

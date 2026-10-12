@@ -5,4 +5,4 @@
 
 | 日期 | 发起 | 目标文件 | 需求 | 原因 | 紧急 | 分派给 | 状态 |
 |---|---|---|---|---|---|---|---|
-| | | | | | | | |
+| 2026-10-12 | P1-R | src/scene/zones/ZoneBase.js 构建循环；src/scene/palace/kit.js finish | 允许新增内部build迭代器与finish分阶段合并，不改变公共build签名 | 当前只允许ZoneBase末尾接入，CourtKit.finish不可切片；预合并消除首次流式重复构建，但卸载重建仍可能超过8ms，需跨所有权才能严格完成R-4/R-6 | 中 | 总控 | 待审批 |

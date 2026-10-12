@@ -48,10 +48,12 @@ export class ShadowSetup {
     light.shadow.bias = -0.0001;
     
     if (light.isDirectionalLight) {
-      light.shadow.camera.left = -200;
-      light.shadow.camera.right = 200;
-      light.shadow.camera.top = 200;
-      light.shadow.camera.bottom = -200;
+      const radius = this.quality === 'high' ? 120 : 60;
+      light.shadow.camera.left = -radius;
+      light.shadow.camera.right = radius;
+      light.shadow.camera.top = radius;
+      light.shadow.camera.bottom = -radius;
+      light.shadow.camera.updateProjectionMatrix();
     }
   }
   
@@ -59,13 +61,15 @@ export class ShadowSetup {
    * 根据距离禁用远处物体的阴影
    */
   updateShadowLOD(camera, objects, farDistance = 150) {
+    const radius = this.quality === 'high' ? 120 : 60;
     objects.forEach(obj => {
       if (!this.originalCastShadow.has(obj)) this.originalCastShadow.set(obj, obj.castShadow);
       if (!this.originalCastShadow.get(obj)) return;
       // 全局实例池横跨多座建筑，按其原点剔除会错删身旁实例的阴影。
       if (obj.isInstancedMesh) return;
-      obj.getWorldPosition(this.worldPosition);
-      obj.castShadow = camera.position.distanceTo(this.worldPosition) <= farDistance;
+      if (!obj.geometry.boundingBox) obj.geometry.computeBoundingBox();
+      const box = obj.geometry.boundingBox.clone().applyMatrix4(obj.matrixWorld);
+      obj.castShadow = box.distanceToPoint(camera.position) <= Math.min(radius, farDistance);
       // receiveShadow 不属于远距投影开销，保留原设置。
     });
   }
