@@ -30,3 +30,35 @@
 - **原因**：真实午门墩台凹形东西约 120、雁翅楼中心 (±45, −450) 宽约 13（dimensions.md:79–80）→ 墩台内皮约 ±38.5；现回归点 (40, −433.6) 会落在西翼墩台内。A1 为保该点把翼内皮放到 ±40.6、主墩台南皮 −432.9（余量仅 0.1 m）。
 - **改法**：`const WUMEN_WING_GAP = [30, -20];`（世界 (30, −439.6)，凹口中部，无论翼内皮取 38.5 还是 40.6 都是空地）。改后 P1-Z-axis 可把 `DIMENSIONS.WUMEN.wingInnerX` 回调为 38.5。
 - 分派建议：P1-T。
+- **状态**：✅ 已在 P1-T 中完成并合入 main（commit 8751a7d）。
+
+### R3 · 2025-01-15 · tests/stepwalk.cjs · 御花园四亭路线取点更新（中）
+
+- **原因**：A5 改 GardenBuilder 按 anchors.json 读取四个亭子坐标后，万春/千秋亭从模板 `x ±32, z = pz（园中心）` 改为真实坐标 `x ±52.5/54.6, z 471.4/472.1`；浮碧/澄瑞亭从 `x ±32, z gz0+23` 改为真实 `x ±53.4/53.5, z 498.5/498.9`。stepwalk.cjs 第 26 行 `GARDEN_PAVILION_X = 32` 及第 40 行 `pz = L.IMPERIAL_GARDEN_Z`（园中心）不再匹配真实位置。
+- **影响范围**：路线 20–23（第 86–91 行）：
+  - 20: 御花园→万春/千秋亭（东侧）
+  - 21: 御花园→千秋亭(西)
+  - 22: 御花园→浮碧亭(桥)
+  - 23: 御花园→澄瑞亭(桥)
+- **验证结果**（tests/garden-pavilion-probe.cjs）：新坐标下全部 8 个关键取点均可走（footY = 1.7，walkable = true）。
+- **改法**（stepwalk.cjs）：
+  1. 删除第 26 行 `const GARDEN_PAVILION_X = 32;`
+  2. 删除第 40 行 `const pz = L.IMPERIAL_GARDEN_Z;`（该行在 buildRoutes 函数内）
+  3. 在 buildRoutes 函数顶部（第 35 行后）添加：
+     ```js
+     const wanchun = A['万春亭'];
+     const qianqiu = A['千秋亭'];
+     const fubi = A['浮碧亭'];
+     const chengrui = A['澄瑞亭'];
+     ```
+  4. 修改路线 20–23（第 86–91 行）：
+     ```js
+     ['御花园→万春亭', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [GARDEN_PATH_X, gz0 + GARDEN_S_ROAD],
+       [GARDEN_PATH_X, wanchun.z - PAVILION_APPROACH], [wanchun.x, wanchun.z - PAVILION_APPROACH], [wanchun.x, wanchun.z]]],
+     ['御花园→千秋亭(西)', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [-GARDEN_PATH_X, gz0 + GARDEN_S_ROAD],
+       [-GARDEN_PATH_X, qianqiu.z - PAVILION_APPROACH], [qianqiu.x, qianqiu.z - PAVILION_APPROACH], [qianqiu.x, qianqiu.z]]],
+     ['御花园→浮碧亭(桥)', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [fubi.x, gz0 + GARDEN_S_ROAD], [fubi.x, fubi.z]]],
+     ['御花园→澄瑞亭(桥)', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [chengrui.x, gz0 + GARDEN_S_ROAD], [chengrui.x, chengrui.z]]],
+     ```
+- **分派建议**：总控在合并 P1-Z-axis 到 main 时同步更新。
+- **注**：路线 6「坤宁宫→御花园→神武门」（第 56 行）中的 `GARDEN_PATH_X` 仍正确（东西甬路 x = ±17 未变）。
