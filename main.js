@@ -10,6 +10,7 @@ import { TextureLibrary } from './src/utils/TextureLibrary.js';
 import { Enclosure } from './src/scene/Enclosure.js';
 import { GardenBuilder } from './src/scene/GardenBuilder.js';
 import { ZoneManager } from './src/scene/zones/ZoneManager.js';
+import { InteriorLoader } from './src/scene/interior/InteriorLoader.js';
 import { ZONES } from './data/zones/index.js';
 import { Ambience } from './src/audio/Ambience.js';
 import { Minimap } from './src/ui/Minimap.js';
@@ -144,6 +145,8 @@ class ForbiddenCityApp {
         this.collisionManager.setRegions(this.zoneManager.getRegions());
         // 所有可进入房间（世界坐标，含门/掩体/刷怪点），后续玩法从这里取
         this.rooms = this.zoneManager.getRooms();
+        // S 档内景：按距离流式加载 GLB（失败回退 B 档）
+        this.interiors = new InteriorLoader(this.scene, this.collisionManager, { renderer: this.renderer });
       }],
       ['控制器', () => {
         this.controls = new FirstPersonControls(this.camera, document.body, this.collisionManager);
@@ -530,6 +533,7 @@ class ForbiddenCityApp {
     this.palaceBuilder.update?.(dt);
     this.enclosure.update(dt);
     this.garden.update(dt);
+    this.interiors?.update(this.camera.position);
     this.zoneManager.update({ x: this.camera.position.x, z: this.camera.position.z });
     this.ambience.update({
       dt,
@@ -574,6 +578,7 @@ class ForbiddenCityApp {
     this.palaceBuilder?.dispose();
     this.enclosure?.dispose();
     this.garden?.dispose();
+    this.interiors?.dispose();
     this.zoneManager?.dispose();
     this.environment?.dispose();
     // 贴图库拥有共享材质与贴图，必须在所有使用方移除后最后释放
