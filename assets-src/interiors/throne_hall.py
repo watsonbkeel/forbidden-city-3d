@@ -307,7 +307,7 @@ def ornament(kind, x, z, bronze, gold, stone):
 
 def gold_floor(cfg, dark, light):
     """金砖地：0.64 m 方砖，每块独立四边形并带顶点色明暗变化；砖缝由下方深色底板透出"""
-    w, d = cfg['w'] - 0.2, cfg['d'] - 0.2
+    w, d = cfg.get('floorW', cfg['w'] - 0.2), cfg.get('floorD', cfg['d'] - 0.2)   # floorW/floorD：只铺殿内一部分（养心殿仅明间金砖）
     box('floor_base', w, 0.02, d, 0, 0.045, 0, dark)
     T = 0.64; g = 0.05
     nx, nz = int(w // T), int(d // T)
@@ -362,9 +362,12 @@ def build(cfg, out):
         top_y, step_front = throne_platform(cfg, lacq, gold, stone)
     throne(cfg, top_y, gold, lacq, silk)
     screen(cfg, top_y, gold, lacq, silk)
-    caisson(cfg, gold, lacq, blue, pearl)
+    if not cfg.get('noCaisson'):      # 养心殿等寝宫类无藻井
+        caisson(cfg, gold, lacq, blue, pearl)
     for (kind, x, z) in cfg['ornaments']:
         ornament(kind, x, z, bronze, gold, stone)
+    if cfg.get('extra'):              # 殿专属内容钩子（此时材质已建好，mat() 同名取缓存）
+        cfg['extra'](cfg)
     # 碰撞代理
     for i, (x0, y0, z0, x1, y1, z1) in enumerate(cfg.get('colBoxes', [])):
         col_box(f'COL_{i}', x0, y0, z0, x1, y1, z1)
