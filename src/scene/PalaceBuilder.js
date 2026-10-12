@@ -974,7 +974,10 @@ export class PalaceBuilder {
         a.position.x = bx + sx * (BW - 0.05);
         g.add(a);
       }
-      for (const sx of [-1, 1]) this.col(bx + sx * BW - 0.15, -0.5, -hl, bx + sx * BW + 0.15, crest + 1.4, hl);
+      // 桥栏碰撞只登记到两岸岸边栏杆（局部 z ±(D/2+0.6)，与岸栏接上不留缝）；桥长 21 > D 时伸上岸的引桥段
+      // 不挡（同 GardenBuilder 池中亭石桥）。否则 ±30 桥的引桥栏杆伸到 z −300.3，会截断协和门/熙和门东西通道。
+      const railHz = Math.min(hl, D / 2 + 0.6);
+      for (const sx of [-1, 1]) this.col(bx + sx * BW - 0.15, -0.5, -railHz, bx + sx * BW + 0.15, crest + 1.4, railHz);
     }
     this.finish(g);
 
