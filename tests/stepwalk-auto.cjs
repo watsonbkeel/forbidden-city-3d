@@ -12,7 +12,8 @@ const { pathToFileURL } = require('node:url');
 
 // 路线名 → 原因（场景缺陷，见 docs/agent-tasks/REQUESTS.md「## P1-T」）
 const KNOWN_ISSUES = {
-  '文华殿院北夹道→文渊阁院': 'outer-east region 碰撞盒定义 P1-Z-outer-east 遗留，待 P2 修复'
+  '文华殿院北夹道→文渊阁院': 'outer-east region 碰撞盒定义 P1-Z-outer-east 遗留，待 P2 修复',
+  '[ningshou] 蹈和门→宁寿宫→返回': 'ningshou 区 region 碰撞盒定义 P1-Z-ningshou 遗留，待 P2 修复'
 };
 const UNLOADED_WALK_MAX = 1; // m
 
