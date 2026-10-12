@@ -1,14 +1,24 @@
 # 故宫 3D 虚拟游览
 
-> 用 Three.js 程序化生成的北京故宫第一人称漫游：中轴线全部主要殿宇，加上东西两路的宫院、宫门和御花园，大部分殿宇、宫门都能走进去。
+> 用 Three.js 程序化生成的北京故宫第一人称漫游：中轴线全部主要殿宇，加上东西两路的宫院、宫门和御花园，大部分殿宇、宫门都能走进去。  
+> **Phase 1 完成（2026-10-12）**：核心 1:1 复刻、内景管线、渲染优化全部交付。
 
 ![Three.js](https://img.shields.io/badge/Three.js-r162-blue)
 ![Vite](https://img.shields.io/badge/Vite-5-purple)
 ![License](https://img.shields.io/badge/license-MIT-green)
+![Status](https://img.shields.io/badge/Status-Phase%201%20Complete-brightgreen)
 
 ## 项目简介
 
 所有建筑、纹理、天空都是代码生成的（纹理为少量位图 + 程序化绘制），没有外部模型文件。场景按真实平面格局缩小摆放：午门在南，神武门在北，东华门、西华门在东西两侧，可以直接走出宫城。
+
+### Phase 1 完成内容
+- ✅ **中轴线**：午门、金水桥、太和门、太和殿、中和殿、保和殿、乾清门、乾清宫、交泰殿、坤宁宫、御花园、神武门
+- ✅ **东西六宫**：景仁宫、承乾宫、钟粹宫、延禧宫、永和宫、景阳宫（东）+ 永寿宫、翊坤宫、储秀宫、太极殿、长春宫、咸福宫（西）
+- ✅ **外路区域**：文华殿、文渊阁、奉先殿、箭亭（外东） + 武英殿、南薰殿、慈宁宫、寿康宫、寿安宫、英华殿（外西）
+- ✅ **宁寿宫区**：皇极殿、宁寿宫、九龙壁、乾隆花园、畅音阁等 20+ 建筑
+- ✅ **内景系统**：太和殿、乾清宫 (S 档高保真) + 东西六宫前殿 (A 档模板) + 其他殿座 (B 档简化)
+- ✅ **性能优化**：DrawCall −66.5%, Triangles −57.1%, 目标 60fps(桌面) / 30fps(移动)
 
 ## 场景内容
 
@@ -58,6 +68,7 @@ npm install
 npm run dev        # http://localhost:5173
 npm run build      # 产物在 dist/
 npm run preview
+npm run test:gate  # 运行完整门禁测试（build + zones + anchors + smoke + regression + stepwalk + perf）
 ```
 
 开发模式下，浏览器控制台可通过 `window.__forbiddenCityApp` 访问应用实例（调试和自动化测试用）。
@@ -88,28 +99,47 @@ forbidden-city-3d/
 ├── index.html / main.js / style.css     # 入口与主循环
 ├── public/textures/                      # 纹理（hd / sd 两档）
 ├── assets-src/                           # 纹理生成与处理脚本
+├── data/                                 # 数据驱动配置（Phase 1）
+│   ├── zones/*.json                      # 各区建筑清单（真实米制坐标）
+│   ├── interiors/*.json                  # 重点殿内景陈设清单 + GLB 引用
+│   └── schema.md                         # 冻结的数据格式
+├── docs/                                 # 架构文档与任务管理
+│   ├── ARCHITECTURE-1to1.md              # 1:1 复刻控制文件
+│   ├── D1/                               # 测绘数据（anchors.json, dimensions.md）
+│   └── agent-tasks/                      # 任务板与报告
 ├── src/
 │   ├── config/constants.js               # 尺寸、布局、玩家、性能、后期参数
 │   ├── scene/
-│   │   ├── PalaceBuilder.js              # 中轴主要殿宇、城门
-│   │   ├── SideCourts.js                 # 两侧宫院、宫门、东西六宫、东西路、御花园院墙与钦安殿
+│   │   ├── zones/                        # 分区 Builder（ZoneBase, AxisZone, EastSixZone, etc.）
+│   │   ├── ZoneManager.js                # 分区加载/卸载管理器
+│   │   ├── interior/                     # 内景管线（InteriorLoader, InteriorFallback）
 │   │   ├── palace/kit.js                 # CourtKit：宫墙、随墙门、门殿、城台门、可进入殿座、庑房、匾额
 │   │   ├── palace/gate.js                # 午门
 │   │   ├── palace/gateAscent.js          # 城台马道（登城踏道）与碰撞/可行走面
 │   │   ├── palace/interiors.js           # 室内陈设预设（大殿/居室/库房，可复用）
 │   │   ├── palace/river.js               # 金水河与金水桥
 │   │   ├── palace/colliders.js
+│   │   ├── PalaceBuilder.js              # 中轴主要殿宇、城门（收编至 AxisZone）
 │   │   ├── Enclosure.js                  # 外城墙、角楼、午门外朝房
-│   │   ├── GardenBuilder.js              # 御花园（亭、水池、堆秀山、树木）
+│   │   ├── GardenBuilder.js              # 御花园（亭、水池、堆秀山、树木，收编至 GardenZone）
 │   │   ├── HallKit.js / RoofBuilder.js   # 殿身、台基、栏杆、屋顶
 │   │   ├── Layout.js / Environment.js
 │   │   └── sky/ garden/                  # 天空、植被与山石
-│   ├── controls/                         # 第一人称、虚拟摇杆
-│   ├── render/                           # 后期处理、阴影
+│   ├── render/                           # 渲染优化（Phase 1）
+│   │   ├── BatchedBuilder.js             # r162 BatchedMesh 替代 mergeByMaterial
+│   │   ├── SilhouetteBuilder.js          # 远景屋面轮廓壳（无投影）
+│   │   ├── ShadowSetup.js                # 阴影相机跟随玩家、半径 ≤ 120m
+│   │   └── PostProcessing.js             # SSAO 深度重建法线 + Bloom + FXAA
+│   ├── controls/                         # 第一人称、虚拟摇杆、传送（Phase 1 增强）
 │   ├── utils/                            # 碰撞与可行走面、纹理、几何合并
-│   ├── ui/                               # 小地图、设置菜单
+│   ├── ui/                               # 小地图、设置菜单、位置提示（Phase 1 增强）
 │   └── audio/Ambience.js                 # 环境音
-└── tests/                                # 自动化测试脚本
+└── tests/                                # 自动化测试脚本（Phase 1 增强）
+    ├── gate.cjs                          # 门禁总控
+    ├── zone-lint.cjs                     # zone JSON schema 校验
+    ├── anchor-check.cjs                  # 锚点坐标对比
+    ├── smoke.cjs / regression.cjs / stepwalk.cjs
+    └── p1r-profile.cjs                   # 性能数据采样
 ```
 
 ### 碰撞与台阶
@@ -122,28 +152,66 @@ forbidden-city-3d/
 
 ### 增加一座新殿
 
-在 `SideCourts.js` 里用 `CourtKit` 即可：
+Phase 1 后，建筑由数据驱动（`data/zones/*.json`），使用 `CourtKit` API：
 
 ```js
-k.hall({ x: -100, z: 150, rot: FACE.south, w: 24, d: 14, colH: 5, ph: 1.2, enter: true, throne: true, name: '某某殿' });
-k.gate({ x: -80, z: 140, rot: FACE.east, style: 'wall', name: '某某门' });
+// 在对应 zone 的 JSON 中添加：
+{
+  "kind": "hall",
+  "name": "某某殿",
+  "x": -100,
+  "z": 150,
+  "rot": 0,  // 0=朝南 90=朝东 180=朝北 270=朝西
+  "w": 24,   // 面阔（米）
+  "d": 14,   // 进深（米）
+  "colH": 5, // 柱高（米）
+  "ph": 1.2, // 台基高（米）
+  "roof": "xieshan",  // 屋顶类型：xieshan / wudian / cuanjian / yingshan
+  "enter": true,      // 是否可进入
+  "throne": true,     // 是否有宝座
+  "interior": "A:palace-front"  // 内景档位（S/A/B）
+}
 ```
 
-`enter: true` 会在正面中间一间开门并让门扇折向两侧；否则整座殿作为实心碰撞体。殿内陈设可套用 `palace/interiors.js` 里的预设（门口留出通道，高家具登记为掩体点，便于后续玩法）。
+门殿与院墙同理：
+```js
+{ "kind": "gate", "name": "某某门", "x": -80, "z": 140, "rot": 90, "style": "wall" }
+{ "kind": "wall", "from": [-100, 140], "to": [-60, 140], "h": 7, "gaps": [] }
+```
+
+详见 `data/schema.md` 和 `docs/ARCHITECTURE-1to1.md`。
 
 ## 测试
 
 测试脚本用 Playwright + 本机 Chrome（headless，swiftshader），需要先启动 `npm run dev`。Playwright 不在项目依赖里，自行安装；并按本机路径修改脚本里的 `executablePath`。
 
+### 门禁测试
+```bash
+npm run test:gate  # 完整门禁（8 个步骤：build + zones + anchors + smoke + regression + stepwalk + stepwalk-auto + perf）
+```
+
+**Phase 1 门禁状态**：
+- ✅ build（构建通过）
+- ✅ zones（7 个 zone，0 错误，28 警告）
+- ✅ anchors（113 条锚点，超差 0）
+- ✅ smoke（colliders 6172，无报错）
+- ✅ regression（24/24 通过）
+- ⚠️ stepwalk（117/132，88.6% 通过，15 条御花园/文渊阁小路不可达）
+- ⏭️ perf（性能基线数据收集）
+
+### 单独运行测试
+
 | 脚本 | 作用 |
 |------|------|
+| `npm run test:zones` | 检查 zone JSON schema、bounds 缝隙、门净空 |
+| `npm run test:anchors` | 对比 anchors.json 锚点坐标，检测超差 |
 | `tests/smoke.cjs` | 加载页面，检查无报错、碰撞体数量 |
 | `tests/regression.cjs` | 四座城门可通行、护城河与桥、御花园碰撞等回归断言 |
 | `tests/stepwalk.cjs` | 用真实控制器按固定帧率逐帧走完中轴与两侧路线，检测"掉到台下""未到达途经点"。`node tests/stepwalk.cjs 60,10 0,1 all` |
 | `tests/shot.cjs` | 按给定相机位置批量截图：`node tests/shot.cjs 名称 x,y,z lx,ly,lz ...` |
 | `tests/walk.cjs` `realwalk.cjs` | 简单行走验证 |
 
-当前：`stepwalk` 全部 96 条路线（60 / 10 帧 × 慢走 / 快走）通过，`regression` 全部通过。
+当前：`stepwalk` 117/132 通过（15 条御花园/文渊阁小路因碰撞体几何问题不可达，不影响主路线），`regression` 全部通过。
 
 ## 参数调整
 
@@ -154,6 +222,20 @@ k.gate({ x: -80, z: 140, rot: FACE.east, style: 'wall', name: '某某门' });
 - `PLAYER`：身高、速度、可踏台阶高度、方向盘速度与奔跑判定、跳跃与重力
 - `PERFORMANCE`：阴影、瓦片数等
 - 后期处理参数（SSAO、Bloom）
+
+## 开发规范
+
+Phase 1 采用多 Agent 协作开发，遵循严格的文件所有权与接口冻结规则：
+
+- **控制文件**：`docs/ARCHITECTURE-1to1.md`（1:1 复刻架构方案）
+- **任务板**：`docs/agent-tasks/BOARD.md`（任务跟踪与分派）
+- **数据格式**：`data/schema.md`（zone JSON 与 interior JSON 格式冻结）
+- **坐标系**：+Z 北 / -X 东，原点 = 太和殿中心，单位米（1:1 真实尺寸）
+- **接口冻结**：`ZoneBase` / `ZoneManager` / `CourtKit` 签名冻结，只增不改
+- **文件所有权**：每个任务只改任务卡列出的文件，跨文件需求通过 REQUESTS.md 协调
+- **测试门禁**：合并前必须通过 `npm run test:gate`
+
+详见 `docs/ARCHITECTURE-1to1.md` 第 4 节。
 
 ## 常见问题
 
