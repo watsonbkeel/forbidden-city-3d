@@ -31,6 +31,7 @@
 - **验证**：regression 中 (10, riverZ) 仍阻挡（|10−13|+0.5=3.5 ≥ 3.05）、(0, riverZ) 可走、(2.5, riverZ) 被桥栏阻挡（桥栏碰撞 ±[2.9,3.2]… 见下注）；stepwalk「东侧金水桥(x=-15)」仍过（|−15+13|+0.5=2.5 < 3.05）。
   - 注：桥栏碰撞在 PalaceBuilder 为 bx±halfW±0.15（x∈[2.9,3.2]），regression BRIDGE_RAIL_X=2.5 能通过是因玩家半径 0.5 → 包围盒 [2.0,3.0] 与 [2.9,3.2] 相交。
 - 分派建议：Collision 所有者（P1-U / 总控）。
+- **状态**：✅ 完成 @ 65135dd（2026-10-13 补落）。说明：该改动原提交为 1feceed，但 1feceed 未进入 main（悬空提交），main 上 Collision.js 一直是旧硬编码公式；P2-A2 报告与提交 b82c404 曾据此把 R1 标为完成，属**误报**。2026-10-13 复核发现后按 1feceed 原样补落，regression 24/24、stepwalk 132/132 通过。
 
 ### R2 · 2026-10-12 · tests/regression.cjs · WUMEN_WING_GAP 改到凹口中部（低）
 

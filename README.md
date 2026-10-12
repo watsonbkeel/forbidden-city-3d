@@ -192,11 +192,12 @@ npm run test:gate  # 完整门禁（8 个步骤：build + zones + anchors + smok
 
 **Phase 1 门禁状态**：
 - ✅ build（构建通过）
-- ✅ zones（7 个 zone，0 错误，28 警告）
+- ✅ zones（7 个 zone，0 错误，25 警告）
 - ✅ anchors（113 条锚点，超差 0）
-- ✅ smoke（colliders 6172，无报错）
+- ✅ smoke（colliders 6154，无报错）
 - ✅ regression（24/24 通过）
-- ⚠️ stepwalk（117/132，88.6% 通过，15 条御花园/文渊阁小路不可达）
+- ✅ stepwalk（132/132 全部通过；P2-A1 已修复御花园四亭、文渊阁院夹道、蹈和门三处碰撞缺陷）
+- ✅ stepwalk-auto（144/144 全部通过）
 - ⏭️ perf（性能基线数据收集）
 
 ### 单独运行测试
@@ -211,7 +212,7 @@ npm run test:gate  # 完整门禁（8 个步骤：build + zones + anchors + smok
 | `tests/shot.cjs` | 按给定相机位置批量截图：`node tests/shot.cjs 名称 x,y,z lx,ly,lz ...` |
 | `tests/walk.cjs` `realwalk.cjs` | 简单行走验证 |
 
-当前：`stepwalk` 117/132 通过（15 条御花园/文渊阁小路因碰撞体几何问题不可达，不影响主路线），`regression` 全部通过。
+当前：`stepwalk` 132/132、`stepwalk-auto` 144/144 全部通过，`regression` 全部通过。
 
 ## 参数调整
 
