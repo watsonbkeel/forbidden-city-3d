@@ -93,7 +93,7 @@ export class SettingsMenu {
       <div style="margin-bottom: 20px;">
         <label style="display: block; margin-bottom: 8px; font-size: 16px; color: #ddd;">小地图</label>
         <div style="color: #aaa; font-size: 14px; padding: 8px; background: rgba(255, 255, 255, 0.05); border-radius: 4px;">
-          按 <strong style="color: #e8d4a0;">M</strong> 键显示/隐藏小地图
+          按 <strong style="color: #e8d4a0;">M</strong> 键显示/隐藏小地图；点击建筑名称传送。<br>数字键 1–8：午门、太和殿、乾清宫、御花园、东六宫、西六宫、宁寿宫、神武门。
         </div>
       </div>
       

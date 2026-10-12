@@ -13,9 +13,10 @@ import { ZoneManager } from './src/scene/zones/ZoneManager.js';
 import { ZONES } from './data/zones/index.js';
 import { Ambience } from './src/audio/Ambience.js';
 import { Minimap } from './src/ui/Minimap.js';
+import { Teleport } from './src/ui/Teleport.js';
 import { SettingsMenu } from './src/ui/SettingsMenu.js';
 import { PerfHUD } from './src/ui/PerfHUD.js';
-import { LAYOUT, PERFORMANCE } from './src/config/constants.js';
+import { LAYOUT, PERFORMANCE, TELEPORT } from './src/config/constants.js';
 
 /**
  * 故宫 3D 虚拟游览主程序
@@ -202,7 +203,7 @@ class ForbiddenCityApp {
     const overlay = document.getElementById('welcome-overlay');
     if (!overlay) return;
     this._onLock = () => { overlay.style.display = 'none'; };
-    this._onUnlock = () => { overlay.style.display = 'flex'; };
+    this._onUnlock = () => { overlay.style.display = this.minimap?.visible ? 'none' : 'flex'; };
     this.controls.controls.addEventListener('lock', this._onLock);
     this.controls.controls.addEventListener('unlock', this._onUnlock);
   }
@@ -332,7 +333,14 @@ class ForbiddenCityApp {
     
     // 小地图（按 M 键显示/隐藏）
     // 移动端额外常驻右上角预览，点击展开全图
-    this.minimap = new Minimap({ items: this.zoneManager.getMapItems(), preview: this.isMobile });
+    this.teleport = new Teleport(this.controls, this.zoneManager, this.collisionManager);
+    this._onTeleportKey = event => {
+      if (event.repeat || event.ctrlKey || event.metaKey || event.altKey || /^(INPUT|TEXTAREA|SELECT)$/.test(event.target?.tagName)) return;
+      const index = Number(event.key) - 1;
+      if (/^[1-8]$/.test(event.key)) this.teleport.go(TELEPORT.POINTS[index].target);
+    };
+    window.addEventListener('keydown', this._onTeleportKey);
+    this.minimap = new Minimap({ items: this.zoneManager.getMapItems(), preview: this.isMobile, onTeleport: name => this.teleport.go(name), onToggle: visible => { if (visible) this.controls.unlock(); } });
     
     // 设置菜单（按 ESC 显示）
     this.settingsMenu = new SettingsMenu(document.body);
@@ -413,12 +421,14 @@ class ForbiddenCityApp {
   updateLocationInfo() {
     const position = this.controls.getPosition();
     const location = this.collisionManager.getCurrentLocation(position);
-    if (location === this.lastLocation) return;
-    this.lastLocation = location;
-    this.locationPanel.innerHTML = `
-      <strong>当前位置</strong><br>
-      ${location}
-    `;
+    const zone = ZONES.find(item => item.id === this.zoneManager.getCurrentId())?.name ?? '宫城';
+    const label = `${zone} › ${location}`;
+    if (label === this.lastLocation) return;
+    this.lastLocation = label;
+    this.locationPanel.replaceChildren();
+    const heading = document.createElement('strong');
+    heading.textContent = '当前位置';
+    this.locationPanel.append(heading, document.createElement('br'), document.createTextNode(label));
   }
   
   /**
@@ -558,6 +568,8 @@ class ForbiddenCityApp {
     this.ambience?.dispose();
     this.perfHUD?.dispose();
     this.minimap?.dispose();
+    this.teleport?.dispose();
+    window.removeEventListener('keydown', this._onTeleportKey);
     this.postProcessing?.dispose();
     this.palaceBuilder?.dispose();
     this.enclosure?.dispose();
@@ -572,6 +584,8 @@ class ForbiddenCityApp {
     for (const id of ['location-panel', 'help-panel']) document.getElementById(id)?.remove();
     this.settingsMenu?.dispose();
     this.minimap?.dispose();
+    this.teleport?.dispose();
+    window.removeEventListener('keydown', this._onTeleportKey);
     if (this._onKeyDown) window.removeEventListener('keydown', this._onKeyDown);
     this.shadowObjects.length = 0;
   }

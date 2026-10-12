@@ -1,14 +1,17 @@
 import * as THREE from 'three';
 import { PALACE_LAYOUT } from '../scene/Layout.js';
-import { LAYOUT } from '../config/constants.js';
+import { LAYOUT, TELEPORT } from '../config/constants.js';
 
 /**
  * 小地图：按 M 键显示/隐藏，显示当前位置和建筑名称
  */
 
 export class Minimap {
-  constructor({ items = [], preview = false } = {}) {
+  constructor({ items = [], preview = false, onTeleport = null, onToggle = null } = {}) {
     this.visible = false;
+    this.onTeleport = onTeleport;
+    this.onToggle = onToggle;
+    this.labels = [];
     this.previewEnabled = preview; // 移动端：右上角常驻小地图预览，点击展开全图
     this.lastPreviewDraw = 0;
     this.container = null;
@@ -37,12 +40,13 @@ export class Minimap {
     this.container.id = 'minimap';
     this.container.style.cssText = `
       position: fixed;
-      top: 50%;
+      top: ${this.previewEnabled ? '42%' : '50%'};
       left: 50%;
       transform: translate(-50%, -50%);
       width: ${this.mapSize}px;
+      box-sizing: border-box;
       max-width: 94vw;
-      max-height: 96vh;
+      max-height: ${this.previewEnabled ? '68vh' : '96vh'};
       overflow: auto;
       background: rgba(20, 20, 20, 0.92);
       border: 3px solid rgba(255, 215, 100, 0.8);
@@ -82,7 +86,7 @@ export class Minimap {
     
     // 提示文字
     const hint = document.createElement('div');
-    hint.textContent = this.previewEnabled ? '点击地图关闭' : '按 M 键关闭';
+    hint.textContent = '点击建筑名称传送 · 按 M 键关闭';
     hint.style.cssText = `
       color: #999;
       font-size: 12px;
@@ -90,6 +94,20 @@ export class Minimap {
       margin-top: 8px;
     `;
     this.container.appendChild(hint);
+    const quick = document.createElement('div');
+    quick.id = 'teleport-points';
+    quick.style.cssText = 'display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px';
+    TELEPORT.POINTS.forEach((point, index) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.dataset.teleport = point.target;
+      button.setAttribute('aria-label', `传送到${point.name}`);
+      button.textContent = `${index + 1} ${point.name}`;
+      button.style.cssText = 'min-height:44px;padding:4px;color:#ffd764;background:#382d20;border:1px solid #9f804a;border-radius:6px;font-size:12px;touch-action:manipulation';
+      button.addEventListener('click', () => { if (this.onTeleport?.(point.target)) this.toggle(); });
+      quick.appendChild(button);
+    });
+    this.container.appendChild(quick);
     
     document.body.appendChild(this.container);
     
@@ -110,10 +128,21 @@ export class Minimap {
     
     if (this.previewEnabled) {
       this.createPreview();
-      // 展开的全图点一下就关闭
-      this.container.addEventListener('click', () => this.toggle());
+      const close = document.createElement('button');
+      close.textContent = '关闭地图';
+      close.style.cssText = 'display:block;margin:8px auto;min-height:44px;color:#ffd764;background:#33291e;border:1px solid #ffd764;border-radius:6px';
+      close.addEventListener('click', () => this.toggle());
+      this.container.appendChild(close);
     }
     
+    this.canvas.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const rect = this.canvas.getBoundingClientRect();
+      const x = (event.clientX - rect.left) * this.mapSize / rect.width;
+      const y = (event.clientY - rect.top) * this.mapHeight / rect.height;
+      const label = [...this.labels].reverse().find(it => Math.abs(x - it.x) <= it.width / 2 + 3 && Math.abs(y - it.y) <= it.height / 2 + 3);
+      if (label && this.onTeleport?.(label.name)) this.toggle();
+    });
     // 初始绘制
     this.drawMap();
   }
@@ -172,6 +201,7 @@ export class Minimap {
   
   toggle() {
     this.visible = !this.visible;
+    this.onToggle?.(this.visible);
     this.container.style.display = this.visible ? 'block' : 'none';
     if (this.preview) this.preview.style.display = this.visible ? 'none' : 'block';
     document.body.classList.toggle('map-open', this.visible);
@@ -207,6 +237,7 @@ export class Minimap {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     const tw = ctx.measureText(text).width;
+    this.labels.push({ name: text, x, y, width: tw + 4, height: size + 2 });
     ctx.fillStyle = 'rgba(255, 255, 255, 0.72)';
     ctx.fillRect(x - tw / 2 - 2, y - size / 2 - 1, tw + 4, size + 2);
     ctx.fillStyle = 'rgba(0, 0, 0, 0.9)';
@@ -245,6 +276,7 @@ export class Minimap {
    * 静态底图（建筑/河道/文字）绘制到高分辨率离屏画布，只执行一次
    */
   renderBase() {
+    this.labels = [];
     const mainCtx = this.ctx;
     const ctx = this.baseCanvas.getContext('2d');
     ctx.setTransform(this.baseScale, 0, 0, this.baseScale, 0, 0);

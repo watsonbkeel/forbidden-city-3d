@@ -3,6 +3,8 @@
  * 包含颜色、尺寸、布局参数等
  */
 
+import anchors from '../../data/anchors.json' with { type: 'json' };
+
 // 颜色常量
 export const COLORS = {
   // 建筑颜色
@@ -167,16 +169,41 @@ export const PERFORMANCE = {
 export const PLAYER = {
   HEIGHT: 1.7,                  // 视线高度（米）
   MOVE_SPEED: 5.0,              // 移动速度（米/秒）
-  SPRINT_SPEED: 10.0,           // 冲刺速度
+  SPRINT_SPEED: 12.0,           // 冲刺速度
   MOUSE_SENSITIVITY: 0.002,     // 鼠标灵敏度
   JOYSTICK_SPEED: 3.0,          // 虚拟摇杆速度（走）
-  JOYSTICK_RUN_SPEED: 7.5,      // 方向盘持续推同一方向后的奔跑速度
+  JOYSTICK_RUN_SPEED: 9.0,      // 方向盘持续推同一方向后的奔跑速度
   JOYSTICK_RUN_DELAY: 2000,     // 持续同一方向多久后开始跑（毫秒）
   JOYSTICK_RUN_ANGLE: 0.6,      // 判定"同一方向"的允许偏差（弧度，约 35°）
   STEP_UP: 0.6,                 // 单帧可直接踏上的最大台阶高度（米）
   JUMP_VELOCITY: 7.2,           // 起跳竖直速度（米/秒）：配合 GRAVITY 跳高约 1.85m，走路速度也能越过 1.1m 汉白玉栏杆
   GRAVITY: 14,                  // 重力加速度（米/秒²，略大于 9.8，手感更利落）
   MAX_FALL_SPEED: 30,           // 最大下落速度（米/秒）
+};
+
+export const TELEPORT = {
+  DOOR_DISTANCE: 8,             // 首选：建筑正面外 8 m
+  ADVANCE_STEP: 0.25,           // 受阻时朝建筑前移步长
+  MAX_ADVANCE: 2,               // 最多前移到门外 6 m
+  FAR_DISTANCES: [10, 12],      // 前移仍不行再往外退
+  MIN_DISTANCE: 1,              // 窄街兜底：最近到门外 1 m（东西六宫二/三排宫门前夹道现仅约 2.1 m，见 REQUESTS P1-U）
+  LATERAL_STEP: 1,              // 沿门平面横移步长
+  MAX_LATERAL: 6,               // 横移上限（另受门宽/2 限制）
+  PROBE_WALK: 5,                // 落地后朝正面试走距离
+  MIN_WALK: 3,                  // 能走 ≥ 3 m 即通过
+  NEAR_FRONT: 2,                // 或已走到离正面 ≤ 2 m
+  LOS_STOP: 1.5,                // 视线检查止于正面前 1.5 m（避开门本身的台阶/门枕）
+  OVERLAY_MS: 600,
+  POINTS: [
+    { name: '午门', target: '午门', x: anchors['午门'].x, z: LAYOUT.WUMEN_Z },
+    { name: '太和殿', target: '太和殿', x: anchors['太和殿'].x, z: LAYOUT.TAIHE_Z },
+    { name: '乾清宫', target: '乾清宫', x: anchors['乾清宫'].x, z: LAYOUT.QIANQING_Z },
+    { name: '御花园', target: '御花园', x: anchors['御花园'].x, z: LAYOUT.IMPERIAL_GARDEN_Z },
+    { name: '东六宫', target: '景仁宫', x: anchors['景仁宫'].x, z: anchors['景仁宫'].z },
+    { name: '西六宫', target: '永寿宫', x: anchors['永寿宫'].x, z: anchors['永寿宫'].z },
+    { name: '宁寿宫', target: '宁寿宫', x: anchors['宁寿宫'].x, z: anchors['宁寿宫'].z },
+    { name: '神武门', target: '神武门', x: anchors['神武门'].x, z: LAYOUT.SHENWU_Z },
+  ],
 };
 
 // 后处理参数
