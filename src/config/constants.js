@@ -3,6 +3,8 @@
  * 包含颜色、尺寸、布局参数等
  */
 
+import anchors from '../../data/anchors.json';
+
 // 颜色常量
 export const COLORS = {
   // 建筑颜色
@@ -177,6 +179,21 @@ export const PLAYER = {
   JUMP_VELOCITY: 7.2,           // 起跳竖直速度（米/秒）：配合 GRAVITY 跳高约 1.85m，走路速度也能越过 1.1m 汉白玉栏杆
   GRAVITY: 14,                  // 重力加速度（米/秒²，略大于 9.8，手感更利落）
   MAX_FALL_SPEED: 30,           // 最大下落速度（米/秒）
+};
+
+export const TELEPORT = {
+  DOOR_DISTANCE: 8,
+  OVERLAY_MS: 600,
+  POINTS: [
+    { name: '午门', target: '午门', x: anchors['午门'].x, z: LAYOUT.WUMEN_Z },
+    { name: '太和殿', target: '太和殿', x: anchors['太和殿'].x, z: LAYOUT.TAIHE_Z },
+    { name: '乾清宫', target: '乾清宫', x: anchors['乾清宫'].x, z: LAYOUT.QIANQING_Z },
+    { name: '御花园', target: '御花园', x: anchors['御花园'].x, z: LAYOUT.IMPERIAL_GARDEN_Z },
+    { name: '东六宫', target: '景仁宫', x: anchors['景仁宫'].x, z: anchors['景仁宫'].z },
+    { name: '西六宫', target: '永寿宫', x: anchors['永寿宫'].x, z: anchors['永寿宫'].z },
+    { name: '宁寿宫', target: '宁寿宫', x: anchors['宁寿宫'].x, z: anchors['宁寿宫'].z },
+    { name: '神武门', target: '神武门', x: anchors['神武门'].x, z: LAYOUT.SHENWU_Z },
+  ],
 };
 
 // 后处理参数

@@ -609,6 +609,13 @@ export class FirstPersonControls {
   lookAt(x, z) {
     this.camera.lookAt(x, this.camera.position.y, z);
   }
+
+  teleportTo(x, z, lookAtX, lookAtZ) {
+    const ground = this.collisionManager.getGroundHeight(x, z, Infinity);
+    this.stop();
+    this.setPosition(x, ground + PLAYER.HEIGHT, z);
+    this.lookAt(lookAtX, lookAtZ);
+  }
   
   /**
    * 锁定指针
