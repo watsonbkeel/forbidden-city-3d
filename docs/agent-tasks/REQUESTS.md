@@ -68,3 +68,4 @@
      ```
 - **分派建议**：总控在合并 P1-Z-axis 到 main 时同步更新。
 - **注**：路线 6「坤宁宫→御花园→神武门」（第 56 行）中的 `GARDEN_PATH_X` 仍正确（东西甬路 x = ±17 未变）。
+| 2026-10-12 | P1-I | `main.js`、`src/ui/PerfHUD.js` | 「碰撞检测」步骤后 `this.interiors = new InteriorLoader(this.scene, this.collisionManager, { renderer: this.renderer })`；animate 里 `this.interiors.update(this.camera.position)`；PerfHUD 增加一行 `interiors.hudLine()`；`dispose()` 调 `interiors.dispose()` | InteriorLoader 已自测通过（p1i-loader PASS），但 main.js 不在 P1-I 所有权内，运行时尚未自动触发 S 档加载 | 中 | 总控（合并时顺手接） | 待办 |
