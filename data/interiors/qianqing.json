@@ -1,0 +1,19 @@
+{
+  "$schema": "./schema.md",
+  "hall": "乾清宫",
+  "id": "qianqing",
+  "tier": "S",
+  "model": "/models/interiors/qianqing.glb",
+  "fallback": "B",
+  "budget": { "tris": 400000, "textureMB": 8 },
+  "frame": { "x": 0, "z": 316.8, "rot": 0, "w": 46, "d": 25 },
+  "floor": { "mode": "ground", "y": null },
+  "anchor": { "x": 0, "y": 0, "z": 0 },
+  "preload": { "enter": 15, "exit": 40 },
+  "throne": { "ztb0": 1.0, "ztb1": 8.0, "thW": 8.18, "bayW": 5.111, "dBay": 8.333 },
+  "lights": [
+    { "type": "point", "x": 0, "y": 5, "z": 3, "color": "#ffd9a0", "intensity": 2, "distance": 26 },
+    { "type": "point", "x": 0, "y": 4.5, "z": -7, "color": "#ffe6c0", "intensity": 0.8, "distance": 26 }
+  ],
+  "source": "docs/research/interiors-qianqing.md"
+}
