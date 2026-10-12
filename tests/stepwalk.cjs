@@ -22,10 +22,14 @@ const QIANQING_DETOUR_X = 5.7; // 乾清宫宝座半宽 4.09（真实面阔 46 �
 const JIAOTAI_DETOUR_X = 6.5; // 交泰殿宝座半宽 2.38，殿身半宽 9.5
 const IN_FRONT = 7;           // 殿内宝座前（距殿心南 7m；三间进深殿宝座前沿在殿心 −0.3）
 const OFF_AXIS_GAP = 2.5;     // 偏中轴路线离殿身前后檐的余量
-// 御花园（GardenBuilder：园墙 z 422.7~518.3，南横路 z0+7，亭一排在园中心 pz，浮碧/澄瑞池在 z0+23，东西甬路 x=±17）
-const GARDEN_PATH_X = 17;
-const GARDEN_S_ROAD = 7;      // 南横路距南园墙
-const PAVILION_APPROACH = 15; // 亭南花坛（pz−13.8 起）以南的东西向通行线
+// 御花园（GardenBuilder：园墙 z 422.7~518.3，南横路 z0+7，亭一排 z≈472，浮碧/澄瑞池 z≈499、南北石桥宽 2.4）
+const GARDEN_PATH_X = 17;      // 东西甬路 x=±17
+const GARDEN_S_ROAD = 7;       // 南横路距南园墙
+// 池中亭（浮碧/澄瑞）位于万春/千秋亭正北的池中，无法从中线直入，须沿园墙内侧甬路 x=±63.5
+// 绕过前一排亭、再经南北石桥进亭：Z0=绕行横移线（万春/千秋以北、池以南），Z1=桥头外（池南沿 493.6 以南）
+const POND_DETOUR_X = 63.5;
+const POND_DETOUR_Z0 = 447;
+const POND_DETOUR_Z1 = 490;
 // CourtKit 殿（kit.js）：backDoor 殿宝座碰撞 rel z = d/2−3.4 ±(1.2,1.3)，半宽 min(间宽×1.4, 5)/2
 const KIT_DETOUR_X = 3.5;
 const GATE_CLEAR = 20;        // 门前/门后取点余量
@@ -87,12 +91,14 @@ async function buildRoutes() {
     // 钦安殿（backDoor）：殿内宝座前 → 侧绕 → 宝座后 → 穿后门北出
     ['御花园→钦安殿内→穿殿北出', [[0, gz0 + 11], [0, qinan.z - 20], [0, qinan.z - 1], [KIT_DETOUR_X, qinan.z - 1],
       [KIT_DETOUR_X, qinan.z + 6], [0, qinan.z + 6], [0, qinan.z + 16]]],
-    ['御花园→万春亭', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [GARDEN_PATH_X, gz0 + GARDEN_S_ROAD],
-      [GARDEN_PATH_X, wanchun.z - PAVILION_APPROACH], [wanchun.x, wanchun.z - PAVILION_APPROACH], [wanchun.x, wanchun.z]]],
-    ['御花园→千秋亭(西)', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [-GARDEN_PATH_X, gz0 + GARDEN_S_ROAD],
-      [-GARDEN_PATH_X, qianqiu.z - PAVILION_APPROACH], [qianqiu.x, qianqiu.z - PAVILION_APPROACH], [qianqiu.x, qianqiu.z]]],
-    ['御花园→浮碧亭(桥)', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [fubi.x, gz0 + GARDEN_S_ROAD], [fubi.x, fubi.z]]],
-    ['御花园→澄瑞亭(桥)', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [chengrui.x, gz0 + GARDEN_S_ROAD], [chengrui.x, chengrui.z]]],
+    // 万春/千秋亭：沿亭中线自南横路北上，走南面台阶进亭；千秋亭西南侧有古柏，先偏东 2 m 绕过
+    ['御花园→万春亭', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [wanchun.x, gz0 + GARDEN_S_ROAD], [wanchun.x, wanchun.z]]],
+    ['御花园→千秋亭(西)', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [qianqiu.x + 2, gz0 + GARDEN_S_ROAD], [qianqiu.x + 2, qianqiu.z - 9.5], [qianqiu.x, qianqiu.z - 9.5], [qianqiu.x, qianqiu.z]]],
+    // 浮碧/澄瑞亭（池中亭）：先北上至 Z0，沿园墙内侧绕行至 Z1，再经南北石桥进亭
+    ['御花园→浮碧亭(桥)', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [fubi.x, gz0 + GARDEN_S_ROAD], [fubi.x, POND_DETOUR_Z0],
+      [-POND_DETOUR_X, POND_DETOUR_Z0], [-POND_DETOUR_X, POND_DETOUR_Z1], [fubi.x, POND_DETOUR_Z1], [fubi.x, fubi.z]]],
+    ['御花园→澄瑞亭(桥)', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [chengrui.x, gz0 + GARDEN_S_ROAD], [chengrui.x, POND_DETOUR_Z0],
+      [POND_DETOUR_X, POND_DETOUR_Z0], [POND_DETOUR_X, POND_DETOUR_Z1], [chengrui.x, POND_DETOUR_Z1], [chengrui.x, chengrui.z]]],
     // 乾清门广场 → 景运门 → 门外南行 → 箭亭南 → 进箭亭（敞厅）
     ['景运门→箭亭→东路', [[-80, jy.z], [jy.x - 18.5, jy.z], [jy.x - 18.5, r1(jt2.z - 18)], [jt2.x, r1(jt2.z - 18)], [jt2.x, jt2.z]]],
   ];

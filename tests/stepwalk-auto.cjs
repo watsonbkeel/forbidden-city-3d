@@ -10,7 +10,8 @@
 const path = require('node:path');
 const { pathToFileURL } = require('node:url');
 
-// 已知问题路线（P2-A1 已全部修复）
+// 已知问题路线（P2-A1 已全部修复，保留空表以便将来登记）
+const KNOWN_ISSUES = {};
 const UNLOADED_WALK_MAX = 1; // m
 
 (async () => {
