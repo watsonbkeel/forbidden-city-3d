@@ -66,7 +66,7 @@ export function updateSkyUniforms(sky, sunPosition) {
 export function generatePMREM(renderer, scene) {
   const pmremGenerator = new THREE.PMREMGenerator(renderer);
   pmremGenerator.compileEquirectangularShader();
-  const renderTarget = pmremGenerator.fromScene(scene, 0, 0.1, 1000);
+  const renderTarget = pmremGenerator.fromScene(scene, 0, 0.1, 2500);
   const envMap = renderTarget.texture;
   pmremGenerator.dispose();
   return envMap;
