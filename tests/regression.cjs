@@ -27,7 +27,9 @@ async function loadPoints() {
 
 const GATE_SAMPLE_HALF = 18;     // 门洞采样半长（m），覆盖午门进深 25 + 前后余量
 const WUMEN_SIDE_WALL_DX = 15;   // 午门中门洞与东/西掖门之间的实体墙（gate.js：中门 ±4.5、掖门 ±[15,20]）
-const WUMEN_WING_GAP = [40, -14]; // 午门城台外、雁翅楼之间的空地（相对午门中心 dx, dz）
+// 午门凹口中部空地（相对午门中心 dx, dz；世界 (25, −439.6)）。R2：P1-Z-axis 凹形墩台翼内皮 ±38.5 会吃掉原 [40,−14]；
+// R2 原提 [30,−20] 在 main 几何下落在估值朝房（x 29–39，P1-Z-axis A1 移除）内，取 25 两边都是空地。
+const WUMEN_WING_GAP = [25, -20];
 const RIVER_WATER_X = 10;        // 金水河水面（中桥半宽 2.4 与 x=15 侧桥之间）
 const BRIDGE_RAIL_X = 2.5;       // 中桥东侧桥栏（桥宽 5，栏杆位于 ±(2.5−0.1)）
 
