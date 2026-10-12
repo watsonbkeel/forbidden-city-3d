@@ -182,7 +182,17 @@ export const PLAYER = {
 };
 
 export const TELEPORT = {
-  DOOR_DISTANCE: 8,
+  DOOR_DISTANCE: 8,             // 首选：建筑正面外 8 m
+  ADVANCE_STEP: 0.25,           // 受阻时朝建筑前移步长
+  MAX_ADVANCE: 2,               // 最多前移到门外 6 m
+  FAR_DISTANCES: [10, 12],      // 前移仍不行再往外退
+  MIN_DISTANCE: 1,              // 窄街兜底：最近到门外 1 m（东西六宫二/三排宫门前夹道现仅约 2.1 m，见 REQUESTS P1-U）
+  LATERAL_STEP: 1,              // 沿门平面横移步长
+  MAX_LATERAL: 6,               // 横移上限（另受门宽/2 限制）
+  PROBE_WALK: 5,                // 落地后朝正面试走距离
+  MIN_WALK: 3,                  // 能走 ≥ 3 m 即通过
+  NEAR_FRONT: 2,                // 或已走到离正面 ≤ 2 m
+  LOS_STOP: 1.5,                // 视线检查止于正面前 1.5 m（避开门本身的台阶/门枕）
   OVERLAY_MS: 600,
   POINTS: [
     { name: '午门', target: '午门', x: anchors['午门'].x, z: LAYOUT.WUMEN_Z },

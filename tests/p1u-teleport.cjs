@@ -13,7 +13,8 @@ const { chromium } = require('playwright');
       const names = [...new Set([...TELEPORT.POINTS.map(p => p.target), ...a.minimap.labels.map(p => p.name)])];
       return names.map(name => {
         const point = a.teleport.go(name);
-        const landing = a.teleport.landingFor(name);
+        const g = a.teleport.geometryFor(name);
+        const landing = point ?? a.teleport.landingFor(name);
         if (!point) {
           const cm = a.collisionManager;
           const y = cm.getGroundHeight(landing.x, landing.z, Infinity);
@@ -26,11 +27,15 @@ const { chromium } = require('playwright');
         const facing = a.camera.getWorldDirection(new Vector3()).dot(new Vector3(landing.lookAtX - p.x, 0, landing.lookAtZ - p.z).normalize());
         const zone = a.zoneManager.findZone(landing.lookAtX, landing.lookAtZ) ?? a.zoneManager.findZone(p.x, p.z);
         const loaded = !zone || a.zoneManager.getLoadedIds().includes(zone);
-        const dir = new Vector3(landing.lookAtX - p.x, 0, landing.lookAtZ - p.z).normalize();
-        const end = a.collisionManager.getValidPosition(p, new Vector3(p.x + dir.x * 5, p.y, p.z + dir.z * 5), 0.5, feet, PLAYER.STEP_UP);
-        const distance = Math.hypot(end.x - p.x, end.z - p.z);
+        // 前行验收（总控 10-12 批准）：朝正面中点走，有效前进 ≥ MIN_WALK，或走到离正面 ≤ NEAR_FRONT
+        const fx = g.frontX - p.x, fz = g.frontZ - p.z, toFront = Math.hypot(fx, fz);
+        const walk = Math.min(TELEPORT.PROBE_WALK, toFront);
+        const end = a.collisionManager.getValidPosition(p, new Vector3(p.x + fx / toFront * walk, p.y, p.z + fz / toFront * walk), 0.5, feet, PLAYER.STEP_UP);
+        const progressed = ((end.x - p.x) * fx + (end.z - p.z) * fz) / toFront;
+        const remain = Math.hypot(g.frontX - end.x, g.frontZ - end.z);
         const overlap = a.collisionManager.checkCollision(p);
-        return { name, x: +p.x.toFixed(2), z: +p.z.toFixed(2), feet: +feet.toFixed(2), zone, facing: +facing.toFixed(3), distance: +distance.toFixed(2), loaded, overlap, pass: loaded && !overlap && Math.abs(feet - ground) < 0.01 && facing > 0.999 && distance > 4.8 };
+        const walkOk = progressed >= TELEPORT.MIN_WALK || remain <= TELEPORT.NEAR_FRONT;
+        return { name, x: +p.x.toFixed(2), z: +p.z.toFixed(2), feet: +feet.toFixed(2), zone, dist: point.distance, lateral: point.lateral, fallback: point.fallback, facing: +facing.toFixed(3), walked: +progressed.toFixed(2), remain: +remain.toFixed(2), loaded, overlap, pass: loaded && !overlap && Math.abs(feet - ground) < 0.01 && facing > 0.999 && walkOk };
       });
     });
     console.table(rows);
