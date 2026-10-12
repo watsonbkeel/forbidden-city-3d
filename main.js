@@ -16,7 +16,7 @@ import { Minimap } from './src/ui/Minimap.js';
 import { Teleport } from './src/ui/Teleport.js';
 import { SettingsMenu } from './src/ui/SettingsMenu.js';
 import { PerfHUD } from './src/ui/PerfHUD.js';
-import { LAYOUT, PERFORMANCE } from './src/config/constants.js';
+import { LAYOUT, PERFORMANCE, TELEPORT } from './src/config/constants.js';
 
 /**
  * 故宫 3D 虚拟游览主程序
@@ -334,6 +334,12 @@ class ForbiddenCityApp {
     // 小地图（按 M 键显示/隐藏）
     // 移动端额外常驻右上角预览，点击展开全图
     this.teleport = new Teleport(this.controls, this.zoneManager, this.collisionManager);
+    this._onTeleportKey = event => {
+      if (event.repeat || event.ctrlKey || event.metaKey || event.altKey || /^(INPUT|TEXTAREA|SELECT)$/.test(event.target?.tagName)) return;
+      const index = Number(event.key) - 1;
+      if (/^[1-8]$/.test(event.key)) this.teleport.go(TELEPORT.POINTS[index].target);
+    };
+    window.addEventListener('keydown', this._onTeleportKey);
     this.minimap = new Minimap({ items: this.zoneManager.getMapItems(), preview: this.isMobile, onTeleport: name => this.teleport.go(name) });
     
     // 设置菜单（按 ESC 显示）
@@ -561,6 +567,7 @@ class ForbiddenCityApp {
     this.perfHUD?.dispose();
     this.minimap?.dispose();
     this.teleport?.dispose();
+    window.removeEventListener('keydown', this._onTeleportKey);
     this.postProcessing?.dispose();
     this.palaceBuilder?.dispose();
     this.enclosure?.dispose();
@@ -576,6 +583,7 @@ class ForbiddenCityApp {
     this.settingsMenu?.dispose();
     this.minimap?.dispose();
     this.teleport?.dispose();
+    window.removeEventListener('keydown', this._onTeleportKey);
     if (this._onKeyDown) window.removeEventListener('keydown', this._onKeyDown);
     this.shadowObjects.length = 0;
   }

@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { PALACE_LAYOUT } from '../scene/Layout.js';
-import { LAYOUT } from '../config/constants.js';
+import { LAYOUT, TELEPORT } from '../config/constants.js';
 
 /**
  * 小地图：按 M 键显示/隐藏，显示当前位置和建筑名称
@@ -92,6 +92,20 @@ export class Minimap {
       margin-top: 8px;
     `;
     this.container.appendChild(hint);
+    const quick = document.createElement('div');
+    quick.id = 'teleport-points';
+    quick.style.cssText = 'display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px';
+    TELEPORT.POINTS.forEach((point, index) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.dataset.teleport = point.target;
+      button.setAttribute('aria-label', `传送到${point.name}`);
+      button.textContent = `${index + 1} ${point.name}`;
+      button.style.cssText = 'min-height:44px;padding:4px;color:#ffd764;background:#382d20;border:1px solid #9f804a;border-radius:6px;font-size:12px;touch-action:manipulation';
+      button.addEventListener('click', () => { if (this.onTeleport?.(point.target)) this.toggle(); });
+      quick.appendChild(button);
+    });
+    this.container.appendChild(quick);
     
     document.body.appendChild(this.container);
     
