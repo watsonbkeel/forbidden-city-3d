@@ -14,11 +14,11 @@
 > 机器 10 核 16G，浏览器测试为软渲染：分两波启动。第一波 T/R/U/I/Z-axis，第二波 Z×5。
 | ID | 任务 | 模型 | 交叉审 | 分支 | 状态 |
 |---|---|---|---|---|---|
-| P1-R | 渲染性能：BatchedMesh / 阴影 / 遮挡 | sonnet5.5 | gpt-6.1-sol | feat/p1-render | 🔵 10-12 启动 |
-| P1-I | 内景管线：GLB loader + A 档模板 + 2 座 S 档样板 | sonnet5.5 | gpt-6.1-sol | feat/p1-interior | 🔵 10-12 启动 |
-| P1-U | 传送 / 快捷点 / 步速 / 位置提示 | ~~gpt-6.1-sol~~ → opus5.5（用户 10-12 指定） | sonnet5.5 | feat/p1-ux | 🔵 10-12 启动 |
-| P1-T | 一键门禁 / 路线扩展 / 截图回归 | ~~gpt-6.1-sol → glm-flash~~ → opus5.5（用户 10-12 指定） | — | feat/p1-tests | 🔵 10-12 启动 |
-| P1-Z-axis | 中轴与宫城外围：午门/太和门/御花园内部/金水桥/角楼 | opus5.5 | sonnet 抽审 | feat/p1-zone-axis | 🔵 10-12 启动 |
+| P1-R | 渲染性能：BatchedMesh / 阴影 / 遮挡 | ~~sonnet5.5~~ → glm-5.3（用户 10-12 指定） | gpt-6.1-sol | feat/p1-render | 🔵 10-12 启动（10:1x 首轮 5 个全部 503 无产出，重启） |
+| P1-I | 内景管线：GLB loader + A 档模板 + 2 座 S 档样板 | sonnet5.5 | gpt-6.1-sol | feat/p1-interior | 🔵 10-12 启动（10:1x 首轮 5 个全部 503 无产出，重启） |
+| P1-U | 传送 / 快捷点 / 步速 / 位置提示 | gpt-6.1-sol（10-12 opus 503 后用户改回） | sonnet5.5 | feat/p1-ux | 🔵 10-12 启动（10:1x 首轮 5 个全部 503 无产出，重启） |
+| P1-T | 一键门禁 / 路线扩展 / 截图回归 | ~~gpt-6.1-sol → glm-flash~~ → opus5.5（用户 10-12 指定） | — | feat/p1-tests | 🔵 10-12 启动（10:1x 首轮 5 个全部 503 无产出，重启） |
+| P1-Z-axis | 中轴与宫城外围：午门/太和门/御花园内部/金水桥/角楼 | opus5.5 | sonnet 抽审 | feat/p1-zone-axis | 🔵 10-12 启动（10:1x 首轮 5 个全部 503 无产出，重启） |
 | P1-Z-east-six | 东六宫 zone | glm-5.3 | opus 抽审 | feat/p1-zone-east-six | ⬜ |
 | P1-Z-west-six | 西六宫 zone | glm-5.3 | opus 抽审 | feat/p1-zone-west-six | ⬜ |
 | P1-Z-ningshou | 宁寿宫 zone | glm-5.3 | opus 抽审 | feat/p1-zone-ningshou | ⬜ |
