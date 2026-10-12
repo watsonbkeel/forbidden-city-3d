@@ -1,4 +1,5 @@
 import { LAYOUT, DIMENSIONS } from '../config/constants.js';
+import { JINSHUI_BRIDGES } from './palace/river.js';
 
 /**
  * 故宫中轴线建筑布局数据（P0c-1 起为真实米制，原点 = 太和殿中心，+Z 北，x 负 = 东）
@@ -53,12 +54,15 @@ export const PALACE_LAYOUT = [
     },
   },
   
-  // 内金水河和金水桥（中桥 (0.7, −310.8)；五桥 x = 0、±13、±30）
-  // 估：河段宽 100 使 buildRiver 五桥落在 0、±15、±30（与真实 ±13 差 2 m）；河道南北宽 15 沿用旧值，未查到实测
+  // 内金水河和金水桥（中桥 (0.7, −310.8)；五桥 x = 0、±13、±30，dimensions.md:85）
+  // 桥位 / 桥宽显式给出（palace/river.js 为唯一数据源），buildRiver 与 Collision.checkRiverCrossing 共用。
+  // 估：河段东西 100、南北 15 未查到实测（source: estimated）；弓形河身未建模，仍为矩形河段。
   {
     name: '金水河',
     type: 'river',
     position: { x: 0, y: -0.3, z: LAYOUT.JINSHUI_RIVER_Z },
+    bridges: JINSHUI_BRIDGES,
+    source: 'estimated',
     dimensions: {
       width: 100,
       depth: 15,

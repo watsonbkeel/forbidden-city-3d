@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { COLORS } from '../config/constants.js';
 import { buildGateAscent, toWorld } from './palace/gateAscent.js';
+import { riverBridges, JINSHUI_BRIDGE_LENGTH } from './palace/river.js';
 import { buildRoof } from './RoofBuilder.js';
 import { buildHallBody, buildBalustrade, buildStuddedDoor } from './HallKit.js';
 import { mergeByMaterial } from '../utils/MergeUtils.js';
@@ -915,9 +916,11 @@ export class PalaceBuilder {
     const g = this.begin(data);
     const { width: W, depth: D } = data.dimensions;
     const waterY = -1.1;
-    const bridges = [-0.3, -0.15, 0, 0.15, 0.3].map(f => f * W);
-    const BW = 2.4;           // 桥面半宽（与 Collision.checkRiverCrossing 一致）
-    const L = D + 2;          // 桥长（含两岸引桥，各伸出驳岸 1m）
+    // 桥位 / 桥宽唯一数据源：palace/river.js（x 0、±13、±30，宽 6.1；dimensions.md:85）
+    const bridgeList = riverBridges(data);
+    const bridges = bridgeList.map(b => b.x - this.ox);
+    const BW = bridgeList[0].halfW; // 桥面半宽（桥栏中线），五桥同宽
+    const L = Math.max(JINSHUI_BRIDGE_LENGTH, D + 2); // 桥长 21（量算 20.6–23.0），两岸各伸出驳岸 3m
     const crest = 0.9;        // 拱顶抬高
 
     // 河道：驳岸石墙 + 河床
