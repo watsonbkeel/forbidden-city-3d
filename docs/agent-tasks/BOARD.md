@@ -16,7 +16,7 @@
 |---|---|---|---|---|---|
 | P1-R | 渲染性能：BatchedMesh / 阴影 / 遮挡 | ~~sonnet5.5~~ → glm-5.3（用户 10-12 指定） | gpt-6.1-sol | feat/p1-render | ⏸ glm 18 分钟后 429 限流（15:14 重置）；R-0 profile 已入库 0d455b3（后期 SSAO 占整帧 51% calls）|
 | P1-I | 内景管线：GLB loader + A 档模板 + 2 座 S 档样板 | sonnet5.5 | gpt-6.1-sol | feat/p1-interior | ⏸ sonnet 两次 503，待定 |
-| P1-U | 传送 / 快捷点 / 步速 / 位置提示 | gpt-6.1-sol（10-12 opus 503 后用户改回） | sonnet5.5 | feat/p1-ux | 🔵 10-12 启动（10:1x 首轮 5 个全部 503 无产出，重启） |
+| P1-U | 传送 / 快捷点 / 步速 / 位置提示 | gpt-6.1-sol（10-12 opus 503 后用户改回） | sonnet5.5 | feat/p1-ux | ✅ 待合并 feat/p1-ux（gpt 断流，总控收尾落点搜索）：传送 88/88、数字键 1–8、stepwalk 132/132、regression 24/24 |
 | P1-T | 一键门禁 / 路线扩展 / 截图回归 | ~~gpt-6.1-sol → glm-flash~~ → opus5.5（用户 10-12 指定） | — | feat/p1-tests | 🔵 10-12 启动（10:1x 首轮 5 个全部 503 无产出，重启） |
 | P1-Z-axis | 中轴与宫城外围：午门/太和门/御花园内部/金水桥/角楼 | opus5.5 | sonnet 抽审 | feat/p1-zone-axis | 🔵 10-12 启动（10:1x 首轮 5 个全部 503 无产出，重启） |
 | P1-Z-east-six | 东六宫 zone | glm-5.3 | opus 抽审 | feat/p1-zone-east-six | ⬜ |
