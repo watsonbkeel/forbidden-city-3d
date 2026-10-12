@@ -3,7 +3,7 @@
  * 包含颜色、尺寸、布局参数等
  */
 
-import anchors from '../../data/anchors.json';
+import anchors from '../../data/anchors.json' with { type: 'json' };
 
 // 颜色常量
 export const COLORS = {

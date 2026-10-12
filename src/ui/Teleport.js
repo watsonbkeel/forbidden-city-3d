@@ -31,7 +31,10 @@ export class Teleport {
     const target = this.targets.get(name);
     if (!target) throw new Error(`未知传送目标：${name}`);
     const rot = typeof target.rot === 'number' ? target.rot : rotations[target.rot ?? 'south'];
-    const distance = (target.d ?? target.t ?? 0) / 2 + TELEPORT.DOOR_DISTANCE;
+    const mapItem = this.zoneManager.getMapItems().find(item => item.name === name);
+    const sideways = Math.abs(Math.sin(rot)) > 0.5;
+    const depth = target.d ?? (mapItem ? (sideways ? mapItem.w : mapItem.d) : 0);
+    const distance = depth / 2 + TELEPORT.DOOR_DISTANCE;
     return { name, x: target.x - Math.sin(rot) * distance, z: target.z - Math.cos(rot) * distance, lookAtX: target.x, lookAtZ: target.z };
   }
 

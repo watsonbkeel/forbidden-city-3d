@@ -203,7 +203,7 @@ class ForbiddenCityApp {
     const overlay = document.getElementById('welcome-overlay');
     if (!overlay) return;
     this._onLock = () => { overlay.style.display = 'none'; };
-    this._onUnlock = () => { overlay.style.display = 'flex'; };
+    this._onUnlock = () => { overlay.style.display = this.minimap?.visible ? 'none' : 'flex'; };
     this.controls.controls.addEventListener('lock', this._onLock);
     this.controls.controls.addEventListener('unlock', this._onUnlock);
   }
@@ -340,7 +340,7 @@ class ForbiddenCityApp {
       if (/^[1-8]$/.test(event.key)) this.teleport.go(TELEPORT.POINTS[index].target);
     };
     window.addEventListener('keydown', this._onTeleportKey);
-    this.minimap = new Minimap({ items: this.zoneManager.getMapItems(), preview: this.isMobile, onTeleport: name => this.teleport.go(name) });
+    this.minimap = new Minimap({ items: this.zoneManager.getMapItems(), preview: this.isMobile, onTeleport: name => this.teleport.go(name), onToggle: visible => { if (visible) this.controls.unlock(); } });
     
     // 设置菜单（按 ESC 显示）
     this.settingsMenu = new SettingsMenu(document.body);

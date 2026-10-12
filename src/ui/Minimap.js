@@ -7,9 +7,10 @@ import { LAYOUT, TELEPORT } from '../config/constants.js';
  */
 
 export class Minimap {
-  constructor({ items = [], preview = false, onTeleport = null } = {}) {
+  constructor({ items = [], preview = false, onTeleport = null, onToggle = null } = {}) {
     this.visible = false;
     this.onTeleport = onTeleport;
+    this.onToggle = onToggle;
     this.labels = [];
     this.previewEnabled = preview; // 移动端：右上角常驻小地图预览，点击展开全图
     this.lastPreviewDraw = 0;
@@ -43,8 +44,9 @@ export class Minimap {
       left: 50%;
       transform: translate(-50%, -50%);
       width: ${this.mapSize}px;
+      box-sizing: border-box;
       max-width: 94vw;
-      max-height: 96vh;
+      max-height: ${this.previewEnabled ? '68vh' : '96vh'};
       overflow: auto;
       background: rgba(20, 20, 20, 0.92);
       border: 3px solid rgba(255, 215, 100, 0.8);
@@ -134,6 +136,7 @@ export class Minimap {
     }
     
     this.canvas.addEventListener('click', (event) => {
+      event.stopPropagation();
       const rect = this.canvas.getBoundingClientRect();
       const x = (event.clientX - rect.left) * this.mapSize / rect.width;
       const y = (event.clientY - rect.top) * this.mapHeight / rect.height;
@@ -198,6 +201,7 @@ export class Minimap {
   
   toggle() {
     this.visible = !this.visible;
+    this.onToggle?.(this.visible);
     this.container.style.display = this.visible ? 'block' : 'none';
     if (this.preview) this.preview.style.display = this.visible ? 'none' : 'block';
     document.body.classList.toggle('map-open', this.visible);
