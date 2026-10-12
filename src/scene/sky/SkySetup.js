@@ -6,7 +6,7 @@ import * as THREE from 'three';
 
 export function createSky() {
   // 简单的渐变蓝天球（从天顶深蓝到地平线浅蓝）
-  const skyGeometry = new THREE.SphereGeometry(1000, 32, 32);
+  const skyGeometry = new THREE.SphereGeometry(2200, 32, 32);
   const skyMaterial = new THREE.ShaderMaterial({
     vertexShader: `
       varying vec3 vWorldPosition;
@@ -22,7 +22,7 @@ export function createSky() {
       varying vec3 vWorldPosition;
       
       void main() {
-        float h = normalize(vWorldPosition).y;
+        float h = normalize(vWorldPosition - cameraPosition).y;
         // 天顶到地平线的渐变，地平线以下保持浅色
         float t = max(h, 0.0);
         gl_FragColor = vec4(mix(bottomColor, topColor, t * t), 1.0);

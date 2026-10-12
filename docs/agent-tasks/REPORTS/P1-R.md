@@ -1,6 +1,8 @@
 # P1-R 渲染性能报告
 
 ### 进度
+- 2026-10-12 第三次接手：SSAO复用主pass深度并重建法线（21c280e）；跨顶层组BatchedMesh已接入后期管线，源网格只在绘制期间隐藏，碰撞/资源所有权不变；阴影范围120/60m、按包围盒剔除。当前正在5182进行构建与profile验证。
+- R-3 保守后方区块剔除200ms评估；R-5使用原屋面壳生成无投影远景；R-6启动预合并消除首次流式加载重复构建（再次加载仍同步构建，待记录）；R-7天空2200m/环1800m保持角高度，修复随玩家移动的渐变漂移。未改zone JSON和几何生成逻辑。
 - R-0 profile（glm-5.3，10-12 10:23，agent 18 分钟后 429 限流退出，由总控代为入库）：tests/p1r-profile.cjs、tests/p1r-exp-batched.cjs（BatchedMesh 实验脚本，未跑出结果）、tests/p1r-data/profile-r0-taihe.json。
 
 ## R-0 结论（太和殿前，整帧 746 calls / 1.97M tris）
