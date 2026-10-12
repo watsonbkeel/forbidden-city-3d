@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import { COLORS } from '../config/constants.js';
-import { buildWumen } from './palace/gate.js';
 import { buildGateAscent, toWorld } from './palace/gateAscent.js';
 import { buildRoof } from './RoofBuilder.js';
 import { buildHallBody, buildBalustrade, buildStuddedDoor } from './HallKit.js';
@@ -723,15 +722,7 @@ export class PalaceBuilder {
 
   buildGate(data) {
     if (data.name === '午门') {
-      const { group, colliders, walkables, ownedMaterials } = buildWumen(this.library, data);
-      this.addObject(group);
-      // buildWumen 在设置 group.position 之前计算碰撞盒，得到的是局部坐标，这里平移到世界坐标
-      const p = data.position;
-      const shift = new THREE.Vector3(p.x, p.y ?? 0, p.z);
-      this.colliders.push(...colliders.map(b => b.clone().translate(shift)));
-      this.walkables.push(...toWorld({ colliders: [], walkables: walkables ?? [] },
-        new THREE.Matrix4().makeTranslation(shift.x, shift.y, shift.z)).walkables);
-      this.ownedMaterials.push(...(ownedMaterials ?? []));
+      this.buildWumen(data);
       return;
     }
     if (data.name === '神武门') {
@@ -740,6 +731,125 @@ export class PalaceBuilder {
     }
     // 宫门（太和门、乾清门）：台基 + 门殿（中柱一线设门，前后檐敞开）
     this.buildComplex([data], { name: data.name, apron: 3, margin: 3 });
+  }
+
+  /**
+   * 午门（P1-Z-axis A1）：凹形墩台（平面"凹"字，开口朝南）+ 正楼 + 两翼雁翅楼 + 四角重檐攒尖方亭。
+   * 局部坐标原点 = 正楼中心（LAYOUT.WUMEN_Z），+Z 北。尺寸见 DIMENSIONS.WUMEN（dimensions.md:79–82）。
+   * - 主墩台 x ∈ ±W/2，z ∈ [platformSouth, platformNorth]，开三门洞（中门 9 m，左右掖门 5 m @ ±17.5）
+   * - 两翼墩台 x ∈ ±[wingInnerX, W/2]，z ∈ [wingSouth, platformSouth]，实心
+   * - 回归约束：x=0 中门洞贯通；(15, 0) 为中门与掖门间实墙；(40, −14) 在凹口内为空地
+   */
+  buildWumen(data) {
+    const g = this.begin(data);
+    const dm = data.dimensions;
+    const W = dm.platformWidth;
+    const PH = dm.platformHeight;
+    const zS = dm.platformSouth;
+    const zN = dm.platformNorth;
+    const wS = dm.wingSouth;
+    const wIn = dm.wingInnerX;
+    const D = zN - zS;
+    const zc = (zS + zN) / 2;
+    const band = 1.2;
+
+    // 主墩台：门洞之间的实墙段
+    const openings = [{ x: -17.5, w: 5 }, { x: 0, w: 9 }, { x: 17.5, w: 5 }];
+    let prev = -W / 2;
+    const segs = [];
+    for (const o of openings) {
+      segs.push([prev, o.x - o.w / 2]);
+      prev = o.x + o.w / 2;
+    }
+    segs.push([prev, W / 2]);
+    for (const [a, b] of segs) {
+      this.libBox(g, 'wall_red', b - a, PH - band, D, (a + b) / 2, band + (PH - band) / 2, zc, 'box');
+      this.libBox(g, 'sumeru_band', b - a + 0.2, band, D + 0.2, (a + b) / 2, band / 2, zc, 'band');
+      this.col(a, 0, zS, b, 3, zN);
+    }
+    for (const o of openings) {
+      const tunnelH = o.w >= 8 ? 8 : 6.5;
+      this.libBox(g, 'wall_red', o.w, PH - tunnelH, D, o.x, tunnelH + (PH - tunnelH) / 2, zc, 'box');
+      this.libBox(g, 'wall_brick', o.w, 0.3, D - 0.2, o.x, tunnelH - 0.15, zc, 'box');
+      for (const s of [-1, 1]) {
+        const leaf = buildStuddedDoor(this.library, { width: o.w * 0.48, height: tunnelH - 0.5 });
+        leaf.position.set(o.x + s * (o.w / 2 - 0.15), 0, zS + 2 + o.w * 0.24);
+        leaf.rotation.y = Math.PI / 2;
+        g.add(leaf);
+      }
+    }
+    // 两翼墩台（实心，顶面不开放）
+    const wL = zS - wS;
+    for (const s of [-1, 1]) {
+      const wx = s * (wIn + W / 2) / 2;
+      const ww = W / 2 - wIn;
+      this.libBox(g, 'wall_red', ww, PH - band, wL, wx, band + (PH - band) / 2, wS + wL / 2, 'box');
+      this.libBox(g, 'sumeru_band', ww + 0.2, band, wL + 0.2, wx, band / 2, wS + wL / 2, 'band');
+      this.libBox(g, 'stone_slab', ww + 0.4, 0.3, wL + 0.2, wx, PH + 0.15, wS + wL / 2 - 0.1, 'box');
+      this.col(s * wIn, 0, wS, s * W / 2, 3, zS);
+    }
+    this.libBox(g, 'stone_slab', W + 0.4, 0.3, D + 0.4, 0, PH + 0.15, zc, 'box');
+
+    // 登城马道：主墩台北面（宫内一侧）东西两端；顶面四周汉白玉栏杆
+    const top = PH + 0.3;
+    const sub = new THREE.Group();
+    sub.position.z = zc;
+    g.add(sub);
+    const asc = toWorld(buildGateAscent(this.library, sub, {
+      W, D, topY: top, band: [D / 2 - 6, D / 2], edge: 'rail',
+    }), new THREE.Matrix4().makeTranslation(this.ox, 0, this.oz + zc));
+    this.colliders.push(...asc.colliders);
+    this.walkables.push(...asc.walkables);
+
+    // 正楼：面阔 60.05 × 进深 25，重檐庑殿，9 间（dimensions.md:79）
+    const body = buildHallBody(this.library, { width: dm.width, depth: dm.depth, height: 13, bays: 9, facade: 'lattice' });
+    body.position.y = top;
+    g.add(body);
+    for (const b of body.userData.colliders ?? []) {
+      this.col(b.min.x, b.min.y + top, b.min.z, b.max.x, b.max.y + top, b.max.z);
+    }
+    const roof = buildRoof(this.library, {
+      type: 'wudian', width: dm.width + 0.6, depth: dm.depth + 0.6,
+      baseY: top + body.userData.topY, layers: 2, brackets: true, height: 9,
+    });
+    g.add(roof);
+    this.ownedMaterials.push(...(roof.userData.ownedMaterials ?? []));
+    this.wumenTopY = roof.userData.topY - PH; // 墩台顶至正脊（真实 37.95）
+    const plaque = this.plaqueMesh('午门', 2, 3.2, true);
+    plaque.position.set(0, top + 9, -dm.depth / 2 - 0.5);
+    plaque.rotation.y = Math.PI;
+    g.add(plaque);
+
+    // 雁翅楼：沿 Z 的长廊（单檐庑殿，13 间），南北两端重檐四角攒尖方亭（dimensions.md:80–82）
+    const hw = dm.wingHallWidth;
+    const P = dm.cornerPavilion;
+    const hx = wIn + 0.6 + hw / 2;                // 雁翅楼中线（真实约 ±45，此处 ±47.7，见报告）
+    const pS = wS + 0.5 + P / 2;                  // 南方亭中心
+    const pN = -0.5 - P / 2;                      // 北方亭中心（坐主墩台上，正楼两侧）
+    const h0 = pS + P / 2, h1 = pN - P / 2;       // 廊身南北端
+    for (const s of [-1, 1]) {
+      const wing = new THREE.Group();
+      wing.position.set(s * hx, top, (h0 + h1) / 2);
+      wing.rotation.y = Math.PI / 2;
+      const wb = buildHallBody(this.library, { width: h1 - h0, depth: hw, height: 6.5, bays: 13, facade: 'lattice' });
+      wing.add(wb);
+      const wr = buildRoof(this.library, { type: 'wudian', width: h1 - h0 + 0.4, depth: hw + 0.4, baseY: wb.userData.topY, layers: 1, brackets: true, detail: 'low' });
+      wing.add(wr);
+      this.ownedMaterials.push(...(wr.userData.ownedMaterials ?? []));
+      g.add(wing);
+      for (const pz of [pS, pN]) {
+        const pb = buildHallBody(this.library, { width: P, depth: P, height: 7.5, bays: 3, facade: 'lattice' });
+        pb.position.set(s * hx, top, pz);
+        g.add(pb);
+        const pr = buildRoof(this.library, { type: 'pavilion', width: P + 0.4, depth: P + 0.4, baseY: top + pb.userData.topY, layers: 2, brackets: true, detail: 'low' });
+        pr.position.set(s * hx, 0, pz);
+        g.add(pr);
+        this.ownedMaterials.push(...(pr.userData.ownedMaterials ?? []));
+      }
+      // 北方亭坐在可登临的主墩台顶上：登记亭身碰撞
+      this.col(s * hx - P / 2, top, pN - P / 2, s * hx + P / 2, top + 3, pN + P / 2);
+    }
+    this.finish(g);
   }
 
   /** 城台式门楼（神武门）：红墙城台 + 三个门洞 + 重檐城楼 */
