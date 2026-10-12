@@ -8,6 +8,7 @@ import { mulberry32 } from './garden/noise.js';
 import { buildTreeVariant, createFoliageMaterial } from './garden/trees.js';
 import { buildRockery } from './garden/rocks.js';
 import { LAYOUT } from '../config/constants.js';
+import anchors from '../../data/anchors.json';
 
 const PATH_HW = 1.8; // 甬路半宽
 const GRASS_Y = 0.012;
@@ -164,9 +165,11 @@ export class GardenBuilder {
     };
   }
 
-  /** 万春亭 / 千秋亭一排的 z（园中心） */
+  /** 万春亭 / 千秋亭一排的 z（来自 anchors） */
   pavilionZ(cz) {
-    return cz;
+    // 万春亭的 z 作为参考（因万春与千秋位置基本相同）
+    const wanchun = anchors['万春亭'];
+    return wanchun ? wanchun.z : cz;
   }
 
   buildGround(root, cx, cz) {
@@ -237,9 +240,12 @@ export class GardenBuilder {
   /* ---------------------------------------------------------------- 水池与亭 */
 
   pondSpecs(cx) {
+    // 从 anchors.json 读取浮碧亭和澄瑞亭的真实坐标
+    const fubi = anchors['浮碧亭'];
+    const chengrui = anchors['澄瑞亭'];
     return [
-      { name: '浮碧亭', x: cx + 32, z: this.bounds.z0 + 23 },
-      { name: '澄瑞亭', x: cx - 32, z: this.bounds.z0 + 23 },
+      { name: '浮碧亭', x: fubi ? fubi.x : cx - 53.4, z: fubi ? fubi.z : this.bounds.z0 + 23 },
+      { name: '澄瑞亭', x: chengrui ? chengrui.x : cx + 53.5, z: chengrui ? chengrui.z : this.bounds.z0 + 23 },
     ];
   }
 
@@ -325,9 +331,11 @@ export class GardenBuilder {
     for (const p of this.pondSpecs(cx)) {
       this.makePavilion(root, { x: p.x, z: p.z, size: PAVILION_POND_BASE - 1.6, baseH: PAVILION_POND_BASE_H, colH: 3.3, cols: 'square4', sides: 4, layers: 1, pier: true });
     }
-    // 万春亭（东）、千秋亭（西）：方形重檐攒尖，八柱
-    for (const s of [1, -1]) {
-      this.makePavilion(root, { x: cx + s * 32, z: pz, size: 7, baseH: 0.75, colH: 3.8, cols: 'square8', sides: 4, layers: 2, steps: true });
+    // 万春亭（东）、千秋亭（西）：方形重檐攒尖，八柱（从 anchors 读取真实坐标）
+    const wanchun = anchors['万春亭'];
+    const qianqiu = anchors['千秋亭'];
+    for (const a of [[wanchun.x, wanchun.z], [qianqiu.x, qianqiu.z]]) {
+      this.makePavilion(root, { x: a[0], z: a[1], size: 7, baseH: 0.75, colH: 3.8, cols: 'square8', sides: 4, layers: 2, steps: true });
     }
   }
 
