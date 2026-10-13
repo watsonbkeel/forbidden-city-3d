@@ -6,5 +6,6 @@ import taihe from '../../../data/interiors/taihe.json';
 import qianqing from '../../../data/interiors/qianqing.json';
 import huangji from '../../../data/interiors/huangji.json';
 import yangxin from '../../../data/interiors/yangxin.json';
+import kunning from '../../../data/interiors/kunning.json';
 
-export const INTERIORS = { taihe, qianqing, huangji, yangxin };
+export const INTERIORS = { taihe, qianqing, huangji, yangxin, kunning };

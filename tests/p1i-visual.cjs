@@ -26,17 +26,29 @@ const hallId = process.argv[2] || 'taihe';
     const cfg = INTERIORS[hallId];
     const floorY = a.collisionManager.getGroundHeight(cfg.frame.x, cfg.frame.z, 0, 999);
     window.__p1i = { L: new InteriorLoader(a.scene, a.collisionManager, { renderer: a.renderer, registry: INTERIORS }), cfg, floorY };
-    return { floorY, frame: cfg.frame, throne: cfg.throne };
+    return { floorY, frame: cfg.frame, throne: cfg.throne, views: cfg.views };
   }, { hallId });
   const { floorY, frame: f, throne: t } = setup;
   const eye = floorY + 1.7;
-  const zc = f.z + (t.ztb0 + t.ztb1) / 2;
-  // 机位：1 门内望宝座；2 宝座台前近景；3 仰视藻井
-  const views = [
-    [[f.x, eye, f.z - f.d / 2 + 2], [f.x, floorY + 3, zc]],
-    [[f.x + 4, eye, f.z + t.ztb0 - 7], [f.x, floorY + 2.5, zc]],
-    [[f.x, eye, zc - 6], [f.x, floorY + 12, zc - 1.2]],
-  ];
+  // 机位：宝座殿 1 门内望宝座；2 宝座台前近景；3 仰视藻井。
+  // 非宝座殿（如坤宁宫，JSON 无 throne）：用 JSON 的 views[]（殿局部坐标，y 相对地面），没有则取殿心的三个通用机位。
+  let views;
+  if (t) {
+    const zc = f.z + (t.ztb0 + t.ztb1) / 2;
+    views = [
+      [[f.x, eye, f.z - f.d / 2 + 2], [f.x, floorY + 3, zc]],
+      [[f.x + 4, eye, f.z + t.ztb0 - 7], [f.x, floorY + 2.5, zc]],
+      [[f.x, eye, zc - 6], [f.x, floorY + 12, zc - 1.2]],
+    ];
+  } else if (setup.views?.length) {
+    views = setup.views.map(v => [[f.x + v.eye[0], floorY + v.eye[1], f.z + v.eye[2]], [f.x + v.look[0], floorY + v.look[1], f.z + v.look[2]]]);
+  } else {
+    views = [
+      [[f.x, eye, f.z - f.d / 2 + 2], [f.x, floorY + 2, f.z + f.d / 4]],
+      [[f.x - f.w / 4, eye, f.z], [f.x - f.w / 2, floorY + 2, f.z]],
+      [[f.x + f.w / 4, eye, f.z], [f.x + f.w / 2, floorY + 2, f.z]],
+    ];
+  }
   const shoot = async (tag) => {
     const out = [];
     for (let i = 0; i < views.length; i++) {

@@ -1,0 +1,23 @@
+{
+  "$schema": "./schema.md",
+  "hall": "坤宁宫",
+  "id": "kunning",
+  "tier": "S",
+  "model": "/models/interiors/kunning.glb",
+  "fallback": "B",
+  "budget": { "tris": 400000, "textureMB": 8 },
+  "frame": { "x": 0, "z": 386.1, "rot": 0, "w": 46, "d": 20 },
+  "floor": { "mode": "ground", "y": null },
+  "anchor": { "x": 0, "y": 0, "z": 0 },
+  "preload": { "enter": 15, "exit": 40 },
+  "views": [
+    { "eye": [0, 1.7, -7.5], "look": [8, 1.0, 8.5] },
+    { "eye": [-9, 1.7, -5], "look": [-20, 1.3, 8] },
+    { "eye": [-13, 1.7, 1], "look": [-19, 5.5, 0] }
+  ],
+  "lights": [
+    { "type": "point", "x": 6, "y": 5, "z": 0, "color": "#ffd9a0", "intensity": 1.0, "distance": 22 },
+    { "type": "point", "x": -17.5, "y": 4.5, "z": 0, "color": "#ff7a50", "intensity": 1.3, "distance": 14 }
+  ],
+  "source": "docs/research/interiors-kunning.md（东次间板门 / 东暖阁 / 三面炕 / 灶间为 A13 官方页描述，置信高；各间尺寸、炕高、灶数量、西两间功能为推断，置信低）。坤宁宫不是宝座殿，无 throne 字段；views 为 tests/p1i-visual.cjs 的机位（殿局部坐标）"
+}
