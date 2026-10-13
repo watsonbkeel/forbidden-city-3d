@@ -1,13 +1,13 @@
 // 一键合并门禁：npm run test:gate
 //   build → test:zones → test:anchors → smoke → regression（失败自动重试 1 次）→ stepwalk 60,10 0,1 all
-//   （+ stepwalk-auto 自动路线）→ perf（对比 tests/perf-p0c.json）
+//   （+ stepwalk-auto 自动路线）→ perf（对比 tests/perf-p2.json）
 // 自己起停 vite（端口读 PORT，默认 5181；--strictPort，只杀自己起的进程），不依赖 tools/run-with-vite.sh。
 // 任一步失败立即停止（--keep-going 继续跑完），最后打印汇总表；有失败退出码 1。
 //
 // 环境变量：
 //   PORT=5181                 vite 端口（各 Agent 用自己的端口，见 P1-COMMON §2）
 //   BUILD_DIR=/tmp/fc-build-gate-<PORT>   build 输出目录
-//   PERF_BASELINE=tests/perf-p0c.json     perf 对比基线
+//   PERF_BASELINE=tests/perf-p2.json      perf 对比基线（P2 发布起；旧基线 perf-p0c.json 留档）
 //   PERF_FPS_STRICT=1         fpsP5 下降 >15% 判失败（默认只警告，见 docs/TESTING.md「fps 规则」）
 //   GATE_SKIP=perf,regression 跳过若干步（调试用；被跳过的步在汇总表标"跳过"，退出码仍可为 0）
 //   GATE_VISUAL=1             追加截图回归 tests/visual.cjs（只警告，不影响退出码）
@@ -23,7 +23,7 @@ const PORT = Number(process.env.PORT || 5181);
 const URL = `http://127.0.0.1:${PORT}`;
 const BUILD_DIR = process.env.BUILD_DIR || `/tmp/fc-build-gate-${PORT}`;
 const LOG_DIR = `/tmp/fc-gate-${PORT}`;
-const BASELINE = path.resolve(ROOT, process.env.PERF_BASELINE || 'tests/perf-p0c.json');
+const BASELINE = path.resolve(ROOT, process.env.PERF_BASELINE || 'tests/perf-p2.json');
 const PERF_OUT = path.join(LOG_DIR, 'perf.json');
 const KEEP_GOING = process.argv.includes('--keep-going');
 const SKIP = new Set((process.env.GATE_SKIP || '').split(',').filter(Boolean));

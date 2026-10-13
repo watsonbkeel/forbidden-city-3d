@@ -50,10 +50,10 @@ GATE_VISUAL=1 PORT=5181 $NODE tests/gate.cjs   # 追加截图回归（只警告�
 | regression | `tests/regression.cjs` | 24/24；失败自动重跑 1 次（swiftshader 截图偶发超时） |
 | stepwalk | `tests/stepwalk.cjs 60,10 0,1 all` | 失败 0 |
 | stepwalk-auto | `tests/stepwalk-auto.cjs 60,10 0,1 all` | 失败 0（knownIssue 单列不计） |
-| perf | `tests/perf.cjs /tmp/fc-gate-<PORT>/perf.json` 对比 `tests/perf-p0c.json` | 任一点 calls 或 tris 劣化 > 10% = 失败 |
+| perf | `tests/perf.cjs /tmp/fc-gate-<PORT>/perf.json` 对比 `tests/perf-p2.json` | 任一点 calls 或 tris 劣化 > 10% = 失败 |
 | visual（可选） | `tests/visual.cjs` | `GATE_VISUAL=1` 才跑；超阈值只记 ⚠，不影响退出码 |
 
-环境变量：`PORT`（默认 5181）、`BUILD_DIR`、`PERF_BASELINE`（默认 `tests/perf-p0c.json`）、`PERF_FPS_STRICT=1`、`GATE_SKIP`、`GATE_VISUAL=1`。
+环境变量：`PORT`（默认 5181）、`BUILD_DIR`、`PERF_BASELINE`（默认 `tests/perf-p2.json`，P2 发布时重定；`perf-p0c.json` 留档）、`PERF_FPS_STRICT=1`、`GATE_SKIP`、`GATE_VISUAL=1`。
 日志：`/tmp/fc-gate-<PORT>/<步骤>.log`；结束打印 Markdown 汇总表，有失败退出码 1。整套约 8–10 分钟。
 
 ### fps 规则
@@ -136,7 +136,7 @@ npm 脚本里的命令是裸 `node tests/x.cjs`，不起 vite；需要浏览器�
 
 坐标运行时由 `tests/lib/auto-routes.mjs` 从 zone JSON 生成，`$NODE tests/stepwalk-auto.cjs --list` 打印清单、`DUMP=1` 打印坐标。当前：east-six 7、garden 1、ningshou 4、outer-east 2、outer-west 8、west-six 8、跨区 2（中轴→东六宫景仁宫→宁寿宫皇极殿→回中轴；中轴→景运门→锡庆门→皇极殿→回中轴）。
 
-### perf.cjs（6 点，眼高 1.7，yaw 0 = 面向北；基线 `tests/perf-p0c.json`）
+### perf.cjs（6 点，眼高 1.7，yaw 0 = 面向北；基线 `tests/perf-p2.json`）
 
 | 点 | 位置 [x, z] | 推导 | 基线 calls | 基线 tris |
 |---|---|---|---|---|
@@ -181,7 +181,7 @@ PORT=5181 tools/run-with-vite.sh $NODE tests/visual.cjs 太和殿     # 只跑�
 | 基线 | 何时更新 | 怎么更新 |
 |---|---|---|
 | `tests/visual/main/*.png` | 画面变化经总控确认合理、合入 main 后 | 在 main（或刚合并的提交）上：`PORT=… tools/run-with-vite.sh $NODE tests/visual.cjs --update`，目视抽查后单独提交「visual 基线更新：原因」 |
-| `tests/perf-p0c.json` | P1-R 有意降 calls/tris，或场景内容有意增加并被批准 | `PORT=… tools/run-with-vite.sh $NODE tests/perf.cjs tests/perf-<阶段>.json`，在 gate 里用 `PERF_BASELINE=` 指向新文件，确认后再把 gate 默认值改过去（P1-T 改） |
+| `tests/perf-p2.json`（原 `perf-p0c.json`） | P1-R 有意降 calls/tris，或场景内容有意增加并被批准 | `PORT=… tools/run-with-vite.sh $NODE tests/perf.cjs tests/perf-<阶段>.json`，在 gate 里用 `PERF_BASELINE=` 指向新文件，确认后再把 gate 默认值改过去（P1-T 改） |
 | regression / stepwalk 取点 | 场景挪动导致取点失效 | 不要在别的任务里改；写 `docs/agent-tasks/REQUESTS.md`（路线名 + 新取点），P1-T 或总控合并时同步。取点用 `tests/lib/world.mjs` 在新旧两种几何下都验证一遍（R2 即为此改成 [25,−20]） |
 | stepwalk-auto | 不需要：路线从 zone JSON 自动生成 | 新路线失败时先 `--check` 判断是生成算法还是场景缺陷；场景缺陷写 REQUESTS 并临时放入 `KNOWN_ISSUES` |
 
