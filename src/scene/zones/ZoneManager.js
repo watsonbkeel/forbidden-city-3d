@@ -295,7 +295,8 @@ export class ZoneManager {
         const [id1, z1] = list[i];
         const [id2, z2] = list[j];
         const b1 = z1.bounds, b2 = z2.bounds;
-        const overlap = !(b1.x1 < b2.x0 || b2.x1 < b1.x0 || b1.z1 < b2.z0 || b2.z1 < b1.z0);
+        // 边贴边（如 ningshou.z0 === outer-east.z1）不算重叠
+        const overlap = !(b1.x1 <= b2.x0 || b2.x1 <= b1.x0 || b1.z1 <= b2.z0 || b2.z1 <= b1.z0);
         if (overlap) {
           console.warn(`[ZoneManager] 区域边界重叠: ${id1} (${z1.name}) 与 ${id2} (${z2.name})`);
         }

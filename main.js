@@ -146,7 +146,9 @@ class ForbiddenCityApp {
         // 所有可进入房间（世界坐标，含门/掩体/刷怪点），后续玩法从这里取
         this.rooms = this.zoneManager.getRooms();
         // S 档内景：按距离流式加载 GLB（失败回退 B 档）
-        this.interiors = new InteriorLoader(this.scene, this.collisionManager, { renderer: this.renderer });
+        // base：部署到子路径（如 GitHub Pages /forbidden-city-3d/）时，模型与 draco/basis 解码器都要带前缀；根路径部署时为 ''
+        const base = (import.meta.env?.BASE_URL ?? '/').replace(/\/$/, '');
+        this.interiors = new InteriorLoader(this.scene, this.collisionManager, { renderer: this.renderer, base });
       }],
       ['控制器', () => {
         this.controls = new FirstPersonControls(this.camera, document.body, this.collisionManager);
