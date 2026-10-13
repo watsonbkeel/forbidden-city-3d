@@ -1,23 +1,23 @@
 # 故宫 3D 虚拟游览
 
 > 用 Three.js 程序化生成的北京故宫第一人称漫游：中轴线全部主要殿宇，加上东西两路的宫院、宫门和御花园，大部分殿宇、宫门都能走进去。  
-> **Phase 1 完成（2026-10-12）**：核心 1:1 复刻、内景管线、渲染优化全部交付。
+> **Phase 2 完成（2026-10-13，标签 `v1.0.0`）**：1:1 复刻全宫格局 + 6 座高保真内景 + 渲染优化，门禁 8/8 全绿。
 
 ![Three.js](https://img.shields.io/badge/Three.js-r162-blue)
 ![Vite](https://img.shields.io/badge/Vite-5-purple)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Status](https://img.shields.io/badge/Status-Phase%201%20Complete-brightgreen)
+![Status](https://img.shields.io/badge/Status-v1.0.0-brightgreen)
 
 ## 项目简介
 
-所有建筑、纹理、天空都是代码生成的（纹理为少量位图 + 程序化绘制），没有外部模型文件。场景按真实平面格局缩小摆放：午门在南，神武门在北，东华门、西华门在东西两侧，可以直接走出宫城。
+建筑、天空由代码程序化生成（纹理为少量位图 + 程序化绘制）；只有 6 座殿的高保真内景是 Blender 脚本生成的 GLB（源脚本在 `assets-src/interiors/`，总计约 1 MB）。场景按真实平面格局缩小摆放：午门在南，神武门在北，东华门、西华门在东西两侧，可以直接走出宫城。
 
-### Phase 1 完成内容
+### 已完成内容
 - ✅ **中轴线**：午门、金水桥、太和门、太和殿、中和殿、保和殿、乾清门、乾清宫、交泰殿、坤宁宫、御花园、神武门
 - ✅ **东西六宫**：景仁宫、承乾宫、钟粹宫、延禧宫、永和宫、景阳宫（东）+ 永寿宫、翊坤宫、储秀宫、太极殿、长春宫、咸福宫（西）
 - ✅ **外路区域**：文华殿、文渊阁、奉先殿、箭亭（外东） + 武英殿、南薰殿、慈宁宫、寿康宫、寿安宫、英华殿（外西）
 - ✅ **宁寿宫区**：皇极殿、宁寿宫、九龙壁、乾隆花园、畅音阁等 20+ 建筑
-- ✅ **内景系统**：太和殿、乾清宫 (S 档高保真) + 东西六宫前殿 (A 档模板) + 其他殿座 (B 档简化)
+- ✅ **内景系统**：太和殿、乾清宫、皇极殿、养心殿、坤宁宫、慈宁宫 6 座 S 档高保真内景（走近 15 m 自动加载，离开 40 m 卸载，加载失败回退简化内景）+ 其他殿座 B 档简化内景
 - ✅ **性能优化**：DrawCall −66.5%, Triangles −57.1%, 目标 60fps(桌面) / 30fps(移动)
 
 ## 场景内容
@@ -181,6 +181,19 @@ Phase 1 后，建筑由数据驱动（`data/zones/*.json`），使用 `CourtKit`
 
 详见 `data/schema.md` 和 `docs/ARCHITECTURE-1to1.md`。
 
+## 部署
+
+产物是纯静态文件（`dist/`，约 13 MB：贴图 10 MB、JS 0.96 MB / gzip 0.28 MB、内景 GLB 1 MB、draco/basis 解码器 1.3 MB），任何静态托管都能用。
+
+```bash
+npm run build                                  # 部署到域名根路径
+npx vite build --base=/forbidden-city-3d/      # 部署到子路径（如 GitHub Pages 项目页）
+```
+
+- 贴图、内景模型、解码器路径都跟随 `--base`，子路径部署无需改代码。
+- 服务器需对 `.wasm` 返回 `application/wasm`（主流托管默认支持）。
+- 生产包不暴露 `window.__forbiddenCityApp`（仅开发模式），自动化测试须跑在 `npm run dev` 上。
+
 ## 测试
 
 测试脚本用 Playwright + 本机 Chrome（headless，swiftshader），需要先启动 `npm run dev`。Playwright 不在项目依赖里，自行安装；并按本机路径修改脚本里的 `executablePath`。
@@ -190,15 +203,17 @@ Phase 1 后，建筑由数据驱动（`data/zones/*.json`），使用 `CourtKit`
 npm run test:gate  # 完整门禁（8 个步骤：build + zones + anchors + smoke + regression + stepwalk + stepwalk-auto + perf）
 ```
 
-**门禁状态（P2-A 收尾基线，标签 p2a-done）**：
+**门禁状态（v1.0.0 发布基线）**：
 - ✅ build（构建通过）
 - ✅ zones（7 个 zone，0 错误，23 警告）
 - ✅ anchors（113 条锚点，超差 0）
 - ✅ smoke（colliders 6560，无报错）
 - ✅ regression（24/24 通过）
 - ✅ stepwalk（132/132 全部通过；P2-A1 已修复御花园四亭、文渊阁院夹道、蹈和门三处碰撞缺陷）
-- ✅ stepwalk-auto（152/152 全部通过，无 knownIssue 跳过；外西路补合后新增 8 条）
-- ✅ perf（calls/tris 无劣化）
+- ✅ stepwalk-auto（152/152 全部通过，无 knownIssue 跳过）
+
+> stepwalk / stepwalk-auto 会先预加载全部 6 座 S 档内景，按「内景全部在场」的最坏情况测碰撞；预加载失败即判失败。
+- ✅ perf（对比 `tests/perf-p2.json`，calls/tris 无劣化；fps 为软渲染参考值）
 
 ### 单独运行测试
 
