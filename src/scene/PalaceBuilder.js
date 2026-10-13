@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { COLORS } from '../config/constants.js';
 import { buildGateAscent, toWorld } from './palace/gateAscent.js';
+import { buildEnterableTower } from './palace/towerShell.js';
 import { riverBridges, JINSHUI_BRIDGE_LENGTH } from './palace/river.js';
 import { buildRoof } from './RoofBuilder.js';
 import { buildHallBody, buildBalustrade, buildStuddedDoor } from './HallKit.js';
@@ -803,7 +804,9 @@ export class PalaceBuilder {
     this.walkables.push(...asc.walkables);
 
     // 正楼：面阔 60.05 × 进深 25，重檐庑殿，9 间（dimensions.md:79）
-    const body = buildHallBody(this.library, { width: dm.width, depth: dm.depth, height: 13, bays: 9, facade: 'lattice' });
+    // 城楼二层可进入：北面（马道所在的宫内一侧）明间开门，室内有地面/顶棚/内柱
+    const body = buildEnterableTower(this.library, { width: dm.width, depth: dm.depth, height: 13, bays: 9, doorSide: 1 });
+    this.ownedMaterials.push(...body.userData.ownedMaterials);
     body.position.y = top;
     g.add(body);
     for (const b of body.userData.colliders ?? []) {
@@ -890,7 +893,9 @@ export class PalaceBuilder {
     }), new THREE.Matrix4().makeTranslation(this.ox, 0, this.oz));
     this.colliders.push(...asc.colliders);
     this.walkables.push(...asc.walkables);
-    const body = buildHallBody(this.library, { width: W * 0.62, depth: D * 0.55, height: 7, bays: 5, facade: 'lattice' });
+    // 城楼可进入：南面（宫内一侧，马道所在面）明间开门
+    const body = buildEnterableTower(this.library, { width: W * 0.62, depth: D * 0.55, height: 7, bays: 5, doorSide: -1 });
+    this.ownedMaterials.push(...body.userData.ownedMaterials);
     body.position.y = top;
     g.add(body);
     // 城楼屋身碰撞（在城台顶面上），绕城楼一圈可走

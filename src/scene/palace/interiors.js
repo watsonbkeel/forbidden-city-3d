@@ -15,13 +15,55 @@ import * as THREE from 'three';
 
 export const INTERIOR_KINDS = ['hall', 'room', 'storage', 'empty', 'palace-front', 'gate-hall', 'study', 'bedroom'];
 
+export const GOLD_BRICK_TILE = 0.64; // 二尺金砖，米
+
+/** 金砖方砖贴图：4×4 块砖，每块略有深浅差异，砖缝为更深的线（模块级单例，避免重复生成） */
+let _goldBrickTex;
+export function goldBrickTexture() {
+  if (_goldBrickTex === undefined) _goldBrickTex = makeGoldBrickTexture();
+  return _goldBrickTex;
+}
+function makeGoldBrickTexture() {
+  if (typeof document === 'undefined') return null;
+  const N = 4, S = 128, c = document.createElement('canvas');
+  c.width = c.height = N * S;
+  const g = c.getContext('2d');
+  let seed = 7;
+  const rnd = () => ((seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296);
+  for (let i = 0; i < N; i++) for (let j = 0; j < N; j++) {
+    const v = 52 + Math.floor(rnd() * 14);
+    g.fillStyle = `rgb(${v},${v + 1},${v + 2})`;
+    g.fillRect(i * S, j * S, S, S);
+    for (let k = 0; k < 260; k++) { // 细微颗粒
+      const n = 40 + Math.floor(rnd() * 36);
+      g.fillStyle = `rgba(${n},${n},${n + 2},0.35)`;
+      g.fillRect(i * S + rnd() * S, j * S + rnd() * S, 2, 2);
+    }
+  }
+  g.strokeStyle = 'rgba(14,14,14,0.9)';
+  g.lineWidth = 3;
+  for (let k = 0; k <= N; k++) {
+    g.beginPath(); g.moveTo(k * S, 0); g.lineTo(k * S, N * S); g.stroke();
+    g.beginPath(); g.moveTo(0, k * S); g.lineTo(N * S, k * S); g.stroke();
+  }
+  const t = new THREE.CanvasTexture(c);
+  t.wrapS = t.wrapT = THREE.RepeatWrapping;
+  t.colorSpace = THREE.SRGBColorSpace;
+  t.anisotropy = 8;
+  return t;
+}
+
 // A 档（P1-I）共享装饰材质：模块级单例，所有分区共用，不随分区卸载释放（只有 4 个材质）
 let _decoMats = null;
 function decoMaterials() {
   if (!_decoMats) {
     const mk = (name, props) => new THREE.MeshStandardMaterial({ name, ...props });
     _decoMats = {
-      goldBrick: mk('kit_gold_brick', { color: 0x2b2d2e, roughness: 0.35, metalness: 0.05 }),   // 金砖（苏州御窑）
+      // 金砖（苏州御窑）：深灰方砖贴图（带砖缝与细微色差），低反光，避免大片平面出现「水面」般的高光晃动
+      goldBrick: mk('kit_gold_brick', {
+        map: goldBrickTexture(), color: 0xffffff, roughness: 0.62, metalness: 0.0, envMapIntensity: 0.25,
+        polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2,
+      }),
       silk: mk('kit_silk', { color: 0xc8a24a, roughness: 0.75, metalness: 0.0 }),                // 屏风/帐幔
       plaque: mk('kit_plaque', { color: 0x1d2a44, roughness: 0.5, metalness: 0.1 }),             // 殿内横匾（青底）
       bronze: mk('kit_bronze', { color: 0x4a3b28, roughness: 0.45, metalness: 0.7 }),            // 香亭/仙鹤/熏炉
@@ -77,7 +119,12 @@ function throneSet(put, deco, r, { platW, platD, back = 0.9 }) {
 function goldFloor(deco, r) {
   const g = new THREE.PlaneGeometry(r.x1 - r.x0 - 0.1, r.z1 - r.z0 - 0.1);
   g.rotateX(-Math.PI / 2);
-  deco(g, 'goldBrick', (r.x0 + r.x1) / 2, 0.035, (r.z0 + r.z1) / 2);
+  // UV 按米换算：每块 4×4 砖贴图覆盖 4 块金砖（2.56m）
+  const uv = g.attributes.uv, span = GOLD_BRICK_TILE * 4;
+  const gw = r.x1 - r.x0 - 0.1, gd = r.z1 - r.z0 - 0.1;
+  for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * gw / span, uv.getY(i) * gd / span);
+  // 抬到 6cm：与下方石板地面（+2cm）拉开层距，消除远处深度冲突造成的闪烁/晃动
+  deco(g, 'goldBrick', (r.x0 + r.x1) / 2, 0.06, (r.z0 + r.z1) / 2).receiveShadow = true;
 }
 
 /** 殿前陈设一对（香亭 + 仙鹤 简化体），放在宝座台前两侧，不进门道 */

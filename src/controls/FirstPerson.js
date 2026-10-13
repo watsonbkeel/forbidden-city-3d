@@ -85,6 +85,11 @@ export class FirstPersonControls {
     this._onKeyDown = this.onKeyDown.bind(this);
     this._onKeyUp = this.onKeyUp.bind(this);
     this._onStop = this.stop.bind(this);
+    // 解锁（Esc / 打开地图）时清空输入；地图打开时（freeMove）保留，让玩家能边看地图边走
+    this._onUnlockStop = () => { if (!this.freeMove) this.stop(); };
+    // freeMove：不依赖指针锁定也接受键盘移动（打开地图时使用）
+    this.freeMove = false;
+    this._turnAxis = new THREE.Vector3(0, 1, 0);
     
     this.setupEventListeners();
   }
@@ -109,7 +114,7 @@ export class FirstPersonControls {
       document.addEventListener('keyup', this._onKeyUp);
       
       // 解锁时立即清空输入和速度
-      this.controls.addEventListener('unlock', this._onStop);
+      this.controls.addEventListener('unlock', this._onUnlockStop);
     } else {
       // 移动端：视角锁定按钮 + 右半屏拖动视角 + 跳跃按钮
       this.createLookLockButton();
@@ -241,7 +246,7 @@ export class FirstPersonControls {
    * 键盘按下
    */
   onKeyDown(event) {
-    if (!this.controls.isLocked) return;
+    if (!this.controls.isLocked && !this.freeMove) return;
     const code = event.code;
     if (code === 'Space') {
       event.preventDefault();
@@ -304,7 +309,12 @@ export class FirstPersonControls {
     let targetRight = 0;
     
     // 桌面端：WASD
-    if (!this.isMobile && this.controls.isLocked) {
+    if (!this.isMobile && (this.controls.isLocked || this.freeMove)) {
+      // 地图打开、鼠标未锁定时用 Q/E 转向（锁定时用鼠标）
+      if (this.freeMove && !this.controls.isLocked) {
+        const turn = Number(this.pressedKeys.has('KeyQ')) - Number(this.pressedKeys.has('KeyE'));
+        if (turn) this.camera.rotateOnWorldAxis(this._turnAxis, turn * 1.6 * delta);
+      }
       let f = Number(this.moveForward) - Number(this.moveBackward);
       let r = Number(this.moveRight) - Number(this.moveLeft);
       const len = Math.hypot(f, r);
@@ -636,6 +646,12 @@ export class FirstPersonControls {
     }
   }
   
+  /** 地图打开时：允许在未锁定指针的情况下继续用键盘移动 */
+  setFreeMove(on) {
+    this.freeMove = !!on;
+    if (!on) this.stop();
+  }
+
   /**
    * 检查是否锁定
    */
@@ -651,7 +667,7 @@ export class FirstPersonControls {
     window.removeEventListener('blur', this._onStop);
     document.removeEventListener('keydown', this._onKeyDown);
     document.removeEventListener('keyup', this._onKeyUp);
-    this.controls.removeEventListener('unlock', this._onStop);
+    this.controls.removeEventListener('unlock', this._onUnlockStop);
     if (this._onClick) {
       this.domElement.removeEventListener('click', this._onClick);
     }

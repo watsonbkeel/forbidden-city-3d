@@ -43,7 +43,7 @@ export class Minimap {
       top: ${this.previewEnabled ? '42%' : '50%'};
       left: 50%;
       transform: translate(-50%, -50%);
-      width: ${this.mapSize}px;
+      width: ${this.previewEnabled ? this.mapSize + 'px' : 'min(94vw, 780px)'};
       box-sizing: border-box;
       max-width: 94vw;
       max-height: ${this.previewEnabled ? '68vh' : '96vh'};
@@ -71,22 +71,53 @@ export class Minimap {
     this.container.appendChild(title);
     
     // Canvas 地图
+    // 视图状态：k = 相对"整图适配"的放大倍数，(cx, cy) = 视口中心对应的地图坐标（地图像素单位）
+    this.view = { k: 1, cx: this.mapSize / 2, cy: this.mapHeight / 2 };
+    this.viewW = this.mapSize;
+    this.viewH = this.mapHeight;
+    this.dpr = Math.min(window.devicePixelRatio || 1, 2);
+    this.MAX_K = 8;
+
     this.canvas = document.createElement('canvas');
     this.canvas.width = this.mapSize;
     this.canvas.height = this.mapHeight;
     this.canvas.style.cssText = `
       display: block;
       width: 100%;
-      height: auto;
+      height: ${this.mapHeight}px;
       background: rgba(240, 235, 220, 0.95);
       border: 1px solid rgba(100, 80, 60, 0.4);
+      touch-action: none;
+      cursor: grab;
     `;
     this.container.appendChild(this.canvas);
     this.ctx = this.canvas.getContext('2d');
+
+    // 缩放工具条
+    const bar = document.createElement('div');
+    bar.style.cssText = 'display:flex;gap:6px;justify-content:center;align-items:center;margin-top:8px';
+    const mkBtn = (text, title, fn) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = text;
+      b.title = title;
+      b.style.cssText = 'min-width:44px;min-height:36px;padding:2px 10px;color:#ffd764;background:#382d20;border:1px solid #9f804a;border-radius:6px;font-size:14px;touch-action:manipulation;cursor:pointer';
+      b.addEventListener('click', (e) => { e.stopPropagation(); fn(); });
+      bar.appendChild(b);
+      return b;
+    };
+    mkBtn('＋', '放大', () => this.zoomBy(1.6));
+    mkBtn('－', '缩小', () => this.zoomBy(1 / 1.6));
+    mkBtn('定位我', '放大并定位到当前位置', () => this.focusPlayer(3));
+    mkBtn('全图', '显示整张平面图', () => this.resetView());
+    this.zoomLabel = document.createElement('span');
+    this.zoomLabel.style.cssText = 'color:#bbb;font-size:12px;min-width:44px;text-align:center';
+    bar.appendChild(this.zoomLabel);
+    this.container.appendChild(bar);
     
     // 提示文字
     const hint = document.createElement('div');
-    hint.textContent = '点击建筑名称传送 · 按 M 键关闭';
+    hint.textContent = '滚轮/双指缩放 · 拖动平移 · 点击建筑名称传送 · W/A/S/D 继续走动，Q/E 转向 · 按 M 关闭';
     hint.style.cssText = `
       color: #999;
       font-size: 12px;
@@ -115,12 +146,18 @@ export class Minimap {
     this._onKeyDown = (e) => {
       if (e.key === 'm' || e.key === 'M') {
         this.toggle();
+      } else if (this.visible && (e.key === '+' || e.key === '=')) {
+        this.zoomBy(1.4);
+      } else if (this.visible && (e.key === '-' || e.key === '_')) {
+        this.zoomBy(1 / 1.4);
       }
     };
+    this._onResize = () => { if (this.visible) { this.resizeCanvas(); this.drawMap(); } };
+    window.addEventListener('resize', this._onResize);
     window.addEventListener('keydown', this._onKeyDown);
     
     // 底图只画一次到高分辨率离屏画布，全图和预览都从这里取，避免每帧重绘全部建筑
-    this.baseScale = 3;
+    this.baseScale = this.previewEnabled ? 4 : 6;   // 放大查看时文字仍然清晰
     this.baseCanvas = document.createElement('canvas');
     this.baseCanvas.width = this.mapSize * this.baseScale;
     this.baseCanvas.height = this.mapHeight * this.baseScale;
@@ -135,16 +172,148 @@ export class Minimap {
       this.container.appendChild(close);
     }
     
-    this.canvas.addEventListener('click', (event) => {
-      event.stopPropagation();
-      const rect = this.canvas.getBoundingClientRect();
-      const x = (event.clientX - rect.left) * this.mapSize / rect.width;
-      const y = (event.clientY - rect.top) * this.mapHeight / rect.height;
-      const label = [...this.labels].reverse().find(it => Math.abs(x - it.x) <= it.width / 2 + 3 && Math.abs(y - it.y) <= it.height / 2 + 3);
-      if (label && this.onTeleport?.(label.name)) this.toggle();
-    });
+    this.bindViewInteraction();
     // 初始绘制
+    this.resizeCanvas();
     this.drawMap();
+  }
+
+  // ───────────────────────── 缩放 / 平移 ─────────────────────────
+
+  /** 屏幕像素每地图单位（k=1 时整图恰好适配视口） */
+  get pxPerUnit() {
+    return Math.min(this.viewW / this.mapSize, this.viewH / this.mapHeight) * this.view.k;
+  }
+
+  /** 按容器实际宽度重算画布尺寸（竖长地图，限制高度不超过视口 62%） */
+  resizeCanvas() {
+    const w = this.canvas.clientWidth || this.mapSize;
+    const maxH = this.previewEnabled ? window.innerHeight * 0.5 : window.innerHeight * 0.66;
+    const h = Math.max(220, Math.min(w * this.mapHeight / this.mapSize, maxH));
+    this.viewW = w;
+    this.viewH = h;
+    this.canvas.style.height = `${h}px`;
+    this.canvas.width = Math.round(w * this.dpr);
+    this.canvas.height = Math.round(h * this.dpr);
+    this.clampView();
+  }
+
+  clampView() {
+    const v = this.view;
+    v.k = Math.min(this.MAX_K, Math.max(1, v.k));
+    const s = this.pxPerUnit;
+    const halfW = this.viewW / 2 / s, halfH = this.viewH / 2 / s;
+    // 地图小于视口时居中；否则不允许拖出地图边缘
+    v.cx = halfW * 2 >= this.mapSize ? this.mapSize / 2 : Math.min(this.mapSize - halfW, Math.max(halfW, v.cx));
+    v.cy = halfH * 2 >= this.mapHeight ? this.mapHeight / 2 : Math.min(this.mapHeight - halfH, Math.max(halfH, v.cy));
+  }
+
+  screenToMap(px, py) {
+    const s = this.pxPerUnit;
+    return { x: (px - this.viewW / 2) / s + this.view.cx, y: (py - this.viewH / 2) / s + this.view.cy };
+  }
+
+  mapToScreen(mx, my) {
+    const s = this.pxPerUnit;
+    return { x: (mx - this.view.cx) * s + this.viewW / 2, y: (my - this.view.cy) * s + this.viewH / 2 };
+  }
+
+  /** 以屏幕点 (px, py) 为锚点缩放，保持该点下的地图位置不变 */
+  zoomAt(factor, px = this.viewW / 2, py = this.viewH / 2) {
+    const before = this.screenToMap(px, py);
+    this.view.k = Math.min(this.MAX_K, Math.max(1, this.view.k * factor));
+    const s = this.pxPerUnit;
+    this.view.cx = before.x - (px - this.viewW / 2) / s;
+    this.view.cy = before.y - (py - this.viewH / 2) / s;
+    this.clampView();
+    this.drawMap();
+  }
+
+  zoomBy(factor) { this.zoomAt(factor); }
+
+  resetView() {
+    this.view = { k: 1, cx: this.mapSize / 2, cy: this.mapHeight / 2 };
+    this.clampView();
+    this.drawMap();
+  }
+
+  focusPlayer(k = 3) {
+    const pm = this.worldToMap(this.playerPosition.x, this.playerPosition.z);
+    this.view.k = k;
+    this.view.cx = pm.x;
+    this.view.cy = pm.y;
+    this.clampView();
+    this.drawMap();
+  }
+
+  bindViewInteraction() {
+    const cv = this.canvas;
+    const pointers = new Map();
+    let dragMoved = 0, lastPinch = 0;
+    const local = (e) => { const r = cv.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; };
+
+    cv.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const p = local(e);
+      this.zoomAt(e.deltaY < 0 ? 1.25 : 1 / 1.25, p.x, p.y);
+    }, { passive: false });
+
+    cv.addEventListener('pointerdown', (e) => {
+      e.stopPropagation();
+      cv.setPointerCapture?.(e.pointerId);
+      pointers.set(e.pointerId, local(e));
+      dragMoved = 0;
+      lastPinch = 0;
+      cv.style.cursor = 'grabbing';
+    });
+
+    cv.addEventListener('pointermove', (e) => {
+      if (!pointers.has(e.pointerId)) return;
+      const prev = pointers.get(e.pointerId);
+      const cur = local(e);
+      pointers.set(e.pointerId, cur);
+      if (pointers.size === 2) {
+        const [a, b] = [...pointers.values()];
+        const dist = Math.hypot(a.x - b.x, a.y - b.y);
+        if (lastPinch > 0) this.zoomAt(dist / lastPinch, (a.x + b.x) / 2, (a.y + b.y) / 2);
+        lastPinch = dist;
+        dragMoved += 10;
+        return;
+      }
+      const dx = cur.x - prev.x, dy = cur.y - prev.y;
+      dragMoved += Math.abs(dx) + Math.abs(dy);
+      const s = this.pxPerUnit;
+      this.view.cx -= dx / s;
+      this.view.cy -= dy / s;
+      this.clampView();
+      this.drawMap();
+    });
+
+    const end = (e) => {
+      const wasSingle = pointers.size === 1;
+      pointers.delete(e.pointerId);
+      lastPinch = 0;
+      cv.style.cursor = 'grab';
+      // 几乎没有拖动 → 视为点击：命中建筑名称则传送
+      if (e.type === 'pointerup' && wasSingle && dragMoved < 6) this.handleMapClick(local(e));
+    };
+    cv.addEventListener('pointerup', end);
+    cv.addEventListener('pointercancel', end);
+    cv.addEventListener('dblclick', (e) => {
+      e.stopPropagation();
+      const p = local(e);
+      this.zoomAt(2, p.x, p.y);
+    });
+    cv.addEventListener('click', (e) => e.stopPropagation());
+  }
+
+  handleMapClick(p) {
+    const m = this.screenToMap(p.x, p.y);
+    const tol = 3 / this.view.k;
+    const label = [...this.labels].reverse().find(it =>
+      Math.abs(m.x - it.x) <= it.width / 2 + tol && Math.abs(m.y - it.y) <= it.height / 2 + tol);
+    if (label && this.onTeleport?.(label.name)) this.toggle();
   }
   
   /**
@@ -206,7 +375,8 @@ export class Minimap {
     if (this.preview) this.preview.style.display = this.visible ? 'none' : 'block';
     document.body.classList.toggle('map-open', this.visible);
     if (this.visible) {
-      this.drawMap();
+      this.resizeCanvas();
+      this.focusPlayer(2);   // 打开即放大到当前位置，文字可读；点「全图」查看整体
     }
   }
   
@@ -290,8 +460,31 @@ export class Minimap {
 
   drawMap() {
     const ctx = this.ctx;
-    ctx.drawImage(this.baseCanvas, 0, 0, this.mapSize, this.mapHeight);
-    this.drawPlayer(ctx, this.worldToMap(this.playerPosition.x, this.playerPosition.z), 5, 14);
+    const cw = this.canvas.width, ch = this.canvas.height;
+    const s = this.pxPerUnit;              // 屏幕 css 像素 / 地图单位
+    const d = this.dpr;
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.fillStyle = '#f0ebdc';
+    ctx.fillRect(0, 0, cw, ch);
+    // 只截取可见区域的底图（底图分辨率 = baseScale 倍），放大时文字依然清晰
+    const bs = this.baseScale;
+    const halfW = this.viewW / 2 / s, halfH = this.viewH / 2 / s;
+    const sx = (this.view.cx - halfW) * bs, sy = (this.view.cy - halfH) * bs;
+    const sw = halfW * 2 * bs, sh = halfH * 2 * bs;
+    // 地图小于视口（整图适配的另一维度）时，目标区域要缩进
+    const dx0 = Math.max(0, -sx) / bs * s * d, dy0 = Math.max(0, -sy) / bs * s * d;
+    const csx = Math.max(0, sx), csy = Math.max(0, sy);
+    const cex = Math.min(this.baseCanvas.width, sx + sw), cey = Math.min(this.baseCanvas.height, sy + sh);
+    if (cex > csx && cey > csy) {
+      ctx.imageSmoothingQuality = 'high';
+      ctx.drawImage(this.baseCanvas, csx, csy, cex - csx, cey - csy,
+        dx0, dy0, (cex - csx) / bs * s * d, (cey - csy) / bs * s * d);
+    }
+    // 玩家标记：固定屏幕尺寸，不随缩放变大
+    ctx.setTransform(d, 0, 0, d, 0, 0);
+    const pm = this.mapToScreen(...Object.values(this.worldToMap(this.playerPosition.x, this.playerPosition.z)));
+    this.drawPlayer(ctx, pm, 5, 14);
+    if (this.zoomLabel) this.zoomLabel.textContent = `${Math.round(this.view.k * 100)}%`;
   }
 
   /**
@@ -452,6 +645,7 @@ export class Minimap {
   
   dispose() {
     window.removeEventListener('keydown', this._onKeyDown);
+    window.removeEventListener('resize', this._onResize);
     this.preview?.removeEventListener('click', this._onPreviewClick);
     this.preview?.remove();
     this.container?.remove();

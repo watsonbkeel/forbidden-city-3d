@@ -345,7 +345,15 @@ class ForbiddenCityApp {
       if (/^[1-8]$/.test(event.key)) this.teleport.go(TELEPORT.POINTS[index].target);
     };
     window.addEventListener('keydown', this._onTeleportKey);
-    this.minimap = new Minimap({ items: this.zoneManager.getMapItems(), preview: this.isMobile, onTeleport: name => this.teleport.go(name), onToggle: visible => { if (visible) this.controls.unlock(); } });
+    this.minimap = new Minimap({ items: this.zoneManager.getMapItems(), preview: this.isMobile, onTeleport: name => this.teleport.go(name), onToggle: visible => {
+      // 打开地图：释放鼠标以便缩放/点击，但保留键盘移动（WASD 走动、Q/E 转向）；关闭：重新锁定视角
+      this.controls.setFreeMove?.(visible);
+      // unlock 事件会重新显示欢迎遮罩，先同步隐藏；之后的 unlock 回调也会检查 minimap.visible
+      const overlay = document.getElementById('welcome-overlay');
+      if (visible && overlay) overlay.style.display = 'none';
+      if (visible) this.controls.unlock();
+      else { try { this.controls.lock(); } catch { /* 需要用户手势时忽略，点击画面即可重新进入 */ } }
+    } });
     
     // 设置菜单（按 ESC 显示）
     this.settingsMenu = new SettingsMenu(document.body);

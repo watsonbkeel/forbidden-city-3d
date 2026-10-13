@@ -3,7 +3,7 @@ import { applyBoxUV, applyBandUV } from '../../utils/GeometryUV.js';
 import { buildRoof, buildWallCap } from '../RoofBuilder.js';
 import { buildStuddedDoor } from '../HallKit.js';
 import { mergeByMaterial } from '../../utils/MergeUtils.js';
-import { furnishRoom } from './interiors.js';
+import { furnishRoom, goldBrickTexture, GOLD_BRICK_TILE } from './interiors.js';
 
 const STEP_RUN = 1.6; // 台阶水平长 / 高
 const _v = new THREE.Vector3();
@@ -32,8 +32,11 @@ export class CourtKit {
     this.ridge = new THREE.MeshStandardMaterial({ color: 0xc98f2c, roughness: 0.36, metalness: 0.05, name: 'kit_ridge' });
     this.gold = new THREE.MeshStandardMaterial({ color: 0xe2b048, roughness: 0.28, metalness: 0.8, name: 'kit_gold' });
     this.lacquer = new THREE.MeshStandardMaterial({ color: 0x7a1d12, roughness: 0.4, metalness: 0.1, name: 'kit_lacquer' });
-    this.floorMat = lib.material('stone_slab', { color: 0x55524e, roughness: 0.35 });
-    this.owned = [this.ridge, this.gold, this.lacquer];
+    // 殿内地面：平整深灰方砖，不带法线贴图、低反光（原先石板法线 + 低粗糙度在大面积地面上像起伏的水面）
+    this.floorMat = new THREE.MeshStandardMaterial({
+      color: 0xffffff, map: goldBrickTexture(), roughness: 0.8, metalness: 0, name: 'kit_floor_flat',
+    });
+    this.owned = [this.ridge, this.gold, this.lacquer, this.floorMat];
   }
 
   // ───────────────────────── 基础 ─────────────────────────
@@ -239,6 +242,11 @@ export class CourtKit {
    */
   gate({ x, z, rot = 0, w = 3.6, h = 4.4, t = 1, style = 'wall', name, roof = 'xieshan', brackets = true, layers = 1 }) {
     const f = this.frame(x, z, rot);
+    // 数据里 w ≥ 20 的是「通面阔」（官方五间门殿，如文华门、慈宁门、武英门），
+    // 而不是门道净宽：按五间三启的门殿整体构建，避免原先 w + 次间 7.2m 的重复叠加。
+    if (w >= 20 && (style === 'hall' || style === 'wall')) {
+      return this.gateHall5(f, { W: w, h: Math.max(h, 4.8), name, roof, brackets, layers });
+    }
     if (style === 'hall') return this.gateHall(f, { w, h, name, roof, brackets, layers });
     const pw = 1.4;
     const gd = Math.max(t + 1.4, w / 2 + 1.0);
@@ -293,6 +301,66 @@ export class CourtKit {
     this.box(f, 'wood_column', bw, 0.2, 0.4, 0, ph + 0.1, 0);
     this.doors(f, { jamb: bw / 2 - 0.28, height: h, zHinge: 0.3, leaf: Math.min(bw / 2 - 0.35, D / 2 - 0.6) });
     // 额枋彩画
+    for (const s of [-1, 1]) {
+      this.box(f, 'caihua_beam', W + 0.5, 0.6, 0.4, 0, ph + colH - 0.3, s * D / 2, 'band');
+      this.box(f, 'caihua_beam', 0.4, 0.6, D, s * W / 2, ph + colH - 0.3, 0, 'band');
+    }
+    this.roof(f, { type: roof, width: W + 0.5, depth: D + 0.5, baseY: ph + colH, layers, brackets });
+    if (name) this.plaque(f, name, 0, ph + h + (colH - h) / 2, -0.34, 0.8, Math.min(1.5, colH - h - 0.1));
+    this.mapRect(f, 'gate', name, W, D);
+    return W;
+  }
+
+  /**
+   * 五间三启门殿（明间 + 两次间开门，梢间封闭）。W = 通面阔（已含全部五间，不再额外加宽）。
+   * 门道之间是贯穿全进深的门垛，门扇打开后贴在门垛侧面。返回墙上需要留出的开口宽度 = W。
+   */
+  gateHall5(f, { W, h, name, roof, brackets, layers }) {
+    const b = W / 5;                         // 每间面阔
+    const ow = b - 1.0;                      // 单个门道净宽（门垛 1.0m）
+    const D = Math.min(Math.max(6.4, W * 0.3), 10);
+    const ph = 0.45;
+    const colH = h + 1.8;
+    const r = 0.26;
+    this.box(f, 'sumeru_band', W + 1.6, ph, D + 1.6, 0, ph / 2, 0, 'band');
+    this.box(f, 'stone_slab', W + 1.7, 0.08, D + 1.7, 0, ph - 0.03, 0);
+    this.walkBox(f, -(W + 1.6) / 2, -(D + 1.6) / 2, (W + 1.6) / 2, (D + 1.6) / 2, ph);
+    const colGeo = new THREE.CylinderGeometry(r, r * 1.05, colH, 12);
+    const colMat = this.lib.material('wood_column');
+    for (let k = 0; k <= 5; k++) {
+      const cx = -W / 2 + k * b;
+      for (const cz of [-D / 2, 0, D / 2]) {
+        this.mesh(f, colGeo, colMat, cx, ph + colH / 2, cz);
+        this.col(f, cx - r, ph, cz - r, cx + r, ph + 3, cz + r);
+      }
+    }
+    // 门垛：位于明间/次间之间（x = ±b/2）与次间/梢间之间（x = ±1.5b），贯穿进深
+    const pierD = D - 0.8;
+    for (const px of [-1.5 * b, -0.5 * b, 0.5 * b, 1.5 * b]) {
+      this.box(f, 'wall_red', 1.0, colH, pierD, px, ph + colH / 2, 0);
+      this.box(f, 'wall_brick', 1.1, 1.0, pierD + 0.1, px, ph + 0.5, 0);
+      this.col(f, px - 0.5, ph, -pierD / 2, px + 0.5, ph + 3, pierD / 2);
+    }
+    // 梢间：封闭的中线砖墙；两山墙
+    for (const s of [-1, 1]) {
+      const xc = s * 2 * b;
+      this.box(f, 'wall_red', b - 1.0, colH, 0.6, xc, ph + colH / 2, 0);
+      this.box(f, 'wall_brick', b - 0.95, 1.0, 0.7, xc, ph + 0.5, 0);
+      this.col(f, xc - (b - 1.0) / 2, ph, -0.3, xc + (b - 1.0) / 2, ph + 3, 0.3);
+      this.box(f, 'wall_red', 0.7, colH, D, s * W / 2, ph + colH / 2, 0);
+      this.col(f, s * W / 2 - 0.35, ph, -D / 2, s * W / 2 + 0.35, ph + 3, D / 2);
+    }
+    // 门楣、门槛、门扇（三个门道各一对）
+    for (const cx of [-b, 0, b]) {
+      this.box(f, 'wall_red', ow, colH - h, 0.6, cx, ph + h + (colH - h) / 2, 0);
+      this.box(f, 'wood_column', ow, 0.2, 0.4, cx, ph + 0.1, 0);
+      for (const s of [-1, 1]) {
+        const d = buildStuddedDoor(this.lib, { width: Math.min(ow / 2 - 0.05, D / 2 - 0.6), height: h });
+        d.position.set(cx + s * (ow / 2 - 0.14), ph, 0.3 + Math.min(ow / 2 - 0.05, D / 2 - 0.6) / 2);
+        d.rotation.y = Math.PI / 2;
+        f.add(d);
+      }
+    }
     for (const s of [-1, 1]) {
       this.box(f, 'caihua_beam', W + 0.5, 0.6, 0.4, 0, ph + colH - 0.3, s * D / 2, 'band');
       this.box(f, 'caihua_beam', 0.4, 0.6, D, s * W / 2, ph + colH - 0.3, 0, 'band');
@@ -466,6 +534,9 @@ export class CourtKit {
     if (enter || open) {
       const fg = new THREE.PlaneGeometry(w, d);
       fg.rotateX(-Math.PI / 2);
+      // UV 按米换算：贴图含 4×4 块二尺金砖
+      const uv = fg.attributes.uv, span = GOLD_BRICK_TILE * 4;
+      for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * w / span, uv.getY(i) * d / span);
       this.mesh(f, fg, this.floorMat, 0, y0 + 0.02, 0).castShadow = false;
     }
     if (enter && !open) {
@@ -486,7 +557,9 @@ export class CourtKit {
 
     // 室内陈设 + 房间登记（宝座殿以外的每个房间）
     if (enter) {
-      const kind = interior ?? (throne ? 'throne' : map === 'corridor' ? 'room' : w >= 14 ? 'hall' : 'room');
+      // 数据里 interior 形如 "A:palace-front" / "B:hall"（档位:预设）；预设名取冒号后部分
+      const interiorKind = typeof interior === 'string' ? interior.replace(/^[A-Za-z]:/, '') : interior;
+      const kind = interiorKind ?? (throne ? 'throne' : map === 'corridor' ? 'room' : w >= 14 ? 'hall' : 'room');
       segs.forEach(([a, b], idx) => {
         const x0 = -w / 2 + a * bay + (a > 0 ? 0.15 : 0.35);
         const x1 = -w / 2 + b * bay - (b < n ? 0.15 : 0.35);

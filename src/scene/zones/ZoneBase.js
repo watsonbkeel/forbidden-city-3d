@@ -205,13 +205,19 @@ export class ZoneBase {
     const wave = new THREE.MeshStandardMaterial({ color: 0x2e8a6e, roughness: 0.3, metalness: 0.1, name: 'kit_glaze_green' });
     k.owned.push(glaze, wave);
     k.mesh(f, new THREE.BoxGeometry(len, h, 1.1), glaze, 0, 0.9 + h / 2, 0);
-    k.mesh(f, new THREE.BoxGeometry(len - 0.2, 0.8, 1.16), wave, 0, 1.4, 0);
-    const knot = new THREE.TorusKnotGeometry(0.62, 0.16, 48, 6, 2, 3);
-    for (let i = 0; i < 9; i++) {
-      const m = k.mesh(f, knot, k.gold, (i - 4) * (len / 9.6), 0.9 + h * 0.58 + (i % 2 ? 0.25 : -0.15), -0.62);
-      m.scale.set(1.25, 0.75, 0.5);
-      m.rotation.z = (i % 2 ? 1 : -1) * 0.35;
-    }
+    // 壁心：故宫九龙壁实物照片（正面拼接图，壁心长宽比约 10.8:1）。贴图缺失时仍显示蓝绿琉璃底色。
+    const ASPECT = 10.77;
+    const fh = Math.min(h - 0.3, len / ASPECT);
+    const tex = new THREE.TextureLoader().load(`${import.meta.env?.BASE_URL ?? '/'}textures/nine_dragon.webp`);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    tex.anisotropy = 8;
+    const face = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.35, metalness: 0.05, name: 'kit_nine_dragon_face' });
+    k.owned.push(face);
+    const fg = new THREE.PlaneGeometry(len - 0.4, fh);
+    fg.rotateY(Math.PI);   // 正面朝局部 -Z
+    k.mesh(f, fg, face, 0, 0.9 + fh / 2 + 0.1, -0.56).castShadow = false;
+    // 壁心上方的檐下琉璃带（蓝绿）
+    k.mesh(f, new THREE.BoxGeometry(len - 0.2, h - fh - 0.1, 1.16), wave, 0, 0.9 + fh + 0.1 + (h - fh - 0.1) / 2, 0);
     k.roof(f, { type: 'gable', width: len + 0.4, depth: 1.6, baseY: 0.9 + h, brackets: false, height: 0.7 });
     k.col(f, -len / 2, 0, -0.8, len / 2, 3, 0.8);
     k.mapRect(f, 'hall', item.name ?? '九龙壁', len, 1.6);
