@@ -169,3 +169,84 @@ perf：calls/tris 全部远低于 perf-p0c 基线；fpsP5 最大降幅宁寿宫 
 - `"interior": "A:palace-front"` 问题（A 档）原样保留，慈宁宫的 zone JSON 同样带该字段，未动。
 - 已知限制：S 档 GLB 仅在玩家距殿 ≤ 15 m 时加载，坤宁宫 / 慈宁宫 / 皇极殿 / 养心殿的 B 档仍是始终存在的基底，S 档叠加其上；B 档 3 间敞开出入口（坤宁宫）与史实不符，属 B 档，S 档做了适配、未改 B。
 - 手动验证建议（L0）：真人走一遍坤宁宫（x=0 中轴、东次间板门、东暖阁门洞、炕前），看喜床 / 灶 / 炕的碰撞手感；慈宁宫走到宝座前确认地平床可迈上。
+
+---
+
+# P2-S3 报告：补门禁盲区 + 太和殿 / 乾清宫踏跺与陈设
+
+起点 `a755098`（P2-S2 完成）。未合并 main、未打标签、未推送。
+
+## 提交（P2-S3）
+
+| 步骤 | 提交 | 说明 |
+|---|---|---|
+| 第 1 步 | 93ce623 | `test(stepwalk): 预加载全部 S 档内景，门禁覆盖内景碰撞` |
+| 第 2 步 | be71a1f | `fix(interior): 太和殿/乾清宫踏跺可行走 + 陈设让出通道` |
+
+## 第 1 步：stepwalk-runner 预加载（tests/lib/stepwalk-runner.cjs）
+
+- `openPage()` 就绪后、`runRoutes` 之前新增 `preloadInteriors()`：先把 `interiors.update` 换成空函数（防止主循环残留调用因距离 >40 m 把正在加载的殿卸掉）→ 逐座 `await interiors.load(id)` → 校验。
+- 校验失败即抛错：`interiors` 不存在（接线丢失）、未注册任何殿、任一座 `getState !== 'loaded'`、任一座 `interior:<id>` 碰撞体数为 0。
+- 打印汇总行，例：`[stepwalk] 预加载 S 档内景：taihe=loaded(COL 2/WALK 7) qianqing=loaded(COL 2/WALK 5) huangji=loaded(COL 5/WALK 1) yangxin=loaded(COL 10/WALK 1) kunning=loaded(COL 13/WALK 0) cining=loaded(COL 3/WALK 1)`。
+- `STEPWALK_NO_INTERIORS=1` 可关闭（仅调试），默认开启。stepwalk / stepwalk-auto 共用该 runner，两者都生效。
+- **复现验证**：修模型之前先跑一次 stepwalk，得到 122/132、失败 10 条（太和门→太和殿内 4 档、太和殿→中和殿→保和殿 3 档、乾清宫→交泰殿→坤宁宫 3 档），与 L0 诊断完全一致 → 补丁生效。
+
+## 第 2 步：模型修复
+
+### 受共用模板影响的殿
+`throne_platform()`（非 dais 分支）只有 **taihe、qianqing** 两座走；huangji / yangxin / cining 走 `dais()`，kunning 是独立脚本，都不经过此分支。所以只重导出这两座 GLB，其余四座 GLB 未动（`p1i-loader` 仍逐座跑了）。
+
+### throne_hall.py 改动
+1. **踏跺**：`COL_step_k` → `WALK_step_k`（可行走面，每级高差 = platH/steps：太和 2.0/7 = 0.286、乾清 1.3/5 = 0.26，均 ≤ STEP_UP 0.6）。
+2. **删除 `COL_steps`**：这是个 2.5 m 高、盖住「踏跺前沿 → B 档宝座碰撞前沿」整段的实心盒。只把 COL_step_k 改成 WALK_ 不够，这个盒子仍会把玩家挡在台阶下面，上不去。L0 诊断没提到它，属额外发现。
+3. **垂带石加碰撞**：踏跺两侧垂带石是实心石体，新增 `COL_step_side_±1`（x 在踏跺宽度之外，不挡通道）。同时这也是 GLB 里仅有的 COL_ 代理，使 p1i-loader 的 `colliders>0` 判据继续成立（宝座/金柱碰撞由 B 档提供）。
+4. **新增可选参数 `ornOnPlatform`**：True 时陈设抬到宝座台面（`top_y`），不再为它们设 COL 盒（台面范围已整体被 B 档宝座碰撞覆盖，玩家进不去）。默认 False，其余殿不受影响。
+
+### 陈设新位置与依据
+史实依据：`docs/research/interiors-taihe.md` §5「分列于宝座台两侧台阶旁」、`interiors-qianqing.md` §5「宝座地平床前东西两侧」，且甪端/仙鹤/香亭/宝象陈于宝座地平上。具体摆位坐标为估算（中置信，与原来同级）。
+
+| 殿 | 旧位置（台下地面） | 新位置（台面，局部 x, z；左右对称） | 与绕行线关系 |
+|---|---|---|---|
+| 太和殿 | x=±5.8，z=7.6/5.6/3.6/1.6，各带 COL 盒，被香亭(z=1.6)挡住 x=±6.2 绕行线 | 后排 z=9.4：象 x=±2.0、甪端 x=±3.4；前排 z=8.0：鹤 x=±2.0、香亭 x=±3.4。最外沿 3.9，在栏杆内缘 4.2 内 | 绕行带 [5.4, 7.0]，陈设最外沿 ≤4.0，余量 ≥1.4 m（要求 ≥0.3） |
+| 乾清宫 | x=±5.4，z=1.4/−0.6/−2.6，外沿 5.95，堵死 x=±5.7 绕行线 | 后排 z=3.5：甪端 x=±1.9、鹤 x=±3.1；前排 z=2.1：香亭 x=±2.5。最外沿 3.6，在栏杆内缘 3.7 内 | 绕行带 [4.9, 6.5]，余量 ≥1.3 m |
+
+- 陈设不压金柱（太和 x=±2.86/±8.59、z=3.7/11.1；乾清 x=±2.56/±7.67、z=±4.17，均在台面范围之外或台下）、不压栏杆、不压踏跺。
+- 注意：陈设现在在台面上，被 B 档宝座碰撞盒（太和 x ±4.58 / 乾清 x ±4.09）整体包住，因此玩家无法走近，只能从台下观看。
+
+### 指标（重新导出，Draco 输出本身有字节波动）
+
+| 殿 | tris 前 → 后 | 体积 前 → 后 | 预算 |
+|---|---|---|---|
+| 太和殿 | 40 768 → 40 684 | 270 512 B → 265 856 B（0.25 MB） | ≤80k / ≤1 MB 满足 |
+| 乾清宫 | 33 384 → 33 324 | 236 516 B → 233 300 B（0.22 MB） | 满足 |
+
+（前值为同一脚本改动前在 /tmp 导出的基线；体积前值为仓库内旧 GLB 文件大小。）其余四座 GLB 未重导，指标同 P2-S1/S2。
+
+## 验收结果
+
+| # | 项 | 结果 |
+|---|---|---|
+| 1 | stepwalk（全 S 档预加载）| **132/132**，日志有预加载汇总行 |
+| 1 | stepwalk-auto（全 S 档预加载）| **152/152** |
+| 2 | p1i-loader 六座（taihe qianqing huangji yangxin kunning cining）| **全部 PASS** |
+| 3 | p1i-visual 太和殿 / 乾清宫重拍 | 见下 |
+| 4 | `test:gate` | **8/8**（366 s，be71a1f） |
+| 5 | git status | 干净；pyc 已 restore，未提交 node_modules；提交仅含 §3 文件 |
+
+门禁明细：build ✅ / zones 0 错 23 警告 ✅ / anchors 113 条超差 0 ✅ / smoke ✅（colliders 6560，pageerror 0）/ regression 24/24 ✅ / stepwalk 132/132 ✅ / stepwalk-auto 152/152 ✅ / perf ✅（calls、tris 无劣化）。
+
+### 视觉自检（p1i-visual）
+截图：`/Users/watson/Documents/Codex/故宫/outputs/dev/p1i-{taihe,qianqing}-{B,S}-{1,2,3}.png`。
+- 太和殿 S-1：门内望宝座，七级白色踏跺、宝座台、屏风、金柱外观正常；台面上两侧可见香亭、象、甪端；无穿模。
+- 太和殿 S-2：近景可见白色踏跺整段连续（不再有隐形实心挡板），台面陈设（香亭、象）立在台上；台下两侧是 B 档铜鼎（B 档自带，位置未动）。
+- 乾清宫 S-1 / S-2：踏跺 5 级、红漆台身，两侧香亭 + 甪端 + 鹤立于台面，宝座与屏风完整；B 档铜鼎在台下两侧。
+- 观察到的问题：台面陈设相对宝座显小（沿用原 ornament 简化体尺寸 1.0×1.0 底座），不影响碰撞，未调。
+- `p1i-visual` 退出码 1 仍是既有的 favicon 404 现象（console 唯一 error），与本任务无关。
+
+## 偏差与遗留
+
+- **perf fpsP5 警告 6 条（-33%~-45%）**：本次 gate 运行时机器 load average ≈10（并行 Agent 占用），而上次 P2-S2 gate 最大降幅 -12.4%。降幅大的场景（午门前、宁寿宫、御花园、东六宫中）距太和殿 / 乾清宫 >40 m，S 档 GLB 在那里不会加载，不可能受本次改动影响；calls / tris 均无劣化、比 perf-p0c 基线更低。结论：环境噪声。建议 L0 在机器空闲时用 `test:perf` 复核一次。
+- **gate 与 run-with-vite.sh 不要叠用**：`tests/gate.cjs` 自己起 vite，外面再套 `run-with-vite.sh` 会报「端口已被占用」。验收标准里"同样用绕代理写法 + PORT=5191"应是直接 `env ... PORT=5191 node tests/gate.cjs`。单个浏览器测试（stepwalk / p1i-*）才需要套 `run-with-vite.sh`。
+- 太和殿 / 乾清宫的 GLB 现在只有 2 个 COL（垂带石）；宝座、金柱、藻井的碰撞完全依赖 B 档。如日后 B 档碰撞被移除，需在 GLB 补回。
+- 陈设上台后玩家无法近看（被 B 档宝座碰撞挡住）；如 L0 希望能近看，需放宽 B 档碰撞，属 B 档文件，本任务未动。
+- 未改路线、`DETOUR_X`、stepwalk.cjs、KNOWN_ISSUES、A 档 interior 字段；未触发停止条件；未向 REQUESTS.md 追加。
