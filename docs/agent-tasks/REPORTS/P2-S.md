@@ -121,7 +121,7 @@ perf 对比 perf-p0c.json：calls/tris 全部远低于基线；fpsP5 最大降�
 - **建殿路径**：zone JSON → `ZoneBase.buildHall` → `CourtKit.hall`（kit 殿，与皇极殿同套），按 kit 公式；脚本 `assets-src/interiors/cining.py` 复用 `throne_hall.build` 的 `dais / throneBackOff / screenWidthScale / screenThick / noCaisson / extra` 参数，无需再改 `throne_hall.py` / `_common.py`。
 - **实测与公式一致**：getGroundHeight = 1.2 = ph；B 档宝座碰撞 x ±2.27、z 9.6~12.1、高 3（公式 tz = 10.8，tw = 4.533）。n = 13，bay = 3.238，天花平面 8.75（相对台面）。
 - **内容（P0）**：地平床（下层 0.3 可直接迈上，上层 0.6 包住 B 档台座）、宝座（靠背 @ tz + 0.5）、七扇屏风（宽度系数 0.55，厚 0.32，完整包住 B 档屏风盒）、宝座前两侧铜香筒（x ±4.0, z 8.0，带碰撞代理）。无藻井。
-- **指标**：7 922 tris；glb 0.04 MB（46 616 B）；加载 36 ms；碰撞体 3 个（4 个隐藏代理）；可见 mesh 7；draw calls 约 +20 / +20 / +6（含 B 档对比差值，三视角），tris 约 +8k。
+- **指标**：7 922 tris；glb 0.04 MB（46 616 B）；加载 36 ms；碰撞体 3 个（4 个隐藏代理）；可见 mesh 7；draw calls 约 +7 / +7 / +6（三个视角，B→S 差值），tris 约 +8k。
 - **p1i-loader PASS**；**p1i-visual**：S 档完整覆盖 B 档宝座 / 屏风，无穿模。
 - **截图**：`/Users/watson/Documents/Codex/故宫/outputs/dev/p1i-cining-{B,S}-{1,2,3}.png`（1：门内望宝座；2：宝座前近景；3：因无藻井，机位仰视天花）。
 - **置信度（单列）**：
@@ -164,7 +164,7 @@ perf：calls/tris 全部远低于 perf-p0c 基线；fpsP5 最大降幅宁寿宫 
 
 - 未触发任务卡 §6 停止条件；未改任何不可改文件；未向 REQUESTS.md 追加条目。
 - 修改的 `tests/p1i-visual.cjs`：仅加无 throne 时的机位兜底（任务卡 §3 允许的"小改"）。
-- `p1i-visual` 退出码为 1 是**既有现象**：控制台唯一 error 是 `/favicon.ico` 404（taihe / huangji / kunning / cining 均复现，与本任务无关）。脚本把任何 console error 当失败。建议 L0 另行处理（改测试过滤 favicon，或给 `index.html` 加 favicon 链接）。
+- `p1i-visual` 退出码为 1 是**既有现象**：控制台唯一 error 是 `/favicon.ico` 404（已用 console location 确认 taihe、kunning 的 404 都是 `/favicon.ico`；huangji、cining 同样 404 且退出码 1，未逐个查 URL；与本任务无关）。脚本把任何 console error 当失败。建议 L0 另行处理（改测试过滤 favicon，或给 `index.html` 加 favicon 链接）。
 - `__pycache__/*.pyc` 已 `git restore`，未提交。
 - `"interior": "A:palace-front"` 问题（A 档）原样保留，慈宁宫的 zone JSON 同样带该字段，未动。
 - 已知限制：S 档 GLB 仅在玩家距殿 ≤ 15 m 时加载，坤宁宫 / 慈宁宫 / 皇极殿 / 养心殿的 B 档仍是始终存在的基底，S 档叠加其上；B 档 3 间敞开出入口（坤宁宫）与史实不符，属 B 档，S 档做了适配、未改 B。
