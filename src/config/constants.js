@@ -136,13 +136,13 @@ export const LAYOUT = {
   JIAOTAI_Z: 354.1,           // 交泰殿
   KUNNING_Z: 386.1,           // 坤宁宫
   IMPERIAL_GARDEN_Z: 470.5,   // 御花园（园墙 z 422.7~518.3 的中点）
-  SHENWU_Z: 531,              // 神武门
+  SHENWU_Z: 542,              // 神武门（已外移，与顺贞门间距 23.7m）
 
   // 宫城外廓（城墙外皮）
   PALACE_RECT: {
     halfX: 376.5,
     minZ: -425,
-    maxZ: 536,
+    maxZ: 547,                // 随神武门外移调整
   },
 
   // 场景边界：外廓 + 街面余量（东华门/西华门外、午门南、神武门北可走）
