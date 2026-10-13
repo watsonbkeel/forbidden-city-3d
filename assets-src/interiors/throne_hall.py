@@ -14,6 +14,7 @@ cfg 字段：
   goldCols      [(x, z), ...] 金柱位置；colR 半径；colGold True 金 / False 红漆
   caissonZ      藻井中心 z；caissonR 方井半宽
   ornaments     [(kind, x, z), ...]  kind ∈ 象/甪端/鹤/香亭
+  ornOnPlatform True = 陈设抬到宝座台面上（不再设碰撞，台面已被 B 档宝座碰撞覆盖）；默认 False = 地面 + 各自碰撞盒
   colBoxes      [(x0,y0,z0,x1,y1,z1), ...] 额外碰撞代理（B 档碰撞之外的）
 """
 import bpy, bmesh, math, os, random
@@ -102,19 +103,44 @@ def throne_platform(cfg, lacq, gold, stone):
     box('plat_lower_trim', W + 0.1, 0.08, D + 0.1, 0, H * 0.55, zc, gold)
     box('plat_upper', W - 0.5, H * 0.45, D - 0.5, 0, H * 0.55 + H * 0.225, zc, lacq)
     box('plat_top', W - 0.4, 0.06, D - 0.4, 0, H + 0.03, zc, gold)
-    # 踏跺（正面，级数 steps，踏面 run）：每级单独登记碰撞代理 → 玩家可拾级而上（每级 ≤ 0.6），到台顶被 B 档宝座碰撞挡住
+    # 踏跺（正面，级数 steps，踏面 run）：每级登记 WALK_ 可行走面（不是 COL_ 碰撞体）。
+    # 碰撞体在水平方向一律阻挡，矮于 STEP_UP 也不会被"迈上去"；可行走面才会抬升脚面。
+    # 每级高差 = H/n ≤ 0.6（STEP_UP），玩家可逐级拾级而上；越过 B 档宝座碰撞前沿（ztb0−1.3）后被 B 档碰撞挡住，不会走上台顶。
     n = cfg['steps']; rise = H / n; run = cfg.get('stepRun', 0.42); sw = cfg.get('stepW', 3.6)
     for k in range(n):
         zz = z0 - run * (n - k) + run / 2
         box(f'step_{k}', sw, rise * (k + 1), run, 0, rise * (k + 1) / 2, zz, stone)
-        col_box(f'COL_step_{k}', -sw / 2, 0, zz - run / 2, sw / 2, rise * (k + 1), zz + run / 2)
+        box(f'WALK_step_{k}', sw, rise * (k + 1), run, 0, rise * (k + 1) / 2, zz, None)
     # 两侧垂带石
     for s in (-1, 1):
         box('step_side', 0.25, H * 0.5, run * n, s * (sw / 2 + 0.12), H * 0.25, z0 - run * n / 2, stone)
+        # 垂带石是实心石体，登记碰撞（x 在 ±sw/2 之外，不挡踏跺通道）。
+        # 注意：这是本 GLB 唯一的 COL_ 代理，B 档才提供宝座/柱子碰撞；它让 p1i-loader 的"colliders>0"判据继续成立。
+        xa, xb = sorted((s * (sw / 2), s * (sw / 2 + 0.25)))
+        col_box(f'COL_step_side_{int(s)}', xa, 0, z0 - run * n, xb, H * 0.5, z0)
     # 垂带 / 栏杆
     if cfg.get('balustrade', True):
         balustrade('plat', -x_half + 0.3, x_half - 0.3, z0 + 0.3, z1 - 0.3, H + 0.06, gold, gap=(-sw / 2 - 0.2, sw / 2 + 0.2))
     return H + 0.06, z0 - run * n
+
+def dais(cfg, lacq, gold, stone):
+    """地平床（两层低台，无踏跺）：kit 殿 / 进深浅的殿用。
+    下层 lowH（≤0.35，玩家可直接跨上，不登记碰撞）；上层到 platH，包住 B 档宝座台盒子。
+    cfg: daisLowX/daisLowZ0 下层半宽 / 南缘 z；daisX 上层半宽；daisZ0/daisZ1 上层 z 范围；platH 上层顶高；lowH 下层高。
+    返回台面 y。"""
+    H = cfg['platH']; lowH = cfg.get('lowH', 0.3)
+    lx, lz0 = cfg['daisLowX'], cfg['daisLowZ0']
+    ux, uz0, uz1 = cfg['daisX'], cfg['daisZ0'], cfg['daisZ1']
+    box('dais_low', 2 * lx, lowH, uz1 - lz0, 0, lowH / 2, (lz0 + uz1) / 2, stone)
+    # 下层可行走（≤0.35 的矮台，玩家直接迈上）；用 WALK_ 代理登记，避免脚陷进台里
+    box('WALK_dais_low', 2 * lx, lowH, uz1 - lz0, 0, lowH / 2, (lz0 + uz1) / 2, None)
+    box('dais_low_trim', 2 * lx + 0.06, 0.04, uz1 - lz0 + 0.06, 0, lowH + 0.0, (lz0 + uz1) / 2, gold)
+    box('dais_up', 2 * ux, H, uz1 - uz0, 0, H / 2, (uz0 + uz1) / 2, lacq)
+    box('dais_up_trim', 2 * ux + 0.1, 0.06, uz1 - uz0 + 0.1, 0, H * 0.5, (uz0 + uz1) / 2, gold)
+    box('dais_top', 2 * ux - 0.1, 0.06, uz1 - uz0 - 0.1, 0, H + 0.03, (uz0 + uz1) / 2, gold)
+    # 上层略大于 B 档碰撞盒，补一个同范围碰撞代理，避免视觉台沿外露而玩家穿入
+    col_box('COL_dais', -ux, 0, uz0, ux, 3.0, uz1)
+    return H + 0.06
 
 def throne(cfg, y, gold, lacq, silk):
     """金漆雕龙宝座：座 172.5 × 158.5 × 79（含靠背与扶手），置于台面 y 上"""
@@ -124,8 +150,8 @@ def throne(cfg, y, gold, lacq, silk):
     box('throne_base', sw + 0.3, 0.12, sd + 0.5, 0, y + 0.06, zc + 0.15, lacq)          # 脚踏/座基
     box('throne_seat', sw, 0.55, sd, 0, y + 0.12 + 0.275, zc, gold)
     box('throne_cushion', sw - 0.2, 0.1, sd - 0.2, 0, y + 0.67 + 0.05, zc - 0.05, silk)
-    # 围屏式靠背：中高两侧低，三段
-    bz = zc + sd / 2 + 0.15
+    # 围屏式靠背：中高两侧低，三段（throneBackOff：kit 殿的 B 档靠背在 tz+0.5，需要 GLB 靠背包住它）
+    bz = zc + cfg['throneBackOff'] if 'throneBackOff' in cfg else zc + sd / 2 + 0.15
     box('throne_back_c', 0.95, 1.25, 0.5, 0, y + 0.67 + 0.625, bz, gold)
     for s in (-1, 1):
         box('throne_back_s', 0.55, 1.0, 0.5, s * 0.72, y + 0.67 + 0.5, bz, gold)
@@ -144,16 +170,18 @@ def screen(cfg, y, gold, lacq, silk):
     """七扇屏风：中扇最高，两侧递减；每扇 = 漆框 + 金地板心 + 顶部雕饰"""
     z = cfg['screenZ']
     s = cfg.get('screenScale', 1.0)
-    widths = [1.0 * s] * 3 + [1.5 * s] + [1.0 * s] * 3
+    ws = cfg.get('screenWidthScale', s)  # 宽度单独缩放（默认与高度同比）
+    widths = [1.0 * ws] * 3 + [1.5 * ws] + [1.0 * ws] * 3
     heights = [2.6, 2.9, 3.2, 3.6, 3.2, 2.9, 2.6]
     heights = [h * s for h in heights]
     total = sum(widths)
     x = -total / 2
     for i, (w, h) in enumerate(zip(widths, heights)):
         cx = x + w / 2
-        box(f'screen_frame_{i}', w, h, 0.22, cx, y + h / 2, z, lacq)
-        box(f'screen_panel_{i}', w - 0.16, h - 0.3, 0.08, cx, y + h / 2, z - 0.13, gold)
-        box(f'screen_panel_back_{i}', w - 0.16, h - 0.3, 0.08, cx, y + h / 2, z + 0.13, gold)
+        th = cfg.get('screenThick', 0.22)   # 屏风厚度；kit 殿 B 档屏风厚 0.25，需 ≥0.3 才能包住
+        box(f'screen_frame_{i}', w, h, th, cx, y + h / 2, z, lacq)
+        box(f'screen_panel_{i}', w - 0.16, h - 0.3, 0.08, cx, y + h / 2, z - (th / 2 + 0.02), gold)
+        box(f'screen_panel_back_{i}', w - 0.16, h - 0.3, 0.08, cx, y + h / 2, z + (th / 2 + 0.02), gold)
         box(f'screen_cap_{i}', w + 0.06, 0.16, 0.34, cx, y + h + 0.08, z, gold)
         sphere(f'screen_finial_{i}', 0.1 * s, cx, y + h + 0.22, z, gold, 10, 6)
         x += w
@@ -233,7 +261,7 @@ def caisson(cfg, gold, lacq, blue, pearl_m):
     for i in range(N + 1):
         tt = i / N
         a = tt * 2.5 * 2 * math.pi
-        rr = 2.6 - 2.0 * tt
+        rr = 2.6 - 2.0 * tt if 'dragR' not in cfg else cfg['dragR'] - (cfg['dragR'] - 0.6) * tt
         y = top - 0.5 - 0.04 * math.sin(tt * 30)
         pts.append((rr * math.cos(a), y, cz + rr * math.sin(a)))
     # 收尾向下探到珠上方
@@ -286,7 +314,7 @@ def ornament(kind, x, z, bronze, gold, stone):
 
 def gold_floor(cfg, dark, light):
     """金砖地：0.64 m 方砖，每块独立四边形并带顶点色明暗变化；砖缝由下方深色底板透出"""
-    w, d = cfg['w'] - 0.2, cfg['d'] - 0.2
+    w, d = cfg.get('floorW', cfg['w'] - 0.2), cfg.get('floorD', cfg['d'] - 0.2)   # floorW/floorD：只铺殿内一部分（养心殿仅明间金砖）
     box('floor_base', w, 0.02, d, 0, 0.045, 0, dark)
     T = 0.64; g = 0.05
     nx, nz = int(w // T), int(d // T)
@@ -335,19 +363,33 @@ def build(cfg, out):
     gold_floor(cfg, dark, brick)
     for (x, z) in cfg['goldCols']:
         dragon_column(f'col_{x:+.1f}_{z:+.1f}', x, z, cfg['colR'], cfg['H'], colm, gold)
-    top_y, step_front = throne_platform(cfg, lacq, gold, stone)
+    if cfg.get('dais'):
+        top_y, step_front = dais(cfg, lacq, gold, stone), None
+    else:
+        top_y, step_front = throne_platform(cfg, lacq, gold, stone)
     throne(cfg, top_y, gold, lacq, silk)
     screen(cfg, top_y, gold, lacq, silk)
-    caisson(cfg, gold, lacq, blue, pearl)
+    if not cfg.get('noCaisson'):      # 养心殿等寝宫类无藻井
+        caisson(cfg, gold, lacq, blue, pearl)
+    # ornOnPlatform：陈设摆在宝座台面上（史实：甪端/仙鹤/香亭/宝象陈于宝座地平上，不在台下地面）。
+    # 台面范围已被 B 档宝座碰撞整体覆盖，玩家进不去，所以不再为它们另设碰撞；台下通道也因此让出。
+    orn_y = top_y if cfg.get('ornOnPlatform') else 0.0
     for (kind, x, z) in cfg['ornaments']:
+        before = set(bpy.context.scene.objects)
         ornament(kind, x, z, bronze, gold, stone)
+        if orn_y:
+            for ob in set(bpy.context.scene.objects) - before:
+                ob.location.z += orn_y      # Blender Z = three Y
+    if cfg.get('extra'):              # 殿专属内容钩子（此时材质已建好，mat() 同名取缓存）
+        cfg['extra'](cfg)
     # 碰撞代理
     for i, (x0, y0, z0, x1, y1, z1) in enumerate(cfg.get('colBoxes', [])):
         col_box(f'COL_{i}', x0, y0, z0, x1, y1, z1)
-    # 踏跺前沿 → B 档宝座碰撞前沿之间补一个碰撞
-    col_box('COL_steps', -cfg.get('stepW', 3.6) / 2, 0, step_front, cfg.get('stepW', 3.6) / 2, 2.5, cfg['ztb0'] - 1.3)
-    for (kind, x, z) in cfg['ornaments']:
-        col_box(f'COL_orn_{kind}', x - 0.55, 0, z - 0.55, x + 0.55, 2.2, z + 0.55)
+    # （P2-S3）已删除 COL_steps：它是 2.5 m 高的实心盒，盖住踏跺前沿 → B 档宝座碰撞前沿之间整段踏跺，玩家根本上不了台阶。
+    # 踏跺改由 WALK_step_k 提供，台顶由 B 档宝座碰撞（ztb0−1.3 起）挡住。
+    if not orn_y:
+        for (kind, x, z) in cfg['ornaments']:
+            col_box(f'COL_orn_{kind}', x - 0.55, 0, z - 0.55, x + 0.55, 2.2, z + 0.55)
     print(f'[build] tris={tri_count()}')
     # 同材质合并 → 每殿 ≈ 9 个 draw call（否则 300+ 个小 mesh 会吃掉 P1-R 省下的 call 预算）
     if cfg.get('merge', True): merge_by_material()

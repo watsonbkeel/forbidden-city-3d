@@ -37,8 +37,12 @@ cfg = dict(
     throneZ=tz, screenZ=tz + 7 * 0.32, screenScale=1.0,
     caissonZ=cz, caissonR=5.4, circR=3.75,
     pearlY=H - 1.6, pearlR=0.45,
-    # 三对陈设：由内向外 甪端→鹤→香亭
-    ornaments=[(k, s * 5.4, z) for (k, z) in (('甪端', 1.4), ('鹤', -0.6), ('香亭', -2.6)) for s in (-1, 1)],
+    # 三对陈设：P2-S3 起陈于宝座地平床上、宝座前两侧（依据 docs/research/interiors-qianqing.md §5
+    # 「香亭/甪端/仙鹤 各 1 对，宝座地平床前东西两侧」）。原先放在台下 x=±5.4，把 x=±5.7 的绕行通道堵死（金柱内皮 7.2，通道仅 0.27 m）。
+    # 台面（z 0.95~8.05，x ±4.17，栏杆内缘 ±3.7，宝座座基 x ±1.1 / z 4.35~6.35）：
+    #   后排 z=3.5：甪端 x=±1.9、鹤 x=±3.1；前排 z=2.1：香亭 x=±2.5。各占 1.0×1.0，最外沿 x=3.6。
+    ornaments=[(k, s * x, z) for (k, x, z) in (('甪端', 1.9, 3.5), ('鹤', 3.1, 3.5), ('香亭', 2.5, 2.1)) for s in (-1, 1)],
+    ornOnPlatform=True,
     colBoxes=[],
     draco=True,
 )

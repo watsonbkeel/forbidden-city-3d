@@ -2,13 +2,47 @@
 // 用固定帧间隔逐帧调用真实 FirstPersonControls.update，复现低帧率/冲刺下的台阶问题；由本脚本代为推进 ZoneManager。
 // 判定：每个途经点 0.8 m 内到达（连续 2 秒移动 < 0.3 m 视为卡住）且未"掉到台下"。
 // 额外记录（自动路线用）：途经的分区序列、加载/卸载事件、"所在区未加载时的行走距离"（流式加载期间碰撞缺失）。
+//
+// S 档内景（InteriorLoader）：门禁按"全部 S 档内景已加载"的最坏情况测碰撞。
+// 背景：本执行器会停掉主循环，之后不会再调 interiors.update，且 runRoutes 是同步 evaluate，GLB 异步加载永远完不成，
+// 不预加载的话 S 档碰撞体/可行走面全不存在，门禁对内景是"盲"的。所以 openPage() 就绪后先预加载全部 S 档：
+//   1) 先把 interiors.update 换成空函数（否则主循环残留的 update 会因距离 > 40 m 把正在加载的殿卸掉）
+//   2) 逐个 await interiors.load(id)
+//   3) 校验每座 state === 'loaded' 且 collisionManager 里有 tag = interior:<id> 的碰撞体，否则抛错（防止再次"变盲"）
+// 接线丢失（window.__forbiddenCityApp.interiors 不存在）同样抛错。STEPWALK_NO_INTERIORS=1 可关闭预加载（仅调试用）。
 const { chromium } = require('playwright');
+
+async function preloadInteriors(page) {
+  const res = await page.evaluate(async () => {
+    const a = window.__forbiddenCityApp;
+    const il = a?.interiors;
+    if (!il) throw new Error('window.__forbiddenCityApp.interiors 不存在（InteriorLoader 接线丢失），门禁无法覆盖内景');
+    il.update = () => {}; // 冻结距离触发，由本函数全权管理加载
+    const ids = il.ids();
+    if (!ids.length) throw new Error('InteriorLoader 未注册任何内景');
+    for (const id of ids) await il.load(id);
+    const cm = a.collisionManager;
+    return ids.map(id => ({
+      id,
+      state: il.getState(id),
+      col: cm.colliders.filter(c => c.tag === `interior:${id}`).length,
+      walk: cm.walkables.filter(w => w.tag === `interior:${id}`).length,
+    }));
+  });
+  const bad = res.filter(r => r.state !== 'loaded' || r.col < 1);
+  console.log('[stepwalk] 预加载 S 档内景：' + res.map(r => `${r.id}=${r.state}(COL ${r.col}/WALK ${r.walk})`).join(' '));
+  if (bad.length) throw new Error('S 档内景预加载失败：' + bad.map(r => `${r.id}(state=${r.state}, COL=${r.col})`).join(', '));
+  return res;
+}
 
 async function openPage() {
   const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   const page = await browser.newPage({ viewport: { width: 320, height: 200 } });
   await page.goto(process.env.PALACE_URL || 'http://127.0.0.1:5173', { waitUntil: 'load' });
   await page.waitForFunction(() => window.__forbiddenCityApp?.controls && document.querySelector('#loading-screen').style.display === 'none', null, { timeout: 240000 });
+  if (process.env.STEPWALK_NO_INTERIORS !== '1') {
+    try { await preloadInteriors(page); } catch (e) { await browser.close(); throw e; }
+  } else console.log('[stepwalk] STEPWALK_NO_INTERIORS=1：跳过 S 档内景预加载（仅调试）');
   return { browser, page };
 }
 

@@ -1,0 +1,19 @@
+{
+  "$schema": "./schema.md",
+  "hall": "慈宁宫",
+  "id": "cining",
+  "tier": "S",
+  "model": "/models/interiors/cining.glb",
+  "fallback": "B",
+  "budget": { "tris": 400000, "textureMB": 8 },
+  "frame": { "x": 222, "z": 204.7, "rot": 0, "w": 42.1, "d": 26.8 },
+  "floor": { "mode": "ground", "y": null },
+  "anchor": { "x": 0, "y": 0, "z": 0 },
+  "preload": { "enter": 15, "exit": 40 },
+  "throne": { "ztb0": 9.6, "ztb1": 12.1, "thW": 4.533, "bay": 3.238, "tz": 10.8, "builder": "kit" },
+  "lights": [
+    { "type": "point", "x": 0, "y": 5.5, "z": 4, "color": "#ffe0b0", "intensity": 1.6, "distance": 24 },
+    { "type": "point", "x": 0, "y": 4, "z": 9, "color": "#ffd9a0", "intensity": 0.8, "distance": 14 }
+  ],
+  "source": "【推断，低置信】docs/research/interiors-cining.md：慈宁宫现为雕塑馆，原陈设不存；官方页仅称「太后正宫，明间设宝座（太后座）、屏风」。本 GLB 按原状推断：地平床 + 宝座 + 七扇屏风 + 宝座前铜香筒，无藻井（资料未查到，推断井口天花）；座样 / 屏风扇数 / 地平床尺寸 / 香筒均为纯推断"
+}

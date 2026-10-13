@@ -103,7 +103,7 @@ def tri_count():
             n += len(me.loop_triangles)
     return n
 
-def merge_by_material(skip_prefix='COL_'):
+def merge_by_material(skip_prefix=('COL_', 'WALK_')):
     """导出前把同材质的普通 mesh 合并成一个对象（COL_ 代理不合并）→ 每种材质 1 个 draw call。
     世界矩阵（位置/旋转/缩放）烘进顶点；顶点色层随 bmesh 一起带过去（同材质组内层集合一致）。"""
     bpy.context.view_layer.update()
