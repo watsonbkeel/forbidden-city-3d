@@ -14,6 +14,7 @@ cfg 字段：
   goldCols      [(x, z), ...] 金柱位置；colR 半径；colGold True 金 / False 红漆
   caissonZ      藻井中心 z；caissonR 方井半宽
   ornaments     [(kind, x, z), ...]  kind ∈ 象/甪端/鹤/香亭
+  ornOnPlatform True = 陈设抬到宝座台面上（不再设碰撞，台面已被 B 档宝座碰撞覆盖）；默认 False = 地面 + 各自碰撞盒
   colBoxes      [(x0,y0,z0,x1,y1,z1), ...] 额外碰撞代理（B 档碰撞之外的）
 """
 import bpy, bmesh, math, os, random
@@ -102,15 +103,21 @@ def throne_platform(cfg, lacq, gold, stone):
     box('plat_lower_trim', W + 0.1, 0.08, D + 0.1, 0, H * 0.55, zc, gold)
     box('plat_upper', W - 0.5, H * 0.45, D - 0.5, 0, H * 0.55 + H * 0.225, zc, lacq)
     box('plat_top', W - 0.4, 0.06, D - 0.4, 0, H + 0.03, zc, gold)
-    # 踏跺（正面，级数 steps，踏面 run）：每级单独登记碰撞代理 → 玩家可拾级而上（每级 ≤ 0.6），到台顶被 B 档宝座碰撞挡住
+    # 踏跺（正面，级数 steps，踏面 run）：每级登记 WALK_ 可行走面（不是 COL_ 碰撞体）。
+    # 碰撞体在水平方向一律阻挡，矮于 STEP_UP 也不会被"迈上去"；可行走面才会抬升脚面。
+    # 每级高差 = H/n ≤ 0.6（STEP_UP），玩家可逐级拾级而上；越过 B 档宝座碰撞前沿（ztb0−1.3）后被 B 档碰撞挡住，不会走上台顶。
     n = cfg['steps']; rise = H / n; run = cfg.get('stepRun', 0.42); sw = cfg.get('stepW', 3.6)
     for k in range(n):
         zz = z0 - run * (n - k) + run / 2
         box(f'step_{k}', sw, rise * (k + 1), run, 0, rise * (k + 1) / 2, zz, stone)
-        col_box(f'COL_step_{k}', -sw / 2, 0, zz - run / 2, sw / 2, rise * (k + 1), zz + run / 2)
+        box(f'WALK_step_{k}', sw, rise * (k + 1), run, 0, rise * (k + 1) / 2, zz, None)
     # 两侧垂带石
     for s in (-1, 1):
         box('step_side', 0.25, H * 0.5, run * n, s * (sw / 2 + 0.12), H * 0.25, z0 - run * n / 2, stone)
+        # 垂带石是实心石体，登记碰撞（x 在 ±sw/2 之外，不挡踏跺通道）。
+        # 注意：这是本 GLB 唯一的 COL_ 代理，B 档才提供宝座/柱子碰撞；它让 p1i-loader 的"colliders>0"判据继续成立。
+        xa, xb = sorted((s * (sw / 2), s * (sw / 2 + 0.25)))
+        col_box(f'COL_step_side_{int(s)}', xa, 0, z0 - run * n, xb, H * 0.5, z0)
     # 垂带 / 栏杆
     if cfg.get('balustrade', True):
         balustrade('plat', -x_half + 0.3, x_half - 0.3, z0 + 0.3, z1 - 0.3, H + 0.06, gold, gap=(-sw / 2 - 0.2, sw / 2 + 0.2))
@@ -364,18 +371,25 @@ def build(cfg, out):
     screen(cfg, top_y, gold, lacq, silk)
     if not cfg.get('noCaisson'):      # 养心殿等寝宫类无藻井
         caisson(cfg, gold, lacq, blue, pearl)
+    # ornOnPlatform：陈设摆在宝座台面上（史实：甪端/仙鹤/香亭/宝象陈于宝座地平上，不在台下地面）。
+    # 台面范围已被 B 档宝座碰撞整体覆盖，玩家进不去，所以不再为它们另设碰撞；台下通道也因此让出。
+    orn_y = top_y if cfg.get('ornOnPlatform') else 0.0
     for (kind, x, z) in cfg['ornaments']:
+        before = set(bpy.context.scene.objects)
         ornament(kind, x, z, bronze, gold, stone)
+        if orn_y:
+            for ob in set(bpy.context.scene.objects) - before:
+                ob.location.z += orn_y      # Blender Z = three Y
     if cfg.get('extra'):              # 殿专属内容钩子（此时材质已建好，mat() 同名取缓存）
         cfg['extra'](cfg)
     # 碰撞代理
     for i, (x0, y0, z0, x1, y1, z1) in enumerate(cfg.get('colBoxes', [])):
         col_box(f'COL_{i}', x0, y0, z0, x1, y1, z1)
-    # 踏跺前沿 → B 档宝座碰撞前沿之间补一个碰撞
-    if step_front is not None:
-        col_box('COL_steps', -cfg.get('stepW', 3.6) / 2, 0, step_front, cfg.get('stepW', 3.6) / 2, 2.5, cfg['ztb0'] - 1.3)
-    for (kind, x, z) in cfg['ornaments']:
-        col_box(f'COL_orn_{kind}', x - 0.55, 0, z - 0.55, x + 0.55, 2.2, z + 0.55)
+    # （P2-S3）已删除 COL_steps：它是 2.5 m 高的实心盒，盖住踏跺前沿 → B 档宝座碰撞前沿之间整段踏跺，玩家根本上不了台阶。
+    # 踏跺改由 WALK_step_k 提供，台顶由 B 档宝座碰撞（ztb0−1.3 起）挡住。
+    if not orn_y:
+        for (kind, x, z) in cfg['ornaments']:
+            col_box(f'COL_orn_{kind}', x - 0.55, 0, z - 0.55, x + 0.55, 2.2, z + 0.55)
     print(f'[build] tris={tri_count()}')
     # 同材质合并 → 每殿 ≈ 9 个 draw call（否则 300+ 个小 mesh 会吃掉 P1-R 省下的 call 预算）
     if cfg.get('merge', True): merge_by_material()
