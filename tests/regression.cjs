@@ -54,6 +54,26 @@ const BRIDGE_RAIL_X = 2.5;       // 中桥东侧桥栏（桥宽 5，栏杆位于
     await page.goto(process.env.PALACE_URL || 'http://127.0.0.1:5173', { waitUntil: 'load' });
     await page.waitForFunction(() => window.__forbiddenCityApp?.postProcessing?.composer && document.querySelector('#loading-screen').style.display === 'none');
     check('页面加载完成且只有一个画布', await page.evaluate(() => document.querySelectorAll('#scene-canvas').length === 1));
+    // Exercise the actual menu click callback, not only app.toggleQuality().
+    // The old callback assigned the selected setting and then inverted it again.
+    await page.keyboard.press('Escape');
+    await page.locator('#quality-toggle-btn').click();
+    check('桌面设置按钮选择低画质后渲染与标签一致', await page.evaluate(() => {
+      const a = window.__forbiddenCityApp;
+      return a.currentQuality === 'low' && a.settingsMenu.currentQuality === 'low' &&
+        document.querySelector('#quality-toggle-btn').textContent === '低画质' &&
+        a.renderer.getPixelRatio() === 1 && a.postProcessing.ssaoPass === null &&
+        a.environment.dirLight.shadow.mapSize.width === 512;
+    }));
+    await page.locator('#quality-toggle-btn').click();
+    check('桌面设置按钮再次选择高画质后渲染与标签一致', await page.evaluate(() => {
+      const a = window.__forbiddenCityApp;
+      return a.currentQuality === 'high' && a.settingsMenu.currentQuality === 'high' &&
+        document.querySelector('#quality-toggle-btn').textContent === '高画质' &&
+        a.renderer.getPixelRatio() === 2 && a.postProcessing.ssaoPass !== null &&
+        a.environment.dirLight.shadow.mapSize.width === 2048;
+    }));
+    await page.keyboard.press('Escape');
     const geometry = await page.evaluate(async ({ P, C }) => {
       const a = window.__forbiddenCityApp;
       const THREE = await import('/node_modules/three/build/three.module.js');
@@ -131,6 +151,29 @@ const BRIDGE_RAIL_X = 2.5;       // 中桥东侧桥栏（桥宽 5，栏杆位于
     await mobile.goto(process.env.PALACE_URL || 'http://127.0.0.1:5173', { waitUntil: 'load' });
     await mobile.waitForFunction(() => window.__forbiddenCityApp?.postProcessing?.composer && document.querySelector('#loading-screen').style.display === 'none');
     check('移动端首次加载即使用低画质阴影与像素比', await mobile.evaluate(() => { const a = window.__forbiddenCityApp; return a.isMobile && a.currentQuality === 'low' && a.renderer.getPixelRatio() === 1 && a.environment.dirLight.shadow.mapSize.width === 512; }));
+    await mobile.keyboard.press('Escape');
+    check('移动端打开设置显示实际低画质', await mobile.evaluate(() => {
+      const a = window.__forbiddenCityApp;
+      return a.settingsMenu.currentQuality === a.currentQuality &&
+        document.querySelector('#quality-toggle-btn').textContent === '低画质';
+    }));
+    await mobile.locator('#quality-toggle-btn').click();
+    check('移动端设置按钮选择高画质实际生效', await mobile.evaluate(() => {
+      const a = window.__forbiddenCityApp;
+      return a.currentQuality === 'high' && a.settingsMenu.currentQuality === 'high' &&
+        document.querySelector('#quality-toggle-btn').textContent === '高画质' &&
+        a.renderer.getPixelRatio() === a.getPixelRatio('high') && a.postProcessing.ssaoPass !== null &&
+        a.environment.dirLight.shadow.mapSize.width === 2048;
+    }));
+    await mobile.locator('#quality-toggle-btn').click();
+    check('移动端设置按钮返回低画质实际生效', await mobile.evaluate(() => {
+      const a = window.__forbiddenCityApp;
+      return a.currentQuality === 'low' && a.settingsMenu.currentQuality === 'low' &&
+        document.querySelector('#quality-toggle-btn').textContent === '低画质' &&
+        a.renderer.getPixelRatio() === 1 && a.postProcessing.ssaoPass === null &&
+        a.environment.dirLight.shadow.mapSize.width === 512;
+    }));
+    await mobile.keyboard.press('Escape');
     const session = await mobileContext.newCDPSession(mobile);
     const left = { x: 100, y: 320, id: 2 };
     const right = { x: 650, y: 180, id: 1 };

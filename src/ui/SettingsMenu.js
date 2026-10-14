@@ -35,7 +35,8 @@ export class SettingsMenu {
       height: '100%',
       backgroundColor: 'rgba(0, 0, 0, 0.7)',
       display: 'none',
-      zIndex: '999',
+      // Above the desktop welcome layer (9000), below loading (9999).
+      zIndex: '9500',
       backdropFilter: 'blur(8px)',
     });
     
@@ -121,6 +122,8 @@ export class SettingsMenu {
     
     // 绑定事件
     this.bindEvents();
+    this.updateSoundButton();
+    this.updateQualityButton();
   }
   
   bindEvents() {

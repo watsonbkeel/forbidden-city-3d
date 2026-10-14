@@ -84,6 +84,28 @@
 
 **特殊行为**：`gate` 方法返回墙上开口宽度（style="wall" 时 = w + 2.8，style="hall" 时 = 门殿面阔）。在 wall 的 gaps 里可用 `{"at": x, "gate": "门名"}` 引用，ZoneBase 会先构建 gate 记下宽度，再构建 wall 时替换 `gate` 为实际 `w`。
 
+#### R3 V3：有独立依据的侧门记录
+
+| 字段 | 必填性 | 说明 |
+|---|---|---|
+| `gateKind` | 普通门可选；专用侧门必填 | `wall` / `three-bay` / `five-bay`。专用侧门必须明确为 `five-bay`，不按宽度猜门类。 |
+| `gateProfile` | 可选 | 仅接受 `xiehe` / `xihe` / `jingyun` / `longzong`。显式空值、假值、未知值会报错，不能落回旧模板。省略时仍使用普通门逻辑。 |
+| `rot` | 可选 | 专用门省略时采用该独立记录的官方朝向；显式指定时只接受四个方向名或有限的正交角弧度。普通门原默认朝南不变。 |
+| `open` | 专用侧门可选 | 默认打开；`false` 改变真实门扇姿态与碰撞，不替换门厅开口。不是现实参观许可。 |
+| `plaque` | 专用侧门可选 | `false` 不生成匾额；默认显示。 |
+
+例如：
+
+```json
+{"kind":"gate","name":"协和门","x":-106.47,"z":-300.3,"rot":"east","gateKind":"five-bay","gateProfile":"xiehe"}
+```
+
+专用侧门的宽度、深度、逐间宽、平台、坡顶/脚、门扇线和屋顶由 `src/scene/palace/special/SideGateProfiles.js` 的独立记录决定，不使用普通门的 `w/h/t/layers` 默认值覆盖。模型和路线共用 `sideGateGeometry(item)`；`verified` 仅标记有据值，其余尺寸是明确暂定参数。不要仅凭“形制相同”复制另一门的实测值。
+
+ZoneBase 原样转发专用门的方向供严格验证，避免宽松旧解析器把未知方向改成朝南。`x/z` 必须是有限数值。合并后的 `userData.architecture` 同时记录实际 `facing` 与依据的 `sourceFacing`，以及三条通道和两面慢道的世界坐标。
+
+梯形可走坡仍为 `type: 'ramp'`，可增加完整的 `crossMin0/crossMax0/crossMin1/crossMax1`，分别表示纵轴 `a0/a1` 处的横向范围。四字段必须同时有限且各处min≤max，边界与高度沿同一进度插值。省略全部四字段时保持旧矩形坡行为；部分字段或非法边界会报错，不退回包围矩形。
+
 ### 2.3 wall（轴对齐墙体）
 
 直线红墙（灰砖下碱 + 红墙身 + 黄琉璃墙帽）。
@@ -218,7 +240,7 @@
 | `"east"`   | `Math.PI/2`  | 东（-X）                        |
 | `"west"`   | `-Math.PI/2` | 西（+X）                        |
 
-ZoneBase 需在调用 kit 方法前将字符串转换为弧度。
+普通构件由ZoneBase在调用kit前转换字符串；专用侧门将原始方向交给其严格解析器验证。
 
 ---
 
@@ -233,7 +255,7 @@ ZoneBase 需在调用 kit 方法前将字符串转换为弧度。
 ## 5. 实现要求（ZoneBase）
 
 1. **gate 宽度引用**：`wall` 和 `courtWalls` 的 `gaps` 中可写 `{"at": x, "gate": "门名"}`。ZoneBase 需先遍历 items 找到所有 gate 并构建，记录 `门名 → 返回的开口宽度`，再构建 wall 时自动替换。
-2. **rot 字符串转换**：遇到 `"south"|"north"|"east"|"west"` 时，转换为对应弧度值再传给 kit 方法。
+2. **rot 字符串转换**：普通构件遇到 `"south"|"north"|"east"|"west"` 时转换为弧度；`gateProfile` 专用门保持原始值，由独立记录严格验证并应用自身默认朝向。
 3. **kind 分发**：按 `item.kind` 调用 `CourtKit` 对应方法（`kit.hall()`、`kit.gate()`、`kit.wall()` 等）。
 4. **顺序执行**：`items` 数组按顺序执行，保证 gate 在引用它的 wall 之前构建。
 

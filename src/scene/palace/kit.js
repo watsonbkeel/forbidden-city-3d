@@ -4,6 +4,7 @@ import { buildRoof, buildWallCap } from '../RoofBuilder.js';
 import { buildStuddedDoor } from '../HallKit.js';
 import { mergeByMaterial } from '../../utils/MergeUtils.js';
 import { furnishRoom, goldBrickTexture, GOLD_BRICK_TILE } from './interiors.js';
+import { buildSideGate } from './special/SideGate.js';
 import { buildTirenPavilion } from './special/TirenPavilion.js';
 
 const STEP_RUN = 1.6; // 台阶水平长 / 高
@@ -241,7 +242,12 @@ export class CourtKit {
    * - style 'wall'：随墙门（两侧门垛 + 门罩），开口宽 = w + 2.8
    * - style 'hall'：门殿（三间，明间为门道，门扇在中柱一线、打开后贴两侧隔墙），开口宽 = 门殿面阔
    */
-  gate({ x, z, rot = 0, w = 3.6, h = 4.4, t = 1, style = 'wall', gateKind, name, roof = 'xieshan', brackets = true, layers = 1, eaveCount }) {
+  gate({ x, z, rot, w = 3.6, h = 4.4, t = 1, style = 'wall', gateKind, gateProfile, open, plaque, name, roof = 'xieshan', brackets = true, layers = 1, eaveCount }) {
+    if (gateProfile !== undefined) {
+      if (gateKind !== 'five-bay') throw new Error('Side gate profile requires explicit five-bay gateKind');
+      return buildSideGate(this, { x, z, rot, gateProfile, open, plaque, name });
+    }
+    if (rot === undefined) rot = 0; // Preserve legacy defaults after dedicated dispatch.
     const kind = gateKind ?? ({ wall: 'wall', hall: 'three-bay' }[style]);
     if (!['wall', 'three-bay', 'five-bay'].includes(kind)) throw new Error(`Unsupported gateKind: ${kind ?? style}`);
     layers = eaveCount ?? layers;

@@ -367,8 +367,7 @@ class ForbiddenCityApp {
         }
       },
       onQualityChange: (quality) => {
-        this.currentQuality = quality;
-        this.toggleQuality();
+        this.toggleQuality(quality);
       },
       onSoundToggle: (enabled) => {
         if (!enabled) {
@@ -416,9 +415,11 @@ class ForbiddenCityApp {
     return Math.min(window.devicePixelRatio || 1, cap);
   }
 
-  toggleQuality() {
-    // 按钮文字由 SettingsMenu 自己更新（旧的 qualityButton 已移除）
-    this.currentQuality = this.currentQuality === 'high' ? 'low' : 'high';
+  toggleQuality(quality = this.currentQuality === 'high' ? 'low' : 'high') {
+    // The menu supplies the chosen value. Do not invert it a second time.
+    // No-argument calls still toggle for keyboard/testing callers.
+    if (quality !== 'high' && quality !== 'low') throw new Error(`Unsupported quality: ${quality}`);
+    this.currentQuality = quality;
     
     // 更新渲染设置
     this.renderer.setPixelRatio(this.getPixelRatio(this.currentQuality));
@@ -426,6 +427,10 @@ class ForbiddenCityApp {
     this.environment.setQuality(this.currentQuality === 'high');
     this.shadowSetup.setQuality(this.currentQuality);
     this.lastShadowUpdate = 0;
+    if (this.settingsMenu) {
+      this.settingsMenu.currentQuality = this.currentQuality;
+      this.settingsMenu.updateQualityButton();
+    }
   }
   
   /**

@@ -36,6 +36,17 @@ const GATE_CLEAR = 20;        // 门前/门后取点余量
 
 async function buildRoutes() {
   const { LAYOUT: L } = await import(pathToFileURL(path.join(ROOT, 'src/config/constants.js')).href);
+  const { sideGateGeometry } = await import(pathToFileURL(path.join(ROOT, 'src/scene/palace/special/SideGateProfiles.js')).href);
+  const axisZone = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/zones/axis-courts.json'), 'utf8'));
+  const exactGatePoints = new Set();
+  const gateTransit = name => {
+    const g = sideGateGeometry(axisZone.items.find(item => item.kind === 'gate' && item.name === name));
+    const front = g.ramps.find(r => r.side === 'front'), rear = g.ramps.find(r => r.side === 'rear');
+    // 旧的门心外 20 m 点仍在高台慢道上；走完实际坡脚后再转向原目的地。
+    const points = [rear.zToe + 2, rear.zToe, rear.zTop, front.zTop, front.zToe, front.zToe - 2].map(z => g.toWorld(0, z));
+    points.forEach(p => exactGatePoints.add(p));
+    return points;
+  };
   const front = n => (n === '太和殿' ? L.TAIHE_Z : n === '中和殿' ? L.ZHONGHE_Z : n === '保和殿' ? L.BAOHE_Z : n === '乾清宫' ? L.QIANQING_Z : n === '交泰殿' ? L.JIAOTAI_Z : L.KUNNING_Z) - HALL_D[n] / 2;
   const back = n => front(n) + HALL_D[n];
   const gz0 = L.IMPERIAL_GARDEN_Z - 95.6 / 2;   // 御花园南园墙 422.7（GardenBuilder 默认进深 95.6）
@@ -76,13 +87,14 @@ async function buildRoutes() {
   const kitIn = KIT_D / 2 - 3.4;    // 宝座中心 rel z
   const STREET_E = -63.3;           // 东一长街中线（x −72.4 ~ −54.25）
   const JIHUA_Z = 410;              // 基化门（东一长街内墙门，zones/garden 墙洞 at 410；anchors 未收录）
+  const xhTransit = gateTransit('协和门'), xiTransit = gateTransit('熙和门');
   const SIDE_ROUTES = [
-    ['协和门→文华门→文华殿内', [[-30, xh.z], [xh.x - GATE_CLEAR, xh.z], [wh.x, wh.z - 8], [whd.x, whd.z - kitIn + 2],
+    ['协和门→文华门→文华殿内', [[-30, xh.z], ...xhTransit, [wh.x, wh.z - 8], [whd.x, whd.z - kitIn + 2],
       [whd.x - KIT_DETOUR_X, whd.z - kitIn + 2], [whd.x - KIT_DETOUR_X, r1(whd.z + KIT_D / 2 - 1.2)]]],
-    ['协和门→东华门→出宫', [[-30, xh.z], [xh.x - GATE_CLEAR, xh.z], [dh.x + 25, dh.z], [L.BOUNDARY.minX + 10, dh.z]]],
-    ['熙和门→武英门→武英殿内', [[30, xi.z], [xi.x + GATE_CLEAR, xi.z], [wy.x, wy.z - 8], [wy.x, wy.z + 8], [wyd.x, wyd.z - kitIn + 2]]],
+    ['协和门→东华门→出宫', [[-30, xh.z], ...xhTransit, [dh.x + 25, dh.z], [L.BOUNDARY.minX + 10, dh.z]]],
+    ['熙和门→武英门→武英殿内', [[30, xi.z], ...xiTransit, [wy.x, wy.z - 8], [wy.x, wy.z + 8], [wyd.x, wyd.z - kitIn + 2]]],
     // 南薰殿院（z ≤ −286.6）与武英殿院（z ≥ −249.8）之间斜穿
-    ['熙和门→西华门→出宫', [[30, xi.z], [xi.x + GATE_CLEAR, xi.z], [xhm.x - 25, xhm.z], [L.BOUNDARY.maxX - 10, xhm.z]]],
+    ['熙和门→西华门→出宫', [[30, xi.z], ...xiTransit, [xhm.x - 25, xhm.z], [L.BOUNDARY.maxX - 10, xhm.z]]],
     // 起点在三台（半宽 65）以东的广场地面
     ['左翼门→文渊阁一带', [[-75, zy.z], [zy.x - GATE_CLEAR - 3, zy.z]]],
     ['内左门→东一长街→景仁宫内', [[nz.x, nz.z - GATE_CLEAR], [nz.x, jrm.z - 7], [jrm.x, jrm.z - 7], [jrm.x, jrm.z + 7], [jrg.x, jrg.z - 2]]],
@@ -117,7 +129,7 @@ async function buildRoutes() {
     ['西一长街→夹道→永寿门', [[ny.x - 2.4, A['永寿门'].z - 2.8], [A['永寿门'].x, A['永寿门'].z - 2.8], [A['永寿门'].x, A['永寿门'].z + 8]]],
     ['文华殿院北夹道→文渊阁院', [[whd.x + 36.4, -153], [A['文渊阁'].x, -153], [A['文渊阁'].x, -145]]],
   ];
-  const round = rs => rs.map(([n, pts]) => [n, pts.map(([x, z]) => [r1(x), r1(z)])]);
+  const round = rs => rs.map(([n, pts]) => [n, pts.map(p => exactGatePoints.has(p) ? p : [r1(p[0]), r1(p[1])])]);
   return { AXIS_ROUTES: round(AXIS_ROUTES), SIDE_ROUTES: round([...SIDE_ROUTES, ...EXTRA_ROUTES]) };
 }
 

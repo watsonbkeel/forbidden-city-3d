@@ -250,7 +250,7 @@ async function lintGeometry(zoneFiles) {
   // 8. 门洞两侧
   let gateChecked = 0;
   for (const g of W.gates) {
-    if (L.pointBlocked(W, g.x, g.z)) {
+    if (L.pointBlocked(W, g.x, g.z, g.platformY)) {
       error(`${name(g)} 门洞中心被碰撞体占据：${blockersIn(g.x - 0.5, g.z - 0.5, g.x + 0.5, g.z + 0.5, g.item).join('；')}`);
       continue;
     }
@@ -259,7 +259,7 @@ async function lintGeometry(zoneFiles) {
       const [dx, dz] = [g.dir[0] * s, g.dir[1] * s];
       const px = -dz, pz = dx; // 横向
       const end = [g.x + dx * (g.half + GATE_SCAN), g.z + dz * (g.half + GATE_SCAN)];
-      const w = L.walkStraight(W, [g.x, g.z], end);
+      const w = L.walkStraight(W, [g.x, g.z], end, { feet0: g.platformY });
       const clear = w.reached >= w.total - 0.1 ? GATE_SCAN : Math.max(0, w.reached + 0.5 - g.half);
       const where = `${name(g)} ${sideName(g.dir, s)}`;
       if (clear < GATE_SCAN) {

@@ -11,6 +11,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { sideGateGeometry } from '../../src/scene/palace/special/SideGateProfiles.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const src = p => import(path.join(ROOT, 'src', p));
@@ -19,22 +20,37 @@ const src = p => import(path.join(ROOT, 'src', p));
 export const KIT = {
   STEP_RUN: 1.6,              // 台阶水平长 / 高
   STEP_MIN_PH: 0.55,          // 台明高于此才做实体 + 台阶
-  GATE_HALL_HALF_D: (6.4 + 1.6) / 2, // 门殿（style hall）进深 D=6.4 + 台基外扩 1.6
+  GATE_HALL_HALF_D: (6.4 + 1.6) / 2, // 三间门殿进深 D=6.4 + 台基外扩 1.6
   CITY_GATE_HALF_D: 14 / 2,   // 城台门 D=14
   PLAYER_R: 0.5,              // FirstPerson → getValidPosition 半径
 };
 export const FACE = { south: 0, north: Math.PI, east: Math.PI / 2, west: -Math.PI / 2 };
 export const parseRot = r => (r === undefined || r === null ? 0 : typeof r === 'number' ? r : FACE[r] ?? 0);
 
-/** 门（gate / cityGate）的通行几何：中心、通行方向（局部 +Z 的世界方向）、门体半进深 */
+/** 门通行几何；profile 的 front/rear 包含各自完整坡道，platformY 仅用于台面起点。 */
 export function gateGeom(item) {
+  if (item.gateProfile) {
+    const profile = sideGateGeometry(item);
+    const front = -Math.min(-profile.platformDepth / 2, ...profile.ramps.flatMap(r => [r.zTop, r.zToe]));
+    const rear = Math.max(profile.platformDepth / 2, ...profile.ramps.flatMap(r => [r.zTop, r.zToe]));
+    return { x: item.x, z: item.z, rot: profile.rot, dir: [Math.sin(profile.rot), Math.cos(profile.rot)],
+      half: Math.max(front, rear), front, rear, platformY: profile.platformY, profile };
+  }
   const rot = parseRot(item.rot);
   const dir = [Math.sin(rot), Math.cos(rot)];
   let half;
   if (item.kind === 'cityGate') half = KIT.CITY_GATE_HALF_D;
-  else if (item.style === 'hall') half = KIT.GATE_HALL_HALF_D;
-  else { const w = item.w ?? 3.6, t = item.t ?? 1; half = Math.max(t + 1.4, w / 2 + 1.0) / 2; }
-  return { x: item.x, z: item.z, rot, dir, half };
+  else {
+    // Match CourtKit.gate: explicit topology wins over legacy style; width
+    // only supplies dimensions, never infers a five-bay gate.
+    const kind = item.gateKind ?? ({ wall: 'wall', hall: 'three-bay' }[item.style ?? 'wall']);
+    const w = item.w ?? 3.6, t = item.t ?? 1;
+    if (kind === 'five-bay') half = (Math.min(Math.max(6.4, w * 0.3), 10) + 1.6) / 2;
+    else if (kind === 'three-bay') half = KIT.GATE_HALL_HALF_D;
+    else if (kind === 'wall') half = Math.max(t + 1.4, w / 2 + 1.0) / 2;
+    else throw new Error(`Unsupported gateKind: ${kind ?? item.style}`);
+  }
+  return { x: item.x, z: item.z, rot, dir, half, front: half, rear: half };
 }
 
 /** 殿（hall）的几何：正面朝向、台明外廓、台阶长、门的局部 x 与门洞宽（与 kit.hall 一致，roomBays=0） */

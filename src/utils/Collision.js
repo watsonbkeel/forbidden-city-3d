@@ -15,6 +15,8 @@ export class CollisionManager {
      * - { type: 'box', box: Box3 }：顶面高度 = box.max.y，XZ 范围取 box。
      * - { type: 'ramp', minX, maxX, minZ, maxZ, axis: 'x'|'z', a0, a1, y0, y1 }：
      *   沿 axis 从坐标 a0（高度 y0）到 a1（高度 y1）线性过渡。
+     *   Optional crossMin0/crossMax0/crossMin1/crossMax1 bound a tapered
+     *   cross-axis interval at a0/a1; absent fields preserve rectangles.
      */
     this.walkables = [];
     this.playerBox = new THREE.Box3();
@@ -42,11 +44,18 @@ export class CollisionManager {
     }
     if (walkable.type === 'ramp') {
       const r = walkable;
+      const taper = ['crossMin0', 'crossMax0', 'crossMin1', 'crossMax1'];
+      const hasTaper = taper.some(key => r[key] !== undefined);
+      if (hasTaper && (!taper.every(key => Number.isFinite(r[key])) || r.crossMin0 > r.crossMax0 || r.crossMin1 > r.crossMax1)) {
+        throw new Error('Invalid tapered ramp: four finite, ordered cross-axis bounds are required');
+      }
       this.walkables.push({
         type: 'ramp',
         minX: Math.min(r.minX, r.maxX), maxX: Math.max(r.minX, r.maxX),
         minZ: Math.min(r.minZ, r.maxZ), maxZ: Math.max(r.minZ, r.maxZ),
         axis: r.axis === 'x' ? 'x' : 'z', a0: r.a0, a1: r.a1, y0: r.y0, y1: r.y1,
+        ...(hasTaper
+          ? { crossMin0: r.crossMin0, crossMax0: r.crossMax0, crossMin1: r.crossMin1, crossMax1: r.crossMax1 } : {}),
         tag,
       });
     }
@@ -96,6 +105,14 @@ export class CollisionManager {
         if (x < w.minX || x > w.maxX || z < w.minZ || z > w.maxZ) continue;
         const a = w.axis === 'x' ? x : z;
         const t = w.a1 === w.a0 ? 1 : Math.min(1, Math.max(0, (a - w.a0) / (w.a1 - w.a0)));
+        // Optional trapezoidal boundary: cross-axis edges interpolate at the
+        // same t as the height. Legacy rectangular ramps retain their exact path.
+        if (w.crossMin0 !== undefined) {
+          const cross = w.axis === 'x' ? z : x;
+          const low = w.crossMin0 + (w.crossMin1 - w.crossMin0) * t;
+          const high = w.crossMax0 + (w.crossMax1 - w.crossMax0) * t;
+          if (cross < low - 1e-9 || cross > high + 1e-9) continue;
+        }
         top = w.y0 + (w.y1 - w.y0) * t;
       }
       if (top > limit || top <= ground) continue;

@@ -141,12 +141,17 @@ export class ZoneBase {
     const params = {
       x: item.x,
       z: item.z,
-      rot: this.parseRot(item.rot),
+      // Dedicated profiles validate their cardinal transform; do not let the
+      // permissive legacy parser turn malformed input into a south-facing gate.
+      rot: item.gateProfile !== undefined ? item.rot : this.parseRot(item.rot),
       w: item.w,
       h: item.h,
       t: item.t,
       style: item.style,
       gateKind: item.gateKind,
+      gateProfile: item.gateProfile,
+      open: item.open,
+      plaque: item.plaque,
       name: item.name,
       roof: item.roof,
       brackets: item.brackets,
