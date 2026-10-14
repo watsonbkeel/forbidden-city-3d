@@ -6,6 +6,7 @@ import { PalaceBuilder } from '../../src/scene/PalaceBuilder.js';
 import { CollisionManager } from '../../src/utils/Collision.js';
 import { PALACE_LAYOUT } from '../../src/scene/Layout.js';
 import { PLAYER } from '../../src/config/constants.js';
+import { solidMaterialNameAt } from '../../src/render/SolidMaterialBatch.js';
 
 const moduleURL = new URL('../../src/scene/palace/special/QianqingGate.js', import.meta.url);
 const special = existsSync(moduleURL) ? await import(moduleURL) : null;
@@ -55,7 +56,9 @@ function walk(cm, from, to, feet = 0) {
 }
 function rays(object, from, direction, material) {
   const ray = new THREE.Raycaster(new THREE.Vector3(...from), new THREE.Vector3(...direction));
-  return ray.intersectObject(object, true).filter(hit => !material || hit.object.material.name === material);
+  // Batching must not let a screen/frame hit stand in for an actual grid bar:
+  // resolve the precise hit triangle back to its original material identity.
+  return ray.intersectObject(object, true).filter(hit => !material || solidMaterialNameAt(hit.object, hit.faceIndex) === material);
 }
 
 // Fails if the special implementation is absent; the remainder exercise its real geometry.

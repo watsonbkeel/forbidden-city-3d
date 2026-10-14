@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { DIMENSIONS, LAYOUT } from '../../../config/constants.js';
 import { buildRoof, buildWallCap } from '../../RoofBuilder.js';
+import { batchSolidMaterials } from '../../../render/SolidMaterialBatch.js';
 
 const SOURCE = 'https://www.dpm.org.cn/explore/building/236473.html';
 const BASE_HEIGHT = 1.5; // Official description; other profile measurements remain provisional.
@@ -232,5 +233,11 @@ export function buildQianqingGate(builder, data) {
       thickness, officialHeight: 8, officialLength: 9.7, measurementBasis: 'provisional', angleDegrees: 30 });
   }
   g.userData.qianqingGate = info;
-  return builder.finish(g);
+  const finished = builder.finish(g);
+  // Run after ordinary material merging, which has already baked the folded
+  // screens' transforms. Keep every triangle; encode only these six solid
+  // materials' linear colors and roughness as per-vertex values for one draw.
+  const batch = batchSolidMaterials(finished, [grid, frame, dark, glaze, gold, pink], { name: 'qianqing_solid_batch' });
+  builder.ownedMaterials.push(batch.material);
+  return finished;
 }
