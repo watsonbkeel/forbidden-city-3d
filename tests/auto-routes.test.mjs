@@ -1,10 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { buildWorld, gateGeom, parseRot, pointBlocked, walkStraight } from './lib/world.mjs';
+import { buildWorld, gateGeom, hallGeom, parseRot, pointBlocked, walkStraight } from './lib/world.mjs';
 import { buildAutoRoutes, zoneRoutes } from './lib/auto-routes.mjs';
 import { FirstPersonControls } from '../src/controls/FirstPerson.js';
 import { sideGateGeometry } from '../src/scene/palace/special/SideGateProfiles.js';
+import { pavilionGeometry } from '../src/scene/palace/special/PavilionProfiles.js';
 
 const W = await buildWorld();
 const zone = W.zones.find(z => z.json.id === 'outer-west').json;
@@ -123,6 +124,40 @@ for (const fps of [60, 10]) for (const sprint of [false, true]) {
   });
 }
 
+test('pavilion route geometry follows the measured profile rather than legacy hall padding or a center stair', () => {
+  for (const pavilionProfile of ['hongyi', 'tiren']) {
+    const item = { kind: 'hall', pavilionProfile, x: 30, z: 40, w: 12, d: 6, ph: 0.9, pad: 1, enter: true };
+    const physical = pavilionGeometry(item), g = hallGeom(item);
+    assert.equal(g.profile?.profile, pavilionProfile, 'use the production geometry helper');
+    assert.equal(g.w, physical.lower.width);
+    assert.equal(g.d, physical.lower.depth);
+    assert.equal(g.ph, physical.lower.floorY);
+    assert.deepEqual(g.roomBounds, physical.roomBounds);
+    assert.equal(g.front, physical.lower.front);
+    assert.deepEqual(g.toW(0, g.front), physical.toWorld(0, physical.lower.front));
+  }
+});
+
+test('two pavilion flights each retain exact toe, top, terrace, door and interior points in both directions', () => {
+  const items = ['hongyi', 'tiren'].map((pavilionProfile, i) => ({
+    kind: 'hall', structure: 'surveyed-pavilion', pavilionProfile, name: `pavilion-${i}`, x: i * 100, z: 0, enter: true,
+  }));
+  const routes = buildAutoRoutes(W, [{ id: 'pavilion-coverage', items }]);
+  assert.equal(routes.length, 4, 'one explicit round trip per physical front stair flight');
+  for (const item of items) {
+    const g = pavilionGeometry(item), own = routes.filter(r => r.hall === item.name);
+    assert.deepEqual(own.map(r => r.pavilionFlight), ['frontLeft', 'frontRight']);
+    for (const route of own) {
+      const approach = g.approaches[route.pavilionFlight];
+      const go = approach.worldPoints.map(p => [p.x, p.z]);
+      assert.deepEqual(approach.points.map(p => p.kind), ['outside', 'groundToe', 'stairTop', 'platform', 'terraceTurn', 'centralDoor', 'interior']);
+      assert.deepEqual(route.pts, [...go, ...go.slice(0, -1).reverse()], 'never simplify or round away physical route points');
+      assert.equal(approach.points[1].x, g.frontFlights.find(f => f.side === route.pavilionFlight).centerX);
+      assert.ok(Math.abs(approach.points[1].x) > g.royalStrip.width / 2, 'use a side flight, not the carved strip');
+    }
+  }
+});
+
 for (const fps of [60, 10]) for (const sprint of [false, true]) {
   test(`all 33 fixed routes retain real-controller passage: ${fps} fps, sprint=${sprint}`, t => {
     const routes = fixedRoutes();
@@ -170,11 +205,26 @@ test('the same bounded detour works after translating, renaming, and rotating th
 
 test('all baseline and explicit profile routes retain real-collision round-trip passage', () => {
   const routes = buildAutoRoutes(W, W.zones.map(z => z.json));
-  assert.equal(routes.filter(route => !route.gateProfile).length, 39, 'preserve every baseline hall/cross route');
+  assert.equal(routes.filter(route => !route.gateProfile && !route.pavilionFlight).length, 40, '39 baseline hall/cross routes plus the newly enterable Hongyi hall');
   const portalCount = W.gates.filter(g => g.item.gateProfile).reduce((n, g) => n + sideGateGeometry(g.item).portals.length, 0);
-  assert.equal(routes.length, 39 + portalCount, 'add one round trip per physical profile portal');
+  assert.equal(routes.filter(route => route.pavilionFlight).length, 4, 'one round trip per actual pavilion front flight');
+  assert.equal(routes.length, 40 + portalCount + 4, '51 original identities, one Hongyi hall route, four flight routes');
   for (const route of routes) assert.doesNotThrow(() => assertWalkable(W, route.pts), route.name);
 });
+
+for (const fps of [60, 10]) for (const sprint of [false, true]) {
+  test(`all 56 automatic routes retain real-controller passage: ${fps} fps, sprint=${sprint}`, t => {
+    const routes = buildAutoRoutes(W, W.zones.map(z => z.json));
+    assert.equal(routes.length, 56);
+    assert.equal(routes.filter(r => r.pavilionFlight).length, 4, 'both front flights of both pavilions, ascending and descending');
+    const failures = [];
+    for (const route of routes) {
+      const result = replay(t, W, route.pts, fps, sprint);
+      if (!result.arrived || result.fellUnder) failures.push({ name: route.name, ...result });
+    }
+    assert.deepEqual(failures, []);
+  });
+}
 
 test('profile gate extents follow independent front/rear ramp toes and explicit facing', () => {
   for (const gateProfile of ['xiehe', 'xihe', 'jingyun', 'longzong']) for (const rot of [undefined, 0, 'east', 'north', 'west']) {

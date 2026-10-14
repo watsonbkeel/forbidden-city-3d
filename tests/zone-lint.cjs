@@ -285,6 +285,24 @@ async function lintGeometry(zoneFiles) {
     if (h.item.enter !== true || h.item.open) continue;
     hallChecked++;
     const g = h.g;
+    if (g.profile) {
+      // The center of this approach is a solid carved strip. Probe both real
+      // side flights, through the terrace turn and the single lower doorway.
+      for (const approach of Object.values(g.profile.approaches)) {
+        let feet = approach.worldPoints[0].y;
+        const points = approach.worldPoints;
+        for (let i = 1; i < points.length; i++) {
+          const from = points[i - 1], to = points[i];
+          const result = L.walkStraight(W, [from.x, from.z], [to.x, to.z], { feet0: feet });
+          if (result.reached < result.total - 0.3) {
+            error(`${h.zone}: hall「${h.item.name}」${approach.side} ${from.kind}→${to.kind} 受阻：${JSON.stringify(result)}`);
+            break;
+          }
+          feet = result.feet;
+        }
+      }
+      continue;
+    }
     const doorHalf = (g.bay - 2 * g.r) / 2;
     const faces = [[-1, '前门']];
     if (g.backDoor) faces.push([1, '后门']);

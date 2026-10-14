@@ -12,6 +12,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { sideGateGeometry } from '../../src/scene/palace/special/SideGateProfiles.js';
+import { pavilionGeometry } from '../../src/scene/palace/special/PavilionProfiles.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const src = p => import(path.join(ROOT, 'src', p));
@@ -55,6 +56,14 @@ export function gateGeom(item) {
 
 /** 殿（hall）的几何：正面朝向、台明外廓、台阶长、门的局部 x 与门洞宽（与 kit.hall 一致，roomBays=0） */
 export function hallGeom(item) {
+  if (item.pavilionProfile) {
+    const profile = pavilionGeometry(item);
+    const { lower, platform, rot, roomBounds } = profile;
+    return { rot, w: lower.width, d: lower.depth, ph: lower.floorY,
+      PW: platform.width, PD: platform.depth, front: lower.front, doorX: 0,
+      enter: item.enter === true, toW: profile.toWorld, facing: [-Math.sin(rot), -Math.cos(rot)],
+      backDoor: false, open: false, profile, roomBounds };
+  }
   const rot = parseRot(item.rot);
   const w = item.w, d = item.d, pad = item.pad ?? 1.0, ph = item.ph ?? 0.9;
   const n = Math.max(3, Math.round(w / 3.6) | 1);
@@ -105,6 +114,7 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true } = {
   const lib = stubLibrary(THREE);
   const cm = new CollisionManager();
   const owner = new Map(); // 原始 Box3 → { zone, item }
+  const rooms = [], mapItems = [];
   const METHODS = ['buildHall', 'buildGate', 'buildWall', 'buildCourtWalls', 'buildCorridor', 'buildCityGate', 'buildNineDragonWall'];
 
   for (const { json } of zones) {
@@ -122,6 +132,8 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true } = {
     const data = zb.build();
     cm.addColliders(data.colliders, json.id);
     cm.addWalkables(data.walkables, json.id);
+    rooms.push(...data.rooms);
+    mapItems.push(...data.mapItems);
   }
 
   if (statics) {
@@ -152,7 +164,7 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true } = {
     if (item.kind === 'hall') halls.push({ zone: json.id, item, g: hallGeom(item) });
   }
   return {
-    THREE, cm, zones, gates, halls,
+    THREE, cm, zones, gates, halls, rooms, mapItems,
     ownerOf: c => owner.get(c.mesh) ?? { zone: c.tag ?? '?', item: { kind: '?' } },
   };
 }

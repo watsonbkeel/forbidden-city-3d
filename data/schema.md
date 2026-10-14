@@ -269,9 +269,28 @@ ZoneBase 原样转发专用门的方向供严格验证，避免宽松旧解析�
 
 - `bays`、`roofH`、`roomBays`、`interior` 已从 ZoneBase 传入 CourtKit；不再因字段丢失静默采用默认值。`throne:true` 优先使用既有宝座陈设，避免与新传入的内景预设重叠。
 - `storeys` 是实际楼层数，`eaveCount` 是主屋顶檐层数，不能互相替代。普通殿座只支持单层；多层必须有明确专用组件，否则报错。兼容 `layers` 作为檐层数别名。
-- `structure: "tiren-pavilion"` 使用体仁阁双层专用构件；支持 `lowerStoreyH`、`upperStoreyH`、`roofH`。来源和暂定比例见 `docs/current-state/cards/tiren.md`。
+- `structure: "tiren-pavilion"` 保留为体仁阁兼容入口，现选择独立测绘记录；旧 `lowerStoreyH`、`upperStoreyH`、`roofH` 和 `w/d/ph` 不覆盖该专用记录。新数据使用下节的显式 `surveyed-pavilion` 与 `pavilionProfile`。
 - `gateKind` 可明确为 `wall`、`three-bay`、`five-bay`。不再从宽度猜门类；未填写时仅以已有 `style:wall/hall` 兼容映射。未知类型直接报错。
 - 既有大门的显式五间字段只是保存原生成效果，`structureStatus:provisional-preserved-baseline` 不代表实景核准。`style:triple` 旧数据原来没有实现，仍按旧墙门保留，并标 `provisional-legacy-style-unimplemented` 待复核。
 - `cuanjian` 与 `yingshan` 分别规范为 `pavilion` 与 `gable`；未知屋顶类型报错。修复别名不能替代各栋建筑逐项验收。
 - 材质合并后，专用殿座的结构记录保留在输出组 `userData.architecture`；乾清门保留 `userData.qianqingGate`。这些记录用于审查，不替代真实几何与通行测试。
 - 非均等间宽、逐立面开口、各类阶道的全局通用 schema 仍未完成。本轮四座由专用结构实现，不能据此宣布整条 R2 参数化任务结束。
+
+
+## R3 V4：弘义阁与体仁阁的独立测绘记录
+
+```json
+{"kind":"hall","name":"弘义阁","x":102.1,"z":-110.4,"rot":"east","w":43.680,"d":16.704,"ph":3.8,"pad":0,"structure":"surveyed-pavilion","pavilionProfile":"hongyi","storeys":2,"eaveCount":1,"enter":true,"plaque":false,"dimensionStatus":"mixed-evidence"}
+```
+
+- `pavilionProfile` 只接受 `hongyi` / `tiren`，必须配合 `structure:'surveyed-pavilion'`；未知记录直接报错。`rot` 原样转发并严格验证四个方向名或有限正交角，`x/z` 必须有限。
+- 记录中的 `w/d` 是各自下层柱心跨度，保留供地图传送等既有调用读取，不能当屋檐、平座或高台外包。`ph:3.8` 表示在前院地坪0的约定下底层室内面；平台铺地另为3.7，体仁阁此值明确暂定。`pad` 不是新高台轮廓的生成器。
+- `PavilionMeasurements.js` 保存独立来源、图号、页码、单位、状态和未知项。`PavilionProfiles.js` 的 `pavilionGeometry(item)` 为模型和路线提供同一份 `lower`、`upper.front/rear`、`gallery.front/rear/supports`、`deck`、`roof`、`waist`、`platform`、`elevations`、`roomBounds`、`frontFlights`、`sideConnections` 和 `approaches`。
+- `DIMENSIONED` 只代表标注且端点已辨认；`DERIVED` 为透明算术；共享高台文字是 `TEXT_APPROX`，每阁使用时为 `ADOPTED_TEXT_APPROX_SHARED_SCOPE`。其他外包/结构细节使用 `PROVISIONAL_NOT_SURVEYED`；弘义腰层前总宽冲突保留 `PROVISIONAL_SOURCE_CONFLICT`。`dimensionStatus:'mixed-evidence'` 不等于全模型实测或2026现状验收。
+- 坐标来自正面朝下的图纸：u向图右，局部X=−u、Z向后；使用中心开间中心而非全宽几何中心，保留体仁阁4毫米前间差与弘义前后网差。室内0对应worldY3.8；可选 `interiorFloorWorldY` 只改变明确的垂直基准，不移动x/z锚点。
+- 上层是九区间围护中的七开口＋两封闭端间；外围另有24根方柱，不能用下层宽×7/9。上层楼板、柱心线、平座边、屋面边和檐/脊标高不能混用。檐标记不是柱顶；生成器 `baseY` 由真实生成檐/脊目标单独求解。H01脊标高指连续正脊帽顶，不是瓦面交点；专用校准扣除共享生成器3.324×ridgeRadius的脊帽升高，真实中心竖向射线验证帽顶。共享低细节屋顶省略鸱吻，不能把其bbox声称为测绘最高装饰高度。
+- `approaches.frontLeft/frontRight` 含 `points` 与 `worldPoints`，每点是 `{kind,x,y,z}`，依次为outside、groundToe、stairTop、platform、terraceTurn、centralDoor、interior。中央御路不提供可走坡面；两个32级梯段必须各自可用。
+- `sideConnections` 暴露xTop、xLanding、xOuter、landingLength、宽度及高度，南踏跺/北礓磋只能到有明显护栏的暂定2.8m落脚台。`neighborConnection:'DEFERRED_ELEVATION_UNRESOLVED'` 明确表示现有庑廊标高未闭合；不能默认已连通，也不能提高无关庑廊。
+- `enter:true` 仅打开下层中央门并登记单一下层房间。上层不登记公共房间/楼梯；高处可走面 `rescue:false`。物理后墙不能镜像前窗，也不能因墙段替换产生后门。
+- `interface.wallGapWidth` 与 `corridorTrimHalfLength` 为保持旧锚点所需的局部兼容范围。场景仅截断被新闭合阁体替代的后墙宽度并缩短四个直接相邻廊端；JSON重复数值由精确测试保护，不扩大到63.3m高台全宽。
+- `f.userData.pavilion` 与合并后的 `userData.architecture` 保留全部依据/暂定状态、实际朝向、地图/房间/路线接口。所有屋顶/材质继续共享；组件不能dispose共享材质或贴图。来源与限制见 `docs/current-state/cards/hongyi.md`、`tiren.md`。

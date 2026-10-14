@@ -6,6 +6,7 @@ import { mergeByMaterial } from '../../utils/MergeUtils.js';
 import { furnishRoom, goldBrickTexture, GOLD_BRICK_TILE } from './interiors.js';
 import { buildSideGate } from './special/SideGate.js';
 import { buildTirenPavilion } from './special/TirenPavilion.js';
+import { buildSurveyedPavilion } from './special/SurveyedPavilion.js';
 
 const STEP_RUN = 1.6; // 台阶水平长 / 高
 const _v = new THREE.Vector3();
@@ -439,6 +440,8 @@ export class CourtKit {
    * open：只有柱子的敞厅（箭亭、亭榭）；closed（enter=false）时整座殿身为实体碰撞。
    */
   hall(o) {
+    if (o.structure === 'surveyed-pavilion') return buildSurveyedPavilion(this, o);
+    if (o.pavilionProfile !== undefined) throw new Error('Pavilion profile requires surveyed-pavilion structure');
     if (o.structure === 'tiren-pavilion') return buildTirenPavilion(this, o);
     if (o.structure) throw new Error(`Unsupported hall structure: ${o.structure}`);
     if ((o.storeys ?? 1) !== 1) throw new Error('Unsupported storeys: use an explicit multi-storey structure builder');

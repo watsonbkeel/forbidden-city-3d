@@ -112,7 +112,9 @@ const STEPS = [
       if (r.code === 0) break;
     }
     const passed = pick(r.out, /"passed": (\d+)/);
-    return { ...r, ok: r.code === 0, detail: `${passed ?? '?'}/24${tries ? '（首次失败，重试后' + (r.code === 0 ? '通过）' : '仍失败）') : ''}` };
+    // regression.cjs reports the checks actually completed; do not retain an
+    // obsolete fixed denominator when new runtime checks are added.
+    return { ...r, ok: r.code === 0, detail: `${passed ?? '?'} 项通过${tries ? '（首次失败，重试后' + (r.code === 0 ? '通过）' : '仍失败）') : ''}` };
   } },
   { name: 'stepwalk', browser: true, exec: () => {
     const r = run('stepwalk', ['tests/stepwalk.cjs', '60,10', '0,1', 'all'], 1800);

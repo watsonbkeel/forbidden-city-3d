@@ -129,7 +129,7 @@ test('preserves placement, faces west, and uses a single hip roof over genuine s
   assert.equal(roof[0].userData.roofType, 'wudian');
   assert.equal(roof[0].userData.layers, 1);
   assert.equal(nodes(group, 'lower-eave-skirt').length, 1);
-  assert.equal(info.dimensions.status, 'provisional');
+  assert.equal(info.dimensions.status, 'mixed-evidence');
   assert.equal(info.source, 'https://www.dpm.org.cn/explore/building/236453.html');
 });
 
@@ -170,14 +170,18 @@ test('does not invent an unverified physical name plaque by default', () => {
 });
 
 
-test('explicit lower central entry is reachable from the court up the physical platform steps', () => {
-  const { cm, localToWorld, info, built } = fixture({ enter: true });
-  const lower = info.storeys[0];
-  const from = localToWorld(0, 0, -built.PD / 2 - lower.floorY * 1.6 - 2);
-  const to = localToWorld(0, 0, 0);
-  const result = walkStraight({ THREE, cm }, [from.x, from.z], [to.x, to.z], { feet0: 0 });
-  assert.ok(result.total - result.reached < 0.15, JSON.stringify(result));
-  assert.equal(result.feet, lower.floorY);
+test('explicit lower central entry is reachable through either flanking front flight', () => {
+  const { cm, built, info } = fixture({ enter: true });
+  for (const approach of Object.values(built.geometry.approaches)) {
+    let feet = 0;
+    for (let i = 1; i < approach.worldPoints.length; i++) {
+      const a = approach.worldPoints[i - 1], b = approach.worldPoints[i];
+      const result = walkStraight({ THREE, cm }, [a.x, a.z], [b.x, b.z], { feet0: feet });
+      assert.ok(result.total - result.reached < 0.06, JSON.stringify(result));
+      feet = result.feet;
+    }
+    assert.equal(feet, info.storeys[0].floorY);
+  }
 });
 
 test('explicit entry registers only the playable lower room and its west-facing central door', () => {

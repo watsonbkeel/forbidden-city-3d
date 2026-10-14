@@ -26,6 +26,15 @@ const segHitsRect = (p, q, R) => {
 /** 殿台明（含台阶）世界 AABB */
 function hallRect(h) {
   const g = hallGeom(h);
+  if (g.profile) {
+    const { platform, frontFlights, sideConnections } = g.profile;
+    const x0 = Math.min(platform.x0, ...sideConnections.map(s => s.xOuter));
+    const x1 = Math.max(platform.x1, ...sideConnections.map(s => s.xOuter));
+    const z0 = Math.min(platform.z0, ...frontFlights.map(f => f.zToe));
+    const corners = [g.toW(x0, z0), g.toW(x1, z0), g.toW(x0, platform.z1), g.toW(x1, platform.z1)];
+    return { x0: Math.min(...corners.map(p => p[0])), x1: Math.max(...corners.map(p => p[0])),
+      z0: Math.min(...corners.map(p => p[1])), z1: Math.max(...corners.map(p => p[1])) };
+  }
   const cs = [[-g.PW / 2, -(g.PD / 2 + g.run)], [g.PW / 2, g.PD / 2 + (g.backDoor || g.open ? g.run : 0)]].map(([x, z]) => g.toW(x, z));
   return { x0: Math.min(cs[0][0], cs[1][0]), x1: Math.max(cs[0][0], cs[1][0]), z0: Math.min(cs[0][1], cs[1][1]), z1: Math.max(cs[0][1], cs[1][1]) };
 }
@@ -60,7 +69,8 @@ function pickGate(zone, h, hg, target) {
     }
   }
   const gates = zone.items.filter(i => i.kind === 'gate' || i.kind === 'cityGate');
-  const front = gates.filter(g => (g.x - h.x) * hg.facing[0] + (g.z - h.z) * hg.facing[1] > hg.PD / 2);
+  const frontDistance = hg.profile ? -hg.front : hg.PD / 2;
+  const front = gates.filter(g => (g.x - h.x) * hg.facing[0] + (g.z - h.z) * hg.facing[1] > frontDistance);
   const pool = front.length ? front : gates;
   pool.sort((a, b) => Math.hypot(a.x - target[0], a.z - target[1]) - Math.hypot(b.x - target[0], b.z - target[1]));
   return pool.length ? { gate: pool[0], via: front.length ? '殿正面方向最近的门' : '最近的门' } : null;
@@ -188,9 +198,12 @@ export function zoneRoutes(W, zone) {
     if (!h.name || h.open || h.enter !== true) continue;
     const plan = [];
     const hg = hallGeom(h);
-    let hallFront = hg.toW(hg.doorX, -(hg.PD / 2 + hg.run + HALL_FRONT));
-    const inside = hg.toW(hg.doorX, -(hg.d / 2 - 1));
-    let tail = [hallFront, inside];
+    const approach = hg.profile?.approaches.frontLeft;
+    let tail = approach ? approach.worldPoints.map(p => [p.x, p.z]) : [
+      hg.toW(hg.doorX, -(hg.PD / 2 + hg.run + HALL_FRONT)), hg.toW(hg.doorX, -(hg.d / 2 - 1)),
+    ];
+    let hallFront = tail[0];
+    const inside = tail.at(-1);
     // 工字殿：殿前点落在另一座殿的台明里
     const H2 = halls.find(o => o !== h && inRect(hallFront[0], hallFront[1], hallRect(o), -0.5));
     if (H2) {
@@ -225,9 +238,15 @@ export function zoneRoutes(W, zone) {
       }
     }
     if (!mid) { plan.push('门内→殿前直线/侧绕均受阻（交由浏览器步行判定）'); mid = [alt]; }
-    const go = simplify(W, [...leg, ...mid, ...tail]);
-    const pts = [...go, ...[...go].reverse().slice(1)].map(([x, z]) => [r1(x), r1(z)]);
-    out.push({ name: `[${zone.id}] ${pick.gate.name}→${h.name}→返回`, zone: zone.id, gate: pick.gate.name, hall: h.name, via: pick.via, plan, pts });
+    // Never shorten the profile's toe/top/platform/door chain. Its narrow side
+    // flights flank a blocked carved strip; a diagonal shortcut is not valid.
+    const prefix = approach ? simplify(W, [...leg, ...mid]) : [];
+    if (approach && prefix.length && Math.hypot(prefix.at(-1)[0] - tail[0][0], prefix.at(-1)[1] - tail[0][1]) < 1e-8) prefix.pop();
+    const go = approach ? [...prefix, ...tail] : simplify(W, [...leg, ...mid, ...tail]);
+    const roundTrip = [...go, ...[...go].reverse().slice(1)];
+    const pts = approach ? roundTrip : roundTrip.map(([x, z]) => [r1(x), r1(z)]);
+    out.push({ name: `[${zone.id}] ${pick.gate.name}→${h.name}→返回`, zone: zone.id, gate: pick.gate.name, hall: h.name, via: pick.via, plan, pts,
+      ...(approach ? { pavilionApproach: approach.side } : {}) });
   }
   return out;
 }
@@ -283,8 +302,23 @@ export function profileGateRoutes(zones) {
   }));
 }
 
+/** 两阁各自两条实际前阶：完整保留坡脚/坡顶、台面转向与下层门点。 */
+export function profilePavilionRoutes(zones) {
+  return zones.flatMap(zone => zone.items.filter(item => item.kind === 'hall' && item.pavilionProfile && item.enter === true)
+    .flatMap(item => {
+      const { profile } = hallGeom(item);
+      return Object.values(profile.approaches).map(approach => {
+        const go = approach.worldPoints.map(p => [p.x, p.z]);
+        return { name: `[${zone.id}] ${item.name}${approach.side === 'frontLeft' ? '左' : '右'}前阶→下层中央门→返回`,
+          zone: zone.id, hall: item.name, pavilionProfile: item.pavilionProfile, pavilionFlight: approach.side,
+          plan: ['经实际侧阶、月台与下层中央门；保留每个物理途经点'],
+          pts: [...go, ...go.slice(0, -1).reverse()] };
+      });
+    }));
+}
+
 export function buildAutoRoutes(W, zones, { knownIssues = {} } = {}) {
-  const routes = [...zones.flatMap(z => zoneRoutes(W, z)), ...crossRoutes(W, zones), ...profileGateRoutes(zones)];
+  const routes = [...zones.flatMap(z => zoneRoutes(W, z)), ...crossRoutes(W, zones), ...profileGateRoutes(zones), ...profilePavilionRoutes(zones)];
   for (const r of routes) if (knownIssues[r.name]) r.knownIssue = knownIssues[r.name];
   return routes;
 }
