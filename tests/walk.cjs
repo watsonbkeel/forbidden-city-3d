@@ -1,3 +1,4 @@
+const { browserExecutablePath } = require('./lib/browser-path.cjs');
 // 步行实测：沿路线逐步移动（使用真实碰撞 getValidPosition + 地面高度 getGroundHeight），
 // 报告每条路线是否走通、最高脚点、卡住位置。
 // 用法：node tests/walk.cjs
@@ -28,7 +29,7 @@ const ROUTES = {
 };
 
 (async () => {
-  const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+  const browser = await chromium.launch({ executablePath: browserExecutablePath(), headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   const page = await browser.newPage({ viewport: { width: 640, height: 400 } });
   await page.goto(process.env.PALACE_URL || 'http://127.0.0.1:5173', { waitUntil: 'load' });
   await page.waitForFunction(() => window.__forbiddenCityApp?.collisionManager && document.querySelector('#loading-screen').style.display === 'none', null, { timeout: 180000 });

@@ -1,9 +1,10 @@
+const { browserExecutablePath } = require('./lib/browser-path.cjs');
 // 冒烟：页面加载完成、无未捕获 JS 异常（pageerror）。console error/warning 只记录不判失败
 // （已知：favicon 404、swiftshader "GPU stall due to ReadPixels"）。
 // 输出 JSON：{ info, pageerrors, consoleErrors }；有 pageerror 时退出码 1。
 const { chromium } = require('playwright');
 (async () => {
-  const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true, args: ['--enable-webgl','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'] });
+  const browser = await chromium.launch({ executablePath: browserExecutablePath(), headless: true, args: ['--enable-webgl','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'] });
   const page = await (await browser.newContext({ viewport: { width: 1280, height: 720 } })).newPage();
   const pageerrors = [];
   const consoleErrors = [];

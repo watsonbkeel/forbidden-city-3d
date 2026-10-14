@@ -639,6 +639,10 @@ function finalize(ctx, g, eaveY) {
  * @returns {THREE.Group} group.userData = { topY, eaveY, ownedMaterials }：最高点（含吻兽/宝顶）、最低檐口高度（均为 group 局部坐标）、需调用方释放的自建材质
  */
 export function buildRoof(lib, opts) {
+  const aliases = { cuanjian: 'pavilion', yingshan: 'gable' };
+  const type = aliases[opts.type] ?? opts.type ?? 'wudian';
+  if (!['wudian', 'xieshan', 'pavilion', 'gable'].includes(type)) throw new Error(`Unsupported roof type: ${type}`);
+  opts = { ...opts, type, layers: opts.eaveCount ?? opts.layers };
   const ctx = makeCtx(lib, opts.detail);
   const g = new THREE.Group();
   g.name = `roof_${opts.type ?? 'wudian'}`;

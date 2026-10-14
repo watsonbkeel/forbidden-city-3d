@@ -1,3 +1,4 @@
+const { browserExecutablePath } = require('./lib/browser-path.cjs');
 // 御花园四亭取点验证探针：测试新锚点坐标下四条路线的可走性
 // 用法：PORT=5190 tools/run-with-vite.sh node tests/garden-pavilion-probe.cjs
 const { chromium } = require('playwright');
@@ -9,7 +10,7 @@ const A = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/anchors.json'), 'utf8
 
 (async () => {
   const browser = await chromium.launch({
-    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    executablePath: browserExecutablePath(),
     headless: true,
     args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'],
   });

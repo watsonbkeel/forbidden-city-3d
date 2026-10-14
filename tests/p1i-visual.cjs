@@ -1,3 +1,4 @@
+const { browserExecutablePath } = require('./lib/browser-path.cjs');
 // P1-I 视觉验证：同一机位截 B 档（未加载）与 S 档（GLB 加载后）两张图，供目视核对 GLB 是否盖住 B 档宝座区 / 无穿模。
 // 用法：PORT=5184 tools/run-with-vite.sh node tests/p1i-visual.cjs [hallId=taihe]
 //   输出 ../outputs/dev/p1i-<hall>-{B,S}-{1,2,3}.png；打印地面高度、GLB 包围盒、draw calls 增量。
@@ -9,7 +10,7 @@ const hallId = process.argv[2] || 'taihe';
 (async () => {
   const outDir = path.resolve(__dirname, '../../outputs/dev');
   fs.mkdirSync(outDir, { recursive: true });
-  const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+  const browser = await chromium.launch({ executablePath: browserExecutablePath(), headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   const page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
   const errors = [];
   page.on('pageerror', e => errors.push('pageerror: ' + e.message));

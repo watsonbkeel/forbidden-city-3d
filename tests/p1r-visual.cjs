@@ -1,8 +1,9 @@
+const { browserExecutablePath } = require('./lib/browser-path.cjs');
 // 六点同页对照：原SSAO与源网格绘制，对比优化后深度SSAO和跨组批次。
 const { chromium } = require('playwright');
 const path = require('node:path');
 (async () => {
-  const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true,
+  const browser = await chromium.launch({ executablePath: browserExecutablePath(), headless: true,
     args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   const page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
   page.setDefaultTimeout(240000);

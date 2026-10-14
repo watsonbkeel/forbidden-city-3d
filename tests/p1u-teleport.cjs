@@ -1,6 +1,7 @@
+const { browserExecutablePath } = require('./lib/browser-path.cjs');
 const { chromium } = require('playwright');
 (async () => {
-  const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+  const browser = await chromium.launch({ executablePath: browserExecutablePath(), headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   try {
     const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
     await page.goto(process.env.PALACE_URL);
@@ -9,7 +10,7 @@ const { chromium } = require('playwright');
       const a = window.__forbiddenCityApp;
       cancelAnimationFrame(a.animationFrame);
       const { TELEPORT, PLAYER } = await import('/src/config/constants.js');
-      const { Vector3 } = await import('three');
+      const { Vector3 } = await import('/node_modules/three/build/three.module.js');
       const names = [...new Set([...TELEPORT.POINTS.map(p => p.target), ...a.minimap.labels.map(p => p.name)])];
       return names.map(name => {
         const point = a.teleport.go(name);

@@ -1,3 +1,4 @@
+const { browserExecutablePath } = require('../lib/browser-path.cjs');
 // 确定性步行：用固定帧间隔逐帧调用真实 FirstPersonControls.update，复现低帧率/冲刺下的台阶问题。
 // 用法：node tests/stepwalk.cjs [fps=60,20,10] [sprint=0,1]
 //   内置路线覆盖中轴、偏中轴、侧门；报告每条路线的终点、最高脚点、是否"掉到台下"（站在台基投影内却脚点为 0）。
@@ -25,7 +26,7 @@ const SIDE_ROUTES = [
   const sprints = (process.argv[3] || '0,1').split(',').map(v => v === '1');
   const which = process.argv[4] || 'axis';
   const ROUTES_RUN = which === 'side' ? SIDE_ROUTES : which === 'all' ? [...AXIS_ROUTES, ...SIDE_ROUTES] : AXIS_ROUTES;
-  const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+  const browser = await chromium.launch({ executablePath: browserExecutablePath(), headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   const page = await browser.newPage({ viewport: { width: 320, height: 200 } });
   await page.goto(process.env.PALACE_URL || 'http://127.0.0.1:5173', { waitUntil: 'load' });
   await page.waitForFunction(() => window.__forbiddenCityApp?.controls && document.querySelector('#loading-screen').style.display === 'none', null, { timeout: 240000 });

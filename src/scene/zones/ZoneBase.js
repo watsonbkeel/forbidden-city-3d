@@ -65,7 +65,7 @@ export class ZoneBase {
           this.buildNineDragonWall(item);
           break;
         default:
-          console.warn(`[ZoneBase] 未知 kind: ${item.kind}，跳过`);
+          throw new Error(`[ZoneBase] 未知 kind: ${item.kind}`);
       }
     }
     
@@ -114,6 +114,15 @@ export class ZoneBase {
       colH: item.colH,
       roof: item.roof,
       layers: item.layers,
+      eaveCount: item.eaveCount,
+      storeys: item.storeys,
+      lowerStoreyH: item.lowerStoreyH,
+      upperStoreyH: item.upperStoreyH,
+      structure: item.structure,
+      bays: item.bays,
+      roofH: item.roofH,
+      roomBays: item.roomBays,
+      interior: item.interior,
       brackets: item.brackets,
       enter: item.enter,
       throne: item.throne,
@@ -137,10 +146,12 @@ export class ZoneBase {
       h: item.h,
       t: item.t,
       style: item.style,
+      gateKind: item.gateKind,
       name: item.name,
       roof: item.roof,
       brackets: item.brackets,
       layers: item.layers,
+      eaveCount: item.eaveCount,
     };
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
     return this.kit.gate(params); // 返回开口宽度

@@ -1,3 +1,4 @@
+const { browserExecutablePath } = require('./lib/browser-path.cjs');
 // P1-I A 档预设测试：用 CourtKit 在页面里按东六宫正殿尺寸（景仁宫 24×12）各建一座套用 4 个预设的殿，
 // 检查 (1) 门道 1.6 m 贯通（门中线 ±0.8 m、从前檐到房间中心、脚面+0.35~头顶 无碰撞体）
 //      (2) 用 CollisionManager.checkCollision 沿门道逐点探测（玩家半径 0.5）
@@ -6,7 +7,7 @@
 const { chromium } = require('playwright');
 
 (async () => {
-  const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+  const browser = await chromium.launch({ executablePath: browserExecutablePath(), headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   const page = await browser.newPage({ viewport: { width: 640, height: 400 } });
   const errors = [];
   page.on('pageerror', e => errors.push(e.message));

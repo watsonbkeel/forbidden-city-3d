@@ -1,3 +1,4 @@
+const { browserExecutablePath } = require('./browser-path.cjs');
 // stepwalk 浏览器执行器（stepwalk.cjs / stepwalk-auto.cjs 共用）。
 // 用固定帧间隔逐帧调用真实 FirstPersonControls.update，复现低帧率/冲刺下的台阶问题；由本脚本代为推进 ZoneManager。
 // 判定：每个途经点 0.8 m 内到达（连续 2 秒移动 < 0.3 m 视为卡住）且未"掉到台下"。
@@ -36,7 +37,7 @@ async function preloadInteriors(page) {
 }
 
 async function openPage() {
-  const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+  const browser = await chromium.launch({ executablePath: browserExecutablePath(), headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   const page = await browser.newPage({ viewport: { width: 320, height: 200 } });
   await page.goto(process.env.PALACE_URL || 'http://127.0.0.1:5173', { waitUntil: 'load' });
   await page.waitForFunction(() => window.__forbiddenCityApp?.controls && document.querySelector('#loading-screen').style.display === 'none', null, { timeout: 240000 });

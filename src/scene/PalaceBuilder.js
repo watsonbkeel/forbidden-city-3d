@@ -7,6 +7,8 @@ import { buildRoof } from './RoofBuilder.js';
 import { buildHallBody, buildBalustrade, buildStuddedDoor } from './HallKit.js';
 import { mergeByMaterial } from '../utils/MergeUtils.js';
 import { applyBoxUV, applyBandUV, applyPlanarUV } from '../utils/GeometryUV.js';
+import { buildSquareHall, SQUARE_HALLS } from './palace/special/SquareHalls.js';
+import { buildQianqingGate } from './palace/special/QianqingGate.js';
 
 /**
  * 真实形制参数（按故宫现状）：
@@ -21,7 +23,9 @@ import { applyBoxUV, applyBandUV, applyPlanarUV } from '../utils/GeometryUV.js';
  */
 const REAL = {
   太和殿: { bays: 11, roof: 'wudian', layers: 2, throne: true, inner: '建极绥猷', open: 3, plinth: 2.2 },
-  中和殿: { bays: 5, roof: 'pavilion', layers: 1, throne: true, inner: '允执厥中', open: 3, plinth: 1.6 },
+  // R3: shallow individual plinth fits four stair flights within the retained
+  // shared terrace. 0.6m / 4.6m remain provisional photo-based proportions.
+  中和殿: { bays: 5, roof: 'pavilion', layers: 1, throne: true, inner: '允执厥中', open: 3, plinth: 0.6, stairW: 4.6 },
   保和殿: { bays: 9, roof: 'xieshan', layers: 2, throne: true, inner: '皇建有极', open: 3, plinth: 2.0 },
   太和门: { bays: 9, roof: 'xieshan', layers: 2, open: 3, baseH: 3.44, margin: 1, apron: 1 }, // 台基 3.44（dimensions.md:88，P1-Z-axis A2）
   乾清门: { bays: 5, roof: 'xieshan', layers: 1, open: 3, baseH: 1.5, margin: 0, apron: 1 },
@@ -89,7 +93,10 @@ export class PalaceBuilder {
   }
 
   finish(g) {
+    const architecture = [];
+    g.traverse(o => { if (o.userData.structure?.id) architecture.push(structuredClone(o.userData.structure)); });
     const merged = mergeByMaterial(g, { castShadow: true, receiveShadow: true, name: g.name });
+    merged.userData.architecture = architecture;
     merged.position.set(this.ox, 0, this.oz);
     this.addObject(merged);
     return merged;
@@ -385,12 +392,14 @@ export class PalaceBuilder {
         const spec = REAL[h.name] ?? {};
         const { width: w, depth: d } = dimsOf(h);
         const hb = w / (spec.bays ?? 9);
-        const sw = Math.min(stairW, (spec.open ?? 3) * hb);
+        const sw = spec.stairW ?? Math.min(stairW, (spec.open ?? 3) * hb);
         // 台阶不能伸出所在台面：按该殿前后可用余量限制台明高度
         const r = rects[halls.indexOf(h)];
         const room = Math.min(h.position.z - d / 2 - PLINTH_PAD - r.z0, r.z1 - (h.position.z + d / 2 + PLINTH_PAD)) - 0.4;
         const ph = Math.min(spec.plinth ?? 1.3, room / 1.6);
-        const y = this.buildPlinth(g, { z0: h.position.z, w: w + 2 * PLINTH_PAD, d: d + 2 * PLINTH_PAD, y: top, ph, stairW: sw });
+        const y = this.buildPlinth(g, { z0: h.position.z, w: w + 2 * PLINTH_PAD, d: d + 2 * PLINTH_PAD, y: top, ph, stairW: sw,
+          stairCenters: h.name === '中和殿' ? [-(w - 6) / 3, 0, (w - 6) / 3] : [0],
+          stairSides: h.name === '中和殿' ? ['south', 'north', 'east', 'west'] : ['south', 'north'] });
         this.buildHall(g, h, y);
       });
     } else {
@@ -402,10 +411,10 @@ export class PalaceBuilder {
   }
 
   /**
-   * 单殿台明：高 ph 的须弥座，前后各一道台阶（ramp），四面挡墙只挡台下的人。
+   * 单殿台明：高 ph 的须弥座，前后台阶可分组，并可加东西出阶；四面挡墙只挡台下的人。
    * @returns {number} 台明顶面高度
    */
-  buildPlinth(g, { z0, w, d, y, ph, stairW }) {
+  buildPlinth(g, { z0, w, d, y, ph, stairW, stairSides = ['south', 'north'], stairCenters = [0] }) {
     const half = stairW / 2;
     const run = ph * 1.6;
     const t = 0.5;
@@ -413,15 +422,58 @@ export class PalaceBuilder {
     this.libBox(g, 'sumeru_band', w, ph, d, 0, y + ph / 2, z0, 'band');
     this.libBox(g, 'stone_slab', w + 0.2, 0.1, d + 0.2, 0, y1 - 0.03, z0, 'box');
     this.walkBox(-w / 2, z0 - d / 2, w / 2, z0 + d / 2, y1);
-    this.col(-w / 2, y, z0 - d / 2, -w / 2 + t, y1, z0 + d / 2);
-    this.col(w / 2 - t, y, z0 - d / 2, w / 2, y1, z0 + d / 2);
+    for (const s of [-1, 1]) {
+      const side = s < 0 ? 'east' : 'west';
+      const xe = s * w / 2;
+      if (stairSides.includes(side)) {
+        this.col(xe, y, z0 - d / 2, xe - s * t, y1, z0 - half);
+        this.col(xe, y, z0 + half, xe - s * t, y1, z0 + d / 2);
+        this.buildStairX(g, { xEdge: xe, z0, dir: s, y0: y, y1, run, width: stairW });
+      } else this.col(xe, y, z0 - d / 2, xe - s * t, y1, z0 + d / 2);
+    }
     for (const s of [-1, 1]) {
       const ze = z0 + s * d / 2;
-      this.col(-w / 2, y, ze, -half, y1, ze - s * t);
-      this.col(half, y, ze, w / 2, y1, ze - s * t);
-      this.buildStair(g, { zEdge: ze, dir: s, y0: y, y1, run, width: stairW });
+      let cursor = -w / 2;
+      for (const x of stairCenters) {
+        this.col(cursor, y, ze, x - half, y1, ze - s * t);
+        const flight = new THREE.Group();
+        flight.position.x = x;
+        g.add(flight);
+        const oldX = this.ox;
+        this.ox += x;
+        try { this.buildStair(flight, { zEdge: ze, dir: s, y0: y, y1, run, width: stairW }); }
+        finally { this.ox = oldX; }
+        cursor = x + half;
+      }
+      this.col(cursor, y, ze, w / 2, y1, ze - s * t);
     }
     return y1;
+  }
+
+  /** East/west flight, with the same physical ramp and cheek-wall contract. */
+  buildStairX(g, { xEdge, z0, dir, y0, y1, run, width }) {
+    const rise = y1 - y0, n = Math.max(3, Math.round(rise / 0.16)), sr = run / n;
+    const marble = this.library.material('marble'), cw = 0.45;
+    for (let k = 0; k < n; k++) {
+      const top = y1 - (k + 1) * rise / (n + 1);
+      this.box(g, marble, sr, top - y0, width, xEdge + dir * (k + 0.5) * sr,
+        (top + y0) / 2, z0, { box: this.library.tileSize('marble') });
+    }
+    const L = Math.hypot(run, rise);
+    for (const sz of [-1, 1]) {
+      const m = this.box(g, marble, L, 0.4, cw, xEdge + dir * run / 2,
+        (y0 + y1) / 2 + 0.1, z0 + sz * (width / 2 - cw / 2), { box: 2 });
+      m.rotation.z = -dir * Math.atan2(rise, run);
+      for (let j = 0; j < 4; j++) {
+        this.col(xEdge + dir * j * run / 4, y0, z0 + sz * (width / 2 - cw),
+          xEdge + dir * (j + 1) * run / 4, y1 - j * rise / 4 + 0.9, z0 + sz * width / 2);
+      }
+    }
+    this.walkables.push({ type: 'ramp', axis: 'x',
+      minX: Math.min(xEdge, xEdge + dir * run) + this.ox,
+      maxX: Math.max(xEdge, xEdge + dir * run) + this.ox,
+      minZ: z0 - width / 2 + cw + this.oz, maxZ: z0 + width / 2 - cw + this.oz,
+      a0: xEdge + this.ox, a1: xEdge + dir * run + this.ox, y0: y1, y1: y0 });
   }
 
   /** 太和殿月台陈设：铜鼎、日晷（东）、嘉量（西）、铜龟铜鹤 */
@@ -478,6 +530,7 @@ export class PalaceBuilder {
    * 两山红墙、额枋彩画、井口天花、金砖地面、宝座台/屏风/藻井/殿内匾额、殿外竖匾、屋顶。
    */
   buildHall(g, data, y) {
+    if (SQUARE_HALLS[data.name]) return buildSquareHall(this, g, data, y);
     const spec = REAL[data.name] ?? {};
     const { width: w, depth: d, height } = dimsOf(data);
     const x0 = data.position.x;
@@ -723,6 +776,7 @@ export class PalaceBuilder {
   // ───────────────────────── 门 ─────────────────────────
 
   buildGate(data) {
+    if (data.name === '乾清门') return buildQianqingGate(this, data);
     if (data.name === '午门') {
       this.buildWumen(data);
       return;

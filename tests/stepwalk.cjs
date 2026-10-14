@@ -16,7 +16,7 @@ const r1 = v => Math.round(v * 10) / 10;
 // 中轴殿进深（PalaceBuilder 用 anchors 的 d；宝座碰撞 = 殿心 z+[-0.3, +8]（d≈25 的三间进深殿），太和殿见下）
 const HALL_D = { 太和殿: A['太和殿'].d, 中和殿: A['中和殿'].d, 保和殿: A['保和殿'].d, 乾清宫: A['乾清宫'].d, 交泰殿: A['交泰殿'].d, 坤宁宫: A['坤宁宫'].d };
 const TAIHE_DETOUR_X = 6.2;   // 太和殿宝座半宽 4.58，内柱 ±8.59
-const ZHONGHE_DETOUR_X = 5;   // 中和殿宝座半宽 3.13，内柱 ±7.5
+const ZHONGHE_DETOUR_X = 5;   // R3：内围护半宽9.5；从中门进殿后绕宝座，不能斜穿槛窗
 const BAOHE_DETOUR_X = 6.1;   // 保和殿宝座半宽 4.42，内柱 ±8.28
 const QIANQING_DETOUR_X = 5.7; // 乾清宫宝座半宽 4.09（真实面阔 46 → 间宽 5.11），内柱内皮 ±7.26，取中线
 const JIAOTAI_DETOUR_X = 6.5; // 交泰殿宝座半宽 2.38，殿身半宽 9.5
@@ -54,17 +54,18 @@ async function buildRoutes() {
     ['太和门→太和殿内', [[0, L.TAIHE_GATE_Z + GATE_CLEAR], [0, 5]]],
     // 过殿门时走中间一间（x≈0），进殿后从宝座侧面绕过；各殿取点相对殿心
     ['太和殿→中和殿→保和殿', [[0, 3], [0, 0], [TAIHE_DETOUR_X, 0], [TAIHE_DETOUR_X, 16], [0, 16.5],
-      [0, zh - 10], [ZHONGHE_DETOUR_X, zh - 9], [ZHONGHE_DETOUR_X, zh + 11], [0, zh + 11],
+      [0, zh - 7], [ZHONGHE_DETOUR_X, zh - 7], [ZHONGHE_DETOUR_X, zh + 7.2], [0, zh + 7.2], [0, zh + 11],
       [0, bh - IN_FRONT], [BAOHE_DETOUR_X, bh - IN_FRONT], [BAOHE_DETOUR_X, back('保和殿') - 2], [0, back('保和殿') - 2]]],
     ['保和殿→北下台→乾清门', [[0, back('保和殿') - 2], [0, L.QIANQING_GATE_Z - 10]]],
     ['乾清门→乾清宫', [[0, L.QIANQING_GATE_Z - 10], [0, qq - 6]]],
     ['乾清宫→交泰殿→坤宁宫', [[0, qq - 6], [QIANQING_DETOUR_X, qq - 6], [QIANQING_DETOUR_X, back('乾清宫') - 1.5], [0, back('乾清宫') - 1.5],
-      [0, jt - 4.7], [JIAOTAI_DETOUR_X, jt - 4.7], [JIAOTAI_DETOUR_X, back('交泰殿') - 1.5], [0, back('交泰殿') - 1.5], [0, back('坤宁宫') - 2]]],
+      [0, jt - 4.7], [JIAOTAI_DETOUR_X, jt - 4.7], [JIAOTAI_DETOUR_X, jt + 7.2], [0, jt + 7.2], [0, back('坤宁宫') - 2]]],
     // 出坤宁宫北门 → 坤宁门 → 西侧甬路绕过钦安殿 → 北横路 → 顺贞门 → 神武门外
     ['坤宁宫→御花园→神武门', [[0, back('坤宁宫') - 2], [0, gz0 + GARDEN_S_ROAD], [GARDEN_PATH_X, gz0 + GARDEN_S_ROAD + 3],
       [GARDEN_PATH_X, gz1 - 9], [0, gz1 - 9], [0, L.BOUNDARY.maxZ - 10]]],
     ['乾清宫偏中轴(x=2.3)', [[2.3, L.QIANQING_GATE_Z + 6], [2.3, r1(front('乾清宫') - 1.2)]]],
-    ['太和殿后→中和殿前(x=2.5)', [[OFF_AXIS_GAP, r1(back('太和殿') + OFF_AXIS_GAP)], [OFF_AXIS_GAP, front('中和殿') - OFF_AXIS_GAP]]],
+    // R3: x=2.5 落在新中阶栏墙上；偏轴进院后在阶前转入中间阶口，不穿栏。
+    ['太和殿后→中和殿前(x=2.5转中阶)', [[OFF_AXIS_GAP, r1(back('太和殿') + OFF_AXIS_GAP)], [OFF_AXIS_GAP, zh - 17], [0, zh - 17], [0, front('中和殿') - OFF_AXIS_GAP]]],
   ];
 
   const xh = A['协和门'], xi = A['熙和门'], wh = A['文华门'], whd = A['文华殿'], wy = A['武英门'], wyd = A['武英殿'];

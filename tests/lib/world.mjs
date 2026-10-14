@@ -68,7 +68,12 @@ function stubDocument() {
   if (globalThis.document) return;
   // PalaceBuilder 匾额用 canvas 画字；碰撞计算用不到，给一个吞掉所有调用的桩
   const ctx = new Proxy({}, { get: () => () => ({ data: [] }), set: () => true });
-  globalThis.document = { createElement: () => ({ getContext: () => ctx, width: 0, height: 0 }) };
+  globalThis.document = {
+    createElement: () => ({ getContext: () => ctx, width: 0, height: 0 }),
+    // TextureLoader needs an image element; collision-only tests never decode
+    // images or wait on their load callbacks, but still build all geometry.
+    createElementNS: () => ({ addEventListener() {}, removeEventListener() {} }),
+  };
 }
 
 export function loadZoneJsons(dir = path.join(ROOT, 'data/zones')) {

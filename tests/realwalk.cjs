@@ -1,3 +1,4 @@
+const { browserExecutablePath } = require('./lib/browser-path.cjs');
 // 用真实 FirstPersonControls.update（游戏主循环）按住"前进"直走，记录脚点高度
 // 用法: node tests/realwalk.cjs x0,z0 x1,z1 [秒数]
 //   坐标为真实米制（P0c 起：原点太和殿中心，+Z 北，x 负=东），例：0,-470 0,-330（午门外穿门洞到金水桥南）
@@ -7,7 +8,7 @@ const [x0, z0] = s0.split(',').map(Number);
 const [x1, z1] = s1.split(',').map(Number);
 
 (async () => {
-  const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+  const browser = await chromium.launch({ executablePath: browserExecutablePath(), headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   const page = await browser.newPage({ viewport: { width: 480, height: 300 } });
   await page.goto(process.env.PALACE_URL || 'http://127.0.0.1:5173', { waitUntil: 'load' });
   await page.waitForFunction(() => window.__forbiddenCityApp?.controls && document.querySelector('#loading-screen').style.display === 'none', null, { timeout: 180000 });

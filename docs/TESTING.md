@@ -6,9 +6,9 @@
 
 | 项 | 约定 |
 |---|---|
-| node | `/Users/watson/.workbuddy/binaries/node/versions/22.22.2-6/bin/node`（下文记作 `$NODE`） |
-| playwright | `NODE_PATH=/Users/watson/.workbuddy/binaries/node/workspace/node_modules`（`run-with-vite.sh` / `gate.cjs` 自动设置） |
-| 浏览器 | 系统 Chrome headless + `--use-angle=swiftshader`（CPU 软渲染：fps 不代表真机，只看 calls / tris / 画面） |
+| node | PATH 上的 Node.js（本轮 Linux 验证为 v24.19.0）；下文 `$NODE` 可先设为 `node`，或指定绝对路径 |
+| playwright | 先运行 `npm ci`，使用仓库锁定的本地依赖；不再依赖个人目录的 `NODE_PATH` |
+| 浏览器 | `BROWSER_EXECUTABLE_PATH` 优先；否则自动查找 Linux Chromium/Chrome、macOS Chrome/Chromium 或 Windows Chrome，再回退 Playwright 管理的 Chromium。headless + `--use-angle=swiftshader`（CPU 软渲染：fps 不代表真机，只看 calls / tris / 画面） |
 | 构建 | `npx vite build --outDir /tmp/fc-build-<task>`（不要 `npm run build`，会写仓库 `dist/`） |
 | 超时 | 没有 `timeout`，用 `perl -e 'alarm N; exec @ARGV' <cmd>` |
 | curl | 一律 `--noproxy '*'` |
@@ -28,7 +28,18 @@
 ```sh
 PORT=5181 tools/run-with-vite.sh $NODE tests/<脚本>.cjs [参数]
 ```
-在当前 worktree 根目录起 vite（`--strictPort`），就绪后设好 `PALACE_URL`/`NODE_PATH` 跑命令，结束只关本端口 vite；整体 2400 s alarm。
+在当前 worktree 根目录通过 Bash 起 vite（`--strictPort`），就绪后设好 `PALACE_URL` 跑命令，保留调用者已有环境；结束仅关闭自己创建的 vite 进程，端口已占用或启动失败则明确退出；整体 2400 s alarm。
+
+Linux 示例：
+
+```sh
+npm ci --cache /tmp/fc-npm-cache   # HOME 不可写时指定可写缓存
+NODE=node
+BROWSER_EXECUTABLE_PATH=/usr/bin/chromium PORT=5181 tools/run-with-vite.sh "$NODE" tests/smoke.cjs
+node --test tests/browser-path.test.cjs tests/world-node.test.mjs
+```
+
+浏览器运行环境须允许 Chromium 的本地 IPC socket；如果在启动阶段出现 `socket() failed: Operation not permitted`，属于运行环境限制，不能据此宣称浏览器测试通过。
 
 ## 2. 一键门禁 `npm run test:gate`
 
@@ -90,6 +101,8 @@ GATE_VISUAL=1 PORT=5181 $NODE tests/gate.cjs   # 追加截图回归（只警告�
 
 npm 脚本里的命令是裸 `node tests/x.cjs`，不起 vite；需要浏览器的用 `PORT=… tools/run-with-vite.sh $NODE tests/x.cjs`。
 
+R3 测试夹具：门洞仍按 0.5 m 连续采样，但排除玩家半径越过世界边界的点（神武门北侧 z=560 是世界边界，不是门洞）；真实神武门锚点偏差仍独立检查。桌面 DPR=2 的 SwiftShader 截图允许 120 s，视口、画质与全部断言不变。上述中和殿与交泰殿路线沿真实中门、台阶绕行，不穿新的围护或栏墙。
+
 ## 4. 机位坐标表
 
 ### stepwalk.cjs 内置路线（33 条，[x, z]）
@@ -98,13 +111,13 @@ npm 脚本里的命令是裸 `node tests/x.cjs`，不起 vite；需要浏览器�
 |---|---|
 | 午门→太和门 | (0,−470) → (0,−194.2) |
 | 太和门→太和殿内 | (0,−194.2) → (0,5) |
-| 太和殿→中和殿→保和殿 | (0,3) → (0,0) → (6.2,0) → (6.2,16) → (0,16.5) → (0,55) → (5,56) → (5,76) → (0,76) → (0,116.2) → (6.1,116.2) → (6.1,133.7) → (0,133.7) |
+| 太和殿→中和殿→保和殿 | (0,3) → (0,0) → (6.2,0) → (6.2,16) → (0,16.5) → (0,58) → (5,58) → (5,72.2) → (0,72.2) → (0,76) → (0,116.2) → (6.1,116.2) → (6.1,133.7) → (0,133.7) |
 | 保和殿→北下台→乾清门 | (0,133.7) → (0,205.3) |
 | 乾清门→乾清宫 | (0,205.3) → (0,310.8) |
-| 乾清宫→交泰殿→坤宁宫 | (0,310.8) → (5.7,310.8) → (5.7,327.8) → (0,327.8) → (0,349.4) → (6.5,349.4) → (6.5,362.1) → (0,362.1) → (0,394.1) |
+| 乾清宫→交泰殿→坤宁宫 | (0,310.8) → (5.7,310.8) → (5.7,327.8) → (0,327.8) → (0,349.4) → (6.5,349.4) → (6.5,361.3) → (0,361.3) → (0,394.1) |
 | 坤宁宫→御花园→神武门 | (0,394.1) → (0,429.7) → (17,432.7) → (17,509.3) → (0,509.3) → (0,550) |
 | 乾清宫偏中轴(x=2.3) | (2.3,221.3) → (2.3,303.1) |
-| 太和殿后→中和殿前(x=2.5) | (2.5,21.1) → (2.5,50.4) |
+| 太和殿后→中和殿前(x=2.5转中阶) | (2.5,21.1) → (2.5,48) → (0,48) → (0,50.4) |
 | 协和门→文华门→文华殿内 | (−30,−300.3) → (−126.2,−300.3) → (−186.3,−253.2) → (−186.4,−188.7) → (−189.9,−188.7) → (−189.9,−179.3) |
 | 协和门→东华门→出宫 | (−30,−300.3) → (−126.2,−300.3) → (−340.8,−257) → (−390,−257) |
 | 熙和门→武英门→武英殿内 | (30,−301.1) → (129.8,−301.1) → (220.8,−257.8) → (220.8,−241.8) → (219.5,−188.5) |
@@ -187,7 +200,7 @@ PORT=5181 tools/run-with-vite.sh $NODE tests/visual.cjs 太和殿     # 只跑�
 
 ## 7. CI 接入建议
 
-1. 运行环境：macOS 或 Linux + 系统 Chrome（Linux 改 `executablePath` 为 `/usr/bin/google-chrome` 或用 playwright 自带 chromium）；需要能跑 swiftshader（`--enable-unsafe-swiftshader`）。
+1. 运行环境：macOS、Linux 或 Windows + Chrome/Chromium。使用 `BROWSER_EXECUTABLE_PATH=/usr/bin/google-chrome` 等显式选择，不必改测试源码；也可安装 Playwright 管理的 Chromium。需要支持 swiftshader（`--enable-unsafe-swiftshader`）。`tools/run-with-vite.sh` 需要 Bash、curl、Perl；Windows 可直接用 `node tests/gate.cjs`。
 2. 分两级：
    - **快速级**（每次 push，< 30 s）：`npm run test:zones && npm run test:anchors && node tests/stepwalk-auto.cjs --check`——纯 node，无浏览器。
    - **完整级**（合并 PR 前）：`PORT=5181 npm run test:gate`，失败时上传 `/tmp/fc-gate-5181/*.log` 作为产物。

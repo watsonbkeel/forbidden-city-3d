@@ -1,6 +1,6 @@
 # 故宫分区数据 Schema
 
-> 版本 v1.0 · 2026-10-11 · P0b 阶段冻结接口  
+> 版本 v1.1 · 2026-10-14 · R3 显式结构扩展
 > 本文件定义所有 zone JSON 的数据格式。每个 zone 由 `ZoneBase` 读取，按 `kind` 分发到 `CourtKit` 对应方法。
 
 ---
@@ -43,13 +43,13 @@
   "rot": 0,                      // 可选。旋转角（弧度），或字符串 "south"|"north"|"east"|"west"。默认 0（朝南，正面朝局部 -Z）
   "w": 29,                       // 必填。面阔（米）
   "d": 15,                       // 必填。进深（米）
-  "pad": 1.0,                    // 可选。台明高度（米），默认 1.0
-  "ph": 1.2,                     // 可选。台明扩展（米），平台从建筑墙外延伸的宽度，默认 1.0
+  "pad": 1.0,                    // 可选。台明在墙外的水平外扩（米），默认 1.0
+  "ph": 1.2,                     // 可选。台明高度（米），默认 0.9
   "colH": 6.0,                   // 可选。柱高（米），默认 6.0
   "roof": "xieshan",             // 可选。屋顶类型："xieshan"（歇山）|"wudian"（庑殿）|"gable"（硬山）|"pavilion"（攒尖，方亭）。默认 "xieshan"
   "layers": 1,                   // 可选。屋顶层数（重檐），1 或 2。默认 1
   "brackets": true,              // 可选。是否有斗拱，默认 true
-  "enter": true,                 // 可选。是否可进入（生成门洞、室内陈设），默认 false
+  "enter": true,                 // 可选。是否可进入；通用非敞厅默认 true，专用组件可另有默认
   "throne": true,                // 可选。室内是否有宝座（enter 为 true 时生效），默认 false
   "backDoor": true,              // 可选。殿后是否也开门（可穿行），默认 false
   "open": false,                 // 可选。是否为敞厅（四面无墙，仅柱），默认 false
@@ -242,3 +242,14 @@ ZoneBase 需在调用 kit 方法前将字符串转换为弧度。
 **变更日志**
 
 - 2026-10-11：P0b 初版，覆盖 SideCourts 实际用到的所有 kind 和参数。
+
+## R3 显式结构字段
+
+- `bays`、`roofH`、`roomBays`、`interior` 已从 ZoneBase 传入 CourtKit；不再因字段丢失静默采用默认值。`throne:true` 优先使用既有宝座陈设，避免与新传入的内景预设重叠。
+- `storeys` 是实际楼层数，`eaveCount` 是主屋顶檐层数，不能互相替代。普通殿座只支持单层；多层必须有明确专用组件，否则报错。兼容 `layers` 作为檐层数别名。
+- `structure: "tiren-pavilion"` 使用体仁阁双层专用构件；支持 `lowerStoreyH`、`upperStoreyH`、`roofH`。来源和暂定比例见 `docs/current-state/cards/tiren.md`。
+- `gateKind` 可明确为 `wall`、`three-bay`、`five-bay`。不再从宽度猜门类；未填写时仅以已有 `style:wall/hall` 兼容映射。未知类型直接报错。
+- 既有大门的显式五间字段只是保存原生成效果，`structureStatus:provisional-preserved-baseline` 不代表实景核准。`style:triple` 旧数据原来没有实现，仍按旧墙门保留，并标 `provisional-legacy-style-unimplemented` 待复核。
+- `cuanjian` 与 `yingshan` 分别规范为 `pavilion` 与 `gable`；未知屋顶类型报错。修复别名不能替代各栋建筑逐项验收。
+- 材质合并后，专用殿座的结构记录保留在输出组 `userData.architecture`；乾清门保留 `userData.qianqingGate`。这些记录用于审查，不替代真实几何与通行测试。
+- 非均等间宽、逐立面开口、各类阶道的全局通用 schema 仍未完成。本轮四座由专用结构实现，不能据此宣布整条 R2 参数化任务结束。

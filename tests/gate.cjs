@@ -29,10 +29,9 @@ const KEEP_GOING = process.argv.includes('--keep-going');
 const SKIP = new Set((process.env.GATE_SKIP || '').split(',').filter(Boolean));
 const PERF_RULES = { calls: 0.10, tris: 0.10, fpsP5: 0.15 };
 const FPS_STRICT = process.env.PERF_FPS_STRICT === '1';
-const PLAYWRIGHT_PATH = '/Users/watson/.workbuddy/binaries/node/workspace/node_modules';
 
 fs.mkdirSync(LOG_DIR, { recursive: true });
-const ENV = { ...process.env, PALACE_URL: URL, NODE_PATH: process.env.NODE_PATH || PLAYWRIGHT_PATH };
+const ENV = { ...process.env, PALACE_URL: URL };
 
 function run(name, args, timeoutS) {
   const t = Date.now();
