@@ -19,6 +19,8 @@ export class VirtualJoystick {
     this.deltaX = 0;
     this.deltaY = 0;
     this.touchId = null;
+    // 每次认领都是新会话；touch.identifier 可复用，不能用它识别连续按住。
+    this.sessionGeneration = 0;
 
     this.maxRadius = (SIZE - KNOB) / 2 + 10;
 
@@ -117,12 +119,13 @@ export class VirtualJoystick {
   onTouchStart(e) {
     if (this.active) return;
     const touch = Array.from(e.changedTouches).find(t =>
-      !t.target?.closest?.('button, a, input, select, textarea, [role="button"]') &&
+      !t.target?.closest?.('button, a, input, select, textarea, [role="button"], #minimap, #minimap-preview, #settings-overlay') &&
       this.hitTest(t.clientX, t.clientY)
     );
     if (!touch) return;
     e.preventDefault();
     this.touchId = touch.identifier;
+    this.sessionGeneration++;
 
     const c = this.getCenter();
     this.baseX = c.x;

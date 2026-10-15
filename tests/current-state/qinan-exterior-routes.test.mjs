@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import crypto from 'node:crypto';
 import {execFileSync} from 'node:child_process';
+import {readHistoricalSource} from '../lib/historical-sources.mjs';
 import baseline from '../fixtures/v7-qinan-route-baseline.json' with {type:'json'};
 import {buildWorld, walkStraight} from '../lib/world.mjs';
 import {buildAutoRoutes} from '../lib/auto-routes.mjs';
@@ -63,11 +64,17 @@ test('historical through-hall route is retained verbatim as negative legacy evid
  const result=walkStraight(W,old.pts[1],old.pts[2],{feet0:0});assert.ok(result.reached<result.total-1,JSON.stringify(result));assert.equal(result.feet,0);
  const north=walkStraight(W,[0,503],[0,495],{feet0:0});assert.ok(north.reached<north.total-1,JSON.stringify(north));
 });
-test('unchanged driver sources and V5 historical fixture retain accepted V7 byte hashes',()=>{
+test('driver/collision/V5 fixture retain V7 bytes; FirstPerson and constants allow only composed finite V9 input, map and gate deltas',()=>{
  const files=['tests/lib/stepwalk-runner.cjs','tests/lib/physical-waypoints.mjs','tests/lib/terrace-walk.mjs','tests/lib/zhaode-walk.mjs','src/controls/FirstPerson.js','src/utils/Collision.js','src/config/constants.js','tests/fixtures/v5-fixed-routes.json'];
- for(const path of files){const old=execFileSync('git',['show',`${baseline.commit}:${path}`],{cwd:new URL('../..',import.meta.url)}),current=fs.readFileSync(new URL(`../../${path}`,import.meta.url));assert.equal(crypto.createHash('sha256').update(current).digest('hex'),crypto.createHash('sha256').update(old).digest('hex'),path);}
+ for(const path of files){const old=readHistoricalSource(baseline.commit,path),current=fs.readFileSync(new URL(`../../${path}`,import.meta.url));
+  if(path==='src/controls/FirstPerson.js') assertV9MapFirstPersonBytes(old,current);
+  else if(path==='src/config/constants.js') assertGateConstantsBytes(old,current);
+  else assert.equal(crypto.createHash('sha256').update(current).digest('hex'),crypto.createHash('sha256').update(old).digest('hex'),path);
+ }
 });
 
+import {assertGateConstantsBytes} from '../lib/v9-gate-constants-delta.mjs';
+import {assertV9MapFirstPersonBytes} from '../lib/v9-map-source-delta.mjs';
 import {CollisionManager} from '../../src/utils/Collision.js';
 import {traceTerraceGround} from '../lib/terrace-walk.mjs';
 import {replayQinanExterior} from '../lib/qinan-exterior-walk.mjs';

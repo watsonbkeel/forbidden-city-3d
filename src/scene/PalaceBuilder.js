@@ -1,7 +1,8 @@
 import * as THREE from 'three';
 import { COLORS } from '../config/constants.js';
 import { buildGateAscent, toWorld } from './palace/gateAscent.js';
-import { buildEnterableTower } from './palace/towerShell.js';
+import { wumenTowerGeometry, shenwuTowerGeometry } from './palace/special/GateTowerProfiles.js';
+import { buildGateTowerShell } from './palace/special/GateTowerShell.js';
 import { riverBridges, JINSHUI_BRIDGE_LENGTH } from './palace/river.js';
 import { buildRoof } from './RoofBuilder.js';
 import { buildHallBody, buildBalustrade, buildStuddedDoor } from './HallKit.js';
@@ -906,8 +907,8 @@ export class PalaceBuilder {
     this.walkables.push(...asc.walkables);
 
     // 正楼：面阔 60.05 × 进深 25，重檐庑殿，9 间（dimensions.md:79）
-    // 城楼二层可进入：北面（马道所在的宫内一侧）明间开门，室内有地面/顶棚/内柱
-    const body = buildEnterableTower(this.library, { width: dm.width, depth: dm.depth, height: 13, bays: 9, doorSide: 1 });
+    // 正楼前后廊与中门：2.9m 内墙轴线退距为来源图纸配准的暂定值，非实测净宽。
+    const body = buildGateTowerShell(this.library, wumenTowerGeometry());
     this.ownedMaterials.push(...body.userData.ownedMaterials);
     body.position.y = top;
     g.add(body);
@@ -920,7 +921,7 @@ export class PalaceBuilder {
     });
     g.add(roof);
     this.ownedMaterials.push(...(roof.userData.ownedMaterials ?? []));
-    this.wumenTopY = roof.userData.topY - PH; // 墩台顶至正脊（真实 37.95）
+    this.wumenTopY = roof.userData.topY - PH; // 沿用模型相对高度；公布总高与城台顶起算标高的对应关系未核定
     const plaque = this.plaqueMesh('午门', 2, 3.2, true);
     plaque.position.set(0, top + 9, -dm.depth / 2 - 0.5);
     plaque.rotation.y = Math.PI;
@@ -995,8 +996,9 @@ export class PalaceBuilder {
     }), new THREE.Matrix4().makeTranslation(this.ox, 0, this.oz));
     this.colliders.push(...asc.colliders);
     this.walkables.push(...asc.walkables);
-    // 城楼可进入：南面（宫内一侧，马道所在面）明间开门
-    const body = buildEnterableTower(this.library, { width: W * 0.62, depth: D * 0.55, height: 7, bays: 5, doorSide: -1 });
+    // 显式测量轴网与四面廊：竖向台明/阶梯暂缓，沿用 10.3m 平台标高。
+    const towerProfile = shenwuTowerGeometry();
+    const body = buildGateTowerShell(this.library, towerProfile);
     this.ownedMaterials.push(...body.userData.ownedMaterials);
     body.position.y = top;
     g.add(body);
@@ -1005,13 +1007,13 @@ export class PalaceBuilder {
       this.col(b.min.x, b.min.y + top, b.min.z, b.max.x, b.max.y + top, b.max.z);
     }
     const roof = buildRoof(this.library, {
-      type: 'wudian', width: W * 0.62 + 0.6, depth: D * 0.55 + 0.6,
+      type: 'wudian', width: towerProfile.width + 0.6, depth: towerProfile.depth + 0.6,
       baseY: PH + 0.3 + body.userData.topY, layers: 2, brackets: true,
     });
     g.add(roof);
     this.ownedMaterials.push(...(roof.userData.ownedMaterials ?? []));
     const plaque = this.plaqueMesh('神武门', 1.6, 2.6, true);
-    plaque.position.set(0, PH + 5.5, -D * 0.275 - 0.5);
+    plaque.position.set(0, PH + 5.5, -towerProfile.enclosure.innerZ - towerProfile.T / 2 - 0.15);
     plaque.rotation.y = Math.PI;
     g.add(plaque);
     this.finish(g);

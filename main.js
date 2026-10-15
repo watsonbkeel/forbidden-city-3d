@@ -17,6 +17,8 @@ import { Minimap } from './src/ui/Minimap.js';
 import { Teleport } from './src/ui/Teleport.js';
 import { SettingsMenu } from './src/ui/SettingsMenu.js';
 import { SettingsTourSession } from './src/ui/SettingsTourSession.js';
+import { MapTourSession } from './src/ui/MapTourSession.js';
+import { hasShortcutModifier, isTextEntryTarget } from './src/controls/InputTargets.js';
 import { PerfHUD } from './src/ui/PerfHUD.js';
 import { LAYOUT, PERFORMANCE, TELEPORT } from './src/config/constants.js';
 
@@ -341,24 +343,19 @@ class ForbiddenCityApp {
     // 移动端额外常驻右上角预览，点击展开全图
     this.teleport = new Teleport(this.controls, this.zoneManager, this.collisionManager);
     this._onTeleportKey = event => {
-      if (event.repeat || event.ctrlKey || event.metaKey || event.altKey || /^(INPUT|TEXTAREA|SELECT)$/.test(event.target?.tagName)) return;
+      if (event.defaultPrevented || event.repeat || hasShortcutModifier(event) || isTextEntryTarget(event.target)) return;
       const index = Number(event.key) - 1;
       if (/^[1-8]$/.test(event.key)) this.teleport.go(TELEPORT.POINTS[index].target);
     };
     window.addEventListener('keydown', this._onTeleportKey);
+    this.mapTourSession = new MapTourSession({
+      controls: this.controls,
+      welcomeOverlay: document.getElementById('welcome-overlay'),
+      getSettingsSession: () => this.settingsTourSession,
+    });
     this.minimap = new Minimap({ items: this.zoneManager.getMapItems(), preview: this.isMobile, onTeleport: name => this.teleport.go(name), onToggle: visible => {
       this.settingsMenu?.setMapMode(visible, this.minimap.container);
-      if (this.settingsTourSession?.paused) {
-        this.settingsTourSession.mapChanged(visible);
-        return;
-      }
-      // 打开地图：释放鼠标以便缩放/点击，但保留键盘移动（WASD 走动、Q/E 转向）；关闭：重新锁定视角
-      this.controls.setFreeMove?.(visible);
-      // unlock 事件会重新显示欢迎遮罩，先同步隐藏；之后的 unlock 回调也会检查 minimap.visible
-      const overlay = document.getElementById('welcome-overlay');
-      if (visible && overlay) overlay.style.display = 'none';
-      if (visible) this.controls.unlock();
-      else { try { this.controls.lock(); } catch { /* 需要用户手势时忽略，点击画面即可重新进入 */ } }
+      this.mapTourSession.setVisible(visible);
     } });
     
     // 设置菜单（按 ESC 显示）

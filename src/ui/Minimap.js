@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { PALACE_LAYOUT } from '../scene/Layout.js';
 import { LAYOUT, TELEPORT } from '../config/constants.js';
+import { hasShortcutModifier, isTextEntryTarget } from '../controls/InputTargets.js';
 
 /**
  * 小地图：按 M 键显示/隐藏，显示当前位置和建筑名称
@@ -12,6 +13,9 @@ export class Minimap {
     this.onTeleport = onTeleport;
     this.onToggle = onToggle;
     this.labels = [];
+    this.secondaryTaps = new Map();
+    this.suppressedClicks = new Map();
+    this.inputCleanup = [];
     this.previewEnabled = preview; // 移动端：右上角常驻小地图预览，点击展开全图
     this.lastPreviewDraw = 0;
     this.container = null;
@@ -38,15 +42,13 @@ export class Minimap {
     // 创建小地图容器
     this.container = document.createElement('div');
     this.container.id = 'minimap';
+    this.container.className = this.previewEnabled ? 'minimap-touch' : '';
+    this.container.setAttribute('role', 'region');
+    this.container.setAttribute('aria-label', '故宫平面图');
+    this.container.setAttribute('aria-describedby', 'minimap-help');
     this.container.style.cssText = `
       position: fixed;
-      top: ${this.previewEnabled ? '42%' : '50%'};
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: ${this.previewEnabled ? this.mapSize + 'px' : 'min(94vw, 780px)'};
       box-sizing: border-box;
-      max-width: 94vw;
-      max-height: ${this.previewEnabled ? '68vh' : '96vh'};
       overflow: auto;
       background: rgba(20, 20, 20, 0.92);
       border: 3px solid rgba(255, 215, 100, 0.8);
@@ -95,7 +97,7 @@ export class Minimap {
 
     // 缩放工具条
     const bar = document.createElement('div');
-    bar.style.cssText = 'display:flex;gap:6px;justify-content:center;align-items:center;margin-top:8px';
+    bar.style.cssText = 'display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin-top:8px';
     const mkBtn = (text, title, fn) => {
       const b = document.createElement('button');
       b.type = 'button';
@@ -117,7 +119,8 @@ export class Minimap {
     
     // 提示文字
     const hint = document.createElement('div');
-    hint.textContent = '滚轮/双指缩放 · 拖动平移 · 点击建筑名称传送 · W/A/S/D 继续走动，Q/E 转向 · 按 M 关闭 · 钦安殿仅设地面外观观览点';
+    hint.id = 'minimap-help';
+    hint.textContent = '滚轮/双指缩放 · 拖动平移 · 点击建筑名称传送 · 方向键/WASD/摇杆继续走动，Q/E 转向 · 按 M 或关闭按钮退出 · 钦安殿仅设地面外观观览点';
     hint.style.cssText = `
       color: #999;
       font-size: 12px;
@@ -127,7 +130,7 @@ export class Minimap {
     this.container.appendChild(hint);
     const quick = document.createElement('div');
     quick.id = 'teleport-points';
-    quick.style.cssText = 'display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px';
+    quick.style.cssText = 'display:grid;gap:6px;margin-top:10px';
     TELEPORT.POINTS.forEach((point, index) => {
       const button = document.createElement('button');
       button.type = 'button';
@@ -144,16 +147,21 @@ export class Minimap {
     
     // 监听 M 键
     this._onKeyDown = (e) => {
+      if (e.defaultPrevented || e.repeat || hasShortcutModifier(e) || isTextEntryTarget(e.target)) return;
       if (e.key === 'm' || e.key === 'M') {
+        e.preventDefault();
         this.toggle();
       } else if (this.visible && (e.key === '+' || e.key === '=')) {
+        e.preventDefault();
         this.zoomBy(1.4);
       } else if (this.visible && (e.key === '-' || e.key === '_')) {
+        e.preventDefault();
         this.zoomBy(1 / 1.4);
       }
     };
     this._onResize = () => { if (this.visible) { this.resizeCanvas(); this.drawMap(); } };
     window.addEventListener('resize', this._onResize);
+    window.visualViewport?.addEventListener('resize', this._onResize);
     window.addEventListener('keydown', this._onKeyDown);
     
     // 底图只画一次到高分辨率离屏画布，全图和预览都从这里取，避免每帧重绘全部建筑
@@ -163,15 +171,16 @@ export class Minimap {
     this.baseCanvas.height = this.mapHeight * this.baseScale;
     this.renderBase();
     
-    if (this.previewEnabled) {
-      this.createPreview();
-      const close = document.createElement('button');
-      close.textContent = '关闭地图';
-      close.style.cssText = 'display:block;margin:8px auto;min-height:44px;color:#ffd764;background:#33291e;border:1px solid #ffd764;border-radius:6px';
-      close.addEventListener('click', () => this.toggle());
-      this.container.appendChild(close);
-    }
-    
+    if (this.previewEnabled) this.createPreview();
+    const close = document.createElement('button');
+    close.id = 'minimap-close';
+    close.type = 'button';
+    close.textContent = '关闭地图';
+    close.style.cssText = 'display:block;margin:8px auto;min-height:44px;color:#ffd764;background:#33291e;border:1px solid #ffd764;border-radius:6px';
+    close.addEventListener('click', () => this.toggle());
+    this.container.appendChild(close);
+    this.bindSecondaryTaps(this.container);
+    if (this.preview) this.bindSecondaryTaps(this.preview);
     this.bindViewInteraction();
     // 初始绘制
     this.resizeCanvas();
@@ -188,8 +197,19 @@ export class Minimap {
   /** 按容器实际宽度重算画布尺寸（竖长地图，限制高度不超过视口 62%） */
   resizeCanvas() {
     const w = this.canvas.clientWidth || this.mapSize;
-    const maxH = this.previewEnabled ? window.innerHeight * 0.5 : window.innerHeight * 0.66;
-    const h = Math.max(220, Math.min(w * this.mapHeight / this.mapSize, maxH));
+    let maxH = window.innerHeight * 0.66;
+    if (this.previewEnabled) {
+      const viewportH = Math.min(window.innerHeight, window.visualViewport?.height || window.innerHeight);
+      const docked = window.innerWidth >= 520 && window.innerWidth > window.innerHeight;
+      const panelH = this.container.clientHeight || Math.max(1, viewportH - (docked ? 16 : 208));
+      const style = window.getComputedStyle?.(this.container);
+      const padding = (parseFloat(style?.paddingTop) || 16) + (parseFloat(style?.paddingBottom) || 16);
+      // The panel can scroll, but the interactive canvas itself must fit inside
+      // its visible content height, even below the usual 120px mobile minimum.
+      maxH = Math.max(1, Math.min(viewportH * 0.5, panelH - padding));
+    }
+    const minH = this.previewEnabled ? Math.min(120, maxH) : 220;
+    const h = Math.max(minH, Math.min(w * this.mapHeight / this.mapSize, maxH));
     this.viewW = w;
     this.viewH = h;
     this.canvas.style.height = `${h}px`;
@@ -246,29 +266,89 @@ export class Minimap {
     this.drawMap();
   }
 
+  // A second finger must be able to use map buttons while the first owns the
+  // joystick. Native single-contact clicks and keyboard activation stay native.
+  bindSecondaryTaps(root) {
+    const listen = (type, fn, options) => {
+      root.addEventListener(type, fn, options);
+      this.inputCleanup.push(() => root.removeEventListener(type, fn, options));
+    };
+    listen('touchstart', e => {
+      if (e.touches.length < 2) return;
+      for (const touch of e.changedTouches) {
+        const button = touch.target?.closest?.('button');
+        if (!button || !root.contains(button) || button.id === 'structural-preview-button') continue;
+        this.secondaryTaps.set(touch.identifier, { button, x: touch.clientX, y: touch.clientY, time: performance.now() });
+      }
+    }, { passive: true });
+    listen('touchmove', e => {
+      for (const touch of e.changedTouches) {
+        const tap = this.secondaryTaps.get(touch.identifier);
+        if (tap && Math.hypot(touch.clientX - tap.x, touch.clientY - tap.y) > 10) this.secondaryTaps.delete(touch.identifier);
+      }
+    }, { passive: true });
+    const end = e => {
+      for (const touch of e.changedTouches) {
+        const tap = this.secondaryTaps.get(touch.identifier);
+        if (!tap) continue;
+        this.secondaryTaps.delete(touch.identifier);
+        if (e.type !== 'touchend' || performance.now() - tap.time > 600 ||
+            Math.hypot(touch.clientX - tap.x, touch.clientY - tap.y) > 10) continue;
+        e.preventDefault();
+        this.suppressedClicks.set(tap.button, performance.now() + 750);
+        tap.button.focus();
+        tap.button.click();
+      }
+    };
+    listen('touchend', end, { passive: false });
+    listen('touchcancel', end, { passive: false });
+    listen('click', e => {
+      const button = e.target?.closest?.('button');
+      const until = this.suppressedClicks.get(button);
+      if (e.detail > 0 && until !== undefined && performance.now() <= until) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+      }
+    }, true);
+  }
+
   bindViewInteraction() {
     const cv = this.canvas;
     const pointers = new Map();
-    let dragMoved = 0, lastPinch = 0;
+    let dragMoved = 0, lastPinch = 0, multiContact = false;
     const local = (e) => { const r = cv.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; };
-
-    cv.addEventListener('wheel', (e) => {
+    const listen = (type, fn, options) => {
+      cv.addEventListener(type, fn, options);
+      this.inputCleanup.push(() => cv.removeEventListener(type, fn, options));
+    };
+    const release = id => {
+      if (cv.hasPointerCapture?.(id)) cv.releasePointerCapture(id);
+    };
+    this.cancelMapGesture = () => {
+      const ids = [...pointers.keys()];
+      pointers.clear();
+      dragMoved = lastPinch = 0;
+      multiContact = false;
+      cv.style.cursor = 'grab';
+      ids.forEach(release);
+    };
+    listen('wheel', (e) => {
       e.preventDefault();
       e.stopPropagation();
       const p = local(e);
       this.zoomAt(e.deltaY < 0 ? 1.25 : 1 / 1.25, p.x, p.y);
     }, { passive: false });
-
-    cv.addEventListener('pointerdown', (e) => {
+    listen('pointerdown', (e) => {
+      if (!this.visible || pointers.has(e.pointerId)) return;
       e.stopPropagation();
-      cv.setPointerCapture?.(e.pointerId);
+      if (pointers.size === 0) { dragMoved = 0; multiContact = false; }
+      else multiContact = true;
       pointers.set(e.pointerId, local(e));
-      dragMoved = 0;
+      cv.setPointerCapture?.(e.pointerId);
       lastPinch = 0;
       cv.style.cursor = 'grabbing';
     });
-
-    cv.addEventListener('pointermove', (e) => {
+    listen('pointermove', (e) => {
       if (!pointers.has(e.pointerId)) return;
       const prev = pointers.get(e.pointerId);
       const cur = local(e);
@@ -278,9 +358,9 @@ export class Minimap {
         const dist = Math.hypot(a.x - b.x, a.y - b.y);
         if (lastPinch > 0) this.zoomAt(dist / lastPinch, (a.x + b.x) / 2, (a.y + b.y) / 2);
         lastPinch = dist;
-        dragMoved += 10;
         return;
       }
+      if (pointers.size > 2) return;
       const dx = cur.x - prev.x, dy = cur.y - prev.y;
       dragMoved += Math.abs(dx) + Math.abs(dy);
       const s = this.pxPerUnit;
@@ -289,23 +369,26 @@ export class Minimap {
       this.clampView();
       this.drawMap();
     });
-
     const end = (e) => {
-      const wasSingle = pointers.size === 1;
+      if (!pointers.has(e.pointerId)) return;
+      const canTap = e.type === 'pointerup' && pointers.size === 1 && !multiContact && dragMoved < 6;
       pointers.delete(e.pointerId);
+      if (e.type !== 'pointerup') multiContact = true;
       lastPinch = 0;
-      cv.style.cursor = 'grab';
-      // 几乎没有拖动 → 视为点击：命中建筑名称则传送
-      if (e.type === 'pointerup' && wasSingle && dragMoved < 6) this.handleMapClick(local(e));
+      cv.style.cursor = pointers.size ? 'grabbing' : 'grab';
+      release(e.pointerId);
+      if (canTap) this.handleMapClick(local(e));
+      if (pointers.size === 0) multiContact = false;
     };
-    cv.addEventListener('pointerup', end);
-    cv.addEventListener('pointercancel', end);
-    cv.addEventListener('dblclick', (e) => {
+    listen('pointerup', end);
+    listen('pointercancel', end);
+    listen('lostpointercapture', end);
+    listen('dblclick', (e) => {
       e.stopPropagation();
       const p = local(e);
       this.zoomAt(2, p.x, p.y);
     });
-    cv.addEventListener('click', (e) => e.stopPropagation());
+    listen('click', (e) => e.stopPropagation());
   }
 
   handleMapClick(p) {
@@ -325,10 +408,15 @@ export class Minimap {
     this.previewView = 120; // 预览窗口覆盖的地图像素范围（约 120 米宽）
     const dpr = Math.min(window.devicePixelRatio || 1, 3);
     
-    this.preview = document.createElement('div');
+    this.preview = document.createElement('button');
+    this.preview.type = 'button';
     this.preview.id = 'minimap-preview';
-    this.preview.setAttribute('role', 'button');
+    this.preview.setAttribute('aria-label', '打开故宫平面图');
+    this.preview.setAttribute('aria-controls', 'minimap');
+    this.preview.setAttribute('aria-expanded', 'false');
     this.preview.style.cssText = `
+      padding: 0;
+      cursor: pointer;
       position: fixed;
       top: calc(16px + env(safe-area-inset-top, 0px));
       right: calc(16px + env(safe-area-inset-right, 0px));
@@ -370,6 +458,12 @@ export class Minimap {
   
   toggle() {
     this.visible = !this.visible;
+    if (this.visible) this.previousFocus = document.activeElement;
+    else {
+      this.cancelMapGesture();
+      this.secondaryTaps.clear();
+    }
+    this.preview?.setAttribute('aria-expanded', String(this.visible));
     this.onToggle?.(this.visible);
     this.container.style.display = this.visible ? 'block' : 'none';
     if (this.preview) this.preview.style.display = this.visible ? 'none' : 'block';
@@ -377,6 +471,8 @@ export class Minimap {
     if (this.visible) {
       this.resizeCanvas();
       this.focusPlayer(2);   // 打开即放大到当前位置，文字可读；点「全图」查看整体
+    } else if (this.previousFocus?.isConnected) {
+      this.previousFocus.focus();
     }
   }
   
@@ -648,6 +744,11 @@ export class Minimap {
   }
   
   dispose() {
+    this.cancelMapGesture();
+    this.secondaryTaps.clear();
+    this.suppressedClicks.clear();
+    this.inputCleanup.forEach(remove => remove());
+    window.visualViewport?.removeEventListener('resize', this._onResize);
     window.removeEventListener('keydown', this._onKeyDown);
     window.removeEventListener('resize', this._onResize);
     this.preview?.removeEventListener('click', this._onPreviewClick);

@@ -94,13 +94,13 @@ test('real ZoneManager loads and registers Qin’an before the first collision q
 });
 
 test('browser teleport harness isolates the exterior view while every original entrance-target statement stays byte-exact',async()=>{
- const {execFileSync}=await import('node:child_process');
+ const {readHistoricalSource}=await import('../lib/historical-sources.mjs');
  const file='tests/p1u-teleport.cjs',source=fs.readFileSync(new URL(`../../${file}`,import.meta.url),'utf8');
  const marker=/        \/\/ BEGIN QINAN EXTERIOR VIEW\n[\s\S]*?        \/\/ END QINAN EXTERIOR VIEW\n/;
  const exterior=source.match(marker);assert.ok(exterior,'typed exterior branch required before the legacy doorway probe');
  assert.ok(exterior[0].includes("g.navigation?.mode === 'exterior-view'"));assert.ok(exterior[0].includes('lookAtY'));assert.ok(exterior[0].includes('residentHash'));
  assert.ok(!exterior[0].includes('getValidPosition'),'exterior observation never claims a forward entrance walk');
- assert.equal(source.replace(marker,''),execFileSync('git',['show',`a59fa7ec18b6ce991128a2e7700ba09be3128078:${file}`],{cwd:new URL('../..',import.meta.url),encoding:'utf8'}));
+ assert.equal(source.replace(marker,''),readHistoricalSource('a59fa7ec18b6ce991128a2e7700ba09be3128078',file).toString('utf8'));
 });
 
 function sourceTargetPanel(W) {

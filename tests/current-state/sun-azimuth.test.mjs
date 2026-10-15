@@ -1,6 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { readHistoricalSource } from '../lib/historical-sources.mjs';
+import { assertV9MapMainBytes } from '../lib/v9-map-source-delta.mjs';
+import { assertGateConstantsBytes } from '../lib/v9-gate-constants-delta.mjs';
 import * as THREE from 'three';
 import { Environment } from '../../src/scene/Environment.js';
 import { getSunPosition } from '../../src/scene/sky/SkySetup.js';
@@ -110,12 +113,23 @@ test('untouched Environment methods preserve IBL intensity and setup plus all no
   assert.deepEqual(protectedEnvironmentMethods(), baseline.environmentMethodsSHA256);
 });
 
-test('protected sources match V7 with only the exact accepted skyline source substitution', () => {
+test('protected sources match V7 with only the exact accepted skyline substitution and finite V9 map and gate deltas', () => {
   assert.equal(baseline.protectedSourcesSHA256['src/scene/sky/Skyline.js'],
     '1aeb74c691478690d1eae9cfab2950847c786309e2a0f37a29a56fce0b15afba');
   for (const [path, hash] of Object.entries(baseline.protectedSourcesSHA256)) {
+    if (path === 'src/config/constants.js') {
+      const historical = readHistoricalSource('35914d6c2bc16dbb9fd7245d6384195ece5e125d', 'src/config/constants.js');
+      assert.equal(sha256(historical), hash, 'historical constants fixture remains unchanged');
+      assertGateConstantsBytes(historical, readFileSync(new URL(`../../${path}`, import.meta.url)));
+      continue;
+    }
     const expected = path === 'src/scene/sky/Skyline.js' ? acceptedSkyline.sourceSHA256 : hash;
-    assert.equal(sha256(readFileSync(new URL(`../../${path}`, import.meta.url))), expected, path);
+    const current = readFileSync(new URL(`../../${path}`, import.meta.url));
+    if (path === 'main.js') {
+      const historical = readHistoricalSource(baseline.baseCommit, path);
+      assert.equal(sha256(historical), hash, 'the original V7 main.js hash remains pinned');
+      assertV9MapMainBytes(historical, current);
+    } else assert.equal(sha256(current), expected, path);
   }
 });
 

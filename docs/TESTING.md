@@ -41,6 +41,16 @@ node --test tests/browser-path.test.cjs tests/world-node.test.mjs
 
 浏览器运行环境须允许 Chromium 的本地 IPC socket；如果在启动阶段出现 `socket() failed: Operation not permitted`，属于运行环境限制，不能据此宣称浏览器测试通过。
 
+### 独立源码包中的本地测试（V9）
+
+安装锁定依赖后，运行完整的 MJS 与 CJS 测试：
+
+```sh
+node --test --test-concurrency=1 tests/*.test.mjs tests/*.test.cjs tests/current-state/*.test.mjs
+```
+
+历史源码比较所需的16组原始 `commit:path` 字节随包保存在 `tests/fixtures/historical-sources.json`，包含原提交、Git blob、长度及 SHA-256，并对整个注册表另作固定哈希校验。因此本地单元测试不再要求源码包带 `.git`，也不依赖未发布的本地提交。原来的版本差量、物理参数、路线和光照断言均保留；未知历史引用或被修改的样本会直接失败，不回退到当前源码。源码生成、核验流程不参与运行时网页，也不增加网络请求。
+
 ## 2. 一键门禁 `npm run test:gate`
 
 ```sh

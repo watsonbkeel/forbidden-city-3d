@@ -56,9 +56,9 @@ export class SettingsMenu {
           <label for="quality-toggle-btn">画质</label>
           <button id="quality-toggle-btn" type="button">高画质</button>
         </div>
-        <p class="settings-help">按 M 显示/隐藏小地图；点击建筑名称传送。数字键 1–8：午门、太和殿、乾清宫、御花园、东六宫、西六宫、宁寿宫、神武门。移动端点击右上角地图。</p>
+        <p class="settings-help">按 M 显示/隐藏小地图。地图打开时仍可用方向键、WASD 或屏幕方向盘移动；拖动地图不会改变行走方向。点击建筑名称传送后，请松开再重新按键或触摸方向盘。设置菜单会暂停移动。数字键 1–8：午门、太和殿、乾清宫、御花园、东六宫、西六宫、宁寿宫、神武门。</p>
         <details id="preview-details">
-          <summary>资料来源与限制（核查至 2026-10-14）</summary>
+          <summary>资料来源与限制（各项核查日期见下）</summary>
           <h3>有资料支持的结构</h3>
           <p>弘义阁、体仁阁的柱网与竖向层次依据杨新成《故宫弘义阁、体仁阁研究》（2006 年）。三大殿共用台基的东西腰部台阶位置关系，参考 1960 年平面图和 2020 年刊载的照片。</p>
           <ul>
@@ -68,6 +68,18 @@ export class SettingsMenu {
           </ul>
           <h3>仍属暂定的尺寸与细节</h3>
           <p>部分屋面、构件细节及台基接口仍为近似。新增侧阶的模型中心 z=58 m、外宽 5 m，以及沿用的台基层高、轮廓和踏步细节均为工程暂定值，不是现场实测。本轮保留既有全局定位，未完成全宫 2026 年现状核验。</p>
+          <h3>午门与神武门城楼（资料核对：2026-10-15）</h3>
+          <p>午门南、北面均有中部门洞的资料依据；南侧通路应辨别柱内前后檐廊和柱外窄带。模型保留原外柱网、屋顶和城台，将内围护后退以呈现前后檐廊。采用的 2.9 m 是从同一 2005 年报告的设计图与剖面图，按已公布柱网进深配准估读的柱轴至围护轴距离，建模范围约 2.6–3.2 m，不是现场实测净宽；门洞宽度、门扇细节和部分内柱仍为暂定。</p>
+          <p>神武门四周有廊，南北面明间及左右次间设菱花隔扇门，东西面设双扇板门。模型柱网参考 2005 年保护工程测绘的发表数据，区分城楼柱网、殿基轮廓和外围城台。文献的 50.18 × 26.46 m 城台尺寸尚未明确量至台顶、台脚还是垛墙；本轮暂按台顶范围使用，不能据此声称还原了真实通道净宽。</p>
+          <p>神武门原有全局位置保留，已知定位核对仍有 11 m 差异。城楼仍采用简化的同高地面，殿基与城台顶面的高差、四面台阶竖向尺寸及屋顶标高未完成实测校准。模型门扇的开启和可通行状态用于体验，不表示今日现场开放许可。</p>
+          <ul>
+            <li><a href="https://www.dpm.org.cn/explore/building/236454.html" target="_blank" rel="noopener noreferrer">故宫博物院：午门建筑介绍，新窗口</a></li>
+            <li><a href="https://img.dpm.org.cn/Uploads/pdf/4884/T00124_00.pdf" target="_blank" rel="noopener noreferrer">午门修缮研究：顶面及平面设计图（2005，官方 PDF），新窗口</a></li>
+            <li><a href="https://img.dpm.org.cn/Uploads/pdf/4884/T00114_00.pdf" target="_blank" rel="noopener noreferrer">午门修缮研究：剖面图（2005，官方 PDF），新窗口</a></li>
+            <li><a href="https://www.dpm.org.cn/explore/building/236456.html" target="_blank" rel="noopener noreferrer">故宫博物院：神武门建筑介绍，新窗口</a></li>
+            <li><a href="https://img.dpm.org.cn/Uploads/File/2018/06/05/u5b164a2ba5129.pdf" target="_blank" rel="noopener noreferrer">神武门大木尺度研究（2013，含 2005 工程测绘，官方 PDF），新窗口</a></li>
+            <li><a href="https://img.dpm.org.cn/Uploads/File/2020/02/16/u5e490f5ea72b3.pdf" target="_blank" rel="noopener noreferrer">紫禁城城墙现状调查与保护初探（2013，官方 PDF），新窗口</a></li>
+          </ul>
           <h3>钦安殿地面外观研究预览</h3>
           <p>钦安殿仅设置地面外观观览点，台上及室内路线未验收，不提供穿殿北出捷径。主殿五间柱网与分层标高参考测绘研究；屋面皮层、抱厦高度、台基和栏杆厚度仍为近似。北墙连续的图纸证据不等于今天的门禁状态。</p>
           <p>南侧轴线复合石构因层次证据未明而暂未建模；天一门、围院、完整室内木构及重建后抱厦细节也未完成核验。此模型不代表现场开放，也不是当日游客路线。</p>
