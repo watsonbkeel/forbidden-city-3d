@@ -1,7 +1,11 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
 import {captureGate,meshFingerprint,outerColumnSignature} from '../lib/gate-tower-fixture.mjs';
+import {restoreGateRails} from '../lib/gate-rail-retention.mjs';
 const g=captureGate(),baseline=JSON.parse(fs.readFileSync(new URL('../fixtures/v9-wumen-retained-geometry.json',import.meta.url)));
-test('Wumen all roof, platform, wing and ramp render geometry remains exactly retained',()=>assert.equal(meshFingerprint(g.group,g.tower),baseline.outsideShell));
+test('Wumen retains the original geometry hash after only verified rail-cap/V restoration',()=>{
+ const restored=restoreGateRails(g,'午门');
+ assert.equal(meshFingerprint(restored,restored.children[g.group.children.indexOf(g.tower)]),baseline.outsideShell);
+});
 test('Wumen outer eave-column meshes remain bitwise retained',()=>assert.deepEqual(outerColumnSignature(g.tower),baseline.outerColumns));
 test('Wumen top and ramp supports remain unchanged',()=>assert.deepEqual(g.builder.walkables.map(r=>r.type==='box'?{...r,box:{min:r.box.min.toArray(),max:r.box.max.toArray()}}:r),baseline.walkables));
 test('Wumen upper doors use lattice leaves on both sides, never ground-gate studded boards',()=>{

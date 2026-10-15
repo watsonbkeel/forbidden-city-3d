@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import {applyBoxUV,applyBandUV} from '../../../utils/GeometryUV.js';
+import {gateRailFacade} from '../gateRailFacade.js';
 /** Explicit upper enclosure. Ground-gate studded doors are intentionally absent.
  * Every body-height box/leaf/shaft registers its actual rendered local bounds. */
 export function buildGateTowerShell(lib,p) {
@@ -7,7 +8,11 @@ export function buildGateTowerShell(lib,p) {
   const group=new THREE.Group(),colliders=[],ownedMaterials=[];
   function collider(mesh){mesh.updateMatrixWorld(true);const b=new THREE.Box3().setFromObject(mesh);b.min.y=Math.max(0,b.min.y);b.max.y=Math.min(3,b.max.y);if(!b.isEmpty())colliders.push(b);}
   function mesh(geo,material,x,y,z,part,collide=true,extra={}){const m=new THREE.Mesh(geo,material);m.position.set(x,y,z);m.castShadow=!['closed-lattice-panel','interior-floor','threshold'].includes(part);m.receiveShadow=true;m.userData={gatePart:part,...extra};group.add(m);if(collide)collider(m);return m;}
-  function box(w,h,d,x,y,z,material,part,collide=true,band=false,extra={}){return mesh((band?applyBandUV:applyBoxUV)(new THREE.BoxGeometry(w,h,d),lib.tileSize(material)),lib.material(material,material==='balustrade'?{alphaTest:.5,side:THREE.DoubleSide}:{}),x,y,z,part,collide,extra);}
+  function box(w,h,d,x,y,z,material,part,collide=true,band=false,extra={}){
+    const geo=(band?applyBandUV:applyBoxUV)(new THREE.BoxGeometry(w,h,d),lib.tileSize(material));
+    if(p.id==='axis/shenwu-upper-tower'&&part==='local-hall-balustrade')gateRailFacade(geo);
+    return mesh(geo,lib.material(material,material==='balustrade'?{alphaTest:.5,side:THREE.DoubleSide}:{}),x,y,z,part,collide,extra);
+  }
   const {T,wallH,enclosure:e}=p;
   if(p.id==='axis/wumen-upper-tower'){
   for(const s of [-1,1])box(T,wallH,e.outerZ*2,s*(e.width/2-T/2),wallH/2,0,'wall_red','gable-wall');

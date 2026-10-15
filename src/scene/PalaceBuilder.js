@@ -901,7 +901,7 @@ export class PalaceBuilder {
     sub.position.z = zc;
     g.add(sub);
     const asc = toWorld(buildGateAscent(this.library, sub, {
-      W, D, topY: top, band: [D / 2 - 6, D / 2], edge: 'rail',
+      W, D, topY: top, band: [D / 2 - 6, D / 2], edge: 'rail', railFacadeOnly: true,
     }), new THREE.Matrix4().makeTranslation(this.ox, 0, this.oz + zc));
     this.colliders.push(...asc.colliders);
     this.walkables.push(...asc.walkables);
