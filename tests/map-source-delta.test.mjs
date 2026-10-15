@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {restoreV10EntryMainBytes} from './lib/v13-entry-source-delta.mjs';
 import {readHistoricalSource} from './lib/historical-sources.mjs';
 import baseline from './fixtures/v7-qinan-route-baseline.json' with {type:'json'};
 import {V9_INPUT_INSERTIONS,expectedV9FirstPersonBytes} from './lib/v9-input-source-delta.mjs';
@@ -8,7 +9,10 @@ import {V9_MAP_SOURCE_DELTA as delta,applyV9MapSourceDelta,assertV9MapFirstPerso
 const root=new URL('..',import.meta.url);
 const old=path=>readHistoricalSource(baseline.commit,path);
 const frozen=path=>readHistoricalSource(delta.frozenComponentCommit,path);
-const current=path=>fs.readFileSync(new URL(path,root));
+const current=path=>{
+ const bytes=fs.readFileSync(new URL(path,root));
+ return path==='main.js'?restoreV10EntryMainBytes(bytes):bytes;
+};
 
 test('actual FirstPerson is exactly historical bytes → frozen input component → finite V9 map delta',()=>{
  const path='src/controls/FirstPerson.js';
@@ -58,7 +62,7 @@ for(const [name,before,after]of [
  assert.throws(()=>assertV9MapFirstPersonBytes(old(path),Buffer.from(source.replace(before,after))),/must equal/);
 });
 
-test('actual main.js equals pinned historical source plus only finite map wiring changes',()=>{
+test('main.js after exact entry restoration equals pinned historical source plus only finite map wiring changes',()=>{
  const path='main.js';assert.deepEqual(old(path),frozen(path));assertV9MapMainBytes(old(path),current(path));
 });
 for(const [name,before,after]of [

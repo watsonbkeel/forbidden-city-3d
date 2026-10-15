@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { readHistoricalSource } from '../lib/historical-sources.mjs';
 import { assertV9MapMainBytes } from '../lib/v9-map-source-delta.mjs';
+import { restoreV10EntryMainBytes } from '../lib/v13-entry-source-delta.mjs';
 import { assertGateConstantsBytes } from '../lib/v9-gate-constants-delta.mjs';
 import { assertV10PostProcessingBytes } from '../lib/v10-render-lifecycle-source-delta.mjs';
 import * as THREE from 'three';
@@ -114,7 +115,7 @@ test('untouched Environment methods preserve IBL intensity and setup plus all no
   assert.deepEqual(protectedEnvironmentMethods(), baseline.environmentMethodsSHA256);
 });
 
-test('protected sources match V7 with only the exact accepted skyline, V9 map/gate and V10 lifecycle deltas', () => {
+test('protected sources match V7 with only the exact accepted skyline, V9 map/gate, V10 lifecycle and V13 entry deltas', () => {
   assert.equal(baseline.protectedSourcesSHA256['src/scene/sky/Skyline.js'],
     '1aeb74c691478690d1eae9cfab2950847c786309e2a0f37a29a56fce0b15afba');
   for (const [path, hash] of Object.entries(baseline.protectedSourcesSHA256)) {
@@ -129,7 +130,7 @@ test('protected sources match V7 with only the exact accepted skyline, V9 map/ga
     if (path === 'main.js') {
       const historical = readHistoricalSource(baseline.baseCommit, path);
       assert.equal(sha256(historical), hash, 'the original V7 main.js hash remains pinned');
-      assertV9MapMainBytes(historical, current);
+      assertV9MapMainBytes(historical, restoreV10EntryMainBytes(current));
     } else if (path === 'src/render/PostProcessing.js') {
       assertV10PostProcessingBytes(current, expected);
     } else assert.equal(sha256(current), expected, path);

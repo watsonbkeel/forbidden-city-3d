@@ -21,6 +21,7 @@ import { MapTourSession } from './src/ui/MapTourSession.js';
 import { hasShortcutModifier, isTextEntryTarget } from './src/controls/InputTargets.js';
 import { PerfHUD } from './src/ui/PerfHUD.js';
 import { LAYOUT, PERFORMANCE, TELEPORT } from './src/config/constants.js';
+import { INITIAL_VIEW_POSITION } from './src/config/initialView.js';
 
 /**
  * 故宫 3D 虚拟游览主程序
@@ -135,7 +136,7 @@ class ForbiddenCityApp {
           this.shadowObjects = this.shadowObjects.filter(o => !gone.has(o));
         };
         ZONES.forEach(zone => this.zoneManager.register(zone));
-        const start = LAYOUT.START_POSITION;
+        const start = INITIAL_VIEW_POSITION;
         this.zoneManager.init(this.scene, this.library, this.collisionManager, { x: start.x, z: start.z });
       }],
       ['碰撞检测', () => {
@@ -155,7 +156,7 @@ class ForbiddenCityApp {
       }],
       ['控制器', () => {
         this.controls = new FirstPersonControls(this.camera, document.body, this.collisionManager);
-        const start = LAYOUT.START_POSITION;
+        const start = INITIAL_VIEW_POSITION;
         this.controls.setPosition(start.x, start.y, start.z);
         // 相机默认朝向 -Z（背对故宫），出生时转身面向北边的午门
         this.controls.lookAt(0, LAYOUT.WUMEN_Z);
@@ -245,6 +246,8 @@ class ForbiddenCityApp {
       0.1,
       2500
     );
+    const start = INITIAL_VIEW_POSITION;
+    this.camera.position.set(start.x, start.y, start.z);
   }
   
   /**
