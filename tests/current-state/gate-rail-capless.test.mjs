@@ -1,5 +1,6 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import crypto from 'node:crypto';
 import {captureGate} from '../lib/gate-tower-fixture.mjs';
+import {restoreGatePlaques} from '../lib/gate-plaque-retention.mjs';
 import {assertRetainedGate,restoreGateRails,railPaths,atPath,verticalIndices} from '../lib/gate-rail-retention.mjs';
 import * as THREE from 'three';
 import {TextureLibrary,TEXTURE_SPECS} from '../../src/utils/TextureLibrary.js';
@@ -10,10 +11,10 @@ const baseline=JSON.parse(fs.readFileSync(new URL('../fixtures/v10-gate-rail-d-b
 const hash=x=>crypto.createHash('sha256').update(JSON.stringify(x)).digest('hex');
 for(const name of ['午门','神武门']){
  const c=captureGate(name);
- test(`${name}: exact listed rail caps removed; all other D geometry retained`,()=>assertRetainedGate(c,name,baseline[name]));
- test(`${name}: collision, supports and material/draw budget unchanged; four fewer triangles per rail`,()=>{
+ test(`${name}: exact listed rail caps removed; all other D geometry retained after finite V12 plaque restoration`,()=>assertRetainedGate(c,name,baseline[name]));
+ test(`${name}: collision/supports unchanged; historical budget restored only for exact V12 plaque slots`,()=>{
   assert.equal(hash({colliders:c.builder.colliders,walkables:c.builder.walkables}),baseline[name].physics);
-  let meshes=0,triangles=0;const materials=new Set();c.group.traverse(m=>{if(m.isMesh){meshes++;triangles+=(m.geometry.index?.count??m.geometry.attributes.position.count)/3;materials.add(m.material);}});
+  let meshes=0,triangles=0;const materials=new Set();restoreGatePlaques(c,name).group.traverse(m=>{if(m.isMesh){meshes++;triangles+=(m.geometry.index?.count??m.geometry.attributes.position.count)/3;materials.add(m.material);}});
   assert.equal(meshes,baseline[name].meshes);assert.equal(materials.size,baseline[name].materials);
   assert.equal(triangles,baseline[name].triangles-4*railPaths[name].length);
  });

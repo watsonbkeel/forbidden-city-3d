@@ -1,9 +1,10 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
 import {captureGate,meshFingerprint,outerColumnSignature} from '../lib/gate-tower-fixture.mjs';
 import {restoreGateRails} from '../lib/gate-rail-retention.mjs';
+import {restoreGatePlaques} from '../lib/gate-plaque-retention.mjs';
 const g=captureGate(),baseline=JSON.parse(fs.readFileSync(new URL('../fixtures/v9-wumen-retained-geometry.json',import.meta.url)));
-test('Wumen retains the original geometry hash after only verified rail-cap/V restoration',()=>{
- const restored=restoreGateRails(g,'午门');
+test('Wumen retains the original geometry hash after only finite plaque and verified rail-cap/V restoration',()=>{
+ const restored=restoreGateRails(restoreGatePlaques(g,'午门'),'午门');
  assert.equal(meshFingerprint(restored,restored.children[g.group.children.indexOf(g.tower)]),baseline.outsideShell);
 });
 test('Wumen outer eave-column meshes remain bitwise retained',()=>assert.deepEqual(outerColumnSignature(g.tower),baseline.outerColumns));

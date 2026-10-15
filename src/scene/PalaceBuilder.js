@@ -3,6 +3,7 @@ import { COLORS } from '../config/constants.js';
 import { buildGateAscent, toWorld } from './palace/gateAscent.js';
 import { wumenTowerGeometry, shenwuTowerGeometry } from './palace/special/GateTowerProfiles.js';
 import { buildGateTowerShell } from './palace/special/GateTowerShell.js';
+import { buildWumenSouthPlaque, buildShenwuInstitutionPlaque, SHENWU_GATE_NAME_OMISSION } from './palace/special/GatePlaques.js';
 import { riverBridges, JINSHUI_BRIDGE_LENGTH } from './palace/river.js';
 import { buildRoof } from './RoofBuilder.js';
 import { buildHallBody, buildBalustrade, buildStuddedDoor } from './HallKit.js';
@@ -922,10 +923,7 @@ export class PalaceBuilder {
     g.add(roof);
     this.ownedMaterials.push(...(roof.userData.ownedMaterials ?? []));
     this.wumenTopY = roof.userData.topY - PH; // 沿用模型相对高度；公布总高与城台顶起算标高的对应关系未核定
-    const plaque = this.plaqueMesh('午门', 2, 3.2, true);
-    plaque.position.set(0, top + 9, -dm.depth / 2 - 0.5);
-    plaque.rotation.y = Math.PI;
-    g.add(plaque);
+    g.add(buildWumenSouthPlaque(this, roof));
 
     // 雁翅楼：沿 Z 的长廊（单檐庑殿，13 间），南北两端重檐四角攒尖方亭（dimensions.md:80–82）
     const hw = dm.wingHallWidth;
@@ -1012,10 +1010,8 @@ export class PalaceBuilder {
     });
     g.add(roof);
     this.ownedMaterials.push(...(roof.userData.ownedMaterials ?? []));
-    const plaque = this.plaqueMesh('神武门', 1.6, 2.6, true);
-    plaque.position.set(0, PH + 5.5, -towerProfile.enclosure.innerZ - towerProfile.T / 2 - 0.15);
-    plaque.rotation.y = Math.PI;
-    g.add(plaque);
+    g.add(buildShenwuInstitutionPlaque(this, { platformDepth: D, platformHeight: PH, tunnelHeight: tunnelH }));
+    g.userData.gatePlaqueOmissions = [structuredClone(SHENWU_GATE_NAME_OMISSION)];
     this.finish(g);
   }
 

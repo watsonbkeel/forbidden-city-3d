@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import {meshFingerprint} from './gate-tower-fixture.mjs';
+import {restoreGatePlaques} from './gate-plaque-retention.mjs';
 export const railPaths={
  '午门':[146,147,148,149].map(i=>`/27/${i}`),
  '神武门':[88,89,90,91,92,93,94,95].map(i=>`/149/${i}`),
@@ -48,7 +49,7 @@ export function restoreGateRails(c,name){
  return copy;
 }
 export function assertRetainedGate(c,name,baseline){
- const restored=restoreGateRails(c,name);
+ const restored=restoreGateRails(restoreGatePlaques(c,name),name);
  assert.equal(meshFingerprint(restored),baseline.fingerprint);
  assert.equal(renderStateHash(restored),baseline.renderState);
 }

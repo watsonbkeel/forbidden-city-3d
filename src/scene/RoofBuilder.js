@@ -536,7 +536,8 @@ function singleRoof(ctx, g, o) {
       top = addMainRidge(ctx, g, rx, Y(0) - hr, hr, chiwenH);
     }
   }
-  return { eaveY: yb, top };
+  return { eaveY: yb, top, wallSoffitY: y0,
+    soffitProfile: { eaveY: yb, height: H, coefficient: type === 'pavilion' ? 0.36 : type === 'gable' ? 0.62 : 0.48, thickness: th, halfDepth: ez } };
 }
 
 /** 博风板：竖直条带，上沿折线 top（z 递增），向下 h */
@@ -582,7 +583,7 @@ function skirtRoof(ctx, g, { sides, W, D, inset, ovh, baseY, brackets, liftScale
   for (let c = 0; c < S.n; c++) addHip(ctx, g, S.hipLine(c, 0, hr * 0.6, Math.max(6, ctx.seg.tube >> 1)), hr, ctx.hd ? 3 : 0);
   // 围脊：腰檐与上层屋身交接处
   add(g, prismGeometry(polyCorners(sides, hxi + hr, hzi + hr), Y(0) - hr, Y(0) + hr * 1.8, { tile: 1 }), ctx.mat.ridge);
-  return { y0, eaveY: yb, topY: Y(0) };
+  return { y0, eaveY: yb, topY: Y(0), ridgeTopY: Y(0) + hr * 1.8 };
 }
 
 /* ------------------------------------------------------------------ */
@@ -609,7 +610,12 @@ function roofInto(ctx, g, o) {
     ...o, width: Wi, depth: Di, baseY: bodyTop, overhang: undefined,
     height: o.height ?? Math.min(Wi, Di) * (type === 'pavilion' ? 0.5 : 0.4),
   });
-  return { eaveY: sk.eaveY, top: upper.top };
+  // Attachment metadata only: these are the actual generated lower-ridge and
+  // upper-soffit locals, not the decorative ridge/finial bounding-box top.
+  return { eaveY: sk.eaveY, top: upper.top, doubleEaveMountingBand: {
+    lowerY: sk.ridgeTopY, upperY: upper.wallSoffitY, halfDepth: Di / 2,
+    halfWidth: Wi / 2, upperSoffit: upper.soffitProfile,
+  } };
 }
 
 function finalize(ctx, g, eaveY) {
@@ -647,7 +653,9 @@ export function buildRoof(lib, opts) {
   const g = new THREE.Group();
   g.name = `roof_${opts.type ?? 'wudian'}`;
   const r = roofInto(ctx, g, opts);
-  return finalize(ctx, g, r.eaveY);
+  const roof = finalize(ctx, g, r.eaveY);
+  if (r.doubleEaveMountingBand) roof.userData.doubleEaveMountingBand = r.doubleEaveMountingBand;
+  return roof;
 }
 
 /**
