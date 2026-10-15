@@ -3,6 +3,8 @@ import { PALACE_LAYOUT } from '../scene/Layout.js';
 import { LAYOUT, TELEPORT } from '../config/constants.js';
 import { hasShortcutModifier, isTextEntryTarget } from '../controls/InputTargets.js';
 
+const MAP_HEADINGS = ['北', '东北', '东', '东南', '南', '西南', '西', '西北'];
+
 /**
  * 小地图：按 M 键显示/隐藏，显示当前位置和建筑名称
  */
@@ -10,6 +12,8 @@ import { hasShortcutModifier, isTextEntryTarget } from '../controls/InputTargets
 export class Minimap {
   constructor({ items = [], preview = false, onTeleport = null, onToggle = null } = {}) {
     this.visible = false;
+    this.compact = false;
+    this.compactSectionState = new Map();
     this.onTeleport = onTeleport;
     this.onToggle = onToggle;
     this.labels = [];
@@ -61,6 +65,7 @@ export class Minimap {
     
     // 标题
     const title = document.createElement('div');
+    title.id = 'minimap-title';
     title.textContent = '故宫平面图';
     title.style.cssText = `
       color: #ffd764;
@@ -71,6 +76,31 @@ export class Minimap {
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
     `;
     this.container.appendChild(title);
+
+    const presentation = document.createElement('div');
+    presentation.id = 'minimap-presentation';
+    const status = document.createElement('div');
+    status.id = 'minimap-status';
+    this.headingLabel = document.createElement('span');
+    this.headingLabel.id = 'minimap-heading';
+    this.headingLabel.textContent = '朝向 北';
+    this.compactHint = document.createElement('span');
+    this.compactHint.id = 'minimap-compact-hint';
+    this.compactHint.textContent = '展开后可传送';
+    status.append(this.headingLabel, this.compactHint);
+    this.sizeToggle = document.createElement('button');
+    this.sizeToggle.id = 'minimap-size-toggle';
+    this.sizeToggle.type = 'button';
+    this.sizeToggle.textContent = '收起到角落';
+    this.sizeToggle.setAttribute('aria-label', '收起地图到角落，继续行走');
+    this.sizeToggle.setAttribute('aria-controls', 'minimap-tools teleport-points');
+    this.sizeToggle.setAttribute('aria-expanded', 'true');
+    this.sizeToggle.addEventListener('click', e => {
+      e.stopPropagation();
+      this.setCompact(!this.compact);
+    });
+    presentation.append(status, this.sizeToggle);
+    this.container.appendChild(presentation);
     
     // Canvas 地图
     // 视图状态：k = 相对"整图适配"的放大倍数，(cx, cy) = 视口中心对应的地图坐标（地图像素单位）
@@ -97,6 +127,7 @@ export class Minimap {
 
     // 缩放工具条
     const bar = document.createElement('div');
+    bar.id = 'minimap-tools';
     bar.style.cssText = 'display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin-top:8px';
     const mkBtn = (text, title, fn) => {
       const b = document.createElement('button');
@@ -142,6 +173,7 @@ export class Minimap {
       quick.appendChild(button);
     });
     this.container.appendChild(quick);
+    this.compactSections = [title, bar, hint, quick];
     
     document.body.appendChild(this.container);
     
@@ -195,10 +227,20 @@ export class Minimap {
   }
 
   /** 按容器实际宽度重算画布尺寸（竖长地图，限制高度不超过视口 62%） */
-  resizeCanvas() {
-    const w = this.canvas.clientWidth || this.mapSize;
+  resizeCanvas(preserveView = false) {
     let maxH = window.innerHeight * 0.66;
-    if (this.previewEnabled) {
+    this.canvas.hidden = false;
+    this.container.setAttribute('data-compact-collapsed', 'false');
+    if (this.compact) {
+      const viewportH = Math.min(window.innerHeight, window.visualViewport?.height || window.innerHeight);
+      const style = window.getComputedStyle?.(this.container);
+      const panelH = Math.min(viewportH - (this.previewEnabled ? 200 : 16), parseFloat(style?.maxHeight) || Infinity);
+      // Reserve the heading and all three 44px controls. On very short screens,
+      // use an explicit control strip rather than clipping controls or touch lanes.
+      maxH = Math.max(1, Math.min(144, panelH - 92));
+      this.canvas.hidden = maxH < 64;
+      this.container.setAttribute('data-compact-collapsed', String(this.canvas.hidden));
+    } else if (this.previewEnabled) {
       const viewportH = Math.min(window.innerHeight, window.visualViewport?.height || window.innerHeight);
       const docked = window.innerWidth >= 520 && window.innerWidth > window.innerHeight;
       const panelH = this.container.clientHeight || Math.max(1, viewportH - (docked ? 16 : 208));
@@ -208,14 +250,41 @@ export class Minimap {
       // its visible content height, even below the usual 120px mobile minimum.
       maxH = Math.max(1, Math.min(viewportH * 0.5, panelH - padding));
     }
-    const minH = this.previewEnabled ? Math.min(120, maxH) : 220;
+    const w = this.canvas.clientWidth || this.mapSize;
+    const minH = this.compact ? 1 : this.previewEnabled ? Math.min(120, maxH) : 220;
     const h = Math.max(minH, Math.min(w * this.mapHeight / this.mapSize, maxH));
     this.viewW = w;
     this.viewH = h;
     this.canvas.style.height = `${h}px`;
     this.canvas.width = Math.round(w * this.dpr);
     this.canvas.height = Math.round(h * this.dpr);
-    this.clampView();
+    if (!preserveView) this.clampView();
+  }
+
+  setCompact(compact) {
+    if (!this.visible || this.compact === compact) return;
+    this.cancelMapGesture();
+    this.secondaryTaps.clear();
+    this.compact = compact;
+    this.container.setAttribute('data-compact', String(compact));
+    this.container.setAttribute('aria-describedby', compact ? 'minimap-compact-hint' : 'minimap-help');
+    this.sizeToggle.textContent = compact ? '展开地图' : '收起到角落';
+    this.sizeToggle.setAttribute('aria-expanded', String(!compact));
+    this.sizeToggle.setAttribute('aria-label', compact ? '展开地图，查看详情和传送点' : '收起地图到角落，继续行走');
+    for (const element of this.compactSections) {
+      if (compact) {
+        this.compactSectionState.set(element, { hidden: element.hidden, inert: element.inert });
+        if (element.contains(document.activeElement)) this.sizeToggle.focus({ preventScroll: true });
+        element.hidden = element.inert = true;
+      } else {
+        Object.assign(element, this.compactSectionState.get(element));
+      }
+    }
+    if (!compact) this.compactSectionState.clear();
+    this.container.scrollTop = 0;
+    // This is presentation only: no open/close callback or walking-state change.
+    this.resizeCanvas(true);
+    this.drawMap();
   }
 
   clampView() {
@@ -392,6 +461,8 @@ export class Minimap {
   }
 
   handleMapClick(p) {
+    // A small navigation map must not turn an imprecise tap into travel.
+    if (this.compact) return;
     const m = this.screenToMap(p.x, p.y);
     const tol = 3 / this.view.k;
     const label = [...this.labels].reverse().find(it =>
@@ -457,6 +528,7 @@ export class Minimap {
   }
   
   toggle() {
+    if (this.visible && this.compact) this.setCompact(false);
     this.visible = !this.visible;
     if (this.visible) this.previousFocus = document.activeElement;
     else {
@@ -730,6 +802,11 @@ export class Minimap {
   update(camera) {
     this.playerPosition.copy(camera.position);
     camera.getWorldDirection(this.playerDir);
+    if (Math.hypot(this.playerDir.x, this.playerDir.z) > 1e-6) {
+      const index = (Math.round(Math.atan2(-this.playerDir.x, this.playerDir.z) / (Math.PI / 4)) + 8) % 8;
+      const heading = `朝向 ${MAP_HEADINGS[index]}`;
+      if (this.headingLabel.textContent !== heading) this.headingLabel.textContent = heading;
+    }
     
     if (this.visible) {
       this.drawMap();

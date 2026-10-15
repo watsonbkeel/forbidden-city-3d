@@ -497,3 +497,123 @@ body.map-open #minimap {
     max-height: calc(100dvh - 16px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
   }
 }
+
+/* Open-map presentation only; the closed 118px mobile preview is independent. */
+#minimap [hidden] { display: none !important; }
+#minimap-presentation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+#minimap-status { color: #ffe4a1; font-size: 13px; line-height: 18px; }
+#minimap-heading { white-space: nowrap; }
+#minimap-compact-hint { display: none; }
+#minimap-size-toggle {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 4px 8px;
+  color: #ffd764;
+  background: #382d20;
+  border: 1px solid #9f804a;
+  border-radius: 6px;
+  font: 13px/1.3 sans-serif;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+#minimap[data-compact="true"] {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 44px;
+  gap: 6px;
+  top: calc(8px + env(safe-area-inset-top, 0px));
+  right: calc(8px + env(safe-area-inset-right, 0px));
+  left: auto;
+  transform: none;
+  margin: 0;
+  width: 240px;
+  max-width: calc(100vw - 16px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px));
+  max-height: calc(100dvh - 16px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  padding: 6px !important;
+  scroll-padding-top: 0;
+}
+#minimap.minimap-touch[data-compact="true"] {
+  width: 220px;
+  max-height: calc(100dvh - 200px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+}
+#minimap[data-compact="true"] #minimap-presentation { display: contents; }
+#minimap[data-compact="true"] #minimap-status { grid-area: 1 / 1 / auto / -1; text-align: center; }
+#minimap[data-compact="true"] #minimap-compact-hint { display: inline; margin-left: 8px; color: #d7c9ab; font-size: 11px; }
+#minimap[data-compact="true"] > canvas { grid-area: 2 / 1 / auto / -1; min-width: 0; box-sizing: border-box; }
+#minimap[data-compact="true"] #minimap-size-toggle { grid-area: 3 / 2; min-width: 44px; padding-inline: 2px; font-size: 12px; }
+#minimap[data-compact="true"] #minimap-close { grid-area: 3 / 3; min-width: 44px; margin: 0 !important; padding: 2px; font-size: 12px; }
+#minimap[data-compact="true"] #structural-preview-button {
+  grid-area: 3 / 1;
+  position: static;
+  width: 100%;
+  min-width: 44px;
+  min-height: 44px;
+  margin: 0;
+  padding: 2px;
+  font-size: 11px;
+  line-height: 1.3;
+}
+#minimap[data-compact="true"] #structural-preview-button span { display: none; }
+#minimap[data-compact="true"][data-compact-collapsed="true"] {
+  max-height: calc(100dvh - 16px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+}
+@media (orientation: landscape) and (min-width: 520px) {
+  #minimap.minimap-touch[data-compact="true"] {
+    right: calc(164px + env(safe-area-inset-right, 0px));
+    max-width: calc(100vw - 328px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px));
+  }
+  #minimap.minimap-touch[data-compact="true"][data-compact-collapsed="true"] {
+    left: calc(164px + env(safe-area-inset-left, 0px));
+    right: calc(164px + env(safe-area-inset-right, 0px));
+    width: auto;
+    max-width: 320px;
+    margin-inline: auto;
+  }
+}
+
+/* Keep the persistent location label clear of closed and compact maps. */
+body:has(#minimap.minimap-touch) #location-panel {
+  top: calc(20px + env(safe-area-inset-top, 0px)) !important;
+  left: calc(20px + env(safe-area-inset-left, 0px)) !important;
+  padding: 8px 12px !important;
+  font-size: 14px !important;
+  overflow-wrap: anywhere;
+}
+body:not(.map-open):has(#minimap-preview) #location-panel {
+  /* 20px left + 12px gap + 118px preview + 16px right. */
+  max-width: calc(100vw - 166px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px));
+}
+body:has(#minimap[data-compact="true"]) #location-panel {
+  /* Desktop card: 240px wide, with its 8px right margin. */
+  max-width: calc(100vw - 280px - env(safe-area-inset-right, 0px));
+  overflow-wrap: anywhere;
+}
+body:has(#minimap.minimap-touch[data-compact="true"]) #location-panel {
+  max-width: calc(100vw - 260px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px));
+}
+@media (orientation: landscape) and (min-width: 520px) {
+  body:has(#minimap.minimap-touch[data-compact="true"]) #location-panel {
+    /* The card reserves a 164px right control lane and shrinks if needed. */
+    max-width: max(132px, calc(100vw - 416px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)));
+  }
+  body:has(#minimap.minimap-touch[data-compact="true"][data-compact-collapsed="true"]) #location-panel {
+    /* Short strip is centered, capped at 320px, between the two 164px lanes. */
+    max-width: max(132px, calc((100vw - 384px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)) / 2));
+  }
+}
+@media (max-width: 360px) {
+  body:has(#minimap[data-compact="true"]) #location-panel {
+    /* 8px top + maximum 236px card + 12px gap; keep long labels readable. */
+    top: calc(256px + env(safe-area-inset-top, 0px)) !important;
+    max-width: calc(100vw - 40px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)) !important;
+  }
+  body:has(#minimap[data-compact="true"][data-compact-collapsed="true"]) #location-panel {
+    /* Without the canvas the compact strip is at most 92px high. */
+    top: calc(112px + env(safe-area-inset-top, 0px)) !important;
+  }
+}
