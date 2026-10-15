@@ -9,6 +9,10 @@ import { sideGateGeometry } from '../src/scene/palace/special/SideGateProfiles.j
 import { pavilionGeometry } from '../src/scene/palace/special/PavilionProfiles.js';
 
 const W = await buildWorld();
+// Historical V6 coverage keeps its exact 58 routes and original drivers.
+// V7's sole added gate is exhaustively covered by zhaode-gate-routes.test.mjs.
+const inheritedV6 = routes => routes.filter(r => r.gateProfile !== 'zhaode');
+const originalGateProfiles = new Set(['xiehe', 'xihe', 'jingyun', 'longzong']);
 const zone = W.zones.find(z => z.json.id === 'outer-west').json;
 const yudeRoute = () => zoneRoutes(W, zone).find(r => r.hall === '浴德堂');
 const fixedRoutes = () => execFileSync(process.execPath, [new URL('./stepwalk.cjs', import.meta.url).pathname, '60,10', '0,1', 'all'],
@@ -205,9 +209,9 @@ test('the same bounded detour works after translating, renaming, and rotating th
 });
 
 test('all baseline and explicit profile routes retain real-collision round-trip passage', () => {
-  const routes = buildAutoRoutes(W, W.zones.map(z => z.json));
+  const routes = inheritedV6(buildAutoRoutes(W, W.zones.map(z => z.json)));
   assert.equal(routes.filter(route => !route.gateProfile && !route.pavilionFlight && !route.terraceSide).length, 40, '39 baseline hall/cross routes plus the newly enterable Hongyi hall');
-  const portalCount = W.gates.filter(g => g.item.gateProfile).reduce((n, g) => n + sideGateGeometry(g.item).portals.length, 0);
+  const portalCount = W.gates.filter(g => originalGateProfiles.has(g.item.gateProfile)).reduce((n, g) => n + sideGateGeometry(g.item).portals.length, 0);
   assert.equal(routes.filter(route => route.pavilionFlight).length, 4, 'one round trip per actual pavilion front flight');
   assert.equal(routes.length, 40 + portalCount + 4 + 2, '51 original identities, one Hongyi hall route, four pavilion flight routes and two terrace routes');
   for (const route of routes) assert.doesNotThrow(() => assertWalkable(W, route.pts), route.name);
@@ -215,7 +219,7 @@ test('all baseline and explicit profile routes retain real-collision round-trip 
 
 for (const fps of [60, 10]) for (const sprint of [false, true]) {
   test(`all 58 automatic routes retain real-controller passage: ${fps} fps, sprint=${sprint}`, t => {
-    const routes = buildAutoRoutes(W, W.zones.map(z => z.json));
+    const routes = inheritedV6(buildAutoRoutes(W, W.zones.map(z => z.json)));
     assert.equal(routes.length, 58);
     assert.equal(routes.filter(r => r.pavilionFlight).length, 4, 'both front flights of both pavilions, ascending and descending');
     const failures = [];
@@ -300,7 +304,7 @@ test('hall approaches use the correct profile ramp toe on either inward-facing s
 
 for (const fps of [60, 10]) for (const sprint of [false, true]) {
   test(`all profile portals reach every toe/top waypoint with the real controller: ${fps} fps, sprint=${sprint}`, t => {
-    const routes = buildAutoRoutes(W, W.zones.map(z => z.json)).filter(route => route.gateProfile);
+    const routes = buildAutoRoutes(W, W.zones.map(z => z.json)).filter(route => originalGateProfiles.has(route.gateProfile));
     assert.equal(routes.length, 12, 'all four source profiles must be integrated before this coverage passes');
     for (const route of routes) {
       const result = replay(t, W, route.pts, fps, sprint);

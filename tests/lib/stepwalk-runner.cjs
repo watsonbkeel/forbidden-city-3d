@@ -56,13 +56,15 @@ function routeForBrowser(route) {
 /** routes: [[name, pts, optionalDriverMetadata]]；返回每条 × fps × sprint 的结果 */
 async function runRoutes(page, routes, fpsList, sprints) {
   for (const [, , options] of routes) {
-    if (options?.waypointDriver !== undefined && options.waypointDriver !== 'physical-crossing-v1') {
+    if (options?.waypointDriver !== undefined && !['physical-crossing-v1', 'zhaode-physical-crossing-v1'].includes(options.waypointDriver)) {
       throw new Error(`Unsupported waypointDriver: ${options.waypointDriver}`);
     }
   }
   return page.evaluate(async ({ ROUTES, fpsList, sprints }) => {
     const physicalModules = ROUTES.some(([, , options]) => options?.waypointDriver === 'physical-crossing-v1')
       ? await Promise.all([import('/tests/lib/physical-waypoints.mjs'), import('/tests/lib/terrace-walk.mjs')]) : null;
+    const zhaodeModule = ROUTES.some(([, , options]) => options?.waypointDriver === 'zhaode-physical-crossing-v1')
+      ? await import('/tests/lib/zhaode-walk.mjs') : null;
     const a = window.__forbiddenCityApp;
     cancelAnimationFrame(a.animationFrame);
     a.disposed = true; // 停掉主循环，由本脚本逐帧驱动
@@ -146,6 +148,14 @@ async function runRoutes(page, routes, fpsList, sprints) {
       } finally { c.moveForward = false; trace.restore(); }
     }
     for (const fps of fpsList) for (const sprint of sprints) for (const [name, pts, options] of ROUTES) {
+      if (options?.waypointDriver === 'zhaode-physical-crossing-v1') {
+        zm?.ensureLoadedAt(...pts[0]);
+        const profile = zhaodeModule.runtimeZhaodeProfile(a);
+        events.length = 0;
+        const result = zhaodeModule.runZhaodeRoute(a, profile, pts, { fps, sprint });
+        out.push({ name, ...result, profile: [], zoneEvents: [...events] });
+        continue;
+      }
       if (options?.waypointDriver === 'physical-crossing-v1') { out.push(runPhysicalRoute(name, pts, fps, sprint)); continue; }
       const [x0, z0] = pts[0];
       // 传送到起点后先把该处分区建好（真实游玩中靠 40m 预载，传送是瞬移所以要补齐）

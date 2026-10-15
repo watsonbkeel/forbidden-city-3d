@@ -9,7 +9,8 @@ import { buildWorld, walkStraight } from './lib/world.mjs';
 import { buildAutoRoutes } from './lib/auto-routes.mjs';
 
 const W = await buildWorld();
-const routes = buildAutoRoutes(W, W.zones.map(z=>z.json));
+// Version-scoped V5/V6 fixtures exclude only the new V7 昭德 route.
+const routes = buildAutoRoutes(W, W.zones.map(z=>z.json)).filter(r=>r.gateProfile!=='zhaode');
 const sha = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 
 test('V5 retains all 56 automatic route identities and exact old point sequences', () => {

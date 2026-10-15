@@ -290,7 +290,7 @@ export function crossRoutes(W, zones) {
 
 /** 独立覆盖 profile 每条物理门道、两侧坡道；保留坡脚/坡顶点，不做短段简化。 */
 export function profileGateRoutes(zones) {
-  return zones.flatMap(zone => zone.items.filter(item => item.kind === 'gate' && item.gateProfile).flatMap(item => {
+  return zones.flatMap(zone => zone.items.filter(item => item.kind === 'gate' && item.gateProfile && item.gateProfile !== 'zhaode').flatMap(item => {
     const { profile: g } = gateGeom(item);
     const front = g.ramps.find(r => r.side === 'front'), rear = g.ramps.find(r => r.side === 'rear');
     return g.portalCenters.map((x, index) => {
@@ -329,8 +329,22 @@ export function profileTerraceRoutes(W, zones) {
   }));
 }
 
+/** One explicit three-bay passage, retaining both independent slope contacts. */
+export function profileZhaodeGateRoutes(zones) {
+  return zones.flatMap(zone => zone.items.filter(item => item.kind === 'gate' &&
+    item.gateProfile === 'zhaode' && item.gateKind === 'three-bay').map(item => {
+    const { profile } = gateGeom(item);
+    const contacts = ['frontGround', 'frontToe', 'frontTop', 'portalFront', 'portalRear', 'rearTop', 'rearToe', 'rearGround'];
+    const go = contacts.map(name => profile.toWorld(...profile.routeContacts[name]));
+    return { name: `[${zone.id}] ${item.name}南地面→单门道→北地面→返回`, zone: zone.id, gate: item.name,
+      gateProfile: item.gateProfile, portalCenter: profile.portalCenters[0], waypointDriver: 'zhaode-physical-crossing-v1',
+      plan: ['从两侧实际坡脚外 2 米的地面起步，经独立南北坡道与唯一中央门道；临时拓扑不表示现代游客通行许可'],
+      pts: [...go, ...go.slice(0, -1).reverse()] };
+  }));
+}
+
 export function buildAutoRoutes(W, zones, { knownIssues = {} } = {}) {
-  const routes = [...zones.flatMap(z => zoneRoutes(W, z)), ...crossRoutes(W, zones), ...profileGateRoutes(zones), ...profilePavilionRoutes(zones), ...profileTerraceRoutes(W, zones)];
+  const routes = [...zones.flatMap(z => zoneRoutes(W, z)), ...crossRoutes(W, zones), ...profileGateRoutes(zones), ...profilePavilionRoutes(zones), ...profileTerraceRoutes(W, zones), ...profileZhaodeGateRoutes(zones)];
   for (const r of routes) if (knownIssues[r.name]) r.knownIssue = knownIssues[r.name];
   return routes;
 }

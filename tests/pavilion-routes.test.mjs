@@ -17,7 +17,8 @@ jsonImports.deregister();
 const W = await buildWorld();
 const zones = W.zones.map(z => z.json);
 const pavilions = zones.flatMap(z => z.items).filter(i => i.pavilionProfile);
-const routes = buildAutoRoutes(W, zones);
+// Version-scoped V3/V4/V6 fixtures exclude only the new V7 昭德 route.
+const routes = buildAutoRoutes(W, zones).filter(r => r.gateProfile !== 'zhaode');
 const sha = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const near = (actual, expected, label) => assert.ok(Math.abs(actual - expected) < 1e-6, `${label}: ${actual} != ${expected}`);
 

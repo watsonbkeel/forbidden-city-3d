@@ -11,6 +11,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { zhaodeGateGeometry } from '../../src/scene/palace/special/ZhaodeGateProfile.js';
 import { sideGateGeometry } from '../../src/scene/palace/special/SideGateProfiles.js';
 import { pavilionGeometry } from '../../src/scene/palace/special/PavilionProfiles.js';
 
@@ -30,6 +31,14 @@ export const parseRot = r => (r === undefined || r === null ? 0 : typeof r === '
 
 /** 门通行几何；profile 的 front/rear 包含各自完整坡道，platformY 仅用于台面起点。 */
 export function gateGeom(item) {
+  // Explicit three-bay topology must precede the established five-bay profiles.
+  if (item.gateProfile === 'zhaode' && item.gateKind === 'three-bay') {
+    const profile = zhaodeGateGeometry(item);
+    const front = -profile.ramps.find(r => r.side === 'front').zToe;
+    const rear = profile.ramps.find(r => r.side === 'rear').zToe;
+    return { x: profile.x, z: profile.z, rot: profile.rot, dir: [Math.sin(profile.rot), Math.cos(profile.rot)],
+      half: Math.max(front, rear), front, rear, platformY: profile.platform.topY, profile };
+  }
   if (item.gateProfile) {
     const profile = sideGateGeometry(item);
     const front = -Math.min(-profile.platformDepth / 2, ...profile.ramps.flatMap(r => [r.zTop, r.zToe]));
