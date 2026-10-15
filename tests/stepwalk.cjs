@@ -38,6 +38,15 @@ async function buildRoutes() {
   const { LAYOUT: L } = await import(pathToFileURL(path.join(ROOT, 'src/config/constants.js')).href);
   const { sideGateGeometry } = await import(pathToFileURL(path.join(ROOT, 'src/scene/palace/special/SideGateProfiles.js')).href);
   const axisZone = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/zones/axis-courts.json'), 'utf8'));
+  const { KUNNING_PROFILE, kunningNavigationPoint } = await import(pathToFileURL(path.join(ROOT, 'src/scene/palace/special/KunningProfile.js')).href);
+  const { PALACE_LAYOUT } = await import(pathToFileURL(path.join(ROOT, 'src/scene/Layout.js')).href);
+  const kunning = PALACE_LAYOUT.find(item => item.name === '坤宁宫');
+  const kunningRoute = key => KUNNING_PROFILE.navigation.routes[key].map(id => {
+    const [x, , z] = kunningNavigationPoint(id, kunning);
+    return [x, z];
+  });
+  const kunningEntry = kunningRoute('entry'), kunningExit = kunningRoute('eastBypass');
+  const exactKunningPoints = new Set([...kunningEntry, ...kunningExit]);
   const exactGatePoints = new Set();
   const gateTransit = name => {
     const g = sideGateGeometry(axisZone.items.find(item => item.kind === 'gate' && item.name === name));
@@ -70,9 +79,9 @@ async function buildRoutes() {
     ['保和殿→北下台→乾清门', [[0, back('保和殿') - 2], [0, L.QIANQING_GATE_Z - 10]]],
     ['乾清门→乾清宫', [[0, L.QIANQING_GATE_Z - 10], [0, qq - 6]]],
     ['乾清宫→交泰殿→坤宁宫', [[0, qq - 6], [QIANQING_DETOUR_X, qq - 6], [QIANQING_DETOUR_X, back('乾清宫') - 1.5], [0, back('乾清宫') - 1.5],
-      [0, jt - 4.7], [JIAOTAI_DETOUR_X, jt - 4.7], [JIAOTAI_DETOUR_X, jt + 7.2], [0, jt + 7.2], [0, back('坤宁宫') - 2]]],
-    // 出坤宁宫北门 → 坤宁门 → 西侧甬路绕过钦安殿 → 北横路 → 顺贞门 → 神武门外
-    ['坤宁宫→御花园→神武门', [[0, back('坤宁宫') - 2], [0, gz0 + GARDEN_S_ROAD], [GARDEN_PATH_X, gz0 + GARDEN_S_ROAD + 3],
+      [0, jt - 4.7], [JIAOTAI_DETOUR_X, jt - 4.7], [JIAOTAI_DETOUR_X, jt + 7.2], [0, jt + 7.2], ...kunningEntry]],
+    // 真正偏东南门退出，经东端穿廊到北廊；北中墙没有门。其后保留原御花园路线。
+    ['坤宁宫→御花园→神武门', [...kunningExit, [0, gz0 + GARDEN_S_ROAD], [GARDEN_PATH_X, gz0 + GARDEN_S_ROAD + 3],
       [GARDEN_PATH_X, gz1 - 9], [0, gz1 - 9], [0, L.BOUNDARY.maxZ - 10]]],
     ['乾清宫偏中轴(x=2.3)', [[2.3, L.QIANQING_GATE_Z + 6], [2.3, r1(front('乾清宫') - 1.2)]]],
     // R3: x=2.5 落在新中阶栏墙上；偏轴进院后在阶前转入中间阶口，不穿栏。
@@ -129,7 +138,7 @@ async function buildRoutes() {
     ['西一长街→夹道→永寿门', [[ny.x - 2.4, A['永寿门'].z - 2.8], [A['永寿门'].x, A['永寿门'].z - 2.8], [A['永寿门'].x, A['永寿门'].z + 8]]],
     ['文华殿院北夹道→文渊阁院', [[whd.x + 36.4, -153], [A['文渊阁'].x, -153], [A['文渊阁'].x, -145]]],
   ];
-  const round = rs => rs.map(([n, pts]) => [n, pts.map(p => exactGatePoints.has(p) ? p : [r1(p[0]), r1(p[1])])]);
+  const round = rs => rs.map(([n, pts]) => [n, pts.map(p => (exactGatePoints.has(p) || exactKunningPoints.has(p)) ? p : [r1(p[0]), r1(p[1])])]);
   return { AXIS_ROUTES: round(AXIS_ROUTES), SIDE_ROUTES: round([...SIDE_ROUTES, ...EXTRA_ROUTES]) };
 }
 

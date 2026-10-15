@@ -116,7 +116,12 @@ export class InteriorLoader {
           resolve(true);
         } catch (err) {
           console.warn(`[InteriorLoader] ${h.cfg.hall} 安装失败，保留 B 档：`, err);
-          disposeObject(gltf.scene);
+          if (h.id === 'kunning') {
+            this.cm?.removeByTag(`interior:${h.id}`);
+            if (h.group) this.scene.remove(h.group);
+            disposeObject(h.group ?? gltf.scene);
+            h.group = null; h.lights = []; h.fade = null;
+          } else disposeObject(gltf.scene);
           this._fail(h, t0);
           resolve(false);
         }
@@ -141,10 +146,13 @@ export class InteriorLoader {
 
   _install(h, root, t0) {
     const cfg = h.cfg;
+    // Validate the optional layer before a collider, light, fade or scene object is registered.
+    if (h.id === 'kunning') validateKunningFurniture(root, cfg);
     const f = cfg.frame;
     const floorY = this._floorY(cfg);
     const group = new THREE.Group();
     group.name = `interior:${h.id}`;
+    if (h.id === 'kunning') h.group = group; // rollback owns even a partially installed group
     group.position.set(f.x + (cfg.anchor?.x ?? 0), floorY + (cfg.anchor?.y ?? 0), f.z + (cfg.anchor?.z ?? 0));
     group.rotation.y = f.rot ?? 0;
     group.add(root);
@@ -312,4 +320,60 @@ function estimateBytes(root) {
     if (img?.width && img?.height) bytes += img.width * img.height * 4 * 1.33;
   }
   return Math.round(bytes);
+}
+
+/** Kunning's permanent B owns architecture; S may supply only compatible furniture. */
+function validateKunningFurniture(root, cfg) {
+  const expected = cfg.architectureContract;
+  const contracts = [];
+  root.traverse(o => { if (o.name === 'KUNNING_CONTRACT') contracts.push(o.userData); });
+  if (!expected || contracts.length !== 1) throw new Error('Kunning profile contract missing or duplicated');
+  for (const key of ['profileId', 'profileRevision', 'profileHash', 'ownership']) {
+    if (contracts[0][key] !== expected[key]) throw new Error(`Kunning profile contract mismatch: ${key}`);
+  }
+  if (expected.ownership !== 'furniture-only') throw new Error('Kunning S must be furniture-only');
+  root.updateMatrixWorld(true);
+  const toBox = b => new THREE.Box3(new THREE.Vector3(...b.min), new THREE.Vector3(...b.max));
+  const regions = Object.fromEntries(Object.entries(cfg.placementRegions).map(([id, r]) => [id, toBox(r.bounds ?? r)]));
+  const protectedBoxes = cfg.protectedVolumes.map(r => ({ id: r.id, box: toBox(r.bounds) }));
+  const proxies = new Set(), triangle = new THREE.Triangle(), bounds = new THREE.Box3();
+  let tris = 0;
+  root.traverse(o => {
+    if (!o.isMesh) return;
+    const g = o.geometry, position = g?.attributes.position;
+    if (!position) throw new Error(`Kunning geometry missing: ${o.name}`);
+    if (o.name.startsWith('WALK_')) throw new Error('Kunning S cannot own structural support');
+    if (o.name.startsWith('COL_')) {
+      const region = regions[cfg.furnitureProxies?.[o.name]];
+      if (!region || proxies.has(o.name)) throw new Error(`Kunning unknown or duplicate furniture proxy: ${o.name}`);
+      proxies.add(o.name);
+      bounds.setFromObject(o);
+      if (!region.clone().expandByScalar(0.002).containsBox(bounds)) throw new Error(`Kunning proxy outside placement region: ${o.name}`);
+      for (const p of protectedBoxes) if (p.box.intersectsBox(bounds)) throw new Error(`Kunning proxy blocks protected volume: ${p.id}`);
+      return;
+    }
+    const count = g.index?.count ?? position.count;
+    tris += count / 3;
+    for (let i = 0; i < count; i += 3) {
+      for (const [j, vertex] of [triangle.a, triangle.b, triangle.c].entries()) {
+        vertex.fromBufferAttribute(position, g.index ? g.index.getX(i + j) : i + j).applyMatrix4(o.matrixWorld);
+        if (![vertex.x, vertex.y, vertex.z].every(Number.isFinite)) throw new Error('Kunning non-finite geometry');
+      }
+      bounds.setFromPoints([triangle.a, triangle.b, triangle.c]);
+      if (!Object.values(regions).some(r => r.clone().expandByScalar(0.002).containsBox(bounds))) throw new Error(`Kunning mesh outside furniture regions: ${o.name}`);
+      for (const p of protectedBoxes) if (p.box.intersectsTriangle(triangle)) throw new Error(`Kunning mesh blocks protected volume: ${p.id}`);
+    }
+  });
+  if (proxies.size !== Object.keys(cfg.furnitureProxies).length) throw new Error('Kunning furniture proxy inventory incomplete');
+  if (tris > cfg.budget.tris) throw new Error('Kunning renderable triangle budget exceeded');
+  const textures = new Set();
+  root.traverse(o => { if (o.isMesh) for (const m of Array.isArray(o.material) ? o.material : [o.material]) {
+    if (m) for (const t of Object.values(m)) if (t?.isTexture) textures.add(t);
+  } });
+  let textureBytes = 0;
+  for (const t of textures) {
+    if (!t.image?.width || !t.image?.height) throw new Error('Kunning unmeasurable texture');
+    textureBytes += t.image.width * t.image.height * 4 * 4 / 3;
+  }
+  if (textureBytes > cfg.budget.textureMB * 1024 * 1024) throw new Error('Kunning texture budget exceeded');
 }

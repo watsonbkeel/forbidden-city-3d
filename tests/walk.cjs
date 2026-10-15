@@ -9,7 +9,7 @@ const { chromium } = require('playwright');
 // P0c-2 起为真实米制（原点太和殿中心，+Z 北，x 负=东）：
 //   午门 −419.6、金水河 −310.8（东侧桥 x=−15）、太和门 −214.2；太和殿 z0 d37.2（未变）；
 //   中和殿 65；保和殿 123.2 d25（前檐 110.7 / 后檐 135.7）；乾清门 215.3；乾清宫 316.8 d25（304.3 / 329.3）；
-//   交泰殿 354.1 d19（344.6 / 363.6）；坤宁宫 386.1 d20（376.1 / 396.1）；御花园园墙 422.7~518.3；神武门 531
+//   交泰殿 354.1 d19（344.6 / 363.6）；坤宁宫 386.1 d20（376.1 / 396.1）；御花园园墙 422.7~518.3；神武门 542（旧锚点531待核）
 // 注：本脚本不推进分区流式加载，侧院/御花园分区内的墙体可能未加载；回归以 stepwalk.cjs 为准。
 const ROUTES = {
   '午门→东侧金水桥→太和门': [[0, -470], [0, -330.8], [-15, -330.8], [-15, -290.8], [0, -290.8], [0, -194.2]],
@@ -29,6 +29,18 @@ const ROUTES = {
 };
 
 (async () => {
+  const { KUNNING_PROFILE, kunningNavigationPoint } = await import('../src/scene/palace/special/KunningProfile.js');
+  const { PALACE_LAYOUT } = await import('../src/scene/Layout.js');
+  const kunning = PALACE_LAYOUT.find(item => item.name === '坤宁宫');
+  const pathFor = key => KUNNING_PROFILE.navigation.routes[key].map(id => {
+    const [x, , z] = kunningNavigationPoint(id, kunning); return [x, z];
+  });
+  // Preserve the legacy approach to the shared terrace. Use only the evidenced
+  // south offset door and an end passage; the northern centre is now enclosed.
+  ROUTES['交泰殿进出→绕行→坤宁宫→下台'] = [
+    ...ROUTES['交泰殿进出→绕行→坤宁宫→下台'].slice(0, 5),
+    ...pathFor('entry'), ...pathFor('eastBypass').slice(1), [0, 430],
+  ];
   const browser = await chromium.launch({ executablePath: browserExecutablePath(), headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   const page = await browser.newPage({ viewport: { width: 640, height: 400 } });
   await page.goto(process.env.PALACE_URL || 'http://127.0.0.1:5173', { waitUntil: 'load' });

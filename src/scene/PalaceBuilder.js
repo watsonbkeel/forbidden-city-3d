@@ -9,6 +9,7 @@ import { mergeByMaterial } from '../utils/MergeUtils.js';
 import { applyBoxUV, applyBandUV, applyPlanarUV } from '../utils/GeometryUV.js';
 import { buildSquareHall, SQUARE_HALLS } from './palace/special/SquareHalls.js';
 import { buildQianqingGate } from './palace/special/QianqingGate.js';
+import { buildKunningPalace } from './palace/special/KunningPalace.js';
 import { threeHallTerraceProfile, closedTerraceStairGeometry } from './palace/ThreeHallTerrace.js';
 
 /**
@@ -32,6 +33,8 @@ const REAL = {
   乾清门: { bays: 5, roof: 'xieshan', layers: 1, open: 3, baseH: 1.5, margin: 0, apron: 1 },
   乾清宫: { bays: 9, roof: 'wudian', layers: 2, throne: true, inner: '正大光明', open: 3, plinth: 2.0 },
   交泰殿: { bays: 3, roof: 'pavilion', layers: 1, throne: true, inner: '无为', open: 3, plinth: 1.5 },
+  // Nine total bays include two end passages; enclosure is owned by its special builder.
+  // open remains only as the inherited stair-width input, never a facade opening.
   坤宁宫: { bays: 9, roof: 'wudian', layers: 2, open: 3, plinth: 2.0 },
 };
 const PLINTH_PAD = 1.5; // 台明比殿身四周外扩
@@ -574,6 +577,7 @@ export class PalaceBuilder {
    * 两山红墙、额枋彩画、井口天花、金砖地面、宝座台/屏风/藻井/殿内匾额、殿外竖匾、屋顶。
    */
   buildHall(g, data, y) {
+    if (data.name === '坤宁宫') return buildKunningPalace(this, g, data, y);
     if (SQUARE_HALLS[data.name]) return buildSquareHall(this, g, data, y);
     const spec = REAL[data.name] ?? {};
     const { width: w, depth: d, height } = dimsOf(data);

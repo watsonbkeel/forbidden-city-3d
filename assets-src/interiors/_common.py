@@ -131,11 +131,13 @@ def merge_by_material(skip_prefix=('COL_', 'WALK_')):
             if old.users == 0: bpy.data.meshes.remove(old)
     print(f'[merge] objects={len([o for o in bpy.context.scene.objects if o.type == "MESH"])}')
 
-def export_glb(path, draco=False):
+def export_glb(path, draco=False, export_extras=False):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     kw = dict(filepath=path, export_format='GLB', export_apply=True, export_yup=True,
               export_lights=False, export_cameras=False, export_animations=False,
               export_texcoords=True, export_normals=True, export_materials='EXPORT')
+    if export_extras:
+        kw['export_extras'] = True  # Explicit opt-in; all five other exports keep previous defaults.
     if draco:
         kw.update(export_draco_mesh_compression_enable=True, export_draco_mesh_compression_level=6)
     try:

@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { PALACE_LAYOUT } from '../scene/Layout.js';
 import { ZONES } from '../../data/zones/index.js';
 import { TELEPORT, PLAYER } from '../config/constants.js';
+import { KUNNING_PROFILE, bindKunningProfile } from '../scene/palace/special/KunningProfile.js';
 
 const rotations = { south: 0, north: Math.PI, east: Math.PI / 2, west: -Math.PI / 2 };
 
@@ -40,12 +41,32 @@ export class Teleport {
     const depth = target.d ?? (mapItem ? (sideways ? mapItem.w : mapItem.d) : 0);
     const width = target.w ?? (mapItem ? (sideways ? mapItem.d : mapItem.w) : 0) ?? 0;
     const ox = -Math.sin(rot), oz = -Math.cos(rot);
+    if (name === '坤宁宫') {
+      const data = PALACE_LAYOUT.find(item => item.name === name);
+      const frame = bindKunningProfile(data, KUNNING_PROFILE.frameExpectation.floorY);
+      const [frontX, , frontZ] = frame.point(KUNNING_PROFILE.portals[0].center);
+      const approachPoints = KUNNING_PROFILE.navigation.routes.entry.map(id => {
+        const [x, y, z] = frame.point(KUNNING_PROFILE.navigation.points[id]);
+        return { id, x, y, z };
+      });
+      return { name, cx: target.x, cz: target.z, ox, oz, tx: -oz, tz: ox,
+        half: depth / 2, width, frontX, frontZ,
+        entryProfile: KUNNING_PROFILE.profileId, approachPoints };
+    }
     return { name, cx: target.x, cz: target.z, ox, oz, tx: -oz, tz: ox, half: depth / 2, width,
       frontX: target.x + ox * depth / 2, frontZ: target.z + oz * depth / 2 };
   }
 
   /** 门外 dist 米、沿门平面横移 lateral 米的候选点（朝向始终指向建筑中心）。 */
   candidate(g, dist, lateral) {
+    if (g.entryProfile) {
+      // Kunning uses its explicit central-stair approach and turns on the porch.
+      // A lateral search aimed at the old centre would invent another entrance.
+      const p = g.approachPoints[0];
+      return { name: g.name, x: p.x, z: p.z, lookAtX: g.frontX, lookAtZ: g.frontZ,
+        distance: Math.hypot(g.frontX - p.x, g.frontZ - p.z), lateral: 0,
+        entryProfile: g.entryProfile };
+    }
     return { name: g.name, x: g.cx + g.ox * (g.half + dist) + g.tx * lateral, z: g.cz + g.oz * (g.half + dist) + g.tz * lateral,
       lookAtX: g.cx, lookAtZ: g.cz, distance: dist, lateral };
   }
@@ -60,6 +81,7 @@ export class Teleport {
    * 或走到离正面 ≤ NEAR_FRONT m（同侧、视线不被墙隔断）。
    */
   isSafe(p, g) {
+    if (g.entryProfile) return this.isProfileApproachSafe(p, g);
     const cm = this.collisionManager;
     const ground = cm.getGroundHeight(p.x, p.z, Infinity);
     const eye = new THREE.Vector3(p.x, ground + PLAYER.HEIGHT, p.z);
@@ -76,6 +98,41 @@ export class Teleport {
     p.y = ground;
     p.walk = +progressed.toFixed(2);
     if (!(progressed >= TELEPORT.MIN_WALK || remain <= TELEPORT.NEAR_FRONT)) return false;
+    return this.lineOfSight(p, g);
+  }
+
+  /** Probe the named Kunning stair/porch/door path with real collision/support.
+   * This is a landing safety check, not a substitute for live controller QA.
+   * Reject a missing ramp/large rescue lift, rather than finding another façade.
+   */
+  isProfileApproachSafe(p, g) {
+    const cm = this.collisionManager, points = g.approachPoints;
+    let feet = cm.getGroundHeight(p.x, p.z, Infinity);
+    if (Math.abs(feet - points[0].y) > 0.02) return false;
+    let eye = new THREE.Vector3(p.x, feet + PLAYER.HEIGHT, p.z);
+    if (cm.checkCollision(eye, 0.5)) return false;
+    let walked = 0;
+    for (const target of points.slice(1)) {
+      const distance = Math.hypot(target.x - eye.x, target.z - eye.z);
+      const steps = Math.max(1, Math.ceil(distance / 0.2));
+      const start = eye.clone();
+      for (let i = 1; i <= steps; i++) {
+        const wanted = new THREE.Vector3(start.x + (target.x - start.x) * i / steps,
+          feet + PLAYER.HEIGHT, start.z + (target.z - start.z) * i / steps);
+        const next = cm.getValidPosition(eye, wanted, 0.5, feet, PLAYER.STEP_UP);
+        if (Math.hypot(next.x - wanted.x, next.z - wanted.z) > 0.01) return false;
+        const ground = cm.getGroundHeight(next.x, next.z, feet, PLAYER.STEP_UP);
+        if (!Number.isFinite(ground) || Math.abs(ground - feet) > PLAYER.STEP_UP + 1e-6) return false;
+        next.y = ground + PLAYER.HEIGHT;
+        if (cm.checkCollision(next, 0.5)) return false;
+        walked += Math.hypot(next.x - eye.x, next.z - eye.z);
+        eye = next; feet = ground;
+      }
+      if (Math.abs(feet - target.y) > 0.12) return false;
+    }
+    p.y = points[0].y;
+    p.walk = +walked.toFixed(2);
+    p.approachVerified = true;
     return this.lineOfSight(p, g);
   }
 
@@ -102,6 +159,10 @@ export class Teleport {
    */
   resolveLanding(name) {
     const g = this.geometryFor(name);
+    if (g.entryProfile) {
+      const p = this.candidate(g, TELEPORT.DOOR_DISTANCE, 0);
+      return this.isSafe(p, g) ? { ...p, fallback: false } : null;
+    }
     const D = TELEPORT.DOOR_DISTANCE;
     const dists = [];
     for (let d = D; d >= D - TELEPORT.MAX_ADVANCE - 1e-6; d -= TELEPORT.ADVANCE_STEP) dists.push(+d.toFixed(2));
