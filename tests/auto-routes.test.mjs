@@ -4,6 +4,7 @@ import { execFileSync } from 'node:child_process';
 import { buildWorld, gateGeom, hallGeom, parseRot, pointBlocked, walkStraight } from './lib/world.mjs';
 import { buildAutoRoutes, zoneRoutes } from './lib/auto-routes.mjs';
 import { FirstPersonControls } from '../src/controls/FirstPerson.js';
+import { replayTerrace } from './lib/terrace-walk.mjs';
 import { sideGateGeometry } from '../src/scene/palace/special/SideGateProfiles.js';
 import { pavilionGeometry } from '../src/scene/palace/special/PavilionProfiles.js';
 
@@ -205,21 +206,22 @@ test('the same bounded detour works after translating, renaming, and rotating th
 
 test('all baseline and explicit profile routes retain real-collision round-trip passage', () => {
   const routes = buildAutoRoutes(W, W.zones.map(z => z.json));
-  assert.equal(routes.filter(route => !route.gateProfile && !route.pavilionFlight).length, 40, '39 baseline hall/cross routes plus the newly enterable Hongyi hall');
+  assert.equal(routes.filter(route => !route.gateProfile && !route.pavilionFlight && !route.terraceSide).length, 40, '39 baseline hall/cross routes plus the newly enterable Hongyi hall');
   const portalCount = W.gates.filter(g => g.item.gateProfile).reduce((n, g) => n + sideGateGeometry(g.item).portals.length, 0);
   assert.equal(routes.filter(route => route.pavilionFlight).length, 4, 'one round trip per actual pavilion front flight');
-  assert.equal(routes.length, 40 + portalCount + 4, '51 original identities, one Hongyi hall route, four flight routes');
+  assert.equal(routes.length, 40 + portalCount + 4 + 2, '51 original identities, one Hongyi hall route, four pavilion flight routes and two terrace routes');
   for (const route of routes) assert.doesNotThrow(() => assertWalkable(W, route.pts), route.name);
 });
 
 for (const fps of [60, 10]) for (const sprint of [false, true]) {
-  test(`all 56 automatic routes retain real-controller passage: ${fps} fps, sprint=${sprint}`, t => {
+  test(`all 58 automatic routes retain real-controller passage: ${fps} fps, sprint=${sprint}`, t => {
     const routes = buildAutoRoutes(W, W.zones.map(z => z.json));
-    assert.equal(routes.length, 56);
+    assert.equal(routes.length, 58);
     assert.equal(routes.filter(r => r.pavilionFlight).length, 4, 'both front flights of both pavilions, ascending and descending');
     const failures = [];
     for (const route of routes) {
-      const result = replay(t, W, route.pts, fps, sprint);
+      const result = route.waypointDriver === 'physical-crossing-v1'
+        ? replayTerrace(t, W, route.pts, { fps, sprint }) : replay(t, W, route.pts, fps, sprint);
       if (!result.arrived || result.fellUnder) failures.push({ name: route.name, ...result });
     }
     assert.deepEqual(failures, []);

@@ -23,14 +23,15 @@ const near = (actual, expected, label) => assert.ok(Math.abs(actual - expected) 
 
 test('V4 preserves all 51 V3 automatic identities and all 50 non-pavilion point sequences', () => {
   // Captured from published V3 c27ba9e47cfe2fc4dc3e82f4d8faf145e69745b3.
-  const baseline = routes.filter(r => !r.pavilionFlight && r.hall !== '弘义阁');
+  const baseline = routes.filter(r => !r.pavilionFlight && !r.terraceSide && r.hall !== '弘义阁');
   assert.equal(baseline.length, 51);
   assert.equal(sha(baseline.map(r => r.name)), 'a98606c24eb75a1bc1aca254167f219c5df23c13c1f5c703b090568d730f7f20');
   assert.equal(sha(baseline.filter(r => r.hall !== '体仁阁').map(({ name, pts }) => ({ name, pts }))),
     '432fc33d73f7d96de9ea56c34b8b0ee640f2ca5f4ac9eaa49b2ccbd31976aa44');
   assert.equal(routes.filter(r => r.hall === '弘义阁' && !r.pavilionFlight).length, 1, 'Hongyi is one newly enterable hall route');
   assert.equal(routes.filter(r => r.pavilionFlight).length, 4, 'four added front-flight round trips');
-  assert.equal(routes.length, 56);
+  assert.equal(routes.filter(r => !r.terraceSide).length, 56);
+  assert.equal(routes.length, 58);
 });
 
 test('the static collision world exposes actual pavilion room and map geometry', () => {

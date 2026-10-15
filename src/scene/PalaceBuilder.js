@@ -9,6 +9,7 @@ import { mergeByMaterial } from '../utils/MergeUtils.js';
 import { applyBoxUV, applyBandUV, applyPlanarUV } from '../utils/GeometryUV.js';
 import { buildSquareHall, SQUARE_HALLS } from './palace/special/SquareHalls.js';
 import { buildQianqingGate } from './palace/special/QianqingGate.js';
+import { threeHallTerraceProfile, closedTerraceStairGeometry } from './palace/ThreeHallTerrace.js';
 
 /**
  * 真实形制参数（按故宫现状）：
@@ -67,6 +68,7 @@ export class PalaceBuilder {
 
     this.colliders = [];
     this.walkables = [];
+    this.terraceProfiles = [];
     this.ownedMaterials = [];
     this.ownedObjects = new Set();
     this.ox = 0;
@@ -284,10 +286,14 @@ export class PalaceBuilder {
    * rects: [{ hw, z0, z1 }]（顶层，局部坐标），每下一层 hw 与首尾 z 向外扩 setback。
    * 只在首块南边、末块北边设台阶；矩形交界处宽出的部分设挡墙与栏杆。
    */
-  buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW }) {
+  buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile = null }) {
     const half = stairW / 2;
     const t = 0.5;
     const last = rects.length - 1;
+    if (sideStairProfile) {
+      this.terraceProfiles.push(sideStairProfile);
+      g.userData.structure = sideStairProfile;
+    }
     for (let i = 0; i < layers; i++) {
       const e = (layers - 1 - i) * setback;
       const y0 = i * lh;
@@ -305,8 +311,13 @@ export class PalaceBuilder {
         this.libBox(g, 'stone_slab', r.hw * 2 + 0.2, 0.1, d + (k === 0 || k === last ? 0.2 : 0), 0, y1 - 0.03, zc, 'box');
         this.walkBox(-r.hw, r.z0, r.hw, r.z1, y1);
         for (const s of [-1, 1]) {
-          this.col(s * r.hw, y0, r.z0, s * (r.hw - t), y0 + ch, r.z1);
-          this.rail(g, s * (r.hw - 0.2), r.z0 + (k === 0 ? 0.2 : 0), s * (r.hw - 0.2), r.z1 - (k === last ? 0.2 : 0), y1);
+          const flight = sideStairProfile?.flights.find(f => f.tier === i + 1 && f.rectIndex === k && f.dir === s);
+          const wallIntervals = flight ? [[r.z0, flight.openingZ[0]], [flight.openingZ[1], r.z1]] : [[r.z0, r.z1]];
+          const railMin = r.z0 + (k === 0 ? 0.2 : 0), railMax = r.z1 - (k === last ? 0.2 : 0);
+          const railIntervals = flight ? [[railMin, flight.openingZ[0]], [flight.openingZ[1], railMax]] : [[railMin, railMax]];
+          for (const [z0, z1] of wallIntervals) this.col(s * r.hw, y0, z0, s * (r.hw - t), y0 + ch, z1);
+          for (const [z0, z1] of railIntervals) this.rail(g, s * (r.hw - 0.2), z0, s * (r.hw - 0.2), z1, y1);
+          if (flight) this.buildTerraceSideStair(g, flight);
         }
         if (k < last) {
           const n = R[k + 1];
@@ -384,7 +395,10 @@ export class PalaceBuilder {
 
     const bayW = first.width / (spec0.bays ?? 9);
     const stairW = Math.min(12, bayW * 2.2);
-    const top = this.buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW });
+    const waistIndex = halls.findIndex(h => h.name === '中和殿');
+    const sideStairProfile = name === '三台' && waistIndex >= 0
+      ? threeHallTerraceProfile(rects, { layers, lh, run, setback, waistIndex, hall: halls[waistIndex] }) : null;
+    const top = this.buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile });
 
     if (halls.length > 1) {
       // 真实格局：大台基上每座殿还有各自的台明（须弥座），殿与殿之间要先下台阶、再上台阶
@@ -448,6 +462,36 @@ export class PalaceBuilder {
       this.col(cursor, y, ze, w / 2, y1, ze - s * t);
     }
     return y1;
+  }
+
+  /** Three-hall waist only: a single closed staircase, inherited solid cheeks,
+   * and the matching physical ramp. Existing plinth stairs stay untouched. */
+  buildTerraceSideStair(parent, flight) {
+    const { xEdge, xToe, centerZ: z0, dir, y0, y1, run, width, cheekWidth: cw } = flight;
+    const g = new THREE.Group();
+    g.name = flight.id;
+    parent.add(g);
+    const marble = this.library.material('marble');
+    const steps = new THREE.Mesh(closedTerraceStairGeometry(flight, this.library.tileSize('marble')), marble);
+    steps.name = `${flight.id}:closed-treads`;
+    steps.castShadow = true;
+    steps.receiveShadow = true;
+    g.add(steps);
+    const rise = y1 - y0, length = Math.hypot(run, rise);
+    for (const sz of [-1, 1]) {
+      const cheek = this.box(g, marble, length, 0.4, cw, (xEdge + xToe) / 2,
+        (y0 + y1) / 2 + 0.1, z0 + sz * (width / 2 - cw / 2), { box: 2 });
+      cheek.name = `${flight.id}:cheek:${sz}`;
+      cheek.rotation.z = -dir * Math.atan2(rise, run);
+      for (let j = 0; j < 4; j++) {
+        this.col(xEdge + dir * j * run / 4, y0, z0 + sz * (width / 2 - cw),
+          xEdge + dir * (j + 1) * run / 4, y1 - j * rise / 4 + 0.9, z0 + sz * width / 2);
+      }
+    }
+    const r = flight.ramp;
+    this.walkables.push({ ...r, minX: r.minX + this.ox, maxX: r.maxX + this.ox,
+      minZ: r.minZ + this.oz, maxZ: r.maxZ + this.oz, a0: r.a0 + this.ox, a1: r.a1 + this.ox,
+      structureId: flight.id });
   }
 
   /** East/west flight, with the same physical ramp and cheek-wall contract. */
@@ -1073,6 +1117,7 @@ export class PalaceBuilder {
     this.ownedObjects.clear();
     this.colliders.length = 0;
     this.walkables.length = 0;
+    this.terraceProfiles.length = 0;
     this.ownedMaterials.length = 0;
     this._own.clear();
     this.materials = {};

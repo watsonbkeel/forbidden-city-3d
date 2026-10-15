@@ -317,8 +317,20 @@ export function profilePavilionRoutes(zones) {
     }));
 }
 
+/** Common-terrace QA routes use actual constructed flights, never a second set of dimensions. */
+export function profileTerraceRoutes(W, zones) {
+  if (!zones.some(z => z.id === 'axis-courts')) return [];
+  return (W.terraceProfiles ?? []).flatMap(profile => Object.values(profile.approaches).map(approach => {
+    const go = approach.points.map(p => [p.x, p.z]);
+    return { name: `[三台] ${approach.side === 'east' ? '东' : '西'}腰阶地面→三层台基→中和殿游廊→原路返回`,
+      zone: 'static', hall: '中和殿', terraceProfile: profile.id, terraceSide: approach.side, waypointDriver: 'physical-crossing-v1',
+      plan: ['由地面起步，保留实际三段坡脚、坡顶及层间平台；结构预览不表示当前游客通行许可'],
+      pts: [...go, ...go.slice(0, -1).reverse()] };
+  }));
+}
+
 export function buildAutoRoutes(W, zones, { knownIssues = {} } = {}) {
-  const routes = [...zones.flatMap(z => zoneRoutes(W, z)), ...crossRoutes(W, zones), ...profileGateRoutes(zones), ...profilePavilionRoutes(zones)];
+  const routes = [...zones.flatMap(z => zoneRoutes(W, z)), ...crossRoutes(W, zones), ...profileGateRoutes(zones), ...profilePavilionRoutes(zones), ...profileTerraceRoutes(W, zones)];
   for (const r of routes) if (knownIssues[r.name]) r.knownIssue = knownIssues[r.name];
   return routes;
 }

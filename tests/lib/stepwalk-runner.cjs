@@ -47,9 +47,22 @@ async function openPage() {
   return { browser, page };
 }
 
-/** routes: [[name, pts]]；返回每条 × fps × sprint 的结果 */
+// Explicit metadata only. Legacy callers remain two-element tuples and retain
+// their original loop below; unknown opt-ins must never silently fall back.
+function routeForBrowser(route) {
+  return [route.name, route.pts, route.waypointDriver === undefined ? {} : { waypointDriver: route.waypointDriver }];
+}
+
+/** routes: [[name, pts, optionalDriverMetadata]]；返回每条 × fps × sprint 的结果 */
 async function runRoutes(page, routes, fpsList, sprints) {
-  return page.evaluate(({ ROUTES, fpsList, sprints }) => {
+  for (const [, , options] of routes) {
+    if (options?.waypointDriver !== undefined && options.waypointDriver !== 'physical-crossing-v1') {
+      throw new Error(`Unsupported waypointDriver: ${options.waypointDriver}`);
+    }
+  }
+  return page.evaluate(async ({ ROUTES, fpsList, sprints }) => {
+    const physicalModules = ROUTES.some(([, , options]) => options?.waypointDriver === 'physical-crossing-v1')
+      ? await Promise.all([import('/tests/lib/physical-waypoints.mjs'), import('/tests/lib/terrace-walk.mjs')]) : null;
     const a = window.__forbiddenCityApp;
     cancelAnimationFrame(a.animationFrame);
     a.disposed = true; // 停掉主循环，由本脚本逐帧驱动
@@ -85,7 +98,55 @@ async function runRoutes(page, routes, fpsList, sprints) {
       zm.__p1tWrapped = true;
     }
     const out = [];
-    for (const fps of fpsList) for (const sprint of sprints) for (const [name, pts] of ROUTES) {
+    function runPhysicalRoute(name, pts, fps, sprint) {
+      const [{ createPhysicalWaypointDriver }, { traceTerraceGround, terraceTraceSummary }] = physicalModules;
+      const terrace = a.palaceBuilder.terraceProfiles.find(p => p.id === 'three-hall-waist-stairs');
+      if (!terrace) throw new Error('Physical waist-route profile missing from runtime');
+      const side = pts[0][0] < 0 ? 'east' : 'west';
+      const [x, z] = pts[0];
+      zm?.ensureLoadedAt(x, z); tickZones(); events.length = 0;
+      c.setPosition(x, 1.7, z); // Real outside-ground start, never highest-surface spawn.
+      if (Math.abs(c.feetY) > 1e-7) throw new Error('Physical waist route must start with feet=0');
+      c.velocity.set(0, 0, 0); c.moveForward = true;
+      const physical = () => [a.camera.position.x - c.bobOffset.x, a.camera.position.z - c.bobOffset.z];
+      const driver = createPhysicalWaypointDriver(pts), trace = traceTerraceGround(a.collisionManager, terrace);
+      const dt = 1 / fps, profile = [], zonesSeen = [];
+      let maxFeet = 0, maxSpeed = 0, bad = null, stuckAt = null, unloadedWalk = 0;
+      let legFrames = 0, stuck = 0, last = physical(), frame = 0;
+      try {
+        while (!driver.complete) {
+          const before = physical(), command = driver.command(before, sprint), [tx, tz] = command.target;
+          c.canSprint = command.canSprint;
+          a.camera.position.sub(c.bobOffset);
+          a.camera.lookAt(tx, a.camera.position.y, tz);
+          a.camera.position.add(c.bobOffset);
+          a.camera.updateMatrixWorld(true);
+          tickZones(); c.prevTime = performance.now() - dt * 1000; c.update();
+          const after = physical(), p = a.camera.position;
+          maxFeet = Math.max(maxFeet, c.feetY); maxSpeed = Math.max(maxSpeed, c.motion.speed);
+          if (frame++ % Math.max(1, Math.round(fps / 2)) === 0) profile.push(+c.feetY.toFixed(1));
+          if (!bad && under(p.x, p.z, c.feetY) && c.verticalVelocity === 0) bad = [+p.x.toFixed(1), +p.z.toFixed(1), +c.feetY.toFixed(2)];
+          const zid = zm?.findZone(p.x, p.z);
+          if (zid && zonesSeen.at(-1) !== zid) zonesSeen.push(zid);
+          if (zid && !colliderTags().has(zid)) unloadedWalk += Math.hypot(after[0] - before[0], after[1] - before[1]);
+          if (driver.observe(before, after)) { legFrames = 0; stuck = 0; last = after; continue; }
+          legFrames++;
+          if (legFrames % fps === 0) { stuck = Math.hypot(after[0] - last[0], after[1] - last[1]) < 0.3 ? stuck + 1 : 0; last = after; }
+          const k = driver.index, limit = Math.ceil(Math.hypot(pts[k][0] - pts[k - 1][0], pts[k][1] - pts[k - 1][1]) / 2 * fps) + fps * 4;
+          if (stuck >= 2 || legFrames >= limit) { stuckAt = pts[k]; break; }
+        }
+        c.moveForward = false;
+        if (driver.complete) for (let i = 0; i < fps * 2; i++) { tickZones(); c.prevTime = performance.now() - dt * 1000; c.update(); }
+        const support = terraceTraceSummary(trace.samples, terrace, side), p = a.camera.position;
+        const supported = support.ascending.length === 3 && support.descending.length === 3 && support.unsafe.length === 0;
+        return { fps, sprint, name, arrived: driver.complete && supported && Math.abs(c.feetY) < 0.02, stuckAt,
+          end: [+p.x.toFixed(1), +p.z.toFixed(1), +c.feetY.toFixed(2)], maxFeet: +maxFeet.toFixed(2), maxSpeed, fellUnder: bad, profile,
+          zonesSeen, zoneEvents: [...events], unloadedWalk: +unloadedWalk.toFixed(2), waypointDriver: 'physical-crossing-v1',
+          speedProtocol: sprint ? 'sprint with corner braking within2m' : 'slow', driver: driver.diagnostics, support };
+      } finally { c.moveForward = false; trace.restore(); }
+    }
+    for (const fps of fpsList) for (const sprint of sprints) for (const [name, pts, options] of ROUTES) {
+      if (options?.waypointDriver === 'physical-crossing-v1') { out.push(runPhysicalRoute(name, pts, fps, sprint)); continue; }
       const [x0, z0] = pts[0];
       // 传送到起点后先把该处分区建好（真实游玩中靠 40m 预载，传送是瞬移所以要补齐）
       a.camera.position.set(x0, a.camera.position.y, z0);
@@ -139,4 +200,4 @@ async function runRoutes(page, routes, fpsList, sprints) {
   }, { ROUTES: routes, fpsList, sprints });
 }
 
-module.exports = { openPage, runRoutes };
+module.exports = { openPage, runRoutes, routeForBrowser };

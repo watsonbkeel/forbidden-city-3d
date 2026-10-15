@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { buildStuddedDoor } from '../../HallKit.js';
 import { sideGateGeometry } from './SideGateProfiles.js';
+import { prunePavilionCoveredFaces } from '../../../render/PavilionRenderGeometry.js';
 
 const tag=(o,role,data={})=>{o.name=role;Object.assign(o.userData,{role,...data});return o;};
 
@@ -9,7 +10,12 @@ export function buildSideGate(kit,opts) {
   const g=sideGateGeometry(opts),f=kit.frame(g.x,g.z,g.rot);
   f.name=opts.name??g.name;
   const ph=g.platformY, d=g.depth,w=g.width,h=g.columnH;
-  const box=(role,mat,W,H,D,x,y,z)=>tag(kit.box(f,mat,W,H,D,x,y,z),role);
+  // Only actual closed kit.box primitives can prove a face is buried. Keep
+  // this registry local to the gate; roof/wedge/sphere bounds are not solids.
+  const renderBoxes=[];
+  const box=(role,mat,W,H,D,x,y,z)=>{
+    const o=tag(kit.box(f,mat,W,H,D,x,y,z),role);renderBoxes.push(o);return o;
+  };
   const solid=(role,mat,W,H,D,x,y,z)=>{
     const o=box(role,mat,W,H,D,x,y,z);
     kit.col(f,x-W/2,y-H/2,z-D/2,x+W/2,y+H/2,z+D/2);return o;
@@ -40,14 +46,14 @@ export function buildSideGate(kit,opts) {
       box('gate-ramp-score','wall_brick',r.rightTop-r.leftTop,.012,.025,(r.leftTop+r.rightTop)/2,y+.003,z);
     }
     if(g.railings) for(const edge of ['left','right']) {
-      railing(kit,f,[r[edge+'Top'],ph,r.zTop],[r[edge+'Toe'],0,r.zToe]);
+      railing(kit,f,[r[edge+'Top'],ph,r.zTop],[r[edge+'Toe'],0,r.zToe],renderBoxes);
     }
   }
   if(g.railings) {
-    for(const side of [-1,1]) railing(kit,f,[side*g.platformWidth/2,ph,-g.platformDepth/2],[side*g.platformWidth/2,ph,g.platformDepth/2]);
+    for(const side of [-1,1]) railing(kit,f,[side*g.platformWidth/2,ph,-g.platformDepth/2],[side*g.platformWidth/2,ph,g.platformDepth/2],renderBoxes);
     for(const r of g.ramps) {
-      railing(kit,f,[-g.platformWidth/2,ph,r.zTop],[r.leftTop,ph,r.zTop]);
-      railing(kit,f,[r.rightTop,ph,r.zTop],[g.platformWidth/2,ph,r.zTop]);
+      railing(kit,f,[-g.platformWidth/2,ph,r.zTop],[r.leftTop,ph,r.zTop],renderBoxes);
+      railing(kit,f,[r.rightTop,ph,r.zTop],[g.platformWidth/2,ph,r.zTop],renderBoxes);
     }
   }
 
@@ -125,6 +131,7 @@ export function buildSideGate(kit,opts) {
     portals:g.portals.map(p=>({...p,front:point(p.centerX,ph,-d/2),rear:point(p.centerX,ph,d/2),door:point(p.centerX,ph,g.doorZ)})),
     ramps:g.ramps.map(r=>({...r,topLeft:point(r.leftTop,ph,r.zTop),topRight:point(r.rightTop,ph,r.zTop),toeLeft:point(r.leftToe,0,r.zToe),toeRight:point(r.rightToe,0,r.zToe)})),
   };
+  prunePavilionCoveredFaces(f,renderBoxes);
   return w;
 }
 
@@ -157,13 +164,13 @@ function registerRamp(kit,f,r) {
     crossMin0:Math.min(a[cross],b[cross]),crossMax0:Math.max(a[cross],b[cross]),crossMin1:Math.min(c[cross],d[cross]),crossMax1:Math.max(c[cross],d[cross])});
 }
 
-function railing(kit,f,from,to) {
+function railing(kit,f,from,to,renderBoxes) {
   const a=new THREE.Vector3(...from),b=new THREE.Vector3(...to),delta=b.clone().sub(a),len=delta.length();
   if(len<.01)return;
   const n=Math.max(1,Math.ceil(len/2));
   for(let i=0;i<=n;i++) {
     const p=a.clone().lerp(b,i/n);
-    tag(kit.box(f,'marble',.24,.95,.24,p.x,p.y+.475,p.z),'gate-railing-post');
+    renderBoxes.push(tag(kit.box(f,'marble',.24,.95,.24,p.x,p.y+.475,p.z),'gate-railing-post'));
     tag(kit.mesh(f,new THREE.SphereGeometry(.16,6,4),kit.lib.material('marble'),p.x,p.y+1,p.z),'gate-railing-cap');
   }
   for(const y of [.25,.7]) {
