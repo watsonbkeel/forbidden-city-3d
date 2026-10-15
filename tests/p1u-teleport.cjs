@@ -25,6 +25,22 @@ const { chromium } = require('playwright');
         const p = a.controls.getPosition();
         const feet = a.controls.getFeetY();
         const ground = a.collisionManager.getGroundHeight(p.x, p.z, Infinity);
+        // BEGIN QINAN EXTERIOR VIEW
+        if (g.navigation?.mode === 'exterior-view') {
+          const n = g.navigation, cm = a.collisionManager;
+          const facing = a.camera.getWorldDirection(new Vector3()).dot(new Vector3(landing.lookAtX - p.x, landing.lookAtY - p.y, landing.lookAtZ - p.z).normalize());
+          const loaded = a.zoneManager.getLoadedIds().includes(g.requiredZone);
+          const residentHash = a.zoneManager.loaded.get(g.requiredZone)?.data.mapItems.find(m => m.qinanProfile === 'qinan')?.profileHash;
+          const residentSupports = g.requiredSupports.every(s => cm.walkables.some(w => w.tag === g.requiredZone && w.type === 'box' && w.rescue === false &&
+            ['x', 'y', 'z'].every((axis, i) => Math.abs(w.box.min[axis] - s.min[i]) < 1e-7 && Math.abs(w.box.max[axis] - s.max[i]) < 1e-7)));
+          const overlap = cm.checkCollision(p, 0.5);
+          const exactPoint = p.x === n.position.x && p.z === n.position.z && feet === n.position.feetY && feet === 0;
+          return { name, mode: n.mode, viewpointId: point.viewpointId, x: p.x, z: p.z, feet, ground, facing, loaded, residentHash, residentSupports, overlap,
+            profileHash: point.profileHash, validatedAgainstProfileHash: point.validatedAgainstProfileHash, fallback: point.fallback, entryRouteAccepted: false,
+            pass: loaded && residentSupports && residentHash === n.profileHash && exactPoint && ground === 0 && !overlap && facing > 0.999 &&
+              point.viewpointVerified === true && point.validatedAgainstProfileHash === n.profileHash && point.fallback === false };
+        }
+        // END QINAN EXTERIOR VIEW
         const facing = a.camera.getWorldDirection(new Vector3()).dot(new Vector3(landing.lookAtX - p.x, 0, landing.lookAtZ - p.z).normalize());
         const zone = a.zoneManager.findZone(landing.lookAtX, landing.lookAtZ) ?? a.zoneManager.findZone(p.x, p.z);
         const loaded = !zone || a.zoneManager.getLoadedIds().includes(zone);

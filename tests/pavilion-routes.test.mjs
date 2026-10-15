@@ -1,3 +1,4 @@
+import { withLegacyQinanForVersionComparison } from './lib/qinan-route-version-compat.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
@@ -22,9 +23,9 @@ const routes = buildAutoRoutes(W, zones).filter(r => r.gateProfile !== 'zhaode')
 const sha = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const near = (actual, expected, label) => assert.ok(Math.abs(actual - expected) < 1e-6, `${label}: ${actual} != ${expected}`);
 
-test('V4 preserves all 51 V3 automatic identities and all 50 non-pavilion point sequences', () => {
+test('V4 historical identities survive except the explicit later Qin’an exterior replacement', () => {
   // Captured from published V3 c27ba9e47cfe2fc4dc3e82f4d8faf145e69745b3.
-  const baseline = routes.filter(r => !r.pavilionFlight && !r.terraceSide && r.hall !== '弘义阁');
+  const baseline = withLegacyQinanForVersionComparison(routes).filter(r => !r.pavilionFlight && !r.terraceSide && r.hall !== '弘义阁');
   assert.equal(baseline.length, 51);
   assert.equal(sha(baseline.map(r => r.name)), 'a98606c24eb75a1bc1aca254167f219c5df23c13c1f5c703b090568d730f7f20');
   assert.equal(sha(baseline.filter(r => r.hall !== '体仁阁').map(({ name, pts }) => ({ name, pts }))),

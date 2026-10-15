@@ -117,7 +117,7 @@ export class Minimap {
     
     // 提示文字
     const hint = document.createElement('div');
-    hint.textContent = '滚轮/双指缩放 · 拖动平移 · 点击建筑名称传送 · W/A/S/D 继续走动，Q/E 转向 · 按 M 关闭';
+    hint.textContent = '滚轮/双指缩放 · 拖动平移 · 点击建筑名称传送 · W/A/S/D 继续走动，Q/E 转向 · 按 M 关闭 · 钦安殿仅设地面外观观览点';
     hint.style.cssText = `
       color: #999;
       font-size: 12px;
@@ -401,13 +401,13 @@ export class Minimap {
     return [Math.min(a.x, b.x), Math.min(a.y, b.y), Math.abs(b.x - a.x), Math.abs(b.y - a.y)];
   }
 
-  drawLabel(text, x, y, bold, size = 10) {
+  drawLabel(text, x, y, bold, size = 10, targetName = text, mode) {
     const ctx = this.ctx;
     ctx.font = `${bold ? 'bold ' : ''}${size}px sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     const tw = ctx.measureText(text).width;
-    this.labels.push({ name: text, x, y, width: tw + 4, height: size + 2 });
+    this.labels.push({ name: targetName, x, y, width: tw + 4, height: size + 2, ...(mode ? { mode } : {}) });
     ctx.fillStyle = 'rgba(255, 255, 255, 0.72)';
     ctx.fillRect(x - tw / 2 - 2, y - size / 2 - 1, tw + 4, size + 2);
     ctx.fillStyle = 'rgba(0, 0, 0, 0.9)';
@@ -423,22 +423,26 @@ export class Minimap {
     };
     for (const it of this.items) {
       const [fill, stroke] = style[it.kind] ?? style.hall;
-      const [x, y, w, h] = this.rectOf(it.x, it.z, it.w, it.d);
-      ctx.fillStyle = fill;
-      ctx.fillRect(x, y, Math.max(w, 1.5), Math.max(h, 1.5));
-      ctx.strokeStyle = stroke;
-      ctx.lineWidth = 0.6;
-      ctx.strokeRect(x, y, Math.max(w, 1.5), Math.max(h, 1.5));
+      for (const footprint of it.footprints ?? [it]) {
+        const [x, y, w, h] = this.rectOf(footprint.x, footprint.z, footprint.w, footprint.d);
+        ctx.fillStyle = fill;
+        ctx.fillRect(x, y, Math.max(w, 1.5), Math.max(h, 1.5));
+        ctx.strokeStyle = stroke;
+        ctx.lineWidth = 0.6;
+        ctx.strokeRect(x, y, Math.max(w, 1.5), Math.max(h, 1.5));
+      }
     }
     // 只标有名字的主要殿宇与门（字号小，避免互相遮挡）
     const placed = [];
     for (const it of this.items) {
       if (!it.name || it.kind === 'corridor') continue;
       const [x, y, w, h] = this.rectOf(it.x, it.z, it.w, it.d);
-      const cx = x + w / 2, cy = y + h / 2;
+      const anchor = it.labelAnchor ? this.worldToMap(it.labelAnchor.x, it.labelAnchor.z) : { x: x + w / 2, y: y + h / 2 };
+      const cx = anchor.x, cy = anchor.y;
       if (placed.some(p => Math.abs(p.x - cx) < 22 && Math.abs(p.y - cy) < 9)) continue;
       placed.push({ x: cx, y: cy });
-      this.drawLabel(it.name, cx, cy, it.kind === 'hall', it.kind === 'hall' ? 9 : 8);
+      const mode = it.navigation?.mode;
+      this.drawLabel(mode === 'exterior-view' ? `${it.name}（外观）` : it.name, cx, cy, it.kind === 'hall', it.kind === 'hall' ? 9 : 8, it.name, mode);
     }
   }
   

@@ -1,3 +1,4 @@
+import { withLegacyQinanForVersionComparison } from './lib/qinan-route-version-compat.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
@@ -13,19 +14,20 @@ const W = await buildWorld();
 const routes = buildAutoRoutes(W, W.zones.map(z=>z.json)).filter(r=>r.gateProfile!=='zhaode');
 const sha = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 
-test('V5 retains all 56 automatic route identities and exact old point sequences', () => {
-  const old=routes.filter(r=>!r.terraceSide).map(({name,pts})=>({name,pts}));
+test('V5 historical automatic identities survive except the explicit later Qin’an exterior replacement', () => {
+  const old=withLegacyQinanForVersionComparison(routes).filter(r=>!r.terraceSide).map(({name,pts})=>({name,pts}));
   assert.equal(old.length,56);
   assert.equal(sha(old),'0ea621a5ac5a2fb7529096c458adf20181c12f1990a58be23136e9ca66dd6bf3');
 });
 
-test('V6 preserves all 31 unrelated V5 fixed routes; only two evidenced Kunning paths may change', () => {
+test('V6 historical fixed routes preserve Kunning-only changes with later Qin’an replacement explicitly isolated', () => {
   const fixed=execFileSync(process.execPath,['tests/stepwalk.cjs','60,10','0,1','all'],{env:{...process.env,DUMP:'1'},encoding:'utf8'}).trim().split('\n').map(line=>{const p=line.indexOf('[[');return {name:line.slice(0,p).trim(),pts:JSON.parse(line.slice(p))};});
   assert.equal(fixed.length,33);
-  assert.deepEqual(fixed.map(r=>r.name),fixedV5.map(r=>r.name));
+  const versionFixed = withLegacyQinanForVersionComparison(fixed, 'fixed');
+  assert.deepEqual(versionFixed.map(r=>r.name),fixedV5.map(r=>r.name));
   const unchanged = rows => rows.filter(r=>!['乾清宫→交泰殿→坤宁宫','坤宁宫→御花园→神武门'].includes(r.name));
-  assert.equal(unchanged(fixed).length,31);
-  assert.deepEqual(unchanged(fixed),unchanged(fixedV5));
+  assert.equal(unchanged(versionFixed).length,31);
+  assert.deepEqual(unchanged(versionFixed),unchanged(fixedV5));
 });
 
 test('two additive round trips consume the actual built profile and retain every toe/head point', () => {

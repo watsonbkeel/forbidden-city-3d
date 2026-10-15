@@ -13,6 +13,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { zhaodeGateGeometry } from '../../src/scene/palace/special/ZhaodeGateProfile.js';
 import { sideGateGeometry } from '../../src/scene/palace/special/SideGateProfiles.js';
+import { qinanGeometry } from '../../src/scene/palace/special/QinanProfile.js';
 import { pavilionGeometry } from '../../src/scene/palace/special/PavilionProfiles.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
@@ -65,6 +66,11 @@ export function gateGeom(item) {
 
 /** 殿（hall）的几何：正面朝向、台明外廓、台阶长、门的局部 x 与门洞宽（与 kit.hall 一致，roomBays=0） */
 export function hallGeom(item) {
+  if (item.structure === 'qinan-hall' || item.qinanProfile !== undefined) {
+    const profile = qinanGeometry(item);
+    return { rot: profile.rot, enter: false, backDoor: false, open: false, profile,
+      navigation: profile.navigation, footprints: profile.map.footprints, toW: profile.toWorld };
+  }
   if (item.pavilionProfile) {
     const profile = pavilionGeometry(item);
     const { lower, platform, rot, roomBounds } = profile;

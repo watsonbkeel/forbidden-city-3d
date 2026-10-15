@@ -64,7 +64,8 @@ async function buildRoutes() {
   const qianqiu = A['千秋亭'];
   const fubi = A['浮碧亭'];
   const chengrui = A['澄瑞亭'];
-  const qinan = A['钦安殿'];                     // backDoor 殿：宝座 rel z 2.45~4.95，后墙 rel 7.05
+  const { QINAN_PROFILE } = await import(pathToFileURL(path.join(ROOT, 'src/scene/palace/special/QinanProfile.js')).href);
+  const qinanView = QINAN_PROFILE.navigation.position; // Explicit ground-only exterior viewpoint, not an entrance
   const zh = L.ZHONGHE_Z, bh = L.BAOHE_Z, qq = L.QIANQING_Z, jt = L.JIAOTAI_Z;
   // 池中亭石桥参数：pd=10(池深), 石桥外侧入口 zOut = pavilionZ ± (pd/2 + 2.2) = ±7.2
   const POND_BRIDGE_OFFSET = 7.2;
@@ -110,9 +111,12 @@ async function buildRoutes() {
     ['内右门→养心殿内', [[ny.x, ny.z - GATE_CLEAR], [ny.x, zyi.z], [zyi.x + 15, zyi.z], [yxd.x, yxd.z - 17.5], [yxd.x, yxd.z - 2]]],
     ['西一长街→月华门→乾清宫院', [[ny.x, ny.z - GATE_CLEAR], [ny.x, yh.z], [yh.x - 13.3, yh.z]]],
     ['乾清宫院→日精门→东一长街→基化门', [[rj.x + 12.9, rj.z], [STREET_E, rj.z], [STREET_E, JIHUA_Z], [rj.x + 12.9, JIHUA_Z]]],
-    // 钦安殿（backDoor）：殿内宝座前 → 侧绕 → 宝座后 → 穿后门北出
-    ['御花园→钦安殿内→穿殿北出', [[0, gz0 + 11], [0, qinan.z - 20], [0, qinan.z - 1], [KIT_DETOUR_X, qinan.z - 1],
-      [KIT_DETOUR_X, qinan.z + 6], [0, qinan.z + 6], [0, qinan.z + 16]]],
+    // Negative legacy expectation: 御花园→钦安殿内→穿殿北出 is physically blocked.
+    // Its exact historical points remain in v5-fixed-routes.json and v7-qinan-route-baseline.json.
+    // Ground-only exterior return via the south cross-path and x=18 side chain.
+    // The earlier (0,477) detour crossed known omitted axial stonework and is withdrawn.
+    ['御花园→钦安殿地面外观→返回', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [qinanView.x, gz0 + GARDEN_S_ROAD],
+      [qinanView.x, qinanView.z], [qinanView.x, gz0 + GARDEN_S_ROAD], [0, gz0 + GARDEN_S_ROAD], [0, gz0 + 11]]],
     // 万春/千秋亭：沿亭中线自南横路北上，走南面台阶进亭；千秋亭西南侧有古柏，先偏东 2 m 绕过
     ['御花园→万春亭', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [wanchun.x, gz0 + GARDEN_S_ROAD], [wanchun.x, wanchun.z]]],
     ['御花园→千秋亭(西)', [[0, gz0 + 11], [0, gz0 + GARDEN_S_ROAD], [qianqiu.x + 2, gz0 + GARDEN_S_ROAD], [qianqiu.x + 2, qianqiu.z - 9.5], [qianqiu.x, qianqiu.z - 9.5], [qianqiu.x, qianqiu.z]]],

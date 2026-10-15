@@ -29,7 +29,7 @@ export function createSkylineRing(library) {
     map: texture,
     transparent: true,
     alphaTest: 0.5, // 丢弃 alpha < 0.5 的片段（天空部分）
-    side: THREE.DoubleSide,
+    side: THREE.BackSide,
     depthWrite: false, // 避免透明部分遮挡后面的物体
     fog: true,
   });

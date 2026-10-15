@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { PALACE_LAYOUT } from '../scene/Layout.js';
 import { ZONES } from '../../data/zones/index.js';
 import { TELEPORT, PLAYER } from '../config/constants.js';
+import { qinanGeometry } from '../scene/palace/special/QinanProfile.js';
 import { KUNNING_PROFILE, bindKunningProfile } from '../scene/palace/special/KunningProfile.js';
 
 const rotations = { south: 0, north: Math.PI, east: Math.PI / 2, west: -Math.PI / 2 };
@@ -35,6 +36,20 @@ export class Teleport {
   geometryFor(name) {
     const target = this.targets.get(name);
     if (!target) throw new Error(`未知传送目标：${name}`);
+    if (target.structure === 'qinan-hall' || target.qinanProfile !== undefined) {
+      const profile = qinanGeometry(target), annex = profile.southAnnex;
+      const xs = profile.mainBody.columnFootGrid.xs, bay = Math.floor((xs.length - 1) / 2);
+      // Same central closed panel as QinanHall, bound to source dimensions.
+      // CollisionManager keeps zone + bounds, not the rendered mesh role.
+      const targetFacade = {
+        min: [profile.x + xs[bay] + annex.skin.columnRadius, profile.datum.floorY,
+          profile.z + annex.frontZ - annex.skin.wallThickness / 2],
+        max: [profile.x + xs[bay + 1] - annex.skin.columnRadius, annex.columnTopY,
+          profile.z + annex.frontZ + annex.skin.wallThickness / 2],
+      };
+      return { name, cx: profile.x, cz: profile.z, navigation: profile.navigation, targetFacade,
+        requiredZone: profile.provenance.environmentInterface.zone, requiredSupports: profile.supports };
+    }
     const rot = typeof target.rot === 'number' ? target.rot : rotations[target.rot ?? 'south'];
     const mapItem = this.zoneManager.getMapItems().find(item => item.name === name);
     const sideways = Math.abs(Math.sin(rot)) > 0.5;
@@ -59,6 +74,13 @@ export class Teleport {
 
   /** 门外 dist 米、沿门平面横移 lateral 米的候选点（朝向始终指向建筑中心）。 */
   candidate(g, dist, lateral) {
+    if (g.navigation?.mode === 'exterior-view') {
+      const n = g.navigation;
+      return { name: g.name, x: n.position.x, z: n.position.z, y: n.position.feetY,
+        lookAtX: n.lookAt.x, lookAtY: n.lookAt.y, lookAtZ: n.lookAt.z,
+        mode: n.mode, accessStatus: n.accessStatus, viewpointId: n.viewpointId,
+        profileHash: n.profileHash, validatedAgainstProfileHash: null, lateral: 0 };
+    }
     if (g.entryProfile) {
       // Kunning uses its explicit central-stair approach and turns on the porch.
       // A lateral search aimed at the old centre would invent another entrance.
@@ -81,6 +103,7 @@ export class Teleport {
    * 或走到离正面 ≤ NEAR_FRONT m（同侧、视线不被墙隔断）。
    */
   isSafe(p, g) {
+    if (g.navigation?.mode === 'exterior-view') return this.isExteriorViewSafe(p, g);
     if (g.entryProfile) return this.isProfileApproachSafe(p, g);
     const cm = this.collisionManager;
     const ground = cm.getGroundHeight(p.x, p.z, Infinity);
@@ -99,6 +122,45 @@ export class Teleport {
     p.walk = +progressed.toFixed(2);
     if (!(progressed >= TELEPORT.MIN_WALK || remain <= TELEPORT.NEAR_FRONT)) return false;
     return this.lineOfSight(p, g);
+  }
+
+  /** A ground-level exterior view is not an entrance. Require the actual
+   * loaded support geometry before checking the one named point and sightline.
+   * No forward-to-door walk, high spawn, rescue or alternate-point search. */
+  isExteriorViewSafe(p, g) {
+    const cm = this.collisionManager, n = g.navigation;
+    if (!this.zoneManager.getLoadedIds?.().includes(g.requiredZone)) return false;
+    const loadedMap = this.zoneManager.loaded?.get(g.requiredZone)?.data.mapItems;
+    if (!loadedMap?.some(m => m.qinanProfile === 'qinan' && m.profileHash === n.profileHash)) return false;
+    const resident = g.requiredSupports.every(s => cm.walkables.some(w => w.tag === g.requiredZone &&
+      w.type === 'box' && w.rescue === false &&
+      ['x', 'y', 'z'].every((axis, i) => Math.abs(w.box.min[axis] - s.min[i]) < 1e-7 && Math.abs(w.box.max[axis] - s.max[i]) < 1e-7)));
+    if (!resident || !cm.colliders.some(c => c.tag === g.requiredZone)) return false;
+    if (p.x !== n.position.x || p.z !== n.position.z || n.position.feetY !== 0) return false;
+    const ground = cm.getGroundHeight(p.x, p.z, 0, PLAYER.STEP_UP);
+    if (ground !== 0 || cm.getGroundHeight(p.x, p.z, Infinity) !== 0) return false;
+    const eye = new THREE.Vector3(p.x, PLAYER.HEIGHT, p.z);
+    if (cm.checkCollision(eye, 0.5)) return false;
+    const target = new THREE.Vector3(n.lookAt.x, n.lookAt.y, n.lookAt.z);
+    const delta = target.clone().sub(eye), length = delta.length();
+    if (!Number.isFinite(length) || length < 0.25) return false;
+    const ray = new THREE.Ray(eye, delta.normalize()), hit = new THREE.Vector3();
+    // Terminate at the source-defined panel's actual near face. A center-target
+    // tolerance fails at oblique angles; containsPoint alone could bless a huge
+    // foreground blocker. Only one resident, exact source-bound panel qualifies.
+    const expected = new THREE.Box3(new THREE.Vector3(...g.targetFacade.min), new THREE.Vector3(...g.targetFacade.max));
+    if (!expected.containsPoint(target)) return false;
+    const facades = cm.colliders.filter(c => c.tag === g.requiredZone &&
+      c.box.min.distanceTo(expected.min) < 1e-7 && c.box.max.distanceTo(expected.max) < 1e-7);
+    if (facades.length !== 1 || !ray.intersectBox(facades[0].box, hit)) return false;
+    const terminalDistance = eye.distanceTo(hit);
+    if (terminalDistance > length || terminalDistance <= 0) return false;
+    // Only numerical comparison epsilon, never an enlarged occlusion allowance.
+    if (cm.colliders.some(c => c !== facades[0] && ray.intersectBox(c.box, hit) && eye.distanceTo(hit) <= terminalDistance + 1e-7)) return false;
+    p.y = ground;
+    p.viewpointVerified = true;
+    p.validatedAgainstProfileHash = n.profileHash;
+    return true;
   }
 
   /** Probe the named Kunning stair/porch/door path with real collision/support.
@@ -159,7 +221,7 @@ export class Teleport {
    */
   resolveLanding(name) {
     const g = this.geometryFor(name);
-    if (g.entryProfile) {
+    if (g.entryProfile || g.navigation?.mode === 'exterior-view') {
       const p = this.candidate(g, TELEPORT.DOOR_DISTANCE, 0);
       return this.isSafe(p, g) ? { ...p, fallback: false } : null;
     }
@@ -193,10 +255,16 @@ export class Teleport {
     this.zoneManager.ensureLoadedAt(guess.x, guess.z);
     const point = this.resolveLanding(name);
     if (!point) {
-      this.overlay.textContent = `${name}门前受阻，暂不能传送`;
+      this.overlay.textContent = g.navigation?.mode === 'exterior-view'
+        ? `${name}地面外观观览点尚未就绪或受阻，暂不能传送`
+        : `${name}门前受阻，暂不能传送`;
       return null;
     }
     this.controls.teleportTo(point.x, point.z, point.lookAtX, point.lookAtZ);
+    if (point.mode === 'exterior-view') {
+      this.controls.camera.lookAt(point.lookAtX, point.lookAtY, point.lookAtZ);
+      this.overlay.textContent = `${name} · 地面外观预览（不代表现场开放）`;
+    }
     this.zoneManager.update(this.controls.getPosition());
     this.lastPoint = { ...point, y: this.controls.getFeetY(), zone: this.zoneManager.getCurrentId() };
     return this.lastPoint;

@@ -14,7 +14,10 @@ export class Environment {
     this.renderer = renderer;
     this.library = library;
     this.objects = [];
-    this.shadowOffset = new THREE.Vector3(100, 200, 100);
+    // Target-to-light: +X west, +Z north. Azimuth-only comparison with V7.
+    // Model bearing 225 degrees; unchanged elevation and distance.
+    // Illustrative seasonal lighting, not current-date or photo-matched sunlight.
+    this.shadowOffset = new THREE.Vector3(100, 200, -100);
     this.sunPosition = getSunPosition(145, 28); // 降低太阳仰角，避免直射视野
   }
 
@@ -138,7 +141,7 @@ export class Environment {
     
     // 方向光（太阳）：金黄偏橙的暖色调
     const dirLight = new THREE.DirectionalLight(0xfff5e1, 1.4);
-    dirLight.position.set(100, 200, 100);
+    dirLight.position.copy(dirLight.target.position).add(this.shadowOffset);
     dirLight.castShadow = true;
     
     // 阴影配置

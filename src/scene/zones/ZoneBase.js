@@ -108,7 +108,7 @@ export class ZoneBase {
     const params = {
       x: item.x,
       z: item.z,
-      rot: item.pavilionProfile ? item.rot : this.parseRot(item.rot),
+      rot: item.pavilionProfile || item.qinanProfile ? item.rot : this.parseRot(item.rot),
       w: item.w,
       d: item.d,
       pad: item.pad,
@@ -122,6 +122,7 @@ export class ZoneBase {
       upperStoreyH: item.upperStoreyH,
       structure: item.structure,
       pavilionProfile: item.pavilionProfile,
+      qinanProfile: item.qinanProfile,
       interiorFloorWorldY: item.interiorFloorWorldY,
       bays: item.bays,
       roofH: item.roofH,

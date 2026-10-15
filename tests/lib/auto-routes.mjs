@@ -26,6 +26,11 @@ const segHitsRect = (p, q, R) => {
 /** 殿台明（含台阶）世界 AABB */
 function hallRect(h) {
   const g = hallGeom(h);
+  if (g.profile?.profile === 'qinan') {
+    const supports = g.profile.supports;
+    return { x0: Math.min(...supports.map(s => s.min[0])), x1: Math.max(...supports.map(s => s.max[0])),
+      z0: Math.min(...supports.map(s => s.min[2])), z1: Math.max(...supports.map(s => s.max[2])) };
+  }
   if (g.profile) {
     const { platform, frontFlights, sideConnections } = g.profile;
     const x0 = Math.min(platform.x0, ...sideConnections.map(s => s.xOuter));
@@ -195,6 +200,20 @@ export function zoneRoutes(W, zone) {
   const out = [];
   const halls = zone.items.filter(i => i.kind === 'hall');
   for (const h of halls) {
+    if (h.structure === 'qinan-hall' || h.qinanProfile !== undefined) {
+      const hg = hallGeom(h), n = hg.navigation;
+      const gate = zone.items.find(i => i.kind === 'gate' && i.name === '坤宁门');
+      if (!gate) throw new Error('Qinan exterior route requires the inherited Kunning Gate');
+      const plan = ['旧穿殿假设已撤回；经 z=429.7 南横路转 x=18 侧路，避开南轴暂缺石构及双炉，到西南地面外观观览点后原路返回。台上、室内及北出路线未验收；不表示现场游客通行许可。'];
+      const entry = gateLeg(W, gate, [n.position.x, n.position.z], plan);
+      // Extend the collinear gate exit to the south cross-path. The 1m
+      // diagnostic stub at z428.7 is not a formal legacy-driver waypoint.
+      const go = [...entry.slice(0, -1), [entry.at(-1)[0], 429.7], [n.position.x, 429.7], [n.position.x, n.position.z]];
+      out.push({ name: `[${zone.id}] ${gate.name}→${h.name}地面外观→返回`, zone: zone.id, gate: gate.name, hall: h.name,
+        via: '经园内地面至西南外观观览点', plan, pts: [...go, ...go.slice(0, -1).reverse()].map(([x, z]) => [r1(x), r1(z)]),
+        navigationMode: n.mode, viewpointId: n.viewpointId, replacesLegacyRoute: `[${zone.id}] ${gate.name}→${h.name}→返回` });
+      continue;
+    }
     if (!h.name || h.open || h.enter !== true) continue;
     const plan = [];
     const hg = hallGeom(h);

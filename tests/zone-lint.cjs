@@ -282,6 +282,12 @@ async function lintGeometry(zoneFiles) {
   // 9. enter:true 殿门前
   let hallChecked = 0;
   for (const h of W.halls) {
+    if (h.g.profile?.profile === 'qinan') {
+      // Typed exterior-only contract: never reinterpret it as a pavilion door
+      // approach or silently accept a generic enter/backDoor override.
+      if (h.g.enter || h.g.backDoor || h.g.navigation.mode !== 'exterior-view') error(`${h.zone}: 钦安殿须保持地面外观预览`);
+      continue;
+    }
     if (h.item.enter !== true || h.item.open) continue;
     hallChecked++;
     const g = h.g;

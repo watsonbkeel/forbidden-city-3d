@@ -8,6 +8,7 @@ import { buildSideGate } from './special/SideGate.js';
 import { buildZhaodeGate } from './special/ZhaodeGate.js';
 import { buildTirenPavilion } from './special/TirenPavilion.js';
 import { buildSurveyedPavilion } from './special/SurveyedPavilion.js';
+import { buildQinanHall } from './special/QinanHall.js';
 
 const STEP_RUN = 1.6; // 台阶水平长 / 高
 const _v = new THREE.Vector3();
@@ -445,6 +446,8 @@ export class CourtKit {
    * open：只有柱子的敞厅（箭亭、亭榭）；closed（enter=false）时整座殿身为实体碰撞。
    */
   hall(o) {
+    if (o.structure === 'qinan-hall') return buildQinanHall(this, o);
+    if (o.qinanProfile !== undefined) throw new Error('Qinan profile requires qinan-hall structure');
     if (o.structure === 'surveyed-pavilion') return buildSurveyedPavilion(this, o);
     if (o.pavilionProfile !== undefined) throw new Error('Pavilion profile requires surveyed-pavilion structure');
     if (o.structure === 'tiren-pavilion') return buildTirenPavilion(this, o);
