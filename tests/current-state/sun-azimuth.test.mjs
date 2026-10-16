@@ -1,5 +1,6 @@
 import test from 'node:test';
 import { restorePlaceInfoBytes } from '../lib/place-info-source-delta.mjs';
+import { restoreLoadingWelcomeBytes } from '../lib/loading-welcome-source-delta.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { readHistoricalSource } from '../lib/historical-sources.mjs';
@@ -131,7 +132,7 @@ test('protected sources match V7 with only the exact accepted skyline, V9 map/ga
     if (path === 'main.js') {
       const historical = readHistoricalSource(baseline.baseCommit, path);
       assert.equal(sha256(historical), hash, 'the original V7 main.js hash remains pinned');
-      assertV9MapMainBytes(historical, restoreV10EntryMainBytes(restorePlaceInfoBytes('main.js', current)));
+      assertV9MapMainBytes(historical, restoreV10EntryMainBytes(restorePlaceInfoBytes('main.js', restoreLoadingWelcomeBytes(current))));
     } else if (path === 'src/render/PostProcessing.js') {
       assertV10PostProcessingBytes(current, expected);
     } else assert.equal(sha256(current), expected, path);

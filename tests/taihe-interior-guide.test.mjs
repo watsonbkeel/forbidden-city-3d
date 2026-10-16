@@ -6,6 +6,7 @@ import { PlaceCatalog } from '../src/ui/PlaceCatalog.js';
 import { PlaceInfoPanel } from '../src/ui/PlaceInfoPanel.js';
 import { createDOM } from './lib/ui-dom.mjs';
 import { setupMap } from './lib/map-fixture.mjs';
+import { restoreLoadingWelcomeBytes } from './lib/loading-welcome-source-delta.mjs';
 import { baseline, sha, restoreTaiheGuideCatalog, restoreTaiheGuideSource } from './lib/taihe-guide-retention.mjs';
 const read = path => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
 const raw = read('data/places/zh-CN.json'), data = JSON.parse(raw);
@@ -136,7 +137,7 @@ test('Draft 2020-12 schema validates the catalog and rejects bounded guide mutat
   const result = spawnSync('python', ['-c', script], { cwd: new URL('../', import.meta.url), encoding: 'utf8' }); assert.equal(result.status, 0, result.stderr);
 });
 
-for (const path of ['main.js', 'style.css', 'src/ui/Minimap.js', 'src/ui/MapTourSession.js', 'src/ui/SettingsMenu.js', 'src/config/constants.js']) test(`${path} preserves every frozen byte, including input and scroll behavior`, () => assert.equal(sha(read(path)), baseline.baseFiles[path]));
+for (const path of ['main.js', 'style.css', 'src/ui/Minimap.js', 'src/ui/MapTourSession.js', 'src/ui/SettingsMenu.js', 'src/config/constants.js']) test(`${path} preserves frozen bytes after any exact welcome restoration`, () => assert.equal(sha(path === 'main.js' ? restoreLoadingWelcomeBytes(read(path)) : read(path)), baseline.baseFiles[path]));
 
 for (const [path, deltas] of Object.entries(baseline.sourceDeltas)) {
   test(`${path} has only the exact reversible text-guide additions`, () => restoreTaiheGuideSource(path, read(path)));

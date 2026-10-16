@@ -496,7 +496,7 @@ class ForbiddenCityApp {
         console.log('移动端自动开始');
       } else {
         const overlay = document.getElementById('welcome-overlay');
-        if (overlay && !this.controls.controls.isLocked) {
+        if (overlay && !this.controls.controls.isLocked && !this.minimap?.visible && !this.settingsMenu?.visible) {
           overlay.style.display = 'flex';
         }
         console.log('点击屏幕开始游览');

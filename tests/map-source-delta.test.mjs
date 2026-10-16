@@ -1,5 +1,6 @@
 import test from 'node:test';
 import {restorePlaceInfoBytes} from './lib/place-info-source-delta.mjs';
+import {restoreLoadingWelcomeBytes} from './lib/loading-welcome-source-delta.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {restoreV10EntryMainBytes} from './lib/v13-entry-source-delta.mjs';
@@ -12,7 +13,7 @@ const old=path=>readHistoricalSource(baseline.commit,path);
 const frozen=path=>readHistoricalSource(delta.frozenComponentCommit,path);
 const current=path=>{
  const bytes=fs.readFileSync(new URL(path,root));
- return path==='main.js'?restoreV10EntryMainBytes(restorePlaceInfoBytes('main.js', bytes)):bytes;
+ return path==='main.js'?restoreV10EntryMainBytes(restorePlaceInfoBytes('main.js', restoreLoadingWelcomeBytes(bytes))):bytes;
 };
 
 test('actual FirstPerson is exactly historical bytes → frozen input component → finite V9 map delta',()=>{
