@@ -1,0 +1,91 @@
+{
+  "status": "R2 source and exports held stable for independent CPU re-review; no runtime acceptance",
+  "frozen_reference": "57db2276404220f2072d182f759f1422871ac371",
+  "predecessor_preserved_byte_for_byte": true,
+  "predecessor_manifest_verification": "artifacts/PREDECESSOR-UNCHANGED.log",
+  "counts": {
+    "S": {
+      "triangles": 3798,
+      "cap": 4800,
+      "triangles_by_family": {
+        "elephant": 1128,
+        "luduan": 786,
+        "crane": 720,
+        "incense_pavilion": 1164
+      },
+      "existing_material_keys": [
+        "dark",
+        "darkGold",
+        "gold",
+        "pearl",
+        "red",
+        "stone",
+        "teal"
+      ],
+      "supports": 8,
+      "export_sha256": "26a5b0c2455ed64fcede564bc6203ab35eb7ae49f7ee6ab164e50188c2850aa9"
+    },
+    "fallback": {
+      "triangles": 480,
+      "cap": 480,
+      "triangles_by_family": {
+        "elephant": 164,
+        "luduan": 78,
+        "crane": 110,
+        "incense_pavilion": 128
+      },
+      "existing_material_keys": [
+        "dark",
+        "darkGold",
+        "gold",
+        "pearl",
+        "red",
+        "teal"
+      ],
+      "supports": 8,
+      "export_sha256": "dda0197f2435d6183fe452e13c66653881ede52c9d64d8e79a5000488a84d2d4"
+    }
+  },
+  "tests": {
+    "passed": 24,
+    "failed": 0,
+    "command": "PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s tests -v",
+    "negative_mutations": [
+      "actual crane legs translated +0.50 m X",
+      "actual neck terminal ring translated +0.10 m X",
+      "restore previous rock-edge overhang",
+      "flip FrontSide lower-beak triangle",
+      "corrupt explicit reverse partner to same winding",
+      "remove exposed lower-eave disk triangle",
+      "detach actual luduan legs",
+      "naively average shared indexed sheet normals to zero"
+    ],
+    "limits": "Targeted primitives/junctions and attribute pipeline only; not global manifold/self-intersection, runtime culling or app integration proof"
+  },
+  "owner_cpu_diagnostic": "Owner reported former missing wing visible and limb/beak silhouettes continuous; fallback remains coarse. Not runtime approval.",
+  "independent_successor_review": "pending separate reviewer receipt",
+  "normal_integration_requirement": "non-indexed flat attributes or equivalent per-face split; never indexed normal averaging across reverse faces",
+  "source_evidence_manifest_byte_identical_to_predecessor": true,
+  "all_complete_bounds_and_placements_unchanged": true,
+  "failed_successor_snapshot": "artifacts/failed-junction-candidate",
+  "files_sha256": {
+    "mesh_kernel.py": "c282af36524f4e84aac957cd5560151b0ff2f2c5b7146a6342f36e77d3ad2596",
+    "taihe_display_pairs.py": "2deb0cfb97763cdc2be60af1bbd54021b2345d11984175f7806fc4d3dc671a09",
+    "geometry_guards.py": "60bf793109cc6fd8411ca1b49b5e3050f6f4b76b9a763e5337ad395f5cf04a0b",
+    "integration_geometry.py": "3f28b2f5d87357b441ea1bf65b991e63926027bf64cb80b347b9b668413ba996",
+    "verify_candidate.py": "6b5a0f242ea01bd22df6db7f343aa5da75e668e8db79291d97e101107493465e",
+    "tests/test_candidate.py": "c979f8a1a25dc155d6e6ac55c06b0d189c7a74e5d9b7baa8ee7866e093a2ffc9",
+    "tests/test_repair.py": "26e458201134ffcf3a423ea62052d79c16607a770693218e4f9ba0a7fc18a1da",
+    "INTEGRATION-NOTES.md": "67e73fb7c30a66bb9ef33b61516592572a7320dae990ddd8b61cc92ed508525c",
+    "REPAIR-DELTA.md": "24d3b0aa5dfc745fc5ac8578ea499fe083f195f7c115b349dce0af8972644731",
+    "SOURCE-NOTES.json": "e7c52450bbea40602377ccae0757a7cf58feab98c4d2ac4f1b68ce2ed8d13d7a",
+    "IMPLEMENTATION-PLAN.md": "581d534e08b8e3894fb4d31a74423fe70afc3ec4a795af3b9ceee7276a69e37b",
+    "artifacts/INVENTORY.json": "40cfb394e670920f2f9614a792090642785d2e90730f77abda511514e9ff747c",
+    "artifacts/REPAIR-DELTA.json": "eb501b8d5c5a1099abd940ed1cfdcc2a40793926604c0b3d2becfe03b2ebe68a",
+    "artifacts/TESTS.log": "7163958bc4f73a14d431c3dc780a9796d11b1bc23bc791ab01b1b278822a5582",
+    "artifacts/VERIFY.log": "18710325c4061da8da5574e3667fde9f42ac78bdb812ddf40e69178e1ab888c7",
+    "artifacts/PREDECESSOR-RECEIPT.json": "1b9bc19fb9403f0f1f377ed22f2e45a410b42f0f2284b5beb01f57b6207dbc1f",
+    "artifacts/PREDECESSOR-UNCHANGED.log": "44584518ce2d3b555911c2e6d8d6ea5fcff43988a728ee0a0dbe29b6a88f7cbc",
+    "artifacts/SOURCE-MANIFEST.json": "d2653431547b13678f2ab278a1067cbff894aec21665307b5584dec6edc007f9"
+  }
+}

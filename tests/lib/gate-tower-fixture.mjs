@@ -8,7 +8,7 @@ export function captureGate(name='午门') {
  const mats=new Map(),lib={material:(n,params={})=>{const key=n+JSON.stringify(params);if(!mats.has(key))mats.set(key,new THREE.MeshStandardMaterial({name:n,...params}));return mats.get(key);},tileSize:()=>1,aspect:()=>1};
  const data=PALACE_LAYOUT.find(v=>v.name===name),builder=new PalaceBuilder(new THREE.Scene(),lib);let group;
  builder.finish=g=>{group=g;g.updateMatrixWorld(true);return g;};builder.buildGate(data);
- const tower=group.children.find(c=>c.userData.colliders&&c.userData.topY===(name==='午门'?13:7));
+ const tower=group.children.find(c=>c.userData.structure?.id===`axis/${name==='午门'?'wumen':'shenwu'}-upper-tower`);
  return {THREE,group,tower,builder,data,lib};
 }
 function hashArray(a){return crypto.createHash('sha256').update(Buffer.from(a.buffer,a.byteOffset,a.byteLength)).digest('hex');}

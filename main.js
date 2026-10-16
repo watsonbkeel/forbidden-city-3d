@@ -356,7 +356,7 @@ class ForbiddenCityApp {
       welcomeOverlay: document.getElementById('welcome-overlay'),
       getSettingsSession: () => this.settingsTourSession,
     });
-    this.minimap = new Minimap({ items: this.zoneManager.getMapItems(), preview: this.isMobile, onTeleport: name => this.teleport.go(name), onToggle: visible => {
+    this.minimap = new Minimap({ items: this.zoneManager.getMapItems(), preview: this.isMobile, hasTeleportTarget: name => this.teleport.targets.has(name), onTeleport: name => this.teleport.go(name), onToggle: visible => {
       this.settingsMenu?.setMapMode(visible, this.minimap.container);
       this.mapTourSession.setVisible(visible);
     } });

@@ -1,0 +1,62 @@
+{
+  "src/scene/PalaceBuilder.js": {
+    "historicalSHA256": "d516390c341a4df8fe480dc31e199b92cba0db139fdb494214d6f78f0bf8a630",
+    "candidateSHA256": "98c0811976836e0499ef09b57d1e773dd3653b45418162eecdf4f6bcba878215",
+    "deltas": [
+      {
+        "before": "import { buildQianqingGate } from './palace/special/QianqingGate.js';\nimport { buildKunningPalace } from './palace/special/KunningPalace.js';\nimport { threeHallTerraceProfile, closedTerraceStairGeometry } from './palace/ThreeHallTerrace.js';\n\n/**\n * 真实形制参数（按故宫现状）：\n",
+        "after": "import { buildQianqingGate } from './palace/special/QianqingGate.js';\nimport { buildKunningPalace } from './palace/special/KunningPalace.js';\nimport { threeHallTerraceProfile, closedTerraceStairGeometry } from './palace/ThreeHallTerrace.js';\nimport { TAIHE_CORE } from './palace/special/TaiheCoreProfile.js';\nimport { buildTaiheCoreFallback, buildTaiheCeiling, buildTaiheNavigation } from './palace/special/TaiheCore.js';\n\n/**\n * 真实形制参数（按故宫现状）：\n"
+      },
+      {
+        "before": "    const r = THREE.MathUtils.clamp(bayW * 0.08, 0.3, 0.6);\n    const openHalf = (spec.open ?? 3) * bayW / 2;\n    const throne = !!spec.throne;\n\n    const colMat = this.library.material('wood_column');\n    const gold = this.ownMat('gold', { color: 0xc9a13b, metalness: 0.85, roughness: 0.3 });\n",
+        "after": "    const r = THREE.MathUtils.clamp(bayW * 0.08, 0.3, 0.6);\n    const openHalf = (spec.open ?? 3) * bayW / 2;\n    const throne = !!spec.throne;\n    const taiheCore = data.name === '太和殿';\n\n    const colMat = this.library.material('wood_column');\n    const gold = this.ownMat('gold', { color: 0xc9a13b, metalness: 0.85, roughness: 0.3 });\n"
+      },
+      {
+        "before": "      for (let k = 0; k <= nd; k++) {\n        const z = z0 - d / 2 + k * dBay;\n        const edge = i === 0 || i === bays || k === 0 || k === nd;\n        if (!edge && throne && Math.abs(x - x0) < bayW * 0.6 && z > ztb0 - 1 && z < ztb1 + 1) continue;\n        const isGold = throne && !edge && Math.abs(x - x0) < bayW * 1.6 && z > ztb0 - dBay;\n        this.column(g, colGeo, isGold ? gold : colMat, x, z, y, H, r);\n      }\n    }\n\n    // 金砖地面\n",
+        "after": "      for (let k = 0; k <= nd; k++) {\n        const z = z0 - d / 2 + k * dBay;\n        const edge = i === 0 || i === bays || k === 0 || k === nd;\n        if (taiheCore && !edge && Math.abs(x - x0) < bayW * 0.6) continue;\n        if (!edge && throne && Math.abs(x - x0) < bayW * 0.6 && z > ztb0 - 1 && z < ztb1 + 1) continue;\n        const isGold = !taiheCore && throne && !edge && Math.abs(x - x0) < bayW * 1.6 && z > ztb0 - dBay;\n        this.column(g, colGeo, isGold ? gold : colMat, x, z, y, H, r);\n      }\n    }\n\n    if (taiheCore) {\n      for (const x of TAIHE_CORE.columns.x) {\n        this.column(g, colGeo, colMat, x0 + x, z0 + TAIHE_CORE.columns.redCompanionZ, y, H, r);\n        g.children.at(-1).userData.taihePermanent = 'red-companion-column';\n      }\n      buildTaiheNavigation(this, { x0, z0, y });\n      buildTaiheCoreFallback(this, g, { x0, z0, y });\n    }\n\n    // 金砖地面\n"
+      },
+      {
+        "before": "      this.col(xs - 0.5, y, z0 - d / 2, xs + 0.5, y + 3, z0 + d / 2);\n    }\n\n    // 井口天花\n    const ceilGeo = new THREE.PlaneGeometry(w, d);\n    ceilGeo.rotateX(Math.PI / 2);\n    applyPlanarUV(ceilGeo, 'y', 1.6);\n    const ceiling = new THREE.Mesh(ceilGeo, this.ceilingMaterial());\n    ceiling.position.set(x0, y + H - 0.05, z0);\n    g.add(ceiling);\n\n    if (throne) this.throneArea(g, { x0, y, H, ztb0, ztb1, thW, bayW, text: spec.inner });\n\n    // 殿外竖匾\n    if (spec.plaque !== false) {\n",
+        "after": "      this.col(xs - 0.5, y, z0 - d / 2, xs + 0.5, y + 3, z0 + d / 2);\n    }\n\n    // Taihe alone has an upward caisson opening and an independently owned core.\n    if (taiheCore) buildTaiheCeiling(this, g, { x0, z0, y, w, d });\n    else {\n      const ceilGeo = new THREE.PlaneGeometry(w, d);\n      ceilGeo.rotateX(Math.PI / 2);\n      applyPlanarUV(ceilGeo, 'y', 1.6);\n      const ceiling = new THREE.Mesh(ceilGeo, this.ceilingMaterial());\n      ceiling.position.set(x0, y + H - 0.05, z0);\n      g.add(ceiling);\n      if (throne) this.throneArea(g, { x0, y, H, ztb0, ztb1, thW, bayW, text: spec.inner });\n    }\n\n    // 殿外竖匾\n    if (spec.plaque !== false) {\n"
+      }
+    ]
+  },
+  "src/scene/interior/InteriorLoader.js": {
+    "historicalSHA256": "9d49e7c7c1a6e8122aa7ea6059d27183e6b5bbbec15b3f16fa9b512f1971c263",
+    "candidateSHA256": "62b4faa22ca31579df16cad88588525758253b35905cc349d531901464973510",
+    "deltas": [
+      {
+        "before": " * - 每座 S 档殿一份 data/interiors/<hallId>.json（见 data/interiors/schema.md），GLB 以殿身局部坐标建模\n *   （原点 = 殿中心、地面 y=0、正面朝 −Z）；加载后放到 frame(x, floorY, z, rot) 下。\n * - 玩家距殿身包围盒 ≤ preload.enter（默认 15 m）开始加载；≥ preload.exit（默认 40 m）卸载并释放显存。\n * - 加载期间保留 B 档（PalaceBuilder 程序化内景，始终存在），GLB 就绪后 300 ms 淡入叠加。\n * - 名字 COL_* 的 mesh 作碰撞代理（Box3，渲染隐藏），WALK_* 作可行走面；tag = `interior:<hallId>`，卸载时 removeByTag。\n * - 加载失败：保留 B 档并 console.warn，记入 stats.failed，不再重试（直到 unload 后再次进入）。\n *\n",
+        "after": " * - 每座 S 档殿一份 data/interiors/<hallId>.json（见 data/interiors/schema.md），GLB 以殿身局部坐标建模\n *   （原点 = 殿中心、地面 y=0、正面朝 −Z）；加载后放到 frame(x, floorY, z, rot) 下。\n * - 玩家距殿身包围盒 ≤ preload.enter（默认 15 m）开始加载；≥ preload.exit（默认 40 m）卸载并释放显存。\n * - 加载期间保留 B 档；太和殿验证后原子替换独立核心，其余殿 GLB 就绪后 300 ms 淡入叠加。\n * - 名字 COL_* 的 mesh 作碰撞代理（Box3，渲染隐藏），WALK_* 作可行走面；tag = `interior:<hallId>`，卸载时 removeByTag。\n * - 加载失败：保留 B 档并 console.warn，记入 stats.failed，不再重试（直到 unload 后再次进入）。\n *\n"
+      },
+      {
+        "before": "import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';\nimport { KTX2Loader } from 'three/examples/jsm/loaders/KTX2Loader.js';\nimport { INTERIORS } from './registry.js';\n\nconst FADE_MS = 300;\nconst DEFAULT_ENTER = 15;\n",
+        "after": "import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';\nimport { KTX2Loader } from 'three/examples/jsm/loaders/KTX2Loader.js';\nimport { INTERIORS } from './registry.js';\nimport { validateTaiheCore, taiheFallbackMeshes, installTaiheGlyphs, isTaiheSharedAtlas } from './TaiheCoreContract.js';\n\nconst FADE_MS = 300;\nconst DEFAULT_ENTER = 15;\n"
+      },
+      {
+        "before": "          resolve(true);\n        } catch (err) {\n          console.warn(`[InteriorLoader] ${h.cfg.hall} 安装失败，保留 B 档：`, err);\n          if (h.id === 'kunning') {\n            this.cm?.removeByTag(`interior:${h.id}`);\n            if (h.group) this.scene.remove(h.group);\n            disposeObject(h.group ?? gltf.scene);\n",
+        "after": "          resolve(true);\n        } catch (err) {\n          console.warn(`[InteriorLoader] ${h.cfg.hall} 安装失败，保留 B 档：`, err);\n          if (h.id === 'kunning' || h.id === 'taihe') {\n            if (h.id === 'taihe') this._restoreTaiheFallback(h);\n            this.cm?.removeByTag(`interior:${h.id}`);\n            if (h.group) this.scene.remove(h.group);\n            disposeObject(h.group ?? gltf.scene);\n"
+      },
+      {
+        "before": "    const cfg = h.cfg;\n    // Validate the optional layer before a collider, light, fade or scene object is registered.\n    if (h.id === 'kunning') validateKunningFurniture(root, cfg);\n    const f = cfg.frame;\n    const floorY = this._floorY(cfg);\n    const group = new THREE.Group();\n    group.name = `interior:${h.id}`;\n    if (h.id === 'kunning') h.group = group; // rollback owns even a partially installed group\n    group.position.set(f.x + (cfg.anchor?.x ?? 0), floorY + (cfg.anchor?.y ?? 0), f.z + (cfg.anchor?.z ?? 0));\n    group.rotation.y = f.rot ?? 0;\n    group.add(root);\n",
+        "after": "    const cfg = h.cfg;\n    // Validate the optional layer before a collider, light, fade or scene object is registered.\n    if (h.id === 'kunning') validateKunningFurniture(root, cfg);\n    if (h.id === 'taihe') {\n      validateTaiheCore(root, cfg);\n      const fallback = taiheFallbackMeshes(this.scene);\n      if (fallback.length !== 8 || fallback.some(m => !m.visible)) throw new Error('Taihe fallback ownership unavailable');\n      h.fallback = fallback;\n      installTaiheGlyphs(root, fallback.find(mesh => mesh.material.name === 'taihe_glyph_atlas')?.material.map);\n    }\n    const f = cfg.frame;\n    const floorY = this._floorY(cfg);\n    const group = new THREE.Group();\n    group.name = `interior:${h.id}`;\n    if (h.id === 'kunning' || h.id === 'taihe') h.group = group; // rollback owns even a partially installed group\n    group.position.set(f.x + (cfg.anchor?.x ?? 0), floorY + (cfg.anchor?.y ?? 0), f.z + (cfg.anchor?.z ?? 0));\n    group.rotation.y = f.rot ?? 0;\n    group.add(root);\n"
+      },
+      {
+        "before": "      h.lights.push(light);\n    }\n\n    // 淡入：先透明再 300 ms 到 1\n    h.fade = { t0: performance.now(), mats: [...mats], restore: new Map() };\n    for (const m of h.fade.mats) {\n      h.fade.restore.set(m, { transparent: m.transparent, opacity: m.opacity, depthWrite: m.depthWrite });\n      m.transparent = true;\n      m.opacity = 0;\n    }\n\n    this.scene.add(group);\n    h.group = group;\n    h.state = 'loaded';\n    h.promise = null;\n",
+        "after": "      h.lights.push(light);\n    }\n\n    // Taihe is an atomic visual replacement: no duplicated transparent cores.\n    // Every throwing install step occurs before its known fallback is hidden.\n    if (h.id !== 'taihe') {\n      h.fade = { t0: performance.now(), mats: [...mats], restore: new Map() };\n      for (const m of h.fade.mats) {\n        h.fade.restore.set(m, { transparent: m.transparent, opacity: m.opacity, depthWrite: m.depthWrite });\n        m.transparent = true;\n        m.opacity = 0;\n      }\n    }\n    if (h.id === 'taihe') group.visible = false;\n    this.scene.add(group);\n    if (h.id === 'taihe') {\n      h.fallback.forEach(mesh => { mesh.visible = false; });\n      group.visible = true;\n    }\n    h.group = group;\n    h.state = 'loaded';\n    h.promise = null;\n"
+      },
+      {
+        "before": "    }\n  }\n\n  /** 卸载并释放显存；idle 态无操作 */\n  unload(hallId) {\n    const h = this.halls.get(hallId);\n    if (!h || h.state === 'idle') return;\n    h.token++; // 使在途加载作废\n    h.promise = null;\n    h.fade = null;\n",
+        "after": "    }\n  }\n\n  _restoreTaiheFallback(h) {\n    (h.fallback ?? []).forEach(mesh => { mesh.visible = true; });\n    h.fallback = null;\n  }\n\n  /** 卸载并释放显存；idle 态无操作 */\n  unload(hallId) {\n    const h = this.halls.get(hallId);\n    if (!h || h.state === 'idle') return;\n    if (h.id === 'taihe') {\n      if (h.group) h.group.visible = false;\n      this._restoreTaiheFallback(h);\n    }\n    h.token++; // 使在途加载作废\n    h.promise = null;\n    h.fade = null;\n"
+      },
+      {
+        "before": "    if (o.isLight) o.dispose?.();\n  });\n  for (const m of mats) {\n    for (const v of Object.values(m)) if (v && v.isTexture) texs.add(v);\n    m.dispose();\n  }\n  for (const t of texs) t.dispose();\n",
+        "after": "    if (o.isLight) o.dispose?.();\n  });\n  for (const m of mats) {\n    for (const v of Object.values(m)) if (v && v.isTexture && !isTaiheSharedAtlas(m, v)) texs.add(v);\n    m.dispose();\n  }\n  for (const t of texs) t.dispose();\n"
+      },
+      {
+        "before": "      if (g.index) bytes += g.index.array.byteLength;\n    }\n    const list = Array.isArray(o.material) ? o.material : [o.material];\n    for (const m of list) if (m) for (const v of Object.values(m)) if (v && v.isTexture) texs.add(v);\n  });\n  for (const t of texs) {\n    const img = t.image;\n",
+        "after": "      if (g.index) bytes += g.index.array.byteLength;\n    }\n    const list = Array.isArray(o.material) ? o.material : [o.material];\n    for (const m of list) if (m) for (const v of Object.values(m)) if (v && v.isTexture && !isTaiheSharedAtlas(m, v)) texs.add(v);\n  });\n  for (const t of texs) {\n    const img = t.image;\n"
+      }
+    ]
+  }
+}

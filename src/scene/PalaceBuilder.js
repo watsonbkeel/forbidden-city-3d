@@ -3,6 +3,7 @@ import { COLORS } from '../config/constants.js';
 import { buildGateAscent, toWorld } from './palace/gateAscent.js';
 import { wumenTowerGeometry, shenwuTowerGeometry } from './palace/special/GateTowerProfiles.js';
 import { buildGateTowerShell } from './palace/special/GateTowerShell.js';
+import { WUMEN_VERTICAL_PROFILE } from './palace/special/WumenVerticalProfile.js';
 import { buildWumenSouthPlaque, buildShenwuInstitutionPlaque, SHENWU_GATE_NAME_OMISSION } from './palace/special/GatePlaques.js';
 import { riverBridges, JINSHUI_BRIDGE_LENGTH } from './palace/river.js';
 import { buildRoof } from './RoofBuilder.js';
@@ -13,6 +14,8 @@ import { buildSquareHall, SQUARE_HALLS } from './palace/special/SquareHalls.js';
 import { buildQianqingGate } from './palace/special/QianqingGate.js';
 import { buildKunningPalace } from './palace/special/KunningPalace.js';
 import { threeHallTerraceProfile, closedTerraceStairGeometry } from './palace/ThreeHallTerrace.js';
+import { TAIHE_CORE } from './palace/special/TaiheCoreProfile.js';
+import { buildTaiheCoreFallback, buildTaiheCeiling, buildTaiheNavigation } from './palace/special/TaiheCore.js';
 
 /**
  * 真实形制参数（按故宫现状）：
@@ -594,6 +597,7 @@ export class PalaceBuilder {
     const r = THREE.MathUtils.clamp(bayW * 0.08, 0.3, 0.6);
     const openHalf = (spec.open ?? 3) * bayW / 2;
     const throne = !!spec.throne;
+    const taiheCore = data.name === '太和殿';
 
     const colMat = this.library.material('wood_column');
     const gold = this.ownMat('gold', { color: 0xc9a13b, metalness: 0.85, roughness: 0.3 });
@@ -610,10 +614,20 @@ export class PalaceBuilder {
       for (let k = 0; k <= nd; k++) {
         const z = z0 - d / 2 + k * dBay;
         const edge = i === 0 || i === bays || k === 0 || k === nd;
+        if (taiheCore && !edge && Math.abs(x - x0) < bayW * 0.6) continue;
         if (!edge && throne && Math.abs(x - x0) < bayW * 0.6 && z > ztb0 - 1 && z < ztb1 + 1) continue;
-        const isGold = throne && !edge && Math.abs(x - x0) < bayW * 1.6 && z > ztb0 - dBay;
+        const isGold = !taiheCore && throne && !edge && Math.abs(x - x0) < bayW * 1.6 && z > ztb0 - dBay;
         this.column(g, colGeo, isGold ? gold : colMat, x, z, y, H, r);
       }
+    }
+
+    if (taiheCore) {
+      for (const x of TAIHE_CORE.columns.x) {
+        this.column(g, colGeo, colMat, x0 + x, z0 + TAIHE_CORE.columns.redCompanionZ, y, H, r);
+        g.children.at(-1).userData.taihePermanent = 'red-companion-column';
+      }
+      buildTaiheNavigation(this, { x0, z0, y });
+      buildTaiheCoreFallback(this, g, { x0, z0, y });
     }
 
     // 金砖地面
@@ -659,15 +673,17 @@ export class PalaceBuilder {
       this.col(xs - 0.5, y, z0 - d / 2, xs + 0.5, y + 3, z0 + d / 2);
     }
 
-    // 井口天花
-    const ceilGeo = new THREE.PlaneGeometry(w, d);
-    ceilGeo.rotateX(Math.PI / 2);
-    applyPlanarUV(ceilGeo, 'y', 1.6);
-    const ceiling = new THREE.Mesh(ceilGeo, this.ceilingMaterial());
-    ceiling.position.set(x0, y + H - 0.05, z0);
-    g.add(ceiling);
-
-    if (throne) this.throneArea(g, { x0, y, H, ztb0, ztb1, thW, bayW, text: spec.inner });
+    // Taihe alone has an upward caisson opening and an independently owned core.
+    if (taiheCore) buildTaiheCeiling(this, g, { x0, z0, y, w, d });
+    else {
+      const ceilGeo = new THREE.PlaneGeometry(w, d);
+      ceilGeo.rotateX(Math.PI / 2);
+      applyPlanarUV(ceilGeo, 'y', 1.6);
+      const ceiling = new THREE.Mesh(ceilGeo, this.ceilingMaterial());
+      ceiling.position.set(x0, y + H - 0.05, z0);
+      g.add(ceiling);
+      if (throne) this.throneArea(g, { x0, y, H, ztb0, ztb1, thW, bayW, text: spec.inner });
+    }
 
     // 殿外竖匾
     if (spec.plaque !== false) {
@@ -882,6 +898,10 @@ export class PalaceBuilder {
         leaf.position.set(o.x + s * (o.w / 2 - 0.15), 0, zS + 2 + o.w * 0.24);
         leaf.rotation.y = Math.PI / 2;
         g.add(leaf);
+        // Match upper-door proxies: transformed leaf bounds, limited to body height.
+        leaf.updateMatrixWorld(true);
+        const b = new THREE.Box3().setFromObject(leaf);
+        this.col(b.min.x, Math.max(0, b.min.y), b.min.z, b.max.x, Math.min(3, b.max.y), b.max.z);
       }
     }
     // 两翼墩台（实心，顶面不开放）
@@ -919,6 +939,7 @@ export class PalaceBuilder {
     const roof = buildRoof(this.library, {
       type: 'wudian', width: dm.width + 0.6, depth: dm.depth + 0.6,
       baseY: top + body.userData.topY, layers: 2, brackets: true, height: 9,
+      wumenVerticalProfile: WUMEN_VERTICAL_PROFILE,
     });
     g.add(roof);
     this.ownedMaterials.push(...(roof.userData.ownedMaterials ?? []));
@@ -984,6 +1005,10 @@ export class PalaceBuilder {
         leaf.position.set(o.x + s * (o.w / 2 - 0.15), 0, -D / 2 + 2 + o.w * 0.24);
         leaf.rotation.y = Math.PI / 2;
         g.add(leaf);
+        // Match upper-door proxies: transformed leaf bounds, limited to body height.
+        leaf.updateMatrixWorld(true);
+        const b = new THREE.Box3().setFromObject(leaf);
+        this.col(b.min.x, Math.max(0, b.min.y), b.min.z, b.max.x, Math.min(3, b.max.y), b.max.z);
       }
     }
     this.libBox(g, 'stone_slab', W + 0.4, 0.3, D + 0.4, 0, PH + 0.15, 0, 'box');

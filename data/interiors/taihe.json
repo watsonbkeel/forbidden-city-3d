@@ -3,17 +3,85 @@
   "hall": "太和殿",
   "id": "taihe",
   "tier": "S",
-  "model": "/models/interiors/taihe.glb",
+  "model": "/models/interiors/taihe-v17-display-28d7a11dbeda.glb",
   "fallback": "B",
-  "budget": { "tris": 400000, "textureMB": 8 },
-  "frame": { "x": 0, "z": 0, "rot": 0, "w": 63, "d": 37 },
-  "floor": { "mode": "ground", "y": null },
-  "anchor": { "x": 0, "y": 0, "z": 0 },
-  "preload": { "enter": 15, "exit": 40 },
-  "throne": { "ztb0": 7.06, "ztb1": 14.06, "thW": 9.16, "bayW": 5.727, "dBay": 7.4 },
+  "budget": {
+    "tris": 18000,
+    "textureMB": 8
+  },
+  "frame": {
+    "x": 0,
+    "z": 0,
+    "rot": 0,
+    "w": 63,
+    "d": 37
+  },
+  "floor": {
+    "mode": "ground",
+    "y": null
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "preload": {
+    "enter": 15,
+    "exit": 40
+  },
+  "throne": {
+    "ztb0": 7.06,
+    "ztb1": 14.06,
+    "thW": 9.16,
+    "bayW": 5.727,
+    "dBay": 7.4,
+    "registration": "provisional retained z; historical topology mismatch awaits V17 review"
+  },
   "lights": [
-    { "type": "point", "x": 0, "y": 6, "z": 9, "color": "#ffd9a0", "intensity": 2, "distance": 30 },
-    { "type": "point", "x": 0, "y": 5, "z": -8, "color": "#ffe6c0", "intensity": 1, "distance": 30 }
+    {
+      "type": "point",
+      "x": 0,
+      "y": 6,
+      "z": 9,
+      "color": "#ffd9a0",
+      "intensity": 2,
+      "distance": 30
+    },
+    {
+      "type": "point",
+      "x": 0,
+      "y": 5,
+      "z": -8,
+      "color": "#ffe6c0",
+      "intensity": 1,
+      "distance": 30
+    }
   ],
-  "source": "docs/research/interiors-taihe.md"
+  "source": "docs/current-state/taihe-v16-core/approved-geometry-card.json",
+  "asset": {
+    "sha256": "28d7a11dbeda023762c8c9eed44eb65c5f4c8270ddfb9d7088e40f6b6991399c",
+    "encodedBytes": 1035060,
+    "renderableTriangles": 12128,
+    "visibleBatches": 8,
+    "profileSHA256": "5febda5436765e258e67300bf4b737566e4e522d60ebb9587222c9e4ed1a181c",
+    "sourceSHA256": "25f7491e1e088f7bc28425732c1a58182661d1ee8f5d0f5ebae3f5c1005e3caf",
+    "textureBytes": 0,
+    "displaySourceManifestSHA256": "d2653431547b13678f2ab278a1067cbff894aec21665307b5584dec6edc007f9",
+    "displayTriangles": 3798,
+    "fallbackDisplayTriangles": 480,
+    "columnAtlasGPUBytes": 1398104,
+    "columnAtlas": "AI-generated approximate raised-paint/gilding art; luminance proxy, shading only, 0.0015 bump cap",
+    "columnSurfaceUVSHA256": "a0c4f1364db7d14aaca6a4bfdeaf18957ba7c716af4d2a82af19f2cd35195170",
+    "columnAtlasSourceSHA256": "861549429e8bedcae7779bdd1bd11de62db3eb79b8c435c078965771add9d54b",
+    "columnIntensityDataSHA256": "617bcb83a2c24e0ab242a143b3fc840a324896dd438b8105002d7907157d370e",
+    "columnArtSHA256": "0e36c1b2105264c9bbffd65a52074b4b1c12dceb57226cfe4e0d436d797d2146",
+    "columnBakeSHA256": "3526f128bbf96e6fa1393c3c45aa1a4f6bac7ea9e1a2f088100bc9bbcf8c19da",
+    "columnResponseSourceSHA256": "3b681fe2d7224e09a3051c8dc04c1e4afeb6290815443881760fbb2294569719",
+    "columnResponse": "Visual-trial linear column target (.65,.43,.10), patterned roughness; exact neutral gains elsewhere",
+    "columnResponseBufferBytes": {
+      "S": 217752,
+      "B": 17352
+    }
+  },
+  "ownership": "taihe-core-visual-only"
 }

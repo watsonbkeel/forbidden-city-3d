@@ -1,0 +1,74 @@
+{
+  "schema": "taihe-display-r2-source-manifest-v1",
+  "prototype_directory": "/workspace/shared/forbidden-city-3d-r3-taihe-display-prototype-r2",
+  "frozen_architectural_reference": "57db2276404220f2072d182f759f1422871ac371",
+  "source_files": {
+    "IMPLEMENTATION-PLAN.md": {
+      "sha256": "581d534e08b8e3894fb4d31a74423fe70afc3ec4a795af3b9ceee7276a69e37b",
+      "bytes": 2433
+    },
+    "INTEGRATION-NOTES.md": {
+      "sha256": "67e73fb7c30a66bb9ef33b61516592572a7320dae990ddd8b61cc92ed508525c",
+      "bytes": 11100
+    },
+    "REPAIR-DELTA.md": {
+      "sha256": "24d3b0aa5dfc745fc5ac8578ea499fe083f195f7c115b349dce0af8972644731",
+      "bytes": 6041
+    },
+    "SOURCE-NOTES.json": {
+      "sha256": "e7c52450bbea40602377ccae0757a7cf58feab98c4d2ac4f1b68ce2ed8d13d7a",
+      "bytes": 4850
+    },
+    "geometry_guards.py": {
+      "sha256": "60bf793109cc6fd8411ca1b49b5e3050f6f4b76b9a763e5337ad395f5cf04a0b",
+      "bytes": 12433
+    },
+    "integration_geometry.py": {
+      "sha256": "3f28b2f5d87357b441ea1bf65b991e63926027bf64cb80b347b9b668413ba996",
+      "bytes": 1851
+    },
+    "mesh_kernel.py": {
+      "sha256": "c282af36524f4e84aac957cd5560151b0ff2f2c5b7146a6342f36e77d3ad2596",
+      "bytes": 5821
+    },
+    "taihe_display_pairs.py": {
+      "sha256": "2deb0cfb97763cdc2be60af1bbd54021b2345d11984175f7806fc4d3dc671a09",
+      "bytes": 14585
+    },
+    "tests/test_candidate.py": {
+      "sha256": "c979f8a1a25dc155d6e6ac55c06b0d189c7a74e5d9b7baa8ee7866e093a2ffc9",
+      "bytes": 7666
+    },
+    "tests/test_repair.py": {
+      "sha256": "26e458201134ffcf3a423ea62052d79c16607a770693218e4f9ba0a7fc18a1da",
+      "bytes": 7413
+    },
+    "verify_candidate.py": {
+      "sha256": "6b5a0f242ea01bd22df6db7f343aa5da75e668e8db79291d97e101107493465e",
+      "bytes": 8120
+    }
+  },
+  "exports": {
+    "S": {
+      "path": "artifacts/meshes-S.json",
+      "sha256": "26a5b0c2455ed64fcede564bc6203ab35eb7ae49f7ee6ab164e50188c2850aa9",
+      "triangles": 3798
+    },
+    "fallback": {
+      "path": "artifacts/meshes-fallback.json",
+      "sha256": "dda0197f2435d6183fe452e13c66653881ede52c9d64d8e79a5000488a84d2d4",
+      "triangles": 480
+    }
+  },
+  "read_only_reference_source_sha256": {
+    "assets-src/interiors/taihe.py": "18cb58f97cf8da6e006aa6af46bb6107b3daa59f69458205618ff392fc8b4489",
+    "assets-src/interiors/_common.py": "b57efc80a2a9ca78fdfbe44330b78bba40302fdd627acd0a800c56328dc111fa",
+    "data/architecture/taihe-core.json": "5febda5436765e258e67300bf4b737566e4e522d60ebb9587222c9e4ed1a181c",
+    "src/scene/palace/special/TaiheCore.js": "0b9b0a9fdbcf039dda092342030e6dba303d28e1565403f4a9025d2953813384",
+    "src/scene/PalaceBuilder.js": "98c0811976836e0499ef09b57d1e773dd3653b45418162eecdf4f6bcba878215",
+    "node_modules/three/src/materials/Material.js": "eef8f3e905f79a204dc4ae9f9b2babde7b0714a5e4e19a9f23bac13d689ffc23"
+  },
+  "evidence_manifest_sha256": "1ca0eec8fa826100bb6e73be0b11927b171909444981bd43a8d4a01a5dbfc106",
+  "normal_integration_contract": "Expand triangles to non-indexed position and normal arrays, or use equivalent per-face split. Never average shared reverse-face normals; do not weld opposite-sheet vertices.",
+  "excluded_files": "Python bytecode caches and historical failed-candidate logs are not reusable source inputs; preserved separately as diagnostic evidence."
+}

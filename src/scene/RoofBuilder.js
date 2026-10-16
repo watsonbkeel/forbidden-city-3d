@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { mergeByMaterial } from '../utils/MergeUtils.js';
+import { WUMEN_VERTICAL_PROFILE } from './palace/special/WumenVerticalProfile.js';
 
 /**
  * 古建屋顶构件（接口契约）
@@ -234,7 +235,7 @@ function tubeGeometry(points, radius, ctx) {
  * @param spec.th 檐口厚度（屋面与椽底的竖向距离）
  */
 function hipSurface(ctx, g, spec) {
-  const { corners, edges, Y, tw, lift, th, soffit = true } = spec;
+  const { corners, edges, Y, tw, lift, th, soffit = true, bearingSoffit } = spec;
   const nT = spec.nT ?? ctx.seg.nT;
   const nU = spec.nU ?? ctx.seg.nU;
   const C1 = corners(1);
@@ -307,8 +308,22 @@ function hipSurface(ctx, g, spec) {
       const ta = Math.max(t0, tw);
       const rs = Math.max(2, Math.round(nT * (1 - ta) * 1.5));
       add(g, gridGeometry(rs, nU, (a, b) => {
-        const t = lerp(ta, 1, a);
-        const r = point(k, t, sParam(b), -th);
+        const t = lerp(ta, 1, a), s = sParam(b);
+        if (bearingSoffit) {
+          // Wumen-only straight annulus: its wall edge must meet the actual
+          // rectangular bearing, not a tile isocontour with a different X/Z ratio.
+          const A = bearingSoffit.footprint[k], B = bearingSoffit.footprint[(k + 1) % n];
+          const C = corners(t), U = C[k], V = C[(k + 1) % n];
+          const E = C1[k], F = C1[(k + 1) % n], lifted = point(k, t, s).p;
+          const wx = lerp(A[0], B[0], s), wz = lerp(A[1], B[1], s);
+          const ex = lerp(E[0], F[0], s), ez = lerp(E[1], F[1], s);
+          const x = lerp(wx, ex, a) + lifted[0] - lerp(U[0], V[0], s);
+          const z = lerp(wz, ez, a) + lifted[2] - lerp(U[1], V[1], s);
+          const y = lerp(bearingSoffit.wallY, bearingSoffit.eaveY, a) + lifted[1] - Y(t);
+          const run = Math.hypot(ex - wx, ez - wz, bearingSoffit.eaveY - bearingSoffit.wallY);
+          return { p: [x, y, z], uv: [(x * T[k][0] + z * T[k][1]) / tr, (1 - a) * run / tr] };
+        }
+        const r = point(k, t, s, -th);
         return { p: r.p, uv: [r.u / tr, (S1 - arcAt(k, t)) / tr] };
       }, [0, -1, 0]), ctx.mat.rafters);
       // 檐口立面（连檐 / 椽头）
@@ -433,8 +448,8 @@ function addFinial(ctx, g, y, hf) {
 /* 斗拱带、天花、屋身                                                    */
 /* ------------------------------------------------------------------ */
 
-function addBrackets(ctx, g, poly, y0, minDim) {
-  const bh = clamp(minDim * 0.05, 0.6, 1.8);
+function addBrackets(ctx, g, poly, y0, minDim, explicitHeight) {
+  const bh = explicitHeight ?? clamp(minDim * 0.05, 0.6, 1.8);
   add(g, prismGeometry(poly, y0, y0 + bh, { band: bh * ctx.aspect.dougong }), ctx.mat.dougong);
   return y0 + bh;
 }
@@ -444,7 +459,7 @@ function addBrackets(ctx, g, poly, y0, minDim) {
 /* ------------------------------------------------------------------ */
 
 function singleRoof(ctx, g, o) {
-  const type = o.type ?? 'wudian';
+  const type = o.type ?? 'wudian', vertical = o._wumenUpper;
   const W = o.width, D = o.depth;
   const sides = type === 'pavilion' && o.sides === 8 ? 8 : 4;
   const ovh = o.overhang ?? defaultOverhang(W, D);
@@ -453,16 +468,17 @@ function singleRoof(ctx, g, o) {
   const minD = Math.min(W, D);
   const footprint = polyCorners(sides, W / 2, D / 2);
   let y0 = o.baseY ?? 0;
-  if (o.brackets ?? true) y0 = addBrackets(ctx, g, footprint, y0, minD);
+  if (o.brackets ?? true) y0 = addBrackets(ctx, g, footprint, y0, minD, vertical?.upperBracketHeight);
   add(g, fanGeometry(footprint, y0, ctx.tile.rafters), ctx.mat.rafters);
 
-  const th = clamp(ovh * 0.1, 0.15, 0.45);
-  const ex = W / 2 + (type === 'gable' ? 0.3 : ovh);
-  const ez = D / 2 + ovh;
+  const th = vertical?.upperRafterEndThickness ?? clamp(ovh * 0.1, 0.15, 0.45);
+  const ex = vertical ? WUMEN_VERTICAL_PROFILE.retained.upperEaveHalfWidth : W / 2 + (type === 'gable' ? 0.3 : ovh);
+  const ez = vertical?.upperEaveHalfDepth ?? D / 2 + ovh;
   const tw = (D / 2) / ez;
   const P = profile(type === 'pavilion' ? 0.36 : type === 'gable' ? 0.62 : 0.48);
-  const H = (height - th) / (1 - P(tw));
-  const yb = y0 + height - H;
+  const H = vertical?.upperTileRise ?? (height - th) / (1 - P(tw));
+  const yb = vertical?.upperEaveY ?? y0 + height - H;
+  const bearingSoffit = vertical ? { footprint, wallY: y0, eaveY: yb - th } : undefined;
   const Y = t => yb + H * P(t);
   const lift = type === 'gable' ? null : {
     L: clamp(minD * 0.035, 0.3, 1.5) * liftScale,
@@ -498,7 +514,7 @@ function singleRoof(ctx, g, o) {
       add(g, rakeBoard(sx * (ex + 0.02), rake, th * 2.5, sx, ctx.tile.wall), ctx.mat.wall);
     }
   } else {
-    const rx = Math.max(ex - ez, W * 0.04);
+    const rx = vertical ? WUMEN_VERTICAL_PROFILE.retained.upperRidgeHalfWidth : Math.max(ex - ez, W * 0.04);
     const hx = t => rx + (ex - rx) * t;
     if (type === 'xieshan') {
       const ts = 0.5;
@@ -531,7 +547,7 @@ function singleRoof(ctx, g, o) {
       }
     } else {
       const corners = t => polyCorners(4, hx(t), ez * t);
-      const S = hipSurface(ctx, g, { corners, Y, tw, lift, th, edges: [0, 1, 2, 3].map(k => ({ k, t0: 0, t1: 1 })) });
+      const S = hipSurface(ctx, g, { corners, Y, tw, lift, th, bearingSoffit, edges: [0, 1, 2, 3].map(k => ({ k, t0: 0, t1: 1 })) });
       for (let c = 0; c < 4; c++) addHip(ctx, g, S.hipLine(c, 0, hr * 0.6), hr, nBeasts);
       top = addMainRidge(ctx, g, rx, Y(0) - hr, hr, chiwenH);
     }
@@ -558,7 +574,7 @@ function rakeBoard(x, top, h, sign, tile) {
 /* 重檐：下层腰檐                                                        */
 /* ------------------------------------------------------------------ */
 
-function skirtRoof(ctx, g, { sides, W, D, inset, ovh, baseY, brackets, liftScale = 1 }) {
+function skirtRoof(ctx, g, { sides, W, D, inset, ovh, baseY, brackets, liftScale = 1, vertical }) {
   const footprint = polyCorners(sides, W / 2, D / 2);
   const minD = Math.min(W, D);
   let y0 = baseY;
@@ -569,7 +585,7 @@ function skirtRoof(ctx, g, { sides, W, D, inset, ovh, baseY, brackets, liftScale
   const tw = inset / (inset + ovh);
   const th = clamp(ovh * 0.1, 0.15, 0.45);
   const P = profile(0.55);
-  const Hs = (inset + ovh) * 0.45;
+  const Hs = vertical?.lowerRoofRise ?? (inset + ovh) * 0.45;
   const yb = y0 + th - Hs * P(tw);
   const Y = t => yb + Hs * P(t);
   const lift = {
@@ -598,16 +614,24 @@ function roofInto(ctx, g, o) {
   const sides = type === 'pavilion' && o.sides === 8 ? 8 : 4;
   const ovh = o.overhang ?? defaultOverhang(W, D);
   const inset = clamp(Math.min(W, D) * 0.12, 1.2, 5);
-  const sk = skirtRoof(ctx, g, { sides, W, D, inset, ovh, baseY: o.baseY ?? 0, brackets: o.brackets ?? true, liftScale: o._lift ?? 1 });
+  const vertical = o.wumenVerticalProfile?.roof;
+  const sk = skirtRoof(ctx, g, { sides, W, D, inset, ovh, baseY: o.baseY ?? 0, brackets: o.brackets ?? true, liftScale: o._lift ?? 1, vertical });
   // 上层屋身：红木身 + 额枋彩画
   const Wi = W - inset * 2, Di = D - inset * 2;
   const gap = clamp(Math.min(W, D) * 0.05, 0.8, 2.4);
-  const cb = clamp(Math.min(Wi, Di) * 0.035, 0.35, 1.2);
-  const bodyTop = sk.topY + gap + cb;
+  const cb = vertical?.upperCaihuaHeight ?? clamp(Math.min(Wi, Di) * 0.035, 0.35, 1.2);
+  const bodyTop = vertical?.upperCaihuaTopY ?? sk.topY + gap + cb;
   add(g, prismGeometry(polyCorners(sides, Wi / 2, Di / 2), sk.y0, bodyTop - cb, { tile: ctx.tile.wood }), ctx.mat.wood);
   add(g, prismGeometry(polyCorners(sides, Wi / 2 + 0.04, Di / 2 + 0.04), bodyTop - cb, bodyTop, { band: cb * ctx.aspect.caihua }), ctx.mat.caihua);
+  if (vertical) {
+    // Source y399 is only an internal partition. Keep the lower exposed layer
+    // down to the y412 tile junction; painted material is a provisional label.
+    const lowerBandH = vertical.upperWoodTopY - sk.topY;
+    add(g, prismGeometry(polyCorners(sides, Wi / 2 + 0.04, Di / 2 + 0.04), sk.topY, vertical.upperWoodTopY,
+      { band: lowerBandH * ctx.aspect.caihua }), ctx.mat.caihua);
+  }
   const upper = singleRoof(ctx, g, {
-    ...o, width: Wi, depth: Di, baseY: bodyTop, overhang: undefined,
+    ...o, width: Wi, depth: Di, baseY: bodyTop, overhang: undefined, _wumenUpper: vertical,
     height: o.height ?? Math.min(Wi, Di) * (type === 'pavilion' ? 0.5 : 0.4),
   });
   // Attachment metadata only: these are the actual generated lower-ridge and
@@ -649,12 +673,30 @@ export function buildRoof(lib, opts) {
   const type = aliases[opts.type] ?? opts.type ?? 'wudian';
   if (!['wudian', 'xieshan', 'pavilion', 'gable'].includes(type)) throw new Error(`Unsupported roof type: ${type}`);
   opts = { ...opts, type, layers: opts.eaveCount ?? opts.layers };
+  if (opts.wumenVerticalProfile !== undefined) {
+    const p = WUMEN_VERTICAL_PROFILE;
+    if (opts.wumenVerticalProfile !== p || type !== 'wudian' || opts.layers !== 2 || opts.brackets !== true ||
+        opts.width !== p.retained.roofInputWidth || opts.depth !== p.retained.roofInputDepth ||
+        !Number.isFinite(opts.baseY) || Math.abs(opts.baseY - p.roof.baseY) > 1e-10 || opts.height !== 9 || opts.overhang !== undefined || opts._lift !== undefined) {
+      throw new Error('Wumen vertical profile requires the exact reviewed main-tower inputs');
+    }
+  }
+  if (opts._wumenUpper !== undefined) throw new Error('Internal Wumen upper-roof option is not a public override');
   const ctx = makeCtx(lib, opts.detail);
   const g = new THREE.Group();
   g.name = `roof_${opts.type ?? 'wudian'}`;
   const r = roofInto(ctx, g, opts);
   const roof = finalize(ctx, g, r.eaveY);
   if (r.doubleEaveMountingBand) roof.userData.doubleEaveMountingBand = r.doubleEaveMountingBand;
+  if (opts.wumenVerticalProfile) {
+    const p = opts.wumenVerticalProfile;
+    const actualBounds = new THREE.Box3().setFromObject(roof);
+    roof.userData.wumenVerticalProfile = { id: p.id, status: p.status, provenance: p.provenance,
+      landmarks: p.roof, lowerBandBottomY: p.roof.lowerTileInnerY,
+      underside: 'PROVISIONAL_RECTANGULAR_BEARING_TO_EAVE_ANNULUS_NOT_EXACT_JOINERY',
+      tileRidgeY: p.roof.upperTileRidgeY, actualOrnamentMaxY: roof.userData.topY,
+      actualBounds: { min: actualBounds.min.toArray(), max: actualBounds.max.toArray() } };
+  }
   return roof;
 }
 

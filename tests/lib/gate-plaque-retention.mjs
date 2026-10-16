@@ -14,14 +14,14 @@ export function restoreGatePlaques(c,name){
   assert.equal(plaque.userData.gatePlaque.side,isWumen?'south':'north');
   assert.equal(plaque.userData.noMerge,true);assert.equal(plaque.material.length,2);
   assert.equal(plaque.material[0].map,null);assert.ok(plaque.material[1].map?.isCanvasTexture);
-  const expected=isWumen?[0,29.335767583966962,-10.038399772644043]:[0,8.4,13.31];
+  const expected=isWumen?[0,23.47933751306165,-10.728]:[0,8.4,13.31];
   plaque.position.toArray().forEach((v,i)=>assert.ok(Math.abs(v-expected[i])<1e-10,'Only the finite model-fit placement is accepted'));
   if(isWumen){
     const dimensions=plaque.userData.gatePlaque.dimensions;
-    assert.ok(Math.abs(dimensions.width-1.5335084571830508)<1e-10);
-    assert.ok(Math.abs(dimensions.height-1.7038982857589453)<1e-10);
+    assert.ok(Math.abs(dimensions.width-2.9730545454545454)<1e-10);
+    assert.ok(Math.abs(dimensions.height-3.3033939393939393)<1e-10);
     assert.equal(dimensions.depth,.12);
-    assert.equal(plaque.userData.gatePlaque.mount.kind,'generated-visible-double-eave-band');
+    assert.equal(plaque.userData.gatePlaque.mount.kind,'source-proportioned-fixed-reviewed-mount');
     assert.equal(plaque.userData.gatePlaque.mount.surfaceProbeCount,7);
   }
   assert.deepEqual(plaque.scale.toArray(),[1,1,1]);

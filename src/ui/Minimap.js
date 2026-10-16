@@ -2,6 +2,8 @@ import * as THREE from 'three';
 import { PALACE_LAYOUT } from '../scene/Layout.js';
 import { LAYOUT, TELEPORT } from '../config/constants.js';
 import { hasShortcutModifier, isTextEntryTarget } from '../controls/InputTargets.js';
+import { PlaceCatalog } from './PlaceCatalog.js';
+import { PlaceInfoPanel } from './PlaceInfoPanel.js';
 
 const MAP_HEADINGS = ['北', '东北', '东', '东南', '南', '西南', '西', '西北'];
 
@@ -10,11 +12,20 @@ const MAP_HEADINGS = ['北', '东北', '东', '东南', '南', '西南', '西', 
  */
 
 export class Minimap {
-  constructor({ items = [], preview = false, onTeleport = null, onToggle = null } = {}) {
+  constructor({ items = [], preview = false, onTeleport = null, onToggle = null, hasTeleportTarget = () => false } = {}) {
     this.visible = false;
     this.compact = false;
     this.compactSectionState = new Map();
     this.onTeleport = onTeleport;
+    this.hasTeleportTarget = hasTeleportTarget;
+    this.selectedPlaceId = null;
+    this.selection = null;
+    this.selectionGeneration = 0;
+    this.detailVisible = false;
+    this.disposed = false;
+    // Invalid content degrades to the same safe unknown-place selection.
+    try { this.placeCatalog = new PlaceCatalog(); }
+    catch (error) { console.warn(error.message); this.placeCatalog = null; }
     this.onToggle = onToggle;
     this.labels = [];
     this.secondaryTaps = new Map();
@@ -86,14 +97,14 @@ export class Minimap {
     this.headingLabel.textContent = '朝向 北';
     this.compactHint = document.createElement('span');
     this.compactHint.id = 'minimap-compact-hint';
-    this.compactHint.textContent = '展开后可传送';
+    this.compactHint.textContent = '展开查看介绍或传送';
     status.append(this.headingLabel, this.compactHint);
     this.sizeToggle = document.createElement('button');
     this.sizeToggle.id = 'minimap-size-toggle';
     this.sizeToggle.type = 'button';
     this.sizeToggle.textContent = '收起到角落';
     this.sizeToggle.setAttribute('aria-label', '收起地图到角落，继续行走');
-    this.sizeToggle.setAttribute('aria-controls', 'minimap-tools teleport-points');
+    this.sizeToggle.setAttribute('aria-controls', 'minimap-tools teleport-points place-list place-info');
     this.sizeToggle.setAttribute('aria-expanded', 'true');
     this.sizeToggle.addEventListener('click', e => {
       e.stopPropagation();
@@ -151,7 +162,7 @@ export class Minimap {
     // 提示文字
     const hint = document.createElement('div');
     hint.id = 'minimap-help';
-    hint.textContent = '滚轮/双指缩放 · 拖动平移 · 点击建筑名称传送 · 方向键/WASD/摇杆继续走动，Q/E 转向 · 按 M 或关闭按钮退出 · 钦安殿仅设地面外观观览点';
+    hint.textContent = '滚轮/双指缩放 · 拖动平移 · 点击名称看介绍，再点前往 · 方向键/WASD/摇杆继续走动，Q/E 转向 · 按 M 或关闭按钮退出 · 钦安殿仅设地面外观观览点';
     hint.style.cssText = `
       color: #999;
       font-size: 12px;
@@ -162,18 +173,26 @@ export class Minimap {
     const quick = document.createElement('div');
     quick.id = 'teleport-points';
     quick.style.cssText = 'display:grid;gap:6px;margin-top:10px';
+    quick.setAttribute('role', 'group');
+    quick.setAttribute('aria-label', '快捷传送');
+    const quickTitle = document.createElement('h2');
+    quickTitle.id = 'teleport-heading';
+    quickTitle.textContent = '快捷传送';
+    this.container.appendChild(quickTitle);
     TELEPORT.POINTS.forEach((point, index) => {
       const button = document.createElement('button');
       button.type = 'button';
       button.dataset.teleport = point.target;
-      button.setAttribute('aria-label', `传送到${point.name}`);
-      button.textContent = `${index + 1} ${point.name}`;
+      button.setAttribute('aria-label', `前往${point.name}`);
+      button.textContent = `${index + 1} 前往${point.name}`;
       button.style.cssText = 'min-height:44px;padding:4px;color:#ffd764;background:#382d20;border:1px solid #9f804a;border-radius:6px;font-size:12px;touch-action:manipulation';
       button.addEventListener('click', () => { if (this.onTeleport?.(point.target)) this.toggle(); });
       quick.appendChild(button);
     });
     this.container.appendChild(quick);
-    this.compactSections = [title, bar, hint, quick];
+    this.initPlaceInformation();
+    this.mapSections = [title, this.canvas, bar, hint, quickTitle, quick, this.placeList, this.resumePlace];
+    this.compactSections = [title, bar, hint, quickTitle, quick, this.placeList, this.resumePlace];
     
     document.body.appendChild(this.container);
     
@@ -210,6 +229,7 @@ export class Minimap {
     close.textContent = '关闭地图';
     close.style.cssText = 'display:block;margin:8px auto;min-height:44px;color:#ffd764;background:#33291e;border:1px solid #ffd764;border-radius:6px';
     close.addEventListener('click', () => this.toggle());
+    this.closeButton = close;
     this.container.appendChild(close);
     this.bindSecondaryTaps(this.container);
     if (this.preview) this.bindSecondaryTaps(this.preview);
@@ -217,6 +237,123 @@ export class Minimap {
     // 初始绘制
     this.resizeCanvas();
     this.drawMap();
+  }
+
+  initPlaceInformation() {
+    this.placeList = document.createElement('section');
+    this.placeList.id = 'place-list';
+    const heading = document.createElement('h2');
+    heading.textContent = '地点介绍';
+    this.placeList.appendChild(heading);
+    for (const place of this.placeCatalog?.places ?? []) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = place.name;
+      button.setAttribute('aria-label', `了解${place.name}`);
+      button.addEventListener('click', () => this.showPlace(place.id));
+      this.placeList.appendChild(button);
+    }
+    this.resumePlace = document.createElement('button');
+    this.resumePlace.id = 'place-resume';
+    this.resumePlace.type = 'button';
+    this.resumePlace.hidden = this.resumePlace.inert = true;
+    this.resumePlace.addEventListener('click', () => {
+      if (this.selection) this.selectMapLabel(this.selection);
+    });
+    this.placeHeader = document.createElement('div');
+    this.placeHeader.id = 'place-header';
+    this.placeHeader.hidden = this.placeHeader.inert = true;
+    this.placeBack = document.createElement('button');
+    this.placeBack.id = 'place-back';
+    this.placeBack.type = 'button';
+    this.placeBack.textContent = '返回地图';
+    this.placeBack.addEventListener('click', () => this.backToMap());
+    this.placeHeader.appendChild(this.placeBack);
+    this.placePanel = new PlaceInfoPanel();
+    this.placeAnnouncement = document.createElement('div');
+    this.placeAnnouncement.id = 'place-announcement';
+    this.placeAnnouncement.setAttribute('aria-live', 'polite');
+    this.placeAnnouncement.setAttribute('aria-atomic', 'true');
+    this.container.append(this.placeList, this.resumePlace, this.placeHeader, this.placePanel.element, this.placeAnnouncement);
+  }
+
+  showPlace(id) {
+    const place = this.placeCatalog?.get(id);
+    if (!place || !this.visible || this.compact || this.disposed) return false;
+    this.selectMapLabel({ name: place.name, placeId: id });
+    return true;
+  }
+
+  canTravelToPlace(name) {
+    // Teleport intentionally stays keyed by name. Refuse an ambiguous map
+    // identity before consulting it, including labels omitted by decluttering.
+    const layouts = PALACE_LAYOUT.filter(item => ['palace', 'gate', 'garden'].includes(item.type) && item.name === name);
+    const sides = this.items.filter(item => item.kind !== 'corridor' && item.name === name);
+    return layouts.length + sides.length <= 1 && this.labels.filter(label => label.name === name).length <= 1 && this.hasTeleportTarget(name);
+  }
+
+  selectMapLabel(label) {
+    if (!this.visible || this.compact || this.disposed) return;
+    const place = this.placeCatalog?.get(label.placeId);
+    // Never match a card by a global display name or an unverified stale ID.
+    const selected = place?.name === label.name ? place : null;
+    if (this.detailVisible && this.selection?.name === label.name && this.selectedPlaceId === (selected?.id ?? null)) return;
+    if (!this.detailVisible) {
+      this.mapScrollTop = this.container.scrollTop;
+      this.mapReturnFocus = document.activeElement;
+    }
+    this.cancelMapGesture?.();
+    this.secondaryTaps.clear();
+    const generation = ++this.selectionGeneration;
+    this.selection = { name: label.name, placeId: selected?.id ?? null };
+    this.selectedPlaceId = selected?.id ?? null;
+    this.detailVisible = true;
+    const target = selected?.modelExperience.teleportTargetName ?? label.name;
+    const canTravel = this.canTravelToPlace(target);
+    const title = this.placePanel.render({ place: selected, name: label.name,
+      sources: selected ? this.placeCatalog.sourcesFor(selected) : [], canTravel,
+      onTravel: button => {
+        if (this.disposed || !this.visible || this.compact || !this.detailVisible ||
+            generation !== this.selectionGeneration || !button.isConnected || !this.placePanel.element.contains(button) ||
+            !this.canTravelToPlace(target)) return;
+        if (this.onTeleport?.(target)) this.toggle();
+      },
+    });
+    for (const node of this.mapSections) node.hidden = node.inert = true;
+    this.placeHeader.hidden = this.placeHeader.inert = false;
+    this.placePanel.element.hidden = this.placePanel.element.inert = false;
+    this.placeHeader.appendChild(this.closeButton);
+    this.container.setAttribute('data-detail', 'true');
+    this.container.scrollTop = 0;
+    this.placeAnnouncement.textContent = `已选择${label.name}`;
+    title.focus({ preventScroll: true });
+  }
+
+  backToMap(focus = true) {
+    if (!this.detailVisible) return;
+    this.selectionGeneration++;
+    this.secondaryTaps.clear();
+    this.detailVisible = false;
+    this.placePanel.element.hidden = this.placePanel.element.inert = true;
+    this.placeHeader.hidden = this.placeHeader.inert = true;
+    this.container.appendChild(this.closeButton);
+    for (const node of this.mapSections) node.hidden = node.inert = false;
+    this.resumePlace.hidden = this.resumePlace.inert = !this.selection;
+    this.resumePlace.textContent = this.selection ? `继续阅读${this.selection.name}` : '';
+    this.container.setAttribute('data-detail', 'false');
+    this.resizeCanvas(true);
+    this.drawMap();
+    this.container.scrollTop = this.mapScrollTop ?? 0;
+    if (focus) (this.mapReturnFocus?.isConnected && this.container.contains(this.mapReturnFocus) ? this.mapReturnFocus : this.sizeToggle).focus({ preventScroll: true });
+  }
+
+  clearPlaceSelection() {
+    this.backToMap(false);
+    this.selectionGeneration++;
+    this.selectedPlaceId = null;
+    this.selection = null;
+    this.resumePlace.hidden = this.resumePlace.inert = true;
+    this.placeAnnouncement.textContent = '';
   }
 
   // ───────────────────────── 缩放 / 平移 ─────────────────────────
@@ -228,6 +365,7 @@ export class Minimap {
 
   /** 按容器实际宽度重算画布尺寸（竖长地图，限制高度不超过视口 62%） */
   resizeCanvas(preserveView = false) {
+    if (this.detailVisible) return;
     let maxH = window.innerHeight * 0.66;
     this.canvas.hidden = false;
     this.container.setAttribute('data-compact-collapsed', 'false');
@@ -263,6 +401,11 @@ export class Minimap {
 
   setCompact(compact) {
     if (!this.visible || this.compact === compact) return;
+    if (this.detailVisible) {
+      this.sizeToggle.focus({ preventScroll: true });
+      this.backToMap(false);
+    }
+    this.selectionGeneration++;
     this.cancelMapGesture();
     this.secondaryTaps.clear();
     this.compact = compact;
@@ -345,7 +488,7 @@ export class Minimap {
     listen('touchstart', e => {
       if (e.touches.length < 2) return;
       for (const touch of e.changedTouches) {
-        const button = touch.target?.closest?.('button');
+        const button = touch.target?.closest?.('button, a');
         if (!button || !root.contains(button) || button.id === 'structural-preview-button') continue;
         this.secondaryTaps.set(touch.identifier, { button, x: touch.clientX, y: touch.clientY, time: performance.now() });
       }
@@ -361,7 +504,7 @@ export class Minimap {
         const tap = this.secondaryTaps.get(touch.identifier);
         if (!tap) continue;
         this.secondaryTaps.delete(touch.identifier);
-        if (e.type !== 'touchend' || performance.now() - tap.time > 600 ||
+        if (e.type !== 'touchend' || !root.contains(tap.button) || tap.button.closest('[hidden], [inert]') || performance.now() - tap.time > 600 ||
             Math.hypot(touch.clientX - tap.x, touch.clientY - tap.y) > 10) continue;
         e.preventDefault();
         this.suppressedClicks.set(tap.button, performance.now() + 750);
@@ -372,7 +515,7 @@ export class Minimap {
     listen('touchend', end, { passive: false });
     listen('touchcancel', end, { passive: false });
     listen('click', e => {
-      const button = e.target?.closest?.('button');
+      const button = e.target?.closest?.('button, a');
       const until = this.suppressedClicks.get(button);
       if (e.detail > 0 && until !== undefined && performance.now() <= until) {
         e.preventDefault();
@@ -462,12 +605,12 @@ export class Minimap {
 
   handleMapClick(p) {
     // A small navigation map must not turn an imprecise tap into travel.
-    if (this.compact) return;
+    if (!this.visible || this.compact || this.detailVisible || this.disposed) return;
     const m = this.screenToMap(p.x, p.y);
     const tol = 3 / this.view.k;
     const label = [...this.labels].reverse().find(it =>
       Math.abs(m.x - it.x) <= it.width / 2 + tol && Math.abs(m.y - it.y) <= it.height / 2 + tol);
-    if (label && this.onTeleport?.(label.name)) this.toggle();
+    if (label) this.selectMapLabel(label);
   }
   
   /**
@@ -534,6 +677,7 @@ export class Minimap {
     else {
       this.cancelMapGesture();
       this.secondaryTaps.clear();
+      this.clearPlaceSelection();
     }
     this.preview?.setAttribute('aria-expanded', String(this.visible));
     this.onToggle?.(this.visible);
@@ -569,13 +713,13 @@ export class Minimap {
     return [Math.min(a.x, b.x), Math.min(a.y, b.y), Math.abs(b.x - a.x), Math.abs(b.y - a.y)];
   }
 
-  drawLabel(text, x, y, bold, size = 10, targetName = text, mode) {
+  drawLabel(text, x, y, bold, size = 10, targetName = text, mode, placeId = null) {
     const ctx = this.ctx;
     ctx.font = `${bold ? 'bold ' : ''}${size}px sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     const tw = ctx.measureText(text).width;
-    this.labels.push({ name: targetName, x, y, width: tw + 4, height: size + 2, ...(mode ? { mode } : {}) });
+    this.labels.push({ name: targetName, placeId, x, y, width: tw + 4, height: size + 2, ...(mode ? { mode } : {}) });
     ctx.fillStyle = 'rgba(255, 255, 255, 0.72)';
     ctx.fillRect(x - tw / 2 - 2, y - size / 2 - 1, tw + 4, size + 2);
     ctx.fillStyle = 'rgba(0, 0, 0, 0.9)';
@@ -610,7 +754,7 @@ export class Minimap {
       if (placed.some(p => Math.abs(p.x - cx) < 22 && Math.abs(p.y - cy) < 9)) continue;
       placed.push({ x: cx, y: cy });
       const mode = it.navigation?.mode;
-      this.drawLabel(mode === 'exterior-view' ? `${it.name}（外观）` : it.name, cx, cy, it.kind === 'hall', it.kind === 'hall' ? 9 : 8, it.name, mode);
+      this.drawLabel(mode === 'exterior-view' ? `${it.name}（外观）` : it.name, cx, cy, it.kind === 'hall', it.kind === 'hall' ? 9 : 8, it.name, mode, this.placeCatalog?.forMapItem(it, this.items)?.id);
     }
   }
   
@@ -782,7 +926,7 @@ export class Minimap {
       ctx.strokeStyle = strokeColor;
       ctx.lineWidth = 1.2;
       ctx.strokeRect(x, y, mapW, mapH);
-      if (name && showLabel) this.drawLabel(name, x + mapW / 2, y + mapH / 2, type === 'palace', type === 'palace' ? 11 : 10);
+      if (name && showLabel) this.drawLabel(name, x + mapW / 2, y + mapH / 2, type === 'palace', type === 'palace' ? 11 : 10, name, undefined, this.placeCatalog?.forBinding({ kind: 'layout', name })?.id);
     }
 
     // 两侧宫院
@@ -821,6 +965,9 @@ export class Minimap {
   }
   
   dispose() {
+    this.disposed = true;
+    this.clearPlaceSelection();
+    this.placePanel.dispose();
     this.cancelMapGesture();
     this.secondaryTaps.clear();
     this.suppressedClicks.clear();

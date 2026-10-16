@@ -155,7 +155,8 @@ test('actual central roof fits a 16:9 initial frame without changing FOV or pitc
     return stats;
   }
   const legacy = projection(LAYOUT.START_POSITION.z), candidate = projection(position.z);
-  assert.ok(legacy.clipped > 0 && legacy.maxY > 1, 'test must reproduce old roof clipping');
+  assert.equal(legacy.clipped,0,'lowered tower no longer clips at the historical -470 position; entry itself remains -494');
+  assert.ok(legacy.maxY<1,'obsolete old-tower clipping is not a current expectation');
   assert.ok(candidate.count > 1000, 'test projects actual roof geometry');
   assert.equal(candidate.clipped, 0);
   assert.ok(candidate.maxY < .8 && candidate.maxAbsX < .5, JSON.stringify(candidate));

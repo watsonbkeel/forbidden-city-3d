@@ -1,8 +1,9 @@
 import test from 'node:test';
+import { restorePlaceInfoBytes } from './lib/place-info-source-delta.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { V13_ENTRY_MAIN_DELTAS, restoreV10EntryMainBytes, assertV13EntryMainBytes } from './lib/v13-entry-source-delta.mjs';
-const current = readFileSync(new URL('../main.js', import.meta.url));
+const current = restorePlaceInfoBytes('main.js', readFileSync(new URL('../main.js', import.meta.url)));
 
 test('only four exact entry-position hunks restore the unchanged V10 main.js identity', () => {
   assertV13EntryMainBytes(current);

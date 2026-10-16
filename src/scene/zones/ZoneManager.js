@@ -100,7 +100,7 @@ export class ZoneManager {
     // 确定初始所在区
     this.currentId = this.findZone(initialPos.x, initialPos.z);
     if (!this.currentId) {
-      console.warn('[ZoneManager] 玩家初始位置不在任何区内，默认加载所有区');
+      console.warn('[ZoneManager] 玩家初始位置不在任何区内，当前区回退到首个注册区');
       this.currentId = this.zones.keys().next().value; // 取第一个区
     }
 

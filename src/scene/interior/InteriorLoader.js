@@ -4,7 +4,7 @@
  * - 每座 S 档殿一份 data/interiors/<hallId>.json（见 data/interiors/schema.md），GLB 以殿身局部坐标建模
  *   （原点 = 殿中心、地面 y=0、正面朝 −Z）；加载后放到 frame(x, floorY, z, rot) 下。
  * - 玩家距殿身包围盒 ≤ preload.enter（默认 15 m）开始加载；≥ preload.exit（默认 40 m）卸载并释放显存。
- * - 加载期间保留 B 档（PalaceBuilder 程序化内景，始终存在），GLB 就绪后 300 ms 淡入叠加。
+ * - 加载期间保留 B 档；太和殿验证后原子替换独立核心，其余殿 GLB 就绪后 300 ms 淡入叠加。
  * - 名字 COL_* 的 mesh 作碰撞代理（Box3，渲染隐藏），WALK_* 作可行走面；tag = `interior:<hallId>`，卸载时 removeByTag。
  * - 加载失败：保留 B 档并 console.warn，记入 stats.failed，不再重试（直到 unload 后再次进入）。
  *
@@ -18,6 +18,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 import { KTX2Loader } from 'three/examples/jsm/loaders/KTX2Loader.js';
 import { INTERIORS } from './registry.js';
+import { validateTaiheCore, taiheFallbackMeshes, installTaiheGlyphs, installTaiheColumnTextures, isTaiheSharedAtlas } from './TaiheCoreContract.js';
 
 const FADE_MS = 300;
 const DEFAULT_ENTER = 15;
@@ -116,7 +117,8 @@ export class InteriorLoader {
           resolve(true);
         } catch (err) {
           console.warn(`[InteriorLoader] ${h.cfg.hall} 安装失败，保留 B 档：`, err);
-          if (h.id === 'kunning') {
+          if (h.id === 'kunning' || h.id === 'taihe') {
+            if (h.id === 'taihe') this._restoreTaiheFallback(h);
             this.cm?.removeByTag(`interior:${h.id}`);
             if (h.group) this.scene.remove(h.group);
             disposeObject(h.group ?? gltf.scene);
@@ -148,11 +150,19 @@ export class InteriorLoader {
     const cfg = h.cfg;
     // Validate the optional layer before a collider, light, fade or scene object is registered.
     if (h.id === 'kunning') validateKunningFurniture(root, cfg);
+    if (h.id === 'taihe') {
+      validateTaiheCore(root, cfg);
+      const fallback = taiheFallbackMeshes(this.scene);
+      if (fallback.length !== 8 || fallback.some(m => !m.visible)) throw new Error('Taihe fallback ownership unavailable');
+      h.fallback = fallback;
+      installTaiheGlyphs(root, fallback.find(mesh => mesh.material.name === 'taihe_glyph_atlas')?.material.map);
+      installTaiheColumnTextures(root, fallback.find(mesh => mesh.material.name === 'taihe_gold')?.material);
+    }
     const f = cfg.frame;
     const floorY = this._floorY(cfg);
     const group = new THREE.Group();
     group.name = `interior:${h.id}`;
-    if (h.id === 'kunning') h.group = group; // rollback owns even a partially installed group
+    if (h.id === 'kunning' || h.id === 'taihe') h.group = group; // rollback owns even a partially installed group
     group.position.set(f.x + (cfg.anchor?.x ?? 0), floorY + (cfg.anchor?.y ?? 0), f.z + (cfg.anchor?.z ?? 0));
     group.rotation.y = f.rot ?? 0;
     group.add(root);
@@ -193,15 +203,22 @@ export class InteriorLoader {
       h.lights.push(light);
     }
 
-    // 淡入：先透明再 300 ms 到 1
-    h.fade = { t0: performance.now(), mats: [...mats], restore: new Map() };
-    for (const m of h.fade.mats) {
-      h.fade.restore.set(m, { transparent: m.transparent, opacity: m.opacity, depthWrite: m.depthWrite });
-      m.transparent = true;
-      m.opacity = 0;
+    // Taihe is an atomic visual replacement: no duplicated transparent cores.
+    // Every throwing install step occurs before its known fallback is hidden.
+    if (h.id !== 'taihe') {
+      h.fade = { t0: performance.now(), mats: [...mats], restore: new Map() };
+      for (const m of h.fade.mats) {
+        h.fade.restore.set(m, { transparent: m.transparent, opacity: m.opacity, depthWrite: m.depthWrite });
+        m.transparent = true;
+        m.opacity = 0;
+      }
     }
-
+    if (h.id === 'taihe') group.visible = false;
     this.scene.add(group);
+    if (h.id === 'taihe') {
+      h.fallback.forEach(mesh => { mesh.visible = false; });
+      group.visible = true;
+    }
     h.group = group;
     h.state = 'loaded';
     h.promise = null;
@@ -229,10 +246,19 @@ export class InteriorLoader {
     }
   }
 
+  _restoreTaiheFallback(h) {
+    (h.fallback ?? []).forEach(mesh => { mesh.visible = true; });
+    h.fallback = null;
+  }
+
   /** 卸载并释放显存；idle 态无操作 */
   unload(hallId) {
     const h = this.halls.get(hallId);
     if (!h || h.state === 'idle') return;
+    if (h.id === 'taihe') {
+      if (h.group) h.group.visible = false;
+      this._restoreTaiheFallback(h);
+    }
     h.token++; // 使在途加载作废
     h.promise = null;
     h.fade = null;
@@ -295,7 +321,7 @@ function disposeObject(root) {
     if (o.isLight) o.dispose?.();
   });
   for (const m of mats) {
-    for (const v of Object.values(m)) if (v && v.isTexture) texs.add(v);
+    for (const v of Object.values(m)) if (v && v.isTexture && !isTaiheSharedAtlas(m, v)) texs.add(v);
     m.dispose();
   }
   for (const t of texs) t.dispose();
@@ -313,7 +339,7 @@ function estimateBytes(root) {
       if (g.index) bytes += g.index.array.byteLength;
     }
     const list = Array.isArray(o.material) ? o.material : [o.material];
-    for (const m of list) if (m) for (const v of Object.values(m)) if (v && v.isTexture) texs.add(v);
+    for (const m of list) if (m) for (const v of Object.values(m)) if (v && v.isTexture && !isTaiheSharedAtlas(m, v)) texs.add(v);
   });
   for (const t of texs) {
     const img = t.image;

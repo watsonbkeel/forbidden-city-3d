@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import crypto from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {readHistoricalSource} from '../lib/historical-sources.mjs';
+import {restoreV13WayfindingCollisionBytes} from '../lib/v14-wayfinding-source-delta.mjs';
 import baseline from '../fixtures/v7-qinan-route-baseline.json' with {type:'json'};
 import {buildWorld, walkStraight} from '../lib/world.mjs';
 import {buildAutoRoutes} from '../lib/auto-routes.mjs';
@@ -64,12 +65,15 @@ test('historical through-hall route is retained verbatim as negative legacy evid
  const result=walkStraight(W,old.pts[1],old.pts[2],{feet0:0});assert.ok(result.reached<result.total-1,JSON.stringify(result));assert.equal(result.feet,0);
  const north=walkStraight(W,[0,503],[0,495],{feet0:0});assert.ok(north.reached<north.total-1,JSON.stringify(north));
 });
-test('driver/collision/V5 fixture retain V7 bytes; FirstPerson and constants allow only composed finite V9 input, map and gate deltas',()=>{
+test('driver/collision/V5 fixture preserve V7 bytes after only approved finite V9 and V14 deltas',()=>{
  const files=['tests/lib/stepwalk-runner.cjs','tests/lib/physical-waypoints.mjs','tests/lib/terrace-walk.mjs','tests/lib/zhaode-walk.mjs','src/controls/FirstPerson.js','src/utils/Collision.js','src/config/constants.js','tests/fixtures/v5-fixed-routes.json'];
  for(const path of files){const old=readHistoricalSource(baseline.commit,path),current=fs.readFileSync(new URL(`../../${path}`,import.meta.url));
   if(path==='src/controls/FirstPerson.js') assertV9MapFirstPersonBytes(old,current);
   else if(path==='src/config/constants.js') assertGateConstantsBytes(old,current);
-  else assert.equal(crypto.createHash('sha256').update(current).digest('hex'),crypto.createHash('sha256').update(old).digest('hex'),path);
+  else {
+   const retained=path==='src/utils/Collision.js'?restoreV13WayfindingCollisionBytes(current):current;
+   assert.equal(crypto.createHash('sha256').update(retained).digest('hex'),crypto.createHash('sha256').update(old).digest('hex'),path);
+  }
  }
 });
 

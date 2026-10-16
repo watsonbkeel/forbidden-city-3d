@@ -51,13 +51,13 @@ test('cancellation discards late Kunning scene without touching permanent B', as
   loader.dispose();
 });
 
-test('only Kunning opts into furniture-only contract validation', async () => {
+test('unchanged Qianqing retains the legacy optional-proxy contract', async () => {
   const scene = new THREE.Scene(), cm = new CollisionManager();
-  const loader = new InteriorLoader(scene, cm, { registry: { taihe: INTERIORS.taihe } });
+  const loader = new InteriorLoader(scene, cm, { registry: { qianqing: INTERIORS.qianqing } });
   loader.gltf.load = (_url, ok) => ok({ scene: rootWithProxy('COL_legacy') });
-  assert.equal(await loader.load('taihe'), true);
+  assert.equal(await loader.load('qianqing'), true);
   assert.equal(cm.colliders.length, 1);
-  loader.unload('taihe'); assert.equal(cm.colliders.length, 0);
+  loader.unload('qianqing'); assert.equal(cm.colliders.length, 0);
   loader.dispose();
 });
 

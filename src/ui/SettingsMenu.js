@@ -56,7 +56,7 @@ export class SettingsMenu {
           <label for="quality-toggle-btn">画质</label>
           <button id="quality-toggle-btn" type="button">高画质</button>
         </div>
-        <p class="settings-help">按 M 显示/隐藏小地图。地图打开时仍可用方向键、WASD 或屏幕方向盘移动；拖动地图不会改变行走方向。点击建筑名称传送后，请松开再重新按键或触摸方向盘。设置菜单会暂停移动。数字键 1–8：午门、太和殿、乾清宫、御花园、东六宫、西六宫、宁寿宫、神武门。</p>
+        <p class="settings-help">按 M 显示/隐藏小地图。地图打开时仍可用方向键、WASD 或屏幕方向盘移动；拖动地图不会改变行走方向。点击建筑名称查看介绍，再点“前往”传送；传送后，请松开再重新按键或触摸方向盘。设置菜单会暂停移动。数字键 1–8：午门、太和殿、乾清宫、御花园、东六宫、西六宫、宁寿宫、神武门。</p>
         <details id="preview-details">
           <summary>资料来源与限制（各项核查日期见下）</summary>
           <h3>有资料支持的结构</h3>

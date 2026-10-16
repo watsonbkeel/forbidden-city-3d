@@ -30,10 +30,10 @@ test('real TextureLibrary production material naming initializes the Wumen plaqu
  assert.deepEqual(Array.from(plaque.geometry.attributes.position.array),Array.from(before.geometry.attributes.position.array));
 });
 
-test('real production materials retain both glyph ink cells visibility from unchanged C1 and south-cardinal poses',()=>{
+test('real production materials retain both glyph ink cells visibility from frozen C3 and unchanged actual entry',()=>{
  const {group,plaque}=productionGate(),d=plaque.userData.gatePlaque.dimensions;
  const halfInk=Math.min(d.innerHeight/2*.83,d.innerWidth*.72)/2;
- for(const from of [[3,30,-24],[0,30,-24]])for(const cy of [d.innerHeight/4,-d.innerHeight/4])for(const dx of [-.95,0,.95])for(const dy of [-.95,0,.95]){
+ for(const from of [[3,25,-40],[0,1.7,-74.4]])for(const cy of [d.innerHeight/4,-d.innerHeight/4])for(const dx of [-.95,0,.95])for(const dy of [-.95,0,.95]){
   const origin=new THREE.Vector3(...from),to=plaque.localToWorld(new THREE.Vector3(dx*halfInk,cy+dy*halfInk,d.depth)),delta=to.sub(origin);
   const hits=new THREE.Raycaster(origin,delta.clone().normalize(),0,delta.length()+1e-5).intersectObject(group,true);
   assert.equal(hits[0]?.object,plaque);assert.equal(hits[0].face.materialIndex,1);
@@ -62,7 +62,7 @@ test('whole production buildGate and finish merge preserve the plaque and exact 
  assert.deepEqual(plaque.userData.gatePlaque,before.userData.gatePlaque);
  const d=plaque.userData.gatePlaque.dimensions;
  for(const cy of [d.innerHeight/4,-d.innerHeight/4]){
-  const origin=new THREE.Vector3(3,30,expected.data.position.z-24),to=plaque.localToWorld(new THREE.Vector3(0,cy,d.depth)),delta=to.sub(origin);
+  const origin=new THREE.Vector3(3,25,expected.data.position.z-40),to=plaque.localToWorld(new THREE.Vector3(0,cy,d.depth)),delta=to.sub(origin);
   const hits=new THREE.Raycaster(origin,delta.clone().normalize(),0,delta.length()+1e-5).intersectObject(group,true);
   assert.equal(hits[0]?.object,plaque);assert.equal(hits[0].face.materialIndex,1);
  }

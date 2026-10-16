@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { restorePlaceInfoBytes } from './lib/place-info-source-delta.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -17,7 +18,7 @@ function setup(t) {
 test('V9 help explains map walking and the fresh-input teleport boundary', t => {
   const menu = setup(t), text = menu.panel.textContent;
   assert.match(text, /地图打开时仍可用方向键、WASD 或屏幕方向盘移动/);
-  assert.match(text, /点击建筑名称传送后，请松开再重新按键或触摸方向盘/);
+  assert.match(text, /点击建筑名称查看介绍，再点“前往”传送；传送后，请松开再重新按键或触摸方向盘/);
   assert.match(text, /设置菜单会暂停移动/);
 });
 
@@ -45,7 +46,7 @@ test('new dated gate sources keep the older visitor-status search date and offic
 
 test('V9 settings integration changes only three approved text/link template hunks', () => {
   const delta = JSON.parse(readFileSync(new URL('./fixtures/v9-settings-source-delta.json', import.meta.url), 'utf8'));
-  let source = readFileSync(new URL('../src/ui/SettingsMenu.js', import.meta.url), 'utf8');
+  let source = restorePlaceInfoBytes('src/ui/SettingsMenu.js', readFileSync(new URL('../src/ui/SettingsMenu.js', import.meta.url))).toString();
   for (const hunk of delta.hunks) {
     assert.equal(source.split(hunk.after).length - 1, 1, `${hunk.name}: exact integrated context occurs once`);
     source = source.replace(hunk.after, hunk.before);

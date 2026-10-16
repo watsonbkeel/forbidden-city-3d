@@ -576,6 +576,76 @@ body.map-open #minimap {
   }
 }
 
+/* Place details replace only the map's content, within its existing safe box. */
+#minimap #teleport-heading,
+#minimap #place-list h2 { color: #ffe4a1; font-size: 16px; margin: 14px 0 8px; }
+#minimap #place-list { display: flex; flex-wrap: wrap; gap: 6px; }
+#minimap #place-list h2 { flex-basis: 100%; }
+#minimap #place-list button,
+#minimap #place-resume,
+#minimap #place-header button,
+#minimap #place-info button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid #9f804a;
+  border-radius: 6px;
+  background: #382d20;
+  color: #ffe4a1;
+  font-size: 14px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+#minimap #place-resume { margin-top: 10px; }
+#minimap[data-detail="true"] {
+  display: flex !important;
+  flex-direction: column;
+  height: min(640px, 96dvh);
+  overflow: hidden !important;
+}
+#minimap.minimap-touch[data-detail="true"] {
+  height: min(640px, calc(100dvh - 200px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)));
+}
+@media (orientation: landscape) and (min-width: 520px) {
+  #minimap.minimap-touch[data-detail="true"] {
+    height: min(640px, calc(100dvh - 16px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)));
+  }
+}
+#minimap[data-detail="true"] #minimap-presentation,
+#minimap[data-detail="true"] #structural-preview-button { flex-shrink: 0; }
+#minimap #place-header { display: flex; gap: 8px; flex-shrink: 0; margin-bottom: 8px; }
+#minimap #place-header button { flex: 1; margin: 0 !important; }
+#minimap #place-info {
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-wrap: anywhere;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  color: #f1e8d5;
+  font-size: 16px;
+  line-height: 1.65;
+  padding: 0 8px 12px 0;
+}
+#minimap #place-info h2 { margin: 2px 0 0; font-size: 24px; color: #ffe4a1; }
+#minimap #place-info h3 { margin: 20px 0 8px; font-size: 17px; color: #ffe4a1; }
+#minimap #place-info p { margin: 8px 0; }
+#minimap #place-info .place-tag { color: #d9bc7d; font-size: 14px; }
+#minimap #place-info .place-note { color: #d3c7b0; font-size: 14px; }
+#minimap #place-info ul { padding-left: 22px; }
+#minimap #place-info li { margin-bottom: 10px; }
+#minimap #place-info a { display: inline-block; min-height: 44px; padding-block: 6px; box-sizing: border-box; color: #ffe4a1; }
+#minimap #place-info a:focus-visible,
+#minimap #place-info h2:focus-visible { outline: 3px solid #ffe4a1; outline-offset: -3px; }
+#minimap #place-announcement { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (max-height: 340px) {
+  #minimap[data-detail="true"] { padding: 8px !important; }
+  #minimap[data-detail="true"] #minimap-presentation { margin-bottom: 4px; }
+  #minimap[data-detail="true"] #structural-preview-button { margin-bottom: 4px; min-height: 44px; }
+}
+
 /* Keep the persistent location label clear of closed and compact maps. */
 body:has(#minimap.minimap-touch) #location-panel {
   top: calc(20px + env(safe-area-inset-top, 0px)) !important;

@@ -105,7 +105,7 @@ for (const mobile of [false, true]) test(`existing disclosure pauses compact ${m
   assert.equal(s.menu.launcher.inert, false);
 });
 
-test('compact map taps never teleport; pan and wheel still work; expanded labels retain teleport', async t => {
+test('compact map taps never teleport; pan and wheel still work; expanded labels select before explicit travel', async t => {
   const s = await setupMap(t);
   s.map.toggle(); s.map.canvas.clientWidth = 198; compact(s);
   s.map.labels = [{ name: '太和殿', x: s.map.view.cx, y: s.map.view.cy, width: 10000, height: 10000 }];
@@ -119,7 +119,11 @@ test('compact map taps never teleport; pan and wheel still work; expanded labels
   assert.ok(s.map.view.k > zoom);
   assert.deepEqual(s.teleports, []);
   compact(s);
+  s.map.hasTeleportTarget = name => name === '太和殿';
   mapPointer(s, 'pointerdown', 3); mapPointer(s, 'pointerup', 3);
+  assert.deepEqual(s.teleports, []);
+  assert.equal(s.map.visible, true);
+  s.map.container.querySelector('#place-travel').click();
   assert.deepEqual(s.teleports, ['太和殿']);
   assert.equal(s.map.visible, false);
 });
