@@ -233,7 +233,7 @@ test('real Wumen reduces seven exact ridge and four finial materials to two rend
   assert.deepEqual(plaque.userData, metadata); assert.ok(plaque.castShadow && plaque.receiveShadow);
   batcher.end(); assert.equal(meshFingerprint(scene), original); assert.equal(triangles(scene), originalTriangles);
   assert.deepEqual(structuredClone(builder.colliders), colliders); assert.deepEqual(structuredClone(builder.walkables), walkables);
-  const d = plaque.userData.gatePlaque.dimensions, origin = new THREE.Vector3(3, 30, expected.data.position.z - 24);
+  const d = plaque.userData.gatePlaque.dimensions, origin = new THREE.Vector3(3, 25, expected.data.position.z - 40);
   const target = plaque.localToWorld(new THREE.Vector3(0, d.innerHeight / 4, d.depth)), direction = target.sub(origin);
   const hit = new THREE.Raycaster(origin, direction.clone().normalize(), 0, direction.length() + 1e-5).intersectObject(group, true)[0];
   assert.equal(hit.object, plaque); assert.equal(hit.face.materialIndex, 1);

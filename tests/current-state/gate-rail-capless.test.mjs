@@ -1,3 +1,4 @@
+import {restoreWumenFootRoundoff} from '../lib/wumen-vertical-profile-controls.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import crypto from 'node:crypto';
 import {captureGate} from '../lib/gate-tower-fixture.mjs';
 import {restoreGatePlaques} from '../lib/gate-plaque-retention.mjs';
@@ -9,14 +10,55 @@ import {buildGateTowerShell} from '../../src/scene/palace/special/GateTowerShell
 import {shenwuTowerGeometry} from '../../src/scene/palace/special/GateTowerProfiles.js';
 const baseline=JSON.parse(fs.readFileSync(new URL('../fixtures/v10-gate-rail-d-baseline.json',import.meta.url)));
 const hash=x=>crypto.createHash('sha256').update(JSON.stringify(x)).digest('hex');
+function groundLeafBounds(c){
+ const leaves=c.group.children.filter(m=>m.isMesh&&m.material.name==='door_studded');
+ assert.equal(leaves.length,6,'exactly six visible ground leaves are required');
+ c.group.updateMatrixWorld(true);
+ return leaves.map(leaf=>{
+  const box=new THREE.Box3(),vertices=leaf.geometry.attributes.position;
+  for(let i=0;i<vertices.count;i++)box.expandByPoint(new THREE.Vector3().fromBufferAttribute(vertices,i).applyMatrix4(leaf.matrixWorld));
+  box.min.y=Math.max(0,box.min.y);box.max.y=Math.min(3,box.max.y);
+  return box.translate(new THREE.Vector3(c.data.position.x,0,c.data.position.z));
+ });
+}
+function assertRetainedPhysics(c,name){
+ const added=new Set();
+ for(const leaf of groundLeafBounds(c)){
+  const matches=c.builder.colliders.map((box,index)=>box.equals(leaf)?index:-1).filter(index=>index>=0);
+  assert.equal(matches.length,1,'each ground leaf requires exactly one exact collider');
+  assert.ok(!added.has(matches[0]),'each ground leaf must identify a distinct collider');
+  added.add(matches[0]);
+ }
+ const rounded=name==='午门'?restoreWumenFootRoundoff(c.builder.colliders):c.builder.colliders;
+ const colliders=rounded.filter((_,index)=>!added.has(index));
+ assert.equal(hash({colliders,walkables:c.builder.walkables}),baseline[name].physics,'historical gate physics changed');
+}
 for(const name of ['午门','神武门']){
  const c=captureGate(name);
  test(`${name}: exact listed rail caps removed; all other D geometry retained after finite V12 plaque restoration`,()=>assertRetainedGate(c,name,baseline[name]));
- test(`${name}: collision/supports unchanged; historical budget restored only for exact V12 plaque slots`,()=>{
-  assert.equal(hash({colliders:c.builder.colliders,walkables:c.builder.walkables}),baseline[name].physics);
+ test(`${name}: original physics retained after exactly six leaf proxies; historical budget restored only for exact V12 plaque slots`,()=>{
+  assertRetainedPhysics(c,name);
   let meshes=0,triangles=0;const materials=new Set();restoreGatePlaques(c,name).group.traverse(m=>{if(m.isMesh){meshes++;triangles+=(m.geometry.index?.count??m.geometry.attributes.position.count)/3;materials.add(m.material);}});
   assert.equal(meshes,baseline[name].meshes);assert.equal(materials.size,baseline[name].materials);
-  assert.equal(triangles,baseline[name].triangles-4*railPaths[name].length);
+  assert.equal(triangles,baseline[name].triangles-4*railPaths[name].length+(name==='午门'?424:0));
+ });
+ test(`${name}: physics retention rejects a missing or duplicate proxy for every ground leaf`,()=>{
+  for(const leaf of groundLeafBounds(c)){
+   const matches=c.builder.colliders.map((box,index)=>box.equals(leaf)?index:-1).filter(index=>index>=0);
+   assert.equal(matches.length,1,'the unmutated fixture has exactly one proxy per leaf');
+   const index=matches[0],colliders=c.builder.colliders;
+   for(const changed of [colliders.filter((_,i)=>i!==index),[...colliders,colliders[index].clone()]]){
+    assert.throws(()=>assertRetainedPhysics({...c,builder:{...c.builder,colliders:changed}},name),/each ground leaf requires exactly one exact collider/);
+   }
+  }
+ });
+ test(`${name}: exact leaf normalization cannot hide old collider or support drift`,()=>{
+  const leaves=groundLeafBounds(c),colliders=c.builder.colliders.map(box=>box.clone());
+  const old=colliders.find(box=>!leaves.some(leaf=>box.equals(leaf)));assert.ok(old);old.max.x+=0.001;
+  assert.throws(()=>assertRetainedPhysics({...c,builder:{...c.builder,colliders}},name),/historical gate physics changed/);
+  const walkables=c.builder.walkables.map(w=>w.type==='box'?{...w,box:w.box.clone()}:{...w});
+  const support=walkables.find(w=>w.type==='box');assert.ok(support);support.box.max.y+=0.001;
+  assert.throws(()=>assertRetainedPhysics({...c,builder:{...c.builder,walkables}},name),/historical gate physics changed/);
  });
  test(`${name}: narrow restoration never mutates source geometry`,()=>{
   const before=railPaths[name].map(p=>atPath(c.group,p).geometry),arrays=before.map(g=>Object.fromEntries(Object.entries(g.attributes).map(([k,a])=>[k,a.array.slice()])));

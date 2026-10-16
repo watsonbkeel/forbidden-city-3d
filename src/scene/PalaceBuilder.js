@@ -3,6 +3,7 @@ import { COLORS } from '../config/constants.js';
 import { buildGateAscent, toWorld } from './palace/gateAscent.js';
 import { wumenTowerGeometry, shenwuTowerGeometry } from './palace/special/GateTowerProfiles.js';
 import { buildGateTowerShell } from './palace/special/GateTowerShell.js';
+import { WUMEN_VERTICAL_PROFILE } from './palace/special/WumenVerticalProfile.js';
 import { buildWumenSouthPlaque, buildShenwuInstitutionPlaque, SHENWU_GATE_NAME_OMISSION } from './palace/special/GatePlaques.js';
 import { riverBridges, JINSHUI_BRIDGE_LENGTH } from './palace/river.js';
 import { buildRoof } from './RoofBuilder.js';
@@ -882,6 +883,10 @@ export class PalaceBuilder {
         leaf.position.set(o.x + s * (o.w / 2 - 0.15), 0, zS + 2 + o.w * 0.24);
         leaf.rotation.y = Math.PI / 2;
         g.add(leaf);
+        // Match upper-door proxies: transformed leaf bounds, limited to body height.
+        leaf.updateMatrixWorld(true);
+        const b = new THREE.Box3().setFromObject(leaf);
+        this.col(b.min.x, Math.max(0, b.min.y), b.min.z, b.max.x, Math.min(3, b.max.y), b.max.z);
       }
     }
     // 两翼墩台（实心，顶面不开放）
@@ -919,6 +924,7 @@ export class PalaceBuilder {
     const roof = buildRoof(this.library, {
       type: 'wudian', width: dm.width + 0.6, depth: dm.depth + 0.6,
       baseY: top + body.userData.topY, layers: 2, brackets: true, height: 9,
+      wumenVerticalProfile: WUMEN_VERTICAL_PROFILE,
     });
     g.add(roof);
     this.ownedMaterials.push(...(roof.userData.ownedMaterials ?? []));
@@ -984,6 +990,10 @@ export class PalaceBuilder {
         leaf.position.set(o.x + s * (o.w / 2 - 0.15), 0, -D / 2 + 2 + o.w * 0.24);
         leaf.rotation.y = Math.PI / 2;
         g.add(leaf);
+        // Match upper-door proxies: transformed leaf bounds, limited to body height.
+        leaf.updateMatrixWorld(true);
+        const b = new THREE.Box3().setFromObject(leaf);
+        this.col(b.min.x, Math.max(0, b.min.y), b.min.z, b.max.x, Math.min(3, b.max.y), b.max.z);
       }
     }
     this.libBox(g, 'stone_slab', W + 0.4, 0.3, D + 0.4, 0, PH + 0.15, 0, 'box');

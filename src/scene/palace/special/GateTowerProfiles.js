@@ -1,17 +1,18 @@
 import {GATE_TOWER_MEASUREMENTS} from './GateTowerMeasurements.js';
+import {WUMEN_VERTICAL_PROFILE} from './WumenVerticalProfile.js';
 const PROVISIONAL='PROVISIONAL_PREVIEW_NOT_SURVEYED';
-/** Wumen's outer frame and legacy interior placeholders are frozen separately
- * from the source-registered enclosure. gallerySetback is an axis distance. */
+/** Wumen retains its horizontal frame/enclosure and door topology; only the
+ * reviewed main-tower vertical profile changes. gallerySetback is an axis distance. */
 export function wumenTowerGeometry({gallerySetback=2.9}={}) {
   if(!Number.isFinite(gallerySetback)||gallerySetback<2.6||gallerySetback>3.2)throw new Error('Wumen gallery axis setback must stay within the approved 2.6–3.2m model band');
-  const width=60.05,depth=25,height=13,bays=9,beamH=1.56,wallH=height-beamH,T=.9;
+  const width=60.05,depth=25,height=WUMEN_VERTICAL_PROFILE.body.height,bays=9,beamH=WUMEN_VERTICAL_PROFILE.body.beamHeight,wallH=height-beamH,T=.9;
   const enclosureWidth=width-1.6,wallAxisZ=depth/2-gallerySetback,outerZ=wallAxisZ+T/2;
   const door={width:5,height:5.2,leafWidth:2.3,leafThickness:.25,leafCountPerOpening:2,openingRadians:Math.PI/2,status:PROVISIONAL,type:'lattice'};
   const outerRadius=width/bays*.06,columns=[];
-  // Same retained legacy interior positions/geometry as the delivered shell.
+  // Retained horizontal interior positions; column heights follow the reviewed body.
   const innerWidth=width-1.6-1.8,legacyDepth=depth-1.6;
-  for(let i=1;i<bays;i++)for(const z of [-legacyDepth*.18,legacyDepth*.18])columns.push({kind:'interior-column',x:-innerWidth/2+i*innerWidth/bays,z,radius:.42,bottomRadius:.42*1.05,height:wallH,status:'RETAINED_LEGACY_NOT_SURVEYED'});
-  for(let i=0;i<=bays;i++)for(const z of [-depth/2,depth/2])columns.push({kind:'outer-column',x:-width/2+i/bays*width,z,radius:outerRadius,bottomRadius:outerRadius*1.05,height:wallH,status:'RETAINED_OUTER_FRAME'});
+  for(let i=1;i<bays;i++)for(const z of [-legacyDepth*.18,legacyDepth*.18])columns.push({kind:'interior-column',x:-innerWidth/2+i*innerWidth/bays,z,radius:.42,bottomRadius:.42*1.05,height:wallH,status:'RETAINED_PLAN_SOURCE_REGISTERED_HEIGHT_NOT_SURVEYED'});
+  for(let i=0;i<=bays;i++)for(const z of [-depth/2,depth/2])columns.push({kind:'outer-column',x:-width/2+i/bays*width,z,radius:outerRadius,bottomRadius:outerRadius*1.05,height:wallH,status:'RETAINED_PLAN_SOURCE_REGISTERED_HEIGHT_NOT_SURVEYED'});
   return {id:'axis/wumen-upper-tower',name:'午门',width,depth,height,bays,beamH,wallH,T,columns,
     enclosure:{width:enclosureWidth,outerZ,wallAxisZ,innerZ:wallAxisZ-T/2},
     openings:[{side:'north',sign:1,...door},{side:'south',sign:-1,...door}],
@@ -19,7 +20,7 @@ export function wumenTowerGeometry({gallerySetback=2.9}={}) {
     veneer:{thickness:.12,status:'RETAINED_PREVIEW_THICKNESS'},
     metadata:{id:'axis/wumen-upper-tower',status:'EVIDENCE_BOUNDED_PREVIEW',galleryAxisSetback:gallerySetback,gallerySource:GATE_TOWER_MEASUREMENTS.wumen.gallery,
       wallThickness:{value:T,status:'RETAINED_PREVIEW_NOT_SURVEYED'},upperDoor:door,otherBayOperation:'CLOSED_UNVERIFIED',publicAccess:GATE_TOWER_MEASUREMENTS.publicAccess,
-      verticalGeometry:'RETAINED_NO_RIDGE_HEIGHT_CLAIM',retainedInteriorColumns:'Legacy placeholders, not recomputed from recessed wall depth'},
+      verticalGeometry:{status:WUMEN_VERTICAL_PROFILE.status,profileId:WUMEN_VERTICAL_PROFILE.id,body:WUMEN_VERTICAL_PROFILE.body,provenance:WUMEN_VERTICAL_PROFILE.provenance},retainedInteriorColumns:'Legacy horizontal placeholders, not recomputed from recessed wall depth; vertical height follows the reviewed exterior profile'},
   };
 }
 

@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {WUMEN_VERTICAL_PROFILE} from './WumenVerticalProfile.js';
 
 // Gate-local present-day approximations. No downloaded images, fonts, traced
 // calligraphy or invented Manchu. Other palace plaques deliberately stay as-is.
@@ -95,37 +96,33 @@ export function createGatePlaque(builder, spec) {
 }
 
 export function buildWumenSouthPlaque(builder, roof) {
-  const band=roof.userData.doubleEaveMountingBand;
-  if(!band) throw new Error('Wumen plaque requires a generated double-eave mounting band');
-  const depth=.12, offset=.08, margin=.1, maxHeight=3.2;
-  const soffit=band.upperSoffit;
-  // RoofBuilder's existing t=1 rafter face extends down by 1.5 * th.
-  // Fitting only to the soffit above the wall hid the upper glyph behind it.
-  const upperY=soffit.eaveY-soffit.thickness*1.5;
+  const band=roof.userData.doubleEaveMountingBand, profile=WUMEN_VERTICAL_PROFILE;
+  if(!band || roof.userData.wumenVerticalProfile?.id!==profile.id) throw new Error('Wumen plaque requires the reviewed local vertical profile');
+  const p=profile.plaque, depth=p.depth, margin=.1, upperY=profile.roof.upperFasciaBottomY;
   roof.updateMatrixWorld(true);
-  // Find the retained lower ridge's south face, not an arbitrary viewing ray.
-  // The plaque stays just outside that face so its lower portion is not masked.
-  const ridgeRay=new THREE.Raycaster(new THREE.Vector3(0,band.lowerY-.01,-soffit.halfDepth-offset),new THREE.Vector3(0,0,1),0,soffit.halfDepth);
+  const ridgeRay=new THREE.Raycaster(new THREE.Vector3(0,band.lowerY-.01,-band.upperSoffit.halfDepth-.08),new THREE.Vector3(0,0,1),0,band.upperSoffit.halfDepth);
   const ridgeHit=ridgeRay.intersectObject(roof,true)[0];
   if(ridgeHit?.object.material.name!=='roof_ridge_glaze') throw new Error('Wumen lower ridge surface is unavailable');
-  const backZ=Math.min(-band.halfDepth,ridgeHit.point.z)-offset;
-  // Six bounded cross-section probes cover the whole maximum plaque footprint.
-  // Downward rays alone at the old wall plane would miss the vertical ridge.
+  // Fixed source-proportioned silhouette and bounded provisional mount. Mesh
+  // clearance is a rejection check, never an instruction to shrink or shift it.
   const lowerSamples=[];
-  for(const x of [-maxHeight*.45,0,maxHeight*.45]) for(const z of [backZ,backZ-depth]) {
+  for(const x of [-p.outerWidth/2,0,p.outerWidth/2]) for(const z of [p.backZ,p.frontZ]) {
     const hit=new THREE.Raycaster(new THREE.Vector3(x,upperY-.01,z),new THREE.Vector3(0,-1,0)).intersectObject(roof,true)[0];
     if(hit?.object.material!==builder.library.material('roof_tile')) throw new Error('Wumen lower roof surface is unavailable');
     lowerSamples.push(hit.point.y);
   }
-  const lowerY=Math.max(...lowerSamples), height=Math.min(maxHeight,upperY-lowerY-2*margin);
-  if(height<=0) throw new Error('No clear inter-eave band for the Wumen plaque');
-  const mesh=createGatePlaque(builder,{id:'wumen-south-gate-name-plaque',text:'午門',width:height*.9,height,depth,layout:'vertical',style:'gate-name',side:'south'});
-  mesh.position.set(0,(lowerY+upperY)/2,backZ);
+  const lowerY=Math.max(...lowerSamples);
+  if(p.frameBottomY<lowerY+margin || p.frameTopY>upperY-margin+1e-10) throw new Error('Frozen Wumen plaque mount fails mesh clearance; do not resize or increase stand-off');
+  const mesh=createGatePlaque(builder,{id:'wumen-south-gate-name-plaque',text:'午門',width:p.outerWidth,height:p.outerHeight,depth,layout:'vertical',style:'gate-name',side:'south'});
+  mesh.position.set(0,p.centerY,p.backZ);
   mesh.userData.gatePlaque.source=SOURCE.wumen;
-  mesh.userData.gatePlaque.mount={kind:'generated-visible-double-eave-band',lowerY,upperY,margin,
+  mesh.userData.gatePlaque.dimensions.status='SOURCE_PHOTO_PROPORTION_MODEL_CHOICE_NOT_SURVEY';
+  mesh.userData.gatePlaque.mount={kind:'source-proportioned-fixed-reviewed-mount',lowerY,upperY,margin,
     upperFasciaBottomY:upperY,lowerRidgeFrontZ:ridgeHit.point.z,lowerRidgeTopY:band.lowerY,
-    surfaceGap:offset,wallStandOff:-backZ-band.halfDepth,surfaceProbeCount:7,
-    dimensionBasis:'FITTED_TO_RETAINED_FASCIA_AND_LOWER_ROOF_NOT_SURVEY'};
+    surfaceGap:ridgeHit.point.z-p.backZ,wallStandOff:p.wallStandOff,surfaceProbeCount:7,
+    dimensionBasis:'OFFICIAL_PHOTO_APPARENT_BLUE_TO_UPPER_WALL_RATIO_NOT_SURVEY',
+    blueToNominalUpperWallWidth:p.blueToUpperWallWidth,profileId:profile.id,provisionalStandOff:true,
+    sourceStatus:profile.status,cardSha256:profile.provenance.cardSha256};
   return mesh;
 }
 

@@ -45,7 +45,7 @@ test('Wumen fits actual lower roof and upper fascia, independently of roof topY'
   assert.ok(bounds.max.y <= p.userData.gatePlaque.mount.upperFasciaBottomY - .099);
   assert.ok(bounds.max.z < -band.halfDepth);
   assert.ok(p.position.y > c.tower.position.y + c.tower.userData.topY);
-  assert.equal(p.userData.gatePlaque.dimensions.status, 'MODEL_ESTIMATE_NOT_SURVEY');
+  assert.equal(p.userData.gatePlaque.dimensions.status, 'SOURCE_PHOTO_PROPORTION_MODEL_CHOICE_NOT_SURVEY');
   assert.ok(Math.abs(p.userData.gatePlaque.dimensions.innerWidth / p.userData.gatePlaque.dimensions.innerHeight - .75) < 1e-12);
 });
 
@@ -133,7 +133,7 @@ for(const [name,c] of gates)test(`${name}: explicit candidate budget replaces on
   });
   const old=historicalBudget[name];
   assert.equal(meshes,old.meshes);assert.equal(materials.size,old.materials+1);
-  assert.equal(triangles,old.triangles-4*railPaths[name].length+(name==='午门'?112:0));
+  assert.equal(triangles,old.triangles-4*railPaths[name].length+(name==='午门'?536:0));
   const p=plaques(c)[0],origin=new THREE.Vector3(0,p.position.y,p.position.z+(name==='午门'?-3:3));
   const direction=new THREE.Vector3(0,0,name==='午门'?1:-1);
   const hits=new THREE.Raycaster(origin,direction,0,6).intersectObject(p);

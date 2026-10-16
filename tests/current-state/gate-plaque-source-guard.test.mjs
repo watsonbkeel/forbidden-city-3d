@@ -1,10 +1,13 @@
+import {restorePreWumenVerticalSource} from '../lib/wumen-vertical-source-delta.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {GATE_PLAQUE_SOURCE_DELTAS,restoreV10GateSource} from '../lib/v12-gate-plaque-source-delta.mjs';
+import {restoreV13GroundDoorSource} from '../lib/v14-ground-door-source-delta.mjs';
 
 for(const [path,record] of Object.entries(GATE_PLAQUE_SOURCE_DELTAS)){
-  const current=fs.readFileSync(new URL(`../../${path}`,import.meta.url));
+  const raw=restorePreWumenVerticalSource(path,fs.readFileSync(new URL(`../../${path}`,import.meta.url)));
+  const current=path==='src/scene/PalaceBuilder.js'?restoreV13GroundDoorSource(raw):raw;
   test(`${path}: only exact V12 plaque substitutions and roof-local metadata differ from pinned V10`,()=>{
     const historical=restoreV10GateSource(path,current);
     assert.notDeepEqual(historical,current);

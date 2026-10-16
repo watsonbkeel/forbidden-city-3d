@@ -1,3 +1,4 @@
+import {assertUnscopedWumen,unscopedWumen,baseline as wumenBaseline} from './wumen-vertical-profile-controls.mjs';
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import {meshFingerprint} from './gate-tower-fixture.mjs';
@@ -49,6 +50,12 @@ export function restoreGateRails(c,name){
  return copy;
 }
 export function assertRetainedGate(c,name,baseline){
+ if(name==='午门'){
+  // The reviewed main-tower scope supersedes its historical vertical golden.
+  // Every unscoped object, including all rail geometry/state, remains exact.
+  restoreGateRails(c,name);assertUnscopedWumen(c);
+  assert.equal(renderStateHash(unscopedWumen(c)),wumenBaseline.unscopedRenderState);return;
+ }
  const restored=restoreGateRails(restoreGatePlaques(c,name),name);
  assert.equal(meshFingerprint(restored),baseline.fingerprint);
  assert.equal(renderStateHash(restored),baseline.renderState);
