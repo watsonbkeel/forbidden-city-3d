@@ -9,11 +9,15 @@ import * as THREE from 'three';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
 import {validateTaiheCore} from '../src/scene/interior/TaiheCoreContract.js';
 import {decode} from './lib/taihe-column-fixture.mjs';
+import {restorePreScreenCrownsSource} from './lib/taihe-screen-crowns-retention.mjs';
 import {restorePreFurnitureSource} from './lib/taihe-furniture-retention.mjs';
 
 const root=new URL('../',import.meta.url), read=p=>fs.readFileSync(new URL(p,root));
 const sha=b=>createHash('sha256').update(b).digest('hex');
-const cfg=JSON.parse(read('data/interiors/taihe.json'));
+// Historical ee5353ec migration fixture; the current crown integration has its own gate.
+const cfgBytes=read('tests/fixtures/taihe-furniture-registry.json');
+assert.equal(sha(cfgBytes),'7f92749a449b7217c7ffe2edb381a2502bc909d2d4b716c6934b424129ef7b48');
+const cfg=JSON.parse(cfgBytes);
 const manifest=JSON.parse(read('docs/current-state/taihe-furniture/SOURCE-MANIFEST.json'));
 const baseBytes=read(manifest.baselineAsset), bytes=read('public'+cfg.model);
 const base=decode(baseBytes), actual=decode(bytes);
@@ -50,7 +54,7 @@ function retiredViews(){
   return expected;
 }
 
-test('current furniture asset pins source/base/mask and preserves original budgets',()=>{
+test('frozen historical furniture asset pins source/base/mask and preserves original budgets',()=>{
   assert.equal(manifest.schema,'taihe-furniture-detail-1');assert.equal(manifest.baselineSHA256,BASE_SHA);
   assert.equal(sha(bytes),cfg.asset.sha256);assert.equal(sha(bytes),manifest.asset.sha256);
   assert.equal(bytes.length,manifest.asset.encodedBytes);assert.equal('public'+cfg.model,manifest.asset.path);
@@ -124,7 +128,7 @@ test('standalone builder reproduces exact asset and manifest without writing fal
 });
 
 test('finite runtime source reversal rejects unrelated bytes and duplicated identity loop',()=>{
-  const name='src/scene/interior/TaiheCoreContract.js',current=read(name),text=current.toString();
+  const name='src/scene/interior/TaiheCoreContract.js',current=restorePreScreenCrownsSource(name,read(name)),text=current.toString();
   const fixture=JSON.parse(read('tests/fixtures/taihe-furniture-source-delta.json')),row=fixture.files[name];assert.equal(sha(current),row.candidateSHA256);assert.equal(row.deltas.length,1);
   const restored=restorePreFurnitureSource(name,current);assert.notEqual(sha(restored),sha(current));
   assert.equal(sha(restored),row.baselineSHA256);assert.notEqual(sha(Buffer.from(text.replace(row.deltas[0].after,row.deltas[0].before))),row.candidateSHA256);

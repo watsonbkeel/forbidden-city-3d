@@ -1,11 +1,22 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
 import {buildWorld} from './lib/world.mjs';import {replayGateTower} from './lib/gate-tower-walk.mjs';import {LAYOUT} from '../src/config/constants.js';
+import {wumenAscentGeometry} from '../src/scene/palace/special/WumenAscentProfile.js';
 const W=await buildWorld();
 const cases=[];
 function add(gate,name,points,startFeet,endFeet=startFeet){const z=gate==='wumen'?LAYOUT.WUMEN_Z:LAYOUT.SHENWU_Z;cases.push({gate,name,points:points.map(([x,lz])=>[x,lz+z]),startFeet,endFeet});}
 add('wumen','veranda-loop',[[35,11.2],[35,-11.2],[-35,-11.2],[-35,11.2],[35,11.2]],12.3);
 add('wumen','both-central-doors',[[0,-11.2],[0,0],[0,11.2],[0,0],[0,-11.2]],12.3);
-for(const s of [-1,1])add('wumen',`ramp-${s}-roundtrip`,[[s*86,15.5],[s*59,15.5],[s*35,15.5],[0,15.5],[0,0],[0,15.5],[s*35,15.5],[s*59,15.5],[s*86,15.5]],0);
+// The former straight ramp no longer exists. Follow the documented three-leg
+// topology instead; preserve the old shortcut below as a negative control.
+for(const side of wumenAscentGeometry().sides){
+ const go=[...side.route,[side.sign*58,11.2],[side.sign*59,15.5],[side.sign*35,15.5],[0,15.5],[0,0]];
+ add('wumen',`folded-ascent-${side.sign}-roundtrip`,[...go,...go.slice(0,-1).reverse()],0);
+}
+for(const s of [-1,1])test(`removed Wumen straight ascent ${s} is not a hidden bridge`,t=>{
+ const old=[[s*86,15.5],[s*59,15.5],[s*35,15.5],[0,15.5],[0,0],[0,15.5],[s*35,15.5],[s*59,15.5],[s*86,15.5]].map(([x,z])=>[x,z+LAYOUT.WUMEN_Z]);
+ const r=replayGateTower(t,W,old,{startFeet:0,fps:10,sprint:true,backward:false});
+ assert.equal(r.arrived,false); assert.equal(r.maxFeet,0); assert.ok(r.supportQueries.every(q=>q.source!=='rescue'&&q.source!=='unverified'));
+});
 add('shenwu','veranda-loop',[[-19.5,-7.65],[19.5,-7.65],[19.5,7.65],[-19.5,7.65],[-19.5,-7.65]],10.3);
 add('shenwu','outer-loop',[[-23.5,-11.2],[23.5,-11.2],[23.5,11.2],[-23.5,11.2],[-23.5,-11.2]],10.3);
 for(const x of [-8.19625,0,8.19625])add('shenwu',`north-south-doors-${x}`,[[x,-7.65],[x,0],[x,7.65],[x,0],[x,-7.65]],10.3);

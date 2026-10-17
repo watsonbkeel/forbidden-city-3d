@@ -1,4 +1,5 @@
 import {assertUnscopedWumen} from '../lib/wumen-vertical-profile-controls.mjs';
+import {restorePreWumenAscent} from '../lib/wumen-ascent-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
@@ -86,7 +87,9 @@ for (const gate of gates) {
 
   test(`${gate.name}: six rotated ground leaves register their actual body-height world bounds exactly once`, () => {
     assert.equal(groundLeaves.length, 6);
-    assert.equal(fixture.builder.colliders.length, gate.beforeColliders + 6);
+    // Only the historical total needs the strictly validated ascent view;
+    // the actual six leaf proxies and all movement checks use current physics.
+    assert.equal(restorePreWumenAscent(fixture).builder.colliders.length, gate.beforeColliders + 6);
     for (const mesh of groundLeaves) {
       assert.equal(mesh.geometry.parameters.depth, 0.25);
       assert.equal(mesh.rotation.y, Math.PI / 2);
@@ -162,7 +165,7 @@ for (const gate of gates) {
   });
 
   test(`${gate.name}: collider registration retains every mesh, material, triangle and production render batch`, () => {
-    const retained = captureGate(gate.name);
+    const retained = restorePreWumenAscent(captureGate(gate.name));
     if(gate.name==='午门')assertUnscopedWumen(retained);else assert.equal(meshFingerprint(retained.group), gate.fingerprint);
     assert.deepEqual(renderCounts(retained.group), {...gate.raw,triangles:gate.raw.triangles+(gate.name==='午门'?424:0)});
     const merged = PalaceBuilder.prototype.finish.call(retained.builder, retained.group);

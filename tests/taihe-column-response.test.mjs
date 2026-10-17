@@ -11,9 +11,11 @@ const response=()=>import('../src/scene/palace/special/TaiheColumnResponse.js');
 const active=JSON.parse(read('data/interiors/taihe.json'));
 const shellRetirementBytes=read('assets-src/interiors/taihe_caisson/retired_shell_faces.json');
 const throneRetirementBytes=read('assets-src/interiors/taihe_furniture/retired_throne_back_faces.json');
+const crownRetirementBytes=read('assets-src/interiors/taihe_screen_crowns/retired_screen_header_faces.json');
 assert.equal(sha(shellRetirementBytes),'231113dd6726175be9de932cbf6c0a36fe7466e88e5910df6aa9660f49ba2079');
 assert.equal(sha(throneRetirementBytes),'dc4cf61f8441280347c8bd292d163f5465624f6cbf50513a30fb1b9c9018f287');
-const shellRetirement=JSON.parse(shellRetirementBytes),throneRetirement=JSON.parse(throneRetirementBytes);
+assert.equal(sha(crownRetirementBytes),'7231ffb388115f3cf3f9e9745de82e645bd9cda091a2d352c795d54479490805');
+const shellRetirement=JSON.parse(shellRetirementBytes),throneRetirement=JSON.parse(throneRetirementBytes),crownRetirement=JSON.parse(crownRetirementBytes);
 const historicalCaissonBytes=read('public/models/interiors/taihe-caisson-9067bcce8b91.glb');
 assert.equal(sha(historicalCaissonBytes),'9067bcce8b91f719a5e39ca1cfc2a1d1c5c013d5fcd4488dc92ee920ada7015d');
 const historicalCaissonGLTF=JSON.parse(historicalCaissonBytes.toString('utf8',20,20+historicalCaissonBytes.readUInt32LE(12)));
@@ -24,8 +26,29 @@ const retiredGoldVertices=mask=>new Set(mask.triangles.filter(t=>t.material==='t
 const shellUnused=retiredGoldVertices(shellRetirement),throneUnused=retiredGoldVertices(throneRetirement);
 assert.equal(shellUnused.size,452);assert.equal(throneUnused.size,624);
 assert.ok([...shellUnused].every(i=>!throneUnused.has(i)),'shell and throne retirement sets are disjoint');
-const expectedUnused=[...new Set([...shellUnused,...throneUnused])].sort((a,b)=>a-b);
-assert.equal(expectedUnused.length,1076);
+const historicalUnused=[...new Set([...shellUnused,...throneUnused])].sort((a,b)=>a-b);
+assert.equal(historicalUnused.length,1076);
+// Derive expected ownership only from the frozen pre-crown asset and pinned masks,
+// never from the current asset whose index usage is being checked.
+const historicalFurnitureBytes=read('public/models/interiors/taihe-furniture-0bfa52b758cb.glb');
+assert.equal(sha(historicalFurnitureBytes),'0bfa52b758cba052b0b8258ebc338cb9b0f80129e00d0bb5970ef343758432ea');
+const historicalFurnitureRoot=(await new GLTFLoader().parseAsync(historicalFurnitureBytes.buffer.slice(historicalFurnitureBytes.byteOffset,historicalFurnitureBytes.byteOffset+historicalFurnitureBytes.length),'')).scene;
+const furnitureGeometry=gold(historicalFurnitureRoot).geometry,furnitureGoldVertices=furnitureGeometry.attributes.position.count;
+assert.equal(furnitureGoldVertices,34430);assert.equal(furnitureGoldVertices-historicalGoldVertices,8868);
+const furnitureIndices=Array.from(furnitureGeometry.index.array),crownRows=crownRetirement.triangles.filter(t=>t.material==='taihe_gold'),crownFaces=new Set(crownRows.map(t=>t.triangleOrdinal));
+assert.equal(crownRetirement.triangles.length,1736);assert.equal(crownFaces.size,1344);
+for(const row of crownRows)assert.deepEqual(furnitureIndices.slice(row.triangleOrdinal*3,row.triangleOrdinal*3+3),row.indices,'retirement indices match the pinned gold baseline');
+const stillReferenced=new Set(furnitureIndices.filter((_,i)=>!crownFaces.has(Math.floor(i/3)))),crownRetiredVertices=retiredGoldVertices(crownRetirement);
+assert.equal(crownRetiredVertices.size,3528);
+const expectedUnused=[...new Set([...historicalUnused,...crownRetiredVertices])].filter(i=>!stillReferenced.has(i)).sort((a,b)=>a-b),expectedUnusedSet=new Set(expectedUnused);
+assert.equal(expectedUnused.length,4604);assert.equal(sha(JSON.stringify(expectedUnused)),'286c11f2d3ec8ec5bca6cb494ea9d9f608ed6fc2b8b14f33b5d8897ec231f739');
+assert.equal([...crownRetiredVertices].filter(i=>stillReferenced.has(i)).length,0);
+assert.equal([...crownRetiredVertices].filter(i=>i<historicalGoldVertices).length,1008);
+assert.equal(expectedUnused.filter(i=>i>=historicalGoldVertices&&i<furnitureGoldVertices).length,2520);
+assert.equal(expectedUnused.filter(i=>i>=furnitureGoldVertices).length,0);
+const furnitureReferenced=new Set(furnitureIndices);
+assert.deepEqual(Array.from({length:furnitureGoldVertices},(_,i)=>i).filter(i=>!furnitureReferenced.has(i)),historicalUnused);
+
 async function source(){const bytes=read('public'+active.model);return(await new GLTFLoader().parseAsync(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.length),'')).scene;}
 function gold(root){let found;root.traverse(o=>{if(o.isMesh&&o.material.name==='taihe_gold')found=o;});assert.ok(found);return found;}
 function originalAttributes(g,retained=null){return Object.fromEntries(Object.entries(g.attributes).filter(([k])=>k!=='color').map(([k,a])=>[k,{count:retained?.[k]?.count??a.count,itemSize:a.itemSize,sha256:sha(Buffer.from(a.array.buffer,a.array.byteOffset,(retained?.[k]?.count??a.count)*a.itemSize*4))}]));}
@@ -35,12 +58,22 @@ function classify(g){const p=g.attributes.position,idx=g.index,used=new Map(),ce
  return{used,decorated,neutral};}
 function inspect(mesh,count,bytes){const g=mesh.geometry,c=g.attributes.color;assert.ok(c,'runtime Float32 gain attribute');assert.equal(c.itemSize,3);assert.ok(c.array instanceof Float32Array);assert.equal(c.normalized,false);assert.equal(c.array.byteLength,bytes);const {used,decorated}=classify(g);assert.equal(decorated,count);if(g.index){
   const unused=Array.from({length:g.attributes.position.count},(_,i)=>i).filter(i=>!used.has(i));
-  assert.deepEqual(unused,expectedUnused,'unused vertices are exactly the pinned shell-plus-throne union');
+  assert.deepEqual(unused,expectedUnused,'unused vertices are exactly the pinned shell-plus-throne-plus-crown union after retained references');
   for(const id of unused){assert.equal(g.attributes.uv.getX(id),0);assert.equal(g.attributes.uv.getY(id),0);for(let k=0;k<3;k++)assert.equal(c.array[id*3+k],1);}
-  for(let id=historicalGoldVertices;id<g.attributes.position.count;id++){
-   assert.equal(used.get(id),false,'every appended furniture vertex is referenced outside column decoration');
+  assert.equal(g.attributes.position.count,40394);assert.equal(c.count,40394);
+  let retainedFurniture=0,unusedFurniture=0;
+  for(let id=historicalGoldVertices;id<furnitureGoldVertices;id++){
+   assert.equal(used.get(id),expectedUnusedSet.has(id)?undefined:false,'furniture references retain exact ownership after screen header retirement');
+   expectedUnusedSet.has(id)?unusedFurniture++:retainedFurniture++;
    assert.equal(g.attributes.uv.getX(id),0);assert.equal(g.attributes.uv.getY(id),0);
    for(let k=0;k<3;k++)assert.equal(c.array[id*3+k],1,'furniture has neutral response gain');
+  }
+  assert.equal(retainedFurniture,6348);assert.equal(unusedFurniture,2520);
+  assert.equal(g.attributes.position.count-furnitureGoldVertices,5964,'exact new crown gold vertices');
+  for(let id=furnitureGoldVertices;id<g.attributes.position.count;id++){
+   assert.equal(used.get(id),false,'every appended crown vertex is referenced outside column decoration');
+   assert.equal(g.attributes.uv.getX(id),0);assert.equal(g.attributes.uv.getY(id),0);
+   for(let k=0;k<3;k++)assert.equal(c.array[id*3+k],1,'screen crowns have neutral response gain');
   }
  }else assert.equal(used.size,g.attributes.position.count);const factors=mesh.material.color.toArray(),expected=[.65,.43,.10].map((v,k)=>Math.fround(v/factors[k]));
  for(const [id,on] of used){const uv=g.attributes.uv;assert.equal(uv.getX(id)!==0,on);for(let k=0;k<3;k++)assert.equal(c.array[id*3+k],on?expected[k]:1);}
@@ -48,7 +81,7 @@ function inspect(mesh,count,bytes){const g=mesh.geometry,c=g.attributes.color;as
 }
 test('runtime response installs on actual B and loaded S with exact neutral and preserved geometry',async()=>{
  const b=captureTaiheControl('太和殿'),bm=gold(b.group),s=await source(),sm=gold(s),attrs=originalAttributes(sm.geometry),index=sha(Buffer.from(sm.geometry.index.array.buffer,sm.geometry.index.array.byteOffset,sm.geometry.index.array.byteLength));
- inspect(bm,144,18432);installTaiheColumnTextures(s,bm.material);inspect(sm,3192,413160);assert.deepEqual(originalAttributes(sm.geometry),attrs);assert.equal(sha(Buffer.from(sm.geometry.index.array.buffer,sm.geometry.index.array.byteOffset,sm.geometry.index.array.byteLength)),index);assert.notEqual(sm.geometry.attributes.color.array,bm.geometry.attributes.color.array);
+ inspect(bm,144,18432);installTaiheColumnTextures(s,bm.material);inspect(sm,3192,484728);assert.deepEqual(originalAttributes(sm.geometry),attrs);assert.equal(sha(Buffer.from(sm.geometry.index.array.buffer,sm.geometry.index.array.byteOffset,sm.geometry.index.array.byteLength)),index);assert.notEqual(sm.geometry.attributes.color.array,bm.geometry.attributes.color.array);
  for(const record of base.fallback){const m=b.group.children.find(o=>o.material?.name===record.material);assert.deepEqual(originalAttributes({attributes:restoreHistoricalFallbackAttributes(m)},record.attributes),record.attributes);assert.deepEqual({color:m.material.color.toArray(),roughness:m.material.roughness,metalness:m.material.metalness,envMapIntensity:m.material.envMapIntensity,side:m.material.side,transparent:m.material.transparent,opacity:m.material.opacity},record.materialFactors);if(m!==bm)assert.equal(m.geometry.attributes.color,undefined);}
  b.builder.dispose();
 });
@@ -84,14 +117,15 @@ test('furniture neutrality and exact retired-index union reject same-size owners
  try{
   installTaiheColumnTextures(s,gold(b.group).material);
   const g=m.geometry,first=historicalGoldVertices;
-  assert.equal(g.attributes.position.count-first,8868,'exact new gold furniture vertices');
-  inspect(m,3192,413160);
+  assert.equal(furnitureGoldVertices-first,8868,'exact retained gold furniture attribute range');
+  inspect(m,3192,484728);
   const uv=g.attributes.uv,color=g.attributes.color,last=g.index.count-1,savedIndex=g.index.getX(last);
-  uv.setY(first,.25);assert.throws(()=>inspect(m,3192,413160));uv.setY(first,0);
-  color.array[first*3]=.5;assert.throws(()=>inspect(m,3192,413160),/furniture has neutral response gain/);color.array[first*3]=1;
+  uv.setY(first,.25);assert.throws(()=>inspect(m,3192,484728));uv.setY(first,0);
+  color.array[first*3]=.5;assert.throws(()=>inspect(m,3192,484728),/furniture has neutral response gain/);color.array[first*3]=1;
   g.index.setX(last,expectedUnused[0]);
-  assert.throws(()=>inspect(m,3192,413160),/unused vertices are exactly the pinned shell-plus-throne union/);
-  g.index.setX(last,savedIndex);inspect(m,3192,413160);
+  assert.equal(g.attributes.position.count-new Set(g.index.array).size,expectedUnused.length,'same-size index ownership drift');
+  assert.throws(()=>inspect(m,3192,484728),/unused vertices are exactly the pinned shell-plus-throne-plus-crown union/);
+  g.index.setX(last,savedIndex);inspect(m,3192,484728);
  }finally{b.builder.dispose();}
 });
 
@@ -122,5 +156,25 @@ test('actual Float32 S/B gains stay bounded at every mip; neutral base and BRDF 
  b.builder.dispose();
 });
 test('response source, buffer budget and visual-trial provenance are explicitly identified',()=>{
- const cfg=JSON.parse(read('data/interiors/taihe.json'));assert.equal(cfg.asset.columnResponseSourceSHA256,sha(read('src/scene/palace/special/TaiheColumnResponse.js')));assert.deepEqual(cfg.asset.columnResponseBufferBytes,{S:413160,B:18432});assert.match(cfg.asset.columnResponse,/Visual-trial/);
+ const cfg=JSON.parse(read('data/interiors/taihe.json'));assert.equal(cfg.asset.columnResponseSourceSHA256,sha(read('src/scene/palace/special/TaiheColumnResponse.js')));assert.deepEqual(cfg.asset.columnResponseBufferBytes,{S:484728,B:18432});assert.match(cfg.asset.columnResponse,/Visual-trial/);
+});
+
+
+test('screen crown tail and crown-retired furniture vertices reject UV, gain and same-size index drift',async()=>{
+ const b=captureTaiheControl('太和殿'),s=await source(),m=gold(s);
+ try{
+  installTaiheColumnTextures(s,gold(b.group).material);inspect(m,3192,484728);
+  const g=m.geometry,uv=g.attributes.uv,color=g.attributes.color,first=furnitureGoldVertices,retired=[...crownRetiredVertices].find(id=>id>=historicalGoldVertices);
+  assert.ok(retired!==undefined);assert.ok(expectedUnusedSet.has(retired));
+  for(const id of [first,retired]){
+   uv.setY(id,.25);assert.throws(()=>inspect(m,3192,484728));uv.setY(id,0);
+   color.array[id*3]=.5;assert.throws(()=>inspect(m,3192,484728));color.array[id*3]=1;
+  }
+  const references=Array.from(g.index.array),slot=references.indexOf(first);
+  assert.notEqual(slot,-1);assert.equal(references.filter(id=>id===first).length,1,'probe changes one singly referenced crown vertex');
+  g.index.setX(slot,retired);
+  assert.equal(g.attributes.position.count-new Set(g.index.array).size,expectedUnused.length,'same unused cardinality cannot conceal a different retired set');
+  assert.throws(()=>inspect(m,3192,484728),/unused vertices are exactly the pinned shell-plus-throne-plus-crown union/);
+  g.index.setX(slot,first);inspect(m,3192,484728);
+ }finally{b.builder.dispose();}
 });

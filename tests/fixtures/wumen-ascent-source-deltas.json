@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "baseCommit": "4ede9aaaad7059cdb30478c32e3ae0ad7fb2b368",
+  "files": {
+    "src/scene/PalaceBuilder.js": {
+      "baselineSHA256": "98c0811976836e0499ef09b57d1e773dd3653b45418162eecdf4f6bcba878215",
+      "candidateSHA256": "eb0e9e68cd261882f352d72c829b3872532ca0afcbeb8faf1cee41bdd1693d58",
+      "deltas": [
+        {
+          "before": "import { buildGateAscent, toWorld } from './palace/gateAscent.js';",
+          "after": "import { buildGateAscent, toWorld } from './palace/gateAscent.js';\nimport { buildWumenAscent } from './palace/special/WumenAscent.js';"
+        },
+        {
+          "before": "    // 登城马道：主墩台北面（宫内一侧）东西两端；顶面四周汉白玉栏杆\n    const top = PH + 0.3;\n    const sub = new THREE.Group();\n    sub.position.z = zc;\n    g.add(sub);\n    const asc = toWorld(buildGateAscent(this.library, sub, {\n      W, D, topY: top, band: [D / 2 - 6, D / 2], edge: 'rail', railFacadeOnly: true,\n    }), new THREE.Matrix4().makeTranslation(this.ox, 0, this.oz + zc));\n    this.colliders.push(...asc.colliders);\n    this.walkables.push(...asc.walkables);",
+          "after": "    // 午门专属三跑折返马道：官方平面支持拓扑；高度和配准为明确的模型拟合。\n    // 直接使用门局部原点，不沿用旧直坡子组的 zc 偏移。\n    const top = PH + 0.3;\n    const sub = new THREE.Group();\n    g.add(sub);\n    buildWumenAscent(this, sub);"
+        }
+      ]
+    },
+    "src/scene/Enclosure.js": {
+      "baselineSHA256": "93624bcf20912577a83af5e4b66213088935a87e67d5f125ea37cdd257bcb0b4",
+      "candidateSHA256": "dcdda8313af39310effae14733c58fe04faa37804308b96f2a4c94195e8b063f",
+      "deltas": [
+        {
+          "before": "import { getBuildingData } from './Layout.js';",
+          "after": "import { getBuildingData } from './Layout.js';\nimport { WUMEN_ASCENT_PROFILE } from './palace/special/WumenAscentProfile.js';\nimport { fitWumenWallCap } from './palace/special/WumenWallCapFit.js';"
+        },
+        {
+          "before": "{ x1: wm.position.x + wHalf, x2: X, z: zS, h: wallH, t: wallT, brickH }",
+          "after": "{ x1: wm.position.x + wHalf, x2: X, z: zS, h: wallH, t: wallT, brickH,\n      wumenCapFit: { side: 1, trimDistance: WUMEN_ASCENT_PROFILE.wallInterface.absoluteX[1] - wHalf } }"
+        },
+        {
+          "before": "{ x1: -X, x2: wm.position.x - wHalf, z: zS, h: wallH, t: wallT, brickH }",
+          "after": "{ x1: -X, x2: wm.position.x - wHalf, z: zS, h: wallH, t: wallT, brickH,\n      wumenCapFit: { side: -1, trimDistance: WUMEN_ASCENT_PROFILE.wallInterface.absoluteX[1] - wHalf } }"
+        },
+        {
+          "before": "addWallSegment(parent, { x1, x2, z, h, t, brickH }, redMat, brickMat)",
+          "after": "addWallSegment(parent, { x1, x2, z, h, t, brickH, wumenCapFit }, redMat, brickMat)"
+        },
+        {
+          "before": "    const cap = buildWallCap(this.library, { length: len, thickness: t });\n    cap.position.set(cx, h, z);",
+          "after": "    const cap = buildWallCap(this.library, { length: len, thickness: t });\n    // Only the two Wumen return-flight junctions exclude their intersecting cap.\n    // Wall body, crenels, collider and distant cap paint registration stay intact.\n    if (wumenCapFit) fitWumenWallCap(cap, { length: len, ...wumenCapFit });\n    cap.position.set(cx, h, z);"
+        }
+      ]
+    }
+  }
+}

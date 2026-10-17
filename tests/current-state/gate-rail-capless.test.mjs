@@ -1,4 +1,5 @@
 import {restoreWumenFootRoundoff} from '../lib/wumen-vertical-profile-controls.mjs';
+import {restorePreWumenAscent} from '../lib/wumen-ascent-retention.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import crypto from 'node:crypto';
 import {captureGate} from '../lib/gate-tower-fixture.mjs';
 import {restoreGatePlaques} from '../lib/gate-plaque-retention.mjs';
@@ -34,7 +35,9 @@ function assertRetainedPhysics(c,name){
  assert.equal(hash({colliders,walkables:c.builder.walkables}),baseline[name].physics,'historical gate physics changed');
 }
 for(const name of ['午门','神武门']){
- const c=captureGate(name);
+ // Preserve all original capless assertions and mutation probes in their exact
+ // historical scope; the newer ascent is completely validated before restoration.
+ const c=restorePreWumenAscent(captureGate(name));
  test(`${name}: exact listed rail caps removed; all other D geometry retained after finite V12 plaque restoration`,()=>assertRetainedGate(c,name,baseline[name]));
  test(`${name}: original physics retained after exactly six leaf proxies; historical budget restored only for exact V12 plaque slots`,()=>{
   assertRetainedPhysics(c,name);

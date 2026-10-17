@@ -2,9 +2,11 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {meshFingerprint} from './gate-tower-fixture.mjs';
+import {restorePreWumenAscent} from './wumen-ascent-retention.mjs';
 export const baseline=JSON.parse(fs.readFileSync(new URL('../fixtures/v14-wumen-vertical-profile-controls.json',import.meta.url)));
 export const hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
 export function unscopedWumen(c){
+ c=restorePreWumenAscent(c);
  assert.equal(c.group.children[28].userData.structure?.id,'axis/wumen-upper-tower');
  assert.equal(c.group.children[29].name,'roof_wudian');
  assert.equal(c.group.children[30].name,'wumen-south-gate-name-plaque');

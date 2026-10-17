@@ -5,6 +5,9 @@ import { applyBoxUV } from '../utils/GeometryUV.js';
 import { mergeByMaterial } from '../utils/MergeUtils.js';
 import { LAYOUT } from '../config/constants.js';
 import { getBuildingData } from './Layout.js';
+import { WUMEN_ASCENT_PROFILE } from './palace/special/WumenAscentProfile.js';
+import { fitWumenWallCap } from './palace/special/WumenWallCapFit.js';
+import { fitWumenLandingWallTop } from './palace/special/WumenLandingWallTop.js';
 
 // 东华门 / 西华门门洞中心 z（data/anchors.json；城台由 zone outer-east / outer-west 的 cityGate 建造）
 const EAST_GATE_Z = -257;
@@ -82,8 +85,10 @@ export class Enclosure {
     // 南墙：午门城台两侧接出（开口 = 午门城台宽）
     const wm = getBuildingData('午门');
     const wHalf = (wm.dimensions.platformWidth ?? wm.dimensions.width) / 2;
-    this.addWallSegment(parent, { x1: wm.position.x + wHalf, x2: X, z: zS, h: wallH, t: wallT, brickH }, redMat, brickMat);
-    this.addWallSegment(parent, { x1: -X, x2: wm.position.x - wHalf, z: zS, h: wallH, t: wallT, brickH }, redMat, brickMat);
+    this.addWallSegment(parent, { x1: wm.position.x + wHalf, x2: X, z: zS, h: wallH, t: wallT, brickH,
+      wumenCapFit: { side: 1, trimDistance: WUMEN_ASCENT_PROFILE.wallInterface.absoluteX[1] - wHalf } }, redMat, brickMat);
+    this.addWallSegment(parent, { x1: -X, x2: wm.position.x - wHalf, z: zS, h: wallH, t: wallT, brickH,
+      wumenCapFit: { side: -1, trimDistance: WUMEN_ASCENT_PROFILE.wallInterface.absoluteX[1] - wHalf } }, redMat, brickMat);
 
     // 北墙：神武门城台两侧接出（开口 = 神武门面阔）
     const sw = getBuildingData('神武门');
@@ -101,7 +106,7 @@ export class Enclosure {
   /**
    * 添加一段沿 X 方向的墙（x1 到 x2，固定 z）
    */
-  addWallSegment(parent, { x1, x2, z, h, t, brickH }, redMat, brickMat) {
+  addWallSegment(parent, { x1, x2, z, h, t, brickH, wumenCapFit }, redMat, brickMat) {
     const len = Math.abs(x2 - x1);
     const cx = (x1 + x2) / 2;
     
@@ -120,11 +125,15 @@ export class Enclosure {
       redMat
     );
     wallBody.position.set(cx, brickH + (h - brickH) / 2, z);
+    if (wumenCapFit) fitWumenLandingWallTop(wallBody, wumenCapFit.side);
     wallBody.castShadow = wallBody.receiveShadow = true;
     parent.add(wallBody);
     
     // 墙帽（黄琉璃）
     const cap = buildWallCap(this.library, { length: len, thickness: t });
+    // Only the two Wumen return-flight junctions exclude their intersecting cap.
+    // Exposed wall faces, crenels, collider and distant cap paint registration stay intact.
+    if (wumenCapFit) fitWumenWallCap(cap, { length: len, ...wumenCapFit });
     cap.position.set(cx, h, z);
     parent.add(cap);
     

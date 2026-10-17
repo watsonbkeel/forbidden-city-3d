@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import {meshFingerprint} from './gate-tower-fixture.mjs';
 import {restoreGatePlaques} from './gate-plaque-retention.mjs';
+import {restorePreWumenAscent} from './wumen-ascent-retention.mjs';
 export const railPaths={
  '午门':[146,147,148,149].map(i=>`/27/${i}`),
  '神武门':[88,89,90,91,92,93,94,95].map(i=>`/149/${i}`),
@@ -23,6 +24,7 @@ export function renderStateHash(group){
 // The only allowed restoration: exact side-only index/groups and Wumen side V.
 // All other arrays, UV U values, material identity and transforms remain guarded.
 export function restoreGateRails(c,name){
+ c=restorePreWumenAscent(c);
  const copy=c.group.clone(true);
  for(const path of railPaths[name]){
   const original=atPath(c.group,path),m=atPath(copy,path),g=m.geometry;

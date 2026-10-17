@@ -125,10 +125,12 @@ test('only new plaque maps are disposed with their owned face materials',()=>wit
 
 import fs from 'node:fs';
 import {railPaths} from '../lib/gate-rail-retention.mjs';
+import {restorePreWumenAscent} from '../lib/wumen-ascent-retention.mjs';
 const historicalBudget=JSON.parse(fs.readFileSync(new URL('../fixtures/v10-gate-rail-d-baseline.json',import.meta.url)));
 for(const [name,c] of gates)test(`${name}: explicit candidate budget replaces one mesh, adds one material, and preserves physics`,()=>{
   let meshes=0,triangles=0;const materials=new Set();
-  c.group.traverse(m=>{if(!m.isMesh)return;meshes++;triangles+=(m.geometry.index?.count??m.geometry.attributes.position.count)/3;
+  // Keep the immutable plaque budget after only the validated newer ascent scope.
+  restorePreWumenAscent(c).group.traverse(m=>{if(!m.isMesh)return;meshes++;triangles+=(m.geometry.index?.count??m.geometry.attributes.position.count)/3;
     for(const material of Array.isArray(m.material)?m.material:[m.material])materials.add(material);
   });
   const old=historicalBudget[name];

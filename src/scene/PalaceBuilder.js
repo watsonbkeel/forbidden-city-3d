@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { COLORS } from '../config/constants.js';
 import { buildGateAscent, toWorld } from './palace/gateAscent.js';
+import { buildWumenAscent } from './palace/special/WumenAscent.js';
 import { wumenTowerGeometry, shenwuTowerGeometry } from './palace/special/GateTowerProfiles.js';
 import { buildGateTowerShell } from './palace/special/GateTowerShell.js';
 import { WUMEN_VERTICAL_PROFILE } from './palace/special/WumenVerticalProfile.js';
@@ -916,16 +917,12 @@ export class PalaceBuilder {
     }
     this.libBox(g, 'stone_slab', W + 0.4, 0.3, D + 0.4, 0, PH + 0.15, zc, 'box');
 
-    // 登城马道：主墩台北面（宫内一侧）东西两端；顶面四周汉白玉栏杆
+    // 午门专属三跑折返马道：官方平面支持拓扑；高度和配准为明确的模型拟合。
+    // 直接使用门局部原点，不沿用旧直坡子组的 zc 偏移。
     const top = PH + 0.3;
     const sub = new THREE.Group();
-    sub.position.z = zc;
     g.add(sub);
-    const asc = toWorld(buildGateAscent(this.library, sub, {
-      W, D, topY: top, band: [D / 2 - 6, D / 2], edge: 'rail', railFacadeOnly: true,
-    }), new THREE.Matrix4().makeTranslation(this.ox, 0, this.oz + zc));
-    this.colliders.push(...asc.colliders);
-    this.walkables.push(...asc.walkables);
+    buildWumenAscent(this, sub);
 
     // 正楼：面阔 60.05 × 进深 25，重檐庑殿，9 间（dimensions.md:79）
     // 正楼前后廊与中门：2.9m 内墙轴线退距为来源图纸配准的暂定值，非实测净宽。

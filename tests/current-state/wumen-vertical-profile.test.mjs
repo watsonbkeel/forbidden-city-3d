@@ -101,12 +101,14 @@ for(const detail of ['high','low']){
 }
 
 import {restoreWumenFootRoundoff,footRoundoff} from '../lib/wumen-vertical-profile-controls.mjs';
-test('all physics is baseline-exact after only 46 keyed submicrometre foot values; raw delta remains disclosed',()=>{
- assert.equal(hash({colliders:c.builder.colliders,walkables:c.builder.walkables}),footRoundoff.rawAfterPhysics);
- assert.equal(hash({colliders:restoreWumenFootRoundoff(c.builder.colliders),walkables:c.builder.walkables}),baseline.physics);
+import {restorePreWumenAscent} from '../lib/wumen-ascent-retention.mjs';
+test('after exact folded-ascent restoration, all old physics retains only the 46 keyed submicrometre foot deltas',()=>{
+ const retained=restorePreWumenAscent(c);
+ assert.equal(hash({colliders:retained.builder.colliders,walkables:retained.builder.walkables}),footRoundoff.rawAfterPhysics);
+ assert.equal(hash({colliders:restoreWumenFootRoundoff(retained.builder.colliders),walkables:retained.builder.walkables}),baseline.physics);
  assert.equal(footRoundoff.rawBeforePhysics,baseline.physics);
  for(const row of footRoundoff.changes)for(const axis of ['x','y','z']){
-  const changed=c.builder.colliders.map(b=>b.clone());changed[row.index].min[axis]+=.000001;
+  const changed=retained.builder.colliders.map(b=>b.clone());changed[row.index].min[axis]+=.000001;
   assert.throws(()=>restoreWumenFootRoundoff(changed));
  }
 });

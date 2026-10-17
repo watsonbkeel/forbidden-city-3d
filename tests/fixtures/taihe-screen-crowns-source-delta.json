@@ -1,0 +1,15 @@
+{
+  "baselineCommit": "ee5353ec5c3c42aee9c5cd3acb1a024648c37abc",
+  "files": {
+    "src/scene/interior/TaiheCoreContract.js": {
+      "baselineSHA256": "f916e7365ee2a79f72e2c2a25536f181d792843977e22c219d6b8578ea1fa70e",
+      "candidateSHA256": "1380025664a4cc15b789d366a44b5a36dbe8678f0cc68ff31baa1a214987b96e",
+      "deltas": [
+        {
+          "before": "  for(const key of ['furnitureSourceSHA256','furnitureBaseAssetSHA256','furnitureIntegrationSHA256','furnitureRetirementSHA256','furnitureMaskSHA256','furnitureTriangles','furnitureRemovedTriangles'])if(c[key]!==cfg.asset?.[key])throw new Error('Taihe furniture identity mismatch');\n",
+          "after": "  for(const key of ['furnitureSourceSHA256','furnitureBaseAssetSHA256','furnitureIntegrationSHA256','furnitureRetirementSHA256','furnitureMaskSHA256','furnitureTriangles','furnitureRemovedTriangles'])if(c[key]!==cfg.asset?.[key])throw new Error('Taihe furniture identity mismatch');\n  for(const key of ['screenCrownSourceSHA256','screenCrownBaseAssetSHA256','screenCrownIntegrationSHA256','screenCrownRetirementSHA256','screenCrownMaskSHA256','screenCrownTriangles','screenCrownRemovedTriangles'])if(c[key]!==cfg.asset?.[key])throw new Error('Taihe screen crown identity mismatch');\n"
+        }
+      ]
+    }
+  }
+}
