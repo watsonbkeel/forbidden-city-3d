@@ -166,7 +166,7 @@ for (const [name, mutate] of [
 test('guide subjects exist in the selected Taihe CPU asset without inventing hotspot coordinates', async () => {
   const { candidate } = await import('./lib/taihe-display-fixture.mjs');
   const names = candidate.inventory.map(item => item.name), has = name => assert.ok(names.includes(name), name);
-  for (const name of ['throne_seat', 'throne_footstool', 'plaque_frame', 'caisson_square_to_oct', 'caisson_oct_to_round', 'caisson_upper_round', 'caisson_center_sphere']) has(name);
+  for (const name of ['throne_seat', 'throne_footstool', 'plaque_frame', 'caisson_shell_square_lower_ledge', 'caisson_shell_octagonal_ledge', 'caisson_shell_upper_round_ledge', 'caisson_center_sphere']) has(name);
   assert.equal(names.filter(name => /^screen_\d$/.test(name)).length, 7);
   assert.equal(names.filter(name => /^gold_column(?:\.\d+)?$/.test(name)).length, 6);
   assert.equal(names.filter(name => /^caisson_satellite(?:\.\d+)?$/.test(name)).length, 6);

@@ -2,8 +2,10 @@ import * as THREE from 'three';
 import { applyTaiheColumnResponse } from './TaiheColumnResponse.js';
 import { attachTaiheColumnTextures, mapTaiheGoldSurfaces } from './TaiheColumnSurface.js';
 import { appendTaiheDisplayPairs } from './TaiheDisplayPairs.js';
+import { appendTaiheCaissonDetail } from './TaiheCaissonDetail.js';
 import { mergeByMaterial } from '../../../utils/MergeUtils.js';
 import { TAIHE_CORE as P, TAIHE_CORE_CONTRACT, TAIHE_FALLBACK_OWNER } from './TaiheCoreProfile.js';
+import { taiheCeilingMaterial } from './TaiheCeilingMaterial.js';
 
 // Self-authored simplified forms, not facsimiles of historical carving.
 export function taiheGlyphMaterial(sharedTexture = null) {
@@ -82,9 +84,9 @@ export function buildTaiheCoreFallback(builder, parent, { x0, z0, y }) {
   // Upward recess, all geometry below the retained roof underside.
   const outer=c.nominalSpan/2;
   for(const sign of [-1,1]) {box(g,m.darkGold,c.nominalSpan,.12,.16,0,c.rimY+.06,c.z+sign*(outer-.08));box(g,m.darkGold,.16,.12,c.nominalSpan-.32,sign*(outer-.08),c.rimY+.06,c.z);}
-  tier(g,m.gold,{square:true,radius:outer-.16},{radius:2.25},c.rimY+.12,c.rimY+.62,c.z);
-  tier(g,m.darkGold,{radius:2.25},{radius:1.76},c.rimY+.62,c.rimY+.96,c.z);
-  tier(g,m.gold,{radius:1.76},{radius:1.12},c.rimY+.96,c.topY-.03,c.z);
+  // The three approximate ramps are replaced by the bounded generated shell below.
+  // Retain their existing shared-material side state; new shell winding is independently tested.
+  m.gold.side=THREE.DoubleSide;m.darkGold.side=THREE.DoubleSide;
   const cap=put(g,new THREE.CircleGeometry(1.12,8),m.darkGold,0,c.topY-.03,c.z);cap.rotation.x=Math.PI/2;
   put(g,new THREE.OctahedronGeometry(c.sphereRadius),m.pearl,0,c.sphereY,c.z);
   for(let k=0;k<6;k++){const a=k*Math.PI/3;put(g,new THREE.OctahedronGeometry(c.satelliteRadius),m.pearl,Math.cos(a)*c.satelliteRing,c.sphereY+.2,c.z+Math.sin(a)*c.satelliteRing);}
@@ -97,6 +99,7 @@ export function buildTaiheCoreFallback(builder, parent, { x0, z0, y }) {
     glyph(g,m.glyph,q.width-.12,q.height-.12,x,q.bottomY+q.height/2,q.z-.071,rect);
   }
   appendTaiheDisplayPairs(g,m);
+  appendTaiheCaissonDetail(g,m);
   const merged=mergeByMaterial(g,{castShadow:false,receiveShadow:true,name:'taihe-core-fallback'});
   mapTaiheGoldSurfaces(merged);
   attachTaiheColumnTextures(m.gold);
@@ -107,7 +110,7 @@ export function buildTaiheCoreFallback(builder, parent, { x0, z0, y }) {
 }
 export function buildTaiheCeiling(builder,g,{x0,z0,y,w,d}) {
   const h=P.caisson.nominalSpan/2,cz=P.caisson.z,regions=[[-w/2,-d/2,-h,d/2],[h,-d/2,w/2,d/2],[-h,-d/2,h,cz-h],[-h,cz+h,h,d/2]];
-  for(const [a,b,c,e] of regions) {const geo=new THREE.PlaneGeometry(c-a,e-b);geo.rotateX(Math.PI/2);const uv=geo.attributes.uv,pos=geo.attributes.position;for(let i=0;i<uv.count;i++)uv.setXY(i,(pos.getX(i)+(a+c)/2)/1.6,(pos.getZ(i)+(b+e)/2)/1.6);const mesh=put(g,geo,builder.ceilingMaterial(),x0+(a+c)/2,y+P.ceilingY,z0+(b+e)/2,'ceiling-opening');mesh.userData.taihePermanent='ceiling';}
+  for(const [a,b,c,e] of regions) {const geo=new THREE.PlaneGeometry(c-a,e-b);geo.rotateX(Math.PI/2);const uv=geo.attributes.uv,pos=geo.attributes.position;for(let i=0;i<uv.count;i++)uv.setXY(i,(pos.getX(i)+(a+c)/2)/1.6,(pos.getZ(i)+(b+e)/2)/1.6);const mesh=put(g,geo,taiheCeilingMaterial(builder),x0+(a+c)/2,y+P.ceilingY,z0+(b+e)/2,'ceiling-opening');mesh.userData.taihePermanent='ceiling';}
 }
 export function buildTaiheNavigation(builder,{x0,z0,y}) {
   const d=P.dais;

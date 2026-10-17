@@ -1,3 +1,4 @@
+import {restoreHistoricalInventory} from './lib/taihe-shell-geometry-retention.mjs';
 import {restorePreColumnMaterialSource} from './lib/taihe-column-material-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -14,7 +15,7 @@ import {mergeByMaterial} from '../src/utils/MergeUtils.js';
 const split=splitS(),fallback=fallbackSnapshot(),matchedS=matchSource(inScene(split.display),'S'),matchedFallback=matchSource(fallback.display,'fallback');
 
 test('display integration adds exactly 3798 S triangles and 480 actual fallback triangles without changing the original allocations',()=>{
- assert.equal(candidate.triangles.length,12128);assert.equal(split.original.length,8330);assert.equal(split.display.length,3798);
+ assert.equal(candidate.triangles.length,12128-320+472+candidate.contract.caissonTriangles);assert.equal(split.original.length,8330);assert.equal(split.display.length,3798);
  assert.equal(fallback.original.length,1078);assert.equal(fallback.display.length,480);assert.equal(fallback.original.length+fallback.display.length,1558);
  assert.ok(3798<=4800);assert.ok(480<=480);
 });
@@ -22,7 +23,7 @@ test('all original V17 accessor attributes, node transforms, material order/prop
  assert.equal(digest(read(baseline.SAsset)),baseline.SAssetSHA256);
  assert.deepEqual(candidate.gltf.materials,originalS.gltf.materials);
  assert.deepEqual(candidate.gltf.nodes.filter(n=>n.mesh!==undefined),originalS.gltf.nodes.filter(n=>n.mesh!==undefined));
- assert.deepEqual(candidate.inventory.filter(o=>!o.name.startsWith('display_')),originalS.inventory);
+ assert.deepEqual(restoreHistoricalInventory(candidate).filter(o=>!o.name.startsWith('display_')&&!o.name.startsWith('caisson_dragon_')),originalS.inventory);
  assert.deepEqual(split.original.filter(t=>t.material==='taihe_glyph_atlas'),originalS.triangles.filter(t=>t.material==='taihe_glyph_atlas'));
  assert.equal(candidate.contract.displaySourceManifestSHA256,'d2653431547b13678f2ab278a1067cbff894aec21665307b5584dec6edc007f9');
  assert.equal(candidate.contract.displayIntegrationSHA256,digest(read('assets-src/interiors/taihe_display/blender_display.py')));
@@ -31,10 +32,10 @@ test('all original V17 accessor attributes, node transforms, material order/prop
  assert.equal(candidate.gltf.meshes.length,8);assert.equal(candidate.gltf.materials.length,8);
  assert.equal(candidate.gltf.meshes.reduce((n,m)=>n+m.primitives.length,0),8);
 });
-test('fallback original position/normal/UV array prefixes and all material properties remain byte-exact after real merge',()=>{
+test('fallback explicitly restored pre-shell position/normal/UV prefixes and all material properties remain byte-exact after real merge',()=>{
  assert.equal(fallback.meshes.length,8);assert.equal(new Set(fallback.meshes.map(o=>o.material)).size,8);
- for(const o of fallback.meshes){const record=baseline.fallback.find(r=>r.name===o.material.name);
-  for(const [name,a] of Object.entries(record.attributes)){if(record.name==='taihe_gold'&&name==='uv')continue;const actual=o.geometry.attributes[name];assert.equal(actual.itemSize,a.itemSize);assert.equal(digest(Buffer.from(actual.array.buffer,actual.array.byteOffset,a.count*a.itemSize*4)),a.sha256,`${record.name}/${name}: original bytes`);}
+ for(const o of fallback.meshes){const record=baseline.fallback.find(r=>r.name===o.material.name),historical=o.geometry.attributes;
+  for(const [name,a] of Object.entries(record.attributes)){if(record.name==='taihe_gold'&&name==='uv')continue;const actual=historical[name];assert.equal(actual.itemSize,a.itemSize);assert.equal(digest(Buffer.from(actual.array.buffer,actual.array.byteOffset,a.count*a.itemSize*4)),a.sha256,`${record.name}/${name}: original bytes`);}
   assert.deepEqual({color:o.material.color.getHex(),roughness:o.material.roughness,metalness:o.material.metalness,side:o.material.side,transparent:o.material.transparent,opacity:o.material.opacity,depthWrite:o.material.depthWrite,map:!!o.material.map},{...record.material,...(record.name==='taihe_gold'?{map:true}:{})});
   assert.equal(o.userData.noMerge,true);assert.equal(o.userData.taiheCoreOwner,TAIHE_FALLBACK_OWNER);
  }

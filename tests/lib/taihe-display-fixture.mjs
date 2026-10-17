@@ -1,9 +1,12 @@
+import {restoreHistoricalDetail,restoreHistoricalInventory,restoreHistoricalFallbackAttributes} from './taihe-shell-geometry-retention.mjs';
+export {restoreHistoricalInventory};
 import {restorePreColumnMaterialSource} from './taihe-column-material-retention.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import * as THREE from 'three';
-import {read, decode, canonical, candidate} from './taihe-column-fixture.mjs';
+import {read, decode, canonical, historicalCaissonCandidate as candidate} from './taihe-column-fixture.mjs';
 import {captureTaiheControl} from './taihe-core-fixture.mjs';
+// Historical display migration view; current furniture retention is checked separately.
 export {read, candidate};
 export const digest = bytes => createHash('sha256').update(bytes).digest('hex');
 export const baseline = JSON.parse(read('tests/fixtures/taihe-display-baseline.json'));
@@ -25,7 +28,7 @@ export function splitS(integrated = candidate) {
   const expected=new Map();
   for(const t of originalS.triangles){const k=canonical(t);expected.set(k,(expected.get(k)??0)+1);}
   const original=[],display=[];
-  for(const t of integrated.triangles){const k=canonical(t);if(expected.get(k)){expected.set(k,expected.get(k)-1);original.push(t);}else display.push(t);}
+  for(const t of restoreHistoricalDetail(integrated)){const k=canonical(t);if(expected.get(k)){expected.set(k,expected.get(k)-1);original.push(t);}else display.push(t);}
   assert.equal([...expected.values()].reduce((a,b)=>a+b,0),0,'every original V17 triangle and attribute survives exactly');
   assert.equal(original.length,8330);
   assert.equal(display.length,3798);
@@ -44,10 +47,14 @@ export function inScene(triangles, decoded = candidate) {
   return triangles.map(t=>({...t,vertices:t.vertices.map(v=>({...v,POSITION:new THREE.Vector3(...v.POSITION).applyMatrix4(transforms.get(t.material)).toArray(),NORMAL:new THREE.Vector3(...v.NORMAL).applyNormalMatrix(new THREE.Matrix3().getNormalMatrix(transforms.get(t.material))).toArray()}))}));
 }
 export function fallbackSnapshot() {
-  const control=captureTaiheControl('太和殿'),meshes=control.group.children.filter(o=>o.userData.taiheCoreOwner),original=[],display=[];
+  const control=captureTaiheControl('太和殿'),liveMeshes=control.group.children.filter(o=>o.userData.taiheCoreOwner),original=[],display=[];
+  // Historical test-only clones retain live material identity and metadata.
+  // Validation happens against live arrays before exact retired faces return.
+  const meshes=liveMeshes.map(live=>{const mesh=live.clone(false);mesh.geometry=live.geometry.clone();mesh.geometry.attributes=restoreHistoricalFallbackAttributes(live);return mesh;});
   for(const mesh of meshes){const record=baseline.fallback.find(r=>r.name===mesh.material.name),g=mesh.geometry;assert.ok(record);assert.equal(g.index,null);
     const first=record.attributes.position.count;
-    for(let i=0;i<g.attributes.position.count;i+=3){const t={material:mesh.material.name,vertices:[0,1,2].map(k=>Object.fromEntries(Object.entries(g.attributes).map(([name,a])=>[({position:'POSITION',normal:'NORMAL',uv:'TEXCOORD_0',color:'COLOR_0'})[name],Array.from(a.array.slice((i+k)*a.itemSize,(i+k+1)*a.itemSize))])))};(i<first?original:display).push(t);}
+    const retainedCount=g.attributes.position.count;
+    for(let i=0;i<retainedCount;i+=3){const t={material:mesh.material.name,vertices:[0,1,2].map(k=>Object.fromEntries(Object.entries(g.attributes).map(([name,a])=>[({position:'POSITION',normal:'NORMAL',uv:'TEXCOORD_0',color:'COLOR_0'})[name],Array.from(a.array.slice((i+k)*a.itemSize,(i+k+1)*a.itemSize))])))};(i<first?original:display).push(t);}
   }
   return {control,meshes,original,display};
 }

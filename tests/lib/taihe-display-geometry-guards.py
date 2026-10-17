@@ -11,7 +11,8 @@ import json
 from mesh_kernel import sub,cross,dot
 
 # Derived from R2 geometry_guards.py SHA256 60bf793109cc6fd8411ca1b49b5e3050f6f4b76b9a763e5337ad395f5cf04a0b.
-# The source is frozen by the manifest; only the path binding is made portable.
+# The archived source is frozen by its manifest. This portable derivative also
+# recognizes the explicit preserved material-side assignments after shell retirement.
 REFERENCE=Path(__file__).resolve().parents[2]
 EPS=1e-8
 BODY_NAMES={'white_enamel_body','green_folded_wing_surface'}
@@ -26,6 +27,8 @@ def runtime_material_sides():
     factory=source[source.index('function materials('):source.index('function tier(')]
     assert 'side:' not in factory and '.side=' not in factory
     double=set(re.findall(r'tier\(g,m\.(\w+),',source))
+    # Shell replacement preserves the same shared state explicitly after retiring the three tier calls.
+    double.update(re.findall(r'm\.(\w+)\.side=THREE\.DoubleSide',source))
     assert double=={'gold','darkGold'}
     return {key:('DoubleSide' if key in double else 'FrontSide') for key in ('gold','darkGold','red','teal','dark','stone','pearl','glyph')}
 

@@ -20,6 +20,8 @@ export function validateTaiheCore(root,cfg) {
   for(const [key,value] of Object.entries(CONTRACT))if(c[key]!==value)throw new Error(`Taihe core ${key} mismatch`);
   if(c.profileSHA256!==cfg.asset?.profileSHA256||c.sourceSHA256!==cfg.asset?.sourceSHA256)throw new Error('Taihe core source/profile digest mismatch');
   if(c.columnSurfaceUVSHA256!==cfg.asset?.columnSurfaceUVSHA256)throw new Error('Taihe column UV source digest mismatch');
+  for(const key of ['caissonSourceSHA256','caissonIntegrationSHA256','caissonBaseAssetSHA256','caissonTriangles','caissonShellSourceSHA256','caissonShellRetirementSHA256','caissonShellMaskSHA256','caissonShellTriangles','caissonRemovedTriangles'])if(c[key]!==cfg.asset?.[key])throw new Error('Taihe caisson identity mismatch');
+  for(const key of ['furnitureSourceSHA256','furnitureBaseAssetSHA256','furnitureIntegrationSHA256','furnitureRetirementSHA256','furnitureMaskSHA256','furnitureTriangles','furnitureRemovedTriangles'])if(c[key]!==cfg.asset?.[key])throw new Error('Taihe furniture identity mismatch');
   let tris=0,meshes=0;const mats=new Set();root.updateMatrixWorld(true);
   root.traverse(o=>{
     if(!o.isMesh)return;

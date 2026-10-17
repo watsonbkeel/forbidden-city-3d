@@ -1,5 +1,7 @@
 import {withoutColumnUV} from './taihe-column-material-retention.mjs';
 import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
 export const read = path => fs.readFileSync(new URL('../../' + path, import.meta.url));
 export const profile = JSON.parse(read('data/architecture/taihe-core.json'));
 export const centres = profile.columns.x.flatMap(x => profile.columns.goldZ.map(z => [x, z]));
@@ -24,6 +26,14 @@ export function decode(bytes) {
 export const baseline = decode(read('public/models/interiors/taihe-v16-ba59e7321fda.glb'));
 export const config = JSON.parse(read('data/interiors/taihe.json'));
 export const candidate = decode(read('public' + config.model));
+// Explicit frozen caisson view for historical migrations only. Every current
+// asset/runtime/column test continues to use candidate from the live registry.
+const historicalCaissonManifest = JSON.parse(read('docs/current-state/taihe-caisson/SOURCE-MANIFEST.json'));
+const historicalCaissonBytes = read(historicalCaissonManifest.asset.path);
+const historicalCaissonSHA = '9067bcce8b91f719a5e39ca1cfc2a1d1c5c013d5fcd4488dc92ee920ada7015d';
+assert.equal(historicalCaissonManifest.asset.sha256,historicalCaissonSHA);
+assert.equal(createHash('sha256').update(historicalCaissonBytes).digest('hex'),historicalCaissonSHA);
+export const historicalCaissonCandidate = decode(historicalCaissonBytes);
 export const position = v => v.POSITION;
 export const radial = (p, c) => Math.hypot(p[0] - c[0], p[2] - c[1]);
 export const near = (a, b, eps = 1e-5) => Math.abs(a - b) < eps;

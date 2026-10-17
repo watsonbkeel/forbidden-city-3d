@@ -27,8 +27,8 @@ test('all 108 unscoped Taihe meshes remain byte-exact; only four former gold gri
 test('fallback retains the original 1078 core triangles plus 480 displays; permanent architecture delta is unchanged',()=>{
  const fallback=c.group.children.filter(o=>o.userData.taiheCoreOwner===TAIHE_FALLBACK_OWNER),permanent=c.group.children.filter(o=>o.userData.taihePermanent);
  assert.equal(fallback.length,8);assert.equal(new Set(fallback.map(o=>o.material)).size,8);
- assert.equal(fallback.reduce((n,o)=>n+tris(o),0),1558);assert.ok(1558<=P.budgets.fallbackVisibleTriangles);
- const additions=permanent.reduce((n,o)=>n+tris(o),0);assert.equal(additions,120);assert.equal(1078+additions-(1380+336+2),-520);assert.equal(1558+additions-(1380+336+2),-40);
+ assert.equal(fallback.reduce((n,o)=>n+tris(o),0),1558+38);assert.ok(1558+38<=P.budgets.fallbackVisibleTriangles);
+ const additions=permanent.reduce((n,o)=>n+tris(o),0);assert.equal(additions,120);assert.equal(1078+additions-(1380+336+2),-520);assert.equal(1558+38+additions-(1380+336+2),-2);
  // Never subtract unloaded S triangles from the original external view budget.
  assert.ok(Math.abs(-74)-P.frame.depth/2>15);assert.equal(P.budgets.originalFrontTriangles,874189);assert.equal(P.budgets.originalFrontRatioCeiling,1.1);
 });

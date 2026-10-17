@@ -1,10 +1,12 @@
+import {restoreHistoricalInventory} from './lib/taihe-shell-geometry-retention.mjs';
 import {restorePreColumnMaterialSource} from './lib/taihe-column-material-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-import {baseline, candidate, config, centres, profile, position, radial, near, columnIndex, isShaft, geometry, triangleNormal, read} from './lib/taihe-column-fixture.mjs';
+import {baseline, candidate, historicalCaissonCandidate, config, centres, profile, position, radial, near, columnIndex, isShaft, geometry, triangleNormal, read} from './lib/taihe-column-fixture.mjs';
 import {splitS, restoreCore} from './lib/taihe-display-fixture.mjs';
-// This partition fails unless every original V17 triangle/attribute survives.
+// Strict shell restoration reinserts only the pinned 320 retired faces; every
+// other original V17 triangle/attribute must survive unchanged.
 const retainedV17 = splitS();
 const shafts = candidate.triangles.filter(isShaft);
 const relief = candidate.triangles.filter(t => columnIndex(t) >= 0 && !isShaft(t));
@@ -71,10 +73,10 @@ test('every relief face is finite, outward, nondegenerate, within inherited radi
   }
 });
 
-test('non-column decoded geometry, normals, UVs, materials and base meshes remain exact V16', () => {
+test('historical caisson view retains exact non-column V16 geometry and current material definitions', () => {
   assert.deepEqual(geometry(retainedV17.original.filter(t=>columnIndex(t)<0)),geometry(baseline.triangles.filter(t=>columnIndex(t)<0)));
   assert.deepEqual(candidate.gltf.materials,baseline.gltf.materials);
-  assert.deepEqual(candidate.inventory.filter(o=>!o.name.startsWith('display_')&&!/^gold_column(?:\.\d+)?$/.test(o.name)&&!o.name.startsWith('column_authored_relief')),baseline.inventory.filter(o=>!/^gold_column(?:\.\d+)?$/.test(o.name)&&!o.name.startsWith('column_approx_shallow_cloud')));
+  assert.deepEqual(restoreHistoricalInventory(historicalCaissonCandidate).filter(o=>!o.name.startsWith('display_')&&!o.name.startsWith('caisson_dragon_')&&!/^gold_column(?:\.\d+)?$/.test(o.name)&&!o.name.startsWith('column_authored_relief')),baseline.inventory.filter(o=>!/^gold_column(?:\.\d+)?$/.test(o.name)&&!o.name.startsWith('column_approx_shallow_cloud')));
 });
 
 test('retained column candidate stays within reclaimed triangle budget and bounded display additions and eight batches; only scoped gold UVs are added with no embedded images', () => {

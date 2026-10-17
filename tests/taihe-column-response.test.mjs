@@ -1,3 +1,4 @@
+import {restoreHistoricalFallbackAttributes} from './lib/taihe-shell-geometry-retention.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {createHash} from 'node:crypto';import * as THREE from 'three';import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
 import {captureTaiheControl} from './lib/taihe-core-fixture.mjs';
 import {restoreLoadingWelcomeBytes} from './lib/loading-welcome-source-delta.mjs';
@@ -7,21 +8,48 @@ import base from './fixtures/taihe-column-response-baseline.json' with {type:'js
 import P from '../data/architecture/taihe-core.json' with {type:'json'};
 const read=p=>fs.readFileSync(new URL('../'+p,import.meta.url)),sha=b=>createHash('sha256').update(b).digest('hex');
 const response=()=>import('../src/scene/palace/special/TaiheColumnResponse.js');
-async function source(){const bytes=read('public/models/interiors/taihe-v17-display-28d7a11dbeda.glb');return(await new GLTFLoader().parseAsync(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.length),'')).scene;}
+const active=JSON.parse(read('data/interiors/taihe.json'));
+const shellRetirementBytes=read('assets-src/interiors/taihe_caisson/retired_shell_faces.json');
+const throneRetirementBytes=read('assets-src/interiors/taihe_furniture/retired_throne_back_faces.json');
+assert.equal(sha(shellRetirementBytes),'231113dd6726175be9de932cbf6c0a36fe7466e88e5910df6aa9660f49ba2079');
+assert.equal(sha(throneRetirementBytes),'dc4cf61f8441280347c8bd292d163f5465624f6cbf50513a30fb1b9c9018f287');
+const shellRetirement=JSON.parse(shellRetirementBytes),throneRetirement=JSON.parse(throneRetirementBytes);
+const historicalCaissonBytes=read('public/models/interiors/taihe-caisson-9067bcce8b91.glb');
+assert.equal(sha(historicalCaissonBytes),'9067bcce8b91f719a5e39ca1cfc2a1d1c5c013d5fcd4488dc92ee920ada7015d');
+const historicalCaissonGLTF=JSON.parse(historicalCaissonBytes.toString('utf8',20,20+historicalCaissonBytes.readUInt32LE(12)));
+const historicalGold=historicalCaissonGLTF.meshes.flatMap(m=>m.primitives).find(p=>historicalCaissonGLTF.materials[p.material].name==='taihe_gold');
+const historicalGoldVertices=historicalCaissonGLTF.accessors[historicalGold.attributes.POSITION].count;
+assert.equal(historicalGoldVertices,25562);
+const retiredGoldVertices=mask=>new Set(mask.triangles.filter(t=>t.material==='taihe_gold').flatMap(t=>t.indices));
+const shellUnused=retiredGoldVertices(shellRetirement),throneUnused=retiredGoldVertices(throneRetirement);
+assert.equal(shellUnused.size,452);assert.equal(throneUnused.size,624);
+assert.ok([...shellUnused].every(i=>!throneUnused.has(i)),'shell and throne retirement sets are disjoint');
+const expectedUnused=[...new Set([...shellUnused,...throneUnused])].sort((a,b)=>a-b);
+assert.equal(expectedUnused.length,1076);
+async function source(){const bytes=read('public'+active.model);return(await new GLTFLoader().parseAsync(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.length),'')).scene;}
 function gold(root){let found;root.traverse(o=>{if(o.isMesh&&o.material.name==='taihe_gold')found=o;});assert.ok(found);return found;}
-function originalAttributes(g){return Object.fromEntries(Object.entries(g.attributes).filter(([k])=>k!=='color').map(([k,a])=>[k,{count:a.count,itemSize:a.itemSize,sha256:sha(Buffer.from(a.array.buffer,a.array.byteOffset,a.array.byteLength))}]));}
+function originalAttributes(g,retained=null){return Object.fromEntries(Object.entries(g.attributes).filter(([k])=>k!=='color').map(([k,a])=>[k,{count:retained?.[k]?.count??a.count,itemSize:a.itemSize,sha256:sha(Buffer.from(a.array.buffer,a.array.byteOffset,(retained?.[k]?.count??a.count)*a.itemSize*4))}]));}
 function classify(g){const p=g.attributes.position,idx=g.index,used=new Map(),centres=P.columns.x.flatMap(x=>P.columns.goldZ.map(z=>[x,z]));let decorated=0,neutral=0;
  for(let i=0;i<(idx?.count??p.count);i+=3){const ids=[0,1,2].map(k=>idx?idx.getX(i+k):i+k),ps=ids.map(id=>[p.getX(id),p.getY(id),p.getZ(id)]),c=centres.find(c=>ps.every(v=>v[1]>=.19999&&v[1]<=P.columns.height+.00001&&Math.hypot(v[0]-c[0],v[2]-c[1])<=.52001));const cap=ps.every(v=>Math.abs(v[1]-.2)<1e-5)||ps.every(v=>Math.abs(v[1]-P.columns.height)<1e-5),on=!!c&&!cap;on?decorated++:neutral++;
  for(const id of ids){if(used.has(id))assert.equal(used.get(id),on,'indexed vertices never cross cap/decorated ownership');used.set(id,on);}}
  return{used,decorated,neutral};}
-function inspect(mesh,count,bytes){const g=mesh.geometry,c=g.attributes.color;assert.ok(c,'runtime Float32 gain attribute');assert.equal(c.itemSize,3);assert.ok(c.array instanceof Float32Array);assert.equal(c.normalized,false);assert.equal(c.array.byteLength,bytes);const {used,decorated}=classify(g);assert.equal(decorated,count);assert.equal(used.size,g.attributes.position.count);const factors=mesh.material.color.toArray(),expected=[.65,.43,.10].map((v,k)=>Math.fround(v/factors[k]));
+function inspect(mesh,count,bytes){const g=mesh.geometry,c=g.attributes.color;assert.ok(c,'runtime Float32 gain attribute');assert.equal(c.itemSize,3);assert.ok(c.array instanceof Float32Array);assert.equal(c.normalized,false);assert.equal(c.array.byteLength,bytes);const {used,decorated}=classify(g);assert.equal(decorated,count);if(g.index){
+  const unused=Array.from({length:g.attributes.position.count},(_,i)=>i).filter(i=>!used.has(i));
+  assert.deepEqual(unused,expectedUnused,'unused vertices are exactly the pinned shell-plus-throne union');
+  for(const id of unused){assert.equal(g.attributes.uv.getX(id),0);assert.equal(g.attributes.uv.getY(id),0);for(let k=0;k<3;k++)assert.equal(c.array[id*3+k],1);}
+  for(let id=historicalGoldVertices;id<g.attributes.position.count;id++){
+   assert.equal(used.get(id),false,'every appended furniture vertex is referenced outside column decoration');
+   assert.equal(g.attributes.uv.getX(id),0);assert.equal(g.attributes.uv.getY(id),0);
+   for(let k=0;k<3;k++)assert.equal(c.array[id*3+k],1,'furniture has neutral response gain');
+  }
+ }else assert.equal(used.size,g.attributes.position.count);const factors=mesh.material.color.toArray(),expected=[.65,.43,.10].map((v,k)=>Math.fround(v/factors[k]));
  for(const [id,on] of used){const uv=g.attributes.uv;assert.equal(uv.getX(id)!==0,on);for(let k=0;k<3;k++)assert.equal(c.array[id*3+k],on?expected[k]:1);}
  assert.equal(mesh.material.vertexColors,true);assert.ok(Math.abs(mesh.material.metalness-.55)<1e-7);return expected;
 }
 test('runtime response installs on actual B and loaded S with exact neutral and preserved geometry',async()=>{
  const b=captureTaiheControl('太和殿'),bm=gold(b.group),s=await source(),sm=gold(s),attrs=originalAttributes(sm.geometry),index=sha(Buffer.from(sm.geometry.index.array.buffer,sm.geometry.index.array.byteOffset,sm.geometry.index.array.byteLength));
- inspect(bm,144,17352);installTaiheColumnTextures(s,bm.material);inspect(sm,3192,217752);assert.deepEqual(originalAttributes(sm.geometry),attrs);assert.equal(sha(Buffer.from(sm.geometry.index.array.buffer,sm.geometry.index.array.byteOffset,sm.geometry.index.array.byteLength)),index);assert.notEqual(sm.geometry.attributes.color.array,bm.geometry.attributes.color.array);
- for(const record of base.fallback){const m=b.group.children.find(o=>o.material?.name===record.material);assert.deepEqual(originalAttributes(m.geometry),record.attributes);assert.deepEqual({color:m.material.color.toArray(),roughness:m.material.roughness,metalness:m.material.metalness,envMapIntensity:m.material.envMapIntensity,side:m.material.side,transparent:m.material.transparent,opacity:m.material.opacity},record.materialFactors);if(m!==bm)assert.equal(m.geometry.attributes.color,undefined);}
+ inspect(bm,144,18432);installTaiheColumnTextures(s,bm.material);inspect(sm,3192,413160);assert.deepEqual(originalAttributes(sm.geometry),attrs);assert.equal(sha(Buffer.from(sm.geometry.index.array.buffer,sm.geometry.index.array.byteOffset,sm.geometry.index.array.byteLength)),index);assert.notEqual(sm.geometry.attributes.color.array,bm.geometry.attributes.color.array);
+ for(const record of base.fallback){const m=b.group.children.find(o=>o.material?.name===record.material);assert.deepEqual(originalAttributes({attributes:restoreHistoricalFallbackAttributes(m)},record.attributes),record.attributes);assert.deepEqual({color:m.material.color.toArray(),roughness:m.material.roughness,metalness:m.material.metalness,envMapIntensity:m.material.envMapIntensity,side:m.material.side,transparent:m.material.transparent,opacity:m.material.opacity},record.materialFactors);if(m!==bm)assert.equal(m.geometry.attributes.color,undefined);}
  b.builder.dispose();
 });
 test('only patterned roughness G changes: all color, bump and unused bytes, neutral tail and budgets stay exact',()=>{
@@ -51,6 +79,22 @@ test('no shared factor, alpha, texture type, fetch or shader-hook escape is intr
  const b=captureTaiheControl('太和殿'),m=gold(b.group).material;assert.equal(m.transparent,false);assert.equal(m.opacity,1);assert.equal(m.map.type,THREE.UnsignedByteType);assert.equal(m.roughnessMap,m.bumpMap);assert.equal(m.map.colorSpace,THREE.SRGBColorSpace);assert.equal(m.bumpMap.colorSpace,THREE.NoColorSpace);b.builder.dispose();
 });
 
+test('furniture neutrality and exact retired-index union reject same-size ownership drift',async()=>{
+ const b=captureTaiheControl('太和殿'),s=await source(),m=gold(s);
+ try{
+  installTaiheColumnTextures(s,gold(b.group).material);
+  const g=m.geometry,first=historicalGoldVertices;
+  assert.equal(g.attributes.position.count-first,8868,'exact new gold furniture vertices');
+  inspect(m,3192,413160);
+  const uv=g.attributes.uv,color=g.attributes.color,last=g.index.count-1,savedIndex=g.index.getX(last);
+  uv.setY(first,.25);assert.throws(()=>inspect(m,3192,413160));uv.setY(first,0);
+  color.array[first*3]=.5;assert.throws(()=>inspect(m,3192,413160),/furniture has neutral response gain/);color.array[first*3]=1;
+  g.index.setX(last,expectedUnused[0]);
+  assert.throws(()=>inspect(m,3192,413160),/unused vertices are exactly the pinned shell-plus-throne union/);
+  g.index.setX(last,savedIndex);inspect(m,3192,413160);
+ }finally{b.builder.dispose();}
+});
+
 test('finite response source delta composes with, never replaces, old protected baselines',async()=>{
  const {restorePreColumnResponseSource:restore}=await import('./lib/taihe-column-response-retention.mjs'),delta=JSON.parse(read('tests/fixtures/taihe-column-response-delta.json'));
  for(const [path,r] of Object.entries(delta.files)){const bytes=read(path);assert.equal(sha(restore(path,bytes)),r.baselineSHA256);assert.throws(()=>restore(path,bytes+'\n'));for(const d of r.deltas)for(const after of ['',d.after+d.after])assert.throws(()=>restore(path,bytes.toString().replace(d.after,after)));}
@@ -78,5 +122,5 @@ test('actual Float32 S/B gains stay bounded at every mip; neutral base and BRDF 
  b.builder.dispose();
 });
 test('response source, buffer budget and visual-trial provenance are explicitly identified',()=>{
- const cfg=JSON.parse(read('data/interiors/taihe.json'));assert.equal(cfg.asset.columnResponseSourceSHA256,sha(read('src/scene/palace/special/TaiheColumnResponse.js')));assert.deepEqual(cfg.asset.columnResponseBufferBytes,{S:217752,B:17352});assert.match(cfg.asset.columnResponse,/Visual-trial/);
+ const cfg=JSON.parse(read('data/interiors/taihe.json'));assert.equal(cfg.asset.columnResponseSourceSHA256,sha(read('src/scene/palace/special/TaiheColumnResponse.js')));assert.deepEqual(cfg.asset.columnResponseBufferBytes,{S:413160,B:18432});assert.match(cfg.asset.columnResponse,/Visual-trial/);
 });
