@@ -1,0 +1,40 @@
+{
+  "baseCommit": "665ce936eef2b832f09444380cd5ec58d8a11c47",
+  "files": {
+    "src/scene/palace/special/TaiheCore.js": {
+      "baselineSHA256": "b612169183ef61a4fb653cd41ef372328285f7f2429e7431efeb17fe034e783d",
+      "deltas": [
+        {
+          "before": "import * as THREE from 'three';\n",
+          "after": "import * as THREE from 'three';\nimport { applyTaiheColumnResponse } from './TaiheColumnResponse.js';\n"
+        },
+        {
+          "before": "  attachTaiheColumnTextures(m.gold);",
+          "after": "  attachTaiheColumnTextures(m.gold);\n  merged.traverse(applyTaiheColumnResponse);"
+        }
+      ]
+    },
+    "src/scene/interior/TaiheCoreContract.js": {
+      "baselineSHA256": "e9ab173c0dcefd81b4af3aa289f389cfc0ae8fac7639b2ad6adf14ba46e1ad86",
+      "deltas": [
+        {
+          "before": "import * as THREE from 'three';\n",
+          "after": "import * as THREE from 'three';\nimport { applyTaiheColumnResponse } from '../palace/special/TaiheColumnResponse.js';\n"
+        },
+        {
+          "before": "sharedColumnAtlases.set(o.material,new Set(Object.values(textures)));",
+          "after": "sharedColumnAtlases.set(o.material,new Set(Object.values(textures)));applyTaiheColumnResponse(o,root);"
+        }
+      ]
+    },
+    "src/scene/palace/special/TaiheColumnSurface.js": {
+      "baselineSHA256": "c6e436acd0a4924fc71191c159964f68f98696b54bca3f0e9460c5399bb98b36",
+      "deltas": [
+        {
+          "before": "Math.round(255*(.80+.20*(1-height)))",
+          "after": "Math.round(255*(.54+.28*(1-height)))"
+        }
+      ]
+    }
+  }
+}

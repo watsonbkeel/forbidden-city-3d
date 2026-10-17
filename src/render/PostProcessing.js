@@ -129,8 +129,8 @@ export class PostProcessing {
   setQuality(quality) {
     if (this.quality === quality) return;
     
-    // 重新初始化
-    this.dispose();
+    // 只重建后期处理；场景批次由场景变化或完整销毁负责释放。
+    this.disposePostProcessing();
     this.init(quality);
     
     // 需要重新设置渲染器尺寸
@@ -184,6 +184,10 @@ export class PostProcessing {
    */
   dispose() {
     this.batchedBuilder.dispose();
+    this.disposePostProcessing();
+  }
+
+  disposePostProcessing() {
     if (this.composer) {
       this.composer.passes.forEach(pass => {
         // r162 SSAOPass.dispose 漏掉噪声纹理和 SSAO 材质，需由管线补全。

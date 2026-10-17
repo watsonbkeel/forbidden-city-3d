@@ -1,3 +1,4 @@
+const { browserExecutablePath } = require('./lib/browser-path.cjs');
 // 截图工具：在本地开发服务上按指定机位渲染并截图，供开发时目视检查。
 // 用法：node tests/shot.cjs 输出名 x,y,z lookX,lookY,lookZ [x,y,z lookX,lookY,lookZ ...]
 //   多组机位依次截图，文件名为 输出名-1.png、输出名-2.png …，输出到 ../outputs/dev/
@@ -16,7 +17,7 @@ const fs = require('node:fs');
   const outDir = path.resolve(__dirname, '../../outputs/dev');
   fs.mkdirSync(outDir, { recursive: true });
   const browser = await chromium.launch({
-    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    executablePath: browserExecutablePath(),
     headless: true,
     args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--autoplay-policy=no-user-gesture-required'],
   });

@@ -1,3 +1,4 @@
+const { browserExecutablePath } = require('./lib/browser-path.cjs');
 // 性能基线：在 6 个固定点各等场景稳定后采 60 帧，输出 tests/perf-baseline.json。
 // 用法：node tests/perf.cjs [输出文件=tests/perf-baseline.json]
 // 环境变量：PALACE_URL（默认 http://127.0.0.1:5173）、QUERY_STRING（追加到 URL，如 ?zones=all）、SCALE（写入 json 顶层，默认 pre-1to1）、FRAMES（默认 60）
@@ -41,7 +42,7 @@ const percentile = (arr, p) => {
   const outFile = path.resolve(process.argv[2] || path.join(__dirname, 'perf-baseline.json'));
   const FRAMES = Number(process.env.FRAMES || 60);
   const browser = await chromium.launch({
-    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    executablePath: browserExecutablePath(),
     headless: true,
     args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--autoplay-policy=no-user-gesture-required'],
   });

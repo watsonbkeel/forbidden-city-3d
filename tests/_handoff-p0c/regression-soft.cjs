@@ -1,3 +1,4 @@
+const { browserExecutablePath } = require('../lib/browser-path.cjs');
 const { chromium } = require('playwright');
 const assert = require('node:assert/strict');
 const path = require('node:path');
@@ -5,7 +6,7 @@ const fs = require('node:fs');
 
 // 使用已有本地服务与系统 Chrome，不安装依赖或请求任何付费服务。
 (async () => {
-  const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+  const browser = await chromium.launch({ executablePath: browserExecutablePath(), headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   const results = [];
   const errors = [];
   const check = (name, value) => { results.push({ name, passed: !!value }); console.log((value?"PASS ":"FAIL ")+name); };

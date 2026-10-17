@@ -1,3 +1,4 @@
+const { browserExecutablePath } = require('./lib/browser-path.cjs');
 // P1-Z-axis 开发探针：在页面里执行一段表达式并打印结果（JSON）。
 // 用法：PORT=5190 tools/run-with-vite.sh node tests/p1zaxis-probe.cjs "<async 函数体，可用 a=app、THREE、imp(path)>"
 const { chromium } = require('playwright');
@@ -5,7 +6,7 @@ const { chromium } = require('playwright');
 (async () => {
   const body = process.argv[2];
   const browser = await chromium.launch({
-    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    executablePath: browserExecutablePath(),
     headless: true,
     args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'],
   });

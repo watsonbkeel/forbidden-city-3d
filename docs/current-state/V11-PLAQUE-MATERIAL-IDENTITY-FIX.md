@@ -1,0 +1,11 @@
+# V11 production material identity correction
+
+The immutable 8f74fa9 candidate failed gp02 before its first frame. The retained console error was `Wumen lower roof surface is unavailable`; the 240-second readiness timeout then aborted capture. No six-view visual or ordinary-package acceptance was earned. gp02 cleanup was verified at 2026-10-15T15:53:56.660365Z, with no remaining owned/unproven/browser processes or allocated port listeners. The original candidate, ZIP and evidence stay unchanged.
+
+The new lower-roof guard incorrectly depended on the simplified CPU fixture label `roof_tile`. The real `TextureLibrary.material('roof_tile')` caches and names the material `roof_tile_material`. A new regression using the real TextureLibrary material/cache implementation reproduced the exact initialization failure before the fix. Only image loading is replaced by inert CPU textures; there is no GPU or network.
+
+The sole runtime change compares the ray hit's material object with `builder.library.material('roof_tile')`, exactly the default-parameter cached object used by RoofBuilder. It rejects an unrelated material even if its display name is identical. The ridge check remains unchanged because that material is locally constructed with the explicit `roof_ridge_glaze` name.
+
+No probe, dimension, roof surface, mesh, camera, collision, walkable, texture, draw group, or package protocol is changed. The prior model-estimate fit and limitations remain: dimensions are not surveys; the ordinary initial spawn has lower-eave occlusion that mouse pitch cannot remove; system-font rendering is approximate; Shenwu's upper bilingual sign and central yellow canopy remain absent. New compiled visual acceptance is required.
+
+Focused regressions cover real production naming/cache initialization, exact prior fitted dimensions and plaque geometry, both glyphs' ink-cell clearance at unchanged C1 and south-cardinal poses, renamed same-object acceptance, same-name impostor rejection, and whole production buildGate/finish merging with unchanged physics and post-merge C1 visibility. A finite one-substitution source guard restores the exact immutable 8f74 file; the earlier exact bb5 and V10 guards remain active without refreshing geometry snapshots.

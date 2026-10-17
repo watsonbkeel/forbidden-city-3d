@@ -1,3 +1,4 @@
+const { browserExecutablePath } = require('./lib/browser-path.cjs');
 const { chromium } = require('playwright');
 const assert = require('node:assert/strict');
 
@@ -7,7 +8,7 @@ const START_Z = -470;
 const WUMEN_Z = -419.6;
 (async () => {
   const browser = await chromium.launch({
-    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    executablePath: browserExecutablePath(),
     headless: true,
     args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--autoplay-policy=no-user-gesture-required'],
   });

@@ -1,21 +1,32 @@
-#!/bin/zsh
+#!/usr/bin/env bash
 # 用法：PORT=518x tools/run-with-vite.sh <cmd...>
-#   在当前 git 工作树（含 worktree）根目录起 vite，等就绪后跑命令，结束后只关闭本端口的 vite。
-#   并行 Agent 各用独立端口（见 docs/agent-tasks/BOARD.md 端口表），避免互相杀进程。
+# 当前工作树起 vite；只关闭自己创建的进程。NODE 可覆盖 PATH 上的 node。
+set -u
 ROOT=$(git rev-parse --show-toplevel) || exit 2
-cd "$ROOT"
+cd "$ROOT" || exit 2
 PORT=${PORT:-5180}
-NODE=/Users/watson/.workbuddy/binaries/node/versions/22.22.2-6/bin/node
-"$NODE" ./node_modules/vite/bin/vite.js --port $PORT --strictPort --host 127.0.0.1 > /tmp/vite-$PORT.log 2>&1 &
+NODE=${NODE:-node}
+URL="http://127.0.0.1:$PORT"
+if curl -sf --noproxy '*' -o /dev/null "$URL/"; then
+  echo "Port $PORT is already serving HTTP; choose another PORT." >&2
+  exit 2
+fi
+"$NODE" ./node_modules/vite/bin/vite.js --port "$PORT" --strictPort --host 127.0.0.1 > "/tmp/vite-$PORT.log" 2>&1 &
 VPID=$!
-for i in {1..80}; do
-  curl -sf --noproxy '*' -o /dev/null http://127.0.0.1:$PORT/ && break
+cleanup() { kill "$VPID" 2>/dev/null || true; wait "$VPID" 2>/dev/null || true; }
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+READY=0
+for ((i=0; i<80; i++)); do
+  kill -0 "$VPID" 2>/dev/null || break
+  if curl -sf --noproxy '*' -o /dev/null "$URL/"; then READY=1; break; fi
   sleep 0.5
 done
-export NODE_PATH=/Users/watson/.workbuddy/binaries/node/workspace/node_modules
-export PALACE_URL=http://127.0.0.1:$PORT
+if [[ "$READY" != 1 ]]; then
+  echo "Vite did not become ready; see /tmp/vite-$PORT.log" >&2
+  exit 2
+fi
+export PALACE_URL="$URL"
 perl -e 'alarm 2400; exec @ARGV' "$@"
-RC=$?
-kill $VPID 2>/dev/null
-pkill -f "vite.js --port $PORT " 2>/dev/null
-exit $RC
+exit $?

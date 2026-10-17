@@ -1,0 +1,29 @@
+{
+  "baseCommit": "c140efca28168bdb1f3af0cd1922196f25f33666",
+  "files": {
+    "src/scene/palace/special/TaiheCore.js": {
+      "baselineSHA256": "8384e530963af132249a9ba67a5a80d164507bdcadd94b99417abefab473c4ec",
+      "candidateSHA256": "7581f97d54a0a3aeee133f29f98855678444ee6d97440118967c3f8bf1165545",
+      "deltas": [
+        {
+          "before": "import { appendTaiheDisplayPairs } from './TaiheDisplayPairs.js';\n",
+          "after": "import { appendTaiheDisplayPairs } from './TaiheDisplayPairs.js';\nimport { appendTaiheCaissonDetail } from './TaiheCaissonDetail.js';\n"
+        },
+        {
+          "before": "  appendTaiheDisplayPairs(g,m);\n",
+          "after": "  appendTaiheDisplayPairs(g,m);\n  appendTaiheCaissonDetail(g,m);\n"
+        }
+      ]
+    },
+    "src/scene/interior/TaiheCoreContract.js": {
+      "baselineSHA256": "a4584965046264760ae170252dc6437bf19a38b652b6a002b4d8f40c6e31a5b3",
+      "candidateSHA256": "0e35360e3c77f9d3ba298affe092097aa5ea9d48d96f757a47b5c452e9144a97",
+      "deltas": [
+        {
+          "before": "  if(c.columnSurfaceUVSHA256!==cfg.asset?.columnSurfaceUVSHA256)throw new Error('Taihe column UV source digest mismatch');\n",
+          "after": "  if(c.columnSurfaceUVSHA256!==cfg.asset?.columnSurfaceUVSHA256)throw new Error('Taihe column UV source digest mismatch');\n  for(const key of ['caissonSourceSHA256','caissonIntegrationSHA256','caissonBaseAssetSHA256','caissonTriangles'])if(c[key]!==cfg.asset?.[key])throw new Error('Taihe caisson identity mismatch');\n"
+        }
+      ]
+    }
+  }
+}

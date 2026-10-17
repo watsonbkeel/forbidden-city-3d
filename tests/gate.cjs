@@ -29,10 +29,9 @@ const KEEP_GOING = process.argv.includes('--keep-going');
 const SKIP = new Set((process.env.GATE_SKIP || '').split(',').filter(Boolean));
 const PERF_RULES = { calls: 0.10, tris: 0.10, fpsP5: 0.15 };
 const FPS_STRICT = process.env.PERF_FPS_STRICT === '1';
-const PLAYWRIGHT_PATH = '/Users/watson/.workbuddy/binaries/node/workspace/node_modules';
 
 fs.mkdirSync(LOG_DIR, { recursive: true });
-const ENV = { ...process.env, PALACE_URL: URL, NODE_PATH: process.env.NODE_PATH || PLAYWRIGHT_PATH };
+const ENV = { ...process.env, PALACE_URL: URL };
 
 function run(name, args, timeoutS) {
   const t = Date.now();
@@ -113,7 +112,9 @@ const STEPS = [
       if (r.code === 0) break;
     }
     const passed = pick(r.out, /"passed": (\d+)/);
-    return { ...r, ok: r.code === 0, detail: `${passed ?? '?'}/24${tries ? '（首次失败，重试后' + (r.code === 0 ? '通过）' : '仍失败）') : ''}` };
+    // regression.cjs reports the checks actually completed; do not retain an
+    // obsolete fixed denominator when new runtime checks are added.
+    return { ...r, ok: r.code === 0, detail: `${passed ?? '?'} 项通过${tries ? '（首次失败，重试后' + (r.code === 0 ? '通过）' : '仍失败）') : ''}` };
   } },
   { name: 'stepwalk', browser: true, exec: () => {
     const r = run('stepwalk', ['tests/stepwalk.cjs', '60,10', '0,1', 'all'], 1800);

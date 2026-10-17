@@ -4,6 +4,11 @@ import { buildRoof, buildWallCap } from '../RoofBuilder.js';
 import { buildStuddedDoor } from '../HallKit.js';
 import { mergeByMaterial } from '../../utils/MergeUtils.js';
 import { furnishRoom, goldBrickTexture, GOLD_BRICK_TILE } from './interiors.js';
+import { buildSideGate } from './special/SideGate.js';
+import { buildZhaodeGate } from './special/ZhaodeGate.js';
+import { buildTirenPavilion } from './special/TirenPavilion.js';
+import { buildSurveyedPavilion } from './special/SurveyedPavilion.js';
+import { buildQinanHall } from './special/QinanHall.js';
 
 const STEP_RUN = 1.6; // 台阶水平长 / 高
 const _v = new THREE.Vector3();
@@ -240,14 +245,26 @@ export class CourtKit {
    * - style 'wall'：随墙门（两侧门垛 + 门罩），开口宽 = w + 2.8
    * - style 'hall'：门殿（三间，明间为门道，门扇在中柱一线、打开后贴两侧隔墙），开口宽 = 门殿面阔
    */
-  gate({ x, z, rot = 0, w = 3.6, h = 4.4, t = 1, style = 'wall', name, roof = 'xieshan', brackets = true, layers = 1 }) {
+  gate({ x, z, rot, w = 3.6, h = 4.4, t = 1, style = 'wall', gateKind, gateProfile, open, plaque, name, roof = 'xieshan', brackets = true, layers = 1, eaveCount }) {
+    if (gateProfile === 'zhaode') {
+      if (gateKind !== 'three-bay') throw new Error('Zhaode profile requires explicit three-bay gateKind');
+      return buildZhaodeGate(this, { x, z, rot, w, h, t, gateKind, gateProfile, open, plaque, name });
+    }
+    if (gateProfile !== undefined) {
+      if (gateKind !== 'five-bay') throw new Error('Side gate profile requires explicit five-bay gateKind');
+      return buildSideGate(this, { x, z, rot, gateProfile, open, plaque, name });
+    }
+    if (rot === undefined) rot = 0; // Preserve legacy defaults after dedicated dispatch.
+    const kind = gateKind ?? ({ wall: 'wall', hall: 'three-bay' }[style]);
+    if (!['wall', 'three-bay', 'five-bay'].includes(kind)) throw new Error(`Unsupported gateKind: ${kind ?? style}`);
+    layers = eaveCount ?? layers;
     const f = this.frame(x, z, rot);
-    // 数据里 w ≥ 20 的是「通面阔」（官方五间门殿，如文华门、慈宁门、武英门），
-    // 而不是门道净宽：按五间三启的门殿整体构建，避免原先 w + 次间 7.2m 的重复叠加。
-    if (w >= 20 && (style === 'hall' || style === 'wall')) {
+    f.userData.structure = { gateKind: kind, storeys: 1, eaveCount: layers, portalCount: kind === 'five-bay' ? 3 : 1 };
+    // Topology is explicit. Width is a dimension, never evidence of gate type.
+    if (kind === 'five-bay') {
       return this.gateHall5(f, { W: w, h: Math.max(h, 4.8), name, roof, brackets, layers });
     }
-    if (style === 'hall') return this.gateHall(f, { w, h, name, roof, brackets, layers });
+    if (kind === 'three-bay') return this.gateHall(f, { w, h, name, roof, brackets, layers });
     const pw = 1.4;
     const gd = Math.max(t + 1.4, w / 2 + 1.0);
     const H = h + 1.5;
@@ -429,16 +446,25 @@ export class CourtKit {
    * open：只有柱子的敞厅（箭亭、亭榭）；closed（enter=false）时整座殿身为实体碰撞。
    */
   hall(o) {
+    if (o.structure === 'qinan-hall') return buildQinanHall(this, o);
+    if (o.qinanProfile !== undefined) throw new Error('Qinan profile requires qinan-hall structure');
+    if (o.structure === 'surveyed-pavilion') return buildSurveyedPavilion(this, o);
+    if (o.pavilionProfile !== undefined) throw new Error('Pavilion profile requires surveyed-pavilion structure');
+    if (o.structure === 'tiren-pavilion') return buildTirenPavilion(this, o);
+    if (o.structure) throw new Error(`Unsupported hall structure: ${o.structure}`);
+    if ((o.storeys ?? 1) !== 1) throw new Error('Unsupported storeys: use an explicit multi-storey structure builder');
     const {
       x, z, rot = 0, w, d, colH = 4.6, ph = 0.9, pad = 1.0,
-      roof = 'xieshan', layers = 1, brackets = true, roofH,
+      roof = 'xieshan', brackets = true, roofH,
       enter: enterOpt, backDoor = false, open = false, throne = false,
       name, plaque = true, map = 'hall', bays,
       interior, roomBays = 0,
     } = o;
+    const layers = o.eaveCount ?? o.layers ?? 1;
     // 默认所有殿座都可进入（open 敞厅本来就能穿行）
     const enter = !open && enterOpt !== false;
     const f = this.frame(x, z, rot);
+    f.userData.structure = { storeys: 1, eaveCount: layers };
     const n = bays ?? Math.max(3, Math.round(w / 3.6) | 1);
     const bay = w / n;
     // 房间划分：roomBays>0 时每 roomBays 间隔成一个房间（不足 2 间的尾巴并入上一间），每间房正中一扇门
@@ -559,7 +585,9 @@ export class CourtKit {
     if (enter) {
       // 数据里 interior 形如 "A:palace-front" / "B:hall"（档位:预设）；预设名取冒号后部分
       const interiorKind = typeof interior === 'string' ? interior.replace(/^[A-Za-z]:/, '') : interior;
-      const kind = interiorKind ?? (throne ? 'throne' : map === 'corridor' ? 'room' : w >= 14 ? 'hall' : 'room');
+      // A throne already creates its own furniture and circulation footprint.
+      // Forwarding an interior preset must not furnish a second hall over it.
+      const kind = throne ? 'throne' : interiorKind ?? (map === 'corridor' ? 'room' : w >= 14 ? 'hall' : 'room');
       segs.forEach(([a, b], idx) => {
         const x0 = -w / 2 + a * bay + (a > 0 ? 0.15 : 0.35);
         const x1 = -w / 2 + b * bay - (b < n ? 0.15 : 0.35);
@@ -653,7 +681,13 @@ export class CourtKit {
   /** 合并几何并返回可加入场景的 Group */
   finish() {
     this.buildPlaqueAtlas();
+    const architecture = [];
+    this.root.traverse(o => {
+      const record = o.userData.pavilion ?? (o.userData.structure?.id ? o.userData.structure : null);
+      if (record) architecture.push(structuredClone(record));
+    });
     const merged = mergeByMaterial(this.root, { name: this.root.name });
+    merged.userData.architecture = architecture;
     merged.traverse(o => { if (o.isMesh) o.receiveShadow = true; });
     return merged;
   }

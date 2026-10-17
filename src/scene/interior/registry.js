@@ -8,5 +8,12 @@ import huangji from '../../../data/interiors/huangji.json';
 import yangxin from '../../../data/interiors/yangxin.json';
 import kunning from '../../../data/interiors/kunning.json';
 import cining from '../../../data/interiors/cining.json';
+import { KUNNING_PROFILE, KUNNING_CONTRACT, KUNNING_INTERIOR_FRAME } from '../palace/special/KunningProfile.js';
 
-export const INTERIORS = { taihe, qianqing, huangji, yangxin, kunning, cining };
+export const INTERIORS = { taihe, qianqing, huangji, yangxin, kunning: {
+  ...kunning,
+  frame: KUNNING_INTERIOR_FRAME,
+  architectureContract: KUNNING_CONTRACT,
+  placementRegions: KUNNING_PROFILE.placementRegions,
+  protectedVolumes: KUNNING_PROFILE.protectedVolumes,
+}, cining };

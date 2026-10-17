@@ -1,10 +1,12 @@
 import * as THREE from 'three';
-import { LAYOUT, PLAYER } from '../config/constants.js';
+import { DIMENSIONS, LAYOUT, PLAYER } from '../config/constants.js';
 import { PALACE_LAYOUT } from '../scene/Layout.js';
 import { isOnBridge } from '../scene/palace/river.js';
 
 /** 玩家碰撞盒底部离脚面的抬升量：低于此高度的台阶/门槛直接跨过，不当成墙。 */
 const STEP_CLEARANCE = 0.35;
+/** 与 FirstPerson 传入的既有半径一致；位置标签也沿用同一身体净空，不改变碰撞策略。 */
+const DEFAULT_PLAYER_RADIUS = 0.5;
 
 /** 实体碰撞代理与河道通行检查；不把整个建筑的空区当成实心。 */
 export class CollisionManager {
@@ -15,6 +17,8 @@ export class CollisionManager {
      * - { type: 'box', box: Box3 }：顶面高度 = box.max.y，XZ 范围取 box。
      * - { type: 'ramp', minX, maxX, minZ, maxZ, axis: 'x'|'z', a0, a1, y0, y1 }：
      *   沿 axis 从坐标 a0（高度 y0）到 a1（高度 y1）线性过渡。
+     *   Optional crossMin0/crossMax0/crossMin1/crossMax1 bound a tapered
+     *   cross-axis interval at a0/a1; absent fields preserve rectangles.
      */
     this.walkables = [];
     this.playerBox = new THREE.Box3();
@@ -42,11 +46,18 @@ export class CollisionManager {
     }
     if (walkable.type === 'ramp') {
       const r = walkable;
+      const taper = ['crossMin0', 'crossMax0', 'crossMin1', 'crossMax1'];
+      const hasTaper = taper.some(key => r[key] !== undefined);
+      if (hasTaper && (!taper.every(key => Number.isFinite(r[key])) || r.crossMin0 > r.crossMax0 || r.crossMin1 > r.crossMax1)) {
+        throw new Error('Invalid tapered ramp: four finite, ordered cross-axis bounds are required');
+      }
       this.walkables.push({
         type: 'ramp',
         minX: Math.min(r.minX, r.maxX), maxX: Math.max(r.minX, r.maxX),
         minZ: Math.min(r.minZ, r.maxZ), maxZ: Math.max(r.minZ, r.maxZ),
         axis: r.axis === 'x' ? 'x' : 'z', a0: r.a0, a1: r.a1, y0: r.y0, y1: r.y1,
+        ...(hasTaper
+          ? { crossMin0: r.crossMin0, crossMax0: r.crossMax0, crossMin1: r.crossMin1, crossMax1: r.crossMax1 } : {}),
         tag,
       });
     }
@@ -96,6 +107,14 @@ export class CollisionManager {
         if (x < w.minX || x > w.maxX || z < w.minZ || z > w.maxZ) continue;
         const a = w.axis === 'x' ? x : z;
         const t = w.a1 === w.a0 ? 1 : Math.min(1, Math.max(0, (a - w.a0) / (w.a1 - w.a0)));
+        // Optional trapezoidal boundary: cross-axis edges interpolate at the
+        // same t as the height. Legacy rectangular ramps retain their exact path.
+        if (w.crossMin0 !== undefined) {
+          const cross = w.axis === 'x' ? z : x;
+          const low = w.crossMin0 + (w.crossMin1 - w.crossMin0) * t;
+          const high = w.crossMax0 + (w.crossMax1 - w.crossMax0) * t;
+          if (cross < low - 1e-9 || cross > high + 1e-9) continue;
+        }
         top = w.y0 + (w.y1 - w.y0) * t;
       }
       if (top > limit || top <= ground) continue;
@@ -104,7 +123,7 @@ export class CollisionManager {
     return Math.max(ground, rescue);
   }
 
-  checkCollision(position, radius = 0.5) {
+  checkCollision(position, radius = DEFAULT_PLAYER_RADIUS) {
     if (!this.checkBoundary(position, radius) || !this.checkRiverCrossing(position, radius)) return true;
     // 视点是头部（脚面 + PLAYER.HEIGHT）；碰撞体从脚面上方 STEP_CLEARANCE 到头顶，矮台阶可直接跨过。
     const feetY = position.y - PLAYER.HEIGHT;
@@ -167,7 +186,7 @@ export class CollisionManager {
     return best;
   }
 
-  checkBoundary(position, radius = 0.5) {
+  checkBoundary(position, radius = DEFAULT_PLAYER_RADIUS) {
     const { minX, maxX, minZ, maxZ } = LAYOUT.BOUNDARY;
     return position.x - radius >= minX && position.x + radius <= maxX &&
       position.z - radius >= minZ && position.z + radius <= maxZ;
@@ -192,7 +211,7 @@ export class CollisionManager {
    * 继续以地面高度从楼梯口钻进台基内部（表现为走到楼梯顶突然掉到台基下面）。
    * 结果的地面高度写入 this.lastGroundY。
    */
-  getValidPosition(currentPosition, targetPosition, radius = 0.5, feetY = null, stepUp = PLAYER.STEP_UP ?? 0.6, airFeet = null) {
+  getValidPosition(currentPosition, targetPosition, radius = DEFAULT_PLAYER_RADIUS, feetY = null, stepUp = PLAYER.STEP_UP ?? 0.6, airFeet = null) {
     // airFeet：空中（跳跃/下落）时的实际脚面高度。碰撞按身体真实高度判定（可越过矮栏杆），
     // 落脚面按真实脚面查询（跳到高于原地面的台面上也能落住）。
     const distance = Math.hypot(targetPosition.x - currentPosition.x, targetPosition.z - currentPosition.z);
@@ -264,7 +283,11 @@ export class CollisionManager {
     if (z < LAYOUT.JIAOTAI_Z + 10) return '交泰殿';
     if (z < LAYOUT.KUNNING_Z + 15) return '坤宁宫';
     if (z < LAYOUT.IMPERIAL_GARDEN_Z + 30) return '御花园';
-    if (z < LAYOUT.SHENWU_Z + 20) return '神武门';
+    // 模型相对的地面出口：完整身体越过现有城台北皮才称“门外”。
+    // 与 cityGate 共用名义进深；不是实测边界或当日游客通行说明。
+    // 上层可站立城台仍在北皮以内；不按眼高切换，避免门外跳跃时标签闪回。
+    const modeledNorthFace = LAYOUT.SHENWU_Z + DIMENSIONS.SHENWU.depth / 2;
+    if (z - DEFAULT_PLAYER_RADIUS <= modeledNorthFace) return '神武门';
     return '神武门外';
   }
 }

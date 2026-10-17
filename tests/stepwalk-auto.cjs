@@ -50,11 +50,11 @@ const UNLOADED_WALK_MAX = 1; // m
     process.exit(fail ? 1 : 0);
   }
 
-  const { openPage, runRoutes } = require('./lib/stepwalk-runner.cjs');
+  const { openPage, runRoutes, routeForBrowser } = require('./lib/stepwalk-runner.cjs');
   const fpsList = (args[0] || '60,10').split(',').map(Number);
   const sprints = (args[1] || '0,1').split(',').map(v => v === '1');
   const { browser, page } = await openPage();
-  const result = await runRoutes(page, routes.map(r => [r.name, r.pts]), fpsList, sprints);
+  const result = await runRoutes(page, routes.map(routeForBrowser), fpsList, sprints);
   await browser.close();
   let fail = 0, known = 0;
   const cross = new Set(routes.filter(r => r.name.startsWith('[跨区]')).map(r => r.name));

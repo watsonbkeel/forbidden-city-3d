@@ -1,0 +1,15 @@
+{
+  "baselineCommit": "a502f00d1823d7ac6dba795868df63d5b0263840",
+  "files": {
+    "src/scene/interior/TaiheCoreContract.js": {
+      "baselineSHA256": "f8f82cbcffc4999331ac6e660be5d89ade216d3ef9578b09935668c443bba822",
+      "candidateSHA256": "f916e7365ee2a79f72e2c2a25536f181d792843977e22c219d6b8578ea1fa70e",
+      "deltas": [
+        {
+          "before": "  for(const key of ['caissonSourceSHA256','caissonIntegrationSHA256','caissonBaseAssetSHA256','caissonTriangles','caissonShellSourceSHA256','caissonShellRetirementSHA256','caissonShellMaskSHA256','caissonShellTriangles','caissonRemovedTriangles'])if(c[key]!==cfg.asset?.[key])throw new Error('Taihe caisson identity mismatch');\n",
+          "after": "  for(const key of ['caissonSourceSHA256','caissonIntegrationSHA256','caissonBaseAssetSHA256','caissonTriangles','caissonShellSourceSHA256','caissonShellRetirementSHA256','caissonShellMaskSHA256','caissonShellTriangles','caissonRemovedTriangles'])if(c[key]!==cfg.asset?.[key])throw new Error('Taihe caisson identity mismatch');\n  for(const key of ['furnitureSourceSHA256','furnitureBaseAssetSHA256','furnitureIntegrationSHA256','furnitureRetirementSHA256','furnitureMaskSHA256','furnitureTriangles','furnitureRemovedTriangles'])if(c[key]!==cfg.asset?.[key])throw new Error('Taihe furniture identity mismatch');\n"
+        }
+      ]
+    }
+  }
+}

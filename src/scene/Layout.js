@@ -180,7 +180,7 @@ export const PALACE_LAYOUT = [
       roofLayers: 2,
       hasBrackets: true,
       hasRailings: true,
-      hasPassage: true,    // 前后门洞可通行
+      hasPassage: true,    // 两端穿廊；南门偏东，北中墙封闭，详见坤宁宫专用profile
     },
   },
   

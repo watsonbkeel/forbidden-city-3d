@@ -26,6 +26,20 @@ const segHitsRect = (p, q, R) => {
 /** 殿台明（含台阶）世界 AABB */
 function hallRect(h) {
   const g = hallGeom(h);
+  if (g.profile?.profile === 'qinan') {
+    const supports = g.profile.supports;
+    return { x0: Math.min(...supports.map(s => s.min[0])), x1: Math.max(...supports.map(s => s.max[0])),
+      z0: Math.min(...supports.map(s => s.min[2])), z1: Math.max(...supports.map(s => s.max[2])) };
+  }
+  if (g.profile) {
+    const { platform, frontFlights, sideConnections } = g.profile;
+    const x0 = Math.min(platform.x0, ...sideConnections.map(s => s.xOuter));
+    const x1 = Math.max(platform.x1, ...sideConnections.map(s => s.xOuter));
+    const z0 = Math.min(platform.z0, ...frontFlights.map(f => f.zToe));
+    const corners = [g.toW(x0, z0), g.toW(x1, z0), g.toW(x0, platform.z1), g.toW(x1, platform.z1)];
+    return { x0: Math.min(...corners.map(p => p[0])), x1: Math.max(...corners.map(p => p[0])),
+      z0: Math.min(...corners.map(p => p[1])), z1: Math.max(...corners.map(p => p[1])) };
+  }
   const cs = [[-g.PW / 2, -(g.PD / 2 + g.run)], [g.PW / 2, g.PD / 2 + (g.backDoor || g.open ? g.run : 0)]].map(([x, z]) => g.toW(x, z));
   return { x0: Math.min(cs[0][0], cs[1][0]), x1: Math.max(cs[0][0], cs[1][0]), z0: Math.min(cs[0][1], cs[1][1]), z1: Math.max(cs[0][1], cs[1][1]) };
 }
@@ -60,7 +74,8 @@ function pickGate(zone, h, hg, target) {
     }
   }
   const gates = zone.items.filter(i => i.kind === 'gate' || i.kind === 'cityGate');
-  const front = gates.filter(g => (g.x - h.x) * hg.facing[0] + (g.z - h.z) * hg.facing[1] > hg.PD / 2);
+  const frontDistance = hg.profile ? -hg.front : hg.PD / 2;
+  const front = gates.filter(g => (g.x - h.x) * hg.facing[0] + (g.z - h.z) * hg.facing[1] > frontDistance);
   const pool = front.length ? front : gates;
   pool.sort((a, b) => Math.hypot(a.x - target[0], a.z - target[1]) - Math.hypot(b.x - target[0], b.z - target[1]));
   return pool.length ? { gate: pool[0], via: front.length ? '殿正面方向最近的门' : '最近的门' } : null;
@@ -72,23 +87,28 @@ function gateLeg(W, gate, toward, plan) {
   const [dx, dz] = g.dir;
   const s = (toward[0] - g.x) * dx + (toward[1] - g.z) * dz >= 0 ? 1 : -1;
   const ix = dx * s, iz = dz * s;
-  const P = (along, lat = 0) => [g.x + ix * along - iz * lat, g.z + iz * along + ix * lat];
-  const inner = P(g.half + 2);
+  const centerX = g.profile?.portalCenters.reduce((a, b) => Math.abs(a) < Math.abs(b) ? a : b) ?? 0;
+  const center = g.profile?.toWorld(centerX, 0) ?? [g.x, g.z];
+  const P = (along, lat = 0) => [center[0] + ix * along - iz * lat, center[1] + iz * along + ix * lat];
+  const innerDepth = s > 0 ? g.rear : g.front, outerDepth = s > 0 ? g.front : g.rear;
+  const inner = P(innerDepth + 2);
+  const passage = g.profile ? g.profile.ramps.flatMap(r => [r.zToe, r.zTop]).sort((a, b) => s * (a - b))
+    .map(z => g.profile.toWorld(centerX, z)) : [];
   // 门外实测净空（从门心往外走）
-  const probe = walkStraight(W, [g.x, g.z], P(-(g.half + GATE_OUT + 1)));
-  const clear = probe.reached >= probe.total - 0.1 ? GATE_OUT + 1 : probe.reached + 0.5 - g.half;
-  if (clear >= GATE_OUT + 1) return [P(-(g.half + GATE_OUT)), inner];
-  const laneD = g.half + Math.max(0.6, clear / 2);       // 夹道中线
+  const probe = walkStraight(W, center, P(-(outerDepth + GATE_OUT + 1)), { feet0: g.platformY });
+  const clear = probe.reached >= probe.total - 0.1 ? GATE_OUT + 1 : probe.reached + 0.5 - outerDepth;
+  if (clear >= GATE_OUT + 1) return [P(-(outerDepth + GATE_OUT)), ...passage, inner];
+  const laneD = outerDepth + Math.max(0.6, clear / 2);       // 夹道中线
   const front = P(-laneD);
   for (const lat of [LANE_SIDE, -LANE_SIDE, LANE_SIDE / 2, -LANE_SIDE / 2]) {
     const st = P(-laneD, lat);
     if (!pointBlocked(W, st[0], st[1]) && legOk(W, st, front)) {
       plan.push(`门外净空 ${clear.toFixed(1)} m → 沿夹道中线横移 ${Math.abs(lat)} m 进门`);
-      return [st, front, inner];
+      return [st, front, ...passage, inner];
     }
   }
   plan.push(`门外净空 ${clear.toFixed(1)} m，夹道两侧均不可横移，起点取夹道中线`);
-  return [front, inner];
+  return [front, ...passage, inner];
 }
 
 /** p→q 被殿挡住时从侧面绕：返回插入的途经点（不含 p、q）；绕不过返回 null */
@@ -104,6 +124,42 @@ function detour(W, halls, p, q, plan) {
       : [R.z0 - DETOUR_GAP, R.z1 + DETOUR_GAP].sort((a, b) => Math.abs(a - p[1]) - Math.abs(b - p[1])).map(z => [[p[0], z], [q[0], z]]);
     for (const [a, b] of opts) {
       if (legOk(W, p, a) && legOk(W, a, b) && legOk(W, b, q)) { plan.push(`绕「${h.name ?? '殿'}」侧面`); return [a, b]; }
+    }
+  }
+  return null;
+}
+
+/**
+ * 两个 L 角点都被占据时，试殿台明外侧的三段折线。
+ * 每座附近殿只贡献四条候选侧线，不搜索网格；整条候选逐段用真实碰撞验证。
+ * 这也能穿过两座错开的殿之间的走廊，而无需把任一被占据的 L 角点当作落脚点。
+ */
+function sideCorridor(W, halls, p, q, plan) {
+  const envelope = { x0: Math.min(p[0], q[0]) - DETOUR_GAP, x1: Math.max(p[0], q[0]) + DETOUR_GAP,
+    z0: Math.min(p[1], q[1]) - DETOUR_GAP, z1: Math.max(p[1], q[1]) + DETOUR_GAP };
+  const candidates = [];
+  const seen = new Set();
+  for (const h of halls) {
+    const R = hallRect(h);
+    if (R.x1 < envelope.x0 || R.x0 > envelope.x1 || R.z1 < envelope.z0 || R.z0 > envelope.z1) continue;
+    const mids = [
+      ...[R.x0 - DETOUR_GAP, R.x1 + DETOUR_GAP].map(x => [[r1(x), p[1]], [r1(x), q[1]]]),
+      ...[R.z0 - DETOUR_GAP, R.z1 + DETOUR_GAP].map(z => [[p[0], r1(z)], [q[0], r1(z)]]),
+    ];
+    for (const mid of mids) {
+      const key = JSON.stringify(mid);
+      if (seen.has(key)) continue;
+      seen.add(key);
+      const pts = [p, ...mid, q];
+      const length = pts.slice(1).reduce((sum, point, i) => sum + Math.hypot(point[0] - pts[i][0], point[1] - pts[i][1]), 0);
+      candidates.push({ mid, h, length: r1(length), first: Math.hypot(mid[0][0] - p[0], mid[0][1] - p[1]) });
+    }
+  }
+  candidates.sort((a, b) => a.length - b.length || a.first - b.first);
+  for (const { mid: [a, b], h } of candidates) {
+    if (legOk(W, p, a) && legOk(W, a, b) && legOk(W, b, q)) {
+      plan.push(`沿「${h.name ?? '殿'}」台明外侧三段绕行`);
+      return [a, b];
     }
   }
   return null;
@@ -144,12 +200,29 @@ export function zoneRoutes(W, zone) {
   const out = [];
   const halls = zone.items.filter(i => i.kind === 'hall');
   for (const h of halls) {
+    if (h.structure === 'qinan-hall' || h.qinanProfile !== undefined) {
+      const hg = hallGeom(h), n = hg.navigation;
+      const gate = zone.items.find(i => i.kind === 'gate' && i.name === '坤宁门');
+      if (!gate) throw new Error('Qinan exterior route requires the inherited Kunning Gate');
+      const plan = ['旧穿殿假设已撤回；经 z=429.7 南横路转 x=18 侧路，避开南轴暂缺石构及双炉，到西南地面外观观览点后原路返回。台上、室内及北出路线未验收；不表示现场游客通行许可。'];
+      const entry = gateLeg(W, gate, [n.position.x, n.position.z], plan);
+      // Extend the collinear gate exit to the south cross-path. The 1m
+      // diagnostic stub at z428.7 is not a formal legacy-driver waypoint.
+      const go = [...entry.slice(0, -1), [entry.at(-1)[0], 429.7], [n.position.x, 429.7], [n.position.x, n.position.z]];
+      out.push({ name: `[${zone.id}] ${gate.name}→${h.name}地面外观→返回`, zone: zone.id, gate: gate.name, hall: h.name,
+        via: '经园内地面至西南外观观览点', plan, pts: [...go, ...go.slice(0, -1).reverse()].map(([x, z]) => [r1(x), r1(z)]),
+        navigationMode: n.mode, viewpointId: n.viewpointId, replacesLegacyRoute: `[${zone.id}] ${gate.name}→${h.name}→返回` });
+      continue;
+    }
     if (!h.name || h.open || h.enter !== true) continue;
     const plan = [];
     const hg = hallGeom(h);
-    let hallFront = hg.toW(hg.doorX, -(hg.PD / 2 + hg.run + HALL_FRONT));
-    const inside = hg.toW(hg.doorX, -(hg.d / 2 - 1));
-    let tail = [hallFront, inside];
+    const approach = hg.profile?.approaches.frontLeft;
+    let tail = approach ? approach.worldPoints.map(p => [p.x, p.z]) : [
+      hg.toW(hg.doorX, -(hg.PD / 2 + hg.run + HALL_FRONT)), hg.toW(hg.doorX, -(hg.d / 2 - 1)),
+    ];
+    let hallFront = tail[0];
+    const inside = tail.at(-1);
     // 工字殿：殿前点落在另一座殿的台明里
     const H2 = halls.find(o => o !== h && inRect(hallFront[0], hallFront[1], hallRect(o), -0.5));
     if (H2) {
@@ -167,10 +240,11 @@ export function zoneRoutes(W, zone) {
       const corner = gateAlongZ ? [inner[0], to[1]] : [to[0], inner[1]];
       const alt = gateAlongZ ? [to[0], inner[1]] : [inner[0], to[1]];
       for (const c of [alt, corner]) {
-        const d1 = detour(W, halls, inner, c, plan), d2 = d1 && detour(W, halls, c, to, plan);
-        if (d1 && d2) return { mid: [...d1, c, ...d2], alt };
+        const candidatePlan = [];
+        const d1 = detour(W, halls, inner, c, candidatePlan), d2 = d1 && detour(W, halls, c, to, candidatePlan);
+        if (d1 && d2) { plan.push(...candidatePlan); return { mid: [...d1, c, ...d2], alt }; }
       }
-      return { mid: null, alt };
+      return { mid: sideCorridor(W, halls, inner, to, plan), alt };
     };
     let { mid, alt } = planMid(hallFront);
     // 工字殿两殿台明不相接（中间留空地，如武英殿/敬思殿）：门内→殿前被带后门的前殿挡住且无法侧绕时，同样穿前殿
@@ -183,9 +257,15 @@ export function zoneRoutes(W, zone) {
       }
     }
     if (!mid) { plan.push('门内→殿前直线/侧绕均受阻（交由浏览器步行判定）'); mid = [alt]; }
-    const go = simplify(W, [...leg, ...mid, ...tail]);
-    const pts = [...go, ...[...go].reverse().slice(1)].map(([x, z]) => [r1(x), r1(z)]);
-    out.push({ name: `[${zone.id}] ${pick.gate.name}→${h.name}→返回`, zone: zone.id, gate: pick.gate.name, hall: h.name, via: pick.via, plan, pts });
+    // Never shorten the profile's toe/top/platform/door chain. Its narrow side
+    // flights flank a blocked carved strip; a diagonal shortcut is not valid.
+    const prefix = approach ? simplify(W, [...leg, ...mid]) : [];
+    if (approach && prefix.length && Math.hypot(prefix.at(-1)[0] - tail[0][0], prefix.at(-1)[1] - tail[0][1]) < 1e-8) prefix.pop();
+    const go = approach ? [...prefix, ...tail] : simplify(W, [...leg, ...mid, ...tail]);
+    const roundTrip = [...go, ...[...go].reverse().slice(1)];
+    const pts = approach ? roundTrip : roundTrip.map(([x, z]) => [r1(x), r1(z)]);
+    out.push({ name: `[${zone.id}] ${pick.gate.name}→${h.name}→返回`, zone: zone.id, gate: pick.gate.name, hall: h.name, via: pick.via, plan, pts,
+      ...(approach ? { pavilionApproach: approach.side } : {}) });
   }
   return out;
 }
@@ -227,8 +307,63 @@ export function crossRoutes(W, zones) {
   ];
 }
 
+/** 独立覆盖 profile 每条物理门道、两侧坡道；保留坡脚/坡顶点，不做短段简化。 */
+export function profileGateRoutes(zones) {
+  return zones.flatMap(zone => zone.items.filter(item => item.kind === 'gate' && item.gateProfile && item.gateProfile !== 'zhaode').flatMap(item => {
+    const { profile: g } = gateGeom(item);
+    const front = g.ramps.find(r => r.side === 'front'), rear = g.ramps.find(r => r.side === 'rear');
+    return g.portalCenters.map((x, index) => {
+      const go = [front.zToe - 2, front.zToe, front.zTop, rear.zTop, rear.zToe, rear.zToe + 2].map(z => g.toWorld(x, z));
+      return { name: `[${zone.id}] ${item.name}门道${index + 1}→双侧坡道→返回`, zone: zone.id, gate: item.name,
+        gateProfile: item.gateProfile, portalCenter: x, plan: ['按实际门道中心与双侧坡脚/坡顶通行'],
+        pts: [...go, ...go.slice(0, -1).reverse()] };
+    });
+  }));
+}
+
+/** 两阁各自两条实际前阶：完整保留坡脚/坡顶、台面转向与下层门点。 */
+export function profilePavilionRoutes(zones) {
+  return zones.flatMap(zone => zone.items.filter(item => item.kind === 'hall' && item.pavilionProfile && item.enter === true)
+    .flatMap(item => {
+      const { profile } = hallGeom(item);
+      return Object.values(profile.approaches).map(approach => {
+        const go = approach.worldPoints.map(p => [p.x, p.z]);
+        return { name: `[${zone.id}] ${item.name}${approach.side === 'frontLeft' ? '左' : '右'}前阶→下层中央门→返回`,
+          zone: zone.id, hall: item.name, pavilionProfile: item.pavilionProfile, pavilionFlight: approach.side,
+          plan: ['经实际侧阶、月台与下层中央门；保留每个物理途经点'],
+          pts: [...go, ...go.slice(0, -1).reverse()] };
+      });
+    }));
+}
+
+/** Common-terrace QA routes use actual constructed flights, never a second set of dimensions. */
+export function profileTerraceRoutes(W, zones) {
+  if (!zones.some(z => z.id === 'axis-courts')) return [];
+  return (W.terraceProfiles ?? []).flatMap(profile => Object.values(profile.approaches).map(approach => {
+    const go = approach.points.map(p => [p.x, p.z]);
+    return { name: `[三台] ${approach.side === 'east' ? '东' : '西'}腰阶地面→三层台基→中和殿游廊→原路返回`,
+      zone: 'static', hall: '中和殿', terraceProfile: profile.id, terraceSide: approach.side, waypointDriver: 'physical-crossing-v1',
+      plan: ['由地面起步，保留实际三段坡脚、坡顶及层间平台；结构预览不表示当前游客通行许可'],
+      pts: [...go, ...go.slice(0, -1).reverse()] };
+  }));
+}
+
+/** One explicit three-bay passage, retaining both independent slope contacts. */
+export function profileZhaodeGateRoutes(zones) {
+  return zones.flatMap(zone => zone.items.filter(item => item.kind === 'gate' &&
+    item.gateProfile === 'zhaode' && item.gateKind === 'three-bay').map(item => {
+    const { profile } = gateGeom(item);
+    const contacts = ['frontGround', 'frontToe', 'frontTop', 'portalFront', 'portalRear', 'rearTop', 'rearToe', 'rearGround'];
+    const go = contacts.map(name => profile.toWorld(...profile.routeContacts[name]));
+    return { name: `[${zone.id}] ${item.name}南地面→单门道→北地面→返回`, zone: zone.id, gate: item.name,
+      gateProfile: item.gateProfile, portalCenter: profile.portalCenters[0], waypointDriver: 'zhaode-physical-crossing-v1',
+      plan: ['从两侧实际坡脚外 2 米的地面起步，经独立南北坡道与唯一中央门道；临时拓扑不表示现代游客通行许可'],
+      pts: [...go, ...go.slice(0, -1).reverse()] };
+  }));
+}
+
 export function buildAutoRoutes(W, zones, { knownIssues = {} } = {}) {
-  const routes = [...zones.flatMap(z => zoneRoutes(W, z)), ...crossRoutes(W, zones)];
+  const routes = [...zones.flatMap(z => zoneRoutes(W, z)), ...crossRoutes(W, zones), ...profileGateRoutes(zones), ...profilePavilionRoutes(zones), ...profileTerraceRoutes(W, zones), ...profileZhaodeGateRoutes(zones)];
   for (const r of routes) if (knownIssues[r.name]) r.knownIssue = knownIssues[r.name];
   return routes;
 }

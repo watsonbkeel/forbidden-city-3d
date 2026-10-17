@@ -16,8 +16,12 @@ import { Ambience } from './src/audio/Ambience.js';
 import { Minimap } from './src/ui/Minimap.js';
 import { Teleport } from './src/ui/Teleport.js';
 import { SettingsMenu } from './src/ui/SettingsMenu.js';
+import { SettingsTourSession } from './src/ui/SettingsTourSession.js';
+import { MapTourSession } from './src/ui/MapTourSession.js';
+import { hasShortcutModifier, isTextEntryTarget } from './src/controls/InputTargets.js';
 import { PerfHUD } from './src/ui/PerfHUD.js';
 import { LAYOUT, PERFORMANCE, TELEPORT } from './src/config/constants.js';
+import { INITIAL_VIEW_POSITION } from './src/config/initialView.js';
 
 /**
  * 故宫 3D 虚拟游览主程序
@@ -132,7 +136,7 @@ class ForbiddenCityApp {
           this.shadowObjects = this.shadowObjects.filter(o => !gone.has(o));
         };
         ZONES.forEach(zone => this.zoneManager.register(zone));
-        const start = LAYOUT.START_POSITION;
+        const start = INITIAL_VIEW_POSITION;
         this.zoneManager.init(this.scene, this.library, this.collisionManager, { x: start.x, z: start.z });
       }],
       ['碰撞检测', () => {
@@ -152,7 +156,7 @@ class ForbiddenCityApp {
       }],
       ['控制器', () => {
         this.controls = new FirstPersonControls(this.camera, document.body, this.collisionManager);
-        const start = LAYOUT.START_POSITION;
+        const start = INITIAL_VIEW_POSITION;
         this.controls.setPosition(start.x, start.y, start.z);
         // 相机默认朝向 -Z（背对故宫），出生时转身面向北边的午门
         this.controls.lookAt(0, LAYOUT.WUMEN_Z);
@@ -208,7 +212,7 @@ class ForbiddenCityApp {
     const overlay = document.getElementById('welcome-overlay');
     if (!overlay) return;
     this._onLock = () => { overlay.style.display = 'none'; };
-    this._onUnlock = () => { overlay.style.display = this.minimap?.visible ? 'none' : 'flex'; };
+    this._onUnlock = () => { overlay.style.display = this.minimap?.visible || this.settingsMenu?.visible ? 'none' : 'flex'; };
     this.controls.controls.addEventListener('lock', this._onLock);
     this.controls.controls.addEventListener('unlock', this._onUnlock);
   }
@@ -242,6 +246,8 @@ class ForbiddenCityApp {
       0.1,
       2500
     );
+    const start = INITIAL_VIEW_POSITION;
+    this.camera.position.set(start.x, start.y, start.z);
   }
   
   /**
@@ -340,35 +346,36 @@ class ForbiddenCityApp {
     // 移动端额外常驻右上角预览，点击展开全图
     this.teleport = new Teleport(this.controls, this.zoneManager, this.collisionManager);
     this._onTeleportKey = event => {
-      if (event.repeat || event.ctrlKey || event.metaKey || event.altKey || /^(INPUT|TEXTAREA|SELECT)$/.test(event.target?.tagName)) return;
+      if (event.defaultPrevented || event.repeat || hasShortcutModifier(event) || isTextEntryTarget(event.target)) return;
       const index = Number(event.key) - 1;
       if (/^[1-8]$/.test(event.key)) this.teleport.go(TELEPORT.POINTS[index].target);
     };
     window.addEventListener('keydown', this._onTeleportKey);
-    this.minimap = new Minimap({ items: this.zoneManager.getMapItems(), preview: this.isMobile, onTeleport: name => this.teleport.go(name), onToggle: visible => {
-      // 打开地图：释放鼠标以便缩放/点击，但保留键盘移动（WASD 走动、Q/E 转向）；关闭：重新锁定视角
-      this.controls.setFreeMove?.(visible);
-      // unlock 事件会重新显示欢迎遮罩，先同步隐藏；之后的 unlock 回调也会检查 minimap.visible
-      const overlay = document.getElementById('welcome-overlay');
-      if (visible && overlay) overlay.style.display = 'none';
-      if (visible) this.controls.unlock();
-      else { try { this.controls.lock(); } catch { /* 需要用户手势时忽略，点击画面即可重新进入 */ } }
+    this.mapTourSession = new MapTourSession({
+      controls: this.controls,
+      welcomeOverlay: document.getElementById('welcome-overlay'),
+      getSettingsSession: () => this.settingsTourSession,
+    });
+    this.minimap = new Minimap({ items: this.zoneManager.getMapItems(), preview: this.isMobile, hasTeleportTarget: name => this.teleport.targets.has(name), onTeleport: name => this.teleport.go(name), onToggle: visible => {
+      this.settingsMenu?.setMapMode(visible, this.minimap.container);
+      this.mapTourSession.setVisible(visible);
     } });
     
     // 设置菜单（按 ESC 显示）
+    this.settingsTourSession = new SettingsTourSession({
+      controls: this.controls,
+      isMobile: this.isMobile,
+      minimap: this.minimap,
+      welcomeOverlay: document.getElementById('welcome-overlay'),
+    });
     this.settingsMenu = new SettingsMenu(document.body);
     this.settingsMenu.init({
       initialQuality: this.currentQuality,
       initialSound: true,
-      onResume: () => {
-        // 继续游戏：重新锁定鼠标
-        if (!this.isMobile && this.controls?.controls) {
-          this.controls.controls.lock();
-        }
-      },
+      onOpen: () => this.settingsTourSession.open(),
+      onResume: () => this.settingsTourSession.resume(),
       onQualityChange: (quality) => {
-        this.currentQuality = quality;
-        this.toggleQuality();
+        this.toggleQuality(quality);
       },
       onSoundToggle: (enabled) => {
         if (!enabled) {
@@ -382,11 +389,8 @@ class ForbiddenCityApp {
     
     // 绑定 ESC 键打开设置菜单
     this._onKeyDown = (event) => {
-      if (event.code === 'Escape') {
+      if (event.code === 'Escape' && !event.repeat) {
         event.preventDefault();
-        if (this.controls?.controls?.isLocked) {
-          this.controls.controls.unlock();
-        }
         this.settingsMenu.toggle();
       }
     };
@@ -416,9 +420,11 @@ class ForbiddenCityApp {
     return Math.min(window.devicePixelRatio || 1, cap);
   }
 
-  toggleQuality() {
-    // 按钮文字由 SettingsMenu 自己更新（旧的 qualityButton 已移除）
-    this.currentQuality = this.currentQuality === 'high' ? 'low' : 'high';
+  toggleQuality(quality = this.currentQuality === 'high' ? 'low' : 'high') {
+    // The menu supplies the chosen value. Do not invert it a second time.
+    // No-argument calls still toggle for keyboard/testing callers.
+    if (quality !== 'high' && quality !== 'low') throw new Error(`Unsupported quality: ${quality}`);
+    this.currentQuality = quality;
     
     // 更新渲染设置
     this.renderer.setPixelRatio(this.getPixelRatio(this.currentQuality));
@@ -426,6 +432,10 @@ class ForbiddenCityApp {
     this.environment.setQuality(this.currentQuality === 'high');
     this.shadowSetup.setQuality(this.currentQuality);
     this.lastShadowUpdate = 0;
+    if (this.settingsMenu) {
+      this.settingsMenu.currentQuality = this.currentQuality;
+      this.settingsMenu.updateQualityButton();
+    }
   }
   
   /**
@@ -486,7 +496,7 @@ class ForbiddenCityApp {
         console.log('移动端自动开始');
       } else {
         const overlay = document.getElementById('welcome-overlay');
-        if (overlay && !this.controls.controls.isLocked) {
+        if (overlay && !this.controls.controls.isLocked && !this.minimap?.visible && !this.settingsMenu?.visible) {
           overlay.style.display = 'flex';
         }
         console.log('点击屏幕开始游览');
@@ -533,7 +543,8 @@ class ForbiddenCityApp {
     if (this._lastSize !== `${width}x${height}`) this.onResize();
 
     // 更新控制器（含走路镜头起伏；motion = { speed, sprint, footstep }）
-    this.controls.update();
+    if (this.settingsTourSession) this.settingsTourSession.updateControls();
+    else this.controls.update();
     const motion = this.controls.motion ?? { speed: 0, sprint: false, footstep: false };
     
     // 更新位置信息

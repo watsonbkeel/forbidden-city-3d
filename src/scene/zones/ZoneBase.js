@@ -20,6 +20,7 @@ export class ZoneBase {
     this.group = null;
     /** gate name → 返回的开口宽度（用于 wall gaps 引用） */
     this.gateWidths = new Map();
+    this.gateGeometries = new Map();
   }
 
   /**
@@ -65,7 +66,7 @@ export class ZoneBase {
           this.buildNineDragonWall(item);
           break;
         default:
-          console.warn(`[ZoneBase] 未知 kind: ${item.kind}，跳过`);
+          throw new Error(`[ZoneBase] 未知 kind: ${item.kind}`);
       }
     }
     
@@ -98,6 +99,7 @@ export class ZoneBase {
       this.group = null;
     }
     this.gateWidths.clear();
+    this.gateGeometries.clear();
   }
 
   // ───────────────────────── 各 kind 构建方法 ─────────────────────────
@@ -106,7 +108,7 @@ export class ZoneBase {
     const params = {
       x: item.x,
       z: item.z,
-      rot: this.parseRot(item.rot),
+      rot: item.pavilionProfile || item.qinanProfile ? item.rot : this.parseRot(item.rot),
       w: item.w,
       d: item.d,
       pad: item.pad,
@@ -114,6 +116,18 @@ export class ZoneBase {
       colH: item.colH,
       roof: item.roof,
       layers: item.layers,
+      eaveCount: item.eaveCount,
+      storeys: item.storeys,
+      lowerStoreyH: item.lowerStoreyH,
+      upperStoreyH: item.upperStoreyH,
+      structure: item.structure,
+      pavilionProfile: item.pavilionProfile,
+      qinanProfile: item.qinanProfile,
+      interiorFloorWorldY: item.interiorFloorWorldY,
+      bays: item.bays,
+      roofH: item.roofH,
+      roomBays: item.roomBays,
+      interior: item.interior,
       brackets: item.brackets,
       enter: item.enter,
       throne: item.throne,
@@ -132,18 +146,27 @@ export class ZoneBase {
     const params = {
       x: item.x,
       z: item.z,
-      rot: this.parseRot(item.rot),
+      // Dedicated profiles validate their cardinal transform; do not let the
+      // permissive legacy parser turn malformed input into a south-facing gate.
+      rot: item.gateProfile !== undefined ? item.rot : this.parseRot(item.rot),
       w: item.w,
       h: item.h,
       t: item.t,
       style: item.style,
+      gateKind: item.gateKind,
+      gateProfile: item.gateProfile,
+      open: item.open,
+      plaque: item.plaque,
       name: item.name,
       roof: item.roof,
       brackets: item.brackets,
       layers: item.layers,
+      eaveCount: item.eaveCount,
     };
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
-    return this.kit.gate(params); // 返回开口宽度
+    const width = this.kit.gate(params);
+    if (item.gateProfile === 'zhaode') this.gateGeometries.set(item.name, this.kit.root.children.at(-1).userData.gateGeometry);
+    return width; // 返回开口宽度
   }
 
   buildWall(item) {
@@ -167,11 +190,30 @@ export class ZoneBase {
   }
 
   buildCorridor(item) {
-    const [x1, z1] = item.from;
-    const [x2, z2] = item.to;
+    let from = item.from, to = item.to, contact;
+    if (item.gateJoin !== undefined) {
+      const ref = item.gateJoin;
+      const g = ref && this.gateGeometries.get(ref.gate);
+      if (!g || g.profile !== 'zhaode' || g.rot !== 0 || !Object.hasOwn(g.joins, ref.side)) throw new Error('Invalid or unbuilt explicit gate join');
+      contact = g.joins[ref.side];
+      if (ref.end !== contact.end || item.facing !== 'z-' || !Array.isArray(from) || !Array.isArray(to) ||
+          [...from, ...to].some(n => typeof n !== 'number' || !Number.isFinite(n)) || from.length !== 2 || to.length !== 2 ||
+          Math.abs(from[1] - contact.world[1]) > 1e-8 || Math.abs(to[1] - contact.world[1]) > 1e-8 ||
+          (ref.side === 'left' ? from[0] >= contact.world[0] || to[0] <= contact.world[0] || to[0] >= g.x : to[0] <= contact.world[0] || from[0] >= contact.world[0] || from[0] <= g.x)) {
+        throw new Error('Invalid corridor gate join endpoint or centerline');
+      }
+      if (ref.end === 'from') from = [...contact.world]; else to = [...contact.world];
+      if (Math.abs(to[0] - from[0]) < 4) throw new Error('Gate join leaves a nonpositive or too-short corridor');
+    }
+    const [x1, z1] = from;
+    const [x2, z2] = to;
     const params = { facing: item.facing, depth: item.depth, colH: item.colH, name: item.name };
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
     this.kit.corridor(x1, z1, x2, z2, item.facing, params);
+    if (contact) this.kit.root.children.at(-1).userData.gateJoin = {
+      ...item.gateJoin, boundary: [...contact.world], effectiveFrom: [...from], effectiveTo: [...to],
+      provisional: true, status: contact.status,
+    };
   }
 
   buildCityGate(item) {

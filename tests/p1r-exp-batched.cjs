@@ -1,3 +1,4 @@
+const { browserExecutablePath } = require('./lib/browser-path.cjs');
 // P1-R R-1 实验：把场景顶层 group 的静态 mesh 按材质聚合为 BatchedMesh，
 // 在太和殿前机位对比 main / renderPass calls & tris（不改产品代码，页面内即时构建）。
 // three 通过 vite 直接 import /node_modules/three/build/three.module.js（第二个实例，
@@ -13,7 +14,7 @@ const { chromium } = require('playwright');
   const [x, z] = POS[point] ?? POS['太和殿前'];
 
   const browser = await chromium.launch({
-    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    executablePath: browserExecutablePath(),
     headless: true,
     args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--autoplay-policy=no-user-gesture-required'],
   });

@@ -1,3 +1,4 @@
+const { browserExecutablePath } = require('./lib/browser-path.cjs');
 // P1-I 内景加载器链路测试：加载 / 碰撞登记 / 淡入 / 距离触发 / 卸载释放显存 / 失败回退 B 档。
 // 用法：PORT=5184 tools/run-with-vite.sh node tests/p1i-loader.cjs [hallId=taihe] [model=/models/interiors/_minimal.glb]
 //   在页面里动态 import InteriorLoader（main.js 未接线也能测），把殿的 model 覆盖成指定 GLB。
@@ -6,7 +7,7 @@ const hallId = process.argv[2] || 'taihe';
 const model = process.argv[3] || null;
 
 (async () => {
-  const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+  const browser = await chromium.launch({ executablePath: browserExecutablePath(), headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   const page = await browser.newPage({ viewport: { width: 640, height: 400 } });
   const warns = [];
   page.on('console', m => { if (m.type() === 'warning' || m.type() === 'error') warns.push(m.text()); });
@@ -29,6 +30,7 @@ const model = process.argv[3] || null;
     // 1) 显式 load
     const L = new InteriorLoader(a.scene, a.collisionManager, { renderer: a.renderer, registry: { [hallId]: cfg } });
     const m0 = mem();
+    const permanentCollisionCount = a.collisionManager.colliders.length;
     const t0 = performance.now();
     const ok = await L.load(hallId);
     const ms = Math.round(performance.now() - t0);
@@ -41,7 +43,7 @@ const model = process.argv[3] || null;
       bbox = { min: [b.min.x, b.min.y, b.min.z].map(v => +v.toFixed(2)), max: [b.max.x, b.max.y, b.max.z].map(v => +v.toFixed(2)) };
       grp.traverse(o => { if (o.isMesh) { if (o.visible) visible++; else hidden++; const g = o.geometry; tris += (g.index ? g.index.count : g.attributes.position.count) / 3; } });
     }
-    out.steps.push({ step: 'load', ok, ms, state: L.getState(hallId), memBefore: m0, memAfter: m1, bbox, tris: Math.round(tris), visibleMeshes: visible, hiddenProxies: hidden, colliders: colCount(`interior:${hallId}`), history: L.history[hallId], hud: L.hudLine() });
+    out.steps.push({ step: 'load', ok, ms, state: L.getState(hallId), memBefore: m0, memAfter: m1, bbox, tris: Math.round(tris), visibleMeshes: visible, hiddenProxies: hidden, colliders: colCount(`interior:${hallId}`), permanentCollisionCount, collisionCountAfter: a.collisionManager.colliders.length, history: L.history[hallId], hud: L.hudLine() });
 
     // 2) 淡入：加载后立刻材质 opacity 应 <1，350ms 后恢复
     if (ok) {
@@ -85,7 +87,7 @@ const model = process.argv[3] || null;
   console.log('warnings:', warns.filter(w => w.includes('InteriorLoader')));
   await browser.close();
   const s = Object.fromEntries((res.steps ?? []).map(x => [x.step, x]));
-  const pass = res.steps && s.load?.ok && s.load.colliders > 0 && s.fade?.opacityAfter350 === 1 && s.distance?.at45m === 'idle' && s.distance.collidersAfter === 0 && s.distance.vramDropped && s.fallback?.ok === false && s.fallback.collidersUnchanged;
+  const pass = res.steps && s.load?.ok && (hallId === 'taihe' ? s.load.colliders === 0 && s.load.collisionCountAfter === s.load.permanentCollisionCount : s.load.colliders > 0) && s.fade?.opacityAfter350 === 1 && s.distance?.at45m === 'idle' && s.distance.collidersAfter === 0 && s.distance.vramDropped && s.fallback?.ok === false && s.fallback.collidersUnchanged;
   console.log(pass ? 'P1I-LOADER PASS' : 'P1I-LOADER FAIL');
   process.exit(pass ? 0 : 1);
 })().catch(e => { console.error(e); process.exit(1); });

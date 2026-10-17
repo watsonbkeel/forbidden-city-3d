@@ -1,3 +1,4 @@
+const { browserExecutablePath } = require('./lib/browser-path.cjs');
 // 分区重构零变化证明（与视角无关）：
 // 在同一页面里分别构建旧 SideCourts（单 CourtKit）和 7 个 zone（ZoneBase），逐项对比：
 //   三角面总数、按材质名分组的三角面、碰撞体包围盒、可行走面、regions、mapItems、rooms。
@@ -8,7 +9,7 @@ const { chromium } = require('playwright');
 
 (async () => {
   const browser = await chromium.launch({
-    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    executablePath: browserExecutablePath(),
     headless: true,
     args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'],
   });

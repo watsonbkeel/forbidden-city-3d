@@ -1,0 +1,65 @@
+{
+  "baseCommit": "b7dd6a34bebe0b56d69afc6aae1d1452fdf35a27",
+  "files": {
+    "assets-src/interiors/taihe.py": {
+      "baselineSHA256": "d82f3bfd33a69d1ced418fbe46599810d350cf84513bf2954aa861eb1a938c74",
+      "deltas": [
+        {
+          "before": " if ob.type=='MESH':\n  bm=bmesh.new();bm.from_mesh(ob.data);bmesh.ops.triangulate(bm,faces=bm.faces[:],quad_method='FIXED',ngon_method='EAR_CLIP');bm.to_mesh(ob.data);bm.free()\ncontract=bpy.data.objects.new('TAIHE_CORE_CONTRACT',None);bpy.context.scene.collection.objects.link(contract)\nfor key in ['profileId','revision','approvalCardSHA256']:contract[key]=P[key]\n",
+          "after": " if ob.type=='MESH':\n  bm=bmesh.new();bm.from_mesh(ob.data);bmesh.ops.triangulate(bm,faces=bm.faces[:],quad_method='FIXED',ngon_method='EAR_CLIP');bm.to_mesh(ob.data);bm.free()\nfrom taihe_column_uv import assign_gold_column_uvs\nassign_gold_column_uvs(bpy.context.scene, P)\ncontract=bpy.data.objects.new('TAIHE_CORE_CONTRACT',None);bpy.context.scene.collection.objects.link(contract)\nfor key in ['profileId','revision','approvalCardSHA256']:contract[key]=P[key]\n"
+        },
+        {
+          "before": "contract['profileSHA256']=hashlib.sha256((ROOT/'data/architecture/taihe-core.json').read_bytes()).hexdigest()\ncontract['sourceSHA256']=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()\ncontract['inventory']=json.dumps(inventory,separators=(',',':'))\ncontract['approximation']='Self-authored simplified patterns; provisional current-layout registration; no photo textures.'\n",
+          "after": "contract['profileSHA256']=hashlib.sha256((ROOT/'data/architecture/taihe-core.json').read_bytes()).hexdigest()\ncontract['sourceSHA256']=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()\ncontract['columnSurfaceUVSHA256']=hashlib.sha256((ROOT/'assets-src/interiors/taihe_column_uv.py').read_bytes()).hexdigest()\ncontract['inventory']=json.dumps(inventory,separators=(',',':'))\ncontract['approximation']='Self-authored simplified patterns; provisional current-layout registration; no photo textures.'\n"
+        }
+      ]
+    },
+    "src/scene/palace/special/TaiheCore.js": {
+      "baselineSHA256": "411617a29b7ad140da7eba62348bf2bbd165035b0bf2e95de49668b7397133b4",
+      "deltas": [
+        {
+          "before": "import * as THREE from 'three';\nimport { appendTaiheDisplayPairs } from './TaiheDisplayPairs.js';\nimport { mergeByMaterial } from '../../../utils/MergeUtils.js';\n",
+          "after": "import * as THREE from 'three';\nimport { attachTaiheColumnTextures, mapTaiheGoldSurfaces } from './TaiheColumnSurface.js';\nimport { appendTaiheDisplayPairs } from './TaiheDisplayPairs.js';\nimport { mergeByMaterial } from '../../../utils/MergeUtils.js';\n"
+        },
+        {
+          "before": "  appendTaiheDisplayPairs(g,m);\n  const merged=mergeByMaterial(g,{castShadow:false,receiveShadow:true,name:'taihe-core-fallback'});\n  // Mark meshes, not a parent group: the shared batcher must preserve only these owners.\n  for(const mesh of [...merged.children]) {mesh.userData.noMerge=true;mesh.userData.taiheCoreOwner=TAIHE_FALLBACK_OWNER;mesh.userData.taiheCoreContract={...TAIHE_CORE_CONTRACT};mesh.position.add(new THREE.Vector3(x0,y,z0));parent.add(mesh);}\n",
+          "after": "  appendTaiheDisplayPairs(g,m);\n  const merged=mergeByMaterial(g,{castShadow:false,receiveShadow:true,name:'taihe-core-fallback'});\n  mapTaiheGoldSurfaces(merged);\n  attachTaiheColumnTextures(m.gold);\n  // Mark meshes, not a parent group: the shared batcher must preserve only these owners.\n  for(const mesh of [...merged.children]) {mesh.userData.noMerge=true;mesh.userData.taiheCoreOwner=TAIHE_FALLBACK_OWNER;mesh.userData.taiheCoreContract={...TAIHE_CORE_CONTRACT};mesh.position.add(new THREE.Vector3(x0,y,z0));parent.add(mesh);}\n"
+        }
+      ]
+    },
+    "src/scene/interior/TaiheCoreContract.js": {
+      "baselineSHA256": "4423d2cdb8d2dc7e7e451c50e5ff0b3ca58b0c26ba115d0a206e3ebe10dd721d",
+      "deltas": [
+        {
+          "before": "import * as THREE from 'three';\nimport { TAIHE_CORE as P, TAIHE_CORE_CONTRACT as CONTRACT, TAIHE_FALLBACK_OWNER } from '../palace/special/TaiheCoreProfile.js';\nimport { taiheGlyphMaterial } from '../palace/special/TaiheCore.js';\n",
+          "after": "import * as THREE from 'three';\nimport { attachTaiheColumnTextures } from '../palace/special/TaiheColumnSurface.js';\nimport { TAIHE_CORE as P, TAIHE_CORE_CONTRACT as CONTRACT, TAIHE_FALLBACK_OWNER } from '../palace/special/TaiheCoreProfile.js';\nimport { taiheGlyphMaterial } from '../palace/special/TaiheCore.js';\n"
+        },
+        {
+          "before": "// Runtime-only identities: asset extras cannot request disposal exemptions.\nconst sharedAtlases = new WeakMap();\nexport const isTaiheSharedAtlas = (material, texture) => sharedAtlases.get(material) === texture;\n\n/** The only switchable meshes are explicitly owned fallback batches, never a material bucket. */\n",
+          "after": "// Runtime-only identities: asset extras cannot request disposal exemptions.\nconst sharedAtlases = new WeakMap();\nconst sharedColumnAtlases = new WeakMap();\nexport const isTaiheSharedAtlas = (material, texture) => sharedAtlases.get(material) === texture || sharedColumnAtlases.get(material)?.has(texture) === true;\n\n/** The only switchable meshes are explicitly owned fallback batches, never a material bucket. */\n"
+        },
+        {
+          "before": "  for(const [key,value] of Object.entries(CONTRACT))if(c[key]!==value)throw new Error(`Taihe core ${key} mismatch`);\n  if(c.profileSHA256!==cfg.asset?.profileSHA256||c.sourceSHA256!==cfg.asset?.sourceSHA256)throw new Error('Taihe core source/profile digest mismatch');\n  let tris=0,meshes=0;const mats=new Set();root.updateMatrixWorld(true);\n  root.traverse(o=>{\n",
+          "after": "  for(const [key,value] of Object.entries(CONTRACT))if(c[key]!==value)throw new Error(`Taihe core ${key} mismatch`);\n  if(c.profileSHA256!==cfg.asset?.profileSHA256||c.sourceSHA256!==cfg.asset?.sourceSHA256)throw new Error('Taihe core source/profile digest mismatch');\n  if(c.columnSurfaceUVSHA256!==cfg.asset?.columnSurfaceUVSHA256)throw new Error('Taihe column UV source digest mismatch');\n  let tris=0,meshes=0;const mats=new Set();root.updateMatrixWorld(true);\n  root.traverse(o=>{\n"
+        },
+        {
+          "before": "  old.forEach(m=>m.dispose());\n}\n",
+          "after": "  old.forEach(m=>m.dispose());\n}\n\nexport function installTaiheColumnTextures(root, fallbackGold) {\n  if(!fallbackGold?.map?.isTexture || !fallbackGold?.bumpMap?.isTexture || fallbackGold.roughnessMap!==fallbackGold.bumpMap)throw new Error('Taihe fallback column atlas unavailable');\n  const textures={color:fallbackGold.map,relief:fallbackGold.bumpMap};\n  root.traverse(o=>{if(o.isMesh&&o.material.name==='taihe_gold'){attachTaiheColumnTextures(o.material,textures);sharedColumnAtlases.set(o.material,new Set(Object.values(textures)));}});\n}\n"
+        }
+      ]
+    },
+    "src/scene/interior/InteriorLoader.js": {
+      "baselineSHA256": "62b4faa22ca31579df16cad88588525758253b35905cc349d531901464973510",
+      "deltas": [
+        {
+          "before": "import { KTX2Loader } from 'three/examples/jsm/loaders/KTX2Loader.js';\nimport { INTERIORS } from './registry.js';\nimport { validateTaiheCore, taiheFallbackMeshes, installTaiheGlyphs, isTaiheSharedAtlas } from './TaiheCoreContract.js';\n\nconst FADE_MS = 300;\n",
+          "after": "import { KTX2Loader } from 'three/examples/jsm/loaders/KTX2Loader.js';\nimport { INTERIORS } from './registry.js';\nimport { validateTaiheCore, taiheFallbackMeshes, installTaiheGlyphs, installTaiheColumnTextures, isTaiheSharedAtlas } from './TaiheCoreContract.js';\n\nconst FADE_MS = 300;\n"
+        },
+        {
+          "before": "      h.fallback = fallback;\n      installTaiheGlyphs(root, fallback.find(mesh => mesh.material.name === 'taihe_glyph_atlas')?.material.map);\n    }\n    const f = cfg.frame;\n",
+          "after": "      h.fallback = fallback;\n      installTaiheGlyphs(root, fallback.find(mesh => mesh.material.name === 'taihe_glyph_atlas')?.material.map);\n      installTaiheColumnTextures(root, fallback.find(mesh => mesh.material.name === 'taihe_gold')?.material);\n    }\n    const f = cfg.frame;\n"
+        }
+      ]
+    }
+  }
+}

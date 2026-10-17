@@ -112,10 +112,10 @@ export const DIMENSIONS = {
     baseHeight: 5,
   },
   
-  // 神武门
+  // 神武门：公布城台名义外廓，暂作顶面边界；顶/底测量端点未明（GateTowerMeasurements.js）。
   SHENWU: {
-    width: 50,
-    depth: 20,
+    width: 50.18,
+    depth: 26.46,
     height: 22,
   },
 };

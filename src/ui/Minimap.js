@@ -1,17 +1,36 @@
 import * as THREE from 'three';
 import { PALACE_LAYOUT } from '../scene/Layout.js';
 import { LAYOUT, TELEPORT } from '../config/constants.js';
+import { hasShortcutModifier, isTextEntryTarget } from '../controls/InputTargets.js';
+import { PlaceCatalog } from './PlaceCatalog.js';
+import { PlaceInfoPanel } from './PlaceInfoPanel.js';
+
+const MAP_HEADINGS = ['北', '东北', '东', '东南', '南', '西南', '西', '西北'];
 
 /**
  * 小地图：按 M 键显示/隐藏，显示当前位置和建筑名称
  */
 
 export class Minimap {
-  constructor({ items = [], preview = false, onTeleport = null, onToggle = null } = {}) {
+  constructor({ items = [], preview = false, onTeleport = null, onToggle = null, hasTeleportTarget = () => false } = {}) {
     this.visible = false;
+    this.compact = false;
+    this.compactSectionState = new Map();
     this.onTeleport = onTeleport;
+    this.hasTeleportTarget = hasTeleportTarget;
+    this.selectedPlaceId = null;
+    this.selection = null;
+    this.selectionGeneration = 0;
+    this.detailVisible = false;
+    this.disposed = false;
+    // Invalid content degrades to the same safe unknown-place selection.
+    try { this.placeCatalog = new PlaceCatalog(); }
+    catch (error) { console.warn(error.message); this.placeCatalog = null; }
     this.onToggle = onToggle;
     this.labels = [];
+    this.secondaryTaps = new Map();
+    this.suppressedClicks = new Map();
+    this.inputCleanup = [];
     this.previewEnabled = preview; // 移动端：右上角常驻小地图预览，点击展开全图
     this.lastPreviewDraw = 0;
     this.container = null;
@@ -38,15 +57,13 @@ export class Minimap {
     // 创建小地图容器
     this.container = document.createElement('div');
     this.container.id = 'minimap';
+    this.container.className = this.previewEnabled ? 'minimap-touch' : '';
+    this.container.setAttribute('role', 'region');
+    this.container.setAttribute('aria-label', '故宫平面图');
+    this.container.setAttribute('aria-describedby', 'minimap-help');
     this.container.style.cssText = `
       position: fixed;
-      top: ${this.previewEnabled ? '42%' : '50%'};
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: ${this.previewEnabled ? this.mapSize + 'px' : 'min(94vw, 780px)'};
       box-sizing: border-box;
-      max-width: 94vw;
-      max-height: ${this.previewEnabled ? '68vh' : '96vh'};
       overflow: auto;
       background: rgba(20, 20, 20, 0.92);
       border: 3px solid rgba(255, 215, 100, 0.8);
@@ -59,6 +76,7 @@ export class Minimap {
     
     // 标题
     const title = document.createElement('div');
+    title.id = 'minimap-title';
     title.textContent = '故宫平面图';
     title.style.cssText = `
       color: #ffd764;
@@ -69,6 +87,31 @@ export class Minimap {
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
     `;
     this.container.appendChild(title);
+
+    const presentation = document.createElement('div');
+    presentation.id = 'minimap-presentation';
+    const status = document.createElement('div');
+    status.id = 'minimap-status';
+    this.headingLabel = document.createElement('span');
+    this.headingLabel.id = 'minimap-heading';
+    this.headingLabel.textContent = '朝向 北';
+    this.compactHint = document.createElement('span');
+    this.compactHint.id = 'minimap-compact-hint';
+    this.compactHint.textContent = '展开查看介绍或传送';
+    status.append(this.headingLabel, this.compactHint);
+    this.sizeToggle = document.createElement('button');
+    this.sizeToggle.id = 'minimap-size-toggle';
+    this.sizeToggle.type = 'button';
+    this.sizeToggle.textContent = '收起到角落';
+    this.sizeToggle.setAttribute('aria-label', '收起地图到角落，继续行走');
+    this.sizeToggle.setAttribute('aria-controls', 'minimap-tools teleport-points place-list place-info');
+    this.sizeToggle.setAttribute('aria-expanded', 'true');
+    this.sizeToggle.addEventListener('click', e => {
+      e.stopPropagation();
+      this.setCompact(!this.compact);
+    });
+    presentation.append(status, this.sizeToggle);
+    this.container.appendChild(presentation);
     
     // Canvas 地图
     // 视图状态：k = 相对"整图适配"的放大倍数，(cx, cy) = 视口中心对应的地图坐标（地图像素单位）
@@ -95,7 +138,8 @@ export class Minimap {
 
     // 缩放工具条
     const bar = document.createElement('div');
-    bar.style.cssText = 'display:flex;gap:6px;justify-content:center;align-items:center;margin-top:8px';
+    bar.id = 'minimap-tools';
+    bar.style.cssText = 'display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin-top:8px';
     const mkBtn = (text, title, fn) => {
       const b = document.createElement('button');
       b.type = 'button';
@@ -117,7 +161,8 @@ export class Minimap {
     
     // 提示文字
     const hint = document.createElement('div');
-    hint.textContent = '滚轮/双指缩放 · 拖动平移 · 点击建筑名称传送 · W/A/S/D 继续走动，Q/E 转向 · 按 M 关闭';
+    hint.id = 'minimap-help';
+    hint.textContent = '滚轮/双指缩放 · 拖动平移 · 点击名称看介绍，再点前往 · 方向键/WASD/摇杆继续走动，Q/E 转向 · 按 M 或关闭按钮退出 · 钦安殿仅设地面外观观览点';
     hint.style.cssText = `
       color: #999;
       font-size: 12px;
@@ -127,33 +172,47 @@ export class Minimap {
     this.container.appendChild(hint);
     const quick = document.createElement('div');
     quick.id = 'teleport-points';
-    quick.style.cssText = 'display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px';
+    quick.style.cssText = 'display:grid;gap:6px;margin-top:10px';
+    quick.setAttribute('role', 'group');
+    quick.setAttribute('aria-label', '快捷传送');
+    const quickTitle = document.createElement('h2');
+    quickTitle.id = 'teleport-heading';
+    quickTitle.textContent = '快捷传送';
+    this.container.appendChild(quickTitle);
     TELEPORT.POINTS.forEach((point, index) => {
       const button = document.createElement('button');
       button.type = 'button';
       button.dataset.teleport = point.target;
-      button.setAttribute('aria-label', `传送到${point.name}`);
-      button.textContent = `${index + 1} ${point.name}`;
+      button.setAttribute('aria-label', `前往${point.name}`);
+      button.textContent = `${index + 1} 前往${point.name}`;
       button.style.cssText = 'min-height:44px;padding:4px;color:#ffd764;background:#382d20;border:1px solid #9f804a;border-radius:6px;font-size:12px;touch-action:manipulation';
       button.addEventListener('click', () => { if (this.onTeleport?.(point.target)) this.toggle(); });
       quick.appendChild(button);
     });
     this.container.appendChild(quick);
+    this.initPlaceInformation();
+    this.mapSections = [title, this.canvas, bar, hint, quickTitle, quick, this.placeList, this.resumePlace];
+    this.compactSections = [title, bar, hint, quickTitle, quick, this.placeList, this.resumePlace];
     
     document.body.appendChild(this.container);
     
     // 监听 M 键
     this._onKeyDown = (e) => {
+      if (e.defaultPrevented || e.repeat || hasShortcutModifier(e) || isTextEntryTarget(e.target)) return;
       if (e.key === 'm' || e.key === 'M') {
+        e.preventDefault();
         this.toggle();
       } else if (this.visible && (e.key === '+' || e.key === '=')) {
+        e.preventDefault();
         this.zoomBy(1.4);
       } else if (this.visible && (e.key === '-' || e.key === '_')) {
+        e.preventDefault();
         this.zoomBy(1 / 1.4);
       }
     };
     this._onResize = () => { if (this.visible) { this.resizeCanvas(); this.drawMap(); } };
     window.addEventListener('resize', this._onResize);
+    window.visualViewport?.addEventListener('resize', this._onResize);
     window.addEventListener('keydown', this._onKeyDown);
     
     // 底图只画一次到高分辨率离屏画布，全图和预览都从这里取，避免每帧重绘全部建筑
@@ -163,19 +222,138 @@ export class Minimap {
     this.baseCanvas.height = this.mapHeight * this.baseScale;
     this.renderBase();
     
-    if (this.previewEnabled) {
-      this.createPreview();
-      const close = document.createElement('button');
-      close.textContent = '关闭地图';
-      close.style.cssText = 'display:block;margin:8px auto;min-height:44px;color:#ffd764;background:#33291e;border:1px solid #ffd764;border-radius:6px';
-      close.addEventListener('click', () => this.toggle());
-      this.container.appendChild(close);
-    }
-    
+    if (this.previewEnabled) this.createPreview();
+    const close = document.createElement('button');
+    close.id = 'minimap-close';
+    close.type = 'button';
+    close.textContent = '关闭地图';
+    close.style.cssText = 'display:block;margin:8px auto;min-height:44px;color:#ffd764;background:#33291e;border:1px solid #ffd764;border-radius:6px';
+    close.addEventListener('click', () => this.toggle());
+    this.closeButton = close;
+    this.container.appendChild(close);
+    this.bindSecondaryTaps(this.container);
+    if (this.preview) this.bindSecondaryTaps(this.preview);
     this.bindViewInteraction();
     // 初始绘制
     this.resizeCanvas();
     this.drawMap();
+  }
+
+  initPlaceInformation() {
+    this.placeList = document.createElement('section');
+    this.placeList.id = 'place-list';
+    const heading = document.createElement('h2');
+    heading.textContent = '地点介绍';
+    this.placeList.appendChild(heading);
+    for (const place of this.placeCatalog?.places ?? []) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = place.name;
+      button.setAttribute('aria-label', `了解${place.name}`);
+      button.addEventListener('click', () => this.showPlace(place.id));
+      this.placeList.appendChild(button);
+    }
+    this.resumePlace = document.createElement('button');
+    this.resumePlace.id = 'place-resume';
+    this.resumePlace.type = 'button';
+    this.resumePlace.hidden = this.resumePlace.inert = true;
+    this.resumePlace.addEventListener('click', () => {
+      if (this.selection) this.selectMapLabel(this.selection);
+    });
+    this.placeHeader = document.createElement('div');
+    this.placeHeader.id = 'place-header';
+    this.placeHeader.hidden = this.placeHeader.inert = true;
+    this.placeBack = document.createElement('button');
+    this.placeBack.id = 'place-back';
+    this.placeBack.type = 'button';
+    this.placeBack.textContent = '返回地图';
+    this.placeBack.addEventListener('click', () => this.backToMap());
+    this.placeHeader.appendChild(this.placeBack);
+    this.placePanel = new PlaceInfoPanel();
+    this.placeAnnouncement = document.createElement('div');
+    this.placeAnnouncement.id = 'place-announcement';
+    this.placeAnnouncement.setAttribute('aria-live', 'polite');
+    this.placeAnnouncement.setAttribute('aria-atomic', 'true');
+    this.container.append(this.placeList, this.resumePlace, this.placeHeader, this.placePanel.element, this.placeAnnouncement);
+  }
+
+  showPlace(id) {
+    const place = this.placeCatalog?.get(id);
+    if (!place || !this.visible || this.compact || this.disposed) return false;
+    this.selectMapLabel({ name: place.name, placeId: id });
+    return true;
+  }
+
+  canTravelToPlace(name) {
+    // Teleport intentionally stays keyed by name. Refuse an ambiguous map
+    // identity before consulting it, including labels omitted by decluttering.
+    const layouts = PALACE_LAYOUT.filter(item => ['palace', 'gate', 'garden'].includes(item.type) && item.name === name);
+    const sides = this.items.filter(item => item.kind !== 'corridor' && item.name === name);
+    return layouts.length + sides.length <= 1 && this.labels.filter(label => label.name === name).length <= 1 && this.hasTeleportTarget(name);
+  }
+
+  selectMapLabel(label) {
+    if (!this.visible || this.compact || this.disposed) return;
+    const place = this.placeCatalog?.get(label.placeId);
+    // Never match a card by a global display name or an unverified stale ID.
+    const selected = place?.name === label.name ? place : null;
+    if (this.detailVisible && this.selection?.name === label.name && this.selectedPlaceId === (selected?.id ?? null)) return;
+    if (!this.detailVisible) {
+      this.mapScrollTop = this.container.scrollTop;
+      this.mapReturnFocus = document.activeElement;
+    }
+    this.cancelMapGesture?.();
+    this.secondaryTaps.clear();
+    const generation = ++this.selectionGeneration;
+    this.selection = { name: label.name, placeId: selected?.id ?? null };
+    this.selectedPlaceId = selected?.id ?? null;
+    this.detailVisible = true;
+    const target = selected?.modelExperience.teleportTargetName ?? label.name;
+    const canTravel = this.canTravelToPlace(target);
+    const title = this.placePanel.render({ place: selected, name: label.name,
+      sources: selected ? this.placeCatalog.sourcesFor(selected) : [], canTravel,
+      onTravel: button => {
+        if (this.disposed || !this.visible || this.compact || !this.detailVisible ||
+            generation !== this.selectionGeneration || !button.isConnected || !this.placePanel.element.contains(button) ||
+            !this.canTravelToPlace(target)) return;
+        if (this.onTeleport?.(target)) this.toggle();
+      },
+    });
+    for (const node of this.mapSections) node.hidden = node.inert = true;
+    this.placeHeader.hidden = this.placeHeader.inert = false;
+    this.placePanel.element.hidden = this.placePanel.element.inert = false;
+    this.placeHeader.appendChild(this.closeButton);
+    this.container.setAttribute('data-detail', 'true');
+    this.container.scrollTop = 0;
+    this.placeAnnouncement.textContent = `已选择${label.name}`;
+    title.focus({ preventScroll: true });
+  }
+
+  backToMap(focus = true) {
+    if (!this.detailVisible) return;
+    this.selectionGeneration++;
+    this.secondaryTaps.clear();
+    this.detailVisible = false;
+    this.placePanel.element.hidden = this.placePanel.element.inert = true;
+    this.placeHeader.hidden = this.placeHeader.inert = true;
+    this.container.appendChild(this.closeButton);
+    for (const node of this.mapSections) node.hidden = node.inert = false;
+    this.resumePlace.hidden = this.resumePlace.inert = !this.selection;
+    this.resumePlace.textContent = this.selection ? `继续阅读${this.selection.name}` : '';
+    this.container.setAttribute('data-detail', 'false');
+    this.resizeCanvas(true);
+    this.drawMap();
+    this.container.scrollTop = this.mapScrollTop ?? 0;
+    if (focus) (this.mapReturnFocus?.isConnected && this.container.contains(this.mapReturnFocus) ? this.mapReturnFocus : this.sizeToggle).focus({ preventScroll: true });
+  }
+
+  clearPlaceSelection() {
+    this.backToMap(false);
+    this.selectionGeneration++;
+    this.selectedPlaceId = null;
+    this.selection = null;
+    this.resumePlace.hidden = this.resumePlace.inert = true;
+    this.placeAnnouncement.textContent = '';
   }
 
   // ───────────────────────── 缩放 / 平移 ─────────────────────────
@@ -186,16 +364,70 @@ export class Minimap {
   }
 
   /** 按容器实际宽度重算画布尺寸（竖长地图，限制高度不超过视口 62%） */
-  resizeCanvas() {
+  resizeCanvas(preserveView = false) {
+    if (this.detailVisible) return;
+    let maxH = window.innerHeight * 0.66;
+    this.canvas.hidden = false;
+    this.container.setAttribute('data-compact-collapsed', 'false');
+    if (this.compact) {
+      const viewportH = Math.min(window.innerHeight, window.visualViewport?.height || window.innerHeight);
+      const style = window.getComputedStyle?.(this.container);
+      const panelH = Math.min(viewportH - (this.previewEnabled ? 200 : 16), parseFloat(style?.maxHeight) || Infinity);
+      // Reserve the heading and all three 44px controls. On very short screens,
+      // use an explicit control strip rather than clipping controls or touch lanes.
+      maxH = Math.max(1, Math.min(144, panelH - 92));
+      this.canvas.hidden = maxH < 64;
+      this.container.setAttribute('data-compact-collapsed', String(this.canvas.hidden));
+    } else if (this.previewEnabled) {
+      const viewportH = Math.min(window.innerHeight, window.visualViewport?.height || window.innerHeight);
+      const docked = window.innerWidth >= 520 && window.innerWidth > window.innerHeight;
+      const panelH = this.container.clientHeight || Math.max(1, viewportH - (docked ? 16 : 208));
+      const style = window.getComputedStyle?.(this.container);
+      const padding = (parseFloat(style?.paddingTop) || 16) + (parseFloat(style?.paddingBottom) || 16);
+      // The panel can scroll, but the interactive canvas itself must fit inside
+      // its visible content height, even below the usual 120px mobile minimum.
+      maxH = Math.max(1, Math.min(viewportH * 0.5, panelH - padding));
+    }
     const w = this.canvas.clientWidth || this.mapSize;
-    const maxH = this.previewEnabled ? window.innerHeight * 0.5 : window.innerHeight * 0.66;
-    const h = Math.max(220, Math.min(w * this.mapHeight / this.mapSize, maxH));
+    const minH = this.compact ? 1 : this.previewEnabled ? Math.min(120, maxH) : 220;
+    const h = Math.max(minH, Math.min(w * this.mapHeight / this.mapSize, maxH));
     this.viewW = w;
     this.viewH = h;
     this.canvas.style.height = `${h}px`;
     this.canvas.width = Math.round(w * this.dpr);
     this.canvas.height = Math.round(h * this.dpr);
-    this.clampView();
+    if (!preserveView) this.clampView();
+  }
+
+  setCompact(compact) {
+    if (!this.visible || this.compact === compact) return;
+    if (this.detailVisible) {
+      this.sizeToggle.focus({ preventScroll: true });
+      this.backToMap(false);
+    }
+    this.selectionGeneration++;
+    this.cancelMapGesture();
+    this.secondaryTaps.clear();
+    this.compact = compact;
+    this.container.setAttribute('data-compact', String(compact));
+    this.container.setAttribute('aria-describedby', compact ? 'minimap-compact-hint' : 'minimap-help');
+    this.sizeToggle.textContent = compact ? '展开地图' : '收起到角落';
+    this.sizeToggle.setAttribute('aria-expanded', String(!compact));
+    this.sizeToggle.setAttribute('aria-label', compact ? '展开地图，查看详情和传送点' : '收起地图到角落，继续行走');
+    for (const element of this.compactSections) {
+      if (compact) {
+        this.compactSectionState.set(element, { hidden: element.hidden, inert: element.inert });
+        if (element.contains(document.activeElement)) this.sizeToggle.focus({ preventScroll: true });
+        element.hidden = element.inert = true;
+      } else {
+        Object.assign(element, this.compactSectionState.get(element));
+      }
+    }
+    if (!compact) this.compactSectionState.clear();
+    this.container.scrollTop = 0;
+    // This is presentation only: no open/close callback or walking-state change.
+    this.resizeCanvas(true);
+    this.drawMap();
   }
 
   clampView() {
@@ -246,29 +478,89 @@ export class Minimap {
     this.drawMap();
   }
 
+  // A second finger must be able to use map buttons while the first owns the
+  // joystick. Native single-contact clicks and keyboard activation stay native.
+  bindSecondaryTaps(root) {
+    const listen = (type, fn, options) => {
+      root.addEventListener(type, fn, options);
+      this.inputCleanup.push(() => root.removeEventListener(type, fn, options));
+    };
+    listen('touchstart', e => {
+      if (e.touches.length < 2) return;
+      for (const touch of e.changedTouches) {
+        const button = touch.target?.closest?.('button, a');
+        if (!button || !root.contains(button) || button.id === 'structural-preview-button') continue;
+        this.secondaryTaps.set(touch.identifier, { button, x: touch.clientX, y: touch.clientY, time: performance.now() });
+      }
+    }, { passive: true });
+    listen('touchmove', e => {
+      for (const touch of e.changedTouches) {
+        const tap = this.secondaryTaps.get(touch.identifier);
+        if (tap && Math.hypot(touch.clientX - tap.x, touch.clientY - tap.y) > 10) this.secondaryTaps.delete(touch.identifier);
+      }
+    }, { passive: true });
+    const end = e => {
+      for (const touch of e.changedTouches) {
+        const tap = this.secondaryTaps.get(touch.identifier);
+        if (!tap) continue;
+        this.secondaryTaps.delete(touch.identifier);
+        if (e.type !== 'touchend' || !root.contains(tap.button) || tap.button.closest('[hidden], [inert]') || performance.now() - tap.time > 600 ||
+            Math.hypot(touch.clientX - tap.x, touch.clientY - tap.y) > 10) continue;
+        e.preventDefault();
+        this.suppressedClicks.set(tap.button, performance.now() + 750);
+        tap.button.focus();
+        tap.button.click();
+      }
+    };
+    listen('touchend', end, { passive: false });
+    listen('touchcancel', end, { passive: false });
+    listen('click', e => {
+      const button = e.target?.closest?.('button, a');
+      const until = this.suppressedClicks.get(button);
+      if (e.detail > 0 && until !== undefined && performance.now() <= until) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+      }
+    }, true);
+  }
+
   bindViewInteraction() {
     const cv = this.canvas;
     const pointers = new Map();
-    let dragMoved = 0, lastPinch = 0;
+    let dragMoved = 0, lastPinch = 0, multiContact = false;
     const local = (e) => { const r = cv.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; };
-
-    cv.addEventListener('wheel', (e) => {
+    const listen = (type, fn, options) => {
+      cv.addEventListener(type, fn, options);
+      this.inputCleanup.push(() => cv.removeEventListener(type, fn, options));
+    };
+    const release = id => {
+      if (cv.hasPointerCapture?.(id)) cv.releasePointerCapture(id);
+    };
+    this.cancelMapGesture = () => {
+      const ids = [...pointers.keys()];
+      pointers.clear();
+      dragMoved = lastPinch = 0;
+      multiContact = false;
+      cv.style.cursor = 'grab';
+      ids.forEach(release);
+    };
+    listen('wheel', (e) => {
       e.preventDefault();
       e.stopPropagation();
       const p = local(e);
       this.zoomAt(e.deltaY < 0 ? 1.25 : 1 / 1.25, p.x, p.y);
     }, { passive: false });
-
-    cv.addEventListener('pointerdown', (e) => {
+    listen('pointerdown', (e) => {
+      if (!this.visible || pointers.has(e.pointerId)) return;
       e.stopPropagation();
-      cv.setPointerCapture?.(e.pointerId);
+      if (pointers.size === 0) { dragMoved = 0; multiContact = false; }
+      else multiContact = true;
       pointers.set(e.pointerId, local(e));
-      dragMoved = 0;
+      cv.setPointerCapture?.(e.pointerId);
       lastPinch = 0;
       cv.style.cursor = 'grabbing';
     });
-
-    cv.addEventListener('pointermove', (e) => {
+    listen('pointermove', (e) => {
       if (!pointers.has(e.pointerId)) return;
       const prev = pointers.get(e.pointerId);
       const cur = local(e);
@@ -278,9 +570,9 @@ export class Minimap {
         const dist = Math.hypot(a.x - b.x, a.y - b.y);
         if (lastPinch > 0) this.zoomAt(dist / lastPinch, (a.x + b.x) / 2, (a.y + b.y) / 2);
         lastPinch = dist;
-        dragMoved += 10;
         return;
       }
+      if (pointers.size > 2) return;
       const dx = cur.x - prev.x, dy = cur.y - prev.y;
       dragMoved += Math.abs(dx) + Math.abs(dy);
       const s = this.pxPerUnit;
@@ -289,31 +581,36 @@ export class Minimap {
       this.clampView();
       this.drawMap();
     });
-
     const end = (e) => {
-      const wasSingle = pointers.size === 1;
+      if (!pointers.has(e.pointerId)) return;
+      const canTap = e.type === 'pointerup' && pointers.size === 1 && !multiContact && dragMoved < 6;
       pointers.delete(e.pointerId);
+      if (e.type !== 'pointerup') multiContact = true;
       lastPinch = 0;
-      cv.style.cursor = 'grab';
-      // 几乎没有拖动 → 视为点击：命中建筑名称则传送
-      if (e.type === 'pointerup' && wasSingle && dragMoved < 6) this.handleMapClick(local(e));
+      cv.style.cursor = pointers.size ? 'grabbing' : 'grab';
+      release(e.pointerId);
+      if (canTap) this.handleMapClick(local(e));
+      if (pointers.size === 0) multiContact = false;
     };
-    cv.addEventListener('pointerup', end);
-    cv.addEventListener('pointercancel', end);
-    cv.addEventListener('dblclick', (e) => {
+    listen('pointerup', end);
+    listen('pointercancel', end);
+    listen('lostpointercapture', end);
+    listen('dblclick', (e) => {
       e.stopPropagation();
       const p = local(e);
       this.zoomAt(2, p.x, p.y);
     });
-    cv.addEventListener('click', (e) => e.stopPropagation());
+    listen('click', (e) => e.stopPropagation());
   }
 
   handleMapClick(p) {
+    // A small navigation map must not turn an imprecise tap into travel.
+    if (!this.visible || this.compact || this.detailVisible || this.disposed) return;
     const m = this.screenToMap(p.x, p.y);
     const tol = 3 / this.view.k;
     const label = [...this.labels].reverse().find(it =>
       Math.abs(m.x - it.x) <= it.width / 2 + tol && Math.abs(m.y - it.y) <= it.height / 2 + tol);
-    if (label && this.onTeleport?.(label.name)) this.toggle();
+    if (label) this.selectMapLabel(label);
   }
   
   /**
@@ -325,10 +622,15 @@ export class Minimap {
     this.previewView = 120; // 预览窗口覆盖的地图像素范围（约 120 米宽）
     const dpr = Math.min(window.devicePixelRatio || 1, 3);
     
-    this.preview = document.createElement('div');
+    this.preview = document.createElement('button');
+    this.preview.type = 'button';
     this.preview.id = 'minimap-preview';
-    this.preview.setAttribute('role', 'button');
+    this.preview.setAttribute('aria-label', '打开故宫平面图');
+    this.preview.setAttribute('aria-controls', 'minimap');
+    this.preview.setAttribute('aria-expanded', 'false');
     this.preview.style.cssText = `
+      padding: 0;
+      cursor: pointer;
       position: fixed;
       top: calc(16px + env(safe-area-inset-top, 0px));
       right: calc(16px + env(safe-area-inset-right, 0px));
@@ -369,7 +671,15 @@ export class Minimap {
   }
   
   toggle() {
+    if (this.visible && this.compact) this.setCompact(false);
     this.visible = !this.visible;
+    if (this.visible) this.previousFocus = document.activeElement;
+    else {
+      this.cancelMapGesture();
+      this.secondaryTaps.clear();
+      this.clearPlaceSelection();
+    }
+    this.preview?.setAttribute('aria-expanded', String(this.visible));
     this.onToggle?.(this.visible);
     this.container.style.display = this.visible ? 'block' : 'none';
     if (this.preview) this.preview.style.display = this.visible ? 'none' : 'block';
@@ -377,6 +687,8 @@ export class Minimap {
     if (this.visible) {
       this.resizeCanvas();
       this.focusPlayer(2);   // 打开即放大到当前位置，文字可读；点「全图」查看整体
+    } else if (this.previousFocus?.isConnected) {
+      this.previousFocus.focus();
     }
   }
   
@@ -401,13 +713,13 @@ export class Minimap {
     return [Math.min(a.x, b.x), Math.min(a.y, b.y), Math.abs(b.x - a.x), Math.abs(b.y - a.y)];
   }
 
-  drawLabel(text, x, y, bold, size = 10) {
+  drawLabel(text, x, y, bold, size = 10, targetName = text, mode, placeId = null) {
     const ctx = this.ctx;
     ctx.font = `${bold ? 'bold ' : ''}${size}px sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     const tw = ctx.measureText(text).width;
-    this.labels.push({ name: text, x, y, width: tw + 4, height: size + 2 });
+    this.labels.push({ name: targetName, placeId, x, y, width: tw + 4, height: size + 2, ...(mode ? { mode } : {}) });
     ctx.fillStyle = 'rgba(255, 255, 255, 0.72)';
     ctx.fillRect(x - tw / 2 - 2, y - size / 2 - 1, tw + 4, size + 2);
     ctx.fillStyle = 'rgba(0, 0, 0, 0.9)';
@@ -423,22 +735,26 @@ export class Minimap {
     };
     for (const it of this.items) {
       const [fill, stroke] = style[it.kind] ?? style.hall;
-      const [x, y, w, h] = this.rectOf(it.x, it.z, it.w, it.d);
-      ctx.fillStyle = fill;
-      ctx.fillRect(x, y, Math.max(w, 1.5), Math.max(h, 1.5));
-      ctx.strokeStyle = stroke;
-      ctx.lineWidth = 0.6;
-      ctx.strokeRect(x, y, Math.max(w, 1.5), Math.max(h, 1.5));
+      for (const footprint of it.footprints ?? [it]) {
+        const [x, y, w, h] = this.rectOf(footprint.x, footprint.z, footprint.w, footprint.d);
+        ctx.fillStyle = fill;
+        ctx.fillRect(x, y, Math.max(w, 1.5), Math.max(h, 1.5));
+        ctx.strokeStyle = stroke;
+        ctx.lineWidth = 0.6;
+        ctx.strokeRect(x, y, Math.max(w, 1.5), Math.max(h, 1.5));
+      }
     }
     // 只标有名字的主要殿宇与门（字号小，避免互相遮挡）
     const placed = [];
     for (const it of this.items) {
       if (!it.name || it.kind === 'corridor') continue;
       const [x, y, w, h] = this.rectOf(it.x, it.z, it.w, it.d);
-      const cx = x + w / 2, cy = y + h / 2;
+      const anchor = it.labelAnchor ? this.worldToMap(it.labelAnchor.x, it.labelAnchor.z) : { x: x + w / 2, y: y + h / 2 };
+      const cx = anchor.x, cy = anchor.y;
       if (placed.some(p => Math.abs(p.x - cx) < 22 && Math.abs(p.y - cy) < 9)) continue;
       placed.push({ x: cx, y: cy });
-      this.drawLabel(it.name, cx, cy, it.kind === 'hall', it.kind === 'hall' ? 9 : 8);
+      const mode = it.navigation?.mode;
+      this.drawLabel(mode === 'exterior-view' ? `${it.name}（外观）` : it.name, cx, cy, it.kind === 'hall', it.kind === 'hall' ? 9 : 8, it.name, mode, this.placeCatalog?.forMapItem(it, this.items)?.id);
     }
   }
   
@@ -610,7 +926,7 @@ export class Minimap {
       ctx.strokeStyle = strokeColor;
       ctx.lineWidth = 1.2;
       ctx.strokeRect(x, y, mapW, mapH);
-      if (name && showLabel) this.drawLabel(name, x + mapW / 2, y + mapH / 2, type === 'palace', type === 'palace' ? 11 : 10);
+      if (name && showLabel) this.drawLabel(name, x + mapW / 2, y + mapH / 2, type === 'palace', type === 'palace' ? 11 : 10, name, undefined, this.placeCatalog?.forBinding({ kind: 'layout', name })?.id);
     }
 
     // 两侧宫院
@@ -630,6 +946,11 @@ export class Minimap {
   update(camera) {
     this.playerPosition.copy(camera.position);
     camera.getWorldDirection(this.playerDir);
+    if (Math.hypot(this.playerDir.x, this.playerDir.z) > 1e-6) {
+      const index = (Math.round(Math.atan2(-this.playerDir.x, this.playerDir.z) / (Math.PI / 4)) + 8) % 8;
+      const heading = `朝向 ${MAP_HEADINGS[index]}`;
+      if (this.headingLabel.textContent !== heading) this.headingLabel.textContent = heading;
+    }
     
     if (this.visible) {
       this.drawMap();
@@ -644,6 +965,14 @@ export class Minimap {
   }
   
   dispose() {
+    this.disposed = true;
+    this.clearPlaceSelection();
+    this.placePanel.dispose();
+    this.cancelMapGesture();
+    this.secondaryTaps.clear();
+    this.suppressedClicks.clear();
+    this.inputCleanup.forEach(remove => remove());
+    window.visualViewport?.removeEventListener('resize', this._onResize);
     window.removeEventListener('keydown', this._onKeyDown);
     window.removeEventListener('resize', this._onResize);
     this.preview?.removeEventListener('click', this._onPreviewClick);

@@ -3,21 +3,156 @@
   "hall": "坤宁宫",
   "id": "kunning",
   "tier": "S",
-  "model": "/models/interiors/kunning.glb",
+  "model": "/models/interiors/kunning-v6-ca7d98404e70.glb",
   "fallback": "B",
-  "budget": { "tris": 400000, "textureMB": 8 },
-  "frame": { "x": 0, "z": 386.1, "rot": 0, "w": 46, "d": 20 },
-  "floor": { "mode": "ground", "y": null },
-  "anchor": { "x": 0, "y": 0, "z": 0 },
-  "preload": { "enter": 15, "exit": 40 },
+  "budget": {
+    "tris": 400000,
+    "textureMB": 8
+  },
+  "floor": {
+    "mode": "ground",
+    "y": null
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "preload": {
+    "enter": 15,
+    "exit": 40
+  },
   "views": [
-    { "eye": [0, 1.7, -7.5], "look": [8, 1.0, 8.5] },
-    { "eye": [-9, 1.7, -5], "look": [-20, 1.3, 8] },
-    { "eye": [-13, 1.7, 1], "look": [-19, 5.5, 0] }
+    {
+      "name": "south-entrance-and-enclosed-center",
+      "eye": [
+        0,
+        2,
+        -16
+      ],
+      "look": [
+        -5.11,
+        2,
+        -7.5
+      ]
+    },
+    {
+      "name": "recessed-south-porch",
+      "eye": [
+        -18,
+        2,
+        -12
+      ],
+      "look": [
+        -3,
+        2,
+        -7.5
+      ]
+    },
+    {
+      "name": "interior-looking-south",
+      "eye": [
+        -5.11,
+        1.7,
+        -2.5
+      ],
+      "look": [
+        -5.11,
+        1.7,
+        -9
+      ]
+    },
+    {
+      "name": "north-stoves-and-enclosed-center",
+      "eye": [
+        -1,
+        1.7,
+        1
+      ],
+      "look": [
+        -5.1,
+        1.5,
+        6
+      ]
+    },
+    {
+      "name": "east-end-passage",
+      "eye": [
+        -20.44,
+        1.7,
+        -8.8
+      ],
+      "look": [
+        -20.44,
+        1.7,
+        8.8
+      ]
+    },
+    {
+      "name": "west-end-passage",
+      "eye": [
+        20.44,
+        1.7,
+        8.8
+      ],
+      "look": [
+        20.44,
+        1.7,
+        -8.8
+      ]
+    },
+    {
+      "name": "warm-room-display-only",
+      "eye": [
+        -12,
+        1.7,
+        -2
+      ],
+      "look": [
+        -13,
+        1.8,
+        5.7
+      ]
+    }
   ],
   "lights": [
-    { "type": "point", "x": 6, "y": 5, "z": 0, "color": "#ffd9a0", "intensity": 1.0, "distance": 22 },
-    { "type": "point", "x": -17.5, "y": 4.5, "z": 0, "color": "#ff7a50", "intensity": 1.3, "distance": 14 }
+    {
+      "type": "point",
+      "x": 6,
+      "y": 5,
+      "z": 0,
+      "color": "#ffd9a0",
+      "intensity": 1.0,
+      "distance": 22
+    },
+    {
+      "type": "point",
+      "x": -12.8,
+      "y": 4.5,
+      "z": 0,
+      "color": "#ff7a50",
+      "intensity": 1.3,
+      "distance": 14
+    }
   ],
-  "source": "docs/research/interiors-kunning.md（东次间板门 / 东暖阁 / 三面炕 / 灶间为 A13 官方页描述，置信高；各间尺寸、炕高、灶数量、西两间功能为推断，置信低）。坤宁宫不是宝座殿，无 throne 字段；views 为 tests/p1i-visual.cjs 的机位（殿局部坐标）"
+  "source": "V6: docs/current-state/V6-KUNNING-INTERIOR.md. S is optional furniture-only; B owns all architecture. Official S01/S02/S03 establish nine total bays including two end passages and seven interior bays (warm 2, ritual 4, storage 1). Placement dimensions remain provisional. Retained two-tall-stove depiction is unresolved; S08 supports three low pots for later work. No museum admission claim.",
+  "furnitureProxies": {
+    "COL_bed": "warmBed",
+    "COL_screen": "warmScreen",
+    "COL_kang_s_e": "ritualSouthEastKang",
+    "COL_kang_s_w": "ritualSouthWestKang",
+    "COL_kang_n": "ritualNorthKang",
+    "COL_kang_w": "ritualWestKang",
+    "COL_shrine": "shrine",
+    "COL_stove": "northStove"
+  },
+  "asset": {
+    "sha256": "ca7d98404e708d8398e8be893568aea0b12bdc350f9500052afcaeacb3965e8c",
+    "encodedBytes": 289184,
+    "renderableTriangles": 4656,
+    "proxyTriangles": 96,
+    "decodedBufferBytes": 252704,
+    "textureBytes": 0,
+    "geometryBinSHA256": "a9908f0d397fdcb43c62d65f49e4ee8f927bec4964434d4bc802ab3a42f1bfa5"
+  }
 }

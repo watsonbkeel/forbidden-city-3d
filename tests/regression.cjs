@@ -1,3 +1,5 @@
+const { browserExecutablePath } = require('./lib/browser-path.cjs');
+const { gateProbeSamples } = require('./lib/gate-probes.cjs');
 const { chromium } = require('playwright');
 const assert = require('node:assert/strict');
 const path = require('node:path');
@@ -11,9 +13,13 @@ const ANCHORS = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/anchors.json'),
 async function loadPoints() {
   const { LAYOUT } = await import(pathToFileURL(path.join(ROOT, 'src/config/constants.js')).href);
   const qinan = ANCHORS['钦安殿'];
+  const gates = [LAYOUT.WUMEN_Z, LAYOUT.TAIHE_GATE_Z, LAYOUT.QIANQING_GATE_Z, LAYOUT.SHENWU_Z];
   return {
     // 四座门楼（午门 / 太和门 / 乾清门 / 神武门）中轴门洞：x=0、门中心 ±GATE_SAMPLE_HALF 逐 0.5m 采样
-    gates: [LAYOUT.WUMEN_Z, LAYOUT.TAIHE_GATE_Z, LAYOUT.QIANQING_GATE_Z, LAYOUT.SHENWU_Z],
+    gates,
+    // 神武门中心542 + 18恰为世界北边界560；该点测试的是边界墙，而非门洞。
+    // 仅裁去玩家半径越界的采样点，保留两侧门面和所有合法的0.5m采样；锚点超差仍由anchor-check独立报错。
+    gateSamples: gates.map(z => gateProbeSamples(z, GATE_SAMPLE_HALF, LAYOUT.BOUNDARY)),
     // 午门：侧墙实体与雁翅楼间空地（相对午门中心的偏移见 src/scene/palace/gate.js 头注释）
     wumenZ: LAYOUT.WUMEN_Z,
     // 金水河：中桥 x=0，侧桥间距 = 河宽×0.15（Layout.js 河宽 100 → 15m），x=10 落在中桥与第一座侧桥之间的水面
@@ -36,7 +42,7 @@ const BRIDGE_RAIL_X = 2.5;       // 中桥东侧桥栏（桥宽 5，栏杆位于
 // 使用已有本地服务与系统 Chrome，不安装依赖或请求任何付费服务。
 (async () => {
   const P = await loadPoints();
-  const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+  const browser = await chromium.launch({ executablePath: browserExecutablePath(), headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   const results = [];
   const errors = [];
   const check = (name, value) => { assert.ok(value, name); results.push({ name, passed: true }); };
@@ -48,6 +54,26 @@ const BRIDGE_RAIL_X = 2.5;       // 中桥东侧桥栏（桥宽 5，栏杆位于
     await page.goto(process.env.PALACE_URL || 'http://127.0.0.1:5173', { waitUntil: 'load' });
     await page.waitForFunction(() => window.__forbiddenCityApp?.postProcessing?.composer && document.querySelector('#loading-screen').style.display === 'none');
     check('页面加载完成且只有一个画布', await page.evaluate(() => document.querySelectorAll('#scene-canvas').length === 1));
+    // Exercise the actual menu click callback, not only app.toggleQuality().
+    // The old callback assigned the selected setting and then inverted it again.
+    await page.keyboard.press('Escape');
+    await page.locator('#quality-toggle-btn').click();
+    check('桌面设置按钮选择低画质后渲染与标签一致', await page.evaluate(() => {
+      const a = window.__forbiddenCityApp;
+      return a.currentQuality === 'low' && a.settingsMenu.currentQuality === 'low' &&
+        document.querySelector('#quality-toggle-btn').textContent === '低画质' &&
+        a.renderer.getPixelRatio() === 1 && a.postProcessing.ssaoPass === null &&
+        a.environment.dirLight.shadow.mapSize.width === 512;
+    }));
+    await page.locator('#quality-toggle-btn').click();
+    check('桌面设置按钮再次选择高画质后渲染与标签一致', await page.evaluate(() => {
+      const a = window.__forbiddenCityApp;
+      return a.currentQuality === 'high' && a.settingsMenu.currentQuality === 'high' &&
+        document.querySelector('#quality-toggle-btn').textContent === '高画质' &&
+        a.renderer.getPixelRatio() === 2 && a.postProcessing.ssaoPass !== null &&
+        a.environment.dirLight.shadow.mapSize.width === 2048;
+    }));
+    await page.keyboard.press('Escape');
     const geometry = await page.evaluate(async ({ P, C }) => {
       const a = window.__forbiddenCityApp;
       const THREE = await import('/node_modules/three/build/three.module.js');
@@ -55,8 +81,8 @@ const BRIDGE_RAIL_X = 2.5;       // 中桥东侧桥栏（桥宽 5，栏杆位于
       // 分区流式加载：下面要查询远离出生点的碰撞（如御花园钦安殿），先确保这些点所在分区已加载
       for (const z of P.gates) a.zoneManager?.ensureLoadedAt(0, z);
       a.zoneManager?.ensureLoadedAt(P.pavilion[0], P.pavilion[1]);
-      const through = P.gates.every(z => {
-        for (let sample = z - C.GATE_SAMPLE_HALF; sample <= z + C.GATE_SAMPLE_HALF; sample += 0.5) if (a.collisionManager.checkCollision(v(0, sample))) return false;
+      const through = P.gateSamples.every(samples => {
+        for (const sample of samples) if (a.collisionManager.checkCollision(v(0, sample))) return false;
         return true;
       });
       const ray = new THREE.Raycaster(new THREE.Vector3(C.RIVER_WATER_X, 10, P.riverZ), new THREE.Vector3(0, -1, 0));
@@ -115,7 +141,8 @@ const BRIDGE_RAIL_X = 2.5;       // 中桥东侧桥栏（桥宽 5，栏杆位于
     check('同方向多键松开一键仍可移动', controls.dualKey);
     check('解锁立即停止惯性移动', controls.stopped);
     await page.evaluate(({ shotZ }) => { const a = window.__forbiddenCityApp; a.controls.setPosition(0, 1.7, shotZ); a.controls.lookAt(0, 0); document.querySelector('#welcome-overlay').style.display = 'none'; a.environment.update(a.camera); a.postProcessing.render(); }, { shotZ: P.shotZ });
-    await page.screenshot({ path: path.join(outputDir, '故宫修复后-桌面.png') });
+    // SwiftShader at desktop DPR=2 can need more than Playwright's 30s default.
+    await page.screenshot({ path: path.join(outputDir, '故宫修复后-桌面.png'), timeout: 120000 });
     await context.close();
 
     const mobileContext = await browser.newContext({ viewport: { width: 844, height: 390 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true, userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 Mobile' });
@@ -124,6 +151,29 @@ const BRIDGE_RAIL_X = 2.5;       // 中桥东侧桥栏（桥宽 5，栏杆位于
     await mobile.goto(process.env.PALACE_URL || 'http://127.0.0.1:5173', { waitUntil: 'load' });
     await mobile.waitForFunction(() => window.__forbiddenCityApp?.postProcessing?.composer && document.querySelector('#loading-screen').style.display === 'none');
     check('移动端首次加载即使用低画质阴影与像素比', await mobile.evaluate(() => { const a = window.__forbiddenCityApp; return a.isMobile && a.currentQuality === 'low' && a.renderer.getPixelRatio() === 1 && a.environment.dirLight.shadow.mapSize.width === 512; }));
+    await mobile.keyboard.press('Escape');
+    check('移动端打开设置显示实际低画质', await mobile.evaluate(() => {
+      const a = window.__forbiddenCityApp;
+      return a.settingsMenu.currentQuality === a.currentQuality &&
+        document.querySelector('#quality-toggle-btn').textContent === '低画质';
+    }));
+    await mobile.locator('#quality-toggle-btn').click();
+    check('移动端设置按钮选择高画质实际生效', await mobile.evaluate(() => {
+      const a = window.__forbiddenCityApp;
+      return a.currentQuality === 'high' && a.settingsMenu.currentQuality === 'high' &&
+        document.querySelector('#quality-toggle-btn').textContent === '高画质' &&
+        a.renderer.getPixelRatio() === a.getPixelRatio('high') && a.postProcessing.ssaoPass !== null &&
+        a.environment.dirLight.shadow.mapSize.width === 2048;
+    }));
+    await mobile.locator('#quality-toggle-btn').click();
+    check('移动端设置按钮返回低画质实际生效', await mobile.evaluate(() => {
+      const a = window.__forbiddenCityApp;
+      return a.currentQuality === 'low' && a.settingsMenu.currentQuality === 'low' &&
+        document.querySelector('#quality-toggle-btn').textContent === '低画质' &&
+        a.renderer.getPixelRatio() === 1 && a.postProcessing.ssaoPass === null &&
+        a.environment.dirLight.shadow.mapSize.width === 512;
+    }));
+    await mobile.keyboard.press('Escape');
     const session = await mobileContext.newCDPSession(mobile);
     const left = { x: 100, y: 320, id: 2 };
     const right = { x: 650, y: 180, id: 1 };
@@ -141,7 +191,7 @@ const BRIDGE_RAIL_X = 2.5;       // 中桥东侧桥栏（桥宽 5，栏杆位于
     check('左手先移动再加入右手不重置摇杆基点', JSON.stringify(before) === JSON.stringify(after));
     await session.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
     check('松开手指摇杆清零', await mobile.evaluate(() => { const j = window.__forbiddenCityApp.controls.joystick; return !j.isActive() && j.getDelta().y === 0; }));
-    await mobile.screenshot({ path: path.join(outputDir, '故宫修复后-移动端.png') });
+    await mobile.screenshot({ path: path.join(outputDir, '故宫修复后-移动端.png'), timeout: 120000 });
     check('销毁后控制界面和场景节点释放', await mobile.evaluate(() => { const a = window.__forbiddenCityApp; a.dispose(); return a.scene.children.length === 0 && !document.querySelector('.look-lock-button') && !document.querySelector('.joystick-base') && !document.querySelector('#scene-canvas'); }));
     await mobileContext.close();
     check('浏览器无未捕获JavaScript错误', errors.length === 0);

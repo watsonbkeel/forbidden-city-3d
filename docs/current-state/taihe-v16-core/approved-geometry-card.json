@@ -1,0 +1,202 @@
+{
+  "id": "taihe-v16-core-proposal-r1",
+  "status": "REVIEW_REQUIRED_NO_RUNTIME_EDITS",
+  "dateUTC": "2026-10-16",
+  "units": "metres; arithmetic precision is not survey accuracy",
+  "preserved": {
+    "hallFrame": [
+      0,
+      0,
+      0
+    ],
+    "floorY": 9.9375,
+    "hallEnvelope": [
+      63,
+      37
+    ],
+    "legacyCeilingLocalY": 9.47375,
+    "exteriorRoofAndWallEnvelope": "unchanged",
+    "floorMesh": "unchanged",
+    "frontAndRearEntries": "unchanged",
+    "mapAndTeleportAnchors": "unchanged"
+  },
+  "published": {
+    "throne": {
+      "overallHeight": 1.725,
+      "seatWidth": 1.585,
+      "seatDepth": 0.79,
+      "seatHeight": 0.49,
+      "source": "DPM-THRONE"
+    },
+    "goldColumns": {
+      "count": 6,
+      "diameter": 1.0,
+      "source": "DPM-BUILDING",
+      "diameterPublishedVariation": [
+        1,
+        1.06
+      ],
+      "diameterStatus": "nominal1.00m from building page; newer official guide1.06m, not individual precision survey",
+      "clearanceRadiusMin": 0.53
+    },
+    "centralColumnCenterWidth": {
+      "value": 8.466,
+      "source": "DPM-SURVEY-TABLE"
+    },
+    "plaque": {
+      "width": 6.8,
+      "height": 2.8,
+      "source": "DPM-RESTORATION"
+    },
+    "coupletBoard": {
+      "width": 1,
+      "height": 7.5,
+      "source": "DPM-RESTORATION"
+    },
+    "caisson": {
+      "nominalOpeningApproximately": 6,
+      "totalThreeTierRiseApproximately": 1.8,
+      "wording": "井口直径将近六米; lower tier is described as square, no clear-side/diagonal/outer-trim definition",
+      "source": "DPM-CAISSON-SIZE"
+    }
+  },
+  "provisionalRegistration": {
+    "centralColumnX": [
+      -4.233,
+      4.233
+    ],
+    "columnXBasis": "half measured mean central column-center bay, registered to retained hall center; does not resize facade",
+    "allDepthStationsCentered": [
+      -16.668,
+      -13.0646,
+      -5.5868,
+      5.6019,
+      13.0647,
+      16.668
+    ],
+    "depthStationBasis": "2006 interval means, centered as an explicit assumption, not aligned to game hull extrema",
+    "goldColumnRowIdentity": "S2/S3/S4, medium-confidence cross-source registration inference: plan identifies three free-standing inner rows; gilding photo consistent but not keyed to surveyed columns",
+    "dais": {
+      "z0": 7.06,
+      "z1": 14.06,
+      "height": 2.0,
+      "proposedWidth": 7.2,
+      "basis": "z retains prior model registration provisionally; height is historical approximate description; width is a conservative provisional fit inside ±4.233 central gold columns, pending visual check"
+    },
+    "throne": {
+      "z": 11.26,
+      "baseY": 2.27,
+      "basis": "retained prior z; low independent seat pedestal proposed, both estimated"
+    },
+    "screen": {
+      "z": 13.5,
+      "width": 4.2,
+      "height": 3.8,
+      "panels": 7,
+      "basis": "estimated from PHOTO-THRONE silhouette, not verified object measurements; panel crowns stepped and red lacquer exposed"
+    },
+    "caisson": {
+      "z": 9.51,
+      "rimY": 9.47375,
+      "nominalSquareSpan": 6.0,
+      "nominalSpanReviewRange": [
+        5.4,
+        6.6
+      ],
+      "rise": 1.8,
+      "basis": "retain prior provisional z in front of throne; bounded nominal square interpretation only; 5.4–6.6 is design sensitivity range, not source error bar; rise upward from retained ceiling datum",
+      "alternativeSourceInterpretation": {
+        "opening6mAsSquareDiagonalGivesSide": 4.242640687119285,
+        "status": "plausible alternative reading; source does not disambiguate",
+        "implementation": "one nominal6m candidate only, not an exact clear-width claim; owner photo review before adoption"
+      }
+    },
+    "plaque": {
+      "z": 5.05,
+      "bottomY": 6.4,
+      "topY": 9.2,
+      "basis": "estimated composition pending front-view check; letter face south, yellow ground dark text"
+    },
+    "couplets": {
+      "x": [
+        -4.233,
+        4.233
+      ],
+      "z": 5.05,
+      "bottomY": 0.85,
+      "topY": 8.35,
+      "basis": "measured boards; mount on inferred middle gold pair S3, front face just south of z5.6019 cylinder, mount and heights estimated"
+    },
+    "goldColumnRows": [
+      -5.5868,
+      5.6019,
+      13.0647
+    ],
+    "redCentralCompanionRow": -13.0646,
+    "historicalDaisMismatch": "1941–42 plan dais straddles S3 and screen lies south of S4; retained game z7.06…14.06/screen13.5 does NOT match that topology. No measured-current registration claim; pending owner choice."
+  },
+  "scope": "Replace Taihe central core once; do not overlay enlarged B/S assemblies; basic material separation only. V17 owns fine polychrome/light/ornament refinement.",
+  "materials": {
+    "sourceTextures": "no museum image/panorama/PDF textures shipped",
+    "authoredPatterns": "clearly labeled approximate self-authored",
+    "maximumVisibleCoreBatches": 8,
+    "maximumVisibleCoreTriangles": 18000,
+    "floor": "reuse retained B floor; remove old S tile geometry"
+  },
+  "navigation": {
+    "playerRadius": 0.5,
+    "eyeHeight": 1.7,
+    "protectedPath": [
+      [
+        0,
+        3
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        6.2,
+        0
+      ],
+      [
+        6.2,
+        16
+      ],
+      [
+        0,
+        16.5
+      ]
+    ],
+    "entryEndpoint": [
+      0,
+      5
+    ],
+    "permanentOwnership": "architectural floor, stairs/walk surfaces, columns and dais/throne blocking independent of S load",
+    "noThroneTraversal": true,
+    "noMuseumAccessClaim": true
+  },
+  "performance": {
+    "originalTaiheFront": 874189,
+    "currentTaiheFront": 959809,
+    "ratioCeiling": 1.1,
+    "integerCeiling": 961607,
+    "oldSVisibleTriangles": 40576,
+    "netGoal": "reduce Taihe-front triangles through replacement and removal; full original six-view gate unchanged",
+    "taiheFrontPointZ": -74,
+    "distanceBeyondHull": 55.5,
+    "preloadEnter": 15,
+    "oldSActiveAtOriginalFrontPoint": false,
+    "fallbackVisibleTriangleTarget": 1600,
+    "cpuRemovedLegacyCoreTriangles": 1380,
+    "cpuRemovedCentralColumnsTriangles": 336,
+    "newPermanentRedCompanionColumnTrianglesEstimated": 112,
+    "budgetRule": "Budget permanent architecture + visible fallback separately; S removal cannot release original six-view front budget. Preserve original gate and add inside S checks."
+  },
+  "pendingBeforeRuntime": "Owner approves provisional registration; rows S2/S3/S4 remain an explicitly bounded medium-confidence inference, not direct gilding survey",
+  "validationAdditions": [
+    "Caisson upward recess and retained roof geometry must not intersect; test actual triangles/void clearance",
+    "Dais rails, column bases and0.53m maximum source radius separated with explicit clearance",
+    "Failed/cancelled/late S completion must leave exactly one visible core, no transient disappearance"
+  ]
+}

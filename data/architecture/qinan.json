@@ -1,0 +1,45 @@
+{
+  "profileId": "qinan-exterior-study",
+  "revision": 1,
+  "profileHash": "c0af8e56dec75a586fcb3b9a9f67beea0beca2221e3697e52e560e768f9ea8b2",
+  "currentConditionAccepted": false,
+  "purpose": "Evidence-bounded exterior prototype; not a complete structural reconstruction or current visitor route.",
+  "frameExpectation": {"x": 0, "z": 493.1, "rot": 0, "status": "PROVISIONAL", "note": "Inherited OSM roof-bbox anchor; not a surveyed column-grid origin."},
+  "surveyDatum": {"reference": "main column-base upper face", "floorWorldY": 1.5, "columnBaseAboveFloor": 0.12, "status": "PROVISIONAL", "note": "Floor world Y retains inherited model fit; 0.12m base offset is separately provisional, never a measured terrace elevation."},
+  "mainBody": {
+    "columnFootGrid": {"baysX": [4.03, 4.15, 4.71, 4.15, 4.03], "baysZ": [1.65, 7.34, 1.65], "status": "DIRECT_MEASURED", "source": "S1 p48 Table2, 2004 survey"},
+    "perimeterColumnNodes": [[0,0],[1,0],[2,0],[3,0],[4,0],[5,0],[0,1],[5,1],[0,2],[5,2],[0,3],[1,3],[2,3],[3,3],[4,3],[5,3]],
+    "perimeterStatus": "SOURCE_DERIVED: perimeter nodes on measured grid; not all 24 Cartesian intersections",
+    "interiorGoldenColumns": {"expectedCount": 4, "axisNodes": [], "status": "AXIS_MAPPING_UNRESOLVED_OMITTED", "source": "S1 describes four remaining interior golden pillars; precise node mapping not transcribed. Exterior-only model omits these instead of guessing."},
+    "northWall": {"centralOpening": false, "status": "SOURCE_DERIVED", "source": "S1 Fig2 and S2 historical plan show continuous north-wall hatching at plan-cut height; not a statement of today's door status."},
+    "enclosureApproximation": {"status": "PROVISIONAL", "wallThickness": 0.24, "columnRadius": 0.23, "columnFootWidth": 0.62, "beamHeight": 0.3, "beamWidth": 0.36, "beamLengthExtension": 0.2, "annexBeamHeight": 0.25, "upperFriezeThickness": 0.2, "upperPilasterWidth": 0.18, "upperPilasterDepth": 0.24, "upperDrumBottomRelativeY": 6.9, "bracketApronStatus": "PROVISIONAL_SIMPLIFIED_ENCLOSURE_TO_ROOF_UNDERSIDE_NOT_EXACT_DOUGONG", "note": "Plain north/side enclosure and simplified front joinery. Upper frieze is an exterior skin, not an invented complete golden-column frame."}
+  },
+  "upperColumnHeadGrid": {"baysX": [2.382, 4.114, 4.625, 4.1145, 2.397], "depth": 7.1905, "status": "DIRECT_MEASURED", "source": "S1 p49 Table3, 2013 indirect scan-derived means; sampling and occlusion limitations retained. Not roof-board extents."},
+  "measuredLevels": {"status": "DIRECT_MEASURED", "source": "S1 p56 Table8 measured column; all relative to column-base upper face", "eaveColumnNetTop": 4.29, "lowerEavePurlinBottom": 5.18, "lowerEavePurlinTop": 5.46, "goldenColumnNetTop": 7.485, "upperEavePurlinBottom": 8.555, "upperEavePurlinTop": 8.834, "ceilingUnderside": 8.271, "boardUnderside": 10.346, "boardTop": 10.596},
+  "roofBoard": {"width": 14.3, "depth": 4.1, "widthReadingRange": [14.1,14.6], "depthReadingRange": [3.9,4.3], "status": "SOURCE_DERIVED", "source": "S1 Fig8 x255–766 at35.64px/m; Fig7 x514–677 at40.15px/m", "note": "Idealized rectangular wood board, not measured tile plateau or upper column-head grid."},
+  "cutRafterProfile": {
+    "status": "SOURCE_DERIVED", "source": "S1 Figs7/8 black-grey cut structural lines, not outer ornament",
+    "lower": {"width": 25.1, "depth": 14.7, "edgeRelativeY": 5.15, "innerRelativeY": 6.9},
+    "upper": {"width": 21.7, "depth": 11.4, "edgeRelativeY": 8.55},
+    "spanReadingAllowance": 0.3, "edgeHeightReadingAllowance": 0.15,
+    "note": "Conservative drawing-reading allowances, not statistical confidence or a contemporary error bound. Lower inner chosen at midpoint of6.8–7.0m drawing range."
+  },
+  "roofSkinApproximation": {"status": "PROVISIONAL", "tileThickness": 0.12, "dripExtension": 0.18, "cornerLift": 0.18, "sag": 0.12, "flatCoverCrown": 0.08, "ridgeWidth": 0.22, "ridgeHeight": 0.26, "finialHeight": 0.75, "finialRadius": 0.24, "finialSegments": 8, "finialProfileRatios": [[0,0],[0.8,0],[1,0.15],[0.55,0.35],[0.8,0.58],[0.42,0.8],[0,1]], "flatCoverSubdivisions": 2, "slopeSubdivisions": 3, "edgeSubdivisions": 4, "note": "Curved low-detail sealed tile skin, shallow crowned cover, rectangular perimeter ridge and rotational finial are explicit approximations. No exact ornament or surveyed highest point claimed."},
+  "southAnnex": {
+    "required": true,
+    "plan": {"status": "SOURCE_DERIVED", "frontBayCount": 5, "projection": 6.7, "readingRange": [6.5,6.9], "source": "S1 Figs2/6; Fig6 label 抱厦構架仰視平面; corroborated historical five-bay elevation S2", "note": "Front axes provisionally align with main five-bay foot grid. Drawings may share historical base; not independent modern surveys."},
+    "heights": {"status": "PROVISIONAL", "frontColumnTopRelativeY": 3.0, "rearRoofRelativeY": 4.25, "note": "Low annex massing fit to photograph/historical elevation; no measured rebuilt annex height."},
+    "skin": {"status": "PROVISIONAL", "frontOverhang": 0.7, "sideOverhang": 0.75, "rearJoinOverlap": 0.08, "rearRidgeInset": 0.7, "columnRadius": 0.21, "wallThickness": 0.2, "note": "Three visible sloped surfaces with a rear high edge joining main south wall; hidden joint simplified, exact roof-type name withheld. Closed lattice preview panels do not assert current door status."},
+    "periodLimit": "Rebuilding documented2004–2008; dimensions of completed modern annex not verified."
+  },
+  "terraceGuide": {"status": "SOURCE_DERIVED", "source": "S1 Fig2 at about35.5px/m; railing/stair guides, not stone-base exterior", "mainRailWidth": 24.4, "northRailZ": 7, "insetTurnZ": -7, "southRailWidth": 22.4, "southRailZ": -12.9, "sideStairCenterZ": -9.9, "sideStairWidth": 2, "sideStairProjection": 4.3, "southAxialProjection": {"width": 3, "length": 6.7, "status": "UNRESOLVED_COMPOSITE_LEVELS_OMITTED"}, "readingAllowance": [0.2,0.3]},
+  "supportApproximation": {"status": "PROVISIONAL", "stoneBeyondRailCenter": 0.18, "pavingThickness": 0.08, "railHeight": 0.95, "railThickness": 0.16, "railPostSpacingMax": 2.4, "railPanelHeight": 0.45, "railPanelCenterAboveFloor": 0.4, "railHandHeight": 0.14, "railHandCenterAboveFloor": 0.84, "stairStepCount": 10, "note": "Visible support body follows stepped railing guides, with0.18m stone beyond rail centers; no widened circulation. Stair tread/riser heights and support datum are model fits; no accepted terrace route. South axial composite omitted pending level evidence."},
+  "navigation": {"mode": "exterior-view", "accessStatus": "ground-only-preview", "viewpointId": "qinan-southwest-ground", "position": {"x": 18, "z": 477, "feetY": 0}, "lookAt": {"x": 0, "z": 481.08, "y": 3}, "supportId": "world-ground", "terraceRouteAccepted": false, "interiorRouteAccepted": false, "validationStatus": "CANDIDATE_REQUIRES_NEW_WORLD_CPU_RETEST", "visitorPolicy": "Model exterior viewpoint, not an official present-day visitor route. Side-door and open-portico evidence unresolved; no central north doorway is modeled."},
+  "environmentInterface": {"zone": "garden", "unchanged": "All other garden objects", "missing": ["Tianyi gate", "Qinan courtyard walls", "South axial composite stonework", "Verified interior four-golden-column mapping", "Exact post-rebuilding annex joinery and roof heights"], "removed": ["Old24.1×14.1m OSM-as-column-grid hall", "Seven equal bays", "Wudian roof", "Generic imperial throne", "Central north doorway", "Old south and north ramps", "Old rectangular platform"]},
+  "sources": {
+    "S1": {"url": "https://www.dpm.org.cn/Uploads/File/2018/06/04/u5b1521c1583e4.pdf", "title": "故宫钦安殿大木结构尺度问题探析", "period": "2015 publication;2004 survey and2013 indirect supplementation", "pages": "45–57; Tables2,3,8 and Figures2,6,7,8"},
+    "S2": {"url": "https://www.dpm.org.cn/Uploads/File/2019/12/09/u5dedc722f21af.pdf", "title": "钦安殿：真庆仙都", "period": "紫禁城2015年第5期 pp19–35; museum-held1943 drawings, not a modern as-built"},
+    "S3": {"url": "https://www.dpm.org.cn/classify_detail/160235.html", "period": "2004-12-31 repair announcement; no dimensional evidence"},
+    "S4": {"url": "https://www.dpm.org.cn/explore/building/236494.html", "period": "Official photo date unknown; qualitative private inspection only, not a runtime asset"}
+  }
+}

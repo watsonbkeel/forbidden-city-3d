@@ -1,3 +1,4 @@
+const { browserExecutablePath } = require('./lib/browser-path.cjs');
 // P1-R R-0 profile：统计整帧 draw calls 的来源构成（不改产品代码，只读场景）。
 // 用法：node tests/p1r-profile.cjs [机位名|all]（默认 all 6 点）
 // 输出：/tmp/p1r-profile.json + 控制台摘要
@@ -19,7 +20,7 @@ const ROOT = path.resolve(__dirname, '..');
 (async () => {
   const which = process.argv[2] || 'all';
   const browser = await chromium.launch({
-    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    executablePath: browserExecutablePath(),
     headless: true,
     args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--autoplay-policy=no-user-gesture-required'],
   });

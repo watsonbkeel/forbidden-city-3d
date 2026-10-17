@@ -1,3 +1,4 @@
+const { browserExecutablePath } = require('./lib/browser-path.cjs');
 // 截图回归（T-4）：12 个固定机位截图到 tests/visual/<分支>/，与 tests/visual/main/ 逐像素对比，输出差异图。
 // 用法：node tests/visual.cjs [--update] [机位名子串]
 //   --update        把本次截图写成基线 tests/visual/main/（只应在 main 上、或总控确认画面变化合理后执行）
@@ -73,7 +74,7 @@ function diff(aFile, bFile, outFile) {
   fs.mkdirSync(outDir, { recursive: true });
   const cams = (await loadCams()).filter(c => !filter || c.name.includes(filter));
 
-  const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+  const browser = await chromium.launch({ executablePath: browserExecutablePath(), headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   const context = await browser.newContext({ viewport: VIEW, deviceScaleFactor: 1 });
   await context.addInitScript(() => {
     // 固定种子 PRNG（mulberry32），让程序化贴图/噪声每次一致

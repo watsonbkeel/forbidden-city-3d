@@ -1,7 +1,8 @@
+const { browserExecutablePath } = require('./lib/browser-path.cjs');
 const { chromium, devices } = require('playwright');
 const assert = require('node:assert/strict');
 (async () => {
-  const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+  const browser = await chromium.launch({ executablePath: browserExecutablePath(), headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
   const failures = [];
   try {
     for (const mobile of [false, true]) {

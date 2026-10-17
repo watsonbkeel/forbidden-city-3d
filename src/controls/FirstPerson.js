@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { PointerLockControls } from 'three/examples/jsm/controls/PointerLockControls.js';
 import { PLAYER } from '../config/constants.js';
 import { VirtualJoystick } from './VirtualJoystick.js';
+import { hasShortcutModifier, isTextEntryTarget } from './InputTargets.js';
 
 /**
  * 第一人称控制器
@@ -46,6 +47,7 @@ export class FirstPersonControls {
     this.runDirAngle = null;
     this.runStartTime = 0;
     this.mobileRunning = false;
+    this.runSessionGeneration = null;
     
     // 当前速度（x = 右移速度，z = 前进速度，单位：米/秒）
     this.velocity = new THREE.Vector3();
@@ -89,6 +91,7 @@ export class FirstPersonControls {
     this._onUnlockStop = () => { if (!this.freeMove) this.stop(); };
     // freeMove：不依赖指针锁定也接受键盘移动（打开地图时使用）
     this.freeMove = false;
+    this.mapOpen = false;
     this._turnAxis = new THREE.Vector3(0, 1, 0);
     
     this.setupEventListeners();
@@ -102,6 +105,7 @@ export class FirstPersonControls {
     if (!this.isMobile) {
       // 点击启动指针锁定（桌面端）；点在按钮上不触发
       this._onClick = (e) => {
+        if (this.mapOpen) return;
         if (e.target?.closest?.('button, a, input, select, textarea, [role="button"]')) return;
         if (!this.controls.isLocked) {
           this.controls.lock();
@@ -247,12 +251,18 @@ export class FirstPersonControls {
    */
   onKeyDown(event) {
     if (!this.controls.isLocked && !this.freeMove) return;
+    if (event.defaultPrevented || hasShortcutModifier(event) || isTextEntryTarget(event.target)) return;
     const code = event.code;
+    // 未获准的按键（模态期间/输入框内/取消后）不能靠旧的 repeat 开始移动。
+    if (event.repeat && !this.pressedKeys.has(code)) return;
     if (code === 'Space') {
+      if (event.target?.closest?.('button, a[href], summary, [role="button"]')) return;
       event.preventDefault();
       if (!event.repeat) this.jump();
       return;
     }
+    if (this.isMovementKey(code) || (this.freeMove && (code === 'KeyQ' || code === 'KeyE'))) event.preventDefault();
+    if (code === 'Tab' || code === 'Enter') return;
     // 记录方向键按下时间
     if (!this.pressedKeys.has(code) && this.isMovementKey(code)) {
       this.keyPressTimes.set(code, performance.now());
@@ -287,6 +297,8 @@ export class FirstPersonControls {
   }
 
   stop() {
+    // 取消尚未消费的输入，不改已经起跳后的竖直速度或重力。
+    this.jumpQueued = false;
     this.pressedKeys.clear();
     this.keyPressTimes.clear();
     this.updateKeyState();
@@ -341,6 +353,12 @@ export class FirstPersonControls {
     // 持续朝同一方向推满 2 秒以上 → 奔跑；换方向、松手或推得太轻都会回到走路
     let mobileRunning = false;
     if (this.isMobile && this.joystick && this.joystick.isActive()) {
+      // 松手/取消后可能在同一帧前重新认领，不能等 RAF 观察到 inactive。
+      if (this.runSessionGeneration !== this.joystick.sessionGeneration) {
+        this.runSessionGeneration = this.joystick.sessionGeneration;
+        this.runDirAngle = null;
+        this.runStartTime = 0;
+      }
       const d = this.joystick.getDelta();
       const mag = Math.hypot(d.x, d.y);
       if (mag > 0.5) {
@@ -407,6 +425,8 @@ export class FirstPersonControls {
       currentPosition.y = eyeY;
       
       // 只在水平面移动
+      // PointerLockControls 读 local matrix；鼠标/触摸及本帧 Q/E 先更新的是 quaternion。
+      this.camera.updateMatrix();
       this.controls.moveForward(this.velocity.z * delta);
       this.controls.moveRight(this.velocity.x * delta);
       
@@ -650,6 +670,13 @@ export class FirstPersonControls {
   setFreeMove(on) {
     this.freeMove = !!on;
     if (!on) this.stop();
+  }
+
+  setMapOpen(on) { this.mapOpen = !!on; }
+
+  /** 地图只释放鼠标捕获，保留正在按住的键/摇杆及其计时。 */
+  releasePointerForMap() {
+    if (this.mapOpen && this.freeMove && !this.isMobile) this.controls.unlock();
   }
 
   /**

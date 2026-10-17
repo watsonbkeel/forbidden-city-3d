@@ -250,7 +250,7 @@ async function lintGeometry(zoneFiles) {
   // 8. 门洞两侧
   let gateChecked = 0;
   for (const g of W.gates) {
-    if (L.pointBlocked(W, g.x, g.z)) {
+    if (L.pointBlocked(W, g.x, g.z, g.platformY)) {
       error(`${name(g)} 门洞中心被碰撞体占据：${blockersIn(g.x - 0.5, g.z - 0.5, g.x + 0.5, g.z + 0.5, g.item).join('；')}`);
       continue;
     }
@@ -259,7 +259,7 @@ async function lintGeometry(zoneFiles) {
       const [dx, dz] = [g.dir[0] * s, g.dir[1] * s];
       const px = -dz, pz = dx; // 横向
       const end = [g.x + dx * (g.half + GATE_SCAN), g.z + dz * (g.half + GATE_SCAN)];
-      const w = L.walkStraight(W, [g.x, g.z], end);
+      const w = L.walkStraight(W, [g.x, g.z], end, { feet0: g.platformY });
       const clear = w.reached >= w.total - 0.1 ? GATE_SCAN : Math.max(0, w.reached + 0.5 - g.half);
       const where = `${name(g)} ${sideName(g.dir, s)}`;
       if (clear < GATE_SCAN) {
@@ -282,9 +282,33 @@ async function lintGeometry(zoneFiles) {
   // 9. enter:true 殿门前
   let hallChecked = 0;
   for (const h of W.halls) {
+    if (h.g.profile?.profile === 'qinan') {
+      // Typed exterior-only contract: never reinterpret it as a pavilion door
+      // approach or silently accept a generic enter/backDoor override.
+      if (h.g.enter || h.g.backDoor || h.g.navigation.mode !== 'exterior-view') error(`${h.zone}: 钦安殿须保持地面外观预览`);
+      continue;
+    }
     if (h.item.enter !== true || h.item.open) continue;
     hallChecked++;
     const g = h.g;
+    if (g.profile) {
+      // The center of this approach is a solid carved strip. Probe both real
+      // side flights, through the terrace turn and the single lower doorway.
+      for (const approach of Object.values(g.profile.approaches)) {
+        let feet = approach.worldPoints[0].y;
+        const points = approach.worldPoints;
+        for (let i = 1; i < points.length; i++) {
+          const from = points[i - 1], to = points[i];
+          const result = L.walkStraight(W, [from.x, from.z], [to.x, to.z], { feet0: feet });
+          if (result.reached < result.total - 0.3) {
+            error(`${h.zone}: hall「${h.item.name}」${approach.side} ${from.kind}→${to.kind} 受阻：${JSON.stringify(result)}`);
+            break;
+          }
+          feet = result.feet;
+        }
+      }
+      continue;
+    }
     const doorHalf = (g.bay - 2 * g.r) / 2;
     const faces = [[-1, '前门']];
     if (g.backDoor) faces.push([1, '后门']);

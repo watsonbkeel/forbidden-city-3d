@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { applyBoxUV } from '../../utils/GeometryUV.js';
+import { gateRailFacade } from './gateRailFacade.js';
 
 /**
  * 城台登城马道（踏道）：参考午门 / 神武门实物，在城台内侧（宫内一侧）两端设斜坡踏道，
@@ -23,6 +24,7 @@ export function buildGateAscent(lib, parent, {
   parapetH = 1.1,           // 马道两侧宇墙高
   edge = 'rail',            // 城台顶四周：'rail' 汉白玉栏杆 | 'wall' 红色宇墙 | null（已有，不再建）
   edgeInset = 0.3,
+  railFacadeOnly = false,    // opt-in only for the main Wumen alpha-band rails
 }) {
   const colliders = [];
   const walkables = [];
@@ -134,6 +136,7 @@ export function buildGateAscent(lib, parent, {
     if (Math.max(lx, lz) < 0.3) return;
     if (edge) {
       const g = applyBoxUV(new THREE.BoxGeometry(Math.max(lx, edgeT), edgeH, Math.max(lz, edgeT)), railTile);
+      if (edge === 'rail' && railFacadeOnly) gateRailFacade(g, true);
       const m = add(g, railMat);
       m.position.set((x0 + x1) / 2, topY + edgeH / 2, (z0 + z1) / 2);
     }

@@ -1,0 +1,318 @@
+{
+  "baseCommit": "35914d6c2bc16dbb9fd7245d6384195ece5e125d",
+  "baseTree": "ed7a9c4e6652925d03a4d1d4de30529de785945a",
+  "note": "Captured from real V7 CPU object construction. GPU PMREM boundary is observed only; no rendered or texture pixels are validated.",
+  "targetToLight": [
+    100,
+    200,
+    100
+  ],
+  "environment": {
+    "lights": [
+      {
+        "type": "HemisphereLight",
+        "color": 16774374,
+        "intensity": 0.5,
+        "groundColor": 9077362,
+        "position": [
+          0,
+          50,
+          0
+        ],
+        "target": null
+      },
+      {
+        "type": "DirectionalLight",
+        "color": 16774625,
+        "intensity": 1.4,
+        "groundColor": null,
+        "position": "AZIMUTH_STUDY",
+        "target": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "type": "DirectionalLight",
+        "color": 14215423,
+        "intensity": 0.25,
+        "groundColor": null,
+        "position": [
+          -50,
+          50,
+          -50
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      {
+        "geometry": "SphereGeometry",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          "XYZ"
+        ],
+        "castShadow": false,
+        "receiveShadow": false,
+        "type": "ShaderMaterial",
+        "name": "",
+        "color": null,
+        "roughness": null,
+        "metalness": null,
+        "side": 1,
+        "transparent": false,
+        "opacity": 1,
+        "alphaTest": 0,
+        "depthWrite": true,
+        "fog": false,
+        "map": null,
+        "uniforms": {
+          "topColor": 4881319,
+          "bottomColor": 12113128
+        },
+        "vertexShaderSHA256": "00a0d99d414e41dd8260edb8f834a6318295b99c55ba5f6af3da4e40cd94b631",
+        "fragmentShaderSHA256": "36a3cdde825b7577270695170255424bba9fac564275be67e2a9f02e7bb46eb8"
+      },
+      {
+        "geometry": "CylinderGeometry",
+        "position": [
+          0,
+          30,
+          0
+        ],
+        "rotation": [
+          0,
+          0.7853981633974483,
+          0,
+          "XYZ"
+        ],
+        "castShadow": false,
+        "receiveShadow": false,
+        "type": "MeshBasicMaterial",
+        "name": "",
+        "color": 16777215,
+        "roughness": null,
+        "metalness": null,
+        "side": 2,
+        "transparent": true,
+        "opacity": 1,
+        "alphaTest": 0.5,
+        "depthWrite": false,
+        "fog": true,
+        "map": "skyline_color",
+        "uniforms": null,
+        "vertexShaderSHA256": null,
+        "fragmentShaderSHA256": null
+      },
+      {
+        "geometry": "ShapeGeometry",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          -1.5707963267948966,
+          0,
+          0,
+          "XYZ"
+        ],
+        "castShadow": false,
+        "receiveShadow": true,
+        "type": "MeshStandardMaterial",
+        "name": "ground_brick_material",
+        "color": 16777215,
+        "roughness": 0.88,
+        "metalness": 0,
+        "side": 0,
+        "transparent": false,
+        "opacity": 1,
+        "alphaTest": 0,
+        "depthWrite": true,
+        "fog": true,
+        "map": "ground_brick_color",
+        "uniforms": null,
+        "vertexShaderSHA256": null,
+        "fragmentShaderSHA256": null
+      },
+      {
+        "geometry": "PlaneGeometry",
+        "position": [
+          0,
+          0.01,
+          21
+        ],
+        "rotation": [
+          -1.5707963267948966,
+          0,
+          0,
+          "XYZ"
+        ],
+        "castShadow": false,
+        "receiveShadow": true,
+        "type": "MeshStandardMaterial",
+        "name": "stone_slab_material",
+        "color": 16777215,
+        "roughness": 0.75,
+        "metalness": 0,
+        "side": 0,
+        "transparent": false,
+        "opacity": 1,
+        "alphaTest": 0,
+        "depthWrite": true,
+        "fog": true,
+        "map": "stone_slab_color",
+        "uniforms": null,
+        "vertexShaderSHA256": null,
+        "fragmentShaderSHA256": null
+      }
+    ],
+    "fog": {
+      "isFogExp2": true,
+      "color": 13943976,
+      "density": 0.00065
+    },
+    "shadow": {
+      "castShadow": true,
+      "camera": {
+        "left": -120,
+        "right": 120,
+        "top": 120,
+        "bottom": -120,
+        "near": 0.5,
+        "far": 500
+      },
+      "mapSize": [
+        2048,
+        2048
+      ],
+      "bias": -0.0001,
+      "normalBias": 0,
+      "radius": 1,
+      "autoUpdate": true
+    },
+    "legacySunPosition": [
+      -325470.74656069546,
+      211262.2032536509,
+      227897.07020854088
+    ]
+  },
+  "quality": {
+    "low": {
+      "castShadow": true,
+      "camera": {
+        "left": -60,
+        "right": 60,
+        "top": 60,
+        "bottom": -60,
+        "near": 0.5,
+        "far": 500
+      },
+      "mapSize": [
+        512,
+        512
+      ],
+      "bias": -0.0001,
+      "normalBias": 0,
+      "radius": 1,
+      "autoUpdate": true
+    },
+    "high": {
+      "castShadow": true,
+      "camera": {
+        "left": -120,
+        "right": 120,
+        "top": 120,
+        "bottom": -120,
+        "near": 0.5,
+        "far": 500
+      },
+      "mapSize": [
+        2048,
+        2048
+      ],
+      "bias": -0.0001,
+      "normalBias": 0,
+      "radius": 1,
+      "autoUpdate": true
+    }
+  },
+  "environmentMethodsSHA256": {
+    "init": "4131be15ab3b154873b41727ab30b2a607bc431ec13d1f43fd4d8230627a8ebe",
+    "setupSky": "21168e4a4c61abefc08dfbd31f2743c1c0548a53df0dc5956338718f1bab8340",
+    "setupSkyline": "4b8b912c4067fae10d5b9e1f897a51c702630f79370f3d61c8a1ae5df0c92665",
+    "setupGround": "90811410150b79dd2e1130753099f609fab96330dda3c07c929521290be91222",
+    "setupFog": "62b754a5fa9655641c64ae8e9580e1049f1987f48b758d0f93f981c45220c870",
+    "setupLights": "3f27ca6dcbf1bc494c3a8284bc4f0260cbbe5db02bfafb84afe8a1c81ca448c6",
+    "setupIBL": "0f9437ab0c44db5f9439c877380f3dec7e7571c7ca2d933477b6c1261672c7be",
+    "setQuality": "6ef76efc004a5697c03aa245e8237d8913c53ff54f86ab18f14e733929e7b3fc",
+    "update": "21148fea4d3d00dfde708f3ad37156afd2706c39f8d64224cb0d27024f3100ca",
+    "dispose": "3cd19adabaa4b7b392eb4817860e8794ff5ececc8e106732a6acd624e7be340d"
+  },
+  "protectedSourcesSHA256": {
+    "main.js": "bb226752ebf2b1e5130be3e46fed6cfa1f1ae86bb8a7fd6aa1f3f1d8ff5696b6",
+    "src/config/constants.js": "485f52c51d4f532c585171f7d28c13acd0e984a4ae296a91d21dcac70155ec20",
+    "src/render/ShadowSetup.js": "74a6e1751f4227f245babcaf429e7952cd590a88929fd92e719e90d8038a409a",
+    "src/render/PostProcessing.js": "e945f42d6972ce7f1551c5958f25a15aa9f670e0a4b95afc73e8d1ace08c531b",
+    "src/scene/sky/SkySetup.js": "db842eb2ad37a63d5fd78d7f54782c6d119f6fc1f7f823a6c2fc10bf9e4a2cce",
+    "src/scene/sky/Skyline.js": "1aeb74c691478690d1eae9cfab2950847c786309e2a0f37a29a56fce0b15afba",
+    "src/utils/TextureLibrary.js": "27efdac592e0f830e50b9871a528d701dd3238d31db3cf64ffb77b3110df7194",
+    "src/utils/TextureGenerator.js": "286bf1a9a657af4bbab36920ce126b68139cdb9764df7d212e2beb13b63d26cb",
+    "public/textures/hd/manifest.json": "8bcc0e0da4f186a826324d40b29162ad43971e9a5bdfda7dd68462d7323d5cca",
+    "public/textures/sd/manifest.json": "8bcc0e0da4f186a826324d40b29162ad43971e9a5bdfda7dd68462d7323d5cca",
+    "tests/perf.cjs": "0921cc93e20109e1a220bcbd9b05adc6f41a30b91c25233f999f1ddbd9770bd7",
+    "tests/perf-p2.json": "6108e5229f090755a287dc09715fa164ba7febdf54c650d79b526be5197ab5ff",
+    "package.json": "e1f763d919b5d37fc8c896a2b4a3f2f4bd5b47b31f738657b0b4eafbf9d669c6",
+    "package-lock.json": "6433a4df863572a2aa0b6ea94377a142483417bb735b2f2ce3c0944e22b5efda"
+  },
+  "legacyAPISamples": [
+    [
+      0,
+      0,
+      [
+        450000,
+        2.7554552980815448e-11,
+        0
+      ]
+    ],
+    [
+      90,
+      45,
+      [
+        1.9484011265298596e-11,
+        318198.0515339464,
+        318198.05153394636
+      ]
+    ],
+    [
+      145,
+      28,
+      [
+        -325470.74656069546,
+        211262.2032536509,
+        227897.07020854088
+      ]
+    ],
+    [
+      225,
+      54.735610317245346,
+      [
+        -183711.73070873838,
+        367423.4614174767,
+        -183711.73070873832
+      ]
+    ]
+  ]
+}
