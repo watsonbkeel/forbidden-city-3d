@@ -1,3 +1,5 @@
+// Exact pre-R25 nameboard poses for historical whole-hall fingerprints only.
+import {HistoricalR24PalaceBuilder} from './lib/historical-r24-baohe-fixture.mjs';
 import {taiheColumnGrid} from '../src/scene/palace/special/TaiheColumnGrid.js';
 import r10 from './fixtures/r10-column-grid-baseline.json' with {type:'json'};
 import test from 'node:test';
@@ -70,7 +72,7 @@ test('enclosure helper itself cannot register navigation or change lights and ac
  builder.dispose();g.children.forEach(o=>o.geometry.dispose());
 });
 for(const name of ['保和殿','乾清宫'])test(`${name} geometry, materials and navigation remain byte equivalent in the explicitly restored historical frame`,async()=>{
- const {builder,group}=name==='保和殿'?await captureHistoricalBaoheControl():captureTaiheControl(name);
+ const {builder,group}=name==='保和殿'?await captureHistoricalBaoheControl():captureTaiheControl(name,HistoricalR24PalaceBuilder);
  assert.equal(hash(group.children.filter(x=>x.isMesh).map(x=>serialMesh(x))),baseline[name].geometry);
  assert.equal(hash({colliders:builder.colliders,walkables:builder.walkables}),baseline[name].navigation);
  builder.dispose();

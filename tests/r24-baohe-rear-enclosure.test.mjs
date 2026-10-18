@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
-import {PalaceBuilder} from '../src/scene/PalaceBuilder.js';
+// Frozen R24 surface comparisons; live R25 acceptance is independently guarded.
+import {HistoricalR24PalaceBuilder as PalaceBuilder} from './lib/historical-r24-baohe-fixture.mjs';
 import {HistoricalR23PalaceBuilder as R23Builder} from './lib/historical-r23-baohe-fixture.mjs';
 import {PALACE_LAYOUT} from '../src/scene/Layout.js';
 import {library,hash,sceneRows,hallSurfaces} from './lib/inner-palace-fixture.mjs';

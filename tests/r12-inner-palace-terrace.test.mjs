@@ -1,3 +1,5 @@
+// Exact pre-R25 nameboard poses for historical whole-hall fingerprints only.
+import {HistoricalR24PalaceBuilder} from './lib/historical-r24-baohe-fixture.mjs';
 import{restoreR16SourceIfPresent}from'./lib/r16-baohe-retention.mjs';
 import{restorePreR13SceneRow}from'./lib/r13-plaque-retention.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {execFileSync}from'node:child_process';import *as T from'three';
@@ -52,10 +54,10 @@ test('greybrick/glazed low wall has real open holes and tight visible collision 
  const colors=new Set();for(const m of rail.children.filter(m=>m.material.name.startsWith('inner-palace-glazed-brick:'))){assert.equal(m.material.map,null);assert.equal(m.material.vertexColors,false);assert.equal(m.geometry.attributes.color,undefined);colors.add(m.material.color.getHex());}assert.equal(colors.size,2);
 });
 test('Kunning rebind reproducible with no BIN, proxy or material change',()=>{const r=JSON.parse(execFileSync(process.execPath,['tools/rebind-kunning-inner-levels.mjs','--check'],{encoding:'utf8'}));assert.equal(r.status,'pass');assert.equal(r.binAndGeometry,'unchanged');});
-test('three hall bodies lower rigidly; tight float32 tolerance, only known world-height UV phase changes',async()=>{
+test('frozen R24 three hall bodies lower rigidly; tight float32 tolerance, only known world-height UV phase changes',async()=>{
  const{hallSurfaces}=await import('./lib/inner-palace-fixture.mjs'),{gunzipSync}=await import('node:zlib');
  const before=JSON.parse(gunzipSync(fs.readFileSync(new URL('./fixtures/r12-inner-hall-surfaces.json.gz',import.meta.url))));
- for(const[name,ref]of Object.entries(before)){const b=new PalaceBuilder(new T.Scene(),library()),g=new T.Group();b.buildHall(g,PALACE_LAYOUT.find(h=>h.name===name),2.16,{heightReferenceY:name==='乾清宫'?7:2.16});const rows=hallSurfaces(g,2.16);assert.equal(rows.length,ref.surfaces.length);
+ for(const[name,ref]of Object.entries(before)){const b=new HistoricalR24PalaceBuilder(new T.Scene(),library()),g=new T.Group();b.buildHall(g,PALACE_LAYOUT.find(h=>h.name===name),2.16,{heightReferenceY:name==='乾清宫'?7:2.16});const rows=hallSurfaces(g,2.16);assert.equal(rows.length,ref.surfaces.length);
   for(let i=0;i<rows.length;i++){const a=rows[i],o=ref.surfaces[i];assert.equal(a.name,o.name);assert.equal(a.material,o.material);assert.deepEqual(a.index,o.index);
    for(const k of['position','normal','uv']){if(a[k]===null){assert.equal(o[k],null);continue;}assert.equal(a[k].length,o[k].length);for(let j=0;j<a[k].length;j++){const d=Math.abs(a[k][j]-o[k][j]);
     if(k==='position')assert.ok(d<.000003,`${name}/${i} rigid shape ${d}`);

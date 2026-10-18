@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
 import {PalaceBuilder} from '../src/scene/PalaceBuilder.js';
+import {HistoricalR24PalaceBuilder} from './lib/historical-r24-baohe-fixture.mjs';
 import {HistoricalR23PalaceBuilder} from './lib/historical-r23-baohe-fixture.mjs';
 import {PALACE_LAYOUT} from '../src/scene/Layout.js';
 import {library,hash,sceneRows} from './lib/inner-palace-fixture.mjs';
@@ -57,13 +58,13 @@ test('private atlas cells do not bleed into adjacent fields and no old gold faca
  assert.ok(g.children.filter(m=>m.material?.name==='lattice_doors'&&m.position.z>data.position.z).length>0);
 });
 
-test('current front changes preserve the complete R22 navigation registration',()=>{
- const s=new THREE.Scene(),builder=new PalaceBuilder(s,library());builder.buildAll(PALACE_LAYOUT);
+test('frozen R24 front changes preserve the complete R22 navigation registration',()=>{
+ const s=new THREE.Scene(),builder=new HistoricalR24PalaceBuilder(s,library());builder.buildAll(PALACE_LAYOUT);
  try{
   assert.equal(hash({colliders:builder.colliders,walkables:builder.walkables}),nav.afterSHA256);
   assert.equal(builder.colliders.length,2487);assert.equal(builder.walkables.length,120);
   const rows=sceneRows(s);for(const[name,row]of Object.entries(baseline.unchanged))assert.deepEqual(rows[name],row);
-  assert.deepEqual(rows['三台'],currentScene.after,'live R24 complete geometry, without historical normalization');
+  assert.deepEqual(rows['三台'],currentScene.after,'frozen R24 complete geometry, without scene-row normalization');
  }finally{builder.dispose();}
 });
 

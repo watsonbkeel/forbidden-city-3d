@@ -1,3 +1,5 @@
+// Exact pre-R25 nameboard poses for historical whole-hall fingerprints only.
+import {HistoricalR24PalaceBuilder} from '../lib/historical-r24-baohe-fixture.mjs';
 import {restorePreR10MeshRows} from '../lib/r10-column-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -13,7 +15,7 @@ const c=capture('太和殿');
 const tris=o=>(o.geometry.index?.count??o.geometry.attributes.position.count)/3;
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-5,`${a} != ${b}`);
 for(const [name,b]of Object.entries(baseline.otherHalls))test(`Taihe correction leaves ${name} geometry, materials and navigation byte-exact in the explicitly restored historical frame`,async()=>{
- const v=name==='坤宁宫'?await captureHistoricalKunningControl():name==='保和殿'?await captureHistoricalBaoheControl():capture(name),rows=[];v.group.traverse(o=>{if(o.isMesh)rows.push(serialMesh(o));});assert.equal(hash(rows),b.geometry);assert.equal(hash({colliders:v.builder.colliders,walkables:v.builder.walkables}),b.physics);
+ const v=name==='坤宁宫'?await captureHistoricalKunningControl():name==='保和殿'?await captureHistoricalBaoheControl():capture(name,HistoricalR24PalaceBuilder),rows=[];v.group.traverse(o=>{if(o.isMesh)rows.push(serialMesh(o));});assert.equal(hash(rows),b.geometry);assert.equal(hash({colliders:v.builder.colliders,walkables:v.builder.walkables}),b.physics);
 });
 test('approved card bytes, inferred rows and dimension-precision limits remain explicit',()=>{
  const bytes=fs.readFileSync(new URL('../../docs/current-state/taihe-v16-core/approved-geometry-card.json',import.meta.url));assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),P.approvalCardSHA256);
@@ -21,17 +23,18 @@ test('approved card bytes, inferred rows and dimension-precision limits remain e
  assert.deepEqual(P.columns.publishedDiameterRange,[1,1.06]);assert.match(P.dais.registration,/historical/);assert.match(P.screen.registration,/conflicts/);assert.match(P.caisson.interpretation,/diagonal/);
 });
 test('historical meshes remain exact after the finite R9 enclosure and R10 registered grid deltas',()=>{
- const all=c.group.children.filter(o=>o.isMesh),restored=restorePreR10MeshRows(all.map(o=>serialMesh(o)));
+ const frozen=capture('太和殿',HistoricalR24PalaceBuilder);
+ const all=frozen.group.children.filter(o=>o.isMesh),restored=restorePreR10MeshRows(all.map(o=>serialMesh(o)));
  const rowMap=new Map(all.map((o,i)=>[o,restored[i]]));
  const protectedMeshes=[],regilded=[];
- c.group.traverse(o=>{if(!o.isMesh)return;if(o.userData.taiheCoreOwner===TAIHE_FALLBACK_OWNER||o.userData.taihePermanent)return;
+ frozen.group.traverse(o=>{if(!o.isMesh)return;if(o.userData.taiheCoreOwner===TAIHE_FALLBACK_OWNER||o.userData.taihePermanent)return;
  const row=rowMap.get(o)??serialMesh(o),x=row.matrix[12],z=row.matrix[14];
  if(o.geometry.type==='CylinderGeometry'&&Math.abs(Math.abs(x)-63/11*1.5)<1e-7&&z>0&&Math.abs(z)<18){assert.equal(row.material.name,'wood_column');const {material,...geometry}=row;regilded.push(geometry);return;}
  protectedMeshes.push(hash(row));});
  assert.equal(rearDelta.before.length,9);assert.equal(rearDelta.after.length,4);
  for(const h of rearDelta.after){const i=protectedMeshes.indexOf(h);assert.ok(i>=0,'exact retained enclosure mesh required');protectedMeshes.splice(i,1);}
  protectedMeshes.push(...rearDelta.before);
- assert.deepEqual(protectedMeshes.sort(),baseline.taihe.protectedMeshes);assert.deepEqual(regilded,baseline.taihe.regildedColumns);
+ assert.deepEqual(protectedMeshes.sort(),baseline.taihe.protectedMeshes);assert.deepEqual(regilded,baseline.taihe.regildedColumns);frozen.builder.dispose();
 });
 
 test('fallback retains its original 1600-triangle cap; permanent geometry separately counts60 beam and280 coffer triangles',()=>{

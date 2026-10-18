@@ -1,3 +1,5 @@
+// Exact pre-R25 nameboard poses for historical whole-hall fingerprints only.
+import {HistoricalR24PalaceBuilder} from './lib/historical-r24-baohe-fixture.mjs';
 import{restorePreR13PlaqueRows}from'./lib/r13-plaque-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -48,14 +50,14 @@ test('front/rear three bay leaves, thresholds and rear flanks use the same openi
  for(const o of thresholds){assert.ok(Math.abs(o.geometry.boundingBox.getSize(new THREE.Vector3()).x-(g.openRight-g.openLeft))<1e-5);near(o.position.x,(g.openLeft+g.openRight)/2);}
  builder.dispose();
 });
-test('retained core bytes and geometry count do not grow for the grid correction',()=>{
- const {builder,group}=captureTaiheControl('太和殿');const meshes=group.children.filter(o=>o.isMesh),old=B['太和殿'];
+test('retained core bytes and geometry count do not grow for the grid correction in frozen R24',()=>{
+ const {builder,group}=captureTaiheControl('太和殿',HistoricalR24PalaceBuilder);const meshes=group.children.filter(o=>o.isMesh),old=B['太和殿'];
  const restored=restorePreR13PlaqueRows(meshes.map(o=>serialMesh(o)));
  assert.deepEqual(meshes.flatMap((o,i)=>o.userData.taiheCoreOwner?[hash(restored[i])]:[]),old.coreMeshes);
  assert.equal(meshes.length,old.meshCount);assert.equal(meshes.reduce((n,o)=>n+(o.geometry.index?.count??o.geometry.attributes.position.count)/3,0),old.triangles);
  builder.dispose();
 });
 for(const name of ['保和殿','乾清宫'])test(`${name} stays byte equivalent in geometry and navigation in the explicitly restored historical frame`,async()=>{
- const {builder,group}=name==='保和殿'?await captureHistoricalBaoheControl():captureTaiheControl(name);assert.equal(hash(group.children.filter(o=>o.isMesh).map(o=>serialMesh(o))),B[name].geometry);
+ const {builder,group}=name==='保和殿'?await captureHistoricalBaoheControl():captureTaiheControl(name,HistoricalR24PalaceBuilder);assert.equal(hash(group.children.filter(o=>o.isMesh).map(o=>serialMesh(o))),B[name].geometry);
  assert.equal(hash({colliders:builder.colliders,walkables:builder.walkables}),B[name].navigation);builder.dispose();
 });

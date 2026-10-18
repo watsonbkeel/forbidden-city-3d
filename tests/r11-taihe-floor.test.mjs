@@ -1,3 +1,5 @@
+// Exact pre-R25 nameboard poses for historical whole-hall fingerprints only.
+import {HistoricalR24PalaceBuilder} from './lib/historical-r24-baohe-fixture.mjs';
 import{restorePreR13PlaqueRows}from'./lib/r13-plaque-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -24,7 +26,7 @@ test('floor material uses explicit color space, bounded mip storage, caching and
  let n=0;m.map.addEventListener('dispose',()=>n++);m.dispose();m.dispose();assert.equal(n,1);
 });
 test('only Taihe floor UV and material change; all positions, nonfloor geometry and navigation remain exact',()=>{
- const{builder,group}=captureTaiheControl('太和殿'),rows=restorePreR13PlaqueRows(group.children.filter(o=>o.isMesh).map(o=>serialMesh(o))),b=B['太和殿'];
+ const{builder,group}=captureTaiheControl('太和殿',HistoricalR24PalaceBuilder),rows=restorePreR13PlaqueRows(group.children.filter(o=>o.isMesh).map(o=>serialMesh(o))),b=B['太和殿'];
  assert.equal(rows.length,b.meshCount);assert.equal(hash(rows.filter((_,i)=>i!==b.floorIndex)),b.nonfloor);
  const r=rows[b.floorIndex],old=b.floor;assert.equal(r.material.name,P.cacheKey);assert.deepEqual(r.matrix,old.matrix);assert.equal(r.index,old.index);
  for(const k of Object.keys(r.attributes))if(k!=='uv')assert.deepEqual(r.attributes[k],old.attributes[k]);
@@ -34,5 +36,5 @@ test('only Taihe floor UV and material change; all positions, nonfloor geometry 
  assert.equal(mesh.receiveShadow,true);builder.dispose();
 });
 for(const name of ['保和殿','乾清宫'])test(`${name} retains exact floor, materials, geometry and navigation in the explicitly restored historical frame`,async()=>{
- const{builder,group}=name==='保和殿'?await captureHistoricalBaoheControl():captureTaiheControl(name);assert.equal(hash(group.children.filter(o=>o.isMesh).map(o=>serialMesh(o))),B[name].geometry);assert.equal(hash({colliders:builder.colliders,walkables:builder.walkables}),B[name].navigation);assert.ok(!builder._own.has(P.cacheKey));builder.dispose();
+ const{builder,group}=name==='保和殿'?await captureHistoricalBaoheControl():captureTaiheControl(name,HistoricalR24PalaceBuilder);assert.equal(hash(group.children.filter(o=>o.isMesh).map(o=>serialMesh(o))),B[name].geometry);assert.equal(hash({colliders:builder.colliders,walkables:builder.walkables}),B[name].navigation);assert.ok(!builder._own.has(P.cacheKey));builder.dispose();
 });

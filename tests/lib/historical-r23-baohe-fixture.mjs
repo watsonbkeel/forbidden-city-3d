@@ -1,3 +1,5 @@
+// Bind exact R25 added/retained modules before restoring older builders.
+import './historical-r24-baohe-fixture.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import fs from 'node:fs';

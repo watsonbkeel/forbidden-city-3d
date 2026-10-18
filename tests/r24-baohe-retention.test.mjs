@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import * as THREE from 'three';
-import {PalaceBuilder} from '../src/scene/PalaceBuilder.js';
+import {HistoricalR24PalaceBuilder as PalaceBuilder} from './lib/historical-r24-baohe-fixture.mjs';
+import {restorePreR25Source} from './lib/r25-nameboard-retention.mjs';
 import {PALACE_LAYOUT} from '../src/scene/Layout.js';
 import {library,sceneRows} from './lib/inner-palace-fixture.mjs';
 import {HistoricalR23PalaceBuilder} from './lib/historical-r23-baohe-fixture.mjs';
@@ -41,6 +42,7 @@ function capture(Builder){
     return{rows:sceneRows(s),navigation:clone({colliders:b.colliders,walkables:b.walkables}),geometryBytes,materials};
   }finally{b.dispose();}
 }
+// Frozen R24 acceptance; live R25 has independent exact scene and feature guards.
 const current=capture(PalaceBuilder),historicalR23=capture(HistoricalR23PalaceBuilder);
 
 test('R24 provenance freezes one builder edit, one added module, exact R23 baseline and all prior fixture hashes',()=>{
@@ -66,7 +68,7 @@ test('R24 provenance freezes one builder edit, one added module, exact R23 basel
 
 for(const[path,d]of Object.entries(source.files)){
   test('exact current R24 bytes reverse two unique hunks into frozen R23 and the complete older source chain: '+path,()=>{
-    const bytes=read(path),original=Buffer.from(bytes),text=bytes.toString();
+    const bytes=restorePreR25Source(path,read(path)),original=Buffer.from(bytes),text=bytes.toString();
     assert.equal(sha(bytes),d.candidateSHA256);assert.equal(d.deltas.length,2);
     for(const h of d.deltas){assert.ok(h.before.length&&h.after.length);assert.equal(text.split(h.after).length,2);}
     const restored=restorePreR24Source(path,bytes);
@@ -77,7 +79,7 @@ for(const[path,d]of Object.entries(source.files)){
     assert.deepEqual(bytes,original,'live runtime bytes are never overwritten');
   });
   test('R24 and older source chains reject absent, unknown, appended, duplicate and partially reversed bytes: '+path,()=>{
-    const text=read(path).toString(),needle='const lacquer =';assert.equal(text.split(needle).length,2);
+    const text=restorePreR25Source(path,read(path)).toString(),needle='const lacquer =';assert.equal(text.split(needle).length,2);
     const bad=['',text+'\n',text+text,'// unrelated change\n'+text,text.replace(needle,needle+' /* unrelated */')];
     for(const h of d.deltas)for(const replacement of['',h.before,h.after+h.after])bad.push(text.replace(h.after,replacement));
     for(const value of bad){

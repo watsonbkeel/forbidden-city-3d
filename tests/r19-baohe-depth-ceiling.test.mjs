@@ -1,3 +1,5 @@
+// Exact pre-R25 nameboard poses for historical whole-hall fingerprints only.
+import {HistoricalR24PalaceBuilder} from './lib/historical-r24-baohe-fixture.mjs';
 import {HistoricalR21PalaceBuilder} from './lib/historical-r21-baohe-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -25,8 +27,8 @@ test('live Baohe retains caisson retirement and throne navigation; frozen R20 re
  }finally{old.builder.dispose();}
 });
 test('historical frozen R19 ceiling planes and roof retain their original fingerprints; live height revision changes both intentionally',()=>{const old=captureBaoheDepth('保和殿',HistoricalR19PalaceBuilder);try{for(const k of['planesSHA256','roofSHA256']){assert.deepEqual(old.summary[k],baseline.halls['保和殿'][k],k);assert.notEqual(A.summary[k],old.summary[k],k);}}finally{old.builder.dispose();}});
-for(const name of['太和殿','乾清宫','坤宁宫','中和殿'])test(name+' complete geometry material and collision identity retained with explicit non-Baohe dispatch',()=>{
- const current=captureBaoheDepth(name),old=captureBaoheDepth(name,HistoricalR20PalaceBuilder),expected=baseline.halls[name];
+for(const name of['太和殿','乾清宫','坤宁宫','中和殿'])test(name+' frozen R24 geometry material and collision identity retained with explicit non-Baohe dispatch',()=>{
+ const current=captureBaoheDepth(name,HistoricalR24PalaceBuilder),old=captureBaoheDepth(name,HistoricalR20PalaceBuilder),expected=baseline.halls[name];
  try{
   assert.deepEqual(old.summary,expected,'frozen R20 historical identity');
   // Qianqing uses buildHall's explicit R21 false dispatch; Zhonghe's separate

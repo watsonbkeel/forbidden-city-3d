@@ -26,6 +26,7 @@ import { buildBaoheThroneScreen, buildBaoheInteriorPlaque, buildBaoheThroneChair
 import { buildBaoheFrontDoors } from './palace/BaoheFrontDoors.js';
 import { buildBaoheClosedFront } from './palace/BaoheFrontEnclosure.js';
 import { buildBaoheRearEnclosure } from './palace/BaoheRearEnclosure.js';
+import { positionHallNameboard } from './palace/HallNameboardMount.js';
 import { buildBaoheColumnCouplets } from './palace/BaoheColumnCouplets.js';
 import { baoheInteriorFrame, baoheHighColumn, buildBaoheInteriorCeiling } from './palace/BaoheInteriorFrame.js';
 import { buildBaoheHallPlinth } from './palace/BaoheHallPlinth.js';
@@ -792,12 +793,14 @@ export class PalaceBuilder {
     }
 
     // 殿外竖匾
+    let exteriorPlaque = null;
     if (spec.plaque !== false) {
       const ph = THREE.MathUtils.clamp(H * 0.32, 1.8, 3.4);
       const plaque = this.plaqueMesh(data.name, ph * 0.62, ph, true);
       plaque.position.set(x0, y + doorH + (H - beamH - doorH) / 2 + 0.2, z0 - d / 2 - 0.4);
       plaque.rotation.y = Math.PI;
       g.add(plaque);
+      exteriorPlaque = plaque;
     }
 
     // 屋顶
@@ -814,6 +817,7 @@ export class PalaceBuilder {
     roof.position.set(x0, 0, z0);
     g.add(roof);
     this.ownedMaterials.push(...(roof.userData.ownedMaterials ?? []));
+    if (exteriorPlaque) positionHallNameboard(exteriorPlaque,roof,data.name);
   }
 
   throneArea(g, { x0, y, H, ztb0, ztb1, thW, bayW, text, caisson = true, baohe = false }) {

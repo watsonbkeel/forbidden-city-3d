@@ -1,3 +1,5 @@
+// Exact pre-R25 nameboard poses for historical whole-hall fingerprints only.
+import {HistoricalR24PalaceBuilder} from './lib/historical-r24-baohe-fixture.mjs';
 import {restorePreR17Source} from './lib/r17-baohe-retention.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {createHash}from'node:crypto';
 import source from './fixtures/r10-column-source-delta.json' with {type:'json'};
@@ -12,7 +14,7 @@ for(const[path,d]of Object.entries(source.files))test('exact source restoration 
  for(const h of d.deltas){assert.equal(b.toString().split(h.after).length,2,'negative mutation must hit one exact historical hunk');assert.throws(()=>restorePreR10Columns(path,Buffer.from(b.toString().replace(h.after,h.after+'\n'))));}
 });
 test('mesh restoration is exact and rejects changed, missing and reordered objects',()=>{
- const{builder,group}=captureTaiheControl('太和殿');const rows=group.children.filter(o=>o.isMesh).map(o=>serialMesh(o));assert.equal(hash(restorePreR10MeshRows(rows)),meshes.beforeSHA256);
+ const{builder,group}=captureTaiheControl('太和殿',HistoricalR24PalaceBuilder);const rows=group.children.filter(o=>o.isMesh).map(o=>serialMesh(o));assert.equal(hash(restorePreR10MeshRows(rows)),meshes.beforeSHA256);
  for(const i of [0,64,rows.length-1]){const changed=structuredClone(rows);changed[i].matrix[12]+=.01;assert.throws(()=>restorePreR10MeshRows(changed));}
  assert.throws(()=>restorePreR10MeshRows(rows.slice(1)));assert.throws(()=>restorePreR10MeshRows([...rows].reverse()));builder.dispose();
 });

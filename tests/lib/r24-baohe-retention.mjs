@@ -1,3 +1,4 @@
+import {restorePreR25Source,restorePreR25SceneRow,restorePreR25SceneRows} from './r25-nameboard-retention.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import source from '../fixtures/r24-baohe-source-delta.json' with {type:'json'};
@@ -11,7 +12,9 @@ const hash=value=>sha(JSON.stringify(value));
  * Never imported by runtime or used as current feature/route acceptance. */
 export function restorePreR24Source(path,bytes){
   const d=source.files[path];
-  if(!d||sha(bytes)===d.baselineSHA256)return bytes;
+  if(!d)return restorePreR25Source(path,bytes);
+  if(sha(bytes)===d.baselineSHA256)return bytes;
+  bytes=restorePreR25Source(path,bytes);
   assert.equal(sha(bytes),d.candidateSHA256,`exact R24 rear-enclosure source: ${path}`);
   let out=bytes.toString();
   for(const h of [...d.deltas].reverse()){
@@ -36,13 +39,16 @@ export function assertR24RetainedSource(path,bytes){
 }
 
 export function restorePreR24SceneRow(name,row){
-  if(name!==scene.name||JSON.stringify(row)===JSON.stringify(scene.before))return row;
+  if(name!==scene.name)return restorePreR25SceneRow(name,row);
+  if(JSON.stringify(row)===JSON.stringify(scene.before))return row;
+  row=restorePreR25SceneRow(name,row);
   assert.deepEqual(row,scene.after,'exact R24 complete three-hall geometry/material identity');
   return structuredClone(scene.before);
 }
 
 export function restorePreR24SceneRows(rows){
   if(hash(rows)===scene.beforeSHA256)return rows;
+  rows=restorePreR25SceneRows(rows);
   assert.equal(hash(rows),scene.afterSHA256,'exact R24 complete scene groups');
   for(const[name,row]of Object.entries(scene.unchanged))assert.deepEqual(rows[name],row,`unchanged R23 scene group: ${name}`);
   const out={...structuredClone(rows),[scene.name]:restorePreR24SceneRow(scene.name,rows[scene.name])};

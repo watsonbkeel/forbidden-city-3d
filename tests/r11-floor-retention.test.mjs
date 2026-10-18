@@ -1,3 +1,5 @@
+// Exact pre-R25 nameboard poses for historical whole-hall fingerprints only.
+import {HistoricalR24PalaceBuilder} from './lib/historical-r24-baohe-fixture.mjs';
 import {restorePreR12InnerSource} from './lib/r12-inner-source-retention.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {createHash}from'node:crypto';
 import source from './fixtures/r11-floor-source-delta.json' with{type:'json'};
@@ -12,7 +14,7 @@ test('R11 restores only the exact floor source delta and rejects unrelated edits
  for(const d of source.deltas)assert.throws(()=>restorePreR11FloorSource(source.path,Buffer.from(b.toString().replace(d.after,d.after+'\n'))));
 });
 test('R11 restores one floor mesh only and rejects navigation-unrelated geometry drift too',()=>{
- const{builder,group}=captureTaiheControl('太和殿');const rows=group.children.filter(o=>o.isMesh).map(o=>serialMesh(o));
+ const{builder,group}=captureTaiheControl('太和殿',HistoricalR24PalaceBuilder);const rows=group.children.filter(o=>o.isMesh).map(o=>serialMesh(o));
  const restored=restorePreR11FloorRows(rows);assert.equal(hash(restored),meshes.beforeSHA256);assert.deepEqual(restorePreR11FloorRows(restored),restored);
  for(const i of [0,meshes.floorIndex,rows.length-1]){const changed=structuredClone(rows);changed[i].matrix[12]+=.01;assert.throws(()=>restorePreR11FloorRows(changed));}
  for(const field of ['roughness','metalness']){const changed=structuredClone(rows);changed[meshes.floorIndex].material[field]+=.01;assert.throws(()=>restorePreR11FloorRows(changed));}
