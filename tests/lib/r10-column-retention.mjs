@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {restorePreR11FloorSource,restorePreR11FloorRows} from './r11-floor-retention.mjs';
 import {createHash} from 'node:crypto';
 import delta from '../fixtures/r10-column-source-delta.json' with {type:'json'};
 import meshes from '../fixtures/r10-column-mesh-delta.json' with {type:'json'};
@@ -6,6 +7,7 @@ const sha=b=>createHash('sha256').update(b).digest('hex');
 const hash=v=>sha(JSON.stringify(v));
 // Finite approved source substitutions; any unrelated edit is rejected.
 export function restorePreR10Columns(path,bytes){
+ bytes=restorePreR11FloorSource(path,bytes);
  const d=delta.files[path];if(!d)return bytes;
  if(sha(bytes)===d.baselineSHA256)return bytes;
  const marker=path.endsWith('/PalaceBuilder.js')?'taiheColumnGrid':'openLeft = -openHalf';
@@ -17,6 +19,7 @@ export function restorePreR10Columns(path,bytes){
 // Exact geometry-delta normalization, preserving every old non-target hash.
 // Current live geometry/navigation is independently checked in R10 integration.
 export function restorePreR10MeshRows(rows){
+ rows=restorePreR11FloorRows(rows);
  assert.equal(rows.length,meshes.meshCount);assert.equal(hash(rows),meshes.afterSHA256);
  const out=structuredClone(rows);
  for(const p of meshes.pairs){assert.equal(hash(out[p.index]),p.afterSHA256);out[p.index]=structuredClone(p.before);}

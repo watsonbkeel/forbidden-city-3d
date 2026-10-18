@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { COLORS } from '../config/constants.js';
+import { taiheFloorMaterial, TAIHE_FLOOR } from './palace/special/TaiheFloorMaterial.js';
 import { buildGateAscent, toWorld } from './palace/gateAscent.js';
 import { buildWumenAscent } from './palace/special/WumenAscent.js';
 import { wumenTowerGeometry, shenwuTowerGeometry } from './palace/special/GateTowerProfiles.js';
@@ -655,8 +656,8 @@ export class PalaceBuilder {
     // 金砖地面
     const floorGeo = new THREE.PlaneGeometry(w, d);
     floorGeo.rotateX(-Math.PI / 2);
-    applyPlanarUV(floorGeo, 'y', 1.4);
-    const floor = new THREE.Mesh(floorGeo, this.library.material('stone_slab', { color: 0x55524e, roughness: 0.35 }));
+    applyPlanarUV(floorGeo, 'y', taiheCore ? TAIHE_FLOOR.tileMetres : 1.4);
+    const floor = new THREE.Mesh(floorGeo, taiheCore ? taiheFloorMaterial(this) : this.library.material('stone_slab', { color: 0x55524e, roughness: 0.35 }));
     floor.position.set(x0, y + 0.03, z0);
     floor.receiveShadow = true;
     g.add(floor);
