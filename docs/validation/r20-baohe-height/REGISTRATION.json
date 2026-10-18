@@ -1,0 +1,249 @@
+{
+  "id": "baohe-central-ceiling-1941-bounded-registration",
+  "reviewedUtc": "2026-10-18T20:43:30Z",
+  "scope": "Research registration only; no repository changes, scene browser, test batches, upload or publication. Existing plan48 and sections45/46 were re-inspected to answer the parent’s specific boundary question.",
+  "status": "ROUNDED_HISTORICAL_DRAWING_REGISTRATION_NOT_CURRENT_SURVEY",
+  "sources": [
+    {
+      "drawing": 44,
+      "title": "斗拱天花平面",
+      "productionTime": "1941年",
+      "url": "https://file-pano.dpm.org.cn/hotspotImage/2026/06/25/bd6d655c164747f8ad78a760b63750ef.jpg",
+      "file": "drawing-44.jpg",
+      "nativePixels": [
+        1920,
+        1333
+      ],
+      "sha256": "40b26099e576fa981974b8f33355ff96aa56a0df0ffaf232a99c8256136bee79",
+      "viewed": true,
+      "graphicRulerPixels": {
+        "zero": 55,
+        "tenMetres": 311
+      },
+      "pixelsPerMetreApprox": 25.6
+    },
+    {
+      "drawing": 43,
+      "title": "屋顶屋架平面",
+      "productionTime": "1941年",
+      "url": "https://file-pano.dpm.org.cn/hotspotImage/2026/06/25/240454c95ea042e9b340f66e964b92b8.jpg",
+      "file": "drawing-43.jpg",
+      "nativePixels": [
+        1920,
+        1332
+      ],
+      "sha256": "b60fe3e25a06e39835e894dc43521923d5af2518bd3e7c102e97b5839a70a317",
+      "viewed": true,
+      "graphicRulerPixels": {
+        "zero": 59,
+        "tenMetres": 315
+      },
+      "pixelsPerMetreApprox": 25.6
+    }
+  ],
+  "readingRules": [
+    "44 is a composite drawing of different construction layers; do not copy its quadrants as literal different ceiling finishes.",
+    "43 juxtaposes roof covering and roof framing; upper short-post and purlin axes do not equal floor-column rows.",
+    "44 lower-left floor-column omission topology identifies image-bottom as south; 48 image-top is south.",
+    "X sign is a symmetric registration convention here, not a newly established east/west orientation."
+  ],
+  "drawing44Registration": {
+    "nativeCentreUApprox": 960.5,
+    "nativeDepthMidpointVApprox": 672.5,
+    "pixelsPerMetreApprox": 25.6,
+    "mapping": "raw x=(u-960.5)/25.6; raw z=(672.5-v)/25.6. Register these rounded readings to retained R19 station identities, not a new global rescale.",
+    "coreFrameUApprox": [
+      446,
+      581,
+      724,
+      866,
+      1055,
+      1198,
+      1340,
+      1475
+    ],
+    "retainedCoreX": [
+      -19.9,
+      -14.7,
+      -9.15,
+      -3.65,
+      3.65,
+      9.15,
+      14.7,
+      19.9
+    ],
+    "rawCoreOuterHalfSpanMetresApprox": 20.1,
+    "depthRowsSouthToNorthVApprox": [
+      950,
+      885,
+      766,
+      579,
+      460,
+      395
+    ],
+    "retainedDepthRowsSouthToNorth": [
+      -10.8,
+      -8.3,
+      -3.7,
+      3.6,
+      8.2,
+      10.8
+    ],
+    "axisWorkingAllowanceMetres": 0.3,
+    "allowanceMeaning": "Conservative scan/station registration allowance, not current measurement accuracy or a statistical interval."
+  },
+  "centralCeiling": {
+    "retainedStationIndices": {
+      "x": [
+        1,
+        8
+      ],
+      "z": [
+        1,
+        4
+      ]
+    },
+    "localBounds": {
+      "minX": -19.9,
+      "maxX": 19.9,
+      "minZ": -8.3,
+      "maxZ": 8.2
+    },
+    "sourceNativeBoundsApprox": {
+      "minU": 446,
+      "maxU": 1475,
+      "minV": 460,
+      "maxV": 885
+    },
+    "heightAboveFinishedFloorWorkingRange": [
+      9.4,
+      9.8
+    ],
+    "nominalHeightAboveRenderedFloor": 9.6,
+    "retainedStructuralFloorWorldY": 9,
+    "retainedRenderedFloorWorldY": 9.03,
+    "nominalCeilingWorldY": 18.63,
+    "heightStatus": "Nominal value chosen within independent section45/46 range; not exact original drawing dimension."
+  },
+  "majorCeilingBeams": {
+    "xStationIndices": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "x": [
+      -14.7,
+      -9.15,
+      -3.65,
+      3.65,
+      9.15,
+      14.7
+    ],
+    "spanZ": [
+      -8.3,
+      3.6
+    ],
+    "spanDepthRowIndices": [
+      1,
+      3
+    ],
+    "nativeSpanVApprox": [
+      885,
+      579
+    ],
+    "direction": "depth / z",
+    "count": 6,
+    "visiblePlanWidthApproxRange": [
+      0.5,
+      0.7
+    ],
+    "visibleUndersideAboveFinishedFloorApproxRange": [
+      9.2,
+      9.5
+    ],
+    "possibleNominalVisualSection": {
+      "width": 0.6,
+      "dropBelowCeiling": 0.3,
+      "status": "Engineering simplification inside scan-supported ranges; total timber depth and joints unknown."
+    },
+    "rearZone": "Do not carry these six thick beams unchanged from z=3.6 to z=8.2. Drawing44 shows lighter/different framing in that rear strip; retain continuous panel ceiling there and defer detailed secondary framing.",
+    "unknown": [
+      "full member depth above ceiling",
+      "exact moulding profile",
+      "tenons and joints",
+      "each roof-bearing elevation",
+      "complete panel count and motifs"
+    ]
+  },
+  "visibleColumnSegments": {
+    "presentWithinCore": 26,
+    "indices": "i=1..8 and k=1..4, excluding existing omitted i=2..7 at k=2",
+    "remainingOuterColumns": 28,
+    "allowedMeaning": "Existing present posts may be visually continued into the opaque high ceiling/beam assembly. Their new rendered top is an occlusion trim, not a surveyed shaft end or actual column head.",
+    "retained": [
+      "all x/z stations",
+      "all six row2 omissions",
+      "column radii/material identity unless independently reviewed",
+      "all existing low-height collision boxes"
+    ]
+  },
+  "roofVoid": {
+    "lowerFanWorldY": 17.5,
+    "upperFanWorldYApprox": 22.4344,
+    "openingLocalBounds": {
+      "minX": -19.9,
+      "maxX": 19.9,
+      "minZ": -8.3,
+      "maxZ": 8.2
+    },
+    "requiredChanges": "Remove only the central rectangle from the old y16.17 ceiling and lower horizontal fan y17.50; preserve their outside parts. Keep upper fan and external roof surfaces unchanged.",
+    "currentUpperBodyHalfExtents": {
+      "x": 22.078,
+      "z": 9.728
+    },
+    "minimumGapFromCoreToUpperBodyBoundaryMetres": {
+      "x": 2.178,
+      "southZ": 1.428,
+      "northZ": 1.528
+    },
+    "ownerIndependentRayEvidence": "/workspace/shared/palace-r20-verification/interior-void-before.json",
+    "interpretation": "Existing generic roof geometry admits this central ceiling level without moving external roof tiles; implementation must retain actual material-sidedness and verify its cut topology."
+  },
+  "boundaryTransition": {
+    "continuousVerticalWallSupported": false,
+    "sourceReading": "45/46 show beam/frame and descending lower-eave roof/rafter transitions at inner lines. Rear inner posts remain exposed; 44 thick boundary lines do not prove continuous vertical enclosure.",
+    "doNotAdd": "A roughly2.46m-high continuous red or painted ring wall solely to conceal the high/low ceiling difference.",
+    "boundedTreatment": "Retain an open frame transition and the inherited peripheral low-ceiling simplification; describe exact transition/framing as incomplete.",
+    "unknown": [
+      "complete sloped soffit geometry",
+      "exact side/rear secondary framing",
+      "dated current transition finish"
+    ],
+    "sideEnclosureEvidence": {
+      "plan48": "Both sides show two parallel thick enclosure lines: a continuous outer line and an inner line on the approximately±19.9m station with side openings. The inner line is additional enclosure, not evidence to delete/relocate the outer line.",
+      "section45": "Both inner and outer side wall/member profiles are present at the end section; this does not establish one continuous upper infill height along the complete inner side wall.",
+      "permittedConclusion": "High-ceiling side boundary aligns with the inner enclosure/column line; exact opening lintels and upper closure remain deferred.",
+      "notPermittedConclusion": "Do not infer an all-around vertical ring wall, delete the retained outer side walls, or move them inward from this evidence."
+    }
+  },
+  "retentionBoundary": [
+    "R19 floor and plinth/terrace geometry",
+    "registered x/z stations and omissions",
+    "all navigation and collision",
+    "throne/furnishings/plaque unless separately scoped",
+    "all exterior roof tile/hip/ridge silhouette",
+    "upper roof fan",
+    "non-Baohe halls",
+    "lighting and camera"
+  ],
+  "confidence": {
+    "centralCoreBounds": "high identity / moderate decimetre registration",
+    "sixMajorBeamAxesAndPrimarySpan": "high identity / moderate member dimensions",
+    "ceilingHeight": "moderate to high two-section agreement",
+    "exactColumnHeadsAndJoints": "not established",
+    "continuousVerticalBoundaryEnclosure": "not supported"
+  }
+}

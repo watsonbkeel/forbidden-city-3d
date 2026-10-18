@@ -1,0 +1,70 @@
+{
+  "base": "b0138937a1abc586aa916e128bd29f201f36263c",
+  "candidate": "9ee41d7dc3f0cb5332fe28216192c64bef4930c8",
+  "scope": "Exact R20 central-height/frame/lower-soffit and private interior-roof material source reverse; historical assertions only",
+  "files": {
+    "src/scene/PalaceBuilder.js": {
+      "baselineSHA256": "709ccc9ae8139c367efa97fa53fcab063d3dec2e9433ee47f4da15872d8b231d",
+      "candidateSHA256": "ab55aa4dbdd961ba291c9ca4da7c1a443765d80cb65d2ef3d74f7320bfc3e986",
+      "deltas": [
+        {
+          "before": "import { taiheSouthTier, buildTaiheSouthTier } from './palace/TaiheFrontApproaches.js';\nimport { baoheColumnGrid } from './palace/BaoheColumnGrid.js';\nimport { BAOHE_DEPTH_GRID, baoheDepthGrid, baoheDepthColumnPresent } from './palace/BaoheDepthGrid.js';\nimport { buildBaoheHallPlinth } from './palace/BaoheHallPlinth.js';\nimport { baoheNorthTier, buildBaoheNorthTier, createBaoheNorthDetail, installBaoheNorthDetail } from './palace/BaoheNorthApproaches.js';\nimport { buildZhongheImperialApproach } from './palace/ZhongheImperialApproach.js';\n",
+          "after": "import { taiheSouthTier, buildTaiheSouthTier } from './palace/TaiheFrontApproaches.js';\nimport { baoheColumnGrid } from './palace/BaoheColumnGrid.js';\nimport { BAOHE_DEPTH_GRID, baoheDepthGrid, baoheDepthColumnPresent } from './palace/BaoheDepthGrid.js';\nimport { baoheInteriorFrame, baoheHighColumn, buildBaoheInteriorCeiling } from './palace/BaoheInteriorFrame.js';\nimport { buildBaoheHallPlinth } from './palace/BaoheHallPlinth.js';\nimport { baoheNorthTier, buildBaoheNorthTier, createBaoheNorthDetail, installBaoheNorthDetail } from './palace/BaoheNorthApproaches.js';\nimport { buildZhongheImperialApproach } from './palace/ZhongheImperialApproach.js';\n"
+        },
+        {
+          "before": "    // Structural depth registration must not silently move the inherited throne.\n    const dBay = d / inheritedDepthBays;\n    const H = THREE.MathUtils.clamp((height - heightReferenceY) * 0.38, 5, 11);\n    const beamH = THREE.MathUtils.clamp(H * 0.12, 0.6, 1.4);\n    const r = THREE.MathUtils.clamp(bayW * 0.08, 0.3, 0.6);\n    const openHalf = (spec.open ?? 3) * bayW / 2;\n",
+          "after": "    // Structural depth registration must not silently move the inherited throne.\n    const dBay = d / inheritedDepthBays;\n    const H = THREE.MathUtils.clamp((height - heightReferenceY) * 0.38, 5, 11);\n    const baoheFrame = baoheDepth ? baoheInteriorFrame({ w, d, y, H }) : null;\n    const beamH = THREE.MathUtils.clamp(H * 0.12, 0.6, 1.4);\n    const r = THREE.MathUtils.clamp(bayW * 0.08, 0.3, 0.6);\n    const openHalf = (spec.open ?? 3) * bayW / 2;\n"
+        },
+        {
+          "before": "\n    const colMat = this.library.material('wood_column');\n    const gold = this.ownMat('gold', { color: 0xc9a13b, metalness: 0.85, roughness: 0.3 });\n    const colGeo = new THREE.CylinderGeometry(r, r * 1.05, H, 14);\n    if (baoheColumns) {\n      // The lower cap is buried under the retained opaque floor at y + 0.03.\n      // Keep all 14-sided mantle triangles and the upper cap, including shadows.\n      const bottom = colGeo.groups.find(group => group.materialIndex === 2);\n      colGeo.setIndex(Array.from(colGeo.index.array.slice(0, bottom.start)));\n      colGeo.groups = colGeo.groups.filter(group => group !== bottom);\n    }\n\n    // 宝座区（后部中间）\n    const ztb1 = z0 + d / 2 - Math.min(0.6 * dBay, 4.5);\n",
+          "after": "\n    const colMat = this.library.material('wood_column');\n    const gold = this.ownMat('gold', { color: 0xc9a13b, metalness: 0.85, roughness: 0.3 });\n    const columnGeometry = h => {\n      const geo = new THREE.CylinderGeometry(r, r * 1.05, h, 14);\n      if (baoheColumns) {\n      // The lower cap is buried under the retained opaque floor at y + 0.03.\n      // Keep all 14-sided mantle triangles and the upper cap, including shadows.\n        const bottom = geo.groups.find(group => group.materialIndex === 2);\n        geo.setIndex(Array.from(geo.index.array.slice(0, bottom.start)));\n        geo.groups = geo.groups.filter(group => group !== bottom);\n      }\n      return geo;\n    };\n    const colGeo = columnGeometry(H);\n    const highColGeo = baoheFrame ? columnGeometry(baoheFrame.columnHeight) : null;\n\n    // 宝座区（后部中间）\n    const ztb1 = z0 + d / 2 - Math.min(0.6 * dBay, 4.5);\n"
+        },
+        {
+          "before": "        if (baoheColumns && !baoheDepthColumnPresent(i, k, bays, nd)) continue;\n        if (!baoheColumns && !edge && throne && Math.abs(classificationX - x0) < bayW * 0.6 && z > ztb0 - 1 && z < ztb1 + 1) continue;\n        const isGold = !baoheColumns && !taiheCore && throne && !edge && Math.abs(classificationX - x0) < bayW * 1.6 && z > ztb0 - dBay;\n        this.column(g, colGeo, isGold ? gold : colMat, x, z, y, H, r);\n        if (baoheColumns) g.children.at(-1).userData.baoheColumn = { i, k, profile: BAOHE_DEPTH_GRID.id };\n      }\n    }\n",
+          "after": "        if (baoheColumns && !baoheDepthColumnPresent(i, k, bays, nd)) continue;\n        if (!baoheColumns && !edge && throne && Math.abs(classificationX - x0) < bayW * 0.6 && z > ztb0 - 1 && z < ztb1 + 1) continue;\n        const isGold = !baoheColumns && !taiheCore && throne && !edge && Math.abs(classificationX - x0) < bayW * 1.6 && z > ztb0 - dBay;\n        const highColumn = baoheFrame && baoheHighColumn(i, k);\n        this.column(g, highColumn ? highColGeo : colGeo, isGold ? gold : colMat, x, z, y,\n          highColumn ? baoheFrame.columnHeight : H, r);\n        if (baoheColumns) g.children.at(-1).userData.baoheColumn = { i, k, profile: BAOHE_DEPTH_GRID.id };\n      }\n    }\n"
+        },
+        {
+          "before": "    // Taihe alone has an upward caisson opening and an independently owned core.\n    if (taiheCore) buildTaiheCeiling(this, g, { x0, z0, y, w, d });\n    else {\n      const ceilGeo = new THREE.PlaneGeometry(w, d);\n      ceilGeo.rotateX(Math.PI / 2);\n      applyPlanarUV(ceilGeo, 'y', 1.6);\n      const ceiling = new THREE.Mesh(ceilGeo, this.ceilingMaterial());\n      ceiling.position.set(x0, y + H - 0.05, z0);\n      g.add(ceiling);\n      if (throne) this.throneArea(g, { x0, y, H, ztb0, ztb1, thW, bayW, text: spec.inner, caisson: !baoheDepth });\n    }\n\n",
+          "after": "    // Taihe alone has an upward caisson opening and an independently owned core.\n    if (taiheCore) buildTaiheCeiling(this, g, { x0, z0, y, w, d });\n    else {\n      if (baoheFrame) buildBaoheInteriorCeiling(this, g, { x0, z0, y, w, d, H });\n      else {\n        const ceilGeo = new THREE.PlaneGeometry(w, d);\n        ceilGeo.rotateX(Math.PI / 2);\n        applyPlanarUV(ceilGeo, 'y', 1.6);\n        const ceiling = new THREE.Mesh(ceilGeo, this.ceilingMaterial());\n        ceiling.position.set(x0, y + H - 0.05, z0);\n        g.add(ceiling);\n      }\n      if (throne) this.throneArea(g, { x0, y, H, ztb0, ztb1, thW, bayW, text: spec.inner, caisson: !baoheDepth });\n    }\n\n"
+        },
+        {
+          "before": "      layers: spec.layers ?? data.features?.roofLayers ?? 1,\n      brackets: true,\n      sides: 4,\n    });\n    roof.position.set(x0, 0, z0);\n    g.add(roof);\n",
+          "after": "      layers: spec.layers ?? data.features?.roofLayers ?? 1,\n      brackets: true,\n      sides: 4,\n      ...(baoheFrame ? { baoheInteriorOpening: baoheFrame } : {}),\n    });\n    roof.position.set(x0, 0, z0);\n    g.add(roof);\n"
+        }
+      ]
+    },
+    "src/scene/RoofBuilder.js": {
+      "baselineSHA256": "994e30585f9e60c79d68e1c67578a59d65f35cd74be242355d2047a9a140106c",
+      "candidateSHA256": "0e846c35971cb9a53a595a525e6d85b8337ca4c622156a8c96871ba7aa9280b6",
+      "deltas": [
+        {
+          "before": "import * as THREE from 'three';\nimport { mergeByMaterial } from '../utils/MergeUtils.js';\nimport { WUMEN_VERTICAL_PROFILE } from './palace/special/WumenVerticalProfile.js';\n\n/**\n * 古建屋顶构件（接口契约）\n",
+          "after": "import * as THREE from 'three';\nimport { mergeByMaterial } from '../utils/MergeUtils.js';\nimport { WUMEN_VERTICAL_PROFILE } from './palace/special/WumenVerticalProfile.js';\nimport { baoheLowerSoffitRing } from './palace/BaoheInteriorFrame.js';\n\n/**\n * 古建屋顶构件（接口契约）\n"
+        },
+        {
+          "before": "/* 重檐：下层腰檐                                                        */\n/* ------------------------------------------------------------------ */\n\nfunction skirtRoof(ctx, g, { sides, W, D, inset, ovh, baseY, brackets, liftScale = 1, vertical }) {\n  const footprint = polyCorners(sides, W / 2, D / 2);\n  const minD = Math.min(W, D);\n  let y0 = baseY;\n  if (brackets) y0 = addBrackets(ctx, g, footprint, y0, minD);\n  add(g, fanGeometry(footprint, y0, ctx.tile.rafters), ctx.mat.rafters);\n  const hxi = W / 2 - inset, hzi = D / 2 - inset, ex = W / 2 + ovh, ez = D / 2 + ovh;\n  const corners = t => polyCorners(sides, lerp(hxi, ex, t), lerp(hzi, ez, t));\n  const tw = inset / (inset + ovh);\n",
+          "after": "/* 重檐：下层腰檐                                                        */\n/* ------------------------------------------------------------------ */\n\nfunction skirtRoof(ctx, g, { sides, W, D, inset, ovh, baseY, brackets, liftScale = 1, vertical, baoheOpening }) {\n  const footprint = polyCorners(sides, W / 2, D / 2);\n  const minD = Math.min(W, D);\n  let y0 = baseY;\n  if (brackets) y0 = addBrackets(ctx, g, footprint, y0, minD);\n  if (baoheOpening && sides !== 4) throw Error('Baohe ceiling requires rectangular double-eave roof');\n  add(g, baoheOpening ? baoheLowerSoffitRing({ W, D, inset, y: y0, tile: ctx.tile.rafters, opening: baoheOpening })\n    : fanGeometry(footprint, y0, ctx.tile.rafters), ctx.mat.rafters);\n  const hxi = W / 2 - inset, hzi = D / 2 - inset, ex = W / 2 + ovh, ez = D / 2 + ovh;\n  const corners = t => polyCorners(sides, lerp(hxi, ex, t), lerp(hzi, ez, t));\n  const tw = inset / (inset + ovh);\n"
+        },
+        {
+          "before": "  const ovh = o.overhang ?? defaultOverhang(W, D);\n  const inset = clamp(Math.min(W, D) * 0.12, 1.2, 5);\n  const vertical = o.wumenVerticalProfile?.roof;\n  const sk = skirtRoof(ctx, g, { sides, W, D, inset, ovh, baseY: o.baseY ?? 0, brackets: o.brackets ?? true, liftScale: o._lift ?? 1, vertical });\n  // 上层屋身：红木身 + 额枋彩画\n  const Wi = W - inset * 2, Di = D - inset * 2;\n  const gap = clamp(Math.min(W, D) * 0.05, 0.8, 2.4);\n",
+          "after": "  const ovh = o.overhang ?? defaultOverhang(W, D);\n  const inset = clamp(Math.min(W, D) * 0.12, 1.2, 5);\n  const vertical = o.wumenVerticalProfile?.roof;\n  const sk = skirtRoof(ctx, g, { sides, W, D, inset, ovh, baseY: o.baseY ?? 0, brackets: o.brackets ?? true, liftScale: o._lift ?? 1, vertical, baoheOpening: o.baoheInteriorOpening });\n  // 上层屋身：红木身 + 额枋彩画\n  const Wi = W - inset * 2, Di = D - inset * 2;\n  const gap = clamp(Math.min(W, D) * 0.05, 0.8, 2.4);\n"
+        },
+        {
+          "before": "  }\n  if (opts._wumenUpper !== undefined) throw new Error('Internal Wumen upper-roof option is not a public override');\n  const ctx = makeCtx(lib, opts.detail);\n  const g = new THREE.Group();\n  g.name = `roof_${opts.type ?? 'wudian'}`;\n  const r = roofInto(ctx, g, opts);\n",
+          "after": "  }\n  if (opts._wumenUpper !== undefined) throw new Error('Internal Wumen upper-roof option is not a public override');\n  const ctx = makeCtx(lib, opts.detail);\n  if (opts.baoheInteriorOpening) {\n    // Opening the low soffit exposes the inside of the existing roof body.\n    // Its original outward-only faces otherwise reveal sky from the hall.\n    // Private materials keep that existing opaque shell visible inside without\n    // adding a fictitious ceiling riser or mutating shared hall materials.\n    for (const key of ['wood', 'caihua']) {\n      const material = ctx.mat[key].clone();\n      material.side = THREE.DoubleSide;\n      material.userData.baoheInteriorShell = true;\n      ctx.mat[key] = material;\n      ctx.owned.push(material);\n    }\n  }\n  const g = new THREE.Group();\n  g.name = `roof_${opts.type ?? 'wudian'}`;\n  const r = roofInto(ctx, g, opts);\n"
+        }
+      ]
+    }
+  },
+  "addedFiles": {
+    "src/scene/palace/BaoheInteriorFrame.js": {
+      "candidateSHA256": "b5bff0478f5e10967ee7ec46cfd007ab2c9b03a197c61bc964e0b27472917668"
+    }
+  },
+  "preservedFixtures": {
+    "tests/fixtures/r19-baohe-source-delta.json": "f3f0275d88a9a49ceab4434f79d42eed08e11027f6a2ac7b0675503d1f7632a2",
+    "tests/fixtures/r19-baohe-scene-delta.json": "eb1d1cd8d76eff0f7fd9ccf4ad5a11eda83da743ad04c6e204122497ae502f04",
+    "tests/fixtures/r19-baohe-navigation-delta.json": "3c547af0fea2cbfbbc0b74677d0833234681685ec1d62ce29af3ab01535c99aa",
+    "tests/fixtures/r19-baohe-routes-delta.json": "2c04ee948fe12183d331ac428a1e8a4705a21df653dbcbae9147e62da0b80b9c"
+  }
+}

@@ -1,3 +1,4 @@
+import {restorePreR20Source,restorePreR20SceneRow,restorePreR20SceneRows} from './r20-baohe-retention.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import source from '../fixtures/r19-baohe-source-delta.json' with {type:'json'};
@@ -14,7 +15,9 @@ const hash=value=>sha(JSON.stringify(value));
  */
 export function restorePreR19Source(path,bytes){
   const d=source.files[path]??source.testFiles?.[path];
-  if(!d||sha(bytes)===d.baselineSHA256)return bytes;
+  if(!d)return restorePreR20Source(path,bytes);
+  if(sha(bytes)===d.baselineSHA256)return bytes;
+  bytes=restorePreR20Source(path,bytes);
   assert.equal(sha(bytes),d.candidateSHA256,`exact R19 depth/door/ceiling source: ${path}`);
   let out=bytes.toString();
   for(const h of [...d.deltas].reverse()){
@@ -55,6 +58,7 @@ export function restorePreR19Navigation(value){
 
 export function restorePreR19SceneRow(name,row){
   if(name!==scene.name||JSON.stringify(row)===JSON.stringify(scene.before))return row;
+  row=restorePreR20SceneRow(name,row);
   assert.deepEqual(row,scene.after,'exact R19 complete three-hall geometry/material identity');
   return structuredClone(scene.before);
 }
@@ -62,7 +66,8 @@ export function restorePreR19SceneRow(name,row){
 export function restorePreR19SceneRows(rows){
   const digest=hash(rows);
   if(digest===scene.beforeSHA256)return rows;
-  assert.equal(digest,scene.afterSHA256,'exact R19 complete scene groups');
+  rows=restorePreR20SceneRows(rows);
+  assert.equal(hash(rows),scene.afterSHA256,'exact R19 complete scene groups');
   for(const[name,row]of Object.entries(scene.unchanged))assert.deepEqual(rows[name],row,`unchanged R18 scene group: ${name}`);
   const out={...structuredClone(rows),[scene.name]:restorePreR19SceneRow(scene.name,rows[scene.name])};
   assert.equal(hash(out),scene.beforeSHA256,'exact R18 scene groups restored');

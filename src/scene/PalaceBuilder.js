@@ -22,6 +22,7 @@ import { threeHallTerraceProfile, closedTerraceStairGeometry } from './palace/Th
 import { taiheSouthTier, buildTaiheSouthTier } from './palace/TaiheFrontApproaches.js';
 import { baoheColumnGrid } from './palace/BaoheColumnGrid.js';
 import { BAOHE_DEPTH_GRID, baoheDepthGrid, baoheDepthColumnPresent } from './palace/BaoheDepthGrid.js';
+import { baoheInteriorFrame, baoheHighColumn, buildBaoheInteriorCeiling } from './palace/BaoheInteriorFrame.js';
 import { buildBaoheHallPlinth } from './palace/BaoheHallPlinth.js';
 import { baoheNorthTier, buildBaoheNorthTier, createBaoheNorthDetail, installBaoheNorthDetail } from './palace/BaoheNorthApproaches.js';
 import { buildZhongheImperialApproach } from './palace/ZhongheImperialApproach.js';
@@ -652,6 +653,7 @@ export class PalaceBuilder {
     // Structural depth registration must not silently move the inherited throne.
     const dBay = d / inheritedDepthBays;
     const H = THREE.MathUtils.clamp((height - heightReferenceY) * 0.38, 5, 11);
+    const baoheFrame = baoheDepth ? baoheInteriorFrame({ w, d, y, H }) : null;
     const beamH = THREE.MathUtils.clamp(H * 0.12, 0.6, 1.4);
     const r = THREE.MathUtils.clamp(bayW * 0.08, 0.3, 0.6);
     const openHalf = (spec.open ?? 3) * bayW / 2;
@@ -665,14 +667,19 @@ export class PalaceBuilder {
 
     const colMat = this.library.material('wood_column');
     const gold = this.ownMat('gold', { color: 0xc9a13b, metalness: 0.85, roughness: 0.3 });
-    const colGeo = new THREE.CylinderGeometry(r, r * 1.05, H, 14);
-    if (baoheColumns) {
+    const columnGeometry = h => {
+      const geo = new THREE.CylinderGeometry(r, r * 1.05, h, 14);
+      if (baoheColumns) {
       // The lower cap is buried under the retained opaque floor at y + 0.03.
       // Keep all 14-sided mantle triangles and the upper cap, including shadows.
-      const bottom = colGeo.groups.find(group => group.materialIndex === 2);
-      colGeo.setIndex(Array.from(colGeo.index.array.slice(0, bottom.start)));
-      colGeo.groups = colGeo.groups.filter(group => group !== bottom);
-    }
+        const bottom = geo.groups.find(group => group.materialIndex === 2);
+        geo.setIndex(Array.from(geo.index.array.slice(0, bottom.start)));
+        geo.groups = geo.groups.filter(group => group !== bottom);
+      }
+      return geo;
+    };
+    const colGeo = columnGeometry(H);
+    const highColGeo = baoheFrame ? columnGeometry(baoheFrame.columnHeight) : null;
 
     // 宝座区（后部中间）
     const ztb1 = z0 + d / 2 - Math.min(0.6 * dBay, 4.5);
@@ -691,7 +698,9 @@ export class PalaceBuilder {
         if (baoheColumns && !baoheDepthColumnPresent(i, k, bays, nd)) continue;
         if (!baoheColumns && !edge && throne && Math.abs(classificationX - x0) < bayW * 0.6 && z > ztb0 - 1 && z < ztb1 + 1) continue;
         const isGold = !baoheColumns && !taiheCore && throne && !edge && Math.abs(classificationX - x0) < bayW * 1.6 && z > ztb0 - dBay;
-        this.column(g, colGeo, isGold ? gold : colMat, x, z, y, H, r);
+        const highColumn = baoheFrame && baoheHighColumn(i, k);
+        this.column(g, highColumn ? highColGeo : colGeo, isGold ? gold : colMat, x, z, y,
+          highColumn ? baoheFrame.columnHeight : H, r);
         if (baoheColumns) g.children.at(-1).userData.baoheColumn = { i, k, profile: BAOHE_DEPTH_GRID.id };
       }
     }
@@ -757,12 +766,15 @@ export class PalaceBuilder {
     // Taihe alone has an upward caisson opening and an independently owned core.
     if (taiheCore) buildTaiheCeiling(this, g, { x0, z0, y, w, d });
     else {
-      const ceilGeo = new THREE.PlaneGeometry(w, d);
-      ceilGeo.rotateX(Math.PI / 2);
-      applyPlanarUV(ceilGeo, 'y', 1.6);
-      const ceiling = new THREE.Mesh(ceilGeo, this.ceilingMaterial());
-      ceiling.position.set(x0, y + H - 0.05, z0);
-      g.add(ceiling);
+      if (baoheFrame) buildBaoheInteriorCeiling(this, g, { x0, z0, y, w, d, H });
+      else {
+        const ceilGeo = new THREE.PlaneGeometry(w, d);
+        ceilGeo.rotateX(Math.PI / 2);
+        applyPlanarUV(ceilGeo, 'y', 1.6);
+        const ceiling = new THREE.Mesh(ceilGeo, this.ceilingMaterial());
+        ceiling.position.set(x0, y + H - 0.05, z0);
+        g.add(ceiling);
+      }
       if (throne) this.throneArea(g, { x0, y, H, ztb0, ztb1, thW, bayW, text: spec.inner, caisson: !baoheDepth });
     }
 
@@ -784,6 +796,7 @@ export class PalaceBuilder {
       layers: spec.layers ?? data.features?.roofLayers ?? 1,
       brackets: true,
       sides: 4,
+      ...(baoheFrame ? { baoheInteriorOpening: baoheFrame } : {}),
     });
     roof.position.set(x0, 0, z0);
     g.add(roof);

@@ -3,16 +3,17 @@ import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import fs from 'node:fs';
 import {restorePreR19Source,assertR19AddedSource} from './r19-baohe-retention.mjs';
+import {historicalR19RoofModule} from './historical-r19-baohe-fixture.mjs';
 
-// Explicit historical fixture: never used by the application or current R19
-// acceptance. Reverse the exact R19 product bytes to the frozen R18 builder;
+// Explicit historical fixture: never used by the application or current R20
+// acceptance. Reverse exact R20 then R19 bytes to the frozen R18 builder;
 // preserve module import targets, without writing a historical file into src.
 const path='src/scene/PalaceBuilder.js',url=new URL('../../'+path,import.meta.url);
 const added='src/scene/palace/BaoheDepthGrid.js';
 assertR19AddedSource(added,fs.readFileSync(new URL('../../'+added,import.meta.url)));
 const bytes=restorePreR19Source(path,fs.readFileSync(url));
 const module=bytes.toString().replace(/from '([^']+)'/g,(_,specifier)=>
-  `from '${specifier==='three'?import.meta.resolve('three'):new URL(specifier,url).href}'`);
+  `from '${specifier==='./RoofBuilder.js'?historicalR19RoofModule:specifier==='three'?import.meta.resolve('three'):new URL(specifier,url).href}'`);
 export const {PalaceBuilder:HistoricalR18PalaceBuilder}=await import('data:text/javascript;base64,'+Buffer.from(module).toString('base64'));
 
 // Retain the actual historical full-world walk checks without changing the live

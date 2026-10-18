@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { mergeByMaterial } from '../utils/MergeUtils.js';
 import { WUMEN_VERTICAL_PROFILE } from './palace/special/WumenVerticalProfile.js';
+import { baoheLowerSoffitRing } from './palace/BaoheInteriorFrame.js';
 
 /**
  * 古建屋顶构件（接口契约）
@@ -574,12 +575,14 @@ function rakeBoard(x, top, h, sign, tile) {
 /* 重檐：下层腰檐                                                        */
 /* ------------------------------------------------------------------ */
 
-function skirtRoof(ctx, g, { sides, W, D, inset, ovh, baseY, brackets, liftScale = 1, vertical }) {
+function skirtRoof(ctx, g, { sides, W, D, inset, ovh, baseY, brackets, liftScale = 1, vertical, baoheOpening }) {
   const footprint = polyCorners(sides, W / 2, D / 2);
   const minD = Math.min(W, D);
   let y0 = baseY;
   if (brackets) y0 = addBrackets(ctx, g, footprint, y0, minD);
-  add(g, fanGeometry(footprint, y0, ctx.tile.rafters), ctx.mat.rafters);
+  if (baoheOpening && sides !== 4) throw Error('Baohe ceiling requires rectangular double-eave roof');
+  add(g, baoheOpening ? baoheLowerSoffitRing({ W, D, inset, y: y0, tile: ctx.tile.rafters, opening: baoheOpening })
+    : fanGeometry(footprint, y0, ctx.tile.rafters), ctx.mat.rafters);
   const hxi = W / 2 - inset, hzi = D / 2 - inset, ex = W / 2 + ovh, ez = D / 2 + ovh;
   const corners = t => polyCorners(sides, lerp(hxi, ex, t), lerp(hzi, ez, t));
   const tw = inset / (inset + ovh);
@@ -615,7 +618,7 @@ function roofInto(ctx, g, o) {
   const ovh = o.overhang ?? defaultOverhang(W, D);
   const inset = clamp(Math.min(W, D) * 0.12, 1.2, 5);
   const vertical = o.wumenVerticalProfile?.roof;
-  const sk = skirtRoof(ctx, g, { sides, W, D, inset, ovh, baseY: o.baseY ?? 0, brackets: o.brackets ?? true, liftScale: o._lift ?? 1, vertical });
+  const sk = skirtRoof(ctx, g, { sides, W, D, inset, ovh, baseY: o.baseY ?? 0, brackets: o.brackets ?? true, liftScale: o._lift ?? 1, vertical, baoheOpening: o.baoheInteriorOpening });
   // 上层屋身：红木身 + 额枋彩画
   const Wi = W - inset * 2, Di = D - inset * 2;
   const gap = clamp(Math.min(W, D) * 0.05, 0.8, 2.4);
@@ -683,6 +686,19 @@ export function buildRoof(lib, opts) {
   }
   if (opts._wumenUpper !== undefined) throw new Error('Internal Wumen upper-roof option is not a public override');
   const ctx = makeCtx(lib, opts.detail);
+  if (opts.baoheInteriorOpening) {
+    // Opening the low soffit exposes the inside of the existing roof body.
+    // Its original outward-only faces otherwise reveal sky from the hall.
+    // Private materials keep that existing opaque shell visible inside without
+    // adding a fictitious ceiling riser or mutating shared hall materials.
+    for (const key of ['wood', 'caihua']) {
+      const material = ctx.mat[key].clone();
+      material.side = THREE.DoubleSide;
+      material.userData.baoheInteriorShell = true;
+      ctx.mat[key] = material;
+      ctx.owned.push(material);
+    }
+  }
   const g = new THREE.Group();
   g.name = `roof_${opts.type ?? 'wudian'}`;
   const r = roofInto(ctx, g, opts);
