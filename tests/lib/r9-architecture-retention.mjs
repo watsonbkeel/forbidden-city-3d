@@ -1,3 +1,4 @@
+import {restorePreR10Columns} from './r10-column-retention.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import delta from '../fixtures/r9-architecture-source-delta.json' with {type:'json'};
@@ -5,6 +6,7 @@ const sha=b=>createHash('sha256').update(b).digest('hex');
 // Exact bounded R9 integration only; retained historical hashes stay unchanged.
 // Live geometry, collision and merge checks are in the focused R9 tests.
 export function restorePreR9Architecture(path,bytes){
+ bytes=restorePreR10Columns(path,bytes);
  const d=delta.files[path];if(!d)return bytes;
  const s=bytes.toString();
  if(!s.includes('buildTaiheRearEnclosure')&&!s.includes('buildTaiheCofferFrame'))return bytes;

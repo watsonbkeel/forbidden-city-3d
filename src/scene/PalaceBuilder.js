@@ -20,6 +20,7 @@ import { buildZhongheImperialApproach } from './palace/ZhongheImperialApproach.j
 import { TAIHE_CORE } from './palace/special/TaiheCoreProfile.js';
 import { buildTaiheCoreFallback, buildTaiheCeiling, buildTaiheNavigation } from './palace/special/TaiheCore.js';
 import { buildTaiheRearEnclosure } from './palace/special/TaiheRearEnclosure.js';
+import { taiheColumnGrid } from './palace/special/TaiheColumnGrid.js';
 
 /**
  * 真实形制参数（按故宫现状）：
@@ -616,6 +617,9 @@ export class PalaceBuilder {
     const openHalf = (spec.open ?? 3) * bayW / 2;
     const throne = !!spec.throne;
     const taiheCore = data.name === '太和殿';
+    const taiheGrid = taiheCore ? taiheColumnGrid(w, d) : null;
+    const openLeft = taiheGrid?.openLeft ?? -openHalf;
+    const openRight = taiheGrid?.openRight ?? openHalf;
 
     const colMat = this.library.material('wood_column');
     const gold = this.ownMat('gold', { color: 0xc9a13b, metalness: 0.85, roughness: 0.3 });
@@ -628,11 +632,11 @@ export class PalaceBuilder {
 
     // 柱网
     for (let i = 0; i <= bays; i++) {
-      const x = x0 - w / 2 + i * bayW;
+      const x = taiheGrid ? x0 + taiheGrid.x[i] : x0 - w / 2 + i * bayW;
       for (let k = 0; k <= nd; k++) {
-        const z = z0 - d / 2 + k * dBay;
+        const z = taiheGrid ? z0 + taiheGrid.z[k] : z0 - d / 2 + k * dBay;
         const edge = i === 0 || i === bays || k === 0 || k === nd;
-        if (taiheCore && !edge && Math.abs(x - x0) < bayW * 0.6) continue;
+        if (taiheGrid && !edge && taiheGrid.centralColumnIndices.includes(i)) continue;
         if (!edge && throne && Math.abs(x - x0) < bayW * 0.6 && z > ztb0 - 1 && z < ztb1 + 1) continue;
         const isGold = !taiheCore && throne && !edge && Math.abs(x - x0) < bayW * 1.6 && z > ztb0 - dBay;
         this.column(g, colGeo, isGold ? gold : colMat, x, z, y, H, r);
@@ -662,26 +666,27 @@ export class PalaceBuilder {
     for (const s of [-1, 1]) {
       const zf = z0 + s * d / 2;
       for (let i = 0; i < bays; i++) {
-        const xc = x0 - w / 2 + (i + 0.5) * bayW;
-        if (Math.abs(xc - x0) < openHalf - 0.01) {
+        const xc = taiheGrid ? x0 + (taiheGrid.x[i] + taiheGrid.x[i + 1]) / 2 : x0 - w / 2 + (i + 0.5) * bayW;
+        const facadeBayW = taiheGrid ? taiheGrid.x[i + 1] - taiheGrid.x[i] : bayW;
+        if (taiheGrid ? taiheGrid.openBayIndices.includes(i) : Math.abs(xc - x0) < openHalf - 0.01) {
           // 敞开的门：两扇隔扇折向两侧
           for (const side of [-1, 1]) {
-            const leaf = this.libBox(g, 'lattice_doors', bayW * 0.25, doorH, 0.12,
-              xc + side * (bayW / 2 - r - 0.1), y + doorH / 2, zf - s * (bayW * 0.13 + 0.2), 'band');
+            const leaf = this.libBox(g, 'lattice_doors', facadeBayW * 0.25, doorH, 0.12,
+              xc + side * (facadeBayW / 2 - r - 0.1), y + doorH / 2, zf - s * (facadeBayW * 0.13 + 0.2), 'band');
             leaf.rotation.y = Math.PI / 2;
           }
           continue;
         }
-        if (!(taiheCore && s === 1)) this.libBox(g, 'lattice_doors', bayW - 2 * r, doorH, 0.15, xc, y + doorH / 2, zf, 'band');
+        if (!(taiheCore && s === 1)) this.libBox(g, 'lattice_doors', facadeBayW - 2 * r, doorH, 0.15, xc, y + doorH / 2, zf, 'band');
       }
-      if (taiheCore && s === 1) buildTaiheRearEnclosure(this, g, { x0, zf, y, w, openHalf, height: H - beamH });
-      this.libBox(g, 'wall_red', taiheCore && s === 1 ? openHalf * 2 : w, H - beamH - doorH, 0.3, x0, y + doorH + (H - beamH - doorH) / 2, zf, 'box');
+      if (taiheCore && s === 1) buildTaiheRearEnclosure(this, g, { x0, zf, y, w, openHalf, openLeft, openRight, height: H - beamH });
+      this.libBox(g, 'wall_red', taiheCore && s === 1 ? openRight - openLeft : w, H - beamH - doorH, 0.3, x0 + (taiheCore && s === 1 ? (openLeft + openRight) / 2 : 0), y + doorH + (H - beamH - doorH) / 2, zf, 'box');
       this.libBox(g, 'caihua_beam', w + 0.6, beamH, 0.6, x0, y + H - beamH / 2, zf, 'band');
-      this.col(x0 - w / 2, y, zf - 0.25, x0 - openHalf, y + 3, zf + 0.25);
-      this.col(x0 + openHalf, y, zf - 0.25, x0 + w / 2, y + 3, zf + 0.25);
+      this.col(x0 - w / 2, y, zf - 0.25, x0 + openLeft, y + 3, zf + 0.25);
+      this.col(x0 + openRight, y, zf - 0.25, x0 + w / 2, y + 3, zf + 0.25);
     }
     // 门槛（矮，可跨过）
-    for (const s of [-1, 1]) this.libBox(g, 'wood_column', openHalf * 2, 0.25, 0.3, x0, y + 0.125, z0 + s * d / 2, 'box');
+    for (const s of [-1, 1]) this.libBox(g, 'wood_column', openRight - openLeft, 0.25, 0.3, x0 + (openLeft + openRight) / 2, y + 0.125, z0 + s * d / 2, 'box');
 
     // 两山：红墙 + 下碱
     for (const s of [-1, 1]) {

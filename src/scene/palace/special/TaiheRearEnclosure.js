@@ -10,7 +10,7 @@ import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js
 export const TAIHE_REAR_FINISH = Object.freeze({ thickness: .5, dadoHeight: 1,
   plaster: '#d8d3c3', dado: '#536d5a' });
 
-export function buildTaiheRearEnclosure(builder, group, { x0, zf, y, w, openHalf, height }) {
+export function buildTaiheRearEnclosure(builder, group, { x0, zf, y, w, openHalf, openLeft = -openHalf, openRight = openHalf, height }) {
   const q = TAIHE_REAR_FINISH;
   const red = builder.library.material('wall_red');
   const inner = builder.ownMat('taihe-rear-plaster', {
@@ -18,7 +18,9 @@ export function buildTaiheRearEnclosure(builder, group, { x0, zf, y, w, openHalf
   });
   const linings = [];
   for (const side of [-1, 1]) {
-    const width = w / 2 - openHalf, xc = x0 + side * (w / 2 + openHalf) / 2;
+    const left = side < 0 ? -w / 2 : openRight;
+    const right = side < 0 ? openLeft : w / 2;
+    const width = right - left, xc = x0 + (left + right) / 2;
     const geo = applyBoxUV(new THREE.BoxGeometry(width, height, q.thickness), builder.library.tileSize('wall_red'));
     const normal = geo.attributes.normal, indices = [];
     for (let i = 0; i < (geo.index?.count ?? normal.count); i += 3) {

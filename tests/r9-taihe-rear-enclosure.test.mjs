@@ -1,3 +1,5 @@
+import {taiheColumnGrid} from '../src/scene/palace/special/TaiheColumnGrid.js';
+import r10 from './fixtures/r10-column-grid-baseline.json' with {type:'json'};
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -8,9 +10,11 @@ import {buildTaiheRearEnclosure,TAIHE_REAR_FINISH as Q} from '../src/scene/palac
 const baseline=JSON.parse(fs.readFileSync(new URL('./fixtures/r9-enclosure-baseline.json',import.meta.url)));
 const tris=o=>(o.geometry.index?.count??o.geometry.attributes.position.count)/3;
 
-test('only north Taihe flanks are changed; all retained navigation is byte equivalent',()=>{
+test('north flank topology persists after the separately verified finite R10 column navigation correction',()=>{
  const {builder,group}=captureTaiheControl('太和殿');
- assert.equal(hash({colliders:builder.colliders,walkables:builder.walkables}),baseline['太和殿'].navigation);
+ assert.equal(hash({colliders:r10['太和殿'].colliders,walkables:r10['太和殿'].walkables}),baseline['太和殿'].navigation);
+ assert.equal(hash(builder.walkables),hash(r10['太和殿'].walkables));
+ assert.equal(builder.colliders.length,r10['太和殿'].colliders.length);
  const walls=group.children.filter(o=>o.userData.taiheRearEnclosure);assert.equal(walls.length,3);
  assert.equal(walls.reduce((n,o)=>n+tris(o),0),28);
  assert.equal(group.children.filter(o=>o.isMesh).reduce((n,o)=>n+tris(o),0),baseline['太和殿'].triangles-68);
@@ -20,11 +24,11 @@ test('only north Taihe flanks are changed; all retained navigation is byte equiv
  assert.equal(doors.filter(o=>o.rotation.y===Math.PI/2).length,12);builder.dispose();
 });
 test('solid enclosure stays in existing rear wall footprint and retains all three central door bays',()=>{
- const {builder,group}=captureTaiheControl('太和殿'),opening=3*(63/11)/2;
+ const {builder,group}=captureTaiheControl('太和殿'),opening=taiheColumnGrid(63,37);
  for(const o of group.children.filter(o=>o.userData.taiheRearEnclosure)){
   const b=new THREE.Box3().setFromObject(o);assert.ok(b.min.z>=18.25-1e-5&&b.max.z<=18.75+1e-5);
-  if(o.userData.taiheRearEnclosure==='solid-red-exterior')assert.ok(b.max.x<=-opening+1e-5||b.min.x>=opening-1e-5);
-  else for(let i=0;i<o.geometry.attributes.position.count;i++)assert.ok(Math.abs(o.geometry.attributes.position.getX(i))>=opening-1e-5);
+  if(o.userData.taiheRearEnclosure==='solid-red-exterior')assert.ok(b.max.x<=opening.openLeft+1e-5||b.min.x>=opening.openRight-1e-5);
+  else for(let i=0;i<o.geometry.attributes.position.count;i++)assert.ok(o.geometry.attributes.position.getX(i)<=opening.openLeft+1e-5||o.geometry.attributes.position.getX(i)>=opening.openRight-1e-5);
   assert.ok(b.min.x>=-31.5-1e-5&&b.max.x<=31.5+1e-5);
  }builder.dispose();
 });

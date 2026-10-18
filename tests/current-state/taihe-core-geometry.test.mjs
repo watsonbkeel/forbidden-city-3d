@@ -1,3 +1,4 @@
+import {restorePreR10MeshRows} from '../lib/r10-column-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -19,15 +20,20 @@ test('approved card bytes, inferred rows and dimension-precision limits remain e
  assert.deepEqual(P.columns.x,[-4.233,4.233]);assert.deepEqual(P.columns.goldZ,[-5.5868,5.6019,13.0647]);near(P.columns.x[1]-P.columns.x[0],8.466);
  assert.deepEqual(P.columns.publishedDiameterRange,[1,1.06]);assert.match(P.dais.registration,/historical/);assert.match(P.screen.registration,/conflicts/);assert.match(P.caisson.interpretation,/diagonal/);
 });
-test('all 108 historical Taihe meshes remain exact after the finite nine-to-four rear enclosure replacement',()=>{
+test('historical meshes remain exact after the finite R9 enclosure and R10 registered grid deltas',()=>{
+ const all=c.group.children.filter(o=>o.isMesh),restored=restorePreR10MeshRows(all.map(o=>serialMesh(o)));
+ const rowMap=new Map(all.map((o,i)=>[o,restored[i]]));
  const protectedMeshes=[],regilded=[];
- c.group.traverse(o=>{if(!o.isMesh||o.userData.taiheCoreOwner===TAIHE_FALLBACK_OWNER||o.userData.taihePermanent)return;
- const p=o.position;if(o.geometry.type==='CylinderGeometry'&&Math.abs(Math.abs(p.x)-63/11*1.5)<1e-7&&p.z>0&&Math.abs(p.z)<18){assert.equal(o.material.name,'wood_column');regilded.push(serialMesh(o,{material:false}));return;}protectedMeshes.push(hash(serialMesh(o)));});
+ c.group.traverse(o=>{if(!o.isMesh)return;if(o.userData.taiheCoreOwner===TAIHE_FALLBACK_OWNER||o.userData.taihePermanent)return;
+ const row=rowMap.get(o)??serialMesh(o),x=row.matrix[12],z=row.matrix[14];
+ if(o.geometry.type==='CylinderGeometry'&&Math.abs(Math.abs(x)-63/11*1.5)<1e-7&&z>0&&Math.abs(z)<18){assert.equal(row.material.name,'wood_column');const {material,...geometry}=row;regilded.push(geometry);return;}
+ protectedMeshes.push(hash(row));});
  assert.equal(rearDelta.before.length,9);assert.equal(rearDelta.after.length,4);
- for(const h of rearDelta.after){const i=protectedMeshes.indexOf(h);assert.ok(i>=0,'exact current enclosure mesh required');protectedMeshes.splice(i,1);}
+ for(const h of rearDelta.after){const i=protectedMeshes.indexOf(h);assert.ok(i>=0,'exact retained enclosure mesh required');protectedMeshes.splice(i,1);}
  protectedMeshes.push(...rearDelta.before);
  assert.deepEqual(protectedMeshes.sort(),baseline.taihe.protectedMeshes);assert.deepEqual(regilded,baseline.taihe.regildedColumns);
 });
+
 test('fallback retains its original 1600-triangle cap; permanent geometry separately counts60 beam and280 coffer triangles',()=>{
  const fallback=c.group.children.filter(o=>o.userData.taiheCoreOwner===TAIHE_FALLBACK_OWNER),permanent=c.group.children.filter(o=>o.userData.taihePermanent);
  assert.equal(fallback.length,8);assert.equal(new Set(fallback.map(o=>o.material)).size,8);
