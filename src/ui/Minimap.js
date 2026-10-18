@@ -12,7 +12,7 @@ const MAP_HEADINGS = ['北', '东北', '东', '东南', '南', '西南', '西', 
  */
 
 export class Minimap {
-  constructor({ items = [], preview = false, onTeleport = null, onToggle = null, hasTeleportTarget = () => false } = {}) {
+  constructor({ items = [], preview = false, onTeleport = null, onToggle = null, hasTeleportTarget = () => false, worldBounds = LAYOUT.BOUNDARY } = {}) {
     this.visible = false;
     this.compact = false;
     this.compactSectionState = new Map();
@@ -41,7 +41,8 @@ export class Minimap {
     this.items = items; // 两侧宫院：{ kind: 'hall'|'gate'|'corridor', name, x, z, w, d }
     
     // 地图范围：取场景边界 LAYOUT.BOUNDARY（宫城外廓 + 街面），竖长方形（与紫禁城南北长、东西窄的比例一致）
-    const { minX, maxX, minZ, maxZ } = LAYOUT.BOUNDARY;
+    const { minX, maxX, minZ, maxZ } = worldBounds;
+    if (![minX,maxX,minZ,maxZ].every(Number.isFinite) || maxX<=minX || maxZ<=minZ) throw Error('Invalid map bounds');
     this.worldBounds = { minX, maxX, minZ, maxZ };
     const spanX = maxX - minX;
     const spanZ = maxZ - minZ;
@@ -827,6 +828,7 @@ export class Minimap {
     ctx.setTransform(d, 0, 0, d, 0, 0);
     const pm = this.mapToScreen(...Object.values(this.worldToMap(this.playerPosition.x, this.playerPosition.z)));
     this.drawPlayer(ctx, pm, 5, 14);
+    if(this.vehicle){const v=this.worldToMap(this.vehicle.x,this.vehicle.z);this.drawHelicopter(ctx,this.mapToScreen(v.x,v.y));}
     if (this.zoomLabel) this.zoomLabel.textContent = `${Math.round(this.view.k * 100)}%`;
   }
 
@@ -848,6 +850,7 @@ export class Minimap {
     ctx.save();
     ctx.scale(k, k);
     this.drawPlayer(ctx, { x: this.previewSize / 2, y: this.previewSize / 2 }, 5, 16);
+    if(this.vehicle){const v=this.worldToMap(this.vehicle.x,this.vehicle.z);this.drawHelicopter(ctx,{x:this.previewSize/2+(v.x-pm.x)*this.previewSize/view,y:this.previewSize/2+(v.y-pm.y)*this.previewSize/view});}
     ctx.fillStyle = 'rgba(120, 30, 30, 0.9)';
     ctx.font = 'bold 11px sans-serif';
     ctx.textAlign = 'center';
@@ -970,9 +973,17 @@ export class Minimap {
     ctx.fillText('西', 10, h / 2);
   }
   
-  update(camera) {
-    this.playerPosition.copy(camera.position);
-    camera.getWorldDirection(this.playerDir);
+  drawHelicopter(ctx,p) {
+    ctx.save();ctx.translate(p.x,p.y);ctx.rotate(Math.atan2(-Math.sin(this.vehicle.yaw),Math.cos(this.vehicle.yaw)));
+    ctx.strokeStyle='#183f50';ctx.fillStyle=this.vehicle.occupied?'#18c7d9':'#db9a2b';ctx.lineWidth=2;
+    ctx.beginPath();ctx.ellipse(0,0,4,7,0,0,Math.PI*2);ctx.fill();ctx.stroke();
+    ctx.beginPath();ctx.moveTo(-10,0);ctx.lineTo(10,0);ctx.moveTo(0,7);ctx.lineTo(0,13);ctx.moveTo(-4,12);ctx.lineTo(4,12);ctx.stroke();ctx.restore();
+  }
+
+  update(camera,vehicle=null) {
+    this.vehicle=vehicle;
+    if(vehicle?.occupied){this.playerPosition.set(vehicle.x,vehicle.y,vehicle.z);this.playerDir.set(Math.sin(vehicle.yaw),0,Math.cos(vehicle.yaw));}
+    else {this.playerPosition.copy(camera.position);camera.getWorldDirection(this.playerDir);}
     if (Math.hypot(this.playerDir.x, this.playerDir.z) > 1e-6) {
       const index = (Math.round(Math.atan2(-this.playerDir.x, this.playerDir.z) / (Math.PI / 4)) + 8) % 8;
       const heading = `朝向 ${MAP_HEADINGS[index]}`;

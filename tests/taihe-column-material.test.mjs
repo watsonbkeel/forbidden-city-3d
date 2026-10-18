@@ -1,3 +1,4 @@
+import {restorePreR15Source}from './lib/r15-flight-source-retention.mjs';
 import {restorePreColumnResponseSource} from './lib/taihe-column-response-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -53,7 +54,7 @@ test('actual S and B gold triangles have only explicit neutral or matching cylin
 import {columnMaterialDelta,restorePreColumnMaterialSource} from './lib/taihe-column-material-retention.mjs';
 for(const [path,record] of Object.entries(columnMaterialDelta.files)){
   test(`${path}: exact bounded material delta retains the old source`,()=>{
-    const bytes=read(path),restored=restorePreColumnMaterialSource(path,bytes);
+    const bytes=restorePreR15Source(path,read(path)),restored=restorePreColumnMaterialSource(path,bytes);
     assert.equal(createHash('sha256').update(restored).digest('hex'),record.baselineSHA256);
     assert.throws(()=>restorePreColumnMaterialSource(path,bytes+'\n'));
     const at665=restorePreColumnResponseSource(path,bytes).toString();

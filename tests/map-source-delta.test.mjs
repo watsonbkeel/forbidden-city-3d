@@ -1,3 +1,4 @@
+import {restorePreR15Source}from './lib/r15-flight-source-retention.mjs';
 import test from 'node:test';
 import {restorePlaceInfoBytes} from './lib/place-info-source-delta.mjs';
 import {restoreLoadingWelcomeBytes} from './lib/loading-welcome-source-delta.mjs';
@@ -12,7 +13,7 @@ const root=new URL('..',import.meta.url);
 const old=path=>readHistoricalSource(baseline.commit,path);
 const frozen=path=>readHistoricalSource(delta.frozenComponentCommit,path);
 const current=path=>{
- const bytes=fs.readFileSync(new URL(path,root));
+ const bytes=restorePreR15Source(path,fs.readFileSync(new URL(path,root)));
  return path==='main.js'?restoreV10EntryMainBytes(restorePlaceInfoBytes('main.js', restoreLoadingWelcomeBytes(bytes))):bytes;
 };
 

@@ -1,3 +1,4 @@
+import {restorePreR15Source}from './lib/r15-flight-source-retention.mjs';
 import{restorePreR13PlaqueSource}from'./lib/r13-plaque-retention.mjs';
 import {restoreHistoricalFallbackAttributes} from './lib/taihe-shell-geometry-retention.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {createHash} from 'node:crypto';import * as THREE from 'three';import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
@@ -7,7 +8,7 @@ import {createTaiheColumnAtlas} from '../src/scene/palace/special/TaiheColumnSur
 import {installTaiheColumnTextures} from '../src/scene/interior/TaiheCoreContract.js';
 import base from './fixtures/taihe-column-response-baseline.json' with {type:'json'};
 import P from '../data/architecture/taihe-core.json' with {type:'json'};
-const read=p=>fs.readFileSync(new URL('../'+p,import.meta.url)),sha=b=>createHash('sha256').update(b).digest('hex');
+const read=p=>restorePreR15Source(p,fs.readFileSync(new URL('../'+p,import.meta.url))),sha=b=>createHash('sha256').update(b).digest('hex');
 const response=()=>import('../src/scene/palace/special/TaiheColumnResponse.js');
 const active=JSON.parse(read('data/interiors/taihe.json'));
 const shellRetirementBytes=read('assets-src/interiors/taihe_caisson/retired_shell_faces.json');

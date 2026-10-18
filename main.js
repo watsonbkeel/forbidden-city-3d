@@ -22,6 +22,10 @@ import { hasShortcutModifier, isTextEntryTarget } from './src/controls/InputTarg
 import { PerfHUD } from './src/ui/PerfHUD.js';
 import { LAYOUT, PERFORMANCE, TELEPORT } from './src/config/constants.js';
 import { INITIAL_VIEW_POSITION } from './src/config/initialView.js';
+import { createPalaceFlightEnvelope, FLIGHT_BOUNDS } from './src/scene/flight/FlightEnvelope.js';
+import { FlightTour } from './src/scene/flight/FlightTour.js';
+import { HistoricalSkyLamps } from './src/scene/sky/HistoricalSkyLamps.js';
+import { DayNightPanel } from './src/ui/DayNightPanel.js';
 
 /**
  * 故宫 3D 虚拟游览主程序
@@ -167,9 +171,24 @@ class ForbiddenCityApp {
         this.postProcessing.init(quality);
         this.currentQuality = quality;
       }],
+      ['飞行净空', () => {
+        this.flightEnvelope = createPalaceFlightEnvelope({palaceBuilder:this.palaceBuilder,
+          enclosure:this.enclosure,garden:this.garden,zoneManager:this.zoneManager,layout:PALACE_LAYOUT});
+      }],
       ['界面', () => {
         this.ambience = new Ambience();
         this.createUI();
+        this.historicalLamps = new HistoricalSkyLamps({scene:this.scene,collisionManager:this.collisionManager,envelope:this.flightEnvelope,playerPosition:()=>this.camera.position,flightState:()=>this.flight?.state});
+        this.dayNightPanel = new DayNightPanel(this.environment,this.historicalLamps);
+        this.flight = new FlightTour({scene:this.scene,camera:this.camera,controls:this.controls,
+          collisionManager:this.collisionManager,zoneManager:this.zoneManager,envelope:this.flightEnvelope,
+          isPaused:()=>this.settingsTourSession?.paused === true,
+          onModeChange:occupied=>{
+            this.interiors.setSuspended(occupied);
+            if(!occupied){this.controls.setMapOpen(this.minimap.visible);this.controls.setFreeMove(this.minimap.visible);}
+            const welcome=document.getElementById('welcome-overlay');
+            if(welcome)welcome.style.display=occupied||this.isMobile||this.minimap.visible||this.controls.isLocked()?'none':'flex';
+          }});
         this.bindAudioStart();
         this.perfHUD = new PerfHUD(this.renderer, {
           zoneProvider: () => ({
@@ -212,7 +231,7 @@ class ForbiddenCityApp {
     const overlay = document.getElementById('welcome-overlay');
     if (!overlay) return;
     this._onLock = () => { overlay.style.display = 'none'; };
-    this._onUnlock = () => { overlay.style.display = this.minimap?.visible || this.settingsMenu?.visible ? 'none' : 'flex'; };
+    this._onUnlock = () => { overlay.style.display = this.minimap?.visible || this.settingsMenu?.visible || this.flight?.occupied ? 'none' : 'flex'; };
     this.controls.controls.addEventListener('lock', this._onLock);
     this.controls.controls.addEventListener('unlock', this._onUnlock);
   }
@@ -348,7 +367,7 @@ class ForbiddenCityApp {
     this._onTeleportKey = event => {
       if (event.defaultPrevented || event.repeat || hasShortcutModifier(event) || isTextEntryTarget(event.target)) return;
       const index = Number(event.key) - 1;
-      if (/^[1-8]$/.test(event.key)) this.teleport.go(TELEPORT.POINTS[index].target);
+      if (/^[1-8]$/.test(event.key) && (!this.flight || this.flight.allowWalkingTeleport())) this.teleport.go(TELEPORT.POINTS[index].target);
     };
     window.addEventListener('keydown', this._onTeleportKey);
     this.mapTourSession = new MapTourSession({
@@ -356,9 +375,13 @@ class ForbiddenCityApp {
       welcomeOverlay: document.getElementById('welcome-overlay'),
       getSettingsSession: () => this.settingsTourSession,
     });
-    this.minimap = new Minimap({ items: this.zoneManager.getMapItems(), preview: this.isMobile, hasTeleportTarget: name => this.teleport.targets.has(name), onTeleport: name => this.teleport.go(name), onToggle: visible => {
+    this.minimap = new Minimap({ worldBounds:FLIGHT_BOUNDS, items: this.zoneManager.getMapItems(), preview: this.isMobile, hasTeleportTarget: name => this.teleport.targets.has(name), onTeleport: name => { return !this.flight || this.flight.allowWalkingTeleport() ? this.teleport.go(name) : false; }, onToggle: visible => {
       this.settingsMenu?.setMapMode(visible, this.minimap.container);
-      this.mapTourSession.setVisible(visible);
+      if(this.flight?.occupied){
+        this.controls.setMapOpen(visible);
+        this.settingsTourSession?.mapChanged(visible);
+        if(visible)this.controls.unlock();
+      }else this.mapTourSession.setVisible(visible);
     } });
     
     // 设置菜单（按 ESC 显示）
@@ -373,7 +396,10 @@ class ForbiddenCityApp {
       initialQuality: this.currentQuality,
       initialSound: true,
       onOpen: () => this.settingsTourSession.open(),
-      onResume: () => this.settingsTourSession.resume(),
+      onResume: () => {
+        this.settingsTourSession.resume();
+        if(this.flight?.occupied){const welcome=document.getElementById('welcome-overlay');if(welcome)welcome.style.display='none';}
+      },
       onQualityChange: (quality) => {
         this.toggleQuality(quality);
       },
@@ -442,10 +468,10 @@ class ForbiddenCityApp {
    * 更新位置信息
    */
   updateLocationInfo() {
-    const position = this.controls.getPosition();
+    const position = this.flight?.occupied ? this.flight.position : this.controls.getPosition();
     const location = this.collisionManager.getCurrentLocation(position);
     const zone = ZONES.find(item => item.id === this.zoneManager.getCurrentId())?.name ?? '宫城';
-    const label = `${zone} › ${location}`;
+    const label = this.flight?.occupied ? `空中游览 · ${Math.round(position.y)}m · ${zone}` : `${zone} › ${location}`;
     if (label === this.lastLocation) return;
     this.lastLocation = label;
     this.locationPanel.replaceChildren();
@@ -543,19 +569,23 @@ class ForbiddenCityApp {
     if (this._lastSize !== `${width}x${height}`) this.onResize();
 
     // 更新控制器（含走路镜头起伏；motion = { speed, sprint, footstep }）
-    if (this.settingsTourSession) this.settingsTourSession.updateControls();
+    if (this.flight?.occupied) this.controls.prevTime = now;
+    else if (this.settingsTourSession) this.settingsTourSession.updateControls();
     else this.controls.update();
+    this.flight?.update(dt, now);
     const motion = this.controls.motion ?? { speed: 0, sprint: false, footstep: false };
     
     // 更新位置信息
     this.updateLocationInfo();
     
     this.environment.update(this.camera, dt);
+    this.dayNightPanel?.update();
+    this.historicalLamps?.update(this.environment.dayCycle.lighting.daylight);
     this.palaceBuilder.update?.(dt);
     this.enclosure.update(dt);
     this.garden.update(dt);
     this.interiors?.update(this.camera.position);
-    this.zoneManager.update({ x: this.camera.position.x, z: this.camera.position.z });
+    this.zoneManager.update(this.flight?.occupied ? this.flight.position : this.camera.position);
     this.ambience.update({
       dt,
       speed: motion.speed,
@@ -563,7 +593,7 @@ class ForbiddenCityApp {
       footstep: motion.footstep,
       inTunnel: this.isInGatePassage(this.camera.position),
     });
-    this.minimap?.update(this.camera);
+    this.minimap?.update(this.camera, this.flight?.getMapMarker());
     if (now - this.lastShadowUpdate >= 250) {
       const distance = this.currentQuality === 'high' ? PERFORMANCE.LOD_DISTANCE_LOW : PERFORMANCE.LOD_DISTANCE_HIGH;
       this.shadowSetup.updateShadowLOD(this.camera, this.shadowObjects, distance);
@@ -576,6 +606,9 @@ class ForbiddenCityApp {
   dispose() {
     this.disposed = true;
     cancelAnimationFrame(this.animationFrame);
+    this.flight?.dispose();
+    this.dayNightPanel?.dispose();
+    this.historicalLamps?.dispose();
     clearTimeout(this.loadingTimeout);
     window.removeEventListener('resize', this._onResize);
     window.removeEventListener('orientationchange', this._onOrientationChange);

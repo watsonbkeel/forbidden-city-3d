@@ -23,7 +23,12 @@ export function createDOM() {
     constructor(tag = 'div') {
       super(); this.tagName = tag.toUpperCase(); this.style = {}; this.children = []; this.attributes = new Map();
       this.parentNode = null; this.inert = false; this.scrollTop = 0; this.hidden = false; this._text = '';
-      this.classList = { add() {}, remove() {} };
+      this.classList = {
+        contains: token => (this.getAttribute('class') ?? '').split(/\s+/).includes(token),
+        add: (...tokens) => this.setAttribute('class', [...new Set([...(this.getAttribute('class') ?? '').split(/\s+/).filter(Boolean), ...tokens])].join(' ')),
+        remove: (...tokens) => this.setAttribute('class', (this.getAttribute('class') ?? '').split(/\s+/).filter(token => token && !tokens.includes(token)).join(' ')),
+        toggle: (token, force) => { const enabled = force === undefined ? !this.classList.contains(token) : !!force; this.classList[enabled ? 'add' : 'remove'](token); return enabled; },
+      };
     }
     setAttribute(name, value) { this.attributes.set(name, String(value)); }
     getAttribute(name) { return this.attributes.get(name) ?? null; }
@@ -77,7 +82,7 @@ export function createDOM() {
   }
   document.createElement = tag => new Element(tag);
   document.body = new Element('body'); document.body.parentNode = document; document.activeElement = document.body;
-  document.getElementById = id => document.body.querySelector(`#${id}`);
+  document.getElementById = id => document.body.querySelector(`#${id}`) ?? document.head?.querySelector(`#${id}`) ?? null;
   function dispatch(target, type, init = {}) {
     const event = { target, type, defaultPrevented: false, cancelable: true, preventDefaultCalls: 0, ...init,
       preventDefault() { this.preventDefaultCalls++; if (this.cancelable) this.defaultPrevented = true; },

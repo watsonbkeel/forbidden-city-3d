@@ -1,6 +1,15 @@
 import { createHash } from 'node:crypto';
+import {readFileSync}from'node:fs';
 import * as THREE from 'three';
-import { Environment } from '../../src/scene/Environment.js';
+// Historical fixed-sun acceptance remains executable against the exact R13
+// source. Current dynamic lighting has dedicated R15 integration tests.
+const historicalRaw=readFileSync(new URL('../fixtures/environment-r13-source.txt',import.meta.url));
+const historicalSHA=createHash('sha256').update(historicalRaw).digest('hex');
+if(historicalSHA!=='048d302f3c143592aed95227a47e95072b21394f3a9c5f7c193f96da21cac394')throw Error('Historical R13 Environment source changed');
+const envURL=new URL('../../src/scene/Environment.js',import.meta.url);
+const historicalModule=historicalRaw.toString().replace(/from '([^']+)'/g,(_,specifier)=>`from '${specifier==='three'?new URL('../../node_modules/three/build/three.module.js',import.meta.url).href:new URL(specifier,envURL).href}'`);
+export const {Environment:HistoricalFixedSunEnvironment}=await import('data:text/javascript;base64,'+Buffer.from(historicalModule).toString('base64'));
+const Environment=HistoricalFixedSunEnvironment;
 import { TextureLibrary } from '../../src/utils/TextureLibrary.js';
 
 export const sha256 = value => createHash('sha256').update(value).digest('hex');
@@ -16,7 +25,7 @@ class CPUEnvironment extends Environment {
     this.sceneAtIBL = this.scene;
   }
 }
-export function environmentFixture() {
+export function historicalFixedSunEnvironmentFixture() {
   const library = new TextureLibrary();
   for (const name of ['ground_brick', 'stone_slab', 'skyline']) {
     const texture = new THREE.Texture({ width: 1211, height: 301 });

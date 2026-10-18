@@ -9,9 +9,10 @@ import { restoreV10EntryMainBytes } from '../lib/v13-entry-source-delta.mjs';
 import { assertGateConstantsBytes } from '../lib/v9-gate-constants-delta.mjs';
 import { assertV10PostProcessingBytes } from '../lib/v10-render-lifecycle-source-delta.mjs';
 import * as THREE from 'three';
-import { Environment } from '../../src/scene/Environment.js';
+import { HistoricalFixedSunEnvironment as Environment } from '../lib/environment-lighting.mjs';
+import {restorePreR15Source}from '../lib/r15-flight-source-retention.mjs';
 import { getSunPosition } from '../../src/scene/sky/SkySetup.js';
-import { environmentFixture, targetToLight, modelBearing, shadowSettings, unchangedEnvironmentSnapshot, protectedEnvironmentMethods, sha256 } from '../lib/environment-lighting.mjs';
+import { historicalFixedSunEnvironmentFixture, targetToLight, modelBearing, shadowSettings, unchangedEnvironmentSnapshot, protectedEnvironmentMethods, sha256 } from '../lib/environment-lighting.mjs';
 
 const baseline = JSON.parse(readFileSync(new URL('../fixtures/environment-lighting-v7.json', import.meta.url), 'utf8'));
 // Independently accepted exact-pixel optimization, integrated after the isolated
@@ -26,20 +27,20 @@ const candidate = new THREE.Vector3(100, 200, -100);
 const original = new THREE.Vector3(...baseline.targetToLight);
 const close = (actual, expected, label) => assert.ok(Math.abs(actual - expected) < 1e-10, `${label}: ${actual} != ${expected}`);
 function initialized(t) {
-  const env = environmentFixture();
+  const env = historicalFixedSunEnvironmentFixture();
   env.init();
   t.after(() => { env.dispose(); env.library.dispose(); });
   return env;
 }
 
-test('initial real directional light is the southwest candidate before the PMREM boundary', t => {
+test('historical R13 fixed-sun: initial real directional light is the southwest candidate before the PMREM boundary', t => {
   const env = initialized(t);
   assert.deepEqual(targetToLight(env).toArray(), candidate.toArray());
   assert.deepEqual(env.lightAtIBL.toArray(), candidate.toArray());
   assert.equal(env.sceneAtIBL, env.scene);
 });
 
-test('runtime real light retains the candidate at translated and elevated cameras', t => {
+test('historical R13 fixed-sun: runtime real light retains the candidate at translated and elevated cameras', t => {
   const env = initialized(t);
   const camera = new THREE.PerspectiveCamera();
   for (const position of [[0, 1.7, -419.6], [-293.2, 30, 142.545], [80, 1.7, 542], [12, 300, -90], [0, 0, 0]]) {
@@ -53,7 +54,7 @@ test('runtime real light retains the candidate at translated and elevated camera
 });
 
 test('initial setup and runtime consume the same offset rather than separate hardcoded sun positions', t => {
-  const env = environmentFixture();
+  const env = historicalFixedSunEnvironmentFixture();
   // A distinct value catches a second hardcoded initial position, even if it
   // happens to equal the normal candidate. This is a test-only perturbation.
   env.shadowOffset.set(25, 80, -50);
@@ -132,7 +133,7 @@ test('protected sources match V7 with only the exact accepted skyline, V9 map/ga
     if (path === 'main.js') {
       const historical = readHistoricalSource(baseline.baseCommit, path);
       assert.equal(sha256(historical), hash, 'the original V7 main.js hash remains pinned');
-      assertV9MapMainBytes(historical, restoreV10EntryMainBytes(restorePlaceInfoBytes('main.js', restoreLoadingWelcomeBytes(current))));
+      assertV9MapMainBytes(historical, restoreV10EntryMainBytes(restorePlaceInfoBytes('main.js', restoreLoadingWelcomeBytes(restorePreR15Source('main.js',current)))));
     } else if (path === 'src/render/PostProcessing.js') {
       assertV10PostProcessingBytes(current, expected);
     } else assert.equal(sha256(current), expected, path);

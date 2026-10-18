@@ -1,3 +1,4 @@
+import {restorePreR15Source}from './lib/r15-flight-source-retention.mjs';
 import {restoreHistoricalInventory} from './lib/taihe-shell-geometry-retention.mjs';
 import {restorePreColumnMaterialSource} from './lib/taihe-column-material-retention.mjs';
 import test from 'node:test';
@@ -134,5 +135,5 @@ test('decoded relief consists of separated short branched patches without duplic
 // Freeze exact runtime and shared authoring bytes as well as decoded geometry.
 test('fallback, registration, shared generators, atomic replacement, atlas ownership and permanent navigation sources are frozen', () => {
   const protectedFiles=JSON.parse(read('tests/fixtures/taihe-v17-protected.json'));
-  for(const [path,expected] of Object.entries(protectedFiles.sha256))assert.equal(createHash('sha256').update(path==='src/scene/palace/special/TaiheCore.js'?restoreCore(read(path)):restorePreColumnMaterialSource(path,read(path))).digest('hex'),expected,path);
+  for(const [path,expected] of Object.entries(protectedFiles.sha256))assert.equal(createHash('sha256').update(path==='src/scene/palace/special/TaiheCore.js'?restoreCore(read(path)):restorePreColumnMaterialSource(path,restorePreR15Source(path,read(path)))).digest('hex'),expected,path);
 });

@@ -1,3 +1,4 @@
+import {restorePreR15Source}from './lib/r15-flight-source-retention.mjs';
 import {restorePreR12InnerSource} from './lib/r12-inner-source-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -10,7 +11,7 @@ import { setupMap } from './lib/map-fixture.mjs';
 import { restoreLoadingWelcomeBytes } from './lib/loading-welcome-source-delta.mjs';
 import { baseline, sha, restoreTaiheGuideCatalog, restoreTaiheGuideSource } from './lib/taihe-guide-retention.mjs';
 import { restoreR6PlaceCatalog, restoreR6PlaceSource } from './lib/r6-place-retention.mjs';
-const read = path => { const raw=readFileSync(new URL(`../${path}`, import.meta.url), 'utf8'); return path==='data/places/zh-CN.json' ? restoreR6PlaceCatalog(raw) : restoreR6PlaceSource(path,raw); };
+const read = path => { const raw=restorePreR15Source(path,readFileSync(new URL(`../${path}`, import.meta.url))).toString(); return path==='data/places/zh-CN.json' ? restoreR6PlaceCatalog(raw) : restoreR6PlaceSource(path,raw); };
 const raw = read('data/places/zh-CN.json'), data = JSON.parse(raw);
 const guide = d => d.places.find(p => p.id === 'taihe').interiorGuide;
 

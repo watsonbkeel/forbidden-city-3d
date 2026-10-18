@@ -76,7 +76,15 @@ test('main app wires menu opening, resuming and frame updates through the sessio
   const source = readFileSync(new URL('../main.js', import.meta.url), 'utf8');
   assert.match(source, /new SettingsTourSession\(/);
   assert.match(source, /onOpen:\s*\(\) => this\.settingsTourSession\.open\(\)/);
-  assert.match(source, /onResume:\s*\(\) => this\.settingsTourSession\.resume\(\)/);
+  const resumeBody = source.match(/onResume:\s*\(\) => \{([\s\S]*?)\n      \},/);
+  assert.ok(resumeBody, 'settings resume remains an explicit callback');
+  for (const occupied of [false, true]) {
+    let resumed = 0; const welcome = { style: { display: 'flex' } };
+    const app = { settingsTourSession: { resume() { resumed++; } }, flight: { occupied } };
+    new Function('document', resumeBody[1]).call(app, { getElementById: () => welcome });
+    assert.equal(resumed, 1);
+    assert.equal(welcome.style.display, occupied ? 'none' : 'flex');
+  }
   assert.match(source, /this\.settingsTourSession\.updateControls\(\)/);
   assert.match(source, /this\.minimap\?\.visible\s*\|\|\s*this\.settingsMenu\?\.visible/);
   assert.match(source, /event\.repeat/);
