@@ -10,7 +10,7 @@ const { browserExecutablePath } = require('./browser-path.cjs');
 //   1) 先把 interiors.update 换成空函数（否则主循环残留的 update 会因距离 > 40 m 把正在加载的殿卸掉）
 //   2) 逐个 await interiors.load(id)
 //   3) 普通内景必须有 interior:<id> 碰撞；太和殿 visual-only S 核心必须保留
-//      原有无 tag 的 9 个永久碰撞体与 7 个台阶，逐个核对 profile、对象身份和几何。
+//      原有无 tag 的 39 个永久碰撞体与 22 个支撑面，逐个核对 profile、对象身份和几何。
 // 接线丢失（window.__forbiddenCityApp.interiors 不存在）同样抛错。STEPWALK_NO_INTERIORS=1 可关闭预加载（仅调试用）。
 const { chromium } = require('playwright');
 
@@ -43,7 +43,7 @@ async function preloadInteriors(page) {
     }));
   });
   const bad = res.filter(r => r.state !== 'loaded' || (r.id === 'taihe'
-    ? r.col !== 0 || r.walk !== 0 || r.permanentCol !== 9 || r.permanentWalk !== 7 || r.permanentRetained !== true
+    ? r.col !== 0 || r.walk !== 0 || r.permanentCol !== 39 || r.permanentWalk !== 22 || r.permanentRetained !== true
     : r.col < 1));
   console.log('[stepwalk] 预加载 S 档内景：' + res.map(r => `${r.id}=${r.state}(COL ${r.col}/WALK ${r.walk})`).join(' '));
   if (bad.length) throw new Error('S 档内景预加载失败：' + bad.map(r => `${r.id}(state=${r.state}, COL=${r.col})`).join(', '));

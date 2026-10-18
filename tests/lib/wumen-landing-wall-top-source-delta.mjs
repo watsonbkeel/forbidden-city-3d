@@ -1,3 +1,4 @@
+import {restorePreTaiheFrontSource} from './r7-taihe-front-retention.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -7,6 +8,7 @@ const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 // A separately audited R4 migration. The earlier ascent migration and all its
 // historical source hashes remain immutable; only these three hunks peel off.
 export function restorePreWumenLandingWallTopSource(path, bytes) {
+  bytes=restorePreTaiheFrontSource(path,bytes);
   const row = WUMEN_LANDING_WALL_TOP_SOURCE_DELTA;
   if (path !== row.path) return bytes;
   if ([row.baselineSHA256, ...row.priorSHA256].includes(sha(bytes))) return bytes;

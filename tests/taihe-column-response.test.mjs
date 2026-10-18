@@ -40,14 +40,27 @@ assert.equal(crownRetirement.triangles.length,1736);assert.equal(crownFaces.size
 for(const row of crownRows)assert.deepEqual(furnitureIndices.slice(row.triangleOrdinal*3,row.triangleOrdinal*3+3),row.indices,'retirement indices match the pinned gold baseline');
 const stillReferenced=new Set(furnitureIndices.filter((_,i)=>!crownFaces.has(Math.floor(i/3)))),crownRetiredVertices=retiredGoldVertices(crownRetirement);
 assert.equal(crownRetiredVertices.size,3528);
-const expectedUnused=[...new Set([...historicalUnused,...crownRetiredVertices])].filter(i=>!stillReferenced.has(i)).sort((a,b)=>a-b),expectedUnusedSet=new Set(expectedUnused);
-assert.equal(expectedUnused.length,4604);assert.equal(sha(JSON.stringify(expectedUnused)),'286c11f2d3ec8ec5bca6cb494ea9d9f608ed6fc2b8b14f33b5d8897ec231f739');
+const preDaisExpectedUnused=[...new Set([...historicalUnused,...crownRetiredVertices])].filter(i=>!stillReferenced.has(i)).sort((a,b)=>a-b),preDaisExpectedUnusedSet=new Set(preDaisExpectedUnused);
+assert.equal(preDaisExpectedUnused.length,4604);assert.equal(sha(JSON.stringify(preDaisExpectedUnused)),'286c11f2d3ec8ec5bca6cb494ea9d9f608ed6fc2b8b14f33b5d8897ec231f739');
 assert.equal([...crownRetiredVertices].filter(i=>stillReferenced.has(i)).length,0);
 assert.equal([...crownRetiredVertices].filter(i=>i<historicalGoldVertices).length,1008);
-assert.equal(expectedUnused.filter(i=>i>=historicalGoldVertices&&i<furnitureGoldVertices).length,2520);
-assert.equal(expectedUnused.filter(i=>i>=furnitureGoldVertices).length,0);
+assert.equal(preDaisExpectedUnused.filter(i=>i>=historicalGoldVertices&&i<furnitureGoldVertices).length,2520);
+assert.equal(preDaisExpectedUnused.filter(i=>i>=furnitureGoldVertices).length,0);
 const furnitureReferenced=new Set(furnitureIndices);
 assert.deepEqual(Array.from({length:furnitureGoldVertices},(_,i)=>i).filter(i=>!furnitureReferenced.has(i)),historicalUnused);
+
+// Newly retired hidden column caps are independently derived from the pinned
+// pre-dais bytes and exact mask, never from the candidate under inspection.
+const daisBase=read('public/models/interiors/taihe-furnishing-surfaces-a4a0b82f9f76.glb');
+assert.equal(sha(daisBase),'a4a0b82f9f767422db824b9c0f9039fc3da2234f18b3d584d295ad52020ec529');
+const daisMaskBytes=read('assets-src/interiors/taihe_dais/retirement-mask.json');assert.equal(sha(daisMaskBytes),'22e89735e7f1277e901cd2c894ad0e1e9763c26c83e1753e406a8d6287527795');
+const daisRoot=(await new GLTFLoader().parseAsync(daisBase.buffer.slice(daisBase.byteOffset,daisBase.byteOffset+daisBase.length),'')).scene;
+const daisIndices=Array.from(gold(daisRoot).geometry.index.array),daisRows=JSON.parse(daisMaskBytes).triangles.filter(r=>r.material==='taihe_gold');
+assert.equal(daisRows.length,360);const daisFaces=new Set(daisRows.map(r=>r.triangleOrdinal));
+for(const r of daisRows)assert.deepEqual(daisIndices.slice(r.triangleOrdinal*3,r.triangleOrdinal*3+3),r.indices);
+const daisReferenced=new Set(daisIndices.filter((_,i)=>!daisFaces.has(Math.floor(i/3))));
+const expectedUnused=Array.from({length:40394},(_,i)=>i).filter(i=>!daisReferenced.has(i)),expectedUnusedSet=new Set(expectedUnused);
+assert.ok(preDaisExpectedUnused.every(i=>expectedUnusedSet.has(i)));assert.ok(expectedUnused.length>4604);
 
 async function source(){const bytes=read('public'+active.model);return(await new GLTFLoader().parseAsync(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.length),'')).scene;}
 function gold(root){let found;root.traverse(o=>{if(o.isMesh&&o.material.name==='taihe_gold')found=o;});assert.ok(found);return found;}
@@ -81,7 +94,7 @@ function inspect(mesh,count,bytes){const g=mesh.geometry,c=g.attributes.color;as
 }
 test('runtime response installs on actual B and loaded S with exact neutral and preserved geometry',async()=>{
  const b=captureTaiheControl('太和殿'),bm=gold(b.group),s=await source(),sm=gold(s),attrs=originalAttributes(sm.geometry),index=sha(Buffer.from(sm.geometry.index.array.buffer,sm.geometry.index.array.byteOffset,sm.geometry.index.array.byteLength));
- inspect(bm,144,18432);installTaiheColumnTextures(s,bm.material);inspect(sm,3192,484728);assert.deepEqual(originalAttributes(sm.geometry),attrs);assert.equal(sha(Buffer.from(sm.geometry.index.array.buffer,sm.geometry.index.array.byteOffset,sm.geometry.index.array.byteLength)),index);assert.notEqual(sm.geometry.attributes.color.array,bm.geometry.attributes.color.array);
+ inspect(bm,96,11520);installTaiheColumnTextures(s,bm.material);inspect(sm,3192,484728);assert.deepEqual(originalAttributes(sm.geometry),attrs);assert.equal(sha(Buffer.from(sm.geometry.index.array.buffer,sm.geometry.index.array.byteOffset,sm.geometry.index.array.byteLength)),index);assert.notEqual(sm.geometry.attributes.color.array,bm.geometry.attributes.color.array);
  for(const record of base.fallback){const m=b.group.children.find(o=>o.material?.name===record.material);assert.deepEqual(originalAttributes({attributes:restoreHistoricalFallbackAttributes(m)},record.attributes),record.attributes);assert.deepEqual({color:m.material.color.toArray(),roughness:m.material.roughness,metalness:m.material.metalness,envMapIntensity:m.material.envMapIntensity,side:m.material.side,transparent:m.material.transparent,opacity:m.material.opacity},record.materialFactors);if(m!==bm)assert.equal(m.geometry.attributes.color,undefined);}
  b.builder.dispose();
 });
@@ -156,7 +169,7 @@ test('actual Float32 S/B gains stay bounded at every mip; neutral base and BRDF 
  b.builder.dispose();
 });
 test('response source, buffer budget and visual-trial provenance are explicitly identified',()=>{
- const cfg=JSON.parse(read('data/interiors/taihe.json'));assert.equal(cfg.asset.columnResponseSourceSHA256,sha(read('src/scene/palace/special/TaiheColumnResponse.js')));assert.deepEqual(cfg.asset.columnResponseBufferBytes,{S:484728,B:18432});assert.match(cfg.asset.columnResponse,/Visual-trial/);
+ const cfg=JSON.parse(read('data/interiors/taihe.json'));assert.equal(cfg.asset.columnResponseSourceSHA256,sha(read('src/scene/palace/special/TaiheColumnResponse.js')));assert.deepEqual(cfg.asset.columnResponseBufferBytes,{S:484728,B:11520});assert.match(cfg.asset.columnResponse,/Visual-trial/);
 });
 
 

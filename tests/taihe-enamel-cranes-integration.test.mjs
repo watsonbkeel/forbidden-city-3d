@@ -35,7 +35,7 @@ test('current crane bytes, source identities, original ceilings and full fallbac
  assert.equal(cfg.asset.renderableTriangles,17940);assert.equal(cfg.budget.tris,18000);
  assert.deepEqual(validateTaiheCore(parsed.scene,cfg),{triangles:17940,meshes:8});
  const control=captureTaiheControl('太和殿'),fallback=taiheFallbackMeshes(control.group);
- assert.equal(fallback.length,8);assert.equal(fallback.reduce((n,m)=>n+(m.geometry.index?.count??m.geometry.attributes.position.count)/3,0),1596);control.builder.dispose();
+ assert.equal(fallback.length,8);assert.equal(fallback.reduce((n,m)=>n+(m.geometry.index?.count??m.geometry.attributes.position.count)/3,0),1600);control.builder.dispose();
 });
 test('exact 374 selected indices retire; all old attribute bytes and other indices remain in order',()=>{
  assert.equal(mask.triangles.length,374);assert.equal(new Set(mask.triangles.map(r=>r.material+':'+r.triangleOrdinal)).size,374);

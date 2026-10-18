@@ -12,13 +12,13 @@ const shafts = candidate.triangles.filter(isShaft);
 const relief = candidate.triangles.filter(t => columnIndex(t) >= 0 && !isShaft(t));
 
 test('six shaft meshes preserve exact oriented positions, radius, registration and endpoints', () => {
-  assert.equal(shafts.length, 744);
-  assert.deepEqual(geometry(shafts, false), geometry(baseline.triangles.filter(isShaft), false));
+  assert.equal(shafts.length, 384);
+  assert.deepEqual(geometry(shafts, false), geometry(baseline.triangles.filter(t=>isShaft(t)&&Math.max(...t.vertices.map(v=>position(v)[1]))-Math.min(...t.vertices.map(v=>position(v)[1]))>9), false));
   assert.deepEqual(candidate.inventory.filter(o => /^gold_column(?:\.\d+)?$/.test(o.name)), baseline.inventory.filter(o => /^gold_column(?:\.\d+)?$/.test(o.name)));
-  for (let i=0;i<6;i++) assert.equal(shafts.filter(t=>columnIndex(t)===i).length,124);
+  for (let i=0;i<6;i++) assert.equal(shafts.filter(t=>columnIndex(t)===i).length,64);
 });
 
-test('only shaft sides have radial smooth normals; caps remain hard and axial', () => {
+test('retained shaft sides keep radial smooth normals; only 360 hidden end caps are retired', () => {
   let sides=0,caps=0;
   const shared=new Map();
   for (const t of shafts) {
@@ -34,12 +34,12 @@ test('only shaft sides have radial smooth normals; caps remain hard and axial', 
       } else {assert.ok(Math.abs(n[0])+Math.abs(n[2])<1.1e-4);assert.ok(near(n[1],near(p[1],.2)?-1:1));}
     }
   }
-  assert.equal(sides,384);assert.equal(caps,360);
+  assert.equal(sides,384);assert.equal(caps,0);
   // The frozen exporter already emits a 1e-4 axial-normal rounding component
   // on a few hard-cap triangles. Preserve those exact attributes rather than
   // silently changing cap normals to satisfy an idealized tolerance.
   const cap=t=>isShaft(t)&&Math.max(...t.vertices.map(v=>position(v)[1]))-Math.min(...t.vertices.map(v=>position(v)[1]))<1;
-  assert.deepEqual(geometry(candidate.triangles.filter(cap)),geometry(baseline.triangles.filter(cap)));
+  assert.equal(candidate.triangles.filter(cap).length,0);assert.equal(baseline.triangles.filter(cap).length,360);
 });
 
 test('all old dark full-turn tubes are removed and replaced only by shallow gold surface relief', () => {

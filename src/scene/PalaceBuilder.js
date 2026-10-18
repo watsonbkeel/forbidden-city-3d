@@ -15,6 +15,7 @@ import { buildSquareHall, SQUARE_HALLS } from './palace/special/SquareHalls.js';
 import { buildQianqingGate } from './palace/special/QianqingGate.js';
 import { buildKunningPalace } from './palace/special/KunningPalace.js';
 import { threeHallTerraceProfile, closedTerraceStairGeometry } from './palace/ThreeHallTerrace.js';
+import { taiheSouthTier, buildTaiheSouthTier } from './palace/TaiheFrontApproaches.js';
 import { TAIHE_CORE } from './palace/special/TaiheCoreProfile.js';
 import { buildTaiheCoreFallback, buildTaiheCeiling, buildTaiheNavigation } from './palace/special/TaiheCore.js';
 
@@ -78,6 +79,7 @@ export class PalaceBuilder {
     this.colliders = [];
     this.walkables = [];
     this.terraceProfiles = [];
+    this.taiheSouthTiers = [];
     this.ownedMaterials = [];
     this.ownedObjects = new Set();
     this.ox = 0;
@@ -295,7 +297,7 @@ export class PalaceBuilder {
    * rects: [{ hw, z0, z1 }]（顶层，局部坐标），每下一层 hw 与首尾 z 向外扩 setback。
    * 只在首块南边、末块北边设台阶；矩形交界处宽出的部分设挡墙与栏杆。
    */
-  buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile = null }) {
+  buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile = null, taiheSouth = false }) {
     const half = stairW / 2;
     const t = 0.5;
     const last = rects.length - 1;
@@ -343,6 +345,10 @@ export class PalaceBuilder {
       });
       // 南北两端：分段挡墙 + 台阶 + 栏杆开口
       for (const [r, s, ze] of [[R[0], -1, R[0].z0], [R[last], 1, R[last].z1]]) {
+        if (taiheSouth && s === -1) {
+          buildTaiheSouthTier(this, g, taiheSouthTier({ zEdge: ze, y0, y1, run, halfWidth: r.hw, tier: i + 1 }));
+          continue;
+        }
         this.col(-r.hw, y0, ze, -half, y0 + ch, ze - s * t);
         this.col(half, y0, ze, r.hw, y0 + ch, ze - s * t);
         this.buildStair(g, { zEdge: ze, dir: s, y0, y1, run, width: stairW });
@@ -407,7 +413,7 @@ export class PalaceBuilder {
     const waistIndex = halls.findIndex(h => h.name === '中和殿');
     const sideStairProfile = name === '三台' && waistIndex >= 0
       ? threeHallTerraceProfile(rects, { layers, lh, run, setback, waistIndex, hall: halls[waistIndex] }) : null;
-    const top = this.buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile });
+    const top = this.buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile, taiheSouth: name === '三台' });
 
     if (halls.length > 1) {
       // 真实格局：大台基上每座殿还有各自的台明（须弥座），殿与殿之间要先下台阶、再上台阶
@@ -421,6 +427,7 @@ export class PalaceBuilder {
         const room = Math.min(h.position.z - d / 2 - PLINTH_PAD - r.z0, r.z1 - (h.position.z + d / 2 + PLINTH_PAD)) - 0.4;
         const ph = Math.min(spec.plinth ?? 1.3, room / 1.6);
         const y = this.buildPlinth(g, { z0: h.position.z, w: w + 2 * PLINTH_PAD, d: d + 2 * PLINTH_PAD, y: top, ph, stairW: sw,
+          taiheSouth: h.name === '太和殿',
           stairCenters: h.name === '中和殿' ? [-(w - 6) / 3, 0, (w - 6) / 3] : [0],
           stairSides: h.name === '中和殿' ? ['south', 'north', 'east', 'west'] : ['south', 'north'] });
         this.buildHall(g, h, y);
@@ -437,7 +444,7 @@ export class PalaceBuilder {
    * 单殿台明：高 ph 的须弥座，前后台阶可分组，并可加东西出阶；四面挡墙只挡台下的人。
    * @returns {number} 台明顶面高度
    */
-  buildPlinth(g, { z0, w, d, y, ph, stairW, stairSides = ['south', 'north'], stairCenters = [0] }) {
+  buildPlinth(g, { z0, w, d, y, ph, stairW, stairSides = ['south', 'north'], stairCenters = [0], taiheSouth = false }) {
     const half = stairW / 2;
     const run = ph * 1.6;
     const t = 0.5;
@@ -456,6 +463,10 @@ export class PalaceBuilder {
     }
     for (const s of [-1, 1]) {
       const ze = z0 + s * d / 2;
+      if (taiheSouth && s === -1) {
+        buildTaiheSouthTier(this, g, taiheSouthTier({ zEdge: ze, y0: y, y1, run, halfWidth: w / 2, plinth: true }));
+        continue;
+      }
       let cursor = -w / 2;
       for (const x of stairCenters) {
         this.col(cursor, y, ze, x - half, y1, ze - s * t);
@@ -1142,6 +1153,7 @@ export class PalaceBuilder {
     this.colliders.length = 0;
     this.walkables.length = 0;
     this.terraceProfiles.length = 0;
+    this.taiheSouthTiers.length = 0;
     this.ownedMaterials.length = 0;
     this._own.clear();
     this.materials = {};

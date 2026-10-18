@@ -24,11 +24,11 @@ test('all 108 unscoped Taihe meshes remain byte-exact; only four former gold gri
  const p=o.position;if(o.geometry.type==='CylinderGeometry'&&Math.abs(Math.abs(p.x)-63/11*1.5)<1e-7&&p.z>0&&Math.abs(p.z)<18){assert.equal(o.material.name,'wood_column');regilded.push(serialMesh(o,{material:false}));return;}protectedMeshes.push(hash(serialMesh(o)));});
  assert.deepEqual(protectedMeshes.sort(),baseline.taihe.protectedMeshes);assert.deepEqual(regilded,baseline.taihe.regildedColumns);
 });
-test('fallback retains the original 1078 core triangles plus 480 displays; permanent architecture delta is unchanged',()=>{
+test('fallback retains its original 1600-triangle ceiling with three dais approaches; permanent architecture adds the bounded 60-triangle central frame',()=>{
  const fallback=c.group.children.filter(o=>o.userData.taiheCoreOwner===TAIHE_FALLBACK_OWNER),permanent=c.group.children.filter(o=>o.userData.taihePermanent);
  assert.equal(fallback.length,8);assert.equal(new Set(fallback.map(o=>o.material)).size,8);
- assert.equal(fallback.reduce((n,o)=>n+tris(o),0),1558+38);assert.ok(1558+38<=P.budgets.fallbackVisibleTriangles);
- const additions=permanent.reduce((n,o)=>n+tris(o),0);assert.equal(additions,120);assert.equal(1078+additions-(1380+336+2),-520);assert.equal(1558+38+additions-(1380+336+2),-2);
+ assert.equal(fallback.reduce((n,o)=>n+tris(o),0),1600);assert.ok(1600<=P.budgets.fallbackVisibleTriangles);
+ const additions=permanent.reduce((n,o)=>n+tris(o),0);assert.equal(additions,180);assert.equal(permanent.filter(o=>o.userData.taihePermanent==='central-beam').reduce((n,o)=>n+tris(o),0),60);assert.equal(1078+additions-(1380+336+2),-460);assert.equal(1600+additions-(1380+336+2),62);
  // Never subtract unloaded S triangles from the original external view budget.
  assert.ok(Math.abs(-74)-P.frame.depth/2>15);assert.equal(P.budgets.originalFrontTriangles,874189);assert.equal(P.budgets.originalFrontRatioCeiling,1.1);
 });

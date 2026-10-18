@@ -1,3 +1,5 @@
+import { appendTaiheDaisFront, buildTaiheDaisFrontNavigation } from './TaiheDaisFront.js';
+import { buildTaiheBeamFrame } from './TaiheBeamFrame.js';
 import * as THREE from 'three';
 import { applyTaiheColumnResponse } from './TaiheColumnResponse.js';
 import { attachTaiheColumnTextures, mapTaiheGoldSurfaces } from './TaiheColumnSurface.js';
@@ -62,13 +64,15 @@ export function buildTaiheCoreFallback(builder, parent, { x0, z0, y }) {
   // Four-sided platform and shallow seven-step approach. Navigation is permanent.
   box(g,m.red,d.width,d.height,d.z1-d.z0,0,d.height/2,(d.z0+d.z1)/2);
   box(g,m.darkGold,d.width+.04,.06,d.z1-d.z0+.04,0,d.height+.03,(d.z0+d.z1)/2);
-  for(let k=0;k<d.steps;k++)box(g,m.red,d.stepWidth,d.height*(k+1)/d.steps,d.stepRun,0,d.height*(k+1)/d.steps/2,d.z0-d.stepRun*(d.steps-k)+d.stepRun/2);
-  for(const sign of [-1,1]) {
-    box(g,m.dark,.06,d.railHeight,d.z1-d.z0,sign*(d.width/2-.12),d.height+d.railHeight/2,(d.z0+d.z1)/2);
-  }
+  appendTaiheDaisFront(g,m);
   for(const x of P.columns.x) for(const z of P.columns.goldZ) {
-    cylinder(g,m.gold,P.columns.radius,P.columns.height-.2,x,(P.columns.height+.2)/2,z,12);
-    cylinder(g,m.stone,P.columns.baseRadius,.2,x,.1,z,8);
+    // Coarse fallback only: eight-sided open shaft. Both end caps are hidden
+    // by the unchanged ceiling / larger base. Fine asset keeps all 32 facets.
+    put(g,new THREE.CylinderGeometry(P.columns.radius,P.columns.radius,P.columns.height-.2,8,1,true),m.gold,x,(P.columns.height+.2)/2,z);
+    const base=new THREE.CylinderGeometry(P.columns.baseRadius,P.columns.baseRadius,.2,8);
+    const bottom=base.groups.find(v=>v.materialIndex===2);const ids=Array.from(base.index.array);
+    base.setIndex(ids.filter((_,i)=>i<bottom.start || i>=bottom.start+bottom.count));base.clearGroups();
+    put(g,base,m.stone,x,.1,z);
   }
   box(g,m.red,1.84,.21,1.70,0,2.165,t.z-.28);
   box(g,m.darkGold,t.lowerWidth,t.lowerHeight,t.lowerDepth,0,t.baseY+t.lowerHeight/2,t.z);
@@ -111,6 +115,7 @@ export function buildTaiheCoreFallback(builder, parent, { x0, z0, y }) {
   builder.ownedMaterials.push(m.glyph);
 }
 export function buildTaiheCeiling(builder,g,{x0,z0,y,w,d}) {
+  buildTaiheBeamFrame(builder,g,{x0,z0,y});
   const h=P.caisson.nominalSpan/2,cz=P.caisson.z,regions=[[-w/2,-d/2,-h,d/2],[h,-d/2,w/2,d/2],[-h,-d/2,h,cz-h],[-h,cz+h,h,d/2]];
   for(const [a,b,c,e] of regions) {const geo=new THREE.PlaneGeometry(c-a,e-b);geo.rotateX(Math.PI/2);const uv=geo.attributes.uv,pos=geo.attributes.position;for(let i=0;i<uv.count;i++)uv.setXY(i,(pos.getX(i)+(a+c)/2)/1.6,(pos.getZ(i)+(b+e)/2)/1.6);const mesh=put(g,geo,taiheCeilingMaterial(builder),x0+(a+c)/2,y+P.ceilingY,z0+(b+e)/2,'ceiling-opening');mesh.userData.taihePermanent='ceiling';}
 }
@@ -119,6 +124,5 @@ export function buildTaiheNavigation(builder,{x0,z0,y}) {
   for(const x of P.columns.x)for(const z of P.columns.goldZ){const r=Math.max(P.columns.clearanceRadius,P.columns.baseRadius);builder.col(x0+x-r,y,z0+z-r,x0+x+r,y+P.columns.height,z0+z+r);}
   // Platform is a closed exhibition support, not a route through the throne.
   builder.col(x0-d.width/2,y,z0+d.z0,x0+d.width/2,y+4,z0+d.z1);
-  for(let k=0;k<d.steps;k++){const za=z0+d.z0-d.stepRun*(d.steps-k);builder.walkables.push({type:'box',rescue:false,box:new THREE.Box3(new THREE.Vector3(x0-d.stepWidth/2,y,za),new THREE.Vector3(x0+d.stepWidth/2,y+d.height*(k+1)/d.steps,za+d.stepRun))});}
-  for(const sign of [-1,1]){const a=sign*(d.stepWidth/2),b=sign*(d.stepWidth/2+.12);builder.col(x0+a,y,z0+d.z0-d.steps*d.stepRun,x0+b,y+1,z0+d.z0);}
+  buildTaiheDaisFrontNavigation(builder,{x0,z0,y});
 }

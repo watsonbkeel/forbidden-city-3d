@@ -1,3 +1,4 @@
+import {preDaisFallbackView} from './r7-taihe-dais-fallback-retention.mjs';
 // Finite historical view only. Validate live retained data before reinserting
 // the exact retired faces; never normalize coordinates, materials or UVs.
 import assert from 'node:assert/strict';
@@ -85,6 +86,7 @@ export function restoreHistoricalDetail(integrated){
 }
 const attrBytes=(a,start,count)=>Buffer.from(a.array.buffer,a.array.byteOffset+start*a.itemSize*4,count*a.itemSize*4);
 export function restoreHistoricalFallbackAttributes(mesh){
+ mesh=preDaisFallbackView(mesh);
  const {fallbackRows}=context(),material=mesh.material?.name,record=fixture.perMaterial[material];assert.ok(record,'known original fallback material');
  const g=mesh.geometry;assert.equal(g.index,null,'fallback remains nonindexed');assert.equal(mesh.material.side,record.materialSide,'retained shared material side');
  assert.deepEqual(Object.keys(g.attributes).sort(),Object.keys(record.attributes).sort(),'no missing or foreign attributes');

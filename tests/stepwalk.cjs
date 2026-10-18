@@ -70,9 +70,11 @@ async function buildRoutes() {
   // 池中亭石桥参数：pd=10(池深), 石桥外侧入口 zOut = pavilionZ ± (pd/2 + 2.2) = ±7.2
   const POND_BRIDGE_OFFSET = 7.2;
 
+  const {captureTaiheFrontTiers,taiheFrontPoints}=await import(pathToFileURL(path.join(ROOT,'tests/lib/taihe-front-route.mjs')).href);
+  const taiheFront=taiheFrontPoints(captureTaiheFrontTiers(),1,5);
   const AXIS_ROUTES = [
     ['午门→太和门', [[0, L.START_POSITION.z], [0, L.TAIHE_GATE_Z + GATE_CLEAR]]],
-    ['太和门→太和殿内', [[0, L.TAIHE_GATE_Z + GATE_CLEAR], [0, 5]]],
+    ['太和门→太和殿内', [[0, L.TAIHE_GATE_Z + GATE_CLEAR], [10.5, L.TAIHE_GATE_Z + GATE_CLEAR], ...taiheFront]],
     // 过殿门时走中间一间（x≈0），进殿后从宝座侧面绕过；各殿取点相对殿心
     ['太和殿→中和殿→保和殿', [[0, 3], [0, 0], [TAIHE_DETOUR_X, 0], [TAIHE_DETOUR_X, 16], [0, 16.5],
       [0, zh - 7], [ZHONGHE_DETOUR_X, zh - 7], [ZHONGHE_DETOUR_X, zh + 7.2], [0, zh + 7.2], [0, zh + 11],
@@ -142,7 +144,7 @@ async function buildRoutes() {
     ['西一长街→夹道→永寿门', [[ny.x - 2.4, A['永寿门'].z - 2.8], [A['永寿门'].x, A['永寿门'].z - 2.8], [A['永寿门'].x, A['永寿门'].z + 8]]],
     ['文华殿院北夹道→文渊阁院', [[whd.x + 36.4, -153], [A['文渊阁'].x, -153], [A['文渊阁'].x, -145]]],
   ];
-  const round = rs => rs.map(([n, pts]) => [n, pts.map(p => (exactGatePoints.has(p) || exactKunningPoints.has(p)) ? p : [r1(p[0]), r1(p[1])])]);
+  const round = rs => rs.map(([n, pts]) => [n, pts.map(p => (exactGatePoints.has(p) || exactKunningPoints.has(p) || taiheFront.includes(p)) ? p : [r1(p[0]), r1(p[1])])]);
   return { AXIS_ROUTES: round(AXIS_ROUTES), SIDE_ROUTES: round([...SIDE_ROUTES, ...EXTRA_ROUTES]) };
 }
 

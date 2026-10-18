@@ -1,3 +1,4 @@
+import daisPhysics from './fixtures/r7-taihe-dais-physics-delta.json' with {type:'json'};
 import {restoreHistoricalInventory} from './lib/taihe-shell-geometry-retention.mjs';
 import {restorePreColumnMaterialSource} from './lib/taihe-column-material-retention.mjs';
 import test from 'node:test';
@@ -39,7 +40,7 @@ test('fallback explicitly restored pre-shell position/normal/UV prefixes and all
   assert.deepEqual({color:o.material.color.getHex(),roughness:o.material.roughness,metalness:o.material.metalness,side:o.material.side,transparent:o.material.transparent,opacity:o.material.opacity,depthWrite:o.material.depthWrite,map:!!o.material.map},{...record.material,...(record.name==='taihe_gold'?{map:true}:{})});
   assert.equal(o.userData.noMerge,true);assert.equal(o.userData.taiheCoreOwner,TAIHE_FALLBACK_OWNER);
  }
- assert.equal(hash({colliders:fallback.control.builder.colliders,walkables:fallback.control.builder.walkables}),baseline.physics);
+ assert.equal(baseline.physics,daisPhysics.beforeSHA256);assert.equal(hash({colliders:fallback.control.builder.colliders,walkables:fallback.control.builder.walkables}),daisPhysics.afterSHA256);
 });
 for(const [lod,faces] of [['S',matchedS],['fallback',matchedFallback]]){
  test(`${lod}: every actual added scene-space face matches the approved source, including the translated teal batch`,()=>{
