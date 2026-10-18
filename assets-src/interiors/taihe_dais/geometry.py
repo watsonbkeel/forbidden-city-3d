@@ -54,25 +54,39 @@ def rails(m,lod):
 
 def incense(m,i,x,lod):
  t=D['incenseTables'];z=t['z'];w=t['width'];dep=t['depth'];top=t['tableTopY'];name=f'incense_table_{i}'
- # Four supports remain visually open. Fine-tier triangular columns are closed;
- # coarse-tier tetrahedral supports are an explicit silhouette simplification.
+ # Photo-supported spread feet and a broad apron replace straight matchsticks.
+ # Exact curves, metal finishes and dimensions remain illustrative. The S leg
+ # ends meet the visible base/apron, so only the hidden contact caps are omitted.
  for j,(sx,sz) in enumerate([(-1,-1),(-1,1),(1,-1),(1,1)]):
-  xx=x+sx*w*.35;zz=z+sz*dep*.35
-  if lod=='S':m.lathe(f'{name}_leg{j}',[(.07,.035),(top-.06,.025)],'darkGold',3,caps=(True,True),centre=(xx,zz))
-  else:m.wedge(f'{name}_leg{j}',(xx-.035,.02,zz-.025),(xx+.035,.02,zz-.025),(xx,.02,zz+.035),(xx,top-.06,zz),'darkGold')
- m.box(name+'_top',(x-w/2,top-.06,z-dep/2),(x+w/2,top,z+dep/2),'darkGold')
+  foot=(x+sx*w*.42,.07,z+sz*dep*.42);head=(x+sx*w*.32,top-.12,z+sz*dep*.32)
+  if lod=='S':m.sweep(f'{name}_leg{j}',[foot,head],[.025,.04],'darkGold',3,caps=(False,False))
+  else:m.wedge(f'{name}_leg{j}',(foot[0]-.025,0,foot[2]-.02),(foot[0]+.025,0,foot[2]-.02),(foot[0],0,foot[2]+.025),head,'darkGold')
+ # A flared waist/apron has actual sloping faces rather than a thin flat box.
+ v=[(x+sx*w*scale,y,z+sz*dep*scale)for y,scale in [(top-.18,.39),(top,.5)]for sx,sz in [(-1,-1),(1,-1),(1,1),(-1,1)]]
+ m.patch(name+'_top',v,[(0,1,5,4),(1,2,6,5),(2,3,7,6),(3,0,4,7),(4,5,6,7),(3,2,1,0)],'gold',outward=None)
+ # Explicitly orient the above convex frustum faces from its centre.
+ start=len(m.triangles)-12
+ for k in range(start,len(m.triangles)):
+  ids=m.triangles[k];a,b,c=[m.vertices[j]for j in ids];normal=((b[1]-a[1])*(c[2]-a[2])-(b[2]-a[2])*(c[1]-a[1]),(b[2]-a[2])*(c[0]-a[0])-(b[0]-a[0])*(c[2]-a[2]),(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]))
+  out=tuple((a[q]+b[q]+c[q])/3-[x,top-.09,z][q]for q in range(3))
+  if sum(normal[q]*out[q]for q in range(3))<0:m.triangles[k]=tuple(reversed(ids))
  if lod=='B':m.octa(name+'_censer',(x,top+.4,z),(.23,.4,.23),'teal');return
- m.box(name+'_base',(x-w*.53,0,z-dep*.53),(x+w*.53,.07,z+dep*.53),'darkGold')
+ m.box(name+'_base',(x-w*.53,0,z-dep*.53),(x+w*.53,.07,z+dep*.53),'gold',bottom=False)
  base=top+.16
- # Three feet; a closed low-sided bowl, shoulder, small neck and pointed lid.
+ # Three small feet are explicit two-sided sheets, a bounded silhouette LOD.
+ # Six-sided bowl / rounded shoulder / truncated lid replace the pointed cone.
  for k in range(3):
-  a=k*2*math.pi/3;cx=x+.15*math.cos(a);cz=z+.15*math.sin(a)
-  m.wedge(name+f'_tripod{k}',(cx-.025,top,cz-.025),(cx+.025,top,cz-.025),(cx,top,cz+.035),(cx,base+.04,cz),'darkGold')
- m.lathe(name+'_censer',[(base,.15),(base+.13,.25),(base+.33,.21),(base+.4,.09)],'teal',5,caps=(True,False),centre=(x,z))
- m.patch(name+'_lid',[(x+.09*math.cos(k*2*math.pi/5),base+.4,z+.09*math.sin(k*2*math.pi/5)) for k in range(5)]+[(x,t['totalHeight'],z)],[(k,5,(k+1)%5) for k in range(5)],'darkGold')
+  a=k*2*math.pi/3;cx=x+.14*math.cos(a);cz=z+.14*math.sin(a);tx=.028*math.cos(a+math.pi/2);tz=.028*math.sin(a+math.pi/2)
+  m.patch(name+f'_tripod{k}',[(cx-tx,top,cz-tz),(cx+tx,top,cz+tz),(cx,base+.04,cz)],[(0,1,2),(2,1,0)],'gold')
+ m.lathe(name+'_censer',[(base,.14),(base+.23,.21),(base+.48,.17)],'teal',6,caps=(True,False),centre=(x,z))
+ m.lathe(name+'_lid',[(base+.48,.17),(t['totalHeight'],.045)],'gold',6,caps=(False,True),centre=(x,z))
  for sign in [-1,1]:
-  v=[(x+sign*.20,base+.14,z),(x+sign*.34,base+.20,z),(x+sign*.32,base+.39,z),(x+sign*.25,base+.38,z)]
-  m.patch(name+'_handle',v,[(0,1,2,3),(3,2,1,0)],'darkGold')
+  # Two slender strips form a genuinely open high ear, not a filled gold flap.
+  points=[(x+sign*.19,base+.27),(x+sign*.25,base+.73),(x+sign*.15,base+.58)]
+  for k in range(2):
+   (xa,ya),(xb,yb)=points[k:k+2];h=.012
+   v=[(xa-sign*h,ya,z),(xa+sign*h,ya,z),(xb+sign*h,yb,z),(xb-sign*h,yb,z)]
+   m.patch(name+f'_handle{sign}_{k}',v,[(0,1,2,3),(3,2,1,0)],'gold')
 
 def build(lod):
  if lod not in ('S','B'):raise ValueError('Unknown LOD')

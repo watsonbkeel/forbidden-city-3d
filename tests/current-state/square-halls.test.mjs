@@ -101,15 +101,16 @@ test('Zhonghe plinth has physical east and west stairs and matching side opening
   }
 });
 
-test('integrated Zhonghe plinth retains all eight flights in the 3/3/1/1 arrangement', () => {
+test('integrated Zhonghe plinth retains six walking flights and excludes the two central carved stones', () => {
   const { builder } = fixture('中和殿');
   builder.walkables.length = 0;
   const halls = PALACE_LAYOUT.filter(h => ['太和殿', '中和殿', '保和殿'].includes(h.name));
   builder.buildComplex(halls, { name: '三台', apron: 14, margin: 4, bottom: { halfW: 65, z0: -54, z1: 178 } });
   const flights = builder.walkables.filter(w => w.type === 'ramp' && Math.max(w.y0, w.y1) === 8.6);
-  assert.equal(flights.length, 8);
+  assert.equal(flights.length, 6);
+  assert.equal(flights.some(w => w.axis === 'z' && w.minX < 0 && w.maxX > 0), false, 'central imperial stones are not walkable stairs');
   assert.equal(flights.filter(w => w.axis === 'x' && w.maxX < 0).length, 1);
   assert.equal(flights.filter(w => w.axis === 'x' && w.minX > 0).length, 1);
-  assert.equal(flights.filter(w => w.axis === 'z' && w.maxZ < 65).length, 3);
-  assert.equal(flights.filter(w => w.axis === 'z' && w.minZ > 65).length, 3);
+  assert.equal(flights.filter(w => w.axis === 'z' && w.maxZ < 65).length, 2);
+  assert.equal(flights.filter(w => w.axis === 'z' && w.minZ > 65).length, 2);
 });

@@ -72,12 +72,14 @@ async function buildRoutes() {
 
   const {captureTaiheFrontTiers,taiheFrontPoints}=await import(pathToFileURL(path.join(ROOT,'tests/lib/taihe-front-route.mjs')).href);
   const taiheFront=taiheFrontPoints(captureTaiheFrontTiers(),1,5);
+  const {captureZhongheApproaches}=await import(pathToFileURL(path.join(ROOT,'tests/lib/zhonghe-approach-route.mjs')).href);
+  const zhongheApproach=captureZhongheApproaches(1);
   const AXIS_ROUTES = [
     ['午门→太和门', [[0, L.START_POSITION.z], [0, L.TAIHE_GATE_Z + GATE_CLEAR]]],
     ['太和门→太和殿内', [[0, L.TAIHE_GATE_Z + GATE_CLEAR], [10.5, L.TAIHE_GATE_Z + GATE_CLEAR], ...taiheFront]],
     // 过殿门时走中间一间（x≈0），进殿后从宝座侧面绕过；各殿取点相对殿心
     ['太和殿→中和殿→保和殿', [[0, 3], [0, 0], [TAIHE_DETOUR_X, 0], [TAIHE_DETOUR_X, 16], [0, 16.5],
-      [0, zh - 7], [ZHONGHE_DETOUR_X, zh - 7], [ZHONGHE_DETOUR_X, zh + 7.2], [0, zh + 7.2], [0, zh + 11],
+      ...zhongheApproach.south.points, [0, zh - 7], [ZHONGHE_DETOUR_X, zh - 7], [ZHONGHE_DETOUR_X, zh + 7.2], [0, zh + 7.2], [0, zh + 11], ...zhongheApproach.north.points.toReversed(),
       [0, bh - IN_FRONT], [BAOHE_DETOUR_X, bh - IN_FRONT], [BAOHE_DETOUR_X, back('保和殿') - 2], [0, back('保和殿') - 2]]],
     ['保和殿→北下台→乾清门', [[0, back('保和殿') - 2], [0, L.QIANQING_GATE_Z - 10]]],
     ['乾清门→乾清宫', [[0, L.QIANQING_GATE_Z - 10], [0, qq - 6]]],
@@ -87,8 +89,8 @@ async function buildRoutes() {
     ['坤宁宫→御花园→神武门', [...kunningExit, [0, gz0 + GARDEN_S_ROAD], [GARDEN_PATH_X, gz0 + GARDEN_S_ROAD + 3],
       [GARDEN_PATH_X, gz1 - 9], [0, gz1 - 9], [0, L.BOUNDARY.maxZ - 10]]],
     ['乾清宫偏中轴(x=2.3)', [[2.3, L.QIANQING_GATE_Z + 6], [2.3, r1(front('乾清宫') - 1.2)]]],
-    // R3: x=2.5 落在新中阶栏墙上；偏轴进院后在阶前转入中间阶口，不穿栏。
-    ['太和殿后→中和殿前(x=2.5转中阶)', [[OFF_AXIS_GAP, r1(back('太和殿') + OFF_AXIS_GAP)], [OFF_AXIS_GAP, zh - 17], [0, zh - 17], [0, front('中和殿') - OFF_AXIS_GAP]]],
+    // R8: 偏轴进院后到现有西侧阶道前，不把中央御路当楼梯。
+    ['太和殿后→中和殿西阶前(绕御路)', [[OFF_AXIS_GAP, r1(back('太和殿') + OFF_AXIS_GAP)], [OFF_AXIS_GAP, zh - 17], [zhongheApproach.south.points[1][0], zh - 17], [zhongheApproach.south.points[1][0], front('中和殿') - OFF_AXIS_GAP]]],
   ];
 
   const xh = A['协和门'], xi = A['熙和门'], wh = A['文华门'], whd = A['文华殿'], wy = A['武英门'], wyd = A['武英殿'];
@@ -144,7 +146,7 @@ async function buildRoutes() {
     ['西一长街→夹道→永寿门', [[ny.x - 2.4, A['永寿门'].z - 2.8], [A['永寿门'].x, A['永寿门'].z - 2.8], [A['永寿门'].x, A['永寿门'].z + 8]]],
     ['文华殿院北夹道→文渊阁院', [[whd.x + 36.4, -153], [A['文渊阁'].x, -153], [A['文渊阁'].x, -145]]],
   ];
-  const round = rs => rs.map(([n, pts]) => [n, pts.map(p => (exactGatePoints.has(p) || exactKunningPoints.has(p) || taiheFront.includes(p)) ? p : [r1(p[0]), r1(p[1])])]);
+  const round = rs => rs.map(([n, pts]) => [n, pts.map(p => (exactGatePoints.has(p) || exactKunningPoints.has(p) || taiheFront.includes(p) || zhongheApproach.south.points.includes(p) || zhongheApproach.north.points.includes(p)) ? p : [r1(p[0]), r1(p[1])])]);
   return { AXIS_ROUTES: round(AXIS_ROUTES), SIDE_ROUTES: round([...SIDE_ROUTES, ...EXTRA_ROUTES]) };
 }
 

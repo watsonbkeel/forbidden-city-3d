@@ -16,6 +16,7 @@ import { buildQianqingGate } from './palace/special/QianqingGate.js';
 import { buildKunningPalace } from './palace/special/KunningPalace.js';
 import { threeHallTerraceProfile, closedTerraceStairGeometry } from './palace/ThreeHallTerrace.js';
 import { taiheSouthTier, buildTaiheSouthTier } from './palace/TaiheFrontApproaches.js';
+import { buildZhongheImperialApproach } from './palace/ZhongheImperialApproach.js';
 import { TAIHE_CORE } from './palace/special/TaiheCoreProfile.js';
 import { buildTaiheCoreFallback, buildTaiheCeiling, buildTaiheNavigation } from './palace/special/TaiheCore.js';
 
@@ -428,6 +429,7 @@ export class PalaceBuilder {
         const ph = Math.min(spec.plinth ?? 1.3, room / 1.6);
         const y = this.buildPlinth(g, { z0: h.position.z, w: w + 2 * PLINTH_PAD, d: d + 2 * PLINTH_PAD, y: top, ph, stairW: sw,
           taiheSouth: h.name === '太和殿',
+          zhongheImperial: h.name === '中和殿',
           stairCenters: h.name === '中和殿' ? [-(w - 6) / 3, 0, (w - 6) / 3] : [0],
           stairSides: h.name === '中和殿' ? ['south', 'north', 'east', 'west'] : ['south', 'north'] });
         this.buildHall(g, h, y);
@@ -444,7 +446,7 @@ export class PalaceBuilder {
    * 单殿台明：高 ph 的须弥座，前后台阶可分组，并可加东西出阶；四面挡墙只挡台下的人。
    * @returns {number} 台明顶面高度
    */
-  buildPlinth(g, { z0, w, d, y, ph, stairW, stairSides = ['south', 'north'], stairCenters = [0], taiheSouth = false }) {
+  buildPlinth(g, { z0, w, d, y, ph, stairW, stairSides = ['south', 'north'], stairCenters = [0], taiheSouth = false, zhongheImperial = false }) {
     const half = stairW / 2;
     const run = ph * 1.6;
     const t = 0.5;
@@ -475,7 +477,10 @@ export class PalaceBuilder {
         g.add(flight);
         const oldX = this.ox;
         this.ox += x;
-        try { this.buildStair(flight, { zEdge: ze, dir: s, y0: y, y1, run, width: stairW }); }
+        try {
+          if (zhongheImperial && x === 0) buildZhongheImperialApproach(this, flight, { zEdge: ze, dir: s, y0: y, y1, run, width: stairW });
+          else this.buildStair(flight, { zEdge: ze, dir: s, y0: y, y1, run, width: stairW });
+        }
         finally { this.ox = oldX; }
         cursor = x + half;
       }

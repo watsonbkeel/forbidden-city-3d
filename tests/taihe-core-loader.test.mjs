@@ -7,7 +7,7 @@ async function root(){const b=fs.readFileSync(new URL('../public'+cfg.model,impo
 function setup(registry=cfg){const c=captureTaiheControl('太和殿'),scene=new THREE.Scene(),cm=new CollisionManager();cm.addColliders(c.builder.colliders,'permanent');cm.addWalkables(c.builder.walkables,'permanent');cm.addWalkable({type:'box',box:new THREE.Box3(new THREE.Vector3(-31.5,9.9375,-18.5),new THREE.Vector3(31.5,9.9375,18.5))},'floor');scene.add(mergeByMaterial(c.group));const loader=new InteriorLoader(scene,cm,{registry:{taihe:registry}});return{scene,cm,loader,builder:c.builder,fallback:taiheFallbackMeshes(scene)};}
 function deliver(loader,r){loader.gltf.load=(_u,ok)=>ok({scene:r})}
 function baselinePhysics(cm){return JSON.stringify({c:cm.colliders.map(v=>v.box),w:cm.walkables});}
-function checkOne(s,loaded=false){assert.equal(s.fallback.length,8);assert.equal(s.fallback.reduce((n,m)=>n+(m.geometry.index?.count??m.geometry.attributes.position.count)/3,0),1600);assert.ok(s.fallback.every(m=>m.visible===!loaded));assert.equal(s.loader.getGroup('taihe')?.visible??false,loaded);if(loaded){let triangles=0;s.loader.getGroup('taihe').traverse(o=>{if(o.isMesh)triangles+=(o.geometry.index?.count??o.geometry.attributes.position.count)/3;});assert.equal(triangles,17932);}}
+function checkOne(s,loaded=false){assert.equal(s.fallback.length,8);assert.equal(s.fallback.reduce((n,m)=>n+(m.geometry.index?.count??m.geometry.attributes.position.count)/3,0),1600);assert.ok(s.fallback.every(m=>m.visible===!loaded));assert.equal(s.loader.getGroup('taihe')?.visible??false,loaded);if(loaded){let triangles=0;s.loader.getGroup('taihe').traverse(o=>{if(o.isMesh)triangles+=(o.geometry.index?.count??o.geometry.attributes.position.count)/3;});assert.equal(triangles,17924);}}
 test('actual S core atomically replaces only its eight owned batches with no duplicate physics or fade',async()=>{
  const s=setup(),before=baselinePhysics(s.cm);checkOne(s);deliver(s.loader,await root());assert.equal(await s.loader.load('taihe'),true);checkOne(s,true);assert.equal(s.loader.halls.get('taihe').fade,undefined);assert.equal(baselinePhysics(s.cm),before);assert.equal(s.loader.getGroup('taihe').position.y,9.9375);
  s.loader.getGroup('taihe').traverse(o=>{if(o.isMesh)assert.equal(o.material.opacity,1)});s.loader.unload('taihe');checkOne(s);assert.equal(baselinePhysics(s.cm),before);deliver(s.loader,await root());assert.equal(await s.loader.load('taihe'),true);checkOne(s,true);s.loader.dispose();checkOne(s);assert.equal(baselinePhysics(s.cm),before);
@@ -50,7 +50,7 @@ test('column response arrays follow owned geometry through repeat load, unload a
  const s=setup(),b=s.fallback.find(o=>o.material.name==='taihe_gold'),original=b.geometry.attributes.color;
  // captureTaiheControl bypasses buildAll's addObject; register its real merged root for this disposal probe.
  s.builder.ownedObjects.add(b.parent);let bDisposed=0;b.geometry.addEventListener('dispose',()=>bDisposed++);
- for(let i=0;i<2;i++){const r=await root(),m=r.children.find(o=>o.isMesh&&o.material.name==='taihe_gold');assert.ok(m);let disposed=0;m.geometry.addEventListener('dispose',()=>disposed++);deliver(s.loader,r);assert.equal(await s.loader.load('taihe'),true);const color=m.geometry.attributes.color;assert.ok(color);assert.equal(color.array.byteLength,484728);assert.notEqual(color.array,original.array);assert.equal(b.geometry.attributes.color,original);s.loader.unload('taihe');assert.equal(disposed,1);assert.equal(bDisposed,0);}
+ for(let i=0;i<2;i++){const r=await root(),m=r.children.find(o=>o.isMesh&&o.material.name==='taihe_gold');assert.ok(m);let disposed=0;m.geometry.addEventListener('dispose',()=>disposed++);deliver(s.loader,r);assert.equal(await s.loader.load('taihe'),true);const color=m.geometry.attributes.color;assert.ok(color);assert.equal(color.array.byteLength,493368);assert.notEqual(color.array,original.array);assert.equal(b.geometry.attributes.color,original);s.loader.unload('taihe');assert.equal(disposed,1);assert.equal(bDisposed,0);}
  s.loader.dispose();s.builder.dispose();assert.equal(bDisposed,1);
 });
 test('response rejection after borrowing textures preserves B maps and frees failed S geometry',async()=>{
@@ -80,8 +80,8 @@ for(const key of enamelCraneKeys)for(const target of ['asset','registry'])for(co
  s.loader.dispose();s.builder.dispose();
 });
 test('matching registry totals cannot relax the original 18000-triangle ceiling',async()=>{
- const r=await root(),current=validateTaiheCore(r,cfg);assert.deepEqual(current,{triangles:17932,meshes:8});
- const added=18001-current.triangles;assert.equal(added,69);
+ const r=await root(),current=validateTaiheCore(r,cfg);assert.deepEqual(current,{triangles:17924,meshes:8});
+ const added=18001-current.triangles;assert.equal(added,77);
  const mesh=r.children.find(o=>o.isMesh),g=mesh.geometry,indices=g.index.array,overBudget=new indices.constructor(indices.length+added*3);
  overBudget.set(indices);for(let i=0;i<added;i++)overBudget.set(indices.subarray(0,3),indices.length+i*3);g.setIndex(new THREE.BufferAttribute(overBudget,1));
  let actualTriangles=0;r.traverse(o=>{if(o.isMesh)actualTriangles+=(o.geometry.index?.count??o.geometry.attributes.position.count)/3;});assert.equal(actualTriangles,18001);
