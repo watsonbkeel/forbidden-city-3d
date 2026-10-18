@@ -1,3 +1,4 @@
+import {restorePreR19FixedRoutes} from './r19-baohe-retention.mjs';
 import {restorePreR18Source,restorePreR18Navigation,restorePreR18SceneRow,restorePreR18SceneRows} from './r18-baohe-retention.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -74,7 +75,8 @@ export function restorePreR17BaoheNorthRoute(row){
 export function restorePreR17FixedRoutes(rows){
   const digest=hash(rows);
   if(digest===route.beforeSHA256)return rows;
-  assert.equal(digest,route.afterSHA256,'exact R17 full fixed route collection');
+  rows=restorePreR19FixedRoutes(rows);
+  assert.equal(hash(rows),route.afterSHA256,'exact R17 full fixed route collection');
   assert.equal(rows.length,route.count);
   const out=structuredClone(rows);
   out[route.index]=restorePreR17BaoheNorthRoute(out[route.index]);

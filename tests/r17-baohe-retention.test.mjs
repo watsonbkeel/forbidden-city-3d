@@ -1,3 +1,4 @@
+import {restorePreR19FixedRoutes} from './lib/r19-baohe-retention.mjs';
 import {restorePreR18Source,restorePreR18Navigation,restorePreR18SceneRows} from './lib/r18-baohe-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -33,13 +34,16 @@ const root=new URL('../',import.meta.url);
 const s=new THREE.Scene(),b=new PalaceBuilder(s,library());
 b.buildAll(PALACE_LAYOUT);
 // Explicit R18 restoration keeps these historical assertions bound to R17 bytes.
-// Live R18 identity is asserted directly in r18-baohe-retention.test.mjs.
+// Live R19 identity is asserted directly in r19-baohe-retention.test.mjs;
+// the chained R19 → R18 → R17 view here is historical only.
 const currentNavigation=restorePreR18Navigation(clone({colliders:b.colliders,walkables:b.walkables}));
 const currentScene=restorePreR18SceneRows(sceneRows(s));
 b.dispose();
-const currentRoutes=execFileSync(process.execPath,['tests/stepwalk.cjs','60','0','all'],{
+const liveRoutes=execFileSync(process.execPath,['tests/stepwalk.cjs','60','0','all'],{
   cwd:root,env:{...process.env,DUMP:'1'},encoding:'utf8',
 }).trim().split('\n').map(line=>{const at=line.indexOf(' ');return{name:line.slice(0,at),pts:JSON.parse(line.slice(at+1))};});
+
+const currentRoutes=restorePreR19FixedRoutes(liveRoutes);
 
 test('R17 fixture provenance fixes the reviewed R16 and R17 source revisions',()=>{
   for(const fixture of[source,nav,route,scene]){

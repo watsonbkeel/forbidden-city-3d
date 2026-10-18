@@ -21,7 +21,7 @@ import { buildKunningPalace } from './palace/special/KunningPalace.js';
 import { threeHallTerraceProfile, closedTerraceStairGeometry } from './palace/ThreeHallTerrace.js';
 import { taiheSouthTier, buildTaiheSouthTier } from './palace/TaiheFrontApproaches.js';
 import { baoheColumnGrid } from './palace/BaoheColumnGrid.js';
-import { baoheColumnPresent, BAOHE_COLUMN_IDENTITY } from './palace/BaoheColumnIdentity.js';
+import { BAOHE_DEPTH_GRID, baoheDepthGrid, baoheDepthColumnPresent } from './palace/BaoheDepthGrid.js';
 import { buildBaoheHallPlinth } from './palace/BaoheHallPlinth.js';
 import { baoheNorthTier, buildBaoheNorthTier, createBaoheNorthDetail, installBaoheNorthDetail } from './palace/BaoheNorthApproaches.js';
 import { buildZhongheImperialApproach } from './palace/ZhongheImperialApproach.js';
@@ -645,9 +645,12 @@ export class PalaceBuilder {
     const x0 = data.position.x;
     const z0 = data.position.z;
     const bays = spec.bays ?? Math.max(3, Math.round(w / 6) | 1);
-    const nd = Math.max(3, Math.round(d / 7.4) | 1);
+    const inheritedDepthBays = Math.max(3, Math.round(d / 7.4) | 1);
+    const baoheDepth = data.name === '保和殿' ? baoheDepthGrid(d) : null;
+    const nd = baoheDepth?.depthBays ?? inheritedDepthBays;
     const bayW = w / bays;
-    const dBay = d / nd;
+    // Structural depth registration must not silently move the inherited throne.
+    const dBay = d / inheritedDepthBays;
     const H = THREE.MathUtils.clamp((height - heightReferenceY) * 0.38, 5, 11);
     const beamH = THREE.MathUtils.clamp(H * 0.12, 0.6, 1.4);
     const r = THREE.MathUtils.clamp(bayW * 0.08, 0.3, 0.6);
@@ -663,6 +666,13 @@ export class PalaceBuilder {
     const colMat = this.library.material('wood_column');
     const gold = this.ownMat('gold', { color: 0xc9a13b, metalness: 0.85, roughness: 0.3 });
     const colGeo = new THREE.CylinderGeometry(r, r * 1.05, H, 14);
+    if (baoheColumns) {
+      // The lower cap is buried under the retained opaque floor at y + 0.03.
+      // Keep all 14-sided mantle triangles and the upper cap, including shadows.
+      const bottom = colGeo.groups.find(group => group.materialIndex === 2);
+      colGeo.setIndex(Array.from(colGeo.index.array.slice(0, bottom.start)));
+      colGeo.groups = colGeo.groups.filter(group => group !== bottom);
+    }
 
     // 宝座区（后部中间）
     const ztb1 = z0 + d / 2 - Math.min(0.6 * dBay, 4.5);
@@ -672,18 +682,17 @@ export class PalaceBuilder {
     // 柱网
     for (let i = 0; i <= bays; i++) {
       const x = facadeGrid ? x0 + facadeGrid.x[i] : x0 - w / 2 + i * bayW;
-      // Keep the established frontage stations; Baohe separately corrects which
-      // inner posts exist. Its complete five-bay depth registration is pending.
+      // Frontage retains R17 inner stations; Baohe depth uses six unequal drawing axes.
       const classificationX = data.name === '保和殿' ? x0 - w / 2 + i * bayW : x;
       for (let k = 0; k <= nd; k++) {
-        const z = taiheGrid ? z0 + taiheGrid.z[k] : z0 - d / 2 + k * dBay;
+        const z = baoheDepth ? z0 + baoheDepth.z[k] : taiheGrid ? z0 + taiheGrid.z[k] : z0 - d / 2 + k * dBay;
         const edge = i === 0 || i === bays || k === 0 || k === nd;
         if (taiheGrid && !edge && taiheGrid.centralColumnIndices.includes(i)) continue;
-        if (baoheColumns && !baoheColumnPresent(i, k, bays, nd)) continue;
+        if (baoheColumns && !baoheDepthColumnPresent(i, k, bays, nd)) continue;
         if (!baoheColumns && !edge && throne && Math.abs(classificationX - x0) < bayW * 0.6 && z > ztb0 - 1 && z < ztb1 + 1) continue;
         const isGold = !baoheColumns && !taiheCore && throne && !edge && Math.abs(classificationX - x0) < bayW * 1.6 && z > ztb0 - dBay;
         this.column(g, colGeo, isGold ? gold : colMat, x, z, y, H, r);
-        if (baoheColumns) g.children.at(-1).userData.baoheColumn = { i, k, profile: BAOHE_COLUMN_IDENTITY.id };
+        if (baoheColumns) g.children.at(-1).userData.baoheColumn = { i, k, profile: BAOHE_DEPTH_GRID.id };
       }
     }
 
@@ -708,7 +717,7 @@ export class PalaceBuilder {
     // 前后檐：隔扇门（中间敞开）+ 上部走马板 + 额枋彩画
     const doorH = (H - beamH) * 0.8;
     for (const s of [-1, 1]) {
-      const zf = z0 + s * d / 2;
+      const zf = z0 + (baoheDepth ? (s < 0 ? baoheDepth.frontDoorZ : baoheDepth.rearDoorZ) : s * d / 2);
       for (let i = 0; i < bays; i++) {
         const xc = facadeGrid ? x0 + (facadeGrid.x[i] + facadeGrid.x[i + 1]) / 2 : x0 - w / 2 + (i + 0.5) * bayW;
         const facadeBayW = facadeGrid ? facadeGrid.x[i + 1] - facadeGrid.x[i] : bayW;
@@ -730,15 +739,19 @@ export class PalaceBuilder {
       this.col(x0 + openRight, y, zf - 0.25, x0 + w / 2, y + 3, zf + 0.25);
     }
     // 门槛（矮，可跨过）
-    for (const s of [-1, 1]) this.libBox(g, 'wood_column', openRight - openLeft, 0.25, 0.3, x0 + (openLeft + openRight) / 2, y + 0.125, z0 + s * d / 2, 'box');
+    for (const s of [-1, 1]) this.libBox(g, 'wood_column', openRight - openLeft, 0.25, 0.3, x0 + (openLeft + openRight) / 2, y + 0.125, z0 + (baoheDepth ? (s < 0 ? baoheDepth.frontDoorZ : baoheDepth.rearDoorZ) : s * d / 2), 'box');
+    // The recessed door/header does not replace the separate south eave beam.
+    if (baoheDepth) this.libBox(g, 'caihua_beam', w + 0.6, beamH, 0.6, x0, y + H - beamH / 2, z0 + baoheDepth.southEaveZ, 'band');
 
-    // 两山：红墙 + 下碱
+    // 两山：红墙 + 下碱; Baohe closes at its outer axes, not the plinth edges.
+    const wallDepth = baoheDepth?.sideWallDepth ?? d;
+    const wallZ = z0 + (baoheDepth?.sideWallCentre ?? 0);
     for (const s of [-1, 1]) {
       const xs = x0 + s * w / 2;
-      this.libBox(g, 'wall_red', 0.9, H - beamH, d, xs, y + (H - beamH) / 2, z0, 'box');
-      this.libBox(g, 'wall_brick', 1.0, 1.2, d + 0.1, xs, y + 0.6, z0, 'box');
-      this.libBox(g, 'caihua_beam', 0.6, beamH, d + 0.6, xs, y + H - beamH / 2, z0, 'band');
-      this.col(xs - 0.5, y, z0 - d / 2, xs + 0.5, y + 3, z0 + d / 2);
+      this.libBox(g, 'wall_red', 0.9, H - beamH, wallDepth, xs, y + (H - beamH) / 2, wallZ, 'box');
+      this.libBox(g, 'wall_brick', 1.0, 1.2, wallDepth + 0.1, xs, y + 0.6, wallZ, 'box');
+      this.libBox(g, 'caihua_beam', 0.6, beamH, wallDepth + 0.6, xs, y + H - beamH / 2, wallZ, 'band');
+      this.col(xs - 0.5, y, wallZ - wallDepth / 2, xs + 0.5, y + 3, wallZ + wallDepth / 2);
     }
 
     // Taihe alone has an upward caisson opening and an independently owned core.
@@ -750,7 +763,7 @@ export class PalaceBuilder {
       const ceiling = new THREE.Mesh(ceilGeo, this.ceilingMaterial());
       ceiling.position.set(x0, y + H - 0.05, z0);
       g.add(ceiling);
-      if (throne) this.throneArea(g, { x0, y, H, ztb0, ztb1, thW, bayW, text: spec.inner });
+      if (throne) this.throneArea(g, { x0, y, H, ztb0, ztb1, thW, bayW, text: spec.inner, caisson: !baoheDepth });
     }
 
     // 殿外竖匾
@@ -777,7 +790,7 @@ export class PalaceBuilder {
     this.ownedMaterials.push(...(roof.userData.ownedMaterials ?? []));
   }
 
-  throneArea(g, { x0, y, H, ztb0, ztb1, thW, bayW, text }) {
+  throneArea(g, { x0, y, H, ztb0, ztb1, thW, bayW, text, caisson = true }) {
     const lacquer = this.ownMat('lacquer', { color: 0x7a1d12, roughness: 0.4, metalness: 0.1 });
     const gold = this.ownMat('gold', { color: 0xc9a13b, metalness: 0.85, roughness: 0.3 });
     const bronze = this.ownMat('bronze', { color: 0x4a3b28, metalness: 0.7, roughness: 0.45 });
@@ -805,19 +818,23 @@ export class PalaceBuilder {
     for (const s of [-1, 1]) {
       this.tripod(g, bronze, x0 + s * (thW * 0.35), y, ztb0 - 2.2);
     }
-    // 藻井 + 轩辕镜
-    const cz = zc - depth * 0.15;
-    const ring = new THREE.Mesh(new THREE.CylinderGeometry(bayW * 0.9, bayW * 1.05, 0.6, 8, 1, true), gold);
-    ring.material.side = THREE.DoubleSide;
-    ring.position.set(x0, y + H - 0.35, cz);
-    g.add(ring);
-    const disc = new THREE.Mesh(new THREE.CylinderGeometry(bayW * 0.55, bayW * 0.55, 0.1, 32), gold);
-    disc.position.set(x0, y + H - 0.12, cz);
-    g.add(disc);
-    const pearl = new THREE.Mesh(new THREE.SphereGeometry(0.35, 20, 14),
-      this.ownMat('silver', { color: 0xdddddd, metalness: 1, roughness: 0.08 }));
-    pearl.position.set(x0, y + H - 1.6, cz);
-    g.add(pearl);
+    // Preserve shared gold response independently of optional ceiling geometry.
+    gold.side = THREE.DoubleSide;
+    // Palace Museum study: Baohe is fully panelled, without a caisson/mirror.
+    if (caisson) {
+      // 藻井 + 轩辕镜
+      const cz = zc - depth * 0.15;
+      const ring = new THREE.Mesh(new THREE.CylinderGeometry(bayW * 0.9, bayW * 1.05, 0.6, 8, 1, true), gold);
+      ring.position.set(x0, y + H - 0.35, cz);
+      g.add(ring);
+      const disc = new THREE.Mesh(new THREE.CylinderGeometry(bayW * 0.55, bayW * 0.55, 0.1, 32), gold);
+      disc.position.set(x0, y + H - 0.12, cz);
+      g.add(disc);
+      const pearl = new THREE.Mesh(new THREE.SphereGeometry(0.35, 20, 14),
+        this.ownMat('silver', { color: 0xdddddd, metalness: 1, roughness: 0.08 }));
+      pearl.position.set(x0, y + H - 1.6, cz);
+      g.add(pearl);
+    }
     // 殿内横匾
     if (text) {
       const p = this.plaqueMesh(text, 4.2, 1.3, false);

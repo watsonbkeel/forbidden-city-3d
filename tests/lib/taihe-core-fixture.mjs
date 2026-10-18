@@ -21,7 +21,7 @@ export async function captureHistoricalKunningControl(){
 }
 
 // Only historical Taihe non-target assertions use this exact R16 Baohe frame.
-// Current R17 plinth/grid physics still uses captureTaiheControl and live builders.
+// Current R19 depth/door/ceiling physics uses captureTaiheControl and live builders.
 export async function captureHistoricalBaoheControl(){
  const path='src/scene/PalaceBuilder.js',url=new URL('../../'+path,import.meta.url);
  const restored=restorePreR17Source(path,fs.readFileSync(url));

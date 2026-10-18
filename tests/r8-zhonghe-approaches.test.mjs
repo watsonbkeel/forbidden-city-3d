@@ -1,3 +1,5 @@
+import {restorePreR19FixedRoutes} from './lib/r19-baohe-retention.mjs';
+import {buildHistoricalR18World} from './lib/historical-r18-baohe-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
@@ -10,6 +12,9 @@ import {execFileSync} from 'node:child_process';
 import {restorePreZhongheApproaches,withLegacyZhongheApproaches} from './lib/r8-zhonghe-retention.mjs';
 import routeDelta from './fixtures/r8-zhonghe-route-delta.json' with {type:'json'};
 const W=await buildWorld();
+// Frozen R8 route descriptors belong to the historical R18 world.
+// Current R19 crossing is separately exercised with the original real controller.
+const historicalR18World=await buildHistoricalR18World();
 
 test('only two central ramps disappear; official north/south stones have no walking surface',()=>{
  const p=captureZhongheApproaches();assert.equal(P.currentVisitorAccess,'UNKNOWN');
@@ -46,16 +51,18 @@ for(const dir of [-1,1])test(`stone is closed, nondegenerate and reuses material
  assert.equal(triangles,44,'fewer than the previous 72 triangles per approach');
 });
 
-test('only exact two current routes and four integration hunks can be version normalized',()=>{
+test('historical route descriptors and integration hunks retain exact version normalization',()=>{
  const bytes=fs.readFileSync(new URL('../src/scene/PalaceBuilder.js',import.meta.url));
  assert.ok(restorePreZhongheApproaches('src/scene/PalaceBuilder.js',bytes).length<bytes.length);
  assert.throws(()=>restorePreZhongheApproaches('src/scene/PalaceBuilder.js',Buffer.concat([bytes,Buffer.from('\n')])));
- const current=execFileSync(process.execPath,['tests/stepwalk.cjs','60,10','0,1','all'],{env:{...process.env,DUMP:'1'},encoding:'utf8'}).trim().split('\n').map(line=>{const i=line.indexOf('[[');return{name:line.slice(0,i).trim(),pts:JSON.parse(line.slice(i))};});
+ const live=execFileSync(process.execPath,['tests/stepwalk.cjs','60,10','0,1','all'],{env:{...process.env,DUMP:'1'},encoding:'utf8'}).trim().split('\n').map(line=>{const i=line.indexOf('[[');return{name:line.slice(0,i).trim(),pts:JSON.parse(line.slice(i))};});
+ const current=restorePreR19FixedRoutes(live);
  assert.equal(current.length,33);assert.equal(routeDelta.delta.length,2);
  for(const d of routeDelta.delta){assert.deepEqual(current.find(r=>r.name===d.after.name),d.after);assert.deepEqual(withLegacyZhongheApproaches([d.after]),[d.before]);assert.throws(()=>withLegacyZhongheApproaches([{...d.after,pts:d.after.pts.slice(1)}]));}
 });
 
-for(const fps of [60,10])for(const speed of [5,12])for(const reverse of [false,true])test(`updated through-hall and approach routes retain physical traversal ${fps}/${speed}/${reverse}`,()=>{
+for(const fps of [60,10])for(const speed of [5,12])for(const reverse of [false,true])test(`historical R18 world preserves frozen through-hall and approach traversal ${fps}/${speed}/${reverse}`,()=>{
+ const W=historicalR18World;
  const saved=W.cm.walkables;W.cm.walkables=saved.map(w=>w.type==='box'?{...w,rescue:false}:w);
  try{for(const {after:r} of routeDelta.delta){
   const pts=reverse?r.pts.toReversed():r.pts,start=pts[0];

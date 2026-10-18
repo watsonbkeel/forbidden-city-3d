@@ -1,3 +1,4 @@
+import {restorePreR19Source,restorePreR19Navigation,restorePreR19SceneRows,restorePreR19FixedRoutes} from './lib/r19-baohe-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -31,13 +32,15 @@ const clone=x=>JSON.parse(JSON.stringify(x));
 const root=new URL('../',import.meta.url);
 const s=new THREE.Scene(),b=new PalaceBuilder(s,library());
 b.buildAll(PALACE_LAYOUT);
-// These are the live R18 products. Only historical assertions restore them.
-const currentNavigation=clone({colliders:b.colliders,walkables:b.walkables});
-const currentScene=sceneRows(s);
+// Historical R18 assertions use exact R19 → R18 restoration only.
+// Live R19 identity is asserted in r19-baohe-retention and depth-ceiling tests.
+const currentNavigation=restorePreR19Navigation(clone({colliders:b.colliders,walkables:b.walkables}));
+const currentScene=restorePreR19SceneRows(sceneRows(s));
 b.dispose();
-const fixed=execFileSync(process.execPath,['tests/stepwalk.cjs','60','0','all'],{
+const liveFixed=execFileSync(process.execPath,['tests/stepwalk.cjs','60','0','all'],{
   cwd:root,env:{...process.env,DUMP:'1'},encoding:'utf8',
 }).trim().split('\n').map(line=>{const at=line.indexOf(' ');return{name:line.slice(0,at),pts:JSON.parse(line.slice(at+1))};});
+const fixed=restorePreR19FixedRoutes(liveFixed);
 const zones=loadZoneJsons(),world=await buildWorld({zones});
 const auto=buildAutoRoutes(world,zones.map(z=>z.json),{knownIssues:{}});
 
@@ -56,19 +59,19 @@ test('R18 provenance binds the frozen R17 baseline and R18 column-only product',
 });
 
 for(const[path,d]of Object.entries(source.files)){
-  test('R18 exact source reverses three one-occurrence hunks: '+path,()=>{
-    const bytes=fs.readFileSync(new URL(path,root));
+  test('Historical R18 exact source reverses three one-occurrence hunks: '+path,()=>{
+    const bytes=restorePreR19Source(path,fs.readFileSync(new URL(path,root)));
     assert.equal(sha(bytes),d.candidateSHA256);
     assert.equal(d.deltas.length,3);
     for(const h of d.deltas)assert.equal(bytes.toString().split(h.after).length,2);
     const restored=restorePreR18Source(path,bytes);
     assert.equal(sha(restored),d.baselineSHA256);
-    assert.equal(sha(bytes),d.candidateSHA256,'live source is never overwritten');
+    assert.equal(sha(bytes),d.candidateSHA256,'restored fixture source is never overwritten');
     assert.equal(restorePreR18Source(path,restored),restored);
     assert.equal(sha(restorePreR17Source(path,bytes)),previousSource.files[path].baselineSHA256);
   });
   test('R18 source rejects missing/duplicate/partially reverted hunks and unrelated drift: '+path,()=>{
-    const text=fs.readFileSync(new URL(path,root),'utf8');
+    const text=restorePreR19Source(path,fs.readFileSync(new URL(path,root))).toString();
     const bad=[text+'\n','// unrelated change\n'+text];
     for(const h of d.deltas)for(const replacement of['',h.after+h.after,h.before])bad.push(text.replace(h.after,replacement));
     for(const value of bad){
@@ -93,7 +96,7 @@ for(const[path,d]of Object.entries(source.addedFiles)){
   });
 }
 
-test('R18 live navigation has six front omissions, two rear restorations and no other splice',()=>{
+test('Historical R18 navigation has six front omissions, two rear restorations and no other splice',()=>{
   assert.equal(hash(currentNavigation),nav.afterSHA256);
   assert.deepEqual([currentNavigation.colliders.length,currentNavigation.walkables.length],[2455,120]);
   assert.deepEqual(Object.keys(nav.collections),['colliders','walkables']);
@@ -141,7 +144,7 @@ test('R18 navigation rejects missing/duplicate/reordered/local/outside rows and 
   assert.throws(()=>restorePreR18Navigation({...currentNavigation,extra:[]}));
 });
 
-test('R18 live scene changes only 三台 by minus 224 triangles with exact material/geometry identity',()=>{
+test('Historical R18 scene changes only 三台 by minus 224 triangles with exact material/geometry identity',()=>{
   assert.equal(hash(currentScene),scene.afterSHA256);
   assert.deepEqual(currentScene['三台'],scene.after);
   assert.equal(scene.after.meshes,42);
@@ -173,7 +176,7 @@ test('R18 scene rejects missing/extra/unrelated groups and same-count hash or ma
 });
 
 for(const[kind,rows]of Object.entries({fixed,auto})){
-  test(`R18 current ${kind} routes preserve the complete frozen R17 collection`,()=>{
+  test(`Historical R18 ${kind} routes preserve the complete frozen R17 collection`,()=>{
     assert.equal(rows.length,kind==='fixed'?33:59);
     assert.equal(routes[kind].beforeSHA256,routes[kind].afterSHA256);
     assert.equal(hash(rows),routes[kind].afterSHA256);
