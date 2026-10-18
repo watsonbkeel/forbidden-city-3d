@@ -1,3 +1,4 @@
+import{restorePreR13PlaqueRows}from'./lib/r13-plaque-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -49,7 +50,8 @@ test('front/rear three bay leaves, thresholds and rear flanks use the same openi
 });
 test('retained core bytes and geometry count do not grow for the grid correction',()=>{
  const {builder,group}=captureTaiheControl('太和殿');const meshes=group.children.filter(o=>o.isMesh),old=B['太和殿'];
- assert.deepEqual(meshes.filter(o=>o.userData.taiheCoreOwner).map(o=>hash(serialMesh(o))),old.coreMeshes);
+ const restored=restorePreR13PlaqueRows(meshes.map(o=>serialMesh(o)));
+ assert.deepEqual(meshes.flatMap((o,i)=>o.userData.taiheCoreOwner?[hash(restored[i])]:[]),old.coreMeshes);
  assert.equal(meshes.length,old.meshCount);assert.equal(meshes.reduce((n,o)=>n+(o.geometry.index?.count??o.geometry.attributes.position.count)/3,0),old.triangles);
  builder.dispose();
 });

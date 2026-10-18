@@ -1,3 +1,4 @@
+import{preR13PlaqueFallbackView}from'./r13-plaque-fallback-retention.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';import * as THREE from 'three';import {createHash} from 'node:crypto';
 const sha=b=>createHash('sha256').update(b).digest('hex');
@@ -7,6 +8,7 @@ const fixture=JSON.parse(bytes);
 // This view is only for frozen older tests. Validate EVERY current byte first,
 // including retained and new surfaces; never return an unchecked old snapshot.
 export function preIncenseFallbackView(mesh){
+ mesh=preR13PlaqueFallbackView(mesh);
  const row=fixture.rows[mesh.material?.name];if(!row)return mesh;const g=mesh.geometry;
  assert.equal(g.index,null);assert.equal(mesh.material.side,row.side);
  assert.deepEqual(Object.keys(g.attributes).sort(),Object.keys(row.attributes).sort());

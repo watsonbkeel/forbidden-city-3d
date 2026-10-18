@@ -1,3 +1,4 @@
+import{restorePreR13SceneRow}from'./lib/r13-plaque-retention.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {execFileSync}from'node:child_process';import *as T from'three';
 import {PalaceBuilder}from'../src/scene/PalaceBuilder.js';import {PALACE_LAYOUT}from'../src/scene/Layout.js';
 import {buildQianqingGate}from'../src/scene/palace/special/QianqingGate.js';import {buildWorld}from'./lib/world.mjs';
@@ -16,7 +17,7 @@ test('nominal shared terrace2m, provisional one-stone lip0.16m, unchanged horizo
  assert.throws(()=>buildInnerPalaceLip(builder,new T.Group(),{z0:0,w:10,d:10,y:2,ph:1.5}),/interface/);
 });
 test('all other static merged buildings and original front-hall geometry remain byte exact',()=>{
- for(const [name,row]of Object.entries(B.groups))if(!['乾清门','后三宫'].includes(name))assert.deepEqual(groups[name],row,name);
+ for(const [name,row]of Object.entries(B.groups))if(!['乾清门','后三宫'].includes(name))assert.deepEqual(restorePreR13SceneRow(name,groups[name]),row,name);
  assert.equal(groups['后三宫'].meshes,33);assert.equal(groups['后三宫'].triangles,51972);
  assert.equal(groups['后三宫'].triangles-B.groups['后三宫'].triangles,6252,'include both LOD levels in resident inventory');
  assert.equal(groups['乾清门'].triangles,B.groups['乾清门'].triangles);

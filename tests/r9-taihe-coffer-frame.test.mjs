@@ -1,3 +1,4 @@
+import{restorePreR13PlaqueSource}from'./lib/r13-plaque-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
@@ -88,7 +89,7 @@ test('frame builder does not register navigation, move core owners or allocate a
 });
 
 test('only two explicit integration lines change the frozen R8 core source', () => {
-  const current = fs.readFileSync(new URL('../src/scene/palace/special/TaiheCore.js', import.meta.url), 'utf8');
+  const current = restorePreR13PlaqueSource('src/scene/palace/special/TaiheCore.js',fs.readFileSync(new URL('../src/scene/palace/special/TaiheCore.js', import.meta.url))).toString();
   const importLine = "import { buildTaiheCofferFrame } from './TaiheCofferFrame.js';\n";
   const callLine = '  buildTaiheCofferFrame(builder,g,{x0,z0,y});\n';
   assert.equal(current.split(importLine).length, 2); assert.equal(current.split(callLine).length, 2);

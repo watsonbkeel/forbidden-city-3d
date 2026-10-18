@@ -1,3 +1,4 @@
+import {TAIHE_PLAQUE_FRAME}from'../src/scene/palace/special/TaihePlaqueFrame.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
@@ -9,7 +10,7 @@ const tris=m=>(m.geometry.index?.count??m.geometry.attributes.position.count)/3;
 test('six central bay beams have real side and underside faces, staying in the existing 18000 loaded-core allowance',()=>{
  const {builder,group}=capture();const beams=group.children.filter(o=>o.userData.taihePermanent==='central-beam');
  assert.equal(beams.length,6);assert.equal(beams.reduce((n,m)=>n+tris(m),0),60);
- const cfg=JSON.parse(fs.readFileSync(new URL('../data/interiors/taihe.json',import.meta.url)));const bytes=fs.readFileSync(new URL('../public'+cfg.model,import.meta.url));const gltf=JSON.parse(bytes.subarray(20,20+bytes.readUInt32LE(12)).toString());const assetTris=gltf.meshes.flatMap(m=>m.primitives).reduce((n,p)=>n+gltf.accessors[p.indices].count/3,0);assert.equal(assetTris,17924);assert.ok(assetTris+60<=P.budgets.sVisibleTriangles);
+ const cfg=JSON.parse(fs.readFileSync(new URL('../data/interiors/taihe.json',import.meta.url)));const bytes=fs.readFileSync(new URL('../public'+cfg.model,import.meta.url));const gltf=JSON.parse(bytes.subarray(20,20+bytes.readUInt32LE(12)).toString());const assetTris=gltf.meshes.flatMap(m=>m.primitives).reduce((n,p)=>n+gltf.accessors[p.indices].count/3,0);assert.equal(assetTris,17924);assert.ok(assetTris+TAIHE_PLAQUE_FRAME.addedTriangles-TAIHE_PLAQUE_FRAME.removedTriangles+60<=P.budgets.sVisibleTriangles);
  for(const mesh of beams){const a=mesh.geometry.attributes;assert.equal(tris(mesh),10);assert.ok([...a.position.array].every(Number.isFinite));assert.ok([...a.uv.array].every(Number.isFinite));assert.ok([...a.normal.array].every(Number.isFinite));assert.equal(mesh.castShadow,true);assert.equal(mesh.receiveShadow,true);for(let i=0;i<a.normal.count;i++)assert.ok(a.normal.getY(i)<.99,'only concealed upper faces omitted');}
  builder.dispose();
 });

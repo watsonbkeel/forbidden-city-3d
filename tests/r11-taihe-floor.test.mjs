@@ -1,3 +1,4 @@
+import{restorePreR13PlaqueRows}from'./lib/r13-plaque-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -23,7 +24,7 @@ test('floor material uses explicit color space, bounded mip storage, caching and
  let n=0;m.map.addEventListener('dispose',()=>n++);m.dispose();m.dispose();assert.equal(n,1);
 });
 test('only Taihe floor UV and material change; all positions, nonfloor geometry and navigation remain exact',()=>{
- const{builder,group}=captureTaiheControl('太和殿'),rows=group.children.filter(o=>o.isMesh).map(o=>serialMesh(o)),b=B['太和殿'];
+ const{builder,group}=captureTaiheControl('太和殿'),rows=restorePreR13PlaqueRows(group.children.filter(o=>o.isMesh).map(o=>serialMesh(o))),b=B['太和殿'];
  assert.equal(rows.length,b.meshCount);assert.equal(hash(rows.filter((_,i)=>i!==b.floorIndex)),b.nonfloor);
  const r=rows[b.floorIndex],old=b.floor;assert.equal(r.material.name,P.cacheKey);assert.deepEqual(r.matrix,old.matrix);assert.equal(r.index,old.index);
  for(const k of Object.keys(r.attributes))if(k!=='uv')assert.deepEqual(r.attributes[k],old.attributes[k]);

@@ -1,3 +1,4 @@
+import { TAIHE_PLAQUE_FRAME } from './TaihePlaqueFrame.js';
 import { appendTaiheDaisFront, buildTaiheDaisFrontNavigation } from './TaiheDaisFront.js';
 import { buildTaiheBeamFrame } from './TaiheBeamFrame.js';
 import { buildTaiheCofferFrame } from './TaiheCofferFrame.js';
@@ -99,8 +100,8 @@ export function buildTaiheCoreFallback(builder, parent, { x0, z0, y }) {
   for(let k=0;k<6;k++){const a=k*Math.PI/3;put(g,new THREE.OctahedronGeometry(c.satelliteRadius),m.pearl,Math.cos(a)*c.satelliteRing,c.sphereY+.2,c.z+Math.sin(a)*c.satelliteRing);}
   // South-facing native text atlas; no downloaded imagery/font is embedded.
   const p=P.plaque,q=P.couplets;
-  box(g,m.dark,p.width,p.height,.16,0,p.bottomY+p.height/2,p.z);
-  glyph(g,m.glyph,p.width-.18,p.height-.18,0,p.bottomY+p.height/2,p.z-.081,[0,.625,1,1]);
+  box(g,m.darkGold,p.width,p.height,.16,0,p.bottomY+p.height/2,p.z);
+  glyph(g,m.glyph,TAIHE_PLAQUE_FRAME.fieldWidth,TAIHE_PLAQUE_FRAME.fieldHeight,0,p.bottomY+p.height/2,p.z-.081,[0,.625,1,1]);
   for(const [x,rect] of [[q.viewerRightX,[0,0,.078125,.625]],[-q.viewerRightX,[.078125,0,.15625,.625]]]) {
     box(g,m.dark,q.width,q.height,.14,x,q.bottomY+q.height/2,q.z);
     glyph(g,m.glyph,q.width-.12,q.height-.12,x,q.bottomY+q.height/2,q.z-.071,rect);

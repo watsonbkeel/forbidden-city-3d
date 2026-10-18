@@ -1,3 +1,4 @@
+import{restorePreR13PlaqueSource}from'./lib/r13-plaque-retention.mjs';
 import {restoreHistoricalFallbackAttributes} from './lib/taihe-shell-geometry-retention.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {createHash} from 'node:crypto';import * as THREE from 'three';import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
 import {captureTaiheControl} from './lib/taihe-core-fixture.mjs';
@@ -112,7 +113,7 @@ test('malformed UV ownership and foreign colors fail before mutating geometry/ma
  const {applyTaiheColumnResponse}=await response();for(const kind of ['mixed','range','NaN','missing','color','factor']){const s=await source(),m=gold(s),g=m.geometry;if(kind==='missing')g.deleteAttribute('uv');else if(kind==='mixed'){const ids=[g.index.getX(0),g.index.getX(1),g.index.getX(2)];g.attributes.uv.setXY(ids[0],0,0);g.attributes.uv.setXY(ids[1],.5,.5);}else if(kind==='range')g.attributes.uv.setXY(0,1.5,.5);else if(kind==='NaN')g.attributes.uv.setXY(0,NaN,.5);else if(kind==='color')g.setAttribute('color',new THREE.Float32BufferAttribute(new Float32Array(g.attributes.position.count*3).fill(1),3));else m.material.color.r=0;
  const color=g.attributes.color;assert.throws(()=>applyTaiheColumnResponse(m),/Taihe column response/);assert.equal(g.attributes.color,color);assert.equal(m.material.vertexColors,false);}
 });
-test('selected protected files remain byte-exact after the finite welcome restoration',()=>{for(const [p,h] of Object.entries(base.protectedFiles))assert.equal(sha(p==='main.js'?restoreLoadingWelcomeBytes(read(p)):read(p)),h,p);});
+test('selected protected files remain byte-exact after the finite welcome restoration',()=>{for(const [p,h] of Object.entries(base.protectedFiles))assert.equal(sha(p==='main.js'?restoreLoadingWelcomeBytes(read(p)):restorePreR13PlaqueSource(p,read(p))),h,p);});
 
 test('repeat installation is idempotent and never compounds or shares gain arrays',async()=>{
  const {applyTaiheColumnResponse}=await response(),b=captureTaiheControl('太和殿'),bm=gold(b.group),first=bm.geometry.attributes.color,bytes=Buffer.from(first.array.buffer).slice();

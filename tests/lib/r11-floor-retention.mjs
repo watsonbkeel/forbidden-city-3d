@@ -1,3 +1,4 @@
+import {restorePreR13PlaqueRows}from'./r13-plaque-retention.mjs';
 import {restorePreR12InnerSource} from './r12-inner-source-retention.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -12,6 +13,7 @@ export function restorePreR11FloorSource(path,bytes){
  assert.equal(sha(out),source.beforeSHA256);return Buffer.from(out);
 }
 export function restorePreR11FloorRows(rows){
+ rows=restorePreR13PlaqueRows(rows);
  if(hash(rows)===mesh.beforeSHA256)return rows;
  assert.equal(rows.length,mesh.meshCount);assert.equal(hash(rows),mesh.afterSHA256,'exact R11 single floor change');
  assert.equal(hash(rows[mesh.floorIndex]),mesh.afterSHA256Row);const out=structuredClone(rows);out[mesh.floorIndex]=structuredClone(mesh.before);

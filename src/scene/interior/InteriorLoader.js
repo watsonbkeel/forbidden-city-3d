@@ -1,3 +1,4 @@
+import { installTaihePlaqueSurround } from '../palace/special/TaihePlaqueFrame.js';
 /**
  * S 档内景加载器（P1-I）。
  *
@@ -152,6 +153,7 @@ export class InteriorLoader {
     if (h.id === 'kunning') validateKunningFurniture(root, cfg);
     if (h.id === 'taihe') {
       validateTaiheCore(root, cfg);
+      installTaihePlaqueSurround(root);
       const fallback = taiheFallbackMeshes(this.scene);
       if (fallback.length !== 8 || fallback.some(m => !m.visible)) throw new Error('Taihe fallback ownership unavailable');
       h.fallback = fallback;
