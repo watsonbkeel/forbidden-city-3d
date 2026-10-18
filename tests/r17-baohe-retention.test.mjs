@@ -1,3 +1,4 @@
+import {restorePreR18Source,restorePreR18Navigation,restorePreR18SceneRows} from './lib/r18-baohe-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -31,8 +32,10 @@ const clone=x=>JSON.parse(JSON.stringify(x));
 const root=new URL('../',import.meta.url);
 const s=new THREE.Scene(),b=new PalaceBuilder(s,library());
 b.buildAll(PALACE_LAYOUT);
-const currentNavigation=clone({colliders:b.colliders,walkables:b.walkables});
-const currentScene=sceneRows(s);
+// Explicit R18 restoration keeps these historical assertions bound to R17 bytes.
+// Live R18 identity is asserted directly in r18-baohe-retention.test.mjs.
+const currentNavigation=restorePreR18Navigation(clone({colliders:b.colliders,walkables:b.walkables}));
+const currentScene=restorePreR18SceneRows(sceneRows(s));
 b.dispose();
 const currentRoutes=execFileSync(process.execPath,['tests/stepwalk.cjs','60','0','all'],{
   cwd:root,env:{...process.env,DUMP:'1'},encoding:'utf8',
@@ -51,7 +54,7 @@ test('R17 fixture provenance fixes the reviewed R16 and R17 source revisions',()
 
 for(const[path,d]of Object.entries(source.files)){
   test('R17 exact one-occurrence reverse source hunks: '+path,()=>{
-    const bytes=fs.readFileSync(new URL(path,root));
+    const bytes=restorePreR18Source(path,fs.readFileSync(new URL(path,root)));
     assert.equal(sha(bytes),d.candidateSHA256);
     assert.equal(d.baselineSHA256,previousSource.files[path].candidateSHA256);
     for(const h of d.deltas)assert.equal(bytes.toString().split(h.after).length,2);
@@ -62,7 +65,7 @@ for(const[path,d]of Object.entries(source.files)){
     assert.equal(sha(restoreR16SourceIfPresent(path,bytes)),previousSource.files[path].baselineSHA256);
   });
   test('R17 source rejects drift, missing hunks, duplicate hunks and unrelated edits: '+path,()=>{
-    const text=fs.readFileSync(new URL(path,root),'utf8');
+    const text=restorePreR18Source(path,fs.readFileSync(new URL(path,root))).toString();
     for(const bad of[text+'\n','// unrelated change\n'+text])assert.throws(()=>restorePreR17Source(path,Buffer.from(bad)));
     for(const h of d.deltas)for(const replacement of['',h.after+h.after,h.before]){
       const bad=Buffer.from(text.replace(h.after,replacement));

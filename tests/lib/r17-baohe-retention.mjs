@@ -1,3 +1,4 @@
+import {restorePreR18Source,restorePreR18Navigation,restorePreR18SceneRow,restorePreR18SceneRows} from './r18-baohe-retention.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import source from '../fixtures/r17-baohe-source-delta.json' with {type:'json'};
@@ -15,6 +16,7 @@ const hash=value=>sha(JSON.stringify(value));
 export function restorePreR17Source(path,bytes){
   const d=source.files[path];
   if(!d||sha(bytes)===d.baselineSHA256)return bytes;
+  bytes=restorePreR18Source(path,bytes);
   assert.equal(sha(bytes),d.candidateSHA256,`exact R17 Baohe plinth/column source: ${path}`);
   let out=bytes.toString();
   for(const h of [...d.deltas].reverse()){
@@ -29,7 +31,8 @@ export function restorePreR17Source(path,bytes){
 export function restorePreR17Navigation(value){
   const digest=hash(value);
   if(digest===nav.beforeSHA256)return value;
-  assert.equal(digest,nav.afterSHA256,'exact R17 complete registered navigation');
+  value=restorePreR18Navigation(value);
+  assert.equal(hash(value),nav.afterSHA256,'exact R17 complete registered navigation');
   const out=JSON.parse(JSON.stringify(value));
   for(const[key,d]of Object.entries(nav.collections)){
     assert.equal(out[key].length,d.afterCount);
@@ -46,6 +49,7 @@ export function restorePreR17Navigation(value){
 
 export function restorePreR17SceneRow(name,row){
   if(name!==scene.name||JSON.stringify(row)===JSON.stringify(scene.before))return row;
+  row=restorePreR18SceneRow(name,row);
   assert.deepEqual(row,scene.after,'exact R17 complete three-hall geometry');
   return structuredClone(scene.before);
 }
@@ -53,7 +57,8 @@ export function restorePreR17SceneRow(name,row){
 export function restorePreR17SceneRows(rows){
   const digest=hash(rows);
   if(digest===scene.beforeSHA256)return rows;
-  assert.equal(digest,scene.afterSHA256,'exact R17 complete scene groups');
+  rows=restorePreR18SceneRows(rows);
+  assert.equal(hash(rows),scene.afterSHA256,'exact R17 complete scene groups');
   for(const[name,row]of Object.entries(scene.unchanged))assert.deepEqual(rows[name],row,`unchanged R16 scene group: ${name}`);
   const out={...structuredClone(rows),[scene.name]:restorePreR17SceneRow(scene.name,rows[scene.name])};
   assert.equal(hash(out),scene.beforeSHA256,'exact R16 scene groups restored');

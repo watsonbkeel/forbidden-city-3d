@@ -21,6 +21,7 @@ import { buildKunningPalace } from './palace/special/KunningPalace.js';
 import { threeHallTerraceProfile, closedTerraceStairGeometry } from './palace/ThreeHallTerrace.js';
 import { taiheSouthTier, buildTaiheSouthTier } from './palace/TaiheFrontApproaches.js';
 import { baoheColumnGrid } from './palace/BaoheColumnGrid.js';
+import { baoheColumnPresent, BAOHE_COLUMN_IDENTITY } from './palace/BaoheColumnIdentity.js';
 import { buildBaoheHallPlinth } from './palace/BaoheHallPlinth.js';
 import { baoheNorthTier, buildBaoheNorthTier, createBaoheNorthDetail, installBaoheNorthDetail } from './palace/BaoheNorthApproaches.js';
 import { buildZhongheImperialApproach } from './palace/ZhongheImperialApproach.js';
@@ -653,6 +654,7 @@ export class PalaceBuilder {
     const openHalf = (spec.open ?? 3) * bayW / 2;
     const throne = !!spec.throne;
     const taiheCore = data.name === '太和殿';
+    const baoheColumns = data.name === '保和殿';
     const taiheGrid = taiheCore ? taiheColumnGrid(w, d) : null;
     const facadeGrid = taiheGrid ?? (data.name === '保和殿' ? baoheColumnGrid(w) : null);
     const openLeft = facadeGrid?.openLeft ?? -openHalf;
@@ -670,16 +672,18 @@ export class PalaceBuilder {
     // 柱网
     for (let i = 0; i <= bays; i++) {
       const x = facadeGrid ? x0 + facadeGrid.x[i] : x0 - w / 2 + i * bayW;
-      // Keep inherited column inclusion/material ownership while registering
-      // Baohe frontage stations. Its full reduction-column structure is pending.
+      // Keep the established frontage stations; Baohe separately corrects which
+      // inner posts exist. Its complete five-bay depth registration is pending.
       const classificationX = data.name === '保和殿' ? x0 - w / 2 + i * bayW : x;
       for (let k = 0; k <= nd; k++) {
         const z = taiheGrid ? z0 + taiheGrid.z[k] : z0 - d / 2 + k * dBay;
         const edge = i === 0 || i === bays || k === 0 || k === nd;
         if (taiheGrid && !edge && taiheGrid.centralColumnIndices.includes(i)) continue;
-        if (!edge && throne && Math.abs(classificationX - x0) < bayW * 0.6 && z > ztb0 - 1 && z < ztb1 + 1) continue;
-        const isGold = !taiheCore && throne && !edge && Math.abs(classificationX - x0) < bayW * 1.6 && z > ztb0 - dBay;
+        if (baoheColumns && !baoheColumnPresent(i, k, bays, nd)) continue;
+        if (!baoheColumns && !edge && throne && Math.abs(classificationX - x0) < bayW * 0.6 && z > ztb0 - 1 && z < ztb1 + 1) continue;
+        const isGold = !baoheColumns && !taiheCore && throne && !edge && Math.abs(classificationX - x0) < bayW * 1.6 && z > ztb0 - dBay;
         this.column(g, colGeo, isGold ? gold : colMat, x, z, y, H, r);
+        if (baoheColumns) g.children.at(-1).userData.baoheColumn = { i, k, profile: BAOHE_COLUMN_IDENTITY.id };
       }
     }
 
