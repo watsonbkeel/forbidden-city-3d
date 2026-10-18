@@ -5,8 +5,8 @@ import fs from 'node:fs';
 import {restorePreR19Source,assertR19AddedSource} from './r19-baohe-retention.mjs';
 import {historicalR19RoofModule} from './historical-r19-baohe-fixture.mjs';
 
-// Explicit historical fixture: never used by the application or current R20
-// acceptance. Reverse exact R20 then R19 bytes to the frozen R18 builder;
+// Explicit historical fixture: never used by the application or current R21
+// acceptance. Reverse exact R21, R20, then R19 bytes to the frozen R18 builder;
 // preserve module import targets, without writing a historical file into src.
 const path='src/scene/PalaceBuilder.js',url=new URL('../../'+path,import.meta.url);
 const added='src/scene/palace/BaoheDepthGrid.js';

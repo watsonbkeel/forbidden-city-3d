@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {BAOHE_DEPTH_GRID as P,baoheDepthGrid,baoheDepthColumnPresent} from '../src/scene/palace/BaoheDepthGrid.js';
 import {captureBaoheDepth} from './lib/baohe-depth-capture.mjs';
+import {HistoricalR20PalaceBuilder} from './lib/historical-r20-baohe-fixture.mjs';
 import {HistoricalR19PalaceBuilder} from './lib/historical-r19-baohe-fixture.mjs';
 import baseline from './fixtures/r19-baohe-depth-baseline.json' with {type:'json'};
 import {buildWorld,walkStraight} from './lib/world.mjs';
@@ -12,9 +13,27 @@ test('station occupancy follows all60 drawn intersections, omitting only row2 si
 test('all54red posts and physical boxes share exact new station centres',()=>{const boxes=new Set();for(const {mesh,box}of A.columns){const{i,k}=mesh.userData.baoheColumn;assert.equal(mesh.material.name,'wood_column');near(mesh.position.z,P.z[k]);near((box.min.z+box.max.z)/2,P.z[k]);near((box.min.x+box.max.x)/2,mesh.position.x);assert.equal(A.builder.colliders.filter(b=>b===box).length,1);assert.ok(!boxes.has(box));boxes.add(box);}for(const x of[-14.7,-9.15,-3.65,3.65,9.15,14.7])assert.equal(A.builder.colliders.filter(b=>Math.abs((b.min.x+b.max.x)/2-x)<1e-7&&Math.abs((b.min.z+b.max.z)/2-P.z[2])<1e-7).length,0);});
 test('door geometry, thresholds and obstruction boxes use asymmetric front/rear planes',()=>{for(const z of[-8.3,10.8]){assert.equal(A.boxes.filter(b=>b.material==='wood_column'&&b.size[1]===.25&&Math.abs(b.position[2]-z)<1e-7).length,1);assert.equal(A.builder.colliders.filter(b=>Math.abs((b.min.z+b.max.z)/2-z)<1e-7&&Math.abs(b.max.z-b.min.z-.5)<1e-7).length,2);assert.equal(A.boxes.filter(b=>b.material==='lattice_doors'&&Math.abs(b.position[2]-z)<1e-7).length,6);}for(const old of[-12.5,12.5])assert.equal(A.builder.colliders.filter(b=>Math.abs((b.min.z+b.max.z)/2-old)<1e-7&&Math.abs(b.max.z-b.min.z-.5)<1e-7).length,0);});
 test('gable enclosures close at outer axes and front outer eave beam remains separate',()=>{for(const b of A.boxes.filter(b=>b.material==='wall_red'&&b.size[0]===.9)){near(b.size[2],21.6);near(b.position[2],0);}assert.equal(A.boxes.filter(b=>b.material==='caihua_beam'&&b.size[2]===.6&&Math.abs(b.position[2]+10.8)<1e-7).length,1);assert.equal(A.builder.colliders.filter(b=>Math.abs(b.min.z+10.8)<1e-7&&Math.abs(b.max.z-10.8)<1e-7&&Math.abs(b.max.x-b.min.x-1)<1e-7).length,2);});
-test('live Baohe has no generic ring disc or sphere; retained furniture and shared gold response stay exact',()=>{assert.equal(baseline.halls['保和殿'].caissonCount,3);assert.equal(A.summary.caissonCount,0);for(const k of['furnitureSHA256','throneNavigationSHA256','throneInput','walkablesSHA256'])assert.deepEqual(A.summary[k],baseline.halls['保和殿'][k],k);});
-test('historical frozen R19 ceiling planes and roof retain their original fingerprints; live R20 changes both intentionally',()=>{const old=captureBaoheDepth('保和殿',HistoricalR19PalaceBuilder);try{for(const k of['planesSHA256','roofSHA256']){assert.deepEqual(old.summary[k],baseline.halls['保和殿'][k],k);assert.notEqual(A.summary[k],old.summary[k],k);}}finally{old.builder.dispose();}});
-for(const name of['太和殿','乾清宫','坤宁宫','中和殿'])test(name+' complete geometry material and collision identity retained',()=>assert.deepEqual(captureBaoheDepth(name).summary,baseline.halls[name]));
+test('live Baohe retains caisson retirement and throne navigation; frozen R20 retains pre-R21 furnishing fingerprints',()=>{
+ const old=captureBaoheDepth('保和殿',HistoricalR20PalaceBuilder),expected=baseline.halls['保和殿'];
+ try{
+  assert.equal(expected.caissonCount,3);assert.equal(A.summary.caissonCount,0);
+  for(const k of['furnitureSHA256','throneNavigationSHA256','throneInput','walkablesSHA256'])assert.deepEqual(old.summary[k],expected[k],k);
+  for(const k of['throneNavigationSHA256','walkablesSHA256'])assert.deepEqual(A.summary[k],expected[k],k);
+  assert.deepEqual(A.summary.throneInput,{...expected.throneInput,baohe:true});
+  assert.notEqual(A.summary.furnitureSHA256,old.summary.furnitureSHA256,'R21 furnishing change is tested directly in its own acceptance');
+ }finally{old.builder.dispose();}
+});
+test('historical frozen R19 ceiling planes and roof retain their original fingerprints; live height revision changes both intentionally',()=>{const old=captureBaoheDepth('保和殿',HistoricalR19PalaceBuilder);try{for(const k of['planesSHA256','roofSHA256']){assert.deepEqual(old.summary[k],baseline.halls['保和殿'][k],k);assert.notEqual(A.summary[k],old.summary[k],k);}}finally{old.builder.dispose();}});
+for(const name of['太和殿','乾清宫','坤宁宫','中和殿'])test(name+' complete geometry material and collision identity retained with explicit non-Baohe dispatch',()=>{
+ const current=captureBaoheDepth(name),old=captureBaoheDepth(name,HistoricalR20PalaceBuilder),expected=baseline.halls[name];
+ try{
+  assert.deepEqual(old.summary,expected,'frozen R20 historical identity');
+  // Qianqing uses buildHall's explicit R21 false dispatch; Zhonghe's separate
+  // square-hall builder keeps its original argument object byte-for-byte.
+  const liveExpected=name==='乾清宫'?{...expected,throneInput:{...expected.throneInput,baohe:false}}:expected;
+  assert.deepEqual(current.summary,liveExpected);
+ }finally{current.builder.dispose();old.builder.dispose();}
+});
 const W=await buildWorld();
 for(const reverse of[false,true])test('real collision clears reduced front row across six former sites '+reverse,()=>{let a=[-17,123.2-3.7],b=[17,123.2-3.7];if(reverse)[a,b]=[b,a];const r=walkStraight(W,a,b,{feet0:9,step:.025});assert.ok(r.reached>r.total-.1,JSON.stringify(r));near(r.feet,9);});
 for(const x of[-6.4,-2.075,2.075,6.4])for(const reverse of[false,true])test(`north approach to recessed retained door x${x} reverse${reverse}`,()=>{let a=[x,140.2],b=[x,133.2];if(reverse)[a,b]=[b,a];const r=walkStraight(W,a,b,{feet0:reverse?9:8,step:.025});assert.ok(r.reached>r.total-.1,JSON.stringify(r));near(r.feet,reverse?8:9);});

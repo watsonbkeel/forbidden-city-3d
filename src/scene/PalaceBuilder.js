@@ -22,6 +22,7 @@ import { threeHallTerraceProfile, closedTerraceStairGeometry } from './palace/Th
 import { taiheSouthTier, buildTaiheSouthTier } from './palace/TaiheFrontApproaches.js';
 import { baoheColumnGrid } from './palace/BaoheColumnGrid.js';
 import { BAOHE_DEPTH_GRID, baoheDepthGrid, baoheDepthColumnPresent } from './palace/BaoheDepthGrid.js';
+import { buildBaoheThroneScreen, buildBaoheInteriorPlaque, buildBaoheThroneChair } from './palace/BaoheThroneScreen.js';
 import { baoheInteriorFrame, baoheHighColumn, buildBaoheInteriorCeiling } from './palace/BaoheInteriorFrame.js';
 import { buildBaoheHallPlinth } from './palace/BaoheHallPlinth.js';
 import { baoheNorthTier, buildBaoheNorthTier, createBaoheNorthDetail, installBaoheNorthDetail } from './palace/BaoheNorthApproaches.js';
@@ -775,7 +776,7 @@ export class PalaceBuilder {
         ceiling.position.set(x0, y + H - 0.05, z0);
         g.add(ceiling);
       }
-      if (throne) this.throneArea(g, { x0, y, H, ztb0, ztb1, thW, bayW, text: spec.inner, caisson: !baoheDepth });
+      if (throne) this.throneArea(g, { x0, y, H, ztb0, ztb1, thW, bayW, text: spec.inner, caisson: !baoheDepth, baohe: !!baoheDepth });
     }
 
     // 殿外竖匾
@@ -803,7 +804,7 @@ export class PalaceBuilder {
     this.ownedMaterials.push(...(roof.userData.ownedMaterials ?? []));
   }
 
-  throneArea(g, { x0, y, H, ztb0, ztb1, thW, bayW, text, caisson = true }) {
+  throneArea(g, { x0, y, H, ztb0, ztb1, thW, bayW, text, caisson = true, baohe = false }) {
     const lacquer = this.ownMat('lacquer', { color: 0x7a1d12, roughness: 0.4, metalness: 0.1 });
     const gold = this.ownMat('gold', { color: 0xc9a13b, metalness: 0.85, roughness: 0.3 });
     const bronze = this.ownMat('bronze', { color: 0x4a3b28, metalness: 0.7, roughness: 0.45 });
@@ -820,12 +821,18 @@ export class PalaceBuilder {
     // 宝座 + 屏风
     const ty = y + 1.25;
     const tz = zc + depth * 0.1;
-    this.box(g, gold, 1.8, 0.7, 1.3, x0, ty + 0.35, tz);
-    this.box(g, gold, 1.9, 1.5, 0.25, x0, ty + 1.2, tz + 0.6);
-    for (const s of [-1, 1]) this.box(g, gold, 0.2, 0.6, 1.2, x0 + s * 0.9, ty + 0.9, tz);
-    this.box(g, gold, Math.min(thW * 0.7, 6), 3.2, 0.3, x0, ty + 1.6, tz + depth * 0.32);
-    for (let k = 0; k < 3; k++) {
-      this.box(g, gold, 1.2, 0.5, 0.32, x0 + (k - 1) * 1.6, ty + 3.4, tz + depth * 0.32);
+    if (baohe) buildBaoheThroneChair(this,g,{x0,ty,tz});
+    else {
+      this.box(g, gold, 1.8, 0.7, 1.3, x0, ty + 0.35, tz);
+      this.box(g, gold, 1.9, 1.5, 0.25, x0, ty + 1.2, tz + 0.6);
+      for (const s of [-1, 1]) this.box(g, gold, 0.2, 0.6, 1.2, x0 + s * 0.9, ty + 0.9, tz);
+    }
+    if (baohe) buildBaoheThroneScreen(this,g,{x0,ty,tz,depth,thW});
+    else {
+      this.box(g, gold, Math.min(thW * 0.7, 6), 3.2, 0.3, x0, ty + 1.6, tz + depth * 0.32);
+      for (let k = 0; k < 3; k++) {
+        this.box(g, gold, 1.2, 0.5, 0.32, x0 + (k - 1) * 1.6, ty + 3.4, tz + depth * 0.32);
+      }
     }
     // 香炉、甪端
     for (const s of [-1, 1]) {
@@ -850,7 +857,7 @@ export class PalaceBuilder {
     }
     // 殿内横匾
     if (text) {
-      const p = this.plaqueMesh(text, 4.2, 1.3, false);
+      const p = baohe ? buildBaoheInteriorPlaque(this) : this.plaqueMesh(text, 4.2, 1.3, false);
       p.position.set(x0, y + H - 1.1, ztb0 - 0.5);
       p.rotation.y = Math.PI;
       g.add(p);

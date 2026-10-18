@@ -1,8 +1,10 @@
 import fs from 'node:fs';
+import {assertR21AddedSource} from './r21-baohe-retention.mjs';
 import {restorePreR20Source,assertR20AddedSource} from './r20-baohe-retention.mjs';
 
-// Explicit frozen R19 fixture. Both changed builders are independently bound
-// and restored in memory; the live world helper still imports current product.
+// Explicit frozen R19 historical fixture. Exact R21 then R20 builder deltas
+// are restored in memory; the live world helper still imports current product.
+assertR21AddedSource('src/scene/palace/BaoheThroneScreen.js',fs.readFileSync(new URL('../../src/scene/palace/BaoheThroneScreen.js',import.meta.url)));
 const added='src/scene/palace/BaoheInteriorFrame.js';
 assertR20AddedSource(added,fs.readFileSync(new URL('../../'+added,import.meta.url)));
 function historicalModule(path,overrides={}){

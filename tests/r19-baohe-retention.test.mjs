@@ -35,7 +35,7 @@ const clone=x=>JSON.parse(JSON.stringify(x));
 const root=new URL('../',import.meta.url);
 const s=new THREE.Scene(),b=new PalaceBuilder(s,library());
 b.buildAll(PALACE_LAYOUT);
-// Navigation still uses the live R20 product. Scene/source assertions below
+// Navigation still uses the live R21 product. Scene/source assertions below
 // explicitly restore frozen R19, whose original fingerprints are never changed.
 const currentNavigation=clone({colliders:b.colliders,walkables:b.walkables});
 const historicalR19Scene=restorePreR20SceneRows(sceneRows(s));

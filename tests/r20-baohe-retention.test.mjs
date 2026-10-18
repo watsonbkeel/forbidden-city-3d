@@ -9,6 +9,8 @@ import {PALACE_LAYOUT} from '../src/scene/Layout.js';
 import {library,sceneRows} from './lib/inner-palace-fixture.mjs';
 import {buildWorld,loadZoneJsons} from './lib/world.mjs';
 import {buildAutoRoutes} from './lib/auto-routes.mjs';
+import {HistoricalR20PalaceBuilder} from './lib/historical-r20-baohe-fixture.mjs';
+import {restorePreR21Source} from './lib/r21-baohe-retention.mjs';
 import {HistoricalR19PalaceBuilder} from './lib/historical-r19-baohe-fixture.mjs';
 import {restorePreR20Source,assertR20AddedSource,restorePreR20SceneRow,restorePreR20SceneRows} from './lib/r20-baohe-retention.mjs';
 import {restorePreR19Source,restorePreR19SceneRows,assertR19RouteIdentity} from './lib/r19-baohe-retention.mjs';
@@ -39,7 +41,9 @@ function capture(Builder){
     return {rows,navigation,bytes,materials:materials.size,privateShell,meshes:Object.values(rows).reduce((n,r)=>n+r.meshes,0),triangles:Object.values(rows).reduce((n,r)=>n+r.triangles,0)};
   }finally{b.dispose();}
 }
-const live=capture(PalaceBuilder),historical=capture(HistoricalR19PalaceBuilder);
+// R20 assertions below intentionally execute exact frozen R20 source. Current
+// R21 has its own direct acceptance; its navigation still runs unmodified here.
+const current=capture(PalaceBuilder),frozenR20=capture(HistoricalR20PalaceBuilder),historical=capture(HistoricalR19PalaceBuilder);
 
 test('R20 provenance binds only two changed sources and the new frame module; every original R19 fingerprint file stays byte-exact',()=>{
   for(const fixture of[source,scene]){
@@ -55,17 +59,17 @@ test('R20 provenance binds only two changed sources and the new frame module; ev
 });
 
 for(const[path,d]of Object.entries(source.files)){
-  test('exact current R20 source restores frozen R19 before the original historical chain: '+path,()=>{
-    const bytes=fs.readFileSync(new URL(path,root));assert.equal(sha(bytes),d.candidateSHA256);
+  test('exact frozen R20 historical source restores frozen R19 before the original historical chain: '+path,()=>{
+    const bytes=restorePreR21Source(path,fs.readFileSync(new URL(path,root)));assert.equal(sha(bytes),d.candidateSHA256);
     assert.equal(d.deltas.length,path.endsWith('/PalaceBuilder.js')?6:4);
     for(const h of d.deltas)assert.equal(bytes.toString().split(h.after).length,2);
     const restored=restorePreR20Source(path,bytes);
     assert.equal(sha(restored),d.baselineSHA256);assert.equal(restorePreR20Source(path,restored),restored);
-    assert.equal(sha(bytes),d.candidateSHA256,'restoration never overwrites live source');
+    assert.equal(sha(bytes),d.candidateSHA256,'restoration never overwrites frozen R20 input');
     assert.equal(sha(restorePreR19Source(path,bytes)),path.endsWith('/PalaceBuilder.js')?previousSource.files[path].baselineSHA256:d.baselineSHA256);
   });
   test('R20 source rejects append/delete/duplicate/partial reverse and unrelated edits: '+path,()=>{
-    const text=fs.readFileSync(new URL(path,root),'utf8'),bad=['',text+'\n','// unrelated\n'+text];
+    const text=restorePreR21Source(path,fs.readFileSync(new URL(path,root))).toString(),bad=['',text+'\n','// unrelated\n'+text];
     for(const h of d.deltas)for(const replacement of['',h.after+h.after,h.before])bad.push(text.replace(h.after,replacement));
     for(const value of bad){assert.throws(()=>restorePreR20Source(path,Buffer.from(value)));assert.throws(()=>restorePreR19Source(path,Buffer.from(value)));}
   });
@@ -84,51 +88,52 @@ for(const[path,d]of Object.entries(source.addedFiles)){
   });
 }
 
-test('live R20 exact scene reverses only 三台; frozen R19 builder reproduces the original scene independently',()=>{
-  assert.equal(hash(live.rows),scene.afterSHA256);assert.deepEqual(live.rows['三台'],scene.after);
+test('historical frozen R20 exact scene reverses only 三台; frozen R19 builder reproduces the original scene independently',()=>{
+  assert.equal(hash(frozenR20.rows),scene.afterSHA256);assert.deepEqual(frozenR20.rows['三台'],scene.after);
   assert.equal(hash(historical.rows),scene.beforeSHA256);assert.deepEqual(historical.rows['三台'],scene.before);
   assert.equal(Object.keys(scene.unchanged).length,7);
-  for(const[name,row]of Object.entries(scene.unchanged))assert.deepEqual(live.rows[name],row);
-  const restored=restorePreR20SceneRows(live.rows);assert.deepEqual(restored,historical.rows);
-  assert.equal(restorePreR20SceneRows(restored),restored);assert.equal(hash(live.rows),scene.afterSHA256);
-  assert.deepEqual(restorePreR20SceneRow('三台',live.rows['三台']),scene.before);
-  assert.equal(hash(restorePreR19SceneRows(live.rows)),previousScene.beforeSHA256);
+  for(const[name,row]of Object.entries(scene.unchanged))assert.deepEqual(frozenR20.rows[name],row);
+  const restored=restorePreR20SceneRows(frozenR20.rows);assert.deepEqual(restored,historical.rows);
+  assert.equal(restorePreR20SceneRows(restored),restored);assert.equal(hash(frozenR20.rows),scene.afterSHA256);
+  assert.deepEqual(restorePreR20SceneRow('三台',frozenR20.rows['三台']),scene.before);
+  assert.equal(hash(restorePreR19SceneRows(frozenR20.rows)),previousScene.beforeSHA256);
 });
 
 test('R20 scene reverse rejects missing/extra/unrelated groups and count-preserving material/geometry drift',()=>{
-  for(const name of Object.keys(live.rows)){
-    const missing=clone(live.rows);delete missing[name];
-    const count=clone(live.rows);count[name].triangles++;
-    const identity=clone(live.rows);identity[name].hash='changed-geometry-or-material';
+  for(const name of Object.keys(frozenR20.rows)){
+    const missing=clone(frozenR20.rows);delete missing[name];
+    const count=clone(frozenR20.rows);count[name].triangles++;
+    const identity=clone(frozenR20.rows);identity[name].hash='changed-geometry-or-material';
     for(const bad of[missing,count,identity]){assert.throws(()=>restorePreR20SceneRows(bad));assert.throws(()=>restorePreR19SceneRows(bad));}
   }
-  assert.throws(()=>restorePreR20SceneRows({...live.rows,extra:live.rows['午门']}));
+  assert.throws(()=>restorePreR20SceneRows({...frozenR20.rows,extra:frozenR20.rows['午门']}));
   for(const bad of[{...scene.after,hash:scene.before.hash},{...scene.after,triangles:scene.after.triangles+1}])assert.throws(()=>restorePreR20SceneRow('三台',bad));
 });
 
-test('R13 single-row entry restores exact R20 and earlier identities without a mesh-count gate; rejects mutated rows',()=>{
-  for(const row of[live.rows['三台'],historical.rows['三台'],historicalR13.sceneAfter,historicalR13.sceneBefore])
+test('R13 single-row entry restores exact R21, R20 and earlier identities without a mesh-count gate; rejects mutated rows',()=>{
+  for(const row of[current.rows['三台'],frozenR20.rows['三台'],historical.rows['三台'],historicalR13.sceneAfter,historicalR13.sceneBefore])
     assert.deepEqual(restorePreR13SceneRow('三台',row),historicalR13.sceneBefore);
-  for(const row of[live.rows['三台'],historical.rows['三台'],historicalR13.sceneAfter,historicalR13.sceneBefore]){
+  for(const row of[current.rows['三台'],frozenR20.rows['三台'],historical.rows['三台'],historicalR13.sceneAfter,historicalR13.sceneBefore]){
     for(const bad of[{...row,hash:'unreviewed geometry/material'}, {...row,triangles:row.triangles+1}, {...row,meshes:row.meshes+1}, {...row,extra:true}])
       assert.throws(()=>restorePreR13SceneRow('三台',bad));
   }
-  assert.throws(()=>restorePreR13SceneRow('三台',{...live.rows['三台'],meshes:42}));
+  assert.throws(()=>restorePreR13SceneRow('三台',{...frozenR20.rows['三台'],meshes:42}));
   for(const[name,row]of Object.entries(scene.unchanged))assert.equal(restorePreR13SceneRow(name,row),row);
 });
 
-test('resident scene adds exactly132 triangles,12672 buffer bytes and two private material batches',()=>{
+test('historical frozen R20 resident scene adds exactly132 triangles,12672 buffer bytes and two private material batches',()=>{
   assert.deepEqual([historical.meshes,historical.triangles,historical.bytes],[157,187630,18253748]);
-  assert.deepEqual([live.meshes,live.triangles,live.bytes],[159,187762,18266420]);
-  assert.equal(live.triangles-historical.triangles,132);assert.equal(live.bytes-historical.bytes,12672);
-  assert.deepEqual([historical.materials,live.materials],[80,82]);assert.deepEqual(historical.privateShell,[]);
-  assert.deepEqual(live.privateShell,[{name:'wood_column',side:THREE.DoubleSide,triangles:80},{name:'caihua_beam',side:THREE.DoubleSide,triangles:8}]);
+  assert.deepEqual([frozenR20.meshes,frozenR20.triangles,frozenR20.bytes],[159,187762,18266420]);
+  assert.equal(frozenR20.triangles-historical.triangles,132);assert.equal(frozenR20.bytes-historical.bytes,12672);
+  assert.deepEqual([historical.materials,frozenR20.materials],[80,82]);assert.deepEqual(historical.privateShell,[]);
+  assert.deepEqual(frozenR20.privateShell,[{name:'wood_column',side:THREE.DoubleSide,triangles:80},{name:'caihua_beam',side:THREE.DoubleSide,triangles:8}]);
 });
 
 test('all2475 colliders and120 walkables retain exact full R19 identity without navigation normalization',()=>{
-  assert.equal(hash(live.navigation),previousNavigation.afterSHA256);
-  assert.deepEqual(live.navigation,historical.navigation);
-  assert.deepEqual([live.navigation.colliders.length,live.navigation.walkables.length],[2475,120]);
+  assert.equal(hash(current.navigation),previousNavigation.afterSHA256);
+  assert.deepEqual(current.navigation,frozenR20.navigation);
+  assert.deepEqual(frozenR20.navigation,historical.navigation);
+  assert.deepEqual([frozenR20.navigation.colliders.length,frozenR20.navigation.walkables.length],[2475,120]);
 });
 
 test('all33 corrected fixed and59 automatic route objects retain original R19 identity',async()=>{
