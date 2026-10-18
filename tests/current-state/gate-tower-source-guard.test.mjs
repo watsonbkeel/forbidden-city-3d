@@ -1,8 +1,9 @@
+import {restorePreR12InnerSource} from '../lib/r12-inner-source-retention.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {readHistoricalSource} from '../lib/historical-sources.mjs';
 import {SHENWU_CONSTANTS_DELTA,expectedGateConstantsBytes,assertGateConstantsBytes} from '../lib/v9-gate-constants-delta.mjs';
 const historical=readHistoricalSource('35914d6c2bc16dbb9fd7245d6384195ece5e125d','src/config/constants.js');
 const current=fs.readFileSync(new URL('../../src/config/constants.js',import.meta.url));
-test('only the finite approved Shenwu nominal boundary/provenance replacement is accepted',()=>{assertGateConstantsBytes(historical,current);assert.deepEqual(current,expectedGateConstantsBytes(historical));});
+test('only the finite approved Shenwu nominal boundary/provenance replacement is accepted',()=>{assertGateConstantsBytes(historical,current);assert.deepEqual(restorePreR12InnerSource('src/config/constants.js',current),expectedGateConstantsBytes(historical));});
 for(const mutation of ['missing-anchor','duplicate-anchor','historical-extra-byte'])test(`constants guard rejects ${mutation}`,()=>{
  let source=historical.toString();if(mutation==='missing-anchor')source=source.replace(SHENWU_CONSTANTS_DELTA.before,'');if(mutation==='duplicate-anchor')source+=SHENWU_CONSTANTS_DELTA.before;if(mutation==='historical-extra-byte')source+='\n';
  assert.throws(()=>expectedGateConstantsBytes(Buffer.from(source)),mutation==='historical-extra-byte'?/historical/:/exactly once/);

@@ -15,7 +15,7 @@ const profile = existsSync(profileURL) ? JSON.parse(readFileSync(profileURL, 'ut
 const ctx = new Proxy({}, { get: () => () => ({ data: [] }), set: () => true });
 globalThis.document ??= { createElement: () => ({ getContext: () => ctx, width: 0, height: 0 }) };
 const data = PALACE_LAYOUT.find(h => h.name === '坤宁宫');
-const floorY = 6.9375, z0 = data.position.z, doorX = -5.111111111111111;
+const floorY = 2.16, z0 = data.position.z, doorX = -5.111111111111111;
 let cached;
 function fixture() {
   if (cached) return cached;
@@ -154,7 +154,7 @@ profileTest('inherited provisional post list preserves all V5 positions and radi
     const post=profile.columns[i*4+k];
     assert.deepEqual(post.position,[-23+i*(46/9),0,-10+k*(20/3)]);
     assert.equal(post.radius,(46/9)*.08);
-    assert.equal(post.height,(26-floorY)*.38);
+    assert.equal(post.height,(26-6.9375)*.38);
     assert.equal(post.provenance,'inherited-provisional');
     assert.equal(z0+post.position[2],z0-10+k*(20/3),'world addition remains identical');
   }

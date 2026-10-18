@@ -1,3 +1,4 @@
+import {restorePreR12InnerSource} from './r12-inner-source-retention.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 
@@ -13,4 +14,4 @@ export function expectedGateConstantsBytes(historical){
  assert.equal(createHash('sha256').update(historical).digest('hex'),'485f52c51d4f532c585171f7d28c13acd0e984a4ae296a91d21dcac70155ec20','Only exact historical V7/V8 constants bytes are accepted');
  return Buffer.from(source.replace(SHENWU_CONSTANTS_DELTA.before,SHENWU_CONSTANTS_DELTA.after),'utf8');
 }
-export function assertGateConstantsBytes(historical,current){assert.deepEqual(current,expectedGateConstantsBytes(historical),'Constants must equal historical bytes plus only the approved finite Shenwu nominal-boundary/provenance delta');}
+export function assertGateConstantsBytes(historical,current){assert.deepEqual(restorePreR12InnerSource('src/config/constants.js',current),expectedGateConstantsBytes(historical),'Constants must equal historical bytes plus only the approved finite Shenwu nominal-boundary/provenance delta');}

@@ -2,6 +2,8 @@ import * as THREE from 'three';
 import { DIMENSIONS, LAYOUT } from '../../../config/constants.js';
 import { buildRoof, buildWallCap } from '../../RoofBuilder.js';
 import { batchSolidMaterials } from '../../../render/SolidMaterialBatch.js';
+import { buildQianqingImperialStair } from './QianqingImperialStair.js';
+import { INNER_PALACE_LEVELS } from './InnerPalaceLevels.js';
 
 const SOURCE = 'https://www.dpm.org.cn/explore/building/236473.html';
 const BASE_HEIGHT = 1.5; // Official description; other profile measurements remain provisional.
@@ -25,7 +27,7 @@ export function buildQianqingGate(builder, data) {
   const doorCenters = [-bay, 0, bay];
   const landingHalfW = bay * 1.5;
   const landingNorth = north + 3;
-  const connectorHalfW = 4;
+  const connectorHalfW = INNER_PALACE_LEVELS.causewayWidth / 2;
   // Retain the existing palace terrace and its front stair. Join the original
   // stair exactly where its existing slope reaches the supported gate height.
   const palaceEdge = LAYOUT.QIANQING_Z - DIMENSIONS.QIANQING.depth / 2 - 6;
@@ -66,7 +68,9 @@ export function buildQianqingGate(builder, data) {
     const oldX = builder.ox;
     builder.ox = data.position.x + x;
     try {
-      builder.buildStair(stairGroup, { zEdge: south, dir: -1, y0: 0, y1: y, run, width: stairW });
+      if (x === 0) info.imperialApproach = buildQianqingImperialStair(builder, stairGroup,
+        { zEdge: south, y1: y, run, width: stairW });
+      else builder.buildStair(stairGroup, { zEdge: south, dir: -1, y0: 0, y1: y, run, width: stairW });
     } finally { builder.ox = oldX; }
     // Sloping stone rails with upright posts distinguish each stair flight.
     // Keep them above the existing curb footprint so clear walking widths stay unchanged.
@@ -88,10 +92,8 @@ export function buildQianqingGate(builder, data) {
   }
   builder.col(cursor, 0, south, halfW, y, south + 0.45);
   builder.rail(g, cursor, south + 0.2, halfW - 0.2, south + 0.2, y);
-  // Center stair's imperial stone is a visual abstraction, not a closure of the
-  // game route. The real museum's visitor permissions are not inferred here.
-  const stone = builder.libBox(g, 'yulu', stairW * 0.32, 0.15, Math.hypot(run, y), 0, y / 2 + 0.06, south - run / 2, 'raw');
-  stone.rotation.x = -Math.atan2(y, run);
+  // The middle carved stone and its actual flanking stairs are built together;
+  // only stair strips receive ramps. Present museum access remains unverified.
   for (const s of [-1, 1]) {
     builder.col(s * landingHalfW, 0, north - 0.45, s * halfW, y, north);
     builder.rail(g, s * landingHalfW, north - 0.2, s * (halfW - 0.2), north - 0.2, y);

@@ -14,7 +14,8 @@ function fixture(name = '三台') {
   builder.buildHall = () => {};
   builder.terraceOrnaments = () => {};
   let group, options, rects;
-  builder.finish = g => { group = g; };
+  const finish = builder.finish.bind(builder);
+  builder.finish = g => { group = name === '后三宫' ? finish(g) : g; return group; };
   const build = builder.buildTerraceUnion;
   builder.buildTerraceUnion = function(g, r, opts) { rects = structuredClone(r); options = opts; return build.call(this, g, r, opts); };
   const names = name === '三台' ? ['太和殿', '中和殿', '保和殿'] : ['乾清宫', '交泰殿', '坤宁宫'];
@@ -99,7 +100,7 @@ test('only side flights and six rail splits change geometry; every existing terr
   assert.deepEqual(bodies(after),bodies(before),'no optional terrace-body face pruning');
   assert.equal(next.colliders.length-old.colliders.length,60);
   assert.equal(next.walkables.length-old.walkables.length,6);
-  assert.equal(fixture('后三宫').builder.terraceProfiles?.length??0,0,'unrelated inner terrace is unchanged');
+  assert.equal(fixture('后三宫').builder.terraceProfiles?.length??0,0,'rear-palace own profile must not enter the historical three-tier route registry');
 });
 
 function ray(mesh, origin, direction) {

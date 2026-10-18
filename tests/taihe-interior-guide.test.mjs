@@ -1,3 +1,4 @@
+import {restorePreR12InnerSource} from './lib/r12-inner-source-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -138,7 +139,7 @@ test('Draft 2020-12 schema validates the catalog and rejects bounded guide mutat
   const result = spawnSync('python', ['-c', script], { cwd: new URL('../', import.meta.url), encoding: 'utf8' }); assert.equal(result.status, 0, result.stderr);
 });
 
-for (const path of ['main.js', 'style.css', 'src/ui/Minimap.js', 'src/ui/MapTourSession.js', 'src/ui/SettingsMenu.js', 'src/config/constants.js']) test(`${path} preserves frozen bytes after any exact welcome restoration`, () => assert.equal(sha(path === 'main.js' ? restoreLoadingWelcomeBytes(read(path)) : read(path)), baseline.baseFiles[path]));
+for (const path of ['main.js', 'style.css', 'src/ui/Minimap.js', 'src/ui/MapTourSession.js', 'src/ui/SettingsMenu.js', 'src/config/constants.js']) test(`${path} preserves frozen bytes after any exact welcome restoration`, () => assert.equal(sha(path === 'main.js' ? restoreLoadingWelcomeBytes(read(path)) : restorePreR12InnerSource(path,read(path))), baseline.baseFiles[path]));
 
 for (const [path, deltas] of Object.entries(baseline.sourceDeltas)) {
   test(`${path} has only the exact reversible text-guide additions`, () => restoreTaiheGuideSource(path, read(path)));

@@ -1,3 +1,4 @@
+import {withLegacyQianqingApproach} from './r12-qianqing-route-retention.mjs';
 import assert from 'node:assert/strict';
 import {restorePreR9Architecture} from './r9-architecture-retention.mjs';
 import {createHash} from 'node:crypto';
@@ -12,7 +13,7 @@ export function restorePreZhongheApproaches(path,bytes){
  for(const h of source.deltas){assert.equal(text.split(h.after).length,2);text=text.replace(h.after,h.before);}
  assert.equal(sha(text),source.baselineSHA256);return Buffer.from(text);
 }
-export function withLegacyZhongheApproaches(rows){return rows.map(r=>{
+export function withLegacyZhongheApproaches(rows){return withLegacyQianqingApproach(rows).map(r=>{
  const d=routes.delta.find(d=>d.after.name===r.name);if(!d)return r;
  if(JSON.stringify(r)===JSON.stringify(d.before))return r;
  assert.deepEqual(r,d.after,'exact R8 side-stair descriptors');return structuredClone(d.before);

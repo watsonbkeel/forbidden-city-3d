@@ -41,13 +41,13 @@ const W = await buildWorld();
 test('real Kunning B geometry accepts supported stair-to-door teleport approach',()=>{
   const t=target();t.collisionManager=W.cm;
   const p=t.resolveLanding('坤宁宫');
-  assert.ok(p);assert.equal(p.y,5);assert.equal(p.approachVerified,true);
+  assert.ok(p);assert.equal(p.y,2);assert.equal(p.approachVerified,true);
   assert.equal(p.fallback,false);assert.ok(p.walk>15);
 });
-test('missing actual Kunning south ramp rejects teleport; box rescue cannot bless the landing',()=>{
+test('missing actual Kunning shared terrace rejects teleport; box rescue cannot bless the landing',()=>{
   const t=target();t.collisionManager=W.cm;const old=W.cm.walkables;
-  const affected=old.filter(w=>w.type==='ramp' && w.axis==='z' && w.minZ>=370 && w.maxZ<=376 && w.minX<0 && w.maxX>0 && w.y0===6.9375 && w.y1===5);
-  assert.equal(affected.length,1,'identify actual inherited southern plinth ramp');
+  const affected=old.filter(w=>w.type==='box' && w.box.min.y===2 && w.box.min.z>360 && w.box.max.z>400);
+  assert.equal(affected.length,1,'identify actual shared Kunning deck');
   W.cm.walkables=old.filter(w=>!affected.includes(w));
   try { assert.equal(t.resolveLanding('坤宁宫'),null); }
   finally {W.cm.walkables=old;}
@@ -55,7 +55,7 @@ test('missing actual Kunning south ramp rejects teleport; box rescue cannot bles
 test('a blocked true entrance rejects teleport rather than choosing a false central bay',()=>{
   const t=target();t.collisionManager=W.cm;
   const door=KUNNING_PROFILE.portals[0].center;
-  W.cm.addCollider(new W.THREE.Box3(new W.THREE.Vector3(door[0]-1.5,7.1,386.1+door[2]-.2),new W.THREE.Vector3(door[0]+1.5,10,386.1+door[2]+.2)),'test-blocked-kunning');
+  W.cm.addCollider(new W.THREE.Box3(new W.THREE.Vector3(door[0]-1.5,2.16,386.1+door[2]-.2),new W.THREE.Vector3(door[0]+1.5,5.16,386.1+door[2]+.2)),'test-blocked-kunning');
   try {assert.equal(t.resolveLanding('坤宁宫'),null);}
   finally {W.cm.removeByTag('test-blocked-kunning');}
 });

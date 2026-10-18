@@ -36,8 +36,8 @@ function drive(points,fps,speed){
    const target=new THREE.Vector3(p.x+dx*step,p.y,p.z+dz*step);
    p=cm.getValidPosition(p,target,.5,p.y-PLAYER.HEIGHT);
    const moved=Math.hypot(p.x-before.x,p.z-before.z);
-   assert.ok(Math.abs(p.y-before.y)<=moved*.65+.101,`no rescue/pop at ${p.x},${p.z}: ${p.y-before.y}`);
-   assert.ok(p.y-PLAYER.HEIGHT>=5-1e-6 && p.y-PLAYER.HEIGHT<=origin.floorY+.100001,'never fall below the retained terrace or jump');
+   assert.ok(Math.abs(p.y-before.y)<=moved*.65+.161,`no rescue/pop at ${p.x},${p.z}: ${p.y-before.y}`);
+   assert.ok(p.y-PLAYER.HEIGHT>=2-1e-6 && p.y-PLAYER.HEIGHT<=origin.floorY+.100001,'never fall below the retained terrace or jump');
    assert.equal(cm.checkCollision(p,.5),false,'moving body must not intersect a barrier');
   }
   assert.ok(Math.hypot(p.x-goal.x,p.z-goal.z)<1e-5,`actual segment blocked before (${goal.x},${goal.z}), at (${p.x},${p.z})`);
@@ -47,13 +47,13 @@ function drive(points,fps,speed){
 }
 
 for(const fps of [60,10])for(const speed of [PLAYER.MOVE_SPEED,PLAYER.SPRINT_SPEED]){
- test(`real lower-stair approach crosses the south door and exits in reverse, ${fps}fps speed${speed}`,()=>{
+ test(`real shared-deck approach crosses the south door and exits in reverse, ${fps}fps speed${speed}`,()=>{
   const entry=profile.navigation.routes.entry.map(world);
   const last=drive(entry,fps,speed);
   assert.ok(last.z>origin.z+profile.depthPlanes.southEnclosure+.5,'actual doorway-plane crossing');
   drive([...entry].reverse(),fps,speed);
  });
- for(const side of ['east','west'])test(`real ${side} end passage reaches retained rear stair in both directions, ${fps}fps speed${speed}`,()=>{
+ for(const side of ['east','west'])test(`real ${side} end passage reaches low rear lip in both directions, ${fps}fps speed${speed}`,()=>{
    const route=profile.navigation.routes[`${side}Bypass`].map(world);
    const last=drive(route,fps,speed);
    assert.ok(last.z>origin.z+10,'actually reaches north side');

@@ -40,6 +40,9 @@ async function buildRoutes() {
   const axisZone = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/zones/axis-courts.json'), 'utf8'));
   const { KUNNING_PROFILE, kunningNavigationPoint } = await import(pathToFileURL(path.join(ROOT, 'src/scene/palace/special/KunningProfile.js')).href);
   const { PALACE_LAYOUT } = await import(pathToFileURL(path.join(ROOT, 'src/scene/Layout.js')).href);
+  const qianqingGate = PALACE_LAYOUT.find(item => item.name === '乾清门');
+  const qgSouth = qianqingGate.position.z - qianqingGate.dimensions.depth / 2 - 1;
+  const qgSide = -qianqingGate.dimensions.width / 5;
   const kunning = PALACE_LAYOUT.find(item => item.name === '坤宁宫');
   const kunningRoute = key => KUNNING_PROFILE.navigation.routes[key].map(id => {
     const [x, , z] = kunningNavigationPoint(id, kunning);
@@ -81,7 +84,10 @@ async function buildRoutes() {
     ['太和殿→中和殿→保和殿', [[0, 3], [0, 0], [TAIHE_DETOUR_X, 0], [TAIHE_DETOUR_X, 16], [0, 16.5],
       ...zhongheApproach.south.points, [0, zh - 7], [ZHONGHE_DETOUR_X, zh - 7], [ZHONGHE_DETOUR_X, zh + 7.2], [0, zh + 7.2], [0, zh + 11], ...zhongheApproach.north.points.toReversed(),
       [0, bh - IN_FRONT], [BAOHE_DETOUR_X, bh - IN_FRONT], [BAOHE_DETOUR_X, back('保和殿') - 2], [0, back('保和殿') - 2]]],
-    ['保和殿→北下台→乾清门', [[0, back('保和殿') - 2], [0, L.QIANQING_GATE_Z - 10]]],
+    // Use an actual outer stair, then cross behind the front column row. Keep
+    // the old destination; a straight axial line would climb the carved stone.
+    ['保和殿→北下台→乾清门', [[0, back('保和殿') - 2], [0, qgSouth - 1.5 * 1.6 - 1],
+      [qgSide, qgSouth - 1.5 * 1.6 - 1], [qgSide, qgSouth + 3], [0, qgSouth + 3], [0, L.QIANQING_GATE_Z - 10]]],
     ['乾清门→乾清宫', [[0, L.QIANQING_GATE_Z - 10], [0, qq - 6]]],
     ['乾清宫→交泰殿→坤宁宫', [[0, qq - 6], [QIANQING_DETOUR_X, qq - 6], [QIANQING_DETOUR_X, back('乾清宫') - 1.5], [0, back('乾清宫') - 1.5],
       [0, jt - 4.7], [JIAOTAI_DETOUR_X, jt - 4.7], [JIAOTAI_DETOUR_X, jt + 7.2], [0, jt + 7.2], ...kunningEntry]],

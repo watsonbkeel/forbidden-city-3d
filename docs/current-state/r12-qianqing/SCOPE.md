@@ -1,0 +1,23 @@
+# Next bounded stair item: Qianqing Gate imperial stone
+
+Original pre-implementation scope, 2026-10-18. The completed candidate and later evidence are recorded below.
+
+Direct Palace Museum text: https://www.dpm.org.cn/explore/building/236473.html . Height1.5m and three separated approaches, middle imperial stone, are explicit. Exact photo URLs and downloaded hashes are in photos.json. Four linked official photographs were actually viewed. URL upload date2020-11-17 is not a verified capture date.
+
+The high-resolution front photograph (official-2.jpg) is important: the central approach contains a broad carved inclined stone AND narrow flanking stair strips. It does not justify replacing the entire middle group with a solid stone. The two outer stair groups are separate from this middle group. Protective barriers in the photograph cannot establish permanent original fabric or present admission policy.
+
+Current QianqingGate.js retains three separated groups but builds an ordinary full-width stair/ramp below the central stone overlay. It therefore permits straight walking along the carving as if it were ordinary treads. The stone is only a thin rotated box. This differs from the coherent carved-stone/side-stair treatment already implemented at Taihe and Zhonghe.
+
+Proposed limited follow-through after R11 is frozen: keep gate/base/approach anchors,1.5m supported height, widths/run and existing outer rails; split only the central approach into two real stair strips around a closed stone body; keep visual and collision footprints consistent. Route players through the already-wide outer flights. Keeping the existing middle stone width is a provisional parameter, not a measured photo-derived size. Do not enlarge it solely to close an unwanted path. Preserve step flanks even if narrower than the game's1m player diameter.
+
+Before implementation: check exact central clear widths, stair strip and rail footprints; capture baseline geometry/navigation and same-view image; test both outer approaches round-trip with box rescue disabled and central-stone negative crossing. Check every fixed/generated route that actually uses the gate center and adjust waypoints to the existing outer stair if necessary, never remove collisions or omit route coverage. A final bounded native example should demonstrate one real outer-stair entry and return. This is a localized new candidate, not approval to retry denied R10 Pages publication.
+
+At proposal time no runtime code had changed. Baohe stair topology remains separately unresolved by its historical plan/current photograph and is not included.
+
+## Implemented candidate
+
+The central ordinary full-width ramp becomes two actual stair-strip ramps, around the retained1.814272m provisional stone footprint. Both outer flights, all existing162 collider boxes, every nonmiddle walkable and all nonmarble merged mesh bytes are exact. Sixteen low segmented collision boxes now follow the stone body; no tall invisible fence. The two narrow middle stair strips have1.477664m clear modeled width each and are CPU-walkable with the unchanged1m player footprint. No new material/texture/draw batch; marble gains116 triangles (gate total14,276, previously14,160). Widths are retained project estimates, not photo measurements.
+
+The one fixed route previously climbing directly over the carving now uses an outer stair, crosses behind the first column row and retains its original destination. It is not removed or marked known failure. All33fixed descriptors retained,32unchanged; the one finite version-normalization is restricted to the exact new descriptor. Whole-world60/10Hz,walk/sprint,forward/reverse checks pass. The gate-specific34tests and route/Qin'an regression70tests pass (overlapping groups, not104unique tests). Initial fixture failures are saved: old ramp count3 is now4; an incorrect .61m per-render-frame height bound rejected valid1.2m sprint strides on an existing .625 slope, so it was replaced by exact slope-bound and ground-support checks. Product collision/step settings were not relaxed.
+
+Actual image and bounded native outer-stair round-trip passed on the cloud desktop at 12:48 UTC: trusted W reached feet1.5m and z210.288, trusted S returned to feet0m and z200.200 while the ordinary map was open. Explicit initial ground position was controlled; no full-palace native route is claimed. Three actual screenshots were inspected. Active81.879s,cleanup0.323s,owned browser exited/port closed,zero application or HTTP errors. Final combined-package regression/performance and real-device mobile checks remain pending. No publication attempt. R10 denied operation stays isolated.

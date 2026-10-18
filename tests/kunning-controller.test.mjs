@@ -19,19 +19,19 @@ for(const [route,points] of Object.entries(loops))for(const fps of [60,10])for(c
  test(`real FirstPerson Kunning ${route} roundtrip ${fps}Hz sprint=${sprint} backward=${backward}, no rescue`,t=>{
   const saved=W.cm.walkables;W.cm.walkables=saved.map(w=>w.type==='box'?{...w,rescue:false}:w);
   try{
-   const result=replayKunning(t,W,points,{startFeet:5,fps,sprint,backward,recordFrames:true});
+   const result=replayKunning(t,W,points,{startFeet:2,fps,sprint,backward,recordFrames:true});
    if(process.env.KUNNING_EVIDENCE_DIR){fs.mkdirSync(process.env.KUNNING_EVIDENCE_DIR,{recursive:true});fs.writeFileSync(path.join(process.env.KUNNING_EVIDENCE_DIR,`${route}-${fps}-${sprint?'fast':'walk'}-${backward?'backward':'forward'}.json`),JSON.stringify(result,null,2));}
-   assert.equal(result.startFeet,5);assert.equal(result.arrived,true,JSON.stringify({...result,frames:undefined}));
+   assert.equal(result.startFeet,2);assert.equal(result.arrived,true,JSON.stringify({...result,frames:undefined}));
    // Momentum at the north turn may briefly enter the preserved next stair
-   // below5m. Check real support, not an incorrect constant-height floor.
+   // below2m. Check real support, not an incorrect constant-height floor.
    assert.ok(result.frames.every(f=>f.ground>0 && f.feet>0),'unsupported drop to ground');
    // Camera feet intentionally ease toward logical ground (FirstPerson.updateGround).
    // Body collision uses max(feet,ground), so record lag rather than claiming
    // per-frame grounded camera feet. Keep it inside the inherited step range.
    assert.ok(result.frames.every(f=>f.feet>=f.ground-PLAYER.STEP_UP),'camera lag exceeded inherited step range');
-   assert.ok(result.maxFeet>=6.93,`did not ascend the actual plinth ${result.maxFeet}`);
-   assert.ok(result.maxFeet<=7.05,`unexpected lift ${result.maxFeet}`);
-   assert.ok(Math.abs(result.end[2]-5)<.02,`not settled on lower support ${result.end}`);
+   assert.ok(result.maxFeet>=2.15,`did not ascend the actual plinth ${result.maxFeet}`);
+   assert.ok(result.maxFeet<=2.28,`unexpected lift ${result.maxFeet}`);
+   assert.ok(Math.abs(result.end[2]-2)<.02,`not settled on lower support ${result.end}`);
    assert.equal(result.driver.crossings.length,points.length-1);
    assert.ok(result.driver.crossings.every(c=>c.lateralDistance<.6));
   }finally{W.cm.walkables=saved;}

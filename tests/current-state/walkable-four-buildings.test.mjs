@@ -32,7 +32,9 @@ test('Zhonghe east and west plinth stairs fit inside the retained common terrace
 });
 
 test('Qianqing Gate and raised passage reach Qianqing Palace without jumping', () => {
-  traverse([[0, 195], [0, 310.8]]);
+  // R12: the center is carved imperial stone; use the actual eastern flight
+  // and the rear door before crossing the shared landing.
+  traverse([[0,195],[-7.46,195],[-7.46,227.3],[0,227.3],[0,310.8]]);
 });
 
 test('Jiaotai keeps an interior route around its throne through the centre doors', () => {

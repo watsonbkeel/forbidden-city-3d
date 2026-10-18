@@ -1,3 +1,4 @@
+import {restorePreR12InnerSource} from './lib/r12-inner-source-retention.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {createHash}from'node:crypto';
 import source from './fixtures/r11-floor-source-delta.json' with{type:'json'};
 import meshes from './fixtures/r11-floor-mesh-delta.json' with{type:'json'};
@@ -5,7 +6,7 @@ import{restorePreR11FloorSource,restorePreR11FloorRows}from'./lib/r11-floor-rete
 import{captureTaiheControl,serialMesh,hash}from'./lib/taihe-core-fixture.mjs';
 const sha=b=>createHash('sha256').update(b).digest('hex');
 test('R11 restores only the exact floor source delta and rejects unrelated edits',()=>{
- const b=fs.readFileSync(new URL('../'+source.path,import.meta.url));assert.equal(sha(b),source.afterSHA256);
+ const b=restorePreR12InnerSource(source.path,fs.readFileSync(new URL('../'+source.path,import.meta.url)));assert.equal(sha(b),source.afterSHA256);
  const old=restorePreR11FloorSource(source.path,b);assert.equal(sha(old),source.beforeSHA256);assert.deepEqual(restorePreR11FloorSource(source.path,old),old);
  assert.throws(()=>restorePreR11FloorSource(source.path,Buffer.concat([b,Buffer.from('\n')])));
  for(const d of source.deltas)assert.throws(()=>restorePreR11FloorSource(source.path,Buffer.from(b.toString().replace(d.after,d.after+'\n'))));

@@ -6,14 +6,14 @@ import crypto from 'node:crypto';
 import * as THREE from 'three';
 import { TAIHE_CORE as P, TAIHE_FALLBACK_OWNER } from '../../src/scene/palace/special/TaiheCoreProfile.js';
 import { taiheGlyphMaterial } from '../../src/scene/palace/special/TaiheCore.js';
-import { captureTaiheControl as capture, hash, serialMesh } from '../lib/taihe-core-fixture.mjs';
+import { captureTaiheControl as capture, captureHistoricalKunningControl, hash, serialMesh } from '../lib/taihe-core-fixture.mjs';
 import rearDelta from '../fixtures/r9-rear-enclosure-mesh-delta.json' with {type:'json'};
 const baseline=JSON.parse(fs.readFileSync(new URL('../../docs/current-state/taihe-v16-core/geometry-baseline.json',import.meta.url)));
 const c=capture('太和殿');
 const tris=o=>(o.geometry.index?.count??o.geometry.attributes.position.count)/3;
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-5,`${a} != ${b}`);
-for(const [name,b]of Object.entries(baseline.otherHalls))test(`Taihe correction leaves ${name} geometry, materials and navigation byte-exact`,()=>{
- const v=capture(name),rows=[];v.group.traverse(o=>{if(o.isMesh)rows.push(serialMesh(o));});assert.equal(hash(rows),b.geometry);assert.equal(hash({colliders:v.builder.colliders,walkables:v.builder.walkables}),b.physics);
+for(const [name,b]of Object.entries(baseline.otherHalls))test(`Taihe correction leaves ${name} geometry, materials and navigation byte-exact in the explicitly restored historical frame`,async()=>{
+ const v=name==='坤宁宫'?await captureHistoricalKunningControl():capture(name),rows=[];v.group.traverse(o=>{if(o.isMesh)rows.push(serialMesh(o));});assert.equal(hash(rows),b.geometry);assert.equal(hash({colliders:v.builder.colliders,walkables:v.builder.walkables}),b.physics);
 });
 test('approved card bytes, inferred rows and dimension-precision limits remain explicit',()=>{
  const bytes=fs.readFileSync(new URL('../../docs/current-state/taihe-v16-core/approved-geometry-card.json',import.meta.url));assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),P.approvalCardSHA256);

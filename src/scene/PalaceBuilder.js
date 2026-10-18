@@ -14,6 +14,9 @@ import { mergeByMaterial } from '../utils/MergeUtils.js';
 import { applyBoxUV, applyBandUV, applyPlanarUV } from '../utils/GeometryUV.js';
 import { buildSquareHall, SQUARE_HALLS } from './palace/special/SquareHalls.js';
 import { buildQianqingGate } from './palace/special/QianqingGate.js';
+import { innerPalaceTerraceProfile, buildInnerTerraceRail, buildInnerTerraceStair } from './palace/special/InnerPalaceTerrace.js';
+import { INNER_PALACE_LEVELS, buildInnerPalaceLip } from './palace/special/InnerPalaceLevels.js';
+import { captureInnerGlazeCoarse, installInnerGlazeLOD } from './palace/special/InnerPalaceGlazeLOD.js';
 import { buildKunningPalace } from './palace/special/KunningPalace.js';
 import { threeHallTerraceProfile, closedTerraceStairGeometry } from './palace/ThreeHallTerrace.js';
 import { taiheSouthTier, buildTaiheSouthTier } from './palace/TaiheFrontApproaches.js';
@@ -31,8 +34,8 @@ import { taiheColumnGrid } from './palace/special/TaiheColumnGrid.js';
  * baseH：太和门 3.44（P1-Z-axis A2）、乾清门 1.5（dimensions.md:88/108）。
  */
 /**
- * plinth：殿座自身台明高度（米）。同一大台基上相邻两殿之间是"下台阶 → 台面 → 上台阶"，
- * 台明要足够高、台阶足够长，参观时才能明显感到先下后上（受台基前后余量约束，台阶水平长 = 高 × 1.6）。
+ * plinth：殿座自身台明高度（米）。前三殿另有阶道；后三宫实景为近同层小石唇，
+ * 不应为了制造上下楼体验而叠加无依据的高台明。未逐项测量的尺寸仍为暂定。
  */
 const REAL = {
   太和殿: { bays: 11, roof: 'wudian', layers: 2, throne: true, inner: '建极绥猷', open: 3, plinth: 2.2 },
@@ -42,11 +45,11 @@ const REAL = {
   保和殿: { bays: 9, roof: 'xieshan', layers: 2, throne: true, inner: '皇建有极', open: 3, plinth: 2.0 },
   太和门: { bays: 9, roof: 'xieshan', layers: 2, open: 3, baseH: 3.44, margin: 1, apron: 1 }, // 台基 3.44（dimensions.md:88，P1-Z-axis A2）
   乾清门: { bays: 5, roof: 'xieshan', layers: 1, open: 3, baseH: 1.5, margin: 0, apron: 1 },
-  乾清宫: { bays: 9, roof: 'wudian', layers: 2, throne: true, inner: '正大光明', open: 3, plinth: 2.0 },
-  交泰殿: { bays: 3, roof: 'pavilion', layers: 1, throne: true, inner: '无为', open: 3, plinth: 1.5 },
+  乾清宫: { bays: 9, roof: 'wudian', layers: 2, throne: true, inner: '正大光明', open: 3, plinth: INNER_PALACE_LEVELS.hallLip },
+  交泰殿: { bays: 3, roof: 'pavilion', layers: 1, throne: true, inner: '无为', open: 3, plinth: INNER_PALACE_LEVELS.hallLip },
   // Nine total bays include two end passages; enclosure is owned by its special builder.
   // open remains only as the inherited stair-width input, never a facade opening.
-  坤宁宫: { bays: 9, roof: 'wudian', layers: 2, open: 3, plinth: 2.0 },
+  坤宁宫: { bays: 9, roof: 'wudian', layers: 2, open: 3, plinth: INNER_PALACE_LEVELS.hallLip },
 };
 const PLINTH_PAD = 1.5; // 台明比殿身四周外扩
 
@@ -301,12 +304,14 @@ export class PalaceBuilder {
    * rects: [{ hw, z0, z1 }]（顶层，局部坐标），每下一层 hw 与首尾 z 向外扩 setback。
    * 只在首块南边、末块北边设台阶；矩形交界处宽出的部分设挡墙与栏杆。
    */
-  buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile = null, taiheSouth = false }) {
+  buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile = null, taiheSouth = false, innerPalace = false }) {
     const half = stairW / 2;
     const t = 0.5;
     const last = rects.length - 1;
     if (sideStairProfile) {
-      this.terraceProfiles.push(sideStairProfile);
+      // Existing terraceProfiles is the three-tier route adapter contract.
+      // Rear-palace stairs retain their own scene metadata and dedicated tests.
+      if (!innerPalace) this.terraceProfiles.push(sideStairProfile);
       g.userData.structure = sideStairProfile;
     }
     for (let i = 0; i < layers; i++) {
@@ -322,7 +327,7 @@ export class PalaceBuilder {
       R.forEach((r, k) => {
         const d = r.z1 - r.z0;
         const zc = (r.z0 + r.z1) / 2;
-        this.libBox(g, 'sumeru_band', r.hw * 2, lh, d, 0, y0 + lh / 2, zc, 'band');
+        this.libBox(g, innerPalace && k > 0 ? 'wall_brick' : 'sumeru_band', r.hw * 2, lh, d, 0, y0 + lh / 2, zc, innerPalace && k > 0 ? 'box' : 'band');
         this.libBox(g, 'stone_slab', r.hw * 2 + 0.2, 0.1, d + (k === 0 || k === last ? 0.2 : 0), 0, y1 - 0.03, zc, 'box');
         this.walkBox(-r.hw, r.z0, r.hw, r.z1, y1);
         for (const s of [-1, 1]) {
@@ -331,8 +336,14 @@ export class PalaceBuilder {
           const railMin = r.z0 + (k === 0 ? 0.2 : 0), railMax = r.z1 - (k === last ? 0.2 : 0);
           const railIntervals = flight ? [[railMin, flight.openingZ[0]], [flight.openingZ[1], railMax]] : [[railMin, railMax]];
           for (const [z0, z1] of wallIntervals) this.col(s * r.hw, y0, z0, s * (r.hw - t), y0 + ch, z1);
-          for (const [z0, z1] of railIntervals) this.rail(g, s * (r.hw - 0.2), z0, s * (r.hw - 0.2), z1, y1);
-          if (flight) this.buildTerraceSideStair(g, flight);
+          for (const [z0, z1] of railIntervals) {
+            if (innerPalace && k > 0) buildInnerTerraceRail(this, g, s * (r.hw - 0.2), z0, s * (r.hw - 0.2), z1, y1);
+            else this.rail(g, s * (r.hw - 0.2), z0, s * (r.hw - 0.2), z1, y1);
+          }
+          if (flight) {
+            if (innerPalace) buildInnerTerraceStair(this, g, flight);
+            else this.buildTerraceSideStair(g, flight);
+          }
         }
         if (k < last) {
           const n = R[k + 1];
@@ -342,7 +353,8 @@ export class PalaceBuilder {
             const dz = r.hw > n.hw ? -1 : 1; // 墙体朝宽块内侧
             for (const s of [-1, 1]) {
               this.col(s * narrow, y0, r.z1, s * wide, y0 + ch, r.z1 + dz * t);
-              this.rail(g, s * (narrow - 0.2), r.z1 + dz * 0.2, s * (wide - 0.2), r.z1 + dz * 0.2, y1);
+              if (innerPalace) buildInnerTerraceRail(this, g, s * (narrow - 0.2), r.z1 + dz * 0.2, s * (wide - 0.2), r.z1 + dz * 0.2, y1);
+              else this.rail(g, s * (narrow - 0.2), r.z1 + dz * 0.2, s * (wide - 0.2), r.z1 + dz * 0.2, y1);
             }
           }
         }
@@ -357,8 +369,13 @@ export class PalaceBuilder {
         this.col(half, y0, ze, r.hw, y0 + ch, ze - s * t);
         this.buildStair(g, { zEdge: ze, dir: s, y0, y1, run, width: stairW });
         const zr = ze - s * 0.2;
-        this.rail(g, -(r.hw - 0.2), zr, -half, zr, y1);
-        this.rail(g, half, zr, r.hw - 0.2, zr, y1);
+        if (innerPalace && s === 1) {
+          buildInnerTerraceRail(this, g, -(r.hw - 0.2), zr, -half, zr, y1);
+          buildInnerTerraceRail(this, g, half, zr, r.hw - 0.2, zr, y1);
+        } else {
+          this.rail(g, -(r.hw - 0.2), zr, -half, zr, y1);
+          this.rail(g, half, zr, r.hw - 0.2, zr, y1);
+        }
       }
     }
     return layers * lh;
@@ -416,11 +433,13 @@ export class PalaceBuilder {
     const stairW = Math.min(12, bayW * 2.2);
     const waistIndex = halls.findIndex(h => h.name === '中和殿');
     const sideStairProfile = name === '三台' && waistIndex >= 0
-      ? threeHallTerraceProfile(rects, { layers, lh, run, setback, waistIndex, hall: halls[waistIndex] }) : null;
-    const top = this.buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile, taiheSouth: name === '三台' });
+      ? threeHallTerraceProfile(rects, { layers, lh, run, setback, waistIndex, hall: halls[waistIndex] })
+      : name === '后三宫' ? innerPalaceTerraceProfile(rects, halls) : null;
+    const top = this.buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile, taiheSouth: name === '三台', innerPalace: name === '后三宫' });
 
     if (halls.length > 1) {
-      // 真实格局：大台基上每座殿还有各自的台明（须弥座），殿与殿之间要先下台阶、再上台阶
+      // Individual supports are source-specific: high stairs belong to the
+      // front halls; the rear-palace deck carries only a low photographed lip.
       halls.forEach(h => {
         const spec = REAL[h.name] ?? {};
         const { width: w, depth: d } = dimsOf(h);
@@ -430,19 +449,24 @@ export class PalaceBuilder {
         const r = rects[halls.indexOf(h)];
         const room = Math.min(h.position.z - d / 2 - PLINTH_PAD - r.z0, r.z1 - (h.position.z + d / 2 + PLINTH_PAD)) - 0.4;
         const ph = Math.min(spec.plinth ?? 1.3, room / 1.6);
-        const y = this.buildPlinth(g, { z0: h.position.z, w: w + 2 * PLINTH_PAD, d: d + 2 * PLINTH_PAD, y: top, ph, stairW: sw,
+        const plinth = { z0: h.position.z, w: w + 2 * PLINTH_PAD, d: d + 2 * PLINTH_PAD, y: top, ph, stairW: sw,
           taiheSouth: h.name === '太和殿',
           zhongheImperial: h.name === '中和殿',
           stairCenters: h.name === '中和殿' ? [-(w - 6) / 3, 0, (w - 6) / 3] : [0],
-          stairSides: h.name === '中和殿' ? ['south', 'north', 'east', 'west'] : ['south', 'north'] });
-        this.buildHall(g, h, y);
+          stairSides: h.name === '中和殿' ? ['south', 'north', 'east', 'west'] : ['south', 'north'] };
+        const y = name === '后三宫' ? buildInnerPalaceLip(this, g, plinth) : this.buildPlinth(g, plinth);
+        // Preserve Qianqing's inherited body proportions when lowering its support;
+        // the old7m floor was a modelling datum, not a measured body dimension.
+        this.buildHall(g, h, y, { heightReferenceY: h.name === '乾清宫' ? 7 : y });
       });
     } else {
       halls.forEach(h => this.buildHall(g, h, top));
     }
     if (name === '三台') this.terraceOrnaments(g, rects[0], top);
 
-    this.finish(g);
+    const coarse = name === '后三宫' ? captureInnerGlazeCoarse(g) : null;
+    const finished = this.finish(g);
+    if (coarse) installInnerGlazeLOD(finished, coarse);
   }
 
   /**
@@ -601,7 +625,7 @@ export class PalaceBuilder {
    * 殿身：檐柱 + 金柱网格（太和殿 11×5 间 = 72 柱）、前后隔扇门（中间几间敞开可进出）、
    * 两山红墙、额枋彩画、井口天花、金砖地面、宝座台/屏风/藻井/殿内匾额、殿外竖匾、屋顶。
    */
-  buildHall(g, data, y) {
+  buildHall(g, data, y, { heightReferenceY = y } = {}) {
     if (data.name === '坤宁宫') return buildKunningPalace(this, g, data, y);
     if (SQUARE_HALLS[data.name]) return buildSquareHall(this, g, data, y);
     const spec = REAL[data.name] ?? {};
@@ -612,7 +636,7 @@ export class PalaceBuilder {
     const nd = Math.max(3, Math.round(d / 7.4) | 1);
     const bayW = w / bays;
     const dBay = d / nd;
-    const H = THREE.MathUtils.clamp((height - y) * 0.38, 5, 11);
+    const H = THREE.MathUtils.clamp((height - heightReferenceY) * 0.38, 5, 11);
     const beamH = THREE.MathUtils.clamp(H * 0.12, 0.6, 1.4);
     const r = THREE.MathUtils.clamp(bayW * 0.08, 0.3, 0.6);
     const openHalf = (spec.open ?? 3) * bayW / 2;
