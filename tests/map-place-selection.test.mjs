@@ -69,10 +69,10 @@ test('travel failure keeps card; second-finger success deduplicates compatibilit
   s.dispatch(button, 'click', { detail: 1 }); assert.equal(calls, 2); assert.equal(s.map.visible, false);
 });
 
-test('map has fourteen keyboard information buttons, separate unchanged quick travel, safe sources and nonmodal region', async t => {
+test('map has 159 keyboard information buttons, separate unchanged quick travel, safe sources and nonmodal region', async t => {
   const s = await setupMap(t); s.map.toggle();
   const list = s.map.container.querySelector('#place-list');
-  assert.equal(list.querySelectorAll('button').length, 14);
+  assert.equal(list.querySelectorAll('button').length, 159);
   list.querySelectorAll('button')[2].click();
   const panel = s.map.container.querySelector('#place-info');
   assert.equal(panel.getAttribute('role'), 'region'); assert.equal(panel.getAttribute('aria-modal'), null);

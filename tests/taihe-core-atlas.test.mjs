@@ -80,7 +80,9 @@ test('decoded glyph triangle winding faces the south viewer and U increases to t
   root.traverse(o => {
     if (!o.isMesh || o.material.name !== 'taihe_glyph_atlas') return;
     const g = o.geometry, p = g.attributes.position, uv = g.attributes.uv, idx = g.index;
-    for (let i = 0; i < idx.count; i += 3) {
+    // Original six lettering faces are an exact retained prefix. Later surface
+    // faces share the atlas and are covered by furnishing-surface integration.
+    for (let i = 0; i < 18; i += 3) {
       const ids = [idx.getX(i), idx.getX(i + 1), idx.getX(i + 2)];
       const vertices = ids.map(j => new THREE.Vector3().fromBufferAttribute(p, j).applyMatrix4(o.matrixWorld));
       assert.ok(new THREE.Triangle(...vertices).getNormal(new THREE.Vector3()).z < -.99);

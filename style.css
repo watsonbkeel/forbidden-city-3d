@@ -581,6 +581,20 @@ body.map-open #minimap {
 #minimap #place-list h2 { color: #ffe4a1; font-size: 16px; margin: 14px 0 8px; }
 #minimap #place-list { display: flex; flex-wrap: wrap; gap: 6px; }
 #minimap #place-list h2 { flex-basis: 100%; }
+#minimap #place-search {
+  flex-basis: 100%; width: 100%; min-width: 0; min-height: 44px;
+  box-sizing: border-box; border: 1px solid #9f804a; border-radius: 6px;
+  background: #211c17; color: #ffe4a1; padding: 8px 12px; font: inherit;
+}
+#minimap #place-search::placeholder { color: #d3c7b0; }
+#minimap #place-search-count { flex-basis: 100%; margin: 2px 0; color: #d3c7b0; font-size: 14px; }
+#minimap #place-directory {
+  display: flex; flex-wrap: wrap; gap: 6px; width: 100%;
+  max-height: min(240px, 36dvh); overflow-y: auto; overscroll-behavior: contain;
+  touch-action: pan-y;
+}
+#minimap #place-directory button[hidden] { display: none !important; }
+
 #minimap #place-list button,
 #minimap #place-resume,
 #minimap #place-header button,

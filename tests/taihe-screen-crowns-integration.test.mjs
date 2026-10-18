@@ -1,3 +1,4 @@
+import {restorePreFurnishingSurfaceSource} from './lib/taihe-furnishing-surface-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -292,7 +293,7 @@ test('fallback still renders exactly 1596 triangles in eight unchanged source-ow
     'TaiheDisplayPairs.js':'7af5145e6bbc15011b3534b62a375db6a4cab757fee45bfccc383a1d3e2cd339',
     'TaiheDisplayFallbackData.js':'9f581400cc6053186d98c1b34353b06853b23fa677fb8d5c8d79a727e22e953c',
   };
-  for(const [file,hash] of Object.entries(frozenSources))assert.equal(sha(read('src/scene/palace/special/'+file)),hash,file);
+  for(const [file,hash] of Object.entries(frozenSources))assert.equal(sha(restorePreFurnishingSurfaceSource('src/scene/palace/special/'+file,read('src/scene/palace/special/'+file))),hash,file);
   const control=captureTaiheControl('太和殿');
   try{
     const meshes=taiheFallbackMeshes(control.group);

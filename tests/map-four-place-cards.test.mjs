@@ -61,11 +61,11 @@ for (const mobile of [false, true]) for (const [id, name] of additions) {
   });
 }
 
-test('fourteen information buttons leave all eight quick travel buttons and their actions unchanged', async t => {
+test('159 information buttons preserve the original fourteen and leave all eight quick travel buttons and their actions unchanged', async t => {
   const s = await setupMap(t);
   const info = s.map.container.querySelector('#place-list').querySelectorAll('button');
-  assert.equal(info.length, 14);
-  assert.deepEqual(info.slice(-4).map(button => button.textContent), additions.map(([, name]) => name));
+  assert.equal(info.length, 159);
+  assert.deepEqual(info.slice(10,14).map(button => button.textContent), additions.map(([, name]) => name));
   const quick = s.map.container.querySelector('#teleport-points').querySelectorAll('button');
   assert.equal(quick.length, 8);
   for (const [index, point] of baseline.quickPoints.entries()) {

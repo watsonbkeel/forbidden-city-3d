@@ -1,3 +1,5 @@
+import { withLegacyWesternCourtsForVersionComparison } from './lib/r6-western-route-compat.mjs';
+import { withLegacyNingshouForVersionComparison } from './lib/r6-ningshou-route-compat.mjs';
 import { withLegacyQinanForVersionComparison } from './lib/qinan-route-version-compat.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -14,8 +16,8 @@ const W = await buildWorld();
 const routes = buildAutoRoutes(W, W.zones.map(z=>z.json)).filter(r=>r.gateProfile!=='zhaode');
 const sha = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 
-test('V5 historical automatic identities survive except the explicit later Qin’an exterior replacement', () => {
-  const old=withLegacyQinanForVersionComparison(routes).filter(r=>!r.terraceSide).map(({name,pts})=>({name,pts}));
+test('V5 historical automatic identities survive except the explicit later Qin’an and R6 Ningshou replacements', () => {
+  const old=withLegacyQinanForVersionComparison(withLegacyNingshouForVersionComparison(withLegacyWesternCourtsForVersionComparison(routes))).filter(r=>!r.terraceSide).map(({name,pts})=>({name,pts}));
   assert.equal(old.length,56);
   assert.equal(sha(old),'0ea621a5ac5a2fb7529096c458adf20181c12f1990a58be23136e9ca66dd6bf3');
 });

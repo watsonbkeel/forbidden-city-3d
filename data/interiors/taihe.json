@@ -3,7 +3,7 @@
   "hall": "太和殿",
   "id": "taihe",
   "tier": "S",
-  "model": "/models/interiors/taihe-enamel-cranes-052bec6dbe4b.glb",
+  "model": "/models/interiors/taihe-furnishing-surfaces-a4a0b82f9f76.glb",
   "fallback": "B",
   "budget": {
     "tris": 18000,
@@ -59,8 +59,8 @@
   ],
   "source": "docs/current-state/taihe-v16-core/approved-geometry-card.json",
   "asset": {
-    "sha256": "052bec6dbe4bf5246ac61d646b490ad52fd17d3572e8ed41dca501e20d42290f",
-    "encodedBytes": 1877748,
+    "sha256": "a4a0b82f9f767422db824b9c0f9039fc3da2234f18b3d584d295ad52020ec529",
+    "encodedBytes": 1882012,
     "renderableTriangles": 17940,
     "visibleBatches": 8,
     "profileSHA256": "5febda5436765e258e67300bf4b737566e4e522d60ebb9587222c9e4ed1a181c",
@@ -117,7 +117,14 @@
     "enamelCraneMaskSHA256": "314acd8f842661574f79a87ecb66fffb2308b8debab95276dd4fc71392db2466",
     "enamelCraneTriangles": 544,
     "enamelCraneRemovedTriangles": 374,
-    "enamelCraneNote": "Original simplified indoor enamel crane silhouette based on museum conservation photograph; three historical object dimensions retained, positions/proportions/color fields estimated; detail S only, coarse B unchanged"
+    "enamelCraneNote": "Original simplified indoor enamel crane silhouette based on museum conservation photograph; three historical object dimensions retained, positions/proportions/color fields estimated; detail S only, coarse B unchanged",
+    "furnishingSurfaceSourceSHA256": "d8b004e57677f0c78566c39620fa8920f1063655670fd1f7703cb329bff5902b",
+    "furnishingSurfaceBaseAssetSHA256": "052bec6dbe4bf5246ac61d646b490ad52fd17d3572e8ed41dca501e20d42290f",
+    "furnishingSurfaceMaskSHA256": "049a115668a34008bab8f579722dffb6a2fc3fedaa7afb890dd84caa9dd4cbe7",
+    "furnishingSurfaceArtworkSHA256": "9659b7c86b3751f0f4e042419aa1dcb3aa6ea6e82513e251e5f27a1491e246c4",
+    "furnishingSurfaceTriangles": 40,
+    "furnishingSurfaceNote": "Original illustrative red/gold decorated screen fields and dais vertical faces; exact 40 source-owned faces rebound into existing glyph atlas, geometry and texture budgets unchanged; ordinary combined validation pending",
+    "furnishingSurfaceBufferBytesAdded": 3840
   },
   "ownership": "taihe-core-visual-only"
 }

@@ -457,7 +457,7 @@ export class CourtKit {
       x, z, rot = 0, w, d, colH = 4.6, ph = 0.9, pad = 1.0,
       roof = 'xieshan', brackets = true, roofH,
       enter: enterOpt, backDoor = false, open = false, throne = false,
-      name, plaque = true, map = 'hall', bays,
+      name, plaque = true, plaqueText = name, map = 'hall', bays,
       interior, roomBays = 0,
     } = o;
     const layers = o.eaveCount ?? o.layers ?? 1;
@@ -608,7 +608,7 @@ export class CourtKit {
     });
     if (name && plaque) {
       const ph2 = THREE.MathUtils.clamp(colH * 0.3, 1.1, 2.2);
-      this.plaque(f, name, 0, open ? y0 + colH - beamH - ph2 / 2 : y0 + doorH + (colH - beamH - doorH) / 2 + 0.1, -d / 2 - 0.3, ph2 * 0.6, ph2);
+      this.plaque(f, plaqueText, 0, open ? y0 + colH - beamH - ph2 / 2 : y0 + doorH + (colH - beamH - doorH) / 2 + 0.1, -d / 2 - 0.3, ph2 * 0.6, ph2);
     }
     if (map) this.mapRect(f, map, name, PW, PD);
     return { f, PW, PD, top: y0 };

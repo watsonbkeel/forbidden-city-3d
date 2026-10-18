@@ -24,6 +24,7 @@ export function validateTaiheCore(root,cfg) {
   for(const key of ['furnitureSourceSHA256','furnitureBaseAssetSHA256','furnitureIntegrationSHA256','furnitureRetirementSHA256','furnitureMaskSHA256','furnitureTriangles','furnitureRemovedTriangles'])if(c[key]!==cfg.asset?.[key])throw new Error('Taihe furniture identity mismatch');
   for(const key of ['screenCrownSourceSHA256','screenCrownBaseAssetSHA256','screenCrownIntegrationSHA256','screenCrownRetirementSHA256','screenCrownMaskSHA256','screenCrownTriangles','screenCrownRemovedTriangles'])if(c[key]!==cfg.asset?.[key])throw new Error('Taihe screen crown identity mismatch');
   for(const key of ['enamelCraneSourceSHA256','enamelCraneBaseAssetSHA256','enamelCraneIntegrationSHA256','enamelCraneRetirementSHA256','enamelCraneMaskSHA256','enamelCraneTriangles','enamelCraneRemovedTriangles'])if(c[key]!==cfg.asset?.[key])throw new Error('Taihe enamel crane identity mismatch');
+  for(const key of ['furnishingSurfaceSourceSHA256','furnishingSurfaceBaseAssetSHA256','furnishingSurfaceMaskSHA256','furnishingSurfaceArtworkSHA256','furnishingSurfaceTriangles'])if(c[key]!==cfg.asset?.[key])throw new Error('Taihe furnishing surface identity mismatch');
   let tris=0,meshes=0;const mats=new Set();root.updateMatrixWorld(true);
   root.traverse(o=>{
     if(!o.isMesh)return;

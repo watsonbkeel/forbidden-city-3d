@@ -3,6 +3,9 @@ import garden from '../../data/zones/garden.json' with { type: 'json' };
 import outerEast from '../../data/zones/outer-east.json' with { type: 'json' };
 import outerWest from '../../data/zones/outer-west.json' with { type: 'json' };
 import axisCourts from '../../data/zones/axis-courts.json' with { type: 'json' };
+import eastSix from '../../data/zones/east-six.json' with { type: 'json' };
+import westSix from '../../data/zones/west-six.json' with { type: 'json' };
+import ningshou from '../../data/zones/ningshou.json' with { type: 'json' };
 import { PALACE_LAYOUT } from '../scene/Layout.js';
 import { pavilionGeometry } from '../scene/palace/special/PavilionProfiles.js';
 
@@ -16,11 +19,11 @@ const shape = (value, required, optional = []) => {
 const list = (value, min = 1) => check(Array.isArray(value) && value.length >= min, 'invalid list');
 const date = value => check(typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(value)), 'invalid date');
 const keyFor = b => JSON.stringify([b.kind, b.zoneId ?? null, b.name]);
-const relations = ['resident', 'temporary-resident', 'ceremonial-access', 'ceremony-participant', 'government-participant', 'wedding-participant', 'changed-use', 'inscription-author', 'administrator'];
+const relations = ["activity-participant", "administrator", "banquet-participant", "birthday-celebrant", "birthplace", "ceremonial-access", "ceremony-honoree", "ceremony-participant", "changed-use", "collection-patron", "commissioner", "confined-nearby", "departure-participant", "dining-and-inscription", "dining-user", "filial-ritual-participant", "garden-users", "gave-birth", "government-participant", "inscription-author", "intended-user", "martial-practice-user", "meal-attendant", "mourning-participant", "performance-honoree", "reader", "resident", "ritual-user", "temporary-resident", "tree-planter", "visitor", "visitor-and-poet", "waiting-place-user", "wedding-participant", "worship-participant"];
 
 /** Text knowledge only. No coordinates or replacement navigation rules in cards. */
 export class PlaceCatalog {
-  constructor(input = data, { layout = PALACE_LAYOUT, zones = [garden, outerEast, outerWest, axisCourts] } = {}) {
+  constructor(input = data, { layout = PALACE_LAYOUT, zones = [garden, outerEast, outerWest, axisCourts, eastSix, westSix, ningshou] } = {}) {
     shape(input, ['schemaVersion', 'language', 'status', 'baseCommit', 'reviewedAt', 'sourcePolicy', 'sources', 'places']);
     check(input.schemaVersion === 1 && input.language === 'zh-CN', 'unsupported version/language');
     check(['design-sample-not-shipped', 'reviewed-local-candidate', 'reviewed-for-release'].includes(input.status), 'invalid status');
@@ -36,26 +39,28 @@ export class PlaceCatalog {
       check(url.protocol === 'https:' && /^(?:[a-z0-9-]+\.)?dpm\.org\.cn$/.test(url.hostname) && !url.username && !url.password && !url.port && !url.search && !url.hash, 'unsafe or unofficial source URL');
       this.sources.set(source.id, source);
     }
-    const refs = ids => {
-      list(ids); check(new Set(ids).size === ids.length && ids.every(id => this.sources.has(id)), 'missing or duplicate source reference');
+    const refs = (ids, allowEmpty = false) => {
+      list(ids, allowEmpty ? 0 : 1); check(new Set(ids).size === ids.length && ids.every(id => this.sources.has(id)), 'missing or duplicate source reference');
     };
-    const fact = (f, period = false) => {
+    const fact = (f, period = false, allowEmpty = false) => {
       shape(f, ['text', 'sourceIds', ...(period ? ['period'] : [])], period ? [] : ['period']);
-      text(f.text); refs(f.sourceIds); if (f.period !== undefined) text(f.period, 80);
+      text(f.text); refs(f.sourceIds, allowEmpty); if (f.period !== undefined) text(f.period, 80);
     };
     for (const place of input.places) {
-      shape(place, ['id', 'name', 'functionTag', 'sceneBinding', 'summary', 'functions', 'people', 'timeline', 'modelExperience', 'siteAccess', 'reviewedAt'], ['residenceNote', 'interiorGuide']);
+      shape(place, ['id', 'name', 'functionTag', 'sceneBinding', 'summary', 'functions', 'people', 'timeline', 'modelExperience', 'siteAccess', 'reviewedAt'], ['residenceNote', 'interiorGuide', 'canonicalName', 'evidenceNote', 'evidenceStatus']);
       check(/^[a-z][a-z0-9-]*$/.test(place.id) && !this.byId.has(place.id), 'invalid or duplicate place ID');
       text(place.name, 80); text(place.functionTag, 80); date(place.reviewedAt);
       const b = place.sceneBinding;
       shape(b, ['kind', 'name'], ['zoneId']); text(b.name, 80);
       check((b.kind === 'layout' && b.zoneId === undefined) || (b.kind === 'zone' && typeof b.zoneId === 'string' && b.zoneId.length > 0), 'invalid scene binding');
       check(!this.byBinding.has(keyFor(b)), 'duplicate scene binding');
-      const candidates = b.kind === 'layout' ? layout : zones.filter(z => z.id === b.zoneId).flatMap(z => z.items).filter(item => ['hall', 'gate', 'cityGate'].includes(item.kind));
+      const candidates = b.kind === 'layout' ? layout : zones.filter(z => z.id === b.zoneId).flatMap(z => z.items).filter(item => ['hall', 'gate', 'cityGate', 'nineDragonWall'].includes(item.kind));
       const matches = candidates.filter(item => item.name === b.name);
       check(matches.length === 1 && place.name === b.name, 'scene binding must resolve exactly once');
-      fact(place.summary); list(place.functions); place.functions.forEach(f => fact(f));
-      list(place.timeline); place.timeline.forEach(f => fact(f, true)); list(place.people, 0);
+      // A clearly labelled unresolved model identity may state the research gap
+      // without pretending a neighbouring building's source proves the name.
+      fact(place.summary, false, place.evidenceStatus === 'identity-unresolved'); list(place.functions, 0); place.functions.forEach(f => fact(f));
+      list(place.timeline, 0); place.timeline.forEach(f => fact(f, true)); list(place.people, 0);
       for (const person of place.people) {
         shape(person, ['name', 'kind', 'relation', 'text', 'sourceIds', 'period']);
         text(person.name, 160); text(person.text); text(person.period, 80); refs(person.sourceIds);
@@ -63,6 +68,9 @@ export class PlaceCatalog {
       }
       if (place.people.some(p => ['resident', 'temporary-resident'].includes(p.relation))) check(!!place.residenceNote, 'residence requires evidence note');
       if (place.residenceNote) fact(place.residenceNote);
+      if (place.canonicalName !== undefined) text(place.canonicalName, 80);
+      if (place.evidenceNote !== undefined) fact(place.evidenceNote);
+      if (place.evidenceStatus !== undefined) check(["source-supported", "identity-inferred", "identity-unresolved", "partial-history", "partial-identity", "historical-site"].includes(place.evidenceStatus), 'invalid evidence status');
       if (place.interiorGuide !== undefined) {
         const guide = place.interiorGuide;
         shape(guide, ['notice', 'items']); text(guide.notice, 400); list(guide.items);
@@ -122,7 +130,7 @@ export class PlaceCatalog {
   }
   sourcesFor(place) {
     const ids = new Set();
-    for (const item of [place.summary, ...place.functions, ...place.people, ...place.timeline, place.residenceNote, place.siteAccess, place.siteAccess.notice, ...(place.interiorGuide?.items ?? [])]) {
+    for (const item of [place.summary, ...place.functions, ...place.people, ...place.timeline, place.residenceNote, place.evidenceNote, place.siteAccess, place.siteAccess.notice, ...(place.interiorGuide?.items ?? [])]) {
       item?.sourceIds.forEach(id => ids.add(id));
     }
     return [...ids].map(id => this.sources.get(id));

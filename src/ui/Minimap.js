@@ -245,14 +245,35 @@ export class Minimap {
     const heading = document.createElement('h2');
     heading.textContent = '地点介绍';
     this.placeList.appendChild(heading);
+    const search = document.createElement('input');
+    search.id = 'place-search'; search.type = 'search'; search.value = '';
+    search.placeholder = '搜索地点名称';
+    search.setAttribute('aria-label', '搜索地点名称');
+    search.setAttribute('aria-controls', 'place-directory');
+    const resultCount = document.createElement('p'); resultCount.id = 'place-search-count';
+    resultCount.setAttribute('role', 'status'); resultCount.setAttribute('aria-live', 'polite');
+    const directory = document.createElement('div'); directory.id = 'place-directory';
+    this.placeList.append(search, resultCount, directory);
+    const entries = [];
     for (const place of this.placeCatalog?.places ?? []) {
       const button = document.createElement('button');
       button.type = 'button';
       button.textContent = place.name;
       button.setAttribute('aria-label', `了解${place.name}`);
       button.addEventListener('click', () => this.showPlace(place.id));
-      this.placeList.appendChild(button);
+      directory.appendChild(button);
+      entries.push({button, name: `${place.name} ${place.canonicalName ?? ''}`.normalize('NFKC').toLocaleLowerCase('zh-CN')});
     }
+    const filter = () => {
+      const query = search.value.trim().normalize('NFKC').toLocaleLowerCase('zh-CN');
+      let count = 0;
+      for (const {button, name} of entries) {
+        const match = name.includes(query); button.hidden = button.inert = !match;
+        if (match) count++;
+      }
+      resultCount.textContent = count ? `显示 ${count} / ${entries.length} 个地点` : '未找到匹配地点，请换个名称。';
+    };
+    search.addEventListener('input', filter); filter();
     this.resumePlace = document.createElement('button');
     this.resumePlace.id = 'place-resume';
     this.resumePlace.type = 'button';
@@ -735,6 +756,12 @@ export class Minimap {
     };
     for (const it of this.items) {
       const [fill, stroke] = style[it.kind] ?? style.hall;
+      if (it.historicalSite) {
+        const point = this.worldToMap(it.x, it.z);
+        ctx.strokeStyle = stroke; ctx.lineWidth = 0.8;
+        ctx.beginPath(); ctx.arc(point.x, point.y, 2.4, 0, Math.PI * 2); ctx.stroke();
+        continue;
+      }
       for (const footprint of it.footprints ?? [it]) {
         const [x, y, w, h] = this.rectOf(footprint.x, footprint.z, footprint.w, footprint.d);
         ctx.fillStyle = fill;
@@ -754,7 +781,7 @@ export class Minimap {
       if (placed.some(p => Math.abs(p.x - cx) < 22 && Math.abs(p.y - cy) < 9)) continue;
       placed.push({ x: cx, y: cy });
       const mode = it.navigation?.mode;
-      this.drawLabel(mode === 'exterior-view' ? `${it.name}（外观）` : it.name, cx, cy, it.kind === 'hall', it.kind === 'hall' ? 9 : 8, it.name, mode, this.placeCatalog?.forMapItem(it, this.items)?.id);
+      this.drawLabel(it.historicalSite ? `${it.name}（旧址）` : mode === 'exterior-view' ? `${it.name}（外观）` : it.name, cx, cy, it.kind === 'hall', it.kind === 'hall' ? 9 : 8, it.name, mode, this.placeCatalog?.forMapItem(it, this.items)?.id);
     }
   }
   

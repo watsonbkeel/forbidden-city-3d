@@ -12,6 +12,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { zhaodeGateGeometry } from '../../src/scene/palace/special/ZhaodeGateProfile.js';
+import { eastWestCityGateGeometry } from '../../src/scene/palace/special/EastWestCityGate.js';
 import { sideGateGeometry } from '../../src/scene/palace/special/SideGateProfiles.js';
 import { qinanGeometry } from '../../src/scene/palace/special/QinanProfile.js';
 import { pavilionGeometry } from '../../src/scene/palace/special/PavilionProfiles.js';
@@ -32,6 +33,12 @@ export const parseRot = r => (r === undefined || r === null ? 0 : typeof r === '
 
 /** 门通行几何；profile 的 front/rear 包含各自完整坡道，platformY 仅用于台面起点。 */
 export function gateGeom(item) {
+  if (item.kind === 'cityGate' && item.cityGateProfile !== undefined) {
+    const profile = eastWestCityGateGeometry(item);
+    return { x: profile.x, z: profile.z, rot: profile.rot, dir: [Math.sin(profile.rot), Math.cos(profile.rot)],
+      half: profile.depth / 2, front: profile.depth / 2, rear: profile.depth / 2, platformY: 0,
+      profile: { ...profile, ramps: [], toWorld: (x,z) => [profile.x+x*Math.cos(profile.rot)+z*Math.sin(profile.rot), profile.z-x*Math.sin(profile.rot)+z*Math.cos(profile.rot)] } };
+  }
   // Explicit three-bay topology must precede the established five-bay profiles.
   if (item.gateProfile === 'zhaode' && item.gateKind === 'three-bay') {
     const profile = zhaodeGateGeometry(item);

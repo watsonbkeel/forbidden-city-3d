@@ -127,15 +127,41 @@
         },
         "relation": {
           "enum": [
-            "resident",
-            "temporary-resident",
+            "activity-participant",
+            "administrator",
+            "banquet-participant",
+            "birthday-celebrant",
+            "birthplace",
             "ceremonial-access",
+            "ceremony-honoree",
             "ceremony-participant",
-            "government-participant",
-            "wedding-participant",
             "changed-use",
+            "collection-patron",
+            "commissioner",
+            "confined-nearby",
+            "departure-participant",
+            "dining-and-inscription",
+            "dining-user",
+            "filial-ritual-participant",
+            "garden-users",
+            "gave-birth",
+            "government-participant",
             "inscription-author",
-            "administrator"
+            "intended-user",
+            "martial-practice-user",
+            "meal-attendant",
+            "mourning-participant",
+            "performance-honoree",
+            "reader",
+            "resident",
+            "ritual-user",
+            "temporary-resident",
+            "tree-planter",
+            "visitor",
+            "visitor-and-poet",
+            "waiting-place-user",
+            "wedding-participant",
+            "worship-participant"
           ]
         },
         "text": {
@@ -379,11 +405,11 @@
           "$ref": "#/$defs/binding"
         },
         "summary": {
-          "$ref": "#/$defs/fact"
+          "$ref": "#/$defs/summary"
         },
         "functions": {
           "type": "array",
-          "minItems": 1,
+          "minItems": 0,
           "items": {
             "$ref": "#/$defs/fact"
           }
@@ -397,7 +423,7 @@
         },
         "timeline": {
           "type": "array",
-          "minItems": 1,
+          "minItems": 0,
           "items": {
             "$ref": "#/$defs/event"
           }
@@ -417,6 +443,25 @@
         },
         "interiorGuide": {
           "$ref": "#/$defs/interiorGuide"
+        },
+        "canonicalName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "pattern": "^[^<>]*$"
+        },
+        "evidenceNote": {
+          "$ref": "#/$defs/fact"
+        },
+        "evidenceStatus": {
+          "enum": [
+            "source-supported",
+            "identity-inferred",
+            "identity-unresolved",
+            "partial-history",
+            "partial-identity",
+            "historical-site"
+          ]
         }
       },
       "required": [
@@ -457,6 +502,25 @@
             "required": [
               "residenceNote"
             ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "evidenceStatus": {
+                "const": "identity-unresolved"
+              }
+            },
+            "required": [
+              "evidenceStatus"
+            ]
+          },
+          "else": {
+            "properties": {
+              "summary": {
+                "$ref": "#/$defs/fact"
+              }
+            }
           }
         }
       ]
@@ -522,6 +586,33 @@
       "required": [
         "notice",
         "items"
+      ]
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceIds": {
+          "type": "array",
+          "minItems": 0,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "period": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "text",
+        "sourceIds"
       ]
     }
   }

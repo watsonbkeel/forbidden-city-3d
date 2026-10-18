@@ -1,0 +1,47 @@
+{
+  "schema": "taihe-furnishing-surface-source-delta-1",
+  "files": {
+    "src/scene/palace/special/TaiheCore.js": {
+      "baselineSHA256": "67980cf6965d1e3e4a1e22719e777e90b9ebbacb91900eddd9a70050147cd80c",
+      "candidateSHA256": "1e10c399fa50ad907ac352fe57818806b88607babc073637a4987bc7d26e2be2",
+      "allowedEarlierSHA256": [
+        "0423d15a42531b420166689c7ef2b23174278ee600d9f24085ecad5f60a6853b",
+        "411617a29b7ad140da7eba62348bf2bbd165035b0bf2e95de49668b7397133b4",
+        "67980cf6965d1e3e4a1e22719e777e90b9ebbacb91900eddd9a70050147cd80c",
+        "7581f97d54a0a3aeee133f29f98855678444ee6d97440118967c3f8bf1165545",
+        "8384e530963af132249a9ba67a5a80d164507bdcadd94b99417abefab473c4ec",
+        "b612169183ef61a4fb653cd41ef372328285f7f2429e7431efeb17fe034e783d"
+      ],
+      "deltas": [
+        {
+          "before": "",
+          "after": "import { paintTaiheFurnishingTiles } from './TaiheFurnishingSurface.js';\n"
+        },
+        {
+          "before": "",
+          "after": "  paintTaiheFurnishingTiles(c);\n"
+        }
+      ]
+    },
+    "src/scene/interior/TaiheCoreContract.js": {
+      "baselineSHA256": "a7204a781682e0c930cbd3e026b2a1da023fc2810252b7be1d528cf315ebb4fb",
+      "candidateSHA256": "2fa9a040aecea6e040785ff511c2642668088cad6b837789cd7b428f1cb843d3",
+      "allowedEarlierSHA256": [
+        "0e35360e3c77f9d3ba298affe092097aa5ea9d48d96f757a47b5c452e9144a97",
+        "1380025664a4cc15b789d366a44b5a36dbe8678f0cc68ff31baa1a214987b96e",
+        "4423d2cdb8d2dc7e7e451c50e5ff0b3ca58b0c26ba115d0a206e3ebe10dd721d",
+        "a4584965046264760ae170252dc6437bf19a38b652b6a002b4d8f40c6e31a5b3",
+        "a7204a781682e0c930cbd3e026b2a1da023fc2810252b7be1d528cf315ebb4fb",
+        "e9ab173c0dcefd81b4af3aa289f389cfc0ae8fac7639b2ad6adf14ba46e1ad86",
+        "f8f82cbcffc4999331ac6e660be5d89ade216d3ef9578b09935668c443bba822",
+        "f916e7365ee2a79f72e2c2a25536f181d792843977e22c219d6b8578ea1fa70e"
+      ],
+      "deltas": [
+        {
+          "before": "",
+          "after": "  for(const key of ['furnishingSurfaceSourceSHA256','furnishingSurfaceBaseAssetSHA256','furnishingSurfaceMaskSHA256','furnishingSurfaceArtworkSHA256','furnishingSurfaceTriangles'])if(c[key]!==cfg.asset?.[key])throw new Error('Taihe furnishing surface identity mismatch');\n"
+        }
+      ]
+    }
+  }
+}

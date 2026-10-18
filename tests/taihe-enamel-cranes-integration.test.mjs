@@ -13,7 +13,10 @@ const root=new URL('../',import.meta.url),read=p=>fs.readFileSync(new URL(p,root
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const BASE='22c6acdf581dc7779b876963fd935ee482bd22e2a6671b486f9571debc14ac19';
 const manifest=JSON.parse(read('docs/current-state/taihe-enamel-cranes/SOURCE-MANIFEST.json'));
-const cfg=JSON.parse(read('data/interiors/taihe.json'));
+// Frozen crane migration fixture; current surface rebinding has its own integration gate.
+const cfgBytes=read('tests/fixtures/taihe-enamel-cranes-registry.json');
+assert.equal(sha(cfgBytes),'82acf0bc707c817af651cbe093437db21bca97df83f3af32dd6b61937f5882b2');
+const cfg=JSON.parse(cfgBytes);
 const beforeBytes=read('public/models/interiors/taihe-screen-crowns-22c6acdf581d.glb'),bytes=read('public'+cfg.model);
 const decode=b=>{const length=b.readUInt32LE(12),gltf=JSON.parse(b.toString('utf8',20,20+length)),start=28+length;return{gltf,views:gltf.bufferViews.map(v=>b.subarray(start+(v.byteOffset??0),start+(v.byteOffset??0)+v.byteLength))};};
 const old=decode(beforeBytes),now=decode(bytes),mask=JSON.parse(read('assets-src/interiors/taihe_cranes/retired_crane_faces.json'));

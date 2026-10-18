@@ -1,3 +1,5 @@
+import { withLegacyWesternCourtsForVersionComparison } from '../lib/r6-western-route-compat.mjs';
+import { withLegacyNingshouForVersionComparison } from '../lib/r6-ningshou-route-compat.mjs';
 import { withLegacyQinanForVersionComparison } from '../lib/qinan-route-version-compat.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -29,7 +31,7 @@ test('昭德 route geometry dispatches its explicit three-bay profile and indepe
   assert.equal(p.supports.platform.rescue, false);
 });
 
-test('V7 historical routes retain exact descriptors with only the later Qin’an replacement isolated', async () => {
+test('V7 historical routes retain exact descriptors with only the later Qin’an and R6 Ningshou replacements isolated', async () => {
   const fixed = execFileSync(process.execPath, ['tests/stepwalk.cjs', '60', '0', 'all'], {
     cwd: new URL('../..', import.meta.url), env: { ...process.env, DUMP: '1' }, encoding: 'utf8',
   }).trim().split('\n').map(line => {
@@ -45,9 +47,9 @@ test('V7 historical routes retain exact descriptors with only the later Qin’an
   assert.equal(added[0].name, '[axis-courts] 昭德门南地面→单门道→北地面→返回');
   assert.equal(routes.at(-1), added[0], 'new route is appended after all 58 inherited entries');
   assert.equal(routes.length, 59);
-  assert.equal(hash(withLegacyQinanForVersionComparison(routes).filter(r=>r.gateProfile!=='zhaode').map(r=>({name:r.name,pts:r.pts,waypointDriver:r.waypointDriver??null}))),
+  assert.equal(hash(withLegacyQinanForVersionComparison(withLegacyNingshouForVersionComparison(withLegacyWesternCourtsForVersionComparison(routes))).filter(r=>r.gateProfile!=='zhaode').map(r=>({name:r.name,pts:r.pts,waypointDriver:r.waypointDriver??null}))),
     '11c58babe6e0d24645ac36d8619f8f5003a955d7da10d681fe235c528d6e9009','all historical V6 driver identities and points remain exact apart from the separately tested Qin’an replacement');
-  assert.equal(hash(withLegacyQinanForVersionComparison(routes).filter(r => r.gateProfile !== 'zhaode').map(({ name, pts }) => ({ name, pts }))), autoHash);
+  assert.equal(hash(withLegacyQinanForVersionComparison(withLegacyNingshouForVersionComparison(withLegacyWesternCourtsForVersionComparison(routes))).filter(r => r.gateProfile !== 'zhaode').map(({ name, pts }) => ({ name, pts }))), autoHash);
   assert.equal(added[0].waypointDriver, 'zhaode-physical-crossing-v1');
   const p = gateGeom(explicit).profile;
   const contacts = ['frontGround','frontToe','frontTop','portalFront','portalRear','rearTop','rearToe','rearGround'];

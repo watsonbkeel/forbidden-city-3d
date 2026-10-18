@@ -1,5 +1,8 @@
 import * as THREE from 'three';
 import { CourtKit, FACE } from '../palace/kit.js';
+import { resolveCourtWallContract } from './CourtWallContract.js';
+import { buildEastWestCityGate } from '../palace/special/EastWestCityGate.js';
+import { historicalGateMapItem } from './HistoricalGateSites.js';
 
 /**
  * 分区构建器基类：从 zone JSON 构建一个区域的所有建筑。
@@ -135,6 +138,7 @@ export class ZoneBase {
       open: item.open,
       name: item.name,
       plaque: item.plaque,
+      plaqueText: item.plaqueText,
       map: item.map,
     };
     // 过滤 undefined 参数，让 kit 方法使用默认值
@@ -143,6 +147,12 @@ export class ZoneBase {
   }
 
   buildGate(item) {
+    if (item.historicalSite !== undefined) {
+      this.kit.mapItems.push(historicalGateMapItem(item));
+      // No physical opening width: a new wall must not silently use a
+      // demolished gate as evidence for cutting a current-day opening.
+      return 0;
+    }
     const params = {
       x: item.x,
       z: item.z,
@@ -179,14 +189,10 @@ export class ZoneBase {
   }
 
   buildCourtWalls(item) {
-    const gates = (item.gates ?? []).map(g => ({
-      side: g.side,
-      at: g.at,
-      w: g.gate ? this.gateWidths.get(g.gate) : g.w,
-    }));
+    const { x0, x1, z0, z1, gates } = resolveCourtWallContract(item, this.gateWidths);
     const params = { h: item.h, t: item.t };
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
-    this.kit.courtWalls(item.x0, item.x1, item.z0, item.z1, gates, params);
+    this.kit.courtWalls(x0, x1, z0, z1, gates, params);
   }
 
   buildCorridor(item) {
@@ -217,6 +223,7 @@ export class ZoneBase {
   }
 
   buildCityGate(item) {
+    if (item.cityGateProfile !== undefined) return buildEastWestCityGate(this.kit, item);
     const params = {
       x: item.x,
       z: item.z,

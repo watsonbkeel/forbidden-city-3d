@@ -6,6 +6,7 @@ const element = (tag, text, className) => {
 };
 const factText = fact => `${fact.period ? `${fact.period} · ` : ''}${fact.text}`;
 const resident = person => ['resident', 'temporary-resident'].includes(person.relation);
+const evidenceLabels = { 'identity-inferred': '名称为文献推定', 'identity-unresolved': '名称对应待核', 'partial-history': '独立沿革资料有限', 'partial-identity': '模型单体对应待核', 'historical-site': '历史地点 · 实体已拆除' };
 const disclaimer = '模型漫游不代表现场开放许可；实际参观范围和入内安排请查阅故宫博物院当日公告。';
 
 /** One ordinary, nonmodal DOM region. The map owns selection and input lifetime. */
@@ -25,6 +26,9 @@ export class PlaceInfoPanel {
     const title = element('h2', name); title.id = 'place-title'; title.tabIndex = -1;
     this.element.appendChild(title);
     if (place) this.element.appendChild(element('p', place.functionTag, 'place-tag'));
+    if (evidenceLabels[place?.evidenceStatus]) this.element.appendChild(element('p', evidenceLabels[place.evidenceStatus], 'place-note'));
+    if (place?.canonicalName && place.canonicalName !== name) this.element.appendChild(element('p', `资料所用名称：${place.canonicalName}`, 'place-note'));
+    if (place?.evidenceNote) this.element.appendChild(element('p', factText(place.evidenceNote), 'place-note'));
     this.element.appendChild(element('p', place?.summary.text ?? '此地点的详细介绍尚未收录。', 'place-summary'));
     if (canTravel) {
       const button = element('button', place?.modelExperience.actionLabel ?? '前往此处');

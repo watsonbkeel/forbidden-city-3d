@@ -1,3 +1,4 @@
+import {restorePreFurnishingSurfaceSource} from './lib/taihe-furnishing-surface-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -13,7 +14,7 @@ import {restorePreCeilingSource} from './lib/taihe-ceiling-retention.mjs';
 import delta from './fixtures/taihe-ceiling-source-delta.json' with {type:'json'};
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const file='src/scene/palace/special/TaiheCore.js';
-const code=fs.readFileSync(new URL('../'+file,import.meta.url));
+const code=restorePreFurnishingSurfaceSource(file,fs.readFileSync(new URL('../'+file,import.meta.url)));
 const oldSource=restorePreCeilingSource(file,code).toString().replace(/from '(\.[^']+)'/g,(_,p)=>`from '${new URL(p,new URL('../'+file,import.meta.url)).href}'`).replace(/from 'three'/g,`from '${new URL('../node_modules/three/build/three.module.js',import.meta.url).href}'`);
 const old=await import(`data:text/javascript,${encodeURIComponent(oldSource)}`);
 function context() {const calls=[];const ctx=new Proxy({},{get:(_,k)=>(...args)=>{calls.push([k,...args]);},set:(_,k,v)=>{calls.push(['set',k,v]);return true;}});return{ctx,calls};}

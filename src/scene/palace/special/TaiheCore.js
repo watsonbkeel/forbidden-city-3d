@@ -6,6 +6,7 @@ import { appendTaiheCaissonDetail } from './TaiheCaissonDetail.js';
 import { mergeByMaterial } from '../../../utils/MergeUtils.js';
 import { TAIHE_CORE as P, TAIHE_CORE_CONTRACT, TAIHE_FALLBACK_OWNER } from './TaiheCoreProfile.js';
 import { taiheCeilingMaterial } from './TaiheCeilingMaterial.js';
+import { paintTaiheFurnishingTiles } from './TaiheFurnishingSurface.js';
 
 // Self-authored simplified forms, not facsimiles of historical carving.
 export function taiheGlyphMaterial(sharedTexture = null) {
@@ -24,6 +25,7 @@ export function taiheGlyphMaterial(sharedTexture = null) {
     const step = 620 / [...text].length; c.font = `${Math.floor(step * .85)}px ${font}`;
     [...text].forEach((ch, i) => c.fillText(ch, x, 394 + step * (i + .5)));
   }
+  paintTaiheFurnishingTiles(c);
   const texture = new THREE.CanvasTexture(canvas); texture.colorSpace = THREE.SRGBColorSpace;
   const material = new THREE.MeshStandardMaterial({ name: 'taihe_glyph_atlas', map: texture, roughness: .8, metalness: 0 });
   let disposed = false;

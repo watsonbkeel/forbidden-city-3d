@@ -9,7 +9,8 @@ const { browserExecutablePath } = require('./browser-path.cjs');
 // 不预加载的话 S 档碰撞体/可行走面全不存在，门禁对内景是"盲"的。所以 openPage() 就绪后先预加载全部 S 档：
 //   1) 先把 interiors.update 换成空函数（否则主循环残留的 update 会因距离 > 40 m 把正在加载的殿卸掉）
 //   2) 逐个 await interiors.load(id)
-//   3) 校验每座 state === 'loaded' 且 collisionManager 里有 tag = interior:<id> 的碰撞体，否则抛错（防止再次"变盲"）
+//   3) 普通内景必须有 interior:<id> 碰撞；太和殿 visual-only S 核心必须保留
+//      原有无 tag 的 9 个永久碰撞体与 7 个台阶，逐个核对 profile、对象身份和几何。
 // 接线丢失（window.__forbiddenCityApp.interiors 不存在）同样抛错。STEPWALK_NO_INTERIORS=1 可关闭预加载（仅调试用）。
 const { chromium } = require('playwright');
 
@@ -21,16 +22,29 @@ async function preloadInteriors(page) {
     il.update = () => {}; // 冻结距离触发，由本函数全权管理加载
     const ids = il.ids();
     if (!ids.length) throw new Error('InteriorLoader 未注册任何内景');
-    for (const id of ids) await il.load(id);
     const cm = a.collisionManager;
+    let taiheNavigation = null, taiheVerification = null, taiheProfile = null, taiheCfg = null, taiheBefore = null;
+    if (ids.includes('taihe')) {
+      [taiheNavigation, { TAIHE_CORE: taiheProfile }] = await Promise.all([
+        import('/tests/lib/taihe-permanent-navigation.mjs'),
+        import('/src/scene/palace/special/TaiheCoreProfile.js'),
+      ]);
+      taiheCfg = il.halls.get('taihe').cfg;
+      taiheBefore = taiheNavigation.captureTaihePermanentNavigation(cm, taiheCfg, il._floorY(taiheCfg), taiheProfile);
+    }
+    for (const id of ids) await il.load(id);
+    if (taiheBefore) taiheVerification = taiheNavigation.assertTaihePermanentNavigationRetained(cm, taiheBefore, taiheCfg, il._floorY(taiheCfg), taiheProfile);
     return ids.map(id => ({
       id,
       state: il.getState(id),
       col: cm.colliders.filter(c => c.tag === `interior:${id}`).length,
       walk: cm.walkables.filter(w => w.tag === `interior:${id}`).length,
+      ...(id === 'taihe' ? { navigationOwner: 'permanent-taihe-profile', ...taiheVerification } : {}),
     }));
   });
-  const bad = res.filter(r => r.state !== 'loaded' || r.col < 1);
+  const bad = res.filter(r => r.state !== 'loaded' || (r.id === 'taihe'
+    ? r.col !== 0 || r.walk !== 0 || r.permanentCol !== 9 || r.permanentWalk !== 7 || r.permanentRetained !== true
+    : r.col < 1));
   console.log('[stepwalk] 预加载 S 档内景：' + res.map(r => `${r.id}=${r.state}(COL ${r.col}/WALK ${r.walk})`).join(' '));
   if (bad.length) throw new Error('S 档内景预加载失败：' + bad.map(r => `${r.id}(state=${r.state}, COL=${r.col})`).join(', '));
   return res;
@@ -210,4 +224,4 @@ async function runRoutes(page, routes, fpsList, sprints) {
   }, { ROUTES: routes, fpsList, sprints });
 }
 
-module.exports = { openPage, runRoutes, routeForBrowser };
+module.exports = { openPage, runRoutes, routeForBrowser, preloadInteriors };
