@@ -1,3 +1,4 @@
+import{restoreR16SourceIfPresent}from'./lib/r16-baohe-retention.mjs';
 import{restorePreR13SceneRow}from'./lib/r13-plaque-retention.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {execFileSync}from'node:child_process';import *as T from'three';
 import {PalaceBuilder}from'../src/scene/PalaceBuilder.js';import {PALACE_LAYOUT}from'../src/scene/Layout.js';
@@ -67,7 +68,7 @@ test('three hall bodies lower rigidly; tight float32 tolerance, only known world
 test('finite source restoration rejects unrelated edits, omissions and duplicate hunks',async()=>{
  const{restorePreR12InnerSource:restore}=await import('./lib/r12-inner-source-retention.mjs');
  const deltas=JSON.parse(fs.readFileSync(new URL('./fixtures/r12-inner-source-deltas.json',import.meta.url)));
- for(const[path,d]of Object.entries(deltas.files)){const raw=fs.readFileSync(new URL('../'+path,import.meta.url));assert.notDeepEqual(restore(path,raw),raw);assert.throws(()=>restore(path,Buffer.concat([raw,Buffer.from('\n')])));
+ for(const[path,d]of Object.entries(deltas.files)){const raw=restoreR16SourceIfPresent(path,fs.readFileSync(new URL('../'+path,import.meta.url)));assert.notDeepEqual(restore(path,raw),raw);assert.throws(()=>restore(path,Buffer.concat([raw,Buffer.from('\n')])));
   for(const h of d.deltas)for(const replacement of[h.before,h.after+h.after,h.after+'// changed\n'])assert.throws(()=>restore(path,Buffer.from(raw.toString().replace(h.after,replacement))));
  }
 });

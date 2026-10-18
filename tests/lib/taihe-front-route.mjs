@@ -6,7 +6,7 @@ export function captureTaiheFrontTiers() {
   const mats=new Map();
   const lib={material:n=>mats.get(n)??(mats.set(n,new THREE.MeshStandardMaterial({name:n})),mats.get(n)),tileSize:()=>2};
   const b=new PalaceBuilder(new THREE.Scene(),lib);b.buildHall=()=>{};b.terraceOrnaments=()=>{};
-  const groups=[];b.finish=g=>groups.push(g);
+  const groups=[];b.finish=g=>{groups.push(g);g.userData.architecture??=[];return g;};
   b.buildComplex(PALACE_LAYOUT.filter(h=>['太和殿','中和殿','保和殿'].includes(h.name)),
     {name:'三台',apron:14,margin:4,bottom:{halfW:65,z0:-54,z1:178}});
   const tiers=structuredClone(b.taiheSouthTiers);

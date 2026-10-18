@@ -20,6 +20,7 @@ import { captureInnerGlazeCoarse, installInnerGlazeLOD } from './palace/special/
 import { buildKunningPalace } from './palace/special/KunningPalace.js';
 import { threeHallTerraceProfile, closedTerraceStairGeometry } from './palace/ThreeHallTerrace.js';
 import { taiheSouthTier, buildTaiheSouthTier } from './palace/TaiheFrontApproaches.js';
+import { baoheNorthTier, buildBaoheNorthTier, createBaoheNorthDetail, installBaoheNorthDetail } from './palace/BaoheNorthApproaches.js';
 import { buildZhongheImperialApproach } from './palace/ZhongheImperialApproach.js';
 import { TAIHE_CORE } from './palace/special/TaiheCoreProfile.js';
 import { buildTaiheCoreFallback, buildTaiheCeiling, buildTaiheNavigation } from './palace/special/TaiheCore.js';
@@ -87,6 +88,7 @@ export class PalaceBuilder {
     this.walkables = [];
     this.terraceProfiles = [];
     this.taiheSouthTiers = [];
+    this.baoheNorthTiers = [];
     this.ownedMaterials = [];
     this.ownedObjects = new Set();
     this.ox = 0;
@@ -304,7 +306,7 @@ export class PalaceBuilder {
    * rects: [{ hw, z0, z1 }]（顶层，局部坐标），每下一层 hw 与首尾 z 向外扩 setback。
    * 只在首块南边、末块北边设台阶；矩形交界处宽出的部分设挡墙与栏杆。
    */
-  buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile = null, taiheSouth = false, innerPalace = false }) {
+  buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile = null, taiheSouth = false, innerPalace = false, baoheNorth = null }) {
     const half = stairW / 2;
     const t = 0.5;
     const last = rects.length - 1;
@@ -363,6 +365,10 @@ export class PalaceBuilder {
       for (const [r, s, ze] of [[R[0], -1, R[0].z0], [R[last], 1, R[last].z1]]) {
         if (taiheSouth && s === -1) {
           buildTaiheSouthTier(this, g, taiheSouthTier({ zEdge: ze, y0, y1, run, halfWidth: r.hw, tier: i + 1 }));
+          continue;
+        }
+        if (baoheNorth && s === 1) {
+          buildBaoheNorthTier(this, g, baoheNorthTier({ zEdge: ze, y0, y1, run, halfWidth: r.hw, tier: i + 1 }), baoheNorth);
           continue;
         }
         this.col(-r.hw, y0, ze, -half, y0 + ch, ze - s * t);
@@ -435,7 +441,8 @@ export class PalaceBuilder {
     const sideStairProfile = name === '三台' && waistIndex >= 0
       ? threeHallTerraceProfile(rects, { layers, lh, run, setback, waistIndex, hall: halls[waistIndex] })
       : name === '后三宫' ? innerPalaceTerraceProfile(rects, halls) : null;
-    const top = this.buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile, taiheSouth: name === '三台', innerPalace: name === '后三宫' });
+    const baoheNorth = name === '三台' ? createBaoheNorthDetail() : null;
+    const top = this.buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile, taiheSouth: name === '三台', innerPalace: name === '后三宫', baoheNorth });
 
     if (halls.length > 1) {
       // Individual supports are source-specific: high stairs belong to the
@@ -467,6 +474,7 @@ export class PalaceBuilder {
     const coarse = name === '后三宫' ? captureInnerGlazeCoarse(g) : null;
     const finished = this.finish(g);
     if (coarse) installInnerGlazeLOD(finished, coarse);
+    if (baoheNorth) installBaoheNorthDetail(finished, baoheNorth);
   }
 
   /**

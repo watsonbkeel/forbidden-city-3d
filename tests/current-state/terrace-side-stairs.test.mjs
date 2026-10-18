@@ -15,7 +15,7 @@ function fixture(name = '三台') {
   builder.terraceOrnaments = () => {};
   let group, options, rects;
   const finish = builder.finish.bind(builder);
-  builder.finish = g => { group = name === '后三宫' ? finish(g) : g; return group; };
+  builder.finish = g => { group = name === '后三宫' ? finish(g) : g; group.userData.architecture ??= []; return group; };
   const build = builder.buildTerraceUnion;
   builder.buildTerraceUnion = function(g, r, opts) { rects = structuredClone(r); options = opts; return build.call(this, g, r, opts); };
   const names = name === '三台' ? ['太和殿', '中和殿', '保和殿'] : ['乾清宫', '交泰殿', '坤宁宫'];

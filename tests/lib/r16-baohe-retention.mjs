@@ -1,0 +1,13 @@
+import assert from'node:assert/strict';import{createHash}from'node:crypto';
+import source from'../fixtures/r16-baohe-source-delta.json'with{type:'json'};
+import nav from'../fixtures/r16-baohe-navigation-delta.json'with{type:'json'};
+import route from'../fixtures/r16-baohe-route-delta.json'with{type:'json'};
+import scene from'../fixtures/r16-baohe-scene-delta.json'with{type:'json'};
+const sha=x=>createHash('sha256').update(x).digest('hex'),hash=x=>sha(JSON.stringify(x));
+/** Finite historical identity adapter. Never supplies geometry to the application. */
+export function restorePreR16Source(path,bytes){const d=source.files[path];if(!d)return bytes;if(sha(bytes)===d.baselineSHA256)return bytes;assert.equal(sha(bytes),d.candidateSHA256,`exact R16 north-only source: ${path}`);let out=bytes.toString();for(const h of [...d.deltas].reverse()){assert.equal(out.split(h.after).length,2);out=out.replace(h.after,h.before);}assert.equal(sha(out),d.baselineSHA256);return Buffer.from(out);}
+export function restoreR16SourceIfPresent(path,bytes){const marker=path.includes('approach-route')||path.includes('taihe-front-route')?'g.userData.architecture??=[]':'baoheNorth';return source.files[path]&&bytes.toString().includes(marker)?restorePreR16Source(path,bytes):bytes;}
+export function restorePreR16Navigation(value){const h=hash(value);if(h===nav.beforeSHA256)return value;assert.equal(h,nav.afterSHA256,'exact R16 registered navigation before historical conversion');const out=JSON.parse(JSON.stringify(value));for(const[key,d]of Object.entries(nav.collections)){assert.equal(out[key].length,d.afterCount);for(const c of [...d.changes].reverse()){assert.deepEqual(out[key].slice(c.afterIndex,c.afterIndex+c.after.length),c.after);out[key].splice(c.afterIndex,c.after.length,...structuredClone(c.before));}assert.equal(out[key].length,d.beforeCount);}assert.equal(hash(out),nav.beforeSHA256);return out;}
+export function restorePreR16SceneRow(name,row){if(name!==scene.name||JSON.stringify(row)===JSON.stringify(scene.before))return row;assert.deepEqual(row,scene.after,'exact R16 complete three-hall merged geometry');return structuredClone(scene.before);}
+export function withLegacyBaoheNorthRoutes(rows){return rows.map(r=>{if(r.name!==route.after.name||JSON.stringify(r)===JSON.stringify(route.before))return r;assert.deepEqual(r,route.after,'exact R16 stone-side descent route');return structuredClone(route.before);});}
+export function currentBaoheNorthRoute(row){assert.deepEqual(row,route.before,'only the registered preceding north descent is upgraded');return structuredClone(route.after);}

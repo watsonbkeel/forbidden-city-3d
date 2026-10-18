@@ -158,7 +158,7 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true } = {
     mapItems.push(...data.mapItems);
   }
 
-  const terraceProfiles = [], taiheSouthTiers = [];
+  const terraceProfiles = [], taiheSouthTiers = [], baoheNorthTiers = [];
   if (statics) {
     const log = console.log;
     console.log = () => {};
@@ -172,6 +172,7 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true } = {
       pb.buildAll(PALACE_LAYOUT);
       terraceProfiles.push(...pb.terraceProfiles);
       taiheSouthTiers.push(...pb.taiheSouthTiers);
+      baoheNorthTiers.push(...pb.baoheNorthTiers);
       const en = new Enclosure(scene, lib).build();
       const gb = new GardenBuilder(scene, lib).build(PALACE_LAYOUT.find(i => i.type === 'garden'));
       for (const [name, cols, walks] of [['PalaceBuilder', pb.getColliders(), pb.getWalkables()], ['Enclosure', en.getColliders(), []], ['GardenBuilder', gb.getColliders(), gb.getWalkables()]]) {
@@ -189,7 +190,7 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true } = {
     if (item.kind === 'hall') halls.push({ zone: json.id, item, g: hallGeom(item) });
   }
   return {
-    THREE, cm, zones, gates, halls, rooms, mapItems, terraceProfiles, taiheSouthTiers,
+    THREE, cm, zones, gates, halls, rooms, mapItems, terraceProfiles, taiheSouthTiers, baoheNorthTiers,
     ownerOf: c => owner.get(c.mesh) ?? { zone: c.tag ?? '?', item: { kind: '?' } },
   };
 }
