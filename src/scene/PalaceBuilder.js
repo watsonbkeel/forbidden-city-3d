@@ -25,6 +25,7 @@ import { BAOHE_DEPTH_GRID, baoheDepthGrid, baoheDepthColumnPresent } from './pal
 import { buildBaoheThroneScreen, buildBaoheInteriorPlaque, buildBaoheThroneChair } from './palace/BaoheThroneScreen.js';
 import { buildBaoheFrontDoors } from './palace/BaoheFrontDoors.js';
 import { buildBaoheClosedFront } from './palace/BaoheFrontEnclosure.js';
+import { buildBaoheRearEnclosure } from './palace/BaoheRearEnclosure.js';
 import { buildBaoheColumnCouplets } from './palace/BaoheColumnCouplets.js';
 import { baoheInteriorFrame, baoheHighColumn, buildBaoheInteriorCeiling } from './palace/BaoheInteriorFrame.js';
 import { buildBaoheHallPlinth } from './palace/BaoheHallPlinth.js';
@@ -748,10 +749,12 @@ export class PalaceBuilder {
           continue;
         }
         if (baoheColumns && s === -1) buildBaoheClosedFront(this,g,{bay:i,xc,zf,y,height:doorH,width:facadeBayW-2*r});
-        else if (!(taiheCore && s === 1)) this.libBox(g, 'lattice_doors', facadeBayW - 2 * r, doorH, 0.15, xc, y + doorH / 2, zf, 'band');
+        else if (!((taiheCore || baoheColumns) && s === 1)) this.libBox(g, 'lattice_doors', facadeBayW - 2 * r, doorH, 0.15, xc, y + doorH / 2, zf, 'band');
       }
       if (taiheCore && s === 1) buildTaiheRearEnclosure(this, g, { x0, zf, y, w, openHalf, openLeft, openRight, height: H - beamH });
-      this.libBox(g, 'wall_red', taiheCore && s === 1 ? openRight - openLeft : w, H - beamH - doorH, 0.3, x0 + (taiheCore && s === 1 ? (openLeft + openRight) / 2 : 0), y + doorH + (H - beamH - doorH) / 2, zf, 'box');
+      if (baoheColumns && s === 1) buildBaoheRearEnclosure(this, g, { x0, zf, y, w, openLeft, openRight, height: H - beamH });
+      const solidRear = (taiheCore || baoheColumns) && s === 1;
+      this.libBox(g, 'wall_red', solidRear ? openRight - openLeft : w, H - beamH - doorH, 0.3, x0 + (solidRear ? (openLeft + openRight) / 2 : 0), y + doorH + (H - beamH - doorH) / 2, zf, 'box');
       this.libBox(g, 'caihua_beam', w + 0.6, beamH, 0.6, x0, y + H - beamH / 2, zf, 'band');
       this.col(x0 - w / 2, y, zf - 0.25, x0 + openLeft, y + 3, zf + 0.25);
       this.col(x0 + openRight, y, zf - 0.25, x0 + w / 2, y + 3, zf + 0.25);

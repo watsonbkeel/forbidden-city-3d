@@ -2,11 +2,13 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
 import {PalaceBuilder} from '../src/scene/PalaceBuilder.js';
+import {HistoricalR23PalaceBuilder} from './lib/historical-r23-baohe-fixture.mjs';
 import {PALACE_LAYOUT} from '../src/scene/Layout.js';
 import {library,hash,sceneRows} from './lib/inner-palace-fixture.mjs';
 import {BAOHE_FRONT_ENCLOSURE as P,baoheFrontBox,baoheFrontMaterial,buildBaoheClosedFront} from '../src/scene/palace/BaoheFrontEnclosure.js';
 import baseline from './fixtures/r22-baohe-scene-delta.json' with {type:'json'};
 import nav from './fixtures/r22-baohe-navigation-delta.json' with {type:'json'};
+import currentScene from './fixtures/r24-baohe-scene-delta.json' with {type:'json'};
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-5,`${a} != ${b}`);
 const tris=g=>(g.index?.count??g.attributes.position.count)/3;
 const data=structuredClone(PALACE_LAYOUT.find(h=>h.name==='保和殿'));
@@ -61,6 +63,13 @@ test('current front changes preserve the complete R22 navigation registration',(
   assert.equal(hash({colliders:builder.colliders,walkables:builder.walkables}),nav.afterSHA256);
   assert.equal(builder.colliders.length,2487);assert.equal(builder.walkables.length,120);
   const rows=sceneRows(s);for(const[name,row]of Object.entries(baseline.unchanged))assert.deepEqual(rows[name],row);
+  assert.deepEqual(rows['三台'],currentScene.after,'live R24 complete geometry, without historical normalization');
+ }finally{builder.dispose();}
+});
+
+test('frozen R23 front revision retains its original four-triangle and one-batch delta',()=>{
+ const s=new THREE.Scene(),builder=new HistoricalR23PalaceBuilder(s,library());
+ try{builder.buildAll(PALACE_LAYOUT);const rows=sceneRows(s);
   assert.equal(rows['三台'].triangles-baseline.after.triangles,4);assert.equal(rows['三台'].meshes-baseline.after.meshes,1);
  }finally{builder.dispose();}
 });

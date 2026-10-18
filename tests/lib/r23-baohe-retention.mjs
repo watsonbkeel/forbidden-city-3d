@@ -1,3 +1,4 @@
+import {restorePreR24Source,restorePreR24SceneRow,restorePreR24SceneRows} from './r24-baohe-retention.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import source from '../fixtures/r23-baohe-source-delta.json' with {type:'json'};
@@ -6,12 +7,14 @@ import scene from '../fixtures/r23-baohe-scene-delta.json' with {type:'json'};
 const sha=value=>createHash('sha256').update(value).digest('hex');
 const hash=value=>sha(JSON.stringify(value));
 
-/** Historical assertions only. Reverse four exact R23 hunks in two complete
+/** Historical assertions only. Reverse exact R24 first, then four R23 hunks in two complete
  * source files. Unregistered paths remain owned by older retention adapters.
  * No application code or current feature/route acceptance imports this helper. */
 export function restorePreR23Source(path,bytes){
   const d=source.files[path];
-  if(!d||sha(bytes)===d.baselineSHA256)return bytes;
+  if(!d)return restorePreR24Source(path,bytes);
+  if(sha(bytes)===d.baselineSHA256)return bytes;
+  bytes=restorePreR24Source(path,bytes);
   assert.equal(sha(bytes),d.candidateSHA256,`exact R23 front-enclosure source: ${path}`);
   let out=bytes.toString();
   for(const h of [...d.deltas].reverse()){
@@ -37,12 +40,14 @@ export function assertR23RetainedSource(path,bytes){
 
 export function restorePreR23SceneRow(name,row){
   if(name!==scene.name||JSON.stringify(row)===JSON.stringify(scene.before))return row;
+  row=restorePreR24SceneRow(name,row);
   assert.deepEqual(row,scene.after,'exact R23 complete three-hall geometry/material identity');
   return structuredClone(scene.before);
 }
 
 export function restorePreR23SceneRows(rows){
   if(hash(rows)===scene.beforeSHA256)return rows;
+  rows=restorePreR24SceneRows(rows);
   assert.equal(hash(rows),scene.afterSHA256,'exact R23 complete scene groups');
   for(const[name,row]of Object.entries(scene.unchanged))assert.deepEqual(rows[name],row,`unchanged R22 scene group: ${name}`);
   const out={...structuredClone(rows),[scene.name]:restorePreR23SceneRow(scene.name,rows[scene.name])};

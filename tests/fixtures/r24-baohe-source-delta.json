@@ -1,0 +1,56 @@
+{
+  "base": "9a2bed6bde1d42b309b95e7d897d679c5db497d5",
+  "baseTree": "c1b3c6c53bbdf1c66bc62fb4a5a7c0492c2a0f06",
+  "candidate": "838b6846ca8732c5d834b572ed927210061a4c3d",
+  "scope": "Historical assertions only: exact R24 rear-enclosure reversal to frozen R23; live R24 front/rear geometry, materials, collisions and routes retain direct acceptance.",
+  "files": {
+    "src/scene/PalaceBuilder.js": {
+      "baselineSHA256": "4edf21b9ca1a5d67d9e160de7120088c5e7fb203d7078e828489d20d93747e0d",
+      "candidateSHA256": "542b9f7e1c34f232412a813a6603ff980211d41ac2fca1281f92c961a7bb7ad6",
+      "deltas": [
+        {
+          "before": "import { buildBaoheThroneScreen, buildBaoheInteriorPlaque, buildBaoheThroneChair } from './palace/BaoheThroneScreen.js';\nimport { buildBaoheFrontDoors } from './palace/BaoheFrontDoors.js';\nimport { buildBaoheClosedFront } from './palace/BaoheFrontEnclosure.js';\nimport { buildBaoheColumnCouplets } from './palace/BaoheColumnCouplets.js';\nimport { baoheInteriorFrame, baoheHighColumn, buildBaoheInteriorCeiling } from './palace/BaoheInteriorFrame.js';\nimport { buildBaoheHallPlinth } from './palace/BaoheHallPlinth.js';\n",
+          "after": "import { buildBaoheThroneScreen, buildBaoheInteriorPlaque, buildBaoheThroneChair } from './palace/BaoheThroneScreen.js';\nimport { buildBaoheFrontDoors } from './palace/BaoheFrontDoors.js';\nimport { buildBaoheClosedFront } from './palace/BaoheFrontEnclosure.js';\nimport { buildBaoheRearEnclosure } from './palace/BaoheRearEnclosure.js';\nimport { buildBaoheColumnCouplets } from './palace/BaoheColumnCouplets.js';\nimport { baoheInteriorFrame, baoheHighColumn, buildBaoheInteriorCeiling } from './palace/BaoheInteriorFrame.js';\nimport { buildBaoheHallPlinth } from './palace/BaoheHallPlinth.js';\n"
+        },
+        {
+          "before": "          continue;\n        }\n        if (baoheColumns && s === -1) buildBaoheClosedFront(this,g,{bay:i,xc,zf,y,height:doorH,width:facadeBayW-2*r});\n        else if (!(taiheCore && s === 1)) this.libBox(g, 'lattice_doors', facadeBayW - 2 * r, doorH, 0.15, xc, y + doorH / 2, zf, 'band');\n      }\n      if (taiheCore && s === 1) buildTaiheRearEnclosure(this, g, { x0, zf, y, w, openHalf, openLeft, openRight, height: H - beamH });\n      this.libBox(g, 'wall_red', taiheCore && s === 1 ? openRight - openLeft : w, H - beamH - doorH, 0.3, x0 + (taiheCore && s === 1 ? (openLeft + openRight) / 2 : 0), y + doorH + (H - beamH - doorH) / 2, zf, 'box');\n      this.libBox(g, 'caihua_beam', w + 0.6, beamH, 0.6, x0, y + H - beamH / 2, zf, 'band');\n      this.col(x0 - w / 2, y, zf - 0.25, x0 + openLeft, y + 3, zf + 0.25);\n      this.col(x0 + openRight, y, zf - 0.25, x0 + w / 2, y + 3, zf + 0.25);\n",
+          "after": "          continue;\n        }\n        if (baoheColumns && s === -1) buildBaoheClosedFront(this,g,{bay:i,xc,zf,y,height:doorH,width:facadeBayW-2*r});\n        else if (!((taiheCore || baoheColumns) && s === 1)) this.libBox(g, 'lattice_doors', facadeBayW - 2 * r, doorH, 0.15, xc, y + doorH / 2, zf, 'band');\n      }\n      if (taiheCore && s === 1) buildTaiheRearEnclosure(this, g, { x0, zf, y, w, openHalf, openLeft, openRight, height: H - beamH });\n      if (baoheColumns && s === 1) buildBaoheRearEnclosure(this, g, { x0, zf, y, w, openLeft, openRight, height: H - beamH });\n      const solidRear = (taiheCore || baoheColumns) && s === 1;\n      this.libBox(g, 'wall_red', solidRear ? openRight - openLeft : w, H - beamH - doorH, 0.3, x0 + (solidRear ? (openLeft + openRight) / 2 : 0), y + doorH + (H - beamH - doorH) / 2, zf, 'box');\n      this.libBox(g, 'caihua_beam', w + 0.6, beamH, 0.6, x0, y + H - beamH / 2, zf, 'band');\n      this.col(x0 - w / 2, y, zf - 0.25, x0 + openLeft, y + 3, zf + 0.25);\n      this.col(x0 + openRight, y, zf - 0.25, x0 + w / 2, y + 3, zf + 0.25);\n"
+        }
+      ]
+    }
+  },
+  "addedFiles": {
+    "src/scene/palace/BaoheRearEnclosure.js": {
+      "candidateSHA256": "ece32654572852cae16dc899b440f5e9232bb05429c8c883fd2760121dc630fa"
+    }
+  },
+  "retainedFiles": {
+    "src/scene/RoofBuilder.js": "0e846c35971cb9a53a595a525e6d85b8337ca4c622156a8c96871ba7aa9280b6",
+    "src/scene/palace/BaoheThroneScreen.js": "0b3d8414788e87e9a99682b5e48706d617664bcda0965683eb2b6e805cf1f1fe",
+    "src/scene/palace/BaoheInteriorFrame.js": "b5bff0478f5e10967ee7ec46cfd007ab2c9b03a197c61bc964e0b27472917668",
+    "src/scene/palace/BaoheColumnGrid.js": "e243974819d421142bb049a442e8a3ef23af2a90025de645ea6f16988835fb40",
+    "src/scene/palace/BaoheDepthGrid.js": "131fae972ee3e69ac69e3896af25d4345da7134b2a92594172ead01fc006199a",
+    "src/scene/palace/BaoheColumnCouplets.js": "ed34e039f66cce0c1f2f32690e03f0b9f5af1578af6b2d576cf8399a1fe3047d",
+    "src/scene/Layout.js": "af6b015a05e6b2497eb6dff4b82e21ef33d578d469c9bd9055d4905c3a77f4e0",
+    "tests/lib/stepwalk-runner.cjs": "a4350a05a8e4096b2ff5acbb08298473be819b38df4986a8925c86c8fd052a8a",
+    "tests/lib/world.mjs": "b2d8962b16a94bd67eb2fc8d8478fabc9666478183d646b74753e8a82b6c060f",
+    "tests/lib/auto-routes.mjs": "ffd8e5ad8e44b0296daf4df1511822dd0d10779e05348177929e57de774d2f26",
+    "src/controls/FirstPerson.js": "50b625af7fdec90b2e9a6a9d2c25433e58e7977fb99856de0bf02c3b988f0c36",
+    "src/utils/Collision.js": "5492939b921785ca83a576865108523f65164bf00e8a94f00d55df96c801d9ed",
+    "tests/stepwalk.cjs": "a76d083d5394ae5d87768d3bf174739da7c5657664b62c7e1287fa71c2f2c6b7",
+    "tests/lib/baohe-front-route.mjs": "8fad243a2ba667e33392978d219659eacb6af88070cf65ac9d5f7e6e2fa4556e",
+    "src/scene/palace/BaoheFrontDoors.js": "2ba95f1528e89d38e0e3c10c527ce51c2bef0311d9d8d5d23e236a8c6674d3fc",
+    "src/scene/palace/BaoheFrontEnclosure.js": "7bad380887061e82b615e53784ae410a7efa0d4913fe9b61bf96c0b2bac69aea",
+    "src/scene/palace/BaoheHallPlinth.js": "5b4053277626e03fcd1918f75a0f4bf62460bbf2f82ef203b923714747af9b19",
+    "src/scene/palace/BaoheNorthApproaches.js": "4339e0e6a8b2227dab5a4f443554d0cb3679c63770855a21a88bb74b7cc27d90",
+    "src/utils/MergeUtils.js": "dfdf0496a4317cee8fbd1f97502b449177be88903f1334d9d95bd5bff6300cb4"
+  },
+  "preservedFixtures": {
+    "tests/fixtures/r22-baohe-source-delta.json": "6b5878ec8a5ac6efb55289f1b3ae021c4e7e54d05ae3398c39e5ea353fe6144f",
+    "tests/fixtures/r22-baohe-scene-delta.json": "d9940503f969fe0e5119d2141b4b566cd5017523ff24c658db13e61d8c5da075",
+    "tests/fixtures/r22-baohe-navigation-delta.json": "131a040f3452f3187d555923aac6869cb2be489f033d853d07cfd6dd38b6a0c9",
+    "tests/fixtures/r22-baohe-routes-delta.json": "f72cc9f91eef97601b81a8455014c82d3ea41a95230f30429df1f7bf3ebea91a",
+    "tests/fixtures/r23-baohe-source-delta.json": "92c0fe18402636b373c3b4f4a627364c3da57c1df203665acc195ebfa33168ca",
+    "tests/fixtures/r23-baohe-scene-delta.json": "83f512917a80020a3f91ae64317267afc1a6790dac3c2a438ca2afe1b35b7a97"
+  }
+}

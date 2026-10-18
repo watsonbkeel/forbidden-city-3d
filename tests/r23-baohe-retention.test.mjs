@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import * as THREE from 'three';
-import {PalaceBuilder} from '../src/scene/PalaceBuilder.js';
+import {HistoricalR23PalaceBuilder} from './lib/historical-r23-baohe-fixture.mjs';
+import {restorePreR24Source} from './lib/r24-baohe-retention.mjs';
 import {PALACE_LAYOUT} from '../src/scene/Layout.js';
 import {library,sceneRows} from './lib/inner-palace-fixture.mjs';
 import {HistoricalR22PalaceBuilder,historicalR22FrontDoorsModule} from './lib/historical-r22-baohe-fixture.mjs';
@@ -29,7 +30,8 @@ function capture(Builder){
     return {rows:sceneRows(s),navigation:clone({colliders:b.colliders,walkables:b.walkables}),geometryBytes};
   }finally{b.dispose();}
 }
-const current=capture(PalaceBuilder),historicalR22=capture(HistoricalR22PalaceBuilder);
+// Historical R23 identity only; live R24 has independent direct feature tests.
+const current=capture(HistoricalR23PalaceBuilder),historicalR22=capture(HistoricalR22PalaceBuilder);
 
 test('R23 provenance freezes two source edits, one added module, exact R22 baseline and unmodified prior fixtures',()=>{
   assert.equal(sha(read('tests/fixtures/r23-baohe-source-delta.json')),'92c0fe18402636b373c3b4f4a627364c3da57c1df203665acc195ebfa33168ca');
@@ -50,8 +52,8 @@ test('R23 provenance freezes two source edits, one added module, exact R22 basel
 });
 
 for(const[path,d]of Object.entries(source.files)){
-  test('exact current R23 bytes reverse two unique hunks into frozen R22: '+path,()=>{
-    const bytes=read(path),original=Buffer.from(bytes),text=bytes.toString();
+  test('exact historical R23 bytes reverse two unique hunks into frozen R22: '+path,()=>{
+    const bytes=restorePreR24Source(path,read(path)),original=Buffer.from(bytes),text=bytes.toString();
     assert.equal(sha(bytes),d.candidateSHA256);assert.equal(d.deltas.length,2);
     for(const h of d.deltas){assert.ok(h.before.length&&h.after.length);assert.equal(text.split(h.after).length,2);}
     const restored=restorePreR23Source(path,bytes);
@@ -62,7 +64,7 @@ for(const[path,d]of Object.entries(source.files)){
     assert.deepEqual(bytes,original,'live runtime bytes are never overwritten');
   });
   test('R23 and older source chains reject empty, unknown, appended, duplicate and partial reversals: '+path,()=>{
-    const text=read(path).toString(),needle=path.endsWith('PalaceBuilder.js')?'const lacquer =':'divisions: 4';
+    const text=restorePreR24Source(path,read(path)).toString(),needle=path.endsWith('PalaceBuilder.js')?'const lacquer =':'divisions: 4';
     assert.equal(text.split(needle).length,2);
     const bad=['',text+'\n',text+text,'// unrelated change\n'+text,text.replace(needle,needle+' /* unrelated */')];
     for(const h of d.deltas)for(const replacement of['',h.before,h.after+h.after])bad.push(text.replace(h.after,replacement));
