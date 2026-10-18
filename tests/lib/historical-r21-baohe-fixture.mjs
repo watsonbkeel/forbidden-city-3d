@@ -1,3 +1,5 @@
+// Bind the R23 added module and retained dependencies before earlier builders.
+import './historical-r22-baohe-fixture.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import fs from 'node:fs';

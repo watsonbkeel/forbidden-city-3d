@@ -24,6 +24,7 @@ import { baoheColumnGrid } from './palace/BaoheColumnGrid.js';
 import { BAOHE_DEPTH_GRID, baoheDepthGrid, baoheDepthColumnPresent } from './palace/BaoheDepthGrid.js';
 import { buildBaoheThroneScreen, buildBaoheInteriorPlaque, buildBaoheThroneChair } from './palace/BaoheThroneScreen.js';
 import { buildBaoheFrontDoors } from './palace/BaoheFrontDoors.js';
+import { buildBaoheClosedFront } from './palace/BaoheFrontEnclosure.js';
 import { buildBaoheColumnCouplets } from './palace/BaoheColumnCouplets.js';
 import { baoheInteriorFrame, baoheHighColumn, buildBaoheInteriorCeiling } from './palace/BaoheInteriorFrame.js';
 import { buildBaoheHallPlinth } from './palace/BaoheHallPlinth.js';
@@ -746,7 +747,8 @@ export class PalaceBuilder {
           }
           continue;
         }
-        if (!(taiheCore && s === 1)) this.libBox(g, 'lattice_doors', facadeBayW - 2 * r, doorH, 0.15, xc, y + doorH / 2, zf, 'band');
+        if (baoheColumns && s === -1) buildBaoheClosedFront(this,g,{bay:i,xc,zf,y,height:doorH,width:facadeBayW-2*r});
+        else if (!(taiheCore && s === 1)) this.libBox(g, 'lattice_doors', facadeBayW - 2 * r, doorH, 0.15, xc, y + doorH / 2, zf, 'band');
       }
       if (taiheCore && s === 1) buildTaiheRearEnclosure(this, g, { x0, zf, y, w, openHalf, openLeft, openRight, height: H - beamH });
       this.libBox(g, 'wall_red', taiheCore && s === 1 ? openRight - openLeft : w, H - beamH - doorH, 0.3, x0 + (taiheCore && s === 1 ? (openLeft + openRight) / 2 : 0), y + doorH + (H - beamH - doorH) / 2, zf, 'box');

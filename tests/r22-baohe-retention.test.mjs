@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import * as THREE from 'three';
-import {PalaceBuilder} from '../src/scene/PalaceBuilder.js';
+import {HistoricalR22PalaceBuilder} from './lib/historical-r22-baohe-fixture.mjs';
+import {restorePreR23Source} from './lib/r23-baohe-retention.mjs';
 import {PALACE_LAYOUT} from '../src/scene/Layout.js';
 import {library,sceneRows} from './lib/inner-palace-fixture.mjs';
 import {HistoricalR21PalaceBuilder} from './lib/historical-r21-baohe-fixture.mjs';
@@ -25,7 +26,8 @@ function capture(Builder){
   try{b.buildAll(PALACE_LAYOUT);return {rows:sceneRows(s),navigation:clone({colliders:b.colliders,walkables:b.walkables})};}
   finally{b.dispose();}
 }
-const current=capture(PalaceBuilder),historicalR21=capture(HistoricalR21PalaceBuilder);
+// Frozen R22 assertions; current R23 has independent direct acceptance.
+const current=capture(HistoricalR22PalaceBuilder),historicalR21=capture(HistoricalR21PalaceBuilder);
 
 test('R22 provenance freezes one builder, two added modules, retained dependencies and unchanged historical fixtures',()=>{
   for(const f of[source,scene,nav]){
@@ -43,8 +45,8 @@ test('R22 provenance freezes one builder, two added modules, retained dependenci
 });
 
 for(const[path,d]of Object.entries(source.files)){
-  test('exact live R22 source reverses three unique insertion hunks and reaches frozen R21/R20: '+path,()=>{
-    const bytes=read(path),original=Buffer.from(bytes),text=bytes.toString();
+  test('exact historical R22 source reverses three unique insertion hunks and reaches frozen R21/R20: '+path,()=>{
+    const bytes=restorePreR23Source(path,read(path)),original=Buffer.from(bytes),text=bytes.toString();
     assert.equal(sha(bytes),d.candidateSHA256);assert.equal(d.deltas.length,3);
     for(const h of d.deltas){assert.ok(h.before.length);assert.ok(h.after.length);assert.equal(text.split(h.after).length,2);}
     const restored=restorePreR22Source(path,bytes);
@@ -54,7 +56,7 @@ for(const[path,d]of Object.entries(source.files)){
     assert.deepEqual(bytes,original,'current source is never overwritten');
   });
   test('R22 and older source entries reject absent, appended, duplicated, partially reversed and unknown bytes: '+path,()=>{
-    const text=read(path).toString();
+    const text=restorePreR23Source(path,read(path)).toString();
     const mutations=['',text+'\n',text+text,'// unrelated source change\n'+text,text.replace('const lacquer =','const changedLacquer =')];
     for(const h of d.deltas)for(const replacement of['',h.after+h.after,h.before])mutations.push(text.replace(h.after,replacement));
     for(const value of mutations){
@@ -68,7 +70,7 @@ for(const[path,d]of Object.entries(source.files)){
 
 for(const[path,d]of Object.entries(source.addedFiles)){
   test('R22 added module binds complete bytes and rejects unknown or duplicated content: '+path,()=>{
-    const bytes=read(path),text=bytes.toString();assert.equal(sha(bytes),d.candidateSHA256);assert.equal(assertR22AddedSource(path,bytes),bytes);
+    const bytes=restorePreR23Source(path,read(path)),text=bytes.toString();assert.equal(sha(bytes),d.candidateSHA256);assert.equal(assertR22AddedSource(path,bytes),bytes);
     const needle=path.endsWith('BaoheFrontDoors.js')?'divisions: 4':'columnX: 3.65';
     assert.equal(text.split(needle).length,2);
     for(const value of['',text+'\n',text+text,text.replace(needle,needle+'0')])assert.throws(()=>assertR22AddedSource(path,Buffer.from(value)));
@@ -81,7 +83,7 @@ for(const[path,digest]of Object.entries(source.retainedFiles))test('retained R21
   assert.throws(()=>assertR22RetainedSource('src/scene/palace/Unregistered.js',bytes));
 });
 
-test('actual R22 resident scene adds exactly100 triangles and one batch; exact reverse reproduces the independent historical R21 builder',()=>{
+test('historical R22 resident scene adds exactly100 triangles and one batch; exact reverse reproduces the independent historical R21 builder',()=>{
   assert.equal(hash(current.rows),scene.afterSHA256);assert.equal(hash(historicalR21.rows),scene.beforeSHA256);
   assert.deepEqual(current.rows['三台'],scene.after);assert.deepEqual(historicalR21.rows['三台'],scene.before);
   assert.equal(scene.after.triangles-scene.before.triangles,100);assert.equal(scene.after.meshes-scene.before.meshes,1);
@@ -107,7 +109,7 @@ test('R22 scene and older chains reject missing/extra groups and count-preservin
   }
 });
 
-test('actual R22 navigation owns exactly twelve front-leaf colliders and retains every other collider and walkable',()=>{
+test('historical R22 navigation owns exactly twelve front-leaf colliders and retains every other collider and walkable',()=>{
   assert.equal(hash(current.navigation),nav.afterSHA256);assert.equal(hash(historicalR21.navigation),nav.beforeSHA256);
   assert.deepEqual([current.navigation.colliders.length,current.navigation.walkables.length],[2487,120]);
   assert.deepEqual(Object.keys(nav.collections),['colliders','walkables']);

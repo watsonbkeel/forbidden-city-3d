@@ -1,4 +1,5 @@
 import {restorePreR22RouteSource} from './r22-baohe-route-retention.mjs';
+import {restorePreR23Source,restorePreR23SceneRow,restorePreR23SceneRows} from './r23-baohe-retention.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import source from '../fixtures/r22-baohe-source-delta.json' with {type:'json'};
@@ -8,13 +9,14 @@ import nav from '../fixtures/r22-baohe-navigation-delta.json' with {type:'json'}
 const sha=value=>createHash('sha256').update(value).digest('hex');
 const hash=value=>sha(JSON.stringify(value));
 
-/** Historical assertions only. Reverse the exact frozen R22 builder to R21.
+/** Historical assertions only. Reverse exact R23 first, then the frozen R22 builder to R21.
  * Never imported by the application or used as current feature/route acceptance.
  * Unregistered paths are left for their owning older retention adapter. */
 export function restorePreR22Source(path,bytes){
   const d=source.files[path];
-  if(!d)return restorePreR22RouteSource(path,bytes);
+  if(!d)return restorePreR22RouteSource(path,restorePreR23Source(path,bytes));
   if(sha(bytes)===d.baselineSHA256)return bytes;
+  bytes=restorePreR23Source(path,bytes);
   assert.equal(sha(bytes),d.candidateSHA256,`exact R22 front-door/couplet source: ${path}`);
   let out=bytes.toString();
   for(const h of [...d.deltas].reverse()){
@@ -28,6 +30,7 @@ export function restorePreR22Source(path,bytes){
 
 export function assertR22AddedSource(path,bytes){
   assert.ok(Object.hasOwn(source.addedFiles,path),`registered R22 added module: ${path}`);
+  bytes=restorePreR23Source(path,bytes);
   assert.equal(sha(bytes),source.addedFiles[path].candidateSHA256,`exact R22 added module: ${path}`);
   return bytes;
 }
@@ -40,12 +43,14 @@ export function assertR22RetainedSource(path,bytes){
 
 export function restorePreR22SceneRow(name,row){
   if(name!==scene.name||JSON.stringify(row)===JSON.stringify(scene.before))return row;
+  row=restorePreR23SceneRow(name,row);
   assert.deepEqual(row,scene.after,'exact R22 complete three-hall geometry/material identity');
   return structuredClone(scene.before);
 }
 
 export function restorePreR22SceneRows(rows){
   if(hash(rows)===scene.beforeSHA256)return rows;
+  rows=restorePreR23SceneRows(rows);
   assert.equal(hash(rows),scene.afterSHA256,'exact R22 complete scene groups');
   for(const[name,row]of Object.entries(scene.unchanged))assert.deepEqual(rows[name],row,`unchanged R21 scene group: ${name}`);
   const out={...structuredClone(rows),[scene.name]:restorePreR22SceneRow(scene.name,rows[scene.name])};

@@ -6,6 +6,7 @@ import {createHash} from 'node:crypto';
 import {buildWorld,loadZoneJsons} from './lib/world.mjs';
 import {buildAutoRoutes} from './lib/auto-routes.mjs';
 import {restorePreR22RouteSource,assertR22RouteAddedSource,assertR22RouteIdentity,restorePreR22BaoheTraversalRoute,restorePreR22FixedRoutes} from './lib/r22-baohe-route-retention.mjs';
+import {restorePreR23Source} from './lib/r23-baohe-retention.mjs';
 import {restorePreR19Source,restorePreR19FixedRoutes,restorePreR19BaoheTraversalRoute,assertR19RouteIdentity} from './lib/r19-baohe-retention.mjs';
 import {restorePreR18Source} from './lib/r18-baohe-retention.mjs';
 import {restorePreR17FixedRoutes} from './lib/r17-baohe-retention.mjs';
@@ -34,7 +35,7 @@ test('R22 tests-only route provenance is separate from frozen runtime and preser
   assert.deepEqual(delta.auto,priorRoutes.auto);
   assert.equal(Object.keys(delta.preservedFixtures).length,5);
   for(const[path,digest]of Object.entries(delta.preservedFixtures))assert.equal(sha(read(path)),digest,path);
-  for(const[path,d]of Object.entries({...runtime.files,...runtime.addedFiles}))assert.equal(sha(read(path)),d.candidateSHA256,`runtime stays frozen: ${path}`);
+  for(const[path,d]of Object.entries({...runtime.files,...runtime.addedFiles}))assert.equal(sha(restorePreR23Source(path,read(path))),d.candidateSHA256,`historical R22 runtime stays frozen: ${path}`);
   for(const[path,digest]of Object.entries(delta.retainedFiles))assert.equal(sha(read(path)),digest,`unchanged driver/world/controller: ${path}`);
 });
 

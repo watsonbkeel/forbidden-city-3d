@@ -22,7 +22,8 @@ test('each central front assembly has two closed outside leaves and two inner fo
   for(let i=0;i<4;i++){
    const p=leaves[i],box=new THREE.Box3().setFromObject(g.children[i]),col=b.colliders[i];
    for(const key of['min','max'])for(const axis of['x','y','z'])near(box[key][axis],col[key][axis]);
-   near(p.width,width);near(p.height,5.0832);assert.equal(tris(g.children[i]),12);
+   // R23 removes only the two bottom triangles concealed by the floor.
+   near(p.width,width);near(p.height,5.0832);assert.equal(tris(g.children[i]),10);
   }
   const cm=new CollisionManager();cm.addColliders(b.colliders);
   assert.equal(cm.checkCollision(new THREE.Vector3(0,10.7,0),.5),false);

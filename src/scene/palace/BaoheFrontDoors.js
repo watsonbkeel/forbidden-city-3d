@@ -1,3 +1,5 @@
+import {baoheFrontBox} from './BaoheFrontEnclosure.js';
+
 /** Four-part front enclosure from the museum's modern front photograph and
  * 1941 elevation49. Thickness, hinge mechanics and the inward90-degree open
  * pose are modeling estimates. Photographed barriers do not grant real entry. */
@@ -28,7 +30,7 @@ export function baoheFrontDoorLeaves({xc, zf, y, height, bayWidth, columnRadius}
 export function buildBaoheFrontDoors(b,g,args) {
   const leaves=baoheFrontDoorLeaves(args);
   for (const p of leaves) {
-    const m=b.libBox(g,'lattice_doors',p.width,p.height,p.depth,p.x,p.y,p.z,'band');
+    const m=baoheFrontBox(b,g,{kind:'leaf',w:p.width,h:p.height,d:p.depth,x:p.x,y:p.y,z:p.z,hiddenBottom:true});
     m.rotation.y=p.rotateY;
     m.name=BAOHE_FRONT_DOORS.id+':'+p.kind+':'+p.side;
     m.userData.baoheFrontDoor={...BAOHE_FRONT_DOORS,kind:p.kind,side:p.side};
