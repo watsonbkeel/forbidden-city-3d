@@ -19,6 +19,7 @@ import { taiheSouthTier, buildTaiheSouthTier } from './palace/TaiheFrontApproach
 import { buildZhongheImperialApproach } from './palace/ZhongheImperialApproach.js';
 import { TAIHE_CORE } from './palace/special/TaiheCoreProfile.js';
 import { buildTaiheCoreFallback, buildTaiheCeiling, buildTaiheNavigation } from './palace/special/TaiheCore.js';
+import { buildTaiheRearEnclosure } from './palace/special/TaiheRearEnclosure.js';
 
 /**
  * 真实形制参数（按故宫现状）：
@@ -671,9 +672,10 @@ export class PalaceBuilder {
           }
           continue;
         }
-        this.libBox(g, 'lattice_doors', bayW - 2 * r, doorH, 0.15, xc, y + doorH / 2, zf, 'band');
+        if (!(taiheCore && s === 1)) this.libBox(g, 'lattice_doors', bayW - 2 * r, doorH, 0.15, xc, y + doorH / 2, zf, 'band');
       }
-      this.libBox(g, 'wall_red', w, H - beamH - doorH, 0.3, x0, y + doorH + (H - beamH - doorH) / 2, zf, 'box');
+      if (taiheCore && s === 1) buildTaiheRearEnclosure(this, g, { x0, zf, y, w, openHalf, height: H - beamH });
+      this.libBox(g, 'wall_red', taiheCore && s === 1 ? openHalf * 2 : w, H - beamH - doorH, 0.3, x0, y + doorH + (H - beamH - doorH) / 2, zf, 'box');
       this.libBox(g, 'caihua_beam', w + 0.6, beamH, 0.6, x0, y + H - beamH / 2, zf, 'band');
       this.col(x0 - w / 2, y, zf - 0.25, x0 - openHalf, y + 3, zf + 0.25);
       this.col(x0 + openHalf, y, zf - 0.25, x0 + w / 2, y + 3, zf + 0.25);

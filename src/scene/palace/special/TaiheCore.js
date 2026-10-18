@@ -1,5 +1,6 @@
 import { appendTaiheDaisFront, buildTaiheDaisFrontNavigation } from './TaiheDaisFront.js';
 import { buildTaiheBeamFrame } from './TaiheBeamFrame.js';
+import { buildTaiheCofferFrame } from './TaiheCofferFrame.js';
 import * as THREE from 'three';
 import { applyTaiheColumnResponse } from './TaiheColumnResponse.js';
 import { attachTaiheColumnTextures, mapTaiheGoldSurfaces } from './TaiheColumnSurface.js';
@@ -116,6 +117,7 @@ export function buildTaiheCoreFallback(builder, parent, { x0, z0, y }) {
 }
 export function buildTaiheCeiling(builder,g,{x0,z0,y,w,d}) {
   buildTaiheBeamFrame(builder,g,{x0,z0,y});
+  buildTaiheCofferFrame(builder,g,{x0,z0,y});
   const h=P.caisson.nominalSpan/2,cz=P.caisson.z,regions=[[-w/2,-d/2,-h,d/2],[h,-d/2,w/2,d/2],[-h,-d/2,h,cz-h],[-h,cz+h,h,d/2]];
   for(const [a,b,c,e] of regions) {const geo=new THREE.PlaneGeometry(c-a,e-b);geo.rotateX(Math.PI/2);const uv=geo.attributes.uv,pos=geo.attributes.position;for(let i=0;i<uv.count;i++)uv.setXY(i,(pos.getX(i)+(a+c)/2)/1.6,(pos.getZ(i)+(b+e)/2)/1.6);const mesh=put(g,geo,taiheCeilingMaterial(builder),x0+(a+c)/2,y+P.ceilingY,z0+(b+e)/2,'ceiling-opening');mesh.userData.taihePermanent='ceiling';}
 }

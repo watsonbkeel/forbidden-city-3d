@@ -1,4 +1,5 @@
 import {restorePreIncenseSource} from './r8-incense-retention.mjs';
+import {restorePreR9Architecture} from './r9-architecture-retention.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import delta from '../fixtures/r7-taihe-dais-source-delta.json' with {type:'json'};
@@ -6,6 +7,7 @@ const sha=b=>createHash('sha256').update(b).digest('hex');
 // A finite migration view for earlier invariants. The current dais has separate
 // geometry, navigation, identity and negative tests; historical hashes stay put.
 export function restorePreTaiheDaisSource(path,bytes) {
+ bytes=restorePreR9Architecture(path,bytes);
  bytes=restorePreIncenseSource(path,bytes);
  const row=delta.files[path];if(!row)return bytes;
  if(row.allowedEarlierSHA256.includes(sha(bytes)))return bytes;
