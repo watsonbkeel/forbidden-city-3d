@@ -1,3 +1,5 @@
+import {restorePreR22FixedRoutes,restorePreR22BaoheTraversalRoute} from './r22-baohe-route-retention.mjs';
+import {restorePreR22Navigation} from './r22-baohe-retention.mjs';
 import {restorePreR20Source,restorePreR20SceneRow,restorePreR20SceneRows} from './r20-baohe-retention.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -39,7 +41,8 @@ export function assertR19AddedSource(path,bytes){
 export function restorePreR19Navigation(value){
   const digest=hash(value);
   if(digest===nav.beforeSHA256)return value;
-  assert.equal(digest,nav.afterSHA256,'exact R19 complete registered navigation');
+  value=restorePreR22Navigation(value);
+  assert.equal(hash(value),nav.afterSHA256,'exact R19 complete registered navigation');
   const out=JSON.parse(JSON.stringify(value));
   for(const[key,d]of Object.entries(nav.collections)){
     assert.equal(out[key].length,d.afterCount);
@@ -74,13 +77,13 @@ export function restorePreR19SceneRows(rows){
   return out;
 }
 
-/** Bind current routes, including only the registered north-porch correction. */
+/** Bind exact historical R19 routes; R22 current acceptance is separate. */
 export function assertR19RouteIdentity(kind,rows){
   assert.ok(['fixed','auto'].includes(kind),`registered R19 route collection: ${kind}`);
   const d=routes[kind];
   if(kind==='auto')assert.equal(d.beforeSHA256,d.afterSHA256,'R19 automatic routes remain unchanged');
   assert.equal(rows.length,d.count);
-  assert.equal(hash(rows),d.afterSHA256,`exact current R19 complete ${kind} routes`);
+  assert.equal(hash(rows),d.afterSHA256,`exact historical R19 complete ${kind} routes`);
   return rows;
 }
 
@@ -89,13 +92,15 @@ export function assertR19RouteIdentity(kind,rows){
 export function restorePreR19BaoheTraversalRoute(row){
   const d=routes.fixed;
   if(row.name!==d.after.name||JSON.stringify(row)===JSON.stringify(d.before))return row;
+  row=restorePreR22BaoheTraversalRoute(row);
   assert.deepEqual(row,d.after,'exact R19 north-porch crossing tuple');
   return structuredClone(d.before);
 }
 export function restorePreR19FixedRoutes(rows){
   const d=routes.fixed,digest=hash(rows);
   if(digest===d.beforeSHA256)return rows;
-  assert.equal(digest,d.afterSHA256,'exact complete current R19 fixed routes');
+  rows=restorePreR22FixedRoutes(rows);
+  assert.equal(hash(rows),d.afterSHA256,'exact complete historical R19 fixed routes');
   assert.equal(rows.length,d.count);
   const out=structuredClone(rows);
   out[d.index]=restorePreR19BaoheTraversalRoute(out[d.index]);

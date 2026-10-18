@@ -1,3 +1,5 @@
+import {restorePreR22RouteSource,restorePreR22FixedRoutes} from './lib/r22-baohe-route-retention.mjs';
+import {restorePreR22Navigation} from './lib/r22-baohe-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -35,14 +37,17 @@ const clone=x=>JSON.parse(JSON.stringify(x));
 const root=new URL('../',import.meta.url);
 const s=new THREE.Scene(),b=new PalaceBuilder(s,library());
 b.buildAll(PALACE_LAYOUT);
-// Navigation still uses the live R21 product. Scene/source assertions below
-// explicitly restore frozen R19, whose original fingerprints are never changed.
-const currentNavigation=clone({colliders:b.colliders,walkables:b.walkables});
+// Historical navigation removes only the exact registered R22 twelve-leaf
+// insertion. Source/scene assertions restore frozen R19. Live routes below
+// continue to use the actual current product, with no navigation restoration.
+const historicalR21Navigation=restorePreR22Navigation(clone({colliders:b.colliders,walkables:b.walkables}));
 const historicalR19Scene=restorePreR20SceneRows(sceneRows(s));
 b.dispose();
-const fixed=execFileSync(process.execPath,['tests/stepwalk.cjs','60','0','all'],{
+const liveFixed=execFileSync(process.execPath,['tests/stepwalk.cjs','60','0','all'],{
   cwd:root,env:{...process.env,DUMP:'1'},encoding:'utf8',
 }).trim().split('\n').map(line=>{const at=line.indexOf(' ');return{name:line.slice(0,at),pts:JSON.parse(line.slice(at+1))};});
+// Explicit historical descriptor comparison; live R22 route acceptance is separate.
+const fixed=restorePreR22FixedRoutes(liveFixed);
 const zones=loadZoneJsons(),world=await buildWorld({zones});
 const auto=buildAutoRoutes(world,zones.map(z=>z.json),{knownIssues:{}});
 
@@ -112,9 +117,9 @@ for(const[path,d]of Object.entries(source.addedFiles)){
   });
 }
 
-test('R19 live navigation has exactly the registered six-depth columns and door/wall splice',()=>{
-  assert.equal(hash(currentNavigation),nav.afterSHA256);
-  assert.deepEqual([currentNavigation.colliders.length,currentNavigation.walkables.length],[2475,120]);
+test('historical R21 navigation retains exactly the R19 the registered six-depth columns and door/wall splice',()=>{
+  assert.equal(hash(historicalR21Navigation),nav.afterSHA256);
+  assert.deepEqual([historicalR21Navigation.colliders.length,historicalR21Navigation.walkables.length],[2475,120]);
   assert.deepEqual(Object.keys(nav.collections),['colliders','walkables']);
   const d=nav.collections.colliders;
   assert.deepEqual(d.changes.map(c=>[c.beforeIndex,c.afterIndex,c.before.length,c.after.length]),[[2100,2100,40,60]]);
@@ -123,36 +128,36 @@ test('R19 live navigation has exactly the registered six-depth columns and door/
   for(const row of[...removed,...added])assert.deepEqual([row.min.y,row.max.y],[9,12]);
   assert.deepEqual(nav.collections.walkables.changes,[]);
   assert.equal(nav.collections.walkables.beforeSHA256,nav.collections.walkables.afterSHA256);
-  const restored=restorePreR19Navigation(currentNavigation);
+  const restored=restorePreR19Navigation(historicalR21Navigation);
   assert.equal(hash(restored),nav.beforeSHA256);
-  assert.equal(hash(currentNavigation),nav.afterSHA256);
+  assert.equal(hash(historicalR21Navigation),nav.afterSHA256);
   assert.equal(restorePreR19Navigation(restored),restored);
-  assert.deepEqual(restored.walkables,currentNavigation.walkables);
+  assert.deepEqual(restored.walkables,historicalR21Navigation.walkables);
   let before=0,after=0;
   for(const c of d.changes){
-    assert.deepEqual(currentNavigation.colliders.slice(after,c.afterIndex),restored.colliders.slice(before,c.beforeIndex));
-    assert.deepEqual(currentNavigation.colliders.slice(c.afterIndex,c.afterIndex+c.after.length),c.after);
+    assert.deepEqual(historicalR21Navigation.colliders.slice(after,c.afterIndex),restored.colliders.slice(before,c.beforeIndex));
+    assert.deepEqual(historicalR21Navigation.colliders.slice(c.afterIndex,c.afterIndex+c.after.length),c.after);
     assert.deepEqual(restored.colliders.slice(c.beforeIndex,c.beforeIndex+c.before.length),c.before);
     before=c.beforeIndex+c.before.length;after=c.afterIndex+c.after.length;
   }
-  assert.deepEqual(currentNavigation.colliders.slice(after),restored.colliders.slice(before));
-  assert.equal(hash(restorePreR18Navigation(currentNavigation)),previousNav.beforeSHA256);
+  assert.deepEqual(historicalR21Navigation.colliders.slice(after),restored.colliders.slice(before));
+  assert.equal(hash(restorePreR18Navigation(historicalR21Navigation)),previousNav.beforeSHA256);
 });
 
 test('R19 navigation rejects missing/duplicate/reordered/local/outside rows and any walkable drift',()=>{
   for(const key of['colliders','walkables'])for(const index of key==='colliders'?[0,2100,2125,2159,2474]:[0,103,119]){
-    const missing=clone(currentNavigation);missing[key].splice(index,1);
-    const duplicate=clone(currentNavigation);duplicate[key].splice(index,0,clone(duplicate[key][index]));
-    const drift=clone(currentNavigation);const row=drift[key][index];
+    const missing=clone(historicalR21Navigation);missing[key].splice(index,1);
+    const duplicate=clone(historicalR21Navigation);duplicate[key].splice(index,0,clone(duplicate[key][index]));
+    const drift=clone(historicalR21Navigation);const row=drift[key][index];
     if(row.min)row.min.x+=.001;else if(row.box)row.box.min.x+=.001;else row.minX+=.001;
     for(const value of[missing,duplicate,drift]){
       assert.throws(()=>restorePreR19Navigation(value));
       assert.throws(()=>restorePreR18Navigation(value));
     }
   }
-  const reordered=clone(currentNavigation);[reordered.colliders[2115],reordered.colliders[2118]]=[reordered.colliders[2118],reordered.colliders[2115]];
+  const reordered=clone(historicalR21Navigation);[reordered.colliders[2115],reordered.colliders[2118]]=[reordered.colliders[2118],reordered.colliders[2115]];
   assert.throws(()=>restorePreR19Navigation(reordered));
-  assert.throws(()=>restorePreR19Navigation({...currentNavigation,extra:[]}));
+  assert.throws(()=>restorePreR19Navigation({...historicalR21Navigation,extra:[]}));
 });
 
 test('historical R19 scene changes only 三台 by minus 288 triangles after only54 buried lower caps are omitted with exact material/geometry identity',()=>{
@@ -187,7 +192,7 @@ test('R19 scene rejects missing/extra/unrelated groups and same-count hash or ma
 });
 
 for(const[kind,rows]of Object.entries({fixed,auto})){
-  test(`R19 current ${kind} routes bind the reviewed full collection and historical reverse`,()=>{
+  test(`historical R19 ${kind} routes bind the reviewed full collection and historical reverse`,()=>{
     assert.equal(rows.length,kind==='fixed'?33:59);
     if(kind==='auto')assert.equal(routes[kind].beforeSHA256,routes[kind].afterSHA256);
     assert.equal(hash(rows),routes[kind].afterSHA256);
@@ -222,8 +227,8 @@ for(const[kind,rows]of Object.entries({fixed,auto})){
 }
 
 for(const[path,d]of Object.entries(source.testFiles)){
-  test('R19 exact tests-only route source binds and restores the historical source: '+path,()=>{
-    const bytes=fs.readFileSync(new URL(path,root));assert.equal(sha(bytes),d.candidateSHA256);
+  test('historical R19 exact tests-only route source binds and restores the older source: '+path,()=>{
+    const bytes=restorePreR22RouteSource(path,fs.readFileSync(new URL(path,root)));assert.equal(sha(bytes),d.candidateSHA256);
     assert.equal(d.deltas.length,1);assert.equal(sha(restorePreR19Source(path,bytes)),d.baselineSHA256);
     assert.equal(sha(restorePreR18Source(path,bytes)),d.baselineSHA256);
     const text=bytes.toString(),bad=[text+'\n','// unrelated\n'+text];

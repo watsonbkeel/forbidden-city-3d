@@ -87,13 +87,15 @@ async function buildRoutes() {
   const baohePostRadius=Math.min(.6,Math.max(.3,baohe.dimensions.width/(baoheColumnGrid(baohe.dimensions.width).x.length-1)*.08));
   // Cross outside the real rear-eave post: post radius + player0.5m +0.25m clearance.
   const baoheNorthCrossZ=r1(bh+baoheDepthGrid(baohe.dimensions.depth).rearDoorZ+baohePostRadius+.5+.25);
+  const {captureBaoheFrontCrossing}=await import(pathToFileURL(path.join(ROOT,'tests/lib/baohe-front-route.mjs')).href);
+  const baoheFrontCrossZ=captureBaoheFrontCrossing().crossZ;
   const AXIS_ROUTES = [
     ['午门→太和门', [[0, L.START_POSITION.z], [0, L.TAIHE_GATE_Z + GATE_CLEAR]]],
     ['太和门→太和殿内', [[0, L.TAIHE_GATE_Z + GATE_CLEAR], [10.5, L.TAIHE_GATE_Z + GATE_CLEAR], ...taiheFront]],
     // 过殿门时走中间一间（x≈0），进殿后从宝座侧面绕过；各殿取点相对殿心
     ['太和殿→中和殿→保和殿', [[0, 3], [0, 0], [TAIHE_DETOUR_X, 0], [TAIHE_DETOUR_X, 16], [0, 16.5],
       ...zhongheApproach.south.points, [0, zh - 7], [ZHONGHE_DETOUR_X, zh - 7], [ZHONGHE_DETOUR_X, zh + 7.2], [0, zh + 7.2], [0, zh + 11], ...zhongheApproach.north.points.toReversed(),
-      [0, bh - IN_FRONT], [BAOHE_DETOUR_X, bh - IN_FRONT], [BAOHE_DETOUR_X, back('保和殿') - 2], [BAOHE_DETOUR_X, baoheNorthCrossZ], [0, baoheNorthCrossZ], [0, back('保和殿') - 2]]],
+      [0, baoheFrontCrossZ], [BAOHE_DETOUR_X, baoheFrontCrossZ], [BAOHE_DETOUR_X, back('保和殿') - 2], [BAOHE_DETOUR_X, baoheNorthCrossZ], [0, baoheNorthCrossZ], [0, back('保和殿') - 2]]],
     // Use an actual outer stair, then cross behind the front column row. Keep
     // the old destination; a straight axial line would climb the carved stone.
     ['保和殿→北下台→乾清门', [[0, back('保和殿') - 2], ...baoheHallNorth, ...baoheNorth, [0, qgSouth - 1.5 * 1.6 - 1],

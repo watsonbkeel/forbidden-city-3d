@@ -1,3 +1,5 @@
+// Bind the new R22 modules before restoring older historical builders.
+import './historical-r21-baohe-fixture.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import fs from 'node:fs';
@@ -5,8 +7,8 @@ import {restorePreR21Source,assertR21AddedSource} from './r21-baohe-retention.mj
 import {assertR20AddedSource} from './r20-baohe-retention.mjs';
 import source from '../fixtures/r20-baohe-source-delta.json' with {type:'json'};
 
-// Explicit frozen R20 historical fixture, never current R21 acceptance. Reverse
-// only exact registered R21 bytes in memory; independently bind the retained
+// Explicit frozen R20 historical fixture, never current R22 acceptance. Reverse
+// only exact registered R22 then R21 bytes in memory; independently bind the retained
 // roof/frame and added R21 module. No historical source is written into src.
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const read=path=>fs.readFileSync(new URL('../../'+path,import.meta.url));

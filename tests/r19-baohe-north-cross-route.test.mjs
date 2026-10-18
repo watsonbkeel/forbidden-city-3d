@@ -1,3 +1,4 @@
+import {restorePreR22BaoheTraversalRoute} from './lib/r22-baohe-route-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
@@ -29,10 +30,11 @@ async function replayOriginalDriver(t,points,fps,sprint){
   finally{controls.dispose();clock.mock.restore();Object.assign(globalThis,old);}
 }
 
-test('only one fixed tuple gains two north-porch points derived from the real depth profile',()=>{
-  assert.equal(routes.length,33);assert.equal(current.name,'太和殿→中和殿→保和殿');assert.deepEqual(current,d.after);
+test('historical R19 tuple gains only two north-porch points; current route retains the actual north tail',()=>{
+  const historicalR19=restorePreR22BaoheTraversalRoute(current);
+  assert.equal(routes.length,33);assert.equal(current.name,'太和殿→中和殿→保和殿');assert.deepEqual(historicalR19,d.after);
   near(safe,135.2);assert.deepEqual(current.pts.slice(-4),[[6.1,133.7],[6.1,safe],[0,safe],[0,133.7]]);
-  assert.deepEqual(current.pts.slice(0,-3),d.before.pts.slice(0,-1));assert.deepEqual(current.pts[0],d.before.pts[0]);assert.deepEqual(current.pts.at(-1),d.before.pts.at(-1));
+  assert.deepEqual(historicalR19.pts.slice(0,-3),d.before.pts.slice(0,-1));assert.deepEqual(current.pts[0],d.before.pts[0]);assert.deepEqual(current.pts.at(-1),d.before.pts.at(-1));
 });
 test('the exact restored rear-eave post alone blocks the old horizontal leg and remains physical',()=>{
   assert.equal(post.length,1);const box=post[0].box;near((box.min.x+box.max.x)/2,3.65);near((box.min.z+box.max.z)/2,134);near(box.max.z-box.min.z,2*radius);near(box.min.y,9);near(box.max.y,12);

@@ -1,0 +1,45 @@
+{
+  "base": "dbed65dff5ab0919c2f21c6dff65bd4b2c1c850e",
+  "candidate": "5e6624c03d520ee91d355b09aa3060bc7a9489fe",
+  "scope": "Historical assertions only: exact R22 front-door/couplet reversal to frozen R21; live R22 feature and route acceptance remains unmodified.",
+  "files": {
+    "src/scene/PalaceBuilder.js": {
+      "baselineSHA256": "482f498930ce9f1e01c68de8bb2b9c25e38e1d4dc45e7a96814dd2266f461753",
+      "candidateSHA256": "9fa7e75b44363a8ba4bb474327abca10f4f5a3b8e8d93417ffa485906ee97799",
+      "deltas": [
+        {
+          "before": "import { baoheColumnGrid } from './palace/BaoheColumnGrid.js';\nimport { BAOHE_DEPTH_GRID, baoheDepthGrid, baoheDepthColumnPresent } from './palace/BaoheDepthGrid.js';\nimport { buildBaoheThroneScreen, buildBaoheInteriorPlaque, buildBaoheThroneChair } from './palace/BaoheThroneScreen.js';\nimport { baoheInteriorFrame, baoheHighColumn, buildBaoheInteriorCeiling } from './palace/BaoheInteriorFrame.js';\nimport { buildBaoheHallPlinth } from './palace/BaoheHallPlinth.js';\nimport { baoheNorthTier, buildBaoheNorthTier, createBaoheNorthDetail, installBaoheNorthDetail } from './palace/BaoheNorthApproaches.js';\n",
+          "after": "import { baoheColumnGrid } from './palace/BaoheColumnGrid.js';\nimport { BAOHE_DEPTH_GRID, baoheDepthGrid, baoheDepthColumnPresent } from './palace/BaoheDepthGrid.js';\nimport { buildBaoheThroneScreen, buildBaoheInteriorPlaque, buildBaoheThroneChair } from './palace/BaoheThroneScreen.js';\nimport { buildBaoheFrontDoors } from './palace/BaoheFrontDoors.js';\nimport { buildBaoheColumnCouplets } from './palace/BaoheColumnCouplets.js';\nimport { baoheInteriorFrame, baoheHighColumn, buildBaoheInteriorCeiling } from './palace/BaoheInteriorFrame.js';\nimport { buildBaoheHallPlinth } from './palace/BaoheHallPlinth.js';\nimport { baoheNorthTier, buildBaoheNorthTier, createBaoheNorthDetail, installBaoheNorthDetail } from './palace/BaoheNorthApproaches.js';\n"
+        },
+        {
+          "before": "        const xc = facadeGrid ? x0 + (facadeGrid.x[i] + facadeGrid.x[i + 1]) / 2 : x0 - w / 2 + (i + 0.5) * bayW;\n        const facadeBayW = facadeGrid ? facadeGrid.x[i + 1] - facadeGrid.x[i] : bayW;\n        if (facadeGrid ? facadeGrid.openBayIndices.includes(i) : Math.abs(xc - x0) < openHalf - 0.01) {\n          // 敞开的门：两扇隔扇折向两侧\n          for (const side of [-1, 1]) {\n            const leaf = this.libBox(g, 'lattice_doors', facadeBayW * 0.25, doorH, 0.12,\n",
+          "after": "        const xc = facadeGrid ? x0 + (facadeGrid.x[i] + facadeGrid.x[i + 1]) / 2 : x0 - w / 2 + (i + 0.5) * bayW;\n        const facadeBayW = facadeGrid ? facadeGrid.x[i + 1] - facadeGrid.x[i] : bayW;\n        if (facadeGrid ? facadeGrid.openBayIndices.includes(i) : Math.abs(xc - x0) < openHalf - 0.01) {\n          if (baoheColumns && s === -1) {\n            buildBaoheFrontDoors(this,g,{xc,zf,y,height:doorH,bayWidth:facadeBayW,columnRadius:r});\n            continue;\n          }\n          // 敞开的门：两扇隔扇折向两侧\n          for (const side of [-1, 1]) {\n            const leaf = this.libBox(g, 'lattice_doors', facadeBayW * 0.25, doorH, 0.12,\n"
+        },
+        {
+          "before": "        g.add(ceiling);\n      }\n      if (throne) this.throneArea(g, { x0, y, H, ztb0, ztb1, thW, bayW, text: spec.inner, caisson: !baoheDepth, baohe: !!baoheDepth });\n    }\n\n    // 殿外竖匾\n",
+          "after": "        g.add(ceiling);\n      }\n      if (throne) this.throneArea(g, { x0, y, H, ztb0, ztb1, thW, bayW, text: spec.inner, caisson: !baoheDepth, baohe: !!baoheDepth });\n      if (baoheColumns) buildBaoheColumnCouplets(this,g,{x0,z0,y,columnRadius:r});\n    }\n\n    // 殿外竖匾\n"
+        }
+      ]
+    }
+  },
+  "addedFiles": {
+    "src/scene/palace/BaoheFrontDoors.js": {
+      "candidateSHA256": "fd425a3b34714fd0141f31b97f884c16bd08f486e2f2367488c0fb3642c9a500"
+    },
+    "src/scene/palace/BaoheColumnCouplets.js": {
+      "candidateSHA256": "ed34e039f66cce0c1f2f32690e03f0b9f5af1578af6b2d576cf8399a1fe3047d"
+    }
+  },
+  "retainedFiles": {
+    "src/scene/RoofBuilder.js": "0e846c35971cb9a53a595a525e6d85b8337ca4c622156a8c96871ba7aa9280b6",
+    "src/scene/palace/BaoheThroneScreen.js": "0b3d8414788e87e9a99682b5e48706d617664bcda0965683eb2b6e805cf1f1fe",
+    "src/scene/palace/BaoheInteriorFrame.js": "b5bff0478f5e10967ee7ec46cfd007ab2c9b03a197c61bc964e0b27472917668",
+    "src/scene/palace/BaoheColumnGrid.js": "e243974819d421142bb049a442e8a3ef23af2a90025de645ea6f16988835fb40",
+    "src/scene/palace/BaoheDepthGrid.js": "131fae972ee3e69ac69e3896af25d4345da7134b2a92594172ead01fc006199a"
+  },
+  "preservedFixtures": {
+    "tests/fixtures/r21-baohe-source-delta.json": "951af0164e7f9033916c7899ff91dbc6a93b90bb073d1caa4d7b566b7ba0ffd0",
+    "tests/fixtures/r21-baohe-scene-delta.json": "cfc6c6181420548ae3bc9fecf20705540e4059ff50e12851ed4f28e176acf8f4",
+    "tests/fixtures/r19-baohe-navigation-delta.json": "3c547af0fea2cbfbbc0b74677d0833234681685ec1d62ce29af3ab01535c99aa"
+  }
+}

@@ -1,3 +1,5 @@
+import {restorePreR22FixedRoutes} from './lib/r22-baohe-route-retention.mjs';
+import {restorePreR22Navigation} from './lib/r22-baohe-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -42,7 +44,8 @@ function capture(Builder){
   }finally{b.dispose();}
 }
 // R20 assertions below intentionally execute exact frozen R20 source. Current
-// R21 has its own direct acceptance; its navigation still runs unmodified here.
+// R22 has direct feature/route acceptance; historical navigation below restores
+// only its exact registered twelve-leaf insertion after full identity checks.
 const current=capture(PalaceBuilder),frozenR20=capture(HistoricalR20PalaceBuilder),historical=capture(HistoricalR19PalaceBuilder);
 
 test('R20 provenance binds only two changed sources and the new frame module; every original R19 fingerprint file stays byte-exact',()=>{
@@ -110,7 +113,7 @@ test('R20 scene reverse rejects missing/extra/unrelated groups and count-preserv
   for(const bad of[{...scene.after,hash:scene.before.hash},{...scene.after,triangles:scene.after.triangles+1}])assert.throws(()=>restorePreR20SceneRow('三台',bad));
 });
 
-test('R13 single-row entry restores exact R21, R20 and earlier identities without a mesh-count gate; rejects mutated rows',()=>{
+test('R13 single-row entry restores exact R22, R20 and earlier identities without a mesh-count gate; rejects mutated rows',()=>{
   for(const row of[current.rows['三台'],frozenR20.rows['三台'],historical.rows['三台'],historicalR13.sceneAfter,historicalR13.sceneBefore])
     assert.deepEqual(restorePreR13SceneRow('三台',row),historicalR13.sceneBefore);
   for(const row of[current.rows['三台'],frozenR20.rows['三台'],historical.rows['三台'],historicalR13.sceneAfter,historicalR13.sceneBefore]){
@@ -129,15 +132,16 @@ test('historical frozen R20 resident scene adds exactly132 triangles,12672 buffe
   assert.deepEqual(frozenR20.privateShell,[{name:'wood_column',side:THREE.DoubleSide,triangles:80},{name:'caihua_beam',side:THREE.DoubleSide,triangles:8}]);
 });
 
-test('all2475 colliders and120 walkables retain exact full R19 identity without navigation normalization',()=>{
-  assert.equal(hash(current.navigation),previousNavigation.afterSHA256);
-  assert.deepEqual(current.navigation,frozenR20.navigation);
+test('historical R21 navigation restores only the exact R22 leaf insertion and retains all2475 colliders and120 walkables',()=>{
+  const historicalR21Navigation=restorePreR22Navigation(current.navigation);
+  assert.equal(hash(historicalR21Navigation),previousNavigation.afterSHA256);
+  assert.deepEqual(historicalR21Navigation,frozenR20.navigation);
   assert.deepEqual(frozenR20.navigation,historical.navigation);
   assert.deepEqual([frozenR20.navigation.colliders.length,frozenR20.navigation.walkables.length],[2475,120]);
 });
 
-test('all33 corrected fixed and59 automatic route objects retain original R19 identity',async()=>{
+test('all33 historically restored fixed and59 live automatic route objects retain original R19 identity',async()=>{
   const fixed=execFileSync(process.execPath,['tests/stepwalk.cjs','60','0','all'],{cwd:root,env:{...process.env,DUMP:'1'},encoding:'utf8'}).trim().split('\n').map(line=>{const at=line.indexOf(' ');return{name:line.slice(0,at),pts:JSON.parse(line.slice(at+1))};});
   const zones=loadZoneJsons(),world=await buildWorld({zones}),auto=buildAutoRoutes(world,zones.map(z=>z.json),{knownIssues:{}});
-  for(const[kind,rows]of Object.entries({fixed,auto})){assert.equal(rows.length,kind==='fixed'?33:59);assert.equal(hash(rows),previousRoutes[kind].afterSHA256);assert.equal(assertR19RouteIdentity(kind,rows),rows);}
+  for(const[kind,rows]of Object.entries({fixed:restorePreR22FixedRoutes(fixed),auto})){assert.equal(rows.length,kind==='fixed'?33:59);assert.equal(hash(rows),previousRoutes[kind].afterSHA256);assert.equal(assertR19RouteIdentity(kind,rows),rows);}
 });

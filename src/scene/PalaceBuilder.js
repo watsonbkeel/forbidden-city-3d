@@ -23,6 +23,8 @@ import { taiheSouthTier, buildTaiheSouthTier } from './palace/TaiheFrontApproach
 import { baoheColumnGrid } from './palace/BaoheColumnGrid.js';
 import { BAOHE_DEPTH_GRID, baoheDepthGrid, baoheDepthColumnPresent } from './palace/BaoheDepthGrid.js';
 import { buildBaoheThroneScreen, buildBaoheInteriorPlaque, buildBaoheThroneChair } from './palace/BaoheThroneScreen.js';
+import { buildBaoheFrontDoors } from './palace/BaoheFrontDoors.js';
+import { buildBaoheColumnCouplets } from './palace/BaoheColumnCouplets.js';
 import { baoheInteriorFrame, baoheHighColumn, buildBaoheInteriorCeiling } from './palace/BaoheInteriorFrame.js';
 import { buildBaoheHallPlinth } from './palace/BaoheHallPlinth.js';
 import { baoheNorthTier, buildBaoheNorthTier, createBaoheNorthDetail, installBaoheNorthDetail } from './palace/BaoheNorthApproaches.js';
@@ -732,6 +734,10 @@ export class PalaceBuilder {
         const xc = facadeGrid ? x0 + (facadeGrid.x[i] + facadeGrid.x[i + 1]) / 2 : x0 - w / 2 + (i + 0.5) * bayW;
         const facadeBayW = facadeGrid ? facadeGrid.x[i + 1] - facadeGrid.x[i] : bayW;
         if (facadeGrid ? facadeGrid.openBayIndices.includes(i) : Math.abs(xc - x0) < openHalf - 0.01) {
+          if (baoheColumns && s === -1) {
+            buildBaoheFrontDoors(this,g,{xc,zf,y,height:doorH,bayWidth:facadeBayW,columnRadius:r});
+            continue;
+          }
           // 敞开的门：两扇隔扇折向两侧
           for (const side of [-1, 1]) {
             const leaf = this.libBox(g, 'lattice_doors', facadeBayW * 0.25, doorH, 0.12,
@@ -777,6 +783,7 @@ export class PalaceBuilder {
         g.add(ceiling);
       }
       if (throne) this.throneArea(g, { x0, y, H, ztb0, ztb1, thW, bayW, text: spec.inner, caisson: !baoheDepth, baohe: !!baoheDepth });
+      if (baoheColumns) buildBaoheColumnCouplets(this,g,{x0,z0,y,columnRadius:r});
     }
 
     // 殿外竖匾

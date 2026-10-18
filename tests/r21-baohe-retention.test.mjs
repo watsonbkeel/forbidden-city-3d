@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import * as THREE from 'three';
-import {PalaceBuilder} from '../src/scene/PalaceBuilder.js';
+import {HistoricalR21PalaceBuilder} from './lib/historical-r21-baohe-fixture.mjs';
+import {restorePreR22Source} from './lib/r22-baohe-retention.mjs';
 import {PALACE_LAYOUT} from '../src/scene/Layout.js';
 import {library,sceneRows} from './lib/inner-palace-fixture.mjs';
 import {HistoricalR20PalaceBuilder} from './lib/historical-r20-baohe-fixture.mjs';
@@ -25,7 +26,8 @@ function capture(Builder){
   const s=new THREE.Scene(),b=new Builder(s,library());
   try{b.buildAll(PALACE_LAYOUT);return sceneRows(s);}finally{b.dispose();}
 }
-const current=capture(PalaceBuilder),historicalR20=capture(HistoricalR20PalaceBuilder);
+// These are frozen R21 assertions; current R22 has separate direct acceptance.
+const frozenR21=capture(HistoricalR21PalaceBuilder),historicalR20=capture(HistoricalR20PalaceBuilder);
 
 test('R21 provenance binds frozen commits, one changed source, one added module and unchanged R20 fixtures',()=>{
   for(const fixture of[source,scene]){
@@ -43,8 +45,8 @@ test('R21 provenance binds frozen commits, one changed source, one added module 
 });
 
 for(const[path,d]of Object.entries(source.files)){
-  test('exact live R21 source reverses five unique hunks before frozen R20 and R19 adapters: '+path,()=>{
-    const bytes=read(path),before=Buffer.from(bytes),text=bytes.toString();
+  test('exact historical R21 source reverses five unique hunks before frozen R20 and R19 adapters: '+path,()=>{
+    const bytes=restorePreR22Source(path,read(path)),before=Buffer.from(bytes),text=bytes.toString();
     assert.equal(sha(bytes),d.candidateSHA256);assert.equal(d.deltas.length,5);
     for(const h of d.deltas){assert.ok(h.before.length>0);assert.ok(h.after.length>0);assert.equal(text.split(h.after).length,2);}
     const restored=restorePreR21Source(path,bytes);
@@ -54,7 +56,7 @@ for(const[path,d]of Object.entries(source.files)){
     assert.deepEqual(bytes,before,'live source bytes are never modified');
   });
   test('R21 and older source entries reject append, missing/duplicate/partial hunks and unknown edits: '+path,()=>{
-    const text=read(path).toString();
+    const text=restorePreR22Source(path,read(path)).toString();
     const bad=['',text+'\n','// unknown source change\n'+text,text.replace('const lacquer =','const changedLacquer =')];
     for(const h of d.deltas)for(const replacement of['',h.after+h.after,h.before])bad.push(text.replace(h.after,replacement));
     for(const value of bad){
@@ -81,27 +83,27 @@ for(const[path,d]of Object.entries(source.addedFiles)){
   });
 }
 
-test('exact R21 complete scene restores independently built frozen R20 before original R20/R19 chains',()=>{
-  assert.equal(hash(current),scene.afterSHA256);assert.deepEqual(current['三台'],scene.after);
+test('exact historical R21 complete scene restores independently built frozen R20 before original R20/R19 chains',()=>{
+  assert.equal(hash(frozenR21),scene.afterSHA256);assert.deepEqual(frozenR21['三台'],scene.after);
   assert.equal(hash(historicalR20),scene.beforeSHA256);assert.deepEqual(historicalR20['三台'],scene.before);
   assert.equal(Object.keys(scene.unchanged).length,7);
-  for(const[name,row]of Object.entries(scene.unchanged))assert.deepEqual(current[name],row);
-  const restored=restorePreR21SceneRows(current);assert.deepEqual(restored,historicalR20);
-  assert.equal(restorePreR21SceneRows(restored),restored);assert.equal(hash(current),scene.afterSHA256);
-  assert.deepEqual(restorePreR21SceneRow('三台',current['三台']),scene.before);
-  assert.equal(hash(restorePreR20SceneRows(current)),previousScene.beforeSHA256);
-  assert.equal(hash(restorePreR19SceneRows(current)),r19Scene.beforeSHA256);
-  assert.deepEqual(restorePreR13SceneRow('三台',current['三台']),r13.sceneBefore);
+  for(const[name,row]of Object.entries(scene.unchanged))assert.deepEqual(frozenR21[name],row);
+  const restored=restorePreR21SceneRows(frozenR21);assert.deepEqual(restored,historicalR20);
+  assert.equal(restorePreR21SceneRows(restored),restored);assert.equal(hash(frozenR21),scene.afterSHA256);
+  assert.deepEqual(restorePreR21SceneRow('三台',frozenR21['三台']),scene.before);
+  assert.equal(hash(restorePreR20SceneRows(frozenR21)),previousScene.beforeSHA256);
+  assert.equal(hash(restorePreR19SceneRows(frozenR21)),r19Scene.beforeSHA256);
+  assert.deepEqual(restorePreR13SceneRow('三台',frozenR21['三台']),r13.sceneBefore);
 });
 
 test('R21 and older scene chains reject missing/extra groups and count-preserving material or geometry changes',()=>{
-  for(const name of Object.keys(current)){
-    const missing=structuredClone(current);delete missing[name];
-    const count=structuredClone(current);count[name].triangles++;
-    const identity=structuredClone(current);identity[name].hash='unknown-geometry-or-material';
+  for(const name of Object.keys(frozenR21)){
+    const missing=structuredClone(frozenR21);delete missing[name];
+    const count=structuredClone(frozenR21);count[name].triangles++;
+    const identity=structuredClone(frozenR21);identity[name].hash='unknown-geometry-or-material';
     for(const bad of[missing,count,identity])for(const restore of[restorePreR21SceneRows,restorePreR20SceneRows,restorePreR19SceneRows])assert.throws(()=>restore(bad));
   }
-  assert.throws(()=>restorePreR21SceneRows({...current,extra:current['午门']}));
+  assert.throws(()=>restorePreR21SceneRows({...frozenR21,extra:frozenR21['午门']}));
   for(const row of[scene.before,scene.after])for(const bad of[{...row,hash:'unknown'}, {...row,triangles:row.triangles+1},{...row,meshes:row.meshes+1},{...row,extra:true}]){
     assert.throws(()=>restorePreR21SceneRow('三台',bad));assert.throws(()=>restorePreR13SceneRow('三台',bad));
   }
