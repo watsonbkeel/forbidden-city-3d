@@ -30,7 +30,7 @@ test('side-portal route passes with all actual Huangji S proxies; retired B-only
   const primitives=j.meshes[n.mesh].primitives;assert.equal(primitives.length,1);
   const a=j.accessors[primitives[0].attributes.POSITION],t=n.translation??[0,0,0],off=[cfg.frame.x+t[0],floor+t[1],cfg.frame.z+t[2]];
   const box=new THREE.Box3(new THREE.Vector3(...a.min.map((v,i)=>v+off[i])),new THREE.Vector3(...a.max.map((v,i)=>v+off[i])));
-  if(n.name.startsWith('COL_')){W.cm.addCollider(box,'interior:huangji');col++;}else{W.cm.addWalkable({type:'box',box},'interior:huangji');walk++;}
+  if(n.name.startsWith('COL_')){W.cm.addCollider(box,'interior:huangji');col++;}else{W.cm.addWalkable({type:'box',box,rescue:false},'interior:huangji');walk++;}
  }
  assert.equal(col,5);assert.equal(walk,1);
  const blocked=walkStraight(W,old.pts[4],old.pts[5],{feet0:1.5,step:.05});assert.ok(blocked.reached<blocked.total-5);assert.ok(Math.abs(blocked.end[1]-293.98)<.15);
