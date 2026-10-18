@@ -3,7 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import * as THREE from 'three';
-import {captureTaiheControl,hash,serialMesh} from './lib/taihe-core-fixture.mjs';
+import {captureHistoricalBaoheControl,captureTaiheControl,hash,serialMesh} from './lib/taihe-core-fixture.mjs';
 import {taiheColumnGrid} from '../src/scene/palace/special/TaiheColumnGrid.js';
 import {TAIHE_CORE as P} from '../src/scene/palace/special/TaiheCoreProfile.js';
 const B=JSON.parse(fs.readFileSync(new URL('./fixtures/r10-column-grid-baseline.json',import.meta.url)));
@@ -55,7 +55,7 @@ test('retained core bytes and geometry count do not grow for the grid correction
  assert.equal(meshes.length,old.meshCount);assert.equal(meshes.reduce((n,o)=>n+(o.geometry.index?.count??o.geometry.attributes.position.count)/3,0),old.triangles);
  builder.dispose();
 });
-for(const name of ['保和殿','乾清宫'])test(`${name} stays byte equivalent in geometry and navigation`,()=>{
- const {builder,group}=captureTaiheControl(name);assert.equal(hash(group.children.filter(o=>o.isMesh).map(o=>serialMesh(o))),B[name].geometry);
+for(const name of ['保和殿','乾清宫'])test(`${name} stays byte equivalent in geometry and navigation in the explicitly restored historical frame`,async()=>{
+ const {builder,group}=name==='保和殿'?await captureHistoricalBaoheControl():captureTaiheControl(name);assert.equal(hash(group.children.filter(o=>o.isMesh).map(o=>serialMesh(o))),B[name].geometry);
  assert.equal(hash({colliders:builder.colliders,walkables:builder.walkables}),B[name].navigation);builder.dispose();
 });

@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import * as THREE from 'three';
 import {TAIHE_FLOOR as P,taiheFloorPixels,taiheFloorMaterial} from '../src/scene/palace/special/TaiheFloorMaterial.js';
-import {captureTaiheControl,serialMesh,hash} from './lib/taihe-core-fixture.mjs';
+import {captureHistoricalBaoheControl,captureTaiheControl,serialMesh,hash} from './lib/taihe-core-fixture.mjs';
 const B=JSON.parse(fs.readFileSync(new URL('./fixtures/r11-floor-baseline.json',import.meta.url)));
 test('deterministic square-brick illustration has bounded neutral pixels and no transparent holes',()=>{
  const a=taiheFloorPixels(),b=taiheFloorPixels();assert.deepEqual(a,b);
@@ -33,6 +33,6 @@ test('only Taihe floor UV and material change; all positions, nonfloor geometry 
  for(let i=0;i<uv.count;i++){assert.ok(Math.abs(uv.getX(i)-pos.getX(i)/P.tileMetres)<1e-6);assert.ok(Math.abs(uv.getY(i)-pos.getZ(i)/P.tileMetres)<1e-6);}
  assert.equal(mesh.receiveShadow,true);builder.dispose();
 });
-for(const name of ['保和殿','乾清宫'])test(`${name} retains exact floor, materials, geometry and navigation`,()=>{
- const{builder,group}=captureTaiheControl(name);assert.equal(hash(group.children.filter(o=>o.isMesh).map(o=>serialMesh(o))),B[name].geometry);assert.equal(hash({colliders:builder.colliders,walkables:builder.walkables}),B[name].navigation);assert.ok(!builder._own.has(P.cacheKey));builder.dispose();
+for(const name of ['保和殿','乾清宫'])test(`${name} retains exact floor, materials, geometry and navigation in the explicitly restored historical frame`,async()=>{
+ const{builder,group}=name==='保和殿'?await captureHistoricalBaoheControl():captureTaiheControl(name);assert.equal(hash(group.children.filter(o=>o.isMesh).map(o=>serialMesh(o))),B[name].geometry);assert.equal(hash({colliders:builder.colliders,walkables:builder.walkables}),B[name].navigation);assert.ok(!builder._own.has(P.cacheKey));builder.dispose();
 });

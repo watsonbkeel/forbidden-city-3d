@@ -1,0 +1,46 @@
+{
+  "base": "8dc373e0417aada9cab0a6e52fa4daa4ebb941db",
+  "candidate": "acc7d8d4a7f237a746d208e4892e539daa07461b",
+  "files": {
+    "src/scene/PalaceBuilder.js": {
+      "baselineSHA256": "24970250d2f749b09c37f8d2723a88671b9cb1998db01db5c0672f93a23edec2",
+      "candidateSHA256": "624110df099beb1d6aac91f84cb2e029deb787447c5747c44f39ee505549fcb1",
+      "deltas": [
+        {
+          "before": "import { threeHallTerraceProfile, closedTerraceStairGeometry } from './palace/ThreeHallTerrace.js';\nimport { taiheSouthTier, buildTaiheSouthTier } from './palace/TaiheFrontApproaches.js';\nimport { baoheNorthTier, buildBaoheNorthTier, createBaoheNorthDetail, installBaoheNorthDetail } from './palace/BaoheNorthApproaches.js';\nimport { buildZhongheImperialApproach } from './palace/ZhongheImperialApproach.js';\n",
+          "after": "import { threeHallTerraceProfile, closedTerraceStairGeometry } from './palace/ThreeHallTerrace.js';\nimport { taiheSouthTier, buildTaiheSouthTier } from './palace/TaiheFrontApproaches.js';\nimport { baoheColumnGrid } from './palace/BaoheColumnGrid.js';\nimport { buildBaoheHallPlinth } from './palace/BaoheHallPlinth.js';\nimport { baoheNorthTier, buildBaoheNorthTier, createBaoheNorthDetail, installBaoheNorthDetail } from './palace/BaoheNorthApproaches.js';\nimport { buildZhongheImperialApproach } from './palace/ZhongheImperialApproach.js';\n"
+        },
+        {
+          "before": "          stairCenters: h.name === '中和殿' ? [-(w - 6) / 3, 0, (w - 6) / 3] : [0],\n          stairSides: h.name === '中和殿' ? ['south', 'north', 'east', 'west'] : ['south', 'north'] };\n        const y = name === '后三宫' ? buildInnerPalaceLip(this, g, plinth) : this.buildPlinth(g, plinth);\n        // Preserve Qianqing's inherited body proportions when lowering its support;\n        // the old7m floor was a modelling datum, not a measured body dimension.\n        this.buildHall(g, h, y, { heightReferenceY: h.name === '乾清宫' ? 7 : y });\n      });\n    } else {\n",
+          "after": "          stairCenters: h.name === '中和殿' ? [-(w - 6) / 3, 0, (w - 6) / 3] : [0],\n          stairSides: h.name === '中和殿' ? ['south', 'north', 'east', 'west'] : ['south', 'north'] };\n        const y = name === '后三宫' ? buildInnerPalaceLip(this, g, plinth)\n          : h.name === '保和殿' ? buildBaoheHallPlinth(this, g, plinth) : this.buildPlinth(g, plinth);\n        // Retain body heights when lowering source-specific supports. The old\n        // floor datums are modelling values, not measured body dimensions.\n        this.buildHall(g, h, y, { heightReferenceY: h.name === '乾清宫' ? 7 : h.name === '保和殿' ? top + ph : y });\n      });\n    } else {\n"
+        },
+        {
+          "before": "    const taiheCore = data.name === '太和殿';\n    const taiheGrid = taiheCore ? taiheColumnGrid(w, d) : null;\n    const openLeft = taiheGrid?.openLeft ?? -openHalf;\n    const openRight = taiheGrid?.openRight ?? openHalf;\n\n    const colMat = this.library.material('wood_column');\n",
+          "after": "    const taiheCore = data.name === '太和殿';\n    const taiheGrid = taiheCore ? taiheColumnGrid(w, d) : null;\n    const facadeGrid = taiheGrid ?? (data.name === '保和殿' ? baoheColumnGrid(w) : null);\n    const openLeft = facadeGrid?.openLeft ?? -openHalf;\n    const openRight = facadeGrid?.openRight ?? openHalf;\n\n    const colMat = this.library.material('wood_column');\n"
+        },
+        {
+          "before": "    // 柱网\n    for (let i = 0; i <= bays; i++) {\n      const x = taiheGrid ? x0 + taiheGrid.x[i] : x0 - w / 2 + i * bayW;\n      for (let k = 0; k <= nd; k++) {\n        const z = taiheGrid ? z0 + taiheGrid.z[k] : z0 - d / 2 + k * dBay;\n        const edge = i === 0 || i === bays || k === 0 || k === nd;\n        if (taiheGrid && !edge && taiheGrid.centralColumnIndices.includes(i)) continue;\n        if (!edge && throne && Math.abs(x - x0) < bayW * 0.6 && z > ztb0 - 1 && z < ztb1 + 1) continue;\n        const isGold = !taiheCore && throne && !edge && Math.abs(x - x0) < bayW * 1.6 && z > ztb0 - dBay;\n        this.column(g, colGeo, isGold ? gold : colMat, x, z, y, H, r);\n      }\n",
+          "after": "    // 柱网\n    for (let i = 0; i <= bays; i++) {\n      const x = facadeGrid ? x0 + facadeGrid.x[i] : x0 - w / 2 + i * bayW;\n      // Keep inherited column inclusion/material ownership while registering\n      // Baohe frontage stations. Its full reduction-column structure is pending.\n      const classificationX = data.name === '保和殿' ? x0 - w / 2 + i * bayW : x;\n      for (let k = 0; k <= nd; k++) {\n        const z = taiheGrid ? z0 + taiheGrid.z[k] : z0 - d / 2 + k * dBay;\n        const edge = i === 0 || i === bays || k === 0 || k === nd;\n        if (taiheGrid && !edge && taiheGrid.centralColumnIndices.includes(i)) continue;\n        if (!edge && throne && Math.abs(classificationX - x0) < bayW * 0.6 && z > ztb0 - 1 && z < ztb1 + 1) continue;\n        const isGold = !taiheCore && throne && !edge && Math.abs(classificationX - x0) < bayW * 1.6 && z > ztb0 - dBay;\n        this.column(g, colGeo, isGold ? gold : colMat, x, z, y, H, r);\n      }\n"
+        },
+        {
+          "before": "      const zf = z0 + s * d / 2;\n      for (let i = 0; i < bays; i++) {\n        const xc = taiheGrid ? x0 + (taiheGrid.x[i] + taiheGrid.x[i + 1]) / 2 : x0 - w / 2 + (i + 0.5) * bayW;\n        const facadeBayW = taiheGrid ? taiheGrid.x[i + 1] - taiheGrid.x[i] : bayW;\n        if (taiheGrid ? taiheGrid.openBayIndices.includes(i) : Math.abs(xc - x0) < openHalf - 0.01) {\n          // 敞开的门：两扇隔扇折向两侧\n          for (const side of [-1, 1]) {\n",
+          "after": "      const zf = z0 + s * d / 2;\n      for (let i = 0; i < bays; i++) {\n        const xc = facadeGrid ? x0 + (facadeGrid.x[i] + facadeGrid.x[i + 1]) / 2 : x0 - w / 2 + (i + 0.5) * bayW;\n        const facadeBayW = facadeGrid ? facadeGrid.x[i + 1] - facadeGrid.x[i] : bayW;\n        if (facadeGrid ? facadeGrid.openBayIndices.includes(i) : Math.abs(xc - x0) < openHalf - 0.01) {\n          // 敞开的门：两扇隔扇折向两侧\n          for (const side of [-1, 1]) {\n"
+        }
+      ]
+    },
+    "tests/stepwalk.cjs": {
+      "baselineSHA256": "23094d1d268355079495cb20223fd39446cf0f8a72ab61ca79d7b92a092b21e4",
+      "candidateSHA256": "4b66389014ce2a950ae194b799c7af66dd6ae2b4ac822f83997f0249218539d3",
+      "deltas": [
+        {
+          "before": "  const {captureBaoheNorthTiers,baoheNorthDescentPoints}=await import(pathToFileURL(path.join(ROOT,'tests/lib/baohe-north-route.mjs')).href);\n  const baoheNorth=baoheNorthDescentPoints(captureBaoheNorthTiers(),1);\n  const AXIS_ROUTES = [\n    ['午门→太和门', [[0, L.START_POSITION.z], [0, L.TAIHE_GATE_Z + GATE_CLEAR]]],\n",
+          "after": "  const {captureBaoheNorthTiers,baoheNorthDescentPoints}=await import(pathToFileURL(path.join(ROOT,'tests/lib/baohe-north-route.mjs')).href);\n  const baoheNorth=baoheNorthDescentPoints(captureBaoheNorthTiers(),1);\n  const {captureBaoheHallPlinth,baoheHallNorthDescent}=await import(pathToFileURL(path.join(ROOT,'tests/lib/baohe-hall-plinth-route.mjs')).href);\n  const baoheHallNorth=baoheHallNorthDescent(captureBaoheHallPlinth(),1);\n  const AXIS_ROUTES = [\n    ['午门→太和门', [[0, L.START_POSITION.z], [0, L.TAIHE_GATE_Z + GATE_CLEAR]]],\n"
+        },
+        {
+          "before": "    // Use an actual outer stair, then cross behind the front column row. Keep\n    // the old destination; a straight axial line would climb the carved stone.\n    ['保和殿→北下台→乾清门', [[0, back('保和殿') - 2], ...baoheNorth, [0, qgSouth - 1.5 * 1.6 - 1],\n      [qgSide, qgSouth - 1.5 * 1.6 - 1], [qgSide, qgSouth + 3], [0, qgSouth + 3], [0, L.QIANQING_GATE_Z - 10]]],\n    ['乾清门→乾清宫', [[0, L.QIANQING_GATE_Z - 10], [0, qq - 6]]],\n",
+          "after": "    // Use an actual outer stair, then cross behind the front column row. Keep\n    // the old destination; a straight axial line would climb the carved stone.\n    ['保和殿→北下台→乾清门', [[0, back('保和殿') - 2], ...baoheHallNorth, ...baoheNorth, [0, qgSouth - 1.5 * 1.6 - 1],\n      [qgSide, qgSouth - 1.5 * 1.6 - 1], [qgSide, qgSouth + 3], [0, qgSouth + 3], [0, L.QIANQING_GATE_Z - 10]]],\n    ['乾清门→乾清宫', [[0, L.QIANQING_GATE_Z - 10], [0, qq - 6]]],\n"
+        }
+      ]
+    }
+  }
+}

@@ -79,6 +79,8 @@ async function buildRoutes() {
   const zhongheApproach=captureZhongheApproaches(1);
   const {captureBaoheNorthTiers,baoheNorthDescentPoints}=await import(pathToFileURL(path.join(ROOT,'tests/lib/baohe-north-route.mjs')).href);
   const baoheNorth=baoheNorthDescentPoints(captureBaoheNorthTiers(),1);
+  const {captureBaoheHallPlinth,baoheHallNorthDescent}=await import(pathToFileURL(path.join(ROOT,'tests/lib/baohe-hall-plinth-route.mjs')).href);
+  const baoheHallNorth=baoheHallNorthDescent(captureBaoheHallPlinth(),1);
   const AXIS_ROUTES = [
     ['午门→太和门', [[0, L.START_POSITION.z], [0, L.TAIHE_GATE_Z + GATE_CLEAR]]],
     ['太和门→太和殿内', [[0, L.TAIHE_GATE_Z + GATE_CLEAR], [10.5, L.TAIHE_GATE_Z + GATE_CLEAR], ...taiheFront]],
@@ -88,7 +90,7 @@ async function buildRoutes() {
       [0, bh - IN_FRONT], [BAOHE_DETOUR_X, bh - IN_FRONT], [BAOHE_DETOUR_X, back('保和殿') - 2], [0, back('保和殿') - 2]]],
     // Use an actual outer stair, then cross behind the front column row. Keep
     // the old destination; a straight axial line would climb the carved stone.
-    ['保和殿→北下台→乾清门', [[0, back('保和殿') - 2], ...baoheNorth, [0, qgSouth - 1.5 * 1.6 - 1],
+    ['保和殿→北下台→乾清门', [[0, back('保和殿') - 2], ...baoheHallNorth, ...baoheNorth, [0, qgSouth - 1.5 * 1.6 - 1],
       [qgSide, qgSouth - 1.5 * 1.6 - 1], [qgSide, qgSouth + 3], [0, qgSouth + 3], [0, L.QIANQING_GATE_Z - 10]]],
     ['乾清门→乾清宫', [[0, L.QIANQING_GATE_Z - 10], [0, qq - 6]]],
     ['乾清宫→交泰殿→坤宁宫', [[0, qq - 6], [QIANQING_DETOUR_X, qq - 6], [QIANQING_DETOUR_X, back('乾清宫') - 1.5], [0, back('乾清宫') - 1.5],

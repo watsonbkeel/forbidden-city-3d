@@ -4,7 +4,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import * as THREE from 'three';
-import {captureTaiheControl,hash,serialMesh} from './lib/taihe-core-fixture.mjs';
+import {captureHistoricalBaoheControl,captureTaiheControl,hash,serialMesh} from './lib/taihe-core-fixture.mjs';
 import {mergeByMaterial} from '../src/utils/MergeUtils.js';
 import {buildTaiheRearEnclosure,TAIHE_REAR_FINISH as Q} from '../src/scene/palace/special/TaiheRearEnclosure.js';
 const baseline=JSON.parse(fs.readFileSync(new URL('./fixtures/r9-enclosure-baseline.json',import.meta.url)));
@@ -69,8 +69,8 @@ test('enclosure helper itself cannot register navigation or change lights and ac
  assert.equal(Q.thickness,.5);
  builder.dispose();g.children.forEach(o=>o.geometry.dispose());
 });
-for(const name of ['保和殿','乾清宫'])test(`${name} geometry, materials and navigation remain byte equivalent`,()=>{
- const {builder,group}=captureTaiheControl(name);
+for(const name of ['保和殿','乾清宫'])test(`${name} geometry, materials and navigation remain byte equivalent in the explicitly restored historical frame`,async()=>{
+ const {builder,group}=name==='保和殿'?await captureHistoricalBaoheControl():captureTaiheControl(name);
  assert.equal(hash(group.children.filter(x=>x.isMesh).map(x=>serialMesh(x))),baseline[name].geometry);
  assert.equal(hash({colliders:builder.colliders,walkables:builder.walkables}),baseline[name].navigation);
  builder.dispose();

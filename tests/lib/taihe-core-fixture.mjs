@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import {restorePreR17Source} from './r17-baohe-retention.mjs';
 import * as THREE from 'three';
 import crypto from 'node:crypto';
 import {PalaceBuilder} from '../../src/scene/PalaceBuilder.js';
@@ -16,4 +18,15 @@ export async function captureHistoricalKunningControl(){
  const mats=new Map(),library={material:(n,p={})=>{const k=n+JSON.stringify(p);if(!mats.has(k))mats.set(k,new THREE.MeshStandardMaterial({name:n,...p}));return mats.get(k);},tileSize:()=>1,aspect:()=>1};
  const builder=new PalaceBuilder(new THREE.Scene(),library),group=new THREE.Group(),p=structuredClone(KUNNING_PROFILE);
  p.frameExpectation.floorY=6.9375;buildKunningPalace(builder,group,PALACE_LAYOUT.find(h=>h.name==='坤宁宫'),6.9375,p);group.updateMatrixWorld(true);return{builder,group};
+}
+
+// Only historical Taihe non-target assertions use this exact R16 Baohe frame.
+// Current R17 plinth/grid physics still uses captureTaiheControl and live builders.
+export async function captureHistoricalBaoheControl(){
+ const path='src/scene/PalaceBuilder.js',url=new URL('../../'+path,import.meta.url);
+ const restored=restorePreR17Source(path,fs.readFileSync(url));
+ const module=restored.toString().replace(/from '([^']+)'/g,(_,specifier)=>
+  `from '${specifier==='three'?import.meta.resolve('three'):new URL(specifier,url).href}'`);
+ const {PalaceBuilder:HistoricalBuilder}=await import('data:text/javascript;base64,'+Buffer.from(module).toString('base64'));
+ return captureTaiheControl('保和殿',HistoricalBuilder);
 }

@@ -20,6 +20,8 @@ import { captureInnerGlazeCoarse, installInnerGlazeLOD } from './palace/special/
 import { buildKunningPalace } from './palace/special/KunningPalace.js';
 import { threeHallTerraceProfile, closedTerraceStairGeometry } from './palace/ThreeHallTerrace.js';
 import { taiheSouthTier, buildTaiheSouthTier } from './palace/TaiheFrontApproaches.js';
+import { baoheColumnGrid } from './palace/BaoheColumnGrid.js';
+import { buildBaoheHallPlinth } from './palace/BaoheHallPlinth.js';
 import { baoheNorthTier, buildBaoheNorthTier, createBaoheNorthDetail, installBaoheNorthDetail } from './palace/BaoheNorthApproaches.js';
 import { buildZhongheImperialApproach } from './palace/ZhongheImperialApproach.js';
 import { TAIHE_CORE } from './palace/special/TaiheCoreProfile.js';
@@ -461,10 +463,11 @@ export class PalaceBuilder {
           zhongheImperial: h.name === '中和殿',
           stairCenters: h.name === '中和殿' ? [-(w - 6) / 3, 0, (w - 6) / 3] : [0],
           stairSides: h.name === '中和殿' ? ['south', 'north', 'east', 'west'] : ['south', 'north'] };
-        const y = name === '后三宫' ? buildInnerPalaceLip(this, g, plinth) : this.buildPlinth(g, plinth);
-        // Preserve Qianqing's inherited body proportions when lowering its support;
-        // the old7m floor was a modelling datum, not a measured body dimension.
-        this.buildHall(g, h, y, { heightReferenceY: h.name === '乾清宫' ? 7 : y });
+        const y = name === '后三宫' ? buildInnerPalaceLip(this, g, plinth)
+          : h.name === '保和殿' ? buildBaoheHallPlinth(this, g, plinth) : this.buildPlinth(g, plinth);
+        // Retain body heights when lowering source-specific supports. The old
+        // floor datums are modelling values, not measured body dimensions.
+        this.buildHall(g, h, y, { heightReferenceY: h.name === '乾清宫' ? 7 : h.name === '保和殿' ? top + ph : y });
       });
     } else {
       halls.forEach(h => this.buildHall(g, h, top));
@@ -651,8 +654,9 @@ export class PalaceBuilder {
     const throne = !!spec.throne;
     const taiheCore = data.name === '太和殿';
     const taiheGrid = taiheCore ? taiheColumnGrid(w, d) : null;
-    const openLeft = taiheGrid?.openLeft ?? -openHalf;
-    const openRight = taiheGrid?.openRight ?? openHalf;
+    const facadeGrid = taiheGrid ?? (data.name === '保和殿' ? baoheColumnGrid(w) : null);
+    const openLeft = facadeGrid?.openLeft ?? -openHalf;
+    const openRight = facadeGrid?.openRight ?? openHalf;
 
     const colMat = this.library.material('wood_column');
     const gold = this.ownMat('gold', { color: 0xc9a13b, metalness: 0.85, roughness: 0.3 });
@@ -665,13 +669,16 @@ export class PalaceBuilder {
 
     // 柱网
     for (let i = 0; i <= bays; i++) {
-      const x = taiheGrid ? x0 + taiheGrid.x[i] : x0 - w / 2 + i * bayW;
+      const x = facadeGrid ? x0 + facadeGrid.x[i] : x0 - w / 2 + i * bayW;
+      // Keep inherited column inclusion/material ownership while registering
+      // Baohe frontage stations. Its full reduction-column structure is pending.
+      const classificationX = data.name === '保和殿' ? x0 - w / 2 + i * bayW : x;
       for (let k = 0; k <= nd; k++) {
         const z = taiheGrid ? z0 + taiheGrid.z[k] : z0 - d / 2 + k * dBay;
         const edge = i === 0 || i === bays || k === 0 || k === nd;
         if (taiheGrid && !edge && taiheGrid.centralColumnIndices.includes(i)) continue;
-        if (!edge && throne && Math.abs(x - x0) < bayW * 0.6 && z > ztb0 - 1 && z < ztb1 + 1) continue;
-        const isGold = !taiheCore && throne && !edge && Math.abs(x - x0) < bayW * 1.6 && z > ztb0 - dBay;
+        if (!edge && throne && Math.abs(classificationX - x0) < bayW * 0.6 && z > ztb0 - 1 && z < ztb1 + 1) continue;
+        const isGold = !taiheCore && throne && !edge && Math.abs(classificationX - x0) < bayW * 1.6 && z > ztb0 - dBay;
         this.column(g, colGeo, isGold ? gold : colMat, x, z, y, H, r);
       }
     }
@@ -699,9 +706,9 @@ export class PalaceBuilder {
     for (const s of [-1, 1]) {
       const zf = z0 + s * d / 2;
       for (let i = 0; i < bays; i++) {
-        const xc = taiheGrid ? x0 + (taiheGrid.x[i] + taiheGrid.x[i + 1]) / 2 : x0 - w / 2 + (i + 0.5) * bayW;
-        const facadeBayW = taiheGrid ? taiheGrid.x[i + 1] - taiheGrid.x[i] : bayW;
-        if (taiheGrid ? taiheGrid.openBayIndices.includes(i) : Math.abs(xc - x0) < openHalf - 0.01) {
+        const xc = facadeGrid ? x0 + (facadeGrid.x[i] + facadeGrid.x[i + 1]) / 2 : x0 - w / 2 + (i + 0.5) * bayW;
+        const facadeBayW = facadeGrid ? facadeGrid.x[i + 1] - facadeGrid.x[i] : bayW;
+        if (facadeGrid ? facadeGrid.openBayIndices.includes(i) : Math.abs(xc - x0) < openHalf - 0.01) {
           // 敞开的门：两扇隔扇折向两侧
           for (const side of [-1, 1]) {
             const leaf = this.libBox(g, 'lattice_doors', facadeBayW * 0.25, doorH, 0.12,
