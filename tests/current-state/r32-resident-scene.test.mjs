@@ -10,17 +10,21 @@ registerHooks({load(url, context, next) {
 }});
 const {PalaceBuilder} = await import('../../src/scene/PalaceBuilder.js');
 const {captureJiaotaiScene} = await import('../lib/r27-jiaotai-capture.mjs');
+const {restoreR32ArtworkCaptureIfPresent} = await import('../lib/r32-screen-scene-retention.mjs');
 const hash = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
-const current = captureJiaotaiScene(PalaceBuilder);
+// This historical contract first binds/reverses the exact later artwork bytes.
+// The live a9 capture and independently rebuilt afb UVs are checked separately
+// by r32-screen-scene-retention; no current behavior uses this test adapter.
+const current = restoreR32ArtworkCaptureIfPresent(captureJiaotaiScene(PalaceBuilder));
 const helper = new URL('../lib/r32-scene-retention.mjs', import.meta.url);
 const getHelper = async () => {
   assert.ok(fs.existsSync(helper), 'strict R32 historical scene adapter is required');
   return import(helper);
 };
 
-// This is the real resident product capture, including both LOD levels. It
-// excludes streamed zones and optional GLBs, so it is not a full-world budget.
-test('current R32 resident scene binds every captured byte and its actual resident cost', async () => {
+// The frozen R32 resident contract includes both LOD levels and excludes
+// streamed zones and optional GLBs; it is not a full-world budget.
+test('historical R32 resident scene binds every captured byte and its retained resident cost', async () => {
   const {r32Scene: delta} = await getHelper();
   assert.equal(hash(current), '837008a062244fb9faad2e9bb5b2ae5963c0a4287a1bf305169e5df40706de37');
   assert.equal(hash(current), delta.afterCaptureSHA256);

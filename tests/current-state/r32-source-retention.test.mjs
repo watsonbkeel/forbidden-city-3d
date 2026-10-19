@@ -2,6 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
+import {restoreR32FollowthroughSourceIfPresent} from '../lib/r32-followthrough-source-retention.mjs';
+import {restoreR32ScreenSourceIfPresent} from '../lib/r32-screen-source-retention.mjs';
+import {restoreR32FriezeSourceIfPresent} from '../lib/r32-frieze-source-retention.mjs';
 
 const root = new URL('../../', import.meta.url);
 const helper = new URL('../lib/r32-source-retention.mjs', import.meta.url);
@@ -78,7 +81,7 @@ for (const [path, delta] of Object.entries(fixture.files)) {
   test(`${path}: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed`, async () => {
     assert.ok(fs.existsSync(helper), 'strict R32 source helper is required');
     const {restorePreR32Source: restore, restoreR32SourceIfPresent: conditional} = await import(helper);
-    const bytes = read(path), text = bytes.toString();
+    const bytes = restoreR32FollowthroughSourceIfPresent(path, restoreR32ScreenSourceIfPresent(path, restoreR32FriezeSourceIfPresent(path, read(path)))), text = bytes.toString();
     assert.equal(sha(bytes), delta.candidateSHA256);
     assert.equal(bytes.length, delta.candidateBytes);
     const old = restore(path, bytes);
@@ -112,7 +115,7 @@ for (const [path, delta] of Object.entries(fixture.addedFiles)) {
   test(`${path}: added R32 source has a complete fixed identity`, async () => {
     assert.ok(fs.existsSync(helper), 'strict R32 source helper is required');
     const {assertR32AddedSource} = await import(helper);
-    const bytes = read(path);
+    const bytes = restoreR32FollowthroughSourceIfPresent(path, restoreR32FriezeSourceIfPresent(path, read(path)));
     assert.equal(bytes.length, delta.candidateBytes);
     assert.equal(assertR32AddedSource(path, bytes), bytes);
     const altered = Buffer.from(bytes); altered[Math.floor(altered.length / 2)] ^= 1;
@@ -163,7 +166,13 @@ test('later product inventory lists only independently bound R31 and R32 additio
     'src/scene/palace/special/YanxiStorehouses.js',
     'src/ui/HelpPanel.js',
     'src/ui/ModelFidelity.js',
-    'public/models/interiors/qianqing-r32.glb'
+    'public/models/interiors/qianqing-r32.glb',
+    'public/textures/art/qianqing-ceiling-illustration-r32.webp',
+    'src/scene/palace/QianqingCeilingPaint.js',
+    'public/textures/art/qianqing-screen-illustration-r32.webp',
+    'src/scene/palace/QianqingScreenPaint.js',
+    'public/textures/art/qianqing-five-dragon-illustration-r32.webp',
+    'src/scene/palace/QianqingFriezePaint.js'
   ]);
 });
 

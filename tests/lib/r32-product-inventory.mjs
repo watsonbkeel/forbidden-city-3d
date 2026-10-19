@@ -3,6 +3,9 @@ import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {r31CombinedSource, assertR31CombinedAddedSource} from './r31-combined-source-retention.mjs';
 import {r32Source, assertR32AddedSource} from './r32-source-retention.mjs';
+import {r32FollowthroughSource, assertR32FollowthroughAddedSource} from './r32-followthrough-source-retention.mjs';
+import {r32ScreenSource, assertR32ScreenAddedSource} from './r32-screen-source-retention.mjs';
+import {r32FriezeSource, assertR32FriezeAddedSource} from './r32-frieze-source-retention.mjs';
 
 const readProduct = path => fs.readFileSync(new URL('../../' + path, import.meta.url));
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -16,6 +19,13 @@ export function verifiedR31AddedProductPaths(read = readProduct) {
   return paths.filter(isProductPath);
 }
 
+export function verifiedR32FollowthroughAddedProductPaths(read = readProduct) {
+  for (const path of Object.keys(r32FollowthroughSource.addedFiles)) assertR32FollowthroughAddedSource(path, read(path));
+  // An explicit two-path inventory, not a directory exclusion. All five
+  // additions, including provenance, are bound before either path is allowed.
+  return [...r32FollowthroughSource.productAdditions];
+}
+
 export function verifiedR32AddedProductPaths(read = readProduct) {
   const paths = Object.keys(r32Source.addedFiles);
   for (const path of paths) assertR32AddedSource(path, read(path));
@@ -27,5 +37,15 @@ export function verifiedR32AddedProductPaths(read = readProduct) {
   assert.equal(config.model, '/models/interiors/qianqing-r32.glb');
   const assetPath = 'public' + config.model;
   assert.equal(sha(read(assetPath)), config.asset.sha256, 'exact independently bound R32 auxiliary GLB');
-  return [...paths.filter(isProductPath), assetPath];
+  return [...paths.filter(isProductPath), assetPath, ...verifiedR32FollowthroughAddedProductPaths(read), ...verifiedR32ScreenAddedProductPaths(read), ...verifiedR32FriezeAddedProductPaths(read)];
+}
+
+export function verifiedR32ScreenAddedProductPaths(read = readProduct) {
+  for (const path of Object.keys(r32ScreenSource.addedFiles)) assertR32ScreenAddedSource(path, read(path));
+  return [...r32ScreenSource.productAdditions];
+}
+
+export function verifiedR32FriezeAddedProductPaths(read = readProduct) {
+  for (const path of Object.keys(r32FriezeSource.addedFiles)) assertR32FriezeAddedSource(path, read(path));
+  return [...r32FriezeSource.productAdditions];
 }

@@ -1,0 +1,544 @@
+{
+  "schema": 1,
+  "baseline": "898b4e6ac29150ab898521cc0112dc638202a393",
+  "candidate": "d5e1ef0454185d69a29fdb0804ff8753189657a0",
+  "scope": "Historical metadata binding only. Independently rebuilt 898b4e6 capture establishes the prior identity. Reverse exactly three friezePaint fields on each of two material records and their two derived hashes. All geometry including UVs, graph/transforms, other material values, navigation and budgets remain identical. No geometry restoration or metadata reset outside these registered full identities.",
+  "baselineSources": {
+    "src/scene/palace/QianqingCentralArt.js": {
+      "sha256": "087020210cc88715d4cd03bdea87dfbf59004c0f7b6faa617b2d10064ef1113e",
+      "utf8": "import * as THREE from 'three';\nimport {loadQianqingScreenPaint} from './QianqingScreenPaint.js';\nexport const QIANQING_CENTRAL_ART=Object.freeze({id:'qianqing-central-private-atlas',width:1024,height:512,status:'SELF_AUTHORED_PHOTO_INFORMED_APPROXIMATION_NOT_CARVING_FACSIMILE',cells:{panel:0,step:1,frieze:2,plaque:3,gold:4,red:5,dark:6,blue:7}});\nexport function qianqingCentralMaterial(b){\n const p=QIANQING_CENTRAL_ART;if(b._own.has(p.id))return b._own.get(p.id);\n const canvas=document.createElement('canvas');canvas.width=p.width;canvas.height=p.height;const c=canvas.getContext('2d');if(!c)throw Error('Qianqing central atlas requires a canvas');\n const cell=(i,fn)=>{c.save();c.translate(i%4*256,Math.floor(i/4)*256);fn();c.restore();};const fill=color=>{c.fillStyle=color;c.fillRect(0,0,256,256);};\n const scroll=(cx,cy,s)=>{c.beginPath();c.moveTo(cx-s,cy);c.bezierCurveTo(cx-s,cy-s,cx+s,cy-s,cx+s,cy);c.bezierCurveTo(cx+s,cy+s,cx-s*.5,cy+s,cx-s*.5,cy);c.bezierCurveTo(cx-s*.5,cy-s*.45,cx+s*.3,cy-s*.45,cx+s*.3,cy);c.stroke();};\n const oldPanel=()=>{fill('#806032');c.strokeStyle='#c1a367';c.lineWidth=3;c.strokeRect(7,7,242,242);c.strokeRect(17,17,222,222);for(let y=36;y<244;y+=43)for(let x=34;x<242;x+=47)scroll(x,y,18);c.fillStyle='#a98e59';c.fillRect(91,52,74,138);c.strokeStyle='#d2b77b';c.strokeRect(94,55,68,132);};\n // Keep an independent copy of the old chair artwork in the right quarter.\n // Loading the screen sample may repaint only the left 192x256 rectangle.\n cell(0,()=>{c.save();c.scale(.75,1);oldPanel();c.restore();c.save();c.translate(192,0);c.scale(.25,1);oldPanel();c.restore();});\n cell(1,()=>{fill('#315564');c.fillStyle='#777c72';c.fillRect(0,0,256,56);c.fillStyle='#ba9d57';c.fillRect(0,64,256,9);c.fillRect(0,239,256,9);c.strokeStyle='#c3a762';c.lineWidth=6;for(let x=30;x<250;x+=62)scroll(x,159,24);});\n cell(2,()=>{fill('#913a31');c.strokeStyle='#bb9d60';c.lineWidth=4;c.strokeRect(4,5,248,246);c.strokeRect(12,13,232,230);for(let y=52;y<235;y+=76)for(let x=36;x<250;x+=63)scroll(x,y,25);});\n cell(3,()=>{fill('#635a41');c.fillStyle='#af9560';c.fillRect(7,7,242,242);c.fillStyle='#b7a77c';c.fillRect(13,13,230,230);c.fillStyle='#1e2528';c.fillRect(21,25,214,206);c.fillStyle='#d4c297';c.save();c.scale(1.25/3.8,1);c.font='bold 147px \"STKaiti\",\"KaiTi\",\"Kaiti SC\",\"Songti SC\",\"SimSun\",serif';c.textAlign='center';c.textBaseline='middle';[...'明光大正'].forEach((ch,i)=>c.fillText(ch,(48+i*53)/(1.25/3.8),131));c.restore();});\n ['#c3a365','#87362e','#282927'].forEach((s,i)=>cell(4+i,()=>fill(s)));\n cell(7,()=>{fill('#d4cba9');\n  // The official view shows a light cover, a dark top and two hanging bands.\n  // Restrained cloth folds are a visual approximation, not measured textile.\n  for(let x=0;x<256;x+=4){const shade=Math.round(7*Math.sin(x*.11)+3*Math.sin(x*.037));c.fillStyle=`rgb(${212+shade},${203+shade},${169+shade})`;c.fillRect(x,38,4,218);}\n  c.fillStyle='#252d32';c.fillRect(0,0,256,42);\n  c.strokeStyle='#596067';c.lineWidth=1;for(const x of[22,52,84,116,148,180,214,242]){c.beginPath();c.moveTo(x,1);c.lineTo(x-9,39);c.stroke();}\n  for(const x of[68,188]){c.fillStyle='#242c32';c.fillRect(x,28,8,166);c.fillStyle='#495052';c.fillRect(x,42,1,150);}\n  c.fillStyle='#aaa184';c.fillRect(0,252,256,4);\n });\n const t=new THREE.CanvasTexture(canvas);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=4;const responseCanvas=document.createElement('canvas');responseCanvas.width=p.width;responseCanvas.height=p.height;const rc=responseCanvas.getContext('2d');if(!rc)throw Error('Qianqing response atlas requires canvas');\n // Local atlas cells separate gilt, lacquer, cloth and dark paint. These are\n // visual trial response parameters; they do not claim conservation measurements.\n const response=[[.55,.38],[.62,.20],[.57,.30],[.61,.25],[.50,.42],[.69,.08],[.81,.02],[.93,0]];\n response.forEach(([rough,metal],i)=>{rc.fillStyle=`rgb(255,${Math.round(rough*255)},${Math.round(metal*255)})`;rc.fillRect(i%4*256,Math.floor(i/4)*256,256,256);});\n const rt=new THREE.CanvasTexture(responseCanvas);rt.colorSpace=THREE.NoColorSpace;rt.minFilter=THREE.LinearFilter;rt.magFilter=THREE.LinearFilter;rt.generateMipmaps=false;\n const m=new THREE.MeshStandardMaterial({map:t,roughnessMap:rt,metalnessMap:rt,roughness:1,metalness:1,side:THREE.DoubleSide});m.name=p.id;m.userData.artStatus=p.status;let disposed=false;m.addEventListener('dispose',()=>{if(!disposed){disposed=true;t.dispose();rt.dispose();}});loadQianqingScreenPaint({canvas,texture:t,material:m,manager:b.library?.loader?.manager});b._own.set(p.id,m);b.ownedMaterials.push(m);return m;\n}\nexport function qianqingCentralUV(g,cell,{solid=false,frontOnly=false,backCell=5,screenPanel=false}={}){\n if(!Number.isInteger(cell)||cell<0||cell>7||!Number.isInteger(backCell)||backCell<0||backCell>7)throw Error('Registered Qianqing atlas cell required');const pos=g.attributes.position,uv=g.attributes.uv,n=g.attributes.normal,out=new Float32Array(pos.count*2),pad=2/256;\n if(!solid&&!uv)throw Error('Qianqing textured geometry requires UV');\n for(let i=0;i<pos.count;i++){const painted=!frontOnly||n.getZ(i)<-.9,c=painted?cell:backCell,u=solid||!painted?.5:Math.max(0,Math.min(1,uv.getX(i))),v=solid||!painted?.5:Math.max(0,Math.min(1,uv.getY(i)));const left=c===0?(screenPanel?0:.75):0,width=c===0?(screenPanel?.75:.25):1;out[2*i]=(c%4+left+pad+u*(width-2*pad))/4;out[2*i+1]=1-(Math.floor(c/4)+1-pad-v*(1-2*pad))/2;}\n g.setAttribute('uv',new THREE.BufferAttribute(out,2));return g;\n}\n"
+    },
+    "src/scene/palace/QianqingCentralSetting.js": {
+      "sha256": "aa186b449dd23a2675a9c2f037998c9b1576ca10b12332d812b16ae8d4656fe3",
+      "utf8": "import * as THREE from 'three';\nimport {mergeByMaterial} from '../../utils/MergeUtils.js';\nimport {qianqingCentralMaterial,qianqingCentralUV} from './QianqingCentralArt.js';\nexport const QIANQING_CENTRAL=Object.freeze({id:'qianqing-five-panel-central-setting',dimensionStatus:'PHOTO_RELATIVE_TRIAL_WITH_RETAINED_PLAN_ENVELOPE_NOT_SURVEY',source:'https://img.dpm.org.cn/Uploads/Picture/dc/1523%5B1024%5D.jpg',daisHeight:.70,stepCount:5,stepRun:1.30,lodDistance:90,lodHysteresis:.1,plaque:{width:3.8,height:1.25,leftToRight:'明光大正'}});\nexport function qianqingCentralFrame({x0,y,H,ztb0,ztb1,thW,bayW}){\n const v=[x0,y,H,ztb0,ztb1,thW,bayW];if(!v.every(Number.isFinite)||Math.abs(x0)>1e-8||Math.abs(y-2.16)>1e-8||Math.abs(H-7.22)>1e-8||Math.abs(ztb0-317.8)>1e-8||Math.abs(ztb1-324.8)>1e-8||Math.abs(thW-8.177777777777779)>1e-8)throw Error('Unregistered Qianqing core frame');\n return {...structuredClone(QIANQING_CENTRAL),x0,y,H,ztb0,ztb1,thW,bayW,depth:ztb1-ztb0,tz:(ztb0+ztb1)/2+(ztb1-ztb0)*.1,bounds:{minX:x0-thW/2,maxX:x0+thW/2,minZ:ztb0-1.3,maxZ:ztb1}};\n}\nexport function registerQianqingCentral(b,g,args){\n const f=qianqingCentralFrame(args),marker=new THREE.Group();marker.name=f.id;marker.userData.structure=f;g.add(marker);\n // Retain the entire inherited exclusion, including its height and order.\n // The photographed steps are a visual display detail, not a new public route.\n b.col(f.bounds.minX,f.y,f.bounds.minZ,f.bounds.maxX,f.y+3,f.bounds.maxZ);return f;\n}\nfunction shape(points){const s=new THREE.Shape();points.forEach(([x,y],i)=>s[i?'lineTo':'moveTo'](x,y));s.closePath();return s;}\nfunction reliefOutline(w,h){return [[-w/2,0],[w/2,0],[w/2,h*.52],[w*.37,h*.7],[w*.27,h*.64],[w*.18,h*.87],[0,h],[-w*.18,h*.87],[-w*.27,h*.64],[-w*.37,h*.7],[-w/2,h*.52]];}\n// Aligned perforations can make Earcut emit collinear cap bridges. Keep every\n// nonzero face and its existing attributes; zero-area faces have no surface.\nfunction omitCollapsedCapFaces(g){\n if(g.index)throw Error('Qianqing extruded caps must be non-indexed');const p=g.attributes.position,keep=[],a=new THREE.Vector3(),b=new THREE.Vector3(),c=new THREE.Vector3();\n for(let i=0;i<p.count;i+=3){a.fromBufferAttribute(p,i);b.fromBufferAttribute(p,i+1);c.fromBufferAttribute(p,i+2);if(b.sub(a).cross(c.sub(a)).lengthSq()>1e-14)keep.push(i,i+1,i+2);}\n if(keep.length===p.count)return g;for(const[name,attribute]of Object.entries(g.attributes)){const out=new attribute.array.constructor(keep.length*attribute.itemSize);keep.forEach((id,i)=>out.set(attribute.array.subarray(id*attribute.itemSize,(id+1)*attribute.itemSize),i*attribute.itemSize));g.setAttribute(name,new THREE.BufferAttribute(out,attribute.itemSize,attribute.normalized));}g.clearGroups();return g;\n}\nexport function buildQianqingCentralLevel(mat,f,fine){\n if(typeof fine!=='boolean'||f.id!==QIANQING_CENTRAL.id)throw Error('Explicit registered Qianqing level required');const root=new THREE.Group();root.name=fine?'qianqing-central-near':'qianqing-central-far';const floor=0,front=f.ztb0-f.tz,rear=f.ztb1-f.tz,dais=.7;\n const add=(name,geo,x,y,z,cell=4,solid=true,frontOnly=false)=>{const m=new THREE.Mesh(qianqingCentralUV(geo,cell,{solid,frontOnly,backCell:cell===1?6:5,screenPanel:name.startsWith('qianqing-five-screen-panel-')}),mat);m.name=name;m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;root.add(m);return m;};\n const box=(name,w,h,d,x,y,z,cell=4,frontOnly=false)=>add(name,new THREE.BoxGeometry(w,h,d),x,y,z,cell,cell>=4,frontOnly);\n // A low, broad single platform replaces the unsupported second rectangular tier.\n box('qianqing-low-dais',f.thW,dais,f.depth,0,dais/2,(front+rear)/2,5);\n if(fine)box('qianqing-dais-gilt-upper-lip',f.thW,.045,f.depth,0,dais-.0225,(front+rear)/2);\n const stepW=f.thW*.245,centres=[-f.thW/3,0,f.thW/3];\n for(let flight=0;flight<3;flight++){\n  if(fine)for(let k=0;k<QIANQING_CENTRAL.stepCount;k++){const rise=dais/QIANQING_CENTRAL.stepCount*(k+1),run=QIANQING_CENTRAL.stepRun/QIANQING_CENTRAL.stepCount;box('qianqing-three-stairs-'+flight+'-'+k,stepW,rise,run,centres[flight],rise/2,front-QIANQING_CENTRAL.stepRun+(k+.5)*run,1,true);}\n  else box('qianqing-three-stairs-coarse-'+flight,stepW,dais,.90,centres[flight],dais/2,front-.45,1,true);\n }\n // Five independently articulated panels. Exact folds and carving are not measured.\n const panelWidths=[1.04,1.12,1.40,1.12,1.04],panelHeights=[2.55,2.95,3.3,2.95,2.55],xs=[-2.34,-1.26,0,1.26,2.34];\n const screenZ=rear-.56;\n for(let i=0;i<5;i++){\n  const w=panelWidths[i],h=panelHeights[i],panel=box('qianqing-five-screen-panel-'+i,w,h,.15,xs[i],dais+h/2,screenZ-Math.abs(xs[i])*.045,0,true);panel.rotation.y=Math.sign(xs[i])*.12;\n  if(fine){\n   const crest=shape(reliefOutline(w*1.08,.43));for(const sign of[-1,1]){const hole=new THREE.Path();for(let k=0;k<6;k++){const a=k/6*Math.PI*2,x=sign*w*.22+Math.cos(a)*w*.105,y=.17+Math.sin(a)*.065;hole[k?'lineTo':'moveTo'](x,y);}hole.closePath();crest.holes.push(hole);}\n   const geo=omitCollapsedCapFaces(new THREE.ExtrudeGeometry(crest,{depth:.09,bevelEnabled:false,curveSegments:1}));geo.translate(0,0,-.045);const m=add('qianqing-open-carved-crest-'+i,geo,xs[i],dais+h-.04,screenZ-Math.abs(xs[i])*.045);m.rotation.y=panel.rotation.y;\n   for(const sign of[-1,1])box('qianqing-screen-upright',.065,h+.09,.19,xs[i]+sign*(w/2-.03),dais+h/2,screenZ-Math.abs(xs[i])*.045-.015);\n  }\n }\n // A separate red architectural backing lies behind the screen, not at the front steps.\n const backZ=rear-.15,frameW=Math.min(f.thW-.18,7.4),frameTop=f.H-.23;\n box('qianqing-red-rear-frame',frameW,frameTop-dais,.18,0,(frameTop+dais)/2,backZ,5);\n box('qianqing-high-gilt-frieze',frameW-.24,.85,.025,0,4.86,backZ-.105,2,true);\n for(const sign of[-1,1])box('qianqing-rear-frame-stile',.09,frameTop-dais,.22,sign*(frameW/2-.045),(frameTop+dais)/2,backZ);\n box('qianqing-zhengdaguangming-plaque',f.plaque.width,f.plaque.height,.13,0,6.08,backZ-.20,3,true);\n // The selected museum photograph shows a low covered front table partly\n // obscuring the chair. Its textile and proportions are display-photo fits.\n box('qianqing-throne-seat',1.65,.16,1.2,0,dais+.51,.10);\n const chairShape=shape(reliefOutline(1.72,1.27));\n if(fine)for(const sign of[-1,1]){const h=new THREE.Path();h.moveTo(sign*.46-.12,.70);h.lineTo(sign*.46+.12,.70);h.lineTo(sign*.46+.09,.91);h.lineTo(sign*.46-.09,.91);h.closePath();chairShape.holes.push(h);}\n const chairGeo=omitCollapsedCapFaces(new THREE.ExtrudeGeometry(chairShape,{depth:.12,bevelEnabled:false,curveSegments:1}));chairGeo.translate(0,0,-.06);\n add('qianqing-throne-articulated-back',chairGeo,0,dais+.54,.65,0,false,true);\n box('qianqing-front-table-top',2.00,.12,.80,0,dais+1.08,-.86,6);\n add('qianqing-front-table-cloth',new THREE.BoxGeometry(1.86,.83,.025),0,dais+.59,-1.28,7,false,true);\n for(const x of[-.72,.72])box('qianqing-front-table-leg',.11,.98,.12,x,dais+.49,-.87,6);\n if(fine){\n  for(const x of[-.65,.65])for(const z of[-.40,.52])box('qianqing-throne-leg',.12,.43,.12,x,dais+.215,z);\n  for(const x of[-.79,.79]){box('qianqing-throne-arm',.12,.13,1.05,x,dais+.91,.07);box('qianqing-throne-arm-upright',.12,.32,.12,x,dais+.70,-.40);}\n  // Low rails flank, rather than cover, the three separate front stair flights.\n  const innerGap=f.thW/3-stepW,outerGap=f.thW/2-(f.thW/3+stepW/2),outerX=f.thW/2-outerGap/2;\n  const cheeks=[[-outerX,outerGap],[-f.thW/6,innerGap],[f.thW/6,innerGap],[outerX,outerGap]];\n  for(const[x,width]of cheeks)for(let k=0;k<5;k++){const height=(k+1)*dais/5;box('qianqing-stair-cheek',width,height,.26,x,height/2,front-1.3+(k+.5)*.26,5);}\n  const posts=cheeks.map(c=>c[0]);\n  for(const x of posts){const railPoints=[];for(const z of[front-.98,front-.28,front+.7]){const k=Math.min(5,Math.max(1,Math.floor((z-front+1.3)/.26)+1)),base=k*dais/5;box('qianqing-stair-rail-post',.075,.70,.075,x,base+.35,z);add('qianqing-stair-rail-finial',new THREE.SphereGeometry(.085,6,4),x,base+.74,z);railPoints.push(new THREE.Vector3(x,base+.65,z));}\n   for(let i=0;i<railPoints.length-1;i++){const a=railPoints[i],c=railPoints[i+1],v=c.clone().sub(a),mid=a.clone().add(c).multiplyScalar(.5),m=box('qianqing-stair-rail',.07,.075,v.length(),...mid.toArray(),5);m.quaternion.setFromUnitVectors(new THREE.Vector3(0,0,1),v.normalize());}\n  }\n }\n root.userData.qianqingCentral={id:f.id,fine,dimensionStatus:f.dimensionStatus,fivePanels:true,threeStairRuns:true,photoDateUnknown:true};return root;\n}\nexport function installQianqingCentral(b,root){\n if(b.ox||b.oz||root.userData.qianqingCentral)throw Error('Qianqing installation must be world aligned and unique');const all=root.userData.architecture?.filter(x=>x.id===QIANQING_CENTRAL.id);if(all?.length!==1)throw Error('Missing unique Qianqing frame');const f=all[0],mat=qianqingCentralMaterial(b),lod=new THREE.LOD();lod.name='qianqing-central-setting-detail';lod.userData={displayRevision:'r32-photo-relative-main-scene',displaySummary:{frontTable:true,chairBack:'articulated-outline',screens:5,stairFlights:3},photoDateUnknown:true};lod.position.set(f.x0,f.y,f.tz);\n for(const fine of[true,false])lod.addLevel(mergeByMaterial(buildQianqingCentralLevel(mat,f,fine),{name:fine?'qianqing-central-near':'qianqing-central-far'}),fine?0:f.lodDistance,fine?0:f.lodHysteresis);\n lod.levels[1].object.visible=false;root.add(lod);root.userData.qianqingCentral={...structuredClone(f),navigation:'INHERITED_EXCLUSION_IDENTICAL_NO_NEW_STEP_ROUTE'};return lod;\n}\n"
+    }
+  },
+  "retainedBuilderSHA256": "376f661ab30c75395a9e91a67f7824977e1d92352efe59db45beb96b824a7245",
+  "frame": {
+    "id": "qianqing-five-panel-central-setting",
+    "dimensionStatus": "PHOTO_RELATIVE_TRIAL_WITH_RETAINED_PLAN_ENVELOPE_NOT_SURVEY",
+    "source": "https://img.dpm.org.cn/Uploads/Picture/dc/1523%5B1024%5D.jpg",
+    "daisHeight": 0.7,
+    "stepCount": 5,
+    "stepRun": 1.3,
+    "lodDistance": 90,
+    "lodHysteresis": 0.1,
+    "plaque": {
+      "width": 3.8,
+      "height": 1.25,
+      "leftToRight": "明光大正"
+    },
+    "x0": 0,
+    "y": 2.16,
+    "H": 7.22,
+    "ztb0": 317.8,
+    "ztb1": 324.8,
+    "thW": 8.177777777777779,
+    "bayW": 5.111111111111111,
+    "depth": 7,
+    "tz": 322,
+    "bounds": {
+      "minX": -4.0888888888888895,
+      "maxX": 4.0888888888888895,
+      "minZ": 316.5,
+      "maxZ": 324.8
+    }
+  },
+  "central": {
+    "near": {
+      "count": 108,
+      "sha256": "429e8a78156dbc8c2591b78aa578c51d8fd41149e89616a90e014beeb6b540e1",
+      "runtimeValues": [
+        {
+          "path": [
+            "17",
+            "matrix",
+            "4"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "17",
+            "matrix",
+            "9"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "18",
+            "matrix",
+            "4"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "18",
+            "matrix",
+            "9"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "21",
+            "matrix",
+            "4"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "21",
+            "matrix",
+            "9"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "22",
+            "matrix",
+            "4"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "22",
+            "matrix",
+            "9"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "82",
+            "matrix",
+            "2"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "82",
+            "matrix",
+            "4"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "83",
+            "matrix",
+            "2"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "83",
+            "matrix",
+            "4"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "90",
+            "matrix",
+            "2"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "90",
+            "matrix",
+            "4"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "91",
+            "matrix",
+            "2"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "91",
+            "matrix",
+            "4"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "98",
+            "matrix",
+            "2"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "98",
+            "matrix",
+            "4"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "99",
+            "matrix",
+            "2"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "99",
+            "matrix",
+            "4"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "106",
+            "matrix",
+            "2"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "106",
+            "matrix",
+            "4"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "107",
+            "matrix",
+            "2"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "107",
+            "matrix",
+            "4"
+          ],
+          "type": "negative-zero"
+        }
+      ]
+    },
+    "far": {
+      "count": 20,
+      "sha256": "1cf6a6d9a0cb37106b5a76616416706b48e0c085f9e34f0a0a2dc1705d2efb9a",
+      "runtimeValues": [
+        {
+          "path": [
+            "4",
+            "matrix",
+            "4"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "4",
+            "matrix",
+            "9"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "5",
+            "matrix",
+            "4"
+          ],
+          "type": "negative-zero"
+        },
+        {
+          "path": [
+            "5",
+            "matrix",
+            "9"
+          ],
+          "type": "negative-zero"
+        }
+      ]
+    }
+  },
+  "centralNavigation": [
+    [
+      -4.0888888888888895,
+      2.16,
+      316.5,
+      4.0888888888888895,
+      5.16,
+      324.8
+    ]
+  ],
+  "capture": {
+    "beforeSHA256": "f699677c4690c48cce738d876f7e05c148470eb5537a6d2f63c7849b5e757137",
+    "afterSHA256": "a41318ca1a29228e4f32aef01fa6357dc2f8152676b6e97649c215e499e80881",
+    "runtimeValues": [
+      {
+        "path": [
+          "graph",
+          "25",
+          "material"
+        ],
+        "type": "undefined"
+      },
+      {
+        "path": [
+          "graph",
+          "85",
+          "material"
+        ],
+        "type": "undefined"
+      }
+    ],
+    "changes": [
+      {
+        "path": [
+          "meshes",
+          "167",
+          "materialSHA256"
+        ],
+        "before": "51f42bf25c8dd8aed340351be458f4b8583c0e74051ba687c8b3ee243fedebc0",
+        "after": "142e58208e4552e638811e7ddbf270ba1ccdbd564bda6048e516e79b15264bb6"
+      },
+      {
+        "path": [
+          "meshes",
+          "168",
+          "materialSHA256"
+        ],
+        "before": "51f42bf25c8dd8aed340351be458f4b8583c0e74051ba687c8b3ee243fedebc0",
+        "after": "142e58208e4552e638811e7ddbf270ba1ccdbd564bda6048e516e79b15264bb6"
+      },
+      {
+        "path": [
+          "materials",
+          "6",
+          "1",
+          "39",
+          "userData",
+          "friezePaintStatus"
+        ],
+        "beforeAbsent": true,
+        "after": "AI_ASSISTED_FIVE_DRAGON_APPROXIMATION_NOT_ARTIFACT_FACSIMILE"
+      },
+      {
+        "path": [
+          "materials",
+          "6",
+          "1",
+          "39",
+          "userData",
+          "friezePaintState"
+        ],
+        "beforeAbsent": true,
+        "after": "loading"
+      },
+      {
+        "path": [
+          "materials",
+          "6",
+          "1",
+          "39",
+          "userData",
+          "friezePaintSource"
+        ],
+        "beforeAbsent": true,
+        "after": "https://img.dpm.org.cn/Uploads/Picture/dc/2568%5B1024%5D.jpg"
+      },
+      {
+        "path": [
+          "materials",
+          "6",
+          "1",
+          "40",
+          "userData",
+          "friezePaintStatus"
+        ],
+        "beforeAbsent": true,
+        "after": "AI_ASSISTED_FIVE_DRAGON_APPROXIMATION_NOT_ARTIFACT_FACSIMILE"
+      },
+      {
+        "path": [
+          "materials",
+          "6",
+          "1",
+          "40",
+          "userData",
+          "friezePaintState"
+        ],
+        "beforeAbsent": true,
+        "after": "loading"
+      },
+      {
+        "path": [
+          "materials",
+          "6",
+          "1",
+          "40",
+          "userData",
+          "friezePaintSource"
+        ],
+        "beforeAbsent": true,
+        "after": "https://img.dpm.org.cn/Uploads/Picture/dc/2568%5B1024%5D.jpg"
+      }
+    ]
+  },
+  "parts": {
+    "rows": {
+      "beforeSHA256": "bc3e2e7318db86a269a01528c8aa0380a1de5ac793f70f1604e419304f288f2e",
+      "afterSHA256": "bc3e2e7318db86a269a01528c8aa0380a1de5ac793f70f1604e419304f288f2e",
+      "runtimeValues": [],
+      "changes": []
+    },
+    "meshes": {
+      "beforeSHA256": "55870ace4a16d375f5332acba7534dc567f27fd5cecfb97e97a95006362347c2",
+      "afterSHA256": "187911e3c92f02c5c443a1c4e55df0e4cdad330b1f56e6ea9ed4359b20d9e84b",
+      "runtimeValues": [],
+      "changes": [
+        {
+          "path": [
+            "167",
+            "materialSHA256"
+          ],
+          "before": "51f42bf25c8dd8aed340351be458f4b8583c0e74051ba687c8b3ee243fedebc0",
+          "after": "142e58208e4552e638811e7ddbf270ba1ccdbd564bda6048e516e79b15264bb6"
+        },
+        {
+          "path": [
+            "168",
+            "materialSHA256"
+          ],
+          "before": "51f42bf25c8dd8aed340351be458f4b8583c0e74051ba687c8b3ee243fedebc0",
+          "after": "142e58208e4552e638811e7ddbf270ba1ccdbd564bda6048e516e79b15264bb6"
+        }
+      ]
+    },
+    "graph": {
+      "beforeSHA256": "2b7189bd93aa2d59a383a7da5563ec1fc604d9d658470f2b4946a3e7ec9ce61e",
+      "afterSHA256": "2b7189bd93aa2d59a383a7da5563ec1fc604d9d658470f2b4946a3e7ec9ce61e",
+      "runtimeValues": [
+        {
+          "path": [
+            "25",
+            "material"
+          ],
+          "type": "undefined"
+        },
+        {
+          "path": [
+            "85",
+            "material"
+          ],
+          "type": "undefined"
+        }
+      ],
+      "changes": []
+    },
+    "materials": {
+      "beforeSHA256": "a74bd1e4ceef7253c12ace8b3b98b4371e7bb86efd786590889c60cd7f9aa312",
+      "afterSHA256": "7dbd3def39e1fcc8f60e8ff7ace60818690e86dd7d162836b7dd88cacc9dd3dc",
+      "runtimeValues": [],
+      "changes": [
+        {
+          "path": [
+            "6",
+            "1",
+            "39",
+            "userData",
+            "friezePaintStatus"
+          ],
+          "beforeAbsent": true,
+          "after": "AI_ASSISTED_FIVE_DRAGON_APPROXIMATION_NOT_ARTIFACT_FACSIMILE"
+        },
+        {
+          "path": [
+            "6",
+            "1",
+            "39",
+            "userData",
+            "friezePaintState"
+          ],
+          "beforeAbsent": true,
+          "after": "loading"
+        },
+        {
+          "path": [
+            "6",
+            "1",
+            "39",
+            "userData",
+            "friezePaintSource"
+          ],
+          "beforeAbsent": true,
+          "after": "https://img.dpm.org.cn/Uploads/Picture/dc/2568%5B1024%5D.jpg"
+        },
+        {
+          "path": [
+            "6",
+            "1",
+            "40",
+            "userData",
+            "friezePaintStatus"
+          ],
+          "beforeAbsent": true,
+          "after": "AI_ASSISTED_FIVE_DRAGON_APPROXIMATION_NOT_ARTIFACT_FACSIMILE"
+        },
+        {
+          "path": [
+            "6",
+            "1",
+            "40",
+            "userData",
+            "friezePaintState"
+          ],
+          "beforeAbsent": true,
+          "after": "loading"
+        },
+        {
+          "path": [
+            "6",
+            "1",
+            "40",
+            "userData",
+            "friezePaintSource"
+          ],
+          "beforeAbsent": true,
+          "after": "https://img.dpm.org.cn/Uploads/Picture/dc/2568%5B1024%5D.jpg"
+        }
+      ]
+    }
+  },
+  "unchanged": {
+    "navigationSHA256": "0abd676091d1fc28e7392565a41782326ff04ab679ec1c395356e5efe49ce68b",
+    "geometryBytes": 20216972,
+    "uniqueMaterials": 93,
+    "uniqueTextures": 25,
+    "meshes": 178,
+    "graphNodes": 207,
+    "colliders": 2827,
+    "walkables": 230
+  }
+}

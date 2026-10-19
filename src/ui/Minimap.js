@@ -29,6 +29,7 @@ export class Minimap {
     catch (error) { console.warn(error.message); this.placeCatalog = null; }
     this.onToggle = onToggle;
     this.labels = [];
+    this.placeFootprints = [];
     this.secondaryTaps = new Map();
     this.suppressedClicks = new Map();
     this.inputCleanup = [];
@@ -634,7 +635,14 @@ export class Minimap {
     const tol = 3 / this.view.k;
     const label = [...this.labels].reverse().find(it =>
       Math.abs(m.x - it.x) <= it.width / 2 + tol && Math.abs(m.y - it.y) <= it.height / 2 + tol);
-    if (label) this.selectMapLabel(label);
+    if (label) { this.selectMapLabel(label); return; }
+    // Label decluttering must not make a visible building unselectable. Only
+    // exact source-bound footprints may open a card; an ambiguous overlap does
+    // nothing. Selection still never travels without the separate card action.
+    const hits = this.placeFootprints.filter(it =>
+      m.x >= it.x && m.x <= it.x + it.width && m.y >= it.y && m.y <= it.y + it.height);
+    const places = new Map(hits.map(it => [it.placeId, it]));
+    if (places.size === 1) this.selectMapLabel(places.values().next().value);
   }
   
   /**
@@ -765,6 +773,7 @@ export class Minimap {
         ctx.beginPath(); ctx.arc(point.x, point.y, 2.4, 0, Math.PI * 2); ctx.stroke();
         continue;
       }
+      const place = this.placeCatalog?.forMapItem(it, this.items);
       for (const footprint of it.footprints ?? [it]) {
         const [x, y, w, h] = this.rectOf(footprint.x, footprint.z, footprint.w, footprint.d);
         ctx.fillStyle = fill;
@@ -772,6 +781,9 @@ export class Minimap {
         ctx.strokeStyle = stroke;
         ctx.lineWidth = 0.6;
         ctx.strokeRect(x, y, Math.max(w, 1.5), Math.max(h, 1.5));
+        if (place && [x, y, w, h].every(Number.isFinite) && w > 0 && h > 0) {
+          this.placeFootprints.push({ name: it.name, placeId: place.id, x, y, width: Math.max(w, 1.5), height: Math.max(h, 1.5) });
+        }
       }
     }
     // 只标有名字的主要殿宇与门（字号小，避免互相遮挡）
@@ -793,6 +805,7 @@ export class Minimap {
    */
   renderBase() {
     this.labels = [];
+    this.placeFootprints = [];
     const mainCtx = this.ctx;
     const ctx = this.baseCanvas.getContext('2d');
     ctx.setTransform(this.baseScale, 0, 0, this.baseScale, 0, 0);

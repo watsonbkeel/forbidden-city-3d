@@ -23,7 +23,7 @@ function omitCollapsedCapFaces(g){
 }
 export function buildQianqingCentralLevel(mat,f,fine){
  if(typeof fine!=='boolean'||f.id!==QIANQING_CENTRAL.id)throw Error('Explicit registered Qianqing level required');const root=new THREE.Group();root.name=fine?'qianqing-central-near':'qianqing-central-far';const floor=0,front=f.ztb0-f.tz,rear=f.ztb1-f.tz,dais=.7;
- const add=(name,geo,x,y,z,cell=4,solid=true,frontOnly=false)=>{const m=new THREE.Mesh(qianqingCentralUV(geo,cell,{solid,frontOnly,backCell:cell===1?6:5}),mat);m.name=name;m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;root.add(m);return m;};
+ const add=(name,geo,x,y,z,cell=4,solid=true,frontOnly=false)=>{const m=new THREE.Mesh(qianqingCentralUV(geo,cell,{solid,frontOnly,backCell:cell===1?6:5,screenPanel:name.startsWith('qianqing-five-screen-panel-')}),mat);m.name=name;m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;root.add(m);return m;};
  const box=(name,w,h,d,x,y,z,cell=4,frontOnly=false)=>add(name,new THREE.BoxGeometry(w,h,d),x,y,z,cell,cell>=4,frontOnly);
  // A low, broad single platform replaces the unsupported second rectangular tier.
  box('qianqing-low-dais',f.thW,dais,f.depth,0,dais/2,(front+rear)/2,5);

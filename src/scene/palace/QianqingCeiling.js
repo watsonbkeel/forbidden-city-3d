@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import {mergeByMaterial} from '../../utils/MergeUtils.js';
+import {loadQianqingCeilingPaint} from './QianqingCeilingPaint.js';
 /** Selected official image establishes a continuous boxed ceiling, not a
  * caisson. Cell count/depth and paint are photo-relative, not surveyed tracing. */
 export const QIANQING_CEILING={id:'qianqing-panelled-ceiling-r32',x:0,z:316.8,y:9.33,w:46,d:25,nx:23,nz:12,depth:.12,lodDistance:90,lodHysteresis:.1,source:'https://img.dpm.org.cn/Uploads/Picture/dc/1523%5B1024%5D.jpg'};
@@ -23,5 +24,5 @@ export function installQianqingCeiling(b,hall){
  // projecting grid battens are omitted after they become subpixel details.
  const flat=new THREE.Mesh(new THREE.PlaneGeometry(p.w,p.d),panel);flat.rotation.x=Math.PI/2;far.add(flat);
  const g=new THREE.LOD();g.name=p.id;g.addLevel(near,0);g.addLevel(far,p.lodDistance,p.lodHysteresis);far.visible=false;
- g.position.set(p.x,p.y,p.z);g.userData={caisson:false,layoutStatus:'PHOTO_RELATIVE_CELL_GRID_NOT_SURVEYED',paintStatus:'SELF_AUTHORED_APPROXIMATION',source:p.source,distanceDetail:'same-panel-texture-without-subpixel-battens'};hall.add(g);return g;
+ g.position.set(p.x,p.y,p.z);g.userData={caisson:false,layoutStatus:'PHOTO_RELATIVE_CELL_GRID_NOT_SURVEYED',paintStatus:'SELF_AUTHORED_APPROXIMATION',source:p.source,distanceDetail:'same-panel-texture-without-subpixel-battens'};loadQianqingCeilingPaint({canvas,texture:t,material:panel,metadata:g.userData,manager:b.library?.loader?.manager});hall.add(g);return g;
 }

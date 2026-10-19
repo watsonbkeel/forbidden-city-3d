@@ -34,7 +34,7 @@ test('eleven palace notes distinguish verified bay count from unverified generic
  for(const n of['景阳宫','咸福宫'])assert.match(modelFidelityFor(n).short,/3间/);
  assert.equal(modelFidelityFor('未核建筑'),null);assert.equal(modelFidelityFor(undefined),null);
  for(const n of['乾清宫','延禧宫','皇极门','内金水桥'])assert.ok(modelFidelityFor(n)?.detail);
- assert.match(modelFidelityFor('延禧宫').detail,/未完工灵沼轩/);assert.match(modelFidelityFor('乾清宫').detail,/拍摄日期.*尚未核定/);
+ assert.match(modelFidelityFor('延禧宫').detail,/未完工灵沼轩/);assert.match(modelFidelityFor('乾清宫').detail,/AI 辅助原创近似.*非现存雕饰精确摹本/);assert.match(modelFidelityFor('乾清宫').detail,/拍摄日期.*尚未核定/);
 });
 test('model note appears in the place card without changing history, target or return ownership',t=>{
  const {document}=fixture(t);const panel=new PlaceInfoPanel();document.body.appendChild(panel.element);t.after(()=>panel.dispose());let trips=0;

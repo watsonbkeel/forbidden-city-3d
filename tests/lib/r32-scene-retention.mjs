@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
+import {restoreR32ArtworkCaptureIfPresent, restoreR32ArtworkScenePartIfPresent, restoreR32ArtworkSceneRowIfPresent} from './r32-screen-scene-retention.mjs';
 
 const sha = value => createHash('sha256').update(value).digest('hex');
 const hash = value => sha(JSON.stringify(value));
@@ -84,10 +85,11 @@ function spliceBack(value, delta, label, orderedObject = false) {
   return restored;
 }
 
-export const restorePreR32SceneRows = value => spliceBack(value, r32Scene.rows, 'ordered scene groups', true);
+export const restorePreR32SceneRows = value => spliceBack(restoreR32ArtworkScenePartIfPresent('rows', value), r32Scene.rows, 'ordered scene groups', true);
 
 export function restorePreR32SceneList(kind, value) {
   assert.ok(listKinds.includes(kind), 'registered R32 scene list: ' + kind);
+  value = restoreR32ArtworkScenePartIfPresent(kind, value);
   return spliceBack(value, r32Scene[kind], kind);
 }
 
@@ -108,6 +110,7 @@ export function restorePreR32Navigation(value) {
 }
 
 export function restorePreR32Capture(value) {
+  value = restoreR32ArtworkCaptureIfPresent(value);
   if (hash(value) === r32Scene.beforeCaptureSHA256) {
     assertRuntime(value, captureRuntime('before'), 'complete capture');
     return value;
@@ -130,11 +133,13 @@ export function restorePreR32Capture(value) {
 // so an older strict guard can reject them against its own frozen epoch.
 export function restoreR32SceneRowsIfPresent(kind, value) {
   assert.ok(kind === 'rows' || listKinds.includes(kind), 'registered R32 scene rows: ' + kind);
+  value = restoreR32ArtworkScenePartIfPresent(kind, value);
   if (hash(value) !== r32Scene[kind].afterSHA256 || !matchesRuntime(value, r32Scene[kind].runtimeValues?.after)) return value;
   return kind === 'rows' ? restorePreR32SceneRows(value) : restorePreR32SceneList(kind, value);
 }
 
 export function restoreR32SceneRowIfPresent(name, value) {
+  value = restoreR32ArtworkSceneRowIfPresent(name, value);
   for (const splice of r32Scene.rows.changes) {
     const after = splice.after.find(([key]) => key === name);
     const before = splice.before.find(([key]) => key === name);
@@ -144,4 +149,7 @@ export function restoreR32SceneRowIfPresent(name, value) {
 }
 
 export const restoreR32NavigationIfPresent = value => hash(value) === r32Scene.navigation.afterSHA256 && matchesRuntime(value, []) ? restorePreR32Navigation(value) : value;
-export const restoreR32CaptureIfPresent = value => hash(value) === r32Scene.afterCaptureSHA256 && matchesRuntime(value, captureRuntime('after')) ? restorePreR32Capture(value) : value;
+export const restoreR32CaptureIfPresent = value => {
+  value = restoreR32ArtworkCaptureIfPresent(value);
+  return hash(value) === r32Scene.afterCaptureSHA256 && matchesRuntime(value, captureRuntime('after')) ? restorePreR32Capture(value) : value;
+};
