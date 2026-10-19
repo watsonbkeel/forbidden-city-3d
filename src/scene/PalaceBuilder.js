@@ -25,6 +25,8 @@ import { BAOHE_DEPTH_GRID, baoheDepthGrid, baoheDepthColumnPresent } from './pal
 import { buildBaoheThroneScreen, buildBaoheInteriorPlaque, buildBaoheThroneChair } from './palace/BaoheThroneScreen.js';
 import { buildBaoheFrontDoors } from './palace/BaoheFrontDoors.js';
 import { buildBaoheClosedFront } from './palace/BaoheFrontEnclosure.js';
+import { buildQianqingFrontWindow, qianqingFrontBox } from './palace/QianqingFrontEnclosure.js';
+import { paintQianqingUpperEnclosure } from './palace/QianqingUpperEnclosure.js';
 import { buildBaoheRearEnclosure } from './palace/BaoheRearEnclosure.js';
 import { positionHallNameboard } from './palace/HallNameboardMount.js';
 import { buildBaoheColumnCouplets } from './palace/BaoheColumnCouplets.js';
@@ -743,13 +745,17 @@ export class PalaceBuilder {
           }
           // 敞开的门：两扇隔扇折向两侧
           for (const side of [-1, 1]) {
-            const leaf = this.libBox(g, 'lattice_doors', facadeBayW * 0.25, doorH, 0.12,
-              xc + side * (facadeBayW / 2 - r - 0.1), y + doorH / 2, zf - s * (facadeBayW * 0.13 + 0.2), 'band');
+            const leaf = data.name === '乾清宫' && s === -1
+              ? qianqingFrontBox(this,g,{kind:'leaf',bay:i,w:facadeBayW*.25,h:doorH,d:.12,
+                x:xc+side*(facadeBayW/2-r-.1),y:y+doorH/2,z:zf-s*(facadeBayW*.13+.2)})
+              : this.libBox(g, 'lattice_doors', facadeBayW * 0.25, doorH, 0.12,
+                xc + side * (facadeBayW / 2 - r - 0.1), y + doorH / 2, zf - s * (facadeBayW * 0.13 + 0.2), 'band');
             leaf.rotation.y = Math.PI / 2;
           }
           continue;
         }
         if (baoheColumns && s === -1) buildBaoheClosedFront(this,g,{bay:i,xc,zf,y,height:doorH,width:facadeBayW-2*r});
+        else if (data.name === '乾清宫' && s === -1 && [1,2,6,7].includes(i)) buildQianqingFrontWindow(this,g,{bay:i,xc,zf,y,height:doorH,width:facadeBayW-2*r});
         else if (!((taiheCore || baoheColumns) && s === 1)) this.libBox(g, 'lattice_doors', facadeBayW - 2 * r, doorH, 0.15, xc, y + doorH / 2, zf, 'band');
       }
       if (taiheCore && s === 1) buildTaiheRearEnclosure(this, g, { x0, zf, y, w, openHalf, openLeft, openRight, height: H - beamH });
@@ -817,6 +823,7 @@ export class PalaceBuilder {
     roof.position.set(x0, 0, z0);
     g.add(roof);
     this.ownedMaterials.push(...(roof.userData.ownedMaterials ?? []));
+    paintQianqingUpperEnclosure(roof,this.library,data.name);
     if (exteriorPlaque) positionHallNameboard(exteriorPlaque,roof,data.name);
   }
 

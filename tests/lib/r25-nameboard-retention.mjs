@@ -1,3 +1,4 @@
+import {restorePreR26Source,restorePreR26SceneRow,restorePreR26SceneRows,restorePreR26MeshRows} from './r26-qianqing-retention.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import source from '../fixtures/r25-nameboard-source-delta.json' with {type:'json'};
@@ -11,7 +12,9 @@ const hash=value=>sha(JSON.stringify(value));
  * adapters. Neither application code nor live feature acceptance uses this. */
 export function restorePreR25Source(path,bytes){
   const d=source.files[path];
-  if(!d||sha(bytes)===d.baselineSHA256)return bytes;
+  if(!d)return restorePreR26Source(path,bytes);
+  if(sha(bytes)===d.baselineSHA256)return bytes;
+  bytes=restorePreR26Source(path,bytes);
   assert.equal(sha(bytes),d.candidateSHA256,`exact R25 nameboard source: ${path}`);
   let out=bytes.toString();
   for(const h of [...d.deltas].reverse()){
@@ -37,13 +40,16 @@ export function assertR25RetainedSource(path,bytes){
 
 export function restorePreR25SceneRow(name,row){
   const d=scene.changes[name];
-  if(!d||JSON.stringify(row)===JSON.stringify(d.before))return row;
+  if(!d)return restorePreR26SceneRow(name,row);
+  if(JSON.stringify(row)===JSON.stringify(d.before))return row;
+  row=restorePreR26SceneRow(name,row);
   assert.deepEqual(row,d.after,`exact R25 complete geometry/material identity: ${name}`);
   return structuredClone(d.before);
 }
 
 export function restorePreR25SceneRows(rows){
   if(hash(rows)===scene.beforeSHA256)return rows;
+  rows=restorePreR26SceneRows(rows);
   assert.equal(hash(rows),scene.afterSHA256,'exact R25 complete scene groups');
   for(const[name,row]of Object.entries(scene.unchanged))assert.deepEqual(rows[name],row,`unchanged R24 scene group: ${name}`);
   const out=structuredClone(rows);
@@ -56,6 +62,7 @@ export function restorePreR25SceneRows(rows){
  * may reverse. No geometry, material, placement or unrelated row is filtered. */
 export function restorePreR25MeshRows(rows){
   if(hash(rows)===scene.beforeMeshesSHA256)return rows;
+  rows=restorePreR26MeshRows(rows);
   assert.equal(hash(rows),scene.afterMeshesSHA256,'exact R25 complete mesh identities');
   assert.equal(rows.length,scene.meshCount);
   const out=structuredClone(rows);

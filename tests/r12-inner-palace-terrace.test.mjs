@@ -1,3 +1,4 @@
+import {restorePreR26SceneRows} from './lib/r26-qianqing-retention.mjs';
 // Exact pre-R25 nameboard poses for historical whole-hall fingerprints only.
 import {HistoricalR24PalaceBuilder} from './lib/historical-r24-baohe-fixture.mjs';
 import{restoreR16SourceIfPresent}from'./lib/r16-baohe-retention.mjs';
@@ -21,8 +22,11 @@ test('nominal shared terrace2m, provisional one-stone lip0.16m, unchanged horizo
 });
 test('all other static merged buildings and original front-hall geometry remain byte exact',()=>{
  for(const [name,row]of Object.entries(B.groups))if(!['乾清门','后三宫'].includes(name))assert.deepEqual(restorePreR13SceneRow(name,groups[name]),row,name);
- assert.equal(groups['后三宫'].meshes,33);assert.equal(groups['后三宫'].triangles,51972);
- assert.equal(groups['后三宫'].triangles-B.groups['后三宫'].triangles,6252,'include both LOD levels in resident inventory');
+ const historicalGroups=restorePreR26SceneRows(groups);
+ assert.equal(historicalGroups['后三宫'].meshes,33);assert.equal(historicalGroups['后三宫'].triangles,51972);
+ assert.equal(historicalGroups['后三宫'].triangles-B.groups['后三宫'].triangles,6252,'include both LOD levels in resident inventory');
+ assert.equal(groups['后三宫'].meshes-historicalGroups['后三宫'].meshes,1,'R26 private atlas adds one merged mesh');
+ assert.equal(groups['后三宫'].triangles-historicalGroups['后三宫'].triangles,48,'R26 four raised-wall windows add 48 triangles');
  assert.equal(groups['乾清门'].triangles,B.groups['乾清门'].triangles);
 });
 test('complete gate front triangles/normals/UV/color unchanged below the back-deck seam',()=>assert.deepEqual(gateFrontRows(gate),B.gateFront));

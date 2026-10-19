@@ -2,7 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
-import {PalaceBuilder} from '../src/scene/PalaceBuilder.js';
+import {HistoricalR25PalaceBuilder as PalaceBuilder} from './lib/historical-r25-nameboard-fixture.mjs';
+import {restorePreR26Source} from './lib/r26-qianqing-retention.mjs';
+import r26Source from './fixtures/r26-qianqing-source-delta.json' with {type:'json'};
+import friezeSource from './fixtures/r26-qianqing-frieze-source-delta.json' with {type:'json'};
 import {HistoricalR24PalaceBuilder} from './lib/historical-r24-baohe-fixture.mjs';
 import {captureNameboardScene} from './lib/r25-nameboard-capture.mjs';
 import {restorePreR25Source,assertR25AddedSource,assertR25RetainedSource,restorePreR25SceneRow,restorePreR25SceneRows,restorePreR25MeshRows,assertR25NavigationIdentity} from './lib/r25-nameboard-retention.mjs';
@@ -47,11 +50,11 @@ test('R25 provenance binds the frozen R24 baseline, three source hunks and every
   for(const[path,digest]of Object.entries(source.preservedFixtures))assert.equal(sha(read(path)),digest,path);
   for(const[path,digest]of Object.entries(priorSource.retainedFiles))assert.equal(source.retainedFiles[path],digest,path);
   const actual=fs.readdirSync(new URL('src/',root),{recursive:true,withFileTypes:true}).filter(x=>x.isFile()).map(x=>new URL(x.parentPath+'/'+x.name,'file:').pathname.slice(root.pathname.length)).sort();
-  assert.deepEqual([...Object.keys(source.files),...Object.keys(source.addedFiles),...Object.keys(source.retainedFiles).filter(p=>p.startsWith('src/'))].sort(),actual);
+  assert.deepEqual([...Object.keys(source.files),...Object.keys(source.addedFiles),...Object.keys(source.retainedFiles).filter(p=>p.startsWith('src/')),...Object.keys(r26Source.addedFiles),...Object.keys(friezeSource.addedFiles)].sort(),actual);
 });
 
 test('complete R25 builder reverses three unique hunks, retains art source and feeds the complete prior source chain',()=>{
-  const path='src/scene/PalaceBuilder.js',bytes=read(path),original=Buffer.from(bytes),d=source.files[path],text=bytes.toString();
+  const path='src/scene/PalaceBuilder.js',bytes=restorePreR26Source(path,read(path)),original=Buffer.from(bytes),d=source.files[path],text=bytes.toString();
   assert.equal(sha(bytes),d.candidateSHA256);assert.equal(d.deltas.length,3);
   for(const h of d.deltas){assert.ok(h.before.length&&h.after.length);assert.equal(text.split(h.after).length,2);}
   const out=restorePreR25Source(path,bytes);
@@ -64,7 +67,7 @@ test('complete R25 builder reverses three unique hunks, retains art source and f
 });
 
 test('R25 and all older source chains reject empty, unknown, appended, partial and duplicated source',()=>{
-  const path='src/scene/PalaceBuilder.js',text=read(path).toString(),d=source.files[path],needle='const lacquer =';
+  const path='src/scene/PalaceBuilder.js',text=restorePreR26Source(path,read(path)).toString(),d=source.files[path],needle='const lacquer =';
   assert.equal(text.split(needle).length,2);
   const bad=['',text+'\n',text+text,'// unrelated\n'+text,text.replace(needle,needle+' /* unrelated */')];
   for(const h of d.deltas)for(const replacement of['',h.before,h.after+h.after])bad.push(text.replace(h.after,replacement));
@@ -95,7 +98,7 @@ test('portable historical R24 fixture binds dependencies without sibling, Git, n
   assert.notEqual(hash(historical.rows),scene.afterSHA256);
 });
 
-test('complete live R25 scene differs from independent R24 only at the three retained board matrices and metadata',()=>{
+test('complete frozen R25 scene differs from independent R24 only at the three retained board matrices and metadata',()=>{
   assert.equal(hash(current.rows),scene.afterSHA256);assert.equal(hash(historical.rows),scene.beforeSHA256);
   assert.equal(hash(current.meshes),scene.afterMeshesSHA256);assert.equal(hash(historical.meshes),scene.beforeMeshesSHA256);
   assert.equal(current.meshes.length,scene.meshCount);assert.equal(current.meshes.length,historical.meshes.length);
