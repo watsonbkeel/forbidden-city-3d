@@ -154,9 +154,10 @@ test('existing product inventory includes exactly the two bound follow-through p
   const {verifiedR32AddedProductPaths, verifiedR32FollowthroughAddedProductPaths} = await import('../lib/r32-product-inventory.mjs');
   assert.deepEqual(verifiedR32FollowthroughAddedProductPaths(), fixture.productAdditions);
   const all = verifiedR32AddedProductPaths();
-  assert.deepEqual(all.slice(-6), [...fixture.productAdditions,
+  assert.deepEqual(all.slice(-7), [...fixture.productAdditions,
     'public/textures/art/qianqing-screen-illustration-r32.webp', 'src/scene/palace/QianqingScreenPaint.js',
-    'public/textures/art/qianqing-five-dragon-illustration-r32.webp', 'src/scene/palace/QianqingFriezePaint.js']);
+    'public/textures/art/qianqing-five-dragon-illustration-r32.webp', 'src/scene/palace/QianqingFriezePaint.js',
+    'src/scene/palace/QianqingScreenCrest.js']);
   assert.equal(all.length, new Set(all).size, 'no duplicated inventory entries');
   assert.ok(all.every(p => /^(src|data|public)\//.test(p)), 'provenance is bound but not a runtime inventory path');
 });
@@ -193,7 +194,7 @@ for (const [label, source, later, roots] of [
     for (const extra of ['src/scene/palace/Unregistered.js', 'src/ui/Unregistered.js', ...(roots.includes('public') ? ['public/textures/art/unregistered.webp'] : [])]) {
       assert.throws(() => assert.deepEqual([...actual, extra].sort(), expected));
     }
-    for (const added of fixture.productAdditions.filter(p => roots.some(dir => p.startsWith(dir + '/')))) {
+    for (const added of [...fixture.productAdditions, 'src/scene/palace/QianqingScreenCrest.js'].filter(p => roots.some(dir => p.startsWith(dir + '/')))) {
       assert.throws(() => assert.deepEqual(actual.filter(p => p !== added), expected));
       assert.throws(() => assert.deepEqual([...actual, added].sort(), expected));
     }

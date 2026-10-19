@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {restoreR32FriezeSourceIfPresent} from '../lib/r32-frieze-source-retention.mjs';
+import {restoreR32CrestSourceIfPresent} from '../lib/r32-crest-source-retention.mjs';
 
 const root = new URL('../../', import.meta.url);
 const helper = new URL('../lib/r32-screen-source-retention.mjs', import.meta.url);
@@ -73,7 +74,7 @@ for (const [name, delta] of Object.entries(fixture.files)) {
     const {restoreR31CombinedSourceIfPresent} = await import('../lib/r31-combined-source-retention.mjs');
     const {restoreR31SourceIfPresent} = await import('../lib/r31-flight-operations-retention.mjs');
     const {restorePreR15Source} = await import('../lib/r15-flight-source-retention.mjs');
-    const bytes = restoreR32FriezeSourceIfPresent(name, read(name)), original = Buffer.from(bytes), text = bytes.toString('utf8');
+    const bytes = restoreR32FriezeSourceIfPresent(name, restoreR32CrestSourceIfPresent(name, read(name))), original = Buffer.from(bytes), text = bytes.toString('utf8');
     assert.equal(sha(bytes), delta.candidateSHA256);
     assert.equal(bytes.length, delta.candidateBytes);
     const old = restore(name, bytes);
@@ -154,8 +155,9 @@ test('existing product inventory includes exactly the two bound screen product a
   const {verifiedR32AddedProductPaths, verifiedR32ScreenAddedProductPaths} = await import('../lib/r32-product-inventory.mjs');
   assert.deepEqual(verifiedR32ScreenAddedProductPaths(), fixture.productAdditions);
   const all = verifiedR32AddedProductPaths();
-  assert.deepEqual(all.slice(-4), [...fixture.productAdditions,
-    'public/textures/art/qianqing-five-dragon-illustration-r32.webp', 'src/scene/palace/QianqingFriezePaint.js']);
+  assert.deepEqual(all.slice(-5), [...fixture.productAdditions,
+    'public/textures/art/qianqing-five-dragon-illustration-r32.webp', 'src/scene/palace/QianqingFriezePaint.js',
+    'src/scene/palace/QianqingScreenCrest.js']);
   assert.equal(all.length, new Set(all).size, 'no duplicated inventory entries');
   assert.ok(all.every(p => /^(src|data|public)\//.test(p)), 'provenance is bound but not a runtime inventory path');
 });

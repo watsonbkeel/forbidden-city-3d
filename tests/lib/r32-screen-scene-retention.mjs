@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
+import {restoreR32CrestCaptureIfPresent, restoreR32CrestScenePartIfPresent, restoreR32CrestSceneRowIfPresent} from './r32-crest-scene-retention.mjs';
 import {restoreR32FriezeCaptureIfPresent, restoreR32FriezeScenePartIfPresent} from './r32-frieze-scene-retention.mjs';
 
 const sha = value => createHash('sha256').update(value).digest('hex');
@@ -75,17 +76,20 @@ export const restorePreR32ScreenCapture = value => restore(value, r32ScreenScene
 export const restorePreR32CeilingMetadataCapture = value => restore(value, r32ScreenScene.ceiling.capture, 'exact R32 ceiling metadata complete capture');
 
 export function restoreR32ArtworkCaptureIfPresent(value) {
+  value = restoreR32CrestCaptureIfPresent(value);
   value = restoreR32FriezeCaptureIfPresent(value);
   value = ifPresent(value, r32ScreenScene.screen.capture, 'exact R32 screen complete capture');
   return ifPresent(value, r32ScreenScene.ceiling.capture, 'exact R32 ceiling metadata complete capture');
 }
 export function restoreR32ArtworkScenePartIfPresent(kind, value) {
   assert.ok(['rows', 'meshes', 'graph', 'materials'].includes(kind), 'registered R32 artwork scene part');
+  value = restoreR32CrestScenePartIfPresent(kind, value);
   value = restoreR32FriezeScenePartIfPresent(kind, value);
   value = ifPresent(value, r32ScreenScene.screen[kind], 'exact R32 screen ' + kind);
   return ifPresent(value, r32ScreenScene.ceiling[kind], 'exact R32 ceiling metadata ' + kind);
 }
 export function restoreR32ArtworkSceneRowIfPresent(name, value) {
+  value = restoreR32CrestSceneRowIfPresent(name, value);
   for (const epoch of ['screen', 'ceiling']) {
     const delta = r32ScreenScene[epoch].sceneRows[name];
     if (delta) value = ifPresent(value, delta, 'exact R32 ' + epoch + ' scene row');

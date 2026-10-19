@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {restoreR32CrestCaptureIfPresent, restoreR32CrestCentralLevelIfPresent} from '../lib/r32-crest-scene-retention.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -65,10 +66,11 @@ async function scenes() {
     const old = await historicalModules(), original = await historicalModules(true);
     const levels = module => Object.fromEntries([['near', true], ['far', false]].map(([kind, fine]) =>
       [kind, captureLevel(module.buildQianqingCentralLevel(new T.MeshBasicMaterial(), fixture.central.frame, fine))]));
-    return {T, current, old, currentLevels: levels(current), oldLevels: levels(old.central),
+    // Exact later crest identity is reversed only for this frozen historical contract.
+    return {T, current, old, currentLevels: Object.fromEntries(Object.entries(levels(current)).map(([kind, rows]) => [kind, restoreR32CrestCentralLevelIfPresent(kind, rows)])), oldLevels: levels(old.central),
       // Preserve this frozen a9 contract after the independently bound final
       // frieze metadata is removed; the new test checks raw d5 product captures.
-      capture: restoreR32FriezeCaptureIfPresent(captureJiaotaiScene(PalaceBuilder)), oldCapture: captureJiaotaiScene(old.Builder), originalCapture: captureJiaotaiScene(original.Builder)};
+      capture: restoreR32FriezeCaptureIfPresent(restoreR32CrestCaptureIfPresent(captureJiaotaiScene(PalaceBuilder))), oldCapture: captureJiaotaiScene(old.Builder), originalCapture: captureJiaotaiScene(original.Builder)};
   })();
   return builds;
 }

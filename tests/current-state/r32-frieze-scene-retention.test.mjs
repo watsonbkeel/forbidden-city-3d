@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {restoreR32CrestCaptureIfPresent, restoreR32CrestCentralLevelIfPresent} from '../lib/r32-crest-scene-retention.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -63,8 +64,9 @@ async function scenes() {
     const old = await historicalModules();
     const levels = module => Object.fromEntries([['near', true], ['far', false]].map(([kind, fine]) =>
       [kind, captureLevel(module.buildQianqingCentralLevel(new T.MeshBasicMaterial(), fixture.frame, fine))]));
-    return {T, current, old, currentLevels: levels(current), oldLevels: levels(old.central),
-      capture: captureJiaotaiScene(PalaceBuilder), oldCapture: captureJiaotaiScene(old.Builder)};
+    // Exact later crest identity is reversed only for this frozen historical contract.
+    return {T, current, old, currentLevels: Object.fromEntries(Object.entries(levels(current)).map(([kind, rows]) => [kind, restoreR32CrestCentralLevelIfPresent(kind, rows)])), oldLevels: levels(old.central),
+      capture: restoreR32CrestCaptureIfPresent(captureJiaotaiScene(PalaceBuilder)), oldCapture: captureJiaotaiScene(old.Builder)};
   })();
   return builds;
 }

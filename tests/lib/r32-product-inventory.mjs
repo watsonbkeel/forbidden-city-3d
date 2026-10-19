@@ -6,6 +6,7 @@ import {r32Source, assertR32AddedSource} from './r32-source-retention.mjs';
 import {r32FollowthroughSource, assertR32FollowthroughAddedSource} from './r32-followthrough-source-retention.mjs';
 import {r32ScreenSource, assertR32ScreenAddedSource} from './r32-screen-source-retention.mjs';
 import {r32FriezeSource, assertR32FriezeAddedSource} from './r32-frieze-source-retention.mjs';
+import {r32CrestSource, assertR32CrestAddedSource} from './r32-crest-source-retention.mjs';
 
 const readProduct = path => fs.readFileSync(new URL('../../' + path, import.meta.url));
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -37,7 +38,7 @@ export function verifiedR32AddedProductPaths(read = readProduct) {
   assert.equal(config.model, '/models/interiors/qianqing-r32.glb');
   const assetPath = 'public' + config.model;
   assert.equal(sha(read(assetPath)), config.asset.sha256, 'exact independently bound R32 auxiliary GLB');
-  return [...paths.filter(isProductPath), assetPath, ...verifiedR32FollowthroughAddedProductPaths(read), ...verifiedR32ScreenAddedProductPaths(read), ...verifiedR32FriezeAddedProductPaths(read)];
+  return [...paths.filter(isProductPath), assetPath, ...verifiedR32FollowthroughAddedProductPaths(read), ...verifiedR32ScreenAddedProductPaths(read), ...verifiedR32FriezeAddedProductPaths(read), ...verifiedR32CrestAddedProductPaths(read)];
 }
 
 export function verifiedR32ScreenAddedProductPaths(read = readProduct) {
@@ -48,4 +49,9 @@ export function verifiedR32ScreenAddedProductPaths(read = readProduct) {
 export function verifiedR32FriezeAddedProductPaths(read = readProduct) {
   for (const path of Object.keys(r32FriezeSource.addedFiles)) assertR32FriezeAddedSource(path, read(path));
   return [...r32FriezeSource.productAdditions];
+}
+
+export function verifiedR32CrestAddedProductPaths(read = readProduct) {
+  for (const path of Object.keys(r32CrestSource.addedFiles)) assertR32CrestAddedSource(path, read(path));
+  return [...r32CrestSource.productAdditions];
 }

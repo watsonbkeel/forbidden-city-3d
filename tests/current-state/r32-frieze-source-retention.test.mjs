@@ -155,7 +155,7 @@ test('existing product inventory includes exactly the two bound frieze product a
   const {verifiedR32AddedProductPaths, verifiedR32FriezeAddedProductPaths} = await import('../lib/r32-product-inventory.mjs');
   assert.deepEqual(verifiedR32FriezeAddedProductPaths(), fixture.productAdditions);
   const all = verifiedR32AddedProductPaths();
-  assert.deepEqual(all.slice(-2), fixture.productAdditions);
+  assert.deepEqual(all.slice(-3), [...fixture.productAdditions, 'src/scene/palace/QianqingScreenCrest.js']);
   assert.equal(all.length, new Set(all).size, 'no duplicated inventory entries');
   assert.ok(all.every(p => /^(src|data|public)\//.test(p)), 'provenance is bound but not a runtime inventory path');
 });

@@ -1,3 +1,4 @@
+import {r32CrestScene,restorePreR32CrestCentralLevel} from './lib/r32-crest-scene-retention.mjs';
 import {HistoricalR29PalaceBuilder} from './lib/historical-r29-qianqing-fixture.mjs';
 import {r32Scene,restorePreR32Navigation} from './lib/r32-scene-retention.mjs';
 import {restorePreR30Navigation} from './lib/r30-qianqing-passage-retention.mjs';
@@ -7,6 +8,21 @@ const T=await import('three'),{PalaceBuilder}=await import('../src/scene/PalaceB
 const {QIANQING_CENTRAL:P,qianqingCentralFrame,buildQianqingCentralLevel,installQianqingCentral}=await import('../src/scene/palace/QianqingCentralSetting.js');
 const {QIANQING_CENTRAL_ART,qianqingCentralMaterial,qianqingCentralUV}=await import('../src/scene/palace/QianqingCentralArt.js');const{validateQianqingAuxiliary}=await import('../src/scene/interior/QianqingAuxiliaryContract.js');
 const read=p=>fs.readFileSync(new URL('../'+p,import.meta.url)),cfg=JSON.parse(read('data/interiors/qianqing.json')),base=JSON.parse(read('tests/fixtures/r29-qianqing-baseline.json')),scene=new T.Scene(),b=new PalaceBuilder(scene,library());b.buildAll(PALACE_LAYOUT);scene.updateMatrixWorld(true);const group=scene.getObjectByName('后三宫'),lod=scene.getObjectByName('qianqing-central-setting-detail'),f=group.userData.qianqingCentral,mat=qianqingCentralMaterial(b),raw=buildQianqingCentralLevel(mat,f,true),count=g=>(g.index?.count??g.attributes.position.count)/3,near=raw.children;raw.updateMatrixWorld(true);const close=(a,c,e=1e-5)=>assert.ok(Math.abs(a-c)<e,`${a} != ${c}`);
+function captureCentral(root) {
+ return root.children.map(o=>({name:o.name,matrix:(o.updateMatrix(),o.matrix.toArray()),
+  attributes:Object.fromEntries(Object.entries(o.geometry.attributes).map(([key,a])=>[key,{itemSize:a.itemSize,normalized:a.normalized,type:a.array.constructor.name,bytes:Buffer.from(a.array.buffer,a.array.byteOffset,a.array.byteLength).toString('base64')}])),
+  index:o.geometry.index?{type:o.geometry.index.array.constructor.name,bytes:Buffer.from(o.geometry.index.array.buffer,o.geometry.index.array.byteOffset,o.geometry.index.array.byteLength).toString('base64')}:null,
+  groups:o.geometry.groups,drawRange:{start:o.geometry.drawRange.start,count:String(o.geometry.drawRange.count)}}));
+}
+// The live builder's retained width differs from the historical proof frame by
+// one floating-point rounding step. Do not normalize either frame: bind the
+// complete proof-frame level, then compare all five actual crest rows exactly.
+function assertCurrentCrestIdentity(){
+ const registered=captureCentral(buildQianqingCentralLevel(mat,r32CrestScene.frame,true));
+ restorePreR32CrestCentralLevel('near',registered);
+ const current=captureCentral(raw);assert.equal(current.length,r32CrestScene.central.near.count);
+ for(const index of r32CrestScene.crestIndices)assert.deepEqual(current[index],registered[index]);
+}
 async function asset(){const buf=read('public'+cfg.model);return(await new GLTFLoader().parseAsync(buf.buffer.slice(buf.byteOffset,buf.byteOffset+buf.byteLength),'')).scene;}
 function setup(){const s=new T.Scene(),bb=new PalaceBuilder(s,library());bb.buildAll(PALACE_LAYOUT);const cm=new CollisionManager();cm.addColliders(bb.colliders);cm.addWalkables(bb.walkables);return{s,bb,cm,loader:new InteriorLoader(s,cm,{registry:{qianqing:cfg}})};}
 const snapshot=cm=>JSON.stringify({c:cm.colliders,w:cm.walkables});
@@ -20,15 +36,23 @@ test('private atlas uses sRGB, correct word order/aspect and plain backs; does n
 // Current R32 tests below use the actual implementation and exported GLB.
 // The exact old LODs remain asserted above on the independently rebuilt R29
 // scene, and the complete old scene remains bound by the historical tests.
-test('current R32 near/far LOD budgets match the frozen resident graph and only one private batch is visible',()=>{
+test('current R32 near/far LOD budgets match the exact crest registry and retain the frozen old resident graph',()=>{
  assert.deepEqual(lod.levels.map(l=>l.object.children.length),[1,1]);
- const expected=[2048,268],meshes=lod.levels.map(l=>l.object.children[0]);
+ const expected=[3698,268],historicalExpected=[2048,268],meshes=lod.levels.map(l=>l.object.children[0]);
  assert.deepEqual(meshes.map(m=>count(m.geometry)),expected);
  const registered=r32Scene.graph.changes.flatMap(change=>change.after);
  for(const[i,mesh]of meshes.entries()){
   const matches=registered.filter(node=>node.name===mesh.name);
-  assert.equal(matches.length,1);assert.equal(matches[0].triangles,expected[i]);
+  assert.equal(matches.length,1);assert.equal(matches[0].triangles,historicalExpected[i]);
  }
+ // Keep the original graph budget and bind the exact later increase separately.
+ const change=r32CrestScene.capture.changes.find(row=>row.path.join('.')==='graph.189.triangles');
+ assert.deepEqual([change.before,change.after],[historicalExpected[0],expected[0]]);
+ for(const[kind,fine]of[['near',true],['far',false]]){
+  const actual=captureCentral(buildQianqingCentralLevel(mat,r32CrestScene.frame,fine));
+  assert.equal(hash(restorePreR32CrestCentralLevel(kind,actual)),r32CrestScene.central[kind].beforeSHA256);
+ }
+ assertCurrentCrestIdentity();
  assert.equal(lod.userData.displayRevision,'r32-photo-relative-main-scene');
  for(const[d,near]of[[5,true],[180,false],[5,true]]){
   const c=new T.PerspectiveCamera();c.position.copy(lod.position).add(new T.Vector3(d,0,0));c.updateMatrixWorld(true);lod.update(c);
@@ -84,4 +108,4 @@ test('official fully panelled ceiling removes the inherited generic caisson in B
 
 test('all new S collision and step proxies are contained within the unchanged permanent exclusion',async()=>{const s=setup(),r=await asset(),floor=s.cm.getGroundHeight(cfg.frame.x,cfg.frame.z,0,999);r.position.set(cfg.frame.x,floor,cfg.frame.z);r.updateMatrixWorld(true);const bounds=new T.Box3(new T.Vector3(f.bounds.minX,f.y,f.bounds.minZ),new T.Vector3(f.bounds.maxX,f.y+3,f.bounds.maxZ)),expanded=bounds.clone().expandByScalar(1e-5);let n=0;r.traverse(o=>{if(o.isMesh&&/^(COL_|WALK_)/.test(o.name)){assert.ok(expanded.containsBox(new T.Box3().setFromObject(o)),o.name+' extends existing exclusion');n++;}});assert.equal(n,27);assert.ok(s.cm.colliders.some(c=>c.box.equals(bounds)),'permanent excluded core must exist before S load');s.loader.dispose();s.bb.dispose();});
 
-test('perforated screen crests have no collapsed faces or zero normals',()=>{for(const m of near.filter(o=>o.name.startsWith('qianqing-open-carved-crest-'))){const p=m.geometry.attributes.position,n=m.geometry.attributes.normal;assert.equal(p.count,282);for(let i=0;i<n.count;i++)assert.ok(Math.abs(Math.hypot(n.getX(i),n.getY(i),n.getZ(i))-1)<1e-5);const a=new T.Vector3(),b=new T.Vector3(),c=new T.Vector3();for(let i=0;i<p.count;i+=3){a.fromBufferAttribute(p,i);b.fromBufferAttribute(p,i+1);c.fromBufferAttribute(p,i+2);assert.ok(b.sub(a).cross(c.sub(a)).lengthSq()>1e-14);}}});
+test('perforated screen crests have exact current geometry and no collapsed faces or zero normals',()=>{assertCurrentCrestIdentity();for(const change of r32CrestScene.central.near.changes.filter(row=>row.path[2]==='position')){assert.equal(Buffer.from(change.before,'base64').length/4/3,282);assert.equal(Buffer.from(change.after,'base64').length/4/3,424*3);}for(const m of near.filter(o=>o.name.startsWith('qianqing-open-carved-crest-'))){const p=m.geometry.attributes.position,n=m.geometry.attributes.normal;assert.equal(p.count,424*3);for(let i=0;i<n.count;i++)assert.ok(Math.abs(Math.hypot(n.getX(i),n.getY(i),n.getZ(i))-1)<1e-5);const a=new T.Vector3(),b=new T.Vector3(),c=new T.Vector3();for(let i=0;i<p.count;i+=3){a.fromBufferAttribute(p,i);b.fromBufferAttribute(p,i+1);c.fromBufferAttribute(p,i+2);assert.ok(b.sub(a).cross(c.sub(a)).lengthSq()>1e-14);}}});

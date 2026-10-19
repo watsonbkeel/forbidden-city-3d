@@ -1,3 +1,4 @@
+import {restorePreR32CrestCentralLevel} from './lib/r32-crest-scene-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -13,8 +14,22 @@ test('screen image can repaint only its 192x256 region of the same private atlas
 for(const failure of['network','zero-size','canvas'])test(`${failure} keeps fallback, material and atlas identity`,t=>{const f=loaderFixture(t);if(failure==='network')f.request.error(Error('offline'));else{if(failure==='canvas')f.canvas.getContext=()=>null;f.request.loaded({width:failure==='zero-size'?0:512,height:1228});}assert.equal(f.material.userData.screenPaintState,'fallback');assert.equal(f.material.map,f.texture);assert.equal(f.texture.version,f.version);assert.equal(f.draws.length,0);});
 for(const event of['loaded','error'])test(`late ${event} after disposal cannot repaint`,t=>{const f=loaderFixture(t);f.material.dispose();if(event==='loaded')f.request.loaded({width:512,height:1228});else f.request.error(Error('late'));assert.equal(f.material.userData.screenPaintState,'disposed');assert.equal(f.texture.version,f.version);assert.equal(f.draws.length,0);});
 test('wrong canvas size fails before any request',()=>{assert.throws(()=>loadQianqingScreenPaint({canvas:{width:512,height:512},material:{userData:{}}}),/registered atlas/);});
-function rows(root){return root.children.map(o=>({name:o.name,matrix:(o.updateMatrix(),o.matrix.toArray()),attrs:Object.fromEntries(Object.entries(o.geometry.attributes).filter(([k])=>k!=='uv').map(([k,a])=>[k,{size:a.itemSize,count:a.count,sha256:sha(Buffer.from(a.array.buffer,a.array.byteOffset,a.array.byteLength))}])),index:o.geometry.index?sha(Buffer.from(o.geometry.index.array.buffer)):null}));}
-for(const fine of[true,false])test(`${fine?'near':'far'} every vertex, normal, topology and object transform matches frozen geometry`,()=>{const root=buildQianqingCentralLevel(new T.MeshBasicMaterial(),baseline.frame,fine),actual=rows(root);assert.ok(actual.every(o=>o.matrix.every(Number.isFinite)));/* The persisted JSON records transform -0 as 0; binary geometry hashes are exact. */assert.equal(JSON.stringify(actual),JSON.stringify(baseline[fine?'near':'far']));});
+function captureCentral(root) {
+ return root.children.map(o=>({name:o.name,matrix:(o.updateMatrix(),o.matrix.toArray()),
+  attributes:Object.fromEntries(Object.entries(o.geometry.attributes).map(([key,a])=>[key,{itemSize:a.itemSize,normalized:a.normalized,type:a.array.constructor.name,bytes:Buffer.from(a.array.buffer,a.array.byteOffset,a.array.byteLength).toString('base64')}])),
+  index:o.geometry.index?{type:o.geometry.index.array.constructor.name,bytes:Buffer.from(o.geometry.index.array.buffer,o.geometry.index.array.byteOffset,o.geometry.index.array.byteLength).toString('base64')}:null,
+  groups:o.geometry.groups,drawRange:{start:o.geometry.drawRange.start,count:String(o.geometry.drawRange.count)}}));
+}
+function historicalRows(rows){return rows.map(o=>({name:o.name,matrix:o.matrix,attrs:Object.fromEntries(Object.entries(o.attributes).filter(([key])=>key!=='uv').map(([key,a])=>[key,{size:a.itemSize,count:Buffer.from(a.bytes,'base64').length/4/a.itemSize,sha256:sha(Buffer.from(a.bytes,'base64'))}])),index:o.index?sha(Buffer.from(o.index.bytes,'base64')):null}));}
+// Bind every current attribute first, then reverse only the exact five crest
+// deltas. The old geometry proof and live screen/chair UV checks remain intact.
+for(const fine of[true,false])test(`${fine?'near':'far'} every vertex, normal, topology and object transform retains the exact crest-bound historical geometry`,()=>{
+ const root=buildQianqingCentralLevel(new T.MeshBasicMaterial(),baseline.frame,fine),kind=fine?'near':'far';
+ const actual=historicalRows(restorePreR32CrestCentralLevel(kind,captureCentral(root)));
+ assert.ok(actual.every(o=>o.matrix.every(Number.isFinite)));
+ /* The persisted JSON records transform -0 as 0; binary geometry hashes are exact. */
+ assert.equal(JSON.stringify(actual),JSON.stringify(baseline[kind]));
+});
 for(const fine of[true,false])test(`${fine?'near':'far'} five screen faces and chair use disjoint padded subregions; backs stay red`,()=>{const root=buildQianqingCentralLevel(new T.MeshBasicMaterial(),baseline.frame,fine),screen=root.children.filter(o=>o.name.startsWith('qianqing-five-screen-panel-')),chair=root.getObjectByName('qianqing-throne-articulated-back');assert.equal(screen.length,5);for(const o of[...screen,chair]){const uv=o.geometry.attributes.uv,n=o.geometry.attributes.normal;for(let i=0;i<uv.count;i++){const x=uv.getX(i)*1024,y=(1-uv.getY(i))*512;if(n.getZ(i)<-.9){assert.ok(x>=2-1e-5&&x<=254+1e-5);assert.ok(y>=2-1e-5&&y<=254+1e-5);if(o===chair)assert.ok(x>=194-1e-5);else assert.ok(x<=190+1e-5);}else assert.ok(x>=256&&x<=512&&y>=256&&y<=512,'plain red back/side');}}});
 test('all unrelated atlas cells retain exact old UV mapping',()=>{for(let cell=1;cell<8;cell++)for(const frontOnly of[false,true])for(const solid of[false,true]){const g=new T.BoxGeometry(),raw=g.attributes.uv.clone(),n=g.attributes.normal;qianqingCentralUV(g,cell,{frontOnly,solid,backCell:5});for(let i=0;i<raw.count;i++){const painted=!frontOnly||n.getZ(i)<-.9,c=painted?cell:5,u=solid||!painted?.5:raw.getX(i),v=solid||!painted?.5:raw.getY(i),pad=2/256;assert.equal(g.attributes.uv.getX(i),Math.fround((c%4+pad+u*(1-2*pad))/4));assert.equal(g.attributes.uv.getY(i),Math.fround(1-(Math.floor(c/4)+1-pad-v*(1-2*pad))/2));}}});
 test('permanent navigation exclusion is unchanged and adds no route',()=>{const boxes=[],b={col:(...args)=>boxes.push(args)},g=new T.Group();registerQianqingCentral(b,g,baseline.frame);const f=baseline.frame;assert.deepEqual(boxes,[[f.bounds.minX,f.y,f.bounds.minZ,f.bounds.maxX,f.y+3,f.bounds.maxZ]]);});

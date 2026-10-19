@@ -4,6 +4,7 @@ import {createHash} from 'node:crypto';
 import {restoreR32FollowthroughSourceIfPresent} from './r32-followthrough-source-retention.mjs';
 import {restoreR32ScreenSourceIfPresent} from './r32-screen-source-retention.mjs';
 import {restoreR32FriezeSourceIfPresent} from './r32-frieze-source-retention.mjs';
+import {restoreR32CrestSourceIfPresent} from './r32-crest-source-retention.mjs';
 
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const REGISTRY_SHA256 = '233e700c22d2fc2bc1db1049ab9b8aca98ae88bea0a0596ab282dbf70e4013aa';
@@ -28,6 +29,7 @@ export const r32Source = validateR32SourceRegistry(
  * reverse unique, exact hunks without normalization; then bind the complete
  * R31 result. Current R32 behavior is verified independently on real sources. */
 export function restorePreR32Source(path, bytes) {
+  bytes = restoreR32CrestSourceIfPresent(path, bytes);
   bytes = restoreR32FriezeSourceIfPresent(path, bytes);
   bytes = restoreR32ScreenSourceIfPresent(path, bytes);
   bytes = restoreR32FollowthroughSourceIfPresent(path, bytes);
@@ -51,6 +53,7 @@ export function restorePreR32Source(path, bytes) {
 /** Dispatch only the one full registered R32 identity. Unknown bytes remain
  * unchanged so each older strict guard can reject them against its own epoch. */
 export function restoreR32SourceIfPresent(path, bytes) {
+  bytes = restoreR32CrestSourceIfPresent(path, bytes);
   bytes = restoreR32FriezeSourceIfPresent(path, bytes);
   bytes = restoreR32ScreenSourceIfPresent(path, bytes);
   bytes = restoreR32FollowthroughSourceIfPresent(path, bytes);

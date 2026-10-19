@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import {mergeByMaterial} from '../../utils/MergeUtils.js';
 import {qianqingCentralMaterial,qianqingCentralUV} from './QianqingCentralArt.js';
+import {buildQianqingScreenCrest} from './QianqingScreenCrest.js';
 export const QIANQING_CENTRAL=Object.freeze({id:'qianqing-five-panel-central-setting',dimensionStatus:'PHOTO_RELATIVE_TRIAL_WITH_RETAINED_PLAN_ENVELOPE_NOT_SURVEY',source:'https://img.dpm.org.cn/Uploads/Picture/dc/1523%5B1024%5D.jpg',daisHeight:.70,stepCount:5,stepRun:1.30,lodDistance:90,lodHysteresis:.1,plaque:{width:3.8,height:1.25,leftToRight:'明光大正'}});
 export function qianqingCentralFrame({x0,y,H,ztb0,ztb1,thW,bayW}){
  const v=[x0,y,H,ztb0,ztb1,thW,bayW];if(!v.every(Number.isFinite)||Math.abs(x0)>1e-8||Math.abs(y-2.16)>1e-8||Math.abs(H-7.22)>1e-8||Math.abs(ztb0-317.8)>1e-8||Math.abs(ztb1-324.8)>1e-8||Math.abs(thW-8.177777777777779)>1e-8)throw Error('Unregistered Qianqing core frame');
@@ -39,8 +40,7 @@ export function buildQianqingCentralLevel(mat,f,fine){
  for(let i=0;i<5;i++){
   const w=panelWidths[i],h=panelHeights[i],panel=box('qianqing-five-screen-panel-'+i,w,h,.15,xs[i],dais+h/2,screenZ-Math.abs(xs[i])*.045,0,true);panel.rotation.y=Math.sign(xs[i])*.12;
   if(fine){
-   const crest=shape(reliefOutline(w*1.08,.43));for(const sign of[-1,1]){const hole=new THREE.Path();for(let k=0;k<6;k++){const a=k/6*Math.PI*2,x=sign*w*.22+Math.cos(a)*w*.105,y=.17+Math.sin(a)*.065;hole[k?'lineTo':'moveTo'](x,y);}hole.closePath();crest.holes.push(hole);}
-   const geo=omitCollapsedCapFaces(new THREE.ExtrudeGeometry(crest,{depth:.09,bevelEnabled:false,curveSegments:1}));geo.translate(0,0,-.045);const m=add('qianqing-open-carved-crest-'+i,geo,xs[i],dais+h-.04,screenZ-Math.abs(xs[i])*.045);m.rotation.y=panel.rotation.y;
+   const geo=buildQianqingScreenCrest(w),m=add('qianqing-open-carved-crest-'+i,geo,xs[i],dais+h-.04,screenZ-Math.abs(xs[i])*.045);m.rotation.y=panel.rotation.y;
    for(const sign of[-1,1])box('qianqing-screen-upright',.065,h+.09,.19,xs[i]+sign*(w/2-.03),dais+h/2,screenZ-Math.abs(xs[i])*.045-.015);
   }
  }
