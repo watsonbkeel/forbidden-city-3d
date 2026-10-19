@@ -48,10 +48,10 @@ test('four added cards and six sources exactly match the independently reviewed 
   }
 });
 
-test('default catalog resolves all fourteen exact layout/zone targets without caller-supplied zones', () => {
+test('default catalog retains all fourteen exact layout/zone targets without caller-supplied zones', () => {
   const catalog = new PlaceCatalog();
-  assert.equal(catalog.places.length, 14);
-  assert.equal(catalog.sources.size, 21 + guideBaseline.addedSources.length);
+  assert.equal(catalog.places.length, 159);
+  assert.equal(catalog.sources.size, 129);
   assert.deepEqual([...catalog.sources.values()].slice(0, 21), data.sources);
   for (const [id, name, zoneId] of expected) {
     const binding = zoneId ? { kind: 'zone', name, zoneId } : { kind: 'layout', name };

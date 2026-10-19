@@ -85,13 +85,13 @@ realTest('six by four physical column lines define five by three bays', () => {
   assert.equal(new Set(columns.map(b => ((b.min.z + b.max.z) / 2).toFixed(4))).size, 4);
 });
 
-realTest('three separated south ramps align with three open gate passages', () => {
+realTest('three separated approaches retain outer flights and central stone flank stairs', () => {
   const { builder, cm } = fixture();
   const ramps = builder.walkables.filter(w => w.type === 'ramp' && Math.abs(w.minZ - (front - run)) < 1e-6);
-  assert.equal(ramps.length, 3);
+  assert.equal(ramps.length, 4);
   const ordered = ramps.sort((a, b) => a.minX - b.minX);
-  assert.ok(ordered[0].maxX < ordered[1].minX && ordered[1].maxX < ordered[2].minX);
-  for (const x of [-bay, 0, bay]) {
+  assert.ok(ordered[0].maxX < ordered[1].minX && ordered[1].maxX < ordered[2].minX && ordered[2].maxX < ordered[3].minX);
+  for (const x of [-bay, bay]) {
     assert.ok(Math.abs(walk(cm, [x, front - run - 1], [x, rear + 2]) - 1.5) < 1e-7);
   }
   // There must be a real railing/wall separator between each stair, not one wide opening.
@@ -174,6 +174,6 @@ realTest('raised connector is horizontal, solid, and meets the retained palace f
   cm.addWalkables(builder.walkables.slice(oldW));
   for (const x of [-bay, 0, bay]) {
     walk(cm, [x, rear + 2], [0, rear + 2], 1.5);
-    assert.ok(Math.abs(walk(cm, [0, rear + 2], [0, palaceEdge + 1], 1.5) - 5) < 1e-7);
+    assert.ok(Math.abs(walk(cm, [0, rear + 2], [0, palaceEdge + 1], 1.5) - 2) < 1e-7);
   }
 });

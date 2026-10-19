@@ -1,3 +1,4 @@
+import {restorePreFurnishingSurfaceSource} from './lib/taihe-furnishing-surface-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -5,7 +6,7 @@ import {createHash} from 'node:crypto';
 import {restorePreEnamelCranesSource as restore} from './lib/taihe-enamel-cranes-retention.mjs';
 const name='src/scene/interior/TaiheCoreContract.js',read=p=>fs.readFileSync(new URL('../'+p,import.meta.url));
 const sha=b=>createHash('sha256').update(b).digest('hex');
-const row=JSON.parse(read('tests/fixtures/taihe-enamel-cranes-source-delta.json')).files[name],current=read(name);
+const row=JSON.parse(read('tests/fixtures/taihe-enamel-cranes-source-delta.json')).files[name],current=restorePreFurnishingSurfaceSource(name,read(name));
 test('crane restoration binds exact current and prior contract bytes',()=>{
  assert.equal(sha(current),row.candidateSHA256);assert.equal(row.baselineSHA256,'1380025664a4cc15b789d366a44b5a36dbe8678f0cc68ff31baa1a214987b96e');assert.equal(row.deltas.length,1);
  const restored=restore(name,current);assert.equal(sha(restored),row.baselineSHA256);assert.equal(restore(name,restored),restored);

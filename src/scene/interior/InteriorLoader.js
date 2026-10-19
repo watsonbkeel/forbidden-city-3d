@@ -1,3 +1,4 @@
+import { installTaihePlaqueSurround } from '../palace/special/TaihePlaqueFrame.js';
 /**
  * S 档内景加载器（P1-I）。
  *
@@ -71,7 +72,7 @@ export class InteriorLoader {
 
   /** 每帧调用：按距离触发加载/卸载，推进淡入 */
   update(pos, now = performance.now()) {
-    if (this._disposed) return;
+    if (this._disposed || this.suspended) return;
     for (const h of this.halls.values()) {
       const enter = h.cfg.preload?.enter ?? DEFAULT_ENTER;
       const exit = h.cfg.preload?.exit ?? DEFAULT_EXIT;
@@ -80,6 +81,15 @@ export class InteriorLoader {
       else if (dist >= exit && h.state !== 'idle') this.unload(h.id);
       if (h.fade) this._stepFade(h, now);
     }
+  }
+
+  /** Vehicle mode does not need the high-detail room below its XZ footprint.
+   * The same public unload path restores each fallback and preserves its
+   * permanent navigation ownership. Ground walking resumes normal streaming. */
+  setSuspended(suspended) {
+    if (this._disposed || this.suspended === !!suspended) return;
+    this.suspended = !!suspended;
+    if (this.suspended) for (const h of this.halls.values()) this.unload(h.id);
   }
 
   /** 自驱循环（不改 main.js 时用）：getPos 返回 {x, z} */
@@ -152,6 +162,7 @@ export class InteriorLoader {
     if (h.id === 'kunning') validateKunningFurniture(root, cfg);
     if (h.id === 'taihe') {
       validateTaiheCore(root, cfg);
+      installTaihePlaqueSurround(root);
       const fallback = taiheFallbackMeshes(this.scene);
       if (fallback.length !== 8 || fallback.some(m => !m.visible)) throw new Error('Taihe fallback ownership unavailable');
       h.fallback = fallback;

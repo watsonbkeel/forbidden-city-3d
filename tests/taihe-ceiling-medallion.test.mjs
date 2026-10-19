@@ -1,3 +1,4 @@
+import {restorePreFurnishingSurfaceSource} from './lib/taihe-furnishing-surface-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -13,7 +14,7 @@ import {restorePreCeilingSource} from './lib/taihe-ceiling-retention.mjs';
 import delta from './fixtures/taihe-ceiling-source-delta.json' with {type:'json'};
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const file='src/scene/palace/special/TaiheCore.js';
-const code=fs.readFileSync(new URL('../'+file,import.meta.url));
+const code=restorePreFurnishingSurfaceSource(file,fs.readFileSync(new URL('../'+file,import.meta.url)));
 const oldSource=restorePreCeilingSource(file,code).toString().replace(/from '(\.[^']+)'/g,(_,p)=>`from '${new URL(p,new URL('../'+file,import.meta.url)).href}'`).replace(/from 'three'/g,`from '${new URL('../node_modules/three/build/three.module.js',import.meta.url).href}'`);
 const old=await import(`data:text/javascript,${encodeURIComponent(oldSource)}`);
 function context() {const calls=[];const ctx=new Proxy({},{get:(_,k)=>(...args)=>{calls.push([k,...args]);},set:(_,k,v)=>{calls.push(['set',k,v]);return true;}});return{ctx,calls};}
@@ -26,7 +27,7 @@ test('only the exact two source substitutions compose with every frozen older so
 });
 test('four real ceiling planes preserve exact positions, normals, winding, UV repeat and opening',t=>{
  const {builder}=fixture(t),a=new THREE.Group(),b=new THREE.Group(),args={x0:0,z0:30,y:9.9375,w:63,d:37};buildTaiheCeiling(builder,a,args);old.buildTaiheCeiling(builder,b,args);
- assert.equal(a.children.length,4);assert.equal(b.children.length,4);
+ const beams=a.children.filter(o=>o.userData.taihePermanent==='central-beam');assert.equal(beams.length,6);for(const beam of beams)a.remove(beam);const frames=a.children.filter(o=>o.userData.taihePermanent==='coffer-frame');assert.equal(frames.length,28);assert.equal(frames.reduce((n,o)=>n+o.geometry.index.count/3,0),280);for(const frame of frames)a.remove(frame);assert.equal(a.children.length,4);assert.equal(b.children.length,4);
  for(let i=0;i<4;i++){const x=a.children[i],y=b.children[i];assert.deepEqual(geom(x.geometry),geom(y.geometry));assert.deepEqual(x.position.toArray(),y.position.toArray());assert.deepEqual(x.userData,y.userData);assert.equal(x.material,taiheCeilingMaterial(builder));assert.equal(y.material,builder.ceilingMaterial());assert.notEqual(x.material,y.material);}
  assert.equal(a.children.reduce((n,m)=>n+m.geometry.index.count/3,0),8);assert.deepEqual(builder.colliders,[]);assert.deepEqual(builder.walkables,[]);builder.dispose();
 });
@@ -38,9 +39,9 @@ test('new material is cached per builder, preserves physical response and owns i
  let bytes=0;for(let n=512;n>=1;n/=2)bytes+=n*n*4;assert.equal(bytes,TAIHE_CEILING_TILE.rgbaMipBytes);assert.ok(bytes<1400000);
  let disposed=0;m.map.addEventListener('dispose',()=>disposed++);builder.dispose();assert.equal(disposed,1);m.dispose();assert.equal(disposed,1);
 });
-test('actual merge adds exactly one ceiling batch and no triangles; all other hall material remains shared',t=>{
+test('isolated ceiling planes retain one texture batch and no triangles; beam delta has its own guard',t=>{
  const {builder}=fixture(t),a=new THREE.Group(),b=new THREE.Group();
- for(const [g,fn]of [[a,buildTaiheCeiling],[b,old.buildTaiheCeiling]]){fn(builder,g,{x0:0,z0:0,y:9.9375,w:63,d:37});for(const z of [70,140]){const m=new THREE.Mesh(new THREE.PlaneGeometry(20,20),builder.ceilingMaterial());m.position.z=z;g.add(m);}}
+ for(const [g,fn]of [[a,buildTaiheCeiling],[b,old.buildTaiheCeiling]]){fn(builder,g,{x0:0,z0:0,y:9.9375,w:63,d:37});for(const beam of g.children.filter(o=>['central-beam','coffer-frame'].includes(o.userData.taihePermanent)))g.remove(beam);for(const z of [70,140]){const m=new THREE.Mesh(new THREE.PlaneGeometry(20,20),builder.ceilingMaterial());m.position.z=z;g.add(m);}}
  const x=mergeByMaterial(a),y=mergeByMaterial(b);assert.equal(x.children.length,2);assert.equal(y.children.length,1);const tris=g=>g.children.reduce((n,m)=>n+m.geometry.attributes.position.count/3,0);assert.equal(tris(x),tris(y));assert.equal(tris(x),12);
  assert.equal(x.children.find(m=>m.material===builder.ceilingMaterial()).geometry.attributes.position.count,12);builder.dispose();
 });

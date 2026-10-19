@@ -1,0 +1,751 @@
+{
+  "runtimeProduct": "838b6846ca8732c5d834b572ed927210061a4c3d",
+  "baseSource": "9a2bed6bde1d42b309b95e7d897d679c5db497d5",
+  "testCommit": "a7dd57e936544cb5ca557dfd7dc6d1fcd2affef3",
+  "cpu": {
+    "logs": [
+      {
+        "file": "feature-01.log",
+        "sha256": "51d5b2604e7728b74b02c43de16c5baad197831f88138f39203b189d6ae105e8",
+        "counts": {
+          "tests": 5,
+          "pass": 4,
+          "fail": 1,
+          "skipped": 0
+        }
+      },
+      {
+        "file": "feature-02.log",
+        "sha256": "7114672f369e4ba51bafd893430bd9e9398cefee22c6cab068dfd072d9c45a53",
+        "counts": {
+          "tests": 5,
+          "pass": 5,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "file": "feature-03.log",
+        "sha256": "6e60d50441d239d4c8c7089f73804f4bb34dea02645dd3586ec09c8d135f3715",
+        "counts": {
+          "tests": 1,
+          "pass": 0,
+          "fail": 1,
+          "skipped": 0
+        }
+      },
+      {
+        "file": "r24-retention-logs/affected-838b-first.log",
+        "sha256": "b115cdf9e1948ac0e82bf2fe4e83730cf092f7f0098d47971028359672314272",
+        "counts": {
+          "tests": 1361,
+          "pass": 1360,
+          "fail": 1,
+          "skipped": 0
+        }
+      },
+      {
+        "file": "r24-retention-logs/first-correction.log",
+        "sha256": "6266021e2de905a6d6b02d68966d16ec5d531a4bd563ff30e56ec38af014f5bf",
+        "counts": {
+          "tests": 37,
+          "pass": 37,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "file": "r24-retention-logs/focused-838b-final.log",
+        "sha256": "badaa14006d5fce1a363f4196aa2178b140f9e06008da15a59a7ec5540bb9879",
+        "counts": {
+          "tests": 66,
+          "pass": 66,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "file": "r24-retention-logs/initial-fail.log",
+        "sha256": "0c39636f2949a4402d553dce636f90439f24b782e1ece92989342ef4bc7bb2a9",
+        "counts": {
+          "tests": 7,
+          "pass": 5,
+          "fail": 2,
+          "skipped": 0
+        }
+      },
+      {
+        "file": "r24-retention-logs/new-retention-first.log",
+        "sha256": "d8c11f4e5aab488fabd39b8feeda1383f8694d7f10c6a984661d4afc5188077b",
+        "counts": {
+          "tests": 28,
+          "pass": 28,
+          "fail": 0,
+          "skipped": 0
+        }
+      }
+    ],
+    "currentAffectedBatch": {
+      "files": 79,
+      "tests": 1361,
+      "pass": 1360,
+      "fail": 1
+    },
+    "correction": "One new negative test used literal wallDepth:1.0 while valid source spells1. Fixed only that anchor; final focused66/66 passed. All100 pre-existing fixture files stayed byte-identical. Counts overlap and are not additive.",
+    "earlierPreservedFailures": "Initial feature test used rounded15.354 instead of retained15.3536. First new historical bindings intentionally failed before exact R24 adaptation. Owner feature-03 was rejected by still-old module hash during runtime correction. All logs preserved; not claimed as product navigation failures."
+  },
+  "visual": {
+    "runtime": "838b6846ca8732c5d834b572ed927210061a4c3d",
+    "sameCameraFields": [
+      "position",
+      "requested",
+      "rotation",
+      "fov",
+      "viewport",
+      "renderCanvas",
+      "quality",
+      "day",
+      "lod"
+    ],
+    "position": [
+      -20,
+      9.7,
+      158
+    ],
+    "screenshots": [
+      {
+        "role": "R23Baseline",
+        "path": "/workspace/shared/palace-r24-verification/visual/baseline/run-01/rear.png",
+        "sha256": "8857c2d364eb115a28e84a5195a6f9e1089ca9347cd6f477a0ed212f3c96e372"
+      },
+      {
+        "role": "firstR24OverlapFailure",
+        "path": "/workspace/shared/palace-r24-verification/visual/candidate/run-01/rear.png",
+        "sha256": "3b563396b74111105b2a124232936d8c2eda7bf1f3e1687fb88baebb7b22ec40"
+      },
+      {
+        "role": "correctedR24",
+        "path": "/workspace/shared/palace-r24-verification/visual-r2/candidate/run-01/rear.png",
+        "sha256": "ba9fc4d2abf30cfd6acbe5f9ecf5c78d8bfcf9fc16ce5bce3769103a0d0eb4d1"
+      }
+    ],
+    "terminal": {
+      "R23Baseline": {
+        "utc": "2026-10-18T23:15:46.282688+00:00",
+        "reason": "owner finished captures",
+        "activeSeconds": 27.709669980991748,
+        "cleanupSeconds": 0.30879774800268933,
+        "leaderExited": true,
+        "portClosed": true,
+        "httpErrors": [],
+        "scope": "Controlled fixed-camera photos only; native routes and performance not accepted."
+      },
+      "firstR24OverlapFailure": {
+        "utc": "2026-10-18T23:16:34.376369+00:00",
+        "reason": "owner finished captures",
+        "activeSeconds": 29.7034932020033,
+        "cleanupSeconds": 0.4273144070029957,
+        "leaderExited": true,
+        "portClosed": true,
+        "httpErrors": [],
+        "scope": "Controlled fixed-camera photos only; native routes and performance not accepted."
+      },
+      "correctedR24": {
+        "utc": "2026-10-18T23:19:52.157183+00:00",
+        "reason": "owner finished captures",
+        "activeSeconds": 34.12485922900669,
+        "cleanupSeconds": 0.18661801199777983,
+        "leaderExited": true,
+        "portClosed": true,
+        "httpErrors": [],
+        "scope": "Controlled fixed-camera photos only; native routes and performance not accepted."
+      }
+    },
+    "observed": "Two solid red rear wings replace six gold lattice fields. Original tapered-post slivers disappeared in corrected fixed-view pixels. Central passage, roof and other scene composition retained.",
+    "failureDiagnosis": {
+      "originalCandidate": "54efad3bbbb159fe5318f51d9a196b78728bec32",
+      "columnBoundsZ": [
+        133.53613331913948,
+        134.46386668086052
+      ],
+      "firstWallBoundsZ": [
+        133.55,
+        134.45
+      ],
+      "protrusionMetres": 0.013866680860530778,
+      "correctedBoundsZ": [
+        133.5,
+        134.5
+      ],
+      "classification": "Genuine initial candidate assembly defect, corrected geometry, old failed pixels retained."
+    },
+    "limits": [
+      "Controlled fixed-camera copies, no new native-walk claim.",
+      "Wall thickness/appearance remains estimated. No exact conservation measurement or rear-door-pose claim.",
+      "Existing simplified roof, upper framing, rear folded leaves and throne retained.",
+      "Global browser exclusivity not established; unrelated managed blank window untouched."
+    ]
+  },
+  "navigation": {
+    "registrationsSHA256": "a1668d4eaf2b4ea21b0ea5a45fb421ef299ff48888d4d23bb1f60396be825853",
+    "colliders": 2487,
+    "walkables": 120,
+    "scope": "Complete current registration exactly equals independent portable R23 fixture. Existing six central rear leaves, front enclosure, all other hall surfaces and seven other scene groups are unchanged.",
+    "retainedEvidence": "R22 fresh368 controlled route combinations and three front-door native roundtrips remain retained evidence for unchanged navigation; no new full browser route or native walk claim."
+  },
+  "residentPalaceBuilder": {
+    "meshes": 163,
+    "triangles": 188027,
+    "uniqueBufferBytes": 18291860,
+    "deltaR23": {
+      "meshes": 0,
+      "triangles": -48,
+      "uniqueBufferBytes": -4608,
+      "materials": 0,
+      "textures": 0,
+      "colliders": 0,
+      "walkables": 0
+    },
+    "bothLODLevelsIncluded": true,
+    "streamedZonesIncludedInActualCameraCounters": true,
+    "materials": {
+      "meshReferencedMaterials": 86,
+      "ownedOrReferencedMaterialUnion": 92,
+      "ownedMaterialCount": 43,
+      "meshReferencedTextureCount": 22,
+      "canvasTextures": [
+        {
+          "width": 512,
+          "height": 569,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 256,
+          "height": 413,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 1024,
+          "height": 284,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 1024,
+          "height": 512,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 256,
+          "height": 2048,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 256,
+          "height": 413,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 512,
+          "height": 158,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 256,
+          "height": 413,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 512,
+          "height": 232,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 256,
+          "height": 413,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 512,
+          "height": 158,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 256,
+          "height": 413,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 512,
+          "height": 158,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 256,
+          "height": 413,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 256,
+          "height": 413,
+          "colorSpace": "srgb"
+        }
+      ],
+      "gpuMemoryBytes": "not measured"
+    },
+    "gpuMemoryMeasured": false
+  },
+  "performance": {
+    "commit": "838b6846ca8732c5d834b572ed927210061a4c3d",
+    "structuralPass": true,
+    "failures": [],
+    "smoothnessWarnings": [
+      [
+        "午门前",
+        2.45,
+        0.9
+      ],
+      [
+        "太和殿前",
+        2.18,
+        0.91
+      ],
+      [
+        "乾清门",
+        1.97,
+        0.84
+      ],
+      [
+        "东六宫中",
+        2.66,
+        0.58
+      ],
+      [
+        "宁寿宫",
+        3.36,
+        1.08
+      ],
+      [
+        "御花园",
+        2,
+        0.55
+      ]
+    ],
+    "baselineSHA256": "6108e5229f090755a287dc09715fa164ba7febdf54c650d79b526be5197ab5ff",
+    "conditions": {
+      "previewUTC": "2026-10-18T04:00:00.000Z",
+      "beijing": "2026-10-18 12:00",
+      "historicalLamps": false,
+      "aircraftParked": true,
+      "note": "Explicit daytime preview; original baseline used fixed sun. Geometry budget and original six-camera sampling unchanged; light direction differs."
+    },
+    "environment": {
+      "viewport": [
+        1280,
+        720
+      ],
+      "drawingBuffer": [
+        1280,
+        720
+      ],
+      "dpr": 1,
+      "quality": "high",
+      "unmaskedRenderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36"
+    },
+    "rows": [
+      {
+        "point": "午门前",
+        "baseline": {
+          "point": "午门前",
+          "pos": [
+            0,
+            1.7,
+            -470
+          ],
+          "yaw": 0,
+          "calls": 188,
+          "tris": 906751,
+          "geometries": 142,
+          "textures": 105,
+          "fpsAvg": 2.57,
+          "fpsP5": 2.45,
+          "callsRange": [
+            188,
+            188
+          ],
+          "trisRange": [
+            906751,
+            906751
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "candidate": {
+          "point": "午门前",
+          "pos": [
+            0,
+            1.7,
+            -470
+          ],
+          "yaw": 0,
+          "calls": 180,
+          "tris": 983654,
+          "geometries": 149,
+          "textures": 120,
+          "fpsAvg": 1.04,
+          "fpsP5": 0.9,
+          "callsRange": [
+            180,
+            180
+          ],
+          "trisRange": [
+            983654,
+            983654
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "callsDelta": -0.04255319148936165,
+        "trianglesDelta": 0.08481159656840753
+      },
+      {
+        "point": "太和殿前",
+        "baseline": {
+          "point": "太和殿前",
+          "pos": [
+            0,
+            1.7,
+            -74
+          ],
+          "yaw": 0,
+          "calls": 166,
+          "tris": 874189,
+          "geometries": 142,
+          "textures": 105,
+          "fpsAvg": 2.6,
+          "fpsP5": 2.18,
+          "callsRange": [
+            166,
+            166
+          ],
+          "trisRange": [
+            874189,
+            874189
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "candidate": {
+          "point": "太和殿前",
+          "pos": [
+            0,
+            1.7,
+            -74
+          ],
+          "yaw": 0,
+          "calls": 164,
+          "tris": 961252,
+          "geometries": 149,
+          "textures": 120,
+          "fpsAvg": 1.02,
+          "fpsP5": 0.91,
+          "callsRange": [
+            164,
+            164
+          ],
+          "trisRange": [
+            961252,
+            961252
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "callsDelta": -0.012048192771084376,
+        "trianglesDelta": 0.09959287980059228
+      },
+      {
+        "point": "乾清门",
+        "baseline": {
+          "point": "乾清门",
+          "pos": [
+            0,
+            1.7,
+            195.3
+          ],
+          "yaw": 0,
+          "calls": 159,
+          "tris": 971005,
+          "geometries": 142,
+          "textures": 105,
+          "fpsAvg": 2.38,
+          "fpsP5": 1.97,
+          "callsRange": [
+            159,
+            159
+          ],
+          "trisRange": [
+            971005,
+            971005
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "candidate": {
+          "point": "乾清门",
+          "pos": [
+            0,
+            1.7,
+            195.3
+          ],
+          "yaw": 0,
+          "calls": 149,
+          "tris": 1059588,
+          "geometries": 149,
+          "textures": 120,
+          "fpsAvg": 0.96,
+          "fpsP5": 0.84,
+          "callsRange": [
+            149,
+            149
+          ],
+          "trisRange": [
+            1059588,
+            1059588
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "callsDelta": -0.06289308176100628,
+        "trianglesDelta": 0.09122816051410654
+      },
+      {
+        "point": "东六宫中",
+        "baseline": {
+          "point": "东六宫中",
+          "pos": [
+            -120.8,
+            1.7,
+            382.6
+          ],
+          "yaw": 0,
+          "calls": 137,
+          "tris": 831571,
+          "geometries": 136,
+          "textures": 104,
+          "fpsAvg": 2.73,
+          "fpsP5": 2.66,
+          "callsRange": [
+            137,
+            137
+          ],
+          "trisRange": [
+            831571,
+            831571
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "candidate": {
+          "point": "东六宫中",
+          "pos": [
+            -120.8,
+            1.7,
+            382.6
+          ],
+          "yaw": 0,
+          "calls": 128,
+          "tris": 833733,
+          "geometries": 134,
+          "textures": 118,
+          "fpsAvg": 1.08,
+          "fpsP5": 0.58,
+          "callsRange": [
+            128,
+            128
+          ],
+          "trisRange": [
+            833733,
+            833733
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "callsDelta": -0.06569343065693434,
+        "trianglesDelta": 0.0025998982648505198
+      },
+      {
+        "point": "宁寿宫",
+        "baseline": {
+          "point": "宁寿宫",
+          "pos": [
+            -293.2,
+            1.7,
+            164.1
+          ],
+          "yaw": 0,
+          "calls": 119,
+          "tris": 658803,
+          "geometries": 130,
+          "textures": 102,
+          "fpsAvg": 3.48,
+          "fpsP5": 3.36,
+          "callsRange": [
+            119,
+            119
+          ],
+          "trisRange": [
+            658803,
+            658803
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "candidate": {
+          "point": "宁寿宫",
+          "pos": [
+            -293.2,
+            1.7,
+            164.1
+          ],
+          "yaw": 0,
+          "calls": 107,
+          "tris": 659055,
+          "geometries": 126,
+          "textures": 116,
+          "fpsAvg": 1.52,
+          "fpsP5": 1.08,
+          "callsRange": [
+            107,
+            107
+          ],
+          "trisRange": [
+            659055,
+            659055
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "callsDelta": -0.10084033613445376,
+        "trianglesDelta": 0.00038251191934457474
+      },
+      {
+        "point": "御花园",
+        "baseline": {
+          "point": "御花园",
+          "pos": [
+            0,
+            1.7,
+            433.7
+          ],
+          "yaw": 0,
+          "calls": 152,
+          "tris": 867827,
+          "geometries": 131,
+          "textures": 103,
+          "fpsAvg": 2.35,
+          "fpsP5": 2,
+          "callsRange": [
+            152,
+            152
+          ],
+          "trisRange": [
+            867827,
+            867827
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "candidate": {
+          "point": "御花园",
+          "pos": [
+            0,
+            1.7,
+            433.7
+          ],
+          "yaw": 0,
+          "calls": 131,
+          "tris": 868965,
+          "geometries": 128,
+          "textures": 117,
+          "fpsAvg": 1.02,
+          "fpsP5": 0.55,
+          "callsRange": [
+            131,
+            131
+          ],
+          "trisRange": [
+            868965,
+            868965
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "callsDelta": -0.13815789473684215,
+        "trianglesDelta": 0.0013113212656439277
+      }
+    ],
+    "limits": "SwiftShader software renderer; historical nonconcurrent baseline; explicit noon instead of historical fixed sun. One application renderer, unrelated managed blank browser untouched. No concurrent owner CPU tests during this sample; no controlled FPS equivalence claim. No real-device smoothness claim. PalaceBuilder resident163meshes188027triangles18291860bufferbytes includes bothLODlevels; streamed zones accounted in per-camera render metrics separately."
+  },
+  "performanceTerminal": {
+    "utc": "2026-10-18T23:30:01.192485+00:00",
+    "reason": "performance sample reported terminal",
+    "activeSeconds": 466.48206690201187,
+    "cleanupSeconds": 0.5014573319931515,
+    "cleanupWithinLimit": true,
+    "ownedBrowserLeaderExited": true,
+    "ownedProcessGroupGone": true,
+    "portClosed": true,
+    "statuses": {
+      "point0": "recorded",
+      "point1": "recorded",
+      "point2": "recorded",
+      "point3": "recorded",
+      "point4": "recorded",
+      "point5": "recorded",
+      "done": "passed"
+    },
+    "httpErrors": [],
+    "ownedRendererPIDsObserved": [
+      28767,
+      28777,
+      28778
+    ],
+    "peakOwnedRendererProcesses": 3,
+    "scope": "Original six-point performance sampling. Partial or timeout is not pass; ordinary native movement is not tested."
+  },
+  "build": {
+    "runtime": "838b6846ca8732c5d834b572ed927210061a4c3d",
+    "productFiles": 121,
+    "unchangedR23Files": 119,
+    "relativeBase": "./",
+    "allFrozenBytesMatch": true
+  },
+  "publicDeployment": false,
+  "limits": [
+    "Two solid rear wings and three central door assemblies are source-supported topology. Exact wall thickness, current rear leaf subdivision/open pose and photographic date unverified.",
+    "1m wall depth is retained modelling convention to cover tapered post bases, not a historical measurement.",
+    "Remaining roof/framing/material and simplified throne differences persist.",
+    "No physical-mobile acceptance; older Baohe north-inner long native route gaps retained.",
+    "Historical nonconcurrent software-renderer baseline cannot demonstrate actual-device smoothness."
+  ]
+}

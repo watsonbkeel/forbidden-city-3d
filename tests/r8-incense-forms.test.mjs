@@ -1,0 +1,11 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {createHash} from 'node:crypto';import {spawnSync} from 'node:child_process';
+import {restorePreIncenseSource} from './lib/r8-incense-retention.mjs';import delta from './fixtures/r8-incense-source-delta.json' with {type:'json'};import cfg from '../data/interiors/taihe.json' with {type:'json'};
+const read=p=>fs.readFileSync(new URL('../'+p,import.meta.url)),sha=b=>createHash('sha256').update(b).digest('hex');
+test('four photo-informed table forms stay within unchanged envelopes; every other component is byte-equivalent',()=>{const r=spawnSync('python3',['tests/lib/check-r8-incense.py'],{cwd:new URL('../',import.meta.url),encoding:'utf8',timeout:5000});assert.equal(r.status,0,r.stderr);const data=JSON.parse(r.stdout);assert.equal(data.S.tables,4);assert.equal(data.B.tables,4);});
+test('only the exact registry transition is allowed, no arbitrary historical hash rewrite',()=>{const current=read(delta.path);assert.equal(sha(restorePreIncenseSource(delta.path,current)),delta.baselineSHA256);for(const h of delta.deltas){assert.ok(current.toString().includes(h.after));assert.throws(()=>restorePreIncenseSource(delta.path,Buffer.from(current.toString().replace(h.after,h.after+' '))));}assert.throws(()=>restorePreIncenseSource(delta.path,Buffer.concat([current,Buffer.from('\n')])));});
+test('appended gold has neutral atlas UV and existing materials; old column/ornament bytes remain exact',()=>{
+ const decode=b=>{const n=b.readUInt32LE(12),g=JSON.parse(b.toString('utf8',20,20+n));return{g,b,offset:28+n};};
+ const old=decode(read('public/models/interiors/taihe-furnishing-surfaces-a4a0b82f9f76.glb')),now=decode(read('public'+cfg.model));assert.deepEqual(now.g.materials,old.g.materials);
+ const get=d=>{const p=d.g.meshes.find(m=>d.g.materials[m.primitives[0].material].name==='taihe_gold').primitives[0],a=d.g.accessors[p.attributes.TEXCOORD_0],v=d.g.bufferViews[a.bufferView];return{count:a.count,bytes:d.b.subarray(d.offset+v.byteOffset,d.offset+v.byteOffset+v.byteLength)};};
+ const a=get(old),b=get(now);assert.ok(b.count>a.count);assert.ok(b.bytes.subarray(0,a.bytes.length).equals(a.bytes));for(let i=a.bytes.length;i<b.bytes.length;i+=4)assert.equal(b.bytes.readFloatLE(i),0);
+});

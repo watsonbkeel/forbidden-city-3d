@@ -1,0 +1,292 @@
+{
+  "base": "5e6624c03d520ee91d355b09aa3060bc7a9489fe",
+  "candidate": "d21cb69bb4ebfc2d94e395109eb2b6e251fa0602",
+  "runtimeCandidate": "5e6624c03d520ee91d355b09aa3060bc7a9489fe",
+  "historicalBase": "dbed65dff5ab0919c2f21c6dff65bd4b2c1c850e",
+  "scope": "Historical assertions only: reverse the exact tests-only R22 front-crossing correction to the frozen R19/R21 route descriptors. Runtime remains frozen at 5e6624c; current routes use actual updated descriptors and unchanged drivers.",
+  "testFiles": {
+    "tests/stepwalk.cjs": {
+      "baselineSHA256": "8c0b776c686267e119c80e74692885d3aa74f28d544a2e5d9871845db961464d",
+      "candidateSHA256": "a76d083d5394ae5d87768d3bf174739da7c5657664b62c7e1287fa71c2f2c6b7",
+      "deltas": [
+        {
+          "before": "  const baoheNorthCrossZ=r1(bh+baoheDepthGrid(baohe.dimensions.depth).rearDoorZ+baohePostRadius+.5+.25);\n  const AXIS_ROUTES = [\n",
+          "after": "  const baoheNorthCrossZ=r1(bh+baoheDepthGrid(baohe.dimensions.depth).rearDoorZ+baohePostRadius+.5+.25);\n  const {captureBaoheFrontCrossing}=await import(pathToFileURL(path.join(ROOT,'tests/lib/baohe-front-route.mjs')).href);\n  const baoheFrontCrossZ=captureBaoheFrontCrossing().crossZ;\n  const AXIS_ROUTES = [\n"
+        },
+        {
+          "before": "      ...zhongheApproach.south.points, [0, zh - 7], [ZHONGHE_DETOUR_X, zh - 7], [ZHONGHE_DETOUR_X, zh + 7.2], [0, zh + 7.2], [0, zh + 11], ...zhongheApproach.north.points.toReversed(),\n      [0, bh - IN_FRONT], [BAOHE_DETOUR_X, bh - IN_FRONT], [BAOHE_DETOUR_X, back('保和殿') - 2], [BAOHE_DETOUR_X, baoheNorthCrossZ], [0, baoheNorthCrossZ], [0, back('保和殿') - 2]]],\n    // Use an actual outer stair, then cross behind the front column row. Keep\n",
+          "after": "      ...zhongheApproach.south.points, [0, zh - 7], [ZHONGHE_DETOUR_X, zh - 7], [ZHONGHE_DETOUR_X, zh + 7.2], [0, zh + 7.2], [0, zh + 11], ...zhongheApproach.north.points.toReversed(),\n      [0, baoheFrontCrossZ], [BAOHE_DETOUR_X, baoheFrontCrossZ], [BAOHE_DETOUR_X, back('保和殿') - 2], [BAOHE_DETOUR_X, baoheNorthCrossZ], [0, baoheNorthCrossZ], [0, back('保和殿') - 2]]],\n    // Use an actual outer stair, then cross behind the front column row. Keep\n"
+        }
+      ]
+    }
+  },
+  "addedFiles": {
+    "tests/lib/baohe-front-route.mjs": {
+      "candidateSHA256": "8fad243a2ba667e33392978d219659eacb6af88070cf65ac9d5f7e6e2fa4556e"
+    }
+  },
+  "retainedFiles": {
+    "tests/lib/stepwalk-runner.cjs": "a4350a05a8e4096b2ff5acbb08298473be819b38df4986a8925c86c8fd052a8a",
+    "tests/lib/world.mjs": "b2d8962b16a94bd67eb2fc8d8478fabc9666478183d646b74753e8a82b6c060f",
+    "tests/lib/auto-routes.mjs": "ffd8e5ad8e44b0296daf4df1511822dd0d10779e05348177929e57de774d2f26",
+    "src/controls/FirstPerson.js": "50b625af7fdec90b2e9a6a9d2c25433e58e7977fb99856de0bf02c3b988f0c36",
+    "src/utils/Collision.js": "5492939b921785ca83a576865108523f65164bf00e8a94f00d55df96c801d9ed"
+  },
+  "preservedFixtures": {
+    "tests/fixtures/r19-baohe-source-delta.json": "f3f0275d88a9a49ceab4434f79d42eed08e11027f6a2ac7b0675503d1f7632a2",
+    "tests/fixtures/r19-baohe-routes-delta.json": "2c04ee948fe12183d331ac428a1e8a4705a21df653dbcbae9147e62da0b80b9c",
+    "tests/fixtures/r22-baohe-source-delta.json": "6b5878ec8a5ac6efb55289f1b3ae021c4e7e54d05ae3398c39e5ea353fe6144f",
+    "tests/fixtures/r22-baohe-scene-delta.json": "d9940503f969fe0e5119d2141b4b566cd5017523ff24c658db13e61d8c5da075",
+    "tests/fixtures/r22-baohe-navigation-delta.json": "131a040f3452f3187d555923aac6869cb2be489f033d853d07cfd6dd38b6a0c9"
+  },
+  "fixed": {
+    "count": 33,
+    "beforeSHA256": "5d0ea3b91dbf3d9bb57de09bfcc8f106ef2d1a1d2d84866dcb6c7b49fa09b156",
+    "afterSHA256": "c1eabc78c2768e03b96f11277fd50fdb42b24ccc87cab592f72d7a6c2899633b",
+    "index": 2,
+    "before": {
+      "name": "太和殿→中和殿→保和殿",
+      "pts": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          6.2,
+          0
+        ],
+        [
+          6.2,
+          16
+        ],
+        [
+          0,
+          16.5
+        ],
+        [
+          0,
+          47.04
+        ],
+        [
+          6.333333333333334,
+          47.04
+        ],
+        [
+          6.333333333333334,
+          50.04
+        ],
+        [
+          6.333333333333334,
+          51
+        ],
+        [
+          6.333333333333334,
+          51.6
+        ],
+        [
+          0,
+          51.6
+        ],
+        [
+          0,
+          58
+        ],
+        [
+          5,
+          58
+        ],
+        [
+          5,
+          72.2
+        ],
+        [
+          0,
+          72.2
+        ],
+        [
+          0,
+          76
+        ],
+        [
+          0,
+          78.4
+        ],
+        [
+          6.333333333333334,
+          78.4
+        ],
+        [
+          6.333333333333334,
+          79
+        ],
+        [
+          6.333333333333334,
+          79.96
+        ],
+        [
+          6.333333333333334,
+          82.96
+        ],
+        [
+          0,
+          82.96
+        ],
+        [
+          0,
+          116.2
+        ],
+        [
+          6.1,
+          116.2
+        ],
+        [
+          6.1,
+          133.7
+        ],
+        [
+          6.1,
+          135.2
+        ],
+        [
+          0,
+          135.2
+        ],
+        [
+          0,
+          133.7
+        ]
+      ]
+    },
+    "after": {
+      "name": "太和殿→中和殿→保和殿",
+      "pts": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          6.2,
+          0
+        ],
+        [
+          6.2,
+          16
+        ],
+        [
+          0,
+          16.5
+        ],
+        [
+          0,
+          47.04
+        ],
+        [
+          6.333333333333334,
+          47.04
+        ],
+        [
+          6.333333333333334,
+          50.04
+        ],
+        [
+          6.333333333333334,
+          51
+        ],
+        [
+          6.333333333333334,
+          51.6
+        ],
+        [
+          0,
+          51.6
+        ],
+        [
+          0,
+          58
+        ],
+        [
+          5,
+          58
+        ],
+        [
+          5,
+          72.2
+        ],
+        [
+          0,
+          72.2
+        ],
+        [
+          0,
+          76
+        ],
+        [
+          0,
+          78.4
+        ],
+        [
+          6.333333333333334,
+          78.4
+        ],
+        [
+          6.333333333333334,
+          79
+        ],
+        [
+          6.333333333333334,
+          79.96
+        ],
+        [
+          6.333333333333334,
+          82.96
+        ],
+        [
+          0,
+          82.96
+        ],
+        [
+          0,
+          118.1
+        ],
+        [
+          6.1,
+          118.1
+        ],
+        [
+          6.1,
+          133.7
+        ],
+        [
+          6.1,
+          135.2
+        ],
+        [
+          0,
+          135.2
+        ],
+        [
+          0,
+          133.7
+        ]
+      ]
+    },
+    "changedPointIndices": [
+      22,
+      23
+    ],
+    "reason": "Only the two inside front-crossing waypoints move from116.2 to118.1, beyond actual folded leaves plus unchanged player radius, arrival tolerance and clearance. All33 routes, point counts, endpoints, north tail and driver behavior are retained."
+  },
+  "auto": {
+    "count": 59,
+    "beforeSHA256": "0fc4ae6b48d570a9af61660265d3d534aafaa1a41eacf52984fa1c63f27a835d",
+    "afterSHA256": "0fc4ae6b48d570a9af61660265d3d534aafaa1a41eacf52984fa1c63f27a835d"
+  }
+}

@@ -93,7 +93,7 @@ export const DIMENSIONS = {
     width: 46,
     depth: 25,
     height: 26,
-    baseHeight: 5,
+    baseHeight: 2, // Palace Museum: nominal common 后三宫 terrace, not an extra hall plinth.
   },
   
   // 交泰殿
@@ -101,7 +101,7 @@ export const DIMENSIONS = {
     width: 19,
     depth: 19,
     height: 22,
-    baseHeight: 4,
+    baseHeight: 2, // Same common terrace; the individual stone lip is separately photo-fit.
   },
   
   // 坤宁宫
@@ -109,7 +109,7 @@ export const DIMENSIONS = {
     width: 46,
     depth: 20,
     height: 26,
-    baseHeight: 5,
+    baseHeight: 2,
   },
   
   // 神武门：公布城台名义外廓，暂作顶面边界；顶/底测量端点未明（GateTowerMeasurements.js）。

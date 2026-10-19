@@ -1,13 +1,16 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import baseline from '../fixtures/taihe-interior-guide.json' with { type: 'json' };
+import { restoreR6PlaceCatalog } from './r6-place-retention.mjs';
 export { baseline };
 export const sha = value => createHash('sha256').update(value).digest('hex');
 
 // Remove only the exact reviewed text/source addition, then recover all frozen
 // catalog bytes. Older retention tests keep their original fixtures unchanged.
 export function restoreTaiheGuideCatalog(current) {
-  const raw = current.toString(), data = JSON.parse(raw);
+  let raw = current.toString();
+  if (JSON.parse(raw).places.length !== 14) raw = restoreR6PlaceCatalog(raw);
+  const data = JSON.parse(raw);
   assert.equal(raw, JSON.stringify(data, null, 2) + '\n', 'canonical catalog bytes');
   assert.deepEqual(data.places.find(place => place.id === 'taihe').interiorGuide, baseline.guide, 'exact reviewed guide');
   assert.deepEqual(data.sources.slice(baseline.baseSourceCount), baseline.addedSources, 'exact cached-source addition');

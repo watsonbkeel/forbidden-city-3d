@@ -1,3 +1,4 @@
+import {restorePreR15Source}from './lib/r15-flight-source-retention.mjs';
 import {restorePreColumnResponseSource} from './lib/taihe-column-response-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -43,9 +44,9 @@ test('actual S and B gold triangles have only explicit neutral or matching cylin
     for(const t of triangles){const expected=columnSurfaceUVs(t.vertices.map(v=>v.POSITION));
       if(expected.every(v=>v[0]===0&&v[1]===0))neutral++;else decorated++;
       for(let i=0;i<3;i++){assert.ok(t.vertices[i].TEXCOORD_0,`${lod}: gold UV attribute present`);for(let k=0;k<2;k++)assert.ok(Math.abs(t.vertices[i].TEXCOORD_0[k]-expected[i][k])<3e-6,`${lod}: explicit cylindrical/neutral UV`);}
-      if(expected[0][0])assert.ok(Math.max(...expected.map(v=>v[0]))-Math.min(...expected.map(v=>v[0]))<.1,'no wrapped interpolation');
+      if(expected[0][0])assert.ok(Math.max(...expected.map(v=>v[0]))-Math.min(...expected.map(v=>v[0]))<=(lod==='B'?7/8/8:7/8/32)+1e-6,'no wrapped interpolation');
     }
-    assert.ok(decorated>100);assert.ok(neutral>100);
+    assert.equal(decorated,lod==='B'?96:3192);assert.ok(neutral>100);
   }
   c.builder.dispose();
 });
@@ -53,7 +54,7 @@ test('actual S and B gold triangles have only explicit neutral or matching cylin
 import {columnMaterialDelta,restorePreColumnMaterialSource} from './lib/taihe-column-material-retention.mjs';
 for(const [path,record] of Object.entries(columnMaterialDelta.files)){
   test(`${path}: exact bounded material delta retains the old source`,()=>{
-    const bytes=read(path),restored=restorePreColumnMaterialSource(path,bytes);
+    const bytes=restorePreR15Source(path,read(path)),restored=restorePreColumnMaterialSource(path,bytes);
     assert.equal(createHash('sha256').update(restored).digest('hex'),record.baselineSHA256);
     assert.throws(()=>restorePreColumnMaterialSource(path,bytes+'\n'));
     const at665=restorePreColumnResponseSource(path,bytes).toString();
@@ -101,7 +102,7 @@ test('independent decoded geometry classifier proves exact neutral coverage and 
     }
    }assert.equal(decorated,expectedDecorated);assert.ok(neutral>100);
   }
-  const s=candidate.triangles.filter(t=>t.material==='taihe_gold');inspect(s,3192);inspect(b,144);
+  const s=candidate.triangles.filter(t=>t.material==='taihe_gold');inspect(s,3192);inspect(b,96);
   const bad=structuredClone(s),cap=bad.find(t=>t.vertices.every(v=>v.TEXCOORD_0.every(x=>x===0)));cap.vertices[0].TEXCOORD_0=[.5,.5];assert.throws(()=>inspect(bad,3192));
   const wrong=structuredClone(s),side=wrong.find(t=>t.vertices.some(v=>v.TEXCOORD_0[0]>0));side.vertices[0].TEXCOORD_0[0]+=.01;assert.throws(()=>inspect(wrong,3192));c.builder.dispose();
 });

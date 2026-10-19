@@ -1,0 +1,117 @@
+{
+  "baselineCommit": "ea6bf2b7e79622fbd34b5b71fa4c9bea36d64d80",
+  "sourceDeltas": {
+    "src/ui/PlaceCatalog.js": [
+      {
+        "before": "import outerWest from '../../data/zones/outer-west.json' with { type: 'json' };\nimport axisCourts from '../../data/zones/axis-courts.json' with { type: 'json' };\nimport { PALACE_LAYOUT } from '../scene/Layout.js';\nimport { pavilionGeometry } from '../scene/palace/special/PavilionProfiles.js';\n",
+        "after": "import outerWest from '../../data/zones/outer-west.json' with { type: 'json' };\nimport axisCourts from '../../data/zones/axis-courts.json' with { type: 'json' };\nimport eastSix from '../../data/zones/east-six.json' with { type: 'json' };\nimport westSix from '../../data/zones/west-six.json' with { type: 'json' };\nimport ningshou from '../../data/zones/ningshou.json' with { type: 'json' };\nimport { PALACE_LAYOUT } from '../scene/Layout.js';\nimport { pavilionGeometry } from '../scene/palace/special/PavilionProfiles.js';\n"
+      },
+      {
+        "before": "const date = value => check(typeof value === 'string' && /^\\d{4}-\\d{2}-\\d{2}$/.test(value) && !Number.isNaN(Date.parse(value)), 'invalid date');\nconst keyFor = b => JSON.stringify([b.kind, b.zoneId ?? null, b.name]);\nconst relations = ['resident', 'temporary-resident', 'ceremonial-access', 'ceremony-participant', 'government-participant', 'wedding-participant', 'changed-use', 'inscription-author', 'administrator'];\n\n/** Text knowledge only. No coordinates or replacement navigation rules in cards. */\nexport class PlaceCatalog {\n  constructor(input = data, { layout = PALACE_LAYOUT, zones = [garden, outerEast, outerWest, axisCourts] } = {}) {\n    shape(input, ['schemaVersion', 'language', 'status', 'baseCommit', 'reviewedAt', 'sourcePolicy', 'sources', 'places']);\n    check(input.schemaVersion === 1 && input.language === 'zh-CN', 'unsupported version/language');\n",
+        "after": "const date = value => check(typeof value === 'string' && /^\\d{4}-\\d{2}-\\d{2}$/.test(value) && !Number.isNaN(Date.parse(value)), 'invalid date');\nconst keyFor = b => JSON.stringify([b.kind, b.zoneId ?? null, b.name]);\nconst relations = [\"activity-participant\", \"administrator\", \"banquet-participant\", \"birthday-celebrant\", \"birthplace\", \"ceremonial-access\", \"ceremony-honoree\", \"ceremony-participant\", \"changed-use\", \"collection-patron\", \"commissioner\", \"confined-nearby\", \"departure-participant\", \"dining-and-inscription\", \"dining-user\", \"filial-ritual-participant\", \"garden-users\", \"gave-birth\", \"government-participant\", \"inscription-author\", \"intended-user\", \"martial-practice-user\", \"meal-attendant\", \"mourning-participant\", \"performance-honoree\", \"reader\", \"resident\", \"ritual-user\", \"temporary-resident\", \"tree-planter\", \"visitor\", \"visitor-and-poet\", \"waiting-place-user\", \"wedding-participant\", \"worship-participant\"];\n\n/** Text knowledge only. No coordinates or replacement navigation rules in cards. */\nexport class PlaceCatalog {\n  constructor(input = data, { layout = PALACE_LAYOUT, zones = [garden, outerEast, outerWest, axisCourts, eastSix, westSix, ningshou] } = {}) {\n    shape(input, ['schemaVersion', 'language', 'status', 'baseCommit', 'reviewedAt', 'sourcePolicy', 'sources', 'places']);\n    check(input.schemaVersion === 1 && input.language === 'zh-CN', 'unsupported version/language');\n"
+      },
+      {
+        "before": "      this.sources.set(source.id, source);\n    }\n    const refs = ids => {\n      list(ids); check(new Set(ids).size === ids.length && ids.every(id => this.sources.has(id)), 'missing or duplicate source reference');\n    };\n    const fact = (f, period = false) => {\n      shape(f, ['text', 'sourceIds', ...(period ? ['period'] : [])], period ? [] : ['period']);\n      text(f.text); refs(f.sourceIds); if (f.period !== undefined) text(f.period, 80);\n    };\n    for (const place of input.places) {\n      shape(place, ['id', 'name', 'functionTag', 'sceneBinding', 'summary', 'functions', 'people', 'timeline', 'modelExperience', 'siteAccess', 'reviewedAt'], ['residenceNote', 'interiorGuide']);\n      check(/^[a-z][a-z0-9-]*$/.test(place.id) && !this.byId.has(place.id), 'invalid or duplicate place ID');\n      text(place.name, 80); text(place.functionTag, 80); date(place.reviewedAt);\n",
+        "after": "      this.sources.set(source.id, source);\n    }\n    const refs = (ids, allowEmpty = false) => {\n      list(ids, allowEmpty ? 0 : 1); check(new Set(ids).size === ids.length && ids.every(id => this.sources.has(id)), 'missing or duplicate source reference');\n    };\n    const fact = (f, period = false, allowEmpty = false) => {\n      shape(f, ['text', 'sourceIds', ...(period ? ['period'] : [])], period ? [] : ['period']);\n      text(f.text); refs(f.sourceIds, allowEmpty); if (f.period !== undefined) text(f.period, 80);\n    };\n    for (const place of input.places) {\n      shape(place, ['id', 'name', 'functionTag', 'sceneBinding', 'summary', 'functions', 'people', 'timeline', 'modelExperience', 'siteAccess', 'reviewedAt'], ['residenceNote', 'interiorGuide', 'canonicalName', 'evidenceNote', 'evidenceStatus']);\n      check(/^[a-z][a-z0-9-]*$/.test(place.id) && !this.byId.has(place.id), 'invalid or duplicate place ID');\n      text(place.name, 80); text(place.functionTag, 80); date(place.reviewedAt);\n"
+      },
+      {
+        "before": "      check((b.kind === 'layout' && b.zoneId === undefined) || (b.kind === 'zone' && typeof b.zoneId === 'string' && b.zoneId.length > 0), 'invalid scene binding');\n      check(!this.byBinding.has(keyFor(b)), 'duplicate scene binding');\n      const candidates = b.kind === 'layout' ? layout : zones.filter(z => z.id === b.zoneId).flatMap(z => z.items).filter(item => ['hall', 'gate', 'cityGate'].includes(item.kind));\n      const matches = candidates.filter(item => item.name === b.name);\n      check(matches.length === 1 && place.name === b.name, 'scene binding must resolve exactly once');\n      fact(place.summary); list(place.functions); place.functions.forEach(f => fact(f));\n      list(place.timeline); place.timeline.forEach(f => fact(f, true)); list(place.people, 0);\n      for (const person of place.people) {\n        shape(person, ['name', 'kind', 'relation', 'text', 'sourceIds', 'period']);\n",
+        "after": "      check((b.kind === 'layout' && b.zoneId === undefined) || (b.kind === 'zone' && typeof b.zoneId === 'string' && b.zoneId.length > 0), 'invalid scene binding');\n      check(!this.byBinding.has(keyFor(b)), 'duplicate scene binding');\n      const candidates = b.kind === 'layout' ? layout : zones.filter(z => z.id === b.zoneId).flatMap(z => z.items).filter(item => ['hall', 'gate', 'cityGate', 'nineDragonWall'].includes(item.kind));\n      const matches = candidates.filter(item => item.name === b.name);\n      check(matches.length === 1 && place.name === b.name, 'scene binding must resolve exactly once');\n      // A clearly labelled unresolved model identity may state the research gap\n      // without pretending a neighbouring building's source proves the name.\n      fact(place.summary, false, place.evidenceStatus === 'identity-unresolved'); list(place.functions, 0); place.functions.forEach(f => fact(f));\n      list(place.timeline, 0); place.timeline.forEach(f => fact(f, true)); list(place.people, 0);\n      for (const person of place.people) {\n        shape(person, ['name', 'kind', 'relation', 'text', 'sourceIds', 'period']);\n"
+      },
+      {
+        "before": "      if (place.people.some(p => ['resident', 'temporary-resident'].includes(p.relation))) check(!!place.residenceNote, 'residence requires evidence note');\n      if (place.residenceNote) fact(place.residenceNote);\n      if (place.interiorGuide !== undefined) {\n        const guide = place.interiorGuide;\n",
+        "after": "      if (place.people.some(p => ['resident', 'temporary-resident'].includes(p.relation))) check(!!place.residenceNote, 'residence requires evidence note');\n      if (place.residenceNote) fact(place.residenceNote);\n      if (place.canonicalName !== undefined) text(place.canonicalName, 80);\n      if (place.evidenceNote !== undefined) fact(place.evidenceNote);\n      if (place.evidenceStatus !== undefined) check([\"source-supported\", \"identity-inferred\", \"identity-unresolved\", \"partial-history\", \"partial-identity\", \"historical-site\"].includes(place.evidenceStatus), 'invalid evidence status');\n      if (place.interiorGuide !== undefined) {\n        const guide = place.interiorGuide;\n"
+      },
+      {
+        "before": "  sourcesFor(place) {\n    const ids = new Set();\n    for (const item of [place.summary, ...place.functions, ...place.people, ...place.timeline, place.residenceNote, place.siteAccess, place.siteAccess.notice, ...(place.interiorGuide?.items ?? [])]) {\n      item?.sourceIds.forEach(id => ids.add(id));\n    }\n",
+        "after": "  sourcesFor(place) {\n    const ids = new Set();\n    for (const item of [place.summary, ...place.functions, ...place.people, ...place.timeline, place.residenceNote, place.evidenceNote, place.siteAccess, place.siteAccess.notice, ...(place.interiorGuide?.items ?? [])]) {\n      item?.sourceIds.forEach(id => ids.add(id));\n    }\n"
+      }
+    ],
+    "src/ui/PlaceInfoPanel.js": [
+      {
+        "before": "const factText = fact => `${fact.period ? `${fact.period} · ` : ''}${fact.text}`;\nconst resident = person => ['resident', 'temporary-resident'].includes(person.relation);\nconst disclaimer = '模型漫游不代表现场开放许可；实际参观范围和入内安排请查阅故宫博物院当日公告。';\n\n",
+        "after": "const factText = fact => `${fact.period ? `${fact.period} · ` : ''}${fact.text}`;\nconst resident = person => ['resident', 'temporary-resident'].includes(person.relation);\nconst evidenceLabels = { 'identity-inferred': '名称为文献推定', 'identity-unresolved': '名称对应待核', 'partial-history': '独立沿革资料有限', 'partial-identity': '模型单体对应待核', 'historical-site': '历史地点 · 实体已拆除' };\nconst disclaimer = '模型漫游不代表现场开放许可；实际参观范围和入内安排请查阅故宫博物院当日公告。';\n\n"
+      },
+      {
+        "before": "    this.element.appendChild(title);\n    if (place) this.element.appendChild(element('p', place.functionTag, 'place-tag'));\n    this.element.appendChild(element('p', place?.summary.text ?? '此地点的详细介绍尚未收录。', 'place-summary'));\n    if (canTravel) {\n",
+        "after": "    this.element.appendChild(title);\n    if (place) this.element.appendChild(element('p', place.functionTag, 'place-tag'));\n    if (evidenceLabels[place?.evidenceStatus]) this.element.appendChild(element('p', evidenceLabels[place.evidenceStatus], 'place-note'));\n    if (place?.canonicalName && place.canonicalName !== name) this.element.appendChild(element('p', `资料所用名称：${place.canonicalName}`, 'place-note'));\n    if (place?.evidenceNote) this.element.appendChild(element('p', factText(place.evidenceNote), 'place-note'));\n    this.element.appendChild(element('p', place?.summary.text ?? '此地点的详细介绍尚未收录。', 'place-summary'));\n    if (canTravel) {\n"
+      }
+    ],
+    "src/ui/Minimap.js": [
+      {
+        "before": "    heading.textContent = '地点介绍';\n    this.placeList.appendChild(heading);\n    for (const place of this.placeCatalog?.places ?? []) {\n      const button = document.createElement('button');\n",
+        "after": "    heading.textContent = '地点介绍';\n    this.placeList.appendChild(heading);\n    const search = document.createElement('input');\n    search.id = 'place-search'; search.type = 'search'; search.value = '';\n    search.placeholder = '搜索地点名称';\n    search.setAttribute('aria-label', '搜索地点名称');\n    search.setAttribute('aria-controls', 'place-directory');\n    const resultCount = document.createElement('p'); resultCount.id = 'place-search-count';\n    resultCount.setAttribute('role', 'status'); resultCount.setAttribute('aria-live', 'polite');\n    const directory = document.createElement('div'); directory.id = 'place-directory';\n    this.placeList.append(search, resultCount, directory);\n    const entries = [];\n    for (const place of this.placeCatalog?.places ?? []) {\n      const button = document.createElement('button');\n"
+      },
+      {
+        "before": "      button.setAttribute('aria-label', `了解${place.name}`);\n      button.addEventListener('click', () => this.showPlace(place.id));\n      this.placeList.appendChild(button);\n    }\n    this.resumePlace = document.createElement('button');\n    this.resumePlace.id = 'place-resume';\n",
+        "after": "      button.setAttribute('aria-label', `了解${place.name}`);\n      button.addEventListener('click', () => this.showPlace(place.id));\n      directory.appendChild(button);\n      entries.push({button, name: `${place.name} ${place.canonicalName ?? ''}`.normalize('NFKC').toLocaleLowerCase('zh-CN')});\n    }\n    const filter = () => {\n      const query = search.value.trim().normalize('NFKC').toLocaleLowerCase('zh-CN');\n      let count = 0;\n      for (const {button, name} of entries) {\n        const match = name.includes(query); button.hidden = button.inert = !match;\n        if (match) count++;\n      }\n      resultCount.textContent = count ? `显示 ${count} / ${entries.length} 个地点` : '未找到匹配地点，请换个名称。';\n    };\n    search.addEventListener('input', filter); filter();\n    this.resumePlace = document.createElement('button');\n    this.resumePlace.id = 'place-resume';\n"
+      },
+      {
+        "before": "    for (const it of this.items) {\n      const [fill, stroke] = style[it.kind] ?? style.hall;\n      for (const footprint of it.footprints ?? [it]) {\n        const [x, y, w, h] = this.rectOf(footprint.x, footprint.z, footprint.w, footprint.d);\n",
+        "after": "    for (const it of this.items) {\n      const [fill, stroke] = style[it.kind] ?? style.hall;\n      if (it.historicalSite) {\n        const point = this.worldToMap(it.x, it.z);\n        ctx.strokeStyle = stroke; ctx.lineWidth = 0.8;\n        ctx.beginPath(); ctx.arc(point.x, point.y, 2.4, 0, Math.PI * 2); ctx.stroke();\n        continue;\n      }\n      for (const footprint of it.footprints ?? [it]) {\n        const [x, y, w, h] = this.rectOf(footprint.x, footprint.z, footprint.w, footprint.d);\n"
+      },
+      {
+        "before": "      placed.push({ x: cx, y: cy });\n      const mode = it.navigation?.mode;\n      this.drawLabel(mode === 'exterior-view' ? `${it.name}（外观）` : it.name, cx, cy, it.kind === 'hall', it.kind === 'hall' ? 9 : 8, it.name, mode, this.placeCatalog?.forMapItem(it, this.items)?.id);\n    }\n  }\n",
+        "after": "      placed.push({ x: cx, y: cy });\n      const mode = it.navigation?.mode;\n      this.drawLabel(it.historicalSite ? `${it.name}（旧址）` : mode === 'exterior-view' ? `${it.name}（外观）` : it.name, cx, cy, it.kind === 'hall', it.kind === 'hall' ? 9 : 8, it.name, mode, this.placeCatalog?.forMapItem(it, this.items)?.id);\n    }\n  }\n"
+      }
+    ],
+    "style.css": [
+      {
+        "before": "#minimap #place-list { display: flex; flex-wrap: wrap; gap: 6px; }\n#minimap #place-list h2 { flex-basis: 100%; }\n#minimap #place-list button,\n#minimap #place-resume,\n",
+        "after": "#minimap #place-list { display: flex; flex-wrap: wrap; gap: 6px; }\n#minimap #place-list h2 { flex-basis: 100%; }\n#minimap #place-search {\n  flex-basis: 100%; width: 100%; min-width: 0; min-height: 44px;\n  box-sizing: border-box; border: 1px solid #9f804a; border-radius: 6px;\n  background: #211c17; color: #ffe4a1; padding: 8px 12px; font: inherit;\n}\n#minimap #place-search::placeholder { color: #d3c7b0; }\n#minimap #place-search-count { flex-basis: 100%; margin: 2px 0; color: #d3c7b0; font-size: 14px; }\n#minimap #place-directory {\n  display: flex; flex-wrap: wrap; gap: 6px; width: 100%;\n  max-height: min(240px, 36dvh); overflow-y: auto; overscroll-behavior: contain;\n  touch-action: pan-y;\n}\n#minimap #place-directory button[hidden] { display: none !important; }\n\n#minimap #place-list button,\n#minimap #place-resume,\n"
+      }
+    ],
+    "data/places/catalog.schema.json": [
+      {
+        "before": "        \"relation\": {\n          \"enum\": [\n            \"resident\",\n            \"temporary-resident\",\n            \"ceremonial-access\",\n            \"ceremony-participant\",\n            \"government-participant\",\n            \"wedding-participant\",\n            \"changed-use\",\n            \"inscription-author\",\n            \"administrator\"\n          ]\n        },\n",
+        "after": "        \"relation\": {\n          \"enum\": [\n            \"activity-participant\",\n            \"administrator\",\n            \"banquet-participant\",\n            \"birthday-celebrant\",\n            \"birthplace\",\n            \"ceremonial-access\",\n            \"ceremony-honoree\",\n            \"ceremony-participant\",\n            \"changed-use\",\n            \"collection-patron\",\n            \"commissioner\",\n            \"confined-nearby\",\n            \"departure-participant\",\n            \"dining-and-inscription\",\n            \"dining-user\",\n            \"filial-ritual-participant\",\n            \"garden-users\",\n            \"gave-birth\",\n            \"government-participant\",\n            \"inscription-author\",\n            \"intended-user\",\n            \"martial-practice-user\",\n            \"meal-attendant\",\n            \"mourning-participant\",\n            \"performance-honoree\",\n            \"reader\",\n            \"resident\",\n            \"ritual-user\",\n            \"temporary-resident\",\n            \"tree-planter\",\n            \"visitor\",\n            \"visitor-and-poet\",\n            \"waiting-place-user\",\n            \"wedding-participant\",\n            \"worship-participant\"\n          ]\n        },\n"
+      },
+      {
+        "before": "        },\n        \"summary\": {\n          \"$ref\": \"#/$defs/fact\"\n        },\n        \"functions\": {\n          \"type\": \"array\",\n          \"minItems\": 1,\n          \"items\": {\n            \"$ref\": \"#/$defs/fact\"\n",
+        "after": "        },\n        \"summary\": {\n          \"$ref\": \"#/$defs/summary\"\n        },\n        \"functions\": {\n          \"type\": \"array\",\n          \"minItems\": 0,\n          \"items\": {\n            \"$ref\": \"#/$defs/fact\"\n"
+      },
+      {
+        "before": "        \"timeline\": {\n          \"type\": \"array\",\n          \"minItems\": 1,\n          \"items\": {\n            \"$ref\": \"#/$defs/event\"\n",
+        "after": "        \"timeline\": {\n          \"type\": \"array\",\n          \"minItems\": 0,\n          \"items\": {\n            \"$ref\": \"#/$defs/event\"\n"
+      },
+      {
+        "before": "        \"interiorGuide\": {\n          \"$ref\": \"#/$defs/interiorGuide\"\n        }\n      },\n",
+        "after": "        \"interiorGuide\": {\n          \"$ref\": \"#/$defs/interiorGuide\"\n        },\n        \"canonicalName\": {\n          \"type\": \"string\",\n          \"minLength\": 1,\n          \"maxLength\": 80,\n          \"pattern\": \"^[^<>]*$\"\n        },\n        \"evidenceNote\": {\n          \"$ref\": \"#/$defs/fact\"\n        },\n        \"evidenceStatus\": {\n          \"enum\": [\n            \"source-supported\",\n            \"identity-inferred\",\n            \"identity-unresolved\",\n            \"partial-history\",\n            \"partial-identity\",\n            \"historical-site\"\n          ]\n        }\n      },\n"
+      },
+      {
+        "before": "              \"residenceNote\"\n            ]\n          }\n        }\n",
+        "after": "              \"residenceNote\"\n            ]\n          }\n        },\n        {\n          \"if\": {\n            \"properties\": {\n              \"evidenceStatus\": {\n                \"const\": \"identity-unresolved\"\n              }\n            },\n            \"required\": [\n              \"evidenceStatus\"\n            ]\n          },\n          \"else\": {\n            \"properties\": {\n              \"summary\": {\n                \"$ref\": \"#/$defs/fact\"\n              }\n            }\n          }\n        }\n"
+      },
+      {
+        "before": "        \"items\"\n      ]\n    }\n  }\n",
+        "after": "        \"items\"\n      ]\n    },\n    \"summary\": {\n      \"type\": \"object\",\n      \"additionalProperties\": false,\n      \"properties\": {\n        \"text\": {\n          \"type\": \"string\",\n          \"minLength\": 1\n        },\n        \"sourceIds\": {\n          \"type\": \"array\",\n          \"minItems\": 0,\n          \"uniqueItems\": true,\n          \"items\": {\n            \"type\": \"string\",\n            \"minLength\": 1\n          }\n        },\n        \"period\": {\n          \"type\": \"string\",\n          \"minLength\": 1\n        }\n      },\n      \"required\": [\n        \"text\",\n        \"sourceIds\"\n      ]\n    }\n  }\n"
+      }
+    ]
+  },
+  "baseFiles": {
+    "src/ui/PlaceCatalog.js": "ee974665d1b5d27ee013a00fa143b85528aa642b6a398d809b16073104d469d0",
+    "src/ui/PlaceInfoPanel.js": "442b15d4fcb114962a75b1d3e9128aad86926a4fa556663c0d217e8a96fadee2",
+    "src/ui/Minimap.js": "d5fc129724c25284bc826314c194a8a95d56c57c4551010561efa162a400eb0f",
+    "style.css": "744565e9d153803725c6b0616d536d147164b72644a34f214a8cacb6b7fd177f",
+    "data/places/catalog.schema.json": "5516f244d048e3c21c3a999db19f2533e70ca563cf81acab9eb743335c039f51"
+  },
+  "catalog": {
+    "baseSHA256": "98e08a47447f87e8525c9098677fd5c075d5de04936b3b5104baee1cb52372b2",
+    "basePlaceCount": 14,
+    "baseSourceCount": 29,
+    "addedPlaceCount": 145,
+    "addedSourceCount": 100,
+    "addedPlacesSHA256": "9cf114db6a56a9ac377b199d4f8d54b7bd4166e2b04c58aa31678a72c4820065",
+    "addedSourcesSHA256": "b8b5cf14e7f625339f5f81585a0860d638988ede188c0dd52c3185ff8762de80",
+    "metadata": {
+      "baseCommit": {
+        "before": "f83c74858c90b6d125cabd3cf3c9414f4a5b3ae8",
+        "after": "ea6bf2b7e79622fbd34b5b71fa4c9bea36d64d80"
+      },
+      "reviewedAt": {
+        "before": "2026-10-16",
+        "after": "2026-10-18"
+      }
+    }
+  }
+}

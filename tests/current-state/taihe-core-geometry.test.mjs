@@ -1,3 +1,6 @@
+// Exact pre-R25 nameboard poses for historical whole-hall fingerprints only.
+import {HistoricalR24PalaceBuilder} from '../lib/historical-r24-baohe-fixture.mjs';
+import {restorePreR10MeshRows} from '../lib/r10-column-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -5,30 +8,41 @@ import crypto from 'node:crypto';
 import * as THREE from 'three';
 import { TAIHE_CORE as P, TAIHE_FALLBACK_OWNER } from '../../src/scene/palace/special/TaiheCoreProfile.js';
 import { taiheGlyphMaterial } from '../../src/scene/palace/special/TaiheCore.js';
-import { captureTaiheControl as capture, hash, serialMesh } from '../lib/taihe-core-fixture.mjs';
+import { captureTaiheControl as capture, captureHistoricalKunningControl, captureHistoricalBaoheControl, hash, serialMesh } from '../lib/taihe-core-fixture.mjs';
+import rearDelta from '../fixtures/r9-rear-enclosure-mesh-delta.json' with {type:'json'};
 const baseline=JSON.parse(fs.readFileSync(new URL('../../docs/current-state/taihe-v16-core/geometry-baseline.json',import.meta.url)));
 const c=capture('太和殿');
 const tris=o=>(o.geometry.index?.count??o.geometry.attributes.position.count)/3;
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-5,`${a} != ${b}`);
-for(const [name,b]of Object.entries(baseline.otherHalls))test(`Taihe correction leaves ${name} geometry, materials and navigation byte-exact`,()=>{
- const v=capture(name),rows=[];v.group.traverse(o=>{if(o.isMesh)rows.push(serialMesh(o));});assert.equal(hash(rows),b.geometry);assert.equal(hash({colliders:v.builder.colliders,walkables:v.builder.walkables}),b.physics);
+for(const [name,b]of Object.entries(baseline.otherHalls))test(`Taihe correction leaves ${name} geometry, materials and navigation byte-exact in the explicitly restored historical frame`,async()=>{
+ const v=name==='坤宁宫'?await captureHistoricalKunningControl():name==='保和殿'?await captureHistoricalBaoheControl():capture(name,HistoricalR24PalaceBuilder),rows=[];v.group.traverse(o=>{if(o.isMesh)rows.push(serialMesh(o));});assert.equal(hash(rows),b.geometry);assert.equal(hash({colliders:v.builder.colliders,walkables:v.builder.walkables}),b.physics);
 });
 test('approved card bytes, inferred rows and dimension-precision limits remain explicit',()=>{
  const bytes=fs.readFileSync(new URL('../../docs/current-state/taihe-v16-core/approved-geometry-card.json',import.meta.url));assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),P.approvalCardSHA256);
  assert.deepEqual(P.columns.x,[-4.233,4.233]);assert.deepEqual(P.columns.goldZ,[-5.5868,5.6019,13.0647]);near(P.columns.x[1]-P.columns.x[0],8.466);
  assert.deepEqual(P.columns.publishedDiameterRange,[1,1.06]);assert.match(P.dais.registration,/historical/);assert.match(P.screen.registration,/conflicts/);assert.match(P.caisson.interpretation,/diagonal/);
 });
-test('all 108 unscoped Taihe meshes remain byte-exact; only four former gold grid columns change material',()=>{
+test('historical meshes remain exact after the finite R9 enclosure and R10 registered grid deltas',()=>{
+ const frozen=capture('太和殿',HistoricalR24PalaceBuilder);
+ const all=frozen.group.children.filter(o=>o.isMesh),restored=restorePreR10MeshRows(all.map(o=>serialMesh(o)));
+ const rowMap=new Map(all.map((o,i)=>[o,restored[i]]));
  const protectedMeshes=[],regilded=[];
- c.group.traverse(o=>{if(!o.isMesh||o.userData.taiheCoreOwner===TAIHE_FALLBACK_OWNER||o.userData.taihePermanent)return;
- const p=o.position;if(o.geometry.type==='CylinderGeometry'&&Math.abs(Math.abs(p.x)-63/11*1.5)<1e-7&&p.z>0&&Math.abs(p.z)<18){assert.equal(o.material.name,'wood_column');regilded.push(serialMesh(o,{material:false}));return;}protectedMeshes.push(hash(serialMesh(o)));});
- assert.deepEqual(protectedMeshes.sort(),baseline.taihe.protectedMeshes);assert.deepEqual(regilded,baseline.taihe.regildedColumns);
+ frozen.group.traverse(o=>{if(!o.isMesh)return;if(o.userData.taiheCoreOwner===TAIHE_FALLBACK_OWNER||o.userData.taihePermanent)return;
+ const row=rowMap.get(o)??serialMesh(o),x=row.matrix[12],z=row.matrix[14];
+ if(o.geometry.type==='CylinderGeometry'&&Math.abs(Math.abs(x)-63/11*1.5)<1e-7&&z>0&&Math.abs(z)<18){assert.equal(row.material.name,'wood_column');const {material,...geometry}=row;regilded.push(geometry);return;}
+ protectedMeshes.push(hash(row));});
+ assert.equal(rearDelta.before.length,9);assert.equal(rearDelta.after.length,4);
+ for(const h of rearDelta.after){const i=protectedMeshes.indexOf(h);assert.ok(i>=0,'exact retained enclosure mesh required');protectedMeshes.splice(i,1);}
+ protectedMeshes.push(...rearDelta.before);
+ assert.deepEqual(protectedMeshes.sort(),baseline.taihe.protectedMeshes);assert.deepEqual(regilded,baseline.taihe.regildedColumns);frozen.builder.dispose();
 });
-test('fallback retains the original 1078 core triangles plus 480 displays; permanent architecture delta is unchanged',()=>{
+
+test('fallback retains its original 1600-triangle cap; permanent geometry separately counts60 beam and280 coffer triangles',()=>{
  const fallback=c.group.children.filter(o=>o.userData.taiheCoreOwner===TAIHE_FALLBACK_OWNER),permanent=c.group.children.filter(o=>o.userData.taihePermanent);
  assert.equal(fallback.length,8);assert.equal(new Set(fallback.map(o=>o.material)).size,8);
- assert.equal(fallback.reduce((n,o)=>n+tris(o),0),1558+38);assert.ok(1558+38<=P.budgets.fallbackVisibleTriangles);
- const additions=permanent.reduce((n,o)=>n+tris(o),0);assert.equal(additions,120);assert.equal(1078+additions-(1380+336+2),-520);assert.equal(1558+38+additions-(1380+336+2),-2);
+ assert.equal(fallback.reduce((n,o)=>n+tris(o),0),1600);assert.ok(1600<=P.budgets.fallbackVisibleTriangles);
+ const coffer=permanent.filter(o=>o.userData.taihePermanent==='coffer-frame').reduce((n,o)=>n+tris(o),0);assert.equal(coffer,280);
+ const additions=permanent.reduce((n,o)=>n+tris(o),0);assert.equal(additions,460);const historical=additions-coffer;assert.equal(historical,180);assert.equal(permanent.filter(o=>o.userData.taihePermanent==='central-beam').reduce((n,o)=>n+tris(o),0),60);assert.equal(1078+historical-(1380+336+2),-460);assert.equal(1600+historical-(1380+336+2),62);
  // Never subtract unloaded S triangles from the original external view budget.
  assert.ok(Math.abs(-74)-P.frame.depth/2>15);assert.equal(P.budgets.originalFrontTriangles,874189);assert.equal(P.budgets.originalFrontRatioCeiling,1.1);
 });

@@ -1,3 +1,4 @@
+import {restorePreR12InnerSource} from '../lib/r12-inner-source-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -177,5 +178,5 @@ test('the original perf harness and all six computed point/yaw tuples stay byte-
     { point: '宁寿宫', pos: [-293.2, 164.1], yaw: 0 },
     { point: '御花园', pos: [0, 433.7], yaw: 0 },
   ]);
-  assert.equal(sha(read('src/config/constants.js')), '464eabc753a393b325c17de3a7ee1e49dc746d9fdf95ef8f7e1ed5a5c1efe439');
+  assert.equal(sha(restorePreR12InnerSource('src/config/constants.js',Buffer.from(read('src/config/constants.js')))), '464eabc753a393b325c17de3a7ee1e49dc746d9fdf95ef8f7e1ed5a5c1efe439');
 });

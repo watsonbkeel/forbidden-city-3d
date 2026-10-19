@@ -1,3 +1,5 @@
+import {restorePreR15Source}from './lib/r15-flight-source-retention.mjs';
+import {restorePreR12InnerSource} from './lib/r12-inner-source-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -8,7 +10,8 @@ import { createDOM } from './lib/ui-dom.mjs';
 import { setupMap } from './lib/map-fixture.mjs';
 import { restoreLoadingWelcomeBytes } from './lib/loading-welcome-source-delta.mjs';
 import { baseline, sha, restoreTaiheGuideCatalog, restoreTaiheGuideSource } from './lib/taihe-guide-retention.mjs';
-const read = path => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
+import { restoreR6PlaceCatalog, restoreR6PlaceSource } from './lib/r6-place-retention.mjs';
+const read = path => { const raw=restorePreR15Source(path,readFileSync(new URL(`../${path}`, import.meta.url))).toString(); return path==='data/places/zh-CN.json' ? restoreR6PlaceCatalog(raw) : restoreR6PlaceSource(path,raw); };
 const raw = read('data/places/zh-CN.json'), data = JSON.parse(raw);
 const guide = d => d.places.find(p => p.id === 'taihe').interiorGuide;
 
@@ -39,7 +42,7 @@ test('sourcesFor resolves every per-guide reference exactly once alongside the e
   assert.deepEqual(sources.map(s => s.id), expected);
   assert.equal(new Set(sources.map(s => s.url)).size, sources.length);
   for (const item of place.interiorGuide.items) for (const id of item.sourceIds) assert.ok(sources.includes(catalog.sources.get(id)));
-  for (const p of catalog.places.filter(p => p.id !== 'taihe')) assert.deepEqual(catalog.sourcesFor(p), before.sourcesFor(before.get(p.id)));
+  for (const p of catalog.places.filter(p => p.id !== 'taihe' && data.places.some(old=>old.id===p.id))) assert.deepEqual(catalog.sourcesFor(p), before.sourcesFor(before.get(p.id)));
 });
 
 for (const [name, mutate] of [
@@ -103,7 +106,7 @@ test('optional guide uses the same nonmodal text panel and absent cards retain t
   const sourceLinks = panel.element.querySelectorAll('a');
   assert.equal(sourceLinks.length, catalog.sourcesFor(catalog.get('taihe')).length);
   for (const a of sourceLinks) { assert.equal(a.getAttribute('target'), '_blank'); assert.equal(a.getAttribute('rel'), 'noopener noreferrer'); }
-  for (const p of catalog.places.filter(p => p.id !== 'taihe')) {
+  for (const p of catalog.places.filter(p => p.id !== 'taihe' && data.places.some(old=>old.id===p.id))) {
     render(p); assert.ok(!panel.element.textContent.includes('殿内看点'));
     frozenPanel.render({ place: p, name: p.name, sources: catalog.sourcesFor(p), canTravel: true, onTravel: () => trips++ });
     assert.deepEqual(snapshot(panel.element), snapshot(frozenPanel.element), `${p.id}: original DOM tree retained`);
@@ -137,7 +140,7 @@ test('Draft 2020-12 schema validates the catalog and rejects bounded guide mutat
   const result = spawnSync('python', ['-c', script], { cwd: new URL('../', import.meta.url), encoding: 'utf8' }); assert.equal(result.status, 0, result.stderr);
 });
 
-for (const path of ['main.js', 'style.css', 'src/ui/Minimap.js', 'src/ui/MapTourSession.js', 'src/ui/SettingsMenu.js', 'src/config/constants.js']) test(`${path} preserves frozen bytes after any exact welcome restoration`, () => assert.equal(sha(path === 'main.js' ? restoreLoadingWelcomeBytes(read(path)) : read(path)), baseline.baseFiles[path]));
+for (const path of ['main.js', 'style.css', 'src/ui/Minimap.js', 'src/ui/MapTourSession.js', 'src/ui/SettingsMenu.js', 'src/config/constants.js']) test(`${path} preserves frozen bytes after any exact welcome restoration`, () => assert.equal(sha(path === 'main.js' ? restoreLoadingWelcomeBytes(read(path)) : restorePreR12InnerSource(path,read(path))), baseline.baseFiles[path]));
 
 for (const [path, deltas] of Object.entries(baseline.sourceDeltas)) {
   test(`${path} has only the exact reversible text-guide additions`, () => restoreTaiheGuideSource(path, read(path)));

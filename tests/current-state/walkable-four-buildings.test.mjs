@@ -2,7 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { buildWorld, walkStraight } from '../lib/world.mjs';
 
+import { captureZhongheApproaches } from '../lib/zhonghe-approach-route.mjs';
 const world = await buildWorld();
+const zhongheApproaches = captureZhongheApproaches();
 function traverse(points) {
   let feet = world.cm.getGroundHeight(...points[0], Infinity);
   for (let i = 1; i < points.length; i++) {
@@ -13,7 +15,7 @@ function traverse(points) {
 }
 
 test('Zhonghe central door route goes inside the new enclosure before turning around the throne', () => {
-  traverse([[0, 50], [0, 58], [5, 58], [5, 72.2], [0, 72.2], [0, 80]]);
+  traverse([...zhongheApproaches.south.points, [0, 58], [5, 58], [5, 72.2], [0, 72.2], ...zhongheApproaches.north.points.toReversed()]);
   const oldCut = walkStraight(world, [0, 55], [5, 56], { feet0: world.cm.getGroundHeight(0, 55, Infinity) });
   assert.ok(oldCut.reached < oldCut.total - 1, 'old diagonal through a newly solid window must stay blocked');
 });
@@ -30,7 +32,9 @@ test('Zhonghe east and west plinth stairs fit inside the retained common terrace
 });
 
 test('Qianqing Gate and raised passage reach Qianqing Palace without jumping', () => {
-  traverse([[0, 195], [0, 310.8]]);
+  // R12: the center is carved imperial stone; use the actual eastern flight
+  // and the rear door before crossing the shared landing.
+  traverse([[0,195],[-7.46,195],[-7.46,227.3],[0,227.3],[0,310.8]]);
 });
 
 test('Jiaotai keeps an interior route around its throne through the centre doors', () => {
@@ -38,8 +42,8 @@ test('Jiaotai keeps an interior route around its throne through the centre doors
 });
 
 // The offset approach must join a stair opening, not traverse the new cheek wall.
-test('offset Taihe approach joins the central Zhonghe flight and keeps its rail solid', () => {
-  traverse([[2.5, 21], [2.5, 48], [0, 48], [0, 50.4]]);
+test('offset Taihe approach joins the side Zhonghe flight and keeps the imperial-stone cheek solid', () => {
+  traverse([[2.5, 21], [2.5, zhongheApproaches.south.points[0][1]], ...zhongheApproaches.south.points]);
   const rail = walkStraight(world, [2.5, 48], [2.5, 50.4], { feet0: 8 });
   assert.ok(rail.reached < rail.total - 0.5, 'new stair cheek wall must remain solid');
 });

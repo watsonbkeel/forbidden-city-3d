@@ -18,7 +18,7 @@ const { ZONES } = await import('../data/zones/index.js');
 const { Teleport } = await import('../src/ui/Teleport.js');
 hooks.deregister();
 
-test('V17 integrated fourteen cards use actual seven-zone map records and explicit safe travel', async t => {
+test('All 159 integrated cards use actual seven-zone map records and explicit safe travel', async t => {
   // Build the unchanged permanent scene, then let the real manager build,
   // load/unload and register all seven side zones. Only DOM/canvas, texture
   // fetching and time are fixtures; no browser, server or WebGL is launched.
@@ -48,14 +48,20 @@ test('V17 integrated fourteen cards use actual seven-zone map records and explic
   s.map.onTeleport = name => teleport.go(name);
   s.map.renderBase();
   const informationButtons = s.map.placeList.querySelectorAll('button');
-  assert.equal(informationButtons.length, 14);
-  assert.equal(s.map.placeCatalog.places.length, 14);
+  assert.equal(informationButtons.length, 159);
+  assert.equal(s.map.placeCatalog.places.length, 159);
   for (const [index, place] of s.map.placeCatalog.places.entries()) {
     const name = place.modelExperience.teleportTargetName;
     assert.equal(teleport.targets.has(name), true, `${place.id}: production target exists`);
     const labels = s.map.labels.filter(label => label.placeId === place.id);
-    assert.equal(labels.length, 1, `${place.id}: exact production map label`);
-    assert.equal(labels[0].name, name);
+    assert.ok(labels.length <= 1, `${place.id}: no ambiguous production map label`);
+    if (index < 14) assert.equal(labels.length, 1, `${place.id}: original map label retained`);
+    if (labels.length) assert.equal(labels[0].name, name);
+    if (place.sceneBinding.kind === 'zone') {
+      const items=s.map.items.filter(item=>item.name===name);
+      assert.equal(items.length,1,`${place.id}: one real map footprint`);
+      assert.equal(s.map.placeCatalog.forMapItem(items[0],s.map.items)?.id,place.id,`${place.id}: real footprint binds even when label is crowded out`);
+    }
     s.map.toggle();
     const before = s.c.getPosition().clone(), calls = go.mock.callCount();
     informationButtons[index].click();

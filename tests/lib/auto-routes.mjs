@@ -166,8 +166,28 @@ function sideCorridor(W, halls, p, q, plan) {
 }
 
 /** 后殿殿前被前殿（backDoor）占据：穿前殿。返回从前殿殿前到后殿殿内的途经点 */
-function throughFrontHall(H2, target, targetInside, plan) {
+function throughFrontHall(W, zone, H2, target, targetInside, plan) {
   const g = hallGeom(H2);
+  // Huangji's loaded S gold columns obstruct the old B-only 3.5m line.
+  // Its rear dais/eave clearance also cannot fit the 1m player. Keep those
+  // physical objects and use the existing, explicitly modelled side portal.
+  // This is a model route, not a claim about current museum visitor access.
+  if (H2.name === '皇极殿' && target.name === '宁寿宫') {
+    const tg = hallGeom(target);
+    if (g.rot !== 0 || tg.rot !== 0) throw Error('Huangji side route requires current registered orientation');
+    const front = g.toW(g.doorX, -(g.PD / 2 + g.run + HALL_FRONT));
+    const targetFront = tg.toW(tg.doorX, -(tg.PD / 2 + tg.run + HALL_FRONT));
+    for (const side of ['东', '西']) {
+      const wall = zone.items.find(i => i.kind === 'wall' && i.name === `皇极殿${side}隔墙`);
+      const gap = wall?.gaps?.find(i => i.name === `${side}垂花门通道暂拟`);
+      if (!gap || gap.w < 1 || wall.from[1] !== wall.to[1]) continue;
+      const pts = [front, [gap.at, front[1]], [gap.at, targetFront[1]], targetFront, targetInside];
+      if (!pts.slice(1).every((p, i) => legOk(W, pts[i], p))) continue;
+      plan.push(`皇极殿 S 金柱与后台座占据旧穿殿线 → 经既有${side}侧垂花门通道（位置暂拟）绕至宁寿宫前`);
+      return {front, pts:pts.slice(1)};
+    }
+    throw Error('No clear registered Huangji side passage to Ningshou');
+  }
   const tw = Math.min(g.bay * 1.4, 5);
   const lat = H2.throne ? tw / 2 + 1.2 : 0;           // 宝座半宽 + 玩家半径 + 余量
   const f = g.toW(g.doorX, -(g.PD / 2 + g.run + HALL_FRONT));
@@ -226,7 +246,7 @@ export function zoneRoutes(W, zone) {
     // 工字殿：殿前点落在另一座殿的台明里
     const H2 = halls.find(o => o !== h && inRect(hallFront[0], hallFront[1], hallRect(o), -0.5));
     if (H2) {
-      if (H2.enter === true && H2.backDoor) { const t = throughFrontHall(H2, h, inside, plan); hallFront = t.front; tail = [t.front, ...t.pts]; }
+      if (H2.enter === true && H2.backDoor) { const t = throughFrontHall(W, zone, H2, h, inside, plan); hallFront = t.front; tail = [t.front, ...t.pts]; }
       else plan.push(`殿前被「${H2.name ?? '殿'}」占据且其无后门`);
     }
     const pick = pickGate(zone, h, hg, hallFront);
@@ -251,7 +271,7 @@ export function zoneRoutes(W, zone) {
     if (!mid && !H2) {
       const B = halls.find(o => o !== h && o.enter === true && o.backDoor && segHitsRect(inner, hallFront, hallRect(o)));
       if (B) {
-        const t = throughFrontHall(B, h, inside, plan);
+        const t = throughFrontHall(W, zone, B, h, inside, plan);
         const r = planMid(t.front);
         if (r.mid) { mid = r.mid; tail = [t.front, ...t.pts]; }
       }

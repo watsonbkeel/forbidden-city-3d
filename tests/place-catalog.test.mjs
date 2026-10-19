@@ -3,11 +3,11 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 const root = new URL('../', import.meta.url);
 
-test('fourteen source-backed cards have unique exact scene bindings and preserved historical distinctions', async () => {
+test('159 evidence-labelled cards have unique exact scene bindings and preserved historical distinctions', async () => {
   const { PlaceCatalog } = await import('../src/ui/PlaceCatalog.js');
   const catalog = new PlaceCatalog();
-  assert.equal(catalog.places.length, 14);
-  assert.equal(new Set(catalog.places.map(p => p.id)).size, 14);
+  assert.equal(catalog.places.length, 159);
+  assert.equal(new Set(catalog.places.map(p => p.id)).size, 159);
   assert.match(catalog.get('taihe').functionTag, /典礼/);
   assert.equal(catalog.get('baohe').people.filter(p => p.relation === 'temporary-resident').length, 2);
   assert.match(catalog.get('qianqing').summary.text, /雍正/);

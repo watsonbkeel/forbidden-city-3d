@@ -1,0 +1,935 @@
+{
+  "runtimeProduct": "e383dd8dc71cb656184c18e58c592bcab7e5987a",
+  "baseSource": "bb678753c71ba59b9766e464b135b1a51596f11b",
+  "baseRemote": "ef9ea730f6e99eda4be6ab86692bae1eaf3202fc",
+  "testCommit": "ab9784c213077236980dc873e81acdeeaffa0457",
+  "cpu": {
+    "logs": [
+      {
+        "file": "cpu/r25-affected-import-graph.log",
+        "sha256": "f23e0f96f05d63b73bed781b7c3f1a2e884bbd8458058418f466d697110c1b05",
+        "counts": {
+          "tests": 1237,
+          "pass": 1221,
+          "fail": 16,
+          "skipped": 0
+        }
+      },
+      {
+        "file": "cpu/r25-repaired-tests.log",
+        "sha256": "54f34be97332bc07e22b0ca8059274208cce06e5fc38e79e4d94ced8ee319807",
+        "counts": {
+          "tests": 130,
+          "pass": 130,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "file": "cpu/r25-retention-focused.tap",
+        "sha256": "93da6a940dd2c27956a7b24793f46237a371453a3060fbc3ef7e8cd32713a7b6",
+        "counts": {
+          "tests": 9,
+          "pass": 9,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "file": "feature-01.log",
+        "sha256": "e51f327a9aa5ef20fb1ae4b506daa44fae4dae377397c97b13ed5d8cd308ecc7",
+        "counts": {
+          "tests": 5,
+          "pass": 5,
+          "fail": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "file": "feature-02.log",
+        "sha256": "7b43d8e9c96fe4c202d93968ea786a50445ea1af1fd570bb11a56c5bb92e385d",
+        "counts": {
+          "tests": 6,
+          "pass": 6,
+          "fail": 0,
+          "skipped": 0
+        }
+      }
+    ],
+    "affectedImportGraph": {
+      "files": 74,
+      "tests": 1237,
+      "pass": 1221,
+      "fail": 16
+    },
+    "correction": "Sixteen historical assertions intentionally still expected the old three-board matrices. Eleven affected consumers now use a strict portable R24 source fixture; original hashes and negative assertions retained. Focused repaired batch130/130; new exact-retention9/9 and current feature6/6. Batches overlap and are not additive. All102 prior fixture files are byte-identical.",
+    "earlierPreservedFailure": "Initial8571 source accepted lightweight fixture roof material names but missed production TextureLibrary _material suffixes. Caught by source preflight before any candidate browser launch; e383 adds actual-name positive and unknown-name negative coverage. First retention capture compared callback identity; serializer corrected to function source. Neither event is relabeled as a passed initial attempt."
+  },
+  "visual": {
+    "candidate": "e383dd8dc71cb656184c18e58c592bcab7e5987a",
+    "sameCameraFields": [
+      "position",
+      "requested",
+      "rotation",
+      "fov",
+      "viewport",
+      "renderCanvas",
+      "quality",
+      "day",
+      "lod"
+    ],
+    "rows": [
+      {
+        "view": "taihe",
+        "camera": {
+          "position": [
+            0,
+            4.366666666666666,
+            -52
+          ],
+          "requested": {
+            "position": [
+              0,
+              1.7,
+              -52
+            ],
+            "look": [
+              0,
+              20,
+              0
+            ]
+          },
+          "rotation": [
+            2.8495478660004103,
+            0,
+            -3.141592653589793,
+            "XYZ"
+          ],
+          "fov": 70,
+          "viewport": [
+            1180,
+            757
+          ],
+          "renderCanvas": [
+            1180,
+            757
+          ],
+          "quality": "high",
+          "day": {
+            "timestampMs": 1792296000000,
+            "beijingTime": {
+              "year": 2026,
+              "month": 10,
+              "day": 18,
+              "hour": 12,
+              "minute": 0,
+              "second": 0,
+              "millisecond": 0,
+              "dayOfYear": 291,
+              "daysInYear": 365,
+              "minutesOfDay": 720,
+              "utcOffsetMinutes": 480,
+              "dateLabel": "2026-10-18",
+              "timeLabel": "12:00:00"
+            },
+            "sun": {
+              "azimuthDegrees": 180.19424314826824,
+              "elevationDegrees": 40.757159295499115,
+              "hourAngleDegrees": 0.14910697416917174,
+              "declinationDegrees": -9.326646848826423,
+              "equationOfTimeMinutes": 15.008427896676835,
+              "direction": {
+                "x": 0.002568002084961588,
+                "y": 0.6528544075951404,
+                "z": -0.7574790609969955
+              }
+            },
+            "phase": "day",
+            "lighting": {
+              "skyTop": [
+                0.06847816984440017,
+                0.19806931955994886,
+                0.386429433787049
+              ],
+              "skyBottom": [
+                0.4793201831008268,
+                0.6583748172794485,
+                0.8069522576692516
+              ],
+              "fogColor": [
+                0.6583748172794485,
+                0.5520114015120001,
+                0.39157247774972326
+              ],
+              "sunColor": [
+                1,
+                0.9130986517934192,
+                0.7529422167760779
+              ],
+              "hemisphereSkyColor": [
+                1,
+                0.9046611743911496,
+                0.7912979403326302
+              ],
+              "hemisphereGroundColor": [
+                0.25415209433082675,
+                0.2232279573168085,
+                0.16826940018969075
+              ],
+              "fillColor": [
+                0.6866853124353135,
+                0.8069522576692516,
+                1
+              ],
+              "sunIntensity": 1.376256802883258,
+              "hemisphereIntensity": 0.5,
+              "fillIntensity": 0.25,
+              "environmentIntensity": 0.6,
+              "exposure": 1,
+              "daylight": 1,
+              "twilight": 0
+            }
+          },
+          "lod": {
+            "level": 1,
+            "levels": [
+              false,
+              true
+            ]
+          }
+        },
+        "baselineSHA256": "9fbd29399418fec73e1baddec3cbfcfc42abefb99d28c71583f9d208333a6d6c",
+        "candidateSHA256": "c804d21b7936b30fcc6d5353d6efdd45a648742c2b3aad1a95e4c9b34d1e9e82"
+      },
+      {
+        "view": "baohe",
+        "camera": {
+          "position": [
+            0,
+            9.7,
+            87
+          ],
+          "requested": {
+            "position": [
+              0,
+              10.7,
+              87
+            ],
+            "look": [
+              0,
+              18,
+              123.2
+            ]
+          },
+          "rotation": [
+            2.9162065190259634,
+            0,
+            -3.141592653589793,
+            "XYZ"
+          ],
+          "fov": 70,
+          "viewport": [
+            1180,
+            757
+          ],
+          "renderCanvas": [
+            1180,
+            757
+          ],
+          "quality": "high",
+          "day": {
+            "timestampMs": 1792296000000,
+            "beijingTime": {
+              "year": 2026,
+              "month": 10,
+              "day": 18,
+              "hour": 12,
+              "minute": 0,
+              "second": 0,
+              "millisecond": 0,
+              "dayOfYear": 291,
+              "daysInYear": 365,
+              "minutesOfDay": 720,
+              "utcOffsetMinutes": 480,
+              "dateLabel": "2026-10-18",
+              "timeLabel": "12:00:00"
+            },
+            "sun": {
+              "azimuthDegrees": 180.19424314826824,
+              "elevationDegrees": 40.757159295499115,
+              "hourAngleDegrees": 0.14910697416917174,
+              "declinationDegrees": -9.326646848826423,
+              "equationOfTimeMinutes": 15.008427896676835,
+              "direction": {
+                "x": 0.002568002084961588,
+                "y": 0.6528544075951404,
+                "z": -0.7574790609969955
+              }
+            },
+            "phase": "day",
+            "lighting": {
+              "skyTop": [
+                0.06847816984440017,
+                0.19806931955994886,
+                0.386429433787049
+              ],
+              "skyBottom": [
+                0.4793201831008268,
+                0.6583748172794485,
+                0.8069522576692516
+              ],
+              "fogColor": [
+                0.6583748172794485,
+                0.5520114015120001,
+                0.39157247774972326
+              ],
+              "sunColor": [
+                1,
+                0.9130986517934192,
+                0.7529422167760779
+              ],
+              "hemisphereSkyColor": [
+                1,
+                0.9046611743911496,
+                0.7912979403326302
+              ],
+              "hemisphereGroundColor": [
+                0.25415209433082675,
+                0.2232279573168085,
+                0.16826940018969075
+              ],
+              "fillColor": [
+                0.6866853124353135,
+                0.8069522576692516,
+                1
+              ],
+              "sunIntensity": 1.376256802883258,
+              "hemisphereIntensity": 0.5,
+              "fillIntensity": 0.25,
+              "environmentIntensity": 0.6,
+              "exposure": 1,
+              "daylight": 1,
+              "twilight": 0
+            }
+          },
+          "lod": {
+            "level": 0,
+            "levels": [
+              true,
+              false
+            ]
+          }
+        },
+        "baselineSHA256": "54e0aa2020282f5cd52936a5c640a6bc296d0eafb630f22069db072a41c0af8d",
+        "candidateSHA256": "3f4454369255d9649d088473ff6229a0bd2032c1dd107f3fa49e8be27f9bc6b9"
+      },
+      {
+        "view": "qianqing",
+        "camera": {
+          "position": [
+            0,
+            3.2,
+            276
+          ],
+          "requested": {
+            "position": [
+              0,
+              3.86,
+              276
+            ],
+            "look": [
+              0,
+              13,
+              316.8
+            ]
+          },
+          "rotation": [
+            2.905862281695674,
+            0,
+            -3.141592653589793,
+            "XYZ"
+          ],
+          "fov": 70,
+          "viewport": [
+            1180,
+            757
+          ],
+          "renderCanvas": [
+            1180,
+            757
+          ],
+          "quality": "high",
+          "day": {
+            "timestampMs": 1792296000000,
+            "beijingTime": {
+              "year": 2026,
+              "month": 10,
+              "day": 18,
+              "hour": 12,
+              "minute": 0,
+              "second": 0,
+              "millisecond": 0,
+              "dayOfYear": 291,
+              "daysInYear": 365,
+              "minutesOfDay": 720,
+              "utcOffsetMinutes": 480,
+              "dateLabel": "2026-10-18",
+              "timeLabel": "12:00:00"
+            },
+            "sun": {
+              "azimuthDegrees": 180.19424314826824,
+              "elevationDegrees": 40.757159295499115,
+              "hourAngleDegrees": 0.14910697416917174,
+              "declinationDegrees": -9.326646848826423,
+              "equationOfTimeMinutes": 15.008427896676835,
+              "direction": {
+                "x": 0.002568002084961588,
+                "y": 0.6528544075951404,
+                "z": -0.7574790609969955
+              }
+            },
+            "phase": "day",
+            "lighting": {
+              "skyTop": [
+                0.06847816984440017,
+                0.19806931955994886,
+                0.386429433787049
+              ],
+              "skyBottom": [
+                0.4793201831008268,
+                0.6583748172794485,
+                0.8069522576692516
+              ],
+              "fogColor": [
+                0.6583748172794485,
+                0.5520114015120001,
+                0.39157247774972326
+              ],
+              "sunColor": [
+                1,
+                0.9130986517934192,
+                0.7529422167760779
+              ],
+              "hemisphereSkyColor": [
+                1,
+                0.9046611743911496,
+                0.7912979403326302
+              ],
+              "hemisphereGroundColor": [
+                0.25415209433082675,
+                0.2232279573168085,
+                0.16826940018969075
+              ],
+              "fillColor": [
+                0.6866853124353135,
+                0.8069522576692516,
+                1
+              ],
+              "sunIntensity": 1.376256802883258,
+              "hemisphereIntensity": 0.5,
+              "fillIntensity": 0.25,
+              "environmentIntensity": 0.6,
+              "exposure": 1,
+              "daylight": 1,
+              "twilight": 0
+            }
+          },
+          "lod": {
+            "level": 0,
+            "levels": [
+              true,
+              false
+            ]
+          }
+        },
+        "baselineSHA256": "90dec36fabe8025285ffddef78baef521f47975f50eeabf9f85df336407ba97b",
+        "candidateSHA256": "3e2dbfda49638873bea0a6bc49cb75600ece3387fa90ea97eebeb807eae7e434"
+      }
+    ],
+    "actualImageReview": "All three exterior boards visibly move from below-eave door head to central double-eave band without visible roof penetration. Baohe and Qianqing have clear complete front comparisons. Taihe lower portion is obscured by foreground imperial-stair stone in this intentionally fixed diagnostic view; only upper nameboard mounting is accepted from that pair, not a walking viewpoint or full facade. Board size/art are retained approximations; Qianqing Manchu remains absent.",
+    "terminals": {
+      "baseline": {
+        "utc": "2026-10-18T23:39:33.115195+00:00",
+        "reason": "owner finished captures",
+        "activeSeconds": 76.63294841699826,
+        "cleanupSeconds": 0.17997603899857495,
+        "leaderExited": true,
+        "portClosed": true,
+        "httpErrors": [],
+        "scope": "Controlled fixed-camera photos only; native routes and performance not accepted."
+      },
+      "candidate": {
+        "utc": "2026-10-18T23:41:04.595309+00:00",
+        "reason": "owner finished captures",
+        "activeSeconds": 71.629440839999,
+        "cleanupSeconds": 0.40303975400456693,
+        "leaderExited": true,
+        "portClosed": true,
+        "httpErrors": [],
+        "scope": "Controlled fixed-camera photos only; native routes and performance not accepted."
+      }
+    },
+    "nativeMovementAccepted": false,
+    "performanceAccepted": false
+  },
+  "navigation": {
+    "registrationsSHA256": "a1668d4eaf2b4ea21b0ea5a45fb421ef299ff48888d4d23bb1f60396be825853",
+    "colliders": 2487,
+    "walkables": 120,
+    "scope": "Complete registrations equal independent portable R24. Only three board mesh transforms and their mounting metadata change; all other mesh geometry/materials/order/matrices and navigation unchanged.",
+    "retainedEvidence": "R22 368 controlled combinations and three front-door native roundtrips retained for unchanged navigation. R25 did not repeat full native routes or physical mobile."
+  },
+  "residentPalaceBuilder": {
+    "meshes": 163,
+    "triangles": 188027,
+    "uniqueBufferBytes": 18291860,
+    "deltaR24": {
+      "meshes": 0,
+      "triangles": 0,
+      "uniqueBufferBytes": 0,
+      "materials": 0,
+      "textures": 0,
+      "colliders": 0,
+      "walkables": 0
+    },
+    "bothLODLevelsIncluded": true,
+    "streamedZonesIncludedInActualCameraCounters": true,
+    "gpuMemoryMeasured": false
+  },
+  "performance": {
+    "commit": "e383dd8dc71cb656184c18e58c592bcab7e5987a",
+    "structuralPass": true,
+    "failures": [],
+    "smoothnessWarnings": [
+      [
+        "午门前",
+        2.45,
+        0.92
+      ],
+      [
+        "太和殿前",
+        2.18,
+        0.63
+      ],
+      [
+        "乾清门",
+        1.97,
+        0.85
+      ],
+      [
+        "东六宫中",
+        2.66,
+        0.74
+      ],
+      [
+        "宁寿宫",
+        3.36,
+        0.85
+      ],
+      [
+        "御花园",
+        2,
+        0.8
+      ]
+    ],
+    "baselineSHA256": "6108e5229f090755a287dc09715fa164ba7febdf54c650d79b526be5197ab5ff",
+    "conditions": {
+      "previewUTC": "2026-10-18T04:00:00.000Z",
+      "beijing": "2026-10-18 12:00",
+      "historicalLamps": false,
+      "aircraftParked": true,
+      "note": "Explicit daytime preview; original baseline used fixed sun. Geometry budget and original six-camera sampling unchanged; light direction differs."
+    },
+    "environment": {
+      "viewport": [
+        1280,
+        720
+      ],
+      "drawingBuffer": [
+        1280,
+        720
+      ],
+      "dpr": 1,
+      "quality": "high",
+      "unmaskedRenderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36"
+    },
+    "rows": [
+      {
+        "point": "午门前",
+        "baseline": {
+          "point": "午门前",
+          "pos": [
+            0,
+            1.7,
+            -470
+          ],
+          "yaw": 0,
+          "calls": 188,
+          "tris": 906751,
+          "geometries": 142,
+          "textures": 105,
+          "fpsAvg": 2.57,
+          "fpsP5": 2.45,
+          "callsRange": [
+            188,
+            188
+          ],
+          "trisRange": [
+            906751,
+            906751
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "candidate": {
+          "point": "午门前",
+          "pos": [
+            0,
+            1.7,
+            -470
+          ],
+          "yaw": 0,
+          "calls": 180,
+          "tris": 983654,
+          "geometries": 149,
+          "textures": 120,
+          "fpsAvg": 1.05,
+          "fpsP5": 0.92,
+          "callsRange": [
+            180,
+            180
+          ],
+          "trisRange": [
+            983654,
+            983654
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "callsDelta": -0.04255319148936165,
+        "trianglesDelta": 0.08481159656840753
+      },
+      {
+        "point": "太和殿前",
+        "baseline": {
+          "point": "太和殿前",
+          "pos": [
+            0,
+            1.7,
+            -74
+          ],
+          "yaw": 0,
+          "calls": 166,
+          "tris": 874189,
+          "geometries": 142,
+          "textures": 105,
+          "fpsAvg": 2.6,
+          "fpsP5": 2.18,
+          "callsRange": [
+            166,
+            166
+          ],
+          "trisRange": [
+            874189,
+            874189
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "candidate": {
+          "point": "太和殿前",
+          "pos": [
+            0,
+            1.7,
+            -74
+          ],
+          "yaw": 0,
+          "calls": 164,
+          "tris": 961252,
+          "geometries": 149,
+          "textures": 120,
+          "fpsAvg": 1.06,
+          "fpsP5": 0.63,
+          "callsRange": [
+            164,
+            164
+          ],
+          "trisRange": [
+            961252,
+            961252
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "callsDelta": -0.012048192771084376,
+        "trianglesDelta": 0.09959287980059228
+      },
+      {
+        "point": "乾清门",
+        "baseline": {
+          "point": "乾清门",
+          "pos": [
+            0,
+            1.7,
+            195.3
+          ],
+          "yaw": 0,
+          "calls": 159,
+          "tris": 971005,
+          "geometries": 142,
+          "textures": 105,
+          "fpsAvg": 2.38,
+          "fpsP5": 1.97,
+          "callsRange": [
+            159,
+            159
+          ],
+          "trisRange": [
+            971005,
+            971005
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "candidate": {
+          "point": "乾清门",
+          "pos": [
+            0,
+            1.7,
+            195.3
+          ],
+          "yaw": 0,
+          "calls": 149,
+          "tris": 1059588,
+          "geometries": 149,
+          "textures": 120,
+          "fpsAvg": 1,
+          "fpsP5": 0.85,
+          "callsRange": [
+            149,
+            149
+          ],
+          "trisRange": [
+            1059588,
+            1059588
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "callsDelta": -0.06289308176100628,
+        "trianglesDelta": 0.09122816051410654
+      },
+      {
+        "point": "东六宫中",
+        "baseline": {
+          "point": "东六宫中",
+          "pos": [
+            -120.8,
+            1.7,
+            382.6
+          ],
+          "yaw": 0,
+          "calls": 137,
+          "tris": 831571,
+          "geometries": 136,
+          "textures": 104,
+          "fpsAvg": 2.73,
+          "fpsP5": 2.66,
+          "callsRange": [
+            137,
+            137
+          ],
+          "trisRange": [
+            831571,
+            831571
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "candidate": {
+          "point": "东六宫中",
+          "pos": [
+            -120.8,
+            1.7,
+            382.6
+          ],
+          "yaw": 0,
+          "calls": 128,
+          "tris": 833733,
+          "geometries": 134,
+          "textures": 118,
+          "fpsAvg": 1.18,
+          "fpsP5": 0.74,
+          "callsRange": [
+            128,
+            128
+          ],
+          "trisRange": [
+            833733,
+            833733
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "callsDelta": -0.06569343065693434,
+        "trianglesDelta": 0.0025998982648505198
+      },
+      {
+        "point": "宁寿宫",
+        "baseline": {
+          "point": "宁寿宫",
+          "pos": [
+            -293.2,
+            1.7,
+            164.1
+          ],
+          "yaw": 0,
+          "calls": 119,
+          "tris": 658803,
+          "geometries": 130,
+          "textures": 102,
+          "fpsAvg": 3.48,
+          "fpsP5": 3.36,
+          "callsRange": [
+            119,
+            119
+          ],
+          "trisRange": [
+            658803,
+            658803
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "candidate": {
+          "point": "宁寿宫",
+          "pos": [
+            -293.2,
+            1.7,
+            164.1
+          ],
+          "yaw": 0,
+          "calls": 107,
+          "tris": 659055,
+          "geometries": 126,
+          "textures": 116,
+          "fpsAvg": 1.56,
+          "fpsP5": 0.85,
+          "callsRange": [
+            107,
+            107
+          ],
+          "trisRange": [
+            659055,
+            659055
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "callsDelta": -0.10084033613445376,
+        "trianglesDelta": 0.00038251191934457474
+      },
+      {
+        "point": "御花园",
+        "baseline": {
+          "point": "御花园",
+          "pos": [
+            0,
+            1.7,
+            433.7
+          ],
+          "yaw": 0,
+          "calls": 152,
+          "tris": 867827,
+          "geometries": 131,
+          "textures": 103,
+          "fpsAvg": 2.35,
+          "fpsP5": 2,
+          "callsRange": [
+            152,
+            152
+          ],
+          "trisRange": [
+            867827,
+            867827
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "candidate": {
+          "point": "御花园",
+          "pos": [
+            0,
+            1.7,
+            433.7
+          ],
+          "yaw": 0,
+          "calls": 131,
+          "tris": 868965,
+          "geometries": 128,
+          "textures": 117,
+          "fpsAvg": 1.08,
+          "fpsP5": 0.8,
+          "callsRange": [
+            131,
+            131
+          ],
+          "trisRange": [
+            868965,
+            868965
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "callsDelta": -0.13815789473684215,
+        "trianglesDelta": 0.0013113212656439277
+      }
+    ],
+    "limits": "SwiftShader software renderer; historical nonconcurrent baseline; explicit noon instead of historical fixed sun. One application renderer, unrelated managed blank browser untouched. No concurrent owner CPU tests during this sample; no controlled FPS equivalence claim. No real-device smoothness claim. PalaceBuilder resident163meshes188027triangles18291860bufferbytes includes bothLODlevels; streamed zones accounted in per-camera render metrics separately."
+  },
+  "performanceTerminal": {
+    "utc": "2026-10-18T23:52:36.296146+00:00",
+    "reason": "performance sample reported terminal",
+    "activeSeconds": 447.9898285620002,
+    "cleanupSeconds": 0.5012840499985032,
+    "cleanupWithinLimit": true,
+    "ownedBrowserLeaderExited": true,
+    "ownedProcessGroupGone": true,
+    "portClosed": true,
+    "statuses": {
+      "point0": "recorded",
+      "point1": "recorded",
+      "point2": "recorded",
+      "point3": "recorded",
+      "point4": "recorded",
+      "point5": "recorded",
+      "done": "passed"
+    },
+    "httpErrors": [],
+    "ownedRendererPIDsObserved": [
+      29413,
+      29423,
+      29424
+    ],
+    "peakOwnedRendererProcesses": 3,
+    "scope": "Original six-point performance sampling. Partial or timeout is not pass; ordinary native movement is not tested."
+  },
+  "build": {
+    "productFiles": 121,
+    "unchangedFilesR24": 119,
+    "changed": "index.html and compiled entry bundle only",
+    "relativeBase": "./",
+    "manifestSHA256": "632fd8bdbe45ab4fef93a826bebeec3bc446eeef753cf1a57d8074a9feff2bc7",
+    "buildLogSHA256": "e499e229af4f2ba986b071104b3d96355736f66349b1d7c80713268c402f4c5f"
+  },
+  "publicDeployment": false,
+  "limits": [
+    "Mounting relationship is photograph-supported, but retained board sizes, .12m stand-off and .03m fitting margin are model values, not surveyed measurements.",
+    "Existing rectangular gold frame and system lettering remain simplified; Qianqing real Manchu/Han dual-column lettering remains unresolved.",
+    "Taihe fixed frontal view has foreground imperial-stair occlusion; it validates upper mounting only, not a complete facade or a legitimate new walking route.",
+    "Photo capture dates unknown; no museum photo was added as a runtime texture.",
+    "No physical mobile or new long native-route acceptance; existing Baohe north-inner long-route limits retained.",
+    "Historical nonconcurrent software-renderer comparison does not establish real-device smoothness."
+  ]
+}

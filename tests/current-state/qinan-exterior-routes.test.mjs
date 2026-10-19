@@ -1,3 +1,7 @@
+import {restorePreTaiheDaisSource} from '../lib/r7-taihe-dais-retention.mjs';
+import {withLegacyTaiheFrontRoute} from '../lib/r7-taihe-front-retention.mjs';
+import { withLegacyWesternCourtsForVersionComparison } from '../lib/r6-western-route-compat.mjs';
+import { withLegacyNingshouForVersionComparison } from '../lib/r6-ningshou-route-compat.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -6,6 +10,7 @@ import {execFileSync} from 'node:child_process';
 import {readHistoricalSource} from '../lib/historical-sources.mjs';
 import {restoreV13WayfindingCollisionBytes} from '../lib/v14-wayfinding-source-delta.mjs';
 import baseline from '../fixtures/v7-qinan-route-baseline.json' with {type:'json'};
+import preloadDelta from '../fixtures/r6-preload-source-delta.json' with {type:'json'};
 import {buildWorld, walkStraight} from '../lib/world.mjs';
 import {buildAutoRoutes} from '../lib/auto-routes.mjs';
 import {qinanGeometry} from '../../src/scene/palace/special/QinanProfile.js';
@@ -15,11 +20,11 @@ const W=await buildWorld(),auto=buildAutoRoutes(W,W.zones.map(z=>z.json));
 const fixed=execFileSync(process.execPath,['tests/stepwalk.cjs','60','0','all'],{cwd:new URL('../..',import.meta.url),env:{...process.env,DUMP:'1'},encoding:'utf8'}).trim().split('\n').map(line=>{const i=line.indexOf(' [[');return{name:line.slice(0,i),pts:JSON.parse(line.slice(i+1))};});
 const g=qinanGeometry(W.zones.find(z=>z.json.id==='garden').json.items.find(i=>i.qinanProfile));
 
-test('exactly the two named Qin’an descriptors change; all 32 fixed and 58 automatic descriptors remain byte-exact',()=>{
+test('exactly the two named Qin’an descriptors change; all 32 fixed and 57 unrelated automatic descriptors remain exact after the finite R6 Ningshou migration',()=>{
  assert.equal(fixed.length,33);assert.equal(auto.length,59);
  assert.equal(fixed.filter(r=>r.name===newFixed).length,1);assert.equal(auto.filter(r=>r.name===newAuto).length,1);
  assert.ok(!fixed.some(r=>r.name===legacyFixed));assert.ok(!auto.some(r=>r.name===legacyAuto));
- const unchangedFixed=fixed.filter(r=>r.name!==newFixed),unchangedAuto=auto.filter(r=>r.name!==newAuto);
+ const unchangedFixed=withLegacyTaiheFrontRoute(fixed).filter(r=>r.name!==newFixed),unchangedAuto=withLegacyNingshouForVersionComparison(withLegacyWesternCourtsForVersionComparison(auto)).filter(r=>r.name!==newAuto);
  assert.equal(unchangedFixed.length,32);assert.equal(unchangedAuto.length,58);
  assert.equal(JSON.stringify(unchangedFixed),JSON.stringify(baseline.fixed.filter(r=>r.name!==legacyFixed)));
  assert.equal(JSON.stringify(unchangedAuto),JSON.stringify(baseline.auto.filter(r=>r.name!==legacyAuto)));
@@ -65,13 +70,17 @@ test('historical through-hall route is retained verbatim as negative legacy evid
  const result=walkStraight(W,old.pts[1],old.pts[2],{feet0:0});assert.ok(result.reached<result.total-1,JSON.stringify(result));assert.equal(result.feet,0);
  const north=walkStraight(W,[0,503],[0,495],{feet0:0});assert.ok(north.reached<north.total-1,JSON.stringify(north));
 });
-test('driver/collision/V5 fixture preserve V7 bytes after only approved finite V9 and V14 deltas',()=>{
+test('driver/collision/V5 fixture preserve V7 bytes after finite V9/V14 and strict R6 preload-only deltas',()=>{
  const files=['tests/lib/stepwalk-runner.cjs','tests/lib/physical-waypoints.mjs','tests/lib/terrace-walk.mjs','tests/lib/zhaode-walk.mjs','src/controls/FirstPerson.js','src/utils/Collision.js','src/config/constants.js','tests/fixtures/v5-fixed-routes.json'];
  for(const path of files){const old=readHistoricalSource(baseline.commit,path),current=fs.readFileSync(new URL(`../../${path}`,import.meta.url));
   if(path==='src/controls/FirstPerson.js') assertV9MapFirstPersonBytes(old,current);
   else if(path==='src/config/constants.js') assertGateConstantsBytes(old,current);
   else {
-   const retained=path==='src/utils/Collision.js'?restoreV13WayfindingCollisionBytes(current):current;
+   let retained=path==='src/utils/Collision.js'?restoreV13WayfindingCollisionBytes(current):current;
+   if(path==='tests/lib/stepwalk-runner.cjs'){
+    retained=restorePreTaiheDaisSource(path,current).toString();
+    for(const {before,after} of preloadDelta.replacements){assert.equal(retained.split(after).length,2,'exact preload-only delta occurs once');retained=retained.replace(after,before);}
+   }
    assert.equal(crypto.createHash('sha256').update(retained).digest('hex'),crypto.createHash('sha256').update(old).digest('hex'),path);
   }
  }

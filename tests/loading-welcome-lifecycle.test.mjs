@@ -1,3 +1,4 @@
+import {restorePreR15Source}from './lib/r15-flight-source-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -115,10 +116,11 @@ test('disposed app does not mutate loading or welcome from the pending callback'
   assert.equal(s.overlay.style.display, 'none');
 });
 
+const historicalSource=restorePreR15Source('main.js',Buffer.from(source)).toString();
 test('the one deferred welcome condition restores the exact published main.js bytes', () => {
-  const restored = restoreLoadingWelcomeBytes(source).toString();
+  const restored = restoreLoadingWelcomeBytes(historicalSource).toString();
   assert.equal(restored.split(LOADING_WELCOME_DELTA.before).length - 1, 1);
-  assert.equal(restored.replace(LOADING_WELCOME_DELTA.before, LOADING_WELCOME_DELTA.after), source);
+  assert.equal(restored.replace(LOADING_WELCOME_DELTA.before, LOADING_WELCOME_DELTA.after), historicalSource);
 });
 
 for (const [name, replacement] of [
@@ -127,16 +129,16 @@ for (const [name, replacement] of [
   ['duplicate', LOADING_WELCOME_DELTA.after + LOADING_WELCOME_DELTA.after],
   ['changed', LOADING_WELCOME_DELTA.after.replace('&& !this.minimap?.visible ', '')],
 ]) test(`loading welcome source boundary rejects ${name} condition`, () => {
-  assert.throws(() => restoreLoadingWelcomeBytes(source.replace(LOADING_WELCOME_DELTA.after, replacement)), /exactly once|must equal/);
+  assert.throws(() => restoreLoadingWelcomeBytes(historicalSource.replace(LOADING_WELCOME_DELTA.after, replacement)), /exactly once|must equal/);
 });
 
 test('loading welcome source boundary rejects unrelated bytes, frame timing and map close changes', () => {
   for (const changed of [
-    source + '\n',
-    source.replace('}, 500);', '}, 600);'),
-    source.replace('this.mapTourSession.setVisible(visible);', 'this.mapTourSession.setVisible(true);'),
+    historicalSource + '\n',
+    historicalSource.replace('}, 500);', '}, 600);'),
+    historicalSource.replace('this.mapTourSession.setVisible(visible);', 'this.mapTourSession.setVisible(true);'),
   ]) {
-    assert.notEqual(changed, source);
+    assert.notEqual(changed, historicalSource);
     assert.throws(() => restoreLoadingWelcomeBytes(changed), /must equal/);
   }
 });

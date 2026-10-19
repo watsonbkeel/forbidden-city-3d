@@ -1,3 +1,4 @@
+import{installTaihePlaqueSurround}from'../src/scene/palace/special/TaihePlaqueFrame.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -10,6 +11,7 @@ import { installTaiheGlyphs } from '../src/scene/interior/TaiheCoreContract.js';
 const cfg = JSON.parse(fs.readFileSync(new URL('../data/interiors/taihe.json', import.meta.url)));
 const bytes = fs.readFileSync(new URL('../public' + cfg.model, import.meta.url));
 const root = (await new GLTFLoader().parseAsync(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.length), '')).scene;
+installTaihePlaqueSurround(root);
 root.updateMatrixWorld(true);
 const fallback = captureTaiheControl('太和殿');
 const bGlyph = fallback.group.children.find(o => o.material?.name === 'taihe_glyph_atlas');
@@ -19,7 +21,7 @@ const atlas = bGlyph.material.map;
 // These are canvas pixel edges, independent of Blender extras and UV conventions.
 // A south-side viewer looks toward +Z; their right points toward world -X.
 const surfaces = [
-  { name: 'plaque', x: 0, y: 7.8, z: 4.969, w: 6.62, h: 2.62, pixels: [0, 0, 1024, 384] },
+  { name: 'plaque', x: 0, y: 7.8, z: 4.969, w: 6, h: 2, pixels: [0, 0, 1024, 384] },
   { name: 'viewer-right couplet', x: -4.233, y: 4.6, z: 4.979, w: .88, h: 7.38, pixels: [0, 384, 80, 1024] },
   { name: 'viewer-left couplet', x: 4.233, y: 4.6, z: 4.979, w: .88, h: 7.38, pixels: [80, 384, 160, 1024] },
 ];
@@ -80,7 +82,9 @@ test('decoded glyph triangle winding faces the south viewer and U increases to t
   root.traverse(o => {
     if (!o.isMesh || o.material.name !== 'taihe_glyph_atlas') return;
     const g = o.geometry, p = g.attributes.position, uv = g.attributes.uv, idx = g.index;
-    for (let i = 0; i < idx.count; i += 3) {
+    // Original six lettering faces are an exact retained prefix. Later surface
+    // faces share the atlas and are covered by furnishing-surface integration.
+    for (let i = 0; i < 18; i += 3) {
       const ids = [idx.getX(i), idx.getX(i + 1), idx.getX(i + 2)];
       const vertices = ids.map(j => new THREE.Vector3().fromBufferAttribute(p, j).applyMatrix4(o.matrixWorld));
       assert.ok(new THREE.Triangle(...vertices).getNormal(new THREE.Vector3()).z < -.99);
