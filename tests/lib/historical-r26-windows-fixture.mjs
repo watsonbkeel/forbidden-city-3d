@@ -1,3 +1,5 @@
+import {historicalR27Dependency} from './historical-r27-jiaotai-fixture.mjs';
+import {restorePreR28Source} from './r28-jiaotai-central-retention.mjs';
 // Bind the current R27 modules before restoring the previous R26 stages.
 import './historical-r26-combined-fixture.mjs';
 import assert from 'node:assert/strict';
@@ -9,12 +11,12 @@ import source from '../fixtures/r26-qianqing-frieze-source-delta.json' with {typ
 // Portable historical windows-only R26 snapshot. No Git objects, sibling
 // checkout, network, live-builder fallback, runtime writes or exclusions.
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
-const read=path=>fs.readFileSync(new URL('../../'+path,import.meta.url));
+const read=path=>restorePreR28Source(path,fs.readFileSync(new URL('../../'+path,import.meta.url)));
 for(const path of Object.keys(source.addedFiles))assertR26FriezeAddedSource(path,read(path));
 for(const path of Object.keys(source.retainedFiles))assertR26FriezeRetainedSource(path,read(path));
 const path='src/scene/PalaceBuilder.js',url=new URL('../../'+path,import.meta.url);
 const bytes=restorePreR26FriezeSource(path,read(path));
 assert.equal(sha(bytes),source.files[path].baselineSHA256,'exact frozen windows-only R26 PalaceBuilder');
 const text=bytes.toString().replace(/from '([^']+)'/g,(_,specifier)=>
-  `from '${specifier==='three'?import.meta.resolve('three'):new URL(specifier,url).href}'`);
+  `from '${historicalR27Dependency(specifier,url)}'`);
 export const {PalaceBuilder:HistoricalR26WindowsPalaceBuilder}=await import('data:text/javascript;base64,'+Buffer.from(text).toString('base64'));

@@ -1,11 +1,12 @@
+// Historical R26 shell contract, before R30 passages; current passages are tested separately.
 import {restorePreR27Navigation,restorePreR27SceneRows} from './lib/r27-jiaotai-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
-import {PalaceBuilder} from '../src/scene/PalaceBuilder.js';
+import {HistoricalR29PalaceBuilder as PalaceBuilder,HistoricalR29FrontEnclosure} from './lib/historical-r29-qianqing-fixture.mjs';
 import {PALACE_LAYOUT} from '../src/scene/Layout.js';
 import {library,hash,sceneRows} from './lib/inner-palace-fixture.mjs';
-import {QIANQING_FRONT_ENCLOSURE as P,qianqingFrontMaterial,qianqingFrontBox,buildQianqingFrontWindow} from '../src/scene/palace/QianqingFrontEnclosure.js';
+const {QIANQING_FRONT_ENCLOSURE:P,qianqingFrontMaterial,qianqingFrontBox,buildQianqingFrontWindow}=HistoricalR29FrontEnclosure;
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-5,`${a} != ${b}`);
 const data=PALACE_LAYOUT.find(x=>x.name==='乾清宫');
 const b=new PalaceBuilder(new THREE.Scene(),library()),g=new THREE.Group();b.buildHall(g,data,2.16,{heightReferenceY:7});g.updateMatrixWorld(true);

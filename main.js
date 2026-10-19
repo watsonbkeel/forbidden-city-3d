@@ -395,10 +395,16 @@ class ForbiddenCityApp {
     this.settingsMenu.init({
       initialQuality: this.currentQuality,
       initialSound: true,
-      onOpen: () => this.settingsTourSession.open(),
+      onOpen: () => { this.flight?.clearInput(); this.settingsTourSession.open(); },
       onResume: () => {
+        // Flight resumes only through its explicit operations click. Do not
+        // request a competing pointer lock from the generic settings dialog.
+        if(this.flight?.occupied)this.settingsTourSession.previousLocked=false;
         this.settingsTourSession.resume();
-        if(this.flight?.occupied){const welcome=document.getElementById('welcome-overlay');if(welcome)welcome.style.display='none';}
+        if(this.flight?.occupied){
+          this.flight.openOperations('settings');
+          const welcome=document.getElementById('welcome-overlay');if(welcome)welcome.style.display='none';
+        }
       },
       onQualityChange: (quality) => {
         this.toggleQuality(quality);

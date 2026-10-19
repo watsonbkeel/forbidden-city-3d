@@ -1,9 +1,11 @@
+import {restoreR31CombinedSourceIfPresent} from './r31-combined-source-retention.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import baseline from '../fixtures/r6-complete-place-cards.json' with {type:'json'};
 export {baseline};
 const sha=v=>createHash('sha256').update(v).digest('hex');
 export function restoreR6PlaceCatalog(raw){
+ raw=restoreR31CombinedSourceIfPresent('data/places/zh-CN.json',Buffer.from(raw)).toString();
  const data=JSON.parse(raw),b=baseline.catalog;
  assert.equal(raw,JSON.stringify(data,null,2)+'\n','canonical R6 catalog');
  assert.equal(data.places.length,b.basePlaceCount+b.addedPlaceCount,'exact 145-card addition');
@@ -15,6 +17,7 @@ export function restoreR6PlaceCatalog(raw){
  const restored=JSON.stringify(data,null,2)+'\n';assert.equal(sha(restored),b.baseSHA256,'original fourteen cards and sources retained');return restored;
 }
 export function restoreR6PlaceSource(path,raw){
+ raw=restoreR31CombinedSourceIfPresent(path,Buffer.from(raw)).toString();
  if(!baseline.sourceDeltas[path])return raw;
  let restored=raw;
  for(const d of baseline.sourceDeltas[path]){assert.equal(restored.split(d.after).length-1,1,'R6 hunk must occur exactly once');restored=restored.replace(d.after,d.before);}

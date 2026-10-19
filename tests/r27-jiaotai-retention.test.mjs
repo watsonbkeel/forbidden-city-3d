@@ -1,10 +1,13 @@
+import {r30Source} from './lib/r30-qianqing-passage-retention.mjs';
+import {r29Source} from './lib/r29-qianqing-retention.mjs';
+import {restorePreR28Source,r28Source} from './lib/r28-jiaotai-central-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
 import * as THREE from 'three';
-import {PalaceBuilder} from '../src/scene/PalaceBuilder.js';
+import {HistoricalR27PalaceBuilder as PalaceBuilder} from './lib/historical-r27-jiaotai-fixture.mjs';
 import {CollisionManager} from '../src/utils/Collision.js';
 import {PLAYER} from '../src/config/constants.js';
 import {HistoricalR26CombinedPalaceBuilder as Historical} from './lib/historical-r26-combined-fixture.mjs';
@@ -21,7 +24,7 @@ import priorScene from './fixtures/r26-qianqing-frieze-scene-delta.json' with {t
 import windowsScene from './fixtures/r26-qianqing-scene-delta.json' with {type:'json'};
 import r25Scene from './fixtures/r25-nameboard-scene-delta.json' with {type:'json'};
 import r22Navigation from './fixtures/r22-baohe-navigation-delta.json' with {type:'json'};
-const root=new URL('../',import.meta.url),read=p=>fs.readFileSync(new URL(p,root));
+const root=new URL('../',import.meta.url),read=p=>restorePreR28Source(p,fs.readFileSync(new URL(p,root)));
 const sha=x=>createHash('sha256').update(x).digest('hex'),hash=x=>sha(JSON.stringify(x)),clone=structuredClone;
 const current=captureJiaotaiScene(PalaceBuilder),previous=captureJiaotaiScene(Historical);
 const sourceChain=[restorePreR27Source,restorePreR26FriezeSource,restorePreR26Source,restorePreR25Source];
@@ -46,7 +49,7 @@ test('R27 provenance binds the frozen candidate, exact previous builder, two mod
   for(const[p,digest]of Object.entries(priorSource.retainedFiles))assert.equal(source.retainedFiles[p],digest,p);
   assert.equal(source.retainedFiles['src/scene/palace/QianqingUpperEnclosure.js'],priorSource.addedFiles['src/scene/palace/QianqingUpperEnclosure.js'].candidateSHA256);
   const actual=['src','data','public'].flatMap(dir=>fs.readdirSync(new URL(dir+'/',root),{recursive:true,withFileTypes:true}).filter(x=>x.isFile()).map(x=>path.relative(root.pathname,path.join(x.parentPath,x.name)))).sort();
-  assert.deepEqual([...Object.keys(source.files),...Object.keys(source.addedFiles),...Object.keys(source.retainedFiles).filter(p=>/^(src|data|public)\//.test(p))].sort(),actual);
+  assert.deepEqual([...Object.keys(source.files),...Object.keys(source.addedFiles),...Object.keys(source.retainedFiles).filter(p=>/^(src|data|public)\//.test(p)),...Object.keys(r28Source.addedFiles),...Object.keys(r30Source.addedFiles),...Object.keys(r29Source.addedFiles).filter(p=>/^(src|data|public)\//.test(p))].sort(),actual);
 });
 
 test('only the two exact import and post-merge install hunks reverse; unrelated, partial, missing and duplicate source fail closed',()=>{

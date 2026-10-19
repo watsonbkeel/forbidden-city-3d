@@ -1,3 +1,4 @@
+import {validateQianqingAuxiliary} from './QianqingAuxiliaryContract.js';
 import { installTaihePlaqueSurround } from '../palace/special/TaihePlaqueFrame.js';
 /**
  * S 档内景加载器（P1-I）。
@@ -127,7 +128,7 @@ export class InteriorLoader {
           resolve(true);
         } catch (err) {
           console.warn(`[InteriorLoader] ${h.cfg.hall} 安装失败，保留 B 档：`, err);
-          if (h.id === 'kunning' || h.id === 'taihe') {
+          if (h.id === 'kunning' || h.id === 'taihe' || h.id === 'qianqing') {
             if (h.id === 'taihe') this._restoreTaiheFallback(h);
             this.cm?.removeByTag(`interior:${h.id}`);
             if (h.group) this.scene.remove(h.group);
@@ -160,6 +161,7 @@ export class InteriorLoader {
     const cfg = h.cfg;
     // Validate the optional layer before a collider, light, fade or scene object is registered.
     if (h.id === 'kunning') validateKunningFurniture(root, cfg);
+    if (h.id === 'qianqing') validateQianqingAuxiliary(root,cfg,this.scene);
     if (h.id === 'taihe') {
       validateTaiheCore(root, cfg);
       installTaihePlaqueSurround(root);
@@ -173,7 +175,7 @@ export class InteriorLoader {
     const floorY = this._floorY(cfg);
     const group = new THREE.Group();
     group.name = `interior:${h.id}`;
-    if (h.id === 'kunning' || h.id === 'taihe') h.group = group; // rollback owns even a partially installed group
+    if (h.id === 'kunning' || h.id === 'taihe' || h.id === 'qianqing') h.group = group; // rollback owns even a partially installed group
     group.position.set(f.x + (cfg.anchor?.x ?? 0), floorY + (cfg.anchor?.y ?? 0), f.z + (cfg.anchor?.z ?? 0));
     group.rotation.y = f.rot ?? 0;
     group.add(root);

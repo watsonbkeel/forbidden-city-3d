@@ -1,0 +1,47 @@
+{
+  "utc": "2026-10-19T10:22:24.541234+00:00",
+  "inputsVerified": true,
+  "candidateCommit": "c8facc4572825e353dfb6fb6861e65099e63587a",
+  "runtimeCommit": "e446ecd4d8c66f632c625381dc207ddf2a4f8523",
+  "candidateTree": "29c03c96a6d01f1273af585bf3f73fe2a737d7d8",
+  "exactProductionPrefixVerified": true,
+  "readOnlyExportDeltaVerified": true,
+  "appVariable": "L3",
+  "originalSampleAndPointsUnchanged": true,
+  "sourcePerfSHA256": "0921cc93e20109e1a220bcbd9b05adc6f41a30b91c25233f999f1ddbd9770bd7",
+  "originalBaselineSHA256": "6108e5229f090755a287dc09715fa164ba7febdf54c650d79b526be5197ab5ff",
+  "sampleModuleSHA256": "a82f49a5da29cca6d52a449189680b6cab422e5f226431d6224a2a2b17aff952",
+  "sampleFunctionSHA256": "01ec1c606e5916315389312d658928ddeb1bb9c7ed08c3b7a082f507a9f11a45",
+  "pointsSHA256": "01606cb50031962b0e59df64fb54782695929325e041ce9ed0d7dddc07577576",
+  "bindingSHA256": "0789f06c8ec28ca241fc0bad1919e5b29ee9f7b3fc26573044d87e080198f672",
+  "harnessManifestSHA256": "9d58171662a7d9a6bafe05d962fa5d54c841996fc5c8dc8293d4732d15f7bfe1",
+  "productManifestSHA256": "3e8a7930cbc11a2ce4e4454afff2d721284b608cc61ff183eaa736accd7db620",
+  "entry": {
+    "path": "assets/index-B_gvSObR.js",
+    "bytes": 1849224,
+    "sha256": "712606b261c22dcc5fea44249adc0e9b5f9906ae490914f5cf24168744a1ca9c",
+    "appendedText": "\n/* TEST ONLY: exact production prefix plus read-only exports. */\nwindow.__forbiddenCityApp=L3;\nwindow.__perf=()=>L3.perfHUD?.snapshot()??null;\n"
+  },
+  "conditions": {
+    "cameras": 6,
+    "framesPerCamera": 60,
+    "viewport": [
+      1280,
+      720
+    ],
+    "dpr": 1,
+    "quality": "high",
+    "previewUTC": "2026-10-18T04:00:00.000Z",
+    "callsRegressionLimit": 0.1,
+    "trianglesRegressionLimit": 0.1,
+    "fpsP5WarningLimit": 0.15
+  },
+  "configuredPort": 5531,
+  "portFree": null,
+  "browserLeaders": null,
+  "globalBrowserExclusivity": null,
+  "browserRunStatus": "not started",
+  "performanceStatus": "not evaluated",
+  "R30Preserved": true,
+  "note": "CPU input/byte verification only. No server/browser launched and no network operation. Port, memory and browser exclusivity must be checked by owner at launch; no browser absence inferred from this shell."
+}

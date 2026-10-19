@@ -1,3 +1,5 @@
+import {restorePreR30Navigation} from './r30-qianqing-passage-retention.mjs';
+import {restorePreR28Source,restorePreR28SceneRow,restorePreR28SceneRows,restorePreR28MeshRows,restorePreR28GraphRows,restorePreR28Materials} from './r28-jiaotai-central-retention.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import source from '../fixtures/r27-jiaotai-source-delta.json' with {type:'json'};
@@ -9,7 +11,9 @@ const hash=value=>sha(JSON.stringify(value));
  * exact import/install reversals. No runtime writes or tolerated source drift. */
 export function restorePreR27Source(path,bytes){
   const d=source.files[path];
-  if(!d||sha(bytes)===d.baselineSHA256)return bytes;
+  if(!d)return restorePreR28Source(path,bytes);
+  if(sha(bytes)===d.baselineSHA256)return bytes;
+  bytes=restorePreR28Source(path,bytes);
   assert.equal(sha(bytes),d.candidateSHA256,`exact R27 Jiaotai source: ${path}`);
   assert.equal(d.deltas.length,2);
   let out=bytes.toString();
@@ -33,12 +37,15 @@ export function assertR27RetainedSource(path,bytes){
 }
 export function restorePreR27SceneRow(name,row){
   const d=scene.changes[name];
-  if(!d||JSON.stringify(row)===JSON.stringify(d.before))return row;
+  if(!d)return restorePreR28SceneRow(name,row);
+  if(JSON.stringify(row)===JSON.stringify(d.before))return row;
+  row=restorePreR28SceneRow(name,row);
   assert.deepEqual(row,d.after,`exact R27 scene group: ${name}`);
   return structuredClone(d.before);
 }
 export function restorePreR27SceneRows(rows){
   if(hash(rows)===scene.beforeSHA256)return rows;
+  rows=restorePreR28SceneRows(rows);
   assert.equal(hash(rows),scene.afterSHA256,'exact R27 complete scene groups');
   const out=structuredClone(rows);
   for(const name of scene.names)out[name]=restorePreR27SceneRow(name,rows[name]);
@@ -58,15 +65,16 @@ function restoreRows(rows,d,label){
   assert.equal(hash(out),d.beforeSHA256,`exact combined R26 ${label} restored`);
   return out;
 }
-export function restorePreR27MeshRows(rows){return restoreRows(rows,scene.meshes,'complete resident meshes');}
-export function restorePreR27GraphRows(rows){return restoreRows(rows,scene.graph,'complete hierarchy, world transforms and metadata');}
-export function restorePreR27Materials(rows){return restoreRows(rows,scene.materials,'complete material values');}
+export function restorePreR27MeshRows(rows){if(hash(rows)!==scene.meshes.beforeSHA256)rows=restorePreR28MeshRows(rows);return restoreRows(rows,scene.meshes,'complete resident meshes');}
+export function restorePreR27GraphRows(rows){if(hash(rows)!==scene.graph.beforeSHA256)rows=restorePreR28GraphRows(rows);return restoreRows(rows,scene.graph,'complete hierarchy, world transforms and metadata');}
+export function restorePreR27Materials(rows){if(hash(rows)!==scene.materials.beforeSHA256)rows=restorePreR28Materials(rows);return restoreRows(rows,scene.materials,'complete material values');}
 
 /** Both complete arrays are bound before dropping exactly the two final solids.
  * Every preceding collider and all walkables keep their original order/values. */
 export function restorePreR27Navigation(value){
   const d=scene.navigation;
   if(hash(value)===d.beforeSHA256)return value;
+  value=restorePreR30Navigation(value);
   assert.equal(hash(value),d.afterSHA256,'exact R27 complete navigation');
   assert.equal(value.colliders.length,d.afterColliders);
   assert.equal(value.walkables.length,d.walkables);

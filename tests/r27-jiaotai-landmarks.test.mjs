@@ -1,3 +1,5 @@
+import {restorePreR30Navigation} from './lib/r30-qianqing-passage-retention.mjs';
+import {restorePreR28SceneRows} from './lib/r28-jiaotai-central-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as T from 'three';
@@ -44,7 +46,7 @@ test('two fixed envelopes enclose all near and far vertices, including the inwar
 });
 
 test('previous 2487 colliders and 120 walkables are byte-identical, only two new artifact solids are added',()=>{
- assert.equal(b.colliders.length,2489);assert.equal(b.walkables.length,120);assert.equal(hash({colliders:b.colliders.slice(0,-2),walkables:b.walkables}),'a1668d4eaf2b4ea21b0ea5a45fb421ef299ff48888d4d23bb1f60396be825853');
+ assert.equal(restorePreR30Navigation({colliders:b.colliders,walkables:b.walkables}).colliders.length,2489);assert.equal(b.colliders.length,2503);assert.equal(b.walkables.length,120);assert.equal(hash((()=>{const n=restorePreR30Navigation({colliders:b.colliders,walkables:b.walkables});return{colliders:n.colliders.slice(0,-2),walkables:n.walkables};})()),'a1668d4eaf2b4ea21b0ea5a45fb421ef299ff48888d4d23bb1f60396be825853');
  assert.equal(meta.navigation,'FIXED_NEAR_ENVELOPES_BOTH_LODS');const before=hash({c:b.colliders,w:b.walkables}),cam=new T.PerspectiveCamera();for(const dist of[0,200,0,90,100]){cam.position.set(frame.x,frame.y,frame.z+dist);cam.updateMatrixWorld(true);lod.update(cam);assert.equal(hash({c:b.colliders,w:b.walkables}),before);}
  const originalGroups={午门:'be7045098ed7f2cd79bdd037ec87a89cca6ddc022978063942bdf5ca45c1e46f',三台:'093376bff24c244359e8034a844edf852bbcb1599cfb26285598050df5df0a09'};const rows=sceneRows(scene);for(const [name,h]of Object.entries(originalGroups))assert.equal(rows[name].hash,h);
 });
@@ -52,7 +54,7 @@ test('previous 2487 colliders and 120 walkables are byte-identical, only two new
 test('both resident detail levels count toward geometry; only one material batch is drawn at a time',()=>{
  assert.equal(lod.levels.length,2);assert.equal(lod.levels[1].distance,90);assert.equal(lod.levels[1].hysteresis,.1);
  assert.deepEqual(lod.levels.map(x=>x.object.children.length),[1,1]);assert.deepEqual(lod.levels.map(x=>faces(x.object.children[0].geometry)),[1024,142]);assert.equal(lod.levels[0].object.children[0].material,lod.levels[1].object.children[0].material);
- const rows=Object.values(sceneRows(scene));assert.equal(rows.reduce((s,r)=>s+r.meshes,0),166);assert.equal(rows.reduce((s,r)=>s+r.triangles,0),189241);
+ const rows=Object.values(restorePreR28SceneRows(sceneRows(scene)));assert.equal(rows.reduce((s,r)=>s+r.meshes,0),166);assert.equal(rows.reduce((s,r)=>s+r.triangles,0),189241);
  scene.updateMatrixWorld(true);const cam=new T.PerspectiveCamera();for(const [d,near]of[[5,true],[180,false],[10,true]]){cam.position.set(frame.x,frame.y,frame.z+d);cam.updateMatrixWorld(true);lod.update(cam);assert.equal(lod.levels[0].object.visible,near);assert.equal(lod.levels[1].object.visible,!near);}
 });
 

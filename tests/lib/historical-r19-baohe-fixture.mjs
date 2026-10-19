@@ -1,3 +1,4 @@
+import {historicalR27Dependency} from './historical-r27-jiaotai-fixture.mjs';
 // Bind the new R22 modules before restoring older historical builders.
 import './historical-r21-baohe-fixture.mjs';
 import fs from 'node:fs';
@@ -13,7 +14,7 @@ function historicalModule(path,overrides={}){
   const url=new URL('../../'+path,import.meta.url);
   const bytes=restorePreR20Source(path,fs.readFileSync(url));
   const source=bytes.toString().replace(/from '([^']+)'/g,(_,specifier)=>
-    `from '${overrides[specifier]??(specifier==='three'?import.meta.resolve('three'):new URL(specifier,url).href)}'`);
+    `from '${overrides[specifier]??(historicalR27Dependency(specifier,url))}'`);
   return 'data:text/javascript;base64,'+Buffer.from(source).toString('base64');
 }
 export const historicalR19RoofModule=historicalModule('src/scene/RoofBuilder.js');

@@ -1,3 +1,6 @@
+import {r30Source} from './lib/r30-qianqing-passage-retention.mjs';
+import {r29Source} from './lib/r29-qianqing-retention.mjs';
+import {restorePreR28Source,r28Source} from './lib/r28-jiaotai-central-retention.mjs';
 import r27Source from './fixtures/r27-jiaotai-source-delta.json' with {type:'json'};
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -17,7 +20,7 @@ import source from './fixtures/r26-qianqing-source-delta.json' with {type:'json'
 import scene from './fixtures/r26-qianqing-scene-delta.json' with {type:'json'};
 import priorSource from './fixtures/r25-nameboard-source-delta.json' with {type:'json'};
 import priorScene from './fixtures/r25-nameboard-scene-delta.json' with {type:'json'};
-const root=new URL('../',import.meta.url),read=p=>fs.readFileSync(new URL(p,root));
+const root=new URL('../',import.meta.url),read=p=>restorePreR28Source(p,fs.readFileSync(new URL(p,root)));
 const sha=x=>createHash('sha256').update(x).digest('hex'),hash=x=>sha(JSON.stringify(x)),clone=structuredClone;
 const current=captureNameboardScene(PalaceBuilder),historical=captureNameboardScene(HistoricalR25PalaceBuilder);
 const qCurrent=captureQianqingControl(PalaceBuilder),qHistorical=captureQianqingControl(HistoricalR25PalaceBuilder);
@@ -40,7 +43,7 @@ test('R26 provenance binds exact candidate/R25 source, all runtime dependencies 
   for(const[path,digest]of Object.entries(source.preservedFixtures))assert.equal(sha(read(path)),digest,path);
   for(const[path,digest]of Object.entries(priorSource.retainedFiles))assert.equal(source.retainedFiles[path],digest,path);
   const actual=['src','data','public'].flatMap(dir=>fs.readdirSync(new URL(dir+'/',root),{recursive:true,withFileTypes:true}).filter(x=>x.isFile()).map(x=>path.relative(root.pathname,path.join(x.parentPath,x.name)))).sort();
-  assert.deepEqual([...Object.keys(source.files),...Object.keys(source.addedFiles),...Object.keys(source.retainedFiles).filter(p=>/^(src|data|public)\//.test(p)),...Object.keys(friezeSource.addedFiles),...Object.keys(r27Source.addedFiles)].sort(),actual);
+  assert.deepEqual([...Object.keys(source.files),...Object.keys(source.addedFiles),...Object.keys(source.retainedFiles).filter(p=>/^(src|data|public)\//.test(p)),...Object.keys(friezeSource.addedFiles),...Object.keys(r27Source.addedFiles),...Object.keys(r28Source.addedFiles),...Object.keys(r30Source.addedFiles),...Object.keys(r29Source.addedFiles).filter(p=>/^(src|data|public)\//.test(p))].sort(),actual);
 });
 
 test('complete R26 builder reverses exactly three unique hunks without changing runtime or the older source chain',()=>{

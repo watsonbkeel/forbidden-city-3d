@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { QIANQING_SURFACE, qianqingSurfaceMaterial } from './palace/QianqingSurface.js';
 import { COLORS } from '../config/constants.js';
 import { taiheFloorMaterial, TAIHE_FLOOR } from './palace/special/TaiheFloorMaterial.js';
 import { buildGateAscent, toWorld } from './palace/gateAscent.js';
@@ -13,7 +14,9 @@ import { buildHallBody, buildBalustrade, buildStuddedDoor } from './HallKit.js';
 import { mergeByMaterial } from '../utils/MergeUtils.js';
 import { applyBoxUV, applyBandUV, applyPlanarUV } from '../utils/GeometryUV.js';
 import { installJiaotaiLandmarks } from './palace/special/JiaotaiLandmarks.js';
+import {installJiaotaiCentral,buildJiaotaiBackdrop} from './palace/special/JiaotaiCentralInterior.js';
 import { buildSquareHall, SQUARE_HALLS } from './palace/special/SquareHalls.js';
+import {registerQianqingCentral,installQianqingCentral} from './palace/QianqingCentralSetting.js';
 import { buildQianqingGate } from './palace/special/QianqingGate.js';
 import { innerPalaceTerraceProfile, buildInnerTerraceRail, buildInnerTerraceStair } from './palace/special/InnerPalaceTerrace.js';
 import { INNER_PALACE_LEVELS, buildInnerPalaceLip } from './palace/special/InnerPalaceLevels.js';
@@ -27,6 +30,7 @@ import { buildBaoheThroneScreen, buildBaoheInteriorPlaque, buildBaoheThroneChair
 import { buildBaoheFrontDoors } from './palace/BaoheFrontDoors.js';
 import { buildBaoheClosedFront } from './palace/BaoheFrontEnclosure.js';
 import { buildQianqingFrontWindow, qianqingFrontBox } from './palace/QianqingFrontEnclosure.js';
+import { qianqingPassageFrame, buildQianqingPassageMouth, buildQianqingPassageWalls } from './palace/QianqingEndPassages.js';
 import { paintQianqingUpperEnclosure } from './palace/QianqingUpperEnclosure.js';
 import { buildBaoheRearEnclosure } from './palace/BaoheRearEnclosure.js';
 import { positionHallNameboard } from './palace/HallNameboardMount.js';
@@ -343,7 +347,10 @@ export class PalaceBuilder {
         const d = r.z1 - r.z0;
         const zc = (r.z0 + r.z1) / 2;
         this.libBox(g, innerPalace && k > 0 ? 'wall_brick' : 'sumeru_band', r.hw * 2, lh, d, 0, y0 + lh / 2, zc, innerPalace && k > 0 ? 'box' : 'band');
-        this.libBox(g, 'stone_slab', r.hw * 2 + 0.2, 0.1, d + (k === 0 || k === last ? 0.2 : 0), 0, y1 - 0.03, zc, 'box');
+        const deck = this.libBox(g, 'stone_slab', r.hw * 2 + 0.2, 0.1, d + (k === 0 || k === last ? 0.2 : 0), 0, y1 - 0.03, zc, 'box');
+        // One coherent front court sample. Same existing box/UV/height and walk
+        // surface; private material, no floating overlay or shared-map mutation.
+        if (innerPalace && k === 0) deck.material = qianqingSurfaceMaterial(this, 'court');
         this.walkBox(-r.hw, r.z0, r.hw, r.z1, y1);
         for (const s of [-1, 1]) {
           const flight = sideStairProfile?.flights.find(f => f.tier === i + 1 && f.rectIndex === k && f.dir === s);
@@ -474,7 +481,7 @@ export class PalaceBuilder {
           zhongheImperial: h.name === '中和殿',
           stairCenters: h.name === '中和殿' ? [-(w - 6) / 3, 0, (w - 6) / 3] : [0],
           stairSides: h.name === '中和殿' ? ['south', 'north', 'east', 'west'] : ['south', 'north'] };
-        const y = name === '后三宫' ? buildInnerPalaceLip(this, g, plinth)
+        const y = name === '后三宫' ? buildInnerPalaceLip(this, g, { ...plinth, surfaceMaterial: h.name === '乾清宫' ? qianqingSurfaceMaterial(this, 'court') : null })
           : h.name === '保和殿' ? buildBaoheHallPlinth(this, g, plinth) : this.buildPlinth(g, plinth);
         // Retain body heights when lowering source-specific supports. The old
         // floor datums are modelling values, not measured body dimensions.
@@ -489,7 +496,7 @@ export class PalaceBuilder {
     const finished = this.finish(g);
     if (coarse) installInnerGlazeLOD(finished, coarse);
     if (baoheNorth) installBaoheNorthDetail(finished, baoheNorth);
-    if (name === '后三宫') installJiaotaiLandmarks(this, finished);
+    if (name === '后三宫') { installJiaotaiLandmarks(this, finished); installJiaotaiCentral(this, finished); installQianqingCentral(this, finished); }
   }
 
   /**
@@ -707,7 +714,7 @@ export class PalaceBuilder {
         if (taiheGrid && !edge && taiheGrid.centralColumnIndices.includes(i)) continue;
         if (baoheColumns && !baoheDepthColumnPresent(i, k, bays, nd)) continue;
         if (!baoheColumns && !edge && throne && Math.abs(classificationX - x0) < bayW * 0.6 && z > ztb0 - 1 && z < ztb1 + 1) continue;
-        const isGold = !baoheColumns && !taiheCore && throne && !edge && Math.abs(classificationX - x0) < bayW * 1.6 && z > ztb0 - dBay;
+        const isGold = data.name !== '乾清宫' && !baoheColumns && !taiheCore && throne && !edge && Math.abs(classificationX - x0) < bayW * 1.6 && z > ztb0 - dBay;
         const highColumn = baoheFrame && baoheHighColumn(i, k);
         this.column(g, highColumn ? highColGeo : colGeo, isGold ? gold : colMat, x, z, y,
           highColumn ? baoheFrame.columnHeight : H, r);
@@ -727,19 +734,30 @@ export class PalaceBuilder {
     // 金砖地面
     const floorGeo = new THREE.PlaneGeometry(w, d);
     floorGeo.rotateX(-Math.PI / 2);
-    applyPlanarUV(floorGeo, 'y', taiheCore ? TAIHE_FLOOR.tileMetres : 1.4);
-    const floor = new THREE.Mesh(floorGeo, taiheCore ? taiheFloorMaterial(this) : this.library.material('stone_slab', { color: 0x55524e, roughness: 0.35 }));
+    applyPlanarUV(floorGeo, 'y', taiheCore ? TAIHE_FLOOR.tileMetres : data.name === '乾清宫' ? QIANQING_SURFACE.interior.tileMetres : 1.4);
+    if (data.name === '乾清宫') {
+      // Optional layer has 71 x 38 inherited .64m tiles centred in the hall.
+      // Match its half-tile X origin rather than jumping the grid on load.
+      const uv = floorGeo.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setX(i, uv.getX(i) + .125);
+    }
+    const floor = new THREE.Mesh(floorGeo, taiheCore ? taiheFloorMaterial(this) : data.name === '乾清宫' ? qianqingSurfaceMaterial(this, 'interior') : this.library.material('stone_slab', { color: 0x55524e, roughness: 0.35 }));
     floor.position.set(x0, y + 0.03, z0);
     floor.receiveShadow = true;
     g.add(floor);
 
     // 前后檐：隔扇门（中间敞开）+ 上部走马板 + 额枋彩画
     const doorH = (H - beamH) * 0.8;
+    const qianqingPassages = data.name === '乾清宫'
+      ? qianqingPassageFrame({ x0, z0, y, w, d, H, bayW, r, doorH, beamH }) : null;
     for (const s of [-1, 1]) {
       const zf = z0 + (baoheDepth ? (s < 0 ? baoheDepth.frontDoorZ : baoheDepth.rearDoorZ) : s * d / 2);
       for (let i = 0; i < bays; i++) {
         const xc = facadeGrid ? x0 + (facadeGrid.x[i] + facadeGrid.x[i + 1]) / 2 : x0 - w / 2 + (i + 0.5) * bayW;
         const facadeBayW = facadeGrid ? facadeGrid.x[i + 1] - facadeGrid.x[i] : bayW;
+        if (qianqingPassages && (i === 0 || i === bays - 1)) {
+          buildQianqingPassageMouth(this, g, qianqingPassages, i === 0 ? -1 : 1, zf);
+          continue;
+        }
         if (facadeGrid ? facadeGrid.openBayIndices.includes(i) : Math.abs(xc - x0) < openHalf - 0.01) {
           if (baoheColumns && s === -1) {
             buildBaoheFrontDoors(this,g,{xc,zf,y,height:doorH,bayWidth:facadeBayW,columnRadius:r});
@@ -765,8 +783,9 @@ export class PalaceBuilder {
       const solidRear = (taiheCore || baoheColumns) && s === 1;
       this.libBox(g, 'wall_red', solidRear ? openRight - openLeft : w, H - beamH - doorH, 0.3, x0 + (solidRear ? (openLeft + openRight) / 2 : 0), y + doorH + (H - beamH - doorH) / 2, zf, 'box');
       this.libBox(g, 'caihua_beam', w + 0.6, beamH, 0.6, x0, y + H - beamH / 2, zf, 'band');
-      this.col(x0 - w / 2, y, zf - 0.25, x0 + openLeft, y + 3, zf + 0.25);
-      this.col(x0 + openRight, y, zf - 0.25, x0 + w / 2, y + 3, zf + 0.25);
+      const solidEnd = qianqingPassages?.inner ?? w / 2;
+      this.col(x0 - solidEnd, y, zf - 0.25, x0 + openLeft, y + 3, zf + 0.25);
+      this.col(x0 + openRight, y, zf - 0.25, x0 + solidEnd, y + 3, zf + 0.25);
     }
     // 门槛（矮，可跨过）
     for (const s of [-1, 1]) this.libBox(g, 'wood_column', openRight - openLeft, 0.25, 0.3, x0 + (openLeft + openRight) / 2, y + 0.125, z0 + (baoheDepth ? (s < 0 ? baoheDepth.frontDoorZ : baoheDepth.rearDoorZ) : s * d / 2), 'box');
@@ -783,6 +802,7 @@ export class PalaceBuilder {
       this.libBox(g, 'caihua_beam', 0.6, beamH, wallDepth + 0.6, xs, y + H - beamH / 2, wallZ, 'band');
       this.col(xs - 0.5, y, wallZ - wallDepth / 2, xs + 0.5, y + 3, wallZ + wallDepth / 2);
     }
+    if (qianqingPassages) buildQianqingPassageWalls(this, g, qianqingPassages);
 
     // Taihe alone has an upward caisson opening and an independently owned core.
     if (taiheCore) buildTaiheCeiling(this, g, { x0, z0, y, w, d });
@@ -796,7 +816,7 @@ export class PalaceBuilder {
         ceiling.position.set(x0, y + H - 0.05, z0);
         g.add(ceiling);
       }
-      if (throne) this.throneArea(g, { x0, y, H, ztb0, ztb1, thW, bayW, text: spec.inner, caisson: !baoheDepth, baohe: !!baoheDepth });
+      if (throne) this.throneArea(g, { x0, y, H, ztb0, ztb1, thW, bayW, text: spec.inner, caisson: !baoheDepth, baohe: !!baoheDepth, qianqing: data.name === '乾清宫' });
       if (baoheColumns) buildBaoheColumnCouplets(this,g,{x0,z0,y,columnRadius:r});
     }
 
@@ -829,12 +849,14 @@ export class PalaceBuilder {
     if (exteriorPlaque) positionHallNameboard(exteriorPlaque,roof,data.name);
   }
 
-  throneArea(g, { x0, y, H, ztb0, ztb1, thW, bayW, text, caisson = true, baohe = false }) {
+  throneArea(g, { x0, y, H, ztb0, ztb1, thW, bayW, text, caisson = true, baohe = false, jiaotai = false, qianqing = false }) {
     const lacquer = this.ownMat('lacquer', { color: 0x7a1d12, roughness: 0.4, metalness: 0.1 });
     const gold = this.ownMat('gold', { color: 0xc9a13b, metalness: 0.85, roughness: 0.3 });
     const bronze = this.ownMat('bronze', { color: 0x4a3b28, metalness: 0.7, roughness: 0.45 });
     const depth = ztb1 - ztb0;
     const zc = (ztb0 + ztb1) / 2;
+    if (qianqing) registerQianqingCentral(this,g,{x0,y,H,ztb0,ztb1,thW,bayW});
+    else {
     // 地平床：两级，金边
     this.box(g, lacquer, thW, 0.6, depth, x0, y + 0.3, zc);
     this.box(g, gold, thW + 0.1, 0.08, depth + 0.1, x0, y + 0.62, zc);
@@ -852,12 +874,14 @@ export class PalaceBuilder {
       this.box(g, gold, 1.9, 1.5, 0.25, x0, ty + 1.2, tz + 0.6);
       for (const s of [-1, 1]) this.box(g, gold, 0.2, 0.6, 1.2, x0 + s * 0.9, ty + 0.9, tz);
     }
-    if (baohe) buildBaoheThroneScreen(this,g,{x0,ty,tz,depth,thW});
+    if (jiaotai) buildJiaotaiBackdrop(this,g,{x0,ty,tz,depth,thW});
+    else if (baohe) buildBaoheThroneScreen(this,g,{x0,ty,tz,depth,thW});
     else {
       this.box(g, gold, Math.min(thW * 0.7, 6), 3.2, 0.3, x0, ty + 1.6, tz + depth * 0.32);
       for (let k = 0; k < 3; k++) {
         this.box(g, gold, 1.2, 0.5, 0.32, x0 + (k - 1) * 1.6, ty + 3.4, tz + depth * 0.32);
       }
+    }
     }
     // 香炉、甪端
     for (const s of [-1, 1]) {
@@ -865,8 +889,10 @@ export class PalaceBuilder {
     }
     // Preserve shared gold response independently of optional ceiling geometry.
     gold.side = THREE.DoubleSide;
-    // Palace Museum study: Baohe is fully panelled, without a caisson/mirror.
-    if (caisson) {
+    // Palace Museum, Huangjidian Kaolue (2011), p106: both Baohe and
+    // Qianqing are fully panelled, without a caisson. Do not retain the
+    // old generic suspended caisson/mirror in either loading state.
+    if (caisson && !qianqing) {
       // 藻井 + 轩辕镜
       const cz = zc - depth * 0.15;
       const ring = new THREE.Mesh(new THREE.CylinderGeometry(bayW * 0.9, bayW * 1.05, 0.6, 8, 1, true), gold);
@@ -881,7 +907,7 @@ export class PalaceBuilder {
       g.add(pearl);
     }
     // 殿内横匾
-    if (text) {
+    if (text && !qianqing) {
       const p = baohe ? buildBaoheInteriorPlaque(this) : this.plaqueMesh(text, 4.2, 1.3, false);
       p.position.set(x0, y + H - 1.1, ztb0 - 0.5);
       p.rotation.y = Math.PI;

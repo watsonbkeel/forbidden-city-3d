@@ -1,0 +1,586 @@
+{
+  "base": "8475e2f269b8974d8e6dab8cc0d25ae2c072ad07",
+  "candidateProductSource": "d5f96961e54e2666fd8520eb02e9f5916497e222",
+  "files": 67,
+  "tests": 952,
+  "pass": 952,
+  "fail": 0,
+  "scope": "Affected R25-R30 core, earlier shared source/scene/navigation/retention checks; excludes builds, browsers, performance and the six owner-run current passage tests. Not the unrelated full test universe.",
+  "originalSourceSHA256Count": 142,
+  "preservedFixtureCount": 117,
+  "changedFiles": [
+    "tests/fixtures/r30-qianqing-passage-scene-delta.json",
+    "tests/fixtures/r30-qianqing-passage-source-delta.json",
+    "tests/lib/historical-r27-jiaotai-fixture.mjs",
+    "tests/lib/historical-r29-qianqing-fixture.mjs",
+    "tests/lib/r27-jiaotai-retention.mjs",
+    "tests/lib/r28-jiaotai-central-retention.mjs",
+    "tests/lib/r29-qianqing-retention.mjs",
+    "tests/lib/r30-qianqing-passage-retention.mjs",
+    "tests/r12-glaze-lod.test.mjs",
+    "tests/r19-baohe-buried-caps.test.mjs",
+    "tests/r19-baohe-depth-ceiling.test.mjs",
+    "tests/r25-hall-nameboard-mounts.test.mjs",
+    "tests/r25-nameboard-retention.test.mjs",
+    "tests/r26-qianqing-frieze-retention.test.mjs",
+    "tests/r26-qianqing-front-enclosure.test.mjs",
+    "tests/r26-qianqing-retention.test.mjs",
+    "tests/r27-jiaotai-landmarks.test.mjs",
+    "tests/r27-jiaotai-retention.test.mjs",
+    "tests/r28-jiaotai-central.test.mjs",
+    "tests/r29-qianqing-central.test.mjs",
+    "tests/r29-qianqing-retention.test.mjs",
+    "tests/r30-qianqing-passage-retention.test.mjs"
+  ],
+  "sourceRegistrySHA256": "4bb57ea4366288139450d1197dcaf2f17b4481ca42273b5b46afa62363a60e0c",
+  "sceneRegistrySHA256": "7a3d32a783ff7735ee6873d6f8ed9d6cb522d40e7a37e98cc0108117862c5353",
+  "unchangedRawBaselineSHA256": "2233865b5835b0c70c6d686b081e05f50d870f2391d90b7777787b485722e9b7",
+  "preexistingR29Failures": [
+    {
+      "file": "tests/r19-baohe-depth-ceiling.test.mjs",
+      "reason": "R29 adds explicit qianqing:false to Baohe throne dispatch; old expectation omitted the key. Exact false now asserted without fixture mutation."
+    },
+    {
+      "file": "tests/r19-baohe-buried-caps.test.mjs",
+      "reason": "Generic relocated Qianqing control already violates R29 core frame. Current actual registered frame now checks all 38 caps against original immutable R19 cardinality."
+    }
+  ],
+  "outcomes": [
+    {
+      "file": "tests/r25-hall-nameboard-mounts.test.mjs",
+      "exit": 0,
+      "tests": 6,
+      "pass": 6,
+      "fail": 0,
+      "seconds": 1.2
+    },
+    {
+      "file": "tests/r25-nameboard-retention.test.mjs",
+      "exit": 0,
+      "tests": 9,
+      "pass": 9,
+      "fail": 0,
+      "seconds": 5.4
+    },
+    {
+      "file": "tests/r26-qianqing-frieze-retention.test.mjs",
+      "exit": 0,
+      "tests": 13,
+      "pass": 13,
+      "fail": 0,
+      "seconds": 15.0
+    },
+    {
+      "file": "tests/r26-qianqing-front-enclosure.test.mjs",
+      "exit": 0,
+      "tests": 7,
+      "pass": 7,
+      "fail": 0,
+      "seconds": 1.8
+    },
+    {
+      "file": "tests/r26-qianqing-retention.test.mjs",
+      "exit": 0,
+      "tests": 13,
+      "pass": 13,
+      "fail": 0,
+      "seconds": 7.8
+    },
+    {
+      "file": "tests/r26-qianqing-upper-enclosure.test.mjs",
+      "exit": 0,
+      "tests": 4,
+      "pass": 4,
+      "fail": 0,
+      "seconds": 0.6
+    },
+    {
+      "file": "tests/r27-jiaotai-landmarks.test.mjs",
+      "exit": 0,
+      "tests": 17,
+      "pass": 17,
+      "fail": 0,
+      "seconds": 2.5
+    },
+    {
+      "file": "tests/r27-jiaotai-retention.test.mjs",
+      "exit": 0,
+      "tests": 11,
+      "pass": 11,
+      "fail": 0,
+      "seconds": 20.2
+    },
+    {
+      "file": "tests/r28-jiaotai-central.test.mjs",
+      "exit": 0,
+      "tests": 16,
+      "pass": 16,
+      "fail": 0,
+      "seconds": 28.0
+    },
+    {
+      "file": "tests/r29-qianqing-central.test.mjs",
+      "exit": 0,
+      "tests": 23,
+      "pass": 23,
+      "fail": 0,
+      "seconds": 11.9
+    },
+    {
+      "file": "tests/r29-qianqing-retention.test.mjs",
+      "exit": 0,
+      "tests": 6,
+      "pass": 6,
+      "fail": 0,
+      "seconds": 9.2
+    },
+    {
+      "file": "tests/r30-qianqing-passage-retention.test.mjs",
+      "exit": 0,
+      "tests": 5,
+      "pass": 5,
+      "fail": 0,
+      "seconds": 15.2
+    },
+    {
+      "file": "tests/current-state/gate-ground-door-source-guard.test.mjs",
+      "exit": 0,
+      "tests": 8,
+      "pass": 8,
+      "fail": 0,
+      "seconds": 0.2
+    },
+    {
+      "file": "tests/current-state/gate-plaque-material-source-guard.test.mjs",
+      "exit": 0,
+      "tests": 5,
+      "pass": 5,
+      "fail": 0,
+      "seconds": 0.2
+    },
+    {
+      "file": "tests/current-state/gate-plaque-source-guard.test.mjs",
+      "exit": 0,
+      "tests": 25,
+      "pass": 25,
+      "fail": 0,
+      "seconds": 0.2
+    },
+    {
+      "file": "tests/current-state/gate-plaque-visibility-source-guard.test.mjs",
+      "exit": 0,
+      "tests": 8,
+      "pass": 8,
+      "fail": 0,
+      "seconds": 0.2
+    },
+    {
+      "file": "tests/current-state/gate-tower-source-guard.test.mjs",
+      "exit": 0,
+      "tests": 12,
+      "pass": 12,
+      "fail": 0,
+      "seconds": 0.2
+    },
+    {
+      "file": "tests/current-state/qianqing-gate.test.mjs",
+      "exit": 0,
+      "tests": 9,
+      "pass": 9,
+      "fail": 0,
+      "seconds": 0.3
+    },
+    {
+      "file": "tests/current-state/qianqing-material-batching.test.mjs",
+      "exit": 0,
+      "tests": 2,
+      "pass": 2,
+      "fail": 0,
+      "seconds": 0.4
+    },
+    {
+      "file": "tests/current-state/r15-source-retention.test.mjs",
+      "exit": 0,
+      "tests": 8,
+      "pass": 8,
+      "fail": 0,
+      "seconds": 0.2
+    },
+    {
+      "file": "tests/current-state/taihe-core-navigation.test.mjs",
+      "exit": 0,
+      "tests": 20,
+      "pass": 20,
+      "fail": 0,
+      "seconds": 0.5
+    },
+    {
+      "file": "tests/current-state/taihe-core-source-guard.test.mjs",
+      "exit": 0,
+      "tests": 40,
+      "pass": 40,
+      "fail": 0,
+      "seconds": 0.2
+    },
+    {
+      "file": "tests/current-state/wumen-vertical-source-guard.test.mjs",
+      "exit": 0,
+      "tests": 63,
+      "pass": 63,
+      "fail": 0,
+      "seconds": 0.2
+    },
+    {
+      "file": "tests/r10-column-retention.test.mjs",
+      "exit": 0,
+      "tests": 3,
+      "pass": 3,
+      "fail": 0,
+      "seconds": 0.7
+    },
+    {
+      "file": "tests/r10-taihe-column-grid.test.mjs",
+      "exit": 0,
+      "tests": 4,
+      "pass": 4,
+      "fail": 0,
+      "seconds": 0.1
+    },
+    {
+      "file": "tests/r10-taihe-column-integration.test.mjs",
+      "exit": 0,
+      "tests": 6,
+      "pass": 6,
+      "fail": 0,
+      "seconds": 1.0
+    },
+    {
+      "file": "tests/r11-floor-retention.test.mjs",
+      "exit": 0,
+      "tests": 2,
+      "pass": 2,
+      "fail": 0,
+      "seconds": 0.7
+    },
+    {
+      "file": "tests/r11-taihe-floor.test.mjs",
+      "exit": 0,
+      "tests": 5,
+      "pass": 5,
+      "fail": 0,
+      "seconds": 0.8
+    },
+    {
+      "file": "tests/r12-glaze-lod.test.mjs",
+      "exit": 0,
+      "tests": 5,
+      "pass": 5,
+      "fail": 0,
+      "seconds": 3.3
+    },
+    {
+      "file": "tests/r12-inner-palace-terrace.test.mjs",
+      "exit": 0,
+      "tests": 26,
+      "pass": 26,
+      "fail": 0,
+      "seconds": 4.3
+    },
+    {
+      "file": "tests/r12-qianqing-imperial-stair.test.mjs",
+      "exit": 0,
+      "tests": 23,
+      "pass": 23,
+      "fail": 0,
+      "seconds": 0.4
+    },
+    {
+      "file": "tests/r12-qianqing-route.test.mjs",
+      "exit": 0,
+      "tests": 9,
+      "pass": 9,
+      "fail": 0,
+      "seconds": 2.3
+    },
+    {
+      "file": "tests/r13-taihe-plaque-frame.test.mjs",
+      "exit": 0,
+      "tests": 13,
+      "pass": 13,
+      "fail": 0,
+      "seconds": 1.7
+    },
+    {
+      "file": "tests/r16-baohe-north.test.mjs",
+      "exit": 0,
+      "tests": 51,
+      "pass": 51,
+      "fail": 0,
+      "seconds": 2.5
+    },
+    {
+      "file": "tests/r16-baohe-retention.test.mjs",
+      "exit": 0,
+      "tests": 8,
+      "pass": 8,
+      "fail": 0,
+      "seconds": 2.3
+    },
+    {
+      "file": "tests/r17-baohe-plinth.test.mjs",
+      "exit": 0,
+      "tests": 45,
+      "pass": 45,
+      "fail": 0,
+      "seconds": 2.2
+    },
+    {
+      "file": "tests/r17-baohe-retention.test.mjs",
+      "exit": 0,
+      "tests": 11,
+      "pass": 11,
+      "fail": 0,
+      "seconds": 2.8
+    },
+    {
+      "file": "tests/r18-baohe-column-identity.test.mjs",
+      "exit": 0,
+      "tests": 11,
+      "pass": 11,
+      "fail": 0,
+      "seconds": 4.4
+    },
+    {
+      "file": "tests/r18-baohe-retention.test.mjs",
+      "exit": 0,
+      "tests": 13,
+      "pass": 13,
+      "fail": 0,
+      "seconds": 4.9
+    },
+    {
+      "file": "tests/r19-baohe-buried-caps.test.mjs",
+      "exit": 0,
+      "tests": 3,
+      "pass": 3,
+      "fail": 0,
+      "seconds": 1.0
+    },
+    {
+      "file": "tests/r19-baohe-depth-ceiling.test.mjs",
+      "exit": 0,
+      "tests": 40,
+      "pass": 40,
+      "fail": 0,
+      "seconds": 3.1
+    },
+    {
+      "file": "tests/r19-baohe-north-cross-route.test.mjs",
+      "exit": 0,
+      "tests": 10,
+      "pass": 10,
+      "fail": 0,
+      "seconds": 3.0
+    },
+    {
+      "file": "tests/r19-baohe-retention.test.mjs",
+      "exit": 0,
+      "tests": 16,
+      "pass": 16,
+      "fail": 0,
+      "seconds": 6.8
+    },
+    {
+      "file": "tests/r20-baohe-interior-height.test.mjs",
+      "exit": 0,
+      "tests": 10,
+      "pass": 10,
+      "fail": 0,
+      "seconds": 2.2
+    },
+    {
+      "file": "tests/r20-baohe-retention.test.mjs",
+      "exit": 0,
+      "tests": 13,
+      "pass": 13,
+      "fail": 0,
+      "seconds": 7.0
+    },
+    {
+      "file": "tests/r21-baohe-retention.test.mjs",
+      "exit": 0,
+      "tests": 7,
+      "pass": 7,
+      "fail": 0,
+      "seconds": 3.5
+    },
+    {
+      "file": "tests/r21-baohe-screen.test.mjs",
+      "exit": 0,
+      "tests": 11,
+      "pass": 11,
+      "fail": 0,
+      "seconds": 0.2
+    },
+    {
+      "file": "tests/r22-baohe-doors-couplets.test.mjs",
+      "exit": 0,
+      "tests": 7,
+      "pass": 7,
+      "fail": 0,
+      "seconds": 2.3
+    },
+    {
+      "file": "tests/r22-baohe-front-route.test.mjs",
+      "exit": 0,
+      "tests": 9,
+      "pass": 9,
+      "fail": 0,
+      "seconds": 2.7
+    },
+    {
+      "file": "tests/r22-baohe-retention.test.mjs",
+      "exit": 0,
+      "tests": 14,
+      "pass": 14,
+      "fail": 0,
+      "seconds": 4.9
+    },
+    {
+      "file": "tests/r22-baohe-route-retention.test.mjs",
+      "exit": 0,
+      "tests": 9,
+      "pass": 9,
+      "fail": 0,
+      "seconds": 3.0
+    },
+    {
+      "file": "tests/r23-baohe-front-enclosure.test.mjs",
+      "exit": 0,
+      "tests": 7,
+      "pass": 7,
+      "fail": 0,
+      "seconds": 3.2
+    },
+    {
+      "file": "tests/r23-baohe-retention.test.mjs",
+      "exit": 0,
+      "tests": 25,
+      "pass": 25,
+      "fail": 0,
+      "seconds": 3.3
+    },
+    {
+      "file": "tests/r24-baohe-rear-enclosure.test.mjs",
+      "exit": 0,
+      "tests": 6,
+      "pass": 6,
+      "fail": 0,
+      "seconds": 3.3
+    },
+    {
+      "file": "tests/r24-baohe-retention.test.mjs",
+      "exit": 0,
+      "tests": 28,
+      "pass": 28,
+      "fail": 0,
+      "seconds": 3.5
+    },
+    {
+      "file": "tests/r6-place-retention.test.mjs",
+      "exit": 0,
+      "tests": 36,
+      "pass": 36,
+      "fail": 0,
+      "seconds": 0.3
+    },
+    {
+      "file": "tests/r7-taihe-front-stairs.test.mjs",
+      "exit": 0,
+      "tests": 38,
+      "pass": 38,
+      "fail": 0,
+      "seconds": 2.6
+    },
+    {
+      "file": "tests/r8-zhonghe-approaches.test.mjs",
+      "exit": 0,
+      "tests": 16,
+      "pass": 16,
+      "fail": 0,
+      "seconds": 4.8
+    },
+    {
+      "file": "tests/r9-architecture-retention.test.mjs",
+      "exit": 0,
+      "tests": 2,
+      "pass": 2,
+      "fail": 0,
+      "seconds": 0.2
+    },
+    {
+      "file": "tests/r9-taihe-rear-enclosure.test.mjs",
+      "exit": 0,
+      "tests": 7,
+      "pass": 7,
+      "fail": 0,
+      "seconds": 1.0
+    },
+    {
+      "file": "tests/taihe-enamel-cranes-source-retention.test.mjs",
+      "exit": 0,
+      "tests": 4,
+      "pass": 4,
+      "fail": 0,
+      "seconds": 0.2
+    },
+    {
+      "file": "tests/taihe-furnishing-surface-retention.test.mjs",
+      "exit": 0,
+      "tests": 2,
+      "pass": 2,
+      "fail": 0,
+      "seconds": 0.2
+    },
+    {
+      "file": "tests/taihe-screen-crowns-source-retention.test.mjs",
+      "exit": 0,
+      "tests": 4,
+      "pass": 4,
+      "fail": 0,
+      "seconds": 0.2
+    },
+    {
+      "file": "tests/taihe-shell-geometry-retention.test.mjs",
+      "exit": 0,
+      "tests": 8,
+      "pass": 8,
+      "fail": 0,
+      "seconds": 3.7
+    },
+    {
+      "file": "tests/wumen-ascent-retention.test.mjs",
+      "exit": 0,
+      "tests": 7,
+      "pass": 7,
+      "fail": 0,
+      "seconds": 9.3
+    },
+    {
+      "file": "tests/wumen-ascent-source-retention.test.mjs",
+      "exit": 0,
+      "tests": 34,
+      "pass": 34,
+      "fail": 0,
+      "seconds": 0.3
+    },
+    {
+      "file": "tests/wumen-landing-wall-top-source-retention.test.mjs",
+      "exit": 0,
+      "tests": 14,
+      "pass": 14,
+      "fail": 0,
+      "seconds": 0.2
+    }
+  ]
+}

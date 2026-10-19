@@ -1,3 +1,5 @@
+import {historicalR27Dependency} from './historical-r27-jiaotai-fixture.mjs';
+import {restorePreR28Source} from './r28-jiaotai-central-retention.mjs';
 // Bind exact R26 added/retained modules before restoring older builders.
 import './historical-r25-nameboard-fixture.mjs';
 import assert from 'node:assert/strict';
@@ -10,12 +12,12 @@ import source from '../fixtures/r25-nameboard-source-delta.json' with {type:'jso
 // modules and restore the complete builder in memory. No Git, sibling checkout,
 // network, current-builder fallback, runtime writes or geometry exclusions.
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
-const read=path=>fs.readFileSync(new URL('../../'+path,import.meta.url));
+const read=path=>restorePreR28Source(path,fs.readFileSync(new URL('../../'+path,import.meta.url)));
 for(const path of Object.keys(source.addedFiles))assertR25AddedSource(path,read(path));
 for(const path of Object.keys(source.retainedFiles))assertR25RetainedSource(path,read(path));
 const path='src/scene/PalaceBuilder.js',url=new URL('../../'+path,import.meta.url);
 const bytes=restorePreR25Source(path,read(path));
 assert.equal(sha(bytes),source.files[path].baselineSHA256,'exact frozen R24 PalaceBuilder');
 const text=bytes.toString().replace(/from '([^']+)'/g,(_,specifier)=>
-  `from '${specifier==='three'?import.meta.resolve('three'):new URL(specifier,url).href}'`);
+  `from '${historicalR27Dependency(specifier,url)}'`);
 export const {PalaceBuilder:HistoricalR24PalaceBuilder}=await import('data:text/javascript;base64,'+Buffer.from(text).toString('base64'));

@@ -263,13 +263,14 @@ export class Minimap {
       button.setAttribute('aria-label', `了解${place.name}`);
       button.addEventListener('click', () => this.showPlace(place.id));
       directory.appendChild(button);
-      entries.push({button, name: `${place.name} ${place.canonicalName ?? ''}`.normalize('NFKC').toLocaleLowerCase('zh-CN')});
+      const names = [place.name, place.canonicalName, ...(place.aliases ?? []).map(alias => alias.name)];
+      entries.push({button, names: names.filter(Boolean).map(name => name.normalize('NFKC').toLocaleLowerCase('zh-CN'))});
     }
     const filter = () => {
       const query = search.value.trim().normalize('NFKC').toLocaleLowerCase('zh-CN');
       let count = 0;
-      for (const {button, name} of entries) {
-        const match = name.includes(query); button.hidden = button.inert = !match;
+      for (const {button, names} of entries) {
+        const match = names.some(name => name.includes(query)); button.hidden = button.inert = !match;
         if (match) count++;
       }
       resultCount.textContent = count ? `显示 ${count} / ${entries.length} 个地点` : '未找到匹配地点，请换个名称。';

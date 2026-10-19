@@ -1,3 +1,6 @@
+import {r30Source} from './lib/r30-qianqing-passage-retention.mjs';
+import {r29Source} from './lib/r29-qianqing-retention.mjs';
+import {restorePreR28Source,r28Source} from './lib/r28-jiaotai-central-retention.mjs';
 import r27Source from './fixtures/r27-jiaotai-source-delta.json' with {type:'json'};
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -24,7 +27,7 @@ import r22Scene from './fixtures/r22-baohe-scene-delta.json' with {type:'json'};
 import r21Scene from './fixtures/r21-baohe-scene-delta.json' with {type:'json'};
 import r20Scene from './fixtures/r20-baohe-scene-delta.json' with {type:'json'};
 
-const root=new URL('../',import.meta.url),read=p=>fs.readFileSync(new URL(p,root));
+const root=new URL('../',import.meta.url),read=p=>restorePreR28Source(p,fs.readFileSync(new URL(p,root)));
 const sha=x=>createHash('sha256').update(x).digest('hex'),hash=x=>sha(JSON.stringify(x)),clone=structuredClone;
 const current=captureNameboardScene(PalaceBuilder),historical=captureNameboardScene(HistoricalR24PalaceBuilder);
 const sourceChain=[restorePreR25Source,restorePreR24Source,restorePreR23Source,restorePreR22Source,restorePreR21Source,restorePreR20Source];
@@ -51,7 +54,7 @@ test('R25 provenance binds the frozen R24 baseline, three source hunks and every
   for(const[path,digest]of Object.entries(source.preservedFixtures))assert.equal(sha(read(path)),digest,path);
   for(const[path,digest]of Object.entries(priorSource.retainedFiles))assert.equal(source.retainedFiles[path],digest,path);
   const actual=fs.readdirSync(new URL('src/',root),{recursive:true,withFileTypes:true}).filter(x=>x.isFile()).map(x=>new URL(x.parentPath+'/'+x.name,'file:').pathname.slice(root.pathname.length)).sort();
-  assert.deepEqual([...Object.keys(source.files),...Object.keys(source.addedFiles),...Object.keys(source.retainedFiles).filter(p=>p.startsWith('src/')),...Object.keys(r26Source.addedFiles),...Object.keys(friezeSource.addedFiles),...Object.keys(r27Source.addedFiles)].sort(),actual);
+  assert.deepEqual([...Object.keys(source.files),...Object.keys(source.addedFiles),...Object.keys(source.retainedFiles).filter(p=>p.startsWith('src/')),...Object.keys(r26Source.addedFiles),...Object.keys(friezeSource.addedFiles),...Object.keys(r27Source.addedFiles),...Object.keys(r28Source.addedFiles),...Object.keys(r30Source.addedFiles),...Object.keys(r29Source.addedFiles).filter(p=>p.startsWith('src/'))].sort(),actual);
 });
 
 test('complete R25 builder reverses three unique hunks, retains art source and feeds the complete prior source chain',()=>{

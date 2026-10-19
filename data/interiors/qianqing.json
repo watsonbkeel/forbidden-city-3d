@@ -3,17 +3,67 @@
   "hall": "乾清宫",
   "id": "qianqing",
   "tier": "S",
-  "model": "/models/interiors/qianqing.glb",
+  "model": "/models/interiors/qianqing-r31.glb",
   "fallback": "B",
-  "budget": { "tris": 400000, "textureMB": 8 },
-  "frame": { "x": 0, "z": 316.8, "rot": 0, "w": 46, "d": 25 },
-  "floor": { "mode": "ground", "y": null },
-  "anchor": { "x": 0, "y": 0, "z": 0 },
-  "preload": { "enter": 15, "exit": 40 },
-  "throne": { "ztb0": 1.0, "ztb1": 8.0, "thW": 8.18, "bayW": 5.111, "dBay": 8.333 },
+  "budget": {
+    "tris": 400000,
+    "textureMB": 8
+  },
+  "frame": {
+    "x": 0,
+    "z": 316.8,
+    "rot": 0,
+    "w": 46,
+    "d": 25
+  },
+  "floor": {
+    "mode": "ground",
+    "y": null
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "preload": {
+    "enter": 15,
+    "exit": 40
+  },
+  "throne": {
+    "ztb0": 1,
+    "ztb1": 8,
+    "thW": 8.18,
+    "bayW": 5.111,
+    "dBay": 8.333
+  },
   "lights": [
-    { "type": "point", "x": 0, "y": 5, "z": 3, "color": "#ffd9a0", "intensity": 2, "distance": 26 },
-    { "type": "point", "x": 0, "y": 4.5, "z": -7, "color": "#ffe6c0", "intensity": 0.8, "distance": 26 }
+    {
+      "type": "point",
+      "x": 0,
+      "y": 5,
+      "z": 3,
+      "color": "#ffd9a0",
+      "intensity": 2,
+      "distance": 26
+    },
+    {
+      "type": "point",
+      "x": 0,
+      "y": 4.5,
+      "z": -7,
+      "color": "#ffe6c0",
+      "intensity": 0.8,
+      "distance": 26
+    }
   ],
-  "source": "docs/research/interiors-qianqing.md"
+  "source": "docs/research/interiors-qianqing.md",
+  "asset": {
+    "contract": "r29-permanent-five-panel-core",
+    "sourceSHA256": "4b632e77900f39216cbe3652f40b505cfc268f1fe0ba82fe645d3b14e5e6aef7",
+    "sha256": "76b14ddf270ba1a6c1d0109b47c7c99f441af49b469c908f5af41d93697d3d5d",
+    "renderableTriangles": 9024,
+    "visibleMeshes": 8,
+    "profileSHA256": "50e52fa4f3f18e946a9d836568a10356dda1a8479ff91744c8107957dc868b7e",
+    "surfaceSourceSHA256": "7d036da5d51808c4f4b480d8392980e3d32157680701f931790639ffd266661e"
+  }
 }

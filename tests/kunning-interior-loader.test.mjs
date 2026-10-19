@@ -51,13 +51,13 @@ test('cancellation discards late Kunning scene without touching permanent B', as
   loader.dispose();
 });
 
-test('unchanged Qianqing retains the legacy optional-proxy contract', async () => {
+test('unchanged Cining retains the legacy optional-proxy contract', async () => {
   const scene = new THREE.Scene(), cm = new CollisionManager();
-  const loader = new InteriorLoader(scene, cm, { registry: { qianqing: INTERIORS.qianqing } });
+  const loader = new InteriorLoader(scene, cm, { registry: { cining: INTERIORS.cining } });
   loader.gltf.load = (_url, ok) => ok({ scene: rootWithProxy('COL_legacy') });
-  assert.equal(await loader.load('qianqing'), true);
+  assert.equal(await loader.load('cining'), true);
   assert.equal(cm.colliders.length, 1);
-  loader.unload('qianqing'); assert.equal(cm.colliders.length, 0);
+  loader.unload('cining'); assert.equal(cm.colliders.length, 0);
   loader.dispose();
 });
 

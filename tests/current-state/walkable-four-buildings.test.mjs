@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { buildWorld, walkStraight } from '../lib/world.mjs';
 
+import { PALACE_LAYOUT } from '../../src/scene/Layout.js';
 import { captureZhongheApproaches } from '../lib/zhonghe-approach-route.mjs';
 const world = await buildWorld();
 const zhongheApproaches = captureZhongheApproaches();
@@ -38,7 +39,13 @@ test('Qianqing Gate and raised passage reach Qianqing Palace without jumping', (
 });
 
 test('Jiaotai keeps an interior route around its throne through the centre doors', () => {
-  traverse([[0, 349.4], [6.5, 349.4], [6.5, 361.3], [0, 361.3], [0, 375]]);
+  // R27 west-bay clock occupies the inherited x=6.5 side line. Use the
+  // existing central-door route between the throne and artifact, never remove
+  // the visible clock collision to restore the obsolete path.
+  const z = PALACE_LAYOUT.find(h => h.name === '交泰殿').position.z;
+  traverse([[0,z-11],[0,z-3],[3.5,z-3],[3.5,z+7.2],[0,z+7.2],[0,z+11]]);
+  const oldCut = walkStraight(world, [6.5, 349.4], [6.5, 361.3], { feet0: world.cm.getGroundHeight(6.5, 349.4, Infinity) });
+  assert.ok(oldCut.reached < oldCut.total - 1, 'visible west-bay clock remains solid');
 });
 
 // The offset approach must join a stair opening, not traverse the new cheek wall.

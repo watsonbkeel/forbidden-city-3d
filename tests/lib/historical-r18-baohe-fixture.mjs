@@ -1,3 +1,4 @@
+import {historicalR27Dependency} from './historical-r27-jiaotai-fixture.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
@@ -13,7 +14,7 @@ const added='src/scene/palace/BaoheDepthGrid.js';
 assertR19AddedSource(added,fs.readFileSync(new URL('../../'+added,import.meta.url)));
 const bytes=restorePreR19Source(path,fs.readFileSync(url));
 const module=bytes.toString().replace(/from '([^']+)'/g,(_,specifier)=>
-  `from '${specifier==='./RoofBuilder.js'?historicalR19RoofModule:specifier==='three'?import.meta.resolve('three'):new URL(specifier,url).href}'`);
+  `from '${specifier==='./RoofBuilder.js'?historicalR19RoofModule:historicalR27Dependency(specifier,url)}'`);
 export const {PalaceBuilder:HistoricalR18PalaceBuilder}=await import('data:text/javascript;base64,'+Buffer.from(module).toString('base64'));
 
 // Retain the actual historical full-world walk checks without changing the live

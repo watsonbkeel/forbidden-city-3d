@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { mergeByMaterial } from '../utils/MergeUtils.js';
 import { WUMEN_VERTICAL_PROFILE } from './palace/special/WumenVerticalProfile.js';
 import { baoheLowerSoffitRing } from './palace/BaoheInteriorFrame.js';
+import {jiaotaiCeilingRing} from './palace/special/JiaotaiCeilingFrame.js';
 
 /**
  * 古建屋顶构件（接口契约）
@@ -470,7 +471,8 @@ function singleRoof(ctx, g, o) {
   const footprint = polyCorners(sides, W / 2, D / 2);
   let y0 = o.baseY ?? 0;
   if (o.brackets ?? true) y0 = addBrackets(ctx, g, footprint, y0, minD, vertical?.upperBracketHeight);
-  add(g, fanGeometry(footprint, y0, ctx.tile.rafters), ctx.mat.rafters);
+  if (o.jiaotaiCeilingOpening && (type !== 'pavilion' || sides !== 4)) throw Error('Jiaotai opening requires its four-sided pavilion roof');
+  add(g, o.jiaotaiCeilingOpening ? jiaotaiCeilingRing({W,D,y:y0,tile:ctx.tile.rafters,opening:o.jiaotaiCeilingOpening}) : fanGeometry(footprint, y0, ctx.tile.rafters), ctx.mat.rafters);
 
   const th = vertical?.upperRafterEndThickness ?? clamp(ovh * 0.1, 0.15, 0.45);
   const ex = vertical ? WUMEN_VERTICAL_PROFILE.retained.upperEaveHalfWidth : W / 2 + (type === 'gable' ? 0.3 : ovh);

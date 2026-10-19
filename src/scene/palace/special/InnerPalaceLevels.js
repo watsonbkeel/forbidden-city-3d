@@ -15,10 +15,11 @@ export const INNER_PALACE_LEVELS = Object.freeze({
   widthStatus: '1983 museum article states approximately 10m; edge basis unspecified',
 });
 
-export function buildInnerPalaceLip(b, g, { z0, w, d, y, ph }) {
+export function buildInnerPalaceLip(b, g, { z0, w, d, y, ph, surfaceMaterial = null }) {
   if (y !== INNER_PALACE_LEVELS.terraceY || ph !== INNER_PALACE_LEVELS.hallLip)
     throw new Error('Inner-palace common-deck/lip interface drift');
-  b.libBox(g, 'stone_slab', w, ph, d, 0, y + ph / 2, z0, 'box');
+  const lip = b.libBox(g, 'stone_slab', w, ph, d, 0, y + ph / 2, z0, 'box');
+  if (surfaceMaterial) lip.material = surfaceMaterial;
   b.walkBox(-w / 2, z0 - d / 2, w / 2, z0 + d / 2, y + ph);
   // This is the actual low stone body, not an invisible tall stair cheek.
   // The unchanged player step clearance permits stepping onto it from the deck.

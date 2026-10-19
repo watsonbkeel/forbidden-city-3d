@@ -1,0 +1,48 @@
+{
+  "runtime": "d5f96961e54e2666fd8520eb02e9f5916497e222",
+  "acceptance": "Controlled-start native traversal passed, not ordinary-spawn end-to-end tour",
+  "initialNonmovement": "First40sKeyW delivered before normal canvas pointer-lock click; app correctly did not move. Original events retained. No simulated lock or forced key injection.",
+  "screenshots": 4,
+  "errors": 0,
+  "ownedProcessGroupGone": null,
+  "legs": [
+    {
+      "phase": "east",
+      "start": [
+        -20.444444444444443,
+        3.7,
+        301
+      ],
+      "furthest": [
+        -20.444444444444443,
+        3.7,
+        333.38365579598985
+      ],
+      "startUTC": "2026-10-19T03:35:21.639Z",
+      "furthestUTC": "2026-10-19T03:37:39.643Z",
+      "maxLateralDifference": 0.011997939030564453
+    },
+    {
+      "phase": "west",
+      "start": [
+        20.444444444444443,
+        3.7,
+        331
+      ],
+      "furthest": [
+        20.444444444444443,
+        3.7,
+        299.16449450216373
+      ],
+      "startUTC": "2026-10-19T03:37:46.370Z",
+      "furthestUTC": "2026-10-19T03:38:59.643Z",
+      "maxLateralDifference": 0.011930125309689288
+    }
+  ],
+  "limitations": [
+    "portal/wall metric registration estimated",
+    "only east south-to-north and west north-to-south native legs; both directions and side lanes CPU checked",
+    "no real-mobile or performance acceptance from this run"
+  ],
+  "cleanupEvidence": "Terminal records browser leader exited and port closed. Earlier separate /proc absence check was in isolated tool namespace and does not independently prove whole group disappearance. Terminal and raw evidence unchanged."
+}
