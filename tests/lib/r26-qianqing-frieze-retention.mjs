@@ -1,3 +1,4 @@
+import {restorePreR27Source,restorePreR27SceneRow,restorePreR27SceneRows,restorePreR27MeshRows} from './r27-jiaotai-retention.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import source from '../fixtures/r26-qianqing-frieze-source-delta.json' with {type:'json'};
@@ -9,7 +10,9 @@ const hash=value=>sha(JSON.stringify(value));
  * two unique import/call reversals, then bind the full windows-only builder. */
 export function restorePreR26FriezeSource(path,bytes){
   const d=source.files[path];
-  if(!d||sha(bytes)===d.baselineSHA256)return bytes;
+  if(!d)return restorePreR27Source(path,bytes);
+  if(sha(bytes)===d.baselineSHA256)return bytes;
+  bytes=restorePreR27Source(path,bytes);
   assert.equal(sha(bytes),d.candidateSHA256,`exact R26 frieze source: ${path}`);
   assert.equal(d.deltas.length,2);
   let out=bytes.toString();
@@ -33,12 +36,15 @@ export function assertR26FriezeRetainedSource(path,bytes){
 }
 export function restorePreR26FriezeSceneRow(name,row){
   const d=scene.changes[name];
-  if(!d||JSON.stringify(row)===JSON.stringify(d.before))return row;
+  if(!d)return restorePreR27SceneRow(name,row);
+  if(JSON.stringify(row)===JSON.stringify(d.before))return row;
+  row=restorePreR27SceneRow(name,row);
   assert.deepEqual(row,d.after,`exact combined R26 scene group: ${name}`);
   return structuredClone(d.before);
 }
 export function restorePreR26FriezeSceneRows(rows){
   if(hash(rows)===scene.beforeSHA256)return rows;
+  rows=restorePreR27SceneRows(rows);
   assert.equal(hash(rows),scene.afterSHA256,'exact combined R26 complete scene groups');
   const out=structuredClone(rows);
   for(const name of scene.names)out[name]=restorePreR26FriezeSceneRow(name,rows[name]);
@@ -57,5 +63,8 @@ function restoreRows(rows,d,label){
   assert.equal(hash(out),d.beforeSHA256,`exact windows-only R26 ${label} restored`);
   return out;
 }
-export function restorePreR26FriezeMeshRows(rows){return restoreRows(rows,scene.meshes,'complete merged meshes');}
+export function restorePreR26FriezeMeshRows(rows){
+  if(hash(rows)!==scene.meshes.beforeSHA256)rows=restorePreR27MeshRows(rows);
+  return restoreRows(rows,scene.meshes,'complete merged meshes');
+}
 export function restorePreR26FriezeQianqingRows(rows){return restoreRows(rows,scene.qianqing,'complete unmerged Qianqing');}

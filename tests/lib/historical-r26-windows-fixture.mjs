@@ -1,3 +1,5 @@
+// Bind the current R27 modules before restoring the previous R26 stages.
+import './historical-r26-combined-fixture.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import fs from 'node:fs';

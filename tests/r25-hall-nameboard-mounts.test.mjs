@@ -1,3 +1,4 @@
+import {restorePreR27Navigation,restorePreR27SceneRows} from './lib/r27-jiaotai-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
@@ -52,10 +53,10 @@ test('unregistered halls are untouched and invalid or unavailable roof bands fai
  }finally{b.dispose();}
 });
 
-test('complete navigation remains byte-identical and exactly three boards exist in full resident scene',()=>{
+test('exact R27 navigation reversal retains the baseline and exactly three boards exist in full live scene',()=>{
  const s=new THREE.Scene(),b=new PalaceBuilder(s,library());try{b.buildAll(PALACE_LAYOUT);const boards=[];s.traverse(m=>{if(m.userData.hallNameboardMount)boards.push(m)});
  assert.deepEqual(boards.map(m=>m.userData.hallNameboardMount.name).sort(),[...N].sort());
- assert.equal(hash({colliders:b.colliders,walkables:b.walkables}),'a1668d4eaf2b4ea21b0ea5a45fb421ef299ff48888d4d23bb1f60396be825853');assert.equal(b.colliders.length,2487);assert.equal(b.walkables.length,120);
+ const retainedNavigation=restorePreR27Navigation({colliders:b.colliders,walkables:b.walkables});assert.equal(hash(retainedNavigation),'a1668d4eaf2b4ea21b0ea5a45fb421ef299ff48888d4d23bb1f60396be825853');assert.equal(retainedNavigation.colliders.length,2487);assert.equal(retainedNavigation.walkables.length,120);assert.equal(b.colliders.length,2489);
  }finally{b.dispose();}
 });
 

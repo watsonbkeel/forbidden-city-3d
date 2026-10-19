@@ -1,3 +1,4 @@
+import {restorePreR27SceneRows} from './lib/r27-jiaotai-retention.mjs';
 import {restorePreR26SceneRows} from './lib/r26-qianqing-retention.mjs';
 // Exact pre-R25 nameboard poses for historical whole-hall fingerprints only.
 import {HistoricalR24PalaceBuilder} from './lib/historical-r24-baohe-fixture.mjs';
@@ -8,23 +9,24 @@ import{INNER_GLAZE_LOD as L,captureInnerGlazeCoarse,installInnerGlazeLOD}from'..
 const ref=JSON.parse(fs.readFileSync(new URL('./fixtures/r12-glaze-lod-baseline.json',import.meta.url)));
 const scene=new T.Scene(),b=new PalaceBuilder(scene,library());b.buildAll(PALACE_LAYOUT);const rear=scene.getObjectByName('后三宫'),lod=rear.getObjectByName('rear-glaze-distance-detail');
 // Exact complete R26/R25 scene binding, before any LOD visibility changes.
-const currentRows=sceneRows(scene),historicalRows=restorePreR26SceneRows(currentRows);
+const currentRows=sceneRows(scene),r26Rows=restorePreR27SceneRows(currentRows),historicalRows=restorePreR26SceneRows(currentRows);
 scene.updateMatrixWorld(true);
-const r26Triangles=currentRows['后三宫'].triangles-historicalRows['后三宫'].triangles,r26Meshes=currentRows['后三宫'].meshes-historicalRows['后三宫'].meshes;
+const r26Triangles=r26Rows['后三宫'].triangles-historicalRows['后三宫'].triangles,r26Meshes=r26Rows['后三宫'].meshes-historicalRows['后三宫'].meshes;
+// This test updates only the glaze LOD; Jiaotai stays near (1024 drawn, 142 hidden).
 const tris=g=>{let n=0;g.traverseVisible(m=>{if(m.isMesh)n+=(m.geometry.index?.count??m.geometry.attributes.position.count)/3});return n;};
 function update(distance){const c=new T.PerspectiveCamera(70,16/9,.1,1500);c.position.set(distance,0,L.centerZ);c.updateMatrixWorld(true);lod.update(c);return lod.getCurrentLevel();}
 test('frozen R24 near geometry and live world navigation retain exact a40d91a bytes',()=>{
  update(20);const frozenScene=new T.Scene(),frozenBuilder=new HistoricalR24PalaceBuilder(frozenScene,library());frozenBuilder.buildAll(PALACE_LAYOUT);frozenScene.updateMatrixWorld(true);
  const rows=[];frozenScene.getObjectByName('后三宫').traverseVisible(m=>{if(!m.isMesh)return;rows.push({name:m.name,matrix:m.matrixWorld.toArray(),material:m.material.name,attributes:Object.fromEntries(Object.entries(m.geometry.attributes).map(([k,a])=>[k,[a.itemSize,...a.array]])),index:m.geometry.index?[...m.geometry.index.array]:null})});rows.sort((a,b)=>a.name.localeCompare(b.name)||a.attributes.position.length-b.attributes.position.length);
- assert.equal(hash(rows),ref.nearHash);assert.equal(tris(frozenScene.getObjectByName('后三宫')),50100);frozenBuilder.dispose();assert.deepEqual([r26Triangles,r26Meshes],[48,1]);const oldNav=restorePreR16Navigation({colliders:b.colliders,walkables:b.walkables});assert.equal(hash(oldNav.colliders),ref.colliders);assert.equal(hash(oldNav.walkables),ref.walkables);assert.equal(tris(rear),50100+r26Triangles);
+ assert.equal(hash(rows),ref.nearHash);assert.equal(tris(frozenScene.getObjectByName('后三宫')),50100);frozenBuilder.dispose();assert.deepEqual([r26Triangles,r26Meshes],[48,1]);const oldNav=restorePreR16Navigation({colliders:b.colliders,walkables:b.walkables});assert.equal(hash(oldNav.colliders),ref.colliders);assert.equal(hash(oldNav.walkables),ref.walkables);assert.equal(tris(rear),50100+r26Triangles+1024);
 });
 test('real Three LOD switches only at240m with return hysteresis; never both levels visible',()=>{
  assert.equal(lod.autoUpdate,true);assert.equal(lod.levels.length,2);assert.equal(lod.levels[1].distance,240);assert.equal(lod.levels[1].hysteresis,.1);
  for(const[d,level]of [[20,0],[239,0],[241,1],[225,1],[215,0]]){assert.equal(update(d),level);assert.deepEqual(lod.levels.map(l=>l.object.visible),level?[false,true]:[true,false]);}
 });
 test('3696 fewer submitted triangles at far range; separately account all1872 additional resident triangles',()=>{
- update(20);const near=tris(rear);update(300);const far=tris(rear);assert.equal(near,50100+r26Triangles);assert.equal(far,46404+r26Triangles);assert.equal(near-far,3696);
- let resident=0,meshes=0,bytes=0;rear.traverse(m=>{if(!m.isMesh)return;meshes++;resident+=(m.geometry.index?.count??m.geometry.attributes.position.count)/3;if(m.parent===lod.levels[1].object)for(const a of Object.values(m.geometry.attributes))bytes+=a.array.byteLength;});assert.equal(resident,51972+r26Triangles);assert.equal(meshes,33+r26Meshes);assert.equal(resident-near,1872);assert.equal(bytes,179712);
+ update(20);const near=tris(rear);update(300);const far=tris(rear);assert.equal(near,50100+r26Triangles+1024);assert.equal(far,46404+r26Triangles+1024);assert.equal(near-far,3696);
+ let resident=0,meshes=0,bytes=0;rear.traverse(m=>{if(!m.isMesh)return;meshes++;resident+=(m.geometry.index?.count??m.geometry.attributes.position.count)/3;if(m.parent===lod.levels[1].object)for(const a of Object.values(m.geometry.attributes))bytes+=a.array.byteLength;});assert.equal(resident,51972+r26Triangles+1166);assert.equal(meshes,33+r26Meshes+2);assert.equal(resident-near,1872+142);assert.equal(bytes,179712);
  assert.equal(lod.levels[0].object.children.length,2);assert.equal(lod.levels[1].object.children.length,2);assert.equal(lod.levels[0].object.children[0].material,lod.levels[1].object.children[0].material);update(20);
 });
 test('only glaze geometry is owned by LOD; every full-size cap and stair cheek is included in far source',()=>{

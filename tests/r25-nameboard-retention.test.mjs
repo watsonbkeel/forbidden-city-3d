@@ -1,3 +1,4 @@
+import r27Source from './fixtures/r27-jiaotai-source-delta.json' with {type:'json'};
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -50,7 +51,7 @@ test('R25 provenance binds the frozen R24 baseline, three source hunks and every
   for(const[path,digest]of Object.entries(source.preservedFixtures))assert.equal(sha(read(path)),digest,path);
   for(const[path,digest]of Object.entries(priorSource.retainedFiles))assert.equal(source.retainedFiles[path],digest,path);
   const actual=fs.readdirSync(new URL('src/',root),{recursive:true,withFileTypes:true}).filter(x=>x.isFile()).map(x=>new URL(x.parentPath+'/'+x.name,'file:').pathname.slice(root.pathname.length)).sort();
-  assert.deepEqual([...Object.keys(source.files),...Object.keys(source.addedFiles),...Object.keys(source.retainedFiles).filter(p=>p.startsWith('src/')),...Object.keys(r26Source.addedFiles),...Object.keys(friezeSource.addedFiles)].sort(),actual);
+  assert.deepEqual([...Object.keys(source.files),...Object.keys(source.addedFiles),...Object.keys(source.retainedFiles).filter(p=>p.startsWith('src/')),...Object.keys(r26Source.addedFiles),...Object.keys(friezeSource.addedFiles),...Object.keys(r27Source.addedFiles)].sort(),actual);
 });
 
 test('complete R25 builder reverses three unique hunks, retains art source and feeds the complete prior source chain',()=>{

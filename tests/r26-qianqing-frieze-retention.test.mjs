@@ -1,9 +1,11 @@
+import r27Source from './fixtures/r27-jiaotai-source-delta.json' with {type:'json'};
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
-import {PalaceBuilder} from '../src/scene/PalaceBuilder.js';
+import {HistoricalR26CombinedPalaceBuilder as PalaceBuilder} from './lib/historical-r26-combined-fixture.mjs';
+import {restorePreR27Source} from './lib/r27-jiaotai-retention.mjs';
 import {HistoricalR26WindowsPalaceBuilder as Historical} from './lib/historical-r26-windows-fixture.mjs';
 import {captureNameboardScene} from './lib/r25-nameboard-capture.mjs';
 import {captureQianqingControl} from './lib/r26-qianqing-capture.mjs';
@@ -36,11 +38,11 @@ test('frieze provenance binds current source, one added module, unchanged RoofBu
   assert.equal(source.retainedFiles['src/scene/palace/QianqingFrontEnclosure.js'],previousSource.addedFiles['src/scene/palace/QianqingFrontEnclosure.js'].candidateSHA256);
   assert.equal(sha(read('src/scene/RoofBuilder.js')),previousSource.retainedFiles['src/scene/RoofBuilder.js']);
   const actual=['src','data','public'].flatMap(dir=>fs.readdirSync(new URL(dir+'/',root),{recursive:true,withFileTypes:true}).filter(x=>x.isFile()).map(x=>path.relative(root.pathname,path.join(x.parentPath,x.name)))).sort();
-  assert.deepEqual([...Object.keys(source.files),...Object.keys(source.addedFiles),...Object.keys(source.retainedFiles).filter(p=>/^(src|data|public)\//.test(p))].sort(),actual);
+  assert.deepEqual([...Object.keys(source.files),...Object.keys(source.addedFiles),...Object.keys(source.retainedFiles).filter(p=>/^(src|data|public)\//.test(p)),...Object.keys(r27Source.addedFiles)].sort(),actual);
 });
 
-test('the full current builder reverses exactly two unique import/call hunks to the exact windows-only source',()=>{
-  const p='src/scene/PalaceBuilder.js',bytes=read(p),d=source.files[p],text=bytes.toString(),original=Buffer.from(bytes);
+test('the full frozen combined R26 builder reverses exactly two unique import/call hunks to the exact windows-only source',()=>{
+  const p='src/scene/PalaceBuilder.js',bytes=restorePreR27Source(p,read(p)),d=source.files[p],text=bytes.toString(),original=Buffer.from(bytes);
   assert.equal(sha(bytes),d.candidateSHA256);assert.equal(d.deltas.length,2);
   assert.match(d.deltas[0].after,/import \{ paintQianqingUpperEnclosure \}/);assert.match(d.deltas[1].after,/paintQianqingUpperEnclosure\(roof,this.library,data.name\)/);
   const old=restorePreR26FriezeSource(p,bytes);assert.equal(sha(old),d.baselineSHA256);assert.equal(restorePreR26FriezeSource(p,old),old);

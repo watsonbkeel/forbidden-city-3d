@@ -1,3 +1,4 @@
+import {restorePreR27SceneRows} from './lib/r27-jiaotai-retention.mjs';
 import {restorePreR26SceneRows} from './lib/r26-qianqing-retention.mjs';
 // Exact pre-R25 nameboard poses for historical whole-hall fingerprints only.
 import {HistoricalR24PalaceBuilder} from './lib/historical-r24-baohe-fixture.mjs';
@@ -22,11 +23,11 @@ test('nominal shared terrace2m, provisional one-stone lip0.16m, unchanged horizo
 });
 test('all other static merged buildings and original front-hall geometry remain byte exact',()=>{
  for(const [name,row]of Object.entries(B.groups))if(!['乾清门','后三宫'].includes(name))assert.deepEqual(restorePreR13SceneRow(name,groups[name]),row,name);
- const historicalGroups=restorePreR26SceneRows(groups);
+ const r26Groups=restorePreR27SceneRows(groups),historicalGroups=restorePreR26SceneRows(groups);
  assert.equal(historicalGroups['后三宫'].meshes,33);assert.equal(historicalGroups['后三宫'].triangles,51972);
  assert.equal(historicalGroups['后三宫'].triangles-B.groups['后三宫'].triangles,6252,'include both LOD levels in resident inventory');
- assert.equal(groups['后三宫'].meshes-historicalGroups['后三宫'].meshes,1,'R26 private atlas adds one merged mesh');
- assert.equal(groups['后三宫'].triangles-historicalGroups['后三宫'].triangles,48,'R26 four raised-wall windows add 48 triangles');
+ assert.equal(r26Groups['后三宫'].meshes-historicalGroups['后三宫'].meshes,1,'R26 private atlas adds one merged mesh');
+ assert.equal(r26Groups['后三宫'].triangles-historicalGroups['后三宫'].triangles,48,'R26 four raised-wall windows add 48 triangles');
  assert.equal(groups['乾清门'].triangles,B.groups['乾清门'].triangles);
 });
 test('complete gate front triangles/normals/UV/color unchanged below the back-deck seam',()=>assert.deepEqual(gateFrontRows(gate),B.gateFront));
@@ -46,7 +47,9 @@ test('actual east/west side stairs align with both Jiaotai central doors; only2 
 });
 for(const dir of[-1,1])for(const fps of[60,10])for(const sprint of[false,true])for(const backward of[false,true])
  test(`Jiaotai ground/side-stair/door native-controller roundtrip ${dir}/${fps}/${sprint}/${backward}`,t=>{
- const pts=[[dir*21,354.1],[dir*17.5,354.1],[dir*12,354.1],[dir*7,354.1],[dir*12,354.1],[dir*17.5,354.1],[dir*21,354.1]];
+ // Former ±7 inner targets are inside the new artifact solids, not a failing stair.
+ // ±8.1 retains the stair/door roundtrip through the unobstructed vestibule.
+ const pts=[[dir*21,354.1],[dir*17.5,354.1],[dir*12,354.1],[dir*8.1,354.1],[dir*12,354.1],[dir*17.5,354.1],[dir*21,354.1]];
  const r=replayKunning(t,world,pts,{startFeet:0,fps,sprint,backward,recordFrames:true});assert.equal(r.arrived,true,JSON.stringify({...r,frames:undefined}));assert.ok(r.maxFeet>=2.15&&r.maxFeet<2.28);assert.ok(r.end[2]<.02);assert.equal(r.driver.crossings.length,6);
  });
 test('greybrick/glazed low wall has real open holes and tight visible collision height',()=>{

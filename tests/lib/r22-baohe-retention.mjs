@@ -1,3 +1,4 @@
+import {restorePreR27Navigation} from './r27-jiaotai-retention.mjs';
 import {restorePreR22RouteSource} from './r22-baohe-route-retention.mjs';
 import {restorePreR23Source,restorePreR23SceneRow,restorePreR23SceneRows} from './r23-baohe-retention.mjs';
 import assert from 'node:assert/strict';
@@ -63,6 +64,7 @@ export function restorePreR22SceneRows(rows){
  * tolerance, count-only gate, or historical world used by live route tests. */
 export function restorePreR22Navigation(value){
   if(hash(value)===nav.beforeSHA256)return value;
+  value=restorePreR27Navigation(value);
   assert.equal(hash(value),nav.afterSHA256,'exact R22 complete registered navigation');
   const out=JSON.parse(JSON.stringify(value));
   for(const[key,d]of Object.entries(nav.collections)){

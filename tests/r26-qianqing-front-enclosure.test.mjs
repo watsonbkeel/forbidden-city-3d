@@ -1,3 +1,4 @@
+import {restorePreR27Navigation,restorePreR27SceneRows} from './lib/r27-jiaotai-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
@@ -66,10 +67,10 @@ test('end bays, rear and other halls do not inherit the new classification or at
  }
 });
 
-test('complete navigation remains unchanged and total resident increment is counted',()=>{
+test('exact R27 reversal retains R26 navigation and its resident increment',()=>{
  const scene=new THREE.Scene(),owner=new PalaceBuilder(scene,library());try{owner.buildAll(PALACE_LAYOUT);
-  assert.equal(hash({colliders:owner.colliders,walkables:owner.walkables}),'a1668d4eaf2b4ea21b0ea5a45fb421ef299ff48888d4d23bb1f60396be825853');assert.equal(owner.colliders.length,2487);assert.equal(owner.walkables.length,120);
-  const rows=Object.values(sceneRows(scene));assert.equal(rows.reduce((n,r)=>n+r.meshes,0),164);assert.equal(rows.reduce((n,r)=>n+r.triangles,0),188075);
+  const retainedNavigation=restorePreR27Navigation({colliders:owner.colliders,walkables:owner.walkables});assert.equal(hash(retainedNavigation),'a1668d4eaf2b4ea21b0ea5a45fb421ef299ff48888d4d23bb1f60396be825853');assert.equal(retainedNavigation.colliders.length,2487);assert.equal(retainedNavigation.walkables.length,120);assert.equal(owner.colliders.length,2489);
+  const rows=Object.values(restorePreR27SceneRows(sceneRows(scene)));assert.equal(rows.reduce((n,r)=>n+r.meshes,0),164);assert.equal(rows.reduce((n,r)=>n+r.triangles,0),188075);
  }finally{owner.dispose();}
 });
 

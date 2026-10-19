@@ -12,6 +12,7 @@ import { buildRoof } from './RoofBuilder.js';
 import { buildHallBody, buildBalustrade, buildStuddedDoor } from './HallKit.js';
 import { mergeByMaterial } from '../utils/MergeUtils.js';
 import { applyBoxUV, applyBandUV, applyPlanarUV } from '../utils/GeometryUV.js';
+import { installJiaotaiLandmarks } from './palace/special/JiaotaiLandmarks.js';
 import { buildSquareHall, SQUARE_HALLS } from './palace/special/SquareHalls.js';
 import { buildQianqingGate } from './palace/special/QianqingGate.js';
 import { innerPalaceTerraceProfile, buildInnerTerraceRail, buildInnerTerraceStair } from './palace/special/InnerPalaceTerrace.js';
@@ -488,6 +489,7 @@ export class PalaceBuilder {
     const finished = this.finish(g);
     if (coarse) installInnerGlazeLOD(finished, coarse);
     if (baoheNorth) installBaoheNorthDetail(finished, baoheNorth);
+    if (name === '后三宫') installJiaotaiLandmarks(this, finished);
   }
 
   /**
