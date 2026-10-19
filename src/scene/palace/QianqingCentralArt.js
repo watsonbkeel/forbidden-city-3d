@@ -9,8 +9,15 @@ export function qianqingCentralMaterial(b){
  cell(1,()=>{fill('#315564');c.fillStyle='#777c72';c.fillRect(0,0,256,56);c.fillStyle='#ba9d57';c.fillRect(0,64,256,9);c.fillRect(0,239,256,9);c.strokeStyle='#c3a762';c.lineWidth=6;for(let x=30;x<250;x+=62)scroll(x,159,24);});
  cell(2,()=>{fill('#913a31');c.strokeStyle='#bb9d60';c.lineWidth=4;c.strokeRect(4,5,248,246);c.strokeRect(12,13,232,230);for(let y=52;y<235;y+=76)for(let x=36;x<250;x+=63)scroll(x,y,25);});
  cell(3,()=>{fill('#635a41');c.fillStyle='#af9560';c.fillRect(7,7,242,242);c.fillStyle='#b7a77c';c.fillRect(13,13,230,230);c.fillStyle='#1e2528';c.fillRect(21,25,214,206);c.fillStyle='#d4c297';c.save();c.scale(1.25/3.8,1);c.font='bold 147px "STKaiti","KaiTi","Kaiti SC","Songti SC","SimSun",serif';c.textAlign='center';c.textBaseline='middle';[...'明光大正'].forEach((ch,i)=>c.fillText(ch,(48+i*53)/(1.25/3.8),131));c.restore();});
- ['#b49859','#87362e','#4e4738','#315d6b'].forEach((s,i)=>cell(4+i,()=>fill(s)));
- const t=new THREE.CanvasTexture(canvas);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=4;const m=new THREE.MeshStandardMaterial({map:t,roughness:.64,metalness:.20,side:THREE.DoubleSide});m.name=p.id;m.userData.artStatus=p.status;let disposed=false;m.addEventListener('dispose',()=>{if(!disposed){disposed=true;t.dispose();}});b._own.set(p.id,m);b.ownedMaterials.push(m);return m;
+ ['#c3a365','#87362e','#282927'].forEach((s,i)=>cell(4+i,()=>fill(s)));
+ cell(7,()=>{fill('#b5af89');c.fillStyle='#242c32';c.fillRect(0,0,256,42);for(const x of[68,188])c.fillRect(x,28,8,166);});
+ const t=new THREE.CanvasTexture(canvas);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=4;const responseCanvas=document.createElement('canvas');responseCanvas.width=p.width;responseCanvas.height=p.height;const rc=responseCanvas.getContext('2d');if(!rc)throw Error('Qianqing response atlas requires canvas');
+ // Local atlas cells separate gilt, lacquer, cloth and dark paint. These are
+ // visual trial response parameters; they do not claim conservation measurements.
+ const response=[[.55,.38],[.62,.20],[.57,.30],[.61,.25],[.50,.42],[.69,.08],[.81,.02],[.93,0]];
+ response.forEach(([rough,metal],i)=>{rc.fillStyle=`rgb(255,${Math.round(rough*255)},${Math.round(metal*255)})`;rc.fillRect(i%4*256,Math.floor(i/4)*256,256,256);});
+ const rt=new THREE.CanvasTexture(responseCanvas);rt.colorSpace=THREE.NoColorSpace;rt.minFilter=THREE.LinearFilter;rt.magFilter=THREE.LinearFilter;rt.generateMipmaps=false;
+ const m=new THREE.MeshStandardMaterial({map:t,roughnessMap:rt,metalnessMap:rt,roughness:1,metalness:1,side:THREE.DoubleSide});m.name=p.id;m.userData.artStatus=p.status;let disposed=false;m.addEventListener('dispose',()=>{if(!disposed){disposed=true;t.dispose();rt.dispose();}});b._own.set(p.id,m);b.ownedMaterials.push(m);return m;
 }
 export function qianqingCentralUV(g,cell,{solid=false,frontOnly=false,backCell=5}={}){
  if(!Number.isInteger(cell)||cell<0||cell>7||!Number.isInteger(backCell)||backCell<0||backCell>7)throw Error('Registered Qianqing atlas cell required');const pos=g.attributes.position,uv=g.attributes.uv,n=g.attributes.normal,out=new Float32Array(pos.count*2),pad=2/256;

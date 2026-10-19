@@ -12,9 +12,15 @@ import { FlightEnvelope } from '../src/scene/flight/FlightEnvelope.js';
 import { qianqingPassageFrame, buildQianqingPassageMouth, buildQianqingPassageWalls } from '../src/scene/palace/QianqingEndPassages.js';
 import { buildWorld, walkStraight } from './lib/world.mjs';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { restorePreR32Navigation, restorePreR32SceneRows } from './lib/r32-scene-retention.mjs';
+import { historicalR31Dependency } from './lib/historical-r31-scene-dependencies.mjs';
+import { r30Scene } from './lib/r30-qianqing-passage-retention.mjs';
+const { PalaceBuilder: HistoricalR31PalaceBuilder } = await import(historicalR31Dependency('../src/scene/PalaceBuilder.js', import.meta.url));
+const { FlightEnvelope: HistoricalR31FlightEnvelope } = await import(historicalR31Dependency('../src/scene/flight/FlightEnvelope.js', import.meta.url));
 const read = p => fs.readFileSync(new URL('../' + p, import.meta.url));
 const base = JSON.parse(read('tests/fixtures/r30-qianqing-passage-baseline.json'));
 const scene = new T.Scene(), b = new PalaceBuilder(scene, library()); b.buildAll(PALACE_LAYOUT); scene.updateMatrixWorld(true);
+const historicalR31Navigation = restorePreR32Navigation({ colliders: b.colliders, walkables: b.walkables });
 const f = scene.getObjectByName('后三宫').userData.qianqingPassages;
 const serial = x => JSON.parse(JSON.stringify(x)), hash = x => createHash('sha256').update(x).digest('hex');
 const box = (x0, y0, z0, x1, y1, z1) => ({ min: { x: x0, y: y0, z: z0 }, max: { x: x1, y: y1, z: z1 } });
@@ -30,8 +36,8 @@ test('two explicit estimated passages preserve hall anchors and reject unsupport
   assert.throws(() => buildQianqingPassageMouth(b, new T.Group(), f, 0, f.zSouth), /Unknown/);
 });
 
-test('only four facade spans change; 14 geometry-backed passage colliders are added and all walking surfaces remain exact', () => {
-  const old = structuredClone(base.colliders), now = serial(b.colliders);
+test('historical R30 changes only four facade spans and adds 14 passage colliders, preserving all walking surfaces', () => {
+  const old = structuredClone(base.colliders), now = serial(historicalR31Navigation.colliders);
   for (const z of [304.3, 329.3]) for (const sign of [-1, 1]) {
     const a = [sign * 23, sign * (46 / 6)].sort((x, y) => x - y);
     const c = box(a[0], 2.16, z - .25, a[1], 5.16, z + .25), i = old.findIndex(v => eq(v, c)); assert.ok(i >= 0);
@@ -40,7 +46,7 @@ test('only four facade spans change; 14 geometry-backed passage colliders are ad
   }
   const added = [...now];
   for (const c of old) { const i = added.findIndex(v => eq(c, v)); assert.ok(i >= 0, 'retained collider missing'); added.splice(i, 1); }
-  assert.equal(now.length, 2503); assert.equal(added.length, 14); assert.deepEqual(serial(b.walkables), base.walkables);
+  assert.equal(now.length, 2503); assert.equal(added.length, 14); assert.deepEqual(serial(historicalR31Navigation.walkables), base.walkables);
   for (const c of added) { assert.ok(c.min.y === 2.16 || Math.abs(c.min.y - (2.16 + f.doorH - .18)) < 1e-8); assert.ok(c.min.x >= -23 && c.max.x <= 23); assert.ok(c.min.z >= 304.12 && c.max.z <= 329.48); }
 });
 
@@ -61,15 +67,22 @@ test('raw mouths and complete inner walls meet the inherited floor/ceiling and b
   bb.dispose();
 });
 
-test('all other palace groups are exact; complete resident cost includes the new inner walls', () => {
-  const rows = sceneRows(scene); // R30 passage adds one batch; registered R31 surfaces add two. for (const [name, row] of Object.entries(base.groups)) if (name !== '后三宫') assert.deepEqual(rows[name], row);
+test('historical R31 preserves other palace groups and the R30 inner-wall cost plus two registered surface batches', () => {
+  const rows = restorePreR32SceneRows(sceneRows(scene)); // R30 passage adds one batch; registered R31 surfaces add two.
+  for (const [name, row] of Object.entries(r30Scene.unchanged)) assert.deepEqual(rows[name], row);
   assert.equal(rows['后三宫'].triangles - base.groups['后三宫'].triangles, 288);
   assert.equal(rows['后三宫'].meshes - base.groups['后三宫'].meshes, 3);
 });
 
-test('unchanged roof envelope forbids low rotor flight through new pedestrian passages', () => {
+test('historical roof envelope stays exact and actual passages forbid low rotor flight', () => {
+  const historicalScene = new T.Scene(), historicalBuilder = new HistoricalR31PalaceBuilder(historicalScene, library());
+  try {
+    historicalBuilder.buildAll(PALACE_LAYOUT);
+    const historicalGrid = new HistoricalR31FlightEnvelope(); for (const root of historicalBuilder.ownedObjects) historicalGrid.addRoot(root);
+    assert.equal(hash(new Uint8Array(historicalGrid.heights.buffer)), base.flightHeightSHA256);
+    assert.equal(hash(historicalGrid.water), base.flightWaterSHA256);
+  } finally { historicalBuilder.dispose(); }
   const grid = new FlightEnvelope(); for (const root of b.ownedObjects) grid.addRoot(root);
-  assert.equal(hash(new Uint8Array(grid.heights.buffer)), base.flightHeightSHA256);
   assert.equal(hash(grid.water), base.flightWaterSHA256);
   for (const sign of [-1, 1]) for (const z of [304.3, 311.3, 316.8, 329.3]) {
     assert.equal(grid.isSafe({ x: sign * f.centerX, y: 4, z }, 7), false);

@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
+import {restoreR32SourceIfPresent} from './r32-source-retention.mjs';
 
 // Reverse only the six finite V14 wayfinding hunks before the inherited
 // collision-source guard. No fixture refresh, AST or whitespace normalization.
@@ -37,6 +38,7 @@ export const V14_WAYFINDING_COLLISION_DELTAS = Object.freeze([
 ]);
 
 export function restoreV13WayfindingCollisionBytes(current) {
+  current = restoreR32SourceIfPresent('src/utils/Collision.js', current);
   let source = current.toString('utf8');
   for (const { name, before, after } of V14_WAYFINDING_COLLISION_DELTAS) {
     assert.equal(source.split(after).length - 1, 1,

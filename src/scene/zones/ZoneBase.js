@@ -2,6 +2,9 @@ import * as THREE from 'three';
 import { CourtKit, FACE } from '../palace/kit.js';
 import { resolveCourtWallContract } from './CourtWallContract.js';
 import { buildEastWestCityGate } from '../palace/special/EastWestCityGate.js';
+import { buildYanxiRuin } from '../palace/special/YanxiRuin.js';
+import { detachYanxiRuinFrames, installYanxiRuinLODs } from '../palace/special/YanxiRuinLOD.js';
+import { buildYanxiStorehouse } from '../palace/special/YanxiStorehouses.js';
 import { historicalGateMapItem } from './HistoricalGateSites.js';
 
 /**
@@ -73,8 +76,10 @@ export class ZoneBase {
       }
     }
     
-    // 合并几何
+    // Keep distance levels out of the ordinary recursive material merge.
+    const yanxiFrames = detachYanxiRuinFrames(this.kit.root);
     this.group = this.kit.finish();
+    installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);
     
     // silhouette：本区屋顶的合并低模（Phase 1 优化时实现，当前返回 null）
     // 实在拿不到屋顶网格就先返回 null，不强求改 kit 内部
@@ -108,6 +113,8 @@ export class ZoneBase {
   // ───────────────────────── 各 kind 构建方法 ─────────────────────────
 
   buildHall(item) {
+    if (item.structure === 'yanxi-ruin' || item.ruinProfile !== undefined) return buildYanxiRuin(this.kit,item);
+    if (item.structure === 'yanxi-storehouse' || item.storehouseProfile !== undefined) return buildYanxiStorehouse(this.kit,item);
     const params = {
       x: item.x,
       z: item.z,
@@ -175,7 +182,7 @@ export class ZoneBase {
     };
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
     const width = this.kit.gate(params);
-    if (item.gateProfile === 'zhaode') this.gateGeometries.set(item.name, this.kit.root.children.at(-1).userData.gateGeometry);
+    if (item.gateProfile === 'zhaode' || item.gateProfile === 'huangji') this.gateGeometries.set(item.name, this.kit.root.children.at(-1).userData.gateGeometry);
     return width; // 返回开口宽度
   }
 

@@ -1,5 +1,6 @@
 import {restorePreR30Navigation} from './lib/r30-qianqing-passage-retention.mjs';
 import {restorePreR28SceneRows} from './lib/r28-jiaotai-central-retention.mjs';
+import {restorePreR32Navigation,restorePreR32SceneRows} from './lib/r32-scene-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as T from 'three';
@@ -13,6 +14,7 @@ import {JIAOTAI_LANDMARKS as P,buildJiaotaiLandmarkLevel,installJiaotaiLandmarks
 import {JIAOTAI_ART as A,jiaotaiLandmarkMaterial,mapJiaotaiBoxUV,mapJiaotaiSolidUV} from '../src/scene/palace/special/JiaotaiLandmarkArt.js';
 const close=(a,b,e=1e-5)=>assert.ok(Math.abs(a-b)<=e,`${a} != ${b}`);
 const scene=new T.Scene(),b=new PalaceBuilder(scene,library());b.buildAll(PALACE_LAYOUT);
+const historicalR31Navigation=restorePreR32Navigation({colliders:b.colliders,walkables:b.walkables});
 const hall=scene.getObjectByName('后三宫'),meta=hall.userData.jiaotaiLandmarks,frame=meta.frame,lod=hall.getObjectByName('jiaotai-timekeeping-detail');
 const cm=new CollisionManager();cm.addColliders(b.colliders);cm.addWalkables(b.walkables);
 const raw=buildJiaotaiLandmarkLevel(new T.MeshStandardMaterial(),true);
@@ -36,7 +38,7 @@ test('clock is a sculpted crown and dial; clepsydra is a separate double-eave pa
 });
 
 test('two fixed envelopes enclose all near and far vertices, including the inward projecting water-clock foot',()=>{
- const added=b.colliders.slice(-2);assert.equal(added.length,2);
+ const added=historicalR31Navigation.colliders.slice(-2);assert.equal(added.length,2);
  for(const fine of[true,false]){const root=buildJiaotaiLandmarkLevel(raw.children[0].children[0].material,fine);for(let i=0;i<2;i++){
   const bb=new T.Box3().setFromObject(root.children[i]);bb.translate(new T.Vector3(frame.x,frame.y,frame.z));const c=added[i];for(const a of['x','y','z']){assert.ok(bb.min[a]>=c.min[a]-1e-5);assert.ok(bb.max[a]<=c.max[a]+1e-5);}
   close(bb.min.y,frame.y);close(bb.max.y,frame.y+P[i?'clepsydra':'clock'].height);
@@ -45,10 +47,10 @@ test('two fixed envelopes enclose all near and far vertices, including the inwar
  for(const p of[P.clock,P.clepsydra])assert.equal(cm.checkCollision(new T.Vector3(p.x,frame.y+PLAYER.HEIGHT,frame.z+p.z)),true);
 });
 
-test('previous 2487 colliders and 120 walkables are byte-identical, only two new artifact solids are added',()=>{
- assert.equal(restorePreR30Navigation({colliders:b.colliders,walkables:b.walkables}).colliders.length,2489);assert.equal(b.colliders.length,2503);assert.equal(b.walkables.length,120);assert.equal(hash((()=>{const n=restorePreR30Navigation({colliders:b.colliders,walkables:b.walkables});return{colliders:n.colliders.slice(0,-2),walkables:n.walkables};})()),'a1668d4eaf2b4ea21b0ea5a45fb421ef299ff48888d4d23bb1f60396be825853');
+test('historical R27 retains previous 2487 colliders and 120 walkables, with only two artifact solids added',()=>{
+ assert.equal(restorePreR30Navigation(historicalR31Navigation).colliders.length,2489);assert.equal(historicalR31Navigation.colliders.length,2503);assert.equal(historicalR31Navigation.walkables.length,120);assert.equal(hash((()=>{const n=restorePreR30Navigation(historicalR31Navigation);return{colliders:n.colliders.slice(0,-2),walkables:n.walkables};})()),'a1668d4eaf2b4ea21b0ea5a45fb421ef299ff48888d4d23bb1f60396be825853');
  assert.equal(meta.navigation,'FIXED_NEAR_ENVELOPES_BOTH_LODS');const before=hash({c:b.colliders,w:b.walkables}),cam=new T.PerspectiveCamera();for(const dist of[0,200,0,90,100]){cam.position.set(frame.x,frame.y,frame.z+dist);cam.updateMatrixWorld(true);lod.update(cam);assert.equal(hash({c:b.colliders,w:b.walkables}),before);}
- const originalGroups={午门:'be7045098ed7f2cd79bdd037ec87a89cca6ddc022978063942bdf5ca45c1e46f',三台:'093376bff24c244359e8034a844edf852bbcb1599cfb26285598050df5df0a09'};const rows=sceneRows(scene);for(const [name,h]of Object.entries(originalGroups))assert.equal(rows[name].hash,h);
+ const originalGroups={午门:'be7045098ed7f2cd79bdd037ec87a89cca6ddc022978063942bdf5ca45c1e46f',三台:'093376bff24c244359e8034a844edf852bbcb1599cfb26285598050df5df0a09'};const rows=restorePreR32SceneRows(sceneRows(scene));for(const [name,h]of Object.entries(originalGroups))assert.equal(rows[name].hash,h);
 });
 
 test('both resident detail levels count toward geometry; only one material batch is drawn at a time',()=>{

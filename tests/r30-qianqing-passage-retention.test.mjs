@@ -1,3 +1,4 @@
+import {verifiedR32AddedProductPaths} from './lib/r32-product-inventory.mjs';
 import {restorePreR31SurfaceCapture} from './lib/r31-qianqing-surface-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -26,7 +27,7 @@ test('R30 registers only the two exact integrations and new passage module; all 
   for(const[p,h]of Object.entries(S.preservedFixtures))assert.equal(sha(read(p)),h,p);
   const actual=['src','data','public'].flatMap(d=>fs.readdirSync(new URL(d+'/',root),{recursive:true,withFileTypes:true}).filter(x=>x.isFile()).map(x=>path.relative(root.pathname,path.join(x.parentPath,x.name)))).sort();
   const added=Object.keys(r31CombinedSource.addedFiles).filter(p=>/^(src|data|public)\//.test(p));
-  assert.deepEqual(actual,[...Object.keys(S.files),...Object.keys(S.addedFiles),...Object.keys(S.retainedFiles),...added].sort());
+  assert.deepEqual(actual,[...Object.keys(S.files),...Object.keys(S.addedFiles),...Object.keys(S.retainedFiles),...added,...verifiedR32AddedProductPaths()].sort());
   for(const p of added)assertR31CombinedAddedSource(p,read(p));
   for(const[rows,check]of[[S.addedFiles,assertR30AddedSource],[S.retainedFiles,assertR30RetainedSource]])for(const p of Object.keys(rows)){
     const bytes=read(p);assert.equal(check(p,bytes),bytes);

@@ -17,7 +17,7 @@ import bpy
 from _common import reset_scene,mat,cylinder,col_box,box,merge_by_material,export_glb,tri_count
 from throne_hall import ornament
 from qianqing_surface import P,floor,incense_pavilion
-out=sys.argv[sys.argv.index('--')+1] if '--' in sys.argv else 'public/models/interiors/qianqing-r31.glb'
+out=sys.argv[sys.argv.index('--')+1] if '--' in sys.argv else 'public/models/interiors/qianqing-r32.glb'
 root=os.path.abspath(os.path.join(os.path.dirname(__file__),'../..'))
 assert hashlib.sha256(open(os.path.join(root,'public/models/interiors/qianqing.glb'),'rb').read()).hexdigest()=='5fea568395a4474dbfd77fed158e9d2bbfa0959e5f5cd268ecab7e523f0861bf'
 reset_scene()
@@ -29,11 +29,9 @@ base=mat('stone',(.75,.74,.7),0,.6)
 for i,(x,z) in enumerate(cols):
  cylinder('qianqing_plain_red_column_'+str(i),.45,.45*1.04,cfg['H'],x,cfg['H']/2,z,red,segments=24)
  cylinder('qianqing_column_base_'+str(i),.45*1.25,.45*1.35,.25,x,.125,z,base,segments=24)
-for kind,x,z in[(k,s*x,z)for k,x,z in [('甪端',1.9,3.5),('鹤',3.1,3.5),('香亭',2.5,2.1)]for s in[-1,1]]:
- if kind=='香亭':
-  incense_pavilion(x,z,enamel,gold,dark);continue
- before=set(bpy.context.scene.objects);ornament(kind,x,z,bronze,gold,stone)
- for ob in set(bpy.context.scene.objects)-before:ob.location.z+=.70
+# R32: the six inherited display objects now have one permanent owner in
+# QianqingDisplay.js. Do not duplicate them in the optional overlay. Floor-side
+# incense pavilions retain their permanent guards in both loading states.
 # Proxies correspond exactly to the visible permanent step surfaces/rail posts.
 # They remain inside its unchanged exclusion; no new climbable display route.
 w=1.6*bay;front=1.0;rise=.70/5;run=1.30/5
@@ -46,7 +44,8 @@ for i,x in enumerate([-outer_x,-w/6,w/6,outer_x]):
   col_box(f'COL_qianqing_rail_post_{i}_{j}',x-.0375,baseY,z-.0375,x+.0375,baseY+.70,z+.0375)
 contract=bpy.data.objects.new('QIANQING_AUXILIARY_CONTRACT',None);bpy.context.scene.collection.objects.link(contract)
 contract['version']='r29-permanent-five-panel-core';contract['centralCoreOwner']='PalaceBuilder';contract['daisHeight']=.70;contract['stairFlights']=3;contract['stepCount']=5;contract['plainRedColumns']=6;contract['ceiling']='fully-panelled-no-caisson';contract['sourceSHA256']=hashlib.sha256(open(__file__,'rb').read()).hexdigest()
-contract['materialProfile']='r31-photo-relative-enamel-and-fine-joints'
+contract['materialProfile']='r32-permanent-display-floor-and-columns-only'
+contract['displayOwner']='PalaceBuilder'
 contract['profileSHA256']=hashlib.sha256(open(os.path.join(root,'data/architecture/qianqing-material.json'),'rb').read()).hexdigest()
 contract['surfaceSourceSHA256']=hashlib.sha256(open(os.path.join(os.path.dirname(__file__),'qianqing_surface.py'),'rb').read()).hexdigest()
-print('[R31 auxiliary] source triangles',tri_count());merge_by_material();export_glb(out,draco=True,export_extras=True)
+print('[R32 auxiliary] source triangles',tri_count());merge_by_material();export_glb(out,draco=True,export_extras=True)

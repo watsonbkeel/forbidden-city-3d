@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import { COLORS, LAYOUT } from '../config/constants.js';
 import { PALACE_LAYOUT } from './Layout.js';
+import { innerJinshuiGroundPath, innerJinshuiRoadGap } from './palace/special/InnerJinshui.js';
+import { YANXI_RUIN_GROUND_CUTOUT } from './palace/special/YanxiRuin.js';
 import { createSky, getSunPosition, updateSkyUniforms } from './sky/SkySetup.js';
 import { createSkylineRing } from './sky/Skyline.js';
 import { getBeijingDayCycle } from './sky/BeijingDayCycle.js';
@@ -73,21 +75,14 @@ export class Environment {
     shape.lineTo(GX, -GZ0);
     shape.lineTo(-GX, -GZ0);
     shape.closePath();
-    for (const river of PALACE_LAYOUT.filter(item => item.type === 'river')) {
-      const { position: p, dimensions: d } = river;
-      const hole = new THREE.Path();
-      const left = p.x - d.width / 2;
-      const right = p.x + d.width / 2;
-      const bottom = -p.z - d.depth / 2;
-      const top = -p.z + d.depth / 2;
-      hole.moveTo(left, bottom);
-      hole.lineTo(left, top);
-      hole.lineTo(right, top);
-      hole.lineTo(right, bottom);
-      hole.closePath();
-      shape.holes.push(hole);
-    }
-    
+    const rivers = PALACE_LAYOUT.filter(item => item.type === 'river');
+    for (const river of rivers) shape.holes.push(innerJinshuiGroundPath(river));
+    // Permanent dry-pool opening matches the dedicated current-state ruin.
+    // It is protected by physical guards; it does not create an entry route.
+    const cut = YANXI_RUIN_GROUND_CUTOUT, poolHole = new THREE.Path();
+    for (const [i,[x,z]] of [[cut.x-cut.w/2,cut.z-cut.d/2],[cut.x-cut.w/2,cut.z+cut.d/2],[cut.x+cut.w/2,cut.z+cut.d/2],[cut.x+cut.w/2,cut.z-cut.d/2]].entries()) poolHole[i?'lineTo':'moveTo'](x,-z);
+    poolHole.closePath();shape.holes.push(poolHole);
+
     const groundGeometry = new THREE.ShapeGeometry(shape);
     const tileSize = this.library.tileSize('ground_brick');
     const uv = groundGeometry.attributes.uv;
@@ -106,19 +101,22 @@ export class Environment {
     const roadWidth = 8;
     const roadZ0 = LAYOUT.BOUNDARY.minZ;
     const roadZ1 = LAYOUT.SHENWU_Z;
-    const roadLen = roadZ1 - roadZ0;
-    const roadGeometry = new THREE.PlaneGeometry(roadWidth, roadLen);
     const roadTileSize = this.library.tileSize('stone_slab');
-    const roadUV = roadGeometry.attributes.uv;
-    for (let i = 0; i < roadUV.count; i++) {
-      roadUV.setXY(i, roadUV.getX(i) * roadWidth / roadTileSize, roadUV.getY(i) * roadLen / roadTileSize);
-    }
     const roadMaterial = this.library.material('stone_slab', { roughness: 0.75, metalness: 0 });
-    const road = new THREE.Mesh(roadGeometry, roadMaterial);
-    road.rotation.x = -Math.PI / 2;
-    road.position.set(0, 0.01, (roadZ0 + roadZ1) / 2); // 略高于地面，避免 z-fighting
-    road.receiveShadow = true;
-    this.addObject(road);
+    const gaps = rivers.map(r => innerJinshuiRoadGap(r, roadWidth / 2)).filter(Boolean).sort((a,b) => a.minZ - b.minZ);
+    const spans = [];let cursor = roadZ0;
+    for (const gap of gaps) {
+      if (gap.minZ > cursor) spans.push([cursor, Math.min(gap.minZ, roadZ1)]);
+      cursor = Math.max(cursor, gap.maxZ);
+    }
+    if (cursor < roadZ1) spans.push([cursor, roadZ1]);
+    for (const [z0,z1] of spans) {
+      if (z1 <= z0) continue;
+      const length = z1-z0, geometry = new THREE.PlaneGeometry(roadWidth,length),uv=geometry.attributes.uv;
+      for(let i=0;i<uv.count;i++)uv.setXY(i,uv.getX(i)*roadWidth/roadTileSize,uv.getY(i)*length/roadTileSize);
+      const road = new THREE.Mesh(geometry,roadMaterial);road.rotation.x=-Math.PI/2;
+      road.position.set(0,.01,(z0+z1)/2);road.receiveShadow=true;this.addObject(road);
+    }
   }
   
   /**

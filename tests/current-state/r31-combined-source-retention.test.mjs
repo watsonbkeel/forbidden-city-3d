@@ -2,12 +2,15 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
+import {restoreR32SourceIfPresent} from '../lib/r32-source-retention.mjs';
 import {restoreR31SourceIfPresent} from '../lib/r31-flight-operations-retention.mjs';
 import {restorePreR30Source, r30Source} from '../lib/r30-qianqing-passage-retention.mjs';
 import {restorePreR15Source} from '../lib/r15-flight-source-retention.mjs';
 import {restoreR6PlaceCatalog, restoreR6PlaceSource, baseline as r6} from '../lib/r6-place-retention.mjs';
 const root = new URL('../../', import.meta.url);
-const read = path => fs.readFileSync(new URL(path, root));
+// Historical R31 source identities only; exact R32 dispatch precedes them.
+// Current R32 behavior is covered by the independent R32 product tests.
+const read = path => restoreR32SourceIfPresent(path, fs.readFileSync(new URL(path, root)));
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const helper = new URL('../lib/r31-combined-source-retention.mjs', import.meta.url);
 const paths = [

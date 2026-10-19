@@ -8,7 +8,7 @@ const read = () => JSON.parse(readFileSync(new URL('../../data/places/zh-CN.json
 const taihe = data => data.places.find(place => place.id === 'taihe');
 const alias = (name = '奉天殿', sourceIds = ['taihe']) => ({ name, sourceIds });
 
-test('six curated historical aliases retain the source-backed current cards and 159 exact bindings', () => {
+test('eight curated historical/current aliases retain the source-backed current cards and 159 exact bindings', () => {
   const catalog = new PlaceCatalog();
   assert.equal(catalog.places.length, 159);
   assert.deepEqual(catalog.places.filter(place => place.aliases).map(place => [place.name, place.aliases]), [
@@ -16,6 +16,7 @@ test('six curated historical aliases retain the source-backed current cards and 
     ['储秀宫后殿', [alias('思顺斋', ['dpm-644d6c674fa6'])]],
     ['太极殿', [alias('未央宫', ['dpm-f712be35a41f']), alias('启祥宫', ['dpm-f712be35a41f'])]],
     ['神武门', [alias('玄武门', ['dpm-ce03d8f8b915'])]],
+    ['延禧宫', [alias('灵沼轩', ['dpm-18e903c4cc20']), alias('水晶宫', ['dpm-18e903c4cc20'])]],
   ]);
   for (const place of catalog.places) {
     assert.equal(catalog.forBinding(place.sceneBinding), place);

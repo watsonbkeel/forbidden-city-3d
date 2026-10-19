@@ -1,3 +1,5 @@
+import {verifiedR31AddedProductPaths,verifiedR32AddedProductPaths} from './lib/r32-product-inventory.mjs';
+import {restorePreR32Navigation} from './lib/r32-scene-retention.mjs';
 import {r30Source,restorePreR30Navigation} from './lib/r30-qianqing-passage-retention.mjs';
 import {restorePreR29Source,restorePreR29Capture,r29Source} from './lib/r29-qianqing-retention.mjs';
 import test from 'node:test';
@@ -19,9 +21,12 @@ const close=(a,c,e=1e-5)=>assert.ok(Math.abs(a-c)<e,`${a} != ${c}`);
 const raw=buildJiaotaiCaissonLevel(new T.MeshStandardMaterial({side:T.DoubleSide}),true);raw.updateMatrixWorld(true);
 const frame=jiaotaiFrame({w:19,d:19,H:6.2});
 
-test('exact R30 reversal retains the entire R27 navigation; all other palace groups remain byte-identical',()=>{
- assert.equal(hash((()=>{const n=restorePreR30Navigation({colliders:b.colliders,walkables:b.walkables});return{c:n.colliders,w:n.walkables};})()),base.navigation);assert.equal(restorePreR30Navigation({colliders:b.colliders,walkables:b.walkables}).colliders.length,2489);assert.equal(b.colliders.length,2503);assert.equal(b.walkables.length,120);
- const rows=sceneRows(scene);for(const [k,v]of Object.entries(base.groups))if(k!=='后三宫')assert.deepEqual(rows[k],v);
+test('exact historical R31/R30 reversal retains the entire R27 navigation and frozen other palace groups',()=>{
+ assert.equal(hash((()=>{const n=restorePreR30Navigation({colliders:b.colliders,walkables:b.walkables});return{c:n.colliders,w:n.walkables};})()),base.navigation);assert.equal(restorePreR30Navigation({colliders:b.colliders,walkables:b.walkables}).colliders.length,2489);const historicalR31=restorePreR32Navigation({colliders:b.colliders,walkables:b.walkables});assert.equal(historicalR31.colliders.length,2503);assert.equal(historicalR31.walkables.length,120);
+ // The old group fixture was captured after matrix updates; the full resident
+ // capture records rows before that update. Rebuild that exact historical view.
+ const historicalScene=new T.Scene(),historicalBuilder=new HistoricalR27PalaceBuilder(historicalScene,library());
+ try{historicalBuilder.buildAll(PALACE_LAYOUT);historicalScene.updateMatrixWorld(true);const rows=sceneRows(historicalScene);for(const[k,v]of Object.entries(base.groups))if(k!=='后三宫')assert.deepEqual(rows[k],v);}finally{historicalBuilder.dispose();}
  assert.match(P.dimensionStatus,/NOT_SURVEY/);assert.equal(hall.userData.jiaotaiCentral.navigation,'ORIGINAL_REGISTRATIONS_UNCHANGED');
 });
 test('one-bay square opening has four downward UV-preserving strips and rejects altered registrations',()=>{
@@ -94,7 +99,7 @@ test('R28 retention pins the frozen candidate, exact R27 tree, three integration
  assert.equal(Object.keys(r28Source.retainedFiles).length,277);assert.equal(Object.keys(r28Source.preservedFixtures).length,110);
  for(const[p,digest]of Object.entries(r28Source.preservedFixtures))assert.equal(r28SHA(r28Read(p)),digest,p);
  const actual=['src','data','public'].flatMap(dir=>fs.readdirSync(new URL(dir+'/',r28Root),{recursive:true,withFileTypes:true}).filter(x=>x.isFile()).map(x=>path.relative(r28Root.pathname,path.join(x.parentPath,x.name)))).sort();
- assert.deepEqual([...Object.keys(r28Source.files),...Object.keys(r28Source.addedFiles),...Object.keys(r30Source.addedFiles),...Object.keys(r29Source.addedFiles).filter(p=>/^(src|data|public)\//.test(p)),...Object.keys(r28Source.retainedFiles).filter(p=>/^(src|data|public)\//.test(p))].sort(),actual);
+ assert.deepEqual([...Object.keys(r28Source.files),...Object.keys(r28Source.addedFiles),...Object.keys(r30Source.addedFiles),...Object.keys(r29Source.addedFiles).filter(p=>/^(src|data|public)\//.test(p)),...Object.keys(r28Source.retainedFiles).filter(p=>/^(src|data|public)\//.test(p)),...verifiedR31AddedProductPaths(),...verifiedR32AddedProductPaths()].sort(),actual);
 });
 
 test('all 11 exact R28 integration hunks reverse only after full-source binding; partial, missing, duplicate and unrelated edits fail closed',()=>{

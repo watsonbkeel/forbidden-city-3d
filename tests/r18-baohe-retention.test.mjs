@@ -1,5 +1,6 @@
 import {restorePreR19Source,restorePreR19Navigation,restorePreR19SceneRows,restorePreR19FixedRoutes} from './lib/r19-baohe-retention.mjs';
 import test from 'node:test';
+import {restorePreR32Routes} from './lib/r32-route-retention.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {execFileSync} from 'node:child_process';
@@ -32,8 +33,8 @@ const clone=x=>JSON.parse(JSON.stringify(x));
 const root=new URL('../',import.meta.url);
 const s=new THREE.Scene(),b=new PalaceBuilder(s,library());
 b.buildAll(PALACE_LAYOUT);
-// Historical R18 assertions use exact R19 → R18 restoration only.
-// Live R19 identity is asserted in r19-baohe-retention and depth-ceiling tests.
+// Historical R18 assertions reverse only registered later epochs, including
+// complete ordered R32 captures/routes. Actual R32 has separate acceptance.
 const currentNavigation=restorePreR19Navigation(clone({colliders:b.colliders,walkables:b.walkables}));
 const currentScene=restorePreR19SceneRows(sceneRows(s));
 b.dispose();
@@ -42,7 +43,7 @@ const liveFixed=execFileSync(process.execPath,['tests/stepwalk.cjs','60','0','al
 }).trim().split('\n').map(line=>{const at=line.indexOf(' ');return{name:line.slice(0,at),pts:JSON.parse(line.slice(at+1))};});
 const fixed=restorePreR19FixedRoutes(liveFixed);
 const zones=loadZoneJsons(),world=await buildWorld({zones});
-const auto=buildAutoRoutes(world,zones.map(z=>z.json),{knownIssues:{}});
+const auto=restorePreR32Routes(buildAutoRoutes(world,zones.map(z=>z.json),{knownIssues:{}}),'auto');
 
 test('R18 provenance binds the frozen R17 baseline and R18 column-only product',()=>{
   for(const fixture of[source,nav,scene,routes]){

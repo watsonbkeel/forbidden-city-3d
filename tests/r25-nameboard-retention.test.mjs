@@ -1,3 +1,4 @@
+import {verifiedR31AddedProductPaths,verifiedR32AddedProductPaths} from './lib/r32-product-inventory.mjs';
 import {r30Source} from './lib/r30-qianqing-passage-retention.mjs';
 import {r29Source} from './lib/r29-qianqing-retention.mjs';
 import {restorePreR28Source,r28Source} from './lib/r28-jiaotai-central-retention.mjs';
@@ -54,7 +55,7 @@ test('R25 provenance binds the frozen R24 baseline, three source hunks and every
   for(const[path,digest]of Object.entries(source.preservedFixtures))assert.equal(sha(read(path)),digest,path);
   for(const[path,digest]of Object.entries(priorSource.retainedFiles))assert.equal(source.retainedFiles[path],digest,path);
   const actual=fs.readdirSync(new URL('src/',root),{recursive:true,withFileTypes:true}).filter(x=>x.isFile()).map(x=>new URL(x.parentPath+'/'+x.name,'file:').pathname.slice(root.pathname.length)).sort();
-  assert.deepEqual([...Object.keys(source.files),...Object.keys(source.addedFiles),...Object.keys(source.retainedFiles).filter(p=>p.startsWith('src/')),...Object.keys(r26Source.addedFiles),...Object.keys(friezeSource.addedFiles),...Object.keys(r27Source.addedFiles),...Object.keys(r28Source.addedFiles),...Object.keys(r30Source.addedFiles),...Object.keys(r29Source.addedFiles).filter(p=>p.startsWith('src/'))].sort(),actual);
+  assert.deepEqual([...Object.keys(source.files),...Object.keys(source.addedFiles),...Object.keys(source.retainedFiles).filter(p=>p.startsWith('src/')),...Object.keys(r26Source.addedFiles),...Object.keys(friezeSource.addedFiles),...Object.keys(r27Source.addedFiles),...Object.keys(r28Source.addedFiles),...Object.keys(r30Source.addedFiles),...Object.keys(r29Source.addedFiles).filter(p=>p.startsWith('src/')),...verifiedR31AddedProductPaths().filter(p=>p.startsWith('src/')),...verifiedR32AddedProductPaths().filter(p=>p.startsWith('src/'))].sort(),actual);
 });
 
 test('complete R25 builder reverses three unique hunks, retains art source and feeds the complete prior source chain',()=>{

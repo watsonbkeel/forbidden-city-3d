@@ -8,7 +8,7 @@ import { wumenTowerGeometry, shenwuTowerGeometry } from './palace/special/GateTo
 import { buildGateTowerShell } from './palace/special/GateTowerShell.js';
 import { WUMEN_VERTICAL_PROFILE } from './palace/special/WumenVerticalProfile.js';
 import { buildWumenSouthPlaque, buildShenwuInstitutionPlaque, SHENWU_GATE_NAME_OMISSION } from './palace/special/GatePlaques.js';
-import { riverBridges, JINSHUI_BRIDGE_LENGTH } from './palace/river.js';
+import { buildInnerJinshui } from './palace/special/InnerJinshui.js';
 import { buildRoof } from './RoofBuilder.js';
 import { buildHallBody, buildBalustrade, buildStuddedDoor } from './HallKit.js';
 import { mergeByMaterial } from '../utils/MergeUtils.js';
@@ -17,6 +17,8 @@ import { installJiaotaiLandmarks } from './palace/special/JiaotaiLandmarks.js';
 import {installJiaotaiCentral,buildJiaotaiBackdrop} from './palace/special/JiaotaiCentralInterior.js';
 import { buildSquareHall, SQUARE_HALLS } from './palace/special/SquareHalls.js';
 import {registerQianqingCentral,installQianqingCentral} from './palace/QianqingCentralSetting.js';
+import {installQianqingDisplay} from './palace/QianqingDisplay.js';
+import {installQianqingCeiling} from './palace/QianqingCeiling.js';
 import { buildQianqingGate } from './palace/special/QianqingGate.js';
 import { innerPalaceTerraceProfile, buildInnerTerraceRail, buildInnerTerraceStair } from './palace/special/InnerPalaceTerrace.js';
 import { INNER_PALACE_LEVELS, buildInnerPalaceLip } from './palace/special/InnerPalaceLevels.js';
@@ -496,7 +498,7 @@ export class PalaceBuilder {
     const finished = this.finish(g);
     if (coarse) installInnerGlazeLOD(finished, coarse);
     if (baoheNorth) installBaoheNorthDetail(finished, baoheNorth);
-    if (name === '后三宫') { installJiaotaiLandmarks(this, finished); installJiaotaiCentral(this, finished); installQianqingCentral(this, finished); }
+    if (name === '后三宫') { installJiaotaiLandmarks(this, finished); installJiaotaiCentral(this, finished); installQianqingCentral(this, finished); installQianqingDisplay(this, finished); installQianqingCeiling(this, finished); }
   }
 
   /**
@@ -808,7 +810,7 @@ export class PalaceBuilder {
     if (taiheCore) buildTaiheCeiling(this, g, { x0, z0, y, w, d });
     else {
       if (baoheFrame) buildBaoheInteriorCeiling(this, g, { x0, z0, y, w, d, H });
-      else {
+      else if(data.name !== '乾清宫') {
         const ceilGeo = new THREE.PlaneGeometry(w, d);
         ceilGeo.rotateX(Math.PI / 2);
         applyPlanarUV(ceilGeo, 'y', 1.6);
@@ -883,8 +885,8 @@ export class PalaceBuilder {
       }
     }
     }
-    // 香炉、甪端
-    for (const s of [-1, 1]) {
+    // Qianqing selected-display vessels have one permanent dedicated owner.
+    if(!qianqing) for (const s of [-1, 1]) {
       this.tripod(g, bronze, x0 + s * (thW * 0.35), y, ztb0 - 2.2);
     }
     // Preserve shared gold response independently of optional ceiling geometry.
@@ -1195,81 +1197,10 @@ export class PalaceBuilder {
   // ───────────────────────── 内金水河与五座金水桥 ─────────────────────────
 
   buildRiver(data) {
-    const g = this.begin(data);
-    const { width: W, depth: D } = data.dimensions;
-    const waterY = -1.1;
-    // 桥位 / 桥宽唯一数据源：palace/river.js（x 0、±13、±30，宽 6.1；dimensions.md:85）
-    const bridgeList = riverBridges(data);
-    const bridges = bridgeList.map(b => b.x - this.ox);
-    const BW = bridgeList[0].halfW; // 桥面半宽（桥栏中线），五桥同宽
-    const L = Math.max(JINSHUI_BRIDGE_LENGTH, D + 2); // 桥长 21（量算 20.6–23.0），两岸各伸出驳岸 3m
-    const crest = 0.9;        // 拱顶抬高
-
-    // 河道：驳岸石墙 + 河床
-    for (const s of [-1, 1]) {
-      this.libBox(g, 'wall_brick', W, 2.4, 0.6, 0, -1.2, s * (D / 2 - 0.3), 'box');
-      this.libBox(g, 'marble', W + 1.6, 0.12, 0.9, 0, 0.04, s * (D / 2 + 0.45), 'box');
-      this.libBox(g, 'wall_brick', 0.6, 2.4, D, s * (W / 2 - 0.3), -1.2, 0, 'box');
-    }
-    this.libBox(g, 'stone_slab', W, 0.2, D, 0, -2.3, 0, 'box');
-
-    // 岸边栏杆：在桥位留口
-    for (const s of [-1, 1]) {
-      const z = s * (D / 2 + 0.45);
-      let a = -W / 2;
-      for (const bx of bridges) {
-        this.rail(g, a, z, bx - BW - 0.3, z, 0.1);
-        a = bx + BW + 0.3;
-      }
-      this.rail(g, a, z, W / 2, z, 0.1);
-    }
-    for (const s of [-1, 1]) this.rail(g, s * (W / 2 + 0.5), -D / 2 - 0.45, s * (W / 2 + 0.5), D / 2 + 0.45, 0.1);
-
-    // 金水桥：两段坡面（与行走 ramp 一致）+ 桥身 + 桥栏
-    const hl = L / 2;
-    const slope = Math.atan2(crest, hl);
-    const sl = Math.hypot(hl, crest);
-    const marble = this.library.material('marble');
-    for (const bx of bridges) {
-      for (const s of [-1, 1]) {
-        const deck = this.box(g, marble, BW * 2, 0.4, sl, bx, crest / 2 - 0.2, s * hl / 2, { box: 2 });
-        deck.rotation.x = s * slope;
-        for (const sx of [-1, 1]) {
-          const holder = new THREE.Group();
-          holder.position.set(bx + sx * (BW - 0.1), crest / 2, s * hl / 2);
-          holder.rotation.x = s * slope;
-          const r = buildBalustrade(this.library, { length: sl, height: 0.95 });
-          r.rotation.y = Math.PI / 2;
-          holder.add(r);
-          g.add(holder);
-        }
-        this.walkRampZ(bx - BW + 0.3, bx + BW - 0.3, s * hl, 0, 0, crest);
-      }
-      // 桥身（水中拱券墩，含暗色券洞）
-      this.box(g, marble, BW * 2 - 0.2, 1.6, D - 1.4, bx, -0.6, 0, { box: 2 });
-      const arch = new THREE.Mesh(new THREE.CircleGeometry(1.3, 20, 0, Math.PI),
-        this.ownMat('archShadow', { color: 0x161412, roughness: 1, side: THREE.DoubleSide }));
-      arch.position.set(bx, waterY + 0.05, 0);
-      arch.rotation.y = Math.PI / 2;
-      for (const sx of [-1, 1]) {
-        const a = arch.clone();
-        a.position.x = bx + sx * (BW - 0.05);
-        g.add(a);
-      }
-      // 桥栏碰撞只登记到两岸岸边栏杆（局部 z ±(D/2+0.6)，与岸栏接上不留缝）；桥长 21 > D 时伸上岸的引桥段
-      // 不挡（同 GardenBuilder 池中亭石桥）。否则 ±30 桥的引桥栏杆伸到 z −300.3，会截断协和门/熙和门东西通道。
-      const railHz = Math.min(hl, D / 2 + 0.6);
-      for (const sx of [-1, 1]) this.col(bx + sx * BW - 0.15, -0.5, -railHz, bx + sx * BW + 0.15, crest + 1.4, railHz);
-    }
-    this.finish(g);
-
-    // 水面：单独网格，保持 materials.water（回归测试按材质识别水面）
-    const water = new THREE.Mesh(new THREE.PlaneGeometry(W - 1.2, D - 1.2), this.materials.water);
-    water.rotation.x = -Math.PI / 2;
-    water.position.set(this.ox, waterY, this.oz);
-    water.userData.isWater = true;
-    water.receiveShadow = true;
-    this.addObject(water);
+    const result = buildInnerJinshui(this.library, data, this.materials.water);
+    this.addObject(result.group);
+    this.colliders.push(...result.colliders);
+    this.walkables.push(...result.walkables);
   }
 
   getWalkables() {

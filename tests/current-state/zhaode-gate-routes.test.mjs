@@ -1,3 +1,4 @@
+import {restorePreR32Routes} from '../lib/r32-route-retention.mjs';
 import { withLegacyWesternCourtsForVersionComparison } from '../lib/r6-western-route-compat.mjs';
 import { withLegacyNingshouForVersionComparison } from '../lib/r6-ningshou-route-compat.mjs';
 import { withLegacyQinanForVersionComparison } from '../lib/qinan-route-version-compat.mjs';
@@ -39,9 +40,9 @@ test('V7 historical routes retain exact descriptors with only the later Qin’an
     assert.ok(split > 0, `unexpected fixed-route record: ${line}`);
     return { name: line.slice(0, split), pts: JSON.parse(line.slice(split + 1)) };
   });
-  assert.equal(fixed.length, 33); assert.equal(hash(withLegacyQinanForVersionComparison(fixed, 'fixed')), fixedHash);
+  assert.equal(fixed.length, 33); assert.equal(hash(withLegacyQinanForVersionComparison(restorePreR32Routes(fixed,'fixed'), 'fixed')), fixedHash);
   const W = await buildWorld();
-  const routes = buildAutoRoutes(W, W.zones.map(z => z.json));
+  const routes = restorePreR32Routes(buildAutoRoutes(W, W.zones.map(z => z.json)));
   const added = routes.filter(r => r.gateProfile === 'zhaode');
   assert.equal(added.length, 1, 'one new central round trip, no side-bay routes');
   assert.equal(added[0].name, '[axis-courts] 昭德门南地面→单门道→北地面→返回');

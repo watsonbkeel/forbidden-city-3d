@@ -1,4 +1,5 @@
 import {restorePreR27SceneRows} from './lib/r27-jiaotai-retention.mjs';
+import {restorePreR32SceneRows} from './lib/r32-scene-retention.mjs';
 import {restorePreR26SceneRows} from './lib/r26-qianqing-retention.mjs';
 // Exact pre-R25 nameboard poses for historical whole-hall fingerprints only.
 import {HistoricalR24PalaceBuilder} from './lib/historical-r24-baohe-fixture.mjs';
@@ -21,8 +22,9 @@ test('nominal shared terrace2m, provisional one-stone lip0.16m, unchanged horizo
  assert.throws(()=>buildInnerPalaceLip(builder,new T.Group(),{z0:0,w:10,d:10,y:5,ph:.16}),/interface/);
  assert.throws(()=>buildInnerPalaceLip(builder,new T.Group(),{z0:0,w:10,d:10,y:2,ph:1.5}),/interface/);
 });
-test('all other static merged buildings and original front-hall geometry remain byte exact',()=>{
- for(const [name,row]of Object.entries(B.groups))if(!['乾清门','后三宫'].includes(name))assert.deepEqual(restorePreR13SceneRow(name,groups[name]),row,name);
+test('exact restored R31 groups retain the historical static merged buildings and front-hall geometry',()=>{
+ const historicalGroupsR31=restorePreR32SceneRows(groups);
+ for(const [name,row]of Object.entries(B.groups))if(!['乾清门','后三宫'].includes(name))assert.deepEqual(restorePreR13SceneRow(name,historicalGroupsR31[name]),row,name);
  const r26Groups=restorePreR27SceneRows(groups),historicalGroups=restorePreR26SceneRows(groups);
  assert.equal(historicalGroups['后三宫'].meshes,33);assert.equal(historicalGroups['后三宫'].triangles,51972);
  assert.equal(historicalGroups['后三宫'].triangles-B.groups['后三宫'].triangles,6252,'include both LOD levels in resident inventory');

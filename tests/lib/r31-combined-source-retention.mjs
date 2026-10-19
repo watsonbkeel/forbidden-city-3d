@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
+import {restoreR32SourceIfPresent} from './r32-source-retention.mjs';
 
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const raw = fs.readFileSync(new URL('../fixtures/r31-combined-source-delta.json', import.meta.url));
@@ -10,6 +11,7 @@ export const r31CombinedSource = JSON.parse(raw);
 /** Historical bytes only: bind the entire reviewed candidate, reverse each
  * unique exact hunk, and verify the original 2be1751 bytes. No scene adapter. */
 export function restorePreR31CombinedSource(path, bytes) {
+  bytes = restoreR32SourceIfPresent(path, bytes);
   const delta = r31CombinedSource.files[path];
   if (!delta || sha(bytes) === delta.baselineSHA256) return bytes;
   assert.equal(sha(bytes), delta.candidateSHA256, 'exact R31 combined source: ' + path);
@@ -26,6 +28,7 @@ export function restorePreR31CombinedSource(path, bytes) {
 /** Older guards accept several older revisions. Only this full candidate
  * identity is dispatched; unknown bytes pass unchanged to their strict guard. */
 export function restoreR31CombinedSourceIfPresent(path, bytes) {
+  bytes = restoreR32SourceIfPresent(path, bytes);
   const delta = r31CombinedSource.files[path];
   return delta && sha(bytes) === delta.candidateSHA256 ? restorePreR31CombinedSource(path, bytes) : bytes;
 }

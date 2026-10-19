@@ -1,6 +1,7 @@
 import {restorePreR22RouteSource,restorePreR22FixedRoutes} from './lib/r22-baohe-route-retention.mjs';
 import {restorePreR22Navigation} from './lib/r22-baohe-retention.mjs';
 import test from 'node:test';
+import {restorePreR32Routes} from './lib/r32-route-retention.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {execFileSync} from 'node:child_process';
@@ -37,19 +38,19 @@ const clone=x=>JSON.parse(JSON.stringify(x));
 const root=new URL('../',import.meta.url);
 const s=new THREE.Scene(),b=new PalaceBuilder(s,library());
 b.buildAll(PALACE_LAYOUT);
-// Historical navigation removes only the exact registered R22 twelve-leaf
-// insertion. Source/scene assertions restore frozen R19. Live routes below
-// continue to use the actual current product, with no navigation restoration.
+// Historical navigation reverses exact registered later insertions.
+// Source/scene/route assertions below bind the frozen R19 epoch; actual R32
+// navigation and route acceptance remain separate.
 const historicalR21Navigation=restorePreR22Navigation(clone({colliders:b.colliders,walkables:b.walkables}));
 const historicalR19Scene=restorePreR20SceneRows(sceneRows(s));
 b.dispose();
 const liveFixed=execFileSync(process.execPath,['tests/stepwalk.cjs','60','0','all'],{
   cwd:root,env:{...process.env,DUMP:'1'},encoding:'utf8',
 }).trim().split('\n').map(line=>{const at=line.indexOf(' ');return{name:line.slice(0,at),pts:JSON.parse(line.slice(at+1))};});
-// Explicit historical descriptor comparison; live R22 route acceptance is separate.
+// Explicit historical descriptor comparison; actual R32 route acceptance is separate.
 const fixed=restorePreR22FixedRoutes(liveFixed);
 const zones=loadZoneJsons(),world=await buildWorld({zones});
-const auto=buildAutoRoutes(world,zones.map(z=>z.json),{knownIssues:{}});
+const auto=restorePreR32Routes(buildAutoRoutes(world,zones.map(z=>z.json),{knownIssues:{}}),'auto');
 
 test('R19 provenance binds the frozen R18 baseline and R19 depth/door/continuous-ceiling product',()=>{
   for(const fixture of[source,nav,scene,routes]){

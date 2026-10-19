@@ -1,3 +1,4 @@
+import {verifiedR31AddedProductPaths,verifiedR32AddedProductPaths} from './lib/r32-product-inventory.mjs';
 import {r30Source} from './lib/r30-qianqing-passage-retention.mjs';
 import {r29Source} from './lib/r29-qianqing-retention.mjs';
 import {restorePreR28Source,r28Source} from './lib/r28-jiaotai-central-retention.mjs';
@@ -49,7 +50,7 @@ test('R27 provenance binds the frozen candidate, exact previous builder, two mod
   for(const[p,digest]of Object.entries(priorSource.retainedFiles))assert.equal(source.retainedFiles[p],digest,p);
   assert.equal(source.retainedFiles['src/scene/palace/QianqingUpperEnclosure.js'],priorSource.addedFiles['src/scene/palace/QianqingUpperEnclosure.js'].candidateSHA256);
   const actual=['src','data','public'].flatMap(dir=>fs.readdirSync(new URL(dir+'/',root),{recursive:true,withFileTypes:true}).filter(x=>x.isFile()).map(x=>path.relative(root.pathname,path.join(x.parentPath,x.name)))).sort();
-  assert.deepEqual([...Object.keys(source.files),...Object.keys(source.addedFiles),...Object.keys(source.retainedFiles).filter(p=>/^(src|data|public)\//.test(p)),...Object.keys(r28Source.addedFiles),...Object.keys(r30Source.addedFiles),...Object.keys(r29Source.addedFiles).filter(p=>/^(src|data|public)\//.test(p))].sort(),actual);
+  assert.deepEqual([...Object.keys(source.files),...Object.keys(source.addedFiles),...Object.keys(source.retainedFiles).filter(p=>/^(src|data|public)\//.test(p)),...Object.keys(r28Source.addedFiles),...Object.keys(r30Source.addedFiles),...Object.keys(r29Source.addedFiles).filter(p=>/^(src|data|public)\//.test(p)),...verifiedR31AddedProductPaths(),...verifiedR32AddedProductPaths()].sort(),actual);
 });
 
 test('only the two exact import and post-merge install hunks reverse; unrelated, partial, missing and duplicate source fail closed',()=>{

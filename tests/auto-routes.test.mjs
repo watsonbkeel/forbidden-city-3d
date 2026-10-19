@@ -9,7 +9,8 @@ import { sideGateGeometry } from '../src/scene/palace/special/SideGateProfiles.j
 import { pavilionGeometry } from '../src/scene/palace/special/PavilionProfiles.js';
 
 const W = await buildWorld();
-// Historical V6 coverage keeps its exact 58 routes and original drivers.
+// R32 retires the false Yanxi hall-entry route and adds all three real Huangji portals.
+// Original drivers/arrival thresholds remain unchanged; 58 - 1 + 3 = 60 routes.
 // V7's sole added gate is exhaustively covered by zhaode-gate-routes.test.mjs.
 const inheritedV6 = routes => routes.filter(r => r.gateProfile !== 'zhaode');
 const originalGateProfiles = new Set(['xiehe', 'xihe', 'jingyun', 'longzong']);
@@ -210,17 +211,18 @@ test('the same bounded detour works after translating, renaming, and rotating th
 
 test('all baseline and explicit profile routes retain real-collision round-trip passage', () => {
   const routes = inheritedV6(buildAutoRoutes(W, W.zones.map(z => z.json)));
-  assert.equal(routes.filter(route => !route.gateProfile && !route.pavilionFlight && !route.terraceSide).length, 40, '39 baseline hall/cross routes plus the newly enterable Hongyi hall');
+  assert.equal(routes.filter(route => !route.gateProfile && !route.pavilionFlight && !route.terraceSide).length, 39, 'Prior 40 hall/cross routes minus the false Yanxi interior; exterior viewing has dedicated coverage');
   const portalCount = W.gates.filter(g => originalGateProfiles.has(g.item.gateProfile)).reduce((n, g) => n + sideGateGeometry(g.item).portals.length, 0);
   assert.equal(routes.filter(route => route.pavilionFlight).length, 4, 'one round trip per actual pavilion front flight');
-  assert.equal(routes.length, 40 + portalCount + 4 + 2, '51 original identities, one Hongyi hall route, four pavilion flight routes and two terrace routes');
+  const huangjiCount=routes.filter(r=>r.gateProfile==='huangji').length;assert.equal(huangjiCount,3,'three independently traversable wall arches');
+  assert.equal(routes.length, 39 + portalCount + huangjiCount + 4 + 2, 'retired Yanxi false entry; retained halls, four pavilion flights, two terraces and three Huangji portals');
   for (const route of routes) assert.doesNotThrow(() => assertWalkable(W, route.pts), route.name);
 });
 
 for (const fps of [60, 10]) for (const sprint of [false, true]) {
-  test(`all 58 automatic routes retain real-controller passage: ${fps} fps, sprint=${sprint}`, t => {
+  test(`all 60 current automatic routes retain real-controller passage: ${fps} fps, sprint=${sprint}`, t => {
     const routes = inheritedV6(buildAutoRoutes(W, W.zones.map(z => z.json)));
-    assert.equal(routes.length, 58);
+    assert.equal(routes.length, 60);
     assert.equal(routes.filter(r => r.pavilionFlight).length, 4, 'both front flights of both pavilions, ascending and descending');
     const failures = [];
     for (const route of routes) {

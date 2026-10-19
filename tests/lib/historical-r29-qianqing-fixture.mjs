@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {historicalR31Dependency} from './historical-r31-scene-dependencies.mjs';
 import {r30Source,restorePreR30Source,assertR30AddedSource,assertR30RetainedSource} from './r30-qianqing-passage-retention.mjs';
 
 // Historical R29 assertions only. Restore both complete registered sources in
@@ -22,7 +23,7 @@ export function historicalR29Dependency(specifier,url){
   if(specifier==='three')return import.meta.resolve('three');
   const target=new URL(specifier,url);
   for(const path of Object.keys(r30Source.files))if(target.href===new URL(path,root).href)return historicalModule(path);
-  return target.href;
+  return historicalR31Dependency(specifier,url);
 }
 export const {PalaceBuilder:HistoricalR29PalaceBuilder}=await import(historicalModule('src/scene/PalaceBuilder.js'));
 export const HistoricalR29FrontEnclosure=await import(historicalModule('src/scene/palace/QianqingFrontEnclosure.js'));

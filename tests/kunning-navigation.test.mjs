@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {restorePreR32Routes} from './lib/r32-route-retention.mjs';
 import { registerHooks } from 'node:module';
 const jsonImports = registerHooks({ load(url, context, next) {
   return next(url, url.endsWith('.json') ? { ...context, importAttributes: { ...context.importAttributes, type: 'json' } } : context);
@@ -64,10 +65,11 @@ const { execFileSync } = await import('node:child_process');
 const { default: baselineFixed } = await import('./fixtures/v5-fixed-routes.json',{with:{type:'json'}});
 const fixed=execFileSync(process.execPath,['tests/stepwalk.cjs','60,10','0,1','all'],{env:{...process.env,DUMP:'1'},encoding:'utf8'}).trim().split('\n').map(line=>{const p=line.indexOf('[[');return{name:line.slice(0,p).trim(),pts:JSON.parse(line.slice(p))};});
 const routePoints=key=>KUNNING_PROFILE.navigation.routes[key].map(id=>{const [x,,z]=KUNNING_PROFILE.navigation.points[id];return[x+data.position.x,z+data.position.z];});
-test('only Kunning entry suffix changes; original Qianqing/Jiaotai approach remains exact',()=>{
- const name='乾清宫→交泰殿→坤宁宫',old=baselineFixed.find(r=>r.name===name).pts,current=fixed.find(r=>r.name===name).pts;
- assert.deepEqual(current,[...old.slice(0,-1),...routePoints('entry')]);
- assert.equal(current.at(-1)[0],KUNNING_PROFILE.portals[0].center[0]);
+test('exact restored R31 route preserves the original Qianqing/Jiaotai approach and Kunning entry suffix',()=>{
+ const historical=restorePreR32Routes(fixed,'fixed');
+ const name='乾清宫→交泰殿→坤宁宫',old=baselineFixed.find(r=>r.name===name).pts,retained=historical.find(r=>r.name===name).pts;
+ assert.deepEqual(retained,[...old.slice(0,-1),...routePoints('entry')]);
+ assert.equal(fixed.find(r=>r.name===name).pts.at(-1)[0],KUNNING_PROFILE.portals[0].center[0]);
 });
 test('Kunning exits through true south doorway and end passage while original garden suffix remains exact',()=>{
  const name='坤宁宫→御花园→神武门',old=baselineFixed.find(r=>r.name===name).pts,current=fixed.find(r=>r.name===name).pts;

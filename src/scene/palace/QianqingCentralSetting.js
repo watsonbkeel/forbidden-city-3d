@@ -50,13 +50,19 @@ export function buildQianqingCentralLevel(mat,f,fine){
  box('qianqing-high-gilt-frieze',frameW-.24,.85,.025,0,4.86,backZ-.105,2,true);
  for(const sign of[-1,1])box('qianqing-rear-frame-stile',.09,frameTop-dais,.22,sign*(frameW/2-.045),(frameTop+dais)/2,backZ);
  box('qianqing-zhengdaguangming-plaque',f.plaque.width,f.plaque.height,.13,0,6.08,backZ-.20,3,true);
- // Conservative seat structure; the reference partly obscures the chair.
- box('qianqing-throne-seat',1.8,.22,1.3,0,dais+.51,0);
- box('qianqing-throne-back',1.9,1.35,.16,0,dais+1.15,.58);
+ // The selected museum photograph shows a low covered front table partly
+ // obscuring the chair. Its textile and proportions are display-photo fits.
+ box('qianqing-throne-seat',1.65,.16,1.2,0,dais+.51,.10);
+ const chairShape=shape(reliefOutline(1.72,1.27));
+ if(fine)for(const sign of[-1,1]){const h=new THREE.Path();h.moveTo(sign*.46-.12,.70);h.lineTo(sign*.46+.12,.70);h.lineTo(sign*.46+.09,.91);h.lineTo(sign*.46-.09,.91);h.closePath();chairShape.holes.push(h);}
+ const chairGeo=omitCollapsedCapFaces(new THREE.ExtrudeGeometry(chairShape,{depth:.12,bevelEnabled:false,curveSegments:1}));chairGeo.translate(0,0,-.06);
+ add('qianqing-throne-articulated-back',chairGeo,0,dais+.54,.65,0,false,true);
+ box('qianqing-front-table-top',2.00,.12,.80,0,dais+1.08,-.86,6);
+ add('qianqing-front-table-cloth',new THREE.BoxGeometry(1.86,.83,.025),0,dais+.59,-1.28,7,false,true);
+ for(const x of[-.72,.72])box('qianqing-front-table-leg',.11,.98,.12,x,dais+.49,-.87,6);
  if(fine){
-  for(const x of[-.70,.70])for(const z of[-.46,.46])box('qianqing-throne-leg',.14,.40,.14,x,dais+.20,z);
-  for(const x of[-.84,.84]){box('qianqing-throne-arm',.14,.15,1.12,x,dais+.93,.02);box('qianqing-throne-arm-upright',.14,.37,.14,x,dais+.72,-.46);}
-  const crest=new THREE.ExtrudeGeometry(shape(reliefOutline(1.9,.35)),{depth:.12,bevelEnabled:false,curveSegments:1});crest.translate(0,0,-.06);add('qianqing-chair-crest-approximate',crest,0,dais+1.80,.58);
+  for(const x of[-.65,.65])for(const z of[-.40,.52])box('qianqing-throne-leg',.12,.43,.12,x,dais+.215,z);
+  for(const x of[-.79,.79]){box('qianqing-throne-arm',.12,.13,1.05,x,dais+.91,.07);box('qianqing-throne-arm-upright',.12,.32,.12,x,dais+.70,-.40);}
   // Low rails flank, rather than cover, the three separate front stair flights.
   const innerGap=f.thW/3-stepW,outerGap=f.thW/2-(f.thW/3+stepW/2),outerX=f.thW/2-outerGap/2;
   const cheeks=[[-outerX,outerGap],[-f.thW/6,innerGap],[f.thW/6,innerGap],[outerX,outerGap]];
@@ -69,7 +75,7 @@ export function buildQianqingCentralLevel(mat,f,fine){
  root.userData.qianqingCentral={id:f.id,fine,dimensionStatus:f.dimensionStatus,fivePanels:true,threeStairRuns:true,photoDateUnknown:true};return root;
 }
 export function installQianqingCentral(b,root){
- if(b.ox||b.oz||root.userData.qianqingCentral)throw Error('Qianqing installation must be world aligned and unique');const all=root.userData.architecture?.filter(x=>x.id===QIANQING_CENTRAL.id);if(all?.length!==1)throw Error('Missing unique Qianqing frame');const f=all[0],mat=qianqingCentralMaterial(b),lod=new THREE.LOD();lod.name='qianqing-central-setting-detail';lod.position.set(f.x0,f.y,f.tz);
+ if(b.ox||b.oz||root.userData.qianqingCentral)throw Error('Qianqing installation must be world aligned and unique');const all=root.userData.architecture?.filter(x=>x.id===QIANQING_CENTRAL.id);if(all?.length!==1)throw Error('Missing unique Qianqing frame');const f=all[0],mat=qianqingCentralMaterial(b),lod=new THREE.LOD();lod.name='qianqing-central-setting-detail';lod.userData={displayRevision:'r32-photo-relative-main-scene',displaySummary:{frontTable:true,chairBack:'articulated-outline',screens:5,stairFlights:3},photoDateUnknown:true};lod.position.set(f.x0,f.y,f.tz);
  for(const fine of[true,false])lod.addLevel(mergeByMaterial(buildQianqingCentralLevel(mat,f,fine),{name:fine?'qianqing-central-near':'qianqing-central-far'}),fine?0:f.lodDistance,fine?0:f.lodHysteresis);
  lod.levels[1].object.visible=false;root.add(lod);root.userData.qianqingCentral={...structuredClone(f),navigation:'INHERITED_EXCLUSION_IDENTICAL_NO_NEW_STEP_ROUTE'};return lod;
 }

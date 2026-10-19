@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { innerJinshuiProfile } from '../palace/special/InnerJinshui.js';
 
 export const FLIGHT_BOUNDS = Object.freeze({ minX:-530,maxX:530,minZ:-590,maxZ:660 });
 /** Conservative overhead envelope of the ACTUAL exterior meshes, including
@@ -110,8 +111,9 @@ export function createPalaceFlightEnvelope({palaceBuilder,enclosure,garden,zoneM
     grid.addRoot(entry.data.group);
   }
   for(const item of layout.filter(i=>i.type==='river')){
-    const p=item.position,d=item.dimensions;
-    grid.addRect(p.x-d.width/2,p.x+d.width/2,p.z-d.depth/2,p.z+d.depth/2,0,{water:true});
+    const {north,south}=innerJinshuiProfile(item).banks;
+    for(let i=1;i<north.length;i++)grid.addRect(south[i-1].x,south[i].x,
+      Math.min(south[i-1].z,south[i].z),Math.max(north[i-1].z,north[i].z),0,{water:true});
   }
   // Conservatively mark the exterior moat belt; no ground landing on water.
   const moat=layout.find(i=>i.type==='moat');

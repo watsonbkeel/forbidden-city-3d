@@ -1,4 +1,4 @@
-import {restoreR31SurfaceRowsIfPresent,restoreR31SurfaceRowIfPresent,restoreR31SurfaceCaptureIfPresent} from './r31-qianqing-surface-retention.mjs';
+import {restoreR31SurfaceRowsIfPresent,restoreR31SurfaceRowIfPresent,restoreR31SurfaceCaptureIfPresent,restoreR31SurfaceNavigationIfPresent} from './r31-qianqing-surface-retention.mjs';
 import {restoreR31SourceIfPresent} from './r31-flight-operations-retention.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -75,6 +75,7 @@ export const restorePreR30Materials=rows=>restoreRows(restoreR31SurfaceRowsIfPre
 /** The full ordered candidate is bound before restoring four facade spans and
  * removing exactly the 14 registered solids. Walkables never change. */
 export function restorePreR30Navigation(value){
+  value=restoreR31SurfaceNavigationIfPresent(value);
   const d=r30Scene.navigation;
   if(hash(value)===d.beforeSHA256)return value;
   assert.equal(hash(value),d.afterSHA256,'exact R30 complete ordered navigation');

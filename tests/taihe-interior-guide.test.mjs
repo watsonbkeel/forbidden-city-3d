@@ -6,6 +6,7 @@ import { readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { PlaceCatalog } from '../src/ui/PlaceCatalog.js';
 import { PlaceInfoPanel } from '../src/ui/PlaceInfoPanel.js';
+import { modelFidelityFor } from '../src/ui/ModelFidelity.js';
 import { createDOM } from './lib/ui-dom.mjs';
 import { setupMap } from './lib/map-fixture.mjs';
 import { restoreLoadingWelcomeBytes } from './lib/loading-welcome-source-delta.mjs';
@@ -85,7 +86,7 @@ for (const [name, mutate] of [
   assert.throws(() => new PlaceCatalog(changed), /Place catalog/);
 });
 
-test('optional guide uses the same nonmodal text panel and absent cards retain the exact DOM tree', async t => {
+test('optional guide retains its nonmodal DOM; R32 adds only the exact registered model note on eligible cards', async t => {
   const dom = createDOM();
   const saved = globalThis.document; globalThis.document = dom.document;
   t.after(() => { if (saved === undefined) delete globalThis.document; else globalThis.document = saved; });
@@ -109,7 +110,17 @@ test('optional guide uses the same nonmodal text panel and absent cards retain t
   for (const p of catalog.places.filter(p => p.id !== 'taihe' && data.places.some(old=>old.id===p.id))) {
     render(p); assert.ok(!panel.element.textContent.includes('殿内看点'));
     frozenPanel.render({ place: p, name: p.name, sources: catalog.sourcesFor(p), canTravel: true, onTravel: () => trips++ });
-    assert.deepEqual(snapshot(panel.element), snapshot(frozenPanel.element), `${p.id}: original DOM tree retained`);
+    const current=snapshot(panel.element), fidelity=modelFidelityFor(p.name)??modelFidelityFor(p.canonicalName);
+    const notes=current.children.map((n,i)=>n.tag==='H3'&&n.text==='本版模型说明'?i:-1).filter(i=>i>=0);
+    if(fidelity){
+      assert.equal(notes.length,1,`${p.id}: one separately labelled model note`);const i=notes[0];
+      assert.deepEqual(current.children.slice(i,i+2),[
+        {tag:'H3',attributes:[],text:'本版模型说明',children:[]},
+        {tag:'P',attributes:[],text:fidelity.detail,children:[]},
+      ]);
+      current.children.splice(i,2);
+    }else assert.equal(notes.length,0,`${p.id}: no unregistered model note`);
+    assert.deepEqual(current, snapshot(frozenPanel.element), `${p.id}: every historical DOM node outside the exact R32 note retained`);
   }
   frozenPanel.dispose();
   panel.dispose();
