@@ -128,9 +128,9 @@ const PALETTE = Object.freeze(Object.fromEntries(Object.entries({
   nightBottom: 0x19283f, dayBottom: 0xb8d4e8, twilightBottom: 0xd99169,
   nightFog: 0x0e1a2b, dayFog: 0xd4c4a8, twilightFog: 0xb77e6b,
   lowSun: 0xff9d58, highSun: 0xfff5e1,
-  nightHemisphere: 0x9bacc8, dayHemisphere: 0xfff4e6,
-  nightGround: 0x6c7890, dayGround: 0x8a8272,
-  nightFill: 0x9faecb, dayFill: 0xd8e8ff,
+  nightHemisphere: 0xd1d7e0, dayHemisphere: 0xfff4e6,
+  nightGround: 0xaca18a, dayGround: 0x8a8272,
+  nightFill: 0xffce91, dayFill: 0xd8e8ff,
 }).map(([name, hex]) => [name, Object.freeze(linearColor(hex))])));
 
 function lightingFromElevation(elevation) {
@@ -150,9 +150,9 @@ function lightingFromElevation(elevation) {
     hemisphereGroundColor: mixColor(PALETTE.nightGround, PALETTE.dayGround, daylight),
     fillColor: mixColor(PALETTE.nightFill, PALETTE.dayFill, daylight),
     sunIntensity: sunVisibility * mix(0.45, 1.4, smoothstep(0, 45, elevation)),
-    hemisphereIntensity: mix(0.48, 0.5, daylight),
-    fillIntensity: mix(0.18, 0.25, daylight),
-    environmentIntensity: mix(0.18, 0.6, daylight),
+    hemisphereIntensity: mix(0.9, 0.5, daylight),
+    fillIntensity: mix(0.5, 0.25, daylight),
+    environmentIntensity: mix(0.3, 0.6, daylight),
     exposure: mix(0.9, 1, daylight),
     daylight,
     twilight,

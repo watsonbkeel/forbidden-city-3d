@@ -120,16 +120,18 @@ test('morning and afternoon sun use the east and west half of the model respecti
   assert.ok(afternoon.direction.x > 0 && afternoon.azimuthDegrees > 180);
 });
 
-test('night has zero direct sunlight and lower sky, fill, hemisphere and IBL contribution', () => {
+test('night retains zero sun, darker sky and lower total lighting with R34 readable ambient', () => {
   const { getBeijingDayCycle } = api();
   const day = getBeijingDayCycle(new Date('2026-06-21T04:00:00Z'));
   const night = getBeijingDayCycle(new Date('2026-06-21T16:00:00Z'));
   assert.equal(night.phase, 'night');
   assert.ok(night.sun.elevationDegrees < -20);
   assert.equal(night.lighting.sunIntensity, 0);
-  for (const key of ['hemisphereIntensity', 'fillIntensity', 'environmentIntensity', 'daylight']) {
+  for (const key of ['environmentIntensity', 'daylight']) {
     assert.ok(night.lighting[key] < day.lighting[key], key);
   }
+  const total = l => l.sunIntensity + l.hemisphereIntensity + l.fillIntensity;
+  assert.ok(total(night.lighting) < total(day.lighting));
   assert.ok(night.lighting.skyTop.reduce((a, b) => a + b) < day.lighting.skyTop.reduce((a, b) => a + b));
 });
 

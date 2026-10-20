@@ -20,7 +20,11 @@ for(const [name,b]of Object.entries(baseline.otherHalls))test(`Taihe correction 
 test('approved card bytes, inferred rows and dimension-precision limits remain explicit',()=>{
  const bytes=fs.readFileSync(new URL('../../docs/current-state/taihe-v16-core/approved-geometry-card.json',import.meta.url));assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),P.approvalCardSHA256);
  assert.deepEqual(P.columns.x,[-4.233,4.233]);assert.deepEqual(P.columns.goldZ,[-5.5868,5.6019,13.0647]);near(P.columns.x[1]-P.columns.x[0],8.466);
- assert.deepEqual(P.columns.publishedDiameterRange,[1,1.06]);assert.match(P.dais.registration,/historical/);assert.match(P.screen.registration,/conflicts/);assert.match(P.caisson.interpretation,/diagonal/);
+ assert.deepEqual(P.columns.publishedDiameterRange,[1,1.06]);assert.match(P.dais.registration,/historical/);
+ // R34 fixes the former screen/rear-row conflict; retain the uncertainty
+ // disclosure and assert the actual resolved relationship, not obsolete prose.
+ assert.match(P.screen.registration,/estimated/);assert.ok(P.screen.z<P.columns.goldZ[2]);
+ assert.match(P.caisson.interpretation,/diagonal/);
 });
 test('historical meshes remain exact after the finite R9 enclosure and R10 registered grid deltas',()=>{
  const frozen=capture('太和殿',HistoricalR24PalaceBuilder);

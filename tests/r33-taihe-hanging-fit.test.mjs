@@ -1,3 +1,4 @@
+import {independentR33Source} from './lib/r34-source-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -41,8 +42,12 @@ test('entrance eye-height projections separate the plaque bottom from receding c
   assert.ok(P.plaque.bottomY > 1.9 + 4);
 });
 
-test('new decoded asset changes only the 28 source-owned plaque Z coordinates', async () => {
-  const old = meshes(await decode(baseBytes)), current = meshes(await decode(bytes));
+// Frozen R33 byte-only proof; all runtime/loader tests below keep raw current cfg/bytes.
+test('frozen R33 decoded asset changes only the 28 source-owned plaque Z coordinates', async () => {
+  const frozenCfg = JSON.parse(independentR33Source('data/interiors/taihe.json'));
+  const frozenBytes = read('public' + frozenCfg.model);
+  assert.equal(sha(frozenBytes), frozenCfg.asset.sha256);
+  const old = meshes(await decode(baseBytes)), current = meshes(await decode(frozenBytes));
   assert.equal(current.length, 8); let changed = 0;
   for (let mi=0; mi<old.length; mi++) {
     const a=old[mi], b=current[mi];

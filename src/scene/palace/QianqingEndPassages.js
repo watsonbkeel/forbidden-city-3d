@@ -1,8 +1,9 @@
+import {qianqingFrontageGrid} from './QianqingFrontageGrid.js';
 import {qianqingDepthGrid} from './QianqingDepthGrid.js';
 /** Official six-view imagery and the unscaled 后三宫 plan establish two
  * enclosed north–south passages. Every metric value below is an inherited
  * envelope/photo-relative approximation, NOT a measured wall registration.
- * R33 uses a reversible 3 m veranda fit; unequal historic column spacing remains unmeasured.
+ * R33 uses a reversible 3 m veranda fit; frontage stations are a separate rounded R34 estimate, not surveyed spacing.
  */
 export const QIANQING_END_PASSAGES = Object.freeze({
   id: 'qianqing-two-enclosed-end-passages', bays: Object.freeze([0, 8]),
@@ -21,11 +22,11 @@ export function qianqingPassageFrame({ x0, z0, y, w, d, H, bayW, r, doorH, beamH
   const expected = [0, 316.8, 2.16, 46, 25, 7.22, 46 / 9, (46 / 9) * .08, 7.22 * .88 * .8, 7.22 * .12];
   if (values.some((v, i) => !Number.isFinite(v) || Math.abs(v - expected[i]) > 1e-7))
     throw Error('Unregistered Qianqing passage envelope');
-  const inner = w / 2 - bayW, jambWidth = r + .14, depthFit=qianqingDepthGrid(d);
-  return Object.freeze({ ...QIANQING_END_PASSAGES, x0, z0, y, w, d, H, bayW, r, doorH, beamH,
+  const frontage=qianqingFrontageGrid(w), inner = frontage.passageInner, passageBayW=frontage.passageBayWidth, jambWidth = r + .14, depthFit=qianqingDepthGrid(d);
+  return Object.freeze({ ...QIANQING_END_PASSAGES, x0, z0, y, w, d, H, bayW:passageBayW, r, doorH, beamH,
     inner, outer: w / 2, zSouth: z0 - d / 2, zNorth: z0 + d / 2, jambWidth,
     wallSouth:z0+depthFit.frontDoorZ,wallNorth:z0+depthFit.rearDoorZ,
-    clearWidth: bayW - 2 * jambWidth, centerX: inner + bayW / 2,
+    clearWidth: passageBayW - 2 * jambWidth, centerX: inner + passageBayW / 2,
     sideDoorZ: z0 + d * QIANQING_END_PASSAGES.sideDoorOffsetRatio });
 }
 

@@ -135,7 +135,7 @@ export function loadZoneJsons(dir = path.join(ROOT, 'data/zones')) {
     .map(f => ({ file: f, json: JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')) }));
 }
 
-export async function buildWorld({ zones = loadZoneJsons(), statics = true } = {}) {
+export async function buildWorld({ zones = loadZoneJsons(), statics = true, retainScene = false } = {}) {
   stubDocument();
   const THREE = await import('three');
   const { ZoneBase } = await src('scene/zones/ZoneBase.js');
@@ -174,6 +174,7 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true } = {
   }
 
   const terraceProfiles = [], taiheSouthTiers = [], baoheNorthTiers = [];
+  let retainedScene = null;
   if (statics) {
     const log = console.log;
     console.log = () => {};
@@ -185,6 +186,7 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true } = {
       const scene = new THREE.Scene();
       const pb = new PalaceBuilder(scene, lib);
       pb.buildAll(PALACE_LAYOUT);
+      if (retainScene) retainedScene = scene;
       terraceProfiles.push(...pb.terraceProfiles);
       taiheSouthTiers.push(...pb.taiheSouthTiers);
       baoheNorthTiers.push(...pb.baoheNorthTiers);
@@ -206,6 +208,7 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true } = {
   }
   return {
     THREE, cm, zones, gates, halls, rooms, mapItems, terraceProfiles, taiheSouthTiers, baoheNorthTiers,
+    ...(retainScene ? { scene: retainedScene } : {}),
     ownerOf: c => owner.get(c.mesh) ?? { zone: c.tag ?? '?', item: { kind: '?' } },
   };
 }

@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "validatedAtUTC": "2026-10-20T05:23:22.924299+00:00",
+  "baselineRemoteCommit": "3b9f01f1fafad61f7c23efee1f1bb0a37c2ed8fb",
+  "productionCheckpoint": "5f5e7b3c5f22f73a82cd2c8d6ef2ea6c6955b269",
+  "checks": {
+    "currentState": {
+      "passed": 1210,
+      "failed": 0,
+      "skipped": 0,
+      "exitCode": 0,
+      "logSHA256": "a2356a74abf6a260d3a85ae59b49a469243afeabfa1b54d274b39f8ab937b286",
+      "command": "node --test --test-concurrency=2 --test-reporter=tap tests/current-state/*.test.mjs"
+    },
+    "directR34AndTaihe": {
+      "passed": 183,
+      "failed": 0,
+      "skipped": 0,
+      "exitCode": 0,
+      "logSHA256": "5603967d0e4f8b4f72212d30fba20a25fda40eb8cf9638d2d0eabccf606ce0e6",
+      "command": "node --test --test-concurrency=1 --test-reporter=tap tests/r34*.test.mjs tests/current-state/taihe-core-geometry.test.mjs"
+    },
+    "continuousRoutesAndUISubset": {
+      "passed": 102,
+      "failed": 0,
+      "scope": "Subset of direct tests; real CPU controllers, B/S, direction/speed/FPS, full Chuxiu excursion/five bridges and simulated desktop/touch UI; not an additional independent total."
+    },
+    "pythonR34": {
+      "passed": 4,
+      "failed": 0,
+      "command": "python -m unittest discover -s tests -p 'test_r34*.py'",
+      "logSHA256": "8653231993bdafab1e2ced6a0abf5d1e28509a49f2b062b59a3ba5d846af91ab"
+    },
+    "build": {
+      "passed": true,
+      "command": "npm run build",
+      "warning": "Existing Vite chunk size >500kB; no FPS claim",
+      "logSHA256": "e6060f5c4eca12d78594e5fef7a82a7d91c0c26c3708f8bd51ae49e580eaebd2"
+    },
+    "resources": {
+      "sourceIdentitiesVerified": 188,
+      "zoneCyclesVerified": 7,
+      "exactCurrentOptionalGLBCyclesVerified": 6,
+      "report": "RESOURCE-BUDGET.json",
+      "scope": "CPU geometry and resource ownership inventory; not WebGL/GPU/FPS evidence"
+    },
+    "sourceRegistrySHA256": "be99c7be90a828a53025be8099a7f896d21286121e41ac28f08813d46e3521c6",
+    "sceneRegistrySHA256": "1c89802c181cd8de83b416c88e7eb3fc7788f898fc28bd2326b51f2147379a85"
+  },
+  "limitations": [
+    "No browser pixel or manual-walking acceptance: current cloud browser cannot create WebGL even on existing R23.",
+    "No real PC/GPU or mobile device performance acceptance.",
+    "Route-wide material visual refinement deferred; existing textures reused.",
+    "R12 historical cost assertion and old Python generator limits documented in R33 remain outside this passing release gate.",
+    "Geometric registrations are reversible source-informed fits, not measured restoration."
+  ],
+  "publication": {
+    "status": "not yet published at validation",
+    "targetBranch": "feat/r34-continuous-courtyard-night-20261020",
+    "mainAndPagesChanged": false
+  }
+}

@@ -72,7 +72,7 @@ test('finite geometry, bounds and alternative silhouette contain both real roof 
  root.traverse(o=>{if(!o.isMesh)return;for(const a of Object.values(o.geometry.attributes))assert.ok([...a.array].every(Number.isFinite),o.name);assert.ok(o.userData.role);});
  const bounds=new THREE.Box3().setFromObject(root);assert.ok([...bounds.min.toArray(),...bounds.max.toArray()].every(Number.isFinite));assert.ok(bounds.min.z<g.z+g.southAnnex.frontZ);assert.ok(bounds.max.y>g.levels.boardTop);
  const tileTriangles=Object.entries(root.userData.structure.roleBudget.roles).filter(([role])=>/roof-tile|flat-roof-cover/.test(role)).reduce((n,[,r])=>n+r.triangleInstances,0);
- const merged=kit.finish(),sil=buildSilhouette(merged);assert.ok(sil);near(sil.geometry.attributes.position.count/3,tileTriangles);
+ const merged=kit.finish(),sil=buildSilhouette(merged);assert.ok(sil);near((sil.geometry.index?.count??sil.geometry.attributes.position.count)/3,tileTriangles);
  const ray=(x,z)=>new THREE.Raycaster(new THREE.Vector3(x,30,z),new THREE.Vector3(0,-1,0)).intersectObject(sil,true);sil.material.side=THREE.DoubleSide;sil.updateMatrixWorld(true);
  assert.ok(ray(0,g.z-10).length,'low annex tile remains in alternative silhouette');assert.ok(ray(0,g.z).length,'actual truncated top cover remains');assert.ok(ray(0,g.z+5).length,'main upper roof remains');
  sil.geometry.dispose();sil.material.dispose();kit.dispose(merged);

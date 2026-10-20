@@ -34,6 +34,8 @@ import { buildBaoheClosedFront } from './palace/BaoheFrontEnclosure.js';
 import { buildQianqingFrontWindow, qianqingFrontBox } from './palace/QianqingFrontEnclosure.js';
 import { qianqingPassageFrame, buildQianqingPassageMouth, buildQianqingPassageWalls } from './palace/QianqingEndPassages.js';
 import { qianqingDepthGrid, qianqingColumnPresent } from './palace/QianqingDepthGrid.js';
+import { qianqingFrontageGrid } from './palace/QianqingFrontageGrid.js';
+import { buildQianqingWarmRooms } from './palace/QianqingWarmRooms.js';
 import { paintQianqingUpperEnclosure } from './palace/QianqingUpperEnclosure.js';
 import { buildBaoheRearEnclosure } from './palace/BaoheRearEnclosure.js';
 import { positionHallNameboard } from './palace/HallNameboardMount.js';
@@ -683,7 +685,9 @@ export class PalaceBuilder {
     const taiheCore = data.name === '太和殿';
     const baoheColumns = data.name === '保和殿';
     const taiheGrid = taiheCore ? taiheColumnGrid(w, d) : null;
-    const facadeGrid = taiheGrid ?? (data.name === '保和殿' ? baoheColumnGrid(w) : null);
+    const qianqingFrontage = qianqingDepth ? qianqingFrontageGrid(w) : null;
+    if(qianqingFrontage) g.userData.qianqingFrontageFit = qianqingFrontage;
+    const facadeGrid = taiheGrid ?? qianqingFrontage ?? (data.name === '保和殿' ? baoheColumnGrid(w) : null);
     const openLeft = facadeGrid?.openLeft ?? -openHalf;
     const openRight = facadeGrid?.openRight ?? openHalf;
 
@@ -812,7 +816,10 @@ export class PalaceBuilder {
       this.libBox(g, 'caihua_beam', 0.6, beamH, wallDepth + 0.6, xs, y + H - beamH / 2, wallZ, 'band');
       this.col(xs - 0.5, y, wallZ - wallDepth / 2, xs + 0.5, y + 3, wallZ + wallDepth / 2);
     }
-    if (qianqingPassages) buildQianqingPassageWalls(this, g, qianqingPassages);
+    if (qianqingPassages) {
+      buildQianqingPassageWalls(this, g, qianqingPassages);
+      buildQianqingWarmRooms(this, g, { x0, z0, y, w, d, H, beamH });
+    }
 
     // Taihe alone has an upward caisson opening and an independently owned core.
     if (taiheCore) buildTaiheCeiling(this, g, { x0, z0, y, w, d });

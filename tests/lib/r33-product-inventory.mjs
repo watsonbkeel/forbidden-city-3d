@@ -1,3 +1,4 @@
+import {restoreR34SourceIfPresent} from './r34-source-retention.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -12,7 +13,7 @@ const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 export function verifiedR33AddedProductPaths(read = readProduct) {
   for (const path of Object.keys(r33Source.addedFiles)) assertR33AddedSource(path, read(path));
   for (const [path, binding] of Object.entries(r33Source.addedAssets)) {
-    const configBytes = read(binding.configPath), delta = r33Source.files[binding.configPath];
+    const configBytes = restoreR34SourceIfPresent(binding.configPath, read(binding.configPath)), delta = r33Source.files[binding.configPath];
     assert.equal(sha(configBytes), delta.candidateSHA256, 'exact R33 asset-binding config: ' + binding.configPath);
     assert.equal(configBytes.length, delta.candidateBytes, 'exact R33 asset-binding config bytes: ' + binding.configPath);
     const config = JSON.parse(configBytes);

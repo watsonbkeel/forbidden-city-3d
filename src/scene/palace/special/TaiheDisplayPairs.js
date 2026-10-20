@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { TAIHE_CORE as P } from './TaiheCoreProfile.js';
 import { TAIHE_DISPLAY_FALLBACK_DATA } from './TaiheDisplayFallbackData.js';
 
 // Generated little-endian float32 data has independent vertices for every
@@ -19,6 +20,7 @@ export function appendTaiheDisplayPairs(group, materials) {
     geometry.setAttribute('normal', new THREE.Float32BufferAttribute(floats(batch.normal), 3));
     const mesh = new THREE.Mesh(geometry, materials[batch.material]);
     mesh.name = `taihe-display-${batch.material}`;
+    mesh.position.z = P.spatialFit.deltaZ;
     group.add(mesh);
   }
 }

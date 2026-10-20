@@ -1,3 +1,4 @@
+import {restoreR34CaptureIfPresent, restoreR34NavigationIfPresent, restoreR34ScenePartIfPresent, restoreR34SceneRowIfPresent} from './r34-scene-retention.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -80,17 +81,18 @@ function ifPresent(value, delta, label) {
   return hash(value) === delta.afterSHA256 && matchesRuntime(value, delta.runtimeValues.after) ? restore(value, delta, label) : value;
 }
 export const restorePreR33Capture = value => restore(value, r33Scene.capture, 'exact R33 complete capture');
-export const restoreR33CaptureIfPresent = value => ifPresent(value, r33Scene.capture, 'exact R33 complete capture');
+export const restoreR33CaptureIfPresent = value => ifPresent(restoreR34CaptureIfPresent(value), r33Scene.capture, 'exact R33 complete capture');
 export const restorePreR33Navigation = value => restore(value, r33Scene.navigation, 'exact R33 ordered navigation');
-export const restoreR33NavigationIfPresent = value => ifPresent(value, r33Scene.navigation, 'exact R33 ordered navigation');
+export const restoreR33NavigationIfPresent = value => ifPresent(restoreR34NavigationIfPresent(value), r33Scene.navigation, 'exact R33 ordered navigation');
 export function restorePreR33ScenePart(kind, value) {
   assert.ok(Object.hasOwn(r33Scene.parts, kind), 'registered R33 scene part');
   return restore(value, r33Scene.parts[kind], 'exact R33 scene ' + kind);
 }
 export function restoreR33ScenePartIfPresent(kind, value) {
   assert.ok(Object.hasOwn(r33Scene.parts, kind), 'registered R33 scene part');
-  return ifPresent(value, r33Scene.parts[kind], 'exact R33 scene ' + kind);
+  return ifPresent(restoreR34ScenePartIfPresent(kind, value), r33Scene.parts[kind], 'exact R33 scene ' + kind);
 }
 export function restoreR33SceneRowIfPresent(name, value) {
+  value = restoreR34SceneRowIfPresent(name, value);
   return Object.hasOwn(r33Scene.sceneRows, name) ? ifPresent(value, r33Scene.sceneRows[name], 'exact R33 scene row') : value;
 }

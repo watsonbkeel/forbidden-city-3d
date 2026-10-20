@@ -1,3 +1,4 @@
+import {verifiedR34AddedProductPaths} from '../lib/r34-product-inventory.mjs';
 import {verifiedR33AddedProductPaths} from '../lib/r33-product-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -187,7 +188,7 @@ for (const [label, source, later, roots] of [
     const expected = [
       ...Object.keys(source.files), ...Object.keys(source.addedFiles), ...Object.keys(source.retainedFiles),
       ...later.flatMap(r => Object.keys(r.addedFiles)),
-      ...verifiedR31AddedProductPaths(), ...verifiedR32AddedProductPaths(), ...verifiedR33AddedProductPaths()
+      ...verifiedR31AddedProductPaths(), ...verifiedR32AddedProductPaths(), ...verifiedR33AddedProductPaths(), ...verifiedR34AddedProductPaths()
     ].filter(p => roots.some(dir => p.startsWith(dir + '/'))).sort();
     const actual = roots.flatMap(dir => fs.readdirSync(new URL(dir + '/', root), {recursive: true, withFileTypes: true})
       .filter(entry => entry.isFile()).map(entry => path.relative(root.pathname, path.join(entry.parentPath, entry.name)))).sort();
@@ -196,7 +197,7 @@ for (const [label, source, later, roots] of [
     for (const extra of ['src/scene/palace/Unregistered.js', 'src/ui/Unregistered.js', ...(roots.includes('public') ? ['public/textures/art/unregistered.webp'] : [])]) {
       assert.throws(() => assert.deepEqual([...actual, extra].sort(), expected));
     }
-    for (const added of [...fixture.productAdditions, 'src/scene/palace/QianqingScreenCrest.js', ...verifiedR33AddedProductPaths()].filter(p => roots.some(dir => p.startsWith(dir + '/')))) {
+    for (const added of [...fixture.productAdditions, 'src/scene/palace/QianqingScreenCrest.js', ...verifiedR33AddedProductPaths(), ...verifiedR34AddedProductPaths()].filter(p => roots.some(dir => p.startsWith(dir + '/')))) {
       assert.throws(() => assert.deepEqual(actual.filter(p => p !== added), expected));
       assert.throws(() => assert.deepEqual([...actual, added].sort(), expected));
     }

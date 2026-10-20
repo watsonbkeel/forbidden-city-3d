@@ -1,3 +1,4 @@
+import {restoreR34SourceIfPresent} from '../lib/r34-source-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -5,7 +6,8 @@ import {createHash} from 'node:crypto';
 
 const root = new URL('../../', import.meta.url);
 const helper = new URL('../lib/r33-source-retention.mjs', import.meta.url);
-const read = path => fs.readFileSync(new URL(path, root));
+// Explicit historical boundary. Raw R34 sources are independently tested in r34-source-retention.test.mjs.
+const read = path => restoreR34SourceIfPresent(path, fs.readFileSync(new URL(path, root)));
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const blob = bytes => createHash('sha1').update(Buffer.from(`blob ${bytes.length}\0`)).update(bytes).digest('hex');
 const fixturePath = 'tests/fixtures/r33-source-delta.json';

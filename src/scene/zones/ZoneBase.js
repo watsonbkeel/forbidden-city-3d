@@ -7,6 +7,8 @@ import { detachYanxiRuinFrames, installYanxiRuinLODs } from '../palace/special/Y
 import { buildYanxiStorehouse } from '../palace/special/YanxiStorehouses.js';
 import { historicalGateMapItem } from './HistoricalGateSites.js';
 import { buildChuxiuHall } from '../palace/special/ChuxiuHall.js';
+import { buildChuxiuCourtyard } from '../palace/special/ChuxiuCourtyard.js';
+import { buildYikunSideAccess } from '../palace/special/YikunSideAccess.js';
 
 /**
  * 分区构建器基类：从 zone JSON 构建一个区域的所有建筑。
@@ -77,6 +79,11 @@ export class ZoneBase {
       }
     }
     
+    if (this.zoneJson.yikunAccessProfile !== undefined) buildYikunSideAccess(this.kit, this.zoneJson);
+
+    // Explicit opt-in, after all retained halls, before material merging.
+    if (this.zoneJson.courtyardProfile !== undefined) buildChuxiuCourtyard(this.kit, this.zoneJson);
+
     // Keep distance levels out of the ordinary recursive material merge.
     const yanxiFrames = detachYanxiRuinFrames(this.kit.root);
     this.group = this.kit.finish();

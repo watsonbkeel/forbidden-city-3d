@@ -1,3 +1,5 @@
+import {restoreR34CaptureIfPresent} from '../lib/r34-scene-retention.mjs';
+import {restoreR34SourceIfPresent} from '../lib/r34-source-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -18,7 +20,8 @@ const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const hash = value => sha(JSON.stringify(value));
 const {PalaceBuilder} = await import('../../src/scene/PalaceBuilder.js');
 const {captureJiaotaiScene} = await import('../lib/r27-jiaotai-capture.mjs');
-const current = captureJiaotaiScene(PalaceBuilder);
+// Explicit historical R33 boundary; raw current R34 capture has separate acceptance.
+const current = restoreR34CaptureIfPresent(captureJiaotaiScene(PalaceBuilder));
 const oldBuilder = (await import(historicalR32ModuleURL('src/scene/PalaceBuilder.js'))).PalaceBuilder;
 // Expected R32 output is executed from independent baseline module bytes, never
 // derived from the scene restoration helper under test.
@@ -45,7 +48,7 @@ test('R33 immutable registry binds the frozen product and independent R32 source
   const crest = JSON.parse(fs.readFileSync(new URL('../fixtures/r32-crest-scene-delta.json', import.meta.url)));
   assert.equal(r33Scene.capture.beforeSHA256, crest.capture.afterSHA256);
   assert.equal(r33Scene.baselineSources['src/scene/PalaceBuilder.js'].sha256, crest.retainedBuilderSHA256);
-  for (const [path, digest] of Object.entries(r33Scene.retainedSources)) assert.equal(sha(fs.readFileSync(new URL(path, root))), digest, path);
+  for (const [path, digest] of Object.entries(r33Scene.retainedSources)) assert.equal(sha(restoreR34SourceIfPresent(path, fs.readFileSync(new URL(path, root)))), digest, path);
 });
 
 test('R33 registry rejects altered, truncated, appended and same-length-corrupted identities, patches and independent sources', () => {
@@ -63,7 +66,7 @@ test('R33 registry rejects altered, truncated, appended and same-length-corrupte
   }
 });
 
-test('raw R33 resident capture binds complete geometry, materials, metadata, budgets and current ordered navigation', () => {
+test('historical R33 resident capture binds complete geometry, materials, metadata, budgets and current ordered navigation', () => {
   assert.equal(hash(current), r33Scene.capture.afterSHA256);
   assert.equal(hash(historical), r33Scene.capture.beforeSHA256);
   assert.deepEqual(costs(current), r33Scene.costs.after);
