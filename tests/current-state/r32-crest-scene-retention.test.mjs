@@ -1,3 +1,5 @@
+import {restoreR33CaptureIfPresent} from '../lib/r33-scene-retention.mjs';
+import {historicalR32ModuleURL} from '../lib/historical-r32-scene-dependencies.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -24,20 +26,8 @@ registerHooks({load(url, context, next) {
 // Execute independently stored 8ba57d6 source bytes. Do not derive expected crest geometry
 // with the adapter under test, patch the current mapper, or reset attributes.
 async function historicalModules() {
-  const cache = new Map();
   const sources = {...fixture.baselineSources};
-  function moduleURL(path) {
-    if (cache.has(path)) return cache.get(path);
-    const url = new URL(path, root), bytes = sources[path] ? Buffer.from(sources[path].utf8) : read(path);
-    assert.equal(sha(bytes), sources[path]?.sha256 ?? fixture.retainedBuilderSHA256, 'independent frozen module: ' + path);
-    const source = bytes.toString().replace(/^([ \t]*import\b[^;]*?\bfrom\s*)(['"])([^'"]+)\2/gm, (_, prefix, quote, specifier) => {
-      if (specifier === 'three') return prefix + JSON.stringify(import.meta.resolve('three'));
-      const target = new URL(specifier, url), relative = target.href.slice(root.href.length);
-      return prefix + JSON.stringify(sources[relative] ? moduleURL(relative) : target.href);
-    });
-    const result = 'data:text/javascript;base64,' + Buffer.from(source).toString('base64');
-    cache.set(path, result); return result;
-  }
+  const moduleURL = path => historicalR32ModuleURL(path, sources);
   return {central: await import(moduleURL('src/scene/palace/QianqingCentralSetting.js')),
     Builder: (await import(moduleURL('src/scene/PalaceBuilder.js'))).PalaceBuilder};
 }
@@ -63,7 +53,7 @@ async function scenes() {
     const levels = module => Object.fromEntries([['near', true], ['far', false]].map(([kind, fine]) =>
       [kind, captureLevel(module.buildQianqingCentralLevel(new T.MeshBasicMaterial(), fixture.frame, fine))]));
     return {T, current, old, currentLevels: levels(current), oldLevels: levels(old.central),
-      capture: captureJiaotaiScene(PalaceBuilder), oldCapture: captureJiaotaiScene(old.Builder)};
+      capture: restoreR33CaptureIfPresent(captureJiaotaiScene(PalaceBuilder)), oldCapture: captureJiaotaiScene(old.Builder)};
   })();
   return builds;
 }

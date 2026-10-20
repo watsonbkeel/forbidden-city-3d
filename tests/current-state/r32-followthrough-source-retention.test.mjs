@@ -1,3 +1,4 @@
+import {verifiedR33AddedProductPaths} from '../lib/r33-product-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -164,7 +165,8 @@ test('existing product inventory includes exactly the two bound follow-through p
 
 // Re-evaluate the exact R25-R30 inventory unions without their unrelated
 // top-level scene captures. The original historical test entry points remain
-// unchanged and consume the same verifiedR32AddedProductPaths implementation.
+// retain their historical baseline assertions; the explicit R33 union adds
+// only four newly registered, independently byte-bound runtime paths.
 const registry = name => JSON.parse(read('tests/fixtures/' + name + '.json'));
 const r25 = registry('r25-nameboard-source-delta'), r26 = registry('r26-qianqing-source-delta');
 const frieze = registry('r26-qianqing-frieze-source-delta'), r27 = registry('r27-jiaotai-source-delta');
@@ -185,7 +187,7 @@ for (const [label, source, later, roots] of [
     const expected = [
       ...Object.keys(source.files), ...Object.keys(source.addedFiles), ...Object.keys(source.retainedFiles),
       ...later.flatMap(r => Object.keys(r.addedFiles)),
-      ...verifiedR31AddedProductPaths(), ...verifiedR32AddedProductPaths()
+      ...verifiedR31AddedProductPaths(), ...verifiedR32AddedProductPaths(), ...verifiedR33AddedProductPaths()
     ].filter(p => roots.some(dir => p.startsWith(dir + '/'))).sort();
     const actual = roots.flatMap(dir => fs.readdirSync(new URL(dir + '/', root), {recursive: true, withFileTypes: true})
       .filter(entry => entry.isFile()).map(entry => path.relative(root.pathname, path.join(entry.parentPath, entry.name)))).sort();
@@ -194,7 +196,7 @@ for (const [label, source, later, roots] of [
     for (const extra of ['src/scene/palace/Unregistered.js', 'src/ui/Unregistered.js', ...(roots.includes('public') ? ['public/textures/art/unregistered.webp'] : [])]) {
       assert.throws(() => assert.deepEqual([...actual, extra].sort(), expected));
     }
-    for (const added of [...fixture.productAdditions, 'src/scene/palace/QianqingScreenCrest.js'].filter(p => roots.some(dir => p.startsWith(dir + '/')))) {
+    for (const added of [...fixture.productAdditions, 'src/scene/palace/QianqingScreenCrest.js', ...verifiedR33AddedProductPaths()].filter(p => roots.some(dir => p.startsWith(dir + '/')))) {
       assert.throws(() => assert.deepEqual(actual.filter(p => p !== added), expected));
       assert.throws(() => assert.deepEqual([...actual, added].sort(), expected));
     }

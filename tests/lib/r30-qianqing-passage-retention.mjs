@@ -1,3 +1,4 @@
+import {restoreR33SourceIfPresent} from './r33-source-retention.mjs';
 import {restoreR31SurfaceRowsIfPresent,restoreR31SurfaceRowIfPresent,restoreR31SurfaceCaptureIfPresent,restoreR31SurfaceNavigationIfPresent} from './r31-qianqing-surface-retention.mjs';
 import {restoreR31SourceIfPresent} from './r31-flight-operations-retention.mjs';
 import assert from 'node:assert/strict';
@@ -31,7 +32,7 @@ export function restorePreR30Source(path,bytes){
 }
 export function assertR30AddedSource(path,bytes){
   assert.ok(Object.hasOwn(r30Source.addedFiles,path),'registered R30 module: '+path);
-  assert.equal(sha(bytes),r30Source.addedFiles[path].candidateSHA256,'exact R30 module: '+path);
+  assert.equal(sha(restoreR33SourceIfPresent(path,bytes)),r30Source.addedFiles[path].candidateSHA256,'exact R30 module: '+path);
   return bytes;
 }
 export function assertR30RetainedSource(path,bytes){

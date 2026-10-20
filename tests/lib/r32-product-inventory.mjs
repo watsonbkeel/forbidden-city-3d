@@ -1,3 +1,4 @@
+import {restoreR33SourceIfPresent} from './r33-source-retention.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -30,9 +31,10 @@ export function verifiedR32FollowthroughAddedProductPaths(read = readProduct) {
 export function verifiedR32AddedProductPaths(read = readProduct) {
   const paths = Object.keys(r32Source.addedFiles);
   for (const path of paths) assertR32AddedSource(path, read(path));
+  // Project only the exact registered R33 config back to frozen R32 bytes.
   // The optional GLB is already bound by the complete frozen R32 config.
   // Verify that exact config first; never invent or reverse binary asset bytes.
-  const configPath = 'data/interiors/qianqing.json', configBytes = read(configPath);
+  const configPath = 'data/interiors/qianqing.json', configBytes = restoreR33SourceIfPresent(configPath, read(configPath));
   assert.equal(sha(configBytes), r32Source.files[configPath].candidateSHA256, 'exact R32 asset-binding config');
   const config = JSON.parse(configBytes);
   assert.equal(config.model, '/models/interiors/qianqing-r32.glb');

@@ -1,3 +1,4 @@
+import {restoreR33CaptureIfPresent, restoreR33ScenePartIfPresent, restoreR33SceneRowIfPresent} from './r33-scene-retention.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -71,14 +72,15 @@ function ifPresent(value, delta, label) {
   return hash(value) === delta.afterSHA256 && matchesRuntime(value, delta) ? restore(value, delta, label) : value;
 }
 
-export const restorePreR32CrestCapture = value => restore(value, r32CrestScene.capture, 'exact R32 crest complete capture');
-export const restoreR32CrestCaptureIfPresent = value => ifPresent(value, r32CrestScene.capture, 'exact R32 crest complete capture');
+export const restorePreR32CrestCapture = value => restore(restoreR33CaptureIfPresent(value), r32CrestScene.capture, 'exact R32 crest complete capture');
+export const restoreR32CrestCaptureIfPresent = value => ifPresent(restoreR33CaptureIfPresent(value), r32CrestScene.capture, 'exact R32 crest complete capture');
 export function restoreR32CrestScenePartIfPresent(kind, value) {
   assert.ok(['rows', 'meshes', 'graph', 'materials'].includes(kind), 'registered R32 crest scene part');
-  return ifPresent(value, r32CrestScene.parts[kind], 'exact R32 crest ' + kind);
+  return ifPresent(restoreR33ScenePartIfPresent(kind, value), r32CrestScene.parts[kind], 'exact R32 crest ' + kind);
 }
 
 export function restoreR32CrestSceneRowIfPresent(name, value) {
+  value = restoreR33SceneRowIfPresent(name, value);
   const delta = r32CrestScene.sceneRows[name];
   return delta ? ifPresent(value, delta, 'exact R32 crest scene row') : value;
 }

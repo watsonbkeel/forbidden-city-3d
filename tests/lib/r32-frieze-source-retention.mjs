@@ -1,3 +1,4 @@
+import {restoreR33SourceIfPresent} from './r33-source-retention.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -25,6 +26,7 @@ export const r32FriezeSource = validateR32FriezeSourceRegistry(
  * three unique exact hunks, then bind the complete 898b4e6 result. This does
  * not adapt scenes or runtime behavior and does not depend on checkout HEAD. */
 export function restorePreR32FriezeSource(path, bytes) {
+  bytes = restoreR33SourceIfPresent(path, bytes);
   const delta = r32FriezeSource.files[path];
   if (!delta || sha(bytes) === delta.baselineSHA256) return bytes;
   assert.equal(sha(bytes), delta.candidateSHA256, 'exact R32 frieze source candidate: ' + path);
@@ -45,6 +47,7 @@ export function restorePreR32FriezeSource(path, bytes) {
 /** Only registered full d5e1ef0 identities are dispatched. Unknown bytes remain
  * unchanged so the existing historical guards can reject their own drift. */
 export function restoreR32FriezeSourceIfPresent(path, bytes) {
+  bytes = restoreR33SourceIfPresent(path, bytes);
   const delta = r32FriezeSource.files[path];
   return delta && sha(bytes) === delta.candidateSHA256 ? restorePreR32FriezeSource(path, bytes) : bytes;
 }

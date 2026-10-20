@@ -1,14 +1,17 @@
 import {qianqingVisibleSignatures} from './QianqingAuxiliarySignature.js';
 import {QIANQING_AUXILIARY_MESHES,QIANQING_AUXILIARY_ASSET_SHA256} from './QianqingAuxiliaryManifest.js';
 import * as THREE from 'three';
+import {QIANQING_SPATIAL_FIT} from '../palace/QianqingDepthGrid.js';
 import {QIANQING_CENTRAL} from '../palace/QianqingCentralSetting.js';
 const close=(a,b)=>Math.abs(a-b)<1e-5;
-/** The S overlay provides only the retained floor and six red columns, but cannot
+/** The S overlay provides only the retained floor; all structural columns are permanent, but cannot
  * reintroduce its obsolete central platform/screen over the permanent core. */
 export function validateQianqingAuxiliary(root,cfg,scene){
  const markers=[];root.traverse(o=>{if(o.name==='QIANQING_AUXILIARY_CONTRACT')markers.push(o);});if(markers.length!==1)throw Error('Qianqing requires one auxiliary ownership contract');
- const c=markers[0].userData,expected={version:'r29-permanent-five-panel-core',centralCoreOwner:'PalaceBuilder',daisHeight:.7,stairFlights:3,stepCount:5,plainRedColumns:6,ceiling:'fully-panelled-no-caisson',sourceSHA256:cfg.asset?.sourceSHA256,materialProfile:'r32-permanent-display-floor-and-columns-only',displayOwner:'PalaceBuilder',profileSHA256:cfg.asset?.profileSHA256,surfaceSourceSHA256:cfg.asset?.surfaceSourceSHA256};for(const[k,v]of Object.entries(expected))if(v===undefined||c[k]!==v)throw Error('Qianqing auxiliary contract mismatch: '+k);
+ const c=markers[0].userData,expected={version:'r29-permanent-five-panel-core',centralCoreOwner:'PalaceBuilder',daisHeight:.7,stairFlights:3,stepCount:5,plainRedColumns:0,columnsOwner:'PalaceBuilder',spatialFitId:QIANQING_SPATIAL_FIT.id,ceiling:'fully-panelled-no-caisson',sourceSHA256:cfg.asset?.sourceSHA256,materialProfile:'r33-permanent-structure-floor-only',displayOwner:'PalaceBuilder',profileSHA256:cfg.asset?.profileSHA256,surfaceSourceSHA256:cfg.asset?.surfaceSourceSHA256};for(const[k,v]of Object.entries(expected))if(v===undefined||c[k]!==v)throw Error('Qianqing auxiliary contract mismatch: '+k);
  const core=scene.getObjectByName('qianqing-central-setting-detail'),owner=scene.getObjectByName('后三宫')?.userData.qianqingCentral;
+ const grid=scene.getObjectByName('后三宫')?.userData.qianqingDepthFit;
+ if(grid?.id!==QIANQING_SPATIAL_FIT.id||grid.depthBays!==5||JSON.stringify(grid.z)!==JSON.stringify(QIANQING_SPATIAL_FIT.fittedDepthStations))throw Error('Qianqing permanent structural grid unavailable');
  if(!core?.isLOD||core.levels.length!==2||owner?.id!==QIANQING_CENTRAL.id||!scene.getObjectByName('qianqing-permanent-display')||!scene.getObjectByName('qianqing-panelled-ceiling-r32'))throw Error('Qianqing permanent core unavailable');
  if(!close(cfg.frame.x,0)||!close(cfg.frame.z,316.8)||cfg.frame.rot!==0||!close(owner.tz,322)||!close(owner.y,2.16))throw Error('Qianqing frame mismatch');
  if(cfg.asset?.sha256!==QIANQING_AUXILIARY_ASSET_SHA256||JSON.stringify(qianqingVisibleSignatures(root))!==JSON.stringify(QIANQING_AUXILIARY_MESHES))throw Error('Qianqing exact visible geometry identity mismatch');

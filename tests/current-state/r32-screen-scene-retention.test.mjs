@@ -1,3 +1,5 @@
+import {restoreR33CaptureIfPresent} from '../lib/r33-scene-retention.mjs';
+import {historicalR32ModuleURL} from '../lib/historical-r32-scene-dependencies.mjs';
 import test from 'node:test';
 import {restoreR32CrestCaptureIfPresent, restoreR32CrestCentralLevelIfPresent} from '../lib/r32-crest-scene-retention.mjs';
 import assert from 'node:assert/strict';
@@ -26,21 +28,9 @@ registerHooks({load(url, context, next) {
 // Execute independently stored afb source bytes. Do not derive expected UVs
 // with the adapter under test, patch the current mapper, or reset attributes.
 async function historicalModules(includeOldCeiling = false) {
-  const cache = new Map();
   const sources = {...fixture.baselineSources};
   if (!includeOldCeiling) delete sources['src/scene/palace/QianqingCeiling.js'];
-  function moduleURL(path) {
-    if (cache.has(path)) return cache.get(path);
-    const url = new URL(path, root), bytes = sources[path] ? Buffer.from(sources[path].utf8) : read(path);
-    assert.equal(sha(bytes), sources[path]?.sha256 ?? fixture.retainedBuilderSHA256, 'independent frozen module: ' + path);
-    const source = bytes.toString().replace(/^([ \t]*import\b[^;]*?\bfrom\s*)(['"])([^'"]+)\2/gm, (_, prefix, quote, specifier) => {
-      if (specifier === 'three') return prefix + JSON.stringify(import.meta.resolve('three'));
-      const target = new URL(specifier, url), relative = target.href.slice(root.href.length);
-      return prefix + JSON.stringify(sources[relative] ? moduleURL(relative) : target.href);
-    });
-    const result = 'data:text/javascript;base64,' + Buffer.from(source).toString('base64');
-    cache.set(path, result); return result;
-  }
+  const moduleURL = path => historicalR32ModuleURL(path, sources);
   return {central: await import(moduleURL('src/scene/palace/QianqingCentralSetting.js')),
     Builder: (await import(moduleURL('src/scene/PalaceBuilder.js'))).PalaceBuilder};
 }
@@ -70,7 +60,7 @@ async function scenes() {
     return {T, current, old, currentLevels: Object.fromEntries(Object.entries(levels(current)).map(([kind, rows]) => [kind, restoreR32CrestCentralLevelIfPresent(kind, rows)])), oldLevels: levels(old.central),
       // Preserve this frozen a9 contract after the independently bound final
       // frieze metadata is removed; the new test checks raw d5 product captures.
-      capture: restoreR32FriezeCaptureIfPresent(restoreR32CrestCaptureIfPresent(captureJiaotaiScene(PalaceBuilder))), oldCapture: captureJiaotaiScene(old.Builder), originalCapture: captureJiaotaiScene(original.Builder)};
+      capture: restoreR32FriezeCaptureIfPresent(restoreR32CrestCaptureIfPresent(restoreR33CaptureIfPresent(captureJiaotaiScene(PalaceBuilder)))), oldCapture: captureJiaotaiScene(old.Builder), originalCapture: captureJiaotaiScene(original.Builder)};
   })();
   return builds;
 }

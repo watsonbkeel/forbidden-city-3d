@@ -1,3 +1,4 @@
+import {restoreR33SourceIfPresent} from '../lib/r33-source-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -5,7 +6,9 @@ import {createHash} from 'node:crypto';
 
 const root = new URL('../../', import.meta.url);
 const helper = new URL('../lib/r32-frieze-source-retention.mjs', import.meta.url);
-const read = name => fs.readFileSync(new URL(name, root));
+// Historical R32 source acceptance reads only the exact frozen R32 projection.
+// Raw R33 identities and behavior remain independently tested by R33 tests.
+const read = name => restoreR33SourceIfPresent(name, fs.readFileSync(new URL(name, root)));
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const fixturePath = 'tests/fixtures/r32-frieze-source-delta.json';
 const fixture = JSON.parse(read(fixturePath));

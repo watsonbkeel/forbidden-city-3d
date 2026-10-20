@@ -26,6 +26,7 @@ export function validateTaiheCore(root,cfg) {
   for(const key of ['enamelCraneSourceSHA256','enamelCraneBaseAssetSHA256','enamelCraneIntegrationSHA256','enamelCraneRetirementSHA256','enamelCraneMaskSHA256','enamelCraneTriangles','enamelCraneRemovedTriangles'])if(c[key]!==cfg.asset?.[key])throw new Error('Taihe enamel crane identity mismatch');
   for(const key of ['furnishingSurfaceSourceSHA256','furnishingSurfaceBaseAssetSHA256','furnishingSurfaceMaskSHA256','furnishingSurfaceArtworkSHA256','furnishingSurfaceTriangles'])if(c[key]!==cfg.asset?.[key])throw new Error('Taihe furnishing surface identity mismatch');
   for(const key of ['daisFrontBaseSHA256','daisFrontMaskSHA256','daisFrontGeometrySHA256','daisFrontProfileSHA256','daisFrontAddedTriangles','daisFrontRemovedTriangles','daisFrontTealIntegrated'])if(c[key]!==cfg.asset?.[key])throw new Error('Taihe dais front identity mismatch');
+  for(const key of ['hangingFitId','hangingFitSourceSHA256','hangingFitBaseAssetSHA256','hangingFitChangedVertices','hangingFitDeltaZ'])if(c[key]!==cfg.asset?.[key])throw new Error('Taihe hanging fit identity mismatch');
   let tris=0,meshes=0;const mats=new Set();root.updateMatrixWorld(true);
   root.traverse(o=>{
     if(!o.isMesh)return;

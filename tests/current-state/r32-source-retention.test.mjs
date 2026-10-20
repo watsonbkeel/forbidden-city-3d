@@ -1,3 +1,4 @@
+import {restoreR33SourceIfPresent} from '../lib/r33-source-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -9,7 +10,9 @@ import {restoreR32CrestSourceIfPresent} from '../lib/r32-crest-source-retention.
 
 const root = new URL('../../', import.meta.url);
 const helper = new URL('../lib/r32-source-retention.mjs', import.meta.url);
-const read = path => fs.readFileSync(new URL(path, root));
+// Historical R32 source acceptance reads only the exact frozen R32 projection.
+// Raw R33 identities and behavior remain independently tested by R33 tests.
+const read = path => restoreR33SourceIfPresent(path, fs.readFileSync(new URL(path, root)));
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const fixturePath = 'tests/fixtures/r32-source-delta.json';
 const fixture = JSON.parse(read(fixturePath));

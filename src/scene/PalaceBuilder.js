@@ -33,6 +33,7 @@ import { buildBaoheFrontDoors } from './palace/BaoheFrontDoors.js';
 import { buildBaoheClosedFront } from './palace/BaoheFrontEnclosure.js';
 import { buildQianqingFrontWindow, qianqingFrontBox } from './palace/QianqingFrontEnclosure.js';
 import { qianqingPassageFrame, buildQianqingPassageMouth, buildQianqingPassageWalls } from './palace/QianqingEndPassages.js';
+import { qianqingDepthGrid, qianqingColumnPresent } from './palace/QianqingDepthGrid.js';
 import { paintQianqingUpperEnclosure } from './palace/QianqingUpperEnclosure.js';
 import { buildBaoheRearEnclosure } from './palace/BaoheRearEnclosure.js';
 import { positionHallNameboard } from './palace/HallNameboardMount.js';
@@ -667,7 +668,9 @@ export class PalaceBuilder {
     const bays = spec.bays ?? Math.max(3, Math.round(w / 6) | 1);
     const inheritedDepthBays = Math.max(3, Math.round(d / 7.4) | 1);
     const baoheDepth = data.name === '保和殿' ? baoheDepthGrid(d) : null;
-    const nd = baoheDepth?.depthBays ?? inheritedDepthBays;
+    const qianqingDepth = data.name === '乾清宫' ? qianqingDepthGrid(d) : null;
+    if(qianqingDepth) g.userData.qianqingDepthFit = qianqingDepth;
+    const nd = qianqingDepth?.depthBays ?? baoheDepth?.depthBays ?? inheritedDepthBays;
     const bayW = w / bays;
     // Structural depth registration must not silently move the inherited throne.
     const dBay = d / inheritedDepthBays;
@@ -711,16 +714,18 @@ export class PalaceBuilder {
       // Frontage retains R17 inner stations; Baohe depth uses six unequal drawing axes.
       const classificationX = data.name === '保和殿' ? x0 - w / 2 + i * bayW : x;
       for (let k = 0; k <= nd; k++) {
-        const z = baoheDepth ? z0 + baoheDepth.z[k] : taiheGrid ? z0 + taiheGrid.z[k] : z0 - d / 2 + k * dBay;
+        const z = qianqingDepth ? z0 + qianqingDepth.z[k] : baoheDepth ? z0 + baoheDepth.z[k] : taiheGrid ? z0 + taiheGrid.z[k] : z0 - d / 2 + k * dBay;
         const edge = i === 0 || i === bays || k === 0 || k === nd;
         if (taiheGrid && !edge && taiheGrid.centralColumnIndices.includes(i)) continue;
         if (baoheColumns && !baoheDepthColumnPresent(i, k, bays, nd)) continue;
-        if (!baoheColumns && !edge && throne && Math.abs(classificationX - x0) < bayW * 0.6 && z > ztb0 - 1 && z < ztb1 + 1) continue;
+        if (qianqingDepth && !qianqingColumnPresent(i,k)) continue;
+        if (!baoheColumns && !qianqingDepth && !edge && throne && Math.abs(classificationX - x0) < bayW * 0.6 && z > ztb0 - 1 && z < ztb1 + 1) continue;
         const isGold = data.name !== '乾清宫' && !baoheColumns && !taiheCore && throne && !edge && Math.abs(classificationX - x0) < bayW * 1.6 && z > ztb0 - dBay;
         const highColumn = baoheFrame && baoheHighColumn(i, k);
         this.column(g, highColumn ? highColGeo : colGeo, isGold ? gold : colMat, x, z, y,
           highColumn ? baoheFrame.columnHeight : H, r);
         if (baoheColumns) g.children.at(-1).userData.baoheColumn = { i, k, profile: BAOHE_DEPTH_GRID.id };
+        if (qianqingDepth) g.children.at(-1).userData.qianqingColumn = { j:i, k, profile:qianqingDepth.id };
       }
     }
 
@@ -752,12 +757,13 @@ export class PalaceBuilder {
     const qianqingPassages = data.name === '乾清宫'
       ? qianqingPassageFrame({ x0, z0, y, w, d, H, bayW, r, doorH, beamH }) : null;
     for (const s of [-1, 1]) {
-      const zf = z0 + (baoheDepth ? (s < 0 ? baoheDepth.frontDoorZ : baoheDepth.rearDoorZ) : s * d / 2);
+      const depthFrame = qianqingDepth ?? baoheDepth;
+      const zf = z0 + (depthFrame ? (s < 0 ? depthFrame.frontDoorZ : depthFrame.rearDoorZ) : s * d / 2);
       for (let i = 0; i < bays; i++) {
         const xc = facadeGrid ? x0 + (facadeGrid.x[i] + facadeGrid.x[i + 1]) / 2 : x0 - w / 2 + (i + 0.5) * bayW;
         const facadeBayW = facadeGrid ? facadeGrid.x[i + 1] - facadeGrid.x[i] : bayW;
         if (qianqingPassages && (i === 0 || i === bays - 1)) {
-          buildQianqingPassageMouth(this, g, qianqingPassages, i === 0 ? -1 : 1, zf);
+          buildQianqingPassageMouth(this, g, qianqingPassages, i === 0 ? -1 : 1, z0+s*d/2);
           continue;
         }
         if (facadeGrid ? facadeGrid.openBayIndices.includes(i) : Math.abs(xc - x0) < openHalf - 0.01) {
@@ -790,9 +796,11 @@ export class PalaceBuilder {
       this.col(x0 + openRight, y, zf - 0.25, x0 + solidEnd, y + 3, zf + 0.25);
     }
     // 门槛（矮，可跨过）
-    for (const s of [-1, 1]) this.libBox(g, 'wood_column', openRight - openLeft, 0.25, 0.3, x0 + (openLeft + openRight) / 2, y + 0.125, z0 + (baoheDepth ? (s < 0 ? baoheDepth.frontDoorZ : baoheDepth.rearDoorZ) : s * d / 2), 'box');
+    for (const s of [-1, 1]) this.libBox(g, 'wood_column', openRight - openLeft, 0.25, 0.3, x0 + (openLeft + openRight) / 2, y + 0.125, z0 + (qianqingDepth ? (s < 0 ? qianqingDepth.frontDoorZ : qianqingDepth.rearDoorZ) : baoheDepth ? (s < 0 ? baoheDepth.frontDoorZ : baoheDepth.rearDoorZ) : s * d / 2), 'box');
     // The recessed door/header does not replace the separate south eave beam.
     if (baoheDepth) this.libBox(g, 'caihua_beam', w + 0.6, beamH, 0.6, x0, y + H - beamH / 2, z0 + baoheDepth.southEaveZ, 'band');
+    if (qianqingDepth) for(const z of [qianqingDepth.southEaveZ,qianqingDepth.northEaveZ])
+      this.libBox(g,'caihua_beam',w+.6,beamH,.6,x0,y+H-beamH/2,z0+z,'band');
 
     // 两山：红墙 + 下碱; Baohe closes at its outer axes, not the plinth edges.
     const wallDepth = baoheDepth?.sideWallDepth ?? d;

@@ -6,6 +6,7 @@ import { buildYanxiRuin } from '../palace/special/YanxiRuin.js';
 import { detachYanxiRuinFrames, installYanxiRuinLODs } from '../palace/special/YanxiRuinLOD.js';
 import { buildYanxiStorehouse } from '../palace/special/YanxiStorehouses.js';
 import { historicalGateMapItem } from './HistoricalGateSites.js';
+import { buildChuxiuHall } from '../palace/special/ChuxiuHall.js';
 
 /**
  * 分区构建器基类：从 zone JSON 构建一个区域的所有建筑。
@@ -113,6 +114,10 @@ export class ZoneBase {
   // ───────────────────────── 各 kind 构建方法 ─────────────────────────
 
   buildHall(item) {
+    if (item.structure === 'chuxiu-household' || item.chuxiuProfile !== undefined) {
+      if (this.zoneJson.id !== 'west-six' || item.name !== '储秀宫') throw new Error('Chuxiu profile belongs only to west-six/储秀宫');
+      return buildChuxiuHall(this.kit, item);
+    }
     if (item.structure === 'yanxi-ruin' || item.ruinProfile !== undefined) return buildYanxiRuin(this.kit,item);
     if (item.structure === 'yanxi-storehouse' || item.storehouseProfile !== undefined) return buildYanxiStorehouse(this.kit,item);
     const params = {

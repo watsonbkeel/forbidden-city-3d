@@ -1,3 +1,4 @@
+import {restoreR33SourceIfPresent} from './r33-source-retention.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -29,6 +30,7 @@ export const r32Source = validateR32SourceRegistry(
  * reverse unique, exact hunks without normalization; then bind the complete
  * R31 result. Current R32 behavior is verified independently on real sources. */
 export function restorePreR32Source(path, bytes) {
+  bytes = restoreR33SourceIfPresent(path, bytes);
   bytes = restoreR32CrestSourceIfPresent(path, bytes);
   bytes = restoreR32FriezeSourceIfPresent(path, bytes);
   bytes = restoreR32ScreenSourceIfPresent(path, bytes);
@@ -53,6 +55,7 @@ export function restorePreR32Source(path, bytes) {
 /** Dispatch only the one full registered R32 identity. Unknown bytes remain
  * unchanged so each older strict guard can reject them against its own epoch. */
 export function restoreR32SourceIfPresent(path, bytes) {
+  bytes = restoreR33SourceIfPresent(path, bytes);
   bytes = restoreR32CrestSourceIfPresent(path, bytes);
   bytes = restoreR32FriezeSourceIfPresent(path, bytes);
   bytes = restoreR32ScreenSourceIfPresent(path, bytes);
@@ -64,7 +67,7 @@ export function restoreR32SourceIfPresent(path, bytes) {
 export function assertR32AddedSource(path, bytes) {
   assert.ok(Object.hasOwn(r32Source.addedFiles, path), 'registered R32 added source: ' + path);
   const delta = r32Source.addedFiles[path];
-  const historical = restoreR32FollowthroughSourceIfPresent(path, restoreR32FriezeSourceIfPresent(path, bytes));
+  const historical = restoreR32FollowthroughSourceIfPresent(path, restoreR32FriezeSourceIfPresent(path, restoreR33SourceIfPresent(path, bytes)));
   assert.equal(sha(historical), delta.candidateSHA256, 'exact R32 added source: ' + path);
   assert.equal(historical.length, delta.candidateBytes, 'exact R32 added source byte count: ' + path);
   return bytes;

@@ -1,3 +1,4 @@
+import {restoreR33NavigationIfPresent} from './r33-scene-retention.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -94,6 +95,7 @@ export function restorePreR32SceneList(kind, value) {
 }
 
 export function restorePreR32Navigation(value) {
+  value = restoreR33NavigationIfPresent(value);
   const delta = r32Scene.navigation;
   if (hash(value) === delta.beforeSHA256) {
     assertRuntime(value, [], 'ordered navigation');
@@ -148,7 +150,10 @@ export function restoreR32SceneRowIfPresent(name, value) {
   return value;
 }
 
-export const restoreR32NavigationIfPresent = value => hash(value) === r32Scene.navigation.afterSHA256 && matchesRuntime(value, []) ? restorePreR32Navigation(value) : value;
+export const restoreR32NavigationIfPresent = value => {
+  value = restoreR33NavigationIfPresent(value);
+  return hash(value) === r32Scene.navigation.afterSHA256 && matchesRuntime(value, []) ? restorePreR32Navigation(value) : value;
+};
 export const restoreR32CaptureIfPresent = value => {
   value = restoreR32ArtworkCaptureIfPresent(value);
   return hash(value) === r32Scene.afterCaptureSHA256 && matchesRuntime(value, captureRuntime('after')) ? restorePreR32Capture(value) : value;

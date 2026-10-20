@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {r32Source, restorePreR32Source} from './r32-source-retention.mjs';
+import {historicalR32ModuleURL} from './historical-r32-scene-dependencies.mjs';
 
 // Historical builders must execute the frozen dependency, not merely verify
 // its old hash and then import the live R32 implementation. This includes the
@@ -25,6 +26,12 @@ export function historicalR31Dependency(specifier, url) {
   const target = new URL(specifier, url);
   for (const path of Object.keys(r32Source.files)) {
     if (path.endsWith('.js') && target.href === new URL(path, root).href) return historicalModule(path);
+  }
+  // Both historical Taihe entry points must execute the frozen dependency
+  // graph, including the transitive JSON profile. Merely restoring the old
+  // builder still leaks R33's intentionally relocated plaque into R13 hashes.
+  for (const path of ['src/scene/palace/special/TaiheCore.js', 'src/scene/palace/special/TaiheCoreProfile.js']) {
+    if (target.href === new URL(path, root).href) return historicalR32ModuleURL(path);
   }
   return target.href;
 }

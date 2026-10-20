@@ -1,3 +1,4 @@
+import {verifiedR33AddedProductPaths} from './lib/r33-product-inventory.mjs';
 import {verifiedR31AddedProductPaths,verifiedR32AddedProductPaths} from './lib/r32-product-inventory.mjs';
 import {restorePreR32Navigation} from './lib/r32-scene-retention.mjs';
 import {r30Source,restorePreR30Navigation} from './lib/r30-qianqing-passage-retention.mjs';
@@ -99,7 +100,7 @@ test('R28 retention pins the frozen candidate, exact R27 tree, three integration
  assert.equal(Object.keys(r28Source.retainedFiles).length,277);assert.equal(Object.keys(r28Source.preservedFixtures).length,110);
  for(const[p,digest]of Object.entries(r28Source.preservedFixtures))assert.equal(r28SHA(r28Read(p)),digest,p);
  const actual=['src','data','public'].flatMap(dir=>fs.readdirSync(new URL(dir+'/',r28Root),{recursive:true,withFileTypes:true}).filter(x=>x.isFile()).map(x=>path.relative(r28Root.pathname,path.join(x.parentPath,x.name)))).sort();
- assert.deepEqual([...Object.keys(r28Source.files),...Object.keys(r28Source.addedFiles),...Object.keys(r30Source.addedFiles),...Object.keys(r29Source.addedFiles).filter(p=>/^(src|data|public)\//.test(p)),...Object.keys(r28Source.retainedFiles).filter(p=>/^(src|data|public)\//.test(p)),...verifiedR31AddedProductPaths(),...verifiedR32AddedProductPaths()].sort(),actual);
+ assert.deepEqual([...Object.keys(r28Source.files),...Object.keys(r28Source.addedFiles),...Object.keys(r30Source.addedFiles),...Object.keys(r29Source.addedFiles).filter(p=>/^(src|data|public)\//.test(p)),...Object.keys(r28Source.retainedFiles).filter(p=>/^(src|data|public)\//.test(p)),...verifiedR31AddedProductPaths(),...verifiedR32AddedProductPaths(),...verifiedR33AddedProductPaths()].sort(),actual);
 });
 
 test('all 11 exact R28 integration hunks reverse only after full-source binding; partial, missing, duplicate and unrelated edits fail closed',()=>{

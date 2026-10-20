@@ -13,7 +13,7 @@ const {captureJiaotaiScene} = await import('../lib/r27-jiaotai-capture.mjs');
 const {restoreR32ArtworkCaptureIfPresent} = await import('../lib/r32-screen-scene-retention.mjs');
 const hash = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 // This historical contract first binds/reverses the exact later artwork bytes.
-// The live a9 capture and independently rebuilt afb UVs are checked separately
+// R33 is first bound and reversed by the exact R33 scene layer. The live a9 capture and independently rebuilt afb UVs are checked separately
 // by r32-screen-scene-retention; no current behavior uses this test adapter.
 const current = restoreR32ArtworkCaptureIfPresent(captureJiaotaiScene(PalaceBuilder));
 const helper = new URL('../lib/r32-scene-retention.mjs', import.meta.url);
@@ -66,7 +66,7 @@ test('new distance-detail graph binds both levels, exact transforms, ordered chi
   }
 });
 
-test('current ordered navigation includes every actual collider and walking surface without historical filtering', async () => {
+test('historical R32 ordered navigation retains every frozen collider and walking surface', async () => {
   const {r32Scene: delta} = await getHelper();
   assert.equal(hash(current.navigation), '0abd676091d1fc28e7392565a41782326ff04ab679ec1c395356e5efe49ce68b');
   assert.equal(hash(current.navigation), delta.navigation.afterSHA256);

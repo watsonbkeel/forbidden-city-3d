@@ -1,3 +1,4 @@
+import {verifiedR33AddedProductPaths} from './lib/r33-product-inventory.mjs';
 import {verifiedR31AddedProductPaths,verifiedR32AddedProductPaths} from './lib/r32-product-inventory.mjs';
 import {r30Source} from './lib/r30-qianqing-passage-retention.mjs';
 import {r29Source} from './lib/r29-qianqing-retention.mjs';
@@ -44,7 +45,7 @@ test('R26 provenance binds exact candidate/R25 source, all runtime dependencies 
   for(const[path,digest]of Object.entries(source.preservedFixtures))assert.equal(sha(read(path)),digest,path);
   for(const[path,digest]of Object.entries(priorSource.retainedFiles))assert.equal(source.retainedFiles[path],digest,path);
   const actual=['src','data','public'].flatMap(dir=>fs.readdirSync(new URL(dir+'/',root),{recursive:true,withFileTypes:true}).filter(x=>x.isFile()).map(x=>path.relative(root.pathname,path.join(x.parentPath,x.name)))).sort();
-  assert.deepEqual([...Object.keys(source.files),...Object.keys(source.addedFiles),...Object.keys(source.retainedFiles).filter(p=>/^(src|data|public)\//.test(p)),...Object.keys(friezeSource.addedFiles),...Object.keys(r27Source.addedFiles),...Object.keys(r28Source.addedFiles),...Object.keys(r30Source.addedFiles),...Object.keys(r29Source.addedFiles).filter(p=>/^(src|data|public)\//.test(p)),...verifiedR31AddedProductPaths(),...verifiedR32AddedProductPaths()].sort(),actual);
+  assert.deepEqual([...Object.keys(source.files),...Object.keys(source.addedFiles),...Object.keys(source.retainedFiles).filter(p=>/^(src|data|public)\//.test(p)),...Object.keys(friezeSource.addedFiles),...Object.keys(r27Source.addedFiles),...Object.keys(r28Source.addedFiles),...Object.keys(r30Source.addedFiles),...Object.keys(r29Source.addedFiles).filter(p=>/^(src|data|public)\//.test(p)),...verifiedR31AddedProductPaths(),...verifiedR32AddedProductPaths(),...verifiedR33AddedProductPaths()].sort(),actual);
 });
 
 test('complete R26 builder reverses exactly three unique hunks without changing runtime or the older source chain',()=>{

@@ -1,7 +1,8 @@
+import {qianqingDepthGrid} from './QianqingDepthGrid.js';
 /** Official six-view imagery and the unscaled 后三宫 plan establish two
  * enclosed north–south passages. Every metric value below is an inherited
  * envelope/photo-relative approximation, NOT a measured wall registration.
- * Front-veranda setback and unequal historic column spacing remain unresolved.
+ * R33 uses a reversible 3 m veranda fit; unequal historic column spacing remains unmeasured.
  */
 export const QIANQING_END_PASSAGES = Object.freeze({
   id: 'qianqing-two-enclosed-end-passages', bays: Object.freeze([0, 8]),
@@ -10,7 +11,7 @@ export const QIANQING_END_PASSAGES = Object.freeze({
   plan: 'https://img.dpm.org.cn/Uploads/pdf/2201/T00008_00.pdf',
   panorama: 'https://pano.dpm.org.cn/#/panorama?regionId=61&secondAreaId=98',
   sideDoorPose: 'CLOSED_VIRTUAL_BOUNDARY_NOT_VERIFIED_PHOTOGRAPHED_POSE',
-  frontVerandaSetback: 'UNREGISTERED_RETAIN_EXISTING_FACADE_PLANE',
+  frontVerandaSetback: 'R33_REVERSIBLE_3M_FIT_NOT_SURVEY',
   innerWallThickness: .36, portalDepth: .36,
   sideDoorWidth: 1.4, sideDoorHeight: 2.5, sideDoorOffsetRatio: -.22,
 });
@@ -20,9 +21,10 @@ export function qianqingPassageFrame({ x0, z0, y, w, d, H, bayW, r, doorH, beamH
   const expected = [0, 316.8, 2.16, 46, 25, 7.22, 46 / 9, (46 / 9) * .08, 7.22 * .88 * .8, 7.22 * .12];
   if (values.some((v, i) => !Number.isFinite(v) || Math.abs(v - expected[i]) > 1e-7))
     throw Error('Unregistered Qianqing passage envelope');
-  const inner = w / 2 - bayW, jambWidth = r + .14;
+  const inner = w / 2 - bayW, jambWidth = r + .14, depthFit=qianqingDepthGrid(d);
   return Object.freeze({ ...QIANQING_END_PASSAGES, x0, z0, y, w, d, H, bayW, r, doorH, beamH,
     inner, outer: w / 2, zSouth: z0 - d / 2, zNorth: z0 + d / 2, jambWidth,
+    wallSouth:z0+depthFit.frontDoorZ,wallNorth:z0+depthFit.rearDoorZ,
     clearWidth: bayW - 2 * jambWidth, centerX: inner + bayW / 2,
     sideDoorZ: z0 + d * QIANQING_END_PASSAGES.sideDoorOffsetRatio });
 }
@@ -64,8 +66,8 @@ export function buildQianqingPassageWalls(b, g, f) {
       const mesh = b.box(g, mat, f.innerWallThickness, height, z1 - z0, x, y0 + height / 2, (z0 + z1) / 2);
       mesh.userData.qianqingPassage = { kind, sign, status: f.status }; return mesh;
     };
-    wall(f.zSouth, f.sideDoorZ - dz, f.y, h, 'inner-wall');
-    wall(f.sideDoorZ + dz, f.zNorth, f.y, h, 'inner-wall');
+    wall(f.wallSouth, f.sideDoorZ - dz, f.y, h, 'inner-wall');
+    wall(f.sideDoorZ + dz, f.wallNorth, f.y, h, 'inner-wall');
     wall(f.sideDoorZ - dz, f.sideDoorZ + dz, f.y + f.sideDoorHeight, h - f.sideDoorHeight, 'side-door-header');
     // Leaf and timber surround remain within the same continuous collision.
     const leaf = b.libBox(g, 'wood_column', .26, f.sideDoorHeight, f.sideDoorWidth,
@@ -74,8 +76,8 @@ export function buildQianqingPassageWalls(b, g, f) {
     b.libBox(g, 'wood_column', .42, .14, f.sideDoorWidth + .28, x, f.y + f.sideDoorHeight + .07, f.sideDoorZ, 'box');
     for (const side of [-1, 1]) b.libBox(g, 'wood_column', .42, f.sideDoorHeight, .14,
       x, f.y + f.sideDoorHeight / 2, f.sideDoorZ + side * (dz + .07), 'box');
-    b.libBox(g, 'caihua_beam', .42, f.beamH, f.d, x, f.y + f.H - f.beamH / 2, f.z0, 'band');
-    b.col(x - f.innerWallThickness / 2, f.y, f.zSouth,
-      x + f.innerWallThickness / 2, f.y + f.H, f.zNorth);
+    b.libBox(g, 'caihua_beam', .42, f.beamH, f.wallNorth-f.wallSouth, x, f.y + f.H - f.beamH / 2, (f.wallSouth+f.wallNorth)/2, 'band');
+    b.col(x - f.innerWallThickness / 2, f.y, f.wallSouth,
+      x + f.innerWallThickness / 2, f.y + f.H, f.wallNorth);
   }
 }
