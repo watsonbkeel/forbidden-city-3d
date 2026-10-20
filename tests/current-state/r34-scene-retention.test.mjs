@@ -1,3 +1,4 @@
+import {restoreR35SourceIfPresent} from '../lib/r35-source-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -43,7 +44,7 @@ test('R34 scene registry binds independent R33 sources and exact source/capture 
     assert.equal(record.sha256, r34Source.files[path].baselineSHA256, path);
     assert.equal(record.utf8, r34Source.files[path].baselineUTF8, path);
   }
-  for (const [path, digest] of Object.entries(r34Scene.retainedSources)) assert.equal(sha(fs.readFileSync(new URL(path, root))), digest, path);
+  for (const [path, digest] of Object.entries(r34Scene.retainedSources)) assert.equal(sha(restoreR35SourceIfPresent(path, fs.readFileSync(new URL(path, root)))), digest, path);
 });
 
 test('R34 registry rejects corruption, changed identities, missing bindings and altered independent sources', () => {

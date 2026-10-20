@@ -1,3 +1,4 @@
+import {restoreR35SourceIfPresent} from './r35-source-retention.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -39,6 +40,7 @@ export function restorePreR34Source(path, bytes) {
   return result;
 }
 export function restoreR34SourceIfPresent(path, bytes) {
+  bytes = restoreR35SourceIfPresent(path, bytes);
   const delta = Object.hasOwn(r34Source.files, path) ? r34Source.files[path] : undefined;
   return delta && sha(bytes) === delta.candidateSHA256 ? restorePreR34Source(path, bytes) : bytes;
 }

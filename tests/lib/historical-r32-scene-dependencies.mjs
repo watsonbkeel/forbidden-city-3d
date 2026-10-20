@@ -1,3 +1,4 @@
+import {r35Source, independentR34Source} from './r35-source-retention.mjs';
 import {r34Source, independentR33Source} from './r34-source-retention.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -50,7 +51,7 @@ registerHooks({
     const row = overrides[path] ?? r33Scene.baselineSources[path];
     // Later modified retained files use independently recorded R33 baseline bytes,
     // never scene restoration or live R34 implementations.
-    const bytes = row ? Buffer.from(row.utf8) : Object.hasOwn(r34Source.files, path) ? independentR33Source(path) : fs.readFileSync(parsed);
+    const bytes = row ? Buffer.from(row.utf8) : Object.hasOwn(r34Source.files, path) ? independentR33Source(path) : Object.hasOwn(r35Source.files, path) ? independentR34Source(path) : fs.readFileSync(parsed);
     const expected = row?.sha256 ?? r33Scene.retainedSources[path];
     assert.ok(expected, 'registered independent R32 source: ' + path);
     assert.equal(sha(bytes), expected, 'independent frozen R32 source: ' + path);

@@ -671,7 +671,7 @@ export class CourtKit {
     tex.anisotropy = 4;
     const mat = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.5, metalness: 0.15, name: 'kit_plaques' });
     this.owned.push(mat);
-    this.ownedTextures = [tex];
+    (this.ownedTextures ??= []).push(tex);
     for (const { mesh, text } of this.plaques) {
       const [u0, v0, du, dv] = cell.get(text);
       const uv = mesh.geometry.attributes.uv;

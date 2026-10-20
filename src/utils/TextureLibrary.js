@@ -44,6 +44,17 @@ const PROCEDURAL_FALLBACK = {
   ground_brick: () => TextureGenerator.createGroundTexture(),
 };
 
+// Estimated material response, not surveyed or screenshot-calibrated values.
+// Existing albedo and metre-scaled UVs stay intact. Luminance-derived paving
+// normals are deliberately restrained; plaster stays matte, painted wood less
+// chalky. Explicit caller parameters always take precedence.
+const ROUTE_MATERIAL_RESPONSE = Object.freeze({
+  ground_brick: Object.freeze({ normalScale: 0.65 }),
+  stone_slab: Object.freeze({ normalScale: 0.5 }),
+  wall_red: Object.freeze({ roughness: 0.92, normalScale: 0.8 }),
+  wood_column: Object.freeze({ roughness: 0.65, normalScale: 0.6 }),
+});
+
 function solidTexture(color) {
   const canvas = document.createElement('canvas');
   canvas.width = canvas.height = 64;
@@ -115,6 +126,9 @@ export class TextureLibrary {
     texture.colorSpace = kind === 'color' ? THREE.SRGBColorSpace : THREE.NoColorSpace;
     texture.wrapS = spec.wrap === 'clamp' ? THREE.ClampToEdgeWrapping : THREE.RepeatWrapping;
     texture.wrapT = spec.wrap === 'repeat' ? THREE.RepeatWrapping : THREE.ClampToEdgeWrapping;
+    // Geometry already supplies metre-scaled UVs. Legacy procedural generators
+    // may set their own repeats; normalize both color and normal maps once here.
+    texture.repeat.set(1, 1);
     texture.anisotropy = this.anisotropy;
     texture.name = `${name}_${kind}`;
     texture.needsUpdate = true;
@@ -161,16 +175,17 @@ export class TextureLibrary {
     if (this.materials.has(key)) return this.materials.get(key);
     const { normalScale, ...rest } = params;
     const normalMap = this.normal(name);
+    const response = ROUTE_MATERIAL_RESPONSE[name];
     const material = new THREE.MeshStandardMaterial({
       color: 0xffffff,
       map: this.color(name),
       normalMap,
-      roughness: 0.85,
+      roughness: response?.roughness ?? 0.85,
       metalness: 0,
       ...rest,
     });
     if (normalMap) {
-      const s = normalScale ?? 1;
+      const s = normalScale ?? response?.normalScale ?? 1;
       material.normalScale = Array.isArray(s) ? new THREE.Vector2(s[0], s[1]) : new THREE.Vector2(s, s);
     }
     material.name = `${name}_material`;

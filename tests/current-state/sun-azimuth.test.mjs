@@ -1,3 +1,4 @@
+import {restoreR35SourceIfPresent} from '../lib/r35-source-retention.mjs';
 import test from 'node:test';
 import { restorePlaceInfoBytes } from '../lib/place-info-source-delta.mjs';
 import { restoreLoadingWelcomeBytes } from '../lib/loading-welcome-source-delta.mjs';
@@ -129,7 +130,7 @@ test('protected sources match V7 with only the exact accepted skyline, V9 map/ga
       continue;
     }
     const expected = path === 'src/scene/sky/Skyline.js' ? acceptedSkyline.sourceSHA256 : hash;
-    const current = readFileSync(new URL(`../../${path}`, import.meta.url));
+    const current = restoreR35SourceIfPresent(path, readFileSync(new URL(`../../${path}`, import.meta.url)));
     if (path === 'main.js') {
       const historical = readHistoricalSource(baseline.baseCommit, path);
       assert.equal(sha256(historical), hash, 'the original V7 main.js hash remains pinned');

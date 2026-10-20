@@ -1,3 +1,4 @@
+import {r35Source, independentR34Source} from './r35-source-retention.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -47,7 +48,7 @@ registerHooks({
     if (!frozen) return next(url, context);
     const {path, parsed, overrides} = frozen;
     const row = overrides[path] ?? r34Scene.baselineSources[path];
-    const bytes = row ? Buffer.from(row.utf8) : fs.readFileSync(parsed);
+    const bytes = row ? Buffer.from(row.utf8) : Object.hasOwn(r35Source.files, path) ? independentR34Source(path) : fs.readFileSync(parsed);
     const expected = row?.sha256 ?? r34Scene.retainedSources[path];
     assert.ok(expected, 'registered independent R33 source: ' + path);
     assert.equal(sha(bytes), expected, 'independent frozen R33 source: ' + path);

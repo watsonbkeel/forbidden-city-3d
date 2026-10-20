@@ -1,3 +1,4 @@
+import {restoreR35SourceIfPresent} from '../lib/r35-source-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -5,7 +6,8 @@ import {createHash} from 'node:crypto';
 import {r34Source, validateR34SourceRegistry, restorePreR34Source, restoreR34SourceIfPresent,
   assertR34AddedSource, independentR33Source} from '../lib/r34-source-retention.mjs';
 import {verifiedR34AddedProductPaths} from '../lib/r34-product-inventory.mjs';
-const read = path => fs.readFileSync(new URL('../../' + path, import.meta.url));
+// Explicit frozen R34 source boundary; raw R35 bytes have separate acceptance.
+const read = path => restoreR35SourceIfPresent(path, fs.readFileSync(new URL('../../' + path, import.meta.url)));
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const blob = bytes => createHash('sha1').update(Buffer.from(`blob ${bytes.length}\0`)).update(bytes).digest('hex');
 const raw = read('tests/fixtures/r34-source-delta.json');
@@ -14,7 +16,7 @@ function mutations(bytes) {
   return [Buffer.alloc(0), altered, bytes.subarray(1), Buffer.concat([bytes, bytes]), Buffer.concat([bytes, Buffer.from('\n// unreviewed')])];
 }
 
-test('R34 integrated registry binds exact raw production and keeps every R33-era fixture untouched', () => {
+test('R34 integrated registry binds exact historical production and keeps every R33-era fixture untouched', () => {
   assert.equal(r34Source.schema, 1);
   assert.equal(r34Source.baseline, '1c60d533ee91db20ccde2a9ffb449b8c7b8d0fd8');
   assert.equal(r34Source.candidate, '5f5e7b3c5f22f73a82cd2c8d6ef2ea6c6955b269');
@@ -53,7 +55,7 @@ test('R34 integrated registry fails closed on corrupted identity, epoch, hunks, 
   }
 });
 
-for (const [path, delta] of Object.entries(r34Source.files)) test(`${path}: exact raw R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input`, () => {
+for (const [path, delta] of Object.entries(r34Source.files)) test(`${path}: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input`, () => {
   const bytes = read(path), original = Buffer.from(bytes), text = bytes.toString();
   assert.equal(sha(bytes), delta.candidateSHA256);
   assert.equal(bytes.length, delta.candidateBytes);
@@ -82,7 +84,7 @@ for (const [path, delta] of Object.entries(r34Source.files)) test(`${path}: exac
   assert.deepEqual(bytes, original);
 });
 
-for (const [path, delta] of Object.entries(r34Source.addedFiles)) test(`${path}: exact raw added bytes and finite inventory reject missing, duplicated or changed data`, () => {
+for (const [path, delta] of Object.entries(r34Source.addedFiles)) test(`${path}: exact historical added bytes and finite inventory reject missing, duplicated or changed data`, () => {
   const bytes = read(path);
   assert.equal(sha(bytes), delta.candidateSHA256);
   assert.equal(blob(bytes), delta.candidateGitBlob);

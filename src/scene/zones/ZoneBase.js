@@ -279,6 +279,8 @@ export class ZoneBase {
     const tex = new THREE.TextureLoader().load(`${import.meta.env?.BASE_URL ?? '/'}textures/nine_dragon.webp`);
     tex.colorSpace = THREE.SRGBColorSpace;
     tex.anisotropy = 8;
+    // This photo belongs to this zone generation, unlike borrowed library maps.
+    (k.ownedTextures ??= []).push(tex);
     const face = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.35, metalness: 0.05, name: 'kit_nine_dragon_face' });
     k.owned.push(face);
     const fg = new THREE.PlaneGeometry(len - 0.4, fh);
