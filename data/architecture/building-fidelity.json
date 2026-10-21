@@ -1899,32 +1899,68 @@
         "dataRef": "data/zones/outer-east.json#/items/19"
       },
       "interior": {
-        "implementation": "generic-placeholder",
+        "implementation": "dedicated-partial",
         "dimensions": "includes-model-fits",
         "accepted": false,
         "unresolved": [
-          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。"
+          "现为武备馆展览场所，但当前展柜、武备、宝座与碑石的位置和保存展示状态未核实；没有增造这些物件，也不据此断言历史上空置。",
+          "五间主体立面有依据，二十柱采用照片启发的外廊布置拟合；侧后柱轴、进深三间的精确结构关系未获得测绘图。"
         ]
       },
       "exterior": {
-        "implementation": "generic-placeholder",
+        "implementation": "dedicated-partial",
         "dimensions": "includes-model-fits",
         "accepted": false,
         "unresolved": [
-          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。"
+          "保留31.5×17.6米外廓和原近似屋顶，五间主体拟合宽27.5米，四周廊深与门宽为游戏拟合，不是测量值。",
+          "南五、北三是门组/开口数，非单扇数量；本批每组四片为简化拟合，仅南北中央门组选定打开，不代表现场准入。"
         ]
       },
-      "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
+      "targetState": "现存建筑文本与官方照片的局部围护关系；拍摄日期未明，不把上传日期当拍摄日期，不代表2026年完整室内清单。",
       "identitySources": [
         "https://www.dpm.org.cn/explore/building/236578.html"
       ],
-      "claims": [],
+      "claims": [
+        {
+          "scope": "exterior",
+          "text": "五间主体、周围廊、二十柱，东西山墙无窗，南面五组门、北面三组门。",
+          "source": "https://www.dpm.org.cn/explore/building/236578.html",
+          "targetState": "数量与类型依据官方说明；尺寸、柱轴/开口位置和门扇姿态分列拟合。",
+          "implemented": true
+        },
+        {
+          "scope": "interior",
+          "text": "箭亭列为武备馆展览地点；本批不据历史叙述增造当代展览内的宝座、碑石或武备。",
+          "source": "https://www.dpm.org.cn/pavilion/247424.html",
+          "targetState": "仅功能核实，当前展陈位置与完整清单尚未重建。",
+          "implemented": false
+        },
+        {
+          "scope": "exterior",
+          "text": "建筑进深三间的说明。",
+          "source": "https://www.dpm.org.cn/explore/building/236578.html",
+          "targetState": "未有测绘柱网，外廊二十柱拟合不能认证完整主体进深柱轴。",
+          "implemented": false
+        }
+      ],
       "auxiliaryProfiles": [],
-      "changes": [],
+      "changes": [
+        {
+          "profile": "arrow-enclosed-gallery-fit-v1",
+          "area": "interior",
+          "summary": "从全敞通用壳体改为有围护的观览空间，无通用家具填充。"
+        },
+        {
+          "profile": "arrow-enclosed-gallery-fit-v1",
+          "area": "exterior",
+          "summary": "区分四周廊与门组，山墙无窗。"
+        }
+      ],
       "validation": {
         "visual": "not-verified",
         "nativePhone": "not-verified"
-      }
+      },
+      "publicNote": "箭亭按有围护、周围廊的建筑关系局部调整，南五北三为门组而非单扇数；二十柱的外廊位置和尺寸为照片启发拟合，侧后柱网未实测。现为武备馆，未编造当前展柜、宝座或碑石摆位，原近似屋顶保留。模型中央门打开不代表现场开放，照片拍摄日期及2026完整陈设未核实。"
     },
     {
       "id": "wuying",
@@ -2161,32 +2197,62 @@
         "dataRef": "data/zones/outer-west.json#/items/14"
       },
       "interior": {
-        "implementation": "generic-placeholder",
+        "implementation": "dedicated-partial",
         "dimensions": "includes-model-fits",
         "accepted": false,
         "unresolved": [
-          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。"
+          "天花是平面绘画造成的藻井错觉，本批仅做平顶素面，尚未复制彩画；2018年论文修复前损坏不作为当前状态。",
+          "没有核实完整可移动家具清单，不增造宝座或祭坛，素空模型不代表历史上本来空置。"
         ]
       },
       "exterior": {
-        "implementation": "generic-placeholder",
+        "implementation": "dedicated-partial",
         "dimensions": "includes-model-fits",
         "accepted": false,
         "unresolved": [
-          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。"
+          "官方为方形三间亭，既有9×8.4米外廓仍为矩形近似；1:2:1宽中间比例为照片拟合，不是实测比例。",
+          "四面中央四叶门、侧面每组两叶槛窗有文本/照片依据；南北阶的宽、跑长、级数为拟合，原屋顶近似保留。",
+          "东西护栏存在均有官方文字依据，东立面外观另有匹配照片，西侧细部只作拟合；池桥和外围石栏未完整建模。"
         ]
       },
-      "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
+      "targetState": "现存建筑文本与官方照片的局部围护关系；拍摄日期未明，不把上传日期当拍摄日期，不代表2026年完整室内清单。",
       "identitySources": [
         "https://www.dpm.org.cn/explore/building/236537.html"
       ],
-      "claims": [],
+      "claims": [
+        {
+          "scope": "exterior",
+          "text": "四面中央四叶门，侧间槛窗和黄绿琉璃下墙，东西临水门前木护栏，南北有阶。",
+          "source": "https://www.dpm.org.cn/explore/building/236537.html",
+          "targetState": "数量与类型依据官方说明；尺寸、柱轴/开口位置和门扇姿态分列拟合。",
+          "implemented": true
+        },
+        {
+          "scope": "interior",
+          "text": "平面软天花绘制框架及八角藻井幻觉，不是实体下凹雕刻藻井。",
+          "source": "https://www.dpm.org.cn/Uploads/File/2018/12/11/u5c0f33bc7102e.pdf",
+          "targetState": "2018年院刊第46至47页；本批只实现平顶素面，未复制绘画及修复前损坏。",
+          "implemented": true
+        }
+      ],
       "auxiliaryProfiles": [],
-      "changes": [],
+      "changes": [
+        {
+          "profile": "linxi-enclosed-flat-ceiling-fit-v1",
+          "area": "interior",
+          "summary": "从全敞通用壳体改为有围护的观览空间，无通用家具填充。"
+        },
+        {
+          "profile": "linxi-enclosed-flat-ceiling-fit-v1",
+          "area": "exterior",
+          "summary": "四面门窗围护、临水护栏与拟合南北阶，无外廊。"
+        }
+      ],
       "validation": {
         "visual": "not-verified",
         "nativePhone": "not-verified"
-      }
+      },
+      "publicNote": "临溪亭由全敞壳体调整为四面门窗围护、东西临水护栏和南北通路；中间较宽比例、台阶及门姿态为拟合。天花仅为平顶素面，未将画出的藻井误做实体凹顶；桥池、屋顶和彩画仍未完整复原。模型中央门打开不代表现场开放，照片拍摄日期及2026完整陈设未核实。"
     },
     {
       "id": "place-outer-west-ddb3563548",

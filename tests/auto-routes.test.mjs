@@ -217,18 +217,18 @@ test('[R35 baseline-input generic] the same bounded detour works after translati
 
 test('all baseline and explicit profile routes retain real-collision round-trip passage', () => {
   const routes = inheritedV6(buildAutoRoutes(W, W.zones.map(z => z.json)));
-  assert.equal(routes.filter(route => !route.gateProfile && !route.pavilionFlight && !route.terraceSide).length, 40, 'Prior 40 hall/cross routes minus the false Yanxi interior plus the source-specific Wenyuan pond approach');
+  assert.equal(routes.filter(route => !route.gateProfile && !route.pavilionFlight && !route.terraceSide).length, 42, 'R45 retains40 hall/cross routes and adds the enclosed Arrow and Linxi entries');
   const portalCount = W.gates.filter(g => originalGateProfiles.has(g.item.gateProfile)).reduce((n, g) => n + sideGateGeometry(g.item).portals.length, 0);
   assert.equal(routes.filter(route => route.pavilionFlight).length, 4, 'one round trip per actual pavilion front flight');
   const huangjiCount=routes.filter(r=>r.gateProfile==='huangji').length;assert.equal(huangjiCount,3,'three independently traversable wall arches');
-  assert.equal(routes.length, 40 + portalCount + huangjiCount + 4 + 2, 'retired Yanxi false entry; retained halls, four pavilion flights, two terraces and three Huangji portals');
+  assert.equal(routes.length, 42 + portalCount + huangjiCount + 4 + 2, 'retired Yanxi false entry; retained halls, four pavilion flights, two terraces and three Huangji portals');
   for (const route of routes) assert.doesNotThrow(() => assertWalkable(W, route.pts), route.name);
 });
 
 for (const fps of [60, 10]) for (const sprint of [false, true]) {
-  test(`all 61 current automatic routes retain real-controller passage: ${fps} fps, sprint=${sprint}`, t => {
+  test(`all 63 current automatic routes retain real-controller passage: ${fps} fps, sprint=${sprint}`, t => {
     const routes = inheritedV6(buildAutoRoutes(W, W.zones.map(z => z.json)));
-    assert.equal(routes.length, 61);
+    assert.equal(routes.length, 63);
     assert.equal(routes.filter(r => r.wenyuanApproach).length, 1);
     assert.equal(routes.find(r => r.wenyuanApproach).name, '[outer-east] 文渊阁池桥→文渊阁→返回');
     assert.equal(W.cm.getGroundHeight(...routes.find(r => r.wenyuanApproach).pts[0], 0), 0);

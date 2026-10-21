@@ -225,6 +225,21 @@ export function zoneRoutes(W, zone) {
   const out = [];
   const halls = zone.items.filter(i => i.kind === 'hall');
   for (const h of halls) {
+    if(h.structure==='enclosed-pavilion'&&h.enclosureProfile==='arrow-enclosed-gallery-fit-v1'){
+      // Arrow is outside the South Three Compounds. The nearest-gate fallback
+      // entered that court then crossed its solid east wall. Exit through the
+      // existing south gate first, follow the exterior lane, then turn north.
+      // This is a collision-tested model approach, not a historic visitor route.
+      const gate=zone.items.find(i=>i.kind==='gate'&&i.name==='南三所宫门');
+      if(zone.id!=='outer-east'||!gate||h.rot)throw Error('Arrow approach requires registered outer-east south-facing identities');
+      const gg=gateGeom(gate),outsideZ=gate.z-gg.front-2;
+      const go=[[gate.x,gate.z+gg.rear+2],[gate.x,outsideZ],[h.x,outsideZ],
+        [h.x,h.z-h.d/2-h.pad-h.ph*1.6-HALL_FRONT],[h.x,h.z-h.d/2+3]];
+      if(!go.slice(1).every((p,i)=>legOk(W,go[i],p)))throw Error('Arrow exterior-gate approach is obstructed');
+      out.push({name:`[${zone.id}] ${gate.name}外南侧夹道→${h.name}→返回`,zone:zone.id,gate:gate.name,hall:h.name,
+        enclosureApproach:'arrow-exit-court-south-v1',waypointDriver:'physical-crossing-v1',via:'existing gate opening and south exterior lane',
+        plan:['Exit the South Three Compounds through its real south gate; never cross its east wall. Then use Arrow central model entrance.'],pts:[...go,...go.slice(0,-1).reverse()]});continue;
+    }
     if(h.structure==='south-court-hall'){
       if(!h.name)continue;
       const p=hallGeom(h).southCourt,court=p.court,front=zone.items.find(i=>i.southCourtProfile===`${court}-front`),rear=zone.items.find(i=>i.southCourtProfile===`${court}-rear`),gate=zone.items.find(i=>i.southGateProfile===court),gg=gateGeom(gate),x=front.x,side=court==='wenhua'?11:5;
