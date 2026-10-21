@@ -1,3 +1,4 @@
+import {buildGuhuaPavilion} from '../palace/special/GuhuaPavilion.js';
 import {buildEastResidentialFacade} from '../palace/special/EastResidentialFacades.js';
 import { buildWestDomesticHall } from '../palace/special/WestDomesticHalls.js';
 import { rearHallProfile } from '../palace/special/RearHallProfiles.js';
@@ -132,6 +133,7 @@ export class ZoneBase {
   // ───────────────────────── 各 kind 构建方法 ─────────────────────────
 
   buildHall(item) {
+    if(item.structure==='guhua-open-pavilion'||item.guhuaProfile!==undefined){if(this.zoneJson.id!=='ningshou')throw Error('Guhua requires ningshou zone');return buildGuhuaPavilion(this.kit,item);}
     const rearProfile=rearHallProfile(this.zoneJson.id,item);
     if(item.structure==='east-residential-facade'||item.facadeProfile!==undefined){
       if(this.zoneJson.id!=='east-six')throw Error('East facade profile belongs only in east-six');

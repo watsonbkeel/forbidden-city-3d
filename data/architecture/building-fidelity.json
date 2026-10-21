@@ -836,32 +836,68 @@
         "dataRef": "data/zones/ningshou.json#/items/17"
       },
       "interior": {
-        "implementation": "generic-placeholder",
+        "implementation": "dedicated-partial",
         "dimensions": "includes-model-fits",
         "accepted": false,
         "unresolved": [
-          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。"
+          "环廊进深、三间等分柱轴、开口、座凳和屏罩尺寸为模型拟合。",
+          "仅做素色格架轮廓；未复刻光绪纹样、完整花卉浮雕天花或全部陈设。"
         ]
       },
       "exterior": {
-        "implementation": "generic-placeholder",
+        "implementation": "dedicated-partial",
         "dimensions": "includes-model-fits",
         "accepted": false,
         "unresolved": [
-          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。"
+          "本批仅更正开放边界、柱间与低座栏关系；卷棚歇山顶及黄绿瓦色尚未更新。",
+          "保留原模型0.5米台面，具体阶梯与现场入内许可未核实。"
         ]
       },
-      "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
+      "targetState": "2025年修缮开放照片支持的恢复陈列外观；屏罩为传统工艺复制参考，不是未经改动的乾隆原物。",
       "identitySources": [
         "https://www.dpm.org.cn/explore/building/236431.html"
       ],
-      "claims": [],
+      "claims": [
+        {
+          "scope": "interior",
+          "text": "内柱间以通透落地花罩分隔内外空间，中央可见连续无门通道；本批仅为简化格架。",
+          "source": "https://img.dpm.org.cn/Uploads/image/2025/09/29/c2f44b867bfa08-NeYmtDOcI218985.png",
+          "targetState": "2025年修缮开放照片支持的恢复陈列外观；屏罩为传统工艺复制参考，不是未经改动的乾隆原物。照片随开放公告刊载，具体拍摄时刻未记。",
+          "implemented": true
+        },
+        {
+          "scope": "exterior",
+          "text": "坐北朝南三间敞轩、周围廊和檐柱间低座；本批以拟合比例恢复开放边界，不增加封闭宫室。",
+          "source": "https://www.dpm.org.cn/explore/building/236431.html",
+          "targetState": "建筑关系结合2025年开放照片；尺寸非实测。",
+          "implemented": true
+        },
+        {
+          "scope": "exterior",
+          "text": "卷棚歇山、黄瓦绿剪边。",
+          "source": "https://www.dpm.org.cn/explore/building/236431.html",
+          "targetState": "官方建筑描述；本批保留旧近似屋顶，尚未实施此项。",
+          "implemented": false
+        }
+      ],
       "auxiliaryProfiles": [],
-      "changes": [],
+      "changes": [
+        {
+          "profile": "guhua-open-restored-2025-fit-v1",
+          "area": "interior",
+          "summary": "去除通用封闭厅堂及桌椅预设，补通透格架、环廊与素格顶；不宣称陈设本来空无一物。"
+        },
+        {
+          "profile": "guhua-open-restored-2025-fit-v1",
+          "area": "exterior",
+          "summary": "三间开放边界与红座绿栏，入口贯通；原近似屋顶未改。"
+        }
+      ],
       "validation": {
         "visual": "not-verified",
         "nativePhone": "not-verified"
-      }
+      },
+      "publicNote": "本批依据2025年修缮开放照片做通透屏罩、低座栏与环廊拟合，不是乾隆原物精确复原；旧近似屋顶未改，卷棚形制仍待更新。模型可通行不代表现场允许入内。"
     },
     {
       "id": "place-ningshou-fadd286b97",

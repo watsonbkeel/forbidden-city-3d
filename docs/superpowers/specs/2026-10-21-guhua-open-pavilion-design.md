@@ -1,0 +1,15 @@
+# R42 Guhua open pavilion: bounded design
+
+Approved target: place-ningshou-a1ea21a7c3, ningshou items/17. Retain center(-253.9,387.4), footprint14.3×8.7, floor.5, height5, existing approximate roof; change inferred5bay closed generic hall to explicit3bay open pavilion. All metrics/equal axes are model fits, not surveyed dimensions.
+
+DPM https://www.dpm.org.cn/explore/building/236431.html supports south-facing three-bay open pavilion, surrounding gallery, outer low seats, inner floor-standing openwork screens and relief wood ceiling. Matched2025 restoration announcement https://www.dpm.org.cn/show/371726.html and photo https://img.dpm.org.cn/Uploads/image/2025/09/29/c2f44b867bfa08-NeYmtDOcI218985.png show a clear central path, red seats/green low lattice, black/gold openwork frames and gray paving. The red wall beyond belongs to separate background architecture, not this pavilion's rear enclosure.
+
+State: current-restoration reference, not untouched Qianlong material. Tsinghua restoration partner https://www.ad.tsinghua.edu.cn/info/1061/32199.htm describes traditionally made replica screen elements mainly following surviving Guangxu motifs. Our simple fitted grid does not trace those exact patterns. Official opening describes area access; individual interior visitation remains unknown.
+
+Build a strict dedicated opt-in shell with open:true/interior empty/no throne, bypassing generic desk/chair furniture. Keep one named map identity and register a single open navigation region, explicitly not a historical room-count claim. Add fitted inner screen/column ring, approx1.8m gallery inset, central front/back passage, low seat/rail spans outside openings, gray floor and plain raised ceiling grid. Exact perimeter seat interruptions and gallery ratio are unmeasured; no arbitrary independent furniture. Prefer retaining geometry envelopes rather than enlarging into adjoining garden.
+
+Shared kit.open suppresses enclosure, generic furnishings, ceiling and room registration. Dedicated builder must intentionally replace ceiling/region and own/dispose its added materials; retain all original platform support and provide visible matching collision. ph.5 step-up is retained only if actual10/60Hz routes succeed; no staircase inferred from cropped/unidentified photos.
+
+Roof is NOT updated in this batch. Official juanpeng xieshan and yellow/green palette remain a documented follow-up; do not call unchanged standard roof complete or measured. No shared RoofBuilder changes.
+
+Acceptance: full raw/merged finite geometry; strict profile rejection; actual3bay columns, no opaque oldwalls/furniture, front/back sightline and real repeat entry/exit at10/60Hz; surroundinggallery traversals with player radius.5; visible support/rails/colliders correspondence; teleport arrival retained; exact121non-targethall signatures; retainedtargetroof/platform; finite flight envelope and disposal. Source/publicstatus explicitly partial, fitted, replica/reference, unknown access, roof deferred. No GPU/native-phone claim.
