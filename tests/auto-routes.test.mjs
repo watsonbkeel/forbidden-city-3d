@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
+import {readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
 import { buildWorld, gateGeom, hallGeom, parseRot, pointBlocked, walkStraight } from './lib/world.mjs';
 import { buildAutoRoutes, zoneRoutes } from './lib/auto-routes.mjs';
 import { FirstPersonControls } from '../src/controls/FirstPerson.js';
@@ -9,18 +11,19 @@ import { sideGateGeometry } from '../src/scene/palace/special/SideGateProfiles.j
 import { pavilionGeometry } from '../src/scene/palace/special/PavilionProfiles.js';
 
 const W = await buildWorld();
+const genericBaseline=JSON.parse(readFileSync(new URL('./fixtures/r36-r35-generic-detour-input.json',import.meta.url)));
+assert.equal(createHash('sha256').update(JSON.stringify(genericBaseline.items)).digest('hex'),genericBaseline.sha256CanonicalItems,'R35 input fixture is integrity locked');
+const genericWorld=await buildWorld({zones:[{json:{id:'r35-generic-detour-input',items:genericBaseline.items}}],statics:false});
 // R32 retires the false Yanxi hall-entry route and adds all three real Huangji portals.
-// Original drivers/arrival thresholds remain unchanged; 58 - 1 + 3 = 60 routes.
+// R36 adds the explicit ground-start Wenyuan pond approach: 58 - 1 + 3 + 1 = 61 routes.
+// Retained legacy drivers/arrival thresholds and archived historical fixtures are unchanged.
 // V7's sole added gate is exhaustively covered by zhaode-gate-routes.test.mjs.
 const inheritedV6 = routes => routes.filter(r => r.gateProfile !== 'zhaode');
 const originalGateProfiles = new Set(['xiehe', 'xihe', 'jingyun', 'longzong']);
 const zone = W.zones.find(z => z.json.id === 'outer-west').json;
 const yudeRoute = () => zoneRoutes(W, zone).find(r => r.hall === '浴德堂');
-const fixedRoutes = () => execFileSync(process.execPath, [new URL('./stepwalk.cjs', import.meta.url).pathname, '60,10', '0,1', 'all'],
-  { env: { ...process.env, DUMP: '1' }, encoding: 'utf8' }).trim().split('\n').map(line => {
-  const start = line.indexOf('[[');
-  return { name: line.slice(0, start).trim(), pts: JSON.parse(line.slice(start)) };
-});
+const fixedRoutes = () => JSON.parse(execFileSync(process.execPath, [new URL('./stepwalk.cjs', import.meta.url).pathname, '60,10', '0,1', 'all'],
+  { env: { ...process.env, DUMP: '', DUMP_JSON:'1' }, encoding: 'utf8' }));
 
 function assertWalkable(world, pts) {
   let feet;
@@ -105,14 +108,14 @@ test('rotated gate depth matches the actual five-bay platform extents', async ()
   }
 });
 
-test('the old Yude corner retains the rear-column collision and early-turn controller failure', t => {
+test('[R35 baseline-input generic] the old Yude corner retains the rear-column collision and early-turn controller failure', t => {
   const old = [[220.8, -259.8], [220.8, -243.8], [246, -243.8], [246, -183.8], [246, -180.3]];
-  const exact = walkStraight(W, old[1], old[2]);
+  const exact = walkStraight(genericWorld, old[1], old[2]);
   assert.ok(exact.reached >= exact.total - 0.5, 'exact old line masks the early-turn bug');
-  const clipped = walkStraight(W, [220.8, -244.1], [246, -244.1]);
+  const clipped = walkStraight(genericWorld, [220.8, -244.1], [246, -244.1]);
   assert.ok(clipped.reached < 3, 'rear gate column must remain physical');
-  assert.equal(pointBlocked(W, 246, -242), true, 'the old L corner after correcting the depth is inside Huanzhang Hall');
-  const result = replay(t, W, old, 60, false);
+  assert.equal(pointBlocked(genericWorld, 246, -242), true, 'the old L corner after correcting the depth is inside Huanzhang Hall');
+  const result = replay(t, genericWorld, old, 60, false);
   assert.equal(result.arrived, false);
   assert.deepEqual(result.stuckAt, old[2]);
 });
@@ -168,9 +171,12 @@ for (const fps of [60, 10]) for (const sprint of [false, true]) {
   test(`all 33 fixed routes retain real-controller passage: ${fps} fps, sprint=${sprint}`, t => {
     const routes = fixedRoutes();
     assert.equal(routes.length, 33);
+    assert.deepEqual(routes.filter(r=>r.waypointDriver==='physical-crossing-v1').map(r=>r.name),['协和门→文华门→文华殿内','协和门→东华门→出宫','熙和门→武英门→武英殿内','熙和门→西华门→出宫','文华殿院北夹道→文渊阁院']);
+    for(const r of routes.filter(r=>r.waypointDriver))assert.equal(W.cm.getGroundHeight(...r.pts[0],0),0,r.name+' starts on actual ground');
     const failures = [];
     for (const route of routes) {
-      const result = replay(t, W, route.pts, fps, sprint);
+      const result = route.waypointDriver==='physical-crossing-v1'?replayTerrace(t,W,route.pts,{fps,sprint}):replay(t, W, route.pts, fps, sprint);
+      if(route.waypointDriver)assert.equal(result.startFeet,0);
       if (!result.arrived || result.fellUnder) failures.push({ name: route.name, ...result });
     }
     assert.deepEqual(failures, []);
@@ -194,8 +200,8 @@ test('the four fixed high-gate transits reach actual ramp toes and ground before
   }
 });
 
-test('the same bounded detour works after translating, renaming, and rotating the courtyard', async () => {
-  const source = zone.items.filter(i => ['武英门', '武英殿', '焕章殿', '浴德堂'].includes(i.name));
+test('[R35 baseline-input generic] the same bounded detour works after translating, renaming, and rotating the courtyard', async () => {
+  const source = genericBaseline.items;
   const items = source.map((item, index) => ({
     ...item, name: `building-${index}`, x: item.z + 300, z: -item.x + 400,
     rot: parseRot(item.rot) + Math.PI / 2,
@@ -211,18 +217,21 @@ test('the same bounded detour works after translating, renaming, and rotating th
 
 test('all baseline and explicit profile routes retain real-collision round-trip passage', () => {
   const routes = inheritedV6(buildAutoRoutes(W, W.zones.map(z => z.json)));
-  assert.equal(routes.filter(route => !route.gateProfile && !route.pavilionFlight && !route.terraceSide).length, 39, 'Prior 40 hall/cross routes minus the false Yanxi interior; exterior viewing has dedicated coverage');
+  assert.equal(routes.filter(route => !route.gateProfile && !route.pavilionFlight && !route.terraceSide).length, 40, 'Prior 40 hall/cross routes minus the false Yanxi interior plus the source-specific Wenyuan pond approach');
   const portalCount = W.gates.filter(g => originalGateProfiles.has(g.item.gateProfile)).reduce((n, g) => n + sideGateGeometry(g.item).portals.length, 0);
   assert.equal(routes.filter(route => route.pavilionFlight).length, 4, 'one round trip per actual pavilion front flight');
   const huangjiCount=routes.filter(r=>r.gateProfile==='huangji').length;assert.equal(huangjiCount,3,'three independently traversable wall arches');
-  assert.equal(routes.length, 39 + portalCount + huangjiCount + 4 + 2, 'retired Yanxi false entry; retained halls, four pavilion flights, two terraces and three Huangji portals');
+  assert.equal(routes.length, 40 + portalCount + huangjiCount + 4 + 2, 'retired Yanxi false entry; retained halls, four pavilion flights, two terraces and three Huangji portals');
   for (const route of routes) assert.doesNotThrow(() => assertWalkable(W, route.pts), route.name);
 });
 
 for (const fps of [60, 10]) for (const sprint of [false, true]) {
-  test(`all 60 current automatic routes retain real-controller passage: ${fps} fps, sprint=${sprint}`, t => {
+  test(`all 61 current automatic routes retain real-controller passage: ${fps} fps, sprint=${sprint}`, t => {
     const routes = inheritedV6(buildAutoRoutes(W, W.zones.map(z => z.json)));
-    assert.equal(routes.length, 60);
+    assert.equal(routes.length, 61);
+    assert.equal(routes.filter(r => r.wenyuanApproach).length, 1);
+    assert.equal(routes.find(r => r.wenyuanApproach).name, '[outer-east] 文渊阁池桥→文渊阁→返回');
+    assert.equal(W.cm.getGroundHeight(...routes.find(r => r.wenyuanApproach).pts[0], 0), 0);
     assert.equal(routes.filter(r => r.pavilionFlight).length, 4, 'both front flights of both pavilions, ascending and descending');
     const failures = [];
     for (const route of routes) {
@@ -309,7 +318,7 @@ for (const fps of [60, 10]) for (const sprint of [false, true]) {
     const routes = buildAutoRoutes(W, W.zones.map(z => z.json)).filter(route => originalGateProfiles.has(route.gateProfile));
     assert.equal(routes.length, 12, 'all four source profiles must be integrated before this coverage passes');
     for (const route of routes) {
-      const result = replay(t, W, route.pts, fps, sprint);
+      const result = route.waypointDriver==='physical-crossing-v1'?replayTerrace(t,W,route.pts,{fps,sprint}):replay(t, W, route.pts, fps, sprint);
       assert.equal(result.arrived, true, `${route.name}: ${JSON.stringify(result)}`);
     }
   });

@@ -1,7 +1,8 @@
+import { palaceWaterGroundPaths } from './palace/special/SouthWaterSystem.js';
 import * as THREE from 'three';
 import { COLORS, LAYOUT } from '../config/constants.js';
 import { PALACE_LAYOUT } from './Layout.js';
-import { innerJinshuiGroundPath, innerJinshuiRoadGap } from './palace/special/InnerJinshui.js';
+import { innerJinshuiRoadGap } from './palace/special/InnerJinshui.js';
 import { YANXI_RUIN_GROUND_CUTOUT } from './palace/special/YanxiRuin.js';
 import { createSky, getSunPosition, updateSkyUniforms } from './sky/SkySetup.js';
 import { createSkylineRing } from './sky/Skyline.js';
@@ -86,7 +87,7 @@ export class Environment {
     shape.lineTo(-GX, -GZ0);
     shape.closePath();
     const rivers = PALACE_LAYOUT.filter(item => item.type === 'river');
-    for (const river of rivers) shape.holes.push(innerJinshuiGroundPath(river));
+    for (const river of rivers) shape.holes.push(...palaceWaterGroundPaths(river));
     // Permanent dry-pool opening matches the dedicated current-state ruin.
     // It is protected by physical guards; it does not create an entry route.
     const cut = YANXI_RUIN_GROUND_CUTOUT, poolHole = new THREE.Path();

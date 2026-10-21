@@ -1,3 +1,6 @@
+import { buildBaoyunStorehouse } from '../palace/special/BaoyunStorehouse.js';
+import { buildWenyuanPavilion } from '../palace/special/WenyuanPavilion.js';
+import { buildSouthCourtGate } from '../palace/special/SouthCourtGates.js';
 import * as THREE from 'three';
 import { CourtKit, FACE } from '../palace/kit.js';
 import { resolveCourtWallContract } from './CourtWallContract.js';
@@ -9,6 +12,7 @@ import { historicalGateMapItem } from './HistoricalGateSites.js';
 import { buildChuxiuHall } from '../palace/special/ChuxiuHall.js';
 import { buildChuxiuCourtyard } from '../palace/special/ChuxiuCourtyard.js';
 import { buildYikunSideAccess } from '../palace/special/YikunSideAccess.js';
+import { buildSouthCourtHall, southCourtGeometry } from '../palace/special/SouthCourtHalls.js';
 
 /**
  * 分区构建器基类：从 zone JSON 构建一个区域的所有建筑。
@@ -121,6 +125,19 @@ export class ZoneBase {
   // ───────────────────────── 各 kind 构建方法 ─────────────────────────
 
   buildHall(item) {
+    if(item.structure==='baoyun-western-storehouse'){
+      if(this.zoneJson.id!=='outer-west')throw new Error('Baoyun belongs in outer-west');
+      return buildBaoyunStorehouse(this.kit,item);
+    }
+    if (item.structure === 'wenyuan-pavilion') {
+      if(this.zoneJson.id !== 'outer-east') throw new Error('Wenyuan belongs in outer-east');
+      return buildWenyuanPavilion(this.kit,item);
+    }
+    if (item.structure === 'south-court-hall' || item.southCourtProfile !== undefined) {
+      const g = southCourtGeometry(item);
+      if (this.zoneJson.id !== g.zone) throw new Error('South court profile is in the wrong zone');
+      return buildSouthCourtHall(this.kit, item);
+    }
     if (item.structure === 'chuxiu-household' || item.chuxiuProfile !== undefined) {
       if (this.zoneJson.id !== 'west-six' || item.name !== '储秀宫') throw new Error('Chuxiu profile belongs only to west-six/储秀宫');
       return buildChuxiuHall(this.kit, item);
@@ -162,10 +179,16 @@ export class ZoneBase {
     };
     // 过滤 undefined 参数，让 kit 方法使用默认值
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
-    this.kit.hall(params);
+    const result=this.kit.hall(params);
+    if(item.auxiliaryIdentity!==undefined){
+      if(this.zoneJson.id!=='outer-west'||item.auxiliaryIdentity!=='恒寿斋'||item.name)throw new Error('Unknown southern auxiliary identity');
+      result.f.userData.structure={id:'wuying-hengshou-auxiliary',name:item.auxiliaryIdentity,x:item.x,z:item.z,w:item.w,d:item.d,bays:item.bays,status:item.dimensionStatus,source:item.source,interiorPolicy:'CLOSED_UNFURNISHED_NO_INVENTED_CONTENTS'};
+    }
+    return result;
   }
 
   buildGate(item) {
+    if (item.southGateProfile !== undefined) return buildSouthCourtGate(this.kit,item).width;
     if (item.historicalSite !== undefined) {
       this.kit.mapItems.push(historicalGateMapItem(item));
       // No physical opening width: a new wall must not silently use a

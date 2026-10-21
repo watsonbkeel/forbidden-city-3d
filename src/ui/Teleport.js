@@ -1,3 +1,5 @@
+import { southWaterProfile } from '../scene/palace/special/SouthWaterSystem.js';
+import { wenyuanGeometry } from '../scene/palace/special/WenyuanPavilion.js';
 import * as THREE from 'three';
 import { PALACE_LAYOUT } from '../scene/Layout.js';
 import { ZONES } from '../../data/zones/index.js';
@@ -37,6 +39,10 @@ export class Teleport {
   geometryFor(name) {
     const target = this.targets.get(name);
     if (!target) throw new Error(`未知传送目标：${name}`);
+    if(target.structure==='wenyuan-pavilion'){
+      const profile=wenyuanGeometry(target);
+      return {name,cx:profile.x,cz:profile.z,frontX:profile.entry.x,frontZ:profile.entry.z,entryProfile:profile.navigation.id,approachPoints:profile.navigation.points,requiredZone:'outer-east',requiredBridge:southWaterProfile(PALACE_LAYOUT.find(i=>i.type==='river')).bridges.find(b=>b.id==='wenyuan-pond')};
+    }
     if (target.structure === 'yanxi-ruin') {
       const profile=yanxiRuinGeometry(target);
       return {name,cx:profile.x,cz:profile.z,navigation:profile.navigation,ruinProfile:profile.profile,requiredZone:'east-six',ruinGeometry:profile};
@@ -195,6 +201,17 @@ export class Teleport {
    */
   isProfileApproachSafe(p, g) {
     const cm = this.collisionManager, points = g.approachPoints;
+    // A water crossing must have all of its resident physical deck strips.
+    // The river guard knows a bridge footprint, but implicit ground=0 must
+    // never make a missing bridge look walkable in this landing check.
+    if(g.requiredBridge){
+      if(!this.zoneManager.getLoadedIds?.().includes(g.requiredZone))return false;
+      const b=g.requiredBridge;
+      for(let i=0;i<32;i++){
+        const t0=-1+2*i/32,t1=-1+2*(i+1)/32,a0=b.z+t0*b.length/2,a1=b.z+t1*b.length/2,y0=b.crest*(1-t0*t0),y1=b.crest*(1-t1*t1);
+        if(!cm.walkables.some(w=>w.type==='ramp'&&w.axis==='z'&&(w.tag===undefined||w.tag==='static')&&Object.entries({a0,a1,y0,y1,minZ:a0,maxZ:a1,minX:b.x-b.width/2,maxX:b.x+b.width/2,crossMin0:b.x-b.width/2+.24,crossMax0:b.x+b.width/2-.24,crossMin1:b.x-b.width/2+.24,crossMax1:b.x+b.width/2-.24}).every(([k,v])=>Number.isFinite(w[k])&&Math.abs(w[k]-v)<1e-7)))return false;
+      }
+    }
     let feet = cm.getGroundHeight(p.x, p.z, Infinity);
     if (Math.abs(feet - points[0].y) > 0.02) return false;
     let eye = new THREE.Vector3(p.x, feet + PLAYER.HEIGHT, p.z);
@@ -221,6 +238,10 @@ export class Teleport {
     p.y = points[0].y;
     p.walk = +walked.toFixed(2);
     p.approachVerified = true;
+    // Wenyuan's real pond landing turns on the north bank to the fitted
+    // six-bay entrance. The full physical path above proves access; a direct
+    // chord through a bridge rail is not the intended walking/sight path.
+    if(g.entryProfile==='wenyuan-pond-approach')return true;
     return this.lineOfSight(p, g);
   }
 

@@ -1,3 +1,5 @@
+import { southWaterProfile } from '../../src/scene/palace/special/SouthWaterSystem.js';
+import { PALACE_LAYOUT } from '../../src/scene/Layout.js';
 // 从 data/zones/*.json 自动生成 stepwalk 路线（T-2）。
 //   区内路线：每座有名、enter:true（非敞厅）的殿 → 它的院门（院落 courtWalls 的门；不在院落里则取殿正面方向最近的门）
 //     → 门外（夹道/街上）→ 门内 → 殿前台阶外 2 m → 殿内 1 m → 原路返回门外
@@ -223,6 +225,18 @@ export function zoneRoutes(W, zone) {
   const out = [];
   const halls = zone.items.filter(i => i.kind === 'hall');
   for (const h of halls) {
+    if(h.structure==='south-court-hall'){
+      if(!h.name)continue;
+      const p=hallGeom(h).southCourt,court=p.court,front=zone.items.find(i=>i.southCourtProfile===`${court}-front`),rear=zone.items.find(i=>i.southCourtProfile===`${court}-rear`),gate=zone.items.find(i=>i.southGateProfile===court),gg=gateGeom(gate),x=front.x,side=court==='wenhua'?11:5;
+      const bridge=court==='wuying'?southWaterProfile(PALACE_LAYOUT.find(i=>i.type==='river')).bridges.find(b=>b.id==='wuying-2'):null;
+      const go=[bridge?[bridge.x,bridge.z-bridge.length/2-2]:[gate.x,gate.z-gg.front-2],[gate.x,gate.z+gg.rear+2],[x,gate.z+gg.rear+2],[x,front.z-front.d/2-front.pad-front.ph*1.6-1],[x,front.z-6.3],[x+side,front.z-6.3],[x+side,front.z+5.7],[x,front.z+5.7]];
+      if(p.part==='rear')go.push([x,rear.z-5],...(court==='wenhua'?[[x+2.3,rear.z-5],[x+2.3,rear.z-.5]]:[]),[x,rear.z-.5]);
+      out.push({name:`[${zone.id}] ${gate.name}→${h.name}→返回`,zone:zone.id,gate:gate.name,hall:h.name,southCourtProfile:h.southCourtProfile,waypointDriver:'physical-crossing-v1',via:'source-specific dated exhibition circulation',plan:['Keep fitted steps and source-backed exhibition obstructions. Walk around the front island/enclosure and the rear circular display, never through them.'],pts:[...go,...go.slice(0,-1).reverse()]});continue;
+    }
+    if(h.structure==='wenyuan-pavilion'){
+      const g=hallGeom(h).wenyuan,go=g.navigation.points.map(p=>[p.x,p.z]);
+      out.push({name:`[${zone.id}] 文渊阁池桥→${h.name}→返回`,zone:zone.id,gate:'文渊阁池桥',hall:h.name,waypointDriver:'physical-crossing-v1',wenyuanApproach:true,via:'pond bridge and north-bank turn',plan:['Six-bay pavilion: turn on the real north bank rather than continuing through the central column.'],pts:[...go,...go.slice(0,-1).reverse()]});continue;
+    }
     if (h.structure === 'qinan-hall' || h.qinanProfile !== undefined) {
       const hg = hallGeom(h), n = hg.navigation;
       const gate = zone.items.find(i => i.kind === 'gate' && i.name === '坤宁门');

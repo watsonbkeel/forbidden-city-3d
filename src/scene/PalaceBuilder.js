@@ -1,3 +1,4 @@
+import { buildSouthWaterSystem } from './palace/special/SouthWaterSystem.js';
 import * as THREE from 'three';
 import { QIANQING_SURFACE, qianqingSurfaceMaterial } from './palace/QianqingSurface.js';
 import { COLORS } from '../config/constants.js';
@@ -1216,6 +1217,8 @@ export class PalaceBuilder {
     this.addObject(result.group);
     this.colliders.push(...result.colliders);
     this.walkables.push(...result.walkables);
+    const south = buildSouthWaterSystem(this.library, data, this.materials.water);
+    if (south) { this.addObject(south.group); this.colliders.push(...south.colliders); this.walkables.push(...south.walkables); }
   }
 
   getWalkables() {

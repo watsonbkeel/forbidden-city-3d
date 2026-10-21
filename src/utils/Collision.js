@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { DIMENSIONS, LAYOUT, PLAYER } from '../config/constants.js';
 import { PALACE_LAYOUT } from '../scene/Layout.js';
-import { canCrossInnerJinshui } from '../scene/palace/special/InnerJinshui.js';
+import { canCrossPalaceWater } from '../scene/palace/special/SouthWaterSystem.js';
 
 /** 玩家碰撞盒底部离脚面的抬升量：低于此高度的台阶/门槛直接跨过，不当成墙。 */
 const STEP_CLEARANCE = 0.35;
@@ -193,7 +193,7 @@ export class CollisionManager {
   }
 
   checkRiverCrossing(position, radius) {
-    return this.rivers.every(river => canCrossInnerJinshui(river, position, radius));
+    return this.rivers.every(river => canCrossPalaceWater(river, position, radius));
   }
 
   /**

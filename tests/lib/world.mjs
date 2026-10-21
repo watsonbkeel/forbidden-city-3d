@@ -1,3 +1,5 @@
+import { southCourtGeometry } from '../../src/scene/palace/special/SouthCourtProfiles.js';
+import { wenyuanGeometry } from '../../src/scene/palace/special/WenyuanPavilion.js';
 // 纯 node 构建"全场景碰撞世界"：直接调用真实的 ZoneBase / CourtKit / PalaceBuilder / Enclosure / GardenBuilder
 // 与 CollisionManager（不渲染、不合并几何），得到与游戏一致的碰撞体与可行走面。
 // 供 tests/zone-lint.cjs（几何检查）与 tests/stepwalk-auto.cjs（路线生成预检）使用。
@@ -18,6 +20,7 @@ import { yanxiRuinGeometry } from '../../src/scene/palace/special/YanxiRuin.js';
 import { sideGateGeometry } from '../../src/scene/palace/special/SideGateProfiles.js';
 import { qinanGeometry } from '../../src/scene/palace/special/QinanProfile.js';
 import { pavilionGeometry } from '../../src/scene/palace/special/PavilionProfiles.js';
+import { southCourtGateGeometry } from '../../src/scene/palace/special/SouthCourtGates.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const src = p => import(path.join(ROOT, 'src', p));
@@ -35,6 +38,23 @@ export const parseRot = r => (r === undefined || r === null ? 0 : typeof r === '
 
 /** 门通行几何；profile 的 front/rear 包含各自完整坡道，platformY 仅用于台面起点。 */
 export function gateGeom(item) {
+  if (item.southGateProfile !== undefined) {
+    const south = southCourtGateGeometry(item);
+    const front = south.z - south.southToe, rear = south.northToe - south.z;
+    const platformHalfDepth = (south.d + 2 * south.pad) / 2;
+    // Adapt the real dedicated profile to the existing route-helper contract.
+    // Do not infer the depth from gate width, nor spawn inside the platform.
+    const profile = { ...south,
+      portalCenters: south.portals.map(portal => portal.x - south.x),
+      ramps: [
+        { side: 'front', zToe: -front, zTop: -platformHalfDepth },
+        { side: 'rear', zToe: rear, zTop: platformHalfDepth },
+      ],
+      toWorld: (x, z) => [south.x + x, south.z + z],
+    };
+    return { x: south.x, z: south.z, rot: 0, dir: [0, 1],
+      half: Math.max(front, rear), front, rear, platformY: south.ph, profile };
+  }
   if (item.kind === 'cityGate' && item.cityGateProfile !== undefined) {
     const profile = eastWestCityGateGeometry(item);
     return { x: profile.x, z: profile.z, rot: profile.rot, dir: [Math.sin(profile.rot), Math.cos(profile.rot)],
@@ -79,6 +99,11 @@ export function gateGeom(item) {
 
 /** 殿（hall）的几何：正面朝向、台明外廓、台阶长、门的局部 x 与门洞宽（与 kit.hall 一致，roomBays=0） */
 export function hallGeom(item) {
+  if(item.structure==='south-court-hall'||item.structure==='wenyuan-pavilion'){
+    const p=item.structure==='south-court-hall'?southCourtGeometry(item):wenyuanGeometry(item),n=p.bays,bay=p.w/n;
+    const doorX=item.structure==='wenyuan-pavilion'?-p.w/12:0;
+    return {rot:0,w:p.w,d:p.d,pad:p.pad,ph:p.ph,PW:p.w+2*p.pad,PD:p.d+2*p.pad,n,bay,r:Math.min(.34,Math.max(.2,bay*.07)),doorX,run:p.ph>.55?p.ph*1.6:0,enter:true,backDoor:item.structure==='south-court-hall',open:false,toW:(x,z)=>[p.x+x,p.z+z],facing:[0,-1],navigation:p.navigation,...(item.structure==='south-court-hall'?{southCourt:p}:{wenyuan:p})};
+  }
   if (item.structure === 'yanxi-ruin') {const profile=yanxiRuinGeometry(item);return {rot:0,enter:false,backDoor:false,open:false,profile,navigation:profile.navigation,toW:(x,z)=>[profile.x+x,profile.z+z]};}
   if (item.structure === 'qinan-hall' || item.qinanProfile !== undefined) {
     const profile = qinanGeometry(item);
