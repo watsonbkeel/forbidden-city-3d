@@ -1,0 +1,96 @@
+{
+  "status": "PRODUCTION_FROZEN_OWNER_AND_INDEPENDENT_CURRENT_CHECKS_PASS_ROOT_FULL_SUITE_PENDING",
+  "timestampUTC": "2026-10-21T04:55:10.204792+00:00",
+  "productionCommit": "93789c45ff034d64760be48a265053a32818a6b0",
+  "rollbackLocal": "c6718de",
+  "rollbackRemote": "c92f7a9e9ab0ead8e6f00d2a0550503f3b09d193",
+  "productionFiles": [
+    {
+      "path": "data/zones/outer-west.json",
+      "sha256": "1714f596c00e63ccfb2e52f4a4ec9c60fd431d016ed09ee58f2bc448ab5d0289"
+    },
+    {
+      "path": "src/scene/palace/special/WuyingObservedCases.js",
+      "sha256": "d1061a7173b1827454b289af1b159d8bdfbeb85c34f0044b68b51c4b21ebefc5"
+    },
+    {
+      "path": "src/scene/palace/special/WuyingRepresentativeDetails.js",
+      "sha256": "5d47bffed19a1a071b35eeaee9a4d1746576b6dfebe4bb76a9ef2df7abcfc234"
+    },
+    {
+      "path": "src/scene/palace/special/YudeBath.js",
+      "sha256": "de5a3ea6e3f5cc070321894323d4fc0a9b81636dc799d6eac0c1bdb926b94afa"
+    },
+    {
+      "path": "src/scene/zones/ZoneBase.js",
+      "sha256": "32c8b843af916c85292e25cc8fb9c1e3bd89e7e9d2580c50cedcfb5f684f8e1a"
+    }
+  ],
+  "ownerLogs": [
+    {
+      "group": "owner-current-south-final",
+      "exitCode": 0,
+      "tests": 122,
+      "sha256": "b8bfd8864d550c1d9762d4ec597b544cf4407aeea1e368e36a285bd764a68c97",
+      "rawLogCommitted": false
+    },
+    {
+      "group": "owner-build-final",
+      "exitCode": 0,
+      "tests": null,
+      "sha256": "b6e88a72b0dd0e3080df7788bf77fdc234af8cf49435b08a96dd3db766c02d1d",
+      "rawLogCommitted": false
+    }
+  ],
+  "countCaution": "Owner and independent groups have distinct test files but overlapping behavior. These do not replace root comprehensive/historical suites or genuine rendered acceptance.",
+  "renderAcceptance": false,
+  "publicationPerformed": false,
+  "preserved": [
+    "159-place/7-question catalog bytes",
+    "South water geometry",
+    "Flight and helicopter interaction code",
+    "Named front Yude anchor and room",
+    "Fourteen non-selected Wuying vessel geometries/materials/transforms"
+  ],
+  "withheld": [
+    "Well pavilion",
+    "Boiler/service building and underground furnace",
+    "Bath interior and rear visitor access",
+    "Exact annex roof junction",
+    "Current 2026 inventory claims",
+    "Exact painted decoration and unseen reverse decoration"
+  ],
+  "independentReport": {
+    "tests": 16,
+    "pass": 16,
+    "fail": 0,
+    "scope": "Current Yude and two selected vessel merged geometry, routes, color maps and resource ownership. Separate independent report/tests owned by reviewer."
+  },
+  "vesselOnlyBudgetComparison": {
+    "baseline": "bccf645 (Yude already present), NOT full R37 versus R36",
+    "scope": "Full outer-west CPU merged resource counters",
+    "before": {
+      "meshes": 54,
+      "materials": 54,
+      "triangles": 107706,
+      "geometryBytes": 10339776,
+      "textures": 2
+    },
+    "after": {
+      "meshes": 56,
+      "materials": 56,
+      "triangles": 113282,
+      "geometryBytes": 10875072,
+      "textures": 4
+    },
+    "delta": {
+      "meshes": 2,
+      "materials": 2,
+      "triangles": 5576,
+      "geometryBytes": 535296,
+      "textures": 2,
+      "rgbaTextureBytes": 65536
+    },
+    "notEvidenceOf": "GPU memory, FPS or visual quality"
+  }
+}

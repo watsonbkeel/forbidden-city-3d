@@ -1,3 +1,4 @@
+import { refineWuyingRepresentative } from './WuyingRepresentativeDetails.js';
 import * as THREE from 'three';
 import evidence from '../../../../data/architecture/wuying-2021-cases.json' with {type:'json'};
 export const WUYING_OBSERVED_CASES=evidence;
@@ -38,6 +39,7 @@ export function buildWuyingObservedCases(kit,f,g,m){
   const form=put(group,new THREE.LatheGeometry(s.p.map(([r,hh])=>new THREE.Vector2(r*s.h,hh*s.h)),24),mat,0,1.025,0,'wuying-ceramic-form');Object.assign(form.userData,{scene:record.scene,source:record.photoFront,observedClass:s.tripod?'tripod-vessel':key==='d102'?'flared-cylinder':s.p.length>13?'handled-broad-bellied-vase':'photographed-vessel',observedDescription:record.visibleObjectDescription,objectIdentity:record.objectIdentity,representation:'INDIVIDUAL_PHOTO_SILHOUETTE_FIT__PAINTED_DECORATION_NOT_REPRODUCED',dimensionStatus:'VISUAL_FIT_NOT_MEASURED'});
   if(s.ears)for(const side of[-1,1]){const ear=put(group,new THREE.TorusGeometry(s.h*.095,s.h*.021,6,18,Math.PI*1.65),mat,side*s.h*(s.tripod?.42:.18),1.025+s.h*(s.tripod?.75:.75),0,'observed-vessel-ear');ear.rotation.z=side*Math.PI/5;}
   if(s.tripod)for(let i=0;i<3;i++){const a=i*Math.PI*2/3;put(group,new THREE.CylinderGeometry(s.h*.05,s.h*.075,s.h*.24,8),mat,Math.cos(a)*s.h*.22,1.025+s.h*.12,Math.sin(a)*s.h*.22,'observed-tripod-leg');}
+  refineWuyingRepresentative(kit,group,form,key,s.h,record);
   kit.col(f,x-size/2,y,z-size/2,x+size/2,y+h,z+size/2);
  }
  if(g.part==='front'){

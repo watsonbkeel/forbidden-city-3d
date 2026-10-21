@@ -1,3 +1,4 @@
+import { buildYudeBath } from '../palace/special/YudeBath.js';
 import { buildBaoyunStorehouse } from '../palace/special/BaoyunStorehouse.js';
 import { buildWenyuanPavilion } from '../palace/special/WenyuanPavilion.js';
 import { buildSouthCourtGate } from '../palace/special/SouthCourtGates.js';
@@ -125,6 +126,10 @@ export class ZoneBase {
   // ───────────────────────── 各 kind 构建方法 ─────────────────────────
 
   buildHall(item) {
+    if(item.structure==='yude-bath-compound'){
+      if(this.zoneJson.id!=='outer-west')throw new Error('Yude belongs in outer-west');
+      return buildYudeBath(this.kit,item);
+    }
     if(item.structure==='baoyun-western-storehouse'){
       if(this.zoneJson.id!=='outer-west')throw new Error('Baoyun belongs in outer-west');
       return buildBaoyunStorehouse(this.kit,item);
