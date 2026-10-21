@@ -89,8 +89,11 @@ async function buildRoutes() {
   const baoheNorthCrossZ=r1(bh+baoheDepthGrid(baohe.dimensions.depth).rearDoorZ+baohePostRadius+.5+.25);
   const {captureBaoheFrontCrossing}=await import(pathToFileURL(path.join(ROOT,'tests/lib/baohe-front-route.mjs')).href);
   const baoheFrontCrossZ=captureBaoheFrontCrossing().crossZ;
+  const {captureTaihemenSouth,taihemenSouthPoints}=await import(pathToFileURL(path.join(ROOT,'tests/lib/taihemen-approach-route.mjs')).href);
+  const taihemenSouth=taihemenSouthPoints(captureTaihemenSouth(),1);
+  taihemenSouth.forEach(p=>exactGatePoints.add(p));
   const AXIS_ROUTES = [
-    ['午门→太和门', [[0, L.START_POSITION.z], [0, L.TAIHE_GATE_Z + GATE_CLEAR]]],
+    ['午门→太和门', [[0, L.START_POSITION.z], ...taihemenSouth, [0, L.TAIHE_GATE_Z + GATE_CLEAR]]],
     ['太和门→太和殿内', [[0, L.TAIHE_GATE_Z + GATE_CLEAR], [10.5, L.TAIHE_GATE_Z + GATE_CLEAR], ...taiheFront]],
     // 过殿门时走中间一间（x≈0），进殿后从宝座侧面绕过；各殿取点相对殿心
     ['太和殿→中和殿→保和殿', [[0, 3], [0, 0], [TAIHE_DETOUR_X, 0], [TAIHE_DETOUR_X, 16], [0, 16.5],

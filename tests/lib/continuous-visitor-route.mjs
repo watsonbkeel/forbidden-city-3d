@@ -35,7 +35,12 @@ export function continuousVisitorRoute({ allBridges = false, bridgeLane = 0 } = 
   // The route now continues north directly from the real gate landing. No
   // collider, support, speed, reach threshold or step tolerance is changed.
   if (allBridges) {
-    const start = rows[0].points[0], end = rows[0].points.at(-1);
+    const start = rows[0].points[0];
+    // Replace only the bridge approach, not the source-derived Taihemen
+    // stair contacts that follow it. Fail rather than silently dropping any
+    // future canonical waypoint south of the bridge-north handoff.
+    const continuation = rows[0].points.slice(1);
+    assert.ok(continuation.every(([, z]) => z >= -280));
     const bridgeXs = [-30, -13, 0, 13, 30];
     const detour = [start, [0, -340]];
     let z = -340;
@@ -44,7 +49,7 @@ export function continuousVisitorRoute({ allBridges = false, bridgeLane = 0 } = 
       z = z === -340 ? -280 : -340;
       detour.push([x + bridgeLane, z]);
     }
-    rows[0].points = [...detour, [0, -280], end];
+    rows[0].points = [...detour, [0, -280], ...continuation];
   }
   const points = [];
   for (const row of rows) for (const p of row.points) {

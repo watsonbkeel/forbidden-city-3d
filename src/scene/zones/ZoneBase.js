@@ -1,3 +1,4 @@
+import { buildSouthCourtTrees } from '../palace/special/SouthCourtTrees.js';
 import { buildYudeBath } from '../palace/special/YudeBath.js';
 import { buildBaoyunStorehouse } from '../palace/special/BaoyunStorehouse.js';
 import { buildWenyuanPavilion } from '../palace/special/WenyuanPavilion.js';
@@ -88,6 +89,8 @@ export class ZoneBase {
 
     // Explicit opt-in, after all retained halls, before material merging.
     if (this.zoneJson.courtyardProfile !== undefined) buildChuxiuCourtyard(this.kit, this.zoneJson);
+
+    if (this.zoneJson.southTreeProfile !== undefined) buildSouthCourtTrees(this.kit, this.zoneJson);
 
     // Keep distance levels out of the ordinary recursive material merge.
     const yanxiFrames = detachYanxiRuinFrames(this.kit.root);

@@ -1,3 +1,4 @@
+import { taihemenSouthProfile, buildTaihemenSouthApproach } from './palace/TaihemenSouthApproach.js';
 import { buildSouthWaterSystem } from './palace/special/SouthWaterSystem.js';
 import * as THREE from 'three';
 import { QIANQING_SURFACE, qianqingSurfaceMaterial } from './palace/QianqingSurface.js';
@@ -329,7 +330,7 @@ export class PalaceBuilder {
    * rects: [{ hw, z0, z1 }]（顶层，局部坐标），每下一层 hw 与首尾 z 向外扩 setback。
    * 只在首块南边、末块北边设台阶；矩形交界处宽出的部分设挡墙与栏杆。
    */
-  buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile = null, taiheSouth = false, innerPalace = false, baoheNorth = null }) {
+  buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile = null, taiheSouth = false, taihemenSouth = false, innerPalace = false, baoheNorth = null }) {
     const half = stairW / 2;
     const t = 0.5;
     const last = rects.length - 1;
@@ -389,6 +390,10 @@ export class PalaceBuilder {
       });
       // 南北两端：分段挡墙 + 台阶 + 栏杆开口
       for (const [r, s, ze] of [[R[0], -1, R[0].z0], [R[last], 1, R[last].z1]]) {
+        if (taihemenSouth && s === -1) {
+          buildTaihemenSouthApproach(this, g, taihemenSouthProfile({zEdge:ze,y0,y1,run,width:stairW,halfWidth:r.hw}));
+          continue;
+        }
         if (taiheSouth && s === -1) {
           buildTaiheSouthTier(this, g, taiheSouthTier({ zEdge: ze, y0, y1, run, halfWidth: r.hw, tier: i + 1 }));
           continue;
@@ -468,7 +473,7 @@ export class PalaceBuilder {
       ? threeHallTerraceProfile(rects, { layers, lh, run, setback, waistIndex, hall: halls[waistIndex] })
       : name === '后三宫' ? innerPalaceTerraceProfile(rects, halls) : null;
     const baoheNorth = name === '三台' ? createBaoheNorthDetail() : null;
-    const top = this.buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile, taiheSouth: name === '三台', innerPalace: name === '后三宫', baoheNorth });
+    const top = this.buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile, taiheSouth: name === '三台', taihemenSouth: name === '太和门', innerPalace: name === '后三宫', baoheNorth });
 
     if (halls.length > 1) {
       // Individual supports are source-specific: high stairs belong to the

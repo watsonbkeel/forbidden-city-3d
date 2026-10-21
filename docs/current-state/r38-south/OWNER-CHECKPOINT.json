@@ -1,0 +1,115 @@
+{
+  "baseline": "de4b5567",
+  "productionCommit": "fb9fe43b916edda8316a7de87e22812adb80f314",
+  "verificationScope": "CPU geometry, real merged data, controller and resource tests; not native/GPU/mobile/visual acceptance",
+  "commands": [
+    {
+      "command": "node --test --test-concurrency=1 tests/r36-*.test.mjs tests/r37-*.test.mjs tests/r38-south-trees.test.mjs tests/r38-taihemen-approach.test.mjs",
+      "exitCode": 0,
+      "tests": 160,
+      "pass": 160,
+      "fail": 0,
+      "localLogSHA256": "a98fd56e7529b13f6bd17bd95fa09312bd7033c0f455ff77ec0abb3213f4ad34"
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "warning": "Existing chunk larger than 500 kB warning",
+      "localLogSHA256": "cc4bb6e640e8a51841d4f36ba039762d5632095469cc70588597370a158cbe49"
+    },
+    {
+      "command": "node --test --test-concurrency=1 tests/r34-continuous-route.test.mjs",
+      "exitCode": 0,
+      "tests": 98,
+      "pass": 98,
+      "fail": 0,
+      "localLogSHA256": "88e9c2489065d6b1327f845065e9c3f69eb978438ef43aeeca7cdb3537ed40f6"
+    },
+    {
+      "command": "node --test --test-concurrency=1 tests/r38-*.test.mjs",
+      "exitCode": 0,
+      "tests": 57,
+      "pass": 57,
+      "fail": 0,
+      "localLogSHA256": "1ad200d1d3d1f5dfbb0db110f79b86e3124bcfa52f0fc4d6c655b902d420ca95"
+    }
+  ],
+  "changedFiles": [
+    {
+      "path": "data/zones/outer-east.json",
+      "sha256": "76130b82d8f2dc6ef8d9b3e7245e7bb2f54509119ebd42da6c05a4fd90ead537"
+    },
+    {
+      "path": "data/zones/outer-west.json",
+      "sha256": "3f0fa316a4e73896be3d1c2a36337e1e13bc8793b71ed1f10ad0d856e3a682f4"
+    },
+    {
+      "path": "docs/current-state/r38-south/IMPLEMENTATION.md",
+      "sha256": "492b2dc1f6df0e5d2cdc5911a6cd3acd3a71f37280dac60d7101fe250a4841f4"
+    },
+    {
+      "path": "src/scene/PalaceBuilder.js",
+      "sha256": "07263857e5ad47f5083d735b2b573d51799335dc8263748bc0a7448a39516a50"
+    },
+    {
+      "path": "src/scene/palace/TaihemenSouthApproach.js",
+      "sha256": "1c46fd7c055f64cc3e2cedf5d651c1adbd3bb14ee337d9cf6240812845b9ad03"
+    },
+    {
+      "path": "src/scene/palace/special/SouthCourtTrees.js",
+      "sha256": "a7f252952a2eb5d3aa83251e6828544d8cf73c81450e279ebfc008bd8f67f4e3"
+    },
+    {
+      "path": "src/scene/zones/ZoneBase.js",
+      "sha256": "d910fe3c00b8926cd1fac96b53770f10a9f842aeef57391722862fc40f2c4da5"
+    },
+    {
+      "path": "tests/lib/taihemen-approach-route.mjs",
+      "sha256": "eb11f6135a3ef802c156a6549ff64ce459321d5d3ffdf3f847fc2e7b094a53d8"
+    },
+    {
+      "path": "tests/r38-south-trees.test.mjs",
+      "sha256": "ef4079a610a420e41082546906f8167c15304e25d69c3b1fb2e55a01c9dc00fb"
+    },
+    {
+      "path": "tests/r38-taihemen-approach.test.mjs",
+      "sha256": "84b8b1f8c403f00658fd405ce42c30d9d3051a92feb3c456aa83700265599f30"
+    },
+    {
+      "path": "tests/stepwalk.cjs",
+      "sha256": "56f5ba8af47ccef337b0d1e8bff3c351499ba58c4ea1d1949a1fd818ba2d2300"
+    }
+  ],
+  "notIncluded": "Independent test files and parent source/release docs are separately owned; this is not the aggregate release seal",
+  "gaps": [
+    "Real rendered same-view/native browser/GPU/physical phone acceptance",
+    "Exact surveyed tree and approach dimensions",
+    "Full plant inventory, species, needles, low branches and raised pit curbs",
+    "Taihemen lateral end access and actual carving",
+    "Additional Wumen/Taihedian geometry not source justified"
+  ],
+  "routeRepairCommit": "be371502b9b760da8100f088513298999788016b",
+  "routeRepair": {
+    "reason": "allBridges helper replaced the entire first route and dropped Taihemen flank contacts",
+    "scope": [
+      "tests/lib/continuous-visitor-route.mjs",
+      "tests/r38-continuous-route-retention.test.mjs"
+    ],
+    "productionGeometryChanged": false,
+    "initialFailuresRetained": 24,
+    "correctedContinuousTests": 98,
+    "correctedContinuousPass": 98,
+    "focusedR38Tests": 57,
+    "focusedR38Pass": 57
+  },
+  "routeRepairFiles": [
+    {
+      "path": "tests/lib/continuous-visitor-route.mjs",
+      "sha256": "ab06fd063a6fc2546c2abf0f4a1e3424b12cf6c1d031c7b08a8118aa7d06ba36"
+    },
+    {
+      "path": "tests/r38-continuous-route-retention.test.mjs",
+      "sha256": "de4d924c25d0c5fe8c66ba34ff83ade465d98cce6ad4c32fb4d18c47becbfb62"
+    }
+  ]
+}
