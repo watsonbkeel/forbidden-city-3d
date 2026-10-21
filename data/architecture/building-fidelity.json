@@ -762,32 +762,76 @@
         "dataRef": "data/zones/ningshou.json#/items/15"
       },
       "interior": {
-        "implementation": "generic-placeholder",
+        "implementation": "dedicated-partial",
         "dimensions": "includes-model-fits",
         "accepted": false,
         "unresolved": [
-          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。"
+          "2025年刊载示意平面无比例尺，房间深度、等分轴线、门洞和高度均为拟合。",
+          "西部主殿分隔、完整陈设、随安室夹纱窗刺绣和山石细部尚未复原；床榻位置仅做建筑轮廓，不添加被褥或占用状态。"
         ]
       },
       "exterior": {
-        "implementation": "generic-placeholder",
+        "implementation": "dedicated-partial",
         "dimensions": "includes-model-fits",
         "accepted": false,
         "unresolved": [
-          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。"
+          "保留既有34.1×22.9米模型外廓，不宣称实测比例；三段进深及主殿端间前凸为拟合。",
+          "旧连续近似屋顶未改，抱厦屋顶交接和外廓之外通往景祺阁的后接廊尚未重建。",
+          "前门打开和后门关闭为模型选定姿态，保留台明前阶为游戏通行拟合，不代表现场开放许可。"
         ]
       },
-      "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
+      "targetState": "故宫2025年第1期《紫禁城》刊载的颐和轩示意平面，结合官方建筑说明与未注明拍摄日期的正面照片；不等于2026年完整陈设清单。",
       "identitySources": [
         "https://www.dpm.org.cn/explore/building/236516.html"
       ],
-      "claims": [],
+      "claims": [
+        {
+          "scope": "exterior",
+          "text": "主殿面阔七间，前抱厦五间、后抱厦三间；本批建立不同柱轴与阶梯式围护轮廓。",
+          "source": "https://www.dpm.org.cn/explore/building/236516.html",
+          "targetState": "建筑说明结合2025年示意平面；具体尺度为拟合。",
+          "implemented": true
+        },
+        {
+          "scope": "exterior",
+          "text": "前抱厦中央三间开放，两端围合，主殿门窗退于开放檐廊之后；窗格仅用素格轮廓。",
+          "source": "https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5eff004189c37.jpg",
+          "targetState": "官方正面照片，网址日期不是已知拍摄日期；门扇打开姿态为游戏拟合。",
+          "implemented": true
+        },
+        {
+          "scope": "interior",
+          "text": "东南随安室经西侧门进入北部过渡空间，再向南进入前后相通的小空间及南端床榻位置；北墙夹纱窗不作为入口。",
+          "source": "https://www.dpm.org.cn/Uploads/file/2025/02/13/1739432388igVFOKaLW260.pdf",
+          "targetState": "2025年第1期第108页示意平面；无比例尺，模型不添加被褥或陈设物。",
+          "implemented": true
+        },
+        {
+          "scope": "interior",
+          "text": "平面还示出西部主殿分隔、北部中央短构件和完整北接廊关系；本批未完整重建。",
+          "source": "https://www.dpm.org.cn/Uploads/file/2025/02/13/1739432388igVFOKaLW260.pdf",
+          "targetState": "示意平面可识别的关系，未标名短构件不擅自定为家具。",
+          "implemented": false
+        }
+      ],
       "auxiliaryProfiles": [],
-      "changes": [],
+      "changes": [
+        {
+          "profile": "yihe-ground-plan-2025-fit-v1",
+          "area": "interior",
+          "summary": "建立东侧隔断、西向转入随安室的路线、相通的两处小空间和南端床位轮廓，去除通用桌椅预设。"
+        },
+        {
+          "profile": "yihe-ground-plan-2025-fit-v1",
+          "area": "exterior",
+          "summary": "主殿七间与前五后三区分，中央三间开放前廊；既有近似屋顶和总体模型外廓保留。"
+        }
+      ],
       "validation": {
         "visual": "not-verified",
         "nativePhone": "not-verified"
-      }
+      },
+      "publicNote": "本批按2025年官方刊载示意平面拟合七间主殿、前五后三区分及随安室西向入口和南向小空间；不是2026年完整陈设复原。旧近似屋顶未改，屋顶交接、西部细分及后接廊仍待重建；门扇姿态与尺寸为拟合，不代表现场允许入内。"
     },
     {
       "id": "place-ningshou-15c0d4e6bc",
