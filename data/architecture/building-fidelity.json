@@ -2215,7 +2215,7 @@
       },
       "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
       "identitySources": [
-        "https://www.dpm.org.cn/explore/building/236536.html"
+        "https://www.dpm.org.cn/explore/building/236580.html"
       ],
       "claims": [],
       "auxiliaryProfiles": [],
@@ -2499,7 +2499,7 @@
         "dimensions": "includes-model-fits",
         "accepted": false,
         "unresolved": [
-          "封闭库房内部未建模，不以通用宫殿家具填充。"
+          "内部布局尚未建模，这是当前模型范围限制，并非场馆当前封闭或仍为库房的判断；不以通用宫殿家具填充。"
         ]
       },
       "exterior": {
@@ -2607,32 +2607,77 @@
         "dataRef": "data/zones/outer-west.json#/items/47"
       },
       "interior": {
-        "implementation": "generic-placeholder",
+        "implementation": "dedicated-partial",
         "dimensions": "includes-model-fits",
         "accepted": false,
         "unresolved": [
-          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。"
+          "暖阁依据梢间位置作分区推定；开口位置、宽度、隔断做法与完整内部细分仍无测绘图支持。",
+          "宝座与屏风采用已公布单件外包尺寸，位置、平台、坐垫、脚凳及简化纹样为拟合，不代表2026年完整陈设。",
+          "东暖阁佛堂与西暖阁祭祀用途仅作功能说明，不据此增造佛像、神龛、牌位或供器；后殿不在本批范围。"
         ]
       },
       "exterior": {
-        "implementation": "generic-placeholder",
+        "implementation": "dedicated-partial",
         "dimensions": "includes-model-fits",
         "accepted": false,
         "unresolved": [
-          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。"
+          "五间采用2005年文献比例13.5:13.5:15.5:13.5:13.5归一到既有26.9米模型宽度，不是模型外廓实测认定。",
+          "前廊2米、门扇打开姿态和后阶为模型通行拟合，四叶门数量有依据，简化菱格不等于完整三交六椀复刻。",
+          "原近似屋顶、台明、前阶保留，具体构件比例和现场开放状态未完整核验。"
         ]
       },
-      "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
+      "targetState": "2015年恢复原状陈列、2018年刊载正殿内景及家具尺寸的局部参考；不是清代未经改动的原物布局或2026年陈设清单。",
       "identitySources": [
         "https://www.dpm.org.cn/explore/building/236448.html"
       ],
-      "claims": [],
+      "claims": [
+        {
+          "scope": "exterior",
+          "text": "正殿五间、进深三间，前出廊；南面明间和次间各四叶门、梢间四叶窗，北面明间四叶门、其余为窗。",
+          "source": "https://www.dpm.org.cn/explore/building/236448.html",
+          "targetState": "官方建筑说明；本批门扇打开为选定模型姿态。",
+          "implemented": true
+        },
+        {
+          "scope": "exterior",
+          "text": "明间宽一丈五尺五寸，四侧间各一丈三尺五寸；本批采用比例而不换算成已测模型总宽。",
+          "source": "https://www.dpm.org.cn/Uploads/File/pdf/ff/8e/7f/ff8e7f5fee79130164656141fe26d725.pdf",
+          "targetState": "2005年第5期第150页历史建筑尺度记载；既有模型总宽仍为拟合。",
+          "implemented": true
+        },
+        {
+          "scope": "interior",
+          "text": "两梢间为暖阁，东暖阁为日常礼佛处；本批仅建立有通行开口的简化分区，不添加佛教或西暖阁祭祀器物。",
+          "source": "https://www.dpm.org.cn/explore/building/236448.html",
+          "targetState": "功能及间位有依据，分隔位置依间位推定，开口与构造为游戏拟合。",
+          "implemented": true
+        },
+        {
+          "scope": "interior",
+          "text": "正殿低木宝座与三屏风有2018年刊载实景匹配；宝座高98、长117.5、宽84厘米，屏风高310、宽319、厚32厘米。",
+          "source": "https://www.dpm.org.cn/Uploads/File/2019/11/30/u5de26f7031b50.pdf",
+          "targetState": "第27至29页；宝座为独立木器外包尺寸，屏风32厘米为整体厚度，不是底座单独厚度。平台、坐垫与位置另作拟合。",
+          "implemented": true
+        }
+      ],
       "auxiliaryProfiles": [],
-      "changes": [],
+      "changes": [
+        {
+          "profile": "shoukang-front-display-2018-fit-v1",
+          "area": "interior",
+          "summary": "区分两端暖阁和中央礼仪区，替换通用金色宝座为有照片及单件尺度依据的木宝座、三屏风轮廓。"
+        },
+        {
+          "profile": "shoukang-front-display-2018-fit-v1",
+          "area": "exterior",
+          "summary": "五间不等分柱轴、前廊、南三处四叶门和北中央四叶门；后阶及门姿态为拟合。"
+        }
+      ],
       "validation": {
         "visual": "not-verified",
         "nativePhone": "not-verified"
-      }
+      },
+      "publicNote": "本批依据2015恢复陈列的2018年刊载照片与尺寸，调整五间不等分柱轴、前廊、两端暖阁和木宝座屏风；不是2026年完整陈设。单件外包尺寸与房间尺度、摆位及开口拟合分别标注；未造佛像、牌位或后殿家具，模型可通行不代表现场开放。"
     },
     {
       "id": "place-outer-west-aad07de044",
@@ -3393,7 +3438,6 @@
       },
       "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
       "identitySources": [
-        "https://www.dpm.org.cn/explore/building/236472.html",
         "https://www.dpm.org.cn/explore/building/236465.html",
         "https://img.dpm.org.cn/Uploads/Picture/dc/1602%5B1024%5D.jpg",
         "https://img.dpm.org.cn/Uploads/pdf/1944/T00008_00.pdf",
@@ -3440,7 +3484,8 @@
       },
       "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
       "identitySources": [
-        "https://www.dpm.org.cn/show/225723.html"
+        "https://www.dpm.org.cn/show/225723.html",
+        "https://www.dpm.org.cn/explore/building/236464.html"
       ],
       "claims": [],
       "auxiliaryProfiles": [],
