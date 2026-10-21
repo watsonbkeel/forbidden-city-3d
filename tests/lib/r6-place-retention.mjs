@@ -1,3 +1,4 @@
+import {restoreReviewedR39FengxianDisclaimer} from './r39-place-retention.mjs';
 import {restoreR31CombinedSourceIfPresent} from './r31-combined-source-retention.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -5,6 +6,10 @@ import baseline from '../fixtures/r6-complete-place-cards.json' with {type:'json
 export {baseline};
 const sha=v=>createHash('sha256').update(v).digest('hex');
 export function restoreR6PlaceCatalog(raw){
+ const reviewed=JSON.parse(raw);
+ assert.equal(raw,JSON.stringify(reviewed,null,2)+'\n','canonical input catalog before R39 inverse');
+ restoreReviewedR39FengxianDisclaimer(reviewed);
+ raw=JSON.stringify(reviewed,null,2)+'\n';
  raw=restoreR31CombinedSourceIfPresent('data/places/zh-CN.json',Buffer.from(raw)).toString();
  const data=JSON.parse(raw),b=baseline.catalog;
  assert.equal(raw,JSON.stringify(data,null,2)+'\n','canonical R6 catalog');

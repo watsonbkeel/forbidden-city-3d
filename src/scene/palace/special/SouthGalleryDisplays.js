@@ -20,7 +20,7 @@ export function buildSouthGalleryDisplays(kit,f,g){
  const box=(role,mat,w,h,d,x,yy,z,data={})=>tag(kit.mesh(f,new THREE.BoxGeometry(w,h,d),mat,x,yy,z),role,data);
  const addCase=(x0,z0,x1,z1,axis,identity,opts={})=>{
   const points=chamferPlan(x0,z0,x1,z1),width=x1-x0,run=z1-z0,H=opts.low?1.15:caseH,base=court==='wuying'?.56:opts.low?.82:.12;
-  const source=court==='wuying'?g.exhibit.source:opts.source??photo(g.part==='connector'?'a057':g.part==='rear'?'a075':'a015',g.part==='front'?'f':'r');
+  const source=court==='wuying'?g.exhibit.source:opts.source??photo(g.part==='connector'?'a057':g.part==='rear'?'a075':'a015',g.part==='front'||g.part==='connector'?'f':'r');
   const group=new THREE.Group();group.name=`${court}-display-case`;group.userData={role:`${court}-display-case`,identity,source,sourceDate:g.exhibit.sourceDate,newsPublicationDate:g.exhibit.newsPublicationDate,panoramaPackageDate:g.exhibit.panoramaPackageDate,photographyDate:null,dimensionStatus:court==='wuying'?'PUBLISHED_2020_CASE_DESIGN__RUNS_AND_FRAME_SPLIT_FIT':'VISUAL_APPROXIMATION_NOT_PUBLISHED_MEASUREMENT',actualPeriod:court==='wuying'?'2021_OPENING_PANORAMA_NOT_2026_INVENTORY':'2026_09_FIRST_PERIOD_STRUCTURE__SECOND_PERIOD_OBJECTS_UNVERIFIED',bounds:{x0,z0,x1,z1},caseH:H,cornerDegrees:135};f.add(group);
   const put=(geo,mat,role)=>{const mesh=new THREE.Mesh(geo,mat);mesh.castShadow=mesh.receiveShadow=true;if(role)mesh.userData.role=role;group.add(mesh);return mesh;};
   put(prism(points,y,base),m.frame);put(prism(points,y+H-(opts.low?.045:.24),opts.low?.045:.24),opts.low?m.ink:m.frame);
@@ -31,8 +31,20 @@ export function buildSouthGalleryDisplays(kit,f,g){
    box('wuying-display-backing',m.lining,backing.w,2.53,backing.d,backing.x,y+.56+1.265,backing.z);
   }else{
    const alongZ=axis==='z',cx=(x0+x1)/2,cz=(z0+z1)/2,w=alongZ?width*.72:width-.3,d=alongZ?run-.3:run*.72,tableY=opts.low?.87:.94;
-   box('wenhua-scroll-support',m.table,w,.075,d,cx,y+tableY,cz,{source,representation:'Photographed support only; no fabricated second-period artwork'});
-   if(!opts.low){for(const s of[-1,1])for(const t of[-1,1])box('wenhua-scroll-table-leg',m.table,.055,.85,.055,cx+s*(w/2-.09),y+.5,cz+t*(d/2-.09));
+   // a057-f shows both corridor sides rising away from the aisle. This is
+   // dated exhibition equipment, not imperial furniture or current artwork.
+   // All angles, thicknesses and heights below remain reversible model fits.
+   const inclined=g.part==='connector'&&alongZ&&!opts.low,angle=inclined?Math.sign(cx)*Math.PI/7:0;
+   const supportData={source,representation:'Photographed support only; no fabricated second-period artwork',dimensionStatus:'VISUAL_FIT_NOT_MEASURED',photographyDate:null,actualPeriod:'2026_09_FIRST_PERIOD_STRUCTURE__SECOND_PERIOD_OBJECTS_UNVERIFIED'};
+   const board=box('wenhua-scroll-support',m.table,w,.075,d,cx,y+tableY,cz,supportData);board.rotation.z=angle;
+   if(inclined){
+    const edge=new THREE.Vector3(-Math.sign(cx)*w/2,.075/2,0).applyEuler(board.rotation).add(board.position);
+    const lip=box('wenhua-scroll-retaining-lip',m.table,.045,.045,d,edge.x,edge.y+.015,edge.z,{...supportData,representation:'Visible lower edge stop; thickness fitted, no artwork'});lip.rotation.z=angle;
+   }
+   if(!opts.low){for(const s of[-1,1])for(const t of[-1,1]){
+    const dx=s*(w/2-.09),top=inclined?tableY+Math.sin(angle)*dx-.075/2:.925,bottom=.075;
+    box('wenhua-scroll-table-leg',m.table,.055,top-bottom,.055,cx+Math.cos(angle)*dx,y+(top+bottom)/2,cz+t*(d/2-.09));
+   }
     const back=alongZ?{w:.08,d:run,x:cx+Math.sign(cx)*(width/2-.06),z:cz}:{w:width,d:.08,x:cx,z:cz+Math.sign(cz)*(run/2-.06)};
     box('wenhua-purple-backing',m.lining,back.w,H-.3,back.d,back.x,y+(H-.3)/2,back.z);
     box('wenhua-continuous-light-strip',m.light,alongZ?.06:width-.12,.045,alongZ?run-.12:.06,cx,y+H-.28,cz);
@@ -66,6 +78,20 @@ export function buildSouthGalleryDisplays(kit,f,g){
   const screen=tag(kit.mesh(f,new THREE.ExtrudeGeometry(shape,{depth:.18,bevelEnabled:false}),m.paper,0,y,zs-.09),'wenhua-circular-screen',{source:photo('a035','f'),passable:true,dimensionStatus:'VISUAL_APPROXIMATION',circleCount:1});
   tag(kit.mesh(f,new THREE.TubeGeometry(new THREE.CatmullRomCurve3(arc),64,.055,8,false),m.wood,0,y,zs-.105),'wenhua-circle-rim');
   for(let x=-W/2;x<=W/2;x+=.23){const bottom=Math.abs(x)<r?cy+Math.sqrt(r*r-x*x):0;box('wenhua-vertical-screen-lattice',m.wood,.045,Hs-bottom,.04,x,y+bottom+(Hs-bottom)/2,zs-.12);}
+  // a035-f / a052-b: framed pale panels with horizontal muntins. Widths
+  // and repeat counts are fitted; the single circular opening stays untouched.
+  const frameData={source:photo('a035','f'),reverseSource:photo('a052','b'),dimensionStatus:'VISUAL_FIT_NOT_MEASURED',photographyDate:null,actualPeriod:'2026_09_FIRST_PERIOD_STRUCTURE'};
+  const barH=.065;
+  for(const yy of [.72,1.48,2.24,3,3.76]){
+   const nearest=Math.max(0,Math.abs(yy-cy)-barH/2),opening=nearest<r?Math.sqrt(r*r-nearest*nearest):0;
+   if(opening===0)box('wenhua-horizontal-screen-muntin',m.wood,W,barH,.06,0,y+yy,zs-.13,frameData);
+   else for(const side of[-1,1]){const length=W/2-opening;box('wenhua-horizontal-screen-muntin',m.wood,length,barH,.06,side*(opening+length/2),y+yy,zs-.13,frameData);}
+  }
+  const postW=.14;
+  for(const x of[-W/2+postW/2,-2.2,0,2.2,W/2-postW/2]){
+   const inner=Math.max(0,Math.abs(x)-postW/2),bottom=inner<r?cy+Math.sqrt(r*r-inner*inner):0;
+   box('wenhua-screen-panel-post',m.wood,postW,Hs-bottom,.09,x,y+bottom+(Hs-bottom)/2,zs-.15,frameData);
+  }
   for(let yy=0;yy<Hs;yy+=.2){const hi=Math.min(Hs,yy+.2),openAt=hh=>Math.abs(hh-cy)<r?Math.sqrt(r*r-(hh-cy)**2):0,opening=Math.min(openAt(yy),openAt(hi));for(const s of[-1,1])kit.col(f,s<0?-W/2:opening,y+yy,zs-.1,s<0?-opening:W/2,y+hi,zs+.1);}
  }
  if(court==='wenhua'&&g.part==='rear'){

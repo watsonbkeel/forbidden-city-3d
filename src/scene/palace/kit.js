@@ -457,7 +457,7 @@ export class CourtKit {
     if ((o.storeys ?? 1) !== 1) throw new Error('Unsupported storeys: use an explicit multi-storey structure builder');
     const {
       x, z, rot = 0, w, d, colH = 4.6, ph = 0.9, pad = 1.0,
-      roof = 'xieshan', brackets = true, roofH,
+      roof = 'xieshan', brackets = true, roofH, hardGableEnd = false,
       enter: enterOpt, backDoor = false, open = false, throne = false,
       name, plaque = true, plaqueText = name, map = 'hall', bays,
       interior, roomBays = 0,
@@ -605,7 +605,8 @@ export class CourtKit {
     }
 
     this.roof(f, {
-      type: roof, width: w + 0.5, depth: d + 0.5, baseY: y0 + colH, layers, brackets,
+      type: roof, width: hardGableEnd ? w : w + 0.5, depth: d + 0.5, baseY: y0 + colH, layers, brackets,
+      ...(hardGableEnd ? { hardGableEnd:true } : {}),
       ...(roofH ? { height: roofH } : {}),
     });
     if (name && plaque) {

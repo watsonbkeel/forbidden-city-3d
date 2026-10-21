@@ -1,3 +1,5 @@
+import { buildWestDomesticHall } from '../palace/special/WestDomesticHalls.js';
+import { rearHallProfile } from '../palace/special/RearHallProfiles.js';
 import { buildSouthCourtTrees } from '../palace/special/SouthCourtTrees.js';
 import { buildYudeBath } from '../palace/special/YudeBath.js';
 import { buildBaoyunStorehouse } from '../palace/special/BaoyunStorehouse.js';
@@ -129,6 +131,11 @@ export class ZoneBase {
   // ───────────────────────── 各 kind 构建方法 ─────────────────────────
 
   buildHall(item) {
+    const rearProfile=rearHallProfile(this.zoneJson.id,item);
+    if(item.structure==='west-domestic-hall'||item.domesticProfile!==undefined){
+      if(this.zoneJson.id!=='west-six')throw Error('West domestic profile belongs only in west-six');
+      return buildWestDomesticHall(this.kit,item);
+    }
     if(item.structure==='yude-bath-compound'){
       if(this.zoneJson.id!=='outer-west')throw new Error('Yude belongs in outer-west');
       return buildYudeBath(this.kit,item);
@@ -187,7 +194,12 @@ export class ZoneBase {
     };
     // 过滤 undefined 参数，让 kit 方法使用默认值
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
+    if(rearProfile)params.hardGableEnd=true;
     const result=this.kit.hall(params);
+    if(rearProfile){
+      result.f.userData.rearHall=rearProfile;
+      result.f.userData.structure={...result.f.userData.structure,...rearProfile,id:`${rearProfile.zone}/${rearProfile.id}`,profile:rearProfile.id};
+    }
     if(item.auxiliaryIdentity!==undefined){
       if(this.zoneJson.id!=='outer-west'||item.auxiliaryIdentity!=='恒寿斋'||item.name)throw new Error('Unknown southern auxiliary identity');
       result.f.userData.structure={id:'wuying-hengshou-auxiliary',name:item.auxiliaryIdentity,x:item.x,z:item.z,w:item.w,d:item.d,bays:item.bays,status:item.dimensionStatus,source:item.source,interiorPolicy:'CLOSED_UNFURNISHED_NO_INVENTED_CONTENTS'};

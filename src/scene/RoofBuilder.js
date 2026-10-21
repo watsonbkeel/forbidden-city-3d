@@ -475,7 +475,7 @@ function singleRoof(ctx, g, o) {
   add(g, o.jiaotaiCeilingOpening ? jiaotaiCeilingRing({W,D,y:y0,tile:ctx.tile.rafters,opening:o.jiaotaiCeilingOpening}) : fanGeometry(footprint, y0, ctx.tile.rafters), ctx.mat.rafters);
 
   const th = vertical?.upperRafterEndThickness ?? clamp(ovh * 0.1, 0.15, 0.45);
-  const ex = vertical ? WUMEN_VERTICAL_PROFILE.retained.upperEaveHalfWidth : W / 2 + (type === 'gable' ? 0.3 : ovh);
+  const ex = vertical ? WUMEN_VERTICAL_PROFILE.retained.upperEaveHalfWidth : W / 2 + (type === 'gable' ? (o.hardGableEnd ? 0 : 0.3) : ovh);
   const ez = vertical?.upperEaveHalfDepth ?? D / 2 + ovh;
   const tw = (D / 2) / ez;
   const P = profile(type === 'pavilion' ? 0.36 : type === 'gable' ? 0.62 : 0.48);
@@ -514,7 +514,7 @@ function singleRoof(ctx, g, o) {
       const rake = [];
       for (let i = steps; i >= 0; i--) { const t = i / steps; rake.push([-ez * t, Y(t) + 0.05]); }
       for (let i = 1; i <= steps; i++) { const t = i / steps; rake.push([ez * t, Y(t) + 0.05]); }
-      add(g, rakeBoard(sx * (ex + 0.02), rake, th * 2.5, sx, ctx.tile.wall), ctx.mat.wall);
+      add(g, rakeBoard(sx * (ex + (o.hardGableEnd ? 0 : 0.02)), rake, th * 2.5, sx, ctx.tile.wall), ctx.mat.wall);
     }
   } else {
     const rx = vertical ? WUMEN_VERTICAL_PROFILE.retained.upperRidgeHalfWidth : Math.max(ex - ez, W * 0.04);
@@ -677,6 +677,7 @@ export function buildRoof(lib, opts) {
   const aliases = { cuanjian: 'pavilion', yingshan: 'gable' };
   const type = aliases[opts.type] ?? opts.type ?? 'wudian';
   if (!['wudian', 'xieshan', 'pavilion', 'gable'].includes(type)) throw new Error(`Unsupported roof type: ${type}`);
+  if(opts.hardGableEnd!==undefined&&(typeof opts.hardGableEnd!=='boolean'||opts.hardGableEnd&&type!=='gable'))throw Error('Hard-gable end profile requires a gable roof and boolean option');
   opts = { ...opts, type, layers: opts.eaveCount ?? opts.layers };
   if (opts.wumenVerticalProfile !== undefined) {
     const p = WUMEN_VERTICAL_PROFILE;
@@ -705,6 +706,7 @@ export function buildRoof(lib, opts) {
   g.name = `roof_${opts.type ?? 'wudian'}`;
   const r = roofInto(ctx, g, opts);
   const roof = finalize(ctx, g, r.eaveY);
+  if(opts.hardGableEnd)roof.userData.hardGableEnd={endPlaneX:opts.width/2,widthBasis:'RETAINED_SHELL_MODEL_FIT_NOT_SURVEYED',tileEnd:'FLUSH_WITH_GABLE_WALL',rakeEnd:'FLUSH_WITH_GABLE_WALL'};
   if (r.doubleEaveMountingBand) roof.userData.doubleEaveMountingBand = r.doubleEaveMountingBand;
   if (opts.wumenVerticalProfile) {
     const p = opts.wumenVerticalProfile;

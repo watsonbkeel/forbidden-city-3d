@@ -1,3 +1,4 @@
+import {restoreR39FidelitySourceIfPresent} from './r39-fidelity-source-retention.mjs';
 import {restoreR34SourceIfPresent} from './r34-source-retention.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -46,6 +47,7 @@ export function restorePreR33Source(path, bytes) {
 /** Dispatch only the one registered full candidate identity. Unknown bytes
  * remain unchanged so older strict guards reject them at their own boundary. */
 export function restoreR33SourceIfPresent(path, bytes) {
+  bytes = restoreR39FidelitySourceIfPresent(path, bytes);
   bytes = restoreR34SourceIfPresent(path, bytes);
   const delta = Object.hasOwn(r33Source.files, path) ? r33Source.files[path] : undefined;
   return delta && sha(bytes) === delta.candidateSHA256 ? restorePreR33Source(path, bytes) : bytes;
