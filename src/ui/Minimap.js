@@ -1,3 +1,4 @@
+import { innerJinshuiProfile } from '../scene/palace/special/InnerJinshui.js';
 import * as THREE from 'three';
 import { PALACE_LAYOUT } from '../scene/Layout.js';
 import { LAYOUT, TELEPORT } from '../config/constants.js';
@@ -28,6 +29,7 @@ export class Minimap {
     catch (error) { console.warn(error.message); this.placeCatalog = null; }
     this.onToggle = onToggle;
     this.labels = [];
+    this.placeFootprints = [];
     this.secondaryTaps = new Map();
     this.suppressedClicks = new Map();
     this.inputCleanup = [];
@@ -263,13 +265,14 @@ export class Minimap {
       button.setAttribute('aria-label', `了解${place.name}`);
       button.addEventListener('click', () => this.showPlace(place.id));
       directory.appendChild(button);
-      entries.push({button, name: `${place.name} ${place.canonicalName ?? ''}`.normalize('NFKC').toLocaleLowerCase('zh-CN')});
+      const names = [place.name, place.canonicalName, ...(place.aliases ?? []).map(alias => alias.name)];
+      entries.push({button, names: names.filter(Boolean).map(name => name.normalize('NFKC').toLocaleLowerCase('zh-CN'))});
     }
     const filter = () => {
       const query = search.value.trim().normalize('NFKC').toLocaleLowerCase('zh-CN');
       let count = 0;
-      for (const {button, name} of entries) {
-        const match = name.includes(query); button.hidden = button.inert = !match;
+      for (const {button, names} of entries) {
+        const match = names.some(name => name.includes(query)); button.hidden = button.inert = !match;
         if (match) count++;
       }
       resultCount.textContent = count ? `显示 ${count} / ${entries.length} 个地点` : '未找到匹配地点，请换个名称。';
@@ -632,7 +635,14 @@ export class Minimap {
     const tol = 3 / this.view.k;
     const label = [...this.labels].reverse().find(it =>
       Math.abs(m.x - it.x) <= it.width / 2 + tol && Math.abs(m.y - it.y) <= it.height / 2 + tol);
-    if (label) this.selectMapLabel(label);
+    if (label) { this.selectMapLabel(label); return; }
+    // Label decluttering must not make a visible building unselectable. Only
+    // exact source-bound footprints may open a card; an ambiguous overlap does
+    // nothing. Selection still never travels without the separate card action.
+    const hits = this.placeFootprints.filter(it =>
+      m.x >= it.x && m.x <= it.x + it.width && m.y >= it.y && m.y <= it.y + it.height);
+    const places = new Map(hits.map(it => [it.placeId, it]));
+    if (places.size === 1) this.selectMapLabel(places.values().next().value);
   }
   
   /**
@@ -763,6 +773,7 @@ export class Minimap {
         ctx.beginPath(); ctx.arc(point.x, point.y, 2.4, 0, Math.PI * 2); ctx.stroke();
         continue;
       }
+      const place = this.placeCatalog?.forMapItem(it, this.items);
       for (const footprint of it.footprints ?? [it]) {
         const [x, y, w, h] = this.rectOf(footprint.x, footprint.z, footprint.w, footprint.d);
         ctx.fillStyle = fill;
@@ -770,6 +781,9 @@ export class Minimap {
         ctx.strokeStyle = stroke;
         ctx.lineWidth = 0.6;
         ctx.strokeRect(x, y, Math.max(w, 1.5), Math.max(h, 1.5));
+        if (place && [x, y, w, h].every(Number.isFinite) && w > 0 && h > 0) {
+          this.placeFootprints.push({ name: it.name, placeId: place.id, x, y, width: Math.max(w, 1.5), height: Math.max(h, 1.5) });
+        }
       }
     }
     // 只标有名字的主要殿宇与门（字号小，避免互相遮挡）
@@ -791,6 +805,7 @@ export class Minimap {
    */
   renderBase() {
     this.labels = [];
+    this.placeFootprints = [];
     const mainCtx = this.ctx;
     const ctx = this.baseCanvas.getContext('2d');
     ctx.setTransform(this.baseScale, 0, 0, this.baseScale, 0, 0);
@@ -945,7 +960,9 @@ export class Minimap {
       } else if (type === 'wall') {
         fillColor = 'rgba(160, 60, 60, 0.5)'; strokeColor = 'rgba(120, 50, 50, 0.7)';
       } else if (type === 'river') {
-        fillColor = 'rgba(100, 150, 200, 0.6)'; strokeColor = 'rgba(70, 120, 170, 0.8)';
+        const profile=innerJinshuiProfile(item);ctx.beginPath();
+        profile.waterPolygon.forEach((point,index)=>{const mapped=this.worldToMap(point.x,point.z);if(index)ctx.lineTo(mapped.x,mapped.y);else ctx.moveTo(mapped.x,mapped.y);});
+        ctx.closePath();ctx.fillStyle='rgba(100, 150, 200, 0.6)';ctx.strokeStyle='rgba(70, 120, 170, 0.8)';ctx.lineWidth=1.2;ctx.fill();ctx.stroke();continue;
       } else if (type === 'garden') {
         fillColor = 'rgba(120, 180, 120, 0.6)'; strokeColor = 'rgba(80, 140, 80, 0.8)'; showLabel = true;
       } else {

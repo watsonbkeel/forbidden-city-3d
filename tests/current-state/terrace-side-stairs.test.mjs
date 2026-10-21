@@ -5,13 +5,17 @@ import { PalaceBuilder } from '../../src/scene/PalaceBuilder.js';
 import { PALACE_LAYOUT } from '../../src/scene/Layout.js';
 import { CollisionManager } from '../../src/utils/Collision.js';
 import { walkStraight } from '../lib/world.mjs';
+// Canvas-only stubs used by the registered rear-palace materials.
+import '../lib/inner-palace-fixture.mjs';
 
 const near = (a, b, label = '') => assert.ok(Math.abs(a - b) < 1e-8, `${label}: ${a} != ${b}`);
 function fixture(name = '三台') {
   const mats = new Map();
-  const library = { material: n => mats.get(n) ?? (mats.set(n, new THREE.MeshStandardMaterial({ name: n })), mats.get(n)), tileSize: () => 2 };
+  const library = { material: n => mats.get(n) ?? (mats.set(n, new THREE.MeshStandardMaterial({ name: n })), mats.get(n)), tileSize: () => 2, aspect: () => 1 };
   const builder = new PalaceBuilder(new THREE.Scene(), library);
-  builder.buildHall = () => {};
+  // Rear-palace decorators require actual registered hall metadata. The side-
+  // stair geometry isolation is only needed for the Three Halls fixture.
+  if (name === '三台') builder.buildHall = () => {};
   builder.terraceOrnaments = () => {};
   let group, options, rects;
   const finish = builder.finish.bind(builder);

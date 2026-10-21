@@ -4,6 +4,7 @@ import { buildRoof, buildWallCap } from '../RoofBuilder.js';
 import { buildStuddedDoor } from '../HallKit.js';
 import { mergeByMaterial } from '../../utils/MergeUtils.js';
 import { furnishRoom, goldBrickTexture, GOLD_BRICK_TILE } from './interiors.js';
+import { buildHuangjiGate } from './special/HuangjiGate.js';
 import { buildSideGate } from './special/SideGate.js';
 import { buildZhaodeGate } from './special/ZhaodeGate.js';
 import { buildTirenPavilion } from './special/TirenPavilion.js';
@@ -246,6 +247,7 @@ export class CourtKit {
    * - style 'hall'：门殿（三间，明间为门道，门扇在中柱一线、打开后贴两侧隔墙），开口宽 = 门殿面阔
    */
   gate({ x, z, rot, w = 3.6, h = 4.4, t = 1, style = 'wall', gateKind, gateProfile, open, plaque, name, roof = 'xieshan', brackets = true, layers = 1, eaveCount }) {
+    if (gateProfile === 'huangji') return buildHuangjiGate(this, {x,z,rot,w,style,gateKind,gateProfile,open,name});
     if (gateProfile === 'zhaode') {
       if (gateKind !== 'three-bay') throw new Error('Zhaode profile requires explicit three-bay gateKind');
       return buildZhaodeGate(this, { x, z, rot, w, h, t, gateKind, gateProfile, open, plaque, name });
@@ -669,7 +671,7 @@ export class CourtKit {
     tex.anisotropy = 4;
     const mat = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.5, metalness: 0.15, name: 'kit_plaques' });
     this.owned.push(mat);
-    this.ownedTextures = [tex];
+    (this.ownedTextures ??= []).push(tex);
     for (const { mesh, text } of this.plaques) {
       const [u0, v0, du, dv] = cell.get(text);
       const uv = mesh.geometry.attributes.uv;

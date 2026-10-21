@@ -1,5 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {createHash} from 'node:crypto';
+import {historicalR31Dependency} from './lib/historical-r31-scene-dependencies.mjs';
+import {restorePreR32Source} from './lib/r32-source-retention.mjs';
 import { LAYOUT, DIMENSIONS, PLAYER } from '../src/config/constants.js';
 import { ZoneBase } from '../src/scene/zones/ZoneBase.js';
 import { captureGate } from './lib/gate-tower-fixture.mjs';
@@ -8,6 +12,8 @@ import { buildWorld, walkStraight } from './lib/world.mjs';
 // These are model-relative checks. They do not establish surveyed dimensions,
 // the Museum's present visitor exit, or permission to enter an upper terrace.
 const world = await buildWorld();
+const root=new URL('../',import.meta.url);
+const {ZoneBase:HistoricalR31ZoneBase}=await import(historicalR31Dependency('./src/scene/zones/ZoneBase.js',root));
 const gate = captureGate('神武门');
 const platform = gate.builder.walkables.find(w => w.type === 'box');
 const northFace = platform.box.max.z;
@@ -16,10 +22,15 @@ const clearCenterZ = northFace + bodyRadius;
 const modelExitZ = northFace + 2;
 const legalCenterMax = LAYOUT.BOUNDARY.maxZ - bodyRadius;
 const regions = [];
-for (const { json } of world.zones) {
+const historicalRegions=[];
+for (const { file, json } of world.zones) {
   const zone = new ZoneBase(gate.lib, json);
   zone.kit.finish = () => new world.THREE.Group();
   regions.push(...zone.build().regions);
+  const path='data/zones/'+file;
+  const historicalZone=new HistoricalR31ZoneBase(gate.lib,JSON.parse(restorePreR32Source(path,fs.readFileSync(new URL(path,root)))));
+  historicalZone.kit.finish=()=>new world.THREE.Group();
+  historicalRegions.push(...historicalZone.build().regions);
 }
 world.cm.setRegions(regions);
 const eye = (z, feet = 0, x = 0) => new world.THREE.Vector3(x, feet + PLAYER.HEIGHT, z);
@@ -33,7 +44,18 @@ test('modeled north face and legal body envelope derive from unchanged geometry 
   assert.equal(legalCenterMax, 559.5);
   assert.equal(modelExitZ, 557.23);
   assert.ok(modelExitZ < legalCenterMax);
-  assert.equal(regions.length, 250, 'uses all actual generated named regions');
+  assert.equal(historicalRegions.length, 250, 'exact source-restored R31 retains every historical named region');
+  assert.equal(regions.length,249,'actual R32 excludes the removed fictional Yanxi interior region');
+});
+
+test('the complete actual region list differs only by the exact removed Yanxi room, never the exit region',()=>{
+  const hash=rows=>createHash('sha256').update(JSON.stringify(rows)).digest('hex');
+  assert.equal(hash(historicalRegions),'7fa3ab98f5b6e307e840e99060fc70c0a2f41f18948281d5d21085e4f948b01b');
+  assert.equal(hash(regions),'6bb901e84a642ae34ac2499d758655189587763da746c3203738b6bd8759bd43');
+  const expected=structuredClone(historicalRegions),index=108;
+  assert.equal(expected.filter(r=>r.name==='延禧宫').length,2,'the courtyard label remains separately registered');
+  assert.deepEqual(expected.splice(index,1),[{name:'延禧宫',minX:-156,maxX:-140.39999999999998,minZ:319.04999999999995,maxZ:330.75}]);
+  assert.deepEqual(regions,expected,'full ordered regions retain every other original byte');
 });
 
 test('ground label changes only after the whole player body clears the modeled north face', () => {

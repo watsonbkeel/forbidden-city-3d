@@ -1,0 +1,638 @@
+{
+  "runtimeCommit": "81c6163b195193879db7ae8d94d02c39b7747e2b",
+  "cpu": {
+    "candidate": "81c6163b195193879db7ae8d94d02c39b7747e2b",
+    "baseline": "16f2350b7366761a4f66b4bbf0729acbf9a9b951",
+    "scope": "test-only exact R28-to-R27 retention adapter; no product, asset, documentation, branch, build or publishing changes",
+    "changedFiles": {
+      "tests/fixtures/r28-jiaotai-central-scene-delta.json": "4ab7b74082268615e71e39443c294bb8e9e6407953c4dc71ad7ccc9afd0cc061",
+      "tests/fixtures/r28-jiaotai-central-source-delta.json": "f6f3ad1d79c7c46936da42bd7ea12bec4051e69ef03aa9cd6a84985be695612a",
+      "tests/lib/historical-r18-baohe-fixture.mjs": "647b9575472cc60f945b09e6b3740f4882d26ad2db73f425f5f5d2be8f1be6c3",
+      "tests/lib/historical-r19-baohe-fixture.mjs": "a2c38deb9c12366a49e1c0dc0f501548d5a3e4342ae84587c3eeace68f6ba435",
+      "tests/lib/historical-r20-baohe-fixture.mjs": "7a85feae3055d4128eb609e109a8a59bae92554a42f3f211eef99c459a42432d",
+      "tests/lib/historical-r21-baohe-fixture.mjs": "977c865708017f9a196d2c26f3458cf944c28beded1e6610f50f911b7477bf78",
+      "tests/lib/historical-r22-baohe-fixture.mjs": "49568a61006a5fb6fcb25ed9c05788acb67d81d0b01a8e20fb2f99315fb7e509",
+      "tests/lib/historical-r23-baohe-fixture.mjs": "1e2b80a7f607a04014983ffccc74b1b4e6a6a06a967f882d78c1d1e937c1799c",
+      "tests/lib/historical-r24-baohe-fixture.mjs": "8b5ac7004403f2fde5d6a76ae78dec257edd21761b5a9bea66e3d71c60dd36f5",
+      "tests/lib/historical-r25-nameboard-fixture.mjs": "ba88f6eba29fa0cedeed15d93943f7fd0513d10fe8014596bd0509cd0b63a775",
+      "tests/lib/historical-r26-combined-fixture.mjs": "c75021eb78f003010c99c4f2a65e9174fc408c8416d393aca5ccbc2260922329",
+      "tests/lib/historical-r26-windows-fixture.mjs": "7fff51effdf3cce72e08d14d6138090d3b62114c7ba4766c930906d93a3ead60",
+      "tests/lib/historical-r27-jiaotai-fixture.mjs": "96eb7ab54f924c40399a26e61e0460d165d512cfccdab211d88477dd939a6ead",
+      "tests/lib/r27-jiaotai-retention.mjs": "b6ba4b76bb230a05c4950d69c64552d4d4f0949656e174c05a8b64ea9612fc4c",
+      "tests/lib/r28-jiaotai-central-retention.mjs": "6f4350f5d5645016c85a0fc7f973e4b50cd7d992947f2d2c0f8307ceda6f7aeb",
+      "tests/r12-glaze-lod.test.mjs": "403c2016f89a88fa3263b8b1fef254232e39fc10059d52ee43dd78e432914c9a",
+      "tests/r22-baohe-retention.test.mjs": "bf0a5e695fc31ecc51899353a18585aa9beb19aa53d724d9ce108fbf2b3f4b03",
+      "tests/r23-baohe-retention.test.mjs": "85c7454954267107656f3e7f30f29458b6c23dba6178ca8a59ac4397f40ef60c",
+      "tests/r24-baohe-retention.test.mjs": "ad0ec08ed17098f29cb54917b384a35335d172681b75fa1a387196ececffc5bb",
+      "tests/r25-nameboard-retention.test.mjs": "4e0d5771160f130b0fcad237a2618aa77424b2e2b3516badff8450cfa8396749",
+      "tests/r26-qianqing-frieze-retention.test.mjs": "3e40f548a6b63438e77519db03c34653f31ee134e311ae49d1cd6839a181542a",
+      "tests/r26-qianqing-retention.test.mjs": "f799b7ee512c6014bc8d2fc77c5c06856fd87e10356183a6e14db229c0b07c23",
+      "tests/r27-jiaotai-landmarks.test.mjs": "b9abca69a4429f3cff58c77d13de03c7bc85c30b5a8c2bafda3710c4a204e161",
+      "tests/r27-jiaotai-retention.test.mjs": "03a6611a90f28fdc75f29f586339b1ba028da34289d29888168f6f94aa043fa6",
+      "tests/r28-jiaotai-central.test.mjs": "c56f1c3c44929f02efeb689bbb655d7d53f406b64910846963e16b0ff79bbf15"
+    },
+    "verification": {
+      "initialAffectedChain": {
+        "tests": 290,
+        "pass": 287,
+        "fail": 3,
+        "allThreeFailuresResolvedAndReverified": true
+      },
+      "finalAffectedSourceAndFixedTests": {
+        "tests": 252,
+        "pass": 252,
+        "fail": 0
+      },
+      "r27RetentionAndLandmarks": {
+        "tests": 28,
+        "pass": 28,
+        "fail": 0
+      },
+      "r28FocusedAndRetention": {
+        "tests": 16,
+        "pass": 16,
+        "fail": 0
+      },
+      "latestCombinedAffectedResults": {
+        "testFiles": 40,
+        "distinctTests": 567,
+        "pass": 567,
+        "remainingFailures": 0,
+        "fullSuiteRun": false
+      }
+    },
+    "retained": {
+      "precedingFixtures": 110,
+      "retainedDependencies": 277,
+      "changedIntegrationSources": 3,
+      "addedModules": 3,
+      "exactReverseHunks": 11,
+      "colliders": 2489,
+      "walkables": 120,
+      "otherTopLevelGroups": "exact identity",
+      "timekeepingBothLODs": "exact geometry, material, graph and metadata"
+    },
+    "scene": {
+      "beforeMeshes": 166,
+      "afterMeshes": 168,
+      "beforeTriangles": 189241,
+      "afterTriangles": 190105,
+      "beforeGeometryBytes": 18408404,
+      "afterGeometryBytes": 18491660,
+      "uniqueMaterials": 86,
+      "uniqueTextures": 22
+    }
+  },
+  "visual": {
+    "runtime": "81c6163b195193879db7ae8d94d02c39b7747e2b",
+    "status": "CONTROLLED_TOPOLOGY_IMPROVEMENT_REVIEWED",
+    "conditions": [
+      {
+        "label": "baseline",
+        "terminal": {
+          "utc": "2026-10-19T01:51:03.688246+00:00",
+          "reason": "owner finished captures",
+          "activeSeconds": 45.76706847800233,
+          "cleanupSeconds": 0.040600385997095145,
+          "leaderExited": true,
+          "portClosed": true,
+          "httpErrors": [],
+          "scope": "Controlled fixed-camera photos only; native routes and performance not accepted."
+        },
+        "images": [
+          {
+            "name": "upward",
+            "position": [
+              0,
+              3.8600000000000003,
+              353
+            ],
+            "rotation": [
+              2.2279383450851045,
+              0,
+              -3.141592653589793,
+              "XYZ"
+            ],
+            "fov": 70,
+            "pngSHA256": "e7aa31e91ccfc952e3d0628a15f8ce0d54b6d0609c5cc3a31269e6735a7bec82"
+          }
+        ]
+      },
+      {
+        "label": "candidate",
+        "terminal": {
+          "utc": "2026-10-19T01:54:05.193637+00:00",
+          "reason": "owner finished captures",
+          "activeSeconds": 140.67539232800482,
+          "cleanupSeconds": 0.055280004991800524,
+          "leaderExited": true,
+          "portClosed": true,
+          "httpErrors": [],
+          "scope": "Controlled fixed-camera photos only; native routes and performance not accepted."
+        },
+        "images": [
+          {
+            "name": "overview",
+            "position": [
+              0,
+              3.8600000000000003,
+              345.9
+            ],
+            "rotation": [
+              3.054314940640332,
+              0,
+              -3.141592653589793,
+              "XYZ"
+            ],
+            "fov": 70,
+            "pngSHA256": "4306bed568001a0e557400389378f5b117322c5150085fb679e25138369549c8"
+          },
+          {
+            "name": "upward",
+            "position": [
+              0,
+              3.8600000000000003,
+              353
+            ],
+            "rotation": [
+              2.2279383450851045,
+              0,
+              -3.141592653589793,
+              "XYZ"
+            ],
+            "fov": 70,
+            "pngSHA256": "cfb7adefdc553fae51eeb121cd73a6c2ced4ae9e590e18d9f44bdb7b1992fdc6"
+          },
+          {
+            "name": "backdrop",
+            "position": [
+              0,
+              3.8600000000000003,
+              353
+            ],
+            "rotation": [
+              2.7848655772045907,
+              0,
+              -3.141592653589793,
+              "XYZ"
+            ],
+            "fov": 70,
+            "pngSHA256": "afdd7a014002efc0093d460a1f56da780a03425b8e7a55bac5e99306c910bdcc"
+          }
+        ]
+      }
+    ],
+    "findings": [
+      "One-bay square/polygonal/round caisson and depth readable; former oversized flat disc absent",
+      "Mirror retained, posterior cream/black plaque correctly ordered and no longer conceals caisson",
+      "Four-corner seam fixed before browser capture",
+      "Existing west clock/east clepsydra remain visible"
+    ],
+    "limitations": [
+      "Strongly stylized schematic dragon and ornament",
+      "Incomplete inscription panel and old simplified throne plainly visible",
+      "No survey claim; global lighting and shell unchanged",
+      "No native-route, real-mobile, or performance acceptance from these photos"
+    ],
+    "retainedR27Overview": "/workspace/shared/palace-r27-verification/visual/candidate/run-01/overview.png"
+  },
+  "ordinary": {
+    "runtime": "81c6163b195193879db7ae8d94d02c39b7747e2b",
+    "status": "PARTIAL_TIME_LIMIT",
+    "terminal": {
+      "utc": "2026-10-19T02:03:22.737493+00:00",
+      "reason": "active time limit",
+      "activeSeconds": 240.0287757920014,
+      "cleanupSeconds": 0.5155225619964767,
+      "leaderExited": true,
+      "portClosed": true,
+      "httpErrors": [],
+      "scope": "Ordinary map UI and native front approach, passive state observation; no four-door or mobile acceptance."
+    },
+    "accepted": [
+      "Ordinary startup and real-time daylight UI displayed",
+      "Native M opened map; full-map and159-place list visibly displayed",
+      "Native W walked with map open, then native M closed map"
+    ],
+    "mapOpenMovement": {
+      "start": [
+        0,
+        1.7,
+        -494
+      ],
+      "end": [
+        0.011997939030563627,
+        1.6502481309589188,
+        -490.0761289442751
+      ],
+      "horizontalMetres": 3.9238893986064918,
+      "finalMapVisible": false
+    },
+    "notCompleted": [
+      "Jiaotai card selection and teleport",
+      "Native front-door entry on R28 bytes",
+      "Full four-door path",
+      "Real mobile"
+    ],
+    "notes": [
+      "Four screenshot budget consumed by map/full-map/list observation; no further screenshots or retry",
+      "Do not label the240s time-limit run an overall pass",
+      "No evidence of a new product fault from this limited run; no UI or navigation product bytes changed since R27",
+      "R27 native entry remains historical evidence, not a new R28 execution"
+    ],
+    "errors": []
+  },
+  "performance": {
+    "commit": "81c6163b195193879db7ae8d94d02c39b7747e2b",
+    "structuralPass": true,
+    "failures": [],
+    "smoothnessWarnings": [
+      [
+        "午门前",
+        2.45,
+        0.87
+      ],
+      [
+        "太和殿前",
+        2.18,
+        0.9
+      ],
+      [
+        "乾清门",
+        1.97,
+        0.62
+      ],
+      [
+        "东六宫中",
+        2.66,
+        0.93
+      ],
+      [
+        "宁寿宫",
+        3.36,
+        0.79
+      ],
+      [
+        "御花园",
+        2,
+        0.88
+      ]
+    ],
+    "baselineSHA256": "6108e5229f090755a287dc09715fa164ba7febdf54c650d79b526be5197ab5ff",
+    "conditions": {
+      "previewUTC": "2026-10-18T04:00:00.000Z",
+      "beijing": "2026-10-18 12:00",
+      "historicalLamps": false,
+      "aircraftParked": true,
+      "note": "Explicit daytime preview; original baseline used fixed sun. Geometry budget and original six-camera sampling unchanged; light direction differs."
+    },
+    "environment": {
+      "viewport": [
+        1280,
+        720
+      ],
+      "drawingBuffer": [
+        1280,
+        720
+      ],
+      "dpr": 1,
+      "quality": "high",
+      "unmaskedRenderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36"
+    },
+    "rows": [
+      {
+        "point": "午门前",
+        "baseline": {
+          "point": "午门前",
+          "pos": [
+            0,
+            1.7,
+            -470
+          ],
+          "yaw": 0,
+          "calls": 188,
+          "tris": 906751,
+          "geometries": 142,
+          "textures": 105,
+          "fpsAvg": 2.57,
+          "fpsP5": 2.45,
+          "callsRange": [
+            188,
+            188
+          ],
+          "trisRange": [
+            906751,
+            906751
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "candidate": {
+          "point": "午门前",
+          "pos": [
+            0,
+            1.7,
+            -470
+          ],
+          "yaw": 0,
+          "calls": 182,
+          "tris": 983410,
+          "geometries": 151,
+          "textures": 124,
+          "fpsAvg": 0.98,
+          "fpsP5": 0.87,
+          "callsRange": [
+            182,
+            182
+          ],
+          "trisRange": [
+            983410,
+            983410
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "callsDelta": -0.03191489361702127,
+        "trianglesDelta": 0.08454250395091933
+      },
+      {
+        "point": "太和殿前",
+        "baseline": {
+          "point": "太和殿前",
+          "pos": [
+            0,
+            1.7,
+            -74
+          ],
+          "yaw": 0,
+          "calls": 166,
+          "tris": 874189,
+          "geometries": 142,
+          "textures": 105,
+          "fpsAvg": 2.6,
+          "fpsP5": 2.18,
+          "callsRange": [
+            166,
+            166
+          ],
+          "trisRange": [
+            874189,
+            874189
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "candidate": {
+          "point": "太和殿前",
+          "pos": [
+            0,
+            1.7,
+            -74
+          ],
+          "yaw": 0,
+          "calls": 166,
+          "tris": 961008,
+          "geometries": 151,
+          "textures": 124,
+          "fpsAvg": 1,
+          "fpsP5": 0.9,
+          "callsRange": [
+            166,
+            166
+          ],
+          "trisRange": [
+            961008,
+            961008
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "callsDelta": 0.0,
+        "trianglesDelta": 0.09931376395722213
+      },
+      {
+        "point": "乾清门",
+        "baseline": {
+          "point": "乾清门",
+          "pos": [
+            0,
+            1.7,
+            195.3
+          ],
+          "yaw": 0,
+          "calls": 159,
+          "tris": 971005,
+          "geometries": 142,
+          "textures": 105,
+          "fpsAvg": 2.38,
+          "fpsP5": 1.97,
+          "callsRange": [
+            159,
+            159
+          ],
+          "trisRange": [
+            971005,
+            971005
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "candidate": {
+          "point": "乾清门",
+          "pos": [
+            0,
+            1.7,
+            195.3
+          ],
+          "yaw": 0,
+          "calls": 152,
+          "tris": 1059204,
+          "geometries": 151,
+          "textures": 124,
+          "fpsAvg": 0.96,
+          "fpsP5": 0.62,
+          "callsRange": [
+            152,
+            152
+          ],
+          "trisRange": [
+            1059204,
+            1059204
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "callsDelta": -0.04402515723270439,
+        "trianglesDelta": 0.09083269396141103
+      },
+      {
+        "point": "东六宫中",
+        "baseline": {
+          "point": "东六宫中",
+          "pos": [
+            -120.8,
+            1.7,
+            382.6
+          ],
+          "yaw": 0,
+          "calls": 137,
+          "tris": 831571,
+          "geometries": 136,
+          "textures": 104,
+          "fpsAvg": 2.73,
+          "fpsP5": 2.66,
+          "callsRange": [
+            137,
+            137
+          ],
+          "trisRange": [
+            831571,
+            831571
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "candidate": {
+          "point": "东六宫中",
+          "pos": [
+            -120.8,
+            1.7,
+            382.6
+          ],
+          "yaw": 0,
+          "calls": 130,
+          "tris": 833739,
+          "geometries": 136,
+          "textures": 122,
+          "fpsAvg": 1.11,
+          "fpsP5": 0.93,
+          "callsRange": [
+            130,
+            130
+          ],
+          "trisRange": [
+            833739,
+            833739
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "callsDelta": -0.051094890510948954,
+        "trianglesDelta": 0.002607113523679816
+      },
+      {
+        "point": "宁寿宫",
+        "baseline": {
+          "point": "宁寿宫",
+          "pos": [
+            -293.2,
+            1.7,
+            164.1
+          ],
+          "yaw": 0,
+          "calls": 119,
+          "tris": 658803,
+          "geometries": 130,
+          "textures": 102,
+          "fpsAvg": 3.48,
+          "fpsP5": 3.36,
+          "callsRange": [
+            119,
+            119
+          ],
+          "trisRange": [
+            658803,
+            658803
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "candidate": {
+          "point": "宁寿宫",
+          "pos": [
+            -293.2,
+            1.7,
+            164.1
+          ],
+          "yaw": 0,
+          "calls": 107,
+          "tris": 659065,
+          "geometries": 128,
+          "textures": 120,
+          "fpsAvg": 1.43,
+          "fpsP5": 0.79,
+          "callsRange": [
+            107,
+            107
+          ],
+          "trisRange": [
+            659065,
+            659065
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "callsDelta": -0.10084033613445376,
+        "trianglesDelta": 0.00039769096376307544
+      },
+      {
+        "point": "御花园",
+        "baseline": {
+          "point": "御花园",
+          "pos": [
+            0,
+            1.7,
+            433.7
+          ],
+          "yaw": 0,
+          "calls": 152,
+          "tris": 867827,
+          "geometries": 131,
+          "textures": 103,
+          "fpsAvg": 2.35,
+          "fpsP5": 2,
+          "callsRange": [
+            152,
+            152
+          ],
+          "trisRange": [
+            867827,
+            867827
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "candidate": {
+          "point": "御花园",
+          "pos": [
+            0,
+            1.7,
+            433.7
+          ],
+          "yaw": 0,
+          "calls": 133,
+          "tris": 871087,
+          "geometries": 130,
+          "textures": 121,
+          "fpsAvg": 1.06,
+          "fpsP5": 0.88,
+          "callsRange": [
+            133,
+            133
+          ],
+          "trisRange": [
+            871087,
+            871087
+          ],
+          "settleFrames": 21,
+          "frames": 60
+        },
+        "callsDelta": -0.125,
+        "trianglesDelta": 0.0037565090738131968
+      }
+    ],
+    "limits": "SwiftShader software renderer; historical nonconcurrent baseline; explicit noon instead of historical fixed sun. One application renderer, unrelated managed blank browser untouched. No concurrent owner CPU tests during this sample; no controlled FPS equivalence claim. No real-device smoothness claim. PalaceBuilder resident168meshes190105triangles18491660bufferbytes includes bothLODlevels; streamed zones accounted in per-camera render metrics separately."
+  },
+  "published": false
+}

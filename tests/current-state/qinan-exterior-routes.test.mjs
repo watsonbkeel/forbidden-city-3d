@@ -1,3 +1,5 @@
+import {restorePreR32Routes} from '../lib/r32-route-retention.mjs';
+import {restoreR32SourceIfPresent} from '../lib/r32-source-retention.mjs';
 import {restorePreTaiheDaisSource} from '../lib/r7-taihe-dais-retention.mjs';
 import {withLegacyTaiheFrontRoute} from '../lib/r7-taihe-front-retention.mjs';
 import { withLegacyWesternCourtsForVersionComparison } from '../lib/r6-western-route-compat.mjs';
@@ -21,10 +23,11 @@ const fixed=execFileSync(process.execPath,['tests/stepwalk.cjs','60','0','all'],
 const g=qinanGeometry(W.zones.find(z=>z.json.id==='garden').json.items.find(i=>i.qinanProfile));
 
 test('exactly the two named Qin’an descriptors change; all 32 fixed and 57 unrelated automatic descriptors remain exact after the finite R6 Ningshou migration',()=>{
- assert.equal(fixed.length,33);assert.equal(auto.length,59);
+ const historicalFixed=restorePreR32Routes(fixed,'fixed'),historicalAuto=restorePreR32Routes(auto,'auto');
+ assert.equal(historicalFixed.length,33);assert.equal(historicalAuto.length,59);
  assert.equal(fixed.filter(r=>r.name===newFixed).length,1);assert.equal(auto.filter(r=>r.name===newAuto).length,1);
  assert.ok(!fixed.some(r=>r.name===legacyFixed));assert.ok(!auto.some(r=>r.name===legacyAuto));
- const unchangedFixed=withLegacyTaiheFrontRoute(fixed).filter(r=>r.name!==newFixed),unchangedAuto=withLegacyNingshouForVersionComparison(withLegacyWesternCourtsForVersionComparison(auto)).filter(r=>r.name!==newAuto);
+ const unchangedFixed=withLegacyTaiheFrontRoute(historicalFixed).filter(r=>r.name!==newFixed),unchangedAuto=withLegacyNingshouForVersionComparison(withLegacyWesternCourtsForVersionComparison(historicalAuto)).filter(r=>r.name!==newAuto);
  assert.equal(unchangedFixed.length,32);assert.equal(unchangedAuto.length,58);
  assert.equal(JSON.stringify(unchangedFixed),JSON.stringify(baseline.fixed.filter(r=>r.name!==legacyFixed)));
  assert.equal(JSON.stringify(unchangedAuto),JSON.stringify(baseline.auto.filter(r=>r.name!==legacyAuto)));
@@ -76,7 +79,7 @@ test('driver/collision/V5 fixture preserve V7 bytes after finite V9/V14 and stri
   if(path==='src/controls/FirstPerson.js') assertV9MapFirstPersonBytes(old,current);
   else if(path==='src/config/constants.js') assertGateConstantsBytes(old,current);
   else {
-   let retained=path==='src/utils/Collision.js'?restoreV13WayfindingCollisionBytes(current):current;
+   let retained=path==='src/utils/Collision.js'?restoreV13WayfindingCollisionBytes(restoreR32SourceIfPresent(path,current)):current;
    if(path==='tests/lib/stepwalk-runner.cjs'){
     retained=restorePreTaiheDaisSource(path,current).toString();
     for(const {before,after} of preloadDelta.replacements){assert.equal(retained.split(after).length,2,'exact preload-only delta occurs once');retained=retained.replace(after,before);}

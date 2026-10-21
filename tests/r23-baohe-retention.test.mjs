@@ -1,3 +1,4 @@
+import {restorePreR28Source} from './lib/r28-jiaotai-central-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -21,7 +22,7 @@ import r21Scene from './fixtures/r21-baohe-scene-delta.json' with {type:'json'};
 import r20Scene from './fixtures/r20-baohe-scene-delta.json' with {type:'json'};
 
 const root=new URL('../',import.meta.url),sha=x=>createHash('sha256').update(x).digest('hex');
-const hash=x=>sha(JSON.stringify(x)),clone=x=>JSON.parse(JSON.stringify(x)),read=path=>fs.readFileSync(new URL(path,root));
+const hash=x=>sha(JSON.stringify(x)),clone=x=>JSON.parse(JSON.stringify(x)),read=path=>restorePreR28Source(path,fs.readFileSync(new URL(path,root)));
 function capture(Builder){
   const s=new THREE.Scene(),b=new Builder(s,library());
   try{

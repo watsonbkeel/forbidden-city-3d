@@ -47,7 +47,7 @@ export class PlaceCatalog {
       text(f.text); refs(f.sourceIds, allowEmpty); if (f.period !== undefined) text(f.period, 80);
     };
     for (const place of input.places) {
-      shape(place, ['id', 'name', 'functionTag', 'sceneBinding', 'summary', 'functions', 'people', 'timeline', 'modelExperience', 'siteAccess', 'reviewedAt'], ['residenceNote', 'interiorGuide', 'canonicalName', 'evidenceNote', 'evidenceStatus']);
+      shape(place, ['id', 'name', 'functionTag', 'sceneBinding', 'summary', 'functions', 'people', 'timeline', 'modelExperience', 'siteAccess', 'reviewedAt'], ['residenceNote', 'interiorGuide', 'canonicalName', 'aliases', 'evidenceNote', 'evidenceStatus']);
       check(/^[a-z][a-z0-9-]*$/.test(place.id) && !this.byId.has(place.id), 'invalid or duplicate place ID');
       text(place.name, 80); text(place.functionTag, 80); date(place.reviewedAt);
       const b = place.sceneBinding;
@@ -69,6 +69,19 @@ export class PlaceCatalog {
       if (place.people.some(p => ['resident', 'temporary-resident'].includes(p.relation))) check(!!place.residenceNote, 'residence requires evidence note');
       if (place.residenceNote) fact(place.residenceNote);
       if (place.canonicalName !== undefined) text(place.canonicalName, 80);
+      if (place.aliases !== undefined) {
+        list(place.aliases); check(place.aliases.length <= 8, 'too many aliases');
+        const normalize = name => name.normalize('NFKC').toLocaleLowerCase('zh-CN');
+        const names = new Set([place.name, place.canonicalName].filter(Boolean).map(normalize));
+        for (const alias of place.aliases) {
+          shape(alias, ['name', 'sourceIds']); text(alias.name, 80); refs(alias.sourceIds);
+          check(alias.name === alias.name.trim() && !names.has(normalize(alias.name)), 'untrimmed or duplicate alias');
+          // Curated names must retain evidence on this card. Do not turn every
+          // mention of a neighbouring building in descriptive text into an alias.
+          check(alias.sourceIds.every(id => [place.summary, ...place.timeline].some(f => f.text.includes(alias.name) && f.sourceIds.includes(id))), 'alias lacks matching card evidence');
+          names.add(normalize(alias.name));
+        }
+      }
       if (place.evidenceNote !== undefined) fact(place.evidenceNote);
       if (place.evidenceStatus !== undefined) check(["source-supported", "identity-inferred", "identity-unresolved", "partial-history", "partial-identity", "historical-site"].includes(place.evidenceStatus), 'invalid evidence status');
       if (place.interiorGuide !== undefined) {
@@ -130,7 +143,7 @@ export class PlaceCatalog {
   }
   sourcesFor(place) {
     const ids = new Set();
-    for (const item of [place.summary, ...place.functions, ...place.people, ...place.timeline, place.residenceNote, place.evidenceNote, place.siteAccess, place.siteAccess.notice, ...(place.interiorGuide?.items ?? [])]) {
+    for (const item of [place.summary, ...place.functions, ...place.people, ...place.timeline, ...(place.aliases ?? []), place.residenceNote, place.evidenceNote, place.siteAccess, place.siteAccess.notice, ...(place.interiorGuide?.items ?? [])]) {
       item?.sourceIds.forEach(id => ids.add(id));
     }
     return [...ids].map(id => this.sources.get(id));

@@ -1,4 +1,6 @@
 import assert from 'node:assert/strict';
+import {restoreR32SourceIfPresent} from './r32-source-retention.mjs';
+import {restoreR32RoutesIfPresent} from './r32-route-retention.mjs';
 import {createHash} from 'node:crypto';
 import delta from '../fixtures/r22-baohe-routes-delta.json' with {type:'json'};
 
@@ -8,6 +10,7 @@ const hash=value=>sha(JSON.stringify(value));
 /** Historical tests-only source reversal. Runtime source has separate frozen
  * provenance. No application code or current route execution uses this data. */
 export function restorePreR22RouteSource(path,bytes){
+  bytes=restoreR32SourceIfPresent(path,bytes);
   const d=delta.testFiles[path];
   if(!d||sha(bytes)===d.baselineSHA256)return bytes;
   assert.equal(sha(bytes),d.candidateSHA256,`exact R22 tests-only front-crossing source: ${path}`);
@@ -46,6 +49,7 @@ export function restorePreR22BaoheTraversalRoute(row){
 }
 
 export function restorePreR22FixedRoutes(rows){
+  rows=restoreR32RoutesIfPresent(rows,'fixed');
   const d=delta.fixed;
   if(hash(rows)===d.beforeSHA256)return rows;
   assertR22RouteIdentity('fixed',rows);

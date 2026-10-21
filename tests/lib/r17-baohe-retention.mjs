@@ -16,7 +16,8 @@ const hash=value=>sha(JSON.stringify(value));
  */
 export function restorePreR17Source(path,bytes){
   const d=source.files[path];
-  if(!d||sha(bytes)===d.baselineSHA256)return bytes;
+  if(!d)return restorePreR18Source(path,bytes);
+  if(sha(bytes)===d.baselineSHA256)return bytes;
   bytes=restorePreR18Source(path,bytes);
   assert.equal(sha(bytes),d.candidateSHA256,`exact R17 Baohe plinth/column source: ${path}`);
   let out=bytes.toString();

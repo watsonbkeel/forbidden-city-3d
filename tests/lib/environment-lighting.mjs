@@ -10,13 +10,15 @@ const envURL=new URL('../../src/scene/Environment.js',import.meta.url);
 const historicalModule=historicalRaw.toString().replace(/from '([^']+)'/g,(_,specifier)=>`from '${specifier==='three'?new URL('../../node_modules/three/build/three.module.js',import.meta.url).href:new URL(specifier,envURL).href}'`);
 export const {Environment:HistoricalFixedSunEnvironment}=await import('data:text/javascript;base64,'+Buffer.from(historicalModule).toString('base64'));
 const Environment=HistoricalFixedSunEnvironment;
-import { TextureLibrary } from '../../src/utils/TextureLibrary.js';
+import {historicalR34ModuleURL} from './historical-r34-source-dependencies.mjs';
+const {TextureLibrary} = await import(historicalR34ModuleURL('src/utils/TextureLibrary.js'));
 
 export const sha256 = value => createHash('sha256').update(value).digest('hex');
 export const targetToLight = env => env.dirLight.position.clone().sub(env.dirLight.target.position);
 export const modelBearing = vector => (THREE.MathUtils.radToDeg(Math.atan2(-vector.x, vector.z)) + 360) % 360;
 
-// Exercise the real initialization sequence and real TextureLibrary materials.
+// Exercise the real initialization sequence and independently frozen R34
+// TextureLibrary material defaults. Raw R35 material response is tested separately.
 // Only GPU PMREM generation is replaced by an observation of its input scene.
 // Texture image bytes are not loaded; this fixture cannot prove rendered pixels.
 class CPUEnvironment extends Environment {

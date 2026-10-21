@@ -1,0 +1,141 @@
+{
+  "status": "partial, not route pass",
+  "commit": "c8facc4572825e353dfb6fb6861e65099e63587a",
+  "nativePassed": [
+    "Normal start and real high-to-low quality selection",
+    "Map opens and place card opens without teleport; return and close work",
+    "ASCII maw query empty; M/W typing does not move player or close map; clear restores159",
+    "After native Wumen starting-point selection, continuous W/S/A motion through Wumen, central bridge, Taihe Gate and court to Taihe south stair toe"
+  ],
+  "nativeNotCovered": [
+    "Chinese name/alias input because native AT-SPI unavailable",
+    "Full remaining central-axis walk",
+    "Physical mobile/GPU"
+  ],
+  "observation": "D native tool calls generated no KeyD; Right generated NonConvert; explicit ArrowRight rejected as unsupported. These are captured input-boundary failures, not collision proof. Earlier X13.393 stair approach is outside actual clear lane (width5 centered10.5). No product geometry altered.",
+  "endState": {
+    "utc": "2026-10-19T10:30:21.394Z",
+    "elapsedMs": 1108890.300000012,
+    "position": [
+      13.393114057193365,
+      1.7,
+      -59.27507503142538
+    ],
+    "feet": 0,
+    "rotation": [
+      -3.141592653589793,
+      0,
+      -3.141592653589793,
+      "XYZ"
+    ],
+    "pointerLocked": true,
+    "settingsVisible": false,
+    "quality": "low",
+    "mapVisible": false,
+    "mapCompact": false,
+    "placeTitle": "太和殿",
+    "placeHidden": true,
+    "placeInfoDisplay": "",
+    "placeText": "太和殿国家典礼登极、册后以及重要节庆的朝贺，都曾在这里举行。前往此处前往模型中的现有安全观览点；能否入内以模型当前路线为准。殿内看点宝座与屏风：高台上的雕龙宝座，背后配七扇屏风，前方设独立脚踏。故宫档案记载，这件宝座在库房被重新找到后，经一年多修复，于1964年9月完工。“建极绥猷”匾：宝座上方的“建极绥猷”原匾为乾隆御笔。故宫2002年记录称原匾下落未明，遂依1900年旧照复制匾联，并于同年9月18日归位。藻井与宝珠：宝座前上方的藻井从方形逐层收为八角和圆形。中央雕龙俯首，官方照片中可见一大六小的球组，周围是带龙纹的格状天花。六根金柱：宝座两侧共有六根金色大柱。柱上的云龙纹以沥粉工艺做出浅浅起伏，再贴深浅两种金箔，让龙纹在金色底面上显得更清楚。宝座前的四对陈设：宝座前两侧有宝象、甪端、仙鹤和香亭各一对。象背负瓶，仙鹤颈腿细长；香亭属于亭式香筒类陈设，和鼎式熏炉的造型不同。举行大典的正殿：太和殿主要举行登极、册后和节庆朝贺等大典。皇帝日常起居另有寝宫，例如明代皇帝曾住乾清宫；这里的宝座应放在礼仪场景中理解。本节依据已保存的故宫官方资料整理，未核验当前陈列。模型的尺寸、摆位、纹饰与器物细节为近似或简化，画面尚未完成对照验收。用途与历史明清 · 用于重大典礼，包括节庆朝贺；清初也曾举行殿试，后来殿试改在保和殿。人物与活动明清皇帝 · 明清 · 在此主持登极、册后等盛典并接受朝贺。历史沿",
+    "searchCount": "显示 159 / 159 个地点",
+    "searchValue": "",
+    "searchNames": [
+      "午门",
+      "太和门",
+      "太和殿",
+      "中和殿",
+      "保和殿",
+      "乾清门",
+      "乾清宫",
+      "交泰殿",
+      "坤宁宫",
+      "钦安殿",
+      "文华殿",
+      "武英殿",
+      "体仁阁",
+      "弘义阁",
+      "协和门",
+      "熙和门",
+      "左翼门",
+      "右翼门",
+      "景运门",
+      "隆宗门"
+    ],
+    "focus": {
+      "id": "structural-preview-button",
+      "tag": "BUTTON"
+    },
+    "clockText": "时刻预览 12:01 · 白昼",
+    "interiors": [],
+    "welcome": "none",
+    "viewport": [
+      1180,
+      757
+    ],
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "events": [
+      {
+        "type": "keydown",
+        "code": "KeyW",
+        "tag": "BUTTON",
+        "id": "structural-preview-button",
+        "utc": "2026-10-19T10:26:44.244Z"
+      },
+      {
+        "type": "keyup",
+        "code": "KeyW",
+        "tag": "BUTTON",
+        "id": "structural-preview-button",
+        "utc": "2026-10-19T10:27:01.244Z"
+      },
+      {
+        "type": "keydown",
+        "code": "KeyS",
+        "tag": "BUTTON",
+        "id": "structural-preview-button",
+        "utc": "2026-10-19T10:27:53.416Z"
+      },
+      {
+        "type": "keyup",
+        "code": "KeyS",
+        "tag": "BUTTON",
+        "id": "structural-preview-button",
+        "utc": "2026-10-19T10:27:55.413Z"
+      },
+      {
+        "type": "keydown",
+        "code": "NonConvert",
+        "tag": "BUTTON",
+        "id": "structural-preview-button",
+        "utc": "2026-10-19T10:28:31.834Z"
+      },
+      {
+        "type": "keyup",
+        "code": "NonConvert",
+        "tag": "BUTTON",
+        "id": "structural-preview-button",
+        "utc": "2026-10-19T10:28:35.841Z"
+      },
+      {
+        "type": "keydown",
+        "code": "ShiftLeft",
+        "tag": "BUTTON",
+        "id": "structural-preview-button",
+        "utc": "2026-10-19T10:29:01.132Z"
+      },
+      {
+        "type": "keyup",
+        "code": "ShiftLeft",
+        "tag": "BUTTON",
+        "id": "structural-preview-button",
+        "utc": "2026-10-19T10:29:04.025Z"
+      }
+    ],
+    "errors": []
+  },
+  "captureCount": 2,
+  "screenshots": [
+    "01-taihe-place-card.png",
+    "02-taihe-stair-approach.png"
+  ]
+}

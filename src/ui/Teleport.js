@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { PALACE_LAYOUT } from '../scene/Layout.js';
 import { ZONES } from '../../data/zones/index.js';
 import { TELEPORT, PLAYER } from '../config/constants.js';
+import { yanxiRuinGeometry } from '../scene/palace/special/YanxiRuin.js';
 import { qinanGeometry } from '../scene/palace/special/QinanProfile.js';
 import { KUNNING_PROFILE, bindKunningProfile } from '../scene/palace/special/KunningProfile.js';
 
@@ -36,6 +37,10 @@ export class Teleport {
   geometryFor(name) {
     const target = this.targets.get(name);
     if (!target) throw new Error(`未知传送目标：${name}`);
+    if (target.structure === 'yanxi-ruin') {
+      const profile=yanxiRuinGeometry(target);
+      return {name,cx:profile.x,cz:profile.z,navigation:profile.navigation,ruinProfile:profile.profile,requiredZone:'east-six',ruinGeometry:profile};
+    }
     if (target.structure === 'qinan-hall' || target.qinanProfile !== undefined) {
       const profile = qinanGeometry(target), annex = profile.southAnnex;
       const xs = profile.mainBody.columnFootGrid.xs, bay = Math.floor((xs.length - 1) / 2);
@@ -103,6 +108,7 @@ export class Teleport {
    * 或走到离正面 ≤ NEAR_FRONT m（同侧、视线不被墙隔断）。
    */
   isSafe(p, g) {
+    if (g.ruinProfile) return this.isRuinExteriorViewSafe(p,g);
     if (g.navigation?.mode === 'exterior-view') return this.isExteriorViewSafe(p, g);
     if (g.entryProfile) return this.isProfileApproachSafe(p, g);
     const cm = this.collisionManager;
@@ -122,6 +128,26 @@ export class Teleport {
     p.walk = +progressed.toFixed(2);
     if (!(progressed >= TELEPORT.MIN_WALK || remain <= TELEPORT.NEAR_FRONT)) return false;
     return this.lineOfSight(p, g);
+  }
+
+  /** A protected ruin has a ground viewpoint, never a guessed hall entrance. */
+  isRuinExteriorViewSafe(p,g) {
+    const cm=this.collisionManager,n=g.navigation,r=g.ruinGeometry;
+    if(!this.zoneManager.getLoadedIds?.().includes(g.requiredZone))return false;
+    const map=this.zoneManager.loaded?.get(g.requiredZone)?.data.mapItems;
+    if(!map?.some(m=>m.name===g.name&&m.ruinProfile===g.ruinProfile))return false;
+    if(p.x!==n.position.x||p.z!==n.position.z||n.position.feetY!==0)return false;
+    if(cm.getGroundHeight(p.x,p.z,0,PLAYER.STEP_UP)!==0||cm.getGroundHeight(p.x,p.z,Infinity)!==0)return false;
+    const pool=r.pool,x0=r.x-pool.guardW/2,x1=r.x+pool.guardW/2,z0=r.z-pool.guardD/2,z1=r.z+pool.guardD/2;
+    for(const[a,b,c,d]of[[x0,z0,x1,z0],[x1,z0,x1,z1],[x1,z1,x0,z1],[x0,z1,x0,z0]]){
+      const expected=new THREE.Box3(new THREE.Vector3(Math.min(a,c)-.04,0,Math.min(b,d)-.04),new THREE.Vector3(Math.max(a,c)+.04,pool.guardTopY+.03,Math.max(b,d)+.04));
+      if(!cm.colliders.some(c=>c.tag===g.requiredZone&&c.box.min.distanceTo(expected.min)<1e-6&&c.box.max.distanceTo(expected.max)<1e-6))return false;
+    }
+    const eye=new THREE.Vector3(p.x,PLAYER.HEIGHT,p.z);if(cm.checkCollision(eye,.5))return false;
+    const delta=new THREE.Vector3(n.lookAt.x,n.lookAt.y,n.lookAt.z).sub(eye),direction=delta.clone().normalize();
+    const boundaryDistance=(z0-eye.z)/direction.z,ray=new THREE.Ray(eye,direction),hit=new THREE.Vector3();
+    if(!(boundaryDistance>0)||cm.colliders.some(c=>ray.intersectBox(c.box,hit)&&eye.distanceTo(hit)<boundaryDistance-1e-6))return false;
+    p.y=0;p.viewpointVerified=true;return true;
   }
 
   /** A ground-level exterior view is not an entrance. Require the actual

@@ -148,9 +148,23 @@ body {
 }
 
 #help-panel {
-  pointer-events: none;
+  position: fixed;
+  top: 96px;
+  left: 20px;
+  z-index: 1000;
+  max-width: min(320px, calc(100vw - 40px));
+  color: #f1e5cb;
+  background: rgba(15, 14, 12, .8);
+  border-radius: 6px;
+  font: 13px/1.5 Arial, sans-serif;
   user-select: none;
 }
+#help-panel > button { min-height: 40px; padding: 6px 12px; color: inherit; background: transparent; border: 1px solid #a4916c; border-radius: 6px; cursor: pointer; }
+#help-panel-body { padding: 4px 12px 10px; max-height: calc(100dvh - 190px); overflow-y: auto; }
+#help-panel-body[hidden] { display: none; }
+#help-panel-body p { margin: 7px 0; }
+body.map-open #help-panel { display: none; }
+#location-panel .model-status { display: block; margin-top: 3px; font-size: 11px; color: #ded0af; }
 
 /* 画质按钮 */
 #quality-button {
@@ -204,8 +218,9 @@ body {
   
   #help-panel {
     font-size: 12px;
-    padding: 10px 15px;
     line-height: 1.5;
+    left: 10px;
+    top: 90px;
   }
   
   #quality-button {

@@ -2,7 +2,13 @@ import * as THREE from 'three';
 import { CourtKit, FACE } from '../palace/kit.js';
 import { resolveCourtWallContract } from './CourtWallContract.js';
 import { buildEastWestCityGate } from '../palace/special/EastWestCityGate.js';
+import { buildYanxiRuin } from '../palace/special/YanxiRuin.js';
+import { detachYanxiRuinFrames, installYanxiRuinLODs } from '../palace/special/YanxiRuinLOD.js';
+import { buildYanxiStorehouse } from '../palace/special/YanxiStorehouses.js';
 import { historicalGateMapItem } from './HistoricalGateSites.js';
+import { buildChuxiuHall } from '../palace/special/ChuxiuHall.js';
+import { buildChuxiuCourtyard } from '../palace/special/ChuxiuCourtyard.js';
+import { buildYikunSideAccess } from '../palace/special/YikunSideAccess.js';
 
 /**
  * 分区构建器基类：从 zone JSON 构建一个区域的所有建筑。
@@ -73,8 +79,15 @@ export class ZoneBase {
       }
     }
     
-    // 合并几何
+    if (this.zoneJson.yikunAccessProfile !== undefined) buildYikunSideAccess(this.kit, this.zoneJson);
+
+    // Explicit opt-in, after all retained halls, before material merging.
+    if (this.zoneJson.courtyardProfile !== undefined) buildChuxiuCourtyard(this.kit, this.zoneJson);
+
+    // Keep distance levels out of the ordinary recursive material merge.
+    const yanxiFrames = detachYanxiRuinFrames(this.kit.root);
     this.group = this.kit.finish();
+    installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);
     
     // silhouette：本区屋顶的合并低模（Phase 1 优化时实现，当前返回 null）
     // 实在拿不到屋顶网格就先返回 null，不强求改 kit 内部
@@ -108,6 +121,12 @@ export class ZoneBase {
   // ───────────────────────── 各 kind 构建方法 ─────────────────────────
 
   buildHall(item) {
+    if (item.structure === 'chuxiu-household' || item.chuxiuProfile !== undefined) {
+      if (this.zoneJson.id !== 'west-six' || item.name !== '储秀宫') throw new Error('Chuxiu profile belongs only to west-six/储秀宫');
+      return buildChuxiuHall(this.kit, item);
+    }
+    if (item.structure === 'yanxi-ruin' || item.ruinProfile !== undefined) return buildYanxiRuin(this.kit,item);
+    if (item.structure === 'yanxi-storehouse' || item.storehouseProfile !== undefined) return buildYanxiStorehouse(this.kit,item);
     const params = {
       x: item.x,
       z: item.z,
@@ -175,7 +194,7 @@ export class ZoneBase {
     };
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
     const width = this.kit.gate(params);
-    if (item.gateProfile === 'zhaode') this.gateGeometries.set(item.name, this.kit.root.children.at(-1).userData.gateGeometry);
+    if (item.gateProfile === 'zhaode' || item.gateProfile === 'huangji') this.gateGeometries.set(item.name, this.kit.root.children.at(-1).userData.gateGeometry);
     return width; // 返回开口宽度
   }
 
@@ -260,6 +279,8 @@ export class ZoneBase {
     const tex = new THREE.TextureLoader().load(`${import.meta.env?.BASE_URL ?? '/'}textures/nine_dragon.webp`);
     tex.colorSpace = THREE.SRGBColorSpace;
     tex.anisotropy = 8;
+    // This photo belongs to this zone generation, unlike borrowed library maps.
+    (k.ownedTextures ??= []).push(tex);
     const face = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.35, metalness: 0.05, name: 'kit_nine_dragon_face' });
     k.owned.push(face);
     const fg = new THREE.PlaneGeometry(len - 0.4, fh);

@@ -1,0 +1,2256 @@
+{
+  "schema": 1,
+  "baseline": "2cd8189db462e34a2ffc5573a435db8a0a77cccb",
+  "candidate": "09b657053051c7d09c54594944bf6f8b5cb1f1b0",
+  "files": {
+    "src/render/PostProcessing.js": {
+      "baselineSHA256": "62deb7263e88377838b035dd38df087b52d414e02c7173529e7f61718474057f",
+      "baselineBytes": 6351,
+      "baselineGitBlob": "125ae3f3d1fe74db7eb2df887b4d3f7335d83086",
+      "candidateSHA256": "1515a2d0c057fe713ec0bd179ea26be8ef4cbd077e25f56c5ea96505ebc92d05",
+      "candidateBytes": 6580,
+      "candidateGitBlob": "245dd23883855f38bf67b643ddcd7a50a3def499",
+      "baselineUTF8": "import * as THREE from 'three';\nimport { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';\nimport { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';\nimport { DepthSSAOPass } from './DepthSSAOPass.js';\nimport { BatchedBuilder } from './BatchedBuilder.js';\nimport { OcclusionByWall } from './OcclusionByWall.js';\nimport { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';\nimport { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';\nimport { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass.js';\nimport { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js';\nimport { POST_PROCESSING } from '../config/constants.js';\n\n/**\n * 后期处理管线\n * 包含 SSAO、Bloom、FXAA 等效果\n */\n\nexport class PostProcessing {\n  constructor(renderer, scene, camera) {\n    this.renderer = renderer;\n    this.scene = scene;\n    this.camera = camera;\n    this.enabled = true;\n    this.batchedBuilder = new BatchedBuilder(scene);\n    this.occlusion = new OcclusionByWall();\n    \n    this.composer = null;\n    this.ssaoPass = null;\n    this.bloomPass = null;\n    this.fxaaPass = null;\n  }\n  \n  /**\n   * 初始化后期处理\n   */\n  init(quality = 'high') {\n    const size = this.renderer.getSize(new THREE.Vector2());\n    \n    // 创建 Composer\n    const target = new THREE.WebGLRenderTarget(size.x, size.y, {\n      type: THREE.HalfFloatType,\n      depthTexture: new THREE.DepthTexture(size.x, size.y),\n    });\n    this.composer = new EffectComposer(this.renderer, target);\n    this.pixelRatio = this.renderer.getPixelRatio();\n    \n    // 基础渲染 Pass\n    const renderPass = new RenderPass(this.scene, this.camera);\n    this.composer.addPass(renderPass);\n    \n    // SSAO Pass\n    if (quality === 'high') {\n      this.ssaoPass = new DepthSSAOPass(this.scene, this.camera, size.x, size.y);\n      this.ssaoPass.kernelRadius = POST_PROCESSING.SSAO.kernelRadius;\n      this.ssaoPass.minDistance = POST_PROCESSING.SSAO.minDistance;\n      this.ssaoPass.maxDistance = POST_PROCESSING.SSAO.maxDistance;\n      this.ssaoPass.output = POST_PROCESSING.SSAO.output;\n      this.composer.addPass(this.ssaoPass);\n    }\n    \n    // Bloom Pass\n    if (quality === 'high') {\n      this.bloomPass = new UnrealBloomPass(\n        new THREE.Vector2(size.x, size.y),\n        POST_PROCESSING.BLOOM.strength,\n        POST_PROCESSING.BLOOM.radius,\n        POST_PROCESSING.BLOOM.threshold\n      );\n      this.composer.addPass(this.bloomPass);\n    }\n    \n    // 输出 Pass：r152+ 使用 EffectComposer 时必须加，负责线性空间 → sRGB 转换，\n    // 否则画面会整体偏暗、发灰\n    this.composer.addPass(new OutputPass());\n    \n    // FXAA 抗锯齿（放在 OutputPass 之后，在 sRGB 空间做抗锯齿效果最好）\n    this.fxaaPass = new ShaderPass(FXAAShader);\n    this.fxaaPass.material.uniforms['resolution'].value.x = 1 / (size.x * this.renderer.getPixelRatio());\n    this.fxaaPass.material.uniforms['resolution'].value.y = 1 / (size.y * this.renderer.getPixelRatio());\n    this.composer.addPass(this.fxaaPass);\n    \n    this.quality = quality;\n  }\n  \n  /**\n   * 渲染\n   */\n  render() {\n    this.camera.updateMatrixWorld();\n    const manager = this.scene.userData.zoneManager;\n    if (manager && !manager.loadAll) this.occlusion.update(manager, this.camera.position, this.camera);\n    this.batchedBuilder.begin();\n    try {\n      if (this.enabled && this.composer) {\n        this.composer.render();\n      } else {\n        this.renderer.render(this.scene, this.camera);\n      }\n    } finally {\n      this.batchedBuilder.end();\n    }\n  }\n  \n  /**\n   * 窗口大小改变时更新\n   */\n  onResize(width, height) {\n    if (!this.composer) return;\n    \n    // Composer 统一传递物理像素尺寸，不能再用 CSS 尺寸覆盖各 Pass。\n    const pixelRatio = this.renderer.getPixelRatio();\n    if (this.pixelRatio !== pixelRatio) {\n      this.composer.setPixelRatio(pixelRatio);\n      this.pixelRatio = pixelRatio;\n    }\n    this.composer.setSize(width, height);\n    \n    // 更新 FXAA\n    if (this.fxaaPass) {\n      const pixelRatio = this.renderer.getPixelRatio();\n      this.fxaaPass.material.uniforms['resolution'].value.x = 1 / (width * pixelRatio);\n      this.fxaaPass.material.uniforms['resolution'].value.y = 1 / (height * pixelRatio);\n    }\n  }\n  \n  /**\n   * 切换画质\n   */\n  setQuality(quality) {\n    if (this.quality === quality) return;\n    \n    // 只重建后期处理；场景批次由场景变化或完整销毁负责释放。\n    this.disposePostProcessing();\n    this.init(quality);\n    \n    // 需要重新设置渲染器尺寸\n    const size = this.renderer.getSize(new THREE.Vector2());\n    this.onResize(size.x, size.y);\n  }\n  \n  /**\n   * 启用/禁用后期处理\n   */\n  setEnabled(enabled) {\n    this.enabled = enabled;\n  }\n  \n  /**\n   * 调整 SSAO 参数\n   */\n  setSSAOParams(params) {\n    if (!this.ssaoPass) return;\n    \n    if (params.kernelRadius !== undefined) {\n      this.ssaoPass.kernelRadius = params.kernelRadius;\n    }\n    if (params.minDistance !== undefined) {\n      this.ssaoPass.minDistance = params.minDistance;\n    }\n    if (params.maxDistance !== undefined) {\n      this.ssaoPass.maxDistance = params.maxDistance;\n    }\n  }\n  \n  /**\n   * 调整 Bloom 参数\n   */\n  setBloomParams(params) {\n    if (!this.bloomPass) return;\n    \n    if (params.strength !== undefined) {\n      this.bloomPass.strength = params.strength;\n    }\n    if (params.radius !== undefined) {\n      this.bloomPass.radius = params.radius;\n    }\n    if (params.threshold !== undefined) {\n      this.bloomPass.threshold = params.threshold;\n    }\n  }\n  \n  /**\n   * 清理资源\n   */\n  dispose() {\n    this.batchedBuilder.dispose();\n    this.disposePostProcessing();\n  }\n\n  disposePostProcessing() {\n    if (this.composer) {\n      this.composer.passes.forEach(pass => {\n        // r162 SSAOPass.dispose 漏掉噪声纹理和 SSAO 材质，需由管线补全。\n        if (pass === this.ssaoPass) {\n          pass.noiseTexture?.dispose();\n          pass.ssaoMaterial?.dispose();\n        }\n        if (pass.dispose) pass.dispose();\n      });\n      this.composer.dispose();\n    }\n    this.composer = null;\n    this.ssaoPass = null;\n    this.bloomPass = null;\n    this.fxaaPass = null;\n    this.quality = null;\n  }\n}\n",
+      "deltas": [
+        {
+          "before": "          pass.noiseTexture?.dispose();\n          pass.ssaoMaterial?.dispose();\n        }\n        if (pass.dispose) pass.dispose();\n      });\n      this.composer.dispose();\n",
+          "after": "          pass.noiseTexture?.dispose();\n          pass.ssaoMaterial?.dispose();\n        }\n        // r162 UnrealBloomPass.dispose omits its privately owned high-pass\n        // material. Release it on quality changes and full teardown alike.\n        if (pass === this.bloomPass) pass.materialHighPassFilter?.dispose();\n        if (pass.dispose) pass.dispose();\n      });\n      this.composer.dispose();\n"
+        }
+      ]
+    },
+    "src/scene/palace/kit.js": {
+      "baselineSHA256": "1012ddd83e14163e997e61c617d8dd9963c563e5d5648bf64a59864a25e18e44",
+      "baselineBytes": 35012,
+      "baselineGitBlob": "e7fd77f9b212a4509543ebd702108c28738a8236",
+      "candidateSHA256": "5b014770ef6352c378ce1c60897af962880156e098e6b2520736a34ca99da48c",
+      "candidateBytes": 35023,
+      "candidateGitBlob": "f72f8775fd97cb8e13888d81539c78324fbd25ff",
+      "baselineUTF8": "import * as THREE from 'three';\nimport { applyBoxUV, applyBandUV } from '../../utils/GeometryUV.js';\nimport { buildRoof, buildWallCap } from '../RoofBuilder.js';\nimport { buildStuddedDoor } from '../HallKit.js';\nimport { mergeByMaterial } from '../../utils/MergeUtils.js';\nimport { furnishRoom, goldBrickTexture, GOLD_BRICK_TILE } from './interiors.js';\nimport { buildHuangjiGate } from './special/HuangjiGate.js';\nimport { buildSideGate } from './special/SideGate.js';\nimport { buildZhaodeGate } from './special/ZhaodeGate.js';\nimport { buildTirenPavilion } from './special/TirenPavilion.js';\nimport { buildSurveyedPavilion } from './special/SurveyedPavilion.js';\nimport { buildQinanHall } from './special/QinanHall.js';\n\nconst STEP_RUN = 1.6; // 台阶水平长 / 高\nconst _v = new THREE.Vector3();\n\n/**\n * 院落建筑构件库：宫墙、宫门（随墙门 / 门殿 / 城台门）、可进入的殿座、庑房、匾额。\n *\n * 坐标约定（与 PalaceBuilder 一致）：+Z 北，-X 东（玩家面向北时东在右手），y=0 为地面。\n * 每个构件在一个 frame（位置 + 绕 Y 旋转 0/±90°/180°）里按\"正面朝局部 -Z\"建模，\n * 碰撞体 / 可行走面直接换算为世界坐标登记；finish() 时整组按材质合并，绘制调用很少。\n *\n * 门扇统一做法（与神武门一致）：门打开后两扇门板贴在门洞两侧墙面上，不挡通道。\n */\nexport class CourtKit {\n  constructor(lib, name = 'courts') {\n    this.lib = lib;\n    this.root = new THREE.Group();\n    this.root.name = name;\n    this.colliders = [];\n    this.walkables = [];\n    this.mapItems = [];\n    this.regions = [];\n    this.plaques = [];\n    /** 可进入的房间（世界坐标），供小地图 / 位置显示 / 未来玩法（刷怪点、掩体、巷战区域）使用 */\n    this.rooms = [];\n    this.ridge = new THREE.MeshStandardMaterial({ color: 0xc98f2c, roughness: 0.36, metalness: 0.05, name: 'kit_ridge' });\n    this.gold = new THREE.MeshStandardMaterial({ color: 0xe2b048, roughness: 0.28, metalness: 0.8, name: 'kit_gold' });\n    this.lacquer = new THREE.MeshStandardMaterial({ color: 0x7a1d12, roughness: 0.4, metalness: 0.1, name: 'kit_lacquer' });\n    // 殿内地面：平整深灰方砖，不带法线贴图、低反光（原先石板法线 + 低粗糙度在大面积地面上像起伏的水面）\n    this.floorMat = new THREE.MeshStandardMaterial({\n      color: 0xffffff, map: goldBrickTexture(), roughness: 0.8, metalness: 0, name: 'kit_floor_flat',\n    });\n    this.owned = [this.ridge, this.gold, this.lacquer, this.floorMat];\n  }\n\n  // ───────────────────────── 基础 ─────────────────────────\n\n  /** 局部坐标系：原点 (x, 0, z)，绕 Y 旋转 rot（正面 -Z 旋转后朝向 (-sin rot, 0, -cos rot)） */\n  frame(x, z, rot = 0) {\n    const f = new THREE.Group();\n    f.position.set(x, 0, z);\n    f.rotation.y = rot;\n    this.root.add(f);\n    f.updateMatrixWorld(true);\n    return f;\n  }\n\n  box(f, name, w, h, d, x, y, z, mode = 'box', params) {\n    const t = this.lib.tileSize(name);\n    let geo = new THREE.BoxGeometry(w, h, d);\n    if (mode === 'band') geo = applyBandUV(geo, t);\n    else if (mode === 'box') geo = applyBoxUV(geo, t);\n    const m = new THREE.Mesh(geo, this.lib.material(name, params));\n    m.position.set(x, y, z);\n    m.castShadow = m.receiveShadow = true;\n    f.add(m);\n    return m;\n  }\n\n  mesh(f, geo, mat, x, y, z) {\n    const m = new THREE.Mesh(geo, mat);\n    m.position.set(x, y, z);\n    m.castShadow = m.receiveShadow = true;\n    f.add(m);\n    return m;\n  }\n\n  col(f, x0, y0, z0, x1, y1, z1) {\n    const b = new THREE.Box3(\n      new THREE.Vector3(Math.min(x0, x1), Math.min(y0, y1), Math.min(z0, z1)),\n      new THREE.Vector3(Math.max(x0, x1), Math.max(y0, y1), Math.max(z0, z1)),\n    );\n    this.colliders.push(b.applyMatrix4(f.matrixWorld));\n  }\n\n  walkBox(f, x0, z0, x1, z1, y) {\n    const b = new THREE.Box3(\n      new THREE.Vector3(Math.min(x0, x1), y, Math.min(z0, z1)),\n      new THREE.Vector3(Math.max(x0, x1), y, Math.max(z0, z1)),\n    ).applyMatrix4(f.matrixWorld);\n    this.walkables.push({ type: 'box', box: b });\n  }\n\n  /** 局部沿 Z 的坡道（zFrom 处高 yFrom → zTo 处高 yTo），旋转后自动换算为世界轴向 */\n  walkRamp(f, x0, x1, zFrom, zTo, yFrom, yTo) {\n    const p = (x, z) => new THREE.Vector3(x, 0, z).applyMatrix4(f.matrixWorld);\n    const a = p(x0, zFrom), b = p(x1, zTo);\n    const s = p((x0 + x1) / 2, zFrom), e = p((x0 + x1) / 2, zTo);\n    const alongZ = Math.abs(e.z - s.z) >= Math.abs(e.x - s.x);\n    this.walkables.push({\n      type: 'ramp',\n      minX: Math.min(a.x, b.x), maxX: Math.max(a.x, b.x),\n      minZ: Math.min(a.z, b.z), maxZ: Math.max(a.z, b.z),\n      axis: alongZ ? 'z' : 'x',\n      a0: alongZ ? s.z : s.x, a1: alongZ ? e.z : e.x,\n      y0: yFrom, y1: yTo,\n    });\n  }\n\n  /** 屋顶 / 墙帽等自带材质的构件：把屋脊、宝顶材质换成共享材质，合并后只占两个绘制调用 */\n  adopt(obj) {\n    obj.traverse(m => {\n      if (!m.isMesh) return;\n      if (m.material.name === 'roof_ridge_glaze') m.material = this.ridge;\n      else if (m.material.name === 'roof_finial_gold') m.material = this.gold;\n    });\n    (obj.userData.ownedMaterials ?? []).forEach(m => m.dispose());\n    obj.userData.ownedMaterials = [];\n    return obj;\n  }\n\n  roof(f, opts, x = 0, z = 0) {\n    const r = this.adopt(buildRoof(this.lib, { detail: 'low', ...opts }));\n    r.position.set(x, 0, z);\n    f.add(r);\n    return r;\n  }\n\n  /** 世界坐标轴对齐矩形，供小地图与\"当前位置\"使用 */\n  mapRect(f, kind, name, w, d, extra = {}) {\n    const c = new THREE.Vector3().applyMatrix4(f.matrixWorld);\n    const q = Math.abs(Math.sin(f.rotation.y)) > 0.5;\n    this.mapItems.push({ kind, name, x: c.x, z: c.z, w: q ? d : w, d: q ? w : d, ...extra });\n  }\n\n  // ───────────────────────── 室内 ─────────────────────────\n\n  interiorMaterials() {\n    if (!this._interiorMats) {\n      const mk = (name, color, roughness = 0.6) => {\n        const m = new THREE.MeshStandardMaterial({ color, roughness, metalness: 0.05, name });\n        this.owned.push(m);\n        return m;\n      };\n      this._interiorMats = {\n        wood: mk('kit_furn_wood', 0x5a2f1c, 0.55),\n        crate: mk('kit_furn_crate', 0x7a5634, 0.85),\n        cloth: mk('kit_furn_cloth', 0xb98a2e, 0.9),\n        lacquer: this.lacquer,\n        gold: this.gold,\n      };\n    }\n    return this._interiorMats;\n  }\n\n  furnish(f, kind, room) {\n    const seed = Math.round(Math.abs(f.position.x * 131 + f.position.z * 17 + room.x0 * 7));\n    const res = furnishRoom(this, f, kind, room, seed);\n    this._lastFurnish = res;\n    return res;\n  }\n\n  /** 登记一个房间：局部矩形 → 世界 AABB，门 / 掩体 / 刷怪点 → 世界坐标 */\n  registerRoom(f, { name, kind, x0, x1, z0, z1, y, h, doors }) {\n    const toW = (x, z) => new THREE.Vector3(x, 0, z).applyMatrix4(f.matrixWorld);\n    const a = toW(x0, z0), b = toW(x1, z1);\n    const pt = p => { const v = toW(p.x, p.z); return { x: +v.x.toFixed(2), z: +v.z.toFixed(2) }; };\n    const extra = kind === 'throne' ? { cover: [], spawns: [] } : (this._lastFurnish ?? { cover: [], spawns: [] });\n    this._lastFurnish = null;\n    if (name) this.region(name, a.x, b.x, a.z, b.z);\n    this.rooms.push({\n      id: this.rooms.length,\n      name, kind,\n      min: { x: Math.min(a.x, b.x), y, z: Math.min(a.z, b.z) },\n      max: { x: Math.max(a.x, b.x), y: y + h, z: Math.max(a.z, b.z) },\n      floorY: y,\n      doors: doors.map(pt),\n      cover: extra.cover.map(pt),\n      spawns: (extra.spawns.length ? extra.spawns : [{ x: (x0 + x1) / 2, z: (z0 + z1) / 2 }]).map(pt),\n    });\n  }\n\n  region(name, x0, x1, z0, z1) {\n    this.regions.push({ name, minX: Math.min(x0, x1), maxX: Math.max(x0, x1), minZ: Math.min(z0, z1), maxZ: Math.max(z0, z1) });\n  }\n\n  // ───────────────────────── 宫墙 ─────────────────────────\n\n  /**\n   * 轴对齐红墙（灰砖下碱 + 黄琉璃墙帽）。gaps: [{ at, w }]，at 为沿墙方向的世界坐标。\n   */\n  wall(x1, z1, x2, z2, { h = 6.5, t = 1, gaps = [] } = {}) {\n    const alongX = Math.abs(x2 - x1) >= Math.abs(z2 - z1);\n    const a0 = alongX ? Math.min(x1, x2) : Math.min(z1, z2);\n    const a1 = alongX ? Math.max(x1, x2) : Math.max(z1, z2);\n    const c = alongX ? z1 : x1;\n    const cuts = gaps.map(g => [g.at - g.w / 2, g.at + g.w / 2]).sort((p, q) => p[0] - q[0]);\n    let s = a0;\n    const segs = [];\n    for (const [g0, g1] of cuts) {\n      if (g0 > s + 0.05) segs.push([s, Math.min(g0, a1)]);\n      s = Math.max(s, g1);\n    }\n    if (a1 > s + 0.05) segs.push([s, a1]);\n    for (const [p0, p1] of segs) {\n      const len = p1 - p0;\n      const mid = (p0 + p1) / 2;\n      const f = alongX ? this.frame(mid, c, 0) : this.frame(c, mid, Math.PI / 2);\n      this.box(f, 'wall_brick', len, 1.0, t + 0.12, 0, 0.5, 0);\n      this.box(f, 'wall_red', len, h - 1.0, t, 0, 1.0 + (h - 1) / 2, 0);\n      const cap = this.adopt(buildWallCap(this.lib, { length: len, thickness: t }));\n      cap.position.y = h;\n      f.add(cap);\n      this.col(f, -len / 2, 0, -t / 2, len / 2, 3, t / 2);\n    }\n  }\n\n  /** 矩形院墙，gates: [{ side: 's'|'n'|'xmin'|'xmax', at, w }]（at 为沿墙世界坐标，w 为墙上开口宽） */\n  courtWalls(x0, x1, z0, z1, gates = [], opts = {}) {\n    const by = side => gates.filter(g => g.side === side).map(g => ({ at: g.at, w: g.w }));\n    this.wall(x0, z0, x1, z0, { ...opts, gaps: by('s') });\n    this.wall(x0, z1, x1, z1, { ...opts, gaps: by('n') });\n    this.wall(x0, z0, x0, z1, { ...opts, gaps: by('xmin') });\n    this.wall(x1, z0, x1, z1, { ...opts, gaps: by('xmax') });\n  }\n\n  // ───────────────────────── 门 ─────────────────────────\n\n  /**\n   * 打开的门扇：两扇门板贴在门洞两侧墙面上（铰链在 zHinge，门板向 +Z 方向展开）。\n   * @param jamb 门洞半宽（门板外侧贴住的墙面位置）\n   */\n  doors(f, { jamb, height, zHinge, leaf }) {\n    for (const s of [-1, 1]) {\n      const d = buildStuddedDoor(this.lib, { width: leaf, height });\n      d.position.set(s * (jamb - 0.14), 0, zHinge + leaf / 2);\n      d.rotation.y = Math.PI / 2;\n      f.add(d);\n    }\n  }\n\n  /**\n   * 宫门。原点 = 门道中心，通行方向沿局部 Z，正面朝局部 -Z。返回墙上需要留出的开口宽度。\n   * - style 'wall'：随墙门（两侧门垛 + 门罩），开口宽 = w + 2.8\n   * - style 'hall'：门殿（三间，明间为门道，门扇在中柱一线、打开后贴两侧隔墙），开口宽 = 门殿面阔\n   */\n  gate({ x, z, rot, w = 3.6, h = 4.4, t = 1, style = 'wall', gateKind, gateProfile, open, plaque, name, roof = 'xieshan', brackets = true, layers = 1, eaveCount }) {\n    if (gateProfile === 'huangji') return buildHuangjiGate(this, {x,z,rot,w,style,gateKind,gateProfile,open,name});\n    if (gateProfile === 'zhaode') {\n      if (gateKind !== 'three-bay') throw new Error('Zhaode profile requires explicit three-bay gateKind');\n      return buildZhaodeGate(this, { x, z, rot, w, h, t, gateKind, gateProfile, open, plaque, name });\n    }\n    if (gateProfile !== undefined) {\n      if (gateKind !== 'five-bay') throw new Error('Side gate profile requires explicit five-bay gateKind');\n      return buildSideGate(this, { x, z, rot, gateProfile, open, plaque, name });\n    }\n    if (rot === undefined) rot = 0; // Preserve legacy defaults after dedicated dispatch.\n    const kind = gateKind ?? ({ wall: 'wall', hall: 'three-bay' }[style]);\n    if (!['wall', 'three-bay', 'five-bay'].includes(kind)) throw new Error(`Unsupported gateKind: ${kind ?? style}`);\n    layers = eaveCount ?? layers;\n    const f = this.frame(x, z, rot);\n    f.userData.structure = { gateKind: kind, storeys: 1, eaveCount: layers, portalCount: kind === 'five-bay' ? 3 : 1 };\n    // Topology is explicit. Width is a dimension, never evidence of gate type.\n    if (kind === 'five-bay') {\n      return this.gateHall5(f, { W: w, h: Math.max(h, 4.8), name, roof, brackets, layers });\n    }\n    if (kind === 'three-bay') return this.gateHall(f, { w, h, name, roof, brackets, layers });\n    const pw = 1.4;\n    const gd = Math.max(t + 1.4, w / 2 + 1.0);\n    const H = h + 1.5;\n    for (const s of [-1, 1]) {\n      const px = s * (w / 2 + pw / 2);\n      this.box(f, 'wall_brick', pw + 0.1, 1.0, gd + 0.1, px, 0.5, 0);\n      this.box(f, 'wall_red', pw, H - 1, gd, px, 1 + (H - 1) / 2, 0);\n      this.col(f, px - pw / 2, 0, -gd / 2, px + pw / 2, 3, gd / 2);\n    }\n    this.box(f, 'wall_red', w, H - h, gd, 0, h + (H - h) / 2, 0);\n    this.box(f, 'wall_brick', w, 0.1, gd - 0.02, 0, h - 0.05, 0);\n    this.box(f, 'stone_slab', w + 2 * pw + 0.2, 0.1, gd + 0.5, 0, 0.05, 0);\n    this.doors(f, { jamb: w / 2, height: h - 0.1, zHinge: -gd / 2 + 0.3, leaf: w / 2 - 0.05 });\n    this.roof(f, { type: roof, width: w + 2 * pw + 0.3, depth: gd + 0.5, baseY: H, brackets: false, height: 1.3 });\n    if (name) this.plaque(f, name, 0, h + (H - h) / 2, -gd / 2 - 0.06, 0.72, 1.2);\n    this.mapRect(f, 'gate', name, w + 2 * pw, gd);\n    return w + 2 * pw;\n  }\n\n  gateHall(f, { w, h, name, roof, brackets, layers }) {\n    const bw = w + 1.6;               // 明间（门道）面阔\n    const sw = 3.6;                   // 次间面阔\n    const W = bw + 2 * sw;\n    const D = 6.4;\n    const ph = 0.45;\n    const colH = h + 1.8;\n    const r = 0.26;\n    this.box(f, 'sumeru_band', W + 1.6, ph, D + 1.6, 0, ph / 2, 0, 'band');\n    this.box(f, 'stone_slab', W + 1.7, 0.08, D + 1.7, 0, ph - 0.03, 0);\n    this.walkBox(f, -(W + 1.6) / 2, -(D + 1.6) / 2, (W + 1.6) / 2, (D + 1.6) / 2, ph);\n    const colGeo = new THREE.CylinderGeometry(r, r * 1.05, colH, 12);\n    const colMat = this.lib.material('wood_column');\n    const xs = [-W / 2, -bw / 2, bw / 2, W / 2];\n    for (const cx of xs) for (const cz of [-D / 2, 0, D / 2]) {\n      this.mesh(f, cx === xs[0] || cx === xs[3] || cz !== 0 ? colGeo : colGeo, colMat, cx, ph + colH / 2, cz);\n      this.col(f, cx - r, ph, cz - r, cx + r, ph + 3, cz + r);\n    }\n    // 中柱一线：次间砌墙；两山墙；明间后半两侧隔墙（门扇打开后贴在隔墙上）\n    for (const s of [-1, 1]) {\n      const xc = s * (bw / 2 + sw / 2);\n      this.box(f, 'wall_red', sw, colH, 0.6, xc, ph + colH / 2, 0);\n      this.box(f, 'wall_brick', sw + 0.05, 1.0, 0.7, xc, ph + 0.5, 0);\n      this.col(f, xc - sw / 2, ph, -0.3, xc + sw / 2, ph + 3, 0.3);\n      this.box(f, 'wall_red', 0.7, colH, D, s * W / 2, ph + colH / 2, 0);\n      this.col(f, s * W / 2 - 0.35, ph, -D / 2, s * W / 2 + 0.35, ph + 3, D / 2);\n      this.box(f, 'wall_red', 0.35, h + 0.2, D / 2 - 0.3, s * (bw / 2 - 0.1), ph + (h + 0.2) / 2, D / 4 + 0.15);\n      this.col(f, s * (bw / 2 - 0.28), ph, 0, s * (bw / 2 + 0.1), ph + 3, D / 2 - 0.1);\n    }\n    // 门楣、门槛、门扇\n    this.box(f, 'wall_red', bw, colH - h, 0.6, 0, ph + h + (colH - h) / 2, 0);\n    this.box(f, 'wood_column', bw, 0.2, 0.4, 0, ph + 0.1, 0);\n    this.doors(f, { jamb: bw / 2 - 0.28, height: h, zHinge: 0.3, leaf: Math.min(bw / 2 - 0.35, D / 2 - 0.6) });\n    // 额枋彩画\n    for (const s of [-1, 1]) {\n      this.box(f, 'caihua_beam', W + 0.5, 0.6, 0.4, 0, ph + colH - 0.3, s * D / 2, 'band');\n      this.box(f, 'caihua_beam', 0.4, 0.6, D, s * W / 2, ph + colH - 0.3, 0, 'band');\n    }\n    this.roof(f, { type: roof, width: W + 0.5, depth: D + 0.5, baseY: ph + colH, layers, brackets });\n    if (name) this.plaque(f, name, 0, ph + h + (colH - h) / 2, -0.34, 0.8, Math.min(1.5, colH - h - 0.1));\n    this.mapRect(f, 'gate', name, W, D);\n    return W;\n  }\n\n  /**\n   * 五间三启门殿（明间 + 两次间开门，梢间封闭）。W = 通面阔（已含全部五间，不再额外加宽）。\n   * 门道之间是贯穿全进深的门垛，门扇打开后贴在门垛侧面。返回墙上需要留出的开口宽度 = W。\n   */\n  gateHall5(f, { W, h, name, roof, brackets, layers }) {\n    const b = W / 5;                         // 每间面阔\n    const ow = b - 1.0;                      // 单个门道净宽（门垛 1.0m）\n    const D = Math.min(Math.max(6.4, W * 0.3), 10);\n    const ph = 0.45;\n    const colH = h + 1.8;\n    const r = 0.26;\n    this.box(f, 'sumeru_band', W + 1.6, ph, D + 1.6, 0, ph / 2, 0, 'band');\n    this.box(f, 'stone_slab', W + 1.7, 0.08, D + 1.7, 0, ph - 0.03, 0);\n    this.walkBox(f, -(W + 1.6) / 2, -(D + 1.6) / 2, (W + 1.6) / 2, (D + 1.6) / 2, ph);\n    const colGeo = new THREE.CylinderGeometry(r, r * 1.05, colH, 12);\n    const colMat = this.lib.material('wood_column');\n    for (let k = 0; k <= 5; k++) {\n      const cx = -W / 2 + k * b;\n      for (const cz of [-D / 2, 0, D / 2]) {\n        this.mesh(f, colGeo, colMat, cx, ph + colH / 2, cz);\n        this.col(f, cx - r, ph, cz - r, cx + r, ph + 3, cz + r);\n      }\n    }\n    // 门垛：位于明间/次间之间（x = ±b/2）与次间/梢间之间（x = ±1.5b），贯穿进深\n    const pierD = D - 0.8;\n    for (const px of [-1.5 * b, -0.5 * b, 0.5 * b, 1.5 * b]) {\n      this.box(f, 'wall_red', 1.0, colH, pierD, px, ph + colH / 2, 0);\n      this.box(f, 'wall_brick', 1.1, 1.0, pierD + 0.1, px, ph + 0.5, 0);\n      this.col(f, px - 0.5, ph, -pierD / 2, px + 0.5, ph + 3, pierD / 2);\n    }\n    // 梢间：封闭的中线砖墙；两山墙\n    for (const s of [-1, 1]) {\n      const xc = s * 2 * b;\n      this.box(f, 'wall_red', b - 1.0, colH, 0.6, xc, ph + colH / 2, 0);\n      this.box(f, 'wall_brick', b - 0.95, 1.0, 0.7, xc, ph + 0.5, 0);\n      this.col(f, xc - (b - 1.0) / 2, ph, -0.3, xc + (b - 1.0) / 2, ph + 3, 0.3);\n      this.box(f, 'wall_red', 0.7, colH, D, s * W / 2, ph + colH / 2, 0);\n      this.col(f, s * W / 2 - 0.35, ph, -D / 2, s * W / 2 + 0.35, ph + 3, D / 2);\n    }\n    // 门楣、门槛、门扇（三个门道各一对）\n    for (const cx of [-b, 0, b]) {\n      this.box(f, 'wall_red', ow, colH - h, 0.6, cx, ph + h + (colH - h) / 2, 0);\n      this.box(f, 'wood_column', ow, 0.2, 0.4, cx, ph + 0.1, 0);\n      for (const s of [-1, 1]) {\n        const d = buildStuddedDoor(this.lib, { width: Math.min(ow / 2 - 0.05, D / 2 - 0.6), height: h });\n        d.position.set(cx + s * (ow / 2 - 0.14), ph, 0.3 + Math.min(ow / 2 - 0.05, D / 2 - 0.6) / 2);\n        d.rotation.y = Math.PI / 2;\n        f.add(d);\n      }\n    }\n    for (const s of [-1, 1]) {\n      this.box(f, 'caihua_beam', W + 0.5, 0.6, 0.4, 0, ph + colH - 0.3, s * D / 2, 'band');\n      this.box(f, 'caihua_beam', 0.4, 0.6, D, s * W / 2, ph + colH - 0.3, 0, 'band');\n    }\n    this.roof(f, { type: roof, width: W + 0.5, depth: D + 0.5, baseY: ph + colH, layers, brackets });\n    if (name) this.plaque(f, name, 0, ph + h + (colH - h) / 2, -0.34, 0.8, Math.min(1.5, colH - h - 0.1));\n    this.mapRect(f, 'gate', name, W, D);\n    return W;\n  }\n\n  /**\n   * 城台门（东华门 / 西华门 等）：红色城台 + 单门洞 + 重檐城楼；门扇与神武门一致贴门洞内壁。\n   * 原点 = 门洞中心，通行方向沿局部 Z。\n   */\n  cityGate({ x, z, rot = 0, W = 30, D = 14, PH = 9, w = 5.5, h = 6.5, name }) {\n    const f = this.frame(x, z, rot);\n    for (const s of [-1, 1]) {\n      const len = W / 2 - w / 2;\n      const xc = s * (w / 2 + len / 2);\n      this.box(f, 'wall_red', len, PH, D, xc, PH / 2, 0);\n      this.box(f, 'sumeru_band', len + 0.2, 1, D + 0.2, xc, 0.5, 0, 'band');\n      this.col(f, xc - len / 2, 0, -D / 2, xc + len / 2, 3, D / 2);\n    }\n    this.box(f, 'wall_red', w, PH - h, D, 0, h + (PH - h) / 2, 0);\n    this.box(f, 'wall_brick', w, 0.3, D - 0.2, 0, h - 0.15, 0);\n    this.doors(f, { jamb: w / 2, height: h - 0.5, zHinge: -D / 2 + 2, leaf: w * 0.48 });\n    this.box(f, 'stone_slab', W + 0.4, 0.3, D + 0.4, 0, PH + 0.15, 0);\n    const bw = W * 0.6, bd = D * 0.55, bh = 6;\n    this.box(f, 'wall_red', bw - 1, bh, bd - 1, 0, PH + 0.3 + bh / 2, 0);\n    this.box(f, 'lattice_doors', bw - 0.9, bh * 0.85, bd - 0.9, 0, PH + 0.3 + bh * 0.425, 0, 'band');\n    this.box(f, 'caihua_beam', bw + 0.3, 0.7, bd + 0.3, 0, PH + 0.3 + bh - 0.35, 0, 'band');\n    this.roof(f, { type: 'xieshan', width: bw + 0.6, depth: bd + 0.6, baseY: PH + 0.3 + bh, layers: 2, brackets: true });\n    if (name) this.plaque(f, name, 0, PH + 3.6, -bd / 2 - 0.55, 1.3, 2.2);\n    this.mapRect(f, 'gate', name, W, D);\n  }\n\n  // ───────────────────────── 殿座 ─────────────────────────\n\n  steps(f, { zEdge, dir, y, width }) {\n    const run = y * STEP_RUN;\n    const n = Math.max(2, Math.round(y / 0.16));\n    const sr = run / n;\n    const marble = this.lib.material('marble');\n    const tile = this.lib.tileSize('marble');\n    for (let k = 0; k < n; k++) {\n      const top = y - (k + 1) * y / (n + 1);\n      this.mesh(f, applyBoxUV(new THREE.BoxGeometry(width, top, sr), tile), marble, 0, top / 2, zEdge + dir * (k + 0.5) * sr);\n    }\n    // 垂带（两侧斜石）\n    const L = Math.hypot(run, y);\n    for (const sx of [-1, 1]) {\n      const m = this.mesh(f, applyBoxUV(new THREE.BoxGeometry(0.4, 0.3, L), tile), marble, sx * (width / 2 + 0.2), y / 2 + 0.05, zEdge + dir * run / 2);\n      m.rotation.x = dir * Math.atan2(y, run);\n    }\n    this.walkRampZ(f, -width / 2, width / 2, zEdge, zEdge + dir * run, y, 0);\n  }\n\n  walkRampZ(f, x0, x1, zFrom, zTo, yFrom, yTo) {\n    this.walkRamp(f, x0, x1, zFrom, zTo, yFrom, yTo);\n  }\n\n  /**\n   * 殿座：台明（可走）+ 台阶 + 柱网 + 山墙/后檐墙 + 前檐隔扇（enter 时明间敞开、隔扇折向两侧可进入）\n   * + 殿内金砖地面/宝座 + 屋顶 + 匾额。原点为殿身中心，正面朝局部 -Z。\n   *\n   * open：只有柱子的敞厅（箭亭、亭榭）；closed（enter=false）时整座殿身为实体碰撞。\n   */\n  hall(o) {\n    if (o.structure === 'qinan-hall') return buildQinanHall(this, o);\n    if (o.qinanProfile !== undefined) throw new Error('Qinan profile requires qinan-hall structure');\n    if (o.structure === 'surveyed-pavilion') return buildSurveyedPavilion(this, o);\n    if (o.pavilionProfile !== undefined) throw new Error('Pavilion profile requires surveyed-pavilion structure');\n    if (o.structure === 'tiren-pavilion') return buildTirenPavilion(this, o);\n    if (o.structure) throw new Error(`Unsupported hall structure: ${o.structure}`);\n    if ((o.storeys ?? 1) !== 1) throw new Error('Unsupported storeys: use an explicit multi-storey structure builder');\n    const {\n      x, z, rot = 0, w, d, colH = 4.6, ph = 0.9, pad = 1.0,\n      roof = 'xieshan', brackets = true, roofH,\n      enter: enterOpt, backDoor = false, open = false, throne = false,\n      name, plaque = true, plaqueText = name, map = 'hall', bays,\n      interior, roomBays = 0,\n    } = o;\n    const layers = o.eaveCount ?? o.layers ?? 1;\n    // 默认所有殿座都可进入（open 敞厅本来就能穿行）\n    const enter = !open && enterOpt !== false;\n    const f = this.frame(x, z, rot);\n    f.userData.structure = { storeys: 1, eaveCount: layers };\n    const n = bays ?? Math.max(3, Math.round(w / 3.6) | 1);\n    const bay = w / n;\n    // 房间划分：roomBays>0 时每 roomBays 间隔成一个房间（不足 2 间的尾巴并入上一间），每间房正中一扇门\n    const segs = [];\n    if (enter && roomBays > 0 && n > roomBays + 1) {\n      for (let a = 0; a < n; a += roomBays) segs.push([a, Math.min(n, a + roomBays)]);\n      const last = segs[segs.length - 1];\n      if (last[1] - last[0] < 2 && segs.length > 1) { segs.pop(); segs[segs.length - 1][1] = n; }\n    } else {\n      segs.push([0, n]);\n    }\n    const doorBays = new Set(segs.map(([a, b]) => Math.floor((a + b - 1) / 2)));\n    const PW = w + 2 * pad;\n    const PD = d + 2 * pad;\n    const y0 = ph;\n    const big = ph >= 0.8;\n\n    // 台明\n    this.box(f, big ? 'sumeru_band' : 'wall_brick', PW, ph, PD, 0, ph / 2, 0, big ? 'band' : 'box');\n    this.box(f, 'stone_slab', PW + 0.12, 0.08, PD + 0.12, 0, ph - 0.03, 0);\n    this.walkBox(f, -PW / 2, -PD / 2, PW / 2, PD / 2, ph);\n    // 低于可迈高度（0.55m）的台明直接跨上去，不做实体（否则玩家半径会被台沿挡住）\n    if (ph > 0.55) this.col(f, -PW / 2 + 0.05, 0, -PD / 2 + 0.05, PW / 2 - 0.05, Math.min(ph, 3), PD / 2 - 0.05);\n    if (ph > 0.55) {\n      const sw = Math.min(Math.max(bay * 1.05, 2.4), 4.6);\n      const dirs = open ? [-1, 1] : backDoor ? [-1, 1] : [-1];\n      for (const s of dirs) this.steps(f, { zEdge: s * PD / 2, dir: s, y: ph, width: sw });\n    }\n\n    const r = THREE.MathUtils.clamp(bay * 0.07, 0.2, 0.34);\n    const colGeo = new THREE.CylinderGeometry(r, r * 1.05, colH, 12);\n    const colMat = this.lib.material('wood_column');\n    const beamH = THREE.MathUtils.clamp(colH * 0.12, 0.45, 0.85);\n    const doorH = (colH - beamH) * 0.8;\n\n    for (let i = 0; i <= n; i++) {\n      const cx = -w / 2 + i * bay;\n      for (const cz of [-d / 2, d / 2]) {\n        this.mesh(f, colGeo, colMat, cx, y0 + colH / 2, cz);\n        if (open || enter) this.col(f, cx - r, y0, cz - r, cx + r, y0 + 3, cz + r);\n      }\n    }\n    // 额枋彩画（一圈）\n    for (const s of [-1, 1]) {\n      this.box(f, 'caihua_beam', w + 0.5, beamH, 0.45, 0, y0 + colH - beamH / 2, s * d / 2, 'band');\n      this.box(f, 'caihua_beam', 0.45, beamH, d + 0.5, s * w / 2, y0 + colH - beamH / 2, 0, 'band');\n    }\n\n    if (!open) {\n      // 两山墙\n      for (const s of [-1, 1]) {\n        this.box(f, 'wall_red', 0.7, colH - beamH, d, s * w / 2, y0 + (colH - beamH) / 2, 0);\n        if (enter) this.col(f, s * w / 2 - 0.35, y0, -d / 2, s * w / 2 + 0.35, y0 + 3, d / 2);\n      }\n      // 前后檐\n      for (const side of [-1, 1]) {\n        const zf = side * d / 2;\n        const openFace = enter && (side < 0 || backDoor);\n        if (side > 0 && !openFace) {\n          this.box(f, 'wall_red', w, colH - beamH, 0.6, 0, y0 + (colH - beamH) / 2, zf);\n          if (enter) this.col(f, -w / 2, y0, zf - 0.3, w / 2, y0 + 3, zf + 0.3);\n          continue;\n        }\n        for (let i = 0; i < n; i++) {\n          const xc = -w / 2 + (i + 0.5) * bay;\n          if (openFace && doorBays.has(i)) {\n            // 敞开的明间：两扇隔扇门折向两侧，贴在柱边\n            for (const s of [-1, 1]) {\n              const leaf = this.box(f, 'lattice_doors', bay * 0.26, doorH, 0.1, xc + s * (bay / 2 - r - 0.08), y0 + doorH / 2, zf - side * (bay * 0.13 + 0.2), 'band');\n              leaf.rotation.y = Math.PI / 2;\n            }\n            continue;\n          }\n          this.box(f, 'lattice_doors', bay - 2 * r, doorH, 0.14, xc, y0 + doorH / 2, zf, 'band');\n          if (enter) this.col(f, xc - bay / 2, y0, zf - 0.25, xc + bay / 2, y0 + 3, zf + 0.25);\n        }\n        this.box(f, 'wall_red', w, colH - beamH - doorH, 0.3, 0, y0 + doorH + (colH - beamH - doorH) / 2, zf);\n        if (openFace) {\n          for (const i of doorBays) this.box(f, 'wood_column', bay - 2 * r, 0.22, 0.3, -w / 2 + (i + 0.5) * bay, y0 + 0.11, zf);\n        }\n      }\n      // 房间隔墙（贯通进深，到额枋下）\n      if (enter) {\n        for (let k = 1; k < segs.length; k++) {\n          const xb = -w / 2 + segs[k][0] * bay;\n          this.box(f, 'wall_red', 0.3, colH - beamH, d - 0.2, xb, y0 + (colH - beamH) / 2, 0);\n          this.col(f, xb - 0.15, y0, -d / 2, xb + 0.15, y0 + 3, d / 2);\n        }\n      }\n      if (!enter) this.col(f, -w / 2 - 0.3, y0, -d / 2 - 0.3, w / 2 + 0.3, y0 + 3, d / 2 + 0.3);\n    }\n\n    if (enter || open) {\n      const fg = new THREE.PlaneGeometry(w, d);\n      fg.rotateX(-Math.PI / 2);\n      // UV 按米换算：贴图含 4×4 块二尺金砖\n      const uv = fg.attributes.uv, span = GOLD_BRICK_TILE * 4;\n      for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * w / span, uv.getY(i) * d / span);\n      this.mesh(f, fg, this.floorMat, 0, y0 + 0.02, 0).castShadow = false;\n    }\n    if (enter && !open) {\n      const cg = new THREE.PlaneGeometry(w, d);\n      cg.rotateX(Math.PI / 2);\n      this.mesh(f, cg, this.lib.material('caihua_beam'), 0, y0 + colH - beamH - 0.02, 0).castShadow = false;\n    }\n    if (throne && enter) {\n      // 有后门时宝座前移，宝座与后檐之间留出 ≥1.6m 的穿行通道\n      const tz = d / 2 - (backDoor ? Math.min(3.4, d * 0.36) : Math.min(2.6, d * 0.3));\n      const tw = Math.min(bay * 1.4, 5);\n      this.mesh(f, new THREE.BoxGeometry(tw, 0.5, 2.4), this.lacquer, 0, y0 + 0.25, tz);\n      this.mesh(f, new THREE.BoxGeometry(1.4, 0.6, 1.0), this.gold, 0, y0 + 0.8, tz);\n      this.mesh(f, new THREE.BoxGeometry(1.5, 1.2, 0.2), this.gold, 0, y0 + 1.6, tz + 0.5);\n      this.mesh(f, new THREE.BoxGeometry(tw * 0.8, 2.6, 0.25), this.gold, 0, y0 + 1.8, tz + 1.15);\n      this.col(f, -tw / 2, y0, tz - 1.2, tw / 2, y0 + 3, tz + 1.3);\n    }\n\n    // 室内陈设 + 房间登记（宝座殿以外的每个房间）\n    if (enter) {\n      // 数据里 interior 形如 \"A:palace-front\" / \"B:hall\"（档位:预设）；预设名取冒号后部分\n      const interiorKind = typeof interior === 'string' ? interior.replace(/^[A-Za-z]:/, '') : interior;\n      // A throne already creates its own furniture and circulation footprint.\n      // Forwarding an interior preset must not furnish a second hall over it.\n      const kind = throne ? 'throne' : interiorKind ?? (map === 'corridor' ? 'room' : w >= 14 ? 'hall' : 'room');\n      segs.forEach(([a, b], idx) => {\n        const x0 = -w / 2 + a * bay + (a > 0 ? 0.15 : 0.35);\n        const x1 = -w / 2 + b * bay - (b < n ? 0.15 : 0.35);\n        const doorX = -w / 2 + (Math.floor((a + b - 1) / 2) + 0.5) * bay;\n        const roomKind = kind === 'room' && segs.length > 2 && idx % 3 === 2 ? 'storage' : kind;\n        if (roomKind !== 'throne') this.furnish(f, roomKind, { x0, x1, z0: -d / 2 + 0.3, z1: d / 2 - 0.3, y: y0, doorX, h: colH - beamH, backDoor });\n        this.registerRoom(f, {\n          name: name ? (segs.length > 1 && map !== 'corridor' ? `${name}·${idx + 1}` : name) : null,\n          kind: roomKind, x0, x1, z0: -d / 2, z1: d / 2, y: y0, h: colH - beamH,\n          doors: [{ x: doorX, z: -d / 2 }, ...(backDoor ? [{ x: doorX, z: d / 2 }] : [])],\n        });\n      });\n    }\n\n    this.roof(f, {\n      type: roof, width: w + 0.5, depth: d + 0.5, baseY: y0 + colH, layers, brackets,\n      ...(roofH ? { height: roofH } : {}),\n    });\n    if (name && plaque) {\n      const ph2 = THREE.MathUtils.clamp(colH * 0.3, 1.1, 2.2);\n      this.plaque(f, plaqueText, 0, open ? y0 + colH - beamH - ph2 / 2 : y0 + doorH + (colH - beamH - doorH) / 2 + 0.1, -d / 2 - 0.3, ph2 * 0.6, ph2);\n    }\n    if (map) this.mapRect(f, map, name, PW, PD);\n    return { f, PW, PD, top: y0 };\n  }\n\n  /** 庑房（廊房）：沿 x1→x2 或 z1→z2 的长条，正面朝 facing（'x+'|'x-'|'z+'|'z-'），每 3 间隔成一个可进入的房间 */\n  corridor(x1, z1, x2, z2, facing, { depth = 4.2, colH = 3.6, name } = {}) {\n    const alongX = Math.abs(x2 - x1) >= Math.abs(z2 - z1);\n    const len = alongX ? Math.abs(x2 - x1) : Math.abs(z2 - z1);\n    if (len < 4) return;\n    const rot = { 'z-': 0, 'z+': Math.PI, 'x+': -Math.PI / 2, 'x-': Math.PI / 2 }[facing];\n    this.hall({\n      x: (x1 + x2) / 2, z: (z1 + z2) / 2, rot, w: len - 1.0, d: depth, pad: 0.5, ph: 0.45, colH,\n      roof: 'gable', brackets: false, enter: true, roomBays: 3, interior: 'room', plaque: false, name: name ?? '庑房',\n      map: 'corridor', bays: Math.max(3, Math.round(len / 3.4) | 1),\n    });\n  }\n\n  // ───────────────────────── 匾额（合并为一张图集） ─────────────────────────\n\n  plaque(f, text, x, y, z, w, h) {\n    const frame = this.mesh(f, new THREE.BoxGeometry(w + 0.12, h + 0.12, 0.1), this.gold, x, y, z + 0.06);\n    frame.castShadow = false;\n    const geo = new THREE.PlaneGeometry(w, h);\n    geo.rotateY(Math.PI);\n    const m = this.mesh(f, geo, null, x, y, z);\n    m.castShadow = false;\n    this.plaques.push({ mesh: m, text });\n  }\n\n  buildPlaqueAtlas() {\n    if (!this.plaques.length) return;\n    const texts = [...new Set(this.plaques.map(p => p.text))];\n    const CW = 96, CH = 256, cols = 21;\n    const rows = Math.ceil(texts.length / cols);\n    const canvas = document.createElement('canvas');\n    canvas.width = 2048;\n    canvas.height = THREE.MathUtils.ceilPowerOfTwo(Math.max(rows * CH, 256));\n    const c = canvas.getContext('2d');\n    const font = '\"STKaiti\",\"KaiTi\",\"Kaiti SC\",\"Songti SC\",\"SimSun\",serif';\n    const cell = new Map();\n    texts.forEach((t, i) => {\n      const cx = (i % cols) * CW, cy = Math.floor(i / cols) * CH;\n      c.fillStyle = '#c8a23c'; c.fillRect(cx, cy, CW, CH);\n      c.fillStyle = '#1e3a6b'; c.fillRect(cx + 8, cy + 8, CW - 16, CH - 16);\n      c.strokeStyle = '#e8c55a'; c.lineWidth = 3; c.strokeRect(cx + 13, cy + 13, CW - 26, CH - 26);\n      c.fillStyle = '#ecc95c';\n      c.textAlign = 'center';\n      c.textBaseline = 'middle';\n      const chars = [...t];\n      const step = (CH - 44) / chars.length;\n      c.font = `bold ${Math.floor(Math.min(step * 0.86, CW * 0.62))}px ${font}`;\n      chars.forEach((ch, k) => c.fillText(ch, cx + CW / 2, cy + 22 + step * (k + 0.5)));\n      cell.set(t, [cx / canvas.width, 1 - (cy + CH) / canvas.height, CW / canvas.width, CH / canvas.height]);\n    });\n    const tex = new THREE.CanvasTexture(canvas);\n    tex.colorSpace = THREE.SRGBColorSpace;\n    tex.anisotropy = 4;\n    const mat = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.5, metalness: 0.15, name: 'kit_plaques' });\n    this.owned.push(mat);\n    this.ownedTextures = [tex];\n    for (const { mesh, text } of this.plaques) {\n      const [u0, v0, du, dv] = cell.get(text);\n      const uv = mesh.geometry.attributes.uv;\n      for (let i = 0; i < uv.count; i++) uv.setXY(i, u0 + uv.getX(i) * du, v0 + uv.getY(i) * dv);\n      mesh.material = mat;\n    }\n  }\n\n  /** 合并几何并返回可加入场景的 Group */\n  finish() {\n    this.buildPlaqueAtlas();\n    const architecture = [];\n    this.root.traverse(o => {\n      const record = o.userData.pavilion ?? (o.userData.structure?.id ? o.userData.structure : null);\n      if (record) architecture.push(structuredClone(record));\n    });\n    const merged = mergeByMaterial(this.root, { name: this.root.name });\n    merged.userData.architecture = architecture;\n    merged.traverse(o => { if (o.isMesh) o.receiveShadow = true; });\n    return merged;\n  }\n\n  dispose(group) {\n    group?.traverse(o => o.geometry?.dispose());\n    this.owned.forEach(m => m.dispose());\n    this.ownedTextures?.forEach(t => t.dispose());\n    this.colliders.length = 0;\n    this.walkables.length = 0;\n  }\n}\n\n/** 朝向：正面（局部 -Z）朝向给定世界方向时的 rot */\nexport const FACE = { south: 0, north: Math.PI, east: Math.PI / 2, west: -Math.PI / 2 }; // 本场景东 = -X\nvoid _v;\n",
+      "deltas": [
+        {
+          "before": "    tex.anisotropy = 4;\n    const mat = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.5, metalness: 0.15, name: 'kit_plaques' });\n    this.owned.push(mat);\n    this.ownedTextures = [tex];\n    for (const { mesh, text } of this.plaques) {\n      const [u0, v0, du, dv] = cell.get(text);\n      const uv = mesh.geometry.attributes.uv;\n",
+          "after": "    tex.anisotropy = 4;\n    const mat = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.5, metalness: 0.15, name: 'kit_plaques' });\n    this.owned.push(mat);\n    (this.ownedTextures ??= []).push(tex);\n    for (const { mesh, text } of this.plaques) {\n      const [u0, v0, du, dv] = cell.get(text);\n      const uv = mesh.geometry.attributes.uv;\n"
+        }
+      ]
+    },
+    "src/scene/zones/ZoneBase.js": {
+      "baselineSHA256": "2a17d78efefa3258fcb6a42ce287e7aa70eb02a36a777f64ad90536dfd33251b",
+      "baselineBytes": 12879,
+      "baselineGitBlob": "8bef7795c953dad24c2a5ab4e12ece13491cd3f6",
+      "candidateSHA256": "4b60a90d2c65525ebc919993aa497e89bc1c66a7295086264cddc659d5516f34",
+      "candidateBytes": 13000,
+      "candidateGitBlob": "2dbecfc2d5608635aa1175730c1a8491a84ce2b2",
+      "baselineUTF8": "import * as THREE from 'three';\nimport { CourtKit, FACE } from '../palace/kit.js';\nimport { resolveCourtWallContract } from './CourtWallContract.js';\nimport { buildEastWestCityGate } from '../palace/special/EastWestCityGate.js';\nimport { buildYanxiRuin } from '../palace/special/YanxiRuin.js';\nimport { detachYanxiRuinFrames, installYanxiRuinLODs } from '../palace/special/YanxiRuinLOD.js';\nimport { buildYanxiStorehouse } from '../palace/special/YanxiStorehouses.js';\nimport { historicalGateMapItem } from './HistoricalGateSites.js';\nimport { buildChuxiuHall } from '../palace/special/ChuxiuHall.js';\nimport { buildChuxiuCourtyard } from '../palace/special/ChuxiuCourtyard.js';\nimport { buildYikunSideAccess } from '../palace/special/YikunSideAccess.js';\n\n/**\n * 分区构建器基类：从 zone JSON 构建一个区域的所有建筑。\n * \n * 每个 zone 有唯一 id、边界、邻区列表，以及一组构件清单（items）。\n * ZoneBase 按 kind 分发到 CourtKit 对应方法，最终返回合并的 group、碰撞体、\n * 可行走面、房间、地图标注、命名区域、silhouette（远处替身低模）。\n */\nexport class ZoneBase {\n  /**\n   * @param {object} library - 材质与贴图库\n   * @param {object} zoneJson - zone 数据（含 id, name, bounds, neighbors, items）\n   */\n  constructor(library, zoneJson) {\n    this.library = library;\n    this.zoneJson = zoneJson;\n    this.kit = new CourtKit(library, zoneJson.id);\n    this.group = null;\n    /** gate name → 返回的开口宽度（用于 wall gaps 引用） */\n    this.gateWidths = new Map();\n    this.gateGeometries = new Map();\n  }\n\n  /**\n   * 构建本区所有构件。\n   * @returns {{ group, colliders, walkables, rooms, mapItems, regions, silhouette }}\n   */\n  build() {\n    const items = this.zoneJson.items ?? [];\n    \n    // 第一遍：构建所有 gate，记录开口宽度\n    for (const item of items) {\n      if (item.kind === 'gate') {\n        const w = this.buildGate(item);\n        if (item.name) this.gateWidths.set(item.name, w);\n      }\n    }\n    \n    // 第二遍：构建其他构件（wall/courtWalls 可引用 gate 宽度）\n    for (const item of items) {\n      switch (item.kind) {\n        case 'hall':\n          this.buildHall(item);\n          break;\n        case 'gate':\n          // 已在第一遍构建\n          break;\n        case 'wall':\n          this.buildWall(item);\n          break;\n        case 'courtWalls':\n          this.buildCourtWalls(item);\n          break;\n        case 'corridor':\n          this.buildCorridor(item);\n          break;\n        case 'cityGate':\n          this.buildCityGate(item);\n          break;\n        case 'region':\n          this.buildRegion(item);\n          break;\n        case 'nineDragonWall':\n          this.buildNineDragonWall(item);\n          break;\n        default:\n          throw new Error(`[ZoneBase] 未知 kind: ${item.kind}`);\n      }\n    }\n    \n    if (this.zoneJson.yikunAccessProfile !== undefined) buildYikunSideAccess(this.kit, this.zoneJson);\n\n    // Explicit opt-in, after all retained halls, before material merging.\n    if (this.zoneJson.courtyardProfile !== undefined) buildChuxiuCourtyard(this.kit, this.zoneJson);\n\n    // Keep distance levels out of the ordinary recursive material merge.\n    const yanxiFrames = detachYanxiRuinFrames(this.kit.root);\n    this.group = this.kit.finish();\n    installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);\n    \n    // silhouette：本区屋顶的合并低模（Phase 1 优化时实现，当前返回 null）\n    // 实在拿不到屋顶网格就先返回 null，不强求改 kit 内部\n    const silhouette = null;\n    \n    return {\n      group: this.group,\n      colliders: [...this.kit.colliders],\n      walkables: [...this.kit.walkables],\n      rooms: [...this.kit.rooms],\n      mapItems: [...this.kit.mapItems],\n      regions: [...this.kit.regions],\n      silhouette,\n    };\n  }\n\n  update(dt) {\n    // 当前无动画需求，预留接口\n  }\n\n  dispose() {\n    if (this.group) {\n      this.kit.dispose(this.group);\n      this.group.removeFromParent();\n      this.group = null;\n    }\n    this.gateWidths.clear();\n    this.gateGeometries.clear();\n  }\n\n  // ───────────────────────── 各 kind 构建方法 ─────────────────────────\n\n  buildHall(item) {\n    if (item.structure === 'chuxiu-household' || item.chuxiuProfile !== undefined) {\n      if (this.zoneJson.id !== 'west-six' || item.name !== '储秀宫') throw new Error('Chuxiu profile belongs only to west-six/储秀宫');\n      return buildChuxiuHall(this.kit, item);\n    }\n    if (item.structure === 'yanxi-ruin' || item.ruinProfile !== undefined) return buildYanxiRuin(this.kit,item);\n    if (item.structure === 'yanxi-storehouse' || item.storehouseProfile !== undefined) return buildYanxiStorehouse(this.kit,item);\n    const params = {\n      x: item.x,\n      z: item.z,\n      rot: item.pavilionProfile || item.qinanProfile ? item.rot : this.parseRot(item.rot),\n      w: item.w,\n      d: item.d,\n      pad: item.pad,\n      ph: item.ph,\n      colH: item.colH,\n      roof: item.roof,\n      layers: item.layers,\n      eaveCount: item.eaveCount,\n      storeys: item.storeys,\n      lowerStoreyH: item.lowerStoreyH,\n      upperStoreyH: item.upperStoreyH,\n      structure: item.structure,\n      pavilionProfile: item.pavilionProfile,\n      qinanProfile: item.qinanProfile,\n      interiorFloorWorldY: item.interiorFloorWorldY,\n      bays: item.bays,\n      roofH: item.roofH,\n      roomBays: item.roomBays,\n      interior: item.interior,\n      brackets: item.brackets,\n      enter: item.enter,\n      throne: item.throne,\n      backDoor: item.backDoor,\n      open: item.open,\n      name: item.name,\n      plaque: item.plaque,\n      plaqueText: item.plaqueText,\n      map: item.map,\n    };\n    // 过滤 undefined 参数，让 kit 方法使用默认值\n    Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);\n    this.kit.hall(params);\n  }\n\n  buildGate(item) {\n    if (item.historicalSite !== undefined) {\n      this.kit.mapItems.push(historicalGateMapItem(item));\n      // No physical opening width: a new wall must not silently use a\n      // demolished gate as evidence for cutting a current-day opening.\n      return 0;\n    }\n    const params = {\n      x: item.x,\n      z: item.z,\n      // Dedicated profiles validate their cardinal transform; do not let the\n      // permissive legacy parser turn malformed input into a south-facing gate.\n      rot: item.gateProfile !== undefined ? item.rot : this.parseRot(item.rot),\n      w: item.w,\n      h: item.h,\n      t: item.t,\n      style: item.style,\n      gateKind: item.gateKind,\n      gateProfile: item.gateProfile,\n      open: item.open,\n      plaque: item.plaque,\n      name: item.name,\n      roof: item.roof,\n      brackets: item.brackets,\n      layers: item.layers,\n      eaveCount: item.eaveCount,\n    };\n    Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);\n    const width = this.kit.gate(params);\n    if (item.gateProfile === 'zhaode' || item.gateProfile === 'huangji') this.gateGeometries.set(item.name, this.kit.root.children.at(-1).userData.gateGeometry);\n    return width; // 返回开口宽度\n  }\n\n  buildWall(item) {\n    const [x1, z1] = item.from;\n    const [x2, z2] = item.to;\n    const gaps = this.resolveGaps(item.gaps);\n    const params = { h: item.h, t: item.t, gaps };\n    Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);\n    this.kit.wall(x1, z1, x2, z2, params);\n  }\n\n  buildCourtWalls(item) {\n    const { x0, x1, z0, z1, gates } = resolveCourtWallContract(item, this.gateWidths);\n    const params = { h: item.h, t: item.t };\n    Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);\n    this.kit.courtWalls(x0, x1, z0, z1, gates, params);\n  }\n\n  buildCorridor(item) {\n    let from = item.from, to = item.to, contact;\n    if (item.gateJoin !== undefined) {\n      const ref = item.gateJoin;\n      const g = ref && this.gateGeometries.get(ref.gate);\n      if (!g || g.profile !== 'zhaode' || g.rot !== 0 || !Object.hasOwn(g.joins, ref.side)) throw new Error('Invalid or unbuilt explicit gate join');\n      contact = g.joins[ref.side];\n      if (ref.end !== contact.end || item.facing !== 'z-' || !Array.isArray(from) || !Array.isArray(to) ||\n          [...from, ...to].some(n => typeof n !== 'number' || !Number.isFinite(n)) || from.length !== 2 || to.length !== 2 ||\n          Math.abs(from[1] - contact.world[1]) > 1e-8 || Math.abs(to[1] - contact.world[1]) > 1e-8 ||\n          (ref.side === 'left' ? from[0] >= contact.world[0] || to[0] <= contact.world[0] || to[0] >= g.x : to[0] <= contact.world[0] || from[0] >= contact.world[0] || from[0] <= g.x)) {\n        throw new Error('Invalid corridor gate join endpoint or centerline');\n      }\n      if (ref.end === 'from') from = [...contact.world]; else to = [...contact.world];\n      if (Math.abs(to[0] - from[0]) < 4) throw new Error('Gate join leaves a nonpositive or too-short corridor');\n    }\n    const [x1, z1] = from;\n    const [x2, z2] = to;\n    const params = { facing: item.facing, depth: item.depth, colH: item.colH, name: item.name };\n    Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);\n    this.kit.corridor(x1, z1, x2, z2, item.facing, params);\n    if (contact) this.kit.root.children.at(-1).userData.gateJoin = {\n      ...item.gateJoin, boundary: [...contact.world], effectiveFrom: [...from], effectiveTo: [...to],\n      provisional: true, status: contact.status,\n    };\n  }\n\n  buildCityGate(item) {\n    if (item.cityGateProfile !== undefined) return buildEastWestCityGate(this.kit, item);\n    const params = {\n      x: item.x,\n      z: item.z,\n      rot: this.parseRot(item.rot),\n      name: item.name,\n    };\n    Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);\n    this.kit.cityGate(params);\n  }\n\n  buildRegion(item) {\n    this.kit.region(item.name, item.x0, item.x1, item.z0, item.z1);\n  }\n\n  buildNineDragonWall(item) {\n    // 九龙壁是 SideCourts 私有函数，需直接内联或在 kit 注册为方法\n    // 这里直接复制 SideCourts.nineDragonWall 的实现\n    const k = this.kit;\n    const x = item.x;\n    const z = item.z;\n    const len = item.length;\n    const rot = this.parseRot(item.rot ?? Math.PI); // 默认朝北\n    \n    const f = k.frame(x, z, rot);\n    const h = 4.2;\n    k.box(f, 'sumeru_band', len + 0.6, 0.9, 1.6, 0, 0.45, 0, 'band');\n    const glaze = new THREE.MeshStandardMaterial({ color: 0x1f5f7a, roughness: 0.3, metalness: 0.1, name: 'kit_glaze_blue' });\n    const wave = new THREE.MeshStandardMaterial({ color: 0x2e8a6e, roughness: 0.3, metalness: 0.1, name: 'kit_glaze_green' });\n    k.owned.push(glaze, wave);\n    k.mesh(f, new THREE.BoxGeometry(len, h, 1.1), glaze, 0, 0.9 + h / 2, 0);\n    // 壁心：故宫九龙壁实物照片（正面拼接图，壁心长宽比约 10.8:1）。贴图缺失时仍显示蓝绿琉璃底色。\n    const ASPECT = 10.77;\n    const fh = Math.min(h - 0.3, len / ASPECT);\n    const tex = new THREE.TextureLoader().load(`${import.meta.env?.BASE_URL ?? '/'}textures/nine_dragon.webp`);\n    tex.colorSpace = THREE.SRGBColorSpace;\n    tex.anisotropy = 8;\n    const face = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.35, metalness: 0.05, name: 'kit_nine_dragon_face' });\n    k.owned.push(face);\n    const fg = new THREE.PlaneGeometry(len - 0.4, fh);\n    fg.rotateY(Math.PI);   // 正面朝局部 -Z\n    k.mesh(f, fg, face, 0, 0.9 + fh / 2 + 0.1, -0.56).castShadow = false;\n    // 壁心上方的檐下琉璃带（蓝绿）\n    k.mesh(f, new THREE.BoxGeometry(len - 0.2, h - fh - 0.1, 1.16), wave, 0, 0.9 + fh + 0.1 + (h - fh - 0.1) / 2, 0);\n    k.roof(f, { type: 'gable', width: len + 0.4, depth: 1.6, baseY: 0.9 + h, brackets: false, height: 0.7 });\n    k.col(f, -len / 2, 0, -0.8, len / 2, 3, 0.8);\n    k.mapRect(f, 'hall', item.name ?? '九龙壁', len, 1.6);\n  }\n\n  // ───────────────────────── 辅助方法 ─────────────────────────\n\n  /**\n   * 解析旋转角：支持弧度数值或字符串 \"south\"|\"north\"|\"east\"|\"west\"\n   */\n  parseRot(rot) {\n    if (rot === undefined || rot === null) return 0;\n    if (typeof rot === 'number') return rot;\n    const map = { south: FACE.south, north: FACE.north, east: FACE.east, west: FACE.west };\n    if (rot in map) return map[rot];\n    console.warn(`[ZoneBase] 无效的 rot 值: ${rot}，使用默认 0`);\n    return 0;\n  }\n\n  /**\n   * 解析 wall gaps：将 { at, gate } 转为 { at, w }\n   */\n  resolveGaps(gaps) {\n    if (!gaps) return [];\n    return gaps.map(g => ({\n      at: g.at,\n      w: g.gate ? this.gateWidths.get(g.gate) : g.w,\n    }));\n  }\n}\n",
+      "deltas": [
+        {
+          "before": "    const tex = new THREE.TextureLoader().load(`${import.meta.env?.BASE_URL ?? '/'}textures/nine_dragon.webp`);\n    tex.colorSpace = THREE.SRGBColorSpace;\n    tex.anisotropy = 8;\n    const face = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.35, metalness: 0.05, name: 'kit_nine_dragon_face' });\n    k.owned.push(face);\n    const fg = new THREE.PlaneGeometry(len - 0.4, fh);\n",
+          "after": "    const tex = new THREE.TextureLoader().load(`${import.meta.env?.BASE_URL ?? '/'}textures/nine_dragon.webp`);\n    tex.colorSpace = THREE.SRGBColorSpace;\n    tex.anisotropy = 8;\n    // This photo belongs to this zone generation, unlike borrowed library maps.\n    (k.ownedTextures ??= []).push(tex);\n    const face = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.35, metalness: 0.05, name: 'kit_nine_dragon_face' });\n    k.owned.push(face);\n    const fg = new THREE.PlaneGeometry(len - 0.4, fh);\n"
+        }
+      ]
+    },
+    "src/utils/TextureLibrary.js": {
+      "baselineSHA256": "27efdac592e0f830e50b9871a528d701dd3238d31db3cf64ffb77b3110df7194",
+      "baselineBytes": 8092,
+      "baselineGitBlob": "350949d08776023cf03dfeb90462bb9149a5b723",
+      "candidateSHA256": "b873ea18c68d9819f41cf7fedaa61d292d442c0038e7ba175e72c1b1c6a452fd",
+      "candidateBytes": 8974,
+      "candidateGitBlob": "9a8ce9bb694d3d1ce0d87dc8cd01f220610eb8eb",
+      "baselineUTF8": "import * as THREE from 'three';\nimport { TextureGenerator } from './TextureGenerator.js';\n\n/**\n * 写实材质贴图库\n *\n * - 贴图来自 public/textures/{hd|sd}/，由 assets-src/process_textures.py 从 AI 原图处理得到。\n * - 颜色贴图 sRGB，法线贴图线性；全部共享、repeat=1。\n *   平铺密度由几何体 UV 决定（见 GeometryUV.js：UV 单位 = 米 / tileSize），不要克隆贴图改 repeat。\n * - 任一贴图缺失或加载失败时回退为程序化贴图，调用方永远拿到可用对象。\n */\n\n// tileSize：一张贴图对应的真实尺寸（米）。wrap：repeat 双向平铺；band 横向平铺、纵向夹紧；clamp 单张不平铺。\nexport const TEXTURE_SPECS = {\n  wall_red:      { tileSize: 4,   wrap: 'repeat', fallback: '#9b2a1f' },\n  wall_brick:    { tileSize: 2,   wrap: 'repeat', fallback: '#6f6a64' },\n  roof_tile:     { tileSize: 3,   wrap: 'repeat', fallback: '#d4a020' },\n  ground_brick:  { tileSize: 4,   wrap: 'repeat', fallback: '#8a8580' },\n  stone_slab:    { tileSize: 6,   wrap: 'repeat', fallback: '#a9a49b' },\n  marble:        { tileSize: 2,   wrap: 'repeat', fallback: '#e8e4dc' },\n  sumeru_band:   { tileSize: 3,   wrap: 'band',   fallback: '#ddd8cc' },\n  wood_column:   { tileSize: 1.5, wrap: 'repeat', fallback: '#8e1c14' },\n  door_studded:  { tileSize: 1,   wrap: 'clamp',  fallback: '#9a1f16' },\n  lattice_doors: { tileSize: 6,   wrap: 'band',   fallback: '#7a2a18' },\n  caihua_beam:   { tileSize: 4,   wrap: 'band',   fallback: '#2f5f6e' },\n  dougong_band:  { tileSize: 4,   wrap: 'band',   fallback: '#3a5d58' },\n  rafters:       { tileSize: 3,   wrap: 'repeat', fallback: '#35564f' },\n  balustrade:    { tileSize: 3,   wrap: 'band',   fallback: '#e5e1d8' },\n  yulu:          { tileSize: 1,   wrap: 'clamp',  fallback: '#e2ddd2' },\n  pebble_path:   { tileSize: 3,   wrap: 'repeat', fallback: '#8d8576' },\n  bark:          { tileSize: 1.5, wrap: 'repeat', fallback: '#5b4a3a' },\n  foliage:       { tileSize: 3,   wrap: 'repeat', fallback: '#2f4a2a' },\n  rock:          { tileSize: 3,   wrap: 'repeat', fallback: '#8a8a84' },\n  grass:         { tileSize: 4,   wrap: 'repeat', fallback: '#5b6e3a' },\n  water:         { tileSize: 8,   wrap: 'repeat', fallback: '#2e5550' },\n  skyline:       { tileSize: 1,   wrap: 'band',   fallback: '#c9ccc8' },\n};\n\nconst PROCEDURAL_FALLBACK = {\n  wall_red: () => TextureGenerator.createBrickTexture(),\n  roof_tile: () => TextureGenerator.createTileTexture(),\n  wood_column: () => TextureGenerator.createWoodTexture(),\n  marble: () => TextureGenerator.createMarbleTexture(),\n  ground_brick: () => TextureGenerator.createGroundTexture(),\n};\n\nfunction solidTexture(color) {\n  const canvas = document.createElement('canvas');\n  canvas.width = canvas.height = 64;\n  const ctx = canvas.getContext('2d');\n  ctx.fillStyle = color;\n  ctx.fillRect(0, 0, 64, 64);\n  const image = ctx.getImageData(0, 0, 64, 64);\n  for (let i = 0; i < image.data.length; i += 4) {\n    const n = (Math.random() - 0.5) * 18;\n    image.data[i] += n; image.data[i + 1] += n; image.data[i + 2] += n;\n  }\n  ctx.putImageData(image, 0, 0);\n  return new THREE.CanvasTexture(canvas);\n}\n\nexport class TextureLibrary {\n  /**\n   * @param {{ quality?: 'hd'|'sd', anisotropy?: number, baseUrl?: string, manager?: THREE.LoadingManager }} options\n   */\n  constructor({ quality = 'hd', anisotropy = 4, baseUrl, manager } = {}) {\n    this.quality = quality;\n    this.anisotropy = anisotropy;\n    this.baseUrl = baseUrl ?? `${import.meta.env?.BASE_URL ?? '/'}textures/${quality}/`;\n    this.loader = new THREE.TextureLoader(manager);\n    this.colors = new Map();\n    this.normals = new Map();\n    this.materials = new Map();\n    this.loadedFromFile = new Set();\n    this.manifest = null;\n  }\n\n  /** 加载全部贴图；onProgress(done, total)。失败不抛出，缺失项使用回退贴图。 */\n  async load(onProgress) {\n    try {\n      const res = await fetch(`${this.baseUrl}manifest.json`, { cache: 'no-cache' });\n      this.manifest = res.ok ? await res.json() : null;\n    } catch {\n      this.manifest = null;\n    }\n    const entries = this.manifest?.textures ?? {};\n    const jobs = [];\n    for (const name of Object.keys(TEXTURE_SPECS)) {\n      const info = entries[name];\n      if (info?.color) jobs.push([name, 'color', info.color]);\n      if (info?.normal) jobs.push([name, 'normal', info.normal]);\n    }\n    let done = 0;\n    const total = jobs.length;\n    await Promise.all(jobs.map(async ([name, kind, file]) => {\n      try {\n        const texture = await this.loader.loadAsync(this.baseUrl + file);\n        this.configure(texture, name, kind);\n        (kind === 'color' ? this.colors : this.normals).set(name, texture);\n        if (kind === 'color') this.loadedFromFile.add(name);\n      } catch (err) {\n        console.warn(`[TextureLibrary] ${file} 加载失败，使用回退贴图`, err);\n      }\n      done++;\n      onProgress?.(done, total);\n    }));\n    for (const name of Object.keys(TEXTURE_SPECS)) {\n      if (!this.colors.has(name)) this.colors.set(name, this.createFallback(name));\n    }\n    return this;\n  }\n\n  configure(texture, name, kind) {\n    const spec = TEXTURE_SPECS[name];\n    texture.colorSpace = kind === 'color' ? THREE.SRGBColorSpace : THREE.NoColorSpace;\n    texture.wrapS = spec.wrap === 'clamp' ? THREE.ClampToEdgeWrapping : THREE.RepeatWrapping;\n    texture.wrapT = spec.wrap === 'repeat' ? THREE.RepeatWrapping : THREE.ClampToEdgeWrapping;\n    texture.anisotropy = this.anisotropy;\n    texture.name = `${name}_${kind}`;\n    texture.needsUpdate = true;\n    return texture;\n  }\n\n  createFallback(name) {\n    const spec = TEXTURE_SPECS[name];\n    const texture = PROCEDURAL_FALLBACK[name]?.() ?? solidTexture(spec.fallback);\n    return this.configure(texture, name, 'color');\n  }\n\n  has(name) {\n    return this.loadedFromFile.has(name);\n  }\n\n  tileSize(name) {\n    return this.manifest?.textures?.[name]?.tileSize ?? TEXTURE_SPECS[name]?.tileSize ?? 1;\n  }\n\n  /** 颜色贴图的宽高比（宽/高），band/clamp 类贴图映射 UV 时使用 */\n  aspect(name) {\n    const image = this.colors.get(name)?.image;\n    return image?.width && image?.height ? image.width / image.height : 1;\n  }\n\n  color(name) {\n    if (!TEXTURE_SPECS[name]) throw new Error(`未知贴图 ${name}`);\n    if (!this.colors.has(name)) this.colors.set(name, this.createFallback(name));\n    return this.colors.get(name);\n  }\n\n  normal(name) {\n    return this.normals.get(name) ?? null;\n  }\n\n  /**\n   * 获取（缓存的）标准材质。同名同参数返回同一实例，以减少着色器切换。\n   * @param {string} name 贴图名\n   * @param {object} params MeshStandardMaterial 其余参数（roughness、normalScale 数组等）\n   */\n  material(name, params = {}) {\n    const key = `${name}|${JSON.stringify(params)}`;\n    if (this.materials.has(key)) return this.materials.get(key);\n    const { normalScale, ...rest } = params;\n    const normalMap = this.normal(name);\n    const material = new THREE.MeshStandardMaterial({\n      color: 0xffffff,\n      map: this.color(name),\n      normalMap,\n      roughness: 0.85,\n      metalness: 0,\n      ...rest,\n    });\n    if (normalMap) {\n      const s = normalScale ?? 1;\n      material.normalScale = Array.isArray(s) ? new THREE.Vector2(s[0], s[1]) : new THREE.Vector2(s, s);\n    }\n    material.name = `${name}_material`;\n    this.materials.set(key, material);\n    return material;\n  }\n\n  allTextures() {\n    return [...this.colors.values(), ...this.normals.values()];\n  }\n\n  /** 资源是否归贴图库所有（其他模块 dispose 时必须跳过，统一由 main 调用 library.dispose()） */\n  owns(resource) {\n    if (!resource) return false;\n    if (resource.isTexture) return this.allTextures().includes(resource);\n    if (resource.isMaterial) return [...this.materials.values()].includes(resource);\n    return false;\n  }\n\n  dispose() {\n    this.materials.forEach(material => material.dispose());\n    this.allTextures().forEach(texture => texture.dispose());\n    this.materials.clear();\n    this.colors.clear();\n    this.normals.clear();\n  }\n}\n",
+      "deltas": [
+        {
+          "before": "  marble: () => TextureGenerator.createMarbleTexture(),\n  ground_brick: () => TextureGenerator.createGroundTexture(),\n};\n\nfunction solidTexture(color) {\n  const canvas = document.createElement('canvas');\n",
+          "after": "  marble: () => TextureGenerator.createMarbleTexture(),\n  ground_brick: () => TextureGenerator.createGroundTexture(),\n};\n\n// Estimated material response, not surveyed or screenshot-calibrated values.\n// Existing albedo and metre-scaled UVs stay intact. Luminance-derived paving\n// normals are deliberately restrained; plaster stays matte, painted wood less\n// chalky. Explicit caller parameters always take precedence.\nconst ROUTE_MATERIAL_RESPONSE = Object.freeze({\n  ground_brick: Object.freeze({ normalScale: 0.65 }),\n  stone_slab: Object.freeze({ normalScale: 0.5 }),\n  wall_red: Object.freeze({ roughness: 0.92, normalScale: 0.8 }),\n  wood_column: Object.freeze({ roughness: 0.65, normalScale: 0.6 }),\n});\n\nfunction solidTexture(color) {\n  const canvas = document.createElement('canvas');\n"
+        },
+        {
+          "before": "    texture.colorSpace = kind === 'color' ? THREE.SRGBColorSpace : THREE.NoColorSpace;\n    texture.wrapS = spec.wrap === 'clamp' ? THREE.ClampToEdgeWrapping : THREE.RepeatWrapping;\n    texture.wrapT = spec.wrap === 'repeat' ? THREE.RepeatWrapping : THREE.ClampToEdgeWrapping;\n    texture.anisotropy = this.anisotropy;\n    texture.name = `${name}_${kind}`;\n    texture.needsUpdate = true;\n",
+          "after": "    texture.colorSpace = kind === 'color' ? THREE.SRGBColorSpace : THREE.NoColorSpace;\n    texture.wrapS = spec.wrap === 'clamp' ? THREE.ClampToEdgeWrapping : THREE.RepeatWrapping;\n    texture.wrapT = spec.wrap === 'repeat' ? THREE.RepeatWrapping : THREE.ClampToEdgeWrapping;\n    // Geometry already supplies metre-scaled UVs. Legacy procedural generators\n    // may set their own repeats; normalize both color and normal maps once here.\n    texture.repeat.set(1, 1);\n    texture.anisotropy = this.anisotropy;\n    texture.name = `${name}_${kind}`;\n    texture.needsUpdate = true;\n"
+        },
+        {
+          "before": "    if (this.materials.has(key)) return this.materials.get(key);\n    const { normalScale, ...rest } = params;\n    const normalMap = this.normal(name);\n    const material = new THREE.MeshStandardMaterial({\n      color: 0xffffff,\n      map: this.color(name),\n      normalMap,\n      roughness: 0.85,\n      metalness: 0,\n      ...rest,\n    });\n    if (normalMap) {\n      const s = normalScale ?? 1;\n      material.normalScale = Array.isArray(s) ? new THREE.Vector2(s[0], s[1]) : new THREE.Vector2(s, s);\n    }\n    material.name = `${name}_material`;\n",
+          "after": "    if (this.materials.has(key)) return this.materials.get(key);\n    const { normalScale, ...rest } = params;\n    const normalMap = this.normal(name);\n    const response = ROUTE_MATERIAL_RESPONSE[name];\n    const material = new THREE.MeshStandardMaterial({\n      color: 0xffffff,\n      map: this.color(name),\n      normalMap,\n      roughness: response?.roughness ?? 0.85,\n      metalness: 0,\n      ...rest,\n    });\n    if (normalMap) {\n      const s = normalScale ?? response?.normalScale ?? 1;\n      material.normalScale = Array.isArray(s) ? new THREE.Vector2(s[0], s[1]) : new THREE.Vector2(s, s);\n    }\n    material.name = `${name}_material`;\n"
+        }
+      ]
+    }
+  },
+  "addedFiles": {},
+  "productAdditions": [],
+  "retainedFiles": {
+    "assets-src/ai/manifest.json": {
+      "baselineSHA256": "8188a052718957e02f3ad0951dd8ebb8ae0918839bc58a2b5fb75f721a8f0297",
+      "baselineBytes": 6211,
+      "baselineGitBlob": "0c97543efbcaf7375dab08dc1c7c4b5910e29e02"
+    },
+    "assets-src/gen_textures.py": {
+      "baselineSHA256": "333fa59dcef78e9d973231cf45a6286b5dd46d8bef0323b045f3fa8347912e61",
+      "baselineBytes": 12287,
+      "baselineGitBlob": "610f46da5ee6121c663bb4d86443b794448a3c91"
+    },
+    "assets-src/interiors/TAIHE-COLUMN-SURFACE.md": {
+      "baselineSHA256": "c4e103a9bd9e08d32973560fcd1fb05db8bceff12d1cf034cc3e623bd69bb032",
+      "baselineBytes": 10838,
+      "baselineGitBlob": "e2efa0a2f77987ffb1d594255bb10552db3e203b"
+    },
+    "assets-src/interiors/__pycache__/_common.cpython-313.pyc": {
+      "baselineSHA256": "fd497629ff2b46944353fab57014cd5d82dff34d9e1d494e471b92136d49aa44",
+      "baselineBytes": 12702,
+      "baselineGitBlob": "206ddb2df6116bdf6e9330084fb89c8dede44d7f"
+    },
+    "assets-src/interiors/__pycache__/throne_hall.cpython-313.pyc": {
+      "baselineSHA256": "3d0875c563f37c25043777488527b066d95e992a3e65fa2e304cff8642ba1862",
+      "baselineBytes": 29536,
+      "baselineGitBlob": "901a4ce767c444ae1a0c2889f6c1e12195e7a5c6"
+    },
+    "assets-src/interiors/_common.py": {
+      "baselineSHA256": "b57efc80a2a9ca78fdfbe44330b78bba40302fdd627acd0a800c56328dc111fa",
+      "baselineBytes": 6561,
+      "baselineGitBlob": "f8308670d4d42185ce20c54bcb1e7edb4ce04f81"
+    },
+    "assets-src/interiors/align_huangji_backdoor.mjs": {
+      "baselineSHA256": "6a4d79930a15efa38b09baf25756f48d01a6f27c7a738ce436373ee2b703b9a2",
+      "baselineBytes": 3104,
+      "baselineGitBlob": "a8e3f5e28def5aa52b046813f7fc9e5cbda7ff66"
+    },
+    "assets-src/interiors/append_taihe_caisson.py": {
+      "baselineSHA256": "5b1574b9859c1248da3294d9b0d801124e12d80389bc14b8ee0372c4a87be6a0",
+      "baselineBytes": 7161,
+      "baselineGitBlob": "9a1e3f9fc4d66020e25a1f866f11e9e19c5796a0"
+    },
+    "assets-src/interiors/append_taihe_cranes.py": {
+      "baselineSHA256": "0676a44786e754113e0f88c9b4c73db36cdb8d0baa359f2e4f85c923c9f22ec3",
+      "baselineBytes": 8635,
+      "baselineGitBlob": "c4899ecdabc79299d1f2df7d9b3dde78f97a1cb9"
+    },
+    "assets-src/interiors/append_taihe_screen.py": {
+      "baselineSHA256": "b3fd115755110cd815468ba270f6757e255b08aa5b2bf09f0841b0443da01676",
+      "baselineBytes": 7206,
+      "baselineGitBlob": "061af79b82e2fd56af64289ac457e09536b2cee3"
+    },
+    "assets-src/interiors/bind_qianqing_auxiliary.mjs": {
+      "baselineSHA256": "ecbed90d9c990c85bb60998f7b6810669c81649cb1fb87c039ebcbb27fe4aa95",
+      "baselineBytes": 1604,
+      "baselineGitBlob": "416ea495f860aa3720ced73865de65ca1580c082"
+    },
+    "assets-src/interiors/build_qianqing_auxiliary.py": {
+      "baselineSHA256": "c05357b209084393a4e6e92e81f3b5f514a95406e2c77e3e28fe9b9ff240f3b8",
+      "baselineBytes": 3943,
+      "baselineGitBlob": "6f7061884c86e925eb49b205fa08393b136b2d94"
+    },
+    "assets-src/interiors/build_taihe_caisson.py": {
+      "baselineSHA256": "5597a8211ddffd84e28bdf7e72f1dfe89ed9158c1ff726c83c5a8b81b739d52a",
+      "baselineBytes": 6923,
+      "baselineGitBlob": "e5fc9a488e054871a438c14af48f985b827ac3fa"
+    },
+    "assets-src/interiors/build_taihe_cranes.py": {
+      "baselineSHA256": "cb5fa91d42ed491db5071ccaf35306fa788e858e14182d57d68e186c61c064ef",
+      "baselineBytes": 6609,
+      "baselineGitBlob": "3940e9dbc1d34e2cbe518119ac9a73feb81d701f"
+    },
+    "assets-src/interiors/build_taihe_furnishing_surface.py": {
+      "baselineSHA256": "d8b004e57677f0c78566c39620fa8920f1063655670fd1f7703cb329bff5902b",
+      "baselineBytes": 10604,
+      "baselineGitBlob": "e45c827e743a286c2e331ae0cb98059826d3b883"
+    },
+    "assets-src/interiors/build_taihe_furniture.py": {
+      "baselineSHA256": "f6b7ef6a7429d2ca393e85683c4f845b2ee1db083e3d64d4d8e4a8e04b68edd6",
+      "baselineBytes": 4817,
+      "baselineGitBlob": "550b34683b3788091856961ff180d4a0c1f57b38"
+    },
+    "assets-src/interiors/build_taihe_screen_crowns.py": {
+      "baselineSHA256": "126ccf59f37ebe7075bba17fd6ee251f1835bccde37e2cce994df4ba019dc580",
+      "baselineBytes": 5786,
+      "baselineGitBlob": "dda79303575451d5fe6bbbfa5b6544a1f0fcc00e"
+    },
+    "assets-src/interiors/cining.py": {
+      "baselineSHA256": "fbbf6a58e8983feebc564f6a84da325eca4438ca7743e19f2ea315f5cd431f41",
+      "baselineBytes": 3381,
+      "baselineGitBlob": "406df5b80a5efa3ae154438f9a8a4c081cb59213"
+    },
+    "assets-src/interiors/export_qianqing_display.mjs": {
+      "baselineSHA256": "b41514c4ffc20582ee448481a2f6de8762de8da08c0f67cf07de44fd769c65c3",
+      "baselineBytes": 2466,
+      "baselineGitBlob": "06cc716ec5f6775512529f9800edc6e6d1938ae1"
+    },
+    "assets-src/interiors/fit_taihe_display_grid.py": {
+      "baselineSHA256": "ff56c54324b5820d9918e577a49d8c08d6b5995a553856157345bfc422efdea3",
+      "baselineBytes": 7874,
+      "baselineGitBlob": "92d166f6630d9537f79839bd4e164229577f99cb"
+    },
+    "assets-src/interiors/fit_taihe_hanging.py": {
+      "baselineSHA256": "96f1126477f546f11c16483bb3199cd6654df7c657263d69142201057c877b1e",
+      "baselineBytes": 8421,
+      "baselineGitBlob": "935b98911613669eae1320e2a0da2661f879f775"
+    },
+    "assets-src/interiors/huangji.py": {
+      "baselineSHA256": "57073c220bf67441c2ee29130e4510ca374d23d16397375d0b8d8a350fa09e8c",
+      "baselineBytes": 3228,
+      "baselineGitBlob": "d2a9065d3ac5abd61436afa1d17136213ec0dcd5"
+    },
+    "assets-src/interiors/kunning.py": {
+      "baselineSHA256": "9a640d5c04436303f3c59cb9bb84e54fa2d070df9453f816e59d2cfccc0189fe",
+      "baselineBytes": 15607,
+      "baselineGitBlob": "e5496c3fd4570d8c275d66ffb45bc509a743c772"
+    },
+    "assets-src/interiors/minimal.py": {
+      "baselineSHA256": "b963fbd258ece47c5ccfa3c518def3d83bef5296eebeaa3e5759b54fe4ea2386",
+      "baselineBytes": 561,
+      "baselineGitBlob": "e50a9e6fda3ba077f87614db482acc020861bd7b"
+    },
+    "assets-src/interiors/qianqing.py": {
+      "baselineSHA256": "80e24cbee996643ffd39d86708baa1d1991101d19a1842a55f5b1c2c0ab874c0",
+      "baselineBytes": 2872,
+      "baselineGitBlob": "77573dcca91058c9522b4fa98d1c8d6268d949a4"
+    },
+    "assets-src/interiors/qianqing_surface.py": {
+      "baselineSHA256": "7d036da5d51808c4f4b480d8392980e3d32157680701f931790639ffd266661e",
+      "baselineBytes": 4517,
+      "baselineGitBlob": "8c51e9ee8617697f5d8b8c676452846796ffc575"
+    },
+    "assets-src/interiors/retire_taihe_shell.py": {
+      "baselineSHA256": "432dbc423c06d70661ea0301d102c7be183a5cda3340c2ca33d84e348181190c",
+      "baselineBytes": 4444,
+      "baselineGitBlob": "f1dd44b62be16bcc83ce03a05bfb7909c5d4c199"
+    },
+    "assets-src/interiors/retire_taihe_throne_back.py": {
+      "baselineSHA256": "cd2675b4ab8cb31a67e04eb9561e432954ee2f738c860c9c6e07235703f9cffd",
+      "baselineBytes": 9772,
+      "baselineGitBlob": "25b5c102a152523ca7183ba3385290ee6a7e9468"
+    },
+    "assets-src/interiors/taihe.py": {
+      "baselineSHA256": "25f7491e1e088f7bc28425732c1a58182661d1ee8f5d0f5ebae3f5c1005e3caf",
+      "baselineBytes": 14755,
+      "baselineGitBlob": "1a0d63379ed4b8e802f5b156c14ec38b55647701"
+    },
+    "assets-src/interiors/taihe_caisson/SHAPE-RATIONALE.md": {
+      "baselineSHA256": "6d842600aadd93b7471b618b2f6050ec4027462fa5d7b05f2e059537d92b6b0f",
+      "baselineBytes": 8934,
+      "baselineGitBlob": "8cd25bb293901d1aec244a0c9149507d3cd06699"
+    },
+    "assets-src/interiors/taihe_caisson/SHELL-RATIONALE.md": {
+      "baselineSHA256": "14f964e5d99da0da19da70c709b7e022408aa965231a1fbdd0c36cf5ef9fcc1a",
+      "baselineBytes": 5950,
+      "baselineGitBlob": "589db3938cc548f90a006da33add4e54cb43e49f"
+    },
+    "assets-src/interiors/taihe_caisson/geometry.py": {
+      "baselineSHA256": "fd0c44616b0ce328adccce26573f45a0affbddd68640442babd5e43a7db8753b",
+      "baselineBytes": 21119,
+      "baselineGitBlob": "278c753b482af147b76944581c3d0d7777a11b38"
+    },
+    "assets-src/interiors/taihe_caisson/retired_shell_faces.json": {
+      "baselineSHA256": "231113dd6726175be9de932cbf6c0a36fe7466e88e5910df6aa9660f49ba2079",
+      "baselineBytes": 90497,
+      "baselineGitBlob": "6b7ca57406ac232edad573fe77637905833f5160"
+    },
+    "assets-src/interiors/taihe_caisson/shell.py": {
+      "baselineSHA256": "5d366c0aaace6f792631d05274447c34076122ea5629f3fddcb26c86c01e825a",
+      "baselineBytes": 9535,
+      "baselineGitBlob": "7496740cc8f464cd330c25a8abe193d366e89452"
+    },
+    "assets-src/interiors/taihe_caisson/test_geometry.py": {
+      "baselineSHA256": "df92a511aac872cc96d2bdb0d380b726c301d81c632e15f38e3bfba662171f71",
+      "baselineBytes": 18430,
+      "baselineGitBlob": "a224f4b704be723afe4a15395be5ad954c257fb0"
+    },
+    "assets-src/interiors/taihe_caisson/test_shell.py": {
+      "baselineSHA256": "a971dbdbcf20f3e80bccfbe13b50fc2781084c582207984afce6829027c3a41e",
+      "baselineBytes": 8999,
+      "baselineGitBlob": "90681c156371493169565b72994af55989d6075e"
+    },
+    "assets-src/interiors/taihe_column_art/PROVENANCE.md": {
+      "baselineSHA256": "9b97cc91f2bdcfb4e878711f736504bf03c975e3b1af13cedd86c002274a364b",
+      "baselineBytes": 3361,
+      "baselineGitBlob": "68f5c23f8214ad936bb550b94feb6c391b747bf3"
+    },
+    "assets-src/interiors/taihe_column_art/SOURCE.json": {
+      "baselineSHA256": "a8c9aa6c650da44b25ee6b6ef9e9e4363d7f8abc75b35ee438e7714f5e098d43",
+      "baselineBytes": 840,
+      "baselineGitBlob": "2dd46ff6b1a5ffdd6468c9a5ab5d5c0b65e4c8ac"
+    },
+    "assets-src/interiors/taihe_column_art/bake.mjs": {
+      "baselineSHA256": "3526f128bbf96e6fa1393c3c45aa1a4f6bac7ea9e1a2f088100bc9bbcf8c19da",
+      "baselineBytes": 3114,
+      "baselineGitBlob": "013a3a0accc907d3595c5d0da095843ffc4c8f60"
+    },
+    "assets-src/interiors/taihe_column_art/original-generated.png": {
+      "baselineSHA256": "0e36c1b2105264c9bbffd65a52074b4b1c12dceb57226cfe4e0d436d797d2146",
+      "baselineBytes": 3091067,
+      "baselineGitBlob": "78af51fc45e7f5f6567b3d477e167cdc5d16ddf6"
+    },
+    "assets-src/interiors/taihe_column_uv.py": {
+      "baselineSHA256": "a0c4f1364db7d14aaca6a4bfdeaf18957ba7c716af4d2a82af19f2cd35195170",
+      "baselineBytes": 1695,
+      "baselineGitBlob": "a5790c8a12cea1429d5d770af4ac13b5fce00b3b"
+    },
+    "assets-src/interiors/taihe_cranes/README.md": {
+      "baselineSHA256": "06c4303067de1eb23eeecbc0756e0086c2f3311021ad23600cdb4d954406e96a",
+      "baselineBytes": 5994,
+      "baselineGitBlob": "86525cd03f28c5647fa04340cfb2b67ef16d2dba"
+    },
+    "assets-src/interiors/taihe_cranes/crane_replacement.py": {
+      "baselineSHA256": "56050e337d98e5c3c105a5074229cdd17bbeb21815343d80da488226af04a285",
+      "baselineBytes": 8792,
+      "baselineGitBlob": "fba6b606334fa04fc94106c9b2027125de28525f"
+    },
+    "assets-src/interiors/taihe_cranes/derive_retirement.py": {
+      "baselineSHA256": "ff6de8837de312dced8fa71a49faa10baa2b21df41c4d3999f9cfc1551bb28f6",
+      "baselineBytes": 11656,
+      "baselineGitBlob": "c08115035487830820899aeba50aabf0cd2cf117"
+    },
+    "assets-src/interiors/taihe_cranes/retire.py": {
+      "baselineSHA256": "1ff88335fe272f25795c905512dc1893fd9b7a6f7bd9d75e7ea214be81c44d66",
+      "baselineBytes": 9483,
+      "baselineGitBlob": "9a505ca50ccba6f43a43de2ce0f4ac2955155d3a"
+    },
+    "assets-src/interiors/taihe_cranes/retired_crane_faces.json": {
+      "baselineSHA256": "314acd8f842661574f79a87ecb66fffb2308b8debab95276dd4fc71392db2466",
+      "baselineBytes": 443480,
+      "baselineGitBlob": "c3f91d69381701edc1457ff77a5b0cb02ea9f91c"
+    },
+    "assets-src/interiors/taihe_cranes/test_retirement.py": {
+      "baselineSHA256": "7ad8f611f25ac9641b54c09c787569c85821f408ae54725c6d5f6b4da7de31cf",
+      "baselineBytes": 11001,
+      "baselineGitBlob": "45ea8dc44ae488e6cbf2b42eb37a9d0f989b9716"
+    },
+    "assets-src/interiors/taihe_cranes/tests/test_crane_replacement.py": {
+      "baselineSHA256": "993fabd38be5d055d6651befb712480b4813d7ce38f1cb71c4417ebc9b1f7575",
+      "baselineBytes": 11386,
+      "baselineGitBlob": "7f08127be89bd9518189605b6053ef85761d88cf"
+    },
+    "assets-src/interiors/taihe_dais/build.py": {
+      "baselineSHA256": "35c86c7d2fb9b8685ff956192a1c13740ce0cd6268b8e677493f7d36a04ebdad",
+      "baselineBytes": 5780,
+      "baselineGitBlob": "8391eac6730bda0131f2fcd1780678993c93a815"
+    },
+    "assets-src/interiors/taihe_dais/derive_mask.py": {
+      "baselineSHA256": "9c90f9555cb4158ff3485326cec356aa8a2f2efb848020e20c5b06a5e5e4c664",
+      "baselineBytes": 3633,
+      "baselineGitBlob": "42ad76de8720badada145a53086724154fd986a3"
+    },
+    "assets-src/interiors/taihe_dais/geometry.py": {
+      "baselineSHA256": "37f0b45a8760d04c4323c5c1c507fc603dcbfd858d7723ec24b915cceb2205af",
+      "baselineBytes": 5961,
+      "baselineGitBlob": "403a25102f8af72e625a3a409932866757fadf46"
+    },
+    "assets-src/interiors/taihe_dais/retirement-mask.json": {
+      "baselineSHA256": "22e89735e7f1277e901cd2c894ad0e1e9763c26c83e1753e406a8d6287527795",
+      "baselineBytes": 258211,
+      "baselineGitBlob": "5ff74d746a38322792e7f5b2699ef4ed4a980bd3"
+    },
+    "assets-src/interiors/taihe_display/README.md": {
+      "baselineSHA256": "b6f58e9edd837e5573d1ebc58357e57b7ebcc9b36a3b86af63663eed793993a2",
+      "baselineBytes": 1496,
+      "baselineGitBlob": "70dfd561baa9025488a4f708a06d393bfcad8115"
+    },
+    "assets-src/interiors/taihe_display/approved/IMPLEMENTATION-PLAN.md": {
+      "baselineSHA256": "581d534e08b8e3894fb4d31a74423fe70afc3ec4a795af3b9ceee7276a69e37b",
+      "baselineBytes": 2433,
+      "baselineGitBlob": "df874cc0823ea4a27cbd0006ec1b0ec8f7f4e8de"
+    },
+    "assets-src/interiors/taihe_display/approved/INTEGRATION-NOTES.md": {
+      "baselineSHA256": "67e73fb7c30a66bb9ef33b61516592572a7320dae990ddd8b61cc92ed508525c",
+      "baselineBytes": 11100,
+      "baselineGitBlob": "9c31d963fd51f1a657c55c2f6dcdc65877d277e0"
+    },
+    "assets-src/interiors/taihe_display/approved/REPAIR-DELTA.md": {
+      "baselineSHA256": "24d3b0aa5dfc745fc5ac8578ea499fe083f195f7c115b349dce0af8972644731",
+      "baselineBytes": 6041,
+      "baselineGitBlob": "75c3bf3ab42521a66ff233b8a13aa21541d5a3a4"
+    },
+    "assets-src/interiors/taihe_display/approved/SOURCE-NOTES.json": {
+      "baselineSHA256": "e7c52450bbea40602377ccae0757a7cf58feab98c4d2ac4f1b68ce2ed8d13d7a",
+      "baselineBytes": 4850,
+      "baselineGitBlob": "42d40791be830e6e5253ee34b1ed32b68accfea3"
+    },
+    "assets-src/interiors/taihe_display/approved/artifacts/FINAL-RECEIPT.json": {
+      "baselineSHA256": "dbb654c3de858629ce7f34289c0bbf0a5f0025cda878dfc01f6658cba12c38b2",
+      "baselineBytes": 4337,
+      "baselineGitBlob": "0fa58d633133a0c3c6e7e13ea03a5d611991ae5f"
+    },
+    "assets-src/interiors/taihe_display/approved/artifacts/SOURCE-MANIFEST.json": {
+      "baselineSHA256": "d2653431547b13678f2ab278a1067cbff894aec21665307b5584dec6edc007f9",
+      "baselineBytes": 3334,
+      "baselineGitBlob": "7c8155f69a7c325c2c85738f460a064b33a65a6f"
+    },
+    "assets-src/interiors/taihe_display/approved/artifacts/meshes-S.json": {
+      "baselineSHA256": "26a5b0c2455ed64fcede564bc6203ab35eb7ae49f7ee6ab164e50188c2850aa9",
+      "baselineBytes": 461341,
+      "baselineGitBlob": "e08d55de6296960df237cd2ef4f6772af48a723d"
+    },
+    "assets-src/interiors/taihe_display/approved/artifacts/meshes-fallback.json": {
+      "baselineSHA256": "dda0197f2435d6183fe452e13c66653881ede52c9d64d8e79a5000488a84d2d4",
+      "baselineBytes": 60158,
+      "baselineGitBlob": "a6ab84ae252478d24c447bc9a5bb96b18fca0ce1"
+    },
+    "assets-src/interiors/taihe_display/approved/integration_geometry.py": {
+      "baselineSHA256": "3f28b2f5d87357b441ea1bf65b991e63926027bf64cb80b347b9b668413ba996",
+      "baselineBytes": 1851,
+      "baselineGitBlob": "0829eb4c31f7cad0db9b2f8256a9b96c4fa53ec5"
+    },
+    "assets-src/interiors/taihe_display/approved/mesh_kernel.py": {
+      "baselineSHA256": "c282af36524f4e84aac957cd5560151b0ff2f2c5b7146a6342f36e77d3ad2596",
+      "baselineBytes": 5821,
+      "baselineGitBlob": "48ca8219327b45e2db2ec6cc7e1e07c17397aff8"
+    },
+    "assets-src/interiors/taihe_display/approved/taihe_display_pairs.py": {
+      "baselineSHA256": "2deb0cfb97763cdc2be60af1bbd54021b2345d11984175f7806fc4d3dc671a09",
+      "baselineBytes": 14585,
+      "baselineGitBlob": "bd3c9dd089a816d0eda8a69f8b89bab2d4fba65e"
+    },
+    "assets-src/interiors/taihe_display/blender_display.py": {
+      "baselineSHA256": "39c6f90d0d372e94505b7b52c42efe1dea88d47458bd8a910fc2504ddb0b5bd5",
+      "baselineBytes": 2516,
+      "baselineGitBlob": "e2c1fdad04979539c042d2fa24547823995f5b2a"
+    },
+    "assets-src/interiors/taihe_display/generate_fallback.py": {
+      "baselineSHA256": "f077502ff38c7becad67364de43f8092e5aa7fe794f38615982c0b0c23020cf6",
+      "baselineBytes": 2276,
+      "baselineGitBlob": "538d38caf13aee496c570e126237097584817148"
+    },
+    "assets-src/interiors/taihe_furnishing_surface/derive_faces.py": {
+      "baselineSHA256": "49928a4c095c6b711f8178814e64457e929aac069cfcf274b80bbb9889813c1e",
+      "baselineBytes": 5806,
+      "baselineGitBlob": "9209d576885ddbc53fa6dae804d39835a95542d1"
+    },
+    "assets-src/interiors/taihe_furnishing_surface/selected_faces.json": {
+      "baselineSHA256": "049a115668a34008bab8f579722dffb6a2fc3fedaa7afb890dd84caa9dd4cbe7",
+      "baselineBytes": 31149,
+      "baselineGitBlob": "0551ab1e6e53a06d1061a1d2cc6489df0737ef4d"
+    },
+    "assets-src/interiors/taihe_furniture/DETAIL-GEOMETRY.md": {
+      "baselineSHA256": "9d44ccb421b0dc057005e6feb1ddf8681a5f86437622d0055845a83df03c7459",
+      "baselineBytes": 4137,
+      "baselineGitBlob": "e5180e274d1f0bd72a9e7e11a5a9e463f65de911"
+    },
+    "assets-src/interiors/taihe_furniture/derive_retirement.py": {
+      "baselineSHA256": "1d03ce36067f42fced7f8408e4db726de1ca13cd3ef8903a928b32e843a1125c",
+      "baselineBytes": 9825,
+      "baselineGitBlob": "36f31447269338bf514994a9897fc1b0b7233575"
+    },
+    "assets-src/interiors/taihe_furniture/geometry.py": {
+      "baselineSHA256": "8b0b89fb4e6154d27b04dfee40c7b7da5978247eb43cef30fba7949ccc8b3723",
+      "baselineBytes": 13023,
+      "baselineGitBlob": "f995e74b5effcea55f0b64c01265b18cf829dd72"
+    },
+    "assets-src/interiors/taihe_furniture/retired_throne_back_faces.json": {
+      "baselineSHA256": "dc4cf61f8441280347c8bd292d163f5465624f6cbf50513a30fb1b9c9018f287",
+      "baselineBytes": 131179,
+      "baselineGitBlob": "0815121c79938abbe96d3357f32a6d9bb1c344bf"
+    },
+    "assets-src/interiors/taihe_furniture/test_geometry.py": {
+      "baselineSHA256": "e4b209dab1a36cc5702c03a034a182577e6695926b6bd45062bda42f31e92836",
+      "baselineBytes": 10173,
+      "baselineGitBlob": "c3e9b430b5710a96417af830f508fe190d7d9994"
+    },
+    "assets-src/interiors/taihe_hanging_fit/r32-profile.json": {
+      "baselineSHA256": "5febda5436765e258e67300bf4b737566e4e522d60ebb9587222c9e4ed1a181c",
+      "baselineBytes": 2532,
+      "baselineGitBlob": "0be393accd0aeb3ef31bb2a147e1eae832ad9e7b"
+    },
+    "assets-src/interiors/taihe_screen_crowns/README.md": {
+      "baselineSHA256": "d39bb004aca9971b9d795c74437af21dd729a023e774372ab3b7467fb1b9e0cd",
+      "baselineBytes": 7414,
+      "baselineGitBlob": "72711cbdab00b889700c6dee0dcb386fb2e6dc7c"
+    },
+    "assets-src/interiors/taihe_screen_crowns/derive_retirement.py": {
+      "baselineSHA256": "4e92acb74029304b6af52ba6513bc6072706e47d110c72903b3bcf126307e6c1",
+      "baselineBytes": 8425,
+      "baselineGitBlob": "aac012aaf708d5b9c4b99b56f83fad2003a88c3d"
+    },
+    "assets-src/interiors/taihe_screen_crowns/diagnostic_preview.py": {
+      "baselineSHA256": "85296cd27578d2ac6a64bcfd42814a57f2fc597b5af48ae116904644bd117cae",
+      "baselineBytes": 7632,
+      "baselineGitBlob": "0f34177c68e757b2980d6fea2b51a1688fe8d67d"
+    },
+    "assets-src/interiors/taihe_screen_crowns/geometry.py": {
+      "baselineSHA256": "286dc794deb8a48ebed697bfd51396fb7356f5af2fd47305bf31711f2adfc8bf",
+      "baselineBytes": 7683,
+      "baselineGitBlob": "a0945a33c5c797f0b5a1c230a41ae7d7e9ad2ca6"
+    },
+    "assets-src/interiors/taihe_screen_crowns/retire.py": {
+      "baselineSHA256": "b02ae5c3daa637e7118708d257d2b3022ef1788ea89b138d5048f5551b421d9a",
+      "baselineBytes": 6982,
+      "baselineGitBlob": "eeeca1a0fa51a88903313d6271df23d288113486"
+    },
+    "assets-src/interiors/taihe_screen_crowns/retired_screen_header_faces.json": {
+      "baselineSHA256": "7231ffb388115f3cf3f9e9745de82e645bd9cda091a2d352c795d54479490805",
+      "baselineBytes": 773211,
+      "baselineGitBlob": "86940124c3cb8a363af098287d4cf7bae184dff6"
+    },
+    "assets-src/interiors/taihe_screen_crowns/test_geometry.py": {
+      "baselineSHA256": "77b12a7c7377f6c9ec2c693d9eb50d7e044f20761cff36f2439f0cbd053dd1c7",
+      "baselineBytes": 9722,
+      "baselineGitBlob": "bc4121212ab29e1a1296d0c65f451be086f76eaa"
+    },
+    "assets-src/interiors/taihe_screen_crowns/test_retirement.py": {
+      "baselineSHA256": "89bff720c7e1f7942527dd5c305533776dc28d5a93332218704e2e69f537886e",
+      "baselineBytes": 7906,
+      "baselineGitBlob": "be25025393c082cf5fd5c2e26a3637d3cdc6abce"
+    },
+    "assets-src/interiors/taihe_spatial_fit/r33-profile.json": {
+      "baselineSHA256": "10d682b9816e7601f1215ab859a29de086ddba6caf34d58032070dbbdddb6347",
+      "baselineBytes": 3322,
+      "baselineGitBlob": "c373371002abefe7d48bf6b9b2ce5e6474bf0f85"
+    },
+    "assets-src/interiors/throne_hall.py": {
+      "baselineSHA256": "9f60405e759fc87974d44d035c3480d25ee4f5f2908b3fc1e16b8eff298359b9",
+      "baselineBytes": 22860,
+      "baselineGitBlob": "3bff284c3e1493fc63aacb10530d7f1856895b55"
+    },
+    "assets-src/interiors/yangxin.py": {
+      "baselineSHA256": "d4e25100c60018fbcfba0af5c7e8b0993ed817dfae04b6312c984fc77d0c8b44",
+      "baselineBytes": 10089,
+      "baselineGitBlob": "eeca5cc303e27836fb7ad1d8a6fd78d9f80a9564"
+    },
+    "assets-src/process_textures.py": {
+      "baselineSHA256": "5da18f4835de6a7b81dd06768e6b8d4330c59059ec55810c0b3029b1706cbc43",
+      "baselineBytes": 11547,
+      "baselineGitBlob": "9e4764563fe8ba47b06e9adb70d66a5faf81bc4a"
+    },
+    "assets-src/qianqing-ceiling-paint/PROMPT.txt": {
+      "baselineSHA256": "597863291f9bcb222585fd253e47c2c20344810ec737de20a290d7856b83c14c",
+      "baselineBytes": 1553,
+      "baselineGitBlob": "e77d858f5bd4918cf55de3121c021a3a1fda095e"
+    },
+    "assets-src/qianqing-ceiling-paint/README.md": {
+      "baselineSHA256": "3b6d578fe23f36dbd8feae4856c5e24c186165f550e865146213e2a38dae631b",
+      "baselineBytes": 1897,
+      "baselineGitBlob": "a3bd8369c997a6bb5e4d3ea3407ab87c0f7ee243"
+    },
+    "assets-src/qianqing-ceiling-paint/generated-original-r32.png": {
+      "baselineSHA256": "3143d479a7bd0153ad2d5eb23007b473c16133dc3f1853a3708a5a7a61052f30",
+      "baselineBytes": 3249437,
+      "baselineGitBlob": "a9363e61d86d4f541e3ab301a4e991f7011f610a"
+    },
+    "assets-src/qianqing-frieze-paint/CORRECTION-PROMPT.txt": {
+      "baselineSHA256": "2b89822563633fc57b97d3ceae9c18bee7e714b81418572a3fe257dd730182d0",
+      "baselineBytes": 987,
+      "baselineGitBlob": "350491caac0f9e318335a7c82aaa831ec2fc5533"
+    },
+    "assets-src/qianqing-frieze-paint/PROMPT.txt": {
+      "baselineSHA256": "679c7a31ca45654988f304d9fb2a3780194b1ad591e8703dd4bd3930e971b689",
+      "baselineBytes": 1445,
+      "baselineGitBlob": "df0edfb36a6c10229838730c4c6f7cbce2cd34c5"
+    },
+    "assets-src/qianqing-frieze-paint/README.md": {
+      "baselineSHA256": "9a0599afb0b4f967f1dbf9e41581a6251e9eb11ba486c7a7c3e25d78e5858534",
+      "baselineBytes": 1836,
+      "baselineGitBlob": "c8984c4c5e34de92b225fa0c448ec60f1039e05d"
+    },
+    "assets-src/qianqing-frieze-paint/generated-original-r32.png": {
+      "baselineSHA256": "b47470218a964eddec529a3a7c60c1c2faf0547969353c88b62d65887eae017e",
+      "baselineBytes": 3058918,
+      "baselineGitBlob": "b853c0844b4baaf1c08eb57d0bbdfe8d38bc3f72"
+    },
+    "assets-src/qianqing-screen-paint/PROMPT.txt": {
+      "baselineSHA256": "0136d09742d502d6c1a01dbca483f55ad0da1d0b3532e8e681759304ba249ab2",
+      "baselineBytes": 1554,
+      "baselineGitBlob": "7a0c9bfbeb038cbfb69105d243d4819bd818c1b9"
+    },
+    "assets-src/qianqing-screen-paint/README.md": {
+      "baselineSHA256": "029578f7a71c00a9dc7f1fb2c60f5f821a3a6208bf95dcae5b2ffaf3f851cfa3",
+      "baselineBytes": 2725,
+      "baselineGitBlob": "2698886df8b64bb831cde49dc2159f298db47949"
+    },
+    "assets-src/qianqing-screen-paint/generated-original-r32.png": {
+      "baselineSHA256": "0836d3fe251185512d19c3617abec2ed158ce5b036ab9f8f448012ac3095f737",
+      "baselineBytes": 3085910,
+      "baselineGitBlob": "8e47d70cf3055c29b309ca4658d509453d319ddd"
+    },
+    "data/anchors.json": {
+      "baselineSHA256": "c720ba58979c12b3c9eb763593bd8f27cdae59d1b21fd5a0bda70170a2ba668a",
+      "baselineBytes": 17568,
+      "baselineGitBlob": "4645a4b667a2c4672071246993919517569ec8e3"
+    },
+    "data/architecture/kunning.json": {
+      "baselineSHA256": "7bdb8d8fa694c889966aa2ca6c6dbf016826f7f53bed36194e8518cd79769e32",
+      "baselineBytes": 32102,
+      "baselineGitBlob": "b2c504bd40bc72508d95bab2e41c4ea48d7ca0c1"
+    },
+    "data/architecture/qianqing-display-geometry.json": {
+      "baselineSHA256": "7731dcca764b1faac93d9b81d25f591c4e40b6b6dc1034be17a07a377e482fa4",
+      "baselineBytes": 321608,
+      "baselineGitBlob": "03634dbb010e5492f4f1f265745c3564ae616c2b"
+    },
+    "data/architecture/qianqing-material.json": {
+      "baselineSHA256": "50e52fa4f3f18e946a9d836568a10356dda1a8479ff91744c8107957dc868b7e",
+      "baselineBytes": 877,
+      "baselineGitBlob": "f4979f09743b747fc2c8f7b1af7c8c6e5a1aa928"
+    },
+    "data/architecture/qinan.json": {
+      "baselineSHA256": "19c3c1d5bc4bfe3c09185009f680663a98dee1777ce819b3e81572934a0c0774",
+      "baselineBytes": 8289,
+      "baselineGitBlob": "badd61c517b74b95ece0b1853c6c3c907a5d5d10"
+    },
+    "data/architecture/taihe-column-grid.json": {
+      "baselineSHA256": "b74888f5df7fd14b98cff556cedef8d9a4aa0ceca1142290a055a1210bb2c33b",
+      "baselineBytes": 794,
+      "baselineGitBlob": "ecf1a7b45e7fbe922f657a8b223f5ef3ab38825f"
+    },
+    "data/architecture/taihe-core.json": {
+      "baselineSHA256": "3231824944864fab352fb0bb9aacd5a3a3513148fac37786d20db847e7e9ff13",
+      "baselineBytes": 4431,
+      "baselineGitBlob": "907914310bffdf4db8d91f4293fb015a1aa5a531"
+    },
+    "data/architecture/taihe-dais-front.json": {
+      "baselineSHA256": "79be23e9b728cae9127795e1d6d8ec6ce2140b4e4c76a1b3d0f7389b00d34aa2",
+      "baselineBytes": 1721,
+      "baselineGitBlob": "7f6346fb1a6da2b3678aa07eb8c7e513d2941fcd"
+    },
+    "data/interiors/cining.json": {
+      "baselineSHA256": "89423f454268828fc340b86e480b60c735c1b97ad6ab4ab9145b2d91e9e2efc5",
+      "baselineBytes": 1118,
+      "baselineGitBlob": "e89bc2d5b80b8c792f6caf0f3350e93121bf43a1"
+    },
+    "data/interiors/huangji.json": {
+      "baselineSHA256": "ad8722a10a5793b6c02935d2d86a87b0a778081e57400d9e56f2ae98e14c08f7",
+      "baselineBytes": 793,
+      "baselineGitBlob": "1563048f35beeb6e8b8967c5c43f24f769f691ca"
+    },
+    "data/interiors/kunning.json": {
+      "baselineSHA256": "02beb5b84b4ba1d119c57bb224974477b941856a8a9b2546f972920e1233c61d",
+      "baselineBytes": 3020,
+      "baselineGitBlob": "31d590e6180e0c88064048b3fa433bb503532823"
+    },
+    "data/interiors/qianqing.json": {
+      "baselineSHA256": "dff330c932b58a856feccd27d558bff16969a46855bc907fccf9c610d4d24aee",
+      "baselineBytes": 1408,
+      "baselineGitBlob": "f290707d448567b5bc597d4eacb48417a842c6d5"
+    },
+    "data/interiors/schema.md": {
+      "baselineSHA256": "35865137e6133edfdabba9ec8d8dd2003d9f9e2795881a1725865a621ef891c2",
+      "baselineBytes": 2220,
+      "baselineGitBlob": "1e6a64eb36b37ec0683ab904c9a11b94c8eca2ac"
+    },
+    "data/interiors/taihe.json": {
+      "baselineSHA256": "b59ad455f8ebe35224f4557708fa87c727e53203a8f6d44b1b0d62ca84cd740c",
+      "baselineBytes": 8343,
+      "baselineGitBlob": "d6a89b965ee141417235b3d9bf308d55ab5bc869"
+    },
+    "data/interiors/yangxin.json": {
+      "baselineSHA256": "a4e940159488e260fd3d19ef66140bc9f4cfecf65cb4387cab3082e6406aed8c",
+      "baselineBytes": 859,
+      "baselineGitBlob": "8c7338b138e274c57f17b0ffd273e8ef9a61163a"
+    },
+    "data/places/catalog.schema.json": {
+      "baselineSHA256": "0f281cd96c2e809a6abb8b9ff69469ef9091fc1048605396bf9b78909628ed5d",
+      "baselineBytes": 14297,
+      "baselineGitBlob": "d18b8b08268aa716e54fcfa0b43b6c5064bfb8f0"
+    },
+    "data/places/zh-CN.json": {
+      "baselineSHA256": "e1bf5eb45428132dddf1b75c64bd41ee3108bbeafd5e5fef4db37cb0fc4bd8c1",
+      "baselineBytes": 332798,
+      "baselineGitBlob": "ca67091cb3e613989c336ef717eeb592c0a0c2ea"
+    },
+    "data/schema.md": {
+      "baselineSHA256": "6ca3d849b0018706eff34ca3931321f69ab29c47714c3c13beedb96ae757d332",
+      "baselineBytes": 20300,
+      "baselineGitBlob": "42ae74dc4a03cc835aa427515f1f723c202fbe50"
+    },
+    "data/zones/axis-courts.json": {
+      "baselineSHA256": "4f2617103890e16edfd911031901cf7084357ff94a896461f0f9425e1e03b71d",
+      "baselineBytes": 6365,
+      "baselineGitBlob": "ca9fd685fced67758670cc1c8ccac306735f4474"
+    },
+    "data/zones/east-six.json": {
+      "baselineSHA256": "5de65a538e5b03661a72eda40b70557afd84e78d37a43fee1c666af6e9d5e7ff",
+      "baselineBytes": 9243,
+      "baselineGitBlob": "76d9968214e2b63158c5dccaab940f325937ceb2"
+    },
+    "data/zones/garden.json": {
+      "baselineSHA256": "baad5210a941a11ee2b58f63e86f85c9eaaddd16cdd5fb68f795ad4a2919a0c2",
+      "baselineBytes": 4805,
+      "baselineGitBlob": "ceae709301e7eee71c7c6a44ce2633fd334dd074"
+    },
+    "data/zones/index.js": {
+      "baselineSHA256": "ed7d0b6154aed0af1460d9f96a1349fdf54764c00ae6f30b7eb9a175d20f3def",
+      "baselineBytes": 650,
+      "baselineGitBlob": "ea241d1faf786a505c83b97c6503d915dca33c83"
+    },
+    "data/zones/ningshou.json": {
+      "baselineSHA256": "f5a284f6f61493eac736dd30ba7daf554873a335a9e383edbbff2b4d6733db63",
+      "baselineBytes": 7712,
+      "baselineGitBlob": "1930ab19f736d1b982f087a70d486324259ecb5c"
+    },
+    "data/zones/outer-east.json": {
+      "baselineSHA256": "3e804cb51abcbe0cd580318aebb170822e003c5af67dbb181968d36af3dc1322",
+      "baselineBytes": 3502,
+      "baselineGitBlob": "009ce6f70d129d08b874a3ac38ae1cfe33e3b9ed"
+    },
+    "data/zones/outer-west.json": {
+      "baselineSHA256": "9bb43590c5080bef9a7a7bdaa3295ddd4d693c988d1140267cc3847baa1b87a9",
+      "baselineBytes": 8322,
+      "baselineGitBlob": "9a0845ec0b53d34041fc500d724eb83ae74fd20b"
+    },
+    "data/zones/west-six.json": {
+      "baselineSHA256": "c8ed2f4a26ef3287fb40f296edbfbbe4c3a5d39d1ed305e278fef14a0122066a",
+      "baselineBytes": 10464,
+      "baselineGitBlob": "6f7c1f20a5b92cac102f4504016782a4eb750446"
+    },
+    "public/basis/basis_transcoder.js": {
+      "baselineSHA256": "48a0ef319a28bf0224ee88ded34f74eaf97c175bba9eb18b47fb9720510ad6c4",
+      "baselineBytes": 62337,
+      "baselineGitBlob": "9e285ddc9515bda212cc9c1313ab14eadff02213"
+    },
+    "public/basis/basis_transcoder.wasm": {
+      "baselineSHA256": "79ae97d781e10a566659c689b7bb1de91726453f55f9f5e3bcc07a4e3904070f",
+      "baselineBytes": 499935,
+      "baselineGitBlob": "4b9c3437170cf226600057096490d0a2fa8d74ea"
+    },
+    "public/draco/draco_decoder.js": {
+      "baselineSHA256": "8625489da79a805f4f2a7d511c3e52d8b4085608a9d2a4d5f4f9de5db0aea04f",
+      "baselineBytes": 512465,
+      "baselineGitBlob": "7c84b0be2aa46407df9f3f3371d574dc165b55f8"
+    },
+    "public/draco/draco_decoder.wasm": {
+      "baselineSHA256": "a680d927bed9cb864ddbd63521868891af2bfbe755092761b4837487618df8ac",
+      "baselineBytes": 192420,
+      "baselineGitBlob": "469904ebcb7b83523db73913a19c349528105ff8"
+    },
+    "public/draco/draco_wasm_wrapper.js": {
+      "baselineSHA256": "8bb2952d2ba7d67e1414f8df819410cb0434a666be53f671fff75f68843d76f6",
+      "baselineBytes": 58456,
+      "baselineGitBlob": "43f15568384c84f9506cd86fc4a8736e1ba2ec1f"
+    },
+    "public/models/interiors/_minimal.glb": {
+      "baselineSHA256": "ac251db2f46cee3db18de2ccb23fefadbc619e871ae7f6eb5b798b62396a59f2",
+      "baselineBytes": 2684,
+      "baselineGitBlob": "581b42470bc4199478960f2b755d619a1ec649e3"
+    },
+    "public/models/interiors/cining.glb": {
+      "baselineSHA256": "e1eab11c8ac1c62b47d0298caadf98c1e20dc6c0b55e2f648d7b0fa6fa3388b6",
+      "baselineBytes": 46616,
+      "baselineGitBlob": "612b8915737f41288c49258391e2b8edae22aeda"
+    },
+    "public/models/interiors/huangji-aligned-0a79ec49e8cd.glb": {
+      "baselineSHA256": "0a79ec49e8cd442d363fdc6bccf4074d9e214ef3b0f3b56eba618297c1e88cc6",
+      "baselineBytes": 173012,
+      "baselineGitBlob": "f9cd7a7c1e6ca8955efa17fc42f9b5fbda28f3af"
+    },
+    "public/models/interiors/huangji.glb": {
+      "baselineSHA256": "53213f0c2247820ca15cd44c1b99e8104e309a93cf9ac962b9a24aaa59f1cf80",
+      "baselineBytes": 172816,
+      "baselineGitBlob": "a2c0137e34f923e96287fd69e0a9ee1ee650b5d7"
+    },
+    "public/models/interiors/kunning-v6-0c83b4364eef.glb": {
+      "baselineSHA256": "0c83b4364eef7febe30f976158c8a015bab49dcc3f40989f510c98e8edd6a9e4",
+      "baselineBytes": 289196,
+      "baselineGitBlob": "e383b15a4aaf9e8681eb269d6d25bfafbb583194"
+    },
+    "public/models/interiors/kunning-v6-ca7d98404e70.glb": {
+      "baselineSHA256": "ca7d98404e708d8398e8be893568aea0b12bdc350f9500052afcaeacb3965e8c",
+      "baselineBytes": 289184,
+      "baselineGitBlob": "9d0b13419835e1c360458d3e9e44b03acce517fd"
+    },
+    "public/models/interiors/kunning.glb": {
+      "baselineSHA256": "2c2f9035fe348cc21b81f8fa33660926a563f44da0250f5660dbed5887309ec8",
+      "baselineBytes": 92140,
+      "baselineGitBlob": "3819356ea2169417dd567f43bd7cfcb29e5adcfa"
+    },
+    "public/models/interiors/qianqing-r29.glb": {
+      "baselineSHA256": "5247ce8137b6891ac385c2d5a37535074e459c72e4b25625222f014138c7650f",
+      "baselineBytes": 599584,
+      "baselineGitBlob": "d6b3e6a833150895afdd51e85e648f3fc61d1c05"
+    },
+    "public/models/interiors/qianqing-r31.glb": {
+      "baselineSHA256": "76b14ddf270ba1a6c1d0109b47c7c99f441af49b469c908f5af41d93697d3d5d",
+      "baselineBytes": 641840,
+      "baselineGitBlob": "1a3bf4336948f05639a1e79f98f11ac80bcbc195"
+    },
+    "public/models/interiors/qianqing-r32.glb": {
+      "baselineSHA256": "6e55cd07c32e01343d0b25da259317017b2bc13b0564347d0861db9c2dae5bfa",
+      "baselineBytes": 502920,
+      "baselineGitBlob": "608252446c75d1fe95896580ee026f5e1e6a9289"
+    },
+    "public/models/interiors/qianqing-r33.glb": {
+      "baselineSHA256": "839045f387626841ae15fde25fafd3f22b7c386ace7e5834e314c11417f937b7",
+      "baselineBytes": 456628,
+      "baselineGitBlob": "0927683349dd07ecc96e41bb4531e8e8f4b49a97"
+    },
+    "public/models/interiors/qianqing.glb": {
+      "baselineSHA256": "5fea568395a4474dbfd77fed158e9d2bbfa0959e5f5cd268ecab7e523f0861bf",
+      "baselineBytes": 233300,
+      "baselineGitBlob": "d7f8cab4b6aab4143a39527c504f2cd29a595df9"
+    },
+    "public/models/interiors/taihe-caisson-9067bcce8b91.glb": {
+      "baselineSHA256": "9067bcce8b91f719a5e39ca1cfc2a1d1c5c013d5fcd4488dc92ee920ada7015d",
+      "baselineBytes": 1313984,
+      "baselineGitBlob": "b195edf4ab29bb968afc9b51664cc1bc13d3a58a"
+    },
+    "public/models/interiors/taihe-caisson-a8f75f7325e4.glb": {
+      "baselineSHA256": "a8f75f7325e4f0c2bc76b4bdd1480ed7a922c865af473e8ab7637e417707f09e",
+      "baselineBytes": 1191736,
+      "baselineGitBlob": "7db6d085dcabfef7840e3a65ce7f355aba0e9568"
+    },
+    "public/models/interiors/taihe-caisson-d951f4500302.glb": {
+      "baselineSHA256": "d951f4500302bf467b921207fa4bfc9f6eb55fa758aaf1910ccb4f77d6ddb097",
+      "baselineBytes": 1162828,
+      "baselineGitBlob": "43f8fc0247e6d5ec5a475369da17ec8e112007dc"
+    },
+    "public/models/interiors/taihe-dais-front-24481a47ba8d.glb": {
+      "baselineSHA256": "24481a47ba8d199679f03c63ca818ef9efec2dff53977e5037e556b128cb9e70",
+      "baselineBytes": 1946656,
+      "baselineGitBlob": "090f21740dcae47798382e63f1b404d61c0f9f85"
+    },
+    "public/models/interiors/taihe-dais-front-5dc82d83258d.glb": {
+      "baselineSHA256": "5dc82d83258de7e01dcef3f850ca992c685b0991a454b9a0847e5001680df328",
+      "baselineBytes": 1939636,
+      "baselineGitBlob": "c7354d75fd5491ea54ae28e4271b2d76e4a32edd"
+    },
+    "public/models/interiors/taihe-display-grid-6012719f9618.glb": {
+      "baselineSHA256": "6012719f961816d2e92ec2095d2877c4a93b6988606c7b7876b57224b84893d5",
+      "baselineBytes": 1947320,
+      "baselineGitBlob": "d3906b8ea10c3f1f5836a49dfb7740bcae42ee07"
+    },
+    "public/models/interiors/taihe-enamel-cranes-052bec6dbe4b.glb": {
+      "baselineSHA256": "052bec6dbe4bf5246ac61d646b490ad52fd17d3572e8ed41dca501e20d42290f",
+      "baselineBytes": 1877748,
+      "baselineGitBlob": "de81722abac8ecf1c8eb953f759c37b07fe39f29"
+    },
+    "public/models/interiors/taihe-furnishing-surfaces-a4a0b82f9f76.glb": {
+      "baselineSHA256": "a4a0b82f9f767422db824b9c0f9039fc3da2234f18b3d584d295ad52020ec529",
+      "baselineBytes": 1882012,
+      "baselineGitBlob": "6495e42ee9b3f602fc3e6919662e42675609a78f"
+    },
+    "public/models/interiors/taihe-furniture-0bfa52b758cb.glb": {
+      "baselineSHA256": "0bfa52b758cba052b0b8258ebc338cb9b0f80129e00d0bb5970ef343758432ea",
+      "baselineBytes": 1619980,
+      "baselineGitBlob": "11541d2c69046b2624346c51cae914f9218166b5"
+    },
+    "public/models/interiors/taihe-hanging-fit-b032ccb094e0.glb": {
+      "baselineSHA256": "b032ccb094e04100a7fc989467b1703b7ed58f143ff3a511e1c504ec38d84917",
+      "baselineBytes": 1946960,
+      "baselineGitBlob": "336636dd1dd5d92addb52b7f01ccd02274f6667d"
+    },
+    "public/models/interiors/taihe-screen-crowns-22c6acdf581d.glb": {
+      "baselineSHA256": "22c6acdf581dc7779b876963fd935ee482bd22e2a6671b486f9571debc14ac19",
+      "baselineBytes": 1835936,
+      "baselineGitBlob": "f1950b9682ee891abeaac1fa64780495b810a948"
+    },
+    "public/models/interiors/taihe-v16-ba59e7321fda.glb": {
+      "baselineSHA256": "ba59e7321fdac5ee9e97ed74847dd8c05d909bd400cfbc1fbe648657e9207a12",
+      "baselineBytes": 648184,
+      "baselineGitBlob": "b5818c4e6877de869bfda647e2cbe8dffa654c7a"
+    },
+    "public/models/interiors/taihe-v16-bdc5d69b1265.glb": {
+      "baselineSHA256": "bdc5d69b1265a2575376827a0ff49b848fbd3acdeb58584360a0e3bfa16e0486",
+      "baselineBytes": 648184,
+      "baselineGitBlob": "2fab1beae0e6f87d625ad2640b443181f658ac49"
+    },
+    "public/models/interiors/taihe-v17-a8e358509558.glb": {
+      "baselineSHA256": "a8e3585095585b970b211c09666c8f0212659d718e6fb813236bb77b07886a17",
+      "baselineBytes": 586224,
+      "baselineGitBlob": "8c756c8f7e3bcf89e5b0a02ae4aa7be54dae803a"
+    },
+    "public/models/interiors/taihe-v17-display-28d7a11dbeda.glb": {
+      "baselineSHA256": "28d7a11dbeda023762c8c9eed44eb65c5f4c8270ddfb9d7088e40f6b6991399c",
+      "baselineBytes": 1035060,
+      "baselineGitBlob": "184f8f03d08955dd3d1cf9afc08e297aa1a4767b"
+    },
+    "public/models/interiors/taihe-v17-display-7c41b735b90f.glb": {
+      "baselineSHA256": "7c41b735b90f1bb957bdb89b301bd6e8bd8c8f49ac04fa2fb8f624e2cdcce330",
+      "baselineBytes": 889364,
+      "baselineGitBlob": "1a85116dccd35f16a87f25f30f8b5e3661690613"
+    },
+    "public/models/interiors/taihe.glb": {
+      "baselineSHA256": "a94b76aed742a3aa2482b3fcbfe20c85c9af2f703f59141cd547d18d2de4e820",
+      "baselineBytes": 265856,
+      "baselineGitBlob": "571f9cdae7cf40b94361da5302c1980e8ffb7809"
+    },
+    "public/models/interiors/yangxin.glb": {
+      "baselineSHA256": "e29192ab78f14811cbbbb94f8736d984f3c8bfece197e54cb81e023cb7c8fde3",
+      "baselineBytes": 63044,
+      "baselineGitBlob": "37619f05c34778da4cfe57aa5e904ad77bdc35c8"
+    },
+    "public/textures/art/qianqing-ceiling-illustration-r32.webp": {
+      "baselineSHA256": "6d2ed4112b234e21995349112fcac7768d4df481efbcb9a79e11f642b3244d19",
+      "baselineBytes": 85570,
+      "baselineGitBlob": "e09e3bc680424a896faa144c8ca5cd62841cd8ba"
+    },
+    "public/textures/art/qianqing-five-dragon-illustration-r32.webp": {
+      "baselineSHA256": "3b08d2bc952de0b0d57a40a5e16812c32a26ce8c3b502c7cfdf727be5186208c",
+      "baselineBytes": 135226,
+      "baselineGitBlob": "86b18515d064317f6df9fad147eee7e563496658"
+    },
+    "public/textures/art/qianqing-screen-illustration-r32.webp": {
+      "baselineSHA256": "2fc0c55dc88a0190e3a38fdf84888e6eb2603bfbec1f853010685c2be0e676a4",
+      "baselineBytes": 197212,
+      "baselineGitBlob": "ac8c132d4c8a4c4c9d19489cc4acad4a307dd14f"
+    },
+    "public/textures/hd/balustrade.webp": {
+      "baselineSHA256": "b14ce6b263604f09ee63bd792b59081644fcd8b140f0a34269d631185a9a74d5",
+      "baselineBytes": 170598,
+      "baselineGitBlob": "92da166fd4e34392801ddf4d1e397853068d802f"
+    },
+    "public/textures/hd/balustrade_n.webp": {
+      "baselineSHA256": "a392b8d7952461767e1a3de133038b9f9b395033ef7b2ce6a37bfa838d7f6ef6",
+      "baselineBytes": 86238,
+      "baselineGitBlob": "45b1a22d146f3cd68766455926b203a8d7a6cce9"
+    },
+    "public/textures/hd/bark.webp": {
+      "baselineSHA256": "c917a90af5bb616b2627e2e84a8c0a9bf90b7eb8e368e25ace0c01d1e24991c9",
+      "baselineBytes": 287614,
+      "baselineGitBlob": "7dc099a6ece54249c6a0012bc301a9be73b99888"
+    },
+    "public/textures/hd/bark_n.webp": {
+      "baselineSHA256": "ccbe9160bc02fffeb5e42f69db25bca6a06bf3398fc49b4dca04483c51263a1c",
+      "baselineBytes": 149374,
+      "baselineGitBlob": "02ae2c2ea65cdd1c5a961c53249b544365335263"
+    },
+    "public/textures/hd/caihua_beam.webp": {
+      "baselineSHA256": "2995b298efda6e50064423063ade6ca39d43bf77c2fb5a2b62b248db5b11c184",
+      "baselineBytes": 397862,
+      "baselineGitBlob": "f61a670397a25c3679f3cf4dd10c46aeb1dde0a0"
+    },
+    "public/textures/hd/caihua_beam_n.webp": {
+      "baselineSHA256": "3ba60296e94952912798e412f1cfdbb708d6b4a9efad5ad3cc3fc343e30dd4fd",
+      "baselineBytes": 90964,
+      "baselineGitBlob": "3acc0f70dd0e84d8299668cc21714e2b10799ba3"
+    },
+    "public/textures/hd/door_studded.webp": {
+      "baselineSHA256": "dc2a61343e2772c678cf8402871367bf210111ebb3875b21e660cd2729613a6a",
+      "baselineBytes": 68848,
+      "baselineGitBlob": "f4e03bf1157d283cb950a6e24a99da0f3fa9a854"
+    },
+    "public/textures/hd/door_studded_n.webp": {
+      "baselineSHA256": "5a2c201bfb53f91d6af0eeabefb634756126a844376693aacb7f6ed1f833e672",
+      "baselineBytes": 36684,
+      "baselineGitBlob": "9d88a8c4124e5330d743066afb6846797400bc60"
+    },
+    "public/textures/hd/dougong_band.webp": {
+      "baselineSHA256": "db69e38b45e0b1e8f91cbabf4cc5288c023a0e18805fa49d99ec768264e08a7a",
+      "baselineBytes": 192468,
+      "baselineGitBlob": "2af0d3cade31196b0c78c2167af4a16298b543dd"
+    },
+    "public/textures/hd/dougong_band_n.webp": {
+      "baselineSHA256": "93aacb5e798dfc94f51172da278dade39325f5751a35edb2ebac1499d2286ce2",
+      "baselineBytes": 103742,
+      "baselineGitBlob": "c49713a8e2c3645b3298ed88246392c9e7ece313"
+    },
+    "public/textures/hd/foliage.webp": {
+      "baselineSHA256": "b075d8274efd245c4ea6d5a2b9bf4724a4193cb7b6ecc9abd7712a82fa6f3ce5",
+      "baselineBytes": 341820,
+      "baselineGitBlob": "75003ba5ae75bf364cf40575e55c9931ca63fe46"
+    },
+    "public/textures/hd/foliage_n.webp": {
+      "baselineSHA256": "9ff31d10baa27bbea7e9594f01b66286dfe5083e7406373ab43b03f2d75a91f9",
+      "baselineBytes": 150854,
+      "baselineGitBlob": "c485bbdf02ed3f7515e42dbaff8e56ca223c3a79"
+    },
+    "public/textures/hd/grass.webp": {
+      "baselineSHA256": "56ca87cdfbbf44ed276a501c90591c82ca194ee0c48760f1d096c4673249bc6f",
+      "baselineBytes": 473892,
+      "baselineGitBlob": "ef9f93d01ffa7df000177fbd39066d3d5816ee53"
+    },
+    "public/textures/hd/grass_n.webp": {
+      "baselineSHA256": "a3d9c675e4b98d6993be9089a6465ffacab20678e32fd80e6a9481f873da1425",
+      "baselineBytes": 149626,
+      "baselineGitBlob": "ee354319079f2bf02df149be7f2ea928b0f25383"
+    },
+    "public/textures/hd/ground_brick.webp": {
+      "baselineSHA256": "a08686c87b55408fdb4464d4482442c59e2e0264003a4d42467965d736e23994",
+      "baselineBytes": 241356,
+      "baselineGitBlob": "355bf0791ba109bb4b6b92dd6fd9d4f939f51bec"
+    },
+    "public/textures/hd/ground_brick_n.webp": {
+      "baselineSHA256": "6cbf0dfbe76d836529a204cd7510d4f029f23738d0d32c48623dfe56d489f161",
+      "baselineBytes": 104180,
+      "baselineGitBlob": "7f42948623c8e8ddda464d7c8bad65c9d22c111b"
+    },
+    "public/textures/hd/lattice_doors.webp": {
+      "baselineSHA256": "b31ab62bb4b6b0ed4464d266a987350bc3a94e54f871a2ce98bacdb24978b6de",
+      "baselineBytes": 292228,
+      "baselineGitBlob": "93f04d3bc4f7c5a49133407ea7b0ed9a41e55448"
+    },
+    "public/textures/hd/lattice_doors_n.webp": {
+      "baselineSHA256": "bd36412311494868d76e9228fe0289a76dc902ec9d5dd06320484df0bc46ed24",
+      "baselineBytes": 127848,
+      "baselineGitBlob": "dc35c1ab265b852007e65089915404dd115ff0cb"
+    },
+    "public/textures/hd/manifest.json": {
+      "baselineSHA256": "8bcc0e0da4f186a826324d40b29162ad43971e9a5bdfda7dd68462d7323d5cca",
+      "baselineBytes": 5050,
+      "baselineGitBlob": "52e1dc5fa3a888e302efaf126778fd873f371a3a"
+    },
+    "public/textures/hd/marble.webp": {
+      "baselineSHA256": "8280d87ce666d88326eedd4bd86f3a44d1541e36f91a2c1bb8927e26a6390f1f",
+      "baselineBytes": 95844,
+      "baselineGitBlob": "5c9b24553ffe4a38ad62805eda79282a3644fb77"
+    },
+    "public/textures/hd/marble_n.webp": {
+      "baselineSHA256": "8d97332f52f842e4d241ced8f021f6039bd68bac3a5bab02e9ee989e1161a336",
+      "baselineBytes": 10282,
+      "baselineGitBlob": "19cb08a9664b3de790d86130c0f27b29b4c3321a"
+    },
+    "public/textures/hd/pebble_path.webp": {
+      "baselineSHA256": "6b68daf1a3b3b96b10e218d30b7d50f8b7adfee1157a4fb11481ade3dceddabc",
+      "baselineBytes": 320626,
+      "baselineGitBlob": "f1e20f388115f44d9f1b3e4fd0a9f962ef0ceedd"
+    },
+    "public/textures/hd/pebble_path_n.webp": {
+      "baselineSHA256": "483af90c6c6dc56c22ac4b5a0fcc53f5bd95ceafb087f3ff827655bd4f5852b5",
+      "baselineBytes": 152060,
+      "baselineGitBlob": "2283964d3e04e48d0b8929e1c8a53959c0c14326"
+    },
+    "public/textures/hd/rafters.webp": {
+      "baselineSHA256": "7fae0c2f1e4fd27ab9524d88021691aa62230ba3cd5d2012e1e322422df1ae96",
+      "baselineBytes": 151796,
+      "baselineGitBlob": "3fd607e21534740b7f7b08102d5199265d28fc7e"
+    },
+    "public/textures/hd/rafters_n.webp": {
+      "baselineSHA256": "506c6d261a51ee20a107349b0b412a03e8636f928eceb5e246bf704c5506e110",
+      "baselineBytes": 72356,
+      "baselineGitBlob": "9f36ff7d524a514a224ba199dde4448089353de4"
+    },
+    "public/textures/hd/rock.webp": {
+      "baselineSHA256": "53cfcd2e3e14d4f8352b2718f41d8a661b7e246dc9eaabfbfe57905b00bab53e",
+      "baselineBytes": 252282,
+      "baselineGitBlob": "f3f15c12af55f7036ef1c291795577bc7bc5761e"
+    },
+    "public/textures/hd/rock_n.webp": {
+      "baselineSHA256": "d2a270ddd07bc05d01646d172e8d1fcb6733992b02461b2719384b4ffe5dc93f",
+      "baselineBytes": 161536,
+      "baselineGitBlob": "5fed3e6b895d970e8ad5bccb15a620d7a673d686"
+    },
+    "public/textures/hd/roof_tile.webp": {
+      "baselineSHA256": "6f2924142e345d73fbb09c517668d90f56bbe500cf6e6fbc4bb89e116d6a7819",
+      "baselineBytes": 113722,
+      "baselineGitBlob": "8f6c0dfc9fbcfe7c165d80c28cb3a9e859b888c0"
+    },
+    "public/textures/hd/roof_tile_n.webp": {
+      "baselineSHA256": "3313aebd68014287a7e7186a25fbf574d708f528214283db8aa324eea4103cf9",
+      "baselineBytes": 78016,
+      "baselineGitBlob": "54f9d89679e9087d8a5ce335dbaa84b8df98a7d8"
+    },
+    "public/textures/hd/skyline.webp": {
+      "baselineSHA256": "3504c3e3731f89e728cbd9a2988f820e65db3c28594fd7b9cb7ab20d030d86e7",
+      "baselineBytes": 77612,
+      "baselineGitBlob": "1e27bdd5f74f5663966590b69ff3dd59062f97e2"
+    },
+    "public/textures/hd/stone_slab.webp": {
+      "baselineSHA256": "768aff2c01369db9847547188fc16ec3fc6c892d3f269015e302874044e4a89e",
+      "baselineBytes": 383108,
+      "baselineGitBlob": "a1111332a16ad08c9d247106566e1d9448d074cc"
+    },
+    "public/textures/hd/stone_slab_n.webp": {
+      "baselineSHA256": "d49c1aed69bec1d43eb405d590ab0793a5b547bd50ada70ff8d9a62e70deffda",
+      "baselineBytes": 131336,
+      "baselineGitBlob": "b005d63735db24ae4de78a7014e231ec58292e5b"
+    },
+    "public/textures/hd/sumeru_band.webp": {
+      "baselineSHA256": "42bbdad96b0dc76bf8e8bf5b6cd3aa98dca9568db8ce98fad21a5a9c436d8b28",
+      "baselineBytes": 106594,
+      "baselineGitBlob": "f67b82200ce42b19a1016af47ed3a648463fc5e6"
+    },
+    "public/textures/hd/sumeru_band_n.webp": {
+      "baselineSHA256": "c7252af880ddaa686fecd93909a8a8d7ead48b2de0e8cbf99efa48f88b6cb6af",
+      "baselineBytes": 90672,
+      "baselineGitBlob": "f3305f01a4ecebc8e61118afdf787a79abeed200"
+    },
+    "public/textures/hd/wall_brick.webp": {
+      "baselineSHA256": "a88d0ddec63631c87859e1c9c7b6c3376731abdad5c635b6c3176175a84cb8b5",
+      "baselineBytes": 237298,
+      "baselineGitBlob": "adc73a4af7af9fb73576c989d303f43d108dad27"
+    },
+    "public/textures/hd/wall_brick_n.webp": {
+      "baselineSHA256": "4106e6c1a216fc2b5629e67777879cf9fa3696586c55c7e2edf30672d68f4333",
+      "baselineBytes": 116034,
+      "baselineGitBlob": "d34ad951625a0d217085364b52e7329187bad5a9"
+    },
+    "public/textures/hd/wall_red.webp": {
+      "baselineSHA256": "8fbd800dfbb098e4090b04c1d4faac19d1df5dd405b176ccd0655f6223497a86",
+      "baselineBytes": 153726,
+      "baselineGitBlob": "fd686c8d105a97fad959770ac4b9cc7b340946f0"
+    },
+    "public/textures/hd/wall_red_n.webp": {
+      "baselineSHA256": "7a2f29cbdb7addec5b452e348b3f41d79f7f1f82cebd7e927c206f82647ae39d",
+      "baselineBytes": 30096,
+      "baselineGitBlob": "32079dbb4fa110509d29a87385009ffa26bc21b1"
+    },
+    "public/textures/hd/water.webp": {
+      "baselineSHA256": "b754e22d48a6d43021a988fe11379e98a7d958f46414025aa0b384fc22a86aaa",
+      "baselineBytes": 134150,
+      "baselineGitBlob": "b2579976f326e5292eddb2112c15b7d6a81e7ac6"
+    },
+    "public/textures/hd/water_n.webp": {
+      "baselineSHA256": "548e38ab7c60616afab858c129c0fc0309a43a651d8584e2e6777e67efdb095c",
+      "baselineBytes": 101698,
+      "baselineGitBlob": "ee1748e15ff34d2d4450a25139b687afd03b97bd"
+    },
+    "public/textures/hd/wood_column.webp": {
+      "baselineSHA256": "d8860232e2870b87e1bdaceaafcbabe3152e332dd180d05dd88e7bf258a36757",
+      "baselineBytes": 191758,
+      "baselineGitBlob": "1b07cdbb018b69100d12d17065a0b50ee9c2de70"
+    },
+    "public/textures/hd/wood_column_n.webp": {
+      "baselineSHA256": "be721b6c84c0e9fc37f5ac74fa14d5b82ce115ca9309becfe6822efea56c5638",
+      "baselineBytes": 34692,
+      "baselineGitBlob": "fc04394e7f2532f63ebe534b3018b5fc775eb355"
+    },
+    "public/textures/hd/yulu.webp": {
+      "baselineSHA256": "cf93f1ba84307a41f33a98b9c19d0affcd9bab1278c0746a60984316e7c304e4",
+      "baselineBytes": 210990,
+      "baselineGitBlob": "2a7b5dc3efd40063bbc10e1043f8da29ee24b1c5"
+    },
+    "public/textures/hd/yulu_n.webp": {
+      "baselineSHA256": "e42294910b52ef924b210befe40c05c4c49301828d895a4fac75b1924968c6e1",
+      "baselineBytes": 124638,
+      "baselineGitBlob": "ceb51655368d89c08d8e8a6504dc23d77d4589c1"
+    },
+    "public/textures/nine_dragon.webp": {
+      "baselineSHA256": "29bd3834bd670ab8ff77c0fbd00627994dc6af795ed094c22eff536f67f66b29",
+      "baselineBytes": 616768,
+      "baselineGitBlob": "2a0770a3ca1420da01fc3503aac189cb1385c769"
+    },
+    "public/textures/sd/balustrade.webp": {
+      "baselineSHA256": "9adf6981787ff3ec28dac433ddcfb52579427d6eb2155c5458ea092f669c8794",
+      "baselineBytes": 59628,
+      "baselineGitBlob": "4b12950f53a297f2b5b34846a8c222270f151a6d"
+    },
+    "public/textures/sd/balustrade_n.webp": {
+      "baselineSHA256": "6234cdb8160de305b934c7b8b0bfc7ac117e6fbb79a5d61a3b35f025a12e832b",
+      "baselineBytes": 24388,
+      "baselineGitBlob": "acf13fc77a57454c4648044d4302f328c3a5d438"
+    },
+    "public/textures/sd/bark.webp": {
+      "baselineSHA256": "c1db7888eb39c19d9f2a45cdd9732f7d927a9576e27a6772154f54d715c293c5",
+      "baselineBytes": 74088,
+      "baselineGitBlob": "a784fe5c355628b5b6b657a9ab0cd085639b90b6"
+    },
+    "public/textures/sd/bark_n.webp": {
+      "baselineSHA256": "bd8fe62f7d2a66ca198bfbfd0c0efb939cfe340fd931caf268b22ce1848fe923",
+      "baselineBytes": 32936,
+      "baselineGitBlob": "5a5663000aee95fd5439cce4dc4f2c4d85ab09a5"
+    },
+    "public/textures/sd/caihua_beam.webp": {
+      "baselineSHA256": "1da72841084149186a763822b4ef40318e2681582aab6e998280691a0da8c88e",
+      "baselineBytes": 119114,
+      "baselineGitBlob": "8eb770c3ce45e8444f9d830e6efdf990290ac353"
+    },
+    "public/textures/sd/caihua_beam_n.webp": {
+      "baselineSHA256": "56147d659d57224e394ee29e579445427593c5986f1d51fb53bc4da50debb0a7",
+      "baselineBytes": 21464,
+      "baselineGitBlob": "8ae9f2308068fbf63cb40aa47b8d983cee873fd3"
+    },
+    "public/textures/sd/door_studded.webp": {
+      "baselineSHA256": "12beff0798ec9ddf2f0a4bcb7c3442efe95697895f322e2406c280b058988ffc",
+      "baselineBytes": 22302,
+      "baselineGitBlob": "4841d0b227f5b1094fc0ead3f1fbb7362d64bfa7"
+    },
+    "public/textures/sd/door_studded_n.webp": {
+      "baselineSHA256": "9beed90af0b9f9c7de51a68f5f5df80d2cf7db3e968238c1c4ae3d1cc55cb29e",
+      "baselineBytes": 11882,
+      "baselineGitBlob": "e2d38047f20969a3de2c8184a8e0995f286044ef"
+    },
+    "public/textures/sd/dougong_band.webp": {
+      "baselineSHA256": "79bf9d7aa41290a6ef86dc70a1a98bab08d2f421a4ceaa3d0ee9af304b67b6ae",
+      "baselineBytes": 59064,
+      "baselineGitBlob": "0681491b40f4628cfa8d44d6483bed0f78a4fcef"
+    },
+    "public/textures/sd/dougong_band_n.webp": {
+      "baselineSHA256": "04a3da35f41c2d891cedd899668c8132fd90dc1ad4b2d515bc018a6aafb15879",
+      "baselineBytes": 30286,
+      "baselineGitBlob": "e0db84294ebb1430b3f53456f2eda18ae01382b8"
+    },
+    "public/textures/sd/foliage.webp": {
+      "baselineSHA256": "0bf8bad166d454cd16a6d9a601639902444e86ac493ee9664c4bc609a4573799",
+      "baselineBytes": 89952,
+      "baselineGitBlob": "047f571642431739c6ef6aacad4e952a87b04069"
+    },
+    "public/textures/sd/foliage_n.webp": {
+      "baselineSHA256": "b6247a67bd8470c17da8b51dcbbd155568fa4ab91b14e9b63679a3ee7f53e035",
+      "baselineBytes": 32322,
+      "baselineGitBlob": "76d2e0787da7c4d684c3a35b279cd672ab5c20f5"
+    },
+    "public/textures/sd/grass.webp": {
+      "baselineSHA256": "229139532ab031deda01bd448ab3b719747e90ecf632714353f550e4b3166d49",
+      "baselineBytes": 112066,
+      "baselineGitBlob": "d7acd667a88ef39c07b8aa10f04fcd6b395137e3"
+    },
+    "public/textures/sd/grass_n.webp": {
+      "baselineSHA256": "13056e05706b9a739e841d0d3a5c0fea2e4038878fffe140884c40f5a95fd70c",
+      "baselineBytes": 30382,
+      "baselineGitBlob": "dab60ffcd86fa707e39101ee6484900adb333cce"
+    },
+    "public/textures/sd/ground_brick.webp": {
+      "baselineSHA256": "21486e280f4a3c8d588b672126a5aaa4a11bb6b94451a47e3879a73a4afcfca7",
+      "baselineBytes": 49640,
+      "baselineGitBlob": "4bb147788e48d102ca707499cef37f2a41d5b690"
+    },
+    "public/textures/sd/ground_brick_n.webp": {
+      "baselineSHA256": "c9541d0071eb05d767c7e696112cbd7b4f68a38e7169aec682167bda986447a0",
+      "baselineBytes": 16520,
+      "baselineGitBlob": "a722ae84fee548c091bfb7b7f31b8474373554c4"
+    },
+    "public/textures/sd/lattice_doors.webp": {
+      "baselineSHA256": "a91a05015769f2cad4dfb878910d82030e3dc25f6cd8c7324a907b0bd4ded4fa",
+      "baselineBytes": 89404,
+      "baselineGitBlob": "66b48f0333bbc25059bab4a9dd15325507628a0f"
+    },
+    "public/textures/sd/lattice_doors_n.webp": {
+      "baselineSHA256": "b4cd9ea9d8e507b523e8122920ef8b13ce17af6fdde2c82aba4dd122bb3090b1",
+      "baselineBytes": 32590,
+      "baselineGitBlob": "b4d8df1d0a32ae82a0a05dfadac59d7067fcb639"
+    },
+    "public/textures/sd/manifest.json": {
+      "baselineSHA256": "8bcc0e0da4f186a826324d40b29162ad43971e9a5bdfda7dd68462d7323d5cca",
+      "baselineBytes": 5050,
+      "baselineGitBlob": "52e1dc5fa3a888e302efaf126778fd873f371a3a"
+    },
+    "public/textures/sd/marble.webp": {
+      "baselineSHA256": "81a5301131ced4d39308d2e08e7e5a45bef2943262e85e1ed05eb50980aa00c2",
+      "baselineBytes": 17256,
+      "baselineGitBlob": "b18515080a9bfba381d4ea73e67a7de6311268e4"
+    },
+    "public/textures/sd/marble_n.webp": {
+      "baselineSHA256": "ed8487a1832ab4e0030b912458cc954f569190f200f0177675e71fe4c835c9ed",
+      "baselineBytes": 1100,
+      "baselineGitBlob": "85116598ff4ecdc8c68982703277271601b7dda4"
+    },
+    "public/textures/sd/pebble_path.webp": {
+      "baselineSHA256": "68ec5376907221c479701fdade2c472ac81a218b7dd33764bb4c4f11dd0a5809",
+      "baselineBytes": 94028,
+      "baselineGitBlob": "d7baf55f42e7e5e721d386cf799f04d93d5c58a6"
+    },
+    "public/textures/sd/pebble_path_n.webp": {
+      "baselineSHA256": "b61d7bb77f7fe18b6c5deef503b98fc2c1e3cc826d5f4ba1ed12a38ce5659d28",
+      "baselineBytes": 36932,
+      "baselineGitBlob": "1d51b8a1e1cb697f765bece965e923eda0f879b7"
+    },
+    "public/textures/sd/rafters.webp": {
+      "baselineSHA256": "29472b56a5517d6fc6ada7e7f44b80b6c203725767401d67c3b77c5e2294b12f",
+      "baselineBytes": 46404,
+      "baselineGitBlob": "e958d934fc563a4a4ee74c1fdb954f9fb65bc381"
+    },
+    "public/textures/sd/rafters_n.webp": {
+      "baselineSHA256": "b63c02dde760a7ae7e0d5b6884757602ea49fdb37a3bb51e80e522ef3db771ec",
+      "baselineBytes": 20030,
+      "baselineGitBlob": "ba14b604c355f4542d3cc0bf57d2c6f76c2ce376"
+    },
+    "public/textures/sd/rock.webp": {
+      "baselineSHA256": "bd7a976dcbb5349caebef514c99bf6cffad39b23d89b717b39a4fdd005c38eff",
+      "baselineBytes": 71154,
+      "baselineGitBlob": "a8d89597831a957ccbd45e1743ae7e040a975bf0"
+    },
+    "public/textures/sd/rock_n.webp": {
+      "baselineSHA256": "3c2798dcf996e77452dd9c474593e6d14d2355f0070558c48a34a2da293df249",
+      "baselineBytes": 38816,
+      "baselineGitBlob": "6400b16ef0db41718426139b1370268dbb71965c"
+    },
+    "public/textures/sd/roof_tile.webp": {
+      "baselineSHA256": "778c54ed1199dc76941bf274ea688a0ecdd7c4223d6dd1fc112577f53e2a4205",
+      "baselineBytes": 32966,
+      "baselineGitBlob": "4d93a53d252bbbbf56906185b7d1ccca1a1f6f5d"
+    },
+    "public/textures/sd/roof_tile_n.webp": {
+      "baselineSHA256": "419c0c67d4b2e6c147c11f0226d32c0a814eac9c6a5525bb73ca0c3fc1c17211",
+      "baselineBytes": 18750,
+      "baselineGitBlob": "082efa18d47944c38c52d65b7b8aa2f1af12c2fa"
+    },
+    "public/textures/sd/skyline.webp": {
+      "baselineSHA256": "e2a32de4f45a8db723efd632c43ef1cedb0520c5cbcc73b365b60b1ea6424b16",
+      "baselineBytes": 60914,
+      "baselineGitBlob": "5e3134dbbce7f39a216b55ac2457a8dfaeb73f23"
+    },
+    "public/textures/sd/stone_slab.webp": {
+      "baselineSHA256": "ef80c0de5710c37650af26d48b1dfaefb7c6502e827d2cc5322962a03ed0e423",
+      "baselineBytes": 84818,
+      "baselineGitBlob": "bcf4e30c630200650b0f035f84d0968bbe4d1318"
+    },
+    "public/textures/sd/stone_slab_n.webp": {
+      "baselineSHA256": "566c94d71a348eb028c73dc35c304f769b416a2599e2f611cc9a570d751af915",
+      "baselineBytes": 23844,
+      "baselineGitBlob": "c8c5d87e5b3050db5854025a3a1bd30873a05ae2"
+    },
+    "public/textures/sd/sumeru_band.webp": {
+      "baselineSHA256": "c3b665f2f1bf4985aba4fb9c1f4c05d106a5ad94d038abdba7541fb6942444cd",
+      "baselineBytes": 35256,
+      "baselineGitBlob": "75061a57f611a2e140f8d5144ddaba64da38f6f2"
+    },
+    "public/textures/sd/sumeru_band_n.webp": {
+      "baselineSHA256": "03451a2943e93ad8c9dfbd6609e3a667768aace315d88a681374d80edf075aa4",
+      "baselineBytes": 27758,
+      "baselineGitBlob": "b633739bf3f75b80f9e5fbcee68ef92934ae62e4"
+    },
+    "public/textures/sd/wall_brick.webp": {
+      "baselineSHA256": "8b5eefa0aa2ecb70598c5ba17edf9bfb340bbba7488cd5dd64ff6fb8020eb9a4",
+      "baselineBytes": 52410,
+      "baselineGitBlob": "392c0ad32754e8fbdc1e978cc2e2cca883a7e00b"
+    },
+    "public/textures/sd/wall_brick_n.webp": {
+      "baselineSHA256": "89a0223f5a7b466ac92edeb33bc986c8c20007b063aa3f2f1ace047b352a75c6",
+      "baselineBytes": 22088,
+      "baselineGitBlob": "1e8cc232a7d37c7056e2a77ed3e67f568f7c354d"
+    },
+    "public/textures/sd/wall_red.webp": {
+      "baselineSHA256": "57605bf96371a8f6625b8a77a1601dc03b5181b98b9e6df3be9602a2a8296fc3",
+      "baselineBytes": 23356,
+      "baselineGitBlob": "0e2f0a038ec546b177582c02e1677d93382888a3"
+    },
+    "public/textures/sd/wall_red_n.webp": {
+      "baselineSHA256": "38e580edca978d67cdd5f0762f8e975be6316aa97a190783d735bfaad873c18d",
+      "baselineBytes": 1778,
+      "baselineGitBlob": "c56aeb50ba29b4e240f9fe213c9e66484c664da1"
+    },
+    "public/textures/sd/water.webp": {
+      "baselineSHA256": "69d40b1b5891216ac7c9a8937c08b799dc7159fecf7d5507bda6a64c0dbb5b58",
+      "baselineBytes": 41932,
+      "baselineGitBlob": "5653d2441b871e988c2c2bc3fa79337364d1f487"
+    },
+    "public/textures/sd/water_n.webp": {
+      "baselineSHA256": "620e83f61d5b83ebae4de6c513ab6d6fae4fa4636042c6cb0ef646093a471cc7",
+      "baselineBytes": 21684,
+      "baselineGitBlob": "7f624c2faea7b01d507dfbeabd14fa8f981332dc"
+    },
+    "public/textures/sd/wood_column.webp": {
+      "baselineSHA256": "8db19942b0d9402bae1987eb28490c27de6c2c8c17b219e5fd750a93990bbda3",
+      "baselineBytes": 42374,
+      "baselineGitBlob": "70ecadac93c9b3300ef4f5862b0b5eb0893a12e7"
+    },
+    "public/textures/sd/wood_column_n.webp": {
+      "baselineSHA256": "42c28e455d8308102aa765ee988b947a47dc2ed1901ccdc4f84430820bf4bc1c",
+      "baselineBytes": 3032,
+      "baselineGitBlob": "b86b31ebf4d3e025b46c4fe3f1500971ce1390bf"
+    },
+    "public/textures/sd/yulu.webp": {
+      "baselineSHA256": "ce32b11174ef4f1b111ac1b3faf31c5a0b05a670addac4159a2eaef308dcfcb7",
+      "baselineBytes": 58438,
+      "baselineGitBlob": "03eb51d85b140f7a65afa494bdc60261146f50e4"
+    },
+    "public/textures/sd/yulu_n.webp": {
+      "baselineSHA256": "6038f616799decd92e29e1aecd5eb12aa50fccd891946fd4a50256b1fbd12149",
+      "baselineBytes": 28832,
+      "baselineGitBlob": "f3b4042a4dc903ba04d2961dcfb8ca2d8c42f62f"
+    },
+    "src/audio/Ambience.js": {
+      "baselineSHA256": "983497ba68870c8f1354ffcc2c4f126a75437a2aae51588f3a26150a5e878d44",
+      "baselineBytes": 16112,
+      "baselineGitBlob": "7e633e125e5511cbbf5b1d1a939e92093249c160"
+    },
+    "src/config/constants.js": {
+      "baselineSHA256": "19dfcca52781c69acf46e537661c9110c25b4eee88ea4522b21561f9dd47da7d",
+      "baselineBytes": 8592,
+      "baselineGitBlob": "be19c9ec34b54d7fe62a8d144baf1a020ec282ca"
+    },
+    "src/config/initialView.js": {
+      "baselineSHA256": "5d6f394e4fed0886aed2a8b96f8a8bbc1027748e23ed3ff8548139bfce686aeb",
+      "baselineBytes": 242,
+      "baselineGitBlob": "e338c505424152b1f3b71e699fa503bc0206294c"
+    },
+    "src/controls/FirstPerson.js": {
+      "baselineSHA256": "50b625af7fdec90b2e9a6a9d2c25433e58e7977fb99856de0bf02c3b988f0c36",
+      "baselineBytes": 27742,
+      "baselineGitBlob": "3e898452a6735c2b73df62781a8d2546682b4698"
+    },
+    "src/controls/InputTargets.js": {
+      "baselineSHA256": "abe7ba26a8d76a1aa1daf1ca4ffb7688ad3ee071a857297c9c608fb7b59b0048",
+      "baselineBytes": 486,
+      "baselineGitBlob": "9ab49c306ccd2a132ecd4fdb78c08d11a40f5661"
+    },
+    "src/controls/VirtualJoystick.js": {
+      "baselineSHA256": "6303d3e819e93ec855e56056fb94d8e0127741c0da34d77ed26c6c30c955accd",
+      "baselineBytes": 7268,
+      "baselineGitBlob": "d727b6f0ab075b1786a5f069e67451cf5947abec"
+    },
+    "src/render/BatchedBuilder.js": {
+      "baselineSHA256": "6f42e180a77f6539705eb2b7b78b97da09d380ab238d4272bd83c7c4ce309a38",
+      "baselineBytes": 9349,
+      "baselineGitBlob": "aeaa31fb5d30c9d428364d3134245a54b32c6e62"
+    },
+    "src/render/DepthSSAOPass.js": {
+      "baselineSHA256": "f671aa5154a889ffb08c3d19fc5494f836a5c874bab71a85db2d42b27da5e82c",
+      "baselineBytes": 2220,
+      "baselineGitBlob": "43e4dd7dcf417638d9f97d5a6ed6eb4ac5d69f16"
+    },
+    "src/render/OcclusionByWall.js": {
+      "baselineSHA256": "c02794c0cad9c6d2d92e7c205089f69b119c31afcd38f1c34a0b02eb633268ca",
+      "baselineBytes": 832,
+      "baselineGitBlob": "b3fcf45e546399ea9f807a1da2bb0373e884a23c"
+    },
+    "src/render/PavilionRenderGeometry.js": {
+      "baselineSHA256": "7e6997b07dc711084c2ebd785d04bd14238959f96cf4a62e40df9763b073a60d",
+      "baselineBytes": 9935,
+      "baselineGitBlob": "189833c6dd78aa3bf446e91438f9dfd8137da5b4"
+    },
+    "src/render/ShadowSetup.js": {
+      "baselineSHA256": "74a6e1751f4227f245babcaf429e7952cd590a88929fd92e719e90d8038a409a",
+      "baselineBytes": 2276,
+      "baselineGitBlob": "e1209a8735ba41ce4e2de949f99ed14491ee48da"
+    },
+    "src/render/SilhouetteBuilder.js": {
+      "baselineSHA256": "c28b488dc3599c6d8cb76ad906481dc4bf8e1dec3ccce9429ccf8dbef0e85c75",
+      "baselineBytes": 2688,
+      "baselineGitBlob": "dfbfbd71afd55009976b0c18da061aa1f7456ea6"
+    },
+    "src/render/SolidMaterialBatch.js": {
+      "baselineSHA256": "c40faacf11c83ca92b198b567264f180aff10f79c5155ad2199a98aa8f4ec91f",
+      "baselineBytes": 9748,
+      "baselineGitBlob": "e58f62ccd34ba1f59cd927ff53b62a8823b97f88"
+    },
+    "src/scene/Enclosure.js": {
+      "baselineSHA256": "1d4e5e32db5426bc095b57157e80af4e3743c9ffa98d64b3ae922ff6f7620fab",
+      "baselineBytes": 14606,
+      "baselineGitBlob": "97869e163a26b45bdbc470cbdc66436c57f6c65f"
+    },
+    "src/scene/Environment.js": {
+      "baselineSHA256": "6cd30867fe92031ea3b785c93ebc7a6ddfa0569843c8a9dc32c5609c52d96200",
+      "baselineBytes": 14327,
+      "baselineGitBlob": "73b81bab2575b3dc6260af779f7e5440820e9b86"
+    },
+    "src/scene/GardenBuilder.js": {
+      "baselineSHA256": "67a1d0010d48782df837edc39c72d12a4cc06c5a74430aade022998331012238",
+      "baselineBytes": 32209,
+      "baselineGitBlob": "c2abf54c1d31d2c7861ca5e4ffbc5e6f127c09a1"
+    },
+    "src/scene/HallKit.js": {
+      "baselineSHA256": "f238e69d23efd1c1b95f9f2529b5f0a8b5ba8f1ec7d15fbdd6de04147a9b4edd",
+      "baselineBytes": 6997,
+      "baselineGitBlob": "c199a333269f0e7aea5aa1dec6bee6e645cdc0ce"
+    },
+    "src/scene/Layout.js": {
+      "baselineSHA256": "af6b015a05e6b2497eb6dff4b82e21ef33d578d469c9bd9055d4905c3a77f4e0",
+      "baselineBytes": 6898,
+      "baselineGitBlob": "353cba2670b76a1c24bd05ae403113bea3ca4a6a"
+    },
+    "src/scene/PalaceBuilder.js": {
+      "baselineSHA256": "7fcb8560f961da755421e5a6b91cf8a3dc08dd584cb1509bfa38ee030bb8242e",
+      "baselineBytes": 62521,
+      "baselineGitBlob": "9dd0781e698c7f329b42f6a922ed1e9d5e66db51"
+    },
+    "src/scene/RoofBuilder.js": {
+      "baselineSHA256": "b841a8b43d24195919f77f11a547d1c4d9ed49e2b4159059b9b0c106324461c9",
+      "baselineBytes": 39606,
+      "baselineGitBlob": "f00632ae1f341c6129c517ffaf59b3e764c142d3"
+    },
+    "src/scene/flight/FlightEnvelope.js": {
+      "baselineSHA256": "3025ed0bd81a0e58eeac9f073a4e240ca06e5a92c2127e1ae268bdb5d7b5a09a",
+      "baselineBytes": 7480,
+      "baselineGitBlob": "5bc8e9023855a00a56fdccc83bd0d8ed2a49ab35"
+    },
+    "src/scene/flight/FlightState.js": {
+      "baselineSHA256": "24a1d82aa01b0578b34b21ff4681f23653d483a0e571bf35ad558bce18bdf6a4",
+      "baselineBytes": 5665,
+      "baselineGitBlob": "2354602757502af7556af176efbfc992ddea5e4c"
+    },
+    "src/scene/flight/FlightTour.js": {
+      "baselineSHA256": "63e04c28e15f44c46d2d71d65165d52ee5a6738318c559e9a1c7361dafbe4e94",
+      "baselineBytes": 24756,
+      "baselineGitBlob": "a4686506324bfb9bf6f1de75ff02cd7ba4a29463"
+    },
+    "src/scene/flight/HelicopterModel.js": {
+      "baselineSHA256": "ea20024558cf5f3aa4c8a9ad8ad5d73b98a4b62d45747a4324dc1d673dc59170",
+      "baselineBytes": 9680,
+      "baselineGitBlob": "bbbf6767c1b0bbe9ae9b386c2d0cfd1cb97ba7b8"
+    },
+    "src/scene/garden/noise.js": {
+      "baselineSHA256": "81349b85712bf58bc2836878271df1119eb8ee659ef56442dd3aa7e3aed15dd7",
+      "baselineBytes": 1621,
+      "baselineGitBlob": "c3f515bc6af25006437989a4ff96350305c09a63"
+    },
+    "src/scene/garden/rocks.js": {
+      "baselineSHA256": "da0ece7d880c27ca8a80637724db003ca34414a376e7f5c8fd11fafac0d6facd",
+      "baselineBytes": 5619,
+      "baselineGitBlob": "e749f1fc38b83e5b7eac61f892b131416fac3c7d"
+    },
+    "src/scene/garden/shapes.js": {
+      "baselineSHA256": "d0f116330e36079633e9fe4c532f3b67f6000028dbc4b97951635e7fba1c1508",
+      "baselineBytes": 5430,
+      "baselineGitBlob": "750b84ad1f3650b4f1bed8eaa21505baff949d4e"
+    },
+    "src/scene/garden/trees.js": {
+      "baselineSHA256": "5f19c4482c9e560f6c1b63a697a7c85edca8f0a7876a58a9f9b689dc74d5e1a7",
+      "baselineBytes": 8819,
+      "baselineGitBlob": "ad2a4040be585e9567c388d11916ef0ec5334ce3"
+    },
+    "src/scene/interior/InteriorLoader.js": {
+      "baselineSHA256": "218d2c1ee607979779f4802b74d3c1dbfd08b0b93fe326d753c6a5a957d17a90",
+      "baselineBytes": 18070,
+      "baselineGitBlob": "d67478e48941425c3b4c90b173841df78fa9b5d7"
+    },
+    "src/scene/interior/QianqingAuxiliaryContract.js": {
+      "baselineSHA256": "50f47bb1841639cdded37e23551d86e34628183bba5f9f9834b28a0e97a55da2",
+      "baselineBytes": 4839,
+      "baselineGitBlob": "b39d0f2b20596c2f96c07a2d7ff930b470d22d24"
+    },
+    "src/scene/interior/QianqingAuxiliaryManifest.js": {
+      "baselineSHA256": "d75de2471c7dc1f81b4b48ae8673f5fc44842c25fbb1bcef7ae4fc2e0de69870",
+      "baselineBytes": 2164,
+      "baselineGitBlob": "3662e175cf089977fa29ffd03b5465aa7c521d78"
+    },
+    "src/scene/interior/QianqingAuxiliarySignature.js": {
+      "baselineSHA256": "05cb8ceca7330a7d4b1a4745a971cb49c09f61c7a8b83a4583672f8fc3acc84a",
+      "baselineBytes": 1525,
+      "baselineGitBlob": "2eb3e2a0471db2d05cc8428f44ba23f9cd82efc7"
+    },
+    "src/scene/interior/TaiheCoreContract.js": {
+      "baselineSHA256": "bf8290a6b5c30a461f8944bd7549ede7146893c7c3f9ab77c86be4e6316731e8",
+      "baselineBytes": 6394,
+      "baselineGitBlob": "96bc14aad77e46075daf77a2b5b0d1bbc1cfb921"
+    },
+    "src/scene/interior/registry.js": {
+      "baselineSHA256": "0aba567e03ca51d50181933fec450b73447e8559714ca6af2437ea163c449cd9",
+      "baselineBytes": 995,
+      "baselineGitBlob": "fb69b1980f5c83d5de710b73178ea14fead1db2d"
+    },
+    "src/scene/palace/BaoheColumnCouplets.js": {
+      "baselineSHA256": "ed34e039f66cce0c1f2f32690e03f0b9f5af1578af6b2d576cf8399a1fe3047d",
+      "baselineBytes": 3074,
+      "baselineGitBlob": "922dc9b5dc5591775a0d06e847d0c65031ed11c4"
+    },
+    "src/scene/palace/BaoheColumnGrid.js": {
+      "baselineSHA256": "e243974819d421142bb049a442e8a3ef23af2a90025de645ea6f16988835fb40",
+      "baselineBytes": 847,
+      "baselineGitBlob": "a90a0a0a7424c39f54430724fce215de0572d224"
+    },
+    "src/scene/palace/BaoheColumnIdentity.js": {
+      "baselineSHA256": "6e2811a98710bafc5bcddd569ddb232242745e3a5e6384ccde77d98614abd1dd",
+      "baselineBytes": 1213,
+      "baselineGitBlob": "a262f31854f3dde312ce1d2e7f4b37601ed4a416"
+    },
+    "src/scene/palace/BaoheDepthGrid.js": {
+      "baselineSHA256": "131fae972ee3e69ac69e3896af25d4345da7134b2a92594172ead01fc006199a",
+      "baselineBytes": 1642,
+      "baselineGitBlob": "7c55c0a88ad4c7ace6849679a6cf1c738a56a161"
+    },
+    "src/scene/palace/BaoheFrontDoors.js": {
+      "baselineSHA256": "2ba95f1528e89d38e0e3c10c527ce51c2bef0311d9d8d5d23e236a8c6674d3fc",
+      "baselineBytes": 2159,
+      "baselineGitBlob": "1054bd1d83b736fdaae18fd5bb6065d7f65d5c78"
+    },
+    "src/scene/palace/BaoheFrontEnclosure.js": {
+      "baselineSHA256": "7bad380887061e82b615e53784ae410a7efa0d4913fe9b61bf96c0b2bac69aea",
+      "baselineBytes": 4719,
+      "baselineGitBlob": "4475cfb1a9613b4a503dba2dd1d204cda7092986"
+    },
+    "src/scene/palace/BaoheHallPlinth.js": {
+      "baselineSHA256": "5b4053277626e03fcd1918f75a0f4bf62460bbf2f82ef203b923714747af9b19",
+      "baselineBytes": 5074,
+      "baselineGitBlob": "b9b1f432115101e92bef758a0e4bf96e50947ea0"
+    },
+    "src/scene/palace/BaoheInteriorFrame.js": {
+      "baselineSHA256": "b5bff0478f5e10967ee7ec46cfd007ab2c9b03a197c61bc964e0b27472917668",
+      "baselineBytes": 4243,
+      "baselineGitBlob": "d24942f581c57ef190659520473c8e2d966ecdc0"
+    },
+    "src/scene/palace/BaoheNorthApproaches.js": {
+      "baselineSHA256": "4339e0e6a8b2227dab5a4f443554d0cb3679c63770855a21a88bb74b7cc27d90",
+      "baselineBytes": 6857,
+      "baselineGitBlob": "663c6c678422ea2446816fd8e203d239efba95a0"
+    },
+    "src/scene/palace/BaoheRearEnclosure.js": {
+      "baselineSHA256": "ece32654572852cae16dc899b440f5e9232bb05429c8c883fd2760121dc630fa",
+      "baselineBytes": 1210,
+      "baselineGitBlob": "945695b1e0a78e78c37cf49f210e89c1fe3d4e73"
+    },
+    "src/scene/palace/BaoheThroneScreen.js": {
+      "baselineSHA256": "0b3d8414788e87e9a99682b5e48706d617664bcda0965683eb2b6e805cf1f1fe",
+      "baselineBytes": 7855,
+      "baselineGitBlob": "d9907e2e0faad854b8ff1ae3c28c71b22b75d9d4"
+    },
+    "src/scene/palace/HallNameboardMount.js": {
+      "baselineSHA256": "e5e861198a7b676e56c8abab1373b4d467b30a7aef792ac44195fe2c302912bf",
+      "baselineBytes": 2910,
+      "baselineGitBlob": "cdd6ccdc2076f94c38beaba45397f92a0d9a7694"
+    },
+    "src/scene/palace/QianqingCeiling.js": {
+      "baselineSHA256": "5aeedc1627bb7b00f35b32d69d144f7b08d61dfdc2658d6652ba46ca0b6a1a60",
+      "baselineBytes": 3058,
+      "baselineGitBlob": "8f9ca6b42feaab753e8b6c9de33a6f8c71e4bcfb"
+    },
+    "src/scene/palace/QianqingCeilingPaint.js": {
+      "baselineSHA256": "45532383fbfe106c4f0ad0016297dd921dd1a8265b7c6c9f4b220abc8cc41be9",
+      "baselineBytes": 1682,
+      "baselineGitBlob": "333e856eec1b1a40f837504fbd14dbde16ab3b9d"
+    },
+    "src/scene/palace/QianqingCentralArt.js": {
+      "baselineSHA256": "80fdf121a4c4e3598bc34346b44defee51e7223173a17a6b6b59792a73648e77",
+      "baselineBytes": 5634,
+      "baselineGitBlob": "bb0067f8c3a36cee0c84ba8df3f1a8f50951a635"
+    },
+    "src/scene/palace/QianqingCentralSetting.js": {
+      "baselineSHA256": "8831a0f208190ddad53b1d2f196449c0ef5fb701bace98fec749cfc76f16d926",
+      "baselineBytes": 9105,
+      "baselineGitBlob": "ffa204ce785ee737df2a73005cf2d18c1eba3aa6"
+    },
+    "src/scene/palace/QianqingDepthGrid.js": {
+      "baselineSHA256": "bd9f65ea765f8530e0afaeae5b9a7f235118bb68ad744d1437e33342e7d6ed13",
+      "baselineBytes": 1843,
+      "baselineGitBlob": "7161dd0badbcde0858a345d4f23e1e288756e3b6"
+    },
+    "src/scene/palace/QianqingDisplay.js": {
+      "baselineSHA256": "1066882fa79171ae478eaa2003fb3b639f6cf73b29d321d2576ee069191a2e95",
+      "baselineBytes": 6462,
+      "baselineGitBlob": "112131cfaf03394488eaa9011b8c4e23a3eb6824"
+    },
+    "src/scene/palace/QianqingEndPassages.js": {
+      "baselineSHA256": "7ea4a20fe9a491f0d7017994f7ecc16cbe6bb5d46d32c62d71bbaeee58fcd2e0",
+      "baselineBytes": 5323,
+      "baselineGitBlob": "00639a075dc4f434bba899a6221022894979831d"
+    },
+    "src/scene/palace/QianqingFriezePaint.js": {
+      "baselineSHA256": "1a932bf6f61cf0a5b378f4a314ab00a89bf0db39c843927d51d2a925b96bddd0",
+      "baselineBytes": 1700,
+      "baselineGitBlob": "78a139c4d48ac70112113795c7198793f90bc0ce"
+    },
+    "src/scene/palace/QianqingFrontEnclosure.js": {
+      "baselineSHA256": "22658632d85d3c83de4fe04e72b87f77d7bb7eefe251cc550ecb550e5a71f264",
+      "baselineBytes": 4186,
+      "baselineGitBlob": "3acbdcdbf64c67d69564dd9261fc09c5c0378882"
+    },
+    "src/scene/palace/QianqingFrontageGrid.js": {
+      "baselineSHA256": "f4e3f4998dea7bb5e78f83dd22d1af58315eaab215e5ff93e52b5bad567b8b6d",
+      "baselineBytes": 1198,
+      "baselineGitBlob": "f1c4b39ad687e35b43489f699806bbdafd727f59"
+    },
+    "src/scene/palace/QianqingScreenCrest.js": {
+      "baselineSHA256": "466df9aadbb98b9965839ce0289794289e7cd3b8a63bc2e8f99d295b5a75061f",
+      "baselineBytes": 3453,
+      "baselineGitBlob": "8ce5518c372758c0d55bfc9118f3fadb418e4f37"
+    },
+    "src/scene/palace/QianqingScreenPaint.js": {
+      "baselineSHA256": "4369465704a7b7e3399235cd6b600b3e3bf33b939f4e0176e35b8f8042360258",
+      "baselineBytes": 1503,
+      "baselineGitBlob": "a55e294c84f907c77512fb427511ab02c4da019b"
+    },
+    "src/scene/palace/QianqingSurface.js": {
+      "baselineSHA256": "fbba26e17faeac68f2e7f8c939d36ad2edc7477ef1a54eddb09cd5240584bda2",
+      "baselineBytes": 2011,
+      "baselineGitBlob": "73489cf3fb00ab6623c540f95c264b9f799fdc8f"
+    },
+    "src/scene/palace/QianqingUpperEnclosure.js": {
+      "baselineSHA256": "37db7d677cf22073be552f9e835cf4cfc1ccab50372705eca2ba8cca1e7461ea",
+      "baselineBytes": 3413,
+      "baselineGitBlob": "2fd4c2baa7c662c58f5c1077df47abda0293eb8b"
+    },
+    "src/scene/palace/QianqingWarmRooms.js": {
+      "baselineSHA256": "112f0bdbc900283dff9791b964c91f01d2a6ec33731b8b94c64163a5cfdf7da1",
+      "baselineBytes": 2329,
+      "baselineGitBlob": "4b48105d1bf0a28a4facfb6b82ff00ba35633d90"
+    },
+    "src/scene/palace/TaiheFrontApproaches.js": {
+      "baselineSHA256": "8e886f1c9f03b4cedd920a993c9f34dbb9e110197195cbd1adf50f1e136d1e53",
+      "baselineBytes": 5692,
+      "baselineGitBlob": "89d8625e9a5484270a946221f1e19053b7a4463b"
+    },
+    "src/scene/palace/ThreeHallTerrace.js": {
+      "baselineSHA256": "9b5103df2058368a0c97f07aa184868f6de043dd8aaaf50f6ad6cb769b18aeec",
+      "baselineBytes": 4295,
+      "baselineGitBlob": "9c94cb58684d23d8011f4b4f032259a8ffcf6127"
+    },
+    "src/scene/palace/ZhongheImperialApproach.js": {
+      "baselineSHA256": "558d9f6d5091832ae5d111c140c7211bd4dd7180e9eefdaf0b9df9cf41163db2",
+      "baselineBytes": 2434,
+      "baselineGitBlob": "02fe0ac599a1d74d2b96988d6e1dac45eefa9bcd"
+    },
+    "src/scene/palace/colliders.js": {
+      "baselineSHA256": "a2a113cc4bde03855b10b90b7de134af84f0d3248eaaf0477e950c300afd9b67",
+      "baselineBytes": 978,
+      "baselineGitBlob": "8e60fe03b405629804e66071232c2e12cd60bedd"
+    },
+    "src/scene/palace/gate.js": {
+      "baselineSHA256": "7efa71591664acc45c6e96985a4f920840193ce4eec9b7d7f60a41d1e8330341",
+      "baselineBytes": 7116,
+      "baselineGitBlob": "ec6731b4bbc383ad5bd77bc27743df5bdb64b494"
+    },
+    "src/scene/palace/gateAscent.js": {
+      "baselineSHA256": "06a329993ef7b255231e571856dd2716c638b08efb13d03c7074496f34b43852",
+      "baselineBytes": 8237,
+      "baselineGitBlob": "e637b92a8c75cfdce89f4e30ffff8d61c660148d"
+    },
+    "src/scene/palace/gateRailFacade.js": {
+      "baselineSHA256": "c52110d99a97e52926b1ad0b574ad522ee9e977b486aa8bd55be0b70684d3fe5",
+      "baselineBytes": 996,
+      "baselineGitBlob": "046634eefd8c3d8a356c441f934a7431d3a3c959"
+    },
+    "src/scene/palace/interiors.js": {
+      "baselineSHA256": "9bdbf87e324ca46c8a853ee4e336d4d7bd1b7c65a5a8b634882c7475fa12d3c0",
+      "baselineBytes": 17896,
+      "baselineGitBlob": "5a9dfdbb4124ed187af67179316691beba5ce18d"
+    },
+    "src/scene/palace/river.js": {
+      "baselineSHA256": "ab35cc9cc4b012bf1ba80b04a8acf2dea637741b5a6ba5513565251dd721e7d5",
+      "baselineBytes": 1843,
+      "baselineGitBlob": "f13fba3ed826aab035a6128c669488aa386042ed"
+    },
+    "src/scene/palace/special/ChuxiuCourtyard.js": {
+      "baselineSHA256": "50f9bedda75da00eaa8d487e64acd46a319f06312e923237bf95f5657d48ee0e",
+      "baselineBytes": 8567,
+      "baselineGitBlob": "8b22c173142dc6d34657c4a4d9b1a53dece75ecc"
+    },
+    "src/scene/palace/special/ChuxiuHall.js": {
+      "baselineSHA256": "b0d9708f863422e42221b20a899e2dbf1a9ed4c3c56afc451214520aaae18f2e",
+      "baselineBytes": 16044,
+      "baselineGitBlob": "c28cfda99a2144f0a88eae2286932a8d9dcd64af"
+    },
+    "src/scene/palace/special/EastWestCityGate.js": {
+      "baselineSHA256": "c9881ef23d355492eb0def07cf774546e7bef36eaca32d06f4b22480a05ecfd1",
+      "baselineBytes": 5513,
+      "baselineGitBlob": "095852ef716667ec1ec153c404411d89ab411d72"
+    },
+    "src/scene/palace/special/GatePlaques.js": {
+      "baselineSHA256": "348d4371f8493fcdbaf5ee9fc108f6f2ecf5f89c41d7a77895435d573f021b33",
+      "baselineBytes": 8904,
+      "baselineGitBlob": "7522d05e9101d562c59abf5da98910019ab4cd28"
+    },
+    "src/scene/palace/special/GateTowerMeasurements.js": {
+      "baselineSHA256": "21dc4f2c2c3be3221d2b20dd95784f0277852dbdfe7ea79b43fdba888753034b",
+      "baselineBytes": 2542,
+      "baselineGitBlob": "f15ca5664fabef110c858776a347a1c0d96b67d4"
+    },
+    "src/scene/palace/special/GateTowerProfiles.js": {
+      "baselineSHA256": "405e271e96c7a0b07a44451a4be903a39a010e7b56f902cdff23543b68ed18d5",
+      "baselineBytes": 6212,
+      "baselineGitBlob": "9cf11ffb5084d07ba5f4cd60d85851091dd6b130"
+    },
+    "src/scene/palace/special/GateTowerShell.js": {
+      "baselineSHA256": "ed9a21dcd7a79614262bb73131d020f84df796e51671d270def94db5168bd379",
+      "baselineBytes": 6318,
+      "baselineGitBlob": "d96c9de9068f80b80c74d1f8e6c5a676059ef3c0"
+    },
+    "src/scene/palace/special/HuangjiGate.js": {
+      "baselineSHA256": "b8b078f1a09d265f50d18fe8eec6222198824be3c840357e93677291a8d06696",
+      "baselineBytes": 13971,
+      "baselineGitBlob": "15b1ddb30b4451abf2b10b00587d125906dd552e"
+    },
+    "src/scene/palace/special/InnerJinshui.js": {
+      "baselineSHA256": "6f2efa66c5afa01d52a1e7e4c22e7b8c1c5b38e86c99fa456b7c730a9a3cdc95",
+      "baselineBytes": 13812,
+      "baselineGitBlob": "99b2ccc1132afc16335d6ace6a26422a4edb4674"
+    },
+    "src/scene/palace/special/InnerPalaceGlazeLOD.js": {
+      "baselineSHA256": "1e11881c7a33aac2196a5389dc5c2f8c843a5c34922f54440c9c1c30adc19c38",
+      "baselineBytes": 1892,
+      "baselineGitBlob": "bc392e095ab56f844249442bb8e3dd6b8ca4eb40"
+    },
+    "src/scene/palace/special/InnerPalaceLevels.js": {
+      "baselineSHA256": "0091008d78e1b77b0e1bc86ac8d6d7da3f118f90fa3541e4cf27e6b573d3affe",
+      "baselineBytes": 1485,
+      "baselineGitBlob": "b5a5eaf4d8896c6fef093a585a70244bab41958a"
+    },
+    "src/scene/palace/special/InnerPalaceTerrace.js": {
+      "baselineSHA256": "36ecb0a7429f9421947b1653711272bb7233101ec56890a3b43372c7b53730f1",
+      "baselineBytes": 4507,
+      "baselineGitBlob": "05144d541d6c13eefe9ec24e29a070806612fea0"
+    },
+    "src/scene/palace/special/JiaotaiCeilingFrame.js": {
+      "baselineSHA256": "aaa6ee6bf890db83d88dc2e915684c37d814797ee09bbbf3e6982663a9b22520",
+      "baselineBytes": 1991,
+      "baselineGitBlob": "3593ba68acb85412a93b867bf3c2ab094158716f"
+    },
+    "src/scene/palace/special/JiaotaiCentralArt.js": {
+      "baselineSHA256": "bd10262c65545e6c082b36017cf184b3a6ad17b06742e5148f86b35e8380e5bc",
+      "baselineBytes": 3182,
+      "baselineGitBlob": "7a1c4d3fa3414c1782568c6bc94dab118770f02d"
+    },
+    "src/scene/palace/special/JiaotaiCentralInterior.js": {
+      "baselineSHA256": "55562a8949dd512a8903cdfdc3f658470201cdd45993a222c3b30daa843ac5cd",
+      "baselineBytes": 7756,
+      "baselineGitBlob": "c6017f06624f0de44633835fd9fd1071584d01ae"
+    },
+    "src/scene/palace/special/JiaotaiLandmarkArt.js": {
+      "baselineSHA256": "76a8ae56aa8665c363f0d4b26cf665bdf94d918ef42d7fe01a089c267c08509b",
+      "baselineBytes": 5429,
+      "baselineGitBlob": "40ac3562da308391f05905e90b4b0ee94d073a30"
+    },
+    "src/scene/palace/special/JiaotaiLandmarks.js": {
+      "baselineSHA256": "07b089a8258564b0d83c75b613004def8926b48014edddeed65c871218f75aa0",
+      "baselineBytes": 11267,
+      "baselineGitBlob": "d7b632c77bcb7a97520b366cb232b409b959d9ce"
+    },
+    "src/scene/palace/special/KunningPalace.js": {
+      "baselineSHA256": "beeca62cb7c1fcd4876dafe41467f134d72f706b8f592c66f15c73608bd49c00",
+      "baselineBytes": 7043,
+      "baselineGitBlob": "5a5114c3a263c3ed4ef0bf2cf52918b4e948b023"
+    },
+    "src/scene/palace/special/KunningProfile.js": {
+      "baselineSHA256": "ac0bfc5e60acec68e9f06f47af888876328a41ea2d79a84a1a87f219704bed03",
+      "baselineBytes": 2856,
+      "baselineGitBlob": "cd742c7c9b2f0b668da9caae19c28a89f5971563"
+    },
+    "src/scene/palace/special/PavilionMeasurements.js": {
+      "baselineSHA256": "944a6b69756696e48b3352e547c1e47b46e90c0ced4b6be04d1e1896c380d7fc",
+      "baselineBytes": 29575,
+      "baselineGitBlob": "194441974215ca188b631bd9f5b3058f15b7741c"
+    },
+    "src/scene/palace/special/PavilionProfiles.js": {
+      "baselineSHA256": "c8d068c60c80e4ed7bc5221e94c9a8ec6979be69b26f5a30cd9bb666ab353ab4",
+      "baselineBytes": 11372,
+      "baselineGitBlob": "b30ea1ceae6fa4ffb50c1e1d9042b11cceb2a4a7"
+    },
+    "src/scene/palace/special/QianqingGate.js": {
+      "baselineSHA256": "a4d9da62f8a61d2100ee7388bb2a1871ba9dccffed09ee87ac07d001519a26df",
+      "baselineBytes": 14168,
+      "baselineGitBlob": "9768e24d70ce4f49beaa37c16dfdf4a02dc31508"
+    },
+    "src/scene/palace/special/QianqingImperialStair.js": {
+      "baselineSHA256": "5455ec101de5d0b2e49eec3f96fb698d9eb4138f9d280a1d866d6c1813190745",
+      "baselineBytes": 3128,
+      "baselineGitBlob": "b0ed9a748c7a0481486442debe02ddd01718c9f5"
+    },
+    "src/scene/palace/special/QinanHall.js": {
+      "baselineSHA256": "4f7b80b4fc149e2b37b00aa74e013c1c7244ca51227805fedcfe46c2e5b1c886",
+      "baselineBytes": 7303,
+      "baselineGitBlob": "c4342f4d0ff96a43f7bdad0053adc98fbd03d398"
+    },
+    "src/scene/palace/special/QinanProfile.js": {
+      "baselineSHA256": "81feb838bcfa1ca29de51fd030c2345636c63e105c65cdfef26f56c228bea0b9",
+      "baselineBytes": 7164,
+      "baselineGitBlob": "48ad13146d18ac752df99fcd3c3212e9e1055030"
+    },
+    "src/scene/palace/special/QinanRoof.js": {
+      "baselineSHA256": "38ca60dc40b3a04d92f17a333a6dfadeb72058d10bddb604b7f7b0bb77776490",
+      "baselineBytes": 9399,
+      "baselineGitBlob": "d0579fef474fd0558d8a9f009b06a038ea4734c0"
+    },
+    "src/scene/palace/special/SideGate.js": {
+      "baselineSHA256": "928d65c5cffe33e31b3c14145f25fec3568b6fce289bcc6d9111ae08e7c2b62f",
+      "baselineBytes": 11817,
+      "baselineGitBlob": "907acd0d79849bbfba4bbe8fe4d9799b6fa3ef77"
+    },
+    "src/scene/palace/special/SideGateProfiles.js": {
+      "baselineSHA256": "11e346096666822682d3efc9f92da0c96c8fb9e8322ccac2d7234a62ba9acea4",
+      "baselineBytes": 5228,
+      "baselineGitBlob": "4b28c9d05bd2348999e5261e3ff955533152a85f"
+    },
+    "src/scene/palace/special/SquareHalls.js": {
+      "baselineSHA256": "ce01fac19ab488ae8e19e284cbbb8183c93daa15ee14fa364d3d49d2b6c5a58a",
+      "baselineBytes": 9465,
+      "baselineGitBlob": "3e62c601e510be0352343f51806f1ae1c5cc9853"
+    },
+    "src/scene/palace/special/SurveyedPavilion.js": {
+      "baselineSHA256": "08cf4e7fddf7645f43f469f96e753eab75ff6b7bd174ee342811a59b1ce536d9",
+      "baselineBytes": 24961,
+      "baselineGitBlob": "f4ab954a5f3d1e007098a245f97dd86ebfa292f1"
+    },
+    "src/scene/palace/special/TaiheBeamFrame.js": {
+      "baselineSHA256": "df33fb63145d2b0723da59a96c6deb52d70b1940fb83dae21843fa7bb877a3c0",
+      "baselineBytes": 1918,
+      "baselineGitBlob": "5e63138b51dc6ff00dab06c8d19536ad59416307"
+    },
+    "src/scene/palace/special/TaiheCaissonDetail.js": {
+      "baselineSHA256": "272160b14f498416a267739166c93c78d41e27917713287a3ec288890a41d7e4",
+      "baselineBytes": 1170,
+      "baselineGitBlob": "3944cc4d9cb013baa5f999d3af7b00d7734a8ea7"
+    },
+    "src/scene/palace/special/TaiheCaissonFallbackData.js": {
+      "baselineSHA256": "d7bfaa6102a0bcb10f27c4c7f720d16a3778324376e1ef2550cd05f6880587c6",
+      "baselineBytes": 8638,
+      "baselineGitBlob": "ae3809db6c65c0639d32c2f92facbb438fd7a142"
+    },
+    "src/scene/palace/special/TaiheCeilingArtwork.js": {
+      "baselineSHA256": "9bc20790ca358d2c9687aa1686a9baf8068648943fbab805f8a64c844f714d2e",
+      "baselineBytes": 9012,
+      "baselineGitBlob": "bf8b152214076304f107a9db7fce02aceab8dc58"
+    },
+    "src/scene/palace/special/TaiheCeilingMaterial.js": {
+      "baselineSHA256": "37241e7e704da8626e2ac30fa9fc401f0cf4ec0f97b09b9fd44baa237be8785c",
+      "baselineBytes": 1301,
+      "baselineGitBlob": "a12a2dee7c2dc7e60f6aa19054a881a9ab363114"
+    },
+    "src/scene/palace/special/TaiheCofferFrame.js": {
+      "baselineSHA256": "0bea87272e7e56f814a7e4c58eae9f59ed68a18db59cf0ef2e5263046de7f4f2",
+      "baselineBytes": 3303,
+      "baselineGitBlob": "63024604ae2511c0b4c00937dc9e163784ec6158"
+    },
+    "src/scene/palace/special/TaiheColumnGrid.js": {
+      "baselineSHA256": "d25a24645f155bb507bec1a26192c90d590f578caea688953e9b9e6ea185e19f",
+      "baselineBytes": 1384,
+      "baselineGitBlob": "5b1f45bb203a24ab5908321ec5d16aaf1160017f"
+    },
+    "src/scene/palace/special/TaiheColumnIntensityData.js": {
+      "baselineSHA256": "617bcb83a2c24e0ab242a143b3fc840a324896dd438b8105002d7907157d370e",
+      "baselineBytes": 143743,
+      "baselineGitBlob": "1025e503367389f9a5d468deea77e41228f5a474"
+    },
+    "src/scene/palace/special/TaiheColumnResponse.js": {
+      "baselineSHA256": "3b681fe2d7224e09a3051c8dc04c1e4afeb6290815443881760fbb2294569719",
+      "baselineBytes": 2987,
+      "baselineGitBlob": "3ab2acb18fbe6dce80ba3e70ecf2a153285571eb"
+    },
+    "src/scene/palace/special/TaiheColumnSurface.js": {
+      "baselineSHA256": "861549429e8bedcae7779bdd1bd11de62db3eb79b8c435c078965771add9d54b",
+      "baselineBytes": 5380,
+      "baselineGitBlob": "472d0bb127b31b8bc42648637f31c9f88ac07484"
+    },
+    "src/scene/palace/special/TaiheCore.js": {
+      "baselineSHA256": "b85352829bcab1db8ebe3730a6da0014903092e81ab3f292d0ccc91bee3dfd44",
+      "baselineBytes": 9403,
+      "baselineGitBlob": "b3140e843231a3b88ea3e3c1b11d0339f5ad2574"
+    },
+    "src/scene/palace/special/TaiheCoreProfile.js": {
+      "baselineSHA256": "61eb7e9bf0f946b60d7effd3a0e16d4731c00dd02d8476000757ccd32257609d",
+      "baselineBytes": 529,
+      "baselineGitBlob": "ed0e65deaaf247b55963bb39c6c7ed0ba2fb5c9a"
+    },
+    "src/scene/palace/special/TaiheDaisFallbackData.js": {
+      "baselineSHA256": "e2a154e3dd005079fc8100284a9b2d20c55805b3278bb19f949aa6ad24b3bdfc",
+      "baselineBytes": 34110,
+      "baselineGitBlob": "b75d53317d286c49a8d37d23a33ff9905538ecab"
+    },
+    "src/scene/palace/special/TaiheDaisFront.js": {
+      "baselineSHA256": "44f5f07437d201a830d5a311153bb9f17cf5272b12cb38a299bfb016f651468d",
+      "baselineBytes": 3017,
+      "baselineGitBlob": "cca69f4e6f1695943e92c224ff89f302dcd127c9"
+    },
+    "src/scene/palace/special/TaiheDisplayFallbackData.js": {
+      "baselineSHA256": "9f581400cc6053186d98c1b34353b06853b23fa677fb8d5c8d79a727e22e953c",
+      "baselineBytes": 46754,
+      "baselineGitBlob": "96bb197a22d0bf394b0863c100848c7918c37c82"
+    },
+    "src/scene/palace/special/TaiheDisplayPairs.js": {
+      "baselineSHA256": "5b1f5da0bcf36c12ebec7a14c841908ebd84fadea88f4289861173976525d264",
+      "baselineBytes": 1247,
+      "baselineGitBlob": "473609ccb71407cb09c0cebcd3fe6e4feee188e2"
+    },
+    "src/scene/palace/special/TaiheFloorMaterial.js": {
+      "baselineSHA256": "6d13b73952cda1df0ddcc0de5269dccbebd41f83045651f60f7fadf2db541c57",
+      "baselineBytes": 2386,
+      "baselineGitBlob": "0654d908e3cbde24b80487c3042118e6a419521a"
+    },
+    "src/scene/palace/special/TaiheFurnishingSurface.js": {
+      "baselineSHA256": "9659b7c86b3751f0f4e042419aa1dcb3aa6ea6e82513e251e5f27a1491e246c4",
+      "baselineBytes": 3652,
+      "baselineGitBlob": "40181b423a014bc83e055d4e120e00a14689c53f"
+    },
+    "src/scene/palace/special/TaihePlaqueFrame.js": {
+      "baselineSHA256": "ad56be2bd3fc865b6e54af9e402825fa85df55a674071d79b329cc6d1d2cf1e0",
+      "baselineBytes": 6689,
+      "baselineGitBlob": "597bec7bdd1177332796a9526b48f8138b15ad09"
+    },
+    "src/scene/palace/special/TaiheRearEnclosure.js": {
+      "baselineSHA256": "a292419be8ba541e3ea1cdb33984c9787208eaf855419472a96a7bb227612a53",
+      "baselineBytes": 3452,
+      "baselineGitBlob": "fa01cf05f22576c7e52ccc3ea70a6b127beacc0a"
+    },
+    "src/scene/palace/special/TirenPavilion.js": {
+      "baselineSHA256": "246e56761a6b105db33b6623daaffe7ce517db9805e5d05016c0da1b54000c9f",
+      "baselineBytes": 341,
+      "baselineGitBlob": "30ad16a59a3c9a7844bc532d35817aa93a0dfa87"
+    },
+    "src/scene/palace/special/WumenAscent.js": {
+      "baselineSHA256": "c7d88a0d550437b30ba36fefac9be03f9edf708c9135cd7da9eff02430e24251",
+      "baselineBytes": 9039,
+      "baselineGitBlob": "4f0bba7d157de92d2fe261bc1c9ca32bb87ca87b"
+    },
+    "src/scene/palace/special/WumenAscentProfile.js": {
+      "baselineSHA256": "654fc67f01cab0e347d75c453e3405e5221c73fa3c7962cfbf498fa78e830a97",
+      "baselineBytes": 5650,
+      "baselineGitBlob": "f046f42c277e85a20d61fc290891e1935404e074"
+    },
+    "src/scene/palace/special/WumenLandingWallTop.js": {
+      "baselineSHA256": "803759e5ec6f8feb8dfeffcacd1cb4d5667f0925487dc56c919123a5bd7981f2",
+      "baselineBytes": 5690,
+      "baselineGitBlob": "5119948a944eafad1f40c16b5046a9a441371dfa"
+    },
+    "src/scene/palace/special/WumenVerticalProfile.js": {
+      "baselineSHA256": "00b07b455e4201cd55ca9762633c994e708243581920ca79ef5ebeb53bee7eb6",
+      "baselineBytes": 5639,
+      "baselineGitBlob": "2b02bb41fe9a1beb2a8cd41f0b7d87266c5063b3"
+    },
+    "src/scene/palace/special/WumenWallCapFit.js": {
+      "baselineSHA256": "01bfb9f17673fd203ab78954ae4001aa07ce023c08b7e1e00ee633f7957d99db",
+      "baselineBytes": 5086,
+      "baselineGitBlob": "e1fe1f8d003b379c2d70763bf2ec09050db7c7f9"
+    },
+    "src/scene/palace/special/YanxiRuin.js": {
+      "baselineSHA256": "f3cf2e06ba345d5ed911927aeac95aec7a451470d1b5dcbf82e0c68ec275dffa",
+      "baselineBytes": 22696,
+      "baselineGitBlob": "870c69aa973f0ae4dcdbbc8634dcb757d1d7eb98"
+    },
+    "src/scene/palace/special/YanxiRuinLOD.js": {
+      "baselineSHA256": "39b481cd4362a97ba9418699457cfeaf1a9039a3e714bfe4d9ec16dd2c09816f",
+      "baselineBytes": 6731,
+      "baselineGitBlob": "37311083336525481f1eb81cb2f02d82a339bed3"
+    },
+    "src/scene/palace/special/YanxiStorehouses.js": {
+      "baselineSHA256": "959d62c7ec3ee6f165f7b83798098684783aa99e9c198539690a431daab208dc",
+      "baselineBytes": 7421,
+      "baselineGitBlob": "2c1d8030cb5fa5a8cd03d5ed7d9a41fbbac5b3b0"
+    },
+    "src/scene/palace/special/YikunSideAccess.js": {
+      "baselineSHA256": "7372203703cff7b3ceaf1fc4d148c9645813b859f2d2f5e341f5977ade3d5331",
+      "baselineBytes": 2848,
+      "baselineGitBlob": "9417208c56e4c57c5689a6920994ac3448c7ce0c"
+    },
+    "src/scene/palace/special/ZhaodeGate.js": {
+      "baselineSHA256": "008d6c919a137d9416c9b0dd0ca060e8e7345a607dcefe3a300cc52aa799b15e",
+      "baselineBytes": 10830,
+      "baselineGitBlob": "b367ca15a6210877618b936779ccec86f9a752e9"
+    },
+    "src/scene/palace/special/ZhaodeGateProfile.js": {
+      "baselineSHA256": "bb3b121f5ce00da6ea234237745bd28b4e020cfbb016dd05339ce7b95704ea0d",
+      "baselineBytes": 9533,
+      "baselineGitBlob": "8b1bd818c60338dcd58e5372dd07dcbcdcb33f6c"
+    },
+    "src/scene/palace/towerShell.js": {
+      "baselineSHA256": "fbe7c5b990cb2d0d2def6957d023a65250b5179f3160c8acb2b0e79965cc2ebb",
+      "baselineBytes": 5352,
+      "baselineGitBlob": "ae665a92fc27804a664e09f1b22f48b0d3051eeb"
+    },
+    "src/scene/sky/BeijingDayCycle.js": {
+      "baselineSHA256": "a4c1d856596904d17afb80d58fd37cd25f376fc3d21bca4c634e166e3259b216",
+      "baselineBytes": 8186,
+      "baselineGitBlob": "2d52f19c00739b2383fbbafbab71cfe5d2f83be7"
+    },
+    "src/scene/sky/HistoricalSkyLamps.js": {
+      "baselineSHA256": "fbb1f0957d22f7c92a75f1db0e02ab0d2955173072293990746afaf562254317",
+      "baselineBytes": 5240,
+      "baselineGitBlob": "18bee59dfc523b38428afc2059d9fb8ff05e6157"
+    },
+    "src/scene/sky/SkyDome.js": {
+      "baselineSHA256": "fce040c9ebb96b4aa2065db4f4589d2f388106aab0e8296be9747139def69201",
+      "baselineBytes": 5243,
+      "baselineGitBlob": "90e6b2848441e2394ea757a0b62d5e9bd2025a4b"
+    },
+    "src/scene/sky/SkySetup.js": {
+      "baselineSHA256": "db842eb2ad37a63d5fd78d7f54782c6d119f6fc1f7f823a6c2fc10bf9e4a2cce",
+      "baselineBytes": 2260,
+      "baselineGitBlob": "497840921a36b9fecf87f5b45281eac3da605e83"
+    },
+    "src/scene/sky/Skyline.js": {
+      "baselineSHA256": "938c59be0e2fc13d69d364011cfe1d579defacf83ae3b2d63feb57c2b71871d0",
+      "baselineBytes": 1752,
+      "baselineGitBlob": "2d7ff5b6a0cbf3e63e4f2c2e7df0bcdf1d17d206"
+    },
+    "src/scene/zones/CourtWallContract.js": {
+      "baselineSHA256": "cd865e2cf4477c060a168966b653db0cf7f7fbfc0e42908d4c90947eeccce7f6",
+      "baselineBytes": 1384,
+      "baselineGitBlob": "7440d169dbc158742384e2065b1567bb4b4f9559"
+    },
+    "src/scene/zones/HistoricalGateSites.js": {
+      "baselineSHA256": "8cd6c8943b06ff4186de61d92b2b1ebdbcb5ffbdb71a9126a5e15b98c4906c9e",
+      "baselineBytes": 817,
+      "baselineGitBlob": "15654a6a6a0952b5bdfba3d35a870a1586d7add3"
+    },
+    "src/scene/zones/ZoneManager.js": {
+      "baselineSHA256": "6aa58f0d1eea2774480d98e53486b345638ff2409d25f309ad03be527a803aca",
+      "baselineBytes": 12052,
+      "baselineGitBlob": "07359008d1bec3e1be1b59f32503b1b41dd99a50"
+    },
+    "src/ui/DayNightPanel.js": {
+      "baselineSHA256": "966b9de87c040dce8120585d84f79a5c426a096e36c46e1b71fc42257f8e69d0",
+      "baselineBytes": 4293,
+      "baselineGitBlob": "69631d1c9fb7a4d9e905685e1754bfb64438ac0d"
+    },
+    "src/ui/HelpPanel.js": {
+      "baselineSHA256": "73ad62366097a8daada635b35d46353ac4054f964743f3dbee0cbe563d8f4727",
+      "baselineBytes": 2767,
+      "baselineGitBlob": "76447a064f3bcf158363cfc29562a0bff2d7902a"
+    },
+    "src/ui/MapTourSession.js": {
+      "baselineSHA256": "72f5c3515f63cc3ebeef9f6ac52db978a8fa66638c01e362b8c6a8561dbfdd4a",
+      "baselineBytes": 1040,
+      "baselineGitBlob": "65f9de9f850fe9b2f1f60b0c54234f8f462e2f29"
+    },
+    "src/ui/Minimap.js": {
+      "baselineSHA256": "2b590c97089df0a8872fccab5f1c5e59f5dc7f7bef51ca3ad1ec8be3eee60c9c",
+      "baselineBytes": 45654,
+      "baselineGitBlob": "75150ba2dd49ee7f78d103d6b377009e62898f1d"
+    },
+    "src/ui/ModelFidelity.js": {
+      "baselineSHA256": "aa7e9487c268a3af4c255d2d8b7abf1fe97058b336086522100edb4bff4093f7",
+      "baselineBytes": 2694,
+      "baselineGitBlob": "29b430429669ea149d2bb31413b32d8635a12553"
+    },
+    "src/ui/PerfHUD.js": {
+      "baselineSHA256": "b76c656568b99ab966b25e60578fd04f8e189c1358388e8884306956d4578f50",
+      "baselineBytes": 4065,
+      "baselineGitBlob": "55031c3c076cc2a0581cbcaa4d9c3348d64b0c09"
+    },
+    "src/ui/PlaceCatalog.js": {
+      "baselineSHA256": "af8691bfc5c5d2967514351eea9d1da9da0d1f84fc82f3fb058e8628ec76829e",
+      "baselineBytes": 12290,
+      "baselineGitBlob": "13f0c28e05cc1ecdeef53c31315b473e7557836f"
+    },
+    "src/ui/PlaceInfoPanel.js": {
+      "baselineSHA256": "66c701e0b0a8dfd07b16e9a9a5ba46e1a5ab8bb26c1bfe53db718dd694f0d7f8",
+      "baselineBytes": 6640,
+      "baselineGitBlob": "474710012ee310da86a90f4ae1e52e8c87163f99"
+    },
+    "src/ui/SettingsMenu.js": {
+      "baselineSHA256": "c7e50c00066880d16ad673158414e60c48941fa17956bec80423dbad6f0eb664",
+      "baselineBytes": 17685,
+      "baselineGitBlob": "12325f9dc4ad7bdd234069b420086f931be9b08d"
+    },
+    "src/ui/SettingsTourSession.js": {
+      "baselineSHA256": "4586d39402b74c2559abbf8bded3d49427d8ff94fc18c7a547f3c2708b5c9fca",
+      "baselineBytes": 2015,
+      "baselineGitBlob": "454552f7e0efdd2929174354053d08dfffc20953"
+    },
+    "src/ui/Teleport.js": {
+      "baselineSHA256": "a06dbda9d20de9b593c7d83926dcfd91e1d8f02cbb45f1911793af0c1626be6f",
+      "baselineBytes": 17006,
+      "baselineGitBlob": "7063ab94f637fd161f67132d8eb2b12b3312346e"
+    },
+    "src/ui/TourTools.js": {
+      "baselineSHA256": "6ec1551a689ae89415855e0c33b95542a5a97c8ee192a161cb4d7a96422f412d",
+      "baselineBytes": 1843,
+      "baselineGitBlob": "98ce8280541f08b8d34ae4ac750ba0cb10c474e0"
+    },
+    "src/utils/Collision.js": {
+      "baselineSHA256": "f1bd8afe3a9dc361b4c332315c0f9edeed8f55f2fc13d924ed1c89ccf5d01b60",
+      "baselineBytes": 13417,
+      "baselineGitBlob": "3417fd9472e4d8f410509c842d9923842ce8ab09"
+    },
+    "src/utils/GeometryUV.js": {
+      "baselineSHA256": "6c6f55acd7e96d8dd8169baa62e0fdee7f92b27deb30532de022b18858884e30",
+      "baselineBytes": 4039,
+      "baselineGitBlob": "71e24ad313e878569bd13fca1a8536461c933d8b"
+    },
+    "src/utils/InstancedMeshPool.js": {
+      "baselineSHA256": "9ec55ed1d28978c0a335b4dcb8bb07e7184f84c1551b30ce7e41d85839147235",
+      "baselineBytes": 5006,
+      "baselineGitBlob": "ad1bc22700f767c76e6162e7dda2bab540a9346a"
+    },
+    "src/utils/MergeUtils.js": {
+      "baselineSHA256": "dfdf0496a4317cee8fbd1f97502b449177be88903f1334d9d95bd5bff6300cb4",
+      "baselineBytes": 5010,
+      "baselineGitBlob": "a35f093585449bb24a6d71d113e346ed97682ff8"
+    },
+    "src/utils/TextureGenerator.js": {
+      "baselineSHA256": "286bf1a9a657af4bbab36920ce126b68139cdb9764df7d212e2beb13b63d26cb",
+      "baselineBytes": 6713,
+      "baselineGitBlob": "e3195669599b0c0326780c42443909e1fd7aed1a"
+    }
+  },
+  "preservedFixtures": {
+    "tests/fixtures/environment-lighting-v7.json": "71b62184b70d3dd4371b94fed9ff84b3b735291fe878c9940d5294ef1219550a",
+    "tests/fixtures/environment-r13-source.txt": "048d302f3c143592aed95227a47e95072b21394f3a9c5f7c193f96da21cac394",
+    "tests/fixtures/historical-sources.json": "2b6ac47c5e2b2668cf94032c4136767be141b701573b91960aad1c6618d28937",
+    "tests/fixtures/r10-column-grid-baseline.json": "14129f43a7e3f12f7a8c8d4fbcad4f8f66cbf2a09f17231b617a92895ad0521d",
+    "tests/fixtures/r10-column-mesh-delta.json": "2c4f9f54b9cc375c215ada09cd858cbbbc764f87ee37cdeb1c99ccde5f0abcf8",
+    "tests/fixtures/r10-column-source-delta.json": "3361c88f6b750ad9926353a7cf18e18e861147962009bbba5a364087e789f9f1",
+    "tests/fixtures/r11-floor-baseline.json": "4e408f97ff08b53ea3b6ed9936a25f1c38f75c3cb74f488d3cd1b257b409e5b0",
+    "tests/fixtures/r11-floor-mesh-delta.json": "389265845a213ad213b79c043837dab94f50cf8fb75b0eac66e80acdbf3239e3",
+    "tests/fixtures/r11-floor-source-delta.json": "8b205f7b23204fa6c2e05977759de2565c575944acc7086ba1d6d24df300abe7",
+    "tests/fixtures/r12-glaze-lod-baseline.json": "24b20ea5398e0f92e9dcf96fdff39903bc76eec7990bb42d3f03c05361a34d94",
+    "tests/fixtures/r12-inner-hall-surfaces.json.gz": "3e9fda7b84b76ce2ae637b26a1c6287fc73d1096a9e75c3e441f3ce30243c76e",
+    "tests/fixtures/r12-inner-palace-baseline.json": "27d35e30edcd31dcd044e8ff2abe37cf9bfb1c7f21a3d0e49e8c10da7418e0e8",
+    "tests/fixtures/r12-inner-source-deltas.json": "c513b39b83fcfd112982f8d23afd6aa18eb5b24ca37787a0bd12ed96953d87f8",
+    "tests/fixtures/r12-qianqing-baseline.json": "7aab0b5767814ed473ef41a70506bcb1e58e827f19b7d4308d19c67e03b5dda6",
+    "tests/fixtures/r12-qianqing-route-delta.json": "6f77863853f1d59e1fd928714bc0f995eed4e69e354a118bb886e0538c9991a5",
+    "tests/fixtures/r13-plaque-baseline.json": "a7f6f72acb6cdfe292077ebb6a7860fbe5e385a5d153c59312bfba601288f0ff",
+    "tests/fixtures/r13-plaque-fallback-delta.json": "31eb5eab46c3750e3e8b6938dd0a056872e99a6b4fffa34637b90a3f24592044",
+    "tests/fixtures/r13-plaque-mesh-delta.json": "de0d1d315f1b4914e20e74913c56aa2bda15b8e3bd9c7767286baf21992c4ef7",
+    "tests/fixtures/r13-plaque-source-delta.json": "21fac497bacff2d3b01dc98351ddbd10a5f604ec65b420ca6a4dfc8160abf058",
+    "tests/fixtures/r15-flight-daycycle-source-deltas.json": "f5df755381a8a756cb72b70be0cf83780638243aaa0a09edd3d3999cd3871c9b",
+    "tests/fixtures/r16-baohe-navigation-delta.json": "3ef9728651d1cfe455cd4798c26e41fc97bd6c499cd9c946c643b0781a1b5cea",
+    "tests/fixtures/r16-baohe-route-delta.json": "07d69b59206c49502a419df6162541ad420fca8a24efb8a24e79f704cdbce8b0",
+    "tests/fixtures/r16-baohe-scene-delta.json": "5944259602506f00164700b7e545e7321341be13698987fb345c6eb2eff5abaa",
+    "tests/fixtures/r16-baohe-source-delta.json": "fb0a8c3ed539a9d6df933a04702b8be68089c85817943d9b33311aace9eb196c",
+    "tests/fixtures/r17-baohe-navigation-delta.json": "afd1ffa59fbed4e2040bad720fc10a6060b03a61c47bc96ca2369bf1546cda5c",
+    "tests/fixtures/r17-baohe-route-delta.json": "c53064d74b381eaa69dd9e10defe36da569620ec8e9531c543dd1c23162bd9c9",
+    "tests/fixtures/r17-baohe-scene-delta.json": "20ed2e2e1073d5de0850506d75e295cfe627485131a45f326955f02154887d01",
+    "tests/fixtures/r17-baohe-source-delta.json": "3c8a436fe1e489335bf03e081976af3910328dd83d9ddf0033cb1932426850a5",
+    "tests/fixtures/r18-baohe-columns-baseline.json": "1213028e35ffcf4f26644f1f7aec88b7e9d8ae404adeb1260b251b6dad4c89f0",
+    "tests/fixtures/r18-baohe-navigation-delta.json": "880a4e50a022a0722c3b7243361425bbbd8afbdf0071db1438de2f546be6f8c1",
+    "tests/fixtures/r18-baohe-routes-delta.json": "88d7ec3110920227263be834d134c5d40b7b20d88b761ebf4dbee7931fa03078",
+    "tests/fixtures/r18-baohe-scene-delta.json": "1de749b5b168d252f12bd451bd21f4417cadf880504f0d71ea401f9ca46ab67a",
+    "tests/fixtures/r18-baohe-source-delta.json": "b2ecf419bbf4e99c9589a703e7569402b27de85064b60771993794d67b04ddee",
+    "tests/fixtures/r19-baohe-depth-baseline.json": "35fafa8bbe76c2ea1b06beba5926edd1264a0d116a793ab59b0d2d2aff4c1559",
+    "tests/fixtures/r19-baohe-navigation-delta.json": "3c547af0fea2cbfbbc0b74677d0833234681685ec1d62ce29af3ab01535c99aa",
+    "tests/fixtures/r19-baohe-routes-delta.json": "2c04ee948fe12183d331ac428a1e8a4705a21df653dbcbae9147e62da0b80b9c",
+    "tests/fixtures/r19-baohe-scene-delta.json": "eb1d1cd8d76eff0f7fd9ccf4ad5a11eda83da743ad04c6e204122497ae502f04",
+    "tests/fixtures/r19-baohe-source-delta.json": "f3f0275d88a9a49ceab4434f79d42eed08e11027f6a2ac7b0675503d1f7632a2",
+    "tests/fixtures/r20-baohe-height-baseline.json": "4eabd6606ef63965a3823e1a560366bf5d71f7f5a64b067b15d5e633f13eeee6",
+    "tests/fixtures/r20-baohe-scene-delta.json": "25da2d7f2e4b58ff89079366d0aa398915af92eeef3858e62cc61fbcad589615",
+    "tests/fixtures/r20-baohe-source-delta.json": "7fdbfa5440cf605f1a4d9dffa9acca4ca602a9b13954fad1668523adcd484ea1",
+    "tests/fixtures/r21-baohe-scene-delta.json": "cfc6c6181420548ae3bc9fecf20705540e4059ff50e12851ed4f28e176acf8f4",
+    "tests/fixtures/r21-baohe-source-delta.json": "951af0164e7f9033916c7899ff91dbc6a93b90bb073d1caa4d7b566b7ba0ffd0",
+    "tests/fixtures/r22-baohe-navigation-delta.json": "131a040f3452f3187d555923aac6869cb2be489f033d853d07cfd6dd38b6a0c9",
+    "tests/fixtures/r22-baohe-routes-delta.json": "f72cc9f91eef97601b81a8455014c82d3ea41a95230f30429df1f7bf3ebea91a",
+    "tests/fixtures/r22-baohe-scene-delta.json": "d9940503f969fe0e5119d2141b4b566cd5017523ff24c658db13e61d8c5da075",
+    "tests/fixtures/r22-baohe-source-delta.json": "6b5878ec8a5ac6efb55289f1b3ae021c4e7e54d05ae3398c39e5ea353fe6144f",
+    "tests/fixtures/r23-baohe-scene-delta.json": "83f512917a80020a3f91ae64317267afc1a6790dac3c2a438ca2afe1b35b7a97",
+    "tests/fixtures/r23-baohe-source-delta.json": "92c0fe18402636b373c3b4f4a627364c3da57c1df203665acc195ebfa33168ca",
+    "tests/fixtures/r24-baohe-scene-delta.json": "7517363591f918c3fa396e13c322669b49810fb93d38c30434a69e36d63cc8cf",
+    "tests/fixtures/r24-baohe-source-delta.json": "66cd73cd56124b42995886aca458663b2b7050c4b41d03729dd6fe3a488a17e8",
+    "tests/fixtures/r25-nameboard-scene-delta.json": "dfcf5a9a9f0b14bc665b132dbcf8938f93db31024bcb8ef9ecc6881eddba34b9",
+    "tests/fixtures/r25-nameboard-source-delta.json": "be2698cfc8802e8464b4915f3ebff51cbbe446ccd5dd8db17d37fb690c32611a",
+    "tests/fixtures/r26-qianqing-frieze-scene-delta.json": "8d59d6ba8bd4327e6aefd2adda4240dadc0c15e4ebca08a9f92d4765b3ce0daf",
+    "tests/fixtures/r26-qianqing-frieze-source-delta.json": "637240a7d81477329bd212b6e3fe19c462da785f196830faa736539629563c2e",
+    "tests/fixtures/r26-qianqing-scene-delta.json": "d23f2d49c36c93c38d4a9190cdb4cc52956ff9169bb89c6e96de2821aee505e0",
+    "tests/fixtures/r26-qianqing-source-delta.json": "17f698cb62c0fe4d49714410c9bb5ae9ce7ce8afc61912af58470a899bcb0ac6",
+    "tests/fixtures/r27-jiaotai-scene-delta.json": "cab2816c3bb4db6845a97bcb5d30aa0b8afa4288abc6425bb1ebf58c1224621d",
+    "tests/fixtures/r27-jiaotai-source-delta.json": "e5e981196686903953e804af3cb5a02a1761f55f1edd28ec5d28a00d485d8bf9",
+    "tests/fixtures/r28-jiaotai-baseline.json": "d5f8a96e15cbc3c956138e996c09f8c6a88badbb0bd3182c30015815e778e08a",
+    "tests/fixtures/r28-jiaotai-central-scene-delta.json": "4ab7b74082268615e71e39443c294bb8e9e6407953c4dc71ad7ccc9afd0cc061",
+    "tests/fixtures/r28-jiaotai-central-source-delta.json": "f6f3ad1d79c7c46936da42bd7ea12bec4051e69ef03aa9cd6a84985be695612a",
+    "tests/fixtures/r29-qianqing-baseline.json": "e04cdbfcd868ef0784cd252d6aa3b7a5b9e5bed9d95c17f15907cb7cff535746",
+    "tests/fixtures/r29-qianqing-scene-delta.json": "a758968648d767698341f71f0fbb7bbde4dfbe87e752f48811dcad588d0e371e",
+    "tests/fixtures/r29-qianqing-source-delta.json": "39fdd532623cba0c05b095bea96bb82b3d011b7119f378c8265123c3f654a909",
+    "tests/fixtures/r30-qianqing-passage-baseline.json": "2233865b5835b0c70c6d686b081e05f50d870f2391d90b7777787b485722e9b7",
+    "tests/fixtures/r30-qianqing-passage-scene-delta.json": "7a3d32a783ff7735ee6873d6f8ed9d6cb522d40e7a37e98cc0108117862c5353",
+    "tests/fixtures/r30-qianqing-passage-source-delta.json": "4bb57ea4366288139450d1197dcaf2f17b4481ca42273b5b46afa62363a60e0c",
+    "tests/fixtures/r31-combined-source-delta.json": "01ba78d08a080327678aaef06f448e1855b5ab6c6ab20ef059b2af2dd2c941b4",
+    "tests/fixtures/r31-flight-operations-source-delta.json": "4ebb708a4561d244e3b847077f2cf2c5cf2081d33d437853c9c412a5ced1abb8",
+    "tests/fixtures/r31-qianqing-surface-scene-delta.json": "278ce9eefd3b4143f5ead44ced543fbf4721b2031391c05478d955c27c970ae9",
+    "tests/fixtures/r32-crest-scene-delta.json": "a5afb05ec3adee06387dea5bb998703e82c169dbbf71b1475290cc56e675d886",
+    "tests/fixtures/r32-crest-source-delta.json": "5882d02fff96235eeff75fd9c880ff4d5f1f0f71061e03a7947f6d5919a2e2db",
+    "tests/fixtures/r32-followthrough-source-delta.json": "dfe07135afa71d04ec492f7d6bdc6453d09aa03f4448b8eb25887bdf650cceb2",
+    "tests/fixtures/r32-frieze-scene-delta.json": "bd0c9ece44c818aae25d5c2ad8394b5f3d2b5ff5f660145e1746d9a79896c42f",
+    "tests/fixtures/r32-frieze-source-delta.json": "4998d76b66b08d12a34774de4267f7046b35afb7009c0e6df16b15399e48412e",
+    "tests/fixtures/r32-qianqing-crest-baseline.json": "718eaa147c9ce248b5a21fa7218e92e7b67bbd0676cb5f889b2af4f688b0566f",
+    "tests/fixtures/r32-qianqing-near-before-lod.json": "7b54d3819afd1acb645f9d67a93b185d32fd51008e6a5d1cb3938451cbd3fa87",
+    "tests/fixtures/r32-qianqing-screen-geometry-baseline.json": "e414ff7e6b6237bd1dd0cb5c47cf1c37fef890f9cf8da7bc185230223f30c537",
+    "tests/fixtures/r32-route-delta.json": "4c2f8e59620b2d30e2b9a135c5b53f85651fa3e4ac32cddb23bf512c784f0403",
+    "tests/fixtures/r32-scene-delta.json": "680a44ba6c076ae2ba8e78e88842d85fd262e39df38443733415f761c2840a4c",
+    "tests/fixtures/r32-screen-scene-delta.json": "3fe73e9730e139e737bf20b1160f6bcb6d12b26f7b71e76c8d5838c174e75fd3",
+    "tests/fixtures/r32-screen-source-delta.json": "2d359fc84375bb3da5c1943f6358412fcb4224440e7084bdcef5f32c62bd87bf",
+    "tests/fixtures/r32-source-delta.json": "233e700c22d2fc2bc1db1049ab9b8aca98ae88bea0a0596ab282dbf70e4013aa",
+    "tests/fixtures/r33-scene-delta.json": "0bf0b4c638f63f997b787b53aace34f827abe6ed0687e9f226832d98f3de73e9",
+    "tests/fixtures/r33-source-delta.json": "31f70c59c0841453ff0987c1b7fbd0f71ae696ca8f3d249b68f01981dde18158",
+    "tests/fixtures/r34-night-source-delta.json": "54b39242a29d298b0d9dc6260f66f0017e45f1c50ca6841b5b90e97affa715e9",
+    "tests/fixtures/r34-scene-delta.json": "1c89802c181cd8de83b416c88e7eb3fc7788f898fc28bd2326b51f2147379a85",
+    "tests/fixtures/r34-source-delta.json": "be99c7be90a828a53025be8099a7f896d21286121e41ac28f08813d46e3521c6",
+    "tests/fixtures/r6-complete-place-cards.json": "64b7fce6f2c81be4dce62a8462a27b4f1dc1f1de9b565c62c78b034aaeecdc12",
+    "tests/fixtures/r6-ningshou-route-delta.json": "3ba8f9f1a35772dfa808ab81fe201950cba1f7313134eda3727d89597ca46ddb",
+    "tests/fixtures/r6-preload-source-delta.json": "ef5c0c07b827ffaf6802500359552597fa6ef1998c155b7825dee45444b9a140",
+    "tests/fixtures/r6-western-route-delta.json": "67f23f3f421c7eb18ab94c4fbd1a24467368d0380af04e263ee69811946cdb34",
+    "tests/fixtures/r7-taihe-beam-source-delta.json": "203c037ed997de8ad6987d92f8f28bfacfe1f09eb4cf5db79b89c0026d67b887",
+    "tests/fixtures/r7-taihe-dais-fallback-delta.json": "a8f55eb85d30a9faf882cb53e64713122fbc3c13320ec531ed60e6c102e35a1d",
+    "tests/fixtures/r7-taihe-dais-physics-delta.json": "5d81b8bd0dec2b0dee72816d9896b3abb2cdfacf539505de06fdaf1d0d33ce47",
+    "tests/fixtures/r7-taihe-dais-source-delta.json": "2bbfa1cd29e61ab3f4cf8ab999427a7d37136d7e64db9e16eef9c63030cde4c5",
+    "tests/fixtures/r7-taihe-front-route-delta.json": "95178bd2168e30272fe2075ee0520179cc242a6203f8de90dedd07aaf659199a",
+    "tests/fixtures/r7-taihe-front-source-delta.json": "b34e43bac14c3b43411cb4bdd35c50a92ba11bb218c37375915d56610bd7dcc0",
+    "tests/fixtures/r8-incense-component-baseline.json": "d26979bb6c282f4bc5b7ace4afc3e763519bde216f6f77c4ae13f3abfb4dc446",
+    "tests/fixtures/r8-incense-fallback-delta.json": "14a7168824a93ed9bea582e05461f4ce58c244ef34043c4b91d28c2aa0dc8bb2",
+    "tests/fixtures/r8-incense-source-delta.json": "16b7e480f554d484d37d4710ce989f8a173033342220e6b398d47ee9299fe69b",
+    "tests/fixtures/r8-zhonghe-route-delta.json": "2fa808b47f56c261a529aaf2d197452ab0fbbfd5825b9207f0dab567a156b67b",
+    "tests/fixtures/r8-zhonghe-source-delta.json": "43a1b1c9ae8c1dca499f4cc2a1b0a2e461579c1f910817e520e60c8e0a76d414",
+    "tests/fixtures/r9-architecture-source-delta.json": "f389ce444acb145fdfee8271d413431adde828b7aaaba8d1ba841d2b030797f7",
+    "tests/fixtures/r9-coffer-core-baseline.sha256": "8b3a3ce609f930e5b34bc924c2999925c89f964cb203afb8eec1e05f25e625b9",
+    "tests/fixtures/r9-enclosure-baseline.json": "81fd845b655fc3c8dec2735b147e3951b213f54c07b0aa316ca8422802a17eef",
+    "tests/fixtures/r9-rear-enclosure-mesh-delta.json": "0138e5cfcae4df7b6a9800f5a21895e7134b742ce4d2e2532e5c7764a636c66f",
+    "tests/fixtures/taihe-caisson-source-delta.json": "e82df9678bffc933f0544cc0bccd1899a77c4ab5b0b9eb8334ef3060d7764ee0",
+    "tests/fixtures/taihe-ceiling-source-delta.json": "ddbe36c6c51d9c4230b12c276a7bd824c013c9d6262bad22b9dbf8d0e41cedf2",
+    "tests/fixtures/taihe-column-material-delta.json": "57fceca47b66e2287a51ec927a069516b7f21ed3f03aee38e9b01d556e0f4153",
+    "tests/fixtures/taihe-column-response-baseline.json": "d4ad3d97ca39a3ff7b488287d71ab868d961e2898154cbceca6f63acd622f55d",
+    "tests/fixtures/taihe-column-response-delta.json": "8ff6a2c1d4cf03d90df36e900bb7c30f5f6da9d557346848b91fbf7168ed007b",
+    "tests/fixtures/taihe-display-baseline.json": "8d3af56434f727f876a067af2a9cb1da7314c74620c200eae63411dcaa024cea",
+    "tests/fixtures/taihe-enamel-cranes-registry.json": "82acf0bc707c817af651cbe093437db21bca97df83f3af32dd6b61937f5882b2",
+    "tests/fixtures/taihe-enamel-cranes-source-delta.json": "a94f765d1661ba5968f8093926f2a48a777fe025c6aeac63944fa14421a0f5bf",
+    "tests/fixtures/taihe-furnishing-surface-source-delta.json": "20b77226d8be7195e8b6c6deebe812e67221b1c204fb5cec192bc313b302116a",
+    "tests/fixtures/taihe-furniture-registry.json": "7f92749a449b7217c7ffe2edb381a2502bc909d2d4b716c6934b424129ef7b48",
+    "tests/fixtures/taihe-furniture-source-delta.json": "1a43bb9a96ac35552d7d14554cde1ace9b5e9a7befda0ce8f2dab1b7bc8a3fc5",
+    "tests/fixtures/taihe-interior-guide.json": "986fbc4ecb274d2d5e9892443a9c2f88869ccb02291b06c8e95159aa36f9d2ad",
+    "tests/fixtures/taihe-screen-crowns-registry.json": "e1f09c4b7b154df36d92d2c3e3b72ab0bd25fe51958ac1101f5c2f24a84c9124",
+    "tests/fixtures/taihe-screen-crowns-source-delta.json": "38ceff8cb4f0f02b38a352340b7a08f8bec1345d1457d19d86ad7d4ef3e1f38c",
+    "tests/fixtures/taihe-shell-fallback-retirement.json": "207179833e759953cb3b4e416b728db905b2748db0fe623820c5c33635aaba10",
+    "tests/fixtures/taihe-shell-source-delta.json": "491b028b4c92b23b8b64aba2f9994295165f960b227ff2e10216653b8b9ae7a3",
+    "tests/fixtures/taihe-v16-source-deltas.json": "9605512d2ae291680b7b42fe6544845f46ccfac11af2387a04e79fc2edbb6a30",
+    "tests/fixtures/taihe-v17-protected.json": "20e30f77d40ce151c96d933217e11de1ba1f882f3494585f1a98035a2001fb71",
+    "tests/fixtures/v10-gate-rail-d-baseline.json": "7534239fca935484f4a7ede4254ca9f1c59014da8a9e1903344e25d8ec8fe9b8",
+    "tests/fixtures/v14-wumen-vertical-profile-controls.json": "23f039c438360c6510db4e7d6943bd97e9f5fc4ca90f2183fd95c721858cf2bb",
+    "tests/fixtures/v19-four-place-cards.json": "6a6c4eb522a20b873b6c624f6208ec1f0308be58bf840658676838c5bc9c12c3",
+    "tests/fixtures/v5-fixed-routes.json": "a4b680ead2649422ef33219d89b2af0d12aa9ce977793ef0fd488cfa37ed9cdf",
+    "tests/fixtures/v7-qinan-route-baseline.json": "00708a18dc8b73858b8785c2a3294c73a0e70ff738dd9e304d45b1a8d1e198c0",
+    "tests/fixtures/v9-map-source-delta.json": "fae678d4016a446b3e9a9654a134e94119db594a316336a6c40a47ae447f69d1",
+    "tests/fixtures/v9-settings-source-delta.json": "9f61c549eb6c47491302c3473c70f0595509fcd97bc5734764813517458dfad4",
+    "tests/fixtures/v9-wumen-retained-geometry.json": "2b4c8e0bb83a86a377f747a3d6445f6ff5b865125606276319802e397b99bbcf",
+    "tests/fixtures/west-six-current-passages.json": "0f18abb26ed2a8a1e9065d34ea09a21145a1d9952171a33dd2c405843fdcf2be",
+    "tests/fixtures/wumen-ascent-source-deltas.json": "706468bc864354cf8326b11faefb89f7b6d6bcecf767ff7d7effed4408a001e3",
+    "tests/fixtures/wumen-collider-foot-roundoff.json": "4c8e7bf9d6f5af305b963eef30a9dd3d5dd77085baf3596bbead1c1975fa9f3b",
+    "tests/fixtures/wumen-folded-ascent-retention.json": "a138066f6eabd90e4219488faf269dfcda88001e6ab9741c1ce63693f97ddebe",
+    "tests/fixtures/wumen-landing-wall-top-source-deltas.json": "0fa4440dc990d9df069ef525528e92c6063e29bf7dbdb48c8b1647b703c5d17f",
+    "tests/fixtures/wumen-vertical-source-deltas.json": "58f648a8eff370e430365f18ab15994a30167b7fd98bb5c0df0c181526bcc247"
+  }
+}

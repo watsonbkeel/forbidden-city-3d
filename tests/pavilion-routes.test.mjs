@@ -1,4 +1,5 @@
 import { withLegacyWesternCourtsForVersionComparison } from './lib/r6-western-route-compat.mjs';
+import {restorePreR32Routes} from './lib/r32-route-retention.mjs';
 import { withLegacyNingshouForVersionComparison } from './lib/r6-ningshou-route-compat.mjs';
 import { withLegacyQinanForVersionComparison } from './lib/qinan-route-version-compat.mjs';
 import test from 'node:test';
@@ -21,21 +22,23 @@ const W = await buildWorld();
 const zones = W.zones.map(z => z.json);
 const pavilions = zones.flatMap(z => z.items).filter(i => i.pavilionProfile);
 // Version-scoped V3/V4/V6 fixtures exclude only the new V7 昭德 route.
-const routes = buildAutoRoutes(W, zones).filter(r => r.gateProfile !== 'zhaode');
+const completeRoutes = buildAutoRoutes(W, zones);
+const routes = completeRoutes.filter(r => r.gateProfile !== 'zhaode');
 const sha = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const near = (actual, expected, label) => assert.ok(Math.abs(actual - expected) < 1e-6, `${label}: ${actual} != ${expected}`);
 
-test('V4 historical identities survive except the explicit later Qin’an and R6 Ningshou replacements', () => {
+test('exact restored R31 descriptors preserve V4 identities through the registered later route replacements', () => {
+  const historicalRoutes=restorePreR32Routes(completeRoutes).filter(r=>r.gateProfile!=='zhaode');
   // Captured from published V3 c27ba9e47cfe2fc4dc3e82f4d8faf145e69745b3.
-  const baseline = withLegacyQinanForVersionComparison(withLegacyNingshouForVersionComparison(withLegacyWesternCourtsForVersionComparison(routes))).filter(r => !r.pavilionFlight && !r.terraceSide && r.hall !== '弘义阁');
+  const baseline = withLegacyQinanForVersionComparison(withLegacyNingshouForVersionComparison(withLegacyWesternCourtsForVersionComparison(historicalRoutes))).filter(r => !r.pavilionFlight && !r.terraceSide && r.hall !== '弘义阁');
   assert.equal(baseline.length, 51);
   assert.equal(sha(baseline.map(r => r.name)), 'a98606c24eb75a1bc1aca254167f219c5df23c13c1f5c703b090568d730f7f20');
   assert.equal(sha(baseline.filter(r => r.hall !== '体仁阁').map(({ name, pts }) => ({ name, pts }))),
     '432fc33d73f7d96de9ea56c34b8b0ee640f2ca5f4ac9eaa49b2ccbd31976aa44');
-  assert.equal(routes.filter(r => r.hall === '弘义阁' && !r.pavilionFlight).length, 1, 'Hongyi is one newly enterable hall route');
-  assert.equal(routes.filter(r => r.pavilionFlight).length, 4, 'four added front-flight round trips');
-  assert.equal(routes.filter(r => !r.terraceSide).length, 56);
-  assert.equal(routes.length, 58);
+  assert.equal(historicalRoutes.filter(r => r.hall === '弘义阁' && !r.pavilionFlight).length, 1, 'Hongyi is one newly enterable hall route');
+  assert.equal(historicalRoutes.filter(r => r.pavilionFlight).length, 4, 'four added front-flight round trips');
+  assert.equal(historicalRoutes.filter(r => !r.terraceSide).length, 56);
+  assert.equal(historicalRoutes.length, 58);
 });
 
 test('the static collision world exposes actual pavilion room and map geometry', () => {

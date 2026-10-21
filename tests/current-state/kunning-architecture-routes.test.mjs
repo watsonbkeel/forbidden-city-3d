@@ -8,7 +8,8 @@ import { PLAYER } from '../../src/config/constants.js';
 import { KUNNING_PROFILE as profile } from '../../src/scene/palace/special/KunningProfile.js';
 
 const ctx=new Proxy({},{get:()=>()=>({data:[]}),set:()=>true});
-globalThis.document??={createElement:()=>({getContext:()=>ctx,width:0,height:0})};
+// CPU-only image loader stub; no load callback or texture success is simulated.
+globalThis.document??={createElement:()=>({getContext:()=>ctx,width:0,height:0}),createElementNS:()=>({addEventListener(){},removeEventListener(){}})};
 const origin=profile.frameExpectation;
 let cached;
 function fixture(){

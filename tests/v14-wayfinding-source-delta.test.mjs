@@ -3,9 +3,12 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { readHistoricalSource } from './lib/historical-sources.mjs';
+import {restoreR32SourceIfPresent} from './lib/r32-source-retention.mjs';
 import { V14_WAYFINDING_COLLISION_DELTAS, restoreV13WayfindingCollisionBytes } from './lib/v14-wayfinding-source-delta.mjs';
 
-const current = readFileSync(new URL('../src/utils/Collision.js', import.meta.url));
+// The six V14 hunks are compared in their exact historical source view.
+const live = readFileSync(new URL('../src/utils/Collision.js', import.meta.url));
+const current = restoreR32SourceIfPresent('src/utils/Collision.js', live);
 const historical = readHistoricalSource('a59fa7ec18b6ce991128a2e7700ba09be3128078', 'src/utils/Collision.js');
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 
@@ -14,6 +17,7 @@ const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 test('wayfinding collision migration restores the exact retained V7/V13 bytes through only six hunks', () => {
   assert.equal(V14_WAYFINDING_COLLISION_DELTAS.length, 6);
   const restored = restoreV13WayfindingCollisionBytes(current);
+  assert.deepEqual(restoreV13WayfindingCollisionBytes(live), restored);
   assert.deepEqual(restored, historical);
   assert.equal(sha(restored), '7ee461c92600c58086e62b3d6df06eb5efe9e659bc405d3d26e08cd75c7bfedd');
   let reapplied = restored.toString('utf8');

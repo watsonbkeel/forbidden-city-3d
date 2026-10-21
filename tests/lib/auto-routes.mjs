@@ -26,6 +26,9 @@ const segHitsRect = (p, q, R) => {
 /** 殿台明（含台阶）世界 AABB */
 function hallRect(h) {
   const g = hallGeom(h);
+  if (g.profile?.profile === 'lingzhao-current') {
+    const p=g.profile.pool;return{x0:g.profile.x-p.w/2,x1:g.profile.x+p.w/2,z0:g.profile.z-p.d/2,z1:g.profile.z+p.d/2};
+  }
   if (g.profile?.profile === 'qinan') {
     const supports = g.profile.supports;
     return { x0: Math.min(...supports.map(s => s.min[0])), x1: Math.max(...supports.map(s => s.max[0])),
@@ -331,6 +334,11 @@ export function crossRoutes(W, zones) {
 export function profileGateRoutes(zones) {
   return zones.flatMap(zone => zone.items.filter(item => item.kind === 'gate' && item.gateProfile && item.gateProfile !== 'zhaode').flatMap(item => {
     const { profile: g } = gateGeom(item);
+    if(g.profile==='huangji')return g.portals.map((portal,index)=>({
+      name:`[${zone.id}] ${item.name}门道${index+1}→真实三洞地面→返回`,zone:zone.id,gate:item.name,gateProfile:'huangji',portalCenter:portal.x,
+      plan:['独立保留三处实际券洞，地面通过，不借用抬高门殿坡道'],
+      pts:[-6,0,6,0,-6].map(z=>[g.x+portal.x,g.z+z]),
+    }));
     const front = g.ramps.find(r => r.side === 'front'), rear = g.ramps.find(r => r.side === 'rear');
     return g.portalCenters.map((x, index) => {
       const go = [front.zToe - 2, front.zToe, front.zTop, rear.zTop, rear.zToe, rear.zToe + 2].map(z => g.toWorld(x, z));

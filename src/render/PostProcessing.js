@@ -195,6 +195,9 @@ export class PostProcessing {
           pass.noiseTexture?.dispose();
           pass.ssaoMaterial?.dispose();
         }
+        // r162 UnrealBloomPass.dispose omits its privately owned high-pass
+        // material. Release it on quality changes and full teardown alike.
+        if (pass === this.bloomPass) pass.materialHighPassFilter?.dispose();
         if (pass.dispose) pass.dispose();
       });
       this.composer.dispose();

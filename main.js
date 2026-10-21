@@ -26,6 +26,8 @@ import { createPalaceFlightEnvelope, FLIGHT_BOUNDS } from './src/scene/flight/Fl
 import { FlightTour } from './src/scene/flight/FlightTour.js';
 import { HistoricalSkyLamps } from './src/scene/sky/HistoricalSkyLamps.js';
 import { DayNightPanel } from './src/ui/DayNightPanel.js';
+import { HelpPanel } from './src/ui/HelpPanel.js';
+import { modelFidelityFor } from './src/ui/ModelFidelity.js';
 
 /**
  * 故宫 3D 虚拟游览主程序
@@ -316,50 +318,8 @@ class ForbiddenCityApp {
     `;
     document.body.appendChild(this.locationPanel);
     
-    // 操作说明面板
-    const helpPanel = document.createElement('div');
-    helpPanel.id = 'help-panel';
-    helpPanel.style.cssText = `
-      position: fixed;
-      top: 80px;
-      left: 20px;
-      padding: 15px 20px;
-      background: rgba(0, 0, 0, 0.6);
-      color: white;
-      border-radius: 8px;
-      font-size: 14px;
-      z-index: 1000;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-    `;
-    
-    if (this.isMobile) {
-      helpPanel.innerHTML = `
-        <strong>操作说明</strong><br>
-        左下角方向盘：前后左右移动<br>
-        同一方向推住2秒：跑起来<br>
-        手指拖动屏幕：调整视角<br>
-        右下角"跳"：跳过矮墙栏杆<br>
-        右上角地图：点开看全图<br>
-        右下角按钮：锁定视角<br>
-        午门/神武门两端有马道可登城楼
-      `;
-      // 手机屏幕小，说明面板 8 秒后自动淡出，避免遮挡画面
-      helpPanel.style.transition = 'opacity 0.6s ease';
-      setTimeout(() => { helpPanel.style.opacity = '0'; }, 8000);
-    } else {
-      helpPanel.innerHTML = `
-        <strong>操作说明</strong><br>
-        WASD / 方向键：移动<br>
-        长按2秒：自动快走<br>
-        鼠标：视角<br>
-        空格：跳跃<br>
-        M键：小地图<br>
-        午门/神武门两端马道可登城楼<br>
-        点击屏幕开始游览
-      `;
-    }
-    document.body.appendChild(helpPanel);
+    // Compact help is recoverable; it never takes ownership of movement.
+    this.helpPanel = new HelpPanel({isMobile:this.isMobile,anchor:this.locationPanel});
     
     // 小地图（按 M 键显示/隐藏）
     // 移动端额外常驻右上角预览，点击展开全图
@@ -395,10 +355,16 @@ class ForbiddenCityApp {
     this.settingsMenu.init({
       initialQuality: this.currentQuality,
       initialSound: true,
-      onOpen: () => this.settingsTourSession.open(),
+      onOpen: () => { this.flight?.clearInput(); this.settingsTourSession.open(); },
       onResume: () => {
+        // Flight resumes only through its explicit operations click. Do not
+        // request a competing pointer lock from the generic settings dialog.
+        if(this.flight?.occupied)this.settingsTourSession.previousLocked=false;
         this.settingsTourSession.resume();
-        if(this.flight?.occupied){const welcome=document.getElementById('welcome-overlay');if(welcome)welcome.style.display='none';}
+        if(this.flight?.occupied){
+          this.flight.openOperations('settings');
+          const welcome=document.getElementById('welcome-overlay');if(welcome)welcome.style.display='none';
+        }
       },
       onQualityChange: (quality) => {
         this.toggleQuality(quality);
@@ -471,13 +437,19 @@ class ForbiddenCityApp {
     const position = this.flight?.occupied ? this.flight.position : this.controls.getPosition();
     const location = this.collisionManager.getCurrentLocation(position);
     const zone = ZONES.find(item => item.id === this.zoneManager.getCurrentId())?.name ?? '宫城';
-    const label = this.flight?.occupied ? `空中游览 · ${Math.round(position.y)}m · ${zone}` : `${zone} › ${location}`;
+    const label = this.flight?.occupied ? `虚拟飞行 · ${Math.round(position.y)}m · ${zone}` : `${zone} › ${location}`;
     if (label === this.lastLocation) return;
     this.lastLocation = label;
     this.locationPanel.replaceChildren();
     const heading = document.createElement('strong');
     heading.textContent = '当前位置';
     this.locationPanel.append(heading, document.createElement('br'), document.createTextNode(label));
+    const fidelity = !this.flight?.occupied && modelFidelityFor(location);
+    if (fidelity) {
+      const status = document.createElement('small');status.className = 'model-status';
+      status.textContent = fidelity.short;this.locationPanel.appendChild(status);
+    }
+    this.helpPanel?.placeBelow(this.locationPanel);
   }
   
   /**
@@ -640,7 +612,8 @@ class ForbiddenCityApp {
     this.collisionManager?.clear();
     this.renderer?.dispose();
     this.renderer?.domElement.remove();
-    for (const id of ['location-panel', 'help-panel']) document.getElementById(id)?.remove();
+    this.helpPanel?.dispose();
+    document.getElementById('location-panel')?.remove();
     this.settingsMenu?.dispose();
     this.minimap?.dispose();
     this.teleport?.dispose();

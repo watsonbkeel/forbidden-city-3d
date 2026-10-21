@@ -1,3 +1,4 @@
+import {restoreR35SourceIfPresent} from './lib/r35-source-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -7,7 +8,8 @@ import { V10_RENDER_LIFECYCLE_DELTAS, restoreV9PostProcessingBytes,
 
 const baseline = JSON.parse(readFileSync(new URL('./fixtures/environment-lighting-v7.json', import.meta.url), 'utf8'));
 const historicalHash = baseline.protectedSourcesSHA256['src/render/PostProcessing.js'];
-const current = readFileSync(new URL('../src/render/PostProcessing.js', import.meta.url));
+// Frozen V10 boundary. Raw R35 cleanup is tested independently.
+const current = restoreR35SourceIfPresent('src/render/PostProcessing.js', readFileSync(new URL('../src/render/PostProcessing.js', import.meta.url)));
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const check = bytes => assertV10PostProcessingBytes(bytes, historicalHash);
 

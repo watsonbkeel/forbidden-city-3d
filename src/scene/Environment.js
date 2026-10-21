@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import { COLORS, LAYOUT } from '../config/constants.js';
 import { PALACE_LAYOUT } from './Layout.js';
+import { innerJinshuiGroundPath, innerJinshuiRoadGap } from './palace/special/InnerJinshui.js';
+import { YANXI_RUIN_GROUND_CUTOUT } from './palace/special/YanxiRuin.js';
 import { createSky, getSunPosition, updateSkyUniforms } from './sky/SkySetup.js';
 import { createSkylineRing } from './sky/Skyline.js';
 import { getBeijingDayCycle } from './sky/BeijingDayCycle.js';
@@ -15,6 +17,8 @@ export class Environment {
     this.renderer = renderer;
     this.library = library;
     this.objects = [];
+    this.borrowedMaterials = new Set();
+    this.initialized = false;
     // Initial placeholders are replaced by the date-derived Beijing sun in init.
     // World +X west, +Z north; the vector points from target toward the light.
     this.shadowOffset = new THREE.Vector3(100, 200, -100);
@@ -24,6 +28,12 @@ export class Environment {
   }
 
   addObject(object) {
+    // Capture borrowing when registered, so teardown order does not depend on
+    // whether TextureLibrary has already cleared its ownership cache.
+    object.traverse(node => {
+      const materials = Array.isArray(node.material) ? node.material : [node.material];
+      for (const material of materials) if (this.library.owns?.(material)) this.borrowedMaterials.add(material);
+    });
     this.objects.push(object);
     this.scene.add(object);
     return object;
@@ -33,6 +43,7 @@ export class Environment {
    * 初始化环境
    */
   init() {
+    if (this.initialized) return;
     this.setupSky();
     this.setupSkyline();
     this.setupGround();
@@ -40,6 +51,7 @@ export class Environment {
     this.setupLights();
     this.applyDayCycle(new Date(), true);
     this.setupIBL();
+    this.initialized = true;
   }
   
   /**
@@ -73,21 +85,14 @@ export class Environment {
     shape.lineTo(GX, -GZ0);
     shape.lineTo(-GX, -GZ0);
     shape.closePath();
-    for (const river of PALACE_LAYOUT.filter(item => item.type === 'river')) {
-      const { position: p, dimensions: d } = river;
-      const hole = new THREE.Path();
-      const left = p.x - d.width / 2;
-      const right = p.x + d.width / 2;
-      const bottom = -p.z - d.depth / 2;
-      const top = -p.z + d.depth / 2;
-      hole.moveTo(left, bottom);
-      hole.lineTo(left, top);
-      hole.lineTo(right, top);
-      hole.lineTo(right, bottom);
-      hole.closePath();
-      shape.holes.push(hole);
-    }
-    
+    const rivers = PALACE_LAYOUT.filter(item => item.type === 'river');
+    for (const river of rivers) shape.holes.push(innerJinshuiGroundPath(river));
+    // Permanent dry-pool opening matches the dedicated current-state ruin.
+    // It is protected by physical guards; it does not create an entry route.
+    const cut = YANXI_RUIN_GROUND_CUTOUT, poolHole = new THREE.Path();
+    for (const [i,[x,z]] of [[cut.x-cut.w/2,cut.z-cut.d/2],[cut.x-cut.w/2,cut.z+cut.d/2],[cut.x+cut.w/2,cut.z+cut.d/2],[cut.x+cut.w/2,cut.z-cut.d/2]].entries()) poolHole[i?'lineTo':'moveTo'](x,-z);
+    poolHole.closePath();shape.holes.push(poolHole);
+
     const groundGeometry = new THREE.ShapeGeometry(shape);
     const tileSize = this.library.tileSize('ground_brick');
     const uv = groundGeometry.attributes.uv;
@@ -106,19 +111,22 @@ export class Environment {
     const roadWidth = 8;
     const roadZ0 = LAYOUT.BOUNDARY.minZ;
     const roadZ1 = LAYOUT.SHENWU_Z;
-    const roadLen = roadZ1 - roadZ0;
-    const roadGeometry = new THREE.PlaneGeometry(roadWidth, roadLen);
     const roadTileSize = this.library.tileSize('stone_slab');
-    const roadUV = roadGeometry.attributes.uv;
-    for (let i = 0; i < roadUV.count; i++) {
-      roadUV.setXY(i, roadUV.getX(i) * roadWidth / roadTileSize, roadUV.getY(i) * roadLen / roadTileSize);
-    }
     const roadMaterial = this.library.material('stone_slab', { roughness: 0.75, metalness: 0 });
-    const road = new THREE.Mesh(roadGeometry, roadMaterial);
-    road.rotation.x = -Math.PI / 2;
-    road.position.set(0, 0.01, (roadZ0 + roadZ1) / 2); // 略高于地面，避免 z-fighting
-    road.receiveShadow = true;
-    this.addObject(road);
+    const gaps = rivers.map(r => innerJinshuiRoadGap(r, roadWidth / 2)).filter(Boolean).sort((a,b) => a.minZ - b.minZ);
+    const spans = [];let cursor = roadZ0;
+    for (const gap of gaps) {
+      if (gap.minZ > cursor) spans.push([cursor, Math.min(gap.minZ, roadZ1)]);
+      cursor = Math.max(cursor, gap.maxZ);
+    }
+    if (cursor < roadZ1) spans.push([cursor, roadZ1]);
+    for (const [z0,z1] of spans) {
+      if (z1 <= z0) continue;
+      const length = z1-z0, geometry = new THREE.PlaneGeometry(roadWidth,length),uv=geometry.attributes.uv;
+      for(let i=0;i<uv.count;i++)uv.setXY(i,uv.getX(i)*roadWidth/roadTileSize,uv.getY(i)*length/roadTileSize);
+      const road = new THREE.Mesh(geometry,roadMaterial);road.rotation.x=-Math.PI/2;
+      road.position.set(0,.01,(z0+z1)/2);road.receiveShadow=true;this.addObject(road);
+    }
   }
   
   /**
@@ -169,6 +177,26 @@ export class Environment {
     this.fillLight = fillLight;
     
     this.dirLight = dirLight;
+
+    // Virtual night-tour interpretation on the four EXISTING stone-lantern
+    // housings, not a claim that these fixtures are illuminated at the museum.
+    // One draw call, no new point lights/shadows or collision/flight geometry.
+    const garden = PALACE_LAYOUT.find(item => item.type === 'garden');
+    const hall = garden.elements.find(item => item.name === '钦安殿');
+    const hz = garden.position.z + hall.position.z;
+    const glow = new THREE.InstancedMesh(
+      new THREE.BoxGeometry(.556, .40, .556),
+      new THREE.MeshBasicMaterial({color: 0xffca7a, toneMapped: false, transparent: true}), 4
+    );
+    glow.name = 'virtual-night-garden-lamp-faces';
+    glow.userData.virtualTourLighting = true;
+    let index = 0;
+    for (const z of [hz - 30, hz - 22]) for (const sign of [-1, 1]) {
+      glow.setMatrixAt(index++, new THREE.Matrix4().makeTranslation(garden.position.x + sign * 3.3, 2, z));
+    }
+    glow.instanceMatrix.needsUpdate = true;
+    glow.visible = false;
+    this.nightLampGlow = this.addObject(glow);
   }
   
   /**
@@ -222,6 +250,10 @@ export class Environment {
     this.hemiLight.intensity = l.hemisphereIntensity;
     this.fillLight.color.fromArray(l.fillColor);
     this.fillLight.intensity = l.fillIntensity;
+    // Warm broad fill reaches axis facades and paving everywhere; the cool
+    // retained sky separates this readable virtual night from daylight.
+    this.nightLampGlow.visible = l.daylight < 1;
+    this.nightLampGlow.material.opacity = 1 - l.daylight;
     this.dirLight.color.fromArray(l.sunColor);
     this.dirLight.intensity = l.sunIntensity;
     this.dirLight.castShadow = state.sun.elevationDegrees > 0;
@@ -274,17 +306,32 @@ export class Environment {
   }
 
   dispose() {
+    const geometries = new Set(), materials = new Set(), shadows = new Set();
     for (const object of this.objects) {
+      object.traverse(node => {
+        if (node.geometry) geometries.add(node.geometry);
+        const slots = Array.isArray(node.material) ? node.material : [node.material];
+        for (const material of slots) if (material && !this.borrowedMaterials.has(material) && !this.library.owns?.(material)) materials.add(material);
+        if (node.shadow) shadows.add(node.shadow);
+        // InstancedMesh owns GPU instance buffers separately from geometry.
+        if (node.isInstancedMesh) node.dispose();
+      });
       object.removeFromParent();
-      object.geometry?.dispose();
-      object.material?.dispose();
-      object.shadow?.dispose();
     }
+    // The IBL sky borrows displayed-sky geometry but owns its cloned material.
+    if (this.iblSky?.material) materials.add(this.iblSky.material);
+    for (const geometry of geometries) geometry.dispose();
+    for (const material of materials) material.dispose();
+    for (const shadow of shadows) shadow.dispose();
     this.objects.length = 0;
+    this.borrowedMaterials.clear();
+    this.initialized = false;
+    this.lastClockUpdate = -Infinity;
     this.scene.fog = null;
+    // Render-target disposal owns the IBL texture; do not dispose it twice.
+    // Skyline/ground maps are borrowed library textures, never ours to release.
     this.envTarget?.dispose();
     this.pmrem?.dispose();
-    this.iblSky?.material.dispose();
     this.iblSky = null;
     this.iblScene?.clear();
     this.envTarget = null;

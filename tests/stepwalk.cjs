@@ -18,8 +18,8 @@ const HALL_D = { 太和殿: A['太和殿'].d, 中和殿: A['中和殿'].d, 保�
 const TAIHE_DETOUR_X = 6.2;   // 太和殿宝座半宽 4.58，内柱 ±8.59
 const ZHONGHE_DETOUR_X = 5;   // R3：内围护半宽9.5；从中门进殿后绕宝座，不能斜穿槛窗
 const BAOHE_DETOUR_X = 6.1;   // 保和殿宝座半宽 4.42，内柱 ±8.28
-const QIANQING_DETOUR_X = 5.7; // 乾清宫宝座半宽 4.09（真实面阔 46 → 间宽 5.11），内柱内皮 ±7.26，取中线
-const JIAOTAI_DETOUR_X = 6.5; // 交泰殿宝座半宽 2.38，殿身半宽 9.5
+const QIANQING_DETOUR_X = 6.45; // R32: between floor-side incense outer edge 5.70 and retained column-base inner edge 7.009; fitted safe lane, not a surveyed aisle.
+const JIAOTAI_DETOUR_X = 3.7; // Pass between the retained central exclusion and R24/R27 clock envelope at x=6.15; the older 6.5 line intersects the clock.
 const IN_FRONT = 7;           // 殿内宝座前（距殿心南 7m；三间进深殿宝座前沿在殿心 −0.3）
 const OFF_AXIS_GAP = 2.5;     // 偏中轴路线离殿身前后檐的余量
 // 御花园（GardenBuilder：园墙 z 422.7~518.3，南横路 z0+7，亭一排 z≈472，浮碧/澄瑞池 z≈499、南北石桥宽 2.4）
@@ -121,12 +121,12 @@ async function buildRoutes() {
   const JIHUA_Z = 410;              // 基化门（东一长街内墙门，zones/garden 墙洞 at 410；anchors 未收录）
   const xhTransit = gateTransit('协和门'), xiTransit = gateTransit('熙和门');
   const SIDE_ROUTES = [
-    ['协和门→文华门→文华殿内', [[-30, xh.z], ...xhTransit, [wh.x, wh.z - 8], [whd.x, whd.z - kitIn + 2],
+    ['协和门→文华门→文华殿内', [[-30, xh.z], [-30,-280],[-80,-280], ...xhTransit, [wh.x, wh.z - 8], [whd.x, whd.z - kitIn + 2],
       [whd.x - KIT_DETOUR_X, whd.z - kitIn + 2], [whd.x - KIT_DETOUR_X, r1(whd.z + KIT_D / 2 - 1.2)]]],
-    ['协和门→东华门→出宫', [[-30, xh.z], ...xhTransit, [dh.x + 25, dh.z], [L.BOUNDARY.minX + 10, dh.z]]],
-    ['熙和门→武英门→武英殿内', [[30, xi.z], ...xiTransit, [wy.x, wy.z - 8], [wy.x, wy.z + 8], [wyd.x, wyd.z - kitIn + 2]]],
+    ['协和门→东华门→出宫', [[-30, xh.z], [-30,-280],[-80,-280], ...xhTransit, [dh.x + 25, dh.z], [L.BOUNDARY.minX + 10, dh.z]]],
+    ['熙和门→武英门→武英殿内', [[30, xi.z], [30,-280],[80,-280], ...xiTransit, [wy.x, wy.z - 8], [wy.x, wy.z + 8], [wyd.x, wyd.z - kitIn + 2]]],
     // 南薰殿院（z ≤ −286.6）与武英殿院（z ≥ −249.8）之间斜穿
-    ['熙和门→西华门→出宫', [[30, xi.z], ...xiTransit, [xhm.x - 25, xhm.z], [L.BOUNDARY.maxX - 10, xhm.z]]],
+    ['熙和门→西华门→出宫', [[30, xi.z], [30,-280],[80,-280], ...xiTransit, [xhm.x - 25, xhm.z], [L.BOUNDARY.maxX - 10, xhm.z]]],
     // 起点在三台（半宽 65）以东的广场地面
     ['左翼门→文渊阁一带', [[-75, zy.z], [zy.x - GATE_CLEAR - 3, zy.z]]],
     ['内左门→东一长街→景仁宫内', [[nz.x, nz.z - GATE_CLEAR], [nz.x, jrm.z - 7], [jrm.x, jrm.z - 7], [jrm.x, jrm.z + 7], [jrg.x, jrg.z - 2]]],

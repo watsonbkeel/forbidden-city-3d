@@ -75,14 +75,18 @@ test('a denied desktop relock leaves the welcome click fallback usable and the s
 test('main app wires menu opening, resuming and frame updates through the session', () => {
   const source = readFileSync(new URL('../main.js', import.meta.url), 'utf8');
   assert.match(source, /new SettingsTourSession\(/);
-  assert.match(source, /onOpen:\s*\(\) => this\.settingsTourSession\.open\(\)/);
+  assert.match(source, /onOpen:\s*\(\) => \{ this\.flight\?\.clearInput\(\); this\.settingsTourSession\.open\(\); \}/);
+  assert.match(source, /if\(this\.flight\?\.occupied\)this\.settingsTourSession\.previousLocked=false/);
+  assert.match(source, /this\.flight\.openOperations\('settings'\)/);
   const resumeBody = source.match(/onResume:\s*\(\) => \{([\s\S]*?)\n      \},/);
   assert.ok(resumeBody, 'settings resume remains an explicit callback');
   for (const occupied of [false, true]) {
-    let resumed = 0; const welcome = { style: { display: 'flex' } };
-    const app = { settingsTourSession: { resume() { resumed++; } }, flight: { occupied } };
+    let resumed = 0, operations = 0; const welcome = { style: { display: 'flex' } };
+    const app = { settingsTourSession: { resume() { resumed++; } }, flight: { occupied, openOperations(reason) { assert.equal(reason, 'settings'); operations++; } } };
     new Function('document', resumeBody[1]).call(app, { getElementById: () => welcome });
     assert.equal(resumed, 1);
+    assert.equal(operations, occupied ? 1 : 0);
+    if (occupied) assert.equal(app.settingsTourSession.previousLocked, false);
     assert.equal(welcome.style.display, occupied ? 'none' : 'flex');
   }
   assert.match(source, /this\.settingsTourSession\.updateControls\(\)/);

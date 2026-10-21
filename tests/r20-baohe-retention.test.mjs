@@ -1,6 +1,7 @@
 import {restorePreR22FixedRoutes} from './lib/r22-baohe-route-retention.mjs';
 import {restorePreR22Navigation} from './lib/r22-baohe-retention.mjs';
 import test from 'node:test';
+import {restorePreR32Routes} from './lib/r32-route-retention.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {execFileSync} from 'node:child_process';
@@ -140,8 +141,8 @@ test('historical R21 navigation restores only the exact R22 leaf insertion and r
   assert.deepEqual([frozenR20.navigation.colliders.length,frozenR20.navigation.walkables.length],[2475,120]);
 });
 
-test('all33 historically restored fixed and59 live automatic route objects retain original R19 identity',async()=>{
+test('all33 historically restored fixed and59 historically restored automatic route objects retain original R19 identity',async()=>{
   const fixed=execFileSync(process.execPath,['tests/stepwalk.cjs','60','0','all'],{cwd:root,env:{...process.env,DUMP:'1'},encoding:'utf8'}).trim().split('\n').map(line=>{const at=line.indexOf(' ');return{name:line.slice(0,at),pts:JSON.parse(line.slice(at+1))};});
-  const zones=loadZoneJsons(),world=await buildWorld({zones}),auto=buildAutoRoutes(world,zones.map(z=>z.json),{knownIssues:{}});
+  const zones=loadZoneJsons(),world=await buildWorld({zones}),auto=restorePreR32Routes(buildAutoRoutes(world,zones.map(z=>z.json),{knownIssues:{}}),'auto');
   for(const[kind,rows]of Object.entries({fixed:restorePreR22FixedRoutes(fixed),auto})){assert.equal(rows.length,kind==='fixed'?33:59);assert.equal(hash(rows),previousRoutes[kind].afterSHA256);assert.equal(assertR19RouteIdentity(kind,rows),rows);}
 });

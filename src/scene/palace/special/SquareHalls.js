@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { buildRoof } from '../../RoofBuilder.js';
 import { applyPlanarUV } from '../../../utils/GeometryUV.js';
+import {buildJiaotaiCeiling} from './JiaotaiCentralInterior.js';
 
 /**
  * Evidence-led enclosure topologies, not a claim of survey-grade dimensions.
@@ -157,12 +158,15 @@ export function buildSquareHall(builder, parent, data, y) {
   floor.position.set(x0, y + 0.03, z0);
   floor.receiveShadow = true;
   shell.add(floor);
+  const centralFrame = data.name === '交泰殿' ? buildJiaotaiCeiling(builder,shell,{x0,z0,y,w,d,H}) : null;
+  if (!centralFrame) {
   const ceilingGeo = new THREE.PlaneGeometry(w, d);
   ceilingGeo.rotateX(Math.PI / 2);
   applyPlanarUV(ceilingGeo, 'y', 1.6);
   const ceiling = new THREE.Mesh(ceilingGeo, builder.ceilingMaterial());
   ceiling.position.set(x0, y + H - 0.03, z0);
   shell.add(ceiling);
+  }
 
   // Retain a simplified ceremonial interior while keeping a rear circulation
   // strip, so four doors describe physical openings instead of decorative paint.
@@ -170,7 +174,7 @@ export function buildSquareHall(builder, parent, data, y) {
   // and the inward-folded door leaves. The interior furniture is provisional.
   const ztb1 = z0 + id / 2 - 3.1;
   const ztb0 = ztb1 - Math.min(5.2, id * 0.28);
-  builder.throneArea(shell, { x0, y, H, ztb0, ztb1, thW: Math.min(5.0, iw * 0.24), bayW: iw / 3, text: spec.innerPlaque });
+  builder.throneArea(shell, { x0, y, H, ztb0, ztb1, thW: Math.min(5.0, iw * 0.24), bayW: iw / 3, text: centralFrame ? null : spec.innerPlaque, caisson: !centralFrame, jiaotai: !!centralFrame });
   const plaqueH = 1.75;
   const plaque = builder.plaqueMesh(data.name, plaqueH * 0.62, plaqueH, true);
   plaque.position.set(x0, y + H - plaqueH * 0.25, z0 - d / 2 - 0.45);
@@ -180,6 +184,7 @@ export function buildSquareHall(builder, parent, data, y) {
     type: 'pavilion', width: w + 0.4, depth: d + 0.4,
     baseY: y + H, layers: spec.eaveCount, brackets: true, sides: 4,
     height: spec.roofH, overhang: spec.veranda ? 2.2 : 2.5,
+    ...(centralFrame ? {jiaotaiCeilingOpening:centralFrame} : {}),
   });
   roof.name = `${data.name}·单檐攒尖顶`;
   roof.position.set(x0, 0, z0);

@@ -22,7 +22,8 @@ test('live Baohe retains caisson retirement and throne navigation; frozen R20 re
   assert.equal(expected.caissonCount,3);assert.equal(A.summary.caissonCount,0);
   for(const k of['furnitureSHA256','throneNavigationSHA256','throneInput','walkablesSHA256'])assert.deepEqual(old.summary[k],expected[k],k);
   for(const k of['throneNavigationSHA256','walkablesSHA256'])assert.deepEqual(A.summary[k],expected[k],k);
-  assert.deepEqual(A.summary.throneInput,{...expected.throneInput,baohe:true});
+  // R29 explicitly dispatches the dedicated Qianqing core; Baohe stays false.
+  assert.deepEqual(A.summary.throneInput,{...expected.throneInput,baohe:true,qianqing:false});
   assert.notEqual(A.summary.furnitureSHA256,old.summary.furnitureSHA256,'R21 furnishing change is tested directly in its own acceptance');
  }finally{old.builder.dispose();}
 });

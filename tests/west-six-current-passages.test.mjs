@@ -1,4 +1,6 @@
 import test from 'node:test';import assert from 'node:assert/strict';import * as THREE from 'three';
+import {readFileSync} from 'node:fs';
+import {restorePreR32Source} from './lib/r32-source-retention.mjs';
 import west from '../data/zones/west-six.json' with {type:'json'};
 import {ZoneBase} from '../src/scene/zones/ZoneBase.js';
 import{buildWorld,walkStraight}from'./lib/world.mjs';import{setupMap}from'./lib/map-fixture.mjs';
@@ -27,8 +29,11 @@ test('old-site map labels preserve the selectable original name and never draw a
  assert.equal(calls.filter(c=>c[0]==='fillRect').length,0);assert.deepEqual(labels.map(l=>l[0]),gateNames.map(n=>n+'（旧址）'));assert.deepEqual(labels.map(l=>l[5]),gateNames);
 });
 
-test('only eight evidence-bound items and four provisional perimeter joins differ from the frozen west-six data',async()=>{
- const {default:delta}=await import('./fixtures/west-six-current-passages.json',{with:{type:'json'}});const {createHash}=await import('node:crypto');const current=structuredClone(west);
+test('historical west-six data retains only eight evidence-bound items and four provisional perimeter joins after exact R32 source restoration',async()=>{
+ const {default:delta}=await import('./fixtures/west-six-current-passages.json',{with:{type:'json'}});const {createHash}=await import('node:crypto');
+ const bytes=readFileSync(new URL('../data/zones/west-six.json',import.meta.url));
+ const current=JSON.parse(restorePreR32Source('data/zones/west-six.json',bytes));
+ assert.throws(()=>restorePreR32Source('data/zones/west-six.json',Buffer.concat([bytes,Buffer.from('\n')])));
  assert.deepEqual(current.items.filter(i=>i.repairRole==='connected-court-perimeter'),delta.addedPerimeterWalls);
  current.items=current.items.filter(i=>i.repairRole!=='connected-court-perimeter');
  for(const d of delta.changes){assert.deepEqual(current.items[d.index],d.after);for(const key of ['x','z','w','d','ph','colH','x0','x1','z0','z1'])assert.equal(d.after[key],d.before[key],`${d.before.name??d.index}: ${key} anchor/dimension retained`);current.items[d.index]=d.before;}

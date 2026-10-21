@@ -1,0 +1,21 @@
+✔ high/low/medium changes retain existing batch identity through the next actual render (15.063976ms)
+✔ every quality change disposes old postprocess targets/materials and installs correct passes (3.671196ms)
+✔ same quality is a resource-preserving no-op (2.106957ms)
+✔ quality switches preserve visibility/transform/shadow updates and render-finally restoration (4.117349ms)
+✔ real scene membership changes still rebuild retained batches on the next frame (2.076976ms)
+✔ quality switch keeps resize/DPR behavior and the disabled direct-render path (1.751691ms)
+✔ full dispose still releases retained batch resources plus the active pipeline exactly once (1.957702ms)
+✔ pipeline can initialize again after a complete application-style disposal (1.912444ms)
+✔ resource audit pins scene time while retaining real observation timestamps (8908.20443ms)
+✔ resource audit rejects an invalid explicit scene clock before writing a receipt (76.239241ms)
+✔ every high-to-low switch releases the Bloom high-pass material exactly once (12.3938ms)
+✔ a low-quality pipeline can dispose without a Bloom high-pass material (0.955782ms)
+✔ full Ningshou zone releases both photo and plaque atlas while shared textures survive reloads (1168.289042ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9086.070089

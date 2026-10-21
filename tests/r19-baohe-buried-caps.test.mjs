@@ -1,3 +1,9 @@
+import {historicalR32ModuleURL} from './lib/historical-r32-scene-dependencies.mjs';
+const {PalaceBuilder:HistoricalR32PalaceBuilder}=await import(historicalR32ModuleURL('src/scene/PalaceBuilder.js'));
+import {PalaceBuilder} from '../src/scene/PalaceBuilder.js';
+import {PALACE_LAYOUT} from '../src/scene/Layout.js';
+import {library} from './lib/inner-palace-fixture.mjs';
+import baseline from './fixtures/r19-baohe-depth-baseline.json' with {type:'json'};
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
@@ -32,6 +38,26 @@ test('live R20 two height groups retain all54 buried-cap omissions,14sides,tops,
  for(const{mesh}of a.columns){const p=mesh.geometry.parameters;assert.ok(Math.abs(mesh.position.x)<=w/2);if(Math.abs(mesh.position.x)+p.radiusBottom>w/2){const wall=a.boxes.find(b=>b.material==='wall_brick'&&Math.abs(b.position[0]-mesh.position.x)<1e-9);assert.ok(wall);assert.ok(p.radiusBottom<wall.size[0]/2);assert.equal(wall.mesh.material.transparent,false);}assert.ok(Math.abs(mesh.position.z)+p.radiusBottom<d/2);}
  historical.builder.dispose();
 });
-for(const hall of['太和殿','乾清宫'])test(`${hall} retains both original cap groups`,()=>{
- for(const{mesh}of captureBaoheDepth(hall).columns)assert.ok(mesh.geometry.groups.some(g=>g.materialIndex===2));
+test('太和殿 retains both original cap groups',()=>{
+ const control=captureBaoheDepth('太和殿');
+ try{for(const{mesh}of control.columns)assert.ok(mesh.geometry.groups.some(g=>g.materialIndex===2));}finally{control.builder.dispose();}
+});
+test('frozen R32 乾清宫 retains every original column cap in its registered world frame',()=>{
+ const builder=new HistoricalR32PalaceBuilder(new THREE.Scene(),library()),group=new THREE.Group(),columns=[];
+ const original=builder.column.bind(builder);
+ builder.column=(...args)=>{original(...args);columns.push(args[0].children.at(-1));};
+ try{
+  builder.buildHall(group,PALACE_LAYOUT.find(h=>h.name==='乾清宫'),2.16,{heightReferenceY:7});
+  assert.equal(columns.length,baseline.halls['乾清宫'].columnCount);
+  for(const mesh of columns)assert.ok(mesh.geometry.groups.some(g=>g.materialIndex===2));
+ }finally{builder.dispose();}
+});
+
+// The R33 grid is intentionally larger; check raw live geometry separately.
+test('live R33 乾清宫 retains both cap groups on all 56 registered columns',()=>{
+ const builder=new PalaceBuilder(new THREE.Scene(),library()),group=new THREE.Group();
+ try{builder.buildHall(group,PALACE_LAYOUT.find(h=>h.name==='乾清宫'),2.16,{heightReferenceY:7});
+ const columns=group.children.filter(m=>m.userData.qianqingColumn);assert.equal(columns.length,56);
+ for(const mesh of columns)assert.deepEqual(mesh.geometry.groups.map(g=>g.materialIndex),[0,1,2]);
+ }finally{builder.dispose();}
 });

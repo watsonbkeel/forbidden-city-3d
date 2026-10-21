@@ -3,11 +3,13 @@ import * as THREE from 'three';
 /** Museum front/oblique photographs establish three central door bays and
  * two raised-wall window bays on each side. Photo colors, the lower-wall
  * ratio and this self-authored lattice are approximations, not survey data.
- * The two end passageways require a separate complete spatial registration. */
+ * R30 adds the two end through-passages in a separately labelled approximate
+ * envelope. Their exact wall registration and front-veranda setback remain open. */
 export const QIANQING_FRONT_ENCLOSURE = Object.freeze({
   id: 'qianqing-front-red-brown-frame-dark-lattice',
   doorBays: Object.freeze([3,4,5]), windowBays: Object.freeze([1,2,6,7]),
-  unresolvedPassageBays: Object.freeze([0,8]),
+  approximatePassageBays: Object.freeze([0,8]),
+  passageMetricRegistration: 'UNRESOLVED_SEE_QIANQING_END_PASSAGES',
   wallHeightRatio: .24, wallDepth: .3, windowDepth: .15,
   status: 'PHOTO_CLASSIFICATION_WITH_ESTIMATED_RATIOS_AND_SIMPLIFIED_PATTERN',
   source: 'https://www.dpm.org.cn/explore/building/236472.html',

@@ -13,6 +13,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { zhaodeGateGeometry } from '../../src/scene/palace/special/ZhaodeGateProfile.js';
 import { eastWestCityGateGeometry } from '../../src/scene/palace/special/EastWestCityGate.js';
+import { huangjiGateGeometry } from '../../src/scene/palace/special/HuangjiGate.js';
+import { yanxiRuinGeometry } from '../../src/scene/palace/special/YanxiRuin.js';
 import { sideGateGeometry } from '../../src/scene/palace/special/SideGateProfiles.js';
 import { qinanGeometry } from '../../src/scene/palace/special/QinanProfile.js';
 import { pavilionGeometry } from '../../src/scene/palace/special/PavilionProfiles.js';
@@ -47,6 +49,10 @@ export function gateGeom(item) {
     return { x: profile.x, z: profile.z, rot: profile.rot, dir: [Math.sin(profile.rot), Math.cos(profile.rot)],
       half: Math.max(front, rear), front, rear, platformY: profile.platform.topY, profile };
   }
+  if (item.gateProfile === 'huangji') {
+    const profile=huangjiGateGeometry(item);
+    return {x:profile.x,z:profile.z,rot:0,dir:[0,1],half:2.4,front:profile.front,rear:profile.rear,platformY:0,profile};
+  }
   if (item.gateProfile) {
     const profile = sideGateGeometry(item);
     const front = -Math.min(-profile.platformDepth / 2, ...profile.ramps.flatMap(r => [r.zTop, r.zToe]));
@@ -73,6 +79,7 @@ export function gateGeom(item) {
 
 /** 殿（hall）的几何：正面朝向、台明外廓、台阶长、门的局部 x 与门洞宽（与 kit.hall 一致，roomBays=0） */
 export function hallGeom(item) {
+  if (item.structure === 'yanxi-ruin') {const profile=yanxiRuinGeometry(item);return {rot:0,enter:false,backDoor:false,open:false,profile,navigation:profile.navigation,toW:(x,z)=>[profile.x+x,profile.z+z]};}
   if (item.structure === 'qinan-hall' || item.qinanProfile !== undefined) {
     const profile = qinanGeometry(item);
     return { rot: profile.rot, enter: false, backDoor: false, open: false, profile,
@@ -88,7 +95,7 @@ export function hallGeom(item) {
   }
   const rot = parseRot(item.rot);
   const w = item.w, d = item.d, pad = item.pad ?? 1.0, ph = item.ph ?? 0.9;
-  const n = Math.max(3, Math.round(w / 3.6) | 1);
+  const n = item.bays ?? Math.max(3, Math.round(w / 3.6) | 1);
   const bay = w / n;
   const r = Math.min(0.34, Math.max(0.2, bay * 0.07));
   const doorX = -w / 2 + (Math.floor((n - 1) / 2) + 0.5) * bay;
@@ -128,7 +135,7 @@ export function loadZoneJsons(dir = path.join(ROOT, 'data/zones')) {
     .map(f => ({ file: f, json: JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')) }));
 }
 
-export async function buildWorld({ zones = loadZoneJsons(), statics = true } = {}) {
+export async function buildWorld({ zones = loadZoneJsons(), statics = true, retainScene = false } = {}) {
   stubDocument();
   const THREE = await import('three');
   const { ZoneBase } = await src('scene/zones/ZoneBase.js');
@@ -141,7 +148,15 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true } = {
 
   for (const { json } of zones) {
     const zb = new ZoneBase(lib, json);
-    zb.kit.finish = () => new THREE.Group(); // 跳过合并几何与匾额图集
+    zb.kit.finish = () => { // Skip expensive render merge, preserve its metadata contract.
+      const group = new THREE.Group(), architecture = [];
+      zb.kit.root.traverse(o => {
+        const record = o.userData.pavilion ?? (o.userData.structure?.id ? o.userData.structure : null);
+        if (record) architecture.push(structuredClone(record));
+      });
+      group.userData.architecture = architecture;
+      return group;
+    };
     for (const m of METHODS) {
       const orig = ZoneBase.prototype[m];
       zb[m] = item => {
@@ -159,6 +174,7 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true } = {
   }
 
   const terraceProfiles = [], taiheSouthTiers = [], baoheNorthTiers = [];
+  let retainedScene = null;
   if (statics) {
     const log = console.log;
     console.log = () => {};
@@ -170,6 +186,7 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true } = {
       const scene = new THREE.Scene();
       const pb = new PalaceBuilder(scene, lib);
       pb.buildAll(PALACE_LAYOUT);
+      if (retainScene) retainedScene = scene;
       terraceProfiles.push(...pb.terraceProfiles);
       taiheSouthTiers.push(...pb.taiheSouthTiers);
       baoheNorthTiers.push(...pb.baoheNorthTiers);
@@ -191,6 +208,7 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true } = {
   }
   return {
     THREE, cm, zones, gates, halls, rooms, mapItems, terraceProfiles, taiheSouthTiers, baoheNorthTiers,
+    ...(retainScene ? { scene: retainedScene } : {}),
     ownerOf: c => owner.get(c.mesh) ?? { zone: c.tag ?? '?', item: { kind: '?' } },
   };
 }

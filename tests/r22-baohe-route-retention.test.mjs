@@ -1,4 +1,6 @@
 import test from 'node:test';
+import {restorePreR32Routes} from './lib/r32-route-retention.mjs';
+import {r32Source,restoreR32SourceIfPresent} from './lib/r32-source-retention.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {execFileSync} from 'node:child_process';
@@ -16,10 +18,13 @@ import priorSource from './fixtures/r19-baohe-source-delta.json' with {type:'jso
 import priorRoutes from './fixtures/r19-baohe-routes-delta.json' with {type:'json'};
 
 const root=new URL('../',import.meta.url),sha=x=>createHash('sha256').update(x).digest('hex');
-const hash=x=>sha(JSON.stringify(x)),read=path=>fs.readFileSync(new URL(path,root));
-const fixed=execFileSync(process.execPath,['tests/stepwalk.cjs','60','0','all'],{cwd:root,env:{...process.env,DUMP:'1'},encoding:'utf8'}).trim().split('\n').map(line=>{const i=line.indexOf(' ');return{name:line.slice(0,i),pts:JSON.parse(line.slice(i+1))};});
+// Historical R22 source assertions consume only the exact frozen R32 delta.
+const hash=x=>sha(JSON.stringify(x)),read=path=>restoreR32SourceIfPresent(path,fs.readFileSync(new URL(path,root)));
+const liveFixed=execFileSync(process.execPath,['tests/stepwalk.cjs','60','0','all'],{cwd:root,env:{...process.env,DUMP:'1'},encoding:'utf8'}).trim().split('\n').map(line=>{const i=line.indexOf(' ');return{name:line.slice(0,i),pts:JSON.parse(line.slice(i+1))};});
+const fixed=restorePreR32Routes(liveFixed,'fixed');
 const zones=loadZoneJsons(),world=await buildWorld({zones});
-const auto=buildAutoRoutes(world,zones.map(z=>z.json),{knownIssues:{}});
+const liveAuto=buildAutoRoutes(world,zones.map(z=>z.json),{knownIssues:{}});
+const auto=restorePreR32Routes(liveAuto,'auto');
 
 test('R22 tests-only route provenance is separate from frozen runtime and preserves all earlier fixtures',()=>{
   assert.equal(delta.base,'5e6624c03d520ee91d355b09aa3060bc7a9489fe');
@@ -65,7 +70,16 @@ for(const[path,d]of Object.entries(delta.addedFiles))test('test-only helper is w
   assert.throws(()=>assertR22RouteAddedSource('tests/lib/unknown-route.mjs',bytes));
 });
 
-test('all33 current fixed routes bind exact descriptors; only two front coordinates change with every route and endpoint retained',()=>{
+test('R22 source entry binds the whole R32 stepwalk driver before reversing historical hunks',()=>{
+  const path='tests/stepwalk.cjs',bytes=fs.readFileSync(new URL(path,root));
+  assert.equal(sha(bytes),r32Source.files[path].candidateSHA256);
+  assert.equal(sha(restorePreR22RouteSource(path,bytes)),delta.testFiles[path].baselineSHA256);
+  const bad=[Buffer.alloc(0),Buffer.concat([bytes,Buffer.from('\n// unrelated driver')])];
+  for(const h of r32Source.files[path].deltas)for(const replacement of['',h.after+h.after,h.after+'// altered R32 hunk\n'])bad.push(Buffer.from(bytes.toString().replace(h.after,replacement)));
+  for(const value of bad)assert.throws(()=>restorePreR22RouteSource(path,value));
+});
+
+test('all33 historical R22 fixed routes bind exact descriptors; only two front coordinates change with every route and endpoint retained',()=>{
   const d=delta.fixed;assert.equal(assertR22RouteIdentity('fixed',fixed),fixed);
   assert.equal(fixed.length,33);assert.equal(d.index,2);assert.deepEqual(d.changedPointIndices,[22,23]);assert.deepEqual(fixed[d.index],d.after);
   assert.equal(d.after.pts.length,d.before.pts.length);assert.deepEqual(d.after.pts[0],d.before.pts[0]);assert.deepEqual(d.after.pts.at(-1),d.before.pts.at(-1));
@@ -81,13 +95,26 @@ test('all33 current fixed routes bind exact descriptors; only two front coordina
   assert.throws(()=>assertR22RouteIdentity('fixed',historical),'historical descriptors never pass current acceptance');
 });
 
-test('all59 automatic routes remain exact current descriptors',()=>{
+test('all59 historical R22 automatic routes retain exact descriptors after whole R32 restoration',()=>{
   assert.equal(assertR22RouteIdentity('auto',auto),auto);assert.equal(auto.length,59);
   assert.equal(delta.auto.beforeSHA256,delta.auto.afterSHA256);assert.equal(hash(auto),priorRoutes.auto.afterSHA256);
   assert.throws(()=>assertR22RouteIdentity('unknown',auto));
 });
 
-for(const[kind,rows]of Object.entries({fixed,auto}))test('current '+kind+' binding rejects missing, duplicate, reordered, metadata and unrelated-point drift',()=>{
+test('historical fixed-route entry restores only exact complete R32 descriptors and rejects unknown R32 drift',()=>{
+  assert.deepEqual(restorePreR22FixedRoutes(liveFixed),restorePreR22FixedRoutes(fixed));
+  assert.throws(()=>assertR22RouteIdentity('fixed',liveFixed),'actual R32 is never accepted as historical R22');
+  assert.throws(()=>assertR22RouteIdentity('auto',liveAuto),'actual R32 is never accepted as historical R22');
+  const missing=structuredClone(liveFixed);missing.pop();
+  const duplicate=structuredClone(liveFixed);duplicate.push(structuredClone(duplicate[0]));
+  const reordered=structuredClone(liveFixed);[reordered[0],reordered[1]]=[reordered[1],reordered[0]];
+  const point=structuredClone(liveFixed);point[0].pts[0][0]+=.001;
+  const metadata=structuredClone(liveFixed);metadata[0].unknown=true;
+  for(const bad of[missing,duplicate,reordered,point,metadata])
+    for(const restore of[restorePreR22FixedRoutes,restorePreR19FixedRoutes,restorePreR17FixedRoutes])assert.throws(()=>restore(bad));
+});
+
+for(const[kind,rows]of Object.entries({fixed,auto}))test('historical R22 '+kind+' binding rejects missing, duplicate, reordered, metadata and unrelated-point drift',()=>{
   const missing=structuredClone(rows);missing.pop();
   const duplicate=structuredClone(rows);duplicate.push(structuredClone(duplicate[0]));
   const reordered=structuredClone(rows);[reordered[0],reordered[1]]=[reordered[1],reordered[0]];
