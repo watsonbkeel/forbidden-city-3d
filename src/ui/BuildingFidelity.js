@@ -5,6 +5,7 @@ export function validateBuildingFidelity(registry){
  const ids=new Set(),bindings=new Set(),catalogIds=new Set();
  for(const b of registry.buildings){
   const binding=`${b.zone}/${b.name}`;
+  if(b.publicNote!==undefined&&typeof b.publicNote!=='string')throw Error('Building public note must be text');
   if(!b.id||ids.has(b.id)||!b.name||!b.zone||bindings.has(binding))throw Error('Duplicate or missing building identity');
   ids.add(b.id);bindings.add(binding);
   if(b.catalogId){if(catalogIds.has(b.catalogId))throw Error('Duplicate building catalog binding');catalogIds.add(b.catalogId);}
@@ -28,5 +29,5 @@ export function buildingFidelityText(record){
   return scope==='interior'?'通用示意，布局待核实':'通用轮廓，逐栋细部待核';
  };
  const auxiliary=record.changes.some(c=>c.area==='auxiliary-exterior')?'附属后殿已局部调整，正殿另行核验。':'';
- return {short:'内外分项复原 · 尚未完整验收',detail:`外观：${state('exterior')}。内饰：${state('interior')}。${auxiliary}尺寸含模型合理拟合，不代表完整实测复原。${record.interior.implementation==='withheld'?record.interior.unresolved[0]:''}`};
+ return {short:'内外分项复原 · 尚未完整验收',detail:`外观：${state('exterior')}。内饰：${state('interior')}。${auxiliary}尺寸含模型合理拟合，不代表完整实测复原。${record.interior.implementation==='withheld'?record.interior.unresolved[0]:''}${record.publicNote?` ${record.publicNote}`:''}`};
 }

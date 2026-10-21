@@ -97,14 +97,15 @@
         ]
       },
       "exterior": {
-        "implementation": "generic-placeholder",
+        "implementation": "dedicated-partial",
         "dimensions": "includes-model-fits",
         "accepted": false,
         "unresolved": [
-          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。"
+          "正殿后部中央入口按官方文字开放。后檐矩形玻璃框为修缮文献支持的简化示意，不照搬前檐菱花。后阶与宝座前移仅为模型通行拟合，后立面实测和现状照片仍缺；家具形制未核。",
+          "上传路径不等于拍摄日期；无实机视觉验收。"
         ]
       },
-      "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
+      "targetState": "官方建筑描述与未标明拍摄日期的博物馆照片所支持的局部关系；并非完整历史或现状复原。",
       "identitySources": [
         "https://www.dpm.org.cn/explore/building/236509.html"
       ],
@@ -125,10 +126,24 @@
         },
         {
           "scope": "exterior",
-          "text": "明间前后开门、菱花槅扇。",
+          "text": "正殿明间前后开门。",
+          "source": "https://www.dpm.org.cn/explore/building/236509.html",
+          "targetState": "官方概述所述建筑或历史陈设，非当前完整室内调查。",
+          "implemented": true
+        },
+        {
+          "scope": "exterior",
+          "text": "前檐菱花槅扇细纹仍待逐件复原。",
           "source": "https://www.dpm.org.cn/explore/building/236509.html",
           "targetState": "官方概述所述建筑或历史陈设，非当前完整室内调查。",
           "implemented": false
+        },
+        {
+          "scope": "exterior",
+          "text": "修缮文献记述保留后部方格玻璃窗；模型仅用矩形框体示意，不认证现状精确立面。",
+          "source": "https://www.dpm.org.cn/Uploads/File/2020/08/03/u5f27ba6cdb98c.pdf",
+          "targetState": "1984修缮研究所述1982处理与保留的1930玻璃窗，不等于当今摄影调查。",
+          "implemented": true
         }
       ],
       "auxiliaryProfiles": [
@@ -138,13 +153,19 @@
         {
           "profile": "jingren-rear",
           "area": "auxiliary-exterior",
-          "summary": "仅后殿改为五间硬山顶，正殿仍待专项更新。"
+          "summary": "R39仅后殿改为五间硬山顶；正殿另由R40局部更新，仍未完整核验。"
+        },
+        {
+          "profile": "jingren-rear-entry",
+          "area": "exterior",
+          "summary": "正殿后部中央入口按官方文字开放。后檐矩形玻璃框为修缮文献支持的简化示意，不照搬前檐菱花。后阶与宝座前移仅为模型通行拟合，后立面实测和现状照片仍缺；家具形制未核。"
         }
       ],
       "validation": {
         "visual": "not-verified",
         "nativePhone": "not-verified"
-      }
+      },
+      "publicNote": "正殿后部中央入口按官方文字开放。后檐矩形玻璃框为修缮文献支持的简化示意，不照搬前檐菱花。后阶与宝座前移仅为模型通行拟合，后立面实测和现状照片仍缺；家具形制未核。"
     },
     {
       "id": "place-east-six-42d58b9b0d",
@@ -231,14 +252,15 @@
         ]
       },
       "exterior": {
-        "implementation": "generic-placeholder",
+        "implementation": "dedicated-partial",
         "dimensions": "includes-model-fits",
         "accepted": false,
         "unresolved": [
-          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。"
+          "前廊柱列与后退的槛窗层次参考官方照片。后退2米是为模型人物通行留量的拟合，不是实测廊深；上部矩形格仅作近似，中央冰裂纹、苏式彩画与下部画片未精确复刻。内饰家具仍待核验。",
+          "上传路径不等于拍摄日期；无实机视觉验收。"
         ]
       },
-      "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
+      "targetState": "官方建筑描述与未标明拍摄日期的博物馆照片所支持的局部关系；并非完整历史或现状复原。",
       "identitySources": [
         "https://www.dpm.org.cn/explore/building/236484.html"
       ],
@@ -259,10 +281,17 @@
         },
         {
           "scope": "exterior",
-          "text": "前廊、冰裂纹及步步锦窗棂、苏式彩画。",
+          "text": "冰裂纹及步步锦原作窗棂、苏式彩画尚未精确复制。",
           "source": "https://www.dpm.org.cn/explore/building/236484.html",
           "targetState": "官方概述所述建筑或历史陈设，非当前完整室内调查。",
           "implemented": false
+        },
+        {
+          "scope": "exterior",
+          "text": "前廊外柱在门窗围护前方，侧窗槛墙与上下分区可见；模型作可通行的层次拟合。",
+          "source": "https://img.dpm.org.cn/Uploads/Picture/2020/04/17/s5e99847e500e7.jpg",
+          "targetState": "官方未注明拍摄日期的博物馆前檐照片。",
+          "implemented": true
         }
       ],
       "auxiliaryProfiles": [
@@ -272,13 +301,19 @@
         {
           "profile": "zhongcui-rear",
           "area": "auxiliary-exterior",
-          "summary": "仅后殿改为五间硬山顶，正殿仍待专项更新。"
+          "summary": "R39仅后殿改为五间硬山顶；正殿另由R40局部更新，仍未完整核验。"
+        },
+        {
+          "profile": "zhongcui-front-veranda",
+          "area": "exterior",
+          "summary": "前廊柱列与后退的槛窗层次参考官方照片。后退2米是为模型人物通行留量的拟合，不是实测廊深；上部矩形格仅作近似，中央冰裂纹、苏式彩画与下部画片未精确复刻。内饰家具仍待核验。"
         }
       ],
       "validation": {
         "visual": "not-verified",
         "nativePhone": "not-verified"
-      }
+      },
+      "publicNote": "前廊柱列与后退的槛窗层次参考官方照片。后退2米是为模型人物通行留量的拟合，不是实测廊深；上部矩形格仅作近似，中央冰裂纹、苏式彩画与下部画片未精确复刻。内饰家具仍待核验。"
     },
     {
       "id": "place-east-six-1400b5fc62",
@@ -327,22 +362,23 @@
         "dataRef": "data/zones/east-six.json#/items/30"
       },
       "interior": {
-        "implementation": "generic-placeholder",
+        "implementation": "dedicated-partial",
         "dimensions": "includes-model-fits",
         "accepted": false,
         "unresolved": [
-          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。"
+          "仅正殿素格天花作文字依据示意，格数与尺寸拟合；家具仍是未经逐件核实的通用占位。"
         ]
       },
       "exterior": {
-        "implementation": "generic-placeholder",
+        "implementation": "dedicated-partial",
         "dimensions": "includes-model-fits",
         "accepted": false,
         "unresolved": [
-          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。"
+          "三间抱厦按官方照片表现为开放柱廊与圆弧屋面，檐下露出曲椽，不做封闭附室。白樘箅子素格天花仅用于正殿室内；格数、抱厦深度及隐蔽屋面接缝均为拟合，家具位置与形制未核。",
+          "上传路径不等于拍摄日期；无实机视觉验收。"
         ]
       },
-      "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
+      "targetState": "官方建筑描述与未标明拍摄日期的博物馆照片所支持的局部关系；并非完整历史或现状复原。",
       "identitySources": [
         "https://www.dpm.org.cn/explore/building/236518.html"
       ],
@@ -356,17 +392,38 @@
         },
         {
           "scope": "interior",
-          "text": "白樘箅子天花与仪昭淑慎匾；家具摆位尚未核验。",
+          "text": "正殿白樘箅子天花，模型仅作素木与浅色格面示意。",
+          "source": "https://www.dpm.org.cn/explore/building/236518.html",
+          "targetState": "官方概述所述建筑或历史陈设，非当前完整室内调查。",
+          "implemented": true
+        },
+        {
+          "scope": "exterior",
+          "text": "前出三间抱厦。",
+          "source": "https://www.dpm.org.cn/explore/building/236518.html",
+          "targetState": "官方概述所述建筑或历史陈设，非当前完整室内调查。",
+          "implemented": true
+        },
+        {
+          "scope": "interior",
+          "text": "仪昭淑慎匾及完整家具摆位尚未专项复原。",
           "source": "https://www.dpm.org.cn/explore/building/236518.html",
           "targetState": "官方概述所述建筑或历史陈设，非当前完整室内调查。",
           "implemented": false
         },
         {
           "scope": "exterior",
-          "text": "前出三间抱厦、支窗。",
+          "text": "支窗精确构造与启闭五金尚待核验。",
           "source": "https://www.dpm.org.cn/explore/building/236518.html",
           "targetState": "官方概述所述建筑或历史陈设，非当前完整室内调查。",
           "implemented": false
+        },
+        {
+          "scope": "exterior",
+          "text": "抱厦为开放柱廊，圆弧屋面下可见曲椽而非平天花；隐蔽接缝为模型拟合。",
+          "source": "https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d39e47b346.jpg",
+          "targetState": "官方未注明拍摄日期的博物馆抱厦照片。",
+          "implemented": true
         }
       ],
       "auxiliaryProfiles": [
@@ -376,13 +433,24 @@
         {
           "profile": "yonghe-rear",
           "area": "auxiliary-exterior",
-          "summary": "仅后殿改为五间硬山顶，正殿仍待专项更新。"
+          "summary": "R39仅后殿改为五间硬山顶；正殿另由R40局部更新，仍未完整核验。"
+        },
+        {
+          "profile": "yonghe-main-plain-grid",
+          "area": "interior",
+          "summary": "正殿白樘箅子天花作素格示意，不延伸到露椽抱厦。"
+        },
+        {
+          "profile": "yonghe-open-baoxia",
+          "area": "exterior",
+          "summary": "三间抱厦按官方照片表现为开放柱廊与圆弧屋面，檐下露出曲椽，不做封闭附室。白樘箅子素格天花仅用于正殿室内；格数、抱厦深度及隐蔽屋面接缝均为拟合，家具位置与形制未核。"
         }
       ],
       "validation": {
         "visual": "not-verified",
         "nativePhone": "not-verified"
-      }
+      },
+      "publicNote": "三间抱厦按官方照片表现为开放柱廊与圆弧屋面，檐下露出曲椽，不做封闭附室。白樘箅子素格天花仅用于正殿室内；格数、抱厦深度及隐蔽屋面接缝均为拟合，家具位置与形制未核。"
     },
     {
       "id": "place-east-six-9da5992a78",

@@ -1,3 +1,4 @@
+import {buildEastResidentialFacade} from '../palace/special/EastResidentialFacades.js';
 import { buildWestDomesticHall } from '../palace/special/WestDomesticHalls.js';
 import { rearHallProfile } from '../palace/special/RearHallProfiles.js';
 import { buildSouthCourtTrees } from '../palace/special/SouthCourtTrees.js';
@@ -132,6 +133,10 @@ export class ZoneBase {
 
   buildHall(item) {
     const rearProfile=rearHallProfile(this.zoneJson.id,item);
+    if(item.structure==='east-residential-facade'||item.facadeProfile!==undefined){
+      if(this.zoneJson.id!=='east-six')throw Error('East facade profile belongs only in east-six');
+      return buildEastResidentialFacade(this.kit,item);
+    }
     if(item.structure==='west-domestic-hall'||item.domesticProfile!==undefined){
       if(this.zoneJson.id!=='west-six')throw Error('West domestic profile belongs only in west-six');
       return buildWestDomesticHall(this.kit,item);
