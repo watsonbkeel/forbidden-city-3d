@@ -457,11 +457,14 @@ export class CourtKit {
     if ((o.storeys ?? 1) !== 1) throw new Error('Unsupported storeys: use an explicit multi-storey structure builder');
     const {
       x, z, rot = 0, w, d, colH = 4.6, ph = 0.9, pad = 1.0,
-      roof = 'xieshan', brackets = true, roofH,
+      roof = 'xieshan', brackets = true, roofH, hardGableEnd = false,
       enter: enterOpt, backDoor = false, open = false, throne = false,
       name, plaque = true, plaqueText = name, map = 'hall', bays,
       interior, roomBays = 0,
+      frontEnclosureInset = 0, frontSteps = true, panelBuilder, ceilingBuilder,
     } = o;
+    if (!Number.isFinite(frontEnclosureInset) || frontEnclosureInset < 0 || frontEnclosureInset >= d / 3) throw Error('Invalid hall front enclosure inset');
+    if (typeof frontSteps !== 'boolean' || (panelBuilder !== undefined && typeof panelBuilder !== 'function') || (ceilingBuilder !== undefined && typeof ceilingBuilder !== 'function')) throw Error('Invalid hall fitted facade option');
     const layers = o.eaveCount ?? o.layers ?? 1;
     // 默认所有殿座都可进入（open 敞厅本来就能穿行）
     const enter = !open && enterOpt !== false;
@@ -493,7 +496,7 @@ export class CourtKit {
     if (ph > 0.55) {
       const sw = Math.min(Math.max(bay * 1.05, 2.4), 4.6);
       const dirs = open ? [-1, 1] : backDoor ? [-1, 1] : [-1];
-      for (const s of dirs) this.steps(f, { zEdge: s * PD / 2, dir: s, y: ph, width: sw });
+      for (const s of dirs) if (s > 0 || frontSteps) this.steps(f, { zEdge: s * PD / 2, dir: s, y: ph, width: sw });
     }
 
     const r = THREE.MathUtils.clamp(bay * 0.07, 0.2, 0.34);
@@ -523,7 +526,7 @@ export class CourtKit {
       }
       // 前后檐
       for (const side of [-1, 1]) {
-        const zf = side * d / 2;
+        const zf = side * d / 2 + (side < 0 ? frontEnclosureInset : 0);
         const openFace = enter && (side < 0 || backDoor);
         if (side > 0 && !openFace) {
           this.box(f, 'wall_red', w, colH - beamH, 0.6, 0, y0 + (colH - beamH) / 2, zf);
@@ -540,7 +543,8 @@ export class CourtKit {
             }
             continue;
           }
-          this.box(f, 'lattice_doors', bay - 2 * r, doorH, 0.14, xc, y0 + doorH / 2, zf, 'band');
+          const handled = panelBuilder?.({ f, x:xc, z:zf, width:bay-2*r, height:doorH, floorY:y0, side, bayIndex:i });
+          if (!handled) this.box(f, 'lattice_doors', bay - 2 * r, doorH, 0.14, xc, y0 + doorH / 2, zf, 'band');
           if (enter) this.col(f, xc - bay / 2, y0, zf - 0.25, xc + bay / 2, y0 + 3, zf + 0.25);
         }
         this.box(f, 'wall_red', w, colH - beamH - doorH, 0.3, 0, y0 + doorH + (colH - beamH - doorH) / 2, zf);
@@ -560,17 +564,21 @@ export class CourtKit {
     }
 
     if (enter || open) {
-      const fg = new THREE.PlaneGeometry(w, d);
+      const fg = new THREE.PlaneGeometry(w, d - frontEnclosureInset);
       fg.rotateX(-Math.PI / 2);
       // UV 按米换算：贴图含 4×4 块二尺金砖
       const uv = fg.attributes.uv, span = GOLD_BRICK_TILE * 4;
-      for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * w / span, uv.getY(i) * d / span);
-      this.mesh(f, fg, this.floorMat, 0, y0 + 0.02, 0).castShadow = false;
+      for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * w / span, uv.getY(i) * (d - frontEnclosureInset) / span);
+      this.mesh(f, fg, this.floorMat, 0, y0 + 0.02, frontEnclosureInset / 2).castShadow = false;
     }
     if (enter && !open) {
-      const cg = new THREE.PlaneGeometry(w, d);
-      cg.rotateX(Math.PI / 2);
-      this.mesh(f, cg, this.lib.material('caihua_beam'), 0, y0 + colH - beamH - 0.02, 0).castShadow = false;
+      const ceilingY=y0+colH-beamH-0.02;
+      if(ceilingBuilder)ceilingBuilder({f,w,d:d-frontEnclosureInset,y:ceilingY,z:frontEnclosureInset/2});
+      else {
+        const cg = new THREE.PlaneGeometry(w, d-frontEnclosureInset);
+        cg.rotateX(Math.PI / 2);
+        this.mesh(f, cg, this.lib.material('caihua_beam'), 0, ceilingY, frontEnclosureInset/2).castShadow = false;
+      }
     }
     if (throne && enter) {
       // 有后门时宝座前移，宝座与后檐之间留出 ≥1.6m 的穿行通道
@@ -598,14 +606,15 @@ export class CourtKit {
         if (roomKind !== 'throne') this.furnish(f, roomKind, { x0, x1, z0: -d / 2 + 0.3, z1: d / 2 - 0.3, y: y0, doorX, h: colH - beamH, backDoor });
         this.registerRoom(f, {
           name: name ? (segs.length > 1 && map !== 'corridor' ? `${name}·${idx + 1}` : name) : null,
-          kind: roomKind, x0, x1, z0: -d / 2, z1: d / 2, y: y0, h: colH - beamH,
-          doors: [{ x: doorX, z: -d / 2 }, ...(backDoor ? [{ x: doorX, z: d / 2 }] : [])],
+          kind: roomKind, x0, x1, z0: -d / 2 + frontEnclosureInset, z1: d / 2, y: y0, h: colH - beamH,
+          doors: [{ x: doorX, z: -d / 2 + frontEnclosureInset }, ...(backDoor ? [{ x: doorX, z: d / 2 }] : [])],
         });
       });
     }
 
     this.roof(f, {
-      type: roof, width: w + 0.5, depth: d + 0.5, baseY: y0 + colH, layers, brackets,
+      type: roof, width: hardGableEnd ? w : w + 0.5, depth: d + 0.5, baseY: y0 + colH, layers, brackets,
+      ...(hardGableEnd ? { hardGableEnd:true } : {}),
       ...(roofH ? { height: roofH } : {}),
     });
     if (name && plaque) {

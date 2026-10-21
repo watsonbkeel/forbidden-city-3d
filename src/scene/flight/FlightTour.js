@@ -17,10 +17,10 @@ export class FlightTour {
     Object.assign(this,{scene,camera,controls,cm:collisionManager,zoneManager,envelope,isPaused,onModeChange});
     this.state=new FlightState(envelope);this.model=createHelicopterModel();this.scene.add(this.model.group);
     this.keys=new Set();this.pointers=new Map();this.view='follow';this.lookYaw=0;this.lookPitch=0;this.active=true;this.disposed=false;
-    this.operationsOpen=false;this.resumePending=false;this.hasFlown=false;
+    this.operationsOpen=false;this.resumePending=false;this.hasFlown=false;this.walkingControlNeeded=false;this.walkingHandoff=false;this.flightUnlockPending=false;this.walkingControlAttempt=0;this.resumeLockAttempt=0;
     this.listeners=[];this.lastUI=-Infinity;this.landings=LANDING_CHOICES.filter(p=>envelope.safeGround(p.x,p.z,this.state.rules.radius));
     if(this.model.bounds.horizontalRadius>this.state.rules.radius)throw Error('Aircraft exceeds collision envelope');
-    this.buildUI();this.bindInputs();this.syncModel();this.registerParkedCollision();
+    this.buildUI();this.bindInputs();this.syncModel();this.registerParkedCollision();this.updateUI();
   }
   get occupied(){return this.state.occupied;}
   get position(){return this.state.position;}
@@ -43,14 +43,18 @@ export class FlightTour {
     this.updateUI(true);
     // Native Escape may emit only pointerlockchange. Never rely on the stale
     // PointerLockControls.isLocked flag inside its lock/unlock dispatch.
-    if(!wasOpen&&document.pointerLockElement===this.controls.domElement)this.controls.unlock();
+    if(!wasOpen&&document.pointerLockElement===this.controls.domElement){this.flightUnlockPending=true;this.controls.unlock();}
     if(!wasOpen)this.focusOperations();
     return true;
   }
+  releaseControlFocus(){
+    const active=globalThis.document?.activeElement;
+    if(this.panel?.contains(active)||this.boardingPrompt?.contains(active)||active===this.walkingResumeButton)active?.blur?.();
+  }
   closeOperations(){
-    clearTimeout(this.resumeTimer);this.operationsOpen=false;this.resumePending=false;
+    clearTimeout(this.resumeTimer);this.resumeLockAttempt++;this.operationsOpen=false;this.resumePending=false;
     this.clearInput();this.controls.stop();this.controls.jumpQueued=false;
-    this.controls.prevTime=performance.now();this.updateUI(true);
+    this.controls.prevTime=performance.now();this.releaseControlFocus();this.updateUI(true);
   }
   resumeOperations(){
     if(!this.occupied||!this.operationsOpen||this.isPaused()||this.resumePending)return false;
@@ -59,8 +63,24 @@ export class FlightTour {
     // owns a pause; map-open flight and touch flight do not need pointer lock.
     if(this.controls.isMobile||this.controls.mapOpen){this.closeOperations();return true;}
     this.resumePending=true;this.pauseMessage='正在恢复鼠标控制；若浏览器未响应，请再次点击“返回游戏”。';this.updateUI();
-    this.resumeTimer=setTimeout(()=>this.onPointerLockError(),3000);
-    try{this.controls.lock();}catch{this.onPointerLockError();}
+    const attempt=++this.resumeLockAttempt;
+    const failed=()=>{if(!this.disposed&&attempt===this.resumeLockAttempt)this.onPointerLockError();};
+    this.resumeTimer=setTimeout(failed,3000);
+    try{this.controls.lock()?.catch?.(failed);}catch{failed();}
+    return true;
+  }
+  // Called only by an explicit dismount/retry, never by entering proximity.
+  // The state is already walking even when a browser refuses or delays lock.
+  requestWalkingControl(){
+    if(this.disposed||this.occupied||this.controls.isMobile||this.controls.mapOpen||this.isPaused()||!this.controls.domElement)return false;
+    if(document.pointerLockElement===this.controls.domElement){this.walkingControlNeeded=false;if(!this.flightUnlockPending)this.walkingHandoff=false;this.updateUI();return true;}
+    const attempt=++this.walkingControlAttempt;
+    this.walkingControlNeeded=true;this.updateUI();
+    const failed=()=>{
+      if(this.disposed||this.occupied||attempt!==this.walkingControlAttempt)return;
+      this.walkingControlNeeded=document.pointerLockElement!==this.controls.domElement;this.updateUI();
+    };
+    try{this.controls.lock()?.catch?.(failed);}catch{failed();}
     return true;
   }
   onPointerLockError(){
@@ -70,6 +90,7 @@ export class FlightTour {
   board(){
     if(this.isPaused()||!this.canBoard()){this.showStatus('请步行靠近午门外或停靠处的直升机');return false;}
     if(!this.state.board())return false;
+    this.walkingControlNeeded=false;this.walkingHandoff=false;this.walkingControlAttempt++;this.resumeLockAttempt++;this.releaseControlFocus();
     this.savedLookLocked=this.controls.lookLocked;this.savedHeadBob=this.controls.headBobEnabled;
     this.controls.stop();this.controls.headBobEnabled=false;this.controls.lookLocked=true;
     this.cm.removeByTag(TAG);this.clearInput();this.lookYaw=0;this.lookPitch=0;this.hasFlown=false;this.operationsOpen=false;this.resumePending=false;
@@ -93,14 +114,26 @@ export class FlightTour {
     }
     if(!exit){this.showStatus('两侧下机处受阻，请换一处开阔地');return false;}
     if(!this.state.exit(performance.now()))return false;
-    clearTimeout(this.resumeTimer);this.operationsOpen=false;this.resumePending=false;this.hasFlown=false;
+    clearTimeout(this.resumeTimer);this.resumeLockAttempt++;this.operationsOpen=false;this.resumePending=false;this.hasFlown=false;
     this.clearInput();this.controls.stop();this.controls.jumpQueued=false;this.controls.lookLocked=this.savedLookLocked;this.controls.headBobEnabled=this.savedHeadBob;
     this.camera.up.set(0,1,0);
     this.controls.setPosition(exit.x,exit.y,exit.z);this.controls.lookAt(this.position.x,this.position.z);
     this.controls.prevTime=performance.now();
-    this.walkingUI?.forEach(([el,display])=>el.style.display=display);this.registerParkedCollision();this.onModeChange(false);this.updateUI(true);return true;
+    this.walkingUI?.forEach(([el,display])=>el.style.display=display);
+    // Only an already-requested, not-yet-delivered flight unlock belongs to
+    // this handoff. Future ordinary walking Esc/map unlocks remain ordinary.
+    this.walkingHandoff=this.flightUnlockPending;
+    this.releaseControlFocus();this.registerParkedCollision();this.onModeChange(false);this.updateUI(true);
+    this.requestWalkingControl();return true;
   }
-  toggleBoard(){return this.occupied?this.exit():this.board();}
+  toggleBoard(){
+    if(this.occupied)return this.exit();
+    if(!this.board())return false;
+    // A click/H while unlocked is also a user gesture. Keep flight paused until
+    // its real lock succeeds; touch and map-open flight need no pointer lock.
+    if(!this.controls.isMobile&&!this.controls.mapOpen&&document.pointerLockElement!==this.controls.domElement){this.openOperations('boarding');this.resumeOperations();}
+    return true;
+  }
   setView(view){if(!VIEWS.includes(view))return false;this.view=view;this.lookYaw=0;this.lookPitch=0;this.updateUI(true);return true;}
   requestLanding(){const point=this.landings.find(p=>p.id===this.landingSelect.value);if(!this.state.landAt(point))this.showStatus('该停靠点当前无法确认净空');this.clearInput();}
   allowWalkingTeleport(){if(!this.occupied)return true;this.showStatus('飞行中请先降落下机，再使用地点传送');return false;}
@@ -125,7 +158,7 @@ export class FlightTour {
       if(e.code==='Escape'&&this.occupied&&!this.isPaused()){e.preventDefault();e.stopImmediatePropagation();if(!e.repeat)this.openOperations();return;}
       if(e.repeat&&['KeyH','KeyF','KeyV','KeyL','KeyT'].includes(e.code))return;
       if(hasShortcutModifier(e)||isTextEntryTarget(e.target)||this.isPaused())return;
-      if(e.code==='KeyH'){e.preventDefault();e.stopImmediatePropagation();this.toggleBoard();return;}
+      if(e.code==='KeyH'&&(this.occupied||this.canBoard())){e.preventDefault();e.stopImmediatePropagation();this.toggleBoard();return;}
       if(!this.occupied)return;
       if(e.code==='Space'&&e.target?.closest?.('button, a, summary, [role="button"]'))return;
       if(this.operationsOpen&&MOTION_KEYS.has(e.code)){e.preventDefault();e.stopImmediatePropagation();return;}
@@ -135,8 +168,17 @@ export class FlightTour {
     },true);
     this.listen(window,'keyup',e=>{const owned=this.keys.delete(e.code);if(this.occupied&&owned&&MOTION_KEYS.has(e.code)){e.preventDefault();e.stopImmediatePropagation();}},true);
     this.listen(document,'pointerlockchange',()=>{
-      if(!this.occupied||this.controls.isMobile)return;
+      if(this.controls.isMobile)return;
       const locked=document.pointerLockElement===this.controls.domElement;
+      if(!locked)this.flightUnlockPending=false;
+      if(!this.occupied){
+        // A delayed flight/exit lock may arrive after the map or settings took
+        // ownership. Never recapture the pointer over either interface.
+        if(locked&&(this.controls.mapOpen||this.isPaused())){this.controls.unlock();return;}
+        if(locked){this.walkingControlNeeded=false;if(!this.flightUnlockPending)this.walkingHandoff=false;this.releaseControlFocus();}
+        else if(this.walkingHandoff){this.walkingControlNeeded=true;this.walkingHandoff=false;}
+        this.updateUI();return;
+      }
       if(locked){
         if(this.isPaused()){clearTimeout(this.resumeTimer);this.resumePending=false;this.controls.unlock();return;}
         if(this.operationsOpen&&this.resumePending)this.closeOperations();
@@ -209,7 +251,11 @@ export class FlightTour {
       body.flight-operations-open #tour-tools> :not(#flight-panel){display:none}
       body.flight-operations-open #flight-panel{max-width:420px;padding:16px;background:#152932}
       body.flight-operations-open #flight-panel summary{pointer-events:none;font-size:17px}
-      #flight-panel [hidden]{display:none!important}
+      #flight-panel[hidden],#flight-boarding[hidden],#flight-walking-resume[hidden],#flight-panel [hidden]{display:none!important}
+      #flight-boarding{color:#fff7df;background:#17242be8;border:1px solid #9eacac88;border-radius:10px;padding:8px;font:13px/1.45 system-ui}
+      #flight-boarding button,#flight-walking-resume{min-height:44px;padding:8px 12px;border:1px solid #d5c28e;border-radius:8px;background:#263d43;color:#fff7df;font:inherit;cursor:pointer}
+      #flight-boarding button:focus-visible,#flight-walking-resume:focus-visible{outline:3px solid #ffd572}
+      #flight-walking-resume{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:9001;max-width:calc(100vw - 32px);font:14px/1.5 system-ui}
       #flight-pause-notice{border-left:3px solid #ffd572;padding:8px;background:#ffd57214}
       #flight-panel [data-action=resume]{background:#85651d;border-color:#f6cf6b;font-weight:bold;min-height:44px}
       body.flight-tour-active::before{display:none!important}
@@ -219,13 +265,22 @@ export class FlightTour {
       #flight-touch{position:fixed;bottom:calc(12px + env(safe-area-inset-bottom));left:12px;right:12px;display:flex;justify-content:space-between;pointer-events:none;z-index:1300}#flight-touch[hidden]{display:none}#flight-touch .flight-pad{display:grid;grid-template-columns:repeat(3,48px);gap:4px;pointer-events:auto}#flight-touch button{width:48px;height:48px;touch-action:none;border:1px solid #fff7;background:#173c48dc;color:white;border-radius:10px;font-size:18px;user-select:none}#flight-touch button:active{background:#a48138}
       @media(max-height:600px){#flight-panel{padding:6px;max-width:280px}#flight-panel summary{min-height:25px}#flight-panel button,#flight-panel select{min-height:32px}#flight-touch button{height:42px;width:44px}#flight-touch .flight-pad{grid-template-columns:repeat(3,44px)}}
     `;document.head.appendChild(this.style);
-    this.panel=document.createElement('details');this.panel.id='flight-panel';
+    this.panel=document.createElement('details');this.panel.id='flight-panel';this.panel.hidden=true;
     this.panel.innerHTML=`<summary>直升机游览 <span id="flight-altitude">地面</span></summary><p id="flight-pause-notice" role="status" hidden></p><div class="flight-row"><button type="button" data-action="resume" hidden>返回游戏 / 继续飞行</button></div><p id="flight-status" role="status">午门外待登机</p><div class="flight-row"><button type="button" data-action="board">靠近后登机 H</button><button type="button" data-action="tour">自动观光 F</button><button type="button" data-action="hover">手动/悬停 T</button></div><div class="flight-row"><label>视角 <select id="flight-view"><option value="pilot">驾驶员</option><option value="follow" selected>跟随</option><option value="overhead">俯瞰</option></select></label><label>停靠 <select id="flight-landing"></select></label><button type="button" data-action="land">飞往并降落 L</button></div><p>WASD/方向键平移 · Q/E转向 · 空格升高/C降低 · 鼠标环顾 · V切视角。方向/升降可随时接管自动航线。Esc 暂停并显示可点击的操作；落地后点击“下飞机”或按 H。</p><p class="flight-note">虚拟游览载具与游戏停靠点，不代表现实飞行或降落许可。机体与屋顶保守避碰；手动可在净空足够的平地起降。</p>`;
     attachTourTool(this.panel);this.pauseNotice=this.panel.querySelector('#flight-pause-notice');this.resumeButton=this.panel.querySelector('[data-action="resume"]');this.status=this.panel.querySelector('#flight-status');this.altitude=this.panel.querySelector('#flight-altitude');this.boardButton=this.panel.querySelector('[data-action="board"]');this.landingSelect=this.panel.querySelector('#flight-landing');this.viewSelect=this.panel.querySelector('#flight-view');
     for(const p of this.landings){const o=document.createElement('option');o.value=p.id;o.textContent=p.name;this.landingSelect.appendChild(o);}
-    const handlers={resume:()=>this.resumeOperations(),board:()=>{const exiting=this.occupied;if(this.toggleBoard()&&exiting&&!this.controls.isMobile&&!this.controls.mapOpen){try{this.controls.lock();}catch{/* Walking welcome remains available. */}}},tour:()=>{this.clearInput();this.state.startTour();},hover:()=>{this.clearInput();this.state.hover();},land:()=>this.requestLanding()};
+    const handlers={resume:()=>this.resumeOperations(),board:()=>this.toggleBoard(),tour:()=>{this.clearInput();this.state.startTour();},hover:()=>{this.clearInput();this.state.hover();},land:()=>this.requestLanding()};
     for(const b of this.panel.querySelectorAll('[data-action]'))this.listen(b,'click',e=>{if(!this.isPaused())handlers[b.dataset.action]();if(e.detail>0&&b!==this.resumeButton)b.blur();});
     this.listen(this.panel,'toggle',()=>{if(this.operationsOpen&&!this.panel.open)this.panel.open=true;});
+    this.boardingPrompt=document.createElement('div');this.boardingPrompt.id='flight-boarding';this.boardingPrompt.hidden=true;
+    this.boardingButton=document.createElement('button');this.boardingButton.type='button';
+    this.boardingButton.textContent=this.controls.isMobile?'登上直升机':'按 H 登机 / 点击登机';
+    this.boardingPrompt.appendChild(this.boardingButton);attachTourTool(this.boardingPrompt);
+    this.listen(this.boardingButton,'click',()=>{if(!this.occupied&&!this.isPaused())this.toggleBoard();});
+    this.walkingResumeButton=document.createElement('button');this.walkingResumeButton.type='button';this.walkingResumeButton.id='flight-walking-resume';this.walkingResumeButton.hidden=true;
+    this.walkingResumeButton.textContent='已下机，点击恢复步行和鼠标视角';document.body.appendChild(this.walkingResumeButton);
+    for(const type of ['pointerdown','touchstart'])this.listen(this.walkingResumeButton,type,e=>e.stopPropagation());
+    this.listen(this.walkingResumeButton,'click',e=>{e.stopPropagation();this.releaseControlFocus();this.requestWalkingControl();});
     this.operationsBackdrop=document.createElement('div');this.operationsBackdrop.id='flight-operations-backdrop';this.operationsBackdrop.hidden=true;
     for(const type of ['click','pointerdown','touchstart'])this.listen(this.operationsBackdrop,type,e=>e.stopPropagation());
     document.body.appendChild(this.operationsBackdrop);
@@ -242,6 +297,12 @@ export class FlightTour {
   }
   updateUI(force=false){
     document.body.classList.toggle('flight-tour-active',this.occupied);
+    this.panel.hidden=!this.occupied;this.panel.inert=!this.occupied;
+    if(this.boardingPrompt){
+      this.boardingPrompt.hidden=this.occupied||this.isPaused()||!this.canBoard();this.boardingButton.disabled=this.boardingPrompt.hidden;
+      if(this.boardingPrompt.hidden&&this.boardingPrompt.contains(document.activeElement))document.activeElement?.blur?.();
+    }
+    if(this.walkingResumeButton)this.walkingResumeButton.hidden=!this.walkingControlNeeded||this.occupied||this.controls.isMobile||this.controls.mapOpen||this.isPaused()||document.pointerLockElement===this.controls.domElement;
     this.status.textContent=this.state.status;this.altitude.textContent=this.occupied?`${Math.round(this.position.y)}m · ${LABELS[this.view]}`:'地面';
     this.boardButton.textContent=this.occupied?(this.canExit()?'下飞机 H':'需安全落地后下机') :this.canBoard()?'登机 H':'靠近后登机 H';
     this.boardButton.title=this.occupied&&!this.canExit()?'请先在净空足够的平地降落并停稳':'';
@@ -256,5 +317,5 @@ export class FlightTour {
     if(force&&this.occupied)this.panel.open=true;
   }
   getMapMarker(){return {x:this.position.x,z:this.position.z,y:this.position.y,yaw:this.state.yaw,occupied:this.occupied,mode:this.state.mode};}
-  dispose(){if(this.disposed)return;this.disposed=true;clearTimeout(this.resumeTimer);this.clearInput();this.listeners.forEach(f=>f());this.cm.removeByTag(TAG);this.model.dispose();document.body.classList.remove('flight-tour-active','flight-operations-open');this.operationsBackdrop?.remove();detachTourTool(this.panel);this.touch.remove();this.style.remove();}
+  dispose(){if(this.disposed)return;this.disposed=true;clearTimeout(this.resumeTimer);this.clearInput();this.listeners.forEach(f=>f());this.cm.removeByTag(TAG);this.model.dispose();document.body.classList.remove('flight-tour-active','flight-operations-open');this.operationsBackdrop?.remove();detachTourTool(this.panel);if(this.boardingPrompt)detachTourTool(this.boardingPrompt);this.walkingResumeButton?.remove();this.touch.remove();this.style.remove();}
 }

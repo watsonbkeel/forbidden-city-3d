@@ -1,0 +1,9 @@
+// Supplemental historical registration-tail reproduction, intentionally not default test discovery.
+// Only the old loader input is supplied from actual R47 to pass the old top-level guard.
+// Current loader correctness is NOT proven here; all other files and old assertions remain current.
+import {restoreR34SourceIfPresent} from '../../../../tests/lib/r34-source-retention.mjs';
+import {restorePreR29Source} from '../../../../tests/lib/r29-qianqing-retention.mjs';
+import test from'node:test';import assert from'node:assert/strict';import fs from'node:fs';import{createHash}from'node:crypto';import{R15_SOURCE_DELTA,restorePreR15Source}from'../../../../tests/lib/r15-flight-source-retention.mjs';
+const sha=b=>createHash('sha256').update(b).digest('hex');
+assert.equal(sha(fs.readFileSync(new URL('./r47-interior-loader.txt',import.meta.url))),'218d2c1ee607979779f4802b74d3c1dbfd08b0b93fe326d753c6a5a957d17a90','actual frozen R47 loader fixture');
+for(const[path,r]of Object.entries(R15_SOURCE_DELTA.files)){const current=restorePreR29Source(path,restoreR34SourceIfPresent(path,fs.readFileSync((path==='src/scene/interior/InteriorLoader.js' ? new URL('./r47-interior-loader.txt',import.meta.url) : new URL('../../../../'+path,import.meta.url)))));test(`${path}: exact named R15 feature delta retains every R13 byte outside scope`,()=>{assert.equal(sha(current),r.candidateSHA256);const old=restorePreR15Source(path,current);assert.equal(sha(old),r.baselineSHA256);assert.deepEqual(restorePreR15Source(path,old),old);});test(`${path}: unrelated append and altered allowed block fail closed`,()=>{assert.throws(()=>restorePreR15Source(path,Buffer.concat([current,Buffer.from('\n')])));for(const d of r.deltas){assert.throws(()=>restorePreR15Source(path,Buffer.from(current.toString().replace(d.after,d.after+'// unreviewed\n'))));assert.throws(()=>restorePreR15Source(path,Buffer.from(current.toString().replace(d.after,''))));}});}

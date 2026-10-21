@@ -1,0 +1,1342 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Explicit source-attributed first18 safety delta, not a replacement accepted snapshot or a claim of historical accuracy.",
+  "baseline": {
+    "path": "docs/current-state/r48-remaining/outer-first18-retained-signatures.json",
+    "sha256": "6b20b5dcec05ee4151a3234dfa2b30ecdf724f7ba602683b30c23848f235ac47",
+    "sourceModuleSha256": "fcb22fe64d01bbcadb39912842c4830af0f21574d0add38094a0efa11ff4a60d",
+    "sourceVerifiedAgainst": "r48-review-outer-finishes-parent / RemainingOuterHalls.js, read-only exact SHA match"
+  },
+  "reviewedModuleSha256": "793100dc22cf801751ffd8a8e93be43d58ccfa17c79d49fe4701f225898a6290",
+  "signatureFields": [
+    "geometry",
+    "meshes",
+    "triangles",
+    "colliders",
+    "walkables",
+    "rooms",
+    "regions",
+    "mapItems",
+    "navigation"
+  ],
+  "navigationCaveat": "retentionSignature.navigation serializes profile p.navigation. It must not be interpreted as built.g.navigation. Actual built navigation is independently recorded and checked for every identity.",
+  "sourceChanges": [
+    {
+      "id": "column-bottom-radius",
+      "reason": "The rendered tapered CylinderGeometry already has bottom radius 1.05*r. Only its per-column X/Z collider footprint grows from r to 1.05*r; mesh, height, placement and all walkables remain exact.",
+      "before": "    kit.col(f,x-r,yy,z-r,x+r,yy+height,z+r);return mesh;",
+      "after": "    kit.col(f,x-r*1.05,yy,z-r*1.05,x+r*1.05,yy+height,z+r*1.05);return mesh;",
+      "beforeSourceSha256": "9c87f2aeff498a151aaa213b0ca7c7e7d2e6c2f9c074ca538d6221a6295b77d2",
+      "afterSourceSha256": "35851412aefde8d54abe91c0f64ae5b394cf5cd78e1840a1482ac3c760451220",
+      "effects": [
+        {
+          "id": "place-outer-east-fd3d76e74d",
+          "name": "文渊阁",
+          "fields": [
+            "colliders"
+          ],
+          "actualNavigationChanged": false
+        },
+        {
+          "id": "place-outer-west-fa7f5d119e",
+          "name": "南薰殿",
+          "fields": [
+            "colliders"
+          ],
+          "actualNavigationChanged": false
+        },
+        {
+          "id": "place-outer-west-ddb3563548",
+          "name": "含清斋",
+          "fields": [
+            "colliders"
+          ],
+          "actualNavigationChanged": false
+        },
+        {
+          "id": "place-outer-west-f6d065a79b",
+          "name": "延寿堂",
+          "fields": [
+            "colliders"
+          ],
+          "actualNavigationChanged": false
+        },
+        {
+          "id": "place-outer-west-4b8e037269",
+          "name": "宝相楼",
+          "fields": [
+            "colliders"
+          ],
+          "actualNavigationChanged": false
+        },
+        {
+          "id": "place-outer-west-e1a6e9852b",
+          "name": "吉云楼",
+          "fields": [
+            "colliders"
+          ],
+          "actualNavigationChanged": false
+        },
+        {
+          "id": "place-outer-west-930b046fd0",
+          "name": "慈荫楼",
+          "fields": [
+            "colliders"
+          ],
+          "actualNavigationChanged": false
+        },
+        {
+          "id": "place-outer-west-b9b85b682e",
+          "name": "慈宁宫",
+          "fields": [
+            "colliders"
+          ],
+          "actualNavigationChanged": false
+        },
+        {
+          "id": "place-outer-west-6cae88b6a2",
+          "name": "大佛堂",
+          "fields": [
+            "colliders"
+          ],
+          "actualNavigationChanged": false
+        },
+        {
+          "id": "place-outer-west-12beb1bb0e",
+          "name": "延春阁",
+          "fields": [
+            "colliders"
+          ],
+          "actualNavigationChanged": false
+        },
+        {
+          "id": "place-outer-west-aad07de044",
+          "name": "寿安宫",
+          "fields": [
+            "colliders"
+          ],
+          "actualNavigationChanged": false
+        }
+      ]
+    },
+    {
+      "id": "temple-visible-undercroft-guards",
+      "reason": "Add a visible reversible nonhistoric low-headroom guard, with one thin collision proxy per rendered bar/post, to each Baoxiang and Ciyin flight. No invisible stair-volume fill; no change to support ramp.",
+      "before": "  c.kit.walkRamp(c.f,s.x-s.width/2,s.x+s.width/2,s.z0,s.z1,g.y,g.upperY);",
+      "after": "  c.kit.walkRamp(c.f,s.x-s.width/2,s.x+s.width/2,s.z0,s.z1,g.y,g.upperY);\n  stairUndercroftSafety(c,s,g.y,g.upperY,H/n);",
+      "beforeSourceSha256": "938ceddad538437c95626197c4a58f377a511726c86cbcf1e4b0941088d095e8",
+      "afterSourceSha256": "9ee0804a3e8c8c0dbcccdae27b44b8be252bb566c615bc0721537bb57f94e96c",
+      "effects": [
+        {
+          "id": "place-outer-west-4b8e037269",
+          "name": "宝相楼",
+          "fields": [
+            "geometry",
+            "meshes",
+            "triangles",
+            "colliders"
+          ],
+          "actualNavigationChanged": false
+        },
+        {
+          "id": "place-outer-west-930b046fd0",
+          "name": "慈荫楼",
+          "fields": [
+            "geometry",
+            "meshes",
+            "triangles",
+            "colliders"
+          ],
+          "actualNavigationChanged": false
+        }
+      ]
+    },
+    {
+      "id": "baoxiang-finer-treads",
+      "reason": "Baoxiang-only smaller maximum step rise increases tread/riser/guard segmentation for real body headroom. Tread geometry and guard proxies change; walkRamp endpoints and all other towers are unaffected by this source edit.",
+      "before": "  const {g,p}=c,H=g.upperY-g.y,run=s.z1-s.z0,n=Math.max(12,Math.ceil(H/.2)),step=run/n;",
+      "after": "  const {g,p}=c,H=g.upperY-g.y,run=s.z1-s.z0,n=Math.max(12,Math.ceil(H/(p.key==='baoxiang'?.09:.2))),step=run/n;",
+      "beforeSourceSha256": "6a5e12ae91eb8794bb1877ce076e080eb5a1069868ff75f69a38abd7cf272254",
+      "afterSourceSha256": "06fd5f2dd9b7293f845c28135cc0f3bf804f4f062b654d5384a1c48f5568304f",
+      "effects": [
+        {
+          "id": "place-outer-west-4b8e037269",
+          "name": "宝相楼",
+          "fields": [
+            "geometry",
+            "meshes",
+            "triangles",
+            "colliders"
+          ],
+          "actualNavigationChanged": false
+        }
+      ]
+    },
+    {
+      "id": "baoxiang-bottom-run",
+      "reason": "Move only the two Baoxiang bottom-run endpoints. The existing derived stair holes and upper floor subdivision follow those endpoints, as do the two physical walk ramps; top landings, six lightwells and end-door partitions are retained.",
+      "before": "    for(const side of[-1,1])g.stairs.push({index:side,x:side*(A-.94),width:1.35,z0:g.front+2.3,z1:g.rear-1.55});",
+      "after": "    for(const side of[-1,1])g.stairs.push({index:side,x:side*(A-.94),width:1.35,z0:g.front+2.25,z1:g.rear-1.55,accessFit:'BOTTOM_RUN_EXTENDED_0_05M_AND_FINER_TREADS_FOR_PRODUCTION_BODY_CLEARANCE'});",
+      "beforeSourceSha256": "f2f42d73dd6e9af117cdb8721f1cc7b39fc33b333efd99906da7ce71a9207b72",
+      "afterSourceSha256": "8a5c4ce77a13dcfacbcf3967b277986e0f84fb27315aaf20440d50ec1edda52a",
+      "effects": [
+        {
+          "id": "place-outer-west-4b8e037269",
+          "name": "宝相楼",
+          "fields": [
+            "geometry",
+            "colliders",
+            "walkables"
+          ],
+          "actualNavigationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "baoxiang-niche-grid-proxies",
+      "reason": "The 4 cabinet/niche frameworks already contain 5 horizontal and 6 vertical visible grid members each. Enable one existing-member proxy for each of 44 bars; do not alter their rendered geometry.",
+      "before": "      for(let k=0;k<=4;k++)box('baoxiang-upper-niche-grid','timber',cabW,.055,.12,x,g.upperY+1.05+k*.33,g.rear-.57,false);\n      for(let k=0;k<=5;k++)box('baoxiang-upper-niche-grid','timber',.055,1.38,.12,x-cabW/2+k*cabW/5,g.upperY+1.72,g.rear-.57,false);",
+      "after": "      for(let k=0;k<=4;k++)box('baoxiang-upper-niche-grid','timber',cabW,.055,.12,x,g.upperY+1.05+k*.33,g.rear-.57,true);\n      for(let k=0;k<=5;k++)box('baoxiang-upper-niche-grid','timber',.055,1.38,.12,x-cabW/2+k*cabW/5,g.upperY+1.72,g.rear-.57,true);",
+      "beforeSourceSha256": "0cb914dc8aa604acbd04ec767ea183ed8a485a5a77c2041b5204d5a4b371c12e",
+      "afterSourceSha256": "2141228b2588d4120550c270e6961203a605887824fc39198e3edd1515138463",
+      "effects": [
+        {
+          "id": "place-outer-west-4b8e037269",
+          "name": "宝相楼",
+          "fields": [
+            "colliders"
+          ],
+          "actualNavigationChanged": false
+        }
+      ]
+    },
+    {
+      "id": "baoxiang-bottom-approach",
+      "reason": "Adjust only Baoxiang actual built.g.navigation.stairRoutes bottom approach waypoints to the fitted safe entry approach. The legacy helper hashes p.navigation, not this built route; the supplemental actual-navigation test closes that gap.",
+      "before": "    return{id:p.key+'-stair-'+s.index,fromFloor:g.y,toFloor:g.upperY,points:[toWorld(s.x,g.y,s.z0-.45),toWorld(s.x,g.y,s.z0),toWorld(s.x,g.upperY,s.z1),toWorld(s.x,g.upperY,landingZ),toWorld(escapeX,g.upperY,landingZ),toWorld(escapeX,g.upperY,aisleZ),toWorld(0,g.upperY,aisleZ)]};",
+      "after": "    return{id:p.key+'-stair-'+s.index,fromFloor:g.y,toFloor:g.upperY,points:[...(p.key==='baoxiang'?[toWorld(escapeX,g.y,aisleZ),toWorld(escapeX,g.y,s.z0-.65),toWorld(s.x,g.y,s.z0-.65)]:[toWorld(s.x,g.y,s.z0-.45)]),toWorld(s.x,g.y,s.z0),toWorld(s.x,g.upperY,s.z1),toWorld(s.x,g.upperY,landingZ),toWorld(escapeX,g.upperY,landingZ),toWorld(escapeX,g.upperY,aisleZ),toWorld(0,g.upperY,aisleZ)]};",
+      "beforeSourceSha256": "3b0c94971565f70c0737076577a97259bd6670970fe87f9ce0f085d536d784d1",
+      "afterSourceSha256": "9749aca0887069a394460f054fdabf704f1b05552bbf9da57914479b1e6990c4",
+      "effects": [
+        {
+          "id": "place-outer-west-4b8e037269",
+          "name": "宝相楼",
+          "fields": [],
+          "actualNavigationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "wenyuan-visible-undercroft-guards",
+      "reason": "Add visible reversible nonhistoric guard bars and posts below the two Wenyuan fitted flights. Each mesh gets its matching thin proxy; existing stair treads, ramps, floor holes and level geometry remain exact.",
+      "before": "  c.kit.walkRamp(c.f,s.x-s.width/2,s.x+s.width/2,s.z0,s.z1,y0,y1);",
+      "after": "  c.kit.walkRamp(c.f,s.x-s.width/2,s.x+s.width/2,s.z0,s.z1,y0,y1);\n  stairUndercroftSafety(c,s,y0,y1,H/n);",
+      "beforeSourceSha256": "6df6d6446a0130a36805efc7b017322d074779a399e4abb148e3532115d32c76",
+      "afterSourceSha256": "e5f981d48179eb3a91c873e1f15f158f4e7cd15a7f5151ee8cf3db343a6b78c3",
+      "effects": [
+        {
+          "id": "place-outer-east-fd3d76e74d",
+          "name": "文渊阁",
+          "fields": [
+            "geometry",
+            "meshes",
+            "triangles",
+            "colliders"
+          ],
+          "actualNavigationChanged": false
+        }
+      ]
+    },
+    {
+      "id": "wenyuan-screen-rail-proxies",
+      "reason": "Enable a thin matching proxy for each of the 5 already visible ground-photo screen rails, without changing screen posts, mesh geometry or historical claims.",
+      "before": "  for(let k=0;k<=4;k++)box('wenyuan-ground-photo-screen-rail','timber',6.9,.07,.10,axis,g.y+.18+k*.52,screenZ,false,{source:source1,level:1});",
+      "after": "  for(let k=0;k<=4;k++)box('wenyuan-ground-photo-screen-rail','timber',6.9,.07,.10,axis,g.y+.18+k*.52,screenZ,true,{source:source1,level:1});",
+      "beforeSourceSha256": "2e5126167857ed3e79ca7ac2da5a42d8bdef8c58efce548ce58973960f507f7c",
+      "afterSourceSha256": "8a7018438530291e00c2e284805db702d9ed9a7d68a98876abfabdd91753131c",
+      "effects": [
+        {
+          "id": "place-outer-east-fd3d76e74d",
+          "name": "文渊阁",
+          "fields": [
+            "colliders"
+          ],
+          "actualNavigationChanged": false
+        }
+      ]
+    },
+    {
+      "id": "wenyuan-inherited-component-proxies",
+      "reason": "Retain every inherited door leaf, beam, column, wall/window and upstairs enclosure mesh exactly. Add only each eligible rendered component AABB, with 0.05 m downward margin solely for caihua_beam head trim, and skip at/below floor plus STEP_UP. No aggregate roof/room/furniture box.",
+      "before": "  const stairs=[{...first,y0:g.y,y1:midY},{...second,y0:midY,y1:upperY}];",
+      "after": "  for(const n of f.children)if(n.isMesh&&!n.userData.remainingOuterId&&['wall_red','wall_brick','caihua_beam','lattice_doors','wenyuan_sourced_green_wood_columns'].includes(materialKey(kit,n.material))){\n    if(visibleComponentProxy(kit,f,n,{headMargin:materialKey(kit,n.material)==='caihua_beam'?.05:0,skipAtOrBelow:g.y+PLAYER.STEP_UP}))inheritedFacadeProxies.push({material:materialKey(kit,n.material),position:n.position.toArray()});\n  }\n  const stairs=[{...first,y0:g.y,y1:midY},{...second,y0:midY,y1:upperY}];",
+      "beforeSourceSha256": "d83a44d35f29c3b7fd8a213864ea7735c870735d7536ce8cd4718dba4d53ec1a",
+      "afterSourceSha256": "282dff4a25d8c44b18f3e8de567d9c115f92c8a90b1135deec8f2bd6c3a3c323",
+      "effects": [
+        {
+          "id": "place-outer-east-fd3d76e74d",
+          "name": "文渊阁",
+          "fields": [
+            "colliders"
+          ],
+          "actualNavigationChanged": false
+        }
+      ]
+    }
+  ],
+  "sourceHelpers": [
+    {
+      "name": "stairUndercroftSafety",
+      "source": "function stairUndercroftSafety(c,s,y0,y1,stepRise) {\n  const run=s.z1-s.z0,sign=Math.sign(run),H=y1-y0;\n  const z0=s.z0+sign*.06,z1=s.z0+run*Math.min(.96,(PLAYER.HEIGHT+.14+stepRise+.08)/H),x0=s.x-s.width/2-.075,x1=s.x+s.width/2+.075;\n  const info={source:null,status:'MODEL_ACCESS_SAFETY_FIT_NOT_HISTORIC_OBJECT',floorY:y0,reason:'VISIBLE_LOW_HEADROOM_STAIR_ACCESS_GUARD',stair:s.id??s.index};\n  const bar=(x,z,w,d,yy,h,role)=>c.box(c.p.key+'-access-safety-stair-under-'+role,'dark',w,h,d,x,yy,z,true,info);\n  for(const x of[x0,x1]){\n    const n=Math.max(1,Math.ceil(Math.abs(z1-z0)/.75));\n    for(const h of[.45,.97])bar(x,(z0+z1)/2,.055,Math.abs(z1-z0),y0+h,.06,'side-bar');\n    for(let k=0;k<=n;k++)bar(x,z0+(z1-z0)*k/n,.06,.06,y0+.52,1.04,'post');\n  }\n  for(const h of[.45,.97])bar(s.x,z1,x1-x0,.055,y0+h,.06,'rear-bar');\n  const result={x0,x1,z0,z1,floorY:y0,stair:s.id??s.index,status:info.status};\n  (c.g.accessSafetyGuards??=[]).push(result);return result;\n}",
+      "sourceSha256": "a3f60d717909ea24d73f43eea3d56865dfd1592cee3a7ff508ca582510253579"
+    },
+    {
+      "name": "visibleComponentProxy",
+      "source": "function visibleComponentProxy(kit,f,mesh,{headMargin=0,skipAtOrBelow=-Infinity}={}) {\n  f.updateMatrixWorld(true);mesh.geometry.computeBoundingBox();\n  const local=new THREE.Matrix4().copy(f.matrixWorld).invert().multiply(mesh.matrixWorld);\n  const b=mesh.geometry.boundingBox.clone().applyMatrix4(local);\n  if(b.max.y<=skipAtOrBelow+1e-7)return false;\n  kit.col(f,b.min.x,b.min.y-headMargin,b.min.z,b.max.x,b.max.y,b.max.z);\n  mesh.userData.actualComponentProxy={bounds:{min:b.min.toArray(),max:b.max.toArray()},lowerHeadMargin:headMargin,status:'VISIBLE_COMPONENT_BOUNDING_BOX_NOT_INVISIBLE_ROOM_FILL'};\n  return true;\n}",
+      "sourceSha256": "1e158788a6e558cfbd84feaa0b7351552e8860708d195d70b1965774fe406215"
+    },
+    {
+      "name": "materialKey",
+      "source": "function materialKey(kit,material) {\n  if(!material)return '';\n  if(material===kit.ridge)return 'kit_ridge';\n  if(kit.owned.includes(material))return material.name??'';\n  if(sharedMaterialKeys.has(material))return sharedMaterialKeys.get(material);\n  if(kit.lib.materials instanceof Map)for(const [cacheKey,value]of kit.lib.materials)if(value===material){const key=cacheKey.split('|')[0];sharedMaterialKeys.set(material,key);return key;}\n  const name=material.name??'',key=name.endsWith('_material')?name.slice(0,-9):name;\n  if(SHARED_OUTER_KEYS.has(key)){if(material===kit.lib.material(key)){sharedMaterialKeys.set(material,key);return key;}return '';}\n  return name;\n}",
+      "sourceSha256": "abbdec532d69ebf8e282e04bedf21fb9fb93ab7bceaa41c058e0b16c484a1731"
+    }
+  ],
+  "records": [
+    {
+      "id": "place-outer-east-fd3d76e74d",
+      "name": "文渊阁",
+      "key": "wenyuan",
+      "changes": {
+        "geometry": {
+          "before": "283336a6a077f8ab0a129d14ca3225aa1d3b7b563eb3539c230992159106afa8",
+          "after": "1c94bc3fb69f2ade61bf8d7890ff22a19e39e60d3d0c717079f3de525b64ec8b",
+          "beforeValueSha256": "f412e45850179fd3dc01528fcbbcc12d0ae46d6a1a0e2ca9a395492acbb1bcbf",
+          "afterValueSha256": "2b699c6f083e1576571c130fe4ddd0b97ef93dc75cd7d6c30db46adc6b259051",
+          "reasons": [
+            "wenyuan-visible-undercroft-guards"
+          ]
+        },
+        "meshes": {
+          "before": 645,
+          "after": 689,
+          "beforeValueSha256": "3c2308b1bc64683e5aed4111841da5bc3b3295b01a852f1dc4e68510f79dd37f",
+          "afterValueSha256": "fc4fb94d36f45aa9d13358022455e55db4b6f0eb536a1b2897c90dfd3df9eb9b",
+          "reasons": [
+            "wenyuan-visible-undercroft-guards"
+          ]
+        },
+        "triangles": {
+          "before": 9960,
+          "after": 10488,
+          "beforeValueSha256": "6675ea8ace8972ee74c9555b92ffceb3925cd98ebeeebbce91e4a297390b23d9",
+          "afterValueSha256": "92a84a2e05ddd8e8c07043d232bc8e8db07d065d5f616563d02309ef5408bef9",
+          "reasons": [
+            "wenyuan-visible-undercroft-guards"
+          ]
+        },
+        "colliders": {
+          "before": "f18993f38b5145eac094704f9de576421d9acb05c5285e66df04ff31a2597c02",
+          "after": "6ce79a94d41d62285fec795a3e7368612671e846c8579ff0f245b1b3a35b368d",
+          "beforeValueSha256": "54c774dfb02ff50dcf9ee37d2e219222bf4cb95b1ff6637d061dde6a667a1974",
+          "afterValueSha256": "8f60d24682ced1f98b9f47a73ca1e98881735d62c588521126bfe04e8c4a6080",
+          "reasons": [
+            "column-bottom-radius",
+            "wenyuan-visible-undercroft-guards",
+            "wenyuan-screen-rail-proxies",
+            "wenyuan-inherited-component-proxies"
+          ]
+        }
+      },
+      "componentEvidence": {
+        "contextColumnRoles": {
+          "wenyuan-fitted-inner-floor-post": 10
+        },
+        "safetyMeshesBefore": 0,
+        "safetyMeshesAfter": 44,
+        "colliderCountBefore": 439,
+        "colliderCountAfter": 539,
+        "walkableCountBefore": 29,
+        "walkableCountAfter": 29,
+        "individualInheritedProxyCounts": {
+          "wenyuan_sourced_green_wood_columns / CylinderGeometry": 28,
+          "caihua_beam / BufferGeometry": 6,
+          "wall_brick / BufferGeometry": 4,
+          "lattice_doors / BufferGeometry": 9,
+          "wall_red / BufferGeometry": 4
+        },
+        "stairTreadCountBefore": 29,
+        "stairTreadCountAfter": 29
+      },
+      "actualNavigation": {
+        "before": "24d195bb2d504734b574ae5c405b94bca3683f81c231a4ba3a451dc8ead4b483",
+        "after": "24d195bb2d504734b574ae5c405b94bca3683f81c231a4ba3a451dc8ead4b483"
+      }
+    },
+    {
+      "id": "place-outer-east-172c8cbf68",
+      "name": "南三所西所前殿",
+      "key": "sansuo-west-front",
+      "changes": {},
+      "componentEvidence": {
+        "contextColumnRoles": {},
+        "safetyMeshesBefore": 0,
+        "safetyMeshesAfter": 0,
+        "colliderCountBefore": 28,
+        "colliderCountAfter": 28,
+        "walkableCountBefore": 2,
+        "walkableCountAfter": 2,
+        "individualInheritedProxyCounts": {},
+        "stairTreadCountBefore": 0,
+        "stairTreadCountAfter": 0
+      },
+      "actualNavigation": {
+        "before": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "after": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      }
+    },
+    {
+      "id": "place-outer-east-3f2ebd1b02",
+      "name": "南三所西所后殿",
+      "key": "sansuo-west-rear",
+      "changes": {},
+      "componentEvidence": {
+        "contextColumnRoles": {},
+        "safetyMeshesBefore": 0,
+        "safetyMeshesAfter": 0,
+        "colliderCountBefore": 28,
+        "colliderCountAfter": 28,
+        "walkableCountBefore": 2,
+        "walkableCountAfter": 2,
+        "individualInheritedProxyCounts": {},
+        "stairTreadCountBefore": 0,
+        "stairTreadCountAfter": 0
+      },
+      "actualNavigation": {
+        "before": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "after": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      }
+    },
+    {
+      "id": "place-outer-east-c1914091ec",
+      "name": "南三所中所前殿",
+      "key": "sansuo-center-front",
+      "changes": {},
+      "componentEvidence": {
+        "contextColumnRoles": {},
+        "safetyMeshesBefore": 0,
+        "safetyMeshesAfter": 0,
+        "colliderCountBefore": 28,
+        "colliderCountAfter": 28,
+        "walkableCountBefore": 2,
+        "walkableCountAfter": 2,
+        "individualInheritedProxyCounts": {},
+        "stairTreadCountBefore": 0,
+        "stairTreadCountAfter": 0
+      },
+      "actualNavigation": {
+        "before": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "after": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      }
+    },
+    {
+      "id": "place-outer-east-1db501eb23",
+      "name": "南三所中所后殿撷芳殿",
+      "key": "sansuo-center-rear",
+      "changes": {},
+      "componentEvidence": {
+        "contextColumnRoles": {},
+        "safetyMeshesBefore": 0,
+        "safetyMeshesAfter": 0,
+        "colliderCountBefore": 28,
+        "colliderCountAfter": 28,
+        "walkableCountBefore": 2,
+        "walkableCountAfter": 2,
+        "individualInheritedProxyCounts": {},
+        "stairTreadCountBefore": 0,
+        "stairTreadCountAfter": 0
+      },
+      "actualNavigation": {
+        "before": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "after": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      }
+    },
+    {
+      "id": "place-outer-east-2e6207278c",
+      "name": "南三所东所前殿",
+      "key": "sansuo-east-front",
+      "changes": {},
+      "componentEvidence": {
+        "contextColumnRoles": {},
+        "safetyMeshesBefore": 0,
+        "safetyMeshesAfter": 0,
+        "colliderCountBefore": 28,
+        "colliderCountAfter": 28,
+        "walkableCountBefore": 2,
+        "walkableCountAfter": 2,
+        "individualInheritedProxyCounts": {},
+        "stairTreadCountBefore": 0,
+        "stairTreadCountAfter": 0
+      },
+      "actualNavigation": {
+        "before": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "after": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      }
+    },
+    {
+      "id": "place-outer-east-4642f5088e",
+      "name": "南三所东所后殿",
+      "key": "sansuo-east-rear",
+      "changes": {},
+      "componentEvidence": {
+        "contextColumnRoles": {},
+        "safetyMeshesBefore": 0,
+        "safetyMeshesAfter": 0,
+        "colliderCountBefore": 28,
+        "colliderCountAfter": 28,
+        "walkableCountBefore": 2,
+        "walkableCountAfter": 2,
+        "individualInheritedProxyCounts": {},
+        "stairTreadCountBefore": 0,
+        "stairTreadCountAfter": 0
+      },
+      "actualNavigation": {
+        "before": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "after": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      }
+    },
+    {
+      "id": "place-outer-west-a92c708d28",
+      "name": "浴德堂",
+      "key": "yude",
+      "changes": {},
+      "componentEvidence": {
+        "contextColumnRoles": {},
+        "safetyMeshesBefore": 0,
+        "safetyMeshesAfter": 0,
+        "colliderCountBefore": 19,
+        "colliderCountAfter": 19,
+        "walkableCountBefore": 1,
+        "walkableCountAfter": 1,
+        "individualInheritedProxyCounts": {},
+        "stairTreadCountBefore": 0,
+        "stairTreadCountAfter": 0
+      },
+      "actualNavigation": {
+        "before": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "after": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      }
+    },
+    {
+      "id": "place-outer-west-fa7f5d119e",
+      "name": "南薰殿",
+      "key": "nanxun",
+      "changes": {
+        "colliders": {
+          "before": "2d39c78dc123113c6e1226bd2d3e16bfed12feb0d3b63441d0c96382819f4490",
+          "after": "1cf8eddaa738c76d90498a51bc2de39af873ac5b719931be2f0a401535374fba",
+          "beforeValueSha256": "869dcf85caab8a1ff7ab8132eabc5e5f820d02725abd31bff0d424cfda1ceaec",
+          "afterValueSha256": "b4adabbef561848b6869c2dd922af2c828dce0e13ac501677794340ebe0bf114",
+          "reasons": [
+            "column-bottom-radius"
+          ]
+        }
+      },
+      "componentEvidence": {
+        "contextColumnRoles": {
+          "nanxun-column": 12
+        },
+        "safetyMeshesBefore": 0,
+        "safetyMeshesAfter": 0,
+        "colliderCountBefore": 58,
+        "colliderCountAfter": 58,
+        "walkableCountBefore": 2,
+        "walkableCountAfter": 2,
+        "individualInheritedProxyCounts": {},
+        "stairTreadCountBefore": 0,
+        "stairTreadCountAfter": 0
+      },
+      "actualNavigation": {
+        "before": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "after": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      }
+    },
+    {
+      "id": "place-outer-west-ddb3563548",
+      "name": "含清斋",
+      "key": "hanqing",
+      "changes": {
+        "colliders": {
+          "before": "f344a754a30feafa744f7558fb67b1fd0d7b1ed75b64cf92572d94e55bf10400",
+          "after": "b80020f518aa0083a0406abc167cdf25c1829dddedb17823c0e16199aec16d04",
+          "beforeValueSha256": "b0c760f52f76965049d7d48744f6efe136c1ecb9db9c7986740db1dc5da69319",
+          "afterValueSha256": "57eee24403084a522248daf70b7d1619ac06bcb582a34bedd03c2cf49d76bbcc",
+          "reasons": [
+            "column-bottom-radius"
+          ]
+        }
+      },
+      "componentEvidence": {
+        "contextColumnRoles": {
+          "hanqing-inset-front-house-column": 8
+        },
+        "safetyMeshesBefore": 0,
+        "safetyMeshesAfter": 0,
+        "colliderCountBefore": 31,
+        "colliderCountAfter": 31,
+        "walkableCountBefore": 1,
+        "walkableCountAfter": 1,
+        "individualInheritedProxyCounts": {},
+        "stairTreadCountBefore": 0,
+        "stairTreadCountAfter": 0
+      },
+      "actualNavigation": {
+        "before": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "after": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      }
+    },
+    {
+      "id": "place-outer-west-f6d065a79b",
+      "name": "延寿堂",
+      "key": "yanshou",
+      "changes": {
+        "colliders": {
+          "before": "ed09d739d795c6850cd208719acba53d46985654796d15d21cea0164c7b55d1c",
+          "after": "9dc6d9611122a948299493ab07863794d496afe9a34b005953695476aef6f5d7",
+          "beforeValueSha256": "b76784eb9c0a1ac36f8e4a2cd89c141e15aac30ca66af7cd1b67d12706c6b31c",
+          "afterValueSha256": "aa0bc3d4223fb494dc493b6c734bdbbc1e1634c8515e5bde0aedcc63340f06d7",
+          "reasons": [
+            "column-bottom-radius"
+          ]
+        }
+      },
+      "componentEvidence": {
+        "contextColumnRoles": {
+          "yanshou-inset-front-house-column": 8
+        },
+        "safetyMeshesBefore": 0,
+        "safetyMeshesAfter": 0,
+        "colliderCountBefore": 31,
+        "colliderCountAfter": 31,
+        "walkableCountBefore": 1,
+        "walkableCountAfter": 1,
+        "individualInheritedProxyCounts": {},
+        "stairTreadCountBefore": 0,
+        "stairTreadCountAfter": 0
+      },
+      "actualNavigation": {
+        "before": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "after": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      }
+    },
+    {
+      "id": "place-outer-west-4b8e037269",
+      "name": "宝相楼",
+      "key": "baoxiang",
+      "changes": {
+        "geometry": {
+          "before": "9be97ac9a829d66ff5c0a99e01dab6baaecbad62f181c5fed70db809e1808973",
+          "after": "97fdfd84043d8a56e8cab4ff8436e5503a4e0fa57afd43a6344c2f42f1684a28",
+          "beforeValueSha256": "08045cde90a7441afdb8d8d6a0e3c087cfbf62a583c011af7fc930661609a398",
+          "afterValueSha256": "f970d615749fea31e06fb86b2b6307da607afe0fbc3e8b8916bbaa8d973a298c",
+          "reasons": [
+            "temple-visible-undercroft-guards",
+            "baoxiang-finer-treads",
+            "baoxiang-bottom-run"
+          ]
+        },
+        "meshes": {
+          "before": 1181,
+          "after": 1449,
+          "beforeValueSha256": "0252b081bda70b478f0131b310a93cb8d79086d785fb4ae392a8c5ffc3ddc5fe",
+          "afterValueSha256": "afd7745eb596901684c7c919fcd6554b281ce0bc43ffa17d86dbc3c951c60127",
+          "reasons": [
+            "temple-visible-undercroft-guards",
+            "baoxiang-finer-treads"
+          ]
+        },
+        "triangles": {
+          "before": 18556,
+          "after": 21772,
+          "beforeValueSha256": "bc4f1ebae15332fd66784d0fbe728446dc1a7e1409c8c2165bd30f5f8354ff7f",
+          "afterValueSha256": "a5772fa5b702c5428f0236138e2890280a2bde64334450b1770ab3bd5d38e5a1",
+          "reasons": [
+            "temple-visible-undercroft-guards",
+            "baoxiang-finer-treads"
+          ]
+        },
+        "colliders": {
+          "before": "05f87d5c9898ecb1a554947e54cd3c7b0a52536d3af3b8bdc9ab026c25b8d028",
+          "after": "7a8d2851cbfa308ba254b2ce79093b1caf60db9b55a827b5593e95c3b2ac1912",
+          "beforeValueSha256": "cd48f1d6ed8d928c5eb64bbefa72e96e2b262f205d84abf83a65899eb9f6a217",
+          "afterValueSha256": "c109b8f15d15d08ec3120ded0493b77930cda17e492db96125623b32c8ab563c",
+          "reasons": [
+            "column-bottom-radius",
+            "temple-visible-undercroft-guards",
+            "baoxiang-finer-treads",
+            "baoxiang-bottom-run",
+            "baoxiang-niche-grid-proxies"
+          ]
+        },
+        "walkables": {
+          "before": "640d727cc1ae4730e05b6c004f5076c5c95a735bfe969189d62c86349d53af49",
+          "after": "5f9e777574a5639ce83a1a6e847d09f11c7e181c06ac956802575f5fbf1bff6f",
+          "beforeValueSha256": "9b850e9659c82cf37110f65ac25770d15b55dfeaca72b11dd973f759a4b0a830",
+          "afterValueSha256": "a94e79bf9c7fd0a6a6b316ec9d758fe98f6b8f2b1bd3ad8ff857c85849b0a33f",
+          "reasons": [
+            "baoxiang-bottom-run"
+          ]
+        }
+      },
+      "componentEvidence": {
+        "contextColumnRoles": {
+          "baoxiang-column": 16,
+          "baoxiang-upper-column": 16
+        },
+        "safetyMeshesBefore": 0,
+        "safetyMeshesAfter": 28,
+        "colliderCountBefore": 607,
+        "colliderCountAfter": 815,
+        "walkableCountBefore": 77,
+        "walkableCountAfter": 77,
+        "individualInheritedProxyCounts": {},
+        "stairTreadCountBefore": 42,
+        "stairTreadCountAfter": 94
+      },
+      "actualNavigation": {
+        "before": "ff17faa2189c753369fbc91219a1e84fc6098301655b99d1a9f8d6c98cd954ed",
+        "after": "3c4a34a62eb9360e2c1893b32e203ff3189817b11d9166e054adf7027c99cd2e"
+      }
+    },
+    {
+      "id": "place-outer-west-e1a6e9852b",
+      "name": "吉云楼",
+      "key": "jiyun",
+      "changes": {
+        "colliders": {
+          "before": "4df11876b32d2583cc0a7e2a7b8578fccf0958751f7769f2e03b947b73dff5ec",
+          "after": "de6f1f6b952b43c53d2d9c1e074d04e7e3c18d4b8a53c93256ebd1c1593aa4f2",
+          "beforeValueSha256": "8b1f75683ad8a1681fd01b877e8fa8889c4003799d44daef769effac2b348d8c",
+          "afterValueSha256": "f8fec8e894bfc53590300ed65abbddb1ff66b3b76818ea1594f4a9d64bad0cb0",
+          "reasons": [
+            "column-bottom-radius"
+          ]
+        }
+      },
+      "componentEvidence": {
+        "contextColumnRoles": {
+          "jiyun-column": 16,
+          "jiyun-upper-column": 16
+        },
+        "safetyMeshesBefore": 0,
+        "safetyMeshesAfter": 0,
+        "colliderCountBefore": 211,
+        "colliderCountAfter": 211,
+        "walkableCountBefore": 3,
+        "walkableCountAfter": 3,
+        "individualInheritedProxyCounts": {},
+        "stairTreadCountBefore": 0,
+        "stairTreadCountAfter": 0
+      },
+      "actualNavigation": {
+        "before": "09e8fd0208e3cf5c51b970e60ff6e87948bc08255fc538d7356bd5a244f67533",
+        "after": "09e8fd0208e3cf5c51b970e60ff6e87948bc08255fc538d7356bd5a244f67533"
+      }
+    },
+    {
+      "id": "place-outer-west-930b046fd0",
+      "name": "慈荫楼",
+      "key": "ciyin",
+      "changes": {
+        "geometry": {
+          "before": "af0f6d0d96277280aa8b3eede296ff5258507908c707eccbfeb32327ac8310d1",
+          "after": "2f41c60c7f1a0cf17fd1b1022048406095ea59344cee489871b1642ee7bf1a2c",
+          "beforeValueSha256": "2f232757a4b067cae70b935a1f404bca64374fb2f53e81af853823641287f3dc",
+          "afterValueSha256": "1afc4a3860fa5b5e177b5f86b3313a2bba0a637551a68e34d5a0466ec76532aa",
+          "reasons": [
+            "temple-visible-undercroft-guards"
+          ]
+        },
+        "meshes": {
+          "before": 575,
+          "after": 593,
+          "beforeValueSha256": "fb84a9739699e1a2c6c56b5baa0a16047a4d845a5c6615ab9e18bafe688f45d6",
+          "afterValueSha256": "d4e33e2934280979f580a63f992daa7d0de2cd64a145d5c403a75c3dc5c0004e",
+          "reasons": [
+            "temple-visible-undercroft-guards"
+          ]
+        },
+        "triangles": {
+          "before": 10996,
+          "after": 11212,
+          "beforeValueSha256": "db18d8ca1116b3c57bf3ac2fd8fba70358923a9cfc48ae1fe13378fd46162007",
+          "afterValueSha256": "5a9b68ad8cf5063dff85a908bd79ce6458dada36c016bd7435a7f97bef3a05e6",
+          "reasons": [
+            "temple-visible-undercroft-guards"
+          ]
+        },
+        "colliders": {
+          "before": "891ca56070c16958678c51d7a3be402534f8cf8ffe151d3ed0a4558bd4f8b0ef",
+          "after": "791c352049a25f8c988ca60a45a25d9de50fe6120885b16dd668432e9e4d4c93",
+          "beforeValueSha256": "6d1c9b4f95764e511b99c3df2f805bb4a7efbeafeb9288cf4ed0124bb871f78f",
+          "afterValueSha256": "28f891cd65599c8843ba3985176fcad4d7192c504d45bd9cb4d7de5e29f8915d",
+          "reasons": [
+            "column-bottom-radius",
+            "temple-visible-undercroft-guards"
+          ]
+        }
+      },
+      "componentEvidence": {
+        "contextColumnRoles": {
+          "ciyin-column": 12,
+          "ciyin-upper-column": 12
+        },
+        "safetyMeshesBefore": 0,
+        "safetyMeshesAfter": 18,
+        "colliderCountBefore": 234,
+        "colliderCountAfter": 252,
+        "walkableCountBefore": 11,
+        "walkableCountAfter": 11,
+        "individualInheritedProxyCounts": {},
+        "stairTreadCountBefore": 21,
+        "stairTreadCountAfter": 21
+      },
+      "actualNavigation": {
+        "before": "a8cf0d59c7709fb14bd8741b99586b05deb53d4a46531c65fe424bb5ac651fef",
+        "after": "a8cf0d59c7709fb14bd8741b99586b05deb53d4a46531c65fe424bb5ac651fef"
+      }
+    },
+    {
+      "id": "place-outer-west-b9b85b682e",
+      "name": "慈宁宫",
+      "key": "cining",
+      "changes": {
+        "colliders": {
+          "before": "4e1f945e3e314d4ea73abad6aed4c0ee0db8aca0cc59ebf4ab2c4101ff1ffb03",
+          "after": "fff3793d3f308b988d2a84ff4e90304bf093827b49f02244a5927eca8b57032e",
+          "beforeValueSha256": "c767f559a3400ccfabce2a02da242ba839baf32029b1852442c82b4850489cd7",
+          "afterValueSha256": "f8fa5e665150159632e97bd8a1923791659b47cb92e8a0a1677d366c88e59b45",
+          "reasons": [
+            "column-bottom-radius"
+          ]
+        }
+      },
+      "componentEvidence": {
+        "contextColumnRoles": {
+          "cining-column": 16,
+          "cining-photo-partial-column": 4
+        },
+        "safetyMeshesBefore": 0,
+        "safetyMeshesAfter": 0,
+        "colliderCountBefore": 76,
+        "colliderCountAfter": 76,
+        "walkableCountBefore": 2,
+        "walkableCountAfter": 2,
+        "individualInheritedProxyCounts": {},
+        "stairTreadCountBefore": 0,
+        "stairTreadCountAfter": 0
+      },
+      "actualNavigation": {
+        "before": "bb1382d649292a2ec3addf29dcd9a80a1ae0192963564ab5d74e9da3e9e335f3",
+        "after": "bb1382d649292a2ec3addf29dcd9a80a1ae0192963564ab5d74e9da3e9e335f3"
+      }
+    },
+    {
+      "id": "place-outer-west-6cae88b6a2",
+      "name": "大佛堂",
+      "key": "dafotang",
+      "changes": {
+        "colliders": {
+          "before": "dd49990966ffebffa3b0731a4cbcdd497932482c7c721c65e0dd1d59304ac4e1",
+          "after": "8e0cc46b56e1555898c95afeb314eeec097cc3232d9ffcbeeca4126c173c94c0",
+          "beforeValueSha256": "c763f5952a6915eae30a2b9e89d6debb103111909b8846676c19650080d66b05",
+          "afterValueSha256": "79b243948655b67593ac0936ebb881b95a470c3dd3013891a3d3e6b8388076bd",
+          "reasons": [
+            "column-bottom-radius"
+          ]
+        }
+      },
+      "componentEvidence": {
+        "contextColumnRoles": {
+          "dafotang-column": 16
+        },
+        "safetyMeshesBefore": 0,
+        "safetyMeshesAfter": 0,
+        "colliderCountBefore": 80,
+        "colliderCountAfter": 80,
+        "walkableCountBefore": 2,
+        "walkableCountAfter": 2,
+        "individualInheritedProxyCounts": {},
+        "stairTreadCountBefore": 0,
+        "stairTreadCountAfter": 0
+      },
+      "actualNavigation": {
+        "before": "65dede32986a645660e9bb9fa0a09f80183ae83dd1a186e7a8dbe62339d4ae36",
+        "after": "65dede32986a645660e9bb9fa0a09f80183ae83dd1a186e7a8dbe62339d4ae36"
+      }
+    },
+    {
+      "id": "place-outer-west-12beb1bb0e",
+      "name": "延春阁",
+      "key": "yanchun",
+      "changes": {
+        "colliders": {
+          "before": "b8de39cd5f731c0e777a8278964fa800cec48d58d2a2563a1cd2b72bdac54694",
+          "after": "3e5177750d621f250838a56fbc3a01875d7f750127e5455421566115610e081e",
+          "beforeValueSha256": "fe50ae261fabfd09c65342bbd8f423be4a9252f403b39fa4e091e1e989fb634f",
+          "afterValueSha256": "888ebe03da73bcae09efa878fbcc69935a0429da3ee7b799e620646c6983d1f7",
+          "reasons": [
+            "column-bottom-radius"
+          ]
+        }
+      },
+      "componentEvidence": {
+        "contextColumnRoles": {
+          "yanchun-column": 12,
+          "yanchun-lower-side-column": 8,
+          "yanchun-fitted-floor-support-post": 8,
+          "yanchun-upper-three-bay-column": 12
+        },
+        "safetyMeshesBefore": 0,
+        "safetyMeshesAfter": 0,
+        "colliderCountBefore": 281,
+        "colliderCountAfter": 281,
+        "walkableCountBefore": 4,
+        "walkableCountAfter": 4,
+        "individualInheritedProxyCounts": {},
+        "stairTreadCountBefore": 0,
+        "stairTreadCountAfter": 0
+      },
+      "actualNavigation": {
+        "before": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "after": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      }
+    },
+    {
+      "id": "place-outer-west-aad07de044",
+      "name": "寿安宫",
+      "key": "shouan",
+      "changes": {
+        "colliders": {
+          "before": "25ef347506db2d243f08f9abff962b1852a07513a3074319d4386b44d0aa8ad7",
+          "after": "8c3c1f4a81e96fa0599450df137d0bae799ae46b2a2f5ebff956bb8e326c2372",
+          "beforeValueSha256": "5972d4b10f87754e48d33b7222db29fbc7c13ea90094716055aeb4901d03e3e1",
+          "afterValueSha256": "b9ea80f3b517b0266c025ef0a07fe2d506daf70ebd9ea572981d4dacbdf3df06",
+          "reasons": [
+            "column-bottom-radius"
+          ]
+        }
+      },
+      "componentEvidence": {
+        "contextColumnRoles": {
+          "shouan-column": 12
+        },
+        "safetyMeshesBefore": 0,
+        "safetyMeshesAfter": 0,
+        "colliderCountBefore": 93,
+        "colliderCountAfter": 93,
+        "walkableCountBefore": 3,
+        "walkableCountAfter": 3,
+        "individualInheritedProxyCounts": {},
+        "stairTreadCountBefore": 0,
+        "stairTreadCountAfter": 0
+      },
+      "actualNavigation": {
+        "before": "6ff99ce6f6ea9c937754d6a9f4d0ab1f69fcef9debe61e698d9361b0edbab07c",
+        "after": "6ff99ce6f6ea9c937754d6a9f4d0ab1f69fcef9debe61e698d9361b0edbab07c"
+      }
+    }
+  ],
+  "acceptedBaoxiangAccessFit": {
+    "bottomRunExtensionMetres": 0.05,
+    "maxTreadRiseFitMetres": 0.09,
+    "treadsPerFlightBefore": 21,
+    "treadsPerFlightAfter": 47,
+    "status": "REVERSIBLE_MODEL_ACCESS_FIT_NOT_HISTORICAL_STEP_COUNT",
+    "rejectedPrototype": {
+      "bottomRunExtensionMetres": 0.65,
+      "reason": "Blocked original end-door access; withdrawn before this approved delta"
+    }
+  },
+  "verification": {
+    "targeted": {
+      "command": "node --test tests/r48-outer-first18-retention.test.mjs tests/r48-outer-safety-retention.test.mjs",
+      "tests": 54,
+      "passed": 54,
+      "failed": 0
+    },
+    "currentStateSuite": {
+      "command": "npm run test:current-state",
+      "tests": 1038,
+      "passed": 946,
+      "failed": 92,
+      "status": "FAILED_NOT_A_PROJECT_WIDE_PASS",
+      "failureNames": [
+        "tests/current-state/gate-ground-door-source-guard.test.mjs",
+        "tests/current-state/gate-plaque-source-guard.test.mjs",
+        "src/scene/RoofBuilder.js: no roof/builder/camera-constant edit in the visibility fix after exact V14 leaf normalization",
+        "src/scene/PalaceBuilder.js: no roof/builder/camera-constant edit in the visibility fix after exact V14 leaf normalization",
+        "tests/current-state/qinan-exterior-routes.test.mjs",
+        "main.js: exact named R15 feature delta retains every R13 byte outside scope",
+        "src/scene/Environment.js: exact named R15 feature delta retains every R13 byte outside scope",
+        "src/ui/Minimap.js: exact named R15 feature delta retains every R13 byte outside scope",
+        "R31 combines only the ten reviewed source changes and four added product files against 2be1751",
+        "R31 restores exact R30 PalaceBuilder before the untouched older source chain",
+        "R31 aliases retain exact older R6 catalog and source contracts without changing old fixtures",
+        "historical R32 exported bytes, source/profile and all 27 collision/walking proxies remain bound",
+        "tests/current-state/r31-qianqing-scene.test.mjs",
+        "main.js: exact interaction delta restores R30 and rejects unregistered edits",
+        "src/scene/flight/FlightTour.js: exact interaction delta restores R30 and rejects unregistered edits",
+        "near exact crest geometry reverses only five registered crowns; all other bytes remain identical",
+        "far exact crest geometry reverses only five registered crowns; all other bytes remain identical",
+        "actual same-count rebuilt crest from unknown source never acquires the frozen geometry exception",
+        "independent full crest capture binds exact total budget and byte-identical navigation through every old entry point",
+        "crest scene binding rejects unknown equal-count geometry, costs, collisions, partial restoration and runtime mutations",
+        "src/ui/Minimap.js: follow-through reverses only exact full bytes and seven unique review hunks",
+        "unregistered paths and changed epochs cannot acquire a follow-through exception",
+        "R25 unchanged exact product inventory rejects extra, missing and duplicate paths",
+        "R26 unchanged exact product inventory rejects extra, missing and duplicate paths",
+        "R26 frieze unchanged exact product inventory rejects extra, missing and duplicate paths",
+        "R27 unchanged exact product inventory rejects extra, missing and duplicate paths",
+        "R28 unchanged exact product inventory rejects extra, missing and duplicate paths",
+        "R29 unchanged exact product inventory rejects extra, missing and duplicate paths",
+        "R30 unchanged exact product inventory rejects extra, missing and duplicate paths",
+        "near complete geometry including UVs remains byte-identical to independent 898b4e6",
+        "far complete geometry including UVs remains byte-identical to independent 898b4e6",
+        "actual frieze capture restores only metadata; all older exact scene entry points remain connected",
+        "frieze metadata binding rejects geometry, material, budget, collision, partial and runtime mutations",
+        "historical R32 resident scene binds every captured byte and its retained resident cost",
+        "historical R32 ordered navigation retains every frozen collider and walking surface",
+        "only the exact complete R32 capture restores the complete frozen R31 capture and all earlier entrypoints",
+        "both complete capture identities reject unregistered costs, topology, fields and geometry/material identities",
+        "registered JSON runtime exceptions retain exact R31 values and never allow arbitrary omitted fields or negative zero",
+        "unknown ordered collisions and walking surfaces never receive historical restoration, including at the R30 bridge",
+        "fixed: exact current descriptors restore only registered R31 changes for historical comparisons",
+        "auto: exact current descriptors restore only registered R31 changes for historical comparisons",
+        "current automatic set removes the fictional Yanxi room route and adds all three real Huangji openings",
+        "near central UV restoration exactly matches independent afb geometry; all other bytes remain equal",
+        "far central UV restoration exactly matches independent afb geometry; all other bytes remain equal",
+        "exact current capture restores independently rebuilt afb then original R32; navigation and costs remain unchanged",
+        "UV and metadata bridges reject unknown fields, changed values, partial reversals and runtime exceptions",
+        "historical R27/R28 retained-driver guards bind all three exact R32 test-source deltas",
+        "data/places/zh-CN.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+        "data/zones/east-six.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+        "data/zones/ningshou.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+        "data/zones/west-six.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+        "main.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+        "src/scene/Environment.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+        "src/scene/PalaceBuilder.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+        "src/scene/flight/FlightEnvelope.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+        "src/scene/palace/kit.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+        "src/scene/zones/ZoneBase.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+        "src/ui/Minimap.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+        "src/ui/Teleport.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+        "src/utils/Collision.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+        "tests/lib/auto-routes.mjs: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+        "tests/lib/world.mjs: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+        "tests/stepwalk.cjs: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+        "older source guard entry chains consume R32 only through exact full-byte dispatch",
+        "tests/current-state/r33-flight-envelope-retention.test.mjs",
+        "tests/current-state/r33-scene-retention.test.mjs",
+        "data/zones/west-six.json: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation",
+        "src/scene/PalaceBuilder.js: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation",
+        "src/scene/zones/ZoneBase.js: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation",
+        "src/ui/ModelFidelity.js: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation",
+        "existing R32 and older strict source chains dispatch only complete registered R33 identities",
+        "src/scene/palace/special/ChuxiuHall.js: added R33 source or binary is independently byte-bound and never reversed",
+        "R33 product inventory admits exactly two runtime modules and two GLBs after checking all source/provenance and asset bindings",
+        "unknown paths, inherited property names and older epochs cannot acquire an R33 exception",
+        "tests/current-state/r34-flight-envelope-retention.test.mjs",
+        "Frozen R34 lighting-only checkpoint reverses to R33 and rejects mutations: src/scene/Environment.js",
+        "tests/current-state/r34-scene-retention.test.mjs",
+        "data/zones/west-six.json: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input",
+        "src/scene/Environment.js: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input",
+        "src/scene/PalaceBuilder.js: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input",
+        "src/scene/zones/ZoneBase.js: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input",
+        "tests/lib/world.mjs: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input",
+        "later integrated fixes preserve only the exact original lighting checkpoint and never normalize unknown sources",
+        "R35 binds the complete raw finish scope, independent R34 sources, unchanged product inventory and all previous fixtures",
+        "src/scene/palace/kit.js: raw R35 bytes restore only the independently frozen R34 identity and reject every mutated candidate",
+        "src/scene/zones/ZoneBase.js: raw R35 bytes restore only the independently frozen R34 identity and reject every mutated candidate",
+        "every retained production and provenance file remains byte-exact, including binary assets",
+        "protected sources match V7 with only the exact accepted skyline, V9 map/gate, V10 lifecycle and V13 entry deltas",
+        "tests/current-state/taihe-core-geometry.test.mjs",
+        "tests/current-state/taihe-core-source-guard.test.mjs",
+        "tests/current-state/wumen-vertical-source-guard.test.mjs",
+        "V7 historical routes retain exact descriptors with only the later Qin’an and R6 Ningshou replacements isolated"
+      ],
+      "checkoutBase": "56fd3e90fa9bfbc56784888ec8ac3db723e76ab6",
+      "checkout": "r48-worker-outer",
+      "ownerIntegrationStatus": "NOT_RUN_AGAINST_OWNER_CURRENT_INTEGRATED_CHECKOUT"
+    },
+    "scopeNote": "The 92 historical source/scene/route-guard failures were observed in r48-worker-outer at base 56fd3e90fa9bfbc56784888ec8ac3db723e76ab6, not in the owner current integrated checkout. They are not established as new regressions from this safety delta. Complete attribution was outside this retention-only task. No old fixtures, source guards or production modules were modified to obtain a pass."
+  },
+  "followupDeltas": [
+    {
+      "id": "wenyuan-entry-clearance-followup",
+      "fromModuleSha256": "793100dc22cf801751ffd8a8e93be43d58ccfa17c79d49fe4701f225898a6290",
+      "toModuleSha256": "a3baa8766f7e2df13f98fb53802a5d3332082983d652b540c1599d44fe792f91",
+      "priorLedgerBindings": {
+        "sourceChangesSha256": "028ce45d9c72062493a31b3cabf0d8718640ae4c9fedfe51660f2520fe3b4952",
+        "recordsSha256": "cd06306a925b8ccc0dded887f81a537200778e775c61a441154c1da2dfc5f691",
+        "sourceHelpersSha256": "3a81145fdfde621c7ddfd90c977d21b5cf1c4b8b56a7d1ed88e6b192cc98722a",
+        "baselineSha256": "775e324adfb49dfb9ffcaf125f3dc40ba3ffe9df91d6141d9df03805fb1af826",
+        "verificationSha256": "a95f0513cc5ee06d453bdeb70ca6773d6b1337ef43ced85f385136e1a96797f9"
+      },
+      "reason": "A full entrance replay exposed inherited 0.72 m sill body penetration before the platform supported the feet. The accepted reversible fit adds a visible 0.09 m tread without intruding beyond the static bridge north end, adds only its cap-backed walk surface, and retreats only the unsurveyed sill front 0.08 m. Sill width/height/rear, platform, pond/bridge route, original colliders and every other mesh remain retained.",
+      "sourceChanges": [
+        {
+          "id": "wenyuan-visible-entry-clearance",
+          "edits": [
+            {
+              "before": "  const middleBounds={x0:-19.82,x1:19.82,z0:-8.55,z1:8.55},upperBounds={x0:-19.08,x1:19.08,z0:-7.64,z1:7.64};",
+              "after": "  // R48 visible entry fit: the retained 0.22 m sill reaches the player's body\n  // before the original platform reaches their feet. Extend only this door's\n  // stone tread and retreat only the unsurveyed sill front by .08 m; keep its\n  // width, height and rear edge, the platform and pond/bridge route untouched.\n  // The last .06 m of support is the existing projecting stone cap, not air.\n  const entryWidth=item.w/item.bays-.68,entryAxis=-item.w/12;\n  const oldSills=f.children.filter(n=>n.isMesh&&materialKey(kit,n.material)==='wenyuan_sourced_green_wood_columns'&&Math.abs(n.position.x-entryAxis)<1e-8&&Math.abs(n.position.y-(item.ph+.11))<1e-8&&Math.abs(n.position.z-g.front)<1e-8);\n  if(oldSills.length!==1)throw Error('R48 Wenyuan requires its single retained front sill');\n  const entrySill=oldSills[0];entrySill.geometry.scale(1,1,.22/.30);entrySill.position.z+=.04;\n  Object.assign(entrySill.userData,{r48EntrySafetyFit:'MODEL_ACCESS_SAFETY_FIT_NOT_HISTORIC_OBJECT',originalDepth:.30,fittedDepth:.22,frontRetreat:.08});\n  const capFront=-item.d/2-item.pad-.06,entryToe=capFront-.09,entryTop=item.ph+.01;\n  box('wenyuan-access-safety-entry-tread',kit.lib.material('stone_slab'),entryWidth,entryTop,.09,entryAxis,entryTop/2,capFront-.045,false,{source:null,status:'MODEL_ACCESS_SAFETY_FIT_NOT_HISTORIC_OBJECT',originalSillWidthHeightRearRetained:true});\n  kit.walkBox(f,entryAxis-entryWidth/2,entryToe,entryAxis+entryWidth/2,capFront+.06,entryTop);\n  kit.walkables.at(-1).rescue=false;\n  const accessSafetyEntryStep={status:'MODEL_ACCESS_SAFETY_FIT_NOT_HISTORIC_OBJECT',source:null,extension:.09,top:entryTop,x0:entryAxis-entryWidth/2,x1:entryAxis+entryWidth/2,z0:entryToe,z1:capFront,retainedCapSupportEnd:capFront+.06,originalPlatform:'RETAINED_UNMODIFIED',sillFit:{oldDepth:.30,newDepth:.22,frontRetreat:.08,widthHeightRear:'RETAINED_UNMODIFIED'},bodyRadiusClearance:.08};\n  const middleBounds={x0:-19.82,x1:19.82,z0:-8.55,z1:8.55},upperBounds={x0:-19.08,x1:19.08,z0:-7.64,z1:7.64};",
+              "beforeSourceSha256": "50a7b3e407d39e538420b8333e653875affd1da5509031e342a7dbb87349fabe",
+              "afterSourceSha256": "ac6466fc1a0647472b5e2b88526852a5f5a90be156bc910a99f54fa18d8a6b87"
+            },
+            {
+              "before": "inheritedFacadeProxies,accessSafetyGuards:g.accessSafetyGuards",
+              "after": "inheritedFacadeProxies,accessSafetyEntryStep,accessSafetyGuards:g.accessSafetyGuards",
+              "beforeSourceSha256": "50c0b72dedd8aec582f5acae5086744b6572d22583182c57188792f6b6dc87cf",
+              "afterSourceSha256": "dd30a40f79a4f3e428f788149744d9a5a82c756a34d2d1884feb21dd22a1f732"
+            }
+          ],
+          "effects": [
+            {
+              "id": "place-outer-east-fd3d76e74d",
+              "name": "文渊阁",
+              "fields": [
+                "geometry",
+                "meshes",
+                "triangles",
+                "walkables"
+              ],
+              "actualNavigationChanged": false
+            }
+          ]
+        }
+      ],
+      "records": [
+        {
+          "id": "place-outer-east-fd3d76e74d",
+          "name": "文渊阁",
+          "key": "wenyuan",
+          "changes": {
+            "geometry": {
+              "before": "1c94bc3fb69f2ade61bf8d7890ff22a19e39e60d3d0c717079f3de525b64ec8b",
+              "after": "3b32001f73b749faa34ca8a94e5a423ea43d748cf4815a35d70d7024b996580d",
+              "beforeValueSha256": "2b699c6f083e1576571c130fe4ddd0b97ef93dc75cd7d6c30db46adc6b259051",
+              "afterValueSha256": "78e5c5ad444eb6e25d719273e307b3b7a1769c8a33fc977ab676ba9d047e58ea",
+              "reasons": [
+                "wenyuan-visible-entry-clearance"
+              ]
+            },
+            "meshes": {
+              "before": 689,
+              "after": 690,
+              "beforeValueSha256": "fc4fb94d36f45aa9d13358022455e55db4b6f0eb536a1b2897c90dfd3df9eb9b",
+              "afterValueSha256": "f6103ca1e01bd200a9258a366b7e8c22a542e771bf11a0679967a5bb47ef3688",
+              "reasons": [
+                "wenyuan-visible-entry-clearance"
+              ]
+            },
+            "triangles": {
+              "before": 10488,
+              "after": 10500,
+              "beforeValueSha256": "92a84a2e05ddd8e8c07043d232bc8e8db07d065d5f616563d02309ef5408bef9",
+              "afterValueSha256": "751965f4d8a6e3fe5fa61c1df1cf71bfb2699dc391ae5dd9e94df1b93a35bf12",
+              "reasons": [
+                "wenyuan-visible-entry-clearance"
+              ]
+            },
+            "walkables": {
+              "before": "4e3123f2b87a74b8b0624ebf65c4f363597cbd81e3afd358195161a72a2392ba",
+              "after": "d765b0c0a62e19a69d9571df927d5d24313ac784f68887da9c67eed5aad8f968",
+              "beforeValueSha256": "362cfb23ef0cc423df2c203015af6a2578d0044e65ffdac495d9b4ffcf4d64fe",
+              "afterValueSha256": "5dc6abdc8a24f481175e420e0be5529caaf7e46df2e4ed78a05f5bfa60174246",
+              "reasons": [
+                "wenyuan-visible-entry-clearance"
+              ]
+            }
+          },
+          "componentEvidence": {
+            "inheritedFrontSill": {
+              "before": {
+                "fingerprint": "e7cdaa0543396c78a83d0b361c73d1e574f2442b55656e432f8cb8c1f74fa320",
+                "position": [
+                  -3.375,
+                  0.61,
+                  -8.95
+                ],
+                "localBounds": {
+                  "min": [
+                    -6.4100000858306885,
+                    0.5000000005960464,
+                    -9.100000005960464
+                  ],
+                  "max": [
+                    -0.3399999141693115,
+                    0.7199999994039535,
+                    -8.799999994039535
+                  ]
+                },
+                "worldBounds": {
+                  "min": [
+                    -192.9100000858307,
+                    0.5000000005960464,
+                    -141.90000000596046
+                  ],
+                  "max": [
+                    -186.8399999141693,
+                    0.7199999994039535,
+                    -141.59999999403954
+                  ]
+                },
+                "geometryPositionsSha256": "3b77d9ed36b6aa88fbb84d5bebd105048885ce5221469f3f4b09779dae7116a5"
+              },
+              "after": {
+                "fingerprint": "422cdf2af7ec9ba7acd3ae25c86a801890b09729ee82d1c3ad1f93c242285429",
+                "position": [
+                  -3.375,
+                  0.61,
+                  -8.91
+                ],
+                "localBounds": {
+                  "min": [
+                    -6.4100000858306885,
+                    0.5000000005960464,
+                    -9.020000006854534
+                  ],
+                  "max": [
+                    -0.3399999141693115,
+                    0.7199999994039535,
+                    -8.799999993145466
+                  ]
+                },
+                "worldBounds": {
+                  "min": [
+                    -192.9100000858307,
+                    0.5000000005960464,
+                    -141.82000000685454
+                  ],
+                  "max": [
+                    -186.8399999141693,
+                    0.7199999994039535,
+                    -141.59999999314547
+                  ]
+                },
+                "geometryPositionsSha256": "36772c2f02362ed090f6d68ccc1a335e2cfc7e3952b11ecf1e296d61c77d4dde"
+              }
+            },
+            "newVisibleEntryTread": {
+              "fingerprint": "8698085e9521ef4673864fbba37316e2ef8d96c5dac13ed89e3f6a30dedf8f86",
+              "position": [
+                -3.375,
+                0.255,
+                -9.555
+              ],
+              "localBounds": {
+                "min": [
+                  -6.4100000858306885,
+                  4.768371586472142e-09,
+                  -9.600000001788139
+                ],
+                "max": [
+                  -0.3399999141693115,
+                  0.5099999952316284,
+                  -9.50999999821186
+                ]
+              },
+              "worldBounds": {
+                "min": [
+                  -192.9100000858307,
+                  4.768371586472142e-09,
+                  -142.40000000178816
+                ],
+                "max": [
+                  -186.8399999141693,
+                  0.5099999952316284,
+                  -142.30999999821188
+                ]
+              },
+              "geometryPositionsSha256": "b7909e74d7ea0db55e346d281379dc2b7df82a4d7cd85ef7c6c773b6f263c9a1"
+            },
+            "allOtherMeshFingerprintsSha256": "503313c36f67f66880d38f11b85bae7b7ef642b82233efdfbea5cf0782b4c97c",
+            "walkableCount": {
+              "before": 29,
+              "after": 30
+            },
+            "newSupport": {
+              "index": 1,
+              "value": {
+                "type": "box",
+                "box": {
+                  "isBox3": true,
+                  "min": {
+                    "x": -192.91,
+                    "y": 0.51,
+                    "z": -142.4
+                  },
+                  "max": {
+                    "x": -186.84,
+                    "y": 0.51,
+                    "z": -142.25
+                  }
+                },
+                "rescue": false
+              }
+            },
+            "actualNavigation": {
+              "before": "24d195bb2d504734b574ae5c405b94bca3683f81c231a4ba3a451dc8ead4b483",
+              "after": "24d195bb2d504734b574ae5c405b94bca3683f81c231a4ba3a451dc8ead4b483"
+            },
+            "entryMetadata": {
+              "status": "MODEL_ACCESS_SAFETY_FIT_NOT_HISTORIC_OBJECT",
+              "source": null,
+              "extension": 0.09,
+              "top": 0.51,
+              "x0": -6.41,
+              "x1": -0.33999999999999986,
+              "z0": -9.6,
+              "z1": -9.51,
+              "retainedCapSupportEnd": -9.45,
+              "originalPlatform": "RETAINED_UNMODIFIED",
+              "sillFit": {
+                "oldDepth": 0.3,
+                "newDepth": 0.22,
+                "frontRetreat": 0.08,
+                "widthHeightRear": "RETAINED_UNMODIFIED"
+              },
+              "bodyRadiusClearance": 0.08
+            }
+          }
+        }
+      ],
+      "verification": {
+        "status": "PASSED_EXPLICIT_APPEND_CHAIN",
+        "retentionOnly": {
+          "command": "node --test tests/r48-outer-safety-retention.test.mjs",
+          "tests": 61,
+          "passed": 61,
+          "failed": 0
+        },
+        "combined": {
+          "command": "node --test tests/r48-outer-first18-retention.test.mjs tests/r48-outer-safety-retention.test.mjs",
+          "tests": 79,
+          "passed": 79,
+          "failed": 0
+        },
+        "fullWorldReplay": {
+          "status": "REPORTED_BY_PARENT_AND_REVIEW_ARTIFACT_NOT_RERUN_BY_THIS_RETENTION_TASK",
+          "report": "docs/current-state/r48-remaining/outer-entry-fix-report.json",
+          "review": "docs/current-state/r48-remaining/outer-entry-fix-review.md",
+          "worldBaseCommit": "fcde072",
+          "tests": 297,
+          "passed": 297,
+          "failed": 0,
+          "successfulSubstepVisibleBodyContacts": 0
+        },
+        "scopeNote": "Previous root verification remains unchanged as the 793100dc stage. The earlier 440-test result is not relabelled as a result for this entry follow-up."
+      }
+    }
+  ]
+}

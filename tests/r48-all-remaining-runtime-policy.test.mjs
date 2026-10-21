@@ -1,0 +1,21 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {registerHooks} from 'node:module';
+import {buildWorld} from './lib/world.mjs';
+const hooks=registerHooks({load(u,c,n){return n(u,u.endsWith('.json')?{...c,importAttributes:{...c.importAttributes,type:'json'}}:c);}});
+const {Teleport}=await import('../src/ui/Teleport.js');const {PALACE_LAYOUT}=await import('../src/scene/Layout.js');hooks.deregister();
+const baseline=JSON.parse(readFileSync(new URL('./fixtures/r48-r47-remaining-landing-policy.json',import.meta.url))),W=await buildWorld(),t=Object.create(Teleport.prototype);
+t.targets=new Map(W.halls.map(h=>[h.item.name,h.item]));
+for(const item of PALACE_LAYOUT)if(['palace','gate','garden'].includes(item.type)&&!t.targets.has(item.name))t.targets.set(item.name,{name:item.name,x:item.position.x,z:item.position.z,d:item.dimensions.depth});
+for(const item of W.mapItems)if(item.name&&item.kind!=='corridor'&&!t.targets.has(item.name))t.targets.set(item.name,item);
+t.collisionManager=W.cm;
+t.zoneManager={getMapItems:()=>W.mapItems,getLoadedIds:()=>W.zones.map(z=>z.json.id),loaded:new Map(W.zones.map(z=>{const names=new Set(z.json.items.map(i=>i.name));return[z.json.id,{data:{mapItems:W.mapItems.filter(m=>names.has(m.name))}}];}))};
+assert.equal(baseline.rows.length,70);assert.equal(baseline.rows.filter(r=>r.registered).length,66);
+for(const row of baseline.rows)test(`R48 ${row.name} retains actual R47 destination availability and safe runtime landing policy`,()=>{
+ assert.equal(t.targets.has(row.name),row.registered,'No silently lost destination or unreviewed new automatic destination');
+ if(!row.registered)return;
+ assert.equal(row.safe,true,'R47 baseline safe landing');const p=t.resolveLanding(row.name),g=t.geometryFor(row.name);
+ assert.ok(p,`${row.name}: no safe runtime landing`);assert.equal(t.isSafe(p,g),true);
+ assert.ok(Number.isFinite(p.x)&&Number.isFinite(p.z)&&Number.isFinite(p.y));
+});

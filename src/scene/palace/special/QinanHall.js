@@ -22,6 +22,7 @@ export function buildQinanHall(kit,item){
   solid('qinan-column-base','stone_slab',a.columnFootWidth,base-floor,a.columnFootWidth,x,(base+floor)/2,z);
  }
  for(const p of g.mainBody.perimeterColumns)column('qinan-main-column',p.x,p.z,a.columnRadius,g.levels.eaveColumnTop);
+ for(const p of g.mainBody.goldenColumns)column('qinan-golden-column',p.x,p.z,a.columnRadius,g.levels.goldenColumnNetTop);
  for(const x of g.southAnnex.columnXs)column('qinan-annex-column',x,g.southAnnex.frontZ,g.southAnnex.skin.columnRadius,g.southAnnex.columnTopY);
  const wallH=g.levels.eaveColumnTop-floor;
  solid('qinan-north-wall','wall_red',b.width,wallH,a.wallThickness,0,floor+wallH/2,b.zs.at(-1),{evidence:'SOURCE_DERIVED_CONTINUOUS_PLAN_WALL',currentDoorState:'UNKNOWN'});
@@ -34,7 +35,7 @@ export function buildQinanHall(kit,item){
  for(let i=0;i<5;i++){const left=b.xs[i]+n.skin.columnRadius,right=b.xs[i+1]-n.skin.columnRadius;solid('qinan-annex-front-panel','lattice_doors',right-left,nh,nt,(left+right)/2,floor+nh/2,n.frontZ,{bay:i+1,status:'PROVISIONAL_CLOSED_PREVIEW_PANEL',currentDoorState:'UNKNOWN'});}
  for(const sign of [-1,1])solid('qinan-annex-side-panel','lattice_doors',nt,nh,n.rearZ-n.frontZ,sign*b.width/2,floor+nh/2,(n.frontZ+n.rearZ)/2,{status:'PROVISIONAL_CLOSED_PREVIEW_PANEL',sideDoorEvidence:'UNRESOLVED'});
  // Plain painted beam/frieze bands convey tier heights without claiming the
- // unresolved complete dougong or interior golden-column topology.
+ // unresolved complete dougong; four inner columns are separately source-derived.
  for(const z of [b.zs[0],b.zs.at(-1)])box('qinan-main-beam','caihua_beam',b.width+a.beamLengthExtension,a.beamHeight,a.beamWidth,0,g.levels.eaveColumnTop-a.beamHeight/2,z);
  for(const sign of [-1,1])box('qinan-main-beam','caihua_beam',a.beamWidth,a.beamHeight,b.depth,sign*b.width/2,g.levels.eaveColumnTop-a.beamHeight/2,0);
  box('qinan-annex-beam','caihua_beam',b.width+a.beamLengthExtension,a.annexBeamHeight,a.beamWidth,0,n.columnTopY-a.annexBeamHeight/2,n.frontZ);

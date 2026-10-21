@@ -31,7 +31,7 @@ export class PlaceInfoPanel {
     if (place?.canonicalName && place.canonicalName !== name) this.element.appendChild(element('p', `资料所用名称：${place.canonicalName}`, 'place-note'));
     if (place?.evidenceNote) this.element.appendChild(element('p', factText(place.evidenceNote), 'place-note'));
     this.element.appendChild(element('p', place?.summary.text ?? '此地点的详细介绍尚未收录。', 'place-summary'));
-    const fidelity=modelFidelityFor(name)??modelFidelityFor(place?.canonicalName);
+    const fidelity=modelFidelityFor(name,place?.id)??modelFidelityFor(place?.canonicalName);
     if(fidelity){this.element.appendChild(element('h3','本版模型说明'));this.element.appendChild(element('p',fidelity.detail,'place-note'));}
     if (canTravel) {
       const button = element('button', place?.modelExperience.actionLabel ?? '前往此处');

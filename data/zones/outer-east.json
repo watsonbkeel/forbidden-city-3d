@@ -1,31 +1,343 @@
 {
   "id": "outer-east",
   "name": "外东路",
-  "bounds": {"x0": -382, "x1": -131.95, "z0": -400, "z1": 111.5},
-  "neighbors": ["axis-courts", "ningshou"],
+  "southTreeProfile": "wenhua-approach",
+  "bounds": {
+    "x0": -382,
+    "x1": -131.95,
+    "z0": -400,
+    "z1": 111.5
+  },
+  "neighbors": [
+    "axis-courts",
+    "ningshou"
+  ],
   "items": [
-    {"kind": "gate", "name": "文华门", "x": -186.3, "z": -245.2, "style": "hall", "w": 33.1, "source": "D1", "gateKind": "five-bay", "structureStatus": "provisional-preserved-baseline"},
-    {"kind": "courtWalls", "x0": -219, "x1": -149.5, "z0": -245.2, "z1": -156, "h": 7, "gates": [{"side": "s", "at": -186.3, "gate": "文华门"}]},
-    {"kind": "hall", "name": "文华殿", "x": -186.4, "z": -186.1, "w": 37.5, "d": 50.5, "colH": 7.68, "roof": "xieshan", "enter": true, "interior": "A:palace-front", "source": "D1"},
-    {"kind": "hall", "name": "主敬殿", "x": -186, "z": -165, "w": 26, "d": 10, "colH": 6.72, "roof": "xieshan", "enter": true, "interior": "A:palace-front", "source": "estimated"},
-    {"kind": "hall", "name": "本仁殿", "x": -212.2, "z": -224.2, "w": 10.3, "d": 26.7, "colH": 5.6, "roof": "gable", "source": "D1"},
-    {"kind": "hall", "name": "集义殿", "x": -159.6, "z": -223.5, "w": 11.6, "d": 26.6, "colH": 5.6, "roof": "gable", "source": "D1"},
-    {"kind": "region", "name": "文华殿院", "x0": -219, "x1": -149.5, "z0": -245.2, "z1": -150, "source": "D1"},
-    {"kind": "courtWalls", "x0": -219, "x1": -149.5, "z0": -150, "z1": -115, "h": 7, "gates": [{"side": "s", "at": -186.5, "w": 12}], "source": "interim"},
-    {"kind": "hall", "name": "文渊阁", "x": -186.5, "z": -132.8, "w": 40.5, "d": 17.9, "colH": 10.24, "roof": "xieshan", "layers": 2, "source": "D1"},
-    {"kind": "region", "name": "文渊阁院", "x0": -219, "x1": -149.5, "z0": -150, "z1": -115, "source": "D1"},
-    {"kind": "gate", "name": "南三所宫门", "x": -285, "z": 20, "w": 12, "source": "D1"},
-    {"kind": "courtWalls", "x0": -335, "x1": -234, "z0": 20, "z1": 100, "h": 7, "gates": [{"side": "s", "at": -285, "gate": "南三所宫门"}]},
-    {"kind": "hall", "name": "南三所西所前殿", "x": -251.8, "z": 39, "w": 15.4, "d": 10.6, "colH": 5.04, "roof": "gable", "enter": true, "source": "D1"},
-    {"kind": "hall", "name": "南三所西所后殿", "x": -251.8, "z": 68.9, "w": 19, "d": 10.3, "colH": 5.04, "roof": "gable", "source": "D1"},
-    {"kind": "hall", "name": "南三所中所前殿", "x": -285.4, "z": 39, "w": 15.4, "d": 10.6, "colH": 5.04, "roof": "gable", "enter": true, "source": "D1"},
-    {"kind": "hall", "name": "南三所中所后殿撷芳殿", "x": -285.1, "z": 68.9, "w": 19, "d": 10.3, "colH": 5.04, "roof": "gable", "enter": true, "interior": "A:hall", "source": "D1"},
-    {"kind": "hall", "name": "南三所东所前殿", "x": -317.4, "z": 39, "w": 15.4, "d": 10.6, "colH": 5.04, "roof": "gable", "enter": true, "source": "D1"},
-    {"kind": "hall", "name": "南三所东所后殿", "x": -317, "z": 68.9, "w": 19, "d": 10.3, "colH": 5.04, "roof": "gable", "source": "D1"},
-    {"kind": "region", "name": "南三所", "x0": -335, "x1": -234, "z0": 20, "z1": 100, "source": "D1"},
-    {"kind": "hall", "name": "箭亭", "x": -154.7, "z": 78.8, "w": 31.5, "d": 17.6, "colH": 8, "roof": "xieshan", "open": true, "enter": false, "source": "D1"},
-    {"kind": "region", "name": "箭亭", "x0": -175, "x1": -135, "z0": 60, "z1": 100, "source": "D1"},
-    {"kind": "cityGate", "cityGateProfile": "east-west", "name": "东华门", "x": -365.8, "z": -257, "rot": "east"},
-    {"kind": "region", "name": "东华门", "x0": -376.5, "x1": -355, "z0": -272, "z1": -242, "source": "D1"}
+    {
+      "kind": "gate",
+      "name": "文华门",
+      "x": -186.3,
+      "z": -245.2,
+      "style": "hall",
+      "w": 33.1,
+      "source": "D1",
+      "gateKind": "five-bay",
+      "structureStatus": "official-topology-reversible-model-fit",
+      "southGateProfile": "wenhua"
+    },
+    {
+      "kind": "courtWalls",
+      "x0": -219,
+      "x1": -149.5,
+      "z0": -245.2,
+      "z1": -156,
+      "h": 7,
+      "gates": [
+        {
+          "side": "s",
+          "at": -186.3,
+          "gate": "文华门"
+        },
+        {
+          "side": "n",
+          "at": -186.5,
+          "w": 8,
+          "source": "Wenyuan pond bridge interface; fitted aperture"
+        }
+      ]
+    },
+    {
+      "kind": "hall",
+      "name": "文华殿",
+      "x": -186.4,
+      "z": -199,
+      "w": 30.8,
+      "d": 17,
+      "colH": 7.68,
+      "roof": "xieshan",
+      "enter": true,
+      "interior": "empty",
+      "source": "official-topology-plus-retained-D1-group-envelope-fit",
+      "pad": 0.8,
+      "ph": 1.2,
+      "bays": 5,
+      "backDoor": true,
+      "throne": false,
+      "structure": "south-court-hall",
+      "southCourtProfile": "wenhua-front",
+      "dimensionStatus": "OFFICIAL_TOPOLOGY_REVERSIBLE_MODEL_FIT"
+    },
+    {
+      "kind": "hall",
+      "name": "主敬殿",
+      "x": -186.4,
+      "z": -167,
+      "w": 26,
+      "d": 12,
+      "colH": 6.72,
+      "roof": "xieshan",
+      "enter": true,
+      "interior": "empty",
+      "source": "official-topology-plus-retained-D1-group-envelope-fit",
+      "pad": 0.8,
+      "ph": 1.2,
+      "bays": 5,
+      "backDoor": true,
+      "throne": false,
+      "structure": "south-court-hall",
+      "southCourtProfile": "wenhua-rear",
+      "dimensionStatus": "OFFICIAL_TOPOLOGY_REVERSIBLE_MODEL_FIT"
+    },
+    {
+      "kind": "hall",
+      "name": "本仁殿",
+      "x": -212.2,
+      "z": -224.2,
+      "w": 26.7,
+      "d": 10.3,
+      "colH": 5.6,
+      "roof": "gable",
+      "source": "D1",
+      "rot": "west",
+      "bays": 5,
+      "ph": 0.5,
+      "interior": "empty"
+    },
+    {
+      "kind": "hall",
+      "name": "集义殿",
+      "x": -159.6,
+      "z": -223.5,
+      "w": 26.6,
+      "d": 11.6,
+      "colH": 5.6,
+      "roof": "gable",
+      "source": "D1",
+      "rot": "east",
+      "bays": 5,
+      "ph": 0.5,
+      "interior": "empty"
+    },
+    {
+      "kind": "region",
+      "name": "文华殿院",
+      "x0": -219,
+      "x1": -149.5,
+      "z0": -245.2,
+      "z1": -150,
+      "source": "D1"
+    },
+    {
+      "kind": "courtWalls",
+      "x0": -219,
+      "x1": -149.5,
+      "z0": -156,
+      "z1": -115,
+      "h": 7,
+      "gates": [
+        {
+          "side": "s",
+          "at": -184.25,
+          "w": 69.5,
+          "source": "shared south partition is owned once by Wenhua north wall"
+        }
+      ],
+      "source": "interim"
+    },
+    {
+      "kind": "hall",
+      "name": "文渊阁",
+      "x": -186.5,
+      "z": -132.8,
+      "w": 40.5,
+      "d": 17.9,
+      "colH": 4.45,
+      "roof": "xieshan",
+      "source": "D1",
+      "structure": "wenyuan-pavilion",
+      "bays": 6,
+      "ph": 0.5,
+      "pad": 0.5,
+      "interior": "empty",
+      "throne": false,
+      "enter": true,
+      "dimensionStatus": "OFFICIAL_TOPOLOGY_REVERSIBLE_MODEL_FIT"
+    },
+    {
+      "kind": "region",
+      "name": "文渊阁院",
+      "x0": -219,
+      "x1": -149.5,
+      "z0": -150,
+      "z1": -115,
+      "source": "D1"
+    },
+    {
+      "kind": "gate",
+      "name": "南三所宫门",
+      "x": -285,
+      "z": 20,
+      "w": 12,
+      "source": "D1"
+    },
+    {
+      "kind": "courtWalls",
+      "x0": -335,
+      "x1": -234,
+      "z0": 20,
+      "z1": 100,
+      "h": 7,
+      "gates": [
+        {
+          "side": "s",
+          "at": -285,
+          "gate": "南三所宫门"
+        }
+      ]
+    },
+    {
+      "kind": "hall",
+      "name": "南三所西所前殿",
+      "x": -251.8,
+      "z": 39,
+      "w": 15.4,
+      "d": 10.6,
+      "colH": 5.04,
+      "roof": "gable",
+      "enter": true,
+      "source": "D1"
+    },
+    {
+      "kind": "hall",
+      "name": "南三所西所后殿",
+      "x": -251.8,
+      "z": 68.9,
+      "w": 19,
+      "d": 10.3,
+      "colH": 5.04,
+      "roof": "gable",
+      "source": "D1"
+    },
+    {
+      "kind": "hall",
+      "name": "南三所中所前殿",
+      "x": -285.4,
+      "z": 39,
+      "w": 15.4,
+      "d": 10.6,
+      "colH": 5.04,
+      "roof": "gable",
+      "enter": true,
+      "source": "D1"
+    },
+    {
+      "kind": "hall",
+      "name": "南三所中所后殿撷芳殿",
+      "x": -285.1,
+      "z": 68.9,
+      "w": 19,
+      "d": 10.3,
+      "colH": 5.04,
+      "roof": "gable",
+      "enter": true,
+      "interior": "A:hall",
+      "source": "D1"
+    },
+    {
+      "kind": "hall",
+      "name": "南三所东所前殿",
+      "x": -317.4,
+      "z": 39,
+      "w": 15.4,
+      "d": 10.6,
+      "colH": 5.04,
+      "roof": "gable",
+      "enter": true,
+      "source": "D1"
+    },
+    {
+      "kind": "hall",
+      "name": "南三所东所后殿",
+      "x": -317,
+      "z": 68.9,
+      "w": 19,
+      "d": 10.3,
+      "colH": 5.04,
+      "roof": "gable",
+      "source": "D1"
+    },
+    {
+      "kind": "region",
+      "name": "南三所",
+      "x0": -335,
+      "x1": -234,
+      "z0": 20,
+      "z1": 100,
+      "source": "D1"
+    },
+    {
+      "kind": "hall",
+      "name": "箭亭",
+      "x": -154.7,
+      "z": 78.8,
+      "w": 31.5,
+      "d": 17.6,
+      "colH": 8,
+      "roof": "xieshan",
+      "open": false,
+      "enter": true,
+      "source": "D1",
+      "structure": "enclosed-pavilion",
+      "enclosureProfile": "arrow-enclosed-gallery-fit-v1",
+      "bays": 5,
+      "ph": 0.9,
+      "pad": 1
+    },
+    {
+      "kind": "region",
+      "name": "箭亭",
+      "x0": -175,
+      "x1": -135,
+      "z0": 60,
+      "z1": 100,
+      "source": "D1"
+    },
+    {
+      "kind": "cityGate",
+      "cityGateProfile": "east-west",
+      "name": "东华门",
+      "x": -365.8,
+      "z": -257,
+      "rot": "east"
+    },
+    {
+      "kind": "region",
+      "name": "东华门",
+      "x0": -376.5,
+      "x1": -355,
+      "z0": -272,
+      "z1": -242,
+      "source": "D1"
+    },
+    {
+      "kind": "hall",
+      "x": -186.4,
+      "z": -181.75,
+      "w": 8.8,
+      "d": 17.5,
+      "colH": 5.9,
+      "pad": 0,
+      "ph": 1.2,
+      "bays": 1,
+      "roof": "gable",
+      "enter": true,
+      "backDoor": true,
+      "throne": false,
+      "structure": "south-court-hall",
+      "southCourtProfile": "wenhua-connector",
+      "interior": "empty",
+      "dimensionStatus": "OFFICIAL_TOPOLOGY_REVERSIBLE_MODEL_FIT",
+      "source": "official-topology-plus-retained-D1-group-envelope-fit"
+    }
   ]
 }

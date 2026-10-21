@@ -89,8 +89,11 @@ async function buildRoutes() {
   const baoheNorthCrossZ=r1(bh+baoheDepthGrid(baohe.dimensions.depth).rearDoorZ+baohePostRadius+.5+.25);
   const {captureBaoheFrontCrossing}=await import(pathToFileURL(path.join(ROOT,'tests/lib/baohe-front-route.mjs')).href);
   const baoheFrontCrossZ=captureBaoheFrontCrossing().crossZ;
+  const {captureTaihemenSouth,taihemenSouthPoints}=await import(pathToFileURL(path.join(ROOT,'tests/lib/taihemen-approach-route.mjs')).href);
+  const taihemenSouth=taihemenSouthPoints(captureTaihemenSouth(),1);
+  taihemenSouth.forEach(p=>exactGatePoints.add(p));
   const AXIS_ROUTES = [
-    ['午门→太和门', [[0, L.START_POSITION.z], [0, L.TAIHE_GATE_Z + GATE_CLEAR]]],
+    ['午门→太和门', [[0, L.START_POSITION.z], ...taihemenSouth, [0, L.TAIHE_GATE_Z + GATE_CLEAR]]],
     ['太和门→太和殿内', [[0, L.TAIHE_GATE_Z + GATE_CLEAR], [10.5, L.TAIHE_GATE_Z + GATE_CLEAR], ...taiheFront]],
     // 过殿门时走中间一间（x≈0），进殿后从宝座侧面绕过；各殿取点相对殿心
     ['太和殿→中和殿→保和殿', [[0, 3], [0, 0], [TAIHE_DETOUR_X, 0], [TAIHE_DETOUR_X, 16], [0, 16.5],
@@ -120,13 +123,21 @@ async function buildRoutes() {
   const STREET_E = -63.3;           // 东一长街中线（x −72.4 ~ −54.25）
   const JIHUA_Z = 410;              // 基化门（东一长街内墙门，zones/garden 墙洞 at 410；anchors 未收录）
   const xhTransit = gateTransit('协和门'), xiTransit = gateTransit('熙和门');
+  const {southCourtGateGeometry}=await import(pathToFileURL(path.join(ROOT,'src/scene/palace/special/SouthCourtGates.js')).href);
+  const {southWaterProfile}=await import(pathToFileURL(path.join(ROOT,'src/scene/palace/special/SouthWaterSystem.js')).href);
+  const southZones=['outer-east','outer-west'].map(id=>JSON.parse(fs.readFileSync(path.join(ROOT,`data/zones/${id}.json`),'utf8')));
+  const courtWalk=court=>{const items=southZones.find(z=>z.id===(court==='wenhua'?'outer-east':'outer-west')).items,gate=items.find(i=>i.southGateProfile===court),g=southCourtGateGeometry(gate),h=items.find(i=>i.southCourtProfile===`${court}-front`),x=h.x,side=court==='wenhua'?11:5,frontTurnZ=h.z-(court==='wuying'?5.95:6);return[[gate.x,g.southToe-2],[gate.x,g.northToe+2],[x,g.northToe+2],[x,h.z-h.d/2-h.pad-h.ph*1.6-1],[x,frontTurnZ],[x+side,frontTurnZ],[x+side,h.z+5.7],[x,h.z+5.7]];};
+  const wenhuaWalk=courtWalk('wenhua'),wuyingWalk=courtWalk('wuying'),wuyingBridge=southWaterProfile(PALACE_LAYOUT.find(i=>i.type==='river')).bridges.find(b=>b.id==='wuying-2');
+  // The new river makes the old unbridged north-side doglegs impossible.
+  // Keep route identities, use an actual five-bridge crossing before each
+  // side gate, then the documented southern access road and courtyard gates.
+  const xhEntry=[[-30,-298],[-30,-324],[xhTransit[0][0],-324],...xhTransit];
+  const xiEntry=[[30,-298],[30,-324],[xiTransit[0][0],-324],...xiTransit];
   const SIDE_ROUTES = [
-    ['协和门→文华门→文华殿内', [[-30, xh.z], [-30,-280],[-80,-280], ...xhTransit, [wh.x, wh.z - 8], [whd.x, whd.z - kitIn + 2],
-      [whd.x - KIT_DETOUR_X, whd.z - kitIn + 2], [whd.x - KIT_DETOUR_X, r1(whd.z + KIT_D / 2 - 1.2)]]],
-    ['协和门→东华门→出宫', [[-30, xh.z], [-30,-280],[-80,-280], ...xhTransit, [dh.x + 25, dh.z], [L.BOUNDARY.minX + 10, dh.z]]],
-    ['熙和门→武英门→武英殿内', [[30, xi.z], [30,-280],[80,-280], ...xiTransit, [wy.x, wy.z - 8], [wy.x, wy.z + 8], [wyd.x, wyd.z - kitIn + 2]]],
-    // 南薰殿院（z ≤ −286.6）与武英殿院（z ≥ −249.8）之间斜穿
-    ['熙和门→西华门→出宫', [[30, xi.z], [30,-280],[80,-280], ...xiTransit, [xhm.x - 25, xhm.z], [L.BOUNDARY.maxX - 10, xhm.z]]],
+    ['协和门→文华门→文华殿内', [...xhEntry,[wh.x,xh.z],...wenhuaWalk]],
+    ['协和门→东华门→出宫', [...xhEntry,[-308,xh.z],[-308,dh.z],[-332,dh.z],[dh.x+25,dh.z],[L.BOUNDARY.minX+10,dh.z]]],
+    ['熙和门→武英门→武英殿内', [...xiEntry,[wy.x,xi.z],[wuyingBridge.x,wuyingBridge.z-wuyingBridge.length/2-2],...wuyingWalk]],
+    ['熙和门→西华门→出宫', [...xiEntry,[250,xi.z],[250,-284],[282,-284],[282,xhm.z],[xhm.x-25,xhm.z],[L.BOUNDARY.maxX-10,xhm.z]]],
     // 起点在三台（半宽 65）以东的广场地面
     ['左翼门→文渊阁一带', [[-75, zy.z], [zy.x - GATE_CLEAR - 3, zy.z]]],
     ['内左门→东一长街→景仁宫内', [[nz.x, nz.z - GATE_CLEAR], [nz.x, jrm.z - 7], [jrm.x, jrm.z - 7], [jrm.x, jrm.z + 7], [jrg.x, jrg.z - 2]]],
@@ -162,9 +173,10 @@ async function buildRoutes() {
     ['后左门过(台外)', [[-72, 110], [A['后左门'].x, 110], [A['后左门'].x, 140]]],
     // P0c-2 step3 修复守护：养心殿院北墙与永寿门/太极门之间的东西夹道、文华殿院与文渊阁院之间的夹道
     ['西一长街→夹道→永寿门', [[ny.x - 2.4, A['永寿门'].z - 2.8], [A['永寿门'].x, A['永寿门'].z - 2.8], [A['永寿门'].x, A['永寿门'].z + 8]]],
-    ['文华殿院北夹道→文渊阁院', [[whd.x + 36.4, -153], [A['文渊阁'].x, -153], [A['文渊阁'].x, -145]]],
+    ['文华殿院北夹道→文渊阁院', [[-174,-158.8],[-186.5,-158.8],[-186.5,-156.3],[-186.5,-143.2],[-189.875,-143.2],[-189.875,-140.75]]],
   ];
-  const round = rs => rs.map(([n, pts]) => [n, pts.map(p => (exactGatePoints.has(p) || exactKunningPoints.has(p) || taiheFront.includes(p) || zhongheApproach.south.points.includes(p) || zhongheApproach.north.points.includes(p)) ? p : [r1(p[0]), r1(p[1])])]);
+  const r36Physical=new Set(['协和门→文华门→文华殿内','协和门→东华门→出宫','熙和门→武英门→武英殿内','熙和门→西华门→出宫','文华殿院北夹道→文渊阁院']);
+  const round = rs => rs.map(([n, pts]) => r36Physical.has(n)?[n,pts,{waypointDriver:'physical-crossing-v1'}]:[n, pts.map(p => (exactGatePoints.has(p) || exactKunningPoints.has(p) || taiheFront.includes(p) || zhongheApproach.south.points.includes(p) || zhongheApproach.north.points.includes(p)) ? p : [r1(p[0]), r1(p[1])])]);
   return { AXIS_ROUTES: round(AXIS_ROUTES), SIDE_ROUTES: round([...SIDE_ROUTES, ...EXTRA_ROUTES]) };
 }
 
@@ -175,6 +187,7 @@ async function buildRoutes() {
   const which = process.argv[4] || 'axis';
   const ALL = [...AXIS_ROUTES, ...SIDE_ROUTES];
   const ROUTES_RUN = which === 'side' ? SIDE_ROUTES : which === 'all' ? ALL : which === 'axis' ? AXIS_ROUTES : ALL.filter(([n]) => n.includes(which));
+  if(process.env.DUMP_JSON){console.log(JSON.stringify(ROUTES_RUN.map(([name,pts,options])=>({name,pts,...options}))));process.exit(0);}
   if (process.env.DUMP) { for (const [n, p] of ROUTES_RUN) console.log(n, JSON.stringify(p)); process.exit(0); }
   // 执行器与 stepwalk-auto.cjs 共用（tests/lib/stepwalk-runner.cjs，逻辑与 P0c-2 版本相同，只多记录分区事件）
   const { browser, page } = await openPage();

@@ -1,3 +1,5 @@
+import { southWaterProfile } from '../../src/scene/palace/special/SouthWaterSystem.js';
+import { PALACE_LAYOUT } from '../../src/scene/Layout.js';
 // 从 data/zones/*.json 自动生成 stepwalk 路线（T-2）。
 //   区内路线：每座有名、enter:true（非敞厅）的殿 → 它的院门（院落 courtWalls 的门；不在院落里则取殿正面方向最近的门）
 //     → 门外（夹道/街上）→ 门内 → 殿前台阶外 2 m → 殿内 1 m → 原路返回门外
@@ -179,13 +181,23 @@ function throughFrontHall(W, zone, H2, target, targetInside, plan) {
     const tg = hallGeom(target);
     if (g.rot !== 0 || tg.rot !== 0) throw Error('Huangji side route requires current registered orientation');
     const front = g.toW(g.doorX, -(g.PD / 2 + g.run + HALL_FRONT));
-    const targetFront = tg.toW(tg.doorX, -(tg.PD / 2 + tg.run + HALL_FRONT));
+    const targetApproach = tg.r48Approach?.map(p=>[p.x,p.z]);
+    const targetFront = targetApproach?.[0] ?? tg.toW(tg.doorX, -(tg.PD / 2 + tg.run + HALL_FRONT));
     for (const side of ['东', '西']) {
       const wall = zone.items.find(i => i.kind === 'wall' && i.name === `皇极殿${side}隔墙`);
       const gap = wall?.gaps?.find(i => i.name === `${side}垂花门通道暂拟`);
       if (!gap || gap.w < 1 || wall.from[1] !== wall.to[1]) continue;
-      const pts = [front, [gap.at, front[1]], [gap.at, targetFront[1]], targetFront, targetInside];
-      if (!pts.slice(1).every((p, i) => legOk(W, pts[i], p))) continue;
+      const pts = [front, [gap.at, front[1]], [gap.at, targetFront[1]], targetFront, ...(targetApproach?.slice(1) ?? [targetInside])];
+      // R48's source-backed raised offset entrance has multiple support stages.
+      // Carry actual feet between segments; restarting each raised segment at
+      // courtyard height falsely rejects its real connected platform.
+      let feet = W.cm.getGroundHeight(front[0], front[1], 0), clear = true;
+      for (let i = 1; i < pts.length; i++) {
+        const leg = walkStraight(W, pts[i - 1], pts[i], { feet0: feet });
+        if (leg.reached < leg.total - 0.5) { clear = false; break; }
+        feet = leg.feet;
+      }
+      if (!clear) continue;
       plan.push(`皇极殿 S 金柱与后台座占据旧穿殿线 → 经既有${side}侧垂花门通道（位置暂拟）绕至宁寿宫前`);
       return {front, pts:pts.slice(1)};
     }
@@ -223,6 +235,34 @@ export function zoneRoutes(W, zone) {
   const out = [];
   const halls = zone.items.filter(i => i.kind === 'hall');
   for (const h of halls) {
+    if(h.structure==='enclosed-pavilion'&&h.enclosureProfile==='arrow-enclosed-gallery-fit-v1'){
+      // Arrow is outside the South Three Compounds. The nearest-gate fallback
+      // entered that court then crossed its solid east wall. Exit through the
+      // existing south gate first, follow the exterior lane, then turn north.
+      // This is a collision-tested model approach, not a historic visitor route.
+      const gate=zone.items.find(i=>i.kind==='gate'&&i.name==='南三所宫门');
+      if(zone.id!=='outer-east'||!gate||h.rot)throw Error('Arrow approach requires registered outer-east south-facing identities');
+      const gg=gateGeom(gate),outsideZ=gate.z-gg.front-2;
+      const go=[[gate.x,gate.z+gg.rear+2],[gate.x,outsideZ],[h.x,outsideZ],
+        [h.x,h.z-h.d/2-h.pad-h.ph*1.6-HALL_FRONT],[h.x,h.z-h.d/2+3]];
+      if(!go.slice(1).every((p,i)=>legOk(W,go[i],p)))throw Error('Arrow exterior-gate approach is obstructed');
+      out.push({name:`[${zone.id}] ${gate.name}外南侧夹道→${h.name}→返回`,zone:zone.id,gate:gate.name,hall:h.name,
+        enclosureApproach:'arrow-exit-court-south-v1',waypointDriver:'physical-crossing-v1',via:'existing gate opening and south exterior lane',
+        plan:['Exit the South Three Compounds through its real south gate; never cross its east wall. Then use Arrow central model entrance.'],pts:[...go,...go.slice(0,-1).reverse()]});continue;
+    }
+    if(h.structure==='south-court-hall'){
+      if(!h.name)continue;
+      const p=hallGeom(h).southCourt,court=p.court,front=zone.items.find(i=>i.southCourtProfile===`${court}-front`),rear=zone.items.find(i=>i.southCourtProfile===`${court}-rear`),gate=zone.items.find(i=>i.southGateProfile===court),gg=gateGeom(gate),x=front.x,side=court==='wenhua'?11:5;
+      const bridge=court==='wuying'?southWaterProfile(PALACE_LAYOUT.find(i=>i.type==='river')).bridges.find(b=>b.id==='wuying-2'):null;
+      const frontTurnZ=front.z-(court==='wuying'?5.95:6); // clear actual opened exhibition doors before lateral movement
+      const go=[bridge?[bridge.x,bridge.z-bridge.length/2-2]:[gate.x,gate.z-gg.front-2],[gate.x,gate.z+gg.rear+2],[x,gate.z+gg.rear+2],[x,front.z-front.d/2-front.pad-front.ph*1.6-1],[x,frontTurnZ],[x+side,frontTurnZ],[x+side,front.z+5.7],[x,front.z+5.7]];
+      if(p.part==='rear')go.push([x,rear.z-(court==='wenhua'?5.6:5)],...(court==='wenhua'?[[x+2.3,rear.z-4.8],[x+2.3,rear.z-.5]]:[]),[x,rear.z-.5]);
+      out.push({name:`[${zone.id}] ${gate.name}→${h.name}→返回`,zone:zone.id,gate:gate.name,hall:h.name,southCourtProfile:h.southCourtProfile,waypointDriver:'physical-crossing-v1',via:'source-specific dated exhibition circulation',plan:['Keep fitted steps and source-backed exhibition obstructions. Walk around the front island/enclosure and the rear circular display, never through them.'],pts:[...go,...go.slice(0,-1).reverse()]});continue;
+    }
+    if(h.structure==='wenyuan-pavilion'){
+      const g=hallGeom(h).wenyuan,go=g.navigation.points.map(p=>[p.x,p.z]);
+      out.push({name:`[${zone.id}] 文渊阁池桥→${h.name}→返回`,zone:zone.id,gate:'文渊阁池桥',hall:h.name,waypointDriver:'physical-crossing-v1',wenyuanApproach:true,via:'pond bridge and north-bank turn',plan:['Six-bay pavilion: turn on the real north bank rather than continuing through the central column.'],pts:[...go,...go.slice(0,-1).reverse()]});continue;
+    }
     if (h.structure === 'qinan-hall' || h.qinanProfile !== undefined) {
       const hg = hallGeom(h), n = hg.navigation;
       const gate = zone.items.find(i => i.kind === 'gate' && i.name === '坤宁门');
@@ -241,8 +281,8 @@ export function zoneRoutes(W, zone) {
     const plan = [];
     const hg = hallGeom(h);
     const approach = hg.profile?.approaches.frontLeft;
-    let tail = approach ? approach.worldPoints.map(p => [p.x, p.z]) : [
-      hg.toW(hg.doorX, -(hg.PD / 2 + hg.run + HALL_FRONT)), hg.toW(hg.doorX, -(hg.d / 2 - 1)),
+    let tail = hg.r48Approach ? hg.r48Approach.map(p=>[p.x,p.z]) : approach ? approach.worldPoints.map(p => [p.x, p.z]) : [
+      hg.toW(hg.doorX, -(hg.PD / 2 + hg.run + HALL_FRONT)), hg.toW(hg.doorX, h.ritualProfile==='xianruo-enclosed-baoxia-dated-cabinets-v1' ? -7.8 : -(hg.d / 2 - 1)),
     ];
     let hallFront = tail[0];
     const inside = tail.at(-1);
@@ -309,7 +349,15 @@ export function crossRoutes(W, zones) {
   const street1 = item('garden', '东一长街', 'region'), street2 = item('east-six', '东二长街', 'region');
   const xq = item('ningshou', '锡庆门'), hj = item('ningshou', '皇极门'), hjd = item('ningshou', '皇极殿', 'hall');
   if (![nz, jy, jr, jrg, fx, street1, street2, xq, hj, hjd].every(Boolean)) return [];
-  const front = h => { const g = hallGeom(h); return g.toW(g.doorX, -(g.PD / 2 + g.run + HALL_FRONT)); };
+  const front = h => {
+    const g = hallGeom(h);
+    // These inherited cross-zone journeys end at Huangji's exterior center
+    // viewpoint, not its newly selected first (east-secondary) entry portal.
+    // Retain the gate-axis journey rather than cutting diagonally through the
+    // NingShou gate wall on the way to that lateral door.
+    const x = h.name === '皇极殿' && g.r48Approach ? 0 : g.doorX;
+    return g.toW(x, -(g.PD / 2 + g.run + HALL_FRONT));
+  };
   const xqG = gateGeom(xq), jyG = gateGeom(jy), fxG = gateGeom(fx);
   const s1x = (street1.x0 + street1.x1) / 2, s2x = (street2.x0 + street2.x1) / 2;
   const southOfCourts = fx.z - fxG.half - 6;

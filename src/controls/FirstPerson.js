@@ -108,7 +108,7 @@ export class FirstPersonControls {
         if (this.mapOpen) return;
         if (e.target?.closest?.('button, a, input, select, textarea, [role="button"]')) return;
         if (!this.controls.isLocked) {
-          this.controls.lock();
+          try { this.lock(); } catch { /* Keep the click-to-start overlay available. */ }
         }
       };
       this.domElement.addEventListener('click', this._onClick);
@@ -652,7 +652,12 @@ export class FirstPersonControls {
    */
   lock() {
     if (!this.isMobile) {
-      this.controls.lock();
+      // Three's wrapper discards the native Promise. Return it so mode handoffs
+      // can distinguish an actual lock from an asynchronous browser rejection.
+      // Legacy click/map callers may ignore it without an unhandled rejection.
+      const request = this.domElement.requestPointerLock();
+      request?.catch?.(() => {});
+      return request;
     }
   }
   

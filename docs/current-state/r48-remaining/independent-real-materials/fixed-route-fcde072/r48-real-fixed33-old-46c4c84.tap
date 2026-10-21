@@ -1,0 +1,916 @@
+✖ all 33 fixed routes retain real-controller passage: 60 fps, sprint=false (5899.076567ms)
+✖ all 33 fixed routes retain real-controller passage: 60 fps, sprint=true (2820.284198ms)
+✖ all 33 fixed routes retain real-controller passage: 10 fps, sprint=false (2424.861069ms)
+✖ all 33 fixed routes retain real-controller passage: 10 fps, sprint=true (2377.476031ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17390.36387
+
+✖ failing tests:
+
+test at tests/auto-routes.test.mjs:171:3
+✖ all 33 fixed routes retain real-controller passage: 60 fps, sprint=false (5899.076567ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     arrived: false,
+  +     driver: {
+  +       brakingFrames: 0,
+  +       crossings: [
+  +         {
+  +           hit: [
+  +             30,
+  +             -324
+  +           ],
+  +           index: 1,
+  +           lateralDistance: 0,
+  +           point: [
+  +             30,
+  +             -324
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             85.15,
+  +             -324
+  +           ],
+  +           index: 2,
+  +           lateralDistance: 0,
+  +           point: [
+  +             85.15,
+  +             -324
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             85.15,
+  +             -301.1
+  +           ],
+  +           index: 3,
+  +           lateralDistance: 0,
+  +           point: [
+  +             85.15,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             87.14998786119548,
+  +             -301.08357298197996
+  +           ],
+  +           index: 4,
+  +           lateralDistance: 0.0164270225050736,
+  +           point: [
+  +             87.15,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             104.89998772712043,
+  +             -301.08575464708935
+  +           ],
+  +           index: 5,
+  +           lateralDistance: 0.014245358197438152,
+  +           point: [
+  +             104.9,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             116.5,
+  +             -301.08718041284527
+  +           ],
+  +           index: 6,
+  +           lateralDistance: 0.012819587154751844,
+  +           point: [
+  +             116.5,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             134.25,
+  +             -301.08936207796506
+  +           ],
+  +           index: 7,
+  +           lateralDistance: 0.010637922034959502,
+  +           point: [
+  +             134.25,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             136.25,
+  +             -301.08960789938703
+  +           ],
+  +           index: 8,
+  +           lateralDistance: 0.010392100612989452,
+  +           point: [
+  +             136.25,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             220.8,
+  +             -301.1
+  +           ],
+  +           index: 9,
+  +           lateralDistance: 0,
+  +           point: [
+  +             220.8,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             220.81275225058926,
+  +             -286.03
+  +           ],
+  +           index: 10,
+  +           lateralDistance: 0.01275225058924434,
+  +           point: [
+  +             220.8,
+  +             -286.03
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             220.80674631852227,
+  +             -262.83
+  +           ],
+  +           index: 11,
+  +           lateralDistance: 0.006746318522260708,
+  +           point: [
+  +             220.8,
+  +             -262.83
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             220.8,
+  +             -236.77
+  +           ],
+  +           index: 12,
+  +           lateralDistance: 0,
+  +           point: [
+  +             220.8,
+  +             -236.77
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             219.5,
+  +             -236.77
+  +           ],
+  +           index: 13,
+  +           lateralDistance: 0,
+  +           point: [
+  +             219.5,
+  +             -236.77
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             219.49358336071236,
+  +             -211.52009969635714
+  +           ],
+  +           index: 14,
+  +           lateralDistance: 0.006417413740071813,
+  +           point: [
+  +             219.5,
+  +             -211.51999999999998
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             219.5,
+  +             -205.5
+  +           ],
+  +           index: 15,
+  +           lateralDistance: 0,
+  +           point: [
+  +             219.5,
+  +             -205.5
+  +           ]
+  +         }
+  +       ],
+  +       endpointSettleSeconds: 2
+  +     },
+  +     end: [
+  +       221.66656082879584,
+  +       -205.49963878851858,
+  +       1.2
+  +     ],
+  +     maxFeet: 2.62,
+  +     maxSpeed: 5.00000000000049,
+  +     name: '熙和门→武英门→武英殿内',
+  +     startFeet: 0,
+  +     stuckAt: [
+  +       224.5,
+  +       -205.5
+  +     ]
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-audit-real-46c4c84/tests/auto-routes.test.mjs:182:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { name: '熙和门→武英门→武英殿内', arrived: false, stuckAt: [Array], startFeet: 0, maxFeet: 2.62, maxSpeed: 5.00000000000049, driver: [Object], end: [Array] } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/auto-routes.test.mjs:171:3
+✖ all 33 fixed routes retain real-controller passage: 60 fps, sprint=true (2820.284198ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     arrived: false,
+  +     driver: {
+  +       brakingFrames: 111,
+  +       crossings: [
+  +         {
+  +           hit: [
+  +             30,
+  +             -324
+  +           ],
+  +           index: 1,
+  +           lateralDistance: 0,
+  +           point: [
+  +             30,
+  +             -324
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             85.15,
+  +             -324
+  +           ],
+  +           index: 2,
+  +           lateralDistance: 0,
+  +           point: [
+  +             85.15,
+  +             -324
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             85.15,
+  +             -301.1
+  +           ],
+  +           index: 3,
+  +           lateralDistance: 0,
+  +           point: [
+  +             85.15,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             87.15,
+  +             -301.0739970267083
+  +           ],
+  +           index: 4,
+  +           lateralDistance: 0.02600297329172463,
+  +           point: [
+  +             87.15,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             104.9,
+  +             -301.0774504705986
+  +           ],
+  +           index: 5,
+  +           lateralDistance: 0.022549529401430846,
+  +           point: [
+  +             104.9,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             116.5,
+  +             -301.07970736914126
+  +           ],
+  +           index: 6,
+  +           lateralDistance: 0.020292630858762095,
+  +           point: [
+  +             116.5,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             134.25,
+  +             -301.08316081303184
+  +           ],
+  +           index: 7,
+  +           lateralDistance: 0.016839186968184094,
+  +           point: [
+  +             134.25,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             136.25,
+  +             -301.0835499334701
+  +           ],
+  +           index: 8,
+  +           lateralDistance: 0.016450066529898777,
+  +           point: [
+  +             136.25,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             220.79180629693653,
+  +             -301.09999840583134
+  +           ],
+  +           index: 9,
+  +           lateralDistance: 0.008193703218564231,
+  +           point: [
+  +             220.8,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             220.79372576056426,
+  +             -286.03
+  +           ],
+  +           index: 10,
+  +           lateralDistance: 0.006274239435754225,
+  +           point: [
+  +             220.8,
+  +             -286.03
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             220.79668074137848,
+  +             -262.83
+  +           ],
+  +           index: 11,
+  +           lateralDistance: 0.0033192586215307074,
+  +           point: [
+  +             220.8,
+  +             -262.83
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             220.8,
+  +             -236.77
+  +           ],
+  +           index: 12,
+  +           lateralDistance: 0,
+  +           point: [
+  +             220.8,
+  +             -236.77
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             219.50902271338398,
+  +             -236.7699205946016
+  +           ],
+  +           index: 13,
+  +           lateralDistance: 0.009023062785265008,
+  +           point: [
+  +             219.5,
+  +             -236.77
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             219.50173702822195,
+  +             -211.51999999999998
+  +           ],
+  +           index: 14,
+  +           lateralDistance: 0.0017370282219530964,
+  +           point: [
+  +             219.5,
+  +             -211.51999999999998
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             219.5,
+  +             -205.5
+  +           ],
+  +           index: 15,
+  +           lateralDistance: 0,
+  +           point: [
+  +             219.5,
+  +             -205.5
+  +           ]
+  +         }
+  +       ],
+  +       endpointSettleSeconds: 2
+  +     },
+  +     end: [
+  +       221.56995787607585,
+  +       -205.49999989975535,
+  +       1.2
+  +     ],
+  +     maxFeet: 2.62,
+  +     maxSpeed: 12.000000000001675,
+  +     name: '熙和门→武英门→武英殿内',
+  +     startFeet: 0,
+  +     stuckAt: [
+  +       224.5,
+  +       -205.5
+  +     ]
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-audit-real-46c4c84/tests/auto-routes.test.mjs:182:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { name: '熙和门→武英门→武英殿内', arrived: false, stuckAt: [Array], startFeet: 0, maxFeet: 2.62, maxSpeed: 12.000000000001675, driver: [Object], end: [Array] } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/auto-routes.test.mjs:171:3
+✖ all 33 fixed routes retain real-controller passage: 10 fps, sprint=false (2424.861069ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     arrived: false,
+  +     driver: {
+  +       brakingFrames: 0,
+  +       crossings: [
+  +         {
+  +           hit: [
+  +             30,
+  +             -324
+  +           ],
+  +           index: 1,
+  +           lateralDistance: 0,
+  +           point: [
+  +             30,
+  +             -324
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             85.15,
+  +             -324
+  +           ],
+  +           index: 2,
+  +           lateralDistance: 0,
+  +           point: [
+  +             85.15,
+  +             -324
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             85.15000000000002,
+  +             -301.1
+  +           ],
+  +           index: 3,
+  +           lateralDistance: 1.4210854715202004e-14,
+  +           point: [
+  +             85.15,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             87.14849342832468,
+  +             -301.0028095193443
+  +           ],
+  +           index: 4,
+  +           lateralDistance: 0.09720215680892444,
+  +           point: [
+  +             87.15,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             104.9,
+  +             -301.0157182960594
+  +           ],
+  +           index: 5,
+  +           lateralDistance: 0.08428170394063272,
+  +           point: [
+  +             104.9,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             116.5,
+  +             -301.024153738386
+  +           ],
+  +           index: 6,
+  +           lateralDistance: 0.07584626161400365,
+  +           point: [
+  +             116.5,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             134.25,
+  +             -301.0370614195323
+  +           ],
+  +           index: 7,
+  +           lateralDistance: 0.06293858046774403,
+  +           point: [
+  +             134.25,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             136.25,
+  +             -301.0385158061403
+  +           ],
+  +           index: 8,
+  +           lateralDistance: 0.06148419385971238,
+  +           point: [
+  +             136.25,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             220.8,
+  +             -301.1
+  +           ],
+  +           index: 9,
+  +           lateralDistance: 0,
+  +           point: [
+  +             220.8,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             221.06682688282012,
+  +             -286.03
+  +           ],
+  +           index: 10,
+  +           lateralDistance: 0.26682688282011213,
+  +           point: [
+  +             220.8,
+  +             -286.03
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             220.94115932940036,
+  +             -262.83
+  +           ],
+  +           index: 11,
+  +           lateralDistance: 0.14115932940035236,
+  +           point: [
+  +             220.8,
+  +             -262.83
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             220.80000000000004,
+  +             -236.77
+  +           ],
+  +           index: 12,
+  +           lateralDistance: 2.842170943040401e-14,
+  +           point: [
+  +             220.8,
+  +             -236.77
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             219.5,
+  +             -236.77000000000004
+  +           ],
+  +           index: 13,
+  +           lateralDistance: 2.842170943040401e-14,
+  +           point: [
+  +             219.5,
+  +             -236.77
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             219.46375636704437,
+  +             -211.51999999999998
+  +           ],
+  +           index: 14,
+  +           lateralDistance: 0.03624363295563171,
+  +           point: [
+  +             219.5,
+  +             -211.51999999999998
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             219.49999999999997,
+  +             -205.5
+  +           ],
+  +           index: 15,
+  +           lateralDistance: 2.842170943040401e-14,
+  +           point: [
+  +             219.5,
+  +             -205.5
+  +           ]
+  +         }
+  +       ],
+  +       endpointSettleSeconds: 2
+  +     },
+  +     end: [
+  +       221.66612447569173,
+  +       -205.4991897668605,
+  +       1.2
+  +     ],
+  +     maxFeet: 2.62,
+  +     maxSpeed: 5.0000000000007105,
+  +     name: '熙和门→武英门→武英殿内',
+  +     startFeet: 0,
+  +     stuckAt: [
+  +       224.5,
+  +       -205.5
+  +     ]
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-audit-real-46c4c84/tests/auto-routes.test.mjs:182:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { name: '熙和门→武英门→武英殿内', arrived: false, stuckAt: [Array], startFeet: 0, maxFeet: 2.62, maxSpeed: 5.0000000000007105, driver: [Object], end: [Array] } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/auto-routes.test.mjs:171:3
+✖ all 33 fixed routes retain real-controller passage: 10 fps, sprint=true (2377.476031ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     arrived: false,
+  +     driver: {
+  +       brakingFrames: 20,
+  +       crossings: [
+  +         {
+  +           hit: [
+  +             30,
+  +             -324
+  +           ],
+  +           index: 1,
+  +           lateralDistance: 0,
+  +           point: [
+  +             30,
+  +             -324
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             85.15,
+  +             -324
+  +           ],
+  +           index: 2,
+  +           lateralDistance: 0,
+  +           point: [
+  +             85.15,
+  +             -324
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             85.14999999999999,
+  +             -301.1
+  +           ],
+  +           index: 3,
+  +           lateralDistance: 1.4210854715202004e-14,
+  +           point: [
+  +             85.15,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             87.15,
+  +             -300.9031695826315
+  +           ],
+  +           index: 4,
+  +           lateralDistance: 0.19683041736851692,
+  +           point: [
+  +             87.15,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             104.9,
+  +             -300.9293105471527
+  +           ],
+  +           index: 5,
+  +           lateralDistance: 0.17068945284734127,
+  +           point: [
+  +             104.9,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             116.5,
+  +             -300.9463942197417
+  +           ],
+  +           index: 6,
+  +           lateralDistance: 0.15360578025831728,
+  +           point: [
+  +             116.5,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             134.25,
+  +             -300.97253518426453
+  +           ],
+  +           index: 7,
+  +           lateralDistance: 0.12746481573549318,
+  +           point: [
+  +             134.25,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             136.25,
+  +             -300.9754806450558
+  +           ],
+  +           index: 8,
+  +           lateralDistance: 0.12451935494419786,
+  +           point: [
+  +             136.25,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             220.8,
+  +             -301.1000000000001
+  +           ],
+  +           index: 9,
+  +           lateralDistance: 5.684341886080802e-14,
+  +           point: [
+  +             220.8,
+  +             -301.1
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             220.98899171050962,
+  +             -286.03
+  +           ],
+  +           index: 10,
+  +           lateralDistance: 0.18899171050961172,
+  +           point: [
+  +             220.8,
+  +             -286.03
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             220.8999822163193,
+  +             -262.83
+  +           ],
+  +           index: 11,
+  +           lateralDistance: 0.09998221631929027,
+  +           point: [
+  +             220.8,
+  +             -262.83
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             220.8,
+  +             -236.77
+  +           ],
+  +           index: 12,
+  +           lateralDistance: 0,
+  +           point: [
+  +             220.8,
+  +             -236.77
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             219.5,
+  +             -236.76999999999998
+  +           ],
+  +           index: 13,
+  +           lateralDistance: 2.842170943040401e-14,
+  +           point: [
+  +             219.5,
+  +             -236.77
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             219.45604153286988,
+  +             -211.51999999999998
+  +           ],
+  +           index: 14,
+  +           lateralDistance: 0.043958467130124745,
+  +           point: [
+  +             219.5,
+  +             -211.51999999999998
+  +           ]
+  +         },
+  +         {
+  +           hit: [
+  +             219.5,
+  +             -205.5
+  +           ],
+  +           index: 15,
+  +           lateralDistance: 0,
+  +           point: [
+  +             219.5,
+  +             -205.5
+  +           ]
+  +         }
+  +       ],
+  +       endpointSettleSeconds: 2
+  +     },
+  +     end: [
+  +       221.56533266168566,
+  +       -205.49999995833002,
+  +       1.2
+  +     ],
+  +     maxFeet: 2.62,
+  +     maxSpeed: 12.000000000000997,
+  +     name: '熙和门→武英门→武英殿内',
+  +     startFeet: 0,
+  +     stuckAt: [
+  +       224.5,
+  +       -205.5
+  +     ]
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-audit-real-46c4c84/tests/auto-routes.test.mjs:182:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { name: '熙和门→武英门→武英殿内', arrived: false, stuckAt: [Array], startFeet: 0, maxFeet: 2.62, maxSpeed: 12.000000000000997, driver: [Object], end: [Array] } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

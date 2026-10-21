@@ -1,3 +1,19 @@
+import {resolveRemainingProfile as resolveNingshou,buildRemainingHall as buildNingshou,augmentRemainingHall as augmentNingshou} from '../palace/special/RemainingNingshouHalls.js';
+import {resolveRemainingProfile as resolveOuter,buildRemainingHall as buildOuter,augmentRemainingHall as augmentOuter} from '../palace/special/RemainingOuterHalls.js';
+import {resolveRemainingProfile as resolveResidential,buildRemainingHall as buildResidential,augmentRemainingHall as augmentResidential} from '../palace/special/RemainingResidentialHalls.js';
+import {buildRitualHall,ritualHallGeometry} from '../palace/special/RitualHalls.js';
+import {buildEnclosedPavilion,enclosedPavilionGeometry} from '../palace/special/EnclosedPavilions.js';
+import {buildShoukangHall} from '../palace/special/ShoukangHall.js';
+import {buildYiheHall} from '../palace/special/YiheHall.js';
+import {buildGuhuaPavilion} from '../palace/special/GuhuaPavilion.js';
+import {buildEastResidentialFacade} from '../palace/special/EastResidentialFacades.js';
+import { buildWestDomesticHall } from '../palace/special/WestDomesticHalls.js';
+import { rearHallProfile } from '../palace/special/RearHallProfiles.js';
+import { buildSouthCourtTrees } from '../palace/special/SouthCourtTrees.js';
+import { buildYudeBath } from '../palace/special/YudeBath.js';
+import { buildBaoyunStorehouse } from '../palace/special/BaoyunStorehouse.js';
+import { buildWenyuanPavilion } from '../palace/special/WenyuanPavilion.js';
+import { buildSouthCourtGate } from '../palace/special/SouthCourtGates.js';
 import * as THREE from 'three';
 import { CourtKit, FACE } from '../palace/kit.js';
 import { resolveCourtWallContract } from './CourtWallContract.js';
@@ -9,6 +25,7 @@ import { historicalGateMapItem } from './HistoricalGateSites.js';
 import { buildChuxiuHall } from '../palace/special/ChuxiuHall.js';
 import { buildChuxiuCourtyard } from '../palace/special/ChuxiuCourtyard.js';
 import { buildYikunSideAccess } from '../palace/special/YikunSideAccess.js';
+import { buildSouthCourtHall, southCourtGeometry } from '../palace/special/SouthCourtHalls.js';
 
 /**
  * 分区构建器基类：从 zone JSON 构建一个区域的所有建筑。
@@ -84,6 +101,8 @@ export class ZoneBase {
     // Explicit opt-in, after all retained halls, before material merging.
     if (this.zoneJson.courtyardProfile !== undefined) buildChuxiuCourtyard(this.kit, this.zoneJson);
 
+    if (this.zoneJson.southTreeProfile !== undefined) buildSouthCourtTrees(this.kit, this.zoneJson);
+
     // Keep distance levels out of the ordinary recursive material merge.
     const yanxiFrames = detachYanxiRuinFrames(this.kit.root);
     this.group = this.kit.finish();
@@ -121,6 +140,50 @@ export class ZoneBase {
   // ───────────────────────── 各 kind 构建方法 ─────────────────────────
 
   buildHall(item) {
+    // R48 exact-identity profiles are opt-in by the reviewed catalog binding.
+    // Existing dedicated builders remain the sole owner for augmentation.
+    const candidates = [[resolveResidential,buildResidential,augmentResidential],[resolveNingshou,buildNingshou,augmentNingshou],[resolveOuter,buildOuter,augmentOuter]]
+      .map(([resolve,build,augment])=>({profile:resolve(this.zoneJson.id,item),build,augment})).filter(x=>x.profile);
+    if(candidates.length>1)throw Error('Ambiguous R48 named-building profile');
+    const selected=candidates[0];
+    if(selected?.profile.mode==='replace')return selected.build(this.kit,item,selected.profile);
+    const built=this.buildHallBaseline(item);
+    if(selected?.profile.mode==='augment')return selected.augment(this.kit,item,built,selected.profile);
+    return built;
+  }
+
+  buildHallBaseline(item) {
+    if(item.structure==='ritual-hall'||item.ritualProfile!==undefined){const g=ritualHallGeometry(item);if(this.zoneJson.id!=='outer-west')throw Error('Ritual hall wrong zone');return buildRitualHall(this.kit,item);}
+    if(item.structure==='enclosed-pavilion'||item.enclosureProfile!==undefined){const g=enclosedPavilionGeometry(item);if(this.zoneJson.id!==g.id.split('/')[0])throw Error('Enclosed pavilion wrong zone');return buildEnclosedPavilion(this.kit,item);}
+    if(item.structure==='shoukang-front-hall'||item.shoukangProfile!==undefined){if(this.zoneJson.id!=='outer-west')throw Error('Shoukang requires outer-west zone');return buildShoukangHall(this.kit,item);}
+    if(item.structure==='yihe-ground-hall'||item.yiheProfile!==undefined){if(this.zoneJson.id!=='ningshou')throw Error('Yihe requires ningshou zone');return buildYiheHall(this.kit,item);}
+    if(item.structure==='guhua-open-pavilion'||item.guhuaProfile!==undefined){if(this.zoneJson.id!=='ningshou')throw Error('Guhua requires ningshou zone');return buildGuhuaPavilion(this.kit,item);}
+    const rearProfile=rearHallProfile(this.zoneJson.id,item);
+    if(item.structure==='east-residential-facade'||item.facadeProfile!==undefined){
+      if(this.zoneJson.id!=='east-six')throw Error('East facade profile belongs only in east-six');
+      return buildEastResidentialFacade(this.kit,item);
+    }
+    if(item.structure==='west-domestic-hall'||item.domesticProfile!==undefined){
+      if(this.zoneJson.id!=='west-six')throw Error('West domestic profile belongs only in west-six');
+      return buildWestDomesticHall(this.kit,item);
+    }
+    if(item.structure==='yude-bath-compound'){
+      if(this.zoneJson.id!=='outer-west')throw new Error('Yude belongs in outer-west');
+      return buildYudeBath(this.kit,item);
+    }
+    if(item.structure==='baoyun-western-storehouse'){
+      if(this.zoneJson.id!=='outer-west')throw new Error('Baoyun belongs in outer-west');
+      return buildBaoyunStorehouse(this.kit,item);
+    }
+    if (item.structure === 'wenyuan-pavilion') {
+      if(this.zoneJson.id !== 'outer-east') throw new Error('Wenyuan belongs in outer-east');
+      return buildWenyuanPavilion(this.kit,item);
+    }
+    if (item.structure === 'south-court-hall' || item.southCourtProfile !== undefined) {
+      const g = southCourtGeometry(item);
+      if (this.zoneJson.id !== g.zone) throw new Error('South court profile is in the wrong zone');
+      return buildSouthCourtHall(this.kit, item);
+    }
     if (item.structure === 'chuxiu-household' || item.chuxiuProfile !== undefined) {
       if (this.zoneJson.id !== 'west-six' || item.name !== '储秀宫') throw new Error('Chuxiu profile belongs only to west-six/储秀宫');
       return buildChuxiuHall(this.kit, item);
@@ -162,10 +225,21 @@ export class ZoneBase {
     };
     // 过滤 undefined 参数，让 kit 方法使用默认值
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
-    this.kit.hall(params);
+    if(rearProfile)params.hardGableEnd=true;
+    const result=this.kit.hall(params);
+    if(rearProfile){
+      result.f.userData.rearHall=rearProfile;
+      result.f.userData.structure={...result.f.userData.structure,...rearProfile,id:`${rearProfile.zone}/${rearProfile.id}`,profile:rearProfile.id};
+    }
+    if(item.auxiliaryIdentity!==undefined){
+      if(this.zoneJson.id!=='outer-west'||item.auxiliaryIdentity!=='恒寿斋'||item.name)throw new Error('Unknown southern auxiliary identity');
+      result.f.userData.structure={id:'wuying-hengshou-auxiliary',name:item.auxiliaryIdentity,x:item.x,z:item.z,w:item.w,d:item.d,bays:item.bays,status:item.dimensionStatus,source:item.source,interiorPolicy:'CLOSED_UNFURNISHED_NO_INVENTED_CONTENTS'};
+    }
+    return result;
   }
 
   buildGate(item) {
+    if (item.southGateProfile !== undefined) return buildSouthCourtGate(this.kit,item).width;
     if (item.historicalSite !== undefined) {
       this.kit.mapItems.push(historicalGateMapItem(item));
       // No physical opening width: a new wall must not silently use a

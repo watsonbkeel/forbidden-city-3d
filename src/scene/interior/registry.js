@@ -7,7 +7,8 @@ import qianqing from '../../../data/interiors/qianqing.json';
 import huangji from '../../../data/interiors/huangji.json';
 import yangxin from '../../../data/interiors/yangxin.json';
 import kunning from '../../../data/interiors/kunning.json';
-import cining from '../../../data/interiors/cining.json';
+// R48: Cining targets the official modern sculpture-gallery panorama (scene 009).
+// The older inferred throne GLB and its config remain on disk for rollback, but are not loaded.
 import { KUNNING_PROFILE, KUNNING_CONTRACT, KUNNING_INTERIOR_FRAME } from '../palace/special/KunningProfile.js';
 
 export const INTERIORS = { taihe, qianqing, huangji, yangxin, kunning: {
@@ -16,4 +17,4 @@ export const INTERIORS = { taihe, qianqing, huangji, yangxin, kunning: {
   architectureContract: KUNNING_CONTRACT,
   placementRegions: KUNNING_PROFILE.placementRegions,
   protectedVolumes: KUNNING_PROFILE.protectedVolumes,
-}, cining };
+} };

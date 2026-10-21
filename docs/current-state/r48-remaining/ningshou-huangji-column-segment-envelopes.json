@@ -1,0 +1,1481 @@
+{
+  "asset": {
+    "path": "public/models/interiors/huangji-aligned-0a79ec49e8cd.glb",
+    "sha256": "0a79ec49e8cd442d363fdc6bccf4074d9e214ef3b0f3b56eba618297c1e88cc6"
+  },
+  "method": "GLTFLoader with pinned local CPU Draco decoder; actual POSITION and triangle index decoding; full node/ancestor matrixWorld; no accessor min/max used",
+  "coordinates": "GLB scene-local AFTER every node/ancestor transform, BEFORE final InteriorLoader frame placement; baked -0.8 Z alignment already included and must not be repeated",
+  "placement": {
+    "formula": "world = T(frame.x + anchor.x, floorY + anchor.y, frame.z + anchor.z) * R_y(frame.rot) * GLB node matrixWorld * decoded position",
+    "groundMode": {
+      "mode": "ground",
+      "y": null
+    },
+    "groundQuery": "cm.getGroundHeight(cfg.frame.x, cfg.frame.z, 0, 999)",
+    "verifiedKitSupportY": 1.5,
+    "kitCentreWalkableHeights": [
+      1.5
+    ],
+    "worldMatrixAtKitSupport": [
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      -293.2,
+      1.5,
+      287.7,
+      1
+    ],
+    "additionalScaling": false,
+    "alreadyBakedAlignment": "All non-floor top-level nodes carry the -0.8 m Z alignment from align_huangji_backdoor.mjs. Do not apply it again.",
+    "caveat": "The 1.5 m runtime Y assumes the retained hall kit support remains highest at the centre; a changed collision scene requires a new runtime ground query."
+  },
+  "componentPartition": "All vertices of gold_lacquer or stone triangles have abs(x)>3.1; each triangle stays within one X sign and one Z side of8.75. This exhaustively separates four pillars without using the whole merged material mesh.",
+  "retainedOriginalCOL": [
+    {
+      "name": "COL_0",
+      "bounds": {
+        "min": [
+          -4.320000082,
+          0,
+          5.979999822
+        ],
+        "max": [
+          -3.480044037,
+          3,
+          6.819955868
+        ],
+        "size": [
+          0.839956045,
+          3,
+          0.839956045
+        ],
+        "triangles": 12,
+        "triangleArea": 11.490524857,
+        "byMesh": {
+          "COL_0": 12
+        },
+        "byMaterial": {
+          "": 12
+        }
+      }
+    },
+    {
+      "name": "COL_1",
+      "bounds": {
+        "min": [
+          3.480000108,
+          0,
+          5.979999822
+        ],
+        "max": [
+          4.319956154,
+          3,
+          6.819955868
+        ],
+        "size": [
+          0.839956045,
+          3,
+          0.839956045
+        ],
+        "triangles": 12,
+        "triangleArea": 11.490524857,
+        "byMesh": {
+          "COL_1": 12
+        },
+        "byMaterial": {
+          "": 12
+        }
+      }
+    },
+    {
+      "name": "COL_2",
+      "bounds": {
+        "min": [
+          -4.320000082,
+          0,
+          10.679999632
+        ],
+        "max": [
+          -3.480044037,
+          3,
+          11.519955677
+        ],
+        "size": [
+          0.839956045,
+          3,
+          0.839956045
+        ],
+        "triangles": 12,
+        "triangleArea": 11.490524857,
+        "byMesh": {
+          "COL_2": 12
+        },
+        "byMaterial": {
+          "": 12
+        }
+      }
+    },
+    {
+      "name": "COL_3",
+      "bounds": {
+        "min": [
+          3.480000108,
+          0,
+          10.679999632
+        ],
+        "max": [
+          4.319956154,
+          3,
+          11.519955677
+        ],
+        "size": [
+          0.839956045,
+          3,
+          0.839956045
+        ],
+        "triangles": 12,
+        "triangleArea": 11.490524857,
+        "byMesh": {
+          "COL_3": 12
+        },
+        "byMaterial": {
+          "": 12
+        }
+      }
+    }
+  ],
+  "slabHeight": 0.25,
+  "range": [
+    0,
+    3
+  ],
+  "columnSlabs": [
+    {
+      "yRange": [
+        0,
+        0.25
+      ],
+      "boundsByRegion": {
+        "columnRearWest": {
+          "min": [
+            3.332731724,
+            0,
+            10.533125114
+          ],
+          "max": [
+            4.467000008,
+            0.25,
+            11.666848373
+          ],
+          "size": [
+            1.134268284,
+            0.25,
+            1.133723259
+          ],
+          "triangles": 162,
+          "triangleArea": 24.222068894,
+          "byMesh": {
+            "merged_gold_lacquer": 70,
+            "merged_stone": 92
+          },
+          "byMaterial": {
+            "gold_lacquer": 70,
+            "stone": 92
+          }
+        },
+        "columnRearEast": {
+          "min": [
+            -4.467000008,
+            0,
+            10.533125114
+          ],
+          "max": [
+            -3.332731485,
+            0.25,
+            11.666848373
+          ],
+          "size": [
+            1.134268522,
+            0.25,
+            1.133723259
+          ],
+          "triangles": 162,
+          "triangleArea": 24.216615722,
+          "byMesh": {
+            "merged_gold_lacquer": 70,
+            "merged_stone": 92
+          },
+          "byMaterial": {
+            "gold_lacquer": 70,
+            "stone": 92
+          }
+        },
+        "columnFrontWest": {
+          "min": [
+            3.332731724,
+            0,
+            5.832999897
+          ],
+          "max": [
+            4.467000008,
+            0.25,
+            6.967268181
+          ],
+          "size": [
+            1.134268284,
+            0.25,
+            1.134268284
+          ],
+          "triangles": 162,
+          "triangleArea": 24.222143092,
+          "byMesh": {
+            "merged_gold_lacquer": 70,
+            "merged_stone": 92
+          },
+          "byMaterial": {
+            "gold_lacquer": 70,
+            "stone": 92
+          }
+        },
+        "columnFrontEast": {
+          "min": [
+            -4.467000008,
+            0,
+            5.832999897
+          ],
+          "max": [
+            -3.332731485,
+            0.25,
+            6.967268181
+          ],
+          "size": [
+            1.134268522,
+            0.25,
+            1.134268284
+          ],
+          "triangles": 162,
+          "triangleArea": 24.216695185,
+          "byMesh": {
+            "merged_gold_lacquer": 70,
+            "merged_stone": 92
+          },
+          "byMaterial": {
+            "gold_lacquer": 70,
+            "stone": 92
+          }
+        }
+      },
+      "note": "Triangle count is intersecting original triangles; bounds use exactly clipped vertices. Triangle area remains original full triangle area and is not the clipped area."
+    },
+    {
+      "yRange": [
+        0.25,
+        0.5
+      ],
+      "boundsByRegion": {
+        "columnRearWest": {
+          "min": [
+            3.463486165,
+            0.25,
+            10.663816352
+          ],
+          "max": [
+            4.336394601,
+            0.5,
+            11.536184793
+          ],
+          "size": [
+            0.872908436,
+            0.25,
+            0.872368441
+          ],
+          "triangles": 48,
+          "triangleArea": 20.908748209,
+          "byMesh": {
+            "merged_gold_lacquer": 48
+          },
+          "byMaterial": {
+            "gold_lacquer": 48
+          }
+        },
+        "columnRearEast": {
+          "min": [
+            -4.336196237,
+            0.25,
+            10.663816352
+          ],
+          "max": [
+            -3.463827334,
+            0.5,
+            11.536184793
+          ],
+          "size": [
+            0.872368902,
+            0.25,
+            0.872368441
+          ],
+          "triangles": 48,
+          "triangleArea": 20.903595165,
+          "byMesh": {
+            "merged_gold_lacquer": 48
+          },
+          "byMaterial": {
+            "gold_lacquer": 48
+          }
+        },
+        "columnFrontWest": {
+          "min": [
+            3.463486165,
+            0.25,
+            5.963839446
+          ],
+          "max": [
+            4.336394601,
+            0.5,
+            6.836208348
+          ],
+          "size": [
+            0.872908436,
+            0.25,
+            0.872368902
+          ],
+          "triangles": 48,
+          "triangleArea": 20.908451106,
+          "byMesh": {
+            "merged_gold_lacquer": 48
+          },
+          "byMaterial": {
+            "gold_lacquer": 48
+          }
+        },
+        "columnFrontEast": {
+          "min": [
+            -4.336196237,
+            0.25,
+            5.963839446
+          ],
+          "max": [
+            -3.463827334,
+            0.5,
+            6.836208348
+          ],
+          "size": [
+            0.872368902,
+            0.25,
+            0.872368902
+          ],
+          "triangles": 48,
+          "triangleArea": 20.903303327,
+          "byMesh": {
+            "merged_gold_lacquer": 48
+          },
+          "byMaterial": {
+            "gold_lacquer": 48
+          }
+        }
+      },
+      "note": "Triangle count is intersecting original triangles; bounds use exactly clipped vertices. Triangle area remains original full triangle area and is not the clipped area."
+    },
+    {
+      "yRange": [
+        0.5,
+        0.75
+      ],
+      "boundsByRegion": {
+        "columnRearWest": {
+          "min": [
+            3.464040696,
+            0.5,
+            10.66435298
+          ],
+          "max": [
+            4.519200325,
+            0.75,
+            11.535648165
+          ],
+          "size": [
+            1.055159629,
+            0.25,
+            0.871295185
+          ],
+          "triangles": 130,
+          "triangleArea": 21.160212314,
+          "byMesh": {
+            "merged_gold_lacquer": 130
+          },
+          "byMaterial": {
+            "gold_lacquer": 130
+          }
+        },
+        "columnRearEast": {
+          "min": [
+            -4.335659609,
+            0.5,
+            10.66435298
+          ],
+          "max": [
+            -3.281021833,
+            0.75,
+            11.535648165
+          ],
+          "size": [
+            1.054637775,
+            0.25,
+            0.871295185
+          ],
+          "triangles": 130,
+          "triangleArea": 21.155017146,
+          "byMesh": {
+            "merged_gold_lacquer": 130
+          },
+          "byMaterial": {
+            "gold_lacquer": 130
+          }
+        },
+        "columnFrontWest": {
+          "min": [
+            3.464040696,
+            0.5,
+            5.964376089
+          ],
+          "max": [
+            4.519200325,
+            0.75,
+            6.835671721
+          ],
+          "size": [
+            1.055159629,
+            0.25,
+            0.871295631
+          ],
+          "triangles": 130,
+          "triangleArea": 21.159918947,
+          "byMesh": {
+            "merged_gold_lacquer": 130
+          },
+          "byMaterial": {
+            "gold_lacquer": 130
+          }
+        },
+        "columnFrontEast": {
+          "min": [
+            -4.335659609,
+            0.5,
+            5.964376089
+          ],
+          "max": [
+            -3.281021833,
+            0.75,
+            6.835671721
+          ],
+          "size": [
+            1.054637775,
+            0.25,
+            0.871295631
+          ],
+          "triangles": 130,
+          "triangleArea": 21.154729187,
+          "byMesh": {
+            "merged_gold_lacquer": 130
+          },
+          "byMaterial": {
+            "gold_lacquer": 130
+          }
+        }
+      },
+      "note": "Triangle count is intersecting original triangles; bounds use exactly clipped vertices. Triangle area remains original full triangle area and is not the clipped area."
+    },
+    {
+      "yRange": [
+        0.75,
+        1
+      ],
+      "boundsByRegion": {
+        "columnRearWest": {
+          "min": [
+            3.464595228,
+            0.75,
+            10.664889607
+          ],
+          "max": [
+            4.47226422,
+            1,
+            11.654706766
+          ],
+          "size": [
+            1.007668992,
+            0.25,
+            0.989817158
+          ],
+          "triangles": 182,
+          "triangleArea": 21.283963723,
+          "byMesh": {
+            "merged_gold_lacquer": 182
+          },
+          "byMaterial": {
+            "gold_lacquer": 182
+          }
+        },
+        "columnRearEast": {
+          "min": [
+            -4.335122981,
+            0.75,
+            10.664889607
+          ],
+          "max": [
+            -3.327832725,
+            1,
+            11.654706766
+          ],
+          "size": [
+            1.007290256,
+            0.25,
+            0.989817158
+          ],
+          "triangles": 182,
+          "triangleArea": 21.278727959,
+          "byMesh": {
+            "merged_gold_lacquer": 182
+          },
+          "byMaterial": {
+            "gold_lacquer": 182
+          }
+        },
+        "columnFrontWest": {
+          "min": [
+            3.464595228,
+            0.75,
+            5.964912732
+          ],
+          "max": [
+            4.47226422,
+            1,
+            6.954730313
+          ],
+          "size": [
+            1.007668992,
+            0.25,
+            0.989817581
+          ],
+          "triangles": 182,
+          "triangleArea": 21.283659009,
+          "byMesh": {
+            "merged_gold_lacquer": 182
+          },
+          "byMaterial": {
+            "gold_lacquer": 182
+          }
+        },
+        "columnFrontEast": {
+          "min": [
+            -4.335122981,
+            0.75,
+            5.964912732
+          ],
+          "max": [
+            -3.327832725,
+            1,
+            6.954730313
+          ],
+          "size": [
+            1.007290256,
+            0.25,
+            0.989817581
+          ],
+          "triangles": 182,
+          "triangleArea": 21.278428532,
+          "byMesh": {
+            "merged_gold_lacquer": 182
+          },
+          "byMaterial": {
+            "gold_lacquer": 182
+          }
+        }
+      },
+      "note": "Triangle count is intersecting original triangles; bounds use exactly clipped vertices. Triangle area remains original full triangle area and is not the clipped area."
+    },
+    {
+      "yRange": [
+        1,
+        1.25
+      ],
+      "boundsByRegion": {
+        "columnRearWest": {
+          "min": [
+            3.46514976,
+            1,
+            10.665426235
+          ],
+          "max": [
+            4.334784718,
+            1.25,
+            11.692793083
+          ],
+          "size": [
+            0.869634958,
+            0.25,
+            1.027366848
+          ],
+          "triangles": 178,
+          "triangleArea": 21.271685296,
+          "byMesh": {
+            "merged_gold_lacquer": 178
+          },
+          "byMaterial": {
+            "gold_lacquer": 178
+          }
+        },
+        "columnRearEast": {
+          "min": [
+            -4.334586353,
+            1,
+            10.665426235
+          ],
+          "max": [
+            -3.465437264,
+            1.25,
+            11.692793083
+          ],
+          "size": [
+            0.86914909,
+            0.25,
+            1.027366848
+          ],
+          "triangles": 178,
+          "triangleArea": 21.266500516,
+          "byMesh": {
+            "merged_gold_lacquer": 178
+          },
+          "byMaterial": {
+            "gold_lacquer": 178
+          }
+        },
+        "columnFrontWest": {
+          "min": [
+            3.46514976,
+            1,
+            5.965449375
+          ],
+          "max": [
+            4.334784718,
+            1.25,
+            6.992816162
+          ],
+          "size": [
+            0.869634958,
+            0.25,
+            1.027366787
+          ],
+          "triangles": 178,
+          "triangleArea": 21.271394098,
+          "byMesh": {
+            "merged_gold_lacquer": 178
+          },
+          "byMaterial": {
+            "gold_lacquer": 178
+          }
+        },
+        "columnFrontEast": {
+          "min": [
+            -4.334586353,
+            1,
+            5.965449375
+          ],
+          "max": [
+            -3.465437264,
+            1.25,
+            6.992816162
+          ],
+          "size": [
+            0.86914909,
+            0.25,
+            1.027366787
+          ],
+          "triangles": 178,
+          "triangleArea": 21.266214581,
+          "byMesh": {
+            "merged_gold_lacquer": 178
+          },
+          "byMaterial": {
+            "gold_lacquer": 178
+          }
+        }
+      },
+      "note": "Triangle count is intersecting original triangles; bounds use exactly clipped vertices. Triangle area remains original full triangle area and is not the clipped area."
+    },
+    {
+      "yRange": [
+        1.25,
+        1.5
+      ],
+      "boundsByRegion": {
+        "columnRearWest": {
+          "min": [
+            3.317462972,
+            1.25,
+            10.665962863
+          ],
+          "max": [
+            4.33424809,
+            1.5,
+            11.670596227
+          ],
+          "size": [
+            1.016785118,
+            0.25,
+            1.004633364
+          ],
+          "triangles": 182,
+          "triangleArea": 21.293042389,
+          "byMesh": {
+            "merged_gold_lacquer": 182
+          },
+          "byMaterial": {
+            "gold_lacquer": 182
+          }
+        },
+        "columnRearEast": {
+          "min": [
+            -4.482725555,
+            1.25,
+            10.665962863
+          ],
+          "max": [
+            -3.465973907,
+            1.5,
+            11.670596227
+          ],
+          "size": [
+            1.016751648,
+            0.25,
+            1.004633364
+          ],
+          "triangles": 182,
+          "triangleArea": 21.287956376,
+          "byMesh": {
+            "merged_gold_lacquer": 182
+          },
+          "byMaterial": {
+            "gold_lacquer": 182
+          }
+        },
+        "columnFrontWest": {
+          "min": [
+            3.317462972,
+            1.25,
+            5.965986018
+          ],
+          "max": [
+            4.33424809,
+            1.5,
+            6.970620143
+          ],
+          "size": [
+            1.016785118,
+            0.25,
+            1.004634124
+          ],
+          "triangles": 182,
+          "triangleArea": 21.292789834,
+          "byMesh": {
+            "merged_gold_lacquer": 182
+          },
+          "byMaterial": {
+            "gold_lacquer": 182
+          }
+        },
+        "columnFrontEast": {
+          "min": [
+            -4.482725555,
+            1.25,
+            5.965986018
+          ],
+          "max": [
+            -3.465973907,
+            1.5,
+            6.970620143
+          ],
+          "size": [
+            1.016751648,
+            0.25,
+            1.004634124
+          ],
+          "triangles": 182,
+          "triangleArea": 21.287708474,
+          "byMesh": {
+            "merged_gold_lacquer": 182
+          },
+          "byMaterial": {
+            "gold_lacquer": 182
+          }
+        }
+      },
+      "note": "Triangle count is intersecting original triangles; bounds use exactly clipped vertices. Triangle area remains original full triangle area and is not the clipped area."
+    },
+    {
+      "yRange": [
+        1.5,
+        1.75
+      ],
+      "boundsByRegion": {
+        "columnRearWest": {
+          "min": [
+            3.257252216,
+            1.5,
+            10.666499491
+          ],
+          "max": [
+            4.333711462,
+            1.75,
+            11.533501654
+          ],
+          "size": [
+            1.076459246,
+            0.25,
+            0.867002163
+          ],
+          "triangles": 178,
+          "triangleArea": 21.293822587,
+          "byMesh": {
+            "merged_gold_lacquer": 178
+          },
+          "byMaterial": {
+            "gold_lacquer": 178
+          }
+        },
+        "columnRearEast": {
+          "min": [
+            -4.542412758,
+            1.5,
+            10.666499491
+          ],
+          "max": [
+            -3.46651055,
+            1.75,
+            11.533501654
+          ],
+          "size": [
+            1.075902208,
+            0.25,
+            0.867002163
+          ],
+          "triangles": 178,
+          "triangleArea": 21.288612471,
+          "byMesh": {
+            "merged_gold_lacquer": 178
+          },
+          "byMaterial": {
+            "gold_lacquer": 178
+          }
+        },
+        "columnFrontWest": {
+          "min": [
+            3.257252216,
+            1.5,
+            5.966522661
+          ],
+          "max": [
+            4.333711462,
+            1.75,
+            6.83352521
+          ],
+          "size": [
+            1.076459246,
+            0.25,
+            0.867002548
+          ],
+          "triangles": 178,
+          "triangleArea": 21.293505174,
+          "byMesh": {
+            "merged_gold_lacquer": 178
+          },
+          "byMaterial": {
+            "gold_lacquer": 178
+          }
+        },
+        "columnFrontEast": {
+          "min": [
+            -4.542412758,
+            1.5,
+            5.966522661
+          ],
+          "max": [
+            -3.46651055,
+            1.75,
+            6.83352521
+          ],
+          "size": [
+            1.075902208,
+            0.25,
+            0.867002548
+          ],
+          "triangles": 178,
+          "triangleArea": 21.288299995,
+          "byMesh": {
+            "merged_gold_lacquer": 178
+          },
+          "byMaterial": {
+            "gold_lacquer": 178
+          }
+        }
+      },
+      "note": "Triangle count is intersecting original triangles; bounds use exactly clipped vertices. Triangle area remains original full triangle area and is not the clipped area."
+    },
+    {
+      "yRange": [
+        1.75,
+        2
+      ],
+      "boundsByRegion": {
+        "columnRearWest": {
+          "min": [
+            3.267051457,
+            1.75,
+            10.531196947
+          ],
+          "max": [
+            4.333174834,
+            2,
+            11.532965026
+          ],
+          "size": [
+            1.066123377,
+            0.25,
+            1.001768079
+          ],
+          "triangles": 181,
+          "triangleArea": 21.307658603,
+          "byMesh": {
+            "merged_gold_lacquer": 181
+          },
+          "byMaterial": {
+            "gold_lacquer": 181
+          }
+        },
+        "columnRearEast": {
+          "min": [
+            -4.53317094,
+            1.75,
+            10.531196947
+          ],
+          "max": [
+            -3.467047193,
+            2,
+            11.532965026
+          ],
+          "size": [
+            1.066123747,
+            0.25,
+            1.001768079
+          ],
+          "triangles": 181,
+          "triangleArea": 21.302699623,
+          "byMesh": {
+            "merged_gold_lacquer": 181
+          },
+          "byMaterial": {
+            "gold_lacquer": 181
+          }
+        },
+        "columnFrontWest": {
+          "min": [
+            3.267051457,
+            1.75,
+            5.831187806
+          ],
+          "max": [
+            4.333174834,
+            2,
+            6.832988582
+          ],
+          "size": [
+            1.066123377,
+            0.25,
+            1.001800776
+          ],
+          "triangles": 181,
+          "triangleArea": 21.307398471,
+          "byMesh": {
+            "merged_gold_lacquer": 181
+          },
+          "byMaterial": {
+            "gold_lacquer": 181
+          }
+        },
+        "columnFrontEast": {
+          "min": [
+            -4.53317094,
+            1.75,
+            5.831187806
+          ],
+          "max": [
+            -3.467047193,
+            2,
+            6.832988582
+          ],
+          "size": [
+            1.066123747,
+            0.25,
+            1.001800776
+          ],
+          "triangles": 181,
+          "triangleArea": 21.302444462,
+          "byMesh": {
+            "merged_gold_lacquer": 181
+          },
+          "byMaterial": {
+            "gold_lacquer": 181
+          }
+        }
+      },
+      "note": "Triangle count is intersecting original triangles; bounds use exactly clipped vertices. Triangle area remains original full triangle area and is not the clipped area."
+    },
+    {
+      "yRange": [
+        2,
+        2.25
+      ],
+      "boundsByRegion": {
+        "columnRearWest": {
+          "min": [
+            3.420004625,
+            2,
+            10.47097702
+          ],
+          "max": [
+            4.332638207,
+            2.25,
+            11.532428398
+          ],
+          "size": [
+            0.912633582,
+            0.25,
+            1.061451378
+          ],
+          "triangles": 181,
+          "triangleArea": 21.301651082,
+          "byMesh": {
+            "merged_gold_lacquer": 181
+          },
+          "byMaterial": {
+            "gold_lacquer": 181
+          }
+        },
+        "columnRearEast": {
+          "min": [
+            -4.380217607,
+            2,
+            10.47097702
+          ],
+          "max": [
+            -3.467583836,
+            2.25,
+            11.532428398
+          ],
+          "size": [
+            0.912633772,
+            0.25,
+            1.061451378
+          ],
+          "triangles": 181,
+          "triangleArea": 21.296574759,
+          "byMesh": {
+            "merged_gold_lacquer": 181
+          },
+          "byMaterial": {
+            "gold_lacquer": 181
+          }
+        },
+        "columnFrontWest": {
+          "min": [
+            3.420004625,
+            2,
+            5.771001053
+          ],
+          "max": [
+            4.332638207,
+            2.25,
+            6.832451954
+          ],
+          "size": [
+            0.912633582,
+            0.25,
+            1.061450901
+          ],
+          "triangles": 181,
+          "triangleArea": 21.301421107,
+          "byMesh": {
+            "merged_gold_lacquer": 181
+          },
+          "byMaterial": {
+            "gold_lacquer": 181
+          }
+        },
+        "columnFrontEast": {
+          "min": [
+            -4.380217607,
+            2,
+            5.771001053
+          ],
+          "max": [
+            -3.467583836,
+            2.25,
+            6.832451954
+          ],
+          "size": [
+            0.912633772,
+            0.25,
+            1.061450901
+          ],
+          "triangles": 181,
+          "triangleArea": 21.296350021,
+          "byMesh": {
+            "merged_gold_lacquer": 181
+          },
+          "byMaterial": {
+            "gold_lacquer": 181
+          }
+        }
+      },
+      "note": "Triangle count is intersecting original triangles; bounds use exactly clipped vertices. Triangle area remains original full triangle area and is not the clipped area."
+    },
+    {
+      "yRange": [
+        2.25,
+        2.5
+      ],
+      "boundsByRegion": {
+        "columnRearWest": {
+          "min": [
+            3.467922418,
+            2.25,
+            10.479797797
+          ],
+          "max": [
+            4.40051927,
+            2.5,
+            11.531891771
+          ],
+          "size": [
+            0.932596852,
+            0.25,
+            1.052093974
+          ],
+          "triangles": 182,
+          "triangleArea": 21.292071833,
+          "byMesh": {
+            "merged_gold_lacquer": 182
+          },
+          "byMaterial": {
+            "gold_lacquer": 182
+          }
+        },
+        "columnRearEast": {
+          "min": [
+            -4.331903215,
+            2.25,
+            10.479797797
+          ],
+          "max": [
+            -3.399702649,
+            2.5,
+            11.531891771
+          ],
+          "size": [
+            0.932200565,
+            0.25,
+            1.052093974
+          ],
+          "triangles": 182,
+          "triangleArea": 21.286887587,
+          "byMesh": {
+            "merged_gold_lacquer": 182
+          },
+          "byMaterial": {
+            "gold_lacquer": 182
+          }
+        },
+        "columnFrontWest": {
+          "min": [
+            3.467922418,
+            2.25,
+            5.779821288
+          ],
+          "max": [
+            4.40051927,
+            2.5,
+            6.831915326
+          ],
+          "size": [
+            0.932596852,
+            0.25,
+            1.052094039
+          ],
+          "triangles": 182,
+          "triangleArea": 21.291786144,
+          "byMesh": {
+            "merged_gold_lacquer": 182
+          },
+          "byMaterial": {
+            "gold_lacquer": 182
+          }
+        },
+        "columnFrontEast": {
+          "min": [
+            -4.331903215,
+            2.25,
+            5.779821288
+          ],
+          "max": [
+            -3.399702649,
+            2.5,
+            6.831915326
+          ],
+          "size": [
+            0.932200565,
+            0.25,
+            1.052094039
+          ],
+          "triangles": 182,
+          "triangleArea": 21.286607484,
+          "byMesh": {
+            "merged_gold_lacquer": 182
+          },
+          "byMaterial": {
+            "gold_lacquer": 182
+          }
+        }
+      },
+      "note": "Triangle count is intersecting original triangles; bounds use exactly clipped vertices. Triangle area remains original full triangle area and is not the clipped area."
+    },
+    {
+      "yRange": [
+        2.5,
+        2.75
+      ],
+      "boundsByRegion": {
+        "columnRearWest": {
+          "min": [
+            3.468476949,
+            2.5,
+            10.615199696
+          ],
+          "max": [
+            4.489629602,
+            2.75,
+            11.531355143
+          ],
+          "size": [
+            1.021152652,
+            0.25,
+            0.916155447
+          ],
+          "triangles": 178,
+          "triangleArea": 21.27125764,
+          "byMesh": {
+            "merged_gold_lacquer": 178
+          },
+          "byMaterial": {
+            "gold_lacquer": 178
+          }
+        },
+        "columnRearEast": {
+          "min": [
+            -4.331366587,
+            2.5,
+            10.615199696
+          ],
+          "max": [
+            -3.310118577,
+            2.75,
+            11.531355143
+          ],
+          "size": [
+            1.02124801,
+            0.25,
+            0.916155447
+          ],
+          "triangles": 178,
+          "triangleArea": 21.265958064,
+          "byMesh": {
+            "merged_gold_lacquer": 178
+          },
+          "byMaterial": {
+            "gold_lacquer": 178
+          }
+        },
+        "columnFrontWest": {
+          "min": [
+            3.468476949,
+            2.5,
+            5.915223436
+          ],
+          "max": [
+            4.489629602,
+            2.75,
+            6.831378699
+          ],
+          "size": [
+            1.021152652,
+            0.25,
+            0.916155263
+          ],
+          "triangles": 178,
+          "triangleArea": 21.270916142,
+          "byMesh": {
+            "merged_gold_lacquer": 178
+          },
+          "byMaterial": {
+            "gold_lacquer": 178
+          }
+        },
+        "columnFrontEast": {
+          "min": [
+            -4.331366587,
+            2.5,
+            5.915223436
+          ],
+          "max": [
+            -3.310118577,
+            2.75,
+            6.831378699
+          ],
+          "size": [
+            1.02124801,
+            0.25,
+            0.916155263
+          ],
+          "triangles": 178,
+          "triangleArea": 21.265622051,
+          "byMesh": {
+            "merged_gold_lacquer": 178
+          },
+          "byMaterial": {
+            "gold_lacquer": 178
+          }
+        }
+      },
+      "note": "Triangle count is intersecting original triangles; bounds use exactly clipped vertices. Triangle area remains original full triangle area and is not the clipped area."
+    },
+    {
+      "yRange": [
+        2.75,
+        3
+      ],
+      "boundsByRegion": {
+        "columnRearWest": {
+          "min": [
+            3.469031481,
+            2.75,
+            10.669182629
+          ],
+          "max": [
+            4.490215302,
+            3,
+            11.579168455
+          ],
+          "size": [
+            1.02118382,
+            0.25,
+            0.909985825
+          ],
+          "triangles": 182,
+          "triangleArea": 21.284271521,
+          "byMesh": {
+            "merged_gold_lacquer": 182
+          },
+          "byMaterial": {
+            "gold_lacquer": 182
+          }
+        },
+        "columnRearEast": {
+          "min": [
+            -4.330829959,
+            2.75,
+            10.669182629
+          ],
+          "max": [
+            -3.309449196,
+            3,
+            11.579168455
+          ],
+          "size": [
+            1.021380763,
+            0.25,
+            0.909985825
+          ],
+          "triangles": 182,
+          "triangleArea": 21.279139291,
+          "byMesh": {
+            "merged_gold_lacquer": 182
+          },
+          "byMaterial": {
+            "gold_lacquer": 182
+          }
+        },
+        "columnFrontWest": {
+          "min": [
+            3.469031481,
+            2.75,
+            5.969205876
+          ],
+          "max": [
+            4.490215302,
+            3,
+            6.879192011
+          ],
+          "size": [
+            1.02118382,
+            0.25,
+            0.909986135
+          ],
+          "triangles": 182,
+          "triangleArea": 21.283987491,
+          "byMesh": {
+            "merged_gold_lacquer": 182
+          },
+          "byMaterial": {
+            "gold_lacquer": 182
+          }
+        },
+        "columnFrontEast": {
+          "min": [
+            -4.330829959,
+            2.75,
+            5.969205876
+          ],
+          "max": [
+            -3.309449196,
+            3,
+            6.879192011
+          ],
+          "size": [
+            1.021380763,
+            0.25,
+            0.909986135
+          ],
+          "triangles": 182,
+          "triangleArea": 21.278860599,
+          "byMesh": {
+            "merged_gold_lacquer": 182
+          },
+          "byMaterial": {
+            "gold_lacquer": 182
+          }
+        }
+      },
+      "note": "Triangle count is intersecting original triangles; bounds use exactly clipped vertices. Triangle area remains original full triangle area and is not the clipped area."
+    }
+  ],
+  "notHistoricalSurvey": true,
+  "noProductChanges": true
+}

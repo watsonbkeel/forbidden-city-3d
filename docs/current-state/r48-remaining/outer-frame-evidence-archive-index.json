@@ -1,0 +1,58 @@
+{
+  "status": "LOSSLESS_HISTORICAL_EVIDENCE_ARCHIVES_NOT_CURRENT_PASS_CLAIMS",
+  "archives": [
+    {
+      "archivePath": "docs/current-state/r48-remaining/outer-final-four-review.json.gz",
+      "archiveSha256": "a9c6d2550033113c522ad1866b8d1a44742c32228725e9ea380300afd2c59278",
+      "archiveBytes": 230836,
+      "originalPath": "docs/current-state/r48-remaining/outer-final-four-review.json",
+      "originalSha256": "bec1264139defbab15110b80cc79eca085b1ccbb430cbacba5d5cde246b8cf6e",
+      "originalBytes": 6771785,
+      "compression": "gzip level 9, mtime=0; exact original JSON bytes preserved",
+      "historicalModuleSha256": "b7d318a374e8249b272ddada2dcf5feb6ce9b59772f1dc1c9ab2e7d34e6e4be4",
+      "historicalStatus": "LOCAL_GEOMETRY_PASS_LEGACY_ROUTE_FAIL",
+      "historicalSummary": {
+        "scheduled": 93,
+        "total": 93,
+        "passed": 69,
+        "failed": 24,
+        "modes": 40,
+        "localTests": 69,
+        "localFailed": 0,
+        "legacyTests": 24,
+        "legacyFailed": 24,
+        "legacyModes": 24
+      },
+      "extractCommand": "gzip -dc docs/current-state/r48-remaining/outer-final-four-review.json.gz > /tmp/outer-final-four-review.json",
+      "verifyCommand": "printf \"%s  %s\\n\" bec1264139defbab15110b80cc79eca085b1ccbb430cbacba5d5cde246b8cf6e /tmp/outer-final-four-review.json | sha256sum -c -"
+    },
+    {
+      "archivePath": "docs/current-state/r48-remaining/outer-zhujing-legacy-diagnostic.json.gz",
+      "archiveSha256": "42ac60863aae4a38ed740e1687f2a79b631a61e4ffa8e44ba06758cffa66223c",
+      "archiveBytes": 164349,
+      "originalPath": "docs/current-state/r48-remaining/outer-zhujing-legacy-diagnostic.json",
+      "originalSha256": "5252a5cef2886caebf10c6cfd5aac1f6eddb4812e746d68c4aebb03e4ff988ad",
+      "originalBytes": 4075931,
+      "compression": "gzip level 9, mtime=0; exact original JSON bytes preserved",
+      "historicalModuleSha256": "a150b7de4351b9543ed03e91c1027c88f625f9b1adcf7ecff0640c2c04452ad0",
+      "historicalStatus": "LOCAL_GEOMETRY_PASS_LEGACY_ROUTE_FAIL",
+      "historicalSummary": {
+        "scheduled": 118,
+        "total": 118,
+        "passed": 94,
+        "failed": 24,
+        "modes": 40,
+        "localTests": 94,
+        "localFailed": 0,
+        "legacyTests": 24,
+        "legacyFailed": 24,
+        "legacyModes": 24
+      },
+      "extractCommand": "gzip -dc docs/current-state/r48-remaining/outer-zhujing-legacy-diagnostic.json.gz > /tmp/outer-zhujing-legacy-diagnostic.json",
+      "verifyCommand": "printf \"%s  %s\\n\" 5252a5cef2886caebf10c6cfd5aac1f6eddb4812e746d68c4aebb03e4ff988ad /tmp/outer-zhujing-legacy-diagnostic.json | sha256sum -c -"
+    }
+  ],
+  "testInputsUnchanged": true,
+  "note": "All original red frames, successful frames, waypoint contracts and prior-run records remain in each byte-exact archive. Original counts are historical, not the current production consumer verdict.",
+  "immutableHistoricalReferences": "Historical source-delta/checkpoint JSON and test output descriptions intentionally retain their original .json paths and hashes. Resolve those originalPath references through this index; do not rewrite immutable retention fixtures to disguise archival changes."
+}

@@ -1,3 +1,4 @@
+import {resolveRemainingProfile as resolveRemainingOuter} from '../scene/palace/special/RemainingOuterHalls.js';
 import data from '../../data/places/zh-CN.json' with { type: 'json' };
 import garden from '../../data/zones/garden.json' with { type: 'json' };
 import outerEast from '../../data/zones/outer-east.json' with { type: 'json' };
@@ -123,6 +124,14 @@ export class PlaceCatalog {
     const matches = this.places.filter(p => p.sceneBinding.kind === 'zone' && p.sceneBinding.name === item.name &&
       (() => {
         const source = this.sceneItems.get(p.id);
+        const remaining = resolveRemainingOuter(p.sceneBinding.zoneId, source);
+        if (remaining?.id === p.id && remaining.mapFootprint) {
+          // This bounded profile moved only its fitted front-house footprint;
+          // identity still binds to the original exact zone source, never name alone.
+          const expected = remaining.mapFootprint;
+          return item.kind === expected.kind && ['x', 'z', 'w', 'd'].every(key =>
+            Number.isFinite(expected[key]) && item[key] === expected[key]);
+        }
         if (source.pavilionProfile) {
           // Surveyed pavilion map rectangles are centered on the asymmetric
           // platform, not the source building origin. Derive the exact same

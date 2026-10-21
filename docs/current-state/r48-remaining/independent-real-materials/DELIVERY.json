@@ -1,0 +1,323 @@
+{
+  "reviewedCommit": "a32cf01cd21673d2063988bd69ba3a70efd02f0b",
+  "scope": "Independent CPU compatibility/physics audit only; no GPU, historical or complete R48 acceptance. No production code changes.",
+  "commands": [
+    {
+      "command": "node --test --test-concurrency=2 tests/r48-audit-real-*.test.mjs",
+      "pass": 433,
+      "fail": 0
+    },
+    {
+      "command": "node --test --test-concurrency=2 tests/r48-outer-*.test.mjs tests/r48-auto-route-consumer-contract.test.mjs tests/r48-fixed-route-leaf-turn.test.mjs tests/r48-real-material-library.test.mjs tests/r48-ningshou-real-materials.test.mjs tests/r48-huangji-merged-lifecycle.test.mjs",
+      "pass": 821,
+      "fail": 0
+    },
+    {
+      "command": "node --test tests/r48-current-scope-retention.test.mjs tests/r48-axis-retention.test.mjs tests/r48-review-central-retention.test.mjs",
+      "pass": 22,
+      "fail": 0
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "warning": "Vite chunks above 500 kB"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/46c4c84-actual-legacy-shell-removal.json",
+      "sha256": "6b0a0d623351d45269c47ebfb1f1280b8cb8f95049c2888e2ccfb4c2bb61ebc5",
+      "bytes": 2484
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/46c4c84-ground-start-63.json",
+      "sha256": "fe04db1d27f544ff3e236da7898a208e6315e4591b3c5ef3079a64965ccceb21",
+      "bytes": 328098
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/46c4c84-legacy17-hall-retention.json",
+      "sha256": "71253191d7b15c12c46de51c5a6e5056484a254ebc2a8b81429b5ae97afe5580",
+      "bytes": 4723
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/46c4c84-wenyuan-accepted-substep-diagnostic.json",
+      "sha256": "daf41fa7b0c8c2d0eda7acb648c4105a6e210d9bd02b30e6583ba42477bdacd5",
+      "bytes": 56810
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/46c4c84-wenyuan-full-body-diagnostic.json",
+      "sha256": "d5f63d35cea1438f7eba223d229989dfc7b582fb8bd47c9b370fc666d79ec4ea",
+      "bytes": 57334
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/46c4c84-wholeworld-under-stair-replay.json",
+      "sha256": "f6320c173dbd9123115214ff95bae9a94781eed68a8c008614ca9633bd3180c9",
+      "bytes": 14684
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/58b0431-ground-start-63.json",
+      "sha256": "3994b472b1242bcd968a548bcd0779612da35079b1b22e5803ccb3424304ac1f",
+      "bytes": 328158
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/58b0431-wenyuan-accepted-substep-diagnostic.json",
+      "sha256": "2f8757b85bcba0cf592bf1dcb2067af72383fcd9a579a9c3efc4f0b81902bcae",
+      "bytes": 50
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/58b0431-wholeworld-under-stair-replay.json",
+      "sha256": "f6320c173dbd9123115214ff95bae9a94781eed68a8c008614ca9633bd3180c9",
+      "bytes": 14684
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/REVIEW.md",
+      "sha256": "dd6591d1a9f06517c073f59391c1515feace5e246805eb9a2996ec9549c5fd63",
+      "bytes": 16635
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/entry-fix-58b0431/r48-audit-delivery-package-58b0431.tap",
+      "sha256": "f508e98c995c3fcf068663211af3ea043d55c88f7e5d4cf297c817bd0887c123",
+      "bytes": 49476
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/entry-fix-58b0431/r48-audit-ground63-58b0431.tap",
+      "sha256": "7a5c3b7349844fd539aa69b549716591c30a5f9b847b4f9d4995862932a2d9d8",
+      "bytes": 1051
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/entry-fix-58b0431/r48-audit-material-world-58b0431.tap",
+      "sha256": "7494f60c758b6b821781e04a7c98d3cc5cf41dfab71381755035ab460f88aa3c",
+      "bytes": 22102
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/entry-fix-58b0431/r48-audit-outer-final-58b0431.tap",
+      "sha256": "b512440a267dcda07bfdde0d7e7c142f908b24a8d71f5f95078222295023e564",
+      "bytes": 97437
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/entry-fix-58b0431/r48-audit-physical-final-58b0431.tap",
+      "sha256": "bfde5b6f03cc434c37c3a6f11bb07cbfa04055f734eef9d2f2912547e6e66c92",
+      "bytes": 34626
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/final-a32cf01/r48-independent-build-a32cf01.log",
+      "sha256": "a4f603cec8439f02980a0241dac84b98c2e09e41322f0b6e5d894f45506d7d6f",
+      "bytes": 817
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/final-a32cf01/r48-independent-final-a32cf01.tap",
+      "sha256": "2847287fbbd3800765c79a21b75a3568dde07ded970903a7e48eef0371b7a40c",
+      "bytes": 49449
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/final-a32cf01/r48-independent-owner-final-a32cf01.tap",
+      "sha256": "6ea9f5b7f3718fee177d744700e5477e4d1e40879c0c8e6dcb2b613810f435d1",
+      "bytes": 97666
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/final-a32cf01/r48-independent-retention-final-a32cf01.tap",
+      "sha256": "83b34cd66550675fa89cfe5e4583720249dab7941ee0d9a024fab9950a06a3e2",
+      "bytes": 2842
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/fixed-route-fcde072/r48-fixed33-declared-before.json",
+      "sha256": "69f393db71eb39d47814069ec3e21d6d2d8e149b6e57c6c96d260caa289f50ad",
+      "bytes": 16584
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/fixed-route-fcde072/r48-real-fixed33-fcde072.tap",
+      "sha256": "72d602c7c967947e9ca05de209150ddbf8b2e656adc87441788d344e0f6df2a5",
+      "bytes": 589
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/fixed-route-fcde072/r48-real-fixed33-old-46c4c84.tap",
+      "sha256": "cff14c754c35e4af07592866168da67ba2c9fbe9801a3db7eafe1a209b68a5bb",
+      "bytes": 23493
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/frozen-46c4c84/r48-audit-ground63-46c4c84.tap",
+      "sha256": "d8b340741e771988a177b80073c3781aef216ed8d92d106eeb9a4e66c1a1e556",
+      "bytes": 1055
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/frozen-46c4c84/r48-audit-merged-46c4c84.tap",
+      "sha256": "cbe360c4b48af2a74a6d2e1d6af026ecb09b6f871833fd5f444f611991f71eff",
+      "bytes": 20971
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/frozen-46c4c84/r48-audit-merged-manifest-46c4c84.tap",
+      "sha256": "1b9a4708aaa730affd2d0e0e38aff81bcbdf41555addf54f210854ed1dcf37d0",
+      "bytes": 21000
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/frozen-46c4c84/r48-audit-resource-lifecycle-46c4c84.tap",
+      "sha256": "fa30d81a0bb28cfa6ede2c292c16ed163c9360b47d708e742e5dc2eddcc28676",
+      "bytes": 8107
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/frozen-46c4c84/r48-audit-wholeworld-46c4c84.tap",
+      "sha256": "af15e44a1e536d4aec78e9e9d2500899f9aaabe5c7b63cf44a4f48f16bb3eebc",
+      "bytes": 115105
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/frozen-46c4c84/r48-audit-wholeworld-gallery-46c4c84.tap",
+      "sha256": "3f9f37bd6fb4b7b5cd4ec7613d05a51762baef5e3f2f5f4639d7f2fdc3480daa",
+      "bytes": 1079
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/frozen-46c4c84/r48-audit-wholeworld-gallery-isolated-46c4c84.tap",
+      "sha256": "673d1b793bb8ebe2534e15615ada5993da306a12919d236fb0030c66062ee44d",
+      "bytes": 1079
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/frozen-46c4c84/r48-audit-world-contract-46c4c84.tap",
+      "sha256": "4b5e8949cdceab0ea464b1e9c589271823bc7cccc27885fd4628bad6676688dd",
+      "bytes": 369
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/frozen-46c4c84/r48-capture-46c4c84.json",
+      "sha256": "59783db689587008c0e861242566a29af73626791cf2ca6a3ccd5ca6c87c8946",
+      "bytes": 208443
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/frozen-46c4c84/r48-capture-6f23d91.json",
+      "sha256": "129940103371552925eaa2409156eef0ca7f3d2e4e82f072c3c65d7f53d7f7fd",
+      "bytes": 207300
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/frozen-46c4c84/r48-capture-d37cf4d.json",
+      "sha256": "ceb91e92fc1553faafb4233373b5b18a3a45ab8ee2b954f927bdf06502ae13bb",
+      "bytes": 203843
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/frozen-46c4c84/r48-fixed33-independent-46c4c84.json",
+      "sha256": "f622d0fefd2b44d31179c3f6cfcdb2d4503b41eaefa84e292bb7944d7d54effc",
+      "bytes": 5255
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/frozen-46c4c84/r48-outer-frozen-46c4c84.tap",
+      "sha256": "75fa087a99379d2034731f566667cd7efd3a148400a07e6f7bf529b690664881",
+      "bytes": 51143
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/frozen-46c4c84/r48-pair-46c4c84.json",
+      "sha256": "2d81065ef8d6a53b63ea0aababace5f6c58f292a2f36a904b5c902c2cf22428d",
+      "bytes": 1014
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/frozen-46c4c84/r48-pair-d37cf4d.json",
+      "sha256": "cbaae77ff6e3b17a597dd568ceb9e4a3d1203f9f6d0a72357f3d280272e664ad",
+      "bytes": 1020
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/frozen-46c4c84/r48-real-63-routes-46c4c84.tap",
+      "sha256": "1fce863a3c37f6b333d7be029961c1ee3c652021d95d8f39a8d0b82a6421ca3d",
+      "bytes": 634
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/frozen-46c4c84/r48-real-material-46c4c84.tap",
+      "sha256": "20ba20a00caaa33549823c386e6cd4f3146e77d1e1fcba33d9f87f090f8b2d9c",
+      "bytes": 21276
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/frozen-46c4c84/r48-stub-retention-46c4c84.tap",
+      "sha256": "c876df771fbf3491f3c73682eed8fe5705cdb2ac1006ff1fc4ef247470baf009",
+      "bytes": 849
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/frozen-46c4c84/r48-wenyuan-threshold-46c4c84.json",
+      "sha256": "3fb9cdb8f60baa420adc4cc449f36c42fa72cbc9b5d8dd97a4d57583ab88b160",
+      "bytes": 2555
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/frozen-46c4c84/r48-wenyuan-threshold-d37cf4d.json",
+      "sha256": "42deb7709e7b49b6c3da4060602dd0f05a8a6d5a62f975a7f0592043cb6abd1f",
+      "bytes": 2547
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/legacy-fixture-provenance.json",
+      "sha256": "1eec7f95be98459b139611c89b65c4eed66248bfbbbf1b0147d5261cabc45233",
+      "bytes": 2293
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/material-fix-59be3b0/r48-audit-real-material-final-59be3b0.tap",
+      "sha256": "9cdf8c52ad7500caf117849335d2f16d762d6489522005da92d0aae1d48f4b33",
+      "bytes": 28785
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/material-fix-59be3b0/r48-capture-59be3b0.json",
+      "sha256": "ba5d3d3cebd525f36955257e57174ddb89552e384883fb713ccae9c30db54c1e",
+      "bytes": 208125
+    },
+    {
+      "path": "docs/current-state/r48-remaining/independent-real-materials/material-fix-59be3b0/r48-independent-ning-old-stub-capture.tap",
+      "sha256": "fa5eafed4427f96d63251fc16c8293ab604689743f827935b142477c197268a8",
+      "bytes": 2458
+    },
+    {
+      "path": "tests/r48-audit-real-63-ground-start.test.mjs",
+      "sha256": "f4c1a44d37531d743a46fe1718ab7e6db926e8340b302060ccc97cb5d4c8f92a",
+      "bytes": 3828
+    },
+    {
+      "path": "tests/r48-audit-real-capture-garden-pair.mjs",
+      "sha256": "7c33fa9e98fb67674040cfef64e171060c5265452d40b14698a1ec73f398bf4b",
+      "bytes": 2252
+    },
+    {
+      "path": "tests/r48-audit-real-capture-hall-materials.mjs",
+      "sha256": "a62ebb88d3f47a0b2d9b9ee1663a39527c32642a593b0c9db33738b573a22558",
+      "bytes": 2524
+    },
+    {
+      "path": "tests/r48-audit-real-capture-wenyuan-threshold.mjs",
+      "sha256": "25a017c1a115f888fbfa69ab1ad47507f895553a2aff82f4616aa443a34ad538",
+      "bytes": 1156
+    },
+    {
+      "path": "tests/r48-audit-real-finished-library.test.mjs",
+      "sha256": "8d0ea978b108663444db186d4d0b237fa16a888a4e5b79611b58695b59c16083",
+      "bytes": 4437
+    },
+    {
+      "path": "tests/r48-audit-real-legacy-retention.test.mjs",
+      "sha256": "13a18e6331293a069552844a31b14220749f841250ce232d7db5bf1eb3b6c6f0",
+      "bytes": 4765
+    },
+    {
+      "path": "tests/r48-audit-real-world-body-scan-replay.test.mjs",
+      "sha256": "12afade9de99cc1cd297d2fc66a605565c247ff9d48db17c9ac236a3ace0fb0e",
+      "bytes": 4837
+    },
+    {
+      "path": "tests/r48-audit-real-world-body-wenyuan-extra.test.mjs",
+      "sha256": "2b050a13f79920afeb5ca695660d646c6be96705edbfdfaf0641ce61d4f2ecec",
+      "bytes": 6340
+    },
+    {
+      "path": "tests/r48-audit-real-world-body-wenyuan.test.mjs",
+      "sha256": "702e6d3c2435de6d80284f3f358229517b58611089aaad42d73ac9f3953b48f1",
+      "bytes": 6842
+    },
+    {
+      "path": "tests/r48-audit-real-world-contract.test.mjs",
+      "sha256": "9946897bc0ee4881970c4b4f360ee685964ccf539db839d6cd9077096ce12eae",
+      "bytes": 1317
+    },
+    {
+      "path": "tests/r48-audit-real-world-gallery-details.test.mjs",
+      "sha256": "9b7f8052e4dff92f26b41d07996d30ebedd773b5cc61f74bccb617b4fac7c9cc",
+      "bytes": 3732
+    },
+    {
+      "path": "tests/r48-audit-real-world-stairs.test.mjs",
+      "sha256": "8d1de34f8c6720c21c61e9a389d7ded0c1a4b59518e7f6e16ae82190e71fdd81",
+      "bytes": 4525
+    },
+    {
+      "path": "tests/r48-audit-real-world-wenyuan-accepted-substeps.test.mjs",
+      "sha256": "e2b823a7c5c7a049e554328013f6618d00e0763b4977d703117f6fc3bfe652c9",
+      "bytes": 8100
+    }
+  ]
+}

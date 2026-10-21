@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "method": "Independently constructed each stable source commit in its own clone. Real TextureLibrary material/cache/owns were retained; only offline 64x64 color textures were seeded. raw hashes cover geometry attributes, actual material names/properties and world transforms; physical hashes normalize only the known library _material name suffix. Stored root paths are historical provenance, not executable dependencies. No baseline update command exists in the regression test. Actual-manifest UV/material lifecycle is separately checked by r48-audit-real-finished-library.test.mjs.",
+  "artifacts": {
+    "frozen-46c4c84/r48-capture-d37cf4d.json": {
+      "sourceCommit": "d37cf4de2a87f6deffff4e57e20c22f7a2dd779c",
+      "sha256": "ceb91e92fc1553faafb4233373b5b18a3a45ab8ee2b954f927bdf06502ae13bb",
+      "captureScript": "tests/r48-audit-real-capture-hall-materials.mjs",
+      "captureScriptSha256": "a62ebb88d3f47a0b2d9b9ee1663a39527c32642a593b0c9db33738b573a22558"
+    },
+    "frozen-46c4c84/r48-capture-6f23d91.json": {
+      "sourceCommit": "6f23d91fe76288aded7c3d7fc3fc293905cbf62b",
+      "sha256": "129940103371552925eaa2409156eef0ca7f3d2e4e82f072c3c65d7f53d7f7fd",
+      "captureScript": "tests/r48-audit-real-capture-hall-materials.mjs",
+      "captureScriptSha256": "a62ebb88d3f47a0b2d9b9ee1663a39527c32642a593b0c9db33738b573a22558"
+    },
+    "frozen-46c4c84/r48-pair-d37cf4d.json": {
+      "sourceCommit": "d37cf4de2a87f6deffff4e57e20c22f7a2dd779c",
+      "sha256": "cbaae77ff6e3b17a597dd568ceb9e4a3d1203f9f6d0a72357f3d280272e664ad",
+      "captureScript": "tests/r48-audit-real-capture-garden-pair.mjs",
+      "captureScriptSha256": "7c33fa9e98fb67674040cfef64e171060c5265452d40b14698a1ec73f398bf4b"
+    },
+    "46c4c84-legacy17-hall-retention.json": {
+      "sourceCommit": "46c4c8482aa1a86c6a7d6263e6e11c53f2ad80c6",
+      "sha256": "71253191d7b15c12c46de51c5a6e5056484a254ebc2a8b81429b5ae97afe5580",
+      "captureScript": null,
+      "captureScriptSha256": null
+    },
+    "46c4c84-actual-legacy-shell-removal.json": {
+      "sourceCommit": "46c4c8482aa1a86c6a7d6263e6e11c53f2ad80c6",
+      "sha256": "6b0a0d623351d45269c47ebfb1f1280b8cb8f95049c2888e2ccfb4c2bb61ebc5",
+      "captureScript": null,
+      "captureScriptSha256": null
+    }
+  }
+}

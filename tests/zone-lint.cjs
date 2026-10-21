@@ -234,6 +234,81 @@ function lintZoneRelations(zones) {
   }
 }
 
+/** Explicit migrations only. Other halls retain the original generic probes.
+ * Wenyuan must cross its pond then turn to the six-bay side entrance. Wenhua's
+ * connector joins two furnished rooms, not two empty exterior door aprons.
+ * A passing result requires the real controller and its actual ground support;
+ * source declarations alone never exempt a hall from the geometry check.
+ */
+async function checkHallSourceProfile(W, h) {
+  const wenyuan = h.item.structure === 'wenyuan-pavilion';
+  const connector = h.item.structure === 'south-court-hall' && h.item.southCourtProfile === 'wenhua-connector';
+  if (!wenyuan && !connector) return null;
+  const { replayTerrace, traceTerraceGround } = await import(pathToFileURL(path.join(__dirname, 'lib/terrace-walk.mjs')).href);
+  const { mock } = await import('node:test');
+  const faults = [], runs = [];
+  let profile, go, floors, bridge;
+  if (wenyuan) {
+    const { wenyuanGeometry } = await import(pathToFileURL(path.join(__dirname, '../src/scene/palace/special/WenyuanPavilion.js')).href);
+    const { southWaterProfile } = await import(pathToFileURL(path.join(__dirname, '../src/scene/palace/special/SouthWaterSystem.js')).href);
+    const p = wenyuanGeometry(h.item);
+    profile = p.navigation.id;
+    go = p.navigation.points.map(point => [point.x, point.z]);
+    floors = [p];
+    bridge = W.cm.rivers.flatMap(river => southWaterProfile(river)?.bridges ?? []).find(b => b.id === 'wenyuan-pond');
+    if (!bridge) faults.push('missing-bridge-profile: wenyuan-pond');
+  } else {
+    const { southCourtGeometry } = await import(pathToFileURL(path.join(__dirname, '../src/scene/palace/special/SouthCourtProfiles.js')).href);
+    profile = h.item.southCourtProfile;
+    floors = ['front', 'connector', 'rear'].map(part => {
+      const source = W.halls.find(other => other.zone === h.zone && other.item.southCourtProfile === `wenhua-${part}`);
+      if (!source) throw new Error(`Wenhua profile requires its ${part} source constituent`);
+      return southCourtGeometry(source.item);
+    });
+    const [front, link, rear] = floors;
+    // The dated display layout is intentionally not axial: pass the front
+    // island on its west side and skirt the rear closed circular display.
+    go = [[front.navigation.entry.x, front.navigation.entry.z], [front.x, front.z - 6.3],
+      [front.x + 11, front.z - 6.3], [front.x + 11, front.z + 5.7], [front.x, front.z + 5.7],
+      [link.x, link.z], [rear.x, rear.z - 5], [rear.x + 2.3, rear.z - 5],
+      [rear.x + 2.3, rear.z - .5], [rear.x, rear.z - .5]];
+  }
+  const points = [...go, ...go.slice(0, -1).reverse()];
+  if (W.cm.getGroundHeight(...points[0], Infinity) !== 0) faults.push('non-ground-start');
+  for (const fps of [10, 60]) {
+    const trace = traceTerraceGround(W.cm, { flights: [] });
+    let result;
+    try { result = replayTerrace({ mock }, W, points, { fps, sprint: true, recordFrames: true }); }
+    finally { trace.restore(); }
+    runs.push({ fps, arrived: result.arrived, startFeet: result.startFeet, end: result.end,
+      crossings: result.driver.crossings.length });
+    if (!result.arrived || result.driver.crossings.length !== points.length - 1) {
+      faults.push(`blocked-route ${fps}Hz: ${JSON.stringify({ stuckAt: result.stuckAt, end: result.end })}`);
+    }
+    if (result.startFeet !== 0 || Math.abs(result.end[2]) > .01) faults.push(`non-ground-roundtrip ${fps}Hz`);
+    if (trace.samples.some(sample => ['rescue', 'unverified'].includes(sample.source))) faults.push(`unsafe-ground-support ${fps}Hz`);
+    if (result.frames.some(frame => ![frame.x, frame.z, frame.feet, frame.ground].every(Number.isFinite))) faults.push(`non-finite-motion ${fps}Hz`);
+    for (const floor of floors) {
+      const frames = result.frames.filter(frame => Math.abs(frame.x - floor.x) < floor.w / 2 - .8 &&
+        Math.abs(frame.z - floor.z) < floor.d / 2 - .3);
+      if (!frames.length || frames.some(frame => Math.abs(frame.ground - floor.ph) > .01 || frame.feet < floor.ph - .2)) {
+        faults.push(`unsupported-hall-floor ${fps}Hz: ${floor.profile ?? floor.id}`);
+      }
+    }
+    if (bridge) {
+      // Collision's water aperture is a horizontal permission test, not proof
+      // that a physical deck exists. Require selected real ramp support over
+      // the whole bridge interior, including partial missing deck segments.
+      const samples = trace.samples.filter(sample => Math.abs(sample.x - bridge.x) < .6 &&
+        Math.abs(sample.z - bridge.z) < bridge.length / 2 - .2);
+      if (!samples.length || samples.some(sample => sample.supportType !== 'ramp' || sample.height <= 0)) {
+        faults.push(`missing-bridge-support ${fps}Hz: ${bridge.id}`);
+      }
+    }
+  }
+  return { profile, faults, runs, points };
+}
+
 // ───────────────────────── 8/9. 几何检查（碰撞世界） ─────────────────────────
 async function lintGeometry(zoneFiles) {
   const L = await import(pathToFileURL(path.join(__dirname, 'lib/world.mjs')).href);
@@ -291,6 +366,12 @@ async function lintGeometry(zoneFiles) {
     if (h.item.enter !== true || h.item.open) continue;
     hallChecked++;
     const g = h.g;
+    const current = await checkHallSourceProfile(W, h);
+    if (current) {
+      for (const fault of current.faults) error(`${h.zone}: hall「${h.item.name ?? h.item.southCourtProfile}」${current.profile} ${fault}`);
+      if (!current.faults.length) info(`${h.zone}: ${current.profile} 地面起步连续往返及实际支撑通过（10/60 Hz）`);
+      continue;
+    }
     if (g.profile) {
       // The center of this approach is a solid carved strip. Probe both real
       // side flights, through the terrace turn and the single lower doorway.
@@ -337,8 +418,11 @@ async function lintGeometry(zoneFiles) {
   console.log(`几何检查完成：门 ${gateChecked}/${W.gates.length}（×2 侧）、enter 殿 ${hallChecked}`);
 }
 
+// Importable only for fail-closed tests; normal CLI behavior stays unchanged.
+module.exports = { checkHallSourceProfile };
+
 // 主流程
-(async () => {
+if (require.main === module) (async () => {
 const files = fs.readdirSync(ZONES_DIR).filter(f => f.endsWith('.json')).sort();
 
 if (files.length === 0) {

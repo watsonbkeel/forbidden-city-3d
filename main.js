@@ -185,12 +185,7 @@ class ForbiddenCityApp {
         this.flight = new FlightTour({scene:this.scene,camera:this.camera,controls:this.controls,
           collisionManager:this.collisionManager,zoneManager:this.zoneManager,envelope:this.flightEnvelope,
           isPaused:()=>this.settingsTourSession?.paused === true,
-          onModeChange:occupied=>{
-            this.interiors.setSuspended(occupied);
-            if(!occupied){this.controls.setMapOpen(this.minimap.visible);this.controls.setFreeMove(this.minimap.visible);}
-            const welcome=document.getElementById('welcome-overlay');
-            if(welcome)welcome.style.display=occupied||this.isMobile||this.minimap.visible||this.controls.isLocked()?'none':'flex';
-          }});
+          onModeChange:occupied=>this.onFlightModeChange(occupied)});
         this.bindAudioStart();
         this.perfHUD = new PerfHUD(this.renderer, {
           zoneProvider: () => ({
@@ -225,6 +220,13 @@ class ForbiddenCityApp {
     console.log('故宫 3D 初始化完成');
   }
   
+  onFlightModeChange(occupied) {
+    this.interiors.setSuspended(occupied);
+    if(!occupied){this.controls.setMapOpen(this.minimap.visible);this.controls.setFreeMove(this.minimap.visible);}
+    const welcome=document.getElementById('welcome-overlay');
+    if(welcome)welcome.style.display=occupied||this.isMobile||this.minimap.visible||this.controls.isLocked()?'none':'flex';
+  }
+
   /**
    * 桌面端欢迎遮罩：加载完成后显示，点击锁定鼠标后隐藏，按 ESC 解锁后重新显示
    */

@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+const dir='docs/current-state/r48-remaining/';
+const state=JSON.parse(fs.readFileSync(dir+'current-70-status.json'));
+const b=state.buildings, classified=b.filter(x=>x.exterior.status!=='pending'&&x.interior.status!=='pending');
+const changed=b.filter(x=>[x.exterior,x.interior].some(s=>s.status==='actual-change'));
+const retained=classified.filter(x=>![x.exterior,x.interior].some(s=>s.status==='actual-change'));
+const words={'actual-change':'局部实际更新','reviewed-retained':'复核保留','evidence-blocked':'证据不足未改',pending:'处理结论待登记'};
+const count=side=>Object.entries(words).map(([key,name])=>`${name} ${b.filter(x=>x[side].status===key).length}`).join('；');
+const names=xs=>xs.map(x=>x.name).join('、')||'无';
+const text=`# R48 剩余 70 个有名建筑：范围与未完成边界\n\n状态：开发验证记录，不是发布回执，也不是 70 座完整复原声明。\n\n- 本轮范围 70 个身份，已有 ${classified.length} 项完成内外两侧状态登记，${70-classified.length} 项尚未形成逐侧处理结论。状态登记完成不等于最终统一验证通过。\n- ${changed.length} 个身份至少一侧有真实几何变化；${retained.length} 个已登记身份没有本轮几何变化。登记、来源复核与实际改模分别计算。\n- 外观：${count('exterior')}。\n- 内饰：${count('interior')}。\n- 先前 19 个有名建筑的局部工作与 4 个未命名辅助殿不计入这 70 个身份的新增数量。\n\n## 逐项来源与对照\n\n[完整 70 项内外双栏记录](current-70-status.json)逐项列出身份、变化、来源 URL、年代/拍摄日期未知、拟合与限制。来源仅能证明局部事实；只提供建筑外观或身份的来源，不会自动变成内饰证明。照片上传日期不作为拍摄日期。所有建筑的完整现状验收仍为 false。\n\n无本轮几何变化的已登记身份：${names(retained)}。\n\n处理结论尚未登记的身份：${names(b.filter(x=>!classified.includes(x)))}。\n\n## 不能省略的边界\n\n- 多层建筑已有真实楼板不等于上层可达。未知楼梯/桥接的上层未增加传送目的地，不能把屋檐层数当可使用楼层。\n- 南三所三进院落与原模型两排身份映射未解，不能把六个占位单体称为六份确定历史室内布局。\n- 无据家具可能仍为明确未核的原占位件；没有把“未找到资料”当作“原来没有家具”的证据。佛像、唐卡、通景画、雕刻及完整文物库存未凭空补造。\n- 部分展陈采用官方特定年份或拍摄日期未知的照片，现代陈列与历史陈设分开。空展台和柜体轮廓不代表完整陈列已建。\n- 门开启姿态、楼梯级数、局部接近台、梁撑、柱体保守代理和通路净空存在明示的访问/构造拟合，不冒充测绘或博物馆实际通行许可。\n- 保留全部 159 地点及 7 个既有位置疑点；地图、飞行/下机、日夜切换和既有路线需要在最终同一冻结版本回归，不能以局部绿例代替整体验收。\n- 真实 TextureLibrary 的 CPU 构造/几何/资源检查不等于 WebGL 画面验收。没有本轮真实游戏 GPU 或原生手机视觉通过声明。\n\n最终提交、完整测试总数与继承失败分类以单独发布验证回执为准，本文不预先承诺全项目全绿。\n`;
+fs.writeFileSync(dir+'CURRENT-COVERAGE.md',text);

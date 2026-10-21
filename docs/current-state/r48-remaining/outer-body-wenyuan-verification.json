@@ -1,0 +1,162 @@
+{
+  "status": "VERIFIED_REPAIR_FOR_REPLAYED_CLASSES_AND_APPROACHES",
+  "baselineModuleSha256": "2ffeaf1fa9be545335ccb5eda0a092845dd750e8935655ab2551dddfaef572a9",
+  "candidateModuleSha256": "60b02f3aa8c8fc9b5be7fc50cd841b657af32b90327d158526fc45abcdfbf80d",
+  "staticCandidates": [
+    {
+      "floorY": 0.5,
+      "points": 51
+    },
+    {
+      "floorY": 3.15,
+      "points": 33
+    },
+    {
+      "floorY": 5.5,
+      "points": 281
+    }
+  ],
+  "actualController": "FirstPersonControls with only DOM event targets and performance.now stubbed; world CollisionManager is the complete outer-east Preview build.",
+  "entryStart": [
+    -186.5,
+    0,
+    -156.3
+  ],
+  "body": {
+    "radius": 0.5,
+    "xzTangencyEpsilon": 0.001,
+    "bottomAboveFeet": 0.35,
+    "bottomTangencyEpsilon": 0.001,
+    "headAboveFeet": 1.7,
+    "headTangencyEpsilon": 0.000001
+  },
+  "scope": "Stable physical frames (feet/ground difference <= .02), after each real approach, target classes for primary and all real triangles for extra attacks/bypasses. Complete meshes with tops within ground + STEP_UP are classified as low-step contacts, not body blockers. No random high-floor spawn or rescue used.",
+  "baselinePrimary": {
+    "pass": 1,
+    "fail": 8
+  },
+  "baselineExtra": {
+    "pass": 3,
+    "fail": 4
+  },
+  "candidateMatrix": [
+    {
+      "fps": 10,
+      "sprint": false,
+      "backward": false,
+      "primary": {
+        "pass": 9,
+        "fail": 0
+      },
+      "extra": {
+        "pass": 7,
+        "fail": 0
+      }
+    },
+    {
+      "fps": 10,
+      "sprint": false,
+      "backward": true,
+      "primary": {
+        "pass": 9,
+        "fail": 0
+      },
+      "extra": {
+        "pass": 7,
+        "fail": 0
+      }
+    },
+    {
+      "fps": 10,
+      "sprint": true,
+      "backward": false,
+      "primary": {
+        "pass": 9,
+        "fail": 0
+      },
+      "extra": {
+        "pass": 7,
+        "fail": 0
+      }
+    },
+    {
+      "fps": 10,
+      "sprint": true,
+      "backward": true,
+      "primary": {
+        "pass": 9,
+        "fail": 0
+      },
+      "extra": {
+        "pass": 7,
+        "fail": 0
+      }
+    },
+    {
+      "fps": 60,
+      "sprint": false,
+      "backward": false,
+      "primary": {
+        "pass": 9,
+        "fail": 0
+      },
+      "extra": {
+        "pass": 7,
+        "fail": 0
+      }
+    },
+    {
+      "fps": 60,
+      "sprint": false,
+      "backward": true,
+      "primary": {
+        "pass": 9,
+        "fail": 0
+      },
+      "extra": {
+        "pass": 7,
+        "fail": 0
+      }
+    },
+    {
+      "fps": 60,
+      "sprint": true,
+      "backward": false,
+      "primary": {
+        "pass": 9,
+        "fail": 0
+      },
+      "extra": {
+        "pass": 7,
+        "fail": 0
+      }
+    },
+    {
+      "fps": 60,
+      "sprint": true,
+      "backward": true,
+      "primary": {
+        "pass": 9,
+        "fail": 0
+      },
+      "extra": {
+        "pass": 7,
+        "fail": 0
+      }
+    }
+  ],
+  "candidateMatrixTotal": {
+    "pass": 128,
+    "fail": 0
+  },
+  "candidateCombinedWenyuanSuite": {
+    "pass": 28,
+    "fail": 0
+  },
+  "historicalSafetyMetadata": "MODEL_ACCESS_SAFETY_FIT_NOT_HISTORIC_OBJECT; source:null",
+  "notClaimed": [
+    "Not all 365 static grid candidates are individually replayed. Each reported physical obstruction class and the dangerous stair approach directions were replayed.",
+    "No browser screenshot inspection was performed; intersections are against actual transformed scene mesh triangles.",
+    "No full-project test/build/publish was performed by this read-only reviewer."
+  ]
+}

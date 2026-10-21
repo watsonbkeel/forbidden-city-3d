@@ -1,0 +1,69 @@
+{
+  "reviewedCommits": {
+    "primary": "d36d89d8a628d828ba701ef17dd1f55807240de4",
+    "residentialExitOnly": "67dc6c4ba78513d5c080f0d7e5f1da307a415b5a",
+    "originalRed": "19a590c3b72c3427a655970e4783ff9e533800dc"
+  },
+  "testFilesSha256": {
+    "tests/r48-review-bearing-chain.test.mjs": "432ab0a5122353da52efe61ae399237fa5b7c1d9a1bfdb72439a8a202c2b8d20",
+    "tests/r48-review-biluo-bearers.test.mjs": "38985d44e97326fc246ff32ad3632fcbd8fd70adac8d6a36b92e1f7554796e5e",
+    "tests/r48-review-outer-bearing-chain.test.mjs": "ebb0427aed1dd6d6a3c31ec5c86c14acc9a1bd8061aec6e8b41dc7a54923ee16",
+    "tests/r48-review-rearinset-clearance.test.mjs": "3768fe0a3d00f671034491f43e2eced0d13367df22c92d5c1aac41377f9db6a0",
+    "tests/r48-review-runtime-outer-mesh.test.mjs": "77a5ca2cc0f048d75f1ba3efef17489b13ba8fd944976b715ee29e78a2ef17fe",
+    "tests/r48-review-runtime-support-diagnostic.mjs": "883a164a18c46f468850360da00a75b2b14d5ea3ba9d69dd107022ce33939293",
+    "tests/r48-review-second-all-portals.test.mjs": "a441fce6e203b1d33ca764ea0b306cdfd5bec4d1348b36b4c03a8bf4ed0b2d63",
+    "tests/r48-review-second-independent.test.mjs": "cd334a3c3b6b49a3ba3f43e9fe7dba8fb6cc1dae3e37173632524b07a2a85d86",
+    "tests/r48-review-second-outer.test.mjs": "fc232034931ccd7520ec54e4c0b3f2a19245aaf722439e2a8b1e345f9b5fa484",
+    "tests/r48-review-second-roof-contact.test.mjs": "f35dabb3b0fc4b8b4221335ffd1f83654a187728c0901d6e179d942a666a7683"
+  },
+  "testedModuleSha256": {
+    "ningshou": "cd2261af55f75bf09c2463b3231e7761589b3275c37e8ef9f988250b658d139d",
+    "outer": "a5bc001aa0ebe21a324fdcf2083f72347a6ebe283c2839c1268af9673a5e45e7",
+    "residentialExitPatch": "616edcc6c15ae7026b2d7164e4f9bf1f3d95dcca165c8f840f41f85cbe605070"
+  },
+  "results": {
+    "primaryReviewerAuthored": 302,
+    "primaryExistingOwnerRerun": 57,
+    "primaryTotal": 359,
+    "residentialReviewerAuthoredExits": 4,
+    "residentialExistingOwnerRerun": 35,
+    "residentialTotal": 39
+  },
+  "note": "Copied test output metadata uses reviewBaselineCommit so future runs do not falsely identify their runtime revision. Assertions are unchanged from final frozen review.",
+  "nodeVersion": "v24.19.0",
+  "persistenceAdaptation": {
+    "change": "Report writes require R48_WRITE_REVIEW_REPORTS=1; no movement, mesh or assertion changes.",
+    "currentTestSha256": {
+      "tests/r48-review-bearing-chain.test.mjs": "432ab0a5122353da52efe61ae399237fa5b7c1d9a1bfdb72439a8a202c2b8d20",
+      "tests/r48-review-biluo-bearers.test.mjs": "38985d44e97326fc246ff32ad3632fcbd8fd70adac8d6a36b92e1f7554796e5e",
+      "tests/r48-review-first-integration.test.mjs": "1241a4d475a8a38c19344a78eab4b9a980fd1294e9af3053c805d6d57bf71fe9",
+      "tests/r48-review-outer-bearing-chain.test.mjs": "6847dd8aa3617337dd81f3f04f727fb29c2f46dba32d6eaf65c934f4f3532e21",
+      "tests/r48-review-rearinset-clearance.test.mjs": "3768fe0a3d00f671034491f43e2eced0d13367df22c92d5c1aac41377f9db6a0",
+      "tests/r48-review-runtime-outer-mesh.test.mjs": "355d3418f4afddeecc1667b0066521f79ef389890d801eea95bba8f8c5ff0956",
+      "tests/r48-review-second-all-portals.test.mjs": "ea6cabe030bf81c642a5119a51e188e636d633f49f4ad1daf59116430c3f850c",
+      "tests/r48-review-second-independent.test.mjs": "1ab96d2c4738c5ffbbfef69473bd84898a703809eeb34083543a474d755ca5dc",
+      "tests/r48-review-second-outer.test.mjs": "7b73b5677a90a12e0af1d0253e46cf03d8cd0945599b3b5eb210b0297d79c24e",
+      "tests/r48-review-second-roof-contact.test.mjs": "f35dabb3b0fc4b8b4221335ffd1f83654a187728c0901d6e179d942a666a7683"
+    },
+    "combinedCurrentRerun": {
+      "tests": 306,
+      "passed": 306,
+      "failed": 0,
+      "logSha256": "dd27fe1700fdc0ba6aa7fbd09f6c9834313e16cb9fbc7baba3148674a0351823",
+      "testedProductionCommit": "67dc6c4ba78513d5c080f0d7e5f1da307a415b5a",
+      "note": "Uncommitted future Huangji loader work is outside these raw mesh/controller tests; not yet active in the regional builder."
+    }
+  },
+  "archivedLogSha256": {
+    "r48-biluo-caps-all-vertices-red.tap": "82b2dfb778fd608a692769472427d80124510c150b6ad5980bef649fb96b5658",
+    "r48-d36-runtime-outer-mesh-calibrated.tap": "62b9b097cf78143bb1cb43119ce0b60fdce35d419d6e3cf4de95873d057f277d",
+    "r48-d36-runtime-outer-mesh.tap": "73eff97a21c511ec0c82c3aefd9018593a0bb2ec940dd84f83069f457091c8a2",
+    "r48-d36-runtime-support-diagnostic.json": "ef8cd1a0ef173818cc48d2d39849d09145bb540c6f378ad81d0887c8c93c570e",
+    "r48-rearinset-clearance-red.tap": "735f23da7a6e2cf7d4fde90a9173d5f8b9e2ddfbdc9bb8fc1cb650c8ca39c02b",
+    "r48-residential-67dc6c4-independent.tap": "dd29e3d554795a89b70e4b5546542c40b2fbe008abc972b41b110db269689b0f",
+    "r48-second-d36d89d8-independent.tap": "fbc2ed4a8ec75067e41849339f86ee47c86b7652c4ef132c689ab235f2b7a9e5",
+    "r48-second-independent.tap": "e4644591966884bba9904ccfd8771174470fa65e0950163c9f503eca446fd25f",
+    "r48-second-outer-final.tap": "f303462677f2a825313cda0498e6aa7d7cfb947992d4d114db4f5b3e2677ea3a",
+    "r48-second-roof-red.tap": "1d19485de208a94933a185dc4ed6a50740fe1365dc233c3d99b4c39cc67b745c"
+  }
+}

@@ -1,4 +1,4 @@
-import { innerJinshuiProfile } from '../scene/palace/special/InnerJinshui.js';
+import { palaceWaterPolygons } from '../scene/palace/special/SouthWaterSystem.js';
 import * as THREE from 'three';
 import { PALACE_LAYOUT } from '../scene/Layout.js';
 import { LAYOUT, TELEPORT } from '../config/constants.js';
@@ -960,9 +960,9 @@ export class Minimap {
       } else if (type === 'wall') {
         fillColor = 'rgba(160, 60, 60, 0.5)'; strokeColor = 'rgba(120, 50, 50, 0.7)';
       } else if (type === 'river') {
-        const profile=innerJinshuiProfile(item);ctx.beginPath();
-        profile.waterPolygon.forEach((point,index)=>{const mapped=this.worldToMap(point.x,point.z);if(index)ctx.lineTo(mapped.x,mapped.y);else ctx.moveTo(mapped.x,mapped.y);});
-        ctx.closePath();ctx.fillStyle='rgba(100, 150, 200, 0.6)';ctx.strokeStyle='rgba(70, 120, 170, 0.8)';ctx.lineWidth=1.2;ctx.fill();ctx.stroke();continue;
+        for (const polygon of palaceWaterPolygons(item)) { ctx.beginPath();
+        polygon.forEach((point,index)=>{const mapped=this.worldToMap(point.x,point.z);if(index)ctx.lineTo(mapped.x,mapped.y);else ctx.moveTo(mapped.x,mapped.y);});
+        ctx.closePath();ctx.fillStyle='rgba(100, 150, 200, 0.6)';ctx.strokeStyle='rgba(70, 120, 170, 0.8)';ctx.lineWidth=1.2;ctx.fill();ctx.stroke(); } continue;
       } else if (type === 'garden') {
         fillColor = 'rgba(120, 180, 120, 0.6)'; strokeColor = 'rgba(80, 140, 80, 0.8)'; showLabel = true;
       } else {

@@ -1,3 +1,5 @@
+> R41 来源归属纠正：下列2017年 Stone Drum Exhibition Hall 图片属于宁寿宫，不属于皇极殿。原文据此推断皇极殿人工照明、室内柱网或天花的内容不成立，不得作为皇极殿建模依据。原始页面及像素已另行核对：Siyuwj署名自摄、日期2017-05-21、CC BY-SA4.0，画面为石鼓展柜与通道；仅作该日期的非官方补充资料，不认定2026年布局。宁寿宫官方身份依据：https://www.dpm.org.cn/explore/building/236471.html 。
+
 # 皇极殿 室内资料（interiors-huangji）
 
 > 任务 P1-D / D-3。坐标约定：原点 = 太和殿中心，+Z 北，−X 东，单位 m。
@@ -31,7 +33,7 @@
 | 项 | 值 | 来源 | 置信度 |
 |---|---|---|---|
 | 铺地 | 金砖（推断，仿乾清宫） | 推断 | 中 |
-| 现状 | 曾为石鼓馆展厅（2017），现为珍宝馆系列 | Commons 图 | 中 |
+| 现状 | 原2017石鼓馆图片属于宁寿宫，此行不能作为皇极殿现状依据；另待官方资料核实 | 误引已撤回 | 未核 |
 
 ## 3. 门窗
 
@@ -83,7 +85,7 @@
 | 项 | 值 | 来源 | 置信度 |
 |---|---|---|---|
 | 自然光 | 前檐 3 间门 + 6 间槅扇窗，后檐 3 间门，采光良好（优于太和殿） | A14 | 中 |
-| 人工光 | 现为展厅，有展柜照明 | Commons 2017 图 | 中 |
+| 人工光 | 原展柜照明推断误用了宁寿宫图片，不能据此认定皇极殿室内 | 误引已撤回 | 未核 |
 | 模型建议 | 南向 RectAreaLight 4 500 K；藻井补光；环境 0.2 | — | — |
 
 ## 9. 参考图片（≥10）
@@ -102,7 +104,7 @@
 | 10 | https://commons.wikimedia.org/wiki/File:皇極殿_Huangji_Hall_-_panoramio.jpg | 正面（含月台/丹陛） | Commons |
 | 11 | https://commons.wikimedia.org/wiki/File:皇极殿_-_panoramio.jpg | 外景 | Commons |
 | 12 | https://commons.wikimedia.org/wiki/File:Città_proibita,_padiglione_dell'armonia_imperiale_(huangjidian),_01.jpg | 正面近景（槅扇/出廊/雀替） | Commons |
-| 13 | https://commons.wikimedia.org/wiki/File:Inside_the_Palace_of_Tranquil_Longevity_(Stone_Drum_Exhibition_Hall)_of_the_Palace_Museum,_2017-05-21.jpg | **内景**（展厅状态，可见柱网/天花） | Commons |
+| 13 | https://commons.wikimedia.org/wiki/File:Inside_the_Palace_of_Tranquil_Longevity_(Stone_Drum_Exhibition_Hall)_of_the_Palace_Museum,_2017-05-21.jpg | **宁寿宫石鼓馆内景，不是皇极殿**；仅2017年非官方补充资料 | Commons，Siyuwj，CC BY-SA4.0 |
 | 14 | https://commons.wikimedia.org/wiki/File:寧壽門望皇極門_Huangji_Gate_from_Ningshou_Gate_-_panoramio.jpg | 宁寿门望皇极门（轴线） | Commons |
 | 15 | https://commons.wikimedia.org/wiki/File:寧壽門前鎏金銅獅_Gilt_Bronze_Lion_in_front_of_Ningshou_Gate_-_panoramio.jpg | 宁寿门鎏金铜狮 | Commons |
 

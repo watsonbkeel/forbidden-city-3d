@@ -56,10 +56,12 @@ export const PALACE_LAYOUT = [
   
   // 内金水河和金水桥（中桥 (0.7, −310.8)；五桥 x = 0、±13、±30，dimensions.md:85）
   // 桥位 / 桥宽显式给出（palace/river.js 为唯一数据源），buildRiver 与 Collision.checkRiverCrossing 共用。
-  // 估：河段东西 100、南北 15 未查到实测（source: estimated）；弓形河身未建模，仍为矩形河段。
+  // R36: original five-bridge bow plus explicit independently fitted southern continuations.
+  // dimensions below retain the legacy map record, not the actual channel polygon or a surveyed extent.
   {
     name: '金水河',
     type: 'river',
+    southWaterProfile: 'r36-south-precinct',
     position: { x: 0, y: -0.3, z: LAYOUT.JINSHUI_RIVER_Z },
     bridges: JINSHUI_BRIDGES,
     source: 'estimated',

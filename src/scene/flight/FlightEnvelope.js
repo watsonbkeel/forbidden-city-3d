@@ -1,3 +1,4 @@
+import { southWaterProfile } from '../palace/special/SouthWaterSystem.js';
 import * as THREE from 'three';
 import { innerJinshuiProfile } from '../palace/special/InnerJinshui.js';
 
@@ -114,6 +115,11 @@ export function createPalaceFlightEnvelope({palaceBuilder,enclosure,garden,zoneM
     const {north,south}=innerJinshuiProfile(item).banks;
     for(let i=1;i<north.length;i++)grid.addRect(south[i-1].x,south[i].x,
       Math.min(south[i-1].z,south[i].z),Math.max(north[i-1].z,north[i].z),0,{water:true});
+    const southProfile=southWaterProfile(item);
+    for(const reach of southProfile?.reaches??[])for(let i=1;i<reach.left.length;i++){
+      const points=[reach.left[i-1],reach.left[i],reach.right[i-1],reach.right[i]];
+      grid.addRect(Math.min(...points.map(p=>p.x)),Math.max(...points.map(p=>p.x)),Math.min(...points.map(p=>p.z)),Math.max(...points.map(p=>p.z)),0,{water:true});
+    }
   }
   // Conservatively mark the exterior moat belt; no ground landing on water.
   const moat=layout.find(i=>i.type==='moat');

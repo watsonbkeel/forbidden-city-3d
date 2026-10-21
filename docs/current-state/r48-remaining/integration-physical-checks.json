@@ -1,0 +1,422 @@
+{
+  "scope": "12 integration-owned identities",
+  "classification": "Focused physical checks and exact-retention boundaries, not visual acceptance",
+  "buildings": [
+    {
+      "id": "tiren",
+      "name": "体仁阁",
+      "checks": {
+        "roofNormals": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "roofClosure": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "bearingContact": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "roofJunction": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "stepSupport": {
+          "status": "exact-retained",
+          "tests": [
+            "r48-current-scope-retention.test.mjs"
+          ],
+          "reason": "No new stairs, interior fixtures or upper destination. Existing unverified upper access remains withheld."
+        }
+      },
+      "failureHistory": [],
+      "browserVisualAccepted": false,
+      "wholeBuildingAccepted": false
+    },
+    {
+      "id": "hongyi",
+      "name": "弘义阁",
+      "checks": {
+        "roofNormals": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "roofClosure": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "bearingContact": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "roofJunction": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "stepSupport": {
+          "status": "exact-retained",
+          "tests": [
+            "r48-current-scope-retention.test.mjs"
+          ],
+          "reason": "No new stairs, interior fixtures or upper destination. Existing unverified upper access remains withheld."
+        }
+      },
+      "failureHistory": [],
+      "browserVisualAccepted": false,
+      "wholeBuildingAccepted": false
+    },
+    {
+      "id": "qinan",
+      "name": "钦安殿",
+      "checks": {
+        "roofNormals": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "roofClosure": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "bearingContact": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "roofJunction": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "stepSupport": {
+          "status": "exact-retained",
+          "tests": [
+            "r48-qinan-golden-columns.test.mjs: four inner columns and their bases are the only physical/navigation delta"
+          ],
+          "reason": "Actual R47 geometry/colliders/supports/map remain exact after removing only the eight added meshes and their colliders; source-profile hash intentionally changes."
+        }
+      },
+      "failureHistory": [],
+      "browserVisualAccepted": false,
+      "wholeBuildingAccepted": false
+    },
+    {
+      "id": "taihe",
+      "name": "太和殿",
+      "checks": {
+        "roofNormals": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "roofClosure": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "bearingContact": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "roofJunction": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "stepSupport": {
+          "status": "exact-retained",
+          "tests": [
+            "r48-axis-retention.test.mjs"
+          ],
+          "reason": "Actual R47 axial supports unchanged; new Baohe side partition passages separately exercised at default player size."
+        }
+      },
+      "failureHistory": [],
+      "browserVisualAccepted": false,
+      "wholeBuildingAccepted": false
+    },
+    {
+      "id": "zhonghe",
+      "name": "中和殿",
+      "checks": {
+        "roofNormals": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "roofClosure": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "bearingContact": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "roofJunction": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "stepSupport": {
+          "status": "exact-retained",
+          "tests": [
+            "r48-axis-retention.test.mjs"
+          ],
+          "reason": "Actual R47 axial supports unchanged; new Baohe side partition passages separately exercised at default player size."
+        }
+      },
+      "failureHistory": [],
+      "browserVisualAccepted": false,
+      "wholeBuildingAccepted": false
+    },
+    {
+      "id": "baohe",
+      "name": "保和殿",
+      "checks": {
+        "roofNormals": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "roofClosure": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "bearingContact": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "roofJunction": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "stepSupport": {
+          "status": "exact-retained",
+          "tests": [
+            "r48-axis-retention.test.mjs"
+          ],
+          "reason": "Actual R47 axial supports unchanged; new Baohe side partition passages separately exercised at default player size."
+        }
+      },
+      "failureHistory": [],
+      "browserVisualAccepted": false,
+      "wholeBuildingAccepted": false
+    },
+    {
+      "id": "qianqing",
+      "name": "乾清宫",
+      "checks": {
+        "roofNormals": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "roofClosure": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "bearingContact": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "roofJunction": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "stepSupport": {
+          "status": "exact-retained",
+          "tests": [
+            "r48-axis-retention.test.mjs"
+          ],
+          "reason": "Actual R47 axial supports unchanged; new Baohe side partition passages separately exercised at default player size."
+        }
+      },
+      "failureHistory": [],
+      "browserVisualAccepted": false,
+      "wholeBuildingAccepted": false
+    },
+    {
+      "id": "jiaotai",
+      "name": "交泰殿",
+      "checks": {
+        "roofNormals": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "roofClosure": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "bearingContact": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "roofJunction": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "stepSupport": {
+          "status": "exact-retained",
+          "tests": [
+            "r48-axis-retention.test.mjs"
+          ],
+          "reason": "Actual R47 axial supports unchanged; new Baohe side partition passages separately exercised at default player size."
+        }
+      },
+      "failureHistory": [],
+      "browserVisualAccepted": false,
+      "wholeBuildingAccepted": false
+    },
+    {
+      "id": "kunning",
+      "name": "坤宁宫",
+      "checks": {
+        "roofNormals": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "roofClosure": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "bearingContact": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "roofJunction": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "stepSupport": {
+          "status": "exact-retained",
+          "tests": [
+            "r48-axis-retention.test.mjs"
+          ],
+          "reason": "Actual R47 axial supports unchanged; new Baohe side partition passages separately exercised at default player size."
+        }
+      },
+      "failureHistory": [],
+      "browserVisualAccepted": false,
+      "wholeBuildingAccepted": false
+    },
+    {
+      "id": "garden-procedural-浮碧亭",
+      "name": "浮碧亭",
+      "checks": {
+        "roofNormals": {
+          "status": "focused-pass",
+          "tests": [
+            "r48-review-first-integration.test.mjs: upward visible roofs and downward visible underside"
+          ],
+          "method": "Every actual roof triangle normal and FrontSide hit"
+        },
+        "roofClosure": {
+          "status": "focused-pass",
+          "tests": [
+            "r48-garden-roof-shells.test.mjs"
+          ],
+          "method": "All directed geometric edges pair exactly twice with opposite orientation across top, underside and edge closure"
+        },
+        "bearingContact": {
+          "status": "focused-pass",
+          "tests": [
+            "r48-review-first-integration.test.mjs: real cap bottom and sloped bearing top contact roof underside"
+          ],
+          "method": "16 columns, 9 footprint samples each, actual cap/roof surface rays"
+        },
+        "roofJunction": {
+          "status": "focused-pass",
+          "tests": [
+            "r48-review-first-integration.test.mjs: upward visible roofs and downward visible underside"
+          ],
+          "method": "Real upper-envelope coverage across main/annex joint; fitted concealed overlap, no measured joint claim"
+        },
+        "stepSupport": {
+          "status": "focused-pass",
+          "tests": [
+            "r48-review-first-integration.test.mjs: final merged whole garden bridges have real visible floor on actual route",
+            "r48-review-first-integration.test.mjs: repaired north approach uses only actual .32 stone surfaces"
+          ],
+          "method": "10/60Hz walking/sprint forward/backward with lateral offsets; final merged surface rays and 484 local landing samples"
+        }
+      },
+      "failureHistory": [
+        "Retained garden bed stone edge intersected first north-stair approach. Fixed using visible local crossing and exact-mouth stone support; original red evidence retained.",
+        "Roof thickness edges initially had no explicit closure. Added perimeter-only faces and oriented watertight-shell regression; tile/underside surfaces and supports unchanged."
+      ],
+      "browserVisualAccepted": false,
+      "wholeBuildingAccepted": false
+    },
+    {
+      "id": "garden-procedural-澄瑞亭",
+      "name": "澄瑞亭",
+      "checks": {
+        "roofNormals": {
+          "status": "focused-pass",
+          "tests": [
+            "r48-review-first-integration.test.mjs: upward visible roofs and downward visible underside"
+          ],
+          "method": "Every actual roof triangle normal and FrontSide hit"
+        },
+        "roofClosure": {
+          "status": "focused-pass",
+          "tests": [
+            "r48-garden-roof-shells.test.mjs"
+          ],
+          "method": "All directed geometric edges pair exactly twice with opposite orientation across top, underside and edge closure"
+        },
+        "bearingContact": {
+          "status": "focused-pass",
+          "tests": [
+            "r48-review-first-integration.test.mjs: real cap bottom and sloped bearing top contact roof underside"
+          ],
+          "method": "16 columns, 9 footprint samples each, actual cap/roof surface rays"
+        },
+        "roofJunction": {
+          "status": "focused-pass",
+          "tests": [
+            "r48-review-first-integration.test.mjs: upward visible roofs and downward visible underside"
+          ],
+          "method": "Real upper-envelope coverage across main/annex joint; fitted concealed overlap, no measured joint claim"
+        },
+        "stepSupport": {
+          "status": "focused-pass",
+          "tests": [
+            "r48-review-first-integration.test.mjs: final merged whole garden bridges have real visible floor on actual route",
+            "r48-review-first-integration.test.mjs: repaired north approach uses only actual .32 stone surfaces"
+          ],
+          "method": "10/60Hz walking/sprint forward/backward with lateral offsets; final merged surface rays and 484 local landing samples"
+        }
+      },
+      "failureHistory": [
+        "Retained garden bed stone edge intersected first north-stair approach. Fixed using visible local crossing and exact-mouth stone support; original red evidence retained.",
+        "Roof thickness edges initially had no explicit closure. Added perimeter-only faces and oriented watertight-shell regression; tile/underside surfaces and supports unchanged."
+      ],
+      "browserVisualAccepted": false,
+      "wholeBuildingAccepted": false
+    },
+    {
+      "id": "garden-procedural-御景亭",
+      "name": "御景亭",
+      "checks": {
+        "roofNormals": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "roofClosure": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "bearingContact": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "roofJunction": {
+          "status": "retained-not-newly-certified",
+          "reason": "No roof replacement in this identity; inherited roof geometry is retained, not newly certified complete."
+        },
+        "stepSupport": {
+          "status": "not-applicable",
+          "reason": "No new summit stairs/supports/teleport or visitor access. Four closed facade groups are an exterior-only partial correction.",
+          "tests": [
+            "r48-review-first-integration.test.mjs: Yujing adds four closed facades but zero walkables or colliders"
+          ]
+        }
+      },
+      "failureHistory": [],
+      "browserVisualAccepted": false,
+      "wholeBuildingAccepted": false
+    }
+  ]
+}

@@ -69,7 +69,7 @@ export function buildYanxiStorehouse(kit,item) {
   const f = built.f; f.name = `延禧宫1931库房-${g.profile}`;
   const removed = new Set(), retained = new Set();
   for (const m of [...f.children]) {
-    if (m.isMesh && ['wood_column','wall_red','lattice_doors','caihua_beam'].includes(m.material.name)) {
+    if (m.isMesh && ['wood_column','wall_red','lattice_doors','caihua_beam'].some(key=>m.material===kit.lib.material(key))) {
       removed.add(m.geometry); f.remove(m);
     } else if (m.isGroup) {
       m.name = 'yanxi-storehouse-retained-roof'; m.userData.role = m.name;
