@@ -1,0 +1,100 @@
+畅音阁 10 actual reached; penetrating frames 17 [{"frame":{"time":3.8,"x":-334.10822106797843,"z":361.16356612599446,"feet":1.2,"ground":1.2,"speed":5.000000000000726,"sprintInput":false,"waypoint":9},"mesh":"changyin-changyin-fitted-stair-stringer","triangles":4,"body":{"min":[-334.60822106797843,1.55,360.66356612599446],"max":[-333.60822106797843,2.9,361.66356612599446]}},{"frame":{"time":4.2,"x":-332.11479792236116,"z":361.32562834404257,"feet":1.2,"ground":1.2,"speed":5.000000000000864,"sprintInput":false,"waypoint":9},"mesh":"changyin-changyin-fitted-stair-stringer","triangles":5,"body":{"min":[-332.61479792236116,1.55,360.82562834404257],"max":[-331.61479792236116,2.9,361.82562834404257]}}]
+畅音阁 60 actual reached; penetrating frames 126 [{"frame":{"time":3.3999999999999915,"x":-335.8500054095569,"z":361.3823387673154,"feet":1.2,"ground":1.2,"speed":4.99999999999889,"sprintInput":false,"waypoint":9},"mesh":"changyin-changyin-fitted-stair-stringer","triangles":2,"body":{"min":[-336.3500054095569,1.55,360.8823387673154],"max":[-335.3500054095569,2.9,361.8823387673154]}},{"frame":{"time":3.416666666666658,"x":-335.76667267728544,"z":361.3826552742106,"feet":1.2,"ground":1.2,"speed":4.99999999999889,"sprintInput":false,"waypoint":9},"mesh":"changyin-changyin-fitted-stair-stringer","triangles":3,"body":{"min":[-336.26667267728544,1.55,360.8826552742106],"max":[-335.26667267728544,2.9,361.8826552742106]}}]
+乐寿堂 10 actual reached; penetrating frames 3 [{"frame":{"time":5.4,"x":-286.42469595910205,"z":438.9659044528275,"feet":0.9,"ground":0.9,"speed":4.999999999999834,"sprintInput":false,"waypoint":9},"mesh":"leshou-leshou-retained-inner-gold-column","triangles":3,"body":{"min":[-286.92469595910205,1.25,438.4659044528275],"max":[-285.92469595910205,2.6,439.4659044528275]}},{"frame":{"time":5.5,"x":-286.4255217272641,"z":439.46590377093395,"feet":0.9,"ground":0.9,"speed":4.999999999999834,"sprintInput":false,"waypoint":9},"mesh":"leshou-leshou-retained-inner-gold-column","triangles":3,"body":{"min":[-286.9255217272641,1.25,438.96590377093395],"max":[-285.9255217272641,2.6,439.96590377093395]}}]
+乐寿堂 60 actual reached; penetrating frames 15 [{"frame":{"time":5.433333333333343,"x":-286.42412252295634,"z":438.63326777922293,"feet":0.9,"ground":0.9,"speed":4.999999999998708,"sprintInput":false,"waypoint":9},"mesh":"leshou-leshou-retained-inner-gold-column","triangles":3,"body":{"min":[-286.92412252295634,1.25,438.13326777922293],"max":[-285.92412252295634,2.6,439.13326777922293]}},{"frame":{"time":5.45000000000001,"x":-286.42426403335304,"z":438.716600992405,"feet":0.9,"ground":0.9,"speed":4.999999999998714,"sprintInput":false,"waypoint":9},"mesh":"leshou-leshou-retained-inner-gold-column","triangles":3,"body":{"min":[-286.92426403335304,1.25,438.216600992405],"max":[-285.92426403335304,2.6,439.216600992405]}}]
+✖ independent actual interior body clearance 畅音阁 10Hz (116.325684ms)
+✖ independent actual interior body clearance 畅音阁 60Hz (200.524426ms)
+✖ independent actual interior body clearance 乐寿堂 10Hz (195.023461ms)
+✖ independent actual interior body clearance 乐寿堂 60Hz (288.396692ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7292.310156
+
+✖ failing tests:
+
+test at review-output/independent-headroom.test.mjs:3:173
+✖ independent actual interior body clearance 畅音阁 10Hz (116.325684ms)
+  AssertionError [ERR_ASSERTION]: actual permitted route penetrates visible geometry: [{"frame":{"time":3.8,"x":-334.10822106797843,"z":361.16356612599446,"feet":1.2,"ground":1.2,"speed":5.000000000000726,"sprintInput":false,"waypoint":9},"mesh":"changyin-changyin-fitted-stair-stringer","triangles":4,"body":{"min":[-334.60822106797843,1.55,360.66356612599446],"max":[-333.60822106797843,2.9,361.66356612599446]}},{"frame":{"time":4.2,"x":-332.11479792236116,"z":361.32562834404257,"feet":1.2,"ground":1.2,"speed":5.000000000000864,"sprintInput":false,"waypoint":9},"mesh":"changyin-changyin-fitted-stair-stringer","triangles":5,"body":{"min":[-332.61479792236116,1.55,360.82562834404257],"max":[-331.61479792236116,2.9,361.82562834404257]}}]
+  
+  17 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-review-ningshou-final-e0d19a5/review-output/independent-headroom.test.mjs:3:1782)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 17,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at review-output/independent-headroom.test.mjs:3:173
+✖ independent actual interior body clearance 畅音阁 60Hz (200.524426ms)
+  AssertionError [ERR_ASSERTION]: actual permitted route penetrates visible geometry: [{"frame":{"time":3.3999999999999915,"x":-335.8500054095569,"z":361.3823387673154,"feet":1.2,"ground":1.2,"speed":4.99999999999889,"sprintInput":false,"waypoint":9},"mesh":"changyin-changyin-fitted-stair-stringer","triangles":2,"body":{"min":[-336.3500054095569,1.55,360.8823387673154],"max":[-335.3500054095569,2.9,361.8823387673154]}},{"frame":{"time":3.416666666666658,"x":-335.76667267728544,"z":361.3826552742106,"feet":1.2,"ground":1.2,"speed":4.99999999999889,"sprintInput":false,"waypoint":9},"mesh":"changyin-changyin-fitted-stair-stringer","triangles":3,"body":{"min":[-336.26667267728544,1.55,360.8826552742106],"max":[-335.26667267728544,2.9,361.8826552742106]}}]
+  
+  126 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-review-ningshou-final-e0d19a5/review-output/independent-headroom.test.mjs:3:1782)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 126,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at review-output/independent-headroom.test.mjs:3:173
+✖ independent actual interior body clearance 乐寿堂 10Hz (195.023461ms)
+  AssertionError [ERR_ASSERTION]: actual permitted route penetrates visible geometry: [{"frame":{"time":5.4,"x":-286.42469595910205,"z":438.9659044528275,"feet":0.9,"ground":0.9,"speed":4.999999999999834,"sprintInput":false,"waypoint":9},"mesh":"leshou-leshou-retained-inner-gold-column","triangles":3,"body":{"min":[-286.92469595910205,1.25,438.4659044528275],"max":[-285.92469595910205,2.6,439.4659044528275]}},{"frame":{"time":5.5,"x":-286.4255217272641,"z":439.46590377093395,"feet":0.9,"ground":0.9,"speed":4.999999999999834,"sprintInput":false,"waypoint":9},"mesh":"leshou-leshou-retained-inner-gold-column","triangles":3,"body":{"min":[-286.9255217272641,1.25,438.96590377093395],"max":[-285.9255217272641,2.6,439.96590377093395]}}]
+  
+  3 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-review-ningshou-final-e0d19a5/review-output/independent-headroom.test.mjs:3:1782)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 3,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at review-output/independent-headroom.test.mjs:3:173
+✖ independent actual interior body clearance 乐寿堂 60Hz (288.396692ms)
+  AssertionError [ERR_ASSERTION]: actual permitted route penetrates visible geometry: [{"frame":{"time":5.433333333333343,"x":-286.42412252295634,"z":438.63326777922293,"feet":0.9,"ground":0.9,"speed":4.999999999998708,"sprintInput":false,"waypoint":9},"mesh":"leshou-leshou-retained-inner-gold-column","triangles":3,"body":{"min":[-286.92412252295634,1.25,438.13326777922293],"max":[-285.92412252295634,2.6,439.13326777922293]}},{"frame":{"time":5.45000000000001,"x":-286.42426403335304,"z":438.716600992405,"feet":0.9,"ground":0.9,"speed":4.999999999998714,"sprintInput":false,"waypoint":9},"mesh":"leshou-leshou-retained-inner-gold-column","triangles":3,"body":{"min":[-286.92426403335304,1.25,438.216600992405],"max":[-285.92426403335304,2.6,439.216600992405]}}]
+  
+  15 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-review-ningshou-final-e0d19a5/review-output/independent-headroom.test.mjs:3:1782)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 15,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

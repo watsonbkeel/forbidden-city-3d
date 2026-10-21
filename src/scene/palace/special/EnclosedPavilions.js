@@ -21,7 +21,7 @@ export function buildEnclosedPavilion(kit,item) {
   // plaque and Arrow's original north/south stairs and support geometry.
   const built=kit.hall({...shell,bays:key==='arrow'?9:3,open:true,enter:key==='arrow'?false:undefined}),f=built.f;
   const removed=new Set();
-  for(const m of [...f.children])if(m.isMesh&&['wood_column','caihua_beam'].includes(m.material?.name)){removed.add(m.geometry);m.removeFromParent();}
+  for(const m of [...f.children])if(m.isMesh&&['wood_column','caihua_beam'].some(key=>m.material===kit.lib.material(key))){removed.add(m.geometry);m.removeFromParent();}
   for(const geo of removed)geo.dispose();
   kit.colliders.splice(cs,kit.colliders.length-cs,...kit.colliders.slice(cs).filter(c=>c.min.y<y-1e-7));
   const mats={};

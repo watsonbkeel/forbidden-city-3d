@@ -28,6 +28,10 @@ export function qinanGeometry(item={},source=QINAN_PROFILE){
   if(!Number.isInteger(xi)||!Number.isInteger(zi)||xs[xi]===undefined||zs[zi]===undefined||!(xi===0||xi===5||zi===0||zi===3))throw new Error('Invalid Qinan perimeter node');
   return {x:xs[xi],z:zs[zi],node:[xi,zi]};
  })};
+ const golden=p.mainBody.interiorGoldenColumns;
+ const expectedGolden=[[1,1],[4,1],[1,2],[4,2]];
+ if(golden.expectedCount!==4||JSON.stringify(golden.axisNodes)!==JSON.stringify(expectedGolden))throw Error('Invalid Qinan source-derived golden interior axis nodes');
+ mainBody.goldenColumns=golden.axisNodes.map(([xi,zi])=>({x:xs[xi],z:zs[zi],node:[xi,zi]}));
  const annex={...p.southAnnex,width,frontZ:zs[0]-p.southAnnex.plan.projection,rearZ:zs[0],columnXs:[...xs],columnTopY:baseY+p.southAnnex.heights.frontColumnTopRelativeY,rearRoofY:baseY+p.southAnnex.heights.rearRoofRelativeY};
  const t=p.terraceGuide,a=p.supportApproximation,o=a.stoneBeyondRailCenter;
  const slabs=[{supportId:'qinan-main-platform',minX:-t.mainRailWidth/2-o,maxX:t.mainRailWidth/2+o,minZ:t.insetTurnZ,maxZ:t.northRailZ+o,topY:floorY},

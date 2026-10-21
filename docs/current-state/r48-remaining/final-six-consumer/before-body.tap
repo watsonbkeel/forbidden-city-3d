@@ -1,0 +1,516 @@
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→文华殿→返回 10/false/false (80.064432ms)
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→文华殿→返回 10/false/true (63.337323ms)
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→文华殿→返回 10/true/false (67.623739ms)
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→文华殿→返回 10/true/true (67.81844ms)
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→文华殿→返回 60/false/false (190.684221ms)
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→文华殿→返回 60/false/true (182.040949ms)
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→文华殿→返回 60/true/false (98.679495ms)
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→文华殿→返回 60/true/true (91.844661ms)
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→主敬殿→返回 10/false/false (94.719144ms)
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→主敬殿→返回 10/false/true (85.377103ms)
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→主敬殿→返回 10/true/false (92.160415ms)
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→主敬殿→返回 10/true/true (94.50684ms)
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→主敬殿→返回 60/false/false (261.148656ms)
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→主敬殿→返回 60/false/true (278.417419ms)
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→主敬殿→返回 60/true/false (132.831932ms)
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→主敬殿→返回 60/true/true (131.001667ms)
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance 协和门→文华门→文华殿内 10/false/false (145.591931ms)
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance 协和门→文华门→文华殿内 10/false/true (124.716988ms)
+✔ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance 协和门→文华门→文华殿内 10/true/false (104.291164ms)
+✔ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance 协和门→文华门→文华殿内 10/true/true (100.58257ms)
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance 协和门→文华门→文华殿内 60/false/false (367.005895ms)
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance 协和门→文华门→文华殿内 60/false/true (415.346799ms)
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance 协和门→文华门→文华殿内 60/true/false (217.537598ms)
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance 协和门→文华门→文华殿内 60/true/true (205.393678ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 2
+ℹ fail 22
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9334.692761
+
+✖ failing tests:
+
+test at tests/r48-final-six-consumer-body.test.mjs:12:118
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→文华殿→返回 10/false/false (80.064432ms)
+  AssertionError [ERR_ASSERTION]: visible body penetration : {"x":-183.89991483007094,"z":-205.29478685223506,"ground":1.2,"body":{"min":[-184.39991483007094,1.55,-205.79478685223506],"max":[-183.39991483007094,2.9,-204.79478685223506]},"mesh":{"min":[-183.79000000074507,1.199999887466431,-207.3000000254631],"max":[-183.68999999925495,6.66400011253357,-205.6983999745369]}}
+  
+  true !== false
+  
+      at assertVisibleBody (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-ningshou-visible-body.mjs:25:555)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-final-six-consumer-body.test.mjs:18:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-final-six-consumer-body.test.mjs:12:118
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→文华殿→返回 10/false/true (63.337323ms)
+  AssertionError [ERR_ASSERTION]: visible body penetration : {"x":-183.89991483007094,"z":-205.29478685223506,"ground":1.2,"body":{"min":[-184.39991483007094,1.55,-205.79478685223506],"max":[-183.39991483007094,2.9,-204.79478685223506]},"mesh":{"min":[-183.79000000074507,1.199999887466431,-207.3000000254631],"max":[-183.68999999925495,6.66400011253357,-205.6983999745369]}}
+  
+  true !== false
+  
+      at assertVisibleBody (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-ningshou-visible-body.mjs:25:555)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-final-six-consumer-body.test.mjs:18:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-final-six-consumer-body.test.mjs:12:118
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→文华殿→返回 10/true/false (67.623739ms)
+  AssertionError [ERR_ASSERTION]: visible body penetration : {"x":-183.4127991535918,"z":-205.3330529913644,"ground":1.2,"body":{"min":[-183.9127991535918,1.55,-205.8330529913644],"max":[-182.9127991535918,2.9,-204.8330529913644]},"mesh":{"min":[-183.79000000074507,1.199999887466431,-207.3000000254631],"max":[-183.68999999925495,6.66400011253357,-205.6983999745369]}}
+  
+  true !== false
+  
+      at assertVisibleBody (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-ningshou-visible-body.mjs:25:555)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-final-six-consumer-body.test.mjs:18:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-final-six-consumer-body.test.mjs:12:118
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→文华殿→返回 10/true/true (67.81844ms)
+  AssertionError [ERR_ASSERTION]: visible body penetration : {"x":-183.4127991535918,"z":-205.3330529913644,"ground":1.2,"body":{"min":[-183.9127991535918,1.55,-205.8330529913644],"max":[-182.9127991535918,2.9,-204.8330529913644]},"mesh":{"min":[-183.79000000074507,1.199999887466431,-207.3000000254631],"max":[-183.68999999925495,6.66400011253357,-205.6983999745369]}}
+  
+  true !== false
+  
+      at assertVisibleBody (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-ningshou-visible-body.mjs:25:555)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-final-six-consumer-body.test.mjs:18:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-final-six-consumer-body.test.mjs:12:118
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→文华殿→返回 60/false/false (190.684221ms)
+  AssertionError [ERR_ASSERTION]: visible body penetration : {"x":-184.2332457718574,"z":-205.24163190770295,"ground":1.2,"body":{"min":[-184.7332457718574,1.55,-205.74163190770295],"max":[-183.7332457718574,2.9,-204.74163190770295]},"mesh":{"min":[-183.79000000074507,1.199999887466431,-207.3000000254631],"max":[-183.68999999925495,6.66400011253357,-205.6983999745369]}}
+  
+  true !== false
+  
+      at assertVisibleBody (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-ningshou-visible-body.mjs:25:555)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-final-six-consumer-body.test.mjs:18:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-final-six-consumer-body.test.mjs:12:118
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→文华殿→返回 60/false/true (182.040949ms)
+  AssertionError [ERR_ASSERTION]: visible body penetration : {"x":-184.2332457718574,"z":-205.24163190770295,"ground":1.2,"body":{"min":[-184.7332457718574,1.55,-205.74163190770295],"max":[-183.7332457718574,2.9,-204.74163190770295]},"mesh":{"min":[-183.79000000074507,1.199999887466431,-207.3000000254631],"max":[-183.68999999925495,6.66400011253357,-205.6983999745369]}}
+  
+  true !== false
+  
+      at assertVisibleBody (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-ningshou-visible-body.mjs:25:555)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-final-six-consumer-body.test.mjs:18:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-final-six-consumer-body.test.mjs:12:118
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→文华殿→返回 60/true/false (98.679495ms)
+  AssertionError [ERR_ASSERTION]: visible body penetration : {"x":-184.14666934049293,"z":-205.25390708138644,"ground":1.2,"body":{"min":[-184.64666934049293,1.55,-205.75390708138644],"max":[-183.64666934049293,2.9,-204.75390708138644]},"mesh":{"min":[-183.79000000074507,1.199999887466431,-207.3000000254631],"max":[-183.68999999925495,6.66400011253357,-205.6983999745369]}}
+  
+  true !== false
+  
+      at assertVisibleBody (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-ningshou-visible-body.mjs:25:555)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-final-six-consumer-body.test.mjs:18:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-final-six-consumer-body.test.mjs:12:118
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→文华殿→返回 60/true/true (91.844661ms)
+  AssertionError [ERR_ASSERTION]: visible body penetration : {"x":-184.14666934049293,"z":-205.25390708138644,"ground":1.2,"body":{"min":[-184.64666934049293,1.55,-205.75390708138644],"max":[-183.64666934049293,2.9,-204.75390708138644]},"mesh":{"min":[-183.79000000074507,1.199999887466431,-207.3000000254631],"max":[-183.68999999925495,6.66400011253357,-205.6983999745369]}}
+  
+  true !== false
+  
+      at assertVisibleBody (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-ningshou-visible-body.mjs:25:555)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-final-six-consumer-body.test.mjs:18:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-final-six-consumer-body.test.mjs:12:118
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→主敬殿→返回 10/false/false (94.719144ms)
+  AssertionError [ERR_ASSERTION]: visible body penetration : {"x":-183.89991483007094,"z":-205.29478685223506,"ground":1.2,"body":{"min":[-184.39991483007094,1.55,-205.79478685223506],"max":[-183.39991483007094,2.9,-204.79478685223506]},"mesh":{"min":[-183.79000000074507,1.199999887466431,-207.3000000254631],"max":[-183.68999999925495,6.66400011253357,-205.6983999745369]}}
+  
+  true !== false
+  
+      at assertVisibleBody (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-ningshou-visible-body.mjs:25:555)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-final-six-consumer-body.test.mjs:18:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-final-six-consumer-body.test.mjs:12:118
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→主敬殿→返回 10/false/true (85.377103ms)
+  AssertionError [ERR_ASSERTION]: visible body penetration : {"x":-183.89991483007094,"z":-205.29478685223506,"ground":1.2,"body":{"min":[-184.39991483007094,1.55,-205.79478685223506],"max":[-183.39991483007094,2.9,-204.79478685223506]},"mesh":{"min":[-183.79000000074507,1.199999887466431,-207.3000000254631],"max":[-183.68999999925495,6.66400011253357,-205.6983999745369]}}
+  
+  true !== false
+  
+      at assertVisibleBody (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-ningshou-visible-body.mjs:25:555)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-final-six-consumer-body.test.mjs:18:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-final-six-consumer-body.test.mjs:12:118
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→主敬殿→返回 10/true/false (92.160415ms)
+  AssertionError [ERR_ASSERTION]: visible body penetration : {"x":-183.4161476877277,"z":-205.3326518233794,"ground":1.2,"body":{"min":[-183.9161476877277,1.55,-205.8326518233794],"max":[-182.9161476877277,2.9,-204.8326518233794]},"mesh":{"min":[-183.79000000074507,1.199999887466431,-207.3000000254631],"max":[-183.68999999925495,6.66400011253357,-205.6983999745369]}}
+  
+  true !== false
+  
+      at assertVisibleBody (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-ningshou-visible-body.mjs:25:555)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-final-six-consumer-body.test.mjs:18:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-final-six-consumer-body.test.mjs:12:118
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→主敬殿→返回 10/true/true (94.50684ms)
+  AssertionError [ERR_ASSERTION]: visible body penetration : {"x":-183.4161476877277,"z":-205.33265182337928,"ground":1.2,"body":{"min":[-183.9161476877277,1.55,-205.83265182337928],"max":[-182.9161476877277,2.9,-204.83265182337928]},"mesh":{"min":[-183.79000000074507,1.199999887466431,-207.3000000254631],"max":[-183.68999999925495,6.66400011253357,-205.6983999745369]}}
+  
+  true !== false
+  
+      at assertVisibleBody (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-ningshou-visible-body.mjs:25:555)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-final-six-consumer-body.test.mjs:18:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-final-six-consumer-body.test.mjs:12:118
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→主敬殿→返回 60/false/false (261.148656ms)
+  AssertionError [ERR_ASSERTION]: visible body penetration : {"x":-184.2332457718574,"z":-205.24163190770295,"ground":1.2,"body":{"min":[-184.7332457718574,1.55,-205.74163190770295],"max":[-183.7332457718574,2.9,-204.74163190770295]},"mesh":{"min":[-183.79000000074507,1.199999887466431,-207.3000000254631],"max":[-183.68999999925495,6.66400011253357,-205.6983999745369]}}
+  
+  true !== false
+  
+      at assertVisibleBody (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-ningshou-visible-body.mjs:25:555)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-final-six-consumer-body.test.mjs:18:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-final-six-consumer-body.test.mjs:12:118
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→主敬殿→返回 60/false/true (278.417419ms)
+  AssertionError [ERR_ASSERTION]: visible body penetration : {"x":-184.2332457718574,"z":-205.24163190770295,"ground":1.2,"body":{"min":[-184.7332457718574,1.55,-205.74163190770295],"max":[-183.7332457718574,2.9,-204.74163190770295]},"mesh":{"min":[-183.79000000074507,1.199999887466431,-207.3000000254631],"max":[-183.68999999925495,6.66400011253357,-205.6983999745369]}}
+  
+  true !== false
+  
+      at assertVisibleBody (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-ningshou-visible-body.mjs:25:555)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-final-six-consumer-body.test.mjs:18:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-final-six-consumer-body.test.mjs:12:118
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→主敬殿→返回 60/true/false (132.831932ms)
+  AssertionError [ERR_ASSERTION]: visible body penetration : {"x":-184.14666934049293,"z":-205.25390708138644,"ground":1.2,"body":{"min":[-184.64666934049293,1.55,-205.75390708138644],"max":[-183.64666934049293,2.9,-204.75390708138644]},"mesh":{"min":[-183.79000000074507,1.199999887466431,-207.3000000254631],"max":[-183.68999999925495,6.66400011253357,-205.6983999745369]}}
+  
+  true !== false
+  
+      at assertVisibleBody (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-ningshou-visible-body.mjs:25:555)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-final-six-consumer-body.test.mjs:18:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-final-six-consumer-body.test.mjs:12:118
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance [outer-east] 文华门→主敬殿→返回 60/true/true (131.001667ms)
+  AssertionError [ERR_ASSERTION]: visible body penetration : {"x":-184.14666934049293,"z":-205.25390708138644,"ground":1.2,"body":{"min":[-184.64666934049293,1.55,-205.75390708138644],"max":[-183.64666934049293,2.9,-204.75390708138644]},"mesh":{"min":[-183.79000000074507,1.199999887466431,-207.3000000254631],"max":[-183.68999999925495,6.66400011253357,-205.6983999745369]}}
+  
+  true !== false
+  
+      at assertVisibleBody (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-ningshou-visible-body.mjs:25:555)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-final-six-consumer-body.test.mjs:18:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-final-six-consumer-body.test.mjs:12:118
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance 协和门→文华门→文华殿内 10/false/false (145.591931ms)
+  AssertionError [ERR_ASSERTION]: visible body penetration : {"x":-183.8999650568157,"z":-205.28344476034425,"ground":1.2,"body":{"min":[-184.3999650568157,1.55,-205.78344476034425],"max":[-183.3999650568157,2.9,-204.78344476034425]},"mesh":{"min":[-183.79000000074507,1.199999887466431,-207.3000000254631],"max":[-183.68999999925495,6.66400011253357,-205.6983999745369]}}
+  
+  true !== false
+  
+      at assertVisibleBody (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-ningshou-visible-body.mjs:25:555)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-final-six-consumer-body.test.mjs:18:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-final-six-consumer-body.test.mjs:12:118
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance 协和门→文华门→文华殿内 10/false/true (124.716988ms)
+  AssertionError [ERR_ASSERTION]: visible body penetration : {"x":-183.8999650568157,"z":-205.28344476034425,"ground":1.2,"body":{"min":[-184.3999650568157,1.55,-205.78344476034425],"max":[-183.3999650568157,2.9,-204.78344476034425]},"mesh":{"min":[-183.79000000074507,1.199999887466431,-207.3000000254631],"max":[-183.68999999925495,6.66400011253357,-205.6983999745369]}}
+  
+  true !== false
+  
+      at assertVisibleBody (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-ningshou-visible-body.mjs:25:555)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-final-six-consumer-body.test.mjs:18:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-final-six-consumer-body.test.mjs:12:118
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance 协和门→文华门→文华殿内 60/false/false (367.005895ms)
+  AssertionError [ERR_ASSERTION]: visible body penetration : {"x":-184.23328359453586,"z":-205.24293074426353,"ground":1.2,"body":{"min":[-184.73328359453586,1.55,-205.74293074426353],"max":[-183.73328359453586,2.9,-204.74293074426353]},"mesh":{"min":[-183.79000000074507,1.199999887466431,-207.3000000254631],"max":[-183.68999999925495,6.66400011253357,-205.6983999745369]}}
+  
+  true !== false
+  
+      at assertVisibleBody (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-ningshou-visible-body.mjs:25:555)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-final-six-consumer-body.test.mjs:18:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-final-six-consumer-body.test.mjs:12:118
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance 协和门→文华门→文华殿内 60/false/true (415.346799ms)
+  AssertionError [ERR_ASSERTION]: visible body penetration : {"x":-184.23328359453586,"z":-205.24293074426353,"ground":1.2,"body":{"min":[-184.73328359453586,1.55,-205.74293074426353],"max":[-183.73328359453586,2.9,-204.74293074426353]},"mesh":{"min":[-183.79000000074507,1.199999887466431,-207.3000000254631],"max":[-183.68999999925495,6.66400011253357,-205.6983999745369]}}
+  
+  true !== false
+  
+      at assertVisibleBody (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-ningshou-visible-body.mjs:25:555)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-final-six-consumer-body.test.mjs:18:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-final-six-consumer-body.test.mjs:12:118
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance 协和门→文华门→文华殿内 60/true/false (217.537598ms)
+  AssertionError [ERR_ASSERTION]: visible body penetration : {"x":-184.14663287917816,"z":-205.2509327947238,"ground":1.2,"body":{"min":[-184.64663287917816,1.55,-205.7509327947238],"max":[-183.64663287917816,2.9,-204.7509327947238]},"mesh":{"min":[-183.79000000074507,1.199999887466431,-207.3000000254631],"max":[-183.68999999925495,6.66400011253357,-205.6983999745369]}}
+  
+  true !== false
+  
+      at assertVisibleBody (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-ningshou-visible-body.mjs:25:555)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-final-six-consumer-body.test.mjs:18:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-final-six-consumer-body.test.mjs:12:118
+✖ R48 actual Wenhua/Zhujing consumer rendered hall-body clearance 协和门→文华门→文华殿内 60/true/true (205.393678ms)
+  AssertionError [ERR_ASSERTION]: visible body penetration : {"x":-184.14663287917816,"z":-205.25093279472378,"ground":1.2,"body":{"min":[-184.64663287917816,1.55,-205.75093279472378],"max":[-183.64663287917816,2.9,-204.75093279472378]},"mesh":{"min":[-183.79000000074507,1.199999887466431,-207.3000000254631],"max":[-183.68999999925495,6.66400011253357,-205.6983999745369]}}
+  
+  true !== false
+  
+      at assertVisibleBody (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-ningshou-visible-body.mjs:25:555)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-remaining-buildings/tests/r48-final-six-consumer-body.test.mjs:18:3)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

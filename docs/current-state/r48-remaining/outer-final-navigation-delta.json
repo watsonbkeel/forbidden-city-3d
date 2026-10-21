@@ -1,0 +1,675 @@
+{
+  "moduleSha256": "a150b7de4351b9543ed03e91c1027c88f625f9b1adcf7ecff0640c2c04452ad0",
+  "status": "OWNER_BD94EAB_CURRENT_CONSUMER_SCOPED_PASS",
+  "productionConsumerVerified": true,
+  "unchangedRuntimeNavigation": "Only existing first6 runtimeReady profiles; no new teleport, upper destination, map anchors or room destinations for final6. Old21 geometry/navigation remains exact against a3baa checkpoint.",
+  "baselineAutoContract": {
+    "file": "tests/lib/auto-routes.mjs",
+    "sha256": "2d5391f947aa774233b70c2af18a164250a66e7187d5ce4b08aa9bac7b3036fb",
+    "name": "[outer-east] 文华门→主敬殿→返回",
+    "pts": [
+      [
+        -186.3,
+        -257.78
+      ],
+      [
+        -186.3,
+        -232.61999999999998
+      ],
+      [
+        -186.4,
+        -232.61999999999998
+      ],
+      [
+        -186.4,
+        -211.22
+      ],
+      [
+        -186.4,
+        -205.3
+      ],
+      [
+        -175.4,
+        -205.3
+      ],
+      [
+        -175.4,
+        -193.3
+      ],
+      [
+        -186.4,
+        -193.3
+      ],
+      [
+        -186.4,
+        -172
+      ],
+      [
+        -184.1,
+        -172
+      ],
+      [
+        -184.1,
+        -167.5
+      ],
+      [
+        -186.4,
+        -167.5
+      ],
+      [
+        -184.1,
+        -167.5
+      ],
+      [
+        -184.1,
+        -172
+      ],
+      [
+        -186.4,
+        -172
+      ],
+      [
+        -186.4,
+        -193.3
+      ],
+      [
+        -175.4,
+        -193.3
+      ],
+      [
+        -175.4,
+        -205.3
+      ],
+      [
+        -186.4,
+        -205.3
+      ],
+      [
+        -186.4,
+        -211.22
+      ],
+      [
+        -186.4,
+        -232.61999999999998
+      ],
+      [
+        -186.3,
+        -232.61999999999998
+      ],
+      [
+        -186.3,
+        -257.78
+      ]
+    ]
+  },
+  "expectedAutoContract": {
+    "name": "[outer-east] 文华门→主敬殿→返回",
+    "pts": [
+      [
+        -186.3,
+        -257.78
+      ],
+      [
+        -186.3,
+        -232.61999999999998
+      ],
+      [
+        -186.4,
+        -232.61999999999998
+      ],
+      [
+        -186.4,
+        -211.22
+      ],
+      [
+        -186.4,
+        -205.0
+      ],
+      [
+        -175.4,
+        -205.0
+      ],
+      [
+        -175.4,
+        -193.3
+      ],
+      [
+        -186.4,
+        -193.3
+      ],
+      [
+        -186.4,
+        -172.6
+      ],
+      [
+        -184.1,
+        -171.8
+      ],
+      [
+        -184.1,
+        -167.5
+      ],
+      [
+        -186.4,
+        -167.5
+      ],
+      [
+        -184.1,
+        -167.5
+      ],
+      [
+        -184.1,
+        -171.8
+      ],
+      [
+        -186.4,
+        -172.6
+      ],
+      [
+        -186.4,
+        -193.3
+      ],
+      [
+        -175.4,
+        -193.3
+      ],
+      [
+        -175.4,
+        -205.0
+      ],
+      [
+        -186.4,
+        -205.0
+      ],
+      [
+        -186.4,
+        -211.22
+      ],
+      [
+        -186.4,
+        -232.61999999999998
+      ],
+      [
+        -186.3,
+        -232.61999999999998
+      ],
+      [
+        -186.3,
+        -257.78
+      ]
+    ]
+  },
+  "exactAutoWaypointChanges": [
+    {
+      "index": 4,
+      "before": [
+        -186.4,
+        -205.3
+      ],
+      "after": [
+        -186.4,
+        -205.0
+      ]
+    },
+    {
+      "index": 5,
+      "before": [
+        -175.4,
+        -205.3
+      ],
+      "after": [
+        -175.4,
+        -205.0
+      ]
+    },
+    {
+      "index": 8,
+      "before": [
+        -186.4,
+        -172
+      ],
+      "after": [
+        -186.4,
+        -172.6
+      ]
+    },
+    {
+      "index": 9,
+      "before": [
+        -184.1,
+        -172
+      ],
+      "after": [
+        -184.1,
+        -171.8
+      ]
+    },
+    {
+      "index": 13,
+      "before": [
+        -184.1,
+        -172
+      ],
+      "after": [
+        -184.1,
+        -171.8
+      ]
+    },
+    {
+      "index": 14,
+      "before": [
+        -186.4,
+        -172
+      ],
+      "after": [
+        -186.4,
+        -172.6
+      ]
+    },
+    {
+      "index": 17,
+      "before": [
+        -175.4,
+        -205.3
+      ],
+      "after": [
+        -175.4,
+        -205.0
+      ]
+    },
+    {
+      "index": 18,
+      "before": [
+        -186.4,
+        -205.3
+      ],
+      "after": [
+        -186.4,
+        -205.0
+      ]
+    }
+  ],
+  "scope": {
+    "sharedOwner": "/root/implement_r39_interior_realism",
+    "auto63": "61 of63 previous route objects exact; Wenhua front route and Zhujing composite route differ only at12 outbound/return point occurrences. Below exactAutoWaypointChanges lists8 occurrences for the captured Zhujing composite; front object adds4 occurrences of the same two Wenhua points.",
+    "fixed33": "32 of33 previous objects exact; Wenhua front-composite differs at2 points. No fixed33 Zhujing rear leg."
+  },
+  "corrections": {
+    "sources": [
+      "tests/lib/auto-routes.mjs",
+      "tests/r36-south-courts.test.mjs",
+      "tests/r36-south-independent-hall-integration.test.mjs"
+    ],
+    "wenhua": {
+      "old": [
+        [
+          -186.4,
+          -205.3
+        ],
+        [
+          -175.4,
+          -205.3
+        ]
+      ],
+      "next": [
+        [
+          -186.4,
+          -205
+        ],
+        [
+          -175.4,
+          -205
+        ]
+      ],
+      "reason": "Baseline unchanged Wenhua folded-leaf tip intersects original body route; unrelated to the new final-four proxies"
+    },
+    "zhujing": {
+      "old": [
+        [
+          -186.4,
+          -172
+        ],
+        [
+          -184.1,
+          -172
+        ]
+      ],
+      "next": [
+        [
+          -186.4,
+          -172.6
+        ],
+        [
+          -184.1,
+          -171.8
+        ]
+      ],
+      "reason": "New thin retained-leaf proxies exposed impossible old inward pose, requiring explicit outward model-access fit. After pose repair, diagonal waypoints clear retained column and actual circular ring; old lateral turn can still scrape real ring at 10 Hz despite arrival."
+    }
+  },
+  "legacyActualConsumerResults": [
+    {
+      "variant": "legacy-r36-courts",
+      "routes": 8,
+      "arrived": 8,
+      "bodyClearancePass": 0,
+      "consumerReady": 0,
+      "unexemptedIntersections": 84,
+      "failingModes": [
+        {
+          "fps": 10,
+          "sprint": false,
+          "backward": false,
+          "arrived": true,
+          "violationCount": 4,
+          "stuckAt": null
+        },
+        {
+          "fps": 10,
+          "sprint": false,
+          "backward": true,
+          "arrived": true,
+          "violationCount": 4,
+          "stuckAt": null
+        },
+        {
+          "fps": 10,
+          "sprint": true,
+          "backward": false,
+          "arrived": true,
+          "violationCount": 1,
+          "stuckAt": null
+        },
+        {
+          "fps": 10,
+          "sprint": true,
+          "backward": true,
+          "arrived": true,
+          "violationCount": 1,
+          "stuckAt": null
+        },
+        {
+          "fps": 60,
+          "sprint": false,
+          "backward": false,
+          "arrived": true,
+          "violationCount": 26,
+          "stuckAt": null
+        },
+        {
+          "fps": 60,
+          "sprint": false,
+          "backward": true,
+          "arrived": true,
+          "violationCount": 26,
+          "stuckAt": null
+        },
+        {
+          "fps": 60,
+          "sprint": true,
+          "backward": false,
+          "arrived": true,
+          "violationCount": 11,
+          "stuckAt": null
+        },
+        {
+          "fps": 60,
+          "sprint": true,
+          "backward": true,
+          "arrived": true,
+          "violationCount": 11,
+          "stuckAt": null
+        }
+      ]
+    },
+    {
+      "variant": "legacy-r36-integration",
+      "routes": 8,
+      "arrived": 8,
+      "bodyClearancePass": 0,
+      "consumerReady": 0,
+      "unexemptedIntersections": 202,
+      "failingModes": [
+        {
+          "fps": 10,
+          "sprint": false,
+          "backward": false,
+          "arrived": true,
+          "violationCount": 8,
+          "stuckAt": null
+        },
+        {
+          "fps": 10,
+          "sprint": false,
+          "backward": true,
+          "arrived": true,
+          "violationCount": 8,
+          "stuckAt": null
+        },
+        {
+          "fps": 10,
+          "sprint": true,
+          "backward": false,
+          "arrived": true,
+          "violationCount": 2,
+          "stuckAt": null
+        },
+        {
+          "fps": 10,
+          "sprint": true,
+          "backward": true,
+          "arrived": true,
+          "violationCount": 2,
+          "stuckAt": null
+        },
+        {
+          "fps": 60,
+          "sprint": false,
+          "backward": false,
+          "arrived": true,
+          "violationCount": 57,
+          "stuckAt": null
+        },
+        {
+          "fps": 60,
+          "sprint": false,
+          "backward": true,
+          "arrived": true,
+          "violationCount": 57,
+          "stuckAt": null
+        },
+        {
+          "fps": 60,
+          "sprint": true,
+          "backward": false,
+          "arrived": true,
+          "violationCount": 34,
+          "stuckAt": null
+        },
+        {
+          "fps": 60,
+          "sprint": true,
+          "backward": true,
+          "arrived": true,
+          "violationCount": 34,
+          "stuckAt": null
+        }
+      ]
+    },
+    {
+      "variant": "legacy-auto-contract",
+      "routes": 8,
+      "arrived": 8,
+      "bodyClearancePass": 0,
+      "consumerReady": 0,
+      "unexemptedIntersections": 200,
+      "failingModes": [
+        {
+          "fps": 10,
+          "sprint": false,
+          "backward": false,
+          "arrived": true,
+          "violationCount": 5,
+          "stuckAt": null
+        },
+        {
+          "fps": 10,
+          "sprint": false,
+          "backward": true,
+          "arrived": true,
+          "violationCount": 5,
+          "stuckAt": null
+        },
+        {
+          "fps": 10,
+          "sprint": true,
+          "backward": false,
+          "arrived": true,
+          "violationCount": 3,
+          "stuckAt": null
+        },
+        {
+          "fps": 10,
+          "sprint": true,
+          "backward": true,
+          "arrived": true,
+          "violationCount": 3,
+          "stuckAt": null
+        },
+        {
+          "fps": 60,
+          "sprint": false,
+          "backward": false,
+          "arrived": true,
+          "violationCount": 56,
+          "stuckAt": null
+        },
+        {
+          "fps": 60,
+          "sprint": false,
+          "backward": true,
+          "arrived": true,
+          "violationCount": 56,
+          "stuckAt": null
+        },
+        {
+          "fps": 60,
+          "sprint": true,
+          "backward": false,
+          "arrived": true,
+          "violationCount": 36,
+          "stuckAt": null
+        },
+        {
+          "fps": 60,
+          "sprint": true,
+          "backward": true,
+          "arrived": true,
+          "violationCount": 36,
+          "stuckAt": null
+        }
+      ]
+    }
+  ],
+  "legacyEvidence": "outer-zhujing-legacy-diagnostic.json freezes original118 results:94 local positives and24 unmodified older consumer negatives. Explicit non-default diagnostic replays fixed old snapshot; it is not a current-release failing test.",
+  "reviewFitRouteResult": {
+    "tests": 94,
+    "failed": 0,
+    "ordinaryRouteModes": 40,
+    "freeInputModes": 24,
+    "doesNotProveOwnerConsumerAcceptance": true
+  },
+  "verificationRequired": [
+    "Parent independent last6 and old21 review remains separate.",
+    "GPU browser visual remains unverified; no screenshots successfully generated."
+  ],
+  "ownerCommit": "bd94eabf599f2ccd467da5234cef6e62d2e71b61",
+  "ownerReceipt": "docs/current-state/r48-remaining/final-six-consumer/RECEIPT.json (owner-produced)",
+  "ownerConsumerResults": {
+    "status": "LOCAL_INTEGRATED_REGRESSION_NOT_FINAL_RELEASE_ACCEPTANCE",
+    "moduleSHA256": "a150b7de4351b9543ed03e91c1027c88f625f9b1adcf7ecff0640c2c04452ad0",
+    "sourceBaselineCommit": "d8fdbdae48b7d7f2b6e05e23cf52d06d86714bd9",
+    "baselineCapturedFrom": "Actual 63 buildAutoRoutes definitions and actual 33 stepwalk DUMP_JSON definitions before final six integration; not reconstructed by editing revised route output",
+    "before": {
+      "arrivalOnly": {
+        "tests": 1,
+        "pass": 1,
+        "meaning": "63 routes at 10Hz sprint can arrive; this is not rendered-body clearance"
+      },
+      "hallBody": {
+        "tests": 24,
+        "pass": 2,
+        "fail": 22,
+        "meaning": "Full production horizontal body and eye-height top against actual Wenhua/Zhujing hall triangles on their 1.2m plateau; earlier gate/courtyard stair transitions excluded from this narrowly scoped assertion"
+      }
+    },
+    "after": {
+      "hallBody": {
+        "tests": 24,
+        "pass": 24,
+        "fail": 0
+      },
+      "routeContracts": {
+        "tests": 6,
+        "pass": 6
+      },
+      "allRoutes": {
+        "tests": 8,
+        "pass": 8,
+        "automaticRoutes": 63,
+        "fixedRoutes": 33,
+        "modes": [
+          "60Hz walk",
+          "60Hz sprint",
+          "10Hz walk",
+          "10Hz sprint"
+        ],
+        "library": "Actual TextureLibrary, inert texture images; not GPU acceptance",
+        "bodyCoverage": "Arrival/under-floor checks for all routes; full rendered-body assertions remain scoped to the separate24 tests"
+      }
+    },
+    "allowedPoints": {
+      "wenhuaFrontTurn": {
+        "x": [
+          -186.4,
+          -175.4
+        ],
+        "zBefore": -205.3,
+        "zAfter": -205.0
+      },
+      "zhujingCenter": {
+        "before": [
+          -186.4,
+          -172
+        ],
+        "after": [
+          -186.4,
+          -172.6
+        ]
+      },
+      "zhujingSide": {
+        "before": [
+          -184.1,
+          -172
+        ],
+        "after": [
+          -184.1,
+          -171.8
+        ]
+      },
+      "return": "Exact mirrored counterparts only"
+    },
+    "retention": {
+      "versusPreFinalSix": "61/63 automatic objects and 32/33 fixed objects unchanged; 2 automatic route objects differ at exactly 12 outbound/return point occurrences; one fixed object differs at two points",
+      "versusActualR47": "All63 names preserved;48 complete objects unchanged and15 scoped changed. Relative to fixed33 pre-leaf baseline,31 unchanged;Wuying andWenhua two front-turn points each differ."
+    },
+    "fitBoundary": "Route coordinates are model circulation fits, not surveyed dimensions or actual museum visitor permission. Wenhua existing geometry is unchanged. Zhujing source details and two opened-leaf poses/components are tracked separately.",
+    "logs": {
+      "before-arrival-only.tap": "5d325a25a2b3bb716133db60324844651829c029db93ac787d921d7e8bce1ca1",
+      "route-contracts.tap": "28ca1a7e5066b4aaafeeee8c3bcc7183f47b967b3f65bc09094242b8163b4c40",
+      "after-body.tap": "1cd0970c1b993e3aaf6e088a30dbef0e08daad4be7829d86d25a006ef9fb2af0",
+      "before-body.tap": "df30cfd7c075d366fcfc87f098e8ddcd413450e62fbf9d7eda4f02c2fea97776",
+      "all96-arrival.tap": "4da0911207c321a4df3a05694881dec64f953929f2b98e525bd24afb7fd31982"
+    }
+  }
+}

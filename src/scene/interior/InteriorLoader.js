@@ -1,3 +1,5 @@
+import { huangjiColumnSafetyBoxes } from './HuangjiColumnSafety.js';
+import { validateHuangjiLayer, huangjiFallbackMeshes } from './HuangjiFallbackContract.js';
 import {validateQianqingAuxiliary} from './QianqingAuxiliaryContract.js';
 import { installTaihePlaqueSurround } from '../palace/special/TaihePlaqueFrame.js';
 /**
@@ -6,7 +8,7 @@ import { installTaihePlaqueSurround } from '../palace/special/TaihePlaqueFrame.j
  * - 每座 S 档殿一份 data/interiors/<hallId>.json（见 data/interiors/schema.md），GLB 以殿身局部坐标建模
  *   （原点 = 殿中心、地面 y=0、正面朝 −Z）；加载后放到 frame(x, floorY, z, rot) 下。
  * - 玩家距殿身包围盒 ≤ preload.enter（默认 15 m）开始加载；≥ preload.exit（默认 40 m）卸载并释放显存。
- * - 加载期间保留 B 档；太和殿验证后原子替换独立核心，其余殿 GLB 就绪后 300 ms 淡入叠加。
+ * - 加载期间保留 B 档；太和殿与皇极殿验证后原子替换独立回退构件，其余殿 GLB 就绪后 300 ms 淡入叠加。
  * - 名字 COL_* 的 mesh 作碰撞代理（Box3，渲染隐藏），WALK_* 作可行走面；tag = `interior:<hallId>`，卸载时 removeByTag。
  * - 加载失败：保留 B 档并 console.warn，记入 stats.failed，不再重试（直到 unload 后再次进入）。
  *
@@ -128,8 +130,8 @@ export class InteriorLoader {
           resolve(true);
         } catch (err) {
           console.warn(`[InteriorLoader] ${h.cfg.hall} 安装失败，保留 B 档：`, err);
-          if (h.id === 'kunning' || h.id === 'taihe' || h.id === 'qianqing') {
-            if (h.id === 'taihe') this._restoreTaiheFallback(h);
+          if (h.id === 'kunning' || h.id === 'taihe' || h.id === 'qianqing' || h.id === 'huangji') {
+            if (h.id === 'taihe' || h.id === 'huangji') this._restoreTaiheFallback(h);
             this.cm?.removeByTag(`interior:${h.id}`);
             if (h.group) this.scene.remove(h.group);
             disposeObject(h.group ?? gltf.scene);
@@ -171,11 +173,15 @@ export class InteriorLoader {
       installTaiheGlyphs(root, fallback.find(mesh => mesh.material.name === 'taihe_glyph_atlas')?.material.map);
       installTaiheColumnTextures(root, fallback.find(mesh => mesh.material.name === 'taihe_gold')?.material);
     }
+    if (h.id === 'huangji') {
+      validateHuangjiLayer(root, cfg);
+      h.fallback = huangjiFallbackMeshes(this.scene);
+    }
     const f = cfg.frame;
     const floorY = this._floorY(cfg);
     const group = new THREE.Group();
     group.name = `interior:${h.id}`;
-    if (h.id === 'kunning' || h.id === 'taihe' || h.id === 'qianqing') h.group = group; // rollback owns even a partially installed group
+    if (h.id === 'kunning' || h.id === 'taihe' || h.id === 'qianqing' || h.id === 'huangji') h.group = group; // rollback owns even a partially installed group
     group.position.set(f.x + (cfg.anchor?.x ?? 0), floorY + (cfg.anchor?.y ?? 0), f.z + (cfg.anchor?.z ?? 0));
     group.rotation.y = f.rot ?? 0;
     group.add(root);
@@ -202,6 +208,7 @@ export class InteriorLoader {
       const list = Array.isArray(o.material) ? o.material : [o.material];
       list.forEach(m => m && mats.add(m));
     });
+    if (h.id === 'huangji') colliders.push(...huangjiColumnSafetyBoxes(group));
     const tag = `interior:${h.id}`;
     this.cm?.addColliders(colliders, tag);
     this.cm?.addWalkables(walkables, tag);
@@ -216,9 +223,9 @@ export class InteriorLoader {
       h.lights.push(light);
     }
 
-    // Taihe is an atomic visual replacement: no duplicated transparent cores.
+    // Taihe and Huangji atomically replace their isolated fallbacks, never a shared material batch.
     // Every throwing install step occurs before its known fallback is hidden.
-    if (h.id !== 'taihe') {
+    if (h.id !== 'taihe' && h.id !== 'huangji') {
       h.fade = { t0: performance.now(), mats: [...mats], restore: new Map() };
       for (const m of h.fade.mats) {
         h.fade.restore.set(m, { transparent: m.transparent, opacity: m.opacity, depthWrite: m.depthWrite });
@@ -226,9 +233,9 @@ export class InteriorLoader {
         m.opacity = 0;
       }
     }
-    if (h.id === 'taihe') group.visible = false;
+    if (h.id === 'taihe' || h.id === 'huangji') group.visible = false;
     this.scene.add(group);
-    if (h.id === 'taihe') {
+    if (h.id === 'taihe' || h.id === 'huangji') {
       h.fallback.forEach(mesh => { mesh.visible = false; });
       group.visible = true;
     }
@@ -268,7 +275,7 @@ export class InteriorLoader {
   unload(hallId) {
     const h = this.halls.get(hallId);
     if (!h || h.state === 'idle') return;
-    if (h.id === 'taihe') {
+    if (h.id === 'taihe' || h.id === 'huangji') {
       if (h.group) h.group.visible = false;
       this._restoreTaiheFallback(h);
     }

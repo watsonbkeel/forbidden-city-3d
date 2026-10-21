@@ -1,0 +1,20 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+const original=fs.readFileSync;
+const root=process.env.R48_REPO??process.cwd();
+const receipt=JSON.parse(original(new URL('./yanxi-tail-inputs.json',import.meta.url)));
+const target=path.resolve(root,receipt.target),before=original(target),old=original(new URL('./r47-yanxi-storehouses.txt',import.meta.url));
+const sha=b=>createHash('sha256').update(b).digest('hex');
+assert.equal(sha(before),receipt.currentSha256,'exact reviewed current input');
+assert.equal(sha(old),receipt.baselineSha256,'actual R47 replacement input');
+assert.equal(old.length,receipt.baselineBytes);
+for(const file of receipt.selectedFiles)assert.equal(sha(original(path.resolve(root,file))),receipt.sourceBefore[file],file+' original test source unchanged');
+fs.readFileSync=function(p,options){
+ const value=p instanceof URL?fileURLToPath(p):typeof p==='string'?path.resolve(p):null;
+ if(value!==target)return original.apply(this,arguments);
+ const encoding=typeof options==='string'?options:options?.encoding;
+ return encoding?old.toString(encoding):Buffer.from(old);
+};

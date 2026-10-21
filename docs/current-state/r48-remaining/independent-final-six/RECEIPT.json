@@ -1,0 +1,62 @@
+{
+  "asOf": "2026-10-21T16:46:36.937786+00:00",
+  "command": [
+    "node",
+    "--test",
+    "tests/r48-final-six-independent.test.mjs",
+    "tests/r48-final-six-independent-world-body.test.mjs"
+  ],
+  "productCommit": "bd94eabf599f2ccd467da5234cef6e62d2e71b61",
+  "baseCommit": "27b1be353b680d385d79674cacc97887f45836ab",
+  "exitCode": 0,
+  "filesChecked": 1311,
+  "changed": [],
+  "added": [],
+  "status": "INDEPENDENT_BOUNDED_CPU_PASS_NOT_COMPLETE_RESTORATION_OR_GPU_ACCEPTANCE",
+  "newDefaultTests": {
+    "files": 2,
+    "tests": 71,
+    "passed": 71,
+    "failed": 0,
+    "skipped": 0
+  },
+  "existingScopedTests": {
+    "files": 4,
+    "tests": 30,
+    "passed": 30,
+    "failed": 0,
+    "skipped": 0
+  },
+  "oldSceneRed": {
+    "commit": "d8fdbdae48b7d7f2b6e05e23cf52d06d86714bd9",
+    "test": "tests/r48-final-six-consumer-body.test.mjs",
+    "tests": 24,
+    "passed": 2,
+    "failed": 22,
+    "exitCode": 1
+  },
+  "precedingOuterIdentitiesExact": 21,
+  "finalOuterIdentitiesActualChanged": 6,
+  "worldBody": {
+    "modes": 56,
+    "frames": 44180,
+    "successfulCandidateSubsteps": 58648,
+    "maxSuccessfulRise": 0.5,
+    "meshNodes": 593,
+    "bandTriangles": 749648,
+    "band": [
+      0.3,
+      6
+    ],
+    "allBodiesInsideBandAsserted": true,
+    "hitTruncation": false,
+    "totalUnclassifiedContacts": 0,
+    "newLowThresholdContactsNotMisclassifiedAsOld": 168
+  },
+  "productionChanges": false,
+  "push": false,
+  "fullAggregateRun": false,
+  "fullVisualAcceptance": false,
+  "moduleSha256": "a150b7de4351b9543ed03e91c1027c88f625f9b1adcf7ecff0640c2c04452ad0",
+  "oldConsumerTestSha256": "ee15f41314067b9afddf307b625ceec8c9cf64bb1431743182abe23779b2f05a"
+}

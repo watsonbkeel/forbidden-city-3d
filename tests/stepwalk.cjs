@@ -126,7 +126,7 @@ async function buildRoutes() {
   const {southCourtGateGeometry}=await import(pathToFileURL(path.join(ROOT,'src/scene/palace/special/SouthCourtGates.js')).href);
   const {southWaterProfile}=await import(pathToFileURL(path.join(ROOT,'src/scene/palace/special/SouthWaterSystem.js')).href);
   const southZones=['outer-east','outer-west'].map(id=>JSON.parse(fs.readFileSync(path.join(ROOT,`data/zones/${id}.json`),'utf8')));
-  const courtWalk=court=>{const items=southZones.find(z=>z.id===(court==='wenhua'?'outer-east':'outer-west')).items,gate=items.find(i=>i.southGateProfile===court),g=southCourtGateGeometry(gate),h=items.find(i=>i.southCourtProfile===`${court}-front`),x=h.x,side=court==='wenhua'?11:5;return[[gate.x,g.southToe-2],[gate.x,g.northToe+2],[x,g.northToe+2],[x,h.z-h.d/2-h.pad-h.ph*1.6-1],[x,h.z-6.3],[x+side,h.z-6.3],[x+side,h.z+5.7],[x,h.z+5.7]];};
+  const courtWalk=court=>{const items=southZones.find(z=>z.id===(court==='wenhua'?'outer-east':'outer-west')).items,gate=items.find(i=>i.southGateProfile===court),g=southCourtGateGeometry(gate),h=items.find(i=>i.southCourtProfile===`${court}-front`),x=h.x,side=court==='wenhua'?11:5,frontTurnZ=h.z-(court==='wuying'?5.95:6);return[[gate.x,g.southToe-2],[gate.x,g.northToe+2],[x,g.northToe+2],[x,h.z-h.d/2-h.pad-h.ph*1.6-1],[x,frontTurnZ],[x+side,frontTurnZ],[x+side,h.z+5.7],[x,h.z+5.7]];};
   const wenhuaWalk=courtWalk('wenhua'),wuyingWalk=courtWalk('wuying'),wuyingBridge=southWaterProfile(PALACE_LAYOUT.find(i=>i.type==='river')).bridges.find(b=>b.id==='wuying-2');
   // The new river makes the old unbridged north-side doglegs impossible.
   // Keep route identities, use an actual five-bridge crossing before each

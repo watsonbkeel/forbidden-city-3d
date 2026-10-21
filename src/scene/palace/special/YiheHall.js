@@ -15,8 +15,8 @@ export function buildYiheHall(kit,item){
  // The old nine-bay shell is used ONLY to preserve its roof/platform/front stair.
  // All generic columns, enclosure, beams, room registration and furniture are removed.
  const built=kit.hall({...shell,bays:9,rot:0,interior:'empty'}),f=built.f;
- const removeMats=new Set(['wood_column','wall_red','lattice_doors','caihua_beam']),geos=new Set();
- for(const m of [...f.children])if(m.isMesh&&removeMats.has(m.material?.name)){geos.add(m.geometry);m.removeFromParent();}
+ const removeMats=new Set(['wood_column','wall_red','lattice_doors','caihua_beam'].map(key=>kit.lib.material(key))),geos=new Set();
+ for(const m of [...f.children])if(m.isMesh&&removeMats.has(m.material)){geos.add(m.geometry);m.removeFromParent();}
  for(const geo of geos)geo.dispose();
  kit.colliders.splice(cs,kit.colliders.length-cs,...kit.colliders.slice(cs).filter(c=>c.min.y<y-1e-7));
  kit.rooms.splice(rs);kit.regions.splice(gs);

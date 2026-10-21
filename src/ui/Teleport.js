@@ -1,3 +1,5 @@
+import {resolveRemainingProfile as resolveOuter} from '../scene/palace/special/RemainingOuterHalls.js';
+import {resolveRemainingProfile as resolveNingshou} from '../scene/palace/special/RemainingNingshouHalls.js';
 import { southWaterProfile } from '../scene/palace/special/SouthWaterSystem.js';
 import { wenyuanGeometry } from '../scene/palace/special/WenyuanPavilion.js';
 import * as THREE from 'three';
@@ -39,6 +41,10 @@ export class Teleport {
   geometryFor(name) {
     const target = this.targets.get(name);
     if (!target) throw new Error(`未知传送目标：${name}`);
+    const remaining=resolveNingshou('ningshou',target);
+    if(remaining){const portal=remaining.portals[0];return {name,cx:remaining.x,cz:remaining.z,frontX:portal.worldX,frontZ:portal.worldZ,entryProfile:remaining.id,approachPoints:remaining.navigation.approachPoints.map(p=>({...p,y:p.feetY})),requiredZone:'ningshou'};}
+    const outer=resolveOuter('outer-west',target)??resolveOuter('outer-east',target),nav=outer?.navigation;
+    if(nav?.runtimeReady===true){return {name,cx:nav.center.x,cz:nav.center.z,frontX:nav.primaryEntry.x,frontZ:nav.primaryEntry.z,entryProfile:nav.id,approachPoints:nav.approachPoints.map(p=>({...p})),requiredZone:outer.zone};}
     if(target.structure==='wenyuan-pavilion'){
       const profile=wenyuanGeometry(target);
       return {name,cx:profile.x,cz:profile.z,frontX:profile.entry.x,frontZ:profile.entry.z,entryProfile:profile.navigation.id,approachPoints:profile.navigation.points,requiredZone:'outer-east',requiredBridge:southWaterProfile(PALACE_LAYOUT.find(i=>i.type==='river')).bridges.find(b=>b.id==='wenyuan-pond')};
@@ -242,6 +248,9 @@ export class Teleport {
     // six-bay entrance. The full physical path above proves access; a direct
     // chord through a bridge rail is not the intended walking/sight path.
     if(g.entryProfile==='wenyuan-pond-approach')return true;
+    // Jiyun's source-facing door is reached by the validated north stair turn,
+    // not a straight chord through the neighboring Xianruo platform.
+    if(g.entryProfile==='jiyun-actual-primary-entry' && g.requiredZone==='outer-west')return true;
     return this.lineOfSight(p, g);
   }
 

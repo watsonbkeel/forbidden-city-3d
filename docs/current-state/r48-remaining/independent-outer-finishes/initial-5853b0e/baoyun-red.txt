@@ -1,0 +1,33 @@
+✖ independent Baoyun source photo requires pale inscription core, green border, and no invented lettering (56.063289ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 264.287299
+
+✖ failing tests:
+
+test at ../r48-review-outer-finishes-5853b0e/tests/r48-review-baoyun-inscription.test.mjs:3:1
+✖ independent Baoyun source photo requires pale inscription core, green border, and no invented lettering (56.063289ms)
+  AssertionError [ERR_ASSERTION]: Official 2024 image: green is the BORDER, not the inscription core
+  + actual - expected
+  
+  + 'baoyun_green_gutter'
+  - 'baoyun_pale_stone'
+            ^
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r48-review-outer-finishes-5853b0e/tests/r48-review-baoyun-inscription.test.mjs:3:447)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'baoyun_green_gutter',
+    expected: 'baoyun_pale_stone',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

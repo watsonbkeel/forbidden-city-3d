@@ -1,0 +1,289 @@
+{
+  "schemaVersion": 1,
+  "id": "final-pair-and-zhujing-proxy-extension",
+  "status": "SOURCE_REVIEWED_FIXED_EXTENSION",
+  "fromModuleSha256": "b7d318a374e8249b272ddada2dcf5feb6ce9b59772f1dc1c9ab2e7d34e6e4be4",
+  "toModuleSha256": "a150b7de4351b9543ed03e91c1027c88f625f9b1adcf7ecff0640c2c04452ad0",
+  "priorLedgerBindings": {
+    "finalFourSourceDeltaSha256": "6af080706fc3dac3ff5a4b64755f51677c021d5f587415e591b17f967de27c2c",
+    "safetyDeltaSha256": "77e7d240b8061bfa4b7b33b8e83a7873c794e466d371da39486989f5ca3b808d",
+    "first21CheckpointSha256": "07b4c81b04fa819af873286c2dd907b9fc3ddc6b5af1f5b7b3be8666c24d0029"
+  },
+  "checkpoint": {
+    "path": "docs/current-state/r48-remaining/outer-first25-pre-paired-signatures.json",
+    "sha256": "bbec61cc7b06879de419cb6015a66d0c361ee4fc3b0f998f3a1041843d3a8fe3",
+    "moduleSha256": "b7d318a374e8249b272ddada2dcf5feb6ce9b59772f1dc1c9ab2e7d34e6e4be4",
+    "identityCount": 25,
+    "signatureFields": [
+      "geometry",
+      "meshes",
+      "triangles",
+      "colliders",
+      "walkables",
+      "rooms",
+      "regions",
+      "map",
+      "profileNavigation",
+      "builtNavigation",
+      "builtMetadata"
+    ]
+  },
+  "newIdentities": [
+    {
+      "id": "place-outer-west-5c577ab026",
+      "key": "ningdao",
+      "name": "凝道殿"
+    },
+    {
+      "id": "place-outer-west-db932a3514",
+      "key": "huanzhang",
+      "name": "焕章殿"
+    }
+  ],
+  "sourceChanges": [
+    {
+      "id": "paired-profile-evidence",
+      "reason": "Only Ningdao/Huanzhang evidence status and uncertainty text change; all existing identity, zone, dimensions and source fields remain fixed.",
+      "edits": [
+        {
+          "before": "  {\n    \"id\": \"place-outer-west-5c577ab026\",\n    \"key\": \"ningdao\",\n    \"zone\": \"outer-west\",\n    \"name\": \"凝道殿\",\n    \"auxiliaryIdentity\": null,\n    \"x\": 192.2,\n    \"z\": -228.7,\n    \"w\": 27.4,\n    \"d\": 12.3,\n    \"mode\": \"augment\",\n    \"source\": \"https://www.dpm.org.cn/show/255509.html\",\n    \"evidenceStatus\": \"IDENTITY_ONLY_CONDITIONAL\",\n    \"unknown\": [\n      \"用途描述不能推断完整平面；主殿展柜不可复制到配殿。\"\n    ]\n  },",
+          "after": "  {\n    \"id\": \"place-outer-west-5c577ab026\",\n    \"key\": \"ningdao\",\n    \"zone\": \"outer-west\",\n    \"name\": \"凝道殿\",\n    \"auxiliaryIdentity\": null,\n    \"x\": 192.2,\n    \"z\": -228.7,\n    \"w\": 27.4,\n    \"d\": 12.3,\n    \"mode\": \"augment\",\n    \"source\": \"https://www.dpm.org.cn/show/255509.html\",\n    \"evidenceStatus\": \"OWN_2021_PANORAMA_LAYOUT_WITH_FITTED_METRICS\",\n    \"unknown\": [\n      \"2021自身全景支持裸梁及各自现代端部展陈；几何尺度和绝对端位是拟合，不代表2026完整器物库存。\"\n    ]\n  },",
+          "beforeSourceSha256": "3459c4849da804d20d1fe37d07215e15278cbf5a1b49c4d0e26c5cd114a0f3a5",
+          "afterSourceSha256": "1df9b84614f1c8d2a99fa90f0c06404a72012ea17fe6d8f76c736abadde6077d"
+        },
+        {
+          "before": "  {\n    \"id\": \"place-outer-west-db932a3514\",\n    \"key\": \"huanzhang\",\n    \"zone\": \"outer-west\",\n    \"name\": \"焕章殿\",\n    \"auxiliaryIdentity\": null,\n    \"x\": 250.6,\n    \"z\": -228.9,\n    \"w\": 26.7,\n    \"d\": 10.2,\n    \"mode\": \"augment\",\n    \"source\": \"https://www.dpm.org.cn/show/255509.html\",\n    \"evidenceStatus\": \"IDENTITY_ONLY_CONDITIONAL\",\n    \"unknown\": [\n      \"用途描述不能推断完整平面；主殿展柜不可复制到配殿。\"\n    ]\n  },",
+          "after": "  {\n    \"id\": \"place-outer-west-db932a3514\",\n    \"key\": \"huanzhang\",\n    \"zone\": \"outer-west\",\n    \"name\": \"焕章殿\",\n    \"auxiliaryIdentity\": null,\n    \"x\": 250.6,\n    \"z\": -228.9,\n    \"w\": 26.7,\n    \"d\": 10.2,\n    \"mode\": \"augment\",\n    \"source\": \"https://www.dpm.org.cn/show/255509.html\",\n    \"evidenceStatus\": \"OWN_2021_PANORAMA_LAYOUT_WITH_FITTED_METRICS\",\n    \"unknown\": [\n      \"2021自身全景支持裸梁及各自现代端部展陈；几何尺度和绝对端位是拟合，不代表2026完整器物库存。\"\n    ]\n  },",
+          "beforeSourceSha256": "d287988cc3f987e9e7de9c2e89b76022b3b3a50b97779df41c439ab6973d72c4",
+          "afterSourceSha256": "71dec3fd9ad84314e05bd6501c054c55a2e5ddffd207a255f393fa08ec66daed"
+        }
+      ]
+    },
+    {
+      "id": "paired-ready-gate",
+      "reason": "Add only Ningdao and Huanzhang keys to the fixed 25 gate, retaining every old key and order.",
+      "edits": [
+        {
+          "before": "export const READY_OUTER_KEYS = Object.freeze(['baoxiang','jiyun','ciyin','cining','dafotang','shouan','nanxun','hanqing','yanshou','yude','wenyuan','yanchun','wuying','jingsi','baoyun','zhujing','benren','jiyi','hengshou',...RECORDS.filter(p=>p.key.startsWith('sansuo-')).map(p=>p.key)]);",
+          "after": "export const READY_OUTER_KEYS = Object.freeze(['baoxiang','jiyun','ciyin','cining','dafotang','shouan','nanxun','hanqing','yanshou','yude','wenyuan','yanchun','wuying','jingsi','baoyun','zhujing','benren','jiyi','hengshou','ningdao','huanzhang',...RECORDS.filter(p=>p.key.startsWith('sansuo-')).map(p=>p.key)]);",
+          "beforeSourceSha256": "3e7f2c4d18992a1a684e909484ee910c53f36c2d568b1b972a5c7aa26d4f5e20",
+          "afterSourceSha256": "0089f5577860260377ae3759aa779450c8c107ec365527e32568d511f43bafce"
+        }
+      ]
+    },
+    {
+      "id": "paired-private-builders",
+      "reason": "Isolated paired-only helpers and two builders are inserted before augment dispatch. Shared builders, materials and geometry helpers cannot change because the complete inverse must recover b7.",
+      "edits": [
+        {
+          "before": "export function augmentRemainingHall(kit,item,built,profile) {",
+          "after": "\n// Standalone merge candidate. It imports no private RemainingOuterHalls helper\n// and never changes RoofBuilder, shared materials, dimensions or navigation.\nconst PAIRED_FIT = 'REVERSIBLE_MODEL_FIT_NOT_SURVEYED';\nconst PAIRED_IDENTITIES = Object.freeze({\n  ningdao: {id:'place-outer-west-5c577ab026',name:'凝道殿',x:192.2,z:-228.7,w:27.4,d:12.3,rot:-Math.PI/2,scene:'w22'},\n  huanzhang: {id:'place-outer-west-db932a3514',name:'焕章殿',x:250.6,z:-228.9,w:26.7,d:10.2,rot:Math.PI/2,scene:'w07'},\n});\nconst PAIRED_PANORAMA = 'https://ggzlquanjing.dpm.org.cn/scene/rOQSztMJ62XbrOjIj78rxu2KMZTcvyfg/20210517_wydtcg/panos/';\nconst pairedMeshes = (root,accept) => {const out=[];root.traverse(n=>{if(n.isMesh&&accept(n))out.push(n)});return out;};\nconst pairedMaterial = (kit,mesh,key) => mesh.material===kit.lib.material(key);\nconst pairedPositionKey = p => p.map(v=>Math.round(v/1e-5)).join(',');\n\nfunction pairedTriangleIds(geometry) {\n  const ix=geometry.index,n=ix?.count??geometry.attributes.position.count;\n  return Array.from({length:n/3},(_,i)=>[0,1,2].map(j=>ix?ix.getX(i*3+j):i*3+j));\n}\nfunction pairedSelectTriangles(geometry,triangles) {\n  const next=new THREE.BufferGeometry();\n  for(const[name,a]of Object.entries(geometry.attributes)){\n    const values=new a.array.constructor(triangles.length*3*a.itemSize);let offset=0;\n    for(const ids of triangles)for(const id of ids)for(let k=0;k<a.itemSize;k++)values[offset++]=a.array[id*a.itemSize+k];\n    next.setAttribute(name,new THREE.BufferAttribute(values,a.itemSize,a.normalized));\n  }\n  return next;\n}\nfunction pairedReverseUnderboard(tileGeometry,thickness) {\n  const reversed=pairedSelectTriangles(tileGeometry,pairedTriangleIds(tileGeometry).map(([a,b,c])=>[a,c,b]));\n  const p=reversed.attributes.position;\n  for(let i=0;i<p.count;i++)p.setY(i,p.getY(i)-thickness);\n  reversed.computeVertexNormals();return reversed;\n}\nfunction pairedBoundary(tileGeometry) {\n  const p=tileGeometry.attributes.position,edges=new Map();\n  for(const ids of pairedTriangleIds(tileGeometry))for(let j=0;j<3;j++){\n    const a=new THREE.Vector3().fromBufferAttribute(p,ids[j]).toArray(),b=new THREE.Vector3().fromBufferAttribute(p,ids[(j+1)%3]).toArray();\n    const ka=pairedPositionKey(a),kb=pairedPositionKey(b),key=[ka,kb].sort().join('|'),row=edges.get(key)??{a,b,count:0,direction:0};\n    row.count++;row.direction+=ka<kb?1:-1;edges.set(key,row);\n  }\n  for(const e of edges.values())if(e.count>2||e.count===2&&e.direction!==0)throw Error('Paired roof baseline tile topology is not an oriented manifold');\n  return [...edges.values()].filter(e=>e.count===1);\n}\nfunction pairedGeometryBuilder() {\n  const positions=[],uvs=[],indices=[];\n  const quad=(a,b,c,d,expected)=>{\n    const n=new THREE.Vector3().subVectors(new THREE.Vector3(...b),new THREE.Vector3(...a)).cross(new THREE.Vector3().subVectors(new THREE.Vector3(...c),new THREE.Vector3(...a)));\n    const vertices=n.dot(new THREE.Vector3(...expected))>=0?[a,b,c,d]:[a,d,c,b],base=positions.length/3;\n    for(const p of vertices){positions.push(...p);uvs.push(p[2]/4,p[1]/2)}\n    indices.push(base,base+1,base+2,base,base+2,base+3);\n  };\n  const finish=()=>{const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));g.setAttribute('uv',new THREE.Float32BufferAttribute(uvs,2));g.setIndex(indices);g.computeVertexNormals();return g;};\n  return{quad,finish};\n}\nfunction pairedEdgeGeometry(boundary,thickness) {\n  const positions=[],uvs=[];\n  for(const{a,b}of boundary){const ad=[a[0],a[1]-thickness,a[2]],bd=[b[0],b[1]-thickness,b[2]],len=new THREE.Vector3(...a).distanceTo(new THREE.Vector3(...b));\n    // Reverse the top boundary edge. This is an outward oriented solid edge,\n    // not DoubleSide and not a closure on every disconnected input triangle.\n    for(const p of[a,ad,bd,a,bd,b])positions.push(...p);\n    uvs.push(0,0,0,thickness,len,thickness,0,0,len,thickness,len,0);\n  }\n  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));g.setAttribute('uv',new THREE.Float32BufferAttribute(uvs,2));g.computeVertexNormals();return g;\n}\nfunction pairedProfileSolid(x0,x1,zs,upper,lower) {\n  const b=pairedGeometryBuilder();\n  for(let i=0;i<zs.length-1;i++){\n    const z0=zs[i],z1=zs[i+1],u0=upper(z0),u1=upper(z1),l0=lower(z0),l1=lower(z1);\n    b.quad([x0,u0,z0],[x1,u0,z0],[x1,u1,z1],[x0,u1,z1],[0,1,0]);\n    b.quad([x0,l0,z0],[x1,l0,z0],[x1,l1,z1],[x0,l1,z1],[0,-1,0]);\n    b.quad([x0,l0,z0],[x0,u0,z0],[x0,u1,z1],[x0,l1,z1],[-1,0,0]);\n    b.quad([x1,l0,z0],[x1,u0,z0],[x1,u1,z1],[x1,l1,z1],[1,0,0]);\n  }\n  for(const[z,n]of[[zs[0],-1],[zs.at(-1),1]])b.quad([x0,lower(z),z],[x1,lower(z),z],[x1,upper(z),z],[x0,upper(z),z],[0,0,n]);\n  return b.finish();\n}\nfunction pairedPaintedBoxGeometry(w,h,d,tile) {\n  const g=new THREE.BoxGeometry(w,h,d),p=g.attributes.position,n=g.attributes.normal,uv=g.attributes.uv;\n  for(let i=0;i<p.count;i++){\n    if(Math.abs(n.getX(i))>.5)uv.setXY(i,(p.getZ(i)+d/2)/tile,(p.getY(i)+h/2)/h);\n    else if(Math.abs(n.getZ(i))>.5)uv.setXY(i,(p.getX(i)+w/2)/tile,(p.getY(i)+h/2)/h);\n    else uv.setXY(i,(p.getZ(i)+d/2)/tile,(p.getX(i)+w/2)/w);\n  }\n  return g;\n}\n\n/**\n * Augment only Ningdao/Huanzhang's retained generic hall roof.\n * Prerequisite: kit.hall({...baselineItem, rot: FACE[baselineItem.rot]}) has run.\n * Returns metadata, not a replacement built object. The caller can put it in\n * finishAugment(..., {pairedExposedRoof: result}). No resolver change is made.\n * Seven purlin courses and every count/size/position below are model fits, not\n * a survey or a use of Huanzhang's different 1902 five-purlin specification.\n */\nfunction augmentPairedExposedRoof(kit,item,built,profile) {\n  const identity=PAIRED_IDENTITIES[profile?.key],f=built?.f;\n  const rotation=typeof item?.rot==='number'?item.rot:({west:-Math.PI/2,east:Math.PI/2})[item?.rot];\n  if(!identity||profile.id!==identity.id||item.name!==identity.name||!['x','z','w','d'].every(k=>item[k]===identity[k])||rotation!==identity.rot||item.ph!==.45||item.colH!==5.76||item.bays!==5||item.roof!=='gable'||item.brackets!==false||!f?.isGroup)throw Error('Paired exposed roof exact identity/baseline/profile required');\n  if(f.userData.pairedExposedRoof)throw Error('Paired exposed roof already installed on this baseline');\n  f.updateWorldMatrix(true,true);\n  if(!f.matrixWorld.elements.every(Number.isFinite)||Math.abs(f.rotation.y-identity.rot)>1e-9)throw Error('Paired roof requires a finite, orientation-normalized baseline frame');\n  const baseY=item.ph+item.colH,legacyBeamH=THREE.MathUtils.clamp(item.colH*.12,.45,.85),ceilingY=baseY-legacyBeamH-.02;\n  const ceilings=f.children.filter(n=>n.isMesh&&n.geometry.type==='PlaneGeometry'&&pairedMaterial(kit,n,'caihua_beam')&&n.geometry.parameters.width===item.w&&n.geometry.parameters.height===item.d&&Math.abs(n.position.y-ceilingY)<1e-6&&n.position.x===0&&n.position.z===0);\n  const roofs=f.children.filter(n=>n.name==='roof_gable');\n  if(ceilings.length!==1||roofs.length!==1)throw Error('Paired roof requires exactly one original hall ceiling and gable roof');\n  const roof=roofs[0],tiles=pairedMeshes(roof,n=>pairedMaterial(kit,n,'roof_tile')),rafterFields=pairedMeshes(roof,n=>pairedMaterial(kit,n,'rafters'));\n  if(tiles.length!==1||rafterFields.length!==1)throw Error('Paired roof baseline material identity is not recognized');\n  const tile=tiles[0],legacyRafters=rafterFields[0],rp=legacyRafters.geometry.attributes.position,kept=[],removed=[];\n  for(const ids of pairedTriangleIds(legacyRafters.geometry)){\n    const horizontal=ids.every(i=>Math.abs(rp.getY(i)-baseY)<1e-5&&Math.abs(rp.getX(i))<=item.w/2+.251&&Math.abs(rp.getZ(i))<=item.d/2+.251);\n    (horizontal?removed:kept).push(ids);\n  }\n  if(removed.length!==4)throw Error('Paired roof baseline horizontal fan must contain exactly four triangles');\n  const columns=pairedMeshes(f,n=>n.geometry.type==='CylinderGeometry'&&pairedMaterial(kit,n,'wood_column')&&Math.abs(n.geometry.parameters.height-item.colH)<1e-6&&Math.abs(n.position.y+item.colH/2-baseY)<1e-6);\n  if(columns.length!==12)throw Error('Paired roof baseline requires the retained twelve eave columns');\n  const boundary=pairedBoundary(tile.geometry),thickness=.12,rafterDepth=.14,rafterWidth=.10,join=.025;\n  const tileToFrame=new THREE.Matrix4().copy(f.matrixWorld).invert().multiply(tile.matrixWorld),p=tile.geometry.attributes.position;\n  const tileTriangles=pairedTriangleIds(tile.geometry).map(ids=>ids.map(i=>new THREE.Vector3().fromBufferAttribute(p,i).applyMatrix4(tileToFrame)));\n  const ray=new THREE.Ray(),hit=new THREE.Vector3();\n  const roofY=(x,z)=>{\n    ray.set(new THREE.Vector3(x,50,z),new THREE.Vector3(0,-1,0));let y=-Infinity;\n    for(const[a,b,c]of tileTriangles)if(ray.intersectTriangle(a,b,c,false,hit))y=Math.max(y,hit.y);\n    if(!Number.isFinite(y))throw Error(`Paired roof sample missed retained tile at ${x}, ${z}`);return y;\n  };\n  const rafterHalfRun=item.d/2+.20;\n  const zs=[...new Set([-rafterHalfRun,rafterHalfRun,...tileTriangles.flatMap(v=>v.map(p=>p.z)).filter(z=>Math.abs(z)<rafterHalfRun)])].sort((a,b)=>a-b);\n  // Complete all required sampling before replacing the old ceiling geometry.\n  for(const z of zs)roofY(0,z);\n  const purlinData=Array.from({length:7},(_,i)=>{\n    const z=-item.d/2+i*item.d/6,radius=i===3?.17:.15,sampleZ=Math.abs(z)<1e-9?.002:z;\n    const slope=(roofY(0,sampleZ+.0005)-roofY(0,sampleZ-.0005))/.001;\n    const centerY=roofY(0,z)-thickness-rafterDepth-radius*Math.sqrt(1+slope*slope)+join;\n    return{z,radius,slope,centerY,bottomY:centerY-radius,contactZ:z-radius*slope/Math.sqrt(1+slope*slope)};\n  });\n  const source=PAIRED_PANORAMA+identity.scene+'.tiles/u/l1/01/l1_u_01_01.jpg';\n  const metadata={id:profile.id,key:profile.key,source,secondaryNodeSource:profile.key==='ningdao'?PAIRED_PANORAMA+'w18.tiles/u/l1/01/l1_u_01_01.jpg':null,photographyDate:null,targetPeriod:'2021_CERAMICS_OPENING_PANORAMA',dimensionStatus:PAIRED_FIT,wholeBuildingComplete:false,removedLegacyCeilingPlanes:1,removedHorizontalSoffitTriangles:removed.length,underboardThickness:thickness,thicknessAxis:'VERTICAL_OFFSET_WITH_PHYSICAL_SLOPED_THICKNESS',boundaryEdges:boundary.length,fitCounts:{transverseStations:6,purlinCourses:7,rafters:0},loadPath:{frames:[],purlins:[],rafters:[]},limitations:['All timber counts, cross-sections and coordinates are reversible model fits, not measured modern whole-building framing.','No 1902 five-purlin count or wood ceiling is imposed on the 2021 exposed roof.','Generic caihua texture is a visual palette fit, not exact painted motif reproduction.','Inner gable backing is a technical closure inside the retained exterior, not a measured historic lining.','Modern low red display ceilings are not ancient ceiling evidence and are not built by this function.']};\n  const owned=(key,name,color,keepMap)=>{\n    const m=kit.lib.material(key).clone();m.name=`r48_${profile.key}_${name}`;m.side=THREE.FrontSide;m.roughness=.82;m.color.setHex(color);if(!keepMap)m.map=null;m.userData={...m.userData,pairedRoof:true,dimensionStatus:PAIRED_FIT};kit.owned.push(m);return m;\n  };\n  const blue=owned('caihua_beam','painted_frame',0xb5c6ca,true),green=owned('rafters','green_rafters',0x315e48,false),orange=owned('wood_column','red_orange_underboards',0xad522b,false);\n  let bearingSequence=0;columns.forEach((n,i)=>{n.userData.pairedBearingId=profile.key+'-retained-eave-column-'+i;});\n  const mark=(mesh,part,extra={})=>{mesh.name=`${profile.key}-exposed-${part}`;Object.assign(mesh.userData,{role:mesh.name,pairedRoofPart:part,pairedBearingId:profile.key+'-bearing-'+(bearingSequence++),remainingOuterId:profile.id,source,photographyDate:null,dimensionStatus:PAIRED_FIT,...extra});mesh.castShadow=mesh.receiveShadow=true;return mesh;};\n  const add=(geometry,material,part,x=0,y=0,z=0,extra={})=>{const m=mark(new THREE.Mesh(geometry,material),part,extra);m.position.set(x,y,z);f.add(m);return m;};\n  const box=(part,w,h,d,x,y,z,extra={})=>add(pairedPaintedBoxGeometry(w,h,d,kit.lib.tileSize('caihua_beam')),blue,part,x,y,z,extra);\n  // Only the exact obsolete surfaces are removed. Shared materials stay alive.\n  ceilings[0].removeFromParent();ceilings[0].geometry.dispose();\n  const oldRafterGeometry=legacyRafters.geometry;legacyRafters.geometry=pairedSelectTriangles(oldRafterGeometry,kept);oldRafterGeometry.dispose();\n  for(const[geometry,part]of[[pairedReverseUnderboard(tile.geometry,thickness),'underboard'],[pairedEdgeGeometry(boundary,thickness),'board-edge']]){\n    const mesh=mark(new THREE.Mesh(geometry,orange),part);mesh.position.copy(tile.position);mesh.quaternion.copy(tile.quaternion);mesh.scale.copy(tile.scale);tile.parent.add(mesh);\n  }\n  // Closed solids directly under each piecewise-planar retained tile span.\n  // Upper faces penetrate only 0.012m into the board, avoiding numerical seams.\n  const rafterCount=Math.max(2,Math.round((item.w-.5)/.34));\n  for(let i=0;i<=rafterCount;i++){\n    const x=-item.w/2+.25+i*(item.w-.5)/rafterCount;\n    const upper=z=>roofY(x,z)-thickness+.012,lower=z=>roofY(x,z)-thickness-rafterDepth;\n    const mesh=add(pairedProfileSolid(x-rafterWidth/2,x+rafterWidth/2,zs,upper,lower),green,'rafter',0,0,0,{rafterIndex:i,x});\n    metadata.loadPath.rafters.push({mesh:mesh.userData.pairedBearingId,x});\n  }\n  metadata.fitCounts.rafters=metadata.loadPath.rafters.length;\n  for(const data of purlinData){\n    const geometry=new THREE.CylinderGeometry(data.radius,data.radius,item.w+.22,16,1,false),uv=geometry.attributes.uv;\n    for(let i=0;i<uv.count;i++){const u=uv.getX(i),v=uv.getY(i);uv.setXY(i,v*(item.w+.22)/kit.lib.tileSize('caihua_beam'),u)}\n    const mesh=add(geometry,blue,'purlin',0,data.centerY,data.z,{course:metadata.loadPath.purlins.length,z:data.z});mesh.rotation.z=Math.PI/2;data.mesh=mesh;\n    metadata.loadPath.purlins.push({mesh:mesh.userData.pairedBearingId,z:data.z,contactZ:data.contactZ,radius:data.radius});\n  }\n  for(let station=0;station<=item.bays;station++){\n    const x=-item.w/2+station*item.w/item.bays,frame={x,columns:[],beams:[],supports:[],purlinBearings:[]},beamTops=[];\n    for(const c of columns)if(Math.abs(c.position.x-x)<1e-5)frame.columns.push(c.userData.pairedBearingId);\n    for(let tier=0;tier<3;tier++){\n      const row=purlinData[tier],top=tier===0?Math.max(baseY-.02,row.bottomY+.035):row.bottomY+.035,h=[.58,.44,.36][tier],span=2*Math.abs(row.z)+.32;\n      const beam=box('transverse-beam',.42-tier*.05,h,span,x,top-h/2,0,{station,tier});frame.beams.push(beam.userData.pairedBearingId);beamTops.push(top);\n      for(const j of[tier,6-tier])frame.purlinBearings.push({beam:beam.userData.pairedBearingId,purlin:purlinData[j].mesh.userData.pairedBearingId});\n      if(tier>0)for(const z of[-Math.abs(row.z),Math.abs(row.z)]){\n        const bottom=beamTops[tier-1]-.025,upper=top-h+.025,post=box('short-support',.26,upper-bottom,.26,x,(bottom+upper)/2,z,{station,tier});\n        frame.supports.push({mesh:post.userData.pairedBearingId,below:frame.beams[tier-1],above:beam.userData.pairedBearingId});\n      }\n    }\n    const ridge=purlinData[3],lo=beamTops[2]-.025,hi=ridge.bottomY+.035;\n    const post=box('ridge-support',.26,hi-lo,.26,x,(lo+hi)/2,0,{station});frame.supports.push({mesh:post.userData.pairedBearingId,below:frame.beams[2],above:ridge.mesh.userData.pairedBearingId});\n    metadata.loadPath.frames.push(frame);\n  }\n  // The old outward-only gable is retained unchanged. An independent thin\n  // closed lining is wholly INSIDE the old shell and meets the timber board.\n  for(const side of[-1,1]){\n    const x=side*(item.w/2-.12),upper=z=>roofY(x,z)-thickness+.015,lower=()=>baseY-legacyBeamH;\n    add(pairedProfileSolid(x-.06,x+.06,zs,upper,lower),orange,'inner-gable',0,0,0,{closureStatus:'INTERNAL_TECHNICAL_CLOSURE_NOT_SURVEYED_FINISH'});\n  }\n  f.userData.pairedExposedRoof=metadata;return metadata;\n}\n\nfunction augmentPairedModernDisplay(kit,item,built,p) {\n  const roof=augmentPairedExposedRoof(kit,item,built,p);\n  const c=context(kit,item,p,built,{w:item.w,d:item.d,y:item.ph,h:item.colH,key:p.key}),{f,box}=c;\n  const base='https://ggzlquanjing.dpm.org.cn/scene/rOQSztMJ62XbrOjIj78rxu2KMZTcvyfg/20210517_wydtcg/panos/';\n  const scene=p.key==='ningdao'?'w22':'w07',photo=(node,face='f')=>base+node+'.tiles/'+face+'/l1/01/l1_'+face+'_01_01.jpg';\n  const info={source:photo(scene),period:'2021_CERAMICS_OPENING_PANORAMA_NOT_2026_INVENTORY',photographyDate:null,dimensionStatus:FIT,objects:'CERAMICS_ARTWORK_AND_WRITTEN_LABELS_UNMODELED'};\n  const modernGlass=new THREE.MeshStandardMaterial({name:p.key+'-modern-display-glass',color:0xa9c5c9,transparent:true,opacity:.16,roughness:.22,depthWrite:false});\n  const lining=new THREE.MeshStandardMaterial({name:p.key+'-modern-red-display-lining',color:0x642b29,roughness:.86});\n  const linen=new THREE.MeshStandardMaterial({name:p.key+'-modern-light-display-linen',color:0xa9a49b,roughness:.95});\n  const cloth=new THREE.MeshStandardMaterial({name:p.key+'-modern-plain-yellow-cloth',color:0xb9a44b,roughness:.96});\n  const grey=new THREE.MeshStandardMaterial({name:p.key+'-modern-roller-grey',color:0x646466,roughness:.92});\n  kit.owned.push(modernGlass,lining,linen,cloth,grey);\n  const front=-item.d/2,rear=item.d/2,y=item.ph,bay=item.w/item.bays;\n  // These own entrance photographs positively show low modern threshold strips,\n  // not a claim from an omitted historical furniture list.\n  const entranceSource=photo(scene,'b'),entranceInfo={...info,source:entranceSource,interpretation:'OWN_2021_ENTRANCE_PHOTO_LOW_STRIP_AND_GLAZED_RED_DOOR__METRICS_FITTED'};\n  const oldSill=f.children.find(n=>n.isMesh&&materialKey(kit,n.material)==='wood_column'&&Math.abs(n.position.x)<1e-8&&Math.abs(n.position.y-y-.11)<1e-8&&Math.abs(n.position.z-front)<1e-8);\n  if(!oldSill)throw Error('Paired modern entrance requires the single old center sill');\n  oldSill.geometry.scale(1,.025/.22,.14/.30);oldSill.position.y=y+.0125;oldSill.material=c.m.dark;mark(oldSill,p,p.key+'-photo-low-threshold-strip',entranceInfo);\n  const leaves=f.children.filter(n=>n.isMesh&&materialKey(kit,n.material)==='lattice_doors'&&Math.abs(Math.sin(n.rotation.y))>.99&&n.position.z<0);\n  if(leaves.length!==2)throw Error('Paired modern entrance requires the two original open leaves');\n  for(const old of leaves){\n    old.geometry.computeBoundingBox();const size=old.geometry.boundingBox.getSize(new THREE.Vector3()),w=size.x,h=size.y,pose=new THREE.Group();pose.position.copy(old.position);pose.rotation.copy(old.rotation);f.add(pose);\n    const part=(role,mat,ww,hh,dd,xx,yy)=>{const m=mark(kit.mesh(pose,new THREE.BoxGeometry(ww,hh,dd),mat,xx,yy,0),p,p.key+'-photo-glazed-door-'+role,entranceInfo);return m;};\n    const low=-h/2,high=h/2,lowerPanel=.92;\n    for(const x of[-w/2+.045,w/2-.045])part('stile',c.m.red,.09,h,.10,x,0);\n    for(const yy of[low+.045,low+lowerPanel,high-.045])part('rail',c.m.red,w,.09,.10,0,yy);\n    part('lower-panel',c.m.red,w-.14,lowerPanel-.09,.08,0,low+lowerPanel/2);\n    const glassLo=low+lowerPanel+.045,glassHi=high-.09,glassH=glassHi-glassLo;\n    part('clear-pane',modernGlass,w-.18,glassH,.024,0,(glassLo+glassHi)/2);\n    for(const x of[-w*.29,w*.29])part('upper-mullion',c.m.red,.045,glassH,.06,x,(glassLo+glassHi)/2);\n    for(const yy of[glassLo+glassH/3,glassLo+glassH*2/3])for(const sign of[-1,1])part('side-pane-rail',c.m.red,w*.165,.045,.06,sign*w*.3725,yy);\n    pose.updateWorldMatrix(true,true);const originalBox=new THREE.Box3().setFromObject(old);kit.colliders.push(originalBox.clone());\n    old.removeFromParent();old.geometry.dispose();\n  }\n  // Source-visible equipment below each retained front window. Counts follow\n  // the fitted five-bay shell; the panorama is not a measured full inventory.\n  const equipment=[];\n  for(let i=0;i<item.bays;i++)if(i!==2){\n    const x=-item.w/2+(i+.5)*bay,width=bay-.82,blindH=2.2,blindBottom=y+1.28;\n    box(p.key+'-modern-window-lower-lining','red',width,.94,.06,x,y+.47,front+.08,false,{...entranceInfo,scope:'LOWER_FRONT_WINDOW_REGION_ONLY'});\n    box(p.key+'-modern-roller-blind',grey,width,blindH,.025,x,blindBottom+blindH/2,front+.19,false,{...entranceInfo,countStatus:'MODEL_BAY_REPEAT_NOT_COMPLETE_PHOTO_INVENTORY'});\n    box(p.key+'-modern-blind-head-rail','paper',width+.05,.06,.07,x,blindBottom+blindH+.03,front+.20,false,entranceInfo);\n    for(const side of[-1,1]){box(p.key+'-modern-blind-mount','dark',.05,.10,.20,x+side*(width/2-.08),blindBottom+blindH+.03,front+.115,false,{...entranceInfo,engineering:'FITTED_VISIBLE_MOUNT'});box(p.key+'-modern-radiator-mount','dark',.06,.08,.08,x+side*width*.3,y+.42,front+.13,false,{...entranceInfo,engineering:'FITTED_VISIBLE_MOUNT'});}\n    box(p.key+'-modern-radiator-back','paper',width*.88,.64,.06,x,y+.56,front+.18,true,entranceInfo);\n    const fins=Math.max(8,Math.floor(width/.13));for(let k=0;k<fins;k++)box(p.key+'-modern-radiator-fin','paper',.06,.64,.18,x-width*.44+(k+.5)*width*.88/fins,y+.56,front+.24,true,entranceInfo);\n    equipment.push({bay:i,type:'gray roller blind and white radiator',source:entranceSource,countStatus:'FITTED_REPEAT'});\n  }\n  box(p.key+'-photo-entrance-mat','dark',bay-.9,.004,1.35,0,y+.022,front+.72,false,{...entranceInfo,status:'PARTIAL_MAT_OUTLINE_NOT_FABRIC_PATTERN'});\n  const endDepth=item.d-2.95,endFront=front+2.4,endBack=rear-.55,endWidth=5.55,left0=-item.w/2+.55,right1=item.w/2-.55,ceilingY=y+3.35;\n  const rooms=[];\n  const end=(side,theme,sceneId)=>{\n    const x0=side<0?left0:right1-endWidth,x1=x0+endWidth,x=(x0+x1)/2,z=(endFront+endBack)/2,source=photo(sceneId),details={...info,source,theme,positionStatus:'END_RELATION_FROM_PANORAMA_MAP__ABSOLUTE_END_ASSIGNMENT_MODEL_FIT_NO_NORTH_ARROW'};\n    box(p.key+'-'+theme+'-back-lining',lining,endWidth,3.35,.08,x,y+3.35/2,endBack,true,details);\n    box(p.key+'-'+theme+'-outer-end-lining',lining,.08,3.35,endDepth,side<0?x0:x1,y+3.35/2,z,true,details);\n    box(p.key+'-'+theme+'-low-modern-ceiling',lining,endWidth,.10,endDepth,x,ceilingY+.05,z,false,{...details,notHistoricCeiling:true});\n    box(p.key+'-'+theme+'-front-glass',modernGlass,endWidth-.04,3.3,.035,x,y+1.65,endFront,true,details);\n    box(p.key+'-'+theme+'-inner-return-glass',modernGlass,.035,3.3,endDepth,side<0?x1:x0,y+1.65,z,true,details);\n    for(const px of[x0,x1])for(const pz of[endFront,endBack])box(p.key+'-'+theme+'-case-post','dark',.055,3.35,.055,px,y+1.675,pz,true,{...details,engineering:'VISIBLE_FITTED_CASE_FRAME_NOT_SURVEYED_SECTION'});\n    for(const pz of[endFront,endBack])box(p.key+'-'+theme+'-case-top-rail','dark',endWidth,.06,.055,x,ceilingY-.03,pz,false,details);\n    for(const px of[x0,x1])box(p.key+'-'+theme+'-case-top-return','dark',.055,.06,endDepth,px,ceilingY-.03,z,false,details);\n    const fieldX=side<0?x0+.05:x1-.05;\n    box(p.key+'-'+theme+'-blank-backdrop','paper',.015,2.05,endDepth*.60,fieldX,y+1.72,z,false,{...details,artwork:'FLAT_PICTURE_FIELD_ONLY__NO_REPRODUCED_ART_OR_INVENTED_3D_BED'});\n    const tabletop=(xx,zz,ww,dd,mat,top)=>{box(p.key+'-'+theme+'-table-top',mat,ww,.075,dd,xx,top-.0375,zz,true,details);for(const dx of[-ww/2+.11,ww/2-.11])for(const dz of[-dd/2+.11,dd/2-.11])box(p.key+'-'+theme+'-table-leg','timber',.11,top-y-.075,.11,xx+dx,(y+top-.075)/2,zz+dz,true,details);};\n    if(theme==='banquet-yellow'){\n      tabletop(x,z,3.1,2.1,cloth,y+1.05);tabletop(x-side*2.10,z-.9,1.0,1.8,cloth,y+.92);\n      for(const dz of[-1.025,1.025])box(p.key+'-'+theme+'-plain-cloth-skirt',cloth,3.1,.73,.035,x,y+.66,z+dz,true,{...details,pattern:'DRAGON_EMBROIDERY_UNMODELED'});\n    }else if(theme==='wedding-red'){\n      tabletop(x-side*.65,z-.6,3.15,1.55,lining,y+.98);tabletop(x+side*1.15,z+.88,1.7,1.15,lining,y+.98);\n      for(const dz of[-.76,.76])box(p.key+'-'+theme+'-plain-cloth-skirt',lining,3.15,.88,.035,x-side*.65,y+.51,z-.6+dz,true,details);\n    }else if(theme==='three-tier-grey'){\n      for(let k=0;k<3;k++)box(p.key+'-'+theme+'-display-tier',linen,endWidth-1.0-k*.85,.30,endDepth-1.15-k*.72,x,y+.15+k*.30,z,true,{...details,tier:k+1,inventory:'ALL_PORCELAINS_UNMODELED'});\n    }else if(theme==='green-screen-seat'){\n      const sx=x+side*1.15,screenWidth=endDepth-1.4,screenZ=z;\n      box(p.key+'-'+theme+'-screen-frame','dark',.10,1.92,screenWidth,sx,y+1.03,screenZ,true,details);\n      for(const dz of[-screenWidth/2+.12,screenWidth/2-.12])box(p.key+'-'+theme+'-screen-foot','dark',.25,.18,.20,sx,y+.09,screenZ+dz,true,details);\n      const parts=12;for(let k=0;k<parts;k++)box(p.key+'-'+theme+'-plain-screen-field','green_glaze',.035,1.63,screenWidth/parts-.045,sx-side*.055,y+1.04,screenZ-screenWidth/2+(k+.5)*screenWidth/parts,true,{...details,artwork:'FLORAL_PAINTING_UNMODELED',countStatus:'FITTED_REPEAT_NOT_MEASUREMENT'});\n      for(const dz of[-.85,.85]){tabletop(sx-side*.8,z+dz,1.15,1.45,c.m.dark,y+.55);box(p.key+'-'+theme+'-plain-seat-cushion','paper',1.04,.13,1.31,sx-side*.8,y+.615,z+dz,true,{...details,textile:'PATTERN_UNMODELED'});}\n      tabletop(x-side*1.25,z,1.2,2.9,c.m.dark,y+.82);\n    }\n    rooms.push({theme,source,bounds:{x0,x1,z0:endFront,z1:endBack},ceilingY,objectInventory:'UNMODELED',absoluteEndAssignment:FIT});\n  };\n  if(p.key==='huanzhang'){end(-1,'banquet-yellow','w13');end(1,'wedding-red','w04');}\n  else {end(-1,'three-tier-grey','w18');end(1,'green-screen-seat','w25');}\n  const cabinetX0=left0+endWidth+.30,cabinetX1=right1-endWidth-.30,cabinetW=cabinetX1-cabinetX0,cabinetX=(cabinetX0+cabinetX1)/2,caseZ=rear-1.18,caseDepth=1.28;\n  const central={...info,display:'OWN_CENTRAL_LONG_CASE_WITH_TWO_GREY_TIER_LEVELS',inventory:'EMPTY_CASE_OUTLINE_AND_PLINTHS_ONLY__PORCELAINS_AND_LABELS_UNMODELED'};\n  box(p.key+'-central-long-case-back',linen,cabinetW,3.15,.08,cabinetX,y+1.575,rear-.50,true,central);\n  box(p.key+'-central-long-case-red-cap',lining,cabinetW,.1,caseDepth,cabinetX,y+3.20,caseZ,false,central);\n  for(let k=0;k<2;k++)box(p.key+'-central-long-case-grey-tier',linen,cabinetW-.20,.28,caseDepth-.16-k*.52,cabinetX,y+.16+k*.28,caseZ+k*.26,true,{...central,tier:k+1});\n  box(p.key+'-central-long-case-front-glass',modernGlass,cabinetW,3.15,.035,cabinetX,y+1.575,caseZ-caseDepth/2,true,central);\n  for(const x of[cabinetX0,cabinetX1]){box(p.key+'-central-long-case-return',modernGlass,.035,3.15,caseDepth,x,y+1.575,caseZ,true,central);box(p.key+'-central-long-case-frame','dark',.055,3.25,.055,x,y+1.625,caseZ-caseDepth/2,true,central);}\n  box(p.key+'-central-long-case-top-frame','dark',cabinetW,.06,.06,cabinetX,y+3.22,caseZ-caseDepth/2,false,central);\n  const inheritedAccess=retainOpenedLeafAndPostProxies(kit,f);\n  return finishAugment(kit,item,built,p,{exteriorChanged:true,interiorChanged:true,pairedExposedRoof:roof,modernDisplay:{period:info.period,photographyDate:null,centralSource:info.source,entranceSource,endDisplays:rooms,windowEquipment:equipment,objectInventory:'UNMODELED',absoluteEndDirection:'MODEL_FIT_NO_NORTH_ARROW_IN_NAVIGATION_MAP',newRuntimeLights:0},inheritedAccess,threshold:{source:entranceSource,oldHeight:.22,newHeight:.025,dimensionStatus:FIT},interiorPolicy:'OWN_2021_MODERN_EXHIBITION_LAYOUT_PARTIAL_NOT_HISTORICAL_HOUSEHOLD_RECONSTRUCTION',wholeBuildingComplete:false});\n}\n\n\nexport function augmentRemainingHall(kit,item,built,profile) {",
+          "beforeSourceSha256": "f6f8702d18c95709cd984430202d1ef7040b0536390fccc745fcabed7ae70e81",
+          "afterSourceSha256": "1e18aee980b28ee60db9b9854050ac6a14fbc911a80e23e12250005278893793"
+        }
+      ]
+    },
+    {
+      "id": "paired-dispatch",
+      "reason": "One exact-key branch for Ningdao/Huanzhang only; prior 25 routing remains in the same order.",
+      "edits": [
+        {
+          "before": "  if(profile.key==='baoyun')return augmentBaoyunFacade(kit,item,built,profile);",
+          "after": "  if(profile.key==='baoyun')return augmentBaoyunFacade(kit,item,built,profile);\n  if(['ningdao','huanzhang'].includes(profile.key))return augmentPairedModernDisplay(kit,item,built,profile);",
+          "beforeSourceSha256": "d31a4034d91b11a9a0035a4f5bbcb2ab966f64b047e5e2ebc90d9360f2a7273c",
+          "afterSourceSha256": "6388637942217f07bd80abb88cfcec8220db893ad8517eb13e7bbbe3e0ff1836"
+        }
+      ]
+    },
+    {
+      "id": "zhujing-circular-display-proxies",
+      "reason": "The inherited rim and light protrude .08/.085 m past the old rectangular display proxy. Add each real mesh thin bounding box without changing geometry, doors or routes, and add only circularDisplayProxies metadata.",
+      "edits": [
+        {
+          "before": "  const accessProxies=retainOpenedLeafAndPostProxies(kit,f);\n  return finishAugment(kit,item,built,p,{display:built.display??built.f.userData.structure.display,accessProxies,openDoorPose:",
+          "after": "  // The original rectangular display proxy ends .08/.085 m behind the\n  // visible round rim / light tip. Preserve the display geometry and add only\n  // each protruding component's actual thin bounds, never a room-sized block.\n  const displayGroup=f.children.find(n=>n.userData.role==='wenhua-rear-circular-display');\n  const rim=displayGroup?.children.find(n=>n.isMesh&&n.geometry.type==='TorusGeometry');\n  const displayLight=f.children.find(n=>n.userData.role==='wenhua-rear-display-light');\n  if(!rim||!displayLight)throw Error('R48 Zhujing requires the retained round-display rim and light');\n  visibleComponentProxy(kit,f,rim);visibleComponentProxy(kit,f,displayLight);\n  const circularDisplayProxies={count:2,geometry:'RETAINED_UNMODIFIED',status:'ACTUAL_VISIBLE_COMPONENT_THIN_BOUNDS',inheritedFrontProjection:{rim:.08,light:.085}};\n  const accessProxies=retainOpenedLeafAndPostProxies(kit,f);\n  return finishAugment(kit,item,built,p,{display:built.display??built.f.userData.structure.display,accessProxies,openDoorPose:",
+          "beforeSourceSha256": "531c871fae3618ff60cce9aac0078a11579e284201acd0766d7cd4c2f284a6ea",
+          "afterSourceSha256": "7f1aaedd6e00dd0fd56235d5da3483498e66ec899ecf8ff660358ea032cb241d"
+        },
+        {
+          "before": "display:built.display??built.f.userData.structure.display,accessProxies,openDoorPose:",
+          "after": "display:built.display??built.f.userData.structure.display,accessProxies,circularDisplayProxies,openDoorPose:",
+          "beforeSourceSha256": "3115db8aa3ad1495b8896cd97ed657cfd1cbe420ad37e7e33421bc8d8c07ac93",
+          "afterSourceSha256": "83941135d018cd6123921133578c44afb4b4f78fb89cb260e1f710ec7fd375e9"
+        }
+      ]
+    }
+  ],
+  "records": [
+    {
+      "id": "place-outer-east-b7c67c602b",
+      "key": "zhujing",
+      "name": "主敬殿",
+      "changes": {
+        "colliders": {
+          "before": "0711fd83208d5ddf8a8c1546e412fc5f07ab88178e04dd1e39bbf62fde0aa2a3",
+          "after": "abc6d87b97aefd806b16ae9c5f92601571c928e73b509ae3607f3f50e8c1fe2d",
+          "beforeValueSha256": "bfe3a2ca344cf735394d4d0bd29f874b230a550e2f78d2eeb3b57ae75539bc7c",
+          "afterValueSha256": "43ed274db91a074fc771a0738b914776c671b592ceab00bb8e15385f10faaba9",
+          "reasons": [
+            "zhujing-circular-display-proxies"
+          ]
+        },
+        "builtMetadata": {
+          "before": "012f814762abcc6a5803c206bce16a1ff4f6c3b41d4fdb8ef1004c504d6c9a5f",
+          "after": "19c47e9787b843328f2e7ea02924953c74de949ddd8ae596fdbe7c686cf4e489",
+          "beforeValueSha256": "4e15cfbf2956c4c03c8fcfed34dbdc66325fdd95d19c1f832e1535b9d0554f85",
+          "afterValueSha256": "97cd08d311026232d2ad1a7a053c0f689e50ac0ab0fb0d4fead807ef5089178e",
+          "reasons": [
+            "zhujing-circular-display-proxies"
+          ]
+        }
+      },
+      "componentEvidence": {
+        "colliderCount": {
+          "before": 46,
+          "after": 48
+        },
+        "newColliderInsertionIndex": 30,
+        "newColliders": [
+          {
+            "isBox3": true,
+            "min": {
+              "x": -187.74500002861024,
+              "y": 1.7049999713897703,
+              "z": -171.30500000178813
+            },
+            "max": {
+              "x": -185.05499997138978,
+              "y": 4.395000028610229,
+              "z": -171.21499999821185
+            }
+          },
+          {
+            "isBox3": true,
+            "min": {
+              "x": -187.15,
+              "y": 4.297499999105931,
+              "z": -171.30999999910594
+            },
+            "max": {
+              "x": -185.65,
+              "y": 4.34250000089407,
+              "z": -171.23000000089408
+            }
+          }
+        ],
+        "retainedColliderSequenceSha256": "0711fd83208d5ddf8a8c1546e412fc5f07ab88178e04dd1e39bbf62fde0aa2a3",
+        "components": [
+          {
+            "role": "retained-circular-rim",
+            "worldBox": {
+              "isBox3": true,
+              "min": {
+                "x": -187.74500002861024,
+                "y": 1.7049999713897703,
+                "z": -171.30500000178813
+              },
+              "max": {
+                "x": -185.05499997138978,
+                "y": 4.395000028610229,
+                "z": -171.21499999821185
+              }
+            },
+            "proxy": {
+              "bounds": {
+                "min": [
+                  -1.3450000286102295,
+                  1.7049999713897703,
+                  -4.30500000178813
+                ],
+                "max": [
+                  1.3450000286102295,
+                  4.395000028610229,
+                  -4.214999998211852
+                ]
+              },
+              "lowerHeadMargin": 0,
+              "status": "VISIBLE_COMPONENT_BOUNDING_BOX_NOT_INVISIBLE_ROOM_FILL"
+            }
+          },
+          {
+            "role": "retained-display-light",
+            "worldBox": {
+              "isBox3": true,
+              "min": {
+                "x": -187.15,
+                "y": 4.297499999105931,
+                "z": -171.30999999910594
+              },
+              "max": {
+                "x": -185.65,
+                "y": 4.34250000089407,
+                "z": -171.23000000089408
+              }
+            },
+            "proxy": {
+              "bounds": {
+                "min": [
+                  -0.75,
+                  4.297499999105931,
+                  -4.309999999105941
+                ],
+                "max": [
+                  0.75,
+                  4.34250000089407,
+                  -4.23000000089408
+                ]
+              },
+              "lowerHeadMargin": 0,
+              "status": "VISIBLE_COMPONENT_BOUNDING_BOX_NOT_INVISIBLE_ROOM_FILL"
+            }
+          }
+        ],
+        "onlyAddedMetadata": {
+          "field": "circularDisplayProxies",
+          "value": {
+            "count": 2,
+            "geometry": "RETAINED_UNMODIFIED",
+            "status": "ACTUAL_VISIBLE_COMPONENT_THIN_BOUNDS",
+            "inheritedFrontProjection": {
+              "rim": 0.08,
+              "light": 0.085
+            }
+          }
+        },
+        "unchangedFullMetadataWithoutAdditionSha256": "012f814762abcc6a5803c206bce16a1ff4f6c3b41d4fdb8ef1004c504d6c9a5f"
+      }
+    }
+  ],
+  "verification": {
+    "status": "PASSED_EXPLICIT_FINAL_SOURCE_RETENTION",
+    "verifiedAt": "2026-10-21T16:12:54.850807+00:00",
+    "command": "node --test tests/r48-outer-first18-retention.test.mjs tests/r48-outer-first21-retention.test.mjs tests/r48-outer-first25-retention.test.mjs tests/r48-outer-safety-retention.test.mjs",
+    "tests": 142,
+    "passed": 142,
+    "failed": 0,
+    "testGroups": {
+      "first18": 18,
+      "first21": 27,
+      "first25": 36,
+      "historicalSafetyAndEntry": 61
+    },
+    "fixedFields": 273,
+    "approvedFields": 2,
+    "prior25Fields": 275,
+    "prior21FullyUnchanged": true,
+    "pairOnlyCause": "All 275 prior25 fields remain exact when only paired profile/gate/builders/dispatch are applied.",
+    "proxyOnlyCause": "Only Zhujing colliders and builtMetadata take their fixed after values; 24 other identities are exact.",
+    "rejectionProofs": [
+      "An unrelated source edit is rejected even if live SHA is refreshed, because inverse does not recover b7.",
+      "A profile text whitelist cannot change building coordinates.",
+      "A .05 m widening of the approved rim proxy fails the fixed collider after hash without changing geometry."
+    ],
+    "geometryReview": "Parent confirmed this exact SHA as source-reviewed: Zhujing 94/94, paired roof 24/24, paired gallery 56/56, six envelopes 6/6. These are attributed parent results, not reruns by this retention task.",
+    "wholeApplicationSuite": "Not rerun in this final-layer retention task. Earlier worker-base current-state failures retain their original historical scope.",
+    "sourceReviewConfirmedAt": "2026-10-21T16:13:38.701534+00:00",
+    "consumerIntegration": "NOT_VERIFIED_BY_THIS_TASK",
+    "gpuRuntime": "NOT_VERIFIED_BY_THIS_TASK"
+  }
+}

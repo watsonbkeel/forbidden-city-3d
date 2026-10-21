@@ -16,7 +16,7 @@ export function buildRitualHall(kit,item){
  // Exact original empty shell retains platform, floor, plaque, south stairs and supports.
  // Old furnishing is never instantiated; roof/enclosure/columns are explicitly replaced.
  const built=kit.hall({...shell,roof:'xieshan',bays:key==='yinghua'?9:7,interior:'empty'}),f=built.f,removed=new Set();
- for(const m of [...f.children])if(m.name.startsWith('roof_')||(m.isMesh&&['wood_column','caihua_beam','wall_red','lattice_doors'].includes(m.material?.name))){m.traverse(o=>{if(o.isMesh)removed.add(o.geometry);});m.removeFromParent();}
+ for(const m of [...f.children])if(m.name.startsWith('roof_')||(m.isMesh&&['wood_column','caihua_beam','wall_red','lattice_doors'].some(key=>m.material===kit.lib.material(key)))){m.traverse(o=>{if(o.isMesh)removed.add(o.geometry);});m.removeFromParent();}
  for(const geo of removed)geo.dispose();kit.colliders.splice(cs,kit.colliders.length-cs,...kit.colliders.slice(cs).filter(c=>c.min.y<y-1e-7));kit.rooms.splice(rs);kit.regions.splice(gs);
  const mats={};for(const[name,color]of Object.entries({red:0x8a382c,wood:0x57382c,wall:0x9e4f3d,panel:0xbeb29a,ceiling:0x837965,gold:0x9d814b})){mats[name]=new THREE.MeshStandardMaterial({name:key+'_'+name+'_fit',color,roughness:.85});kit.owned.push(mats[name]);}
  function box(role,mat,w,h,d,x,yy,z,solid=true){if(Math.min(w,h,d)<=1e-7)throw Error('Ritual hall degenerate box');const m=kit.mesh(f,new THREE.BoxGeometry(w,h,d),mats[mat],x,yy,z);m.name=role;m.userData={role,dimensionStatus:g.dimensionStatus};if(solid)kit.col(f,x-w/2,yy-h/2,z-d/2,x+w/2,yy+h/2,z+d/2);return m;}

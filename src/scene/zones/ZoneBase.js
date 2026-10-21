@@ -1,3 +1,6 @@
+import {resolveRemainingProfile as resolveNingshou,buildRemainingHall as buildNingshou,augmentRemainingHall as augmentNingshou} from '../palace/special/RemainingNingshouHalls.js';
+import {resolveRemainingProfile as resolveOuter,buildRemainingHall as buildOuter,augmentRemainingHall as augmentOuter} from '../palace/special/RemainingOuterHalls.js';
+import {resolveRemainingProfile as resolveResidential,buildRemainingHall as buildResidential,augmentRemainingHall as augmentResidential} from '../palace/special/RemainingResidentialHalls.js';
 import {buildRitualHall,ritualHallGeometry} from '../palace/special/RitualHalls.js';
 import {buildEnclosedPavilion,enclosedPavilionGeometry} from '../palace/special/EnclosedPavilions.js';
 import {buildShoukangHall} from '../palace/special/ShoukangHall.js';
@@ -137,6 +140,19 @@ export class ZoneBase {
   // ───────────────────────── 各 kind 构建方法 ─────────────────────────
 
   buildHall(item) {
+    // R48 exact-identity profiles are opt-in by the reviewed catalog binding.
+    // Existing dedicated builders remain the sole owner for augmentation.
+    const candidates = [[resolveResidential,buildResidential,augmentResidential],[resolveNingshou,buildNingshou,augmentNingshou],[resolveOuter,buildOuter,augmentOuter]]
+      .map(([resolve,build,augment])=>({profile:resolve(this.zoneJson.id,item),build,augment})).filter(x=>x.profile);
+    if(candidates.length>1)throw Error('Ambiguous R48 named-building profile');
+    const selected=candidates[0];
+    if(selected?.profile.mode==='replace')return selected.build(this.kit,item,selected.profile);
+    const built=this.buildHallBaseline(item);
+    if(selected?.profile.mode==='augment')return selected.augment(this.kit,item,built,selected.profile);
+    return built;
+  }
+
+  buildHallBaseline(item) {
     if(item.structure==='ritual-hall'||item.ritualProfile!==undefined){const g=ritualHallGeometry(item);if(this.zoneJson.id!=='outer-west')throw Error('Ritual hall wrong zone');return buildRitualHall(this.kit,item);}
     if(item.structure==='enclosed-pavilion'||item.enclosureProfile!==undefined){const g=enclosedPavilionGeometry(item);if(this.zoneJson.id!==g.id.split('/')[0])throw Error('Enclosed pavilion wrong zone');return buildEnclosedPavilion(this.kit,item);}
     if(item.structure==='shoukang-front-hall'||item.shoukangProfile!==undefined){if(this.zoneJson.id!=='outer-west')throw Error('Shoukang requires outer-west zone');return buildShoukangHall(this.kit,item);}

@@ -50,6 +50,7 @@ export function buildSquareHall(builder, parent, data, y) {
     portals: [], floorY: y, bodyH: H, roofH: spec.roofH,
     dimensionStatus: 'provisional', topologyStatus: 'source-compared',
   };
+  if (data.name === '中和殿') record.ceilingEvidence = {source:'https://www.dpm.org.cn/explore/building/236464.html', image:'https://img.dpm.org.cn/Uploads/Picture/dc/1569.jpg', form:'continuous-panelled-flat-ceiling', removed:'generic-suspended-caisson-and-mirror', imageCaptureDate:'unknown', paintedDetail:'existing-approximation', accepted:false};
   shell.userData.structure = record;
   const colMat = builder.library.material('wood_column');
   const columnGeometry = new THREE.CylinderGeometry(r, r * 1.05, H, 14);
@@ -172,9 +173,12 @@ export function buildSquareHall(builder, parent, data, y) {
   // strip, so four doors describe physical openings instead of decorative paint.
   // Leave enough space behind the simplified throne for a full player diameter
   // and the inward-folded door leaves. The interior furniture is provisional.
+  // Zhonghe: DPM building 236464 and its matched interior photograph 1569.jpg
+  // show continuous panelled ceiling, not this shared suspended caisson/mirror.
+  // This corrects only the incompatible default; painted detail remains approximate.
   const ztb1 = z0 + id / 2 - 3.1;
   const ztb0 = ztb1 - Math.min(5.2, id * 0.28);
-  builder.throneArea(shell, { x0, y, H, ztb0, ztb1, thW: Math.min(5.0, iw * 0.24), bayW: iw / 3, text: centralFrame ? null : spec.innerPlaque, caisson: !centralFrame, jiaotai: !!centralFrame });
+  builder.throneArea(shell, { x0, y, H, ztb0, ztb1, thW: Math.min(5.0, iw * 0.24), bayW: iw / 3, text: centralFrame ? null : spec.innerPlaque, caisson: data.name !== '中和殿' && !centralFrame, jiaotai: !!centralFrame });
   const plaqueH = 1.75;
   const plaque = builder.plaqueMesh(data.name, plaqueH * 0.62, plaqueH, true);
   plaque.position.set(x0, y + H - plaqueH * 0.25, z0 - d / 2 - 0.45);

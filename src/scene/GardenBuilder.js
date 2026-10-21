@@ -8,6 +8,7 @@ import { mulberry32 } from './garden/noise.js';
 import { buildTreeVariant, createFoliageMaterial } from './garden/trees.js';
 import { buildRockery } from './garden/rocks.js';
 import { buildCrossGardenPavilion } from './garden/CrossGardenPavilions.js';
+import { buildBridgeGardenPavilion, bridgeGardenProfile, buildYujingEnclosure } from './garden/RemainingGardenPavilions.js';
 import { LAYOUT } from '../config/constants.js';
 import anchors from '../../data/anchors.json' with { type: 'json' };
 
@@ -252,87 +253,11 @@ export class GardenBuilder {
   }
 
   buildPonds(root, cx) {
-    const lib = this.library;
-    const marble = lib.material('marble', { roughness: 0.7 });
-    const water = lib.material('water', { roughness: 0.12, metalness: 0.15 });
-    const pw = 15, pd = 10, rimH = 0.55, rimT = 0.5;
-    const BW = PAVILION_BRIDGE_W;          // 南北石桥（桥亭）通道宽
-    const half = BW / 2 + 0.1;
-    const seg = (pw + rimT) / 2 - half;    // 南北池壁/栏杆被桥口分成两段，每段长
-    for (const p of this.pondSpecs(cx)) {
-      const g = new THREE.Group();
-      g.position.set(p.x, 0, p.z);
-      root.add(g);
-      // 池壁：东西整段，南北两段（中间为桥口）
-      const rims = [[-pw / 2, 0, rimT, pd - rimT], [pw / 2, 0, rimT, pd - rimT]];
-      for (const s of [-1, 1]) for (const zz of [-pd / 2, pd / 2]) rims.push([s * (half + seg / 2), zz, seg, rimT]);
-      for (const [x, z, sx, sz] of rims) {
-        const m = new THREE.Mesh(applyBoxUV(new THREE.BoxGeometry(sx, rimH, sz), lib.tileSize('marble')), marble);
-        m.position.set(x, rimH / 2, z);
-        m.castShadow = true;
-        g.add(m);
-      }
-      // 水面（水面略低于池沿）
-      const wq = quadGeometry(-pw / 2 + rimT / 2, pw / 2 - rimT / 2, -pd / 2 + rimT / 2, pd / 2 - rimT / 2, 0.3, lib.tileSize('water'));
-      g.add(new THREE.Mesh(wq, water));
-      // 池沿栏杆：南北在桥口处断开
-      const rails = [[-pw / 2, 0, pd, Math.PI / 2], [pw / 2, 0, pd, -Math.PI / 2]];
-      for (const s of [-1, 1]) {
-        rails.push([s * (half + (pw / 2 - half) / 2), -pd / 2, pw / 2 - half, 0]);
-        rails.push([s * (half + (pw / 2 - half) / 2), pd / 2, pw / 2 - half, Math.PI]);
-      }
-      for (const [x, z, len, rot] of rails) {
-        const rail = buildBalustrade(lib, { length: len, height: 0.85 });
-        rail.position.set(x, rimH, z);
-        rail.rotation.y = rot;
-        g.add(rail);
-      }
-      // 碰撞：水面全部挡住，只留桥面通道与亭台（亭台东西两侧仍是水）
-      const bw = PAVILION_POND_BASE / 2;
-      const X0 = p.x - pw / 2 - 0.3, X1 = p.x + pw / 2 + 0.3, Z0 = p.z - pd / 2 - 0.3, Z1 = p.z + pd / 2 + 0.3;
-      const box = (a, b, c, d) => this.addCollider(new THREE.Box3(new THREE.Vector3(a, 0, c), new THREE.Vector3(b, 1.6, d)));
-      box(X0, p.x - bw, Z0, Z1);
-      box(p.x + bw, X1, Z0, Z1);
-      for (const s of [-1, 1]) {
-        const xa = p.x + s * BW / 2, xb = p.x + s * bw;
-        box(Math.min(xa, xb), Math.max(xa, xb), Z0, p.z - bw);
-        box(Math.min(xa, xb), Math.max(xa, xb), p.z + bw, Z1);
-      }
-      // 石桥：池外地面 → 亭台面（坡道 + 两侧矮栏）
-      const top = PAVILION_POND_BASE_H;
-      for (const dir of [-1, 1]) {
-        const zOut = p.z + dir * (pd / 2 + 2.2);
-        const zIn = p.z + dir * bw;
-        const run = Math.abs(zOut - zIn);
-        const L = Math.hypot(run, top);
-        const ang = Math.atan2(top, run);
-        const deck = new THREE.Mesh(applyBoxUV(new THREE.BoxGeometry(BW, 0.25, L), lib.tileSize('marble')), marble);
-        deck.position.set(0, top / 2 - 0.1, (zOut + zIn) / 2 - p.z);
-        deck.rotation.x = dir * ang;
-        deck.castShadow = deck.receiveShadow = true;
-        g.add(deck);
-        for (const s of [-1, 1]) {
-          const rail = new THREE.Mesh(applyBoxUV(new THREE.BoxGeometry(0.22, 0.6, L), lib.tileSize('marble')), marble);
-          rail.position.set(s * (BW / 2 + 0.05), top / 2 + 0.3, (zOut + zIn) / 2 - p.z);
-          rail.rotation.x = dir * ang;
-          rail.castShadow = true;
-          g.add(rail);
-          // 桥栏碰撞（只登记在水面上方那一段，桥头可以从地面走上去）
-          const zr0 = p.z + dir * (pd / 2 + 0.3), zr1 = zIn;
-          this.addCollider(new THREE.Box3(
-            new THREE.Vector3(p.x + s * (BW / 2 + 0.05) - 0.12, 0, Math.min(zr0, zr1)),
-            new THREE.Vector3(p.x + s * (BW / 2 + 0.05) + 0.12, top + 1.2, Math.max(zr0, zr1))));
-        }
-        this.walkRampZ(p.x - BW / 2, p.x + BW / 2, zOut, zIn, 0, top);
-      }
-    }
+    for (const p of this.pondSpecs(cx)) buildBridgeGardenPavilion(this, root, bridgeGardenProfile(p.name));
   }
 
   buildPavilions(root, cx, cz) {
     const pz = this.pavilionZ(cz);
-    for (const p of this.pondSpecs(cx)) {
-      this.makePavilion(root, { x: p.x, z: p.z, size: PAVILION_POND_BASE - 1.6, baseH: PAVILION_POND_BASE_H, colH: 3.3, cols: 'square4', sides: 4, layers: 1, pier: true });
-    }
     // Paired source-specific cross forms; square retained terraces are explicitly fitted.
     for (const name of ['万春亭', '千秋亭']) {
       const a = anchors[name];
@@ -503,6 +428,7 @@ export class GardenBuilder {
     plat.position.set(this.rockPos.x, topY + 0.25, this.rockPos.z);
     root.add(plat);
     this.makePavilion(root, { x: this.rockPos.x, y: topY + 0.5, z: this.rockPos.z, size: 3.6, baseH: 0.35, colH: 2.8, cols: 'square4', sides: 4, layers: 1, collide: false });
+    buildYujingEnclosure(this, root, {x:this.rockPos.x,z:this.rockPos.z,y:topY+.5});
   }
 
   /* ---------------------------------------------------------------- 小品 */

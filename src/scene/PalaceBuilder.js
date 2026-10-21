@@ -1,3 +1,4 @@
+import {buildBaoheWarmRooms} from './palace/BaoheWarmRooms.js';
 import { taihemenSouthProfile, buildTaihemenSouthApproach } from './palace/TaihemenSouthApproach.js';
 import { buildSouthWaterSystem } from './palace/special/SouthWaterSystem.js';
 import * as THREE from 'three';
@@ -826,6 +827,8 @@ export class PalaceBuilder {
       buildQianqingPassageWalls(this, g, qianqingPassages);
       buildQianqingWarmRooms(this, g, { x0, z0, y, w, d, H, beamH });
     }
+
+    if(baoheColumns)buildBaoheWarmRooms(this,g,{x0,z0,y,w,d,H,beamH});
 
     // Taihe alone has an upward caisson opening and an independently owned core.
     if (taiheCore) buildTaiheCeiling(this, g, { x0, z0, y, w, d });

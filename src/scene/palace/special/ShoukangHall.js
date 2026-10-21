@@ -14,7 +14,7 @@ export function buildShoukangHall(kit,item){
  const{structure,shoukangProfile,...shell}=item,built=kit.hall({...shell,bays:7,rot:0,throne:false,interior:'empty'}),f=built.f;
  // Preserve only original roof/platform/front stairs/floor and plaque. Remove
  // the generic seven-bay enclosure, painted ceiling and empty room registration.
- const remove=new Set(['wood_column','wall_red','lattice_doors','caihua_beam']),geos=new Set();for(const m of [...f.children])if(m.isMesh&&remove.has(m.material?.name)){geos.add(m.geometry);m.removeFromParent();}for(const geo of geos)geo.dispose();
+ const remove=new Set(['wood_column','wall_red','lattice_doors','caihua_beam'].map(key=>kit.lib.material(key))),geos=new Set();for(const m of [...f.children])if(m.isMesh&&remove.has(m.material)){geos.add(m.geometry);m.removeFromParent();}for(const geo of geos)geo.dispose();
  kit.colliders.splice(cs,kit.colliders.length-cs,...kit.colliders.slice(cs).filter(c=>c.min.y<y-1e-7));kit.rooms.splice(rs);kit.regions.splice(gs);
  const mats={};for(const[n,c]of Object.entries({red:0x83332a,wood:0x4a3025,panel:0x77908a,plaster:0xbaab8d,cloth:0xc7aa54,blue:0x334f65,ceiling:0x514c3d})){mats[n]=new THREE.MeshStandardMaterial({name:'shoukang_'+n+'_fit',color:c,roughness:.8});kit.owned.push(mats[n]);}
  function box(role,mat,w,h,d,x,yy,z,solid=true,parent=f){const m=kit.mesh(parent,new THREE.BoxGeometry(w,h,d),mats[mat],x,yy,z);m.name=role;m.userData={role,dimensionStatus:g.dimensionStatus};if(solid)kit.col(f,x-w/2,yy-h/2,z-d/2,x+w/2,yy+h/2,z+d/2);return m;}

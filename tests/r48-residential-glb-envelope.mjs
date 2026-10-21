@@ -1,0 +1,12 @@
+import {readFileSync} from 'node:fs';
+import vm from 'node:vm';
+import * as THREE from 'three';
+/** Decode the repository's existing GLB with its bundled official Draco JS
+ * decoder. No browser, network, new package, or source asset mutation. */
+export async function readYangxinEnvelope(){
+ const root=new URL('../',import.meta.url),b=readFileSync(new URL('public/models/interiors/yangxin.glb',root)),n=b.readUInt32LE(12),g=JSON.parse(b.subarray(20,20+n)),binary=b.subarray(28+n);const factory=vm.runInNewContext(readFileSync(new URL('public/draco/draco_decoder.js',root),'utf8')+';DracoDecoderModule;',{console,setTimeout,clearTimeout,performance});const mod=await factory({}),rows=[];
+ for(const node of g.nodes){if(node.mesh===undefined||/^(COL_|WALK_)/.test(node.name))continue;const matrix=new THREE.Matrix4().compose(new THREE.Vector3(...(node.translation??[0,0,0])),new THREE.Quaternion(...(node.rotation??[0,0,0,1])),new THREE.Vector3(...(node.scale??[1,1,1])));
+  for(const p of g.meshes[node.mesh].primitives){const ext=p.extensions.KHR_draco_mesh_compression,v=g.bufferViews[ext.bufferView],bytes=binary.subarray(v.byteOffset??0,(v.byteOffset??0)+v.byteLength),buffer=new mod.DecoderBuffer(),decoder=new mod.Decoder(),mesh=new mod.Mesh();buffer.Init(new Int8Array(bytes),bytes.length);const status=decoder.DecodeBufferToMesh(buffer,mesh);if(!status.ok())throw Error(status.error_msg());const attr=decoder.GetAttributeByUniqueId(mesh,ext.attributes.POSITION),values=new mod.DracoFloat32Array();decoder.GetAttributeFloatForAllPoints(mesh,attr,values);const vertices=[];for(let i=0;i<mesh.num_points();i++)vertices.push(new THREE.Vector3(values.GetValue(i*3),values.GetValue(i*3+1),values.GetValue(i*3+2)).applyMatrix4(matrix));const indices=new mod.DracoInt32Array(),triangles=[];for(let i=0;i<mesh.num_faces();i++){decoder.GetFaceFromMesh(mesh,i,indices);triangles.push([0,1,2].map(j=>vertices[indices.GetValue(j)]));}rows.push({name:node.name,material:g.materials[p.material]?.name,triangles,box:new THREE.Box3().setFromPoints(vertices)});for(const x of [indices,values,mesh,buffer,decoder])mod.destroy(x);}
+ }return rows;
+}
+if(process.argv[1]===new URL(import.meta.url).pathname){const rows=await readYangxinEnvelope(),box=new THREE.Box3(new THREE.Vector3(-3,5.9,-3.4),new THREE.Vector3(3,8,2.6));console.log(JSON.stringify(rows.map(r=>({name:r.name,bounds:{min:r.box.min.toArray(),max:r.box.max.toArray()},candidateIntersections:r.triangles.filter(t=>new THREE.Box3().setFromPoints(t).intersectsBox(box)).length})),null,2));}

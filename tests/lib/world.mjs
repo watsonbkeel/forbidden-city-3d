@@ -1,3 +1,5 @@
+import{resolveRemainingProfile as resolveOuter}from'../../src/scene/palace/special/RemainingOuterHalls.js';
+import {resolveRemainingProfile as resolveNingshou} from '../../src/scene/palace/special/RemainingNingshouHalls.js';
 import { southCourtGeometry } from '../../src/scene/palace/special/SouthCourtProfiles.js';
 import { wenyuanGeometry } from '../../src/scene/palace/special/WenyuanPavilion.js';
 // 纯 node 构建"全场景碰撞世界"：直接调用真实的 ZoneBase / CourtKit / PalaceBuilder / Enclosure / GardenBuilder
@@ -99,6 +101,10 @@ export function gateGeom(item) {
 
 /** 殿（hall）的几何：正面朝向、台明外廓、台阶长、门的局部 x 与门洞宽（与 kit.hall 一致，roomBays=0） */
 export function hallGeom(item) {
+  const remaining=resolveNingshou('ningshou',item);
+  if(remaining){const p=remaining,c=Math.cos(p.rot),s=Math.sin(p.rot),pad=item.pad??.5;return {rot:p.rot,w:p.localW,d:p.localD,pad,ph:p.ph,PW:p.localW+2*pad,PD:p.localD+2*pad,n:p.bays,bay:p.localW/p.bays,r:.25,doorX:p.portals[0].localX,run:p.ph>.55?p.ph*2.1:0,enter:true,backDoor:p.portals.some(x=>x.side==='rear'),open:false,toW:(x,z)=>[p.x+c*x+s*z,p.z-s*x+c*z],facing:[-s,-c],r48Approach:p.navigation.approachPoints};}
+  const outer=resolveOuter('outer-west',item)??resolveOuter('outer-east',item),nav=outer?.navigation;
+  if(nav?.runtimeReady===true){const rot=nav.rotation,c=Math.cos(rot),s=Math.sin(rot),w=nav.localWidth,d=nav.localDepth,pad=nav.pad,ph=nav.floorY;return{rot,w,d,pad,ph,PW:w+2*pad,PD:d+2*pad,n:nav.bays,bay:w/nav.bays,r:.25,doorX:0,run:ph>.55?ph*1.6:0,enter:true,backDoor:false,open:false,toW:(x,z)=>[nav.center.x+c*x+s*z,nav.center.z-s*x+c*z],facing:[nav.outwardNormal.x,nav.outwardNormal.z],r48Approach:nav.approachPoints.map(q=>({...q,feetY:q.y}))};}
   if(item.structure==='south-court-hall'||item.structure==='wenyuan-pavilion'){
     const p=item.structure==='south-court-hall'?southCourtGeometry(item):wenyuanGeometry(item),n=p.bays,bay=p.w/n;
     const doorX=item.structure==='wenyuan-pavilion'?-p.w/12:0;
@@ -160,12 +166,12 @@ export function loadZoneJsons(dir = path.join(ROOT, 'data/zones')) {
     .map(f => ({ file: f, json: JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')) }));
 }
 
-export async function buildWorld({ zones = loadZoneJsons(), statics = true, retainScene = false } = {}) {
+export async function buildWorld({ zones = loadZoneJsons(), statics = true, retainScene = false, realMaterials = process.env.R48_REAL_TEXTURE_LIBRARY === '1' } = {}) {
   stubDocument();
   const THREE = await import('three');
   const { ZoneBase } = await src('scene/zones/ZoneBase.js');
   const { CollisionManager } = await src('utils/Collision.js');
-  const lib = stubLibrary(THREE);
+  const lib = realMaterials ? (await import('./r48-real-texture-library.mjs')).realTextureLibrary() : stubLibrary(THREE);
   const cm = new CollisionManager();
   const owner = new Map(); // 原始 Box3 → { zone, item }
   const rooms = [], mapItems = [];

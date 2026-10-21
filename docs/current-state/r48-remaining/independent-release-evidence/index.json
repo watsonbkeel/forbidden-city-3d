@@ -1,0 +1,373 @@
+{
+  "createdUtc": "2026-10-21T17:48:34.396345+00:00",
+  "status": "READ_ONLY_INDEPENDENT_RELEASE_EVIDENCE_NOT_ALL_GREEN_OR_GPU_ACCEPTANCE",
+  "v1Commit": "6e3faadab2b8c57ec8f6d73f949b2a1e794303ea",
+  "v2Commit": "5383d404bc702a148500e5c99df9da0f9eac61d2",
+  "instructions": "Read README.md. Gunzip diagnostic JSON/TAP only for inspection. Runtime scripts and required source input fixtures remain uncompressed. Run supplemental scripts from the target repository root; run-yanxi-masked-tail.mjs also accepts an explicit repository root. No report-writing environment flags are needed.",
+  "aggregateReferences": [
+    {
+      "stage": "v1",
+      "originalPath": "/tmp/r48-final-consolidated-v1/direct-current.tap",
+      "relativeArchivePath": "../final-validation/candidate-v1/direct-current.tap.gz",
+      "originalBytes": 1745714,
+      "originalSha256": "0b6a6de6a502d3c4a9a62c90607a2356d01259fffb631ccb114c5b238a6a2aec"
+    },
+    {
+      "stage": "v1",
+      "originalPath": "/tmp/r48-final-consolidated-v1/historical-or-mixed.tap",
+      "relativeArchivePath": "../final-validation/candidate-v1/historical-or-mixed.tap.gz",
+      "originalBytes": 2336844,
+      "originalSha256": "4f53e845e299817b664cb99fceb3dc53f7e05fa7b31b41c7a1debae4531afe83"
+    },
+    {
+      "stage": "v1",
+      "originalPath": "/tmp/r48-final-consolidated-v1/source-before.sha256",
+      "relativeArchivePath": "../final-validation/candidate-v1/source-before.sha256.gz",
+      "originalBytes": 222718,
+      "originalSha256": "dc1197ae84a7a0264deb83791e2e8dc81a0b94177600c44df82d481061e93c61"
+    },
+    {
+      "stage": "v1",
+      "originalPath": "/tmp/r48-final-consolidated-v1/source-after.sha256",
+      "relativeArchivePath": "../final-validation/candidate-v1/source-after.sha256.gz",
+      "originalBytes": 222718,
+      "originalSha256": "dc1197ae84a7a0264deb83791e2e8dc81a0b94177600c44df82d481061e93c61"
+    },
+    {
+      "stage": "v1",
+      "originalPath": "/tmp/r48-final-consolidated-v1/head.txt",
+      "relativeArchivePath": "../final-validation/candidate-v1/head.txt",
+      "originalBytes": 41,
+      "originalSha256": "d6ae7be30ac12550f4b2df5d4c474db63c98c6756db3d9e5fb6d45c6e5c3f8c4"
+    },
+    {
+      "stage": "v1",
+      "originalPath": "/tmp/r48-final-consolidated-v1/terminal.txt",
+      "relativeArchivePath": "../final-validation/candidate-v1/terminal.txt",
+      "originalBytes": 21,
+      "originalSha256": "2e92d4b0607756b6c59fc7bdb5624678fd58fb69de1fabfd3c5d3de54bb9d24c"
+    },
+    {
+      "stage": "v1",
+      "originalPath": "/tmp/r48-final-consolidated-v1/direct-current.exit",
+      "relativeArchivePath": "../final-validation/candidate-v1/direct-current.exit",
+      "originalBytes": 2,
+      "originalSha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "stage": "v1",
+      "originalPath": "/tmp/r48-final-consolidated-v1/historical-or-mixed.exit",
+      "relativeArchivePath": "../final-validation/candidate-v1/historical-or-mixed.exit",
+      "originalBytes": 2,
+      "originalSha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "stage": "v1",
+      "originalPath": "/tmp/r48-final-consolidated-v1/build.exit",
+      "relativeArchivePath": "../final-validation/candidate-v1/build.exit",
+      "originalBytes": 2,
+      "originalSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "stage": "v1",
+      "originalPath": "/tmp/r48-final-consolidated-v1/zone-schema.exit",
+      "relativeArchivePath": "../final-validation/candidate-v1/zone-schema.exit",
+      "originalBytes": 2,
+      "originalSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "stage": "v1",
+      "originalPath": "/tmp/r48-final-consolidated-v1/zone-geometry.exit",
+      "relativeArchivePath": "../final-validation/candidate-v1/zone-geometry.exit",
+      "originalBytes": 2,
+      "originalSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "stage": "v1",
+      "originalPath": "/tmp/r48-final-consolidated-v1/anchors.exit",
+      "relativeArchivePath": "../final-validation/candidate-v1/anchors.exit",
+      "originalBytes": 2,
+      "originalSha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "stage": "v1",
+      "originalPath": "/tmp/r48-final-consolidated-v1/stable.exit",
+      "relativeArchivePath": "../final-validation/candidate-v1/stable.exit",
+      "originalBytes": 2,
+      "originalSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "stage": "v2",
+      "originalPath": "/tmp/r48-final-consolidated-v2/direct-current.tap",
+      "relativeArchivePath": "../final-validation/final-v2/direct-current.tap.gz",
+      "originalBytes": 1744591,
+      "originalSha256": "e6afbb44e5f3507150c18d9bd4d092cc9ab039a7cfa23806d79854a886fd28cc"
+    },
+    {
+      "stage": "v2",
+      "originalPath": "/tmp/r48-final-consolidated-v2/historical-or-mixed.tap",
+      "relativeArchivePath": "../final-validation/final-v2/historical-or-mixed.tap.gz",
+      "originalBytes": 2341038,
+      "originalSha256": "fd23e336849b678ecae489b93adb2a0ec1d4de289e7dc9ad5ea9d43bfd52f691"
+    },
+    {
+      "stage": "v2",
+      "originalPath": "/tmp/r48-final-consolidated-v2/source-before.sha256",
+      "relativeArchivePath": "../final-validation/final-v2/source-before.sha256.gz",
+      "originalBytes": 222718,
+      "originalSha256": "1cd6dc2c9b6cb3ab96c72d6dc3b4b0bedda07adee38317f777ec55dceec6e498"
+    },
+    {
+      "stage": "v2",
+      "originalPath": "/tmp/r48-final-consolidated-v2/source-after.sha256",
+      "relativeArchivePath": "../final-validation/final-v2/source-after.sha256.gz",
+      "originalBytes": 222718,
+      "originalSha256": "1cd6dc2c9b6cb3ab96c72d6dc3b4b0bedda07adee38317f777ec55dceec6e498"
+    },
+    {
+      "stage": "v2",
+      "originalPath": "/tmp/r48-final-consolidated-v2/head.txt",
+      "relativeArchivePath": "../final-validation/final-v2/head.txt",
+      "originalBytes": 41,
+      "originalSha256": "cacd25feecc5a237844868b1db5693b629aed631304d218b7661606acc1502dc"
+    },
+    {
+      "stage": "v2",
+      "originalPath": "/tmp/r48-final-consolidated-v2/terminal.txt",
+      "relativeArchivePath": "../final-validation/final-v2/terminal.txt",
+      "originalBytes": 21,
+      "originalSha256": "e8f205115079b729c24c1d3208705c79297388d3dcd7273301119a4084de0578"
+    },
+    {
+      "stage": "v2",
+      "originalPath": "/tmp/r48-final-consolidated-v2/direct-current.exit",
+      "relativeArchivePath": "../final-validation/final-v2/direct-current.exit",
+      "originalBytes": 2,
+      "originalSha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "stage": "v2",
+      "originalPath": "/tmp/r48-final-consolidated-v2/historical-or-mixed.exit",
+      "relativeArchivePath": "../final-validation/final-v2/historical-or-mixed.exit",
+      "originalBytes": 2,
+      "originalSha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "stage": "v2",
+      "originalPath": "/tmp/r48-final-consolidated-v2/build.exit",
+      "relativeArchivePath": "../final-validation/final-v2/build.exit",
+      "originalBytes": 2,
+      "originalSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "stage": "v2",
+      "originalPath": "/tmp/r48-final-consolidated-v2/zone-schema.exit",
+      "relativeArchivePath": "../final-validation/final-v2/zone-schema.exit",
+      "originalBytes": 2,
+      "originalSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "stage": "v2",
+      "originalPath": "/tmp/r48-final-consolidated-v2/zone-geometry.exit",
+      "relativeArchivePath": "../final-validation/final-v2/zone-geometry.exit",
+      "originalBytes": 2,
+      "originalSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "stage": "v2",
+      "originalPath": "/tmp/r48-final-consolidated-v2/anchors.exit",
+      "relativeArchivePath": "../final-validation/final-v2/anchors.exit",
+      "originalBytes": 2,
+      "originalSha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "stage": "v2",
+      "originalPath": "/tmp/r48-final-consolidated-v2/stable.exit",
+      "relativeArchivePath": "../final-validation/final-v2/stable.exit",
+      "originalBytes": 2,
+      "originalSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    }
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "sourcePath": "/tmp/r48-evidence-review/RELEASE-EVIDENCE-REVIEW.md",
+      "bytes": 14035,
+      "sha256": "cbf2367747cefcbfc2b83023710b19145e9ce8790c82309d48fb3a7fa78f6360",
+      "originalBytes": 14035,
+      "originalSha256": "cbf2367747cefcbfc2b83023710b19145e9ce8790c82309d48fb3a7fa78f6360",
+      "compression": null
+    },
+    {
+      "path": "failure-classification-v1.json.gz",
+      "sourcePath": "/tmp/r48-evidence-review/failure-classification-v1.json",
+      "bytes": 895348,
+      "sha256": "3300b13420da1e721b495b0fad131f09a57865298281c65349fd7d895ab983ef",
+      "originalBytes": 5114580,
+      "originalSha256": "b1fa00e363dbd613f3b0f31785eb95e8f1ea08b415aa37a9771080a1df1e547c",
+      "compression": "deterministic gzip; mtime=0; decompression verified byte-exact"
+    },
+    {
+      "path": "failure-classification-v2.json.gz",
+      "sourcePath": "/tmp/r48-evidence-review/failure-classification-v2.json",
+      "bytes": 894085,
+      "sha256": "ccafc30930803a0e922c418af8b3a925e66d0715cba14217ef3605eb891a4065",
+      "originalBytes": 5113944,
+      "originalSha256": "9130bf06f5763eb433ed37e8578549346ed174b5c0126fd1cc666f7f7a9ec37b",
+      "compression": "deterministic gzip; mtime=0; decompression verified byte-exact"
+    },
+    {
+      "path": "file-guard-contexts.json.gz",
+      "sourcePath": "/tmp/r48-evidence-review/file-guard-contexts.json",
+      "bytes": 11442,
+      "sha256": "4c0a9a6026845e33c14c21975074ec7e92f83a93cc76fd343f5cf484358257f7",
+      "originalBytes": 237949,
+      "originalSha256": "de14033268fb9e0497855d9690bdf0cd891ebd0b088d8df8ae2e098ddab8a561",
+      "compression": "deterministic gzip; mtime=0; decompression verified byte-exact"
+    },
+    {
+      "path": "file-guard-contexts-v2.json.gz",
+      "sourcePath": "/tmp/r48-evidence-review/file-guard-contexts-v2.json",
+      "bytes": 11457,
+      "sha256": "5b109a8176269e53f2642f201d4639046ae12eac2ec774c852b91cf9ce393856",
+      "originalBytes": 238620,
+      "originalSha256": "27e32f802a29f419221fb0a6e2fe9613aecf0ab8afcc382d696812cf086cba04",
+      "compression": "deterministic gzip; mtime=0; decompression verified byte-exact"
+    },
+    {
+      "path": "v1-v2-delta-review.json",
+      "sourcePath": "/tmp/r48-evidence-review/v1-v2-delta-review.json",
+      "bytes": 3312,
+      "sha256": "311fd8c804fb9f9fdace8c9b4010484b08572b1a9e492deb206a8e7c525e65e3",
+      "originalBytes": 3312,
+      "originalSha256": "311fd8c804fb9f9fdace8c9b4010484b08572b1a9e492deb206a8e7c525e65e3",
+      "compression": null
+    },
+    {
+      "path": "supplements/r42-bounded-merge-tail.mjs",
+      "sourcePath": "/tmp/r48-evidence-review/r42-bounded-merge-tail.mjs",
+      "bytes": 5086,
+      "sha256": "4cd75084a041f8bae5a12bfcc69ebd5e4663fffc4b1ffaa05b30b6c8341f96fe",
+      "originalBytes": 5086,
+      "originalSha256": "4cd75084a041f8bae5a12bfcc69ebd5e4663fffc4b1ffaa05b30b6c8341f96fe",
+      "compression": null
+    },
+    {
+      "path": "supplements/r42-tail-provenance.json",
+      "sourcePath": "/tmp/r48-evidence-review/r42-tail-provenance.json",
+      "bytes": 896,
+      "sha256": "9b0876d248268c9a056b38cb3352b8f8cd70d832886178b9ea49ae7eef44cdc0",
+      "originalBytes": 896,
+      "originalSha256": "9b0876d248268c9a056b38cb3352b8f8cd70d832886178b9ea49ae7eef44cdc0",
+      "compression": null
+    },
+    {
+      "path": "supplements/r42-bounded-merge-tail-v2.exit",
+      "sourcePath": "/tmp/r48-evidence-review/r42-bounded-merge-tail-v2.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "originalBytes": 2,
+      "originalSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "compression": null
+    },
+    {
+      "path": "supplements/run-yanxi-masked-tail.mjs",
+      "sourcePath": "/tmp/r48-evidence-review/run-yanxi-masked-tail.mjs",
+      "bytes": 967,
+      "sha256": "54a1f546a0ea65beeec8c3c6d352c36007d8f2f0203a78d0917a2e7f5c0f6e1c",
+      "originalBytes": 967,
+      "originalSha256": "54a1f546a0ea65beeec8c3c6d352c36007d8f2f0203a78d0917a2e7f5c0f6e1c",
+      "compression": null
+    },
+    {
+      "path": "supplements/yanxi-source-input-hook.mjs",
+      "sourcePath": "/tmp/r48-evidence-review/yanxi-source-input-hook.mjs",
+      "bytes": 1226,
+      "sha256": "7549d7e4b9d5084d86308e3a8f8004c2946f4eadacbc86ff7d50e1f1e36aebcd",
+      "originalBytes": 1226,
+      "originalSha256": "7549d7e4b9d5084d86308e3a8f8004c2946f4eadacbc86ff7d50e1f1e36aebcd",
+      "compression": null
+    },
+    {
+      "path": "supplements/r47-yanxi-storehouses.txt",
+      "sourcePath": "/tmp/r48-evidence-review/r47-yanxi-storehouses.txt",
+      "bytes": 7421,
+      "sha256": "959d62c7ec3ee6f165f7b83798098684783aa99e9c198539690a431daab208dc",
+      "originalBytes": 7421,
+      "originalSha256": "959d62c7ec3ee6f165f7b83798098684783aa99e9c198539690a431daab208dc",
+      "compression": null
+    },
+    {
+      "path": "supplements/yanxi-tail-inputs.json",
+      "sourcePath": "/tmp/r48-evidence-review/yanxi-tail-inputs.json",
+      "bytes": 5230,
+      "sha256": "d115d21b2e6f60d8f5ef5beb3afb96008188878158c59cb6e6ea1bcccdfc6333",
+      "originalBytes": 5230,
+      "originalSha256": "d115d21b2e6f60d8f5ef5beb3afb96008188878158c59cb6e6ea1bcccdfc6333",
+      "compression": null
+    },
+    {
+      "path": "supplements/yanxi-masked-24-tail.exit",
+      "sourcePath": "/tmp/r48-evidence-review/yanxi-masked-24-tail.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "originalBytes": 2,
+      "originalSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "compression": null
+    },
+    {
+      "path": "supplements/yanxi-masked-24-portable.exit",
+      "sourcePath": "/tmp/r48-evidence-review/yanxi-masked-24-portable.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "originalBytes": 2,
+      "originalSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "compression": null
+    },
+    {
+      "path": "supplements/supplements-stable.exit",
+      "sourcePath": "/tmp/r48-evidence-review/supplements-stable.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "originalBytes": 2,
+      "originalSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "compression": null
+    },
+    {
+      "path": "supplements/r42-bounded-merge-tail-v2.tap.gz",
+      "sourcePath": "/tmp/r48-evidence-review/r42-bounded-merge-tail-v2.tap",
+      "bytes": 377,
+      "sha256": "d7dd95f40d6684ec4d11e14f4c5ad7ede8ed31e08f5783c636d0a7b178b9a041",
+      "originalBytes": 1085,
+      "originalSha256": "5c3e6f6d673376c1c8f84436066af65b466325836071403148b89a2ca56ac930",
+      "compression": "deterministic gzip; mtime=0; decompression verified byte-exact"
+    },
+    {
+      "path": "supplements/yanxi-masked-24-tail.tap.gz",
+      "sourcePath": "/tmp/r48-evidence-review/yanxi-masked-24-tail.tap",
+      "bytes": 1054,
+      "sha256": "763b9d6f059e7d656d8cc2bf187e60185419e3c9ac5cc6e1bccce16aa177e97f",
+      "originalBytes": 6538,
+      "originalSha256": "4264f5487cfa97a7a17a2ee6947c3a22c38e45a8690e3b773243d9f8ea9d727e",
+      "compression": "deterministic gzip; mtime=0; decompression verified byte-exact"
+    },
+    {
+      "path": "supplements/yanxi-masked-24-portable.tap.gz",
+      "sourcePath": "/tmp/r48-evidence-review/yanxi-masked-24-portable.tap",
+      "bytes": 1058,
+      "sha256": "e36062fed3d2eb13fe84063e0b3bd508e3e7e852ad18c0bec73d054f43a2a457",
+      "originalBytes": 6537,
+      "originalSha256": "ae68295142b30b32a6b47cf25de681f2853c97d8bd71717eb3d500aa4281a624",
+      "compression": "deterministic gzip; mtime=0; decompression verified byte-exact"
+    },
+    {
+      "path": "supplements/source-after-supplements.sha256.gz",
+      "sourcePath": "/tmp/r48-evidence-review/source-after-supplements.sha256",
+      "bytes": 97154,
+      "sha256": "c5eabd6c1ec1b7cbf8a7f1233ca67ff2aeb1f716a2052928a9df64881ecd7d64",
+      "originalBytes": 222718,
+      "originalSha256": "1cd6dc2c9b6cb3ab96c72d6dc3b4b0bedda07adee38317f777ec55dceec6e498",
+      "compression": "deterministic gzip; mtime=0; decompression verified byte-exact"
+    }
+  ]
+}
