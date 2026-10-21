@@ -271,7 +271,7 @@ export function zoneRoutes(W, zone) {
     const hg = hallGeom(h);
     const approach = hg.profile?.approaches.frontLeft;
     let tail = approach ? approach.worldPoints.map(p => [p.x, p.z]) : [
-      hg.toW(hg.doorX, -(hg.PD / 2 + hg.run + HALL_FRONT)), hg.toW(hg.doorX, -(hg.d / 2 - 1)),
+      hg.toW(hg.doorX, -(hg.PD / 2 + hg.run + HALL_FRONT)), hg.toW(hg.doorX, h.ritualProfile==='xianruo-enclosed-baoxia-dated-cabinets-v1' ? -7.8 : -(hg.d / 2 - 1)),
     ];
     let hallFront = tail[0];
     const inside = tail.at(-1);

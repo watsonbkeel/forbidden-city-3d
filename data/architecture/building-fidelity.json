@@ -2412,32 +2412,61 @@
         "dataRef": "data/zones/outer-west.json#/items/19"
       },
       "interior": {
-        "implementation": "generic-placeholder",
+        "implementation": "dedicated-partial",
         "dimensions": "includes-model-fits",
         "accepted": false,
         "unresolved": [
-          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。"
+          "东西北三面阶梯柜采用官方旧陈列参考的素面体量拟合；2004陈列页及未标拍摄日期图片不能证明2026完整陈设，亦无移除证据。",
+          "三层、深1.6米、高3.6米为拟合，并非官方测量或精确层数；未增造佛像、中央供案物件、塔或唐卡。"
         ]
       },
       "exterior": {
-        "implementation": "generic-placeholder",
+        "implementation": "dedicated-partial",
         "dimensions": "includes-model-fits",
         "accepted": false,
         "unresolved": [
-          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。"
+          "五间三进深主体与南向三间封闭抱厦、周围廊有依据；保留整体外廓内分配主体/抱厦深度，1.5米廊深及柱轴均为拟合。",
+          "高歇山主体与低圆弧抱厦采用分体屋顶，卷棚歇山端部尚未完整复原，隐蔽交接与尺度未测绘。2017图片路径不是拍摄日期，同图已见2011研究。"
         ]
       },
-      "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
+      "targetState": "官方建筑说明与有日期边界的参考陈列局部解释，不认证2026完整库存或现场准入。",
       "identitySources": [
         "https://www.dpm.org.cn/explore/building/236534.html"
       ],
-      "claims": [],
+      "claims": [
+        {
+          "scope": "exterior",
+          "text": "五间、进深三间主体，南出三间封闭抱厦，周围廊。",
+          "source": "https://www.dpm.org.cn/explore/building/236534.html",
+          "targetState": "类型有依据；精确尺寸、轴间、门姿态和结构细部为拟合。",
+          "implemented": true
+        },
+        {
+          "scope": "interior",
+          "text": "东西北三面连续阶梯式佛龛/柜的陈列关系。",
+          "source": "https://www.dpm.org.cn/show/225718.html",
+          "targetState": "2004官方陈列页参考的非具象体量；拍摄日期和当前完整陈设未知。",
+          "implemented": true
+        }
+      ],
       "auxiliaryProfiles": [],
-      "changes": [],
+      "changes": [
+        {
+          "profile": "xianruo-enclosed-baoxia-dated-cabinets-v1",
+          "area": "exterior",
+          "summary": "专用五间佛堂围护和屋顶类型局部调整。"
+        },
+        {
+          "profile": "xianruo-enclosed-baoxia-dated-cabinets-v1",
+          "area": "interior",
+          "summary": "撤去通用办公家具；按旧官方参考拟合三面素阶梯柜。"
+        }
+      ],
       "validation": {
         "visual": "not-verified",
         "nativePhone": "not-verified"
-      }
+      },
+      "publicNote": "咸若馆按五间主体、南三间封闭抱厦和周围廊局部调整；东西北三面素阶梯柜依据2004官方陈列参考，三层与尺寸为拟合，未增造佛像或供案物件。2017图片路径不是拍摄日期，2026完整陈设未知，未发现柜体移除证据。屋顶隐蔽交接仍为拟合，模型开门不代表现场开放。"
     },
     {
       "id": "place-outer-west-930b046fd0",
@@ -2636,32 +2665,61 @@
         "dataRef": "data/zones/outer-west.json#/items/43"
       },
       "interior": {
-        "implementation": "generic-placeholder",
+        "implementation": "dedicated-partial",
         "dimensions": "includes-model-fits",
         "accepted": false,
         "unresolved": [
-          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。"
+          "官方记载七座佛龛，但本批未核实位置和当前完整陈设；不按数字随意摆七龛，不增造佛像。",
+          "撤去通用办公桌椅只是纠正模型用途，不表示建筑历史或当前空置。"
         ]
       },
       "exterior": {
-        "implementation": "generic-placeholder",
+        "implementation": "dedicated-partial",
         "dimensions": "includes-model-fits",
         "accepted": false,
         "unresolved": [
-          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。"
+          "五间庑殿顶、明间四叶门和侧间槛窗按官方类型调整；原整体尺寸、等分轴间和门扇打开姿态为拟合。",
+          "耳房不属本批主殿更新，屋顶曲线、装饰和精确彩画仍未全面核实。"
         ]
       },
-      "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
+      "targetState": "官方建筑说明与有日期边界的参考陈列局部解释，不认证2026完整库存或现场准入。",
       "identitySources": [
         "https://www.dpm.org.cn/explore/building/236568.html"
       ],
-      "claims": [],
+      "claims": [
+        {
+          "scope": "exterior",
+          "text": "五间单檐庑殿顶，明间四叶门，侧间槛窗。",
+          "source": "https://www.dpm.org.cn/explore/building/236568.html",
+          "targetState": "类型有依据；精确尺寸、轴间、门姿态和结构细部为拟合。",
+          "implemented": true
+        },
+        {
+          "scope": "interior",
+          "text": "七座佛龛的记载。",
+          "source": "https://www.dpm.org.cn/explore/building/236568.html",
+          "targetState": "位置未核实，未用通用数字排布替代真实布局。",
+          "implemented": false
+        }
+      ],
       "auxiliaryProfiles": [],
-      "changes": [],
+      "changes": [
+        {
+          "profile": "yinghua-five-bay-wudian-v1",
+          "area": "exterior",
+          "summary": "专用五间佛堂围护和屋顶类型局部调整。"
+        },
+        {
+          "profile": "yinghua-five-bay-wudian-v1",
+          "area": "interior",
+          "summary": "撤去通用办公家具；佛龛和陈设位置明确待核实。"
+        }
+      ],
       "validation": {
         "visual": "not-verified",
         "nativePhone": "not-verified"
-      }
+      },
+      "publicNote": "英华殿改为五间庑殿顶及四叶中央门、侧间槛窗，尺寸和屋顶细部为拟合。官方七座佛龛尚无可靠摆位，本批不增造佛像或七龛排布；撤去通用办公家具不表示历史空置。2026完整陈设待核实，模型开门不代表现场开放。"
     },
     {
       "id": "place-outer-west-83d425c911",
@@ -3786,33 +3844,66 @@
       "zone": "garden-procedural",
       "binding": {
         "kind": "pavilion",
-        "dataRef": "src/scene/GardenBuilder.js:329-345,499-504"
+        "dataRef": "src/scene/garden/CrossGardenPavilions.js:buildCrossGardenPavilion"
       },
       "interior": {
-        "implementation": "shared-pavilion",
+        "implementation": "dedicated-partial",
         "dimensions": "includes-model-fits",
         "accepted": false,
         "unresolved": [
-          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。"
+          "4.8米主体、2.8×1.1米抱厦、1.8米门口和屋面高度均为图像与通行拟合，不是实测尺寸。",
+          "保留方形台基近似，未完整还原阶梯状台基、栏杆、斗栱、彩画、瓦作与准确屋面曲线。",
+          "全部门扇开启仅为模型通行姿态，不代表现场开放许可；完整现状陈设未知。"
         ]
       },
       "exterior": {
-        "implementation": "shared-pavilion",
+        "implementation": "dedicated-partial",
         "dimensions": "includes-model-fits",
         "accepted": false,
         "unresolved": [
-          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。"
+          "4.8米主体、2.8×1.1米抱厦、1.8米门口和屋面高度均为图像与通行拟合，不是实测尺寸。",
+          "保留方形台基近似，未完整还原阶梯状台基、栏杆、斗栱、彩画、瓦作与准确屋面曲线。",
+          "全部门扇开启仅为模型通行姿态，不代表现场开放许可；完整现状陈设未知。"
         ]
       },
-      "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
-      "identitySources": [],
-      "claims": [],
+      "targetState": "依据官方成对建筑介绍、万春亭平面图及千秋亭实景照片作局部建筑形制拟合；照片拍摄年月未确认。",
+      "identitySources": [
+        "https://www.dpm.org.cn/explore/building/236521.html"
+      ],
+      "claims": [
+        {
+          "scope": "exterior",
+          "text": "方形主体四面出抱厦，重檐上部为圆形攒尖屋面；抱厦为庑殿顶。",
+          "source": "https://www.dpm.org.cn/Uploads/File/2020/04/08/u5e8d77d699010.pdf",
+          "targetState": "官方建筑形制描述，具体曲线与尺寸未测量。",
+          "implemented": true
+        },
+        {
+          "scope": "interior",
+          "text": "万春亭详细平面图区分主体、较窄四抱厦、十二柱位及内外两重门。千秋亭借助成对建筑介绍使用同类拓扑，不当作独立实测图。",
+          "source": "https://www.dpm.org.cn/Uploads/File/2020/04/08/u5e8d77d699010.pdf",
+          "targetState": "刊物第189页图14及第190页文字；平面比例为图像拟合。",
+          "implemented": true
+        }
+      ],
       "auxiliaryProfiles": [],
-      "changes": [],
+      "changes": [
+        {
+          "release": "R47",
+          "area": "exterior",
+          "summary": "四座有短正脊的抱厦庑殿屋面、圆形上檐与窗鼓、二十转角围护、十二柱及四向台阶。"
+        },
+        {
+          "release": "R47",
+          "area": "interior",
+          "summary": "四臂内外两重门、闭合槛窗与素天花；不增加虚构家具，也不将上檐当可进入楼层。"
+        }
+      ],
       "validation": {
         "visual": "not-verified",
         "nativePhone": "not-verified"
-      }
+      },
+      "publicNote": "万春、千秋亭按官方成对资料及万春亭平面图拟合方形主体、四抱厦、十二柱与内外两重门。抱厦为带短脊的庑殿轮廓，上部圆形窗鼓属于屋顶，不是第二层室内。尺寸、开门姿态、屋面交接和新东西台阶均为模型拟合，不代表现场开放许可。保留方形台基近似，阶梯状台基、完整栏杆、斗栱彩画与现状陈设尚未复原。官方照片网址日期不等于拍摄日期，未核实2026完整陈设。"
     },
     {
       "id": "garden-procedural-千秋亭",
@@ -3821,33 +3912,66 @@
       "zone": "garden-procedural",
       "binding": {
         "kind": "pavilion",
-        "dataRef": "src/scene/GardenBuilder.js:329-345,499-504"
+        "dataRef": "src/scene/garden/CrossGardenPavilions.js:buildCrossGardenPavilion"
       },
       "interior": {
-        "implementation": "shared-pavilion",
+        "implementation": "dedicated-partial",
         "dimensions": "includes-model-fits",
         "accepted": false,
         "unresolved": [
-          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。"
+          "4.8米主体、2.8×1.1米抱厦、1.8米门口和屋面高度均为图像与通行拟合，不是实测尺寸。",
+          "保留方形台基近似，未完整还原阶梯状台基、栏杆、斗栱、彩画、瓦作与准确屋面曲线。",
+          "全部门扇开启仅为模型通行姿态，不代表现场开放许可；完整现状陈设未知。"
         ]
       },
       "exterior": {
-        "implementation": "shared-pavilion",
+        "implementation": "dedicated-partial",
         "dimensions": "includes-model-fits",
         "accepted": false,
         "unresolved": [
-          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。"
+          "4.8米主体、2.8×1.1米抱厦、1.8米门口和屋面高度均为图像与通行拟合，不是实测尺寸。",
+          "保留方形台基近似，未完整还原阶梯状台基、栏杆、斗栱、彩画、瓦作与准确屋面曲线。",
+          "全部门扇开启仅为模型通行姿态，不代表现场开放许可；完整现状陈设未知。"
         ]
       },
-      "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
-      "identitySources": [],
-      "claims": [],
+      "targetState": "依据官方成对建筑介绍、万春亭平面图及千秋亭实景照片作局部建筑形制拟合；照片拍摄年月未确认。",
+      "identitySources": [
+        "https://www.dpm.org.cn/explore/building/236521.html"
+      ],
+      "claims": [
+        {
+          "scope": "exterior",
+          "text": "方形主体四面出抱厦，重檐上部为圆形攒尖屋面；抱厦为庑殿顶。",
+          "source": "https://www.dpm.org.cn/Uploads/File/2020/04/08/u5e8d77d699010.pdf",
+          "targetState": "官方建筑形制描述，具体曲线与尺寸未测量。",
+          "implemented": true
+        },
+        {
+          "scope": "interior",
+          "text": "万春亭详细平面图区分主体、较窄四抱厦、十二柱位及内外两重门。千秋亭借助成对建筑介绍使用同类拓扑，不当作独立实测图。",
+          "source": "https://www.dpm.org.cn/Uploads/File/2020/04/08/u5e8d77d699010.pdf",
+          "targetState": "刊物第189页图14及第190页文字；平面比例为图像拟合。",
+          "implemented": true
+        }
+      ],
       "auxiliaryProfiles": [],
-      "changes": [],
+      "changes": [
+        {
+          "release": "R47",
+          "area": "exterior",
+          "summary": "四座有短正脊的抱厦庑殿屋面、圆形上檐与窗鼓、二十转角围护、十二柱及四向台阶。"
+        },
+        {
+          "release": "R47",
+          "area": "interior",
+          "summary": "四臂内外两重门、闭合槛窗与素天花；不增加虚构家具，也不将上檐当可进入楼层。"
+        }
+      ],
       "validation": {
         "visual": "not-verified",
         "nativePhone": "not-verified"
-      }
+      },
+      "publicNote": "万春、千秋亭按官方成对资料及万春亭平面图拟合方形主体、四抱厦、十二柱与内外两重门。抱厦为带短脊的庑殿轮廓，上部圆形窗鼓属于屋顶，不是第二层室内。尺寸、开门姿态、屋面交接和新东西台阶均为模型拟合，不代表现场开放许可。保留方形台基近似，阶梯状台基、完整栏杆、斗栱彩画与现状陈设尚未复原。官方照片网址日期不等于拍摄日期，未核实2026完整陈设。 为保留既有北侧树木，北阶模型+X方向（西侧）补有可见通行阶翼；它是模型通行拟合，不是实测历史阶宽。"
     },
     {
       "id": "garden-procedural-御景亭",

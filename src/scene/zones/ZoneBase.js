@@ -1,3 +1,4 @@
+import {buildRitualHall,ritualHallGeometry} from '../palace/special/RitualHalls.js';
 import {buildEnclosedPavilion,enclosedPavilionGeometry} from '../palace/special/EnclosedPavilions.js';
 import {buildShoukangHall} from '../palace/special/ShoukangHall.js';
 import {buildYiheHall} from '../palace/special/YiheHall.js';
@@ -136,6 +137,7 @@ export class ZoneBase {
   // ───────────────────────── 各 kind 构建方法 ─────────────────────────
 
   buildHall(item) {
+    if(item.structure==='ritual-hall'||item.ritualProfile!==undefined){const g=ritualHallGeometry(item);if(this.zoneJson.id!=='outer-west')throw Error('Ritual hall wrong zone');return buildRitualHall(this.kit,item);}
     if(item.structure==='enclosed-pavilion'||item.enclosureProfile!==undefined){const g=enclosedPavilionGeometry(item);if(this.zoneJson.id!==g.id.split('/')[0])throw Error('Enclosed pavilion wrong zone');return buildEnclosedPavilion(this.kit,item);}
     if(item.structure==='shoukang-front-hall'||item.shoukangProfile!==undefined){if(this.zoneJson.id!=='outer-west')throw Error('Shoukang requires outer-west zone');return buildShoukangHall(this.kit,item);}
     if(item.structure==='yihe-ground-hall'||item.yiheProfile!==undefined){if(this.zoneJson.id!=='ningshou')throw Error('Yihe requires ningshou zone');return buildYiheHall(this.kit,item);}

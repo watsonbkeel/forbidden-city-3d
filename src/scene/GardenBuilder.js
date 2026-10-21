@@ -7,6 +7,7 @@ import { mergeByMaterial } from '../utils/MergeUtils.js';
 import { mulberry32 } from './garden/noise.js';
 import { buildTreeVariant, createFoliageMaterial } from './garden/trees.js';
 import { buildRockery } from './garden/rocks.js';
+import { buildCrossGardenPavilion } from './garden/CrossGardenPavilions.js';
 import { LAYOUT } from '../config/constants.js';
 import anchors from '../../data/anchors.json' with { type: 'json' };
 
@@ -83,7 +84,7 @@ export class GardenBuilder {
     this.buildTrees();
     this.scene.add(this.group);
     
-    // 性能统计
+    // CPU mesh submission estimate only, not measured renderer/GPU draw calls.
     let drawCalls = 0, totalTris = 0;
     this.group.traverse(o => {
       if (o.isMesh || o.isInstancedMesh) {
@@ -94,9 +95,10 @@ export class GardenBuilder {
         totalTris += tris * count;
       }
     });
-    this.stats.drawCalls = drawCalls;
+    this.stats.drawCalls = drawCalls; // Legacy field, CPU estimate only.
+    this.stats.meshObjects = drawCalls;
     this.stats.triangles = Math.round(totalTris);
-    console.log(`[GardenBuilder] 已构建御花园：draw calls=${drawCalls}, 三角面=${this.stats.triangles.toLocaleString()}, 树木=${this.stats.trees}棵, 碰撞器=${this.colliders.length}`);
+    console.log(`[GardenBuilder] 已构建御花园：CPU mesh objects=${drawCalls}, 三角面=${this.stats.triangles.toLocaleString()}, 树木=${this.stats.trees}棵, 碰撞器=${this.colliders.length}`);
     return this;
   }
 
@@ -331,11 +333,10 @@ export class GardenBuilder {
     for (const p of this.pondSpecs(cx)) {
       this.makePavilion(root, { x: p.x, z: p.z, size: PAVILION_POND_BASE - 1.6, baseH: PAVILION_POND_BASE_H, colH: 3.3, cols: 'square4', sides: 4, layers: 1, pier: true });
     }
-    // 万春亭（东）、千秋亭（西）：方形重檐攒尖，八柱（从 anchors 读取真实坐标）
-    const wanchun = anchors['万春亭'];
-    const qianqiu = anchors['千秋亭'];
-    for (const a of [[wanchun.x, wanchun.z], [qianqiu.x, qianqiu.z]]) {
-      this.makePavilion(root, { x: a[0], z: a[1], size: 7, baseH: 0.75, colH: 3.8, cols: 'square8', sides: 4, layers: 2, steps: true });
+    // Paired source-specific cross forms; square retained terraces are explicitly fitted.
+    for (const name of ['万春亭', '千秋亭']) {
+      const a = anchors[name];
+      buildCrossGardenPavilion(this, root, { name, x: a.x, z: a.z });
     }
   }
 
@@ -659,6 +660,7 @@ export class GardenBuilder {
     this.group.removeFromParent();
     this.group.clear();
     this.colliders.length = 0;
+    this.walkables.length = 0;
   }
 }
 
