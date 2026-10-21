@@ -644,7 +644,9 @@
         "dimensions": "includes-model-fits",
         "accepted": false,
         "unresolved": [
-          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。"
+          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。",
+          "官方调查记载西三间历史万字炕已为展览拆除，默认模型不得复建为现存陈设。",
+          "2019年调查记录存留灶具，但其在拟合壳体中的坐标和当前展厅隔断、展柜布局未核实，暂不加入。"
         ]
       },
       "exterior": {
@@ -659,13 +661,22 @@
       "identitySources": [
         "https://www.dpm.org.cn/explore/building/236471.html"
       ],
-      "claims": [],
+      "claims": [
+        {
+          "scope": "interior",
+          "text": "西三间旧南、西、北三面万字炕已因展览拆除；调查所记存留灶具不能据此当作当前完整布局。",
+          "source": "https://www.dpm.org.cn/Uploads/File/2020/11/13/u5fae21c07c127.pdf",
+          "targetState": "2019年出版的实物调查与历史沿革，非2026年展厅调查。",
+          "implemented": false
+        }
+      ],
       "auxiliaryProfiles": [],
       "changes": [],
       "validation": {
         "visual": "not-verified",
         "nativePhone": "not-verified"
-      }
+      },
+      "publicNote": "现为石鼓馆；旧万字炕已有拆除记录，不能混入当前陈列。七间和偏东入口的建筑修正另行规划，当前通用室内仍待核实。"
     },
     {
       "id": "place-ningshou-e32471b7c3",
@@ -2858,7 +2869,9 @@
         "dimensions": "includes-model-fits",
         "accepted": false,
         "unresolved": [
-          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。"
+          "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。",
+          "新增三炕仅为文字方位支持的素色体量；尺寸、材质响应和高度为拟合，未核实2026年完整陈列。",
+          "既有西梢间北部床罩轮廓保留；不新增梳妆器物、被褥、炕桌或精确雕饰。"
         ]
       },
       "exterior": {
@@ -2869,17 +2882,32 @@
           "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。"
         ]
       },
-      "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
+      "targetState": "原有官方拓扑与陈列轮廓保留；本批三炕单独采用1971年恢复、1982年文献描述的慈禧复原陈列；不是清代原物完整遗存或2026年清点。",
       "identitySources": [
         "https://www.dpm.org.cn/explore/building/236486.html"
       ],
-      "claims": [],
+      "claims": [
+        {
+          "scope": "interior",
+          "text": "西次间南、北窗下设炕，西梢间北部床与南窗下休息梳妆炕；本批只补三处缺失炕体，不添加梳妆器物。",
+          "source": "https://www.dpm.org.cn/Uploads/File/2024/07/22/u669dcd8dc5647.pdf",
+          "targetState": "1971年恢复、1982年文献描述的慈禧复原陈列；不是清代原物完整遗存或2026年清点。依据印刷第265页；不是图11东侧房间或图12体和殿照片拟合。",
+          "implemented": true
+        }
+      ],
       "auxiliaryProfiles": [],
-      "changes": [],
+      "changes": [
+        {
+          "profile": "chuxiu-west-kang-1982-text-fit-v1",
+          "area": "interior",
+          "summary": "新增西次间北、南炕与西梢间南炕的三个素色拟合体量，保留北部床罩及四道通行开口。"
+        }
+      ],
       "validation": {
         "visual": "not-verified",
         "nativePhone": "not-verified"
-      }
+      },
+      "publicNote": "新增西侧三处炕体依据1982年文献描述的复原陈列位置，不代表2026年完整陈列；尺寸和外形为拟合，未添加梳妆器物或被褥。"
     },
     {
       "id": "place-west-six-64bc5aa115",

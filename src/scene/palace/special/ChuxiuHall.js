@@ -2,6 +2,14 @@ import * as THREE from 'three';
 
 const SOURCE='https://www.dpm.org.cn/explore/building/236486.html';
 const ARTICLE='https://www.dpm.org.cn/building/talk/223365.html';
+const RESTORED_DISPLAY_SOURCE='https://www.dpm.org.cn/Uploads/File/2024/07/22/u669dcd8dc5647.pdf';
+// Printed p265 quotes1982 descriptions of the display restored in1971. These
+// plain volumes do not claim an unchanged2026 inventory or exact historic carving.
+export const CHUXIU_RESTORED_KANG=Object.freeze([
+ Object.freeze({id:'west-next-north',bay:'west-next',side:'north',x:5.42,z:4.9,w:4.1,d:2.4,h:.45}),
+ Object.freeze({id:'west-next-south',bay:'west-next',side:'south',x:5.42,z:-3.7,w:4.1,d:1.8,h:.45}),
+ Object.freeze({id:'west-end-south',bay:'west-end',side:'south',x:10.84,z:-3.7,w:3.8,d:1.8,h:.45}),
+]);
 /** All lengths below are reversible modelling fits, not survey measurements. */
 export const CHUXIU_FIT=Object.freeze({
  id:'west-six/chuxiu-household',profile:'chuxiu-official-topology-fit-v1',
@@ -174,6 +182,21 @@ export function buildChuxiuHall(kit,item){
  solid('chuxiu-warm-alcove','dark',aw,p.alcovePlatformHeight,ad,ac.x,y+p.alcovePlatformHeight/2,ac.z,{identity:'west-rear warm compartment',status:'plain fitted kang/canopy contour'});
  for(const sx of[-1,1])for(const szn of[-1,1])box('chuxiu-alcove-post','wood',.13,ah,.13,ac.x+sx*aw/2,y+ah/2,ac.z+szn*ad/2);
  for(const s of[-1,1]){box('chuxiu-alcove-canopy','wood',aw,.22,.16,ac.x,y+ah,ac.z+s*ad/2);box('chuxiu-alcove-canopy','wood',.16,.22,ad,ac.x+s*aw/2,y+ah,ac.z);box('chuxiu-plain-side-curtain','cloth',.08,ah-.35,ad,ac.x+s*(aw/2-.1),y+.35+(ah-.35)/2,ac.z);}
+ // Source names the north/south kang in the west next bay and south kang
+ // in the west end bay. Keep the existing north sleeping contour, without
+ // inventing its bed inventory or adding three generic bedroom ensembles.
+ g.restoredDisplay={id:'chuxiu-west-kang-1982-text-fit-v1',source:RESTORED_DISPLAY_SOURCE,sourcePage:265,
+  state:'1971_RESTORED_DISPLAY_DESCRIBED_IN_1982_NOT_2026_INVENTORY',currentInventoryVerified:false,
+  dimensionStatus:'MODEL_FIT_NOT_MEASURED',placementEvidence:'TEXT_ATTESTED_CARDINAL_BAY_RELATIONSHIPS',
+  geometryStatus:'PLAIN_KANG_VOLUMES_NOT_MATCHED_PHOTO_OR_CARVING',
+  retainedNorthBed:'Existing west-end north plain canopy retained; exact bed inventory unverified.',
+  components:CHUXIU_RESTORED_KANG.map(c=>({...c})),
+  limitations:['The restored display is a stylistic reconstruction, not an intact Qing inventory.',
+   'Figures11 and12 show east Chuxiu rooms and Tihe Hall; neither is a matched western-kang photograph.',
+   'No dressing objects, bedding, kang tables or exact decorative patterns are added.']};
+ for(const c of CHUXIU_RESTORED_KANG)solid('chuxiu-restored-kang','dark',c.w,c.h,c.d,c.x,y+c.h/2,c.z,
+  {id:c.id,bay:c.bay,side:c.side,source:RESTORED_DISPLAY_SOURCE,sourcePage:265,
+   state:g.restoredDisplay.state,dimensionStatus:g.restoredDisplay.dimensionStatus});
  const names=['东梢间','东次间','明间','西次间','西梢间暖阁'];
  for(let i=0;i<5;i++){
   const x0=-item.w/2+i*g.bay+.18,x1=-item.w/2+(i+1)*g.bay-.18,doors=[];
