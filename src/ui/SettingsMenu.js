@@ -11,9 +11,11 @@ export class SettingsMenu {
     this.listeners = [];
     this.inertBeforeOpen = new Map();
     this.secondaryTaps = new Map();
+    this.characterPreviewActive = false;
+    this.allowCharacterPreview = false;
   }
 
-  init({ onOpen, onResume, onQualityChange, onSoundToggle, onCharactersToggle, initialCharacters = true, charactersApproved = true, initialQuality = 'high', initialSound = true } = {}) {
+  init({ onOpen, onResume, onQualityChange, onSoundToggle, onCharactersToggle, initialCharacters = true, charactersApproved = true, allowCharacterPreview = false, characterPreviewActive = false, onCharacterPreviewToggle, initialQuality = 'high', initialSound = true } = {}) {
     this.onOpen = onOpen;
     this.onResume = onResume;
     this.onQualityChange = onQualityChange;
@@ -21,6 +23,11 @@ export class SettingsMenu {
     this.onCharactersToggle = onCharactersToggle;
     this.charactersEnabled = initialCharacters;
     this.charactersApproved = charactersApproved;
+    // The initial-state hint is deliberately not restored. Each page requires
+    // an explicit preview click; an injected option cannot bypass the DEV gate.
+    this.characterPreviewActive = false;
+    this.allowCharacterPreview = import.meta.env?.DEV === true && allowCharacterPreview === true;
+    this.onCharacterPreviewToggle = import.meta.env?.DEV === true && this.allowCharacterPreview ? onCharacterPreviewToggle : null;
     this.currentQuality = initialQuality;
     this.soundEnabled = initialSound;
 
@@ -64,6 +71,14 @@ export class SettingsMenu {
           <button id="characters-toggle-btn" type="button">宫廷人物已开启</button>
         </div>
         <p id="characters-interpretation" class="settings-notice">建筑按现状呈现；宫廷人物与活动为清代主题演绎，人数经过缩编。太和殿为乾隆朝元旦大朝候礼主题示意，元旦指农历正月初一；正式跪拜、使臣与城墙巡行尚未启用。</p>
+        ${import.meta.env?.DEV === true && this.allowCharacterPreview ? `
+        <div class="settings-control">
+          <label for="characters-preview-toggle-btn">人物实验预览（仅开发环境）</label>
+          <button id="characters-preview-toggle-btn" type="button" aria-pressed="false" aria-describedby="characters-preview-limit">人物实验预览：已关闭</button>
+        </div>
+        <p id="characters-preview-status" class="settings-notice" role="status" aria-live="polite">人物实验预览已关闭（preview 未验收）。</p>
+        <p id="characters-preview-limit" class="settings-notice">preview 未验收：尚未完成实机性能、完整场景及具体史料验收，不代表正式人物功能获准。本次页面有效，刷新恢复关闭；普通人物关闭时也结束预览。</p>
+        ` : ''}
         <p class="settings-help">按 M 显示/隐藏小地图。地图打开时仍可用方向键、WASD 或屏幕方向盘移动；拖动地图不会改变行走方向。点击建筑名称查看介绍，再点“前往”传送；传送后，请松开再重新按键或触摸方向盘。设置菜单会暂停移动。数字键 1–8：午门、太和殿、乾清宫、御花园、东六宫、西六宫、宁寿宫、神武门。</p>
         <details id="preview-details">
           <summary>资料来源与限制（各项核查日期见下）</summary>
@@ -149,6 +164,20 @@ export class SettingsMenu {
       this.updateCharactersButton();
       this.onCharactersToggle?.(this.charactersEnabled);
     });
+    if (import.meta.env?.DEV === true && this.allowCharacterPreview) {
+      this.listen(this.panel.querySelector('#characters-preview-toggle-btn'), 'click', () => {
+        try {
+          const active = this.onCharacterPreviewToggle?.(!this.characterPreviewActive);
+          if (typeof active === 'boolean') {
+            this.setCharacterPreviewActive(active);
+            return;
+          }
+        } catch {
+          // A rejected/failed transition must never advertise success.
+        }
+        this.panel.querySelector('#characters-preview-status').textContent = '人物 preview 未验收：操作未确认，保留原状态。';
+      });
+    }
     for (const id of ['#settings-close-btn', '#resume-btn']) {
       this.listen(this.panel.querySelector(id), 'click', () => this.hide());
     }
@@ -251,7 +280,30 @@ export class SettingsMenu {
   updateCharactersButton() {
     const button = this.panel.querySelector('#characters-toggle-btn');
     button.textContent = this.charactersEnabled ? (this.charactersApproved ? '宫廷人物已开启' : '宫廷人物待验收') : '宫廷人物已关闭';
+    if (import.meta.env?.DEV === true && this.characterPreviewActive && this.charactersEnabled) button.textContent = '宫廷人物 preview 未验收';
     button.setAttribute('aria-pressed', String(this.charactersEnabled));
+  }
+
+  setCharacterPreviewActive(active) {
+    // Keep this public synchronization hook inert in the production bundle.
+    if (import.meta.env?.DEV === true && this.allowCharacterPreview && this.panel) {
+      // Main may synchronize after every existing frame. Preserve local error
+      // feedback and avoid any DOM writes until the actual state changes.
+      if (this.characterPreviewActive === (active === true)) return this.characterPreviewActive;
+      this.characterPreviewActive = active === true;
+      const button = this.panel.querySelector('#characters-preview-toggle-btn');
+      button.textContent = this.characterPreviewActive ? '人物实验预览：已开启（preview 未验收）' : '人物实验预览：已关闭';
+      button.setAttribute('aria-pressed', String(this.characterPreviewActive));
+      this.panel.querySelector('#characters-preview-status').textContent = this.characterPreviewActive ? '人物 preview 未验收：已开启实验预览。' : '人物实验预览已关闭（preview 未验收）。';
+      // The notice remains visible on the existing launcher after dismissal.
+      // Compact map CSS hides the subtitle, so its title also retains the limit.
+      this.launcher.querySelector('strong').textContent = this.characterPreviewActive ? '人物 preview 未验收' : '结构研究预览';
+      this.launcher.querySelector('span').textContent = this.characterPreviewActive
+        ? '人物 preview 未验收：尚未完成实机性能、完整场景及具体史料验收。本次页面有效，刷新恢复关闭。游戏路线不代表现场开放。'
+        : '游戏路线不代表现场开放 · 设置与来源';
+      this.updateCharactersButton();
+    }
+    return this.characterPreviewActive;
   }
 
   updateQualityButton() {
@@ -313,5 +365,8 @@ export class SettingsMenu {
     this.launcher = null;
     this.previousFocus = null;
     this.onOpen = this.onResume = this.onQualityChange = this.onSoundToggle = this.onCharactersToggle = null;
+    this.onCharacterPreviewToggle = null;
+    this.characterPreviewActive = false;
+    this.allowCharacterPreview = false;
   }
 }

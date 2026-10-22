@@ -115,3 +115,8 @@ Approved scope: original R49B 95db2af114-path cherry-pick, plus independently fr
 Female06-06 appearance approved by user 06:02 (Sentinel_074343e350388191b624c8316491eaf1), limited to exact original three PNGs/Kit hash. Kit07 repairs seated weights only; independent buffers/metadata verification preserves the approved static scope. Runtime route-identity variant and stable near<=2 were approved. Gate remains false pending runtime/history/GPU acceptance.
 
 SettingsMenu change in this successor is wording only: “待视觉确认”→“待验收”; main, architecture and collision otherwise only inherit explicitly approved owner commits. New test-only current07 semantics keep old fixture bytes/assertions and old red. Evidence transportation changes containers only, with original GIF/gzip byte equality and safe restore. See reports/r50-joint/README.md, geometry-acceptance.md, world-benren-inheritance.md and transport-README.md.
+
+
+## R50 DEV experimental preview, 2026-10-22
+
+Root explicitly approved a new successor from9b5bc89 with only DEV-session opt-in preview. Production approval remainsfalse; no default release, Pages, world or art change. Owned changes: CharacterSystem/Manager separate preview state and compile-time gate; SettingsMenu explicit button/persistent unverified notice; main existing settings/update wiring. No localStorage, newSystem, RAF, collision or permissions. Ordinary off revokes preview; refresh resets; source guards/old red retained. See reports/r50-dev-preview/README.md and production-build-proof.json.

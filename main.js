@@ -362,7 +362,19 @@ class ForbiddenCityApp {
       initialSound: true,
       initialCharacters: this.characters?.enabled ?? true,
       charactersApproved: this.characters?.snapshot().rollout === 'approved',
-      onCharactersToggle: enabled => this.characters?.setEnabled(enabled),
+      onCharactersToggle: enabled => {
+        this.characters?.setEnabled(enabled);
+        if (!enabled) this.settingsMenu?.setCharacterPreviewActive(false);
+      },
+      ...(import.meta.env?.DEV === true ? {
+        allowCharacterPreview: true,
+        onCharacterPreviewToggle: enabled => {
+          const active = this.characters?.setDevelopmentPreview(enabled) === true;
+          this.settingsMenu.charactersEnabled = this.characters?.enabled ?? false;
+          this.settingsMenu.updateCharactersButton();
+          return active;
+        },
+      } : {}),
       onOpen: () => { this.flight?.clearInput(); this.settingsTourSession.open(); },
       onResume: () => {
         // Flight resumes only through its explicit operations click. Do not
@@ -387,6 +399,9 @@ class ForbiddenCityApp {
       },
     });
     
+    if (import.meta.env?.DEV === true) this._syncCharacterPreviewState = () =>
+      this.settingsMenu?.setCharacterPreviewActive(this.characters?.developmentPreviewActive === true);
+
     // 绑定 ESC 键打开设置菜单
     this._onKeyDown = (event) => {
       if (event.code === 'Escape' && !event.repeat) {
@@ -567,6 +582,9 @@ class ForbiddenCityApp {
     this.interiors?.update(this.camera.position);
     this.zoneManager.update(this.flight?.occupied ? this.flight.position : this.camera.position);
     this.characters?.update(dt, { daylight: this.environment.dayCycle.lighting.daylight, quality: this.currentQuality, viewportHeight: height });
+    // Keep the DEV notice honest after a runtime failure automatically disables
+    // the same System. No extra update loop, renderer, or persistent setting.
+    this._syncCharacterPreviewState?.();
     this.ambience.update({
       dt,
       speed: motion.speed,

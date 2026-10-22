@@ -9,7 +9,8 @@ import { CeremonyController } from './CeremonyController.js';
 import { validateCharacterRegistry } from './CharacterSchema.js';
 
 // Release owner changes this only after visual, historical and runtime gates.
-// Tests may inject approval to validate lifecycle; no query string bypass exists.
+// Tests may inject formal approval. Explicit DEV-session preview is separate;
+// no query string or persisted setting can grant production approval.
 export const CHARACTER_ROLLOUT_APPROVED = false;
 export class CharacterSystem {
   constructor({ scene, camera, collisionManager, zoneManager, interiors, registry = CHARACTER_REGISTRY,
@@ -55,6 +56,18 @@ export class CharacterSystem {
     return this.metricsFor(actor);
   }
   get enabled(){return this.manager.enabled;}
+  get developmentPreviewActive(){return this.manager.developmentPreviewActive;}
+  setDevelopmentPreview(enabled){
+    if(import.meta.env?.DEV !== true || this.disposed || !this.validation.valid)return false;
+    if(enabled === true){
+      this.manager.setDevelopmentPreview(true);
+      this.setEnabled(true);
+    }else{
+      this.setEnabled(false);
+      this.manager.setDevelopmentPreview(false);
+    }
+    return this.developmentPreviewActive;
+  }
   setEnabled(enabled){if(!this.validation.valid&&enabled)return;this.manager.setEnabled(enabled);if(!enabled)this.world.cancelPending?.('Characters disabled');}
   update(dt,{daylight=1,quality='high',viewportHeight=1080}={}){
     if(this.disposed)return;
@@ -64,7 +77,7 @@ export class CharacterSystem {
       // End before advancing resumable jobs, whose evidence is always fresh.
       try{this.world.beginReadFrame?.();this.manager.update(dt,{camera:this.camera,daylight,quality,viewportHeight,hidden:!!this.document?.hidden});}
       finally{this.world.endReadFrame?.();}
-      if(this.manager.enabled&&this.manager.contentApproved&&!this.document?.hidden){
+      if(this.manager.enabled&&this.manager.canRunContent&&!this.document?.hidden){
         const budget=typeof this.preparationBudgetMs==='number'?this.preparationBudgetMs:this.preparationBudgetMs[quality]??1;
         // Rendering/submission and first-template preparation share this same
         // total NPC update deadline. No cold cost is moved outside measurement.
