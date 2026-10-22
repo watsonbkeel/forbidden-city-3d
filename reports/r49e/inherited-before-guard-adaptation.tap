@@ -1,0 +1,96 @@
+✔ 养心殿: complete registered frame outside actual structural triangles (107.004501ms)
+✔ 文渊阁: complete registered frame outside actual structural triangles (46.255277ms)
+✔ 咸若馆: complete registered frame outside actual structural triangles (17.109614ms)
+✔ 寿康宫: complete registered frame outside actual structural triangles (15.501934ms)
+✔ 皇极殿: complete registered frame outside actual structural triangles (36.385666ms)
+✔ 慈宁宫: complete registered frame outside actual structural triangles (19.356263ms)
+✔ 古华轩: complete registered frame outside actual structural triangles (9.757582ms)
+✔ 遂初堂: complete registered frame outside actual structural triangles (19.293394ms)
+✔ 畅音阁: complete registered frame outside actual structural triangles (28.374453ms)
+✔ 阅是楼: complete registered frame outside actual structural triangles (17.923258ms)
+✔ 颐和轩: complete registered frame outside actual structural triangles (9.939195ms)
+✔ 倦勤斋: complete registered frame outside actual structural triangles (28.670438ms)
+✔ 宁寿宫: complete registered frame outside actual structural triangles (20.157549ms)
+✔ 乐寿堂: complete registered frame outside actual structural triangles (57.634558ms)
+✔ 梵华楼: complete registered frame outside actual structural triangles (47.477306ms)
+✔ 本仁殿: R49D scoped geometry and access retention (167.279692ms)
+✔ 集义殿: R49D scoped geometry and access retention (46.546345ms)
+✖ 文渊阁: R49D scoped geometry and access retention (74.137865ms)
+✔ 景运门: R49D scoped geometry and access retention (47.577476ms)
+✔ 本仁: full backing has no structural intersections; old depth reproduces three (25.506157ms)
+✔ 本仁: six rearward rays confirm 15 mm frame-to-existing-beam gap (19.279208ms)
+✔ 本仁: whole-frame front/oblique standing-eye grids remain visible (31.610151ms)
+✔ 本仁: evidence metadata does not claim verified height, size or support (11.811552ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 22
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1181.922572
+
+✖ failing tests:
+
+test at tests/r49d-benren-depth.test.mjs:8:32
+✖ 文渊阁: R49D scoped geometry and access retention (74.137865ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      colliders: '6ce79a94d41d62285fec795a3e7368612671e846c8579ff0f245b1b3a35b368d',
+      face: {
+        geometry: {
+          height: 1.335,
+  ...
+          0,
+  +       8.79,
+  +       -8.88
+  -       8.35,
+  -       -8.32
+        ],
+        rotation: [
+  +       -1.0471975511965976,
+          0,
+          0,
+  -       0,
+          'XYZ'
+        ],
+        scale: [
+          1,
+          1,
+  ...
+          0,
+  +       8.841961524227067,
+  +       -8.85
+  -       8.35,
+  -       -8.26
+        ],
+        rotation: [
+  +       -1.0471975511965976,
+          0,
+          0,
+  -       0,
+          'XYZ'
+        ],
+        scale: [
+          1,
+          1,
+  ...
+      walkables: 'd765b0c0a62e19a69d9571df927d5d24313ac784f68887da9c67eed5aad8f968',
+  +   wholeGeometryHash: '9d365217bcc3f0b66c83a8bb2dc3026bbf38b05b2d4549c9a1897f772d2d88c6',
+  -   wholeGeometryHash: 'cf72f6fbdeaf726aa4f1b0f586d46af16fe551c0b88bfbb03ddc2e94d8fdcbc4',
+      zone: 'outer-east'
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r49e-wenyuan-plaque-pitch/tests/r49d-benren-depth.test.mjs:11:30)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { zone: 'outer-east', name: '文渊阁', meshes: 690, wholeGeometryHash: '9d365217bcc3f0b66c83a8bb2dc3026bbf38b05b2d4549c9a1897f772d2d88c6', nonPlaqueGeometryHash: 'c39ea0c829127769c9f23cb3f682d2db6920e6ac48e9c8205ca21ad468e114cb', colliders: '6ce79a94d41d62285fec795a3e7368612671e846c8579ff0f245b1b3a35b368d', walkables: 'd765b0c0a62e19a69d9571df927d5d24313ac784f68887da9c67eed5aad8f968', rooms: '0fa34357275561cbd68eaec64b2da86e0176391c8fe070dc8d27006fa6b7dbcf', regions: '89ed0eb56de8fd999c638edecab513f05f4546d85c35873129a5668102d4b468', mapItems: '38e39a7994c270d4165b784fccfd077f92b84e803fd3261737eea7b095303377', face: { position: [Array], rotation: [Array], scale: [Array], geometry: [Object] }, frame: { position: [Array], rotation: [Array], scale: [Array], geometry: [Object] } },
+    expected: { zone: 'outer-east', name: '文渊阁', meshes: 690, wholeGeometryHash: 'cf72f6fbdeaf726aa4f1b0f586d46af16fe551c0b88bfbb03ddc2e94d8fdcbc4', nonPlaqueGeometryHash: 'c39ea0c829127769c9f23cb3f682d2db6920e6ac48e9c8205ca21ad468e114cb', colliders: '6ce79a94d41d62285fec795a3e7368612671e846c8579ff0f245b1b3a35b368d', walkables: 'd765b0c0a62e19a69d9571df927d5d24313ac784f68887da9c67eed5aad8f968', rooms: '0fa34357275561cbd68eaec64b2da86e0176391c8fe070dc8d27006fa6b7dbcf', regions: '89ed0eb56de8fd999c638edecab513f05f4546d85c35873129a5668102d4b468', mapItems: '38e39a7994c270d4165b784fccfd077f92b84e803fd3261737eea7b095303377', face: { position: [Array], rotation: [Array], scale: [Array], geometry: [Object] }, frame: { position: [Array], rotation: [Array], scale: [Array], geometry: [Object] } },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
