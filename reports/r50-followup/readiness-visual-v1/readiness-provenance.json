@@ -1,0 +1,215 @@
+{
+  "evidence": "CPU software reference only, not browser/GPU screenshot, not a full loading recording. The timeline begins at binding ready, not scene load.",
+  "createdAt": "2026-10-22T04:53:58.287Z",
+  "source": {
+    "cachePath": "../r50-character-system/reports/r50/c1-samples/world-seat-models.json",
+    "cacheSha256": "7daa5b81374083dd5707d8d7fcf0727a5b326045f4d9f9d6a0261538316c5a12",
+    "checkedSources": {
+      "src/scene/characters/CharacterKit.js": {
+        "cached": "8a0d392b602b555f48d195d3ffa38f97045766601d6890aed0489417bfe90a87",
+        "current": "1bdcf7f5df6a55a82fc6b9074a0bdb5131e9792fbb1d04f97a6550baecdfbd8c",
+        "exactlyUnchanged": false
+      },
+      "src/scene/palace/special/TaiheCore.js": {
+        "cached": "b85352829bcab1db8ebe3730a6da0014903092e81ab3f292d0ccc91bee3dfd44",
+        "current": "b85352829bcab1db8ebe3730a6da0014903092e81ab3f292d0ccc91bee3dfd44",
+        "exactlyUnchanged": true
+      },
+      "src/scene/palace/special/ChuxiuHall.js": {
+        "cached": "10c5d3d875e530e2913d12668b3f4a2f8a7c85da716b52f34f1ab9ee4adfe343",
+        "current": "10c5d3d875e530e2913d12668b3f4a2f8a7c85da716b52f34f1ab9ee4adfe343",
+        "exactlyUnchanged": true
+      },
+      "data/characters/seats.json": {
+        "cached": "11080f1de5b0cff557472b47b8a320de5253db351f3bf8cb218e16cdcb379142",
+        "current": "11080f1de5b0cff557472b47b8a320de5253db351f3bf8cb218e16cdcb379142",
+        "exactlyUnchanged": true
+      }
+    },
+    "currentRendererSha256": "b3b11c4dc549d91968067a11479f02f8482eb4e29df75bb59d0facaafb9daa93",
+    "currentManagerSha256": "c6d1448c73dc6218b38126745514e678562345e8fe6eec7da8d845c28fcd8c5e",
+    "currentKitSha256": "1bdcf7f5df6a55a82fc6b9074a0bdb5131e9792fbb1d04f97a6550baecdfbd8c",
+    "frozenKitSha256": "8a0d392b602b555f48d195d3ffa38f97045766601d6890aed0489417bfe90a87",
+    "maleComparisons": [
+      {
+        "attribute": "position",
+        "count": 2235,
+        "itemSize": 3,
+        "type": "Float32Array",
+        "sha256": "b334c091f6a3b43277f342c2b594eec44d713c4313bce8f8af24c24c1615f60c",
+        "byteIdentical": true
+      },
+      {
+        "attribute": "color",
+        "count": 2235,
+        "itemSize": 3,
+        "type": "Float32Array",
+        "sha256": "0180f08b7e14d9170f1a0a02f9d270dc87e3b189645e790f43c930e7c0de8450",
+        "byteIdentical": true
+      },
+      {
+        "attribute": "characterPart",
+        "count": 2235,
+        "itemSize": 1,
+        "type": "Float32Array",
+        "sha256": "ad5754999d6e0fd24d01c40b7cb403a104636a79afcedf715670af97ddba14b1",
+        "byteIdentical": true
+      },
+      {
+        "attribute": "characterPivot",
+        "count": 2235,
+        "itemSize": 3,
+        "type": "Float32Array",
+        "sha256": "5c66ba9ce18a0256ca69f4d72f9679e4309f84ae550d888d3b3711ca4c3d755d",
+        "byteIdentical": true
+      },
+      {
+        "attribute": "characterWeight",
+        "count": 2235,
+        "itemSize": 1,
+        "type": "Float32Array",
+        "sha256": "e47ef4cdb1d6ca61869c30f92dac551b4e8fd49dbc8b0d7916904b0651ed44dc",
+        "byteIdentical": true
+      },
+      {
+        "attribute": "characterTorsoWeight",
+        "count": 2235,
+        "itemSize": 1,
+        "type": "Float32Array",
+        "sha256": "7e69d119b6760b74da639748e163373b3bd56c72d55fa6347d5b40418a45cb91",
+        "byteIdentical": true
+      },
+      {
+        "attribute": "normal",
+        "count": 2235,
+        "itemSize": 3,
+        "type": "Float32Array",
+        "sha256": "e6064c94a86e85439cfdff7a4be88195cba24729cb3c4c45cc93073424a69018",
+        "byteIdentical": true
+      },
+      {
+        "attribute": "index",
+        "count": 10731,
+        "itemSize": 1,
+        "type": "Uint16Array",
+        "sha256": "2de274dd31a2bff40ce671fa3c431f2aa3be0d597d836954b87216b56a4809cf",
+        "byteIdentical": true
+      }
+    ],
+    "currentExpandedTrianglesEqualFrozenCache": true,
+    "fixturesSha256": "8fc7398cf1c8b0bbdf50f2d4c7076fccce0a69366bfca06699d5a5268925382e",
+    "fixtureMeshCount": 5,
+    "fixtureTriangles": 262,
+    "bindingReusedUnmodified": {
+      "status": "ready",
+      "position": [
+        4.898587196589413e-18,
+        12.207499990463257,
+        9.010000000000002
+      ],
+      "rotationYRad": 3.141592653589793,
+      "zoneRef": "static",
+      "support": {
+        "kind": "seat",
+        "seatRef": "taihe-throne-seat",
+        "source": "src/scene/palace/special/TaiheCore.js#buildTaiheCoreFallback; data/architecture/taihe-core.json#/throne",
+        "seatContactPosition": [
+          0,
+          12.697499990463257,
+          9.05
+        ],
+        "pelvisPosition": [
+          0,
+          12.777499990463257,
+          9.05
+        ],
+        "footSupports": [
+          {
+            "status": "ready",
+            "position": [
+              -0.12,
+              12.507499933242798,
+              8.43
+            ],
+            "heightMeters": 12.507499933242798,
+            "kind": "rendered-geometry",
+            "meshName": "taihe-core-fallback_taihe_dark_gold",
+            "materialName": "taihe_dark_gold",
+            "meshId": 17
+          },
+          {
+            "status": "ready",
+            "position": [
+              0.12,
+              12.507499933242798,
+              8.43
+            ],
+            "heightMeters": 12.507499933242798,
+            "kind": "rendered-geometry",
+            "meshName": "taihe-core-fallback_taihe_dark_gold",
+            "materialName": "taihe_dark_gold",
+            "meshId": 17
+          }
+        ],
+        "poseFit": "verified-kit-contact-metrics",
+        "requiredSeatDropMeters": 0.19000005722045898,
+        "seatBoundsLocalMeters": [
+          -0.7,
+          0.7,
+          8.865,
+          9.655
+        ]
+      }
+    }
+  },
+  "screenDoor": {
+    "grid": [
+      4,
+      4
+    ],
+    "fragmentOrigin": "bottom-left",
+    "thresholdExpression": "(mod(cp.x,2.0)*8.0 + mod(cp.y,2.0)*4.0 + floor(cp.x/2.0)*2.0 + floor(cp.y/2.0) + 0.5)/16.0",
+    "discard": "characterVisibility <= threshold",
+    "alphaBlending": false,
+    "shadowGenerated": false,
+    "readinessFadeSeconds": 0.35
+  },
+  "readinessProgress": [
+    {
+      "frame": 0,
+      "seconds": 0,
+      "readiness": 0,
+      "scheduledVisibility": 1,
+      "characterVisibility": 0
+    },
+    {
+      "frame": 7,
+      "seconds": 0.11666666666666667,
+      "readiness": 0.33333333333333337,
+      "scheduledVisibility": 1,
+      "characterVisibility": 0.33333333333333337
+    },
+    {
+      "frame": 14,
+      "seconds": 0.23333333333333334,
+      "readiness": 0.6666666666666669,
+      "scheduledVisibility": 1,
+      "characterVisibility": 0.6666666666666669
+    },
+    {
+      "frame": 21,
+      "seconds": 0.35,
+      "readiness": 1,
+      "scheduledVisibility": 1,
+      "characterVisibility": 1
+    }
+  ],
+  "limitations": [
+    "No palace world reconstruction or new adapter binding was performed.",
+    "The scene contains only the cached local actual Taihe triangle crop, not the entire palace.",
+    "Material base colors only; CPU review lighting and no projected character shadow.",
+    "Single actor readiness is not whole-scene NPC loading progress; global timed progress belongs to the separate benchmark JSON.",
+    "Scheduled visibility is fixed at one; idle animation is held still to isolate readiness coverage.",
+    "Female appearance remains unapproved; production rollout remains false."
+  ]
+}

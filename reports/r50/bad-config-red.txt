@@ -1,0 +1,44 @@
+✔ unapproved rollout is explicit and mass content stays gated while default toggle is enabled (4.21712ms)
+✔ visibility event marks background even if browser stops RAF entirely, and listener is cleaned (27.211656ms)
+✔ manager error disables only character layer and reports blocker, not existing tour (1.297648ms)
+✔ main integration is one constructor/update/dispose with existing time and camera inputs (0.838839ms)
+✖ malformed NPC configuration fails closed without taking down the palace scene (1.45198ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 181.167679
+
+✖ failing tests:
+
+test at tests/p3c-system.test.mjs:14:1
+✖ malformed NPC configuration fails closed without taking down the palace scene (1.45198ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "Duplicate character ID: duplicate"
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r50-character-system/tests/p3c-system.test.mjs:14:104)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: Duplicate character ID: duplicate
+        at new CharacterManager (file:///workspace/scratch/02a8023d1a85/r50-character-system/src/scene/characters/CharacterManager.js:17:44)
+        at new CharacterSystem (file:///workspace/scratch/02a8023d1a85/r50-character-system/src/scene/characters/CharacterSystem.js:25:18)
+        at fixture (file:///workspace/scratch/02a8023d1a85/r50-character-system/tests/p3c-system.test.mjs:9:341)
+        at file:///workspace/scratch/02a8023d1a85/r50-character-system/tests/p3c-system.test.mjs:14:124
+        at getActual (node:assert:611:5)
+        at strict.doesNotThrow (node:assert:779:32)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r50-character-system/tests/p3c-system.test.mjs:14:104)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }

@@ -1,0 +1,40 @@
+{
+  "createdAt": "2026-10-22T04:13:57.613Z",
+  "baselineSourceSha256": "8a0d392b602b555f48d195d3ffa38f97045766601d6890aed0489417bfe90a87",
+  "currentSourceSha256": "a5b5495e7f5c78f3d68fccd429a061b8d84aa5b68a1592f50bfb5bfd6444f3a0",
+  "cases": 126,
+  "exactArrayComparisonsPerApi": 1008,
+  "comparedApiCount": 2,
+  "baselineContainsCompressedExactBytes": true,
+  "maxWorkUnits": 128,
+  "maxVerticesPerStep": 128,
+  "maxEmittedTrianglesPerStep": 256,
+  "maxNormalTrianglesPerStep": 128,
+  "maxContourPoints": 20,
+  "maxContourCallsPerStep": 1,
+  "geometryConstructedOnlyAtDone": true,
+  "tests": {
+    "targeted": "6 / 6 pass",
+    "characterSuite": "83 / 84 pass at 04:11 UTC; sole failure was missing CharacterWorkQueue.js in parent-owned concurrent implementation",
+    "build": "npm run build passed; existing >500 kB bundle warning",
+    "npmTest": "Unavailable: package has no test script"
+  },
+  "coldCpuOnly": {
+    "sampleCount": 21,
+    "freshProcesses": true,
+    "totalMinMs": 15.09640499999999,
+    "totalMaxMs": 23.017814,
+    "stepMin": 446,
+    "stepMax": 612,
+    "peakStepMs": 4.056387000000001,
+    "isolatedContourPeakMs": 0.7760650000000027,
+    "attributePhasePeakMs": 0.3619730000000061,
+    "commitPeakMs": 0.4427440000000047
+  },
+  "limitations": [
+    "Work-bound is deterministic; wall-clock duration is not. The worst observed next() was 4.056387 ms. No sub-millisecond CPU/GPU performance claim is made.",
+    "Typed-buffer allocation and authored contour triangulation are finite isolated operations, not interrupted internally. No isolated unavoidable operation exceeded 1 ms in these samples.",
+    "Later approved visible female-model changes intentionally require a separate reviewed baseline update; do not overwrite the pre-refactor baseline to hide differences.",
+    "No upload, commit, deployment, architecture, collision, account or permission changes."
+  ]
+}

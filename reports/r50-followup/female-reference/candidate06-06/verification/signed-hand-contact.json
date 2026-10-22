@@ -1,0 +1,751 @@
+{
+  "sourceSha256": "5128af161cbce30e7da8106b8350ae30455dd16c32e04f00075cb948e85cf15b",
+  "units": "metres",
+  "method": "Actual L0 mesh at amplitude zero. Cloth surface is independently raycast downward from y=1.3 at matching X/Z, not from possibly penetrating skin. Distinct palms/fingers/forearms: palm ring vertices and palm/finger indexed triangles are tested; forearms excluded. Every skin triangle has vertices, 3 edge midpoints and centroid sampled. Positive delta is outside; a negative delta is penetration. Upper hand is separately sampled against highest lower-hand triangle. This is sampled static contact evidence, not a continuous collision solver or animated full-cycle acceptance.",
+  "cases": [
+    {
+      "templateId": "consort-daily",
+      "seatVariant": "standard",
+      "hands": [
+        {
+          "handPart": 2,
+          "palmVertexRange": [
+            2690,
+            2730
+          ],
+          "handVertexRange": [
+            2690,
+            2876
+          ],
+          "palm": {
+            "min": 0.019301133199842058,
+            "max": 0.04517978179028603,
+            "closest": {
+              "point": [
+                -0.01742558740079403,
+                0.5907801389694214,
+                0.3360460698604584
+              ],
+              "clothY": 0.5714790057695793,
+              "gap": 0.019301133199842058
+            }
+          },
+          "allSkinTriangleSamples": {
+            "count": 2324,
+            "min": 0.019301133199842058,
+            "max": 0.04517978179028603,
+            "closest": {
+              "point": [
+                -0.01742558740079403,
+                0.5907801389694214,
+                0.3360460698604584
+              ],
+              "clothY": 0.5714790057695793,
+              "gap": 0.019301133199842058
+            }
+          }
+        },
+        {
+          "handPart": 3,
+          "palmVertexRange": [
+            3236,
+            3276
+          ],
+          "handVertexRange": [
+            3236,
+            3422
+          ],
+          "palm": {
+            "min": 0.0017917498240528351,
+            "max": 0.027908471135401958,
+            "closest": {
+              "point": [
+                0.005425586830824614,
+                0.5777801871299744,
+                0.32604607939720154
+              ],
+              "clothY": 0.5759884373059215,
+              "gap": 0.0017917498240528351
+            }
+          },
+          "allSkinTriangleSamples": {
+            "count": 2324,
+            "min": 0.0005596410702568555,
+            "max": 0.027908471135401958,
+            "closest": {
+              "point": [
+                0.0008629835792817175,
+                0.5862904787063599,
+                0.30074772238731384
+              ],
+              "clothY": 0.585730837636103,
+              "gap": 0.0005596410702568555
+            }
+          }
+        }
+      ],
+      "upperPalmToLowerHand": {
+        "sampleCount": 6,
+        "min": 0.004233101791594529,
+        "max": 0.027475197789673556,
+        "method": "Signed upper-palm vertex height above the highest lower-hand triangle at matching X/Z; descriptive, not a full triangle-triangle collision solver."
+      },
+      "upperAllSkinToLowerHand": {
+        "sampleCount": 1041,
+        "min": 0.0014667988595945536,
+        "max": 0.027475197789673556
+      }
+    },
+    {
+      "templateId": "consort-daily",
+      "seatVariant": "kang-low",
+      "hands": [
+        {
+          "handPart": 2,
+          "palmVertexRange": [
+            2694,
+            2734
+          ],
+          "handVertexRange": [
+            2694,
+            2880
+          ],
+          "palm": {
+            "min": 0.019264378082185507,
+            "max": 0.04525037040407587,
+            "closest": {
+              "point": [
+                -0.01742558740079403,
+                0.5907801389694214,
+                0.3360460698604584
+              ],
+              "clothY": 0.5715157608872359,
+              "gap": 0.019264378082185507
+            }
+          },
+          "allSkinTriangleSamples": {
+            "count": 2324,
+            "min": 0.019264378082185507,
+            "max": 0.04525037040407587,
+            "closest": {
+              "point": [
+                -0.01742558740079403,
+                0.5907801389694214,
+                0.3360460698604584
+              ],
+              "clothY": 0.5715157608872359,
+              "gap": 0.019264378082185507
+            }
+          }
+        },
+        {
+          "handPart": 3,
+          "palmVertexRange": [
+            3240,
+            3280
+          ],
+          "handVertexRange": [
+            3240,
+            3426
+          ],
+          "palm": {
+            "min": 0.0017738327828650258,
+            "max": 0.02793099754349071,
+            "closest": {
+              "point": [
+                0.005425586830824614,
+                0.5777801871299744,
+                0.32604607939720154
+              ],
+              "clothY": 0.5760063543471093,
+              "gap": 0.0017738327828650258
+            }
+          },
+          "allSkinTriangleSamples": {
+            "count": 2324,
+            "min": 0.0005520091432658081,
+            "max": 0.02793099754349071,
+            "closest": {
+              "point": [
+                0.0008629835792817175,
+                0.5862904787063599,
+                0.30074772238731384
+              ],
+              "clothY": 0.585738469563094,
+              "gap": 0.0005520091432658081
+            }
+          }
+        }
+      ],
+      "upperPalmToLowerHand": {
+        "sampleCount": 6,
+        "min": 0.004233101791594529,
+        "max": 0.027475197789673556,
+        "method": "Signed upper-palm vertex height above the highest lower-hand triangle at matching X/Z; descriptive, not a full triangle-triangle collision solver."
+      },
+      "upperAllSkinToLowerHand": {
+        "sampleCount": 1041,
+        "min": 0.0014667988595945536,
+        "max": 0.027475197789673556
+      }
+    },
+    {
+      "templateId": "consort-daily",
+      "seatVariant": "raised-footstool",
+      "hands": [
+        {
+          "handPart": 2,
+          "palmVertexRange": [
+            2522,
+            2562
+          ],
+          "handVertexRange": [
+            2522,
+            2708
+          ],
+          "palm": {
+            "min": 0.016673159571904517,
+            "max": 0.04301742553100252,
+            "closest": {
+              "point": [
+                -0.021331528201699257,
+                0.6329503655433655,
+                0.3482931852340698
+              ],
+              "clothY": 0.616277205971461,
+              "gap": 0.016673159571904517
+            }
+          },
+          "allSkinTriangleSamples": {
+            "count": 2324,
+            "min": 0.012122325947761303,
+            "max": 0.04301742553100252,
+            "closest": {
+              "point": [
+                -0.03220671787858009,
+                0.62395179271698,
+                0.3713979125022888
+              ],
+              "clothY": 0.6118294667692187,
+              "gap": 0.012122325947761303
+            }
+          }
+        },
+        {
+          "handPart": 3,
+          "palmVertexRange": [
+            3068,
+            3108
+          ],
+          "handVertexRange": [
+            3068,
+            3254
+          ],
+          "palm": {
+            "min": 0.0016769224891240997,
+            "max": 0.02814784094272027,
+            "closest": {
+              "point": [
+                0.009331528097391129,
+                0.6199503540992737,
+                0.338293194770813
+              ],
+              "clothY": 0.6182734316101496,
+              "gap": 0.0016769224891240997
+            }
+          },
+          "allSkinTriangleSamples": {
+            "count": 2324,
+            "min": 0.0015188409432387306,
+            "max": 0.02814784094272027,
+            "closest": {
+              "point": [
+                -0.0034408308565616608,
+                0.6177873313426971,
+                0.35270145535469055
+              ],
+              "clothY": 0.6162684903994584,
+              "gap": 0.0015188409432387306
+            }
+          }
+        }
+      ],
+      "upperPalmToLowerHand": {
+        "sampleCount": 6,
+        "min": 0.004233161396239304,
+        "max": 0.027475158785941534,
+        "method": "Signed upper-palm vertex height above the highest lower-hand triangle at matching X/Z; descriptive, not a full triangle-triangle collision solver."
+      },
+      "upperAllSkinToLowerHand": {
+        "sampleCount": 1041,
+        "min": 0.001466766063586089,
+        "max": 0.027475158785941534
+      }
+    },
+    {
+      "templateId": "consort-daily",
+      "seatVariant": "throne-front-perch",
+      "hands": [
+        {
+          "handPart": 2,
+          "palmVertexRange": [
+            2606,
+            2646
+          ],
+          "handVertexRange": [
+            2606,
+            2792
+          ],
+          "palm": {
+            "min": 0.015480097948640359,
+            "max": 0.048089144618965074,
+            "closest": {
+              "point": [
+                -0.03786750137805939,
+                0.7061305046081543,
+                0.3585277497768402
+              ],
+              "clothY": 0.6906504066595139,
+              "gap": 0.015480097948640359
+            }
+          },
+          "allSkinTriangleSamples": {
+            "count": 2324,
+            "min": 0.005899634758753547,
+            "max": 0.048089144618965074,
+            "closest": {
+              "point": [
+                -0.03220671787858009,
+                0.6979517936706543,
+                0.3713979125022888
+              ],
+              "clothY": 0.6920521589119007,
+              "gap": 0.005899634758753547
+            }
+          }
+        },
+        {
+          "handPart": 3,
+          "palmVertexRange": [
+            3152,
+            3192
+          ],
+          "handVertexRange": [
+            3152,
+            3338
+          ],
+          "palm": {
+            "min": 0.004051504509487325,
+            "max": 0.036622446210969994,
+            "closest": {
+              "point": [
+                0.02586750127375126,
+                0.6931304931640625,
+                0.3485277593135834
+              ],
+              "clothY": 0.6890789886545752,
+              "gap": 0.004051504509487325
+            }
+          },
+          "allSkinTriangleSamples": {
+            "count": 2324,
+            "min": 0.0016598204836661967,
+            "max": 0.03950066160521304,
+            "closest": {
+              "point": [
+                -0.017217379063367844,
+                0.6913577318191528,
+                0.35626694560050964
+              ],
+              "clothY": 0.6896979113354866,
+              "gap": 0.0016598204836661967
+            }
+          }
+        }
+      ],
+      "upperPalmToLowerHand": {
+        "sampleCount": 6,
+        "min": 0.004233161396239304,
+        "max": 0.027475158785941423,
+        "method": "Signed upper-palm vertex height above the highest lower-hand triangle at matching X/Z; descriptive, not a full triangle-triangle collision solver."
+      },
+      "upperAllSkinToLowerHand": {
+        "sampleCount": 1041,
+        "min": 0.001466766063586089,
+        "max": 0.027475158785941423
+      }
+    },
+    {
+      "templateId": "maid-daily",
+      "seatVariant": "standard",
+      "hands": [
+        {
+          "handPart": 2,
+          "palmVertexRange": [
+            1322,
+            1362
+          ],
+          "handVertexRange": [
+            1322,
+            1508
+          ],
+          "palm": {
+            "min": 0.019301133199842058,
+            "max": 0.04517978179028603,
+            "closest": {
+              "point": [
+                -0.01742558740079403,
+                0.5907801389694214,
+                0.3360460698604584
+              ],
+              "clothY": 0.5714790057695793,
+              "gap": 0.019301133199842058
+            }
+          },
+          "allSkinTriangleSamples": {
+            "count": 2324,
+            "min": 0.019301133199842058,
+            "max": 0.04517978179028603,
+            "closest": {
+              "point": [
+                -0.01742558740079403,
+                0.5907801389694214,
+                0.3360460698604584
+              ],
+              "clothY": 0.5714790057695793,
+              "gap": 0.019301133199842058
+            }
+          }
+        },
+        {
+          "handPart": 3,
+          "palmVertexRange": [
+            1836,
+            1876
+          ],
+          "handVertexRange": [
+            1836,
+            2022
+          ],
+          "palm": {
+            "min": 0.0017917498240528351,
+            "max": 0.027908471135401958,
+            "closest": {
+              "point": [
+                0.005425586830824614,
+                0.5777801871299744,
+                0.32604607939720154
+              ],
+              "clothY": 0.5759884373059215,
+              "gap": 0.0017917498240528351
+            }
+          },
+          "allSkinTriangleSamples": {
+            "count": 2324,
+            "min": 0.0005596410702568555,
+            "max": 0.027908471135401958,
+            "closest": {
+              "point": [
+                0.0008629835792817175,
+                0.5862904787063599,
+                0.30074772238731384
+              ],
+              "clothY": 0.585730837636103,
+              "gap": 0.0005596410702568555
+            }
+          }
+        }
+      ],
+      "upperPalmToLowerHand": {
+        "sampleCount": 6,
+        "min": 0.004233101791594529,
+        "max": 0.027475197789673556,
+        "method": "Signed upper-palm vertex height above the highest lower-hand triangle at matching X/Z; descriptive, not a full triangle-triangle collision solver."
+      },
+      "upperAllSkinToLowerHand": {
+        "sampleCount": 1041,
+        "min": 0.0014667988595945536,
+        "max": 0.027475197789673556
+      }
+    },
+    {
+      "templateId": "maid-daily",
+      "seatVariant": "kang-low",
+      "hands": [
+        {
+          "handPart": 2,
+          "palmVertexRange": [
+            1338,
+            1378
+          ],
+          "handVertexRange": [
+            1338,
+            1524
+          ],
+          "palm": {
+            "min": 0.019264378082185507,
+            "max": 0.04525037040407587,
+            "closest": {
+              "point": [
+                -0.01742558740079403,
+                0.5907801389694214,
+                0.3360460698604584
+              ],
+              "clothY": 0.5715157608872359,
+              "gap": 0.019264378082185507
+            }
+          },
+          "allSkinTriangleSamples": {
+            "count": 2324,
+            "min": 0.019264378082185507,
+            "max": 0.04525037040407587,
+            "closest": {
+              "point": [
+                -0.01742558740079403,
+                0.5907801389694214,
+                0.3360460698604584
+              ],
+              "clothY": 0.5715157608872359,
+              "gap": 0.019264378082185507
+            }
+          }
+        },
+        {
+          "handPart": 3,
+          "palmVertexRange": [
+            1852,
+            1892
+          ],
+          "handVertexRange": [
+            1852,
+            2038
+          ],
+          "palm": {
+            "min": 0.0017738327828650258,
+            "max": 0.02793099754349071,
+            "closest": {
+              "point": [
+                0.005425586830824614,
+                0.5777801871299744,
+                0.32604607939720154
+              ],
+              "clothY": 0.5760063543471093,
+              "gap": 0.0017738327828650258
+            }
+          },
+          "allSkinTriangleSamples": {
+            "count": 2324,
+            "min": 0.0005520091432658081,
+            "max": 0.02793099754349071,
+            "closest": {
+              "point": [
+                0.0008629835792817175,
+                0.5862904787063599,
+                0.30074772238731384
+              ],
+              "clothY": 0.585738469563094,
+              "gap": 0.0005520091432658081
+            }
+          }
+        }
+      ],
+      "upperPalmToLowerHand": {
+        "sampleCount": 6,
+        "min": 0.004233101791594529,
+        "max": 0.027475197789673556,
+        "method": "Signed upper-palm vertex height above the highest lower-hand triangle at matching X/Z; descriptive, not a full triangle-triangle collision solver."
+      },
+      "upperAllSkinToLowerHand": {
+        "sampleCount": 1041,
+        "min": 0.0014667988595945536,
+        "max": 0.027475197789673556
+      }
+    },
+    {
+      "templateId": "maid-daily",
+      "seatVariant": "raised-footstool",
+      "hands": [
+        {
+          "handPart": 2,
+          "palmVertexRange": [
+            1238,
+            1278
+          ],
+          "handVertexRange": [
+            1238,
+            1424
+          ],
+          "palm": {
+            "min": 0.016673159571904517,
+            "max": 0.04301742553100252,
+            "closest": {
+              "point": [
+                -0.021331528201699257,
+                0.6329503655433655,
+                0.3482931852340698
+              ],
+              "clothY": 0.616277205971461,
+              "gap": 0.016673159571904517
+            }
+          },
+          "allSkinTriangleSamples": {
+            "count": 2324,
+            "min": 0.012122325947761303,
+            "max": 0.04301742553100252,
+            "closest": {
+              "point": [
+                -0.03220671787858009,
+                0.62395179271698,
+                0.3713979125022888
+              ],
+              "clothY": 0.6118294667692187,
+              "gap": 0.012122325947761303
+            }
+          }
+        },
+        {
+          "handPart": 3,
+          "palmVertexRange": [
+            1752,
+            1792
+          ],
+          "handVertexRange": [
+            1752,
+            1938
+          ],
+          "palm": {
+            "min": 0.0016769224891240997,
+            "max": 0.02814784094272027,
+            "closest": {
+              "point": [
+                0.009331528097391129,
+                0.6199503540992737,
+                0.338293194770813
+              ],
+              "clothY": 0.6182734316101496,
+              "gap": 0.0016769224891240997
+            }
+          },
+          "allSkinTriangleSamples": {
+            "count": 2324,
+            "min": 0.0015188409432387306,
+            "max": 0.02814784094272027,
+            "closest": {
+              "point": [
+                -0.0034408308565616608,
+                0.6177873313426971,
+                0.35270145535469055
+              ],
+              "clothY": 0.6162684903994584,
+              "gap": 0.0015188409432387306
+            }
+          }
+        }
+      ],
+      "upperPalmToLowerHand": {
+        "sampleCount": 6,
+        "min": 0.004233161396239304,
+        "max": 0.027475158785941534,
+        "method": "Signed upper-palm vertex height above the highest lower-hand triangle at matching X/Z; descriptive, not a full triangle-triangle collision solver."
+      },
+      "upperAllSkinToLowerHand": {
+        "sampleCount": 1041,
+        "min": 0.001466766063586089,
+        "max": 0.027475158785941534
+      }
+    },
+    {
+      "templateId": "maid-daily",
+      "seatVariant": "throne-front-perch",
+      "hands": [
+        {
+          "handPart": 2,
+          "palmVertexRange": [
+            1294,
+            1334
+          ],
+          "handVertexRange": [
+            1294,
+            1480
+          ],
+          "palm": {
+            "min": 0.015480097948640359,
+            "max": 0.048089144618965074,
+            "closest": {
+              "point": [
+                -0.03786750137805939,
+                0.7061305046081543,
+                0.3585277497768402
+              ],
+              "clothY": 0.6906504066595139,
+              "gap": 0.015480097948640359
+            }
+          },
+          "allSkinTriangleSamples": {
+            "count": 2324,
+            "min": 0.005899634758753547,
+            "max": 0.048089144618965074,
+            "closest": {
+              "point": [
+                -0.03220671787858009,
+                0.6979517936706543,
+                0.3713979125022888
+              ],
+              "clothY": 0.6920521589119007,
+              "gap": 0.005899634758753547
+            }
+          }
+        },
+        {
+          "handPart": 3,
+          "palmVertexRange": [
+            1808,
+            1848
+          ],
+          "handVertexRange": [
+            1808,
+            1994
+          ],
+          "palm": {
+            "min": 0.004051504509487325,
+            "max": 0.036622446210969994,
+            "closest": {
+              "point": [
+                0.02586750127375126,
+                0.6931304931640625,
+                0.3485277593135834
+              ],
+              "clothY": 0.6890789886545752,
+              "gap": 0.004051504509487325
+            }
+          },
+          "allSkinTriangleSamples": {
+            "count": 2324,
+            "min": 0.0016598204836661967,
+            "max": 0.03950066160521304,
+            "closest": {
+              "point": [
+                -0.017217379063367844,
+                0.6913577318191528,
+                0.35626694560050964
+              ],
+              "clothY": 0.6896979113354866,
+              "gap": 0.0016598204836661967
+            }
+          }
+        }
+      ],
+      "upperPalmToLowerHand": {
+        "sampleCount": 6,
+        "min": 0.004233161396239304,
+        "max": 0.027475158785941423,
+        "method": "Signed upper-palm vertex height above the highest lower-hand triangle at matching X/Z; descriptive, not a full triangle-triangle collision solver."
+      },
+      "upperAllSkinToLowerHand": {
+        "sampleCount": 1041,
+        "min": 0.001466766063586089,
+        "max": 0.027475158785941423
+      }
+    }
+  ]
+}

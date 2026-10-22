@@ -1,0 +1,331 @@
+TAP version 13
+# Subtest: geometry inventory uses real route/resting/seated cache families and retains the 38-role release gate
+ok 1 - geometry inventory uses real route/resting/seated cache families and retains the 38-role release gate
+  ---
+  duration_ms: 114.087174
+  type: 'test'
+  ...
+# Subtest: formal38-cluster/high: exact visible cap, emperor/core court retention, and per-LOD geometry budgets
+not ok 2 - formal38-cluster/high: exact visible cap, emperor/core court retention, and per-LOD geometry budgets
+  ---
+  duration_ms: 89.075873
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r50-female-runtime/tests/p3c-female-render-budget.test.mjs:147:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    formal38-cluster/high: runtime budget exceeded; LOD distribution 38,0,0; actual {"registered":38,"loaded":38,"visible":38,"near":38,"renderCopies":38,"pending":0,"errors":0,"batches":10,"trianglesEstimate":152481,"drawCallsEstimate":10}
+    + actual - expected
+    
+    + [
+    +   {
+    +     actual: 38,
+    +     key: 'near',
+    +     limit: 2
+    +   }
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      key: 'near'
+      actual: 38
+      limit: 2
+  operator: 'deepStrictEqual'
+  stack: |-
+    assertLimits (file:///workspace/scratch/02a8023d1a85/r50-female-runtime/tests/p3c-female-render-budget.test.mjs:123:10)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r50-female-runtime/tests/p3c-female-render-budget.test.mjs:158:5)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: formal38-cluster/low: exact visible cap, emperor/core court retention, and per-LOD geometry budgets
+ok 3 - formal38-cluster/low: exact visible cap, emperor/core court retention, and per-LOD geometry budgets
+  ---
+  duration_ms: 21.749856
+  type: 'test'
+  ...
+# Subtest: synthetic96-cluster/high: exact visible cap, emperor/core court retention, and per-LOD geometry budgets
+not ok 4 - synthetic96-cluster/high: exact visible cap, emperor/core court retention, and per-LOD geometry budgets
+  ---
+  duration_ms: 54.323686
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r50-female-runtime/tests/p3c-female-render-budget.test.mjs:147:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    synthetic96-cluster/high: runtime budget exceeded; LOD distribution 64,0,0; actual {"registered":96,"loaded":96,"visible":64,"near":64,"renderCopies":64,"pending":0,"errors":0,"batches":10,"trianglesEstimate":346831,"drawCallsEstimate":10}
+    + actual - expected
+    
+    + [
+    +   {
+    +     actual: 346831,
+    +     key: 'triangles',
+    +     limit: 180000
+    +   },
+    +   {
+    +     actual: 64,
+    +     key: 'near',
+    +     limit: 2
+    +   }
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      key: 'triangles'
+      actual: 346831
+      limit: 180000
+    1:
+      key: 'near'
+      actual: 64
+      limit: 2
+  operator: 'deepStrictEqual'
+  stack: |-
+    assertLimits (file:///workspace/scratch/02a8023d1a85/r50-female-runtime/tests/p3c-female-render-budget.test.mjs:123:10)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r50-female-runtime/tests/p3c-female-render-budget.test.mjs:158:5)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: synthetic96-cluster/low: exact visible cap, emperor/core court retention, and per-LOD geometry budgets
+ok 5 - synthetic96-cluster/low: exact visible cap, emperor/core court retention, and per-LOD geometry budgets
+  ---
+  duration_ms: 11.220183
+  type: 'test'
+  ...
+# Subtest: synthetic96-mixed/high: all real LOD-distance tiers are counted individually
+not ok 6 - synthetic96-mixed/high: all real LOD-distance tiers are counted individually
+  ---
+  duration_ms: 47.29315
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r50-female-runtime/tests/p3c-female-render-budget.test.mjs:162:39'
+  failureType: 'testCodeFailure'
+  error: |-
+    synthetic96-mixed/high: runtime budget exceeded; LOD distribution 32,20,12; actual {"registered":96,"loaded":96,"visible":64,"near":32,"renderCopies":64,"pending":0,"errors":0,"batches":20,"trianglesEstimate":226941,"drawCallsEstimate":20}
+    + actual - expected
+    
+    + [
+    +   {
+    +     actual: 226941,
+    +     key: 'triangles',
+    +     limit: 180000
+    +   },
+    +   {
+    +     actual: 32,
+    +     key: 'near',
+    +     limit: 2
+    +   }
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      key: 'triangles'
+      actual: 226941
+      limit: 180000
+    1:
+      key: 'near'
+      actual: 32
+      limit: 2
+  operator: 'deepStrictEqual'
+  stack: |-
+    assertLimits (file:///workspace/scratch/02a8023d1a85/r50-female-runtime/tests/p3c-female-render-budget.test.mjs:123:10)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r50-female-runtime/tests/p3c-female-render-budget.test.mjs:166:89)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: synthetic96-mixed/low: all real LOD-distance tiers are counted individually
+ok 7 - synthetic96-mixed/low: all real LOD-distance tiers are counted individually
+  ---
+  duration_ms: 12.651618
+  type: 'test'
+  ...
+# Subtest: cached38-high-aerial-cull/high: representative camera uses cached real world positions
+ok 8 - cached38-high-aerial-cull/high: representative camera uses cached real world positions
+  ---
+  duration_ms: 1.423723
+  type: 'test'
+  ...
+# Subtest: cached38-high-aerial-cull/low: representative camera uses cached real world positions
+ok 9 - cached38-high-aerial-cull/low: representative camera uses cached real world positions
+  ---
+  duration_ms: 0.887964
+  type: 'test'
+  ...
+# Subtest: cached38-taihe-interior/high: representative camera uses cached real world positions
+not ok 10 - cached38-taihe-interior/high: representative camera uses cached real world positions
+  ---
+  duration_ms: 11.594052
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r50-female-runtime/tests/p3c-female-render-budget.test.mjs:178:65'
+  failureType: 'testCodeFailure'
+  error: |-
+    cached38-taihe-interior/high: runtime budget exceeded; LOD distribution 3,0,13; actual {"registered":38,"loaded":38,"visible":16,"near":3,"renderCopies":16,"pending":0,"errors":0,"batches":9,"trianglesEstimate":16385,"drawCallsEstimate":9}
+    + actual - expected
+    
+    + [
+    +   {
+    +     actual: 3,
+    +     key: 'near',
+    +     limit: 2
+    +   }
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      key: 'near'
+      actual: 3
+      limit: 2
+  operator: 'deepStrictEqual'
+  stack: |-
+    assertLimits (file:///workspace/scratch/02a8023d1a85/r50-female-runtime/tests/p3c-female-render-budget.test.mjs:123:10)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r50-female-runtime/tests/p3c-female-render-budget.test.mjs:180:28)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: cached38-taihe-interior/low: representative camera uses cached real world positions
+ok 11 - cached38-taihe-interior/low: representative camera uses cached real world positions
+  ---
+  duration_ms: 5.708173
+  type: 'test'
+  ...
+# Subtest: cached38-taihe-court/high: representative camera uses cached real world positions
+ok 12 - cached38-taihe-court/high: representative camera uses cached real world positions
+  ---
+  duration_ms: 9.743891
+  type: 'test'
+  ...
+# Subtest: cached38-taihe-court/low: representative camera uses cached real world positions
+ok 13 - cached38-taihe-court/low: representative camera uses cached real world positions
+  ---
+  duration_ms: 5.175548
+  type: 'test'
+  ...
+# Subtest: cached38-chuxiu-room/high: representative camera uses cached real world positions
+ok 14 - cached38-chuxiu-room/high: representative camera uses cached real world positions
+  ---
+  duration_ms: 18.617526
+  type: 'test'
+  ...
+# Subtest: cached38-chuxiu-room/low: representative camera uses cached real world positions
+ok 15 - cached38-chuxiu-room/low: representative camera uses cached real world positions
+  ---
+  duration_ms: 3.572318
+  type: 'test'
+  ...
+# Subtest: cached38-yikun-courtyard/high: representative camera uses cached real world positions
+ok 16 - cached38-yikun-courtyard/high: representative camera uses cached real world positions
+  ---
+  duration_ms: 13.198769
+  type: 'test'
+  ...
+# Subtest: cached38-yikun-courtyard/low: representative camera uses cached real world positions
+ok 17 - cached38-yikun-courtyard/low: representative camera uses cached real world positions
+  ---
+  duration_ms: 4.067866
+  type: 'test'
+  ...
+# Subtest: cached38-yongshou-route/high: representative camera uses cached real world positions
+ok 18 - cached38-yongshou-route/high: representative camera uses cached real world positions
+  ---
+  duration_ms: 18.270137
+  type: 'test'
+  ...
+# Subtest: cached38-yongshou-route/low: representative camera uses cached real world positions
+ok 19 - cached38-yongshou-route/low: representative camera uses cached real world positions
+  ---
+  duration_ms: 5.2505
+  type: 'test'
+  ...
+# Subtest: cached38-west-lane/high: representative camera uses cached real world positions
+not ok 20 - cached38-west-lane/high: representative camera uses cached real world positions
+  ---
+  duration_ms: 6.508767
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r50-female-runtime/tests/p3c-female-render-budget.test.mjs:178:65'
+  failureType: 'testCodeFailure'
+  error: |-
+    cached38-west-lane/high: runtime budget exceeded; LOD distribution 3,0,6; actual {"registered":38,"loaded":38,"visible":9,"near":3,"renderCopies":9,"pending":0,"errors":0,"batches":6,"trianglesEstimate":13443,"drawCallsEstimate":6}
+    + actual - expected
+    
+    + [
+    +   {
+    +     actual: 3,
+    +     key: 'near',
+    +     limit: 2
+    +   }
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      key: 'near'
+      actual: 3
+      limit: 2
+  operator: 'deepStrictEqual'
+  stack: |-
+    assertLimits (file:///workspace/scratch/02a8023d1a85/r50-female-runtime/tests/p3c-female-render-budget.test.mjs:123:10)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r50-female-runtime/tests/p3c-female-render-budget.test.mjs:180:28)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: cached38-west-lane/low: representative camera uses cached real world positions
+ok 21 - cached38-west-lane/low: representative camera uses cached real world positions
+  ---
+  duration_ms: 4.086123
+  type: 'test'
+  ...
+# Subtest: real fixed-route female retains hanging geometry while moving and paused, with no duplicate copies
+ok 22 - real fixed-route female retains hanging geometry while moving and paused, with no duplicate copies
+  ---
+  duration_ms: 24.114183
+  type: 'test'
+  ...
+# Subtest: budget selection is deterministic under input permutation and never changes the registry
+ok 23 - budget selection is deterministic under input permutation and never changes the registry
+  ---
+  duration_ms: 0.949616
+  type: 'test'
+  ...
+1..23
+# tests 23
+# suites 0
+# pass 18
+# fail 5
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 630.957207

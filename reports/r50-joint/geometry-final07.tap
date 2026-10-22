@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: final07 provenance: archived source and original oracle bytes remain pinned and available
+ok 1 - final07 provenance: archived source and original oracle bytes remain pinned and available
+  ---
+  duration_ms: 5.161158
+  type: 'test'
+  ...
+# Subtest: final07 synchronous: all 90 male cases equal original126 oracle bytes, typed metadata and bounds
+ok 2 - final07 synchronous: all 90 male cases equal original126 oracle bytes, typed metadata and bounds
+  ---
+  duration_ms: 211.367027
+  type: 'test'
+  ...
+# Subtest: final07 synchronous: all 36 female defaults and 6 walking cases equal SHA-pinned 07 snapshot
+ok 3 - final07 synchronous: all 36 female defaults and 6 walking cases equal SHA-pinned 07 snapshot
+  ---
+  duration_ms: 317.51964
+  type: 'test'
+  ...
+# Subtest: final07 incremental: all 90 male cases equal original126 oracle bytes, typed metadata and bounds
+ok 4 - final07 incremental: all 90 male cases equal original126 oracle bytes, typed metadata and bounds
+  ---
+  duration_ms: 175.806499
+  type: 'test'
+  ...
+# Subtest: final07 incremental: all 36 female defaults and 6 walking cases equal SHA-pinned 07 snapshot
+ok 5 - final07 incremental: all 36 female defaults and 6 walking cases equal SHA-pinned 07 snapshot
+  ---
+  duration_ms: 262.948728
+  type: 'test'
+  ...
+# Subtest: final07 delta: 06 to 07 changes only the two female seated weight buffers across all 42 cases
+ok 6 - final07 delta: 06 to 07 changes only the two female seated weight buffers across all 42 cases
+  ---
+  duration_ms: 305.138974
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1469.738588

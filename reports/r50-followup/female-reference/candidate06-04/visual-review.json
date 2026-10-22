@@ -1,0 +1,108 @@
+{
+  "status": "Candidate preview ready for user review; visual acceptance and historical validation remain pending",
+  "source": "Exact captured CharacterKit and CharacterAnimation snapshots; actual indexed geometry; original unit scale 1.0; CPU software raster, not GPU.",
+  "walkingRuntimeIntegration": "not-integrated",
+  "rendering": {
+    "supersampling": 2,
+    "background": "grey-white",
+    "lighting": "offline ambient and Lambert key/fill; sRGB conversion; projected source-triangle shadows, not runtime GPU evidence",
+    "firstPreview": {
+      "yawDegrees": -15,
+      "pixelsPerMetre": 460,
+      "sameCharacterScaleAcrossColumns": true
+    },
+    "faceHairViewsDegrees": [
+      0,
+      90,
+      180
+    ],
+    "handViewPitchRadians": [
+      0.18,
+      0.65
+    ]
+  },
+  "files": [
+    {
+      "path": "CharacterKit-source.js",
+      "sha256": "16bb5ead7c3c1aa74e1b4327c37875c521dd23835f7d4f493725d455fd9b1929",
+      "bytes": 46473
+    },
+    {
+      "path": "Animation-source.js",
+      "sha256": "f08482e143894813124b762e847dda4749a62dedeeffb1d4a57c831ab7629bc9",
+      "bytes": 4307
+    },
+    {
+      "path": "renderer-source.py",
+      "sha256": "f611d7acc3461e50069878366f5471d70e243574ca8c2cf67e1d9d2f7b0f93d8",
+      "bytes": 8197
+    },
+    {
+      "path": "models.json.gz",
+      "sha256": "bb86eb7a29276bdc059ca6c5790e3cc66f656b5b10c7dafe7d0078ade90359bf",
+      "bytes": 707977
+    },
+    {
+      "path": "export-manifest.json",
+      "sha256": "f36e6f8abfca2aedaf12672cc082c371949fb419c13152fdfa27a8a3cdf5986c",
+      "bytes": 3469
+    },
+    {
+      "path": "female-reference-three-poses-front.png",
+      "sha256": "0c1989c0c1654233a0e3bb958bd833a3f997ce080ead8dd251ea7c2b9c511a4a",
+      "bytes": 285699,
+      "dimensions": [
+        1950,
+        1010
+      ]
+    },
+    {
+      "path": "female-reference-face-hair-close.png",
+      "sha256": "161f6eb4061a35683e7a9f71dc851e1ac537a18e023a1a975357497571fe9192",
+      "bytes": 686211,
+      "dimensions": [
+        1800,
+        2270
+      ]
+    },
+    {
+      "path": "female-reference-hand-details.png",
+      "sha256": "6261b7cdadd1d38984bc4b182c6abb8e01e02bf1b52558eab3d2cdb8a76fa638",
+      "bytes": 474429,
+      "dimensions": [
+        1950,
+        1360
+      ]
+    }
+  ],
+  "visuallyVerifiedImprovements": [
+    "Jagged horizontal waist boundary is gone; maid robe now reads as a continuous garment.",
+    "Rounded crown is visible from front, side and rear; low bun is behind head in side/rear views.",
+    "Shoulder background gaps no longer visible in examined views.",
+    "Seated and standing palms overlap visually.",
+    "Cuff lining and forearm continuity have improved; background no longer shows through examined seated cuff.",
+    "Nose and lips no longer appear clearly detached in 90 degree side view."
+  ],
+  "remainingVisualGaps": [
+    "Faces, neckline, hem, ears and low bun retain visible low-poly facets rather than reference-level semi-realism.",
+    "A few short temple-hair edges remain simplified.",
+    "Hands are more articulated but less naturally relaxed than reference; overlapping-finger silhouette still simplified.",
+    "Cloth folds, facial modelling and detail density remain stylized; do not call this semi-realistic reconstruction."
+  ],
+  "productionCodeEditedByRenderer": false,
+  "existingEvidenceOverwritten": false,
+  "animationFramesExported": 0,
+  "rendererSafetyTests": {
+    "count": 2,
+    "passed": 2,
+    "scope": "Actual non-mutating triangle raster and overwrite rejection. No full repository/GPU suite run by renderer worker."
+  },
+  "snapshotAndPngIntegrityVerified": true,
+  "userReference": {
+    "filename": "image(20261022-051303).png",
+    "sha256": "053c6ed722cb2dc83c47e1f1ab1b742a05dc7ba7eea6368b5624513687430d8e",
+    "role": "User-provided visual/art-direction target only; not a historical source and not a gameplay screenshot.",
+    "copiedIntoDeliverable": false,
+    "outputMethod": "Reference was visually inspected; final preview is rasterized actual CharacterKit geometry, not a copy or generated re-creation of the reference image."
+  }
+}

@@ -1,0 +1,146 @@
+[
+  {
+    "id": "taihe-court-ground",
+    "zoneRef": "static",
+    "anchorRef": "taihe-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -48,
+      48,
+      -140,
+      -56
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.03,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Bounded actual rendered surface or registered walkable; no origin/ground fallback"
+  },
+  {
+    "id": "taihe-hall-floor",
+    "zoneRef": "static",
+    "anchorRef": "taihe-hall",
+    "kind": "walkable",
+    "localBoundsMeters": [
+      -30,
+      30,
+      -17,
+      17
+    ],
+    "expectedHeightMeters": 9.9375,
+    "heightToleranceMeters": 0.03,
+    "source": "data/architecture/taihe-core.json#/frame/floorY",
+    "verification": "Bounded actual rendered surface or registered walkable; no origin/ground fallback"
+  },
+  {
+    "id": "wumen-south-ground",
+    "zoneRef": "static",
+    "anchorRef": "wumen-gate",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -30,
+      30,
+      -30,
+      -14
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.03,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Bounded actual rendered surface or registered walkable; no origin/ground fallback"
+  },
+  {
+    "id": "shenwu-south-ground",
+    "zoneRef": "static",
+    "anchorRef": "shenwu-gate",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -24,
+      24,
+      -20,
+      -14
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.03,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Bounded actual rendered surface or registered walkable; no origin/ground fallback"
+  },
+  {
+    "id": "qianqing-south-ground",
+    "zoneRef": "static",
+    "anchorRef": "qianqing-gate",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -30,
+      30,
+      -28,
+      -13
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.03,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Bounded actual rendered surface or registered walkable; no origin/ground fallback"
+  },
+  {
+    "id": "west-second-lane-ground",
+    "zoneRef": "west-six",
+    "anchorRef": "west-second-lane",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -5.8,
+      5.8,
+      -68,
+      68
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.03,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Bounded actual rendered surface or registered walkable; no origin/ground fallback"
+  },
+  {
+    "id": "chuxiu-floor",
+    "zoneRef": "west-six",
+    "anchorRef": "chuxiu-hall",
+    "kind": "walkable",
+    "localBoundsMeters": [
+      -12.5,
+      12.5,
+      -6,
+      6
+    ],
+    "expectedHeightMeters": 0.6,
+    "heightToleranceMeters": 0.03,
+    "source": "data/zones/west-six.json#/items/储秀宫/ph",
+    "verification": "Bounded actual rendered surface or registered walkable; no origin/ground fallback"
+  },
+  {
+    "id": "yikun-court-ground",
+    "zoneRef": "west-six",
+    "anchorRef": "yikun-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -7,
+      7,
+      -20,
+      -9
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.03,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Bounded actual rendered surface or registered walkable; no origin/ground fallback"
+  },
+  {
+    "id": "yongshou-court-ground",
+    "zoneRef": "west-six",
+    "anchorRef": "yongshou-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -7,
+      7,
+      -21,
+      -10
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.03,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Bounded actual rendered surface or registered walkable; no origin/ground fallback"
+  }
+]

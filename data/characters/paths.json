@@ -1,0 +1,72 @@
+[
+  {
+    "id": "west-second-lane-patrol",
+    "zoneRef": "west-six",
+    "surfaceRef": "west-second-lane-ground",
+    "anchorRef": "west-second-lane",
+    "pointsLocalMeters": [
+      [
+        -0.55,
+        0,
+        -57.8
+      ],
+      [
+        -0.55,
+        0,
+        -39.8
+      ],
+      [
+        2.45,
+        0,
+        -32.8
+      ]
+    ],
+    "radiusMeters": 0.38,
+    "safetyMarginMeters": 0.12,
+    "validationSpacingMeters": 0.25,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "crossZone": false,
+    "turningRadiusMeters": 0.55,
+    "description": "Short same-zone west second lane interpretation; no historic patrol制度 claim.",
+    "formationSize": 3
+  },
+  {
+    "id": "yongshou-courtyard-stroll",
+    "zoneRef": "west-six",
+    "surfaceRef": "yongshou-court-ground",
+    "anchorRef": "yongshou-hall",
+    "pointsLocalMeters": [
+      [
+        -4,
+        0,
+        -15.5
+      ],
+      [
+        4,
+        0,
+        -15.5
+      ],
+      [
+        4,
+        0,
+        -12.8
+      ]
+    ],
+    "radiusMeters": 0.32,
+    "safetyMarginMeters": 0.1,
+    "validationSpacingMeters": 0.25,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "crossZone": false,
+    "turningRadiusMeters": 0.5,
+    "description": "Low-complexity courtyard stroll, no named residence or historical timetable.",
+    "formationSize": 1
+  }
+]

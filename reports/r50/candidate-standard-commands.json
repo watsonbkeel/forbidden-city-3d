@@ -1,0 +1,71 @@
+[
+  {
+    "name": "build",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "commit": "c560681c9731ffeb119b50530dc1120aa16ad33d",
+    "snapshot": "/tmp/r50-clean-qa",
+    "environment": "clean npm ci exact lockfile, ignore-scripts",
+    "startUtc": "2026-10-22T03:20:43.765235+00:00",
+    "exitCode": 0,
+    "endUtc": "2026-10-22T03:20:48.312260+00:00"
+  },
+  {
+    "name": "zones",
+    "command": [
+      "npm",
+      "run",
+      "test:zones"
+    ],
+    "commit": "c560681c9731ffeb119b50530dc1120aa16ad33d",
+    "snapshot": "/tmp/r50-clean-qa",
+    "environment": "clean npm ci exact lockfile, ignore-scripts",
+    "startUtc": "2026-10-22T03:20:48.312591+00:00",
+    "exitCode": 0,
+    "endUtc": "2026-10-22T03:20:59.255808+00:00"
+  },
+  {
+    "name": "anchors",
+    "command": [
+      "npm",
+      "run",
+      "test:anchors"
+    ],
+    "commit": "c560681c9731ffeb119b50530dc1120aa16ad33d",
+    "snapshot": "/tmp/r50-clean-qa",
+    "environment": "clean npm ci exact lockfile, ignore-scripts",
+    "startUtc": "2026-10-22T03:20:59.257107+00:00",
+    "exitCode": 1,
+    "endUtc": "2026-10-22T03:20:59.599428+00:00"
+  },
+  {
+    "name": "r49-focused",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=tap",
+      "tests/r49-all-hall-plaque-pairs.test.mjs",
+      "tests/r49-gate-plaque-audit.test.mjs",
+      "tests/r49-inherited-world-body.test.mjs",
+      "tests/r49-jiyun-horizontal-name-plaque.test.mjs",
+      "tests/r49-map-palace-labels.test.mjs",
+      "tests/r49-qinan-entry-qianqing-plaque.test.mjs",
+      "tests/r49-qinan-place-card.test.mjs",
+      "tests/r49-rear-hall-nameboard-visibility.test.mjs",
+      "tests/r49-related-nameboard-clearance.test.mjs",
+      "tests/r49-sourced-missing-inscriptions.test.mjs",
+      "tests/r49-throne-plaque-isolation.test.mjs",
+      "tests/r49-yonghe-plaque-visibility.test.mjs"
+    ],
+    "commit": "c560681c9731ffeb119b50530dc1120aa16ad33d",
+    "snapshot": "/tmp/r50-clean-qa",
+    "environment": "clean npm ci exact lockfile, ignore-scripts",
+    "startUtc": "2026-10-22T03:20:59.599759+00:00",
+    "exitCode": 0,
+    "endUtc": "2026-10-22T03:21:29.121235+00:00"
+  }
+]

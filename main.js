@@ -28,6 +28,7 @@ import { HistoricalSkyLamps } from './src/scene/sky/HistoricalSkyLamps.js';
 import { DayNightPanel } from './src/ui/DayNightPanel.js';
 import { HelpPanel } from './src/ui/HelpPanel.js';
 import { modelFidelityFor } from './src/ui/ModelFidelity.js';
+import { CharacterSystem } from './src/scene/characters/CharacterSystem.js';
 
 /**
  * 故宫 3D 虚拟游览主程序
@@ -179,6 +180,7 @@ class ForbiddenCityApp {
       }],
       ['界面', () => {
         this.ambience = new Ambience();
+        this.characters = new CharacterSystem({ scene: this.scene, camera: this.camera, collisionManager: this.collisionManager, zoneManager: this.zoneManager, interiors: this.interiors });
         this.createUI();
         this.historicalLamps = new HistoricalSkyLamps({scene:this.scene,collisionManager:this.collisionManager,envelope:this.flightEnvelope,playerPosition:()=>this.camera.position,flightState:()=>this.flight?.state});
         this.dayNightPanel = new DayNightPanel(this.environment,this.historicalLamps);
@@ -188,6 +190,7 @@ class ForbiddenCityApp {
           onModeChange:occupied=>this.onFlightModeChange(occupied)});
         this.bindAudioStart();
         this.perfHUD = new PerfHUD(this.renderer, {
+          characterProvider: () => this.characters?.snapshot(),
           zoneProvider: () => ({
             current: this.zoneManager?.getCurrentId() ?? '-',
             loaded: this.zoneManager?.getLoadedIds() ?? []
@@ -357,6 +360,9 @@ class ForbiddenCityApp {
     this.settingsMenu.init({
       initialQuality: this.currentQuality,
       initialSound: true,
+      initialCharacters: this.characters?.enabled ?? true,
+      charactersApproved: this.characters?.snapshot().rollout === 'approved',
+      onCharactersToggle: enabled => this.characters?.setEnabled(enabled),
       onOpen: () => { this.flight?.clearInput(); this.settingsTourSession.open(); },
       onResume: () => {
         // Flight resumes only through its explicit operations click. Do not
@@ -560,6 +566,7 @@ class ForbiddenCityApp {
     this.garden.update(dt);
     this.interiors?.update(this.camera.position);
     this.zoneManager.update(this.flight?.occupied ? this.flight.position : this.camera.position);
+    this.characters?.update(dt, { daylight: this.environment.dayCycle.lighting.daylight, quality: this.currentQuality, viewportHeight: height });
     this.ambience.update({
       dt,
       speed: motion.speed,
@@ -580,6 +587,7 @@ class ForbiddenCityApp {
   dispose() {
     this.disposed = true;
     cancelAnimationFrame(this.animationFrame);
+    this.characters?.dispose();
     this.flight?.dispose();
     this.dayNightPanel?.dispose();
     this.historicalLamps?.dispose();

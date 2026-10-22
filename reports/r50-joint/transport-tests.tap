@@ -1,0 +1,106 @@
+TAP version 13
+# Subtest: default verifier validates real package without restoring anything
+ok 1 - default verifier validates real package without restoring anything
+  ---
+  duration_ms: 106.114981
+  type: 'test'
+  ...
+# Subtest: exact binary restore only into a new directory
+ok 2 - exact binary restore only into a new directory
+  ---
+  duration_ms: 129.194711
+  type: 'test'
+  ...
+# Subtest: missing fails closed before creating restore directory
+ok 3 - missing fails closed before creating restore directory
+  ---
+  duration_ms: 62.294854
+  type: 'test'
+  ...
+# Subtest: reordered fails closed before creating restore directory
+ok 4 - reordered fails closed before creating restore directory
+  ---
+  duration_ms: 66.062935
+  type: 'test'
+  ...
+# Subtest: corrupt fails closed before creating restore directory
+ok 5 - corrupt fails closed before creating restore directory
+  ---
+  duration_ms: 70.130579
+  type: 'test'
+  ...
+# Subtest: wrong-total fails closed before creating restore directory
+ok 6 - wrong-total fails closed before creating restore directory
+  ---
+  duration_ms: 70.882789
+  type: 'test'
+  ...
+# Subtest: wrong-blob fails closed before creating restore directory
+ok 7 - wrong-blob fails closed before creating restore directory
+  ---
+  duration_ms: 67.439854
+  type: 'test'
+  ...
+# Subtest: unsafe-source fails closed before creating restore directory
+ok 8 - unsafe-source fails closed before creating restore directory
+  ---
+  duration_ms: 66.183157
+  type: 'test'
+  ...
+# Subtest: unsafe-part fails closed before creating restore directory
+ok 9 - unsafe-part fails closed before creating restore directory
+  ---
+  duration_ms: 63.461576
+  type: 'test'
+  ...
+# Subtest: symlink-part fails closed before creating restore directory
+ok 10 - symlink-part fails closed before creating restore directory
+  ---
+  duration_ms: 64.970064
+  type: 'test'
+  ...
+# Subtest: bad-offset fails closed before creating restore directory
+ok 11 - bad-offset fails closed before creating restore directory
+  ---
+  duration_ms: 62.756344
+  type: 'test'
+  ...
+# Subtest: duplicate-output fails closed before creating restore directory
+ok 12 - duplicate-output fails closed before creating restore directory
+  ---
+  duration_ms: 69.413538
+  type: 'test'
+  ...
+# Subtest: wrong-source-commit fails closed before creating restore directory
+ok 13 - wrong-source-commit fails closed before creating restore directory
+  ---
+  duration_ms: 74.228455
+  type: 'test'
+  ...
+# Subtest: oversize fails closed before creating restore directory
+ok 14 - oversize fails closed before creating restore directory
+  ---
+  duration_ms: 71.622886
+  type: 'test'
+  ...
+# Subtest: restore rejects symlink ancestors
+ok 15 - restore rejects symlink ancestors
+  ---
+  duration_ms: 60.903045
+  type: 'test'
+  ...
+# Subtest: unknown CLI flags fail closed
+ok 16 - unknown CLI flags fail closed
+  ---
+  duration_ms: 60.152915
+  type: 'test'
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 16
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1260.054214

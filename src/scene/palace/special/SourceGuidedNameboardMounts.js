@@ -17,6 +17,8 @@ const SOURCES=Object.freeze({
  'west-six/咸福宫':{page:236507},
  'west-six/养心殿':{page:236442,kind:'recessed-main-painted-headband',fit:{x:0,y:7.304,z:-6.6},photo:'https://img.dpm.org.cn/Uploads/image/2026/04/30/_DSC9079-HTsFCzaTn313.jpg'},
  'ningshou/皇极殿':{page:236476,kind:'double-eave'},
+ // R49D: only the verified frame/beam depth collision is closed.
+ 'outer-east/本仁殿':{url:'https://www.dpm.org.cn/Uploads/File/pdf/e5/4b/d7/e54bd768807a80999b3c22af915df13b.pdf',kind:'beam-front-depth-clearance-only',fit:{z:-5.50},dimensions:'RETAINED_Y_AND_COMPLETE_FRAME_SIZE__ONLY_DEPTH_FITTED_NOT_SURVEYED',residual:'Y_SIZE_DOORHEAD_PROPORTIONS_AND_HISTORIC_SUPPORT_UNVERIFIED'},
  'outer-east/文渊阁':{page:236513,kind:'upper-storey-architrave',fit:{x:0,y:8.35,z:-8.32},residual:'MODEL_UPPER_WINDOW_TOO_HIGH_PHOTO_VERTICAL_PROPORTION_UNRESOLVED',photo:'https://img.dpm.org.cn/Uploads/Picture/dc/1536%5B1024%5D.jpg'},
  'outer-west/咸若馆':{page:236534,kind:'horizontal',background:'blue',fit:{x:0,y:6.12,z:-10.62,width:2.6,height:1.05}},
  'outer-west/寿康宫':{page:236448,kind:'outer-eave-front',fit:{x:0,y:7.2,z:-9.12}},
@@ -36,7 +38,7 @@ export function applySourceGuidedNameboardMount(kit,zone,item,built) {
  const source=SOURCES[`${zone}/${item.name}`];if(!source)return built;
  const p=kit.plaques.find(p=>p.text===(item.plaqueText??item.name)&&p.mesh.parent===built.f);
  if(!p)throw Error('Source-guided nameboard registration missing: '+item.name);
- const sourceURL=`https://www.dpm.org.cn/explore/building/${source.page}.html`;
+ const sourceURL=source.url??`https://www.dpm.org.cn/explore/building/${source.page}.html`;
  if(source.kind==='double-eave'){
   let roof;built.f.traverse(m=>{if(m.userData.doubleEaveMountingBand)roof=m;});
   if(!roof)throw Error('Confirmed double-eave nameboard lacks roof band: '+item.name);
@@ -49,7 +51,7 @@ export function applySourceGuidedNameboardMount(kit,zone,item,built) {
  }
  if(source.fit){
   const mount=fitRegisteredNameboard(kit,built.f,p.text,{...source.fit,source:sourceURL,mountKind:source.kind,
-   dimensions:'SOURCE_LAYER_AND_ORIENTATION_WITH_MODEL_SIZE_FIT_NOT_SURVEYED',photo:source.photo??null,
+   dimensions:source.dimensions??'SOURCE_LAYER_AND_ORIENTATION_WITH_MODEL_SIZE_FIT_NOT_SURVEYED',photo:source.photo??null,
    residual:source.residual??'RECTANGULAR_FRAME_AND_SIMPLIFIED_SYSTEM_FONT_NOT_HISTORIC_REPLICA'});
   if(source.kind==='horizontal'){p.layout='horizontal';p.readingOrder='right-to-left';p.background=source.background??'dark';}
   built.f.userData.sourceGuidedNameboardMount=mount;if(built.f.userData.structure)built.f.userData.structure.nameboardMount=mount;return built;

@@ -1,0 +1,202 @@
+{
+  "ok": true,
+  "boundary": "CPU actual geometry and source-integrity evidence only. NOT GPU/FPS acceptance, screenshot/texture approval, or a full-repository historical regression green claim.",
+  "architectureBefore": {
+    "commit": "5495e2acb42924a27e2d5c07eda5a8ff0944464c",
+    "baseline": "92cf31ec1779d0d6266a2caa6ad1708c379d1500",
+    "freezeSourceFiles": 182
+  },
+  "architectureAfter": {
+    "commit": "7c13ef19955dbda6873815a1231a9800a580a4e1",
+    "baseline": "95db2af664ff9cb6ea405d0ba389ef428dfd7d6c",
+    "freezeSourceFiles": 185
+  },
+  "characterKitSha256": "cc311f8fdaa912538fdfffebd66b7fa2c5de7f2c7063ffbc5bf462bc3f5edc6c",
+  "characterReady": {
+    "frozen": 38,
+    "synchronous": 38,
+    "incremental": 38
+  },
+  "requiredActors": 38,
+  "routeSamples": 148,
+  "independentFullRayOwnerAudits": 796,
+  "priorR50CacheComparison": {
+    "source": "reports/r50-followup/world-incremental-review.json.gz",
+    "sha256": "a4a86ae1123e03bb69b5084340f9f9167746a047506a9fbde70755ec59e66980",
+    "readableSource": "reports/r50/world-bindings.md",
+    "readableSourceSha256": "952fde8ccdcbb9d0e77336709351f329022aa2d8285d447a280c2d7713f7d7f4",
+    "all38PositionsUnchanged": true,
+    "all38SemanticBindingsUnchanged": true,
+    "all148RouteSamplesUnchanged": true,
+    "opaqueMeshIdPolicy": "Same-world algorithm audit remaps exact mesh owners; cross-world cache comparison omits scene enumeration IDs only. Fresh independent full THREE raycasts validate actual current owners."
+  },
+  "body": {
+    "tests": 57,
+    "passed": 57,
+    "routeCases": 56,
+    "allRoutesArrived": true,
+    "rescueCount": 0,
+    "meshes": 599,
+    "relevantTriangles": 748066,
+    "recordedFrames": 44180,
+    "acceptedSubsteps": 58648,
+    "negativeControl": "Translated low furniture lookalike remains rejected."
+  },
+  "canopy": {
+    "tests": 2,
+    "passed": 2,
+    "sites": [
+      "永和宫",
+      "重华宫"
+    ],
+    "scope": "Standing, apex/2 and full jump apex approach remains passable; all four actual columns continue blocking; overhead full frame clears jump head; retained platform contact unchanged."
+  },
+  "sightlines": {
+    "source": "Separate actual R49 and R49B architectural worlds, identical final Kit 07, production route at t=0 and CPU production deformation. This is an architecture before/after test, unlike the same-world three-adapter comparison.",
+    "actors": 38,
+    "camerasPerWorld": 76,
+    "raysPerWorld": 684,
+    "totalFreshRays": 1368,
+    "cameraDistancesMeters": [
+      3,
+      7
+    ],
+    "actualCharacterTrianglesUsed": true,
+    "fullThreeRaycast": true,
+    "all684RayRecordsIdentical": true,
+    "newR49BObstructionCount": 0,
+    "fullyVisibleCameras": 69,
+    "partlyOrFullyBlockedCameras": 7,
+    "existingOcclusions": [
+      {
+        "actorId": "west-lane-guard-02",
+        "mode": "near-front",
+        "camera": [
+          122,
+          1.6499999999999282,
+          326.4
+        ],
+        "visibleTargets": 0,
+        "totalTargets": 9,
+        "blockers": [
+          "west-lane-guard-01"
+        ],
+        "alreadyPresentBeforeR49B": true
+      },
+      {
+        "actorId": "west-lane-guard-02",
+        "mode": "medium-front",
+        "camera": [
+          122,
+          1.6499999999999282,
+          330.4
+        ],
+        "visibleTargets": 0,
+        "totalTargets": 9,
+        "blockers": [
+          "west-lane-guard-01"
+        ],
+        "alreadyPresentBeforeR49B": true
+      },
+      {
+        "actorId": "west-lane-guard-03",
+        "mode": "near-front",
+        "camera": [
+          122,
+          1.6499999999999284,
+          325
+        ],
+        "visibleTargets": 0,
+        "totalTargets": 9,
+        "blockers": [
+          "west-lane-guard-01"
+        ],
+        "alreadyPresentBeforeR49B": true
+      },
+      {
+        "actorId": "west-lane-guard-03",
+        "mode": "medium-front",
+        "camera": [
+          122,
+          1.6499999999999284,
+          329
+        ],
+        "visibleTargets": 0,
+        "totalTargets": 9,
+        "blockers": [
+          "west-lane-guard-01"
+        ],
+        "alreadyPresentBeforeR49B": true
+      },
+      {
+        "actorId": "chuxiu-consort-01",
+        "mode": "near-front",
+        "camera": [
+          100.22,
+          2.2099999523162843,
+          435.15999999999997
+        ],
+        "visibleTargets": 0,
+        "totalTargets": 9,
+        "blockers": [
+          "chuxiu-maid-01"
+        ],
+        "alreadyPresentBeforeR49B": true
+      },
+      {
+        "actorId": "chuxiu-consort-01",
+        "mode": "medium-front",
+        "camera": [
+          100.22,
+          2.2099999523162843,
+          431.15999999999997
+        ],
+        "visibleTargets": 0,
+        "totalTargets": 9,
+        "blockers": [
+          "chuxiu-maid-01"
+        ],
+        "alreadyPresentBeforeR49B": true
+      },
+      {
+        "actorId": "chuxiu-maid-01",
+        "mode": "medium-front",
+        "camera": [
+          100.22,
+          2.25,
+          428.5
+        ],
+        "visibleTargets": 0,
+        "totalTargets": 9,
+        "blockers": [
+          "west-six_chuxiu_glass_fit"
+        ],
+        "alreadyPresentBeforeR49B": true
+      }
+    ],
+    "affectedDomesticActorIds": [
+      "chuxiu-consort-01",
+      "chuxiu-maid-01",
+      "yikun-consort-01",
+      "yikun-eunuch-01",
+      "yongshou-consort-01",
+      "yongshou-maid-01"
+    ],
+    "limitations": [
+      "Existing straight-on character/crowd and Chuxiu glass occlusion are retained and explicitly reported, not silently called visible.",
+      "A full geometric intersection with existing transparent glass counts as obstruction conservatively; alpha/texture compositing is not evaluated.",
+      "No camera walkability certification, raster/texture review, GPU execution or animation-wide visibility claim."
+    ]
+  },
+  "differences": [],
+  "artifacts": {
+    "world-body-57.json.gz": "ba10246e5e273c4e3448f7250fc462f1290f1b02a603ca620852531eae6756e4",
+    "world-body-57.tap": "cadd838ee731318df8e53294834f937e22953c94a6ac713e17b792604625347d",
+    "world-canopy-player-2.tap": "6a91ca0ab1e5b24f87559034e9577d1d020fa7d9a9968521e54e4a6bb1c309d3",
+    "world-bindings-38-148.json.gz": "16b97ff4b4cfabeb6547db72dff431c18f79eb3dd84ebb770f040805bca95900",
+    "world-bindings-summary.json": "761809666455d75a516e2bf70217178cf13eedfdbd90339e25bbba615f4ad4de",
+    "world-sightlines-r49.json.gz": "51891ecb12da173a5b9b58b1c4e5dda684bcc38a2e0d00d1ef6b59365197d0e2",
+    "world-sightlines-r49b.json.gz": "606f771e6697956c6c162dc570ddb25a8875ff1da78ffd32622bc8978153f106",
+    "world-freeze-provenance.json": "fbe7e77026798dbd78888a23df00180fc0e45e0480dec842c86257477b4aee82"
+  }
+}
