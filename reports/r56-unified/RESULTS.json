@@ -1,0 +1,77 @@
+{
+  "release": "R56",
+  "cumulativeBaseLocal": "cff14981446151d2fce9dd37295000a6cb284465",
+  "cumulativeBaseRemote": "ec032ce22565c581491d944bcf5b085d1a50782f",
+  "validatedRuntimeCommit": "3891d371f6e235c372c28c1b4f787f4a252e8eca",
+  "sourceFingerprint": "916d900e548e1e0a69aeb9137a95b41cb245021f149280dfdff623ba10ab65a3",
+  "logicalRegistered": 101,
+  "actualFreshReadyB": 101,
+  "individuallySubmittedVisible": {
+    "B": 101,
+    "Yangxin-S": 101,
+    "Kunning-S": 101
+  },
+  "wholeWorldViewCases": 280,
+  "viewFailures": [],
+  "paths": 21,
+  "pathSamples": 575,
+  "newPopulation": {
+    "ids": [
+      "shoukang-maid-01",
+      "shoukang-eunuch-01",
+      "cining-maid-01",
+      "cining-eunuch-01",
+      "shouan-maid-01",
+      "shouan-eunuch-01",
+      "yangxin-eunuch-01",
+      "yangxin-eunuch-02"
+    ],
+    "views": 28,
+    "twoCycleRoutes": 4,
+    "actualRouteFrames": 1820,
+    "phaseIndependentPairs": 772,
+    "segmentPairs": 836,
+    "minimumSpacingMeters": 16
+  },
+  "submissionCountsNotGPU": {
+    "boundary": "CPU actual instance/index counts only, not GPU draw timing",
+    "high": {
+      "frames": 11638,
+      "maxInstances": 64,
+      "maxTriangles": 45470,
+      "maxBatches": 21,
+      "maxNear": 2
+    },
+    "low": {
+      "frames": 188,
+      "maxInstances": 32,
+      "maxTriangles": 14228,
+      "maxBatches": 11,
+      "maxNear": 0
+    }
+  },
+  "checks": {
+    "focusedApplicable": 56,
+    "integratedWorldSuites": 1,
+    "productionEntryAndRealBuild": 3,
+    "transportTests": 39
+  },
+  "retention": {
+    "oldActors": 93,
+    "oldPaths": 17,
+    "Kit": "byte-identical",
+    "worldInputs": 195,
+    "worldManifest": "byte-identical",
+    "runtimeException": [
+      "src/scene/characters/CharacterLOD.js",
+      "src/scene/characters/CharacterManager.js"
+    ]
+  },
+  "unverified": [
+    "browser/WebGL picture",
+    "GPU frame timing",
+    "physical phones",
+    "complete historical fidelity"
+  ],
+  "success": true
+}

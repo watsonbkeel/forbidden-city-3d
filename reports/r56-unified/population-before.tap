@@ -1,0 +1,77 @@
+✔ R56 retains the exact93 R55 actors, all old bindings, approved Kit and prior required coverage (3.270224ms)
+✖ R56 registers exactly101 required roles with eight bounded existing-template courtyard additions (1.549749ms)
+✖ R56 cannot hide a missing candidate through demotion, count padding or altered required coverage (3.453558ms)
+✖ new ground bindings are named real halls and never map-only Zaigong or interior exhibits (0.400339ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 1
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 103.392046
+
+✖ failing tests:
+
+test at tests/r56-release-coverage.test.mjs:21:1
+✖ R56 registers exactly101 required roles with eight bounded existing-template courtyard additions (1.549749ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  93 !== 101
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r56-unified/tests/r56-release-coverage.test.mjs:22:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 93,
+    expected: 101,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r56-release-coverage.test.mjs:29:1
+✖ R56 cannot hide a missing candidate through demotion, count padding or altered required coverage (3.453558ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(c)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r56-unified/tests/r56-release-coverage.test.mjs:30:45)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r56-release-coverage.test.mjs:34:1
+✖ new ground bindings are named real halls and never map-only Zaigong or interior exhibits (0.400339ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 3
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r56-unified/tests/r56-release-coverage.test.mjs:42:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 3,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

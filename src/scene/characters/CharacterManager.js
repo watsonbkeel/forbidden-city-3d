@@ -116,7 +116,7 @@ export class CharacterManager {
       if (state.lod === 3) continue;
       const animation = characterEnvironmentMotion(actor, this.simulationSeconds, speed);
       candidates.push({ ...actor, position, rotationYRad, lod: quality === 'low' ? Math.max(1,state.lod) : state.lod,
-        distance: projection.distance, visibility, animation, pose: actor.behavior?.basePose ?? 'standing', support: state.binding.support });
+        budgetLOD: state.lod, distance: projection.distance, visibility, animation, pose: actor.behavior?.basePose ?? 'standing', support: state.binding.support });
     }
     const selected = selectCharacterBudget(candidates, quality, this.registry.actors, this.nearIds);
     // Keep only currently submitted IDs. Missing support, frustum exits and low

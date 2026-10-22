@@ -398,5 +398,69 @@
     "heightToleranceMeters": 0.003,
     "source": "src/scene/Environment.js#setupGround",
     "verification": "Independent open courtyard ground, never the raised .62m interior or .46m return corridor. Must bind current visible geometry, clear full body and pass every route sample in the current zone generation."
+  },
+  {
+    "id": "shoukang-r56-court-ground",
+    "zoneRef": "outer-west",
+    "anchorRef": "shoukang-r56-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -10,
+      10,
+      -22,
+      -15
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.001,
+    "source": "src/scene/Environment.js#setupGround ground_brick visible triangles",
+    "verification": "Actual current-generation rendered courtyard triangles; not an interior floor, map-label origin fallback, under-deck surface or assumed ground plane."
+  },
+  {
+    "id": "cining-r56-court-ground",
+    "zoneRef": "outer-west",
+    "anchorRef": "cining-r56-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -14,
+      14,
+      -31,
+      -24
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.001,
+    "source": "src/scene/Environment.js#setupGround ground_brick visible triangles",
+    "verification": "Actual current-generation rendered courtyard triangles; not an interior floor, map-label origin fallback, under-deck surface or assumed ground plane."
+  },
+  {
+    "id": "shouan-r56-court-ground",
+    "zoneRef": "outer-west",
+    "anchorRef": "shouan-r56-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -10,
+      10,
+      -19,
+      -12
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.001,
+    "source": "src/scene/Environment.js#setupGround ground_brick visible triangles",
+    "verification": "Actual current-generation rendered courtyard triangles; not an interior floor, map-label origin fallback, under-deck surface or assumed ground plane."
+  },
+  {
+    "id": "yangxin-r56-court-ground",
+    "zoneRef": "west-six",
+    "anchorRef": "yangxin-r56-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -14,
+      16,
+      -22,
+      -15
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.001,
+    "source": "src/scene/Environment.js#setupGround ground_brick visible triangles",
+    "verification": "Actual current-generation rendered courtyard triangles; not an interior floor, map-label origin fallback, under-deck surface or assumed ground plane."
   }
 ]
