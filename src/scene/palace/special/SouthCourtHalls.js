@@ -39,12 +39,30 @@ export function buildSouthCourtHall(kit,item){
   // only the two unused inward stairs, never foreign geometry/collision.
   // Their geometry stays within the fitted connector platform and is hidden
   // below its floor; the platform top is the sole navigation datum.
-  if(item.name)kit.plaque(f,item.name,0,g.ph+g.colH-.8,-g.d/2-.38,1.25,2.0);
+  if(item.name){
+   if(g.part==='rear'){
+    // A rear-hall board belongs below the connector ceiling, not embedded
+    // through it on the tall rear hall. The dated Wenhua panorama attests a
+    // suspended Zhujing board; Jingsi retains only a model wayfinding label.
+    const connector=SOUTH_COURTS[g.court].connector;
+    const ceiling=connector.ph+connector.colH-.52,w=1.05,h=1.5;
+    const top=ceiling-.18,y=top-h/2,z=-g.d/2-.8;
+    kit.plaque(f,item.name,0,y,z,w,h);
+    const mount=kit.box(f,'wood_column',.09,.18,.09,0,ceiling-.09,z+.06);
+    mount.name='rear-hall-nameboard-suspension';
+    f.userData.nameboardMount={
+     status:g.court==='wenhua'?'DATED_PHOTO_GUIDED_MOUNT_MODEL_FIT':'MODEL_WAYFINDING_LABEL_NOT_ATTESTED_HISTORICAL_PLAQUE',
+     source:g.court==='wenhua'?'https://ggzlquanjing.dpm.org.cn/scene/ObQaC7pkO3j2wXKbtaUFp4v1SNh3Nv8T/20260911-dz/panos/a057.tiles/f/l1/01/l1_f_01_01.jpg':'https://www.dpm.org.cn/explore/building/236500.html',
+     position:[0,y,z],width:w,height:h,ceilingY:ceiling,
+     dimensions:'REVERSIBLE_CLEARANCE_FIT_NOT_SURVEYED',
+     limitation:g.court==='wenhua'?'Dated panorama shows a vertical board below a connector beam; exact mount coordinates and carved border not reproduced.':'Name identifies the documented rear hall only. Available 2021 gallery panoramas do not attest this physical nameboard or its mounting position.'};
+   }else kit.plaque(f,item.name,0,g.ph+g.colH-.8,-g.d/2-.38,1.25,2.0);
+  }
  }
  const display=buildSouthGalleryDisplays(kit,f,g);
  kit._lastFurnish=null;
  kit.registerRoom(f,{name:g.name??`${g.court==='wenhua'?'文华':'武英'}殿穿廊`,kind:`${g.court}-gallery`,x0:-g.w/2+.35,x1:g.w/2-.35,z0:-g.d/2,z1:g.d/2,y:g.ph,h:g.colH-.85,doors:[{x:0,z:-g.d/2},{x:0,z:g.d/2}]});
  const room=kit.rooms.at(-1);room.spawns=[{x:g.navigation.inside.x,z:g.navigation.inside.z}];
- f.userData.structure={...g,display};f.userData.southCourt=g;
+ f.userData.structure={...g,display,...(f.userData.nameboardMount?{nameboardMount:f.userData.nameboardMount}:{})};f.userData.southCourt=g;
  return {f,g,display};
 }

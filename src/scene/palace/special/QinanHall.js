@@ -1,9 +1,10 @@
 import * as THREE from 'three';
 import { qinanGeometry } from './QinanProfile.js';
 import { buildQinanRoof } from './QinanRoof.js';
+import { buildQinanNamePlaque } from './QinanNamePlaque.js';
 const tag=(o,role,extra={})=>{o.name=role;Object.assign(o.userData,{role,...extra});return o;};
 
-/** Zone-owned exterior replacement; no generic hall, floor, furniture or portal. */
+/** Zone-owned model; virtual side doors use the retained stairs and floor, never a north-through shortcut. */
 export function buildQinanHall(kit,item){
  const g=qinanGeometry(item),f=kit.frame(g.x,g.z,g.rot),floor=g.datum.floorY,base=g.datum.columnBaseTopY,b=g.mainBody.columnFootGrid,a=g.mainBody.enclosureApproximation;
  f.name=item.name??g.name;
@@ -33,7 +34,18 @@ export function buildQinanHall(kit,item){
  if(stripH>0)solid('qinan-main-south-upper-strip','wall_red',b.width,stripH,a.wallThickness,0,stripBottom+stripH/2,b.zs[0]);
  const n=g.southAnnex,nh=n.columnTopY-floor,nt=n.skin.wallThickness;
  for(let i=0;i<5;i++){const left=b.xs[i]+n.skin.columnRadius,right=b.xs[i+1]-n.skin.columnRadius;solid('qinan-annex-front-panel','lattice_doors',right-left,nh,nt,(left+right)/2,floor+nh/2,n.frontZ,{bay:i+1,status:'PROVISIONAL_CLOSED_PREVIEW_PANEL',currentDoorState:'UNKNOWN'});}
- for(const sign of [-1,1])solid('qinan-annex-side-panel','lattice_doors',nt,nh,n.rearZ-n.frontZ,sign*b.width/2,floor+nh/2,(n.frontZ+n.rearZ)/2,{status:'PROVISIONAL_CLOSED_PREVIEW_PANEL',sideDoorEvidence:'UNRESOLVED'});
+ // The old unverified side panels sealed the landing of both real stair
+ // models. Split only those placeholder skins: a virtual open doorway is not
+ // evidence that today's museum opens this route. Keep all exterior dimensions.
+ for(const portal of g.portals){
+  const {x,z,width,height,sign}=portal,v=g.virtualAccess;
+  const z0=z-width/2,z1=z+width/2;
+  const data={status:v.status,currentDoorState:'UNKNOWN',portalId:portal.id};
+  for(const [a,b] of [[n.frontZ,z0],[z1,n.rearZ]])solid('qinan-annex-side-panel','lattice_doors',nt,nh,b-a,x,floor+nh/2,(a+b)/2,data);
+  solid('qinan-virtual-door-header','lattice_doors',nt,nh-height,width,x,floor+height+(nh-height)/2,z,data);
+  // Fold the two leaves inward along the passage edges, not across the stair.
+  for(const side of [-1,1])solid('qinan-virtual-open-door-leaf','lattice_doors',width/2,height,v.leafThickness,x-sign*width/4,floor+height/2,z+side*(width/2+v.leafInset),data);
+ }
  // Plain painted beam/frieze bands convey tier heights without claiming the
  // unresolved complete dougong; four inner columns are separately source-derived.
  for(const z of [b.zs[0],b.zs.at(-1)])box('qinan-main-beam','caihua_beam',b.width+a.beamLengthExtension,a.beamHeight,a.beamWidth,0,g.levels.eaveColumnTop-a.beamHeight/2,z);
@@ -52,11 +64,12 @@ export function buildQinanHall(kit,item){
   solid('qinan-railing-hand','marble',alongX?len:t,g.supportApproximation.railHandHeight,alongX?t:len,(x0+x1)/2,floor+g.supportApproximation.railHandCenterAboveFloor,(z0+z1)/2);
  }
  buildQinanRoof(kit,f,g);
+ buildQinanNamePlaque(kit,f,g);
  f.updateMatrixWorld(true);
  const bounds=new THREE.Box3().setFromObject(f),roles={};let triangles=0;
  f.traverse(o=>{if(!o.isMesh)return;const role=o.userData.role;const n=(o.geometry.index?.count??o.geometry.attributes.position.count)/3;const r=roles[role]??={meshInstances:0,triangleInstances:0};r.meshInstances++;r.triangleInstances+=n;triangles+=n;});
  const {toWorld,...contract}=g;
- f.userData.structure={...contract,storeys:1,eaveCount:2,annexEaveCount:1,streamLayer:'B',accessStatus:'ground-only-preview',currentConditionAccepted:false,
+ f.userData.structure={...contract,storeys:1,eaveCount:2,annexEaveCount:1,streamLayer:'B',accessStatus:g.navigation.accessStatus,currentConditionAccepted:false,
   bounds:{min:bounds.min.toArray(),max:bounds.max.toArray()},roleBudget:{roles,triangleInstances:triangles,oldFullHallTriangles:3382,oldAlternativeSilhouetteTriangles:800,comparison:'Full hall and unloaded roof-only silhouette are alternative states, not additive draw-call savings.'}};
  const minX=Math.min(...g.map.footprints.map(p=>p.x-p.w/2)),maxX=Math.max(...g.map.footprints.map(p=>p.x+p.w/2)),minZ=Math.min(...g.map.footprints.map(p=>p.z-p.d/2)),maxZ=Math.max(...g.map.footprints.map(p=>p.z+p.d/2));
  kit.mapItems.push({kind:'hall',name:item.name??g.name,x:(minX+maxX)/2,z:(minZ+maxZ)/2,w:maxX-minX,d:maxZ-minZ,structure:'qinan-hall',qinanProfile:'qinan',profileId:g.profileId,profileHash:g.profileHash,footprints:g.map.footprints,labelAnchor:g.map.labelAnchor,navigation:g.navigation,dimensionStatus:'mixed-evidence-exterior-prototype'});

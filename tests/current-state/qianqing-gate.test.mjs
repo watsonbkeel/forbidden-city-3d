@@ -1,3 +1,4 @@
+import '../lib/inner-palace-fixture.mjs'; // CPU Canvas surface for the real gate plaque.
 import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
 import test from 'node:test';

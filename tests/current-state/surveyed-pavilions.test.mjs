@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import * as THREE from 'three';
+import '../lib/inner-palace-fixture.mjs';
 import { CourtKit } from '../../src/scene/palace/kit.js';
 import { ZoneBase } from '../../src/scene/zones/ZoneBase.js';
 import { CollisionManager } from '../../src/utils/Collision.js';
@@ -137,6 +138,8 @@ test('source records dispatch independently and metadata survives batching witho
   assert.deepEqual(records.map(i=>i.pavilionProfile).sort(),['hongyi','tiren']);
   const {kit,lib}=fixture('hongyi');const z=new ZoneBase(lib,{id:'test',items:[]});records.forEach(i=>z.buildHall(i));
   assert.equal(z.kit.rooms.length,2);
+  z.kit.buildPlaqueAtlas(); // The sourced Hongyi face receives its atlas before material inspection.
+
   const shared=[...new Set([...z.kit.root.children].flatMap(o=>{const m=[];o.traverse(p=>{if(p.isMesh)m.push(p.material);});return m;}))].filter(m=>m.name==='roof_tile');
   let disposed=0;shared.forEach(m=>m.addEventListener('dispose',()=>disposed++));
   const finished=z.kit.finish();assert.equal(finished.userData.architecture.length,2);

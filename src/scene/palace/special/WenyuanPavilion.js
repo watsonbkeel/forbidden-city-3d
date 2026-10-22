@@ -1,3 +1,4 @@
+import {fitRegisteredNameboard} from './FittedNameboardMount.js';
 import * as THREE from 'three';
 import { buildRoof } from '../../RoofBuilder.js';
 import { applyBoxUV } from '../../../utils/GeometryUV.js';
@@ -16,5 +17,6 @@ export function buildWenyuanPavilion(kit,item){const g=wenyuanGeometry(item),{st
  const cg=new THREE.CylinderGeometry(.25,.27,H,12);for(let k=0;k<=6;k++)for(const s of[-1,1])kit.mesh(f,cg,kit.lib.material('wood_column'),-uw/2+k*uw/6,uy+H/2,s*ud/2);
  const proxy=Object.create(kit.lib);proxy.material=n=>n==='roof_tile'?dark:kit.lib.material(n);const roof=buildRoof(proxy,{detail:'low',type:'xieshan',width:uw+.5,depth:ud+.5,baseY:uy+H,layers:1,brackets:true});
  roof.traverse(n=>{if(n.isMesh&&n.material.name==='roof_ridge_glaze')n.material=green;});for(const mat of roof.userData.ownedMaterials??[])if(mat.name==='roof_ridge_glaze')mat.dispose();else kit.owned.push(mat);roof.userData.ownedMaterials=[];f.add(roof);
+ g.nameboardMount=fitRegisteredNameboard(kit,f,item.name,{z:-g.d/2-.5,reason:'Retained model label in front of, never inside, the true central column; historic plaque position unverified'});
  f.userData.structure=g;return{f,g};
 }

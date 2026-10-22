@@ -584,10 +584,10 @@ export class CourtKit {
       // 有后门时宝座前移，宝座与后檐之间留出 ≥1.6m 的穿行通道
       const tz = d / 2 - (backDoor ? Math.min(3.4, d * 0.36) : Math.min(2.6, d * 0.3));
       const tw = Math.min(bay * 1.4, 5);
-      this.mesh(f, new THREE.BoxGeometry(tw, 0.5, 2.4), this.lacquer, 0, y0 + 0.25, tz);
-      this.mesh(f, new THREE.BoxGeometry(1.4, 0.6, 1.0), this.gold, 0, y0 + 0.8, tz);
-      this.mesh(f, new THREE.BoxGeometry(1.5, 1.2, 0.2), this.gold, 0, y0 + 1.6, tz + 0.5);
-      this.mesh(f, new THREE.BoxGeometry(tw * 0.8, 2.6, 0.25), this.gold, 0, y0 + 1.8, tz + 1.15);
+      this.mesh(f, new THREE.BoxGeometry(tw, 0.5, 2.4), this.lacquer, 0, y0 + 0.25, tz).userData = { role: 'retained-throne-component', thronePart: 'platform' };
+      this.mesh(f, new THREE.BoxGeometry(1.4, 0.6, 1.0), this.gold, 0, y0 + 0.8, tz).userData = { role: 'retained-throne-component', thronePart: 'seat' };
+      this.mesh(f, new THREE.BoxGeometry(1.5, 1.2, 0.2), this.gold, 0, y0 + 1.6, tz + 0.5).userData = { role: 'retained-throne-component', thronePart: 'back' };
+      this.mesh(f, new THREE.BoxGeometry(tw * 0.8, 2.6, 0.25), this.gold, 0, y0 + 1.8, tz + 1.15).userData = { role: 'retained-throne-component', thronePart: 'screen' };
       this.col(f, -tw / 2, y0, tz - 1.2, tw / 2, y0 + 3, tz + 1.3);
     }
 
@@ -647,7 +647,7 @@ export class CourtKit {
     geo.rotateY(Math.PI);
     const m = this.mesh(f, geo, null, x, y, z);
     m.castShadow = false;
-    this.plaques.push({ mesh: m, text });
+    this.plaques.push({ mesh: m, frame, text });
   }
 
   buildPlaqueAtlas() {

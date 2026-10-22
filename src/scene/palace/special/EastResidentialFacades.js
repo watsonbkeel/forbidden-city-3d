@@ -103,8 +103,21 @@ function openCanopy(kit,f,item,p){
 }
 export function buildEastResidentialFacade(kit,item){
  const p=eastFacadeProfile(item),{structure,facadeProfile,...shell}=item;
- const result=kit.hall({...shell,backDoor:!!p.rearEntry,frontEnclosureInset:p.frontInset??0,frontSteps:!p.openCanopy,panelBuilder:windowBuilder(kit,p),...(p.openCanopy?{ceilingBuilder:plainCeiling(kit,p)}:{})});
- if(p.openCanopy)openCanopy(kit,result.f,item,p);
- result.f.userData.structure={...result.f.userData.structure,...p,frontEnclosureInset:p.frontInset??0,accessStatus:'MODEL_PASSAGE_NOT_HISTORICAL_DOOR_OR_STAIR_MEASUREMENT'};
+ const result=kit.hall({...shell,backDoor:!!p.rearEntry,frontEnclosureInset:p.frontInset??0,frontSteps:!p.openCanopy,panelBuilder:windowBuilder(kit,p),...(p.openCanopy?{ceilingBuilder:plainCeiling(kit,p),plaque:false}:{})});
+ if(p.openCanopy){
+  openCanopy(kit,result.f,item,p);
+  // The museum underside photograph shows the vertical board on the hall
+  // wall beneath the baoxia, not on/above the canopy roof. Its old generic
+  // height put the first character behind the canopy beam. These dimensions
+  // are a reversible clearance fit, not measurements from the photograph.
+  const h=1.5,w=1.05,beamBottom=item.ph+item.colH*.78-.41;
+  const top=beamBottom-.15,y=top-h/2,z=-item.d/2-.3;
+  kit.plaque(result.f,item.plaqueText??item.name,0,y,z,w,h);
+  result.f.userData.nameboardMount={status:'PHOTO_GUIDED_MODEL_FIT_NOT_SURVEYED',
+   source:p.source,photo:p.undersidePhoto??'https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d39e47b346.jpg',
+   position:[0,y,z],width:w,height:h,canopyBeamBottom:beamBottom,
+   interpretation:'Vertical nameboard below the hall lintel inside the open baoxia; Chinese-only simplified lettering retained, not a complete Manchu/Han facsimile'};
+ }
+ result.f.userData.structure={...result.f.userData.structure,...p,...(result.f.userData.nameboardMount?{nameboardMount:result.f.userData.nameboardMount}:{}),frontEnclosureInset:p.frontInset??0,accessStatus:'MODEL_PASSAGE_NOT_HISTORICAL_DOOR_OR_STAIR_MEASUREMENT'};
  return{...result,p};
 }

@@ -165,7 +165,7 @@ export class Minimap {
     // 提示文字
     const hint = document.createElement('div');
     hint.id = 'minimap-help';
-    hint.textContent = '滚轮/双指缩放 · 拖动平移 · 点击名称看介绍，再点前往 · 方向键/WASD/摇杆继续走动，Q/E 转向 · 按 M 或关闭按钮退出 · 钦安殿仅设地面外观观览点';
+    hint.textContent = '滚轮/双指缩放 · 宫殿名优先，放大查看更多 · 拖动平移 · 点击名称看介绍，再点前往 · 方向键/WASD/摇杆继续走动，Q/E 转向 · 按 M 或关闭按钮退出 · 钦安殿保留地面观览落点，可沿两侧台阶进入虚拟展示；游戏入殿路线不代表现实开放';
     hint.style.cssText = `
       color: #999;
       font-size: 12px;
@@ -218,7 +218,8 @@ export class Minimap {
     window.visualViewport?.addEventListener('resize', this._onResize);
     window.addEventListener('keydown', this._onKeyDown);
     
-    // 底图只画一次到高分辨率离屏画布，全图和预览都从这里取，避免每帧重绘全部建筑
+    // Cache the high-resolution base map; only a changed label scale rebuilds
+    // it, so walking and panning do not redraw every building each frame.
     this.baseScale = this.previewEnabled ? 4 : 6;   // 放大查看时文字仍然清晰
     this.baseCanvas = document.createElement('canvas');
     this.baseCanvas.width = this.mapSize * this.baseScale;
@@ -745,17 +746,45 @@ export class Minimap {
     return [Math.min(a.x, b.x), Math.min(a.y, b.y), Math.abs(b.x - a.x), Math.abs(b.y - a.y)];
   }
 
-  drawLabel(text, x, y, bold, size = 10, targetName = text, mode, placeId = null) {
+  drawLabel(text, x, y, bold, size = 10, targetName = text, mode, placeId = null, unitScale = 1) {
+    if (this.labelQueue) {
+      this.labelQueue.push({ text, x, y, bold, size, targetName, mode, placeId });
+      return;
+    }
     const ctx = this.ctx;
-    ctx.font = `${bold ? 'bold ' : ''}${size}px sans-serif`;
+    ctx.font = `${bold ? 'bold ' : ''}${size * unitScale}px sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    const tw = ctx.measureText(text).width;
-    this.labels.push({ name: targetName, placeId, x, y, width: tw + 4, height: size + 2, ...(mode ? { mode } : {}) });
+    const lines = text.split('\n');
+    const tw = Math.max(...lines.map(line => ctx.measureText(line).width)) / unitScale;
+    const textHeight = size * lines.length;
+    const pad = 1 / unitScale;
+    const label = { name: targetName, placeId, x, y, width: tw + 4 * pad, height: textHeight + 2 * pad, ...(mode ? { mode } : {}) };
+    this.labels.push(label);
+    const paint = { ...label, text, bold, size };
+    this.labelPaintRecords?.push(paint);
+    if (!this.deferLabelPaint) this.paintLabel(ctx, paint, x, y, 1);
+  }
+
+  paintLabel(ctx, label, x, y, scale) {
+    const size = label.size * scale, lines = label.text.split('\n');
+    ctx.font = `${label.bold ? 'bold ' : ''}${size}px sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
     ctx.fillStyle = 'rgba(255, 255, 255, 0.72)';
-    ctx.fillRect(x - tw / 2 - 2, y - size / 2 - 1, tw + 4, size + 2);
+    ctx.fillRect(x - label.width * scale / 2, y - label.height * scale / 2, label.width * scale, label.height * scale);
     ctx.fillStyle = 'rgba(0, 0, 0, 0.9)';
-    ctx.fillText(text, x, y);
+    lines.forEach((line, index) => ctx.fillText(line, x, y + (index - (lines.length - 1) / 2) * size));
+  }
+
+  drawLabels(ctx, toScreen, scale, width, height) {
+    for (const label of this.labelPaintRecords ?? []) {
+      const p = toScreen(label.x, label.y);
+      const halfW = label.width * scale / 2, halfH = label.height * scale / 2;
+      if (p.x + halfW < 0 || p.x - halfW > width || p.y + halfH < 0 || p.y - halfH > height) continue;
+      // Paint at screen resolution, never enlarge glyphs baked into the map.
+      this.paintLabel(ctx, label, p.x, p.y, scale);
+    }
   }
 
   drawSideItems() {
@@ -786,33 +815,58 @@ export class Minimap {
         }
       }
     }
-    // 只标有名字的主要殿宇与门（字号小，避免互相遮挡）
-    const placed = [];
+    // Keep every candidate. Palace/gate priority and measured text collisions
+    // are resolved together, after all building footprints have been painted.
     for (const it of this.items) {
       if (!it.name || it.kind === 'corridor') continue;
       const [x, y, w, h] = this.rectOf(it.x, it.z, it.w, it.d);
       const anchor = it.labelAnchor ? this.worldToMap(it.labelAnchor.x, it.labelAnchor.z) : { x: x + w / 2, y: y + h / 2 };
       const cx = anchor.x, cy = anchor.y;
-      if (placed.some(p => Math.abs(p.x - cx) < 22 && Math.abs(p.y - cy) < 9)) continue;
-      placed.push({ x: cx, y: cy });
       const mode = it.navigation?.mode;
       this.drawLabel(it.historicalSite ? `${it.name}（旧址）` : mode === 'exterior-view' ? `${it.name}（外观）` : it.name, cx, cy, it.kind === 'hall', it.kind === 'hall' ? 9 : 8, it.name, mode, this.placeCatalog?.forMapItem(it, this.items)?.id);
     }
   }
   
   /**
-   * 静态底图（建筑/河道/文字）绘制到高分辨率离屏画布，只执行一次
+   * Cache the map until its screen scale changes. Labels remain readable CSS
+   * sizes; zooming reveals details instead of enlarging a permanently culled set.
    */
-  renderBase() {
+  renderBase(labelScale = this.pxPerUnit) {
     this.labels = [];
+    this.labelPaintRecords = [];
     this.placeFootprints = [];
     const mainCtx = this.ctx;
     const ctx = this.baseCanvas.getContext('2d');
     ctx.setTransform(this.baseScale, 0, 0, this.baseScale, 0, 0);
     this.ctx = ctx; // drawLabel / drawSideItems 复用 this.ctx
+    this.labelQueue = [];
     try {
       this.drawStatic();
+      const candidates = this.labelQueue;
+      this.labelQueue = null;
+      this.deferLabelPaint = true;
+      // Main palace names precede subsidiary halls, then gates. Data order must
+      // never let an entrance erase its palace, including in other side zones.
+      const priority = label => label.bold ? (/后殿|配殿|庑房|值房|朝房|耳房/.test(label.targetName) ? 1 : 0) : 2;
+      candidates.sort((a, b) => priority(a) - priority(b));
+      for (const label of candidates) {
+        // Keep access/history qualifiers visible without letting a long suffix
+        // consume both neighbouring palace columns.
+        const text = label.text.replace(/（(旧址|外观)）$/, '\n（$1）');
+        const lines = text.split('\n');
+        const size = (label.bold ? 13 : 12) / labelScale;
+        ctx.font = `${label.bold ? 'bold ' : ''}${size * labelScale}px sans-serif`;
+        const width = (Math.max(...lines.map(line => ctx.measureText(line).width)) + 4) / labelScale;
+        const height = size * lines.length + 2 / labelScale;
+        const gap = 2 / labelScale;
+        if (this.labels.some(p => Math.abs(p.x - label.x) < (p.width + width) / 2 + gap &&
+          Math.abs(p.y - label.y) < (p.height + height) / 2 + gap)) continue;
+        this.drawLabel(text, label.x, label.y, label.bold, size, label.targetName, label.mode, label.placeId, labelScale);
+      }
+      this.baseLabelScale = labelScale;
     } finally {
+      this.labelQueue = null;
+      this.deferLabelPaint = false;
       this.ctx = mainCtx;
     }
   }
@@ -821,6 +875,7 @@ export class Minimap {
     const ctx = this.ctx;
     const cw = this.canvas.width, ch = this.canvas.height;
     const s = this.pxPerUnit;              // 屏幕 css 像素 / 地图单位
+    if (this.baseLabelScale !== s) this.renderBase(s);
     const d = this.dpr;
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.fillStyle = '#f0ebdc';
@@ -841,6 +896,7 @@ export class Minimap {
     }
     // 玩家标记：固定屏幕尺寸，不随缩放变大
     ctx.setTransform(d, 0, 0, d, 0, 0);
+    this.drawLabels(ctx, (x, y) => this.mapToScreen(x, y), s, this.viewW, this.viewH);
     const pm = this.mapToScreen(...Object.values(this.worldToMap(this.playerPosition.x, this.playerPosition.z)));
     this.drawPlayer(ctx, pm, 5, 14);
     if(this.vehicle){const v=this.worldToMap(this.vehicle.x,this.vehicle.z);this.drawHelicopter(ctx,this.mapToScreen(v.x,v.y));}
@@ -856,6 +912,8 @@ export class Minimap {
     const cw = this.previewCanvas.width;
     const ch = this.previewCanvas.height;
     const view = this.previewView;
+    const labelScale = this.previewSize / view;
+    if (this.baseLabelScale !== labelScale) this.renderBase(labelScale);
     const pm = this.worldToMap(this.playerPosition.x, this.playerPosition.z);
     const s = this.baseScale;
     ctx.fillStyle = '#f0ebdc';
@@ -864,6 +922,8 @@ export class Minimap {
     const k = cw / this.previewSize;
     ctx.save();
     ctx.scale(k, k);
+    this.drawLabels(ctx, (x, y) => ({ x: this.previewSize / 2 + (x - pm.x) * labelScale,
+      y: this.previewSize / 2 + (y - pm.y) * labelScale }), labelScale, this.previewSize, this.previewSize);
     this.drawPlayer(ctx, { x: this.previewSize / 2, y: this.previewSize / 2 }, 5, 16);
     if(this.vehicle){const v=this.worldToMap(this.vehicle.x,this.vehicle.z);this.drawHelicopter(ctx,{x:this.previewSize/2+(v.x-pm.x)*this.previewSize/view,y:this.previewSize/2+(v.y-pm.y)*this.previewSize/view});}
     ctx.fillStyle = 'rgba(120, 30, 30, 0.9)';

@@ -1,0 +1,27 @@
+✖ R49 Qinan source-visible inter-eave plaque is present after production finish and its Han characters face the south approach (59.427115ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 230.414226
+
+✖ failing tests:
+
+test at tests/r49-qinan-entry-qianqing-plaque.test.mjs:130:1
+✖ R49 Qinan source-visible inter-eave plaque is present after production finish and its Han characters face the south approach (59.427115ms)
+  AssertionError [ERR_ASSERTION]: official south photograph proves a name plaque missing from the dedicated hall builder
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r49-reported-regressions/tests/r49-qinan-entry-qianqing-plaque.test.mjs:135:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

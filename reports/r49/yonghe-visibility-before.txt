@@ -1,0 +1,32 @@
+✖ Yonghe nameboard remains readable beneath its actual canopy after material merging (101.753745ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 302.217084
+
+✖ failing tests:
+
+test at tests/r49-yonghe-plaque-visibility.test.mjs:9:1
+✖ Yonghe nameboard remains readable beneath its actual canopy after material merging (101.753745ms)
+  AssertionError [ERR_ASSERTION]: distance 4, glyph row 0.32, column 0: caihua_beam_material
+  + actual - expected
+  
+  + 'caihua_beam_material'
+  - 'kit_plaques'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r49-reported-regressions/tests/r49-yonghe-plaque-visibility.test.mjs:17:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'caihua_beam_material',
+    expected: 'kit_plaques',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

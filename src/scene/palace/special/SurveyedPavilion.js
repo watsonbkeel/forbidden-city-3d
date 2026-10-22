@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { pavilionGeometry } from './PavilionProfiles.js';
+import { buildHongyiNameInscription } from './SourcedNameInscriptions.js';
 import { prunePavilionCoveredFaces, splitPavilionDeckFaces } from '../../../render/PavilionRenderGeometry.js';
 
 const tag=(object,role,data={})=>{object.name=role;Object.assign(object.userData,{role,...data});return object;};
@@ -238,12 +239,13 @@ export function buildSurveyedPavilion(kit,opts={}) {
   }
   const roof=tag(kit.roof(f,{type:'wudian',width:g.gallery.width,depth:g.gallery.depth,baseY:g.roof.baseY,height:g.roof.height,overhang:g.roof.overhang,brackets:true,layers:1},0,g.roof.centerZ),'upper-hip-roof',{roofType:'wudian',layers:1,ridgeReference:g.elevations.ridge,ridgeReferenceObject:g.roof.ridgeReferenceObject,ornamentFidelity:g.roof.ornamentFidelity,eaveReference:g.elevations.upper_eave});
   if(enter)kit.registerRoom(f,{name,kind:'hall',...g.roomBounds,doors:[{x:0,z:lo.front}]});
-  if(opts.plaque===true)kit.plaque(f,name,0,lo.columnTop-.5,lo.front-.35,1.1,1.5);
+  const nameInscription=g.profile==='hongyi'&&opts.plaque===true?buildHongyiNameInscription(kit,f,g):null;
+  if(!nameInscription&&opts.plaque===true)kit.plaque(f,name,0,lo.columnTop-.5,lo.front-.35,1.1,1.5);
   if(opts.map!==false) {
     const centre=g.toWorld(0,(p.z0+p.z1)/2),q=Math.abs(Math.sin(g.rot))>.5;
     kit.mapItems.push({kind:opts.map??'hall',name,x:centre[0],z:centre[1],w:q?p.depth:p.width,d:q?p.width:p.depth,pavilionProfile:g.profile});
   }
-  f.userData.pavilion={id:g.id,profile:g.profile,name,source:g.source,surveySource:g.surveySource,facing:g.facing,sourceFacing:g.sourceFacing,
+  f.userData.pavilion={id:g.id,profile:g.profile,name,nameInscription,source:g.source,surveySource:g.surveySource,facing:g.facing,sourceFacing:g.sourceFacing,
     storeys:[{level:1,bays:9,depthBays:3,width:lo.width,depth:lo.depth,floorY:lo.floorY,height:lo.height,columnXs:lo.columnXs,columnZs:lo.columnZs},
       {level:2,bays:7,enclosureIntervals:9,width:up.width,depth:up.depth,floorY:up.floorY,height:up.height,frontGrid:up.front,rearGrid:up.rear}],
     balcony:{width:g.gallery.width,depth:g.gallery.depth,floorY:up.floorY,supports:24,sides:4,access:'no-verified-stair',front:g.gallery.front,rear:g.gallery.rear,deck:g.deck},

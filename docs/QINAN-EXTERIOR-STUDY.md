@@ -1,5 +1,7 @@
 # Qin’an Hall exterior research prototype
 
+> Historical R47 report retained below. R49 supersedes only the closed-side-panel gameplay contract: the original side stairs now lead through explicitly virtual side doors, with same-way return. The exterior teleport landing and continuous north wall remain. This is not a claim of modern museum access. See [R49 bounded entry and gate report](../reports/r49/qinan-and-gate-plaque-validation.md).
+
 This is a reversible local research candidate. It is not a complete outline, full timber-frame reconstruction, accepted present-day reconstruction, or current museum visitor route. The intended interaction is ground-level exterior preview.
 
 ## Identity and source boundary
