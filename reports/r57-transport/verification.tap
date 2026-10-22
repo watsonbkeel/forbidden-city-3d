@@ -1,0 +1,244 @@
+TAP version 13
+# Subtest: R57 restores exact gzip and identity bytes and verifies without writing
+ok 1 - R57 restores exact gzip and identity bytes and verifies without writing
+  ---
+  duration_ms: 25.393029
+  type: 'test'
+  ...
+# Subtest: R57 missing part fails closed before creating any output
+ok 2 - R57 missing part fails closed before creating any output
+  ---
+  duration_ms: 17.288371
+  type: 'test'
+  ...
+# Subtest: R57 reversed part order fails closed before creating any output
+ok 3 - R57 reversed part order fails closed before creating any output
+  ---
+  duration_ms: 10.470577
+  type: 'test'
+  ...
+# Subtest: R57 corrupt part fails closed before creating any output
+ok 4 - R57 corrupt part fails closed before creating any output
+  ---
+  duration_ms: 12.678638
+  type: 'test'
+  ...
+# Subtest: R57 dropped final part fails closed before creating any output
+ok 5 - R57 dropped final part fails closed before creating any output
+  ---
+  duration_ms: 9.957859
+  type: 'test'
+  ...
+# Subtest: R57 wrong complete container hash fails closed before creating any output
+ok 6 - R57 wrong complete container hash fails closed before creating any output
+  ---
+  duration_ms: 10.275415
+  type: 'test'
+  ...
+# Subtest: R57 wrong original SHA-256 fails closed before creating any output
+ok 7 - R57 wrong original SHA-256 fails closed before creating any output
+  ---
+  duration_ms: 14.710566
+  type: 'test'
+  ...
+# Subtest: R57 wrong original Git blob fails closed before creating any output
+ok 8 - R57 wrong original Git blob fails closed before creating any output
+  ---
+  duration_ms: 12.914541
+  type: 'test'
+  ...
+# Subtest: R57 wrong original byte count fails closed before creating any output
+ok 9 - R57 wrong original byte count fails closed before creating any output
+  ---
+  duration_ms: 14.307128
+  type: 'test'
+  ...
+# Subtest: R57 unsupported encoding fails closed before creating any output
+ok 10 - R57 unsupported encoding fails closed before creating any output
+  ---
+  duration_ms: 12.299672
+  type: 'test'
+  ...
+# Subtest: R57 wrong gzip versus identity encoding fails closed before creating any output
+ok 11 - R57 wrong gzip versus identity encoding fails closed before creating any output
+  ---
+  duration_ms: 12.646681
+  type: 'test'
+  ...
+# Subtest: R57 invalid gzip header with valid container hashes fails closed before creating any output
+ok 12 - R57 invalid gzip header with valid container hashes fails closed before creating any output
+  ---
+  duration_ms: 10.5868
+  type: 'test'
+  ...
+# Subtest: R57 malformed original hash fails closed before creating any output
+ok 13 - R57 malformed original hash fails closed before creating any output
+  ---
+  duration_ms: 9.579213
+  type: 'test'
+  ...
+# Subtest: R57 empty index fails closed before creating any output
+ok 14 - R57 empty index fails closed before creating any output
+  ---
+  duration_ms: 9.48321
+  type: 'test'
+  ...
+# Subtest: R57 unfrozen source commit fails closed before creating any output
+ok 15 - R57 unfrozen source commit fails closed before creating any output
+  ---
+  duration_ms: 9.121839
+  type: 'test'
+  ...
+# Subtest: R57 changed schema fails closed before creating any output
+ok 16 - R57 changed schema fails closed before creating any output
+  ---
+  duration_ms: 11.63988
+  type: 'test'
+  ...
+# Subtest: R57 oversized part limit fails closed before creating any output
+ok 17 - R57 oversized part limit fails closed before creating any output
+  ---
+  duration_ms: 9.279425
+  type: 'test'
+  ...
+# Subtest: R57 empty part list fails closed before creating any output
+ok 18 - R57 empty part list fails closed before creating any output
+  ---
+  duration_ms: 9.42984
+  type: 'test'
+  ...
+# Subtest: R57 duplicate original path fails closed before creating any output
+ok 19 - R57 duplicate original path fails closed before creating any output
+  ---
+  duration_ms: 10.346621
+  type: 'test'
+  ...
+# Subtest: R57 duplicate part path fails closed before creating any output
+ok 20 - R57 duplicate part path fails closed before creating any output
+  ---
+  duration_ms: 10.281594
+  type: 'test'
+  ...
+# Subtest: R57 part outside report storage fails closed before creating any output
+ok 21 - R57 part outside report storage fails closed before creating any output
+  ---
+  duration_ms: 10.198008
+  type: 'test'
+  ...
+# Subtest: R57 rejects ineligible report path public/models/interiors/kunning-v6-5adbf53a3114.glb
+ok 22 - R57 rejects ineligible report path public/models/interiors/kunning-v6-5adbf53a3114.glb
+  ---
+  duration_ms: 11.071615
+  type: 'test'
+  ...
+# Subtest: R57 rejects ineligible report path tests/fixtures/r57-zhonghe-before.json
+ok 23 - R57 rejects ineligible report path tests/fixtures/r57-zhonghe-before.json
+  ---
+  duration_ms: 9.581787
+  type: 'test'
+  ...
+# Subtest: R57 rejects ineligible report path src/scene/characters/CharacterSystem.js
+ok 24 - R57 rejects ineligible report path src/scene/characters/CharacterSystem.js
+  ---
+  duration_ms: 16.038893
+  type: 'test'
+  ...
+# Subtest: R57 rejects ineligible report path data/interiors/kunning.json
+ok 25 - R57 rejects ineligible report path data/interiors/kunning.json
+  ---
+  duration_ms: 11.077404
+  type: 'test'
+  ...
+# Subtest: R57 rejects ineligible report path docs/validation/r57-zhonghe-display/neutral/geometry-and-navigation.json
+ok 26 - R57 rejects ineligible report path docs/validation/r57-zhonghe-display/neutral/geometry-and-navigation.json
+  ---
+  duration_ms: 10.445399
+  type: 'test'
+  ...
+# Subtest: R57 rejects ineligible report path docs/validation/r57-zhonghe-display/neutral/front.png
+ok 27 - R57 rejects ineligible report path docs/validation/r57-zhonghe-display/neutral/front.png
+  ---
+  duration_ms: 11.068881
+  type: 'test'
+  ...
+# Subtest: R57 rejects ineligible report path reports/r57-transport/ARCHIVES.json
+ok 28 - R57 rejects ineligible report path reports/r57-transport/ARCHIVES.json
+  ---
+  duration_ms: 12.568092
+  type: 'test'
+  ...
+# Subtest: R57 rejects ineligible report path reports/r57-unified/../outside.json
+ok 29 - R57 rejects ineligible report path reports/r57-unified/../outside.json
+  ---
+  duration_ms: 10.323897
+  type: 'test'
+  ...
+# Subtest: R57 rejects ineligible report path reports/r57-unified/./synthetic.json
+ok 30 - R57 rejects ineligible report path reports/r57-unified/./synthetic.json
+  ---
+  duration_ms: 9.708256
+  type: 'test'
+  ...
+# Subtest: R57 rejects ineligible report path reports/r57-unified//synthetic.json
+ok 31 - R57 rejects ineligible report path reports/r57-unified//synthetic.json
+  ---
+  duration_ms: 8.539309
+  type: 'test'
+  ...
+# Subtest: R57 rejects ineligible report path reports/r57-unified/synthetic\\file.json
+ok 32 - R57 rejects ineligible report path reports/r57-unified/synthetic\\file.json
+  ---
+  duration_ms: 10.117779
+  type: 'test'
+  ...
+# Subtest: R57 rejects ineligible report path /reports/r57-unified/synthetic.json
+ok 33 - R57 rejects ineligible report path /reports/r57-unified/synthetic.json
+  ---
+  duration_ms: 9.069962
+  type: 'test'
+  ...
+# Subtest: R57 enforces the binary part size even when hashes are otherwise valid
+ok 34 - R57 enforces the binary part size even when hashes are otherwise valid
+  ---
+  duration_ms: 13.245116
+  type: 'test'
+  ...
+# Subtest: R57 does not overwrite different existing evidence or write earlier entries
+ok 35 - R57 does not overwrite different existing evidence or write earlier entries
+  ---
+  duration_ms: 12.199772
+  type: 'test'
+  ...
+# Subtest: R57 rejects symlinked output parents without writing outside the destination
+ok 36 - R57 rejects symlinked output parents without writing outside the destination
+  ---
+  duration_ms: 11.500646
+  type: 'test'
+  ...
+# Subtest: R57 CLI checks a synthetic package read-only and restores only on request
+ok 37 - R57 CLI checks a synthetic package read-only and restores only on request
+  ---
+  duration_ms: 270.787771
+  type: 'test'
+  ...
+# Subtest: R57 rejects conflicting planned output ancestry before writing, reverse=false
+ok 38 - R57 rejects conflicting planned output ancestry before writing, reverse=false
+  ---
+  duration_ms: 10.094864
+  type: 'test'
+  ...
+# Subtest: R57 rejects conflicting planned output ancestry before writing, reverse=true
+ok 39 - R57 rejects conflicting planned output ancestry before writing, reverse=true
+  ---
+  duration_ms: 9.53015
+  type: 'test'
+  ...
+1..39
+# tests 39
+# suites 0
+# pass 39
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 854.019299
