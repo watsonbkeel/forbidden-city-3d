@@ -1,0 +1,49 @@
+{
+  "baseline": {
+    "file": "baseline-full-sequential.tap",
+    "sha256": "a50c1d210967372a0df4572f564341de8685b0cf76d663726aba361a84e2ecac",
+    "counts": {
+      "tests": 5277,
+      "pass": 5119,
+      "fail": 158,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 1354463.357354
+    }
+  },
+  "candidate": {
+    "file": "candidate-full.tap",
+    "sha256": "cb7dc61616d05ceb9d406a2aba62685d4cd6bf0307c303b430a35bb8c71de469",
+    "counts": {
+      "tests": 5277,
+      "pass": 5119,
+      "fail": 158,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 1307000.225955
+    }
+  },
+  "addedFailureIdentities": [],
+  "removedFailureIdentities": [],
+  "repeatedFailureIdentities": 158,
+  "changedDiagnosticIdentities": [
+    "V9 settings integration changes only three approved text/link template hunks @ tests/gate-map-source-disclosure.test.mjs:47:1"
+  ],
+  "changedDiagnostics": {
+    "V9 settings integration changes only three approved text/link template hunks @ tests/gate-map-source-disclosure.test.mjs:47:1": {
+      "baseline": {
+        "title": "V9 settings integration changes only three approved text/link template hunks",
+        "location": "tests/gate-map-source-disclosure.test.mjs:47:1",
+        "diagnostic": "type: 'test'\n  location: '<snapshot>/tests/gate-map-source-disclosure.test.mjs:47:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Restored source must equal exact f83c748 pre-information bytes\n    + actual - expected\n    \n    + '2d3f5afa674ffef2d7f927efb337699a5200a0a0562f361539ca3486f87aecd0'\n    - '3d83c96e1d6f915039a7aea17d4491464b045ae1551683549045a942b61ad7bf'\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: '3d83c96e1d6f915039a7aea17d4491464b045ae1551683549045a942b61ad7bf'\n  actual: '2d3f5afa674ffef2d7f927efb337699a5200a0a0562f361539ca3486f87aecd0'\n  operator: 'strictEqual'"
+      },
+      "candidate": {
+        "title": "V9 settings integration changes only three approved text/link template hunks",
+        "location": "tests/gate-map-source-disclosure.test.mjs:47:1",
+        "diagnostic": "type: 'test'\n  location: '<snapshot>/tests/gate-map-source-disclosure.test.mjs:47:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Restored source must equal exact f83c748 pre-information bytes\n    + actual - expected\n    \n    + 'f186c4cafeac66f19ee5e2f05ab02b5cc79ab2ce4c0879ea67e372712c89f821'\n    - '3d83c96e1d6f915039a7aea17d4491464b045ae1551683549045a942b61ad7bf'\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: '3d83c96e1d6f915039a7aea17d4491464b045ae1551683549045a942b61ad7bf'\n  actual: 'f186c4cafeac66f19ee5e2f05ab02b5cc79ab2ce4c0879ea67e372712c89f821'\n  operator: 'strictEqual'"
+      }
+    }
+  },
+  "statement": "A matching failing identity is not a pass. Diagnostic changes are retained for review; no old test was rewritten."
+}

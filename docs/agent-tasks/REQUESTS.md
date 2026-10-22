@@ -72,3 +72,11 @@
 - **分派建议**：总控在合并 P1-Z-axis 到 main 时同步更新。
 - **注**：路线 6「坤宁宫→御花园→神武门」（第 56 行）中的 `GARDEN_PATH_X` 仍正确（东西甬路 x = ±17 未变）。
 | 2026-10-12 | P1-I | `main.js`、`src/ui/PerfHUD.js` | 「碰撞检测」步骤后 `this.interiors = new InteriorLoader(this.scene, this.collisionManager, { renderer: this.renderer })`；animate 里 `this.interiors.update(this.camera.position)`；PerfHUD 增加一行 `interiors.hudLine()`；`dispose()` 调 `interiors.dispose()` | InteriorLoader 已自测通过（p1i-loader PASS），但 main.js 不在 P1-I 所有权内，运行时尚未自动触发 S 档加载 | 中 | 总控（合并时顺手接） | 待办 |
+
+## R50 characters: minimal integration approved by current integration owner (2026-10-22)
+- main.js: import and construct CharacterSystem after existing world/UI readiness, pass existing camera/day-cycle/quality/hidden state to one update, dispose before world. No architectural or flight mutation.
+- SettingsMenu.js: add one accessible 宫廷人物 toggle and historical interpretation notice. Existing modal/input/focus behavior remains owned by existing implementation.
+- PerfHUD.js: accept a read-only characterProvider and display separate logical/load/render/CPU stats. Existing complete-frame renderer.info reset remains unchanged.
+- Frozen: data/zones, palace/zone builders, InteriorLoader, Collision, prior stepwalk and regression tests.
+- R50 samples require user style approval before expanded population. Formal seat supports are checked against visible furniture rather than collision proxy heights.
+- 2026-10-22 additional QA-only approval: package.json/package-lock.json add exact devDependency @napi-rs/canvas@0.1.100 from the official npm registry. No production dependency, existing package version, existing lock entry, or npm script changes. Clean npm ci, native PNG and all affected character tests verified.

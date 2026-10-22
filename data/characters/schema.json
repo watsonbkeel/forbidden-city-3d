@@ -1,0 +1,990 @@
+{
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "unit": {
+      "const": "meter"
+    },
+    "actors": {
+      "type": "array",
+      "minItems": 38,
+      "maxItems": 96,
+      "items": {
+        "$ref": "#/$defs/actor"
+      }
+    },
+    "templates": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/template"
+      }
+    },
+    "anchors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/anchor"
+      }
+    },
+    "surfaces": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/surface"
+      }
+    },
+    "seats": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/seat"
+      }
+    },
+    "paths": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/path"
+      }
+    },
+    "ceremonies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ceremony"
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evidence"
+      }
+    },
+    "scope": {
+      "$ref": "#/$defs/scope"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "unit",
+    "actors",
+    "templates",
+    "anchors",
+    "surfaces",
+    "seats",
+    "paths",
+    "ceremonies",
+    "evidence",
+    "scope"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:forbidden-city-3d:characters:v2",
+  "title": "R50 Character registry, metres and actual model support bindings",
+  "$comment": "Apply to the combined registry exported by index.js. CharacterSchema.js adds cross-reference, immutable required coverage, support and shared-formation constraints. WorldAdapter verifies actual geometry at runtime.",
+  "$defs": {
+    "vector3": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "boundsXZ": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "evidenceRefs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "pose": {
+      "enum": [
+        "standing",
+        "seated",
+        "kneeling"
+      ]
+    },
+    "seatVariant": {
+      "enum": [
+        "standard",
+        "raised-footstool",
+        "throne-front-perch",
+        "kang-low"
+      ]
+    },
+    "history": {
+      "type": "object",
+      "properties": {
+        "presentation": {
+          "const": "interpretive"
+        },
+        "era": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidenceRefs": {
+          "$ref": "#/$defs/evidenceRefs"
+        },
+        "namedIdentity": {
+          "const": false
+        }
+      },
+      "required": [
+        "presentation",
+        "era",
+        "evidenceRefs",
+        "namedIdentity"
+      ]
+    },
+    "placement": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "const": "surface"
+            },
+            "anchorRef": {
+              "type": "string",
+              "minLength": 1
+            },
+            "surfaceRef": {
+              "type": "string",
+              "minLength": 1
+            },
+            "referenceFrame": {
+              "const": "anchor-local"
+            },
+            "offsetMeters": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            "forwardLocal": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            }
+          },
+          "required": [
+            "mode",
+            "anchorRef",
+            "surfaceRef",
+            "referenceFrame",
+            "offsetMeters",
+            "forwardLocal"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "const": "seat"
+            },
+            "seatRef": {
+              "type": "string",
+              "minLength": 1
+            },
+            "referenceFrame": {
+              "const": "seat-local"
+            },
+            "offsetMeters": {
+              "const": [
+                0,
+                0,
+                0
+              ]
+            },
+            "forwardLocal": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            }
+          },
+          "required": [
+            "mode",
+            "seatRef",
+            "referenceFrame",
+            "offsetMeters",
+            "forwardLocal"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "const": "path"
+            },
+            "pathRef": {
+              "type": "string",
+              "minLength": 1
+            },
+            "surfaceRef": {
+              "type": "string",
+              "minLength": 1
+            },
+            "referenceFrame": {
+              "const": "path-local"
+            },
+            "offsetMeters": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            "forwardLocal": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            }
+          },
+          "required": [
+            "mode",
+            "pathRef",
+            "surfaceRef"
+          ]
+        }
+      ]
+    },
+    "behavior": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "ceremony-participant",
+            "guard-idle",
+            "patrol",
+            "daily-idle",
+            "stroll",
+            "ambient"
+          ]
+        },
+        "basePose": {
+          "$ref": "#/$defs/pose"
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "ceremonyRef": {
+          "type": "string",
+          "minLength": 1
+        },
+        "seatVariant": {
+          "$ref": "#/$defs/seatVariant"
+        },
+        "speedMetersPerSecond": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1.2
+        },
+        "pauseSeconds": {
+          "type": "number",
+          "minimum": 2,
+          "maximum": 4
+        },
+        "followerIndex": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "followerSpacingMeters": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 3
+        }
+      },
+      "required": [
+        "type",
+        "basePose",
+        "seed"
+      ]
+    },
+    "actor": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "templateId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "zoneRef": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sceneRef": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sceneId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "history": {
+          "$ref": "#/$defs/history"
+        },
+        "placement": {
+          "$ref": "#/$defs/placement"
+        },
+        "behavior": {
+          "$ref": "#/$defs/behavior"
+        },
+        "schedule": {
+          "enum": [
+            "ceremony-daylight",
+            "daily-daylight",
+            "guard-duty"
+          ]
+        },
+        "priority": {
+          "enum": [
+            "essential",
+            "core",
+            "ambient"
+          ]
+        },
+        "releaseStage": {
+          "const": "after-c1-visual-approval"
+        },
+        "formation": {
+          "type": "object",
+          "properties": {
+            "side": {
+              "enum": [
+                "left",
+                "right"
+              ]
+            },
+            "index": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 7
+            }
+          },
+          "required": [
+            "side",
+            "index"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "templateId",
+        "zoneRef",
+        "sceneRef",
+        "required",
+        "history",
+        "placement",
+        "behavior",
+        "schedule",
+        "priority",
+        "releaseStage"
+      ]
+    },
+    "template": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "allowedPoses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/pose"
+          }
+        },
+        "heightMeters": {
+          "type": "number",
+          "minimum": 1.55,
+          "maximum": 1.8
+        },
+        "modelForward": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "evidenceRefs": {
+          "$ref": "#/$defs/evidenceRefs"
+        },
+        "historyStatus": {
+          "const": "interpretive"
+        },
+        "simplifications": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "role",
+        "allowedPoses",
+        "heightMeters",
+        "modelForward",
+        "evidenceRefs",
+        "historyStatus",
+        "simplifications"
+      ]
+    },
+    "anchor": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "zoneRef": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolver": {
+          "enum": [
+            "layout",
+            "zone-item",
+            "zone-region",
+            "world"
+          ]
+        },
+        "building": {
+          "type": "string",
+          "minLength": 1
+        },
+        "positionMeters": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "rotationYRad": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "zoneRef",
+        "source",
+        "resolver"
+      ]
+    },
+    "surface": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "zoneRef": {
+          "type": "string",
+          "minLength": 1
+        },
+        "anchorRef": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "ground",
+            "walkable"
+          ]
+        },
+        "localBoundsMeters": {
+          "$ref": "#/$defs/boundsXZ"
+        },
+        "expectedHeightMeters": {
+          "type": "number"
+        },
+        "heightToleranceMeters": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 0.03
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "verification": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "zoneRef",
+        "anchorRef",
+        "kind",
+        "localBoundsMeters",
+        "expectedHeightMeters",
+        "heightToleranceMeters",
+        "source",
+        "verification"
+      ]
+    },
+    "seat": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "zoneRef": {
+          "type": "string",
+          "minLength": 1
+        },
+        "anchorRef": {
+          "type": "string",
+          "minLength": 1
+        },
+        "surfaceRef": {
+          "type": "string",
+          "minLength": 1
+        },
+        "geometrySource": {
+          "type": "string",
+          "minLength": 1
+        },
+        "localSeatContactMeters": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "localPelvisMeters": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "seatTopHeightMeters": {
+          "type": "number"
+        },
+        "seatBoundsLocalMeters": {
+          "$ref": "#/$defs/boundsXZ"
+        },
+        "forwardLocal": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "footSupport": {
+          "type": "object",
+          "properties": {
+            "localContactsMeters": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 3,
+                "maxItems": 3
+              },
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "heightToleranceMeters": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 0.03
+            }
+          },
+          "required": [
+            "localContactsMeters",
+            "heightToleranceMeters"
+          ]
+        },
+        "seatVariant": {
+          "$ref": "#/$defs/seatVariant"
+        },
+        "seatContactHalfExtentsMeters": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "maxSeatContactGapMeters": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 0.02
+        },
+        "maxPelvisClearanceMeters": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 0.02
+        },
+        "readiness": {
+          "type": "object"
+        },
+        "evidenceRefs": {
+          "$ref": "#/$defs/evidenceRefs"
+        },
+        "status": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "zoneRef",
+        "anchorRef",
+        "surfaceRef",
+        "geometrySource",
+        "localSeatContactMeters",
+        "localPelvisMeters",
+        "seatTopHeightMeters",
+        "seatBoundsLocalMeters",
+        "forwardLocal",
+        "footSupport",
+        "seatVariant",
+        "seatContactHalfExtentsMeters",
+        "maxSeatContactGapMeters",
+        "maxPelvisClearanceMeters",
+        "readiness",
+        "evidenceRefs",
+        "status"
+      ]
+    },
+    "path": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "zoneRef": {
+          "type": "string",
+          "minLength": 1
+        },
+        "surfaceRef": {
+          "type": "string",
+          "minLength": 1
+        },
+        "anchorRef": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pointsLocalMeters": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 3,
+            "maxItems": 3
+          }
+        },
+        "radiusMeters": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 1
+        },
+        "safetyMarginMeters": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "validationSpacingMeters": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 0.25
+        },
+        "allowedDoorRefs": {
+          "type": "array",
+          "maxItems": 0
+        },
+        "forbiddenAreaRefs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "crossZone": {
+          "const": false
+        },
+        "turningRadiusMeters": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "formationSize": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "zoneRef",
+        "surfaceRef",
+        "anchorRef",
+        "pointsLocalMeters",
+        "radiusMeters",
+        "safetyMarginMeters",
+        "validationSpacingMeters",
+        "allowedDoorRefs",
+        "forbiddenAreaRefs",
+        "crossZone",
+        "turningRadiusMeters",
+        "formationSize",
+        "description"
+      ]
+    },
+    "ceremony": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mode": {
+          "const": "waiting-only"
+        },
+        "minimumWaitingSeconds": {
+          "type": "number",
+          "minimum": 60
+        },
+        "sharedPhase": {
+          "const": true
+        },
+        "formalExcerptEnabled": {
+          "const": false
+        },
+        "evidenceRefs": {
+          "$ref": "#/$defs/evidenceRefs"
+        },
+        "limitation": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "mode",
+        "minimumWaitingSeconds",
+        "sharedPhase",
+        "formalExcerptEnabled",
+        "evidenceRefs",
+        "limitation"
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "supportedDetails": {
+          "type": "string",
+          "minLength": 1
+        },
+        "era": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceImageOrPage": {
+          "type": "string",
+          "minLength": 1
+        },
+        "simplifications": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "url",
+        "supportedDetails",
+        "era",
+        "status",
+        "referenceImageOrPage",
+        "simplifications"
+      ]
+    },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "const": 2
+        },
+        "baselineCommit": {
+          "const": "92cf31ec1779d0d6266a2caa6ad1708c379d1500"
+        },
+        "registeredHardLimit": {
+          "const": 96
+        },
+        "minimumRequired": {
+          "const": 38
+        },
+        "requiredActorIds": {
+          "type": "array",
+          "minItems": 38,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "requiredScenes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "releaseGate": {
+          "const": "c1-user-visual-approval"
+        },
+        "sceneEnabledByDefault": {
+          "const": false
+        },
+        "forbiddenAreas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "source": {
+                "type": "string",
+                "minLength": 1
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "source",
+              "reason"
+            ]
+          }
+        },
+        "deferred": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "policy": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "baselineCommit",
+        "registeredHardLimit",
+        "minimumRequired",
+        "requiredActorIds",
+        "requiredScenes",
+        "releaseGate",
+        "sceneEnabledByDefault",
+        "forbiddenAreas",
+        "deferred",
+        "policy"
+      ]
+    },
+    "actorsDocument": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "const": 2
+        },
+        "unit": {
+          "const": "meter"
+        },
+        "actors": {
+          "type": "array",
+          "minItems": 38,
+          "maxItems": 96,
+          "items": {
+            "$ref": "#/$defs/actor"
+          }
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "unit",
+        "actors"
+      ]
+    }
+  }
+}

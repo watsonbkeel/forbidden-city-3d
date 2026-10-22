@@ -13,11 +13,14 @@ export class SettingsMenu {
     this.secondaryTaps = new Map();
   }
 
-  init({ onOpen, onResume, onQualityChange, onSoundToggle, initialQuality = 'high', initialSound = true } = {}) {
+  init({ onOpen, onResume, onQualityChange, onSoundToggle, onCharactersToggle, initialCharacters = true, charactersApproved = true, initialQuality = 'high', initialSound = true } = {}) {
     this.onOpen = onOpen;
     this.onResume = onResume;
     this.onQualityChange = onQualityChange;
     this.onSoundToggle = onSoundToggle;
+    this.onCharactersToggle = onCharactersToggle;
+    this.charactersEnabled = initialCharacters;
+    this.charactersApproved = charactersApproved;
     this.currentQuality = initialQuality;
     this.soundEnabled = initialSound;
 
@@ -56,6 +59,11 @@ export class SettingsMenu {
           <label for="quality-toggle-btn">画质</label>
           <button id="quality-toggle-btn" type="button">高画质</button>
         </div>
+        <div class="settings-control">
+          <label for="characters-toggle-btn">宫廷人物</label>
+          <button id="characters-toggle-btn" type="button">宫廷人物已开启</button>
+        </div>
+        <p id="characters-interpretation" class="settings-notice">建筑按现状呈现；宫廷人物与活动为清代主题演绎，人数经过缩编。太和殿为乾隆朝元旦大朝候礼主题示意，元旦指农历正月初一；正式跪拜、使臣与城墙巡行尚未启用。</p>
         <p class="settings-help">按 M 显示/隐藏小地图。地图打开时仍可用方向键、WASD 或屏幕方向盘移动；拖动地图不会改变行走方向。点击建筑名称查看介绍，再点“前往”传送；传送后，请松开再重新按键或触摸方向盘。设置菜单会暂停移动。数字键 1–8：午门、太和殿、乾清宫、御花园、东六宫、西六宫、宁寿宫、神武门。</p>
         <details id="preview-details">
           <summary>资料来源与限制（各项核查日期见下）</summary>
@@ -107,6 +115,8 @@ export class SettingsMenu {
     this.bindEvents();
     this.updateSoundButton();
     this.updateQualityButton();
+    if (!this.charactersApproved) this.panel.querySelector('#characters-interpretation').textContent += ' 人物造型待视觉确认，尚未批量显示。';
+    this.updateCharactersButton();
   }
 
   listen(target, type, handler, options) {
@@ -133,6 +143,11 @@ export class SettingsMenu {
       this.currentQuality = this.currentQuality === 'high' ? 'low' : 'high';
       this.updateQualityButton();
       this.onQualityChange?.(this.currentQuality);
+    });
+    this.listen(this.panel.querySelector('#characters-toggle-btn'), 'click', () => {
+      this.charactersEnabled = !this.charactersEnabled;
+      this.updateCharactersButton();
+      this.onCharactersToggle?.(this.charactersEnabled);
     });
     for (const id of ['#settings-close-btn', '#resume-btn']) {
       this.listen(this.panel.querySelector(id), 'click', () => this.hide());
@@ -233,6 +248,12 @@ export class SettingsMenu {
     button.setAttribute('aria-pressed', String(this.soundEnabled));
   }
 
+  updateCharactersButton() {
+    const button = this.panel.querySelector('#characters-toggle-btn');
+    button.textContent = this.charactersEnabled ? (this.charactersApproved ? '宫廷人物已开启' : '宫廷人物待视觉确认') : '宫廷人物已关闭';
+    button.setAttribute('aria-pressed', String(this.charactersEnabled));
+  }
+
   updateQualityButton() {
     const button = this.panel.querySelector('#quality-toggle-btn');
     button.textContent = this.currentQuality === 'high' ? '高画质' : '低画质';
@@ -291,6 +312,6 @@ export class SettingsMenu {
     this.panel = null;
     this.launcher = null;
     this.previousFocus = null;
-    this.onOpen = this.onResume = this.onQualityChange = this.onSoundToggle = null;
+    this.onOpen = this.onResume = this.onQualityChange = this.onSoundToggle = this.onCharactersToggle = null;
   }
 }
