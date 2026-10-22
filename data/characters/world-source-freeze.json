@@ -1,48 +1,56 @@
 {
-  "schemaVersion": 6,
-  "baselineCommit": "c1bd5d49acc5bbc0889d0886d08e401301ceae65",
-  "purpose": "R53 cumulative world: preserve accepted R52 plus source-bounded partial Yangxin west warm rooms and Shoukang east north-wall framework/materials. No Jingyun experiment, exact historical reconstruction or GPU acceptance is claimed.",
+  "schemaVersion": 7,
+  "baselineCommit": "09f55650bfc13d0cae6143ae45b7209e22b0a564",
+  "purpose": "R54 cumulative source-bounded partial Jiaotai display and Changchun east alcove. Preserve R53 and all earlier accepted cumulative source changes, with no Jingyun experiment, GPU or exact historical reconstruction claim.",
   "provenance": {
-    "previousBaselineCommit": "2a7c6fd09086e6b73c0745aa7cfca4534bbfd9a6",
-    "previousRemoteCommit": "a8fe30453d9e415eada1e3e608b450ffbdc8aa8d",
-    "previousManifestPath": "data/characters/world-source-freeze-r52.json",
-    "previousManifestSha256": "ce08cb90f3d49d9faf69538211d4f9bc1b60916f03347195bb9565132cad6607",
-    "previousFileCount": 186,
+    "previousBaselineCommit": "55623124b2f5fbab83673ddfc03b3c2d5da0f074",
+    "previousRemoteCommit": "beaddf4dd207ef497a18987a307a1b799e303cb7",
+    "previousManifestPath": "data/characters/world-source-freeze-r53.json",
+    "previousManifestSha256": "1edb222d9bb8d2e36313a1f56235cf429784d590ccf7c5013017d168a50606d1",
+    "previousFileCount": 188,
     "changedProductionPaths": [
-      "src/scene/palace/special/RemainingResidentialHalls.js",
-      "src/scene/palace/special/ShoukangEastWarmRoom.js",
-      "src/scene/palace/special/ShoukangHall.js",
-      "src/scene/palace/special/YangxinWestWarmRooms.js"
+      "src/scene/palace/special/ChangchunEastAlcove.js",
+      "src/scene/palace/special/JiaotaiDisplaySetting.js",
+      "src/scene/palace/special/SquareHalls.js",
+      "src/scene/palace/special/WestDomesticHalls.js"
     ],
     "changedSources": [
       {
-        "path": "src/scene/palace/special/RemainingResidentialHalls.js",
-        "previousSha256": "5dc7410504676062ac1c3365db153c5cbcfcd77219e4b12b66ea8ba1fde4f4fb",
-        "currentSha256": "0e9c32f33c9df590dba98f8fc32990bbb8f601f7d17cc80b9013ec7d28bfeba8"
+        "path": "src/scene/palace/special/SquareHalls.js",
+        "previousSha256": "87ef837ccd5706dddd020378c946a676bcad8f67fddb2a9179f8c96dfc91e867",
+        "currentSha256": "db0a524c48be97d2754dd5d7b7a69724d064c1973050fe749def01332ba88186"
       },
       {
-        "path": "src/scene/palace/special/ShoukangHall.js",
-        "previousSha256": "e4dbb04a76b8bf31fae243b7f9d19ec773b137d7c839ac5870046ffa9223616b",
-        "currentSha256": "f6d513a59923cccd6263b67fbc515eb466d303a6891e1d7fc93c83e6883c5167"
+        "path": "src/scene/palace/special/WestDomesticHalls.js",
+        "previousSha256": "7aea2132038ce95ac448b1a9286fd6c9f2f3f2f474bd66c4ecc22d8d10b0b49c",
+        "currentSha256": "3bd9990e7efa35e552c99b6520e772cfca9f3171840968732cb288ac7791c3bc"
       }
     ],
     "addedSources": [
       {
-        "path": "src/scene/palace/special/YangxinWestWarmRooms.js",
-        "sha256": "65f1e7bcfe098071ea5ec7a05bc3233c038e829d6ce147c0d8e0f4e0f18ed6a5"
+        "path": "src/scene/palace/special/ChangchunEastAlcove.js",
+        "sha256": "d71d6399cb6cdb173f3a6f63c7f8f5fa187caf4d7c9509cd1b802754dd14ccc4"
       },
       {
-        "path": "src/scene/palace/special/ShoukangEastWarmRoom.js",
-        "sha256": "cd6b913c5458bbb565b43457c64dcb2d8a701c4b9b1981ed7b05836cb2995ac7"
+        "path": "src/scene/palace/special/JiaotaiDisplaySetting.js",
+        "sha256": "17ab6019c1beb32d65698536b96b41586f5f8cc9211006eb3c30490fc31997e3"
       }
     ],
-    "sourceCommits": [
-      "03dcb64842974642e3fe46bd5ebfba89dc68e9b7",
-      "a0b0d13ff9c9d3ca35ff86ce7c85cb7fe7fbe85f",
-      "8f3f86736fa59dc260eb54cf776882ec15a40a5b",
-      "5726e5fe878c27f39d3bf1544634d43a0aeb20ba"
-    ],
-    "scope": "184 inherited world files exact; two hooked sources plus two new local components. Final same-world77 bindings, eight routes, B/S loading, rooms and control verification recorded separately. No characters placed in new partial rooms."
+    "inheritedByteExactCount": 186,
+    "retainedSourceRuntimeExceptions": [
+      {
+        "source": "src/scene/palace/special/JiaotaiCentralInterior.js",
+        "appliedBy": "src/scene/palace/special/JiaotaiDisplaySetting.js",
+        "meshCounts": {
+          "jiaotai-red-rear-screen": 1,
+          "jiaotai-screen-side-frame": 2
+        },
+        "preservesEntireRuntimeGeometry": false,
+        "change": "Only lower vertices extend to rear visible floor; upper screen, plaque, UVs, material and other meshes retained. No invented tall supporting box.",
+        "evidence": "docs/validation/r54-jiaotai-display/base-materials/geometry-and-navigation.json#backdropRevision",
+        "reverseDifferenceTest": "tests/r54-jiaotai-display.test.mjs"
+      }
+    ]
   },
   "files": [
     {
@@ -382,6 +390,10 @@
       "sha256": "d91cd99d70ea61b2b836c5e9ea57295464bba6d16b3fb8f639a6edebdf268d6a"
     },
     {
+      "path": "src/scene/palace/special/ChangchunEastAlcove.js",
+      "sha256": "d71d6399cb6cdb173f3a6f63c7f8f5fa187caf4d7c9509cd1b802754dd14ccc4"
+    },
+    {
       "path": "src/scene/palace/special/ChuxiuCourtyard.js",
       "sha256": "50f9bedda75da00eaa8d487e64acd46a319f06312e923237bf95f5657d48ee0e"
     },
@@ -460,6 +472,10 @@
     {
       "path": "src/scene/palace/special/JiaotaiCentralInterior.js",
       "sha256": "55562a8949dd512a8903cdfdc3f658470201cdd45993a222c3b30daa843ac5cd"
+    },
+    {
+      "path": "src/scene/palace/special/JiaotaiDisplaySetting.js",
+      "sha256": "17ab6019c1beb32d65698536b96b41586f5f8cc9211006eb3c30490fc31997e3"
     },
     {
       "path": "src/scene/palace/special/JiaotaiLandmarkArt.js",
@@ -587,7 +603,7 @@
     },
     {
       "path": "src/scene/palace/special/SquareHalls.js",
-      "sha256": "87ef837ccd5706dddd020378c946a676bcad8f67fddb2a9179f8c96dfc91e867"
+      "sha256": "db0a524c48be97d2754dd5d7b7a69724d064c1973050fe749def01332ba88186"
     },
     {
       "path": "src/scene/palace/special/SurveyedPavilion.js",
@@ -683,7 +699,7 @@
     },
     {
       "path": "src/scene/palace/special/WestDomesticHalls.js",
-      "sha256": "7aea2132038ce95ac448b1a9286fd6c9f2f3f2f474bd66c4ecc22d8d10b0b49c"
+      "sha256": "3bd9990e7efa35e552c99b6520e772cfca9f3171840968732cb288ac7791c3bc"
     },
     {
       "path": "src/scene/palace/special/WumenAscent.js",

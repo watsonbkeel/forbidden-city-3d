@@ -1,0 +1,77 @@
+✔ R54 retains the exact77 R53 actors, all old bindings, approved Kit and prior required coverage (4.482304ms)
+✖ R54 registers exactly85 required roles with eight bounded existing-template courtyard additions (1.962536ms)
+✖ R54 cannot hide a missing candidate through demotion, count padding or altered required coverage (5.449261ms)
+✖ new Chuxiu courtyard support is not the raised interior floor or a hidden failed seat (0.252237ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 1
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 112.388656
+
+✖ failing tests:
+
+test at tests/r54-release-coverage.test.mjs:20:1
+✖ R54 registers exactly85 required roles with eight bounded existing-template courtyard additions (1.962536ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  77 !== 85
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r54-unified/tests/r54-release-coverage.test.mjs:21:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 77,
+    expected: 85,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r54-release-coverage.test.mjs:28:1
+✖ R54 cannot hide a missing candidate through demotion, count padding or altered required coverage (5.449261ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(c)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r54-unified/tests/r54-release-coverage.test.mjs:29:45)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r54-release-coverage.test.mjs:33:1
+✖ new Chuxiu courtyard support is not the raised interior floor or a hidden failed seat (0.252237ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r54-unified/tests/r54-release-coverage.test.mjs:34:69)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

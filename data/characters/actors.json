@@ -3292,6 +3292,312 @@
       "schedule": "daily-daylight",
       "priority": "core",
       "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "chuxiu-maid-02",
+      "templateId": "maid-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "chuxiu",
+      "sceneId": "chuxiu",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R54-chuxiu",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Present building and original-state display include late-Qing and restored layers. The courtyard staff are anonymous interpretation, not a named resident or Qianlong inventory."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "chuxiu-maid-02-r54-stroll",
+        "surfaceRef": "chuxiu-r54-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 54001,
+        "speedMetersPerSecond": 0.48,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "chuxiu-maid-02-r54-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "chuxiu-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "chuxiu",
+      "sceneId": "chuxiu",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R54-chuxiu",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Present building and original-state display include late-Qing and restored layers. The courtyard staff are anonymous interpretation, not a named resident or Qianlong inventory."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "chuxiu-r54-court-ground",
+        "anchorRef": "chuxiu-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -6,
+          0,
+          -14
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 54002
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "yikun-maid-01",
+      "templateId": "maid-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "yikun",
+      "sceneId": "yikun",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R54-yikun",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Domestic use is documented; late-Qing connected-court and current original-state display do not establish these staff numbers or daily movements."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "yikun-maid-01-r54-stroll",
+        "surfaceRef": "yikun-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 54003,
+        "speedMetersPerSecond": 0.5,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "yikun-maid-01-r54-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "yikun-eunuch-02",
+      "templateId": "eunuch-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "yikun",
+      "sceneId": "yikun",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R54-yikun",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Domestic use is documented; late-Qing connected-court and current original-state display do not establish these staff numbers or daily movements."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "yikun-eunuch-02-r54-stroll",
+        "surfaceRef": "yikun-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 54004,
+        "speedMetersPerSecond": 0.42,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "yikun-eunuch-02-r54-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "yongshou-maid-02",
+      "templateId": "maid-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "yongshou",
+      "sceneId": "yongshou",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R54-yongshou",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Historical domestic use is documented. Current museum exhibition use remains distinct; no actor is a present-day gallery attendant or enters artifact display space."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "yongshou-maid-02-r54-stroll",
+        "surfaceRef": "yongshou-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 54005,
+        "speedMetersPerSecond": 0.46,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "yongshou-maid-02-r54-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "yongshou-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "yongshou",
+      "sceneId": "yongshou",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R54-yongshou",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Historical domestic use is documented. Current museum exhibition use remains distinct; no actor is a present-day gallery attendant or enters artifact display space."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "yongshou-court-ground",
+        "anchorRef": "yongshou-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          5.5,
+          0,
+          -16.5
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 54006
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "chengqian-maid-02",
+      "templateId": "maid-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "chengqian",
+      "sceneId": "chengqian",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R54-chengqian",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Historical domestic building identity supports context only. The unnamed courtyard roles do not reconstruct a named resident, service staffing or a specific historical date."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "chengqian-maid-02-r54-stroll",
+        "surfaceRef": "chengqian-r52-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 54007,
+        "speedMetersPerSecond": 0.48,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "chengqian-maid-02-r54-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "chengqian-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "chengqian",
+      "sceneId": "chengqian",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R54-chengqian",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Historical domestic building identity supports context only. The unnamed courtyard roles do not reconstruct a named resident, service staffing or a specific historical date."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "chengqian-r52-court-ground",
+        "anchorRef": "chengqian-r52-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -3,
+          0,
+          -17
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 54008
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
     }
   ]
 }

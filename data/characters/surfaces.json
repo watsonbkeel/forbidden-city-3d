@@ -382,5 +382,21 @@
     "heightToleranceMeters": 0.001,
     "source": "src/scene/Environment.js#setupGround",
     "verification": "Actual rendered courtyard ground triangles, body radius 0.5 m plus 0.15 m clearance margin; no origin fallback."
+  },
+  {
+    "id": "chuxiu-r54-court-ground",
+    "zoneRef": "west-six",
+    "anchorRef": "chuxiu-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -8,
+      8,
+      -18,
+      -11
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.003,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Independent open courtyard ground, never the raised .62m interior or .46m return corridor. Must bind current visible geometry, clear full body and pass every route sample in the current zone generation."
   }
 ]
