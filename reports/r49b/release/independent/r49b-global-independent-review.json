@@ -1,0 +1,147 @@
+{
+  "reviewedAtUTC": "2026-10-22T04:31:22.428195+00:00",
+  "verdict": "NO_NEW_BLOCKING_IMPLEMENTATION_DEFECT_FOUND_IN_THIS_BOUNDED_CPU_REVIEW; RELEASE_REMAINS_CONDITIONAL_ON_FINAL_FREEZE_FULL_REGRESSION_ATTRIBUTION_AND_BUILD",
+  "readOnlyProduction": true,
+  "baselineLocal": "92cf31ec1779d0d6266a2caa6ad1708c379d1500",
+  "remoteR49ProvidedByOwner": "03d1f5b446823fbf924df5c239bfdf8c8b69312b",
+  "remoteVerifiedHere": false,
+  "productionHashes": {
+    "src/scene/PalaceBuilder.js": "cbb83acc8ddb4226b86247a777e2177735839be9a7a38533830448d0fbc690b1",
+    "src/scene/palace/HallNameboardMount.js": "4cd6644ed425919b4131198aceb389814d12af7c31d6165f0f7f14b0643c3881",
+    "src/scene/palace/kit.js": "6fa15b49d44a8ff0290056cecc6e5793736009f4379d8d428d3fcd79e2fade69",
+    "src/scene/palace/special/CanopyRoofSurfaceJoint.js": "d91cd99d70ea61b2b836c5e9ea57295464bba6d16b3fb8f639a6edebdf268d6a",
+    "src/scene/palace/special/EastResidentialFacades.js": "10685a888adade27cf3dbfca94564567db9d3d56d01eb233bfd09ffb86007406",
+    "src/scene/palace/special/HorizontalNameboardAtlas.js": "96c4e35960c24dcb835ed3ed4653ffab590beed22ffe8d9548788af8e11d853a",
+    "src/scene/palace/special/KunningPalace.js": "7ee38ea47a86a588757bf5a0198684de806367d4ebf79c30daa4f324ca38bc7b",
+    "src/scene/palace/special/RemainingResidentialHalls.js": "5dc7410504676062ac1c3365db153c5cbcfcd77219e4b12b66ea8ba1fde4f4fb",
+    "src/scene/palace/special/SourceGuidedNameboardMounts.js": "65ddb00178bc32347790419e32375df48e6f71aaa8d7df694919b8fe698db953",
+    "src/scene/palace/special/SouthCourtGates.js": "10bc98e9b77ab2ab16b8bac8a2bc5881b01761d023e0c3b56a52e4ef5f185f5a",
+    "src/scene/zones/ZoneBase.js": "728403bfb02b669822c9fd987de5563c77d703b7bcd0ed43b3ddc90087237e6f"
+  },
+  "inventory": {
+    "reviewLedgerRecords": 157,
+    "breakdown": {
+      "namedZoneHalls": 77,
+      "namedGateRecordsIncludingCityGatesStaticGatesAndHistoricalSites": 74,
+      "additionalStaticAxisHalls": 6
+    },
+    "gateLedgerCaveat": "74 records include 2 demolished sites, 72 modeled gate entities and 71 physical modeled gate nameboards; not 74 tested plaques.",
+    "registeredSubsetIndependentlyBuilt": {
+      "namedZoneEntities": 145,
+      "hallEntries": 77,
+      "gateEntries": 68,
+      "hallRegisteredBoards": 71,
+      "gateRegisteredBoards": 65,
+      "invalidPairs": [],
+      "nonplaqueChangesExcludingApprovedCanopies": [],
+      "navigationChanges": [
+        {
+          "name": "重华宫",
+          "walkablesEqual": true,
+          "roomsEqual": true,
+          "collidersEqual": false
+        }
+      ],
+      "plaqueCountChanges": []
+    },
+    "sourceProfiles": 25,
+    "specificMountChangesIncludingTwoStatic": 31,
+    "genericDepthOnlyChanges": 58,
+    "multiviewObjects": 29
+  },
+  "passed": [
+    {
+      "check": "Exact panel/backing registration",
+      "result": "136 pairs across 145 named kind=hall/gate zone entries; all same parent, x/y paired and +0.06 backing z offset; counts unchanged from baseline. Dedicated city-gate/static/custom non-kit plaques are outside this count.",
+      "evidence": "scratch/r49b-global-independent-review/inventory-and-scope.json"
+    },
+    {
+      "check": "No collateral zone geometry changes",
+      "result": "All mesh transforms, material names, vertex attributes and indices equal baseline after excluding only exact registered plaque pairs and the two approved canopy subtrees. All walkables and rooms unchanged; only Chonghua collider hash differs as expected from already reviewed raised columns.",
+      "evidence": "scratch/r49b-global-independent-review/inventory-and-scope.json"
+    },
+    {
+      "check": "58 generic gates are depth-only corrections",
+      "result": "All 58 retain y and face dimensions; no historic height verification is claimed.",
+      "evidence": "scratch/r49b-global-independent-review/inventory-and-scope.json"
+    },
+    {
+      "check": "Five real horizontal atlas types and lifecycle",
+      "result": "Guhua, Suichu, Changyin, Yueshi and Xianruo each tested in two fresh small scenes with a synthetic vertical companion panel. All 10 runs retain separate material UUID buckets despite identical kit_plaques names, exact transformed vertices and UVs, right-to-left equal-y glyph commands, and dispose each owned material, atlas texture and final geometry exactly once. 20 atlas textures total. This is not a full-zone GPU reload test.",
+      "evidence": "scratch/r49b-global-independent-review/atlas-lifecycle.json"
+    },
+    {
+      "check": "Explicit double-eave fits",
+      "result": "Taihe Gate scale 0.765140438983147; Kunning Palace 0.794296915632629; Huangji/Cining 1.0. Helper disallows scale below 0.7, records original/fitted dimensions and not-surveyed status, and is enabled explicitly. These are model fits, not measured historic sizes."
+    },
+    {
+      "check": "Yangxin final late change",
+      "result": "Unchanged 1.32 x 2.2 face, unchanged x=0 and z=-6.6; y moves 6.847 to 7.304. All non-plaque hashes, walks, rooms and colliders unchanged. Included in the final targeted volume run."
+    },
+    {
+      "check": "Final targeted suite",
+      "command": "node --test tests/r49b-*.test.mjs",
+      "result": "44 tests pass, 0 fail/cancel/skip, exit 0, 1643.22358 ms.",
+      "evidence": "scratch/r49b-global-independent-review/targeted-final.tap"
+    },
+    {
+      "check": "Whitespace",
+      "command": "git diff --check",
+      "result": "exit 0"
+    }
+  ],
+  "releaseGates": [
+    {
+      "severity": "CONDITIONAL_RELEASE_GATE",
+      "action": "Complete final frozen root and current-state regression runs, attribute failures against frozen R49 baseline, and run final production build. Earlier build-current.log predates Yangxin and does not alone certify the final freeze. Do not reuse the initial fixture-failure or resource-terminated run as acceptance.",
+      "owner": "implementation parent"
+    },
+    {
+      "severity": "PACKAGING_GATE",
+      "action": "Stage an explicit manifest containing the three new imported source modules. Exclude node_modules, __pycache__, reviewer scratch and unrelated working files; preserve rollback and do not touch main or R50."
+    },
+    {
+      "severity": "CLAIM_BOUNDARY",
+      "action": "Release only as the identified corrected subset with residual ledger. Do not state all 157 plaques passed, all buildings are photo-authentic, all views are unobstructed, or GPU/browser acceptance happened."
+    }
+  ],
+  "nonblockingResiduals": [
+    {
+      "item": "Kunning Gate orientation",
+      "basis": "Sibling gate-plaque-audit.json flags official north-facing frontage versus model default south. Current generic adjustment changes depth only, not orientation.",
+      "action": "Include explicitly in pending orientation verification/correction; do not bury under five-side-gate height-band residuals."
+    },
+    {
+      "item": "Known incomplete architecture and mounts",
+      "basis": "Five specialized side gates retain inadequate header/mount relationships; Fengxian single-vs-double eave, Yangxing canopy/doorhead relation, Wenyuan upper windows and Ningshou/Lesho/Juanqin/Fanhua inner transom height remain beyond this patch.",
+      "action": "Keep source-specific residuals and missing-photo targets open; source profiles do not prove complete architectural accuracy."
+    },
+    {
+      "item": "Generic gate source limitation",
+      "basis": "Generic frame y/size intentionally unchanged; actual historical full-frame height and facing remain unverified where photos are absent or unresolved.",
+      "action": "Describe 58 corrections only as removing proven wall/backing interpenetration."
+    },
+    {
+      "item": "Natural occlusion",
+      "basis": "29-building finished-mesh multiview report has genuine fully occluded sampled views for some lower-roof/front-beam relationships.",
+      "action": "Preserve mounting topology; do not lower plaques into doors to make every view readable. Far-courtyard samples are local-building context, not whole-city walkable-route proof."
+    },
+    {
+      "item": "Minor source comments",
+      "basis": "HallNameboardMount.js still says these three and existing size retained although the allowlist now has seven and four explicit fit call sites. Canopy helper header describes caps as closing each patch although independent review specifically disclaims a per-component manifold guarantee.",
+      "action": "Optional future wording correction; actual metadata and review evidence already disclose fit/non-manifold limits."
+    }
+  ],
+  "notVerified": [
+    "GPU/browser rendering",
+    "actual system font glyph shape or full Manchu/Han/calligraphic restoration",
+    "historical surveyed dimensions",
+    "global city occlusion or executable walking routes",
+    "R50 character/head views",
+    "all complete zones loaded/reloaded in a browser",
+    "remote upload, final remote SHA, CI or deployment"
+  ],
+  "priorReviewUsedWithoutRepeating": "scratch/r49b-canopy-independent-review/review.md; its independently reported 70,389 surface probes and repaired clipping boundaries were read, not rerun here.",
+  "resourceLimitations": "Two initial large review processes were killed with exit 137 and produced no accepted evidence. Replaced by one memory-bounded sequential per-item baseline comparison and five small mixed-atlas scenarios, all with exit 0.",
+  "evidenceScope": "Existing sibling official-photo audit reports were read for coverage and residuals. This reviewer did not repeat their image-pixel review and does not claim a new photographic audit."
+}

@@ -1,0 +1,380 @@
+{
+  "status": "PHOTO_TOPOLOGY_CONFIRMED_DIMENSIONAL_FIT_NOT_SURVEY",
+  "date_utc": "2026-10-22T04:41:00Z",
+  "method": "Read-only visual pixel-coordinate estimates on original official photographs. Coordinates are source pixels, origin top left, +x right, +y down. Bounding boxes [left,top,right,bottom]. Error is manual boundary-picking uncertainty, NOT camera/rectification uncertainty. No production source changed. No scene, browser or GPU run.",
+  "models": [
+    {
+      "name": "坤宁宫",
+      "old_complete_model_box": [
+        1.43716,
+        2.318,
+        0.15
+      ],
+      "new_complete_model_box": [
+        1.1415317552705893,
+        1.8411802504364343,
+        0.15
+      ],
+      "old_position": [
+        0,
+        8.09705,
+        375.70000000000005
+      ],
+      "new_position": [
+        0,
+        13.327950125218216,
+        378.077
+      ],
+      "scale": 0.794296915632629,
+      "model_aspect_before": 0.62,
+      "model_aspect_after": 0.62,
+      "available_band_lower_upper": [
+        12.37736,
+        14.278540250436434
+      ],
+      "available_band_height": 1.9011802504364343,
+      "old_height_over_current_band": 1.2192426254522057,
+      "new_height_over_current_band": 0.9684406568045157,
+      "model_central_bay_width": 5.111112,
+      "old_width_over_model_central_bay": 0.28118342935940355,
+      "new_width_over_model_central_bay": 0.2233431306671795,
+      "model_facade_width": 46,
+      "old_width_over_model_facade": 0.031242608695652173,
+      "new_width_over_model_facade": 0.02481590772327368,
+      "collision_verification": "Parent-provided/static-after.json wholeVolumeIntersections is empty; not rerun by this audit",
+      "appearance": "SIMPLIFIED_SYSTEM_FONT_AND_RECTANGULAR_FRAME"
+    },
+    {
+      "name": "太和门",
+      "old_complete_model_box": [
+        1.5349811199999999,
+        2.4757759999999998,
+        0.15
+      ],
+      "new_complete_model_box": [
+        1.1744761279876426,
+        1.8943163354639396,
+        0.15
+      ],
+      "old_position": [
+        0,
+        9.767545599999998,
+        -224.87
+      ],
+      "new_position": [
+        0,
+        15.205517167731971,
+        -222.42819999999998
+      ],
+      "scale": 0.765140438983147,
+      "model_aspect_before": 0.62,
+      "model_aspect_after": 0.62,
+      "available_band_lower_upper": [
+        14.228359000000001,
+        16.18267533546394
+      ],
+      "available_band_height": 1.9543163354639397,
+      "old_height_over_current_band": 1.2668245949099481,
+      "new_height_over_current_band": 0.9692987266640452,
+      "model_central_bay_width": 5.34,
+      "old_width_over_model_central_bay": 0.2874496479400749,
+      "new_width_over_model_central_bay": 0.21993934981041996,
+      "model_facade_width": 48.06,
+      "old_width_over_model_facade": 0.03193884977111943,
+      "new_width_over_model_facade": 0.024437705534491105,
+      "collision_verification": "Parent-provided/static-after.json wholeVolumeIntersections is empty; not rerun by this audit",
+      "appearance": "SIMPLIFIED_SYSTEM_FONT_AND_RECTANGULAR_FRAME"
+    }
+  ],
+  "photos": [
+    {
+      "id": "kunning-overview",
+      "path": "r49b-outer-plaque-audit/sources/236487-0.jpg",
+      "url": "https://img.dpm.org.cn/Uploads/Picture/2020/04/17/s5e997ecca81fc.jpg",
+      "pixels": [
+        1425,
+        950
+      ],
+      "bbox": [
+        970,
+        447,
+        1041,
+        503
+      ],
+      "boundary_error_px": 5,
+      "band": {
+        "at_x": 1005,
+        "top": 447,
+        "bottom": 509,
+        "error_px": 6,
+        "definition": "Local projected cavity below upper roof underside and above lower roof rise; approximate at plaque centre only"
+      },
+      "interval": {
+        "kind": "visible lower facade column-end interval, NOT identified central bay",
+        "a": [
+          525,
+          630
+        ],
+        "b": [
+          1295,
+          710
+        ],
+        "endpoint_error_px": 8,
+        "horizontal_span": 770
+      },
+      "notes": [
+        "Strong oblique view: frame is slanted and carving shadow merges with the roof.",
+        "Do not divide this projected envelope by an orthographic model width to infer scale.",
+        "The visible lower facade interval is at a different depth/elevation; no central-bay identification claimed."
+      ],
+      "sha256": "91c290932497b85a94d0c60f7294c97530992a0c891c273e09f4a5fdf8a88555",
+      "projected_bbox_width_height": [
+        71,
+        56
+      ],
+      "projected_axis_aligned_aspect": 1.2678571428571428,
+      "projected_height_over_local_band": 0.9032258064516129,
+      "projected_width_over_recorded_interval": 0.09220779220779221
+    },
+    {
+      "id": "kunning-close",
+      "path": "r49b-outer-plaque-audit/sources/236487-1.jpg",
+      "url": "https://img.dpm.org.cn/Uploads/Picture/2020/04/17/s5e997ee07b730.jpg",
+      "pixels": [
+        1000,
+        1499
+      ],
+      "bbox": [
+        125,
+        365,
+        902,
+        1107
+      ],
+      "boundary_error_px": 8,
+      "band": {
+        "at_x": 500,
+        "top": 330,
+        "bottom": 1110,
+        "error_px": 20,
+        "definition": "Approximate local underside of projecting upper rafters through visible cavity to top of lower roof transition; not tile lip at y≈190"
+      },
+      "interval": {
+        "kind": "cropped facade only; columns absent",
+        "a": [
+          0,
+          700
+        ],
+        "b": [
+          999,
+          700
+        ],
+        "horizontal_span": 999,
+        "not_full_bay": true
+      },
+      "inner_lettering_panel_bbox": [
+        330,
+        450,
+        695,
+        945
+      ],
+      "notes": [
+        "Full carved envelope includes broad flaring crown and bottom/side curls.",
+        "Inner lettering panel is documented only to prevent substitution: it is not the complete plaque.",
+        "No complete column pair visible; a physical plaque-to-bay ratio is not measurable here.",
+        "Upward camera angle, carved depth and possible hanging inclination preclude true aspect-ratio measurement."
+      ],
+      "sha256": "52f78aebc14b6921ce5dd7fb0525f3c60187759121f4a70b77f2cbaa02ce85f1",
+      "projected_bbox_width_height": [
+        777,
+        742
+      ],
+      "projected_axis_aligned_aspect": 1.0471698113207548,
+      "projected_height_over_local_band": 0.9512820512820512,
+      "projected_width_over_recorded_interval": 0.7777777777777778
+    },
+    {
+      "id": "taihe-front",
+      "path": "r49b-gate-plaque-audit/axis/taihemen-1.jpg",
+      "url": "https://img.dpm.org.cn/Uploads/Picture/2020/04/16/s5e980c931a533.jpg",
+      "pixels": [
+        1425,
+        780
+      ],
+      "bbox": [
+        707,
+        410,
+        731,
+        434
+      ],
+      "boundary_error_px": 2,
+      "band": {
+        "at_x": 719,
+        "top": 409,
+        "bottom": 438,
+        "error_px": 2,
+        "definition": "Visible local cavity from underside shadow above plaque to top of lower-roof transition trim"
+      },
+      "interval": {
+        "kind": "central lower-front red-column centre interval",
+        "a": [
+          649,
+          567
+        ],
+        "b": [
+          788,
+          567
+        ],
+        "endpoint_error_px": 3,
+        "horizontal_span": 139
+      },
+      "secondary_facade_interval": {
+        "kind": "visible upper painted band endpoint interval",
+        "a": [
+          374,
+          428
+        ],
+        "b": [
+          1063,
+          428
+        ],
+        "endpoint_error_px": 6,
+        "horizontal_span": 689
+      },
+      "notes": [
+        "Full red/gold edging and lower scalloped termination included, not just blue lettering field.",
+        "Approximately 24 px object cannot justify fine percentage claims.",
+        "Photo central bay is visibly wider than neighbouring bays; model uses nine uniform bays.",
+        "Plaque and lower column endpoints are at different depth/elevation; screen-width ratio is a composition diagnostic, not surveyed ratio."
+      ],
+      "sha256": "ef386e333164985cac129c8cb25d1f80ed6b3e7b021e7f883263e9928fb33034",
+      "projected_bbox_width_height": [
+        24,
+        24
+      ],
+      "projected_axis_aligned_aspect": 1.0,
+      "projected_height_over_local_band": 0.8275862068965517,
+      "projected_width_over_recorded_interval": 0.17266187050359713
+    },
+    {
+      "id": "taihe-distant",
+      "path": "r49b-gate-plaque-audit/axis/taihemen-2.jpg",
+      "url": "https://img.dpm.org.cn/Uploads/Picture/2020/04/16/s5e980c2a4da38.jpg",
+      "pixels": [
+        1425,
+        950
+      ],
+      "bbox": null,
+      "boundary_error_px": null,
+      "notes": [
+        "Plaque only roughly 10 px wide at this distance. Inspected for central double-eave placement only; not used for quantitative frame scale."
+      ],
+      "sha256": "7b19981bcac7bc0863cc4891a3f3c035df7cedab2701b6da9a62a1bf6dfb17d1"
+    },
+    {
+      "id": "taihe-oblique-left",
+      "path": "r49b-gate-plaque-audit/axis/taihemen-3.jpg",
+      "url": "https://img.dpm.org.cn/Uploads/Picture/2020/04/16/s5e980c9308131.jpg",
+      "pixels": [
+        1000,
+        1777
+      ],
+      "bbox": [
+        211,
+        228,
+        378,
+        360
+      ],
+      "boundary_error_px": 4,
+      "approx_frame_corners_clockwise": [
+        [
+          211,
+          251
+        ],
+        [
+          322,
+          228
+        ],
+        [
+          378,
+          343
+        ],
+        [
+          299,
+          360
+        ]
+      ],
+      "notes": [
+        "Approximate quadrilateral envelope includes projecting top bar, side scalloping and lower shaped foot.",
+        "Axis-aligned envelope is strongly skewed: its width/height is not the intrinsic plaque aspect.",
+        "Oblique image corroborates plaque is in double-eave tier, not the lower doorhead."
+      ],
+      "sha256": "3aeb1295109a997b54978c9bbe365abceaabf5703b289a052ed45d2446dcdffc",
+      "projected_bbox_width_height": [
+        167,
+        132
+      ],
+      "projected_axis_aligned_aspect": 1.2651515151515151
+    },
+    {
+      "id": "taihe-oblique-right",
+      "path": "r49b-gate-plaque-audit/axis/taihemen-4.jpg",
+      "url": "https://img.dpm.org.cn/Uploads/Picture/2020/04/16/s5e980c9310fb3.jpg",
+      "pixels": [
+        1000,
+        1777
+      ],
+      "bbox": [
+        585,
+        164,
+        762,
+        314
+      ],
+      "boundary_error_px": 5,
+      "approx_frame_corners_clockwise": [
+        [
+          647,
+          164
+        ],
+        [
+          762,
+          191
+        ],
+        [
+          667,
+          314
+        ],
+        [
+          585,
+          292
+        ]
+      ],
+      "notes": [
+        "Approximate envelope includes projecting top bar and red/gold shaped border.",
+        "Same slanted hanging geometry seen from the opposite side; no camera calibration or plane rectification performed."
+      ],
+      "sha256": "9b71b017e097ae2bda6aec15394fead71e8bd33ecea0856bfe71e35450bec3ae",
+      "projected_bbox_width_height": [
+        177,
+        150
+      ],
+      "projected_axis_aligned_aspect": 1.18
+    }
+  ],
+  "conclusions": [
+    "Both buildings: official photos support moving the plaque from lower doorhead to the double-eave tier.",
+    "Model scale factors 0.794296915632629 and 0.765140438983147 are clearance-fit outputs; photographs do not independently establish those values.",
+    "Kunning complete carved crown silhouette is much wider than a plain rectangular text panel; model 0.62 aspect remains a simplified inherited assumption. Projected photo aspect ≈1.047 is not a measured physical aspect.",
+    "Kunning close photo nearly fills the local visible band (≈0.951 projected), broadly compatible with model ≈0.968 band filling, without certifying dimensions.",
+    "Taihe front screen ratio full-frame width/central-column span ≈0.173; candidate model ≈0.220 vs old ≈0.287. Uniform model bays and photo perspective prevent direct scale equivalence.",
+    "A .7 engineering minimum is only a guardrail, not historical/source evidence.",
+    "No further shrink recommendation is established by these photos alone. Keep the one-time candidate as an explicitly approximate mount correction, not historical-fidelity sign-off."
+  ],
+  "remaining_uncertainty": [
+    "Camera focal length/pose and lens distortion unknown.",
+    "No homography or known coplanar scale targets; carving has depth and plaque may be inclined.",
+    "Kunning close-up crops all columns; overview strongly oblique and shaded.",
+    "Taihe frontal plaque low-resolution; close views strongly skewed.",
+    "Model central bay/roof profile differs from photograph; local collision band is not exactly the visible image-space band.",
+    "Carved profile, full bilingual content where applicable, board inclination, exact relative width and hanging hardware are not reconstructed."
+  ]
+}

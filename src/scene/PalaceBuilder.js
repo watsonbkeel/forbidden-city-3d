@@ -872,7 +872,7 @@ export class PalaceBuilder {
     g.add(roof);
     this.ownedMaterials.push(...(roof.userData.ownedMaterials ?? []));
     paintQianqingUpperEnclosure(roof,this.library,data.name);
-    if (exteriorPlaque) positionHallNameboard(exteriorPlaque,roof,data.name);
+    if (exteriorPlaque) positionHallNameboard(exteriorPlaque,roof,data.name,{fitSizeToBand:data.name==='太和门'});
   }
 
   throneArea(g, { x0, y, H, ztb0, ztb1, thW, bayW, text, caisson = true, baohe = false, jiaotai = false, qianqing = false }) {

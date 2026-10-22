@@ -1,3 +1,4 @@
+import {fitCanopyToMainRoof} from './CanopyRoofSurfaceJoint.js';
 import {fitRegisteredNameboard} from './FittedNameboardMount.js';
 import * as THREE from 'three';
 
@@ -381,7 +382,7 @@ function buildChonghuaGourdOutline(kit, item, f, p, wood) {
 function buildChonghuaBaoxia(kit, item, f, p) {
   const bay = item.w / 5, width = bay * 3, front = -item.d / 2, edge = front - 2.7;
   const g = tag(new THREE.Group(), 'r48-chonghua-three-bay-baoxia', { ...provenance(p), bays: 3, photoSource: 'https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5eff075737310.jpg', envelopeStatus: 'FITTED_PROJECTION_NOT_MEASURED', roofTypeStatus: 'PHOTO_MASSING_FIT_NOT_ATTESTED_ROOF_SUBTYPE' }); f.add(g);
-  const y = item.ph, top = y + item.colH * .8, start = edge - .55, end = -(item.d + 2 * item.pad + .12) / 2;
+  const y = item.ph, top = 6.45, start = edge - .55, end = -(item.d + 2 * item.pad + .12) / 2;
   block(kit, g, 'r48-chonghua-baoxia-plinth', kit.lib.material('wall_brick'), width + 1.1, y, end - start, 0, y / 2, (end + start) / 2, provenance(p));
   block(kit, g, 'r48-chonghua-baoxia-floor', kit.lib.material('stone_slab'), width + 1.1, .08, end - start, 0, y - .03, (end + start) / 2, provenance(p));
   kit.walkBox(f, -(width + 1.1) / 2, start, (width + 1.1) / 2, end + .07, y);
@@ -395,14 +396,17 @@ function buildChonghuaBaoxia(kit, item, f, p) {
   block(kit, g, 'r48-chonghua-baoxia-beam', kit.lib.material('caihua_beam'), width + .5, .35, .3, 0, top - .16, edge, provenance(p));
   const roof = kit.roof(g, { type: 'xieshan', width: width + 1.1, depth: 3.7, baseY: top, height: 1.0, brackets: false }, 0, (edge + front) / 2);
   if (roof) {
-    const abutZ = front - .14;
-    clipRoofToHallPlane(roof, f, new THREE.Plane(new THREE.Vector3(0, 0, -1), abutZ));
-    tag(roof, 'r48-chonghua-baoxia-roof-fit', { ...provenance(p), abutZ, joinStatus: 'TRIMMED_TO_FRONT_HEAD_WALL_10mm_BEARING_CONTACT_NOT_FULL_ROOF_INTRUSION' });
+    const mainRoof=f.children.find(m=>m!==g&&m.name.startsWith('roof_')&&m.userData.eaveY!==undefined);
+    const meshes=[];roof.traverse(m=>{if(m.isMesh)meshes.push(m);});
+    const joint=fitCanopyToMainRoof({hall:f,mainRoof,meshes,capParent:roof,capMaterial:kit.lib.material('roof_tile')});
+    tag(roof,'r48-chonghua-baoxia-roof-fit',{...provenance(p),roofSurfaceJoint:joint,joinStatus:joint.status});
   }
   f.userData.nameboardMount=fitRegisteredNameboard(kit,f,item.plaqueText??item.name,{
-    y:top-.335-.15-.75,width:1.05,height:1.5,
+    y:y+(item.colH-THREE.MathUtils.clamp(item.colH*.12,.45,.85))*.8+.06+.735,
+    z:front-.36,width:.945,height:1.35,
+    canopyColumnTop:top,dimensionStatus:'LOCAL_CANOPY_HEIGHT_AND_MOUNT_FIT_NOT_SURVEYED',
     source:'https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5eff075737310.jpg',
-    reason:'Model identity label below the baoxia beam and rafters; not a surveyed inscription facsimile'});
+    reason:'Official photograph places the complete board above the main door head, behind the nearer baoxia beam. Preserve that depth and natural obstruction; canopy height and plaque position are constrained model fits, not a surveyed inscription facsimile'});
 }
 
 function buildYangxinCaisson(kit, item, f, p) {

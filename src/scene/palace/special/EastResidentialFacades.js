@@ -1,3 +1,4 @@
+import {fitCanopyToMainRoof} from './CanopyRoofSurfaceJoint.js';
 import * as THREE from 'three';
 const page=n=>`https://www.dpm.org.cn/explore/building/${n}.html`;
 const photo=(date,file)=>`https://img.dpm.org.cn/Uploads/Picture/${date}/${file}.jpg`;
@@ -70,7 +71,7 @@ function curvedSurface(width,z0,z1,eaveY,rise,offset=0,reverse=false){
 }
 function openCanopy(kit,f,item,p){
  const g=tag(new THREE.Group(),'yonghe-open-canopy',{source:p.source,photoSource:p.photoSource,undersidePhoto:p.undersidePhoto,photographyDate:null,dimensionStatus:p.dimensionStatus,roofJointStatus:'CONCEALED_JUNCTION_UNKNOWN_FITTED_OVERLAP',interpretation:'OPEN_THREE_BAY_ROUNDED_CANOPY_NO_ENCLOSURE_OR_FLAT_CEILING'});f.add(g);
- const bay=item.w/5,width=bay*3,front=-item.d/2,projection=2.2,columnZ=front-projection,eaveY=item.ph+item.colH*.78,rise=1.25,z0=columnZ-.45,z1=front+.55,roofWidth=width+.8;
+ const bay=item.w/5,width=bay*3,front=-item.d/2,projection=2.2,columnZ=front-projection,eaveY=item.ph+item.colH*.94,rise=1.25,z0=columnZ-.45,z1=front+.55,roofWidth=width+.8;
  const wood=kit.lib.material('wood_column'),paint=kit.lib.material('caihua_beam');
  for(let i=0;i<4;i++){
   const x=(-1.5+i)*bay,r=.3,h=eaveY-item.ph;
@@ -105,18 +106,26 @@ export function buildEastResidentialFacade(kit,item){
  const p=eastFacadeProfile(item),{structure,facadeProfile,...shell}=item;
  const result=kit.hall({...shell,backDoor:!!p.rearEntry,frontEnclosureInset:p.frontInset??0,frontSteps:!p.openCanopy,panelBuilder:windowBuilder(kit,p),...(p.openCanopy?{ceilingBuilder:plainCeiling(kit,p),plaque:false}:{})});
  if(p.openCanopy){
-  openCanopy(kit,result.f,item,p);
-  // The museum underside photograph shows the vertical board on the hall
-  // wall beneath the baoxia, not on/above the canopy roof. Its old generic
-  // height put the first character behind the canopy beam. These dimensions
-  // are a reversible clearance fit, not measurements from the photograph.
-  const h=1.5,w=1.05,beamBottom=item.ph+item.colH*.78-.41;
-  const top=beamBottom-.15,y=top-h/2,z=-item.d/2-.3;
+  const mainRoof=result.f.children.find(m=>m.name.startsWith('roof_')&&m.userData.eaveY!==undefined);
+  const canopy=openCanopy(kit,result.f,item,p);
+  const roofMeshes=canopy.children.filter(m=>['yonghe-curved-rafter','yonghe-rounded-bargeboard','yonghe-curved-roof-tiles','yonghe-curved-roof-underside'].includes(m.name));
+  fitCanopyToMainRoof({hall:result.f,mainRoof,meshes:roofMeshes,capParent:canopy,capMaterial:kit.lib.material('roof_tile')});
+  // The official underside view locates the complete board ABOVE the main
+  // door head, behind the open baoxia's front beam. That nearer beam can
+  // naturally hide the board from the courtyard. It is not the mounting datum.
+  const beamH=THREE.MathUtils.clamp(item.colH*.12,.45,.85);
+  const doorHeadY=item.ph+(item.colH-beamH)*.8;
+  const h=1.5,w=1.05,y=doorHeadY+.08+(h+.12)/2,z=-item.d/2-.42;
+  const fit={doorHeadY,completeFrameClearance:.08,canopyEaveY:item.ph+item.colH*.94,
+   status:'PHOTO_RELATIONSHIP_WITH_LOCAL_CANOPY_HEIGHT_FIT_NOT_SURVEYED',
+   visibilityPolicy:'RETAIN_FRONT_BEAM_OBSTRUCTION_FROM_COURTYARD'};
   kit.plaque(result.f,item.plaqueText??item.name,0,y,z,w,h);
   result.f.userData.nameboardMount={status:'PHOTO_GUIDED_MODEL_FIT_NOT_SURVEYED',
    source:p.source,photo:p.undersidePhoto??'https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d39e47b346.jpg',
-   position:[0,y,z],width:w,height:h,canopyBeamBottom:beamBottom,
-   interpretation:'Vertical nameboard below the hall lintel inside the open baoxia; Chinese-only simplified lettering retained, not a complete Manchu/Han facsimile'};
+   ...fit,position:[0,y,z],width:w,height:h,
+   interpretation:'Complete vertical board above the main door head and in front of its painted beam, behind the baoxia front beam; original nameboard size retained and canopy height is a local model fit, not surveyed photo proportions. Chinese-only simplified lettering is not a Manchu/Han facsimile'};
+  for(const object of [kit.plaques.at(-1).mesh,kit.plaques.at(-1).frame])
+   object.userData.nameboardMount=result.f.userData.nameboardMount;
  }
  result.f.userData.structure={...result.f.userData.structure,...p,...(result.f.userData.nameboardMount?{nameboardMount:result.f.userData.nameboardMount}:{}),frontEnclosureInset:p.frontInset??0,accessStatus:'MODEL_PASSAGE_NOT_HISTORICAL_DOOR_OR_STAIR_MEASUREMENT'};
  return{...result,p};

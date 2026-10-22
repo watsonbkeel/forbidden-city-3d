@@ -1,0 +1,205 @@
+{
+  "baseline": {
+    "tests": 5277,
+    "suites": 0,
+    "pass": 5119,
+    "fail": 158,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 1374844.891454
+  },
+  "candidate": {
+    "tests": 5265,
+    "suites": 0,
+    "pass": 5085,
+    "fail": 180,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 737241.199498
+  },
+  "actualCandidateExitCode": 1,
+  "repeatedBaselineFailures": 158,
+  "newFailures": 22,
+  "missingOriginalBodyAssertions": 57,
+  "suppliedAsSeparateSupplement": true,
+  "rows": [
+    {
+      "index": 0,
+      "file": "tests/r41-chuxiu-kang.test.mjs",
+      "test": "R41 removing only new kang meshes and matching colliders restores entire original Chuxiu signature",
+      "classification": "INTENTIONAL_NAMEBOARD_GEOMETRY_CHANGE",
+      "explanation": "Legacy exact geometry/stub signature includes the nameboard or its atlas coordinates. The candidate explicitly changes this registered pair; independent global comparison excludes only exact registered pairs and the two approved canopy subtrees, keeping all remaining geometry/navigation byte-exact.",
+      "oldTestModified": false
+    },
+    {
+      "index": 1,
+      "file": "tests/r48-audit-real-legacy-retention.test.mjs",
+      "test": "AUDIT old hall raw stub retention and real shell semantics place-ningshou-d653a5843e 颐和轩",
+      "classification": "INTENTIONAL_NAMEBOARD_GEOMETRY_CHANGE",
+      "explanation": "Legacy exact geometry/stub signature includes the nameboard or its atlas coordinates. The candidate explicitly changes this registered pair; independent global comparison excludes only exact registered pairs and the two approved canopy subtrees, keeping all remaining geometry/navigation byte-exact.",
+      "oldTestModified": false
+    },
+    {
+      "index": 2,
+      "file": "tests/r48-audit-real-legacy-retention.test.mjs",
+      "test": "AUDIT old hall raw stub retention and real shell semantics place-ningshou-a1ea21a7c3 古华轩",
+      "classification": "INTENTIONAL_NAMEBOARD_GEOMETRY_CHANGE",
+      "explanation": "Legacy exact geometry/stub signature includes the nameboard or its atlas coordinates. The candidate explicitly changes this registered pair; independent global comparison excludes only exact registered pairs and the two approved canopy subtrees, keeping all remaining geometry/navigation byte-exact.",
+      "oldTestModified": false
+    },
+    {
+      "index": 3,
+      "file": "tests/r48-audit-real-legacy-retention.test.mjs",
+      "test": "AUDIT old hall raw stub retention and real shell semantics place-outer-west-6cc7b2a27f 咸若馆",
+      "classification": "INTENTIONAL_NAMEBOARD_GEOMETRY_CHANGE",
+      "explanation": "Legacy exact geometry/stub signature includes the nameboard or its atlas coordinates. The candidate explicitly changes this registered pair; independent global comparison excludes only exact registered pairs and the two approved canopy subtrees, keeping all remaining geometry/navigation byte-exact.",
+      "oldTestModified": false
+    },
+    {
+      "index": 4,
+      "file": "tests/r48-audit-real-legacy-retention.test.mjs",
+      "test": "AUDIT old hall raw stub retention and real shell semantics place-outer-west-83d425c911 寿康宫",
+      "classification": "INTENTIONAL_NAMEBOARD_GEOMETRY_CHANGE",
+      "explanation": "Legacy exact geometry/stub signature includes the nameboard or its atlas coordinates. The candidate explicitly changes this registered pair; independent global comparison excludes only exact registered pairs and the two approved canopy subtrees, keeping all remaining geometry/navigation byte-exact.",
+      "oldTestModified": false
+    },
+    {
+      "index": 5,
+      "file": "tests/r48-audit-real-legacy-retention.test.mjs",
+      "test": "AUDIT old hall raw stub retention and real shell semantics place-west-six-b0a68a4270 储秀宫",
+      "classification": "INTENTIONAL_NAMEBOARD_GEOMETRY_CHANGE",
+      "explanation": "Legacy exact geometry/stub signature includes the nameboard or its atlas coordinates. The candidate explicitly changes this registered pair; independent global comparison excludes only exact registered pairs and the two approved canopy subtrees, keeping all remaining geometry/navigation byte-exact.",
+      "oldTestModified": false
+    },
+    {
+      "index": 6,
+      "file": "tests/r48-audit-real-legacy-retention.test.mjs",
+      "test": "AUDIT old hall raw stub retention and real shell semantics place-west-six-7afded67d3 长春宫",
+      "classification": "INTENTIONAL_NAMEBOARD_GEOMETRY_CHANGE",
+      "explanation": "Legacy exact geometry/stub signature includes the nameboard or its atlas coordinates. The candidate explicitly changes this registered pair; independent global comparison excludes only exact registered pairs and the two approved canopy subtrees, keeping all remaining geometry/navigation byte-exact.",
+      "oldTestModified": false
+    },
+    {
+      "index": 7,
+      "file": "tests/r48-axis-retention.test.mjs",
+      "test": "R48 six dedicated axial palaces and Taihemen preserve the actual R47 non-target geometry and every walkable",
+      "classification": "INTENTIONAL_NAMEBOARD_GEOMETRY_CHANGE",
+      "explanation": "Legacy exact geometry/stub signature includes the nameboard or its atlas coordinates. The candidate explicitly changes this registered pair; independent global comparison excludes only exact registered pairs and the two approved canopy subtrees, keeping all remaining geometry/navigation byte-exact.",
+      "oldTestModified": false
+    },
+    {
+      "index": 8,
+      "file": "tests/r48-ningshou-atlas-resource-tail.test.mjs",
+      "test": "R48 current full Ningshou executes the formerly masked four-reload photo/plaque resource ownership tail",
+      "classification": "INTENTIONAL_SECOND_OWNED_ATLAS",
+      "explanation": "Legacy expectation assumes one plaque atlas. Five source-attested horizontal plaques now have a separate owned horizontal atlas; independent repeated finish/dispose validates 20 texture disposals and UUID-based batching without stale UVs.",
+      "oldTestModified": false
+    },
+    {
+      "index": 9,
+      "file": "tests/r48-residential-annex-support.test.mjs",
+      "test": "R48 Chonghua fitted baoxia roof does not extend inside its retained main hall",
+      "classification": "APPROVED_CANOPY_JUNCTION_TOPOLOGY_CHANGE",
+      "explanation": "Legacy tests demand old low canopy/front-wall clipping and old fixed-height gable probes. The approved raised canopy clips against actual retained main-roof triangles instead; independent 70389 surface probes, 8 sections and 553 hidden-cap samples validate new joint geometry. Main roof unchanged.",
+      "oldTestModified": false
+    },
+    {
+      "index": 10,
+      "file": "tests/r48-residential-annex-support.test.mjs",
+      "test": "R48 Chonghua every clipped auxiliary-roof edge vertex contacts a real retained wall or beam",
+      "classification": "APPROVED_CANOPY_JUNCTION_TOPOLOGY_CHANGE",
+      "explanation": "Legacy tests demand old low canopy/front-wall clipping and old fixed-height gable probes. The approved raised canopy clips against actual retained main-roof triangles instead; independent 70389 surface probes, 8 sections and 553 hidden-cap samples validate new joint geometry. Main roof unchanged.",
+      "oldTestModified": false
+    },
+    {
+      "index": 11,
+      "file": "tests/r48-residential-annex-support.test.mjs",
+      "test": "R48 Chonghua fitted auxiliary roof has outward roof/underside faces and closed raised gables",
+      "classification": "APPROVED_CANOPY_JUNCTION_TOPOLOGY_CHANGE",
+      "explanation": "Legacy tests demand old low canopy/front-wall clipping and old fixed-height gable probes. The approved raised canopy clips against actual retained main-roof triangles instead; independent 70389 surface probes, 8 sections and 553 hidden-cap samples validate new joint geometry. Main roof unchanged.",
+      "oldTestModified": false
+    },
+    {
+      "index": 12,
+      "file": "tests/r48-review-central-retention.test.mjs",
+      "test": "review: actual independent R47 坤宁宫 has identical surfaces, collision bodies and every walkable",
+      "classification": "INTENTIONAL_NAMEBOARD_GEOMETRY_CHANGE",
+      "explanation": "Legacy exact geometry/stub signature includes the nameboard or its atlas coordinates. The candidate explicitly changes this registered pair; independent global comparison excludes only exact registered pairs and the two approved canopy subtrees, keeping all remaining geometry/navigation byte-exact.",
+      "oldTestModified": false
+    },
+    {
+      "index": 13,
+      "file": "tests/r48-review-central-retention.test.mjs",
+      "test": "review: actual independent R47 太和门 has identical surfaces, collision bodies and every walkable",
+      "classification": "INTENTIONAL_NAMEBOARD_GEOMETRY_CHANGE",
+      "explanation": "Legacy exact geometry/stub signature includes the nameboard or its atlas coordinates. The candidate explicitly changes this registered pair; independent global comparison excludes only exact registered pairs and the two approved canopy subtrees, keeping all remaining geometry/navigation byte-exact.",
+      "oldTestModified": false
+    },
+    {
+      "index": 14,
+      "file": "tests/r48-review-central-retention.test.mjs",
+      "test": "review: 储秀宫 non-target real builder surfaces and navigation remain identical to independent R47",
+      "classification": "INTENTIONAL_NAMEBOARD_GEOMETRY_CHANGE",
+      "explanation": "Legacy exact geometry/stub signature includes the nameboard or its atlas coordinates. The candidate explicitly changes this registered pair; independent global comparison excludes only exact registered pairs and the two approved canopy subtrees, keeping all remaining geometry/navigation byte-exact.",
+      "oldTestModified": false
+    },
+    {
+      "index": 15,
+      "file": "tests/r48-review-central-retention.test.mjs",
+      "test": "review: 翊坤宫 non-target real builder surfaces and navigation remain identical to independent R47",
+      "classification": "INTENTIONAL_NAMEBOARD_GEOMETRY_CHANGE",
+      "explanation": "Legacy exact geometry/stub signature includes the nameboard or its atlas coordinates. The candidate explicitly changes this registered pair; independent global comparison excludes only exact registered pairs and the two approved canopy subtrees, keeping all remaining geometry/navigation byte-exact.",
+      "oldTestModified": false
+    },
+    {
+      "index": 16,
+      "file": "tests/r48-review-central-retention.test.mjs",
+      "test": "review: 长春宫 non-target real builder surfaces and navigation remain identical to independent R47",
+      "classification": "INTENTIONAL_NAMEBOARD_GEOMETRY_CHANGE",
+      "explanation": "Legacy exact geometry/stub signature includes the nameboard or its atlas coordinates. The candidate explicitly changes this registered pair; independent global comparison excludes only exact registered pairs and the two approved canopy subtrees, keeping all remaining geometry/navigation byte-exact.",
+      "oldTestModified": false
+    },
+    {
+      "index": 17,
+      "file": "tests/r48-review-central-retention.test.mjs",
+      "test": "review: 景仁宫 non-target real builder surfaces and navigation remain identical to independent R47",
+      "classification": "INTENTIONAL_NAMEBOARD_GEOMETRY_CHANGE",
+      "explanation": "Legacy exact geometry/stub signature includes the nameboard or its atlas coordinates. The candidate explicitly changes this registered pair; independent global comparison excludes only exact registered pairs and the two approved canopy subtrees, keeping all remaining geometry/navigation byte-exact.",
+      "oldTestModified": false
+    },
+    {
+      "index": 18,
+      "file": "tests/r48-review-central-retention.test.mjs",
+      "test": "review: 钟粹宫 non-target real builder surfaces and navigation remain identical to independent R47",
+      "classification": "INTENTIONAL_NAMEBOARD_GEOMETRY_CHANGE",
+      "explanation": "Legacy exact geometry/stub signature includes the nameboard or its atlas coordinates. The candidate explicitly changes this registered pair; independent global comparison excludes only exact registered pairs and the two approved canopy subtrees, keeping all remaining geometry/navigation byte-exact.",
+      "oldTestModified": false
+    },
+    {
+      "index": 19,
+      "file": "tests/r48-review-residential-central.test.mjs",
+      "test": "review: 重华宫 added roof has no triangle vertex crossing the retained hall enclosure",
+      "classification": "APPROVED_CANOPY_JUNCTION_TOPOLOGY_CHANGE",
+      "explanation": "Legacy tests demand old low canopy/front-wall clipping and old fixed-height gable probes. The approved raised canopy clips against actual retained main-roof triangles instead; independent 70389 surface probes, 8 sections and 553 hidden-cap samples validate new joint geometry. Main roof unchanged.",
+      "oldTestModified": false
+    },
+    {
+      "index": 20,
+      "file": "tests/r49-inherited-world-body.test.mjs",
+      "test": "tests/r49-inherited-world-body.test.mjs",
+      "classification": "SOURCE_PROVENANCE_GUARD_ABORTS_57_ASSERTIONS",
+      "explanation": "R49 source inverse knows only R49 hunks; changed kit.js fails immutable support-source SHA before 57 test registrations. No candidate body assertion ran in this entrypoint. Supplemental R49B exact inverse adapter preserves all actual-world/body assertions and original test; its separate run is reported separately.",
+      "oldTestModified": false
+    },
+    {
+      "index": 21,
+      "file": "tests/r49-related-nameboard-clearance.test.mjs",
+      "test": "文渊阁: related nameboard no longer buried in its facade",
+      "classification": "UNRESOLVED_WENYUAN_CLOSE_VIEW_OCCLUSION",
+      "explanation": "At 4m/8m eye-level viewpoints the lower text row hits wenyuan_green_glazed_edge. This is the lower roof edge, not a column, and is NOT waived as a normal obstruction: upper-window/header proportions and view correspondence remain unresolved in UNFINISHED.md.",
+      "oldTestModified": false
+    }
+  ]
+}
