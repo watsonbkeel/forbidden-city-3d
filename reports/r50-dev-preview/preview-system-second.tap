@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: production compiler removes enabling branches; direct methods cannot open preview
+ok 1 - production compiler removes enabling branches; direct methods cannot open preview
+  ---
+  duration_ms: 5.574089
+  type: 'test'
+  ...
+# Subtest: DEV starts gated and explicit session preview never sets formal approval
+ok 2 - DEV starts gated and explicit session preview never sets formal approval
+  ---
+  duration_ms: 45.27665
+  type: 'test'
+  ...
+# Subtest: ordinary off revokes preview, clears all 38 and cannot re-enable by ordinary on
+ok 3 - ordinary off revokes preview, clears all 38 and cannot re-enable by ordinary on
+  ---
+  duration_ms: 39.708832
+  type: 'test'
+  ...
+# Subtest: explicit preview off, disposal and new-page System all restore the closed gate
+ok 4 - explicit preview off, disposal and new-page System all restore the closed gate
+  ---
+  duration_ms: 1.683013
+  type: 'test'
+  ...
+# Subtest: DEV preview cannot override invalid registry or failed/pending support
+ok 5 - DEV preview cannot override invalid registry or failed/pending support
+  ---
+  duration_ms: 30.766583
+  type: 'test'
+  ...
+# Subtest: night planning and background resume retain original gates during DEV preview
+ok 6 - night planning and background resume retain original gates during DEV preview
+  ---
+  duration_ms: 15.465925
+  type: 'test'
+  ...
+# Subtest: runtime failure revokes preview without adding another update loop or System
+ok 7 - runtime failure revokes preview without adding another update loop or System
+  ---
+  duration_ms: 1.141137
+  type: 'test'
+  ...
+# Subtest: pending completion after preview-off cannot resurrect actors or reuse a stale request
+ok 8 - pending completion after preview-off cannot resurrect actors or reuse a stale request
+  ---
+  duration_ms: 12.352511
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1095.943938

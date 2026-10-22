@@ -1,0 +1,3 @@
+import fs from 'node:fs';import {gunzipSync} from 'node:zlib';import {createHash} from 'node:crypto';import assert from 'node:assert/strict';
+const sha=b=>createHash('sha256').update(b).digest('hex');const index=JSON.parse(fs.readFileSync('reports/r51-unified/report-transport.json'));
+for(const row of index.archives){const archived=fs.readFileSync(row.archivePath);assert.equal(sha(archived),row.archiveSha256);const raw=gunzipSync(archived);assert.equal(raw.length,row.originalBytes);assert.equal(sha(raw),row.originalSha256);if(process.argv.includes('--restore'))fs.writeFileSync(row.originalPath,raw,{flag:'wx'});console.log(row.originalPath+': exact original bytes verified');}

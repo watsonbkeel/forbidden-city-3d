@@ -1,5 +1,9 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {createCharacterGeometry as build} from '../src/scene/characters/CharacterKit.js';
+import {frozenKit} from './helpers/r51-frozen-character-kit.mjs';
+const buildHistorical07=frozenKit.createCharacterGeometry;
+// Old 06→07 byte assertions remain historical; all current bytes and the only
+// permitted R51 LOD2 delta are checked by r51-lod2-foot-contact.test.mjs.
 import {createCharacterGeometry as frozen06} from '../reports/r50-followup/female-reference/candidate06-06/CharacterKit-source.js';
 import {measureDeformedFemaleLapContact as measure} from './helpers/p3c-female-contact.mjs';
 for(const id of ['consort-daily','maid-daily'])for(const seatVariant of ['standard','kang-low','raised-footstool','throne-front-perch'])test(`${id}/${seatVariant}: default idle keeps deformed hand surfaces outside actual deformed lap`,()=>{
@@ -14,16 +18,16 @@ test('frozen06 shows seated animation penetration while retaining its unmodified
  const r=measure('consort-daily','kang-low',{pose:'seated',time:2,phase:0,amplitude:.7,walkSpeed:0},frozen06);
  assert.ok(r.hands[1].allSkinTriangleSamples.min<-.025);
 });
-test('the contact repair changes female seated weights only, not static surfaces or other poses',()=>{
+test('historical 06→07 contact repair changes female seated weights only, not static surfaces or other poses',()=>{
  for(const id of ['consort-daily','maid-daily'])for(const pose of ['standing','seated','kneeling'])for(const lod of [0,1,2])for(const seatVariant of pose==='seated'?['standard','kang-low','raised-footstool','throne-front-perch']:['standard']){
-  const g=build(id,pose,lod,{seatVariant}),old=frozen06(id,pose,lod,{seatVariant});
+  const g=buildHistorical07(id,pose,lod,{seatVariant}),old=frozen06(id,pose,lod,{seatVariant});
   for(const [name,a]of [...Object.entries(g.attributes),['index',g.index]])if(pose!=='seated'||!['characterWeight','characterTorsoWeight'].includes(name))assert.deepEqual(a.array,(name==='index'?old.index:old.attributes[name]).array,`${id}/${pose}/${lod}/${name}`);
   assert.deepEqual(g.userData,old.userData);g.dispose();old.dispose();
  }
 });
 
 import {deformCharacterVertex as deform} from '../src/scene/characters/CharacterAnimation.js';
-test('contact weighting retains head, torso and upper-sleeve idle motion; walking is byte-exact to06',()=>{
+test('current contact weighting retains head/torso/sleeve motion; historical07 walking is byte-exact to06',()=>{
  const g=build('consort-daily','seated',0,{seatVariant:'kang-low'}),a=g.attributes,max={head:0,torso:0,sleeve:0};
  for(let i=0;i<a.position.count;i++){
   const p=[a.position.getX(i),a.position.getY(i),a.position.getZ(i)],part=a.characterPart.getX(i),q=deform(p,[a.normal.getX(i),a.normal.getY(i),a.normal.getZ(i)],{part,pivot:[a.characterPivot.getX(i),a.characterPivot.getY(i),a.characterPivot.getZ(i)],weight:a.characterWeight.getX(i),torsoWeight:a.characterTorsoWeight.getX(i)},{pose:'seated',time:2,phase:0,amplitude:.7,walkSpeed:0});
@@ -31,7 +35,7 @@ test('contact weighting retains head, torso and upper-sleeve idle motion; walkin
  }
  for(const [part,delta]of Object.entries(max))assert.ok(delta>.001,`${part} must remain animated (${delta} m)`);g.dispose();
  for(const id of ['consort-daily','maid-daily'])for(const lod of[0,1,2]){
-  const now=build(id,'standing',lod,{femalePose:'walking'}),old=frozen06(id,'standing',lod,{femalePose:'walking'});
+  const now=buildHistorical07(id,'standing',lod,{femalePose:'walking'}),old=frozen06(id,'standing',lod,{femalePose:'walking'});
   for(const[name,v]of Object.entries(now.attributes))assert.deepEqual(v.array,old.attributes[name].array);assert.deepEqual(now.index.array,old.index.array);now.dispose();old.dispose();
  }
 });

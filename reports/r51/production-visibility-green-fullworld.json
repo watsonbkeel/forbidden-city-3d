@@ -1,0 +1,1698 @@
+{
+  "createdAt": "2026-10-22T07:27:38.134Z",
+  "label": "green-fullworld",
+  "proofBoundary": "CPU production compilation and complete main entry wiring, not browser/WebGL frame, texture appearance, historical acceptance, or full-world certification.",
+  "entry": {
+    "kind": "Vite production-compiled complete main class with explicit CPU dependency seams",
+    "mainSourceSha256": "e24fd6ca07a358421c7702f6ab0b842daae6476aba6101b1348f661b962cf8aa",
+    "mainClassBytesSha256": "134a1a0af6c7f7ecb2978ea1555577b2e1526b9e2b14e296fba397a44ab3b1bb",
+    "productionBundleSha256": "ceae71637490cbc1d8d2fab7cd518baefc1672071e26285c063ad737fda8af2f",
+    "mainTransform": "Only remove automatic bootstrap beginning at const app = new ForbiddenCityApp(); and export ForbiddenCityApp; all preceding bytes unchanged.",
+    "unmodifiedMainMethods": [
+      "constructor",
+      "init",
+      "createScene",
+      "createCamera",
+      "createRenderer",
+      "createUI",
+      "animate",
+      "dispose"
+    ],
+    "realCharacterModules": [
+      "CharacterSystem",
+      "CharacterManager",
+      "CharacterWorldAdapter",
+      "CharacterRenderer",
+      "CharacterResourcePool",
+      "CharacterKit",
+      "PatrolController",
+      "SettingsMenu"
+    ],
+    "dependencySeams": [
+      "src/utils/TextureLibrary.js",
+      "src/scene/Environment.js",
+      "src/scene/PalaceBuilder.js",
+      "src/scene/Enclosure.js",
+      "src/scene/GardenBuilder.js",
+      "src/utils/Collision.js",
+      "src/scene/zones/ZoneManager.js",
+      "src/controls/FirstPerson.js",
+      "src/scene/interior/InteriorLoader.js",
+      "src/scene/flight/FlightEnvelope.js",
+      "src/render/PostProcessing.js",
+      "src/audio/Ambience.js",
+      "src/ui/Minimap.js",
+      "src/ui/Teleport.js",
+      "src/ui/PerfHUD.js",
+      "src/scene/flight/FlightTour.js",
+      "src/scene/sky/HistoricalSkyLamps.js",
+      "src/ui/DayNightPanel.js",
+      "src/ui/HelpPanel.js"
+    ],
+    "gpuSeam": "THREE.WebGLRenderer shell only. All other THREE classes, including Scene, PerspectiveCamera, Mesh, and InstancedMesh, are real.",
+    "sources": {
+      "main.js": "e24fd6ca07a358421c7702f6ab0b842daae6476aba6101b1348f661b962cf8aa",
+      "src/scene/characters/CharacterSystem.js": "fe01efaf948e5aaaa519369434e24228feaf94895f0084d6d5147c0c68b9a1f9",
+      "src/scene/characters/CharacterManager.js": "4bc1ab7b111aad3f96869726292386b6ca62f3efd97c0b0f2e9daadae431510c",
+      "src/scene/characters/CharacterRenderer.js": "e45e2fa438797310c36a2af4b71f1d9138e1e9a56dba5c5961ef333b6e044c8b",
+      "src/scene/characters/CharacterWorldAdapter.js": "ccb552b78fbec725d7241c2a8d795b97a7e4cc2c9b32f25473ff833dafb42829",
+      "src/ui/SettingsMenu.js": "a4866bbb43a5ea4d3c6b58259619ff0f68d46981caf7913bc04d8374d1ada1a7"
+    }
+  },
+  "checks": [
+    "Complete real main constructor/init/createUI executed in production compile; real Settings initial state synchronized.",
+    "Ordinary startup submits nonzero real character geometry, approval stays false, acceptance stays incomplete.",
+    "Real Settings button ordinary off removes instances; ordinary on repopulates same main scene without preview.",
+    "Night keeps nonzero guard instances and hides daytime schedules.",
+    "Fresh full world binds all 38 registry actors at their unchanged placements; Taihe near-field camera has actual LOD0 instances."
+  ],
+  "world": {
+    "kind": "Fresh production buildCharacterWorld: all-zone colliders, actual static architecture and west-six render geometry",
+    "colliders": 23253,
+    "walkables": 1075
+  },
+  "initial": {
+    "snapshot": {
+      "registered": 38,
+      "loaded": 0,
+      "visible": 0,
+      "near": 0,
+      "renderCopies": 0,
+      "pending": 38,
+      "errors": 0,
+      "batches": 0,
+      "trianglesEstimate": 0,
+      "enabled": true,
+      "rollout": "candidate-visible",
+      "contentEnabled": true,
+      "contentApproved": false,
+      "previewActive": false,
+      "acceptance": {
+        "complete": false,
+        "appearance": "confirmed",
+        "gpu": "unverified",
+        "mobile": "unverified",
+        "history": "partial"
+      },
+      "simulationSeconds": 0,
+      "updateP50Ms": 2.418167999999241,
+      "updateP95Ms": 2.418167999999241,
+      "batchGeometryBytes": 0,
+      "instanceBytes": 0,
+      "sharedResources": {
+        "entries": 0,
+        "geometries": 0,
+        "references": 0,
+        "geometryBytes": 0,
+        "textureBytes": 0
+      },
+      "textureGpuEstimateBytes": 0,
+      "castShadow": false,
+      "performanceEvidence": "CPU submission estimates; full-frame WebGL A/B not measured",
+      "drawCallsEstimate": 0,
+      "diagnostics": [
+        {
+          "id": "taihe-emperor-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-east-01-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-east-01-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-east-02-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-east-02-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-east-03-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-east-03-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-east-04-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-east-04-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-west-01-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-west-01-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-west-02-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-west-02-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-west-03-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-west-03-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-west-04-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-west-04-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-attendant-east-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-attendant-west-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-guard-east-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-guard-east-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-guard-west-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-guard-west-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "wumen-guard-east-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "wumen-guard-west-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "shenwu-guard-east-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "shenwu-guard-west-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "qianqing-guard-east-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "qianqing-guard-west-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "west-lane-guard-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "west-lane-guard-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "west-lane-guard-03",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "chuxiu-maid-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "yikun-consort-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "yikun-eunuch-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "yongshou-consort-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "yongshou-maid-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        }
+      ],
+      "daylight": 1,
+      "lastError": null,
+      "configurationValid": true,
+      "configurationErrors": [],
+      "managerUpdateP95Ms": 1.9117720000003828,
+      "preparation": {
+        "frames": 1,
+        "steps": 0,
+        "completed": 0,
+        "cancelled": 0,
+        "totalCpuMs": 0.10213300000032177,
+        "maxFrameMs": 0.10213300000032177,
+        "maxStepMs": 0,
+        "maxStepKind": null,
+        "maxStepWorkUnits": 0,
+        "maxOverrunMs": 0.10213300000032177,
+        "pending": 38
+      },
+      "lastPreparation": {
+        "steps": 0,
+        "elapsedMs": 0.10213300000032177,
+        "maxStepMs": 0,
+        "overrunMs": 0.10213300000032177,
+        "pending": 38
+      },
+      "ceremony": {
+        "ceremonyRef": "taihe-audience",
+        "phase": "waiting",
+        "phaseStartedAtSeconds": 0,
+        "elapsedSeconds": 0,
+        "pose": "standing",
+        "formalExcerptEnabled": false
+      },
+      "worldQueries": {
+        "supportQueries": 0,
+        "cacheHits": 0,
+        "pathChecks": 0,
+        "meshIndexBuilds": 0,
+        "broadPhaseCandidates": 0,
+        "raycastMeshTests": 0,
+        "colliderIndexBuilds": 0,
+        "colliderCandidates": 0
+      }
+    },
+    "settings": {
+      "enabled": true,
+      "button": "宫廷人物已开启（候选）",
+      "pressed": "true"
+    },
+    "render": {
+      "rootName": "QingInterpretationCharacters",
+      "rootAttachedToMainScene": true,
+      "instances": 0,
+      "meshes": []
+    }
+  },
+  "camera": {
+    "position": [
+      0,
+      1.7,
+      -494
+    ],
+    "quaternion": [
+      0,
+      1,
+      0,
+      0
+    ]
+  },
+  "day": {
+    "frames": 80,
+    "snapshot": {
+      "registered": 38,
+      "loaded": 8,
+      "visible": 1,
+      "near": 0,
+      "renderCopies": 1,
+      "pending": 30,
+      "errors": 0,
+      "batches": 1,
+      "trianglesEstimate": 432,
+      "enabled": true,
+      "rollout": "candidate-visible",
+      "contentEnabled": true,
+      "contentApproved": false,
+      "previewActive": false,
+      "acceptance": {
+        "complete": false,
+        "appearance": "confirmed",
+        "gpu": "unverified",
+        "mobile": "unverified",
+        "history": "partial"
+      },
+      "simulationSeconds": 7.999999999999988,
+      "updateP50Ms": 1.0149140000003172,
+      "updateP95Ms": 1.7530759999999646,
+      "batchGeometryBytes": 19032,
+      "instanceBytes": 6144,
+      "sharedResources": {
+        "entries": 6,
+        "geometries": 6,
+        "references": 1,
+        "geometryBytes": 472452,
+        "textureBytes": 0
+      },
+      "textureGpuEstimateBytes": 0,
+      "castShadow": false,
+      "performanceEvidence": "CPU submission estimates; full-frame WebGL A/B not measured",
+      "drawCallsEstimate": 1,
+      "diagnostics": [
+        {
+          "id": "taihe-official-east-04-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-west-01-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-west-01-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-west-02-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-west-02-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-west-03-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-west-03-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-west-04-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-west-04-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-attendant-east-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-attendant-west-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-guard-east-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-guard-east-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-guard-west-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-guard-west-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "wumen-guard-east-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "wumen-guard-west-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "shenwu-guard-east-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "shenwu-guard-west-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "qianqing-guard-east-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "qianqing-guard-west-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "west-lane-guard-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "west-lane-guard-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "west-lane-guard-03",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "chuxiu-maid-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "yikun-consort-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "yikun-eunuch-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "yongshou-consort-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "yongshou-maid-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        }
+      ],
+      "daylight": 1,
+      "lastError": null,
+      "configurationValid": true,
+      "configurationErrors": [],
+      "managerUpdateP95Ms": 0.2045349999998507,
+      "preparation": {
+        "frames": 81,
+        "steps": 7141,
+        "completed": 8,
+        "cancelled": 0,
+        "totalCpuMs": 78.80541200000152,
+        "maxFrameMs": 3.002659999999196,
+        "maxStepMs": 2.069817999999941,
+        "maxStepKind": "completion",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 2.069178999999167,
+        "pending": 30
+      },
+      "lastPreparation": {
+        "steps": 0,
+        "elapsedMs": 0.04438600000048609,
+        "maxStepMs": 0,
+        "overrunMs": 0.04165400000056252,
+        "pending": 30
+      },
+      "ceremony": {
+        "ceremonyRef": "taihe-audience",
+        "phase": "waiting",
+        "phaseStartedAtSeconds": 0,
+        "elapsedSeconds": 7.999999999999988,
+        "pose": "standing",
+        "formalExcerptEnabled": false
+      },
+      "worldQueries": {
+        "supportQueries": 52,
+        "cacheHits": 0,
+        "pathChecks": 0,
+        "meshIndexBuilds": 1,
+        "broadPhaseCandidates": 1170,
+        "raycastMeshTests": 125,
+        "colliderIndexBuilds": 1,
+        "colliderCandidates": 0
+      }
+    },
+    "render": {
+      "rootName": "QingInterpretationCharacters",
+      "rootAttachedToMainScene": true,
+      "instances": 1,
+      "meshes": [
+        {
+          "name": "characters:official-ceremonial|standing|2|static|standard",
+          "isInstancedMesh": true,
+          "count": 1,
+          "vertices": 242,
+          "indices": 1296
+        }
+      ]
+    }
+  },
+  "off": {
+    "snapshot": {
+      "registered": 38,
+      "loaded": 0,
+      "visible": 0,
+      "near": 0,
+      "renderCopies": 0,
+      "pending": 0,
+      "errors": 0,
+      "batches": 0,
+      "trianglesEstimate": 0,
+      "enabled": false,
+      "rollout": "candidate-visible",
+      "contentEnabled": true,
+      "contentApproved": false,
+      "previewActive": false,
+      "acceptance": {
+        "complete": false,
+        "appearance": "confirmed",
+        "gpu": "unverified",
+        "mobile": "unverified",
+        "history": "partial"
+      },
+      "simulationSeconds": 7.999999999999988,
+      "updateP50Ms": 1.0149140000003172,
+      "updateP95Ms": 1.7530759999999646,
+      "batchGeometryBytes": 0,
+      "instanceBytes": 0,
+      "sharedResources": {
+        "entries": 6,
+        "geometries": 6,
+        "references": 0,
+        "geometryBytes": 472452,
+        "textureBytes": 0
+      },
+      "textureGpuEstimateBytes": 0,
+      "castShadow": false,
+      "performanceEvidence": "CPU submission estimates; full-frame WebGL A/B not measured",
+      "drawCallsEstimate": 0,
+      "diagnostics": [],
+      "daylight": 1,
+      "lastError": null,
+      "configurationValid": true,
+      "configurationErrors": [],
+      "managerUpdateP95Ms": 0.2045349999998507,
+      "preparation": {
+        "frames": 81,
+        "steps": 7141,
+        "completed": 8,
+        "cancelled": 30,
+        "totalCpuMs": 78.80541200000152,
+        "maxFrameMs": 3.002659999999196,
+        "maxStepMs": 2.069817999999941,
+        "maxStepKind": "completion",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 2.069178999999167,
+        "pending": 0
+      },
+      "lastPreparation": {
+        "steps": 0,
+        "elapsedMs": 0.04438600000048609,
+        "maxStepMs": 0,
+        "overrunMs": 0.04165400000056252,
+        "pending": 30
+      },
+      "ceremony": {
+        "ceremonyRef": "taihe-audience",
+        "phase": "waiting",
+        "phaseStartedAtSeconds": 0,
+        "elapsedSeconds": 7.999999999999988,
+        "pose": "standing",
+        "formalExcerptEnabled": false
+      },
+      "worldQueries": {
+        "supportQueries": 52,
+        "cacheHits": 0,
+        "pathChecks": 0,
+        "meshIndexBuilds": 1,
+        "broadPhaseCandidates": 1170,
+        "raycastMeshTests": 125,
+        "colliderIndexBuilds": 1,
+        "colliderCandidates": 0
+      }
+    },
+    "settingsPressed": "false",
+    "render": {
+      "rootName": "QingInterpretationCharacters",
+      "rootAttachedToMainScene": true,
+      "instances": 0,
+      "meshes": []
+    }
+  },
+  "on": {
+    "frames": 2,
+    "snapshot": {
+      "registered": 38,
+      "loaded": 8,
+      "visible": 1,
+      "near": 0,
+      "renderCopies": 1,
+      "pending": 30,
+      "errors": 0,
+      "batches": 1,
+      "trianglesEstimate": 432,
+      "enabled": true,
+      "rollout": "candidate-visible",
+      "contentEnabled": true,
+      "contentApproved": false,
+      "previewActive": false,
+      "acceptance": {
+        "complete": false,
+        "appearance": "confirmed",
+        "gpu": "unverified",
+        "mobile": "unverified",
+        "history": "partial"
+      },
+      "simulationSeconds": 8.199999999999987,
+      "updateP50Ms": 1.0116790000001856,
+      "updateP95Ms": 1.417725000000246,
+      "batchGeometryBytes": 19032,
+      "instanceBytes": 6144,
+      "sharedResources": {
+        "entries": 6,
+        "geometries": 6,
+        "references": 1,
+        "geometryBytes": 472452,
+        "textureBytes": 0
+      },
+      "textureGpuEstimateBytes": 0,
+      "castShadow": false,
+      "performanceEvidence": "CPU submission estimates; full-frame WebGL A/B not measured",
+      "drawCallsEstimate": 1,
+      "diagnostics": [
+        {
+          "id": "taihe-official-west-01-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-west-01-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-west-02-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-west-02-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-west-03-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-west-03-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-west-04-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-official-west-04-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-attendant-east-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-attendant-west-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-guard-east-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-guard-east-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-guard-west-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "taihe-guard-west-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "wumen-guard-east-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "wumen-guard-west-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "shenwu-guard-east-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "shenwu-guard-west-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "qianqing-guard-east-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "qianqing-guard-west-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "west-lane-guard-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "west-lane-guard-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "west-lane-guard-03",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "chuxiu-maid-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "yikun-consort-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "yikun-eunuch-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "yongshou-consort-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "yongshou-maid-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        }
+      ],
+      "daylight": 1,
+      "lastError": null,
+      "configurationValid": true,
+      "configurationErrors": [],
+      "managerUpdateP95Ms": 0.24763999999959196,
+      "preparation": {
+        "frames": 83,
+        "steps": 7196,
+        "completed": 17,
+        "cancelled": 30,
+        "totalCpuMs": 80.31972100000075,
+        "maxFrameMs": 3.002659999999196,
+        "maxStepMs": 2.069817999999941,
+        "maxStepKind": "completion",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 2.069178999999167,
+        "pending": 29
+      },
+      "lastPreparation": {
+        "steps": 39,
+        "elapsedMs": 1.0097259999993184,
+        "maxStepMs": 0.3653949999998076,
+        "overrunMs": 0.2601699999986522,
+        "pending": 29
+      },
+      "ceremony": {
+        "ceremonyRef": "taihe-audience",
+        "phase": "waiting",
+        "phaseStartedAtSeconds": 0,
+        "elapsedSeconds": 8.199999999999987,
+        "pose": "standing",
+        "formalExcerptEnabled": false
+      },
+      "worldQueries": {
+        "supportQueries": 57,
+        "cacheHits": 8,
+        "pathChecks": 0,
+        "meshIndexBuilds": 1,
+        "broadPhaseCandidates": 1240,
+        "raycastMeshTests": 130,
+        "colliderIndexBuilds": 1,
+        "colliderCandidates": 0
+      }
+    },
+    "settingsPressed": "true",
+    "render": {
+      "rootName": "QingInterpretationCharacters",
+      "rootAttachedToMainScene": true,
+      "instances": 1,
+      "meshes": [
+        {
+          "name": "characters:official-ceremonial|standing|2|static|standard",
+          "isInstancedMesh": true,
+          "count": 1,
+          "vertices": 242,
+          "indices": 1296
+        }
+      ]
+    }
+  },
+  "nightPreparationFrames": 38,
+  "night": {
+    "snapshot": {
+      "registered": 38,
+      "loaded": 24,
+      "visible": 1,
+      "near": 0,
+      "renderCopies": 1,
+      "pending": 14,
+      "errors": 0,
+      "batches": 1,
+      "trianglesEstimate": 474,
+      "enabled": true,
+      "rollout": "candidate-visible",
+      "contentEnabled": true,
+      "contentApproved": false,
+      "previewActive": false,
+      "acceptance": {
+        "complete": false,
+        "appearance": "confirmed",
+        "gpu": "unverified",
+        "mobile": "unverified",
+        "history": "partial"
+      },
+      "simulationSeconds": 11.999999999999973,
+      "updateP50Ms": 1.0125410000000556,
+      "updateP95Ms": 1.3278810000001613,
+      "batchGeometryBytes": 20664,
+      "instanceBytes": 6144,
+      "sharedResources": {
+        "entries": 12,
+        "geometries": 12,
+        "references": 1,
+        "geometryBytes": 932112,
+        "textureBytes": 0
+      },
+      "textureGpuEstimateBytes": 0,
+      "castShadow": false,
+      "performanceEvidence": "CPU submission estimates; full-frame WebGL A/B not measured",
+      "drawCallsEstimate": 1,
+      "diagnostics": [
+        {
+          "id": "shenwu-guard-east-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "shenwu-guard-west-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "qianqing-guard-east-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "qianqing-guard-west-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "west-lane-guard-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "west-lane-guard-02",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "west-lane-guard-03",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "chuxiu-maid-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "yikun-consort-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "yikun-eunuch-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "yongshou-consort-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        },
+        {
+          "id": "yongshou-maid-01",
+          "required": true,
+          "status": "pending",
+          "reason": "waiting-support"
+        }
+      ],
+      "daylight": 0,
+      "lastError": null,
+      "configurationValid": true,
+      "configurationErrors": [],
+      "managerUpdateP95Ms": 0.25234699999964505,
+      "preparation": {
+        "frames": 121,
+        "steps": 9760,
+        "completed": 33,
+        "cancelled": 30,
+        "totalCpuMs": 112.96994999999879,
+        "maxFrameMs": 3.002659999999196,
+        "maxStepMs": 2.069817999999941,
+        "maxStepKind": "completion",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 2.069178999999167,
+        "pending": 13
+      },
+      "lastPreparation": {
+        "steps": 40,
+        "elapsedMs": 0.6031000000002678,
+        "maxStepMs": 0.08746000000064669,
+        "overrunMs": 0.0013040000003456953,
+        "pending": 13
+      },
+      "ceremony": {
+        "ceremonyRef": "taihe-audience",
+        "phase": "waiting",
+        "phaseStartedAtSeconds": 0,
+        "elapsedSeconds": 11.999999999999973,
+        "pose": "standing",
+        "formalExcerptEnabled": false
+      },
+      "worldQueries": {
+        "supportQueries": 138,
+        "cacheHits": 8,
+        "pathChecks": 0,
+        "meshIndexBuilds": 1,
+        "broadPhaseCandidates": 2466,
+        "raycastMeshTests": 201,
+        "colliderIndexBuilds": 1,
+        "colliderCandidates": 464
+      }
+    },
+    "render": {
+      "rootName": "QingInterpretationCharacters",
+      "rootAttachedToMainScene": true,
+      "instances": 1,
+      "meshes": [
+        {
+          "name": "characters:guard-duty|standing|2|static|standard",
+          "isInstancedMesh": true,
+          "count": 1,
+          "vertices": 265,
+          "indices": 1422
+        }
+      ]
+    },
+    "visibleStates": [
+      {
+        "id": "wumen-guard-east-01",
+        "schedule": "guard-duty"
+      }
+    ]
+  },
+  "fullPreparation": {
+    "frames": 231,
+    "snapshot": {
+      "registered": 38,
+      "loaded": 38,
+      "visible": 6,
+      "near": 0,
+      "renderCopies": 6,
+      "pending": 0,
+      "errors": 0,
+      "batches": 2,
+      "trianglesEstimate": 2676,
+      "enabled": true,
+      "rollout": "candidate-visible",
+      "contentEnabled": true,
+      "contentApproved": false,
+      "previewActive": false,
+      "acceptance": {
+        "complete": false,
+        "appearance": "confirmed",
+        "gpu": "unverified",
+        "mobile": "unverified",
+        "history": "partial"
+      },
+      "simulationSeconds": 35.10000000000023,
+      "updateP50Ms": 1.0126099999997678,
+      "updateP95Ms": 1.1859399999993911,
+      "batchGeometryBytes": 39696,
+      "instanceBytes": 12288,
+      "sharedResources": {
+        "entries": 27,
+        "geometries": 27,
+        "references": 2,
+        "geometryBytes": 2948910,
+        "textureBytes": 0
+      },
+      "textureGpuEstimateBytes": 0,
+      "castShadow": false,
+      "performanceEvidence": "CPU submission estimates; full-frame WebGL A/B not measured",
+      "drawCallsEstimate": 2,
+      "diagnostics": [],
+      "daylight": 1,
+      "lastError": null,
+      "configurationValid": true,
+      "configurationErrors": [],
+      "managerUpdateP95Ms": 0.25234699999964505,
+      "preparation": {
+        "frames": 352,
+        "steps": 29310,
+        "completed": 46,
+        "cancelled": 30,
+        "totalCpuMs": 312.18344400000024,
+        "maxFrameMs": 3.002659999999196,
+        "maxStepMs": 2.069817999999941,
+        "maxStepKind": "completion",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 2.069178999999167,
+        "pending": 0
+      },
+      "lastPreparation": {
+        "steps": 0,
+        "elapsedMs": 0.0005010000004403992,
+        "maxStepMs": 0,
+        "overrunMs": 0,
+        "pending": 0
+      },
+      "ceremony": {
+        "ceremonyRef": "taihe-audience",
+        "phase": "waiting",
+        "phaseStartedAtSeconds": 0,
+        "elapsedSeconds": 35.10000000000023,
+        "pose": "standing",
+        "formalExcerptEnabled": false
+      },
+      "worldQueries": {
+        "supportQueries": 954,
+        "cacheHits": 10,
+        "pathChecks": 2,
+        "meshIndexBuilds": 1,
+        "broadPhaseCandidates": 28900,
+        "raycastMeshTests": 1130,
+        "colliderIndexBuilds": 1,
+        "colliderCandidates": 5964
+      }
+    }
+  },
+  "spawnAfterReady": {
+    "camera": [
+      0,
+      1.7,
+      -494
+    ],
+    "snapshot": {
+      "registered": 38,
+      "loaded": 38,
+      "visible": 6,
+      "near": 0,
+      "renderCopies": 6,
+      "pending": 0,
+      "errors": 0,
+      "batches": 2,
+      "trianglesEstimate": 2676,
+      "enabled": true,
+      "rollout": "candidate-visible",
+      "contentEnabled": true,
+      "contentApproved": false,
+      "previewActive": false,
+      "acceptance": {
+        "complete": false,
+        "appearance": "confirmed",
+        "gpu": "unverified",
+        "mobile": "unverified",
+        "history": "partial"
+      },
+      "simulationSeconds": 35.10000000000023,
+      "updateP50Ms": 1.0126099999997678,
+      "updateP95Ms": 1.1859399999993911,
+      "batchGeometryBytes": 39696,
+      "instanceBytes": 12288,
+      "sharedResources": {
+        "entries": 27,
+        "geometries": 27,
+        "references": 2,
+        "geometryBytes": 2948910,
+        "textureBytes": 0
+      },
+      "textureGpuEstimateBytes": 0,
+      "castShadow": false,
+      "performanceEvidence": "CPU submission estimates; full-frame WebGL A/B not measured",
+      "drawCallsEstimate": 2,
+      "diagnostics": [],
+      "daylight": 1,
+      "lastError": null,
+      "configurationValid": true,
+      "configurationErrors": [],
+      "managerUpdateP95Ms": 0.25234699999964505,
+      "preparation": {
+        "frames": 352,
+        "steps": 29310,
+        "completed": 46,
+        "cancelled": 30,
+        "totalCpuMs": 312.18344400000024,
+        "maxFrameMs": 3.002659999999196,
+        "maxStepMs": 2.069817999999941,
+        "maxStepKind": "completion",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 2.069178999999167,
+        "pending": 0
+      },
+      "lastPreparation": {
+        "steps": 0,
+        "elapsedMs": 0.0005010000004403992,
+        "maxStepMs": 0,
+        "overrunMs": 0,
+        "pending": 0
+      },
+      "ceremony": {
+        "ceremonyRef": "taihe-audience",
+        "phase": "waiting",
+        "phaseStartedAtSeconds": 0,
+        "elapsedSeconds": 35.10000000000023,
+        "pose": "standing",
+        "formalExcerptEnabled": false
+      },
+      "worldQueries": {
+        "supportQueries": 954,
+        "cacheHits": 10,
+        "pathChecks": 2,
+        "meshIndexBuilds": 1,
+        "broadPhaseCandidates": 28900,
+        "raycastMeshTests": 1130,
+        "colliderIndexBuilds": 1,
+        "colliderCandidates": 5964
+      }
+    },
+    "render": {
+      "rootName": "QingInterpretationCharacters",
+      "rootAttachedToMainScene": true,
+      "instances": 6,
+      "meshes": [
+        {
+          "name": "characters:guard-duty|standing|2|static|standard",
+          "isInstancedMesh": true,
+          "count": 2,
+          "vertices": 265,
+          "indices": 1422
+        },
+        {
+          "name": "characters:official-ceremonial|standing|2|static|standard",
+          "isInstancedMesh": true,
+          "count": 4,
+          "vertices": 242,
+          "indices": 1296
+        }
+      ]
+    }
+  },
+  "spawnGeometry": {
+    "path": "/workspace/scratch/02a8023d1a85/r51-unified/reports/r51/production-visibility-spawn-geometry.json.gz",
+    "sourceMeshes": 27,
+    "sourceCharacterInstances": 2,
+    "triangles": 27044,
+    "camera": {
+      "position": [
+        0,
+        1.7,
+        -494
+      ],
+      "quaternion": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "fov": 70,
+      "aspect": 1.7777777777777777,
+      "matrixWorldInverse": [
+        -1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        -1,
+        0,
+        0,
+        -1.7,
+        -494,
+        1
+      ],
+      "projectionMatrix": [
+        0.8033332537924395,
+        0,
+        0,
+        0,
+        0,
+        1.4281480067421146,
+        0,
+        0,
+        0,
+        0,
+        -1.000080003200128,
+        -1,
+        0,
+        0,
+        -0.20000800032001279,
+        0
+      ],
+      "exportFar": 135
+    }
+  },
+  "taiheNear": {
+    "camera": [
+      -12,
+      1.7,
+      -90
+    ],
+    "snapshot": {
+      "registered": 38,
+      "loaded": 38,
+      "visible": 10,
+      "near": 2,
+      "renderCopies": 10,
+      "pending": 0,
+      "errors": 0,
+      "batches": 6,
+      "trianglesEstimate": 13256,
+      "enabled": true,
+      "rollout": "candidate-visible",
+      "contentEnabled": true,
+      "contentApproved": false,
+      "previewActive": false,
+      "acceptance": {
+        "complete": false,
+        "appearance": "confirmed",
+        "gpu": "unverified",
+        "mobile": "unverified",
+        "history": "partial"
+      },
+      "simulationSeconds": 38.60000000000028,
+      "updateP50Ms": 1.011609000000135,
+      "updateP95Ms": 1.1853790000004665,
+      "batchGeometryBytes": 342786,
+      "instanceBytes": 36864,
+      "sharedResources": {
+        "entries": 27,
+        "geometries": 27,
+        "references": 6,
+        "geometryBytes": 2948910,
+        "textureBytes": 0
+      },
+      "textureGpuEstimateBytes": 0,
+      "castShadow": false,
+      "performanceEvidence": "CPU submission estimates; full-frame WebGL A/B not measured",
+      "drawCallsEstimate": 6,
+      "diagnostics": [],
+      "daylight": 1,
+      "lastError": null,
+      "configurationValid": true,
+      "configurationErrors": [],
+      "managerUpdateP95Ms": 0.2683600000000297,
+      "preparation": {
+        "frames": 387,
+        "steps": 29310,
+        "completed": 46,
+        "cancelled": 30,
+        "totalCpuMs": 312.19401299999663,
+        "maxFrameMs": 3.002659999999196,
+        "maxStepMs": 2.069817999999941,
+        "maxStepKind": "completion",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 2.069178999999167,
+        "pending": 0
+      },
+      "lastPreparation": {
+        "steps": 0,
+        "elapsedMs": 0.0001809999994293321,
+        "maxStepMs": 0,
+        "overrunMs": 0,
+        "pending": 0
+      },
+      "ceremony": {
+        "ceremonyRef": "taihe-audience",
+        "phase": "waiting",
+        "phaseStartedAtSeconds": 0,
+        "elapsedSeconds": 38.60000000000028,
+        "pose": "standing",
+        "formalExcerptEnabled": false
+      },
+      "worldQueries": {
+        "supportQueries": 954,
+        "cacheHits": 10,
+        "pathChecks": 2,
+        "meshIndexBuilds": 1,
+        "broadPhaseCandidates": 28900,
+        "raycastMeshTests": 1130,
+        "colliderIndexBuilds": 1,
+        "colliderCandidates": 5964
+      }
+    },
+    "render": {
+      "rootName": "QingInterpretationCharacters",
+      "rootAttachedToMainScene": true,
+      "instances": 10,
+      "meshes": [
+        {
+          "name": "characters:guard-duty|standing|2|static|standard",
+          "isInstancedMesh": true,
+          "count": 2,
+          "vertices": 265,
+          "indices": 1422
+        },
+        {
+          "name": "characters:emperor-ceremonial|seated|2|static|throne-front-perch",
+          "isInstancedMesh": true,
+          "count": 1,
+          "vertices": 265,
+          "indices": 1422
+        },
+        {
+          "name": "characters:official-ceremonial|standing|0|static|standard",
+          "isInstancedMesh": true,
+          "count": 2,
+          "vertices": 2279,
+          "indices": 10293
+        },
+        {
+          "name": "characters:official-ceremonial|standing|1|static|standard",
+          "isInstancedMesh": true,
+          "count": 1,
+          "vertices": 812,
+          "indices": 3816
+        },
+        {
+          "name": "characters:guard-duty|standing|1|static|standard",
+          "isInstancedMesh": true,
+          "count": 2,
+          "vertices": 908,
+          "indices": 4254
+        },
+        {
+          "name": "characters:ritual-attendant|standing|2|static|standard",
+          "isInstancedMesh": true,
+          "count": 2,
+          "vertices": 242,
+          "indices": 1296
+        }
+      ]
+    }
+  },
+  "taiheGeometry": {
+    "path": "/workspace/scratch/02a8023d1a85/r51-unified/reports/r51/production-visibility-taihe-geometry.json.gz",
+    "sourceMeshes": 40,
+    "sourceCharacterInstances": 8,
+    "triangles": 35929,
+    "camera": {
+      "position": [
+        -12,
+        1.7,
+        -90
+      ],
+      "quaternion": [
+        0,
+        0.9993895554641411,
+        0.034935890273279625,
+        0
+      ],
+      "fov": 70,
+      "aspect": 1.7777777777777777,
+      "matrixWorldInverse": [
+        -0.9999999999999996,
+        0,
+        0,
+        0,
+        0,
+        0.9975589671416267,
+        0.06982912769991384,
+        0,
+        0,
+        0.06982912769991384,
+        -0.9975589671416263,
+        0,
+        -11.999999999999993,
+        4.58877124885148,
+        -89.89901655983621,
+        1
+      ],
+      "projectionMatrix": [
+        0.8033332537924395,
+        0,
+        0,
+        0,
+        0,
+        1.4281480067421146,
+        0,
+        0,
+        0,
+        0,
+        -1.000080003200128,
+        -1,
+        0,
+        0,
+        -0.20000800032001279,
+        0
+      ],
+      "exportFar": 135
+    }
+  }
+}

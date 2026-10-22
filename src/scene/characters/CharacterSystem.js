@@ -8,14 +8,16 @@ import { PatrolController } from './PatrolController.js';
 import { CeremonyController } from './CeremonyController.js';
 import { validateCharacterRegistry } from './CharacterSchema.js';
 
-// Release owner changes this only after visual, historical and runtime gates.
-// Tests may inject approval to validate lifecycle; no query string bypass exists.
+// Product availability and acceptance are independent: the user confirmed the
+// appearance and requested the ordinary, default-on release (§2.2). Missing
+// GPU/mobile/history evidence remains explicit and is never promoted by on/off.
 export const CHARACTER_ROLLOUT_APPROVED = false;
+export const CHARACTER_CONTENT_ENABLED = true;
 export class CharacterSystem {
   constructor({ scene, camera, collisionManager, zoneManager, interiors, registry = CHARACTER_REGISTRY,
-    adapter = null, renderer = null, documentObject = globalThis.document, contentApproved = CHARACTER_ROLLOUT_APPROVED,
+    adapter = null, renderer = null, documentObject = globalThis.document, contentApproved, contentEnabled = contentApproved ?? CHARACTER_CONTENT_ENABLED,
     preparationBudgetMs = {high:1,low:1} } = {}) {
-    this.camera=camera;this.document=documentObject;this.disposed=false;this.lastError=null;
+    this.camera=camera;this.document=documentObject;this.disposed=false;this.lastError=null;this.lastFailure=null;this.lastDaylight=1;
     this.preparationBudgetMs=preparationBudgetMs;this.totalUpdateSamples=[];this.lastPreparation=null;
     this.validation=validateCharacterRegistry(registry);
     const effectiveRegistry=this.validation.valid?registry:{actors:[],templates:[],anchors:[],surfaces:[],seats:[],paths:[],ceremonies:[]};
@@ -28,7 +30,7 @@ export class CharacterSystem {
       resolve:actor=>this.world.request?this.world.request(actor,a=>this.prepareFor(a)):this.world.resolve(actor,this.metricsFor(actor)),
     };
     this.manager=new CharacterManager({registry:effectiveRegistry,adapter:readonlyAdapter,renderer:this.renderer,
-      enabled:this.validation.valid,contentApproved,
+      enabled:this.validation.valid,contentEnabled,
       patrolFactory:(actor,binding)=>{
         const b=actor.behavior;
         return new PatrolController({path:binding.path,
@@ -55,25 +57,43 @@ export class CharacterSystem {
     return this.metricsFor(actor);
   }
   get enabled(){return this.manager.enabled;}
+  get contentEnabled(){return this.manager.contentEnabled;}
+  get developmentPreviewActive(){return this.manager.developmentPreviewActive;}
+  setDevelopmentPreview(enabled){
+    if(import.meta.env?.DEV !== true || this.disposed || !this.validation.valid)return false;
+    if(enabled === true){
+      this.manager.setDevelopmentPreview(true);
+      this.setEnabled(true);
+    }else{
+      this.setEnabled(false);
+      this.manager.setDevelopmentPreview(false);
+    }
+    return this.developmentPreviewActive;
+  }
   setEnabled(enabled){if(!this.validation.valid&&enabled)return;this.manager.setEnabled(enabled);if(!enabled)this.world.cancelPending?.('Characters disabled');}
   update(dt,{daylight=1,quality='high',viewportHeight=1080}={}){
     if(this.disposed)return;
+    this.lastDaylight=daylight;
     const start=performance.now();
     try{
       // Only share read snapshots within this synchronous Manager traversal.
       // End before advancing resumable jobs, whose evidence is always fresh.
       try{this.world.beginReadFrame?.();this.manager.update(dt,{camera:this.camera,daylight,quality,viewportHeight,hidden:!!this.document?.hidden});}
       finally{this.world.endReadFrame?.();}
-      if(this.manager.enabled&&this.manager.contentApproved&&!this.document?.hidden){
+      if(this.manager.enabled&&this.manager.canRunContent&&!this.document?.hidden){
         const budget=typeof this.preparationBudgetMs==='number'?this.preparationBudgetMs:this.preparationBudgetMs[quality]??1;
         // Rendering/submission and first-template preparation share this same
         // total NPC update deadline. No cold cost is moved outside measurement.
         this.lastPreparation=this.world.advance?.({budgetMs:Math.max(0,budget-(performance.now()-start))});
+        this.lastError=null; // Successful explicit retry clears only the active error.
       }
-    }catch(error){this.lastError=String(error);this.setEnabled(false);}
+    }catch(error){this.lastError=this.lastFailure=String(error);this.setEnabled(false);}
     this.totalUpdateSamples.push(performance.now()-start);if(this.totalUpdateSamples.length>600)this.totalUpdateSamples.shift();
   }
-  snapshot(){const manager=this.manager.snapshot(),sorted=[...this.totalUpdateSamples].sort((a,b)=>a-b),percentile=q=>sorted[Math.floor((sorted.length-1)*q)]??0;return{...manager,lastError:this.lastError,configurationValid:this.validation.valid,configurationErrors:this.validation.errors,
+  // The settings status runs on the existing frame loop. Do not sort timing
+  // buffers or allocate per-actor diagnostics solely to update a few counters.
+  statusSnapshot(){return{...this.manager.stats,rollout:this.manager.rollout,enabled:this.enabled,contentEnabled:this.contentEnabled,daylight:this.lastDaylight,lastError:this.lastError};}
+  snapshot(){const manager=this.manager.snapshot(),sorted=[...this.totalUpdateSamples].sort((a,b)=>a-b),percentile=q=>sorted[Math.floor((sorted.length-1)*q)]??0;return{...manager,daylight:this.lastDaylight,lastError:this.lastError,lastFailure:this.lastFailure,configurationValid:this.validation.valid,configurationErrors:this.validation.errors,
     managerUpdateP95Ms:manager.updateP95Ms,updateP50Ms:percentile(.5),updateP95Ms:percentile(.95),
     preparation:this.world.work?.snapshot?.()??null,lastPreparation:this.lastPreparation,
     ceremony:this.ceremony.sample(this.manager.simulationSeconds),worldQueries:{...this.world.stats}};}

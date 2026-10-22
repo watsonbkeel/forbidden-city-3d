@@ -8,6 +8,14 @@ const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-9,`${a} vs ${b}`);
 for(const old of baseline.rows)test(old.name+': R49D scoped geometry and access retention',async()=>{
  const now=await depthSnapshot(root,old);
  for(const k of ['meshes','nonPlaqueGeometryHash','colliders','walkables','rooms','regions','mapItems'])assert.deepEqual(now[k],old[k],k);
+ // R49E intentionally changes only the Wenyuan registered plaque pose.
+ // Keep the actual candidate world and all non-plaque/access comparisons above;
+ // the R49E suite separately checks every frame corner, volume and photo pose.
+ if(old.name==='文渊阁'){
+  for(const part of ['face','frame'])for(const key of ['geometry','scale'])assert.deepEqual(now[part][key],old[part][key]);
+  assert.deepEqual(now.face.position,[0,8.79,-8.88]);
+  near(now.frame.rotation[0],-Math.PI/3);return;
+ }
  if(old.name!=='本仁殿'){assert.deepEqual(now,old);return;}
  for(const part of ['face','frame']){
   assert.deepEqual(now[part].geometry,old[part].geometry);assert.deepEqual(now[part].scale,old[part].scale);assert.deepEqual(now[part].rotation,old[part].rotation);

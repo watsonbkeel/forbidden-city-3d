@@ -386,7 +386,7 @@ function* head(b,t,lod,off,z){
 function* shoe(b,x,y,z,lod,part,pose){
  const rig={part,pivot:[x,pose==='standing'?.79:.43,z-.02],weight:1,torsoWeight:0};const seg=[12,6,5][lod];
  if(lod<2)yield* b.loft([{x,y,rx:.061,rz:.137,z:z+.025},{x,y:y+.021,rx:.065,rz:.139,z:z+.025},{x,y:y+.024,rx:.063,rz:.137,z:z+.025}],seg,SOLE,rig);
- yield* b.loft([{x,y:y+.024,rx:.064,rz:.134,z:z+.025},{x,y:y+.065,rx:.060,rz:.124,z:z+.027},{x,y:y+.10,rx:.042,rz:.08,z:z-.01}],seg,0x242329,rig);
+ yield* b.loft([{x,y:lod===2?y:y+.024,rx:.064,rz:.134,z:z+.025},{x,y:y+.065,rx:.060,rz:.124,z:z+.027},{x,y:y+.10,rx:.042,rz:.08,z:z-.01}],seg,0x242329,rig);
 }
 function* arm(b,t,pose,lod,off,z,side,femalePose='resting',seatVariant='standard'){
  if(isFemale(t)){yield* femaleArm(b,t,pose,lod,off,z,side,femalePose,seatVariant);return;}

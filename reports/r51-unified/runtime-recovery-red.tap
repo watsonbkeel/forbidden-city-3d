@@ -1,0 +1,39 @@
+✔ R51 production-default System renders real scene meshes without formal acceptance (94.383828ms)
+✔ ordinary off clears all real render instances; ordinary on restores without a DEV action (45.957483ms)
+✔ default-on still respects explicit content unavailable and required bad/pending support (34.959018ms)
+✔ night retains real guard instances but never schedules an emperor or living-scene actor (23.073345ms)
+✔ read-only per-frame UI status does not sort diagnostic timing buffers (29.030493ms)
+✖ ordinary retry after a transient renderer fault clears current error only after success and retains diagnostic history (38.825242ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 419.851418
+
+✖ failing tests:
+
+test at tests/r51-default-content.test.mjs:31:1
+✖ ordinary retry after a transient renderer fault clears current error only after success and retains diagnostic history (38.825242ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'Error: once-only-render-fault'
+  - null
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r51-unified/tests/r51-default-content.test.mjs:35:196)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Error: once-only-render-fault',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

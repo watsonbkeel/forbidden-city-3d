@@ -19,7 +19,16 @@ const SOURCES=Object.freeze({
  'ningshou/皇极殿':{page:236476,kind:'double-eave'},
  // R49D: only the verified frame/beam depth collision is closed.
  'outer-east/本仁殿':{url:'https://www.dpm.org.cn/Uploads/File/pdf/e5/4b/d7/e54bd768807a80999b3c22af915df13b.pdf',kind:'beam-front-depth-clearance-only',fit:{z:-5.50},dimensions:'RETAINED_Y_AND_COMPLETE_FRAME_SIZE__ONLY_DEPTH_FITTED_NOT_SURVEYED',residual:'Y_SIZE_DOORHEAD_PROPORTIONS_AND_HISTORIC_SUPPORT_UNVERIFIED'},
- 'outer-east/文渊阁':{page:236513,kind:'upper-storey-architrave',fit:{x:0,y:8.35,z:-8.32},residual:'MODEL_UPPER_WINDOW_TOO_HIGH_PHOTO_VERTICAL_PROPORTION_UNRESOLVED',photo:'https://img.dpm.org.cn/Uploads/Picture/dc/1536%5B1024%5D.jpg'},
+ // The official oblique photograph shows the TOP projecting outward: the
+ // face points forward/down, not a vertical board lowered across the windows.
+ // 60 degrees is a photo-compatible reversible fit, never a measured angle.
+ 'outer-east/文渊阁':{page:236513,kind:'upper-storey-forward-downward-pitched',fit:{x:0,y:8.79,z:-8.88},
+  pitch:{axis:'hall-local-X',degrees:-60,pivot:'registered-face-centre',conditionalSensitivityDegrees:[55,65],notASurveyConfidenceInterval:true,
+   photo:'https://www.dpm.org.cn/Uploads/File/2022/04/20/u625f6d55f09ad.pdf',pdfPage:9,printedPage:22,
+   supersedes:'R49B_MODEL_UPPER_WINDOW_TOO_HIGH_DIAGNOSIS_NOT_ESTABLISHED_BY_VERTICAL_PROJECTION'},
+  dimensions:'RETAINED_FULL_FRAME_SIZE_WITH_PHOTO_DIRECTION_AND_MODEL_POSE_FIT_NOT_SURVEYED',
+  residual:'EXACT_ANGLE_HANGING_FIXTURES_AND_CARVED_FRAME_UNVERIFIED_RECTANGULAR_FRAME_AND_FONT_SIMPLIFIED',
+  photo:'https://img.dpm.org.cn/Uploads/Picture/dc/1536%5B1024%5D.jpg'},
  'outer-west/咸若馆':{page:236534,kind:'horizontal',background:'blue',fit:{x:0,y:6.12,z:-10.62,width:2.6,height:1.05}},
  'outer-west/寿康宫':{page:236448,kind:'outer-eave-front',fit:{x:0,y:7.2,z:-9.12}},
  'outer-west/慈宁宫':{page:236504,kind:'double-eave'},
@@ -53,6 +62,15 @@ export function applySourceGuidedNameboardMount(kit,zone,item,built) {
   const mount=fitRegisteredNameboard(kit,built.f,p.text,{...source.fit,source:sourceURL,mountKind:source.kind,
    dimensions:source.dimensions??'SOURCE_LAYER_AND_ORIENTATION_WITH_MODEL_SIZE_FIT_NOT_SURVEYED',photo:source.photo??null,
    residual:source.residual??'RECTANGULAR_FRAME_AND_SIMPLIFIED_SYSTEM_FONT_NOT_HISTORIC_REPLICA'});
+  if(source.pitch){
+   // Both registered objects rotate about one face-centre pivot. Preserve the
+   // original face orientation and the complete frame/face relative transform.
+   const q=new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1,0,0),THREE.MathUtils.degToRad(source.pitch.degrees));
+   const offset=p.frame.position.clone().sub(p.mesh.position).applyQuaternion(q);
+   p.frame.position.copy(p.mesh.position).add(offset);
+   p.mesh.quaternion.premultiply(q);p.frame.quaternion.premultiply(q);
+   mount.pitch={...source.pitch};mount.framePosition=p.frame.position.toArray();
+  }
   if(source.kind==='horizontal'){p.layout='horizontal';p.readingOrder='right-to-left';p.background=source.background??'dark';}
   built.f.userData.sourceGuidedNameboardMount=mount;if(built.f.userData.structure)built.f.userData.structure.nameboardMount=mount;return built;
  }

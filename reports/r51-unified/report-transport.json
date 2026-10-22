@@ -1,0 +1,23 @@
+{
+  "method": "lossless gzip, original JSON bytes SHA-256 verified by decompression",
+  "archives": [
+    {
+      "originalPath": "reports/r51/production-visibility-foot-contact.json",
+      "archivePath": "reports/r51/production-visibility-foot-contact.json.gz",
+      "originalBytes": 73034,
+      "originalSha256": "c6accfe3528dce5ecaf2eca15da76a1f25e4d5db7613ce2b0aaf3a56ba427a03",
+      "archiveBytes": 3582,
+      "archiveSha256": "9f5f54f647d221e9a6d12299a8a5d09a374a430930eee03298432e5fb8b8b862"
+    },
+    {
+      "originalPath": "reports/r51/production-visibility-foot-contact-after-lod2.json",
+      "archivePath": "reports/r51/production-visibility-foot-contact-after-lod2.json.gz",
+      "originalBytes": 145243,
+      "originalSha256": "b93b176f7808381b2b4c9500d54019edc26360b64825ed72726f4c84af7ad294",
+      "archiveBytes": 4604,
+      "archiveSha256": "669012d1ca03678ba2be1d66f06e1cde767b8a0faa601ce39b6ade7baf5cd0ed"
+    }
+  ],
+  "restore": "node scripts/r51-verify-report-archives.mjs --restore; refuses an existing target",
+  "excludedRegenerableInputs": "CPU geometry exports remain temporary cache; uncompressed report copies are not release files"
+}

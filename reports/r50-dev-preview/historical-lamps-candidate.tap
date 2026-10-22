@@ -1,0 +1,41 @@
+TAP version 13
+# [GardenBuilder] 已构建御花园：CPU mesh objects=35, 三角面=126,952, 树木=34棵, 碰撞器=425
+# Subtest: two sourced sky-lamp silhouettes default off; finite geometry remains bounded and self-owned
+ok 1 - two sourced sky-lamp silhouettes default off; finite geometry remains bounded and self-owned
+  ---
+  duration_ms: 15.701061
+  type: 'test'
+  ...
+# Subtest: enabled poles own walking and air clearance; disabling restores exact underlying envelope
+ok 2 - enabled poles own walking and air clearance; disabling restores exact underlying envelope
+  ---
+  duration_ms: 15.541468
+  type: 'test'
+  ...
+# Subtest: cannot spawn solid lamp into walker or aircraft; no mutation on rejected enable
+ok 3 - cannot spawn solid lamp into walker or aircraft; no mutation on rejected enable
+  ---
+  duration_ms: 3.891552
+  type: 'test'
+  ...
+# Subtest: two warm lights have no shadows and bounded falloff; day extinguishes lamps
+ok 4 - two warm lights have no shadows and bounded falloff; day extinguishes lamps
+  ---
+  duration_ms: 2.598007
+  type: 'test'
+  ...
+# Subtest: photo-estimated lower-court placements do not overlap current architectural clearance
+ok 5 - photo-estimated lower-court placements do not overlap current architectural clearance
+  ---
+  duration_ms: 4758.766426
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5095.281023
