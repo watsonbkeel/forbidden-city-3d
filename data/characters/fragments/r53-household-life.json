@@ -1,0 +1,620 @@
+{
+  "schemaVersion": 2,
+  "unit": "meter",
+  "baselineCommit": "2a7c6fd09086e6b73c0745aa7cfca4534bbfd9a6",
+  "scopeNote": "Six anonymous, independently switchable household interpretation candidates. Actual-world proof applies only to frozen R52 and must be rerun in integrated R53. The museum sources distinguish building contexts, not these staff numbers, exact posts, paths, costumes, or schedules. No present-exhibit, named-occupant, historical daily-roster, ceremony, or book-handling claim. Original 71 actors and all coverage manifests are unchanged.",
+  "actors": [
+    {
+      "id": "xianfu-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "xianfu",
+      "sceneId": "xianfu",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R53-xianfu",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "In Qianlong times the building was sometimes used by the emperor; no named occupant or staff placement is reconstructed."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "xianfu-r53-front-support",
+        "anchorRef": "xianfu-r53-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          5,
+          0.62,
+          -3
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 53001
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "xianfu-maid-01",
+      "templateId": "maid-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "xianfu",
+      "sceneId": "xianfu",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R53-xianfu",
+          "H6",
+          "H4",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "In Qianlong times the building was sometimes used by the emperor; no named occupant or staff placement is reconstructed."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "xianfu-r53-courtyard-service",
+        "surfaceRef": "xianfu-r53-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 53002,
+        "speedMetersPerSecond": 0.4,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "xianfu-r53-courtyard-service"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "taiji-maid-01",
+      "templateId": "maid-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "taiji",
+      "sceneId": "taiji",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R53-taiji",
+          "H6",
+          "H4",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "The museum describes a domestic original-state exhibit and late-Qing/early-Republic ceiling. These switchable anonymous roles do not represent present exhibit occupants or a single period inventory."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taiji-r53-front-support",
+        "anchorRef": "taiji-r53-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -5,
+          0.61,
+          -6.25
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 53003
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "taiji-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "taiji",
+      "sceneId": "taiji",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R53-taiji",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "The museum describes a domestic original-state exhibit and late-Qing/early-Republic ceiling. These switchable anonymous roles do not represent present exhibit occupants or a single period inventory."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "taiji-r53-courtyard-service",
+        "surfaceRef": "taiji-r53-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 53004,
+        "speedMetersPerSecond": 0.4,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "taiji-r53-courtyard-service"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "jingyang-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "jingyang",
+      "sceneId": "jingyang",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R53-jingyang",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "The building was changed to book storage in Qing times, not treated here as a Qing consort residence. Generic service roles carry no books and do not enact a documented archive procedure."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "jingyang-r53-front-support",
+        "anchorRef": "jingyang-r53-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -5,
+          0.62,
+          -3
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 53005
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "jingyang-eunuch-02",
+      "templateId": "eunuch-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "jingyang",
+      "sceneId": "jingyang",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R53-jingyang",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "The building was changed to book storage in Qing times, not treated here as a Qing consort residence. Generic service roles carry no books and do not enact a documented archive procedure."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "jingyang-r53-courtyard-service",
+        "surfaceRef": "jingyang-r53-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 53006,
+        "speedMetersPerSecond": 0.4,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "jingyang-r53-courtyard-service"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    }
+  ],
+  "anchors": [
+    {
+      "id": "xianfu-r53-hall",
+      "zoneRef": "west-six",
+      "source": "data/zones/west-six.json",
+      "resolver": "zone-item",
+      "building": "咸福宫"
+    },
+    {
+      "id": "taiji-r53-hall",
+      "zoneRef": "west-six",
+      "source": "data/zones/west-six.json",
+      "resolver": "zone-item",
+      "building": "太极殿"
+    },
+    {
+      "id": "jingyang-r53-hall",
+      "zoneRef": "east-six",
+      "source": "data/zones/east-six.json",
+      "resolver": "zone-item",
+      "building": "景阳宫"
+    }
+  ],
+  "surfaces": [
+    {
+      "id": "xianfu-r53-front-support",
+      "zoneRef": "west-six",
+      "anchorRef": "xianfu-r53-hall",
+      "kind": "walkable",
+      "localBoundsMeters": [
+        4.3,
+        5.7,
+        -3.7,
+        -2.3
+      ],
+      "expectedHeightMeters": 0.62,
+      "heightToleranceMeters": 0.001,
+      "source": "src/scene/palace/special/RemainingResidentialHalls.js",
+      "verification": "Actual visible top surface required, not a lower platform within a broad tolerance. No position offset."
+    },
+    {
+      "id": "xianfu-r53-court-ground",
+      "zoneRef": "west-six",
+      "anchorRef": "xianfu-r53-hall",
+      "kind": "ground",
+      "localBoundsMeters": [
+        -5,
+        3,
+        -13,
+        -11
+      ],
+      "expectedHeightMeters": 0,
+      "heightToleranceMeters": 0.001,
+      "source": "src/scene/Environment.js#setupGround",
+      "verification": "Actual rendered courtyard ground triangles, body radius 0.5 m plus 0.15 m clearance margin; no origin fallback."
+    },
+    {
+      "id": "taiji-r53-front-support",
+      "zoneRef": "west-six",
+      "anchorRef": "taiji-r53-hall",
+      "kind": "walkable",
+      "localBoundsMeters": [
+        -5.7,
+        -4.3,
+        -6.95,
+        -5.55
+      ],
+      "expectedHeightMeters": 0.61,
+      "heightToleranceMeters": 0.001,
+      "source": "src/scene/palace/special/RemainingResidentialHalls.js",
+      "verification": "Actual visible porch stone slab top at 0.61 m, not the registered or rendered 0.60 m brick/platform layer below. Exact support-layer binding, never a position offset."
+    },
+    {
+      "id": "taiji-r53-court-ground",
+      "zoneRef": "west-six",
+      "anchorRef": "taiji-r53-hall",
+      "kind": "ground",
+      "localBoundsMeters": [
+        0,
+        7,
+        -15,
+        -13
+      ],
+      "expectedHeightMeters": 0,
+      "heightToleranceMeters": 0.001,
+      "source": "src/scene/Environment.js#setupGround",
+      "verification": "Actual rendered courtyard ground triangles, body radius 0.5 m plus 0.15 m clearance margin; no origin fallback."
+    },
+    {
+      "id": "jingyang-r53-front-support",
+      "zoneRef": "east-six",
+      "anchorRef": "jingyang-r53-hall",
+      "kind": "walkable",
+      "localBoundsMeters": [
+        -5.7,
+        -4.3,
+        -3.7,
+        -2.3
+      ],
+      "expectedHeightMeters": 0.62,
+      "heightToleranceMeters": 0.001,
+      "source": "src/scene/palace/special/RemainingResidentialHalls.js",
+      "verification": "Actual visible top surface required, not a lower platform within a broad tolerance. No position offset."
+    },
+    {
+      "id": "jingyang-r53-court-ground",
+      "zoneRef": "east-six",
+      "anchorRef": "jingyang-r53-hall",
+      "kind": "ground",
+      "localBoundsMeters": [
+        -4,
+        4,
+        -13,
+        -11
+      ],
+      "expectedHeightMeters": 0,
+      "heightToleranceMeters": 0.001,
+      "source": "src/scene/Environment.js#setupGround",
+      "verification": "Actual rendered courtyard ground triangles, body radius 0.5 m plus 0.15 m clearance margin; no origin fallback."
+    }
+  ],
+  "paths": [
+    {
+      "id": "xianfu-r53-courtyard-service",
+      "zoneRef": "west-six",
+      "anchorRef": "xianfu-r53-hall",
+      "surfaceRef": "xianfu-r53-court-ground",
+      "pointsLocalMeters": [
+        [
+          -4,
+          0,
+          -12
+        ],
+        [
+          2,
+          0,
+          -12
+        ]
+      ],
+      "radiusMeters": 0.5,
+      "safetyMarginMeters": 0.15,
+      "validationSpacingMeters": 0.25,
+      "formationSize": 1,
+      "turningRadiusMeters": 0.7,
+      "crossZone": false,
+      "allowedDoorRefs": [],
+      "forbiddenAreaRefs": [
+        "yanxi-water-palace",
+        "helicopter-clearance"
+      ],
+      "description": "Short reversible, anonymous service walk; a model interpretation, not a historical staff route."
+    },
+    {
+      "id": "taiji-r53-courtyard-service",
+      "zoneRef": "west-six",
+      "anchorRef": "taiji-r53-hall",
+      "surfaceRef": "taiji-r53-court-ground",
+      "pointsLocalMeters": [
+        [
+          1,
+          0,
+          -14
+        ],
+        [
+          6,
+          0,
+          -14
+        ]
+      ],
+      "radiusMeters": 0.5,
+      "safetyMarginMeters": 0.15,
+      "validationSpacingMeters": 0.25,
+      "formationSize": 1,
+      "turningRadiusMeters": 0.7,
+      "crossZone": false,
+      "allowedDoorRefs": [],
+      "forbiddenAreaRefs": [
+        "yanxi-water-palace",
+        "helicopter-clearance"
+      ],
+      "description": "Short reversible, anonymous service walk; a model interpretation, not a historical staff route."
+    },
+    {
+      "id": "jingyang-r53-courtyard-service",
+      "zoneRef": "east-six",
+      "anchorRef": "jingyang-r53-hall",
+      "surfaceRef": "jingyang-r53-court-ground",
+      "pointsLocalMeters": [
+        [
+          -3,
+          0,
+          -12
+        ],
+        [
+          3,
+          0,
+          -12
+        ]
+      ],
+      "radiusMeters": 0.5,
+      "safetyMarginMeters": 0.15,
+      "validationSpacingMeters": 0.25,
+      "formationSize": 1,
+      "turningRadiusMeters": 0.7,
+      "crossZone": false,
+      "allowedDoorRefs": [],
+      "forbiddenAreaRefs": [
+        "yanxi-water-palace",
+        "helicopter-clearance"
+      ],
+      "description": "Short reversible, anonymous service walk; a model interpretation, not a historical staff route."
+    }
+  ],
+  "seats": [],
+  "evidence": [
+    {
+      "id": "R53-xianfu",
+      "title": "咸福宫",
+      "url": "https://www.dpm.org.cn/explore/building/236507.html",
+      "supportedDetails": "In Qianlong times the building was sometimes used by the emperor; no named occupant or staff placement is reconstructed.",
+      "era": "Building-specific context only; no staffing reconstruction",
+      "referenceImageOrPage": "Official Palace Museum building text; no image bundled",
+      "simplifications": "Existing approved self-authored staff templates only. Exact count, location, route, clothing and schedule are anonymous model choices. No claimed rank, resident, archive handling or present exhibit staff."
+    },
+    {
+      "id": "R53-taiji",
+      "title": "太极殿",
+      "url": "https://www.dpm.org.cn/explore/building/236475.html",
+      "supportedDetails": "The museum describes a domestic original-state exhibit and late-Qing/early-Republic ceiling. These switchable anonymous roles do not represent present exhibit occupants or a single period inventory.",
+      "era": "Building-specific context only; no staffing reconstruction",
+      "referenceImageOrPage": "Official Palace Museum building text; no image bundled",
+      "simplifications": "Existing approved self-authored staff templates only. Exact count, location, route, clothing and schedule are anonymous model choices. No claimed rank, resident, archive handling or present exhibit staff."
+    },
+    {
+      "id": "R53-jingyang",
+      "title": "景阳宫",
+      "url": "https://www.dpm.org.cn/explore/building/236511.html",
+      "supportedDetails": "The building was changed to book storage in Qing times, not treated here as a Qing consort residence. Generic service roles carry no books and do not enact a documented archive procedure.",
+      "era": "Building-specific context only; no staffing reconstruction",
+      "referenceImageOrPage": "Official Palace Museum building text; no image bundled",
+      "simplifications": "Existing approved self-authored staff templates only. Exact count, location, route, clothing and schedule are anonymous model choices. No claimed rank, resident, archive handling or present exhibit staff."
+    }
+  ],
+  "contexts": [
+    {
+      "sceneRef": "xianfu",
+      "zoneRef": "west-six",
+      "building": "咸福宫",
+      "historyBoundary": "In Qianlong times the building was sometimes used by the emperor; no named occupant or staff placement is reconstructed.",
+      "arrangement": "Standing inner attendant beside front-room interior and maid on slow courtyard route",
+      "views": [
+        {
+          "label": "xianfu-eunuch-01",
+          "actorIds": [
+            "xianfu-eunuch-01"
+          ],
+          "cameraLocalMeters": [
+            5,
+            2.32,
+            -5
+          ],
+          "targetLocalMeters": [
+            5,
+            1.52,
+            -3
+          ],
+          "cameraFloorMeters": 0.62
+        },
+        {
+          "label": "xianfu-maid-01",
+          "actorIds": [
+            "xianfu-maid-01"
+          ],
+          "cameraLocalMeters": [
+            -1.0,
+            1.7,
+            -17
+          ],
+          "targetLocalMeters": [
+            -1.0,
+            0.9,
+            -12
+          ],
+          "cameraFloorMeters": 0
+        }
+      ]
+    },
+    {
+      "sceneRef": "taiji",
+      "zoneRef": "west-six",
+      "building": "太极殿",
+      "historyBoundary": "The museum describes a domestic original-state exhibit and late-Qing/early-Republic ceiling. These switchable anonymous roles do not represent present exhibit occupants or a single period inventory.",
+      "arrangement": "Maid standing at front-porch side and inner attendant on short courtyard route",
+      "views": [
+        {
+          "label": "taiji-maid-01",
+          "actorIds": [
+            "taiji-maid-01"
+          ],
+          "cameraLocalMeters": [
+            -5,
+            1.7,
+            -10
+          ],
+          "targetLocalMeters": [
+            -5,
+            1.51,
+            -6.25
+          ],
+          "cameraFloorMeters": 0
+        },
+        {
+          "label": "taiji-eunuch-01",
+          "actorIds": [
+            "taiji-eunuch-01"
+          ],
+          "cameraLocalMeters": [
+            3.5,
+            1.7,
+            -19
+          ],
+          "targetLocalMeters": [
+            3.5,
+            0.9,
+            -14
+          ],
+          "cameraFloorMeters": 0
+        }
+      ]
+    },
+    {
+      "sceneRef": "jingyang",
+      "zoneRef": "east-six",
+      "building": "景阳宫",
+      "historyBoundary": "The building was changed to book storage in Qing times, not treated here as a Qing consort residence. Generic service roles carry no books and do not enact a documented archive procedure.",
+      "arrangement": "One standing inner attendant beside the front-room interior and another on a short courtyard route; no consort or books",
+      "views": [
+        {
+          "label": "jingyang-eunuch-01",
+          "actorIds": [
+            "jingyang-eunuch-01"
+          ],
+          "cameraLocalMeters": [
+            -5,
+            2.32,
+            -5
+          ],
+          "targetLocalMeters": [
+            -5,
+            1.52,
+            -3
+          ],
+          "cameraFloorMeters": 0.62
+        },
+        {
+          "label": "jingyang-eunuch-02",
+          "actorIds": [
+            "jingyang-eunuch-02"
+          ],
+          "cameraLocalMeters": [
+            0.0,
+            1.7,
+            -17
+          ],
+          "targetLocalMeters": [
+            0.0,
+            0.9,
+            -12
+          ],
+          "cameraFloorMeters": 0
+        }
+      ]
+    }
+  ]
+}

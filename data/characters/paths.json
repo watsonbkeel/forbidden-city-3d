@@ -168,5 +168,95 @@
     "turningRadiusMeters": 0.85,
     "description": "A maid makes a short service walk on one side while an attendant waits on the opposite side; no consort is added. Display behavior only, not historical service procedure.",
     "formationSize": 1
+  },
+  {
+    "id": "xianfu-r53-courtyard-service",
+    "zoneRef": "west-six",
+    "anchorRef": "xianfu-r53-hall",
+    "surfaceRef": "xianfu-r53-court-ground",
+    "pointsLocalMeters": [
+      [
+        -4,
+        0,
+        -12
+      ],
+      [
+        2,
+        0,
+        -12
+      ]
+    ],
+    "radiusMeters": 0.5,
+    "safetyMarginMeters": 0.15,
+    "validationSpacingMeters": 0.25,
+    "formationSize": 1,
+    "turningRadiusMeters": 0.7,
+    "crossZone": false,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "description": "Short reversible, anonymous service walk; a model interpretation, not a historical staff route."
+  },
+  {
+    "id": "taiji-r53-courtyard-service",
+    "zoneRef": "west-six",
+    "anchorRef": "taiji-r53-hall",
+    "surfaceRef": "taiji-r53-court-ground",
+    "pointsLocalMeters": [
+      [
+        1,
+        0,
+        -14
+      ],
+      [
+        6,
+        0,
+        -14
+      ]
+    ],
+    "radiusMeters": 0.5,
+    "safetyMarginMeters": 0.15,
+    "validationSpacingMeters": 0.25,
+    "formationSize": 1,
+    "turningRadiusMeters": 0.7,
+    "crossZone": false,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "description": "Short reversible, anonymous service walk; a model interpretation, not a historical staff route."
+  },
+  {
+    "id": "jingyang-r53-courtyard-service",
+    "zoneRef": "east-six",
+    "anchorRef": "jingyang-r53-hall",
+    "surfaceRef": "jingyang-r53-court-ground",
+    "pointsLocalMeters": [
+      [
+        -3,
+        0,
+        -12
+      ],
+      [
+        3,
+        0,
+        -12
+      ]
+    ],
+    "radiusMeters": 0.5,
+    "safetyMarginMeters": 0.15,
+    "validationSpacingMeters": 0.25,
+    "formationSize": 1,
+    "turningRadiusMeters": 0.7,
+    "crossZone": false,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "description": "Short reversible, anonymous service walk; a model interpretation, not a historical staff route."
   }
 ]

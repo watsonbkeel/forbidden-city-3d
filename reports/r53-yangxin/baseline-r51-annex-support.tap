@@ -1,0 +1,142 @@
+TAP version 13
+# Subtest: R48 太极殿后殿 annex has visible downward-facing underside in physical contact with its front bearing
+ok 1 - R48 太极殿后殿 annex has visible downward-facing underside in physical contact with its front bearing
+  ---
+  duration_ms: 41.526925
+  type: 'test'
+  ...
+# Subtest: R48 养心殿 annex has visible downward-facing underside in physical contact with its front bearing
+ok 2 - R48 养心殿 annex has visible downward-facing underside in physical contact with its front bearing
+  ---
+  duration_ms: 95.9578
+  type: 'test'
+  ...
+# Subtest: R48 Tiyuan stage roof stops at the exterior rear beam rather than protruding below the hall ceiling
+ok 3 - R48 Tiyuan stage roof stops at the exterior rear beam rather than protruding below the hall ceiling
+  ---
+  duration_ms: 16.88745
+  type: 'test'
+  ...
+# Subtest: R48 Chonghua fitted baoxia roof does not extend inside its retained main hall
+not ok 4 - R48 Chonghua fitted baoxia roof does not extend inside its retained main hall
+  ---
+  duration_ms: 151.447736
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r51-unified/tests/r48-residential-annex-support.test.mjs:13:1'
+  failureType: 'testCodeFailure'
+  error: 'roof enters main hall to -3.85558154582975'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r51-unified/tests/r48-residential-annex-support.test.mjs:13:216)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 Yangxin roll-roof gables close both sides with outward FrontSide triangles, not DoubleSide masking
+ok 5 - R48 Yangxin roll-roof gables close both sides with outward FrontSide triangles, not DoubleSide masking
+  ---
+  duration_ms: 63.737627
+  type: 'test'
+  ...
+# Subtest: R48 Tiyuan roll-roof gables and front edge close the exposed ends
+ok 6 - R48 Tiyuan roll-roof gables and front edge close the exposed ends
+  ---
+  duration_ms: 5.925046
+  type: 'test'
+  ...
+# Subtest: R48 Tiyuan trimmed roof edge physically meets the retained rear beam side
+ok 7 - R48 Tiyuan trimmed roof edge physically meets the retained rear beam side
+  ---
+  duration_ms: 5.885307
+  type: 'test'
+  ...
+# Subtest: R48 Chonghua every clipped auxiliary-roof edge vertex contacts a real retained wall or beam
+not ok 8 - R48 Chonghua every clipped auxiliary-roof edge vertex contacts a real retained wall or beam
+  ---
+  duration_ms: 88.438318
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r51-unified/tests/r48-residential-annex-support.test.mjs:17:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+
+      assert.ok(hit.distance<=.101&&hit.distance>=.01)
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    file:///workspace/scratch/02a8023d1a85/r51-unified/tests/r48-residential-annex-support.test.mjs:17:782
+    Mesh.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7600:3)
+    Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r51-unified/tests/r48-residential-annex-support.test.mjs:17:403)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 Chonghua real visible stairs exactly support the relocated front approach
+ok 9 - R48 Chonghua real visible stairs exactly support the relocated front approach
+  ---
+  duration_ms: 69.76774
+  type: 'test'
+  ...
+# Subtest: R48 太极殿后殿 new roll-roof upper and lower normals are independently FrontSide visible
+ok 10 - R48 太极殿后殿 new roll-roof upper and lower normals are independently FrontSide visible
+  ---
+  duration_ms: 6.690372
+  type: 'test'
+  ...
+# Subtest: R48 养心殿 new roll-roof upper and lower normals are independently FrontSide visible
+ok 11 - R48 养心殿 new roll-roof upper and lower normals are independently FrontSide visible
+  ---
+  duration_ms: 60.840021
+  type: 'test'
+  ...
+# Subtest: R48 Chonghua fitted auxiliary roof has outward roof/underside faces and closed raised gables
+not ok 12 - R48 Chonghua fitted auxiliary roof has outward roof/underside faces and closed raised gables
+  ---
+  duration_ms: 89.566526
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r51-unified/tests/r48-residential-annex-support.test.mjs:20:1'
+  failureType: 'testCodeFailure'
+  error: 'closed gable wall must exist behind any rake board'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r51-unified/tests/r48-residential-annex-support.test.mjs:20:866)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 Chonghua auxiliary beam and four posts physically bear its retained flat underside
+ok 13 - R48 Chonghua auxiliary beam and four posts physically bear its retained flat underside
+  ---
+  duration_ms: 67.392045
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 10
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 948.159933

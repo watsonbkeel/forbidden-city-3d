@@ -1,0 +1,267 @@
+TAP version 13
+# Subtest: R51 production-default System renders real scene meshes without formal acceptance
+not ok 1 - R51 production-default System renders real scene meshes without formal acceptance
+  ---
+  duration_ms: 110.614202
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r53-unified/tests/r51-default-content.test.mjs:15:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    77 !== 38
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 38
+  actual: 77
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r53-unified/tests/r51-default-content.test.mjs:16:90)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: ordinary off clears all real render instances; ordinary on restores without a DEV action
+ok 2 - ordinary off clears all real render instances; ordinary on restores without a DEV action
+  ---
+  duration_ms: 49.68976
+  type: 'test'
+  ...
+# Subtest: default-on still respects explicit content unavailable and required bad/pending support
+not ok 3 - default-on still respects explicit content unavailable and required bad/pending support
+  ---
+  duration_ms: 1.947394
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r53-unified/tests/r51-default-content.test.mjs:21:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    77 !== 38
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 38
+  actual: 77
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r53-unified/tests/r51-default-content.test.mjs:22:147)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: night retains real guard instances but never schedules an emperor or living-scene actor
+ok 4 - night retains real guard instances but never schedules an emperor or living-scene actor
+  ---
+  duration_ms: 32.187205
+  type: 'test'
+  ...
+# Subtest: read-only per-frame UI status does not sort diagnostic timing buffers
+not ok 5 - read-only per-frame UI status does not sort diagnostic timing buffers
+  ---
+  duration_ms: 33.096445
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r53-unified/tests/r51-default-content.test.mjs:28:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    77 !== 38
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 38
+  actual: 77
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r53-unified/tests/r51-default-content.test.mjs:29:269)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: ordinary retry after a transient renderer fault clears current error only after success and retains diagnostic history
+ok 6 - ordinary retry after a transient renderer fault clears current error only after success and retains diagnostic history
+  ---
+  duration_ms: 34.394914
+  type: 'test'
+  ...
+# Subtest: pending jobs progress and all seven roles reach submissions under persistent 1.25ms cost
+ok 7 - pending jobs progress and all seven roles reach submissions under persistent 1.25ms cost
+  ---
+  duration_ms: 41.294793
+  type: 'test'
+  ...
+# Subtest: pending jobs progress and all seven roles reach submissions under persistent 2ms cost
+ok 8 - pending jobs progress and all seven roles reach submissions under persistent 2ms cost
+  ---
+  duration_ms: 20.135739
+  type: 'test'
+  ...
+# Subtest: disabled and hidden states run no pending work; cleared queue receives no reserve
+ok 9 - disabled and hidden states run no pending work; cleared queue receives no reserve
+  ---
+  duration_ms: 17.397297
+  type: 'test'
+  ...
+# Subtest: repeated generation changes discard old jobs and submit only current bindings
+ok 10 - repeated generation changes discard old jobs and submit only current bindings
+  ---
+  duration_ms: 12.545493
+  type: 'test'
+  ...
+# Subtest: explicit zero preparation budget remains zero rather than silently enabling work
+ok 11 - explicit zero preparation budget remains zero rather than silently enabling work
+  ---
+  duration_ms: 0.992179
+  type: 'test'
+  ...
+# Subtest: build metadata is deterministic for source bytes and base, not runtime HEAD
+ok 12 - build metadata is deterministic for source bytes and base, not runtime HEAD
+  ---
+  duration_ms: 16.276245
+  type: 'test'
+  ...
+# Subtest: packaging rejects absent or stale build metadata before copying a package
+ok 13 - packaging rejects absent or stale build metadata before copying a package
+  ---
+  duration_ms: 12.881819
+  type: 'test'
+  ...
+# Subtest: build metadata refuses remote or query-bearing base paths
+ok 14 - build metadata refuses remote or query-bearing base paths
+  ---
+  duration_ms: 0.531437
+  type: 'test'
+  ...
+# Subtest: packaging rejects a current manifest mixed with old HTML or missing/old compiled JS
+ok 15 - packaging rejects a current manifest mixed with old HTML or missing/old compiled JS
+  ---
+  duration_ms: 17.366521
+  type: 'test'
+  ...
+# Subtest: runtime schema accepts 128 unique logical records, rejects 129 even if caller raises its own scope
+ok 16 - runtime schema accepts 128 unique logical records, rejects 129 even if caller raises its own scope
+  ---
+  duration_ms: 6.558585
+  type: 'test'
+  ...
+# Subtest: direct Manager constructor permits 128 but never silently truncates 129
+ok 17 - direct Manager constructor permits 128 but never silently truncates 129
+  ---
+  duration_ms: 2.7181
+  type: 'test'
+  ...
+# Subtest: JSON document/combined schemas and scope agree on 128; LOD capacity is independent
+ok 18 - JSON document/combined schemas and scope agree on 128; LOD capacity is independent
+  ---
+  duration_ms: 1.03273
+  type: 'test'
+  ...
+# Subtest: 128 real resource preparations progress under controlled 1.25ms submission pressure; high64/low32/near2
+ok 19 - 128 real resource preparations progress under controlled 1.25ms submission pressure; high64/low32/near2
+  ---
+  duration_ms: 278.298651
+  type: 'test'
+  ...
+# Subtest: 128 real resource preparations progress under controlled 2ms submission pressure; high64/low32/near2
+ok 20 - 128 real resource preparations progress under controlled 2ms submission pressure; high64/low32/near2
+  ---
+  duration_ms: 168.19504
+  type: 'test'
+  ...
+# Subtest: packager verifies source metadata before creating an output and preserves built provenance
+ok 21 - packager verifies source metadata before creating an output and preserves built provenance
+  ---
+  duration_ms: 336.897627
+  type: 'test'
+  ...
+# Subtest: settings identity is visible and diagnostic copies allowlisted current counts only
+ok 22 - settings identity is visible and diagnostic copies allowlisted current counts only
+  ---
+  duration_ms: 9.210667
+  type: 'test'
+  ...
+# Subtest: version check is on-demand, same-base, bypasses cache, and never reloads itself
+ok 23 - version check is on-demand, same-base, bypasses cache, and never reloads itself
+  ---
+  duration_ms: 2.521465
+  type: 'test'
+  ...
+# Subtest: same build and failed or malformed checks keep refresh hidden and permit retries
+ok 24 - same build and failed or malformed checks keep refresh hidden and permit retries
+  ---
+  duration_ms: 2.734676
+  type: 'test'
+  ...
+# Subtest: overlapping clicks and disposed pending checks cannot expose refresh or reload
+ok 25 - overlapping clicks and disposed pending checks cannot expose refresh or reload
+  ---
+  duration_ms: 2.048445
+  type: 'test'
+  ...
+# Subtest: clipboard denial offers safe selectable diagnostics without implying successful copy
+ok 26 - clipboard denial offers safe selectable diagnostics without implying successful copy
+  ---
+  duration_ms: 2.456048
+  type: 'test'
+  ...
+# Subtest: release label stays at the top with diagnostic controls in a compact disclosure
+ok 27 - release label stays at the top with diagnostic controls in a compact disclosure
+  ---
+  duration_ms: 0.633
+  type: 'test'
+  ...
+# Subtest: mixed HTML and JavaScript build identities remain visible and safely diagnosable
+ok 28 - mixed HTML and JavaScript build identities remain visible and safely diagnosable
+  ---
+  duration_ms: 1.935415
+  type: 'test'
+  ...
+# 故宫 3D 初始化完成
+# Subtest: R53 production main registers77 and starts real instances by default, without changing formal acceptance or normal off/on controls
+ok 29 - R53 production main registers77 and starts real instances by default, without changing formal acceptance or normal off/on controls
+  ---
+  duration_ms: 189.436638
+  type: 'test'
+  ...
+# Subtest: R53 preserves all71 previous actors, all previous binding records and the seven approved Kit templates
+ok 30 - R53 preserves all71 previous actors, all previous binding records and the seven approved Kit templates
+  ---
+  duration_ms: 4.369546
+  type: 'test'
+  ...
+# Subtest: R53 ships77 required identities, not a count padded with failed or duplicated household candidates
+ok 31 - R53 ships77 required identities, not a count padded with failed or duplicated household candidates
+  ---
+  duration_ms: 3.013615
+  type: 'test'
+  ...
+# Subtest: R53 minimum77 and all six required IDs cannot be removed, demoted or replaced by a padded count
+ok 32 - R53 minimum77 and all six required IDs cannot be removed, demoted or replaced by a padded count
+  ---
+  duration_ms: 19.852434
+  type: 'test'
+  ...
+# Subtest: the old R52 additional33 coverage remains mandatory after the R53 extension
+ok 33 - the old R52 additional33 coverage remains mandatory after the R53 extension
+  ---
+  duration_ms: 44.393502
+  type: 'test'
+  ...
+1..33
+# tests 33
+# suites 0
+# pass 30
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3325.757492

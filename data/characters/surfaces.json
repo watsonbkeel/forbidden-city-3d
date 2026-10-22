@@ -99,17 +99,17 @@
     "id": "chuxiu-floor",
     "zoneRef": "west-six",
     "anchorRef": "chuxiu-hall",
-    "kind": "walkable",
+    "kind": "ground",
     "localBoundsMeters": [
       -12.5,
       12.5,
       -6,
       6
     ],
-    "expectedHeightMeters": 0.6,
-    "heightToleranceMeters": 0.03,
-    "source": "data/zones/west-six.json#/items/储秀宫/ph",
-    "verification": "Bounded actual rendered surface or registered walkable; no origin/ground fallback"
+    "expectedHeightMeters": 0.62,
+    "heightToleranceMeters": 0.003,
+    "source": "src/scene/palace/kit.js#floorMesh visible kit_floor_flat top at hall ph+0.02",
+    "verification": "Actual visible Chuxiu floor triangles, not the lower registered walkable. Resolve current generation independently; seated seat/foot contacts are bound separately, never lift the pelvis by a floor offset."
   },
   {
     "id": "yikun-court-ground",
@@ -286,5 +286,101 @@
     "heightToleranceMeters": 0.03,
     "source": "src/scene/Environment.js#setupGround",
     "verification": "Requires actual rendered ground triangles, full-body margin and collision checks in the named real courtyard; no world-ground or origin fallback."
+  },
+  {
+    "id": "xianfu-r53-front-support",
+    "zoneRef": "west-six",
+    "anchorRef": "xianfu-r53-hall",
+    "kind": "walkable",
+    "localBoundsMeters": [
+      4.3,
+      5.7,
+      -3.7,
+      -2.3
+    ],
+    "expectedHeightMeters": 0.62,
+    "heightToleranceMeters": 0.001,
+    "source": "src/scene/palace/special/RemainingResidentialHalls.js",
+    "verification": "Actual visible top surface required, not a lower platform within a broad tolerance. No position offset."
+  },
+  {
+    "id": "xianfu-r53-court-ground",
+    "zoneRef": "west-six",
+    "anchorRef": "xianfu-r53-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -5,
+      3,
+      -13,
+      -11
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.001,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Actual rendered courtyard ground triangles, body radius 0.5 m plus 0.15 m clearance margin; no origin fallback."
+  },
+  {
+    "id": "taiji-r53-front-support",
+    "zoneRef": "west-six",
+    "anchorRef": "taiji-r53-hall",
+    "kind": "walkable",
+    "localBoundsMeters": [
+      -5.7,
+      -4.3,
+      -6.95,
+      -5.55
+    ],
+    "expectedHeightMeters": 0.61,
+    "heightToleranceMeters": 0.001,
+    "source": "src/scene/palace/special/RemainingResidentialHalls.js",
+    "verification": "Actual visible porch stone slab top at 0.61 m, not the registered or rendered 0.60 m brick/platform layer below. Exact support-layer binding, never a position offset."
+  },
+  {
+    "id": "taiji-r53-court-ground",
+    "zoneRef": "west-six",
+    "anchorRef": "taiji-r53-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      0,
+      7,
+      -15,
+      -13
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.001,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Actual rendered courtyard ground triangles, body radius 0.5 m plus 0.15 m clearance margin; no origin fallback."
+  },
+  {
+    "id": "jingyang-r53-front-support",
+    "zoneRef": "east-six",
+    "anchorRef": "jingyang-r53-hall",
+    "kind": "walkable",
+    "localBoundsMeters": [
+      -5.7,
+      -4.3,
+      -3.7,
+      -2.3
+    ],
+    "expectedHeightMeters": 0.62,
+    "heightToleranceMeters": 0.001,
+    "source": "src/scene/palace/special/RemainingResidentialHalls.js",
+    "verification": "Actual visible top surface required, not a lower platform within a broad tolerance. No position offset."
+  },
+  {
+    "id": "jingyang-r53-court-ground",
+    "zoneRef": "east-six",
+    "anchorRef": "jingyang-r53-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -4,
+      4,
+      -13,
+      -11
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.001,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Actual rendered courtyard ground triangles, body radius 0.5 m plus 0.15 m clearance margin; no origin fallback."
   }
 ]
