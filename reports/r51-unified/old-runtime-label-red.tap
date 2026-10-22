@@ -1,0 +1,49 @@
+✔ stable seed and environment motion never use frame random (1.54749ms)
+✖ content approval gate registers requirements but does not mass instantiate (1.54758ms)
+✔ 20 zone unload/reloads and on/off cycles retain unique logical identities and stop updates (4.487819ms)
+✔ missing required support is explicitly pending not origin fallback (0.3684ms)
+✔ 30 seconds background and first resumed frame do not advance simulation (0.361159ms)
+✔ invalid dt never poisons time and spikes are clamped (0.376603ms)
+✔ late async support cannot resurrect switched-off or disposed actors (0.318346ms)
+✔ night scheduling waits until offscreen; entering at night does not load court (0.797851ms)
+✔ projection-aware aerial LOD keeps discernible actors beyond 150 metres (0.162242ms)
+✔ mobile fixed court selection is 19 with symmetric twelve officials and 13 other slots (6.559833ms)
+✔ duplicate actor IDs fail registration rather than silently overwrite (0.444624ms)
+✔ low-tier selection uses the registered formation, not only the changing view (0.194541ms)
+✔ required support errors remain visible in diagnostics with actor ID (0.229242ms)
+✔ zone revision invalidates old async support and off/on retries an unresolved request (0.452615ms)
+✔ camera inside a character head suppresses that character without moving logic (0.273408ms)
+✔ a watched ceremonial tableau retires at night with a bounded fade instead of persisting forever (0.665283ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 15
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 165.640315
+
+✖ failing tests:
+
+test at tests/p3c-runtime.test.mjs:12:1
+✖ content approval gate registers requirements but does not mass instantiate (1.54758ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'content-unavailable'
+  - 'awaiting-visual-approval'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r51-unified/tests/p3c-runtime.test.mjs:12:270)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'content-unavailable',
+    expected: 'awaiting-visual-approval',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

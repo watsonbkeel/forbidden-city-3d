@@ -7,9 +7,11 @@ const percentile = (samples, q) => samples.length ? [...samples].sort((a,b)=>a-b
  * raycast targets, audio, network messages, global RAFs or per-actor timers. */
 export class CharacterManager {
   #developmentPreviewActive = false;
-  constructor({ registry, adapter, renderer, enabled = true, contentApproved = false, patrolFactory = null, now = () => performance.now() }) {
+  constructor({ registry, adapter, renderer, enabled = true, contentApproved = false, contentEnabled = contentApproved, patrolFactory = null, now = () => performance.now() }) {
     this.registry = registry; this.adapter = adapter; this.renderer = renderer;
-    this.enabled = !!enabled; this.contentApproved = !!contentApproved;
+    this.enabled = !!enabled; this.contentEnabled = !!contentEnabled;
+    // Legacy constructor contentApproved is only an input alias for content
+    // availability. It never grants historical, GPU or complete acceptance.
     this.patrolFactory = patrolFactory; this.now = now;
     this.simulationSeconds = 0; this.states = new Map(); this.generation = 0;
     this.nearIds = new Set();
@@ -25,7 +27,9 @@ export class CharacterManager {
   get developmentPreviewActive() {
     return import.meta.env?.DEV === true && this.#developmentPreviewActive;
   }
-  get canRunContent() { return this.contentApproved || (import.meta.env?.DEV === true && this.#developmentPreviewActive); }
+  get contentApproved() { return false; }
+  get rollout() { return this.contentEnabled?'candidate-visible':(import.meta.env?.DEV === true && this.#developmentPreviewActive)?'preview-unverified':'content-unavailable'; }
+  get canRunContent() { return this.contentEnabled || (import.meta.env?.DEV === true && this.#developmentPreviewActive); }
   setDevelopmentPreview(enabled) {
     // Separate transient review state from formal content approval. Vite removes
     // the enabling branch from production; forged public fields cannot open it.
@@ -124,8 +128,9 @@ export class CharacterManager {
     this.samples.push(Math.max(0, this.now()-start)); if (this.samples.length > 600) this.samples.shift();
   }
   snapshot() {
-    return { ...this.stats, enabled:this.enabled, rollout:this.contentApproved?'approved':(import.meta.env?.DEV === true && this.#developmentPreviewActive)?'preview-unverified':'awaiting-visual-approval',
-      contentApproved:this.contentApproved, previewActive:this.developmentPreviewActive,
+    return { ...this.stats, enabled:this.enabled, rollout:this.rollout,
+      contentEnabled:this.contentEnabled, contentApproved:false, previewActive:this.developmentPreviewActive,
+      acceptance:{complete:false,appearance:'confirmed',gpu:'unverified',mobile:'unverified',history:'partial'},
       simulationSeconds: this.simulationSeconds, updateP50Ms: percentile(this.samples,.5), updateP95Ms: percentile(this.samples,.95),
       ...(this.renderer.snapshot?.() ?? {}), diagnostics:[...this.states.values()].filter(s=>s.error||s.pending).map(s=>({id:s.actor.id,required:s.actor.required,status:s.error?'error':'pending',reason:s.error??'waiting-support'})) };
   }

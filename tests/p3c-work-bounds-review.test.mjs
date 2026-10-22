@@ -285,7 +285,7 @@ test('system closes the manager read scope before queue advance and after manage
     disposed: false, validation: { valid: true }, world: adapter, document: null,
     preparationBudgetMs: 1, totalUpdateSamples: [], lastError: null,
     manager: {
-      enabled: true, contentApproved: true,
+      enabled: true, contentEnabled: true, canRunContent: true,
       update() { assert.ok(adapter.frameReads); trace.push('manager'); if (throwFromManager) throw new Error('injected manager failure'); },
       setEnabled(enabled) { assert.equal(adapter.frameReads, null); this.enabled = enabled; trace.push('disable'); },
     },

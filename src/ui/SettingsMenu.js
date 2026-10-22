@@ -13,20 +13,25 @@ export class SettingsMenu {
     this.secondaryTaps = new Map();
     this.characterPreviewActive = false;
     this.allowCharacterPreview = false;
+    this.characterStatusKey = null;
   }
 
-  init({ onOpen, onResume, onQualityChange, onSoundToggle, onCharactersToggle, initialCharacters = true, charactersApproved = true, allowCharacterPreview = false, characterPreviewActive = false, onCharacterPreviewToggle, initialQuality = 'high', initialSound = true } = {}) {
+  init({ onOpen, onResume, onQualityChange, onSoundToggle, onCharactersToggle, initialCharacters = true, charactersAvailable = true, charactersApproved = false, allowCharacterPreview = false, characterPreviewActive = false, onCharacterPreviewToggle, initialQuality = 'high', initialSound = true } = {}) {
     this.onOpen = onOpen;
     this.onResume = onResume;
     this.onQualityChange = onQualityChange;
     this.onSoundToggle = onSoundToggle;
     this.onCharactersToggle = onCharactersToggle;
     this.charactersEnabled = initialCharacters;
+    this.charactersAvailable = charactersAvailable === true;
+    // Retained for caller compatibility only. Availability is not acceptance,
+    // and neither value grants historical, GPU or mobile acceptance.
     this.charactersApproved = charactersApproved;
+    this.characterStatusKey = null;
     // The initial-state hint is deliberately not restored. Each page requires
     // an explicit preview click; an injected option cannot bypass the DEV gate.
     this.characterPreviewActive = false;
-    this.allowCharacterPreview = import.meta.env?.DEV === true && allowCharacterPreview === true;
+    this.allowCharacterPreview = import.meta.env?.DEV === true && allowCharacterPreview === true && !this.charactersAvailable;
     this.onCharacterPreviewToggle = import.meta.env?.DEV === true && this.allowCharacterPreview ? onCharacterPreviewToggle : null;
     this.currentQuality = initialQuality;
     this.soundEnabled = initialSound;
@@ -68,8 +73,10 @@ export class SettingsMenu {
         </div>
         <div class="settings-control">
           <label for="characters-toggle-btn">宫廷人物</label>
-          <button id="characters-toggle-btn" type="button">宫廷人物已开启</button>
+          <button id="characters-toggle-btn" type="button" aria-describedby="characters-status characters-acceptance">宫廷人物已开启（候选）</button>
         </div>
+        <p id="characters-status" class="settings-notice" role="status" aria-live="polite">${!this.charactersEnabled ? '人物已关闭。' : this.charactersAvailable ? '人物准备中：等待加载状态。' : '人物内容暂不可用。'}</p>
+        <p id="characters-acceptance" class="settings-notice">人物外观已确认；GPU／手机性能、具体史料仍未完整验收。</p>
         <p id="characters-interpretation" class="settings-notice">建筑按现状呈现；宫廷人物与活动为清代主题演绎，人数经过缩编。太和殿为乾隆朝元旦大朝候礼主题示意，元旦指农历正月初一；正式跪拜、使臣与城墙巡行尚未启用。</p>
         ${import.meta.env?.DEV === true && this.allowCharacterPreview ? `
         <div class="settings-control">
@@ -130,7 +137,6 @@ export class SettingsMenu {
     this.bindEvents();
     this.updateSoundButton();
     this.updateQualityButton();
-    if (!this.charactersApproved) this.panel.querySelector('#characters-interpretation').textContent += ' 人物功能仍待完整验收，尚未批量显示。';
     this.updateCharactersButton();
   }
 
@@ -166,6 +172,7 @@ export class SettingsMenu {
     });
     if (import.meta.env?.DEV === true && this.allowCharacterPreview) {
       this.listen(this.panel.querySelector('#characters-preview-toggle-btn'), 'click', () => {
+        if (this.charactersAvailable) return;
         try {
           const active = this.onCharacterPreviewToggle?.(!this.characterPreviewActive);
           if (typeof active === 'boolean') {
@@ -279,14 +286,54 @@ export class SettingsMenu {
 
   updateCharactersButton() {
     const button = this.panel.querySelector('#characters-toggle-btn');
-    button.textContent = this.charactersEnabled ? (this.charactersApproved ? '宫廷人物已开启' : '宫廷人物待验收') : '宫廷人物已关闭';
-    if (import.meta.env?.DEV === true && this.characterPreviewActive && this.charactersEnabled) button.textContent = '宫廷人物 preview 未验收';
-    button.setAttribute('aria-pressed', String(this.charactersEnabled));
+    let text = this.charactersEnabled ? (this.charactersAvailable ? '宫廷人物已开启（候选）' : '宫廷人物暂不可用') : '宫廷人物已关闭';
+    if (import.meta.env?.DEV === true && this.characterPreviewActive && this.charactersEnabled) text = '宫廷人物 preview 未验收';
+    if (button.textContent !== text) button.textContent = text;
+    const pressed = String(this.charactersEnabled);
+    if (button.getAttribute('aria-pressed') !== pressed) button.setAttribute('aria-pressed', pressed);
+  }
+
+  setCharacterStatus(snapshot = {}) {
+    if (!this.panel || !snapshot) return;
+    // Only consume primitive display values. Do not mutate the snapshot, call
+    // the System, or treat available content as a fully accepted release.
+    const enabled = typeof snapshot.enabled === 'boolean' ? snapshot.enabled : this.charactersEnabled;
+    const available = typeof snapshot.contentEnabled === 'boolean' ? snapshot.contentEnabled : this.charactersAvailable;
+    const count = key => Number.isFinite(snapshot[key]) ? Math.max(0, Math.floor(snapshot[key])) : 0;
+    const registered = count('registered'), loaded = count('loaded'), visible = count('visible');
+    const pending = count('pending'), errors = count('errors');
+    const night = Number.isFinite(snapshot.daylight) && snapshot.daylight <= 0.12;
+    const systemError = !!snapshot.lastError;
+    const preview = import.meta.env?.DEV === true && this.allowCharacterPreview && !available && snapshot.rollout === 'preview-unverified';
+    const key = [enabled, available, registered, loaded, visible, pending, errors, night, systemError, preview].join('|');
+    if (key === this.characterStatusKey && enabled === this.charactersEnabled && available === this.charactersAvailable) return;
+    if (import.meta.env?.DEV === true && this.allowCharacterPreview && available !== this.charactersAvailable) {
+      if (available) this.setCharacterPreviewActive(false);
+      const previewButton = this.panel.querySelector('#characters-preview-toggle-btn');
+      previewButton.hidden = available;
+      previewButton.parentNode.hidden = available;
+      this.panel.querySelector('#characters-preview-status').hidden = available;
+      this.panel.querySelector('#characters-preview-limit').hidden = available;
+    }
+    this.characterStatusKey = key;
+    this.charactersEnabled = enabled;
+    this.charactersAvailable = available;
+    this.updateCharactersButton();
+    let heading = '人物准备中';
+    if (systemError) heading = `人物运行失败${!enabled ? '（人物已关闭）' : ''}`;
+    else if (!enabled) heading = '人物已关闭';
+    else if (!available && !preview) heading = '人物内容暂不可用';
+    else if (errors > 0) heading = '人物加载失败';
+    else if (registered > 0 && loaded === registered && pending === 0) heading = '人物数据就绪（候选）';
+    if (import.meta.env?.DEV === true && preview) heading = `人物实验预览（未验收） · ${heading}`;
+    const text = `${heading}：已注册 ${registered} · 已加载 ${loaded} · 当前可见 ${visible} · 准备中 ${pending} · 失败 ${errors}。${night && enabled && (available || preview) ? ' 夜间：朝会／生活人物按计划休息，守卫保留。' : ''}`;
+    const status = this.panel.querySelector('#characters-status');
+    if (status.textContent !== text) status.textContent = text;
   }
 
   setCharacterPreviewActive(active) {
     // Keep this public synchronization hook inert in the production bundle.
-    if (import.meta.env?.DEV === true && this.allowCharacterPreview && this.panel) {
+    if (import.meta.env?.DEV === true && this.allowCharacterPreview && !this.charactersAvailable && this.panel) {
       // Main may synchronize after every existing frame. Preserve local error
       // feedback and avoid any DOM writes until the actual state changes.
       if (this.characterPreviewActive === (active === true)) return this.characterPreviewActive;
@@ -368,5 +415,6 @@ export class SettingsMenu {
     this.onCharacterPreviewToggle = null;
     this.characterPreviewActive = false;
     this.allowCharacterPreview = false;
+    this.characterStatusKey = null;
   }
 }

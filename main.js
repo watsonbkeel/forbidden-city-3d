@@ -361,7 +361,8 @@ class ForbiddenCityApp {
       initialQuality: this.currentQuality,
       initialSound: true,
       initialCharacters: this.characters?.enabled ?? true,
-      charactersApproved: this.characters?.snapshot().rollout === 'approved',
+      charactersAvailable: this.characters?.contentEnabled === true,
+      charactersApproved: this.characters?.snapshot().acceptance?.complete === true,
       onCharactersToggle: enabled => {
         this.characters?.setEnabled(enabled);
         if (!enabled) this.settingsMenu?.setCharacterPreviewActive(false);
@@ -399,6 +400,8 @@ class ForbiddenCityApp {
       },
     });
     
+    this._syncCharacterStatus = () => this.settingsMenu?.setCharacterStatus(this.characters?.statusSnapshot());
+    this._syncCharacterStatus();
     if (import.meta.env?.DEV === true) this._syncCharacterPreviewState = () =>
       this.settingsMenu?.setCharacterPreviewActive(this.characters?.developmentPreviewActive === true);
 
@@ -584,6 +587,7 @@ class ForbiddenCityApp {
     this.characters?.update(dt, { daylight: this.environment.dayCycle.lighting.daylight, quality: this.currentQuality, viewportHeight: height });
     // Keep the DEV notice honest after a runtime failure automatically disables
     // the same System. No extra update loop, renderer, or persistent setting.
+    this._syncCharacterStatus?.();
     this._syncCharacterPreviewState?.();
     this.ambience.update({
       dt,

@@ -120,3 +120,12 @@ SettingsMenu change in this successor is wording only: “待视觉确认”→�
 ## R50 DEV experimental preview, 2026-10-22
 
 Root explicitly approved a new successor from9b5bc89 with only DEV-session opt-in preview. Production approval remainsfalse; no default release, Pages, world or art change. Owned changes: CharacterSystem/Manager separate preview state and compile-time gate; SettingsMenu explicit button/persistent unverified notice; main existing settings/update wiring. No localStorage, newSystem, RAF, collision or permissions. Ordinary off revokes preview; refresh resets; source guards/old red retained. See reports/r50-dev-preview/README.md and production-build-proof.json.
+
+## R51 unified release, 2026-10-22
+User explicitly requested one latest version and reported R50 had no visible people. Authorized successor only; existing R49/R50 freezes remain unchanged. R49E db20828f is integrated exactly, not the unaccepted Jingyun experiment.
+
+- main.js: existing CharacterSystem construction remains single-owner; ordinary availability is passed to Settings; lightweight read-only status synchronization uses the existing frame loop. No new RAF, time change, building change, persistent preference or production debug global.
+- CharacterSystem / Manager: default-on product availability is separate from `acceptance.complete=false`; ordinary off/on works in production. Failed/pending bindings, validation, night schedules and near<=2 remain enforced. The legacy constructor approval input is an availability alias only; output never claims full acceptance. Explicit retry clears a current runtime error only after success and retains `lastFailure` diagnostics.
+- SettingsMenu: default-on/off control, read-only preparation/failure counters, night explanation and incomplete GPU/mobile/history notice. DEV-only preview remains distinct and compiled out of production.
+- World manifest: exact R49E 185-source active version, old R49D/R49B/R49 manifests retained. Fresh 38 required bindings / 148 path samples, support rays and affected visibility checks, no world geometry repair beyond the accepted R49E patch.
+- Delivery: a prebuilt production package plus local-only static runner; no Pages deployment or main branch merge. CPU scene images omit textures/lighting/shadows and are not browser/GPU evidence.

@@ -1,13 +1,15 @@
+// Historical R49B results remain unchanged; source verification is against their own recorded commit, never a later active character system.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {execFileSync} from 'node:child_process';
 import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 const dir=new URL('../reports/r50-joint/',import.meta.url),read=name=>JSON.parse(name.endsWith('.gz')?gunzipSync(fs.readFileSync(new URL(name,dir))):fs.readFileSync(new URL(name,dir)));
 const joint=read('world-bindings-38-148.json.gz'),summary=read('world-joint-summary.json');
-test('frozen R49B fresh-run evidence retains 38 required bindings, current character source hashes and 148 route samples',()=>{
+test('frozen R49B fresh-run evidence retains 38 required bindings, its original committed character source hashes and 148 route samples',()=>{
  assert.equal(joint.ok,true);assert.equal(joint.requiredActors,38);assert.equal(joint.actorBindings.length,38);assert.equal(joint.routeSamples,148);assert.equal(joint.independentFullRayOwnerAudits,796);
- for(const [name,expected]of Object.entries(joint.sourceInput))assert.equal(createHash('sha256').update(fs.readFileSync(new URL('../src/scene/characters/'+name+'.js',import.meta.url))).digest('hex'),expected,name);
+ for(const [name,expected]of Object.entries(joint.sourceInput))assert.equal(createHash('sha256').update(execFileSync('git',['show',joint.candidateCommit+':src/scene/characters/'+name+'.js'])).digest('hex'),expected,name);
  for(const r of joint.actorBindings){assert.equal(r.required,true);assert.equal(r.binding.status,'ready');assert.equal(r.positionUnchanged,true);assert.ok(r.maxDeltaMeters<1e-10);}
  assert.deepEqual(joint.ready,{frozen:38,synchronous:38,incremental:38});assert.ok(joint.priorCacheComparison.all38SemanticBindingsUnchanged);assert.ok(joint.priorCacheComparison.all148RouteSamplesUnchanged);assert.equal(joint.unchanged.playerPhysics,true);
 });

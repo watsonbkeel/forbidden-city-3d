@@ -1,0 +1,16 @@
+{
+  "status": "interrupted-not-acceptance",
+  "exit": 130,
+  "reason": "Stopped broad run to avoid unintended resource overlap; current release uses explicit bounded target suites.",
+  "archive": "reports/r51-unified/interrupted-suite.log.gz",
+  "archiveSha256": "5431095665f466403b717414dd500b9a5f562ee27c8f4ff17baaa11a69b0d344",
+  "originalBytes": 269034,
+  "originalSha256": "09b7d197b883fae47fef13674c114b5ff5ffa7091eaa958e50a915f6ef869f2e",
+  "restore": "node -e \"require('fs').writeFileSync('/tmp/r51-interrupted-suite-restored.log', require('zlib').gunzipSync(require('fs').readFileSync('reports/r51-unified/interrupted-suite.log.gz')))\"",
+  "originalR49Baseline": {
+    "tests": 5277,
+    "passed": 5119,
+    "failed": 158
+  },
+  "fullR51GreenClaim": false
+}

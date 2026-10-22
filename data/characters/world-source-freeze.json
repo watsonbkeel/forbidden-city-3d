@@ -1,27 +1,33 @@
 {
-  "schemaVersion": 3,
-  "baselineCommit": "ad64a922a8e2885fb42e1a6c64806ba8646a3b8c",
-  "purpose": "Read-only explicit R50 + delivered R49B + narrowly approved Benren depth-only successor. Expected hashes are frozen Git blobs. No R49C or Jiyun changes.",
+  "schemaVersion": 4,
+  "baselineCommit": "db20828f1a6411603a3d9388eebe3ba2a5d11e61",
+  "purpose": "R51 unified world: exact delivered R49E Git blobs, including prior R49B and Benren depth-only R49D. Wenyuan pitch is the only new production delta from R49D. No R49C or Jiyun changes.",
   "provenance": {
     "source": "git show <baselineCommit>:<path>",
-    "previousBaselineCommit": "95db2af664ff9cb6ea405d0ba389ef428dfd7d6c",
-    "previousManifestPath": "data/characters/world-source-freeze-r49b.json",
-    "previousManifestSha256": "d0b69e747a557b0ea57068357c26cdb59d9803c7a3fbe2daaaa957ae7e2390d0",
+    "previousBaselineCommit": "ad64a922a8e2885fb42e1a6c64806ba8646a3b8c",
+    "previousManifestPath": "data/characters/world-source-freeze-r49d.json",
+    "previousManifestSha256": "4999fb8aac4ee69839f22406683aa53a8e123ceb68ba5129196f494b40bf3aa3",
     "previousFileCount": 185,
     "originalR49ManifestPath": "data/characters/world-source-freeze-r49.json",
     "originalR49ManifestSha256": "4f5c2b3d8dd318cbaeee72abd8fb6fa4fd96ba32c43761843e13397e127284d3",
-    "patchCommit": "ad64a922a8e2885fb42e1a6c64806ba8646a3b8c",
-    "patchParentCommit": "95db2af664ff9cb6ea405d0ba389ef428dfd7d6c",
+    "r49bManifestPath": "data/characters/world-source-freeze-r49b.json",
+    "r49bManifestSha256": "d0b69e747a557b0ea57068357c26cdb59d9803c7a3fbe2daaaa957ae7e2390d0",
+    "orderedSourceCommits": [
+      "ad64a922a8e2885fb42e1a6c64806ba8646a3b8c",
+      "50e5fb4d8fee816645b121faf26836a596db9e68",
+      "2f315a44556f515a07a5be3b593317a3429509ec",
+      "db20828f1a6411603a3d9388eebe3ba2a5d11e61"
+    ],
     "changedProductionPaths": [
       "src/scene/palace/special/SourceGuidedNameboardMounts.js"
     ],
     "changedSource": {
       "path": "src/scene/palace/special/SourceGuidedNameboardMounts.js",
-      "previousSha256": "65ddb00178bc32347790419e32375df48e6f71aaa8d7df694919b8fe698db953",
-      "currentSha256": "08c21df1fd6230192273b6f3c1c8ffeda389ed28f013299c522348ad959db1b1",
-      "gitDiffSha256": "62b9085bf0085f4a73c1688a92dca6ab9118e5789ae78b30814de596e66be726"
+      "previousSha256": "08c21df1fd6230192273b6f3c1c8ffeda389ed28f013299c522348ad959db1b1",
+      "currentSha256": "b1da50adbc66309d78afbcf03e9351b5858e9b18ecf4d2c93ddce019c0c99df2",
+      "gitDiffSha256": "fa16bfe2796ac69f73da49226009387a77af2fb9856839b587e2fe514a521375"
     },
-    "scope": "Only the reviewed Benren plaque face and its own full backing move 0.05 m in local -Z. Height, width, scale, rotation, architectural geometry, colliders and walkables are retained. Earlier whole-world evidence is inherited, not relabelled fresh."
+    "scope": "Preserve Benren local depth fit and all delivered evidence; add only source-guided Wenyuan full-plaque downward pitch. Fresh R51 38-actor/148-route CPU world evidence is separately versioned; historical reports remain immutable."
   },
   "files": [
     {
@@ -530,7 +536,7 @@
     },
     {
       "path": "src/scene/palace/special/SourceGuidedNameboardMounts.js",
-      "sha256": "08c21df1fd6230192273b6f3c1c8ffeda389ed28f013299c522348ad959db1b1"
+      "sha256": "b1da50adbc66309d78afbcf03e9351b5858e9b18ecf4d2c93ddce019c0c99df2"
     },
     {
       "path": "src/scene/palace/special/SourcedNameInscriptions.js",

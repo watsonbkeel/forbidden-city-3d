@@ -1,0 +1,78 @@
+✔ 景仁宫: R49E scoped source-group geometry/access invariants (162.619968ms)
+✔ 钟粹宫: R49E scoped source-group geometry/access invariants (35.259857ms)
+✔ 翊坤宫: R49E scoped source-group geometry/access invariants (27.352463ms)
+✔ 储秀宫: R49E scoped source-group geometry/access invariants (74.875181ms)
+✔ 长春宫: R49E scoped source-group geometry/access invariants (26.085935ms)
+✔ 承乾宫: R49E scoped source-group geometry/access invariants (26.62433ms)
+✔ 景阳宫: R49E scoped source-group geometry/access invariants (24.231456ms)
+✔ 太极殿: R49E scoped source-group geometry/access invariants (26.517067ms)
+✔ 永寿宫: R49E scoped source-group geometry/access invariants (25.645918ms)
+✔ 咸福宫: R49E scoped source-group geometry/access invariants (20.492835ms)
+✔ 养心殿: R49E scoped source-group geometry/access invariants (143.453948ms)
+✔ 皇极殿: R49E scoped source-group geometry/access invariants (105.909359ms)
+✔ 本仁殿: R49E scoped source-group geometry/access invariants (40.852566ms)
+✔ 文渊阁: R49E scoped source-group geometry/access invariants (68.005012ms)
+✔ 咸若馆: R49E scoped source-group geometry/access invariants (32.609729ms)
+✔ 寿康宫: R49E scoped source-group geometry/access invariants (29.612371ms)
+✔ 慈宁宫: R49E scoped source-group geometry/access invariants (47.766372ms)
+✔ 古华轩: R49E scoped source-group geometry/access invariants (30.028701ms)
+✔ 遂初堂: R49E scoped source-group geometry/access invariants (53.472048ms)
+✔ 畅音阁: R49E scoped source-group geometry/access invariants (101.974561ms)
+✔ 阅是楼: R49E scoped source-group geometry/access invariants (64.330843ms)
+✔ 颐和轩: R49E scoped source-group geometry/access invariants (34.779429ms)
+✔ 倦勤斋: R49E scoped source-group geometry/access invariants (94.064572ms)
+✔ 宁寿宫: R49E scoped source-group geometry/access invariants (65.287742ms)
+✔ 乐寿堂: R49E scoped source-group geometry/access invariants (170.559286ms)
+✔ 梵华楼: R49E scoped source-group geometry/access invariants (119.88164ms)
+✔ 景运门: R49E scoped source-group geometry/access invariants (53.249621ms)
+✔ 文渊: entire oriented frame volume remains outside actual structure (41.938431ms)
+✖ 文渊: complete frame and face share one rigid 60 degree pitch, not resized parts (22.171156ms)
+✔ 文渊: all eight frame corners lie outside existing closed beam/window boxes (23.173163ms)
+✔ 文渊: all eight frame corners remain below the actual upper-roof envelope (34.842416ms)
+✔ 文渊: frame bottom near window head is not treated as forced large projection clearance (21.263371ms)
+✖ 文渊: normal courtyard/front/oblique standing views read the complete frame (39.84443ms)
+✔ 文渊: photo provenance and revised diagnosis remain explicit, not a surveyed angle (16.214916ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 32
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2032.006734
+
+✖ failing tests:
+
+test at tests/r49e-wenyuan-pitch.test.mjs:21:1
+✖ 文渊: complete frame and face share one rigid 60 degree pitch, not resized parts (22.171156ms)
+  AssertionError [ERR_ASSERTION]: 0.8660254037844386 vs -0.8660254037844386
+      at near (file:///workspace/scratch/02a8023d1a85/r49e-wenyuan-plaque-pitch/tests/r49e-wenyuan-pitch.test.mjs:7:33)
+      at file:///workspace/scratch/02a8023d1a85/r49e-wenyuan-plaque-pitch/tests/r49e-wenyuan-pitch.test.mjs:26:76
+      at withDepthScene (file:///workspace/scratch/02a8023d1a85/r49e-wenyuan-plaque-pitch/tests/lib/r49d-depth-snapshot.mjs:12:252)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r49e-wenyuan-pitch.test.mjs:45:1
+✖ 文渊: normal courtyard/front/oblique standing views read the complete frame (39.84443ms)
+  AssertionError [ERR_ASSERTION]: [0,1.7,-30]
+  
+  20 !== 25
+  
+      at file:///workspace/scratch/02a8023d1a85/r49e-wenyuan-plaque-pitch/tests/r49e-wenyuan-pitch.test.mjs:53:10
+      at withDepthScene (file:///workspace/scratch/02a8023d1a85/r49e-wenyuan-plaque-pitch/tests/lib/r49d-depth-snapshot.mjs:12:252)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 20,
+    expected: 25,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,37 @@
+✔ cached route revalidates after its anchor moves (14.377198ms)
+✔ cached route revalidates the separate surface anchor (2.518306ms)
+✔ manager-visible revision changes when recognized world topology changes (2.287613ms)
+✔ completed binding cannot reuse removed floor evidence on a new request (2.646338ms)
+✔ completed binding cannot reuse clearance after a blocking collider is appended (2.12455ms)
+✔ manager-visible revision notices a new wall beyond the current actor position (1.439087ms)
+✔ local dependency includes the wider endpoint turn disc (6.231325ms)
+✔ a distant append and unrelated zone preserve a completed local binding (1.529471ms)
+✔ completed support owner remove is detected before reuse (2.05162ms)
+✔ completed support owner hide is detected before reuse (1.46109ms)
+✔ completed support owner hide-ancestor is detected before reuse (1.125329ms)
+✔ completed support owner reparent is detected before reuse (2.259791ms)
+✔ completed support owner translate is detected before reuse (0.955125ms)
+✔ completed support owner translate-ancestor is detected before reuse (0.926983ms)
+✔ completed support owner rotate is detected before reuse (3.92145ms)
+✔ completed support owner scale is detected before reuse (1.177767ms)
+✔ completed support owner replace-geometry is detected before reuse (1.761047ms)
+✔ successive small distant appends remain local, followed by an intersecting nonblocking append rebind (3.094857ms)
+✔ a support owner hide after the last hit but before proof publication cannot become ready (1.499737ms)
+✔ a support owner translate after the last hit but before proof publication cannot become ready (0.729959ms)
+✔ a support owner replace-geometry after the last hit but before proof publication cannot become ready (0.537532ms)
+✔ a support owner replace-equivalent-geometry-and-retry after the last hit but before proof publication cannot become ready (1.027923ms)
+✔ geometry replacement after mesh indexing but before any hit remains retryable (2.134143ms)
+✔ shared manager read snapshots do not carry support evidence across frames (2.70461ms)
+✔ system closes the manager read scope before queue advance and after manager exceptions (1.291887ms)
+✔ seat candidate iteration does not copy an entire input list in one next() (1.505335ms)
+✔ world traversal also bounds terminal ancestor unwinding work (9.197441ms)
+✔ resource preparation cancellation publishes no half-built entry and preserves live references (7.361531ms)
+✔ queue rechecks mutable identity before resuming a paused iterator (0.483952ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 209.12341

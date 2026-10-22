@@ -159,14 +159,14 @@ test('support revisions and pending bindings cannot preserve stale near eligibil
   } finally { h.dispose(); }
 });
 
-test('disable and approval gates clear incumbency instead of carrying old near choices into a fresh lifecycle', () => {
+test('disable and content availability gates clear incumbency instead of carrying old near choices into a fresh lifecycle', () => {
   for (const gate of ['disabled', 'approval']) {
     const h = harness();
     try {
       h.distance('c', 8.1); h.warm(); h.distance('c', 7.9);
-      if (gate === 'disabled') h.manager.setEnabled(false); else h.manager.contentApproved = false;
+      if (gate === 'disabled') h.manager.setEnabled(false); else h.manager.contentEnabled = false;
       h.step(); assert.equal(h.selected.length, 0); assert.equal(h.manager.snapshot().near, 0);
-      if (gate === 'disabled') h.manager.setEnabled(true); else h.manager.contentApproved = true;
+      if (gate === 'disabled') h.manager.setEnabled(true); else h.manager.contentEnabled = true;
       h.step(); assert.deepEqual(nearIds(h.selected), ['a', 'c']);
     } finally { h.dispose(); }
   }

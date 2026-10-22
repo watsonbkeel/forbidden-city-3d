@@ -10,7 +10,7 @@ function fixture(module,options={}){
  let resolves=0,advances=0,cancels=0,copies=[];
  const adapter={getRevision:()=>1,resolve:actor=>{resolves++;return options.binding?.(actor)??{status:'ready',position:[0,0,0],rotationYRad:0,zoneRef:actor.zoneRef,support:{},...(actor.placement.mode==='path'?{path:{status:'ready',points:[[0,0,0],[0,0,20]],formationSize:3}}:{})};},advance(){advances++;},cancelPending(){cancels++;},dispose(){}};
  const renderer={render:actors=>{copies=actors;return{renderCopies:actors.length}},clear(){copies=[]},snapshot:()=>({renderCopies:copies.length}),dispose(){copies=[]}};
- const system=new module.CharacterSystem({scene:new THREE.Scene(),camera,adapter,renderer,documentObject:dom.document,registry:options.registry??module.CHARACTER_REGISTRY});
+ const system=new module.CharacterSystem({scene:new THREE.Scene(),camera,adapter,renderer,documentObject:dom.document,contentEnabled:false,registry:options.registry??module.CHARACTER_REGISTRY});
  return{system,dom,resolves:()=>resolves,advances:()=>advances,cancels:()=>cancels,copies:()=>copies};
 }
 test('production compiler removes enabling branches; direct methods cannot open preview',()=>{
@@ -25,7 +25,7 @@ test('DEV starts gated and explicit session preview never sets formal approval',
  const f=fixture(dev.module);f.system.update(.1);assert.equal(f.resolves(),0);assert.equal(f.system.developmentPreviewActive,false);
  assert.equal(f.system.setDevelopmentPreview(true),true);for(let i=0;i<4;i++)f.system.update(.1);
  assert.equal(f.system.snapshot().registered,38);assert.equal(f.system.snapshot().loaded,38);assert.ok(f.copies().length>0);assert.ok(f.advances()>0);
- assert.equal(f.system.snapshot().rollout,'preview-unverified');assert.equal(f.system.manager.contentApproved,false);assert.equal(dev.module.CHARACTER_ROLLOUT_APPROVED,false);f.system.dispose();
+ assert.equal(f.system.snapshot().rollout,'preview-unverified');assert.equal(f.system.statusSnapshot().rollout,'preview-unverified');assert.equal(f.system.manager.contentApproved,false);assert.equal(dev.module.CHARACTER_ROLLOUT_APPROVED,false);f.system.dispose();
 });
 test('ordinary off revokes preview, clears all 38 and cannot re-enable by ordinary on',()=>{
  const f=fixture(dev.module);
@@ -69,7 +69,7 @@ test('pending completion after preview-off cannot resurrect actors or reuse a st
 
 test('compiled DEV UI controls the same real System, ordinary off revokes it, and refresh starts closed',t=>{
  const prior={document:globalThis.document,window:globalThis.window};const f=fixture(dev.module);Object.assign(globalThis,{document:f.dom.document,window:f.dom.window});const menu=new dev.module.SettingsMenu(document.body);
- menu.init({charactersApproved:false,allowCharacterPreview:true,onCharactersToggle:enabled=>{f.system.setEnabled(enabled);if(!enabled)menu.setCharacterPreviewActive(false)},onCharacterPreviewToggle:enabled=>{const active=f.system.setDevelopmentPreview(enabled);menu.charactersEnabled=f.system.enabled;menu.updateCharactersButton();return active;}});
+ menu.init({charactersAvailable:false,charactersApproved:false,allowCharacterPreview:true,onCharactersToggle:enabled=>{f.system.setEnabled(enabled);if(!enabled)menu.setCharacterPreviewActive(false)},onCharacterPreviewToggle:enabled=>{const active=f.system.setDevelopmentPreview(enabled);menu.charactersEnabled=f.system.enabled;menu.updateCharactersButton();return active;}});
  t.after(()=>{menu.dispose();f.system.dispose();Object.assign(globalThis,prior)});
  const preview=menu.panel.querySelector('#characters-preview-toggle-btn'),ordinary=menu.panel.querySelector('#characters-toggle-btn');
  assert.equal(f.system.developmentPreviewActive,false);preview.click();for(let i=0;i<4;i++)f.system.update(.1);assert.equal(f.system.snapshot().loaded,38);assert.equal(menu.characterPreviewActive,true);assert.equal(f.system.snapshot().contentApproved,false);
