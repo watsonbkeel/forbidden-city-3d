@@ -319,7 +319,9 @@ export class Teleport {
     this.controls.teleportTo(point.x, point.z, point.lookAtX, point.lookAtZ);
     if (point.mode === 'exterior-view') {
       this.controls.camera.lookAt(point.lookAtX, point.lookAtY, point.lookAtZ);
-      this.overlay.textContent = `${name} · 地面外观预览（不代表现场开放）`;
+      this.overlay.textContent = g.navigation?.gameAccess === 'virtual-interior-return'
+        ? `${name} · 地面观览点，可沿东西侧阶入殿并原路返回（不代表现场开放）`
+        : `${name} · 地面外观预览（不代表现场开放）`;
     }
     this.zoneManager.update(this.controls.getPosition());
     this.lastPoint = { ...point, y: this.controls.getFeetY(), zone: this.zoneManager.getCurrentId() };

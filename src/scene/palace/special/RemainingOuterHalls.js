@@ -1,6 +1,8 @@
 import * as THREE from 'three';
+import { buildJiyunNamePlaque } from './JiyunNamePlaque.js';
 import { FACE } from '../kit.js';
 import { PLAYER } from '../../../config/constants.js';
+import { buildBaoyunNameInscription } from './SourcedNameInscriptions.js';
 
 const FIT = 'REVERSIBLE_MODEL_FIT_NOT_SURVEYED';
 // Explicit frozen R47 identities. Labels are not sufficient to consume a hall.
@@ -870,6 +872,7 @@ function buildTempleTower(kit,item,p) {
   for(const side of[-1,1])rail(c,p.key+'-upper-balcony-end',side*(A-.15),side*(A-.15),-d/2+.12,g.front,g.upperY);
   plainCeiling(c,g.upperY+g.upperH-.12);
   g.roof=rolledRoof(c,{yy:g.upperY+g.upperH,rise:2.1});
+  if(p.key==='jiyun')buildJiyunNamePlaque(kit,c.f,g);
   c.register(item.name,-A+.35,A-.35,g.front,g.rear,g.y,3.65,[{x:0,z:g.front}],{x:0,z:g.front+1.2});
   // Upper navigation is deliberately not a historical room-count claim.
   if(p.key!=='jiyun')c.register(item.name+'·二层观览区',-A+.35,A-.35,g.front,g.rear,g.upperY,3.2,[{x:0,z:g.front}],{x:0,z:g.front+.55});
@@ -1377,11 +1380,13 @@ function augmentBaoyunFacade(kit,item,built,p) {
   }
   const panel=f.children.find(n=>n.name==='baoyun-central-inscription-panel-untextured');
   // Own 2024 photograph: pale stone inscription field inside a green border.
-  // Do not turn the whole field green or invent carved/textured characters.
-  Object.assign(panel.userData,{...info,representation:'RETAINED_PALE_STONE_FIELD_WITH_GREEN_FRAME__CHARACTERS_AND_CARVING_UNMODELED'});
+  // Keep the existing stone and green frame; add only the attested Han text.
+  // System lettering is not a reproduction of the photographed stone carving.
+  Object.assign(panel.userData,{...info,representation:'RETAINED_PALE_STONE_FIELD_WITH_GREEN_FRAME__SYSTEM_FONT_CHARACTERS_CARVING_UNMODELED'});
   for(const x of[-.37,.37])box('baoyun-photo-green-inscription-frame',green,.06,1.54,.025,x,11.08,7.7125,false,info);
   for(const y of[10.34,11.82])box('baoyun-photo-green-inscription-frame',green,.68,.06,.025,0,y,7.7125,false,info);
-  return finishAugment(kit,item,built,p,{exteriorChanged:true,interiorChanged:false,facadeDetail:{source,photographyDate:null,eventDate:'2024-12-27',verticalJoints:joints,roundels:7,scope:'VISIBLE_MAIN_FRONT_AND_PORCH_ONLY'},currentInteriorStatus:'EVIDENCE_BLOCKED__MODEL_ACCESS_CLOSED_NOT_CLAIM_ABOUT_CURRENT_USE',wholeBuildingComplete:false});
+  const nameInscription=buildBaoyunNameInscription(kit,f,panel,source);
+  return finishAugment(kit,item,built,p,{exteriorChanged:true,interiorChanged:false,facadeDetail:{source,photographyDate:null,eventDate:'2024-12-27',verticalJoints:joints,roundels:7,nameInscription,scope:'VISIBLE_MAIN_FRONT_AND_PORCH_ONLY'},currentInteriorStatus:'EVIDENCE_BLOCKED__MODEL_ACCESS_CLOSED_NOT_CLAIM_ABOUT_CURRENT_USE',wholeBuildingComplete:false});
 }
 
 const HEYI_2022='https://ggzlquanjing.dpm.org.cn/scene/wPIRwsKstn5bVoDoqCG426Sfykpnc2hK/20220207_hyzg/';

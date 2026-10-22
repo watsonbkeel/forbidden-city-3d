@@ -1,3 +1,5 @@
+// R49 nameboard textures use the same canvas boundary as other palace fixtures.
+import './lib/inner-palace-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';

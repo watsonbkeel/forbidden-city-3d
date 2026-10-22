@@ -108,7 +108,6 @@ for (const mobile of [false, true]) test(`existing disclosure pauses compact ${m
 test('compact map taps never teleport; pan and wheel still work; expanded labels select before explicit travel', async t => {
   const s = await setupMap(t);
   s.map.toggle(); s.map.canvas.clientWidth = 198; compact(s);
-  s.map.labels = [{ name: '太和殿', x: s.map.view.cx, y: s.map.view.cy, width: 10000, height: 10000 }];
   mapPointer(s, 'pointerdown', 1); mapPointer(s, 'pointerup', 1);
   assert.deepEqual(s.teleports, []);
   const cx = s.map.view.cx;
@@ -120,7 +119,14 @@ test('compact map taps never teleport; pan and wheel still work; expanded labels
   assert.deepEqual(s.teleports, []);
   compact(s);
   s.map.hasTeleportTarget = name => name === '太和殿';
-  mapPointer(s, 'pointerdown', 3); mapPointer(s, 'pointerup', 3);
+  // Zoom/resize correctly rebuild the visible label set. Tap the actual label
+  // rather than retaining a synthetic 10000px hit box across layout changes.
+  const label = s.map.labels.find(label => label.name === '太和殿');
+  assert.ok(label);
+  s.map.view.cx = label.x; s.map.view.cy = label.y; s.map.drawMap();
+  const point = s.map.mapToScreen(label.x, label.y), rect = s.map.canvas.getBoundingClientRect();
+  mapPointer(s, 'pointerdown', 3, rect.left + point.x, rect.top + point.y);
+  mapPointer(s, 'pointerup', 3, rect.left + point.x, rect.top + point.y);
   assert.deepEqual(s.teleports, []);
   assert.equal(s.map.visible, true);
   s.map.container.querySelector('#place-travel').click();

@@ -3,6 +3,7 @@ import { DIMENSIONS, LAYOUT } from '../../../config/constants.js';
 import { buildRoof, buildWallCap } from '../../RoofBuilder.js';
 import { batchSolidMaterials } from '../../../render/SolidMaterialBatch.js';
 import { buildQianqingImperialStair } from './QianqingImperialStair.js';
+import { buildQianqingGatePlaque } from './QianqingGatePlaque.js';
 import { INNER_PALACE_LEVELS } from './InnerPalaceLevels.js';
 
 const SOURCE = 'https://www.dpm.org.cn/explore/building/236473.html';
@@ -155,6 +156,8 @@ export function buildQianqingGate(builder, data) {
     }
     info.doors.push({ ...worldPoint(x, d / 2), clearWidth: clearHalf * 2 - 0.15, placement: 'rear-eave' });
   }
+
+  g.add(buildQianqingGatePlaque(builder, { rearEaveZ: d / 2, doorTopY: y + doorH, beamTopY: y + H }));
 
   const roof = buildRoof(builder.library, { type: 'xieshan', width: w + 0.6, depth: d + 0.6, baseY: y + H,
     height: 6, layers: 1, brackets: true, sides: 4 });

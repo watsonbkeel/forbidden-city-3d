@@ -1,3 +1,4 @@
+import {fitRegisteredNameboard} from './FittedNameboardMount.js';
 import * as THREE from 'three';
 
 const page = n => `https://www.dpm.org.cn/explore/building/${n}.html`;
@@ -188,7 +189,7 @@ export function buildRemainingHall(kit, item, p) {
     if (box.isEmpty()) throw Error('R48 opened leaf has no physical envelope');
     kit.colliders.push(box); openedLeafCollisionCount++;
   });
-  built.f.userData.structure = { ...built.f.userData.structure, id: `${p.zone}/r48-${p.key}`, profile: p.key, catalogId: p.catalogId, ...provenance(p),
+  built.f.userData.structure = { ...built.f.userData.structure, id: `${p.zone}/r48-${p.key}`, ...(built.f.userData.nameboardMount?{nameboardMount:built.f.userData.nameboardMount}:{}), profile: p.key, catalogId: p.catalogId, ...provenance(p),
     identityMapping: p.identityMapping ?? 'Exact retained catalog identity; coordinate and envelope are model fits.',
     publicEvidenceWarning: p.key === 'taiji-front' ? '太极两类罩只证明类型存在：当前东西配置未经证实，仅可逆模型拟合。' : null,
     currentInventoryVerified: false, retainedUnverified: ['furnishings', 'exact-column-spacing', 'carving-and-painting'],
@@ -209,7 +210,7 @@ export function augmentRemainingHall(kit, item, built, p) {
   if (p.frontAssembly) buildYangxinFrontAssembly(kit, item, built.f, p);
   if (p.caisson) buildYangxinCaisson(kit, item, built.f, p);
   built.f.userData.r48ResidentialAugmented = true;
-  built.f.userData.structure = { ...built.f.userData.structure, id: built.f.userData.structure?.id ?? `${p.zone}/r48-${p.key}`, catalogId: p.catalogId, remainingResidentialProfile: p.key, source: p.source,
+  built.f.userData.structure = { ...built.f.userData.structure, id: built.f.userData.structure?.id ?? `${p.zone}/r48-${p.key}`, catalogId: p.catalogId, remainingResidentialProfile: p.key, source: p.source, ...(built.f.userData.nameboardMount?{nameboardMount:built.f.userData.nameboardMount}:{}),
     currentInventoryVerified: false, glbPolicy: p.caisson ? 'UNCHANGED_BYTES_AND_OVERLAY' : 'NOT_APPLICABLE',
     exteriorStatus: p.frontAssembly ? 'actual-change' : 'reviewed-retained', interiorStatus: p.caisson ? 'actual-change' : 'evidence-blocked',
     reviewedOnly: !!p.reviewedRetained,
@@ -251,13 +252,13 @@ function insetRearEnclosure(kit, item, f, p, colStart) {
 }
 function moveRetainedThrone(kit, item, f, p, colStart) {
   const shift = p.moveRetainedThrone, tz = item.d / 2 - Math.min(2.6, item.d * .3), tw = Math.min(item.w / p.shell.bays * 1.4, 5);
-  for (const m of f.children) if (m.isMesh && (m.material === kit.gold || m.material === kit.lacquer)) { m.position.z -= shift; m.userData.placementStatus = 'RETAINED_PLACEHOLDER_MOVED_FOR_RECESSED_REAR_WALL_CLEARANCE'; }
+  for (const m of f.children) if (m.isMesh && m.userData.role === 'retained-throne-component') { m.position.z -= shift; m.userData.placementStatus = 'RETAINED_PLACEHOLDER_MOVED_FOR_RECESSED_REAR_WALL_CLEARANCE'; }
   for (const c of kit.colliders.slice(colStart)) if (Math.abs(c.min.x - (item.x - tw / 2)) < 1e-6 && Math.abs(c.min.z - (item.z + tz - 1.2)) < 1e-6 && Math.abs(c.max.y - (item.ph + 3)) < 1e-6) c.translate(new THREE.Vector3(0, 0, -shift));
 }
 function fitRetainedThroneWidth(kit, item, f, p, colStart) {
   const sourceWidth = Math.min(item.w / p.shell.bays * 1.4, 5), target = p.fitRetainedThroneWidth;
   const tz = item.d / 2 - Math.min(2.6, item.d * .3);
-  for (const m of f.children) if (m.isMesh && (m.material === kit.gold || m.material === kit.lacquer) && geometrySize(m.geometry).x > 3) {
+  for (const m of f.children) if (m.isMesh && m.userData.role === 'retained-throne-component' && geometrySize(m.geometry).x > 3) {
     m.geometry.scale(target / sourceWidth, 1, 1);
     m.userData.dimensionStatus = 'RETAINED_PLACEHOLDER_NARROWED_FOR_SOURCE_PARTITION_CLEARANCE_NOT_MEASURED';
   }
@@ -398,6 +399,10 @@ function buildChonghuaBaoxia(kit, item, f, p) {
     clipRoofToHallPlane(roof, f, new THREE.Plane(new THREE.Vector3(0, 0, -1), abutZ));
     tag(roof, 'r48-chonghua-baoxia-roof-fit', { ...provenance(p), abutZ, joinStatus: 'TRIMMED_TO_FRONT_HEAD_WALL_10mm_BEARING_CONTACT_NOT_FULL_ROOF_INTRUSION' });
   }
+  f.userData.nameboardMount=fitRegisteredNameboard(kit,f,item.plaqueText??item.name,{
+    y:top-.335-.15-.75,width:1.05,height:1.5,
+    source:'https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5eff075737310.jpg',
+    reason:'Model identity label below the baoxia beam and rafters; not a surveyed inscription facsimile'});
 }
 
 function buildYangxinCaisson(kit, item, f, p) {
@@ -493,6 +498,7 @@ function buildYangxinFrontAssembly(kit, item, f, p) {
   }
   for (const room of kit.rooms) if (room.name === item.name) for (const door of room.doors) if (near(door.z, item.z - rear)) door.z = item.z + frontZ;
   buildYangxinBaoxia(kit, item, f, p, mainRoof);
+  f.userData.nameboardMount=fitRegisteredNameboard(kit,f,item.plaqueText??item.name,{z:frontZ-.3,source:p.facadeSource,reason:'Retained model label and backing outside the replacement head wall, not embedded in it'});
   f.userData.yangxinFrontAssembly = { source: p.facadeSource, planSource: p.planSource, mainBays: 3, frontSubdivisions: 9, primaryX, secondaryX, frontZ, columnFront, columnRear, retainedMainWidth: 36, spacingStatus: FIT, rearDoor: 'NOT_REBUILT', rearConnector: 'NOT_REBUILT', removedMeshCount: removed.length };
 }
 

@@ -272,10 +272,12 @@ function retainLegacyNameSign(c) {
  const eave={yangxing:6.91,leshou:p.eaveY,fuwang:7.9,changyin:16.2,biluo:3.7}[p.key]??p.ph+p.colH;
  const y=p.key==='biluo'?2.85:eave-1,h=p.key==='biluo'?.95:1.35,w=h*.6;
  let target=f,x=0,z=p.key==='changyin'?-p.localD*.72/2-.24:q.localZ-.28;
+ // Jingqi's upper front wall has a different inset from its ground portal.
+ if(p.key==='jingqi')z=-p.localD/2+.7-.22;
  if(p.key==='biluo'){target=new THREE.Group();target.position.set(q.localX-.18,0,q.localZ);target.rotation.y=Math.PI/2;f.add(target);x=0;z=0;}
  const before=target.children.length;kit.plaque(target,text,x,y,z,w,h);
  for(const m of target.children.slice(before))c.tag(m,'legacy-model-name-sign',{text,source:'BASELINE_COURTKIT_HALL_NAME_DEFAULT',inventoryStatus:'LEGACY_MODEL_NAME_SIGN_UNVERIFIED_NOT_HISTORIC_PLAQUE'});
- return{text,registration:'retained-original-model-name-label',historicObjectVerified:false,localY:y,localZ:z,height:h,positionStatus:p.key==='changyin'?'OFFICIAL_UPPER_EAVE_LEVEL_WITH_FITTED_POSITION_AND_LEGACY_MODEL_STYLE':'FITTED_TO_REVISED_FACADE_OR_ENTRY'};
+ return{text,registration:'retained-original-model-name-label',historicObjectVerified:false,localY:y,localZ:z,height:h,positionStatus:p.key==='jingqi'?'UPPER_FRONT_WALL_CLEARANCE_MODEL_FIT_NOT_SURVEYED':p.key==='changyin'?'OFFICIAL_UPPER_EAVE_LEVEL_WITH_FITTED_POSITION_AND_LEGACY_MODEL_STYLE':'FITTED_TO_REVISED_FACADE_OR_ENTRY'};
 }
 function finish(c,extra={}) {
  const {p,f,kit}=c,w=p.localW,d=p.localD;

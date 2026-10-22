@@ -15,9 +15,9 @@ const g=qinanGeometry(item);
 let promise;const world=()=>promise??=buildWorld();
 function target(W){const t=Object.create(Teleport.prototype);t.targets=new Map([[item.name,item]]);t.zoneManager={getMapItems:()=>W.mapItems,getLoadedIds:()=>['garden'],loaded:new Map([['garden',{data:{mapItems:W.mapItems}}]])};t.collisionManager=W.cm;return t;}
 
-test('Qinan hall geometry dispatch is explicitly exterior-only, never the pavilion/generic doorway adapter',()=>{
+test('Qinan map landing remains exterior while its dedicated virtual side routes avoid the generic doorway adapter',()=>{
  const h=hallGeom(item);assert.equal(h.profile.profile,'qinan');assert.equal(h.enter,false);assert.equal(h.backDoor,false);assert.equal(h.open,false);
- assert.equal(h.navigation.mode,'exterior-view');assert.equal(h.doorX,undefined);assert.equal(h.run,undefined);assert.deepEqual(h.footprints,g.map.footprints);
+ assert.equal(h.navigation.mode,'exterior-view');assert.equal(h.navigation.gameAccess,'virtual-interior-return');assert.equal(h.doorX,undefined);assert.equal(h.run,undefined);assert.deepEqual(h.footprints,g.map.footprints);
 });
 test('Qinan teleport consumes the one profile viewpoint and true look-at instead of the inherited facade depth',async()=>{
  const t=target(await world()),geometry=t.geometryFor(item.name),p=t.landingFor(item.name);
@@ -57,10 +57,10 @@ test('minimap draws two separate physical footprints, keeps inherited label anch
  assert.equal(m.labels.length,1);assert.equal(m.labels[0].name,'钦安殿');assert.equal(m.labels[0].mode,'exterior-view');assert.deepEqual([m.labels[0].x,m.labels[0].y],[0,493.1]);
  assert.equal(texts[0][0],'钦安殿（外观）');
 });
-test('settings and map disclose ground-only preview, missing south stonework, and unknown modern access',()=>{
+test('settings disclose virtual side entry, missing south stonework, and unknown modern access',()=>{
  const settings=fs.readFileSync(new URL('../../src/ui/SettingsMenu.js',import.meta.url),'utf8'),map=fs.readFileSync(new URL('../../src/ui/Minimap.js',import.meta.url),'utf8');
- for(const phrase of ['钦安殿','地面外观','台上及室内路线未验收','南侧轴线复合石构','不代表现场开放'])assert.ok(settings.includes(phrase),phrase);
- assert.ok(map.includes('钦安殿仅设地面外观观览点'));
+ for(const phrase of ['钦安殿','地面观览','东西侧台阶','侧门开启为游戏体验诠释','南侧轴线复合石构','不代表现场开放'])assert.ok(settings.includes(phrase),phrase);
+ assert.ok(map.includes('钦安殿保留地面观览落点'));assert.ok(map.includes('沿两侧台阶进入虚拟展示'));assert.ok(map.includes('不代表现实开放'));
  assert.ok(settings.includes('日光为用于辨识建筑体量的示意晴天方向，并非当前天气或实景照片匹配。'));
 });
 
@@ -89,7 +89,7 @@ test('real ZoneManager loads and registers Qin’an before the first collision q
   const p=t.go(item.name);assert.ok(p);assert.equal(p.y,0);assert.equal(controls.getFeetY(),0);assert.equal(p.zone,'garden');
   assert.equal(p.validatedAgainstProfileHash,g.profileHash);assert.ok(checks.length>0);assert.ok(checks.every(c=>c.loaded.includes('garden')&&c.resident>=g.supports.length));
   const direction=camera.getWorldDirection(new THREE.Vector3()),expected=new THREE.Vector3(0,3,481.08).sub(camera.position).normalize();assert.ok(direction.distanceTo(expected)<1e-8);
-  assert.ok(t.overlay.textContent.includes('地面外观预览'));
+  assert.ok(t.overlay.textContent.includes('东西侧阶入殿并原路返回'));
  }finally{clearTimeout(t.overlayTimer);W.cm.getGroundHeight=original;controls.dispose();zm.dispose();globalThis.document=savedDoc;globalThis.window=savedWindow;}
 });
 

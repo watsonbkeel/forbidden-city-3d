@@ -4,7 +4,7 @@ export const QINAN_PROFILE=freeze(profile);
 const axes=bays=>{const out=[-bays.reduce((a,b)=>a+b,0)/2];for(const b of bays)out.push(out.at(-1)+b);return out;};
 const finiteTree=value=>{if(typeof value==='number'&&!Number.isFinite(value))throw new Error('Qinan profile requires finite dimensions');if(value&&typeof value==='object')Object.values(value).forEach(finiteTree);};
 
-/** Pure exterior geometry/navigation contract. No generic-hall defaults. */
+/** Evidence-bounded geometry with an exterior landing and separate virtual side-entry contract. */
 export function qinanGeometry(item={},source=QINAN_PROFILE){
  if(item.structure!=='qinan-hall'||item.qinanProfile!=='qinan')throw new Error('Qinan requires explicit qinan-hall structure and qinan profile');
  finiteTree(source);
@@ -44,6 +44,10 @@ export function qinanGeometry(item={},source=QINAN_PROFILE){
  for(const sign of [-1,1]){const x=sign*t.mainRailWidth/2,ax=sign*t.southRailWidth/2,z=t.sideStairCenterZ,half=t.sideStairWidth/2;railSegments.push([x,t.northRailZ,x,t.insetTurnZ],[x,t.insetTurnZ,ax,t.insetTurnZ],[ax,t.insetTurnZ,ax,z+half],[ax,z-half,ax,t.southRailZ]);}
  const footprints=slabs.map(s=>({kind:'platform',supportId:s.supportId,x:f.x+(s.minX+s.maxX)/2,z:f.z+(s.minZ+s.maxZ)/2,w:s.maxX-s.minX,d:s.maxZ-s.minZ}));
  const omittedFeatures=[{id:'qinan-south-axial-composite',status:'KNOWN_VISIBLE_OMISSION',reason:'Composite levels unresolved; no invisible support or collider',footprint:{minX:f.x-t.southAxialProjection.width/2,maxX:f.x+t.southAxialProjection.width/2,minZ:f.z+t.southRailZ-t.southAxialProjection.length,maxZ:f.z+t.southRailZ}}];
- const navigation={...structuredClone(p.navigation),profileHash:p.profileHash,validatedAgainstProfileHash:null};
- return {profile:'qinan',profileId:p.profileId,profileRevision:p.revision,profileHash:p.profileHash,id:'garden/qinan',name:'钦安殿',x:f.x,z:f.z,rot:f.rot,toWorld,datum:{floorY,columnBaseTopY:baseY,offsetAboveFloor:p.surveyDatum.columnBaseAboveFloor},mainBody,upperColumnHeadGrid:{...upper,xs:upperXs,width:upperWidth},levels,roofBoard:{...p.roofBoard,bottomY:levels.boardUnderside,topY:levels.boardTop},cutRafterProfile:p.cutRafterProfile,roofSkinApproximation:p.roofSkinApproximation,southAnnex:annex,terraceGuide:t,supportApproximation:a,slabs,stairs,steps,railSegments,supports,omittedFeatures,portals:[],navigation,map:{footprints,labelAnchor:{x:f.x,z:f.z},profileId:p.profileId,profileHash:p.profileHash,mode:'exterior-view'},provenance:structuredClone(p)};
+ const v=p.virtualAccess;
+ if(!v||![v.portalWidth,v.portalHeight,v.leafThickness,v.leafInset].every(n=>Number.isFinite(n)&&n>0)||v.portalWidth>t.sideStairWidth||v.portalHeight>=annex.columnTopY-floorY)throw new Error('Invalid Qinan virtual doorway dimensions');
+ const portals=stairs.map(s=>({id:`qinan-${s.side}-virtual-entry`,side:s.side,sign:s.sign,x:s.sign*width/2,z:t.sideStairCenterZ,width:v.portalWidth,height:v.portalHeight,worldX:f.x+s.sign*width/2,worldZ:f.z+t.sideStairCenterZ,feetY:floorY,status:v.status}));
+ const virtualRoutes=portals.map(portal=>({id:portal.id,points:[[f.x+portal.sign*18,f.z-16.1],[f.x+portal.sign*18,portal.worldZ],[f.x+portal.sign*8,portal.worldZ],[f.x,portal.worldZ],[f.x,f.z]],return:'same-way',status:v.status}));
+ const navigation={...structuredClone(p.navigation),virtualRoutes,profileHash:p.profileHash,validatedAgainstProfileHash:null};
+ return {profile:'qinan',profileId:p.profileId,profileRevision:p.revision,profileHash:p.profileHash,id:'garden/qinan',name:'钦安殿',x:f.x,z:f.z,rot:f.rot,toWorld,datum:{floorY,columnBaseTopY:baseY,offsetAboveFloor:p.surveyDatum.columnBaseAboveFloor},mainBody,upperColumnHeadGrid:{...upper,xs:upperXs,width:upperWidth},levels,roofBoard:{...p.roofBoard,bottomY:levels.boardUnderside,topY:levels.boardTop},cutRafterProfile:p.cutRafterProfile,roofSkinApproximation:p.roofSkinApproximation,southAnnex:annex,terraceGuide:t,supportApproximation:a,slabs,stairs,steps,railSegments,supports,omittedFeatures,portals,virtualAccess:v,navigation,map:{footprints,labelAnchor:{x:f.x,z:f.z},profileId:p.profileId,profileHash:p.profileHash,mode:'exterior-view'},provenance:structuredClone(p)};
 }

@@ -21,8 +21,8 @@ test('Qinan dispatch is dedicated, unequal five-bay, no generic roof, throne or 
  const g=geometry();assert.deepEqual(g.mainBody.columnFootGrid.baysX,[4.03,4.15,4.71,4.15,4.03]);assert.deepEqual(g.mainBody.columnFootGrid.baysZ,[1.65,7.34,1.65]);
  near(g.mainBody.columnFootGrid.width,21.07);near(g.mainBody.columnFootGrid.depth,10.64);assert.equal(g.mainBody.perimeterColumns.length,16);
  near(g.upperColumnHeadGrid.width,17.6325);near(g.roofBoard.width,14.3);near(g.roofBoard.depth,4.1);assert.notEqual(g.upperColumnHeadGrid.width,g.roofBoard.width);
- assert.equal(g.mainBody.interiorGoldenColumns.status,'AXIS_MAPPING_UNRESOLVED_OMITTED');assert.equal(g.mainBody.interiorGoldenColumns.expectedCount,4);
- assert.equal(g.navigation.mode,'exterior-view');assert.equal(g.navigation.terraceRouteAccepted,false);assert.equal(g.navigation.interiorRouteAccepted,false);assert.equal(g.portals.length,0);
+ assert.equal(g.mainBody.interiorGoldenColumns.status,'SOURCE_DERIVED_FIG2_NODE_MAPPING_NOT_CURRENT_SURVEY');assert.equal(g.mainBody.interiorGoldenColumns.expectedCount,4);
+ assert.equal(g.navigation.mode,'exterior-view');assert.equal(g.navigation.terraceRouteAccepted,true);assert.equal(g.navigation.interiorRouteAccepted,true);assert.equal(g.navigation.gameAccess,'virtual-interior-return');assert.equal(g.portals.length,2);
 });
 test('profile provenance keeps column-base datum separate from floor and source periods',()=>{
  const g=geometry();near(g.datum.floorY,1.5);near(g.datum.columnBaseTopY,1.62);near(g.levels.eaveColumnTop,1.62+4.29);near(g.levels.boardTop,1.62+10.596);
@@ -44,9 +44,9 @@ test('actual assembly owns the low annex, closed north wall and no generic room 
  const zone=new ZoneBase(library(),{id:'garden',items:[item]});const data=zone.build();assert.equal(data.group.userData.architecture[0].profileId,api.QINAN_PROFILE.profileId);assert.equal(data.rooms.length,0);zone.dispose();
 });
 
-test('explicit role accounting stays within the old full hall and does not count alternative LOD twice',()=>{
+test('explicit role accounting records R48 golden columns and R49 split side doors without counting alternative LOD twice',()=>{
  const {root}=fixture(),r=root.userData.structure.roleBudget;
- assert.ok(r.triangleInstances<=3382,`local full hall ${r.triangleInstances} > old3382`);
+ assert.equal(r.triangleInstances,3252+144+96+124,'original exterior + R48 columns/bases + R49 split side doors + 124-triangle name plaque');
  near(Object.values(r.roles).reduce((n,r)=>n+r.triangleInstances,0),r.triangleInstances);assert.equal(r.oldAlternativeSilhouetteTriangles,800);assert.match(r.comparison,/alternative/);
 });
 test('roof has a separate wooden board, truncated top tile cover and visible non-floating bracket aprons',()=>{
@@ -79,8 +79,8 @@ test('finite geometry, bounds and alternative silhouette contain both real roof 
 });
 test('source geometries, merged geometries and owned materials dispose once; library resources remain shared',()=>{
  const {lib,kit,root}=fixture(),counts=new Map(),watch=r=>{counts.set(r,0);r.addEventListener('dispose',()=>counts.set(r,counts.get(r)+1));};
- const sources=new Set();root.traverse(o=>{if(o.geometry)sources.add(o.geometry);});sources.forEach(watch);const libraryCounts=new Map();for(const m of lib.materials.values()){libraryCounts.set(m,0);m.addEventListener('dispose',()=>libraryCounts.set(m,libraryCounts.get(m)+1));}
- const merged=kit.finish();assert.ok([...sources].every(r=>counts.get(r)===1));const mergedResources=[];merged.traverse(o=>{if(o.geometry)mergedResources.push(o.geometry);});mergedResources.push(...kit.owned,...(kit.ownedTextures??[]));mergedResources.forEach(watch);kit.dispose(merged);
+ const sources=new Set(),retained=new Set();root.traverse(o=>{if(o.geometry){sources.add(o.geometry);if(o.userData.noMerge)retained.add(o.geometry);}});sources.forEach(watch);const libraryCounts=new Map();for(const m of lib.materials.values()){libraryCounts.set(m,0);m.addEventListener('dispose',()=>libraryCounts.set(m,libraryCounts.get(m)+1));}
+ const merged=kit.finish();assert.ok([...sources].every(r=>counts.get(r)===(retained.has(r)?0:1)));const mergedResources=[];merged.traverse(o=>{if(o.geometry)mergedResources.push(o.geometry);});mergedResources.push(...kit.owned,...(kit.ownedTextures??[]));mergedResources.forEach(r=>{if(!counts.has(r))watch(r);});kit.dispose(merged);
  assert.ok(mergedResources.every(r=>counts.get(r)===1));assert.ok([...libraryCounts.values()].every(n=>n===0));assert.equal(kit.colliders.length,0);assert.equal(kit.walkables.length,0);
 });
 test('actual ZoneManager three-cycle lifecycle preserves deterministic metadata and zone ownership',async()=>{
@@ -191,7 +191,7 @@ test('all vertical tile-thickness cap triangles have noncollapsed UVs without ch
 test('new Qin’an lattice panels and painted beam boxes use full-height band UVs, not cropped box sampling',()=>{
  const {root}=fixture();let count=0;
  root.traverse(m=>{if(!m.isMesh||!['lattice_doors','caihua_beam'].includes(m.material.name)||/apron/.test(m.userData.role))return;const {position:p,normal:n,uv}=m.geometry.attributes;const values=[];for(let i=0;i<p.count;i++)if(Math.abs(n.getY(i))<.1)values.push(uv.getY(i));assert.equal(Math.min(...values),0,m.userData.role);assert.equal(Math.max(...values),1,m.userData.role);count++;});
- assert.equal(count,12,'seven lattice panels and five beam boxes');
+ assert.equal(count,20,'five front panels, ten side-door panels/leaves, and five beam boxes');
 });
 
 test('painted apron U uses the library band period continuously along each perimeter',()=>{
