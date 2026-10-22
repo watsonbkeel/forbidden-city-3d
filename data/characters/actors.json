@@ -3598,6 +3598,318 @@
       "schedule": "daily-daylight",
       "priority": "core",
       "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "changchun-maid-02",
+      "templateId": "maid-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "changchun",
+      "sceneId": "changchun",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R55-changchun",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Building use supports context only. Exact role numbers, route, pose, clothing and daylight schedule are model choices, not a documented staffing roster, timetable or present exhibition workforce."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "changchun-maid-02-r55-stroll",
+        "surfaceRef": "changchun-r52-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 55001,
+        "speedMetersPerSecond": 0.46,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "changchun-maid-02-r55-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "changchun-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "changchun",
+      "sceneId": "changchun",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R55-changchun",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Building use supports context only. Exact role numbers, route, pose, clothing and daylight schedule are model choices, not a documented staffing roster, timetable or present exhibition workforce."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "changchun-r52-court-ground",
+        "anchorRef": "changchun-r52-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -6,
+          0,
+          -16.5
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 55002
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "zhongcui-maid-02",
+      "templateId": "maid-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "zhongcui",
+      "sceneId": "zhongcui",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R55-zhongcui",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Building use supports context only. Exact role numbers, route, pose, clothing and daylight schedule are model choices, not a documented staffing roster, timetable or present exhibition workforce."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "zhongcui-r52-court-ground",
+        "anchorRef": "zhongcui-r52-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          3,
+          0,
+          -16
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 55003
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "zhongcui-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "zhongcui",
+      "sceneId": "zhongcui",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R55-zhongcui",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Building use supports context only. Exact role numbers, route, pose, clothing and daylight schedule are model choices, not a documented staffing roster, timetable or present exhibition workforce."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "zhongcui-eunuch-01-r55-stroll",
+        "surfaceRef": "zhongcui-r52-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 55004,
+        "speedMetersPerSecond": 0.44,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "zhongcui-eunuch-01-r55-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "jingren-maid-02",
+      "templateId": "maid-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "jingren",
+      "sceneId": "jingren",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R55-jingren",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Building use supports context only. Exact role numbers, route, pose, clothing and daylight schedule are model choices, not a documented staffing roster, timetable or present exhibition workforce."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "jingren-maid-02-r55-stroll",
+        "surfaceRef": "jingren-r52-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 55005,
+        "speedMetersPerSecond": 0.42,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "jingren-maid-02-r55-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "jingren-eunuch-02",
+      "templateId": "eunuch-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "jingren",
+      "sceneId": "jingren",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R55-jingren",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Building use supports context only. Exact role numbers, route, pose, clothing and daylight schedule are model choices, not a documented staffing roster, timetable or present exhibition workforce."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "jingren-r52-court-ground",
+        "anchorRef": "jingren-r52-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -6.5,
+          0,
+          -12.8
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 55006
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "yonghe-maid-02",
+      "templateId": "maid-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "yonghe",
+      "sceneId": "yonghe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R55-yonghe",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Building use supports context only. Exact role numbers, route, pose, clothing and daylight schedule are model choices, not a documented staffing roster, timetable or present exhibition workforce."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "yonghe-maid-02-r55-stroll",
+        "surfaceRef": "yonghe-r52-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 55007,
+        "speedMetersPerSecond": 0.44,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "yonghe-maid-02-r55-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "yonghe-eunuch-02",
+      "templateId": "eunuch-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "yonghe",
+      "sceneId": "yonghe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R55-yonghe",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Building use supports context only. Exact role numbers, route, pose, clothing and daylight schedule are model choices, not a documented staffing roster, timetable or present exhibition workforce."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "yonghe-r52-court-ground",
+        "anchorRef": "yonghe-r52-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -6,
+          0,
+          -17
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 55008
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
     }
   ]
 }

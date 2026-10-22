@@ -3,6 +3,7 @@ import { buildRoof } from '../../RoofBuilder.js';
 import { applyPlanarUV } from '../../../utils/GeometryUV.js';
 import {buildJiaotaiCeiling} from './JiaotaiCentralInterior.js';
 import {buildJiaotaiDisplaySetting} from './JiaotaiDisplaySetting.js';
+import {buildZhongheDisplaySetting} from './ZhongheDisplaySetting.js';
 
 /**
  * Evidence-led enclosure topologies, not a claim of survey-grade dimensions.
@@ -180,7 +181,7 @@ export function buildSquareHall(builder, parent, data, y) {
   const ztb1 = z0 + id / 2 - 3.1;
   const ztb0 = ztb1 - Math.min(5.2, id * 0.28);
   if (data.name === '交泰殿') buildJiaotaiDisplaySetting(builder,shell,{x0,y,H,ztb0,ztb1,thW:Math.min(5.0,iw*.24),bayW:iw/3});
-  else builder.throneArea(shell, { x0, y, H, ztb0, ztb1, thW: Math.min(5.0, iw * 0.24), bayW: iw / 3, text: centralFrame ? null : spec.innerPlaque, caisson: data.name !== '中和殿' && !centralFrame, jiaotai: !!centralFrame });
+  else buildZhongheDisplaySetting(builder,shell,{x0,z0,y,H,ztb0,ztb1,thW:Math.min(5.0,iw*.24),bayW:iw/3});
   const plaqueH = 1.75;
   const plaque = builder.plaqueMesh(data.name, plaqueH * 0.62, plaqueH, true);
   plaque.position.set(x0, y + H - plaqueH * 0.25, z0 - d / 2 - 0.45);

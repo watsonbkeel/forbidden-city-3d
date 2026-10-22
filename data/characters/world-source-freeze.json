@@ -1,42 +1,65 @@
 {
-  "schemaVersion": 7,
-  "baselineCommit": "09f55650bfc13d0cae6143ae45b7209e22b0a564",
-  "purpose": "R54 cumulative source-bounded partial Jiaotai display and Changchun east alcove. Preserve R53 and all earlier accepted cumulative source changes, with no Jingyun experiment, GPU or exact historical reconstruction claim.",
+  "schemaVersion": 8,
+  "baselineCommit": "a125fc964fc004886a3c3aa8282a91de1f030e9e",
+  "purpose": "R55 cumulative bounded Zhonghe low display and actual Kunning S three-pot low stove. All93 logical actors require fresh world and interior generations. Preserve accepted R54 and earlier cumulative changes; no Jingyun experiment or GPU/full-restoration claim.",
   "provenance": {
-    "previousBaselineCommit": "55623124b2f5fbab83673ddfc03b3c2d5da0f074",
-    "previousRemoteCommit": "beaddf4dd207ef497a18987a307a1b799e303cb7",
-    "previousManifestPath": "data/characters/world-source-freeze-r53.json",
-    "previousManifestSha256": "1edb222d9bb8d2e36313a1f56235cf429784d590ccf7c5013017d168a50606d1",
-    "previousFileCount": 188,
+    "previousBaselineCommit": "edd1d6de15ad1393a45d6da8712e37ac3d8dc388",
+    "previousRemoteCommit": "a370cf34381c0e3a513165fe25070df625272d05",
+    "previousManifestPath": "data/characters/world-source-freeze-r54.json",
+    "previousManifestSha256": "0fe2886dcdb18e10302a07d2fa27dbe7ac856eee75c9e541dfd6b9c7962a0873",
+    "previousFileCount": 190,
     "changedProductionPaths": [
-      "src/scene/palace/special/ChangchunEastAlcove.js",
-      "src/scene/palace/special/JiaotaiDisplaySetting.js",
+      "assets-src/interiors/kunning.py",
+      "data/interiors/kunning.json",
+      "public/models/interiors/kunning-v6-5adbf53a3114.glb",
       "src/scene/palace/special/SquareHalls.js",
-      "src/scene/palace/special/WestDomesticHalls.js"
+      "src/scene/palace/special/ZhongheDisplaySetting.js"
     ],
-    "changedSources": [
+    "changedPreviouslyTrackedSources": [
       {
         "path": "src/scene/palace/special/SquareHalls.js",
-        "previousSha256": "87ef837ccd5706dddd020378c946a676bcad8f67fddb2a9179f8c96dfc91e867",
-        "currentSha256": "db0a524c48be97d2754dd5d7b7a69724d064c1973050fe749def01332ba88186"
-      },
-      {
-        "path": "src/scene/palace/special/WestDomesticHalls.js",
-        "previousSha256": "7aea2132038ce95ac448b1a9286fd6c9f2f3f2f474bd66c4ecc22d8d10b0b49c",
-        "currentSha256": "3bd9990e7efa35e552c99b6520e772cfca9f3171840968732cb288ac7791c3bc"
+        "previousSha256": "db0a524c48be97d2754dd5d7b7a69724d064c1973050fe749def01332ba88186",
+        "currentSha256": "342e6d68a2cc619e1329f6b2254fe29e900aa6c9de967c977a3b0c97ea4ff732"
       }
     ],
-    "addedSources": [
+    "newlyTrackedSources": [
       {
-        "path": "src/scene/palace/special/ChangchunEastAlcove.js",
-        "sha256": "d71d6399cb6cdb173f3a6f63c7f8f5fa187caf4d7c9509cd1b802754dd14ccc4"
+        "path": "assets-src/interiors/kunning.py",
+        "sha256": "6272fa1b84bb7be1cde033594cc519f0a53949b1c16449aa5518f88781d7e8b4",
+        "previouslyTrackedByWorldManifest": false,
+        "existingInR54": true,
+        "previousSha256": "9a640d5c04436303f3c59cb9bb84e54fa2d070df9453f816e59d2cfccc0189fe"
       },
       {
-        "path": "src/scene/palace/special/JiaotaiDisplaySetting.js",
-        "sha256": "17ab6019c1beb32d65698536b96b41586f5f8cc9211006eb3c30490fc31997e3"
+        "path": "data/interiors/kunning.json",
+        "sha256": "e6ca35c2a0892e59ea00cdec6dfdbc0102c30c152d17cba8bac837d86415d61b",
+        "previouslyTrackedByWorldManifest": false,
+        "existingInR54": true,
+        "previousSha256": "02beb5b84b4ba1d119c57bb224974477b941856a8a9b2546f972920e1233c61d"
+      },
+      {
+        "path": "public/models/interiors/kunning-v6-0c83b4364eef.glb",
+        "sha256": "0c83b4364eef7febe30f976158c8a015bab49dcc3f40989f510c98e8edd6a9e4",
+        "previouslyTrackedByWorldManifest": false,
+        "existingInR54": true,
+        "previousSha256": "0c83b4364eef7febe30f976158c8a015bab49dcc3f40989f510c98e8edd6a9e4"
+      },
+      {
+        "path": "public/models/interiors/kunning-v6-5adbf53a3114.glb",
+        "sha256": "5adbf53a311452221a3184198875958eb55436bd261253a75486516bfdc87553",
+        "previouslyTrackedByWorldManifest": false,
+        "existingInR54": false,
+        "previousSha256": null
+      },
+      {
+        "path": "src/scene/palace/special/ZhongheDisplaySetting.js",
+        "sha256": "df757aff3acc6c7d47236c3c4109bb02f0935bfb168008fbae679e8543a5b678",
+        "previouslyTrackedByWorldManifest": false,
+        "existingInR54": false,
+        "previousSha256": null
       }
     ],
-    "inheritedByteExactCount": 186,
+    "inheritedByteExactCount": 189,
     "retainedSourceRuntimeExceptions": [
       {
         "source": "src/scene/palace/special/JiaotaiCentralInterior.js",
@@ -50,9 +73,26 @@
         "evidence": "docs/validation/r54-jiaotai-display/base-materials/geometry-and-navigation.json#backdropRevision",
         "reverseDifferenceTest": "tests/r54-jiaotai-display.test.mjs"
       }
+    ],
+    "newRuntimeExceptions": [
+      {
+        "source": "src/scene/palace/special/SquareHalls.js",
+        "appliedBy": "src/scene/palace/special/ZhongheDisplaySetting.js",
+        "change": "Only Zhonghe central legacy high furniture replaced; old Jiaotai, four doors, continuous ceiling, plaque and two tripods retained.",
+        "evidence": "docs/current-state/r55-zhonghe-display/SCOPE.md"
+      },
+      {
+        "source": "data/interiors/kunning.json",
+        "change": "Optional S asset points to the actual regenerated GLB; old asset kept. Only stove geometry/proxy changes, no Loader or B architecture change.",
+        "evidence": "docs/current-state/r55-kunning-low-stoves/SCOPE.md"
+      }
     ]
   },
   "files": [
+    {
+      "path": "assets-src/interiors/kunning.py",
+      "sha256": "6272fa1b84bb7be1cde033594cc519f0a53949b1c16449aa5518f88781d7e8b4"
+    },
     {
       "path": "data/architecture/building-fidelity.json",
       "sha256": "27166adc4fcf2b5c434f76656ee8a299e8fa147a85aedaf0c734b8ca7d79e3a2"
@@ -90,6 +130,10 @@
       "sha256": "c382ffc8ea2fdc595e648332f632cc9a5c640765e25798a959554eb28b6a05fc"
     },
     {
+      "path": "data/interiors/kunning.json",
+      "sha256": "e6ca35c2a0892e59ea00cdec6dfdbc0102c30c152d17cba8bac837d86415d61b"
+    },
+    {
       "path": "data/zones/axis-courts.json",
       "sha256": "12c716967cdf966f5348c2c9846ed6f85c231bd1d4f1a525be312a760b9a6c85"
     },
@@ -120,6 +164,14 @@
     {
       "path": "data/zones/west-six.json",
       "sha256": "042285c8053df6586233b7827fefcbf0353bb08ada141e5c4a9784a8a61d72b7"
+    },
+    {
+      "path": "public/models/interiors/kunning-v6-0c83b4364eef.glb",
+      "sha256": "0c83b4364eef7febe30f976158c8a015bab49dcc3f40989f510c98e8edd6a9e4"
+    },
+    {
+      "path": "public/models/interiors/kunning-v6-5adbf53a3114.glb",
+      "sha256": "5adbf53a311452221a3184198875958eb55436bd261253a75486516bfdc87553"
     },
     {
       "path": "src/config/constants.js",
@@ -603,7 +655,7 @@
     },
     {
       "path": "src/scene/palace/special/SquareHalls.js",
-      "sha256": "db0a524c48be97d2754dd5d7b7a69724d064c1973050fe749def01332ba88186"
+      "sha256": "342e6d68a2cc619e1329f6b2254fe29e900aa6c9de967c977a3b0c97ea4ff732"
     },
     {
       "path": "src/scene/palace/special/SurveyedPavilion.js",
@@ -768,6 +820,10 @@
     {
       "path": "src/scene/palace/special/ZhaodeGateProfile.js",
       "sha256": "bb3b121f5ce00da6ea234237745bd28b4e020cfbb016dd05339ce7b95704ea0d"
+    },
+    {
+      "path": "src/scene/palace/special/ZhongheDisplaySetting.js",
+      "sha256": "df757aff3acc6c7d47236c3c4109bb02f0935bfb168008fbae679e8543a5b678"
     },
     {
       "path": "src/scene/palace/towerShell.js",

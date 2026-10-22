@@ -1,0 +1,272 @@
+✖ R48 Zhonghe selected official flat ceiling omits the generic suspended caisson and mirror only (91.488919ms)
+✖ R48 Jiaotai retains its separate ceiling owner and never enables the generic mirror (30.182045ms)
+✔ Jiaotai alone has a source-bounded low display setting instead of the generic throneArea (210.793834ms)
+✖ all R27/R28 sources and the complete Zhonghe fragment remain byte-identical (76.434277ms)
+✔ every new collider has a visible geometric owner; only the real low base is a new walkable (26.103915ms)
+✔ base-material checkpoint retains every neutral vertex, UV, index, transform and physical bound (87.844653ms)
+✔ Jiaotai merged rear-palace fragment binds the real geometry, support and legal observation positions (20.179433ms)
+✔ Jiaotai four-door continuous circuit 10 Hz sprint=false backward=false (68.704715ms)
+✔ Jiaotai four-door continuous circuit 10 Hz sprint=false backward=true (59.123348ms)
+✔ Jiaotai four-door continuous circuit 10 Hz sprint=true backward=false (56.276576ms)
+✔ Jiaotai four-door continuous circuit 10 Hz sprint=true backward=true (54.510749ms)
+✔ Jiaotai four-door continuous circuit 60 Hz sprint=false backward=false (194.50514ms)
+✔ Jiaotai four-door continuous circuit 60 Hz sprint=false backward=true (159.969002ms)
+✔ Jiaotai four-door continuous circuit 60 Hz sprint=true backward=false (98.641182ms)
+✔ Jiaotai four-door continuous circuit 60 Hz sprint=true backward=true (108.798955ms)
+✔ both actual resident clock/clepsydra and caisson LOD meshes retain their frozen R53 signatures (11.712168ms)
+✔ Jiaotai original front map landing is retained by the actual Teleport resolver (9.467841ms)
+✔ new furniture bounds do not penetrate either conservative retained R27 landmark envelope (22.898351ms)
+✔ all frozen actor IDs remain and Jiaotai stays unbound when other districts gain actors (3.800174ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 16
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1456.018643
+
+✖ failing tests:
+
+test at tests/r48-zhonghe-ceiling.test.mjs:4:1
+✖ R48 Zhonghe selected official flat ceiling omits the generic suspended caisson and mirror only (91.488919ms)
+  TypeError: Cannot read properties of undefined (reading 'caisson')
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r55-zhonghe-display/tests/r48-zhonghe-ceiling.test.mjs:4:182)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at tests/r48-zhonghe-ceiling.test.mjs:5:1
+✖ R48 Jiaotai retains its separate ceiling owner and never enables the generic mirror (30.182045ms)
+  TypeError: Cannot read properties of undefined (reading 'caisson')
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r55-zhonghe-display/tests/r48-zhonghe-ceiling.test.mjs:5:144)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests/r54-jiaotai-display.test.mjs:31:1
+✖ all R27/R28 sources and the complete Zhonghe fragment remain byte-identical (76.434277ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      {
+        displayId: null,
+        hash: '29f93abd50bb8c58011638e4af29297f177c2b16da03bee7fba01378b6870c3c',
+        name: '内殿柱'
+  ...
+        displayId: null,
+  +     hash: 'bbdb5c9e902435e4c68ff0fb42fd1ff88ff6b6076748bb85113cac915e42a455',
+  -     hash: '142480a248752998a2171c2dedc0f360aa743b269261d503b467363d0447a397',
+        name: ''
+      },
+      {
+        displayId: null,
+  +     hash: 'cee564860bb398314c6c5b398efbe8df5cd2513dfa4d952943056b787fb84e64',
+  -     hash: 'c3f3ebcb2fe598d4c49c5004a8c382740f156d51cdf0ef2d0b87c15e1c03a4da',
+        name: ''
+      },
+      {
+        displayId: null,
+  +     hash: '8f618ad3726cd77fd9775d1a5ccbdcf0edb9c6bd5967564a97b356e16e739987',
+  -     hash: '9e3ffc1376193f720d3e689b029a0ee621aa2a225c9a3426006afcd80a6f933a',
+        name: ''
+      },
+      {
+        displayId: null,
+  +     hash: '623bfdb43f7cd453dd812894c79fae535acbbf26d12d27d84ba9b8048292298b',
+  -     hash: '3fedcf6647fd03946fe39cdb00f766c71e8a527e187c2fe5de18333058e4c43e',
+        name: ''
+      },
+      {
+        displayId: null,
+  +     hash: 'e79ec0f790b974ff8415f16e7784e02e4b5c0d70347c23d68ea0deefef700fce',
+  -     hash: '216c4b514fb06ec975161082b01b2456d7f906899b29bc3c452085d2ff737e66',
+        name: ''
+      },
+      {
+        displayId: null,
+  +     hash: 'cb51dc4918cc0791e4b5061d56def271ef13b9ee91e94930e5319414ee14e708',
+  -     hash: '350c7cb716e20c07a0aa10a81bba79cce3fed7adb37915bbfb6054851d11c559',
+        name: ''
+      },
+      {
+        displayId: null,
+  +     hash: 'c0eaacc0cdc217211298285c09d01abfcf77a6e2672e69a85efb0e9f21e77c0a',
+  -     hash: '9e5a810d08ff51e00e39823d26933a9d7b76afa1ba571ecc98ca64cf64054e51',
+        name: ''
+      },
+      {
+        displayId: null,
+  +     hash: '3aabb2e48e64ea7f7f2cb422e2fbe75b31a2ccce5e5bf33eb9aaee3cc3a2c003',
+  -     hash: '8c6aaadd31f8950474e0d683c3d30aed4f6b5c3329d9d05b2df59fcae7b220cb',
+        name: ''
+      },
+      {
+        displayId: null,
+  +     hash: 'd318c725f9e3e87eb6701cea8d77437a82ed28fc65797aae29553a30eb94f835',
+  -     hash: 'ff0a307af1351b7b38af07fd7fe6046ded6db158ce2fedaa31db257d344a2a03',
+        name: ''
+      },
+      {
+        displayId: null,
+  +     hash: '01c0f579dcc1e3def8362443874d1cf04a72c39169a1f36242b0dd6de4a3944c',
+  -     hash: '13c37b1b63528b59d1cd2d4f858712b26e65af143979295a9d834731fafe4706',
+        name: ''
+      },
+      {
+        displayId: null,
+  +     hash: '66311032b09bd2759fb8e0c4438e7a313ebf2d4ce4c3b83e5449d779382897fb',
+  -     hash: 'c2630b06797ec478c44f77232906e7e70e2e183cfd74218ff451693bb225fae0',
+        name: ''
+      },
+      {
+        displayId: null,
+  +     hash: '29147a4edad85ac7ee1e8492dbafa76989fb185197d4d4dfb1a78039749fb77f',
+  +     name: 'r55-zhonghe-low-platform'
+  -     hash: '09665217e31e3de6d65289eace41e42fe881830a7802724893c77a3532251c59',
+  -     name: ''
+      },
+      {
+        displayId: null,
+  +     hash: 'e85897871999982f6e50d37b8477feffff2496ae9f84a33062ba712222adab99',
+  +     name: 'r55-zhonghe-platform-front-fascia'
+  -     hash: 'e384dc2717a38f59ebbccac9dd7fd2f19220c83828da8ed01faedf4b9cd270d3',
+  -     name: ''
+      },
+      {
+        displayId: null,
+  +     hash: '81f753ac13b13d63c92f76b869047d0f44c007033aefb44350672346edf537bc',
+  +     name: 'r55-zhonghe-chair-leg--1--1'
+  -     hash: '038bfee33389c29997499172a2c00423339caa07b45821f477d8a21558c17f74',
+  -     name: ''
+      },
+      {
+        displayId: null,
+  +     hash: '1449f4f84f7ffb85daaef411ccd8026c504cf5aeec210dfbbd9f3224900a4057',
+  +     name: 'r55-zhonghe-chair-leg--1-1'
+  -     hash: 'bbdb5c9e902435e4c68ff0fb42fd1ff88ff6b6076748bb85113cac915e42a455',
+  -     name: ''
+      },
+      {
+        displayId: null,
+  +     hash: '3458b9c0d7bc999e87758c0ed2e871f152c923f7b1c375fa537923f0d65d0221',
+  +     name: 'r55-zhonghe-chair-leg-1--1'
+  -     hash: 'cee564860bb398314c6c5b398efbe8df5cd2513dfa4d952943056b787fb84e64',
+  -     name: ''
+      },
+      {
+        displayId: null,
+  +     hash: 'a751b3bf6cc6ce09e04f254ffcbad6c054ed5bef3c02c37cf625c8fc4b0d3697',
+  +     name: 'r55-zhonghe-chair-leg-1-1'
+  -     hash: '8f618ad3726cd77fd9775d1a5ccbdcf0edb9c6bd5967564a97b356e16e739987',
+  -     name: ''
+      },
+      {
+        displayId: null,
+  +     hash: '1ee4dff688b6aeb4ee765d572f49ebfa6c3dc74d6fff065e78a623587effa137',
+  +     name: 'r55-zhonghe-chair-seat'
+  -     hash: '623bfdb43f7cd453dd812894c79fae535acbbf26d12d27d84ba9b8048292298b',
+  -     name: ''
+      },
+      {
+        displayId: null,
+  +     hash: 'beb0867310cdedd43ced4cdfda6ec9fc9ed326297a1f8b35269231400405f658',
+  +     name: 'r55-zhonghe-chair-seat-pad'
+  -     hash: 'e79ec0f790b974ff8415f16e7784e02e4b5c0d70347c23d68ea0deefef700fce',
+  -     name: ''
+      },
+      {
+        displayId: null,
+  +     hash: 'f7edff29f728882b1a826de8c273d004c3599c6cd4951c2ca5d7436a1f6a551f',
+  +     name: 'r55-zhonghe-chair-back-post--1'
+  -     hash: 'cb51dc4918cc0791e4b5061d56def271ef13b9ee91e94930e5319414ee14e708',
+  -     name: ''
+      },
+      {
+        displayId: null,
+  +     hash: 'e4c64e5802d317d4b99db4b6d0e674616a57c74a9ad58fc5220dc372af51257c',
+  +     name: 'r55-zhonghe-chair-arm--1'
+  -     hash: 'c0eaacc0cdc217211298285c09d01abfcf77a6e2672e69a85efb0e9f21e77c0a',
+  -     name: ''
+      },
+      {
+        displayId: null,
+  +     hash: 'f07d5748432b1e01f1af3642d969da607bca944de869aa68055d4f54b6bf75b3',
+  +     name: 'r55-zhonghe-chair-front-arm-post--1'
+  -     hash: '3aabb2e48e64ea7f7f2cb422e2fbe75b31a2ccce5e5bf33eb9aaee3cc3a2c003',
+  -     name: ''
+      },
+      {
+        displayId: null,
+  +     hash: '75a08d4dd12e958a716c4cd866e4265bce43dc22f6d451994253b8fb61885f60',
+  +     name: 'r55-zhonghe-chair-back-post-1'
+  -     hash: 'd318c725f9e3e87eb6701cea8d77437a82ed28fc65797aae29553a30eb94f835',
+  -     name: ''
+      },
+      {
+        displayId: null,
+  +     hash: 'e0b743ea455e8d28c3f5b7e1d91dce76fb24a1c9fba918cbf127eaeb3caeb30e',
+  +     name: 'r55-zhonghe-chair-arm-1'
+  -     hash: '01c0f579dcc1e3def8362443874d1cf04a72c39169a1f36242b0dd6de4a3944c',
+  -     name: ''
+      },
+      {
+        displayId: null,
+  +     hash: '7ac36d6505f068e9c6bb7dd630904cd8ba92ec097f6f2a76edd0eec7520e54c5',
+  +     name: 'r55-zhonghe-chair-front-arm-post-1'
+  -     hash: '66311032b09bd2759fb8e0c4438e7a313ebf2d4ce4c3b83e5449d779382897fb',
+  -     name: ''
+      },
+      {
+        displayId: null,
+  +     hash: 'da689e159ae4bc460b262230de3aa206bded22d778e01212c050ee8f3018f1a5',
+  +     name: 'r55-zhonghe-chair-back-panel'
+  +   },
+  +   {
+  +     displayId: null,
+  +     hash: '99f37a1122487dff5b5191e5e3b668af11f1fd936960b215184f8e69b5008a38',
+  +     name: 'r55-zhonghe-chair-upper-rail'
+  +   },
+  +   {
+  +     displayId: null,
+  +     hash: '453524178f21860a420fb098d091293ef1ee5fc7f4b11f4cb76005247cc7fadc',
+  +     name: 'r55-zhonghe-screen-frame-body'
+  +   },
+  +   {
+  +     displayId: null,
+  +     hash: '018a30fd7621efebc8ee6abc9a2ef2bc3a4f3259f2f81b12b802b116498cc653',
+  +     name: 'r55-zhonghe-screen-front-field'
+  +   },
+  +   {
+  +     displayId: null,
+  +     hash: '769fbc53cb0b2d674ebf06700cd1dbe60c275d426ba6d28c3e3309e0dc64c7d3',
+  +     name: 'r55-zhonghe-screen-bottom-rail'
+  +   },
+  +   {
+  +     displayId: null,
+        hash: '35f6479f52ff30933d01293d699413e9ccebfdefed0f96b301827470b1ed5236',
+        name: ''
+      },
+      {
+        displayId: null,
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r55-zhonghe-display/tests/r54-jiaotai-display.test.mjs:33:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { name: '内殿柱', displayId: null, hash: '29f93abd50bb8c58011638e4af29297f177c2b16da03bee7fba01378b6870c3c' }, { name: '', displayId: null, hash: 'ccdf5fe9f866433449ebc41369b838b5aa261e9d2203f2d873bc79b38418f0a8' }, { name: '内殿柱', displayId: null, hash: '17b2cf50ccc07bf3e5edb2608ea6b174d508ad4ed2d855e46959d6e7d8440714' }, { name: '', displayId: null, hash: '01642d3d96326724fd44845bc2f5d984a41a131281777d35cc1c5c050a4154d8' }, { name: '内殿柱', displayId: null, hash: '52c91099fd190d6aca86c299b3792374d6ac340fe81aacf226928d5cb7811f75' }, { name: '', displayId: null, hash: '2f11ec18605e4140c033906b710224ac8ff468f8278c9224bc42650c9ca670a0' }, { name: '内殿柱', displayId: null, hash: 'aa9aaceac38137f632c85f6ab6705be07f7dd2e16c6e3a864651b25e20dab6e3' }, { name: '', displayId: null, hash: 'd15ef3342f6e40ba878855418f0275bd73014aed11d4452c9539d73997bb8f51' }, { name: '内殿柱', displayId: null, hash: 'dece1ea794d6b4f2f0301292082883c06b3db4cef63ccbba158ca55d0ef67324' }, { name: '', displayId: null, hash: '4ea76ee78ac2bfa93b7c30b5225325946ba953794b273c7328721d4b86235fdc' }, { name: '内殿柱', displayId: null, hash: 'fedf7c9b7778d6d23db94b86491a462b1beb31472c067a6424d9909e30b715f8' }, { name: '', displayId: null, hash: '3ab4ce7be3124495d8bd0187f20db0445011b6f94b660e7aec294f953bc61168' }, { name: '内殿柱', displayId: null, hash: 'c6aa3688771e39c8ba653386b0ab2469bee2dbe517d7ef56bcf03017c119efe1' }, { name: '', displayId: null, hash: '6d0b26c7efa993b156e219a80407c32a40f52027b6a26eab7c79e9fbbc9e4013' }, { name: '内殿柱', displayId: null, hash: 'a76509e330f92536fc50d23b214ea56d378555cdf45377c331b7908cc7db019a' }, { name: '', displayId: null, hash: '46b7c91506369fe3787bc745bf561a663941735d62a2204ba4fac65075c091f6' }, { name: '内殿柱', displayId: null, hash: '65f8bd656549d62829611f55e9d250643930a4925a26ab4cf39320f56a4761b0' }, { name: '', displayId: null, hash: '6d2ea240b269c6cacba8fab51696e2f2ab78f831cd43099335f5ddc204da92ec' }, { name: '内殿柱', displayId: null, hash: '75663520295296894b1dcb6ddd4e9287b284a19290c8b22702701ff62a4bf380' }, { name: '', displayId: null, hash: 'b8f2369c7d61e0f07292e397147ce1ca434fed16ab4c75e122c23cee446e7177' }, { name: '内殿柱', displayId: null, hash: '3c75043d44cc52d70055dab11329fbf72b6252f038d6479e8834d27f45ec79d7' }, { name: '', displayId: null, hash: '0fe7e670c05898a6377f02c146076d7331f13cac1a8655defb848a17c7d6760c' }, { name: '内殿柱', displayId: null, hash: 'd18be1ab474108b6f6a04e77f0fddb46c282289bfdba063312d5ccc91c780024' }, { name: '', displayId: null, hash: '38613e68ac84125214a62767fdb49ec2915487a9f3593fdb6f6c458ccd672d04' }, { name: '外廊檐柱', displayId: null, hash: '37770a5ba362c7392bcb5fad18fd3f8336d2094fd1c11f24687de445c4bd8576' }, { name: '', displayId: null, hash: '24586230b9d75295711b3dcadfaffe8d9902e53690949fec50c6e9def5d16308' }, { name: '外廊檐柱', displayId: null, hash: '1b4bfd4f4780f2226434a2e114596b4879f2a63bf4a00379c52663b444cb4a45' }, { name: '', displayId: null, hash: 'f04804fd9f4ad79e8872cc3b68f7f1bd81f24887efd2ec26039bb07206c6d58a' }, { name: '外廊檐柱', displayId: null, hash: 'e9ea591b0057d6bedb9a76e433ed97bdc9d2042b1be2bbcc08de23bd6ac0aa7f' }, { name: '', displayId: null, hash: '32d8c5c3da517c786ef16e75ee37aa4165f5a1940c1e8aee3cd27359213acd7d' }, { name: '外廊檐柱', displayId: null, hash: '32fef774201044216ce10da321cd334d7092d5e9c73940725361cce9e111dba8' }, { name: '', displayId: null, hash: '676993d71e329fac22cef31f2329d381a804aeef33ce6b8a7620b1832565fb7a' }, { name: '外廊檐柱', displayId: null, hash: '3ca3ad8c23e50e8d629356f04568244a80ba68bf337056a832aaf7e9af53127e' }, { name: '', displayId: null, hash: '978537a8b5a08e75243a5608e042a8d04369ebf52185bfebb6df74c74e51dd4c' }, { name: '外廊檐柱', displayId: null, hash: 'e7a30c36784291f844b9a3a23586ec711d5796d3dd5fdce1fe3c657f19f1749d' }, { name: '', displayId: null, hash: '293a77db83bd4141ac4366f2970623dda4a1558e92745fda6fbc5a0eeca2e6e9' }, { name: '外廊檐柱', displayId: null, hash: '1c3d31c2736d865078ffab34bf28b8c5ec28e942a49d9bb635b853fc72403073' }, { name: '', displayId: null, hash: 'ab52e37847ad1a5983a52d6d9afcb53c467d0e343806bc5a09c73af95f057587' }, { name: '外廊檐柱', displayId: null, hash: '6bde72ce27a1827c92e7712976437adb21f83c4eb5390f0787dbe721a1aa3de8' }, { name: '', displayId: null, hash: '22bec05f191570fa6ecd2d56bcad1a3fd0af1e36166e469f500bbb0041eaf367' }, { name: '外廊檐柱', displayId: null, hash: '79da12e266cc20e76e175430dfd1086bba28ef4631e78c90cab99b3278c635fb' }, { name: '', displayId: null, hash: '3cf6ce464fd8fa1aebb2e1d1179eee08e164e56badbe579d299b8f7d21922c92' }, { name: '外廊檐柱', displayId: null, hash: '6fcd159e71a247b66f276a0bd05f1e0b90048ef783684871673b2908b15a7777' }, { name: '', displayId: null, hash: '2bb4bcc135a6f117f013cd81fee38d676fdb960647707478890188737b77cfd3' }, { name: '外廊檐柱', displayId: null, hash: '361ae5d88d48042030e451a3b6304c9524c4122da2c1d29766cbe03a969668cb' }, { name: '', displayId: null, hash: '2f69e20c7b8d7f0a9067639f4b0ff9f5305ab033ccaff718c50385b5276d2d73' }, { name: '外廊檐柱', displayId: null, hash: '3c4a51bc48e30a6fec3a3db6beda330a93b8c7da3f61cef83a830d5b6ea27240' }, { name: '', displayId: null, hash: '3d4096f2ae959e8ff683d877415feb4004e199af8fa256986da78e975638cd64' }, { name: '外廊檐柱', displayId: null, hash: '42df000dd6777032fda9182e35007ebd634d727f94d573a037590b88b8a5eeb1' }, { name: '', displayId: null, hash: '28d8a83fbd4190f222dd35bfb9922cc5b2408a0108f1c1089f29cac1fa8bbf99' }, { name: '外廊檐柱', displayId: null, hash: '83d36578073992b9321f5c12c9f0f3e0bd4e060cb64f50e5acc6a9f976872633' }, { name: '', displayId: null, hash: 'efd305f69d8eb13c7582e9fbf40bb1bc50d2c1e6914d4766067ad58a53e612dc' }, { name: '外廊檐柱', displayId: null, hash: 'c4f74a43793460fb2dd8c68aa191498984eb1510d81220df6b083f3b9b6d0705' }, { name: '', displayId: null, hash: '5ee2929b00aff2722f1089c088601b32a189bb41048447f7b5d83af40b98c3e0' }, { name: '外廊檐柱', displayId: null, hash: '6a03b649ff6c7e0e3e8673c3e06d0d33c1feb2119be365f2cc8634093496311f' }, { name: '', displayId: null, hash: 'bd0212240af17afed9815eca0555f03db6eebfd6f1daf101faf0e5fb9d3dd0f4' }, { name: '外廊檐柱', displayId: null, hash: '8b0a3c60c477b735e5cdc4a8830fe95b471977efa12f0bf314dde0214ce56c63' }, { name: '', displayId: null, hash: '23ad5664ca72646b5099bd702d6bc9f612122d99280d95540f540c0a6d15763a' }, { name: '外廊檐柱', displayId: null, hash: 'e98766d3bec3228b1f21c639047a70d1c47827a18903f3ec38fd3993d3be81bc' }, { name: '', displayId: null, hash: '269d589a309a8d359a1168dba0444d1e004e8bcdd71d1ad2bc8c14b5644b9f39' }, { name: '外廊檐柱', displayId: null, hash: '6b1e2ded801041d8c1d4e565ef3ed89649a658b22e686d47f3105fda8dfc4be6' }, { name: '', displayId: null, hash: 'faa7818bb16b243c31e50443620f16b649696568f082d047ff8fd66d2546840b' }, { name: '外廊檐柱', displayId: null, hash: 'd92c280b30494bd49753257d09a3a737d8dca8a8dd9260520e504311824939ab' }, { name: '', displayId: null, hash: 'f6ee7a63656dacf75f290f3ab44733816ed01b6d52685782a09d83c6eb86400e' }, { name: 'south·关闭隔扇1', displayId: null, hash: '433dc51c5f5e5cfcb37fb9c49e3002180aa1431a3e3dd20b963be8d4eef32804' }, { name: 'south·关闭隔扇2', displayId: null, hash: 'fa86207d35cf3aa9913df280daa0b3f7f4c37fdcb59ac64580a35a2173fb3d95' }, { name: 'south·关闭隔扇3', displayId: null, hash: '14fa7f3f8fc7e9e9060783057da9d1c0be1bc67680234efdefecf8dd0b72140a' }, { name: 'south·关闭隔扇4', displayId: null, hash: '1014b69e8776659a13df12471e68c9b12fcfe85d8e49bc8236e3ce426ef41d89' }, { name: 'south·门扇1', displayId: null, hash: '8822f01a11ab0f6a5d58f0e7450a6c5dca6b89f80abfeb430ea90aa24ace4d54' }, { name: 'south·门扇2', displayId: null, hash: '9eddb49505cdf2e63a296026ee8245f3f5c4c337b4d40cc005ee333bb21f7240' }, { name: 'south·门扇1', displayId: null, hash: '04835ffebf53f91fcc57ea3822b164033c9263cb787a3fda226f3431cb901b76' }, { name: 'south·门扇2', displayId: null, hash: '7da38199f695cabac4acd72d7cac6f427dcf3348e01e9d47ab695bca3923eb19' }, { name: 'south·wood_column', displayId: null, hash: '99831ea0e689a161cf85688cf311ac46492d46a07d06b1d992a3f7de209c0264' }, { name: 'south·关闭隔扇1', displayId: null, hash: '7c7b1643420d648ceb24a1a59221174f34fea1e65d016d28a9af6046d6734a51' }, { name: 'south·关闭隔扇2', displayId: null, hash: '4806a8974e4c84462421ed4135513b8b37b6e28467ba056f4ee5055842c917e8' }, { name: 'south·关闭隔扇3', displayId: null, hash: '435928b563c0f1f3a0308bdfb1e65dc670c06cb6cc93243f08ba903851646081' }, { name: 'south·关闭隔扇4', displayId: null, hash: '38c4c737182aa1e5dd3b122460bdab84c60216c401115d369c40282b2c0463af' }, { name: 'south·wall_red', displayId: null, hash: '9d903d6520c37944c326afd9a1e6001fb8d3765acb341768ffbefd2442346564' }, { name: 'south·caihua_beam', displayId: null, hash: '4933eff5cbc939e0b8949580a28ce6faf012fc14069c428b01f6253f42c92dc2' }, { name: 'north·wall_brick', displayId: null, hash: 'fc5f05ab60e570c80f4c1d6373498823db7d1f472f740363af353267f63bd655' }, { name: 'north·lattice_doors', displayId: null, hash: '64e3bd31f706bde034a6fa17e2e8c0869440b0720e914f51723a67745c4bbef2' }, { name: 'north·门扇1', displayId: null, hash: 'a8d74a05450b2242597977f45c27f533572e576ce1aaa696443bf879d537b1f7' }, { name: 'north·门扇2', displayId: null, hash: 'c7ab45c0776589eaaa75114a0d60a18c4110501a41df9434b725cd460d34e446' }, { name: 'north·门扇1', displayId: null, hash: '1c5f4a94aefeb7a22428fe062491cebe98d3c6f4d365e2bdb3d01cf7d926a2f9' }, { name: 'north·门扇2', displayId: null, hash: 'daa447b11752b8d67a13aeccb23089817dc549470a4114817ecdb2bac48a7786' }, { name: 'north·wood_column', displayId: null, hash: 'ab4baf80e8d006d6669b83c2579e1c8d471d20f1489ac6711de6254e0a1874d0' }, { name: 'north·wall_brick', displayId: null, hash: '838ee0e23270ebe2ab2c0985d9fe9ff46b01950701204a23048ff6450b38d8c9' }, { name: 'north·lattice_doors', displayId: null, hash: 'cb2b18d01a5197c8bfe3efb782b9e432918c0fb4da1f9505491e98a9213a5223' }, { name: 'north·wall_red', displayId: null, hash: '817d2718c7755d9487f68576045c1f774767e99db671634324ee4755560c0767' }, { name: 'north·caihua_beam', displayId: null, hash: '8395c2fde4752f1f11a811f4462d7aea5f1f7b291ad620dd337f1562d49790fc' }, { name: 'east·wall_brick', displayId: null, hash: '098d199d71219ac08bf8f24ba983f7f91606d7fa8d37138ccd3bdc79ebfde020' }, { name: 'east·lattice_doors', displayId: null, hash: 'ef5cd30fee7ec7a34c297393c2b2124ef0a8be4096f9110503bca507cf437e38' }, { name: 'east·门扇1', displayId: null, hash: 'c7b7407f557cd5e9a2ce1de02d023435bb316e77773a19b09691340434ffb650' }, { name: 'east·门扇2', displayId: null, hash: '4807866c3a8471a7ad3769950d7eb729cee33d2de2d53ec1f8e35e106e2b6425' }, { name: 'east·门扇1', displayId: null, hash: 'dd58175734d8b38b8caf93bcccc17678c8faba58babf9b5ffb6c726f9a8f9132' }, { name: 'east·门扇2', displayId: null, hash: 'e370d5c0c788292d8c680e6e1de0b44a2bf3cb2e1661234408d79fcd94ddbdb6' }, { name: 'east·wood_column', displayId: null, hash: 'a19272d3b0209d18760f1478de0afaae851bb20fdac2f1431280ff593f88bf9e' }, { name: 'east·wall_brick', displayId: null, hash: 'babb90f87a589094af46795d962c1ff85c5f0a0fe8d160dc211706b146f6e06a' }, { name: 'east·lattice_doors', displayId: null, hash: 'fb7406bca0c616c926a30143bb238d468cd2a1f9ea7d3e6189a16afb7757a042' }, { name: 'east·wall_red', displayId: null, hash: '5ba1eac8ff48262eff5805f3fb0b34916e23a199526e70ef2e4f4f80b235f991' }, ... 54 more items ],
+    expected: [ { name: '内殿柱', displayId: null, hash: '29f93abd50bb8c58011638e4af29297f177c2b16da03bee7fba01378b6870c3c' }, { name: '', displayId: null, hash: 'ccdf5fe9f866433449ebc41369b838b5aa261e9d2203f2d873bc79b38418f0a8' }, { name: '内殿柱', displayId: null, hash: '17b2cf50ccc07bf3e5edb2608ea6b174d508ad4ed2d855e46959d6e7d8440714' }, { name: '', displayId: null, hash: '01642d3d96326724fd44845bc2f5d984a41a131281777d35cc1c5c050a4154d8' }, { name: '内殿柱', displayId: null, hash: '52c91099fd190d6aca86c299b3792374d6ac340fe81aacf226928d5cb7811f75' }, { name: '', displayId: null, hash: '2f11ec18605e4140c033906b710224ac8ff468f8278c9224bc42650c9ca670a0' }, { name: '内殿柱', displayId: null, hash: 'aa9aaceac38137f632c85f6ab6705be07f7dd2e16c6e3a864651b25e20dab6e3' }, { name: '', displayId: null, hash: 'd15ef3342f6e40ba878855418f0275bd73014aed11d4452c9539d73997bb8f51' }, { name: '内殿柱', displayId: null, hash: 'dece1ea794d6b4f2f0301292082883c06b3db4cef63ccbba158ca55d0ef67324' }, { name: '', displayId: null, hash: '4ea76ee78ac2bfa93b7c30b5225325946ba953794b273c7328721d4b86235fdc' }, { name: '内殿柱', displayId: null, hash: 'fedf7c9b7778d6d23db94b86491a462b1beb31472c067a6424d9909e30b715f8' }, { name: '', displayId: null, hash: '3ab4ce7be3124495d8bd0187f20db0445011b6f94b660e7aec294f953bc61168' }, { name: '内殿柱', displayId: null, hash: 'c6aa3688771e39c8ba653386b0ab2469bee2dbe517d7ef56bcf03017c119efe1' }, { name: '', displayId: null, hash: '6d0b26c7efa993b156e219a80407c32a40f52027b6a26eab7c79e9fbbc9e4013' }, { name: '内殿柱', displayId: null, hash: 'a76509e330f92536fc50d23b214ea56d378555cdf45377c331b7908cc7db019a' }, { name: '', displayId: null, hash: '46b7c91506369fe3787bc745bf561a663941735d62a2204ba4fac65075c091f6' }, { name: '内殿柱', displayId: null, hash: '65f8bd656549d62829611f55e9d250643930a4925a26ab4cf39320f56a4761b0' }, { name: '', displayId: null, hash: '6d2ea240b269c6cacba8fab51696e2f2ab78f831cd43099335f5ddc204da92ec' }, { name: '内殿柱', displayId: null, hash: '75663520295296894b1dcb6ddd4e9287b284a19290c8b22702701ff62a4bf380' }, { name: '', displayId: null, hash: 'b8f2369c7d61e0f07292e397147ce1ca434fed16ab4c75e122c23cee446e7177' }, { name: '内殿柱', displayId: null, hash: '3c75043d44cc52d70055dab11329fbf72b6252f038d6479e8834d27f45ec79d7' }, { name: '', displayId: null, hash: '0fe7e670c05898a6377f02c146076d7331f13cac1a8655defb848a17c7d6760c' }, { name: '内殿柱', displayId: null, hash: 'd18be1ab474108b6f6a04e77f0fddb46c282289bfdba063312d5ccc91c780024' }, { name: '', displayId: null, hash: '38613e68ac84125214a62767fdb49ec2915487a9f3593fdb6f6c458ccd672d04' }, { name: '外廊檐柱', displayId: null, hash: '37770a5ba362c7392bcb5fad18fd3f8336d2094fd1c11f24687de445c4bd8576' }, { name: '', displayId: null, hash: '24586230b9d75295711b3dcadfaffe8d9902e53690949fec50c6e9def5d16308' }, { name: '外廊檐柱', displayId: null, hash: '1b4bfd4f4780f2226434a2e114596b4879f2a63bf4a00379c52663b444cb4a45' }, { name: '', displayId: null, hash: 'f04804fd9f4ad79e8872cc3b68f7f1bd81f24887efd2ec26039bb07206c6d58a' }, { name: '外廊檐柱', displayId: null, hash: 'e9ea591b0057d6bedb9a76e433ed97bdc9d2042b1be2bbcc08de23bd6ac0aa7f' }, { name: '', displayId: null, hash: '32d8c5c3da517c786ef16e75ee37aa4165f5a1940c1e8aee3cd27359213acd7d' }, { name: '外廊檐柱', displayId: null, hash: '32fef774201044216ce10da321cd334d7092d5e9c73940725361cce9e111dba8' }, { name: '', displayId: null, hash: '676993d71e329fac22cef31f2329d381a804aeef33ce6b8a7620b1832565fb7a' }, { name: '外廊檐柱', displayId: null, hash: '3ca3ad8c23e50e8d629356f04568244a80ba68bf337056a832aaf7e9af53127e' }, { name: '', displayId: null, hash: '978537a8b5a08e75243a5608e042a8d04369ebf52185bfebb6df74c74e51dd4c' }, { name: '外廊檐柱', displayId: null, hash: 'e7a30c36784291f844b9a3a23586ec711d5796d3dd5fdce1fe3c657f19f1749d' }, { name: '', displayId: null, hash: '293a77db83bd4141ac4366f2970623dda4a1558e92745fda6fbc5a0eeca2e6e9' }, { name: '外廊檐柱', displayId: null, hash: '1c3d31c2736d865078ffab34bf28b8c5ec28e942a49d9bb635b853fc72403073' }, { name: '', displayId: null, hash: 'ab52e37847ad1a5983a52d6d9afcb53c467d0e343806bc5a09c73af95f057587' }, { name: '外廊檐柱', displayId: null, hash: '6bde72ce27a1827c92e7712976437adb21f83c4eb5390f0787dbe721a1aa3de8' }, { name: '', displayId: null, hash: '22bec05f191570fa6ecd2d56bcad1a3fd0af1e36166e469f500bbb0041eaf367' }, { name: '外廊檐柱', displayId: null, hash: '79da12e266cc20e76e175430dfd1086bba28ef4631e78c90cab99b3278c635fb' }, { name: '', displayId: null, hash: '3cf6ce464fd8fa1aebb2e1d1179eee08e164e56badbe579d299b8f7d21922c92' }, { name: '外廊檐柱', displayId: null, hash: '6fcd159e71a247b66f276a0bd05f1e0b90048ef783684871673b2908b15a7777' }, { name: '', displayId: null, hash: '2bb4bcc135a6f117f013cd81fee38d676fdb960647707478890188737b77cfd3' }, { name: '外廊檐柱', displayId: null, hash: '361ae5d88d48042030e451a3b6304c9524c4122da2c1d29766cbe03a969668cb' }, { name: '', displayId: null, hash: '2f69e20c7b8d7f0a9067639f4b0ff9f5305ab033ccaff718c50385b5276d2d73' }, { name: '外廊檐柱', displayId: null, hash: '3c4a51bc48e30a6fec3a3db6beda330a93b8c7da3f61cef83a830d5b6ea27240' }, { name: '', displayId: null, hash: '3d4096f2ae959e8ff683d877415feb4004e199af8fa256986da78e975638cd64' }, { name: '外廊檐柱', displayId: null, hash: '42df000dd6777032fda9182e35007ebd634d727f94d573a037590b88b8a5eeb1' }, { name: '', displayId: null, hash: '28d8a83fbd4190f222dd35bfb9922cc5b2408a0108f1c1089f29cac1fa8bbf99' }, { name: '外廊檐柱', displayId: null, hash: '83d36578073992b9321f5c12c9f0f3e0bd4e060cb64f50e5acc6a9f976872633' }, { name: '', displayId: null, hash: 'efd305f69d8eb13c7582e9fbf40bb1bc50d2c1e6914d4766067ad58a53e612dc' }, { name: '外廊檐柱', displayId: null, hash: 'c4f74a43793460fb2dd8c68aa191498984eb1510d81220df6b083f3b9b6d0705' }, { name: '', displayId: null, hash: '5ee2929b00aff2722f1089c088601b32a189bb41048447f7b5d83af40b98c3e0' }, { name: '外廊檐柱', displayId: null, hash: '6a03b649ff6c7e0e3e8673c3e06d0d33c1feb2119be365f2cc8634093496311f' }, { name: '', displayId: null, hash: 'bd0212240af17afed9815eca0555f03db6eebfd6f1daf101faf0e5fb9d3dd0f4' }, { name: '外廊檐柱', displayId: null, hash: '8b0a3c60c477b735e5cdc4a8830fe95b471977efa12f0bf314dde0214ce56c63' }, { name: '', displayId: null, hash: '23ad5664ca72646b5099bd702d6bc9f612122d99280d95540f540c0a6d15763a' }, { name: '外廊檐柱', displayId: null, hash: 'e98766d3bec3228b1f21c639047a70d1c47827a18903f3ec38fd3993d3be81bc' }, { name: '', displayId: null, hash: '269d589a309a8d359a1168dba0444d1e004e8bcdd71d1ad2bc8c14b5644b9f39' }, { name: '外廊檐柱', displayId: null, hash: '6b1e2ded801041d8c1d4e565ef3ed89649a658b22e686d47f3105fda8dfc4be6' }, { name: '', displayId: null, hash: 'faa7818bb16b243c31e50443620f16b649696568f082d047ff8fd66d2546840b' }, { name: '外廊檐柱', displayId: null, hash: 'd92c280b30494bd49753257d09a3a737d8dca8a8dd9260520e504311824939ab' }, { name: '', displayId: null, hash: 'f6ee7a63656dacf75f290f3ab44733816ed01b6d52685782a09d83c6eb86400e' }, { name: 'south·关闭隔扇1', displayId: null, hash: '433dc51c5f5e5cfcb37fb9c49e3002180aa1431a3e3dd20b963be8d4eef32804' }, { name: 'south·关闭隔扇2', displayId: null, hash: 'fa86207d35cf3aa9913df280daa0b3f7f4c37fdcb59ac64580a35a2173fb3d95' }, { name: 'south·关闭隔扇3', displayId: null, hash: '14fa7f3f8fc7e9e9060783057da9d1c0be1bc67680234efdefecf8dd0b72140a' }, { name: 'south·关闭隔扇4', displayId: null, hash: '1014b69e8776659a13df12471e68c9b12fcfe85d8e49bc8236e3ce426ef41d89' }, { name: 'south·门扇1', displayId: null, hash: '8822f01a11ab0f6a5d58f0e7450a6c5dca6b89f80abfeb430ea90aa24ace4d54' }, { name: 'south·门扇2', displayId: null, hash: '9eddb49505cdf2e63a296026ee8245f3f5c4c337b4d40cc005ee333bb21f7240' }, { name: 'south·门扇1', displayId: null, hash: '04835ffebf53f91fcc57ea3822b164033c9263cb787a3fda226f3431cb901b76' }, { name: 'south·门扇2', displayId: null, hash: '7da38199f695cabac4acd72d7cac6f427dcf3348e01e9d47ab695bca3923eb19' }, { name: 'south·wood_column', displayId: null, hash: '99831ea0e689a161cf85688cf311ac46492d46a07d06b1d992a3f7de209c0264' }, { name: 'south·关闭隔扇1', displayId: null, hash: '7c7b1643420d648ceb24a1a59221174f34fea1e65d016d28a9af6046d6734a51' }, { name: 'south·关闭隔扇2', displayId: null, hash: '4806a8974e4c84462421ed4135513b8b37b6e28467ba056f4ee5055842c917e8' }, { name: 'south·关闭隔扇3', displayId: null, hash: '435928b563c0f1f3a0308bdfb1e65dc670c06cb6cc93243f08ba903851646081' }, { name: 'south·关闭隔扇4', displayId: null, hash: '38c4c737182aa1e5dd3b122460bdab84c60216c401115d369c40282b2c0463af' }, { name: 'south·wall_red', displayId: null, hash: '9d903d6520c37944c326afd9a1e6001fb8d3765acb341768ffbefd2442346564' }, { name: 'south·caihua_beam', displayId: null, hash: '4933eff5cbc939e0b8949580a28ce6faf012fc14069c428b01f6253f42c92dc2' }, { name: 'north·wall_brick', displayId: null, hash: 'fc5f05ab60e570c80f4c1d6373498823db7d1f472f740363af353267f63bd655' }, { name: 'north·lattice_doors', displayId: null, hash: '64e3bd31f706bde034a6fa17e2e8c0869440b0720e914f51723a67745c4bbef2' }, { name: 'north·门扇1', displayId: null, hash: 'a8d74a05450b2242597977f45c27f533572e576ce1aaa696443bf879d537b1f7' }, { name: 'north·门扇2', displayId: null, hash: 'c7ab45c0776589eaaa75114a0d60a18c4110501a41df9434b725cd460d34e446' }, { name: 'north·门扇1', displayId: null, hash: '1c5f4a94aefeb7a22428fe062491cebe98d3c6f4d365e2bdb3d01cf7d926a2f9' }, { name: 'north·门扇2', displayId: null, hash: 'daa447b11752b8d67a13aeccb23089817dc549470a4114817ecdb2bac48a7786' }, { name: 'north·wood_column', displayId: null, hash: 'ab4baf80e8d006d6669b83c2579e1c8d471d20f1489ac6711de6254e0a1874d0' }, { name: 'north·wall_brick', displayId: null, hash: '838ee0e23270ebe2ab2c0985d9fe9ff46b01950701204a23048ff6450b38d8c9' }, { name: 'north·lattice_doors', displayId: null, hash: 'cb2b18d01a5197c8bfe3efb782b9e432918c0fb4da1f9505491e98a9213a5223' }, { name: 'north·wall_red', displayId: null, hash: '817d2718c7755d9487f68576045c1f774767e99db671634324ee4755560c0767' }, { name: 'north·caihua_beam', displayId: null, hash: '8395c2fde4752f1f11a811f4462d7aea5f1f7b291ad620dd337f1562d49790fc' }, { name: 'east·wall_brick', displayId: null, hash: '098d199d71219ac08bf8f24ba983f7f91606d7fa8d37138ccd3bdc79ebfde020' }, { name: 'east·lattice_doors', displayId: null, hash: 'ef5cd30fee7ec7a34c297393c2b2124ef0a8be4096f9110503bca507cf437e38' }, { name: 'east·门扇1', displayId: null, hash: 'c7b7407f557cd5e9a2ce1de02d023435bb316e77773a19b09691340434ffb650' }, { name: 'east·门扇2', displayId: null, hash: '4807866c3a8471a7ad3769950d7eb729cee33d2de2d53ec1f8e35e106e2b6425' }, { name: 'east·门扇1', displayId: null, hash: 'dd58175734d8b38b8caf93bcccc17678c8faba58babf9b5ffb6c726f9a8f9132' }, { name: 'east·门扇2', displayId: null, hash: 'e370d5c0c788292d8c680e6e1de0b44a2bf3cb2e1661234408d79fcd94ddbdb6' }, { name: 'east·wood_column', displayId: null, hash: 'a19272d3b0209d18760f1478de0afaae851bb20fdac2f1431280ff593f88bf9e' }, { name: 'east·wall_brick', displayId: null, hash: 'babb90f87a589094af46795d962c1ff85c5f0a0fe8d160dc211706b146f6e06a' }, { name: 'east·lattice_doors', displayId: null, hash: 'fb7406bca0c616c926a30143bb238d468cd2a1f9ea7d3e6189a16afb7757a042' }, { name: 'east·wall_red', displayId: null, hash: '5ba1eac8ff48262eff5805f3fb0b34916e23a199526e70ef2e4f4f80b235f991' }, ... 49 more items ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

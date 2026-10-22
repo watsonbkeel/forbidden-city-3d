@@ -1,0 +1,90 @@
+{
+  "kind": "Supplemental exact regeneration check; all original view containers retained losslessly in archives",
+  "originalFrozenLocalCommit": "36e35ede63e86667ee224a7109a01f87fed98275",
+  "verification": "All nine view containers were regenerated in a fresh directory and compared byte-for-byte. None is omitted from delivered evidence; exact originals are retained through ARCHIVES.json.",
+  "node": "v24.19.0",
+  "packageLockSha256": "0c3e278c81b86a38455373ad8bfd1c4a51243fda2f431c32c41c7d579a79ff4c",
+  "command": "node tools/r55-kunning-evidence.mjs /absolute/fresh/output",
+  "renderer": "python tools/r55-kunning-raster.py /absolute/fresh/output/base-materials-front-eye.json.gz /absolute/fresh/output/base-materials-front-eye.png",
+  "sourceInputs": [
+    "tools/r55-kunning-evidence.mjs",
+    "tests/lib/r55-kunning-asset.mjs",
+    "tests/lib/r54-jiaotai-fragment.mjs",
+    "src/scene/palace/special/KunningPalace.js",
+    "public/models/interiors/kunning-v6-0c83b4364eef.glb",
+    "public/models/interiors/kunning-v6-5adbf53a3114.glb"
+  ],
+  "views": [
+    {
+      "path": "docs/validation/r55-kunning-low-stoves/base-materials-front-eye.json.gz",
+      "bytes": 259839,
+      "sha256": "65fcf136d9763ede3f1a4c02b90c651cb23f42a7b5ae4844350419e889e79195",
+      "gitBlob": "2869c069959598738ab9d8925f64a745e39d1861",
+      "regeneratedByteEqual": true
+    },
+    {
+      "path": "docs/validation/r55-kunning-low-stoves/base-materials-oblique-top.json.gz",
+      "bytes": 259882,
+      "sha256": "0e88bee3235ee557da48e2952f07f639cb89a67a61d3299061a0418851feead9",
+      "gitBlob": "5a978471c15b9737e480b23d6030456777dac144",
+      "regeneratedByteEqual": true
+    },
+    {
+      "path": "docs/validation/r55-kunning-low-stoves/base-materials-room-eye.json.gz",
+      "bytes": 259882,
+      "sha256": "67463bef2765a1a8f47b4337e85e40a18d2eba1e2cf45ab7e517a3ad46219723",
+      "gitBlob": "c204136046ae236547f27e6b50ab4c52fec73711",
+      "regeneratedByteEqual": true
+    },
+    {
+      "path": "docs/validation/r55-kunning-low-stoves/before-front-eye.json.gz",
+      "bytes": 184161,
+      "sha256": "887f1090b73b136774c8f002f231e0eba8e369647e476c1e5f29d31743a3c210",
+      "gitBlob": "1f81582c6b20d769482170c5ad28410c58f44f88",
+      "regeneratedByteEqual": true
+    },
+    {
+      "path": "docs/validation/r55-kunning-low-stoves/before-oblique-top.json.gz",
+      "bytes": 184234,
+      "sha256": "09d5755f00425e8e81135b44e6b5bfb9e2f18e26ec2bbdb5733307b3fc1b339c",
+      "gitBlob": "ab6edc43e3a2d12540e9360411341ebdb82d11d4",
+      "regeneratedByteEqual": true
+    },
+    {
+      "path": "docs/validation/r55-kunning-low-stoves/before-room-eye.json.gz",
+      "bytes": 184236,
+      "sha256": "c969a7e379b5df942737996ae892e75a8db88e141cbc71eb99b6b21cf20943ad",
+      "gitBlob": "c770bf1819e7616e15d1d77cc468eeeaf537d4ff",
+      "regeneratedByteEqual": true
+    },
+    {
+      "path": "docs/validation/r55-kunning-low-stoves/neutral-front-eye.json.gz",
+      "bytes": 240525,
+      "sha256": "5c95cdcf5c4d517c5aa105f3a06a0c3586b956cf3eea6c231c09e030af0bec6a",
+      "gitBlob": "b44dd226118baaa230d19621cee9218fc5a2245b",
+      "regeneratedByteEqual": true
+    },
+    {
+      "path": "docs/validation/r55-kunning-low-stoves/neutral-oblique-top.json.gz",
+      "bytes": 240581,
+      "sha256": "961982436bcfa6fd7c9c59e4cd392e0885c25343cb230e5feb7803240ed4d198",
+      "gitBlob": "83a855393cc13cf04ff18d5d0335b0b824858b3d",
+      "regeneratedByteEqual": true
+    },
+    {
+      "path": "docs/validation/r55-kunning-low-stoves/neutral-room-eye.json.gz",
+      "bytes": 240584,
+      "sha256": "5f62aef7ef5802d202b015d1181468b3bf41bddba08e17ee156fea614a5d3351",
+      "gitBlob": "21847267681898b01f39a58192b28581f75baf62",
+      "regeneratedByteEqual": true
+    }
+  ],
+  "sourceInputHashes": {
+    "tools/r55-kunning-evidence.mjs": "1158344b7a2e86557fb5caf65e14e3f66fb0b4619069c66dabeb46732cdf6770",
+    "tests/lib/r55-kunning-asset.mjs": "357acb22fde72442c844582ccf543e8cc72b2b686d5f641b050b7a607d427f82",
+    "tests/lib/r54-jiaotai-fragment.mjs": "bcf95f7e20be98162f9bb4161422b028e1946cfe54e2212a0dfc3a0a20beedcc",
+    "src/scene/palace/special/KunningPalace.js": "7ee38ea47a86a588757bf5a0198684de806367d4ebf79c30daa4f324ca38bc7b",
+    "public/models/interiors/kunning-v6-0c83b4364eef.glb": "0c83b4364eef7febe30f976158c8a015bab49dcc3f40989f510c98e8edd6a9e4",
+    "public/models/interiors/kunning-v6-5adbf53a3114.glb": "5adbf53a311452221a3184198875958eb55436bd261253a75486516bfdc87553"
+  }
+}
