@@ -1,3 +1,4 @@
+import { REGISTERED_CHARACTER_LIMIT } from './CharacterLimits.js';
 import frozenScope from '../../../data/characters/scope.json' with {type:'json'};
 const vec=(value,n=3)=>Array.isArray(value)&&value.length===n&&value.every(Number.isFinite);
 const text=value=>typeof value==='string'&&value.length>0;
@@ -7,6 +8,7 @@ const orderedBounds=value=>vec(value,4)&&value[0]<value[1]&&value[2]<value[3];
 const POSES=['standing','seated','kneeling'];
 const REQUIRED_IDS=Object.freeze([...frozenScope.requiredActorIds]);
 const REQUIRED_SCENES=Object.freeze({...frozenScope.requiredScenes});
+const RELEASE_COVERAGE=Object.freeze(structuredClone(frozenScope.releaseCoverage));
 
 /** Runtime counterpart to data/characters/schema.json. Cross-references,
  *  scope preservation and physical invariants are checked here as well.
@@ -31,6 +33,7 @@ export function validateCharacterRegistry(registry){
  const sameZone=(a,b,path)=>{if(a&&b&&a.zoneRef!==b.zoneRef)err(path,'Binding and referenced object must share a zone');};
  const evidence=(ids,path)=>{if(!Array.isArray(ids)||ids.length===0){err(path,'Evidence references required');return;}for(const id of ids)ref('evidence',id,path);};
  const scope=r.scope&&typeof r.scope==='object'?r.scope:{};
+ if(scope.registeredHardLimit!==REGISTERED_CHARACTER_LIMIT)err('scope.registeredHardLimit','Registered limit must match the bounded runtime capacity');
  const forbiddenIds=new Set((Array.isArray(scope.forbiddenAreas)?scope.forbiddenAreas:[]).map(v=>v?.id));
  for(const e of maps.evidence.values()){
   if(!text(e.title)||!/^https:\/\/(?:www\.|img\.)?dpm\.org\.cn\//.test(e.url??''))err(`evidence.${e.id}`,'Official museum title and HTTPS URL required');
@@ -117,12 +120,19 @@ export function validateCharacterRegistry(registry){
   if(b.type==='ceremony-participant')ref('ceremonies',b.ceremonyRef,q+'.behavior.ceremonyRef');
  }
  for(const [id,members]of routeSlots){const path=maps.paths.get(id);if(path&&members.length!==path.formationSize)err(`paths.${id}.formationSize`,'Logical members must fill the declared formation');for(const a of members)for(const key of ['speedMetersPerSecond','pauseSeconds','followerSpacingMeters'])if(a.behavior[key]!==members[0].behavior[key])err(`paths.${id}.${key}`,'One shared formation requires identical timing and spacing');}
- if(actors.length>96||actors.length>(scope.registeredHardLimit??96))err('actors','Registered hard limit exceeded');
+ if(actors.length>REGISTERED_CHARACTER_LIMIT||actors.length>(scope.registeredHardLimit??REGISTERED_CHARACTER_LIMIT))err('actors','Registered hard limit exceeded');
  if(required<38)err('scope.minimumRequired','At least 38 required logical actors must exist');
  if(scope.baselineCommit!==frozenScope.baselineCommit||scope.sceneEnabledByDefault!==false||scope.releaseGate!=='c1-user-visual-approval')err('scope','Frozen building baseline and C1 visual release gate are mandatory');
  if(!Array.isArray(scope.requiredActorIds)||scope.requiredActorIds.length!==REQUIRED_IDS.length||REQUIRED_IDS.some(id=>!scope.requiredActorIds.includes(id)))err('scope.requiredActorIds','Frozen required coverage manifest cannot be rewritten');
  for(const id of REQUIRED_IDS)if(!maps.actors.get(id)?.required)err(`scope.requiredActorIds.${id}`,'Required actor is missing or downgraded');
  for(const [scene,min]of Object.entries(REQUIRED_SCENES))if([...maps.actors.values()].filter(a=>a.sceneRef===scene&&a.required).length<min)err(`scope.requiredScenes.${scene}`,'Frozen required scene coverage not met');
+ for(const [release,coverage]of Object.entries(RELEASE_COVERAGE)){
+  const supplied=scope.releaseCoverage?.[release],ids=coverage.additionalRequiredActorIds;
+  if(!Array.isArray(supplied?.additionalRequiredActorIds)||supplied.additionalRequiredActorIds.length!==ids.length||ids.some(id=>!supplied.additionalRequiredActorIds.includes(id))||supplied.minimumRegistered!==coverage.minimumRegistered)err(`scope.releaseCoverage.${release}`,'Versioned additional required coverage cannot be removed or rewritten');
+  if(actors.length<coverage.minimumRegistered)err(`scope.releaseCoverage.${release}.minimumRegistered`,'Registered release coverage not met');
+  for(const id of ids)if(!maps.actors.get(id)?.required)err(`scope.releaseCoverage.${release}.${id}`,'Release-required actor is missing or downgraded');
+ }
+
  return{valid:errors.length===0,errors,counts:{registered:actors.length,required,scenes}};
 }
 export class CharacterSchema{static validate(registry){return validateCharacterRegistry(registry);}}

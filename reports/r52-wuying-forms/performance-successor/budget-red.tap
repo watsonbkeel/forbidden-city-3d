@@ -1,0 +1,37 @@
+✔ R52 refines exactly four source-mapped forms, without claiming identity, measured size or reverse decoration (38.888289ms)
+✔ the d111 crown is open and individually articulated, not the prior closed conical stack (23.019685ms)
+✔ the d112 fitted mouth, pedestal and front layered relief are distinct from d111 (19.333025ms)
+✔ 59 has outward-rising non-torus handles and three fitted bulbous feet that touch the original support plane (14.176791ms)
+✔ 61 has a separate low-domed fitted lid and bulb finial, not a sharp generic conical top (12.244684ms)
+✔ R52 preserves exact R37 d102/60, the other ten complete cases, and all sixteen case collisions (47.335883ms)
+✔ all new geometry has finite position/normal/uv values, fits its old case and stays within a small triangle budget (13.025794ms)
+✖ four reviewed forms keep every fitting parameter and real part under the 9000 triangle integration allocation (9.281629ms)
+✔ the optimized d112 mouth still has an inner wall and a deep closed floor (9.512692ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 8
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 311.896469
+
+✖ failing tests:
+
+test at tests/r52-wuying-next-forms.test.mjs:65:1
+✖ four reviewed forms keep every fitting parameter and real part under the 9000 triangle integration allocation (9.281629ms)
+  AssertionError [ERR_ASSERTION]: A integration allocation 9000, actual 17648
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r52-wuying-forms/tests/r52-wuying-next-forms.test.mjs:71:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

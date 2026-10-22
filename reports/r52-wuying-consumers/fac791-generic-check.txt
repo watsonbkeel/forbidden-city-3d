@@ -1,0 +1,54 @@
+✖ wenhua: source-bound independent five-bay halls joined by one physical connector (99.665288ms)
+✔ wenhua: dated exhibit identity replaces generic royal furniture and finite geometry has a bounded budget (54.597757ms)
+✖ wuying: source-bound independent five-bay halls joined by one physical connector (74.209746ms)
+✔ wuying: dated exhibit identity replaces generic royal furniture and finite geometry has a bounded budget (93.635487ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 2
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 501.073106
+
+✖ failing tests:
+
+test at ../../../../tmp/r52-wuying-fac791/tests/r36-south-courts.test.mjs:18:2
+✖ wenhua: source-bound independent five-bay halls joined by one physical connector (99.665288ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert.ok(kit.root.children.every(f=>f.userData.structure?.dimensionStatus==='OFFICIAL_TOPOLOGY_REVERSIBLE_MODEL_FIT'))
+
+      at TestContext.<anonymous> (file:///tmp/r52-wuying-fac791/tests/r36-south-courts.test.mjs:18:885)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at ../../../../tmp/r52-wuying-fac791/tests/r36-south-courts.test.mjs:18:2
+✖ wuying: source-bound independent five-bay halls joined by one physical connector (74.209746ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert.ok(kit.root.children.every(f=>f.userData.structure?.dimensionStatus==='OFFICIAL_TOPOLOGY_REVERSIBLE_MODEL_FIT'))
+
+      at TestContext.<anonymous> (file:///tmp/r52-wuying-fac791/tests/r36-south-courts.test.mjs:18:885)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

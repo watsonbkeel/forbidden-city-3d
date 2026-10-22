@@ -82,9 +82,20 @@ export class CharacterSystem {
       finally{this.world.endReadFrame?.();}
       if(this.manager.enabled&&this.manager.canRunContent&&!this.document?.hidden){
         const budget=typeof this.preparationBudgetMs==='number'?this.preparationBudgetMs:this.preparationBudgetMs[quality]??1;
-        // Rendering/submission and first-template preparation share this same
-        // total NPC update deadline. No cold cost is moved outside measurement.
-        this.lastPreparation=this.world.advance?.({budgetMs:Math.max(0,budget-(performance.now()-start))});
+        // The nominal total target includes submission and cold preparation.
+        // Submission alone can exceed it on slow devices. In that case a small
+        // pending-only deadline prevents permanent starvation, rather than
+        // claiming an impossible 1ms total by never preparing missing roles.
+        // Queue steps remain bounded/cancellable; all CPU stays in this update.
+        const nominalTotalBudgetMs=Math.max(0,Number.isFinite(budget)?budget:0);
+        const submissionElapsedMs=performance.now()-start;
+        const remainingBudgetMs=Math.max(0,nominalTotalBudgetMs-submissionElapsedMs);
+        const progressReserveMs=this.world.work?.jobs?.size>0?Math.min(.25,nominalTotalBudgetMs):0;
+        const grantedPreparationBudgetMs=Math.max(remainingBudgetMs,progressReserveMs);
+        const preparation=this.world.advance?.({budgetMs:grantedPreparationBudgetMs});
+        this.lastPreparation=preparation?{...preparation,nominalTotalBudgetMs,submissionElapsedMs,
+          remainingBudgetMs,progressReserveMs,grantedPreparationBudgetMs,
+          totalBudgetOverrunMs:Math.max(0,performance.now()-start-nominalTotalBudgetMs)}:preparation;
         this.lastError=null; // Successful explicit retry clears only the active error.
       }
     }catch(error){this.lastError=this.lastFailure=String(error);this.setEnabled(false);}

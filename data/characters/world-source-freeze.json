@@ -1,33 +1,42 @@
 {
-  "schemaVersion": 4,
-  "baselineCommit": "db20828f1a6411603a3d9388eebe3ba2a5d11e61",
-  "purpose": "R51 unified world: exact delivered R49E Git blobs, including prior R49B and Benren depth-only R49D. Wenyuan pitch is the only new production delta from R49D. No R49C or Jiyun changes.",
+  "schemaVersion": 5,
+  "baselineCommit": "8a0d6bd31068b5d4e3e3b2ae5e9f626aa9094b97",
+  "purpose": "R52 cumulative world: preserve accepted R49B/R49D/R49E and R51; add only four Wuying form silhouette refinements and Wuying moon-terrace topology. No unaccepted Jingyun experiment. Dimensions remain fitted, not measured reconstruction.",
   "provenance": {
-    "source": "git show <baselineCommit>:<path>",
-    "previousBaselineCommit": "ad64a922a8e2885fb42e1a6c64806ba8646a3b8c",
-    "previousManifestPath": "data/characters/world-source-freeze-r49d.json",
-    "previousManifestSha256": "4999fb8aac4ee69839f22406683aa53a8e123ceb68ba5129196f494b40bf3aa3",
+    "previousBaselineCommit": "db20828f1a6411603a3d9388eebe3ba2a5d11e61",
+    "previousManifestPath": "data/characters/world-source-freeze-r51.json",
+    "previousManifestSha256": "1f30a6f35154dcdc270ec9244dc94d3ea575d858bac6b9a54af4653dd3ddf8d8",
     "previousFileCount": 185,
-    "originalR49ManifestPath": "data/characters/world-source-freeze-r49.json",
-    "originalR49ManifestSha256": "4f5c2b3d8dd318cbaeee72abd8fb6fa4fd96ba32c43761843e13397e127284d3",
-    "r49bManifestPath": "data/characters/world-source-freeze-r49b.json",
-    "r49bManifestSha256": "d0b69e747a557b0ea57068357c26cdb59d9803c7a3fbe2daaaa957ae7e2390d0",
-    "orderedSourceCommits": [
-      "ad64a922a8e2885fb42e1a6c64806ba8646a3b8c",
-      "50e5fb4d8fee816645b121faf26836a596db9e68",
-      "2f315a44556f515a07a5be3b593317a3429509ec",
-      "db20828f1a6411603a3d9388eebe3ba2a5d11e61"
-    ],
     "changedProductionPaths": [
-      "src/scene/palace/special/SourceGuidedNameboardMounts.js"
+      "src/scene/palace/special/RemainingOuterHalls.js",
+      "src/scene/palace/special/WuyingRepresentativeDetails.js",
+      "src/scene/palace/special/WuyingMoonTerrace.js"
     ],
-    "changedSource": {
-      "path": "src/scene/palace/special/SourceGuidedNameboardMounts.js",
-      "previousSha256": "08c21df1fd6230192273b6f3c1c8ffeda389ed28f013299c522348ad959db1b1",
-      "currentSha256": "b1da50adbc66309d78afbcf03e9351b5858e9b18ecf4d2c93ddce019c0c99df2",
-      "gitDiffSha256": "fa16bfe2796ac69f73da49226009387a77af2fb9856839b587e2fe514a521375"
-    },
-    "scope": "Preserve Benren local depth fit and all delivered evidence; add only source-guided Wenyuan full-plaque downward pitch. Fresh R51 38-actor/148-route CPU world evidence is separately versioned; historical reports remain immutable."
+    "changedSources": [
+      {
+        "path": "src/scene/palace/special/RemainingOuterHalls.js",
+        "previousSha256": "a8c44bbb9ce0051f83cda37bb9db2b22a8942790bccff2b640a431e63180c86f",
+        "currentSha256": "2c49eb1dafee12b4ee47848f45cdccd35360bb0607940ab3cad14c83036cbba3"
+      },
+      {
+        "path": "src/scene/palace/special/WuyingRepresentativeDetails.js",
+        "previousSha256": "5d47bffed19a1a071b35eeaee9a4d1746576b6dfebe4bb76a9ef2df7abcfc234",
+        "currentSha256": "1492927ff309655bbdadf8624090700d4cc9614d2e7cc41f7d5ce76491da5e3d"
+      }
+    ],
+    "addedSources": [
+      {
+        "path": "src/scene/palace/special/WuyingMoonTerrace.js",
+        "sha256": "6fabf5ccb42343511142245dca333e260630e86229de58233b2d7c8fd9ce4dfd"
+      }
+    ],
+    "sourceCommits": [
+      "f8dd0ea3d9aea97537c86ed64e74644ca4e2cc22",
+      "4de1bf512b7fa2789fae46ffe3c9907b71a7f9fa",
+      "a0548b6ffe6e0480e38d4a5c7d59d56ec0db1d6b",
+      "bc2c21210420dfbf63ea328314e897de1f00d082"
+    ],
+    "scope": "Actual unified71 bindings, all five paths and southern controller/map/flight routes are validated separately. Original38 IDs and Kit unchanged; real visible Taihe floor is newly bound semantically."
   },
   "files": [
     {
@@ -512,7 +521,7 @@
     },
     {
       "path": "src/scene/palace/special/RemainingOuterHalls.js",
-      "sha256": "a8c44bbb9ce0051f83cda37bb9db2b22a8942790bccff2b640a431e63180c86f"
+      "sha256": "2c49eb1dafee12b4ee47848f45cdccd35360bb0607940ab3cad14c83036cbba3"
     },
     {
       "path": "src/scene/palace/special/RemainingResidentialHalls.js",
@@ -687,12 +696,16 @@
       "sha256": "01bfb9f17673fd203ab78954ae4001aa07ce023c08b7e1e00ee633f7957d99db"
     },
     {
+      "path": "src/scene/palace/special/WuyingMoonTerrace.js",
+      "sha256": "6fabf5ccb42343511142245dca333e260630e86229de58233b2d7c8fd9ce4dfd"
+    },
+    {
       "path": "src/scene/palace/special/WuyingObservedCases.js",
       "sha256": "d1061a7173b1827454b289af1b159d8bdfbeb85c34f0044b68b51c4b21ebefc5"
     },
     {
       "path": "src/scene/palace/special/WuyingRepresentativeDetails.js",
-      "sha256": "5d47bffed19a1a071b35eeaee9a4d1746576b6dfebe4bb76a9ef2df7abcfc234"
+      "sha256": "1492927ff309655bbdadf8624090700d4cc9614d2e7cc41f7d5ce76491da5e3d"
     },
     {
       "path": "src/scene/palace/special/YanxiRuin.js",

@@ -1,0 +1,42 @@
+✔ historical name input opens the current card and preserves keyboard return state (67.292556ms)
+✔ 皇极殿 search keeps two distinct card IDs and navigation targets on desktop (27.558392ms)
+✔ historical name input opens the current card and preserves touch return state (34.161594ms)
+✔ 皇极殿 search keeps two distinct card IDs and navigation targets on touch (12.411014ms)
+✔ canonical names and demolished-site explanations remain searchable without losing their identities (14.764701ms)
+✔ hd: four route surfaces use bounded response defaults, not albedo or scale changes (5.6097ms)
+✔ sd: four route surfaces use bounded response defaults, not albedo or scale changes (1.801328ms)
+✔ all other material defaults remain exactly neutral, including already mild marble (1.472067ms)
+✔ explicit roughness, color, metalness and scalar/zero/vector normal overrides win without mutating input (4.138536ms)
+✔ existing road, ground and interior roughness overrides remain authoritative (1.458817ms)
+✔ missing normal maps remain absent instead of allocating replacements or changing texture ownership (1.090618ms)
+✔ response variants reuse textures and preserve single-owner disposal with no extra resources (1.952754ms)
+✔ R36 helicopter proximity is a non-modal enter/leave/re-enter interaction, not persistent flight UI (33.956008ms)
+✔ R36 keyboard exit after native Escape restores real walking mouse and releases every aircraft input (19.975166ms)
+✔ R36 button exit after native Escape restores real walking mouse and releases every aircraft input (9.115542ms)
+✔ R36 leaving and approaching again permits a second real boarding without stale focus or flight state (7.364259ms)
+✔ R36 map-open disembark preserves the existing unlocked walking-map ownership (4.817188ms)
+✔ R36 mobile exit returns actual touch look and joystick ownership without requesting desktop pointer lock (7.668483ms)
+✔ R36 asynchronous native rejection leaves walking ownership intact and explicit retry restores actual mouse look (5.357724ms)
+✔ R36 delayed flight lock after disembark cannot recapture a walking map or reopen aircraft controls (5.604228ms)
+✔ H dismount after native Escape restores actual walking mouse and keys, not only the mode flag (61.101489ms)
+✔ proximity only shows a non-modal boarding affordance; far H belongs to ordinary walking (16.862121ms)
+✔ rejected native lock Promise keeps dismount complete and offers a fresh walking retry (13.058681ms)
+✔ a late exit lock after opening the map is released without returning to flight (6.169186ms)
+✔ an old flight-resume Promise rejection cannot cancel a fresh boarding request (6.751565ms)
+✔ native unlock delivered after H dismount offers walking recovery, never reopens flight operations (14.260159ms)
+✔ completed dismount does not label a later ordinary walking unlock as flight recovery (delayed=false) (14.028058ms)
+✔ completed dismount does not label a later ordinary walking unlock as flight recovery (delayed=true) (11.638361ms)
+✔ R36 keeps all 159 stable public identities bound exactly once to current scene data (42.32443ms)
+✔ R36 does not silently resolve any of the seven acknowledged identity/history gaps (15.051078ms)
+✔ R36 south hall search/card/back stays non-travelling on desktop (48.531568ms)
+✔ R36 south hall search/card/back stays non-travelling on touch (15.491896ms)
+✔ R36 keeps flight limits, home and declared landing targets, rather than shrinking the world around new geometry (0.58989ms)
+✔ R36 southern coordinates and existing tour remain on current map with north up and east right (10.911081ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 519.342927

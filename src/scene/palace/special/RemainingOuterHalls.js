@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { buildWuyingMoonTerrace } from './WuyingMoonTerrace.js';
 import { buildJiyunNamePlaque } from './JiyunNamePlaque.js';
 import { FACE } from '../kit.js';
 import { PLAYER } from '../../../config/constants.js';
@@ -1352,13 +1353,13 @@ function augmentCeramicsGallery(kit,item,built,p) {
       box('wuying-photo-white-stone-rail-panel',stone,alongX?L:.12,.47,alongX?.12:L,(x0+x1)/2,item.ph+.48,(z0+z1)/2,true,data);
       box('wuying-photo-white-stone-rail-top',stone,alongX?L:.19,.13,alongX?.19:L,(x0+x1)/2,item.ph+.78,(z0+z1)/2,true,data);
       for(let k=0;k<=n;k++)box('wuying-photo-white-stone-rail-post',stone,.20,1.03,.20,x0+(x1-x0)*k/n,item.ph+.515,z0+(z1-z0)*k/n,true,data);terrace.push({x0,x1,z0,z1});};
-    // Only the main hall's west wall platform midsection is represented.
-    // The 2021 views prove stepped / returning moon-terrace rails farther
-    // south, not two straight rails on this narrow retained front platform.
-    // Withhold those unmodelled turns, side stair and all front/rear segments.
+    // Preserve the R48 west-gable middle exactly. Its photographed south
+    // return and moon terrace are added by the Wuying-specific module below,
+    // not by extending this straight rail across the stairs or hall front.
     stoneRail(edge,edge,-item.d/2+.4,item.d/2-.4);
   }
-  return finishAugment(kit,item,built,p,{display,accessProxies,exteriorChanged:terrace.length>0,interiorChanged:true,sourceCeiling:{photo,scene,photographyDate:null,grid:{nx,nz,status:'FITTED_REPEAT_COUNTS_NOT_PHOTO_MEASUREMENT'},artwork:'DRAGON_PAINTINGS_UNMODELED_ONLY_FRAME_AND_ROUND_FIELD_CONTOURS'},modernEquipment:{design,vents,lamps,period:'2020_DESIGN_AND_2021_PANORAMA_NOT_CURRENT_INVENTORY',newRuntimeLights:0},terraceRailSegments:terrace,retainedDedicatedLayout:'ALL_EXISTING_CASES_OBJECTS_ROOF_FLOOR_ROOMS_AND_ENTRIES_RETAINED',wholeBuildingComplete:false});
+  const moonTerrace=p.key==='wuying'?buildWuyingMoonTerrace(kit,item,f,stone):null;
+  return finishAugment(kit,item,built,p,{display,accessProxies,...(moonTerrace?{moonTerrace,navigation:moonTerrace.navigation}:{}),exteriorChanged:terrace.length>0,interiorChanged:true,sourceCeiling:{photo,scene,photographyDate:null,grid:{nx,nz,status:'FITTED_REPEAT_COUNTS_NOT_PHOTO_MEASUREMENT'},artwork:'DRAGON_PAINTINGS_UNMODELED_ONLY_FRAME_AND_ROUND_FIELD_CONTOURS'},modernEquipment:{design,vents,lamps,period:'2020_DESIGN_AND_2021_PANORAMA_NOT_CURRENT_INVENTORY',newRuntimeLights:0},terraceRailSegments:terrace,retainedDedicatedLayout:moonTerrace?'ALL_EXISTING_CASES_OBJECTS_ROOF_FLOOR_ROOMS_AND_DOORS_RETAINED':'ALL_EXISTING_CASES_OBJECTS_ROOF_FLOOR_ROOMS_AND_ENTRIES_RETAINED',wholeBuildingComplete:false});
 }
 
 function augmentBaoyunFacade(kit,item,built,p) {

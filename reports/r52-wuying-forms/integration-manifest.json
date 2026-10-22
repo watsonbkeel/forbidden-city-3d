@@ -1,0 +1,86 @@
+{
+  "baseCommit": "fac791c",
+  "branch": "feat/r52-wuying-forms-20261022",
+  "runtimePaths": [
+    "src/scene/palace/special/WuyingRepresentativeDetails.js"
+  ],
+  "testPaths": [
+    "tests/r52-wuying-next-forms.test.mjs"
+  ],
+  "reportDirectory": "reports/r52-wuying-forms",
+  "changedCases": [
+    "59",
+    "61",
+    "d111",
+    "d112"
+  ],
+  "preservedCases": [
+    "58",
+    "60",
+    "62",
+    "d102",
+    "d103",
+    "d107",
+    "d108",
+    "d109",
+    "d110",
+    "d104",
+    "d105",
+    "d106"
+  ],
+  "collisionArraysExactlyEqual": true,
+  "before": [
+    {
+      "key": "d111",
+      "triangles": 576,
+      "meshes": 1
+    },
+    {
+      "key": "d112",
+      "triangles": 672,
+      "meshes": 1
+    },
+    {
+      "key": "59",
+      "triangles": 960,
+      "meshes": 6
+    },
+    {
+      "key": "61",
+      "triangles": 480,
+      "meshes": 1
+    }
+  ],
+  "after": [
+    {
+      "key": "d111",
+      "triangles": 3880,
+      "meshes": 15
+    },
+    {
+      "key": "d112",
+      "triangles": 5968,
+      "meshes": 19
+    },
+    {
+      "key": "59",
+      "triangles": 4664,
+      "meshes": 6
+    },
+    {
+      "key": "61",
+      "triangles": 3136,
+      "meshes": 3
+    }
+  ],
+  "sourceSHA256": "c320db21f6f601f02a849e78d507539e92284340424d8c98791572b00ab17d61",
+  "testSHA256": "3fa98c0a7f226716baef09e88095c03d076b1c4463f74c63817c602969a2d0c4",
+  "verification": {
+    "successorTests": "7/7",
+    "preservedR37Tests": "5/5",
+    "fullWorld": "NOT_RUN_SINGLE_INTEGRATOR_OWNS",
+    "build": "NOT_RUN_SINGLE_INTEGRATOR_OWNS",
+    "gpu": "NOT_RUN_NO_GPU_CLAIM"
+  },
+  "publication": "NONE; local small commit for R52 integration only"
+}

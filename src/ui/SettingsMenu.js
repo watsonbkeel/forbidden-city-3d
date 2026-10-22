@@ -1,4 +1,6 @@
-/** Settings and dated research limits. No remote content is fetched by this UI. */
+import { ReleaseIdentityPanel } from './ReleaseIdentityPanel.js';
+
+/** Settings and dated research limits. Version checks run only on explicit click. */
 export class SettingsMenu {
   constructor(container) {
     this.container = container;
@@ -16,7 +18,7 @@ export class SettingsMenu {
     this.characterStatusKey = null;
   }
 
-  init({ onOpen, onResume, onQualityChange, onSoundToggle, onCharactersToggle, initialCharacters = true, charactersAvailable = true, charactersApproved = false, allowCharacterPreview = false, characterPreviewActive = false, onCharacterPreviewToggle, initialQuality = 'high', initialSound = true } = {}) {
+  init({ getCharacterStatus, onOpen, onResume, onQualityChange, onSoundToggle, onCharactersToggle, initialCharacters = true, charactersAvailable = true, charactersApproved = false, allowCharacterPreview = false, characterPreviewActive = false, onCharacterPreviewToggle, initialQuality = 'high', initialSound = true } = {}) {
     this.onOpen = onOpen;
     this.onResume = onResume;
     this.onQualityChange = onQualityChange;
@@ -134,6 +136,7 @@ export class SettingsMenu {
     `;
     this.overlay.appendChild(this.panel);
     this.container.appendChild(this.overlay);
+    this.releaseIdentity = new ReleaseIdentityPanel({ container:this.panel.querySelector('#settings-content'), getCharacterStatus });
     this.bindEvents();
     this.updateSoundButton();
     this.updateQualityButton();
@@ -401,6 +404,8 @@ export class SettingsMenu {
   toggle() { if (this.visible) this.hide(); else this.show(); }
 
   dispose() {
+    this.releaseIdentity?.dispose();
+    this.releaseIdentity = null;
     this.visible = false;
     this.secondaryTaps.clear();
     this.restoreBackground();

@@ -1,3 +1,4 @@
+import { wuyingGateToGallery } from './r52-wuying-routes.mjs';
 import { southWaterProfile } from '../../src/scene/palace/special/SouthWaterSystem.js';
 import { PALACE_LAYOUT } from '../../src/scene/Layout.js';
 // 从 data/zones/*.json 自动生成 stepwalk 路线（T-2）。
@@ -255,7 +256,7 @@ export function zoneRoutes(W, zone) {
       const p=hallGeom(h).southCourt,court=p.court,front=zone.items.find(i=>i.southCourtProfile===`${court}-front`),rear=zone.items.find(i=>i.southCourtProfile===`${court}-rear`),gate=zone.items.find(i=>i.southGateProfile===court),gg=gateGeom(gate),x=front.x,side=court==='wenhua'?11:5;
       const bridge=court==='wuying'?southWaterProfile(PALACE_LAYOUT.find(i=>i.type==='river')).bridges.find(b=>b.id==='wuying-2'):null;
       const frontTurnZ=front.z-(court==='wuying'?5.95:6); // clear actual opened exhibition doors before lateral movement
-      const go=[bridge?[bridge.x,bridge.z-bridge.length/2-2]:[gate.x,gate.z-gg.front-2],[gate.x,gate.z+gg.rear+2],[x,gate.z+gg.rear+2],[x,front.z-front.d/2-front.pad-front.ph*1.6-1],[x,frontTurnZ],[x+side,frontTurnZ],[x+side,front.z+5.7],[x,front.z+5.7]];
+      const go=court==='wuying' ? [[bridge.x,bridge.z-bridge.length/2-2], ...wuyingGateToGallery(gate,front)] : [bridge?[bridge.x,bridge.z-bridge.length/2-2]:[gate.x,gate.z-gg.front-2],[gate.x,gate.z+gg.rear+2],[x,gate.z+gg.rear+2],[x,front.z-front.d/2-front.pad-front.ph*1.6-1],[x,frontTurnZ],[x+side,frontTurnZ],[x+side,front.z+5.7],[x,front.z+5.7]];
       if(p.part==='rear')go.push([x,rear.z-(court==='wenhua'?5.6:5)],...(court==='wenhua'?[[x+2.3,rear.z-4.8],[x+2.3,rear.z-.5]]:[]),[x,rear.z-.5]);
       out.push({name:`[${zone.id}] ${gate.name}→${h.name}→返回`,zone:zone.id,gate:gate.name,hall:h.name,southCourtProfile:h.southCourtProfile,waypointDriver:'physical-crossing-v1',via:'source-specific dated exhibition circulation',plan:['Keep fitted steps and source-backed exhibition obstructions. Walk around the front island/enclosure and the rear circular display, never through them.'],pts:[...go,...go.slice(0,-1).reverse()]});continue;
     }

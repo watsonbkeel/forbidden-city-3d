@@ -1,10 +1,11 @@
+// Freeze the historical route-generation contract, not the current-world walker.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 const baseline=JSON.parse(readFileSync(new URL('./fixtures/r48-fixed33-before-leaf-turn.json',import.meta.url)));
 test('fixed 33 routes retain 31 exact definitions and only move the Wuying/Wenhua leaf-clear turns',()=>{
- const current=JSON.parse(execFileSync(process.execPath,[new URL('./stepwalk.cjs',import.meta.url).pathname,'60,10','0,1','all'],{encoding:'utf8',env:{...process.env,DUMP:'',DUMP_JSON:'1'}}));
+ const current=JSON.parse(execFileSync(process.execPath,[new URL('./stepwalk.cjs',import.meta.url).pathname,'60,10','0,1','all'],{encoding:'utf8',env:{...process.env,DUMP:'',DUMP_JSON:'1',FIXED_ROUTE_CONTRACT:'r48-leaf-turn'}}));
  assert.equal(current.length,33);
  assert.deepEqual(current.map(r=>r.name),baseline.routes.map(r=>r.name));
  let changes=0;

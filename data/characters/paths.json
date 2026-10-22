@@ -68,5 +68,105 @@
     "turningRadiusMeters": 0.5,
     "description": "Low-complexity courtyard stroll, no named residence or historical timetable.",
     "formationSize": 1
+  },
+  {
+    "id": "east-second-lane-patrol",
+    "zoneRef": "east-six",
+    "surfaceRef": "east-second-lane-ground",
+    "anchorRef": "east-second-lane",
+    "pointsLocalMeters": [
+      [
+        0,
+        0,
+        -18.6
+      ],
+      [
+        0,
+        0,
+        -0.6
+      ],
+      [
+        2.5,
+        0,
+        7.4
+      ]
+    ],
+    "radiusMeters": 0.38,
+    "safetyMarginMeters": 0.12,
+    "validationSpacingMeters": 0.25,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "crossZone": false,
+    "turningRadiusMeters": 0.55,
+    "description": "Short same-zone East Second Lane interpretation. Actual east-six region frame, no doorway crossings, no historical timetable claim.",
+    "formationSize": 3
+  },
+  {
+    "id": "changchun-r52-courtyard-stroll",
+    "zoneRef": "west-six",
+    "surfaceRef": "changchun-r52-court-ground",
+    "anchorRef": "changchun-r52-hall",
+    "pointsLocalMeters": [
+      [
+        -4,
+        0,
+        -14
+      ],
+      [
+        3,
+        0,
+        -14
+      ]
+    ],
+    "radiusMeters": 0.65,
+    "safetyMarginMeters": 0.15,
+    "validationSpacingMeters": 0.25,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "crossZone": false,
+    "turningRadiusMeters": 0.85,
+    "description": "An unnamed consort takes a short lateral courtyard stroll while a maid waits beside, not on, the route. Display behavior only, not historical service procedure.",
+    "formationSize": 1
+  },
+  {
+    "id": "jingren-r52-courtyard-service",
+    "zoneRef": "east-six",
+    "surfaceRef": "jingren-r52-court-ground",
+    "anchorRef": "jingren-r52-hall",
+    "pointsLocalMeters": [
+      [
+        3.5,
+        0,
+        -17.5
+      ],
+      [
+        7,
+        0,
+        -17.5
+      ],
+      [
+        7,
+        0,
+        -14.5
+      ]
+    ],
+    "radiusMeters": 0.65,
+    "safetyMarginMeters": 0.15,
+    "validationSpacingMeters": 0.25,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "crossZone": false,
+    "turningRadiusMeters": 0.85,
+    "description": "A maid makes a short service walk on one side while an attendant waits on the opposite side; no consort is added. Display behavior only, not historical service procedure.",
+    "formationSize": 1
   }
 ]

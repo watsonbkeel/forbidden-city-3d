@@ -358,6 +358,7 @@ class ForbiddenCityApp {
     });
     this.settingsMenu = new SettingsMenu(document.body);
     this.settingsMenu.init({
+      getCharacterStatus: () => this.characters?.statusSnapshot(),
       initialQuality: this.currentQuality,
       initialSound: true,
       initialCharacters: this.characters?.enabled ?? true,

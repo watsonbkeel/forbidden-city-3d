@@ -1,3 +1,4 @@
+import {wuyingGalleryRoute,wuyingGateToGallery} from './lib/r52-wuying-routes.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -130,7 +131,7 @@ for (const court of ['wenhua', 'wuying']) {
       // empty hall: walk around the front exhibit, use the front round doorway,
       // and skirt Wenhua's non-passable rear circular display on its west side.
       const side = court === 'wenhua' ? 11 : 5;
-      const go = [[gate.x, gate.z - 14], [gate.x, gate.z + 14], [front.x, gate.z + 14],
+      const go = court === 'wuying' ? [[gate.x, gate.z - 14], ...wuyingGateToGallery(gate, front), [link.x, link.z], [rear.x, rear.z - 5], [rear.x, rear.z - .5]] : [[gate.x, gate.z - 14], [gate.x, gate.z + 14], [front.x, gate.z + 14],
         [front.x, entryZ - front.pad - front.ph * 1.6 - 1], [front.x, front.z - 6.3],
         [front.x + side, front.z - 6.3], [front.x + side, front.z + 5.7], [front.x, front.z + 5.7],
         [link.x, link.z], [rear.x, rear.z - 5.0],
@@ -284,8 +285,8 @@ test('R36 Wenhua continuous connector displays do not inherit Wuying fire-exit g
 
 for(const fps of [10,60]) test(`R36 Wuying seven-case exhibit remains physically reachable through both photographed side openings at ${fps}Hz`, t => {
   const f=capture('wuying'),front=f.sources.find(i=>i.southCourtProfile==='wuying-front'),{x,z}=front;
-  const go=[[x,z-front.d/2-front.pad-front.ph*1.6-2],[x,z-6.3],[x+5,z-6.3],
-    [x+5,z-1],[x,z-1],[x-5,z-1],[x-5,z-6.3],[x,z-6.3]];
+  const go=[...wuyingGalleryRoute(front).slice(0,-4),[x,z-5.95],[x+5,z-5.95],
+    [x+5,z-1],[x,z-1],[x-5,z-1],[x-5,z-5.95],[x,z-5.95]];
   const points=[...go,...go.slice(0,-1).reverse()];
   const placed=t.mock.method(FirstPersonControls.prototype,'setPosition'),trace=traceTerraceGround(f.cm,{flights:[]});
   let result;

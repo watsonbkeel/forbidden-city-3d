@@ -1,3 +1,4 @@
+import { REGISTERED_CHARACTER_LIMIT } from './CharacterLimits.js';
 import { characterEnvironmentMotion } from './CharacterBehavior.js';
 import { characterProjection, selectCharacterLOD, selectCharacterBudget } from './CharacterLOD.js';
 
@@ -17,11 +18,11 @@ export class CharacterManager {
     this.nearIds = new Set();
     this.disposed = false; this.hidden = false; this.samples = [];
     this.stats = { registered: 0, loaded: 0, visible: 0, near: 0, renderCopies: 0, pending: 0, errors: 0, batches: 0, trianglesEstimate: 0 };
+    if ((registry.actors?.length ?? 0) > REGISTERED_CHARACTER_LIMIT) throw new Error(`Character registry exceeds ${REGISTERED_CHARACTER_LIMIT} logical actors`);
     for (const actor of registry.actors ?? []) {
       if (this.states.has(actor.id)) throw new Error(`Duplicate character ID: ${actor.id}`);
       this.states.set(actor.id, { actor, binding: null, pending: false, error: null, lod: 3, activeSchedule: null, patrol: null, readiness: 0 });
     }
-    if (this.states.size > 96) throw new Error('Character registry exceeds 96 logical actors');
     this.stats.registered = this.states.size;
   }
   get developmentPreviewActive() {

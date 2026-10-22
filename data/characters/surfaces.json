@@ -19,17 +19,17 @@
     "id": "taihe-hall-floor",
     "zoneRef": "static",
     "anchorRef": "taihe-hall",
-    "kind": "walkable",
+    "kind": "ground",
     "localBoundsMeters": [
       -30,
       30,
       -17,
       17
     ],
-    "expectedHeightMeters": 9.9375,
+    "expectedHeightMeters": 9.9675,
     "heightToleranceMeters": 0.03,
-    "source": "data/architecture/taihe-core.json#/frame/floorY",
-    "verification": "Bounded actual rendered surface or registered walkable; no origin/ground fallback"
+    "source": "src/scene/PalaceBuilder.js#buildHall visible 三台_taihe_square_brick_floor mesh",
+    "verification": "Actual upward-facing rendered floor at feet, resolved for each active B/S generation; not lower collision datum or a hard-coded actor offset"
   },
   {
     "id": "wumen-south-ground",
@@ -142,5 +142,149 @@
     "heightToleranceMeters": 0.03,
     "source": "src/scene/Environment.js#setupGround",
     "verification": "Bounded actual rendered surface or registered walkable; no origin/ground fallback"
+  },
+  {
+    "id": "donghua-gate-side-ground",
+    "zoneRef": "outer-east",
+    "anchorRef": "donghua-gate",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -6,
+      6,
+      8,
+      12
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.03,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Actual rendered Environment ground; full footprint and body clearance checked against unchanged production scene."
+  },
+  {
+    "id": "xihua-gate-side-ground",
+    "zoneRef": "outer-west",
+    "anchorRef": "xihua-gate",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -6,
+      6,
+      8,
+      12
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.03,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Actual rendered Environment ground; full footprint and body clearance checked against unchanged production scene."
+  },
+  {
+    "id": "longzong-gate-side-ground",
+    "zoneRef": "axis-courts",
+    "anchorRef": "longzong-gate",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -12,
+      12,
+      -13,
+      -10
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.03,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Actual rendered Environment ground; full footprint and body clearance checked against unchanged production scene."
+  },
+  {
+    "id": "east-second-lane-ground",
+    "zoneRef": "east-six",
+    "anchorRef": "east-second-lane",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -5.8,
+      5.8,
+      -22,
+      12
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.03,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Actual rendered Environment ground; full footprint and body clearance checked against unchanged production scene."
+  },
+  {
+    "id": "changchun-r52-court-ground",
+    "zoneRef": "west-six",
+    "anchorRef": "changchun-r52-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -8,
+      8,
+      -18,
+      -10
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.03,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Requires actual rendered ground triangles, full-body margin and collision checks in the named real courtyard; no world-ground or origin fallback."
+  },
+  {
+    "id": "chengqian-r52-court-ground",
+    "zoneRef": "east-six",
+    "anchorRef": "chengqian-r52-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -8,
+      8,
+      -18,
+      -10
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.03,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Requires actual rendered ground triangles, full-body margin and collision checks in the named real courtyard; no world-ground or origin fallback."
+  },
+  {
+    "id": "zhongcui-r52-court-ground",
+    "zoneRef": "east-six",
+    "anchorRef": "zhongcui-r52-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -9,
+      8,
+      -17,
+      -10
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.03,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Requires actual rendered ground triangles, full-body margin and collision checks in the named real courtyard; no world-ground or origin fallback."
+  },
+  {
+    "id": "jingren-r52-court-ground",
+    "zoneRef": "east-six",
+    "anchorRef": "jingren-r52-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -8,
+      9,
+      -21,
+      -12
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.03,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Requires actual rendered ground triangles, full-body margin and collision checks in the named real courtyard; no world-ground or origin fallback."
+  },
+  {
+    "id": "yonghe-r52-court-ground",
+    "zoneRef": "east-six",
+    "anchorRef": "yonghe-r52-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -8,
+      9,
+      -18,
+      -10
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.03,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Requires actual rendered ground triangles, full-body margin and collision checks in the named real courtyard; no world-ground or origin fallback."
   }
 ]

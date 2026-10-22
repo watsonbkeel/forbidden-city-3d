@@ -9,6 +9,7 @@ import {ZoneBase} from '../src/scene/zones/ZoneBase.js';
 import {library} from './lib/inner-palace-fixture.mjs';
 import {replayTerrace,traceTerraceGround} from './lib/terrace-walk.mjs';
 import {PLAYER} from '../src/config/constants.js';
+import {wuyingGalleryRoute} from './lib/r52-wuying-routes.mjs';
 const report={commit:'509fdf7efb4c1415aa59be709c2f4b1ffe3a2432',retention:[],routes:[],geometry:[]};
 const old=JSON.parse(readFileSync(new URL('./fixtures/r48-outer-independent-e0d19a5.json',import.meta.url))),now=await capture(fileURLToPath(new URL('..',import.meta.url)));
 for(const r of old)test(`independent actual parent retention: ${r.name}`,()=>{assert.deepEqual(now.find(n=>n.id===r.id),r);report.retention.push(r.name)});
@@ -20,9 +21,11 @@ const hooks=registerHooks({load(u,c,n){return n(u,u.endsWith('.json')?{...c,impo
 const {buildWorld}=await import('./lib/world.mjs');const {Teleport}=await import('../src/ui/Teleport.js');const W=await buildWorld();hooks.deregister();
 const tel=Object.create(Teleport.prototype);tel.targets=new Map(W.halls.map(h=>[h.item.name,h.item]));tel.collisionManager=W.cm;tel.zoneManager={getMapItems:()=>W.mapItems,getLoadedIds:()=>W.zones.map(z=>z.json.id)};
 for(const name of ['武英殿','敬思殿','宝蕴楼'])test(`independent whole-world runtime landing ${name}`,()=>{const p=tel.resolveLanding(name),g=tel.geometryFor(name);assert.ok(p);assert.equal(tel.isSafe(p,g),true);report.geometry.push({name,landing:p,enter:g.enter})});
+// This review keeps its frozen retention oracle but replays current-world routes.
+const wuyingFront=data.items.find(i=>i.southCourtProfile==='wuying-front'),wuyingRear=data.items.find(i=>i.southCourtProfile==='wuying-rear');
 const routes=[
- {name:'Wuying south-entry to Jingsi through I-plan west aisle',points:[[219.5,-212.2],[219.5,-205.5],[224.5,-205.5],[224.5,-193.5],[219.5,-193.5],[219.5,-170.4],[219.5,-165.9]]},
- {name:'Wuying south-entry to Jingsi through I-plan east aisle',points:[[219.5,-212.2],[219.5,-205.5],[214.5,-205.5],[214.5,-193.5],[219.5,-193.5],[219.5,-170.4],[219.5,-165.9]]},
+ {name:'Wuying south-entry to Jingsi through I-plan west aisle',points:wuyingGalleryRoute(wuyingFront,{side:'west',rear:wuyingRear})},
+ {name:'Wuying south-entry to Jingsi through I-plan east aisle',points:wuyingGalleryRoute(wuyingFront,{side:'east',rear:wuyingRear})},
  {name:'Jingsi north doorway from rear courtyard',points:[[219.5,-154.5],[219.5,-159.8],[219.5,-161.7],[217.3,-161.7],[217.3,-165.9]]},
  {name:'Baoyun open courtyard main-front exterior route',points:[[300.9,-237.7],[300.9,-227.7],[292.9,-227.7],[292.9,-216.7],[300.9,-216.7],[308.9,-216.7],[308.9,-227.7],[300.9,-227.7]]}
 ];
