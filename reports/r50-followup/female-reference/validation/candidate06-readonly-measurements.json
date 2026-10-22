@@ -1,0 +1,97 @@
+{
+  "kitSourceSha256": "16bb5ead7c3c1aa74e1b4327c37875c521dd23835f7d4f493725d455fd9b1929",
+  "units": "metres",
+  "method": "Read-only original-scale L0 geometry. Crown rays use actual triangles; shoulder bands are full cloth extents. Seated rays descend from actual skin hand/forearm vertices over the robe, excluding arm/sleeve triangles. This is a vertical clearance measurement, not physical hand support validation.",
+  "cases": [
+    {
+      "id": "consort-daily",
+      "standingSkullTop": 1.7059999704360962,
+      "standingHairTop": 1.7130000591278076,
+      "hairWidth": 0.16721588373184204,
+      "shoulderBandY": [
+        1.29,
+        1.37
+      ],
+      "shoulderBandWidth": 0.45534396171569824,
+      "fullSleeveWidth": 0.5892513990402222,
+      "crownRays": [
+        {
+          "y": 1.65,
+          "rightmostSurfaceX": 0.07639705131998072
+        },
+        {
+          "y": 1.675,
+          "rightmostSurfaceX": 0.06398038661288549
+        },
+        {
+          "y": 1.7,
+          "rightmostSurfaceX": 0.03996107987416306
+        },
+        {
+          "y": 1.705,
+          "rightmostSurfaceX": 0.03235983419681579
+        }
+      ]
+    },
+    {
+      "id": "maid-daily",
+      "standingSkullTop": 1.7059999704360962,
+      "standingHairTop": 1.7130000591278076,
+      "hairWidth": 0.16721588373184204,
+      "shoulderBandY": [
+        1.29,
+        1.37
+      ],
+      "shoulderBandWidth": 0.45636893808841705,
+      "fullSleeveWidth": 0.5801911652088165,
+      "crownRays": [
+        {
+          "y": 1.65,
+          "rightmostSurfaceX": 0.07639705131998072
+        },
+        {
+          "y": 1.675,
+          "rightmostSurfaceX": 0.06398038661288549
+        },
+        {
+          "y": 1.7,
+          "rightmostSurfaceX": 0.03996107987416306
+        },
+        {
+          "y": 1.705,
+          "rightmostSurfaceX": 0.03235983419681579
+        }
+      ]
+    }
+  ],
+  "seatedLapClearance": {
+    "sampleCount": 405,
+    "verticalGap": {
+      "min": 0.10957793945289795,
+      "max": 0.18000423930132303
+    },
+    "closest": {
+      "handVertex": 3391,
+      "handPart": 3,
+      "point": [
+        -0.01849348470568657,
+        0.676863431930542,
+        0.3472138047218323
+      ],
+      "surfaceY": 0.567285492477644,
+      "verticalGap": 0.10957793945289795
+    },
+    "farthest": {
+      "handVertex": 2619,
+      "handPart": 2,
+      "point": [
+        -0.07375757396221161,
+        0.7465677857398987,
+        0.33450767397880554
+      ],
+      "surfaceY": 0.5665635464385756,
+      "verticalGap": 0.18000423930132303
+    },
+    "status": "Hands overlap but remain above the actual lap shell. Do not claim hands rest on knees/lap."
+  }
+}

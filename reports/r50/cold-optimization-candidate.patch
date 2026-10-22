@@ -1,0 +1,19 @@
+# UNAPPLIED experiment only. Not included in frozen source commit c560681.
+# Baseline Adapter SHA-256: c4791febf937df39d3baeac3c5816751f7c237306503204195165fc1fd0302cd
+# Only prioritize actual flat geometry at the expected layer; still cast real shape rays.
+--- a/src/scene/characters/CharacterWorldAdapter.js
++++ b/src/scene/characters/CharacterWorldAdapter.js
+@@ -68,12 +68,11 @@
+   this.raycaster.ray.origin.set(x,expectedY+tolerance+.01,z);this.raycaster.near=0;this.raycaster.far=2*tolerance+.02;
+   this._meshList();const {buckets,globals,cellSize}=this.meshCache;
+   const entries=[...(buckets.get(`${Math.floor(x/cellSize)}:${Math.floor(z/cellSize)}`)??[]),...globals];this.stats.broadPhaseCandidates+=entries.length;
+-  const candidates=entries.filter(({box})=>x>=box.min.x-1e-6&&x<=box.max.x+1e-6&&z>=box.min.z-1e-6&&z<=box.max.z+1e-6&&box.max.y>=expectedY-tolerance&&box.min.y<=expectedY+tolerance).map(entry=>entry.mesh);
++  const candidates=entries.filter(({box})=>x>=box.min.x-1e-6&&x<=box.max.x+1e-6&&z>=box.min.z-1e-6&&z<=box.max.z+1e-6&&box.max.y>=expectedY-tolerance&&box.min.y<=expectedY+tolerance).sort((a,b)=>{const flat=e=>Math.abs(e.box.max.y-e.box.min.y)<1e-6&&Math.abs(e.box.max.y-expectedY)<1e-6;return Number(flat(b))-Number(flat(a))||((a.mesh.geometry.index?.count??a.mesh.geometry.attributes.position.count)-(b.mesh.geometry.index?.count??b.mesh.geometry.attributes.position.count));}).map(entry=>entry.mesh);
+   // Probe the cheapest real geometry first. An exact declared-layer hit is
+   // already a complete bounded support proof; do not raycast every large
+   // merged palace mesh after it. Without an exact hit retain the nearest
+   // valid downward intersection, as the full raycaster does.
+-  candidates.sort((a,b)=>(a.geometry.index?.count??a.geometry.attributes.position.count)-(b.geometry.index?.count??b.geometry.attributes.position.count));
+   let best=null;for(const mesh of candidates){this.stats.raycastMeshTests++;const hits=this.raycaster.intersectObject(mesh,false);for(const h of hits){if(Math.abs(h.point.y-expectedY)>tolerance+1e-7||!hasVisibleAncestors(h.object))continue;const n=h.face?.normal?.clone().transformDirection(h.object.matrixWorld);if(n&&n.y<.5)continue;if(!best||h.distance<best.distance)best=h;if(Math.abs(h.point.y-expectedY)<1e-6){best=h;break;}}if(best&&Math.abs(best.point.y-expectedY)<1e-6)break;}
+   if(best)return ready({position:[x,best.point.y,z],heightMeters:best.point.y,kind:'rendered-geometry',meshName:best.object.name,materialName:best.object.material?.name??null,meshId:this._id(best.object)});
+   return pending(`No actual support at (${x.toFixed(3)}, ${expectedY.toFixed(3)}, ${z.toFixed(3)}) within ${tolerance} m`);

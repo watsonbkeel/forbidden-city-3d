@@ -72,3 +72,46 @@
 - **分派建议**：总控在合并 P1-Z-axis 到 main 时同步更新。
 - **注**：路线 6「坤宁宫→御花园→神武门」（第 56 行）中的 `GARDEN_PATH_X` 仍正确（东西甬路 x = ±17 未变）。
 | 2026-10-12 | P1-I | `main.js`、`src/ui/PerfHUD.js` | 「碰撞检测」步骤后 `this.interiors = new InteriorLoader(this.scene, this.collisionManager, { renderer: this.renderer })`；animate 里 `this.interiors.update(this.camera.position)`；PerfHUD 增加一行 `interiors.hudLine()`；`dispose()` 调 `interiors.dispose()` | InteriorLoader 已自测通过（p1i-loader PASS），但 main.js 不在 P1-I 所有权内，运行时尚未自动触发 S 档加载 | 中 | 总控（合并时顺手接） | 待办 |
+
+## R50 characters: minimal integration approved by current integration owner (2026-10-22)
+- main.js: import and construct CharacterSystem after existing world/UI readiness, pass existing camera/day-cycle/quality/hidden state to one update, dispose before world. No architectural or flight mutation.
+- SettingsMenu.js: add one accessible 宫廷人物 toggle and historical interpretation notice. Existing modal/input/focus behavior remains owned by existing implementation.
+- PerfHUD.js: accept a read-only characterProvider and display separate logical/load/render/CPU stats. Existing complete-frame renderer.info reset remains unchanged.
+- Frozen: data/zones, palace/zone builders, InteriorLoader, Collision, prior stepwalk and regression tests.
+- R50 samples require user style approval before expanded population. Formal seat supports are checked against visible furniture rather than collision proxy heights.
+- 2026-10-22 additional QA-only approval: package.json/package-lock.json add exact devDependency @napi-rs/canvas@0.1.100 from the official npm registry. No production dependency, existing package version, existing lock entry, or npm script changes. Clean npm ci, native PNG and all affected character tests verified.
+
+### R50 independent readiness follow-up · 2026-10-22
+
+- Base: frozen local `5495e2acb42924a27e2d5c07eda5a8ff0944464c`, published candidate `306f5eeba65164fdcb65f173f3fa45a0f154cd3c`. The delivered candidate is unchanged and remains available for rollback.
+- Approved scope: resumable `CharacterWorldAdapter` queries, one `CharacterWorkQueue` advanced only inside `CharacterSystem.update`, and bounded `CharacterResourcePool`/Kit preparation. No worker copy of the world, extra RAF/timer, production dependency, building, collision, zone, InteriorLoader or main change.
+- All three LODs of an actual actor's pose/seat variant are prepared before its binding becomes visible. First-template work is included in the total NPC update deadline; no half-built geometry is published. Cancellation closes generators and stale work cannot publish ready results.
+- Queries continue to use real source triangles, groups, draw ranges, material sides and the existing collision data. A flat exact-layer candidate may be tested first but its box is never accepted as support. World and character/surface/body configuration are part of cache validity.
+- The budget is cooperative, not a strict wall-time guarantee: one bounded step and JavaScript/GC/scheduling can exceed the deadline. Reports retain p95, maxima, total update wall time, process CPU, and full/first-core readiness latency separately.
+- User confirmed the earlier male three-pose and corrected-throne style direction at 03:58:03 UTC, not historical/GPU/overall acceptance. Female candidate-05 images were separately supplied at 04:28:42 UTC and must never be overwritten; they remain a separate confirmation item until an explicit answer is received.
+- Female changes retain the 1.70 m calibration and all seat/foot contact metrics. Ninety male combinations remain byte-identical to the frozen baseline; 36 female combinations have a separate new visual candidate baseline. Official source images are research-only and must not be committed or republished without rights.
+- `CHARACTER_ROLLOUT_APPROVED` remains false. Registered required actors are not removed from coverage while preparing or blocked. Plaque repairs are a separate version and are not merged here.
+
+- Readiness integration approved at 04:35 UTC: CharacterManager applies a 0.35 s readiness factor, multiplied by existing schedule visibility. Normal LOD/quality switches do not restart it. PerfHUD adds read-only ready/pending/error counts and does not reset full-frame counters.
+- Physical support proof is tied to exact hit owners, ancestor transforms/visibility and geometry/material/group/draw-range versions. The first query snapshot is retained; changes before commit fail closed. Completed caches check local route/body/turn bounds against appended collider/walkable boxes. Full collection replacement, large append batches or root ownership changes conservatively invalidate.
+- Scene geometry attributes modified in place without their normal Three.js version update, or existing collision/walkable boxes edited in place without collection replacement, require explicit world.invalidate(). The existing append/remove-by-tag collection lifecycle is covered; no building/Collision event contract is silently changed.
+- Manager-only synchronous revision reads share a per-update snapshot. A try/finally ends that snapshot before any resumable work advances; no ready-support snapshot survives to the next update.
+- Actual high and low preparation budgets are both 1 ms total NPC update targets. The earlier 0.6 ms low target caused a measured 25.6 s readiness delay and was rejected. This is a cooperative target, not a guaranteed maximum; the retained final primary low run includes a 16.12 ms tail.
+
+### R50 storage-only evidence packaging · 2026-10-22 05:19 UTC
+
+- Preserve commit/worktree 314751a381bdbf159a3dd5bdb3c92fcbe7240700. No production, data, dependency, candidate-05 image/cache or rollout change.
+- Explicit follow-up authorization permits the two immutable test oracles to move to gzip binary parts, at most 120000 bytes each. The test reader only checks ordered pieces, concatenates, decompresses and parses; all original 126/36 cases and existing assertions remain byte-identical. No oracle regeneration.
+- Each index records per-part/full-gzip/original JSON SHA256 and original Git blob identity. Verification optionally compares all original bytes with 314751; normal clean-checkout verification does not require that unpublished local commit. Missing/order/corruption and manifest/index divergence fail closed.
+- The one-time female capture script now recognizes compressed/indexed existing fixtures and refuses replacement. Its historical generation logic is otherwise unchanged; it is not a current oracle-recreation command.
+- Large measurement reports are losslessly archived; regenerable readiness expanded triangles are omitted with source hash and reconstruction instructions. Previous numerical/GPU/history limitations remain unchanged.
+- User supplied a new female art reference at 05:13 UTC; candidate-05 is not approved. New actual models are developed separately and are not included in this storage-only revision.
+
+
+## R50 final joint successor, 2026-10-22 06:28 UTC
+
+Approved scope: original R49B 95db2af114-path cherry-pick, plus independently frozen Benren depth-only ad64 patch; no R49C experiment. Preserve old R49/R49B/R50 branches and manifests. World-source expectations are read from frozen Git blobs, with explicit 182→185→185 provenance; inherited QA remains identified, not relabelled fresh.
+
+Female06-06 appearance approved by user 06:02 (Sentinel_074343e350388191b624c8316491eaf1), limited to exact original three PNGs/Kit hash. Kit07 repairs seated weights only; independent buffers/metadata verification preserves the approved static scope. Runtime route-identity variant and stable near<=2 were approved. Gate remains false pending runtime/history/GPU acceptance.
+
+SettingsMenu change in this successor is wording only: “待视觉确认”→“待验收”; main, architecture and collision otherwise only inherit explicitly approved owner commits. New test-only current07 semantics keep old fixture bytes/assertions and old red. Evidence transportation changes containers only, with original GIF/gzip byte equality and safe restore. See reports/r50-joint/README.md, geometry-acceptance.md, world-benren-inheritance.md and transport-README.md.

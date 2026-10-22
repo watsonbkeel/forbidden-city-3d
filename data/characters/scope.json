@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 2,
+  "baselineCommit": "92cf31ec1779d0d6266a2caa6ad1708c379d1500",
+  "registeredHardLimit": 96,
+  "minimumRequired": 38,
+  "requiredActorIds": [
+    "taihe-emperor-01",
+    "taihe-official-east-01-01",
+    "taihe-official-east-01-02",
+    "taihe-official-east-02-01",
+    "taihe-official-east-02-02",
+    "taihe-official-east-03-01",
+    "taihe-official-east-03-02",
+    "taihe-official-east-04-01",
+    "taihe-official-east-04-02",
+    "taihe-official-west-01-01",
+    "taihe-official-west-01-02",
+    "taihe-official-west-02-01",
+    "taihe-official-west-02-02",
+    "taihe-official-west-03-01",
+    "taihe-official-west-03-02",
+    "taihe-official-west-04-01",
+    "taihe-official-west-04-02",
+    "taihe-attendant-east-01",
+    "taihe-attendant-west-01",
+    "taihe-guard-east-01",
+    "taihe-guard-east-02",
+    "taihe-guard-west-01",
+    "taihe-guard-west-02",
+    "wumen-guard-east-01",
+    "wumen-guard-west-01",
+    "shenwu-guard-east-01",
+    "shenwu-guard-west-01",
+    "qianqing-guard-east-01",
+    "qianqing-guard-west-01",
+    "west-lane-guard-01",
+    "west-lane-guard-02",
+    "west-lane-guard-03",
+    "chuxiu-consort-01",
+    "chuxiu-maid-01",
+    "yikun-consort-01",
+    "yikun-eunuch-01",
+    "yongshou-consort-01",
+    "yongshou-maid-01"
+  ],
+  "requiredScenes": {
+    "taihe": 23,
+    "gates": 6,
+    "lane": 3,
+    "yikun": 2,
+    "yongshou": 2,
+    "chuxiu": 2
+  },
+  "releaseGate": "c1-user-visual-approval",
+  "sceneEnabledByDefault": false,
+  "policy": "Required remains true even while visual approval or actual support is pending.",
+  "forbiddenAreas": [
+    {
+      "id": "yanxi-water-palace",
+      "source": "src/scene/palace/special/YanxiRuin.js",
+      "reason": "1909 water palace is incompatible with Qianlong life scenes."
+    },
+    {
+      "id": "helicopter-clearance",
+      "source": "src/scene/flight/FlightState.js#HELICOPTER_HOME+LANDING_CHOICES+FLIGHT_RULES.radius",
+      "reason": "Every actual parking circle excludes rotor radius + actor envelope + 1 m disembark margin; state is read-only."
+    }
+  ],
+  "deferred": [
+    "formal-ceremony-excerpt",
+    "wall-top-patrol",
+    "foreign-envoys",
+    "second-patrol-route",
+    "remaining-four-gates"
+  ]
+}

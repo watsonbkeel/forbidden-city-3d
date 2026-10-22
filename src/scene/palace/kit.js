@@ -1,3 +1,4 @@
+import {buildHorizontalNameboardAtlas} from './special/HorizontalNameboardAtlas.js';
 import * as THREE from 'three';
 import { applyBoxUV, applyBandUV } from '../../utils/GeometryUV.js';
 import { buildRoof, buildWallCap } from '../RoofBuilder.js';
@@ -281,7 +282,7 @@ export class CourtKit {
     this.box(f, 'stone_slab', w + 2 * pw + 0.2, 0.1, gd + 0.5, 0, 0.05, 0);
     this.doors(f, { jamb: w / 2, height: h - 0.1, zHinge: -gd / 2 + 0.3, leaf: w / 2 - 0.05 });
     this.roof(f, { type: roof, width: w + 2 * pw + 0.3, depth: gd + 0.5, baseY: H, brackets: false, height: 1.3 });
-    if (name) this.plaque(f, name, 0, h + (H - h) / 2, -gd / 2 - 0.06, 0.72, 1.2);
+    if (name) this.plaque(f, name, 0, h + (H - h) / 2, -gd / 2 - 0.13, 0.72, 1.2);
     this.mapRect(f, 'gate', name, w + 2 * pw, gd);
     return w + 2 * pw;
   }
@@ -325,7 +326,7 @@ export class CourtKit {
       this.box(f, 'caihua_beam', 0.4, 0.6, D, s * W / 2, ph + colH - 0.3, 0, 'band');
     }
     this.roof(f, { type: roof, width: W + 0.5, depth: D + 0.5, baseY: ph + colH, layers, brackets });
-    if (name) this.plaque(f, name, 0, ph + h + (colH - h) / 2, -0.34, 0.8, Math.min(1.5, colH - h - 0.1));
+    if (name) this.plaque(f, name, 0, ph + h + (colH - h) / 2, -0.43, 0.8, Math.min(1.5, colH - h - 0.1));
     this.mapRect(f, 'gate', name, W, D);
     return W;
   }
@@ -385,7 +386,7 @@ export class CourtKit {
       this.box(f, 'caihua_beam', 0.4, 0.6, D, s * W / 2, ph + colH - 0.3, 0, 'band');
     }
     this.roof(f, { type: roof, width: W + 0.5, depth: D + 0.5, baseY: ph + colH, layers, brackets });
-    if (name) this.plaque(f, name, 0, ph + h + (colH - h) / 2, -0.34, 0.8, Math.min(1.5, colH - h - 0.1));
+    if (name) this.plaque(f, name, 0, ph + h + (colH - h) / 2, -0.43, 0.8, Math.min(1.5, colH - h - 0.1));
     this.mapRect(f, 'gate', name, W, D);
     return W;
   }
@@ -652,7 +653,10 @@ export class CourtKit {
 
   buildPlaqueAtlas() {
     if (!this.plaques.length) return;
-    const texts = [...new Set(this.plaques.map(p => p.text))];
+    const vertical=this.plaques.filter(p=>p.layout!=='horizontal');
+    buildHorizontalNameboardAtlas(this,this.plaques.filter(p=>p.layout==='horizontal'));
+    if(!vertical.length)return;
+    const texts = [...new Set(vertical.map(p => p.text))];
     const CW = 96, CH = 256, cols = 21;
     const rows = Math.ceil(texts.length / cols);
     const canvas = document.createElement('canvas');
@@ -681,7 +685,7 @@ export class CourtKit {
     const mat = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.5, metalness: 0.15, name: 'kit_plaques' });
     this.owned.push(mat);
     (this.ownedTextures ??= []).push(tex);
-    for (const { mesh, text } of this.plaques) {
+    for (const { mesh, text } of vertical) {
       const [u0, v0, du, dv] = cell.get(text);
       const uv = mesh.geometry.attributes.uv;
       for (let i = 0; i < uv.count; i++) uv.setXY(i, u0 + uv.getX(i) * du, v0 + uv.getY(i) * dv);

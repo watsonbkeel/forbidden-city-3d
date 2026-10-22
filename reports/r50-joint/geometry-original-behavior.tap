@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: cancellation at every phase never publishes or allocates partial geometry and is final
+ok 1 - cancellation at every phase never publishes or allocates partial geometry and is final
+  ---
+  duration_ms: 55.634627
+  type: 'test'
+  ...
+# Subtest: incremental validation fails before producing work and preserves synchronous errors
+ok 2 - incremental validation fails before producing work and preserves synchronous errors
+  ---
+  duration_ms: 0.520106
+  type: 'test'
+  ...
+# Subtest: independent Three operations obey per-next bounds without whole-buffer normal or bounds calls
+ok 3 - independent Three operations obey per-next bounds without whole-buffer normal or bounds calls
+  ---
+  duration_ms: 79.991796
+  type: 'test'
+  ...
+# Subtest: throw cancellation unwinds preparation and never returns a geometry
+ok 4 - throw cancellation unwinds preparation and never returns a geometry
+  ---
+  duration_ms: 0.70441
+  type: 'test'
+  ...
+# Subtest: the intentional female update preserves historical contact metadata and does not relabel historical approval
+ok 5 - the intentional female update preserves historical contact metadata and does not relabel historical approval
+  ---
+  duration_ms: 191.831144
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 568.926333

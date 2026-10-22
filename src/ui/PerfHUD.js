@@ -11,9 +11,10 @@ const DOM_INTERVAL_MS = 250;
 const FPS_WINDOW_MS = 500;
 
 export class PerfHUD {
-  constructor(renderer, { zoneProvider = null, visible = Boolean(import.meta.env?.DEV), parent = document.body } = {}) {
+  constructor(renderer, { zoneProvider = null, characterProvider = null, visible = Boolean(import.meta.env?.DEV), parent = document.body } = {}) {
     this.renderer = renderer;
     this.zoneProvider = zoneProvider;
+    this.characterProvider = characterProvider;
     renderer.info.autoReset = false;
     renderer.info.reset();
 
@@ -100,6 +101,7 @@ export class PerfHUD {
       geometries: this.stats.geometries,
       textures: this.stats.textures,
       ...this.getZones(),
+      characters: this.characterProvider?.() ?? null,
     };
   }
 
@@ -112,6 +114,12 @@ export class PerfHUD {
       `Geom  ${s.geometries}   Tex ${s.textures}\n` +
       `Zone  ${current}\n` +
       `Loaded ${loaded}`;
+    const c = this.characterProvider?.();
+    if (c) this.el.textContent += `\nNPC ${c.registered} reg / ${c.loaded} loaded / ${c.visible} visible / ${c.near} near` +
+      `\nReady ${c.loaded} / pending ${c.pending ?? 0} / failed ${c.errors ?? 0}` +
+      `\nCopies ${c.renderCopies} / batches ${c.batches} / tris~ ${c.trianglesEstimate}` +
+      `\nCPU p50/p95 ${(c.updateP50Ms ?? 0).toFixed(2)}/${(c.updateP95Ms ?? 0).toFixed(2)} ms`;
+
   }
 
   dispose() {

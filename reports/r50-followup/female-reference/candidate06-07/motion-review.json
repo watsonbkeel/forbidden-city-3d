@@ -1,0 +1,300 @@
+{
+  "status": "Internal CPU dynamic evidence only; not sent directly to user",
+  "kitSha256": "cc311f8fdaa912538fdfffebd66b7fa2c5de7f2c7063ffbc5bf462bc3f5edc6c",
+  "animationSha256": "f08482e143894813124b762e847dda4749a62dedeeffb1d4a57c831ab7629bc9",
+  "dynamicEvidence": [
+    {
+      "path": "female-reference-seated-idle-hand-motion-8s.gif",
+      "frames": 24,
+      "displayDurationMilliseconds": 8000,
+      "frameDurationsMilliseconds": [
+        330,
+        330,
+        340,
+        330,
+        330,
+        340,
+        330,
+        330,
+        340,
+        330,
+        330,
+        340,
+        330,
+        330,
+        340,
+        330,
+        330,
+        340,
+        330,
+        330,
+        340,
+        330,
+        330,
+        340
+      ],
+      "pixelsIdenticalToOriginalGif": true,
+      "timingOnly": "333ms is quantized by GIF to 330ms; duration schedule 330/330/340 yields exactly 8 seconds without changing decoded pixels."
+    },
+    {
+      "path": "female-reference-life-motion-8s.gif",
+      "frames": 24,
+      "displayDurationMilliseconds": 8000,
+      "frameDurationsMilliseconds": [
+        330,
+        330,
+        340,
+        330,
+        330,
+        340,
+        330,
+        330,
+        340,
+        330,
+        330,
+        340,
+        330,
+        330,
+        340,
+        330,
+        330,
+        340,
+        330,
+        330,
+        340,
+        330,
+        330,
+        340
+      ],
+      "pixelsIdenticalToOriginalGif": true,
+      "timingOnly": "333ms is quantized by GIF to 330ms; duration schedule 330/330/340 yields exactly 8 seconds without changing decoded pixels."
+    }
+  ],
+  "exportedSampleIntervalSeconds": 0.3333333333333333,
+  "exportedTimeRangeSeconds": [
+    0,
+    7.666666666666667
+  ],
+  "samplePhase": 0.35,
+  "amplitude": 0.7,
+  "modelScale": 1,
+  "staticReference": "candidate06-06/models.json.gz",
+  "staticComparison": [
+    {
+      "key": "consort-seated",
+      "equal": {
+        "positions": true,
+        "normals": true,
+        "colors": true,
+        "indices": true,
+        "metadata": true
+      }
+    },
+    {
+      "key": "maid-standing",
+      "equal": {
+        "positions": true,
+        "normals": true,
+        "colors": true,
+        "indices": true,
+        "metadata": true
+      }
+    },
+    {
+      "key": "maid-walking",
+      "equal": {
+        "positions": true,
+        "normals": true,
+        "colors": true,
+        "indices": true,
+        "metadata": true
+      }
+    }
+  ],
+  "staticComparisonBoundary": "Only the three exported review meshes are independently compared here. Positions, normals, vertex colors, indices and pose metadata match exactly. Exported meshes omit rig weight attributes, so this comparison does not imply those attributes match, nor does it substitute for full-template tests.",
+  "runtimeBoundary": "Seated/standing idle and root-relative walking deformation only; no runtime/world-space route, GPU, FPS or foot-lock proof. walkingRuntimeIntegration remains not-integrated in this isolated export.",
+  "visualReview": {
+    "viewed": "Actual seated hand and three-person PNG contact sheets for frames 01,09,17.",
+    "finding": "Overlapping hands remain visible at the sampled phase=.35 idle times, without obvious disappearance into cloth. Head/upper-body motion and root-relative walking variation are visible in the overview.",
+    "limitation": "Pixel review is not a signed clearance/intersection test; owner numeric validation is separate."
+  },
+  "frozenCandidate06PngHashesPreserved": true,
+  "productionSourcesModifiedByRenderer": false,
+  "existingEvidenceOverwritten": false,
+  "files": [
+    {
+      "path": "Animation-source.js",
+      "sha256": "f08482e143894813124b762e847dda4749a62dedeeffb1d4a57c831ab7629bc9",
+      "bytes": 4307,
+      "publication": "candidate-evidence"
+    },
+    {
+      "path": "CharacterKit-source.js",
+      "sha256": "cc311f8fdaa912538fdfffebd66b7fa2c5de7f2c7063ffbc5bf462bc3f5edc6c",
+      "bytes": 47780,
+      "publication": "candidate-evidence"
+    },
+    {
+      "path": "animation-frames.json.gz",
+      "sha256": "29888d168dd3930dedbc414b6cfc8a1d6c5255a49e950854012739d5b2c88abf",
+      "bytes": 18562350,
+      "publication": "local-not-committed"
+    },
+    {
+      "path": "export-manifest.json",
+      "sha256": "888668c12b67fd074d290fc79c15424ba913b23832eb9fdded101279704d13a1",
+      "bytes": 3470,
+      "publication": "candidate-evidence"
+    },
+    {
+      "path": "female-reference-life-frame-01.png",
+      "sha256": "ab343e0b10a4480dfea15b17b022ab1c4c932d42012239b4b342d3a95c2d8dbf",
+      "bytes": 182291,
+      "publication": "candidate-evidence",
+      "dimensions": [
+        1350,
+        810
+      ]
+    },
+    {
+      "path": "female-reference-life-frame-09.png",
+      "sha256": "35b7590bebb8b1c3beb75c21fe1b9aeb04522fd7f69d95662a5f44109dbad3b6",
+      "bytes": 183025,
+      "publication": "candidate-evidence",
+      "dimensions": [
+        1350,
+        810
+      ]
+    },
+    {
+      "path": "female-reference-life-frame-17.png",
+      "sha256": "ff685956d97776ca1498c7fbed89fd04803196b6bf56d7ed491ad76d593e5307",
+      "bytes": 182396,
+      "publication": "candidate-evidence",
+      "dimensions": [
+        1350,
+        810
+      ]
+    },
+    {
+      "path": "female-reference-life-keyframes.png",
+      "sha256": "b815b28c60fc03a2300ec1b7188ca6e7968fa0c18caee3c2cf31b3bb2e33dc00",
+      "bytes": 547797,
+      "publication": "candidate-evidence",
+      "dimensions": [
+        1350,
+        2430
+      ]
+    },
+    {
+      "path": "female-reference-life-motion-8s.gif",
+      "sha256": "f913c8dcf0dc312efda70834dcd5e2e8d6f338d0b6835fd0ed4b060d209534f1",
+      "bytes": 2951704,
+      "publication": "candidate-evidence"
+    },
+    {
+      "path": "female-reference-life-motion.gif",
+      "sha256": "7c129b3d361afff51303ebc29f257f6dffaf83d76fdc1241dbf3a7ab9d5f71e8",
+      "bytes": 2668308,
+      "publication": "local-not-committed"
+    },
+    {
+      "path": "female-reference-seated-idle-frame-01.png",
+      "sha256": "973d27c1c508f48cdb69f1b578ca88c758668678aebb858c5dc870f4b5d4cba2",
+      "bytes": 204639,
+      "publication": "candidate-evidence",
+      "dimensions": [
+        1400,
+        740
+      ]
+    },
+    {
+      "path": "female-reference-seated-idle-frame-09.png",
+      "sha256": "c7d52cdd69f25971c5b503707156d19ab171235374c97cf4d6304daff2d35111",
+      "bytes": 204732,
+      "publication": "candidate-evidence",
+      "dimensions": [
+        1400,
+        740
+      ]
+    },
+    {
+      "path": "female-reference-seated-idle-frame-17.png",
+      "sha256": "14151ab54e6fa2a3ec7689e39332d41c6dafa019836fa306a162d42c369d73c4",
+      "bytes": 203978,
+      "publication": "candidate-evidence",
+      "dimensions": [
+        1400,
+        740
+      ]
+    },
+    {
+      "path": "female-reference-seated-idle-hand-motion-8s.gif",
+      "sha256": "965703671c3ae68417c9ad4a678e572017d4f0f65979f50f15f2ab6fd4083eef",
+      "bytes": 3579669,
+      "publication": "candidate-evidence"
+    },
+    {
+      "path": "female-reference-seated-idle-hand-motion.gif",
+      "sha256": "c4019973eb330c34f98eb1a8d4b80d68473d612e0dfe7032c94db49380310bfc",
+      "bytes": 3579669,
+      "publication": "local-not-committed"
+    },
+    {
+      "path": "female-reference-seated-idle-keyframes-early.png",
+      "sha256": "63ecc3b7bbe01129fe6c1379f3bb399174b21f44256169e8a826f2ec1d05bdc9",
+      "bytes": 612466,
+      "publication": "local-not-committed",
+      "dimensions": [
+        1400,
+        2220
+      ]
+    },
+    {
+      "path": "female-reference-seated-idle-keyframes.png",
+      "sha256": "63ecc3b7bbe01129fe6c1379f3bb399174b21f44256169e8a826f2ec1d05bdc9",
+      "bytes": 612466,
+      "publication": "candidate-evidence",
+      "dimensions": [
+        1400,
+        2220
+      ]
+    },
+    {
+      "path": "models.json.gz",
+      "sha256": "27a4da79631adeedab1c9417fc3df03edf320f42dbe9859c04caaf52a773a585",
+      "bytes": 712421,
+      "publication": "candidate-evidence"
+    },
+    {
+      "path": "p3c-finalize-female-motion-evidence.py",
+      "sha256": "ef41e55164fc623dac73ef3b1ca19242b76b5179cd35a84f899b224ebe91b3f5",
+      "bytes": 5344,
+      "publication": "candidate-evidence"
+    },
+    {
+      "path": "p3c-render-female-idle-hand-motion.py",
+      "sha256": "6ea948898554eb2204a831653111519fc4786b9b28ac172ab6e4a1b7e8682dfc",
+      "bytes": 3183,
+      "publication": "candidate-evidence"
+    },
+    {
+      "path": "renderer-source.py",
+      "sha256": "f611d7acc3461e50069878366f5471d70e243574ca8c2cf67e1d9d2f7b0f93d8",
+      "bytes": 8197,
+      "publication": "candidate-evidence"
+    },
+    {
+      "path": "seated-idle-motion-manifest.json",
+      "sha256": "02375b193788de15b3e8727f0766c05f473b833939bd82a7d79e34da05894f47",
+      "bytes": 856,
+      "publication": "candidate-evidence"
+    }
+  ],
+  "reproduction": [
+    "P3C_FEMALE_OUT=<fresh-output> node scripts/p3c-render-female-reference-export.mjs --animation",
+    "P3C_FEMALE_OUT=<fresh-output> python scripts/p3c-render-female-idle-hand-motion.py",
+    "P3C_FEMALE_OUT=<fresh-output> python scripts/p3c-render-female-reference.py animation",
+    "P3C_FEMALE_OUT=<fresh-output> python scripts/p3c-finalize-female-motion-evidence.py"
+  ]
+}

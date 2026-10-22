@@ -1,0 +1,222 @@
+✔ registered data preserves exactly 38 immutable required actors and seven templates (7.382618ms)
+✔ schema catches removal or downgrading required content independently of actor count (3.798583ms)
+✔ schema rejects duplicate IDs, unresolved references, incompatible poses and bad motion (4.934133ms)
+✔ validator returns actionable errors, never throws on malformed data containers (1.572246ms)
+✔ schema rejects cross-zone bindings, duplicate formation slots and attempts to rewrite coverage manifest (3.66517ms)
+✔ readonly world source manifest preserves the frozen architecture baseline (8.253362ms)
+✔ consort-daily/standard: actual lower palm rests near lap and both hand meshes stay outside cloth (283.135451ms)
+✔ consort-daily/kang-low: actual lower palm rests near lap and both hand meshes stay outside cloth (272.072723ms)
+✔ consort-daily/raised-footstool: actual lower palm rests near lap and both hand meshes stay outside cloth (224.134974ms)
+✔ consort-daily/throne-front-perch: actual lower palm rests near lap and both hand meshes stay outside cloth (252.57125ms)
+✔ maid-daily/standard: actual lower palm rests near lap and both hand meshes stay outside cloth (227.2688ms)
+✔ maid-daily/kang-low: actual lower palm rests near lap and both hand meshes stay outside cloth (241.388978ms)
+✔ maid-daily/raised-footstool: actual lower palm rests near lap and both hand meshes stay outside cloth (227.457281ms)
+✔ maid-daily/throne-front-perch: actual lower palm rests near lap and both hand meshes stay outside cloth (230.889779ms)
+✔ preserved 04 geometry demonstrates the prior suspended-hand defect without rewriting it (474.997424ms)
+✔ reference revision keeps all 90 male outputs byte exact (182.974935ms)
+✔ L0 female eyes contain separate sclera, iris and pupil geometry rather than black slits (24.109859ms)
+✔ female walking sample has distinct actual lowered arm geometry and no male effect (15.108857ms)
+✔ female contact contract, bounded same-source generation and per-LOD mesh budget stay intact (289.201395ms)
+✔ female L0/L1 robe is one connected shell across the waist, not a capped blouse over a skirt (54.77061ms)
+✔ female crown remains broad near the top instead of tapering into a pointed hat (19.266249ms)
+✔ walking preview preserves same-source incremental generation and carries only geometry pose metadata (43.765183ms)
+✔ reference closure is visible on the new curved path rather than the preserved candidate05 coordinates (19.332667ms)
+✔ female neck top is embedded inside the actual skull rather than exposing a cut cylinder rim (60.257723ms)
+✔ candidate06 scalp tapers at the relocated upper-forehead section (12.867503ms)
+✔ candidate06 skull and hair remain covered at transformed upper-cranium ray locations for all LODs (40.588273ms)
+✔ candidate06 unchanged nose volume remains readable on both profiles after facial translation (13.557923ms)
+✔ female hair continuously covers the lower back of the head, not a cutoff cap (70.402965ms)
+✔ both anonymous women have distinct natural face profiles and bun silhouettes at every LOD (28.192232ms)
+✔ female revisions preserve adult scale, true seat surfaces, foot contacts and bounded same-source API (316.522512ms)
+✖ female swept scalp follows the forehead rather than forming a projecting cap brim (8.553338ms)
+✖ hair has no exposed upper-skull bands at oblique angles or between authored rings (8.877466ms)
+✖ female noses are closed volumes readable from either profile, not only flat frontal paint (9.077821ms)
+✖ female right-lapel border follows the curved cloth without vanishing under long flat chords (11.032997ms)
+✔ consort-daily: prepared and acquired folded/hanging variants coexist at every LOD (70.880868ms)
+✔ maid-daily: prepared and acquired folded/hanging variants coexist at every LOD (30.334868ms)
+✔ cached defaults cannot hide invalid female options, poses, templates or LODs (5.569378ms)
+✔ only immutable standing female route identity selects hanging arms, never speed or behavior.pathRef (196.916629ms)
+✔ folded and hanging women get unique batches while default and male keys stay byte-for-byte compatible (9.773859ms)
+✔ actual registry prewarms 27 resource keys for all 38 required actors and keeps emperor priority (75.561901ms)
+✔ real route pauses and resumes without geometry replacement, binding churn or readiness restart (13.400018ms)
+✔ real queue publishes a path binding only after all matching walking LODs are prepared (21.868841ms)
+✔ cancelled preparation, changed identity and reloaded world cannot publish stale walking bindings (61.693795ms)
+✔ partial LOD preparation can be cancelled and resumed without stale reuse or leaked resources (16.625048ms)
+✔ bounded cache eviction never disposes a referenced folded or hanging sibling (2.632226ms)
+✔ System off/on cancels a real pending female request and late work cannot resurrect a disabled actor (22.051093ms)
+✔ System disposal during real female preparation settles the request without publishing geometry (0.837149ms)
+✔ all 90 male requests preserve legacy keys and exact unmodified factory output with omitted/resting options (222.944202ms)
+✔ real System cold queue starts the required emperor before any female variant preparation (37.959312ms)
+✔ cooperative queue stops on elapsed time and leaves incomplete work unpublished (1.317815ms)
+✔ queue deduplicates and cancels stale versions without publishing partial work (0.33546ms)
+✔ async world validation yields within one route, then matches its synchronous oracle (287.003425ms)
+✔ an invalidated in-flight route cannot publish old floor evidence (6.068151ms)
+✔ actual flat-layer geometry is tried before cheaper empty envelope geometry (2.043568ms)
+✖ tests/p3c-kit-incremental.test.mjs (2179.581975ms)
+✔ all seven identity templates provide valid merged geometry for three poses and three LODs (210.856899ms)
+✔ unknown inputs fail rather than generate a default identity or pose (0.439465ms)
+✔ resource pool shares resources, retains referenced assets and disposes idempotently (3.400143ms)
+✔ CPU animation is deterministic, preserves zero-weight seams and moves normals with parts (0.461529ms)
+✔ garment side normals point outward for front-face culling (3.03512ms)
+✔ distant LODs obey explicit geometric per-template budgets (36.388526ms)
+✔ seat variants preserve adult torso and expose truthful support contacts (32.668379ms)
+✔ walking stance feet stay on ground and fixed in world while the root advances (0.892041ms)
+✔ production ambient amplitude does not scale away physical gait support (1.509152ms)
+✔ seated garment has actual seat-contact surface, not only a metadata anchor (16.192913ms)
+✔ throne-front-perch bends over real footstool while clearing the throne front (9.812013ms)
+✔ declared animation bounds cover transformed vertices across poses and gait phases (55.6414ms)
+✔ CPU cloth center seam matches GLSL sign(0) instead of choosing a side (0.269212ms)
+✔ kang garment triangle edges remain outside the actual front face below seat top (19.351076ms)
+✔ newly ready required emperor fades in over 0.35 seconds without moving or duplicate copies (5.750421ms)
+✔ LOD and quality changes never restart readiness fade (1.683753ms)
+✔ hidden/resumed frame does not fast-forward readiness fade (0.349081ms)
+✔ readiness fade cannot bypass night, disabled or unapproved gates (0.439937ms)
+✔ a genuinely new support revision restarts fade, but ordinary updates do not (0.366046ms)
+✔ 64 same-template characters use one real InstancedMesh and distinct matrices (7.234054ms)
+✔ raycast does not intercept place and treasure clicks (1.214362ms)
+✔ 20 render/clear cycles remove all instances, preserve finite cache, release references (2.443387ms)
+✔ LOD and zone changes replace batches without duplicate render copies (0.742988ms)
+✔ shader injects matching position and normal deformation and shared time (0.494218ms)
+✔ seated support variant is part of the actual batch geometry key (18.3617ms)
+✔ night visibility uses opaque dither coverage instead of transparent sorting or global time (0.418625ms)
+✔ stable seed and environment motion never use frame random (1.475181ms)
+✔ content approval gate registers requirements but does not mass instantiate (0.50248ms)
+✔ 20 zone unload/reloads and on/off cycles retain unique logical identities and stop updates (3.336499ms)
+✔ missing required support is explicitly pending not origin fallback (0.176884ms)
+✔ 30 seconds background and first resumed frame do not advance simulation (0.316031ms)
+✔ invalid dt never poisons time and spikes are clamped (0.268331ms)
+✔ late async support cannot resurrect switched-off or disposed actors (0.340057ms)
+✔ night scheduling waits until offscreen; entering at night does not load court (0.725623ms)
+✔ projection-aware aerial LOD keeps discernible actors beyond 150 metres (0.175983ms)
+✔ mobile fixed court selection is 19 with symmetric twelve officials and 13 other slots (6.829311ms)
+✔ duplicate actor IDs fail registration rather than silently overwrite (0.508388ms)
+✔ low-tier selection uses the registered formation, not only the changing view (0.304254ms)
+✔ required support errors remain visible in diagnostics with actor ID (0.169833ms)
+✔ zone revision invalidates old async support and off/on retries an unresolved request (0.345426ms)
+✔ camera inside a character head suppresses that character without moving logic (0.347188ms)
+✔ a watched ceremonial tableau retires at night with a bounded fade instead of persisting forever (0.603911ms)
+✔ unapproved rollout is explicit and mass content stays gated while default toggle is enabled (3.434976ms)
+✔ visibility event marks background even if browser stops RAF entirely, and listener is cleaned (53.089863ms)
+✔ manager error disables only character layer and reports blocker, not existing tour (1.168644ms)
+✔ main integration is one constructor/update/dispose with existing time and camera inputs (1.068814ms)
+✔ malformed NPC configuration fails closed without taking down the palace scene (0.585153ms)
+✔ palace character switch defaults on, emits once, preserves settings focus and explanation (8.361297ms)
+✔ second finger toggles characters once without movement leak (2.5002ms)
+✔ HUD reads character stats without extra renderer info resets (15.680905ms)
+✔ unapproved visual gate is not labelled as already visible (1.508922ms)
+✔ HUD distinguishes readiness, pending supports and failures without altering reset ownership (0.671933ms)
+✔ cached route revalidates after its anchor moves (14.013206ms)
+✔ cached route revalidates the separate surface anchor (3.567464ms)
+✔ manager-visible revision changes when recognized world topology changes (2.939777ms)
+✔ completed binding cannot reuse removed floor evidence on a new request (3.18317ms)
+✔ completed binding cannot reuse clearance after a blocking collider is appended (2.424498ms)
+✔ manager-visible revision notices a new wall beyond the current actor position (2.29174ms)
+✔ local dependency includes the wider endpoint turn disc (3.82039ms)
+✔ a distant append and unrelated zone preserve a completed local binding (1.78217ms)
+✔ completed support owner remove is detected before reuse (2.823994ms)
+✔ completed support owner hide is detected before reuse (1.812024ms)
+✔ completed support owner hide-ancestor is detected before reuse (1.348022ms)
+✔ completed support owner reparent is detected before reuse (2.601683ms)
+✔ completed support owner translate is detected before reuse (1.35362ms)
+✔ completed support owner translate-ancestor is detected before reuse (1.22637ms)
+✔ completed support owner rotate is detected before reuse (1.81593ms)
+✔ completed support owner scale is detected before reuse (1.82976ms)
+✔ completed support owner replace-geometry is detected before reuse (1.850812ms)
+✔ successive small distant appends remain local, followed by an intersecting nonblocking append rebind (3.366323ms)
+✔ a support owner hide after the last hit but before proof publication cannot become ready (0.79106ms)
+✔ a support owner translate after the last hit but before proof publication cannot become ready (0.814365ms)
+✔ a support owner replace-geometry after the last hit but before proof publication cannot become ready (0.449771ms)
+✔ a support owner replace-equivalent-geometry-and-retry after the last hit but before proof publication cannot become ready (0.54973ms)
+✔ geometry replacement after mesh indexing but before any hit remains retryable (0.722087ms)
+✔ shared manager read snapshots do not carry support evidence across frames (1.957811ms)
+✔ system closes the manager read scope before queue advance and after manager exceptions (1.267612ms)
+✔ seat candidate iteration does not copy an entire input list in one next() (1.367521ms)
+✔ world traversal also bounds terminal ancestor unwinding work (8.745731ms)
+✔ resource preparation cancellation publishes no half-built entry and preserves live references (7.342707ms)
+✔ queue rechecks mutable identity before resuming a paused iterator (0.286528ms)
+ℹ tests 136
+ℹ suites 0
+ℹ pass 131
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9090.924239
+
+✖ failing tests:
+
+test at tests/p3c-female-refinement.test.mjs:55:1
+✖ female swept scalp follows the forehead rather than forming a projecting cap brim (8.553338ms)
+  AssertionError [ERR_ASSERTION]: consort-daily: scalp must taper with the upper forehead
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r50-female-runtime/tests/p3c-female-refinement.test.mjs:56:147)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/p3c-female-refinement.test.mjs:58:1
+✖ hair has no exposed upper-skull bands at oblique angles or between authored rings (8.877466ms)
+  AssertionError [ERR_ASSERTION]: consort-daily/L0: scalp exposed at angle 0, y 1.626
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r50-female-runtime/tests/p3c-female-refinement.test.mjs:64:11)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/p3c-female-refinement.test.mjs:69:1
+✖ female noses are closed volumes readable from either profile, not only flat frontal paint (9.077821ms)
+  AssertionError [ERR_ASSERTION]: consort-daily: nose side -1 must have a visible surface
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r50-female-runtime/tests/p3c-female-refinement.test.mjs:70:290)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/p3c-female-refinement.test.mjs:72:1
+✖ female right-lapel border follows the curved cloth without vanishing under long flat chords (11.032997ms)
+  AssertionError [ERR_ASSERTION]: consort-daily lapel hidden at 0.105/1.32
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r50-female-runtime/tests/p3c-female-refinement.test.mjs:74:309)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/p3c-kit-incremental.test.mjs:1:1
+✖ tests/p3c-kit-incremental.test.mjs (2179.581975ms)
+  'test failed'

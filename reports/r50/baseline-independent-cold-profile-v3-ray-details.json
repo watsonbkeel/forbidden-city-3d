@@ -1,0 +1,1770 @@
+{
+  "kind": "Actual retained CPU architecture, production ZoneManager load/unload methods, production CharacterSystem and InstancedMesh renderer. NO WebGL render/GPU/device evidence.",
+  "startUtc": "2026-10-22T03:16:52.362Z",
+  "world": {
+    "colliders": 23253,
+    "walkables": 1075
+  },
+  "cold": {
+    "elapsedMs": 289.8197479999999,
+    "inclusiveProfile": {
+      "pool.acquire": {
+        "calls": 11,
+        "inclusiveMs": 12.435414000000947,
+        "maxMs": 6.171383000000333
+      },
+      "system.metricsFor": {
+        "calls": 38,
+        "inclusiveMs": 9.261191000000508,
+        "maxMs": 6.287527999999838
+      },
+      "world._meshList": {
+        "calls": 959,
+        "inclusiveMs": 7.258657999997467,
+        "maxMs": 4.469630000000052
+      },
+      "raycaster.intersectObject": {
+        "calls": 5107,
+        "inclusiveMs": 199.23913499999844,
+        "maxMs": 0.5555739999999787
+      },
+      "world.supportAt": {
+        "calls": 954,
+        "inclusiveMs": 216.83133700000144,
+        "maxMs": 5.660427000000254
+      },
+      "world._insideSeatFurniture": {
+        "calls": 20,
+        "inclusiveMs": 25.11874700000044,
+        "maxMs": 3.066823999999997
+      },
+      "world._resolveSeat": {
+        "calls": 2,
+        "inclusiveMs": 38.77910200000042,
+        "maxMs": 25.67082500000015
+      },
+      "world.resolve": {
+        "calls": 38,
+        "inclusiveMs": 270.56686399999853,
+        "maxMs": 139.14178600000014
+      },
+      "resolve:taihe-emperor-01": {
+        "calls": 1,
+        "inclusiveMs": 25.86101000000008,
+        "maxMs": 25.86101000000008
+      },
+      "world._surfaceAt": {
+        "calls": 184,
+        "inclusiveMs": 206.46177000000307,
+        "maxMs": 2.2061409999996613
+      },
+      "world._blockedSegment": {
+        "calls": 184,
+        "inclusiveMs": 6.366939999998522,
+        "maxMs": 3.990248999999949
+      },
+      "resolve:taihe-official-east-01-01": {
+        "calls": 1,
+        "inclusiveMs": 7.297473999999966,
+        "maxMs": 7.297473999999966
+      },
+      "resolve:taihe-official-east-01-02": {
+        "calls": 1,
+        "inclusiveMs": 1.991078000000016,
+        "maxMs": 1.991078000000016
+      },
+      "resolve:taihe-official-east-02-01": {
+        "calls": 1,
+        "inclusiveMs": 0.9121489999997721,
+        "maxMs": 0.9121489999997721
+      },
+      "resolve:taihe-official-east-02-02": {
+        "calls": 1,
+        "inclusiveMs": 0.7888149999998859,
+        "maxMs": 0.7888149999998859
+      },
+      "resolve:taihe-official-east-03-01": {
+        "calls": 1,
+        "inclusiveMs": 0.9777079999998932,
+        "maxMs": 0.9777079999998932
+      },
+      "resolve:taihe-official-east-03-02": {
+        "calls": 1,
+        "inclusiveMs": 0.8796400000001086,
+        "maxMs": 0.8796400000001086
+      },
+      "resolve:taihe-official-east-04-01": {
+        "calls": 1,
+        "inclusiveMs": 0.8297849999999016,
+        "maxMs": 0.8297849999999016
+      },
+      "resolve:taihe-official-east-04-02": {
+        "calls": 1,
+        "inclusiveMs": 0.9724699999997028,
+        "maxMs": 0.9724699999997028
+      },
+      "resolve:taihe-official-west-01-01": {
+        "calls": 1,
+        "inclusiveMs": 0.903215999999702,
+        "maxMs": 0.903215999999702
+      },
+      "resolve:taihe-official-west-01-02": {
+        "calls": 1,
+        "inclusiveMs": 0.8067009999999755,
+        "maxMs": 0.8067009999999755
+      },
+      "resolve:taihe-official-west-02-01": {
+        "calls": 1,
+        "inclusiveMs": 0.7034060000000864,
+        "maxMs": 0.7034060000000864
+      },
+      "resolve:taihe-official-west-02-02": {
+        "calls": 1,
+        "inclusiveMs": 0.8275519999997414,
+        "maxMs": 0.8275519999997414
+      },
+      "resolve:taihe-official-west-03-01": {
+        "calls": 1,
+        "inclusiveMs": 0.7629449999999451,
+        "maxMs": 0.7629449999999451
+      },
+      "resolve:taihe-official-west-03-02": {
+        "calls": 1,
+        "inclusiveMs": 0.7017030000001796,
+        "maxMs": 0.7017030000001796
+      },
+      "resolve:taihe-official-west-04-01": {
+        "calls": 1,
+        "inclusiveMs": 0.788043000000016,
+        "maxMs": 0.788043000000016
+      },
+      "resolve:taihe-official-west-04-02": {
+        "calls": 1,
+        "inclusiveMs": 0.6360450000001947,
+        "maxMs": 0.6360450000001947
+      },
+      "resolve:taihe-attendant-east-01": {
+        "calls": 1,
+        "inclusiveMs": 0.7573560000000725,
+        "maxMs": 0.7573560000000725
+      },
+      "resolve:taihe-attendant-west-01": {
+        "calls": 1,
+        "inclusiveMs": 0.4632150000002184,
+        "maxMs": 0.4632150000002184
+      },
+      "resolve:taihe-guard-east-01": {
+        "calls": 1,
+        "inclusiveMs": 0.6907769999997981,
+        "maxMs": 0.6907769999997981
+      },
+      "resolve:taihe-guard-east-02": {
+        "calls": 1,
+        "inclusiveMs": 0.6791590000002543,
+        "maxMs": 0.6791590000002543
+      },
+      "resolve:taihe-guard-west-01": {
+        "calls": 1,
+        "inclusiveMs": 0.5429650000000947,
+        "maxMs": 0.5429650000000947
+      },
+      "resolve:taihe-guard-west-02": {
+        "calls": 1,
+        "inclusiveMs": 0.5076319999998304,
+        "maxMs": 0.5076319999998304
+      },
+      "resolve:wumen-guard-east-01": {
+        "calls": 1,
+        "inclusiveMs": 0.5370960000000196,
+        "maxMs": 0.5370960000000196
+      },
+      "resolve:wumen-guard-west-01": {
+        "calls": 1,
+        "inclusiveMs": 0.49832800000012867,
+        "maxMs": 0.49832800000012867
+      },
+      "resolve:shenwu-guard-east-01": {
+        "calls": 1,
+        "inclusiveMs": 0.6724690000000919,
+        "maxMs": 0.6724690000000919
+      },
+      "resolve:shenwu-guard-west-01": {
+        "calls": 1,
+        "inclusiveMs": 0.6878830000000562,
+        "maxMs": 0.6878830000000562
+      },
+      "resolve:qianqing-guard-east-01": {
+        "calls": 1,
+        "inclusiveMs": 0.586460999999872,
+        "maxMs": 0.586460999999872
+      },
+      "resolve:qianqing-guard-west-01": {
+        "calls": 1,
+        "inclusiveMs": 0.5469910000001619,
+        "maxMs": 0.5469910000001619
+      },
+      "world.validatePath": {
+        "calls": 4,
+        "inclusiveMs": 198.51605299999983,
+        "maxMs": 139.09173099999998
+      },
+      "resolve:west-lane-guard-01": {
+        "calls": 1,
+        "inclusiveMs": 139.14178600000014,
+        "maxMs": 139.14178600000014
+      },
+      "resolve:west-lane-guard-02": {
+        "calls": 1,
+        "inclusiveMs": 0.03966899999977613,
+        "maxMs": 0.03966899999977613
+      },
+      "resolve:west-lane-guard-03": {
+        "calls": 1,
+        "inclusiveMs": 0.0118969999998626,
+        "maxMs": 0.0118969999998626
+      },
+      "resolve:chuxiu-consort-01": {
+        "calls": 1,
+        "inclusiveMs": 13.129979999999705,
+        "maxMs": 13.129979999999705
+      },
+      "resolve:chuxiu-maid-01": {
+        "calls": 1,
+        "inclusiveMs": 0.49931900000001406,
+        "maxMs": 0.49931900000001406
+      },
+      "resolve:yikun-consort-01": {
+        "calls": 1,
+        "inclusiveMs": 2.2195010000000366,
+        "maxMs": 2.2195010000000366
+      },
+      "resolve:yikun-eunuch-01": {
+        "calls": 1,
+        "inclusiveMs": 1.2034969999999703,
+        "maxMs": 1.2034969999999703
+      },
+      "resolve:yongshou-consort-01": {
+        "calls": 1,
+        "inclusiveMs": 59.43031099999962,
+        "maxMs": 59.43031099999962
+      },
+      "resolve:yongshou-maid-01": {
+        "calls": 1,
+        "inclusiveMs": 1.0808319999996456,
+        "maxMs": 1.0808319999996456
+      },
+      "renderer._create": {
+        "calls": 9,
+        "inclusiveMs": 4.678101999999853,
+        "maxMs": 1.3393999999998414
+      },
+      "renderer.render": {
+        "calls": 1,
+        "inclusiveMs": 5.373875999999655,
+        "maxMs": 5.373875999999655
+      }
+    },
+    "rayDetails": {
+      "taihe-core-fallback_taihe_dark_wood|146": {
+        "calls": 17,
+        "ms": 0.3256499999997686,
+        "hits": 0,
+        "firstSamples": [
+          {
+            "origin": [
+              0,
+              12.737499999999999,
+              9.05
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              -0.185,
+              12.737499999999999,
+              8.875
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              -0.185,
+              12.737499999999999,
+              9.225000000000001
+            ],
+            "points": []
+          }
+        ]
+      },
+      "taihe-core-fallback_taihe_teal|216": {
+        "calls": 17,
+        "ms": 0.4254789999999957,
+        "hits": 0,
+        "firstSamples": [
+          {
+            "origin": [
+              0,
+              12.737499999999999,
+              9.05
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              -0.185,
+              12.737499999999999,
+              8.875
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              -0.185,
+              12.737499999999999,
+              9.225000000000001
+            ],
+            "points": []
+          }
+        ]
+      },
+      "三台_wall_red|260": {
+        "calls": 17,
+        "ms": 0.428241999997681,
+        "hits": 0,
+        "firstSamples": [
+          {
+            "origin": [
+              0,
+              12.737499999999999,
+              9.05
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              -0.185,
+              12.737499999999999,
+              8.875
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              -0.185,
+              12.737499999999999,
+              9.225000000000001
+            ],
+            "points": []
+          }
+        ]
+      },
+      "taihe-core-fallback_taihe_lacquer|296": {
+        "calls": 17,
+        "ms": 0.41754299999956856,
+        "hits": 0,
+        "firstSamples": [
+          {
+            "origin": [
+              0,
+              12.737499999999999,
+              9.05
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              -0.185,
+              12.737499999999999,
+              8.875
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              -0.185,
+              12.737499999999999,
+              9.225000000000001
+            ],
+            "points": []
+          }
+        ]
+      },
+      "taihe-core-fallback_taihe_dark_gold|324": {
+        "calls": 17,
+        "ms": 0.4598400000008951,
+        "hits": 12,
+        "firstSamples": [
+          {
+            "origin": [
+              0,
+              12.737499999999999,
+              9.05
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              -0.185,
+              12.737499999999999,
+              8.875
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              -0.185,
+              12.737499999999999,
+              9.225000000000001
+            ],
+            "points": []
+          }
+        ]
+      },
+      "taihe-core-fallback_taihe_gold|368": {
+        "calls": 5,
+        "ms": 0.42961499999955777,
+        "hits": 5,
+        "firstSamples": [
+          {
+            "origin": [
+              0,
+              12.737499999999999,
+              9.05
+            ],
+            "points": [
+              [
+                0,
+                12.697499990463257,
+                9.05
+              ]
+            ]
+          },
+          {
+            "origin": [
+              -0.185,
+              12.737499999999999,
+              8.875
+            ],
+            "points": [
+              [
+                -0.185,
+                12.697499990463257,
+                8.875
+              ]
+            ]
+          },
+          {
+            "origin": [
+              -0.185,
+              12.737499999999999,
+              9.225000000000001
+            ],
+            "points": [
+              [
+                -0.185,
+                12.697499990463257,
+                9.225000000000001
+              ]
+            ]
+          }
+        ]
+      },
+      "enclosure_wall_brick|144": {
+        "calls": 912,
+        "ms": 6.97690299999249,
+        "hits": 0,
+        "firstSamples": [
+          {
+            "origin": [
+              -12,
+              0.04,
+              -80
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              -11.6,
+              0.04,
+              -80
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              -12.4,
+              0.04,
+              -80
+            ],
+            "points": []
+          }
+        ]
+      },
+      "|1538": {
+        "calls": 905,
+        "ms": 75.74814999998944,
+        "hits": 905,
+        "firstSamples": [
+          {
+            "origin": [
+              -12,
+              0.04,
+              -80
+            ],
+            "points": [
+              [
+                -12,
+                1.7763568394002505e-14,
+                -80
+              ]
+            ]
+          },
+          {
+            "origin": [
+              -11.6,
+              0.04,
+              -80
+            ],
+            "points": [
+              [
+                -11.6,
+                1.7763568394002505e-14,
+                -80
+              ]
+            ]
+          },
+          {
+            "origin": [
+              -12.4,
+              0.04,
+              -80
+            ],
+            "points": [
+              [
+                -12.4,
+                1.7763568394002505e-14,
+                -80
+              ]
+            ]
+          }
+        ]
+      },
+      "午门_sumeru_band|72": {
+        "calls": 10,
+        "ms": 0.0639749999995729,
+        "hits": 0,
+        "firstSamples": [
+          {
+            "origin": [
+              -5.5,
+              0.04,
+              -436.6
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              -5.1,
+              0.04,
+              -436.6
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              -5.9,
+              0.04,
+              -436.6
+            ],
+            "points": []
+          }
+        ]
+      },
+      "west-six_door_studded|144": {
+        "calls": 792,
+        "ms": 5.793146999996679,
+        "hits": 0,
+        "firstSamples": [
+          {
+            "origin": [
+              122,
+              0.04,
+              322
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              122.5,
+              0.04,
+              322
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              121.5,
+              0.04,
+              322
+            ],
+            "points": []
+          }
+        ]
+      },
+      "west-six_stone_slab|832": {
+        "calls": 787,
+        "ms": 28.235260999989805,
+        "hits": 12,
+        "firstSamples": [
+          {
+            "origin": [
+              122,
+              0.04,
+              322
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              122.5,
+              0.04,
+              322
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              121.5,
+              0.04,
+              322
+            ],
+            "points": []
+          }
+        ]
+      },
+      "west-six_marble|876": {
+        "calls": 759,
+        "ms": 29.098427000002175,
+        "hits": 0,
+        "firstSamples": [
+          {
+            "origin": [
+              122,
+              0.04,
+              322
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              122.5,
+              0.04,
+              322
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              121.5,
+              0.04,
+              322
+            ],
+            "points": []
+          }
+        ]
+      },
+      "west-six_wall_brick|1536": {
+        "calls": 787,
+        "ms": 51.291139000001294,
+        "hits": 12,
+        "firstSamples": [
+          {
+            "origin": [
+              122,
+              0.04,
+              322
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              122.5,
+              0.04,
+              322
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              121.5,
+              0.04,
+              322
+            ],
+            "points": []
+          }
+        ]
+      },
+      "west-six_chuxiu_zitan_fit|228": {
+        "calls": 17,
+        "ms": 0.17380000000002838,
+        "hits": 5,
+        "firstSamples": [
+          {
+            "origin": [
+              100.22,
+              1.09,
+              438.2
+            ],
+            "points": [
+              [
+                100.22,
+                1.0499999523162842,
+                438.2
+              ]
+            ]
+          },
+          {
+            "origin": [
+              100.035,
+              1.09,
+              438.02500000000003
+            ],
+            "points": [
+              [
+                100.035,
+                1.0499999523162842,
+                438.02500000000003
+              ]
+            ]
+          },
+          {
+            "origin": [
+              100.035,
+              1.09,
+              438.375
+            ],
+            "points": [
+              [
+                100.035,
+                1.0499999523162842,
+                438.375
+              ]
+            ]
+          }
+        ]
+      },
+      "west-six_kit_floor_flat|54": {
+        "calls": 12,
+        "ms": 0.07368100000076083,
+        "hits": 12,
+        "firstSamples": [
+          {
+            "origin": [
+              100.1,
+              0.64,
+              437.625
+            ],
+            "points": [
+              [
+                100.1,
+                0.6200000047683716,
+                437.625
+              ]
+            ]
+          },
+          {
+            "origin": [
+              100.34,
+              0.64,
+              437.625
+            ],
+            "points": [
+              [
+                100.34,
+                0.6200000047683716,
+                437.625
+              ]
+            ]
+          },
+          {
+            "origin": [
+              100.34,
+              0.6399999523162843,
+              437.62499999999994
+            ],
+            "points": [
+              [
+                100.34,
+                0.6200000047683716,
+                437.62499999999994
+              ]
+            ]
+          }
+        ]
+      },
+      "west-six_kit_lacquer|600": {
+        "calls": 12,
+        "ms": 0.354823000000124,
+        "hits": 0,
+        "firstSamples": [
+          {
+            "origin": [
+              100.1,
+              0.64,
+              437.625
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              100.34,
+              0.64,
+              437.625
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              100.34,
+              0.6399999523162843,
+              437.62499999999994
+            ],
+            "points": []
+          }
+        ]
+      },
+      "west-six_kit_furn_wood|612": {
+        "calls": 12,
+        "ms": 0.2901850000007471,
+        "hits": 0,
+        "firstSamples": [
+          {
+            "origin": [
+              100.1,
+              0.64,
+              437.625
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              100.34,
+              0.64,
+              437.625
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              100.34,
+              0.6399999523162843,
+              437.62499999999994
+            ],
+            "points": []
+          }
+        ]
+      },
+      "west-six_lattice_doors|1344": {
+        "calls": 12,
+        "ms": 0.8793089999994663,
+        "hits": 0,
+        "firstSamples": [
+          {
+            "origin": [
+              100.1,
+              0.64,
+              437.625
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              100.34,
+              0.64,
+              437.625
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              100.34,
+              0.6399999523162843,
+              437.62499999999994
+            ],
+            "points": []
+          }
+        ]
+      }
+    }
+  },
+  "unload": {
+    "elapsedMs": 0.6753040000003239,
+    "inclusiveProfile": {
+      "system.metricsFor": {
+        "calls": 38,
+        "inclusiveMs": 0.02510900000015681,
+        "maxMs": 0.004946999999447144
+      },
+      "world.resolve": {
+        "calls": 38,
+        "inclusiveMs": 0.16738200000054348,
+        "maxMs": 0.041191999999682594
+      },
+      "resolve:taihe-emperor-01": {
+        "calls": 1,
+        "inclusiveMs": 0.017917000000124972,
+        "maxMs": 0.017917000000124972
+      },
+      "resolve:taihe-official-east-01-01": {
+        "calls": 1,
+        "inclusiveMs": 0.004898000000139291,
+        "maxMs": 0.004898000000139291
+      },
+      "resolve:taihe-official-east-01-02": {
+        "calls": 1,
+        "inclusiveMs": 0.003184000000146625,
+        "maxMs": 0.003184000000146625
+      },
+      "resolve:taihe-official-east-02-01": {
+        "calls": 1,
+        "inclusiveMs": 0.003034000000297965,
+        "maxMs": 0.003034000000297965
+      },
+      "resolve:taihe-official-east-02-02": {
+        "calls": 1,
+        "inclusiveMs": 0.002494000000297092,
+        "maxMs": 0.002494000000297092
+      },
+      "resolve:taihe-official-east-03-01": {
+        "calls": 1,
+        "inclusiveMs": 0.0019929999998566927,
+        "maxMs": 0.0019929999998566927
+      },
+      "resolve:taihe-official-east-03-02": {
+        "calls": 1,
+        "inclusiveMs": 0.002694000000701635,
+        "maxMs": 0.002694000000701635
+      },
+      "resolve:taihe-official-east-04-01": {
+        "calls": 1,
+        "inclusiveMs": 0.0021830000005138572,
+        "maxMs": 0.0021830000005138572
+      },
+      "resolve:taihe-official-east-04-02": {
+        "calls": 1,
+        "inclusiveMs": 0.002795000000332948,
+        "maxMs": 0.002795000000332948
+      },
+      "resolve:taihe-official-west-01-01": {
+        "calls": 1,
+        "inclusiveMs": 0.00277399999959016,
+        "maxMs": 0.00277399999959016
+      },
+      "resolve:taihe-official-west-01-02": {
+        "calls": 1,
+        "inclusiveMs": 0.002674000000297383,
+        "maxMs": 0.002674000000297383
+      },
+      "resolve:taihe-official-west-02-01": {
+        "calls": 1,
+        "inclusiveMs": 0.00277399999959016,
+        "maxMs": 0.00277399999959016
+      },
+      "resolve:taihe-official-west-02-02": {
+        "calls": 1,
+        "inclusiveMs": 0.0023329999994530226,
+        "maxMs": 0.0023329999994530226
+      },
+      "resolve:taihe-official-west-03-01": {
+        "calls": 1,
+        "inclusiveMs": 0.0023940000000948203,
+        "maxMs": 0.0023940000000948203
+      },
+      "resolve:taihe-official-west-03-02": {
+        "calls": 1,
+        "inclusiveMs": 0.002253999999993539,
+        "maxMs": 0.002253999999993539
+      },
+      "resolve:taihe-official-west-04-01": {
+        "calls": 1,
+        "inclusiveMs": 0.0038660000000163564,
+        "maxMs": 0.0038660000000163564
+      },
+      "resolve:taihe-official-west-04-02": {
+        "calls": 1,
+        "inclusiveMs": 0.0021829999996043625,
+        "maxMs": 0.0021829999996043625
+      },
+      "resolve:taihe-attendant-east-01": {
+        "calls": 1,
+        "inclusiveMs": 0.0027749999999286956,
+        "maxMs": 0.0027749999999286956
+      },
+      "resolve:taihe-attendant-west-01": {
+        "calls": 1,
+        "inclusiveMs": 0.00258399999984249,
+        "maxMs": 0.00258399999984249
+      },
+      "resolve:taihe-guard-east-01": {
+        "calls": 1,
+        "inclusiveMs": 0.002072999999654712,
+        "maxMs": 0.002072999999654712
+      },
+      "resolve:taihe-guard-east-02": {
+        "calls": 1,
+        "inclusiveMs": 0.002104000000144879,
+        "maxMs": 0.002104000000144879
+      },
+      "resolve:taihe-guard-west-01": {
+        "calls": 1,
+        "inclusiveMs": 0.002112999999553722,
+        "maxMs": 0.002112999999553722
+      },
+      "resolve:taihe-guard-west-02": {
+        "calls": 1,
+        "inclusiveMs": 0.002163000000109605,
+        "maxMs": 0.002163000000109605
+      },
+      "resolve:wumen-guard-east-01": {
+        "calls": 1,
+        "inclusiveMs": 0.0023540000001958106,
+        "maxMs": 0.0023540000001958106
+      },
+      "resolve:wumen-guard-west-01": {
+        "calls": 1,
+        "inclusiveMs": 0.0023240000000441796,
+        "maxMs": 0.0023240000000441796
+      },
+      "resolve:shenwu-guard-east-01": {
+        "calls": 1,
+        "inclusiveMs": 0.0020129999993514502,
+        "maxMs": 0.0020129999993514502
+      },
+      "resolve:shenwu-guard-west-01": {
+        "calls": 1,
+        "inclusiveMs": 0.002132999999957974,
+        "maxMs": 0.002132999999957974
+      },
+      "resolve:qianqing-guard-east-01": {
+        "calls": 1,
+        "inclusiveMs": 0.0028950000005352194,
+        "maxMs": 0.0028950000005352194
+      },
+      "resolve:qianqing-guard-west-01": {
+        "calls": 1,
+        "inclusiveMs": 0.002193000000261236,
+        "maxMs": 0.002193000000261236
+      },
+      "resolve:west-lane-guard-01": {
+        "calls": 1,
+        "inclusiveMs": 0.027391000000534405,
+        "maxMs": 0.027391000000534405
+      },
+      "resolve:west-lane-guard-02": {
+        "calls": 1,
+        "inclusiveMs": 0.002523000000110187,
+        "maxMs": 0.002523000000110187
+      },
+      "resolve:west-lane-guard-03": {
+        "calls": 1,
+        "inclusiveMs": 0.0009110000000873697,
+        "maxMs": 0.0009110000000873697
+      },
+      "resolve:chuxiu-consort-01": {
+        "calls": 1,
+        "inclusiveMs": 0.041191999999682594,
+        "maxMs": 0.041191999999682594
+      },
+      "resolve:chuxiu-maid-01": {
+        "calls": 1,
+        "inclusiveMs": 0.0011019999992640805,
+        "maxMs": 0.0011019999992640805
+      },
+      "resolve:yikun-consort-01": {
+        "calls": 1,
+        "inclusiveMs": 0.000691000000188069,
+        "maxMs": 0.000691000000188069
+      },
+      "resolve:yikun-eunuch-01": {
+        "calls": 1,
+        "inclusiveMs": 0.0007709999999860884,
+        "maxMs": 0.0007709999999860884
+      },
+      "resolve:yongshou-consort-01": {
+        "calls": 1,
+        "inclusiveMs": 0.0007709999999860884,
+        "maxMs": 0.0007709999999860884
+      },
+      "resolve:yongshou-maid-01": {
+        "calls": 1,
+        "inclusiveMs": 0.001862000000073749,
+        "maxMs": 0.001862000000073749
+      },
+      "renderer.render": {
+        "calls": 1,
+        "inclusiveMs": 0.15285900000071706,
+        "maxMs": 0.15285900000071706
+      }
+    },
+    "rayDetails": {}
+  },
+  "reload": {
+    "elapsedMs": 243.49051400000008,
+    "inclusiveProfile": {
+      "system.metricsFor": {
+        "calls": 38,
+        "inclusiveMs": 0.033722999997735315,
+        "maxMs": 0.011136000000078639
+      },
+      "world.resolve": {
+        "calls": 38,
+        "inclusiveMs": 241.38595299999997,
+        "maxMs": 154.0770650000004
+      },
+      "resolve:taihe-emperor-01": {
+        "calls": 1,
+        "inclusiveMs": 0.020279999999729625,
+        "maxMs": 0.020279999999729625
+      },
+      "resolve:taihe-official-east-01-01": {
+        "calls": 1,
+        "inclusiveMs": 0.004025999999612395,
+        "maxMs": 0.004025999999612395
+      },
+      "resolve:taihe-official-east-01-02": {
+        "calls": 1,
+        "inclusiveMs": 0.002804999999170832,
+        "maxMs": 0.002804999999170832
+      },
+      "resolve:taihe-official-east-02-01": {
+        "calls": 1,
+        "inclusiveMs": 0.003185000000485161,
+        "maxMs": 0.003185000000485161
+      },
+      "resolve:taihe-official-east-02-02": {
+        "calls": 1,
+        "inclusiveMs": 0.002403999999842199,
+        "maxMs": 0.002403999999842199
+      },
+      "resolve:taihe-official-east-03-01": {
+        "calls": 1,
+        "inclusiveMs": 0.00224400000024616,
+        "maxMs": 0.00224400000024616
+      },
+      "resolve:taihe-official-east-03-02": {
+        "calls": 1,
+        "inclusiveMs": 0.0023830000000089058,
+        "maxMs": 0.0023830000000089058
+      },
+      "resolve:taihe-official-east-04-01": {
+        "calls": 1,
+        "inclusiveMs": 0.0018430000000080327,
+        "maxMs": 0.0018430000000080327
+      },
+      "resolve:taihe-official-east-04-02": {
+        "calls": 1,
+        "inclusiveMs": 0.002253000000564498,
+        "maxMs": 0.002253000000564498
+      },
+      "resolve:taihe-official-west-01-01": {
+        "calls": 1,
+        "inclusiveMs": 0.0024739999998928397,
+        "maxMs": 0.0024739999998928397
+      },
+      "resolve:taihe-official-west-01-02": {
+        "calls": 1,
+        "inclusiveMs": 0.0019329999995534308,
+        "maxMs": 0.0019329999995534308
+      },
+      "resolve:taihe-official-west-02-01": {
+        "calls": 1,
+        "inclusiveMs": 0.0021729999998569838,
+        "maxMs": 0.0021729999998569838
+      },
+      "resolve:taihe-official-west-02-02": {
+        "calls": 1,
+        "inclusiveMs": 0.0017820000002757297,
+        "maxMs": 0.0017820000002757297
+      },
+      "resolve:taihe-official-west-03-01": {
+        "calls": 1,
+        "inclusiveMs": 0.002043000000412576,
+        "maxMs": 0.002043000000412576
+      },
+      "resolve:taihe-official-west-03-02": {
+        "calls": 1,
+        "inclusiveMs": 0.0024140000004990725,
+        "maxMs": 0.0024140000004990725
+      },
+      "resolve:taihe-official-west-04-01": {
+        "calls": 1,
+        "inclusiveMs": 0.0063890000001265435,
+        "maxMs": 0.0063890000001265435
+      },
+      "resolve:taihe-official-west-04-02": {
+        "calls": 1,
+        "inclusiveMs": 0.003464999999778229,
+        "maxMs": 0.003464999999778229
+      },
+      "resolve:taihe-attendant-east-01": {
+        "calls": 1,
+        "inclusiveMs": 0.00421600000026956,
+        "maxMs": 0.00421600000026956
+      },
+      "resolve:taihe-attendant-west-01": {
+        "calls": 1,
+        "inclusiveMs": 0.004077000000506814,
+        "maxMs": 0.004077000000506814
+      },
+      "resolve:taihe-guard-east-01": {
+        "calls": 1,
+        "inclusiveMs": 0.005497999999533931,
+        "maxMs": 0.005497999999533931
+      },
+      "resolve:taihe-guard-east-02": {
+        "calls": 1,
+        "inclusiveMs": 0.0039559999995617545,
+        "maxMs": 0.0039559999995617545
+      },
+      "resolve:taihe-guard-west-01": {
+        "calls": 1,
+        "inclusiveMs": 0.0033849999999802094,
+        "maxMs": 0.0033849999999802094
+      },
+      "resolve:taihe-guard-west-02": {
+        "calls": 1,
+        "inclusiveMs": 0.0030239999996410916,
+        "maxMs": 0.0030239999996410916
+      },
+      "resolve:wumen-guard-east-01": {
+        "calls": 1,
+        "inclusiveMs": 0.0035049999996772385,
+        "maxMs": 0.0035049999996772385
+      },
+      "resolve:wumen-guard-west-01": {
+        "calls": 1,
+        "inclusiveMs": 0.0037460000003193272,
+        "maxMs": 0.0037460000003193272
+      },
+      "resolve:shenwu-guard-east-01": {
+        "calls": 1,
+        "inclusiveMs": 0.0032650000002831803,
+        "maxMs": 0.0032650000002831803
+      },
+      "resolve:shenwu-guard-west-01": {
+        "calls": 1,
+        "inclusiveMs": 0.003756000000066706,
+        "maxMs": 0.003756000000066706
+      },
+      "resolve:qianqing-guard-east-01": {
+        "calls": 1,
+        "inclusiveMs": 0.004076000000168278,
+        "maxMs": 0.004076000000168278
+      },
+      "resolve:qianqing-guard-west-01": {
+        "calls": 1,
+        "inclusiveMs": 0.0031449999996766564,
+        "maxMs": 0.0031449999996766564
+      },
+      "world._meshList": {
+        "calls": 802,
+        "inclusiveMs": 3.1232189999936963,
+        "maxMs": 0.9573069999996733
+      },
+      "raycaster.intersectObject": {
+        "calls": 4757,
+        "inclusiveMs": 192.15505299997676,
+        "maxMs": 0.5886039999995774
+      },
+      "world.supportAt": {
+        "calls": 797,
+        "inclusiveMs": 203.14468399998714,
+        "maxMs": 1.2463109999998778
+      },
+      "world._surfaceAt": {
+        "calls": 156,
+        "inclusiveMs": 200.09993499999746,
+        "maxMs": 2.6658120000001873
+      },
+      "world._blockedSegment": {
+        "calls": 156,
+        "inclusiveMs": 4.8616799999963405,
+        "maxMs": 3.484511000000566
+      },
+      "world.validatePath": {
+        "calls": 4,
+        "inclusiveMs": 211.06644199999937,
+        "maxMs": 154.04792100000031
+      },
+      "resolve:west-lane-guard-01": {
+        "calls": 1,
+        "inclusiveMs": 154.0770650000004,
+        "maxMs": 154.0770650000004
+      },
+      "resolve:west-lane-guard-02": {
+        "calls": 1,
+        "inclusiveMs": 0.04382600000008097,
+        "maxMs": 0.04382600000008097
+      },
+      "resolve:west-lane-guard-03": {
+        "calls": 1,
+        "inclusiveMs": 0.009484000000156811,
+        "maxMs": 0.009484000000156811
+      },
+      "world._insideSeatFurniture": {
+        "calls": 10,
+        "inclusiveMs": 20.031678000000284,
+        "maxMs": 3.2115309999999226
+      },
+      "world._resolveSeat": {
+        "calls": 1,
+        "inclusiveMs": 25.273087999999916,
+        "maxMs": 25.273087999999916
+      },
+      "resolve:chuxiu-consort-01": {
+        "calls": 1,
+        "inclusiveMs": 25.289692000000286,
+        "maxMs": 25.289692000000286
+      },
+      "resolve:chuxiu-maid-01": {
+        "calls": 1,
+        "inclusiveMs": 0.8157639999999446,
+        "maxMs": 0.8157639999999446
+      },
+      "resolve:yikun-consort-01": {
+        "calls": 1,
+        "inclusiveMs": 1.6562260000000606,
+        "maxMs": 1.6562260000000606
+      },
+      "resolve:yikun-eunuch-01": {
+        "calls": 1,
+        "inclusiveMs": 1.282285000000229,
+        "maxMs": 1.282285000000229
+      },
+      "resolve:yongshou-consort-01": {
+        "calls": 1,
+        "inclusiveMs": 57.02762399999938,
+        "maxMs": 57.02762399999938
+      },
+      "resolve:yongshou-maid-01": {
+        "calls": 1,
+        "inclusiveMs": 1.0742419999996855,
+        "maxMs": 1.0742419999996855
+      },
+      "pool.acquire": {
+        "calls": 5,
+        "inclusiveMs": 0.01649399999951129,
+        "maxMs": 0.005959000000075321
+      },
+      "renderer._create": {
+        "calls": 5,
+        "inclusiveMs": 0.6551849999978003,
+        "maxMs": 0.257155999999668
+      },
+      "renderer.render": {
+        "calls": 1,
+        "inclusiveMs": 0.9111569999995481,
+        "maxMs": 0.9111569999995481
+      }
+    },
+    "rayDetails": {
+      "west-six_door_studded|144": {
+        "calls": 792,
+        "ms": 5.719044000000395,
+        "hits": 0,
+        "firstSamples": [
+          {
+            "origin": [
+              122,
+              0.04,
+              322
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              122.5,
+              0.04,
+              322
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              121.5,
+              0.04,
+              322
+            ],
+            "points": []
+          }
+        ]
+      },
+      "enclosure_wall_brick|144": {
+        "calls": 792,
+        "ms": 6.13060000000587,
+        "hits": 0,
+        "firstSamples": [
+          {
+            "origin": [
+              122,
+              0.04,
+              322
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              122.5,
+              0.04,
+              322
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              121.5,
+              0.04,
+              322
+            ],
+            "points": []
+          }
+        ]
+      },
+      "west-six_stone_slab|832": {
+        "calls": 787,
+        "ms": 29.04799000001549,
+        "hits": 12,
+        "firstSamples": [
+          {
+            "origin": [
+              122,
+              0.04,
+              322
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              122.5,
+              0.04,
+              322
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              121.5,
+              0.04,
+              322
+            ],
+            "points": []
+          }
+        ]
+      },
+      "west-six_marble|876": {
+        "calls": 759,
+        "ms": 30.180502999992314,
+        "hits": 0,
+        "firstSamples": [
+          {
+            "origin": [
+              122,
+              0.04,
+              322
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              122.5,
+              0.04,
+              322
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              121.5,
+              0.04,
+              322
+            ],
+            "points": []
+          }
+        ]
+      },
+      "west-six_wall_brick|1536": {
+        "calls": 787,
+        "ms": 54.00231399999939,
+        "hits": 12,
+        "firstSamples": [
+          {
+            "origin": [
+              122,
+              0.04,
+              322
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              122.5,
+              0.04,
+              322
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              121.5,
+              0.04,
+              322
+            ],
+            "points": []
+          }
+        ]
+      },
+      "|1538": {
+        "calls": 775,
+        "ms": 66.93502499998976,
+        "hits": 775,
+        "firstSamples": [
+          {
+            "origin": [
+              122,
+              0.04,
+              322
+            ],
+            "points": [
+              [
+                122,
+                -7.149836278586008e-14,
+                322
+              ]
+            ]
+          },
+          {
+            "origin": [
+              122.5,
+              0.04,
+              322
+            ],
+            "points": [
+              [
+                122.5,
+                -7.149836278586008e-14,
+                322
+              ]
+            ]
+          },
+          {
+            "origin": [
+              121.5,
+              0.04,
+              322
+            ],
+            "points": [
+              [
+                121.5,
+                -7.149836278586008e-14,
+                322
+              ]
+            ]
+          }
+        ]
+      },
+      "west-six_chuxiu_zitan_fit|228": {
+        "calls": 17,
+        "ms": 0.2099949999983437,
+        "hits": 5,
+        "firstSamples": [
+          {
+            "origin": [
+              100.22,
+              1.09,
+              438.2
+            ],
+            "points": [
+              [
+                100.22,
+                1.0499999523162842,
+                438.2
+              ]
+            ]
+          },
+          {
+            "origin": [
+              100.035,
+              1.09,
+              438.02500000000003
+            ],
+            "points": [
+              [
+                100.035,
+                1.0499999523162842,
+                438.02500000000003
+              ]
+            ]
+          },
+          {
+            "origin": [
+              100.035,
+              1.09,
+              438.375
+            ],
+            "points": [
+              [
+                100.035,
+                1.0499999523162842,
+                438.375
+              ]
+            ]
+          }
+        ]
+      },
+      "west-six_kit_floor_flat|54": {
+        "calls": 12,
+        "ms": 0.11838799999804905,
+        "hits": 12,
+        "firstSamples": [
+          {
+            "origin": [
+              100.1,
+              0.64,
+              437.625
+            ],
+            "points": [
+              [
+                100.1,
+                0.6200000047683716,
+                437.625
+              ]
+            ]
+          },
+          {
+            "origin": [
+              100.34,
+              0.64,
+              437.625
+            ],
+            "points": [
+              [
+                100.34,
+                0.6200000047683716,
+                437.625
+              ]
+            ]
+          },
+          {
+            "origin": [
+              100.34,
+              0.6399999523162843,
+              437.62499999999994
+            ],
+            "points": [
+              [
+                100.34,
+                0.6200000047683716,
+                437.62499999999994
+              ]
+            ]
+          }
+        ]
+      },
+      "west-six_kit_lacquer|600": {
+        "calls": 12,
+        "ms": 0.39424200000121346,
+        "hits": 0,
+        "firstSamples": [
+          {
+            "origin": [
+              100.1,
+              0.64,
+              437.625
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              100.34,
+              0.64,
+              437.625
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              100.34,
+              0.6399999523162843,
+              437.62499999999994
+            ],
+            "points": []
+          }
+        ]
+      },
+      "west-six_kit_furn_wood|612": {
+        "calls": 12,
+        "ms": 0.6034829999998692,
+        "hits": 0,
+        "firstSamples": [
+          {
+            "origin": [
+              100.1,
+              0.64,
+              437.625
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              100.34,
+              0.64,
+              437.625
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              100.34,
+              0.6399999523162843,
+              437.62499999999994
+            ],
+            "points": []
+          }
+        ]
+      },
+      "west-six_lattice_doors|1344": {
+        "calls": 12,
+        "ms": 0.841193000000203,
+        "hits": 0,
+        "firstSamples": [
+          {
+            "origin": [
+              100.1,
+              0.64,
+              437.625
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              100.34,
+              0.64,
+              437.625
+            ],
+            "points": []
+          },
+          {
+            "origin": [
+              100.34,
+              0.6399999523162843,
+              437.62499999999994
+            ],
+            "points": []
+          }
+        ]
+      }
+    }
+  },
+  "status": "passed",
+  "endUtc": "2026-10-22T03:16:56.603Z"
+}

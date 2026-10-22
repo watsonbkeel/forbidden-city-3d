@@ -26,6 +26,7 @@ import { buildChuxiuHall } from '../palace/special/ChuxiuHall.js';
 import { buildChuxiuCourtyard } from '../palace/special/ChuxiuCourtyard.js';
 import { buildYikunSideAccess } from '../palace/special/YikunSideAccess.js';
 import { buildSouthCourtHall, southCourtGeometry } from '../palace/special/SouthCourtHalls.js';
+import {applySourceGuidedNameboardMount} from '../palace/special/SourceGuidedNameboardMounts.js';
 
 /**
  * 分区构建器基类：从 zone JSON 构建一个区域的所有建筑。
@@ -146,10 +147,10 @@ export class ZoneBase {
       .map(([resolve,build,augment])=>({profile:resolve(this.zoneJson.id,item),build,augment})).filter(x=>x.profile);
     if(candidates.length>1)throw Error('Ambiguous R48 named-building profile');
     const selected=candidates[0];
-    if(selected?.profile.mode==='replace')return selected.build(this.kit,item,selected.profile);
+    if(selected?.profile.mode==='replace')return applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,selected.build(this.kit,item,selected.profile));
     const built=this.buildHallBaseline(item);
-    if(selected?.profile.mode==='augment')return selected.augment(this.kit,item,built,selected.profile);
-    return built;
+    if(selected?.profile.mode==='augment')return applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,selected.augment(this.kit,item,built,selected.profile));
+    return applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,built);
   }
 
   buildHallBaseline(item) {

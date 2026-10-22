@@ -1,0 +1,33 @@
+✔ all seven identity templates provide valid merged geometry for three poses and three LODs (113.168257ms)
+✔ unknown inputs fail rather than generate a default identity or pose (0.459149ms)
+✔ resource pool shares resources, retains referenced assets and disposes idempotently (2.898281ms)
+✔ CPU animation is deterministic, preserves zero-weight seams and moves normals with parts (0.603145ms)
+✔ garment side normals point outward for front-face culling (2.620253ms)
+✔ distant LODs obey explicit geometric per-template budgets (16.652961ms)
+✔ seat variants preserve adult torso and expose truthful support contacts (8.324577ms)
+✔ walking stance feet stay on ground and fixed in world while the root advances (0.656395ms)
+✔ production ambient amplitude does not scale away physical gait support (1.03258ms)
+✔ seated garment has actual seat-contact surface, not only a metadata anchor (4.407547ms)
+✖ throne-front-perch bends over real footstool while clearing the throne front (0.29979ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 10
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 269.358004
+
+✖ failing tests:
+
+test at tests/p3c-kit.test.mjs:104:1
+✖ throne-front-perch bends over real footstool while clearing the throne front (0.29979ms)
+  Error: Unknown seat variant: throne-front-perch
+      at createCharacterGeometry (file:///workspace/scratch/02a8023d1a85/r50-character-system/src/scene/characters/CharacterKit.js:143:143)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r50-character-system/tests/p3c-kit.test.mjs:105:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)

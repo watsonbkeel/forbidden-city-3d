@@ -1,0 +1,106 @@
+{
+  "status": "Internal candidate06 visual inspection complete; not sent directly to user; numeric contact validation remains with owner",
+  "source": "Exact captured CharacterKit and CharacterAnimation snapshots; actual indexed geometry; original unit scale 1.0; CPU software raster, not GPU.",
+  "walkingRuntimeIntegration": "not-integrated",
+  "rendering": {
+    "supersampling": 2,
+    "background": "grey-white",
+    "lighting": "offline ambient and Lambert key/fill; sRGB conversion; projected source-triangle shadows, not runtime GPU evidence",
+    "firstPreview": {
+      "yawDegrees": -15,
+      "pixelsPerMetre": 460,
+      "sameCharacterScaleAcrossColumns": true
+    },
+    "faceHairViewsDegrees": [
+      0,
+      90,
+      180
+    ],
+    "handViewPitchRadians": [
+      0.18,
+      0.65
+    ]
+  },
+  "files": [
+    {
+      "path": "CharacterKit-source.js",
+      "sha256": "5128af161cbce30e7da8106b8350ae30455dd16c32e04f00075cb948e85cf15b",
+      "bytes": 47306
+    },
+    {
+      "path": "Animation-source.js",
+      "sha256": "f08482e143894813124b762e847dda4749a62dedeeffb1d4a57c831ab7629bc9",
+      "bytes": 4307
+    },
+    {
+      "path": "renderer-source.py",
+      "sha256": "f611d7acc3461e50069878366f5471d70e243574ca8c2cf67e1d9d2f7b0f93d8",
+      "bytes": 8197
+    },
+    {
+      "path": "models.json.gz",
+      "sha256": "52ba43807588ece88b145c6351da352ce86f9ad725b43ded03769f004fdc43cb",
+      "bytes": 712418
+    },
+    {
+      "path": "export-manifest.json",
+      "sha256": "6947988303dbe345ad55fd9d9bb64fcb97924690949f6880781eb652ea094667",
+      "bytes": 3469
+    },
+    {
+      "path": "female-reference-three-poses-front.png",
+      "sha256": "3a324bc68414875a71b4a14d37aa3ba07c42e86ae5e4d8267653b179b6579d47",
+      "bytes": 279998,
+      "dimensions": [
+        1950,
+        1010
+      ]
+    },
+    {
+      "path": "female-reference-face-hair-close.png",
+      "sha256": "912e9043df66354574841f3c511ed2045257941cb8bbe90c65e61b9d09716e58",
+      "bytes": 693482,
+      "dimensions": [
+        1800,
+        2270
+      ]
+    },
+    {
+      "path": "female-reference-hand-details.png",
+      "sha256": "b54f6dace4141a8a62eedf8dcbdfafc9eff635bab9bf1ba778313234aa492c76",
+      "bytes": 477059,
+      "dimensions": [
+        1950,
+        1360
+      ]
+    }
+  ],
+  "visuallyVerifiedImprovements": [
+    "Candidate05 horizontal neck-top ledge is no longer visible in front/side/back close views; neck tapers into lower jaw rather than projecting beyond it.",
+    "Seated top hand is visually closer to bottom hand; stacked hands read as resting near the knee robe rather than suspended at abdomen.",
+    "Narrower shoulders/sleeves and reduced upper-skull proportion from candidate05 remain.",
+    "Continuous robe, rounded crown, low back bun and lined cuffs remain clear in examined views."
+  ],
+  "remainingVisualGaps": [
+    "Faces, neckline, hem, ears, low bun and neck transitions retain visible simplified low-poly facets rather than reference-level semi-realism.",
+    "Small temple-hair edge details and relaxed hand articulation remain simplified.",
+    "Raster images cannot independently verify sub-millimetre clearances, absence of triangle intersection or runtime behavior."
+  ],
+  "productionCodeEditedByRenderer": false,
+  "existingEvidenceOverwritten": false,
+  "animationFramesExported": 0,
+  "rendererSafetyTests": {
+    "count": 2,
+    "passed": 2,
+    "scope": "Actual non-mutating triangle raster and overwrite rejection. No full repository/GPU suite run by renderer worker."
+  },
+  "snapshotAndPngIntegrityVerified": true,
+  "userReference": {
+    "filename": "image(20261022-051303).png",
+    "sha256": "053c6ed722cb2dc83c47e1f1ab1b742a05dc7ba7eea6368b5624513687430d8e",
+    "role": "User-provided visual/art-direction target only; not a historical source and not a gameplay screenshot.",
+    "copiedIntoDeliverable": false,
+    "outputMethod": "Reference was visually inspected; final preview is rasterized actual CharacterKit geometry, not a copy or generated re-creation of the reference image."
+  },
+  "contactVerification": "Owner supplied positive sampling findings and will finalize numeric validation; renderer worker independently checked pixels, source hashes and finite buffers only."
+}

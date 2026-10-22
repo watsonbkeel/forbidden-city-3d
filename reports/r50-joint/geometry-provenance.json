@@ -1,0 +1,116 @@
+{
+  "createdAt": "2026-10-22T06:14:49.972Z",
+  "head": "61c2e5e2f60db60f4487541a48119f05dab2c275",
+  "node": "v24.19.0",
+  "three": "0.162.0",
+  "files": {
+    "tests/p3c-kit-incremental.test.mjs": {
+      "bytes": 8586,
+      "sha256": "f0e32a9a43d849abf5bcc85ca2145d39b06dec9bf43865d0274debd2536743ba"
+    },
+    "tests/p3c-female-refinement.test.mjs": {
+      "bytes": 6399,
+      "sha256": "e2450196760cd58743df8ef1bede5828f3909ecb24d9fb50d9c53f7927412cac"
+    },
+    "tests/p3c-female-reference.test.mjs": {
+      "bytes": 9365,
+      "sha256": "36df0dca6be3f4c2297a6b2f5f12d615f3aead760fb9f3d87fb02d8f761c49fb"
+    },
+    "tests/p3c-female-idle-contact.test.mjs": {
+      "bytes": 4480,
+      "sha256": "3dcde10b92be9753a27d0fff51cd2c5d0270fb12e1d0d1319dc4239f6c19a750"
+    },
+    "src/scene/characters/CharacterKit.js": {
+      "bytes": 47780,
+      "sha256": "cc311f8fdaa912538fdfffebd66b7fa2c5de7f2c7063ffbc5bf462bc3f5edc6c"
+    },
+    "reports/r50-followup/female-reference/candidate06-06/CharacterKit-source.js": {
+      "bytes": 47306,
+      "sha256": "5128af161cbce30e7da8106b8350ae30455dd16c32e04f00075cb948e85cf15b"
+    },
+    "reports/r50-followup/female-reference/candidate06-07/CharacterKit-source.js": {
+      "bytes": 47780,
+      "sha256": "cc311f8fdaa912538fdfffebd66b7fa2c5de7f2c7063ffbc5bf462bc3f5edc6c"
+    },
+    "/tmp/r50-reference-integration/06-light.tap": {
+      "bytes": 17103,
+      "sha256": "4fa372e7952e78628f43047327742dab091d0731867158650b28094f9b30be25"
+    },
+    "reports/r50-joint/geometry-preserved-06-light.tap": {
+      "bytes": 17103,
+      "sha256": "4fa372e7952e78628f43047327742dab091d0731867158650b28094f9b30be25"
+    },
+    "tests/p3c-kit-final07.test.mjs": {
+      "bytes": 12922,
+      "sha256": "6794fad35e533380139565cc0a1587236eff42f5a459512c0966382333991a8d"
+    },
+    "reports/r50-joint/geometry-final07.tap": {
+      "bytes": 1671,
+      "sha256": "e9b14b636aaf7f4e4dceb96a371ae2141da58cba4135e78f41e859042951f19a"
+    },
+    "reports/r50-joint/geometry-original-behavior.tap": {
+      "bytes": 1351,
+      "sha256": "3508503a46cdba98aba1c2981a6e2ef173958425891c30e34de3a0677a04a68a"
+    },
+    "reports/r50-joint/geometry-legacy-four-probes.tap": {
+      "bytes": 4186,
+      "sha256": "bdce0fd63732a9a6e0ae17d837bc93277c82741c252f093c4a1cf7401a85afc7"
+    },
+    "reports/r50-joint/geometry-final07-results.json": {
+      "bytes": 99619,
+      "sha256": "75649679793c18b22b19383f041f7e80d80a39d48d0dec95356a05ea10356022"
+    },
+    "reports/r50-joint/geometry-original-archive-verification.json": {
+      "bytes": 1678,
+      "sha256": "486d6044c865f5d4cfb0c31c8343a9f6884bf03e8e8e8534321ff4ce8dceeec4"
+    },
+    "reports/r50-joint/geometry-acceptance.md": {
+      "bytes": 5893,
+      "sha256": "d7ff15d7aee64161cd7645ecaf81ce5dc69fc68831e7de9dcb3bc3fa99425006"
+    }
+  },
+  "legacyClassifications": {
+    "original36FemaleCandidate05": {
+      "status": "not-applicable-not-passed",
+      "differentCases": 36,
+      "caseHashes": "reports/r50-joint/geometry-final07-results.json"
+    },
+    "originalFourCoordinateProbes": {
+      "status": "retained-red-not-applicable-not-passed",
+      "freshTestExit": 1,
+      "pass": 0,
+      "fail": 4,
+      "evidence": "reports/r50-joint/geometry-legacy-four-probes.tap"
+    },
+    "original126MixedAssertions": {
+      "status": "unmodified-not-reexecuted-as-a-whole",
+      "reason": "Original female candidate05 expected arrays are no longer compatible; avoid giant Buffer deep-diff output. Retain the original diagnostic and separately establish all 90 male exact matches through new versioned acceptance."
+    }
+  },
+  "commands": [
+    {
+      "command": "P3C_FINAL07_REPORT=1 node --test --test-reporter=tap tests/p3c-kit-final07.test.mjs",
+      "exit": 0,
+      "tests": 6,
+      "pass": 6,
+      "fail": 0
+    },
+    {
+      "command": "node --test --test-reporter=tap --test-name-pattern='cancellation|validation|independent|intentional' tests/p3c-kit-incremental.test.mjs",
+      "exit": 0,
+      "tests": 5,
+      "pass": 5,
+      "fail": 0
+    },
+    {
+      "command": "node --test --test-reporter=tap --test-name-pattern='female swept scalp|hair has no exposed upper-skull|female noses are closed|female right-lapel' tests/p3c-female-refinement.test.mjs",
+      "exit": 1,
+      "tests": 4,
+      "pass": 0,
+      "fail": 4,
+      "classification": "historical assertions preserved, not current-version passes"
+    }
+  ],
+  "taskStartHead": "7c13ef19955dbda6873815a1231a9800a580a4e1",
+  "headNote": "Concurrent budget work advanced HEAD; geometry source SHA remains pinned throughout."
+}

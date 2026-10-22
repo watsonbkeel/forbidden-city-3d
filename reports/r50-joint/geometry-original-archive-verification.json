@@ -1,0 +1,39 @@
+{
+  "sourceCommit": "314751a381bdbf159a3dd5bdb3c92fcbe7240700",
+  "oracleArchives": [
+    {
+      "sourcePath": "reports/r50-followup/kit-preparation-baseline.json",
+      "sourceCommit": "314751a381bdbf159a3dd5bdb3c92fcbe7240700",
+      "originalBytes": 4155008,
+      "sha256": "a488fc0dc5c70a67f7dba584c57f7e068a38dcb91da03e7a789ca4b4511028ce",
+      "reconstructedArchiveByteEqualToSourceCommit": true
+    },
+    {
+      "sourcePath": "reports/r50-followup/female-refinement-baseline.json",
+      "sourceCommit": "314751a381bdbf159a3dd5bdb3c92fcbe7240700",
+      "originalBytes": 1216649,
+      "sha256": "32ad4dafae1196806ade1971e8e1b22bae5b081d35acfda92118d708e66932ab",
+      "reconstructedArchiveByteEqualToSourceCommit": true
+    }
+  ],
+  "retainedTests": [
+    {
+      "path": "tests/p3c-kit-incremental.test.mjs",
+      "currentBytes": 8586,
+      "currentSha256": "f0e32a9a43d849abf5bcc85ca2145d39b06dec9bf43865d0274debd2536743ba",
+      "sourceCommitBytes": 8480,
+      "sourceCommitSha256": "c027764e9913a1945048303ea4c2f8a2e8979775c97b85232525dd6777d644b1",
+      "identicalToSourceCommit": false,
+      "note": "Current retained test includes earlier fixture archive transport adaptation; this geometry task does not modify it or its assertions."
+    },
+    {
+      "path": "tests/p3c-female-refinement.test.mjs",
+      "currentBytes": 6399,
+      "currentSha256": "e2450196760cd58743df8ef1bede5828f3909ecb24d9fb50d9c53f7927412cac",
+      "sourceCommitBytes": 6399,
+      "sourceCommitSha256": "e2450196760cd58743df8ef1bede5828f3909ecb24d9fb50d9c53f7927412cac",
+      "identicalToSourceCommit": true,
+      "note": "Unmodified historical test file."
+    }
+  ]
+}
