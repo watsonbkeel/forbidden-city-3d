@@ -1,0 +1,31 @@
+import fs from 'node:fs';
+import * as THREE from 'three';
+import {createRequire} from 'node:module';
+const {createCanvas}=createRequire(import.meta.url)('@napi-rs/canvas');
+import {createDOM} from './lib/ui-dom.mjs';
+import {ZoneManager} from '../src/scene/zones/ZoneManager.js';
+const zoneIndex=fs.readFileSync(new URL('../data/zones/index.js',import.meta.url),'utf8');
+const ZONES=[...zoneIndex.matchAll(/from\s+['"](.+?\.json)['"]/g)].map(m=>JSON.parse(fs.readFileSync(new URL('../data/zones/'+m[1].replace('./',''),import.meta.url))));
+import {PALACE_LAYOUT} from '../src/scene/Layout.js';
+import {PalaceBuilder} from '../src/scene/PalaceBuilder.js';
+import {Environment} from '../src/scene/Environment.js';
+import {CollisionManager} from '../src/utils/Collision.js';
+import {CharacterSystem} from '../src/scene/characters/CharacterSystem.js';
+import {getBeijingDayCycle} from '../src/scene/sky/BeijingDayCycle.js';
+const dom=createDOM();const orig=dom.document.createElement;dom.document.createElement=t=>t==='canvas'?createCanvas(1,1):orig(t);dom.document.createElementNS=()=>({addEventListener(){},removeEventListener(){}});Object.assign(dom.window,{location:{search:''},innerWidth:1280,innerHeight:720});Object.assign(globalThis,{document:dom.document,window:dom.window});
+const scene=new THREE.Scene(),cm=new CollisionManager(),mats=new Map(),lib={material:(n,p={})=>{const k=n+JSON.stringify(p);if(!mats.has(k))mats.set(k,new THREE.MeshStandardMaterial({name:n,...p}));return mats.get(k)},tileSize:()=>1,aspect:()=>1};
+const env=new Environment(scene,null,lib);env.setupGround();const pb=new PalaceBuilder(scene,lib);pb.buildAll(PALACE_LAYOUT);cm.addColliders(pb.getColliders());cm.addWalkables(pb.getWalkables());
+const zones=new ZoneManager();for(const z of ZONES)zones.register(z);zones.init(scene,lib,cm,{x:0,z:-494});
+const camera=new THREE.PerspectiveCamera(60,1280/720,.1,2000);camera.position.set(0,1.7,-494);camera.lookAt(0,1.7,-450);camera.updateMatrixWorld(true);
+const sys=new CharacterSystem({scene,camera,collisionManager:cm,zoneManager:zones,documentObject:dom.document});let submitted=[];const render=sys.renderer.render.bind(sys.renderer);sys.renderer.render=(actors,...args)=>{submitted=actors.map(a=>({id:a.id,position:a.position,lod:a.lod,visibility:a.visibility}));return render(actors,...args)};
+const report={kind:'Actual production ZoneManager dynamic streaming and actual CharacterSystem/Manager/Renderer; architecture and collisions real; CPU, no GPU. Environment sky/Enclosure/Garden and streamed interiors not included in this first isolation probe.',date:'2026-10-22T08:20:10Z',daylight:getBeijingDayCycle(new Date('2026-10-22T08:20:10Z')).lighting.daylight,phases:[]};
+const snap=()=>({stats:sys.statusSnapshot(),preparation:sys.world.work.snapshot(),submitted,roles:[...sys.manager.states.values()].filter(s=>s.actor.zoneRef==='west-six'||s.actor.templateId==='emperor-ceremonial').map(s=>({id:s.actor.id,binding:s.binding,pending:s.pending,error:s.error,lod:s.lod,readiness:s.readiness,request:!!s.request})),loadedZones:zones.getLoadedIds()});
+async function phase(name,pos,target,required=[]){camera.position.fromArray(pos);camera.lookAt(...target);camera.updateMatrixWorld(true);const row={name,camera:pos,target,trace:[]};let visibleFrame=null;
+ for(let i=0;i<2400;i++){zones.update(camera.position);sys.update(1/60,{daylight:report.daylight,quality:'high',viewportHeight:720});await Promise.resolve();if(i%120===0)row.trace.push({frame:i,stats:sys.statusSnapshot(),queue:sys.world.work.snapshot(),required:required.map(id=>({id,binding:!!sys.manager.states.get(id)?.binding,submitted:submitted.some(a=>a.id===id)}))});if(required.length&&required.every(id=>submitted.some(a=>a.id===id))){visibleFrame??=i;if(i>visibleFrame+30)break;}if(!required.length&&i>=600)break;}
+ row.visibleFrame=visibleFrame;row.final=snap();report.phases.push(row);fs.writeFileSync('reports/r51-visibility/streaming-before.json',JSON.stringify(report,null,2)+'\n');console.log('PHASE',name,JSON.stringify({visibleFrame,stats:row.final.stats,queue:row.final.preparation,submitted:submitted.map(a=>a.id)}));}
+await phase('spawn',[0,1.7,-494],[0,1.7,-450]);
+await phase('yongshou',[94.9,1.7,309],[94.9,1,318],['yongshou-consort-01','yongshou-maid-01']);
+await phase('yikun',[92,1.7,359],[91,1,369.5],['yikun-consort-01','yikun-eunuch-01']);
+await phase('chuxiu',[100.22,2.3,434.1],[100.22,1.3,438.2],['chuxiu-consort-01','chuxiu-maid-01']);
+const a=sys.world.resolveAnchor('west-second-lane'),p=sys.world.maps.paths.get('west-second-lane-patrol').pointsLocalMeters[0],x=a.position[0]+p[0],z=a.position[2]+p[2];await phase('patrol',[x-2,1.7,z-7],[x+1,1,z+8],['west-lane-guard-01','west-lane-guard-02','west-lane-guard-03']);
+console.log('FINISHED');sys.dispose();zones.dispose();pb.dispose();

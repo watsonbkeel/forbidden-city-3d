@@ -1,0 +1,65 @@
+{
+  "image": "reports/r54-unified/scene-previews/yikun-eunuch-02.png",
+  "kind": "CPU actual-scene geometry diagnostic; no browser/GPU acceptance",
+  "sourceTriangles": 20501,
+  "rasterizedTriangles": 2290,
+  "sourceCharacterInstances": 3,
+  "visibleCharacterPixels": 5674,
+  "camera": {
+    "position": [
+      89.5,
+      1.699999999999919,
+      361.6
+    ],
+    "quaternion": [
+      0,
+      0.9936947485450115,
+      0.11211934139151171,
+      0
+    ],
+    "fov": 65,
+    "aspect": 1.7777777777777777,
+    "matrixWorldInverse": [
+      -1,
+      0,
+      0,
+      0,
+      0,
+      0.9748585065718673,
+      0.22282480150214107,
+      0,
+      0,
+      0.22282480150214107,
+      -0.9748585065718673,
+      0,
+      89.5,
+      -82.2307076843463,
+      352.1300338138337,
+      1
+    ],
+    "projectionMatrix": [
+      0.8829481371285883,
+      0,
+      0,
+      0,
+      0,
+      1.5696855771174902,
+      0,
+      0,
+      0,
+      0,
+      -1.00010000500025,
+      -1,
+      0,
+      0,
+      -0.200010000500025,
+      0
+    ],
+    "exportFar": 45
+  },
+  "width": 640,
+  "height": 360,
+  "sourceCaptureBasename": "yikun-eunuch-02.json.gz",
+  "sourceCaptureSha256": "bf5c777424341df8a6a8f7407c017fa8ef5603824f2f935ef30c7ebb1b3194a2",
+  "captureReproduction": "Run the unified world test, then tests/r54-render-staff.py against its generated actual scene capture."
+}

@@ -6,6 +6,7 @@ import {fitRegisteredNameboard} from './FittedNameboardMount.js';
 // boards on the painted beam/bracket FRONT, not in the narrow band below it.
 const SOURCES=Object.freeze({
  'east-six/景仁宫':{page:236509},
+ 'east-six/奉先殿':{page:236430,kind:'double-eave'},
  'east-six/钟粹宫':{page:236484},
  'west-six/翊坤宫':{page:236517},
  'west-six/储秀宫':{page:236486},

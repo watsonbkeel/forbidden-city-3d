@@ -1,0 +1,17 @@
+✔ official nine-bay rear hall replaces the actual default fifteen-bay column grid: 32 -> 20 eave columns (39.634575ms)
+✔ only exact unchanged east-six item 54 may enter the profile; malformed original declarations fail before allocations (9.576488ms)
+✔ roof, platform envelope, side/rear walls, generic interior and map/room registrations remain exact, not falsely restored (19.901659ms)
+✔ bay-dependent column radii, closed south panels, folded entrance leaves, threshold and stairs change explicitly (11.878798ms)
+✔ normal existing south entry roundtrip at 10Hz preserves actual support and collision safety (8.253486ms)
+✔ normal existing south entry roundtrip at 60Hz preserves actual support and collision safety (10.46529ms)
+✔ merged world consumer verifies real grid, matching colliders and support without building or replacing a world (61.345559ms)
+✔ all altered support widths remain inside real stair treads and preserve the inherited ramp-versus-step approximation (21.867184ms)
+✔ whole-model numerical audit preserves exactly twenty legacy roof degenerates and adds none in the changed geometry (18.81484ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 352.418068

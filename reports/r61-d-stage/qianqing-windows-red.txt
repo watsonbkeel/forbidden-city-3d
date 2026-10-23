@@ -1,0 +1,34 @@
+✖ two actual south end fields have central tall/wide and two lower narrow fitted frames (1.301699ms)
+✔ all colliders, supports, three rear doors, stairs and connector remain exact frozen R60 (2.075213ms)
+✔ all triangles outside two south outer-face window bands retain every attribute and position (415.865118ms)
+✔ rear windows and south inner faces do not inherit unobserved front tripartite form (446.14856ms)
+✔ no additional production texture or draw material, bounded nondegenerate geometry (199.528167ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1410.096131
+
+✖ failing tests:
+
+test at tests/r61-qianqing-south-windows.test.mjs:5:1
+✖ two actual south end fields have central tall/wide and two lower narrow fitted frames (1.301699ms)
+  AssertionError [ERR_ASSERTION]: actual production hook is missing
+  
+  undefined !== 2
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-qianqing-south-windows.test.mjs:6:71)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

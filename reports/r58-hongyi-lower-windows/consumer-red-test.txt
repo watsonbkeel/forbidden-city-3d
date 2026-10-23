@@ -1,0 +1,119 @@
+✖ Hongyi already-built W consumer checks twelve real merged stiles, six blocking windows and three open door rays (243.890466ms)
+✖ Hongyi consumer rejects a missing meeting stile rather than trusting role labels (152.783659ms)
+✖ Hongyi consumer rejects Tiren or a missing assembly (151.321579ms)
+✔ Hongyi frontLeft actual first-person round trip preserves both stairs and the original entry (201.284375ms)
+ℹ {"side":"frontLeft","frames":666,"samples":167,"minOverheadDistance":2.984999656677246}
+✔ Hongyi frontRight actual first-person round trip preserves both stairs and the original entry (189.470635ms)
+ℹ {"side":"frontRight","frames":666,"samples":167,"minOverheadDistance":2.984999656677246}
+ℹ tests 5
+ℹ suites 0
+ℹ pass 2
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1140.767624
+
+✖ failing tests:
+
+test at tests/current-state/r58-hongyi-window-routes.test.mjs:10:1
+✖ Hongyi already-built W consumer checks twelve real merged stiles, six blocking windows and three open door rays (243.890466ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at consume (file:///workspace/scratch/02a8023d1a85/r58-hongyi-lower-windows/tests/current-state/r58-hongyi-window-routes.test.mjs:9:26)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-hongyi-lower-windows/tests/current-state/r58-hongyi-window-routes.test.mjs:11:135)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r58-hongyi-window-routes.test.mjs:13:1
+✖ Hongyi consumer rejects a missing meeting stile rather than trusting role labels (152.783659ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /meeting stile/. Input:
+
+  'AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-hongyi-lower-windows/tests/current-state/r58-hongyi-window-routes.test.mjs:13:253)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+    + actual - expected
+
+    + 'undefined'
+    - 'function'
+
+        at consume (file:///workspace/scratch/02a8023d1a85/r58-hongyi-lower-windows/tests/current-state/r58-hongyi-window-routes.test.mjs:9:26)
+        at file:///workspace/scratch/02a8023d1a85/r58-hongyi-lower-windows/tests/current-state/r58-hongyi-window-routes.test.mjs:13:264
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-hongyi-lower-windows/tests/current-state/r58-hongyi-window-routes.test.mjs:13:253)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12),
+    expected: /meeting stile/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r58-hongyi-window-routes.test.mjs:14:1
+✖ Hongyi consumer rejects Tiren or a missing assembly (151.321579ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Hongyi assembly/. Input:
+
+  'AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-hongyi-lower-windows/tests/current-state/r58-hongyi-window-routes.test.mjs:14:71)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+    + actual - expected
+
+    + 'undefined'
+    - 'function'
+
+        at consume (file:///workspace/scratch/02a8023d1a85/r58-hongyi-lower-windows/tests/current-state/r58-hongyi-window-routes.test.mjs:9:26)
+        at file:///workspace/scratch/02a8023d1a85/r58-hongyi-lower-windows/tests/current-state/r58-hongyi-window-routes.test.mjs:14:82
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-hongyi-lower-windows/tests/current-state/r58-hongyi-window-routes.test.mjs:14:71)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12),
+    expected: /Hongyi assembly/,
+    operator: 'throws',
+    diff: 'simple'
+  }

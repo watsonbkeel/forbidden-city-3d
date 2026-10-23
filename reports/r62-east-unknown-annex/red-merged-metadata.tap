@@ -1,0 +1,36 @@
+TAP version 13
+# Subtest: R62 annex existing-W consumer verifies 24 raw/merged LOCAL halls; rejects ghost render/COL/missing floor/evidence
+not ok 1 - R62 annex existing-W consumer verifies 24 raw/merged LOCAL halls; rejects ghost render/COL/missing floor/evidence
+  ---
+  duration_ms: 1238.112275
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex-world-consumer.test.mjs:7:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    east-six/items/4: unique unnamed-shell inventory binding
+
+    0 !== 1
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    Module.assertEastUnknownAnnexInventoryInWorld (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/lib/r62-east-unknown-annex-world-check.mjs:14:68)
+    check (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex-world-consumer.test.mjs:6:136)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex-world-consumer.test.mjs:16:98)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1439.757328

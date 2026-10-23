@@ -1,3 +1,4 @@
+import { applyXihuaOuterWindowBand } from './XihuaOuterWindowBand.js';
 import * as THREE from 'three';
 import { applyBoxUV } from '../../../utils/GeometryUV.js';
 import { gateRailFacade } from '../gateRailFacade.js';
@@ -90,5 +91,6 @@ export function buildEastWestCityGate(kit,item) {
   kit.mapRect(f,'gate',p.name,W,D);
   f.userData.cityGate={...p,portalCount:3,bays:5,depthBays:3,eaveCount:2,roof:'wudian',upperAccess:false};
   f.userData.structure={id:`city-gates/${p.name==='东华门'?'donghua':'xihua'}`,...f.userData.cityGate,plaqueMount:f.userData.plaqueMount};
+  applyXihuaOuterWindowBand(kit,f,item);
   return f;
 }

@@ -1,0 +1,128 @@
+{
+  "boundary": "Production-compiled real main/Settings/characters entry wiring with explicit CPU world/GPU shells. Ground-only fixture verifies boot/control wiring; all71 physical scene bindings are separately verified in the one-world suite.",
+  "entry": {
+    "kind": "Vite production-compiled complete main class with explicit CPU dependency seams",
+    "mainSourceSha256": "501840d5415cbfe8169ae6141863cdcbbda111691152725dc57a1827438e6346",
+    "mainClassBytesSha256": "9289637531b297cc4d7858b90095405d3e71e782a15ebf0de3682365ad6cff44",
+    "productionBundleSha256": "a3ceda196398afe3d312100bbe0377f937f45e6c96642712c73617ae5ffa7e0f",
+    "mainTransform": "Only remove automatic bootstrap beginning at const app = new ForbiddenCityApp(); and export ForbiddenCityApp; all preceding bytes unchanged.",
+    "unmodifiedMainMethods": [
+      "constructor",
+      "init",
+      "createScene",
+      "createCamera",
+      "createRenderer",
+      "createUI",
+      "animate",
+      "dispose"
+    ],
+    "realCharacterModules": [
+      "CharacterSystem",
+      "CharacterManager",
+      "CharacterWorldAdapter",
+      "CharacterRenderer",
+      "CharacterResourcePool",
+      "CharacterKit",
+      "PatrolController",
+      "SettingsMenu"
+    ],
+    "dependencySeams": [
+      "src/utils/TextureLibrary.js",
+      "src/scene/Environment.js",
+      "src/scene/PalaceBuilder.js",
+      "src/scene/Enclosure.js",
+      "src/scene/GardenBuilder.js",
+      "src/utils/Collision.js",
+      "src/scene/zones/ZoneManager.js",
+      "src/controls/FirstPerson.js",
+      "src/scene/interior/InteriorLoader.js",
+      "src/scene/flight/FlightEnvelope.js",
+      "src/render/PostProcessing.js",
+      "src/audio/Ambience.js",
+      "src/ui/Minimap.js",
+      "src/ui/Teleport.js",
+      "src/ui/PerfHUD.js",
+      "src/scene/flight/FlightTour.js",
+      "src/scene/sky/HistoricalSkyLamps.js",
+      "src/ui/DayNightPanel.js",
+      "src/ui/HelpPanel.js"
+    ],
+    "gpuSeam": "THREE.WebGLRenderer shell only. All other THREE classes, including Scene, PerspectiveCamera, Mesh, and InstancedMesh, are real.",
+    "sources": {
+      "main.js": "501840d5415cbfe8169ae6141863cdcbbda111691152725dc57a1827438e6346",
+      "src/scene/characters/CharacterSystem.js": "0e5764c8ac4b5417e5c4e2ab2b2d45876323da99b0f59c9a12fe9d7ea9be22a3",
+      "src/scene/characters/CharacterManager.js": "e8bc3fd9fd881d1bda755660acaf9ef2edef0b2916ce58e5034e2449b772a5b2",
+      "src/scene/characters/CharacterRenderer.js": "e45e2fa438797310c36a2af4b71f1d9138e1e9a56dba5c5961ef333b6e044c8b",
+      "src/scene/characters/CharacterWorldAdapter.js": "ccb552b78fbec725d7241c2a8d795b97a7e4cc2c9b32f25473ff833dafb42829",
+      "src/ui/SettingsMenu.js": "6ef44051ddc2d96d8f0060a710669dea7808c05179c7b7934bacf4f90be9480f"
+    }
+  },
+  "dayFrames": 52,
+  "day": {
+    "status": {
+      "registered": 71,
+      "loaded": 7,
+      "visible": 1,
+      "near": 0,
+      "renderCopies": 1,
+      "pending": 64,
+      "errors": 0,
+      "batches": 1,
+      "trianglesEstimate": 432,
+      "rollout": "candidate-visible",
+      "enabled": true,
+      "contentEnabled": true,
+      "daylight": 1,
+      "lastError": null
+    },
+    "render": {
+      "rootName": "QingInterpretationCharacters",
+      "rootAttachedToMainScene": true,
+      "instances": 1,
+      "meshes": [
+        {
+          "name": "characters:official-ceremonial|standing|2|static|standard",
+          "isInstancedMesh": true,
+          "count": 1,
+          "vertices": 242,
+          "indices": 1296
+        }
+      ]
+    }
+  },
+  "onFrames": 2,
+  "nightFrames": 40,
+  "night": {
+    "status": {
+      "registered": 71,
+      "loaded": 22,
+      "visible": 2,
+      "near": 0,
+      "renderCopies": 2,
+      "pending": 49,
+      "errors": 0,
+      "batches": 1,
+      "trianglesEstimate": 948,
+      "rollout": "candidate-visible",
+      "enabled": true,
+      "contentEnabled": true,
+      "daylight": 0,
+      "lastError": null
+    },
+    "render": {
+      "rootName": "QingInterpretationCharacters",
+      "rootAttachedToMainScene": true,
+      "instances": 2,
+      "meshes": [
+        {
+          "name": "characters:guard-duty|standing|2|static|standard",
+          "isInstancedMesh": true,
+          "count": 2,
+          "vertices": 265,
+          "indices": 1422
+        }
+      ]
+    }
+  },
+  "pass": true
+}

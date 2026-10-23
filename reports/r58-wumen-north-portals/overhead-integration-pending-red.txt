@@ -1,0 +1,190 @@
+✔ actual jumping central north rim x=-3.999, 10Hz, direction=-1, moving=true (38.388568ms)
+✔ actual jumping central north rim x=-3.999, 10Hz, direction=-1, moving=false (7.172016ms)
+✔ actual jumping central north rim x=3.999, 10Hz, direction=-1, moving=true (10.481725ms)
+✔ actual jumping central north rim x=3.999, 10Hz, direction=-1, moving=false (5.867444ms)
+✔ actual jumping central north rim x=-3.999, 10Hz, direction=1, moving=true (8.037047ms)
+✔ actual jumping central north rim x=-3.999, 10Hz, direction=1, moving=false (6.031071ms)
+✔ actual jumping central north rim x=3.999, 10Hz, direction=1, moving=true (9.844617ms)
+✔ actual jumping central north rim x=3.999, 10Hz, direction=1, moving=false (6.972497ms)
+✔ actual jumping central north rim x=-3.999, 60Hz, direction=-1, moving=true (45.372161ms)
+✖ actual jumping central north rim x=-3.999, 60Hz, direction=-1, moving=false (31.98707ms)
+✔ actual jumping central north rim x=3.999, 60Hz, direction=-1, moving=true (41.084884ms)
+✖ actual jumping central north rim x=3.999, 60Hz, direction=-1, moving=false (27.938881ms)
+✔ actual jumping central north rim x=-3.999, 60Hz, direction=1, moving=true (39.810846ms)
+✖ actual jumping central north rim x=-3.999, 60Hz, direction=1, moving=false (40.006932ms)
+✔ actual jumping central north rim x=3.999, 60Hz, direction=1, moving=true (62.32364ms)
+✖ actual jumping central north rim x=3.999, 60Hz, direction=1, moving=false (38.582728ms)
+✔ north -17.5: actual formerly rectangular shoulder is solid, center remains void (7.227259ms)
+✔ north -17.5: standing capsule aperture and head thickness are real geometry (4.203583ms)
+✔ north 0: actual formerly rectangular shoulder is solid, center remains void (1.181898ms)
+✔ north 0: standing capsule aperture and head thickness are real geometry (2.896786ms)
+✔ north 17.5: actual formerly rectangular shoulder is solid, center remains void (0.991411ms)
+✔ north 17.5: standing capsule aperture and head thickness are real geometry (2.396294ms)
+✔ only six north cap/soffit meshes change; ascent, doors, platforms, wings and all four pavilions stay exact; exactly three explicit overhead proxies are added (17.632129ms)
+✔ real controller -17.5, 10Hz, northward=true, backward=false (32.870388ms)
+✔ real controller 0, 10Hz, northward=true, backward=false (17.51975ms)
+✔ real controller 17.5, 10Hz, northward=true, backward=false (16.694609ms)
+✔ real controller -17.5, 10Hz, northward=true, backward=true (15.78452ms)
+✔ real controller 0, 10Hz, northward=true, backward=true (16.047456ms)
+✔ real controller 17.5, 10Hz, northward=true, backward=true (16.763563ms)
+✔ real controller -17.5, 10Hz, northward=false, backward=false (20.258509ms)
+✔ real controller 0, 10Hz, northward=false, backward=false (21.912688ms)
+✔ real controller 17.5, 10Hz, northward=false, backward=false (21.684574ms)
+✔ real controller -17.5, 10Hz, northward=false, backward=true (19.24822ms)
+✔ real controller 0, 10Hz, northward=false, backward=true (18.311381ms)
+✔ real controller 17.5, 10Hz, northward=false, backward=true (15.951311ms)
+✔ real controller -17.5, 60Hz, northward=true, backward=false (101.954529ms)
+✔ real controller 0, 60Hz, northward=true, backward=false (76.062381ms)
+✔ real controller 17.5, 60Hz, northward=true, backward=false (58.512049ms)
+✔ real controller -17.5, 60Hz, northward=true, backward=true (59.125604ms)
+✔ real controller 0, 60Hz, northward=true, backward=true (69.353626ms)
+✔ real controller 17.5, 60Hz, northward=true, backward=true (59.441971ms)
+✔ real controller -17.5, 60Hz, northward=false, backward=false (59.874052ms)
+✔ real controller 0, 60Hz, northward=false, backward=false (58.133468ms)
+✔ real controller 17.5, 60Hz, northward=false, backward=false (59.199325ms)
+✔ real controller -17.5, 60Hz, northward=false, backward=true (60.888071ms)
+✔ real controller 0, 60Hz, northward=false, backward=true (64.157742ms)
+✔ real controller 17.5, 60Hz, northward=false, backward=true (59.609643ms)
+✖ same-W helper detects installed geometry and rejects baseline, hidden/transparent heads and phantom aperture proxy (34.423807ms)
+✔ profile pins inherited bounds, discrete photo fit and unknowns without accepting altered building geometry (1.183304ms)
+✔ candidate fixture never reparents or rewrites original transforms, metadata, or physics (56.647046ms)
+✔ same-W QA rejects missing left-half masonry even with all linings retained (18.975132ms)
+✔ same-W historical view accepts exact installed delta and rejects edited head geometry (32.379674ms)
+✔ historical fixture explicitly recognizes exactly three new head proxies and rejects shape drift or missing labels (30.593119ms)
+✖ same-W QA requires three exact curved proxies, rejects missing, drifted or box-solid substitutes (15.893014ms)
+ℹ tests 54
+ℹ suites 0
+ℹ pass 48
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1610.38125
+
+✖ failing tests:
+
+test at tests/wumen-north-portal-jump.test.mjs:12:119
+✖ actual jumping central north rim x=-3.999, 60Hz, direction=-1, moving=false (31.98707ms)
+  AssertionError [ERR_ASSERTION]: starts at a legal 1 mm horizontal wall clearance
+  
+  22 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-wumen-north-portals/tests/wumen-north-portal-jump.test.mjs:32:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 22,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wumen-north-portal-jump.test.mjs:12:119
+✖ actual jumping central north rim x=3.999, 60Hz, direction=-1, moving=false (27.938881ms)
+  AssertionError [ERR_ASSERTION]: starts at a legal 1 mm horizontal wall clearance
+  
+  22 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-wumen-north-portals/tests/wumen-north-portal-jump.test.mjs:32:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 22,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wumen-north-portal-jump.test.mjs:12:119
+✖ actual jumping central north rim x=-3.999, 60Hz, direction=1, moving=false (40.006932ms)
+  AssertionError [ERR_ASSERTION]: starts at a legal 1 mm horizontal wall clearance
+  
+  22 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-wumen-north-portals/tests/wumen-north-portal-jump.test.mjs:32:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 22,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wumen-north-portal-jump.test.mjs:12:119
+✖ actual jumping central north rim x=3.999, 60Hz, direction=1, moving=false (38.582728ms)
+  AssertionError [ERR_ASSERTION]: starts at a legal 1 mm horizontal wall clearance
+  
+  22 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-wumen-north-portals/tests/wumen-north-portal-jump.test.mjs:32:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 22,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wumen-north-portals.test.mjs:55:1
+✖ same-W helper detects installed geometry and rejects baseline, hidden/transparent heads and phantom aperture proxy (34.423807ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-wumen-north-portals/tests/wumen-north-portals.test.mjs:58:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wumen-north-portals.test.mjs:116:1
+✖ same-W QA requires three exact curved proxies, rejects missing, drifted or box-solid substitutes (15.893014ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-wumen-north-portals/tests/wumen-north-portals.test.mjs:117:38)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

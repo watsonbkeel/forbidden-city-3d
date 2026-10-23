@@ -1,0 +1,27 @@
+✔ R54 read-only already-built W consumer sees final merged alcove, exact collision replacement and unchanged supports (50.545315ms)
+✔ R54 Changchun consumer tolerates unrelated multi-material world meshes without masking missing own materials (15.188036ms)
+✖ R54 Changchun consumer tolerates unnamed unrelated rooms but still rejects a missing own viewing room (12.459155ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 264.738213
+
+✖ failing tests:
+
+test at tests/r54-changchun-world-consumer.test.mjs:19:1
+✖ R54 Changchun consumer tolerates unnamed unrelated rooms but still rejects a missing own viewing room (12.459155ms)
+  TypeError: Cannot read properties of null (reading 'startsWith')
+      at file:///workspace/scratch/02a8023d1a85/r54-unified/tests/lib/r54-changchun-world-check.mjs:25:71
+      at Array.filter (<anonymous>)
+      at assertChangchunEastInWorld (file:///workspace/scratch/02a8023d1a85/r54-unified/tests/lib/r54-changchun-world-check.mjs:25:54)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r54-unified/tests/r54-changchun-world-consumer.test.mjs:20:213)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)

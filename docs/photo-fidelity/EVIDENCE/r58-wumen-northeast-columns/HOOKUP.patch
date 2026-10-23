@@ -1,0 +1,18 @@
+--- a/src/scene/PalaceBuilder.js
++++ b/src/scene/PalaceBuilder.js
+@@ -13,6 +13,7 @@
+ import { buildWumenAscent } from './palace/special/WumenAscent.js';
+ import { buildWumenNorthPortal, registerWumenNorthPortalOverheads } from './palace/special/WumenNorthPortal.js';
+ import { buildWumenSouthPortalCanopies } from './palace/special/WumenSouthPortalCanopies.js';
++import { refineWumenPavilionNorthColumns, WUMEN_NORTHEAST_PAVILION_ID } from './palace/special/WumenPavilionColumns.js';
+ import { wumenTowerGeometry, shenwuTowerGeometry } from './palace/special/GateTowerProfiles.js';
+ import { buildGateTowerShell } from './palace/special/GateTowerShell.js';
+ import { WUMEN_VERTICAL_PROFILE } from './palace/special/WumenVerticalProfile.js';
+@@ -1173,6 +1174,7 @@
+       for (const pz of [pS, pN]) {
+         const pb = buildHallBody(this.library, { width: P, depth: P, height: 7.5, bays: 3, facade: 'lattice' });
+         pb.position.set(s * hx, top, pz);
++        if (s === -1 && pz === pN) refineWumenPavilionNorthColumns(pb, { instanceId: WUMEN_NORTHEAST_PAVILION_ID });
+         g.add(pb);
+         const pr = buildRoof(this.library, { type: 'pavilion', width: P + 0.4, depth: P + 0.4, baseY: top + pb.userData.topY, layers: 2, brackets: true, detail: 'low' });
+         pr.position.set(s * hx, 0, pz);

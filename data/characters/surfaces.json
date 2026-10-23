@@ -19,17 +19,17 @@
     "id": "taihe-hall-floor",
     "zoneRef": "static",
     "anchorRef": "taihe-hall",
-    "kind": "walkable",
+    "kind": "ground",
     "localBoundsMeters": [
       -30,
       30,
       -17,
       17
     ],
-    "expectedHeightMeters": 9.9375,
+    "expectedHeightMeters": 9.9675,
     "heightToleranceMeters": 0.03,
-    "source": "data/architecture/taihe-core.json#/frame/floorY",
-    "verification": "Bounded actual rendered surface or registered walkable; no origin/ground fallback"
+    "source": "src/scene/PalaceBuilder.js#buildHall visible 三台_taihe_square_brick_floor mesh",
+    "verification": "Actual upward-facing rendered floor at feet, resolved for each active B/S generation; not lower collision datum or a hard-coded actor offset"
   },
   {
     "id": "wumen-south-ground",
@@ -99,17 +99,17 @@
     "id": "chuxiu-floor",
     "zoneRef": "west-six",
     "anchorRef": "chuxiu-hall",
-    "kind": "walkable",
+    "kind": "ground",
     "localBoundsMeters": [
       -12.5,
       12.5,
       -6,
       6
     ],
-    "expectedHeightMeters": 0.6,
-    "heightToleranceMeters": 0.03,
-    "source": "data/zones/west-six.json#/items/储秀宫/ph",
-    "verification": "Bounded actual rendered surface or registered walkable; no origin/ground fallback"
+    "expectedHeightMeters": 0.62,
+    "heightToleranceMeters": 0.003,
+    "source": "src/scene/palace/kit.js#floorMesh visible kit_floor_flat top at hall ph+0.02",
+    "verification": "Actual visible Chuxiu floor triangles, not the lower registered walkable. Resolve current generation independently; seated seat/foot contacts are bound separately, never lift the pelvis by a floor offset."
   },
   {
     "id": "yikun-court-ground",
@@ -142,5 +142,389 @@
     "heightToleranceMeters": 0.03,
     "source": "src/scene/Environment.js#setupGround",
     "verification": "Bounded actual rendered surface or registered walkable; no origin/ground fallback"
+  },
+  {
+    "id": "donghua-gate-side-ground",
+    "zoneRef": "outer-east",
+    "anchorRef": "donghua-gate",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -6,
+      6,
+      8,
+      12
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.03,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Actual rendered Environment ground; full footprint and body clearance checked against unchanged production scene."
+  },
+  {
+    "id": "xihua-gate-side-ground",
+    "zoneRef": "outer-west",
+    "anchorRef": "xihua-gate",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -6,
+      6,
+      8,
+      12
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.03,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Actual rendered Environment ground; full footprint and body clearance checked against unchanged production scene."
+  },
+  {
+    "id": "longzong-gate-side-ground",
+    "zoneRef": "axis-courts",
+    "anchorRef": "longzong-gate",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -12,
+      12,
+      -13,
+      -10
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.03,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Actual rendered Environment ground; full footprint and body clearance checked against unchanged production scene."
+  },
+  {
+    "id": "east-second-lane-ground",
+    "zoneRef": "east-six",
+    "anchorRef": "east-second-lane",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -5.8,
+      5.8,
+      -22,
+      12
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.03,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Actual rendered Environment ground; full footprint and body clearance checked against unchanged production scene."
+  },
+  {
+    "id": "changchun-r52-court-ground",
+    "zoneRef": "west-six",
+    "anchorRef": "changchun-r52-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -8,
+      8,
+      -18,
+      -10
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.03,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Requires actual rendered ground triangles, full-body margin and collision checks in the named real courtyard; no world-ground or origin fallback."
+  },
+  {
+    "id": "chengqian-r52-court-ground",
+    "zoneRef": "east-six",
+    "anchorRef": "chengqian-r52-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -8,
+      8,
+      -18,
+      -10
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.03,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Requires actual rendered ground triangles, full-body margin and collision checks in the named real courtyard; no world-ground or origin fallback."
+  },
+  {
+    "id": "zhongcui-r52-court-ground",
+    "zoneRef": "east-six",
+    "anchorRef": "zhongcui-r52-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -9,
+      8,
+      -17,
+      -10
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.03,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Requires actual rendered ground triangles, full-body margin and collision checks in the named real courtyard; no world-ground or origin fallback."
+  },
+  {
+    "id": "jingren-r52-court-ground",
+    "zoneRef": "east-six",
+    "anchorRef": "jingren-r52-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -8,
+      9,
+      -21,
+      -12
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.03,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Requires actual rendered ground triangles, full-body margin and collision checks in the named real courtyard; no world-ground or origin fallback."
+  },
+  {
+    "id": "yonghe-r52-court-ground",
+    "zoneRef": "east-six",
+    "anchorRef": "yonghe-r52-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -8,
+      9,
+      -18,
+      -10
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.03,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Requires actual rendered ground triangles, full-body margin and collision checks in the named real courtyard; no world-ground or origin fallback."
+  },
+  {
+    "id": "xianfu-r53-front-support",
+    "zoneRef": "west-six",
+    "anchorRef": "xianfu-r53-hall",
+    "kind": "walkable",
+    "localBoundsMeters": [
+      4.3,
+      5.7,
+      -3.7,
+      -2.3
+    ],
+    "expectedHeightMeters": 0.62,
+    "heightToleranceMeters": 0.001,
+    "source": "src/scene/palace/special/RemainingResidentialHalls.js",
+    "verification": "Actual visible top surface required, not a lower platform within a broad tolerance. No position offset."
+  },
+  {
+    "id": "xianfu-r53-court-ground",
+    "zoneRef": "west-six",
+    "anchorRef": "xianfu-r53-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -5,
+      3,
+      -13,
+      -11
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.001,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Actual rendered courtyard ground triangles, body radius 0.5 m plus 0.15 m clearance margin; no origin fallback."
+  },
+  {
+    "id": "taiji-r53-front-support",
+    "zoneRef": "west-six",
+    "anchorRef": "taiji-r53-hall",
+    "kind": "walkable",
+    "localBoundsMeters": [
+      -5.7,
+      -4.3,
+      -6.95,
+      -5.55
+    ],
+    "expectedHeightMeters": 0.61,
+    "heightToleranceMeters": 0.001,
+    "source": "src/scene/palace/special/RemainingResidentialHalls.js",
+    "verification": "Actual visible porch stone slab top at 0.61 m, not the registered or rendered 0.60 m brick/platform layer below. Exact support-layer binding, never a position offset."
+  },
+  {
+    "id": "taiji-r53-court-ground",
+    "zoneRef": "west-six",
+    "anchorRef": "taiji-r53-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      0,
+      7,
+      -15,
+      -13
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.001,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Actual rendered courtyard ground triangles, body radius 0.5 m plus 0.15 m clearance margin; no origin fallback."
+  },
+  {
+    "id": "jingyang-r53-front-support",
+    "zoneRef": "east-six",
+    "anchorRef": "jingyang-r53-hall",
+    "kind": "walkable",
+    "localBoundsMeters": [
+      -5.7,
+      -4.3,
+      -3.7,
+      -2.3
+    ],
+    "expectedHeightMeters": 0.62,
+    "heightToleranceMeters": 0.001,
+    "source": "src/scene/palace/special/RemainingResidentialHalls.js",
+    "verification": "Actual visible top surface required, not a lower platform within a broad tolerance. No position offset."
+  },
+  {
+    "id": "jingyang-r53-court-ground",
+    "zoneRef": "east-six",
+    "anchorRef": "jingyang-r53-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -4,
+      4,
+      -13,
+      -11
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.001,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Actual rendered courtyard ground triangles, body radius 0.5 m plus 0.15 m clearance margin; no origin fallback."
+  },
+  {
+    "id": "chuxiu-r54-court-ground",
+    "zoneRef": "west-six",
+    "anchorRef": "chuxiu-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -8,
+      8,
+      -18,
+      -11
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.003,
+    "source": "src/scene/Environment.js#setupGround",
+    "verification": "Independent open courtyard ground, never the raised .62m interior or .46m return corridor. Must bind current visible geometry, clear full body and pass every route sample in the current zone generation."
+  },
+  {
+    "id": "shoukang-r56-court-ground",
+    "zoneRef": "outer-west",
+    "anchorRef": "shoukang-r56-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -10,
+      10,
+      -22,
+      -15
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.001,
+    "source": "src/scene/Environment.js#setupGround ground_brick visible triangles",
+    "verification": "Actual current-generation rendered courtyard triangles; not an interior floor, map-label origin fallback, under-deck surface or assumed ground plane."
+  },
+  {
+    "id": "cining-r56-court-ground",
+    "zoneRef": "outer-west",
+    "anchorRef": "cining-r56-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -14,
+      14,
+      -31,
+      -24
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.001,
+    "source": "src/scene/Environment.js#setupGround ground_brick visible triangles",
+    "verification": "Actual current-generation rendered courtyard triangles; not an interior floor, map-label origin fallback, under-deck surface or assumed ground plane."
+  },
+  {
+    "id": "shouan-r56-court-ground",
+    "zoneRef": "outer-west",
+    "anchorRef": "shouan-r56-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -10,
+      10,
+      -19,
+      -12
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.001,
+    "source": "src/scene/Environment.js#setupGround ground_brick visible triangles",
+    "verification": "Actual current-generation rendered courtyard triangles; not an interior floor, map-label origin fallback, under-deck surface or assumed ground plane."
+  },
+  {
+    "id": "yangxin-r56-court-ground",
+    "zoneRef": "west-six",
+    "anchorRef": "yangxin-r56-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -14,
+      16,
+      -22,
+      -15
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.001,
+    "source": "src/scene/Environment.js#setupGround ground_brick visible triangles",
+    "verification": "Actual current-generation rendered courtyard triangles; not an interior floor, map-label origin fallback, under-deck surface or assumed ground plane."
+  },
+  {
+    "id": "yangxing-r57-ground",
+    "zoneRef": "ningshou",
+    "anchorRef": "yangxing-r57-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -14,
+      14,
+      -23,
+      -16
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.001,
+    "source": "src/scene/Environment.js#setupGround ground_brick visible triangles",
+    "verification": "Actual current-generation rendered courtyard triangles; not an interior floor, map-label origin fallback, under-deck surface or assumed ground plane."
+  },
+  {
+    "id": "leshou-r57-ground",
+    "zoneRef": "ningshou",
+    "anchorRef": "leshou-r57-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -14,
+      14,
+      -24,
+      -17
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.001,
+    "source": "src/scene/Environment.js#setupGround ground_brick visible triangles",
+    "verification": "Actual current-generation rendered courtyard triangles; not an interior floor, map-label origin fallback, under-deck surface or assumed ground plane."
+  },
+  {
+    "id": "jingfu-r57-ground",
+    "zoneRef": "ningshou",
+    "anchorRef": "jingfu-r57-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -7,
+      -3,
+      -24,
+      -20
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.001,
+    "source": "src/scene/Environment.js#setupGround ground_brick visible triangles",
+    "verification": "Actual current-generation rendered courtyard triangles; not an interior floor, map-label origin fallback, under-deck surface or assumed ground plane."
+  },
+  {
+    "id": "chonghua-r57-ground",
+    "zoneRef": "west-six",
+    "anchorRef": "chonghua-r57-hall",
+    "kind": "ground",
+    "localBoundsMeters": [
+      -12,
+      12,
+      -23,
+      -16
+    ],
+    "expectedHeightMeters": 0,
+    "heightToleranceMeters": 0.001,
+    "source": "src/scene/Environment.js#setupGround ground_brick visible triangles",
+    "verification": "Actual current-generation rendered courtyard triangles; not an interior floor, map-label origin fallback, under-deck surface or assumed ground plane."
   }
 ]

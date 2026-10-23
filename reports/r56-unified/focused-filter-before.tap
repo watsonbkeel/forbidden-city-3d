@@ -1,0 +1,121 @@
+✖ pure selection retains all 38 required roles but submits only two complex LOD0 actors including the emperor (15.559567ms)
+✖ real Manager/Renderer submits 38 visible actors and exactly two real LOD0 instances from 38 logical actors (146.001485ms)
+✖ real Manager/Renderer submits 64 visible actors and exactly two real LOD0 instances from 96 logical actors (0.336944ms)
+✔ pure low selection retains fixed 19 court roles, 32 visible slots, and no complex LOD0 (13.479257ms)
+✔ first near allocation has stable distance/id ties independent of source iteration order (0.358636ms)
+✔ incumbents resist sub-metre distance jitter, exact one-metre ties, and release after a greater-than-one-metre advantage (0.492066ms)
+✔ higher priority preempts a closer incumbent without the distance hysteresis delaying it (0.361159ms)
+✔ Manager retains near membership over repeated tiny movement and does not restart bindings or readiness on a real switch (2.798333ms)
+✔ out-of-frustum and distance-ineligible incumbents release slots without sticky IDs or resetting readiness (0.696011ms)
+✔ support revisions and pending bindings cannot preserve stale near eligibility (0.732705ms)
+✔ disable and content availability gates clear incumbency instead of carrying old near choices into a fresh lifecycle (0.662179ms)
+✔ hidden/resumed frames preserve stable incumbency and pause readiness, while changed view is re-evaluated (0.322623ms)
+✔ quota demotion and quality changes preserve original 12m/40m LOD hysteresis and readiness (0.995868ms)
+✔ pending jobs progress and all seven roles reach submissions under persistent 1.25ms cost (98.447748ms)
+✔ pending jobs progress and all seven roles reach submissions under persistent 2ms cost (35.677436ms)
+✔ disabled and hidden states run no pending work; cleared queue receives no reserve (36.621578ms)
+✔ repeated generation changes discard old jobs and submit only current bindings (48.640272ms)
+✔ explicit zero preparation budget remains zero rather than silently enabling work (1.648144ms)
+✔ runtime schema accepts 128 unique logical records, rejects 129 even if caller raises its own scope (11.158678ms)
+✔ direct Manager constructor permits 128 but never silently truncates 129 (4.63644ms)
+✔ JSON document/combined schemas and scope agree on 128; LOD capacity is independent (0.867867ms)
+✔ 128 real resource preparations progress under controlled 1.25ms submission pressure; high64/low32/near2 (434.508201ms)
+✔ 128 real resource preparations progress under controlled 2ms submission pressure; high64/low32/near2 (191.071615ms)
+✔ R52 expansion preserves the exact low-tier original1 emperor+12 officials+2 attendants+4 guards; other required actors remain registered (17.125367ms)
+✔ R52 high tier retains all37 Taihe actors under the same budget; near geometry remains bounded (0.663302ms)
+✔ R56 production-default System renders real scene meshes without formal acceptance (182.084288ms)
+✔ ordinary off clears all real render instances; ordinary on restores without a DEV action (69.047844ms)
+✔ default-on still respects explicit content unavailable and required bad/pending support (47.373338ms)
+✔ night retains real guard instances but never schedules an emperor or living-scene actor (43.147171ms)
+✔ read-only per-frame UI status does not sort diagnostic timing buffers (56.155234ms)
+✔ ordinary retry after a transient renderer fault clears current error only after success and retains diagnostic history (56.992495ms)
+✔ near and middle required surroundings are not displaced by distant core crowds under unchanged high64 (1.122047ms)
+✔ low32 also includes local noncourt roles while retaining essential selection (0.697552ms)
+✔ identity priority remains within the same stable distance band and input order never changes ties (20.88751ms)
+✔ already-hysteretic LOD boundaries do not churn selection during small camera jitter (0.517854ms)
+✔ deterministic same candidates and inherited near-slot hysteresis keep render identities stable (12.180045ms)
+✔ R56 retains the exact93 R55 actors, all old bindings, approved Kit and prior required coverage (6.03459ms)
+✔ R56 registers exactly101 required roles with eight bounded existing-template courtyard additions (4.452805ms)
+✔ R56 cannot hide a missing candidate through demotion, count padding or altered required coverage (33.81273ms)
+✔ new ground bindings are named real halls and never map-only Zaigong or interior exhibits (0.950702ms)
+✔ analytic distance covers crossing, endpoint, parallel, collinear and stationary geometry (2.309112ms)
+✔ all 772 new-involved pairs are checked, old93-only proximity is not regraded, report is small and pure (59.575832ms)
+✔ all segments, not just start points or endpoints, are checked against stationary roles (56.217322ms)
+✔ crossing fails despite real PatrolController samples staying separated at every shared phase (30.181853ms)
+✔ near endpoints and new-new pairs fail (14.09602ms)
+✔ fixed 1.2 m threshold cannot be lowered by an option or rounding (15.502491ms)
+✔ missing and unready new or retained actors, duplicate IDs and unknown extras fail closed (83.517321ms)
+✔ wrong actor, swapped stationary binding, wrong path identity and stale source cache fail closed (76.897607ms)
+✔ actual resolved multi-segment parallel routes use every segment and include the exact threshold (14.817122ms)
+✔ malformed paths, support mismatches, actor demotion and registry replacement fail closed (66.702553ms)
+✔ finite but numerically unrepresentable segment arithmetic fails closed instead of reporting NaN clearance (0.340529ms)
+✔ coherent replacement of a crossing path cannot impersonate the cached resolved path (12.606083ms)
+✔ stationary centers cannot detach from their actual ready surface support (15.120541ms)
+✔ a replaced loaded-zone group invalidates old bindings even before manager update and without changing adapter.generation (14.314576ms)
+✔ an unloaded zone cannot retain a ready clearance report from its old cached bindings (9.337707ms)
+✔ interior token, state and group replacement invalidate all old generations without resolving or mutating IDs (40.160437ms)
+✔ already registered replacement groups still reject stale cache, and actual fresh bindings restore a pass (22.44955ms)
+✔ clearance generation checks never call mutable adapter methods or register object IDs (9.85506ms)
+ℹ tests 58
+ℹ suites 0
+ℹ pass 55
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 808.657904
+
+✖ failing tests:
+
+test at tests/p3c-near-budget.test.mjs:47:1
+✖ pure selection retains all 38 required roles but submits only two complex LOD0 actors including the emperor (15.559567ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  64 !== 38
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r56-unified/tests/p3c-near-budget.test.mjs:50:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 64,
+    expected: 38,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/p3c-near-budget.test.mjs:59:31
+✖ real Manager/Renderer submits 38 visible actors and exactly two real LOD0 instances from 38 logical actors (146.001485ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  101 !== 38
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r56-unified/tests/p3c-near-budget.test.mjs:66:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 101,
+    expected: 38,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/p3c-near-budget.test.mjs:59:31
+✖ real Manager/Renderer submits 64 visible actors and exactly two real LOD0 instances from 96 logical actors (0.336944ms)
+  Error: Character registry exceeds 128 logical actors
+      at new CharacterManager (file:///workspace/scratch/02a8023d1a85/r56-unified/src/scene/characters/CharacterManager.js:21:76)
+      at harness (file:///workspace/scratch/02a8023d1a85/r56-unified/tests/p3c-near-budget.test.mjs:36:19)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r56-unified/tests/p3c-near-budget.test.mjs:61:13)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)

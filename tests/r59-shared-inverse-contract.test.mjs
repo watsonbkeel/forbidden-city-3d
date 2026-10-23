@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {createHash} from 'node:crypto';
+const contract=JSON.parse(fs.readFileSync(new URL('./fixtures/r59-shared-approved-inverse.json',import.meta.url))),sha=b=>createHash('sha256').update(b).digest('hex');
+for(const r of contract.rules)test('exact approved source inverse: '+r.path,()=>{let text=fs.readFileSync(new URL('../'+r.path,import.meta.url),'utf8');assert.equal(sha(text),r.candidateSHA256);for(const x of r.changes){assert.equal(text.split(x.after).length,2,'single exact reverse scope');text=text.replace(x.after,x.before)}assert.equal(sha(text),r.baselineSHA256,'unaffected R58 source byte-for-byte')});

@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { buildChangchunEastAlcove } from './ChangchunEastAlcove.js';
 const page=n=>`https://www.dpm.org.cn/explore/building/${n}.html`;
 /** Existing shell/bay axes are retained fits, NOT the different column-head
  * measurement basis in the Changchun structural paper. +X west, +Z north. */
@@ -70,6 +71,7 @@ export function buildWestDomesticHall(kit,item){
   for(const side of [-1,1]){
    const x=side*2*bay,z=4.6,w=3.7,d=2.7,h=3.1;
    box(f,'changchun-north-kang',wood,w,.5,d,x,y+.25,z,true);
+   if(side===-1){buildChangchunEastAlcove(kit,item,f);continue;}
    for(const dx of [-w/2,w/2])for(const dz of [-d/2,d/2])box(f,'changchun-kang-cover-post',wood,.13,h,.13,x+dx,y+h/2,z+dz,true);
    for(const dz of [-d/2,d/2])box(f,'changchun-kang-cover-head',wood,w,.22,.16,x,y+h-.11,z+dz,false);
    for(const dx of [-w/2,w/2])box(f,'changchun-kang-cover-head',wood,.16,.22,d,x+dx,y+h-.11,z,false);

@@ -1,0 +1,118 @@
+✖ R52 refines exactly four source-mapped forms, without claiming identity, measured size or reverse decoration (27.563208ms)
+✖ the d111 crown is open and individually articulated, not the prior closed conical stack (8.969458ms)
+✖ the d112 fitted mouth, pedestal and front layered relief are distinct from d111 (14.952642ms)
+✖ 59 has outward-rising non-torus handles and three fitted bulbous feet that touch the original support plane (14.715308ms)
+✖ 61 has a separate low-domed fitted lid and bulb finial, not a sharp generic conical top (6.733905ms)
+✔ R52 preserves exact R37 d102/60, the other ten complete cases, and all sixteen case collisions (44.853706ms)
+✔ all new geometry has finite position/normal/uv values, fits its old case and stays within a small triangle budget (16.421736ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 2
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 295.616737
+
+✖ failing tests:
+
+test at tests/r52-wuying-next-forms.test.mjs:24:1
+✖ R52 refines exactly four source-mapped forms, without claiming identity, measured size or reverse decoration (27.563208ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + undefined
+  - 'R52_FRONT_PHOTO_FORM'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r52-wuying-forms/tests/r52-wuying-next-forms.test.mjs:26:66)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'R52_FRONT_PHOTO_FORM',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r52-wuying-next-forms.test.mjs:28:1
+✖ the d111 crown is open and individually articulated, not the prior closed conical stack (8.969458ms)
+  AssertionError [ERR_ASSERTION]: open top ring needs a real nonzero-radius lip
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r52-wuying-forms/tests/r52-wuying-next-forms.test.mjs:30:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r52-wuying-next-forms.test.mjs:35:1
+✖ the d112 fitted mouth, pedestal and front layered relief are distinct from d111 (14.952642ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert.ok(byRole(c,'observed-layered-shoulder').length>=9)
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r52-wuying-forms/tests/r52-wuying-next-forms.test.mjs:39:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r52-wuying-next-forms.test.mjs:43:1
+✖ 59 has outward-rising non-torus handles and three fitted bulbous feet that touch the original support plane (14.715308ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" to be strictly unequal to:
+
+  'TorusGeometry'
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r52-wuying-forms/tests/r52-wuying-next-forms.test.mjs:46:32)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'TorusGeometry',
+    expected: 'TorusGeometry',
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r52-wuying-next-forms.test.mjs:50:1
+✖ 61 has a separate low-domed fitted lid and bulb finial, not a sharp generic conical top (6.733905ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 1
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r52-wuying-forms/tests/r52-wuying-next-forms.test.mjs:51:51)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

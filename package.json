@@ -17,7 +17,8 @@
     "test:zone-equiv": "node tests/zone-equiv.cjs",
     "test:gate": "node tests/gate.cjs",
     "test:visual": "node tests/visual.cjs",
-    "test:current-state": "node --test tests/current-state/*.test.mjs"
+    "test:current-state": "node --test tests/current-state/*.test.mjs",
+    "package:production": "node scripts/package-production.mjs"
   },
   "dependencies": {
     "cos-nodejs-sdk-v5": "^3.0.0",

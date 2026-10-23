@@ -3,6 +3,7 @@ import { mergeByMaterial } from '../utils/MergeUtils.js';
 import { WUMEN_VERTICAL_PROFILE } from './palace/special/WumenVerticalProfile.js';
 import { baoheLowerSoffitRing } from './palace/BaoheInteriorFrame.js';
 import {jiaotaiCeilingRing} from './palace/special/JiaotaiCeilingFrame.js';
+import { resolveWalkingBeastProfile, walkingBeastScope, addWalkingBeastRow } from './palace/special/HallWalkingBeasts.js';
 
 /**
  * 古建屋顶构件（接口契约）
@@ -396,11 +397,11 @@ function addMainRidge(ctx, g, half, yBase, hr, chiwenH) {
 }
 
 /** 角脊（含端部仔角梁上挑）+ 末端小兽 */
-function addHip(ctx, g, pts, r, beasts) {
+function addHip(ctx, g, pts, r, beasts, walking) {
   const last = pts[pts.length - 1], prev = pts[pts.length - 3] ?? pts[0];
   const dx = last[0] - prev[0], dz = last[2] - prev[2], l = Math.hypot(dx, dz) || 1;
   const tip = [last[0] + dx / l * r * 3, last[1] + r * 1.6, last[2] + dz / l * r * 3];
-  add(g, tubeGeometry([...pts, tip], r, ctx), ctx.mat.ridge);
+  const ridge = add(g, tubeGeometry([...pts, tip], r, ctx), ctx.mat.ridge);
   if (!ctx.hd || beasts <= 0) return;
   // 从檐角往上按弧长摆放：仙人 + 走兽
   const cum = [0];
@@ -420,7 +421,7 @@ function addHip(ctx, g, pts, r, beasts) {
     return pts[0];
   };
   const yaw = Math.atan2(dx, dz);
-  for (let b = 0; b <= beasts; b++) {
+  for (let b = 0; b <= (walking ? 0 : beasts); b++) {
     const p = at(sb * 0.9 + b * sb * 1.15);
     if (b === 0) {
       const xian = add(g, new THREE.ConeGeometry(sb * 0.22, sb * 1.1, 4), ctx.mat.ridge);
@@ -435,6 +436,7 @@ function addHip(ctx, g, pts, r, beasts) {
       head.rotation.y = yaw;
     }
   }
+  if (walking) ctx.walkingRows.push(addWalkingBeastRow(ctx, g, ridge, pts, r, walking, add));
 }
 
 function addFinial(ctx, g, y, hf) {
@@ -497,7 +499,7 @@ function singleRoof(ctx, g, o) {
     const corners = t => polyCorners(sides, ex * t, ez * t);
     const edges = corners(1).map((_, k) => ({ k, t0: 0, t1: 1 }));
     const S = hipSurface(ctx, g, { corners, edges, Y, tw, lift, th });
-    for (let c = 0; c < S.n; c++) addHip(ctx, g, S.hipLine(c, 0.02, hr * 0.6), hr, nBeasts - 1);
+    for (let c = 0; c < S.n; c++) addHip(ctx, g, S.hipLine(c, 0.02, hr * 0.6), hr, nBeasts - 1, walkingBeastScope(ctx, o._walkingLayer ?? 'single', c));
     top = addFinial(ctx, g, Y(0) - hr, clamp(height * 0.14, 0.5, 3));
   } else if (type === 'gable') {
     const corners = t => polyCorners(4, ex, ez * t);
@@ -533,7 +535,7 @@ function singleRoof(ctx, g, o) {
           if (Math.abs(p[0]) <= G + 1e-3) return [p[0] - Math.sign(p[0]) * hr * 1.4, p[1], p[2]];
           return p;
         });
-        addHip(ctx, g, pts, hr, nBeasts);
+        addHip(ctx, g, pts, hr, nBeasts, walkingBeastScope(ctx, o._walkingLayer ?? 'single', c));
       }
       top = addMainRidge(ctx, g, G - hr * 1.4, Y(0) - hr, hr, chiwenH);
       // 山花（收山 δ）、博风板、博脊
@@ -551,7 +553,7 @@ function singleRoof(ctx, g, o) {
     } else {
       const corners = t => polyCorners(4, hx(t), ez * t);
       const S = hipSurface(ctx, g, { corners, Y, tw, lift, th, bearingSoffit, edges: [0, 1, 2, 3].map(k => ({ k, t0: 0, t1: 1 })) });
-      for (let c = 0; c < 4; c++) addHip(ctx, g, S.hipLine(c, 0, hr * 0.6), hr, nBeasts);
+      for (let c = 0; c < 4; c++) addHip(ctx, g, S.hipLine(c, 0, hr * 0.6), hr, nBeasts, walkingBeastScope(ctx, o._walkingLayer ?? 'single', c));
       top = addMainRidge(ctx, g, rx, Y(0) - hr, hr, chiwenH);
     }
   }
@@ -601,7 +603,7 @@ function skirtRoof(ctx, g, { sides, W, D, inset, ovh, baseY, brackets, liftScale
   const nT = Math.max(4, Math.round(ctx.seg.nT * 0.6));
   const S = hipSurface(ctx, g, { corners, Y, tw, lift, th, nT, edges: footprint.map((_, k) => ({ k, t0: 0, t1: 1 })) });
   const hr = clamp(minD * 0.009, 0.1, 0.36);
-  for (let c = 0; c < S.n; c++) addHip(ctx, g, S.hipLine(c, 0, hr * 0.6, Math.max(6, ctx.seg.tube >> 1)), hr, ctx.hd ? 3 : 0);
+  for (let c = 0; c < S.n; c++) addHip(ctx, g, S.hipLine(c, 0, hr * 0.6, Math.max(6, ctx.seg.tube >> 1)), hr, ctx.hd ? 3 : 0, walkingBeastScope(ctx, 'lower', c));
   // 围脊：腰檐与上层屋身交接处
   add(g, prismGeometry(polyCorners(sides, hxi + hr, hzi + hr), Y(0) - hr, Y(0) + hr * 1.8, { tile: 1 }), ctx.mat.ridge);
   return { y0, eaveY: yb, topY: Y(0), ridgeTopY: Y(0) + hr * 1.8 };
@@ -636,7 +638,7 @@ function roofInto(ctx, g, o) {
       { band: lowerBandH * ctx.aspect.caihua }), ctx.mat.caihua);
   }
   const upper = singleRoof(ctx, g, {
-    ...o, width: Wi, depth: Di, baseY: bodyTop, overhang: undefined, _wumenUpper: vertical,
+    ...o, width: Wi, depth: Di, baseY: bodyTop, overhang: undefined, _wumenUpper: vertical, _walkingLayer: 'upper',
     height: o.height ?? Math.min(Wi, Di) * (type === 'pavilion' ? 0.5 : 0.4),
   });
   // Attachment metadata only: these are the actual generated lower-ridge and
@@ -671,6 +673,7 @@ function finalize(ctx, g, eaveY) {
  * @param {number} [opts.height] 屋顶高度（不含吻兽），默认按类型取进深的比例
  * @param {number} [opts.sides=4] 仅 pavilion：4 或 8
  * @param {'high'|'low'} [opts.detail='high'] low 用于远处背景建筑：减少分段，不生成吻兽、脊兽、椽子等小构件
+ * @param {'baohe'|'zhonghe'} [opts.walkingBeastProfile] Explicit reviewed count/placement profile; strict hall dimensions required
  * @returns {THREE.Group} group.userData = { topY, eaveY, ownedMaterials }：最高点（含吻兽/宝顶）、最低檐口高度（均为 group 局部坐标）、需调用方释放的自建材质
  */
 export function buildRoof(lib, opts) {
@@ -688,7 +691,9 @@ export function buildRoof(lib, opts) {
     }
   }
   if (opts._wumenUpper !== undefined) throw new Error('Internal Wumen upper-roof option is not a public override');
+  const walkingProfile = resolveWalkingBeastProfile(opts);
   const ctx = makeCtx(lib, opts.detail);
+  if (walkingProfile) { ctx.walkingProfile = walkingProfile; ctx.walkingRows = []; }
   if (opts.baoheInteriorOpening) {
     // Opening the low soffit exposes the inside of the existing roof body.
     // Its original outward-only faces otherwise reveal sky from the hall.
@@ -706,6 +711,13 @@ export function buildRoof(lib, opts) {
   g.name = `roof_${opts.type ?? 'wudian'}`;
   const r = roofInto(ctx, g, opts);
   const roof = finalize(ctx, g, r.eaveY);
+  if (walkingProfile) roof.userData.walkingBeasts = {
+    profile: walkingProfile.id, entityId: walkingProfile.entityId, source: walkingProfile.source,
+    status: 'PARTIAL_VERIFY_PENDING', detail: opts.detail ?? 'high', countsPerCorner: walkingProfile.counts,
+    animalTotal: ctx.walkingRows.reduce((sum, row) => sum + row.count, 0),
+    riderTotal: ctx.walkingRows.length, rows: ctx.walkingRows,
+    limits: 'Counts/placement only; species, terminal hip beasts and browser verification remain incomplete',
+  };
   if(opts.hardGableEnd)roof.userData.hardGableEnd={endPlaneX:opts.width/2,widthBasis:'RETAINED_SHELL_MODEL_FIT_NOT_SURVEYED',tileEnd:'FLUSH_WITH_GABLE_WALL',rakeEnd:'FLUSH_WITH_GABLE_WALL'};
   if (r.doubleEaveMountingBand) roof.userData.doubleEaveMountingBand = r.doubleEaveMountingBand;
   if (opts.wumenVerticalProfile) {

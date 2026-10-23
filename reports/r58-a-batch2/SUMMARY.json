@@ -1,0 +1,94 @@
+{
+  "sourceCommit": "322eb2eb5af839486f75276e23fcc5e07e567626",
+  "status": "FUNCTIONAL_CHECKPOINT_NOT_A37_OR_BROWSER_ACCEPTANCE",
+  "workItems": 5,
+  "distinctOriginalObjectsChanged": 4,
+  "focused": {
+    "firstThree": 148,
+    "facades": 77,
+    "totalPass": 225,
+    "fail": 0
+  },
+  "world": {
+    "colliders": 25425,
+    "walkables": 1125,
+    "zones": [
+      "axis-courts",
+      "east-six",
+      "west-six",
+      "outer-east",
+      "outer-west",
+      "garden",
+      "ningshou"
+    ]
+  },
+  "individualIdentitiesPerLayer": 108,
+  "layers": [
+    "B",
+    "Yangxin-S",
+    "Kunning-S",
+    "Huangji-S"
+  ],
+  "viewRecords": 401,
+  "pathsTwoCycles": 24,
+  "zoneReloads": 6,
+  "sourceFiles": 210,
+  "walkingBeasts": {
+    "scope": "COUNT_AND_CONTACT_PARTIAL_NOT_BROWSER_OR_SPECIES_ACCEPTANCE",
+    "halls": [
+      {
+        "entityId": "FC-5FAA15AE5C",
+        "animals": 28,
+        "riders": 4,
+        "actualMergedFootContacts": 112,
+        "status": "PARTIAL_VERIFY_PENDING"
+      },
+      {
+        "entityId": "FC-58A3300503",
+        "animals": 72,
+        "riders": 8,
+        "actualMergedFootContacts": 288,
+        "status": "PARTIAL_VERIFY_PENDING"
+      }
+    ]
+  },
+  "baoheRoutes": 48,
+  "facadeRoutes": 20,
+  "submissionBudget": {
+    "boundary": "CPU actual instance/index counts only, not GPU draw timing",
+    "high": {
+      "frames": 17587,
+      "maxInstances": 64,
+      "maxTriangles": 45564,
+      "maxBatches": 23,
+      "maxNear": 2
+    },
+    "low": {
+      "frames": 187,
+      "maxInstances": 32,
+      "maxTriangles": 14228,
+      "maxBatches": 11,
+      "maxNear": 0
+    }
+  },
+  "build": {
+    "exitCode": 0,
+    "boundary": "Intermediate compilation only; release identity remains R57 until final R58 packaging."
+  },
+  "files": {
+    "reports/r58-a-batch2/one-world-validation.json.gz": "7b8441fd74afb0bfe6848e99e152243c6acea9298ad2b8309d03eb5dad008007",
+    "reports/r58-a-batch2/staff-proof.json.gz": "00550cf2029410817e733c34a2a1ba6628c70b7c7d20cb606af51c20fd6321e0",
+    "reports/r58-a-batch2/world-test.txt": "d20d9429afecf43c128791b28f520237daf438fc28c764c2bacc1d801cae1def",
+    "reports/r58-a-batch2/first-three-focused.txt": "a5cae42b972f9b001f12cd8ab66cf39118cce79bf1ecdb5eaa1226d42cdc7aa7",
+    "reports/r58-a-batch2/facade-focused.txt": "b2fa8bc2ef99763f54a6694c6fcebe3dc9004ea9ecab679ce6c6e014fe6efacd",
+    "reports/r58-a-batch2/build.txt": "0d77819f4b7be38f90629029d5ab0cead62f4be2fa732fab6e196d648ec0398f"
+  },
+  "openLimits": [
+    "No actual game browser same-camera/source comparison",
+    "No GPU/frame-time/phone test",
+    "Walking beasts remain simplified bodies, not species sculpture",
+    "Dais dimensions and rail sections are photo-fit; detailed carving and continuous rail slope remain partial",
+    "Xihe carving/paint and Tiren fine joinery remain partial",
+    "All other A37 required scopes retain their independent review status"
+  ]
+}

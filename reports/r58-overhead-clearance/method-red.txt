@@ -1,0 +1,124 @@
+✖ explicit curved solid uses real underside, not its enclosing box (1.955085ms)
+✖ upward sweep clamps the full footprint and never merely samples its centre (0.194791ms)
+✖ descending, zero movement, outside footprint and above the cap remain unchanged (0.145167ms)
+✖ exact contact stops upward motion without pulling the feet downward (0.163364ms)
+✖ unmarked historical boxes retain collision and upward behaviour (0.173851ms)
+✖ registration deep-clones immutable curve data and rejects malformed data atomically (5.751635ms)
+✖ tag removal and clear remove the scoped ceiling without stale side registries (0.249182ms)
+✖ unchanged source update preserves the tagged shape; malformed updates fail before mutation (0.170886ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 0
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 135.204597
+
+✖ failing tests:
+
+test at tests/r58-overhead-collision.test.mjs:13:1
+✖ explicit curved solid uses real underside, not its enclosing box (1.955085ms)
+  AssertionError [ERR_ASSERTION]: clear centre space inside the broad-phase AABB
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-overhead-collision.test.mjs:15:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r58-overhead-collision.test.mjs:19:1
+✖ upward sweep clamps the full footprint and never merely samples its centre (0.194791ms)
+  TypeError: cm.limitUpwardFeet is not a function
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-overhead-collision.test.mjs:21:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests/r58-overhead-collision.test.mjs:25:1
+✖ descending, zero movement, outside footprint and above the cap remain unchanged (0.145167ms)
+  TypeError: cm.limitUpwardFeet is not a function
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-overhead-collision.test.mjs:28:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r58-overhead-collision.test.mjs:30:1
+✖ exact contact stops upward motion without pulling the feet downward (0.163364ms)
+  TypeError: cm.limitUpwardFeet is not a function
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-overhead-collision.test.mjs:32:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r58-overhead-collision.test.mjs:34:1
+✖ unmarked historical boxes retain collision and upward behaviour (0.173851ms)
+  TypeError: cm.limitUpwardFeet is not a function
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-overhead-collision.test.mjs:37:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r58-overhead-collision.test.mjs:39:1
+✖ registration deep-clones immutable curve data and rejects malformed data atomically (5.751635ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(saved&&Object.isFrozen(saved)&&Object.isFrozen(saved.points)&&Object.isFrozen(saved.points[0]))
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-overhead-collision.test.mjs:41:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r58-overhead-collision.test.mjs:46:1
+✖ tag removal and clear remove the scoped ceiling without stale side registries (0.249182ms)
+  TypeError: cm.limitUpwardFeet is not a function
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-overhead-collision.test.mjs:48:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r58-overhead-collision.test.mjs:51:1
+✖ unchanged source update preserves the tagged shape; malformed updates fail before mutation (0.170886ms)
+  TypeError: Cannot read properties of undefined (reading 'points')
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-overhead-collision.test.mjs:52:88)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)

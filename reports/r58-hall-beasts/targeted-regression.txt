@@ -1,0 +1,154 @@
+✔ legacy no-profile roof is byte-exact: baohe-high (57.079463ms)
+✔ legacy no-profile roof is byte-exact: baohe-low (67.966002ms)
+✔ legacy no-profile roof is byte-exact: zhonghe-high (11.786309ms)
+✔ legacy no-profile roof is byte-exact: zhonghe-low (4.118637ms)
+✔ legacy no-profile roof is byte-exact: taihe-high (31.398197ms)
+✔ legacy no-profile roof is byte-exact: taihe-low (5.322587ms)
+✔ legacy no-profile roof is byte-exact: wudian-1-high (6.553156ms)
+✔ legacy no-profile roof is byte-exact: wudian-1-low (3.328446ms)
+✔ legacy no-profile roof is byte-exact: wudian-2-high (12.838383ms)
+✔ legacy no-profile roof is byte-exact: wudian-2-low (3.81972ms)
+✔ legacy no-profile roof is byte-exact: xieshan-1-high (11.016128ms)
+✔ legacy no-profile roof is byte-exact: xieshan-1-low (2.217855ms)
+✔ legacy no-profile roof is byte-exact: xieshan-2-high (19.12492ms)
+✔ legacy no-profile roof is byte-exact: xieshan-2-low (3.4582ms)
+✔ legacy no-profile roof is byte-exact: pavilion-1-high (9.17131ms)
+✔ legacy no-profile roof is byte-exact: pavilion-1-low (1.624238ms)
+✔ legacy no-profile roof is byte-exact: pavilion-2-high (16.194335ms)
+✔ legacy no-profile roof is byte-exact: pavilion-2-low (3.406332ms)
+✔ legacy no-profile roof is byte-exact: gable-1-high (5.885508ms)
+✔ legacy no-profile roof is byte-exact: gable-1-low (1.657708ms)
+✔ legacy no-profile roof is byte-exact: gable-2-high (6.638634ms)
+✔ legacy no-profile roof is byte-exact: gable-2-low (1.577749ms)
+✔ legacy no-profile roof is byte-exact: octagonal (27.722633ms)
+✔ legacy no-profile roof is byte-exact: hard-gable (7.062377ms)
+✔ explicit Baohe and Zhonghe profiles emit separate walking animal / rider counts (69.073438ms)
+✔ baohe: every non-walking mesh, rider, ridge, tile and material stays byte-exact (48.957201ms)
+✔ baohe: actual submitted triangle budget counts every corner on every level (63.130666ms)
+✔ baohe: low-detail omission policy does not pretend to generate rows (10.927366ms)
+✔ zhonghe: every non-walking mesh, rider, ridge, tile and material stays byte-exact (17.08497ms)
+✔ zhonghe: actual submitted triangle budget counts every corner on every level (14.127199ms)
+✔ zhonghe: low-detail omission policy does not pretend to generate rows (2.981026ms)
+✔ baohe: all animal base vertices contact actual ridge triangles and all stations follow the actual curved hip (48.612851ms)
+✔ zhonghe: all animal base vertices contact actual ridge triangles and all stations follow the actual curved hip (21.775582ms)
+✔ profiles fail closed on changed hall dimensions or ambiguous level overrides before creating materials (1.192592ms)
+✔ temporary and submitted geometry resources and owned materials have one clear disposal owner (157.498414ms)
+✔ pure W consumer verifies existing roof fragments before and after final hall-material merge without adding a world (103.995032ms)
+✔ actual walking body/head bounds clear adjacent animals and the retained rider, not just station metadata (51.684964ms)
+✔ reviewed widths accept actual production arithmetic without rounding or changing the roof input (32.690338ms)
+✔ exact owner HOOKUP.patch rehearsal uses actual production inputs and retains all hall physics and all other hall meshes (356.501995ms)
+✔ unconfigured legacy calls still ignore the newly reserved walking-layer field (25.838876ms)
+✔ Zhonghe has a real four-sided veranda outside an inset 3×3 enclosure (46.40995ms)
+✔ Zhonghe has four central portals and closed adjacent bays (30.580196ms)
+✔ open folded door leaves block visitors at their inward tips without closing the central portal (27.030746ms)
+✔ Zhonghe front has twelve real leaves while its other faces and Jiaotai have four (21.565893ms)
+✔ Jiaotai has a central south door with solid sill-window side bays (10.457849ms)
+✔ Jiaotai side and rear facades each have one central portal and two walls (9.955869ms)
+✔ square-hall roofs have explicit moderate heights instead of default steep cones (20.450028ms)
+✔ Zhonghe plinth has physical east and west stairs and matching side openings (10.993642ms)
+✔ integrated Zhonghe plinth retains six walking flights and excludes the two central carved stones (235.956559ms)
+✔ reviewed Wumen lower body and registered central eave replace the old 13m body (2.190059ms)
+✔ Wumen plaque uses the reviewed 3 percent panel ratio and fixed one-metre stand-off (0.176795ms)
+✔ non-opt-in roof stays byte-exact: {"type":"wudian","layers":1,"detail":"high","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (9.609709ms)
+✔ non-opt-in roof stays byte-exact: {"type":"wudian","layers":1,"detail":"high","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (9.212866ms)
+✔ non-opt-in roof stays byte-exact: {"type":"wudian","layers":1,"detail":"low","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (3.007323ms)
+✔ non-opt-in roof stays byte-exact: {"type":"wudian","layers":1,"detail":"low","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (1.905643ms)
+✔ non-opt-in roof stays byte-exact: {"type":"wudian","layers":2,"detail":"high","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (21.689078ms)
+✔ non-opt-in roof stays byte-exact: {"type":"wudian","layers":2,"detail":"high","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (16.403178ms)
+✔ non-opt-in roof stays byte-exact: {"type":"wudian","layers":2,"detail":"low","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (3.310046ms)
+✔ non-opt-in roof stays byte-exact: {"type":"wudian","layers":2,"detail":"low","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (4.264626ms)
+✔ non-opt-in roof stays byte-exact: {"type":"xieshan","layers":1,"detail":"high","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (14.495101ms)
+✔ non-opt-in roof stays byte-exact: {"type":"xieshan","layers":1,"detail":"high","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (8.178436ms)
+✔ non-opt-in roof stays byte-exact: {"type":"xieshan","layers":1,"detail":"low","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (2.005162ms)
+✔ non-opt-in roof stays byte-exact: {"type":"xieshan","layers":1,"detail":"low","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (1.517142ms)
+✔ non-opt-in roof stays byte-exact: {"type":"xieshan","layers":2,"detail":"high","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (13.161829ms)
+✔ non-opt-in roof stays byte-exact: {"type":"xieshan","layers":2,"detail":"high","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (12.298896ms)
+✔ non-opt-in roof stays byte-exact: {"type":"xieshan","layers":2,"detail":"low","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (3.246592ms)
+✔ non-opt-in roof stays byte-exact: {"type":"xieshan","layers":2,"detail":"low","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (3.729745ms)
+✔ non-opt-in roof stays byte-exact: {"type":"pavilion","layers":1,"detail":"high","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (6.05041ms)
+✔ non-opt-in roof stays byte-exact: {"type":"pavilion","layers":1,"detail":"high","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (6.776978ms)
+✔ non-opt-in roof stays byte-exact: {"type":"pavilion","layers":1,"detail":"low","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (1.58895ms)
+✔ non-opt-in roof stays byte-exact: {"type":"pavilion","layers":1,"detail":"low","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (1.680867ms)
+✔ non-opt-in roof stays byte-exact: {"type":"pavilion","layers":2,"detail":"high","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (11.228875ms)
+✔ non-opt-in roof stays byte-exact: {"type":"pavilion","layers":2,"detail":"high","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (11.253621ms)
+✔ non-opt-in roof stays byte-exact: {"type":"pavilion","layers":2,"detail":"low","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (2.977088ms)
+✔ non-opt-in roof stays byte-exact: {"type":"pavilion","layers":2,"detail":"low","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (2.758891ms)
+✔ non-opt-in roof stays byte-exact: {"type":"gable","layers":1,"detail":"high","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (6.17045ms)
+✔ non-opt-in roof stays byte-exact: {"type":"gable","layers":1,"detail":"high","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (4.904203ms)
+✔ non-opt-in roof stays byte-exact: {"type":"gable","layers":1,"detail":"low","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (1.738574ms)
+✔ non-opt-in roof stays byte-exact: {"type":"gable","layers":1,"detail":"low","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (1.314558ms)
+✔ non-opt-in roof stays byte-exact: {"type":"gable","layers":2,"detail":"high","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (6.162808ms)
+✔ non-opt-in roof stays byte-exact: {"type":"gable","layers":2,"detail":"high","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (4.80807ms)
+✔ non-opt-in roof stays byte-exact: {"type":"gable","layers":2,"detail":"low","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (1.366586ms)
+✔ non-opt-in roof stays byte-exact: {"type":"gable","layers":2,"detail":"low","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (1.248961ms)
+✖ all unscoped Wumen geometry, materials, wings, platform and portals stay byte-exact (1.203613ms)
+✔ Shenwu whole gate remains byte-exact (25.125052ms)
+✔ Wumen floor, thresholds and open leaves stay byte-exact (0.437355ms)
+✔ Wumen column count, plan, radii and horizontal tessellation remain fixed (0.443083ms)
+✔ profile opt-in cannot be reused for a different building or silently accept a modified card (0.813047ms)
+✔ high: the complete plaque silhouette and thickness have no triangle intersections with any roof or band (10.260003ms)
+✔ high: all upper bearing/fan and eave/fascia seams meet around four faces and corners (73.109675ms)
+✔ high: upper soffit stays beneath actual upper tile triangles with nonnegative separation (191.937781ms)
+✔ high: actual central tile, band and underside landmarks match frozen datums (2.62449ms)
+✔ low: the complete plaque silhouette and thickness have no triangle intersections with any roof or band (0.723063ms)
+✔ low: all upper bearing/fan and eave/fascia seams meet around four faces and corners (4.924764ms)
+✔ low: upper soffit stays beneath actual upper tile triangles with nonnegative separation (4.132488ms)
+✔ low: actual central tile, band and underside landmarks match frozen datums (0.397816ms)
+✖ after exact folded-ascent restoration, all old physics retains only the 46 keyed submicrometre foot deltas (0.379789ms)
+ℹ tests 97
+ℹ suites 0
+ℹ pass 95
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2895.060458
+
+✖ failing tests:
+
+test at tests/current-state/wumen-vertical-profile.test.mjs:29:1
+✖ all unscoped Wumen geometry, materials, wings, platform and portals stay byte-exact (1.203613ms)
+  AssertionError [ERR_ASSERTION]: only Wumen child 27 is in ascent scope
+
+  42 !== 41
+
+      at scope (file:///workspace/scratch/02a8023d1a85/r58-hall-beast-counts/tests/lib/wumen-ascent-retention.mjs:51:10)
+      at restorePreWumenAscent (file:///workspace/scratch/02a8023d1a85/r58-hall-beast-counts/tests/lib/wumen-ascent-retention.mjs:82:7)
+      at unscopedWumen (file:///workspace/scratch/02a8023d1a85/r58-hall-beast-counts/tests/lib/wumen-vertical-profile-controls.mjs:9:4)
+      at assertUnscopedWumen (file:///workspace/scratch/02a8023d1a85/r58-hall-beast-counts/tests/lib/wumen-vertical-profile-controls.mjs:16:69)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-hall-beast-counts/tests/current-state/wumen-vertical-profile.test.mjs:29:97)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 42,
+    expected: 41,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/wumen-vertical-profile.test.mjs:105:1
+✖ after exact folded-ascent restoration, all old physics retains only the 46 keyed submicrometre foot deltas (0.379789ms)
+  AssertionError [ERR_ASSERTION]: only Wumen child 27 is in ascent scope
+
+  42 !== 41
+
+      at scope (file:///workspace/scratch/02a8023d1a85/r58-hall-beast-counts/tests/lib/wumen-ascent-retention.mjs:51:10)
+      at restorePreWumenAscent (file:///workspace/scratch/02a8023d1a85/r58-hall-beast-counts/tests/lib/wumen-ascent-retention.mjs:82:7)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-hall-beast-counts/tests/current-state/wumen-vertical-profile.test.mjs:106:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 42,
+    expected: 41,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: empty and fully hidden scenes retain exact empty JSON
+ok 1 - empty and fully hidden scenes retain exact empty JSON
+  ---
+  duration_ms: 7.706617
+  type: 'test'
+  ...
+# Subtest: indexed/nonindexed, colors, material groups, transforms, draw ranges, culling and instances
+ok 2 - indexed/nonindexed, colors, material groups, transforms, draw ranges, culling and instances
+  ---
+  duration_ms: 16.364008
+  type: 'test'
+  ...
+# Subtest: actual character shader deformation and invisible instances are byte exact at all LODs
+ok 3 - actual character shader deformation and invisible instances are byte exact at all LODs
+  ---
+  duration_ms: 1464.911505
+  type: 'test'
+  ...
+# Subtest: large merged input keeps exact decoded output over multiple gzip members
+ok 4 - large merged input keeps exact decoded output over multiple gzip members
+  ---
+  duration_ms: 117.84264
+  type: 'test'
+  ...
+# Subtest: exception is propagated and does not replace an existing destination
+ok 5 - exception is propagated and does not replace an existing destination
+  ---
+  duration_ms: 1.547595
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1752.092873

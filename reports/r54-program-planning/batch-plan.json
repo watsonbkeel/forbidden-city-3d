@@ -1,0 +1,179 @@
+{
+  "batch": "R54",
+  "created_utc": "2026-10-22T11:41:57.448742+00:00",
+  "status": "Planning delivered; implementation and acceptance tracked separately",
+  "baseline": "r53-baseline.json",
+  "details": "batch-plan.md",
+  "sources": "source-index.json",
+  "units": [
+    {
+      "id": "R54-A",
+      "name": "交泰殿中央陈列主空间",
+      "building_id": "jiaotai",
+      "queue_order": 19,
+      "wave": "S2",
+      "sources": [
+        "JT-FRONT",
+        "JT-CLOCK-CONTEXT",
+        "JT-BUILDING"
+      ],
+      "estimate_person_hours": [
+        18,
+        28
+      ],
+      "first_whitebox_hours_max": 2,
+      "visible_increment_hours": 4,
+      "files_new": [
+        "src/scene/palace/special/JiaotaiDisplaySetting.js",
+        "tests/r54-jiaotai-display-setting.test.mjs",
+        "tests/r54-jiaotai-display-routes.test.mjs",
+        "docs/current-state/r54-jiaotai-display/SCOPE.md"
+      ],
+      "existing_file_scope": [
+        "src/scene/palace/special/SquareHalls.js: Jiaotai-only display call"
+      ],
+      "interface": "buildJiaotaiDisplaySetting(builder, shell, {x0,y,H,ztb0,ztb1,thW,bayW})",
+      "replace": [
+        "Jiaotai generic high two-level dais",
+        "Jiaotai generic solid gold seat",
+        "Jiaotai generic foreground pair",
+        "old whole-setting high collision box"
+      ],
+      "add": [
+        "source-fitted shallow platform and dark seat",
+        "visible east/west covered-stand rows and rear row",
+        "per-solid collision and platform support where required"
+      ],
+      "preserve": [
+        "PalaceBuilder.throneArea shared implementation",
+        "R27 clock and clepsydra",
+        "R28 backdrop/plaque/caisson station and geometry",
+        "19x19 shell, roof and all four doors",
+        "Zhonghe and every other hall"
+      ],
+      "source_supported": [
+        "relative three-sided composition",
+        "visible covered-stand exterior silhouette",
+        "shallow plinth versus existing tall dais",
+        "dark seat appearance"
+      ],
+      "fitted": [
+        "all new metre dimensions",
+        "precise stations within retained model shell",
+        "fabric colour and folds"
+      ],
+      "unknown": [
+        "occluded complete stand count",
+        "hidden seal objects and contents",
+        "photo capture date",
+        "exact sculpture and textile pattern"
+      ],
+      "first_check": [
+        "annotated visible/occluded count distinction",
+        "grey main masses against original pillars/clock/doorways",
+        "continuous south/east/west/north route availability"
+      ],
+      "proposed_triangle_delta_limit": 8000,
+      "new_lights": 0
+    },
+    {
+      "id": "R54-B",
+      "name": "长春宫东梢间北炕罩",
+      "building_id": "place-west-six-7afded67d3",
+      "queue_order": 33,
+      "wave": "S3",
+      "sources": [
+        "CC-EAST-KANG"
+      ],
+      "estimate_person_hours": [
+        10,
+        16
+      ],
+      "first_whitebox_hours_max": 2,
+      "visible_increment_hours": 4,
+      "files_new": [
+        "src/scene/palace/special/ChangchunEastKangSetting.js",
+        "tests/r54-changchun-east-kang.test.mjs",
+        "docs/current-state/r54-changchun-east-kang/SCOPE.md"
+      ],
+      "existing_file_scope": [
+        "src/scene/palace/special/WestDomesticHalls.js: changchun ownSeat side===-1 only"
+      ],
+      "replace": [
+        "East kang existing four-post/four-head frame only; do not overlap duplicate frames"
+      ],
+      "add": [
+        "layered high head/frieze",
+        "tied-back left/right curtain solids with genuine central opening",
+        "six plain-faced rear panels in source-visible arrangement"
+      ],
+      "preserve": [
+        "existing kang platform/footprint",
+        "west end kang/frame",
+        "central five-panel seat/screen",
+        "all partition doors and room registrations",
+        "R48 rear hall"
+      ],
+      "model_anchor_not_survey": {
+        "x": -10.84,
+        "z": 4.6,
+        "kang_width": 3.7,
+        "kang_depth": 2.7,
+        "kang_height": 0.5,
+        "old_frame_height": 3.1
+      },
+      "source_supported": [
+        "east-room identity from official caption",
+        "front frame, curtains and rear panels form distinct depth layers"
+      ],
+      "fitted": [
+        "frame thickness and whole height",
+        "curtain depth and cloth shading",
+        "spacing within retained kang footprint"
+      ],
+      "unknown": [
+        "photograph date/display campaign",
+        "painting text and motifs",
+        "exact lantern sculpture",
+        "hidden side/rear details"
+      ],
+      "first_check": [
+        "source-labelled depth layers",
+        "grey frame/curtains/screens with no duplicate old frame",
+        "south entry to east viewing zone and return, western baseline unchanged"
+      ],
+      "proposed_triangle_delta_limit": 6000,
+      "new_lights": 0
+    }
+  ],
+  "integration_only": [
+    "building-fidelity evidence entries",
+    "release/version records",
+    "bounded new inverse or current-baseline retention test if required"
+  ],
+  "verification_plan": [
+    "red then green target tests",
+    "10/60Hz real-controller continuous routes with existing player dimensions",
+    "non-target scene/geometry signatures against R53",
+    "create/dispose/rebuild resource tests",
+    "actual near/resident geometry and affected-view budget measurement"
+  ],
+  "not_yet_accepted": [
+    "real WebGL/GPU render",
+    "real browser interaction",
+    "real mobile touch and frame rate"
+  ],
+  "no_new_map_places": true,
+  "full_building_acceptance_claimed": false,
+  "character_work_separate": {
+    "current_default_visible_parent_report": 77,
+    "remaining_target_parent_report": 31
+  },
+  "scope_exclusions": [
+    "R53 Yangxin/Shoukang small refinements",
+    "main/credentials/permissions",
+    "external upload",
+    "generic furniture for unsupported rooms",
+    "whole-palace exact 1:1 claim"
+  ]
+}

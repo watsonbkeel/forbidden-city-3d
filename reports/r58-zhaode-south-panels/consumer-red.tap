@@ -1,0 +1,56 @@
+✖ existing-W consumer observes actual merged paint and exact supports through all cardinal transforms (5.131914ms)
+✖ existing-W consumer rejects missing real paint instead of trusting metadata (0.289944ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 156.931936
+
+✖ failing tests:
+
+test at tests/r58-zhaode-panel-consumer.test.mjs:8:1
+✖ existing-W consumer observes actual merged paint and exact supports through all cardinal transforms (5.131914ms)
+  AssertionError [ERR_ASSERTION]: pure existing-W consumer required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-zhaode-south-panels/tests/r58-zhaode-panel-consumer.test.mjs:9:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r58-zhaode-panel-consumer.test.mjs:18:1
+✖ existing-W consumer rejects missing real paint instead of trusting metadata (0.289944ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-zhaode-south-panels/tests/r58-zhaode-panel-consumer.test.mjs:19:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

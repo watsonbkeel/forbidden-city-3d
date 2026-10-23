@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS_FUNCTIONAL_NOT_VISUAL_ACCEPTANCE",
+  "sourceCommit": "53bb500962bbb98135cb20d9fdbe739094620490",
+  "sourceFingerprint": "dad1c609e843f3822a3cb21d1e2906cf7d2c8556a671aeca15fbfbe8eff0b40b",
+  "worldSourceManifest": "data/characters/world-source-freeze-r58-a-batch5.json",
+  "worldSourceManifestSha256": "3207520b9eda5b412a3fc0399017e390fd42184849a4f8648f2c1b69af07d067",
+  "sourceFiles": 218,
+  "sourceHashesStable": true,
+  "world": {
+    "colliders": 24758,
+    "walkables": 1125,
+    "zones": [
+      "axis-courts",
+      "east-six",
+      "west-six",
+      "outer-east",
+      "outer-west",
+      "garden",
+      "ningshou"
+    ]
+  },
+  "logicalCharacters": 108,
+  "individualObservationGroups": 401,
+  "paths": 24,
+  "pathCycles": 2,
+  "zoneLifecycleCases": 6,
+  "allBindingsAndViewsPassed": true,
+  "loadedInteriorLayers": [
+    "yangxin",
+    "kunning",
+    "huangji"
+  ],
+  "newDeclarationPositiveRoutes": 64,
+  "inheritedBlockedNegativeProbes": 16,
+  "runtimeBudgets": {
+    "boundary": "CPU actual instance/index counts only, not GPU draw timing",
+    "high": {
+      "frames": 18912,
+      "maxInstances": 64,
+      "maxTriangles": 45564,
+      "maxBatches": 22,
+      "maxNear": 2
+    },
+    "low": {
+      "frames": 187,
+      "maxInstances": 32,
+      "maxTriangles": 14228,
+      "maxBatches": 10,
+      "maxNear": 0
+    }
+  },
+  "newScope": "Five bounded fifth-batch items: Taihe walking-beast counts; Zuoyi visible nine-row skins; Xihe and Xiehe own-source windows; four anonymous declarations with unknown inventory. Not browser or A37 acceptance.",
+  "resource": {
+    "command": [
+      "node",
+      "--expose-gc",
+      "--max-old-space-size=1024",
+      "--test",
+      "--test-concurrency=1",
+      "tests/r58-a-batch5-world.test.mjs"
+    ],
+    "startUnix": 1792698875.456601,
+    "durationSeconds": 260.18753457069397,
+    "exitCode": 0,
+    "userSeconds": 300.016811,
+    "systemSeconds": 2.249315,
+    "maxRSSKiB": 1715208,
+    "boundary": "QA process resources; not game/browser/GPU performance"
+  },
+  "evidence": "one-world-validation.json.gz",
+  "evidenceSha256": "1e69c64c251175e3a42d8a96e77e4272150b1b9ef5f2c064591022274d2ab8da",
+  "browserAccepted": false,
+  "gpuPerformanceAccepted": false,
+  "phoneAccepted": false,
+  "fullASectionAccepted": false,
+  "knownHistoricalRedsRetained": true,
+  "createdAt": "2026-10-22T20:03:56.160615+00:00"
+}

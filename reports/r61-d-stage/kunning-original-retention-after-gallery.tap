@@ -1,0 +1,1044 @@
+TAP version 13
+# Subtest: shared CourtKit byte-exact after removing only this opt-in dispatch and import; all other garden declarations exact
+not ok 1 - shared CourtKit byte-exact after removing only this opt-in dispatch and import; all other garden declarations exact
+  ---
+  duration_ms: 6.818023
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-kunning-gate.test.mjs:12:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    ... Skipped lines
+    
+      {
+        bounds: {
+          x0: -68.75,
+          x1: 68.75,
+          z0: 205,
+    ...
+            ],
+    +       furnishingPolicy: {
+    +         mode: 'unknown-inventory',
+    +         runtimeInventoryId: 'RI-87DE2E82FDF5',
+    +         target: 'garden/items/14'
+    +       },
+            kind: 'corridor',
+            to: [
+              -51.15,
+              242.8
+            ]
+    ...
+            ],
+    +       furnishingPolicy: {
+    +         mode: 'unknown-inventory',
+    +         runtimeInventoryId: 'RI-09B73001F108',
+    +         target: 'garden/items/15'
+    +       },
+            kind: 'corridor',
+            to: [
+              -51.15,
+              309
+            ]
+    ...
+            ],
+    +       furnishingPolicy: {
+    +         mode: 'unknown-inventory',
+    +         runtimeInventoryId: 'RI-DB7D7CFB0AFA',
+    +         target: 'garden/items/16'
+    +       },
+            kind: 'corridor',
+            to: [
+              -51.15,
+              347.8
+            ]
+    ...
+            ],
+    +       furnishingPolicy: {
+    +         mode: 'unknown-inventory',
+    +         runtimeInventoryId: 'RI-12444A85424A',
+    +         target: 'garden/items/17'
+    +       },
+            kind: 'corridor',
+            to: [
+              -51.15,
+              377.7
+            ]
+    ...
+            ],
+    +       furnishingPolicy: {
+    +         mode: 'unknown-inventory',
+    +         runtimeInventoryId: 'RI-A8363464C20C',
+    +         target: 'garden/items/18'
+    +       },
+            kind: 'corridor',
+            to: [
+              -51.15,
+              404
+            ]
+    ...
+            ],
+    +       furnishingPolicy: {
+    +         mode: 'unknown-inventory',
+    +         runtimeInventoryId: 'RI-9C4D84C0C18E',
+    +         target: 'garden/items/19'
+    +       },
+            kind: 'corridor',
+            to: [
+              -51.15,
+              422.2
+            ]
+    ...
+            ],
+    +       furnishingPolicy: {
+    +         mode: 'unknown-inventory',
+    +         runtimeInventoryId: 'RI-772B9B8AB63B',
+    +         target: 'garden/items/20'
+    +       },
+            kind: 'corridor',
+            to: [
+              51.15,
+              242.4
+            ]
+    ...
+            ],
+    +       furnishingPolicy: {
+    +         mode: 'unknown-inventory',
+    +         runtimeInventoryId: 'RI-92BFC7DA5CB0',
+    +         target: 'garden/items/21'
+    +       },
+            kind: 'corridor',
+            to: [
+              51.15,
+              307.7
+            ]
+    ...
+            ],
+    +       furnishingPolicy: {
+    +         mode: 'unknown-inventory',
+    +         runtimeInventoryId: 'RI-97F7F553A006',
+    +         target: 'garden/items/22'
+    +       },
+            kind: 'corridor',
+            to: [
+              51.15,
+              347.4
+            ]
+    ...
+            ],
+    +       furnishingPolicy: {
+    +         mode: 'unknown-inventory',
+    +         runtimeInventoryId: 'RI-2B882BEB407A',
+    +         target: 'garden/items/23'
+    +       },
+            kind: 'corridor',
+            to: [
+              51.15,
+              378.2
+            ]
+    ...
+            ],
+    +       furnishingPolicy: {
+    +         mode: 'unknown-inventory',
+    +         runtimeInventoryId: 'RI-C112A7BE8A39',
+    +         target: 'garden/items/24'
+    +       },
+            kind: 'corridor',
+            to: [
+              51.15,
+              404
+            ]
+    ...
+            ],
+    +       furnishingPolicy: {
+    +         mode: 'unknown-inventory',
+    +         runtimeInventoryId: 'RI-AEB68F800423',
+    +         target: 'garden/items/25'
+    +       },
+            kind: 'corridor',
+            to: [
+              51.15,
+              422.2
+            ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    id: 'garden'
+    name: '内廷中路与御花园'
+    bounds:
+      x0: -68.75
+      x1: 68.75
+      z0: 205
+      z1: 525.8
+    neighbors:
+      0: 'axis-courts'
+      1: 'east-six'
+      2: 'west-six'
+    items:
+      0:
+        kind: 'gate'
+        name: '日精门'
+        x: -54.25
+        z: 249.6
+        rot: 'east'
+        style: 'hall'
+      1:
+        kind: 'gate'
+        name: '龙光门'
+        x: -54.25
+        z: 315
+        rot: 'east'
+      2:
+        kind: 'gate'
+        name: '景和门'
+        x: -54.25
+        z: 354.6
+        rot: 'east'
+        style: 'hall'
+      3:
+        kind: 'gate'
+        name: '永祥门'
+        x: -54.25
+        z: 383.7
+        rot: 'east'
+      4:
+        kind: 'gate'
+        name: '基化门'
+        x: -54.25
+        z: 410
+        rot: 'east'
+        source: 'estimated'
+      5:
+        kind: 'gate'
+        name: '月华门'
+        x: 54.25
+        z: 249.2
+        rot: 'west'
+        style: 'hall'
+      6:
+        kind: 'gate'
+        name: '凤彩门'
+        x: 54.25
+        z: 313.7
+        rot: 'west'
+      7:
+        kind: 'gate'
+        name: '隆福门'
+        x: 54.25
+        z: 354.2
+        rot: 'west'
+        style: 'hall'
+      8:
+        kind: 'gate'
+        name: '增瑞门'
+        x: 54.25
+        z: 384.2
+        rot: 'west'
+      9:
+        kind: 'gate'
+        name: '端则门'
+        x: 54.25
+        z: 410
+        rot: 'west'
+        source: 'estimated'
+      10:
+        kind: 'wall'
+        from:
+          0: -54.25
+          1: 203.85
+        to:
+          0: -54.25
+          1: 422.7
+        h: 7
+        gaps:
+          0:
+            at: 249.6
+            gate: '日精门'
+          1:
+            at: 315
+            gate: '龙光门'
+          2:
+            at: 354.6
+            gate: '景和门'
+          3:
+            at: 383.7
+            gate: '永祥门'
+          4:
+            at: 410
+            gate: '基化门'
+      11:
+        kind: 'wall'
+        from:
+          0: 54.25
+          1: 203.85
+        to:
+          0: 54.25
+          1: 422.7
+        h: 7
+        gaps:
+          0:
+            at: 249.2
+            gate: '月华门'
+          1:
+            at: 313.7
+            gate: '凤彩门'
+          2:
+            at: 354.2
+            gate: '隆福门'
+          3:
+            at: 384.2
+            gate: '增瑞门'
+          4:
+            at: 410
+            gate: '端则门'
+      12:
+        kind: 'wall'
+        from:
+          0: -19.3
+          1: 215.3
+        to:
+          0: -54.25
+          1: 215.3
+        h: 7
+      13:
+        kind: 'wall'
+        from:
+          0: 19.3
+          1: 215.3
+        to:
+          0: 54.25
+          1: 215.3
+        h: 7
+      14:
+        kind: 'corridor'
+        from:
+          0: -51.15
+          1: 215.8
+        to:
+          0: -51.15
+          1: 242.8
+        facing: 'x+'
+        depth: 3.6
+        colH: 3.4
+      15:
+        kind: 'corridor'
+        from:
+          0: -51.15
+          1: 256.4
+        to:
+          0: -51.15
+          1: 309
+        facing: 'x+'
+        depth: 3.6
+        colH: 3.4
+      16:
+        kind: 'corridor'
+        from:
+          0: -51.15
+          1: 321
+        to:
+          0: -51.15
+          1: 347.8
+        facing: 'x+'
+        depth: 3.6
+        colH: 3.4
+      17:
+        kind: 'corridor'
+        from:
+          0: -51.15
+          1: 361.4
+        to:
+          0: -51.15
+          1: 377.7
+        facing: 'x+'
+        depth: 3.6
+        colH: 3.4
+      18:
+        kind: 'corridor'
+        from:
+          0: -51.15
+          1: 389.7
+        to:
+          0: -51.15
+          1: 404
+        facing: 'x+'
+        depth: 3.6
+        colH: 3.4
+      19:
+        kind: 'corridor'
+        from:
+          0: -51.15
+          1: 416
+        to:
+          0: -51.15
+          1: 422.2
+        facing: 'x+'
+        depth: 3.6
+        colH: 3.4
+      20:
+        kind: 'corridor'
+        from:
+          0: 51.15
+          1: 215.8
+        to:
+          0: 51.15
+          1: 242.4
+        facing: 'x-'
+        depth: 3.6
+        colH: 3.4
+      21:
+        kind: 'corridor'
+        from:
+          0: 51.15
+          1: 256
+        to:
+          0: 51.15
+          1: 307.7
+        facing: 'x-'
+        depth: 3.6
+        colH: 3.4
+      22:
+        kind: 'corridor'
+        from:
+          0: 51.15
+          1: 319.7
+        to:
+          0: 51.15
+          1: 347.4
+        facing: 'x-'
+        depth: 3.6
+        colH: 3.4
+      23:
+        kind: 'corridor'
+        from:
+          0: 51.15
+          1: 361
+        to:
+          0: 51.15
+          1: 378.2
+        facing: 'x-'
+        depth: 3.6
+        colH: 3.4
+      24:
+        kind: 'corridor'
+        from:
+          0: 51.15
+          1: 390.2
+        to:
+          0: 51.15
+          1: 404
+        facing: 'x-'
+        depth: 3.6
+        colH: 3.4
+      25:
+        kind: 'corridor'
+        from:
+          0: 51.15
+          1: 416
+        to:
+          0: 51.15
+          1: 422.2
+        facing: 'x-'
+        depth: 3.6
+        colH: 3.4
+      26:
+        kind: 'gate'
+        name: '琼苑东门'
+        x: -68
+        z: 429.7
+        rot: 'east'
+        source: 'estimated'
+      27:
+        kind: 'gate'
+        name: '琼苑西门'
+        x: 68
+        z: 429.7
+        rot: 'west'
+        source: 'estimated'
+      28:
+        kind: 'gate'
+        name: '顺贞门'
+        x: 0.5
+        z: 518.3
+        w: 5
+        h: 5
+      29:
+        kind: 'gate'
+        name: '坤宁门'
+        x: 1.1
+        z: 422.7
+        style: 'hall'
+        w: 12
+      30:
+        kind: 'gate'
+        name: '长康左门'
+        x: -64
+        z: 422.7
+      31:
+        kind: 'gate'
+        name: '长康右门'
+        x: 63.7
+        z: 422.7
+      32:
+        kind: 'wall'
+        from:
+          0: -68
+          1: 422.7
+        to:
+          0: 68
+          1: 422.7
+        h: 7
+        gaps:
+          0:
+            at: 1.1
+            gate: '坤宁门'
+          1:
+            at: -64
+            gate: '长康左门'
+          2:
+            at: 63.7
+            gate: '长康右门'
+      33:
+        kind: 'wall'
+        from:
+          0: -68
+          1: 518.3
+        to:
+          0: 68
+          1: 518.3
+        h: 7
+        gaps:
+          0:
+            at: 0.5
+            gate: '顺贞门'
+      34:
+        kind: 'wall'
+        from:
+          0: -68
+          1: 422.7
+        to:
+          0: -68
+          1: 518.3
+        h: 7
+        gaps:
+          0:
+            at: 429.7
+            gate: '琼苑东门'
+      35:
+        kind: 'wall'
+        from:
+          0: 68
+          1: 422.7
+        to:
+          0: 68
+          1: 518.3
+        h: 7
+        gaps:
+          0:
+            at: 429.7
+            gate: '琼苑西门'
+      36:
+        kind: 'hall'
+        name: '钦安殿'
+        x: 0
+        z: 493.1
+        rot: 0
+        structure: 'qinan-hall'
+        qinanProfile: 'qinan'
+        dimensionStatus: 'mixed-evidence-exterior-prototype'
+      37:
+        kind: 'region'
+        name: '钦安殿'
+        x0: -14.46
+        x1: 14.46
+        z0: 477.03
+        z1: 509.17
+        source: 'estimated'
+      38:
+        kind: 'region'
+        name: '东一长街'
+        x0: -72.4
+        x1: -54.25
+        z0: 203.85
+        z1: 518.3
+        source: 'estimated'
+      39:
+        kind: 'region'
+        name: '西一长街'
+        x0: 54.25
+        x1: 73.9
+        z0: 203.85
+        z1: 518.3
+        source: 'estimated'
+  actual:
+    id: 'garden'
+    name: '内廷中路与御花园'
+    bounds:
+      x0: -68.75
+      x1: 68.75
+      z0: 205
+      z1: 525.8
+    neighbors:
+      0: 'axis-courts'
+      1: 'east-six'
+      2: 'west-six'
+    items:
+      0:
+        kind: 'gate'
+        name: '日精门'
+        x: -54.25
+        z: 249.6
+        rot: 'east'
+        style: 'hall'
+      1:
+        kind: 'gate'
+        name: '龙光门'
+        x: -54.25
+        z: 315
+        rot: 'east'
+      2:
+        kind: 'gate'
+        name: '景和门'
+        x: -54.25
+        z: 354.6
+        rot: 'east'
+        style: 'hall'
+      3:
+        kind: 'gate'
+        name: '永祥门'
+        x: -54.25
+        z: 383.7
+        rot: 'east'
+      4:
+        kind: 'gate'
+        name: '基化门'
+        x: -54.25
+        z: 410
+        rot: 'east'
+        source: 'estimated'
+      5:
+        kind: 'gate'
+        name: '月华门'
+        x: 54.25
+        z: 249.2
+        rot: 'west'
+        style: 'hall'
+      6:
+        kind: 'gate'
+        name: '凤彩门'
+        x: 54.25
+        z: 313.7
+        rot: 'west'
+      7:
+        kind: 'gate'
+        name: '隆福门'
+        x: 54.25
+        z: 354.2
+        rot: 'west'
+        style: 'hall'
+      8:
+        kind: 'gate'
+        name: '增瑞门'
+        x: 54.25
+        z: 384.2
+        rot: 'west'
+      9:
+        kind: 'gate'
+        name: '端则门'
+        x: 54.25
+        z: 410
+        rot: 'west'
+        source: 'estimated'
+      10:
+        kind: 'wall'
+        from:
+          0: -54.25
+          1: 203.85
+        to:
+          0: -54.25
+          1: 422.7
+        h: 7
+        gaps:
+          0:
+            at: 249.6
+            gate: '日精门'
+          1:
+            at: 315
+            gate: '龙光门'
+          2:
+            at: 354.6
+            gate: '景和门'
+          3:
+            at: 383.7
+            gate: '永祥门'
+          4:
+            at: 410
+            gate: '基化门'
+      11:
+        kind: 'wall'
+        from:
+          0: 54.25
+          1: 203.85
+        to:
+          0: 54.25
+          1: 422.7
+        h: 7
+        gaps:
+          0:
+            at: 249.2
+            gate: '月华门'
+          1:
+            at: 313.7
+            gate: '凤彩门'
+          2:
+            at: 354.2
+            gate: '隆福门'
+          3:
+            at: 384.2
+            gate: '增瑞门'
+          4:
+            at: 410
+            gate: '端则门'
+      12:
+        kind: 'wall'
+        from:
+          0: -19.3
+          1: 215.3
+        to:
+          0: -54.25
+          1: 215.3
+        h: 7
+      13:
+        kind: 'wall'
+        from:
+          0: 19.3
+          1: 215.3
+        to:
+          0: 54.25
+          1: 215.3
+        h: 7
+      14:
+        kind: 'corridor'
+        from:
+          0: -51.15
+          1: 215.8
+        to:
+          0: -51.15
+          1: 242.8
+        facing: 'x+'
+        depth: 3.6
+        colH: 3.4
+        furnishingPolicy:
+          mode: 'unknown-inventory'
+          target: 'garden/items/14'
+          runtimeInventoryId: 'RI-87DE2E82FDF5'
+      15:
+        kind: 'corridor'
+        from:
+          0: -51.15
+          1: 256.4
+        to:
+          0: -51.15
+          1: 309
+        facing: 'x+'
+        depth: 3.6
+        colH: 3.4
+        furnishingPolicy:
+          mode: 'unknown-inventory'
+          target: 'garden/items/15'
+          runtimeInventoryId: 'RI-09B73001F108'
+      16:
+        kind: 'corridor'
+        from:
+          0: -51.15
+          1: 321
+        to:
+          0: -51.15
+          1: 347.8
+        facing: 'x+'
+        depth: 3.6
+        colH: 3.4
+        furnishingPolicy:
+          mode: 'unknown-inventory'
+          target: 'garden/items/16'
+          runtimeInventoryId: 'RI-DB7D7CFB0AFA'
+      17:
+        kind: 'corridor'
+        from:
+          0: -51.15
+          1: 361.4
+        to:
+          0: -51.15
+          1: 377.7
+        facing: 'x+'
+        depth: 3.6
+        colH: 3.4
+        furnishingPolicy:
+          mode: 'unknown-inventory'
+          target: 'garden/items/17'
+          runtimeInventoryId: 'RI-12444A85424A'
+      18:
+        kind: 'corridor'
+        from:
+          0: -51.15
+          1: 389.7
+        to:
+          0: -51.15
+          1: 404
+        facing: 'x+'
+        depth: 3.6
+        colH: 3.4
+        furnishingPolicy:
+          mode: 'unknown-inventory'
+          target: 'garden/items/18'
+          runtimeInventoryId: 'RI-A8363464C20C'
+      19:
+        kind: 'corridor'
+        from:
+          0: -51.15
+          1: 416
+        to:
+          0: -51.15
+          1: 422.2
+        facing: 'x+'
+        depth: 3.6
+        colH: 3.4
+        furnishingPolicy:
+          mode: 'unknown-inventory'
+          target: 'garden/items/19'
+          runtimeInventoryId: 'RI-9C4D84C0C18E'
+      20:
+        kind: 'corridor'
+        from:
+          0: 51.15
+          1: 215.8
+        to:
+          0: 51.15
+          1: 242.4
+        facing: 'x-'
+        depth: 3.6
+        colH: 3.4
+        furnishingPolicy:
+          mode: 'unknown-inventory'
+          target: 'garden/items/20'
+          runtimeInventoryId: 'RI-772B9B8AB63B'
+      21:
+        kind: 'corridor'
+        from:
+          0: 51.15
+          1: 256
+        to:
+          0: 51.15
+          1: 307.7
+        facing: 'x-'
+        depth: 3.6
+        colH: 3.4
+        furnishingPolicy:
+          mode: 'unknown-inventory'
+          target: 'garden/items/21'
+          runtimeInventoryId: 'RI-92BFC7DA5CB0'
+      22:
+        kind: 'corridor'
+        from:
+          0: 51.15
+          1: 319.7
+        to:
+          0: 51.15
+          1: 347.4
+        facing: 'x-'
+        depth: 3.6
+        colH: 3.4
+        furnishingPolicy:
+          mode: 'unknown-inventory'
+          target: 'garden/items/22'
+          runtimeInventoryId: 'RI-97F7F553A006'
+      23:
+        kind: 'corridor'
+        from:
+          0: 51.15
+          1: 361
+        to:
+          0: 51.15
+          1: 378.2
+        facing: 'x-'
+        depth: 3.6
+        colH: 3.4
+        furnishingPolicy:
+          mode: 'unknown-inventory'
+          target: 'garden/items/23'
+          runtimeInventoryId: 'RI-2B882BEB407A'
+      24:
+        kind: 'corridor'
+        from:
+          0: 51.15
+          1: 390.2
+        to:
+          0: 51.15
+          1: 404
+        facing: 'x-'
+        depth: 3.6
+        colH: 3.4
+        furnishingPolicy:
+          mode: 'unknown-inventory'
+          target: 'garden/items/24'
+          runtimeInventoryId: 'RI-C112A7BE8A39'
+      25:
+        kind: 'corridor'
+        from:
+          0: 51.15
+          1: 416
+        to:
+          0: 51.15
+          1: 422.2
+        facing: 'x-'
+        depth: 3.6
+        colH: 3.4
+        furnishingPolicy:
+          mode: 'unknown-inventory'
+          target: 'garden/items/25'
+          runtimeInventoryId: 'RI-AEB68F800423'
+      26:
+        kind: 'gate'
+        name: '琼苑东门'
+        x: -68
+        z: 429.7
+        rot: 'east'
+        source: 'estimated'
+      27:
+        kind: 'gate'
+        name: '琼苑西门'
+        x: 68
+        z: 429.7
+        rot: 'west'
+        source: 'estimated'
+      28:
+        kind: 'gate'
+        name: '顺贞门'
+        x: 0.5
+        z: 518.3
+        w: 5
+        h: 5
+      29:
+        kind: 'gate'
+        name: '坤宁门'
+        x: 1.1
+        z: 422.7
+        style: 'hall'
+        w: 12
+      30:
+        kind: 'gate'
+        name: '长康左门'
+        x: -64
+        z: 422.7
+      31:
+        kind: 'gate'
+        name: '长康右门'
+        x: 63.7
+        z: 422.7
+      32:
+        kind: 'wall'
+        from:
+          0: -68
+          1: 422.7
+        to:
+          0: 68
+          1: 422.7
+        h: 7
+        gaps:
+          0:
+            at: 1.1
+            gate: '坤宁门'
+          1:
+            at: -64
+            gate: '长康左门'
+          2:
+            at: 63.7
+            gate: '长康右门'
+      33:
+        kind: 'wall'
+        from:
+          0: -68
+          1: 518.3
+        to:
+          0: 68
+          1: 518.3
+        h: 7
+        gaps:
+          0:
+            at: 0.5
+            gate: '顺贞门'
+      34:
+        kind: 'wall'
+        from:
+          0: -68
+          1: 422.7
+        to:
+          0: -68
+          1: 518.3
+        h: 7
+        gaps:
+          0:
+            at: 429.7
+            gate: '琼苑东门'
+      35:
+        kind: 'wall'
+        from:
+          0: 68
+          1: 422.7
+        to:
+          0: 68
+          1: 518.3
+        h: 7
+        gaps:
+          0:
+            at: 429.7
+            gate: '琼苑西门'
+      36:
+        kind: 'hall'
+        name: '钦安殿'
+        x: 0
+        z: 493.1
+        rot: 0
+        structure: 'qinan-hall'
+        qinanProfile: 'qinan'
+        dimensionStatus: 'mixed-evidence-exterior-prototype'
+      37:
+        kind: 'region'
+        name: '钦安殿'
+        x0: -14.46
+        x1: 14.46
+        z0: 477.03
+        z1: 509.17
+        source: 'estimated'
+      38:
+        kind: 'region'
+        name: '东一长街'
+        x0: -72.4
+        x1: -54.25
+        z0: 203.85
+        z1: 518.3
+        source: 'estimated'
+      39:
+        kind: 'region'
+        name: '西一长街'
+        x0: 54.25
+        x1: 73.9
+        z0: 203.85
+        z1: 518.3
+        source: 'estimated'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-kunning-gate.test.mjs:12:939)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 240.606284

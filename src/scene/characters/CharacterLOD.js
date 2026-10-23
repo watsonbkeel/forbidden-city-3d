@@ -25,8 +25,15 @@ export function characterProjection(position, camera, viewportHeight = 1080) {
   return { distance, projectedHeight, inFrustum: inFrustum && !nearBody };
 }
 const taihe = a => a.sceneId === 'taihe' || a.id.startsWith('taihe-');
+// Budget locality uses the already-hysteretic geometric LOD, not a fresh
+// distance threshold. Far core crowds must not erase an eye-level local role.
+// Keep geometric budgetLOD separate from low-tier render-only LOD demotion.
+// Registered-only records have no LOD, so fixed low-tier identity selection is unchanged.
+const locality = a => { const lod = a.budgetLOD ?? a.lod; return lod === 0 ? 0 : lod === 1 ? 1 : 2; };
 function stableOrder(a, b) {
-  return (RANK[a.priority] ?? 2) - (RANK[b.priority] ?? 2) ||
+  return Number(b.priority === 'essential') - Number(a.priority === 'essential') ||
+    locality(a) - locality(b) ||
+    (RANK[a.priority] ?? 2) - (RANK[b.priority] ?? 2) ||
     (a.distance ?? 0) - (b.distance ?? 0) || a.id.localeCompare(b.id);
 }
 /** Render-only cap: demotion never changes geometric LOD history or hides roles.

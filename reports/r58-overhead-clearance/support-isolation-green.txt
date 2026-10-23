@@ -1,0 +1,17 @@
+✔ explicit curved solid uses real underside, not its enclosing box (1.522128ms)
+✔ upward sweep clamps the full footprint and never merely samples its centre (0.344596ms)
+✔ descending, zero movement, outside footprint and above the cap remain unchanged (0.22058ms)
+✔ exact contact stops upward motion without pulling the feet downward (0.178768ms)
+✔ unmarked historical boxes retain collision and upward behaviour (0.195743ms)
+✔ registration deep-clones immutable curve data and rejects malformed data atomically (0.439407ms)
+✔ tag removal and clear remove the scoped ceiling without stale side registries (0.279738ms)
+✔ unchanged source update preserves the tagged shape; malformed updates fail before mutation (0.273079ms)
+✔ head-only curve proxies do not turn broadphase topY into an extra support surface (0.339047ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 123.763985

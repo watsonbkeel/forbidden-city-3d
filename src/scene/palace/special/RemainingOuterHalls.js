@@ -1,4 +1,7 @@
+import { applyYudeDomeBrickCourses } from './YudeDomeBrickCourses.js';
+import { withholdNanxunPlaceholderFurniture, applyNanxunCeilingBaseColors } from './NanxunReviewedInterior.js';
 import * as THREE from 'three';
+import { buildWuyingMoonTerrace } from './WuyingMoonTerrace.js';
 import { buildJiyunNamePlaque } from './JiyunNamePlaque.js';
 import { FACE } from '../kit.js';
 import { PLAYER } from '../../../config/constants.js';
@@ -981,7 +984,7 @@ function buildNanxunHall(kit,item,p) {
   for(const side of[-1,1])wallX(side*A,g.front,g.rear,g.y,g.h-.5);
   wallZ(g.rear,-A,A,g.y,g.h-.5);
   for(let i=0;i<5;i++)face(-A+i*bay,-A+(i+1)*bay,g.front,g.y,g.h-.5,{door:i===2,opened:i===2,role:'nanxun-fitted-front'});
-  retainLegacyFurniture(c);
+  withholdNanxunPlaceholderFurniture(c);
   const yy=g.y+g.h-.6,half=2.15,outer=2.45;
   // The official ceiling photograph establishes square -> octagonal -> round
   // topology. The central dragon carving is NOT replaced by a generic sphere
@@ -1009,6 +1012,7 @@ function buildNanxunHall(kit,item,p) {
   kit.roof(c.f,{type:'xieshan',width:g.w+.5,depth:g.d+.5,baseY:g.y+g.h,layers:1,brackets:true});
   kit.plaque(c.f,item.name,0,g.y+g.h-.95,g.front-.32,1.2,1.9);
   c.register(item.name,-A+.35,A-.35,g.front,g.rear,g.y,g.h-.8,[{x:0,z:g.front}],{x:0,z:g.front+1.3});
+  applyNanxunCeilingBaseColors(c);
   return finish(c,{caisson:{source:'https://img.dpm.org.cn/Uploads/Picture/dc/3938[1024].jpg',photographyDate:null,baseY:yy,recess:1.03,positionStatus:'CENTRAL_BAY_FIT_NOT_SURVEYED',topology:'SQUARE_OCTAGONAL_CIRCULAR',dragonRelief:'UNMODELED'},facadeDetailStatus:'FIVE_BAYS_OFFICIAL__LEAF_PATTERN_AND_DIMENSIONS_UNVERIFIED_FIT',interiorPeriod:'UNDATED_OFFICIAL_CEILING_PHOTO__NOT_A_QIANLONG_INVENTORY_RECONSTRUCTION'});
 }
 
@@ -1302,6 +1306,7 @@ function augmentYudeInterior(kit,item,built,p) {
   const sleeve=new THREE.CylinderGeometry(opening,opening,.26,48,1,true);const ids=sleeve.index.array;for(let k=0;k<ids.length;k+=3)[ids[k+1],ids[k+2]]=[ids[k+2],ids[k+1]];sleeve.computeVertexNormals();mark(kit.mesh(f,sleeve,m.white_glaze,b.x,top+H-.11,b.z),p,'yude-open-oculus-inner-rim',info);
   const lantern=f.children.find(n=>n.name==='yude-bath-lantern'),oldSill=lantern?.children.find(n=>n.name==='yude-lantern-sill');
   if(oldSill){const rr=b.lanternWidth/2+.1,ring=new THREE.Shape();ring.absarc(0,0,rr,0,Math.PI*2,false);const hole=new THREE.Path();hole.absarc(0,0,opening,0,Math.PI*2,true);ring.holes.push(hole);const geo=new THREE.ExtrudeGeometry(ring,{depth:.12,bevelEnabled:false,curveSegments:48});geo.rotateX(-Math.PI/2);geo.translate(0,-.06,0);oldSill.geometry.dispose();oldSill.geometry=geo;Object.assign(oldSill.userData,{...info,role:'yude-open-lantern-sill-ring'});}
+  applyYudeDomeBrickCourses(kit,built.f);
   return finishAugment(kit,item,built,p,{exteriorChanged:false,interiorChanged:true,bathInterior:{source,photographyDate:null,actualGeometry:['white-glazed brick inner wall shell','dark floor','pointed arch opening','four square-to-round squinches','solid square-to-round outer roof cap','inward FrontSide dome with open oculus'],door:{width:2*doorHalf,spring,apex},floorY:y,upperShellThickness:.12,access:'CLOSED_REAR_NO_NEW_SPAWN_OR_WALKABLE',furnishings:'UNMODELED_NO_INVENTED_BATH_EQUIPMENT'},actualChanges:['Replaced only the bath solid red mass and room-filling plinth with a layered hollow shell; retained exterior datum and original closed collision/navigation']});
 }
 const CERAMICS_2021='https://ggzlquanjing.dpm.org.cn/scene/rOQSztMJ62XbrOjIj78rxu2KMZTcvyfg/20210517_wydtcg/';
@@ -1352,13 +1357,13 @@ function augmentCeramicsGallery(kit,item,built,p) {
       box('wuying-photo-white-stone-rail-panel',stone,alongX?L:.12,.47,alongX?.12:L,(x0+x1)/2,item.ph+.48,(z0+z1)/2,true,data);
       box('wuying-photo-white-stone-rail-top',stone,alongX?L:.19,.13,alongX?.19:L,(x0+x1)/2,item.ph+.78,(z0+z1)/2,true,data);
       for(let k=0;k<=n;k++)box('wuying-photo-white-stone-rail-post',stone,.20,1.03,.20,x0+(x1-x0)*k/n,item.ph+.515,z0+(z1-z0)*k/n,true,data);terrace.push({x0,x1,z0,z1});};
-    // Only the main hall's west wall platform midsection is represented.
-    // The 2021 views prove stepped / returning moon-terrace rails farther
-    // south, not two straight rails on this narrow retained front platform.
-    // Withhold those unmodelled turns, side stair and all front/rear segments.
+    // Preserve the R48 west-gable middle exactly. Its photographed south
+    // return and moon terrace are added by the Wuying-specific module below,
+    // not by extending this straight rail across the stairs or hall front.
     stoneRail(edge,edge,-item.d/2+.4,item.d/2-.4);
   }
-  return finishAugment(kit,item,built,p,{display,accessProxies,exteriorChanged:terrace.length>0,interiorChanged:true,sourceCeiling:{photo,scene,photographyDate:null,grid:{nx,nz,status:'FITTED_REPEAT_COUNTS_NOT_PHOTO_MEASUREMENT'},artwork:'DRAGON_PAINTINGS_UNMODELED_ONLY_FRAME_AND_ROUND_FIELD_CONTOURS'},modernEquipment:{design,vents,lamps,period:'2020_DESIGN_AND_2021_PANORAMA_NOT_CURRENT_INVENTORY',newRuntimeLights:0},terraceRailSegments:terrace,retainedDedicatedLayout:'ALL_EXISTING_CASES_OBJECTS_ROOF_FLOOR_ROOMS_AND_ENTRIES_RETAINED',wholeBuildingComplete:false});
+  const moonTerrace=p.key==='wuying'?buildWuyingMoonTerrace(kit,item,f,stone):null;
+  return finishAugment(kit,item,built,p,{display,accessProxies,...(moonTerrace?{moonTerrace,navigation:moonTerrace.navigation}:{}),exteriorChanged:terrace.length>0,interiorChanged:true,sourceCeiling:{photo,scene,photographyDate:null,grid:{nx,nz,status:'FITTED_REPEAT_COUNTS_NOT_PHOTO_MEASUREMENT'},artwork:'DRAGON_PAINTINGS_UNMODELED_ONLY_FRAME_AND_ROUND_FIELD_CONTOURS'},modernEquipment:{design,vents,lamps,period:'2020_DESIGN_AND_2021_PANORAMA_NOT_CURRENT_INVENTORY',newRuntimeLights:0},terraceRailSegments:terrace,retainedDedicatedLayout:moonTerrace?'ALL_EXISTING_CASES_OBJECTS_ROOF_FLOOR_ROOMS_AND_DOORS_RETAINED':'ALL_EXISTING_CASES_OBJECTS_ROOF_FLOOR_ROOMS_AND_ENTRIES_RETAINED',wholeBuildingComplete:false});
 }
 
 function augmentBaoyunFacade(kit,item,built,p) {
@@ -1787,7 +1792,7 @@ export function augmentRemainingHall(kit,item,built,profile) {
     const green=palette(kit).green_glaze;
     roof.traverse(n=>{if(n.isMesh&&(['roof_tile','kit_ridge','roof_ridge_glaze'].includes(materialKey(kit,n.material))))n.material=green;});
     roof.userData.remainingRoof='sansuo-green-hard-gable';roof.userData.source=profile.source;
-    return finishAugment(kit,item,built,profile,{exteriorChanged:true,interiorChanged:false,identityStatus:'THREE_COURTYARDS_TWO_MODEL_ROWS_UNRESOLVED',interiorStatus:'LEGACY_FURNITURE_PRESERVED_UNVERIFIED__NO_OMISSION_AS_ABSENCE_INFERENCE',actualChanges:['Group-common green glazed flush hard-gable roof only; no invented bay mapping or relocated middle-hall stove']});
+    return finishAugment(kit,item,built,profile,{exteriorChanged:true,interiorChanged:item.furnishingPolicy!==undefined,identityStatus:'THREE_COURTYARDS_TWO_MODEL_ROWS_UNRESOLVED',interiorStatus:item.furnishingPolicy===undefined?'LEGACY_FURNITURE_PRESERVED_UNVERIFIED__NO_OMISSION_AS_ABSENCE_INFERENCE':'UNKNOWN_INVENTORY_WITHHELD_NOT_KNOWN_EMPTY',actualChanges:['Group-common green glazed flush hard-gable roof only; no invented bay mapping or relocated middle-hall stove',...(item.furnishingPolicy===undefined?[]:['Withhold unsupported generic props only for this explicit runtime declaration; preserve unresolved boundaries and original spawn points'])]});
   }
   throw new Error(`R48 outer augmentation not enabled for ${profile.key}`);
 }

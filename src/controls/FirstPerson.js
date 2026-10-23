@@ -501,7 +501,13 @@ export class FirstPersonControls {
       // 跳跃中：竖直速度受重力，下落到脚下地面即落地
       const g = PLAYER.GRAVITY ?? 14;
       this.verticalVelocity = Math.max(this.verticalVelocity - g * delta, -(PLAYER.MAX_FALL_SPEED ?? 30));
-      this.feetY += this.verticalVelocity * delta;
+      const targetFeet = this.feetY + this.verticalVelocity * delta;
+      const allowedFeet = this.verticalVelocity > 0
+        ? this.collisionManager.limitUpwardFeet?.(this.camera.position.x, this.camera.position.z,
+          this.feetY, targetFeet, 0.5, PLAYER.HEIGHT) ?? targetFeet
+        : targetFeet;
+      if (allowedFeet < targetFeet) this.verticalVelocity = 0;
+      this.feetY = allowedFeet;
       if (this.verticalVelocity <= 0 && this.feetY <= groundY) {
         this.feetY = groundY;
         this.verticalVelocity = 0;

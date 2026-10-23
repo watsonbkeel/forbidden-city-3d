@@ -1,0 +1,633 @@
+{
+  "scope": "actual unmerged three-hall fragment + existing east connecting corridor and transverse gates; no fullworld",
+  "baseCommit": "755dd9ac5c6f8a8766c1db3e8e4f8fe17fa142da",
+  "profile": {
+    "id": "taihe-east-stepped-firewall",
+    "objectId": "FC-1ABC6622CB",
+    "side": "east",
+    "name": "太和殿东侧阶梯状封火墙（局部拟合）",
+    "status": "VERIFY_PENDING",
+    "dimensionStatus": "PHOTO_FIT_WITH_INHERITED_CONTROLS",
+    "z": -12.2,
+    "thickness": 1.4,
+    "spans": [
+      {
+        "id": "retained-wall-join",
+        "x0": -65.5,
+        "x1": -65,
+        "floorY": 0,
+        "topY": 7
+      },
+      {
+        "id": "tier-1",
+        "x0": -65,
+        "x1": -59.53333333333333,
+        "floorY": 2.6666666666666665,
+        "topY": 7
+      },
+      {
+        "id": "tier-2",
+        "x0": -59.53333333333333,
+        "x1": -54.06666666666666,
+        "floorY": 5.333333333333333,
+        "topY": 9.666666666666666
+      },
+      {
+        "id": "tier-3",
+        "x0": -54.06666666666666,
+        "x1": -31.95,
+        "floorY": 8,
+        "topY": 12.333333333333332
+      }
+    ],
+    "terraceTiers": [
+      {
+        "id": "tier-1",
+        "x0": -65,
+        "x1": -59.53333333333333,
+        "floorY": 2.6666666666666665,
+        "topY": 7
+      },
+      {
+        "id": "tier-2",
+        "x0": -59.53333333333333,
+        "x1": -54.06666666666666,
+        "floorY": 5.333333333333333,
+        "topY": 9.666666666666666
+      },
+      {
+        "id": "tier-3",
+        "x0": -54.06666666666666,
+        "x1": -31.95,
+        "floorY": 8,
+        "topY": 12.333333333333332
+      }
+    ],
+    "passage": {
+      "centerX": -43.00833333333333,
+      "clearWidth": 2.8,
+      "clearHeight": 3,
+      "floorY": 8,
+      "fit": {
+        "stationFraction": 0.5,
+        "stationEnvelopeM": 2.4,
+        "widthEnvelopeM": 0.8,
+        "heightEnvelopeM": 0.6,
+        "statisticalInterval": false
+      },
+      "currentVisitorAccess": "UNKNOWN",
+      "gameplayOpen": true
+    },
+    "terminalJoin": {
+      "x": -65.5,
+      "z": -12.2,
+      "height": 7,
+      "item": "axis-courts/items/13",
+      "gate": "中左门"
+    },
+    "hallJoin": {
+      "x": -31.95,
+      "z": -12.2
+    },
+    "source": {
+      "url": "https://www.dpm.org.cn/Uploads/File/2020/10/23/u5f9255173a228.pdf",
+      "featurePages": [
+        5,
+        6
+      ],
+      "eastIdentityPage": 6,
+      "photographDate": "UNSPECIFIED"
+    },
+    "inherited": {
+      "hallWidth": 63,
+      "terraceUpperHalfWidth": 54.06666666666666,
+      "layers": 3,
+      "lh": 2.6666666666666665,
+      "setback": 5.466666666666667
+    },
+    "remaining": [
+      "west-side-unreviewed",
+      "exact-metric-survey-unknown",
+      "outer-end-detail-unreviewed",
+      "door-finish-unreviewed",
+      "browser-matched-views-pending"
+    ]
+  },
+  "beforeGeometryHash": "74373988d8df7dadf19164381953d4782c234dcb5da4eeadb7f96949fe4e4d83",
+  "delta": {
+    "colliders": 6,
+    "walkables": 0,
+    "meshes": 15
+  },
+  "railIntersections": [
+    {
+      "groupChildIndex": 2,
+      "meshIndex": 0,
+      "material": "balustrade",
+      "bounds": {
+        "min": [
+          -64.89000000357629,
+          2.666666654745738,
+          -53.800001525878905
+        ],
+        "max": [
+          -64.7099999964237,
+          3.7666666785875957,
+          23.500001525878908
+        ]
+      },
+      "intersection": {
+        "min": [
+          -64.89000000357629,
+          2.666666654745738,
+          -12.899999999999999
+        ],
+        "max": [
+          -64.7099999964237,
+          3.7666666785875957,
+          -11.5
+        ]
+      },
+      "fullyEnclosedWithinMasonry": true,
+      "wallTop": 7.000000079472859,
+      "renderedTop": 3.7666666785875957,
+      "verticalCoverMeters": 3.2333334008852637,
+      "colliderMatches": [
+        {
+          "index": 1,
+          "min": [
+            -64.95,
+            2.8666666666666667,
+            -53.949999999999996
+          ],
+          "max": [
+            -64.64999999999999,
+            4.066666666666666,
+            23.65
+          ]
+        }
+      ],
+      "action": "RETAIN: crossing volume is wholly inside masonry; external rail portions terminate visually at wall faces"
+    },
+    {
+      "groupChildIndex": 48,
+      "meshIndex": 0,
+      "material": "balustrade",
+      "bounds": {
+        "min": [
+          -59.423333336909614,
+          5.333333321412404,
+          -48.333334604899086
+        ],
+        "max": [
+          -59.24333332975704,
+          6.433333345254262,
+          23.500001271565758
+        ]
+      },
+      "intersection": {
+        "min": [
+          -59.423333336909614,
+          5.333333321412404,
+          -12.899999999999999
+        ],
+        "max": [
+          -59.24333332975704,
+          6.433333345254262,
+          -11.5
+        ]
+      },
+      "fullyEnclosedWithinMasonry": true,
+      "wallTop": 9.666666746139526,
+      "renderedTop": 6.433333345254262,
+      "verticalCoverMeters": 3.2333334008852646,
+      "colliderMatches": [
+        {
+          "index": 249,
+          "min": [
+            -59.48333333333333,
+            5.533333333333333,
+            -48.48333333333333
+          ],
+          "max": [
+            -59.18333333333333,
+            6.733333333333333,
+            23.65
+          ]
+        }
+      ],
+      "action": "RETAIN: crossing volume is wholly inside masonry; external rail portions terminate visually at wall faces"
+    },
+    {
+      "groupChildIndex": 94,
+      "meshIndex": 0,
+      "material": "balustrade",
+      "bounds": {
+        "min": [
+          -53.956666670242946,
+          7.999999988079072,
+          -42.86666768391927
+        ],
+        "max": [
+          -53.776666663090374,
+          9.10000001192093,
+          23.500001017252607
+        ]
+      },
+      "intersection": {
+        "min": [
+          -53.956666670242946,
+          7.999999988079072,
+          -12.899999999999999
+        ],
+        "max": [
+          -53.776666663090374,
+          9.10000001192093,
+          -11.5
+        ]
+      },
+      "fullyEnclosedWithinMasonry": true,
+      "wallTop": 12.333333412806192,
+      "renderedTop": 9.10000001192093,
+      "verticalCoverMeters": 3.2333334008852628,
+      "colliderMatches": [
+        {
+          "index": 497,
+          "min": [
+            -54.01666666666666,
+            8.2,
+            -43.01666666666666
+          ],
+          "max": [
+            -53.71666666666666,
+            9.4,
+            23.65
+          ]
+        }
+      ],
+      "action": "RETAIN: crossing volume is wholly inside masonry; external rail portions terminate visually at wall faces"
+    }
+  ],
+  "views": [
+    {
+      "phase": "before",
+      "id": "east-oblique",
+      "path": "/tmp/r58-axis-firewall-raster/before-east-oblique.json.gz",
+      "sourceMeshes": 387,
+      "sourceCharacterInstances": 0,
+      "triangles": 27422,
+      "camera": {
+        "position": [
+          -91,
+          26,
+          24
+        ],
+        "quaternion": [
+          -0.1278057426598133,
+          -0.44580153163462927,
+          -0.06448083745475895,
+          0.8836112879182368
+        ],
+        "fov": 58,
+        "aspect": 1.7777777777777777,
+        "matrixWorldInverse": [
+          0.5942064319867031,
+          0.22790398331778416,
+          -0.7713484884107303,
+          0,
+          0,
+          0.959015827488613,
+          0.28335250594679895,
+          0,
+          0.804312573683659,
+          -0.1683698815531385,
+          0.5698533730707844,
+          0,
+          34.76928354238217,
+          -0.15427187551025678,
+          -91.23635855369206,
+          1
+        ],
+        "projectionMatrix": [
+          1.014776862340176,
+          0,
+          0,
+          0,
+          0,
+          1.8040477552714238,
+          0,
+          0,
+          0,
+          0,
+          -1.000272764467882,
+          -1,
+          0,
+          0,
+          -0.06000818293403646,
+          0
+        ],
+        "exportFar": 180
+      }
+    },
+    {
+      "phase": "before",
+      "id": "doorway",
+      "path": "/tmp/r58-axis-firewall-raster/before-doorway.json.gz",
+      "sourceMeshes": 725,
+      "sourceCharacterInstances": 0,
+      "triangles": 37821,
+      "camera": {
+        "position": [
+          -43,
+          10,
+          -22
+        ],
+        "quaternion": [
+          0,
+          0.9999869855213831,
+          0.005101841614259016,
+          0
+        ],
+        "fov": 65,
+        "aspect": 1.7777777777777777,
+        "matrixWorldInverse": [
+          -1.0000000000000004,
+          0,
+          0,
+          0,
+          0,
+          0.9999479424242861,
+          0.010203550432900844,
+          0,
+          0,
+          0.010203550432900844,
+          -0.9999479424242865,
+          0,
+          -43.00000000000002,
+          -9.775001314719043,
+          -22.100890237663315,
+          1
+        ],
+        "projectionMatrix": [
+          0.8829481371285882,
+          0,
+          0,
+          0,
+          0,
+          1.5696855771174902,
+          0,
+          0,
+          0,
+          0,
+          -1.000272764467882,
+          -1,
+          0,
+          0,
+          -0.06000818293403646,
+          0
+        ],
+        "exportFar": 180
+      }
+    },
+    {
+      "phase": "before",
+      "id": "three-rail-junctions",
+      "path": "/tmp/r58-axis-firewall-raster/before-three-rail-junctions.json.gz",
+      "sourceMeshes": 721,
+      "sourceCharacterInstances": 0,
+      "triangles": 45999,
+      "camera": {
+        "position": [
+          -71,
+          11,
+          -25
+        ],
+        "quaternion": [
+          0.04758035879220261,
+          0.9153645567023857,
+          0.1136215421067872,
+          -0.38331968767534746
+        ],
+        "fov": 60,
+        "aspect": 1.7777777777777777,
+        "matrixWorldInverse": [
+          -0.7016042529953587,
+          0.17421349613425993,
+          -0.6909422044885537,
+          0,
+          1.3877787807814448e-17,
+          0.9696525092529615,
+          0.2444872415882575,
+          0,
+          0.7125668194484109,
+          0.1715332885014252,
+          -0.6803123244194992,
+          0,
+          -31.999731476460187,
+          5.991312836285506,
+          -68.75406428664563,
+          0.9999999999999998
+        ],
+        "projectionMatrix": [
+          0.9742785792574937,
+          0,
+          0,
+          0,
+          0,
+          1.7320508075688776,
+          0,
+          0,
+          0,
+          0,
+          -1.000272764467882,
+          -1,
+          0,
+          0,
+          -0.06000818293403646,
+          0
+        ],
+        "exportFar": 180
+      }
+    },
+    {
+      "phase": "after",
+      "id": "east-oblique",
+      "path": "/tmp/r58-axis-firewall-raster/after-east-oblique.json.gz",
+      "sourceMeshes": 402,
+      "sourceCharacterInstances": 0,
+      "triangles": 27722,
+      "camera": {
+        "position": [
+          -91,
+          26,
+          24
+        ],
+        "quaternion": [
+          -0.1278057426598133,
+          -0.44580153163462927,
+          -0.06448083745475895,
+          0.8836112879182368
+        ],
+        "fov": 58,
+        "aspect": 1.7777777777777777,
+        "matrixWorldInverse": [
+          0.5942064319867031,
+          0.22790398331778416,
+          -0.7713484884107303,
+          0,
+          0,
+          0.959015827488613,
+          0.28335250594679895,
+          0,
+          0.804312573683659,
+          -0.1683698815531385,
+          0.5698533730707844,
+          0,
+          34.76928354238217,
+          -0.15427187551025678,
+          -91.23635855369206,
+          1
+        ],
+        "projectionMatrix": [
+          1.014776862340176,
+          0,
+          0,
+          0,
+          0,
+          1.8040477552714238,
+          0,
+          0,
+          0,
+          0,
+          -1.000272764467882,
+          -1,
+          0,
+          0,
+          -0.06000818293403646,
+          0
+        ],
+        "exportFar": 180
+      }
+    },
+    {
+      "phase": "after",
+      "id": "doorway",
+      "path": "/tmp/r58-axis-firewall-raster/after-doorway.json.gz",
+      "sourceMeshes": 735,
+      "sourceCharacterInstances": 0,
+      "triangles": 37962,
+      "camera": {
+        "position": [
+          -43,
+          10,
+          -22
+        ],
+        "quaternion": [
+          0,
+          0.9999869855213831,
+          0.005101841614259016,
+          0
+        ],
+        "fov": 65,
+        "aspect": 1.7777777777777777,
+        "matrixWorldInverse": [
+          -1.0000000000000004,
+          0,
+          0,
+          0,
+          0,
+          0.9999479424242861,
+          0.010203550432900844,
+          0,
+          0,
+          0.010203550432900844,
+          -0.9999479424242865,
+          0,
+          -43.00000000000002,
+          -9.775001314719043,
+          -22.100890237663315,
+          1
+        ],
+        "projectionMatrix": [
+          0.8829481371285882,
+          0,
+          0,
+          0,
+          0,
+          1.5696855771174902,
+          0,
+          0,
+          0,
+          0,
+          -1.000272764467882,
+          -1,
+          0,
+          0,
+          -0.06000818293403646,
+          0
+        ],
+        "exportFar": 180
+      }
+    },
+    {
+      "phase": "after",
+      "id": "three-rail-junctions",
+      "path": "/tmp/r58-axis-firewall-raster/after-three-rail-junctions.json.gz",
+      "sourceMeshes": 736,
+      "sourceCharacterInstances": 0,
+      "triangles": 46299,
+      "camera": {
+        "position": [
+          -71,
+          11,
+          -25
+        ],
+        "quaternion": [
+          0.04758035879220261,
+          0.9153645567023857,
+          0.1136215421067872,
+          -0.38331968767534746
+        ],
+        "fov": 60,
+        "aspect": 1.7777777777777777,
+        "matrixWorldInverse": [
+          -0.7016042529953587,
+          0.17421349613425993,
+          -0.6909422044885537,
+          0,
+          1.3877787807814448e-17,
+          0.9696525092529615,
+          0.2444872415882575,
+          0,
+          0.7125668194484109,
+          0.1715332885014252,
+          -0.6803123244194992,
+          0,
+          -31.999731476460187,
+          5.991312836285506,
+          -68.75406428664563,
+          0.9999999999999998
+        ],
+        "projectionMatrix": [
+          0.9742785792574937,
+          0,
+          0,
+          0,
+          0,
+          1.7320508075688776,
+          0,
+          0,
+          0,
+          0,
+          -1.000272764467882,
+          -1,
+          0,
+          0,
+          -0.06000818293403646,
+          0
+        ],
+        "exportFar": 180
+      }
+    }
+  ]
+}

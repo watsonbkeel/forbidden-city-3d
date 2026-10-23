@@ -1,0 +1,40 @@
+✔ R48 Zhonghe selected official flat ceiling omits the generic suspended caisson and mirror only (97.687583ms)
+✖ R48 Jiaotai retains its separate ceiling owner and never enables the generic mirror (39.509038ms)
+✔ Jiaotai alone has a source-bounded low display setting instead of the generic throneArea (179.735571ms)
+✔ all R27/R28 sources and the complete Zhonghe fragment remain byte-identical (55.56211ms)
+✔ every new collider has a visible geometric owner; only the real low base is a new walkable (24.908728ms)
+✔ base-material checkpoint retains every neutral vertex, UV, index, transform and physical bound (57.242645ms)
+✔ Jiaotai merged rear-palace fragment binds the real geometry, support and legal observation positions (13.14315ms)
+✔ Jiaotai four-door continuous circuit 10 Hz sprint=false backward=false (58.76382ms)
+✔ Jiaotai four-door continuous circuit 10 Hz sprint=false backward=true (47.123277ms)
+✔ Jiaotai four-door continuous circuit 10 Hz sprint=true backward=false (42.399933ms)
+✔ Jiaotai four-door continuous circuit 10 Hz sprint=true backward=true (40.021485ms)
+✔ Jiaotai four-door continuous circuit 60 Hz sprint=false backward=false (177.17813ms)
+✔ Jiaotai four-door continuous circuit 60 Hz sprint=false backward=true (156.272248ms)
+✔ Jiaotai four-door continuous circuit 60 Hz sprint=true backward=false (95.755497ms)
+✔ Jiaotai four-door continuous circuit 60 Hz sprint=true backward=true (110.889956ms)
+✔ both actual resident clock/clepsydra and caisson LOD meshes retain their frozen R53 signatures (9.316726ms)
+✔ Jiaotai original front map landing is retained by the actual Teleport resolver (11.462187ms)
+✔ new furniture bounds do not penetrate either conservative retained R27 landmark envelope (21.911227ms)
+✔ all frozen actor IDs remain and Jiaotai stays unbound when other districts gain actors (4.498941ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1244.171174
+
+✖ failing tests:
+
+test at tests/r48-zhonghe-ceiling.test.mjs:5:1
+✖ R48 Jiaotai retains its separate ceiling owner and never enables the generic mirror (39.509038ms)
+  TypeError: Cannot read properties of undefined (reading 'caisson')
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r55-zhonghe-display/tests/r48-zhonghe-ceiling.test.mjs:5:144)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)

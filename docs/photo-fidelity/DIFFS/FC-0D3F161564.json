@@ -1,0 +1,36 @@
+{
+  "id": "DIFF-FC-0D3F161564",
+  "objectId": "FC-0D3F161564",
+  "status": "SOURCE_CONFIRMED_STATIC_CODE_CANDIDATE",
+  "referenceVisible": "PDF page5 photo: arched masonry firebreak inside east linking corridor",
+  "sourceRecords": [
+    {
+      "label": "保和殿东联庑封火山墙",
+      "url": "https://www.dpm.org.cn/Uploads/File/2020/10/23/u5f9255173a228.pdf#page=5"
+    }
+  ],
+  "sourceViewLog": "EVIDENCE/SOURCE-VIEWS.json",
+  "modelStaticCode": "axis-courts items/31 is a continuous generic corridor from z=-11.7 to122.5; no named firebreak registration. Do not claim all six sections/seven walls from ambiguous textual counting boundary.",
+  "modelBrowserObservation": null,
+  "proposedChange": "Arched masonry firebreak wall and segmentation, distinct from stepped terrace firewall",
+  "codePaths": [
+    "data/zones/axis-courts.json#/items/31",
+    "src/scene/palace/kit.js#corridor",
+    "src/scene/palace/kit.js#wall",
+    "src/scene/zones/ZoneBase.js"
+  ],
+  "requiredBeforeImplementation": "Inspect PDF page 5 arched firewall photograph and bind to actual corridor interval. Add independently located firebreak or bounded correct section, not guessed repeated 7-wall array.",
+  "doNotOverreach": "Requires position confirmation; keep remaining segment count, west side, complete interior UNREVIEWED/BLOCKED_SOURCE.",
+  "checks": [
+    "Source subject and target era/photograph period confirmed or explicitly uncertain",
+    "Stable model binding and neighboring joins resolved",
+    "Preserve already verified anchors/routes/dimensions",
+    "Related unit/zone/gate/walk tests selected from current package.json",
+    "Actual browser matched camera before/after + feature-level reference comparison",
+    "If browser unavailable, reversible change+available tests allowed, status VERIFY_PENDING; never ACCEPTED"
+  ],
+  "done": false,
+  "actualChangedFiles": [],
+  "productionCommit": null,
+  "camera": null
+}

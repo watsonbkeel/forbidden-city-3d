@@ -1,3 +1,13 @@
+import {validateEastUnknownAnnexInventoryPolicy,applyEastUnknownAnnexInventory} from '../palace/special/EastUnknownAnnexInventory.js';
+import {applyEastFiveRoofBeasts} from '../palace/special/EastFiveRoofBeasts.js';
+import {applyJingrenRearWindows} from '../palace/special/JingrenRearWindows.js';
+import {buildFengxianRearHall} from '../palace/special/FengxianRearProfile.js';
+import {validateEastUnknownThroneInventoryPolicy,applyEastUnknownThroneInventory} from '../palace/special/EastUnknownThroneInventory.js';
+import {applyFengxianFrontWindows} from '../palace/special/FengxianFrontWindows.js';
+import {buildJingyangRearFacade} from '../palace/special/JingyangRearFacade.js';
+import {applyDonghuaCentralDoorFront} from '../palace/special/DonghuaCentralDoorFront.js';
+import {validateNansansuoInventoryPolicy} from '../palace/NansansuoInventoryPolicy.js';
+import { applyZuoyiDoorFront } from '../palace/special/ZuoyiDoorFront.js';
 import {resolveRemainingProfile as resolveNingshou,buildRemainingHall as buildNingshou,augmentRemainingHall as augmentNingshou} from '../palace/special/RemainingNingshouHalls.js';
 import {resolveRemainingProfile as resolveOuter,buildRemainingHall as buildOuter,augmentRemainingHall as augmentOuter} from '../palace/special/RemainingOuterHalls.js';
 import {resolveRemainingProfile as resolveResidential,buildRemainingHall as buildResidential,augmentRemainingHall as augmentResidential} from '../palace/special/RemainingResidentialHalls.js';
@@ -141,16 +151,37 @@ export class ZoneBase {
   // ───────────────────────── 各 kind 构建方法 ─────────────────────────
 
   buildHall(item) {
+    const itemIndex=this.zoneJson.items.indexOf(item);
+    const inventoryContext=this.zoneJson.id==='east-six'&&[2,9,16,30,37].includes(itemIndex)
+      ? {zoneId:this.zoneJson.id,itemIndex,item:{...item,furnishingPolicy:{mode:'unknown-inventory',target:`east-six/items/${itemIndex}`,scope:'r62-east-five-generic-thrones-only'}}}:null;
+    if(inventoryContext)validateEastUnknownThroneInventoryPolicy(inventoryContext);
+    const annexContext=this.zoneJson.id==='east-six'&&[3,4,5,10,11,12,17,18,19,24,25,26,31,32,33,38,39,40,44,45,46,47,48,54].includes(itemIndex)
+      ? {zoneId:this.zoneJson.id,itemIndex,item:{...item,furnishingPolicy:{mode:'unknown-inventory',target:`east-six/items/${itemIndex}`,scope:'r62-east-24-unnamed-annex-furnish-room-only'}}}:null;
+    if(annexContext)validateEastUnknownAnnexInventoryPolicy(annexContext);
+    const finish=built=>{
+      applyEastFiveRoofBeasts(this.kit,this.zoneJson.id,itemIndex,item,built);
+      if(annexContext)return applyEastUnknownAnnexInventory(this.kit,annexContext,built);
+      return inventoryContext?applyEastUnknownThroneInventory(this.kit,inventoryContext,built):built;
+    };
+    const fengxianRear=buildFengxianRearHall(this.kit,item,itemIndex);
+    if(fengxianRear)return finish(fengxianRear);
+    if(this.zoneJson.id==='east-six'&&this.zoneJson.items.indexOf(item)===38)return finish(buildJingyangRearFacade(this.kit,item,this.zoneJson.id));
+    if (item.furnishingPolicy !== undefined) validateNansansuoInventoryPolicy({zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     // R48 exact-identity profiles are opt-in by the reviewed catalog binding.
     // Existing dedicated builders remain the sole owner for augmentation.
     const candidates = [[resolveResidential,buildResidential,augmentResidential],[resolveNingshou,buildNingshou,augmentNingshou],[resolveOuter,buildOuter,augmentOuter]]
       .map(([resolve,build,augment])=>({profile:resolve(this.zoneJson.id,item),build,augment})).filter(x=>x.profile);
     if(candidates.length>1)throw Error('Ambiguous R48 named-building profile');
     const selected=candidates[0];
-    if(selected?.profile.mode==='replace')return applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,selected.build(this.kit,item,selected.profile));
+    if(selected?.profile.mode==='replace')return finish(applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,selected.build(this.kit,item,selected.profile)));
     const built=this.buildHallBaseline(item);
-    if(selected?.profile.mode==='augment')return applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,selected.augment(this.kit,item,built,selected.profile));
-    return applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,built);
+    if(this.zoneJson.id==='east-six'&&itemIndex===3){
+      built.f.updateWorldMatrix(true,false);
+      if(!applyJingrenRearWindows(this.kit,built.f,item))throw Error('Jingren rear window profile failed closed');
+    }
+    applyFengxianFrontWindows(this.kit,this.zoneJson.id,item,built);
+    if(selected?.profile.mode==='augment')return finish(applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,selected.augment(this.kit,item,built,selected.profile)));
+    return finish(applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,built));
   }
 
   buildHallBaseline(item) {
@@ -227,7 +258,7 @@ export class ZoneBase {
     // 过滤 undefined 参数，让 kit 方法使用默认值
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
     if(rearProfile)params.hardGableEnd=true;
-    const result=this.kit.hall(params);
+    const result=item.furnishingPolicy===undefined ? this.kit.hall(params) : this.kit.nansansuoUnknownHall(params,{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     if(rearProfile){
       result.f.userData.rearHall=rearProfile;
       result.f.userData.structure={...result.f.userData.structure,...rearProfile,id:`${rearProfile.zone}/${rearProfile.id}`,profile:rearProfile.id};
@@ -269,7 +300,8 @@ export class ZoneBase {
     };
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
     const width = this.kit.gate(params);
-    if (item.gateProfile === 'zhaode' || item.gateProfile === 'huangji') this.gateGeometries.set(item.name, this.kit.root.children.at(-1).userData.gateGeometry);
+    applyZuoyiDoorFront(this.kit, this.kit.root.children.at(-1), {zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
+    if (item.gateProfile === 'zhaode' || item.gateProfile === 'zhendu' || item.gateProfile === 'huangji') this.gateGeometries.set(item.name, this.kit.root.children.at(-1).userData.gateGeometry);
     return width; // 返回开口宽度
   }
 
@@ -294,7 +326,7 @@ export class ZoneBase {
     if (item.gateJoin !== undefined) {
       const ref = item.gateJoin;
       const g = ref && this.gateGeometries.get(ref.gate);
-      if (!g || g.profile !== 'zhaode' || g.rot !== 0 || !Object.hasOwn(g.joins, ref.side)) throw new Error('Invalid or unbuilt explicit gate join');
+      if (!g || !['zhaode', 'zhendu'].includes(g.profile) || g.rot !== 0 || !Object.hasOwn(g.joins, ref.side)) throw new Error('Invalid or unbuilt explicit gate join');
       contact = g.joins[ref.side];
       if (ref.end !== contact.end || item.facing !== 'z-' || !Array.isArray(from) || !Array.isArray(to) ||
           [...from, ...to].some(n => typeof n !== 'number' || !Number.isFinite(n)) || from.length !== 2 || to.length !== 2 ||
@@ -308,6 +340,11 @@ export class ZoneBase {
     const [x1, z1] = from;
     const [x2, z2] = to;
     const params = { facing: item.facing, depth: item.depth, colH: item.colH, name: item.name };
+    if (item.furnishingPolicy !== undefined) {
+      params.furnishingPolicy = item.furnishingPolicy;
+      params.furnishingTarget = `${this.zoneJson.id}/items/${this.zoneJson.items.indexOf(item)}`;
+      params.furnishingKind = item.kind;
+    }
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
     this.kit.corridor(x1, z1, x2, z2, item.facing, params);
     if (contact) this.kit.root.children.at(-1).userData.gateJoin = {
@@ -317,7 +354,11 @@ export class ZoneBase {
   }
 
   buildCityGate(item) {
-    if (item.cityGateProfile !== undefined) return buildEastWestCityGate(this.kit, item);
+    if (item.cityGateProfile !== undefined) {
+      const frame=buildEastWestCityGate(this.kit,item);
+      applyDonghuaCentralDoorFront(this.kit,frame,{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
+      return frame;
+    }
     const params = {
       x: item.x,
       z: item.z,

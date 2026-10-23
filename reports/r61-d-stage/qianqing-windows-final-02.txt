@@ -1,0 +1,38 @@
+✔ two actual south end fields have central tall/wide and two lower narrow fitted frames (9.163487ms)
+✔ all colliders, supports, three rear doors, stairs and connector remain exact frozen R60 (2.555079ms)
+✖ all triangles outside two south outer-face window bands retain every attribute and position (456.824507ms)
+✔ rear windows and south inner faces do not inherit unobserved front tripartite form (526.670193ms)
+✔ no additional production texture or draw material, bounded nondegenerate geometry (229.607752ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1557.329683
+
+✖ failing tests:
+
+test at tests/r61-qianqing-south-windows.test.mjs:12:1
+✖ all triangles outside two south outer-face window bands retain every attribute and position (456.824507ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '0db6ef4b7f9fb2696ec7a46df4bf18075e5263e08cab6f406a4ca2d06d0ba7ea'
+  - '8b660421974a62fd4476475ec307e9ab4b840da53f11ba909a04e8fef2e99327'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-qianqing-south-windows.test.mjs:12:112)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '0db6ef4b7f9fb2696ec7a46df4bf18075e5263e08cab6f406a4ca2d06d0ba7ea',
+    expected: '8b660421974a62fd4476475ec307e9ab4b840da53f11ba909a04e8fef2e99327',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

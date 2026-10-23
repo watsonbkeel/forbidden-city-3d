@@ -1,0 +1,46 @@
+✖ real controller jump must settle on actual side-finial triangles at 10Hz (112.369217ms)
+✖ real controller jump must settle on actual side-finial triangles at 60Hz (62.430013ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 335.241958
+
+✖ failing tests:
+
+test at tests/current-state/inner-jinshui-finial-contact.test.mjs:22:26
+✖ real controller jump must settle on actual side-finial triangles at 10Hz (112.369217ms)
+  AssertionError [ERR_ASSERTION]: feet penetrate actual finial by 0.10721532198977313m
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-bridge-fidelity/tests/current-state/inner-jinshui-finial-contact.test.mjs:25:128)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/current-state/inner-jinshui-finial-contact.test.mjs:22:26
+✖ real controller jump must settle on actual side-finial triangles at 60Hz (62.430013ms)
+  AssertionError [ERR_ASSERTION]: feet penetrate actual finial by 0.10705038500539477m
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-bridge-fidelity/tests/current-state/inner-jinshui-finial-contact.test.mjs:25:128)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

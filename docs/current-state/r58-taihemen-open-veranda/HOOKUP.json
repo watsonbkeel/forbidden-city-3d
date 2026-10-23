@@ -1,0 +1,14 @@
+[
+  {
+    "before": "import { taiheColumnGrid } from './palace/special/TaiheColumnGrid.js';",
+    "after": "import { taiheColumnGrid } from './palace/special/TaiheColumnGrid.js';\nimport { buildTaihemenSouthEnclosure } from './palace/special/TaihemenEnclosure.js';"
+  },
+  {
+    "before": "    for (const s of [-1, 1]) {\n      const depthFrame = qianqingDepth ?? baoheDepth;",
+    "after": "    for (const s of [-1, 1]) {\n      if (data.name === '太和门' && s === -1) {\n        buildTaihemenSouthEnclosure(this, g, { x0, z0, y, w, d, H, beamH, r });\n        continue; // Includes replacing the old south infills and broad collision walls.\n      }\n      const depthFrame = qianqingDepth ?? baoheDepth;"
+  },
+  {
+    "before": "    for (const s of [-1, 1]) this.libBox(g, 'wood_column', openRight - openLeft, 0.25, 0.3,",
+    "after": "    for (const s of (data.name === '太和门' ? [1] : [-1, 1])) this.libBox(g, 'wood_column', openRight - openLeft, 0.25, 0.3,"
+  }
+]

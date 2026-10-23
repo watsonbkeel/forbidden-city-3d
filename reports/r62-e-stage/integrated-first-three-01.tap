@@ -1,0 +1,50 @@
+✔ only exact front declaration differs; rear hall and other 55 declarations remain R61 (2.051385ms)
+✔ actual front/back column rows contain nine bays, not just metadata (1.086293ms)
+✔ four real raised windows / four closed middle doors / one open centre, with physical body boundary (1.809402ms)
+✔ platform/floor/ceiling and walls retain R61; central stair width change is explicit and bounded (2.521259ms)
+✔ whole registered plaque/frame fit actual upper/lower roof surfaces with unchanged original size cap (0.283365ms)
+✔ exact binding rejects drift/duplicates; unrelated halls have no state changes (0.827481ms)
+✔ bounded actual geometry, unknown ritual inventory and inherited texture limits stay explicit (2.826036ms)
+✔ actual central stair/door/room round trip 10/false/false (12.71012ms)
+✔ actual central stair/door/room round trip 10/false/true (3.90282ms)
+✔ actual central stair/door/room round trip 10/true/false (2.645815ms)
+✔ actual central stair/door/room round trip 10/true/true (1.918907ms)
+✔ actual central stair/door/room round trip 60/false/false (12.364192ms)
+✔ actual central stair/door/room round trip 60/false/true (10.448ms)
+✔ actual central stair/door/room round trip 60/true/false (5.559603ms)
+✔ actual central stair/door/room round trip 60/true/true (5.801756ms)
+✖ five bays replace seven without moving the source building envelope or inventing a room (73.465291ms)
+✔ four closed high-sill south windows contain actual positive-area geometry, not generic lattice artwork (39.116319ms)
+✔ wrong identity, wrong dimensions and unknown options fail before allocation (27.644453ms)
+✔ real local FirstPerson traversal enters, moves across front interior and exits twice at 10Hz (22.643809ms)
+✔ real local FirstPerson traversal enters, moves across front interior and exits twice at 60Hz (23.259382ms)
+✔ actual production merge retains the source record, grille triangles and material lifecycle (36.863022ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 20
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 442.992776
+
+✖ failing tests:
+
+test at tests/r62-jingyang-rear-facade.test.mjs:15:1
+✖ five bays replace seven without moving the source building envelope or inventing a room (73.465291ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  12 !== 16
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-e-east-inner-fidelity/tests/r62-jingyang-rear-facade.test.mjs:16:53)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 12,
+    expected: 16,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

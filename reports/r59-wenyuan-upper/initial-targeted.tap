@@ -1,0 +1,82 @@
+✖ original continuous generic band is a negative case; production hook creates six unequal south groups only (110.877994ms)
+✖ all north, lower columns, roof, plaque, three floors, stairs, cases and navigation remain exact (33.098086ms)
+✖ collision delta matches only exact replaced front components, with no old free-standing post ghosts (25.173932ms)
+✖ front frames, recesses and piers close the same upper band and stop a full-radius body (5.357608ms)
+✖ wrong identity, displaced target and double application fail closed without material allocations (67.704441ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 0
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 406.679091
+
+✖ failing tests:
+
+test at tests/r59-wenyuan-upper-windows.test.mjs:9:1
+✖ original continuous generic band is a negative case; production hook creates six unequal south groups only (110.877994ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 20
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r59-wenyuan-upper/tests/r59-wenyuan-upper-windows.test.mjs:9:227)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 20,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r59-wenyuan-upper-windows.test.mjs:10:1
+✖ all north, lower columns, roof, plaque, three floors, stairs, cases and navigation remain exact (33.098086ms)
+  Error: Wenyuan helper not applied
+      at fixture (file:///workspace/scratch/02a8023d1a85/r59-wenyuan-upper/tests/lib/r59-wenyuan-upper-fixture.mjs:18:292)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r59-wenyuan-upper/tests/r59-wenyuan-upper-windows.test.mjs:10:146)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests/r59-wenyuan-upper-windows.test.mjs:11:1
+✖ collision delta matches only exact replaced front components, with no old free-standing post ghosts (25.173932ms)
+  Error: Wenyuan helper not applied
+      at fixture (file:///workspace/scratch/02a8023d1a85/r59-wenyuan-upper/tests/lib/r59-wenyuan-upper-fixture.mjs:18:292)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r59-wenyuan-upper/tests/r59-wenyuan-upper-windows.test.mjs:11:150)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r59-wenyuan-upper-windows.test.mjs:12:1
+✖ front frames, recesses and piers close the same upper band and stop a full-radius body (5.357608ms)
+  Error: Wenyuan helper not applied
+      at fixture (file:///workspace/scratch/02a8023d1a85/r59-wenyuan-upper/tests/lib/r59-wenyuan-upper-fixture.mjs:18:292)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r59-wenyuan-upper/tests/r59-wenyuan-upper-windows.test.mjs:12:108)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r59-wenyuan-upper-windows.test.mjs:13:1
+✖ wrong identity, displaced target and double application fail closed without material allocations (67.704441ms)
+  Error: Wenyuan helper not applied
+      at fixture (file:///workspace/scratch/02a8023d1a85/r59-wenyuan-upper/tests/lib/r59-wenyuan-upper-fixture.mjs:18:292)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r59-wenyuan-upper/tests/r59-wenyuan-upper-windows.test.mjs:13:598)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)

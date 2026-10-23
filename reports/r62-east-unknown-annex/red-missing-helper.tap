@@ -1,0 +1,1453 @@
+✖ R62 annex 3: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (49.810322ms)
+✖ R62 annex 4: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (18.29973ms)
+✖ R62 annex 5: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (13.343838ms)
+✖ R62 annex 10: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (63.95912ms)
+✖ R62 annex 11: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (8.058019ms)
+✖ R62 annex 12: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (5.821589ms)
+✖ R62 annex 17: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (6.218695ms)
+✖ R62 annex 18: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (3.9865ms)
+✖ R62 annex 19: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (5.7337ms)
+✖ R62 annex 24: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (12.186434ms)
+✖ R62 annex 25: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (6.40504ms)
+✖ R62 annex 26: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (7.901635ms)
+✖ R62 annex 31: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (3.970987ms)
+✖ R62 annex 32: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (10.023182ms)
+✖ R62 annex 33: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (3.953762ms)
+✖ R62 annex 38: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (5.051631ms)
+✖ R62 annex 39: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (4.926333ms)
+✖ R62 annex 40: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (3.049133ms)
+✖ R62 annex 44: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (3.136274ms)
+✖ R62 annex 45: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (5.095618ms)
+✖ R62 annex 46: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (4.034643ms)
+✖ R62 annex 47: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (4.894916ms)
+✖ R62 annex 48: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (4.741195ms)
+✖ R62 annex 54: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (6.103081ms)
+✖ R62 annex missing policy is a byte-preserving no-op (4.791361ms)
+✖ R62 annex fail-closed atomically: wrong zone (4.392561ms)
+✖ R62 annex fail-closed atomically: wrong index (4.301273ms)
+✖ R62 annex fail-closed atomically: wrong policy (4.422556ms)
+✖ R62 annex fail-closed atomically: declaration drift (4.461415ms)
+✖ R62 annex fail-closed atomically: added real name (3.414421ms)
+✖ R62 annex fail-closed atomically: duplicate mesh (3.931268ms)
+✖ R62 annex fail-closed atomically: position corruption (4.409046ms)
+✖ R62 annex fail-closed atomically: vertex corruption (3.375042ms)
+✖ R62 annex fail-closed atomically: normal corruption (4.001113ms)
+✖ R62 annex fail-closed atomically: uv corruption (3.63369ms)
+✖ R62 annex fail-closed atomically: material corruption (4.150507ms)
+✖ R62 annex fail-closed atomically: material replacement (3.346719ms)
+✖ R62 annex fail-closed atomically: borrowed geometry (3.295241ms)
+✖ R62 annex fail-closed atomically: missing geometry (4.304268ms)
+✖ R62 annex fail-closed atomically: duplicate frame (3.962645ms)
+✖ R62 annex fail-closed atomically: room cover drift (4.282676ms)
+✖ R62 annex fail-closed atomically: room spawn drift (4.274613ms)
+✖ R62 annex fail-closed atomically: duplicate room (3.290806ms)
+✖ R62 annex fail-closed atomically: duplicate collider (3.203574ms)
+✖ R62 annex fail-closed atomically: stale collider with drifted bounds (3.629264ms)
+ℹ tests 45
+ℹ suites 0
+ℹ pass 0
+ℹ fail 45
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 577.980984
+
+✖ failing tests:
+
+test at tests/r62-east-unknown-annex.test.mjs:6:24
+✖ R62 annex 3: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (49.810322ms)
+  AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:15:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:6:24
+✖ R62 annex 4: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (18.29973ms)
+  AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:15:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:6:24
+✖ R62 annex 5: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (13.343838ms)
+  AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:15:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:6:24
+✖ R62 annex 10: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (63.95912ms)
+  AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:15:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:6:24
+✖ R62 annex 11: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (8.058019ms)
+  AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:15:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:6:24
+✖ R62 annex 12: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (5.821589ms)
+  AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:15:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:6:24
+✖ R62 annex 17: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (6.218695ms)
+  AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:15:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:6:24
+✖ R62 annex 18: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (3.9865ms)
+  AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:15:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:6:24
+✖ R62 annex 19: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (5.7337ms)
+  AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:15:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:6:24
+✖ R62 annex 24: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (12.186434ms)
+  AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:15:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:6:24
+✖ R62 annex 25: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (6.40504ms)
+  AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:15:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:6:24
+✖ R62 annex 26: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (7.901635ms)
+  AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:15:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:6:24
+✖ R62 annex 31: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (3.970987ms)
+  AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:15:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:6:24
+✖ R62 annex 32: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (10.023182ms)
+  AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:15:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:6:24
+✖ R62 annex 33: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (3.953762ms)
+  AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:15:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:6:24
+✖ R62 annex 38: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (5.051631ms)
+  AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:15:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:6:24
+✖ R62 annex 39: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (4.926333ms)
+  AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:15:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:6:24
+✖ R62 annex 40: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (3.049133ms)
+  AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:15:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:6:24
+✖ R62 annex 44: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (3.136274ms)
+  AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:15:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:6:24
+✖ R62 annex 45: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (5.095618ms)
+  AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:15:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:6:24
+✖ R62 annex 46: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (4.034643ms)
+  AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:15:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:6:24
+✖ R62 annex 47: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (4.894916ms)
+  AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:15:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:6:24
+✖ R62 annex 48: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (4.741195ms)
+  AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:15:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:6:24
+✖ R62 annex 54: exact original furniture and exclusive COL withheld; all shell/floor/navigation retained (6.103081ms)
+  AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:15:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:26:1
+✖ R62 annex missing policy is a byte-preserving no-op (4.791361ms)
+  AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:26:125)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:49:52
+✖ R62 annex fail-closed atomically: wrong zone (4.392561ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /East unknown annex/. Input:
+
+  'AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+    + actual - expected
+
+    + 'undefined'
+    - 'function'
+
+        at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+        at file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:181
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12),
+    expected: /East unknown annex/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:49:52
+✖ R62 annex fail-closed atomically: wrong index (4.301273ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /East unknown annex/. Input:
+
+  'AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+    + actual - expected
+
+    + 'undefined'
+    - 'function'
+
+        at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+        at file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:181
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12),
+    expected: /East unknown annex/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:49:52
+✖ R62 annex fail-closed atomically: wrong policy (4.422556ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /East unknown annex/. Input:
+
+  'AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+    + actual - expected
+
+    + 'undefined'
+    - 'function'
+
+        at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+        at file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:181
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12),
+    expected: /East unknown annex/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:49:52
+✖ R62 annex fail-closed atomically: declaration drift (4.461415ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /East unknown annex/. Input:
+
+  'AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+    + actual - expected
+
+    + 'undefined'
+    - 'function'
+
+        at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+        at file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:181
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12),
+    expected: /East unknown annex/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:49:52
+✖ R62 annex fail-closed atomically: added real name (3.414421ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /East unknown annex/. Input:
+
+  'AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+    + actual - expected
+
+    + 'undefined'
+    - 'function'
+
+        at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+        at file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:181
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12),
+    expected: /East unknown annex/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:49:52
+✖ R62 annex fail-closed atomically: duplicate mesh (3.931268ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /East unknown annex/. Input:
+
+  'AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+    + actual - expected
+
+    + 'undefined'
+    - 'function'
+
+        at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+        at file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:181
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12),
+    expected: /East unknown annex/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:49:52
+✖ R62 annex fail-closed atomically: position corruption (4.409046ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /East unknown annex/. Input:
+
+  'AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+    + actual - expected
+
+    + 'undefined'
+    - 'function'
+
+        at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+        at file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:181
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12),
+    expected: /East unknown annex/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:49:52
+✖ R62 annex fail-closed atomically: vertex corruption (3.375042ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /East unknown annex/. Input:
+
+  'AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+    + actual - expected
+
+    + 'undefined'
+    - 'function'
+
+        at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+        at file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:181
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12),
+    expected: /East unknown annex/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:49:52
+✖ R62 annex fail-closed atomically: normal corruption (4.001113ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /East unknown annex/. Input:
+
+  'AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+    + actual - expected
+
+    + 'undefined'
+    - 'function'
+
+        at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+        at file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:181
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12),
+    expected: /East unknown annex/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:49:52
+✖ R62 annex fail-closed atomically: uv corruption (3.63369ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /East unknown annex/. Input:
+
+  'AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+    + actual - expected
+
+    + 'undefined'
+    - 'function'
+
+        at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+        at file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:181
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12),
+    expected: /East unknown annex/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:49:52
+✖ R62 annex fail-closed atomically: material corruption (4.150507ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /East unknown annex/. Input:
+
+  'AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+    + actual - expected
+
+    + 'undefined'
+    - 'function'
+
+        at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+        at file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:181
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12),
+    expected: /East unknown annex/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:49:52
+✖ R62 annex fail-closed atomically: material replacement (3.346719ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /East unknown annex/. Input:
+
+  'AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+    + actual - expected
+
+    + 'undefined'
+    - 'function'
+
+        at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+        at file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:181
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12),
+    expected: /East unknown annex/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:49:52
+✖ R62 annex fail-closed atomically: borrowed geometry (3.295241ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /East unknown annex/. Input:
+
+  'AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+    + actual - expected
+
+    + 'undefined'
+    - 'function'
+
+        at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+        at file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:181
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12),
+    expected: /East unknown annex/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:49:52
+✖ R62 annex fail-closed atomically: missing geometry (4.304268ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /East unknown annex/. Input:
+
+  'AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+    + actual - expected
+
+    + 'undefined'
+    - 'function'
+
+        at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+        at file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:181
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12),
+    expected: /East unknown annex/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:49:52
+✖ R62 annex fail-closed atomically: duplicate frame (3.962645ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /East unknown annex/. Input:
+
+  'AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+    + actual - expected
+
+    + 'undefined'
+    - 'function'
+
+        at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+        at file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:181
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12),
+    expected: /East unknown annex/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:49:52
+✖ R62 annex fail-closed atomically: room cover drift (4.282676ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /East unknown annex/. Input:
+
+  'AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+    + actual - expected
+
+    + 'undefined'
+    - 'function'
+
+        at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+        at file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:181
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12),
+    expected: /East unknown annex/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:49:52
+✖ R62 annex fail-closed atomically: room spawn drift (4.274613ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /East unknown annex/. Input:
+
+  'AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+    + actual - expected
+
+    + 'undefined'
+    - 'function'
+
+        at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+        at file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:181
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12),
+    expected: /East unknown annex/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:49:52
+✖ R62 annex fail-closed atomically: duplicate room (3.290806ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /East unknown annex/. Input:
+
+  'AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+    + actual - expected
+
+    + 'undefined'
+    - 'function'
+
+        at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+        at file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:181
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12),
+    expected: /East unknown annex/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:49:52
+✖ R62 annex fail-closed atomically: duplicate collider (3.203574ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /East unknown annex/. Input:
+
+  'AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+    + actual - expected
+
+    + 'undefined'
+    - 'function'
+
+        at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+        at file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:181
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12),
+    expected: /East unknown annex/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r62-east-unknown-annex.test.mjs:49:52
+✖ R62 annex fail-closed atomically: stale collider with drifted bounds (3.629264ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /East unknown annex/. Input:
+
+  'AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: bounded annex inventory helper must exist
+    + actual - expected
+
+    + 'undefined'
+    - 'function'
+
+        at apply (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:4:32)
+        at file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:181
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex.test.mjs:49:170)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12),
+    expected: /East unknown annex/,
+    operator: 'throws',
+    diff: 'simple'
+  }

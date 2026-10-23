@@ -1,0 +1,16 @@
+{"kind":"Deterministic scheduling-unit reproduction. 1.25 ms Manager/Renderer cost injected into controlled clock, not measured device performance.","frames":600,"budgetMs":1,"simulatedSubmissionMs":1.25,"renders":600,"queue":{"frames":600,"steps":0,"completed":0,"cancelled":0,"totalCpuMs":0,"maxFrameMs":0,"maxStepMs":0,"maxStepKind":null,"maxStepWorkUnits":0,"maxOverrunMs":0,"pending":38},"system":{"registered":38,"loaded":0,"visible":0,"near":0,"renderCopies":0,"pending":38,"errors":0,"batches":0,"trianglesEstimate":0,"rollout":"candidate-visible","enabled":true,"contentEnabled":true,"daylight":1,"lastError":null}}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Pending preparation must eventually progress when render submission alone exceeds the total nominal 1ms budget
+    at file:///workspace/scratch/02a8023d1a85/r51-visibility-followup/tests/r51-preparation-starvation-probe.mjs:12:514 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

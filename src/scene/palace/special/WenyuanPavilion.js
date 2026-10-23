@@ -1,3 +1,4 @@
+import {applyWenyuanUpperSouthWindows} from './WenyuanUpperSouthWindows.js';
 import {fitRegisteredNameboard} from './FittedNameboardMount.js';
 import * as THREE from 'three';
 import { buildRoof } from '../../RoofBuilder.js';
@@ -18,5 +19,5 @@ export function buildWenyuanPavilion(kit,item){const g=wenyuanGeometry(item),{st
  const proxy=Object.create(kit.lib);proxy.material=n=>n==='roof_tile'?dark:kit.lib.material(n);const roof=buildRoof(proxy,{detail:'low',type:'xieshan',width:uw+.5,depth:ud+.5,baseY:uy+H,layers:1,brackets:true});
  roof.traverse(n=>{if(n.isMesh&&n.material.name==='roof_ridge_glaze')n.material=green;});for(const mat of roof.userData.ownedMaterials??[])if(mat.name==='roof_ridge_glaze')mat.dispose();else kit.owned.push(mat);roof.userData.ownedMaterials=[];f.add(roof);
  g.nameboardMount=fitRegisteredNameboard(kit,f,item.name,{z:-g.d/2-.5,reason:'Retained model label in front of, never inside, the true central column; historic plaque position unverified'});
- f.userData.structure=g;return{f,g};
+ f.userData.structure=g;applyWenyuanUpperSouthWindows(kit,f,item);return{f,g};
 }

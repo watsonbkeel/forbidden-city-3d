@@ -1,0 +1,104 @@
+{
+  "status": "CUMULATIVE_FUNCTIONAL_CHECKPOINT_NOT_A37_OR_BROWSER_ACCEPTANCE",
+  "sourceCommit": "e09fcd58143acd77a9e1f919b0fddb098e3d0821",
+  "sourceFingerprint": "6c74b04b6cfb7924805e077f9b8f04796d274f932946b7a8a81cdc29797da639",
+  "sourceFiles": 213,
+  "workItems": 3,
+  "world": {
+    "colliders": 25019,
+    "walkables": 1125,
+    "zones": [
+      "axis-courts",
+      "east-six",
+      "west-six",
+      "outer-east",
+      "outer-west",
+      "garden",
+      "ningshou"
+    ]
+  },
+  "individualIdsPerLayer": 108,
+  "layers": [
+    "B",
+    "Yangxin-S",
+    "Kunning-S",
+    "Huangji-S"
+  ],
+  "viewRecords": 401,
+  "pathsTwoCycles": 24,
+  "zoneReloads": 6,
+  "newGalleryControllerCases": 64,
+  "gallery": {
+    "scope": "UNKNOWN_INVENTORY_FALLBACK_NOT_RECONSTRUCTION_OR_INTERIOR_ACCEPTANCE",
+    "rooms": 52,
+    "retainedTriangles": 26224,
+    "absentTriangles": 4872,
+    "retainedColliders": 488,
+    "absentColliders": 406,
+    "geometryQuantizationMeters": 0.001,
+    "inventory": "UNKNOWN",
+    "layout": "UNVERIFIED"
+  },
+  "submissionBudget": {
+    "boundary": "CPU actual instance/index counts only, not GPU draw timing",
+    "high": {
+      "frames": 18765,
+      "maxInstances": 64,
+      "maxTriangles": 45564,
+      "maxBatches": 22,
+      "maxNear": 2
+    },
+    "low": {
+      "frames": 187,
+      "maxInstances": 32,
+      "maxTriangles": 14228,
+      "maxBatches": 10,
+      "maxNear": 0
+    }
+  },
+  "resources": {
+    "command": [
+      "node",
+      "--expose-gc",
+      "--max-old-space-size=1024",
+      "--test",
+      "--test-reporter=tap",
+      "--test-concurrency=1",
+      "tests/r58-a-batch3-world.test.mjs"
+    ],
+    "exitCode": 0,
+    "wallSeconds": 208.33393836021423,
+    "childrenUserSeconds": 243.385882,
+    "childrenSystemSeconds": 2.190074,
+    "childrenMaxRssKiB": 1646096,
+    "meaning": "Cumulative test-process resources with explicit QA-only collection, not browser/frame performance."
+  },
+  "focusedEvidence": {
+    "ownerGateAndAscentPass": 21,
+    "galleryComponentPass": 170,
+    "copyLifecyclePass": 1
+  },
+  "interruptedWorldRuns": 2,
+  "unstartedTimeToolInvocation": 1,
+  "browserAccepted": false,
+  "files": {
+    "reports/r58-a-batch3/one-world.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "reports/r58-a-batch3/attempt3-partial-staff-proof.json.gz.manifest.json": "4c710279778a40ffa2bdd876e6031be30757d9ed43e3a73c639a5dfa01594dba",
+    "reports/r58-a-batch3/attempt3-sigkill-resource.json": "2ed479859b4b7ebf813c361f043b84c772f4fc5f59c65a6b189fa7d75dcc6119",
+    "reports/r58-a-batch3/one-world-resource.json": "5c498f740ce42694fb10bd915b953171e4b393d474aaade2420ec4a5894f2abf",
+    "reports/r58-a-batch3/one-world.tap": "4cf53ed5f2851ce7c0ed3697fd4015cadc5cb1d786684165f0993b82754184ce",
+    "reports/r58-a-batch3/first-two-focused.txt": "075d3b07e55969aaab74406853eec7acf5201dddd8b50d4e4dbca536ac6be267",
+    "reports/r58-a-batch3/staff-proof.json.gz": "80e407d1805f99cc1578107b9816f21d9bbc8c0864e956dc6ae1c18bd1305a84",
+    "reports/r58-a-batch3/cpu-copy-lifecycle.json": "244a923455fe95653b97a50032d491e40fa35cfc05f5d7da4d9e563f3c49743f",
+    "reports/r58-a-batch3/one-world-validation.json.gz": "e681560c1becbfc5983b2b26d06e6a7197d95f6c61dd08679804dddcb5b12526",
+    "reports/r58-a-batch3/attempt1-incomplete.spec.txt": "fd0e073eebcecd7d394eacbc789b4afdaa2378c675f6d9ce49a0567fbab0923a",
+    "reports/r58-a-batch3/attempt2-not-started.txt": "3e737f6a9117cec194b02103b357f8668fae9adb86a8a8cd0bf25efab8948548",
+    "reports/r58-a-batch3/attempt3-sigkill.exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "reports/r58-a-batch3/attempt3-partial-staff-proof.json.gz": "6cae63cc4cbed0d25478b5d6d9ae5a342948a8239731a28ac2f59236f6892a81",
+    "reports/r58-a-batch3/staff-proof.json.gz.manifest.json": "37f5c1540d69c7f2f99f56b479c7a190341b6527f930ad2f5027410a9bfd5dca",
+    "reports/r58-a-batch3/cpu-copy-lifecycle.tap": "547ac5025a07c13a8a373f231eccc47a44578793dcfd6e01c7cb4b0819194f2f",
+    "reports/r58-a-batch3/attempt1-incomplete.exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "reports/r58-a-batch3/attempt3-sigkill.tap": "e6e7a085666b94da2d0ff2b77c83110d16d48969c7d0dc8dc210adbbe3b8a21e",
+    "reports/r58-a-batch3/attempt2-not-started.exit": "743c7850cccfba5e53a9002663ec1ddd1079315a98bdbfdde10e6044f56abefe"
+  }
+}

@@ -1,0 +1,142 @@
+✔ only the two touching internal box faces are removed, with exact surviving attributes (9.253787ms)
+✔ coincident exposed faces are retained rather than deleting both overlapping skins (2.857593ms)
+✔ a buried face is removed only when one actual rotated box encloses the entire triangle (2.278294ms)
+✔ a face crossing an uncovered gap is preserved even when all its corners are in the union of boxes (2.104754ms)
+✔ only explicit opaque solid-box occluders are accepted (0.861211ms)
+✔ nonuniformly scaled rotated solid boxes use their exact local volume (1.852336ms)
+✔ alpha-tested boxes cannot justify removing geometry behind their cutouts (0.485698ms)
+✔ shared source geometry stays alive if any unchanged instance retains it (1.255351ms)
+✔ shared source geometry is disposed only once after all of its instances are replaced (0.868271ms)
+✔ deck paving and substrate partition the same solid without adding or moving any triangles (1.259037ms)
+✖ hongyi: hidden faces give a bounded triangle reduction while all 28 lattice leaves keep their bars (339.726286ms)
+✔ hongyi: brick paving never promotes the shared flat-floor bucket to a shadow caster (274.02457ms)
+✔ tiren: hidden faces give a bounded triangle reduction while all 28 lattice leaves keep their bars (223.328525ms)
+✔ tiren: brick paving never promotes the shared flat-floor bucket to a shadow caster (170.55586ms)
+✔ mirrored coincident solid boxes retain their outward skins (0.491196ms)
+✔ a sphere bounding box is never accepted as an opaque solid box (0.260861ms)
+✔ unsupported hidden-parent input is rejected before any source is changed (0.34688ms)
+✔ unsupported hidden-material input is rejected before any source is changed (0.249955ms)
+✔ unsupported back-side input is rejected before any source is changed (0.150776ms)
+✔ unsupported partial-range input is rejected before any source is changed (0.135573ms)
+✔ unsupported interleaved input is rejected before any source is changed (0.229063ms)
+✔ unsupported multi-material input is rejected before any source is changed (0.221282ms)
+✔ unsupported non-casting-occluder input is rejected before any source is changed (0.15359ms)
+✔ hongyi: exterior, terrace and playable-interior rays retain the same first physical surface (2448.25646ms)
+✔ tiren: exterior, terrace and playable-interior rays retain the same first physical surface (2257.462256ms)
+✔ duplicating one triangular half of a box face cannot masquerade as a complete opaque face (0.606149ms)
+✔ singular transforms are rejected before source geometry changes (0.296765ms)
+✔ InstancedMesh is rejected because its rendered vertices need more than matrixWorld (0.641312ms)
+✔ SkinnedMesh is rejected because its rendered vertices need more than matrixWorld (0.410235ms)
+✔ Tiren pure existing-W consumer checks twelve actual merged meeting stiles (358.569419ms)
+✔ Tiren actual first-person frontLeft round trip preserves stairs, threshold and lower entry (263.817349ms)
+ℹ {"side":"frontLeft","frames":666,"samples":167,"minOverheadDistance":3.0500001907348633}
+✔ Tiren actual first-person frontRight round trip preserves stairs, threshold and lower entry (213.94423ms)
+ℹ {"side":"frontRight","frames":666,"samples":167,"minOverheadDistance":3.0500001907348633}
+✔ Tiren replaces only six lower window groups with twelve separately framed straight-lattice leaves (420.634051ms)
+✔ all six paired windows retain their original outer envelope and use only original shared materials (210.29437ms)
+✖ Hongyi, including its six original windows and upper gallery, is byte-identical (315.740033ms)
+✔ paired meeting stiles are visible from legal terrace eye height after merge and main entry remains clear (196.233078ms)
+✔ new leaves are source-owned and their merge/disposal never frees caller materials (278.464449ms)
+✔ Tiren raw targeted boxes are nondegenerate before covered-face pruning (200.277884ms)
+✔ Hongyi official front plaque is present over its lower central door and visible after real finish (343.005731ms)
+✔ Baoyun gets only traditional vertical lettering inside its retained pale stone and green frame (51.868858ms)
+✖ 弘义阁: all retained geometry, materials, collision, routes and map positions remain exact (215.754105ms)
+✔ 宝蕴楼: all retained geometry, materials, collision, routes and map positions remain exact (57.926214ms)
+ℹ tests 42
+ℹ suites 0
+ℹ pass 39
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5937.930076
+
+✖ failing tests:
+
+test at tests/current-state/pavilion-render-geometry.test.mjs:161:3
+✖ hongyi: hidden faces give a bounded triangle reduction while all 28 lattice leaves keep their bars (339.726286ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert.ok(count(baselineMeshes) - count(currentMeshes) >= (profile === 'hongyi' ? 2600 : 2700))
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-hongyi-lower-windows/tests/current-state/pavilion-render-geometry.test.mjs:164:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r58-tiren-lower-leaves.test.mjs:20:1
+✖ Hongyi, including its six original windows and upper gallery, is byte-identical (315.740033ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+
+    {
+  +   all: '7ca53fcb2e73758020bc76f350582687fe09d8439b14d61ae0649665d44e8dc4',
+  +   materials: '93d5053a33b59972967db2dceed8384c6cfcc9e7bf08fade3d3ffa152abd7ce6',
+  +   meshes: 1264,
+  -   all: '5be6cdbbb9c7f83e5a62ff6f415e550419310655b3ea2b2d2326d0549d360f74',
+  -   materials: '54d4359363b909ed66b757646addf8e4b4b8211fd3f27aeb1018aa5d26f0e8a9',
+  -   meshes: 1210,
+      physicalCounts: {
+        colliders: 915,
+        mapItems: 1,
+        regions: 1,
+        rooms: 1,
+  ...
+      retainedWithoutLowerWindows: '7eda138c1e7929d4a00eccc5573ebdfe250186146df182a4fcfe13ac9c6e47dd',
+  +   triangles: 17442
+  -   triangles: 16374
+    }
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-hongyi-lower-windows/tests/current-state/r58-tiren-lower-leaves.test.mjs:20:126)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { triangles: 17442, meshes: 1264, all: '7ca53fcb2e73758020bc76f350582687fe09d8439b14d61ae0649665d44e8dc4', retainedWithoutLowerWindows: '7eda138c1e7929d4a00eccc5573ebdfe250186146df182a4fcfe13ac9c6e47dd', materials: '93d5053a33b59972967db2dceed8384c6cfcc9e7bf08fade3d3ffa152abd7ce6', physics: 'c34f90eaf2dfba367cf95b6b7aed2431eb541d660849489f61eba3eaa7f55c35', physicalCounts: { colliders: 915, walkables: 14, rooms: 1, mapItems: 1, regions: 1 } },
+    expected: { triangles: 16374, meshes: 1210, all: '5be6cdbbb9c7f83e5a62ff6f415e550419310655b3ea2b2d2326d0549d360f74', retainedWithoutLowerWindows: '7eda138c1e7929d4a00eccc5573ebdfe250186146df182a4fcfe13ac9c6e47dd', materials: '54d4359363b909ed66b757646addf8e4b4b8211fd3f27aeb1018aa5d26f0e8a9', physics: 'c34f90eaf2dfba367cf95b6b7aed2431eb541d660849489f61eba3eaa7f55c35', physicalCounts: { colliders: 915, walkables: 14, rooms: 1, mapItems: 1, regions: 1 } },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r49-sourced-missing-inscriptions.test.mjs:27:68
+✖ 弘义阁: all retained geometry, materials, collision, routes and map positions remain exact (215.754105ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    {
+  +   geometry: 'a52d87f16d9d9cc92b75984eabcfeb680cc4f7882950cf514e2769817cbb8221',
+  +   meshes: 1264,
+  -   geometry: '664f2703ec677c71240734e09a499687872c7c4ee27bec374e83b16f47198c57',
+  -   meshes: 1210,
+      navigation: 'c34f90eaf2dfba367cf95b6b7aed2431eb541d660849489f61eba3eaa7f55c35'
+    }
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-hongyi-lower-windows/tests/r49-sourced-missing-inscriptions.test.mjs:27:235)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { meshes: 1264, geometry: 'a52d87f16d9d9cc92b75984eabcfeb680cc4f7882950cf514e2769817cbb8221', navigation: 'c34f90eaf2dfba367cf95b6b7aed2431eb541d660849489f61eba3eaa7f55c35' },
+    expected: { meshes: 1210, geometry: '664f2703ec677c71240734e09a499687872c7c4ee27bec374e83b16f47198c57', navigation: 'c34f90eaf2dfba367cf95b6b7aed2431eb541d660849489f61eba3eaa7f55c35' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,37 @@
+✔ 景祺阁: related nameboard no longer buried in its facade (107.58261ms)
+✖ 文渊阁: related nameboard no longer buried in its facade (83.806428ms)
+✔ 养心殿: related nameboard no longer buried in its facade (143.703981ms)
+✔ 重华宫: related nameboard no longer buried in its facade (131.608956ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 670.026667
+
+✖ failing tests:
+
+test at tests/r49-related-nameboard-clearance.test.mjs:2:139
+✖ 文渊阁: related nameboard no longer buried in its facade (83.806428ms)
+  AssertionError [ERR_ASSERTION]: 文渊阁 row -0.32: undefined
+  + actual - expected
+  
+  + undefined
+  - 'kit_plaques'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r49-related-nameboard-clearance.test.mjs:7:256)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'kit_plaques',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

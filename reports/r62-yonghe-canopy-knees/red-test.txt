@@ -1,0 +1,232 @@
+✖ actual original builder has no old knee profile; six closed additions leave every old mesh and registration exact (283.595931ms)
+✖ actual triangle bounds separate every new knee from every original mesh with no beam or column penetration (199.383702ms)
+✖ paired shoulders are mirrored, curved at their underside, and keep each bay center open (166.495479ms)
+✖ identity, missing or moved hosts, and duplicates fail before any mesh or material allocation (0.575713ms)
+✖ one local production hall retains real controller canopy and room traversal at 10 Hz (195.892024ms)
+✖ one local production hall retains real controller canopy and room traversal at 60 Hz (162.970622ms)
+✖ repeated real standing jumps never reach the added overhead solids at 10 Hz (161.46389ms)
+✖ repeated real standing jumps never reach the added overhead solids at 60 Hz (169.469205ms)
+✖ six solids merge under one owned plain material and dispose once without disposing borrowed materials (155.702806ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 0
+ℹ fail 9
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1741.253534
+
+✖ failing tests:
+
+test at tests/r62-yonghe-canopy-knees.test.mjs:13:1
+✖ actual original builder has no old knee profile; six closed additions leave every old mesh and registration exact (283.595931ms)
+  AssertionError [ERR_ASSERTION]: bounded Yonghe knee helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at add (file:///workspace/scratch/02a8023d1a85/r62-yonghe-canopy-knees/tests/r62-yonghe-canopy-knees.test.mjs:11:24)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-yonghe-canopy-knees/tests/r62-yonghe-canopy-knees.test.mjs:14:134)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-yonghe-canopy-knees.test.mjs:18:1
+✖ actual triangle bounds separate every new knee from every original mesh with no beam or column penetration (199.383702ms)
+  AssertionError [ERR_ASSERTION]: bounded Yonghe knee helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at add (file:///workspace/scratch/02a8023d1a85/r62-yonghe-canopy-knees/tests/r62-yonghe-canopy-knees.test.mjs:11:24)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-yonghe-canopy-knees/tests/r62-yonghe-canopy-knees.test.mjs:19:24)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-yonghe-canopy-knees.test.mjs:22:1
+✖ paired shoulders are mirrored, curved at their underside, and keep each bay center open (166.495479ms)
+  AssertionError [ERR_ASSERTION]: bounded Yonghe knee helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at add (file:///workspace/scratch/02a8023d1a85/r62-yonghe-canopy-knees/tests/r62-yonghe-canopy-knees.test.mjs:11:24)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-yonghe-canopy-knees/tests/r62-yonghe-canopy-knees.test.mjs:23:36)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-yonghe-canopy-knees.test.mjs:30:1
+✖ identity, missing or moved hosts, and duplicates fail before any mesh or material allocation (0.575713ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-yonghe-canopy-knees/tests/r62-yonghe-canopy-knees.test.mjs:31:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-yonghe-canopy-knees.test.mjs:36:25
+✖ one local production hall retains real controller canopy and room traversal at 10 Hz (195.892024ms)
+  AssertionError [ERR_ASSERTION]: bounded Yonghe knee helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at add (file:///workspace/scratch/02a8023d1a85/r62-yonghe-canopy-knees/tests/r62-yonghe-canopy-knees.test.mjs:11:24)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-yonghe-canopy-knees/tests/r62-yonghe-canopy-knees.test.mjs:37:49)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-yonghe-canopy-knees.test.mjs:36:25
+✖ one local production hall retains real controller canopy and room traversal at 60 Hz (162.970622ms)
+  AssertionError [ERR_ASSERTION]: bounded Yonghe knee helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at add (file:///workspace/scratch/02a8023d1a85/r62-yonghe-canopy-knees/tests/r62-yonghe-canopy-knees.test.mjs:11:24)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-yonghe-canopy-knees/tests/r62-yonghe-canopy-knees.test.mjs:37:49)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-yonghe-canopy-knees.test.mjs:39:25
+✖ repeated real standing jumps never reach the added overhead solids at 10 Hz (161.46389ms)
+  AssertionError [ERR_ASSERTION]: bounded Yonghe knee helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at add (file:///workspace/scratch/02a8023d1a85/r62-yonghe-canopy-knees/tests/r62-yonghe-canopy-knees.test.mjs:11:24)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-yonghe-canopy-knees/tests/r62-yonghe-canopy-knees.test.mjs:41:6)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-yonghe-canopy-knees.test.mjs:39:25
+✖ repeated real standing jumps never reach the added overhead solids at 60 Hz (169.469205ms)
+  AssertionError [ERR_ASSERTION]: bounded Yonghe knee helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at add (file:///workspace/scratch/02a8023d1a85/r62-yonghe-canopy-knees/tests/r62-yonghe-canopy-knees.test.mjs:11:24)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-yonghe-canopy-knees/tests/r62-yonghe-canopy-knees.test.mjs:41:6)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r62-yonghe-canopy-knees.test.mjs:43:1
+✖ six solids merge under one owned plain material and dispose once without disposing borrowed materials (155.702806ms)
+  AssertionError [ERR_ASSERTION]: bounded Yonghe knee helper must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at add (file:///workspace/scratch/02a8023d1a85/r62-yonghe-canopy-knees/tests/r62-yonghe-canopy-knees.test.mjs:11:24)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-yonghe-canopy-knees/tests/r62-yonghe-canopy-knees.test.mjs:44:26)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

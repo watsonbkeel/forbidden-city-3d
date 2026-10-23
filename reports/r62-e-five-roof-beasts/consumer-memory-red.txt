@@ -1,0 +1,27 @@
+✖ whole-zone root uses bounded foot-query maps, never retaining every zone vertex (923.616134ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1115.296973
+
+✖ failing tests:
+
+test at tests/current-state/r62-e-five-roof-beasts.test.mjs:19:1
+✖ whole-zone root uses bounded foot-query maps, never retaining every zone vertex (923.616134ms)
+  AssertionError [ERR_ASSERTION]: foot queries must bound storage, observed 304366 Map entries
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-e-five-roof-beasts/tests/current-state/r62-e-five-roof-beasts.test.mjs:19:999)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

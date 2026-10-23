@@ -1,0 +1,54 @@
+TAP version 13
+# [GardenBuilder] 已构建御花园：CPU mesh objects=35, 三角面=126,952, 树木=34棵, 碰撞器=425
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 291 个 region, 219 个 mapItem
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# [ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+# [ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+# [ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+# QA_CHECKPOINT {"label":"world-created","before":{"rss":904060928,"heapTotal":426364928,"heapUsed":320198568,"external":281625881,"arrayBuffers":274883703},"after":{"rss":904351744,"heapTotal":416456704,"heapUsed":259443400,"external":245284961,"arrayBuffers":234623447}}
+# QA_CHECKPOINT {"label":"three-consumers-and-64-gallery-routes","before":{"rss":969699328,"heapTotal":483532800,"heapUsed":400281376,"external":244468945,"arrayBuffers":232022991},"after":{"rss":939110400,"heapTotal":432943104,"heapUsed":269147272,"external":238765209,"arrayBuffers":231957455}}
+# QA_CHECKPOINT {"label":"batch4-three-consumers-40-routes-12-jumps","before":{"rss":940683264,"heapTotal":432943104,"heapUsed":305633168,"external":238487023,"arrayBuffers":231744805},"after":{"rss":940683264,"heapTotal":432418816,"heapUsed":289667080,"external":238487023,"arrayBuffers":231744805}}
+# QA_CHECKPOINT {"label":"batch5-geometry-texture-64-new-declaration-routes-and-16-retained-blocked-probes","before":{"rss":1051824128,"heapTotal":548417536,"heapUsed":413654440,"external":242474513,"arrayBuffers":232088519},"after":{"rss":1037053952,"heapTotal":485896192,"heapUsed":317223136,"external":238830737,"arrayBuffers":232088519}}
+# QA_CHECKPOINT {"label":"r59-batch1-four-consumers-and-48-actual-entrance-routes","before":{"rss":1055961088,"heapTotal":489771008,"heapUsed":403938776,"external":238683639,"arrayBuffers":231941421},"after":{"rss":1052291072,"heapTotal":476893184,"heapUsed":325288424,"external":238683639,"arrayBuffers":231941421}}
+# [ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+# [ZoneManager] 卸载区域 axis-courts
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 卸载区域 outer-east
+# [ZoneManager] 卸载区域 outer-west
+# [ZoneManager] 卸载区域 garden
+# [ZoneManager] 卸载区域 ningshou
+# Subtest: R59-B first batch: all108 actual bindings and visibility, twenty-four paths, scoped gate/wall changes in one world
+not ok 1 - R59-B first batch: all108 actual bindings and visibility, twenty-four paths, scoped gate/wall changes in one world
+  ---
+  duration_ms: 58784.746732
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r59-b-east-fidelity/tests/r59-b-batch1-world.test.mjs:74:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    24710 !== 24758
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 24758
+  actual: 24710
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r59-b-east-fidelity/tests/r59-b-batch1-world.test.mjs:153:10)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 59591.834712

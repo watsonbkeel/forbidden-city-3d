@@ -1,0 +1,90 @@
+Initial review-reproduction run. The missing-slab-only negative below was subsequently corrected: the retained sumeru_band still renders a real platform top at support height. The final negative removes BOTH platform and paving render meshes. The three visibility false-negatives below remain valid reproductions; see final TEST-RESULTS.txt for the corrected four negative fixtures.
+
+✔ read-only existing-W QA verifies actual porch geometry / collision and never reconstructs a world (279.656162ms)
+✔ existing-W consumer rejects unintegrated baseline instead of silently manufacturing the feature (52.124966ms)
+✖ existing-W consumer rejects missing rendered slab despite retained colliders and metadata (45.154621ms)
+✖ existing-W consumer rejects hidden closed lattice despite retained colliders and metadata (55.081553ms)
+✖ existing-W consumer rejects hidden ancestor despite retained colliders and metadata (50.901041ms)
+✖ existing-W consumer rejects hidden material despite retained colliders and metadata (44.952326ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 2
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 759.261523
+
+✖ failing tests:
+
+test at tests/r58-taihemen-existing-world.test.mjs:27:3
+✖ existing-W consumer rejects missing rendered slab despite retained colliders and metadata (45.154621ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-taihemen-open-veranda/tests/r58-taihemen-existing-world.test.mjs:28:52)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /visible|rendered/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r58-taihemen-existing-world.test.mjs:27:3
+✖ existing-W consumer rejects hidden closed lattice despite retained colliders and metadata (55.081553ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-taihemen-open-veranda/tests/r58-taihemen-existing-world.test.mjs:28:52)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /visible|rendered/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r58-taihemen-existing-world.test.mjs:27:3
+✖ existing-W consumer rejects hidden ancestor despite retained colliders and metadata (50.901041ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-taihemen-open-veranda/tests/r58-taihemen-existing-world.test.mjs:28:52)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /visible|rendered/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r58-taihemen-existing-world.test.mjs:27:3
+✖ existing-W consumer rejects hidden material despite retained colliders and metadata (44.952326ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-taihemen-open-veranda/tests/r58-taihemen-existing-world.test.mjs:28:52)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /visible|rendered/,
+    operator: 'throws',
+    diff: 'simple'
+  }

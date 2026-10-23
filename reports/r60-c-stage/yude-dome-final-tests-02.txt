@@ -1,0 +1,58 @@
+✔ R48 Yude replaces only square bath solid and plinth; front/rear access, collision and destinations are preserved (101.348433ms)
+✔ R48 Yude inward dome uses real downward FrontSide triangles, reaches wall height, and oculus is open through sill (70.365957ms)
+✔ R48 Yude pointed entrance is actual geometry, and its inner shell contains no placeholder bath equipment (38.950796ms)
+✔ R48 Yude bath four corners are closed by a solid correctly wound cap, physically meeting walls and both dome skins (49.261666ms)
+✖ production hook changes only the actual inner dome material; all geometry/UV/normals/winding and non-target materials/navigation equal frozen R59 (873.2264ms)
+✔ 512 procedural map is opaque, deterministic, longitudinally seamless and visibly has both course and staggered vertical mortar (237.109116ms)
+✖ altered mesh/UV/normals/index/identity/material and duplicate targets fail closed without allocations (26.052552ms)
+✔ actual merge retains mapped downward-facing dome and open oculus; private map/material disposed exactly once across repeat construction (160.214948ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 6
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1472.32493
+
+✖ failing tests:
+
+test at tests/r60-yude-dome-courses.test.mjs:2:1
+✖ production hook changes only the actual inner dome material; all geometry/UV/normals/winding and non-target materials/navigation equal frozen R59 (873.2264ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r60-c-west-fidelity/tests/r60-yude-dome-courses.test.mjs:2:676)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r60-yude-dome-courses.test.mjs:4:1
+✖ altered mesh/UV/normals/index/identity/material and duplicate targets fail closed without allocations (26.052552ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r60-c-west-fidelity/tests/r60-yude-dome-courses.test.mjs:4:664)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

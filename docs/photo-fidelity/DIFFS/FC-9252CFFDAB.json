@@ -1,0 +1,45 @@
+{
+  "id": "DIFF-FC-9252CFFDAB",
+  "objectId": "FC-9252CFFDAB",
+  "status": "SOURCE_CONFIRMED_STATIC_CODE_CANDIDATE",
+  "referenceVisible": "Close-up front/oblique, lower platform and partial ramp/stone railing, columns/paint/roof; not complete facade or measured dimensions.",
+  "sourceRecords": [
+    {
+      "label": "太和门",
+      "url": "https://img.dpm.org.cn/Uploads/Picture/2020/04/16/s5e980c2a4da38.jpg"
+    },
+    {
+      "label": "202306-贞度门-夏季-石@屋顶",
+      "url": "https://taociguan.dpm.org.cn/images/zjcphoto/2023-12-05/9f53a288418e4364b1c3b3b5e98321ec.jpg"
+    },
+    {
+      "label": "王璞子1983两门形制与重修比较",
+      "url": "https://img.dpm.org.cn/Uploads/pdf/2198/T00018_00.pdf"
+    }
+  ],
+  "sourceViewLog": "EVIDENCE/SOURCE-VIEWS.json",
+  "modelStaticCode": "axis-courts items/10 is only kind:gate, style:hall with no gateProfile. Adjacent Zhaode items/8 already has three-bay dedicated profile; do not reimplement Zhaode.",
+  "modelBrowserObservation": null,
+  "proposedChange": "Exterior three-core-bay single-portal high-platform shell and independent flanking-wing joins",
+  "codePaths": [
+    "data/zones/axis-courts.json#/items/10",
+    "src/scene/palace/kit.js",
+    "src/scene/palace/special/ZhaodeGateProfile.js",
+    "src/scene/palace/special/ZhaodeGate.js",
+    "src/scene/zones/ZoneBase.js"
+  ],
+  "requiredBeforeImplementation": "Actually inspect Zhendumen direct photograph and Wang Puzi 1983 page. Use text shared by both gates only within its stated scope; independently fit Zhendumen and never mirror all Zhaode parameters.",
+  "doNotOverreach": "Only after matching actual source subject and recording difference; unknown dimensions PHOTO_FIT, unknown north interior remains open.",
+  "checks": [
+    "Source subject and target era/photograph period confirmed or explicitly uncertain",
+    "Stable model binding and neighboring joins resolved",
+    "Preserve already verified anchors/routes/dimensions",
+    "Related unit/zone/gate/walk tests selected from current package.json",
+    "Actual browser matched camera before/after + feature-level reference comparison",
+    "If browser unavailable, reversible change+available tests allowed, status VERIFY_PENDING; never ACCEPTED"
+  ],
+  "done": false,
+  "actualChangedFiles": [],
+  "productionCommit": null,
+  "camera": null
+}

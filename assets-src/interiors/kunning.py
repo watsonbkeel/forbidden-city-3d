@@ -3,8 +3,9 @@
 Run: blender -b -P assets-src/interiors/kunning.py -- /tmp/kunning-v6.glb
 The output must be inspected, checksummed and copied to a content-keyed runtime
 path. Regions and contract come from data/architecture/kunning.json; local metres
-are provisional model fit, not surveyed dimensions. Retained two tall stoves are
-an unresolved display-accuracy debt (S08 records three low pots).
+are provisional model fit, not surveyed dimensions. R55 replaces only the ground
+stove with three covered inset mouths, based on the 2019 study pp501–502. The
+reported 2160mm total width has an unresolved axis; plan dimensions are a fit.
 """
 import sys, os, json, math, hashlib, struct
 sys.dont_write_bytecode = True
@@ -226,21 +227,79 @@ if h>0:
     box('spirit_curtain_top',0.08,0.12,z1-z0-0.2,x,y0+1.1+h-0.08,(z0+z1)/2,gold)
 finish_region('ritualSpiritCurtain',a)
 
-# Retain two tall stoves and the pilu hood, relocated to the true door's north bay.
-# This is explicitly NOT a historical-accuracy claim; three low pots remain deferred.
+# R55 ground stove only: the 2019 survey records 430mm above ground, three
+# mouths (1050/1360/1160mm). The p508 table distinguishes width 2160mm
+# from length spanning the bay. The 4.0 by 2.30m plan and pot order below are
+# reversible fits to the existing S region,
+# NOT an interpretation of that 2160mm as an east-west span or a new survey.
+# Flat covered state follows fig.5. No above-floor firebox, buried belly,
+# underground pit, hardware, fire, food, or new hood ornament is invented.
 a=begin_region(); x0,y0,z0,x1,y1,z1=region('northStove'); cx,_,cz=center('northStove'); w=x1-x0; d=z1-z0
-for sign in (-1,1):
-    x=cx+sign*w*0.255; sw=min(1.8,w*0.43); sd=min(1.4,d-0.1)
-    box('stove_body',sw-0.1,1.15,sd-0.1,x,y0+0.575,cz,brick)
-    box('stove_rim',sw,0.08,sd,x,y0+1.19,cz,wood)
-    cylinder('stove_pot',0.52,0.55,0.38,x,y0+1.42,cz,iron,20)
-    cylinder('stove_lid',0.08,0.57,0.26,x,y0+1.73,cz,wood,20)
-    box('stove_mouth',0.5,0.5,0.04,x,y0+0.4,cz-sd/2+0.03,soot)
+stove_pale=mat('r55_stove_pale', (0.55,0.55,0.51), roughness=0.92)
+stove_red=mat('r55_stove_red_wood', (0.30,0.052,0.035), roughness=0.72)
+stove_iron=mat('r55_stove_iron', (0.055,0.052,0.047), metallic=0.35, roughness=0.78)
+sw,sd,top=4.0,2.30,y0+0.43
+stove_cx=cx-.07  # 20mm clear of the retained north-kang body; hood stays at cx.
+left,right=stove_cx-sw/2,stove_cx+sw/2; front,back=cz-sd/2,cz+sd/2
+# Three touching volumes make one continuous body. All exposed top surfaces,
+# including the lids, end at exactly 0.43m so the one low proxy has real support.
+box('r55_stove_base',sw,.245,sd,stove_cx,y0+.1225,cz,stove_pale)
+box('r55_stove_upper_body',sw,.105,sd-.23,stove_cx,y0+.2975,(front+.23+back)/2,stove_pale)
+box('r55_stove_front_edge',sw,.185,.23,stove_cx,y0+.3375,front+.115,stove_red)
+
+def stove_annulus(name, inner, outer, bottom, upper, x, z, material, rect=None, angles=None):
+    # Annulus with true hole. For slab cells, project the outer ring onto the
+    # exact rectangle, including its corners. Adjacent cells touch, not overlap.
+    angles=list(angles) if angles is not None else [i*math.tau/40 for i in range(40)]
+    if rect:
+        l,r,f,b=rect
+        angles += [math.atan2(zz-z,xx-x)%math.tau for xx in (l,r) for zz in (f,b)]
+    angles=sorted(set(round(v,12) for v in angles))
+    rings=[]
+    for y in (bottom,upper):
+        for edge in (0,1):
+            points=[]
+            for angle in angles:
+                co,si=math.cos(angle),math.sin(angle)
+                radius=inner if edge==0 else outer
+                if edge==1 and rect:
+                    tx=(r-x)/co if co>1e-10 else (l-x)/co if co<-1e-10 else 1e20
+                    tz=(b-z)/si if si>1e-10 else (f-z)/si if si<-1e-10 else 1e20
+                    radius=min(tx,tz)
+                points.append(_to_b(x+co*radius,y,z+si*radius))
+            rings += points
+    n=len(angles); faces=[]
+    for i in range(n):
+        j=(i+1)%n
+        faces += [(2*n+i,3*n+i,3*n+j,2*n+j), # top (winding corrected below)
+                  (i,j,n+j,n+i), (i,2*n+i,2*n+j,j),
+                  (n+i,n+j,3*n+j,3*n+i)]
+    me=bpy.data.meshes.new(name); me.from_pydata(rings,[],faces); me.update()
+    ob=add_obj(name,me,material)
+    bm=bmesh.new(); bm.from_mesh(me); bmesh.ops.recalc_face_normals(bm,faces=bm.faces); bm.to_mesh(me); bm.free()
+    return ob
+
+radii=[.525,.680,.580]; gap=(sw-2*sum(radii))/4
+centers=[]; cursor=left+gap
+for r in radii: centers.append(cursor+r); cursor+=2*r+gap
+edges=[left]+[(centers[i]+radii[i]+centers[i+1]-radii[i+1])/2 for i in range(2)]+[right]
+for i,(x,r) in enumerate(zip(centers,radii)):
+    z=cz+.105
+    rect=(edges[i],edges[i+1],front+.23,back)
+    # Share the rectangle corner angles at the iron/slab boundary, avoiding
+    # millimetre-wide deep contour gaps between a 44-sided hole and a 40-sided ring.
+    angles=[j*math.tau/40 for j in range(40)]+[math.atan2(zz-z,xx-x)%math.tau for xx in rect[:2] for zz in rect[2:]]
+    stove_annulus(f'r55_stove_top_{i}',r+.018,0,y0+.35,top,x,z,stove_pale,rect,angles)
+    stove_annulus(f'r55_stove_ring_{i}',r-.008,r+.018,y0+.395,top,x,z,stove_iron,angles=angles)
+    # A recessed continuous seat physically supports the cover beneath its edge.
+    stove_annulus(f'r55_stove_lid_seat_{i}',r-.060,r+.018,y0+.38,y0+.395,x,z,stove_iron,angles=angles)
+    cylinder(f'r55_stove_lid_{i}',r-.030,r-.030,.035,x,top-.0175,z,stove_red,40)
+# Existing pilu hood below remains byte/triangle-identical, not newly restored.
 box('pilu_top',w-0.12,0.18,d-0.1,cx,y0+3.2,cz,gold)
 box('pilu_valance',w-0.12,0.65,0.08,cx,y0+2.85,z0+0.06,gold)
 box('pilu_inner',w-0.3,0.04,d-0.2,cx,y0+3.08,cz,lacq)
 for i in range(10): sphere('pilu_ball',0.07,x0+0.2+i*(w-0.4)/9,y0+2.48,z0+0.1,gold,8,6)
-proxy('COL_stove','northStove',1.9); finish_region('northStove',a)
+col_box('COL_stove',left,y0,front,right,top,back); finish_region('northStove',a)
 
 # No speculative storage furnishings added. The single storage bay stays B-enclosed.
 print('[build]',json.dumps(dict(objects=len(INVENTORY),trianglesIncludingProxies=tri_count(),glyphs=GLYPHS)))

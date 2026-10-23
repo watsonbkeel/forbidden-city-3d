@@ -1,0 +1,23 @@
+武英门 5450 tri 0 marked legacy props 
+武英殿 89682 tri 0 marked legacy props 0 generic meshes
+敬思殿 57650 tri 0 marked legacy props 0 generic meshes
+凝道殿 13016 tri 0 marked legacy props 0 generic meshes
+焕章殿 12668 tri 0 marked legacy props 0 generic meshes
+浴德堂 20255 tri 0 marked legacy props 0 generic meshes
+南薰门 1258 tri 0 marked legacy props 
+file:///workspace/scratch/02a8023d1a85/r60-c-west-fidelity/src/scene/palace/special/NanxunReviewedInterior.js:5
+ if(p?.key!=='nanxun'||p?.id!=='place-outer-west-fa7f5d119e'||item?.name!=='南薰殿'||item.x!==289.6||item.z!==-315.7||item.w!==23.3||item.d!==13.4||item.ph!==.6||item.colH!==6.41||item.bays!==5||item.interior!=='B:hall'||item.throne||g?.key!=='nanxun'||g.w!==23.3||g.d!==13.4||g.y!==.6||g.h!==6.41||g.front!==-6.7||g.rear!==6.7||!f?.isGroup||f.position.x!==289.6||f.position.z!==-315.7||f.rotation.y!==0||!f.scale.equals({x:1,y:1,z:1}))throw Error('Nanxun review requires the exact retained declaration and frame');
+                                                                                                                                                                                                                                                                                                                                                                                                                                                       ^
+
+Error: Nanxun review requires the exact retained declaration and frame
+    at check (file:///workspace/scratch/02a8023d1a85/r60-c-west-fidelity/src/scene/palace/special/NanxunReviewedInterior.js:5:440)
+    at withholdNanxunPlaceholderFurniture (file:///workspace/scratch/02a8023d1a85/r60-c-west-fidelity/src/scene/palace/special/NanxunReviewedInterior.js:8:2)
+    at buildNanxunHall (file:///workspace/scratch/02a8023d1a85/r60-c-west-fidelity/src/scene/palace/special/RemainingOuterHalls.js:987:3)
+    at Object.buildRemainingHall [as build] (file:///workspace/scratch/02a8023d1a85/r60-c-west-fidelity/src/scene/palace/special/RemainingOuterHalls.js:1094:36)
+    at ZoneBase.buildHall (file:///workspace/scratch/02a8023d1a85/r60-c-west-fidelity/src/scene/zones/ZoneBase.js:154:122)
+    at file:///workspace/scratch/02a8023d1a85/r60-c-west-fidelity/scripts/r60-c-stage/audit-existing-components.mjs:5:25
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.19.0

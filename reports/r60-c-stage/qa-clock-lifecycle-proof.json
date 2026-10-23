@@ -1,0 +1,51 @@
+{
+  "node": "v24.19.0",
+  "scope": "Only test mock histories; not a demonstrated SIGKILL cause or gameplay optimization.",
+  "evidence": [
+    {
+      "case": "old-restore-only",
+      "retainedCalls": 4096,
+      "afterReset": 0
+    },
+    {
+      "label": "completed",
+      "functions": 1,
+      "callsReleased": 8192,
+      "callsRemaining": 0,
+      "before": {
+        "rss": 72744960,
+        "heapTotal": 56094720,
+        "heapUsed": 22139344,
+        "external": 4197436,
+        "arrayBuffers": 146771
+      },
+      "afterReset": {
+        "rss": 72744960,
+        "heapTotal": 56094720,
+        "heapUsed": 22145072,
+        "external": 4197476,
+        "arrayBuffers": 146771
+      }
+    },
+    {
+      "label": "completed",
+      "functions": 1,
+      "callsReleased": 1,
+      "callsRemaining": 0,
+      "before": {
+        "rss": 72744960,
+        "heapTotal": 56094720,
+        "heapUsed": 22191192,
+        "external": 4197476,
+        "arrayBuffers": 146771
+      },
+      "afterReset": {
+        "rss": 72744960,
+        "heapTotal": 56094720,
+        "heapUsed": 22192144,
+        "external": 4197476,
+        "arrayBuffers": 146771
+      }
+    }
+  ]
+}

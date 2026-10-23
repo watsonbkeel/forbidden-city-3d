@@ -1,0 +1,124 @@
+TAP version 13
+# Subtest: hd: actual central passage-front albedo has nine gold rows
+ok 1 - hd: actual central passage-front albedo has nine gold rows
+  ---
+  duration_ms: 218.894374
+  type: 'test'
+  ...
+# Subtest: sd: actual central passage-front albedo has nine gold rows
+ok 2 - sd: actual central passage-front albedo has nine gold rows
+  ---
+  duration_ms: 70.924873
+  type: 'test'
+  ...
+# Subtest: exact binding rejects other zones, ordinals, declarations, anchors and west gate
+ok 3 - exact binding rejects other zones, ordinals, declarations, anchors and west gate
+  ---
+  duration_ms: 1.112576
+  type: 'test'
+  ...
+# Subtest: all actual original vertex attributes, normals, UVs, triangle count, transforms and physics are retained
+ok 4 - all actual original vertex attributes, normals, UVs, triangle count, transforms and physics are retained
+  ---
+  duration_ms: 324.33508
+  type: 'test'
+  ...
+# Subtest: hd: actual world-space passage faces and gold pixels are visible before and after finish
+ok 5 - hd: actual world-space passage faces and gold pixels are visible before and after finish
+  ---
+  duration_ms: 418.010903
+  type: 'test'
+  ...
+# Subtest: sd: actual world-space passage faces and gold pixels are visible before and after finish
+ok 6 - sd: actual world-space passage faces and gold pixels are visible before and after finish
+  ---
+  duration_ms: 139.57661
+  type: 'test'
+  ...
+# Subtest: hd: eight x columns and complete edge/ring pixels survive albedo and normal remapping
+ok 7 - hd: eight x columns and complete edge/ring pixels survive albedo and normal remapping
+  ---
+  duration_ms: 176.326384
+  type: 'test'
+  ...
+# Subtest: sd: eight x columns and complete edge/ring pixels survive albedo and normal remapping
+ok 8 - sd: eight x columns and complete edge/ring pixels survive albedo and normal remapping
+  ---
+  duration_ms: 59.397016
+  type: 'test'
+  ...
+# Subtest: finish preserves geometry and every non-target portal, rear face and west-gate material
+ok 9 - finish preserves geometry and every non-target portal, rear face and west-gate material
+  ---
+  duration_ms: 394.865587
+  type: 'test'
+  ...
+# Subtest: derivatives retain texture/material settings, own independent Sources, reuse only within a library and dispose once
+ok 10 - derivatives retain texture/material settings, own independent Sources, reuse only within a library and dispose once
+  ---
+  duration_ms: 336.654308
+  type: 'test'
+  ...
+# Subtest: mutated frame, portal or either leaf rejects atomically without adding resources
+ok 11 - mutated frame, portal or either leaf rejects atomically without adding resources
+  ---
+  duration_ms: 427.285435
+  type: 'test'
+  ...
+# Subtest: hd: real loader failure door_studded.webp preserves originals and records NOT_CORRECTED
+ok 12 - hd: real loader failure door_studded.webp preserves originals and records NOT_CORRECTED
+  ---
+  duration_ms: 74.898564
+  type: 'test'
+  ...
+# Subtest: hd: real loader failure door_studded_n.webp preserves originals and records NOT_CORRECTED
+ok 13 - hd: real loader failure door_studded_n.webp preserves originals and records NOT_CORRECTED
+  ---
+  duration_ms: 60.184894
+  type: 'test'
+  ...
+# Subtest: sd: real loader failure door_studded.webp preserves originals and records NOT_CORRECTED
+ok 14 - sd: real loader failure door_studded.webp preserves originals and records NOT_CORRECTED
+  ---
+  duration_ms: 54.686871
+  type: 'test'
+  ...
+# Subtest: sd: real loader failure door_studded_n.webp preserves originals and records NOT_CORRECTED
+ok 15 - sd: real loader failure door_studded_n.webp preserves originals and records NOT_CORRECTED
+  ---
+  duration_ms: 55.571079
+  type: 'test'
+  ...
+# Subtest: unloaded procedural fallback and material-only library never pretend to be corrected
+ok 16 - unloaded procedural fallback and material-only library never pretend to be corrected
+  ---
+  duration_ms: 73.066921
+  type: 'test'
+  ...
+# Subtest: hd: read-only world consumer validates supplied merged component without rebuilding it
+ok 17 - hd: read-only world consumer validates supplied merged component without rebuilding it
+  ---
+  duration_ms: 299.06879
+  type: 'test'
+  ...
+# Subtest: sd: read-only world consumer validates supplied merged component without rebuilding it
+ok 18 - sd: read-only world consumer validates supplied merged component without rebuilding it
+  ---
+  duration_ms: 109.010098
+  type: 'test'
+  ...
+# Subtest: world consumer refuses uncorrected production gate rather than passing metadata-free geometry
+ok 19 - world consumer refuses uncorrected production gate rather than passing metadata-free geometry
+  ---
+  duration_ms: 163.740854
+  type: 'test'
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 19
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4870.649889

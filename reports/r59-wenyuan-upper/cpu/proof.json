@@ -1,0 +1,110 @@
+{
+  "boundary": "ACTUAL PRODUCTION LOCAL GEOMETRY AND HD ALBEDO/UV; CPU NOT BROWSER/GPU ACCEPTANCE",
+  "source": "https://img.dpm.org.cn/Uploads/Picture/2024/02/21/s65d5b6eae1fbb.jpg",
+  "sourceSHA256": "4f8bb8b36d829d93d127b4ec3db99e2bb091042b757645ec0463da884164b462",
+  "sourcePhotographyDate": null,
+  "sourceFiles": {
+    "src/scene/palace/special/WenyuanPavilion.js": "15f38583075b13e4a3a64b2dafba796b6f155c23b95eb9e9657a3fc643944f5b",
+    "src/scene/palace/special/WenyuanUpperSouthWindows.js": "a0f5ea93f8e09e9a80c1a25a7a8b079d2c2e08114abafe5b277157cc8282936a",
+    "src/scene/palace/special/RemainingOuterHalls.js": "cdaec845ae73b3528683b4717818beaeff6f2e0102809a0e29c2aac8936f02af",
+    "data/zones/outer-east.json": "5327bf3dbaff2b102c62363d70fbbad3e39eaa08e966040cb26acd33e3398b7e"
+  },
+  "states": {
+    "before": {
+      "triangles": 10500,
+      "materials": 15,
+      "geometrySHA256": "b373f46591226090b6fe13bf59ddb1c29dfc51db84e5cb79bf7f543941081d78",
+      "colliders": 539,
+      "walkables": 30
+    },
+    "after": {
+      "triangles": 11292,
+      "materials": 18,
+      "geometrySHA256": "58e750d4f590319072b69a8012c016a39489f7f543265d7af6d8836371b4c912",
+      "colliders": 550,
+      "walkables": 30
+    }
+  },
+  "views": [
+    {
+      "name": "south-ground",
+      "camera": [
+        0,
+        1.7,
+        -57
+      ],
+      "target": [
+        0,
+        6.8,
+        0
+      ],
+      "fov": 49,
+      "position": "COURTYARD_GROUND_EYE_DIAGNOSTIC",
+      "images": {
+        "before": {
+          "path": "reports/r59-wenyuan-upper/cpu/south-ground-before.png",
+          "sha256": "231bbddfbde24e75580300026012b02e3a06b9118660986ad895106ac90e9b03"
+        },
+        "after": {
+          "path": "reports/r59-wenyuan-upper/cpu/south-ground-after.png",
+          "sha256": "2c0323979be642b0d3454f1247946f8ec15243de588cf9f8404cc64a43bdc790"
+        }
+      }
+    },
+    {
+      "name": "south-oblique",
+      "camera": [
+        30,
+        1.7,
+        -43
+      ],
+      "target": [
+        0,
+        7,
+        -5
+      ],
+      "fov": 57,
+      "position": "GROUND_EYE_OBLIQUE_DIAGNOSTIC",
+      "images": {
+        "before": {
+          "path": "reports/r59-wenyuan-upper/cpu/south-oblique-before.png",
+          "sha256": "3d6849985366ee582c11e28adaf8e1e7ddf8ea42fb570da7adb29ab5c07659c1"
+        },
+        "after": {
+          "path": "reports/r59-wenyuan-upper/cpu/south-oblique-after.png",
+          "sha256": "0707cce0c17313ca3107cc45b44cded4d0aa2f726e8d03f2a42fd864d05c9608"
+        }
+      }
+    },
+    {
+      "name": "upper-detail",
+      "camera": [
+        0,
+        7.2,
+        -35
+      ],
+      "target": [
+        0,
+        7.2,
+        -7.9
+      ],
+      "fov": 60,
+      "position": "ELEVATED_DETAIL_NOT_WALKABLE_CAMERA",
+      "images": {
+        "before": {
+          "path": "reports/r59-wenyuan-upper/cpu/upper-detail-before.png",
+          "sha256": "8ae5b6461b8cd3cc883dba97d2bcdea7c2cd6d34ce4d5b84513c0c5744c33557"
+        },
+        "after": {
+          "path": "reports/r59-wenyuan-upper/cpu/upper-detail-after.png",
+          "sha256": "d975440c92d45ff087607a108da0e157abe7a7cd028402e5cd68eeb85056e241"
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Photo dimensions and color are fitted, not measured. Fine grille motifs remain unmodeled.",
+    "No official source photograph is copied into the repository or package.",
+    "CPU does not reproduce WebGL normal mapping, PBR, shadows, tone mapping or final performance."
+  ]
+}

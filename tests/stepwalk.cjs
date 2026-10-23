@@ -124,9 +124,12 @@ async function buildRoutes() {
   const JIHUA_Z = 410;              // 基化门（东一长街内墙门，zones/garden 墙洞 at 410；anchors 未收录）
   const xhTransit = gateTransit('协和门'), xiTransit = gateTransit('熙和门');
   const {southCourtGateGeometry}=await import(pathToFileURL(path.join(ROOT,'src/scene/palace/special/SouthCourtGates.js')).href);
+  const {wuyingGateToGallery}=await import(pathToFileURL(path.join(ROOT,'tests/lib/r52-wuying-routes.mjs')).href);
+  // Explicit historical fixture mode is only for the unchanged R48 exact-route oracle.
+  // Actual current-world walkers use the R52 physical lateral-gate and moon-stair chain.
   const {southWaterProfile}=await import(pathToFileURL(path.join(ROOT,'src/scene/palace/special/SouthWaterSystem.js')).href);
   const southZones=['outer-east','outer-west'].map(id=>JSON.parse(fs.readFileSync(path.join(ROOT,`data/zones/${id}.json`),'utf8')));
-  const courtWalk=court=>{const items=southZones.find(z=>z.id===(court==='wenhua'?'outer-east':'outer-west')).items,gate=items.find(i=>i.southGateProfile===court),g=southCourtGateGeometry(gate),h=items.find(i=>i.southCourtProfile===`${court}-front`),x=h.x,side=court==='wenhua'?11:5,frontTurnZ=h.z-(court==='wuying'?5.95:6);return[[gate.x,g.southToe-2],[gate.x,g.northToe+2],[x,g.northToe+2],[x,h.z-h.d/2-h.pad-h.ph*1.6-1],[x,frontTurnZ],[x+side,frontTurnZ],[x+side,h.z+5.7],[x,h.z+5.7]];};
+  const courtWalk=court=>{const items=southZones.find(z=>z.id===(court==='wenhua'?'outer-east':'outer-west')).items,gate=items.find(i=>i.southGateProfile===court),g=southCourtGateGeometry(gate),h=items.find(i=>i.southCourtProfile===`${court}-front`),x=h.x,side=court==='wenhua'?11:5,frontTurnZ=h.z-(court==='wuying'?5.95:6);if(court==='wuying'&&process.env.FIXED_ROUTE_CONTRACT!=='r48-leaf-turn')return wuyingGateToGallery(gate,h);return[[gate.x,g.southToe-2],[gate.x,g.northToe+2],[x,g.northToe+2],[x,h.z-h.d/2-h.pad-h.ph*1.6-1],[x,frontTurnZ],[x+side,frontTurnZ],[x+side,h.z+5.7],[x,h.z+5.7]];};
   const wenhuaWalk=courtWalk('wenhua'),wuyingWalk=courtWalk('wuying'),wuyingBridge=southWaterProfile(PALACE_LAYOUT.find(i=>i.type==='river')).bridges.find(b=>b.id==='wuying-2');
   // The new river makes the old unbridged north-side doglegs impossible.
   // Keep route identities, use an actual five-bridge crossing before each

@@ -1,0 +1,460 @@
+✖ consumer finds one existing assembly before and after production merge, verifies actual triangles and owned supports (75.623986ms)
+✖ consumer rejects missing, duplicate and shifted actual supports rather than trusting metadata (42.981414ms)
+✖ real controller crosses Zhendu front 10Hz walk forward on own supports (31.881399ms)
+✖ real controller crosses Zhendu front 10Hz walk backward on own supports (24.672863ms)
+✖ real controller crosses Zhendu front 10Hz sprint forward on own supports (23.273746ms)
+✖ real controller crosses Zhendu front 10Hz sprint backward on own supports (25.880522ms)
+✖ real controller crosses Zhendu front 60Hz walk forward on own supports (24.817323ms)
+✖ real controller crosses Zhendu front 60Hz walk backward on own supports (25.531681ms)
+✖ real controller crosses Zhendu front 60Hz sprint forward on own supports (20.079334ms)
+✖ real controller crosses Zhendu front 60Hz sprint backward on own supports (21.190314ms)
+✖ real controller crosses Zhendu rear 10Hz walk forward on own supports (23.030033ms)
+✖ real controller crosses Zhendu rear 10Hz walk backward on own supports (21.911041ms)
+✖ real controller crosses Zhendu rear 10Hz sprint forward on own supports (20.320314ms)
+✖ real controller crosses Zhendu rear 10Hz sprint backward on own supports (21.403362ms)
+✖ real controller crosses Zhendu rear 60Hz walk forward on own supports (22.985306ms)
+✖ real controller crosses Zhendu rear 60Hz walk backward on own supports (28.630592ms)
+✖ real controller crosses Zhendu rear 60Hz sprint forward on own supports (22.063629ms)
+✖ real controller crosses Zhendu rear 60Hz sprint backward on own supports (28.219832ms)
+✔ support substitution can arrive in XY but fails the real primitive provenance test (31.556894ms)
+✔ solid retaining sides, bay panels, columns and wing caps stop actual body movement (24.572747ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 2
+ℹ fail 18
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 732.342947
+
+✖ failing tests:
+
+test at tests/current-state/r58-zhendu-navigation.test.mjs:13:1
+✖ consumer finds one existing assembly before and after production merge, verifies actual triangles and owned supports (75.623986ms)
+  AssertionError [ERR_ASSERTION]: consumer must inspect existing world only
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at inspect (file:///workspace/scratch/02a8023d1a85/r58-zhendu/tests/current-state/r58-zhendu-navigation.test.mjs:11:28)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-zhendu/tests/current-state/r58-zhendu-navigation.test.mjs:14:39)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r58-zhendu-navigation.test.mjs:17:1
+✖ consumer rejects missing, duplicate and shifted actual supports rather than trusting metadata (42.981414ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /registered primitive|support/. Input:
+
+  'AssertionError [ERR_ASSERTION]: consumer must inspect existing world only\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-zhendu/tests/current-state/r58-zhendu-navigation.test.mjs:20:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: consumer must inspect existing world only
+    + actual - expected
+
+    + 'undefined'
+    - 'function'
+
+        at inspect (file:///workspace/scratch/02a8023d1a85/r58-zhendu/tests/current-state/r58-zhendu-navigation.test.mjs:11:28)
+        at file:///workspace/scratch/02a8023d1a85/r58-zhendu/tests/current-state/r58-zhendu-navigation.test.mjs:20:21
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-zhendu/tests/current-state/r58-zhendu-navigation.test.mjs:20:10)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12),
+    expected: /registered primitive|support/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r58-zhendu-navigation.test.mjs:24:1
+✖ real controller crosses Zhendu front 10Hz walk forward on own supports (31.881399ms)
+  AssertionError [ERR_ASSERTION]: existing-world controller consumer required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-zhendu/tests/current-state/r58-zhendu-navigation.test.mjs:25:33)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r58-zhendu-navigation.test.mjs:24:1
+✖ real controller crosses Zhendu front 10Hz walk backward on own supports (24.672863ms)
+  AssertionError [ERR_ASSERTION]: existing-world controller consumer required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-zhendu/tests/current-state/r58-zhendu-navigation.test.mjs:25:33)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r58-zhendu-navigation.test.mjs:24:1
+✖ real controller crosses Zhendu front 10Hz sprint forward on own supports (23.273746ms)
+  AssertionError [ERR_ASSERTION]: existing-world controller consumer required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-zhendu/tests/current-state/r58-zhendu-navigation.test.mjs:25:33)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r58-zhendu-navigation.test.mjs:24:1
+✖ real controller crosses Zhendu front 10Hz sprint backward on own supports (25.880522ms)
+  AssertionError [ERR_ASSERTION]: existing-world controller consumer required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-zhendu/tests/current-state/r58-zhendu-navigation.test.mjs:25:33)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r58-zhendu-navigation.test.mjs:24:1
+✖ real controller crosses Zhendu front 60Hz walk forward on own supports (24.817323ms)
+  AssertionError [ERR_ASSERTION]: existing-world controller consumer required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-zhendu/tests/current-state/r58-zhendu-navigation.test.mjs:25:33)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r58-zhendu-navigation.test.mjs:24:1
+✖ real controller crosses Zhendu front 60Hz walk backward on own supports (25.531681ms)
+  AssertionError [ERR_ASSERTION]: existing-world controller consumer required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-zhendu/tests/current-state/r58-zhendu-navigation.test.mjs:25:33)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r58-zhendu-navigation.test.mjs:24:1
+✖ real controller crosses Zhendu front 60Hz sprint forward on own supports (20.079334ms)
+  AssertionError [ERR_ASSERTION]: existing-world controller consumer required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-zhendu/tests/current-state/r58-zhendu-navigation.test.mjs:25:33)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r58-zhendu-navigation.test.mjs:24:1
+✖ real controller crosses Zhendu front 60Hz sprint backward on own supports (21.190314ms)
+  AssertionError [ERR_ASSERTION]: existing-world controller consumer required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-zhendu/tests/current-state/r58-zhendu-navigation.test.mjs:25:33)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r58-zhendu-navigation.test.mjs:24:1
+✖ real controller crosses Zhendu rear 10Hz walk forward on own supports (23.030033ms)
+  AssertionError [ERR_ASSERTION]: existing-world controller consumer required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-zhendu/tests/current-state/r58-zhendu-navigation.test.mjs:25:33)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r58-zhendu-navigation.test.mjs:24:1
+✖ real controller crosses Zhendu rear 10Hz walk backward on own supports (21.911041ms)
+  AssertionError [ERR_ASSERTION]: existing-world controller consumer required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-zhendu/tests/current-state/r58-zhendu-navigation.test.mjs:25:33)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r58-zhendu-navigation.test.mjs:24:1
+✖ real controller crosses Zhendu rear 10Hz sprint forward on own supports (20.320314ms)
+  AssertionError [ERR_ASSERTION]: existing-world controller consumer required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-zhendu/tests/current-state/r58-zhendu-navigation.test.mjs:25:33)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r58-zhendu-navigation.test.mjs:24:1
+✖ real controller crosses Zhendu rear 10Hz sprint backward on own supports (21.403362ms)
+  AssertionError [ERR_ASSERTION]: existing-world controller consumer required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-zhendu/tests/current-state/r58-zhendu-navigation.test.mjs:25:33)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r58-zhendu-navigation.test.mjs:24:1
+✖ real controller crosses Zhendu rear 60Hz walk forward on own supports (22.985306ms)
+  AssertionError [ERR_ASSERTION]: existing-world controller consumer required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-zhendu/tests/current-state/r58-zhendu-navigation.test.mjs:25:33)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r58-zhendu-navigation.test.mjs:24:1
+✖ real controller crosses Zhendu rear 60Hz walk backward on own supports (28.630592ms)
+  AssertionError [ERR_ASSERTION]: existing-world controller consumer required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-zhendu/tests/current-state/r58-zhendu-navigation.test.mjs:25:33)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r58-zhendu-navigation.test.mjs:24:1
+✖ real controller crosses Zhendu rear 60Hz sprint forward on own supports (22.063629ms)
+  AssertionError [ERR_ASSERTION]: existing-world controller consumer required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-zhendu/tests/current-state/r58-zhendu-navigation.test.mjs:25:33)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r58-zhendu-navigation.test.mjs:24:1
+✖ real controller crosses Zhendu rear 60Hz sprint backward on own supports (28.219832ms)
+  AssertionError [ERR_ASSERTION]: existing-world controller consumer required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-zhendu/tests/current-state/r58-zhendu-navigation.test.mjs:25:33)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

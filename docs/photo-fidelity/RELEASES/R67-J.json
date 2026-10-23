@@ -1,0 +1,4904 @@
+{
+  "release": {
+    "release": "R67-J",
+    "section": "J",
+    "title": "宁寿宫花园（乾隆花园）",
+    "declaredObjectCount": 21,
+    "objectIds": [
+      "FC-453DB70001",
+      "FC-F4D12B27E6",
+      "FC-A1EA21A7C3",
+      "FC-F5886C9CA9",
+      "FC-FADD286B97",
+      "FC-90734D8F6D",
+      "FC-FA6119DC49",
+      "FC-29F4099DA5",
+      "FC-AA65E64A96",
+      "FC-E604D58704",
+      "FC-4B9C091388",
+      "FC-B6CDE8615B",
+      "FC-C7215A0EDA",
+      "FC-FEB4BD3F2F",
+      "FC-722E40E471",
+      "FC-47EC73915D",
+      "FC-177C99C806",
+      "FC-2465BC98A2",
+      "FC-9B2BEC50D8",
+      "FC-2932CF1D3B",
+      "FC-7C2F339F91"
+    ],
+    "supplementaryRuntimeIds": [],
+    "expansionTaskIds": [
+      "EXPAND-06"
+    ],
+    "after": "R66-I integration checkpoint; unresolved acceptance stays open",
+    "optional": false,
+    "status": "PLANNED_NOT_STARTED",
+    "fullSectionAccepted": false,
+    "localBranchNameConflict": false,
+    "remoteVersionConflict": "NOT_CHECKED; release owner must reserve against current remote before publish",
+    "minimumWork": "All listed objects retain fixed exterior+interior tasks; inspect available work throughout section, implement supported differences and preserve unresolved subitems. Three micro-edits do not close the section.",
+    "acceptanceGate": "Every required facet/child/expansion resolved and ACCEPTED or justified NOT_APPLICABLE; no VERIFY_PENDING/PARTIAL/BLOCKED_* treated as accepted; actual browser before/after evidence at final commit/content hash.",
+    "partialPublicationLabel": "If code is safely published before whole-zone acceptance, name it R67-J incremental candidate with explicit remaining list; never say entire zone verified.",
+    "nextSectionPolicy": "After section-wide executable pass/integration, continue next section when local blocked items remain; retain prior section as incomplete and rescan all unfinished items, never delete blocked work."
+  },
+  "objects": [
+    {
+      "id": "FC-453DB70001",
+      "name": "宁寿宫花园",
+      "section": "J",
+      "parentText": "宁寿宫区后寝西路",
+      "nature": "院落/设施组",
+      "sourceLine": 730,
+      "cautions": "同项名：宁寿宫花园（乾隆花园）、乾隆花园；四进院落顺序、院墙/廊道与假山通行关系；鸟瞰图为示意绘图；不能作为尺寸或立面比例实测依据",
+      "kind": "aggregate_group",
+      "release": "R67-J",
+      "entityId": null,
+      "entityCountStatus": "NOT_AN_ADDITIONAL_BUILDING",
+      "aliases": [
+        "乾隆花园",
+        "宁寿宫花园（乾隆花园）"
+      ],
+      "parentCandidates": [
+        "FC-E66DFE768F"
+      ],
+      "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+      "registryBindings": [],
+      "placeBindings": [],
+      "runtimeBindings": [
+        {
+          "inventoryId": "RI-0B14AB2345DB",
+          "ref": "data/zones/ningshou.json#/items/47",
+          "kind": "region",
+          "bindingStatus": "STATIC_DECLARATION_NOT_CURRENT_RENDER_PROOF"
+        }
+      ],
+      "bindingStatus": "AGGREGATE_GROUP_DO_NOT_AUTO_BUILD",
+      "identitySourceIds": [
+        "SRC-DD065ADCBC48"
+      ],
+      "sourceEvidence": {
+        "exterior": {
+          "inputStatus": "INPUT_REFERENCED_STATIC_IMAGE_OR_PDF_NOT_REOPENED",
+          "inputText": "[衍祺门](<https://img.dpm.org.cn/Uploads/Picture/dc/2657[1024].jpg>)；[衍祺门内的假山、曲经](<https://img.dpm.org.cn/Uploads/Picture/dc/2660[1024].jpg>)",
+          "sourceIds": [
+            "SRC-11A7FEF9E4FD",
+            "SRC-CF5CDDF86290"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        },
+        "interior": {
+          "inputStatus": "AGGREGATE_OR_NOT_APPLICABLE",
+          "inputText": "汇总子建筑/子空间；不在父院落另造一个通用室内。",
+          "sourceIds": [],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        }
+      },
+      "facets": {
+        "exterior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [
+            "SRC-11A7FEF9E4FD",
+            "SRC-CF5CDDF86290"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "footprint_orientation_court_connections",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "bays_columns_brackets_beams_paint_zones",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "doors_windows_openings_walls_screens",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "terrace_steps_imperial_ramp_rails_posts",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "plaques_text_placement_orientation_occlusion",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "unique_courtyard_facilities_locations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+        },
+        "interior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "room_partitions_portals_column_grid_levels_steps_floor",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "principal_furniture_type_count_location_facing_scale",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "function_specificity_worship_library_residential_exhibition",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "visible_missing_objects_and_unsupported_model_objects",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+        }
+      },
+      "requiredChildIds": [
+        "FC-F4D12B27E6",
+        "FC-A1EA21A7C3",
+        "FC-F5886C9CA9",
+        "FC-FADD286B97",
+        "FC-90734D8F6D",
+        "FC-FA6119DC49",
+        "FC-29F4099DA5",
+        "FC-AA65E64A96",
+        "FC-E604D58704",
+        "FC-4B9C091388",
+        "FC-B6CDE8615B",
+        "FC-C7215A0EDA",
+        "FC-FEB4BD3F2F",
+        "FC-722E40E471",
+        "FC-47EC73915D",
+        "FC-177C99C806",
+        "FC-2465BC98A2",
+        "FC-9B2BEC50D8",
+        "FC-2932CF1D3B",
+        "FC-7C2F339F91"
+      ],
+      "expansionTaskIds": [
+        "EXPAND-06"
+      ],
+      "actualChanges": [],
+      "acceptanceRecords": [],
+      "currentCycleAccepted": false,
+      "optional": false,
+      "priority": 9000,
+      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views.",
+      "unresolvedChildEnumeration": true
+    },
+    {
+      "id": "FC-F4D12B27E6",
+      "name": "倦勤斋",
+      "section": "J",
+      "parentText": "宁寿宫花园第四进 / 宁寿宫花园（乾隆花园）",
+      "nature": "建筑或构筑物",
+      "sourceLine": 731,
+      "cautions": "九间立面、东西空间分段、竹纹圆光罩、小戏台与通景画连续性；公开修缮后照片仍不足覆盖东五间所有夹层及暗间；拍摄日期未注明",
+      "kind": "building_or_structure_candidate",
+      "release": "R67-J",
+      "entityId": "FC-F4D12B27E6",
+      "entityCountStatus": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
+      "aliases": [],
+      "parentCandidates": [
+        "FC-453DB70001",
+        "FC-E66DFE768F"
+      ],
+      "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+      "registryBindings": [
+        {
+          "repositoryId": "place-ningshou-f4d12b27e6",
+          "repositoryName": "倦勤斋",
+          "reviewObjectId": "FC-F4D12B27E6",
+          "canonicalName": "倦勤斋",
+          "registryRef": "data/architecture/building-fidelity.json#/buildings/23",
+          "mappingBasis": "exact-name-candidate",
+          "physicalIdentityVerified": false
+        }
+      ],
+      "placeBindings": [
+        {
+          "repositoryId": "place-ningshou-f4d12b27e6",
+          "repositoryName": "倦勤斋",
+          "reviewObjectId": "FC-F4D12B27E6",
+          "canonicalName": "倦勤斋",
+          "registryRef": "data/places/zh-CN.json#/places/137",
+          "mappingBasis": "exact-name-candidate",
+          "physicalIdentityVerified": false
+        }
+      ],
+      "runtimeBindings": [
+        {
+          "inventoryId": "RI-9078F030AD2C",
+          "ref": "data/zones/ningshou.json#/items/24",
+          "kind": "hall",
+          "bindingStatus": "STATIC_DECLARATION_NOT_CURRENT_RENDER_PROOF"
+        }
+      ],
+      "bindingStatus": "EXISTING_DECLARATIVE_CANDIDATE",
+      "identitySourceIds": [
+        "SRC-4EE645EA3D06"
+      ],
+      "sourceEvidence": {
+        "exterior": {
+          "inputStatus": "PANORAMA_NAVIGATION_ONLY",
+          "inputText": "[（官方未标图注）](<https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5efef5a7854be.jpg>)；[（官方未标图注）](<https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5efef5a789702.jpg>)；[全景导航：倦勤斋](<https://pano.dpm.org.cn/#/panorama?regionId=71&secondAreaId=151&vpId=3630&sphPicId=1943210061143523328>)；其余视角见JSON",
+          "sourceIds": [
+            "SRC-CA41185FEAE3",
+            "SRC-B863939D48F5",
+            "SRC-56A4A30D383A"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        },
+        "interior": {
+          "inputStatus": "INPUT_REFERENCED_STATIC_IMAGE_OR_PDF_NOT_REOPENED",
+          "inputText": "[修缮后倦勤斋室内原状](<https://img.dpm.org.cn/Uploads/Picture/2021/12/07/s61aebf0e9cc47.jpg>)；[倦勤斋通景画修复后](<https://img.dpm.org.cn/Uploads/Picture/2021/12/07/s61aebf0e9e8a0.jpg>)；其余视角见JSON",
+          "sourceIds": [
+            "SRC-122B76CC294D",
+            "SRC-682FEB59D5D3"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        }
+      },
+      "facets": {
+        "exterior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": true,
+          "baselineRecords": [
+            {
+              "registryId": "place-ningshou-f4d12b27e6",
+              "value": {
+                "implementation": "dedicated-partial",
+                "dimensions": "includes-model-fits",
+                "accepted": false,
+                "unresolved": [
+                  "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。",
+                  "竹雕细节、通景画与全部艺术品未复刻；现存楼梯确切尺寸和通行权限未知。",
+                  "上层仅实楼板/护栏查看，当前完整陈设未知。",
+                  "2026逐件陈设与真实访客权限未核实，不以游戏访问替代馆方许可。",
+                  "原31.5×8.8、台基0.5、檐柱5.5；东U楼板/西观演台y3.35，西小戏台y0.95。东/西界x1.75，舞台x11.25..15.05,z−2.3..2.8，为保留包络下的拓扑拟合。",
+                  "舞台四柱与框架顶4.95；三阶低台通路为可行走模型拟合，上层无未经证实的楼梯或目的地。",
+                  "全部未实测构件尺寸、纹样、材料参数与访问路径均为模型拟合；专用屋面为有真实向上/向下表面和封口的FrontSide薄壳，不用DoubleSide掩盖缺片。",
+                  "局部变化不等于完整建筑或现存陈设验收。"
+                ]
+              },
+              "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
+              "validation": {
+                "visual": "not-verified",
+                "nativePhone": "not-verified"
+              },
+              "review": {
+                "status": "actual-change",
+                "changes": [
+                  "九间前廊立面、东五间中央门，真实闭合卷棚硬山屋面和素承托，不改变原长条身份。"
+                ]
+              },
+              "claims": [
+                {
+                  "scope": "exterior",
+                  "text": "九间、前廊，东五间与西四间有别。",
+                  "source": "https://www.dpm.org.cn/explore/building/236478.html",
+                  "targetState": "按官方文字或选定照片理解局部形制；照片拍摄日期及完整当前库存未核定。",
+                  "implemented": false,
+                  "release": "R48"
+                }
+              ],
+              "changes": [
+                {
+                  "area": "exterior",
+                  "release": "R48",
+                  "text": "九间前廊立面、东五间中央门，真实闭合卷棚硬山屋面和素承托，不改变原长条身份。"
+                }
+              ]
+            }
+          ],
+          "sourceIds": [
+            "SRC-CA41185FEAE3",
+            "SRC-B863939D48F5",
+            "SRC-56A4A30D383A"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "footprint_orientation_court_connections",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "bays_columns_brackets_beams_paint_zones",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "doors_windows_openings_walls_screens",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "terrace_steps_imperial_ramp_rails_posts",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "plaques_text_placement_orientation_occlusion",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "unique_courtyard_facilities_locations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "inheritedImplementationOnly": "Prior implementation/evidence retained verbatim in baselineRecords and read-only original snapshot; NOT current-cycle visual acceptance."
+        },
+        "interior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": true,
+          "baselineRecords": [
+            {
+              "registryId": "place-ningshou-f4d12b27e6",
+              "value": {
+                "implementation": "dedicated-partial",
+                "dimensions": "includes-model-fits",
+                "accepted": false,
+                "unresolved": [
+                  "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。",
+                  "竹雕细节、通景画与全部艺术品未复刻；现存楼梯确切尺寸和通行权限未知。",
+                  "上层仅实楼板/护栏查看，当前完整陈设未知。",
+                  "2026逐件陈设与真实访客权限未核实，不以游戏访问替代馆方许可。",
+                  "原31.5×8.8、台基0.5、檐柱5.5；东U楼板/西观演台y3.35，西小戏台y0.95。东/西界x1.75，舞台x11.25..15.05,z−2.3..2.8，为保留包络下的拓扑拟合。",
+                  "舞台四柱与框架顶4.95；三阶低台通路为可行走模型拟合，上层无未经证实的楼梯或目的地。",
+                  "全部未实测构件尺寸、纹样、材料参数与访问路径均为模型拟合；专用屋面为有真实向上/向下表面和封口的FrontSide薄壳，不用DoubleSide掩盖缺片。",
+                  "局部变化不等于完整建筑或现存陈设验收。"
+                ]
+              },
+              "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
+              "validation": {
+                "visual": "not-verified",
+                "nativePhone": "not-verified"
+              },
+              "review": {
+                "status": "actual-change",
+                "changes": [
+                  "东五间真U形楼板/后房/两端侧房及护栏，前中央空间无满板；东、西有真实串通门。",
+                  "西戏台朝东、独立两层观演块朝西，柱/竹式框架/后台两门和实体低台阶，西演出空域保持通高；圆罩和画位置只留框不假造通景画。"
+                ]
+              },
+              "claims": [
+                {
+                  "scope": "interior",
+                  "text": "东五间凹形仙楼，西端戏台坐西向东，东侧上下两层观演仙楼面西，西室南圆洞罩与北通景画相对。",
+                  "source": "https://www.dpm.org.cn/explore/building/236478.html",
+                  "targetState": "按官方文字或选定照片理解局部形制；照片拍摄日期及完整当前库存未核定。",
+                  "implemented": false,
+                  "release": "R48"
+                },
+                {
+                  "scope": "interior",
+                  "text": "官方刊载平面与室内示意图支持东后带加两回廊的凹形层板和西戏台/观演楼，图不是实测尺寸或2026库存。",
+                  "source": "https://www.dpm.org.cn/Uploads/File/pdf/fa/4f/9c/fa4f9c7a93bbb404521695f35043873e.pdf",
+                  "targetState": "按官方文字或选定照片理解局部形制；照片拍摄日期及完整当前库存未核定。",
+                  "implemented": false,
+                  "release": "R48"
+                }
+              ],
+              "changes": [
+                {
+                  "area": "interior",
+                  "release": "R48",
+                  "text": "东五间真U形楼板/后房/两端侧房及护栏，前中央空间无满板；东、西有真实串通门。"
+                },
+                {
+                  "area": "interior",
+                  "release": "R48",
+                  "text": "西戏台朝东、独立两层观演块朝西，柱/竹式框架/后台两门和实体低台阶，西演出空域保持通高；圆罩和画位置只留框不假造通景画。"
+                }
+              ]
+            }
+          ],
+          "sourceIds": [
+            "SRC-122B76CC294D",
+            "SRC-682FEB59D5D3"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "room_partitions_portals_column_grid_levels_steps_floor",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "principal_furniture_type_count_location_facing_scale",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "function_specificity_worship_library_residential_exhibition",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "visible_missing_objects_and_unsupported_model_objects",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "inheritedImplementationOnly": "Prior implementation/evidence retained verbatim in baselineRecords and read-only original snapshot; NOT current-cycle visual acceptance."
+        }
+      },
+      "requiredChildIds": [
+        "FC-7C2F339F91"
+      ],
+      "expansionTaskIds": [
+        "EXPAND-06"
+      ],
+      "actualChanges": [],
+      "acceptanceRecords": [],
+      "currentCycleAccepted": false,
+      "optional": false,
+      "priority": 9001,
+      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views.",
+      "inheritedEvidenceSnapshot": "BASELINE-FIDELITY-SNAPSHOT.json",
+      "baselineProgressPolicy": "Existing accepted flags, reviewed-retained state, claims, source links, and geometry remain unchanged. This queue records a separate full-scope review."
+    },
+    {
+      "id": "FC-A1EA21A7C3",
+      "name": "古华轩",
+      "section": "J",
+      "parentText": "宁寿宫花园第一进",
+      "nature": "建筑或构筑物",
+      "sourceLine": 732,
+      "cautions": "敞轩三开间、灯笼锦落地罩、楠木贴雕天花、古楸与回廊；照片覆盖敞轩内檐，非封闭寝居室；2025修缮后细节应与新闻图对照",
+      "kind": "building_or_structure_candidate",
+      "release": "R67-J",
+      "entityId": "FC-A1EA21A7C3",
+      "entityCountStatus": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
+      "aliases": [],
+      "parentCandidates": [
+        "FC-453DB70001",
+        "FC-E66DFE768F"
+      ],
+      "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+      "registryBindings": [
+        {
+          "repositoryId": "place-ningshou-a1ea21a7c3",
+          "repositoryName": "古华轩",
+          "reviewObjectId": "FC-A1EA21A7C3",
+          "canonicalName": "古华轩",
+          "registryRef": "data/architecture/building-fidelity.json#/buildings/16",
+          "mappingBasis": "exact-name-candidate",
+          "physicalIdentityVerified": false
+        }
+      ],
+      "placeBindings": [
+        {
+          "repositoryId": "place-ningshou-a1ea21a7c3",
+          "repositoryName": "古华轩",
+          "reviewObjectId": "FC-A1EA21A7C3",
+          "canonicalName": "古华轩",
+          "registryRef": "data/places/zh-CN.json#/places/130",
+          "mappingBasis": "exact-name-candidate",
+          "physicalIdentityVerified": false
+        }
+      ],
+      "runtimeBindings": [
+        {
+          "inventoryId": "RI-73EE6F0FCB18",
+          "ref": "data/zones/ningshou.json#/items/17",
+          "kind": "hall",
+          "bindingStatus": "STATIC_DECLARATION_NOT_CURRENT_RENDER_PROOF"
+        }
+      ],
+      "bindingStatus": "EXISTING_DECLARATIVE_CANDIDATE",
+      "identitySourceIds": [
+        "SRC-31E38BD1C714"
+      ],
+      "sourceEvidence": {
+        "exterior": {
+          "inputStatus": "INPUT_REFERENCED_STATIC_IMAGE_OR_PDF_NOT_REOPENED",
+          "inputText": "[古华轩](<https://img.dpm.org.cn/Uploads/Picture/2017/04/26/s58ffed5fb9342.jpg>)；[古华轩彩画](<https://img.dpm.org.cn/Uploads/Picture/dc/1500[1024].jpg>)",
+          "sourceIds": [
+            "SRC-1E3AFF08FADF",
+            "SRC-14318D6FA263"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        },
+        "interior": {
+          "inputStatus": "INPUT_REFERENCED_STATIC_IMAGE_OR_PDF_NOT_REOPENED",
+          "inputText": "[古华轩天花](<https://img.dpm.org.cn/Uploads/Picture/dc/1501[1024].jpg>)",
+          "sourceIds": [
+            "SRC-F42A2ABD8DB3"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        }
+      },
+      "facets": {
+        "exterior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": true,
+          "baselineRecords": [
+            {
+              "registryId": "place-ningshou-a1ea21a7c3",
+              "value": {
+                "implementation": "dedicated-partial",
+                "dimensions": "includes-model-fits",
+                "accepted": false,
+                "unresolved": [
+                  "本批仅更正开放边界、柱间与低座栏关系；卷棚歇山顶及黄绿瓦色尚未更新。",
+                  "保留原模型0.5米台面，具体阶梯与现场入内许可未核实。"
+                ]
+              },
+              "targetState": "2025年修缮开放照片支持的恢复陈列外观；屏罩为传统工艺复制参考，不是未经改动的乾隆原物。",
+              "validation": {
+                "visual": "not-verified",
+                "nativePhone": "not-verified"
+              },
+              "review": null,
+              "claims": [
+                {
+                  "scope": "exterior",
+                  "text": "坐北朝南三间敞轩、周围廊和檐柱间低座；本批以拟合比例恢复开放边界，不增加封闭宫室。",
+                  "source": "https://www.dpm.org.cn/explore/building/236431.html",
+                  "targetState": "建筑关系结合2025年开放照片；尺寸非实测。",
+                  "implemented": true
+                },
+                {
+                  "scope": "exterior",
+                  "text": "卷棚歇山、黄瓦绿剪边。",
+                  "source": "https://www.dpm.org.cn/explore/building/236431.html",
+                  "targetState": "官方建筑描述；本批保留旧近似屋顶，尚未实施此项。",
+                  "implemented": false
+                }
+              ],
+              "changes": [
+                {
+                  "profile": "guhua-open-restored-2025-fit-v1",
+                  "area": "exterior",
+                  "summary": "三间开放边界与红座绿栏，入口贯通；原近似屋顶未改。"
+                }
+              ]
+            }
+          ],
+          "sourceIds": [
+            "SRC-1E3AFF08FADF",
+            "SRC-14318D6FA263"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "footprint_orientation_court_connections",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "bays_columns_brackets_beams_paint_zones",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "doors_windows_openings_walls_screens",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "terrace_steps_imperial_ramp_rails_posts",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "plaques_text_placement_orientation_occlusion",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "unique_courtyard_facilities_locations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "inheritedImplementationOnly": "Prior implementation/evidence retained verbatim in baselineRecords and read-only original snapshot; NOT current-cycle visual acceptance."
+        },
+        "interior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": true,
+          "baselineRecords": [
+            {
+              "registryId": "place-ningshou-a1ea21a7c3",
+              "value": {
+                "implementation": "dedicated-partial",
+                "dimensions": "includes-model-fits",
+                "accepted": false,
+                "unresolved": [
+                  "环廊进深、三间等分柱轴、开口、座凳和屏罩尺寸为模型拟合。",
+                  "仅做素色格架轮廓；未复刻光绪纹样、完整花卉浮雕天花或全部陈设。"
+                ]
+              },
+              "targetState": "2025年修缮开放照片支持的恢复陈列外观；屏罩为传统工艺复制参考，不是未经改动的乾隆原物。",
+              "validation": {
+                "visual": "not-verified",
+                "nativePhone": "not-verified"
+              },
+              "review": null,
+              "claims": [
+                {
+                  "scope": "interior",
+                  "text": "内柱间以通透落地花罩分隔内外空间，中央可见连续无门通道；本批仅为简化格架。",
+                  "source": "https://img.dpm.org.cn/Uploads/image/2025/09/29/c2f44b867bfa08-NeYmtDOcI218985.png",
+                  "targetState": "2025年修缮开放照片支持的恢复陈列外观；屏罩为传统工艺复制参考，不是未经改动的乾隆原物。照片随开放公告刊载，具体拍摄时刻未记。",
+                  "implemented": true
+                }
+              ],
+              "changes": [
+                {
+                  "profile": "guhua-open-restored-2025-fit-v1",
+                  "area": "interior",
+                  "summary": "去除通用封闭厅堂及桌椅预设，补通透格架、环廊与素格顶；不宣称陈设本来空无一物。"
+                }
+              ]
+            }
+          ],
+          "sourceIds": [
+            "SRC-F42A2ABD8DB3"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "room_partitions_portals_column_grid_levels_steps_floor",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "principal_furniture_type_count_location_facing_scale",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "function_specificity_worship_library_residential_exhibition",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "visible_missing_objects_and_unsupported_model_objects",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "inheritedImplementationOnly": "Prior implementation/evidence retained verbatim in baselineRecords and read-only original snapshot; NOT current-cycle visual acceptance."
+        }
+      },
+      "requiredChildIds": [],
+      "expansionTaskIds": [
+        "EXPAND-06"
+      ],
+      "actualChanges": [],
+      "acceptanceRecords": [],
+      "currentCycleAccepted": false,
+      "optional": false,
+      "priority": 9002,
+      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views.",
+      "inheritedEvidenceSnapshot": "BASELINE-FIDELITY-SNAPSHOT.json",
+      "baselineProgressPolicy": "Existing accepted flags, reviewed-retained state, claims, source links, and geometry remain unchanged. This queue records a separate full-scope review."
+    },
+    {
+      "id": "FC-F5886C9CA9",
+      "name": "露台",
+      "section": "J",
+      "parentText": "宁寿宫花园第一进东侧",
+      "nature": "建筑或构筑物",
+      "sourceLine": 733,
+      "cautions": "假山顶部白石栏杆、蹬道、露台与洞门层次；图片只示台外；洞内佛龛/经文未见；官网标题露台，近年新闻称承露台",
+      "kind": "building_or_structure_candidate",
+      "release": "R67-J",
+      "entityId": "FC-F5886C9CA9",
+      "entityCountStatus": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
+      "aliases": [],
+      "parentCandidates": [
+        "FC-453DB70001",
+        "FC-E66DFE768F"
+      ],
+      "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+      "registryBindings": [],
+      "placeBindings": [],
+      "runtimeBindings": [],
+      "bindingStatus": "MISSING_MODEL_OR_UNBOUND_REQUIRES_SCENE_CHECK",
+      "identitySourceIds": [
+        "SRC-B5A6B498B2E1"
+      ],
+      "sourceEvidence": {
+        "exterior": {
+          "inputStatus": "INPUT_REFERENCED_STATIC_IMAGE_OR_PDF_NOT_REOPENED",
+          "inputText": "[露台](<https://img.dpm.org.cn/Uploads/Picture/dc/1518[1024].jpg>)",
+          "sourceIds": [
+            "SRC-07A563497DBC"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        },
+        "interior": {
+          "inputStatus": "NO_CONFIRMED_IMAGE_IN_INPUT",
+          "inputText": "未找到可确认的本项室内图；待补",
+          "sourceIds": [],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        }
+      },
+      "facets": {
+        "exterior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [
+            "SRC-07A563497DBC"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "footprint_orientation_court_connections",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "bays_columns_brackets_beams_paint_zones",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "doors_windows_openings_walls_screens",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "terrace_steps_imperial_ramp_rails_posts",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "plaques_text_placement_orientation_occlusion",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "unique_courtyard_facilities_locations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+        },
+        "interior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "room_partitions_portals_column_grid_levels_steps_floor",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "principal_furniture_type_count_location_facing_scale",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "function_specificity_worship_library_residential_exhibition",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "visible_missing_objects_and_unsupported_model_objects",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+        }
+      },
+      "requiredChildIds": [],
+      "expansionTaskIds": [
+        "EXPAND-06"
+      ],
+      "actualChanges": [],
+      "acceptanceRecords": [],
+      "currentCycleAccepted": false,
+      "optional": false,
+      "priority": 9003,
+      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views."
+    },
+    {
+      "id": "FC-FADD286B97",
+      "name": "禊赏亭",
+      "section": "J",
+      "parentText": "宁寿宫花园第一进西侧 / 宁寿宫花园（乾隆花园）",
+      "nature": "建筑或构筑物",
+      "sourceLine": 734,
+      "cautions": "亭内流杯渠平面、柱位、栏板、抱厦及竹纹装修；照片可核亭内开敞空间，但三面屋顶和暗渠剖面需另证",
+      "kind": "building_or_structure_candidate",
+      "release": "R67-J",
+      "entityId": "FC-FADD286B97",
+      "entityCountStatus": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
+      "aliases": [],
+      "parentCandidates": [
+        "FC-453DB70001",
+        "FC-E66DFE768F"
+      ],
+      "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+      "registryBindings": [
+        {
+          "repositoryId": "place-ningshou-fadd286b97",
+          "repositoryName": "禊赏亭",
+          "reviewObjectId": "FC-FADD286B97",
+          "canonicalName": "禊赏亭",
+          "registryRef": "data/architecture/building-fidelity.json#/buildings/17",
+          "mappingBasis": "exact-name-candidate",
+          "physicalIdentityVerified": false
+        }
+      ],
+      "placeBindings": [
+        {
+          "repositoryId": "place-ningshou-fadd286b97",
+          "repositoryName": "禊赏亭",
+          "reviewObjectId": "FC-FADD286B97",
+          "canonicalName": "禊赏亭",
+          "registryRef": "data/places/zh-CN.json#/places/131",
+          "mappingBasis": "exact-name-candidate",
+          "physicalIdentityVerified": false
+        }
+      ],
+      "runtimeBindings": [
+        {
+          "inventoryId": "RI-E900F5BD2F05",
+          "ref": "data/zones/ningshou.json#/items/18",
+          "kind": "hall",
+          "bindingStatus": "STATIC_DECLARATION_NOT_CURRENT_RENDER_PROOF"
+        }
+      ],
+      "bindingStatus": "EXISTING_DECLARATIVE_CANDIDATE",
+      "identitySourceIds": [
+        "SRC-AAA6BFC306A0"
+      ],
+      "sourceEvidence": {
+        "exterior": {
+          "inputStatus": "PANORAMA_ENTRY_INTERIOR_EXTERIOR_UNCONFIRMED",
+          "inputText": "[全景入口（未判定内外景）](<https://pano.dpm.org.cn/#/panorama?regionId=71&secondAreaId=152&vpId=3602&sphPicId=1943201179423784960>)",
+          "sourceIds": [
+            "SRC-42A27A472EF6"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        },
+        "interior": {
+          "inputStatus": "INPUT_DECLARED_INTERIOR_THUMBNAIL_VIEWED_NOT_FULL_360",
+          "inputText": "[流杯渠](<https://img.dpm.org.cn/Uploads/Picture/dc/2671[1024].jpg>)；[禊赏亭](<https://img.dpm.org.cn/Uploads/Picture/2017/04/26/s58ffed5fbf403.jpg>)；[内景缩略图已核：禊赏亭内](<https://pano.dpm.org.cn/#/panorama?regionId=71&secondAreaId=152&vpId=3602&sphPicId=1943201179423784960>)",
+          "sourceIds": [
+            "SRC-E1C6B8B09A54",
+            "SRC-144C46293B0B",
+            "SRC-42A27A472EF6"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        }
+      },
+      "facets": {
+        "exterior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": true,
+          "baselineRecords": [
+            {
+              "registryId": "place-ningshou-fadd286b97",
+              "value": {
+                "implementation": "dedicated-partial",
+                "dimensions": "includes-model-fits",
+                "accepted": false,
+                "unresolved": [
+                  "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。",
+                  "曲水精确二十七米路径、云龙竹纹雕刻和真实山石尺寸未取得，均未伪造。",
+                  "2026 年逐件陈设清单和实际开放许可未知。",
+                  "保留原场景包络 6.7 × 12.4，台基 0.5，檐柱高 4.5；均为模型适配尺寸而非实测。",
+                  "门净宽、廊宽、柱径、窗格密度、卷棚曲率、楼板/天花标高和装饰均局部拟合。",
+                  "当前仅注册一个地面游戏查看房间；其数量不代表历史房间数。",
+                  "材质改正常 FrontSide；专用屋面为0.075m拟合厚壳，真实向上瓦面、向下底面和封边，不靠双面材质遮掩开口；并不代表实测瓦作厚度。",
+                  "侧卷棚基面上调0.35m回接柱头，避免局部柱顶穿瓦；主攒尖和三投影仍为同一层亭。",
+                  "局部变化不等于完整建筑或现存陈设验收。"
+                ]
+              },
+              "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
+              "validation": {
+                "visual": "not-verified",
+                "nativePhone": "not-verified"
+              },
+              "review": {
+                "status": "actual-change",
+                "changes": [
+                  "转向东方并保留原世界包络；凸字复合屋顶、三面突出体、石栏。",
+                  "卷棚端部闭合、下表面及素面承托框，修复空隙和端部角缺片。"
+                ]
+              },
+              "claims": [
+                {
+                  "scope": "exterior",
+                  "text": "坐西朝东、三间，前出抱厦，凸字形复合屋顶。",
+                  "source": "https://www.dpm.org.cn/explore/building/236514.html",
+                  "targetState": "按官方文字或选定照片理解局部形制；照片拍摄日期及完整当前库存未核定。",
+                  "implemented": false,
+                  "release": "R48"
+                },
+                {
+                  "scope": "exterior",
+                  "text": "三面卷棚歇山出檐与中部四角攒尖，黄瓦绿边；后有黑漆云龙屏。",
+                  "source": "https://www.dpm.org.cn/explore/building/236514.html",
+                  "targetState": "按官方文字或选定照片理解局部形制；照片拍摄日期及完整当前库存未核定。",
+                  "implemented": false,
+                  "release": "R48"
+                }
+              ],
+              "changes": [
+                {
+                  "area": "exterior",
+                  "release": "R48",
+                  "text": "转向东方并保留原世界包络；凸字复合屋顶、三面突出体、石栏。"
+                },
+                {
+                  "area": "exterior",
+                  "release": "R48",
+                  "text": "卷棚端部闭合、下表面及素面承托框，修复空隙和端部角缺片。"
+                }
+              ]
+            }
+          ],
+          "sourceIds": [
+            "SRC-42A27A472EF6"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "footprint_orientation_court_connections",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "bays_columns_brackets_beams_paint_zones",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "doors_windows_openings_walls_screens",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "terrace_steps_imperial_ramp_rails_posts",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "plaques_text_placement_orientation_occlusion",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "unique_courtyard_facilities_locations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "inheritedImplementationOnly": "Prior implementation/evidence retained verbatim in baselineRecords and read-only original snapshot; NOT current-cycle visual acceptance."
+        },
+        "interior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": true,
+          "baselineRecords": [
+            {
+              "registryId": "place-ningshou-fadd286b97",
+              "value": {
+                "implementation": "dedicated-partial",
+                "dimensions": "includes-model-fits",
+                "accepted": false,
+                "unresolved": [
+                  "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。",
+                  "曲水精确二十七米路径、云龙竹纹雕刻和真实山石尺寸未取得，均未伪造。",
+                  "2026 年逐件陈设清单和实际开放许可未知。",
+                  "保留原场景包络 6.7 × 12.4，台基 0.5，檐柱高 4.5；均为模型适配尺寸而非实测。",
+                  "门净宽、廊宽、柱径、窗格密度、卷棚曲率、楼板/天花标高和装饰均局部拟合。",
+                  "当前仅注册一个地面游戏查看房间；其数量不代表历史房间数。",
+                  "材质改正常 FrontSide；专用屋面为0.075m拟合厚壳，真实向上瓦面、向下底面和封边，不靠双面材质遮掩开口；并不代表实测瓦作厚度。",
+                  "侧卷棚基面上调0.35m回接柱头，避免局部柱顶穿瓦；主攒尖和三投影仍为同一层亭。",
+                  "局部变化不等于完整建筑或现存陈设验收。"
+                ]
+              },
+              "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
+              "validation": {
+                "visual": "not-verified",
+                "nativePhone": "not-verified"
+              },
+              "review": {
+                "status": "actual-change",
+                "changes": [
+                  "后侧黑屏；分割石铺地中有真实浅沟，不是在实心板上贴蓝线；简化竹栏。"
+                ]
+              },
+              "claims": [
+                {
+                  "scope": "interior",
+                  "text": "抱厦石渠流杯，原渠长二十七米；石栏题材为竹。",
+                  "source": "https://www.dpm.org.cn/explore/building/236514.html",
+                  "targetState": "按官方文字或选定照片理解局部形制；照片拍摄日期及完整当前库存未核定。",
+                  "implemented": false,
+                  "release": "R48"
+                }
+              ],
+              "changes": [
+                {
+                  "area": "interior",
+                  "release": "R48",
+                  "text": "后侧黑屏；分割石铺地中有真实浅沟，不是在实心板上贴蓝线；简化竹栏。"
+                }
+              ]
+            }
+          ],
+          "sourceIds": [
+            "SRC-E1C6B8B09A54",
+            "SRC-144C46293B0B",
+            "SRC-42A27A472EF6"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "room_partitions_portals_column_grid_levels_steps_floor",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "principal_furniture_type_count_location_facing_scale",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "function_specificity_worship_library_residential_exhibition",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "visible_missing_objects_and_unsupported_model_objects",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "inheritedImplementationOnly": "Prior implementation/evidence retained verbatim in baselineRecords and read-only original snapshot; NOT current-cycle visual acceptance."
+        }
+      },
+      "requiredChildIds": [],
+      "expansionTaskIds": [
+        "EXPAND-06"
+      ],
+      "actualChanges": [],
+      "acceptanceRecords": [],
+      "currentCycleAccepted": false,
+      "optional": false,
+      "priority": 9004,
+      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views.",
+      "inheritedEvidenceSnapshot": "BASELINE-FIDELITY-SNAPSHOT.json",
+      "baselineProgressPolicy": "Existing accepted flags, reviewed-retained state, claims, source links, and geometry remain unchanged. This queue records a separate full-scope review."
+    },
+    {
+      "id": "FC-90734D8F6D",
+      "name": "旭辉庭",
+      "section": "J",
+      "parentText": "宁寿宫花园第一进西侧",
+      "nature": "建筑或构筑物",
+      "sourceLine": 735,
+      "cautions": "爬山廊高度变化、山石与台阶、门窗衔接；唯一静态图偏重南侧爬山廊，缺完整立面和室内",
+      "kind": "building_or_structure_candidate",
+      "release": "R67-J",
+      "entityId": "FC-90734D8F6D",
+      "entityCountStatus": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
+      "aliases": [],
+      "parentCandidates": [
+        "FC-453DB70001",
+        "FC-E66DFE768F"
+      ],
+      "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+      "registryBindings": [],
+      "placeBindings": [],
+      "runtimeBindings": [],
+      "bindingStatus": "MISSING_MODEL_OR_UNBOUND_REQUIRES_SCENE_CHECK",
+      "identitySourceIds": [
+        "SRC-440B8C146D41"
+      ],
+      "sourceEvidence": {
+        "exterior": {
+          "inputStatus": "INPUT_REFERENCED_STATIC_IMAGE_OR_PDF_NOT_REOPENED",
+          "inputText": "[旭辉庭南侧的爬山廊](<https://img.dpm.org.cn/Uploads/Picture/dc/1548[1024].jpg>)",
+          "sourceIds": [
+            "SRC-F56536FB2D91"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        },
+        "interior": {
+          "inputStatus": "NO_CONFIRMED_IMAGE_IN_INPUT",
+          "inputText": "未找到可确认的本项室内图；待补",
+          "sourceIds": [],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        }
+      },
+      "facets": {
+        "exterior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [
+            "SRC-F56536FB2D91"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "footprint_orientation_court_connections",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "bays_columns_brackets_beams_paint_zones",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "doors_windows_openings_walls_screens",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "terrace_steps_imperial_ramp_rails_posts",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "plaques_text_placement_orientation_occlusion",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "unique_courtyard_facilities_locations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+        },
+        "interior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "room_partitions_portals_column_grid_levels_steps_floor",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "principal_furniture_type_count_location_facing_scale",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "function_specificity_worship_library_residential_exhibition",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "visible_missing_objects_and_unsupported_model_objects",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+        }
+      },
+      "requiredChildIds": [],
+      "expansionTaskIds": [
+        "EXPAND-06"
+      ],
+      "actualChanges": [],
+      "acceptanceRecords": [],
+      "currentCycleAccepted": false,
+      "optional": false,
+      "priority": 9005,
+      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views."
+    },
+    {
+      "id": "FC-FA6119DC49",
+      "name": "矩亭",
+      "section": "J",
+      "parentText": "宁寿宫花园第一进·抑斋西侧",
+      "nature": "建筑或构筑物",
+      "sourceLine": 736,
+      "cautions": "编织纹天花、匾额和上部木装修；唯一图实际为仰视局部，不是全亭外观；平面与三方向廊道需补景",
+      "kind": "building_or_structure_candidate",
+      "release": "R67-J",
+      "entityId": "FC-FA6119DC49",
+      "entityCountStatus": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
+      "aliases": [],
+      "parentCandidates": [
+        "FC-453DB70001",
+        "FC-E66DFE768F"
+      ],
+      "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+      "registryBindings": [],
+      "placeBindings": [],
+      "runtimeBindings": [],
+      "bindingStatus": "MISSING_MODEL_OR_UNBOUND_REQUIRES_SCENE_CHECK",
+      "identitySourceIds": [
+        "SRC-6F10693C9E24"
+      ],
+      "sourceEvidence": {
+        "exterior": {
+          "inputStatus": "PAGE_ENTRY_SUBJECT_UNLOCATED",
+          "inputText": "[官方页/图集，主体待定位](<https://www.dpm.org.cn/explore/building/236510.html>)",
+          "sourceIds": [
+            "SRC-6F10693C9E24"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        },
+        "interior": {
+          "inputStatus": "INPUT_REFERENCED_STATIC_IMAGE_OR_PDF_NOT_REOPENED",
+          "inputText": "[矩亭](<https://img.dpm.org.cn/Uploads/Picture/dc/1513[1024].jpg>)",
+          "sourceIds": [
+            "SRC-EE611E436FEF"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        }
+      },
+      "facets": {
+        "exterior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [
+            "SRC-6F10693C9E24"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "footprint_orientation_court_connections",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "bays_columns_brackets_beams_paint_zones",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "doors_windows_openings_walls_screens",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "terrace_steps_imperial_ramp_rails_posts",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "plaques_text_placement_orientation_occlusion",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "unique_courtyard_facilities_locations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+        },
+        "interior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [
+            "SRC-EE611E436FEF"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "room_partitions_portals_column_grid_levels_steps_floor",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "principal_furniture_type_count_location_facing_scale",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "function_specificity_worship_library_residential_exhibition",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "visible_missing_objects_and_unsupported_model_objects",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+        }
+      },
+      "requiredChildIds": [],
+      "expansionTaskIds": [
+        "EXPAND-06"
+      ],
+      "actualChanges": [],
+      "acceptanceRecords": [],
+      "currentCycleAccepted": false,
+      "optional": false,
+      "priority": 9006,
+      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views."
+    },
+    {
+      "id": "FC-29F4099DA5",
+      "name": "抑斋",
+      "section": "J",
+      "parentText": "宁寿宫花园第一进东南小院",
+      "nature": "建筑或构筑物",
+      "sourceLine": 737,
+      "cautions": "两开间小斋、卷棚屋顶、前后廊和周边围墙；静态图为外观；佛龛隔断和通养性殿配殿的暗门待核",
+      "kind": "building_or_structure_candidate",
+      "release": "R67-J",
+      "entityId": "FC-29F4099DA5",
+      "entityCountStatus": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
+      "aliases": [],
+      "parentCandidates": [
+        "FC-453DB70001",
+        "FC-E66DFE768F"
+      ],
+      "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+      "registryBindings": [],
+      "placeBindings": [],
+      "runtimeBindings": [],
+      "bindingStatus": "MISSING_MODEL_OR_UNBOUND_REQUIRES_SCENE_CHECK",
+      "identitySourceIds": [
+        "SRC-F257A8010B94"
+      ],
+      "sourceEvidence": {
+        "exterior": {
+          "inputStatus": "INPUT_REFERENCED_STATIC_IMAGE_OR_PDF_NOT_REOPENED",
+          "inputText": "[抑斋](<https://img.dpm.org.cn/Uploads/Picture/dc/1557[1024].jpg>)",
+          "sourceIds": [
+            "SRC-CE9B1DAF3006"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        },
+        "interior": {
+          "inputStatus": "NO_CONFIRMED_IMAGE_IN_INPUT",
+          "inputText": "未找到可确认的本项室内图；待补",
+          "sourceIds": [],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        }
+      },
+      "facets": {
+        "exterior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [
+            "SRC-CE9B1DAF3006"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "footprint_orientation_court_connections",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "bays_columns_brackets_beams_paint_zones",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "doors_windows_openings_walls_screens",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "terrace_steps_imperial_ramp_rails_posts",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "plaques_text_placement_orientation_occlusion",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "unique_courtyard_facilities_locations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+        },
+        "interior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "room_partitions_portals_column_grid_levels_steps_floor",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "principal_furniture_type_count_location_facing_scale",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "function_specificity_worship_library_residential_exhibition",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "visible_missing_objects_and_unsupported_model_objects",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+        }
+      },
+      "requiredChildIds": [],
+      "expansionTaskIds": [
+        "EXPAND-06"
+      ],
+      "actualChanges": [],
+      "acceptanceRecords": [],
+      "currentCycleAccepted": false,
+      "optional": false,
+      "priority": 9007,
+      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views."
+    },
+    {
+      "id": "FC-AA65E64A96",
+      "name": "撷芳亭",
+      "section": "J",
+      "parentText": "宁寿宫花园第一进东南假山",
+      "nature": "建筑或构筑物",
+      "sourceLine": 738,
+      "cautions": "四角攒尖亭、白石坐凳栏杆及山上蹬道；开敞亭无独立封闭室内；天花、节点和背面待补",
+      "kind": "building_or_structure_candidate",
+      "release": "R67-J",
+      "entityId": "FC-AA65E64A96",
+      "entityCountStatus": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
+      "aliases": [],
+      "parentCandidates": [
+        "FC-453DB70001",
+        "FC-E66DFE768F"
+      ],
+      "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+      "registryBindings": [],
+      "placeBindings": [],
+      "runtimeBindings": [],
+      "bindingStatus": "MISSING_MODEL_OR_UNBOUND_REQUIRES_SCENE_CHECK",
+      "identitySourceIds": [
+        "SRC-A92EE513E1F6"
+      ],
+      "sourceEvidence": {
+        "exterior": {
+          "inputStatus": "INPUT_REFERENCED_STATIC_IMAGE_OR_PDF_NOT_REOPENED",
+          "inputText": "[撷芳亭](<https://img.dpm.org.cn/Uploads/Picture/dc/1983.jpg>)",
+          "sourceIds": [
+            "SRC-20CC07DC25B0"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        },
+        "interior": {
+          "inputStatus": "NO_CONFIRMED_IMAGE_IN_INPUT",
+          "inputText": "未找到可确认的本项室内图；待补",
+          "sourceIds": [],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        }
+      },
+      "facets": {
+        "exterior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [
+            "SRC-20CC07DC25B0"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "footprint_orientation_court_connections",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "bays_columns_brackets_beams_paint_zones",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "doors_windows_openings_walls_screens",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "terrace_steps_imperial_ramp_rails_posts",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "plaques_text_placement_orientation_occlusion",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "unique_courtyard_facilities_locations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+        },
+        "interior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "room_partitions_portals_column_grid_levels_steps_floor",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "principal_furniture_type_count_location_facing_scale",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "function_specificity_worship_library_residential_exhibition",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "visible_missing_objects_and_unsupported_model_objects",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+        }
+      },
+      "requiredChildIds": [],
+      "expansionTaskIds": [
+        "EXPAND-06"
+      ],
+      "actualChanges": [],
+      "acceptanceRecords": [],
+      "currentCycleAccepted": false,
+      "optional": false,
+      "priority": 9008,
+      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views."
+    },
+    {
+      "id": "FC-E604D58704",
+      "name": "遂初堂",
+      "section": "J",
+      "parentText": "宁寿宫花园第二进",
+      "nature": "建筑或构筑物",
+      "sourceLine": 739,
+      "cautions": "五开间、前后廊、虎皮石墙基与三合院廊道；2025已在遂初堂及东西配殿设展；旧照片不能代表现行室内；新闻图房间归属待定位",
+      "kind": "building_or_structure_candidate",
+      "release": "R67-J",
+      "entityId": "FC-E604D58704",
+      "entityCountStatus": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
+      "aliases": [],
+      "parentCandidates": [
+        "FC-453DB70001",
+        "FC-E66DFE768F"
+      ],
+      "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+      "registryBindings": [
+        {
+          "repositoryId": "place-ningshou-e604d58704",
+          "repositoryName": "遂初堂",
+          "reviewObjectId": "FC-E604D58704",
+          "canonicalName": "遂初堂",
+          "registryRef": "data/architecture/building-fidelity.json#/buildings/18",
+          "mappingBasis": "exact-name-candidate",
+          "physicalIdentityVerified": false
+        }
+      ],
+      "placeBindings": [
+        {
+          "repositoryId": "place-ningshou-e604d58704",
+          "repositoryName": "遂初堂",
+          "reviewObjectId": "FC-E604D58704",
+          "canonicalName": "遂初堂",
+          "registryRef": "data/places/zh-CN.json#/places/132",
+          "mappingBasis": "exact-name-candidate",
+          "physicalIdentityVerified": false
+        }
+      ],
+      "runtimeBindings": [
+        {
+          "inventoryId": "RI-92F4E06A65ED",
+          "ref": "data/zones/ningshou.json#/items/19",
+          "kind": "hall",
+          "bindingStatus": "STATIC_DECLARATION_NOT_CURRENT_RENDER_PROOF"
+        }
+      ],
+      "bindingStatus": "EXISTING_DECLARATIVE_CANDIDATE",
+      "identitySourceIds": [
+        "SRC-800A2143A4EE"
+      ],
+      "sourceEvidence": {
+        "exterior": {
+          "inputStatus": "INPUT_REFERENCED_STATIC_IMAGE_OR_PDF_NOT_REOPENED",
+          "inputText": "[遂初堂](<https://img.dpm.org.cn/Uploads/Picture/dc/1533[1024].jpg>)",
+          "sourceIds": [
+            "SRC-628406C28CFC"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        },
+        "interior": {
+          "inputStatus": "NO_CONFIRMED_IMAGE_IN_INPUT",
+          "inputText": "未找到可确认的本项室内图；待补",
+          "sourceIds": [],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        }
+      },
+      "facets": {
+        "exterior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": true,
+          "baselineRecords": [
+            {
+              "registryId": "place-ningshou-e604d58704",
+              "value": {
+                "implementation": "dedicated-partial",
+                "dimensions": "includes-model-fits",
+                "accepted": false,
+                "unresolved": [
+                  "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。",
+                  "历次改装后的完整现状内檐装修与陈设未知。",
+                  "2026 年逐件陈设清单和实际开放许可未知。",
+                  "保留原场景包络 17.1 × 10.1，台基 0.5，檐柱高 5.5；均为模型适配尺寸而非实测。",
+                  "门净宽、廊宽、柱径、窗格密度、卷棚曲率、楼板/天花标高和装饰均局部拟合。",
+                  "当前仅注册一个地面游戏查看房间；其数量不代表历史房间数。",
+                  "材质改正常 FrontSide；专用屋面为0.075m拟合厚壳，真实向上瓦面、向下底面和封边，不靠双面材质遮掩开口；并不代表实测瓦作厚度。",
+                  "局部变化不等于完整建筑或现存陈设验收。"
+                ]
+              },
+              "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
+              "validation": {
+                "visual": "not-verified",
+                "nativePhone": "not-verified"
+              },
+              "review": {
+                "status": "actual-change",
+                "changes": [
+                  "五间柱网、前后内外廊柱、无正脊卷棚歇山形体、绿瓦黄边、步步锦式简化窗。",
+                  "卷棚端部闭合、下表面及素面承托框，修复空隙和端部角缺片。"
+                ]
+              },
+              "claims": [
+                {
+                  "scope": "exterior",
+                  "text": "五间面阔、三间进深，前后廊；绿瓦黄剪边卷棚歇山顶。",
+                  "source": "https://www.dpm.org.cn/explore/building/236512.html",
+                  "targetState": "按官方文字或选定照片理解局部形制；照片拍摄日期及完整当前库存未核定。",
+                  "implemented": false,
+                  "release": "R48"
+                },
+                {
+                  "scope": "exterior",
+                  "text": "明间为穿堂，两面开门，其余间设窗。",
+                  "source": "https://www.dpm.org.cn/explore/building/236512.html",
+                  "targetState": "按官方文字或选定照片理解局部形制；照片拍摄日期及完整当前库存未核定。",
+                  "implemented": false,
+                  "release": "R48"
+                }
+              ],
+              "changes": [
+                {
+                  "area": "exterior",
+                  "release": "R48",
+                  "text": "五间柱网、前后内外廊柱、无正脊卷棚歇山形体、绿瓦黄边、步步锦式简化窗。"
+                },
+                {
+                  "area": "exterior",
+                  "release": "R48",
+                  "text": "卷棚端部闭合、下表面及素面承托框，修复空隙和端部角缺片。"
+                }
+              ]
+            }
+          ],
+          "sourceIds": [
+            "SRC-628406C28CFC"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "footprint_orientation_court_connections",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "bays_columns_brackets_beams_paint_zones",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "doors_windows_openings_walls_screens",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "terrace_steps_imperial_ramp_rails_posts",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "plaques_text_placement_orientation_occlusion",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "unique_courtyard_facilities_locations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "inheritedImplementationOnly": "Prior implementation/evidence retained verbatim in baselineRecords and read-only original snapshot; NOT current-cycle visual acceptance."
+        },
+        "interior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": true,
+          "baselineRecords": [
+            {
+              "registryId": "place-ningshou-e604d58704",
+              "value": {
+                "implementation": "dedicated-partial",
+                "dimensions": "includes-model-fits",
+                "accepted": false,
+                "unresolved": [
+                  "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。",
+                  "历次改装后的完整现状内檐装修与陈设未知。",
+                  "2026 年逐件陈设清单和实际开放许可未知。",
+                  "保留原场景包络 17.1 × 10.1，台基 0.5，檐柱高 5.5；均为模型适配尺寸而非实测。",
+                  "门净宽、廊宽、柱径、窗格密度、卷棚曲率、楼板/天花标高和装饰均局部拟合。",
+                  "当前仅注册一个地面游戏查看房间；其数量不代表历史房间数。",
+                  "材质改正常 FrontSide；专用屋面为0.075m拟合厚壳，真实向上瓦面、向下底面和封边，不靠双面材质遮掩开口；并不代表实测瓦作厚度。",
+                  "局部变化不等于完整建筑或现存陈设验收。"
+                ]
+              },
+              "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
+              "validation": {
+                "visual": "not-verified",
+                "nativePhone": "not-verified"
+              },
+              "review": {
+                "status": "actual-change",
+                "changes": [
+                  "明间前后贯通，实体围护与分格天花；侧边原占位柜凳保留并标未核实。"
+                ],
+                "evidence": [
+                  {
+                    "source": "https://www.dpm.org.cn/explore/building/236512.html",
+                    "claim": "明间穿堂、前后开门",
+                    "targetState": "官方建筑形制文字；现存陈设日期未核。",
+                    "relationship": "前后门/穿堂文字支持贯通拓扑；分格天花、具体净宽与门姿态为模型拟合，不由此证明现存陈设。"
+                  }
+                ]
+              },
+              "claims": [],
+              "changes": [
+                {
+                  "area": "interior",
+                  "release": "R48",
+                  "text": "明间前后贯通，实体围护与分格天花；侧边原占位柜凳保留并标未核实。"
+                }
+              ]
+            }
+          ],
+          "sourceIds": [],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "room_partitions_portals_column_grid_levels_steps_floor",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "principal_furniture_type_count_location_facing_scale",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "function_specificity_worship_library_residential_exhibition",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "visible_missing_objects_and_unsupported_model_objects",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "inheritedImplementationOnly": "Prior implementation/evidence retained verbatim in baselineRecords and read-only original snapshot; NOT current-cycle visual acceptance."
+        }
+      },
+      "requiredChildIds": [],
+      "expansionTaskIds": [
+        "EXPAND-06"
+      ],
+      "actualChanges": [],
+      "acceptanceRecords": [],
+      "currentCycleAccepted": false,
+      "optional": false,
+      "priority": 9009,
+      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views.",
+      "inheritedEvidenceSnapshot": "BASELINE-FIDELITY-SNAPSHOT.json",
+      "baselineProgressPolicy": "Existing accepted flags, reviewed-retained state, claims, source links, and geometry remain unchanged. This queue records a separate full-scope review."
+    },
+    {
+      "id": "FC-4B9C091388",
+      "name": "耸秀亭",
+      "section": "J",
+      "parentText": "宁寿宫花园第三进假山",
+      "nature": "建筑或构筑物",
+      "sourceLine": 740,
+      "cautions": "四角攒尖亭、倒挂楣子、坐凳栏杆和山顶相对位置；开敞亭；静态单视角不足说明天桥/山洞完整路径",
+      "kind": "building_or_structure_candidate",
+      "release": "R67-J",
+      "entityId": "FC-4B9C091388",
+      "entityCountStatus": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
+      "aliases": [],
+      "parentCandidates": [
+        "FC-453DB70001",
+        "FC-E66DFE768F"
+      ],
+      "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+      "registryBindings": [],
+      "placeBindings": [],
+      "runtimeBindings": [],
+      "bindingStatus": "MISSING_MODEL_OR_UNBOUND_REQUIRES_SCENE_CHECK",
+      "identitySourceIds": [
+        "SRC-43DFE0CD4D9D"
+      ],
+      "sourceEvidence": {
+        "exterior": {
+          "inputStatus": "INPUT_REFERENCED_STATIC_IMAGE_OR_PDF_NOT_REOPENED",
+          "inputText": "[耸秀亭](<https://img.dpm.org.cn/Uploads/Picture/dc/1532[1024].jpg>)",
+          "sourceIds": [
+            "SRC-70590093DAED"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        },
+        "interior": {
+          "inputStatus": "NO_CONFIRMED_IMAGE_IN_INPUT",
+          "inputText": "未找到可确认的本项室内图；待补",
+          "sourceIds": [],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        }
+      },
+      "facets": {
+        "exterior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [
+            "SRC-70590093DAED"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "footprint_orientation_court_connections",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "bays_columns_brackets_beams_paint_zones",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "doors_windows_openings_walls_screens",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "terrace_steps_imperial_ramp_rails_posts",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "plaques_text_placement_orientation_occlusion",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "unique_courtyard_facilities_locations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+        },
+        "interior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "room_partitions_portals_column_grid_levels_steps_floor",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "principal_furniture_type_count_location_facing_scale",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "function_specificity_worship_library_residential_exhibition",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "visible_missing_objects_and_unsupported_model_objects",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+        }
+      },
+      "requiredChildIds": [],
+      "expansionTaskIds": [
+        "EXPAND-06"
+      ],
+      "actualChanges": [],
+      "acceptanceRecords": [],
+      "currentCycleAccepted": false,
+      "optional": false,
+      "priority": 9010,
+      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views."
+    },
+    {
+      "id": "FC-B6CDE8615B",
+      "name": "萃赏楼",
+      "section": "J",
+      "parentText": "宁寿宫花园第三进北部",
+      "nature": "建筑或构筑物",
+      "sourceLine": 741,
+      "cautions": "两层立面、明暗廊区分、雕花栏杆和通碧螺亭的小石桥；仅外景；内部、二层石桥接点、连接云光楼的廊道待核",
+      "kind": "building_or_structure_candidate",
+      "release": "R67-J",
+      "entityId": "FC-B6CDE8615B",
+      "entityCountStatus": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
+      "aliases": [],
+      "parentCandidates": [
+        "FC-453DB70001",
+        "FC-E66DFE768F"
+      ],
+      "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+      "registryBindings": [
+        {
+          "repositoryId": "place-ningshou-b6cde8615b",
+          "repositoryName": "萃赏楼",
+          "reviewObjectId": "FC-B6CDE8615B",
+          "canonicalName": "萃赏楼",
+          "registryRef": "data/architecture/building-fidelity.json#/buildings/20",
+          "mappingBasis": "exact-name-candidate",
+          "physicalIdentityVerified": false
+        }
+      ],
+      "placeBindings": [
+        {
+          "repositoryId": "place-ningshou-b6cde8615b",
+          "repositoryName": "萃赏楼",
+          "reviewObjectId": "FC-B6CDE8615B",
+          "canonicalName": "萃赏楼",
+          "registryRef": "data/places/zh-CN.json#/places/134",
+          "mappingBasis": "exact-name-candidate",
+          "physicalIdentityVerified": false
+        }
+      ],
+      "runtimeBindings": [
+        {
+          "inventoryId": "RI-E82014302B76",
+          "ref": "data/zones/ningshou.json#/items/21",
+          "kind": "hall",
+          "bindingStatus": "STATIC_DECLARATION_NOT_CURRENT_RENDER_PROOF"
+        }
+      ],
+      "bindingStatus": "EXISTING_DECLARATIVE_CANDIDATE",
+      "identitySourceIds": [
+        "SRC-B14A20AA4E2A"
+      ],
+      "sourceEvidence": {
+        "exterior": {
+          "inputStatus": "INPUT_REFERENCED_STATIC_IMAGE_OR_PDF_NOT_REOPENED",
+          "inputText": "[萃赏楼](<https://img.dpm.org.cn/Uploads/Picture/dc/1496.jpg>)",
+          "sourceIds": [
+            "SRC-9CCA366E5805"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        },
+        "interior": {
+          "inputStatus": "NO_CONFIRMED_IMAGE_IN_INPUT",
+          "inputText": "未找到可确认的本项室内图；待补",
+          "sourceIds": [],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        }
+      },
+      "facets": {
+        "exterior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": true,
+          "baselineRecords": [
+            {
+              "registryId": "place-ningshou-b6cde8615b",
+              "value": {
+                "implementation": "dedicated-partial",
+                "dimensions": "includes-model-fits",
+                "accepted": false,
+                "unresolved": [
+                  "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。",
+                  "本次不创建未拟合的碧螺高桥或云光楼接口，不声称完整园林登临路线。",
+                  "细木隔断、玻璃画、精确旧陈设及楼梯位置未知。",
+                  "2026 年逐件陈设清单与现场开放许可未知。",
+                  "保留原包络 20.5 × 10.9、台基 0.5、总檐柱高度 8.0；上层楼板标高 y=4.3，均为模型适配而非测量。",
+                  "栏杆、门窗、分区深度、柱径、阶梯和装饰为有据拓扑下的几何拟合。",
+                  "只登记一个地面查看房间/一个地图身份；不把它当历史房间数。",
+                  "材质改正常 FrontSide；专用屋面为0.075m拟合厚壳，真实向上瓦面、向下底面和封边，不靠双面材质遮掩开口；并不代表实测瓦作厚度。",
+                  "局部变化不等于完整建筑或现存陈设验收。"
+                ]
+              },
+              "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
+              "validation": {
+                "visual": "not-verified",
+                "nativePhone": "not-verified"
+              },
+              "review": {
+                "status": "actual-change",
+                "changes": [
+                  "实体二层及分层柱网，前后廊和单卷棚屋顶；上层前西梢间单独封闭。",
+                  "卷棚端部闭合、下表面及素面承托框，修复空隙和端部角缺片。"
+                ]
+              },
+              "claims": [
+                {
+                  "scope": "exterior",
+                  "text": "上下二层、各五间，前后廊，黄瓦绿边卷棚歇山顶。",
+                  "source": "https://www.dpm.org.cn/explore/building/236433.html",
+                  "targetState": "按官方文字或选定照片理解局部形制；照片拍摄日期及完整当前库存未核定。",
+                  "implemented": false,
+                  "release": "R48"
+                }
+              ],
+              "changes": [
+                {
+                  "area": "exterior",
+                  "release": "R48",
+                  "text": "实体二层及分层柱网，前后廊和单卷棚屋顶；上层前西梢间单独封闭。"
+                },
+                {
+                  "area": "exterior",
+                  "release": "R48",
+                  "text": "卷棚端部闭合、下表面及素面承托框，修复空隙和端部角缺片。"
+                }
+              ]
+            }
+          ],
+          "sourceIds": [
+            "SRC-9CCA366E5805"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "footprint_orientation_court_connections",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "bays_columns_brackets_beams_paint_zones",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "doors_windows_openings_walls_screens",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "terrace_steps_imperial_ramp_rails_posts",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "plaques_text_placement_orientation_occlusion",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "unique_courtyard_facilities_locations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "inheritedImplementationOnly": "Prior implementation/evidence retained verbatim in baselineRecords and read-only original snapshot; NOT current-cycle visual acceptance."
+        },
+        "interior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": true,
+          "baselineRecords": [
+            {
+              "registryId": "place-ningshou-b6cde8615b",
+              "value": {
+                "implementation": "dedicated-partial",
+                "dimensions": "includes-model-fits",
+                "accepted": false,
+                "unresolved": [
+                  "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。",
+                  "本次不创建未拟合的碧螺高桥或云光楼接口，不声称完整园林登临路线。",
+                  "细木隔断、玻璃画、精确旧陈设及楼梯位置未知。",
+                  "2026 年逐件陈设清单与现场开放许可未知。",
+                  "保留原包络 20.5 × 10.9、台基 0.5、总檐柱高度 8.0；上层楼板标高 y=4.3，均为模型适配而非测量。",
+                  "栏杆、门窗、分区深度、柱径、阶梯和装饰为有据拓扑下的几何拟合。",
+                  "只登记一个地面查看房间/一个地图身份；不把它当历史房间数。",
+                  "材质改正常 FrontSide；专用屋面为0.075m拟合厚壳，真实向上瓦面、向下底面和封边，不靠双面材质遮掩开口；并不代表实测瓦作厚度。",
+                  "局部变化不等于完整建筑或现存陈设验收。"
+                ]
+              },
+              "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
+              "validation": {
+                "visual": "not-verified",
+                "nativePhone": "not-verified"
+              },
+              "review": {
+                "status": "actual-change",
+                "changes": [
+                  "层间楼板与栏杆、下层后双次间实际门、透空楣子；原桌椅柜凳标未核实保留。"
+                ]
+              },
+              "claims": [
+                {
+                  "scope": "interior",
+                  "text": "前上层东四间开敞而西梢间为暗廊；下层后两次间门，上层后明间门。",
+                  "source": "https://www.dpm.org.cn/explore/building/236433.html",
+                  "targetState": "按官方文字或选定照片理解局部形制；照片拍摄日期及完整当前库存未核定。",
+                  "implemented": false,
+                  "release": "R48"
+                },
+                {
+                  "scope": "interior",
+                  "text": "上层后明间桥连碧螺亭，西侧另接上下游廊。",
+                  "source": "https://www.dpm.org.cn/explore/building/236433.html",
+                  "targetState": "按官方文字或选定照片理解局部形制；照片拍摄日期及完整当前库存未核定。",
+                  "implemented": false,
+                  "release": "R48"
+                }
+              ],
+              "changes": [
+                {
+                  "area": "interior",
+                  "release": "R48",
+                  "text": "层间楼板与栏杆、下层后双次间实际门、透空楣子；原桌椅柜凳标未核实保留。"
+                }
+              ]
+            }
+          ],
+          "sourceIds": [],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "room_partitions_portals_column_grid_levels_steps_floor",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "principal_furniture_type_count_location_facing_scale",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "function_specificity_worship_library_residential_exhibition",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "visible_missing_objects_and_unsupported_model_objects",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "inheritedImplementationOnly": "Prior implementation/evidence retained verbatim in baselineRecords and read-only original snapshot; NOT current-cycle visual acceptance."
+        }
+      },
+      "requiredChildIds": [],
+      "expansionTaskIds": [
+        "EXPAND-06"
+      ],
+      "actualChanges": [],
+      "acceptanceRecords": [],
+      "currentCycleAccepted": false,
+      "optional": false,
+      "priority": 9011,
+      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views.",
+      "inheritedEvidenceSnapshot": "BASELINE-FIDELITY-SNAPSHOT.json",
+      "baselineProgressPolicy": "Existing accepted flags, reviewed-retained state, claims, source links, and geometry remain unchanged. This queue records a separate full-scope review."
+    },
+    {
+      "id": "FC-C7215A0EDA",
+      "name": "延趣楼",
+      "section": "J",
+      "parentText": "宁寿宫花园第三进西侧",
+      "nature": "建筑或构筑物",
+      "sourceLine": 742,
+      "cautions": "两层楼体与山石关系、瓷片镶嵌的宝座周围装修；宝座图可证明照片中的局部相对位置；其余室内和当前陈列待核",
+      "kind": "building_or_structure_candidate",
+      "release": "R67-J",
+      "entityId": "FC-C7215A0EDA",
+      "entityCountStatus": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
+      "aliases": [],
+      "parentCandidates": [
+        "FC-453DB70001",
+        "FC-E66DFE768F"
+      ],
+      "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+      "registryBindings": [
+        {
+          "repositoryId": "place-ningshou-c7215a0eda",
+          "repositoryName": "延趣楼",
+          "reviewObjectId": "FC-C7215A0EDA",
+          "canonicalName": "延趣楼",
+          "registryRef": "data/architecture/building-fidelity.json#/buildings/19",
+          "mappingBasis": "exact-name-candidate",
+          "physicalIdentityVerified": false
+        }
+      ],
+      "placeBindings": [
+        {
+          "repositoryId": "place-ningshou-c7215a0eda",
+          "repositoryName": "延趣楼",
+          "reviewObjectId": "FC-C7215A0EDA",
+          "canonicalName": "延趣楼",
+          "registryRef": "data/places/zh-CN.json#/places/133",
+          "mappingBasis": "exact-name-candidate",
+          "physicalIdentityVerified": false
+        }
+      ],
+      "runtimeBindings": [
+        {
+          "inventoryId": "RI-50A6715CE82D",
+          "ref": "data/zones/ningshou.json#/items/20",
+          "kind": "hall",
+          "bindingStatus": "STATIC_DECLARATION_NOT_CURRENT_RENDER_PROOF"
+        }
+      ],
+      "bindingStatus": "EXISTING_DECLARATIVE_CANDIDATE",
+      "identitySourceIds": [
+        "SRC-FBAC77AE4859"
+      ],
+      "sourceEvidence": {
+        "exterior": {
+          "inputStatus": "INPUT_REFERENCED_STATIC_IMAGE_OR_PDF_NOT_REOPENED",
+          "inputText": "[延趣楼](<https://img.dpm.org.cn/Uploads/Picture/dc/1549[1024].jpg>)",
+          "sourceIds": [
+            "SRC-7865068948E2"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        },
+        "interior": {
+          "inputStatus": "INPUT_REFERENCED_STATIC_IMAGE_OR_PDF_NOT_REOPENED",
+          "inputText": "[延趣楼宝座](<https://img.dpm.org.cn/Uploads/Picture/dc/2670[1024].jpg>)",
+          "sourceIds": [
+            "SRC-F4E1D50D5E67"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        }
+      },
+      "facets": {
+        "exterior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": true,
+          "baselineRecords": [
+            {
+              "registryId": "place-ningshou-c7215a0eda",
+              "value": {
+                "implementation": "dedicated-partial",
+                "dimensions": "includes-model-fits",
+                "accepted": false,
+                "unresolved": [
+                  "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。",
+                  "原楼梯位置、现存精确分室和瓷片图样未取得，上层不开放步行/传送。",
+                  "2026 年逐件陈设清单与现场开放许可未知。",
+                  "保留原包络 9.8 × 14.0、台基 0.5、总檐柱高度 8.0；上层楼板标高 y=4.3，均为模型适配而非测量。",
+                  "栏杆、门窗、分区深度、柱径、阶梯和装饰为有据拓扑下的几何拟合。",
+                  "只登记一个地面查看房间/一个地图身份；不把它当历史房间数。",
+                  "材质改正常 FrontSide；专用屋面为0.075m拟合厚壳，真实向上瓦面、向下底面和封边，不靠双面材质遮掩开口；并不代表实测瓦作厚度。",
+                  "局部变化不等于完整建筑或现存陈设验收。"
+                ]
+              },
+              "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
+              "validation": {
+                "visual": "not-verified",
+                "nativePhone": "not-verified"
+              },
+              "review": {
+                "status": "actual-change",
+                "changes": [
+                  "转向东侧、保留世界包络；真二层柱网、上层平台、三面廊与单卷棚屋顶。",
+                  "卷棚端部闭合、下表面及素面承托框，修复空隙和端部角缺片。"
+                ]
+              },
+              "claims": [
+                {
+                  "scope": "exterior",
+                  "text": "上下二层，连廊五间面阔、三间进深，绿瓦黄边卷棚歇山顶。",
+                  "source": "https://www.dpm.org.cn/explore/building/236515.html",
+                  "targetState": "按官方文字或选定照片理解局部形制；照片拍摄日期及完整当前库存未核定。",
+                  "implemented": false,
+                  "release": "R48"
+                }
+              ],
+              "changes": [
+                {
+                  "area": "exterior",
+                  "release": "R48",
+                  "text": "转向东侧、保留世界包络；真二层柱网、上层平台、三面廊与单卷棚屋顶。"
+                },
+                {
+                  "area": "exterior",
+                  "release": "R48",
+                  "text": "卷棚端部闭合、下表面及素面承托框，修复空隙和端部角缺片。"
+                }
+              ]
+            }
+          ],
+          "sourceIds": [
+            "SRC-7865068948E2"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "footprint_orientation_court_connections",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "bays_columns_brackets_beams_paint_zones",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "doors_windows_openings_walls_screens",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "terrace_steps_imperial_ramp_rails_posts",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "plaques_text_placement_orientation_occlusion",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "unique_courtyard_facilities_locations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "inheritedImplementationOnly": "Prior implementation/evidence retained verbatim in baselineRecords and read-only original snapshot; NOT current-cycle visual acceptance."
+        },
+        "interior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": true,
+          "baselineRecords": [
+            {
+              "registryId": "place-ningshou-c7215a0eda",
+              "value": {
+                "implementation": "dedicated-partial",
+                "dimensions": "includes-model-fits",
+                "accepted": false,
+                "unresolved": [
+                  "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。",
+                  "原楼梯位置、现存精确分室和瓷片图样未取得，上层不开放步行/传送。",
+                  "2026 年逐件陈设清单与现场开放许可未知。",
+                  "保留原包络 9.8 × 14.0、台基 0.5、总檐柱高度 8.0；上层楼板标高 y=4.3，均为模型适配而非测量。",
+                  "栏杆、门窗、分区深度、柱径、阶梯和装饰为有据拓扑下的几何拟合。",
+                  "只登记一个地面查看房间/一个地图身份；不把它当历史房间数。",
+                  "材质改正常 FrontSide；专用屋面为0.075m拟合厚壳，真实向上瓦面、向下底面和封边，不靠双面材质遮掩开口；并不代表实测瓦作厚度。",
+                  "局部变化不等于完整建筑或现存陈设验收。"
+                ]
+              },
+              "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
+              "validation": {
+                "visual": "not-verified",
+                "nativePhone": "not-verified"
+              },
+              "review": {
+                "status": "actual-change",
+                "changes": [
+                  "楼板、两层围护与门窗、透空楣子；瓷片只作抽象白蓝材料提示而非原花纹。"
+                ]
+              },
+              "claims": [
+                {
+                  "scope": "interior",
+                  "text": "东、南、北三面出廊，有倒挂楣子、栏杆及步步锦门窗；内檐以瓷片镶嵌。",
+                  "source": "https://www.dpm.org.cn/explore/building/236515.html",
+                  "targetState": "按官方文字或选定照片理解局部形制；照片拍摄日期及完整当前库存未核定。",
+                  "implemented": false,
+                  "release": "R48"
+                },
+                {
+                  "scope": "interior",
+                  "text": "原通山顶天桥于嘉庆二十二年（1817）拆除。",
+                  "source": "https://www.dpm.org.cn/explore/building/236515.html",
+                  "targetState": "按官方文字或选定照片理解局部形制；照片拍摄日期及完整当前库存未核定。",
+                  "implemented": false,
+                  "release": "R48"
+                }
+              ],
+              "changes": [
+                {
+                  "area": "interior",
+                  "release": "R48",
+                  "text": "楼板、两层围护与门窗、透空楣子；瓷片只作抽象白蓝材料提示而非原花纹。"
+                }
+              ]
+            }
+          ],
+          "sourceIds": [
+            "SRC-F4E1D50D5E67"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "room_partitions_portals_column_grid_levels_steps_floor",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "principal_furniture_type_count_location_facing_scale",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "function_specificity_worship_library_residential_exhibition",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "visible_missing_objects_and_unsupported_model_objects",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "inheritedImplementationOnly": "Prior implementation/evidence retained verbatim in baselineRecords and read-only original snapshot; NOT current-cycle visual acceptance."
+        }
+      },
+      "requiredChildIds": [],
+      "expansionTaskIds": [
+        "EXPAND-06"
+      ],
+      "actualChanges": [],
+      "acceptanceRecords": [],
+      "currentCycleAccepted": false,
+      "optional": false,
+      "priority": 9012,
+      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views.",
+      "inheritedEvidenceSnapshot": "BASELINE-FIDELITY-SNAPSHOT.json",
+      "baselineProgressPolicy": "Existing accepted flags, reviewed-retained state, claims, source links, and geometry remain unchanged. This queue records a separate full-scope review."
+    },
+    {
+      "id": "FC-FEB4BD3F2F",
+      "name": "三友轩",
+      "section": "J",
+      "parentText": "宁寿宫花园第三进东南",
+      "nature": "建筑或构筑物",
+      "sourceLine": 743,
+      "cautions": "一端硬山一端歇山、三面廊；图像主要为内檐局部；全室尺寸、家具分布和修缮后状态待核",
+      "kind": "building_or_structure_candidate",
+      "release": "R67-J",
+      "entityId": "FC-FEB4BD3F2F",
+      "entityCountStatus": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
+      "aliases": [],
+      "parentCandidates": [
+        "FC-453DB70001",
+        "FC-E66DFE768F"
+      ],
+      "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+      "registryBindings": [],
+      "placeBindings": [],
+      "runtimeBindings": [],
+      "bindingStatus": "MISSING_MODEL_OR_UNBOUND_REQUIRES_SCENE_CHECK",
+      "identitySourceIds": [
+        "SRC-5CEC9A608228"
+      ],
+      "sourceEvidence": {
+        "exterior": {
+          "inputStatus": "INPUT_REFERENCED_STATIC_IMAGE_OR_PDF_NOT_REOPENED",
+          "inputText": "[三友轩](<https://img.dpm.org.cn/Uploads/Picture/dc/1528[1024].jpg>)",
+          "sourceIds": [
+            "SRC-6424FAC874E6"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        },
+        "interior": {
+          "inputStatus": "INPUT_REFERENCED_STATIC_IMAGE_OR_PDF_NOT_REOPENED",
+          "inputText": "[三友轩内景](<https://img.dpm.org.cn/Uploads/Picture/dc/1529[1024].jpg>)；[三友轩室内装修](<https://img.dpm.org.cn/Uploads/Picture/dc/1530[1024].jpg>)；其余视角见JSON",
+          "sourceIds": [
+            "SRC-F4626BAEC98B",
+            "SRC-1EB32BCE7527"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        }
+      },
+      "facets": {
+        "exterior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [
+            "SRC-6424FAC874E6"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "footprint_orientation_court_connections",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "bays_columns_brackets_beams_paint_zones",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "doors_windows_openings_walls_screens",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "terrace_steps_imperial_ramp_rails_posts",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "plaques_text_placement_orientation_occlusion",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "unique_courtyard_facilities_locations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+        },
+        "interior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [
+            "SRC-F4626BAEC98B",
+            "SRC-1EB32BCE7527"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "room_partitions_portals_column_grid_levels_steps_floor",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "principal_furniture_type_count_location_facing_scale",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "function_specificity_worship_library_residential_exhibition",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "visible_missing_objects_and_unsupported_model_objects",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+        }
+      },
+      "requiredChildIds": [],
+      "expansionTaskIds": [
+        "EXPAND-06"
+      ],
+      "actualChanges": [],
+      "acceptanceRecords": [],
+      "currentCycleAccepted": false,
+      "optional": false,
+      "priority": 9013,
+      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views."
+    },
+    {
+      "id": "FC-722E40E471",
+      "name": "符望阁",
+      "section": "J",
+      "parentText": "宁寿宫花园第四进 / 宁寿宫花园（乾隆花园）",
+      "nature": "建筑或构筑物",
+      "sourceLine": 744,
+      "cautions": "方形高阁、外观两层及院内比例、匾额；两张静态图均外观；内实三层迷楼不可凭外立面和文字虚构",
+      "kind": "building_or_structure_candidate",
+      "release": "R67-J",
+      "entityId": "FC-722E40E471",
+      "entityCountStatus": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
+      "aliases": [],
+      "parentCandidates": [
+        "FC-453DB70001",
+        "FC-E66DFE768F"
+      ],
+      "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+      "registryBindings": [
+        {
+          "repositoryId": "place-ningshou-722e40e471",
+          "repositoryName": "符望阁",
+          "reviewObjectId": "FC-722E40E471",
+          "canonicalName": "符望阁",
+          "registryRef": "data/architecture/building-fidelity.json#/buildings/22",
+          "mappingBasis": "exact-name-candidate",
+          "physicalIdentityVerified": false
+        }
+      ],
+      "placeBindings": [
+        {
+          "repositoryId": "place-ningshou-722e40e471",
+          "repositoryName": "符望阁",
+          "reviewObjectId": "FC-722E40E471",
+          "canonicalName": "符望阁",
+          "registryRef": "data/places/zh-CN.json#/places/136",
+          "mappingBasis": "exact-name-candidate",
+          "physicalIdentityVerified": false
+        }
+      ],
+      "runtimeBindings": [
+        {
+          "inventoryId": "RI-0B202802FF87",
+          "ref": "data/zones/ningshou.json#/items/23",
+          "kind": "hall",
+          "bindingStatus": "STATIC_DECLARATION_NOT_CURRENT_RENDER_PROOF"
+        }
+      ],
+      "bindingStatus": "EXISTING_DECLARATIVE_CANDIDATE",
+      "identitySourceIds": [
+        "SRC-F44818F77520"
+      ],
+      "sourceEvidence": {
+        "exterior": {
+          "inputStatus": "PANORAMA_NAVIGATION_ONLY",
+          "inputText": "[（官方未标图注）](<https://img.dpm.org.cn/Uploads/Picture/2021/12/07/s61aebd1807da7.jpg>)；[（官方未标图注）](<https://img.dpm.org.cn/Uploads/Picture/2021/12/07/s61aebd18055b1.jpg>)；[全景导航：符望阁](<https://pano.dpm.org.cn/#/panorama?regionId=71&secondAreaId=187&vpId=3829&sphPicId=1943214245167284224>)；其余视角见JSON",
+          "sourceIds": [
+            "SRC-A5CDB6ED1E92",
+            "SRC-78C61317A8A7",
+            "SRC-565DD84A472E"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        },
+        "interior": {
+          "inputStatus": "NO_CONFIRMED_IMAGE_IN_INPUT",
+          "inputText": "未找到可确认的本项室内图；待补",
+          "sourceIds": [],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        }
+      },
+      "facets": {
+        "exterior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": true,
+          "baselineRecords": [
+            {
+              "registryId": "place-ningshou-722e40e471",
+              "value": {
+                "implementation": "dedicated-partial",
+                "dimensions": "includes-model-fits",
+                "accepted": false,
+                "unresolved": [
+                  "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。",
+                  "其他暗夹层可能存在，北夹层是证据限定的本次范围，绝不声称历史仅此一处。",
+                  "最高层/中间层完整测绘、各屏风/时钟/四向宝座及2026陈设未知，未复造。",
+                  "2026逐件陈设与真实访客权限未核实，不以游戏访问替代馆方许可。",
+                  "原23.1×22.5、台基1；夹层y5、顶板y9、檐y13；顶层15.246×14.85、北夹层x±2.01,z1.95..9.63、中央孔x±2.01,z±1.95皆拟合。",
+                  "两个16级中央阶梯每跑升4/行3，属于非开放建筑示意，不代表可按生产人物安全登楼；入口实体屏障，未注册上层walk或传送。",
+                  "全部未实测构件尺寸、纹样、材料参数与访问路径均为模型拟合；专用屋面为有真实向上/向下表面和封口的FrontSide薄壳，不用DoubleSide掩盖缺片。",
+                  "局部变化不等于完整建筑或现存陈设验收。"
+                ]
+              },
+              "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
+              "validation": {
+                "visual": "not-verified",
+                "nativePhone": "not-verified"
+              },
+              "review": {
+                "status": "actual-change",
+                "changes": [
+                  "下5×5、收分顶3×3实际两层立面和空心腰檐，黄瓦蓝边；四面中央门、实台阶与四方向地面approach。"
+                ]
+              },
+              "claims": [
+                {
+                  "scope": "exterior",
+                  "text": "方形、重檐攒尖、外观二层而内部三层，黄琉璃瓦蓝色剪边。",
+                  "source": "https://www.dpm.org.cn/explore/building/236495.html",
+                  "targetState": "按官方文字或选定照片理解局部形制；照片拍摄日期及完整当前库存未核定。",
+                  "implemented": false,
+                  "release": "R48"
+                }
+              ],
+              "changes": [
+                {
+                  "area": "exterior",
+                  "release": "R48",
+                  "text": "下5×5、收分顶3×3实际两层立面和空心腰檐，黄瓦蓝边；四面中央门、实台阶与四方向地面approach。"
+                }
+              ]
+            }
+          ],
+          "sourceIds": [
+            "SRC-A5CDB6ED1E92",
+            "SRC-78C61317A8A7",
+            "SRC-565DD84A472E"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "footprint_orientation_court_connections",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "bays_columns_brackets_beams_paint_zones",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "doors_windows_openings_walls_screens",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "terrace_steps_imperial_ramp_rails_posts",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "plaques_text_placement_orientation_occlusion",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "unique_courtyard_facilities_locations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "inheritedImplementationOnly": "Prior implementation/evidence retained verbatim in baselineRecords and read-only original snapshot; NOT current-cycle visual acceptance."
+        },
+        "interior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": true,
+          "baselineRecords": [
+            {
+              "registryId": "place-ningshou-722e40e471",
+              "value": {
+                "implementation": "dedicated-partial",
+                "dimensions": "includes-model-fits",
+                "accepted": false,
+                "unresolved": [
+                  "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。",
+                  "其他暗夹层可能存在，北夹层是证据限定的本次范围，绝不声称历史仅此一处。",
+                  "最高层/中间层完整测绘、各屏风/时钟/四向宝座及2026陈设未知，未复造。",
+                  "2026逐件陈设与真实访客权限未核实，不以游戏访问替代馆方许可。",
+                  "原23.1×22.5、台基1；夹层y5、顶板y9、檐y13；顶层15.246×14.85、北夹层x±2.01,z1.95..9.63、中央孔x±2.01,z±1.95皆拟合。",
+                  "两个16级中央阶梯每跑升4/行3，属于非开放建筑示意，不代表可按生产人物安全登楼；入口实体屏障，未注册上层walk或传送。",
+                  "全部未实测构件尺寸、纹样、材料参数与访问路径均为模型拟合；专用屋面为有真实向上/向下表面和封口的FrontSide薄壳，不用DoubleSide掩盖缺片。",
+                  "局部变化不等于完整建筑或现存陈设验收。"
+                ]
+              },
+              "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
+              "validation": {
+                "visual": "not-verified",
+                "nativePhone": "not-verified"
+              },
+              "review": {
+                "status": "actual-change",
+                "changes": [
+                  "中央梯间、四向凸形空间和四隅分隔，不用随机迷宫；只拟合证据支持的北局部夹层，顶层开放环形板与真中央洞。",
+                  "两真实可见但封闭的中央梯跑、有接触的斜梯梁及护栏；北夹层新增实承托柱梁。旧hall家具保留侧置，不发明历史四向宝座。"
+                ]
+              },
+              "claims": [
+                {
+                  "scope": "interior",
+                  "text": "一层中央楼梯间外围四向凸形空间及四隅隔间，四面入口见2025刊载一层平面。",
+                  "source": "https://www.dpm.org.cn/Uploads/file/2025/04/23/1745375120FyrkQWemo260.pdf",
+                  "targetState": "按官方文字或选定照片理解局部形制；照片拍摄日期及完整当前库存未核定。",
+                  "implemented": false,
+                  "release": "R48"
+                },
+                {
+                  "scope": "interior",
+                  "text": "中央楼梯与北向明间仙楼有文献；所刊乾隆原状复原图不是现状陈设。",
+                  "source": "https://www.dpm.org.cn/Uploads/File/2023/11/06/u654895df4c255.pdf",
+                  "targetState": "按官方文字或选定照片理解局部形制；照片拍摄日期及完整当前库存未核定。",
+                  "implemented": false,
+                  "release": "R48"
+                },
+                {
+                  "scope": "interior",
+                  "text": "下层五开间、顶层收为三开间，顶层开敞并有中央楼梯孔，不能复制底层隔间到顶层。",
+                  "source": "https://img.dpm.org.cn/Uploads/File/2020/04/22/u5ea0044616c59.pdf",
+                  "targetState": "按官方文字或选定照片理解局部形制；照片拍摄日期及完整当前库存未核定。",
+                  "implemented": false,
+                  "release": "R48"
+                }
+              ],
+              "changes": [
+                {
+                  "area": "interior",
+                  "release": "R48",
+                  "text": "中央梯间、四向凸形空间和四隅分隔，不用随机迷宫；只拟合证据支持的北局部夹层，顶层开放环形板与真中央洞。"
+                },
+                {
+                  "area": "interior",
+                  "release": "R48",
+                  "text": "两真实可见但封闭的中央梯跑、有接触的斜梯梁及护栏；北夹层新增实承托柱梁。旧hall家具保留侧置，不发明历史四向宝座。"
+                }
+              ]
+            }
+          ],
+          "sourceIds": [],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "room_partitions_portals_column_grid_levels_steps_floor",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "principal_furniture_type_count_location_facing_scale",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "function_specificity_worship_library_residential_exhibition",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "visible_missing_objects_and_unsupported_model_objects",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "inheritedImplementationOnly": "Prior implementation/evidence retained verbatim in baselineRecords and read-only original snapshot; NOT current-cycle visual acceptance."
+        }
+      },
+      "requiredChildIds": [],
+      "expansionTaskIds": [
+        "EXPAND-06"
+      ],
+      "actualChanges": [],
+      "acceptanceRecords": [],
+      "currentCycleAccepted": false,
+      "optional": false,
+      "priority": 9014,
+      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views.",
+      "inheritedEvidenceSnapshot": "BASELINE-FIDELITY-SNAPSHOT.json",
+      "baselineProgressPolicy": "Existing accepted flags, reviewed-retained state, claims, source links, and geometry remain unchanged. This queue records a separate full-scope review."
+    },
+    {
+      "id": "FC-47EC73915D",
+      "name": "碧螺亭",
+      "section": "J",
+      "parentText": "宁寿宫花园第四进·符望阁南假山 / 宁寿宫花园（乾隆花园）",
+      "nature": "建筑或构筑物",
+      "sourceLine": 745,
+      "cautions": "梅花形五柱五脊、双层瓦色、宝顶、梅花天花与石雕栏板；有亭内天花细节；缺各方向拼合与实测数据",
+      "kind": "building_or_structure_candidate",
+      "release": "R67-J",
+      "entityId": "FC-47EC73915D",
+      "entityCountStatus": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
+      "aliases": [],
+      "parentCandidates": [
+        "FC-453DB70001",
+        "FC-E66DFE768F",
+        "FC-722E40E471"
+      ],
+      "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+      "registryBindings": [
+        {
+          "repositoryId": "place-ningshou-47ec73915d",
+          "repositoryName": "碧螺亭",
+          "reviewObjectId": "FC-47EC73915D",
+          "canonicalName": "碧螺亭",
+          "registryRef": "data/architecture/building-fidelity.json#/buildings/21",
+          "mappingBasis": "exact-name-candidate",
+          "physicalIdentityVerified": false
+        }
+      ],
+      "placeBindings": [
+        {
+          "repositoryId": "place-ningshou-47ec73915d",
+          "repositoryName": "碧螺亭",
+          "reviewObjectId": "FC-47EC73915D",
+          "canonicalName": "碧螺亭",
+          "registryRef": "data/places/zh-CN.json#/places/135",
+          "mappingBasis": "exact-name-candidate",
+          "physicalIdentityVerified": false
+        }
+      ],
+      "runtimeBindings": [
+        {
+          "inventoryId": "RI-D463AABE9A7E",
+          "ref": "data/zones/ningshou.json#/items/22",
+          "kind": "hall",
+          "bindingStatus": "STATIC_DECLARATION_NOT_CURRENT_RENDER_PROOF"
+        }
+      ],
+      "bindingStatus": "EXISTING_DECLARATIVE_CANDIDATE",
+      "identitySourceIds": [
+        "SRC-304CC71A271B"
+      ],
+      "sourceEvidence": {
+        "exterior": {
+          "inputStatus": "INPUT_REFERENCED_STATIC_IMAGE_OR_PDF_NOT_REOPENED",
+          "inputText": "[碧螺亭](<https://img.dpm.org.cn/Uploads/Picture/dc/1441[1024].jpg>)；[碧螺亭宝顶](<https://img.dpm.org.cn/Uploads/Picture/dc/1442[1024].jpg>)；其余视角见JSON",
+          "sourceIds": [
+            "SRC-7E29508BF010",
+            "SRC-7A0543AA17EB"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        },
+        "interior": {
+          "inputStatus": "INPUT_DECLARED_INTERIOR_THUMBNAIL_VIEWED_NOT_FULL_360",
+          "inputText": "[碧螺亭天花板](<https://img.dpm.org.cn/Uploads/Picture/dc/1443[1024].jpg>)；[内景缩略图已核：碧螺亭内](<https://pano.dpm.org.cn/#/panorama?regionId=71&secondAreaId=189&vpId=3835&sphPicId=1943216080963813376>)",
+          "sourceIds": [
+            "SRC-ACBE6263E597",
+            "SRC-AB925E68B9C0"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        }
+      },
+      "facets": {
+        "exterior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": true,
+          "baselineRecords": [
+            {
+              "registryId": "place-ningshou-47ec73915d",
+              "value": {
+                "implementation": "dedicated-partial",
+                "dimensions": "includes-model-fits",
+                "accepted": false,
+                "unresolved": [
+                  "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。",
+                  "台基当前只作地面查看拟合，周围假山、二层桥和石阶整体尚未建立，不能称原状登临路径。",
+                  "栏杆目前为弦段式简化，未复刻梅花卷草雕刻。",
+                  "2026 年逐件陈设清单和实际开放许可未知。",
+                  "保留原场景包络 5.0 × 4.9，台基 0.5，檐柱高 6.0；均为模型适配尺寸而非实测。",
+                  "门净宽、廊宽、柱径、窗格密度、卷棚曲率、楼板/天花标高和装饰均局部拟合。",
+                  "当前仅注册一个地面游戏查看房间；其数量不代表历史房间数。",
+                  "东侧地面查看阶梯仅连接既有 0.5 台面，不冒充山石内原石阶；入口 local (-1.45,-0.47)，normal (-1,0)。",
+                  "台面支撑从实际圆柱顶面 20/30 边形顶点保守截条生成，不再按理想圆注册会越出渲染面约2毫米的支撑。",
+                  "材质改正常 FrontSide；专用屋面为0.075m拟合厚壳，真实向上瓦面、向下底面和封边，不靠双面材质遮掩开口；并不代表实测瓦作厚度。",
+                  "局部变化不等于完整建筑或现存陈设验收。"
+                ]
+              },
+              "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
+              "validation": {
+                "visual": "not-verified",
+                "nativePhone": "not-verified"
+              },
+              "review": {
+                "status": "actual-change",
+                "changes": [
+                  "五瓣台基、五根柱、五瓣双檐，蓝绿紫配色；不把两檐当两层。",
+                  "上下檐真实短撑接触与柱顶不穿瓦；未增加使用楼层。",
+                  "五根上檐短撑真实顶盖全部顶点按实际瓦下表面拟合，消除原17–18mm木尖穿瓦；下射瓦面/上射底面双向证实嵌入，不靠单中心点。"
+                ]
+              },
+              "claims": [
+                {
+                  "scope": "exterior",
+                  "text": "梅花五瓣平面、五柱，单一使用层，重檐攒尖顶。",
+                  "source": "https://www.dpm.org.cn/explore/building/236435.html",
+                  "targetState": "按官方文字或选定照片理解局部形制；照片拍摄日期及完整当前库存未核定。",
+                  "implemented": false,
+                  "release": "R48"
+                },
+                {
+                  "scope": "exterior",
+                  "text": "上檐绿、下檐蓝，紫剪边，宝顶蓝白；有梅花雕饰和曲折石栏。",
+                  "source": "https://www.dpm.org.cn/explore/building/236435.html",
+                  "targetState": "按官方文字或选定照片理解局部形制；照片拍摄日期及完整当前库存未核定。",
+                  "implemented": false,
+                  "release": "R48"
+                }
+              ],
+              "changes": [
+                {
+                  "area": "exterior",
+                  "release": "R48",
+                  "text": "五瓣台基、五根柱、五瓣双檐，蓝绿紫配色；不把两檐当两层。"
+                },
+                {
+                  "area": "exterior",
+                  "release": "R48",
+                  "text": "上下檐真实短撑接触与柱顶不穿瓦；未增加使用楼层。"
+                },
+                {
+                  "area": "exterior",
+                  "release": "R48",
+                  "text": "五根上檐短撑真实顶盖全部顶点按实际瓦下表面拟合，消除原17–18mm木尖穿瓦；下射瓦面/上射底面双向证实嵌入，不靠单中心点。"
+                }
+              ]
+            }
+          ],
+          "sourceIds": [
+            "SRC-7E29508BF010",
+            "SRC-7A0543AA17EB"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "footprint_orientation_court_connections",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "bays_columns_brackets_beams_paint_zones",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "doors_windows_openings_walls_screens",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "terrace_steps_imperial_ramp_rails_posts",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "plaques_text_placement_orientation_occlusion",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "unique_courtyard_facilities_locations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "inheritedImplementationOnly": "Prior implementation/evidence retained verbatim in baselineRecords and read-only original snapshot; NOT current-cycle visual acceptance."
+        },
+        "interior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": true,
+          "baselineRecords": [
+            {
+              "registryId": "place-ningshou-47ec73915d",
+              "value": {
+                "implementation": "dedicated-partial",
+                "dimensions": "includes-model-fits",
+                "accepted": false,
+                "unresolved": [
+                  "现存或指定历史时期的完整布局、构件尺寸和细部尚待逐项核验。",
+                  "台基当前只作地面查看拟合，周围假山、二层桥和石阶整体尚未建立，不能称原状登临路径。",
+                  "栏杆目前为弦段式简化，未复刻梅花卷草雕刻。",
+                  "2026 年逐件陈设清单和实际开放许可未知。",
+                  "保留原场景包络 5.0 × 4.9，台基 0.5，檐柱高 6.0；均为模型适配尺寸而非实测。",
+                  "门净宽、廊宽、柱径、窗格密度、卷棚曲率、楼板/天花标高和装饰均局部拟合。",
+                  "当前仅注册一个地面游戏查看房间；其数量不代表历史房间数。",
+                  "东侧地面查看阶梯仅连接既有 0.5 台面，不冒充山石内原石阶；入口 local (-1.45,-0.47)，normal (-1,0)。",
+                  "台面支撑从实际圆柱顶面 20/30 边形顶点保守截条生成，不再按理想圆注册会越出渲染面约2毫米的支撑。",
+                  "材质改正常 FrontSide；专用屋面为0.075m拟合厚壳，真实向上瓦面、向下底面和封边，不靠双面材质遮掩开口；并不代表实测瓦作厚度。",
+                  "局部变化不等于完整建筑或现存陈设验收。"
+                ]
+              },
+              "targetState": "尚未统一核定，须逐项区分历史格局与博物馆陈列。",
+              "validation": {
+                "visual": "not-verified",
+                "nativePhone": "not-verified"
+              },
+              "review": {
+                "status": "actual-change",
+                "changes": [
+                  "单层柱间栏杆、抽象五瓣天花纹；拟合东侧低石阶、东侧栏杆实际缺口；南桥未建不开放。"
+                ]
+              },
+              "claims": [
+                {
+                  "scope": "interior",
+                  "text": "南桥连萃赏楼二层，山石内东西石阶可上亭。",
+                  "source": "https://www.dpm.org.cn/explore/building/236435.html",
+                  "targetState": "按官方文字或选定照片理解局部形制；照片拍摄日期及完整当前库存未核定。",
+                  "implemented": false,
+                  "release": "R48"
+                }
+              ],
+              "changes": [
+                {
+                  "area": "interior",
+                  "release": "R48",
+                  "text": "单层柱间栏杆、抽象五瓣天花纹；拟合东侧低石阶、东侧栏杆实际缺口；南桥未建不开放。"
+                }
+              ]
+            }
+          ],
+          "sourceIds": [
+            "SRC-ACBE6263E597",
+            "SRC-AB925E68B9C0"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "room_partitions_portals_column_grid_levels_steps_floor",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "principal_furniture_type_count_location_facing_scale",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "function_specificity_worship_library_residential_exhibition",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "visible_missing_objects_and_unsupported_model_objects",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "inheritedImplementationOnly": "Prior implementation/evidence retained verbatim in baselineRecords and read-only original snapshot; NOT current-cycle visual acceptance."
+        }
+      },
+      "requiredChildIds": [],
+      "expansionTaskIds": [
+        "EXPAND-06"
+      ],
+      "actualChanges": [],
+      "acceptanceRecords": [],
+      "currentCycleAccepted": false,
+      "optional": false,
+      "priority": 9015,
+      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views.",
+      "inheritedEvidenceSnapshot": "BASELINE-FIDELITY-SNAPSHOT.json",
+      "baselineProgressPolicy": "Existing accepted flags, reviewed-retained state, claims, source links, and geometry remain unchanged. This queue records a separate full-scope review."
+    },
+    {
+      "id": "FC-177C99C806",
+      "name": "玉粹轩",
+      "section": "J",
+      "parentText": "宁寿宫花园第四进西侧",
+      "nature": "建筑或构筑物",
+      "sourceLine": 746,
+      "cautions": "三间前廊、石阶及明间西墙通景画与真实门框边界；通景画不是透视图里的真实房间；南得闲室、北佛堂和连竹香馆通道待核",
+      "kind": "building_or_structure_candidate",
+      "release": "R67-J",
+      "entityId": "FC-177C99C806",
+      "entityCountStatus": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
+      "aliases": [],
+      "parentCandidates": [
+        "FC-453DB70001",
+        "FC-E66DFE768F"
+      ],
+      "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+      "registryBindings": [],
+      "placeBindings": [],
+      "runtimeBindings": [],
+      "bindingStatus": "MISSING_MODEL_OR_UNBOUND_REQUIRES_SCENE_CHECK",
+      "identitySourceIds": [
+        "SRC-0CB49A2CD115"
+      ],
+      "sourceEvidence": {
+        "exterior": {
+          "inputStatus": "INPUT_REFERENCED_STATIC_IMAGE_OR_PDF_NOT_REOPENED",
+          "inputText": "[玉粹轩外景](<https://img.dpm.org.cn/Uploads/Picture/dc/1560[1024].jpg>)",
+          "sourceIds": [
+            "SRC-96BE53E2B943"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        },
+        "interior": {
+          "inputStatus": "INPUT_REFERENCED_STATIC_IMAGE_OR_PDF_NOT_REOPENED",
+          "inputText": "[玉粹轩明间西墙上的通景画](<https://img.dpm.org.cn/Uploads/Picture/dc/1561[1024].jpg>)",
+          "sourceIds": [
+            "SRC-7047FC467411"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        }
+      },
+      "facets": {
+        "exterior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [
+            "SRC-96BE53E2B943"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "footprint_orientation_court_connections",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "bays_columns_brackets_beams_paint_zones",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "doors_windows_openings_walls_screens",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "terrace_steps_imperial_ramp_rails_posts",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "plaques_text_placement_orientation_occlusion",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "unique_courtyard_facilities_locations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+        },
+        "interior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [
+            "SRC-7047FC467411"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "room_partitions_portals_column_grid_levels_steps_floor",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "principal_furniture_type_count_location_facing_scale",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "function_specificity_worship_library_residential_exhibition",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "visible_missing_objects_and_unsupported_model_objects",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+        }
+      },
+      "requiredChildIds": [],
+      "expansionTaskIds": [
+        "EXPAND-06"
+      ],
+      "actualChanges": [],
+      "acceptanceRecords": [],
+      "currentCycleAccepted": false,
+      "optional": false,
+      "priority": 9016,
+      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views."
+    },
+    {
+      "id": "FC-2465BC98A2",
+      "name": "竹香馆",
+      "section": "J",
+      "parentText": "宁寿宫花园第四进西北",
+      "nature": "建筑或构筑物",
+      "sourceLine": 747,
+      "cautions": "上下层、弓形墙、八角门、琉璃漏窗与假山遮挡；仅外景；楼内、耳楼及斜廊通行完整性待核",
+      "kind": "building_or_structure_candidate",
+      "release": "R67-J",
+      "entityId": "FC-2465BC98A2",
+      "entityCountStatus": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
+      "aliases": [],
+      "parentCandidates": [
+        "FC-453DB70001",
+        "FC-E66DFE768F"
+      ],
+      "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+      "registryBindings": [],
+      "placeBindings": [],
+      "runtimeBindings": [],
+      "bindingStatus": "MISSING_MODEL_OR_UNBOUND_REQUIRES_SCENE_CHECK",
+      "identitySourceIds": [
+        "SRC-93216FDBAFB6"
+      ],
+      "sourceEvidence": {
+        "exterior": {
+          "inputStatus": "INPUT_REFERENCED_STATIC_IMAGE_OR_PDF_NOT_REOPENED",
+          "inputText": "[竹香馆](<https://img.dpm.org.cn/Uploads/Picture/dc/1571.jpg>)",
+          "sourceIds": [
+            "SRC-37944440EF21"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        },
+        "interior": {
+          "inputStatus": "NO_CONFIRMED_IMAGE_IN_INPUT",
+          "inputText": "未找到可确认的本项室内图；待补",
+          "sourceIds": [],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        }
+      },
+      "facets": {
+        "exterior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [
+            "SRC-37944440EF21"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "footprint_orientation_court_connections",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "bays_columns_brackets_beams_paint_zones",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "doors_windows_openings_walls_screens",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "terrace_steps_imperial_ramp_rails_posts",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "plaques_text_placement_orientation_occlusion",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "unique_courtyard_facilities_locations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+        },
+        "interior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "room_partitions_portals_column_grid_levels_steps_floor",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "principal_furniture_type_count_location_facing_scale",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "function_specificity_worship_library_residential_exhibition",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "visible_missing_objects_and_unsupported_model_objects",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+        }
+      },
+      "requiredChildIds": [],
+      "expansionTaskIds": [
+        "EXPAND-06"
+      ],
+      "actualChanges": [],
+      "acceptanceRecords": [],
+      "currentCycleAccepted": false,
+      "optional": false,
+      "priority": 9017,
+      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views."
+    },
+    {
+      "id": "FC-9B2BEC50D8",
+      "name": "云光楼",
+      "section": "J",
+      "parentText": "宁寿宫花园第四进西南",
+      "nature": "建筑或构筑物",
+      "sourceLine": 748,
+      "cautions": "曲尺平面、两层转角、两端屋顶差异、游廊和山石；养和精舍为楼内匾额名，不应另造一栋；缺佛堂室内及石桥接点",
+      "kind": "building_or_structure_candidate",
+      "release": "R67-J",
+      "entityId": "FC-9B2BEC50D8",
+      "entityCountStatus": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
+      "aliases": [],
+      "parentCandidates": [
+        "FC-453DB70001",
+        "FC-E66DFE768F"
+      ],
+      "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+      "registryBindings": [],
+      "placeBindings": [],
+      "runtimeBindings": [],
+      "bindingStatus": "MISSING_MODEL_OR_UNBOUND_REQUIRES_SCENE_CHECK",
+      "identitySourceIds": [
+        "SRC-C86A7A4DB530"
+      ],
+      "sourceEvidence": {
+        "exterior": {
+          "inputStatus": "INPUT_REFERENCED_STATIC_IMAGE_OR_PDF_NOT_REOPENED",
+          "inputText": "[云光楼](<https://img.dpm.org.cn/Uploads/Picture/dc/1566[1024].jpg>)",
+          "sourceIds": [
+            "SRC-33838212B444"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        },
+        "interior": {
+          "inputStatus": "NO_CONFIRMED_IMAGE_IN_INPUT",
+          "inputText": "未找到可确认的本项室内图；待补",
+          "sourceIds": [],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        }
+      },
+      "facets": {
+        "exterior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [
+            "SRC-33838212B444"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "footprint_orientation_court_connections",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "bays_columns_brackets_beams_paint_zones",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "doors_windows_openings_walls_screens",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "terrace_steps_imperial_ramp_rails_posts",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "plaques_text_placement_orientation_occlusion",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "unique_courtyard_facilities_locations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+        },
+        "interior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "room_partitions_portals_column_grid_levels_steps_floor",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "principal_furniture_type_count_location_facing_scale",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "function_specificity_worship_library_residential_exhibition",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "visible_missing_objects_and_unsupported_model_objects",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+        }
+      },
+      "requiredChildIds": [],
+      "expansionTaskIds": [
+        "EXPAND-06"
+      ],
+      "actualChanges": [],
+      "acceptanceRecords": [],
+      "currentCycleAccepted": false,
+      "optional": false,
+      "priority": 9018,
+      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views."
+    },
+    {
+      "id": "FC-2932CF1D3B",
+      "name": "衍祺门",
+      "section": "J",
+      "parentText": "宁寿宫花园南入口",
+      "nature": "建筑或构筑物",
+      "sourceLine": 749,
+      "cautions": "门扇、门钉、门楣和入园假山关系；完整门楼屋顶与背面仍待全景定位",
+      "kind": "building_or_structure_candidate",
+      "release": "R67-J",
+      "entityId": "FC-2932CF1D3B",
+      "entityCountStatus": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
+      "aliases": [],
+      "parentCandidates": [
+        "FC-453DB70001",
+        "FC-E66DFE768F"
+      ],
+      "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+      "registryBindings": [],
+      "placeBindings": [
+        {
+          "repositoryId": "place-ningshou-2932cf1d3b",
+          "repositoryName": "衍祺门",
+          "reviewObjectId": "FC-2932CF1D3B",
+          "canonicalName": "衍祺门",
+          "registryRef": "data/places/zh-CN.json#/places/120",
+          "mappingBasis": "exact-name-candidate",
+          "physicalIdentityVerified": false
+        }
+      ],
+      "runtimeBindings": [
+        {
+          "inventoryId": "RI-EE0774435401",
+          "ref": "data/zones/ningshou.json#/items/7",
+          "kind": "gate",
+          "bindingStatus": "STATIC_DECLARATION_NOT_CURRENT_RENDER_PROOF"
+        }
+      ],
+      "bindingStatus": "EXISTING_DECLARATIVE_CANDIDATE",
+      "identitySourceIds": [
+        "SRC-DD065ADCBC48"
+      ],
+      "sourceEvidence": {
+        "exterior": {
+          "inputStatus": "INPUT_REFERENCED_STATIC_IMAGE_OR_PDF_NOT_REOPENED",
+          "inputText": "[衍祺门](<https://img.dpm.org.cn/Uploads/Picture/dc/2657[1024].jpg>)",
+          "sourceIds": [
+            "SRC-11A7FEF9E4FD"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        },
+        "interior": {
+          "inputStatus": "NO_CONFIRMED_IMAGE_IN_INPUT",
+          "inputText": "未找到可确认的本项室内图；待补",
+          "sourceIds": [],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        }
+      },
+      "facets": {
+        "exterior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [
+            "SRC-11A7FEF9E4FD"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "footprint_orientation_court_connections",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "bays_columns_brackets_beams_paint_zones",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "doors_windows_openings_walls_screens",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "terrace_steps_imperial_ramp_rails_posts",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "plaques_text_placement_orientation_occlusion",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "unique_courtyard_facilities_locations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+        },
+        "interior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "room_partitions_portals_column_grid_levels_steps_floor",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "principal_furniture_type_count_location_facing_scale",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "function_specificity_worship_library_residential_exhibition",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "visible_missing_objects_and_unsupported_model_objects",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+        }
+      },
+      "requiredChildIds": [],
+      "expansionTaskIds": [
+        "EXPAND-06"
+      ],
+      "actualChanges": [],
+      "acceptanceRecords": [],
+      "currentCycleAccepted": false,
+      "optional": false,
+      "priority": 9019,
+      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views."
+    },
+    {
+      "id": "FC-7C2F339F91",
+      "name": "倦勤斋戏台",
+      "section": "J",
+      "parentText": "宁寿宫花园第四进·倦勤斋内 / 宁寿宫花园/倦勤斋内",
+      "nature": "室内分区/附属构件",
+      "sourceLine": 750,
+      "cautions": "实景包含通景画；画出的透视空间不可转成可进入房间。",
+      "kind": "interior_subspace",
+      "release": "R67-J",
+      "entityId": null,
+      "entityCountStatus": "NOT_AN_ADDITIONAL_BUILDING",
+      "aliases": [],
+      "parentCandidates": [
+        "FC-453DB70001",
+        "FC-E66DFE768F",
+        "FC-F4D12B27E6"
+      ],
+      "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+      "registryBindings": [],
+      "placeBindings": [],
+      "runtimeBindings": [],
+      "bindingStatus": "INTERIOR_SUBSPACE_DO_NOT_AUTO_BUILD",
+      "identitySourceIds": [
+        "SRC-07CE7E78CBDA"
+      ],
+      "sourceEvidence": {
+        "exterior": {
+          "inputStatus": "PAGE_ENTRY_SUBJECT_UNLOCATED",
+          "inputText": "[官方页/图集，主体待定位](<https://www.dpm.org.cn/explore/building/236559.html>)",
+          "sourceIds": [
+            "SRC-07CE7E78CBDA"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        },
+        "interior": {
+          "inputStatus": "INPUT_REFERENCED_STATIC_IMAGE_OR_PDF_NOT_REOPENED",
+          "inputText": "[宁寿宫倦勤斋戏台](<https://img.dpm.org.cn/Uploads/Picture/2017/04/26/s58ffed5fbe30a.jpg>)",
+          "sourceIds": [
+            "SRC-A4FBEC1C8310"
+          ],
+          "actuallyViewedThisPlanningPass": false,
+          "full360Viewed": false,
+          "targetVersionConfirmed": false
+        }
+      },
+      "facets": {
+        "exterior": {
+          "status": "NOT_APPLICABLE",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [
+            "SRC-07CE7E78CBDA"
+          ],
+          "notApplicableReason": "Part of mother building envelope; inspect room boundary/fixtures in interior, do not create separate external building.",
+          "features": [],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Part of mother building envelope; inspect room boundary/fixtures in interior, do not create separate external building."
+        },
+        "interior": {
+          "status": "UNREVIEWED",
+          "currentCycleReview": "UNREVIEWED",
+          "inheritedProgressRetained": false,
+          "baselineRecords": [],
+          "sourceIds": [
+            "SRC-A4FBEC1C8310"
+          ],
+          "notApplicableReason": null,
+          "features": [
+            {
+              "id": "room_partitions_portals_column_grid_levels_steps_floor",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "principal_furniture_type_count_location_facing_scale",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "function_specificity_worship_library_residential_exhibition",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            },
+            {
+              "id": "visible_missing_objects_and_unsupported_model_objects",
+              "status": "UNREVIEWED",
+              "acceptedScope": null
+            }
+          ],
+          "visualEvidence": {
+            "before": null,
+            "after": null,
+            "referenceComparison": null,
+            "browserRun": null
+          },
+          "targetVersion": {
+            "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+            "photographyDate": null,
+            "doNotMixPeriods": true
+          },
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+        }
+      },
+      "requiredChildIds": [],
+      "expansionTaskIds": [
+        "EXPAND-06"
+      ],
+      "actualChanges": [],
+      "acceptanceRecords": [],
+      "currentCycleAccepted": false,
+      "optional": false,
+      "priority": 9020,
+      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views."
+    }
+  ],
+  "expansionTasks": [
+    {
+      "id": "EXPAND-06",
+      "parentText": "现有项目全部未命名辅助几何",
+      "requiredContent": "从当前分区、构造器和实际场景枚举辅助殿房、廊道、台基、围墙、宫门、院落设施与未绑定对象",
+      "rules": "既有说明曾登记44项辅助几何，执行时以实际HEAD重新枚举；不能当44栋实地建筑，也不得遗漏未命名实体。",
+      "sourceLine": 811,
+      "sections": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L"
+      ],
+      "status": "UNREVIEWED",
+      "enumerationComplete": false,
+      "instances": [],
+      "blocksFullAcceptance": true,
+      "nextAction": "Enumerate physical instances from named parent references and actual scene; append stable IDs without deleting this parent expansion task."
+    }
+  ]
+}

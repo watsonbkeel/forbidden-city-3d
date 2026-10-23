@@ -1,0 +1,112 @@
+{
+  "baselineCommit": "c9a82aaa8316954e80a03aa934cd8e745065322e",
+  "scope": "four declaration-only unknown-inventory opt-ins; no named historical mapping or navigation validation",
+  "files": {
+    "data/zones/axis-courts.json": {
+      "sha256": "5db390bc916056be68b8e78776ee415b89f4b179b0222a9cde7b13161b83ef3c",
+      "bytes": 8009
+    },
+    "src/scene/palace/GalleryInventoryPolicy.js": {
+      "sha256": "6bf2d098788d8c29d5f2550a5ca7de004211bc9e0555434fe31e6c53ede05fbf",
+      "bytes": 2462
+    },
+    "tests/fixtures/r58-declaration-inventory-world-contract.json.gz": {
+      "sha256": "71fc5c774c25f465d741ff1230733003369659b22f2dad3b2e1aaf5792a53ac5",
+      "bytes": 131112
+    },
+    "tests/r58-declaration-inventory-consumer-negatives.test.mjs": {
+      "sha256": "219cb21846edd53cf1a1f3054f51f3df4e24a2d3ccdfbd45a868c6e9397c1178",
+      "bytes": 4603
+    },
+    "tests/r58-declaration-inventory-controller.test.mjs": {
+      "sha256": "885d5c3348523c79cf961c619f3d0a2c89670ccfa759c280401e292866ec2645",
+      "bytes": 4841
+    },
+    "tests/r58-declaration-inventory.test.mjs": {
+      "sha256": "e8ff5b9bb6b77cbfa1d58c45bbcbe0878897c45280fd98494863a4569c46c0ea",
+      "bytes": 8438
+    },
+    "tests/lib/r58-declaration-inventory-evidence.mjs": {
+      "sha256": "e06fbe61dcf6a5d1d29b3e6474dbf4c12e9f4b47dca358f76dfc6cbcdd270807",
+      "bytes": 6037
+    },
+    "tests/lib/r58-declaration-inventory-fixture.mjs": {
+      "sha256": "e9785a1fee2e5212edde4f4461063b5e6fac52c54b896ea354496526595c4594",
+      "bytes": 4113
+    },
+    "tests/lib/r58-declaration-inventory-world-check.mjs": {
+      "sha256": "bd7c0b7aa7bddc393483105c07f7efb2f4ab88df95e798cc0aeb481511b49bae",
+      "bytes": 4890
+    },
+    "reports/r58-gallery-declaration-inventory/REVIEW.md": {
+      "sha256": "c9fc7e5fa796d48f1fa1800945b50f49ecd9a6f40f173d3df11f0dd1b422e2d2",
+      "bytes": 6754
+    },
+    "reports/r58-gallery-declaration-inventory/baseline.tap": {
+      "sha256": "af228c2cf62d696f3672cebaa8370aee10d15960f620dff3ebe212d1df332606",
+      "bytes": 3005
+    },
+    "reports/r58-gallery-declaration-inventory/component-consumer.json": {
+      "sha256": "2a692d2de0ebb7882a912eb4b2ad2c7eefa111bae267220c195a6157302f5c46",
+      "bytes": 888
+    },
+    "reports/r58-gallery-declaration-inventory/component-delta.json": {
+      "sha256": "02d20550f78b2863a48f20c4b00e69a7a780e1e0be284c33b629d7ac8cc70a9a",
+      "bytes": 158754
+    },
+    "reports/r58-gallery-declaration-inventory/controller-clock-precision-red.tap": {
+      "sha256": "45a28230d8651b505b675d28466d510cecf23582e3607f332c1cd7e5211356d6",
+      "bytes": 20376
+    },
+    "reports/r58-gallery-declaration-inventory/controller-initial-red.tap": {
+      "sha256": "872a543dae9e8f241e46b65a8db510774739fd615fa1cc8ba8f1d8de27185bb6",
+      "bytes": 39826
+    },
+    "reports/r58-gallery-declaration-inventory/controller.json": {
+      "sha256": "4f5c7033f9813357753f32e841139c655b43b270447497d7dec62029ad3bdb99",
+      "bytes": 125138
+    },
+    "reports/r58-gallery-declaration-inventory/generation.json": {
+      "sha256": "4acf71bdca154aee3097e747485bc9c59531a9299456e1acea2992185e016470",
+      "bytes": 4336
+    },
+    "reports/r58-gallery-declaration-inventory/green.tap": {
+      "sha256": "54b6d290c3c81b27ea2e55b2069bf84a3aa687fe638e21958815f8ed62a3bb9a",
+      "bytes": 12037
+    },
+    "reports/r58-gallery-declaration-inventory/predecessor-eight-only.tap": {
+      "sha256": "af8ddf63fd17311083f3bb58f00f9433d44680c323fe51f37159f09f5aec7f96",
+      "bytes": 4213
+    },
+    "reports/r58-gallery-declaration-inventory/previous-oracle-regression.tap": {
+      "sha256": "c370a6805ce4ae2cec2d02c7e85321d5b8f7babe3c4853f095f814781e3452c0",
+      "bytes": 866
+    },
+    "reports/r58-gallery-declaration-inventory/red.tap": {
+      "sha256": "a9f51ac4a28c28288e51e8dec47c453b0cfe66211b1a7e591309b25a331e358e",
+      "bytes": 9534
+    }
+  },
+  "testResults": {
+    "successor": {
+      "passed": 133,
+      "failed": 0
+    },
+    "predecessorBaseline": {
+      "passed": 31,
+      "failed": 0
+    },
+    "previousOracleAndTextures": {
+      "passed": 9,
+      "failed": 0
+    },
+    "predecessorOnCandidate": {
+      "passed": 30,
+      "failed": 1,
+      "superseded": "JSON adds only the exact eight policy fields and no structural values"
+    }
+  },
+  "worldExecution": "NOT_RUN_OWNER_ONLY",
+  "productionBuild": "NOT_RUN",
+  "publication": "NOT_RUN"
+}

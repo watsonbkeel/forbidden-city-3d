@@ -1,0 +1,370 @@
+✖ twelve exact declaration-only opt-ins are the complete garden data delta since Kunning profile (2.252025ms)
+✖ canonical identities match existing unbound runtime declarations, not claimed historical rooms (4.860534ms)
+✖ garden/14: remove only owned props and their colliders, preserve structural attributes and navigation (8.091588ms)
+✖ garden/15: remove only owned props and their colliders, preserve structural attributes and navigation (9.065186ms)
+✖ garden/16: remove only owned props and their colliders, preserve structural attributes and navigation (6.995754ms)
+✖ garden/17: remove only owned props and their colliders, preserve structural attributes and navigation (7.31598ms)
+✖ garden/18: remove only owned props and their colliders, preserve structural attributes and navigation (6.376246ms)
+✖ garden/19: remove only owned props and their colliders, preserve structural attributes and navigation (4.792943ms)
+✖ garden/20: remove only owned props and their colliders, preserve structural attributes and navigation (7.070386ms)
+✖ garden/21: remove only owned props and their colliders, preserve structural attributes and navigation (9.951244ms)
+✖ garden/22: remove only owned props and their colliders, preserve structural attributes and navigation (6.602474ms)
+✖ garden/23: remove only owned props and their colliders, preserve structural attributes and navigation (10.285886ms)
+✖ garden/24: remove only owned props and their colliders, preserve structural attributes and navigation (6.23834ms)
+✖ garden/25: remove only owned props and their colliders, preserve structural attributes and navigation (4.721236ms)
+✔ unrelated default corridor/hall and deterministic random stream remain exact (222.554126ms)
+✔ reject foreign/name-based/empty claim null (0.875041ms)
+✔ reject foreign/name-based/empty claim {} (0.24667ms)
+✔ reject foreign/name-based/empty claim {"mode":"unknown-inventory","target":"garden/items/14","runtimeInventoryId":"RI-09B73001F108"} (0.267451ms)
+✔ reject foreign/name-based/empty claim {"mode":"unknown-inventory","target":"garden/items/14","runtimeInventoryId":"FC-DAFAA2EF75"} (0.365417ms)
+✔ reject foreign/name-based/empty claim {"mode":"unknown-inventory","target":"garden/items/25","runtimeInventoryId":"RI-87DE2E82FDF5"} (0.254111ms)
+✔ reject foreign/name-based/empty claim {"mode":"empty","target":"garden/items/14","runtimeInventoryId":"RI-87DE2E82FDF5"} (0.230565ms)
+✔ reject foreign/name-based/empty claim {"mode":"unknown-inventory","target":"garden/items/14","runtimeInventoryId":"RI-87DE2E82FDF5","name":"后三宫东庑"} (0.264917ms)
+✔ reject foreign/name-based/empty claim {"mode":"unknown-inventory","target":"garden/items/14","runtimeInventoryId":"RI-87DE2E82FDF5","reviewId":"FC-DAFAA2EF75"} (0.219219ms)
+✔ reject wrong context axis-courts/garden/items/14/corridor (0.129755ms)
+✔ reject wrong context garden/axis-courts/items/26/corridor (0.135613ms)
+✔ reject wrong context garden/garden/items/26/corridor (0.073601ms)
+✔ reject wrong context garden/garden/items/14/hall (0.045959ms)
+✖ cloned runtime declarations and free furnish calls cannot acquire ownership (3.238192ms)
+✔ baseline capture and shared builders remain immutable (0.831556ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 14
+ℹ fail 15
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 828.958055
+
+✖ failing tests:
+
+test at tests/r61-gallery-inventory.test.mjs:5:1
+✖ twelve exact declaration-only opt-ins are the complete garden data delta since Kunning profile (2.252025ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   mode: 'unknown-inventory',
+  -   runtimeInventoryId: 'RI-87DE2E82FDF5',
+  -   target: 'garden/items/14'
+  - }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-gallery-inventory.test.mjs:5:188)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { mode: 'unknown-inventory', target: 'garden/items/14', runtimeInventoryId: 'RI-87DE2E82FDF5' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r61-gallery-inventory.test.mjs:6:1
+✖ canonical identities match existing unbound runtime declarations, not claimed historical rooms (4.860534ms)
+  Error: Invalid explicit gallery inventory policy or target
+      at validateGalleryInventoryPolicy (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/src/scene/palace/GalleryInventoryPolicy.js:32:11)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-gallery-inventory.test.mjs:6:554)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests/r61-gallery-inventory.test.mjs:7:37
+✖ garden/14: remove only owned props and their colliders, preserve structural attributes and navigation (8.091588ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '5294b1242723b4e55df105d8ebd1809480a8862f4bf568b92e243449e1a72180'
+  - 'd167339388de351661697ecd644e670816292f5d731e193028c7215369050a9d'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-gallery-inventory.test.mjs:7:237)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '5294b1242723b4e55df105d8ebd1809480a8862f4bf568b92e243449e1a72180',
+    expected: 'd167339388de351661697ecd644e670816292f5d731e193028c7215369050a9d',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r61-gallery-inventory.test.mjs:7:37
+✖ garden/15: remove only owned props and their colliders, preserve structural attributes and navigation (9.065186ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '271783d6a4619d92dfb58fe4ed39a39f5c441d31ca17ab29f8f1927dbc5ccfe5'
+  - '59b44608185d79d427b76f235003023ebb1d25ce4a7c0e61c9a95b4bfb1767e9'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-gallery-inventory.test.mjs:7:237)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '271783d6a4619d92dfb58fe4ed39a39f5c441d31ca17ab29f8f1927dbc5ccfe5',
+    expected: '59b44608185d79d427b76f235003023ebb1d25ce4a7c0e61c9a95b4bfb1767e9',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r61-gallery-inventory.test.mjs:7:37
+✖ garden/16: remove only owned props and their colliders, preserve structural attributes and navigation (6.995754ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '64a52adde0b7db4ec580bdf75fe4fbec4fed088e929a10b022a666d3424adbbb'
+  - '464bfebd88e32922a5ee9e41b5b2ee94a3b435e0a95a5944152fcc5f4ff68da1'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-gallery-inventory.test.mjs:7:237)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '64a52adde0b7db4ec580bdf75fe4fbec4fed088e929a10b022a666d3424adbbb',
+    expected: '464bfebd88e32922a5ee9e41b5b2ee94a3b435e0a95a5944152fcc5f4ff68da1',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r61-gallery-inventory.test.mjs:7:37
+✖ garden/17: remove only owned props and their colliders, preserve structural attributes and navigation (7.31598ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'fef4d81fa7b8900ff2e3561d7175d34fc668b12c7d8b36b528bca6a8e36276b7'
+  - 'dc7dc453d94e58f9bff2b93435a8b1bbfec3f3331bc9f5c7685158a7a6a4cc1f'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-gallery-inventory.test.mjs:7:237)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'fef4d81fa7b8900ff2e3561d7175d34fc668b12c7d8b36b528bca6a8e36276b7',
+    expected: 'dc7dc453d94e58f9bff2b93435a8b1bbfec3f3331bc9f5c7685158a7a6a4cc1f',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r61-gallery-inventory.test.mjs:7:37
+✖ garden/18: remove only owned props and their colliders, preserve structural attributes and navigation (6.376246ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'ba01e7b02d3594d545fb76ec49d8acfe2154d1b71a9b9a5b4053a68cbcc792e9'
+  - 'd799014be94cc21424a7ac26be7c3797c4355f9591c6ccbf99a77b0efc153de1'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-gallery-inventory.test.mjs:7:237)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'ba01e7b02d3594d545fb76ec49d8acfe2154d1b71a9b9a5b4053a68cbcc792e9',
+    expected: 'd799014be94cc21424a7ac26be7c3797c4355f9591c6ccbf99a77b0efc153de1',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r61-gallery-inventory.test.mjs:7:37
+✖ garden/19: remove only owned props and their colliders, preserve structural attributes and navigation (4.792943ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'cc638550788076128ecbd4cc6c6380d52add9ca607ec3e22ba648abde518d26e'
+  - '33a3e237a68fccb6af56b839c36f2756d64ae8eeb54e5ec480b3ffd76170723a'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-gallery-inventory.test.mjs:7:237)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'cc638550788076128ecbd4cc6c6380d52add9ca607ec3e22ba648abde518d26e',
+    expected: '33a3e237a68fccb6af56b839c36f2756d64ae8eeb54e5ec480b3ffd76170723a',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r61-gallery-inventory.test.mjs:7:37
+✖ garden/20: remove only owned props and their colliders, preserve structural attributes and navigation (7.070386ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '846083cf7459e36f8935406993570a91eceac6883fa0b618b013d6da82537417'
+  - '76187260a12d64e87fe3ae3abf0cb6f7b17f1422eedd837ada4cf37a3985523e'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-gallery-inventory.test.mjs:7:237)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '846083cf7459e36f8935406993570a91eceac6883fa0b618b013d6da82537417',
+    expected: '76187260a12d64e87fe3ae3abf0cb6f7b17f1422eedd837ada4cf37a3985523e',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r61-gallery-inventory.test.mjs:7:37
+✖ garden/21: remove only owned props and their colliders, preserve structural attributes and navigation (9.951244ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'a141f4a7df808fde4aa218d1c1061e6d488a99568cdd5b4a60068b814177b38a'
+  - 'cb6f4548ab3e532a048c847efb37e83b56f3835b15652327be0dcf14affd59e8'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-gallery-inventory.test.mjs:7:237)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'a141f4a7df808fde4aa218d1c1061e6d488a99568cdd5b4a60068b814177b38a',
+    expected: 'cb6f4548ab3e532a048c847efb37e83b56f3835b15652327be0dcf14affd59e8',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r61-gallery-inventory.test.mjs:7:37
+✖ garden/22: remove only owned props and their colliders, preserve structural attributes and navigation (6.602474ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '3be366facaf893f2eb1f397f79344164ea7c20754fbb7e1f22b2586b72c04f93'
+  - 'e633e223a1d0425329df1d5b1a1b95b9a3e6a07f5c2176c6d91cad0a68888855'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-gallery-inventory.test.mjs:7:237)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '3be366facaf893f2eb1f397f79344164ea7c20754fbb7e1f22b2586b72c04f93',
+    expected: 'e633e223a1d0425329df1d5b1a1b95b9a3e6a07f5c2176c6d91cad0a68888855',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r61-gallery-inventory.test.mjs:7:37
+✖ garden/23: remove only owned props and their colliders, preserve structural attributes and navigation (10.285886ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '62796c02638e27a1298200c8bc37bafb5be306c7dc31916d72e316f158b7c89f'
+  - 'ca34c10c3dc3400e6b71122689e1ad711e985978038bc047cf85559a3fa0c215'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-gallery-inventory.test.mjs:7:237)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '62796c02638e27a1298200c8bc37bafb5be306c7dc31916d72e316f158b7c89f',
+    expected: 'ca34c10c3dc3400e6b71122689e1ad711e985978038bc047cf85559a3fa0c215',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r61-gallery-inventory.test.mjs:7:37
+✖ garden/24: remove only owned props and their colliders, preserve structural attributes and navigation (6.23834ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '743ad2149aee9bb64172e9c855c98e625d08c2f1286f65a383c7aadbedefb0f0'
+  - 'ce0e18384074a804c11250a2643f14da01690bc74f9c09210608c79051287fd1'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-gallery-inventory.test.mjs:7:237)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '743ad2149aee9bb64172e9c855c98e625d08c2f1286f65a383c7aadbedefb0f0',
+    expected: 'ce0e18384074a804c11250a2643f14da01690bc74f9c09210608c79051287fd1',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r61-gallery-inventory.test.mjs:7:37
+✖ garden/25: remove only owned props and their colliders, preserve structural attributes and navigation (4.721236ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '35aa2f39bc017ae0e0e3dc3be4cd5dd22e1b274b2b6d6b342b3e7996e8169b51'
+  - '6c23836ea4531726f1a30861fad31dd2e51d6c3c3cebf56b2bb530c14682555e'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-gallery-inventory.test.mjs:7:237)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '35aa2f39bc017ae0e0e3dc3be4cd5dd22e1b274b2b6d6b342b3e7996e8169b51',
+    expected: '6c23836ea4531726f1a30861fad31dd2e51d6c3c3cebf56b2bb530c14682555e',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r61-gallery-inventory.test.mjs:11:1
+✖ cloned runtime declarations and free furnish calls cannot acquire ownership (3.238192ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-gallery-inventory.test.mjs:11:160)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /policy|target|inventory/i,
+    operator: 'throws',
+    diff: 'simple'
+  }

@@ -1,0 +1,72 @@
+✔ frozen pre-hook fixture verifies full geometry and both physical registries, not only bounds (1862.421012ms)
+✔ exact installed wall inverse restores the frozen fixture and audits only 15 meshes, 6 colliders and 3 owned cap materials (2583.53959ms)
+✔ inverse refuses group-vertex before mutating the supplied fixture (1837.883793ms)
+✔ inverse refuses missing-collider before mutating the supplied fixture (1834.723774ms)
+✔ inverse refuses duplicate-collider before mutating the supplied fixture (1745.277456ms)
+✔ inverse refuses extra-child before mutating the supplied fixture (1911.858131ms)
+✔ inverse refuses unrelated-vertex before mutating the supplied fixture (2405.218369ms)
+✔ baseline handles the production hook without disabling duplicate installation protection (1434.91019ms)
+✔ explicit inverse is forbidden on an ordinary live-world-shaped object without the QA fixture marker (1405.671298ms)
+✔ ghost colliders without the exact firewall group cannot be silently included in the frozen baseline (1919.749346ms)
+✔ Taihe binds only the source-visible east wall and derives all levels from retained terrace controls (1799.847374ms)
+✔ Taihe upper-wall door is a real gap in rendered masonry, with solid sides and no threshold obstruction (1421.794743ms)
+✔ actual CollisionManager crosses the wall door both ways but rejects adjacent solid masonry (1446.245239ms)
+✔ all retained platform, step, rail, collider and walkable records survive exactly without added west walls (1439.312595ms)
+✔ body geometry is finite, nondegenerate and closed; repeated installation is rejected before mutation (1399.488093ms)
+✔ pure supplied-world QA tests rendered doorway, collider body and real 中左门 route without constructing another world (1491.550979ms)
+✔ actual FirstPersonControls traverses and returns through the fitted upper door at 10Hz from -1; backward=false (1339.099213ms)
+ℹ {"arrived":true,"fps":10,"direction":-1,"sprint":true,"backward":false,"startFeet":8,"minFeet":8,"maxFeet":8,"maxSpeed":11.983508932564124,"frames":18,"end":[-43.00833333333333,-7.888853795889032,8],"driver":{"crossings":[{"index":1,"point":[-43.00833333333333,-16.2],"hit":[-43.00833333333333,-16.2],"lateralDistance":0},{"index":2,"point":[-43.00833333333333,-8.2],"hit":[-43.00833333333333,-8.2],"lateralDistance":0}],"brakingFrames":6,"endpointSettleSeconds":2}}
+✔ actual FirstPersonControls traverses and returns through the fitted upper door at 10Hz from -1; backward=true (1532.526318ms)
+ℹ {"arrived":true,"fps":10,"direction":-1,"sprint":true,"backward":true,"startFeet":8,"minFeet":8,"maxFeet":8,"maxSpeed":11.983508932564124,"frames":18,"end":[-43.00833333333333,-7.888853795889032,8],"driver":{"crossings":[{"index":1,"point":[-43.00833333333333,-16.2],"hit":[-43.00833333333333,-16.2],"lateralDistance":0},{"index":2,"point":[-43.00833333333333,-8.2],"hit":[-43.00833333333333,-8.2],"lateralDistance":0}],"brakingFrames":6,"endpointSettleSeconds":2}}
+✔ actual FirstPersonControls traverses and returns through the fitted upper door at 10Hz from 1; backward=false (1555.491442ms)
+ℹ {"arrived":true,"fps":10,"direction":1,"sprint":true,"backward":false,"startFeet":8,"minFeet":8,"maxFeet":8,"maxSpeed":11.983508932564124,"frames":18,"end":[-43.00833333333333,-16.51114620411097,8],"driver":{"crossings":[{"index":1,"point":[-43.00833333333333,-8.2],"hit":[-43.00833333333333,-8.2],"lateralDistance":0},{"index":2,"point":[-43.00833333333333,-16.2],"hit":[-43.00833333333333,-16.2],"lateralDistance":0}],"brakingFrames":6,"endpointSettleSeconds":2}}
+✔ actual FirstPersonControls traverses and returns through the fitted upper door at 10Hz from 1; backward=true (1448.372494ms)
+ℹ {"arrived":true,"fps":10,"direction":1,"sprint":true,"backward":true,"startFeet":8,"minFeet":8,"maxFeet":8,"maxSpeed":11.983508932564124,"frames":18,"end":[-43.00833333333333,-16.51114620411097,8],"driver":{"crossings":[{"index":1,"point":[-43.00833333333333,-8.2],"hit":[-43.00833333333333,-8.2],"lateralDistance":0},{"index":2,"point":[-43.00833333333333,-16.2],"hit":[-43.00833333333333,-16.2],"lateralDistance":0}],"brakingFrames":6,"endpointSettleSeconds":2}}
+✔ actual FirstPersonControls traverses and returns through the fitted upper door at 60Hz from -1; backward=false (1476.009816ms)
+ℹ {"arrived":true,"fps":60,"direction":-1,"sprint":true,"backward":false,"startFeet":8,"minFeet":8,"maxFeet":8,"maxSpeed":11.977459795183359,"frames":101,"end":[-43.00833333333333,-8.187461615793014,8],"driver":{"crossings":[{"index":1,"point":[-43.00833333333333,-16.2],"hit":[-43.00833333333333,-16.2],"lateralDistance":0},{"index":2,"point":[-43.00833333333333,-8.2],"hit":[-43.00833333333333,-8.2],"lateralDistance":0}],"brakingFrames":31,"endpointSettleSeconds":2}}
+✔ actual FirstPersonControls traverses and returns through the fitted upper door at 60Hz from -1; backward=true (1543.954019ms)
+ℹ {"arrived":true,"fps":60,"direction":-1,"sprint":true,"backward":true,"startFeet":8,"minFeet":8,"maxFeet":8,"maxSpeed":11.977459795183359,"frames":101,"end":[-43.00833333333333,-8.187461615793014,8],"driver":{"crossings":[{"index":1,"point":[-43.00833333333333,-16.2],"hit":[-43.00833333333333,-16.2],"lateralDistance":0},{"index":2,"point":[-43.00833333333333,-8.2],"hit":[-43.00833333333333,-8.2],"lateralDistance":0}],"brakingFrames":31,"endpointSettleSeconds":2}}
+✔ actual FirstPersonControls traverses and returns through the fitted upper door at 60Hz from 1; backward=false (1526.61254ms)
+ℹ {"arrived":true,"fps":60,"direction":1,"sprint":true,"backward":false,"startFeet":8,"minFeet":8,"maxFeet":8,"maxSpeed":11.977459795183359,"frames":101,"end":[-43.00833333333333,-16.21253838420698,8],"driver":{"crossings":[{"index":1,"point":[-43.00833333333333,-8.2],"hit":[-43.00833333333333,-8.2],"lateralDistance":0},{"index":2,"point":[-43.00833333333333,-16.2],"hit":[-43.00833333333333,-16.2],"lateralDistance":0}],"brakingFrames":31,"endpointSettleSeconds":2}}
+✔ actual FirstPersonControls traverses and returns through the fitted upper door at 60Hz from 1; backward=true (1276.303022ms)
+ℹ {"arrived":true,"fps":60,"direction":1,"sprint":true,"backward":true,"startFeet":8,"minFeet":8,"maxFeet":8,"maxSpeed":11.977459795183359,"frames":101,"end":[-43.00833333333333,-16.21253838420698,8],"driver":{"crossings":[{"index":1,"point":[-43.00833333333333,-8.2],"hit":[-43.00833333333333,-8.2],"lateralDistance":0},{"index":2,"point":[-43.00833333333333,-16.2],"hit":[-43.00833333333333,-16.2],"lateralDistance":0}],"brakingFrames":31,"endpointSettleSeconds":2}}
+✔ nonfinite or changed control points fail before a mesh can be generated (1169.385598ms)
+✔ integration actor audit fails closed for missing, empty, duplicate or wrong expected bindings (1407.879558ms)
+✔ builder preflight rejects malformed passage/spans without partial installation or side effects (4754.927669ms)
+✔ profile rejects narrow doorway spans, negative hall width, infinite rectangles and incomplete east-wall endpoints (1144.891187ms)
+✔ same-world integration QA rejects absent walls, invisible walls and visible-only or collider-only remnants (4857.430913ms)
+✔ same-world firewall QA survives the real production material merge and architecture metadata retention (1220.763682ms)
+✔ installation proof rejects non-rendering materials even when THREE raycast still hits their triangles (1269.041854ms)
+✔ same W retains actual waist stair ascent/descent at 10Hz on side -1 (1039.574774ms)
+✔ same W retains actual waist stair ascent/descent at 10Hz on side 1 (1110.766892ms)
+✔ same W retains actual waist stair ascent/descent at 60Hz on side -1 (1058.496377ms)
+✔ same W retains actual waist stair ascent/descent at 60Hz on side 1 (1154.750475ms)
+✔ Baohe candidate 31 retains its 12 actual solid partitions and is not silently converted to a source-unlocated arch (1163.956523ms)
+✔ seven south porch bays have no wall or folded leaves at the eave; only two ends close (13.342595ms)
+✔ inherited inner closed bays have matching visible solids and blockers behind the porch (8.647983ms)
+✔ invalid enclosure inputs fail before adding any geometry or colliders (0.888531ms)
+✔ read-only existing-W QA verifies actual porch geometry / collision and never reconstructs a world (506.933768ms)
+✔ existing-W consumer rejects unintegrated baseline instead of silently manufacturing the feature (76.845423ms)
+✔ existing-W consumer rejects missing rendered platform and paving despite retained colliders and metadata (57.64179ms)
+✔ existing-W consumer rejects hidden closed lattice despite retained colliders and metadata (61.259554ms)
+✔ existing-W consumer rejects hidden ancestor despite retained colliders and metadata (65.551487ms)
+✔ existing-W consumer rejects hidden material despite retained colliders and metadata (90.61042ms)
+✔ actual hooked Taihemen gate exposes seven porch bays without the old broad south wall AABBs (159.428028ms)
+✔ all 40 column transforms, roof, plaque, north-half triangles and support primitives remain exact (326.865449ms)
+✔ actual controller ground-start porch sweep, inner passage and north return 10Hz sprint=false (297.583461ms)
+✔ actual controller ground-start porch sweep, inner passage and north return 10Hz sprint=true (207.674882ms)
+✔ actual controller ground-start porch sweep, inner passage and north return 60Hz sprint=false (725.313579ms)
+✔ actual controller ground-start porch sweep, inner passage and north return 60Hz sprint=true (460.515524ms)
+✔ closed recessed bay stops the real controller while the porch remains traversable 10Hz (137.6371ms)
+✔ closed recessed bay stops the real controller while the porch remains traversable 60Hz (118.419096ms)
+✔ fragment baseline remains independent when the owner has already applied the hookup (0.652918ms)
+✔ Taihemen profile separates seven open eave bays from the retained inner passage pattern (2.487195ms)
+✔ Taihemen-only profile rejects wrong or non-finite envelopes and does not create a fifth column axis (2.389308ms)
+ℹ tests 56
+ℹ suites 0
+ℹ pass 56
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 42358.261386

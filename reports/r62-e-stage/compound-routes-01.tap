@@ -1,0 +1,33 @@
+✖ all218 E routes in one actual entire east-six zone, with legacy invalid rear-hall start preserved as blocked witness (2329.793572ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2654.035589
+
+✖ failing tests:
+
+test at tests/r62-e-compound-routes.test.mjs:3:1
+✖ all218 E routes in one actual entire east-six zone, with legacy invalid rear-hall start preserved as blocked witness (2329.793572ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 0.006249999999994094
+  - 0
+  
+      at replayR62ERoutes (file:///workspace/scratch/02a8023d1a85/r62-e-east-inner-fidelity/tests/lib/r62-e-world-check.mjs:38:223)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-e-east-inner-fidelity/tests/r62-e-compound-routes.test.mjs:5:294)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0.006249999999994094,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -2,6 +2,9 @@ import * as THREE from 'three';
 import { buildRoof } from '../../RoofBuilder.js';
 import { applyPlanarUV } from '../../../utils/GeometryUV.js';
 import {buildJiaotaiCeiling} from './JiaotaiCentralInterior.js';
+import {buildJiaotaiDisplaySetting} from './JiaotaiDisplaySetting.js';
+import {applyJiaotaiSouthWindows} from './JiaotaiSouthWindows.js';
+import {buildZhongheDisplaySetting} from './ZhongheDisplaySetting.js';
 
 /**
  * Evidence-led enclosure topologies, not a claim of survey-grade dimensions.
@@ -146,6 +149,7 @@ export function buildSquareHall(builder, parent, data, y) {
     panel('caihua_beam', length + 0.3, beamH, 0.5, 0, y + H - beamH / 2);
   }
   for (const [side, types] of Object.entries(spec.facades)) facade(side, types);
+  if (data.name === '交泰殿') applyJiaotaiSouthWindows(builder,shell);
 
   if (spec.veranda) for (const s of [-1, 1]) {
     builder.libBox(shell, 'caihua_beam', w + 0.4, beamH, 0.5, x0, y + H - beamH / 2, z0 + s * d / 2, 'band');
@@ -178,7 +182,8 @@ export function buildSquareHall(builder, parent, data, y) {
   // This corrects only the incompatible default; painted detail remains approximate.
   const ztb1 = z0 + id / 2 - 3.1;
   const ztb0 = ztb1 - Math.min(5.2, id * 0.28);
-  builder.throneArea(shell, { x0, y, H, ztb0, ztb1, thW: Math.min(5.0, iw * 0.24), bayW: iw / 3, text: centralFrame ? null : spec.innerPlaque, caisson: data.name !== '中和殿' && !centralFrame, jiaotai: !!centralFrame });
+  if (data.name === '交泰殿') buildJiaotaiDisplaySetting(builder,shell,{x0,y,H,ztb0,ztb1,thW:Math.min(5.0,iw*.24),bayW:iw/3});
+  else buildZhongheDisplaySetting(builder,shell,{x0,z0,y,H,ztb0,ztb1,thW:Math.min(5.0,iw*.24),bayW:iw/3});
   const plaqueH = 1.75;
   const plaque = builder.plaqueMesh(data.name, plaqueH * 0.62, plaqueH, true);
   plaque.position.set(x0, y + H - plaqueH * 0.25, z0 - d / 2 - 0.45);
@@ -189,9 +194,11 @@ export function buildSquareHall(builder, parent, data, y) {
     baseY: y + H, layers: spec.eaveCount, brackets: true, sides: 4,
     height: spec.roofH, overhang: spec.veranda ? 2.2 : 2.5,
     ...(centralFrame ? {jiaotaiCeilingOpening:centralFrame} : {}),
+    ...(data.name === '中和殿' ? { walkingBeastProfile: 'zhonghe' } : {}),
   });
   roof.name = `${data.name}·单檐攒尖顶`;
   roof.position.set(x0, 0, z0);
+  if (roof.userData.walkingBeasts) (parent.userData.hallWalkingBeasts ??= []).push({ ...roof.userData.walkingBeasts, position: roof.position.toArray() });
   shell.add(roof);
   builder.ownedMaterials.push(...(roof.userData.ownedMaterials ?? []));
   return shell;

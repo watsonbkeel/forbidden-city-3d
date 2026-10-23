@@ -1,0 +1,18 @@
+{"oldMeshes":690,"newMeshes":701,"oldTriangles":10500,"newTriangles":11292,"oldColliders":539,"newColliders":550,"walkables":30}
+collider-shape {"isBox3":true,"min":{"x":-207.09,"y":0.5,"z":-142.09},"max":{"x":-206.41,"y":3.5,"z":-141.41000000000003}}
+✔ original continuous generic band is a negative case; production hook creates six unequal south groups only (114.187377ms)
+✔ all north, lower columns, roof, plaque, three floors, stairs, cases and navigation remain exact (99.705717ms)
+✔ collision delta matches only exact replaced front components, with no old free-standing post ghosts (93.000846ms)
+✔ front frames, recesses and piers close the same upper band and stop a full-radius body (56.498929ms)
+✔ wrong identity, displaced target and double application fail closed without material allocations (105.284795ms)
+✔ actual merged geometry passes pure consumer, and missing or displaced facade fails it (655.394189ms)
+✔ new meshes have finite outward nondegenerate triangles and owned resources dispose once (42.311538ms)
+✔ fixture with current R49E plaque mounting equals actual production ZoneBase hall entry (113.522961ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1452.10369

@@ -1,0 +1,60 @@
+TAP version 13
+# Subtest: empty and fully hidden scenes retain exact empty JSON
+ok 1 - empty and fully hidden scenes retain exact empty JSON
+  ---
+  duration_ms: 8.140819
+  type: 'test'
+  ...
+# Subtest: indexed/nonindexed, colors, material groups, transforms, draw ranges, culling and instances
+not ok 2 - indexed/nonindexed, colors, material groups, transforms, draw ranges, culling and instances
+  ---
+  duration_ms: 14.118388
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-bounded-production-raster.test.mjs:15:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(r.triangles.length>50)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-bounded-production-raster.test.mjs:15:1052)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: actual character shader deformation and invisible instances are byte exact at all LODs
+ok 3 - actual character shader deformation and invisible instances are byte exact at all LODs
+  ---
+  duration_ms: 1394.447023
+  type: 'test'
+  ...
+# Subtest: large merged input keeps exact decoded output over multiple gzip members
+ok 4 - large merged input keeps exact decoded output over multiple gzip members
+  ---
+  duration_ms: 107.252137
+  type: 'test'
+  ...
+# Subtest: exception is propagated and does not replace an existing destination
+ok 5 - exception is propagated and does not replace an existing destination
+  ---
+  duration_ms: 1.061048
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 4
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1674.961868

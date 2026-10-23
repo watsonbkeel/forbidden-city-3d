@@ -423,7 +423,7 @@ export function* createCharacterGeometrySteps(templateId,pose='standing',lod=0,o
  const t=CHARACTER_TEMPLATES[templateId];if(!t)throw new Error(`Unknown character template: ${templateId}`);if(!CHARACTER_POSES.includes(pose))throw new Error(`Unknown character pose: ${pose}`);if(!Number.isInteger(lod)||lod<0||lod>2)throw new Error(`Invalid character LOD: ${lod}`);
  const femalePose=options.femalePose??'resting';if(!['resting','walking'].includes(femalePose))throw new Error('Unknown female sample pose');if(femalePose==='walking'&&!isFemale(t))throw new Error('Female sample pose requires a female template');if(femalePose==='walking'&&pose!=='standing')throw new Error('Female walking sample requires standing pose');
  const seatVariant=options.seatVariant??'standard';if(!['standard','raised-footstool','kang-low','throne-front-perch'].includes(seatVariant))throw new Error(`Unknown seat variant: ${seatVariant}`);if(pose!=='seated'&&seatVariant!=='standard')throw new Error('A seat variant requires seated pose');
- const footY=['raised-footstool','throne-front-perch'].includes(seatVariant)?.30:seatVariant==='kang-low'?.04:0,footZ=seatVariant==='raised-footstool'?.79:seatVariant==='throne-front-perch'?.555:.51;
+ const footY=['raised-footstool','throne-front-perch'].includes(seatVariant)?.30:seatVariant==='kang-low'?.06:0,footZ=seatVariant==='raised-footstool'?.79:seatVariant==='throne-front-perch'?.555:.51;
  const b=new Builder(lod),seg=[28,12,7][lod],off=pose==='standing'?0:pose==='seated'?-.29:-.58,z=pose==='seated'?-.04:pose==='kneeling'?.04:0;
  try {
  const pelvis=pose==='standing'?.89:pose==='seated'?.57:.33;

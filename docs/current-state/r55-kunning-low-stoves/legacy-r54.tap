@@ -1,0 +1,141 @@
+✔ Kunning source consumes shared profile and contains no authored architectural grid or structural exports (0.898382ms)
+✔ Kunning manifest points to content-versioned GLB with exact checksum and original budgets (1.90017ms)
+✔ actual exported GLB has profile extras, furniture-only inventory and no font/photo/texture payload (0.999864ms)
+✔ other five shipped interior assets remain byte-identical to published V5 (1.575595ms)
+✔ Kunning deterministically triangulates only its own export before producing content-keyed bytes (0.254981ms)
+✔ only the target twelve triangles may change; all other attributes/materials/transforms/proxies match F2 (123.194552ms)
+✔ actual target strip matches the browser-verified same-bounds BoxGeometry triangle diagonals and normals (68.834971ms)
+[InteriorLoader] 坤宁宫 安装失败，保留 B 档： Error: Kunning profile contract missing or duplicated
+    at validateKunningFurniture (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:376:50)
+    at InteriorLoader._install (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:165:29)
+    at file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:129:16
+    at loader.gltf.load (file:///workspace/scratch/02a8023d1a85/r54-unified/tests/kunning-interior-loader.test.mjs:32:36)
+    at file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:126:17
+    at new Promise (<anonymous>)
+    at InteriorLoader.load (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:125:17)
+    at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r54-unified/tests/kunning-interior-loader.test.mjs:33:29)
+    at Test.runInAsyncScope (node:async_hooks:227:14)
+    at Test.run (node:internal/test_runner/test:1382:25)
+[InteriorLoader] 坤宁宫 安装失败，保留 B 档： Error: Kunning profile contract mismatch: profileId
+    at validateKunningFurniture (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:378:52)
+    at InteriorLoader._install (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:165:29)
+    at file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:129:16
+    at loader.gltf.load (file:///workspace/scratch/02a8023d1a85/r54-unified/tests/kunning-interior-loader.test.mjs:69:62)
+    at file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:126:17
+    at new Promise (<anonymous>)
+    at InteriorLoader.load (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:125:17)
+    at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r54-unified/tests/kunning-interior-loader.test.mjs:74:29)
+    at async Test.run (node:internal/test_runner/test:1389:7)
+    at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+[InteriorLoader] 坤宁宫 安装失败，保留 B 档： Error: Kunning profile contract mismatch: profileRevision
+    at validateKunningFurniture (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:378:52)
+    at InteriorLoader._install (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:165:29)
+    at file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:129:16
+    at loader.gltf.load (file:///workspace/scratch/02a8023d1a85/r54-unified/tests/kunning-interior-loader.test.mjs:69:62)
+    at file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:126:17
+    at new Promise (<anonymous>)
+    at InteriorLoader.load (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:125:17)
+    at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r54-unified/tests/kunning-interior-loader.test.mjs:74:29)
+    at async Test.run (node:internal/test_runner/test:1389:7)
+    at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+[InteriorLoader] 坤宁宫 安装失败，保留 B 档： Error: Kunning profile contract mismatch: profileHash
+    at validateKunningFurniture (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:378:52)
+    at InteriorLoader._install (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:165:29)
+    at file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:129:16
+    at loader.gltf.load (file:///workspace/scratch/02a8023d1a85/r54-unified/tests/kunning-interior-loader.test.mjs:69:62)
+    at file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:126:17
+    at new Promise (<anonymous>)
+    at InteriorLoader.load (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:125:17)
+    at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r54-unified/tests/kunning-interior-loader.test.mjs:74:29)
+    at async Test.run (node:internal/test_runner/test:1389:7)
+    at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+[InteriorLoader] 坤宁宫 安装失败，保留 B 档： Error: Kunning profile contract mismatch: ownership
+    at validateKunningFurniture (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:378:52)
+    at InteriorLoader._install (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:165:29)
+    at file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:129:16
+    at loader.gltf.load (file:///workspace/scratch/02a8023d1a85/r54-unified/tests/kunning-interior-loader.test.mjs:69:62)
+    at file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:126:17
+    at new Promise (<anonymous>)
+    at InteriorLoader.load (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:125:17)
+    at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r54-unified/tests/kunning-interior-loader.test.mjs:74:29)
+    at async Test.run (node:internal/test_runner/test:1389:7)
+    at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+[InteriorLoader] 坤宁宫 安装失败，保留 B 档： Error: Kunning unknown or duplicate furniture proxy: COL_door_backing
+    at file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:394:49
+    at Mesh.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7600:3)
+    at Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)
+    at validateKunningFurniture (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:387:8)
+    at InteriorLoader._install (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:165:29)
+    at file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:129:16
+    at loader.gltf.load (file:///workspace/scratch/02a8023d1a85/r54-unified/tests/kunning-interior-loader.test.mjs:69:62)
+    at file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:126:17
+    at new Promise (<anonymous>)
+    at InteriorLoader.load (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:125:17)
+[InteriorLoader] 坤宁宫 安装失败，保留 B 档： Error: Kunning S cannot own structural support
+    at file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:391:43
+    at Mesh.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7600:3)
+    at Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)
+    at validateKunningFurniture (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:387:8)
+    at InteriorLoader._install (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:165:29)
+    at file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:129:16
+    at loader.gltf.load (file:///workspace/scratch/02a8023d1a85/r54-unified/tests/kunning-interior-loader.test.mjs:69:62)
+    at file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:126:17
+    at new Promise (<anonymous>)
+    at InteriorLoader.load (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:125:17)
+[InteriorLoader] 坤宁宫 安装失败，保留 B 档： Error: Kunning mesh outside furniture regions: unregistered_backing
+    at file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:409:105
+    at Mesh.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7600:3)
+    at Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)
+    at validateKunningFurniture (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:387:8)
+    at InteriorLoader._install (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:165:29)
+    at file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:129:16
+    at loader.gltf.load (file:///workspace/scratch/02a8023d1a85/r54-unified/tests/kunning-interior-loader.test.mjs:69:62)
+    at file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:126:17
+    at new Promise (<anonymous>)
+    at InteriorLoader.load (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:125:17)
+[InteriorLoader] 坤宁宫 安装失败，保留 B 档： Error: Injected install interruption after colliders
+    at cm.addWalkables (file:///workspace/scratch/02a8023d1a85/r54-unified/tests/kunning-interior-loader.test.mjs:108:30)
+    at InteriorLoader._install (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:214:14)
+    at file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:129:16
+    at loader.gltf.load (file:///workspace/scratch/02a8023d1a85/r54-unified/tests/kunning-interior-loader.test.mjs:69:62)
+    at file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:126:17
+    at new Promise (<anonymous>)
+    at InteriorLoader.load (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:125:17)
+    at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r54-unified/tests/kunning-interior-loader.test.mjs:109:29)
+    at async Test.run (node:internal/test_runner/test:1389:7)
+    at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+✔ Kunning rejects absent profile metadata before installing any S state (5.416554ms)
+✔ cancellation discards late Kunning scene without touching permanent B (0.616281ms)
+✖ unchanged Cining retains the legacy optional-proxy contract (0.451594ms)
+✔ Kunning rejects stale or wrong profileId without any registered state (11.063652ms)
+✔ Kunning rejects stale or wrong profileRevision without any registered state (3.120643ms)
+✔ Kunning rejects stale or wrong profileHash without any registered state (3.891436ms)
+✔ Kunning rejects stale or wrong ownership without any registered state (2.069432ms)
+✔ actual GLTFLoader extras roundtrip supports fade, unload and reload with exact proxies (33.569664ms)
+✔ Kunning rejects forbidden proxy COL_door_backing (6.564269ms)
+✔ Kunning rejects forbidden proxy WALK_fake_floor (3.667401ms)
+✔ Kunning rejects actual visible triangles in true doorway even with a valid contract (15.493658ms)
+✔ Kunning rolls back partially registered collisions after an install exception (10.876773ms)
+✔ dispose while loading discards late geometry and preserves B (3.839958ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 19
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 282.793183
+
+✖ failing tests:
+
+test at tests/kunning-interior-loader.test.mjs:54:1
+✖ unchanged Cining retains the legacy optional-proxy contract (0.451594ms)
+  TypeError: Cannot read properties of undefined (reading 'model')
+      at InteriorLoader.load (file:///workspace/scratch/02a8023d1a85/r54-unified/src/scene/interior/InteriorLoader.js:124:38)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r54-unified/tests/kunning-interior-loader.test.mjs:58:29)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)

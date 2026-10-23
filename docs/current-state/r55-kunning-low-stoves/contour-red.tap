@@ -1,0 +1,59 @@
+✔ R55 replaces two tall S stoves with one continuous low countertop and three covered inset mouths (3.133555ms)
+✔ all non-stove R54 triangles, vertex attributes, winding, material identity and transforms remain exact (8.370155ms)
+✔ low stovetop has actual visible .43m support across slab and all three flush lids (8.610023ms)
+✖ source and fit metadata keep documented measurements distinct from unresolved width and axis order (1.718179ms)
+✔ actual encoded asset statistics and triangle quality stay within bounded delta (8.999054ms)
+✔ new stove has no volumetric overlap with preserved S furniture, especially the north kang (8.049215ms)
+✔ flat covers have real recessed iron seats, not unsupported floating disks (0.429522ms)
+✖ slab holes and iron outer rings share every corner contour without deep seams (1.082939ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 6
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 393.569624
+
+✖ failing tests:
+
+test at tests/r55-kunning-low-stoves.test.mjs:26:1
+✖ source and fit metadata keep documented measurements distinct from unresolved width and axis order (1.718179ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '4ac34ebf570c1eb1b917000001d6dfd3efa8d42da5c8c5ddaec93e5229c40837'
+  - 'c4d9af627704eb2ca6a3e380da853aae9d62a6bf71870ce4650fc87a94197575'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r55-kunning-low-stoves/tests/r55-kunning-low-stoves.test.mjs:30:49)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '4ac34ebf570c1eb1b917000001d6dfd3efa8d42da5c8c5ddaec93e5229c40837',
+    expected: 'c4d9af627704eb2ca6a3e380da853aae9d62a6bf71870ce4650fc87a94197575',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r55-kunning-low-stoves.test.mjs:48:1
+✖ slab holes and iron outer rings share every corner contour without deep seams (1.082939ms)
+  AssertionError [ERR_ASSERTION]: pot 0 corner seam must be flush, not drop to .35m
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r55-kunning-low-stoves/tests/r55-kunning-low-stoves.test.mjs:51:383)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

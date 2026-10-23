@@ -1,0 +1,45 @@
+# R55 unified local release
+
+Cumulative successor to frozen R54 `edd1d6de15ad1393a45d6da8712e37ac3d8dc388`, remote `a370cf34381c0e3a513165fe25070df625272d05`. All earlier accepted R49B/D/E and R50–R54 updates remain. The unaccepted Jingyun experiment is not included. No main merge or Pages deployment is part of this local release.
+
+## Bounded changes
+
+- **93 required logical people**, up from 85. Changchun, Zhongcui, Jingren and Yonghe each gain one maid and one eunuch. Four independent short strolls and four stationary roles use the confirmed templates, no new consort, props or costumes. All original 85 authored actors/binding configurations and the Kit are retained exactly; runtime bindings are freshly resolved, not inherited as ready. Counts and schedules are an optional anonymous interpretation, not historical staffing or modern exhibition personnel. See `POPULATION-SCOPE.md`.
+- **Zhonghe display:** a low platform, open-legged seat and separate grounded rear screen with bounded basic material work. 19 new meshes / 244 triangles replace 14 / 168, net +76 triangles. Four doors, flat ceiling, plaque and retained furnishings remain. The inherited walking floor at 8.60 m versus rendered floor at 8.63 m is disclosed; the new platform's own support and visible top are 8.81 m. Source, retained-part hashes and exact deltas are under `../../docs/references/r55-zhonghe-display/` and `../../docs/validation/r55-zhonghe-display/`.
+- **Kunning optional S interior:** a low continuous stove with three embedded covered pot openings and actual bearing rings. Model fit is 4.00 × 2.30 × 0.43 m. Only 0.43 m height and documented pot diameters derive from the cited survey; length, placement, lid thickness and other fitting details remain interpretations. The official table's 2160 mm is width, not three-pot row length. New asset has 7,952 render triangles, +3,296 over the retained rollback asset; 8 collision proxies remain. Non-stove geometry, materials, normals, UVs and transforms are retained exactly. The stove alone shifts 7 cm to leave a 2 cm gap from the retained north kang. No new walkable/rescue floor, fire, utensils or invented carving. See `../../docs/current-state/r55-kunning-low-stoves/SCOPE.md`.
+
+Both architectural slices are partial improvements, not finished photo-accurate palace restoration. Zhonghe materials are a fitted interpretation rather than measured historic paint. Kunning's old hood is retained, not claimed newly reconstructed.
+
+## Actual validation
+
+- `focused.tap`: **122/122**, covering current population, exact old 85 preservation, production entry/default-on/off, source freeze, bounded Zhonghe geometry/controller routes, real Kunning GLB and Loader lifecycle/failure/cancellation, synthetic 128 capacity, and spacing negative checks. Synthetic capacity is not 128 placed people.
+- `one-world.tap`: **23/23** in one final integrated world. 24,012 static colliders, 1,104 walkables, seven zones. All **93** freshly bound and individually submitted with actual target triangles visible in B, after real Yangxin GLB loading/fade, and after real Kunning GLB loading/fade. **256** grouped/individual observer checks, zero final view failures. All **17** routes have **515** support samples at no more than 0.25 m spacing and complete the existing cyclic checks. No previous-world ready flags are carried over.
+- The same world executes **14 Zhonghe** full controller route modes and **8 Kunning S** doorway/stove round trips. Kunning exact asset URL, eight proxies, source geometry, generation transitions and B→S→B return are checked. Every actor is rebound for the current generation; unload returns to 93 ready with no errors.
+- `staff-proof.json.gz`: all eight new roles have real scene support, body bounds across three LODs and 24 animation phases, visible submissions, night/off and unload/reload checks. Four new routes each complete two production cycles, **1,672** actually submitted frames in total, with planted-foot and swing checks. Phase-independent swept centerlines cover **708** new-involved actor pairs / 772 segment pairs, minimum **2.5 m**, above the unchanged 1.2 m threshold. No actor position or path is changed to suit the camera.
+- `compiled-root-subpath.tap`: **2/2**, actual root and `/forbidden-city-3d/` builds with matching HTML/JS/build manifest identity, all 93 actor IDs, R55 labels, no production DEV preview hook and the existing no-cache local server policy.
+- Sampled actual CPU submission maxima: high **64 instances / 43,730 triangles / 19 batches / near 2**; low **32 / 17,428 / 14 / near 0**. These are observed CPU instance/index counts, not GPU timings, a global worst-case guarantee or 93 simultaneously visible people. Night eligibility remains 18 guards. Preparation iteration counts are test steps, not real-time loading latency.
+
+The current world source manifest has 195 inputs, retaining 189 of R54's 190 exactly. The one changed old world input is SquareHalls; five new inputs cover the Zhonghe helper, Kunning configuration/generator and new/rollback assets. The exact R54 manifest remains available. R54's deliberate three-screen lower-edge exception is preserved and not re-described as runtime byte-identical. Main, Settings, global Collision, FirstPersonControls, Teleport, InteriorLoader and character machinery/Kit are byte-identical to R54.
+
+## Preserved failures and scope classification
+
+The diagnostic logs and full captured red reports remain available, losslessly archived when large:
+
+1. `one-world-before-teleport-fixture`: a local Zhonghe helper assumed no map fallback. Read-only full-world R54 and R55 probes showed the exact same safe fallback landing `(0, 51, 8.6)`. The final check compares the complete actual R54 landing and still verifies physical safety. Production Teleport did not change.
+2. `one-world-before-signed-zero`: JSON serializes negative zero as zero. Only negative-zero normalization was added for that fixture comparison; no coordinates or tolerance were relaxed.
+3. `one-world-before-observer`: a body-clear supported camera did not guarantee a clear target. The bounded observer search now checks actual target triangles and records rejected candidates, including another actor or a wall occluding a legal camera. No actor, wall or collision is moved.
+4. `one-world-before-registry-frame`: the QA harness used raw Kunning JSON rather than the production registry that attaches its actual hall frame. It now consumes the exact production registry. Production Loader/registry behavior did not change.
+
+Earlier map-probe naming errors and the original population-entry red are also retained. These were QA fixture defects, not user-facing bugs claimed fixed by this release. The final passing run is separately frozen and identifiable.
+
+Historical suites remain red and are not counted as current passes. Zhonghe's replacement makes the old generic-caisson assumption and R54's non-target-Zhonghe freeze assertion inapplicable; old files remain unchanged. Kunning's old total-triangle snapshot changes from 4,740 to 8,036 including proxies; its new exact non-target triangle/material preservation checks supersede that count, without changing the old assertion. The pre-existing Cining fixture failure remains separately documented. No whole-repository green claim is made.
+
+## Visual evidence and remaining limits
+
+`scene-previews/eight-courtyard-roles.png`, eight individual images and `kunning-stoves-in-scene.png` use actual current scene triangles and submitted character buffers. They are CPU perspective z-buffer previews, **not browser/GPU screenshots or concept art**. Base/vertex colors only; pale buildings do not mean production textures or materials were deleted. Runtime textures, lighting, contact shadows and GPU dithering are absent. Foot contact is verified geometrically/through animation, not inferred from a shadowless picture.
+
+Browser/WebGL appearance and performance, physical phones, and complete historical acceptance remain unverified. Production characters remain default-on and one-click off. Formal `contentApproved` stays false rather than turning partial checks into overall approval. Existing build identity and copy diagnostics remain. No dependency, permission, credential, global navigation, animation loop or Loader change is added.
+
+A fresh guarded production package is built after source freeze. `BUILD-PACKAGE.json` records exact build/source provenance and ZIP hash. It is a runnable local package, not a deployment. Report-only transport is reversible; `../r55-transport/README.md` describes recovery. All test inputs and runtime GLB assets remain directly readable. Previous frozen versions remain rollback points.
+
+Post-storage verification: **70/70** transport/retained-input/provenance checks pass. Fifteen exact report originals (19,075,895 bytes) are retained in 3,239,198 container bytes across 38 ordered parts. All originals were restored and compared byte-for-byte with the frozen commit. No evidence was omitted; runtime GLBs and essential test inputs remain direct.

@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {buildShoukangEastWarmRoom} from './ShoukangEastWarmRoom.js';
 const SOURCE='https://www.dpm.org.cn/explore/building/236448.html',SURVEY='https://www.dpm.org.cn/Uploads/File/pdf/ff/8e/7f/ff8e7f5fee79130164656141fe26d725.pdf',DISPLAY='https://www.dpm.org.cn/Uploads/File/2019/11/30/u5de26f7031b50.pdf';
 export const SHOUKANG_FIT=Object.freeze({profile:'shoukang-front-display-2018-fit-v1',bayWeights:Object.freeze([13.5,13.5,15.5,13.5,13.5]),frontInset:2,warmPassageZ:-1.2,warmPassageWidth:2.6,seatZ:4.1,screenZ:5.0,platformHeight:.12});
 export function shoukangGeometry(item){
@@ -32,6 +33,7 @@ export function buildShoukangHall(kit,item){
  // Source warm-room outer bays, but no source claims these fitted apertures are
  // historic surveyed door positions or exact partition construction.
  for(const x of[axes[1],axes[4]]){const lo=p.warmPassageZ-p.warmPassageWidth/2,hi=p.warmPassageZ+p.warmPassageWidth/2;for(const[a,b]of[[front,lo],[hi,rear]])box('shoukang-warm-partition','plaster',.16,H,b-a,x,y+H/2,(a+b)/2);for(const z of[lo,hi])box('shoukang-warm-opening-frame','wood',.2,3.3,.12,x,y+1.65,z);box('shoukang-warm-opening-head','wood',.2,.16,p.warmPassageWidth,x,y+3.3,p.warmPassageZ);}
+ buildShoukangEastWarmRoom(kit,item,f,g);
  kit.steps(f,{zEdge:item.d/2+item.pad,dir:1,y,width:4.6});
  for(let i=0;i<5;i++)for(let j=0;j<3;j++)box('shoukang-plain-ceiling-grid','ceiling',g.bayWidths[i]-.08,.08,item.d/3-.08,(axes[i]+axes[i+1])/2,y+H,-item.d/2+(j+.5)*item.d/3,false);
  for(const z of[-item.d/2,front,rear])box('shoukang-frame-beam','wood',item.w,.35,.3,0,y+item.colH-.2,z,false);

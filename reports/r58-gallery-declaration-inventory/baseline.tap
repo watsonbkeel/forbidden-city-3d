@@ -1,0 +1,39 @@
+✔ item 28 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (14.455246ms)
+✔ item 29 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (6.215926ms)
+✔ item 30 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (8.37537ms)
+✔ item 31 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (16.388063ms)
+✔ item 34 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (10.843526ms)
+✔ item 35 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (5.763418ms)
+✔ item 36 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (6.900735ms)
+✔ item 37 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (16.847276ms)
+✔ all 406 removed meshes each own their removed collider; cover provenance is prop-local; no spawn deletion (1.551512ms)
+✔ same sequential-zone RNG and all south/non-target streams remain exact (52.436188ms)
+✔ undefined policy retains old default bytes including all room/furniture streams (349.731212ms)
+✔ reject illegal explicit policy null (1.216206ms)
+✔ reject illegal explicit policy "empty" (0.617963ms)
+✔ reject illegal explicit policy false (0.356528ms)
+✔ reject illegal explicit policy {} (0.321044ms)
+✔ reject illegal explicit policy {"mode":"empty","target":"axis-courts/items/28","reviewId":"FC-CA9102BFFB"} (0.240814ms)
+✔ reject illegal explicit policy {"mode":"unknown-inventory","target":"axis-courts/items/28","reviewId":"FC-86FF7FC2AB"} (0.277619ms)
+✔ reject illegal explicit policy {"mode":"unknown-inventory","target":"axis-courts/items/38","reviewId":"FC-CA9102BFFB"} (0.188425ms)
+✔ reject illegal explicit policy {"mode":"unknown-inventory","target":"axis-courts/items/28","reviewId":"FC-CA9102BFFB","accepted":true} (0.160672ms)
+✔ reject wrong target axis-courts/38/corridor (0.250989ms)
+✔ reject wrong target west-six/28/corridor (0.157778ms)
+✔ reject wrong target axis-courts/28/hall (0.189727ms)
+✔ direct generic kit may not adopt an unidentified or mismatched gallery opt-in (0.167053ms)
+✔ skip means no mesh/material construction, not construct-and-discard (0.130477ms)
+✔ JSON adds only the exact eight policy fields and no structural values (0.690232ms)
+✔ actual hall dispatch rejects explicit misplaced gallery policy (0.42386ms)
+✔ direct furnishing cannot bypass target validation: null (0.194344ms)
+✔ direct furnishing cannot bypass target validation: false (0.131098ms)
+✔ direct furnishing cannot bypass target validation: {} (0.077647ms)
+✔ direct furnishing cannot bypass target validation: {"mode":"unknown-inventory","target":"axis-courts/items/28","reviewId":"FC-CA9102BFFB"} (0.066621ms)
+✔ detached item clone cannot silently claim a registered target slot (0.298511ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1241.67712

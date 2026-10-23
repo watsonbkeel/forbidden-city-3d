@@ -1,0 +1,173 @@
+✔ consumer rejects missing actual room registrations instead of reconstructing them (2.147159ms)
+✔ consumer rejects false known-empty metadata (168.586246ms)
+✔ consumer rejects a single restored prop-owned ghost collider (122.508828ms)
+✔ consumer rejects one restored removed furniture shape (104.145286ms)
+✔ consumer rejects missing retained shell geometry (99.850905ms)
+✖ consumer rejects fully non-submitted retained shell draw ranges (159.838954ms)
+✖ consumer rejects non-rendering retained shell material (129.711059ms)
+✔ item 28 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (17.150208ms)
+✔ item 29 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (7.702506ms)
+✔ item 30 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (9.95347ms)
+✔ item 31 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (21.782361ms)
+✔ item 34 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (13.757062ms)
+✔ item 35 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (7.51837ms)
+✔ item 36 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (9.755482ms)
+✔ item 37 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (21.196503ms)
+✔ all 406 removed meshes each own their removed collider; cover provenance is prop-local; no spawn deletion (1.409002ms)
+✔ same sequential-zone RNG and all south/non-target streams remain exact (58.808232ms)
+✔ undefined policy retains old default bytes including all room/furniture streams (359.162365ms)
+✔ reject illegal explicit policy null (1.40116ms)
+✔ reject illegal explicit policy "empty" (0.32633ms)
+✔ reject illegal explicit policy false (0.196114ms)
+✔ reject illegal explicit policy {} (0.360671ms)
+✔ reject illegal explicit policy {"mode":"empty","target":"axis-courts/items/28","reviewId":"FC-CA9102BFFB"} (0.240932ms)
+✔ reject illegal explicit policy {"mode":"unknown-inventory","target":"axis-courts/items/28","reviewId":"FC-86FF7FC2AB"} (0.211157ms)
+✔ reject illegal explicit policy {"mode":"unknown-inventory","target":"axis-courts/items/38","reviewId":"FC-CA9102BFFB"} (0.283334ms)
+✔ reject illegal explicit policy {"mode":"unknown-inventory","target":"axis-courts/items/28","reviewId":"FC-CA9102BFFB","accepted":true} (0.214432ms)
+✔ reject wrong target axis-courts/38/corridor (0.623094ms)
+✔ reject wrong target west-six/28/corridor (0.264556ms)
+✔ reject wrong target axis-courts/28/hall (0.159009ms)
+✔ direct generic kit may not adopt an unidentified or mismatched gallery opt-in (0.144346ms)
+✔ skip means no mesh/material construction, not construct-and-discard (0.134491ms)
+✔ JSON adds only the exact eight policy fields and no structural values (0.807962ms)
+✖ actual hall dispatch rejects explicit misplaced gallery policy (169.769349ms)
+✖ direct furnishing cannot bypass target validation: null (0.483755ms)
+✖ direct furnishing cannot bypass target validation: false (0.122994ms)
+✖ direct furnishing cannot bypass target validation: {} (0.103194ms)
+✖ direct furnishing cannot bypass target validation: {"mode":"unknown-inventory","target":"axis-courts/items/28","reviewId":"FC-CA9102BFFB"} (0.097286ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 30
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1650.782642
+
+✖ failing tests:
+
+test at tests/r58-gallery-consumer-negatives.test.mjs:9:1
+✖ consumer rejects fully non-submitted retained shell draw ranges (159.838954ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-consumer-negatives.test.mjs:9:218)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /retained triangle absent/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-consumer-negatives.test.mjs:10:1
+✖ consumer rejects non-rendering retained shell material (129.711059ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-consumer-negatives.test.mjs:10:212)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /retained triangle absent/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-inventory.test.mjs:35:1
+✖ actual hall dispatch rejects explicit misplaced gallery policy (169.769349ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:35:190)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /policy|target|inventory/i,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-inventory.test.mjs:36:44
+✖ direct furnishing cannot bypass target validation: null (0.483755ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:36:247)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /policy|target|inventory/i,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-inventory.test.mjs:36:44
+✖ direct furnishing cannot bypass target validation: false (0.122994ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:36:247)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /policy|target|inventory/i,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-inventory.test.mjs:36:44
+✖ direct furnishing cannot bypass target validation: {} (0.103194ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:36:247)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /policy|target|inventory/i,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-inventory.test.mjs:36:44
+✖ direct furnishing cannot bypass target validation: {"mode":"unknown-inventory","target":"axis-courts/items/28","reviewId":"FC-CA9102BFFB"} (0.097286ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:36:247)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /policy|target|inventory/i,
+    operator: 'throws',
+    diff: 'simple'
+  }

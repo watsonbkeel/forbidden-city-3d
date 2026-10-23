@@ -1,0 +1,421 @@
+{
+  "sourceHead": "1549a70b51ac184695aeebbca725ec4d809a4454",
+  "rows": [
+    {
+      "id": "FC-35BF29ABCB",
+      "binding": {
+        "status": "SOURCE_CODE_BINDING_CONFIRMED_BROWSER_PENDING",
+        "path": "src/scene/PalaceBuilder.js#buildComplex(三台)",
+        "subcomponents": [
+          "buildTerraceUnion",
+          "ThreeHallTerrace",
+          "TaiheFrontApproaches",
+          "BaoheNorthApproaches",
+          "BaoheHallPlinth",
+          "ZhongheImperialApproach"
+        ],
+        "evidence": "Current hook and dedicated modules actually read, no whole-world build."
+      }
+    },
+    {
+      "id": "FC-E32F3D1CA3",
+      "binding": {
+        "status": "UNRESOLVED_OFFICIAL_IDENTITY_NOT_MISSING_GEOMETRY",
+        "candidateItems": [
+          38,
+          39,
+          40,
+          41
+        ],
+        "candidateAssembly": "component-assembly.json",
+        "effectiveEndpoints": [
+          {
+            "index": 38,
+            "gateJoin": {
+              "gate": "昭德门",
+              "side": "left",
+              "end": "to",
+              "boundary": [
+                -74.6,
+                -217.29999999999998
+              ],
+              "effectiveFrom": [
+                -105.97,
+                -217.3
+              ],
+              "effectiveTo": [
+                -74.6,
+                -217.29999999999998
+              ],
+              "provisional": true,
+              "status": "provisional-closed-contact"
+            }
+          },
+          {
+            "index": 39,
+            "gateJoin": {
+              "gate": "昭德门",
+              "side": "right",
+              "end": "from",
+              "boundary": [
+                -50.2,
+                -217.29999999999998
+              ],
+              "effectiveFrom": [
+                -50.2,
+                -217.29999999999998
+              ],
+              "effectiveTo": [
+                -26.5,
+                -217.3
+              ],
+              "provisional": true,
+              "status": "provisional-closed-contact"
+            }
+          },
+          {
+            "index": 40,
+            "gateJoin": {
+              "gate": "贞度门",
+              "side": "left",
+              "end": "to",
+              "boundary": [
+                52.400000000000006,
+                -217.29999999999998
+              ],
+              "effectiveFrom": [
+                26.5,
+                -217.3
+              ],
+              "effectiveTo": [
+                52.400000000000006,
+                -217.29999999999998
+              ],
+              "provisional": true,
+              "status": "provisional-closed-contact"
+            }
+          },
+          {
+            "index": 41,
+            "gateJoin": {
+              "gate": "贞度门",
+              "side": "right",
+              "end": "from",
+              "boundary": [
+                76.4,
+                -217.29999999999998
+              ],
+              "effectiveFrom": [
+                76.4,
+                -217.29999999999998
+              ],
+              "effectiveTo": [
+                110.2,
+                -217.3
+              ],
+              "provisional": true,
+              "status": "provisional-closed-contact"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "FC-CA9102BFFB",
+      "binding": {
+        "status": "ACTUAL_COMPONENTS_FOUND_OFFICIAL_BOUNDARIES_PARTIAL",
+        "items": [
+          28,
+          29,
+          30
+        ],
+        "outerWallItem": 6,
+        "side": "east",
+        "assembly": "component-assembly.json",
+        "runtimeRooms": 13,
+        "solidPartitionCount": 10,
+        "automaticFurnishingMeshes": 99,
+        "officialRoomCount": null
+      }
+    },
+    {
+      "id": "FC-B31A272965",
+      "binding": {
+        "status": "ACTUAL_COMPONENTS_FOUND_OFFICIAL_BOUNDARIES_PARTIAL",
+        "items": [
+          34,
+          35,
+          36
+        ],
+        "outerWallItem": 7,
+        "side": "west",
+        "assembly": "component-assembly.json",
+        "runtimeRooms": 13,
+        "solidPartitionCount": 10,
+        "automaticFurnishingMeshes": 99,
+        "officialRoomCount": null
+      }
+    },
+    {
+      "id": "FC-0D3F161564",
+      "binding": {
+        "status": "ACTUAL_COMPONENTS_FOUND_OFFICIAL_BOUNDARIES_PARTIAL",
+        "items": [
+          31
+        ],
+        "outerWallItem": 6,
+        "side": "east",
+        "assembly": "component-assembly.json",
+        "runtimeRooms": 13,
+        "solidPartitionCount": 12,
+        "automaticFurnishingMeshes": 102,
+        "officialRoomCount": null
+      }
+    },
+    {
+      "id": "FC-86FF7FC2AB",
+      "binding": {
+        "status": "ACTUAL_COMPONENTS_FOUND_OFFICIAL_BOUNDARIES_PARTIAL",
+        "items": [
+          37
+        ],
+        "outerWallItem": 7,
+        "side": "west",
+        "assembly": "component-assembly.json",
+        "runtimeRooms": 13,
+        "solidPartitionCount": 12,
+        "automaticFurnishingMeshes": 106,
+        "officialRoomCount": null
+      }
+    },
+    {
+      "id": "FC-1ABC6622CB",
+      "binding": {
+        "status": "EAST_INSTALLED_WEST_CANDIDATE",
+        "outerWallItems": [
+          13,
+          15
+        ],
+        "installedProfile": "taihe-east-stepped-firewall",
+        "sourceCode": [
+          "src/scene/PalaceBuilder.js#buildComplex",
+          "src/scene/palace/special/AxisFirewalls.js",
+          "src/scene/palace/special/AxisFirewallProfiles.js"
+        ]
+      }
+    },
+    {
+      "id": "FC-526ABE19BB",
+      "binding": {
+        "status": "OUTER_WALL_CANDIDATES_INNER_CONNECTOR_UNMODELED",
+        "outerWallItems": [
+          17,
+          19
+        ],
+        "installedProfile": null,
+        "sourceCode": [
+          "data/zones/axis-courts.json#/items/17",
+          "data/zones/axis-courts.json#/items/19"
+        ]
+      }
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "src/scene/PalaceBuilder.js",
+      "sha256": "2db64144a294eebf965a65499efcc6152e47496a60189e85cd9187b4a65723af",
+      "anchors": [
+        {
+          "line": 239,
+          "text": "const r = buildBalustrade(this.library, { length: len, height: h });"
+        },
+        {
+          "line": 341,
+          "text": "buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile = null, taiheSouth = false, taihemenSouth = false, innerPalace = false, baoheNorth = null }) {"
+        },
+        {
+          "line": 442,
+          "text": "this.buildComplex(halls, grp);"
+        },
+        {
+          "line": 444,
+          "text": "list.filter(p => !used.has(p)).forEach(p => this.buildComplex([p], { name: p.name, apron: 6, margin: 4 }));"
+        },
+        {
+          "line": 447,
+          "text": "buildComplex(halls, { name, apron, margin, maxH, bottom }) {"
+        },
+        {
+          "line": 481,
+          "text": "? threeHallTerraceProfile(rects, { layers, lh, run, setback, waistIndex, hall: halls[waistIndex] })"
+        },
+        {
+          "line": 484,
+          "text": "const top = this.buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile, taiheSouth: name === '三台', taihemenSouth: name === '太和门', innerPalace: name === '后三宫', baoheNorth });"
+        },
+        {
+          "line": 512,
+          "text": "if (name === '三台') this.terraceOrnaments(g, rects[0], top);"
+        },
+        {
+          "line": 518,
+          "text": "const profile = createTaiheEastFirewallProfile({"
+        },
+        {
+          "line": 521,
+          "text": "buildTaiheEastFirewall(this, g, profile);"
+        },
+        {
+          "line": 635,
+          "text": "terraceOrnaments(g, r, y) {"
+        },
+        {
+          "line": 1064,
+          "text": "this.buildComplex([data], { name: data.name, apron: 3, margin: 3 });"
+        }
+      ]
+    },
+    {
+      "path": "src/scene/palace/kit.js",
+      "sha256": "bbc913f75f5685096c0b7fa7f9407ef6397dbb04753401b01274896280fb6992",
+      "anchors": [
+        {
+          "line": 160,
+          "text": "furnish(f, kind, room) {"
+        },
+        {
+          "line": 168,
+          "text": "registerRoom(f, { name, kind, x0, x1, z0, z1, y, h, doors }) {"
+        },
+        {
+          "line": 456,
+          "text": "hall(o) {"
+        },
+        {
+          "line": 612,
+          "text": "if (roomKind !== 'throne') this.furnish(f, roomKind, { x0, x1, z0: -d / 2 + 0.3, z1: d / 2 - 0.3, y: y0, doorX, h: colH - beamH, backDoor });"
+        },
+        {
+          "line": 613,
+          "text": "this.registerRoom(f, {"
+        },
+        {
+          "line": 635,
+          "text": "corridor(x1, z1, x2, z2, facing, { depth = 4.2, colH = 3.6, name } = {}) {"
+        }
+      ]
+    },
+    {
+      "path": "src/scene/zones/ZoneBase.js",
+      "sha256": "a50f5db037bd20d093f9f88c8a5e34dc66cf67af7e37349a6d669b58dd458ad2",
+      "anchors": [
+        {
+          "line": 84,
+          "text": "this.buildCorridor(item);"
+        },
+        {
+          "line": 292,
+          "text": "buildCorridor(item) {"
+        },
+        {
+          "line": 312,
+          "text": "this.kit.corridor(x1, z1, x2, z2, item.facing, params);"
+        }
+      ]
+    },
+    {
+      "path": "src/scene/HallKit.js",
+      "sha256": "f238e69d23efd1c1b95f9f2529b5f0a8b5ba8f1ec7d15fbdd6de04147a9b4edd",
+      "anchors": [
+        {
+          "line": 101,
+          "text": "const rail = buildBalustrade(lib, { length: len });"
+        },
+        {
+          "line": 129,
+          "text": "export function buildBalustrade(lib, { length, height = 1.1 }) {"
+        }
+      ]
+    },
+    {
+      "path": "src/scene/palace/ThreeHallTerrace.js",
+      "sha256": "9b5103df2058368a0c97f07aa184868f6de043dd8aaaf50f6ad6cb769b18aeec",
+      "anchors": [
+        {
+          "line": 10,
+          "text": "export function threeHallTerraceProfile(rects, { layers, lh, run, setback, waistIndex, hall }) {"
+        }
+      ]
+    },
+    {
+      "path": "src/scene/palace/TaiheFrontApproaches.js",
+      "sha256": "8e886f1c9f03b4cedd920a993c9f34dbb9e110197195cbd1adf50f1e136d1e53",
+      "anchors": [
+        {
+          "line": 57,
+          "text": "const rail=buildBalustrade(builder.library,{length:run,height:1.1});"
+        }
+      ]
+    },
+    {
+      "path": "src/scene/palace/BaoheNorthApproaches.js",
+      "sha256": "4339e0e6a8b2227dab5a4f443554d0cb3679c63770855a21a88bb74b7cc27d90",
+      "anchors": [
+        {
+          "line": 70,
+          "text": "const rail=buildBalustrade(b.library,{length:p.run,height:1.1}),mesh=rail.children[0],a=mesh.geometry.attributes.position;"
+        }
+      ]
+    },
+    {
+      "path": "src/scene/palace/BaoheHallPlinth.js",
+      "sha256": "5b4053277626e03fcd1918f75a0f4bf62460bbf2f82ef203b923714747af9b19",
+      "anchors": []
+    },
+    {
+      "path": "src/scene/palace/ZhongheImperialApproach.js",
+      "sha256": "558d9f6d5091832ae5d111c140c7211bd4dd7180e9eefdaf0b9df9cf41163db2",
+      "anchors": []
+    },
+    {
+      "path": "src/scene/palace/special/AxisFirewalls.js",
+      "sha256": "07242abaae24485739c85006b8d3445cc7703f201ffc05b8625898f6ad5a5c49",
+      "anchors": [
+        {
+          "line": 8,
+          "text": "export function buildTaiheEastFirewall(builder,parent,profile) {"
+        }
+      ]
+    },
+    {
+      "path": "src/scene/palace/special/AxisFirewallProfiles.js",
+      "sha256": "cf16f1482b305db4fc0088ef34d736d0476128a40c7261833bad83487e36a064",
+      "anchors": [
+        {
+          "line": 10,
+          "text": "export function createTaiheEastFirewallProfile({hall,rect,layers,lh,setback,linkWall}) {"
+        }
+      ]
+    },
+    {
+      "path": "src/config/constants.js",
+      "sha256": "19dfcca52781c69acf46e537661c9110c25b4eee88ea4522b21561f9dd47da7d",
+      "anchors": [
+        {
+          "line": 132,
+          "text": "ZHONGHE_Z: 65,              // 中和殿"
+        },
+        {
+          "line": 133,
+          "text": "BAOHE_Z: 123.2,             // 保和殿"
+        }
+      ]
+    }
+  ],
+  "assemblyProof": "component-assembly.json",
+  "browserProof": null,
+  "publicationProvenance": {
+    "originalReviewSha256": "6b6bf3b8800373c0eb9957e18c7d75aa30a88b77773c605b68aa1ebb5ea0278d",
+    "note": "Source-review metadata only; workspace paths removed. Official photographs/PDF are not redistributed. No browser visual acceptance."
+  }
+}

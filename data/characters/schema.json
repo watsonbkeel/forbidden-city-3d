@@ -10,7 +10,7 @@
     "actors": {
       "type": "array",
       "minItems": 38,
-      "maxItems": 96,
+      "maxItems": 128,
       "items": {
         "$ref": "#/$defs/actor"
       }
@@ -76,7 +76,7 @@
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "urn:forbidden-city-3d:characters:v2",
-  "title": "R50 Character registry, metres and actual model support bindings",
+  "title": "Character registry, metres and actual model support bindings",
   "$comment": "Apply to the combined registry exported by index.js. CharacterSchema.js adds cross-reference, immutable required coverage, support and shared-formation constraints. WorldAdapter verifies actual geometry at runtime.",
   "$defs": {
     "vector3": {
@@ -383,7 +383,7 @@
             "index": {
               "type": "integer",
               "minimum": 0,
-              "maximum": 7
+              "maximum": 15
             }
           },
           "required": [
@@ -884,7 +884,7 @@
           "const": "92cf31ec1779d0d6266a2caa6ad1708c379d1500"
         },
         "registeredHardLimit": {
-          "const": 96
+          "const": 128
         },
         "minimumRequired": {
           "const": 38
@@ -946,6 +946,38 @@
         "policy": {
           "type": "string",
           "minLength": 1
+        },
+        "releaseCoverage": {
+          "type": "object",
+          "required": [
+            "R52"
+          ],
+          "properties": {
+            "R52": {
+              "type": "object",
+              "required": [
+                "additionalRequiredActorIds",
+                "minimumRegistered"
+              ],
+              "properties": {
+                "additionalRequiredActorIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "minItems": 33,
+                  "maxItems": 33,
+                  "uniqueItems": true
+                },
+                "minimumRegistered": {
+                  "const": 71
+                },
+                "interpretation": {
+                  "type": "string"
+                }
+              }
+            }
+          }
         }
       },
       "required": [
@@ -959,7 +991,8 @@
         "sceneEnabledByDefault",
         "forbiddenAreas",
         "deferred",
-        "policy"
+        "policy",
+        "releaseCoverage"
       ]
     },
     "actorsDocument": {
@@ -974,7 +1007,7 @@
         "actors": {
           "type": "array",
           "minItems": 38,
-          "maxItems": 96,
+          "maxItems": 128,
           "items": {
             "$ref": "#/$defs/actor"
           }

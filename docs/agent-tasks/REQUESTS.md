@@ -129,3 +129,15 @@ User explicitly requested one latest version and reported R50 had no visible peo
 - SettingsMenu: default-on/off control, read-only preparation/failure counters, night explanation and incomplete GPU/mobile/history notice. DEV-only preview remains distinct and compiled out of production.
 - World manifest: exact R49E 185-source active version, old R49D/R49B/R49 manifests retained. Fresh 38 required bindings / 148 path samples, support rays and affected visibility checks, no world geometry repair beyond the accepted R49E patch.
 - Delivery: a prebuilt production package plus local-only static runner; no Pages deployment or main branch merge. CPU scene images omit textures/lighting/shadows and are not browser/GPU evidence.
+
+## R52 pending-preparation progress follow-up (2026-10-22)
+
+Approved by integration owner: only CharacterSystem.update allocates a pending-only 0.25 ms preparation reserve when nominal total budget is exhausted. It does not change world modules, support validation, visibility approval or the RAF. Explicit total overrun reporting and existing bounded/cancellable queue semantics remain. Test/report additions are under tests/r51-* and reports/r51-visibility; retained red evidence and exact lossless gzip report restoration are documented there. This patch is to be included in cumulative R52, not delivered as another fragmented user release.
+
+## R52 cumulative integration, 2026-10-22
+
+Approved scope:71 required logical people (original38 unchanged,33 additions),128 logical registration stress ceiling, unchanged high64/low32/near2 rendering budgets. CharacterSchema now freezes the additional R52 required IDs; a missing role cannot be replaced by a padded count or required=false. Actual visible Taihe floor binding follows the current rendered B/S generation, not a blanket30mm actor offset. Kit bytes are unchanged.
+
+Shared hooks: main.js adds only the release identity panel's lazy getCharacterStatus callback. SettingsMenu owns the panel mount/dispose. No second System or RAF, no persistent character setting, no release poll, cache deletion or automatic refresh. Version metadata and the guarded packager distinguish actual built bytes from later HEAD. Formal acceptance remains separate from normal default-on visibility.
+
+World ownership is limited to the accepted Wuying four-form refinement and moon-terrace/side-stair modules. R49B/R49D/R49E remain byte-preserved, with an explicit186-file successor freeze and previous185-file manifest retained. The unaccepted Jingyun experiment is excluded. Actual all-zone character/path/control integration is documented under reports/r52-unified; GPU and physical mobile acceptance remain open.

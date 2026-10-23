@@ -1,0 +1,25 @@
+✔ consumer measures four merged high sills, broad grid solids, narrow diagonal solids and retained closed windows (90.268659ms)
+✔ consumer rejects absent broad bars, narrow diamonds, collision and assembly, not just trusting metadata (84.225503ms)
+✔ 10Hz actual controller south repeated exterior-interior-exterior route preserves support and head clearance (28.444435ms)
+ℹ {"fps":10,"side":"south","frames":105,"headClearance":{"samples":27,"minOverheadDistance":4.193599891662598},"maxFeet":0.6}
+✔ 10Hz actual controller north repeated exterior-interior-exterior route preserves support and head clearance (18.216615ms)
+ℹ {"fps":10,"side":"north","frames":77,"headClearance":{"samples":20,"minOverheadDistance":3.030880165100098},"maxFeet":0.6}
+✔ 60Hz actual controller south repeated exterior-interior-exterior route preserves support and head clearance (55.356813ms)
+ℹ {"fps":60,"side":"south","frames":630,"headClearance":{"samples":158,"minOverheadDistance":2.654239845275879},"maxFeet":0.6}
+✔ 60Hz actual controller north repeated exterior-interior-exterior route preserves support and head clearance (42.804945ms)
+ℹ {"fps":60,"side":"north","frames":462,"headClearance":{"samples":116,"minOverheadDistance":3.030880165100098},"maxFeet":0.6}
+✔ four closed south panels become high masonry sills, broad square grids and paired narrow diamond fields (41.979157ms)
+✔ all non-target geometry, R40 rear glazing, doors, columns, roof, throne and physics remain byte-exact (218.84419ms)
+✔ foreign hall identity and malformed item, frame, or parent transform reject without side effects (862.573169ms)
+✔ missing, moved, extra, shared, stale-transform or modified source panels and collisions fail atomically (367.053377ms)
+✔ actual generated solids have finite positive-area triangles and survive merged world-space bounds (26.647256ms)
+✔ production ZoneBase exact five opt-in dispatches remove only unknown throne components before merge (487.867251ms)
+✔ production opt-in identity drift rejects before creating meshes or navigation (1.039189ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1685.035572

@@ -3,7 +3,7 @@
   "hall": "坤宁宫",
   "id": "kunning",
   "tier": "S",
-  "model": "/models/interiors/kunning-v6-0c83b4364eef.glb",
+  "model": "/models/interiors/kunning-v6-5adbf53a3114.glb",
   "fallback": "B",
   "budget": {
     "tris": 400000,
@@ -135,7 +135,7 @@
       "distance": 14
     }
   ],
-  "source": "V6: docs/current-state/V6-KUNNING-INTERIOR.md. S is optional furniture-only; B owns all architecture. Official S01/S02/S03 establish nine total bays including two end passages and seven interior bays (warm 2, ritual 4, storage 1). Placement dimensions remain provisional. Retained two-tall-stove depiction is unresolved; S08 supports three low pots for later work. No museum admission claim.",
+  "source": "V6 furniture-only contract retained. R55 changes only the above-ground north stove, supported by Wang Wentao, 故宫学刊 2019 pp501–502, figs4–5, with p508 length/width table cross-check: one low continuous countertop with three covered inset mouths. 430mm height is documented; plan size, relative placement, lid simplification and pot order are reversible model fit, not a site survey. Other furniture and pilu hood are retained, not newly authenticated. No current museum admission claim.",
   "furnitureProxies": {
     "COL_bed": "warmBed",
     "COL_screen": "warmScreen",
@@ -147,12 +147,76 @@
     "COL_stove": "northStove"
   },
   "asset": {
-    "sha256": "0c83b4364eef7febe30f976158c8a015bab49dcc3f40989f510c98e8edd6a9e4",
-    "encodedBytes": 289196,
-    "renderableTriangles": 4656,
+    "sha256": "5adbf53a311452221a3184198875958eb55436bd261253a75486516bfdc87553",
+    "encodedBytes": 427780,
+    "renderableTriangles": 7952,
     "proxyTriangles": 96,
-    "decodedBufferBytes": 252704,
+    "decodedBufferBytes": 389456,
     "textureBytes": 0,
-    "geometryBinSHA256": "a9908f0d397fdcb43c62d65f49e4ee8f927bec4964434d4bc802ab3a42f1bfa5"
+    "geometryBinSHA256": "5f8c34e6ab657c1467911391f0fc8a6fc36fd9216c21a0b77087525a9b34ea03"
+  },
+  "refinement": {
+    "id": "r55-kunning-low-stoves",
+    "status": "BOUNDED_GROUND_STOVE_PARTIAL_NOT_FULL_RESTORATION",
+    "dimensionStatus": "SOURCE_HEIGHT_WITH_REVERSIBLE_PLAN_FIT_NOT_SURVEYED",
+    "sourceURL": "https://img.dpm.org.cn/Uploads/File/2020/11/13/u5fae21c07c127.pdf#page=3",
+    "sourcePublicationYear": 2019,
+    "captureDate": null,
+    "sourceMeasurements": {
+      "aboveGroundHeightMm": 430,
+      "potDiametersMm": [
+        1050,
+        1360,
+        1160
+      ],
+      "potDepthsMm": [
+        340,
+        780,
+        760
+      ],
+      "reportedTotalWidthMm": 2160,
+      "summaryTablePrintedPage": 508,
+      "summaryTableLengthDescription": "通面阔",
+      "summaryTableWidthMm": 2160,
+      "widthAmbiguity": "2160mm width is smaller than the 3570mm sum of mouth diameters; p508 distinguishes width from length (length spans the bay). It is not east-west total length. Mapping to this existing model and pot order remain unverified; model plan dimensions stay reversible fit.",
+      "frontWoodEdgeMm": {
+        "width": 230,
+        "height": 185
+      }
+    },
+    "modelFit": {
+      "lengthX": 4.0,
+      "depthZ": 2.3,
+      "aboveGroundHeight": 0.43,
+      "localCenter": [
+        -5.22,
+        0,
+        5.775
+      ],
+      "mouthCenterZ": 5.88,
+      "eastWestPotOrderVerified": false,
+      "flatLidThickness": 0.035,
+      "lidRadialClearance": 0.022,
+      "recessedLidSeatTop": 0.395,
+      "northKangClearance": 0.02,
+      "ringWidth": 0.026,
+      "orderExplanation": "Source diameter ratios fit inside the fixed northStove region. Listed order is not verified east-west order.",
+      "coveredState": "Three flush simplified wood covers; no conjectural hardware or relief."
+    },
+    "rollbackModel": "/models/interiors/kunning-v6-0c83b4364eef.glb",
+    "excluded": [
+      "underground fire pit",
+      "buried pot bellies",
+      "ground firebox mouths",
+      "moving lids",
+      "stairs into pit",
+      "flues",
+      "food",
+      "flames",
+      "new lights",
+      "pilu hood refinement",
+      "B architecture changes"
+    ],
+    "preservation": "All non-stove triangles, attributes, material records and transforms compared against the retained R54 GLB. Other seven proxies, source profile, Loader and B shell are unchanged."
   }
 }

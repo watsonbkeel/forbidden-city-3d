@@ -1,0 +1,648 @@
+TAP version 13
+# Subtest: raw and merged actual triangles have identical sill, pale lower, short upper step and recessed surfaces
+not ok 1 - raw and merged actual triangles have identical sill, pale lower, short upper step and recessed surfaces
+  ---
+  duration_ms: 163.151598
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r62-e-jingren-rear-windows/tests/current-state/r62-jingren-rear-window-world.test.mjs:6:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    ... Skipped lines
+
+      {
+        openPortalRays: 3,
+        scope: 'ALREADY_BUILT_W_REAL_TRIANGLES_AND_COLLISIONS_NOT_BROWSER_ACCEPTANCE',
+        triangleContacts: [
+          {
+    ...
+              0.95,
+    +         342.42
+    -         342.42001
+            ],
+            local: [
+              -9.6,
+              0.95,
+              -5.6
+    ...
+              2.2,
+    +         342.575
+    -         342.57501
+            ],
+            local: [
+              -9.6,
+              2.2,
+              -5.6
+    ...
+              3.15,
+    +         342.42
+    -         342.42001
+            ],
+            local: [
+              -9.6,
+              3.15,
+              -5.6
+    ...
+              3.6,
+    +         342.42
+    -         342.42001
+            ],
+            local: [
+              -11.452,
+              3.6,
+              -5.6
+    ...
+              3.6,
+    +         342.575
+    -         342.57501
+            ],
+            local: [
+              -11.514,
+              3.6,
+              -5.6
+    ...
+              0.95,
+    +         342.42
+    -         342.42001
+            ],
+            local: [
+              -4.8,
+              0.95,
+              -5.6
+    ...
+              2.2,
+    +         342.575
+    -         342.57501
+            ],
+            local: [
+              -4.8,
+              2.2,
+              -5.6
+    ...
+              3.15,
+    +         342.42
+    -         342.42001
+            ],
+            local: [
+              -4.8,
+              3.15,
+              -5.6
+    ...
+              3.6,
+    +         342.42
+    -         342.42001
+            ],
+            local: [
+              -6.652,
+              3.6,
+              -5.6
+    ...
+              3.6,
+    +         342.575
+    -         342.57501
+            ],
+            local: [
+              -6.7139999999999995,
+              3.6,
+              -5.6
+    ...
+              0.95,
+    +         342.42
+    -         342.42001
+            ],
+            local: [
+              4.8,
+              0.95,
+              -5.6
+    ...
+              2.2,
+    +         342.575
+    -         342.57501
+            ],
+            local: [
+              4.8,
+              2.2,
+              -5.6
+    ...
+              3.15,
+    +         342.42
+    -         342.42001
+            ],
+            local: [
+              4.8,
+              3.15,
+              -5.6
+    ...
+              3.6,
+    +         342.42
+    -         342.42001
+            ],
+            local: [
+              2.9479999999999995,
+              3.6,
+              -5.6
+    ...
+              3.6,
+    +         342.575
+    -         342.57501
+            ],
+            local: [
+              2.886,
+              3.6,
+              -5.6
+    ...
+              0.95,
+    +         342.42
+    -         342.42001
+            ],
+            local: [
+              9.6,
+              0.95,
+              -5.6
+    ...
+              2.2,
+    +         342.575
+    -         342.57501
+            ],
+            local: [
+              9.6,
+              2.2,
+              -5.6
+    ...
+              3.15,
+    +         342.42
+    -         342.42001
+            ],
+            local: [
+              9.6,
+              3.15,
+              -5.6
+    ...
+              3.6,
+    +         342.42
+    -         342.42001
+            ],
+            local: [
+              7.747999999999999,
+              3.6,
+              -5.6
+    ...
+              3.6,
+    +         342.575
+    -         342.57501
+            ],
+            local: [
+              7.686,
+              3.6,
+              -5.6
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    scope: 'ALREADY_BUILT_W_REAL_TRIANGLES_AND_COLLISIONS_NOT_BROWSER_ACCEPTANCE'
+    windowCount: 4
+    triangleContacts:
+      0:
+        local:
+          0: -9.6
+          1: 0.95
+          2: -5.6
+        material: 'jingren_rear_masonry_fit'
+        hit:
+          0: -102.6
+          1: 0.95
+          2: 342.42001
+      1:
+        local:
+          0: -9.6
+          1: 2.2
+          2: -5.6
+        material: 'jingren_rear_pale_lower_fit'
+        hit:
+          0: -102.6
+          1: 2.2
+          2: 342.57501
+      2:
+        local:
+          0: -9.6
+          1: 3.15
+          2: -5.6
+        material: 'jingren_rear_red_frame_fit'
+        hit:
+          0: -102.6
+          1: 3.15
+          2: 342.42001
+      3:
+        local:
+          0: -11.452
+          1: 3.6
+          2: -5.6
+        material: 'jingren_rear_red_frame_fit'
+        hit:
+          0: -104.452
+          1: 3.6
+          2: 342.42001
+      4:
+        local:
+          0: -11.514
+          1: 3.6
+          2: -5.6
+        material: 'jingren_rear_upper_recess_fit'
+        hit:
+          0: -104.514
+          1: 3.6
+          2: 342.57501
+      5:
+        local:
+          0: -4.8
+          1: 0.95
+          2: -5.6
+        material: 'jingren_rear_masonry_fit'
+        hit:
+          0: -97.8
+          1: 0.95
+          2: 342.42001
+      6:
+        local:
+          0: -4.8
+          1: 2.2
+          2: -5.6
+        material: 'jingren_rear_pale_lower_fit'
+        hit:
+          0: -97.8
+          1: 2.2
+          2: 342.57501
+      7:
+        local:
+          0: -4.8
+          1: 3.15
+          2: -5.6
+        material: 'jingren_rear_red_frame_fit'
+        hit:
+          0: -97.8
+          1: 3.15
+          2: 342.42001
+      8:
+        local:
+          0: -6.652
+          1: 3.6
+          2: -5.6
+        material: 'jingren_rear_red_frame_fit'
+        hit:
+          0: -99.652
+          1: 3.6
+          2: 342.42001
+      9:
+        local:
+          0: -6.7139999999999995
+          1: 3.6
+          2: -5.6
+        material: 'jingren_rear_upper_recess_fit'
+        hit:
+          0: -99.714
+          1: 3.6
+          2: 342.57501
+      10:
+        local:
+          0: 4.8
+          1: 0.95
+          2: -5.6
+        material: 'jingren_rear_masonry_fit'
+        hit:
+          0: -88.2
+          1: 0.95
+          2: 342.42001
+      11:
+        local:
+          0: 4.8
+          1: 2.2
+          2: -5.6
+        material: 'jingren_rear_pale_lower_fit'
+        hit:
+          0: -88.2
+          1: 2.2
+          2: 342.57501
+      12:
+        local:
+          0: 4.8
+          1: 3.15
+          2: -5.6
+        material: 'jingren_rear_red_frame_fit'
+        hit:
+          0: -88.2
+          1: 3.15
+          2: 342.42001
+      13:
+        local:
+          0: 2.9479999999999995
+          1: 3.6
+          2: -5.6
+        material: 'jingren_rear_red_frame_fit'
+        hit:
+          0: -90.052
+          1: 3.6
+          2: 342.42001
+      14:
+        local:
+          0: 2.886
+          1: 3.6
+          2: -5.6
+        material: 'jingren_rear_upper_recess_fit'
+        hit:
+          0: -90.114
+          1: 3.6
+          2: 342.57501
+      15:
+        local:
+          0: 9.6
+          1: 0.95
+          2: -5.6
+        material: 'jingren_rear_masonry_fit'
+        hit:
+          0: -83.4
+          1: 0.95
+          2: 342.42001
+      16:
+        local:
+          0: 9.6
+          1: 2.2
+          2: -5.6
+        material: 'jingren_rear_pale_lower_fit'
+        hit:
+          0: -83.4
+          1: 2.2
+          2: 342.57501
+      17:
+        local:
+          0: 9.6
+          1: 3.15
+          2: -5.6
+        material: 'jingren_rear_red_frame_fit'
+        hit:
+          0: -83.4
+          1: 3.15
+          2: 342.42001
+      18:
+        local:
+          0: 7.747999999999999
+          1: 3.6
+          2: -5.6
+        material: 'jingren_rear_red_frame_fit'
+        hit:
+          0: -85.252
+          1: 3.6
+          2: 342.42001
+      19:
+        local:
+          0: 7.686
+          1: 3.6
+          2: -5.6
+        material: 'jingren_rear_upper_recess_fit'
+        hit:
+          0: -85.314
+          1: 3.6
+          2: 342.57501
+    openPortalRays: 3
+  actual:
+    scope: 'ALREADY_BUILT_W_REAL_TRIANGLES_AND_COLLISIONS_NOT_BROWSER_ACCEPTANCE'
+    windowCount: 4
+    triangleContacts:
+      0:
+        local:
+          0: -9.6
+          1: 0.95
+          2: -5.6
+        material: 'jingren_rear_masonry_fit'
+        hit:
+          0: -102.6
+          1: 0.95
+          2: 342.42
+      1:
+        local:
+          0: -9.6
+          1: 2.2
+          2: -5.6
+        material: 'jingren_rear_pale_lower_fit'
+        hit:
+          0: -102.6
+          1: 2.2
+          2: 342.575
+      2:
+        local:
+          0: -9.6
+          1: 3.15
+          2: -5.6
+        material: 'jingren_rear_red_frame_fit'
+        hit:
+          0: -102.6
+          1: 3.15
+          2: 342.42
+      3:
+        local:
+          0: -11.452
+          1: 3.6
+          2: -5.6
+        material: 'jingren_rear_red_frame_fit'
+        hit:
+          0: -104.452
+          1: 3.6
+          2: 342.42
+      4:
+        local:
+          0: -11.514
+          1: 3.6
+          2: -5.6
+        material: 'jingren_rear_upper_recess_fit'
+        hit:
+          0: -104.514
+          1: 3.6
+          2: 342.575
+      5:
+        local:
+          0: -4.8
+          1: 0.95
+          2: -5.6
+        material: 'jingren_rear_masonry_fit'
+        hit:
+          0: -97.8
+          1: 0.95
+          2: 342.42
+      6:
+        local:
+          0: -4.8
+          1: 2.2
+          2: -5.6
+        material: 'jingren_rear_pale_lower_fit'
+        hit:
+          0: -97.8
+          1: 2.2
+          2: 342.575
+      7:
+        local:
+          0: -4.8
+          1: 3.15
+          2: -5.6
+        material: 'jingren_rear_red_frame_fit'
+        hit:
+          0: -97.8
+          1: 3.15
+          2: 342.42
+      8:
+        local:
+          0: -6.652
+          1: 3.6
+          2: -5.6
+        material: 'jingren_rear_red_frame_fit'
+        hit:
+          0: -99.652
+          1: 3.6
+          2: 342.42
+      9:
+        local:
+          0: -6.7139999999999995
+          1: 3.6
+          2: -5.6
+        material: 'jingren_rear_upper_recess_fit'
+        hit:
+          0: -99.714
+          1: 3.6
+          2: 342.575
+      10:
+        local:
+          0: 4.8
+          1: 0.95
+          2: -5.6
+        material: 'jingren_rear_masonry_fit'
+        hit:
+          0: -88.2
+          1: 0.95
+          2: 342.42
+      11:
+        local:
+          0: 4.8
+          1: 2.2
+          2: -5.6
+        material: 'jingren_rear_pale_lower_fit'
+        hit:
+          0: -88.2
+          1: 2.2
+          2: 342.575
+      12:
+        local:
+          0: 4.8
+          1: 3.15
+          2: -5.6
+        material: 'jingren_rear_red_frame_fit'
+        hit:
+          0: -88.2
+          1: 3.15
+          2: 342.42
+      13:
+        local:
+          0: 2.9479999999999995
+          1: 3.6
+          2: -5.6
+        material: 'jingren_rear_red_frame_fit'
+        hit:
+          0: -90.052
+          1: 3.6
+          2: 342.42
+      14:
+        local:
+          0: 2.886
+          1: 3.6
+          2: -5.6
+        material: 'jingren_rear_upper_recess_fit'
+        hit:
+          0: -90.114
+          1: 3.6
+          2: 342.575
+      15:
+        local:
+          0: 9.6
+          1: 0.95
+          2: -5.6
+        material: 'jingren_rear_masonry_fit'
+        hit:
+          0: -83.4
+          1: 0.95
+          2: 342.42
+      16:
+        local:
+          0: 9.6
+          1: 2.2
+          2: -5.6
+        material: 'jingren_rear_pale_lower_fit'
+        hit:
+          0: -83.4
+          1: 2.2
+          2: 342.575
+      17:
+        local:
+          0: 9.6
+          1: 3.15
+          2: -5.6
+        material: 'jingren_rear_red_frame_fit'
+        hit:
+          0: -83.4
+          1: 3.15
+          2: 342.42
+      18:
+        local:
+          0: 7.747999999999999
+          1: 3.6
+          2: -5.6
+        material: 'jingren_rear_red_frame_fit'
+        hit:
+          0: -85.252
+          1: 3.6
+          2: 342.42
+      19:
+        local:
+          0: 7.686
+          1: 3.6
+          2: -5.6
+        material: 'jingren_rear_upper_recess_fit'
+        hit:
+          0: -85.314
+          1: 3.6
+          2: 342.575
+    openPortalRays: 3
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-e-jingren-rear-windows/tests/current-state/r62-jingren-rear-window-world.test.mjs:6:383)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: existing-W consumer detects removed generated solids, removed collision and absent target
+ok 2 - existing-W consumer detects removed generated solids, removed collision and absent target
+  ---
+  duration_ms: 166.595312
+  type: 'test'
+  ...
+# Subtest: 10Hz real controller repeats south-door exterior/interior return with actual support and head clearance
+ok 3 - 10Hz real controller repeats south-door exterior/interior return with actual support and head clearance
+  ---
+  duration_ms: 29.256161
+  type: 'test'
+  ...
+# {"fps":10,"frames":88,"maxFeet":0.45,"headClearance":{"samples":22,"minOverheadDistance":3.630399799346924}}
+# Subtest: 60Hz real controller repeats south-door exterior/interior return with actual support and head clearance
+ok 4 - 60Hz real controller repeats south-door exterior/interior return with actual support and head clearance
+  ---
+  duration_ms: 35.26462
+  type: 'test'
+  ...
+# {"fps":60,"frames":501,"maxFeet":0.45,"headClearance":{"samples":126,"minOverheadDistance":2.5803199768066407}}
+1..4
+# tests 4
+# suites 0
+# pass 3
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 627.868108

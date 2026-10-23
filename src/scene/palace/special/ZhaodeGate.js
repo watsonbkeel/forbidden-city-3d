@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { buildStuddedDoor } from '../../HallKit.js';
 import { zhaodeGateGeometry } from './ZhaodeGateProfile.js';
 import { prunePavilionCoveredFaces } from '../../../render/PavilionRenderGeometry.js';
+import { applyZhaodeSouthPanels } from './ZhaodeSouthPanels.js';
 
 const tag=(o,role,extra={})=>{o.name=role;Object.assign(o.userData,{role,...extra});return o;};
 
@@ -108,6 +109,7 @@ export function buildZhaodeGate(kit,opts) {
     roofBounds:{min:roofBounds.min.toArray(),max:roofBounds.max.toArray(),space:'world',ornamentalMaximumY:roofBounds.max.y,mainRidgeCapY:g.roof.ridgeWorldY},
     comparisonStatus:'south-source-compared; north and wing interfaces provisional'};
   f.userData.structure.pruning=prunePavilionCoveredFaces(f,boxes);
+  applyZhaodeSouthPanels(kit,f);
   return g.wallGapWidth;
 
   function railing(from,to) {

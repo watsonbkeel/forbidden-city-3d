@@ -1,0 +1,40 @@
+{
+  "instanceId": "INSTANCE-A-WUMEN-EAST-NORTH-PAVILION",
+  "parentId": "FC-86C9330D65",
+  "sources": [
+    {
+      "id": "PHOTO-NORTH",
+      "url": "https://img.dpm.org.cn/Uploads/Picture/2019/12/31/s5e0ad0346e8b3.jpg",
+      "sha256": "97c9ab5be71193f94226fc9fdaefc4c52d332c03ed5a10c0c14bf1ad0105fae7",
+      "actuallyViewed": true,
+      "role": "Independent six foreground north external columns of northeast pavilion; main tower/north portals anchor identity.",
+      "captureDate": "unknown",
+      "uploadPathDate": "2019-12-31, not capture date",
+      "redistributed": false
+    },
+    {
+      "id": "PHOTO-NORTH-CROP",
+      "sha256": "81f7b4216495f61993ae8bbf559746c652e7d44245ad92bfb301d530f5c4f2f3",
+      "actuallyViewed": true,
+      "role": "Derived enlarged observation crop, NOT independent evidence or extra resolution.",
+      "parent": "PHOTO-NORTH",
+      "redistributed": false
+    },
+    {
+      "id": "PLAN-2021",
+      "url": "https://www.dpm.org.cn/Uploads/File/2021/11/23/u619c5a27422d3.pdf",
+      "sha256": "5049aa0a175c2fe8da56f536a5846d29772f2fd424e6213236e964e2968d8a85",
+      "cropSha256": "e43458d156fb8117b9c707e074fdf37a83dd916a36995a4bee73280379857b8b",
+      "actuallyViewedCrop": true,
+      "pdfPage": 1,
+      "printedPage": 152,
+      "role": "Eastern north-up plan, outer six columns distinct from three inner enclosure bays. The crop axis pixels are 239,277,338,427,489,526; east is image-right and model -X.",
+      "publicationDate": "2021",
+      "excluded": "All temporary exhibition insertions; no inference of a 2026 interior.",
+      "redistributed": false
+    }
+  ],
+  "registration": "x = +5.5 - (pixel - 239) * 11 / (526 - 239); order increasing model x",
+  "measurements": "11 m outer boundary and 7.5 m body height are retained model fits, not newly surveyed values. Pixel axes and all derived metre coordinates are approximate registrations.",
+  "status": "VERIFY_PENDING_BROWSER"
+}

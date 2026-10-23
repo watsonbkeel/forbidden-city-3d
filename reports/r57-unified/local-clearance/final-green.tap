@@ -1,0 +1,70 @@
+TAP version 13
+# Subtest: R57 bounded QA requires the actual seven configured candidates, not hypothetical readiness
+ok 1 - R57 bounded QA requires the actual seven configured candidates, not hypothetical readiness
+  ---
+  duration_ms: 1.422096
+  type: 'test'
+  ...
+# Subtest: actual four neighbor fragments prove seven exact planned footprints and all three full route sweeps
+ok 2 - actual four neighbor fragments prove seven exact planned footprints and all three full route sweeps
+  ---
+  duration_ms: 1480.221516
+  type: 'test'
+  ...
+# Subtest: absent real Environment ground is rejected; plan metadata never creates support
+ok 3 - absent real Environment ground is rejected; plan metadata never creates support
+  ---
+  duration_ms: 118.34088
+  type: 'test'
+  ...
+# Subtest: actual visible triangle obstruction without a collider fails a continuous route sweep
+ok 4 - actual visible triangle obstruction without a collider fails a continuous route sweep
+  ---
+  duration_ms: 296.260149
+  type: 'test'
+  ...
+# Subtest: replaced loaded group rejects cached support generation before refresh, and genuinely fresh binding restores it
+ok 5 - replaced loaded group rejects cached support generation before refresh, and genuinely fresh binding restores it
+  ---
+  duration_ms: 217.714016
+  type: 'test'
+  ...
+# Subtest: triangle narrow phase does not reject empty space merely inside a merged mesh bounding box
+ok 6 - triangle narrow phase does not reject empty space merely inside a merged mesh bounding box
+  ---
+  duration_ms: 0.50801
+  type: 'test'
+  ...
+# Subtest: visible closed solid enclosing the whole body is not mistaken for empty space
+ok 7 - visible closed solid enclosing the whole body is not mistaken for empty space
+  ---
+  duration_ms: 0.57564
+  type: 'test'
+  ...
+# Subtest: visible instance transforms are checked instead of ignoring or rejecting all instanced architecture
+ok 8 - visible instance transforms are checked instead of ignoring or rejecting all instanced architecture
+  ---
+  duration_ms: 0.867487
+  type: 'test'
+  ...
+# Subtest: R57 pure analytic helper checks all728 new-involved pairs without mutating existing bindings
+ok 9 - R57 pure analytic helper checks all728 new-involved pairs without mutating existing bindings
+  ---
+  duration_ms: 18.214872
+  type: 'test'
+  ...
+# Subtest: R57 pair helper rejects crossings, missing108th actor, and stale route/zone generations
+ok 10 - R57 pair helper rejects crossings, missing108th actor, and stale route/zone generations
+  ---
+  duration_ms: 22.455618
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2384.85899

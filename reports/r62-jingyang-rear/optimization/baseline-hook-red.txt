@@ -1,0 +1,38 @@
+✔ five bays replace seven without moving the source building envelope or inventing a room (44.853755ms)
+✔ four closed high-sill south windows contain actual positive-area geometry, not generic lattice artwork (13.901317ms)
+✔ wrong identity, wrong dimensions and unknown options fail before allocation (14.374591ms)
+✔ real local FirstPerson traversal enters, moves across front interior and exits twice at 10Hz (25.104395ms)
+✔ real local FirstPerson traversal enters, moves across front interior and exits twice at 60Hz (20.559774ms)
+✔ actual production merge retains the source record, grille triangles and material lifecycle (29.849817ms)
+✖ frozen before fixture bypasses an already-integrated buildHall hook without changing the sixteen-column expectation (14.065482ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 343.917217
+
+✖ failing tests:
+
+test at tests/r62-jingyang-rear-facade.test.mjs:67:1
+✖ frozen before fixture bypasses an already-integrated buildHall hook without changing the sixteen-column expectation (14.065482ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  12 !== 16
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-jingyang-rear-facade/tests/r62-jingyang-rear-facade.test.mjs:69:38)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 12,
+    expected: 16,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

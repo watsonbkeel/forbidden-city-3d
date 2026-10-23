@@ -1,0 +1,44 @@
+✔ R54 east alcove replaces only the eight generic cover parts, leaving the kang and all unrelated geometry exact (42.314765ms)
+✖ R54 source, fit and unknown metadata never claim a date, six-leaf total, restoration, or unreadable detail (10.953544ms)
+✔ R54 high transom, gathered curtain and recessed rear field form real separated spatial layers (10.993404ms)
+✔ R54 solids match visible bounds and stay within the old cover footprint, with no new support surface (8.170428ms)
+✔ R54 real controller enters, approaches east curtain, crosses to west and exits 10 Hz W sprint (18.676167ms)
+✔ R54 real controller enters, approaches east curtain, crosses to west and exits 10 Hz S sprint (15.130852ms)
+✔ R54 real controller enters, approaches east curtain, crosses to west and exits 60 Hz W sprint (20.364602ms)
+✔ R54 real controller enters, approaches east curtain, crosses to west and exits 60 Hz S sprint (13.382015ms)
+✔ R54 white addition owns and disposes all new materials and geometry; provenance survives production merge (17.797442ms)
+✔ R54 eye-height front and oblique viewpoints are legal and see the real rear field, curtain and transom (14.859532ms)
+✔ R54 helper rejects transplanted identity before allocation (30.191928ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 10
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 388.230694
+
+✖ failing tests:
+
+test at tests/r54-changchun-east-layers.test.mjs:18:1
+✖ R54 source, fit and unknown metadata never claim a date, six-leaf total, restoration, or unreadable detail (10.953544ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 7
+
+      at file:///workspace/scratch/02a8023d1a85/r54-changchun-east/tests/r54-changchun-east-layers.test.mjs:27:10
+      at withFixture (file:///workspace/scratch/02a8023d1a85/r54-changchun-east/tests/r54-changchun-east-layers.test.mjs:9:108)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r54-changchun-east/tests/r54-changchun-east-layers.test.mjs:18:119)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 7,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

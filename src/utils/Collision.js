@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { DIMENSIONS, LAYOUT, PLAYER } from '../config/constants.js';
 import { PALACE_LAYOUT } from '../scene/Layout.js';
 import { canCrossPalaceWater } from '../scene/palace/special/SouthWaterSystem.js';
+import {cloneOverheadShape, overheadIntersectsBox, overheadHeightAtFootprint} from './OverheadShape.js';
 
 /** 玩家碰撞盒底部离脚面的抬升量：低于此高度的台阶/门槛直接跨过，不当成墙。 */
 const STEP_CLEARANCE = 0.35;
@@ -29,7 +30,8 @@ export class CollisionManager {
 
   addCollider(object, tag) {
     const box = object.isBox3 ? object.clone() : new THREE.Box3().setFromObject(object);
-    if (!box.isEmpty()) this.colliders.push({ mesh: object, box, tag });
+    const overhead = object.overhead === undefined ? null : cloneOverheadShape(object.overhead, box);
+    if (!box.isEmpty()) this.colliders.push({ mesh: object, box, tag, ...(overhead ? {overhead} : {}) });
   }
 
   addColliders(objects, tag) {
@@ -132,7 +134,34 @@ export class CollisionManager {
     this.playerSize.set(radius * 2, top - bottom, radius * 2);
     this.playerCenter.set(position.x, (top + bottom) / 2, position.z);
     this.playerBox.setFromCenterAndSize(this.playerCenter, this.playerSize);
-    return this.queryBox(this.playerBox).some(collider => this.playerBox.intersectsBox(collider.box));
+    // Only explicitly authored overhead curves use a full feet-to-eye box.
+    // Historical unmarked boxes retain their exact clearance/eye inset above.
+    this._overheadBodyBox ??= new THREE.Box3();
+    this._overheadBodyBox.copy(this.playerBox);
+    this._overheadBodyBox.min.y = feetY;
+    this._overheadBodyBox.max.y = position.y;
+    return this.queryBox(this.playerBox).some(collider => collider.overhead
+      ? overheadIntersectsBox(collider.overhead, this._overheadBodyBox)
+      : this.playerBox.intersectsBox(collider.box));
+  }
+
+  /** Upward-only head sweep for explicitly tagged curved solids. No ceiling
+   * inference from old AABBs, no downward attraction, and no extra registry. */
+  limitUpwardFeet(x, z, fromFeet, toFeet, radius = DEFAULT_PLAYER_RADIUS, height = PLAYER.HEIGHT) {
+    if (![x,z,fromFeet,toFeet,radius,height].every(Number.isFinite) || radius <= 0 || height <= 0)
+      throw new TypeError('Finite positive overhead footprint is required');
+    if (toFeet <= fromFeet) return toFeet;
+    this._headSweepBox ??= new THREE.Box3();
+    this._headSweepBox.min.set(x-radius, fromFeet+height, z-radius);
+    this._headSweepBox.max.set(x+radius, toFeet+height, z+radius);
+    let allowed = toFeet;
+    for (const collider of this.queryBox(this._headSweepBox)) {
+      if (!collider.overhead || fromFeet >= collider.overhead.topY) continue;
+      const ceiling = overheadHeightAtFootprint(collider.overhead, x-radius, x+radius, z-radius, z+radius);
+      if (ceiling >= fromFeet+height-1e-7 && ceiling <= toFeet+height+1e-7)
+        allowed = Math.min(allowed, Math.max(fromFeet, ceiling-height-0.001));
+    }
+    return allowed;
   }
 
   /**
@@ -178,6 +207,8 @@ export class CollisionManager {
     this._footBox.max.set(x + r, 1e3, z + r);
     let best = -Infinity;
     for (const c of this.queryBox(this._footBox)) {
+      // Head-only proxies must not create support from their broadphase top.
+      if (c.overhead) continue;
       const b = c.box;
       if (b.max.y > maxTop || b.max.y <= best) continue;
       if (x + r < b.min.x || x - r > b.max.x || z + r < b.min.z || z - r > b.max.z) continue;
@@ -236,8 +267,11 @@ export class CollisionManager {
   updateCollider(object) {
     const collider = this.colliders.find(item => item.mesh === object);
     if (collider) {
-      if (object.isBox3) collider.box.copy(object);
-      else collider.box.setFromObject(object);
+      const box = object.isBox3 ? object.clone() : new THREE.Box3().setFromObject(object);
+      if (collider.overhead && object.overhead === undefined) throw new TypeError('Scoped overhead shape cannot disappear during an update');
+      const overhead = object.overhead === undefined ? null : cloneOverheadShape(object.overhead, box);
+      collider.box.copy(box);
+      if (overhead) collider.overhead = overhead;
       this._grid = null;
     }
   }

@@ -1,0 +1,1774 @@
+{
+  "release": "R59-B",
+  "scope": "Read-only local component/declaration audit, not current full-world or browser acceptance",
+  "records": [
+    {
+      "reviewObjectId": "FC-CD0B5AC9DE",
+      "name": "文华殿",
+      "classification": "EXISTING_MODEL_BOUND_ROLE",
+      "actualRole": "Existing dedicated or exact-identity augmented building",
+      "currentBindingRefs": [
+        "data/zones/outer-east.json#/items/2"
+      ],
+      "runtimeCandidates": [
+        {
+          "declaration": "data/zones/outer-east.json#/items/2",
+          "factoryChain": [
+            "ZoneBase.buildHall",
+            "ZoneBase.buildHallBaseline",
+            "buildSouthCourtHall",
+            "buildSouthGalleryDisplays"
+          ],
+          "runtimeParent": "outer-east",
+          "coordinates": {
+            "anchorXZ": [
+              -186.4,
+              -199
+            ],
+            "localWidthDepth": [
+              30.8,
+              17
+            ],
+            "rotation": "south",
+            "floorY": 1.2
+          },
+          "coordinateStatus": "RETAINED_MODEL_FIT_NOT_SURVEYED",
+          "metadataId": "outer-east/wenhua-front",
+          "remainingOuterId": null,
+          "generatedGeometryObserved": true,
+          "fixtureRan": true,
+          "meshCountBeforeMaterialMerge": 186,
+          "generatedWorldAABB": {
+            "min": [
+              -205.196179,
+              -0.0772,
+              -210.928492
+            ],
+            "max": [
+              -167.603821,
+              18.269871,
+              -187.071508
+            ]
+          },
+          "roomKinds": [
+            "wenhua-gallery"
+          ],
+          "roomNames": [
+            "文华殿"
+          ],
+          "furnishingCalls": [
+            {
+              "kind": "empty",
+              "newMeshCount": 0
+            }
+          ],
+          "postMergeBinding": "outer-east.userData.architecture[id=outer-east/wenhua-front]"
+        }
+      ],
+      "nextAction": "Retain the existing builder and prior evidence; review only unresolved object-specific differences. Isolated geometry inspection is not current-cycle visual acceptance.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-FD3D76E74D",
+      "name": "文渊阁",
+      "classification": "EXISTING_MODEL_BOUND_ROLE",
+      "actualRole": "Existing dedicated or exact-identity augmented building",
+      "currentBindingRefs": [
+        "data/zones/outer-east.json#/items/8"
+      ],
+      "runtimeCandidates": [
+        {
+          "declaration": "data/zones/outer-east.json#/items/8",
+          "factoryChain": [
+            "ZoneBase.buildHall",
+            "buildWenyuanPavilion",
+            "augmentRemainingHall → augmentWenyuanLevels"
+          ],
+          "runtimeParent": "outer-east",
+          "coordinates": {
+            "anchorXZ": [
+              -186.5,
+              -132.8
+            ],
+            "localWidthDepth": [
+              40.5,
+              17.9
+            ],
+            "rotation": "south",
+            "floorY": 0.5
+          },
+          "coordinateStatus": "RETAINED_MODEL_FIT_NOT_SURVEYED",
+          "metadataId": "wenyuan-pavilion",
+          "remainingOuterId": "place-outer-east-fd3d76e74d",
+          "generatedGeometryObserved": true,
+          "fixtureRan": true,
+          "meshCountBeforeMaterialMerge": 690,
+          "generatedWorldAABB": {
+            "min": [
+              -209.030441,
+              0,
+              -143.910538
+            ],
+            "max": [
+              -163.969559,
+              17.845993,
+              -121.689462
+            ]
+          },
+          "roomKinds": [
+            "empty"
+          ],
+          "roomNames": [
+            "文渊阁"
+          ],
+          "furnishingCalls": [
+            {
+              "kind": "empty",
+              "newMeshCount": 0
+            }
+          ],
+          "postMergeBinding": "outer-east.userData.architecture[id=wenyuan-pavilion]"
+        }
+      ],
+      "nextAction": "Retain the existing builder and prior evidence; review only unresolved object-specific differences. Isolated geometry inspection is not current-cycle visual acceptance.",
+      "preserveVerifiedImplementation": {
+        "actualMetadata": [
+          {
+            "level": 1,
+            "floorY": 0.5,
+            "photo": "https://img.dpm.org.cn/Uploads/Picture/dc/1537[1024].jpg"
+          },
+          {
+            "level": 2,
+            "floorY": 3.15,
+            "photo": null,
+            "source": "https://www.dpm.org.cn/explore/building/236513.html",
+            "void": {
+              "x0": -13.5,
+              "x1": 6.75,
+              "z0": -5.7,
+              "z1": 5.7
+            }
+          },
+          {
+            "level": 3,
+            "floorY": 5.5,
+            "photo": "https://img.dpm.org.cn/Uploads/Picture/dc/1538[1024].jpg"
+          }
+        ],
+        "greenColumns": 30,
+        "stairs": [
+          {
+            "id": "ground-to-dark-mezzanine",
+            "x": 16.05,
+            "width": 2,
+            "z0": -5.8,
+            "z1": 0,
+            "y0": 0.5,
+            "y1": 3.15
+          },
+          {
+            "id": "dark-mezzanine-to-third-floor",
+            "x": 18.12,
+            "width": 1.7,
+            "z0": 0,
+            "z1": -5.7,
+            "y0": 3.15,
+            "y1": 5.5
+          }
+        ],
+        "boundPhotoLevels": {
+          "ground": "1537[1024].jpg",
+          "third": "1538[1024].jpg"
+        },
+        "warning": "WenyuanPavilion base interiorPolicy and old R39/registry unresolved prose predate R48 augmentation. Read final production dispatch and structure metadata; do not remove working levels or repeat the green-column/stair work."
+      },
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-C8AD5BD621",
+      "name": "东华门",
+      "classification": "EXISTING_MODEL_BOUND_ROLE",
+      "actualRole": "Existing dedicated or exact-identity augmented building",
+      "currentBindingRefs": [
+        "data/zones/outer-east.json#/items/21",
+        "data/zones/outer-east.json#/items/22"
+      ],
+      "runtimeCandidates": [
+        {
+          "declaration": "data/zones/outer-east.json#/items/21",
+          "factoryChain": [
+            "ZoneBase.buildCityGate",
+            "buildEastWestCityGate"
+          ],
+          "runtimeParent": "outer-east",
+          "coordinates": {
+            "anchorXZ": [
+              -365.8,
+              -257
+            ],
+            "rotation": "east"
+          },
+          "coordinateStatus": "RETAINED_MODEL_FIT_NOT_SURVEYED",
+          "metadataId": "city-gates/donghua",
+          "remainingOuterId": null,
+          "generatedGeometryObserved": true,
+          "fixtureRan": true,
+          "meshCountBeforeMaterialMerge": 61,
+          "generatedWorldAABB": {
+            "min": [
+              -373.766821,
+              0,
+              -272.466821
+            ],
+            "max": [
+              -357.833179,
+              22.50017,
+              -241.533179
+            ]
+          },
+          "roomKinds": [],
+          "roomNames": [],
+          "furnishingCalls": [],
+          "postMergeBinding": "outer-east.userData.architecture[id=city-gates/donghua]"
+        },
+        {
+          "declaration": "data/zones/outer-east.json#/items/22",
+          "factoryChain": [
+            "ZoneBase.buildRegion",
+            "CourtKit.region (metadata only)"
+          ],
+          "runtimeParent": "outer-east",
+          "coordinates": {
+            "declarationBoundsXZ": {
+              "x0": -376.5,
+              "x1": -355,
+              "z0": -272,
+              "z1": -242
+            }
+          },
+          "coordinateStatus": "RETAINED_MODEL_FIT_NOT_SURVEYED",
+          "metadataId": null,
+          "remainingOuterId": null,
+          "generatedGeometryObserved": false,
+          "fixtureRan": true,
+          "meshCountBeforeMaterialMerge": 0,
+          "generatedWorldAABB": null,
+          "roomKinds": [],
+          "roomNames": [],
+          "furnishingCalls": [],
+          "postMergeBinding": "Do not invent a named mesh selector. Source declaration and spatial extent remain the locator."
+        }
+      ],
+      "nextAction": "Retain the existing builder and prior evidence; review only unresolved object-specific differences. Isolated geometry inspection is not current-cycle visual acceptance.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-E09ED30C27",
+      "name": "内阁大堂",
+      "classification": "NO_RUNTIME_MODEL_IMPLEMENTATION_FOUND",
+      "actualRole": null,
+      "currentBindingRefs": [],
+      "runtimeCandidates": [],
+      "nextAction": "Register the actual model gap under the existing ID. Resolve current surviving footprint and photo scope before implementing. Do not infer a location or construct a historic-only stage.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-40EB11CF20",
+      "name": "内阁大库",
+      "classification": "NO_RUNTIME_MODEL_IMPLEMENTATION_FOUND",
+      "actualRole": null,
+      "currentBindingRefs": [],
+      "runtimeCandidates": [],
+      "nextAction": "Register the actual model gap under the existing ID. Resolve current surviving footprint and photo scope before implementing. Do not infer a location or construct a historic-only stage.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-F608EC3356",
+      "name": "传心殿",
+      "classification": "NO_RUNTIME_MODEL_IMPLEMENTATION_FOUND",
+      "actualRole": null,
+      "currentBindingRefs": [],
+      "runtimeCandidates": [],
+      "nextAction": "Register the actual model gap under the existing ID. Resolve current surviving footprint and photo scope before implementing. Do not infer a location or construct a historic-only stage.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-AF36D75128",
+      "name": "箭亭",
+      "classification": "EXISTING_MODEL_BOUND_ROLE",
+      "actualRole": "Existing dedicated or exact-identity augmented building",
+      "currentBindingRefs": [
+        "data/zones/outer-east.json#/items/19",
+        "data/zones/outer-east.json#/items/20"
+      ],
+      "runtimeCandidates": [
+        {
+          "declaration": "data/zones/outer-east.json#/items/19",
+          "factoryChain": [
+            "ZoneBase.buildHall",
+            "buildEnclosedPavilion"
+          ],
+          "runtimeParent": "outer-east",
+          "coordinates": {
+            "anchorXZ": [
+              -154.7,
+              78.8
+            ],
+            "localWidthDepth": [
+              31.5,
+              17.6
+            ],
+            "rotation": "south",
+            "floorY": 0.9
+          },
+          "coordinateStatus": "RETAINED_MODEL_FIT_NOT_SURVEYED",
+          "metadataId": null,
+          "remainingOuterId": null,
+          "generatedGeometryObserved": false,
+          "fixtureRan": false,
+          "postMergeBinding": "Do not invent a named mesh selector. Source declaration and spatial extent remain the locator."
+        },
+        {
+          "declaration": "data/zones/outer-east.json#/items/20",
+          "factoryChain": [
+            "ZoneBase.buildRegion",
+            "CourtKit.region (metadata only)"
+          ],
+          "runtimeParent": "outer-east",
+          "coordinates": {
+            "declarationBoundsXZ": {
+              "x0": -175,
+              "x1": -135,
+              "z0": 60,
+              "z1": 100
+            }
+          },
+          "coordinateStatus": "RETAINED_MODEL_FIT_NOT_SURVEYED",
+          "metadataId": null,
+          "remainingOuterId": null,
+          "generatedGeometryObserved": false,
+          "fixtureRan": true,
+          "meshCountBeforeMaterialMerge": 0,
+          "generatedWorldAABB": null,
+          "roomKinds": [],
+          "roomNames": [],
+          "furnishingCalls": [],
+          "postMergeBinding": "Do not invent a named mesh selector. Source declaration and spatial extent remain the locator."
+        }
+      ],
+      "nextAction": "Retain the existing builder and prior evidence; review only unresolved object-specific differences. Isolated geometry inspection is not current-cycle visual acceptance.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-5652FA389B",
+      "name": "文华门",
+      "classification": "EXISTING_MODEL_BOUND_ROLE",
+      "actualRole": "Existing dedicated or exact-identity augmented building",
+      "currentBindingRefs": [
+        "data/zones/outer-east.json#/items/0"
+      ],
+      "runtimeCandidates": [
+        {
+          "declaration": "data/zones/outer-east.json#/items/0",
+          "factoryChain": [
+            "ZoneBase.buildGate",
+            "buildSouthCourtGate"
+          ],
+          "runtimeParent": "outer-east",
+          "coordinates": {
+            "anchorXZ": [
+              -186.3,
+              -245.2
+            ],
+            "localWidthDepth": [
+              33.1,
+              null
+            ],
+            "rotation": "south",
+            "floorY": "factory default"
+          },
+          "coordinateStatus": "RETAINED_MODEL_FIT_NOT_SURVEYED",
+          "metadataId": "south-gate:wenhua",
+          "remainingOuterId": null,
+          "generatedGeometryObserved": true,
+          "fixtureRan": true,
+          "meshCountBeforeMaterialMerge": 96,
+          "generatedWorldAABB": {
+            "min": [
+              -206.246178,
+              -0.0772,
+              -257.128492
+            ],
+            "max": [
+              -166.353822,
+              16.689871,
+              -233.271508
+            ]
+          },
+          "roomKinds": [],
+          "roomNames": [],
+          "furnishingCalls": [],
+          "postMergeBinding": "outer-east.userData.architecture[id=south-gate:wenhua]"
+        }
+      ],
+      "nextAction": "Retain the existing builder and prior evidence; review only unresolved object-specific differences. Isolated geometry inspection is not current-cycle visual acceptance.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-B7C67C602B",
+      "name": "主敬殿",
+      "classification": "EXISTING_MODEL_BOUND_ROLE",
+      "actualRole": "Existing dedicated or exact-identity augmented building",
+      "currentBindingRefs": [
+        "data/zones/outer-east.json#/items/3"
+      ],
+      "runtimeCandidates": [
+        {
+          "declaration": "data/zones/outer-east.json#/items/3",
+          "factoryChain": [
+            "ZoneBase.buildHall",
+            "ZoneBase.buildHallBaseline",
+            "buildSouthCourtHall",
+            "buildSouthGalleryDisplays",
+            "augmentRemainingHall → augmentZhujingPhotoDetails"
+          ],
+          "runtimeParent": "outer-east",
+          "coordinates": {
+            "anchorXZ": [
+              -186.4,
+              -167
+            ],
+            "localWidthDepth": [
+              26,
+              12
+            ],
+            "rotation": "south",
+            "floorY": 1.2
+          },
+          "coordinateStatus": "RETAINED_MODEL_FIT_NOT_SURVEYED",
+          "metadataId": "outer-east/wenhua-rear",
+          "remainingOuterId": "place-outer-east-b7c67c602b",
+          "generatedGeometryObserved": true,
+          "fixtureRan": true,
+          "meshCountBeforeMaterialMerge": 343,
+          "generatedWorldAABB": {
+            "min": [
+              -201.897271,
+              -0.0772,
+              -175.7995
+            ],
+            "max": [
+              -170.902729,
+              14.62705,
+              -158.2005
+            ]
+          },
+          "roomKinds": [
+            "wenhua-gallery"
+          ],
+          "roomNames": [
+            "主敬殿"
+          ],
+          "furnishingCalls": [
+            {
+              "kind": "empty",
+              "newMeshCount": 0
+            }
+          ],
+          "postMergeBinding": "outer-east.userData.architecture[id=outer-east/wenhua-rear]"
+        }
+      ],
+      "nextAction": "Retain the existing builder and prior evidence; review only unresolved object-specific differences. Isolated geometry inspection is not current-cycle visual acceptance.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-4D5AAFEDA4",
+      "name": "本仁殿",
+      "classification": "EXISTING_MODEL_BOUND_ROLE",
+      "actualRole": "Existing dedicated or exact-identity augmented building",
+      "currentBindingRefs": [
+        "data/zones/outer-east.json#/items/4"
+      ],
+      "runtimeCandidates": [
+        {
+          "declaration": "data/zones/outer-east.json#/items/4",
+          "factoryChain": [
+            "ZoneBase.buildHall",
+            "CourtKit.hall",
+            "augmentRemainingHall"
+          ],
+          "runtimeParent": "outer-east",
+          "coordinates": {
+            "anchorXZ": [
+              -212.2,
+              -224.2
+            ],
+            "localWidthDepth": [
+              26.7,
+              10.3
+            ],
+            "rotation": "west",
+            "floorY": 0.5
+          },
+          "coordinateStatus": "RETAINED_MODEL_FIT_NOT_SURVEYED",
+          "metadataId": "place-outer-east-4d5aafeda4",
+          "remainingOuterId": "place-outer-east-4d5aafeda4",
+          "generatedGeometryObserved": true,
+          "fixtureRan": true,
+          "meshCountBeforeMaterialMerge": 542,
+          "generatedWorldAABB": {
+            "min": [
+              -219.225883,
+              0,
+              -238.61
+            ],
+            "max": [
+              -205.174117,
+              11.414891,
+              -209.79
+            ]
+          },
+          "roomKinds": [
+            "empty"
+          ],
+          "roomNames": [
+            "本仁殿"
+          ],
+          "furnishingCalls": [
+            {
+              "kind": "empty",
+              "newMeshCount": 0
+            }
+          ],
+          "postMergeBinding": "outer-east.userData.architecture[id=place-outer-east-4d5aafeda4]"
+        }
+      ],
+      "nextAction": "Retain the existing builder and prior evidence; review only unresolved object-specific differences. Isolated geometry inspection is not current-cycle visual acceptance.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-BEE00AE333",
+      "name": "集义殿",
+      "classification": "EXISTING_MODEL_BOUND_ROLE",
+      "actualRole": "Existing dedicated or exact-identity augmented building",
+      "currentBindingRefs": [
+        "data/zones/outer-east.json#/items/5"
+      ],
+      "runtimeCandidates": [
+        {
+          "declaration": "data/zones/outer-east.json#/items/5",
+          "factoryChain": [
+            "ZoneBase.buildHall",
+            "CourtKit.hall",
+            "augmentRemainingHall"
+          ],
+          "runtimeParent": "outer-east",
+          "coordinates": {
+            "anchorXZ": [
+              -159.6,
+              -223.5
+            ],
+            "localWidthDepth": [
+              26.6,
+              11.6
+            ],
+            "rotation": "east",
+            "floorY": 0.5
+          },
+          "coordinateStatus": "RETAINED_MODEL_FIT_NOT_SURVEYED",
+          "metadataId": "place-outer-east-bee00ae333",
+          "remainingOuterId": "place-outer-east-bee00ae333",
+          "generatedGeometryObserved": true,
+          "fixtureRan": true,
+          "meshCountBeforeMaterialMerge": 542,
+          "generatedWorldAABB": {
+            "min": [
+              -167.471591,
+              0,
+              -237.86
+            ],
+            "max": [
+              -151.728409,
+              11.987425,
+              -209.14
+            ]
+          },
+          "roomKinds": [
+            "empty"
+          ],
+          "roomNames": [
+            "集义殿"
+          ],
+          "furnishingCalls": [
+            {
+              "kind": "empty",
+              "newMeshCount": 0
+            }
+          ],
+          "postMergeBinding": "outer-east.userData.architecture[id=place-outer-east-bee00ae333]"
+        }
+      ],
+      "nextAction": "Retain the existing builder and prior evidence; review only unresolved object-specific differences. Isolated geometry inspection is not current-cycle visual acceptance.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-0B08F51957",
+      "name": "文华殿穿廊",
+      "classification": "EXISTING_MODEL_MISSING_EXPLICIT_REVIEW_BINDING",
+      "actualRole": "Single continuous Wenhua–Zhujing connector with two dated gallery cases, inclined support boards and retaining lips",
+      "currentBindingRefs": [],
+      "runtimeCandidates": [
+        {
+          "declaration": "data/zones/outer-east.json#/items/23",
+          "factoryChain": [
+            "ZoneBase.buildHall",
+            "ZoneBase.buildHallBaseline",
+            "buildSouthCourtHall",
+            "buildSouthGalleryDisplays"
+          ],
+          "runtimeParent": "outer-east",
+          "coordinates": {
+            "anchorXZ": [
+              -186.4,
+              -181.75
+            ],
+            "localWidthDepth": [
+              8.8,
+              17.5
+            ],
+            "rotation": "south",
+            "floorY": 1.2
+          },
+          "coordinateStatus": "RETAINED_MODEL_FIT_NOT_SURVEYED",
+          "metadataId": "outer-east/wenhua-connector",
+          "remainingOuterId": null,
+          "generatedGeometryObserved": true,
+          "fixtureRan": true,
+          "meshCountBeforeMaterialMerge": 33,
+          "generatedWorldAABB": {
+            "min": [
+              -192.427957,
+              0,
+              -190.97
+            ],
+            "max": [
+              -180.372043,
+              11.072732,
+              -172.53
+            ]
+          },
+          "roomKinds": [
+            "wenhua-gallery"
+          ],
+          "roomNames": [
+            "文华殿穿廊"
+          ],
+          "furnishingCalls": [],
+          "postMergeBinding": "outer-east.userData.architecture[id=outer-east/wenhua-connector]"
+        }
+      ],
+      "nextAction": "Append items/23 as the existing runtime binding of FC-0B08F51957. Keep AUX-1DA0AE7EB391 as the original runtime-inventory cross-reference; do not count or build a second physical entity.",
+      "identityBasis": "Profile requires exact anchor/dimensions. South/north connector ends equal front-hall rear and rear-hall front (-190.5/-173); all floors are 1.2. Production dispatcher creates the named connector room and source-bound exhibition.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-F23B7824D4",
+      "name": "文渊阁碑亭",
+      "classification": "NO_RUNTIME_MODEL_IMPLEMENTATION_FOUND",
+      "actualRole": null,
+      "currentBindingRefs": [],
+      "runtimeCandidates": [],
+      "nextAction": "Keep FC-F23B7824D4 as an unimplemented pavilion candidate, not a missing registration of the Wenyuan main hall. Its documented location is east of Wenyuan (negative X), but no exact footprint is established; do not place it at the hall or pool center.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-905A51A8BC",
+      "name": "治牲所",
+      "classification": "NO_RUNTIME_MODEL_IMPLEMENTATION_FOUND",
+      "actualRole": null,
+      "currentBindingRefs": [],
+      "runtimeCandidates": [],
+      "nextAction": "Register the actual model gap under the existing ID. Resolve current surviving footprint and photo scope before implementing. Do not infer a location or construct a historic-only stage.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-CE6964B462",
+      "name": "景行门",
+      "classification": "NO_RUNTIME_MODEL_IMPLEMENTATION_FOUND",
+      "actualRole": null,
+      "currentBindingRefs": [],
+      "runtimeCandidates": [],
+      "nextAction": "Register the actual model gap under the existing ID. Resolve current surviving footprint and photo scope before implementing. Do not infer a location or construct a historic-only stage.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-73FC3BE9A7",
+      "name": "传心殿祝版房",
+      "classification": "NO_RUNTIME_MODEL_IMPLEMENTATION_FOUND",
+      "actualRole": null,
+      "currentBindingRefs": [],
+      "runtimeCandidates": [],
+      "nextAction": "Register the actual model gap under the existing ID. Resolve current surviving footprint and photo scope before implementing. Do not infer a location or construct a historic-only stage.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-D852D8A192",
+      "name": "传心殿神厨",
+      "classification": "NO_RUNTIME_MODEL_IMPLEMENTATION_FOUND",
+      "actualRole": null,
+      "currentBindingRefs": [],
+      "runtimeCandidates": [],
+      "nextAction": "Register the actual model gap under the existing ID. Resolve current surviving footprint and photo scope before implementing. Do not infer a location or construct a historic-only stage.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-92B6D8420A",
+      "name": "传心殿值房",
+      "classification": "NO_RUNTIME_MODEL_IMPLEMENTATION_FOUND",
+      "actualRole": null,
+      "currentBindingRefs": [],
+      "runtimeCandidates": [],
+      "nextAction": "Register the actual model gap under the existing ID. Resolve current surviving footprint and photo scope before implementing. Do not infer a location or construct a historic-only stage.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-F539E5D64D",
+      "name": "内阁汉票签房",
+      "classification": "NO_RUNTIME_MODEL_IMPLEMENTATION_FOUND",
+      "actualRole": null,
+      "currentBindingRefs": [],
+      "runtimeCandidates": [],
+      "nextAction": "Register the actual model gap under the existing ID. Resolve current surviving footprint and photo scope before implementing. Do not infer a location or construct a historic-only stage.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-32A68E9C3E",
+      "name": "内阁蒙古堂",
+      "classification": "NO_RUNTIME_MODEL_IMPLEMENTATION_FOUND",
+      "actualRole": null,
+      "currentBindingRefs": [],
+      "runtimeCandidates": [],
+      "nextAction": "Register the actual model gap under the existing ID. Resolve current surviving footprint and photo scope before implementing. Do not infer a location or construct a historic-only stage.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-2C486A3479",
+      "name": "内阁汉本堂",
+      "classification": "NO_RUNTIME_MODEL_IMPLEMENTATION_FOUND",
+      "actualRole": null,
+      "currentBindingRefs": [],
+      "runtimeCandidates": [],
+      "nextAction": "Register the actual model gap under the existing ID. Resolve current surviving footprint and photo scope before implementing. Do not infer a location or construct a historic-only stage.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-4A84B24027",
+      "name": "内阁满本堂",
+      "classification": "NO_RUNTIME_MODEL_IMPLEMENTATION_FOUND",
+      "actualRole": null,
+      "currentBindingRefs": [],
+      "runtimeCandidates": [],
+      "nextAction": "Register the actual model gap under the existing ID. Resolve current surviving footprint and photo scope before implementing. Do not infer a location or construct a historic-only stage.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-15E0B02776",
+      "name": "内阁祝版房",
+      "classification": "NO_RUNTIME_MODEL_IMPLEMENTATION_FOUND",
+      "actualRole": null,
+      "currentBindingRefs": [],
+      "runtimeCandidates": [],
+      "nextAction": "Register the actual model gap under the existing ID. Resolve current surviving footprint and photo scope before implementing. Do not infer a location or construct a historic-only stage.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-12AA4B4366",
+      "name": "内阁满票签房",
+      "classification": "NO_RUNTIME_MODEL_IMPLEMENTATION_FOUND",
+      "actualRole": null,
+      "currentBindingRefs": [],
+      "runtimeCandidates": [],
+      "nextAction": "Register the actual model gap under the existing ID. Resolve current surviving footprint and photo scope before implementing. Do not infer a location or construct a historic-only stage.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-93081154E4",
+      "name": "内阁稽查房",
+      "classification": "NO_RUNTIME_MODEL_IMPLEMENTATION_FOUND",
+      "actualRole": null,
+      "currentBindingRefs": [],
+      "runtimeCandidates": [],
+      "nextAction": "Register the actual model gap under the existing ID. Resolve current surviving footprint and photo scope before implementing. Do not infer a location or construct a historic-only stage.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-DA0F70A4C4",
+      "name": "内阁典籍厅",
+      "classification": "UNIMPLEMENTED_ROLE_WITH_UNRESOLVED_PHYSICAL_BOUNDARY",
+      "actualRole": null,
+      "currentBindingRefs": [],
+      "runtimeCandidates": [],
+      "nextAction": "Keep each historical functional ID and resolve whether it is a room, shared building or distinct surviving structure before counting or building an entity.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-6555093DAA",
+      "name": "内阁满票签档子房",
+      "classification": "UNIMPLEMENTED_ROLE_WITH_UNRESOLVED_PHYSICAL_BOUNDARY",
+      "actualRole": null,
+      "currentBindingRefs": [],
+      "runtimeCandidates": [],
+      "nextAction": "Keep each historical functional ID and resolve whether it is a room, shared building or distinct surviving structure before counting or building an entity.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-4591AC1E97",
+      "name": "文渊阁池桥",
+      "classification": "EXISTING_CHILD_MODEL_MISSING_EXPLICIT_REVIEW_BINDING",
+      "actualRole": "Stone bridge over the Wenyuan front pond within the shared south-water system",
+      "currentBindingRefs": [],
+      "runtimeCandidates": [
+        {
+          "factoryChain": [
+            "PalaceBuilder.buildRiver",
+            "buildSouthWaterSystem",
+            "buildArch"
+          ],
+          "runtimeParent": "south-water-system",
+          "persistentMetadataSelector": "group.userData.southWater.bridges[id=wenyuan-pond]",
+          "supportSelector": "walkables[structureId=wenyuan-pond]",
+          "coordinates": {
+            "anchorXZ": [
+              -186.5,
+              -149
+            ],
+            "deckBoundsXZ": {
+              "minX": -188.2,
+              "maxX": -184.8,
+              "minZ": -155.6,
+              "maxZ": -142.4
+            },
+            "width": 3.4,
+            "length": 13.2,
+            "crestY": 0.18
+          },
+          "coordinateStatus": "OFFICIAL_TOPOLOGY_REVERSIBLE_MODEL_FIT_NOT_SURVEYED",
+          "generatedGeometryObserved": true,
+          "bridgeDeckRayHits": [
+            {
+              "at": [
+                -186.5,
+                -154.28
+              ],
+              "hitY": 0.0646875774306972,
+              "expectedY": 0.06479999999999997,
+              "material": "marble"
+            },
+            {
+              "at": [
+                -186.5,
+                -149
+              ],
+              "hitY": 0.18000000715255826,
+              "expectedY": 0.18,
+              "material": "marble"
+            },
+            {
+              "at": [
+                -186.5,
+                -143.72
+              ],
+              "hitY": 0.0646875774306972,
+              "expectedY": 0.06479999999999997,
+              "material": "marble"
+            }
+          ],
+          "note": "Material merging removes per-arch mesh identity. Bind metadata plus bounded geometry/support, not a guessed mesh name."
+        }
+      ],
+      "nextAction": "Add a child-component binding to south-water-system / bridge id wenyuan-pond. Do not create another bridge or assume it is a child of the Wenyuan hall frame.",
+      "pondScope": "Existing east-wenhua water reach and banks include the pond. A source-exact square-pond outline / rail detail is not validated by the bridge fixture.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-C640AE8651",
+      "name": "南三所",
+      "classification": "AGGREGATE_REGION_NOT_ADDITIONAL_BUILDING",
+      "actualRole": "Region label over six generated halls, one shared placeholder gate and boundary walls",
+      "currentBindingRefs": [
+        "data/zones/outer-east.json#/items/18"
+      ],
+      "runtimeCandidates": [
+        {
+          "declaration": "data/zones/outer-east.json#/items/18",
+          "factoryChain": [
+            "ZoneBase.buildRegion",
+            "CourtKit.region (metadata only)"
+          ],
+          "runtimeParent": "outer-east",
+          "coordinates": {
+            "declarationBoundsXZ": {
+              "x0": -335,
+              "x1": -234,
+              "z0": 20,
+              "z1": 100
+            }
+          },
+          "coordinateStatus": "RETAINED_MODEL_FIT_NOT_SURVEYED",
+          "metadataId": null,
+          "remainingOuterId": null,
+          "generatedGeometryObserved": false,
+          "fixtureRan": true,
+          "meshCountBeforeMaterialMerge": 0,
+          "generatedWorldAABB": null,
+          "roomKinds": [],
+          "roomNames": [],
+          "furnishingCalls": [],
+          "postMergeBinding": "Do not invent a named mesh selector. Source declaration and spatial extent remain the locator."
+        }
+      ],
+      "nextAction": "Keep group open: nine required central halls versus six generated shells; individual stage correspondence, three per-court glazed gates, side halls and court boundaries remain unresolved/unimplemented. Do not count the region as a tenth hall.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-B0B56A63EE",
+      "name": "南三所共用宫门",
+      "classification": "EXISTING_MODEL_IDENTITY_AND_FORM_REVIEW_PENDING",
+      "actualRole": "One default wall gate at the shared southern boundary",
+      "currentBindingRefs": [
+        "data/zones/outer-east.json#/items/10"
+      ],
+      "runtimeCandidates": [
+        {
+          "declaration": "data/zones/outer-east.json#/items/10",
+          "factoryChain": [
+            "ZoneBase.buildGate",
+            "CourtKit.gate (default wall variant)"
+          ],
+          "runtimeParent": "outer-east",
+          "coordinates": {
+            "anchorXZ": [
+              -285,
+              20
+            ],
+            "localWidthDepth": [
+              12,
+              null
+            ],
+            "rotation": "south",
+            "floorY": "factory default"
+          },
+          "coordinateStatus": "RETAINED_MODEL_FIT_NOT_SURVEYED",
+          "metadataId": null,
+          "remainingOuterId": null,
+          "generatedGeometryObserved": true,
+          "fixtureRan": true,
+          "meshCountBeforeMaterialMerge": 16,
+          "generatedWorldAABB": {
+            "min": [
+              -294.321834,
+              0,
+              14.46498
+            ],
+            "max": [
+              -275.678166,
+              7.5324,
+              25.53502
+            ]
+          },
+          "roomKinds": [],
+          "roomNames": [],
+          "furnishingCalls": [],
+          "postMergeBinding": "Do not invent a named mesh selector. Source declaration and spatial extent remain the locator."
+        }
+      ],
+      "nextAction": "Retain the existing declaration; its actual gateKind is wall, not the documented three-bay green-tile xieshan gate hall. Obtain own-gate geometry/position evidence before a reversible in-place correction; three individual glazed court gates are separate expansion work.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-2E6207278C",
+      "name": "南三所东所前殿",
+      "classification": "EXISTING_MODEL_NANSANSUO_STAGE_UNRESOLVED",
+      "actualRole": "One of six real shells arranged in three east/center/west columns and two north/south rows",
+      "currentBindingRefs": [
+        "data/zones/outer-east.json#/items/16"
+      ],
+      "runtimeCandidates": [
+        {
+          "declaration": "data/zones/outer-east.json#/items/16",
+          "factoryChain": [
+            "ZoneBase.buildHall",
+            "CourtKit.hall",
+            "augmentRemainingHall"
+          ],
+          "runtimeParent": "outer-east",
+          "coordinates": {
+            "anchorXZ": [
+              -317.4,
+              39
+            ],
+            "localWidthDepth": [
+              15.4,
+              10.6
+            ],
+            "rotation": "south",
+            "floorY": "factory default"
+          },
+          "coordinateStatus": "RETAINED_MODEL_FIT_NOT_SURVEYED",
+          "metadataId": "place-outer-east-2e6207278c",
+          "remainingOuterId": "place-outer-east-2e6207278c",
+          "generatedGeometryObserved": true,
+          "fixtureRan": true,
+          "meshCountBeforeMaterialMerge": 53,
+          "generatedWorldAABB": {
+            "min": [
+              -326.16,
+              -0.0772,
+              31.1805
+            ],
+            "max": [
+              -308.64,
+              10.78586,
+              46.221046
+            ]
+          },
+          "roomKinds": [
+            "hall"
+          ],
+          "roomNames": [
+            "南三所东所前殿"
+          ],
+          "furnishingCalls": [
+            {
+              "kind": "hall",
+              "newMeshCount": 8
+            }
+          ],
+          "postMergeBinding": "outer-east.userData.architecture[id=place-outer-east-2e6207278c]"
+        }
+      ],
+      "nextAction": "Retain this original ID, roof augmentation and furnishings as unverified. Names and shared URL do not verify the three-stage mapping. Do not duplicate based on an unbound review row.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-D2A4662D07",
+      "name": "南三所东所中殿",
+      "classification": "NANSANSUO_PHYSICAL_STAGE_UNRESOLVED",
+      "actualRole": "Required third-court inventory slot, not proven to be a particular missing middle or rear model",
+      "currentBindingRefs": [],
+      "runtimeCandidates": [],
+      "nextAction": "Do not create a hall simply because this FC row lacks a binding. Reconcile six real shells with the nine required central halls from a verified ground plan. At group level three central-hall slots are absent; which stages are absent is unresolved.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-4642F5088E",
+      "name": "南三所东所后殿",
+      "classification": "EXISTING_MODEL_NANSANSUO_STAGE_UNRESOLVED",
+      "actualRole": "One of six real shells arranged in three east/center/west columns and two north/south rows",
+      "currentBindingRefs": [
+        "data/zones/outer-east.json#/items/17"
+      ],
+      "runtimeCandidates": [
+        {
+          "declaration": "data/zones/outer-east.json#/items/17",
+          "factoryChain": [
+            "ZoneBase.buildHall",
+            "CourtKit.hall",
+            "augmentRemainingHall"
+          ],
+          "runtimeParent": "outer-east",
+          "coordinates": {
+            "anchorXZ": [
+              -317,
+              68.9
+            ],
+            "localWidthDepth": [
+              19,
+              10.3
+            ],
+            "rotation": "south",
+            "floorY": "factory default"
+          },
+          "coordinateStatus": "RETAINED_MODEL_FIT_NOT_SURVEYED",
+          "metadataId": "place-outer-east-4642f5088e",
+          "remainingOuterId": "place-outer-east-4642f5088e",
+          "generatedGeometryObserved": true,
+          "fixtureRan": true,
+          "meshCountBeforeMaterialMerge": 53,
+          "generatedWorldAABB": {
+            "min": [
+              -327.56,
+              -0.0772,
+              61.2305
+            ],
+            "max": [
+              -306.44,
+              10.654891,
+              75.925883
+            ]
+          },
+          "roomKinds": [
+            "hall"
+          ],
+          "roomNames": [
+            "南三所东所后殿"
+          ],
+          "furnishingCalls": [
+            {
+              "kind": "hall",
+              "newMeshCount": 8
+            }
+          ],
+          "postMergeBinding": "outer-east.userData.architecture[id=place-outer-east-4642f5088e]"
+        }
+      ],
+      "nextAction": "Retain this original ID, roof augmentation and furnishings as unverified. Names and shared URL do not verify the three-stage mapping. Do not duplicate based on an unbound review row.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-C1914091EC",
+      "name": "南三所中所前殿",
+      "classification": "EXISTING_MODEL_NANSANSUO_STAGE_UNRESOLVED",
+      "actualRole": "One of six real shells arranged in three east/center/west columns and two north/south rows",
+      "currentBindingRefs": [
+        "data/zones/outer-east.json#/items/14"
+      ],
+      "runtimeCandidates": [
+        {
+          "declaration": "data/zones/outer-east.json#/items/14",
+          "factoryChain": [
+            "ZoneBase.buildHall",
+            "CourtKit.hall",
+            "augmentRemainingHall"
+          ],
+          "runtimeParent": "outer-east",
+          "coordinates": {
+            "anchorXZ": [
+              -285.4,
+              39
+            ],
+            "localWidthDepth": [
+              15.4,
+              10.6
+            ],
+            "rotation": "south",
+            "floorY": "factory default"
+          },
+          "coordinateStatus": "RETAINED_MODEL_FIT_NOT_SURVEYED",
+          "metadataId": "place-outer-east-c1914091ec",
+          "remainingOuterId": "place-outer-east-c1914091ec",
+          "generatedGeometryObserved": true,
+          "fixtureRan": true,
+          "meshCountBeforeMaterialMerge": 53,
+          "generatedWorldAABB": {
+            "min": [
+              -294.16,
+              -0.0772,
+              31.1805
+            ],
+            "max": [
+              -276.64,
+              10.78586,
+              46.221046
+            ]
+          },
+          "roomKinds": [
+            "hall"
+          ],
+          "roomNames": [
+            "南三所中所前殿"
+          ],
+          "furnishingCalls": [
+            {
+              "kind": "hall",
+              "newMeshCount": 8
+            }
+          ],
+          "postMergeBinding": "outer-east.userData.architecture[id=place-outer-east-c1914091ec]"
+        }
+      ],
+      "nextAction": "Retain this original ID, roof augmentation and furnishings as unverified. Names and shared URL do not verify the three-stage mapping. Do not duplicate based on an unbound review row.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-B875FF665E",
+      "name": "南三所中所中殿",
+      "classification": "NANSANSUO_PHYSICAL_STAGE_UNRESOLVED",
+      "actualRole": "Required third-court inventory slot, not proven to be a particular missing middle or rear model",
+      "currentBindingRefs": [],
+      "runtimeCandidates": [],
+      "nextAction": "Do not create a hall simply because this FC row lacks a binding. Reconcile six real shells with the nine required central halls from a verified ground plan. At group level three central-hall slots are absent; which stages are absent is unresolved.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-5E024932AE",
+      "name": "南三所中所后殿",
+      "classification": "NANSANSUO_PHYSICAL_STAGE_UNRESOLVED",
+      "actualRole": "Required third-court inventory slot, not proven to be a particular missing middle or rear model",
+      "currentBindingRefs": [],
+      "runtimeCandidates": [],
+      "nextAction": "Existing center northern-row shell is FC-1DB501EB23 / items/15. Cross-reference as a candidate, not an alias or accepted physical merge. Resolve middle versus rear and the exact Xiefang identity before adding a second shell.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-172C8CBF68",
+      "name": "南三所西所前殿",
+      "classification": "EXISTING_MODEL_NANSANSUO_STAGE_UNRESOLVED",
+      "actualRole": "One of six real shells arranged in three east/center/west columns and two north/south rows",
+      "currentBindingRefs": [
+        "data/zones/outer-east.json#/items/12"
+      ],
+      "runtimeCandidates": [
+        {
+          "declaration": "data/zones/outer-east.json#/items/12",
+          "factoryChain": [
+            "ZoneBase.buildHall",
+            "CourtKit.hall",
+            "augmentRemainingHall"
+          ],
+          "runtimeParent": "outer-east",
+          "coordinates": {
+            "anchorXZ": [
+              -251.8,
+              39
+            ],
+            "localWidthDepth": [
+              15.4,
+              10.6
+            ],
+            "rotation": "south",
+            "floorY": "factory default"
+          },
+          "coordinateStatus": "RETAINED_MODEL_FIT_NOT_SURVEYED",
+          "metadataId": "place-outer-east-172c8cbf68",
+          "remainingOuterId": "place-outer-east-172c8cbf68",
+          "generatedGeometryObserved": true,
+          "fixtureRan": true,
+          "meshCountBeforeMaterialMerge": 53,
+          "generatedWorldAABB": {
+            "min": [
+              -260.56,
+              -0.0772,
+              31.1805
+            ],
+            "max": [
+              -243.04,
+              10.78586,
+              46.221046
+            ]
+          },
+          "roomKinds": [
+            "hall"
+          ],
+          "roomNames": [
+            "南三所西所前殿"
+          ],
+          "furnishingCalls": [
+            {
+              "kind": "hall",
+              "newMeshCount": 8
+            }
+          ],
+          "postMergeBinding": "outer-east.userData.architecture[id=place-outer-east-172c8cbf68]"
+        }
+      ],
+      "nextAction": "Retain this original ID, roof augmentation and furnishings as unverified. Names and shared URL do not verify the three-stage mapping. Do not duplicate based on an unbound review row.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-D4F3E359DE",
+      "name": "南三所西所中殿",
+      "classification": "NANSANSUO_PHYSICAL_STAGE_UNRESOLVED",
+      "actualRole": "Required third-court inventory slot, not proven to be a particular missing middle or rear model",
+      "currentBindingRefs": [],
+      "runtimeCandidates": [],
+      "nextAction": "Do not create a hall simply because this FC row lacks a binding. Reconcile six real shells with the nine required central halls from a verified ground plan. At group level three central-hall slots are absent; which stages are absent is unresolved.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-3F2EBD1B02",
+      "name": "南三所西所后殿",
+      "classification": "EXISTING_MODEL_NANSANSUO_STAGE_UNRESOLVED",
+      "actualRole": "One of six real shells arranged in three east/center/west columns and two north/south rows",
+      "currentBindingRefs": [
+        "data/zones/outer-east.json#/items/13"
+      ],
+      "runtimeCandidates": [
+        {
+          "declaration": "data/zones/outer-east.json#/items/13",
+          "factoryChain": [
+            "ZoneBase.buildHall",
+            "CourtKit.hall",
+            "augmentRemainingHall"
+          ],
+          "runtimeParent": "outer-east",
+          "coordinates": {
+            "anchorXZ": [
+              -251.8,
+              68.9
+            ],
+            "localWidthDepth": [
+              19,
+              10.3
+            ],
+            "rotation": "south",
+            "floorY": "factory default"
+          },
+          "coordinateStatus": "RETAINED_MODEL_FIT_NOT_SURVEYED",
+          "metadataId": "place-outer-east-3f2ebd1b02",
+          "remainingOuterId": "place-outer-east-3f2ebd1b02",
+          "generatedGeometryObserved": true,
+          "fixtureRan": true,
+          "meshCountBeforeMaterialMerge": 53,
+          "generatedWorldAABB": {
+            "min": [
+              -262.36,
+              -0.0772,
+              61.2305
+            ],
+            "max": [
+              -241.24,
+              10.654891,
+              75.925883
+            ]
+          },
+          "roomKinds": [
+            "hall"
+          ],
+          "roomNames": [
+            "南三所西所后殿"
+          ],
+          "furnishingCalls": [
+            {
+              "kind": "hall",
+              "newMeshCount": 8
+            }
+          ],
+          "postMergeBinding": "outer-east.userData.architecture[id=place-outer-east-3f2ebd1b02]"
+        }
+      ],
+      "nextAction": "Retain this original ID, roof augmentation and furnishings as unverified. Names and shared URL do not verify the three-stage mapping. Do not duplicate based on an unbound review row.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-33770DFDD3",
+      "name": "銮驾库",
+      "classification": "UNIMPLEMENTED_HISTORICAL_OR_CURRENT_SCOPE_UNRESOLVED",
+      "actualRole": null,
+      "currentBindingRefs": [],
+      "runtimeCandidates": [],
+      "nextAction": "Separate surviving Luanjia-storehouse fabric from documented lost rooms before locating or constructing any new model.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "FC-1DB501EB23",
+      "name": "南三所中所后殿撷芳殿",
+      "classification": "EXISTING_MODEL_NANSANSUO_STAGE_UNRESOLVED",
+      "actualRole": "One of six real shells arranged in three east/center/west columns and two north/south rows",
+      "currentBindingRefs": [
+        "data/zones/outer-east.json#/items/15"
+      ],
+      "runtimeCandidates": [
+        {
+          "declaration": "data/zones/outer-east.json#/items/15",
+          "factoryChain": [
+            "ZoneBase.buildHall",
+            "CourtKit.hall",
+            "augmentRemainingHall"
+          ],
+          "runtimeParent": "outer-east",
+          "coordinates": {
+            "anchorXZ": [
+              -285.1,
+              68.9
+            ],
+            "localWidthDepth": [
+              19,
+              10.3
+            ],
+            "rotation": "south",
+            "floorY": "factory default"
+          },
+          "coordinateStatus": "RETAINED_MODEL_FIT_NOT_SURVEYED",
+          "metadataId": "place-outer-east-1db501eb23",
+          "remainingOuterId": "place-outer-east-1db501eb23",
+          "generatedGeometryObserved": true,
+          "fixtureRan": true,
+          "meshCountBeforeMaterialMerge": 53,
+          "generatedWorldAABB": {
+            "min": [
+              -295.66,
+              -0.0772,
+              61.2305
+            ],
+            "max": [
+              -274.54,
+              10.654891,
+              75.925883
+            ]
+          },
+          "roomKinds": [
+            "hall"
+          ],
+          "roomNames": [
+            "南三所中所后殿撷芳殿"
+          ],
+          "furnishingCalls": [
+            {
+              "kind": "hall",
+              "newMeshCount": 8
+            }
+          ],
+          "postMergeBinding": "outer-east.userData.architecture[id=place-outer-east-1db501eb23]"
+        }
+      ],
+      "nextAction": "Retain this original ID, roof augmentation and furnishings as unverified. Names and shared URL do not verify the three-stage mapping. Do not duplicate based on an unbound review row.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "AUX-AF5419B9A3CD",
+      "name": "outer-east / courtWalls / 1",
+      "classification": "AUXILIARY_BOUNDARY_GEOMETRY_ONLY",
+      "actualRole": "Perimeter wall segments and openings, not a furnished hall",
+      "currentBindingRefs": [
+        "data/zones/outer-east.json#/items/1"
+      ],
+      "runtimeCandidates": [
+        {
+          "declaration": "data/zones/outer-east.json#/items/1",
+          "factoryChain": [
+            "ZoneBase.buildCourtWalls",
+            "CourtKit.courtWalls",
+            "CourtKit.wall"
+          ],
+          "runtimeParent": "outer-east",
+          "coordinates": {
+            "declarationBoundsXZ": {
+              "x0": -219,
+              "x1": -149.5,
+              "z0": -245.2,
+              "z1": -156
+            }
+          },
+          "coordinateStatus": "RETAINED_MODEL_FIT_NOT_SURVEYED",
+          "metadataId": null,
+          "remainingOuterId": null,
+          "generatedGeometryObserved": true,
+          "fixtureRan": true,
+          "meshCountBeforeMaterialMerge": 30,
+          "generatedWorldAABB": {
+            "min": [
+              -219.85,
+              0,
+              -246.05
+            ],
+            "max": [
+              -148.65,
+              7.889,
+              -155.15
+            ]
+          },
+          "roomKinds": [],
+          "roomNames": [],
+          "furnishingCalls": [],
+          "postMergeBinding": "Do not invent a named mesh selector. Source declaration and spatial extent remain the locator."
+        }
+      ],
+      "nextAction": "Keep existing wall geometry; no generic furniture was generated. Do not delete walls to clear a furniture audit.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "AUX-13BC1DFCE1D7",
+      "name": "文华殿院",
+      "classification": "AUXILIARY_REGION_METADATA_ONLY",
+      "actualRole": "Region bounds, no geometry and no room furniture",
+      "currentBindingRefs": [
+        "data/zones/outer-east.json#/items/6"
+      ],
+      "runtimeCandidates": [
+        {
+          "declaration": "data/zones/outer-east.json#/items/6",
+          "factoryChain": [
+            "ZoneBase.buildRegion",
+            "CourtKit.region (metadata only)"
+          ],
+          "runtimeParent": "outer-east",
+          "coordinates": {
+            "declarationBoundsXZ": {
+              "x0": -219,
+              "x1": -149.5,
+              "z0": -245.2,
+              "z1": -150
+            }
+          },
+          "coordinateStatus": "RETAINED_MODEL_FIT_NOT_SURVEYED",
+          "metadataId": null,
+          "remainingOuterId": null,
+          "generatedGeometryObserved": false,
+          "fixtureRan": true,
+          "meshCountBeforeMaterialMerge": 0,
+          "generatedWorldAABB": null,
+          "roomKinds": [],
+          "roomNames": [],
+          "furnishingCalls": [],
+          "postMergeBinding": "Do not invent a named mesh selector. Source declaration and spatial extent remain the locator."
+        }
+      ],
+      "nextAction": "Keep as a region/aggregate locator; furniture removal is not applicable.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "AUX-BC97E8DBD217",
+      "name": "outer-east / courtWalls / 7",
+      "classification": "AUXILIARY_BOUNDARY_GEOMETRY_ONLY",
+      "actualRole": "Perimeter wall segments and openings, not a furnished hall",
+      "currentBindingRefs": [
+        "data/zones/outer-east.json#/items/7"
+      ],
+      "runtimeCandidates": [
+        {
+          "declaration": "data/zones/outer-east.json#/items/7",
+          "factoryChain": [
+            "ZoneBase.buildCourtWalls",
+            "CourtKit.courtWalls",
+            "CourtKit.wall"
+          ],
+          "runtimeParent": "outer-east",
+          "coordinates": {
+            "declarationBoundsXZ": {
+              "x0": -219,
+              "x1": -149.5,
+              "z0": -156,
+              "z1": -115
+            }
+          },
+          "coordinateStatus": "RETAINED_MODEL_FIT_NOT_SURVEYED",
+          "metadataId": null,
+          "remainingOuterId": null,
+          "generatedGeometryObserved": true,
+          "fixtureRan": true,
+          "meshCountBeforeMaterialMerge": 15,
+          "generatedWorldAABB": {
+            "min": [
+              -219.85,
+              0,
+              -156
+            ],
+            "max": [
+              -148.65,
+              7.889,
+              -114.15
+            ]
+          },
+          "roomKinds": [],
+          "roomNames": [],
+          "furnishingCalls": [],
+          "postMergeBinding": "Do not invent a named mesh selector. Source declaration and spatial extent remain the locator."
+        }
+      ],
+      "nextAction": "Keep existing wall geometry; no generic furniture was generated. Do not delete walls to clear a furniture audit.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "AUX-EAC56B7C6A2A",
+      "name": "文渊阁院",
+      "classification": "AUXILIARY_REGION_METADATA_ONLY",
+      "actualRole": "Region bounds, no geometry and no room furniture",
+      "currentBindingRefs": [
+        "data/zones/outer-east.json#/items/9"
+      ],
+      "runtimeCandidates": [
+        {
+          "declaration": "data/zones/outer-east.json#/items/9",
+          "factoryChain": [
+            "ZoneBase.buildRegion",
+            "CourtKit.region (metadata only)"
+          ],
+          "runtimeParent": "outer-east",
+          "coordinates": {
+            "declarationBoundsXZ": {
+              "x0": -219,
+              "x1": -149.5,
+              "z0": -150,
+              "z1": -115
+            }
+          },
+          "coordinateStatus": "RETAINED_MODEL_FIT_NOT_SURVEYED",
+          "metadataId": null,
+          "remainingOuterId": null,
+          "generatedGeometryObserved": false,
+          "fixtureRan": true,
+          "meshCountBeforeMaterialMerge": 0,
+          "generatedWorldAABB": null,
+          "roomKinds": [],
+          "roomNames": [],
+          "furnishingCalls": [],
+          "postMergeBinding": "Do not invent a named mesh selector. Source declaration and spatial extent remain the locator."
+        }
+      ],
+      "nextAction": "Keep as a region/aggregate locator; furniture removal is not applicable.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "AUX-709D2756FE0D",
+      "name": "outer-east / courtWalls / 11",
+      "classification": "AUXILIARY_BOUNDARY_GEOMETRY_ONLY",
+      "actualRole": "Perimeter wall segments and openings, not a furnished hall",
+      "currentBindingRefs": [
+        "data/zones/outer-east.json#/items/11"
+      ],
+      "runtimeCandidates": [
+        {
+          "declaration": "data/zones/outer-east.json#/items/11",
+          "factoryChain": [
+            "ZoneBase.buildCourtWalls",
+            "CourtKit.courtWalls",
+            "CourtKit.wall"
+          ],
+          "runtimeParent": "outer-east",
+          "coordinates": {
+            "declarationBoundsXZ": {
+              "x0": -335,
+              "x1": -234,
+              "z0": 20,
+              "z1": 100
+            }
+          },
+          "coordinateStatus": "RETAINED_MODEL_FIT_NOT_SURVEYED",
+          "metadataId": null,
+          "remainingOuterId": null,
+          "generatedGeometryObserved": true,
+          "fixtureRan": true,
+          "meshCountBeforeMaterialMerge": 25,
+          "generatedWorldAABB": {
+            "min": [
+              -335.85,
+              0,
+              19.15
+            ],
+            "max": [
+              -233.15,
+              7.889,
+              100.85
+            ]
+          },
+          "roomKinds": [],
+          "roomNames": [],
+          "furnishingCalls": [],
+          "postMergeBinding": "Do not invent a named mesh selector. Source declaration and spatial extent remain the locator."
+        }
+      ],
+      "nextAction": "Keep existing wall geometry; no generic furniture was generated. Do not delete walls to clear a furniture audit.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    },
+    {
+      "reviewObjectId": "AUX-1DA0AE7EB391",
+      "name": "outer-east / hall / 23",
+      "classification": "EXISTING_CONNECTOR_INVENTORY_ALIAS_CANDIDATE",
+      "actualRole": "Wenhua connector, same generated object as FC-0B08F51957",
+      "currentBindingRefs": [
+        "data/zones/outer-east.json#/items/23"
+      ],
+      "runtimeCandidates": [
+        {
+          "declaration": "data/zones/outer-east.json#/items/23",
+          "factoryChain": [
+            "ZoneBase.buildHall",
+            "ZoneBase.buildHallBaseline",
+            "buildSouthCourtHall",
+            "buildSouthGalleryDisplays"
+          ],
+          "runtimeParent": "outer-east",
+          "coordinates": {
+            "anchorXZ": [
+              -186.4,
+              -181.75
+            ],
+            "localWidthDepth": [
+              8.8,
+              17.5
+            ],
+            "rotation": "south",
+            "floorY": 1.2
+          },
+          "coordinateStatus": "RETAINED_MODEL_FIT_NOT_SURVEYED",
+          "metadataId": "outer-east/wenhua-connector",
+          "remainingOuterId": null,
+          "generatedGeometryObserved": true,
+          "fixtureRan": true,
+          "meshCountBeforeMaterialMerge": 33,
+          "generatedWorldAABB": {
+            "min": [
+              -192.427957,
+              0,
+              -190.97
+            ],
+            "max": [
+              -180.372043,
+              11.072732,
+              -172.53
+            ]
+          },
+          "roomKinds": [
+            "wenhua-gallery"
+          ],
+          "roomNames": [
+            "文华殿穿廊"
+          ],
+          "furnishingCalls": [],
+          "postMergeBinding": "outer-east.userData.architecture[id=outer-east/wenhua-connector]"
+        }
+      ],
+      "nextAction": "Preserve AUX ID and attach an explicit audit cross-reference to FC-0B08F51957; one physical object, no new model, no deletion.",
+      "historicalIdentityAccepted": false,
+      "browserAccepted": false
+    }
+  ]
+}

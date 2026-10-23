@@ -68,5 +68,675 @@
     "turningRadiusMeters": 0.5,
     "description": "Low-complexity courtyard stroll, no named residence or historical timetable.",
     "formationSize": 1
+  },
+  {
+    "id": "east-second-lane-patrol",
+    "zoneRef": "east-six",
+    "surfaceRef": "east-second-lane-ground",
+    "anchorRef": "east-second-lane",
+    "pointsLocalMeters": [
+      [
+        0,
+        0,
+        -18.6
+      ],
+      [
+        0,
+        0,
+        -0.6
+      ],
+      [
+        2.5,
+        0,
+        7.4
+      ]
+    ],
+    "radiusMeters": 0.38,
+    "safetyMarginMeters": 0.12,
+    "validationSpacingMeters": 0.25,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "crossZone": false,
+    "turningRadiusMeters": 0.55,
+    "description": "Short same-zone East Second Lane interpretation. Actual east-six region frame, no doorway crossings, no historical timetable claim.",
+    "formationSize": 3
+  },
+  {
+    "id": "changchun-r52-courtyard-stroll",
+    "zoneRef": "west-six",
+    "surfaceRef": "changchun-r52-court-ground",
+    "anchorRef": "changchun-r52-hall",
+    "pointsLocalMeters": [
+      [
+        -4,
+        0,
+        -14
+      ],
+      [
+        3,
+        0,
+        -14
+      ]
+    ],
+    "radiusMeters": 0.65,
+    "safetyMarginMeters": 0.15,
+    "validationSpacingMeters": 0.25,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "crossZone": false,
+    "turningRadiusMeters": 0.85,
+    "description": "An unnamed consort takes a short lateral courtyard stroll while a maid waits beside, not on, the route. Display behavior only, not historical service procedure.",
+    "formationSize": 1
+  },
+  {
+    "id": "jingren-r52-courtyard-service",
+    "zoneRef": "east-six",
+    "surfaceRef": "jingren-r52-court-ground",
+    "anchorRef": "jingren-r52-hall",
+    "pointsLocalMeters": [
+      [
+        3.5,
+        0,
+        -17.5
+      ],
+      [
+        7,
+        0,
+        -17.5
+      ],
+      [
+        7,
+        0,
+        -14.5
+      ]
+    ],
+    "radiusMeters": 0.65,
+    "safetyMarginMeters": 0.15,
+    "validationSpacingMeters": 0.25,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "crossZone": false,
+    "turningRadiusMeters": 0.85,
+    "description": "A maid makes a short service walk on one side while an attendant waits on the opposite side; no consort is added. Display behavior only, not historical service procedure.",
+    "formationSize": 1
+  },
+  {
+    "id": "xianfu-r53-courtyard-service",
+    "zoneRef": "west-six",
+    "anchorRef": "xianfu-r53-hall",
+    "surfaceRef": "xianfu-r53-court-ground",
+    "pointsLocalMeters": [
+      [
+        -4,
+        0,
+        -12
+      ],
+      [
+        2,
+        0,
+        -12
+      ]
+    ],
+    "radiusMeters": 0.5,
+    "safetyMarginMeters": 0.15,
+    "validationSpacingMeters": 0.25,
+    "formationSize": 1,
+    "turningRadiusMeters": 0.7,
+    "crossZone": false,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "description": "Short reversible, anonymous service walk; a model interpretation, not a historical staff route."
+  },
+  {
+    "id": "taiji-r53-courtyard-service",
+    "zoneRef": "west-six",
+    "anchorRef": "taiji-r53-hall",
+    "surfaceRef": "taiji-r53-court-ground",
+    "pointsLocalMeters": [
+      [
+        1,
+        0,
+        -14
+      ],
+      [
+        6,
+        0,
+        -14
+      ]
+    ],
+    "radiusMeters": 0.5,
+    "safetyMarginMeters": 0.15,
+    "validationSpacingMeters": 0.25,
+    "formationSize": 1,
+    "turningRadiusMeters": 0.7,
+    "crossZone": false,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "description": "Short reversible, anonymous service walk; a model interpretation, not a historical staff route."
+  },
+  {
+    "id": "jingyang-r53-courtyard-service",
+    "zoneRef": "east-six",
+    "anchorRef": "jingyang-r53-hall",
+    "surfaceRef": "jingyang-r53-court-ground",
+    "pointsLocalMeters": [
+      [
+        -3,
+        0,
+        -12
+      ],
+      [
+        3,
+        0,
+        -12
+      ]
+    ],
+    "radiusMeters": 0.5,
+    "safetyMarginMeters": 0.15,
+    "validationSpacingMeters": 0.25,
+    "formationSize": 1,
+    "turningRadiusMeters": 0.7,
+    "crossZone": false,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "description": "Short reversible, anonymous service walk; a model interpretation, not a historical staff route."
+  },
+  {
+    "id": "chuxiu-maid-02-r54-stroll",
+    "zoneRef": "west-six",
+    "surfaceRef": "chuxiu-r54-court-ground",
+    "anchorRef": "chuxiu-hall",
+    "pointsLocalMeters": [
+      [
+        3,
+        0,
+        -15.3
+      ],
+      [
+        7,
+        0,
+        -15.3
+      ]
+    ],
+    "radiusMeters": 0.32,
+    "safetyMarginMeters": 0.1,
+    "validationSpacingMeters": 0.25,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "crossZone": false,
+    "turningRadiusMeters": 0.5,
+    "description": "Short disjoint courtyard route; no NPC avoidance is claimed. Must retain swept separation from all other roles at every phase.",
+    "formationSize": 1
+  },
+  {
+    "id": "yikun-maid-01-r54-stroll",
+    "zoneRef": "west-six",
+    "surfaceRef": "yikun-court-ground",
+    "anchorRef": "yikun-hall",
+    "pointsLocalMeters": [
+      [
+        3,
+        0,
+        -15.8
+      ],
+      [
+        6,
+        0,
+        -15.8
+      ]
+    ],
+    "radiusMeters": 0.32,
+    "safetyMarginMeters": 0.1,
+    "validationSpacingMeters": 0.25,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "crossZone": false,
+    "turningRadiusMeters": 0.5,
+    "description": "Short disjoint courtyard route; no NPC avoidance is claimed. Must retain swept separation from all other roles at every phase.",
+    "formationSize": 1
+  },
+  {
+    "id": "yikun-eunuch-02-r54-stroll",
+    "zoneRef": "west-six",
+    "surfaceRef": "yikun-court-ground",
+    "anchorRef": "yikun-hall",
+    "pointsLocalMeters": [
+      [
+        -6,
+        0,
+        -17.4
+      ],
+      [
+        -3,
+        0,
+        -17.4
+      ]
+    ],
+    "radiusMeters": 0.32,
+    "safetyMarginMeters": 0.1,
+    "validationSpacingMeters": 0.25,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "crossZone": false,
+    "turningRadiusMeters": 0.5,
+    "description": "Short disjoint courtyard route; no NPC avoidance is claimed. Must retain swept separation from all other roles at every phase.",
+    "formationSize": 1
+  },
+  {
+    "id": "yongshou-maid-02-r54-stroll",
+    "zoneRef": "west-six",
+    "surfaceRef": "yongshou-court-ground",
+    "anchorRef": "yongshou-hall",
+    "pointsLocalMeters": [
+      [
+        -4,
+        0,
+        -18.5
+      ],
+      [
+        0,
+        0,
+        -18.5
+      ]
+    ],
+    "radiusMeters": 0.32,
+    "safetyMarginMeters": 0.1,
+    "validationSpacingMeters": 0.25,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "crossZone": false,
+    "turningRadiusMeters": 0.5,
+    "description": "Short disjoint courtyard route; no NPC avoidance is claimed. Must retain swept separation from all other roles at every phase.",
+    "formationSize": 1
+  },
+  {
+    "id": "chengqian-maid-02-r54-stroll",
+    "zoneRef": "east-six",
+    "surfaceRef": "chengqian-r52-court-ground",
+    "anchorRef": "chengqian-r52-hall",
+    "pointsLocalMeters": [
+      [
+        -7,
+        0,
+        -13.5
+      ],
+      [
+        -3,
+        0,
+        -13.5
+      ]
+    ],
+    "radiusMeters": 0.32,
+    "safetyMarginMeters": 0.1,
+    "validationSpacingMeters": 0.25,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "crossZone": false,
+    "turningRadiusMeters": 0.5,
+    "description": "Short disjoint courtyard route; no NPC avoidance is claimed. Must retain swept separation from all other roles at every phase.",
+    "formationSize": 1
+  },
+  {
+    "id": "changchun-maid-02-r55-stroll",
+    "zoneRef": "west-six",
+    "surfaceRef": "changchun-r52-court-ground",
+    "anchorRef": "changchun-r52-hall",
+    "pointsLocalMeters": [
+      [
+        3,
+        0,
+        -16.5
+      ],
+      [
+        6,
+        0,
+        -16.5
+      ]
+    ],
+    "radiusMeters": 0.5,
+    "safetyMarginMeters": 0.15,
+    "validationSpacingMeters": 0.25,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "crossZone": false,
+    "turningRadiusMeters": 0.7,
+    "description": "Anonymous short reversible courtyard walk. No historical procedure or dynamic NPC avoidance claimed; retain entire swept separation independently of phase.",
+    "formationSize": 1
+  },
+  {
+    "id": "zhongcui-eunuch-01-r55-stroll",
+    "zoneRef": "east-six",
+    "surfaceRef": "zhongcui-r52-court-ground",
+    "anchorRef": "zhongcui-r52-hall",
+    "pointsLocalMeters": [
+      [
+        3,
+        0,
+        -13
+      ],
+      [
+        6,
+        0,
+        -13
+      ]
+    ],
+    "radiusMeters": 0.5,
+    "safetyMarginMeters": 0.15,
+    "validationSpacingMeters": 0.25,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "crossZone": false,
+    "turningRadiusMeters": 0.7,
+    "description": "Anonymous short reversible courtyard walk. No historical procedure or dynamic NPC avoidance claimed; retain entire swept separation independently of phase.",
+    "formationSize": 1
+  },
+  {
+    "id": "jingren-maid-02-r55-stroll",
+    "zoneRef": "east-six",
+    "surfaceRef": "jingren-r52-court-ground",
+    "anchorRef": "jingren-r52-hall",
+    "pointsLocalMeters": [
+      [
+        -7,
+        0,
+        -19.5
+      ],
+      [
+        -3,
+        0,
+        -19.5
+      ]
+    ],
+    "radiusMeters": 0.5,
+    "safetyMarginMeters": 0.15,
+    "validationSpacingMeters": 0.25,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "crossZone": false,
+    "turningRadiusMeters": 0.7,
+    "description": "Anonymous short reversible courtyard walk. No historical procedure or dynamic NPC avoidance claimed; retain entire swept separation independently of phase.",
+    "formationSize": 1
+  },
+  {
+    "id": "yonghe-maid-02-r55-stroll",
+    "zoneRef": "east-six",
+    "surfaceRef": "yonghe-r52-court-ground",
+    "anchorRef": "yonghe-r52-hall",
+    "pointsLocalMeters": [
+      [
+        -6,
+        0,
+        -14
+      ],
+      [
+        -3,
+        0,
+        -14
+      ]
+    ],
+    "radiusMeters": 0.5,
+    "safetyMarginMeters": 0.15,
+    "validationSpacingMeters": 0.25,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "crossZone": false,
+    "turningRadiusMeters": 0.7,
+    "description": "Anonymous short reversible courtyard walk. No historical procedure or dynamic NPC avoidance claimed; retain entire swept separation independently of phase.",
+    "formationSize": 1
+  },
+  {
+    "id": "shoukang-eunuch-01-r56-stroll",
+    "zoneRef": "outer-west",
+    "anchorRef": "shoukang-r56-hall",
+    "surfaceRef": "shoukang-r56-court-ground",
+    "pointsLocalMeters": [
+      [
+        8,
+        0,
+        -20
+      ],
+      [
+        8,
+        0,
+        -16.5
+      ]
+    ],
+    "radiusMeters": 0.5,
+    "safetyMarginMeters": 0.15,
+    "validationSpacingMeters": 0.25,
+    "formationSize": 1,
+    "turningRadiusMeters": 0.7,
+    "crossZone": false,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "description": "Independent short courtyard stroll. No crossing another route, hall entry, prop-carrying duty or historical staff itinerary."
+  },
+  {
+    "id": "cining-eunuch-01-r56-stroll",
+    "zoneRef": "outer-west",
+    "anchorRef": "cining-r56-hall",
+    "surfaceRef": "cining-r56-court-ground",
+    "pointsLocalMeters": [
+      [
+        12,
+        0,
+        -29
+      ],
+      [
+        12,
+        0,
+        -25.5
+      ]
+    ],
+    "radiusMeters": 0.5,
+    "safetyMarginMeters": 0.15,
+    "validationSpacingMeters": 0.25,
+    "formationSize": 1,
+    "turningRadiusMeters": 0.7,
+    "crossZone": false,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "description": "Independent short courtyard stroll. No crossing another route, hall entry, prop-carrying duty or historical staff itinerary."
+  },
+  {
+    "id": "shouan-eunuch-01-r56-stroll",
+    "zoneRef": "outer-west",
+    "anchorRef": "shouan-r56-hall",
+    "surfaceRef": "shouan-r56-court-ground",
+    "pointsLocalMeters": [
+      [
+        8,
+        0,
+        -17
+      ],
+      [
+        8,
+        0,
+        -13.5
+      ]
+    ],
+    "radiusMeters": 0.5,
+    "safetyMarginMeters": 0.15,
+    "validationSpacingMeters": 0.25,
+    "formationSize": 1,
+    "turningRadiusMeters": 0.7,
+    "crossZone": false,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "description": "Independent short courtyard stroll. No crossing another route, hall entry, prop-carrying duty or historical staff itinerary."
+  },
+  {
+    "id": "yangxin-eunuch-02-r56-stroll",
+    "zoneRef": "west-six",
+    "anchorRef": "yangxin-r56-hall",
+    "surfaceRef": "yangxin-r56-court-ground",
+    "pointsLocalMeters": [
+      [
+        14,
+        0,
+        -20
+      ],
+      [
+        14,
+        0,
+        -16.5
+      ]
+    ],
+    "radiusMeters": 0.5,
+    "safetyMarginMeters": 0.15,
+    "validationSpacingMeters": 0.25,
+    "formationSize": 1,
+    "turningRadiusMeters": 0.7,
+    "crossZone": false,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "description": "Independent short courtyard stroll. No crossing another route, hall entry, prop-carrying duty or historical staff itinerary."
+  },
+  {
+    "id": "yangxing-eunuch-02-r57-stroll",
+    "zoneRef": "ningshou",
+    "anchorRef": "yangxing-r57-hall",
+    "surfaceRef": "yangxing-r57-ground",
+    "pointsLocalMeters": [
+      [
+        12,
+        0,
+        -21
+      ],
+      [
+        12,
+        0,
+        -17.5
+      ]
+    ],
+    "radiusMeters": 0.5,
+    "safetyMarginMeters": 0.15,
+    "validationSpacingMeters": 0.25,
+    "formationSize": 1,
+    "turningRadiusMeters": 0.7,
+    "crossZone": false,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "description": "Independent short courtyard stroll. No crossing another route, hall entry, prop-carrying duty or historical staff itinerary."
+  },
+  {
+    "id": "leshou-eunuch-01-r57-stroll",
+    "zoneRef": "ningshou",
+    "anchorRef": "leshou-r57-hall",
+    "surfaceRef": "leshou-r57-ground",
+    "pointsLocalMeters": [
+      [
+        12,
+        0,
+        -22
+      ],
+      [
+        12,
+        0,
+        -18.5
+      ]
+    ],
+    "radiusMeters": 0.5,
+    "safetyMarginMeters": 0.15,
+    "validationSpacingMeters": 0.25,
+    "formationSize": 1,
+    "turningRadiusMeters": 0.7,
+    "crossZone": false,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "description": "Independent short courtyard stroll. No crossing another route, hall entry, prop-carrying duty or historical staff itinerary."
+  },
+  {
+    "id": "chonghua-eunuch-01-r57-stroll",
+    "zoneRef": "west-six",
+    "anchorRef": "chonghua-r57-hall",
+    "surfaceRef": "chonghua-r57-ground",
+    "pointsLocalMeters": [
+      [
+        10,
+        0,
+        -21
+      ],
+      [
+        10,
+        0,
+        -17.5
+      ]
+    ],
+    "radiusMeters": 0.5,
+    "safetyMarginMeters": 0.15,
+    "validationSpacingMeters": 0.25,
+    "formationSize": 1,
+    "turningRadiusMeters": 0.7,
+    "crossZone": false,
+    "allowedDoorRefs": [],
+    "forbiddenAreaRefs": [
+      "yanxi-water-palace",
+      "helicopter-clearance"
+    ],
+    "description": "Independent short courtyard stroll. No crossing another route, hall entry, prop-carrying duty or historical staff itinerary."
   }
 ]

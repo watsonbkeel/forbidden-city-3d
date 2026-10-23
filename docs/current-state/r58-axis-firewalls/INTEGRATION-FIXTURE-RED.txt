@@ -1,0 +1,368 @@
+✖ Taihe binds only the source-visible east wall and derives all levels from retained terrace controls (349.718265ms)
+✖ Taihe upper-wall door is a real gap in rendered masonry, with solid sides and no threshold obstruction (140.867437ms)
+✖ actual CollisionManager crosses the wall door both ways but rejects adjacent solid masonry (194.317591ms)
+✖ all retained platform, step, rail, collider and walkable records survive exactly without added west walls (156.979697ms)
+✖ body geometry is finite, nondegenerate and closed; repeated installation is rejected before mutation (168.774987ms)
+✖ pure supplied-world QA tests rendered doorway, collider body and real 中左门 route without constructing another world (162.760633ms)
+✖ actual FirstPersonControls traverses and returns through the fitted upper door at 10Hz from -1; backward=false (139.039108ms)
+✖ actual FirstPersonControls traverses and returns through the fitted upper door at 10Hz from -1; backward=true (126.118417ms)
+✖ actual FirstPersonControls traverses and returns through the fitted upper door at 10Hz from 1; backward=false (116.80485ms)
+✖ actual FirstPersonControls traverses and returns through the fitted upper door at 10Hz from 1; backward=true (119.031653ms)
+✖ actual FirstPersonControls traverses and returns through the fitted upper door at 60Hz from -1; backward=false (120.971641ms)
+✖ actual FirstPersonControls traverses and returns through the fitted upper door at 60Hz from -1; backward=true (112.30178ms)
+✖ actual FirstPersonControls traverses and returns through the fitted upper door at 60Hz from 1; backward=false (109.803986ms)
+✖ actual FirstPersonControls traverses and returns through the fitted upper door at 60Hz from 1; backward=true (171.855153ms)
+✖ nonfinite or changed control points fail before a mesh can be generated (102.143713ms)
+✖ integration actor audit fails closed for missing, empty, duplicate or wrong expected bindings (90.195806ms)
+✔ builder preflight rejects malformed passage/spans without partial installation or side effects (383.05542ms)
+✖ profile rejects narrow doorway spans, negative hall width, infinite rectangles and incomplete east-wall endpoints (94.307234ms)
+✖ same-world integration QA rejects absent walls, invisible walls and visible-only or collider-only remnants (189.770418ms)
+✖ same-world firewall QA survives the real production material merge and architecture metadata retention (144.164481ms)
+✖ installation proof rejects non-rendering materials even when THREE raycast still hits their triangles (128.880511ms)
+✖ same W retains actual waist stair ascent/descent at 10Hz on side -1 (102.557025ms)
+✖ same W retains actual waist stair ascent/descent at 10Hz on side 1 (102.265642ms)
+✖ same W retains actual waist stair ascent/descent at 60Hz on side -1 (96.579619ms)
+✖ same W retains actual waist stair ascent/descent at 60Hz on side 1 (87.910024ms)
+✖ Baohe candidate 31 retains its 12 actual solid partitions and is not silently converted to a source-unlocated arch (86.99235ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 1
+ℹ fail 25
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4084.839038
+
+✖ failing tests:
+
+test at tests/r58-axis-firewalls.test.mjs:20:1
+✖ Taihe binds only the source-visible east wall and derives all levels from retained terrace controls (349.718265ms)
+  Error: Taihe east firewall is already installed
+      at Module.buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/src/scene/palace/special/AxisFirewalls.js:13:47)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:16:23)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:21:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at tests/r58-axis-firewalls.test.mjs:29:1
+✖ Taihe upper-wall door is a real gap in rendered masonry, with solid sides and no threshold obstruction (140.867437ms)
+  Error: Taihe east firewall is already installed
+      at Module.buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/src/scene/palace/special/AxisFirewalls.js:13:47)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:16:23)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:30:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests/r58-axis-firewalls.test.mjs:36:1
+✖ actual CollisionManager crosses the wall door both ways but rejects adjacent solid masonry (194.317591ms)
+  Error: Taihe east firewall is already installed
+      at Module.buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/src/scene/palace/special/AxisFirewalls.js:13:47)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:16:23)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:37:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r58-axis-firewalls.test.mjs:43:1
+✖ all retained platform, step, rail, collider and walkable records survive exactly without added west walls (156.979697ms)
+  Error: Taihe east firewall is already installed
+      at Module.buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/src/scene/palace/special/AxisFirewalls.js:13:47)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:16:23)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:44:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r58-axis-firewalls.test.mjs:51:1
+✖ body geometry is finite, nondegenerate and closed; repeated installation is rejected before mutation (168.774987ms)
+  Error: Taihe east firewall is already installed
+      at Module.buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/src/scene/palace/special/AxisFirewalls.js:13:47)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:16:23)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:52:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r58-axis-firewalls.test.mjs:61:1
+✖ pure supplied-world QA tests rendered doorway, collider body and real 中左门 route without constructing another world (162.760633ms)
+  Error: Taihe east firewall is already installed
+      at Module.buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/src/scene/palace/special/AxisFirewalls.js:13:47)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:16:23)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:62:104)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+      at run (node:internal/test_runner/harness:398:12)
+      at test (node:internal/test_runner/harness:407:12)
+      at file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:61:1
+
+test at tests/r58-axis-firewalls.test.mjs:69:91
+✖ actual FirstPersonControls traverses and returns through the fitted upper door at 10Hz from -1; backward=false (139.039108ms)
+  Error: Taihe east firewall is already installed
+      at Module.buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/src/scene/palace/special/AxisFirewalls.js:13:47)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:16:23)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:70:119)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests/r58-axis-firewalls.test.mjs:69:91
+✖ actual FirstPersonControls traverses and returns through the fitted upper door at 10Hz from -1; backward=true (126.118417ms)
+  Error: Taihe east firewall is already installed
+      at Module.buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/src/scene/palace/special/AxisFirewalls.js:13:47)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:16:23)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:70:119)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r58-axis-firewalls.test.mjs:69:91
+✖ actual FirstPersonControls traverses and returns through the fitted upper door at 10Hz from 1; backward=false (116.80485ms)
+  Error: Taihe east firewall is already installed
+      at Module.buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/src/scene/palace/special/AxisFirewalls.js:13:47)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:16:23)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:70:119)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r58-axis-firewalls.test.mjs:69:91
+✖ actual FirstPersonControls traverses and returns through the fitted upper door at 10Hz from 1; backward=true (119.031653ms)
+  Error: Taihe east firewall is already installed
+      at Module.buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/src/scene/palace/special/AxisFirewalls.js:13:47)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:16:23)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:70:119)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r58-axis-firewalls.test.mjs:69:91
+✖ actual FirstPersonControls traverses and returns through the fitted upper door at 60Hz from -1; backward=false (120.971641ms)
+  Error: Taihe east firewall is already installed
+      at Module.buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/src/scene/palace/special/AxisFirewalls.js:13:47)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:16:23)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:70:119)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r58-axis-firewalls.test.mjs:69:91
+✖ actual FirstPersonControls traverses and returns through the fitted upper door at 60Hz from -1; backward=true (112.30178ms)
+  Error: Taihe east firewall is already installed
+      at Module.buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/src/scene/palace/special/AxisFirewalls.js:13:47)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:16:23)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:70:119)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r58-axis-firewalls.test.mjs:69:91
+✖ actual FirstPersonControls traverses and returns through the fitted upper door at 60Hz from 1; backward=false (109.803986ms)
+  Error: Taihe east firewall is already installed
+      at Module.buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/src/scene/palace/special/AxisFirewalls.js:13:47)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:16:23)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:70:119)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r58-axis-firewalls.test.mjs:69:91
+✖ actual FirstPersonControls traverses and returns through the fitted upper door at 60Hz from 1; backward=true (171.855153ms)
+  Error: Taihe east firewall is already installed
+      at Module.buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/src/scene/palace/special/AxisFirewalls.js:13:47)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:16:23)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:70:119)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r58-axis-firewalls.test.mjs:78:1
+✖ nonfinite or changed control points fail before a mesh can be generated (102.143713ms)
+  Error: Taihe east firewall is already installed
+      at Module.buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/src/scene/palace/special/AxisFirewalls.js:13:47)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:16:23)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:79:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r58-axis-firewalls.test.mjs:84:1
+✖ integration actor audit fails closed for missing, empty, duplicate or wrong expected bindings (90.195806ms)
+  Error: Taihe east firewall is already installed
+      at Module.buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/src/scene/palace/special/AxisFirewalls.js:13:47)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:16:23)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:85:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r58-axis-firewalls.test.mjs:101:1
+✖ profile rejects narrow doorway spans, negative hall width, infinite rectangles and incomplete east-wall endpoints (94.307234ms)
+  Error: Taihe east firewall is already installed
+      at Module.buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/src/scene/palace/special/AxisFirewalls.js:13:47)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:16:23)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:102:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r58-axis-firewalls.test.mjs:108:1
+✖ same-world integration QA rejects absent walls, invisible walls and visible-only or collider-only remnants (189.770418ms)
+  AssertionError [ERR_ASSERTION]: never-installed baseline must not pass
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:111:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r58-axis-firewalls.test.mjs:118:1
+✖ same-world firewall QA survives the real production material merge and architecture metadata retention (144.164481ms)
+  Error: Taihe east firewall is already installed
+      at Module.buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/src/scene/palace/special/AxisFirewalls.js:13:47)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:16:23)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:119:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r58-axis-firewalls.test.mjs:125:1
+✖ installation proof rejects non-rendering materials even when THREE raycast still hits their triangles (128.880511ms)
+  Error: Taihe east firewall is already installed
+      at Module.buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/src/scene/palace/special/AxisFirewalls.js:13:47)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:16:23)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:126:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r58-axis-firewalls.test.mjs:131:51
+✖ same W retains actual waist stair ascent/descent at 10Hz on side -1 (102.557025ms)
+  Error: Taihe east firewall is already installed
+      at Module.buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/src/scene/palace/special/AxisFirewalls.js:13:47)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:16:23)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:132:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r58-axis-firewalls.test.mjs:131:51
+✖ same W retains actual waist stair ascent/descent at 10Hz on side 1 (102.265642ms)
+  Error: Taihe east firewall is already installed
+      at Module.buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/src/scene/palace/special/AxisFirewalls.js:13:47)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:16:23)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:132:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r58-axis-firewalls.test.mjs:131:51
+✖ same W retains actual waist stair ascent/descent at 60Hz on side -1 (96.579619ms)
+  Error: Taihe east firewall is already installed
+      at Module.buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/src/scene/palace/special/AxisFirewalls.js:13:47)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:16:23)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:132:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r58-axis-firewalls.test.mjs:131:51
+✖ same W retains actual waist stair ascent/descent at 60Hz on side 1 (87.910024ms)
+  Error: Taihe east firewall is already installed
+      at Module.buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/src/scene/palace/special/AxisFirewalls.js:13:47)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:16:23)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:132:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r58-axis-firewalls.test.mjs:136:1
+✖ Baohe candidate 31 retains its 12 actual solid partitions and is not silently converted to a source-unlocated arch (86.99235ms)
+  Error: Taihe east firewall is already installed
+      at Module.buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/src/scene/palace/special/AxisFirewalls.js:13:47)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:16:23)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-axis-firewalls.test.mjs:137:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)

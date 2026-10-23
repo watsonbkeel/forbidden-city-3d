@@ -1,0 +1,48 @@
+✔ only the two touching internal box faces are removed, with exact surviving attributes (5.545767ms)
+✔ coincident exposed faces are retained rather than deleting both overlapping skins (4.963349ms)
+✔ a buried face is removed only when one actual rotated box encloses the entire triangle (1.804849ms)
+✔ a face crossing an uncovered gap is preserved even when all its corners are in the union of boxes (2.005973ms)
+✔ only explicit opaque solid-box occluders are accepted (0.870903ms)
+✔ nonuniformly scaled rotated solid boxes use their exact local volume (0.855119ms)
+✔ alpha-tested boxes cannot justify removing geometry behind their cutouts (0.576769ms)
+✔ shared source geometry stays alive if any unchanged instance retains it (2.186055ms)
+✔ shared source geometry is disposed only once after all of its instances are replaced (0.74965ms)
+✔ deck paving and substrate partition the same solid without adding or moving any triangles (0.977052ms)
+✔ hongyi: hidden faces give a bounded triangle reduction while all 28 lattice leaves keep their bars (265.819725ms)
+✔ hongyi: brick paving never promotes the shared flat-floor bucket to a shadow caster (207.234716ms)
+✔ tiren: hidden faces give a bounded triangle reduction while all 28 lattice leaves keep their bars (204.047292ms)
+✔ tiren: brick paving never promotes the shared flat-floor bucket to a shadow caster (225.300059ms)
+✔ mirrored coincident solid boxes retain their outward skins (0.632453ms)
+✔ a sphere bounding box is never accepted as an opaque solid box (0.496729ms)
+✔ unsupported hidden-parent input is rejected before any source is changed (0.460053ms)
+✔ unsupported hidden-material input is rejected before any source is changed (0.181343ms)
+✔ unsupported back-side input is rejected before any source is changed (0.27211ms)
+✔ unsupported partial-range input is rejected before any source is changed (0.173832ms)
+✔ unsupported interleaved input is rejected before any source is changed (0.472111ms)
+✔ unsupported multi-material input is rejected before any source is changed (0.17262ms)
+✔ unsupported non-casting-occluder input is rejected before any source is changed (0.216596ms)
+✔ hongyi: exterior, terrace and playable-interior rays retain the same first physical surface (1971.962016ms)
+✔ tiren: exterior, terrace and playable-interior rays retain the same first physical surface (1838.598972ms)
+✔ duplicating one triangular half of a box face cannot masquerade as a complete opaque face (0.7498ms)
+✔ singular transforms are rejected before source geometry changes (0.292321ms)
+✔ InstancedMesh is rejected because its rendered vertices need more than matrixWorld (0.553174ms)
+✔ SkinnedMesh is rejected because its rendered vertices need more than matrixWorld (0.367524ms)
+✔ Tiren pure existing-W consumer checks twelve actual merged meeting stiles (295.359124ms)
+✔ Tiren actual first-person frontLeft round trip preserves stairs, threshold and lower entry (270.522516ms)
+ℹ {"side":"frontLeft","frames":666,"samples":167,"minOverheadDistance":3.0500001907348633}
+✔ Tiren actual first-person frontRight round trip preserves stairs, threshold and lower entry (247.244764ms)
+ℹ {"side":"frontRight","frames":666,"samples":167,"minOverheadDistance":3.0500001907348633}
+✔ Tiren replaces only six lower window groups with twelve separately framed straight-lattice leaves (331.486626ms)
+✔ all six paired windows retain their original outer envelope and use only original shared materials (163.688609ms)
+✔ Hongyi, including its six original windows and upper gallery, is byte-identical (244.254687ms)
+✔ paired meeting stiles are visible from legal terrace eye height after merge and main entry remains clear (238.939077ms)
+✔ new leaves are source-owned and their merge/disposal never frees caller materials (337.159314ms)
+✔ Tiren raw targeted boxes are nondegenerate before covered-face pruning (138.324522ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 38
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4915.484472

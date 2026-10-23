@@ -1,0 +1,355 @@
+TAP version 13
+# Subtest: only two inward south-central gray knee solids are added; all old mesh bytes and registrations remain exact
+not ok 1 - only two inward south-central gray knee solids are added; all old mesh bytes and registrations remain exact
+  ---
+  duration_ms: 34.376316
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:22:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    bounded Arrow knee builder must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'function'
+  actual: 'undefined'
+  operator: 'strictEqual'
+  stack: |-
+    fixture (file:///workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:17:17)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:23:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: actual added triangles are finite, nondegenerate, outward-wound closed solids and symmetric
+not ok 2 - actual added triangles are finite, nondegenerate, outward-wound closed solids and symmetric
+  ---
+  duration_ms: 13.44691
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:29:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    bounded Arrow knee builder must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'function'
+  actual: 'undefined'
+  operator: 'strictEqual'
+  stack: |-
+    fixture (file:///workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:17:17)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:30:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: two real knee top/root surfaces overlap only their retained beam and column attachment volumes
+not ok 3 - two real knee top/root surfaces overlap only their retained beam and column attachment volumes
+  ---
+  duration_ms: 14.790383
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:36:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    bounded Arrow knee builder must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'function'
+  actual: 'undefined'
+  operator: 'strictEqual'
+  stack: |-
+    fixture (file:///workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:17:17)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:37:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: broad shoulders narrow along a curved multi-segment underside rather than a rectangular or straight wedge insert
+not ok 4 - broad shoulders narrow along a curved multi-segment underside rather than a rectangular or straight wedge insert
+  ---
+  duration_ms: 15.228188
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:48:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    bounded Arrow knee builder must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'function'
+  actual: 'undefined'
+  operator: 'strictEqual'
+  stack: |-
+    fixture (file:///workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:17:17)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:49:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: invalid identity/dimensions, a missing host, and duplicate additions reject before new allocations or mutations
+not ok 5 - invalid identity/dimensions, a missing host, and duplicate additions reject before new allocations or mutations
+  ---
+  duration_ms: 0.347941
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:55:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'function'
+  actual: 'undefined'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:56:9)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: unchanged real controller traverses Arrow N/S doors and both galleries at 10 Hz W
+not ok 6 - unchanged real controller traverses Arrow N/S doors and both galleries at 10 Hz W
+  ---
+  duration_ms: 12.101565
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:61:59'
+  failureType: 'testCodeFailure'
+  error: |-
+    bounded Arrow knee builder must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'function'
+  actual: 'undefined'
+  operator: 'strictEqual'
+  stack: |-
+    fixture (file:///workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:17:17)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:62:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: unchanged real controller traverses Arrow N/S doors and both galleries at 10 Hz S
+not ok 7 - unchanged real controller traverses Arrow N/S doors and both galleries at 10 Hz S
+  ---
+  duration_ms: 8.87968
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:61:59'
+  failureType: 'testCodeFailure'
+  error: |-
+    bounded Arrow knee builder must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'function'
+  actual: 'undefined'
+  operator: 'strictEqual'
+  stack: |-
+    fixture (file:///workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:17:17)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:62:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: unchanged real controller traverses Arrow N/S doors and both galleries at 60 Hz W
+not ok 8 - unchanged real controller traverses Arrow N/S doors and both galleries at 60 Hz W
+  ---
+  duration_ms: 9.055453
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:61:59'
+  failureType: 'testCodeFailure'
+  error: |-
+    bounded Arrow knee builder must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'function'
+  actual: 'undefined'
+  operator: 'strictEqual'
+  stack: |-
+    fixture (file:///workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:17:17)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:62:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: unchanged real controller traverses Arrow N/S doors and both galleries at 60 Hz S
+not ok 9 - unchanged real controller traverses Arrow N/S doors and both galleries at 60 Hz S
+  ---
+  duration_ms: 6.887496
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:61:59'
+  failureType: 'testCodeFailure'
+  error: |-
+    bounded Arrow knee builder must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'function'
+  actual: 'undefined'
+  operator: 'strictEqual'
+  stack: |-
+    fixture (file:///workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:17:17)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:62:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: actual repeated standing jumps remain clear below both added members at 10 Hz
+not ok 10 - actual repeated standing jumps remain clear below both added members at 10 Hz
+  ---
+  duration_ms: 7.026444
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:66:25'
+  failureType: 'testCodeFailure'
+  error: |-
+    bounded Arrow knee builder must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'function'
+  actual: 'undefined'
+  operator: 'strictEqual'
+  stack: |-
+    fixture (file:///workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:17:17)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:67:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: actual repeated standing jumps remain clear below both added members at 60 Hz
+not ok 11 - actual repeated standing jumps remain clear below both added members at 60 Hz
+  ---
+  duration_ms: 5.93612
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:66:25'
+  failureType: 'testCodeFailure'
+  error: |-
+    bounded Arrow knee builder must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'function'
+  actual: 'undefined'
+  operator: 'strictEqual'
+  stack: |-
+    fixture (file:///workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:17:17)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:67:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: private material and each closed geometry dispose exactly once through real merge lifecycle; borrowed materials untouched
+not ok 12 - private material and each closed geometry dispose exactly once through real merge lifecycle; borrowed materials untouched
+  ---
+  duration_ms: 5.970843
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:73:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    bounded Arrow knee builder must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'function'
+  actual: 'undefined'
+  operator: 'strictEqual'
+  stack: |-
+    fixture (file:///workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:17:17)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r59-arrow-south-knees/tests/r59-arrow-south-knees.test.mjs:74:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 0
+# fail 12
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 322.027209

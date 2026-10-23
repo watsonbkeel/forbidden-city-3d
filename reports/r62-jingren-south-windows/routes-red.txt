@@ -1,0 +1,130 @@
+✖ consumer measures four merged high sills, broad grid solids, narrow diagonal solids and retained closed windows (63.874761ms)
+✔ consumer rejects absent broad bars, narrow diamonds, collision and assembly, not just trusting metadata (67.788909ms)
+✖ 10Hz actual controller south repeated exterior-interior-exterior route preserves support and head clearance (15.60362ms)
+✖ 10Hz actual controller north repeated exterior-interior-exterior route preserves support and head clearance (13.425786ms)
+✖ 60Hz actual controller south repeated exterior-interior-exterior route preserves support and head clearance (17.22374ms)
+✖ 60Hz actual controller north repeated exterior-interior-exterior route preserves support and head clearance (13.658254ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 1
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 348.117964
+
+✖ failing tests:
+
+test at tests/current-state/r62-jingren-south-window-routes.test.mjs:6:1
+✖ consumer measures four merged high sills, broad grid solids, narrow diagonal solids and retained closed windows (63.874761ms)
+  AssertionError [ERR_ASSERTION]: already-built W consumer required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at check (file:///workspace/scratch/02a8023d1a85/r62-jingren-south-windows/tests/current-state/r62-jingren-south-window-routes.test.mjs:5:24)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-jingren-south-windows/tests/current-state/r62-jingren-south-window-routes.test.mjs:6:200)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r62-jingren-south-window-routes.test.mjs:8:62
+✖ 10Hz actual controller south repeated exterior-interior-exterior route preserves support and head clearance (15.60362ms)
+  AssertionError [ERR_ASSERTION]: real controller consumer required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-jingren-south-windows/tests/current-state/r62-jingren-south-window-routes.test.mjs:8:233)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r62-jingren-south-window-routes.test.mjs:8:62
+✖ 10Hz actual controller north repeated exterior-interior-exterior route preserves support and head clearance (13.425786ms)
+  AssertionError [ERR_ASSERTION]: real controller consumer required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-jingren-south-windows/tests/current-state/r62-jingren-south-window-routes.test.mjs:8:233)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r62-jingren-south-window-routes.test.mjs:8:62
+✖ 60Hz actual controller south repeated exterior-interior-exterior route preserves support and head clearance (17.22374ms)
+  AssertionError [ERR_ASSERTION]: real controller consumer required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-jingren-south-windows/tests/current-state/r62-jingren-south-window-routes.test.mjs:8:233)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r62-jingren-south-window-routes.test.mjs:8:62
+✖ 60Hz actual controller north repeated exterior-interior-exterior route preserves support and head clearance (13.658254ms)
+  AssertionError [ERR_ASSERTION]: real controller consumer required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-jingren-south-windows/tests/current-state/r62-jingren-south-window-routes.test.mjs:8:233)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

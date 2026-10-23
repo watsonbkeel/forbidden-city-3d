@@ -1,0 +1,28 @@
+✔ seven south porch bays have no wall or folded leaves at the eave; only two ends close (25.013471ms)
+✔ inherited inner closed bays have matching visible solids and blockers behind the porch (6.023914ms)
+✔ invalid enclosure inputs fail before adding any geometry or colliders (2.382817ms)
+✔ read-only existing-W QA verifies actual porch geometry / collision and never reconstructs a world (393.170276ms)
+✔ existing-W consumer rejects unintegrated baseline instead of silently manufacturing the feature (62.431616ms)
+✔ existing-W consumer rejects missing rendered platform and paving despite retained colliders and metadata (52.769129ms)
+✔ existing-W consumer rejects hidden closed lattice despite retained colliders and metadata (67.304301ms)
+✔ existing-W consumer rejects hidden ancestor despite retained colliders and metadata (67.042718ms)
+✔ existing-W consumer rejects hidden material despite retained colliders and metadata (64.441308ms)
+✔ actual hooked Taihemen gate exposes seven porch bays without the old broad south wall AABBs (194.09494ms)
+✔ all 40 column transforms, roof, plaque, north-half triangles and support primitives remain exact (301.037352ms)
+✔ actual controller ground-start porch sweep, inner passage and north return 10Hz sprint=false (256.795158ms)
+✔ actual controller ground-start porch sweep, inner passage and north return 10Hz sprint=true (137.75192ms)
+✔ actual controller ground-start porch sweep, inner passage and north return 60Hz sprint=false (604.925969ms)
+✔ actual controller ground-start porch sweep, inner passage and north return 60Hz sprint=true (304.339959ms)
+✔ closed recessed bay stops the real controller while the porch remains traversable 10Hz (93.537178ms)
+✔ closed recessed bay stops the real controller while the porch remains traversable 60Hz (81.288383ms)
+✔ fragment baseline remains independent when the owner has already applied the hookup (0.722905ms)
+✔ Taihemen profile separates seven open eave bays from the retained inner passage pattern (2.752772ms)
+✔ Taihemen-only profile rejects wrong or non-finite envelopes and does not create a fifth column axis (1.059961ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2359.682636
