@@ -1,3 +1,5 @@
+import {applyDonghuaCentralDoorFront} from '../palace/special/DonghuaCentralDoorFront.js';
+import {validateNansansuoInventoryPolicy} from '../palace/NansansuoInventoryPolicy.js';
 import { applyZuoyiDoorFront } from '../palace/special/ZuoyiDoorFront.js';
 import {resolveRemainingProfile as resolveNingshou,buildRemainingHall as buildNingshou,augmentRemainingHall as augmentNingshou} from '../palace/special/RemainingNingshouHalls.js';
 import {resolveRemainingProfile as resolveOuter,buildRemainingHall as buildOuter,augmentRemainingHall as augmentOuter} from '../palace/special/RemainingOuterHalls.js';
@@ -142,7 +144,7 @@ export class ZoneBase {
   // ───────────────────────── 各 kind 构建方法 ─────────────────────────
 
   buildHall(item) {
-    if (item.furnishingPolicy !== undefined) throw new Error('Gallery inventory policy requires an explicit corridor target');
+    if (item.furnishingPolicy !== undefined) validateNansansuoInventoryPolicy({zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     // R48 exact-identity profiles are opt-in by the reviewed catalog binding.
     // Existing dedicated builders remain the sole owner for augmentation.
     const candidates = [[resolveResidential,buildResidential,augmentResidential],[resolveNingshou,buildNingshou,augmentNingshou],[resolveOuter,buildOuter,augmentOuter]]
@@ -229,7 +231,7 @@ export class ZoneBase {
     // 过滤 undefined 参数，让 kit 方法使用默认值
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
     if(rearProfile)params.hardGableEnd=true;
-    const result=this.kit.hall(params);
+    const result=item.furnishingPolicy===undefined ? this.kit.hall(params) : this.kit.nansansuoUnknownHall(params,{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     if(rearProfile){
       result.f.userData.rearHall=rearProfile;
       result.f.userData.structure={...result.f.userData.structure,...rearProfile,id:`${rearProfile.zone}/${rearProfile.id}`,profile:rearProfile.id};
@@ -325,7 +327,11 @@ export class ZoneBase {
   }
 
   buildCityGate(item) {
-    if (item.cityGateProfile !== undefined) return buildEastWestCityGate(this.kit, item);
+    if (item.cityGateProfile !== undefined) {
+      const frame=buildEastWestCityGate(this.kit,item);
+      applyDonghuaCentralDoorFront(this.kit,frame,{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
+      return frame;
+    }
     const params = {
       x: item.x,
       z: item.z,

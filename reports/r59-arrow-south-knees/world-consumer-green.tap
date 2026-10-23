@@ -1,0 +1,34 @@
+TAP version 13
+# Subtest: already-merged local Arrow has two real 44-triangle knees, true column/beam contact, and unchanged supported routes
+ok 1 - already-merged local Arrow has two real 44-triangle knees, true column/beam contact, and unchanged supported routes
+  ---
+  duration_ms: 99.955885
+  type: 'test'
+  ...
+# Subtest: removing the actual added merged bucket fails, without relying on discarded component roles
+ok 2 - removing the actual added merged bucket fails, without relying on discarded component roles
+  ---
+  duration_ms: 27.641947
+  type: 'test'
+  ...
+# Subtest: moving the bucket or removing its real red beam/column host fails the merged geometry audit
+ok 3 - moving the bucket or removing its real red beam/column host fails the merged geometry audit
+  ---
+  duration_ms: 26.638086
+  type: 'test'
+  ...
+# Subtest: an injected floor-route collider is detected rather than reported as unchanged passage
+ok 4 - an injected floor-route collider is detected rather than reported as unchanged passage
+  ---
+  duration_ms: 19.979759
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 381.707142

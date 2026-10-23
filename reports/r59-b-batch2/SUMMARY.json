@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS_FUNCTIONAL_NOT_BROWSER_ACCEPTANCE",
+  "sourceCommit": "f7039ce736c94f09ad4bb72b5c265ba79670386c",
+  "sourceFingerprint": "83e1563a6ecf8ae40b08a4f84b281f7555d51e94fb6f31a032c074a91593b9da",
+  "sourceHashesStable": true,
+  "worldSourceManifest": "data/characters/world-source-freeze-r59-b-batch2.json",
+  "worldSourceManifestSHA256": "f8c51e1daf84b85ea591dabaeedca306e66a208b66384b789068bb6eaa4ab5d5",
+  "sourceFiles": 223,
+  "world": {
+    "colliders": 24721,
+    "walkables": 1125,
+    "zones": [
+      "axis-courts",
+      "east-six",
+      "west-six",
+      "outer-east",
+      "outer-west",
+      "garden",
+      "ningshou"
+    ]
+  },
+  "registeredCharacters": 108,
+  "individuallyObservedCharacters": 108,
+  "observationGroups": 401,
+  "paths": 24,
+  "pathCycles": 2,
+  "zoneLifecycleCases": 6,
+  "newEntranceRoundTrips": 48,
+  "nansansuoExactDelta": {
+    "scope": "UNKNOWN_INVENTORY_NOT_HISTORICAL_EMPTY_ROOM_OR_BROWSER_ACCEPTANCE",
+    "rooms": 6,
+    "retainedTriangles": 9828,
+    "absentTriangles": 576,
+    "absentColliders": 48,
+    "geometryToleranceMeters": 0.001
+  },
+  "newConsumersAfterOuterEastReload": "PASS",
+  "secondBatchConsumers": {
+    "wenyuan": {
+      "status": "PASS_CPU_GEOMETRY_AND_CAPSULE_NOT_BROWSER",
+      "source": "https://img.dpm.org.cn/Uploads/Picture/2024/02/21/s65d5b6eae1fbb.jpg",
+      "groups": 6,
+      "visibleSamples": 600,
+      "bodySamples": 600,
+      "frameSamples": 38,
+      "recessSamples": 32,
+      "northRetained": true
+    },
+    "wenyuanAfterReload": {
+      "status": "PASS_CPU_GEOMETRY_AND_CAPSULE_NOT_BROWSER",
+      "source": "https://img.dpm.org.cn/Uploads/Picture/2024/02/21/s65d5b6eae1fbb.jpg",
+      "groups": 6,
+      "visibleSamples": 600,
+      "bodySamples": 600,
+      "frameSamples": 38,
+      "recessSamples": 32,
+      "northRetained": true
+    }
+  },
+  "actualLoadedInteriorLayers": [
+    "yangxin",
+    "kunning",
+    "huangji"
+  ],
+  "runtimeBudgets": {
+    "boundary": "CPU actual instance/index counts only, not GPU draw timing",
+    "high": {
+      "frames": 19793,
+      "maxInstances": 64,
+      "maxTriangles": 45564,
+      "maxBatches": 22,
+      "maxNear": 2
+    },
+    "low": {
+      "frames": 187,
+      "maxInstances": 32,
+      "maxTriangles": 14228,
+      "maxBatches": 10,
+      "maxNear": 0
+    }
+  },
+  "report": "reports/r59-b-batch2/one-world-validation.json.gz",
+  "reportSHA256": "b9ce3ba0367054763fdb435bafd5c528a514801828a3b7fa9a2d653f097e69a4",
+  "qaResources": {
+    "command": [
+      "node",
+      "--expose-gc",
+      "--max-old-space-size=1024",
+      "--test",
+      "--test-reporter=tap",
+      "--test-concurrency=1",
+      "tests/r59-b-batch2-world.test.mjs"
+    ],
+    "startedAt": "2026-10-22T21:31:03.306420+00:00",
+    "endedAt": "2026-10-22T21:35:36.656012+00:00",
+    "exitCode": 0,
+    "wallSeconds": 273.34961275101523,
+    "maxRssKiB": 1810456,
+    "userCpuSeconds": 316.383332,
+    "systemCpuSeconds": 2.496333,
+    "boundary": "QA process resource measurements, not gameplay/GPU performance"
+  },
+  "historicalReds": [
+    "reports/r59-b-batch1/initial-total-count-red/one-world.tap",
+    "reports/r59-nansansuo-inventory/concentrated-local.tap",
+    "reports/r59-wenyuan-upper/retained-functional.tap"
+  ],
+  "browserGPUPhoneAccepted": false,
+  "wholeB41Accepted": false
+}

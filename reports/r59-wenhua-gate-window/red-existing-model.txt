@@ -1,0 +1,128 @@
+Actual unmodified 2b983ae SouthCourtGates baseline, no helper call:
+{
+  "position": [
+    -13.24,
+    4.05,
+    0
+  ],
+  "material": "wall_red_material",
+  "southTriangles": [
+    [
+      {
+        "position": [
+          2.809999942779541,
+          3.25,
+          -0.30000001192092896
+        ],
+        "normal": [
+          0,
+          0,
+          -1
+        ],
+        "uv": [
+          -0.7024999856948853,
+          0.8125
+        ]
+      },
+      {
+        "position": [
+          2.809999942779541,
+          -3.25,
+          -0.30000001192092896
+        ],
+        "normal": [
+          0,
+          0,
+          -1
+        ],
+        "uv": [
+          -0.7024999856948853,
+          -0.8125
+        ]
+      },
+      {
+        "position": [
+          -2.809999942779541,
+          3.25,
+          -0.30000001192092896
+        ],
+        "normal": [
+          0,
+          0,
+          -1
+        ],
+        "uv": [
+          0.7024999856948853,
+          0.8125
+        ]
+      }
+    ],
+    [
+      {
+        "position": [
+          2.809999942779541,
+          -3.25,
+          -0.30000001192092896
+        ],
+        "normal": [
+          0,
+          0,
+          -1
+        ],
+        "uv": [
+          -0.7024999856948853,
+          -0.8125
+        ]
+      },
+      {
+        "position": [
+          -2.809999942779541,
+          -3.25,
+          -0.30000001192092896
+        ],
+        "normal": [
+          0,
+          0,
+          -1
+        ],
+        "uv": [
+          0.7024999856948853,
+          -0.8125
+        ]
+      },
+      {
+        "position": [
+          -2.809999942779541,
+          3.25,
+          -0.30000001192092896
+        ],
+        "normal": [
+          0,
+          0,
+          -1
+        ],
+        "uv": [
+          0.7024999856948853,
+          0.8125
+        ]
+      }
+    ]
+  ],
+  "southSampleAtY1_4": "wall_red_material"
+}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: RED: actual old continuous red wall does not supply the photographed pale lower sill
+    at file:///workspace/scratch/02a8023d1a85/r59-wenhua-gate-window/[eval1]:3:363
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'wall_red_material',
+  expected: /wenhua_gate_pale_sill/,
+  operator: 'match',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

@@ -1,3 +1,4 @@
+import {validateNansansuoInventoryPolicy} from './NansansuoInventoryPolicy.js';
 import { validateGalleryInventoryPolicy, galleryRoomEvidence } from './GalleryInventoryPolicy.js';
 import {buildHorizontalNameboardAtlas} from './special/HorizontalNameboardAtlas.js';
 import * as THREE from 'three';
@@ -469,6 +470,14 @@ export class CourtKit {
    *
    * open：只有柱子的敞厅（箭亭、亭榭）；closed（enter=false）时整座殿身为实体碰撞。
    */
+  // Only six explicit reviewed declarations can reuse the private UNKNOWN-room
+  // contract. All ordinary hall calls and gallery target guards stay unchanged.
+  nansansuoUnknownHall(options,binding) {
+    if(binding?.zoneId!==this.root.name)throw new Error('Nansansuo inventory wrong kit zone');
+    const policy=validateNansansuoInventoryPolicy(binding,options);
+    return this.hall({...options,[GALLERY_POLICY]:policy});
+  }
+
   hall(o) {
     if (o.furnishingPolicy !== undefined) throw new Error('Gallery inventory policy requires an explicit corridor target');
     if (o.structure === 'qinan-hall') return buildQinanHall(this, o);

@@ -1,3 +1,4 @@
+import {buildArrowSouthKnees} from './ArrowSouthKnees.js';
 import * as THREE from 'three';
 
 const PROFILES = {
@@ -83,6 +84,7 @@ export function buildEnclosedPavilion(kit,item) {
   }
   box(key==='linxi'?'linxi-flat-ceiling':'arrow-plain-ceiling','ceiling',2*A,.08,2*B,0,y+H,0,false);
   for(const s of[-1,1]){box(key+'-frame-beam','red',p.w+.5,.4,.35,0,y+p.colH-.2,s*p.d/2,false);box(key+'-frame-beam','red',.35,.4,p.d+.5,s*p.w/2,y+p.colH-.2,0,false);}
+  if(key==='arrow')buildArrowSouthKnees(kit,f,item);
   kit._lastFurnish={cover:[],spawns:[{x:0,z:0}]};
   kit.registerRoom(f,{name:item.name,kind:key+'-viewing-region',x0:-A+.25,x1:A-.25,z0:-B,z1:B,y,h:H,doors:[{x:0,z:-B},{x:0,z:B}]});
   f.userData.structure=g;f.name=item.name+'·有围护布局局部拟合';return{...built,g};

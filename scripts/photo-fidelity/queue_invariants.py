@@ -15,11 +15,16 @@ def validate_progress(q):
  for item in items:
   for child in item.get('requiredChildIds',[]):
    if child==item['id'] or child not in ix:raise ValueError(f'{item["id"]}: invalid required child')
+  candidates=item.get('requiredComponentCandidates',[])
+  if not isinstance(candidates,list) or len({c.get('id') for c in candidates})!=len(candidates):raise ValueError('invalid required component candidates')
+  for c in candidates:
+   if not isinstance(c.get('id'),str) or c.get('required') is not True or set(c.get('facets',{}))!={'exterior','interior'} or any(v not in q['statusVocabulary'] for v in c['facets'].values()):raise ValueError('invalid required component candidate scope')
   for side,facet in item['facets'].items():
    state=facet['status']
    if state not in q['statusVocabulary']:raise ValueError(f'{item["id"]}: invalid state')
    if state=='NOT_APPLICABLE' and not facet.get('notApplicableReason'):raise ValueError(f'{item["id"]}: missing N/A reason')
    if state=='ACCEPTED':
+    if any(c['facets'][side] not in ['ACCEPTED','NOT_APPLICABLE'] or (c['facets'][side]=='ACCEPTED' and not c.get('runtimeBinding')) for c in candidates):raise ValueError(f'{item["id"]}: required source component remains unresolved')
     ev=facet.get('visualEvidence',{})
     if not all(ev.get(k) for k in ['before','after','referenceComparison','browserRun']):raise ValueError(f'{item["id"]}: browser before/after evidence required')
     if not item.get('acceptanceRecords'):raise ValueError(f'{item["id"]}: acceptance record required')

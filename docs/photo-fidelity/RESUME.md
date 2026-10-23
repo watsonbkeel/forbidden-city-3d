@@ -1,97 +1,75 @@
-# R58-A continuation
+# R59-B continuation
 
-Canonical queue: `docs/photo-fidelity/QUEUE.json`, now a typed storage index over
-lossless gzip parts. Read/write only through the common loader documented in
-[QUEUE-STORAGE.md](QUEUE-STORAGE.md); no raw JSON mirror or fallback exists.
-Planning export is read-only.
-The complete user-provided requirement text is preserved as `MASTER-PROMPT.md`
-(SHA-256 `58f198ab96acb2a8c578b30913b36de79b1f3f275557ba02e5018dc378ac80d0`).
+The only progress authority is `QUEUE.json`, a typed index over verified, lossless
+parts. Use `scripts/photo-fidelity/queue_storage.py` for every read and atomic
+write. The `RELEASES` files are derived snapshots, not second editable queues.
+The full user requirement remains `MASTER-PROMPT.md`, unchanged.
 
-## Current branch and retained baseline
+## Frozen predecessor and active scope
 
-- Branch: `feat/r58-a-axis-fidelity-20261022`.
-- Frozen base: local `755dd9ac5c6f8a8766c1db3e8e4f8fe17fa142da`, remote
-  `78bdb27843cc35e5c44460ae68173fbd9ede7925`, tree
-  `6b0c58d781b4440ffcb57c6a7ba3f82e9debb52f`.
-- Before the adoption commit, HEAD is that frozen base. Resolve the present HEAD
-  with `git rev-parse HEAD`; the final source/artifact identities are recorded per batch.
-- R57 remains untouched. No main merge, Pages update or public preview deployment.
-- Zhendu is integrated at `f383c9752155d6ac15d17e3c782abdd32a60fedd`: independent
-  gate/profile plus explicit dispatch and two existing wing joins. 29 local geometry/
-  controller checks and 3 actual-dispatch/retention checks pass; its cumulative
-  world evidence is now retained in the first and second batch reports.
+- R58 local freeze: `2b983ae82e50e23fd55bbe0845942a0a3855f8dd`, tree
+  `e37c7e99852d2b2e15c3bb87f0b59942aa3339a5`.
+- Its remote upload was pending at R59 adoption. Record the verified remote parent
+  when available, never guess it from local Git identities.
+- R58 is a functional A-stage delivery, **not full A acceptance**. Preserve its
+  37-object / 618-feature residual inventory at `RESIDUALS/R58-A-STAGE.json` and
+  the previous continuation notes in `RESUME-R58-STAGE.md`.
+- Worktree branch: `feat/r59-b-east-fidelity-20261022`. This release owns all 41
+  original B rows and their required children / expansion obligations, not just
+  the first few amendments. Six auxiliary declaration audits are not six extra
+  physical buildings. Existing 108 actors / 24 routes and earlier displays remain.
 
-## Full scope, not only the first three
+## First bounded implementation batch
 
-All 398 original rows, 154 unresolved declaration audits and 7 expansion tasks
-remain in the queue. The 89 legacy building records and 159 place records retain
-their IDs and earlier evidence. Twelve further review IDs bind already-existing bridge/pavilion instances, giving
-564 review tasks. These totals are not physical building counts and add no geometry.
-R58 is the whole A section: 37 original rows, mapped required children and its
-applicable expansion scope. A first batch or source block cannot narrow that scope.
+1. Arrow pavilion: two actually observed south-central knees only. Preserve its
+   previously implemented enclosure, twenty columns and unresolved exhibition.
+2. Wenhua gate: photo-right south end-bay coarse window frame / pale lower panel.
+   Keep fine grille counts and the unobserved faces explicitly unresolved.
+3. Donghua gate: the central pair's nine stud rows, scoped to actual outward-facing
+   skins. Do not change other portals, Xihua or the shared source texture.
 
-## Active bounded work and ownership
+Existing-child tracing is required before adding geometry: the Wenhua connector
+and Wenyuan pond bridge already exist. Wenyuan's green columns, three levels and
+stairs are already supplied by the downstream augmentation. Do not duplicate them.
+The Nansansuo six-declaration mapping is not proof of all three historical stages.
 
-The integration owner alone maintains the canonical queue, shared dispatch,
-world source freezes and cumulative tests. All 37 original A rows now have complete
-source/code review coverage across 618 explicit feature records. The gate/annex,
-bridge and required-scope reviews are under REVIEWS; every unresolved requirement
-remains active. Zero current-cycle ACCEPTED objects. Review completeness is not
-model completion, and 25 auxiliary declaration audits do not create buildings.
+The integration owner alone edits shared dispatch, the canonical queue and world
+source freezes. Merge 3–5 bounded items internally, validate once on the cumulative
+world, then continue the remaining B tasks. A blocked source never means a feature
+is optional or complete. Preserve prior accepted evidence without promoting it to
+this cycle's acceptance.
 
-First two implementation batches have full functional world reports under
-reports/r58-a-batch1 and reports/r58-a-batch2. The third integrated batch contains
-Wumen NE north columns, Zhaode south broad-panel color fields and opt-in removal
-of unverified fallback furniture from eight galleries. Its cumulative world proof
-passed at e09fcd5 in 208.3 seconds after two resource-interrupted processes; both
-incomplete logs remain, not counted as passes.
-A QA-only copy-lifecycle check proves 2,048 temporary geometries are collectible.
-Controlled-GC test conditions are not game/GPU memory or performance acceptance.
+## Evidence and acceptance boundaries
 
-The fourth batch completes bounded Taihemen south knees, Hongyi lower paired
-frames and Xiehe courtyard knees. Its c9a82aa cumulative source passed in 248.36
-seconds with 40 new route cases and 12 actual jump cases; all prior checks remain.
-The fifth batch now passes the final cumulative world: Taihe count-only 10/10, actual passage-facing left-wing nine-row skins, Xihe/Xiehe courtyard window leaves and four explicit corridor declarations with unsupported furnishing. See reports/r58-a-batch5/SUMMARY.json and RESIDUALS/R58-A-STAGE.json. The exact named
-annex identity is not implied by those declaration-only UNKNOWN policies. Baohe east firebreak placement
-remains source-registration blocked, and bridge caps are implementation-blocked
-pending a separately reviewed support/physics design. Neither is silently waived.
+Official source photos/PDFs stay in private research caches. Publish source URLs,
+observations and hashes, not unlicensed copies or production photo textures.
+CPU actual-geometry previews are allowed as intermediate evidence, not browser,
+GPU or physical-phone acceptance. The previous browser/CDP restrictions remain;
+do not retry a denied operation or bypass them. No main merge or Pages deployment
+is part of this local integration task. Zero new ACCEPTED scope at adoption.
 
-## Last completed checks
+## R59 first bounded integration checkpoint
 
-- Initial planning import: 29/29 structural/provenance checks, not model acceptance.
-- Queue safeguards: 8/8 tests, including dependency cycles and duplicate existing-
-  instance rejection, after preserving their two failing negative probes.
-- Reference photographs: the owner viewed the Zhendu close-up and the two labeled
-  photographs on Sun 2020 PDF page 5; new module source records arrive with each batch.
-- Browser inventory was actually checked: cloud Chrome CDP exists. Its navigation
-  to the working tree's Vite loopback address failed with `ERR_CONNECTION_REFUSED`.
-  No actual game before/after image has been obtained. The earlier restricted
-  local Chromium path was not retried. CPU/model tests cannot close visual acceptance.
+The first three source-visible differences and the six-declaration UNKNOWN
+inventory cleanup are locally integrated. Exact scoped source inverses preserve
+all other shared-source bytes; two historical freeze assertions remain explicitly
+red rather than edited. The R59 222-file world manifest and one-world cumulative
+runner are prepared; their current result is pending, not inherited from R58.
+Full B41 source/identity findings are in B-REVIEW. The existing Wenhua connector
+and Wenyuan pond bridge are linked without duplication. Manbentang remains a
+historical-location task, not a new standing building. The Neige main facade is a
+separate source-bounded candidate with provisional placement, not yet integrated.
 
-## Resume commands
+## R59 B stage functional result and complete scan
 
-```sh
-git status --short
-git rev-parse HEAD
-python -B scripts/photo-fidelity/queue.py stats
-python -B scripts/photo-fidelity/queue.py next --section A --limit 5
-python -B scripts/photo-fidelity/validate.py
-python -B -m unittest discover -s tests/photo-fidelity -v
-```
-
-`validate.py` also checks locally retained, non-redistributed source-image hashes.
-Those private research-cache files are not production assets or publication inputs;
-without them run `queue.py validate-progress` for portable progress invariants.
-The release snapshots are derived views of the canonical queue, not independently
-editable queues. Sync them after an owner update. Never regenerate the initial
-planning package over a progressed canonical queue.
-
-## Exact next actions
-
-1. Review the dedicated gate and wall module commits, independent source fits,
-   navigation changes and actual render-geometry checks.
-2. Apply shared integration hooks once; check adjacent joins and character binding
-   changes in the same actual world after a bounded batch.
-3. Record partial features and unresolved north/side/interior evidence separately.
-4. Continue all remaining A rows in batches of 3–5 without calling the first batch
-   “A complete.” Actual browser comparison is still required for `ACCEPTED`.
+First and second cumulative worlds passed separately; final second world source
+f7039ce validates223 source files, all108 individual roles,24 two-cycle routes,
+six reloads and three actual S layers. See reports/r59-b-batch2/SUMMARY.json.
+The earlier pending paragraph is historical, superseded by these exact results.
+All41 B objects retain568 initial features, nine first-batch scopes and two second-batch bounded window scopes.
+The read-only full audit and current residual list are in B-REVIEW and RESIDUALS.
+Four source-supported archive/store sub-candidates are unlocated/unbuilt, not four
+new physical entities. The Neige prototype is deliberately withheld; source and
+normal Flight success do not prove the upper pedestrian envelope or location.
+No B facet is ACCEPTED. Continue C after local B-stage packaging, keeping all A/B
+source, engineering and browser residuals open. A stage is not full-zone fidelity.

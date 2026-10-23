@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS_FUNCTIONAL_NOT_BROWSER_ACCEPTANCE",
+  "sourceCommit": "5708d459aeb4da1f10409823c8dab5c3ab881c3a",
+  "sourceFingerprint": "ee52b41d6ce4393e5a1226d69d798084269093230d8f59354ee9cb4399534e47",
+  "sourceHashesStable": true,
+  "worldSourceManifest": "data/characters/world-source-freeze-r59-b-batch1.json",
+  "worldSourceManifestSHA256": "666c94f0c56e80b95af9b00470d250b89dacbf66db9be4739dcb923772bafb03",
+  "sourceFiles": 222,
+  "world": {
+    "colliders": 24710,
+    "walkables": 1125,
+    "zones": [
+      "axis-courts",
+      "east-six",
+      "west-six",
+      "outer-east",
+      "outer-west",
+      "garden",
+      "ningshou"
+    ]
+  },
+  "registeredCharacters": 108,
+  "individuallyObservedCharacters": 108,
+  "observationGroups": 401,
+  "paths": 24,
+  "pathCycles": 2,
+  "zoneLifecycleCases": 6,
+  "newEntranceRoundTrips": 48,
+  "nansansuoExactDelta": {
+    "scope": "UNKNOWN_INVENTORY_NOT_HISTORICAL_EMPTY_ROOM_OR_BROWSER_ACCEPTANCE",
+    "rooms": 6,
+    "retainedTriangles": 9828,
+    "absentTriangles": 576,
+    "absentColliders": 48,
+    "geometryToleranceMeters": 0.001
+  },
+  "newConsumersAfterOuterEastReload": "PASS",
+  "actualLoadedInteriorLayers": [
+    "yangxin",
+    "kunning",
+    "huangji"
+  ],
+  "runtimeBudgets": {
+    "boundary": "CPU actual instance/index counts only, not GPU draw timing",
+    "high": {
+      "frames": 18219,
+      "maxInstances": 64,
+      "maxTriangles": 45564,
+      "maxBatches": 22,
+      "maxNear": 2
+    },
+    "low": {
+      "frames": 187,
+      "maxInstances": 32,
+      "maxTriangles": 14228,
+      "maxBatches": 10,
+      "maxNear": 0
+    }
+  },
+  "report": "reports/r59-b-batch1/one-world-validation.json.gz",
+  "reportSHA256": "eda58b66c8a0f1e78663a0653f68ec6de737e5e5d747909ee57bff2f5f1926de",
+  "qaResources": {
+    "args": [
+      "node",
+      "--expose-gc",
+      "--max-old-space-size=1024",
+      "--test",
+      "--test-reporter=tap",
+      "--test-concurrency=1",
+      "tests/r59-b-batch1-world.test.mjs"
+    ],
+    "exitCode": 0,
+    "wallSeconds": 253.8577926158905,
+    "maxRssKiB": 1812712,
+    "cpuUserSeconds": 292.558186,
+    "cpuSystemSeconds": 2.28299,
+    "boundary": "QA resources, not browser/GPU performance"
+  },
+  "historicalReds": [
+    "initial-total-count-red/one-world.tap",
+    "reports/r59-nansansuo-inventory/concentrated-local.tap"
+  ],
+  "browserGPUPhoneAccepted": false,
+  "wholeB41Accepted": false
+}

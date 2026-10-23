@@ -1,0 +1,17 @@
+{
+  "args": [
+    "node",
+    "--expose-gc",
+    "--max-old-space-size=1024",
+    "--test",
+    "--test-reporter=tap",
+    "--test-concurrency=1",
+    "tests/r59-b-batch1-world.test.mjs"
+  ],
+  "exitCode": 1,
+  "wallSeconds": 59.700565338134766,
+  "maxRssKiB": 1042964,
+  "cpuUserSeconds": 66.994829,
+  "cpuSystemSeconds": 0.644681,
+  "boundary": "QA resource statistics, not browser gameplay FPS or memory acceptance"
+}

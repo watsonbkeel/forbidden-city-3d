@@ -1,0 +1,108 @@
+✖ one right-hand Wenhua south face receives stone below real red frame; all non-target geometry and physics remain exact (110.54736ms)
+✖ south closure has no old red wall behind the window, no duplicate front skin and no new opening (8.445409ms)
+✖ wrong identity, altered or shared geometry and repeated application fail closed without allocations or mutations (34.343168ms)
+✖ new solids are finite with outward winding and resources are disposed once while shared materials survive real finish (6.711465ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 302.900788
+
+✖ failing tests:
+
+test at tests/r59-wenhua-gate-window.test.mjs:8:1
+✖ one right-hand Wenhua south face receives stone below real red frame; all non-target geometry and physics remain exact (110.54736ms)
+  AssertionError [ERR_ASSERTION]: dedicated bounded Wenhua south-window helper required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r59-wenhua-gate-window/tests/r59-wenhua-gate-window.test.mjs:5:24)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r59-wenhua-gate-window/tests/r59-wenhua-gate-window.test.mjs:9:52)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r59-wenhua-gate-window.test.mjs:19:1
+✖ south closure has no old red wall behind the window, no duplicate front skin and no new opening (8.445409ms)
+  AssertionError [ERR_ASSERTION]: dedicated bounded Wenhua south-window helper required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r59-wenhua-gate-window/tests/r59-wenhua-gate-window.test.mjs:5:24)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r59-wenhua-gate-window/tests/r59-wenhua-gate-window.test.mjs:20:33)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r59-wenhua-gate-window.test.mjs:31:1
+✖ wrong identity, altered or shared geometry and repeated application fail closed without allocations or mutations (34.343168ms)
+  AssertionError [ERR_ASSERTION]: dedicated bounded Wenhua south-window helper required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r59-wenhua-gate-window/tests/r59-wenhua-gate-window.test.mjs:5:24)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r59-wenhua-gate-window/tests/r59-wenhua-gate-window.test.mjs:33:116)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r59-wenhua-gate-window.test.mjs:39:1
+✖ new solids are finite with outward winding and resources are disposed once while shared materials survive real finish (6.711465ms)
+  AssertionError [ERR_ASSERTION]: dedicated bounded Wenhua south-window helper required
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at apply (file:///workspace/scratch/02a8023d1a85/r59-wenhua-gate-window/tests/r59-wenhua-gate-window.test.mjs:5:24)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r59-wenhua-gate-window/tests/r59-wenhua-gate-window.test.mjs:40:124)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

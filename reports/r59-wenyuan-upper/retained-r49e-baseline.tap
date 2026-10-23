@@ -1,0 +1,95 @@
+✔ 景仁宫: R49E scoped source-group geometry/access invariants (137.204581ms)
+✔ 钟粹宫: R49E scoped source-group geometry/access invariants (25.909377ms)
+✔ 翊坤宫: R49E scoped source-group geometry/access invariants (20.281881ms)
+✔ 储秀宫: R49E scoped source-group geometry/access invariants (60.181909ms)
+✖ 长春宫: R49E scoped source-group geometry/access invariants (27.732459ms)
+✔ 承乾宫: R49E scoped source-group geometry/access invariants (20.624134ms)
+✔ 景阳宫: R49E scoped source-group geometry/access invariants (16.316698ms)
+✔ 太极殿: R49E scoped source-group geometry/access invariants (19.930675ms)
+✔ 永寿宫: R49E scoped source-group geometry/access invariants (20.203464ms)
+✔ 咸福宫: R49E scoped source-group geometry/access invariants (16.128756ms)
+✖ 养心殿: R49E scoped source-group geometry/access invariants (114.331431ms)
+✔ 皇极殿: R49E scoped source-group geometry/access invariants (94.253901ms)
+✔ 本仁殿: R49E scoped source-group geometry/access invariants (42.8904ms)
+✔ 文渊阁: R49E scoped source-group geometry/access invariants (60.027718ms)
+✔ 咸若馆: R49E scoped source-group geometry/access invariants (28.618698ms)
+✖ 寿康宫: R49E scoped source-group geometry/access invariants (31.884953ms)
+✔ 慈宁宫: R49E scoped source-group geometry/access invariants (36.468624ms)
+✔ 古华轩: R49E scoped source-group geometry/access invariants (25.280774ms)
+✔ 遂初堂: R49E scoped source-group geometry/access invariants (44.001666ms)
+✔ 畅音阁: R49E scoped source-group geometry/access invariants (80.476039ms)
+✔ 阅是楼: R49E scoped source-group geometry/access invariants (46.981732ms)
+✔ 颐和轩: R49E scoped source-group geometry/access invariants (26.673992ms)
+✔ 倦勤斋: R49E scoped source-group geometry/access invariants (69.090332ms)
+✔ 宁寿宫: R49E scoped source-group geometry/access invariants (46.749775ms)
+✔ 乐寿堂: R49E scoped source-group geometry/access invariants (143.299247ms)
+✔ 梵华楼: R49E scoped source-group geometry/access invariants (94.629033ms)
+✔ 景运门: R49E scoped source-group geometry/access invariants (46.964277ms)
+✔ 文渊: entire oriented frame volume remains outside actual structure (32.84942ms)
+✔ 文渊: complete frame and face share one rigid 60 degree pitch, not resized parts (20.966717ms)
+✔ 文渊: all eight frame corners lie outside existing closed beam/window boxes (23.108128ms)
+✔ 文渊: all eight frame corners remain below the actual upper-roof envelope (33.605463ms)
+✔ 文渊: frame bottom near window head is not treated as forced large projection clearance (16.975515ms)
+✔ 文渊: four normal courtyard/front/oblique views read the complete frame; far/under-eave occlusion remains recorded (41.86944ms)
+✔ 文渊: photo provenance and revised diagnosis remain explicit, not a surveyed angle (20.477023ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 31
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1703.178445
+
+✖ failing tests:
+
+test at tests/r49e-wenyuan-pitch.test.mjs:8:32
+✖ 长春宫: R49E scoped source-group geometry/access invariants (27.732459ms)
+  AssertionError [ERR_ASSERTION]: meshes
+  
+  127 !== 92
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r59-b-east-fidelity/tests/r49e-wenyuan-pitch.test.mjs:10:111)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 127,
+    expected: 92,
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r49e-wenyuan-pitch.test.mjs:8:32
+✖ 养心殿: R49E scoped source-group geometry/access invariants (114.331431ms)
+  AssertionError [ERR_ASSERTION]: meshes
+  
+  272 !== 163
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r59-b-east-fidelity/tests/r49e-wenyuan-pitch.test.mjs:10:111)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 272,
+    expected: 163,
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r49e-wenyuan-pitch.test.mjs:8:32
+✖ 寿康宫: R49E scoped source-group geometry/access invariants (31.884953ms)
+  AssertionError [ERR_ASSERTION]: meshes
+  
+  420 !== 407
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r59-b-east-fidelity/tests/r49e-wenyuan-pitch.test.mjs:10:111)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 420,
+    expected: 407,
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

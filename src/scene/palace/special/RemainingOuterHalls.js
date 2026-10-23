@@ -1788,7 +1788,7 @@ export function augmentRemainingHall(kit,item,built,profile) {
     const green=palette(kit).green_glaze;
     roof.traverse(n=>{if(n.isMesh&&(['roof_tile','kit_ridge','roof_ridge_glaze'].includes(materialKey(kit,n.material))))n.material=green;});
     roof.userData.remainingRoof='sansuo-green-hard-gable';roof.userData.source=profile.source;
-    return finishAugment(kit,item,built,profile,{exteriorChanged:true,interiorChanged:false,identityStatus:'THREE_COURTYARDS_TWO_MODEL_ROWS_UNRESOLVED',interiorStatus:'LEGACY_FURNITURE_PRESERVED_UNVERIFIED__NO_OMISSION_AS_ABSENCE_INFERENCE',actualChanges:['Group-common green glazed flush hard-gable roof only; no invented bay mapping or relocated middle-hall stove']});
+    return finishAugment(kit,item,built,profile,{exteriorChanged:true,interiorChanged:item.furnishingPolicy!==undefined,identityStatus:'THREE_COURTYARDS_TWO_MODEL_ROWS_UNRESOLVED',interiorStatus:item.furnishingPolicy===undefined?'LEGACY_FURNITURE_PRESERVED_UNVERIFIED__NO_OMISSION_AS_ABSENCE_INFERENCE':'UNKNOWN_INVENTORY_WITHHELD_NOT_KNOWN_EMPTY',actualChanges:['Group-common green glazed flush hard-gable roof only; no invented bay mapping or relocated middle-hall stove',...(item.furnishingPolicy===undefined?[]:['Withhold unsupported generic props only for this explicit runtime declaration; preserve unresolved boundaries and original spawn points'])]});
   }
   throw new Error(`R48 outer augmentation not enabled for ${profile.key}`);
 }
