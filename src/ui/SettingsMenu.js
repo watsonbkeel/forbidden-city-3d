@@ -44,7 +44,9 @@ export class SettingsMenu {
     this.launcher.setAttribute('aria-haspopup', 'dialog');
     this.launcher.setAttribute('aria-controls', 'settings-panel');
     this.launcher.setAttribute('aria-expanded', 'false');
-    this.launcher.innerHTML = '<strong>结构研究预览</strong><span>游戏路线不代表现场开放 · 设置与来源</span>';
+    this.launcher.setAttribute('aria-label', '作者 陈华山&陈诺，打开设置与来源说明');
+    this.launcher.innerHTML = '<strong>作者</strong><span></span>';
+    this.launcher.querySelector('span').textContent = '陈华山&陈诺';
     this.container.appendChild(this.launcher);
 
     this.overlay = document.createElement('div');
@@ -329,7 +331,7 @@ export class SettingsMenu {
     else if (errors > 0) heading = '人物加载失败';
     else if (registered > 0 && loaded === registered && pending === 0) heading = '人物数据就绪（候选）';
     if (import.meta.env?.DEV === true && preview) heading = `人物实验预览（未验收） · ${heading}`;
-    const text = `${heading}：已注册 ${registered} · 已加载 ${loaded} · 当前可见 ${visible} · 准备中 ${pending} · 失败 ${errors}。${night && enabled && (available || preview) ? ' 夜间：朝会／生活人物按计划休息，守卫保留。' : ''}`;
+    const text = `${heading}：已注册 ${registered} · 已加载 ${loaded} · 当前可见 ${visible} · 准备中 ${pending} · 失败 ${errors}。${night && enabled && (available || preview) ? ' 夜间仍展示人物；全天游览演绎，不代表历史作息。' : ''}`;
     const status = this.panel.querySelector('#characters-status');
     if (status.textContent !== text) status.textContent = text;
   }

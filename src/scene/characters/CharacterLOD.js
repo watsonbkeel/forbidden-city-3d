@@ -54,14 +54,18 @@ function applyNearBudget(actors, quality, previousNearIds) {
 export function selectCharacterBudget(actors, quality = 'high', registeredActors = actors, previousNearIds = new Set()) {
   const sorted = [...actors].sort(stableOrder);
   if (quality !== 'low') return applyNearBudget(sorted.slice(0, 64), quality, previousNearIds);
-  const court = [...registeredActors].filter(taihe).sort(stableOrder), rest = sorted.filter(a => !taihe(a));
+  const allowedIds=characterQualityEligibleIds(registeredActors,quality),rest=sorted.filter(a=>!taihe(a));
+  const visibleCourt = sorted.filter(a=>taihe(a)&&allowedIds.has(a.id));
+  return applyNearBudget([...visibleCourt, ...rest.slice(0, 32 - visibleCourt.length)], quality, previousNearIds);
+}
+export function characterQualityEligibleIds(registeredActors,quality='high'){
+  if(quality!=='low')return new Set(registeredActors.map(a=>a.id));
+  const court = [...registeredActors].filter(taihe).sort(stableOrder);
   const fixed = [];
   for (const [template, limit] of [['emperor-ceremonial',1], ['ritual-attendant',2], ['guard-duty',4]])
     fixed.push(...court.filter(a => a.templateId === template).slice(0, limit));
   const officials = court.filter(a => a.templateId === 'official-ceremonial');
   for (const side of ['left', 'right']) fixed.push(...officials.filter(a => a.formation?.side === side)
     .sort((a,b)=>(a.formation.index??0)-(b.formation.index??0)||a.id.localeCompare(b.id)).slice(0,6));
-  const allowedIds = new Set(fixed.map(a=>a.id));
-  const visibleCourt = sorted.filter(a=>taihe(a)&&allowedIds.has(a.id));
-  return applyNearBudget([...visibleCourt, ...rest.slice(0, 32 - visibleCourt.length)], quality, previousNearIds);
+  return new Set([...fixed,...registeredActors.filter(a=>!taihe(a))].map(a=>a.id));
 }

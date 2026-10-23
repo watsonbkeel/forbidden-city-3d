@@ -7,6 +7,7 @@ import { characterGeometryOptionsFor } from './CharacterGeometryOptions.js';
 import { PatrolController } from './PatrolController.js';
 import { CeremonyController } from './CeremonyController.js';
 import { validateCharacterRegistry } from './CharacterSchema.js';
+import { CharacterInteraction } from './CharacterInteraction.js';
 
 // Product availability and acceptance are independent: the user confirmed the
 // appearance and requested the ordinary, default-on release (§2.2). Missing
@@ -16,7 +17,7 @@ export const CHARACTER_CONTENT_ENABLED = true;
 export class CharacterSystem {
   constructor({ scene, camera, collisionManager, zoneManager, interiors, registry = CHARACTER_REGISTRY,
     adapter = null, renderer = null, documentObject = globalThis.document, contentApproved, contentEnabled = contentApproved ?? CHARACTER_CONTENT_ENABLED,
-    preparationBudgetMs = {high:1,low:1} } = {}) {
+    preparationBudgetMs = {high:1,low:1}, getPlayerState = null } = {}) {
     this.camera=camera;this.document=documentObject;this.disposed=false;this.lastError=null;this.lastFailure=null;this.lastDaylight=1;
     this.preparationBudgetMs=preparationBudgetMs;this.totalUpdateSamples=[];this.lastPreparation=null;
     this.validation=validateCharacterRegistry(registry);
@@ -25,19 +26,20 @@ export class CharacterSystem {
     this.world=adapter??new CharacterWorldAdapter({scene,collisionManager,zoneManager,interiors,registry:effectiveRegistry});
     this.renderer=renderer??new CharacterRenderer({scene,pool:this.pool});
     this.ceremony=new CeremonyController(effectiveRegistry.ceremonies?.[0]);
+    this.interaction=new CharacterInteraction({collisionManager,getPlayerState,registry:effectiveRegistry});
     const readonlyAdapter={
       getRevision:actor=>this.world.getRevision?.(actor)??this.world.getGeneration?.(actor.zoneRef),
       resolve:actor=>this.world.request?this.world.request(actor,a=>this.prepareFor(a)):this.world.resolve(actor,this.metricsFor(actor)),
     };
     this.manager=new CharacterManager({registry:effectiveRegistry,adapter:readonlyAdapter,renderer:this.renderer,
-      enabled:this.validation.valid,contentEnabled,
+      enabled:this.validation.valid,contentEnabled,interaction:this.interaction,
       patrolFactory:(actor,binding)=>{
         const b=actor.behavior;
         return new PatrolController({path:binding.path,
           speedMetersPerSecond:b.speedMetersPerSecond,pauseSeconds:b.pauseSeconds,followerSpacingMeters:b.followerSpacingMeters??1.4});
       }});
     if(!this.validation.valid)this.lastError=`Invalid character registry: ${this.validation.errors.map(e=>e.path+': '+e.message).join('; ')}`;
-    this._visibility=()=>{if(this.document?.hidden){this.manager.hidden=true;this.world.cancelPending?.('Document hidden');}};
+    this._visibility=()=>{if(this.document?.hidden){this.manager.hidden=true;this.interaction.clear();this.world.cancelPending?.('Document hidden');}};
     this.document?.addEventListener?.('visibilitychange',this._visibility);this._visibility();
   }
   metricsFor(actor){
@@ -103,7 +105,7 @@ export class CharacterSystem {
   }
   // The settings status runs on the existing frame loop. Do not sort timing
   // buffers or allocate per-actor diagnostics solely to update a few counters.
-  statusSnapshot(){return{...this.manager.stats,rollout:this.manager.rollout,enabled:this.enabled,contentEnabled:this.contentEnabled,daylight:this.lastDaylight,lastError:this.lastError};}
+  statusSnapshot(){return{...this.manager.stats,rollout:this.manager.rollout,enabled:this.enabled,contentEnabled:this.contentEnabled,daylight:this.lastDaylight,lastError:this.lastError,interaction:{...this.interaction.last}};}
   snapshot(){const manager=this.manager.snapshot(),sorted=[...this.totalUpdateSamples].sort((a,b)=>a-b),percentile=q=>sorted[Math.floor((sorted.length-1)*q)]??0;return{...manager,daylight:this.lastDaylight,lastError:this.lastError,lastFailure:this.lastFailure,configurationValid:this.validation.valid,configurationErrors:this.validation.errors,
     managerUpdateP95Ms:manager.updateP95Ms,updateP50Ms:percentile(.5),updateP95Ms:percentile(.95),
     preparation:this.world.work?.snapshot?.()??null,lastPreparation:this.lastPreparation,

@@ -7,6 +7,7 @@ import { YANXI_RUIN_GROUND_CUTOUT } from './palace/special/YanxiRuin.js';
 import { createSky, getSunPosition, updateSkyUniforms } from './sky/SkySetup.js';
 import { createSkylineRing } from './sky/Skyline.js';
 import { getBeijingDayCycle } from './sky/BeijingDayCycle.js';
+import { nightTourLighting } from './sky/NightTourLighting.js';
 
 /**
  * 环境设置：天空、地面、雾效、光照
@@ -176,6 +177,10 @@ export class Environment {
     fillLight.position.set(-50, 50, -50);
     this.addObject(fillLight);
     this.fillLight = fillLight;
+    const moonLight=new THREE.DirectionalLight(0xb9d4ff,0);
+    moonLight.name='virtual-night-tour-moon-fill';moonLight.position.set(-180,240,120);
+    moonLight.castShadow=false;moonLight.userData.virtualTourAid=true;
+    this.moonLight=this.addObject(moonLight);
     
     this.dirLight = dirLight;
 
@@ -242,15 +247,17 @@ export class Environment {
 
   applyDayCycle(date, refresh = false) {
     const state = getBeijingDayCycle(date), l = state.lighting;
+    const tour=this.nightTourLighting=nightTourLighting(l.daylight);
     this.dayCycle = state;
     this.sky.material.uniforms.topColor.value.fromArray(l.skyTop);
     this.sky.material.uniforms.bottomColor.value.fromArray(l.skyBottom);
     this.scene.fog?.color.fromArray(l.fogColor);
     this.hemiLight.color.fromArray(l.hemisphereSkyColor);
     this.hemiLight.groundColor.fromArray(l.hemisphereGroundColor);
-    this.hemiLight.intensity = l.hemisphereIntensity;
+    this.hemiLight.intensity = l.hemisphereIntensity+tour.hemisphereBoost;
     this.fillLight.color.fromArray(l.fillColor);
-    this.fillLight.intensity = l.fillIntensity;
+    this.fillLight.intensity = l.fillIntensity+tour.fillBoost;
+    this.moonLight.intensity=tour.moonIntensity;
     // Warm broad fill reaches axis facades and paving everywhere; the cool
     // retained sky separates this readable virtual night from daylight.
     this.nightLampGlow.visible = l.daylight < 1;

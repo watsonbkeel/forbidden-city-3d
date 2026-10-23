@@ -1,0 +1,45 @@
+{
+  "generatedAt": "2026-10-23T15:49:53.853Z",
+  "scope": "Bounded CPU integration of real FirstPersonControls, PointerLockControls event listeners, CollisionManager, authored pedestrian capsules, actual FlightTour, and production main.js getPlayerState callback.",
+  "commands": [
+    {
+      "command": "node --test --test-reporter=tap tests/r65-pedestrian-controls.test.mjs",
+      "tests": 58,
+      "pass": 58,
+      "fail": 0,
+      "report": "controls-node-test.tap"
+    },
+    {
+      "command": "node --test --test-reporter=tap tests/r65-pedestrian-controls.test.mjs tests/current-state/r31-flight-operations.test.mjs",
+      "tests": 75,
+      "pass": 75,
+      "fail": 0,
+      "report": "controls-flight-regression.tap"
+    }
+  ],
+  "coverage": [
+    "W/S/A/D × seated/standing × walk/sprint × 10/60 fps",
+    "Real pointer-lock mouse yaw/pitch affects the current movement frame",
+    "Short clear-endpoint grazing chord catches swept capsule interior",
+    "Upward jump contact and downward body contact without ground/support/jump reset",
+    "Normal jump and landing retained; combined jump+sprint remains clear",
+    "Other-floor movement and other-floor flight exit clearance",
+    "Outward escape from pre-existing overlap; default head-bob blocked stability",
+    "Actual FlightTour skips first 1 or 3 blocked exit candidates; rejects all 4 blocked candidates",
+    "Exact production callback yields null for occupied pilot/follow/overhead views and restores walking logical feet, excluding head-bob offset"
+  ],
+  "limits": [
+    "CPU DOM event fixture, not a real browser input test",
+    "No GPU rendering, visual appearance, full-world load/build, mobile acceptance, or deployed-site claim",
+    "Production sources may continue changing; rerun on the final revision"
+  ],
+  "sha256": {
+    "main.js": "2c5217e817ef01d098950eae6cb72f4bca8c23ebabd5026df5e42c682a67d685",
+    "src/controls/FirstPerson.js": "00567838c2c34ff829684c3f9d6d6f2117f6df29a3f9f24e2d00cd28ed1c8267",
+    "src/utils/Collision.js": "76423913a37cbd7140d00743b1e6827d39841c52618c0f19c867eff3ac7e0de1",
+    "src/scene/characters/CharacterBody.js": "74b044d30faf5b64af2486068a967c5b0f20fd357d5488399765b16758584fe8",
+    "src/scene/characters/CharacterInteraction.js": "ebbcfc9853d11e8b559a2fa61f0e8f9e36773c2cca70236720ef440d1c55a573",
+    "src/scene/flight/FlightTour.js": "7836d8b2f1e4953b560babc95c70785ecef3523c50c2caaa07a7ced53ddde2d1",
+    "tests/r65-pedestrian-controls.test.mjs": "113e5fb7fc20eaaae98868ba22ba25619e8bfdc96fc6682b60b963f354a14caf"
+  }
+}

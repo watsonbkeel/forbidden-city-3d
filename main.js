@@ -20,7 +20,7 @@ import { SettingsTourSession } from './src/ui/SettingsTourSession.js';
 import { MapTourSession } from './src/ui/MapTourSession.js';
 import { hasShortcutModifier, isTextEntryTarget } from './src/controls/InputTargets.js';
 import { PerfHUD } from './src/ui/PerfHUD.js';
-import { LAYOUT, PERFORMANCE, TELEPORT } from './src/config/constants.js';
+import { LAYOUT, PERFORMANCE, TELEPORT, PLAYER } from './src/config/constants.js';
 import { INITIAL_VIEW_POSITION } from './src/config/initialView.js';
 import { createPalaceFlightEnvelope, FLIGHT_BOUNDS } from './src/scene/flight/FlightEnvelope.js';
 import { FlightTour } from './src/scene/flight/FlightTour.js';
@@ -180,7 +180,11 @@ class ForbiddenCityApp {
       }],
       ['界面', () => {
         this.ambience = new Ambience();
-        this.characters = new CharacterSystem({ scene: this.scene, camera: this.camera, collisionManager: this.collisionManager, zoneManager: this.zoneManager, interiors: this.interiors });
+        this.characters = new CharacterSystem({ scene: this.scene, camera: this.camera, collisionManager: this.collisionManager, zoneManager: this.zoneManager, interiors: this.interiors,
+          getPlayerState:()=>this.flight?.occupied||!Number.isFinite(this.controls?.feetY)?null:{
+            position:[this.camera.position.x-(this.controls.bobOffset?.x??0),
+              this.controls.airborne?this.controls.feetY:Math.max(this.controls.feetY,this.controls.groundY??0),
+              this.camera.position.z-(this.controls.bobOffset?.z??0)],radius:.5,height:PLAYER.HEIGHT} });
         this.createUI();
         this.historicalLamps = new HistoricalSkyLamps({scene:this.scene,collisionManager:this.collisionManager,envelope:this.flightEnvelope,playerPosition:()=>this.camera.position,flightState:()=>this.flight?.state});
         this.dayNightPanel = new DayNightPanel(this.environment,this.historicalLamps);

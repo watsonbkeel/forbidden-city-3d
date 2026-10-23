@@ -1,55 +1,61 @@
 {
-  "schemaVersion": 20,
-  "baselineCommit": "bfafb63aff4984b266b02600d1364001000e0bc6",
-  "purpose": "R64-G source-bounded Qinan/ceiling/gate/silhouette partials. G29/400 residuals remain separate, no browser acceptance.",
+  "schemaVersion": 21,
+  "baselineCommit": "6a2803b9238a2f3f2225a2bc45a4084b1fbfe0d0",
+  "purpose": "R65 optional pedestrian-only dynamic body channel and all-day virtual-tour availability. Exact R64 architecture,108 logical roles,24 paths and Kit retained. Night fill is interpretive, no GPU or historical acceptance.",
   "provenance": {
-    "previousWorldVersion": "R63-F",
-    "previousReleaseCommit": "bfafb63aff4984b266b02600d1364001000e0bc6",
-    "previousManifestPath": "data/characters/world-source-freeze-r63-f.json",
-    "previousManifestSHA256": "04350ef5f4b3f0be09c079c71cf49a263faaf1721ff77ef5ca0b11bad9be7abd",
-    "previousFileCount": 245,
-    "fileCount": 250,
+    "previousWorldVersion": "R64-G",
+    "previousReleaseCommit": "6a2803b9238a2f3f2225a2bc45a4084b1fbfe0d0",
+    "previousManifestPath": "data/characters/world-source-freeze-r64-g.json",
+    "previousManifestSHA256": "1057f3e02ccf6fb905f1b0782383f315612893bf085553eb8ba9e2aa4540ae1b",
+    "previousFileCount": 250,
+    "fileCount": 257,
     "changedPreviouslyTrackedSources": [
       {
-        "path": "data/zones/garden.json",
-        "beforeSHA256": "e90353986b38d58b9c4db2fb2d4b7d56c9e6e758306a620baebacd481c564586",
-        "afterSHA256": "5d5f7fcb71d34fc20aabddf83bae119e83dd1de8a3939121c506cbbe8b748ae8"
+        "path": "src/controls/FirstPerson.js",
+        "beforeSHA256": "4e2783609e8e13ca8e3a6e9afb9c720af1a97a5bad53fb5e10acfe8fcfa34fb9",
+        "afterSHA256": "00567838c2c34ff829684c3f9d6d6f2117f6df29a3f9f24e2d00cd28ed1c8267"
       },
       {
-        "path": "src/scene/GardenBuilder.js",
-        "beforeSHA256": "3577bab50cf78f376b6c266b8f8e432348a5025c0c8f2fc2b368857ccf67269e",
-        "afterSHA256": "f4a2eb2eaf9ae352889a6b0be787524b7788c2831203c77e6a4677821a2e7637"
+        "path": "src/scene/Environment.js",
+        "beforeSHA256": "0a2739d5714ccf4ac2d0ae84fb5cb1881eb614ab83890be016817a718d88b361",
+        "afterSHA256": "05405673f32843a753f5dd3860378c6e558b8ecbf69e5d3f9bfae7a9d011ab24"
       },
       {
-        "path": "src/scene/garden/CrossGardenPavilions.js",
-        "beforeSHA256": "fa4dcda745555ffadc8fd32e275f55da4c4afd63e70c6491b790234c14c55443",
-        "afterSHA256": "a0122e9f2a9974b4a34a8057d30047e3f80f45453fc6c6c84cb971ceb8fcfa87"
-      },
-      {
-        "path": "src/scene/garden/RemainingGardenPavilions.js",
-        "beforeSHA256": "d0774d1ee9af0c3957769b7d1857be42d6379d5b8ec2296d36c50f6a5799b263",
-        "afterSHA256": "75edc45a41b10237364836be151d63586bc5f4b35352e050b97d2fc840f7a7b3"
-      },
-      {
-        "path": "src/scene/palace/kit.js",
-        "beforeSHA256": "c88e56f25b543ce1132b6f1c51905d6a7be439f619f141dc1cfafdd20500a278",
-        "afterSHA256": "952b7ca98e3c291251e733800cc2a87f2abbd47b788177ae175a628f547c7795"
-      },
-      {
-        "path": "src/scene/palace/special/QinanHall.js",
-        "beforeSHA256": "d5f4c0780df323ea91e16556f58c9a83b1182b46d0fd83abce3932579446f333",
-        "afterSHA256": "0a4006937a3d4166a8307de587ae92323219acc9489b7a893a08a31075a625e9"
+        "path": "src/utils/Collision.js",
+        "beforeSHA256": "ebf5f3f8638da711af08a518e20eb36a9cccef86ceda8fd14167f146058e9235",
+        "afterSHA256": "76423913a37cbd7140d00743b1e6827d39841c52618c0f19c867eff3ac7e0de1"
       }
     ],
     "newlyTrackedSources": [
-      "src/scene/palace/special/QinanFrontJoinery.js",
-      "src/scene/garden/BridgeCeilingRelief.js",
-      "src/scene/palace/special/TianyiGate.js",
-      "src/scene/garden/TianyiGroundFit.js",
-      "src/scene/garden/GardenSilhouetteDetails.js"
-    ],
-    "characterRegistryKitAndCaps": "Exact unchanged from R63;108 actors/24 routes bind freshly in each independent world.",
-    "acceptance": "RESULTS_IN_VERSIONED_REPORT_NOT_THIS_INPUT; BROWSER_NOT_PERFORMED"
+      {
+        "path": "main.js",
+        "sha256": "2c5217e817ef01d098950eae6cb72f4bca8c23ebabd5026df5e42c682a67d685"
+      },
+      {
+        "path": "src/scene/characters/CharacterBody.js",
+        "sha256": "74b044d30faf5b64af2486068a967c5b0f20fd357d5488399765b16758584fe8"
+      },
+      {
+        "path": "src/scene/characters/CharacterInteraction.js",
+        "sha256": "bbc72e195705d1eb13437307ce0f4769f65b2d5570f814d9d4f6cee1c600e423"
+      },
+      {
+        "path": "src/scene/characters/CharacterLOD.js",
+        "sha256": "6e2f0009b1f83458adfe08227e5b4ad6600a8e58987c7f959b2294de9cac4ee2"
+      },
+      {
+        "path": "src/scene/characters/CharacterManager.js",
+        "sha256": "7dcd11b45e98351483a99659346981e2c6b596623b47f7303c0392691960ffef"
+      },
+      {
+        "path": "src/scene/characters/CharacterSystem.js",
+        "sha256": "5445b5e180d94e7396aaebfd34cf5c90f16a20565c62352253bffaa813c1a93d"
+      },
+      {
+        "path": "src/scene/sky/NightTourLighting.js",
+        "sha256": "80700a47464346b3564af0a345da5b8683a6c52674914cce51604464fe14cd29"
+      }
+    ]
   },
   "files": [
     {
@@ -129,6 +135,10 @@
       "sha256": "042285c8053df6586233b7827fefcbf0353bb08ada141e5c4a9784a8a61d72b7"
     },
     {
+      "path": "main.js",
+      "sha256": "2c5217e817ef01d098950eae6cb72f4bca8c23ebabd5026df5e42c682a67d685"
+    },
+    {
       "path": "public/models/interiors/kunning-v6-0c83b4364eef.glb",
       "sha256": "0c83b4364eef7febe30f976158c8a015bab49dcc3f40989f510c98e8edd6a9e4"
     },
@@ -142,7 +152,7 @@
     },
     {
       "path": "src/controls/FirstPerson.js",
-      "sha256": "4e2783609e8e13ca8e3a6e9afb9c720af1a97a5bad53fb5e10acfe8fcfa34fb9"
+      "sha256": "00567838c2c34ff829684c3f9d6d6f2117f6df29a3f9f24e2d00cd28ed1c8267"
     },
     {
       "path": "src/scene/Enclosure.js",
@@ -150,7 +160,7 @@
     },
     {
       "path": "src/scene/Environment.js",
-      "sha256": "0a2739d5714ccf4ac2d0ae84fb5cb1881eb614ab83890be016817a718d88b361"
+      "sha256": "05405673f32843a753f5dd3860378c6e558b8ecbf69e5d3f9bfae7a9d011ab24"
     },
     {
       "path": "src/scene/GardenBuilder.js",
@@ -171,6 +181,26 @@
     {
       "path": "src/scene/RoofBuilder.js",
       "sha256": "bc027e3dbf413265781aa17d869361f8ae9169fc7f3539109c3a62734eb5f8e7"
+    },
+    {
+      "path": "src/scene/characters/CharacterBody.js",
+      "sha256": "74b044d30faf5b64af2486068a967c5b0f20fd357d5488399765b16758584fe8"
+    },
+    {
+      "path": "src/scene/characters/CharacterInteraction.js",
+      "sha256": "bbc72e195705d1eb13437307ce0f4769f65b2d5570f814d9d4f6cee1c600e423"
+    },
+    {
+      "path": "src/scene/characters/CharacterLOD.js",
+      "sha256": "6e2f0009b1f83458adfe08227e5b4ad6600a8e58987c7f959b2294de9cac4ee2"
+    },
+    {
+      "path": "src/scene/characters/CharacterManager.js",
+      "sha256": "7dcd11b45e98351483a99659346981e2c6b596623b47f7303c0392691960ffef"
+    },
+    {
+      "path": "src/scene/characters/CharacterSystem.js",
+      "sha256": "5445b5e180d94e7396aaebfd34cf5c90f16a20565c62352253bffaa813c1a93d"
     },
     {
       "path": "src/scene/flight/FlightEnvelope.js",
@@ -1017,6 +1047,10 @@
       "sha256": "fbb1f0957d22f7c92a75f1db0e02ab0d2955173072293990746afaf562254317"
     },
     {
+      "path": "src/scene/sky/NightTourLighting.js",
+      "sha256": "80700a47464346b3564af0a345da5b8683a6c52674914cce51604464fe14cd29"
+    },
+    {
       "path": "src/scene/sky/SkyDome.js",
       "sha256": "fce040c9ebb96b4aa2065db4f4589d2f388106aab0e8296be9747139def69201"
     },
@@ -1046,7 +1080,7 @@
     },
     {
       "path": "src/utils/Collision.js",
-      "sha256": "ebf5f3f8638da711af08a518e20eb36a9cccef86ceda8fd14167f146058e9235"
+      "sha256": "76423913a37cbd7140d00743b1e6827d39841c52618c0f19c867eff3ac7e0de1"
     },
     {
       "path": "src/utils/OverheadShape.js",

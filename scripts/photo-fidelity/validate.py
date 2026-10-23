@@ -31,6 +31,7 @@ ck('Long panorama IDs remain exact URL strings',all(isinstance(x['url'],str) and
 ck('Progress acceptance is evidence-gated; no blanket freeze on authorized changes',validate_progress(q))
 ck('All13 full release files exist with fixed counts',all(len(rd('RELEASES/'+r['release']+'.json')['release']['objectIds'])==r['declaredObjectCount'] for r in q['releasePlan']) and len(q['releasePlan'])==13)
 ck('R58-A through R70-M sequential and M optional',[(r['release'],r['section']) for r in q['releasePlan']]==[(f'R{58+i}-{s}',s) for i,s in enumerate('ABCDEFGHIJKLM')] and q['releasePlan'][-1]['optional'])
+ck('Priority R65 execution schedule preserves all13 scopes and shifts only unstarted H-M',[(r['release'],r['section']) for r in q.get('executionSchedule',[])]==[(f'R{58+i+(1 if i>=7 else 0)}-{section}',section) for i,section in enumerate('ABCDEFGHIJKLM')] and q.get('priorityReleases',[{}])[0].get('release')=='R65')
 ck('Release snapshots contain exact same tasks as queue',all(rd('RELEASES/'+r['release']+'.json')['objects']==[x for x in q['items'] if x['section']==r['section']] for r in q['releasePlan']))
 ck('Three candidate code interfaces really exist',all((pathlib.Path(b['repo'])/p.split('#')[0]).exists() for candidate in rd('A-FIRST-THREE-CANDIDATES.json')['candidates'] for p in candidate['codePaths']))
 ck('Actual source view records backed by hash files',all(pathlib.Path(v['cacheAbsolutePath']).exists() and hashlib.sha256(pathlib.Path(v['cacheAbsolutePath']).read_bytes()).hexdigest()==v['sha256'] for v in rd('EVIDENCE/SOURCE-VIEWS.json')['views']))
