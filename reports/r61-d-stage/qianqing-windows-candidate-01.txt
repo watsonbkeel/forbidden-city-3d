@@ -1,0 +1,36 @@
+✔ two actual south end fields have central tall/wide and two lower narrow fitted frames (12.363196ms)
+✔ all colliders, supports, three rear doors, stairs and connector remain exact frozen R60 (2.630689ms)
+✔ all triangles outside two south outer-face window bands retain every attribute and position (446.490232ms)
+✔ rear windows and south inner faces do not inherit unobserved front tripartite form (461.962ms)
+✖ no additional production texture or draw material, bounded nondegenerate geometry (221.075514ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1504.588842
+
+✖ failing tests:
+
+test at tests/r61-qianqing-south-windows.test.mjs:14:1
+✖ no additional production texture or draw material, bounded nondegenerate geometry (221.075514ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(rows.length-triangleRows(old).length<200)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-qianqing-south-windows.test.mjs:14:329)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

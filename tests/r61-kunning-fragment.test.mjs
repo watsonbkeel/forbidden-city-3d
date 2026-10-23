@@ -1,0 +1,11 @@
+import './lib/inner-palace-fixture.mjs';import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import * as THREE from 'three';import {ZoneBase} from '../src/scene/zones/ZoneBase.js';import {realTextureLibrary} from './lib/r48-real-texture-library.mjs';import {CollisionManager} from '../src/utils/Collision.js';import {assertKunningGateInWorld,replayKunningGate} from './lib/r61-kunning-world-check.mjs';
+import {registerHooks} from 'node:module';
+const hook=registerHooks({load(u,c,n){return n(u,u.endsWith('.json')?{...c,importAttributes:{...c.importAttributes,type:'json'}}:c);}});const {Teleport}=await import('../src/ui/Teleport.js');hook.deregister();
+const garden=JSON.parse(fs.readFileSync(new URL('../data/zones/garden.json',import.meta.url))),item=garden.items.find(x=>x.name==='坤宁门');
+// Actual enclosing wall and the three gate openings it references. No complete
+// garden/world is built here and no result is described as whole-zone acceptance.
+const json={...garden,items:garden.items.filter(i=>['坤宁门','长康左门','长康右门'].includes(i.name)||i.kind==='wall'&&i.from[1]===422.7)},lib=realTextureLibrary(),zone=new ZoneBase(lib,json),built=zone.build(),scene=new THREE.Scene();scene.add(built.group);const cm=new CollisionManager();cm.rivers=[];cm.addColliders(built.colliders,'garden');cm.addWalkables(built.walkables,'garden');const W={THREE,scene,cm};
+test.after(()=>{zone.dispose();lib.dispose();});
+test('actual merged wall/gate fragment resolves unique body, support and FC metadata',()=>assertKunningGateInWorld(W));
+for(const fps of[10,60])for(const sprint of[false,true])for(const backward of[false,true])test(`wall-connected real body replay ${fps}/${sprint}/${backward}`,t=>replayKunningGate(t,W,item,{fps,sprint,backward}));
+test('unchanged production Teleport resolves a safe north-front ground landing, not inside the raised base',()=>{const tp=Object.create(Teleport.prototype);tp.targets=new Map([['坤宁门',item]]);tp.zoneManager={getMapItems:()=>built.mapItems};tp.collisionManager=cm;const p=tp.resolveLanding('坤宁门');assert.ok(p);assert.ok(p.z>item.z+7.2);assert.ok(Math.abs(cm.getGroundHeight(p.x,p.z,Infinity))<1e-9);assert.equal(cm.checkCollision(new THREE.Vector3(p.x,1.7,p.z),.5),false);});

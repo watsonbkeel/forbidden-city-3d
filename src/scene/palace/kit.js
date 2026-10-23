@@ -10,6 +10,7 @@ import { furnishRoom, goldBrickTexture, GOLD_BRICK_TILE } from './interiors.js';
 import { buildHuangjiGate } from './special/HuangjiGate.js';
 import { buildSideGate } from './special/SideGate.js';
 import { buildZhaodeGate } from './special/ZhaodeGate.js';
+import {buildKunningGate} from './special/KunningGate.js';
 import { buildZhenduGate } from './special/ZhenduGate.js';
 import { buildTirenPavilion } from './special/TirenPavilion.js';
 import { buildSurveyedPavilion } from './special/SurveyedPavilion.js';
@@ -266,6 +267,7 @@ export class CourtKit {
    * - style 'hall'：门殿（三间，明间为门道，门扇在中柱一线、打开后贴两侧隔墙），开口宽 = 门殿面阔
    */
   gate({ x, z, rot, w = 3.6, h = 4.4, t = 1, style = 'wall', gateKind, gateProfile, open, plaque, name, roof = 'xieshan', brackets = true, layers = 1, eaveCount }) {
+    if (gateProfile === 'kunning') return buildKunningGate(this, {x,z,rot,w,style,gateKind,gateProfile,open,name});
     if (gateProfile === 'huangji') return buildHuangjiGate(this, {x,z,rot,w,style,gateKind,gateProfile,open,name});
     if (gateProfile === 'zhendu') {
       if (gateKind !== 'three-bay') throw new Error('Zhendu profile requires explicit three-bay gateKind');

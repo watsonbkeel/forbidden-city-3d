@@ -3,6 +3,7 @@ import { buildRoof } from '../../RoofBuilder.js';
 import { applyPlanarUV } from '../../../utils/GeometryUV.js';
 import {buildJiaotaiCeiling} from './JiaotaiCentralInterior.js';
 import {buildJiaotaiDisplaySetting} from './JiaotaiDisplaySetting.js';
+import {applyJiaotaiSouthWindows} from './JiaotaiSouthWindows.js';
 import {buildZhongheDisplaySetting} from './ZhongheDisplaySetting.js';
 
 /**
@@ -148,6 +149,7 @@ export function buildSquareHall(builder, parent, data, y) {
     panel('caihua_beam', length + 0.3, beamH, 0.5, 0, y + H - beamH / 2);
   }
   for (const [side, types] of Object.entries(spec.facades)) facade(side, types);
+  if (data.name === '交泰殿') applyJiaotaiSouthWindows(builder,shell);
 
   if (spec.veranda) for (const s of [-1, 1]) {
     builder.libBox(shell, 'caihua_beam', w + 0.4, beamH, 0.5, x0, y + H - beamH / 2, z0 + s * d / 2, 'band');

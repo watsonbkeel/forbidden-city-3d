@@ -1,0 +1,274 @@
+✖ actual production registration uses an independent north-facing three-bay Kunning profile (2.362173ms)
+✖ north side bays are actual walls and south bays have actual three-field lattice windows (0.528025ms)
+✖ each registered top is backed by actual mesh triangles, no platform rescue (3.945234ms)
+✖ north/south real side stairs full roundtrip 10Hz sprint=false S=false (0.66475ms)
+✖ north/south real side stairs full roundtrip 10Hz sprint=false S=true (0.29911ms)
+✖ north/south real side stairs full roundtrip 10Hz sprint=true S=false (0.264778ms)
+✖ north/south real side stairs full roundtrip 10Hz sprint=true S=true (0.280542ms)
+✖ north/south real side stairs full roundtrip 60Hz sprint=false S=false (0.293832ms)
+✖ north/south real side stairs full roundtrip 60Hz sprint=false S=true (0.32583ms)
+✖ north/south real side stairs full roundtrip 60Hz sprint=true S=false (0.394754ms)
+✖ north/south real side stairs full roundtrip 60Hz sprint=true S=true (0.43844ms)
+✖ all support boxes refer to real finite tread extents and closed room geometry is not a furnished inventory (0.500073ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 0
+ℹ fail 12
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 192.452297
+
+✖ failing tests:
+
+test at tests/r61-kunning-gate.test.mjs:7:1
+✖ actual production registration uses an independent north-facing three-bay Kunning profile (2.362173ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'kunning'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-kunning-gate.test.mjs:7:110)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'kunning',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r61-kunning-gate.test.mjs:8:1
+✖ north side bays are actual walls and south bays have actual three-field lattice windows (0.528025ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-kunning-gate.test.mjs:8:309)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r61-kunning-gate.test.mjs:9:1
+✖ each registered top is backed by actual mesh triangles, no platform rescue (3.945234ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(f.kit.walkables.length>=33)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-kunning-gate.test.mjs:9:95)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r61-kunning-gate.test.mjs:10:91
+✖ north/south real side stairs full roundtrip 10Hz sprint=false S=false (0.66475ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(g)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-kunning-gate.test.mjs:10:229)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r61-kunning-gate.test.mjs:10:91
+✖ north/south real side stairs full roundtrip 10Hz sprint=false S=true (0.29911ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(g)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-kunning-gate.test.mjs:10:229)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r61-kunning-gate.test.mjs:10:91
+✖ north/south real side stairs full roundtrip 10Hz sprint=true S=false (0.264778ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(g)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-kunning-gate.test.mjs:10:229)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r61-kunning-gate.test.mjs:10:91
+✖ north/south real side stairs full roundtrip 10Hz sprint=true S=true (0.280542ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(g)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-kunning-gate.test.mjs:10:229)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r61-kunning-gate.test.mjs:10:91
+✖ north/south real side stairs full roundtrip 60Hz sprint=false S=false (0.293832ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(g)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-kunning-gate.test.mjs:10:229)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r61-kunning-gate.test.mjs:10:91
+✖ north/south real side stairs full roundtrip 60Hz sprint=false S=true (0.32583ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(g)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-kunning-gate.test.mjs:10:229)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r61-kunning-gate.test.mjs:10:91
+✖ north/south real side stairs full roundtrip 60Hz sprint=true S=false (0.394754ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(g)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-kunning-gate.test.mjs:10:229)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r61-kunning-gate.test.mjs:10:91
+✖ north/south real side stairs full roundtrip 60Hz sprint=true S=true (0.43844ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(g)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-kunning-gate.test.mjs:10:229)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r61-kunning-gate.test.mjs:11:1
+✖ all support boxes refer to real finite tread extents and closed room geometry is not a furnished inventory (0.500073ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(f.root.userData.kunningGate)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/r61-kunning-gate.test.mjs:11:127)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

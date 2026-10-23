@@ -18,6 +18,18 @@ const RUNTIME_INVENTORY_BY_TARGET = Object.freeze({
   'axis-courts/items/27': 'RI-BDA7502B3BD6',
   'axis-courts/items/32': 'RI-2555B6BDA0A9',
   'axis-courts/items/33': 'RI-7D8EE589FEA1',
+  'garden/items/14': 'RI-87DE2E82FDF5',
+  'garden/items/15': 'RI-09B73001F108',
+  'garden/items/16': 'RI-DB7D7CFB0AFA',
+  'garden/items/17': 'RI-12444A85424A',
+  'garden/items/18': 'RI-A8363464C20C',
+  'garden/items/19': 'RI-9C4D84C0C18E',
+  'garden/items/20': 'RI-772B9B8AB63B',
+  'garden/items/21': 'RI-92BFC7DA5CB0',
+  'garden/items/22': 'RI-97F7F553A006',
+  'garden/items/23': 'RI-2B882BEB407A',
+  'garden/items/24': 'RI-C112A7BE8A39',
+  'garden/items/25': 'RI-AEB68F800423',
 });
 
 export function validateGalleryInventoryPolicy(policy, { zone, target, kind } = {}) {
@@ -25,7 +37,8 @@ export function validateGalleryInventoryPolicy(policy, { zone, target, kind } = 
   const declarationOnly = Object.hasOwn(RUNTIME_INVENTORY_BY_TARGET, target);
   if (!policy || typeof policy !== 'object' || Array.isArray(policy) ||
       Object.keys(policy).sort().join(',') !== (declarationOnly ? 'mode,runtimeInventoryId,target' : 'mode,reviewId,target') ||
-      policy.mode !== 'unknown-inventory' || zone !== 'axis-courts' || kind !== 'corridor' ||
+      policy.mode !== 'unknown-inventory' || !['axis-courts', 'garden'].includes(zone) ||
+      target?.split('/')[0] !== zone || kind !== 'corridor' ||
       policy.target !== target || (declarationOnly
         ? policy.runtimeInventoryId !== RUNTIME_INVENTORY_BY_TARGET[target]
         : !Object.hasOwn(REVIEW_BY_TARGET, target) || policy.reviewId !== REVIEW_BY_TARGET[target])) {

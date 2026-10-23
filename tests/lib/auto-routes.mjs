@@ -1,3 +1,4 @@
+import {kunningGateAccess} from '../../src/scene/palace/special/KunningGate.js';
 import { wuyingGateToGallery } from './r52-wuying-routes.mjs';
 import { southWaterProfile } from '../../src/scene/palace/special/SouthWaterSystem.js';
 import { PALACE_LAYOUT } from '../../src/scene/Layout.js';
@@ -269,6 +270,14 @@ export function zoneRoutes(W, zone) {
       const gate = zone.items.find(i => i.kind === 'gate' && i.name === '坤宁门');
       if (!gate) throw new Error('Qinan exterior route requires the inherited Kunning Gate');
       const plan = ['旧穿殿假设已撤回；经 z=429.7 南横路转 x=18 侧路，避开南轴暂缺石构及双炉，到西南地面外观观览点后原路返回。台上、室内及北出路线未验收；不表示现场游客通行许可。'];
+      if(gate.gateProfile==='kunning'){
+        // R61's real raised deck covers the old y=0 centre approach. Use
+        // its actual side treads, then regain the retained eastern cross-path.
+        const entry=kunningGateAccess(gate),last=entry.at(-1);
+        const go=[...entry,[n.position.x,last[1]],[n.position.x,429.7],[n.position.x,n.position.z]];
+        plan.push('R61 坤宁门北向独立三间壳：走真实侧阶，离开低阶后再转回原钦安殿外观侧路；不从御路石正轴救回。');
+        out.push({name:`[${zone.id}] ${gate.name}→${h.name}地面外观→返回`,zone:zone.id,gate:gate.name,hall:h.name,via:'R61真实坤宁侧阶与保留钦安地面外观链',plan,pts:[...go,...go.slice(0,-1).reverse()].map(([x,z])=>[r1(x),r1(z)]),waypointDriver:'physical-crossing-v1',navigationMode:n.mode,viewpointId:n.viewpointId,replacesLegacyRoute:`[${zone.id}] ${gate.name}→${h.name}→返回`});continue;
+      }
       const entry = gateLeg(W, gate, [n.position.x, n.position.z], plan);
       // Extend the collinear gate exit to the south cross-path. The 1m
       // diagnostic stub at z428.7 is not a formal legacy-driver waypoint.
@@ -382,6 +391,7 @@ export function crossRoutes(W, zones) {
 /** 独立覆盖 profile 每条物理门道、两侧坡道；保留坡脚/坡顶点，不做短段简化。 */
 export function profileGateRoutes(zones) {
   return zones.flatMap(zone => zone.items.filter(item => item.kind === 'gate' && item.gateProfile && item.gateProfile !== 'zhaode').flatMap(item => {
+    if(item.gateProfile==='kunning'){const go=kunningGateAccess(item);return [{name:`[${zone.id}] ${item.name}门道1→实际两侧踏步→返回`,zone:zone.id,gate:item.name,gateProfile:'kunning',portalCenter:0,waypointDriver:'physical-crossing-v1',plan:['独立阶梯门壳不适用旧侧门双坡道接口；保留实际全部踏步/台面转向点'],pts:[...go,...go.slice(0,-1).reverse()]}];}
     const { profile: g } = gateGeom(item);
     if(g.profile==='huangji')return g.portals.map((portal,index)=>({
       name:`[${zone.id}] ${item.name}门道${index+1}→真实三洞地面→返回`,zone:zone.id,gate:item.name,gateProfile:'huangji',portalCenter:portal.x,

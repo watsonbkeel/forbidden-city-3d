@@ -4,6 +4,8 @@ import { buildRoof, buildWallCap } from '../../RoofBuilder.js';
 import { batchSolidMaterials } from '../../../render/SolidMaterialBatch.js';
 import { buildQianqingImperialStair } from './QianqingImperialStair.js';
 import { buildQianqingGatePlaque } from './QianqingGatePlaque.js';
+import {buildQianqingGatePorchCoffers} from './QianqingGatePorchCoffers.js';
+import { buildQianqingGateSouthWindow } from './QianqingGateSouthWindows.js';
 import { INNER_PALACE_LEVELS } from './InnerPalaceLevels.js';
 
 const SOURCE = 'https://www.dpm.org.cn/explore/building/236473.html';
@@ -40,7 +42,7 @@ export function buildQianqingGate(builder, data) {
     dimensions: { width: w, depth: d, provisional: true },
     bays: { front: BAYS, depth: DEPTH_BAYS, spacingProvisional: true },
     base: { height: y, southZ: south + data.position.z, northZ: north + data.position.z },
-    stairs: [], doors: [], screens: [],
+    stairs: [], doors: [], screens: [], southWindowGroups: [],
     connector: { height: y, width: connectorHalfW * 2, startZ: north + data.position.z,
       landingEndZ: landingNorth + data.position.z, endZ: connectorEnd + data.position.z,
       retainedPalaceHeight: DIMENSIONS.QIANQING.baseHeight, provisional: true },
@@ -128,6 +130,11 @@ export function buildQianqingGate(builder, data) {
     builder.libBox(g, 'wall_brick', ww, sill, 0.5, x, y + sill / 2, z);
     builder.box(g, dark, ww, wh, 0.08, x, y + sill + wh / 2, z);
     for (const dz of [-0.09, 0.09]) {
+      if (z === -d / 2 && dz < 0) {
+        info.southWindowGroups.push(buildQianqingGateSouthWindow(builder, g,
+          { x, z, width: ww, height: wh, bottom: y + sill, grid, frame }));
+        continue;
+      }
       for (const a of [-1, 1]) {
         builder.box(g, frame, 0.1, wh + 0.1, 0.1, x + a * ww / 2, y + sill + wh / 2, z + dz);
         builder.box(g, frame, ww, 0.1, 0.1, x, y + sill + (a + 1) * wh / 2, z + dz);
@@ -237,6 +244,7 @@ export function buildQianqingGate(builder, data) {
     info.screens.push({ start: worldPoint(p0.x, p0.z), fold: worldPoint(p1.x, p1.z), end: worldPoint(p2.x, p2.z),
       thickness, officialHeight: 8, officialLength: 9.7, measurementBasis: 'provisional', angleDegrees: 30 });
   }
+  g.userData.qianqingPorchCoffers = buildQianqingGatePorchCoffers(builder,g,{width:w,depth:d});
   g.userData.qianqingGate = info;
   const finished = builder.finish(g);
   // Run after ordinary material merging, which has already baked the folded

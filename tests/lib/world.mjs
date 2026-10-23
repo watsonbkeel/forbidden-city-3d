@@ -41,6 +41,10 @@ export const parseRot = r => (r === undefined || r === null ? 0 : typeof r === '
 
 /** 门通行几何；profile 的 front/rear 包含各自完整坡道，platformY 仅用于台面起点。 */
 export function gateGeom(item) {
+  if (item.gateProfile === 'kunning') {
+    if(item.name!=='坤宁门'||item.rot!=='north'||item.gateKind!=='three-bay')throw Error('Invalid Kunning QA registration');
+    return {x:item.x,z:item.z,rot:0,dir:[0,1],half:7.2,front:7.2,rear:7.2,platformY:1.2};
+  }
   if (item.southGateProfile !== undefined) {
     const south = southCourtGateGeometry(item);
     const front = south.z - south.southToe, rear = south.northToe - south.z;
