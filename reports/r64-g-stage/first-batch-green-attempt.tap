@@ -1,0 +1,118 @@
+✔ R64 Qinan official visible marble support and inset front joinery, not brick/full-lattice (52.638388ms)
+✖ R64 Qinan exact non-target mesh/material/physics, R32 measured grid, annex and old routes retained (49.090427ms)
+✔ R64 浮碧亭 observed coffer structure is real geometry, no borrowed flower/dragon image (9.873116ms)
+✔ R64 澄瑞亭 observed coffer structure is real geometry, no borrowed flower/dragon image (4.434388ms)
+✔ R64 浮碧亭 exact original non-target and collider/support retention (37.044707ms)
+✔ R64 澄瑞亭 exact original non-target and collider/support retention (30.870979ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 345.863847
+
+✖ failing tests:
+
+test at tests/r64-garden-first-batch.test.mjs:9:1
+✖ R64 Qinan exact non-target mesh/material/physics, R32 measured grid, annex and old routes retained (49.090427ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      colliders: [
+        {
+          isBox3: true,
+          max: {
+  ...
+          min: {
+  +         x: 6.715000000000001,
+  -         x: 6.715,
+            y: 1.5,
+            z: 480.98
+          }
+        },
+        {
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r64-g-garden-fidelity/tests/r64-garden-first-batch.test.mjs:9:189)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: {
+      colliders: [
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        ... 56 more items
+      ],
+      walkables: [
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object]
+      ],
+      rooms: [],
+      map: [ [Object] ]
+    },
+    expected: {
+      colliders: [
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        ... 56 more items
+      ],
+      walkables: [
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object]
+      ],
+      rooms: [],
+      map: [ [Object] ]
+    },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

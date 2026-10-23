@@ -1,0 +1,105 @@
+{
+  "baselineCommit": "bfafb63aff4984b266b02600d1364001000e0bc6",
+  "dependencies": {
+    "src/scene/palace/special/QinanProfile.js": "3d6475e011397ae7771cefdbc80a61eb354d33ee39d9269709f24d1545ea9851",
+    "src/scene/palace/special/QinanRoof.js": "38ca60dc40b3a04d92f17a333a6dfadeb72058d10bddb604b7f7b0bb77776490",
+    "src/scene/palace/special/QinanNamePlaque.js": "a56260ff0face4def040df31ec9ba5a79229bfac7454cb0820c1f1654b50afe1",
+    "data/architecture/qinan.json": "69fe986ca692449ad1347c8ba7e34e705e448e0a9ee240d4d089649fd08682c1",
+    "data/anchors.json": "439b27b4c7f228bca5f527f01492852c6a43b00414bada653ab1cf0418c33809",
+    "src/utils/GeometryUV.js": "6c6f55acd7e96d8dd8169baa62e0fdee7f92b27deb30532de022b18858884e30"
+  },
+  "expected": {
+    "qinan": {
+      "meshSHA256": "92f332bf477c6da1537fae80542bcd8dd4bdb4903f4533da6899de540eec977a",
+      "physicsSHA256": "d38d035c950ee362ed148254e7c6ed444a4be174079a987f64a8cdcdabc67d7a",
+      "profileSHA256": "c88e1faca5279b6ee3c9631147c4a063dbba831947d04af69b5085f8ed925af1",
+      "navigation": {
+        "mode": "exterior-view",
+        "accessStatus": "virtual-side-entry",
+        "viewpointId": "qinan-southwest-ground",
+        "position": {
+          "x": 18,
+          "z": 477,
+          "feetY": 0
+        },
+        "lookAt": {
+          "x": 0,
+          "z": 481.08,
+          "y": 3
+        },
+        "supportId": "world-ground",
+        "terraceRouteAccepted": true,
+        "interiorRouteAccepted": true,
+        "validationStatus": "R49_PRODUCTION_CONTROLLER_CPU_MATRIX",
+        "visitorPolicy": "The ground observation point is retained. Virtual side doors at the existing east/west stair landings enable game entry and same-way return; opening details are a game interpretation, not a verified current door state. The north wall stays closed.",
+        "gameAccess": "virtual-interior-return",
+        "virtualRoutes": [
+          {
+            "id": "qinan-east-virtual-entry",
+            "points": [
+              [
+                -18,
+                477
+              ],
+              [
+                -18,
+                483.20000000000005
+              ],
+              [
+                -8,
+                483.20000000000005
+              ],
+              [
+                0,
+                483.20000000000005
+              ],
+              [
+                0,
+                493.1
+              ]
+            ],
+            "return": "same-way",
+            "status": "GAMEPLAY_INTERPRETATION_NOT_CURRENT_CONDITION"
+          },
+          {
+            "id": "qinan-west-virtual-entry",
+            "points": [
+              [
+                18,
+                477
+              ],
+              [
+                18,
+                483.20000000000005
+              ],
+              [
+                8,
+                483.20000000000005
+              ],
+              [
+                0,
+                483.20000000000005
+              ],
+              [
+                0,
+                493.1
+              ]
+            ],
+            "return": "same-way",
+            "status": "GAMEPLAY_INTERPRETATION_NOT_CURRENT_CONDITION"
+          }
+        ],
+        "profileHash": "7c829298deee95c8b8b1857aac9b1fcbfb910b6585dbc1b4056ae349877ebd2a",
+        "validatedAgainstProfileHash": null
+      }
+    },
+    "浮碧亭": {
+      "meshSHA256": "8ccdefe0319fd2f7a6f9203b3b378ba5797d38d446e847dcc1aa1ec76b43928a",
+      "physicsSHA256": "ed5d98e1f494d48fe2297b92bd4395f90a9264b21501a17379be416b8a72789d"
+    },
+    "澄瑞亭": {
+      "meshSHA256": "51c70cd59ce9e8f9b98c4c2e297148362b776425f567cf0a2eac9e12b9705622",
+      "physicsSHA256": "4cd6a4b72f11b102f5f88be48f57198f3a9f06c478fcde2985d63cfd4c90fadd"
+    }
+  }
+}

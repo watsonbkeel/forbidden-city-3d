@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { applyBoxUV, scaleCylinderUV } from '../../utils/GeometryUV.js';
+import {addQianqiuFinial} from './GardenSilhouetteDetails.js';
 
 const SOURCE='https://www.dpm.org.cn/explore/building/236521.html';
 const PLAN='https://www.dpm.org.cn/Uploads/File/2020/04/08/u5e8d77d699010.pdf';
@@ -83,7 +84,8 @@ export function buildCrossGardenPavilion(builder,root,{name,x,z}){
   for(let i=0;i<16;i++){const a=i*Math.PI/8,m=mesh('clerestory-lattice',new THREE.BoxGeometry(.35,.4,.045),lattice,Math.sin(a)*2.065,5.82,Math.cos(a)*2.065);m.rotation.y=a;}
   const rings=[[2.8,6.15],[2.5,6.22],[1.85,6.6],[1.1,7.16],[.42,7.8],[0,8.08]],ts=[];for(let j=0;j<rings.length-1;j++)for(let i=0;i<64;i++){const a=i*Math.PI/32,b=(i+1)*Math.PI/32,[r,y]=rings[j],[r2,y2]=rings[j+1],p=[r*Math.sin(a),y,r*Math.cos(a)],q=[r*Math.sin(b),y,r*Math.cos(b)],u=[r2*Math.sin(a),y2,r2*Math.cos(a)],v=[r2*Math.sin(b),y2,r2*Math.cos(b)];ts.push([p,q,u]);if(r2)ts.push([q,v,u]);}
   mesh('round-upper-canopy-tiles',trianglesGeometry(ts),tiles);mesh('round-upper-canopy-underside',trianglesGeometry(ts.map(t=>t.map(p=>[p[0],p[1]-.10,p[2]]).reverse())),under);
-  mesh('round-upper-finial',new THREE.SphereGeometry(.23,12,8),builder.goldMat,0,8.25,0);
+  if(name==='千秋亭')addQianqiuFinial(builder,g);
+  else mesh('round-upper-finial',new THREE.SphereGeometry(.23,12,8),builder.goldMat,0,8.25,0);
   g.userData.crossPavilion=crossPavilionProfile(name);builder.group.userData.crossPavilions??=[];builder.group.userData.crossPavilions.push(g.userData.crossPavilion);
   return g;
 }

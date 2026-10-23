@@ -9,6 +9,7 @@ import { buildTreeVariant, createFoliageMaterial } from './garden/trees.js';
 import { buildRockery } from './garden/rocks.js';
 import { buildCrossGardenPavilion } from './garden/CrossGardenPavilions.js';
 import { buildBridgeGardenPavilion, bridgeGardenProfile, buildYujingEnclosure } from './garden/RemainingGardenPavilions.js';
+import {clipTianyiBedRectangle,isTianyiConflictingLegacyLantern} from './garden/TianyiGroundFit.js';
 import { LAYOUT } from '../config/constants.js';
 import anchors from '../../data/anchors.json' with { type: 'json' };
 
@@ -37,6 +38,7 @@ export class GardenBuilder {
     this.group.name = 'imperial_garden';
     this.colliders = [];
     this.walkables = [];
+    this.legacyTreeSamplingObstacles = [];
     this.ownedMaterials = new Set();
     this.windTime = { value: 0 };
     this.stats = {};
@@ -209,17 +211,20 @@ export class GardenBuilder {
     // 花坛：汉白玉围边 + 草顶
     const bedTops = [];
     for (const [a, b, c, e] of beds) {
-      bedTops.push(quadGeometry(a + 0.2, b - 0.2, c + 0.2, e - 0.2, BED_H - 0.03, lib.tileSize('grass')));
+      for(const [x0,x1,z0,z1] of clipTianyiBedRectangle([a+.2,b-.2,c+.2,e-.2]))bedTops.push(quadGeometry(x0,x1,z0,z1,BED_H-.03,lib.tileSize('grass')));
       const t = 0.3;
       const parts = [
         [(a + b) / 2, c + t / 2, b - a, t], [(a + b) / 2, e - t / 2, b - a, t],
         [a + t / 2, (c + e) / 2, t, e - c - 2 * t], [b - t / 2, (c + e) / 2, t, e - c - 2 * t],
       ];
       for (const [x, z, sx, sz] of parts) {
-        const m = new THREE.Mesh(applyBoxUV(new THREE.BoxGeometry(sx, BED_H, sz), lib.tileSize('marble')), marble);
-        m.position.set(x, BED_H / 2, z);
-        m.castShadow = true;
-        root.add(m);
+        const original=[x-sx/2,x+sx/2,z-sz/2,z+sz/2],pieces=clipTianyiBedRectangle(original);
+        for(const r of pieces){
+          const unchanged=r===original,w=unchanged?sx:r[1]-r[0],d=unchanged?sz:r[3]-r[2];
+          const m=new THREE.Mesh(applyBoxUV(new THREE.BoxGeometry(w,BED_H,d),lib.tileSize('marble')),marble);
+          m.position.set(unchanged?x:(r[0]+r[1])/2,BED_H/2,unchanged?z:(r[2]+r[3])/2);
+          m.castShadow=true;root.add(m);
+        }
       }
     }
     const bedGrass = lib.material('grass', { roughness: 0.95 });
@@ -439,7 +444,11 @@ export class GardenBuilder {
     const hz = this.hallPos.z;
     // 石灯：沿中轴两侧
     for (const z of [hz - 30, hz - 22]) {
-      for (const s of [-1, 1]) this.makeLantern(root, cx + s * 3.3, z, marble);
+      for (const s of [-1, 1]) {
+        const x=cx+s*3.3;
+        if(!isTianyiConflictingLegacyLantern(x,z))this.makeLantern(root,x,z,marble);
+        else this.legacyTreeSamplingObstacles.push(new THREE.Box3(new THREE.Vector3(x-.45,0,z-.45),new THREE.Vector3(x+.45,2.8,z+.45)));
+      }
     }
     // 铜香炉：钦安殿台阶前两侧（地面），距殿身南缘 7 m
     const bz = hz - (this.hallDim.depth ?? 11) / 2 - 7;
@@ -505,7 +514,9 @@ export class GardenBuilder {
     const pick = () => { let t = rng(); for (let i = 0; i < weights.length; i++) { t -= weights[i]; if (t <= 0) return i; } return 0; };
 
     // 在花坛内采样，保持间距并避开障碍
-    const obstacles = this.colliders.map(b => b.clone().expandByScalar(1.6));
+    // Withheld legacy ornaments are not game colliders. Keep their old random
+    // sampling exclusions so an unrelated tree does not move or change species.
+    const obstacles = [...this.colliders,...this.legacyTreeSamplingObstacles].map(b => b.clone().expandByScalar(1.6));
     const placed = [];
     const area = this.beds.map(([a, b, c, e]) => Math.max(0, b - a - 3) * Math.max(0, e - c - 3));
     const total = area.reduce((s, v) => s + v, 0);
@@ -587,6 +598,7 @@ export class GardenBuilder {
     this.group.clear();
     this.colliders.length = 0;
     this.walkables.length = 0;
+    this.legacyTreeSamplingObstacles.length = 0;
   }
 }
 
