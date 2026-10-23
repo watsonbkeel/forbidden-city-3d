@@ -1,0 +1,86 @@
+✔ three photo-based panels, raised central crest, two lower curled shoulders and upper inset are separate (1.221758ms)
+✔ native south-facing panel rays hit the colored infill before red frame backing (3.013038ms)
+✔ all visible triangle data remain finite and a tight replacement budget counts every screen surface (0.402663ms)
+✔ screen substitution retains entire original throne platform collision and leaves default halls exact (8.907928ms)
+✔ plaque color and traditional right-to-left glyph order follow the selected reference; texture ownership is private (0.93566ms)
+✔ plain backdrop remains a distinct rectangle behind the lobed screen; unregistered inputs reject (0.331035ms)
+✔ all three painted profiles map the same normalized atlas without UV reuse from a full box (0.218827ms)
+✔ chair is a separate seat, four grounded legs, shaped back and two supported arms within retained footprint (1.481146ms)
+✔ combined furnishing replacement stays below214 added resident triangles without hiding LOD cost (0.753648ms)
+✔ central red framed bay is twice either side bay in the selected photo-relative allocation (0.346859ms)
+✔ private screen atlas disposes exactly once and is reused across the three faces (1.196329ms)
+✔ each central front assembly has two closed outside leaves and two inner folded leaves (36.453641ms)
+✔ unregistered door dimensions and nonfinite inputs fail closed (0.381972ms)
+✔ couplets bind exact official15-character wording, viewer sides and south-facing atlas halves (3.013639ms)
+✔ atlas draws yellow fields with black vertical text, stays private and disposes once (2.91352ms)
+✔ all12 actual front leaf bodies have corresponding full-height colliders; rear is untouched (73.794893ms)
+✔ allthree real front openings pass both ways with original player radius; closed panels block (110.62226ms)
+✔ couplet fronts remain inside the existing player exclusion around their physical columns (0.839868ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: exact retained R29 dependency: data/anchors.json
++ actual - expected
+
++ '439b27b4c7f228bca5f527f01492852c6a43b00414bada653ab1cf0418c33809'
+- 'c720ba58979c12b3c9eb763593bd8f27cdae59d1b21fd5a0bda70170a2ba668a'
+
+    at assertR30RetainedSource (file:///workspace/scratch/02a8023d1a85/r58-baohe-dais/tests/lib/r30-qianqing-passage-retention.mjs:41:10)
+    at file:///workspace/scratch/02a8023d1a85/r58-baohe-dais/tests/lib/historical-r29-qianqing-fixture.mjs:11:56
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '439b27b4c7f228bca5f527f01492852c6a43b00414bada653ab1cf0418c33809',
+  expected: 'c720ba58979c12b3c9eb763593bd8f27cdae59d1b21fd5a0bda70170a2ba668a',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
+✖ tests/r23-baohe-front-enclosure.test.mjs (228.030573ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: exact retained R29 dependency: data/anchors.json
++ actual - expected
+
++ '439b27b4c7f228bca5f527f01492852c6a43b00414bada653ab1cf0418c33809'
+- 'c720ba58979c12b3c9eb763593bd8f27cdae59d1b21fd5a0bda70170a2ba668a'
+
+    at assertR30RetainedSource (file:///workspace/scratch/02a8023d1a85/r58-baohe-dais/tests/lib/r30-qianqing-passage-retention.mjs:41:10)
+    at file:///workspace/scratch/02a8023d1a85/r58-baohe-dais/tests/lib/historical-r29-qianqing-fixture.mjs:11:56
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '439b27b4c7f228bca5f527f01492852c6a43b00414bada653ab1cf0418c33809',
+  expected: 'c720ba58979c12b3c9eb763593bd8f27cdae59d1b21fd5a0bda70170a2ba668a',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
+✖ tests/r24-baohe-rear-enclosure.test.mjs (196.877169ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 18
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3989.261575
+
+✖ failing tests:
+
+test at tests/r23-baohe-front-enclosure.test.mjs:1:1
+✖ tests/r23-baohe-front-enclosure.test.mjs (228.030573ms)
+  'test failed'
+
+test at tests/r24-baohe-rear-enclosure.test.mjs:1:1
+✖ tests/r24-baohe-rear-enclosure.test.mjs (196.877169ms)
+  'test failed'

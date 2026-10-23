@@ -1,0 +1,40 @@
+{
+  "binding": {
+    "src/scene/palace/special/WumenNorthPortal.js": "7e32b9494c26d37762ce8da4da257ecccf0cca3f17eb2fa7a0d0f37813e6122e",
+    "src/scene/PalaceBuilder.js": "cbb83acc8ddb4226b86247a777e2177735839be9a7a38533830448d0fbc690b1",
+    "tests/lib/wumen-north-portal-fixture.mjs": "cec814ae9ae21c65453cbdba7beac782743fab7da31abe9cf9acf2a6b8534e11"
+  },
+  "views": {
+    "northOblique": {
+      "camera": [
+        32,
+        11,
+        80
+      ],
+      "target": [
+        0,
+        5.2,
+        18.6
+      ],
+      "fov": 43
+    },
+    "northCenter": {
+      "camera": [
+        0,
+        5.3,
+        38
+      ],
+      "target": [
+        0,
+        4.4,
+        18.6
+      ],
+      "fov": 42
+    }
+  },
+  "width": 1200,
+  "height": 900,
+  "renderer": "tests/r49b-plaque-cpu-render.py",
+  "quality": "hd production albedo; CPU fixed diagnostic light",
+  "browserAcceptance": false
+}

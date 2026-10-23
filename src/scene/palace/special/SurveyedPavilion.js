@@ -1,5 +1,7 @@
 import * as THREE from 'three';
 import { pavilionGeometry } from './PavilionProfiles.js';
+import { buildTirenLowerWindowLeaves } from './PavilionLowerWindowLeaves.js';
+import { buildHongyiLowerWindowLeaves } from './HongyiLowerWindowLeaves.js';
 import { buildHongyiNameInscription } from './SourcedNameInscriptions.js';
 import { prunePavilionCoveredFaces, splitPavilionDeckFaces } from '../../../render/PavilionRenderGeometry.js';
 
@@ -112,10 +114,14 @@ export function buildSurveyedPavilion(kit,opts={}) {
       const sill=.85,h=facadeH-sill-.2;
       solid(parent,'lower-window-sill','wall_brick',width,sill,.65,cx,lo.floorY+sill/2,lo.front);
       const window=part(parent,'lower-window',{bay});
+      if(g.profile==='tiren')buildTirenLowerWindowLeaves(kit,window,{profile:g.profile,bay,cx,clear,bottom:lo.floorY+sill,height:h,z:lo.front},box);
+      else if(g.profile==='hongyi')buildHongyiLowerWindowLeaves(kit,window,{profile:g.profile,bay,cx,clear,bottom:lo.floorY+sill,height:h,z:lo.front},box);
+      else {
       for(const sign of [-1,1])box(window,'lower-window-frame','wood_column',.13,h,.2,cx+sign*clear/2,lo.floorY+sill+h/2,lo.front);
       for(const y of [lo.floorY+sill,lo.floorY+sill+h])box(window,'lower-window-frame','wood_column',clear,.14,.2,cx,y,lo.front);
       for(let j=1;j<14;j++)box(window,'lower-window-bar','wood_column',.045,h,.08,cx-clear/2+j*clear/14,lo.floorY+sill+h/2,lo.front-.04);
       for(const end of [-1,1])for(let j=0;j<3;j++)box(window,'lower-window-bar','wood_column',clear,.045,.09,cx,lo.floorY+sill+h/2+end*(h*.29+j*.1),lo.front-.05);
+      }
       kit.col(f,cx-width/2,lo.floorY,lo.front-.325,cx+width/2,lo.floorY+facadeH,lo.front+.325);
     } else {
       const leafW=clear/2-.035;

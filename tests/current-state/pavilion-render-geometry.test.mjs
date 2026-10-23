@@ -163,7 +163,11 @@ for (const profile of ['hongyi', 'tiren']) {
     const count = meshes => meshes.reduce((total, mesh) => total + triangles(mesh), 0);
     assert.ok(count(baselineMeshes) - count(currentMeshes) >= (profile === 'hongyi' ? 2600 : 2700));
     assert.equal(currentMeshes.filter(mesh => mesh.userData.role === 'upper-lattice-bar').length, profile === 'hongyi' ? 168 : 224);
-    assert.equal(currentMeshes.filter(mesh => mesh.userData.role === 'lower-window-bar').length, 114);
+    assert.equal(currentMeshes.filter(mesh => mesh.userData.role === 'lower-window-bar').length, profile === 'tiren' ? 0 : 114);
+    if (profile === 'tiren') {
+      assert.equal(currentMeshes.filter(mesh => mesh.userData.role === 'lower-window-leaf-bar').length, 72);
+      assert.equal(currentMeshes.filter(mesh => mesh.userData.role === 'lower-window-leaf-crossbar').length, 72);
+    }
     assert.equal(built.f.userData.pavilion.balcony.supports, 24);
   });
 

@@ -1,0 +1,36 @@
+✔ consumer rejects missing actual room registrations instead of reconstructing them (1.995713ms)
+✔ consumer rejects false known-empty metadata (136.438328ms)
+✔ consumer rejects a single restored prop-owned ghost collider (130.722229ms)
+✔ consumer rejects one restored removed furniture shape (131.268426ms)
+✔ consumer rejects missing retained shell geometry (135.14414ms)
+✔ consumer rejects fully non-submitted retained shell draw ranges (19.755764ms)
+✔ consumer rejects non-rendering retained shell material (117.285246ms)
+✖ consumer rejects exact removed prop shape under another material name (130.271816ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1504.106694
+
+✖ failing tests:
+
+test at tests/r58-gallery-consumer-negatives.test.mjs:11:1
+✖ consumer rejects exact removed prop shape under another material name (130.271816ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-consumer-negatives.test.mjs:11:313)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /removed prop shape/,
+    operator: 'throws',
+    diff: 'simple'
+  }

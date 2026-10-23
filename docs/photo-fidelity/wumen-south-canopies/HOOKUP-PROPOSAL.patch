@@ -1,0 +1,20 @@
+--- a/src/scene/PalaceBuilder.js
++++ b/src/scene/PalaceBuilder.js
+@@ -7,6 +7,7 @@
+ import { taiheFloorMaterial, TAIHE_FLOOR } from './palace/special/TaiheFloorMaterial.js';
+ import { buildGateAscent, toWorld } from './palace/gateAscent.js';
+ import { buildWumenAscent } from './palace/special/WumenAscent.js';
++import { buildWumenSouthPortalCanopies } from './palace/special/WumenSouthPortalCanopies.js';
+ import { wumenTowerGeometry, shenwuTowerGeometry } from './palace/special/GateTowerProfiles.js';
+ import { buildGateTowerShell } from './palace/special/GateTowerShell.js';
+ import { WUMEN_VERTICAL_PROFILE } from './palace/special/WumenVerticalProfile.js';
+@@ -1153,5 +1154,9 @@
+       // 北方亭坐在可登临的主墩台顶上：登记亭身碰撞
+       this.col(s * hx - P / 2, top, pN - P / 2, s * hx + P / 2, top + 3, pN + P / 2);
+     }
++    // Three source-visible small south protective canopies; append to retain old child slots.
++    buildWumenSouthPortalCanopies(this, g, {
++      openings, southZ: zS, platformHeight: PH,
++    });
+     this.finish(g);
+   }

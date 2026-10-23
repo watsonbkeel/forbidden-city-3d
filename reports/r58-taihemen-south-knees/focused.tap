@@ -1,0 +1,26 @@
+✔ all prior merged geometry, transforms, material attributes, columns and navigation registrations remain exact (714.986455ms)
+✔ pure existing-W consumer verifies real merged attachment and does not mutate geometry or registrations (605.803955ms)
+✔ consumer refreshes stale derived matrices without requiring a renderer or an earlier consumer (62.696322ms)
+✔ consumer rejects missing knee geometry despite metadata (49.888791ms)
+✔ consumer rejects hidden knee material despite metadata (39.559228ms)
+✔ consumer rejects hidden parent despite metadata (37.666302ms)
+✔ consumer rejects detached beam despite metadata (36.447677ms)
+✔ consumer rejects detached columns despite metadata (34.445427ms)
+✔ consumer rejects retained pre-knee Taihemen rather than repairing or manufacturing it (34.027712ms)
+✔ ground-start real-controller porch sweep and north return 60Hz sprint=false backward=false (288.373948ms)
+✔ ground-start real-controller porch sweep and north return 10Hz sprint=true backward=true (132.351721ms)
+✔ baseline comparison removes only one new call and retains the exact current enclosure (38.297146ms)
+✔ fourteen shallow own-source knee halves are restricted to the seven existing south porch bays (12.882329ms)
+✔ actual geometry is finite, closed, outward wound, nondegenerate and contacts retained beam and column volumes (19.272241ms)
+✔ three simplified scallop groups are actual silhouette cutouts rather than a filled rectangle (3.91365ms)
+✔ guarded helper fails before writes for non-Taihemen or invalid envelopes (0.941089ms)
+✔ production hookup is only an additive south enclosure call, not a shared or north geometry rewrite (0.439949ms)
+✔ new knee clearance rejection leaves the enclosure caller atomic too (0.483074ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2306.459648

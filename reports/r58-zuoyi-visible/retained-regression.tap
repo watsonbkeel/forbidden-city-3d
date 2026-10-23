@@ -1,0 +1,25 @@
+✔ ground fallback keeps the library metre-scaled UV contract instead of double-tiling (3.656177ms)
+✔ configure applies unit repeats identically to color and normal textures for every spec (1.022099ms)
+✔ all procedural fallbacks retain documented tile size and shared material ownership (4.495431ms)
+✔ failed file loading returns a correctly scaled usable fallback without changing manifest scale (1.908274ms)
+✔ hd: exactly nine pixel rows reach each corrected front (229.389874ms)
+✔ sd: exactly nine pixel rows reach each corrected front (64.933704ms)
+✔ binding is exact zone, item ordinal, declaration and transform, never name alone (0.577203ms)
+✔ real finish preserves both front skins, all original UVs, and all non-target meshes (306.459689ms)
+✔ shared albedo and normal pixels are unchanged; two leaves share library-owned derivatives (174.12313ms)
+✔ wrong declaration or altered leaf/frame rejects without changing cached resources or scene (861.726925ms)
+✔ derivatives have independent THREE.Source, reuse within one library, and isolate different libraries (308.773199ms)
+✔ a material-only CPU fixture keeps original doors and records source unavailable (27.743183ms)
+✔ unloaded 64px procedural fallback keeps its original material and does not claim nine rows (45.066877ms)
+✔ actual load failure for door_studded.webp leaves the target uncorrected (99.620434ms)
+✔ actual load failure for door_studded_n.webp leaves the target uncorrected (56.053866ms)
+✔ local loader proves actual production load/configure success for the full component library (151.859781ms)
+✔ world QA bridge uses real door dependencies and retains every other CPU material identity (56.542256ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2883.860673

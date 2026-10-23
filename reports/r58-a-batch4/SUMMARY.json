@@ -1,0 +1,87 @@
+{
+  "status": "CUMULATIVE_FUNCTIONAL_CHECKPOINT_NOT_A37_OR_BROWSER_ACCEPTANCE",
+  "sourceCommit": "c9a82aaa8316954e80a03aa934cd8e745065322e",
+  "sourceFingerprint": "45589c74b7d8f63928e1464aa8de0eccf7424a16cc3b47aa4a69364403f3d21f",
+  "sourceFiles": 216,
+  "implementedWorkItems": 3,
+  "world": {
+    "colliders": 25019,
+    "walkables": 1125,
+    "zones": [
+      "axis-courts",
+      "east-six",
+      "west-six",
+      "outer-east",
+      "outer-west",
+      "garden",
+      "ningshou"
+    ]
+  },
+  "individualIdsPerLayer": 108,
+  "layers": [
+    "B",
+    "Yangxin-S",
+    "Kunning-S",
+    "Huangji-S"
+  ],
+  "viewRecords": 401,
+  "pathsTwoCycles": 24,
+  "zoneReloads": 6,
+  "newControllerRouteCases": 40,
+  "newActualJumpCases": 12,
+  "focusedTestsPass": 36,
+  "submissionBudget": {
+    "boundary": "CPU actual instance/index counts only, not GPU draw timing",
+    "high": {
+      "frames": 18630,
+      "maxInstances": 64,
+      "maxTriangles": 45564,
+      "maxBatches": 22,
+      "maxNear": 2
+    },
+    "low": {
+      "frames": 187,
+      "maxInstances": 32,
+      "maxTriangles": 14228,
+      "maxBatches": 10,
+      "maxNear": 0
+    }
+  },
+  "resources": {
+    "command": [
+      "node",
+      "--expose-gc",
+      "--max-old-space-size=1024",
+      "--test",
+      "--test-reporter=tap",
+      "--test-concurrency=1",
+      "tests/r58-a-batch4-world.test.mjs"
+    ],
+    "exitCode": 0,
+    "wallSeconds": 248.36196064949036,
+    "childrenUserSeconds": 285.673318,
+    "childrenSystemSeconds": 2.140513,
+    "childrenMaxRssKiB": 1658308,
+    "meaning": "Cumulative test-process resources with explicit QA-only collection, not browser/frame performance."
+  },
+  "browserAccepted": false,
+  "files": {
+    "reports/r58-a-batch4/focused.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "reports/r58-a-batch4/focused.tap": "5fdb212d08d5518f379aaf4a390898621a4af5a047891b1ddfe6db06ca2141bc",
+    "reports/r58-a-batch4/one-world-resource.json": "98dbc32042535105945c64b2ae0487d95721359340eab5d234df11ba33151371",
+    "reports/r58-a-batch4/one-world-validation.json.gz": "42428d74a5ebacf251ac2c271ee937206752c69cea24dd523e16470be1c94a65",
+    "reports/r58-a-batch4/one-world.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "reports/r58-a-batch4/one-world.tap": "39e480406a99be243669ae7d4590e1733d9f51de28d41f28504a388698ceee59",
+    "reports/r58-a-batch4/staff-proof.json.gz": "848afa7ea90c61655242e78c38446f9a723a78c0bd0b05329544dde00ff4cb00",
+    "reports/r58-a-batch4/staff-proof.json.gz.manifest.json": "a1119a38e64025194d760e249f6ceb0b971cb2690a8ad84fef71c0f74417ba2d",
+    "reports/r58-a-batch4/queue-before-snapshot-sync.txt": "4725723e1aae4c5a98ed5e69f686257070fe6d95a0b6d7d4c24922fba2ee4a2a",
+    "reports/r58-a-batch4/queue-structure.txt": "170259eb6e792cad36bd60803c9df684992c13621eb630289c418a8b17b99f11",
+    "reports/r58-a-batch4/queue-tests.txt": "f00785c1b1190b5327880527f6ef2264fb8b8d5b051e92d93b8ce5df48e34451"
+  },
+  "queueChecks": {
+    "structure": 29,
+    "regression": 8,
+    "initialSnapshotSyncFailure": "queue-before-snapshot-sync.txt",
+    "correctedWithoutChangingAssertions": true
+  }
+}

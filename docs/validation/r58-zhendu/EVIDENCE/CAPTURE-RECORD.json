@@ -1,0 +1,985 @@
+{
+  "kind": "CPU_DIAGNOSTIC_ONLY_NOT_BROWSER",
+  "baselineCommit": "755dd9ac5c6f8a8766c1db3e8e4f8fe17fa142da",
+  "sourceHashes": {
+    "src/scene/palace/kit.js": "6fa15b49d44a8ff0290056cecc6e5793736009f4379d8d428d3fcd79e2fade69",
+    "src/scene/palace/special/ZhenduGateProfile.js": "5b471b58a0297a1ef7439148e4c90f2fe61914fd3bfaf745cbe1ad162a3b3de1",
+    "src/scene/palace/special/ZhenduGate.js": "aba561e7ef0995f1b9ee0132f455ed193d96a28581953c9446b96923f66fbf25",
+    "tests/lib/r58-zhendu-fixture.mjs": "55b909a078ca05b2f73e2f00a92864c3cb21cb6d06402006c00e19dc943a0a0f"
+  },
+  "reports": [
+    {
+      "path": "docs/validation/r58-zhendu/EVIDENCE/before-south.json.gz",
+      "sourceMeshes": 36,
+      "sourceCharacterInstances": 0,
+      "triangles": 1776,
+      "camera": {
+        "position": [
+          64.4,
+          11,
+          -271.2
+        ],
+        "quaternion": [
+          0,
+          0.9993865020852581,
+          0.03502312735596608,
+          0
+        ],
+        "fov": 43,
+        "aspect": 1.7777777777777777,
+        "matrixWorldInverse": [
+          -1.0000000000000002,
+          0,
+          0,
+          0,
+          0,
+          0.9975467611004156,
+          0.07000328148073093,
+          0,
+          0,
+          0.07000328148073093,
+          -0.9975467611004157,
+          0,
+          64.40000000000003,
+          8.011875565469655,
+          -271.3047177067208,
+          1
+        ],
+        "projectionMatrix": [
+          1.4279894413111731,
+          0,
+          0,
+          0,
+          0,
+          2.5386478956643073,
+          0,
+          0,
+          0,
+          0,
+          -1.0003333888981496,
+          -1,
+          0,
+          0,
+          -0.060010001666944486,
+          0
+        ],
+        "exportFar": 150
+      },
+      "phase": "before",
+      "view": "south"
+    },
+    {
+      "path": "docs/validation/r58-zhendu/EVIDENCE/before-south-oblique.json.gz",
+      "sourceMeshes": 36,
+      "sourceCharacterInstances": 0,
+      "triangles": 1776,
+      "camera": {
+        "position": [
+          97.4,
+          17,
+          -259.2
+        ],
+        "quaternion": [
+          -0.027547885658316867,
+          0.9466369157039541,
+          0.08414896169506511,
+          0.3099009778427676
+        ],
+        "fov": 43,
+        "aspect": 1.7777777777777777,
+        "matrixWorldInverse": [
+          -0.8064049958557057,
+          -0.10431138205501711,
+          0.5820911597273505,
+          0,
+          4.163336342344338e-17,
+          0.9843201324827977,
+          0.1763912605234396,
+          0,
+          -0.5913636636275175,
+          0.14224279371138696,
+          -0.7937606723554781,
+          0,
+          -74.7376150159068,
+          30.295818489942604,
+          -265.43709666088233,
+          1.0000000000000002
+        ],
+        "projectionMatrix": [
+          1.4279894413111731,
+          0,
+          0,
+          0,
+          0,
+          2.5386478956643073,
+          0,
+          0,
+          0,
+          0,
+          -1.0003333888981496,
+          -1,
+          0,
+          0,
+          -0.060010001666944486,
+          0
+        ],
+        "exportFar": 150
+      },
+      "phase": "before",
+      "view": "south-oblique"
+    },
+    {
+      "path": "docs/validation/r58-zhendu/EVIDENCE/before-north-oblique.json.gz",
+      "sourceMeshes": 36,
+      "sourceCharacterInstances": 0,
+      "triangles": 1776,
+      "camera": {
+        "position": [
+          33.400000000000006,
+          16,
+          -171.2
+        ],
+        "quaternion": [
+          -0.07992655313493252,
+          -0.3061793677475599,
+          -0.025807080269018425,
+          0.9482615332689932
+        ],
+        "fov": 43,
+        "aspect": 1.7777777777777777,
+        "matrixWorldInverse": [
+          0.8111763787473859,
+          0.09788744602038159,
+          -0.5765508914865058,
+          0,
+          0,
+          0.9858914814239146,
+          0.16738574268963072,
+          0,
+          0.5848015753760225,
+          -0.13577936060891635,
+          0.7997318817393465,
+          0,
+          73.02473865421237,
+          -42.289130936109856,
+          153.4927260463913,
+          1.0000000000000002
+        ],
+        "projectionMatrix": [
+          1.4279894413111731,
+          0,
+          0,
+          0,
+          0,
+          2.5386478956643073,
+          0,
+          0,
+          0,
+          0,
+          -1.0003333888981496,
+          -1,
+          0,
+          0,
+          -0.060010001666944486,
+          0
+        ],
+        "exportFar": 150
+      },
+      "phase": "before",
+      "view": "north-oblique"
+    },
+    {
+      "path": "docs/validation/r58-zhendu/EVIDENCE/after-south.json.gz",
+      "sourceMeshes": 256,
+      "sourceCharacterInstances": 0,
+      "triangles": 5600,
+      "camera": {
+        "position": [
+          64.4,
+          11,
+          -271.2
+        ],
+        "quaternion": [
+          0,
+          0.9993865020852581,
+          0.03502312735596608,
+          0
+        ],
+        "fov": 43,
+        "aspect": 1.7777777777777777,
+        "matrixWorldInverse": [
+          -1.0000000000000002,
+          0,
+          0,
+          0,
+          0,
+          0.9975467611004156,
+          0.07000328148073093,
+          0,
+          0,
+          0.07000328148073093,
+          -0.9975467611004157,
+          0,
+          64.40000000000003,
+          8.011875565469655,
+          -271.3047177067208,
+          1
+        ],
+        "projectionMatrix": [
+          1.4279894413111731,
+          0,
+          0,
+          0,
+          0,
+          2.5386478956643073,
+          0,
+          0,
+          0,
+          0,
+          -1.0003333888981496,
+          -1,
+          0,
+          0,
+          -0.060010001666944486,
+          0
+        ],
+        "exportFar": 150
+      },
+      "phase": "after",
+      "view": "south"
+    },
+    {
+      "path": "docs/validation/r58-zhendu/EVIDENCE/after-south-oblique.json.gz",
+      "sourceMeshes": 256,
+      "sourceCharacterInstances": 0,
+      "triangles": 5600,
+      "camera": {
+        "position": [
+          97.4,
+          17,
+          -259.2
+        ],
+        "quaternion": [
+          -0.027547885658316867,
+          0.9466369157039541,
+          0.08414896169506511,
+          0.3099009778427676
+        ],
+        "fov": 43,
+        "aspect": 1.7777777777777777,
+        "matrixWorldInverse": [
+          -0.8064049958557057,
+          -0.10431138205501711,
+          0.5820911597273505,
+          0,
+          4.163336342344338e-17,
+          0.9843201324827977,
+          0.1763912605234396,
+          0,
+          -0.5913636636275175,
+          0.14224279371138696,
+          -0.7937606723554781,
+          0,
+          -74.7376150159068,
+          30.295818489942604,
+          -265.43709666088233,
+          1.0000000000000002
+        ],
+        "projectionMatrix": [
+          1.4279894413111731,
+          0,
+          0,
+          0,
+          0,
+          2.5386478956643073,
+          0,
+          0,
+          0,
+          0,
+          -1.0003333888981496,
+          -1,
+          0,
+          0,
+          -0.060010001666944486,
+          0
+        ],
+        "exportFar": 150
+      },
+      "phase": "after",
+      "view": "south-oblique"
+    },
+    {
+      "path": "docs/validation/r58-zhendu/EVIDENCE/after-north-oblique.json.gz",
+      "sourceMeshes": 256,
+      "sourceCharacterInstances": 0,
+      "triangles": 5600,
+      "camera": {
+        "position": [
+          33.400000000000006,
+          16,
+          -171.2
+        ],
+        "quaternion": [
+          -0.07992655313493252,
+          -0.3061793677475599,
+          -0.025807080269018425,
+          0.9482615332689932
+        ],
+        "fov": 43,
+        "aspect": 1.7777777777777777,
+        "matrixWorldInverse": [
+          0.8111763787473859,
+          0.09788744602038159,
+          -0.5765508914865058,
+          0,
+          0,
+          0.9858914814239146,
+          0.16738574268963072,
+          0,
+          0.5848015753760225,
+          -0.13577936060891635,
+          0.7997318817393465,
+          0,
+          73.02473865421237,
+          -42.289130936109856,
+          153.4927260463913,
+          1.0000000000000002
+        ],
+        "projectionMatrix": [
+          1.4279894413111731,
+          0,
+          0,
+          0,
+          0,
+          2.5386478956643073,
+          0,
+          0,
+          0,
+          0,
+          -1.0003333888981496,
+          -1,
+          0,
+          0,
+          -0.060010001666944486,
+          0
+        ],
+        "exportFar": 150
+      },
+      "phase": "after",
+      "view": "north-oblique"
+    }
+  ],
+  "profile": {
+    "profile": "zhendu",
+    "id": "axis-courts/obj-012",
+    "objectId": "FC-9252CFFDAB",
+    "name": "贞度门",
+    "x": 64.4,
+    "z": -214.2,
+    "rot": 0,
+    "transform": {
+      "x": 64.4,
+      "z": -214.2,
+      "rot": 0
+    },
+    "documentary": {
+      "source": "WANG-1983-p18",
+      "url": "https://img.dpm.org.cn/Uploads/pdf/2198/T00018_00.pdf",
+      "appliesTo": "昭德门、贞度门",
+      "raw": {
+        "widthChi": 62.9,
+        "depthChi": 41.4,
+        "plinthToRidgeChi": 40.45,
+        "groundToRidgeChi": 50.5
+      },
+      "metresPerChi": 0.32,
+      "topology": {
+        "coreWidthBays": 3,
+        "coreDepthBays": 1,
+        "surroundingVeranda": true,
+        "purlins": 9,
+        "eaves": 1,
+        "roof": "xieshan"
+      },
+      "boundary": "Outer column envelope includes lateral verandas; depth includes front veranda, not an independently measured symmetric split.",
+      "datum": "Historic rebuilding document and 1983 comparison; not contemporary pavement survey."
+    },
+    "derived": {
+      "buildingWidth": 20.128,
+      "buildingDepth": 13.248,
+      "plinthRise": 3.216,
+      "ridgeAbovePlatform": 12.944,
+      "ridgeAboveHistoricGround": 16.16
+    },
+    "photoFit": {
+      "status": "PHOTO_FIT",
+      "source": "https://taociguan.dpm.org.cn/images/zjcphoto/2023-12-05/9f53a288418e4364b1c3b3b5e98321ec.jpg",
+      "coverage": "Cropped oblique front detail; not complete facade, rear or plan.",
+      "columnHeight": {
+        "value": 6,
+        "range": [
+          5.47,
+          6.75
+        ],
+        "relativeTo": "documentary platform rise",
+        "ratioRange": [
+          1.7,
+          2.1
+        ]
+      },
+      "columnDiameter": {
+        "value": 0.58,
+        "range": [
+          0.45,
+          0.69
+        ],
+        "relativeTo": "visible column height",
+        "ratioRange": [
+          0.075,
+          0.115
+        ]
+      },
+      "railHeight": {
+        "value": 1.05,
+        "range": [
+          0.84,
+          1.22
+        ],
+        "relativeTo": "documentary platform rise",
+        "ratioRange": [
+          0.26,
+          0.38
+        ]
+      },
+      "caveat": "Conservative observation envelopes under perspective/occlusion, not statistical confidence bounds. Refit after camera match."
+    },
+    "assumptions": {
+      "status": "ENGINEERING_ASSUMPTION",
+      "coreBayWidths": [
+        4.95,
+        5.85,
+        4.95
+      ],
+      "frontVerandaDepth": 2.5,
+      "rearVerandaDepth": 2.3,
+      "platformWidth": {
+        "value": 24,
+        "range": [
+          22.5,
+          26.5
+        ]
+      },
+      "platformDepth": {
+        "value": 19.6,
+        "range": [
+          17.5,
+          23
+        ]
+      },
+      "frontRun": {
+        "value": 17.8,
+        "range": [
+          14,
+          21
+        ]
+      },
+      "rearRun": {
+        "value": 16.8,
+        "range": [
+          13,
+          22
+        ]
+      },
+      "clearPortalWidth": {
+        "value": 4.65,
+        "range": [
+          4.1,
+          5.2
+        ]
+      },
+      "rampTravelWidth": {
+        "value": 9,
+        "range": [
+          7.5,
+          10.5
+        ]
+      },
+      "cheekWidth": {
+        "value": 0.9,
+        "range": [
+          0.6,
+          1.3
+        ]
+      },
+      "doorHeight": 5.1,
+      "wallThickness": 0.4,
+      "roofOverhang": 1.55,
+      "railMaximumSpacing": 1.85,
+      "north": "Aligned open outlet and closed side panels preserve gameplay; rear facade and leaf arrangement are unobserved.",
+      "lateralBays": "Core side walls are inset from outer columns; narrow front/rear bay closures are conservative unknown access, not observed additional portals.",
+      "wings": "Closed contacts at inherited corridor centreline only; no invented lateral floor connection.",
+      "envelope": "Width/depth/ramp projections are bounded engineering choices, NOT measurements from the cropped photo."
+    },
+    "unknowns": [
+      "Current north/rear facade and leaf arrangement",
+      "Complete modern plan, platform edges and pavement datum",
+      "Exact individual bays and door plane",
+      "Full roof framing and ceiling interior",
+      "Entire wing interfaces and south-solid orientation",
+      "Ramp profile, rail carving and surveyed dimensions",
+      "Current visitor access"
+    ],
+    "acceptance": {
+      "exterior": "VERIFY_PENDING",
+      "interior": "BLOCKED_SOURCE",
+      "accepted": false
+    },
+    "building": {
+      "width": 20.128,
+      "depth": 13.248,
+      "columnH": 6,
+      "columnRadius": 0.29,
+      "columnXs": [
+        -10.064,
+        -7.875,
+        -2.925,
+        2.925,
+        7.875,
+        10.064
+      ],
+      "columnZs": [
+        -6.624,
+        6.624
+      ]
+    },
+    "core": {
+      "width": 15.75,
+      "bayWidths": [
+        4.95,
+        5.85,
+        4.95
+      ],
+      "frontZ": -4.124,
+      "rearZ": 4.324,
+      "panelHeight": 6,
+      "wallThickness": 0.4
+    },
+    "platform": {
+      "width": 24,
+      "depth": 19.6,
+      "topY": 3.216,
+      "pavingThickness": 0.08,
+      "minX": -12,
+      "maxX": 12,
+      "minZ": -9.8,
+      "maxZ": 9.8,
+      "supportId": "zhendu-platform",
+      "rescue": false
+    },
+    "roof": {
+      "type": "xieshan",
+      "eaves": 1,
+      "width": 20.528,
+      "depth": 13.648,
+      "overhang": 1.55,
+      "ridgeAbovePlatform": 12.944,
+      "ridgeWorldY": 16.16
+    },
+    "portals": [
+      {
+        "centerX": 0,
+        "clearWidth": 4.65,
+        "frontZ": -4.124,
+        "rearZ": 4.324,
+        "doorZ": -4.124,
+        "doorHeight": 5.1
+      }
+    ],
+    "portalCenters": [
+      0
+    ],
+    "ramps": [
+      {
+        "side": "front",
+        "supportId": "zhendu-front-ramp",
+        "zTop": -9.8,
+        "zToe": -27.6,
+        "yTop": 3.216,
+        "yToe": 0,
+        "leftTop": -4.5,
+        "rightTop": 4.5,
+        "leftToe": -4.5,
+        "rightToe": 4.5,
+        "outerLeft": -5.4,
+        "outerRight": 5.4,
+        "run": 17.8,
+        "slope": 0.1806741573033708,
+        "evidence": "Partial slope is photo-visible; full run is engineering assumption"
+      },
+      {
+        "side": "rear",
+        "supportId": "zhendu-rear-ramp",
+        "zTop": 9.8,
+        "zToe": 26.6,
+        "yTop": 3.216,
+        "yToe": 0,
+        "leftTop": -4.5,
+        "rightTop": 4.5,
+        "leftToe": -4.5,
+        "rightToe": 4.5,
+        "outerLeft": -5.4,
+        "outerRight": 5.4,
+        "run": 16.8,
+        "slope": 0.19142857142857142,
+        "evidence": "Unobserved engineering continuity"
+      }
+    ],
+    "joins": {
+      "left": {
+        "side": "left",
+        "end": "to",
+        "local": [
+          -12,
+          -3.1
+        ],
+        "world": [
+          52.400000000000006,
+          -217.29999999999998
+        ],
+        "buildingEdge": -10.064,
+        "platformEdge": -12,
+        "capZMin": -6.72,
+        "capZMax": 0.5,
+        "capThickness": 0.28,
+        "wallThickness": 1,
+        "wallBaseY": 3.216,
+        "topY": 7,
+        "status": "provisional-closed-contact"
+      },
+      "right": {
+        "side": "right",
+        "end": "from",
+        "local": [
+          12,
+          -3.1
+        ],
+        "world": [
+          76.4,
+          -217.29999999999998
+        ],
+        "buildingEdge": 10.064,
+        "platformEdge": 12,
+        "capZMin": -6.72,
+        "capZMax": 0.5,
+        "capThickness": 0.28,
+        "wallThickness": 1,
+        "wallBaseY": 3.216,
+        "topY": 7,
+        "status": "provisional-closed-contact"
+      }
+    },
+    "supports": {
+      "platform": {
+        "type": "box",
+        "supportId": "zhendu-platform",
+        "min": [
+          52.400000000000006,
+          3.216,
+          -224
+        ],
+        "max": [
+          76.4,
+          3.216,
+          -204.39999999999998
+        ],
+        "rescue": false
+      },
+      "ramps": [
+        {
+          "type": "ramp",
+          "supportId": "zhendu-front-ramp",
+          "axis": "z",
+          "minX": 59.900000000000006,
+          "maxX": 68.9,
+          "minZ": -241.79999999999998,
+          "maxZ": -224,
+          "a0": -224,
+          "a1": -241.79999999999998,
+          "y0": 3.216,
+          "y1": 0,
+          "crossMin0": 59.900000000000006,
+          "crossMax0": 68.9,
+          "crossMin1": 59.900000000000006,
+          "crossMax1": 68.9
+        },
+        {
+          "type": "ramp",
+          "supportId": "zhendu-rear-ramp",
+          "axis": "z",
+          "minX": 59.900000000000006,
+          "maxX": 68.9,
+          "minZ": -204.39999999999998,
+          "maxZ": -187.6,
+          "a0": -204.39999999999998,
+          "a1": -187.6,
+          "y0": 3.216,
+          "y1": 0,
+          "crossMin0": 59.900000000000006,
+          "crossMax0": 68.9,
+          "crossMin1": 59.900000000000006,
+          "crossMax1": 68.9
+        }
+      ]
+    },
+    "routeContacts": {
+      "frontGround": [
+        0,
+        -29.6
+      ],
+      "frontToe": [
+        0,
+        -27.6
+      ],
+      "frontTop": [
+        0,
+        -9.8
+      ],
+      "portalFront": [
+        0,
+        -4.124
+      ],
+      "portalRear": [
+        0,
+        4.324
+      ],
+      "rearTop": [
+        0,
+        9.8
+      ],
+      "rearToe": [
+        0,
+        26.6
+      ],
+      "rearGround": [
+        0,
+        28.6
+      ]
+    },
+    "front": {
+      "ground": [
+        0,
+        -29.6
+      ],
+      "toe": [
+        0,
+        -27.6
+      ],
+      "top": [
+        0,
+        -9.8
+      ]
+    },
+    "rear": {
+      "ground": [
+        0,
+        28.6
+      ],
+      "toe": [
+        0,
+        26.6
+      ],
+      "top": [
+        0,
+        9.8
+      ]
+    },
+    "width": 20.128,
+    "depth": 13.248,
+    "platformY": 3.216,
+    "platformWidth": 24,
+    "platformDepth": 19.6,
+    "wallGapWidth": 24,
+    "facing": "south",
+    "sourceFacing": "likely south-oblique; camera unverified",
+    "gateKind": "three-bay",
+    "streamLayer": "B",
+    "storeys": 1,
+    "eaveCount": 1,
+    "coreBayCount": 3,
+    "portalCount": 1,
+    "surroundingVeranda": true,
+    "provisionalLateralBayClosures": true,
+    "openState": "playable-open",
+    "visitorPolicy": "Playable continuity is not museum access permission.",
+    "dimensions": {
+      "status": "HISTORIC_DOCUMENT_PLUS_PHOTO_FIT",
+      "documentary": {
+        "source": "WANG-1983-p18",
+        "url": "https://img.dpm.org.cn/Uploads/pdf/2198/T00018_00.pdf",
+        "appliesTo": "昭德门、贞度门",
+        "raw": {
+          "widthChi": 62.9,
+          "depthChi": 41.4,
+          "plinthToRidgeChi": 40.45,
+          "groundToRidgeChi": 50.5
+        },
+        "metresPerChi": 0.32,
+        "topology": {
+          "coreWidthBays": 3,
+          "coreDepthBays": 1,
+          "surroundingVeranda": true,
+          "purlins": 9,
+          "eaves": 1,
+          "roof": "xieshan"
+        },
+        "boundary": "Outer column envelope includes lateral verandas; depth includes front veranda, not an independently measured symmetric split.",
+        "datum": "Historic rebuilding document and 1983 comparison; not contemporary pavement survey."
+      },
+      "derived": {
+        "buildingWidth": 20.128,
+        "buildingDepth": 13.248,
+        "plinthRise": 3.216,
+        "ridgeAbovePlatform": 12.944,
+        "ridgeAboveHistoricGround": 16.16
+      },
+      "photoFit": {
+        "status": "PHOTO_FIT",
+        "source": "https://taociguan.dpm.org.cn/images/zjcphoto/2023-12-05/9f53a288418e4364b1c3b3b5e98321ec.jpg",
+        "coverage": "Cropped oblique front detail; not complete facade, rear or plan.",
+        "columnHeight": {
+          "value": 6,
+          "range": [
+            5.47,
+            6.75
+          ],
+          "relativeTo": "documentary platform rise",
+          "ratioRange": [
+            1.7,
+            2.1
+          ]
+        },
+        "columnDiameter": {
+          "value": 0.58,
+          "range": [
+            0.45,
+            0.69
+          ],
+          "relativeTo": "visible column height",
+          "ratioRange": [
+            0.075,
+            0.115
+          ]
+        },
+        "railHeight": {
+          "value": 1.05,
+          "range": [
+            0.84,
+            1.22
+          ],
+          "relativeTo": "documentary platform rise",
+          "ratioRange": [
+            0.26,
+            0.38
+          ]
+        },
+        "caveat": "Conservative observation envelopes under perspective/occlusion, not statistical confidence bounds. Refit after camera match."
+      },
+      "assumptions": {
+        "status": "ENGINEERING_ASSUMPTION",
+        "coreBayWidths": [
+          4.95,
+          5.85,
+          4.95
+        ],
+        "frontVerandaDepth": 2.5,
+        "rearVerandaDepth": 2.3,
+        "platformWidth": {
+          "value": 24,
+          "range": [
+            22.5,
+            26.5
+          ]
+        },
+        "platformDepth": {
+          "value": 19.6,
+          "range": [
+            17.5,
+            23
+          ]
+        },
+        "frontRun": {
+          "value": 17.8,
+          "range": [
+            14,
+            21
+          ]
+        },
+        "rearRun": {
+          "value": 16.8,
+          "range": [
+            13,
+            22
+          ]
+        },
+        "clearPortalWidth": {
+          "value": 4.65,
+          "range": [
+            4.1,
+            5.2
+          ]
+        },
+        "rampTravelWidth": {
+          "value": 9,
+          "range": [
+            7.5,
+            10.5
+          ]
+        },
+        "cheekWidth": {
+          "value": 0.9,
+          "range": [
+            0.6,
+            1.3
+          ]
+        },
+        "doorHeight": 5.1,
+        "wallThickness": 0.4,
+        "roofOverhang": 1.55,
+        "railMaximumSpacing": 1.85,
+        "north": "Aligned open outlet and closed side panels preserve gameplay; rear facade and leaf arrangement are unobserved.",
+        "lateralBays": "Core side walls are inset from outer columns; narrow front/rear bay closures are conservative unknown access, not observed additional portals.",
+        "wings": "Closed contacts at inherited corridor centreline only; no invented lateral floor connection.",
+        "envelope": "Width/depth/ramp projections are bounded engineering choices, NOT measurements from the cropped photo."
+      }
+    },
+    "roofBounds": {
+      "min": [
+        51.793204689025885,
+        9.151371002197266,
+        -223.39340896606444
+      ],
+      "max": [
+        77.00679531097413,
+        16.15999984741211,
+        -205.00659103393554
+      ],
+      "space": "world",
+      "mainRidgeCapY": 16.16
+    },
+    "comparisonStatus": "VERIFY_PENDING; cropped source only, rear/plan/interior unresolved",
+    "pruning": {
+      "sourceTriangles": 6280,
+      "coveredTriangles": 680,
+      "degenerateTriangles": 0,
+      "removedTriangles": 680,
+      "retainedTriangles": 5600
+    }
+  },
+  "pending": {
+    "browserBefore": true,
+    "browserAfter": true,
+    "matchedPhotoCamera": true,
+    "visualAcceptance": true
+  },
+  "sourceImagesIncluded": false
+}

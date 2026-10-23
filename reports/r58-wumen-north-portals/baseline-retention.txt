@@ -1,0 +1,53 @@
+THREE.Texture: Unable to serialize Texture.
+THREE.Texture: Unable to serialize Texture.
+✔ frozen folded-ascent signatures require the complete current scope and unchanged legacy generator (12.91391ms)
+✔ finite historical view preserves every other child and both collider tails without mutating current geometry or physics (96.601211ms)
+✔ all non-ascent Euler, quaternion and matrix values preserve signed zeros and positive/negative pi exactly (92.591563ms)
+✔ restoration never applies to Shenwu or reconstructs any unscoped Wumen child (1268.654188ms)
+✔ every current ascent object and mesh remains keyed; no removed, reordered, transformed or modified entry is normalized away (3516.649276ms)
+✔ current geometry shape, full attributes, index representation, render state and shared material identity cannot be hidden (2555.001046ms)
+✔ every scoped collider and support is exact; collider prefixes and suffixes remain visible to historical guards (3044.447313ms)
+node:internal/test_runner/harness:124
+      throw err;
+      ^
+
+AssertionError [ERR_ASSERTION]: exact R30 passage source: src/scene/PalaceBuilder.js
++ actual - expected
+
++ 'cbb83acc8ddb4226b86247a777e2177735839be9a7a38533830448d0fbc690b1'
+- 'bfd9e25cbb6c55ddbfa31d633e24a82acc5a86813a3d7ac1fb2da80d0705366d'
+
+    at restorePreR30Source (file:///workspace/scratch/02a8023d1a85/r58-wumen-north-portals/tests/lib/r30-qianqing-passage-retention.mjs:23:10)
+    at restorePreR29Source (file:///workspace/scratch/02a8023d1a85/r58-wumen-north-portals/tests/lib/r29-qianqing-retention.mjs:21:9)
+    at restorePreR28Source (file:///workspace/scratch/02a8023d1a85/r58-wumen-north-portals/tests/lib/r28-jiaotai-central-retention.mjs:22:9)
+    at restorePreR27Source (file:///workspace/scratch/02a8023d1a85/r58-wumen-north-portals/tests/lib/r27-jiaotai-retention.mjs:16:9)
+    at restorePreR26FriezeSource (file:///workspace/scratch/02a8023d1a85/r58-wumen-north-portals/tests/lib/r26-qianqing-frieze-retention.mjs:15:9)
+    at restorePreR26Source (file:///workspace/scratch/02a8023d1a85/r58-wumen-north-portals/tests/lib/r26-qianqing-retention.mjs:16:9)
+    at restorePreR25Source (file:///workspace/scratch/02a8023d1a85/r58-wumen-north-portals/tests/lib/r25-nameboard-retention.mjs:17:9)
+    at restorePreR24Source (file:///workspace/scratch/02a8023d1a85/r58-wumen-north-portals/tests/lib/r24-baohe-retention.mjs:17:9)
+    at restorePreR23Source (file:///workspace/scratch/02a8023d1a85/r58-wumen-north-portals/tests/lib/r23-baohe-retention.mjs:17:9)
+    at restorePreR22Source (file:///workspace/scratch/02a8023d1a85/r58-wumen-north-portals/tests/lib/r22-baohe-retention.mjs:20:9) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'cbb83acc8ddb4226b86247a777e2177735839be9a7a38533830448d0fbc690b1',
+  expected: 'bfd9e25cbb6c55ddbfa31d633e24a82acc5a86813a3d7ac1fb2da80d0705366d',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
+✖ tests/wumen-ascent-source-retention.test.mjs (194.432015ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10932.533092
+
+✖ failing tests:
+
+test at tests/wumen-ascent-source-retention.test.mjs:1:1
+✖ tests/wumen-ascent-source-retention.test.mjs (194.432015ms)
+  'test failed'

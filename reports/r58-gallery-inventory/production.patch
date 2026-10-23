@@ -1,0 +1,202 @@
+diff --git a/data/zones/axis-courts.json b/data/zones/axis-courts.json
+index 7fe3396..70fef8a 100644
+--- a/data/zones/axis-courts.json
++++ b/data/zones/axis-courts.json
+@@ -32,16 +32,16 @@
+     {"kind": "hall", "name": "弘义阁", "x": 102.1, "z": -110.4, "rot": "east", "w": 43.68, "d": 16.704, "ph": 3.8, "pad": 0, "roof": "wudian", "layers": 1, "structure": "surveyed-pavilion", "pavilionProfile": "hongyi", "storeys": 2, "eaveCount": 1, "enter": true, "dimensionStatus": "mixed-evidence", "plaque": true},
+     {"kind": "corridor", "from": [-103.37, -415.5], "to": [-103.37, -314.5], "facing": "x+"},
+     {"kind": "corridor", "from": [-103.37, -286.1], "to": [-103.37, -222.2], "facing": "x+"},
+-    {"kind": "corridor", "from": [-103.37, -213.7], "to": [-103.37, -141.75], "facing": "x+"},
+-    {"kind": "corridor", "from": [-103.37, -76.85], "to": [-103.37, -59.9], "facing": "x+"},
+-    {"kind": "corridor", "from": [-103.37, -46.3], "to": [-103.37, -12.7], "facing": "x+"},
+-    {"kind": "corridor", "from": [-103.37, -11.7], "to": [-103.37, 122.5], "facing": "x+"},
++    {"kind": "corridor", "from": [-103.37, -213.7], "to": [-103.37, -141.75], "facing": "x+", "furnishingPolicy": {"mode": "unknown-inventory", "target": "axis-courts/items/28", "reviewId": "FC-CA9102BFFB"}},
++    {"kind": "corridor", "from": [-103.37, -76.85], "to": [-103.37, -59.9], "facing": "x+", "furnishingPolicy": {"mode": "unknown-inventory", "target": "axis-courts/items/29", "reviewId": "FC-CA9102BFFB"}},
++    {"kind": "corridor", "from": [-103.37, -46.3], "to": [-103.37, -12.7], "facing": "x+", "furnishingPolicy": {"mode": "unknown-inventory", "target": "axis-courts/items/30", "reviewId": "FC-CA9102BFFB"}},
++    {"kind": "corridor", "from": [-103.37, -11.7], "to": [-103.37, 122.5], "facing": "x+", "furnishingPolicy": {"mode": "unknown-inventory", "target": "axis-courts/items/31", "reviewId": "FC-0D3F161564"}},
+     {"kind": "corridor", "from": [107.6, -415.5], "to": [107.6, -315.1], "facing": "x-"},
+     {"kind": "corridor", "from": [107.6, -287.1], "to": [107.6, -222.2], "facing": "x-"},
+-    {"kind": "corridor", "from": [107.6, -213.7], "to": [107.6, -142.85], "facing": "x-"},
+-    {"kind": "corridor", "from": [107.6, -77.95], "to": [107.6, -59.6], "facing": "x-"},
+-    {"kind": "corridor", "from": [107.6, -46], "to": [107.6, -12.7], "facing": "x-"},
+-    {"kind": "corridor", "from": [107.6, -11.7], "to": [107.6, 122.5], "facing": "x-"},
++    {"kind": "corridor", "from": [107.6, -213.7], "to": [107.6, -142.85], "facing": "x-", "furnishingPolicy": {"mode": "unknown-inventory", "target": "axis-courts/items/34", "reviewId": "FC-B31A272965"}},
++    {"kind": "corridor", "from": [107.6, -77.95], "to": [107.6, -59.6], "facing": "x-", "furnishingPolicy": {"mode": "unknown-inventory", "target": "axis-courts/items/35", "reviewId": "FC-B31A272965"}},
++    {"kind": "corridor", "from": [107.6, -46], "to": [107.6, -12.7], "facing": "x-", "furnishingPolicy": {"mode": "unknown-inventory", "target": "axis-courts/items/36", "reviewId": "FC-B31A272965"}},
++    {"kind": "corridor", "from": [107.6, -11.7], "to": [107.6, 122.5], "facing": "x-", "furnishingPolicy": {"mode": "unknown-inventory", "target": "axis-courts/items/37", "reviewId": "FC-86FF7FC2AB"}},
+     {"kind": "corridor", "from": [-105.97, -217.3], "to": [-69.2, -217.3], "facing": "z-", "gateJoin": {"gate": "昭德门", "side": "left", "end": "to"}},
+     {"kind": "corridor", "from": [-55.6, -217.3], "to": [-26.5, -217.3], "facing": "z-", "gateJoin": {"gate": "昭德门", "side": "right", "end": "from"}},
+     {"kind": "corridor", "from": [26.5, -217.3], "to": [57.6, -217.3], "facing": "z-", "gateJoin": {"gate": "贞度门", "side": "left", "end": "to"}},
+diff --git a/src/scene/palace/kit.js b/src/scene/palace/kit.js
+index 9e209b2..9c38d40 100644
+--- a/src/scene/palace/kit.js
++++ b/src/scene/palace/kit.js
+@@ -1,3 +1,4 @@
++import { validateGalleryInventoryPolicy, galleryRoomEvidence } from './GalleryInventoryPolicy.js';
+ import {buildHorizontalNameboardAtlas} from './special/HorizontalNameboardAtlas.js';
+ import * as THREE from 'three';
+ import { applyBoxUV, applyBandUV } from '../../utils/GeometryUV.js';
+@@ -15,6 +16,8 @@ import { buildQinanHall } from './special/QinanHall.js';
+ 
+ const STEP_RUN = 1.6; // 台阶水平长 / 高
+ const _v = new THREE.Vector3();
++const GALLERY_POLICY = Symbol('validated-gallery-inventory-policy');
++const GALLERY_FRAMES = new WeakMap();
+ 
+ /**
+  * 院落建筑构件库：宫墙、宫门（随墙门 / 门殿 / 城台门）、可进入的殿座、庑房、匾额。
+@@ -157,7 +160,18 @@ export class CourtKit {
+     return this._interiorMats;
+   }
+ 
+-  furnish(f, kind, room) {
++  furnish(f, kind, room, inventoryPolicy) {
++    if (inventoryPolicy !== undefined) {
++      if (GALLERY_FRAMES.get(f) !== inventoryPolicy) throw new Error('Unvalidated gallery inventory policy or target frame');
++      // No geometry/material allocation and no post-hoc overlap deletion.
++      // These two points depend only on room/door bounds, not any removed prop.
++      const res = { cover: [], spawns: [
++        { x: (room.x0 + room.x1) / 2, z: (room.z0 + room.z1) / 2 },
++        { x: room.doorX, z: room.z0 + 1.0 },
++      ] };
++      this._lastFurnish = res;
++      return res;
++    }
+     const seed = Math.round(Math.abs(f.position.x * 131 + f.position.z * 17 + room.x0 * 7));
+     const res = furnishRoom(this, f, kind, room, seed);
+     this._lastFurnish = res;
+@@ -165,7 +179,8 @@ export class CourtKit {
+   }
+ 
+   /** 登记一个房间：局部矩形 → 世界 AABB，门 / 掩体 / 刷怪点 → 世界坐标 */
+-  registerRoom(f, { name, kind, x0, x1, z0, z1, y, h, doors }) {
++  registerRoom(f, { name, kind, x0, x1, z0, z1, y, h, doors, inventoryPolicy }) {
++    if (inventoryPolicy !== undefined && GALLERY_FRAMES.get(f) !== inventoryPolicy) throw new Error('Unvalidated gallery inventory policy or target frame');
+     const toW = (x, z) => new THREE.Vector3(x, 0, z).applyMatrix4(f.matrixWorld);
+     const a = toW(x0, z0), b = toW(x1, z1);
+     const pt = p => { const v = toW(p.x, p.z); return { x: +v.x.toFixed(2), z: +v.z.toFixed(2) }; };
+@@ -175,6 +190,7 @@ export class CourtKit {
+     this.rooms.push({
+       id: this.rooms.length,
+       name, kind,
++      ...(inventoryPolicy === undefined ? {} : galleryRoomEvidence(inventoryPolicy)),
+       min: { x: Math.min(a.x, b.x), y, z: Math.min(a.z, b.z) },
+       max: { x: Math.max(a.x, b.x), y: y + h, z: Math.max(a.z, b.z) },
+       floorY: y,
+@@ -454,6 +470,7 @@ export class CourtKit {
+    * open：只有柱子的敞厅（箭亭、亭榭）；closed（enter=false）时整座殿身为实体碰撞。
+    */
+   hall(o) {
++    if (o.furnishingPolicy !== undefined) throw new Error('Gallery inventory policy requires an explicit corridor target');
+     if (o.structure === 'qinan-hall') return buildQinanHall(this, o);
+     if (o.qinanProfile !== undefined) throw new Error('Qinan profile requires qinan-hall structure');
+     if (o.structure === 'surveyed-pavilion') return buildSurveyedPavilion(this, o);
+@@ -475,6 +492,7 @@ export class CourtKit {
+     // 默认所有殿座都可进入（open 敞厅本来就能穿行）
+     const enter = !open && enterOpt !== false;
+     const f = this.frame(x, z, rot);
++    if (o[GALLERY_POLICY] !== undefined) GALLERY_FRAMES.set(f, o[GALLERY_POLICY]);
+     f.userData.structure = { storeys: 1, eaveCount: layers };
+     const n = bays ?? Math.max(3, Math.round(w / 3.6) | 1);
+     const bay = w / n;
+@@ -609,10 +627,11 @@ export class CourtKit {
+         const x1 = -w / 2 + b * bay - (b < n ? 0.15 : 0.35);
+         const doorX = -w / 2 + (Math.floor((a + b - 1) / 2) + 0.5) * bay;
+         const roomKind = kind === 'room' && segs.length > 2 && idx % 3 === 2 ? 'storage' : kind;
+-        if (roomKind !== 'throne') this.furnish(f, roomKind, { x0, x1, z0: -d / 2 + 0.3, z1: d / 2 - 0.3, y: y0, doorX, h: colH - beamH, backDoor });
++        if (roomKind !== 'throne') this.furnish(f, roomKind, { x0, x1, z0: -d / 2 + 0.3, z1: d / 2 - 0.3, y: y0, doorX, h: colH - beamH, backDoor }, o[GALLERY_POLICY]);
+         this.registerRoom(f, {
+           name: name ? (segs.length > 1 && map !== 'corridor' ? `${name}·${idx + 1}` : name) : null,
+           kind: roomKind, x0, x1, z0: -d / 2 + frontEnclosureInset, z1: d / 2, y: y0, h: colH - beamH,
++          ...(o[GALLERY_POLICY] === undefined ? {} : { inventoryPolicy: o[GALLERY_POLICY] }),
+           doors: [{ x: doorX, z: -d / 2 + frontEnclosureInset }, ...(backDoor ? [{ x: doorX, z: d / 2 }] : [])],
+         });
+       });
+@@ -632,7 +651,10 @@ export class CourtKit {
+   }
+ 
+   /** 庑房（廊房）：沿 x1→x2 或 z1→z2 的长条，正面朝 facing（'x+'|'x-'|'z+'|'z-'），每 3 间隔成一个可进入的房间 */
+-  corridor(x1, z1, x2, z2, facing, { depth = 4.2, colH = 3.6, name } = {}) {
++  corridor(x1, z1, x2, z2, facing, { depth = 4.2, colH = 3.6, name, furnishingPolicy, furnishingTarget, furnishingKind } = {}) {
++    const inventoryPolicy = validateGalleryInventoryPolicy(furnishingPolicy, {
++      zone: this.root.name, target: furnishingTarget, kind: furnishingKind,
++    });
+     const alongX = Math.abs(x2 - x1) >= Math.abs(z2 - z1);
+     const len = alongX ? Math.abs(x2 - x1) : Math.abs(z2 - z1);
+     if (len < 4) return;
+@@ -641,6 +663,7 @@ export class CourtKit {
+       x: (x1 + x2) / 2, z: (z1 + z2) / 2, rot, w: len - 1.0, d: depth, pad: 0.5, ph: 0.45, colH,
+       roof: 'gable', brackets: false, enter: true, roomBays: 3, interior: 'room', plaque: false, name: name ?? '庑房',
+       map: 'corridor', bays: Math.max(3, Math.round(len / 3.4) | 1),
++      ...(inventoryPolicy === undefined ? {} : { [GALLERY_POLICY]: inventoryPolicy }),
+     });
+   }
+ 
+diff --git a/src/scene/zones/ZoneBase.js b/src/scene/zones/ZoneBase.js
+index c558c8d..09442df 100644
+--- a/src/scene/zones/ZoneBase.js
++++ b/src/scene/zones/ZoneBase.js
+@@ -141,6 +141,7 @@ export class ZoneBase {
+   // ───────────────────────── 各 kind 构建方法 ─────────────────────────
+ 
+   buildHall(item) {
++    if (item.furnishingPolicy !== undefined) throw new Error('Gallery inventory policy requires an explicit corridor target');
+     // R48 exact-identity profiles are opt-in by the reviewed catalog binding.
+     // Existing dedicated builders remain the sole owner for augmentation.
+     const candidates = [[resolveResidential,buildResidential,augmentResidential],[resolveNingshou,buildNingshou,augmentNingshou],[resolveOuter,buildOuter,augmentOuter]]
+@@ -308,6 +309,11 @@ export class ZoneBase {
+     const [x1, z1] = from;
+     const [x2, z2] = to;
+     const params = { facing: item.facing, depth: item.depth, colH: item.colH, name: item.name };
++    if (item.furnishingPolicy !== undefined) {
++      params.furnishingPolicy = item.furnishingPolicy;
++      params.furnishingTarget = `${this.zoneJson.id}/items/${this.zoneJson.items.indexOf(item)}`;
++      params.furnishingKind = item.kind;
++    }
+     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
+     this.kit.corridor(x1, z1, x2, z2, item.facing, params);
+     if (contact) this.kit.root.children.at(-1).userData.gateJoin = {
+diff --git a/src/scene/palace/GalleryInventoryPolicy.js b/src/scene/palace/GalleryInventoryPolicy.js
+new file mode 100644
+index 0000000..077d588
+--- /dev/null
++++ b/src/scene/palace/GalleryInventoryPolicy.js
+@@ -0,0 +1,38 @@
++// Narrow evidence-quality fallback, not an empty-room reconstruction.
++// These IDs bind the reviewed existing JSON instances, never names or coordinates.
++const REVIEW_BY_TARGET = Object.freeze({
++  'axis-courts/items/28': 'FC-CA9102BFFB',
++  'axis-courts/items/29': 'FC-CA9102BFFB',
++  'axis-courts/items/30': 'FC-CA9102BFFB',
++  'axis-courts/items/31': 'FC-0D3F161564',
++  'axis-courts/items/34': 'FC-B31A272965',
++  'axis-courts/items/35': 'FC-B31A272965',
++  'axis-courts/items/36': 'FC-B31A272965',
++  'axis-courts/items/37': 'FC-86FF7FC2AB',
++});
++
++export function validateGalleryInventoryPolicy(policy, { zone, target, kind } = {}) {
++  if (policy === undefined) return undefined; // Preserve every existing default.
++  if (!policy || typeof policy !== 'object' || Array.isArray(policy) ||
++      Object.keys(policy).sort().join(',') !== 'mode,reviewId,target' ||
++      policy.mode !== 'unknown-inventory' || zone !== 'axis-courts' || kind !== 'corridor' ||
++      policy.target !== target || !Object.hasOwn(REVIEW_BY_TARGET, target) ||
++      policy.reviewId !== REVIEW_BY_TARGET[target]) {
++    throw new Error('Invalid explicit gallery inventory policy or target');
++  }
++  return Object.freeze({ ...policy });
++}
++
++export function galleryRoomEvidence(policy) {
++  return {
++    furnishingPolicy: { ...policy },
++    inventory: {
++      status: 'UNKNOWN', accepted: false, knownEmpty: false, displayDate: null,
++      missingEvidence: ['ROOM_OVERVIEW', 'CURRENT_INVENTORY', 'PLACEMENT', 'DISPLAY_DATE'],
++    },
++    layout: {
++      status: 'UNVERIFIED', basis: 'INHERITED_CANDIDATE_BOUNDS', historicalRoomIdentity: null,
++      presetUse: 'UNVERIFIED',
++    },
++  };
++}

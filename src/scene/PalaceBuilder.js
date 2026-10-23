@@ -1,12 +1,19 @@
+import { buildBaoheDaisApproach, registerBaoheDaisFurnishingSolids } from './palace/BaoheDaisApproach.js';
 import {buildBaoheWarmRooms} from './palace/BaoheWarmRooms.js';
 import { taihemenSouthProfile, buildTaihemenSouthApproach } from './palace/TaihemenSouthApproach.js';
 import { buildSouthWaterSystem } from './palace/special/SouthWaterSystem.js';
+import {createTaiheEastFirewallProfile} from './palace/special/AxisFirewallProfiles.js';
+import {buildTaiheEastFirewall} from './palace/special/AxisFirewalls.js';
+import axisCourts from '../../data/zones/axis-courts.json' with {type:'json'};
 import * as THREE from 'three';
 import { QIANQING_SURFACE, qianqingSurfaceMaterial } from './palace/QianqingSurface.js';
 import { COLORS } from '../config/constants.js';
 import { taiheFloorMaterial, TAIHE_FLOOR } from './palace/special/TaiheFloorMaterial.js';
 import { buildGateAscent, toWorld } from './palace/gateAscent.js';
 import { buildWumenAscent } from './palace/special/WumenAscent.js';
+import { buildWumenNorthPortal, registerWumenNorthPortalOverheads } from './palace/special/WumenNorthPortal.js';
+import { buildWumenSouthPortalCanopies } from './palace/special/WumenSouthPortalCanopies.js';
+import { refineWumenPavilionNorthColumns, WUMEN_NORTHEAST_PAVILION_ID } from './palace/special/WumenPavilionColumns.js';
 import { wumenTowerGeometry, shenwuTowerGeometry } from './palace/special/GateTowerProfiles.js';
 import { buildGateTowerShell } from './palace/special/GateTowerShell.js';
 import { WUMEN_VERTICAL_PROFILE } from './palace/special/WumenVerticalProfile.js';
@@ -51,6 +58,7 @@ import { TAIHE_CORE } from './palace/special/TaiheCoreProfile.js';
 import { buildTaiheCoreFallback, buildTaiheCeiling, buildTaiheNavigation } from './palace/special/TaiheCore.js';
 import { buildTaiheRearEnclosure } from './palace/special/TaiheRearEnclosure.js';
 import { taiheColumnGrid } from './palace/special/TaiheColumnGrid.js';
+import { buildTaihemenSouthEnclosure } from './palace/special/TaihemenEnclosure.js';
 
 /**
  * 真实形制参数（按故宫现状）：
@@ -503,6 +511,16 @@ export class PalaceBuilder {
       halls.forEach(h => this.buildHall(g, h, top));
     }
     if (name === '三台') this.terraceOrnaments(g, rects[0], top);
+    if (name === '三台') {
+      const hallIndex = halls.findIndex(h => h.name === '太和殿');
+      const candidates = axisCourts.items.filter(i => i.kind === 'wall' && i.from?.[0] < 0 &&
+        i.gaps?.some(gap => gap.gate === '中左门'));
+      if (hallIndex < 0 || candidates.length !== 1) throw new Error('Ambiguous Taihe east firewall binding');
+      const profile = createTaiheEastFirewallProfile({
+        hall: halls[hallIndex], rect: rects[hallIndex], layers, lh, setback, linkWall: candidates[0],
+      });
+      buildTaiheEastFirewall(this, g, profile);
+    }
 
     const coarse = name === '后三宫' ? captureInnerGlazeCoarse(g) : null;
     const finished = this.finish(g);
@@ -768,6 +786,10 @@ export class PalaceBuilder {
     const qianqingPassages = data.name === '乾清宫'
       ? qianqingPassageFrame({ x0, z0, y, w, d, H, bayW, r, doorH, beamH }) : null;
     for (const s of [-1, 1]) {
+      if (data.name === '太和门' && s === -1) {
+        buildTaihemenSouthEnclosure(this, g, { x0, z0, y, w, d, H, beamH, r });
+        continue; // Includes replacing the old south infills and broad collision walls.
+      }
       const depthFrame = qianqingDepth ?? baoheDepth;
       const zf = z0 + (depthFrame ? (s < 0 ? depthFrame.frontDoorZ : depthFrame.rearDoorZ) : s * d / 2);
       for (let i = 0; i < bays; i++) {
@@ -807,7 +829,7 @@ export class PalaceBuilder {
       this.col(x0 + openRight, y, zf - 0.25, x0 + solidEnd, y + 3, zf + 0.25);
     }
     // 门槛（矮，可跨过）
-    for (const s of [-1, 1]) this.libBox(g, 'wood_column', openRight - openLeft, 0.25, 0.3, x0 + (openLeft + openRight) / 2, y + 0.125, z0 + (qianqingDepth ? (s < 0 ? qianqingDepth.frontDoorZ : qianqingDepth.rearDoorZ) : baoheDepth ? (s < 0 ? baoheDepth.frontDoorZ : baoheDepth.rearDoorZ) : s * d / 2), 'box');
+    for (const s of (data.name === '太和门' ? [1] : [-1, 1])) this.libBox(g, 'wood_column', openRight - openLeft, 0.25, 0.3, x0 + (openLeft + openRight) / 2, y + 0.125, z0 + (qianqingDepth ? (s < 0 ? qianqingDepth.frontDoorZ : qianqingDepth.rearDoorZ) : baoheDepth ? (s < 0 ? baoheDepth.frontDoorZ : baoheDepth.rearDoorZ) : s * d / 2), 'box');
     // The recessed door/header does not replace the separate south eave beam.
     if (baoheDepth) this.libBox(g, 'caihua_beam', w + 0.6, beamH, 0.6, x0, y + H - beamH / 2, z0 + baoheDepth.southEaveZ, 'band');
     if (qianqingDepth) for(const z of [qianqingDepth.southEaveZ,qianqingDepth.northEaveZ])
@@ -864,11 +886,14 @@ export class PalaceBuilder {
       depth: d + 0.6,
       baseY: y + H,
       layers: spec.layers ?? data.features?.roofLayers ?? 1,
+      ...(data.name === '太和殿' ? { walkingBeastProfile: 'taihe' } : {}),
       brackets: true,
       sides: 4,
       ...(baoheFrame ? { baoheInteriorOpening: baoheFrame } : {}),
+      ...(data.name === '保和殿' ? { walkingBeastProfile: 'baohe' } : {}),
     });
     roof.position.set(x0, 0, z0);
+    if (roof.userData.walkingBeasts) (g.userData.hallWalkingBeasts ??= []).push({ ...roof.userData.walkingBeasts, position: roof.position.toArray() });
     g.add(roof);
     this.ownedMaterials.push(...(roof.userData.ownedMaterials ?? []));
     paintQianqingUpperEnclosure(roof,this.library,data.name);
@@ -883,6 +908,8 @@ export class PalaceBuilder {
     const zc = (ztb0 + ztb1) / 2;
     if (qianqing) registerQianqingCentral(this,g,{x0,y,H,ztb0,ztb1,thW,bayW});
     else {
+    if (baohe) buildBaoheDaisApproach(this,g,{x0,y,ztb0,ztb1,thW});
+    else {
     // 地平床：两级，金边
     this.box(g, lacquer, thW, 0.6, depth, x0, y + 0.3, zc);
     this.box(g, gold, thW + 0.1, 0.08, depth + 0.1, x0, y + 0.62, zc);
@@ -891,6 +918,7 @@ export class PalaceBuilder {
       this.box(g, lacquer, thW * 0.3, 0.2 * (k + 1), 0.4, x0, y + 0.1 * (k + 1), ztb0 - 1.2 + k * 0.4);
     }
     this.col(x0 - thW / 2, y, ztb0 - 1.3, x0 + thW / 2, y + 3, ztb1);
+    }
     // 宝座 + 屏风
     const ty = y + 1.25;
     const tz = zc + depth * 0.1;
@@ -909,6 +937,7 @@ export class PalaceBuilder {
       }
     }
     }
+    if (baohe) registerBaoheDaisFurnishingSolids(this,g);
     // Qianqing selected-display vessels have one permanent dedicated owner.
     if(!qianqing) for (const s of [-1, 1]) {
       this.tripod(g, bronze, x0 + s * (thW * 0.35), y, ztb0 - 2.2);
@@ -1073,8 +1102,10 @@ export class PalaceBuilder {
     }
     for (const o of openings) {
       const tunnelH = o.w >= 8 ? 8 : 6.5;
-      this.libBox(g, 'wall_red', o.w, PH - tunnelH, D, o.x, tunnelH + (PH - tunnelH) / 2, zc, 'box');
-      this.libBox(g, 'wall_brick', o.w, 0.3, D - 0.2, o.x, tunnelH - 0.15, zc, 'box');
+      buildWumenNorthPortal(this, g, {
+        x: o.x, width: o.w, tunnelHeight: tunnelH,
+        platformHeight: PH, southZ: zS, northZ: zN,
+      });
       for (const s of [-1, 1]) {
         const leaf = buildStuddedDoor(this.library, { width: o.w * 0.48, height: tunnelH - 0.5 });
         leaf.position.set(o.x + s * (o.w / 2 - 0.15), 0, zS + 2 + o.w * 0.24);
@@ -1144,6 +1175,7 @@ export class PalaceBuilder {
       for (const pz of [pS, pN]) {
         const pb = buildHallBody(this.library, { width: P, depth: P, height: 7.5, bays: 3, facade: 'lattice' });
         pb.position.set(s * hx, top, pz);
+        if (s === -1 && pz === pN) refineWumenPavilionNorthColumns(pb, { instanceId: WUMEN_NORTHEAST_PAVILION_ID });
         g.add(pb);
         const pr = buildRoof(this.library, { type: 'pavilion', width: P + 0.4, depth: P + 0.4, baseY: top + pb.userData.topY, layers: 2, brackets: true, detail: 'low' });
         pr.position.set(s * hx, 0, pz);
@@ -1153,6 +1185,13 @@ export class PalaceBuilder {
       // 北方亭坐在可登临的主墩台顶上：登记亭身碰撞
       this.col(s * hx - P / 2, top, pN - P / 2, s * hx + P / 2, top + 3, pN + P / 2);
     }
+    registerWumenNorthPortalOverheads(this, {
+      openings, southZ: zS, northZ: zN, platformHeight: PH,
+    });
+    // Append after the historical four pavilions; do not shift their child slots.
+    buildWumenSouthPortalCanopies(this, g, {
+      openings, southZ: zS, platformHeight: PH,
+    });
     this.finish(g);
   }
 

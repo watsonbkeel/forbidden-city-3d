@@ -1,0 +1,20 @@
+THREE.Texture: Unable to serialize Texture.
+THREE.Texture: Unable to serialize Texture.
+✔ source has frozen 4-column / 3 equal-span shape before refinement (2.994043ms)
+✔ target north row is six registered unequal-spaced columns; no old middle duplicates (0.258768ms)
+✔ only north-row local proxies change; every new proxy matches actual low column geometry (0.466578ms)
+✔ corners, south row, enclosure, beams, other pavilions/roofs/ascent are exact (8.883229ms)
+✔ every north column base contacts retained visible deck geometry in correct transformed instance (6.270717ms)
+✔ wrong-instance negatives and invalid source shape do not mutate or allocate geometry (312.300142ms)
+✔ repeat application is a no-op; geometry and materials stay shared and undisposed (0.745365ms)
+✔ source and candidate complete body triangles have finite positions/normals/UV, nonzero area and positive volume (1.301909ms)
+✔ actual final merge retains one target, six visible columns, deck contacts and whole-body blocking (196.198281ms)
+✔ merged geometry delta is exactly +96 triangles and zero material draw calls; resources dispose once (147.162501ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1001.577502

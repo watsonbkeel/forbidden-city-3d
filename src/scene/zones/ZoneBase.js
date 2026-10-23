@@ -1,3 +1,4 @@
+import { applyZuoyiDoorFront } from '../palace/special/ZuoyiDoorFront.js';
 import {resolveRemainingProfile as resolveNingshou,buildRemainingHall as buildNingshou,augmentRemainingHall as augmentNingshou} from '../palace/special/RemainingNingshouHalls.js';
 import {resolveRemainingProfile as resolveOuter,buildRemainingHall as buildOuter,augmentRemainingHall as augmentOuter} from '../palace/special/RemainingOuterHalls.js';
 import {resolveRemainingProfile as resolveResidential,buildRemainingHall as buildResidential,augmentRemainingHall as augmentResidential} from '../palace/special/RemainingResidentialHalls.js';
@@ -141,6 +142,7 @@ export class ZoneBase {
   // ───────────────────────── 各 kind 构建方法 ─────────────────────────
 
   buildHall(item) {
+    if (item.furnishingPolicy !== undefined) throw new Error('Gallery inventory policy requires an explicit corridor target');
     // R48 exact-identity profiles are opt-in by the reviewed catalog binding.
     // Existing dedicated builders remain the sole owner for augmentation.
     const candidates = [[resolveResidential,buildResidential,augmentResidential],[resolveNingshou,buildNingshou,augmentNingshou],[resolveOuter,buildOuter,augmentOuter]]
@@ -269,7 +271,8 @@ export class ZoneBase {
     };
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
     const width = this.kit.gate(params);
-    if (item.gateProfile === 'zhaode' || item.gateProfile === 'huangji') this.gateGeometries.set(item.name, this.kit.root.children.at(-1).userData.gateGeometry);
+    applyZuoyiDoorFront(this.kit, this.kit.root.children.at(-1), {zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
+    if (item.gateProfile === 'zhaode' || item.gateProfile === 'zhendu' || item.gateProfile === 'huangji') this.gateGeometries.set(item.name, this.kit.root.children.at(-1).userData.gateGeometry);
     return width; // 返回开口宽度
   }
 
@@ -294,7 +297,7 @@ export class ZoneBase {
     if (item.gateJoin !== undefined) {
       const ref = item.gateJoin;
       const g = ref && this.gateGeometries.get(ref.gate);
-      if (!g || g.profile !== 'zhaode' || g.rot !== 0 || !Object.hasOwn(g.joins, ref.side)) throw new Error('Invalid or unbuilt explicit gate join');
+      if (!g || !['zhaode', 'zhendu'].includes(g.profile) || g.rot !== 0 || !Object.hasOwn(g.joins, ref.side)) throw new Error('Invalid or unbuilt explicit gate join');
       contact = g.joins[ref.side];
       if (ref.end !== contact.end || item.facing !== 'z-' || !Array.isArray(from) || !Array.isArray(to) ||
           [...from, ...to].some(n => typeof n !== 'number' || !Number.isFinite(n)) || from.length !== 2 || to.length !== 2 ||
@@ -308,6 +311,11 @@ export class ZoneBase {
     const [x1, z1] = from;
     const [x2, z2] = to;
     const params = { facing: item.facing, depth: item.depth, colH: item.colH, name: item.name };
+    if (item.furnishingPolicy !== undefined) {
+      params.furnishingPolicy = item.furnishingPolicy;
+      params.furnishingTarget = `${this.zoneJson.id}/items/${this.zoneJson.items.indexOf(item)}`;
+      params.furnishingKind = item.kind;
+    }
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
     this.kit.corridor(x1, z1, x2, z2, item.facing, params);
     if (contact) this.kit.root.children.at(-1).userData.gateJoin = {

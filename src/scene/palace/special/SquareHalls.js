@@ -192,9 +192,11 @@ export function buildSquareHall(builder, parent, data, y) {
     baseY: y + H, layers: spec.eaveCount, brackets: true, sides: 4,
     height: spec.roofH, overhang: spec.veranda ? 2.2 : 2.5,
     ...(centralFrame ? {jiaotaiCeilingOpening:centralFrame} : {}),
+    ...(data.name === '中和殿' ? { walkingBeastProfile: 'zhonghe' } : {}),
   });
   roof.name = `${data.name}·单檐攒尖顶`;
   roof.position.set(x0, 0, z0);
+  if (roof.userData.walkingBeasts) (parent.userData.hallWalkingBeasts ??= []).push({ ...roof.userData.walkingBeasts, position: roof.position.toArray() });
   shell.add(roof);
   builder.ownedMaterials.push(...(roof.userData.ownedMaterials ?? []));
   return shell;

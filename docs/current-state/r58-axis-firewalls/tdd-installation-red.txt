@@ -1,0 +1,46 @@
+✔ Taihe binds only the source-visible east wall and derives all levels from retained terrace controls (265.502913ms)
+✔ Taihe upper-wall door is a real gap in rendered masonry, with solid sides and no threshold obstruction (151.977642ms)
+✔ actual CollisionManager crosses the wall door both ways but rejects adjacent solid masonry (138.891437ms)
+✔ all retained platform, step, rail, collider and walkable records survive exactly without added west walls (123.898285ms)
+✔ body geometry is finite, nondegenerate and closed; repeated installation is rejected before mutation (138.716245ms)
+✔ pure supplied-world QA tests rendered doorway, collider body and real 中左门 route without constructing another world (171.760223ms)
+✔ actual FirstPersonControls traverses and returns through the fitted upper door at 10Hz from -1 (113.434054ms)
+✔ actual FirstPersonControls traverses and returns through the fitted upper door at 10Hz from 1 (112.908572ms)
+✔ actual FirstPersonControls traverses and returns through the fitted upper door at 60Hz from -1 (115.902184ms)
+✔ actual FirstPersonControls traverses and returns through the fitted upper door at 60Hz from 1 (126.865749ms)
+✔ nonfinite or changed control points fail before a mesh can be generated (97.699958ms)
+✔ integration actor audit fails closed for missing, empty, duplicate or wrong expected bindings (244.783412ms)
+✔ builder preflight rejects malformed passage/spans without partial installation or side effects (418.347703ms)
+✔ profile rejects narrow doorway spans, negative hall width, infinite rectangles and incomplete east-wall endpoints (95.386046ms)
+✖ same-world integration QA rejects absent walls, invisible walls and visible-only or collider-only remnants (128.455637ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 14
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2659.935687
+
+✖ failing tests:
+
+test at tests/r58-axis-firewalls.test.mjs:107:1
+✖ same-world integration QA rejects absent walls, invisible walls and visible-only or collider-only remnants (128.455637ms)
+  AssertionError [ERR_ASSERTION]: never-installed baseline must not pass
+
+  true !== false
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-axis-firewalls/tests/r58-axis-firewalls.test.mjs:110:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

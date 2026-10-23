@@ -15,8 +15,9 @@ globalThis.document ??= {
 };
 const axis = JSON.parse(readFileSync(new URL('../../data/zones/axis-courts.json', import.meta.url)));
 const expected = {
-  xiehe: { source: 7098, removed: 988, boxes: 201, posts: 72, meshes: 331, buckets: 14 },
-  xihe: { source: 7086, removed: 966, boxes: 203, posts: 71, meshes: 332, buckets: 14 },
+  // Six own courtyard knees add 432 triangles / 6 meshes, no new material.
+  xiehe: { source: 7530, removed: 988, boxes: 201, posts: 72, meshes: 337, buckets: 14 },
+  xihe: { source: 7614, removed: 966, boxes: 203, posts: 71, meshes: 338, buckets: 14 },
   jingyun: { source: 4014, removed: 744, boxes: 160, posts: 0, meshes: 204, buckets: 13 },
   longzong: { source: 4014, removed: 476, boxes: 160, posts: 0, meshes: 204, buckets: 13 },
 };

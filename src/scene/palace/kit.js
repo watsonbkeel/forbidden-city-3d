@@ -1,3 +1,4 @@
+import { validateGalleryInventoryPolicy, galleryRoomEvidence } from './GalleryInventoryPolicy.js';
 import {buildHorizontalNameboardAtlas} from './special/HorizontalNameboardAtlas.js';
 import * as THREE from 'three';
 import { applyBoxUV, applyBandUV } from '../../utils/GeometryUV.js';
@@ -8,12 +9,15 @@ import { furnishRoom, goldBrickTexture, GOLD_BRICK_TILE } from './interiors.js';
 import { buildHuangjiGate } from './special/HuangjiGate.js';
 import { buildSideGate } from './special/SideGate.js';
 import { buildZhaodeGate } from './special/ZhaodeGate.js';
+import { buildZhenduGate } from './special/ZhenduGate.js';
 import { buildTirenPavilion } from './special/TirenPavilion.js';
 import { buildSurveyedPavilion } from './special/SurveyedPavilion.js';
 import { buildQinanHall } from './special/QinanHall.js';
 
 const STEP_RUN = 1.6; // 台阶水平长 / 高
 const _v = new THREE.Vector3();
+const GALLERY_POLICY = Symbol('validated-gallery-inventory-policy');
+const GALLERY_FRAMES = new WeakMap();
 
 /**
  * 院落建筑构件库：宫墙、宫门（随墙门 / 门殿 / 城台门）、可进入的殿座、庑房、匾额。
@@ -156,7 +160,18 @@ export class CourtKit {
     return this._interiorMats;
   }
 
-  furnish(f, kind, room) {
+  furnish(f, kind, room, inventoryPolicy) {
+    if (inventoryPolicy !== undefined) {
+      if (GALLERY_FRAMES.get(f) !== inventoryPolicy) throw new Error('Unvalidated gallery inventory policy or target frame');
+      // No geometry/material allocation and no post-hoc overlap deletion.
+      // These two points depend only on room/door bounds, not any removed prop.
+      const res = { cover: [], spawns: [
+        { x: (room.x0 + room.x1) / 2, z: (room.z0 + room.z1) / 2 },
+        { x: room.doorX, z: room.z0 + 1.0 },
+      ] };
+      this._lastFurnish = res;
+      return res;
+    }
     const seed = Math.round(Math.abs(f.position.x * 131 + f.position.z * 17 + room.x0 * 7));
     const res = furnishRoom(this, f, kind, room, seed);
     this._lastFurnish = res;
@@ -164,7 +179,8 @@ export class CourtKit {
   }
 
   /** 登记一个房间：局部矩形 → 世界 AABB，门 / 掩体 / 刷怪点 → 世界坐标 */
-  registerRoom(f, { name, kind, x0, x1, z0, z1, y, h, doors }) {
+  registerRoom(f, { name, kind, x0, x1, z0, z1, y, h, doors, inventoryPolicy }) {
+    if (inventoryPolicy !== undefined && GALLERY_FRAMES.get(f) !== inventoryPolicy) throw new Error('Unvalidated gallery inventory policy or target frame');
     const toW = (x, z) => new THREE.Vector3(x, 0, z).applyMatrix4(f.matrixWorld);
     const a = toW(x0, z0), b = toW(x1, z1);
     const pt = p => { const v = toW(p.x, p.z); return { x: +v.x.toFixed(2), z: +v.z.toFixed(2) }; };
@@ -174,6 +190,7 @@ export class CourtKit {
     this.rooms.push({
       id: this.rooms.length,
       name, kind,
+      ...(inventoryPolicy === undefined ? {} : galleryRoomEvidence(inventoryPolicy)),
       min: { x: Math.min(a.x, b.x), y, z: Math.min(a.z, b.z) },
       max: { x: Math.max(a.x, b.x), y: y + h, z: Math.max(a.z, b.z) },
       floorY: y,
@@ -249,6 +266,10 @@ export class CourtKit {
    */
   gate({ x, z, rot, w = 3.6, h = 4.4, t = 1, style = 'wall', gateKind, gateProfile, open, plaque, name, roof = 'xieshan', brackets = true, layers = 1, eaveCount }) {
     if (gateProfile === 'huangji') return buildHuangjiGate(this, {x,z,rot,w,style,gateKind,gateProfile,open,name});
+    if (gateProfile === 'zhendu') {
+      if (gateKind !== 'three-bay') throw new Error('Zhendu profile requires explicit three-bay gateKind');
+      return buildZhenduGate(this, { x, z, rot, w, h, t, gateKind, gateProfile, open, plaque, name });
+    }
     if (gateProfile === 'zhaode') {
       if (gateKind !== 'three-bay') throw new Error('Zhaode profile requires explicit three-bay gateKind');
       return buildZhaodeGate(this, { x, z, rot, w, h, t, gateKind, gateProfile, open, plaque, name });
@@ -449,6 +470,7 @@ export class CourtKit {
    * open：只有柱子的敞厅（箭亭、亭榭）；closed（enter=false）时整座殿身为实体碰撞。
    */
   hall(o) {
+    if (o.furnishingPolicy !== undefined) throw new Error('Gallery inventory policy requires an explicit corridor target');
     if (o.structure === 'qinan-hall') return buildQinanHall(this, o);
     if (o.qinanProfile !== undefined) throw new Error('Qinan profile requires qinan-hall structure');
     if (o.structure === 'surveyed-pavilion') return buildSurveyedPavilion(this, o);
@@ -470,6 +492,7 @@ export class CourtKit {
     // 默认所有殿座都可进入（open 敞厅本来就能穿行）
     const enter = !open && enterOpt !== false;
     const f = this.frame(x, z, rot);
+    if (o[GALLERY_POLICY] !== undefined) GALLERY_FRAMES.set(f, o[GALLERY_POLICY]);
     f.userData.structure = { storeys: 1, eaveCount: layers };
     const n = bays ?? Math.max(3, Math.round(w / 3.6) | 1);
     const bay = w / n;
@@ -604,10 +627,11 @@ export class CourtKit {
         const x1 = -w / 2 + b * bay - (b < n ? 0.15 : 0.35);
         const doorX = -w / 2 + (Math.floor((a + b - 1) / 2) + 0.5) * bay;
         const roomKind = kind === 'room' && segs.length > 2 && idx % 3 === 2 ? 'storage' : kind;
-        if (roomKind !== 'throne') this.furnish(f, roomKind, { x0, x1, z0: -d / 2 + 0.3, z1: d / 2 - 0.3, y: y0, doorX, h: colH - beamH, backDoor });
+        if (roomKind !== 'throne') this.furnish(f, roomKind, { x0, x1, z0: -d / 2 + 0.3, z1: d / 2 - 0.3, y: y0, doorX, h: colH - beamH, backDoor }, o[GALLERY_POLICY]);
         this.registerRoom(f, {
           name: name ? (segs.length > 1 && map !== 'corridor' ? `${name}·${idx + 1}` : name) : null,
           kind: roomKind, x0, x1, z0: -d / 2 + frontEnclosureInset, z1: d / 2, y: y0, h: colH - beamH,
+          ...(o[GALLERY_POLICY] === undefined ? {} : { inventoryPolicy: o[GALLERY_POLICY] }),
           doors: [{ x: doorX, z: -d / 2 + frontEnclosureInset }, ...(backDoor ? [{ x: doorX, z: d / 2 }] : [])],
         });
       });
@@ -627,7 +651,10 @@ export class CourtKit {
   }
 
   /** 庑房（廊房）：沿 x1→x2 或 z1→z2 的长条，正面朝 facing（'x+'|'x-'|'z+'|'z-'），每 3 间隔成一个可进入的房间 */
-  corridor(x1, z1, x2, z2, facing, { depth = 4.2, colH = 3.6, name } = {}) {
+  corridor(x1, z1, x2, z2, facing, { depth = 4.2, colH = 3.6, name, furnishingPolicy, furnishingTarget, furnishingKind } = {}) {
+    const inventoryPolicy = validateGalleryInventoryPolicy(furnishingPolicy, {
+      zone: this.root.name, target: furnishingTarget, kind: furnishingKind,
+    });
     const alongX = Math.abs(x2 - x1) >= Math.abs(z2 - z1);
     const len = alongX ? Math.abs(x2 - x1) : Math.abs(z2 - z1);
     if (len < 4) return;
@@ -636,6 +663,7 @@ export class CourtKit {
       x: (x1 + x2) / 2, z: (z1 + z2) / 2, rot, w: len - 1.0, d: depth, pad: 0.5, ph: 0.45, colH,
       roof: 'gable', brackets: false, enter: true, roomBays: 3, interior: 'room', plaque: false, name: name ?? '庑房',
       map: 'corridor', bays: Math.max(3, Math.round(len / 3.4) | 1),
+      ...(inventoryPolicy === undefined ? {} : { [GALLERY_POLICY]: inventoryPolicy }),
     });
   }
 

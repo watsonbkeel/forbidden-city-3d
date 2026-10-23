@@ -1,0 +1,144 @@
+✔ source has frozen 4-column / 3 equal-span shape before refinement (1.969137ms)
+✖ target north row is six registered unequal-spaced columns; no old middle duplicates (0.780906ms)
+✖ only north-row local proxies change; every new proxy matches actual low column geometry (0.282856ms)
+✖ corners, south row, enclosure, beams, other pavilions/roofs/ascent are exact (6.407165ms)
+✖ every north column base contacts retained visible deck geometry in correct transformed instance (0.239671ms)
+✖ wrong-instance negatives and invalid source shape do not mutate or allocate geometry (2.947631ms)
+✖ repeat application is a no-op; geometry and materials stay shared and undisposed (0.450278ms)
+✔ source and candidate north-column triangles have finite positions/normals/UV, nonzero area and positive volume (2.134506ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 2
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 321.25936
+
+✖ failing tests:
+
+test at tests/wumen-northeast-pavilion-columns.test.mjs:20:1
+✖ target north row is six registered unequal-spaced columns; no old middle duplicates (0.780906ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  4 !== 6
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-wumen-northeast-columns/tests/wumen-northeast-pavilion-columns.test.mjs:21:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 4,
+    expected: 6,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wumen-northeast-pavilion-columns.test.mjs:27:1
+✖ only north-row local proxies change; every new proxy matches actual low column geometry (0.282856ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  4 !== 6
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-wumen-northeast-columns/tests/wumen-northeast-pavilion-columns.test.mjs:28:133)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 4,
+    expected: 6,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wumen-northeast-pavilion-columns.test.mjs:35:1
+✖ corners, south row, enclosure, beams, other pavilions/roofs/ascent are exact (6.407165ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  12 !== 14
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-wumen-northeast-columns/tests/wumen-northeast-pavilion-columns.test.mjs:39:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 12,
+    expected: 14,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wumen-northeast-pavilion-columns.test.mjs:41:1
+✖ every north column base contacts retained visible deck geometry in correct transformed instance (0.239671ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  4 !== 6
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-wumen-northeast-columns/tests/wumen-northeast-pavilion-columns.test.mjs:42:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 4,
+    expected: 6,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wumen-northeast-pavilion-columns.test.mjs:51:1
+✖ wrong-instance negatives and invalid source shape do not mutate or allocate geometry (2.947631ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert.ok(api)
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-wumen-northeast-columns/tests/wumen-northeast-pavilion-columns.test.mjs:52:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/wumen-northeast-pavilion-columns.test.mjs:58:1
+✖ repeat application is a no-op; geometry and materials stay shared and undisposed (0.450278ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert.ok(api)
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-wumen-northeast-columns/tests/wumen-northeast-pavilion-columns.test.mjs:59:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

@@ -1,0 +1,18 @@
+// Bounded actual production roof meshes only. No world or browser is built.
+import fs from 'node:fs';import {gzipSync} from 'node:zlib';import {execFileSync} from 'node:child_process';import * as THREE from 'three';
+import {buildRoof} from '../../src/scene/RoofBuilder.js';
+import {realTextureLibrary} from '../../tests/lib/r48-real-texture-library.mjs';
+import {hallOptions,hash,signature,triangles,release} from '../../tests/lib/r58-hall-beast-fixture.mjs';
+const out=process.argv[2]??'reports/r58-taihe-beasts/geometry-cpu';if(fs.existsSync(out))throw Error('Use a fresh evidence directory');fs.mkdirSync(out,{recursive:true});
+const cameras={taihe:[{id:'whole',eye:[-70,30,-65],target:[0,8,0],fov:48},{id:'lower-row',eye:[-43,8,-12],target:[-32,3.1,-19.4],fov:48},{id:'upper-row',eye:[-40,14,-8],target:[-27,10.5,-14.5],fov:45}]};
+function extract(root){const rows=[];root.updateMatrixWorld(true);root.traverse(m=>{if(!m.isMesh)return;const g=m.geometry,p=g.attributes.position,n=g.attributes.normal,idx=g.index,nm=new THREE.Matrix3().getNormalMatrix(m.matrixWorld);for(let i=0;i<(idx?.count??p.count);i+=3){const ids=[0,1,2].map(k=>idx?.getX(i+k)??i+k);rows.push({v:ids.map(k=>new THREE.Vector3().fromBufferAttribute(p,k).applyMatrix4(m.matrixWorld).toArray()),n:ids.map(k=>new THREE.Vector3().fromBufferAttribute(n,k).applyNormalMatrix(nm).toArray()),c:Array(3).fill(m.material.color.toArray()),side:m.material.side});}});return rows;}
+const report={kind:'ACTUAL_ROOF_FRAGMENT_GEOMETRY_CPU_DIAGNOSTIC_NOT_BROWSER_ACCEPTANCE',baseline:'c9a82aaa8316954e80a03aa934cd8e745065322e',HEAD:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceHashes:Object.fromEntries(['src/scene/RoofBuilder.js','src/scene/palace/special/HallWalkingBeasts.js','src/scene/PalaceBuilder.js','scripts/r58-taihe-beasts/export-diagnostic.mjs'].map(p=>[p,hash(fs.readFileSync(p))])),coordinates:'Exact production roof dimensions and baseY normalized to 0 for both stages; no full hall built',materialPolicy:'Actual TextureLibrary material base colors; texture images and GPU effects omitted',lighting:'CPU directional [-.4,.8,-.6], ambient .57 / directional .43; no runtime day/night acceptance',halls:{}};
+for(const name of ['taihe'])for(const stage of ['before','after']){
+ const g=buildRoof(realTextureLibrary(),{...hallOptions[name],...(stage==='after'?{walkingBeastProfile:name}:{})}),actual=extract(g);
+ (report.halls[name]??={})[stage]={geometry:signature(g),submittedTriangles:triangles(g),drawCalls:g.children.length,walkingBeasts:g.userData.walkingBeasts??null};
+ for(const c of cameras[name]){const camera=new THREE.PerspectiveCamera(c.fov,16/9,.03,200);camera.position.fromArray(c.eye);camera.lookAt(...c.target);camera.updateMatrixWorld(true);const data={label:`${name}-${stage}-${c.id}`,kind:report.kind,camera:{position:c.eye,target:c.target,fov:c.fov,matrixWorldInverse:camera.matrixWorldInverse.toArray()},triangles:actual};fs.writeFileSync(`${out}/${data.label}.json.gz`,gzipSync(JSON.stringify(data)));}
+ release(g);
+}
+report.cameras=cameras;
+for(const hall of Object.values(report.halls)){hall.triangleDelta=hall.after.submittedTriangles-hall.before.submittedTriangles;hall.minimumCenterDistance=Math.min(...hall.after.walkingBeasts.rows.flatMap(r=>r.stations.slice(1).map((s,i)=>new THREE.Vector3().fromArray(s.center).distanceTo(new THREE.Vector3().fromArray(r.stations[i].center)))));}
+fs.writeFileSync(`${out}/MANIFEST.json`,JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(Object.fromEntries(Object.entries(report.halls).map(([k,v])=>[k,{before:v.before.submittedTriangles,after:v.after.submittedTriangles,delta:v.triangleDelta,minimumCenterDistance:v.minimumCenterDistance,drawCalls:v.after.drawCalls}]))));

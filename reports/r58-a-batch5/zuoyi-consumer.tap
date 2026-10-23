@@ -1,0 +1,28 @@
+✖ actual production gate dispatch/merge shows both nine-row fronts from legal views (262.321414ms)
+✔ metadata cannot substitute for a removed submitted front triangle (189.134364ms)
+✔ a ten-row original texture is not accepted as a corrected front (179.049667ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1108.030174
+
+✖ failing tests:
+
+test at tests/r58-zuoyi-world-consumer.test.mjs:5:1
+✖ actual production gate dispatch/merge shows both nine-row fronts from legal views (262.321414ms)
+  AssertionError [ERR_ASSERTION]: At least one legal ground-supported front observer sees this actual skin
+      at assertZuoyiDoorFrontInWorld (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/lib/r58-zuoyi-world-check.mjs:28:11)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/tests/r58-zuoyi-world-consumer.test.mjs:5:134)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

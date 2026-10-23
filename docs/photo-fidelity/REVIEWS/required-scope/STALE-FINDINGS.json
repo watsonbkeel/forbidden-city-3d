@@ -1,0 +1,286 @@
+{
+  "proposalOnly": true,
+  "meaning": "Supersede stale present-tense interpretation only. Original queue/matrix strings are preserved verbatim here and historical review files must not be rewritten as if the old model had already changed.",
+  "proposals": [
+    {
+      "id": "STALE-01",
+      "objectId": "FC-5FAA15AE5C",
+      "objectName": "中和殿",
+      "facet": "exterior",
+      "featureId": "storeys_roof_type_ridge_pitch_eaves_colour",
+      "staleRecords": [
+        {
+          "ref": {
+            "path": "docs/photo-fidelity/QUEUE.json",
+            "pointer": "/items/3/facets/exterior/features/1"
+          },
+          "field": "finding",
+          "exactText": "Single pavilion roof correct in type; generated3 walking beasts per hip vs official table7. Rider is separate. Ball finial shape remains approximate.",
+          "recordRole": "Canonical generic finding presently stale"
+        },
+        {
+          "ref": {
+            "path": "docs/photo-fidelity/REVIEWS/three-halls/THREE-HALL-GAP-MATRIX.json",
+            "pointer": "/rows/1/features/1"
+          },
+          "field": "finding",
+          "exactText": "Single pavilion roof correct in type; generated3 walking beasts per hip vs official table7. Rider is separate. Ball finial shape remains approximate.",
+          "recordRole": "Pre-change source/code-review provenance; preserve unchanged"
+        }
+      ],
+      "proposedCurrentFinding": "Single pavilion roof type is retained. R58-A-2 now generates seven walking beasts per corner (28 total), with four riders separate, supported by the recorded integrated functional checkpoint. Previous generated3 count describes the pre-change diagnostic only. Species/sculptural form, finial shape and actual-game visual comparison remain partial/pending.",
+      "supersedingEvidence": [
+        {
+          "ref": {
+            "path": "docs/photo-fidelity/QUEUE.json",
+            "pointer": "/items/3/actualChanges/0"
+          },
+          "scope": "Seven walking beasts per corner; simplified species forms remain open",
+          "validatedSourceCommit": "322eb2eb5af839486f75276e23fcc5e07e567626",
+          "componentEvidence": "reports/r58-hall-beasts/README.md",
+          "worldEvidence": "reports/r58-a-batch2/one-world-validation.json.gz"
+        }
+      ],
+      "proposalOnly": true,
+      "preserveOriginalProvenance": true,
+      "browserAccepted": false
+    },
+    {
+      "id": "STALE-02",
+      "objectId": "FC-58A3300503",
+      "objectName": "保和殿",
+      "facet": "exterior",
+      "featureId": "storeys_roof_type_ridge_pitch_eaves_colour",
+      "staleRecords": [
+        {
+          "ref": {
+            "path": "docs/photo-fidelity/QUEUE.json",
+            "pointer": "/items/4/facets/exterior/features/1"
+          },
+          "field": "finding",
+          "exactText": "Double xieshan retained. Actual generated upper5/lower3 per hip vs official explicit9 on both eaves; riders and main/terminal beasts separate.",
+          "recordRole": "Canonical generic finding presently stale"
+        },
+        {
+          "ref": {
+            "path": "docs/photo-fidelity/REVIEWS/three-halls/THREE-HALL-GAP-MATRIX.json",
+            "pointer": "/rows/2/features/1"
+          },
+          "field": "finding",
+          "exactText": "Double xieshan retained. Actual generated upper5/lower3 per hip vs official explicit9 on both eaves; riders and main/terminal beasts separate.",
+          "recordRole": "Pre-change source/code-review provenance; preserve unchanged"
+        },
+        {
+          "ref": {
+            "path": "docs/photo-fidelity/REVIEWS/three-halls/THREE-HALL-GAP-MATRIX.json",
+            "pointer": "/rows/2/requiredScopeFindings/0"
+          },
+          "field": null,
+          "exactText": "Main shell: DIFFED roof beast counts; rear facade retention VERIFY_PENDING.",
+          "recordRole": "Pre-change required-scope summary; preserve as historical snapshot, supersede current interpretation only"
+        }
+      ],
+      "proposedCurrentFinding": "Double xieshan is retained. R58-A-2 now generates nine walking beasts per corner on both eaves (72 total), with eight riders separate, supported by the recorded integrated functional checkpoint. Previous upper5/lower3 counts describe pre-change diagnostics only. Species forms, roof details and actual-game visual comparison remain partial/pending.",
+      "supersedingEvidence": [
+        {
+          "ref": {
+            "path": "docs/photo-fidelity/QUEUE.json",
+            "pointer": "/items/4/actualChanges/0"
+          },
+          "scope": "Nine walking beasts per corner at both eaves; riders separate; simplified species forms remain open",
+          "validatedSourceCommit": "322eb2eb5af839486f75276e23fcc5e07e567626",
+          "componentEvidence": "reports/r58-hall-beasts/README.md",
+          "worldEvidence": "reports/r58-a-batch2/one-world-validation.json.gz"
+        }
+      ],
+      "proposalOnly": true,
+      "preserveOriginalProvenance": true,
+      "browserAccepted": false
+    },
+    {
+      "id": "STALE-03",
+      "objectId": "FC-58A3300503",
+      "objectName": "保和殿",
+      "facet": "interior",
+      "featureId": "room_partitions_portals_column_grid_levels_steps_floor",
+      "staleRecords": [
+        {
+          "ref": {
+            "path": "docs/photo-fidelity/QUEUE.json",
+            "pointer": "/items/4/facets/interior/features/0"
+          },
+          "field": "finding",
+          "exactText": "Central dais remains two generic raised boxes + three narrow centered steps, no dais balustrades. Selected museum photo shows broad platform, three front flights and railings. Exact rise/run undimensioned.",
+          "recordRole": "Canonical generic finding presently stale"
+        },
+        {
+          "ref": {
+            "path": "docs/photo-fidelity/REVIEWS/three-halls/THREE-HALL-GAP-MATRIX.json",
+            "pointer": "/rows/2/features/8"
+          },
+          "field": "finding",
+          "exactText": "Central dais remains two generic raised boxes + three narrow centered steps, no dais balustrades. Selected museum photo shows broad platform, three front flights and railings. Exact rise/run undimensioned.",
+          "recordRole": "Pre-change source/code-review provenance; preserve unchanged"
+        },
+        {
+          "ref": {
+            "path": "docs/photo-fidelity/REVIEWS/three-halls/THREE-HALL-GAP-MATRIX.json",
+            "pointer": "/rows/2/requiredScopeFindings/1"
+          },
+          "field": null,
+          "exactText": "Central hall: DIFFED dais approach/rail topology; selected chair/screen retained.",
+          "recordRole": "Pre-change required-scope summary; preserve as historical snapshot, supersede current interpretation only"
+        }
+      ],
+      "proposedCurrentFinding": "R58-A-2 replaced the old two-box/three-narrow-centered-step dais with a broad three-flight approach and local visible rails, solids and supports. Existing chair/screen poses remain. The integrated functional checkpoint covers the bounded change; exact dimensions are photo-fit, fine rail sections/carving and continuous rail slope remain partial, and browser visual acceptance is pending.",
+      "supersedingEvidence": [
+        {
+          "ref": {
+            "path": "docs/photo-fidelity/QUEUE.json",
+            "pointer": "/items/4/actualChanges/1"
+          },
+          "scope": "Three-flight dais approach and local solids/supports; chair/screen poses retained; fine rails/carving remain partial",
+          "validatedSourceCommit": "322eb2eb5af839486f75276e23fcc5e07e567626",
+          "componentEvidence": "reports/r58-baohe-dais/README.md",
+          "worldEvidence": "reports/r58-a-batch2/one-world-validation.json.gz"
+        }
+      ],
+      "proposalOnly": true,
+      "preserveOriginalProvenance": true,
+      "browserAccepted": false
+    },
+    {
+      "id": "STALE-04",
+      "objectId": "FC-58A3300503",
+      "objectName": "保和殿",
+      "facet": "interior",
+      "featureId": "visible_missing_objects_and_unsupported_model_objects",
+      "staleRecords": [
+        {
+          "ref": {
+            "path": "docs/photo-fidelity/QUEUE.json",
+            "pointer": "/items/4/facets/interior/features/5"
+          },
+          "field": "finding",
+          "exactText": "Missing dais rails/two lateral flights are evidenced; peripheral objects and warm rooms remain unknown, no duplicate generic furnishings.",
+          "recordRole": "Canonical generic finding presently stale"
+        },
+        {
+          "ref": {
+            "path": "docs/photo-fidelity/REVIEWS/three-halls/THREE-HALL-GAP-MATRIX.json",
+            "pointer": "/rows/2/features/13"
+          },
+          "field": "finding",
+          "exactText": "Missing dais rails/two lateral flights are evidenced; peripheral objects and warm rooms remain unknown, no duplicate generic furnishings.",
+          "recordRole": "Pre-change source/code-review provenance; preserve unchanged"
+        }
+      ],
+      "proposedCurrentFinding": "The formerly missing lateral dais flights and local rail/approach topology are now implemented in R58-A-2 and covered by the recorded integrated functional checkpoint. Fine rail slope/carving remain partial; peripheral objects, retained generic tripods and warm-room inventories remain unverified. No duplicate generic furnishings or whole-interior acceptance follows.",
+      "supersedingEvidence": [
+        {
+          "ref": {
+            "path": "docs/photo-fidelity/QUEUE.json",
+            "pointer": "/items/4/actualChanges/1"
+          },
+          "scope": "Three-flight dais approach and local solids/supports; chair/screen poses retained; fine rails/carving remain partial",
+          "validatedSourceCommit": "322eb2eb5af839486f75276e23fcc5e07e567626",
+          "componentEvidence": "reports/r58-baohe-dais/README.md",
+          "worldEvidence": "reports/r58-a-batch2/one-world-validation.json.gz"
+        }
+      ],
+      "proposalOnly": true,
+      "preserveOriginalProvenance": true,
+      "browserAccepted": false
+    },
+    {
+      "id": "STALE-05",
+      "objectId": "FC-8C6502DA44",
+      "objectName": "体仁阁",
+      "facet": "exterior",
+      "featureId": "doors_windows_openings_walls_screens",
+      "staleRecords": [
+        {
+          "ref": {
+            "path": "docs/photo-fidelity/QUEUE.json",
+            "pointer": "/items/5/facets/exterior/features/3"
+          },
+          "field": "finding",
+          "exactText": "Six lower window groups have one full outer frame and 13 vertical lattice bars, including a thin center bar, not separate paired sash framework. Two framed halves visible in own photo. Back/side lower walls and upper wood enclosure remain conservative; no new rear openings.",
+          "recordRole": "Canonical generic finding presently stale"
+        },
+        {
+          "ref": {
+            "path": "docs/photo-fidelity/REVIEWS/axis-side-buildings/FEATURE-MATRIX.json",
+            "pointer": "/rows/0/exterior/3"
+          },
+          "field": "finding",
+          "exactText": "Six lower window groups have one full outer frame and 13 vertical lattice bars, including a thin center bar, not separate paired sash framework. Two framed halves visible in own photo. Back/side lower walls and upper wood enclosure remain conservative; no new rear openings.",
+          "recordRole": "Pre-change source/code-review provenance; preserve unchanged"
+        }
+      ],
+      "proposedCurrentFinding": "R58-A-2 replaced six lower-front full-bay window frameworks with twelve separately framed leaves, including meeting stiles and six straight bars per leaf; the old central bar was not the missing feature. Outer envelopes, non-target geometry, upper 28 leaves and navigation are retained. Fine sash sections/spacing, paint, hinges, rear construction and all room interiors remain unresolved; visual acceptance is pending.",
+      "supersedingEvidence": [
+        {
+          "ref": {
+            "path": "docs/photo-fidelity/QUEUE.json",
+            "pointer": "/items/5/actualChanges/0"
+          },
+          "scope": "Six lower window groups replaced by twelve separately framed leaves; outer envelopes retained",
+          "validatedSourceCommit": "322eb2eb5af839486f75276e23fcc5e07e567626",
+          "componentEvidence": "reports/r58-court-facade-details/tiren/README.md",
+          "worldEvidence": "reports/r58-a-batch2/one-world-validation.json.gz"
+        }
+      ],
+      "proposalOnly": true,
+      "preserveOriginalProvenance": true,
+      "browserAccepted": false
+    },
+    {
+      "id": "STALE-06",
+      "objectId": "FC-06B1BADE77",
+      "objectName": "熙和门",
+      "facet": "exterior",
+      "featureId": "bays_columns_brackets_beams_paint_zones",
+      "staleRecords": [
+        {
+          "ref": {
+            "path": "docs/photo-fidelity/QUEUE.json",
+            "pointer": "/items/8/facets/exterior/features/2"
+          },
+          "field": "finding",
+          "exactText": "Own Qing detail IMG05 supports scalloped under-beam knee form; IMG01 locates six at the three courtyard openings. Current rectangular beam/prism band lacks them. Corner霸王拳 and brackets have own images but exact corner coordinates/count not enough for full roof rewrite.",
+          "recordRole": "Canonical generic finding presently stale"
+        },
+        {
+          "ref": {
+            "path": "docs/photo-fidelity/REVIEWS/axis-side-buildings/FEATURE-MATRIX.json",
+            "pointer": "/rows/3/exterior/2"
+          },
+          "field": "finding",
+          "exactText": "Own Qing detail IMG05 supports scalloped under-beam knee form; IMG01 locates six at the three courtyard openings. Current rectangular beam/prism band lacks them. Corner霸王拳 and brackets have own images but exact corner coordinates/count not enough for full roof rewrite.",
+          "recordRole": "Pre-change source/code-review provenance; preserve unchanged"
+        }
+      ],
+      "proposedCurrentFinding": "R58-A-2 added six curved/scalloped corbels at the three courtyard-side openings (local +Z), independently supported by IMG01 and IMG05. They are no longer absent. Corner brackets, detailed carving/paint, full exposed roof frame and exact unviewed joints remain unresolved; this local exterior change does not upgrade vestibule interiors or establish browser acceptance.",
+      "supersedingEvidence": [
+        {
+          "ref": {
+            "path": "docs/photo-fidelity/QUEUE.json",
+            "pointer": "/items/8/actualChanges/0"
+          },
+          "scope": "Six courtyard-side curved corbels; detailed carving/paint unresolved",
+          "validatedSourceCommit": "322eb2eb5af839486f75276e23fcc5e07e567626",
+          "componentEvidence": "reports/r58-court-facade-details/xihe/README.md",
+          "worldEvidence": "reports/r58-a-batch2/one-world-validation.json.gz"
+        }
+      ],
+      "proposalOnly": true,
+      "preserveOriginalProvenance": true,
+      "browserAccepted": false
+    }
+  ],
+  "publicationProvenance": {
+    "originalSha256": "8e63d52c40e1a5ebee4872f0eb69d3cbf8ff36410e32dbe0e424914d728cb759",
+    "note": "Review metadata only. Private local paths removed; original photos/PDF not redistributed. Snapshot JSON pointers refer to recorded input hashes; resolve current features by object and feature IDs. No browser acceptance."
+  }
+}

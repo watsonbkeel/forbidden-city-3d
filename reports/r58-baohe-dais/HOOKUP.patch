@@ -1,0 +1,32 @@
+--- a/src/scene/PalaceBuilder.js
++++ b/src/scene/PalaceBuilder.js
+@@ -1,3 +1,4 @@
++import { buildBaoheDaisApproach, registerBaoheDaisFurnishingSolids } from './palace/BaoheDaisApproach.js';
+ import {buildBaoheWarmRooms} from './palace/BaoheWarmRooms.js';
+ import { taihemenSouthProfile, buildTaihemenSouthApproach } from './palace/TaihemenSouthApproach.js';
+ import { buildSouthWaterSystem } from './palace/special/SouthWaterSystem.js';
+@@ -903,6 +904,8 @@
+     const zc = (ztb0 + ztb1) / 2;
+     if (qianqing) registerQianqingCentral(this,g,{x0,y,H,ztb0,ztb1,thW,bayW});
+     else {
++    if (baohe) buildBaoheDaisApproach(this,g,{x0,y,ztb0,ztb1,thW});
++    else {
+     // 地平床：两级，金边
+     this.box(g, lacquer, thW, 0.6, depth, x0, y + 0.3, zc);
+     this.box(g, gold, thW + 0.1, 0.08, depth + 0.1, x0, y + 0.62, zc);
+@@ -911,6 +914,7 @@
+       this.box(g, lacquer, thW * 0.3, 0.2 * (k + 1), 0.4, x0, y + 0.1 * (k + 1), ztb0 - 1.2 + k * 0.4);
+     }
+     this.col(x0 - thW / 2, y, ztb0 - 1.3, x0 + thW / 2, y + 3, ztb1);
++    }
+     // 宝座 + 屏风
+     const ty = y + 1.25;
+     const tz = zc + depth * 0.1;
+@@ -929,6 +933,7 @@
+       }
+     }
+     }
++    if (baohe) registerBaoheDaisFurnishingSolids(this,g);
+     // Qianqing selected-display vessels have one permanent dedicated owner.
+     if(!qianqing) for (const s of [-1, 1]) {
+       this.tripod(g, bronze, x0 + s * (thW * 0.35), y, ztb0 - 2.2);

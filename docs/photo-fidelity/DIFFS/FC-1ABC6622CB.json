@@ -1,0 +1,37 @@
+{
+  "id": "DIFF-FC-1ABC6622CB",
+  "objectId": "FC-1ABC6622CB",
+  "status": "SOURCE_CONFIRMED_STATIC_CODE_CANDIDATE",
+  "referenceVisible": "PDF page5 photo: stepped wall",
+  "sourceRecords": [
+    {
+      "label": "太和殿——可以看到太和殿一侧的阶梯状封火墙",
+      "url": "https://www.dpm.org.cn/Uploads/File/2020/10/23/u5f9255173a228.pdf#page=5"
+    }
+  ],
+  "sourceViewLog": "EVIDENCE/SOURCE-VIEWS.json",
+  "modelStaticCode": "No dedicated firewall identity/builder in current PalaceBuilder or special source scan. Axis-courts perpendicular links are generic constant-height wall declarations. Need locate exact visible side before bounded implementation.",
+  "modelBrowserObservation": null,
+  "proposedChange": "Source-visible stepped masonry firewall segment, not a sloping timber corridor",
+  "codePaths": [
+    "data/zones/axis-courts.json#/items/13",
+    "data/zones/axis-courts.json#/items/15",
+    "src/scene/PalaceBuilder.js#buildComplex",
+    "src/scene/palace/kit.js#wall",
+    "src/scene/zones/ZoneBase.js"
+  ],
+  "requiredBeforeImplementation": "Inspect PDF page 5 photographed side and current model coordinates; match known plinth controls. Implement only visible supported segment; opposite side, exact step count and endpoints remain blocked until independently supported.",
+  "doNotOverreach": "Reversible source-supported local wall fit; no moving halls or stairs from a single unaligned photo.",
+  "checks": [
+    "Source subject and target era/photograph period confirmed or explicitly uncertain",
+    "Stable model binding and neighboring joins resolved",
+    "Preserve already verified anchors/routes/dimensions",
+    "Related unit/zone/gate/walk tests selected from current package.json",
+    "Actual browser matched camera before/after + feature-level reference comparison",
+    "If browser unavailable, reversible change+available tests allowed, status VERIFY_PENDING; never ACCEPTED"
+  ],
+  "done": false,
+  "actualChangedFiles": [],
+  "productionCommit": null,
+  "camera": null
+}

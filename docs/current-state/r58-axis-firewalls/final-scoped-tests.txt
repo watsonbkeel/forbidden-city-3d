@@ -1,0 +1,59 @@
+✔ three-hall waist has exactly six physical x-ramp flights derived from its inherited tiers (68.198695ms)
+✔ ground-origin east approach ascends all three flights and returns to ground (73.672565ms)
+✔ ground-origin west approach ascends all three flights and returns to ground (47.023227ms)
+✔ retaining wall stays solid outside waist opening: side -1, z 52 (31.954003ms)
+✔ retaining wall stays solid outside waist opening: side -1, z 64 (34.215086ms)
+✔ retaining wall stays solid outside waist opening: side -1, z 72 (41.190421ms)
+✔ retaining wall stays solid outside waist opening: side 1, z 52 (37.930954ms)
+✔ retaining wall stays solid outside waist opening: side 1, z 64 (30.958905ms)
+✔ retaining wall stays solid outside waist opening: side 1, z 72 (28.301063ms)
+✔ six new flights are true closed 17-tread profiles with matching openings and provisional metadata (20.732707ms)
+✔ only side flights and six rail splits change geometry; every existing terrace body face stays exact (286.39351ms)
+✔ every stair is a nondegenerate closed manifold with outward faces and metric UVs (39.051211ms)
+✔ all tread tops, exposed risers, stepped sides, head, underside and visible cheeks raycast (24.904194ms)
+✔ cheeks, diagonal entry and under-platform bypass stay blocked on side -1 (47.979309ms)
+✔ cheeks, diagonal entry and under-platform bypass stay blocked on side 1 (41.383299ms)
+✔ post-batch front-face ray hits and normals preserve both sides without mirrored winding (203.746053ms)
+✔ new terrace metadata, colliders and owned geometry dispose cleanly, and rebuild without duplicates (33.634184ms)
+✔ Taihe binds only the source-visible east wall and derives all levels from retained terrace controls (402.643656ms)
+✔ Taihe upper-wall door is a real gap in rendered masonry, with solid sides and no threshold obstruction (143.073057ms)
+✔ actual CollisionManager crosses the wall door both ways but rejects adjacent solid masonry (174.863335ms)
+✔ all retained platform, step, rail, collider and walkable records survive exactly without added west walls (122.565726ms)
+✔ body geometry is finite, nondegenerate and closed; repeated installation is rejected before mutation (147.230782ms)
+✔ pure supplied-world QA tests rendered doorway, collider body and real 中左门 route without constructing another world (230.445449ms)
+✔ actual FirstPersonControls traverses and returns through the fitted upper door at 10Hz from -1; backward=false (128.772987ms)
+ℹ {"arrived":true,"fps":10,"direction":-1,"sprint":true,"backward":false,"startFeet":8,"minFeet":8,"maxFeet":8,"maxSpeed":11.983508932564124,"frames":18,"end":[-43.00833333333333,-7.888853795889032,8],"driver":{"crossings":[{"index":1,"point":[-43.00833333333333,-16.2],"hit":[-43.00833333333333,-16.2],"lateralDistance":0},{"index":2,"point":[-43.00833333333333,-8.2],"hit":[-43.00833333333333,-8.2],"lateralDistance":0}],"brakingFrames":6,"endpointSettleSeconds":2}}
+✔ actual FirstPersonControls traverses and returns through the fitted upper door at 10Hz from -1; backward=true (117.561396ms)
+ℹ {"arrived":true,"fps":10,"direction":-1,"sprint":true,"backward":true,"startFeet":8,"minFeet":8,"maxFeet":8,"maxSpeed":11.983508932564124,"frames":18,"end":[-43.00833333333333,-7.888853795889032,8],"driver":{"crossings":[{"index":1,"point":[-43.00833333333333,-16.2],"hit":[-43.00833333333333,-16.2],"lateralDistance":0},{"index":2,"point":[-43.00833333333333,-8.2],"hit":[-43.00833333333333,-8.2],"lateralDistance":0}],"brakingFrames":6,"endpointSettleSeconds":2}}
+✔ actual FirstPersonControls traverses and returns through the fitted upper door at 10Hz from 1; backward=false (114.822531ms)
+ℹ {"arrived":true,"fps":10,"direction":1,"sprint":true,"backward":false,"startFeet":8,"minFeet":8,"maxFeet":8,"maxSpeed":11.983508932564124,"frames":18,"end":[-43.00833333333333,-16.51114620411097,8],"driver":{"crossings":[{"index":1,"point":[-43.00833333333333,-8.2],"hit":[-43.00833333333333,-8.2],"lateralDistance":0},{"index":2,"point":[-43.00833333333333,-16.2],"hit":[-43.00833333333333,-16.2],"lateralDistance":0}],"brakingFrames":6,"endpointSettleSeconds":2}}
+✔ actual FirstPersonControls traverses and returns through the fitted upper door at 10Hz from 1; backward=true (114.790564ms)
+ℹ {"arrived":true,"fps":10,"direction":1,"sprint":true,"backward":true,"startFeet":8,"minFeet":8,"maxFeet":8,"maxSpeed":11.983508932564124,"frames":18,"end":[-43.00833333333333,-16.51114620411097,8],"driver":{"crossings":[{"index":1,"point":[-43.00833333333333,-8.2],"hit":[-43.00833333333333,-8.2],"lateralDistance":0},{"index":2,"point":[-43.00833333333333,-16.2],"hit":[-43.00833333333333,-16.2],"lateralDistance":0}],"brakingFrames":6,"endpointSettleSeconds":2}}
+✔ actual FirstPersonControls traverses and returns through the fitted upper door at 60Hz from -1; backward=false (113.366884ms)
+ℹ {"arrived":true,"fps":60,"direction":-1,"sprint":true,"backward":false,"startFeet":8,"minFeet":8,"maxFeet":8,"maxSpeed":11.977459795183359,"frames":101,"end":[-43.00833333333333,-8.187461615793014,8],"driver":{"crossings":[{"index":1,"point":[-43.00833333333333,-16.2],"hit":[-43.00833333333333,-16.2],"lateralDistance":0},{"index":2,"point":[-43.00833333333333,-8.2],"hit":[-43.00833333333333,-8.2],"lateralDistance":0}],"brakingFrames":31,"endpointSettleSeconds":2}}
+✔ actual FirstPersonControls traverses and returns through the fitted upper door at 60Hz from -1; backward=true (112.23234ms)
+ℹ {"arrived":true,"fps":60,"direction":-1,"sprint":true,"backward":true,"startFeet":8,"minFeet":8,"maxFeet":8,"maxSpeed":11.977459795183359,"frames":101,"end":[-43.00833333333333,-8.187461615793014,8],"driver":{"crossings":[{"index":1,"point":[-43.00833333333333,-16.2],"hit":[-43.00833333333333,-16.2],"lateralDistance":0},{"index":2,"point":[-43.00833333333333,-8.2],"hit":[-43.00833333333333,-8.2],"lateralDistance":0}],"brakingFrames":31,"endpointSettleSeconds":2}}
+✔ actual FirstPersonControls traverses and returns through the fitted upper door at 60Hz from 1; backward=false (110.814139ms)
+ℹ {"arrived":true,"fps":60,"direction":1,"sprint":true,"backward":false,"startFeet":8,"minFeet":8,"maxFeet":8,"maxSpeed":11.977459795183359,"frames":101,"end":[-43.00833333333333,-16.21253838420698,8],"driver":{"crossings":[{"index":1,"point":[-43.00833333333333,-8.2],"hit":[-43.00833333333333,-8.2],"lateralDistance":0},{"index":2,"point":[-43.00833333333333,-16.2],"hit":[-43.00833333333333,-16.2],"lateralDistance":0}],"brakingFrames":31,"endpointSettleSeconds":2}}
+✔ actual FirstPersonControls traverses and returns through the fitted upper door at 60Hz from 1; backward=true (102.58118ms)
+ℹ {"arrived":true,"fps":60,"direction":1,"sprint":true,"backward":true,"startFeet":8,"minFeet":8,"maxFeet":8,"maxSpeed":11.977459795183359,"frames":101,"end":[-43.00833333333333,-16.21253838420698,8],"driver":{"crossings":[{"index":1,"point":[-43.00833333333333,-8.2],"hit":[-43.00833333333333,-8.2],"lateralDistance":0},{"index":2,"point":[-43.00833333333333,-16.2],"hit":[-43.00833333333333,-16.2],"lateralDistance":0}],"brakingFrames":31,"endpointSettleSeconds":2}}
+✔ nonfinite or changed control points fail before a mesh can be generated (112.048825ms)
+✔ integration actor audit fails closed for missing, empty, duplicate or wrong expected bindings (354.828725ms)
+✔ builder preflight rejects malformed passage/spans without partial installation or side effects (391.948228ms)
+✔ profile rejects narrow doorway spans, negative hall width, infinite rectangles and incomplete east-wall endpoints (93.338132ms)
+✔ same-world integration QA rejects absent walls, invisible walls and visible-only or collider-only remnants (655.867706ms)
+✔ same-world firewall QA survives the real production material merge and architecture metadata retention (236.871957ms)
+✔ installation proof rejects non-rendering materials even when THREE raycast still hits their triangles (154.759558ms)
+✔ same W retains actual waist stair ascent/descent at 10Hz on side -1 (110.023007ms)
+✔ same W retains actual waist stair ascent/descent at 10Hz on side 1 (114.73488ms)
+✔ same W retains actual waist stair ascent/descent at 60Hz on side -1 (126.690469ms)
+✔ same W retains actual waist stair ascent/descent at 60Hz on side 1 (154.111324ms)
+✔ Baohe candidate 31 retains its 12 actual solid partitions and is not silently converted to a source-unlocated arch (113.713609ms)
+ℹ tests 43
+ℹ suites 0
+ℹ pass 43
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5035.604424

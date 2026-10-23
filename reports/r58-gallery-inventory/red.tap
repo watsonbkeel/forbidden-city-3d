@@ -1,0 +1,497 @@
+✖ item 28 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (2.602032ms)
+✖ item 29 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (0.263524ms)
+✖ item 30 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (0.188032ms)
+✖ item 31 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (0.132028ms)
+✖ item 34 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (0.163134ms)
+✖ item 35 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (0.231947ms)
+✖ item 36 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (0.137276ms)
+✖ item 37 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (0.150274ms)
+✖ all 406 removed meshes each own their removed collider; cover provenance is prop-local; no spawn deletion (1.637801ms)
+✔ same sequential-zone RNG and all south/non-target streams remain exact (52.383124ms)
+✔ undefined policy retains old default bytes including all room/furniture streams (287.568855ms)
+✖ reject illegal explicit policy null (4.331339ms)
+✖ reject illegal explicit policy "empty" (11.984628ms)
+✖ reject illegal explicit policy false (3.162481ms)
+✖ reject illegal explicit policy {} (2.849964ms)
+✖ reject illegal explicit policy {"mode":"empty","target":"axis-courts/items/28","reviewId":"FC-CA9102BFFB"} (3.459525ms)
+✖ reject illegal explicit policy {"mode":"unknown-inventory","target":"axis-courts/items/28","reviewId":"FC-86FF7FC2AB"} (3.039887ms)
+✖ reject illegal explicit policy {"mode":"unknown-inventory","target":"axis-courts/items/38","reviewId":"FC-CA9102BFFB"} (3.078966ms)
+✖ reject illegal explicit policy {"mode":"unknown-inventory","target":"axis-courts/items/28","reviewId":"FC-CA9102BFFB","accepted":true} (3.313447ms)
+✖ reject wrong target axis-courts/38/corridor (0.920107ms)
+✖ reject wrong target west-six/28/corridor (3.480046ms)
+✖ reject wrong target axis-courts/28/hall (2.958215ms)
+✖ direct generic kit may not adopt an unidentified or mismatched gallery opt-in (2.133161ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 2
+ℹ fail 21
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1124.048054
+
+✖ failing tests:
+
+test at tests/r58-gallery-inventory.test.mjs:8:55
+✖ item 28 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (2.602032ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   mode: 'unknown-inventory',
+  -   reviewId: 'FC-CA9102BFFB',
+  -   target: 'axis-courts/items/28'
+  - }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:9:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { mode: 'unknown-inventory', target: 'axis-courts/items/28', reviewId: 'FC-CA9102BFFB' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-inventory.test.mjs:8:55
+✖ item 29 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (0.263524ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   mode: 'unknown-inventory',
+  -   reviewId: 'FC-CA9102BFFB',
+  -   target: 'axis-courts/items/29'
+  - }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:9:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { mode: 'unknown-inventory', target: 'axis-courts/items/29', reviewId: 'FC-CA9102BFFB' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-inventory.test.mjs:8:55
+✖ item 30 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (0.188032ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   mode: 'unknown-inventory',
+  -   reviewId: 'FC-CA9102BFFB',
+  -   target: 'axis-courts/items/30'
+  - }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:9:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { mode: 'unknown-inventory', target: 'axis-courts/items/30', reviewId: 'FC-CA9102BFFB' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-inventory.test.mjs:8:55
+✖ item 31 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (0.132028ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   mode: 'unknown-inventory',
+  -   reviewId: 'FC-0D3F161564',
+  -   target: 'axis-courts/items/31'
+  - }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:9:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { mode: 'unknown-inventory', target: 'axis-courts/items/31', reviewId: 'FC-0D3F161564' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-inventory.test.mjs:8:55
+✖ item 34 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (0.163134ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   mode: 'unknown-inventory',
+  -   reviewId: 'FC-B31A272965',
+  -   target: 'axis-courts/items/34'
+  - }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:9:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { mode: 'unknown-inventory', target: 'axis-courts/items/34', reviewId: 'FC-B31A272965' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-inventory.test.mjs:8:55
+✖ item 35 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (0.231947ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   mode: 'unknown-inventory',
+  -   reviewId: 'FC-B31A272965',
+  -   target: 'axis-courts/items/35'
+  - }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:9:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { mode: 'unknown-inventory', target: 'axis-courts/items/35', reviewId: 'FC-B31A272965' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-inventory.test.mjs:8:55
+✖ item 36 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (0.137276ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   mode: 'unknown-inventory',
+  -   reviewId: 'FC-B31A272965',
+  -   target: 'axis-courts/items/36'
+  - }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:9:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { mode: 'unknown-inventory', target: 'axis-courts/items/36', reviewId: 'FC-B31A272965' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-inventory.test.mjs:8:55
+✖ item 37 explicitly suppresses only unverified props and registers UNKNOWN / UNVERIFIED (0.150274ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   mode: 'unknown-inventory',
+  -   reviewId: 'FC-86FF7FC2AB',
+  -   target: 'axis-courts/items/37'
+  - }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:9:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { mode: 'unknown-inventory', target: 'axis-courts/items/37', reviewId: 'FC-86FF7FC2AB' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-inventory.test.mjs:15:1
+✖ all 406 removed meshes each own their removed collider; cover provenance is prop-local; no spawn deletion (1.637801ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  162 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:18:170)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 162,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-inventory.test.mjs:28:192
+✖ reject illegal explicit policy null (4.331339ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:28:371)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /policy|target|inventory/i,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-inventory.test.mjs:28:192
+✖ reject illegal explicit policy "empty" (11.984628ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:28:371)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /policy|target|inventory/i,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-inventory.test.mjs:28:192
+✖ reject illegal explicit policy false (3.162481ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:28:371)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /policy|target|inventory/i,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-inventory.test.mjs:28:192
+✖ reject illegal explicit policy {} (2.849964ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:28:371)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /policy|target|inventory/i,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-inventory.test.mjs:28:192
+✖ reject illegal explicit policy {"mode":"empty","target":"axis-courts/items/28","reviewId":"FC-CA9102BFFB"} (3.459525ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:28:371)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /policy|target|inventory/i,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-inventory.test.mjs:28:192
+✖ reject illegal explicit policy {"mode":"unknown-inventory","target":"axis-courts/items/28","reviewId":"FC-86FF7FC2AB"} (3.039887ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:28:371)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /policy|target|inventory/i,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-inventory.test.mjs:28:192
+✖ reject illegal explicit policy {"mode":"unknown-inventory","target":"axis-courts/items/38","reviewId":"FC-CA9102BFFB"} (3.078966ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:28:371)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /policy|target|inventory/i,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-inventory.test.mjs:28:192
+✖ reject illegal explicit policy {"mode":"unknown-inventory","target":"axis-courts/items/28","reviewId":"FC-CA9102BFFB","accepted":true} (3.313447ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:28:371)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /policy|target|inventory/i,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-inventory.test.mjs:29:115
+✖ reject wrong target axis-courts/38/corridor (0.920107ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /policy|target|inventory/i. Input:
+  
+  'Error: Invalid or unbuilt explicit gate join'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:29:328)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Invalid or unbuilt explicit gate join
+        at ZoneBase.buildCorridor (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/src/scene/zones/ZoneBase.js:297:118)
+        at file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:29:341
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:29:328)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12),
+    expected: /policy|target|inventory/i,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-inventory.test.mjs:29:115
+✖ reject wrong target west-six/28/corridor (3.480046ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:29:328)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /policy|target|inventory/i,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-inventory.test.mjs:29:115
+✖ reject wrong target axis-courts/28/hall (2.958215ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:29:328)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /policy|target|inventory/i,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/r58-gallery-inventory.test.mjs:30:1
+✖ direct generic kit may not adopt an unidentified or mismatched gallery opt-in (2.133161ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r58-gallery-unknown-inventory/tests/r58-gallery-inventory.test.mjs:30:142)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /policy|target|inventory/i,
+    operator: 'throws',
+    diff: 'simple'
+  }

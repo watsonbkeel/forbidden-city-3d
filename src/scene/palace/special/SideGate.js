@@ -1,6 +1,9 @@
 import * as THREE from 'three';
 import { buildStuddedDoor } from '../../HallKit.js';
 import { sideGateGeometry } from './SideGateProfiles.js';
+import { buildXiheCourtyardCorbels } from './SideGateExteriorDetails.js';
+import { buildXieheCourtyardKnees } from './XieheCourtyardKnees.js';
+import { buildCourtyardWindowLeaves } from './CourtyardWindowLeaves.js';
 import { prunePavilionCoveredFaces } from '../../../render/PavilionRenderGeometry.js';
 
 const tag=(o,role,data={})=>{o.name=role;Object.assign(o.userData,{role,...data});return o;};
@@ -78,8 +81,12 @@ export function buildSideGate(kit,opts) {
     tag(kit.mesh(pane,new THREE.BoxGeometry(clear,windowH,.08),kit.lacquer,cx,ph+sill+windowH/2,z),'gate-window-shadow');
     for(const side of [-1,1]) box('gate-window-frame','wood_column',.13,windowH,.18,cx+side*clear/2,ph+sill+windowH/2,z);
     for(const y of [ph+sill,ph+sill+windowH]) box('gate-window-frame','wood_column',clear,.13,.18,cx,y,z);
-    for(let j=1;j<12;j++)box('gate-window-bar','wood_column',.045,windowH,.14,cx-clear/2+j*clear/12,ph+sill+windowH/2,z);
-    for(let j=1;j<8;j++)box('gate-window-bar','wood_column',clear,.045,.14,cx,ph+sill+j*windowH/8,z);
+    if(z>0&&(g.profile==='xihe'||g.profile==='xiehe')) {
+      buildCourtyardWindowLeaves(kit,pane,{profile:g.profile,bay:i,cx,clear,bottom:ph+sill,height:windowH,z});
+    } else {
+      for(let j=1;j<12;j++)box('gate-window-bar','wood_column',.045,windowH,.14,cx-clear/2+j*clear/12,ph+sill+windowH/2,z);
+      for(let j=1;j<8;j++)box('gate-window-bar','wood_column',clear,.045,.14,cx,ph+sill+j*windowH/8,z);
+    }
     box('gate-window-head','caihua_beam',bw,.5,.48,cx,ph+h-.9,z);
     kit.col(f,cx-bw/2,ph,z-.24,cx+bw/2,ph+h-.65,z+.24);
   }
@@ -118,6 +125,8 @@ export function buildSideGate(kit,opts) {
   const roof=kit.roof(f,{type:'xieshan',width:roofW,depth:roofD,baseY:ph+h,height:roofHeight,layers:1,brackets:true});
   tag(roof,'side-gate-roof');
   if(opts.plaque!==false)kit.plaque(f,g.name,0,ph+h-.9,-d/2-.29,.8,1.4);
+  if(g.profile==='xihe')buildXiheCourtyardCorbels(kit,f,g);
+  if(g.profile==='xiehe')buildXieheCourtyardKnees(kit,f,g);
   kit.mapRect(f,'gate',opts.name??g.name,w,d,{gateProfile:g.profile,portalCount:3,platformY:ph});
   const point=(x,y,z)=>{const [wx,wz]=g.toWorld(x,z);return {x:wx,y,z:wz};};
   f.userData.structure={

@@ -1,0 +1,18 @@
+--- a/src/scene/PalaceBuilder.js
++++ b/src/scene/PalaceBuilder.js
+@@ -12,6 +12,7 @@
+ import { WUMEN_VERTICAL_PROFILE } from './palace/special/WumenVerticalProfile.js';
+ import { buildWumenSouthPlaque, buildShenwuInstitutionPlaque, SHENWU_GATE_NAME_OMISSION } from './palace/special/GatePlaques.js';
+ import { buildInnerJinshui } from './palace/special/InnerJinshui.js';
++import { buildInnerJinshuiSideFinials } from './palace/special/InnerJinshuiSideFinials.js';
+ import { buildRoof } from './RoofBuilder.js';
+ import { buildHallBody, buildBalustrade, buildStuddedDoor } from './HallKit.js';
+ import { mergeByMaterial } from '../utils/MergeUtils.js';
+@@ -1223,6 +1224,7 @@
+   buildRiver(data) {
+     const result = buildInnerJinshui(this.library, data, this.materials.water);
+     this.addObject(result.group);
++    this.addObject(buildInnerJinshuiSideFinials(this.library, result.profile));
+     this.colliders.push(...result.colliders);
+     this.walkables.push(...result.walkables);
+     const south = buildSouthWaterSystem(this.library, data, this.materials.water);

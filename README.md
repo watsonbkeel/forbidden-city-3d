@@ -295,3 +295,7 @@ MIT License，详见 [LICENSE](./LICENSE)。
 
 - [Three.js](https://threejs.org/)
 - [故宫博物院](https://www.dpm.org.cn/)（建筑参考资料）
+
+## R58 研究队列
+
+逐对象照片复核的唯一进度入口为 `docs/photo-fidelity/QUEUE.json`。它是透明无损 gzip 分片的版本化索引，不是运行时数据；使用 `python -B scripts/photo-fidelity/queue.py stats` 读取，勿直接解析或编辑索引作为任务对象。读写、导出及回滚说明见 [队列存储](docs/photo-fidelity/QUEUE-STORAGE.md)，当前续作入口见 [RESUME](docs/photo-fidelity/RESUME.md)。

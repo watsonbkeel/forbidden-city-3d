@@ -1,0 +1,1951 @@
+{
+  "schemaVersion": 1,
+  "reviewAt": "2026-10-22T18:02:25.127087+00:00",
+  "mode": "READ_ONLY_REVIEW_NO_INTEGRATION_EDITS",
+  "readOnlySourceRoot": "R58-A reviewed checkout",
+  "objectOrder": [
+    "FC-35BF29ABCB",
+    "FC-E32F3D1CA3",
+    "FC-CA9102BFFB",
+    "FC-B31A272965",
+    "FC-0D3F161564",
+    "FC-86FF7FC2AB",
+    "FC-1ABC6622CB",
+    "FC-526ABE19BB"
+  ],
+  "genericExteriorCountPerRow": 8,
+  "genericInteriorCountPerRow": 6,
+  "sourceReferenceScope": "Source images and PDFs are private research references and must never enter a public repository or distribution package.",
+  "statusRule": "DIFFED means code/source difference identified, not accepted. BLOCKED_SOURCE preserves required scope. NOT_APPLICABLE is justified only for physically absent enclosed-room features; exposed surfaces remain exterior tasks.",
+  "rows": [
+    {
+      "objectId": "FC-35BF29ABCB",
+      "name": "三台（外朝三大殿台基）",
+      "classification": "outdoor_component",
+      "overallExteriorReview": "DIFFED",
+      "overallInteriorReview": "NOT_APPLICABLE",
+      "currentCycleAccepted": false,
+      "binding": {
+        "status": "SOURCE_CODE_BINDING_CONFIRMED_BROWSER_PENDING",
+        "path": "src/scene/PalaceBuilder.js#buildComplex(三台)",
+        "subcomponents": [
+          "buildTerraceUnion",
+          "ThreeHallTerrace",
+          "TaiheFrontApproaches",
+          "BaoheNorthApproaches",
+          "BaoheHallPlinth",
+          "ZhongheImperialApproach"
+        ],
+        "evidence": "Current hook and dedicated modules actually read, no whole-world build."
+      },
+      "exteriorFeatures": [
+        {
+          "id": "footprint_orientation_court_connections",
+          "status": "DIFFED",
+          "reference": "P6 shows a connected multi-part three-tier terrace with a narrow waist, not three independent plinths; the hall/stair axes are not aligned.",
+          "currentCodeOrAssembly": "PalaceBuilder.buildComplex forms one three-rectangle union; waist stair centerZ58 and Zhonghe hall65 already differ by7. Taihe southern rectangle remains without the plan-indicated projecting moon-platform shoulder returns.",
+          "nextAction": "Preserve the7m offset and shared union. Resolve modern control registration before any outline change.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "SUN2020-P6"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+          "status": "NOT_APPLICABLE",
+          "reference": "The open terrace has no independent roof, eaves, ridge or storeys.",
+          "currentCodeOrAssembly": "No corresponding enclosed-room subgeometry is required by this physical object.",
+          "nextAction": "Terrace tier heights belong to E5; roofs belong to separate hall rows.",
+          "sourceIds": [],
+          "acceptedScope": null
+        },
+        {
+          "id": "bays_columns_brackets_beams_paint_zones",
+          "status": "NOT_APPLICABLE",
+          "reference": "The terrace has no hall column grid, timber bracket sets or painted ceiling.",
+          "currentCodeOrAssembly": "No corresponding enclosed-room subgeometry is required by this physical object.",
+          "nextAction": "Stone rail/post topology remains in E5; hall columns remain separate hall rows.",
+          "sourceIds": [],
+          "acceptedScope": null
+        },
+        {
+          "id": "doors_windows_openings_walls_screens",
+          "status": "DIFFED",
+          "reference": "P6 visible east waist stair opening and stepped-wall passages are circulation controls.",
+          "currentCodeOrAssembly": "Shared side stairs cut side rail/collider intervals at z55.5..60.5. The added Taihe east passage is separately owned by FC-1ABC6622CB.",
+          "nextAction": "Keep six waist openings and preserve wall ownership; do not count a wall doorway twice.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "SUN2020-P6"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "terrace_steps_imperial_ramp_rails_posts",
+          "status": "DIFFED",
+          "reference": "P6 exposes tier edges, waist stairs, posts and rail panels; no complete underside/drainage survey.",
+          "currentCodeOrAssembly": "Three tiers end at y8. Taihe south has two outer flights+central stone; Baohe north has dedicated inner/outer flights and published stone dimensions; six waist stairs exist. HallKit.buildBalustrade is a texture-backed box strip, not individually modeled posts. No dedicated terrace drainage-head geometry was found in the audited builders.",
+          "nextAction": "Retain approaches. Compare each rail/drainage segment against a closer, located source before adding individual details.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "SUN2020-P6"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+          "status": "DIFFED",
+          "reference": "P6 establishes deck-to-hall and eastern transverse-wall relationships.",
+          "currentCodeOrAssembly": "Common deck, separate Taihe/Zhonghe plinths and Baohe1m dedicated plinth are already implemented. Baohe side transverse link is still the outer generic wall at z123.",
+          "nextAction": "Review exact joins locally; do not rebuild halls or add sloping wood galleries.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "SUN2020-P6"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "plaques_text_placement_orientation_occlusion",
+          "status": "NOT_APPLICABLE",
+          "reference": "No independent architectural plaque belongs to the open terrace entity.",
+          "currentCodeOrAssembly": "No corresponding enclosed-room subgeometry is required by this physical object.",
+          "nextAction": "Any located museum signs are E8 fixtures, not a palace-name plaque template.",
+          "sourceIds": [],
+          "acceptedScope": null
+        },
+        {
+          "id": "unique_courtyard_facilities_locations",
+          "status": "DIFFED",
+          "reference": "P6 distant terrace objects cannot establish their complete count or individual form.",
+          "currentCodeOrAssembly": "terraceOrnaments uses six tripods, paired simplified turtle/crane forms, an eastern sundial and western measuring vessel; this is a Taihe-front-specific routine.",
+          "nextAction": "Do not duplicate these across Zhonghe/Baohe. Validate dated, located close views before claiming exact object placement.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "SUN2020-P6"
+          ],
+          "acceptedScope": null
+        }
+      ],
+      "interiorFeatures": [
+        {
+          "id": "room_partitions_portals_column_grid_levels_steps_floor",
+          "status": "NOT_APPLICABLE",
+          "reference": "An open platform or outdoor masonry wall contains no enclosed room system.",
+          "currentCodeOrAssembly": "No corresponding enclosed-room subgeometry is required by this physical object.",
+          "nextAction": "Inspect exposed stair/floor faces and wall openings under E4/E5.",
+          "sourceIds": [],
+          "acceptedScope": null
+        },
+        {
+          "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+          "status": "NOT_APPLICABLE",
+          "reference": "No roofed interior ceiling or caisson exists in this object.",
+          "currentCodeOrAssembly": "No corresponding enclosed-room subgeometry is required by this physical object.",
+          "nextAction": "Door soffit, lintel, exposed wall face and coping remain E2/E4/E6 tasks.",
+          "sourceIds": [],
+          "acceptedScope": null
+        },
+        {
+          "id": "principal_furniture_type_count_location_facing_scale",
+          "status": "NOT_APPLICABLE",
+          "reference": "There is no enclosed furnished room in this physical object.",
+          "currentCodeOrAssembly": "No corresponding enclosed-room subgeometry is required by this physical object.",
+          "nextAction": "Do not generate beds, thrones, tables or display furniture.",
+          "sourceIds": [],
+          "acceptedScope": null
+        },
+        {
+          "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+          "status": "NOT_APPLICABLE",
+          "reference": "This object has no room-based decorative scheme.",
+          "currentCodeOrAssembly": "No corresponding enclosed-room subgeometry is required by this physical object.",
+          "nextAction": "Any observed exterior signage/fixtures must be reviewed under E7/E8.",
+          "sourceIds": [],
+          "acceptedScope": null
+        },
+        {
+          "id": "function_specificity_worship_library_residential_exhibition",
+          "status": "NOT_APPLICABLE",
+          "reference": "This is open circulation/support or a fire-separation wall, not a residential/exhibition room.",
+          "currentCodeOrAssembly": "No corresponding enclosed-room subgeometry is required by this physical object.",
+          "nextAction": "Preserve use distinction; separate any adjacent roofed-gallery rooms.",
+          "sourceIds": [],
+          "acceptedScope": null
+        },
+        {
+          "id": "visible_missing_objects_and_unsupported_model_objects",
+          "status": "NOT_APPLICABLE",
+          "reference": "Interior object-inventory comparison does not apply to an open structural component.",
+          "currentCodeOrAssembly": "No corresponding enclosed-room subgeometry is required by this physical object.",
+          "nextAction": "Missing or unsupported exposed components still require E4/E5/E8 review; N/A does not accept exterior.",
+          "sourceIds": [],
+          "acceptedScope": null
+        }
+      ],
+      "requiredExtraScope": [
+        {
+          "id": "A37-required-scope-01",
+          "facet": "exterior",
+          "label": "Taihe moon platform and stair branches",
+          "status": "DIFFED",
+          "scopePreserved": true,
+          "review": "Separated stair branches already exist; projecting moon-platform shoulder outline still unresolved."
+        },
+        {
+          "id": "A37-required-scope-02",
+          "facet": "exterior",
+          "label": "Zhonghe waist and side flights",
+          "status": "DIFFED",
+          "scopePreserved": true,
+          "review": "Six existing flights at z58, hall at65; preserve."
+        },
+        {
+          "id": "A37-required-scope-03",
+          "facet": "exterior",
+          "label": "Baohe platform and north approaches",
+          "status": "DIFFED",
+          "scopePreserved": true,
+          "review": "Existing1m hall plinth and dedicated northern approaches/imperial stone retained."
+        },
+        {
+          "id": "A37-required-scope-04",
+          "facet": "exterior",
+          "label": "Rail/post/drainage segments",
+          "status": "DIFFED",
+          "scopePreserved": true,
+          "review": "Repeated texture-backed rail geometry; precise posts/drain heads not independently modeled or source-accepted."
+        }
+      ],
+      "preserve": [
+        "One composite terrace",
+        "Existing z58/65 nonalignment",
+        "All six waist flights, retained tier heights and setbacks",
+        "Taihe/Baohe separate approach topology and collider contracts",
+        "Installed east Taihe firewall and crossing rails"
+      ],
+      "blockers": [
+        "Modern moon-platform outline registration unresolved",
+        "No complete close rail/drainage image inventory",
+        "Actual matched-camera production browser screenshots remain unavailable: inherited cloud browser cannot reach executor localhost; official panorama had WebGL fatal. Neither browser denial nor panorama was retried. Direct component assembly is not GPU acceptance."
+      ],
+      "actualModifiedFiles": []
+    },
+    {
+      "objectId": "FC-E32F3D1CA3",
+      "name": "太和殿南庑",
+      "classification": "building_or_structure_candidate",
+      "overallExteriorReview": "BLOCKED_SOURCE",
+      "overallInteriorReview": "BLOCKED_SOURCE",
+      "currentCycleAccepted": false,
+      "binding": {
+        "status": "UNRESOLVED_OFFICIAL_IDENTITY_NOT_MISSING_GEOMETRY",
+        "candidateItems": [
+          38,
+          39,
+          40,
+          41
+        ],
+        "candidateAssembly": "component-assembly.json",
+        "effectiveEndpoints": [
+          {
+            "index": 38,
+            "gateJoin": {
+              "gate": "昭德门",
+              "side": "left",
+              "end": "to",
+              "boundary": [
+                -74.6,
+                -217.29999999999998
+              ],
+              "effectiveFrom": [
+                -105.97,
+                -217.3
+              ],
+              "effectiveTo": [
+                -74.6,
+                -217.29999999999998
+              ],
+              "provisional": true,
+              "status": "provisional-closed-contact"
+            }
+          },
+          {
+            "index": 39,
+            "gateJoin": {
+              "gate": "昭德门",
+              "side": "right",
+              "end": "from",
+              "boundary": [
+                -50.2,
+                -217.29999999999998
+              ],
+              "effectiveFrom": [
+                -50.2,
+                -217.29999999999998
+              ],
+              "effectiveTo": [
+                -26.5,
+                -217.3
+              ],
+              "provisional": true,
+              "status": "provisional-closed-contact"
+            }
+          },
+          {
+            "index": 40,
+            "gateJoin": {
+              "gate": "贞度门",
+              "side": "left",
+              "end": "to",
+              "boundary": [
+                52.400000000000006,
+                -217.29999999999998
+              ],
+              "effectiveFrom": [
+                26.5,
+                -217.3
+              ],
+              "effectiveTo": [
+                52.400000000000006,
+                -217.29999999999998
+              ],
+              "provisional": true,
+              "status": "provisional-closed-contact"
+            }
+          },
+          {
+            "index": 41,
+            "gateJoin": {
+              "gate": "贞度门",
+              "side": "right",
+              "end": "from",
+              "boundary": [
+                76.4,
+                -217.29999999999998
+              ],
+              "effectiveFrom": [
+                76.4,
+                -217.29999999999998
+              ],
+              "effectiveTo": [
+                110.2,
+                -217.3
+              ],
+              "provisional": true,
+              "status": "provisional-closed-contact"
+            }
+          }
+        ]
+      },
+      "exteriorFeatures": [
+        {
+          "id": "footprint_orientation_court_connections",
+          "status": "BLOCKED_SOURCE",
+          "reference": "1991/1992 repair records name 太和殿南庑 but do not define its surviving physical boundary, modern elevation or room extent.",
+          "currentCodeOrAssembly": "Candidate south-boundary corridor items38–41 exist and are source-code assembled, but neither record proves this official-name mapping.",
+          "nextAction": "Resolve named repair boundary and phase before assigning this feature to candidate geometry.",
+          "sourceIds": [
+            "REPAIR1991",
+            "REPAIR1992"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+          "status": "BLOCKED_SOURCE",
+          "reference": "1991/1992 repair records name 太和殿南庑 but do not define its surviving physical boundary, modern elevation or room extent.",
+          "currentCodeOrAssembly": "Candidate south-boundary corridor items38–41 exist and are source-code assembled, but neither record proves this official-name mapping.",
+          "nextAction": "Resolve named repair boundary and phase before assigning this feature to candidate geometry.",
+          "sourceIds": [
+            "REPAIR1991",
+            "REPAIR1992"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "bays_columns_brackets_beams_paint_zones",
+          "status": "BLOCKED_SOURCE",
+          "reference": "1991/1992 repair records name 太和殿南庑 but do not define its surviving physical boundary, modern elevation or room extent.",
+          "currentCodeOrAssembly": "Candidate south-boundary corridor items38–41 exist and are source-code assembled, but neither record proves this official-name mapping.",
+          "nextAction": "Resolve named repair boundary and phase before assigning this feature to candidate geometry.",
+          "sourceIds": [
+            "REPAIR1991",
+            "REPAIR1992"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "doors_windows_openings_walls_screens",
+          "status": "BLOCKED_SOURCE",
+          "reference": "1991/1992 repair records name 太和殿南庑 but do not define its surviving physical boundary, modern elevation or room extent.",
+          "currentCodeOrAssembly": "Candidate south-boundary corridor items38–41 exist and are source-code assembled, but neither record proves this official-name mapping.",
+          "nextAction": "Resolve named repair boundary and phase before assigning this feature to candidate geometry.",
+          "sourceIds": [
+            "REPAIR1991",
+            "REPAIR1992"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "terrace_steps_imperial_ramp_rails_posts",
+          "status": "BLOCKED_SOURCE",
+          "reference": "1991/1992 repair records name 太和殿南庑 but do not define its surviving physical boundary, modern elevation or room extent.",
+          "currentCodeOrAssembly": "Candidate south-boundary corridor items38–41 exist and are source-code assembled, but neither record proves this official-name mapping.",
+          "nextAction": "Resolve named repair boundary and phase before assigning this feature to candidate geometry.",
+          "sourceIds": [
+            "REPAIR1991",
+            "REPAIR1992"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+          "status": "BLOCKED_SOURCE",
+          "reference": "1991/1992 repair records name 太和殿南庑 but do not define its surviving physical boundary, modern elevation or room extent.",
+          "currentCodeOrAssembly": "Candidate south-boundary corridor items38–41 exist and are source-code assembled, but neither record proves this official-name mapping.",
+          "nextAction": "Resolve named repair boundary and phase before assigning this feature to candidate geometry.",
+          "sourceIds": [
+            "REPAIR1991",
+            "REPAIR1992"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "plaques_text_placement_orientation_occlusion",
+          "status": "BLOCKED_SOURCE",
+          "reference": "1991/1992 repair records name 太和殿南庑 but do not define its surviving physical boundary, modern elevation or room extent.",
+          "currentCodeOrAssembly": "Candidate south-boundary corridor items38–41 exist and are source-code assembled, but neither record proves this official-name mapping.",
+          "nextAction": "Resolve named repair boundary and phase before assigning this feature to candidate geometry.",
+          "sourceIds": [
+            "REPAIR1991",
+            "REPAIR1992"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "unique_courtyard_facilities_locations",
+          "status": "BLOCKED_SOURCE",
+          "reference": "1991/1992 repair records name 太和殿南庑 but do not define its surviving physical boundary, modern elevation or room extent.",
+          "currentCodeOrAssembly": "Candidate south-boundary corridor items38–41 exist and are source-code assembled, but neither record proves this official-name mapping.",
+          "nextAction": "Resolve named repair boundary and phase before assigning this feature to candidate geometry.",
+          "sourceIds": [
+            "REPAIR1991",
+            "REPAIR1992"
+          ],
+          "acceptedScope": null
+        }
+      ],
+      "interiorFeatures": [
+        {
+          "id": "room_partitions_portals_column_grid_levels_steps_floor",
+          "status": "BLOCKED_SOURCE",
+          "reference": "No identified room or dated interior view for this exact name.",
+          "currentCodeOrAssembly": "Candidate items38–41 generate12 rooms and automatic furnishings, but those instances are not historical room identities.",
+          "nextAction": "Do not manufacture room inventory. First locate the entity; then review each actual room, passage, frame, opening and dated content.",
+          "sourceIds": [
+            "REPAIR1991",
+            "REPAIR1992"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+          "status": "BLOCKED_SOURCE",
+          "reference": "No identified room or dated interior view for this exact name.",
+          "currentCodeOrAssembly": "Candidate items38–41 generate12 rooms and automatic furnishings, but those instances are not historical room identities.",
+          "nextAction": "Do not manufacture room inventory. First locate the entity; then review each actual room, passage, frame, opening and dated content.",
+          "sourceIds": [
+            "REPAIR1991",
+            "REPAIR1992"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "principal_furniture_type_count_location_facing_scale",
+          "status": "BLOCKED_SOURCE",
+          "reference": "No identified room or dated interior view for this exact name.",
+          "currentCodeOrAssembly": "Candidate items38–41 generate12 rooms and automatic furnishings, but those instances are not historical room identities.",
+          "nextAction": "Do not manufacture room inventory. First locate the entity; then review each actual room, passage, frame, opening and dated content.",
+          "sourceIds": [
+            "REPAIR1991",
+            "REPAIR1992"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+          "status": "BLOCKED_SOURCE",
+          "reference": "No identified room or dated interior view for this exact name.",
+          "currentCodeOrAssembly": "Candidate items38–41 generate12 rooms and automatic furnishings, but those instances are not historical room identities.",
+          "nextAction": "Do not manufacture room inventory. First locate the entity; then review each actual room, passage, frame, opening and dated content.",
+          "sourceIds": [
+            "REPAIR1991",
+            "REPAIR1992"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "function_specificity_worship_library_residential_exhibition",
+          "status": "BLOCKED_SOURCE",
+          "reference": "No identified room or dated interior view for this exact name.",
+          "currentCodeOrAssembly": "Candidate items38–41 generate12 rooms and automatic furnishings, but those instances are not historical room identities.",
+          "nextAction": "Do not manufacture room inventory. First locate the entity; then review each actual room, passage, frame, opening and dated content.",
+          "sourceIds": [
+            "REPAIR1991",
+            "REPAIR1992"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "visible_missing_objects_and_unsupported_model_objects",
+          "status": "BLOCKED_SOURCE",
+          "reference": "No identified room or dated interior view for this exact name.",
+          "currentCodeOrAssembly": "Candidate items38–41 generate12 rooms and automatic furnishings, but those instances are not historical room identities.",
+          "nextAction": "Do not manufacture room inventory. First locate the entity; then review each actual room, passage, frame, opening and dated content.",
+          "sourceIds": [
+            "REPAIR1991",
+            "REPAIR1992"
+          ],
+          "acceptedScope": null
+        }
+      ],
+      "requiredExtraScope": [
+        {
+          "id": "A37-required-scope-01",
+          "facet": "exterior",
+          "label": "Physical boundary and surviving phase",
+          "status": "BLOCKED_SOURCE",
+          "scopePreserved": true,
+          "review": "Unresolved official identity. Existing four geometry instances are preserved; all room and structural scope remains pending until a located plan or captioned modern view establishes the boundary."
+        },
+        {
+          "id": "A37-required-scope-02",
+          "facet": "exterior",
+          "label": "Potential four spans, not accepted identity",
+          "status": "BLOCKED_SOURCE",
+          "scopePreserved": true,
+          "review": "Unresolved official identity. Existing four geometry instances are preserved; all room and structural scope remains pending until a located plan or captioned modern view establishes the boundary."
+        },
+        {
+          "id": "A37-required-scope-03",
+          "facet": "interior",
+          "label": "Interior room instances once identified",
+          "status": "BLOCKED_SOURCE",
+          "scopePreserved": true,
+          "review": "Unresolved official identity. Existing four geometry instances are preserved; all room and structural scope remains pending until a located plan or captioned modern view establishes the boundary."
+        }
+      ],
+      "preserve": [
+        "Retain all four candidate spans",
+        "Retain dynamically resolved 昭德门/贞度门 end contacts",
+        "Do not create a fifth named south gallery"
+      ],
+      "blockers": [
+        "1991/1992 records are identity mentions only",
+        "Current state and enclosed/open room boundaries remain unknown",
+        "Actual matched-camera production browser screenshots remain unavailable: inherited cloud browser cannot reach executor localhost; official panorama had WebGL fatal. Neither browser denial nor panorama was retried. Direct component assembly is not GPU acceptance."
+      ],
+      "actualModifiedFiles": []
+    },
+    {
+      "objectId": "FC-CA9102BFFB",
+      "name": "太和殿东联庑",
+      "classification": "building_or_structure_candidate",
+      "overallExteriorReview": "DIFFED",
+      "overallInteriorReview": "DIFFED",
+      "currentCycleAccepted": false,
+      "binding": {
+        "status": "ACTUAL_COMPONENTS_FOUND_OFFICIAL_BOUNDARIES_PARTIAL",
+        "items": [
+          28,
+          29,
+          30
+        ],
+        "outerWallItem": 6,
+        "side": "east",
+        "assembly": "component-assembly.json",
+        "runtimeRooms": 13,
+        "solidPartitionCount": 10,
+        "automaticFurnishingMeshes": 99,
+        "officialRoomCount": null
+      },
+      "exteriorFeatures": [
+        {
+          "id": "footprint_orientation_court_connections",
+          "status": "DIFFED",
+          "reference": "The source establishes segmented linking galleries and independent intervening gates/pavilions; measured stations remain unproven.",
+          "currentCodeOrAssembly": "Existing items[28, 29, 30]: 13 generated rooms, 10 solid transverse partitions, 99 automatic furnishing meshes; these are runtime counts, not historical room/bay counts. East is-X; west is+X.",
+          "nextAction": "Retain these exact spans and map each terminus before introducing any new roof or wall.",
+          "sourceIds": [
+            "SUN2020-P5"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+          "status": "BLOCKED_SOURCE",
+          "reference": "No full current side-specific roof survey. Yearbook west-range view, where applicable, is a dated repair photo with broad caption.",
+          "currentCodeOrAssembly": "Each corridor is a single one-eave gable-roof hall, low-detail roof builder, at colH3.6/ph0.45.",
+          "nextAction": "Obtain a dated same-side roof/elevation view; do not mirror roof details from the opposite side.",
+          "sourceIds": [
+            "SUN2020-P5"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "bays_columns_brackets_beams_paint_zones",
+          "status": "DIFFED",
+          "reference": "P5 east covered passage shows framing and lattice joinery locally; no complete bay census.",
+          "currentCodeOrAssembly": "bays=max(3,round(length/3.4)|1); columns occur at front/back bay lines, generic beam paint, brackets=false.",
+          "nextAction": "Retain provisional bays pending location-matched count; inspect exposed frames even where no furnished room exists.",
+          "sourceIds": [
+            "SUN2020-P5"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "doors_windows_openings_walls_screens",
+          "status": "BLOCKED_SOURCE",
+          "reference": "Text supports fire separation but does not establish all current openings on this side.",
+          "currentCodeOrAssembly": "Full-depth solid box partitions have no arches. Front lattice panels are flush with the outer column line; no distinct covered longitudinal passage is generated.",
+          "nextAction": "Locate a specific partition/porch segment before cutting an arch; do not equate12 model partitions with7 source walls.",
+          "sourceIds": [
+            "SUN2020-P5"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "terrace_steps_imperial_ramp_rails_posts",
+          "status": "BLOCKED_SOURCE",
+          "reference": "Current source does not measure the whole gallery base, stair spacing or accessibility.",
+          "currentCodeOrAssembly": "Uniform0.45m low plinth, slab, one walkable box per span; no individual source-bound stair scheme.",
+          "nextAction": "Keep the low-step contract until a located base/approach source supports a change.",
+          "sourceIds": [
+            "SUN2020-P5"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+          "status": "DIFFED",
+          "reference": "Taihe text requires gaps at wing gates/pavilions with thick-wall links; Baohe text requires fire-gable separation.",
+          "currentCodeOrAssembly": "Taihe spans are already broken around gates/pavilions; outer wall6/7 has their gaps. Baohe31/37 remain each a long roof strip, not proven fire-gable sections.",
+          "nextAction": "Inspect end-face and outer-wall seams. Do not add another continuous corridor around the independent gates.",
+          "sourceIds": [
+            "SUN2020-P5"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "plaques_text_placement_orientation_occlusion",
+          "status": "BLOCKED_SOURCE",
+          "reference": "No verified side-specific architectural plaque supplied.",
+          "currentCodeOrAssembly": "Corridors default name庑房 for metadata but plaque:false creates no visible nameboard.",
+          "nextAction": "Preserve no-plaque rendering; add only a located, dated, visibly confirmed sign.",
+          "sourceIds": [
+            "SUN2020-P5"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "unique_courtyard_facilities_locations",
+          "status": "BLOCKED_SOURCE",
+          "reference": "No complete courtyard fixture inventory for these exact spans.",
+          "currentCodeOrAssembly": "No gallery-specific canonical courtyard fixture list is bound. Automatic furniture is internal template output, not exterior site evidence.",
+          "nextAction": "Keep unrelated pots, lions and ritual vessels out of the gallery task.",
+          "sourceIds": [
+            "SUN2020-P5"
+          ],
+          "acceptedScope": null
+        }
+      ],
+      "interiorFeatures": [
+        {
+          "id": "room_partitions_portals_column_grid_levels_steps_floor",
+          "status": "BLOCKED_SOURCE",
+          "reference": "Actual present room/passage separation and interior plan remain unconfirmed.",
+          "currentCodeOrAssembly": "Existing items[28, 29, 30]: 13 generated rooms, 10 solid transverse partitions, 99 automatic furnishing meshes; these are runtime counts, not historical room/bay counts. Transverse partitions run across4m and close longitudinal passage; each room has a front door.",
+          "nextAction": "Record generated room AABBs only as candidates. Separate roofed passage surfaces/frames from enclosed room inventories.",
+          "sourceIds": [
+            "SUN2020-P5"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+          "status": "DIFFED",
+          "reference": "A covered corridor still requires inner eaves, beams, wall faces, door/arch returns and floor review.",
+          "currentCodeOrAssembly": "Generic one-sided painted ceiling plane, generic beams, lattice front and solid partitions; no bespoke intrados or masonry arch surround.",
+          "nextAction": "Use the photographed covered portion only; hidden upper framing, opposite faces and room ceilings stay blocked.",
+          "sourceIds": [
+            "SUN2020-P5"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "principal_furniture_type_count_location_facing_scale",
+          "status": "DIFFED",
+          "reference": "No bedroom or storage furnishing layout is independently evidenced for these current gallery rooms.",
+          "currentCodeOrAssembly": "Every3 bays selects room; every third generated room becomes storage when there are >2 rooms. room adds bed/platform, cloth cover, table, stools and cabinet; storage adds seeded crates. 99 meshes counted.",
+          "nextAction": "A strictly scoped unverified-content fallback may suppress unsupported props without claiming rooms are empty; do not copy exhibition display objects into unlocated rooms.",
+          "sourceIds": [
+            "SUN2020-P5"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+          "status": "BLOCKED_SOURCE",
+          "reference": "P5 depicts limited modern items in the passage but does not establish their capture date or present-day positions.",
+          "currentCodeOrAssembly": "Template objects do not encode a dated fixture/couplet/light/curtain scheme.",
+          "nextAction": "Find dated full room/passage views; do not fabricate hanging decoration or treat the historical photo as today.",
+          "sourceIds": [
+            "SUN2020-P5"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "function_specificity_worship_library_residential_exhibition",
+          "status": "DIFFED",
+          "reference": "Named linking-gallery function does not establish residential use.",
+          "currentCodeOrAssembly": "Runtime room/storage labels are gameplay presets, not building-use evidence.",
+          "nextAction": "Keep present display target unresolved and preserve the distinction between a roofed route and enclosed exhibits.",
+          "sourceIds": [
+            "SUN2020-P5"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "visible_missing_objects_and_unsupported_model_objects",
+          "status": "DIFFED",
+          "reference": "No image-backed furniture inventory supports existing bed/crate population.",
+          "currentCodeOrAssembly": "Missing arch/covered-passage expression where source-visible; existing unsupported props are enumerated in component-assembly.json.",
+          "nextAction": "Track missing and unsupported components separately; do not mark the whole interior N/A or invent seven complete room sets.",
+          "sourceIds": [
+            "SUN2020-P5"
+          ],
+          "acceptedScope": null
+        }
+      ],
+      "requiredExtraScope": [
+        {
+          "id": "A37-required-scope-01",
+          "facet": "exterior",
+          "label": "South-to-pavilion span",
+          "status": "DIFFED",
+          "scopePreserved": true,
+          "review": "Existing [28, 29, 30] bindings retained. No new physical entity or duplicate roof authorized. Complete current side-specific detail remains unverified."
+        },
+        {
+          "id": "A37-required-scope-02",
+          "facet": "exterior",
+          "label": "Pavilion-to-wing-gate span",
+          "status": "DIFFED",
+          "scopePreserved": true,
+          "review": "Existing [28, 29, 30] bindings retained. No new physical entity or duplicate roof authorized. Complete current side-specific detail remains unverified."
+        },
+        {
+          "id": "A37-required-scope-03",
+          "facet": "exterior",
+          "label": "Wing-gate-to-north span",
+          "status": "DIFFED",
+          "scopePreserved": true,
+          "review": "Existing [28, 29, 30] bindings retained. No new physical entity or duplicate roof authorized. Complete current side-specific detail remains unverified."
+        },
+        {
+          "id": "A37-required-scope-04",
+          "facet": "exterior",
+          "label": "Thick-wall end joins",
+          "status": "BLOCKED_SOURCE",
+          "scopePreserved": true,
+          "review": "Existing [28, 29, 30] bindings retained. No new physical entity or duplicate roof authorized. Complete current side-specific detail remains unverified."
+        },
+        {
+          "id": "A37-required-scope-05",
+          "facet": "interior",
+          "label": "Individual interiors",
+          "status": "DIFFED",
+          "scopePreserved": true,
+          "review": "Existing items[28, 29, 30]: 13 generated rooms, 10 solid transverse partitions, 99 automatic furnishing meshes; these are runtime counts, not historical room/bay counts. Enumerated runtime room IDs/AABBs are not physical historical room identities. Each covered passage requires inner-face/frame/opening review; each actual enclosed room needs a dated inventory."
+        }
+      ],
+      "preserve": [
+        "Existing corridor footprints and roof discontinuities",
+        "Gate/pavilion independence",
+        "Outer wall gap contracts",
+        "No duplicate gallery or blanket seven-wall array"
+      ],
+      "blockers": [
+        "No full same-side modern elevation and current room plan",
+        "Exact fire-gable stations/count boundary unresolved",
+        "Current display date/contents not selected",
+        "Actual matched-camera production browser screenshots remain unavailable: inherited cloud browser cannot reach executor localhost; official panorama had WebGL fatal. Neither browser denial nor panorama was retried. Direct component assembly is not GPU acceptance."
+      ],
+      "actualModifiedFiles": []
+    },
+    {
+      "objectId": "FC-B31A272965",
+      "name": "太和殿西联庑",
+      "classification": "building_or_structure_candidate",
+      "overallExteriorReview": "DIFFED",
+      "overallInteriorReview": "DIFFED",
+      "currentCycleAccepted": false,
+      "binding": {
+        "status": "ACTUAL_COMPONENTS_FOUND_OFFICIAL_BOUNDARIES_PARTIAL",
+        "items": [
+          34,
+          35,
+          36
+        ],
+        "outerWallItem": 7,
+        "side": "west",
+        "assembly": "component-assembly.json",
+        "runtimeRooms": 13,
+        "solidPartitionCount": 10,
+        "automaticFurnishingMeshes": 99,
+        "officialRoomCount": null
+      },
+      "exteriorFeatures": [
+        {
+          "id": "footprint_orientation_court_connections",
+          "status": "DIFFED",
+          "reference": "The source establishes segmented linking galleries and independent intervening gates/pavilions; measured stations remain unproven.",
+          "currentCodeOrAssembly": "Existing items[34, 35, 36]: 13 generated rooms, 10 solid transverse partitions, 99 automatic furnishing meshes; these are runtime counts, not historical room/bay counts. East is-X; west is+X.",
+          "nextAction": "Retain these exact spans and map each terminus before introducing any new roof or wall.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+          "status": "BLOCKED_SOURCE",
+          "reference": "No full current side-specific roof survey. Yearbook west-range view, where applicable, is a dated repair photo with broad caption.",
+          "currentCodeOrAssembly": "Each corridor is a single one-eave gable-roof hall, low-detail roof builder, at colH3.6/ph0.45.",
+          "nextAction": "Obtain a dated same-side roof/elevation view; do not mirror roof details from the opposite side.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "bays_columns_brackets_beams_paint_zones",
+          "status": "DIFFED",
+          "reference": "P5 east covered passage shows framing and lattice joinery locally; no complete bay census.",
+          "currentCodeOrAssembly": "bays=max(3,round(length/3.4)|1); columns occur at front/back bay lines, generic beam paint, brackets=false.",
+          "nextAction": "Retain provisional bays pending location-matched count; inspect exposed frames even where no furnished room exists.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "doors_windows_openings_walls_screens",
+          "status": "BLOCKED_SOURCE",
+          "reference": "Text supports fire separation but does not establish all current openings on this side.",
+          "currentCodeOrAssembly": "Full-depth solid box partitions have no arches. Front lattice panels are flush with the outer column line; no distinct covered longitudinal passage is generated.",
+          "nextAction": "Locate a specific partition/porch segment before cutting an arch; do not equate12 model partitions with7 source walls.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "terrace_steps_imperial_ramp_rails_posts",
+          "status": "BLOCKED_SOURCE",
+          "reference": "Current source does not measure the whole gallery base, stair spacing or accessibility.",
+          "currentCodeOrAssembly": "Uniform0.45m low plinth, slab, one walkable box per span; no individual source-bound stair scheme.",
+          "nextAction": "Keep the low-step contract until a located base/approach source supports a change.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+          "status": "DIFFED",
+          "reference": "Taihe text requires gaps at wing gates/pavilions with thick-wall links; Baohe text requires fire-gable separation.",
+          "currentCodeOrAssembly": "Taihe spans are already broken around gates/pavilions; outer wall6/7 has their gaps. Baohe31/37 remain each a long roof strip, not proven fire-gable sections.",
+          "nextAction": "Inspect end-face and outer-wall seams. Do not add another continuous corridor around the independent gates.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "plaques_text_placement_orientation_occlusion",
+          "status": "BLOCKED_SOURCE",
+          "reference": "No verified side-specific architectural plaque supplied.",
+          "currentCodeOrAssembly": "Corridors default name庑房 for metadata but plaque:false creates no visible nameboard.",
+          "nextAction": "Preserve no-plaque rendering; add only a located, dated, visibly confirmed sign.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "unique_courtyard_facilities_locations",
+          "status": "BLOCKED_SOURCE",
+          "reference": "No complete courtyard fixture inventory for these exact spans.",
+          "currentCodeOrAssembly": "No gallery-specific canonical courtyard fixture list is bound. Automatic furniture is internal template output, not exterior site evidence.",
+          "nextAction": "Keep unrelated pots, lions and ritual vessels out of the gallery task.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64"
+          ],
+          "acceptedScope": null
+        }
+      ],
+      "interiorFeatures": [
+        {
+          "id": "room_partitions_portals_column_grid_levels_steps_floor",
+          "status": "BLOCKED_SOURCE",
+          "reference": "Actual present room/passage separation and interior plan remain unconfirmed.",
+          "currentCodeOrAssembly": "Existing items[34, 35, 36]: 13 generated rooms, 10 solid transverse partitions, 99 automatic furnishing meshes; these are runtime counts, not historical room/bay counts. Transverse partitions run across4m and close longitudinal passage; each room has a front door.",
+          "nextAction": "Record generated room AABBs only as candidates. Separate roofed passage surfaces/frames from enclosed room inventories.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+          "status": "DIFFED",
+          "reference": "A covered corridor still requires inner eaves, beams, wall faces, door/arch returns and floor review.",
+          "currentCodeOrAssembly": "Generic one-sided painted ceiling plane, generic beams, lattice front and solid partitions; no bespoke intrados or masonry arch surround.",
+          "nextAction": "Use the photographed covered portion only; hidden upper framing, opposite faces and room ceilings stay blocked.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "principal_furniture_type_count_location_facing_scale",
+          "status": "DIFFED",
+          "reference": "No bedroom or storage furnishing layout is independently evidenced for these current gallery rooms.",
+          "currentCodeOrAssembly": "Every3 bays selects room; every third generated room becomes storage when there are >2 rooms. room adds bed/platform, cloth cover, table, stools and cabinet; storage adds seeded crates. 99 meshes counted.",
+          "nextAction": "A strictly scoped unverified-content fallback may suppress unsupported props without claiming rooms are empty; do not copy exhibition display objects into unlocated rooms.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+          "status": "BLOCKED_SOURCE",
+          "reference": "P5 depicts limited modern items in the passage but does not establish their capture date or present-day positions.",
+          "currentCodeOrAssembly": "Template objects do not encode a dated fixture/couplet/light/curtain scheme.",
+          "nextAction": "Find dated full room/passage views; do not fabricate hanging decoration or treat the historical photo as today.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "function_specificity_worship_library_residential_exhibition",
+          "status": "DIFFED",
+          "reference": "Named linking-gallery function does not establish residential use.",
+          "currentCodeOrAssembly": "Runtime room/storage labels are gameplay presets, not building-use evidence.",
+          "nextAction": "Keep present display target unresolved and preserve the distinction between a roofed route and enclosed exhibits.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "visible_missing_objects_and_unsupported_model_objects",
+          "status": "DIFFED",
+          "reference": "No image-backed furniture inventory supports existing bed/crate population.",
+          "currentCodeOrAssembly": "Missing arch/covered-passage expression where source-visible; existing unsupported props are enumerated in component-assembly.json.",
+          "nextAction": "Track missing and unsupported components separately; do not mark the whole interior N/A or invent seven complete room sets.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64"
+          ],
+          "acceptedScope": null
+        }
+      ],
+      "requiredExtraScope": [
+        {
+          "id": "A37-required-scope-01",
+          "facet": "exterior",
+          "label": "South-to-pavilion span",
+          "status": "DIFFED",
+          "scopePreserved": true,
+          "review": "Existing [34, 35, 36] bindings retained. No new physical entity or duplicate roof authorized. Complete current side-specific detail remains unverified."
+        },
+        {
+          "id": "A37-required-scope-02",
+          "facet": "exterior",
+          "label": "Pavilion-to-wing-gate span",
+          "status": "DIFFED",
+          "scopePreserved": true,
+          "review": "Existing [34, 35, 36] bindings retained. No new physical entity or duplicate roof authorized. Complete current side-specific detail remains unverified."
+        },
+        {
+          "id": "A37-required-scope-03",
+          "facet": "exterior",
+          "label": "Wing-gate-to-north span",
+          "status": "DIFFED",
+          "scopePreserved": true,
+          "review": "Existing [34, 35, 36] bindings retained. No new physical entity or duplicate roof authorized. Complete current side-specific detail remains unverified."
+        },
+        {
+          "id": "A37-required-scope-04",
+          "facet": "exterior",
+          "label": "Thick-wall end joins",
+          "status": "BLOCKED_SOURCE",
+          "scopePreserved": true,
+          "review": "Existing [34, 35, 36] bindings retained. No new physical entity or duplicate roof authorized. Complete current side-specific detail remains unverified."
+        },
+        {
+          "id": "A37-required-scope-05",
+          "facet": "interior",
+          "label": "Individual interiors",
+          "status": "DIFFED",
+          "scopePreserved": true,
+          "review": "Existing items[34, 35, 36]: 13 generated rooms, 10 solid transverse partitions, 99 automatic furnishing meshes; these are runtime counts, not historical room/bay counts. Enumerated runtime room IDs/AABBs are not physical historical room identities. Each covered passage requires inner-face/frame/opening review; each actual enclosed room needs a dated inventory."
+        }
+      ],
+      "preserve": [
+        "Existing corridor footprints and roof discontinuities",
+        "Gate/pavilion independence",
+        "Outer wall gap contracts",
+        "No duplicate gallery or blanket seven-wall array"
+      ],
+      "blockers": [
+        "No full same-side modern elevation and current room plan",
+        "Exact fire-gable stations/count boundary unresolved",
+        "Current display date/contents not selected",
+        "Actual matched-camera production browser screenshots remain unavailable: inherited cloud browser cannot reach executor localhost; official panorama had WebGL fatal. Neither browser denial nor panorama was retried. Direct component assembly is not GPU acceptance."
+      ],
+      "actualModifiedFiles": []
+    },
+    {
+      "objectId": "FC-0D3F161564",
+      "name": "保和殿东联庑",
+      "classification": "building_or_structure_candidate",
+      "overallExteriorReview": "DIFFED",
+      "overallInteriorReview": "DIFFED",
+      "currentCycleAccepted": false,
+      "binding": {
+        "status": "ACTUAL_COMPONENTS_FOUND_OFFICIAL_BOUNDARIES_PARTIAL",
+        "items": [
+          31
+        ],
+        "outerWallItem": 6,
+        "side": "east",
+        "assembly": "component-assembly.json",
+        "runtimeRooms": 13,
+        "solidPartitionCount": 12,
+        "automaticFurnishingMeshes": 102,
+        "officialRoomCount": null
+      },
+      "exteriorFeatures": [
+        {
+          "id": "footprint_orientation_court_connections",
+          "status": "DIFFED",
+          "reference": "The source establishes segmented linking galleries and independent intervening gates/pavilions; measured stations remain unproven.",
+          "currentCodeOrAssembly": "Existing items[31]: 13 generated rooms, 12 solid transverse partitions, 102 automatic furnishing meshes; these are runtime counts, not historical room/bay counts. East is-X; west is+X.",
+          "nextAction": "Retain these exact spans and map each terminus before introducing any new roof or wall.",
+          "sourceIds": [
+            "SUN2020-P5"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+          "status": "BLOCKED_SOURCE",
+          "reference": "No full current side-specific roof survey. Yearbook west-range view, where applicable, is a dated repair photo with broad caption.",
+          "currentCodeOrAssembly": "Each corridor is a single one-eave gable-roof hall, low-detail roof builder, at colH3.6/ph0.45.",
+          "nextAction": "Obtain a dated same-side roof/elevation view; do not mirror roof details from the opposite side.",
+          "sourceIds": [
+            "SUN2020-P5"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "bays_columns_brackets_beams_paint_zones",
+          "status": "DIFFED",
+          "reference": "P5 east covered passage shows framing and lattice joinery locally; no complete bay census.",
+          "currentCodeOrAssembly": "bays=max(3,round(length/3.4)|1); columns occur at front/back bay lines, generic beam paint, brackets=false.",
+          "nextAction": "Retain provisional bays pending location-matched count; inspect exposed frames even where no furnished room exists.",
+          "sourceIds": [
+            "SUN2020-P5"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "doors_windows_openings_walls_screens",
+          "status": "DIFFED",
+          "reference": "P5 east gallery has a sequence of masonry arch openings in a covered passage.",
+          "currentCodeOrAssembly": "Full-depth solid box partitions have no arches. Front lattice panels are flush with the outer column line; no distinct covered longitudinal passage is generated.",
+          "nextAction": "Locate a specific partition/porch segment before cutting an arch; do not equate12 model partitions with7 source walls.",
+          "sourceIds": [
+            "SUN2020-P5"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "terrace_steps_imperial_ramp_rails_posts",
+          "status": "BLOCKED_SOURCE",
+          "reference": "Current source does not measure the whole gallery base, stair spacing or accessibility.",
+          "currentCodeOrAssembly": "Uniform0.45m low plinth, slab, one walkable box per span; no individual source-bound stair scheme.",
+          "nextAction": "Keep the low-step contract until a located base/approach source supports a change.",
+          "sourceIds": [
+            "SUN2020-P5"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+          "status": "DIFFED",
+          "reference": "Taihe text requires gaps at wing gates/pavilions with thick-wall links; Baohe text requires fire-gable separation.",
+          "currentCodeOrAssembly": "Taihe spans are already broken around gates/pavilions; outer wall6/7 has their gaps. Baohe31/37 remain each a long roof strip, not proven fire-gable sections.",
+          "nextAction": "Inspect end-face and outer-wall seams. Do not add another continuous corridor around the independent gates.",
+          "sourceIds": [
+            "SUN2020-P5"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "plaques_text_placement_orientation_occlusion",
+          "status": "BLOCKED_SOURCE",
+          "reference": "No verified side-specific architectural plaque supplied.",
+          "currentCodeOrAssembly": "Corridors default name庑房 for metadata but plaque:false creates no visible nameboard.",
+          "nextAction": "Preserve no-plaque rendering; add only a located, dated, visibly confirmed sign.",
+          "sourceIds": [
+            "SUN2020-P5"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "unique_courtyard_facilities_locations",
+          "status": "BLOCKED_SOURCE",
+          "reference": "No complete courtyard fixture inventory for these exact spans.",
+          "currentCodeOrAssembly": "No gallery-specific canonical courtyard fixture list is bound. Automatic furniture is internal template output, not exterior site evidence.",
+          "nextAction": "Keep unrelated pots, lions and ritual vessels out of the gallery task.",
+          "sourceIds": [
+            "SUN2020-P5"
+          ],
+          "acceptedScope": null
+        }
+      ],
+      "interiorFeatures": [
+        {
+          "id": "room_partitions_portals_column_grid_levels_steps_floor",
+          "status": "DIFFED",
+          "reference": "The east photo confirms a covered passage with masonry openings, not a whole-gallery room layout.",
+          "currentCodeOrAssembly": "Existing items[31]: 13 generated rooms, 12 solid transverse partitions, 102 automatic furnishing meshes; these are runtime counts, not historical room/bay counts. Transverse partitions run across4m and close longitudinal passage; each room has a front door.",
+          "nextAction": "Record generated room AABBs only as candidates. Separate roofed passage surfaces/frames from enclosed room inventories.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "EAST-EXHIBITION2008",
+            "EXHIBITION-ROTATION2009"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+          "status": "DIFFED",
+          "reference": "A covered corridor still requires inner eaves, beams, wall faces, door/arch returns and floor review.",
+          "currentCodeOrAssembly": "Generic one-sided painted ceiling plane, generic beams, lattice front and solid partitions; no bespoke intrados or masonry arch surround.",
+          "nextAction": "Use the photographed covered portion only; hidden upper framing, opposite faces and room ceilings stay blocked.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "EAST-EXHIBITION2008",
+            "EXHIBITION-ROTATION2009"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "principal_furniture_type_count_location_facing_scale",
+          "status": "DIFFED",
+          "reference": "No bedroom or storage furnishing layout is independently evidenced for these current gallery rooms.",
+          "currentCodeOrAssembly": "Every3 bays selects room; every third generated room becomes storage when there are >2 rooms. room adds bed/platform, cloth cover, table, stools and cabinet; storage adds seeded crates. 102 meshes counted.",
+          "nextAction": "A strictly scoped unverified-content fallback may suppress unsupported props without claiming rooms are empty; do not copy exhibition display objects into unlocated rooms.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "EAST-EXHIBITION2008",
+            "EXHIBITION-ROTATION2009"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+          "status": "BLOCKED_SOURCE",
+          "reference": "P5 depicts limited modern items in the passage but does not establish their capture date or present-day positions.",
+          "currentCodeOrAssembly": "Template objects do not encode a dated fixture/couplet/light/curtain scheme.",
+          "nextAction": "Find dated full room/passage views; do not fabricate hanging decoration or treat the historical photo as today.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "EAST-EXHIBITION2008",
+            "EXHIBITION-ROTATION2009"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "function_specificity_worship_library_residential_exhibition",
+          "status": "DIFFED",
+          "reference": "Official2008/2009 notices identify Baohe east/west exhibition uses in those years, not current display plans.",
+          "currentCodeOrAssembly": "Runtime room/storage labels are gameplay presets, not building-use evidence.",
+          "nextAction": "Keep present display target unresolved and preserve the distinction between a roofed route and enclosed exhibits.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "EAST-EXHIBITION2008",
+            "EXHIBITION-ROTATION2009"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "visible_missing_objects_and_unsupported_model_objects",
+          "status": "DIFFED",
+          "reference": "A local arch-and-passage topology is source-visible; exact station unknown.",
+          "currentCodeOrAssembly": "Missing arch/covered-passage expression where source-visible; existing unsupported props are enumerated in component-assembly.json.",
+          "nextAction": "Track missing and unsupported components separately; do not mark the whole interior N/A or invent seven complete room sets.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "EAST-EXHIBITION2008",
+            "EXHIBITION-ROTATION2009"
+          ],
+          "acceptedScope": null
+        }
+      ],
+      "requiredExtraScope": [
+        {
+          "id": "A37-required-scope-01",
+          "facet": "exterior",
+          "label": "Existing long span and its confirmed segments",
+          "status": "DIFFED",
+          "scopePreserved": true,
+          "review": "Existing [31] bindings retained. No new physical entity or duplicate roof authorized. Local east masonry arch is visible but its exact longitudinal station remains unbound."
+        },
+        {
+          "id": "A37-required-scope-02",
+          "facet": "exterior",
+          "label": "Fire-gable door subsection",
+          "status": "BLOCKED_SOURCE",
+          "scopePreserved": true,
+          "review": "Existing [31] bindings retained. No new physical entity or duplicate roof authorized. Local east masonry arch is visible but its exact longitudinal station remains unbound."
+        },
+        {
+          "id": "A37-required-scope-03",
+          "facet": "exterior",
+          "label": "End connections",
+          "status": "BLOCKED_SOURCE",
+          "scopePreserved": true,
+          "review": "Existing [31] bindings retained. No new physical entity or duplicate roof authorized. Local east masonry arch is visible but its exact longitudinal station remains unbound."
+        },
+        {
+          "id": "A37-required-scope-04",
+          "facet": "interior",
+          "label": "Separate room interiors",
+          "status": "DIFFED",
+          "scopePreserved": true,
+          "review": "Existing items[31]: 13 generated rooms, 12 solid transverse partitions, 102 automatic furnishing meshes; these are runtime counts, not historical room/bay counts. Enumerated runtime room IDs/AABBs are not physical historical room identities. Each covered passage requires inner-face/frame/opening review; each actual enclosed room needs a dated inventory."
+        }
+      ],
+      "preserve": [
+        "Existing corridor footprints and roof discontinuities",
+        "Gate/pavilion independence",
+        "Outer wall gap contracts",
+        "No duplicate gallery or blanket seven-wall array"
+      ],
+      "blockers": [
+        "No full same-side modern elevation and current room plan",
+        "Exact fire-gable stations/count boundary unresolved",
+        "Current display date/contents not selected",
+        "Actual matched-camera production browser screenshots remain unavailable: inherited cloud browser cannot reach executor localhost; official panorama had WebGL fatal. Neither browser denial nor panorama was retried. Direct component assembly is not GPU acceptance."
+      ],
+      "actualModifiedFiles": []
+    },
+    {
+      "objectId": "FC-86FF7FC2AB",
+      "name": "保和殿西联庑",
+      "classification": "building_or_structure_candidate",
+      "overallExteriorReview": "DIFFED",
+      "overallInteriorReview": "DIFFED",
+      "currentCycleAccepted": false,
+      "binding": {
+        "status": "ACTUAL_COMPONENTS_FOUND_OFFICIAL_BOUNDARIES_PARTIAL",
+        "items": [
+          37
+        ],
+        "outerWallItem": 7,
+        "side": "west",
+        "assembly": "component-assembly.json",
+        "runtimeRooms": 13,
+        "solidPartitionCount": 12,
+        "automaticFurnishingMeshes": 106,
+        "officialRoomCount": null
+      },
+      "exteriorFeatures": [
+        {
+          "id": "footprint_orientation_court_connections",
+          "status": "DIFFED",
+          "reference": "The source establishes segmented linking galleries and independent intervening gates/pavilions; measured stations remain unproven.",
+          "currentCodeOrAssembly": "Existing items[37]: 13 generated rooms, 12 solid transverse partitions, 106 automatic furnishing meshes; these are runtime counts, not historical room/bay counts. East is-X; west is+X.",
+          "nextAction": "Retain these exact spans and map each terminus before introducing any new roof or wall.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+          "status": "BLOCKED_SOURCE",
+          "reference": "No full current side-specific roof survey. Yearbook west-range view, where applicable, is a dated repair photo with broad caption.",
+          "currentCodeOrAssembly": "Each corridor is a single one-eave gable-roof hall, low-detail roof builder, at colH3.6/ph0.45.",
+          "nextAction": "Obtain a dated same-side roof/elevation view; do not mirror roof details from the opposite side.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "bays_columns_brackets_beams_paint_zones",
+          "status": "DIFFED",
+          "reference": "P5 east covered passage shows framing and lattice joinery locally; no complete bay census.",
+          "currentCodeOrAssembly": "bays=max(3,round(length/3.4)|1); columns occur at front/back bay lines, generic beam paint, brackets=false.",
+          "nextAction": "Retain provisional bays pending location-matched count; inspect exposed frames even where no furnished room exists.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "doors_windows_openings_walls_screens",
+          "status": "BLOCKED_SOURCE",
+          "reference": "Text supports fire separation but does not establish all current openings on this side.",
+          "currentCodeOrAssembly": "Full-depth solid box partitions have no arches. Front lattice panels are flush with the outer column line; no distinct covered longitudinal passage is generated.",
+          "nextAction": "Locate a specific partition/porch segment before cutting an arch; do not equate12 model partitions with7 source walls.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "terrace_steps_imperial_ramp_rails_posts",
+          "status": "BLOCKED_SOURCE",
+          "reference": "Current source does not measure the whole gallery base, stair spacing or accessibility.",
+          "currentCodeOrAssembly": "Uniform0.45m low plinth, slab, one walkable box per span; no individual source-bound stair scheme.",
+          "nextAction": "Keep the low-step contract until a located base/approach source supports a change.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+          "status": "DIFFED",
+          "reference": "Taihe text requires gaps at wing gates/pavilions with thick-wall links; Baohe text requires fire-gable separation.",
+          "currentCodeOrAssembly": "Taihe spans are already broken around gates/pavilions; outer wall6/7 has their gaps. Baohe31/37 remain each a long roof strip, not proven fire-gable sections.",
+          "nextAction": "Inspect end-face and outer-wall seams. Do not add another continuous corridor around the independent gates.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "plaques_text_placement_orientation_occlusion",
+          "status": "BLOCKED_SOURCE",
+          "reference": "No verified side-specific architectural plaque supplied.",
+          "currentCodeOrAssembly": "Corridors default name庑房 for metadata but plaque:false creates no visible nameboard.",
+          "nextAction": "Preserve no-plaque rendering; add only a located, dated, visibly confirmed sign.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "unique_courtyard_facilities_locations",
+          "status": "BLOCKED_SOURCE",
+          "reference": "No complete courtyard fixture inventory for these exact spans.",
+          "currentCodeOrAssembly": "No gallery-specific canonical courtyard fixture list is bound. Automatic furniture is internal template output, not exterior site evidence.",
+          "nextAction": "Keep unrelated pots, lions and ritual vessels out of the gallery task.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64"
+          ],
+          "acceptedScope": null
+        }
+      ],
+      "interiorFeatures": [
+        {
+          "id": "room_partitions_portals_column_grid_levels_steps_floor",
+          "status": "BLOCKED_SOURCE",
+          "reference": "Actual present room/passage separation and interior plan remain unconfirmed.",
+          "currentCodeOrAssembly": "Existing items[37]: 13 generated rooms, 12 solid transverse partitions, 106 automatic furnishing meshes; these are runtime counts, not historical room/bay counts. Transverse partitions run across4m and close longitudinal passage; each room has a front door.",
+          "nextAction": "Record generated room AABBs only as candidates. Separate roofed passage surfaces/frames from enclosed room inventories.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64",
+            "EAST-EXHIBITION2008",
+            "EXHIBITION-ROTATION2009"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+          "status": "DIFFED",
+          "reference": "A covered corridor still requires inner eaves, beams, wall faces, door/arch returns and floor review.",
+          "currentCodeOrAssembly": "Generic one-sided painted ceiling plane, generic beams, lattice front and solid partitions; no bespoke intrados or masonry arch surround.",
+          "nextAction": "Use the photographed covered portion only; hidden upper framing, opposite faces and room ceilings stay blocked.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64",
+            "EAST-EXHIBITION2008",
+            "EXHIBITION-ROTATION2009"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "principal_furniture_type_count_location_facing_scale",
+          "status": "DIFFED",
+          "reference": "No bedroom or storage furnishing layout is independently evidenced for these current gallery rooms.",
+          "currentCodeOrAssembly": "Every3 bays selects room; every third generated room becomes storage when there are >2 rooms. room adds bed/platform, cloth cover, table, stools and cabinet; storage adds seeded crates. 106 meshes counted.",
+          "nextAction": "A strictly scoped unverified-content fallback may suppress unsupported props without claiming rooms are empty; do not copy exhibition display objects into unlocated rooms.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64",
+            "EAST-EXHIBITION2008",
+            "EXHIBITION-ROTATION2009"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+          "status": "BLOCKED_SOURCE",
+          "reference": "P5 depicts limited modern items in the passage but does not establish their capture date or present-day positions.",
+          "currentCodeOrAssembly": "Template objects do not encode a dated fixture/couplet/light/curtain scheme.",
+          "nextAction": "Find dated full room/passage views; do not fabricate hanging decoration or treat the historical photo as today.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64",
+            "EAST-EXHIBITION2008",
+            "EXHIBITION-ROTATION2009"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "function_specificity_worship_library_residential_exhibition",
+          "status": "DIFFED",
+          "reference": "Official2008/2009 notices identify Baohe east/west exhibition uses in those years, not current display plans.",
+          "currentCodeOrAssembly": "Runtime room/storage labels are gameplay presets, not building-use evidence.",
+          "nextAction": "Keep present display target unresolved and preserve the distinction between a roofed route and enclosed exhibits.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64",
+            "EAST-EXHIBITION2008",
+            "EXHIBITION-ROTATION2009"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "visible_missing_objects_and_unsupported_model_objects",
+          "status": "DIFFED",
+          "reference": "No image-backed furniture inventory supports existing bed/crate population.",
+          "currentCodeOrAssembly": "Missing arch/covered-passage expression where source-visible; existing unsupported props are enumerated in component-assembly.json.",
+          "nextAction": "Track missing and unsupported components separately; do not mark the whole interior N/A or invent seven complete room sets.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "YEARBOOK2005-P64",
+            "EAST-EXHIBITION2008",
+            "EXHIBITION-ROTATION2009"
+          ],
+          "acceptedScope": null
+        }
+      ],
+      "requiredExtraScope": [
+        {
+          "id": "A37-required-scope-01",
+          "facet": "exterior",
+          "label": "West gallery segment instances",
+          "status": "DIFFED",
+          "scopePreserved": true,
+          "review": "Existing [37] bindings retained. No new physical entity or duplicate roof authorized. Complete current side-specific detail remains unverified."
+        },
+        {
+          "id": "A37-required-scope-02",
+          "facet": "exterior",
+          "label": "Fire-gable interfaces",
+          "status": "BLOCKED_SOURCE",
+          "scopePreserved": true,
+          "review": "Existing [37] bindings retained. No new physical entity or duplicate roof authorized. Complete current side-specific detail remains unverified."
+        },
+        {
+          "id": "A37-required-scope-03",
+          "facet": "exterior",
+          "label": "Ends",
+          "status": "BLOCKED_SOURCE",
+          "scopePreserved": true,
+          "review": "Existing [37] bindings retained. No new physical entity or duplicate roof authorized. Complete current side-specific detail remains unverified."
+        },
+        {
+          "id": "A37-required-scope-04",
+          "facet": "interior",
+          "label": "Individual interiors",
+          "status": "DIFFED",
+          "scopePreserved": true,
+          "review": "Existing items[37]: 13 generated rooms, 12 solid transverse partitions, 106 automatic furnishing meshes; these are runtime counts, not historical room/bay counts. Enumerated runtime room IDs/AABBs are not physical historical room identities. Each covered passage requires inner-face/frame/opening review; each actual enclosed room needs a dated inventory."
+        }
+      ],
+      "preserve": [
+        "Existing corridor footprints and roof discontinuities",
+        "Gate/pavilion independence",
+        "Outer wall gap contracts",
+        "No duplicate gallery or blanket seven-wall array"
+      ],
+      "blockers": [
+        "No full same-side modern elevation and current room plan",
+        "Exact fire-gable stations/count boundary unresolved",
+        "Current display date/contents not selected",
+        "Actual matched-camera production browser screenshots remain unavailable: inherited cloud browser cannot reach executor localhost; official panorama had WebGL fatal. Neither browser denial nor panorama was retried. Direct component assembly is not GPU acceptance."
+      ],
+      "actualModifiedFiles": []
+    },
+    {
+      "objectId": "FC-1ABC6622CB",
+      "name": "太和殿两侧阶梯状封火墙",
+      "classification": "outdoor_component",
+      "overallExteriorReview": "DIFFED",
+      "overallInteriorReview": "NOT_APPLICABLE",
+      "currentCycleAccepted": false,
+      "binding": {
+        "status": "EAST_INSTALLED_WEST_CANDIDATE",
+        "outerWallItems": [
+          13,
+          15
+        ],
+        "installedProfile": "taihe-east-stepped-firewall",
+        "sourceCode": [
+          "src/scene/PalaceBuilder.js#buildComplex",
+          "src/scene/palace/special/AxisFirewalls.js",
+          "src/scene/palace/special/AxisFirewallProfiles.js"
+        ]
+      },
+      "exteriorFeatures": [
+        {
+          "id": "footprint_orientation_court_connections",
+          "status": "DIFFED",
+          "reference": "P5/P6 distinguish transverse stepped masonry links from longitudinal gallery fire-gable walls. P6 direction is explicitly east-to-west.",
+          "currentCodeOrAssembly": "Taihe east alone has an installed dedicated profile; opposite wall remains generic.",
+          "nextAction": "Retain transverse identity; confirm each side independently.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "SUN2020-P6"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+          "status": "VERIFY_PENDING",
+          "reference": "Yellow coping follows changing wall top heights; this is not a timber roof corridor.",
+          "currentCodeOrAssembly": "Taihe east has3 caps and3 terrace increments, nominal tops7/9.6667/12.3333, all modeling values.",
+          "nextAction": "Do not mirror Taihe coping dimensions or assume all Baohe steps/ends visible.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "SUN2020-P6"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "bays_columns_brackets_beams_paint_zones",
+          "status": "NOT_APPLICABLE",
+          "reference": "Solid outdoor fire wall is not a timber column-grid/painted-frame building.",
+          "currentCodeOrAssembly": "No corresponding enclosed-room subgeometry is required by this physical object.",
+          "nextAction": "Any gate lintel/door frame belongs to E4; do not add hall columns or brackets.",
+          "sourceIds": [],
+          "acceptedScope": null
+        },
+        {
+          "id": "doors_windows_openings_walls_screens",
+          "status": "VERIFY_PENDING",
+          "reference": "P6 shows a small doorway in the eastern transverse connector. It is not the sequence of arched gallery partitions on p5.",
+          "currentCodeOrAssembly": "Taihe east installed opening is2.8x3 at upper y8, centered x-43.0083; fitted, not surveyed.",
+          "nextAction": "Review door type and target access separately. Do not turn an unlocated p5 arch into this small transverse opening.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "SUN2020-P6"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "terrace_steps_imperial_ramp_rails_posts",
+          "status": "VERIFY_PENDING",
+          "reference": "P6 relates wall stepping to the visible terrace levels.",
+          "currentCodeOrAssembly": "Taihe east uses retained terrace edges and encloses intersecting rail volume; existing rails remain.",
+          "nextAction": "Retain stairs/rails. For Baohe do not copy the22.1167m Taihe upper span or its doorway; reconcile the narrow inherited terrace margin first.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "SUN2020-P6"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+          "status": "VERIFY_PENDING",
+          "reference": "Reference links the wall to hall/terrace/gate surroundings, not a continuous wood passage.",
+          "currentCodeOrAssembly": "Taihe east terminates at hall-side x-31.95 and outer wall13 x-65.5; west is not installed.",
+          "nextAction": "Inspect end contacts and retained gate routes locally, not by rebuilding an entire court.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "SUN2020-P6"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "plaques_text_placement_orientation_occlusion",
+          "status": "BLOCKED_SOURCE",
+          "reference": "No independently verified plaque on the full wall pair.",
+          "currentCodeOrAssembly": "No dedicated wall plaque generated.",
+          "nextAction": "Retain no-plaque state; any small modern sign needs a located dated view.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "SUN2020-P6"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "unique_courtyard_facilities_locations",
+          "status": "BLOCKED_SOURCE",
+          "reference": "Reference does not establish a complete adjacent fixture inventory.",
+          "currentCodeOrAssembly": "No dedicated wall-specific furniture added.",
+          "nextAction": "Do not furnish the wall or duplicate nearby terrace objects.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "SUN2020-P6"
+          ],
+          "acceptedScope": null
+        }
+      ],
+      "interiorFeatures": [
+        {
+          "id": "room_partitions_portals_column_grid_levels_steps_floor",
+          "status": "NOT_APPLICABLE",
+          "reference": "An open platform or outdoor masonry wall contains no enclosed room system.",
+          "currentCodeOrAssembly": "No corresponding enclosed-room subgeometry is required by this physical object.",
+          "nextAction": "Inspect exposed stair/floor faces and wall openings under E4/E5.",
+          "sourceIds": [],
+          "acceptedScope": null
+        },
+        {
+          "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+          "status": "NOT_APPLICABLE",
+          "reference": "No roofed interior ceiling or caisson exists in this object.",
+          "currentCodeOrAssembly": "No corresponding enclosed-room subgeometry is required by this physical object.",
+          "nextAction": "Door soffit, lintel, exposed wall face and coping remain E2/E4/E6 tasks.",
+          "sourceIds": [],
+          "acceptedScope": null
+        },
+        {
+          "id": "principal_furniture_type_count_location_facing_scale",
+          "status": "NOT_APPLICABLE",
+          "reference": "There is no enclosed furnished room in this physical object.",
+          "currentCodeOrAssembly": "No corresponding enclosed-room subgeometry is required by this physical object.",
+          "nextAction": "Do not generate beds, thrones, tables or display furniture.",
+          "sourceIds": [],
+          "acceptedScope": null
+        },
+        {
+          "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+          "status": "NOT_APPLICABLE",
+          "reference": "This object has no room-based decorative scheme.",
+          "currentCodeOrAssembly": "No corresponding enclosed-room subgeometry is required by this physical object.",
+          "nextAction": "Any observed exterior signage/fixtures must be reviewed under E7/E8.",
+          "sourceIds": [],
+          "acceptedScope": null
+        },
+        {
+          "id": "function_specificity_worship_library_residential_exhibition",
+          "status": "NOT_APPLICABLE",
+          "reference": "This is open circulation/support or a fire-separation wall, not a residential/exhibition room.",
+          "currentCodeOrAssembly": "No corresponding enclosed-room subgeometry is required by this physical object.",
+          "nextAction": "Preserve use distinction; separate any adjacent roofed-gallery rooms.",
+          "sourceIds": [],
+          "acceptedScope": null
+        },
+        {
+          "id": "visible_missing_objects_and_unsupported_model_objects",
+          "status": "NOT_APPLICABLE",
+          "reference": "Interior object-inventory comparison does not apply to an open structural component.",
+          "currentCodeOrAssembly": "No corresponding enclosed-room subgeometry is required by this physical object.",
+          "nextAction": "Missing or unsupported exposed components still require E4/E5/E8 review; N/A does not accept exterior.",
+          "sourceIds": [],
+          "acceptedScope": null
+        }
+      ],
+      "requiredExtraScope": [
+        {
+          "id": "A37-required-scope-01",
+          "facet": "exterior",
+          "label": "East stepped-wall candidate",
+          "status": "VERIFY_PENDING",
+          "scopePreserved": true,
+          "review": "Taihe east bounded implementation preserved; no new implementation here. Actual browser acceptance still pending."
+        },
+        {
+          "id": "A37-required-scope-02",
+          "facet": "exterior",
+          "label": "West stepped-wall candidate",
+          "status": "BLOCKED_SOURCE",
+          "scopePreserved": true,
+          "review": "No independently source-accepted opposite-side profile. Gate clearance and terrace interface require targeted local checks; no blind reflection."
+        },
+        {
+          "id": "A37-required-scope-03",
+          "facet": "exterior",
+          "label": "Terrace interfaces and gate clearance",
+          "status": "BLOCKED_SOURCE",
+          "scopePreserved": true,
+          "review": "No independently source-accepted opposite-side profile. Gate clearance and terrace interface require targeted local checks; no blind reflection."
+        }
+      ],
+      "preserve": [
+        "Retain the installed east Taihe profile and exact6 added colliders",
+        "No west mirror",
+        "Do not confuse gallery arches and stepped connector doors",
+        "No fabricated interior"
+      ],
+      "blockers": [
+        "Opposite-side geometry remains unverified",
+        "Metric heights/stations and full end profile not surveyed",
+        "Actual matched-camera production browser screenshots remain unavailable: inherited cloud browser cannot reach executor localhost; official panorama had WebGL fatal. Neither browser denial nor panorama was retried. Direct component assembly is not GPU acceptance."
+      ],
+      "actualModifiedFiles": []
+    },
+    {
+      "objectId": "FC-526ABE19BB",
+      "name": "保和殿两侧阶梯状封火墙",
+      "classification": "outdoor_component",
+      "overallExteriorReview": "DIFFED",
+      "overallInteriorReview": "NOT_APPLICABLE",
+      "currentCycleAccepted": false,
+      "binding": {
+        "status": "OUTER_WALL_CANDIDATES_INNER_CONNECTOR_UNMODELED",
+        "outerWallItems": [
+          17,
+          19
+        ],
+        "installedProfile": null,
+        "sourceCode": [
+          "data/zones/axis-courts.json#/items/17",
+          "data/zones/axis-courts.json#/items/19"
+        ]
+      },
+      "exteriorFeatures": [
+        {
+          "id": "footprint_orientation_court_connections",
+          "status": "DIFFED",
+          "reference": "P5/P6 distinguish transverse stepped masonry links from longitudinal gallery fire-gable walls. P6 direction is explicitly east-to-west.",
+          "currentCodeOrAssembly": "Outer wall candidates17/19 are constant h7 at z123, ending at x±40.5; no dedicated stepped connector runs toward the hall.",
+          "nextAction": "Retain transverse identity; confirm each side independently.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "SUN2020-P6"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+          "status": "DIFFED",
+          "reference": "Yellow coping follows changing wall top heights; this is not a timber roof corridor.",
+          "currentCodeOrAssembly": "Generic outer wall has a single continuous top. P6 right-hand Baohe connector visibly drops near its eastern end.",
+          "nextAction": "Do not mirror Taihe coping dimensions or assume all Baohe steps/ends visible.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "SUN2020-P6"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "bays_columns_brackets_beams_paint_zones",
+          "status": "NOT_APPLICABLE",
+          "reference": "Solid outdoor fire wall is not a timber column-grid/painted-frame building.",
+          "currentCodeOrAssembly": "No corresponding enclosed-room subgeometry is required by this physical object.",
+          "nextAction": "Any gate lintel/door frame belongs to E4; do not add hall columns or brackets.",
+          "sourceIds": [],
+          "acceptedScope": null
+        },
+        {
+          "id": "doors_windows_openings_walls_screens",
+          "status": "DIFFED",
+          "reference": "P6 shows a small doorway in the eastern transverse connector. It is not the sequence of arched gallery partitions on p5.",
+          "currentCodeOrAssembly": "No corresponding Baohe small wall-door opening is installed. Existing 后左门 is a separate gate in outer wall17.",
+          "nextAction": "Review door type and target access separately. Do not turn an unlocated p5 arch into this small transverse opening.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "SUN2020-P6"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "terrace_steps_imperial_ramp_rails_posts",
+          "status": "DIFFED",
+          "reference": "P6 relates wall stepping to the visible terrace levels.",
+          "currentCodeOrAssembly": "Derived retained Baohe upper/outer edges are x-28.85/-39.7833, while outer wall17 ends-40.5. The upper edge-to-hall-side strip is only3.55m if hall wall outer face is-25.3.",
+          "nextAction": "Retain stairs/rails. For Baohe do not copy the22.1167m Taihe upper span or its doorway; reconcile the narrow inherited terrace margin first.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "SUN2020-P6"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+          "status": "DIFFED",
+          "reference": "Reference links the wall to hall/terrace/gate surroundings, not a continuous wood passage.",
+          "currentCodeOrAssembly": "Existing outer-wall17 starts outside the modeled bottom terrace; the exposed inward connector is absent. P6 newly provides a bounded east-side source lead, not a surveyed binding.",
+          "nextAction": "Inspect end contacts and retained gate routes locally, not by rebuilding an entire court.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "SUN2020-P6"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "plaques_text_placement_orientation_occlusion",
+          "status": "BLOCKED_SOURCE",
+          "reference": "No independently verified plaque on the full wall pair.",
+          "currentCodeOrAssembly": "No dedicated wall plaque generated.",
+          "nextAction": "Retain no-plaque state; any small modern sign needs a located dated view.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "SUN2020-P6"
+          ],
+          "acceptedScope": null
+        },
+        {
+          "id": "unique_courtyard_facilities_locations",
+          "status": "BLOCKED_SOURCE",
+          "reference": "Reference does not establish a complete adjacent fixture inventory.",
+          "currentCodeOrAssembly": "No dedicated wall-specific furniture added.",
+          "nextAction": "Do not furnish the wall or duplicate nearby terrace objects.",
+          "sourceIds": [
+            "SUN2020-P5",
+            "SUN2020-P6"
+          ],
+          "acceptedScope": null
+        }
+      ],
+      "interiorFeatures": [
+        {
+          "id": "room_partitions_portals_column_grid_levels_steps_floor",
+          "status": "NOT_APPLICABLE",
+          "reference": "An open platform or outdoor masonry wall contains no enclosed room system.",
+          "currentCodeOrAssembly": "No corresponding enclosed-room subgeometry is required by this physical object.",
+          "nextAction": "Inspect exposed stair/floor faces and wall openings under E4/E5.",
+          "sourceIds": [],
+          "acceptedScope": null
+        },
+        {
+          "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+          "status": "NOT_APPLICABLE",
+          "reference": "No roofed interior ceiling or caisson exists in this object.",
+          "currentCodeOrAssembly": "No corresponding enclosed-room subgeometry is required by this physical object.",
+          "nextAction": "Door soffit, lintel, exposed wall face and coping remain E2/E4/E6 tasks.",
+          "sourceIds": [],
+          "acceptedScope": null
+        },
+        {
+          "id": "principal_furniture_type_count_location_facing_scale",
+          "status": "NOT_APPLICABLE",
+          "reference": "There is no enclosed furnished room in this physical object.",
+          "currentCodeOrAssembly": "No corresponding enclosed-room subgeometry is required by this physical object.",
+          "nextAction": "Do not generate beds, thrones, tables or display furniture.",
+          "sourceIds": [],
+          "acceptedScope": null
+        },
+        {
+          "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+          "status": "NOT_APPLICABLE",
+          "reference": "This object has no room-based decorative scheme.",
+          "currentCodeOrAssembly": "No corresponding enclosed-room subgeometry is required by this physical object.",
+          "nextAction": "Any observed exterior signage/fixtures must be reviewed under E7/E8.",
+          "sourceIds": [],
+          "acceptedScope": null
+        },
+        {
+          "id": "function_specificity_worship_library_residential_exhibition",
+          "status": "NOT_APPLICABLE",
+          "reference": "This is open circulation/support or a fire-separation wall, not a residential/exhibition room.",
+          "currentCodeOrAssembly": "No corresponding enclosed-room subgeometry is required by this physical object.",
+          "nextAction": "Preserve use distinction; separate any adjacent roofed-gallery rooms.",
+          "sourceIds": [],
+          "acceptedScope": null
+        },
+        {
+          "id": "visible_missing_objects_and_unsupported_model_objects",
+          "status": "NOT_APPLICABLE",
+          "reference": "Interior object-inventory comparison does not apply to an open structural component.",
+          "currentCodeOrAssembly": "No corresponding enclosed-room subgeometry is required by this physical object.",
+          "nextAction": "Missing or unsupported exposed components still require E4/E5/E8 review; N/A does not accept exterior.",
+          "sourceIds": [],
+          "acceptedScope": null
+        }
+      ],
+      "requiredExtraScope": [
+        {
+          "id": "A37-required-scope-01",
+          "facet": "exterior",
+          "label": "East stepped wall",
+          "status": "DIFFED",
+          "scopePreserved": true,
+          "review": "P6 right-hand east-to-west photo newly exposes Baohe east connector and a small door. Narrow inherited upper margin must be reconciled before choosing geometry."
+        },
+        {
+          "id": "A37-required-scope-02",
+          "facet": "exterior",
+          "label": "West stepped wall",
+          "status": "BLOCKED_SOURCE",
+          "scopePreserved": true,
+          "review": "No independently source-accepted opposite-side profile. Gate clearance and terrace interface require targeted local checks; no blind reflection."
+        },
+        {
+          "id": "A37-required-scope-03",
+          "facet": "exterior",
+          "label": "Platform/gate junctions",
+          "status": "BLOCKED_SOURCE",
+          "scopePreserved": true,
+          "review": "No independently source-accepted opposite-side profile. Gate clearance and terrace interface require targeted local checks; no blind reflection."
+        }
+      ],
+      "preserve": [
+        "Retain 后左门/后右门 openings and existing outer-wall geometry",
+        "No west mirror",
+        "Do not confuse gallery arches and stepped connector doors",
+        "No fabricated interior"
+      ],
+      "blockers": [
+        "Opposite-side geometry remains unverified",
+        "Metric heights/stations and full end profile not surveyed",
+        "Actual matched-camera production browser screenshots remain unavailable: inherited cloud browser cannot reach executor localhost; official panorama had WebGL fatal. Neither browser denial nor panorama was retried. Direct component assembly is not GPU acceptance."
+      ],
+      "actualModifiedFiles": []
+    }
+  ],
+  "publicationProvenance": {
+    "originalReviewSha256": "37b4cbb4b0f5f937cee59757a4044b56b355571b680cef82b948473996f78e93",
+    "note": "Source-review metadata only; workspace paths removed. Official photographs/PDF are not redistributed. No browser visual acceptance."
+  }
+}

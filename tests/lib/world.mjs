@@ -16,6 +16,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { zhaodeGateGeometry } from '../../src/scene/palace/special/ZhaodeGateProfile.js';
+import { zhenduGateGeometry } from '../../src/scene/palace/special/ZhenduGateProfile.js';
 import { eastWestCityGateGeometry } from '../../src/scene/palace/special/EastWestCityGate.js';
 import { huangjiGateGeometry } from '../../src/scene/palace/special/HuangjiGate.js';
 import { yanxiRuinGeometry } from '../../src/scene/palace/special/YanxiRuin.js';
@@ -64,6 +65,13 @@ export function gateGeom(item) {
       profile: { ...profile, ramps: [], toWorld: (x,z) => [profile.x+x*Math.cos(profile.rot)+z*Math.sin(profile.rot), profile.z-x*Math.sin(profile.rot)+z*Math.cos(profile.rot)] } };
   }
   // Explicit three-bay topology must precede the established five-bay profiles.
+  if (item.gateProfile === 'zhendu') {
+    const profile = zhenduGateGeometry(item);
+    const front = -profile.ramps.find(r => r.side === 'front').zToe;
+    const rear = profile.ramps.find(r => r.side === 'rear').zToe;
+    return { x: profile.x, z: profile.z, rot: profile.rot, dir: [Math.sin(profile.rot), Math.cos(profile.rot)],
+      half: Math.max(front, rear), front, rear, platformY: profile.platform.topY, profile };
+  }
   if (item.gateProfile === 'zhaode' && item.gateKind === 'three-bay') {
     const profile = zhaodeGateGeometry(item);
     const front = -profile.ramps.find(r => r.side === 'front').zToe;
