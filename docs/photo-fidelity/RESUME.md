@@ -1,30 +1,31 @@
-# R62-E local cumulative stage ready for packaging
+# R63-F continuation
 
-Single authority: QUEUE.json and its verified gzip parts via
-scripts/photo-fidelity/queue_storage.py. Derived RELEASES/R62-E.json is not a
-second truth. R61 local frozen base is6b396800b6a03582aebf513fcef4966e9f5d0db3.
-Remote parent must be the verified R61 receipt, never a guessed local hash.
+Canonical authority: QUEUE.json plus its verified gzip parts, accessed through
+scripts/photo-fidelity/queue_storage.py. RELEASES/R63-F.json is a derived view.
+Frozen local R62: f87342d7e1506713df4a6877943eb377e8299593.
+Verified remote parent: 51d5ced1f0074b1a0eeacec2c36c6c4fd580245d.
+R62 and all previous source, evidence and production packages remain frozen.
 
-The complete E61 / 854-feature / 33-declaration scan is retained. Current E
-states:595 DIFFED,34 PARTIAL,225 BLOCKED_SOURCE,0 ACCEPTED. Nine bounded changes
-are integrated. All398 FC IDs,154 baseline declaration audits,7 expansions,
-prior accepted snapshots and A-D engineering/source/visual residuals remain.
-An unbound rear/side label is not automatically a missing physical building.
+F has 55 original requirements, 726 feature checks, 26 existing declaration
+audits and EXPAND-06. Preserve all 398 original IDs, all 154 declaration audits,
+all seven expansions, earlier accepted snapshots and A-E unresolved work.
+Unresolved side-hall names, aggregates and removed gates are not new geometry.
 
-Five independent full-world stages passed with241 identical sources, fresh108
-bindings,24 paths and1,101 observation groups. This is not one continuous world
-across all three S assets. See reports/r62-e-stage/STAGED-WORLD-SUMMARY.json.
-The release remains FUNCTIONAL_STAGE_DELIVERY_NOT_FULL_ACCEPTANCE. Browser,
-WebGL, GPU and physical phone gates remain open. Unknown withdrawn furniture
-is not a historical empty-room assertion. Generic coarse beasts are not a
-species-accurate sculptural reconstruction.
+First bounded batch: Tongdaotang roof type, Tongdaotang and Lijingxuan south
+window/sill subdivisions, and the photographed Qinzheng kang-front footstool.
+Source conflict for Tongdaotang is explicit: parent page says hard gable,
+dedicated page and actual photograph support a hipped lower return with gable.
+Photo dates and metric fits remain unknown. Central visitor doors remain open;
+photographed temporary closed access is not copied into navigation.
+Preserve R48 dedicated facades, R53 Yangxin rooms and real S asset, R54 Changchun
+east alcove, all 108 anonymous optional characters, 24 routes and runtime caps.
+Read all F requirements and record implementable, location, source and visual
+residuals. A handful of changes does not close the full section.
 
-Finish only this cumulative E package/upload queue. Do not start F while the
-ordered cumulative upload chain is catching up. Report local/in-progress and
-verified uploaded states separately; never present a local version as the
-latest GitHub release. R61 and all earlier source/ZIP rollbacks remain immutable.
+Official photographs/PDFs stay in private reference caches outside the repo and
+production package. CPU renders are geometry evidence, not browser/WebGL/GPU or
+physical-phone acceptance. Do not retry denied browser actions or modify main,
+credentials or Pages. No G work until this cumulative F release is checked,
+uploaded and fully remotely verified. Root supplies one latest verified link.
 
-Official image/PDF caches remain outside repository and production package.
-Do not retry denied browser operations or modify main/credentials. No deployment
-is performed by local integration. The external release manifest is the only
-place to bind a subsequently received exact remote parent, without source edits.
+Functional stage checkpoint: five independent full worlds passed on the same245-source freeze, each freshly binding/individually observing108 roles. F136 modes and retained A-E checks passed; production root/subpath/main3/3 passed. Full F acceptance remains false. See reports/r63-f-stage/README.md, STAGED-WORLD-SUMMARY.json and RESIDUALS/R63-F-STAGE.json. Await complete remote verification before G; source images remain private.

@@ -1,0 +1,33 @@
+✖ R63 west annex existing-W consumer verifies 13 raw/merged LOCAL halls; rejects ghost render/COL/missing floor/evidence (120.225475ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 361.252202
+
+✖ failing tests:
+
+test at tests/r63-west-unknown-annex-world-consumer.test.mjs:7:1
+✖ R63 west annex existing-W consumer verifies 13 raw/merged LOCAL halls; rejects ghost render/COL/missing floor/evidence (120.225475ms)
+  AssertionError [ERR_ASSERTION]: existing-W consumer must exist
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at check (file:///workspace/scratch/02a8023d1a85/r63-west-unknown-annex/tests/r63-west-unknown-annex-world-consumer.test.mjs:6:24)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-unknown-annex/tests/r63-west-unknown-annex-world-consumer.test.mjs:10:59)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

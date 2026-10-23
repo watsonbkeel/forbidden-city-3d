@@ -1,53 +1,33 @@
 {
-  "schemaVersion": 18,
-  "baselineCommit": "6b396800b6a03582aebf513fcef4966e9f5d0db3",
-  "purpose": "R62-E nine bounded source/unknown-inventory changes; E61/854 full scan and residuals separate, no whole-section or browser acceptance.",
+  "schemaVersion": 19,
+  "baselineCommit": "f87342d7e1506713df4a6877943eb377e8299593",
+  "purpose": "R63-F five bounded source/unknown-inventory work items; F55/726 full scan and residuals separate, no whole-section or browser acceptance.",
   "provenance": {
-    "previousWorldVersion": "R61-D",
-    "previousReleaseCommit": "6b396800b6a03582aebf513fcef4966e9f5d0db3",
-    "previousManifestPath": "data/characters/world-source-freeze-r61-d.json",
-    "previousManifestSHA256": "9fc5e3bf46a164fb7296f40d5f6d3bed916890f8f28f98efc0e9c6a9593e4cb6",
-    "previousFileCount": 232,
-    "fileCount": 241,
+    "previousWorldVersion": "R62-E",
+    "previousReleaseCommit": "f87342d7e1506713df4a6877943eb377e8299593",
+    "previousManifestPath": "data/characters/world-source-freeze-r62-e.json",
+    "previousManifestSHA256": "ff128fc8c7bb7197a4f34be7f1789ca2a3896d0b7c7b452d87c190b6277edbac",
+    "previousFileCount": 241,
+    "fileCount": 245,
     "changedPreviouslyTrackedSources": [
       {
-        "path": "data/zones/east-six.json",
-        "beforeSHA256": "08526251d18aca894684286addae0464814b1ef437310331049573aa81959926",
-        "afterSHA256": "284d7ec8ec83a64d221692a49e36f951fe926d1ada8d4d0f539a6e3b8e18ce09"
-      },
-      {
-        "path": "src/scene/palace/HallNameboardMount.js",
-        "beforeSHA256": "4cd6644ed425919b4131198aceb389814d12af7c31d6165f0f7f14b0643c3881",
-        "afterSHA256": "794a383d00f3edec8f7ac8aa4ce625283fc6acbe7a426a9ef53b616e4abfc6d7"
-      },
-      {
-        "path": "src/scene/palace/special/EastResidentialFacades.js",
-        "beforeSHA256": "10685a888adade27cf3dbfca94564567db9d3d56d01eb233bfd09ffb86007406",
-        "afterSHA256": "9297574cbb22ef35b01b7d2d7aeef2145fa3d0f50cf07db08e04d3d908810169"
-      },
-      {
-        "path": "src/scene/palace/special/SourceGuidedNameboardMounts.js",
-        "beforeSHA256": "b1da50adbc66309d78afbcf03e9351b5858e9b18ecf4d2c93ddce019c0c99df2",
-        "afterSHA256": "119a715c6bfd3eb25721dbbd28c5607a031a1a70f00280fda216219a7f657084"
+        "path": "src/scene/palace/special/RemainingResidentialHalls.js",
+        "beforeSHA256": "0e9c32f33c9df590dba98f8fc32990bbb8f601f7d17cc80b9013ec7d28bfeba8",
+        "afterSHA256": "a469913059cc2e9d34b53e31fa2e82d5bdc2c4c8ff8b078a26acf724f0b2d91e"
       },
       {
         "path": "src/scene/zones/ZoneBase.js",
-        "beforeSHA256": "509e784a584139e976a929789734446a5a3fb6de0e3b448910d2315285bd9819",
-        "afterSHA256": "b0016f34fa817b8986fc889e526ff89a0871dfa242e1ff7158c675d080582587"
+        "beforeSHA256": "b0016f34fa817b8986fc889e526ff89a0871dfa242e1ff7158c675d080582587",
+        "afterSHA256": "c753ad4276a1f411c05a342f27d156ff0ada5a297779080a83b807533c01c3f1"
       }
     ],
     "newlyTrackedSources": [
-      "src/scene/palace/special/EastFiveRoofBeasts.js",
-      "src/scene/palace/special/EastUnknownAnnexInventory.js",
-      "src/scene/palace/special/EastUnknownThroneInventory.js",
-      "src/scene/palace/special/FengxianFrontWindows.js",
-      "src/scene/palace/special/FengxianRearProfile.js",
-      "src/scene/palace/special/JingrenRearWindows.js",
-      "src/scene/palace/special/JingrenSouthWindows.js",
-      "src/scene/palace/special/JingyangRearFacade.js",
-      "src/scene/palace/special/YongheCanopyKnees.js"
+      "src/scene/palace/special/QinzhengFootstool.js",
+      "src/scene/palace/special/TongdaoRoof.js",
+      "src/scene/palace/special/WestRearSouthWindows.js",
+      "src/scene/palace/special/WestUnknownAnnexInventory.js"
     ],
-    "characterRegistryKitAndCaps": "Exact unchanged from R61; all108/24 must bind anew in this source world.",
+    "characterRegistryKitAndCaps": "Exact unchanged from R62; all108/24 must bind anew in this source world.",
     "acceptance": "RESULTS_IN_VERSIONED_REPORT_NOT_THIS_SOURCE_INPUT; BROWSER_ACCEPTANCE_NOT_PERFORMED"
   },
   "files": [
@@ -652,6 +632,10 @@
       "sha256": "38ca60dc40b3a04d92f17a333a6dfadeb72058d10bddb604b7f7b0bb77776490"
     },
     {
+      "path": "src/scene/palace/special/QinzhengFootstool.js",
+      "sha256": "99fea981b288bfb233a32253ea6b22d150a664355b36d89228a1d87f1dd4d5a7"
+    },
+    {
       "path": "src/scene/palace/special/RearHallProfiles.js",
       "sha256": "5f5b2e121444606e80617a4a84ac1481b1c135835a612618bb1a736fe39e0cfb"
     },
@@ -665,7 +649,7 @@
     },
     {
       "path": "src/scene/palace/special/RemainingResidentialHalls.js",
-      "sha256": "0e9c32f33c9df590dba98f8fc32990bbb8f601f7d17cc80b9013ec7d28bfeba8"
+      "sha256": "a469913059cc2e9d34b53e31fa2e82d5bdc2c4c8ff8b078a26acf724f0b2d91e"
     },
     {
       "path": "src/scene/palace/special/RitualHalls.js",
@@ -828,6 +812,10 @@
       "sha256": "246e56761a6b105db33b6623daaffe7ce517db9805e5d05016c0da1b54000c9f"
     },
     {
+      "path": "src/scene/palace/special/TongdaoRoof.js",
+      "sha256": "303ddb916b184687822882480569f226d4aed7260ef5f3636f7f3865353b0634"
+    },
+    {
       "path": "src/scene/palace/special/WenhuaGateSouthWindows.js",
       "sha256": "869cddf6f1454e4e7e2feb0f37723649dc903380c793bb39ba7fe34172519be5"
     },
@@ -842,6 +830,14 @@
     {
       "path": "src/scene/palace/special/WestDomesticHalls.js",
       "sha256": "3bd9990e7efa35e552c99b6520e772cfca9f3171840968732cb288ac7791c3bc"
+    },
+    {
+      "path": "src/scene/palace/special/WestRearSouthWindows.js",
+      "sha256": "bc224b6645c5720c185f1687ef1b68748236cfa3407103e960c0a7fb53b9e49e"
+    },
+    {
+      "path": "src/scene/palace/special/WestUnknownAnnexInventory.js",
+      "sha256": "5f3fd9fcc2c81353bd599202a6571d5084a9da5198f2b4ced8e60cc599490e41"
     },
     {
       "path": "src/scene/palace/special/WumenAscent.js",
@@ -1001,7 +997,7 @@
     },
     {
       "path": "src/scene/zones/ZoneBase.js",
-      "sha256": "b0016f34fa817b8986fc889e526ff89a0871dfa242e1ff7158c675d080582587"
+      "sha256": "c753ad4276a1f411c05a342f27d156ff0ada5a297779080a83b807533c01c3f1"
     },
     {
       "path": "src/scene/zones/ZoneManager.js",

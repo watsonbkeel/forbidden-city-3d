@@ -1,0 +1,137 @@
+✖ Tongdao supplied-world consumer rejects the exact 5,344-triangle upper-interior removal (99.955601ms)
+✖ Tongdao supplied-world consumer rejects upper-interior deletion in window 0 alone (56.781937ms)
+✖ Tongdao supplied-world consumer rejects upper-interior deletion in window 1 alone (32.462278ms)
+✖ Tongdao supplied-world consumer rejects upper-interior deletion in window 2 alone (29.446633ms)
+✖ Tongdao supplied-world consumer rejects upper-interior deletion in window 3 alone (25.193258ms)
+✖ Tongdao supplied-world consumer samples every upper rectangular grille and interconnection (29.308366ms)
+✖ unwritable or intercepted result metadata rejects before any source mesh or owned material mutation (84.124932ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 0
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 481.649871
+
+✖ failing tests:
+
+test at tests/current-state/r63-west-rear-south-window-routes.test.mjs:26:1
+✖ Tongdao supplied-world consumer rejects the exact 5,344-triangle upper-interior removal (99.955601ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:26:182)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /upper rectangular/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-west-rear-south-window-routes.test.mjs:27:35
+✖ Tongdao supplied-world consumer rejects upper-interior deletion in window 0 alone (56.781937ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:27:235)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /upper rectangular/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-west-rear-south-window-routes.test.mjs:27:35
+✖ Tongdao supplied-world consumer rejects upper-interior deletion in window 1 alone (32.462278ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:27:235)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /upper rectangular/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-west-rear-south-window-routes.test.mjs:27:35
+✖ Tongdao supplied-world consumer rejects upper-interior deletion in window 2 alone (29.446633ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:27:235)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /upper rectangular/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-west-rear-south-window-routes.test.mjs:27:35
+✖ Tongdao supplied-world consumer rejects upper-interior deletion in window 3 alone (25.193258ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:27:235)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /upper rectangular/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-west-rear-south-window-routes.test.mjs:28:1
+✖ Tongdao supplied-world consumer samples every upper rectangular grille and interconnection (29.308366ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  undefined !== 216
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:28:233)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 216,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-west-rear-south-windows.test.mjs:15:1
+✖ unwritable or intercepted result metadata rejects before any source mesh or owned material mutation (84.124932ms)
+  TypeError: Cannot add property westRearSouthWindows, object is not extensible
+      at Module.applyWestRearSouthWindows (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/src/scene/palace/special/WestRearSouthWindows.js:107:24)
+      at apply (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-windows.test.mjs:5:139)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-windows.test.mjs:17:141)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)

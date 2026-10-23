@@ -1,3 +1,6 @@
+import {applyTongdaoRoof} from '../palace/special/TongdaoRoof.js';
+import {applyWestRearSouthWindows} from '../palace/special/WestRearSouthWindows.js';
+import {validateWestUnknownAnnexInventoryPolicy,applyWestUnknownAnnexInventory} from '../palace/special/WestUnknownAnnexInventory.js';
 import {validateEastUnknownAnnexInventoryPolicy,applyEastUnknownAnnexInventory} from '../palace/special/EastUnknownAnnexInventory.js';
 import {applyEastFiveRoofBeasts} from '../palace/special/EastFiveRoofBeasts.js';
 import {applyJingrenRearWindows} from '../palace/special/JingrenRearWindows.js';
@@ -158,8 +161,12 @@ export class ZoneBase {
     const annexContext=this.zoneJson.id==='east-six'&&[3,4,5,10,11,12,17,18,19,24,25,26,31,32,33,38,39,40,44,45,46,47,48,54].includes(itemIndex)
       ? {zoneId:this.zoneJson.id,itemIndex,item:{...item,furnishingPolicy:{mode:'unknown-inventory',target:`east-six/items/${itemIndex}`,scope:'r62-east-24-unnamed-annex-furnish-room-only'}}}:null;
     if(annexContext)validateEastUnknownAnnexInventoryPolicy(annexContext);
+    const westAnnexContext=this.zoneJson.id==='west-six'&&[3,9,10,16,17,25,26,32,33,41,42,48,49].includes(itemIndex)
+      ? {zoneId:this.zoneJson.id,itemIndex,item:{...item,furnishingPolicy:{mode:'unknown-inventory',target:`west-six/items/${itemIndex}`,scope:'r63-west-13-unnamed-annex-furnish-room-only'}}}:null;
+    if(westAnnexContext)validateWestUnknownAnnexInventoryPolicy(westAnnexContext);
     const finish=built=>{
       applyEastFiveRoofBeasts(this.kit,this.zoneJson.id,itemIndex,item,built);
+      if(westAnnexContext)return applyWestUnknownAnnexInventory(this.kit,westAnnexContext,built);
       if(annexContext)return applyEastUnknownAnnexInventory(this.kit,annexContext,built);
       return inventoryContext?applyEastUnknownThroneInventory(this.kit,inventoryContext,built):built;
     };
@@ -175,6 +182,10 @@ export class ZoneBase {
     const selected=candidates[0];
     if(selected?.profile.mode==='replace')return finish(applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,selected.build(this.kit,item,selected.profile)));
     const built=this.buildHallBaseline(item);
+    if(this.zoneJson.id==='west-six'&&[24,47].includes(itemIndex)){
+      built.f.updateWorldMatrix(true,true);
+      if(!applyWestRearSouthWindows(this.kit,built.f,item,itemIndex))throw Error('West rear south window profile failed closed');
+    }
     if(this.zoneJson.id==='east-six'&&itemIndex===3){
       built.f.updateWorldMatrix(true,false);
       if(!applyJingrenRearWindows(this.kit,built.f,item))throw Error('Jingren rear window profile failed closed');
@@ -263,6 +274,7 @@ export class ZoneBase {
       result.f.userData.rearHall=rearProfile;
       result.f.userData.structure={...result.f.userData.structure,...rearProfile,id:`${rearProfile.zone}/${rearProfile.id}`,profile:rearProfile.id};
     }
+    applyTongdaoRoof(this.kit,this.zoneJson.id,this.zoneJson.items.indexOf(item),item,result);
     if(item.auxiliaryIdentity!==undefined){
       if(this.zoneJson.id!=='outer-west'||item.auxiliaryIdentity!=='恒寿斋'||item.name)throw new Error('Unknown southern auxiliary identity');
       result.f.userData.structure={id:'wuying-hengshou-auxiliary',name:item.auxiliaryIdentity,x:item.x,z:item.z,w:item.w,d:item.d,bays:item.bays,status:item.dimensionStatus,source:item.source,interiorPolicy:'CLOSED_UNFURNISHED_NO_INVENTED_CONTENTS'};

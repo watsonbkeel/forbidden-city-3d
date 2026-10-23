@@ -1,0 +1,443 @@
+✖ 24: merged actual triangles establish sill, glazing, lattice and unchanged closed-window/open-door states (103.007771ms)
+✖ 24: 10Hz W walk repeated facade center route (28.266973ms)
+✖ 24: 10Hz W sprint input repeated facade center route (30.210777ms)
+✖ 24: 10Hz S walk repeated facade center route (23.410957ms)
+✖ 24: 10Hz S sprint input repeated facade center route (24.239634ms)
+✖ 24: 60Hz W walk repeated facade center route (19.849596ms)
+✖ 24: 60Hz W sprint input repeated facade center route (21.127569ms)
+✖ 24: 60Hz S walk repeated facade center route (23.408179ms)
+✖ 24: 60Hz S sprint input repeated facade center route (18.102401ms)
+✖ 47: merged actual triangles establish sill, glazing, lattice and unchanged closed-window/open-door states (26.717072ms)
+✖ 47: 10Hz W walk repeated facade center route (20.265609ms)
+✖ 47: 10Hz W sprint input repeated facade center route (19.548586ms)
+✖ 47: 10Hz S walk repeated facade center route (19.790637ms)
+✖ 47: 10Hz S sprint input repeated facade center route (18.740065ms)
+✖ 47: 60Hz W walk repeated facade center route (17.095294ms)
+✖ 47: 60Hz W sprint input repeated facade center route (22.498291ms)
+✖ 47: 60Hz S walk repeated facade center route (18.546571ms)
+✖ 47: 60Hz S sprint input repeated facade center route (22.404551ms)
+✔ triangle consumer rejects removed actual components and missing collision, not only metadata (89.836867ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 1
+ℹ fail 18
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 860.421835
+
+✖ failing tests:
+
+test at tests/current-state/r63-west-rear-south-window-routes.test.mjs:7:2
+✖ 24: merged actual triangles establish sill, glazing, lattice and unchanged closed-window/open-door states (103.007771ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at check (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:5:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:7:226)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:92
+✖ 24: 10Hz W walk repeated facade center route (28.266973ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:249)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:92
+✖ 24: 10Hz W sprint input repeated facade center route (30.210777ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:249)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:92
+✖ 24: 10Hz S walk repeated facade center route (23.410957ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:249)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:92
+✖ 24: 10Hz S sprint input repeated facade center route (24.239634ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:249)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:92
+✖ 24: 60Hz W walk repeated facade center route (19.849596ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:249)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:92
+✖ 24: 60Hz W sprint input repeated facade center route (21.127569ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:249)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:92
+✖ 24: 60Hz S walk repeated facade center route (23.408179ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:249)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:92
+✖ 24: 60Hz S sprint input repeated facade center route (18.102401ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:249)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-west-rear-south-window-routes.test.mjs:7:2
+✖ 47: merged actual triangles establish sill, glazing, lattice and unchanged closed-window/open-door states (26.717072ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at check (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:5:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:7:226)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:92
+✖ 47: 10Hz W walk repeated facade center route (20.265609ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:249)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:92
+✖ 47: 10Hz W sprint input repeated facade center route (19.548586ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:249)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:92
+✖ 47: 10Hz S walk repeated facade center route (19.790637ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:249)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:92
+✖ 47: 10Hz S sprint input repeated facade center route (18.740065ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:249)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:92
+✖ 47: 60Hz W walk repeated facade center route (17.095294ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:249)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:92
+✖ 47: 60Hz W sprint input repeated facade center route (22.498291ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:249)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:92
+✖ 47: 60Hz S walk repeated facade center route (18.546571ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:249)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:92
+✖ 47: 60Hz S sprint input repeated facade center route (22.404551ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'undefined'
+  - 'function'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-south-window-routes.test.mjs:8:249)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

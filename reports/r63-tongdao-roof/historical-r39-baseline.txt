@@ -1,0 +1,63 @@
+✔ R39 no-opt-in roof forms keep exact R38 geometry and material signatures in both detail/eave modes (381.537744ms)
+✔ R39 jingren-rear uses official five-bay rear-hall profile and flush hard-gable roof (50.792448ms)
+✔ R39 chengqian-rear uses official five-bay rear-hall profile and flush hard-gable roof (3.932747ms)
+✔ R39 zhongcui-rear uses official five-bay rear-hall profile and flush hard-gable roof (3.474462ms)
+✔ R39 yonghe-rear uses official five-bay rear-hall profile and flush hard-gable roof (3.028514ms)
+✔ R39 lijingxuan uses official five-bay rear-hall profile and flush hard-gable roof (2.360003ms)
+✔ R39 tongdaotang uses official five-bay rear-hall profile and flush hard-gable roof (2.242848ms)
+✔ R39 hard-gable-end option rejects unsupported roof types or malformed values (0.543093ms)
+✔ R39 jingren-rear actual five-bay columns and door stay within the retained shell (33.433921ms)
+✔ R39 jingren-rear repeated real-controller ground-entry and exit at 10Hz (35.302829ms)
+✔ R39 jingren-rear repeated real-controller ground-entry and exit at 60Hz (36.641723ms)
+✔ R39 chengqian-rear actual five-bay columns and door stay within the retained shell (5.264281ms)
+✔ R39 chengqian-rear repeated real-controller ground-entry and exit at 10Hz (5.39734ms)
+✔ R39 chengqian-rear repeated real-controller ground-entry and exit at 60Hz (10.655381ms)
+✔ R39 zhongcui-rear actual five-bay columns and door stay within the retained shell (2.892881ms)
+✔ R39 zhongcui-rear repeated real-controller ground-entry and exit at 10Hz (5.563108ms)
+✔ R39 zhongcui-rear repeated real-controller ground-entry and exit at 60Hz (10.970954ms)
+✔ R39 yonghe-rear actual five-bay columns and door stay within the retained shell (3.225128ms)
+✔ R39 yonghe-rear repeated real-controller ground-entry and exit at 10Hz (4.6627ms)
+✔ R39 yonghe-rear repeated real-controller ground-entry and exit at 60Hz (9.458891ms)
+✔ R39 lijingxuan actual five-bay columns and door stay within the retained shell (2.358951ms)
+✔ R39 lijingxuan repeated real-controller ground-entry and exit at 10Hz (3.804596ms)
+✔ R39 lijingxuan repeated real-controller ground-entry and exit at 60Hz (8.137442ms)
+✔ R39 tongdaotang actual five-bay columns and door stay within the retained shell (1.99098ms)
+✔ R39 tongdaotang repeated real-controller ground-entry and exit at 10Hz (4.465355ms)
+✔ R39 tongdaotang repeated real-controller ground-entry and exit at 60Hz (8.971541ms)
+✔ R39 source-specific rear hall profiles cannot be transplanted, renamed or malformed before mutation (0.957894ms)
+✖ R39 rear-hall provenance survives the actual material merge (29.521735ms)
+✔ R39 independent: six source-selected roofs close both gable planes, including rake, soffit and ridge, in merged geometry (153.12025ms)
+✔ R39 independent: unrelated Jingyang rear roof remains xieshan and has no hard-gable profile (15.264441ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 29
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 901.376861
+
+✖ failing tests:
+
+test at tests/r39-hard-gable-rear-halls.test.mjs:48:1
+✖ R39 rear-hall provenance survives the actual material merge (29.521735ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'GENERIC_FURNISH_ROOM_WITHHELD_CURRENT_INVENTORY_UNKNOWN'
+  - 'EXISTING_GENERIC_INTERIOR_UNVERIFIED'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-tongdao-roof/tests/r39-hard-gable-rear-halls.test.mjs:51:131)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'GENERIC_FURNISH_ROOM_WITHHELD_CURRENT_INVENTORY_UNKNOWN',
+    expected: 'EXISTING_GENERIC_INTERIOR_UNVERIFIED',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

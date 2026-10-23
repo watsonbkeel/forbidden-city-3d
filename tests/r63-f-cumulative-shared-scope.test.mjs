@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {createHash} from 'node:crypto';
+const sha=b=>createHash('sha256').update(b).digest('hex'),p=JSON.parse(fs.readFileSync(new URL('./fixtures/r63-f-stage/cumulative-shared-hook-proof.json',import.meta.url)));
+for(const f of p.files)test('shared module exact cumulative F inverse: '+f.path,()=>{let s=fs.readFileSync(new URL('../'+f.path,import.meta.url),'utf8');assert.equal(sha(s),f.afterSha256);for(const[a,b]of f.inverseLiteralEdits){assert.equal(s.split(a).length-1,1);s=s.replace(a,b);}assert.equal(sha(s),f.beforeSha256);});

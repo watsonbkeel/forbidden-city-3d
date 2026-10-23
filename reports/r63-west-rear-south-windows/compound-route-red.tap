@@ -1,0 +1,79 @@
+✖ R62 baseline: old isolated Lijing start remains blocked by actual Chuxiu north wall (523.67456ms)
+✖ R62 baseline: compound 24 10Hz W walk (341.934522ms)
+✖ R63 candidate: old isolated Lijing start remains blocked by actual Chuxiu north wall (488.600268ms)
+✖ R63 candidate: compound 24 10Hz W walk (350.827605ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2030.86319
+
+✖ failing tests:
+
+test at tests/current-state/r63-west-rear-compound-routes.test.mjs:9:2
+✖ R62 baseline: old isolated Lijing start remains blocked by actual Chuxiu north wall (523.67456ms)
+  TypeError: Cannot read properties of undefined (reading 'x')
+      at file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-compound-routes.test.mjs:9:358
+      at Array.filter (<anonymous>)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-compound-routes.test.mjs:9:342)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at tests/current-state/r63-west-rear-compound-routes.test.mjs:10:118
+✖ R62 baseline: compound 24 10Hz W walk (341.934522ms)
+  AssertionError [ERR_ASSERTION]: {"arrived":false,"stuckAt":[94.5,448.7],"startFeet":0.6,"maxFeet":0.6,"maxSpeed":3.160602794142733,"driver":{"crossings":[],"brakingFrames":0,"endpointSettleSeconds":2},"end":[94.5,440.2322264586051,0.6]}
+
+  false !== true
+
+      at replayWestRearSouthDoorInWorld (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/lib/r63-west-rear-windows-world-check.mjs:55:151)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-compound-routes.test.mjs:10:259)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-west-rear-compound-routes.test.mjs:9:2
+✖ R63 candidate: old isolated Lijing start remains blocked by actual Chuxiu north wall (488.600268ms)
+  TypeError: Cannot read properties of undefined (reading 'x')
+      at file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-compound-routes.test.mjs:9:358
+      at Array.filter (<anonymous>)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-compound-routes.test.mjs:9:342)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+
+test at tests/current-state/r63-west-rear-compound-routes.test.mjs:10:118
+✖ R63 candidate: compound 24 10Hz W walk (350.827605ms)
+  AssertionError [ERR_ASSERTION]: {"arrived":false,"stuckAt":[94.5,448.7],"startFeet":0.6,"maxFeet":0.6,"maxSpeed":3.160602794142733,"driver":{"crossings":[],"brakingFrames":0,"endpointSettleSeconds":2},"end":[94.5,440.2322264586051,0.6]}
+
+  false !== true
+
+      at replayWestRearSouthDoorInWorld (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/lib/r63-west-rear-windows-world-check.mjs:55:151)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-west-rear-south-windows/tests/current-state/r63-west-rear-compound-routes.test.mjs:10:259)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

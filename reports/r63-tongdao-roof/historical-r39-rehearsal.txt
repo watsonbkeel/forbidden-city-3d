@@ -1,0 +1,100 @@
+✔ R39 no-opt-in roof forms keep exact R38 geometry and material signatures in both detail/eave modes (444.059351ms)
+✔ R39 jingren-rear uses official five-bay rear-hall profile and flush hard-gable roof (66.103203ms)
+✔ R39 chengqian-rear uses official five-bay rear-hall profile and flush hard-gable roof (6.921365ms)
+✔ R39 zhongcui-rear uses official five-bay rear-hall profile and flush hard-gable roof (5.533829ms)
+✔ R39 yonghe-rear uses official five-bay rear-hall profile and flush hard-gable roof (4.438159ms)
+✔ R39 lijingxuan uses official five-bay rear-hall profile and flush hard-gable roof (3.907666ms)
+✖ R39 tongdaotang uses official five-bay rear-hall profile and flush hard-gable roof (8.805915ms)
+✔ R39 hard-gable-end option rejects unsupported roof types or malformed values (0.604605ms)
+✔ R39 jingren-rear actual five-bay columns and door stay within the retained shell (63.812391ms)
+✔ R39 jingren-rear repeated real-controller ground-entry and exit at 10Hz (68.675232ms)
+✔ R39 jingren-rear repeated real-controller ground-entry and exit at 60Hz (59.480295ms)
+✔ R39 chengqian-rear actual five-bay columns and door stay within the retained shell (6.308418ms)
+✔ R39 chengqian-rear repeated real-controller ground-entry and exit at 10Hz (9.647313ms)
+✔ R39 chengqian-rear repeated real-controller ground-entry and exit at 60Hz (19.63802ms)
+✔ R39 zhongcui-rear actual five-bay columns and door stay within the retained shell (6.2365ms)
+✔ R39 zhongcui-rear repeated real-controller ground-entry and exit at 10Hz (7.999718ms)
+✔ R39 zhongcui-rear repeated real-controller ground-entry and exit at 60Hz (15.009024ms)
+✔ R39 yonghe-rear actual five-bay columns and door stay within the retained shell (6.866172ms)
+✔ R39 yonghe-rear repeated real-controller ground-entry and exit at 10Hz (4.653111ms)
+✔ R39 yonghe-rear repeated real-controller ground-entry and exit at 60Hz (8.312226ms)
+✔ R39 lijingxuan actual five-bay columns and door stay within the retained shell (2.57312ms)
+✔ R39 lijingxuan repeated real-controller ground-entry and exit at 10Hz (3.77643ms)
+✔ R39 lijingxuan repeated real-controller ground-entry and exit at 60Hz (11.705963ms)
+✔ R39 tongdaotang actual five-bay columns and door stay within the retained shell (4.944067ms)
+✔ R39 tongdaotang repeated real-controller ground-entry and exit at 10Hz (6.438963ms)
+✔ R39 tongdaotang repeated real-controller ground-entry and exit at 60Hz (12.53954ms)
+✔ R39 source-specific rear hall profiles cannot be transplanted, renamed or malformed before mutation (1.131853ms)
+✖ R39 rear-hall provenance survives the actual material merge (35.09249ms)
+✖ R39 independent: six source-selected roofs close both gable planes, including rake, soffit and ridge, in merged geometry (182.838485ms)
+✔ R39 independent: unrelated Jingyang rear roof remains xieshan and has no hard-gable profile (25.093771ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 27
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1115.752528
+
+✖ failing tests:
+
+test at tests/r39-hard-gable-rear-halls.test.mjs:14:36
+✖ R39 tongdaotang uses official five-bay rear-hall profile and flush hard-gable roof (8.805915ms)
+  AssertionError [ERR_ASSERTION]: source-scoped hard-gable profile must reach actual roof
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-tongdao-roof/tests/r39-hard-gable-rear-halls.test.mjs:16:64)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r39-hard-gable-rear-halls.test.mjs:48:1
+✖ R39 rear-hall provenance survives the actual material merge (35.09249ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'GENERIC_FURNISH_ROOM_WITHHELD_CURRENT_INVENTORY_UNKNOWN'
+  - 'EXISTING_GENERIC_INTERIOR_UNVERIFIED'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-tongdao-roof/tests/r39-hard-gable-rear-halls.test.mjs:51:131)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'GENERIC_FURNISH_ROOM_WITHHELD_CURRENT_INVENTORY_UNKNOWN',
+    expected: 'EXISTING_GENERIC_INTERIOR_UNVERIFIED',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r39-independent-hard-gable.test.mjs:9:1
+✖ R39 independent: six source-selected roofs close both gable planes, including rake, soffit and ridge, in merged geometry (182.838485ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(roof)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-tongdao-roof/tests/r39-independent-hard-gable.test.mjs:11:145)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
