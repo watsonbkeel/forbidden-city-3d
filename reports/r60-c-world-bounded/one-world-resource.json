@@ -1,0 +1,20 @@
+{
+  "command": [
+    "node",
+    "--expose-gc",
+    "--max-old-space-size=1024",
+    "--test",
+    "--test-reporter=tap",
+    "--test-concurrency=1",
+    "tests/r60-c-world.test.mjs"
+  ],
+  "startedAt": "2026-10-22T23:16:09.482566+00:00",
+  "endedAt": "2026-10-22T23:19:58.667146+00:00",
+  "exitCode": 1,
+  "signalIfParentKilled": null,
+  "wallSeconds": 229.184604331007,
+  "maxRssKiB": 1705580,
+  "userCpuSeconds": 278.863938,
+  "systemCpuSeconds": 2.16325,
+  "boundary": "QA process resources only, not game/GPU performance; child failure/signal remains in TAP"
+}

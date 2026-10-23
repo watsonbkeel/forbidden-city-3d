@@ -1,3 +1,5 @@
+import { applyYudeDomeBrickCourses } from './YudeDomeBrickCourses.js';
+import { withholdNanxunPlaceholderFurniture, applyNanxunCeilingBaseColors } from './NanxunReviewedInterior.js';
 import * as THREE from 'three';
 import { buildWuyingMoonTerrace } from './WuyingMoonTerrace.js';
 import { buildJiyunNamePlaque } from './JiyunNamePlaque.js';
@@ -982,7 +984,7 @@ function buildNanxunHall(kit,item,p) {
   for(const side of[-1,1])wallX(side*A,g.front,g.rear,g.y,g.h-.5);
   wallZ(g.rear,-A,A,g.y,g.h-.5);
   for(let i=0;i<5;i++)face(-A+i*bay,-A+(i+1)*bay,g.front,g.y,g.h-.5,{door:i===2,opened:i===2,role:'nanxun-fitted-front'});
-  retainLegacyFurniture(c);
+  withholdNanxunPlaceholderFurniture(c);
   const yy=g.y+g.h-.6,half=2.15,outer=2.45;
   // The official ceiling photograph establishes square -> octagonal -> round
   // topology. The central dragon carving is NOT replaced by a generic sphere
@@ -1010,6 +1012,7 @@ function buildNanxunHall(kit,item,p) {
   kit.roof(c.f,{type:'xieshan',width:g.w+.5,depth:g.d+.5,baseY:g.y+g.h,layers:1,brackets:true});
   kit.plaque(c.f,item.name,0,g.y+g.h-.95,g.front-.32,1.2,1.9);
   c.register(item.name,-A+.35,A-.35,g.front,g.rear,g.y,g.h-.8,[{x:0,z:g.front}],{x:0,z:g.front+1.3});
+  applyNanxunCeilingBaseColors(c);
   return finish(c,{caisson:{source:'https://img.dpm.org.cn/Uploads/Picture/dc/3938[1024].jpg',photographyDate:null,baseY:yy,recess:1.03,positionStatus:'CENTRAL_BAY_FIT_NOT_SURVEYED',topology:'SQUARE_OCTAGONAL_CIRCULAR',dragonRelief:'UNMODELED'},facadeDetailStatus:'FIVE_BAYS_OFFICIAL__LEAF_PATTERN_AND_DIMENSIONS_UNVERIFIED_FIT',interiorPeriod:'UNDATED_OFFICIAL_CEILING_PHOTO__NOT_A_QIANLONG_INVENTORY_RECONSTRUCTION'});
 }
 
@@ -1303,6 +1306,7 @@ function augmentYudeInterior(kit,item,built,p) {
   const sleeve=new THREE.CylinderGeometry(opening,opening,.26,48,1,true);const ids=sleeve.index.array;for(let k=0;k<ids.length;k+=3)[ids[k+1],ids[k+2]]=[ids[k+2],ids[k+1]];sleeve.computeVertexNormals();mark(kit.mesh(f,sleeve,m.white_glaze,b.x,top+H-.11,b.z),p,'yude-open-oculus-inner-rim',info);
   const lantern=f.children.find(n=>n.name==='yude-bath-lantern'),oldSill=lantern?.children.find(n=>n.name==='yude-lantern-sill');
   if(oldSill){const rr=b.lanternWidth/2+.1,ring=new THREE.Shape();ring.absarc(0,0,rr,0,Math.PI*2,false);const hole=new THREE.Path();hole.absarc(0,0,opening,0,Math.PI*2,true);ring.holes.push(hole);const geo=new THREE.ExtrudeGeometry(ring,{depth:.12,bevelEnabled:false,curveSegments:48});geo.rotateX(-Math.PI/2);geo.translate(0,-.06,0);oldSill.geometry.dispose();oldSill.geometry=geo;Object.assign(oldSill.userData,{...info,role:'yude-open-lantern-sill-ring'});}
+  applyYudeDomeBrickCourses(kit,built.f);
   return finishAugment(kit,item,built,p,{exteriorChanged:false,interiorChanged:true,bathInterior:{source,photographyDate:null,actualGeometry:['white-glazed brick inner wall shell','dark floor','pointed arch opening','four square-to-round squinches','solid square-to-round outer roof cap','inward FrontSide dome with open oculus'],door:{width:2*doorHalf,spring,apex},floorY:y,upperShellThickness:.12,access:'CLOSED_REAR_NO_NEW_SPAWN_OR_WALKABLE',furnishings:'UNMODELED_NO_INVENTED_BATH_EQUIPMENT'},actualChanges:['Replaced only the bath solid red mass and room-filling plinth with a layered hollow shell; retained exterior datum and original closed collision/navigation']});
 }
 const CERAMICS_2021='https://ggzlquanjing.dpm.org.cn/scene/rOQSztMJ62XbrOjIj78rxu2KMZTcvyfg/20210517_wydtcg/';

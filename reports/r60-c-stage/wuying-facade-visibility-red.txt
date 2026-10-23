@@ -1,0 +1,30 @@
+✖ all eight photographed window fields are actually visible from a frontal view, not concealed behind inherited nave dividers (49.998828ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 218.810831
+
+✖ failing tests:
+
+test at tests/r60-wuying-gate-windows.test.mjs:11:1
+✖ all eight photographed window fields are actually visible from a frontal view, not concealed behind inherited nave dividers (49.998828ms)
+  AssertionError [ERR_ASSERTION]: [{"cx":-13.96,"field":0,"visible":true,"firstMaterial":"wuying_gate_closed_recess"},{"cx":-13.96,"field":1,"visible":false,"firstMaterial":"wood_column_material"},{"cx":-13.96,"field":2,"visible":false,"firstMaterial":"wall_red_material"},{"cx":-13.96,"field":3,"visible":false,"firstMaterial":"wall_red_material"},{"cx":13.96,"field":0,"visible":false,"firstMaterial":"wall_red_material"},{"cx":13.96,"field":1,"visible":false,"firstMaterial":"wall_red_material"},{"cx":13.96,"field":2,"visible":false,"firstMaterial":"wood_column_material"},{"cx":13.96,"field":3,"visible":true,"firstMaterial":"wuying_gate_closed_recess"}]
+  
+  2 !== 8
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r60-c-west-fidelity/tests/r60-wuying-gate-windows.test.mjs:11:658)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 8,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

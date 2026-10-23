@@ -49,7 +49,10 @@
       "FC-634F1BA680",
       "FC-BA2BB4F70D"
     ],
-    "supplementaryRuntimeIds": [],
+    "supplementaryRuntimeIds": [
+      "AUX-EED7F7F3C66E",
+      "AUX-676F8D0E5A22"
+    ],
     "expansionTaskIds": [
       "EXPAND-02",
       "EXPAND-03",
@@ -3315,7 +3318,8 @@
         "FC-6C3C39B8A7",
         "FC-0565E86C7A",
         "FC-5264A545B2",
-        "FC-7463C11B05"
+        "FC-7463C11B05",
+        "AUX-EED7F7F3C66E"
       ],
       "expansionTaskIds": [
         "EXPAND-06"
@@ -7016,7 +7020,9 @@
           "inheritedImplementationOnly": "Prior implementation/evidence retained verbatim in baselineRecords and read-only original snapshot; NOT current-cycle visual acceptance."
         }
       },
-      "requiredChildIds": [],
+      "requiredChildIds": [
+        "AUX-676F8D0E5A22"
+      ],
       "expansionTaskIds": [
         "EXPAND-06"
       ],
@@ -7910,6 +7916,146 @@
       "optional": false,
       "priority": 7042,
       "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views."
+    },
+    {
+      "id": "AUX-EED7F7F3C66E",
+      "name": "outer-west / courtWalls / 38",
+      "section": "H",
+      "release": "R65-H",
+      "kind": "repository_auxiliary_or_region",
+      "entityId": null,
+      "entityCountStatus": "UNRESOLVED_GEOMETRY_NOT_COUNTED_AS_BUILDING",
+      "runtimeBindings": [
+        {
+          "inventoryId": "RI-EED7F7F3C66E",
+          "ref": "data/zones/outer-west.json#/items/38",
+          "kind": "courtWalls",
+          "bindingStatus": "STATIC_DECLARATION_NOT_CURRENT_RENDER_PROOF"
+        }
+      ],
+      "parentCandidates": [],
+      "requiredChildIds": [],
+      "expansionTaskIds": [
+        "EXPAND-06"
+      ],
+      "actualChanges": [],
+      "acceptanceRecords": [],
+      "currentCycleAccepted": false,
+      "optional": false,
+      "priority": 2619,
+      "facets": {
+        "exterior": {
+          "status": "UNREVIEWED",
+          "notApplicableReason": null,
+          "currentCycleReview": "UNREVIEWED",
+          "nextAction": "Resolve physical parent, instance boundary and appropriate interior/exterior applicability; never infer completion from unnamed geometry."
+        },
+        "interior": {
+          "status": "UNREVIEWED",
+          "notApplicableReason": null,
+          "currentCycleReview": "UNREVIEWED",
+          "nextAction": "Resolve physical parent, instance boundary and appropriate interior/exterior applicability; never infer completion from unnamed geometry."
+        }
+      },
+      "bindingStatus": "REPOSITORY_INSTANCE_UNMAPPED",
+      "sourceEvidence": {},
+      "sourceLine": null,
+      "cautions": "Code zone is not physical courtyard. Static declaration is not proof of rendered entity. Reclassify with migration record; do not remove from scope.",
+      "nextAction": "Inspect source declaration + builder dispatch + actual scene, attach to existing physical entity if same, otherwise append independently evidenced entity; record merge without shrinking original register.",
+      "sectionAssignment": {
+        "status": "EXISTING_PHYSICAL_AREA_OWNER_CORRECTION",
+        "history": [
+          {
+            "id": "AUX-EED7F7F3C66E",
+            "from": "C",
+            "to": "H",
+            "declaration": "data/zones/outer-west.json#/items/38",
+            "parent": "FC-DA597AAE85",
+            "basis": "Existing courtyard name/bounds or hall inside those bounds; not a claim about unnamed hall historical identity.",
+            "runtimeChanged": false
+          }
+        ]
+      },
+      "isNewBuildingProposal": false,
+      "mayMergeWithExistingId": true,
+      "persistentIdPolicy": "Preserve this ID after imports; record mergedInto + reason rather than deleting if declaration belongs to an existing physical entity.",
+      "typedParentReferences": [
+        {
+          "id": "FC-DA597AAE85",
+          "relation": "existing-declaration-within-retained-courtyard-envelope",
+          "physicalIdentityVerified": false
+        }
+      ]
+    },
+    {
+      "id": "AUX-676F8D0E5A22",
+      "name": "outer-west / courtWalls / 42",
+      "section": "H",
+      "release": "R65-H",
+      "kind": "repository_auxiliary_or_region",
+      "entityId": null,
+      "entityCountStatus": "UNRESOLVED_GEOMETRY_NOT_COUNTED_AS_BUILDING",
+      "runtimeBindings": [
+        {
+          "inventoryId": "RI-676F8D0E5A22",
+          "ref": "data/zones/outer-west.json#/items/42",
+          "kind": "courtWalls",
+          "bindingStatus": "STATIC_DECLARATION_NOT_CURRENT_RENDER_PROOF"
+        }
+      ],
+      "parentCandidates": [],
+      "requiredChildIds": [],
+      "expansionTaskIds": [
+        "EXPAND-06"
+      ],
+      "actualChanges": [],
+      "acceptanceRecords": [],
+      "currentCycleAccepted": false,
+      "optional": false,
+      "priority": 2620,
+      "facets": {
+        "exterior": {
+          "status": "UNREVIEWED",
+          "notApplicableReason": null,
+          "currentCycleReview": "UNREVIEWED",
+          "nextAction": "Resolve physical parent, instance boundary and appropriate interior/exterior applicability; never infer completion from unnamed geometry."
+        },
+        "interior": {
+          "status": "UNREVIEWED",
+          "notApplicableReason": null,
+          "currentCycleReview": "UNREVIEWED",
+          "nextAction": "Resolve physical parent, instance boundary and appropriate interior/exterior applicability; never infer completion from unnamed geometry."
+        }
+      },
+      "bindingStatus": "REPOSITORY_INSTANCE_UNMAPPED",
+      "sourceEvidence": {},
+      "sourceLine": null,
+      "cautions": "Code zone is not physical courtyard. Static declaration is not proof of rendered entity. Reclassify with migration record; do not remove from scope.",
+      "nextAction": "Inspect source declaration + builder dispatch + actual scene, attach to existing physical entity if same, otherwise append independently evidenced entity; record merge without shrinking original register.",
+      "sectionAssignment": {
+        "status": "EXISTING_PHYSICAL_AREA_OWNER_CORRECTION",
+        "history": [
+          {
+            "id": "AUX-676F8D0E5A22",
+            "from": "C",
+            "to": "H",
+            "declaration": "data/zones/outer-west.json#/items/42",
+            "parent": "FC-C7765A0D84",
+            "basis": "Existing courtyard name/bounds or hall inside those bounds; not a claim about unnamed hall historical identity.",
+            "runtimeChanged": false
+          }
+        ]
+      },
+      "isNewBuildingProposal": false,
+      "mayMergeWithExistingId": true,
+      "persistentIdPolicy": "Preserve this ID after imports; record mergedInto + reason rather than deleting if declaration belongs to an existing physical entity.",
+      "typedParentReferences": [
+        {
+          "id": "FC-C7765A0D84",
+          "relation": "existing-declaration-within-retained-courtyard-envelope",
+          "physicalIdentityVerified": false
+        }
+      ]
     }
   ],
   "expansionTasks": [

@@ -1,36 +1,40 @@
 {
-  "schemaVersion": 15,
-  "baselineCommit": "badd5a4072a451ebfbdcb3535eb6125ce1423f2f",
-  "purpose": "R59-B cumulative second internal batch: six unequal Wenyuan upper south window groups and three Wenhua major dividers, retaining all first-batch/R58 behavior. Not whole B41 or browser acceptance.",
+  "schemaVersion": 16,
+  "baselineCommit": "44ba4706a2088b6a4105d13cf3936cced125a880",
+  "purpose": "R60-C bounded visible surfaces and unsupported-inventory correction; all C17 scan is tracked separately, no full visual acceptance.",
   "provenance": {
-    "previousWorldVersion": "R59-B-batch1",
-    "previousReleaseCommit": "badd5a4072a451ebfbdcb3535eb6125ce1423f2f",
-    "previousManifestPath": "data/characters/world-source-freeze-r59-b-batch1.json",
-    "previousManifestSHA256": "666c94f0c56e80b95af9b00470d250b89dacbf66db9be4739dcb923772bafb03",
-    "previousFileCount": 222,
-    "fileCount": 223,
-    "changedProductionPaths": [
-      "src/scene/palace/special/WenhuaGateSouthWindows.js",
-      "src/scene/palace/special/WenyuanPavilion.js",
-      "src/scene/palace/special/WenyuanUpperSouthWindows.js"
-    ],
+    "previousWorldVersion": "R59-B-batch2",
+    "previousReleaseCommit": "44ba4706a2088b6a4105d13cf3936cced125a880",
+    "previousManifestPath": "data/characters/world-source-freeze-r59-b-batch2.json",
+    "previousManifestSHA256": "f8c51e1daf84b85ea591dabaeedca306e66a208b66384b789068bb6eaa4ab5d5",
+    "previousFileCount": 223,
+    "fileCount": 228,
     "changedPreviouslyTrackedSources": [
       {
-        "path": "src/scene/palace/special/WenhuaGateSouthWindows.js",
-        "beforeSHA256": "7af1a0d7138996d413bc484ffd203b43ba96723623ae9a2775dbfe9a0b31ef6c",
-        "afterSHA256": "869cddf6f1454e4e7e2feb0f37723649dc903380c793bb39ba7fe34172519be5"
+        "path": "src/scene/palace/special/EastWestCityGate.js",
+        "beforeSHA256": "c9881ef23d355492eb0def07cf774546e7bef36eaca32d06f4b22480a05ecfd1",
+        "afterSHA256": "b626fa7d473de48e6dbf1d78c1fded88529c637c47f4d99f64834f5972873084"
       },
       {
-        "path": "src/scene/palace/special/WenyuanPavilion.js",
-        "beforeSHA256": "32c63bf14745eb123d848be7f43779fb0e17732f9741fdf0f70317635ac6b866",
-        "afterSHA256": "15f38583075b13e4a3a64b2dafba796b6f155c23b95eb9e9657a3fc643944f5b"
+        "path": "src/scene/palace/special/RemainingOuterHalls.js",
+        "beforeSHA256": "cdaec845ae73b3528683b4717818beaeff6f2e0102809a0e29c2aac8936f02af",
+        "afterSHA256": "97ec0091bdf15d1ac85dc1bd90abc7571e0a3d7941b51c9e5201a05095d9b1b9"
+      },
+      {
+        "path": "src/scene/palace/special/SouthCourtGates.js",
+        "beforeSHA256": "6e5ccbc2672c39b26dc6da2cc59c2f2133d81d596833e466e7b8f3da845170cf",
+        "afterSHA256": "f3013674a426f43930dcc01ac80f517b50b680043b62fa9ad81d08dfa6d3bdae"
       }
     ],
     "newlyTrackedSources": [
-      "src/scene/palace/special/WenyuanUpperSouthWindows.js"
+      "src/scene/palace/special/NanxunReviewedInterior.js",
+      "src/scene/palace/special/WuyingGateSouthRails.js",
+      "src/scene/palace/special/WuyingGateSouthWindows.js",
+      "src/scene/palace/special/XihuaOuterWindowBand.js",
+      "src/scene/palace/special/YudeDomeBrickCourses.js"
     ],
-    "characterRegistryKitAndCaps": "Exact unchanged from R59-B-batch1; all108/24 checked afresh in this successor world.",
-    "acceptance": "PENDING_NEW_WORLD_FUNCTIONAL_CHECKS; BROWSER_ACCEPTANCE_NOT_PERFORMED"
+    "characterRegistryKitAndCaps": "Exact unchanged from R59; all108/24 must bind anew in this source world.",
+    "acceptance": "RESULTS_IN_VERSIONED_REPORT_NOT_THIS_SOURCE_INPUT; BROWSER_ACCEPTANCE_NOT_PERFORMED"
   },
   "files": [
     {
@@ -439,7 +443,7 @@
     },
     {
       "path": "src/scene/palace/special/EastWestCityGate.js",
-      "sha256": "c9881ef23d355492eb0def07cf774546e7bef36eaca32d06f4b22480a05ecfd1"
+      "sha256": "b626fa7d473de48e6dbf1d78c1fded88529c637c47f4d99f64834f5972873084"
     },
     {
       "path": "src/scene/palace/special/EnclosedPavilions.js",
@@ -542,6 +546,10 @@
       "sha256": "ac0bfc5e60acec68e9f06f47af888876328a41ea2d79a84a1a87f219704bed03"
     },
     {
+      "path": "src/scene/palace/special/NanxunReviewedInterior.js",
+      "sha256": "9d25bce886fbc72c1bab439c5ce8022fb7157b47f0cc3410bbca1b2ddc03306c"
+    },
+    {
       "path": "src/scene/palace/special/PavilionLowerWindowLeaves.js",
       "sha256": "04f6c8cc925cef7faa5ad14fb506eb8cfb7f77980148958a5972509ce45ed3bf"
     },
@@ -591,7 +599,7 @@
     },
     {
       "path": "src/scene/palace/special/RemainingOuterHalls.js",
-      "sha256": "cdaec845ae73b3528683b4717818beaeff6f2e0102809a0e29c2aac8936f02af"
+      "sha256": "97ec0091bdf15d1ac85dc1bd90abc7571e0a3d7941b51c9e5201a05095d9b1b9"
     },
     {
       "path": "src/scene/palace/special/RemainingResidentialHalls.js",
@@ -631,7 +639,7 @@
     },
     {
       "path": "src/scene/palace/special/SouthCourtGates.js",
-      "sha256": "6e5ccbc2672c39b26dc6da2cc59c2f2133d81d596833e466e7b8f3da845170cf"
+      "sha256": "f3013674a426f43930dcc01ac80f517b50b680043b62fa9ad81d08dfa6d3bdae"
     },
     {
       "path": "src/scene/palace/special/SouthCourtHalls.js",
@@ -806,6 +814,14 @@
       "sha256": "01bfb9f17673fd203ab78954ae4001aa07ce023c08b7e1e00ee633f7957d99db"
     },
     {
+      "path": "src/scene/palace/special/WuyingGateSouthRails.js",
+      "sha256": "efecd8eb2d72cf916b7fe915be325db669a156ae46db840dfa346f6e2bee33e4"
+    },
+    {
+      "path": "src/scene/palace/special/WuyingGateSouthWindows.js",
+      "sha256": "5af625b5cf473707322fba2a6bcf4cc6998ba894b646ba59b99876713e91c5b8"
+    },
+    {
       "path": "src/scene/palace/special/WuyingMoonTerrace.js",
       "sha256": "6fabf5ccb42343511142245dca333e260630e86229de58233b2d7c8fd9ce4dfd"
     },
@@ -820,6 +836,10 @@
     {
       "path": "src/scene/palace/special/XieheCourtyardKnees.js",
       "sha256": "21eebd032e63c1f2670ea2695697192c03813d396cdedf550a4fd8b8196efd43"
+    },
+    {
+      "path": "src/scene/palace/special/XihuaOuterWindowBand.js",
+      "sha256": "476905f6848fda1e24ddfca6e0cfc576df4514c1bfbde4b65313165701d6b965"
     },
     {
       "path": "src/scene/palace/special/YangxinWestWarmRooms.js",
@@ -848,6 +868,10 @@
     {
       "path": "src/scene/palace/special/YudeBath.js",
       "sha256": "de5a3ea6e3f5cc070321894323d4fc0a9b81636dc799d6eac0c1bdb926b94afa"
+    },
+    {
+      "path": "src/scene/palace/special/YudeDomeBrickCourses.js",
+      "sha256": "410967dd81a3a74e809e183aff445a4b0a91405dabcfa9b90c95ea08b033e194"
     },
     {
       "path": "src/scene/palace/special/ZhaodeGate.js",

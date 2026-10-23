@@ -1,75 +1,35 @@
-# R59-B continuation
+# R60-C continuation
 
-The only progress authority is `QUEUE.json`, a typed index over verified, lossless
-parts. Use `scripts/photo-fidelity/queue_storage.py` for every read and atomic
-write. The `RELEASES` files are derived snapshots, not second editable queues.
-The full user requirement remains `MASTER-PROMPT.md`, unchanged.
+QUEUE.json and its selected verified generation are the only progress authority.
+Use scripts/photo-fidelity/queue_storage.py; RELEASES are derived snapshots.
+The complete MASTER-PROMPT.md remains unchanged.
 
-## Frozen predecessor and active scope
+Base is local frozen R59 44ba4706a2088b6a4105d13cf3936cced125a880, tree
+93e8d5b5496d935c8e4906200bdf14f5085b75a7. Remote R59 and its R58 parent remain
+pending verified receipts. Never substitute local commit IDs for remote parents.
+R58/R59 are stage deliveries, not full A/B acceptance. Preserve both residuals
+and RESUME-R58-STAGE.md / RESUME-R59-STAGE.md.
 
-- R58 local freeze: `2b983ae82e50e23fd55bbe0845942a0a3855f8dd`, tree
-  `e37c7e99852d2b2e15c3bb87f0b59942aa3339a5`.
-- Its remote upload was pending at R59 adoption. Record the verified remote parent
-  when available, never guess it from local Git identities.
-- R58 is a functional A-stage delivery, **not full A acceptance**. Preserve its
-  37-object / 618-feature residual inventory at `RESIDUALS/R58-A-STAGE.json` and
-  the previous continuation notes in `RESUME-R58-STAGE.md`.
-- Worktree branch: `feat/r59-b-east-fidelity-20261022`. This release owns all 41
-  original B rows and their required children / expansion obligations, not just
-  the first few amendments. Six auxiliary declaration audits are not six extra
-  physical buildings. Existing 108 actors / 24 routes and earlier displays remain.
+All C17 original identities remain required, with both facets and all required
+children. Twelve code-zone outer-west audits belong physically to H/K; their
+stable IDs and parent obligations remain. Seven C auxiliary audits remain, one
+cross-boundary passage unresolved. Hengshou/connector/Duanhong already exist:
+new research bindings do not add runtime buildings or duplicate geometry.
 
-## First bounded implementation batch
+First local batch: two Wuying south end windows (rejected old mid-depth prototype
+retained), four plain south rail runs around the three original stair gaps, and
+brick-course albedo on the existing Yude inward dome. C-REVIEW/START.md records
+fit/unknown boundaries. CPU images are intermediate real-model observations,
+not browser/GPU/phone acceptance. The rear bath is still closed; its image is a
+diagnostic viewpoint, never advertised as a visitor route.
 
-1. Arrow pavilion: two actually observed south-central knees only. Preserve its
-   previously implemented enclosure, twenty columns and unresolved exhibition.
-2. Wenhua gate: photo-right south end-bay coarse window frame / pale lower panel.
-   Keep fine grille counts and the unobserved faces explicitly unresolved.
-3. Donghua gate: the central pair's nine stud rows, scoped to actual outward-facing
-   skins. Do not change other portals, Xihua or the shared source texture.
+Continue the complete C17 source/model/required-feature scan before declaring a
+C stage ready. Existing R52 ceramics, terrace, R48 caisson and other sourced work
+must not be rebuilt or reset. A/B residuals remain in the rolling queue. No
+ACCEPTED claim without the master's actual browser evidence and child gates.
+Official images/PDFs stay private; publish links/hashes/observations only.
+No main change, deployment, permission change or denied-browser retry here.
 
-Existing-child tracing is required before adding geometry: the Wenhua connector
-and Wenyuan pond bridge already exist. Wenyuan's green columns, three levels and
-stairs are already supplied by the downstream augmentation. Do not duplicate them.
-The Nansansuo six-declaration mapping is not proof of all three historical stages.
+## Full C stage scope scan
 
-The integration owner alone edits shared dispatch, the canonical queue and world
-source freezes. Merge 3–5 bounded items internally, validate once on the cumulative
-world, then continue the remaining B tasks. A blocked source never means a feature
-is optional or complete. Preserve prior accepted evidence without promoting it to
-this cycle's acceptance.
-
-## Evidence and acceptance boundaries
-
-Official source photos/PDFs stay in private research caches. Publish source URLs,
-observations and hashes, not unlicensed copies or production photo textures.
-CPU actual-geometry previews are allowed as intermediate evidence, not browser,
-GPU or physical-phone acceptance. The previous browser/CDP restrictions remain;
-do not retry a denied operation or bypass them. No main merge or Pages deployment
-is part of this local integration task. Zero new ACCEPTED scope at adoption.
-
-## R59 first bounded integration checkpoint
-
-The first three source-visible differences and the six-declaration UNKNOWN
-inventory cleanup are locally integrated. Exact scoped source inverses preserve
-all other shared-source bytes; two historical freeze assertions remain explicitly
-red rather than edited. The R59 222-file world manifest and one-world cumulative
-runner are prepared; their current result is pending, not inherited from R58.
-Full B41 source/identity findings are in B-REVIEW. The existing Wenhua connector
-and Wenyuan pond bridge are linked without duplication. Manbentang remains a
-historical-location task, not a new standing building. The Neige main facade is a
-separate source-bounded candidate with provisional placement, not yet integrated.
-
-## R59 B stage functional result and complete scan
-
-First and second cumulative worlds passed separately; final second world source
-f7039ce validates223 source files, all108 individual roles,24 two-cycle routes,
-six reloads and three actual S layers. See reports/r59-b-batch2/SUMMARY.json.
-The earlier pending paragraph is historical, superseded by these exact results.
-All41 B objects retain568 initial features, nine first-batch scopes and two second-batch bounded window scopes.
-The read-only full audit and current residual list are in B-REVIEW and RESIDUALS.
-Four source-supported archive/store sub-candidates are unlocated/unbuilt, not four
-new physical entities. The Neige prototype is deliberately withheld; source and
-normal Flight success do not prove the upper pedestrian envelope or location.
-No B facet is ACCEPTED. Continue C after local B-stage packaging, keeping all A/B
-source, engineering and browser residuals open. A stage is not full-zone fidelity.
+All17 originals /226 feature checks and7 C declaration audits are scanned. Five bounded changes are implemented, not full acceptance. See C-REVIEW/COMPLETE-SCAN.md and RESIDUALS/R60-C-STAGE.json. Known source-supported engineering residuals stay DIFFED, not mislabeled missing sources. Three cumulative QA attempts did not complete; the four serial independent full-world stages have now passed all corresponding assertions, including all108 fresh B/S/returnedB per-ID views. See reports/r60-c-stage/STAGED-WORLD-SUMMARY.json. This is not one W consecutively running all three S halls and is not browser acceptance. R58/R59 remote parents remain pending verified receipts.
