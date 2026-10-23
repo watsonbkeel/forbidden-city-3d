@@ -38,7 +38,7 @@
 > 已知限制、未验收项、精度声明与历史失败记录全部集中在 **[docs/LIMITATIONS.md](docs/LIMITATIONS.md)**。
 > 机器可读的项目摘要见 **[llms.txt](llms.txt)**。
 
-![太和殿正面：三层台基、汉白玉栏杆与重檐庑殿顶，全部由代码程序化生成](docs/screenshots/01-taihe-exterior.jpg)
+![太和殿暮色正面：三层台基、汉白玉御路与重檐庑殿顶，全部由代码程序化生成](docs/screenshots/01-taihe-exterior.jpg)
 
 ## 项目简介
 
