@@ -38,6 +38,8 @@
 > 已知限制、未验收项、精度声明与历史失败记录全部集中在 **[docs/LIMITATIONS.md](docs/LIMITATIONS.md)**。
 > 机器可读的项目摘要见 **[llms.txt](llms.txt)**。
 
+![太和殿正面：三层台基、汉白玉栏杆与重檐庑殿顶，全部由代码程序化生成](docs/screenshots/01-taihe-exterior.jpg)
+
 ## 项目简介
 
 建筑、天空由代码程序化生成（纹理为少量位图 + 程序化绘制），不依赖任何外部 3D 模型文件；6 座殿的可选细化内景由 Blender 脚本生成 GLB（源脚本在 `assets-src/interiors/`，总计约 1 MB）。场景采用米制坐标组织平面格局：午门在南，神武门在北，东华门、西华门在东西两侧，可以直接走出宫城。
@@ -92,6 +94,33 @@
 - 同材质网格合并（`mergeByMaterial`）、实例化渲染，控制 draw call
 - 匾额统一烘焙到一张图集
 - 高 / 低画质一键切换，移动端自动降低阴影分辨率和像素比
+
+## 截图
+
+### 太和殿内景
+![太和殿内景](docs/screenshots/02-taihe-interior.jpg)
+
+藻井、金柱、"建极绥猷"匾与宝座。6 座 S 档细化内景由 Blender 脚本生成 GLB，走近 15 m 自动加载。
+
+### 全宫俯瞰
+![全宫俯瞰](docs/screenshots/03-aerial-overview.jpg)
+
+157 m 高空视角，可见中轴线、金水河与东西六宫格局。含自由飞行模式。
+
+### 两侧宫院
+![储秀宫](docs/screenshots/04-chuxiu-palace.jpg)
+
+西六宫储秀宫：斗拱彩画、殿内匾额与可进入的殿座。
+
+### 宁寿宫区
+![九龙壁](docs/screenshots/05-nine-dragon-screen.jpg)
+
+宁寿宫区九龙壁。该区含皇极殿、宁寿宫、乾隆花园、畅音阁等 20+ 建筑。
+
+### 小地图
+![小地图](docs/screenshots/06-map-overview.jpg)
+
+M 键唤出，上北右东（与真实地图方位一致），标出中轴与两侧宫院、宫门名称。
 
 ## 快速开始
 
