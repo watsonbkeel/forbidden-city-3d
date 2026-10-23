@@ -79,8 +79,9 @@ test('preview label opens the accessible settings dialog without a keyboard', t 
   const launcher = document.getElementById('structural-preview-button');
   assert.ok(launcher, 'a permanent visible preview/settings button exists');
   assert.equal(launcher.tagName, 'BUTTON');
-  assert.match(launcher.textContent, /结构研究预览/);
-  assert.match(launcher.textContent, /现场开放/);
+  assert.match(launcher.textContent, /游览设置/);
+  // 公开声明不再挂在常驻入口上，改由设置面板内的 #preview-limit 承载（仍对用户可见）
+  assert.match(menu.panel.querySelector('#preview-limit').textContent, /现场游客开放/);
   launcher.click();
   assert.equal(menu.visible, true);
   assert.equal(opened, 1);

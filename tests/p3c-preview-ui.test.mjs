@@ -97,7 +97,7 @@ test('candidate availability arriving in a snapshot hides and deactivates the st
   assert.deepEqual(calls, [true]);
   assert.equal(menu.characterPreviewActive, false);
   assert.equal(menu.panel.querySelector('#characters-toggle-btn').textContent, '宫廷人物已开启（候选）');
-  assert.equal(menu.launcher.querySelector('strong').textContent, '结构研究预览');
+  assert.equal(menu.launcher.querySelector('strong').textContent, '游览设置');
 });
 
 test('DEV experimental snapshot reports its real preparation rather than unavailable content', t => {
@@ -161,7 +161,7 @@ test('preview clicks display only the returned actual state and never change app
   assert.equal(menu.characterPreviewActive, false);
   assert.equal(button.getAttribute('aria-pressed'), 'false');
   assert.equal(menu.launcher.querySelector('span').textContent, originalLauncher);
-  assert.equal(menu.launcher.querySelector('strong').textContent, '结构研究预览');
+  assert.equal(menu.launcher.querySelector('strong').textContent, '游览设置');
   assert.match(menu.panel.querySelector('#characters-toggle-btn').textContent, /暂不可用/);
 });
 
