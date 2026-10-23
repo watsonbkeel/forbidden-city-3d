@@ -1,0 +1,11 @@
+from pathlib import Path
+import json,hashlib,subprocess
+P=Path(__file__).resolve().parents[2];p=P/'data/characters/world-source-freeze.json';raw=p.read_bytes();old=json.loads(raw);assert old['schemaVersion']==17
+base='6b396800b6a03582aebf513fcef4966e9f5d0db3';assert subprocess.check_output(['git','show',base+':data/characters/world-source-freeze.json'],cwd=P)==raw
+snap=p.with_name('world-source-freeze-r61-d.json')
+if snap.exists():assert snap.read_bytes()==raw
+else:snap.write_bytes(raw)
+new=['FengxianFrontWindows','YongheCanopyKnees','JingyangRearFacade','JingrenSouthWindows','EastUnknownThroneInventory','FengxianRearProfile','JingrenRearWindows','EastUnknownAnnexInventory','EastFiveRoofBeasts'];paths=[x['path'] for x in old['files']]+['src/scene/palace/special/'+n+'.js' for n in new];assert len(paths)==len(set(paths))==241
+files=[{'path':s,'sha256':hashlib.sha256((P/s).read_bytes()).hexdigest()} for s in sorted(paths)];before={r['path']:r['sha256'] for r in old['files']};changes=[{'path':r['path'],'beforeSHA256':before[r['path']],'afterSHA256':r['sha256']} for r in files if r['path'] in before and before[r['path']]!=r['sha256']]
+assert {r['path'] for r in changes}=={'data/zones/east-six.json','src/scene/zones/ZoneBase.js','src/scene/palace/special/EastResidentialFacades.js','src/scene/palace/HallNameboardMount.js','src/scene/palace/special/SourceGuidedNameboardMounts.js'},changes
+out={'schemaVersion':18,'baselineCommit':base,'purpose':'R62-E nine bounded source/unknown-inventory changes; E61/854 full scan and residuals separate, no whole-section or browser acceptance.','provenance':{'previousWorldVersion':'R61-D','previousReleaseCommit':base,'previousManifestPath':str(snap.relative_to(P)),'previousManifestSHA256':hashlib.sha256(raw).hexdigest(),'previousFileCount':232,'fileCount':241,'changedPreviouslyTrackedSources':changes,'newlyTrackedSources':[r['path'] for r in files if r['path'] not in before],'characterRegistryKitAndCaps':'Exact unchanged from R61; all108/24 must bind anew in this source world.','acceptance':'RESULTS_IN_VERSIONED_REPORT_NOT_THIS_SOURCE_INPUT; BROWSER_ACCEPTANCE_NOT_PERFORMED'},'files':files};p.write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n');print(json.dumps({'files':len(files),'changed':len(changes),'new':len(new)}))

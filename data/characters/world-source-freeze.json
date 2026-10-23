@@ -1,48 +1,53 @@
 {
-  "schemaVersion": 17,
-  "baselineCommit": "f06922685d54a067962e3b8c68a9de90feccedb2",
-  "purpose": "R61-D five bounded source/unknown-inventory improvements; D32/440 full scan and residuals separate, no whole-section or browser acceptance.",
+  "schemaVersion": 18,
+  "baselineCommit": "6b396800b6a03582aebf513fcef4966e9f5d0db3",
+  "purpose": "R62-E nine bounded source/unknown-inventory changes; E61/854 full scan and residuals separate, no whole-section or browser acceptance.",
   "provenance": {
-    "previousWorldVersion": "R60-C",
-    "previousReleaseCommit": "f06922685d54a067962e3b8c68a9de90feccedb2",
-    "previousManifestPath": "data/characters/world-source-freeze-r60-c.json",
-    "previousManifestSHA256": "9220b5059bd9a78d37547a481839c981b908ac4d6d180eea2807c8380dd1388f",
-    "previousFileCount": 228,
-    "fileCount": 232,
+    "previousWorldVersion": "R61-D",
+    "previousReleaseCommit": "6b396800b6a03582aebf513fcef4966e9f5d0db3",
+    "previousManifestPath": "data/characters/world-source-freeze-r61-d.json",
+    "previousManifestSHA256": "9fc5e3bf46a164fb7296f40d5f6d3bed916890f8f28f98efc0e9c6a9593e4cb6",
+    "previousFileCount": 232,
+    "fileCount": 241,
     "changedPreviouslyTrackedSources": [
       {
-        "path": "data/zones/garden.json",
-        "beforeSHA256": "baad5210a941a11ee2b58f63e86f85c9eaaddd16cdd5fb68f795ad4a2919a0c2",
-        "afterSHA256": "e90353986b38d58b9c4db2fb2d4b7d56c9e6e758306a620baebacd481c564586"
+        "path": "data/zones/east-six.json",
+        "beforeSHA256": "08526251d18aca894684286addae0464814b1ef437310331049573aa81959926",
+        "afterSHA256": "284d7ec8ec83a64d221692a49e36f951fe926d1ada8d4d0f539a6e3b8e18ce09"
       },
       {
-        "path": "src/scene/palace/GalleryInventoryPolicy.js",
-        "beforeSHA256": "6bf2d098788d8c29d5f2550a5ca7de004211bc9e0555434fe31e6c53ede05fbf",
-        "afterSHA256": "303c1448ffb3efe703e1a3e3a0291d4c4a645321dc7fdb278d8587559b0ddfa5"
+        "path": "src/scene/palace/HallNameboardMount.js",
+        "beforeSHA256": "4cd6644ed425919b4131198aceb389814d12af7c31d6165f0f7f14b0643c3881",
+        "afterSHA256": "794a383d00f3edec8f7ac8aa4ce625283fc6acbe7a426a9ef53b616e4abfc6d7"
       },
       {
-        "path": "src/scene/palace/kit.js",
-        "beforeSHA256": "4d1027aa154388a9428f7d9307841fcaf034f39247456dd92c749da0c225cdcc",
-        "afterSHA256": "c88e56f25b543ce1132b6f1c51905d6a7be439f619f141dc1cfafdd20500a278"
+        "path": "src/scene/palace/special/EastResidentialFacades.js",
+        "beforeSHA256": "10685a888adade27cf3dbfca94564567db9d3d56d01eb233bfd09ffb86007406",
+        "afterSHA256": "9297574cbb22ef35b01b7d2d7aeef2145fa3d0f50cf07db08e04d3d908810169"
       },
       {
-        "path": "src/scene/palace/special/QianqingGate.js",
-        "beforeSHA256": "81a0b40ce40f0a635977bd112c2ad107ad9095214ae07b566d95dd6695ebe7b3",
-        "afterSHA256": "77edbd54b0cc5bc8c943c55914492c64f67335976ab71c9087585f2840c4a7da"
+        "path": "src/scene/palace/special/SourceGuidedNameboardMounts.js",
+        "beforeSHA256": "b1da50adbc66309d78afbcf03e9351b5858e9b18ecf4d2c93ddce019c0c99df2",
+        "afterSHA256": "119a715c6bfd3eb25721dbbd28c5607a031a1a70f00280fda216219a7f657084"
       },
       {
-        "path": "src/scene/palace/special/SquareHalls.js",
-        "beforeSHA256": "2f2fc7c3e61b593533b60db58844509eec4576113132ec8418c18c9098e4f3f4",
-        "afterSHA256": "b19413267ad5eed3808fee1cc62acab1c4007cef82f8ee48099a548e361bb9c1"
+        "path": "src/scene/zones/ZoneBase.js",
+        "beforeSHA256": "509e784a584139e976a929789734446a5a3fb6de0e3b448910d2315285bd9819",
+        "afterSHA256": "b0016f34fa817b8986fc889e526ff89a0871dfa242e1ff7158c675d080582587"
       }
     ],
     "newlyTrackedSources": [
-      "src/scene/palace/special/JiaotaiSouthWindows.js",
-      "src/scene/palace/special/KunningGate.js",
-      "src/scene/palace/special/QianqingGatePorchCoffers.js",
-      "src/scene/palace/special/QianqingGateSouthWindows.js"
+      "src/scene/palace/special/EastFiveRoofBeasts.js",
+      "src/scene/palace/special/EastUnknownAnnexInventory.js",
+      "src/scene/palace/special/EastUnknownThroneInventory.js",
+      "src/scene/palace/special/FengxianFrontWindows.js",
+      "src/scene/palace/special/FengxianRearProfile.js",
+      "src/scene/palace/special/JingrenRearWindows.js",
+      "src/scene/palace/special/JingrenSouthWindows.js",
+      "src/scene/palace/special/JingyangRearFacade.js",
+      "src/scene/palace/special/YongheCanopyKnees.js"
     ],
-    "characterRegistryKitAndCaps": "Exact unchanged from R60; all108/24 must bind anew in this source world.",
+    "characterRegistryKitAndCaps": "Exact unchanged from R61; all108/24 must bind anew in this source world.",
     "acceptance": "RESULTS_IN_VERSIONED_REPORT_NOT_THIS_SOURCE_INPUT; BROWSER_ACCEPTANCE_NOT_PERFORMED"
   },
   "files": [
@@ -96,7 +101,7 @@
     },
     {
       "path": "data/zones/east-six.json",
-      "sha256": "08526251d18aca894684286addae0464814b1ef437310331049573aa81959926"
+      "sha256": "284d7ec8ec83a64d221692a49e36f951fe926d1ada8d4d0f539a6e3b8e18ce09"
     },
     {
       "path": "data/zones/garden.json",
@@ -296,7 +301,7 @@
     },
     {
       "path": "src/scene/palace/HallNameboardMount.js",
-      "sha256": "4cd6644ed425919b4131198aceb389814d12af7c31d6165f0f7f14b0643c3881"
+      "sha256": "794a383d00f3edec8f7ac8aa4ce625283fc6acbe7a426a9ef53b616e4abfc6d7"
     },
     {
       "path": "src/scene/palace/NansansuoInventoryPolicy.js",
@@ -447,8 +452,20 @@
       "sha256": "01226d6fbd357f3ddff5e0c60b70ded62747ca9191c4e1a652d04461e975439d"
     },
     {
+      "path": "src/scene/palace/special/EastFiveRoofBeasts.js",
+      "sha256": "817369f087e922a270371e3b40ee8865a393f1c03a9ae349dcfa0487f9220e24"
+    },
+    {
       "path": "src/scene/palace/special/EastResidentialFacades.js",
-      "sha256": "10685a888adade27cf3dbfca94564567db9d3d56d01eb233bfd09ffb86007406"
+      "sha256": "9297574cbb22ef35b01b7d2d7aeef2145fa3d0f50cf07db08e04d3d908810169"
+    },
+    {
+      "path": "src/scene/palace/special/EastUnknownAnnexInventory.js",
+      "sha256": "825c54f2462c6100a2a68aef22f4c7ebbce3df3d8c80f9c02bb5301df8e2fda6"
+    },
+    {
+      "path": "src/scene/palace/special/EastUnknownThroneInventory.js",
+      "sha256": "e0620141ae5a643b57fd46b7d7a00d7a6a7fc61c96d5f50266bd6fb8c5cb20c7"
     },
     {
       "path": "src/scene/palace/special/EastWestCityGate.js",
@@ -457,6 +474,14 @@
     {
       "path": "src/scene/palace/special/EnclosedPavilions.js",
       "sha256": "6a92d944b4f7370840b52840528a5c542b00daafecaec86bfb8e040e8fd14465"
+    },
+    {
+      "path": "src/scene/palace/special/FengxianFrontWindows.js",
+      "sha256": "18a2d3d543fe4e5139b08dbc2ee888cd78c3c6f82233a7ab97610044706e417c"
+    },
+    {
+      "path": "src/scene/palace/special/FengxianRearProfile.js",
+      "sha256": "a2d0c86b9057471d98330d35f4b3164522c67c8390fbf9000d0bd6dcdd7e016c"
     },
     {
       "path": "src/scene/palace/special/FittedNameboardMount.js",
@@ -545,6 +570,18 @@
     {
       "path": "src/scene/palace/special/JiaotaiSouthWindows.js",
       "sha256": "ba7f87fba1f6fd992aad83686f392f3daa03fc1afaf88cdc1132f8a0b11763c6"
+    },
+    {
+      "path": "src/scene/palace/special/JingrenRearWindows.js",
+      "sha256": "1aaff11c03b57e6fa2764e447bbd5f888f0a9554a43d50894bfc78bd6d7ce134"
+    },
+    {
+      "path": "src/scene/palace/special/JingrenSouthWindows.js",
+      "sha256": "7b8c38f92d42eb3411b0511e7d8cc9b73ecc89a7d59a99ca013bda201d1c327d"
+    },
+    {
+      "path": "src/scene/palace/special/JingyangRearFacade.js",
+      "sha256": "c75c0dd835827e75c6ed0813e1bbf9f5cb0b70a3e40388fa5b12c353dc015556"
     },
     {
       "path": "src/scene/palace/special/JiyunNamePlaque.js",
@@ -656,7 +693,7 @@
     },
     {
       "path": "src/scene/palace/special/SourceGuidedNameboardMounts.js",
-      "sha256": "b1da50adbc66309d78afbcf03e9351b5858e9b18ecf4d2c93ddce019c0c99df2"
+      "sha256": "119a715c6bfd3eb25721dbbd28c5607a031a1a70f00280fda216219a7f657084"
     },
     {
       "path": "src/scene/palace/special/SourcedNameInscriptions.js",
@@ -891,6 +928,10 @@
       "sha256": "7372203703cff7b3ceaf1fc4d148c9645813b859f2d2f5e341f5977ade3d5331"
     },
     {
+      "path": "src/scene/palace/special/YongheCanopyKnees.js",
+      "sha256": "9f24e8d16eb69d9e38fd056ba9405a56ee8088775c2bb82e6fed691f52d5ff00"
+    },
+    {
       "path": "src/scene/palace/special/YudeBath.js",
       "sha256": "de5a3ea6e3f5cc070321894323d4fc0a9b81636dc799d6eac0c1bdb926b94afa"
     },
@@ -960,7 +1001,7 @@
     },
     {
       "path": "src/scene/zones/ZoneBase.js",
-      "sha256": "509e784a584139e976a929789734446a5a3fb6de0e3b448910d2315285bd9819"
+      "sha256": "b0016f34fa817b8986fc889e526ff89a0871dfa242e1ff7158c675d080582587"
     },
     {
       "path": "src/scene/zones/ZoneManager.js",

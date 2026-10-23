@@ -1,37 +1,30 @@
-# R61-D stage continuation
+# R62-E local cumulative stage ready for packaging
 
-One authority: QUEUE.json and its selected verified gzip parts, read/written only
-through scripts/photo-fidelity/queue_storage.py. Release JSON files are derived.
-R60 local base f06922685d54a067962e3b8c68a9de90feccedb2 remains immutable.
-Verified R60 remote receipt is still pending; never guess the remote parent.
+Single authority: QUEUE.json and its verified gzip parts via
+scripts/photo-fidelity/queue_storage.py. Derived RELEASES/R62-E.json is not a
+second truth. R61 local frozen base is6b396800b6a03582aebf513fcef4966e9f5d0db3.
+Remote parent must be the verified R61 receipt, never a guessed local hash.
 
-D32 / 440 required features and 17 existing declaration audits have completed the
-source/model/executability scan. The extra 12 audit assignments move from G to D
-by physical location; all 154 original IDs remain. No new buildings are inferred.
-Five bounded changes: Qianqing south windows and central rear porch coffers,
-Kunning Gate dedicated north-facing raised profile/real steps, twelve exact
-anonymous gallery declarations with unsupported inventory removed, and two
-Jiaotai south central grille fields. Known source and engineering residuals stay
-in D-REVIEW/COMPLETE-SCAN.md and RESIDUALS/R61-D-STAGE.json.
+The complete E61 / 854-feature / 33-declaration scan is retained. Current E
+states:595 DIFFED,34 PARTIAL,225 BLOCKED_SOURCE,0 ACCEPTED. Nine bounded changes
+are integrated. All398 FC IDs,154 baseline declaration audits,7 expansions,
+prior accepted snapshots and A-D engineering/source/visual residuals remain.
+An unbound rear/side label is not automatically a missing physical building.
 
-Functional stage result: five independent complete worlds, the same 232 source
-fingerprints, all 108 actors freshly bound and individually observed, all 24
-paths, D272 real-controller route cases and all retained applicable A-C routes
-and blocked witnesses. Separate Yangxin/Kunning/Huangji stages each prove their
-own B→real S→B cleanup and 108-role generation/visibility checks. This is NOT one
-world continuously surviving all three S transitions. See
-reports/r61-d-stage/STAGED-WORLD-SUMMARY.json for exact counts and resource limits.
+Five independent full-world stages passed with241 identical sources, fresh108
+bindings,24 paths and1,101 observation groups. This is not one continuous world
+across all three S assets. See reports/r62-e-stage/STAGED-WORLD-SUMMARY.json.
+The release remains FUNCTIONAL_STAGE_DELIVERY_NOT_FULL_ACCEPTANCE. Browser,
+WebGL, GPU and physical phone gates remain open. Unknown withdrawn furniture
+is not a historical empty-room assertion. Generic coarse beasts are not a
+species-accurate sculptural reconstruction.
 
-Two prior R61 SIGKILL attempts and a dedicated-profile QA enumeration failure
-remain recorded. The external termination cause is unknown. A QA-only bounded
-raster serializer preserves exact decoded JSON while reducing a demonstrated
-allocation peak; it is not a production/GPU memory improvement claim.
+Finish only this cumulative E package/upload queue. Do not start F while the
+ordered cumulative upload chain is catching up. Report local/in-progress and
+verified uploaded states separately; never present a local version as the
+latest GitHub release. R61 and all earlier source/ZIP rollbacks remain immutable.
 
-No browser/WebGL/mobile final fidelity acceptance exists. CPU actual-model
-images cannot substitute. Official source photographs/PDFs remain private
-reference inputs, not public assets. Stage delivery is not whole D acceptance.
-Continue R62-E61 from the final frozen R61 successor while retaining all A-D
-residuals. Inspect all E exterior/interior requirements and already-correct
-work before bounded source-backed changes. Do not clone unbound names, repeat
-blocked browser actions, include unaccepted Jingyun experiments, merge main,
-change credentials or deploy as a side effect of this stage.
+Official image/PDF caches remain outside repository and production package.
+Do not retry denied browser operations or modify main/credentials. No deployment
+is performed by local integration. The external release manifest is the only
+place to bind a subsequently received exact remote parent, without source edits.

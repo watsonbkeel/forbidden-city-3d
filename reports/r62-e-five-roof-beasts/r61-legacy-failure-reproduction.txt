@@ -1,0 +1,39 @@
+✖ 交泰殿 actual hall retains baseline physics and non-target roof/nonroof bytes (107.513969ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 361.006734
+
+✖ failing tests:
+
+test at tests/current-state/r58-taihe-beasts.test.mjs:116:51
+✖ 交泰殿 actual hall retains baseline physics and non-target roof/nonroof bytes (107.513969ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    {
+  +   hash: 'c99974312c64061105b96e2192f66e759e9a62d60bf927f0dec4f376147e0ee9',
+  +   meshes: 216
+  -   hash: 'f4f3c6caa9ce624fef6dff221b15fa97a1c5d9450ff6965c7076f4e3d3739967',
+  -   meshes: 180
+    }
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/current-state/r58-taihe-beasts.test.mjs:118:77)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+      at run (node:internal/test_runner/harness:398:12)
+      at test (node:internal/test_runner/harness:407:12)
+      at file:///workspace/scratch/02a8023d1a85/r61-d-inner-axis-fidelity/tests/current-state/r58-taihe-beasts.test.mjs:116:51 {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { hash: 'c99974312c64061105b96e2192f66e759e9a62d60bf927f0dec4f376147e0ee9', meshes: 216 },
+    expected: { hash: 'f4f3c6caa9ce624fef6dff221b15fa97a1c5d9450ff6965c7076f4e3d3739967', meshes: 180 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

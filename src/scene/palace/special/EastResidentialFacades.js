@@ -1,4 +1,6 @@
+import {applyJingrenSouthWindows} from './JingrenSouthWindows.js';
 import {fitCanopyToMainRoof} from './CanopyRoofSurfaceJoint.js';
+import {buildYongheCanopyKnees} from './YongheCanopyKnees.js';
 import * as THREE from 'three';
 const page=n=>`https://www.dpm.org.cn/explore/building/${n}.html`;
 const photo=(date,file)=>`https://img.dpm.org.cn/Uploads/Picture/${date}/${file}.jpg`;
@@ -110,6 +112,7 @@ export function buildEastResidentialFacade(kit,item){
   const canopy=openCanopy(kit,result.f,item,p);
   const roofMeshes=canopy.children.filter(m=>['yonghe-curved-rafter','yonghe-rounded-bargeboard','yonghe-curved-roof-tiles','yonghe-curved-roof-underside'].includes(m.name));
   fitCanopyToMainRoof({hall:result.f,mainRoof,meshes:roofMeshes,capParent:canopy,capMaterial:kit.lib.material('roof_tile')});
+  buildYongheCanopyKnees(kit,result.f,item);
   // The official underside view locates the complete board ABOVE the main
   // door head, behind the open baoxia's front beam. That nearer beam can
   // naturally hide the board from the courtyard. It is not the mounting datum.
@@ -128,5 +131,9 @@ export function buildEastResidentialFacade(kit,item){
    object.userData.nameboardMount=result.f.userData.nameboardMount;
  }
  result.f.userData.structure={...result.f.userData.structure,...p,...(result.f.userData.nameboardMount?{nameboardMount:result.f.userData.nameboardMount}:{}),frontEnclosureInset:p.frontInset??0,accessStatus:'MODEL_PASSAGE_NOT_HISTORICAL_DOOR_OR_STAIR_MEASUREMENT'};
+ if(p.rearEntry){
+  result.f.updateWorldMatrix(true,false);
+  if(!applyJingrenSouthWindows(kit,result.f,item))throw Error('Jingren south window profile failed closed');
+ }
  return{...result,p};
 }

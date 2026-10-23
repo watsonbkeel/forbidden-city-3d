@@ -1,0 +1,77 @@
+{
+  "base": "6b396800b6a03582aebf513fcef4966e9f5d0db3",
+  "scope": "Explicit bounded E dispatch/metadata/nameboard and front declaration; exact inverse retains every other byte. Not model/browser acceptance.",
+  "files": [
+    {
+      "path": "src/scene/zones/ZoneBase.js",
+      "beforeSha256": "509e784a584139e976a929789734446a5a3fb6de0e3b448910d2315285bd9819",
+      "afterSha256": "b0016f34fa817b8986fc889e526ff89a0871dfa242e1ff7158c675d080582587",
+      "inverseLiteralEdits": [
+        [
+          "import {validateEastUnknownAnnexInventoryPolicy,applyEastUnknownAnnexInventory} from '../palace/special/EastUnknownAnnexInventory.js';\nimport {applyEastFiveRoofBeasts} from '../palace/special/EastFiveRoofBeasts.js';\nimport {applyJingrenRearWindows} from '../palace/special/JingrenRearWindows.js';\nimport {buildFengxianRearHall} from '../palace/special/FengxianRearProfile.js';\nimport {validateEastUnknownThroneInventoryPolicy,applyEastUnknownThroneInventory} from '../palace/special/EastUnknownThroneInventory.js';\nimport {applyFengxianFrontWindows} from '../palace/special/FengxianFrontWindows.js';\nimport {buildJingyangRearFacade} from '../palace/special/JingyangRearFacade.js';\nimport {applyDonghuaCentralDoorFront} from '../palace/special/DonghuaCentralDoorFront.js';\nimport {validateNansansuoInventoryPolicy} from '../palace/NansansuoInventoryPolicy.js';\nimport { applyZuoyiDoorFront } from '../palace/special/ZuoyiDoorFront.js';\n",
+          "import {applyDonghuaCentralDoorFront} from '../palace/special/DonghuaCentralDoorFront.js';\nimport {validateNansansuoInventoryPolicy} from '../palace/NansansuoInventoryPolicy.js';\nimport { applyZuoyiDoorFront } from '../palace/special/ZuoyiDoorFront.js';\n"
+        ],
+        [
+          "  // ───────────────────────── 各 kind 构建方法 ─────────────────────────\n\n  buildHall(item) {\n    const itemIndex=this.zoneJson.items.indexOf(item);\n    const inventoryContext=this.zoneJson.id==='east-six'&&[2,9,16,30,37].includes(itemIndex)\n      ? {zoneId:this.zoneJson.id,itemIndex,item:{...item,furnishingPolicy:{mode:'unknown-inventory',target:`east-six/items/${itemIndex}`,scope:'r62-east-five-generic-thrones-only'}}}:null;\n    if(inventoryContext)validateEastUnknownThroneInventoryPolicy(inventoryContext);\n    const annexContext=this.zoneJson.id==='east-six'&&[3,4,5,10,11,12,17,18,19,24,25,26,31,32,33,38,39,40,44,45,46,47,48,54].includes(itemIndex)\n      ? {zoneId:this.zoneJson.id,itemIndex,item:{...item,furnishingPolicy:{mode:'unknown-inventory',target:`east-six/items/${itemIndex}`,scope:'r62-east-24-unnamed-annex-furnish-room-only'}}}:null;\n    if(annexContext)validateEastUnknownAnnexInventoryPolicy(annexContext);\n    const finish=built=>{\n      applyEastFiveRoofBeasts(this.kit,this.zoneJson.id,itemIndex,item,built);\n      if(annexContext)return applyEastUnknownAnnexInventory(this.kit,annexContext,built);\n      return inventoryContext?applyEastUnknownThroneInventory(this.kit,inventoryContext,built):built;\n    };\n    const fengxianRear=buildFengxianRearHall(this.kit,item,itemIndex);\n    if(fengxianRear)return finish(fengxianRear);\n    if(this.zoneJson.id==='east-six'&&this.zoneJson.items.indexOf(item)===38)return finish(buildJingyangRearFacade(this.kit,item,this.zoneJson.id));\n    if (item.furnishingPolicy !== undefined) validateNansansuoInventoryPolicy({zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});\n    // R48 exact-identity profiles are opt-in by the reviewed catalog binding.\n    // Existing dedicated builders remain the sole owner for augmentation.\n",
+          "  // ───────────────────────── 各 kind 构建方法 ─────────────────────────\n\n  buildHall(item) {\n    if (item.furnishingPolicy !== undefined) validateNansansuoInventoryPolicy({zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});\n    // R48 exact-identity profiles are opt-in by the reviewed catalog binding.\n    // Existing dedicated builders remain the sole owner for augmentation.\n"
+        ],
+        [
+          "      .map(([resolve,build,augment])=>({profile:resolve(this.zoneJson.id,item),build,augment})).filter(x=>x.profile);\n    if(candidates.length>1)throw Error('Ambiguous R48 named-building profile');\n    const selected=candidates[0];\n    if(selected?.profile.mode==='replace')return finish(applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,selected.build(this.kit,item,selected.profile)));\n    const built=this.buildHallBaseline(item);\n    if(this.zoneJson.id==='east-six'&&itemIndex===3){\n      built.f.updateWorldMatrix(true,false);\n      if(!applyJingrenRearWindows(this.kit,built.f,item))throw Error('Jingren rear window profile failed closed');\n    }\n    applyFengxianFrontWindows(this.kit,this.zoneJson.id,item,built);\n    if(selected?.profile.mode==='augment')return finish(applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,selected.augment(this.kit,item,built,selected.profile)));\n    return finish(applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,built));\n  }\n\n  buildHallBaseline(item) {\n",
+          "      .map(([resolve,build,augment])=>({profile:resolve(this.zoneJson.id,item),build,augment})).filter(x=>x.profile);\n    if(candidates.length>1)throw Error('Ambiguous R48 named-building profile');\n    const selected=candidates[0];\n    if(selected?.profile.mode==='replace')return applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,selected.build(this.kit,item,selected.profile));\n    const built=this.buildHallBaseline(item);\n    if(selected?.profile.mode==='augment')return applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,selected.augment(this.kit,item,built,selected.profile));\n    return applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,built);\n  }\n\n  buildHallBaseline(item) {\n"
+        ]
+      ]
+    },
+    {
+      "path": "src/scene/palace/special/EastResidentialFacades.js",
+      "beforeSha256": "10685a888adade27cf3dbfca94564567db9d3d56d01eb233bfd09ffb86007406",
+      "afterSha256": "9297574cbb22ef35b01b7d2d7aeef2145fa3d0f50cf07db08e04d3d908810169",
+      "inverseLiteralEdits": [
+        [
+          "import {applyJingrenSouthWindows} from './JingrenSouthWindows.js';\nimport {fitCanopyToMainRoof} from './CanopyRoofSurfaceJoint.js';\nimport {buildYongheCanopyKnees} from './YongheCanopyKnees.js';\nimport * as THREE from 'three';\nconst page=n=>`https://www.dpm.org.cn/explore/building/${n}.html`;\nconst photo=(date,file)=>`https://img.dpm.org.cn/Uploads/Picture/${date}/${file}.jpg`;\n",
+          "import {fitCanopyToMainRoof} from './CanopyRoofSurfaceJoint.js';\nimport * as THREE from 'three';\nconst page=n=>`https://www.dpm.org.cn/explore/building/${n}.html`;\nconst photo=(date,file)=>`https://img.dpm.org.cn/Uploads/Picture/${date}/${file}.jpg`;\n"
+        ],
+        [
+          "  const canopy=openCanopy(kit,result.f,item,p);\n  const roofMeshes=canopy.children.filter(m=>['yonghe-curved-rafter','yonghe-rounded-bargeboard','yonghe-curved-roof-tiles','yonghe-curved-roof-underside'].includes(m.name));\n  fitCanopyToMainRoof({hall:result.f,mainRoof,meshes:roofMeshes,capParent:canopy,capMaterial:kit.lib.material('roof_tile')});\n  buildYongheCanopyKnees(kit,result.f,item);\n  // The official underside view locates the complete board ABOVE the main\n  // door head, behind the open baoxia's front beam. That nearer beam can\n  // naturally hide the board from the courtyard. It is not the mounting datum.\n",
+          "  const canopy=openCanopy(kit,result.f,item,p);\n  const roofMeshes=canopy.children.filter(m=>['yonghe-curved-rafter','yonghe-rounded-bargeboard','yonghe-curved-roof-tiles','yonghe-curved-roof-underside'].includes(m.name));\n  fitCanopyToMainRoof({hall:result.f,mainRoof,meshes:roofMeshes,capParent:canopy,capMaterial:kit.lib.material('roof_tile')});\n  // The official underside view locates the complete board ABOVE the main\n  // door head, behind the open baoxia's front beam. That nearer beam can\n  // naturally hide the board from the courtyard. It is not the mounting datum.\n"
+        ],
+        [
+          "   object.userData.nameboardMount=result.f.userData.nameboardMount;\n }\n result.f.userData.structure={...result.f.userData.structure,...p,...(result.f.userData.nameboardMount?{nameboardMount:result.f.userData.nameboardMount}:{}),frontEnclosureInset:p.frontInset??0,accessStatus:'MODEL_PASSAGE_NOT_HISTORICAL_DOOR_OR_STAIR_MEASUREMENT'};\n if(p.rearEntry){\n  result.f.updateWorldMatrix(true,false);\n  if(!applyJingrenSouthWindows(kit,result.f,item))throw Error('Jingren south window profile failed closed');\n }\n return{...result,p};\n}\n",
+          "   object.userData.nameboardMount=result.f.userData.nameboardMount;\n }\n result.f.userData.structure={...result.f.userData.structure,...p,...(result.f.userData.nameboardMount?{nameboardMount:result.f.userData.nameboardMount}:{}),frontEnclosureInset:p.frontInset??0,accessStatus:'MODEL_PASSAGE_NOT_HISTORICAL_DOOR_OR_STAIR_MEASUREMENT'};\n return{...result,p};\n}\n"
+        ]
+      ]
+    },
+    {
+      "path": "src/scene/palace/HallNameboardMount.js",
+      "beforeSha256": "4cd6644ed425919b4131198aceb389814d12af7c31d6165f0f7f14b0643c3881",
+      "afterSha256": "794a383d00f3edec8f7ac8aa4ce625283fc6acbe7a426a9ef53b616e4abfc6d7",
+      "inverseLiteralEdits": [
+        [
+          "\n// Official front photographs place these three nameboards between roof tiers.\n// Existing board size/art is deliberately retained: neither is surveyed here.\nexport const DOUBLE_EAVE_NAMEBOARDS = Object.freeze(['太和殿','保和殿','乾清宫','太和门','坤宁宫','皇极殿','慈宁宫','奉先殿']);\nexport const HALL_NAMEBOARD_MOUNT = Object.freeze({\n  wallGap: .12, surfaceMargin: .03,\n  status: 'OFFICIAL_PHOTO_TOPOLOGY_MODEL_FIT_NOT_SURVEY',\n",
+          "\n// Official front photographs place these three nameboards between roof tiers.\n// Existing board size/art is deliberately retained: neither is surveyed here.\nexport const DOUBLE_EAVE_NAMEBOARDS = Object.freeze(['太和殿','保和殿','乾清宫','太和门','坤宁宫','皇极殿','慈宁宫']);\nexport const HALL_NAMEBOARD_MOUNT = Object.freeze({\n  wallGap: .12, surfaceMargin: .03,\n  status: 'OFFICIAL_PHOTO_TOPOLOGY_MODEL_FIT_NOT_SURVEY',\n"
+        ]
+      ]
+    },
+    {
+      "path": "src/scene/palace/special/SourceGuidedNameboardMounts.js",
+      "beforeSha256": "b1da50adbc66309d78afbcf03e9351b5858e9b18ecf4d2c93ddce019c0c99df2",
+      "afterSha256": "119a715c6bfd3eb25721dbbd28c5607a031a1a70f00280fda216219a7f657084",
+      "inverseLiteralEdits": [
+        [
+          "// boards on the painted beam/bracket FRONT, not in the narrow band below it.\nconst SOURCES=Object.freeze({\n 'east-six/景仁宫':{page:236509},\n 'east-six/奉先殿':{page:236430,kind:'double-eave'},\n 'east-six/钟粹宫':{page:236484},\n 'west-six/翊坤宫':{page:236517},\n 'west-six/储秀宫':{page:236486},\n",
+          "// boards on the painted beam/bracket FRONT, not in the narrow band below it.\nconst SOURCES=Object.freeze({\n 'east-six/景仁宫':{page:236509},\n 'east-six/钟粹宫':{page:236484},\n 'west-six/翊坤宫':{page:236517},\n 'west-six/储秀宫':{page:236486},\n"
+        ]
+      ]
+    },
+    {
+      "path": "data/zones/east-six.json",
+      "beforeSha256": "08526251d18aca894684286addae0464814b1ef437310331049573aa81959926",
+      "afterSha256": "284d7ec8ec83a64d221692a49e36f951fe926d1ada8d4d0f539a6e3b8e18ce09",
+      "inverseLiteralEdits": [
+        [
+          "    {\"kind\": \"region\", \"name\": \"东二长街\", \"x0\": -127.2, \"x1\": -114.4, \"z0\": 303.2, \"z1\": 462, \"source\": \"estimated\"},\n    {\"kind\": \"gate\", \"name\": \"奉先门\", \"x\": -181, \"z\": 203.3, \"style\": \"hall\", \"w\": 10.7},\n    {\"kind\": \"courtWalls\", \"x0\": -215, \"x1\": -150, \"z0\": 203.3, \"z1\": 300, \"gates\": [{\"side\": \"s\", \"at\": -181, \"gate\": \"奉先门\"}]},\n    {\"kind\": \"hall\", \"name\": \"奉先殿\", \"x\": -182.3, \"z\": 253.3, \"w\": 52.6, \"d\": 30.5, \"pad\": 1.2, \"ph\": 1.2, \"colH\": 8.32, \"roof\": \"wudian\", \"layers\": 2, \"bays\": 9, \"baysSource\": \"https://www.dpm.org.cn/explore/building/236430.html\", \"baySpacingStatus\": \"equal-subdivision-provisional\", \"enter\": true, \"throne\": false, \"interior\": \"empty\"},\n    {\"kind\": \"hall\", \"x\": -182.5, \"z\": 283.4, \"w\": 51.6, \"d\": 20, \"pad\": 1, \"ph\": 0.9, \"colH\": 7.36, \"roof\": \"wudian\", \"map\": \"hall\"},\n    {\"kind\": \"region\", \"name\": \"奉先殿\", \"x0\": -215, \"x1\": -150, \"z0\": 203.3, \"z1\": 300}\n  ]\n",
+          "    {\"kind\": \"region\", \"name\": \"东二长街\", \"x0\": -127.2, \"x1\": -114.4, \"z0\": 303.2, \"z1\": 462, \"source\": \"estimated\"},\n    {\"kind\": \"gate\", \"name\": \"奉先门\", \"x\": -181, \"z\": 203.3, \"style\": \"hall\", \"w\": 10.7},\n    {\"kind\": \"courtWalls\", \"x0\": -215, \"x1\": -150, \"z0\": 203.3, \"z1\": 300, \"gates\": [{\"side\": \"s\", \"at\": -181, \"gate\": \"奉先门\"}]},\n    {\"kind\": \"hall\", \"name\": \"奉先殿\", \"x\": -182.3, \"z\": 253.3, \"w\": 52.6, \"d\": 30.5, \"pad\": 1.2, \"ph\": 1.2, \"colH\": 8.32, \"roof\": \"wudian\", \"layers\": 1, \"enter\": true, \"throne\": false, \"interior\": \"empty\"},\n    {\"kind\": \"hall\", \"x\": -182.5, \"z\": 283.4, \"w\": 51.6, \"d\": 20, \"pad\": 1, \"ph\": 0.9, \"colH\": 7.36, \"roof\": \"wudian\", \"map\": \"hall\"},\n    {\"kind\": \"region\", \"name\": \"奉先殿\", \"x0\": -215, \"x1\": -150, \"z0\": 203.3, \"z1\": 300}\n  ]\n"
+        ]
+      ]
+    }
+  ]
+}

@@ -2,7 +2,7 @@ import * as THREE from 'three';
 
 // Official front photographs place these three nameboards between roof tiers.
 // Existing board size/art is deliberately retained: neither is surveyed here.
-export const DOUBLE_EAVE_NAMEBOARDS = Object.freeze(['太和殿','保和殿','乾清宫','太和门','坤宁宫','皇极殿','慈宁宫']);
+export const DOUBLE_EAVE_NAMEBOARDS = Object.freeze(['太和殿','保和殿','乾清宫','太和门','坤宁宫','皇极殿','慈宁宫','奉先殿']);
 export const HALL_NAMEBOARD_MOUNT = Object.freeze({
   wallGap: .12, surfaceMargin: .03,
   status: 'OFFICIAL_PHOTO_TOPOLOGY_MODEL_FIT_NOT_SURVEY',

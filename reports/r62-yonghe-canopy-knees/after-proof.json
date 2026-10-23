@@ -1,0 +1,120 @@
+{
+  "state": "after",
+  "baselineHead": "6b396800b6a03582aebf513fcef4966e9f5d0db3",
+  "scope": "FROZEN R61 ORIGINAL BUILDER PLUS OPTIONAL HELPER; ONE LOCAL HALL; SOURCE-HASH-BOUND CPU DIAGNOSTIC, NOT BROWSER ACCEPTANCE",
+  "sourceFiles": {
+    "tests/fixtures/r62-yonghe/EastResidentialFacades.R61.js.txt": "10685a888adade27cf3dbfca94564567db9d3d56d01eb233bfd09ffb86007406",
+    "tests/lib/r62-yonghe-knees-qa.mjs": "075bd1d9c7898e27ed163b9b752cd3ea862d9e9433bbfdb98b176268bb56a7c8",
+    "tests/r62-yonghe-export-local.mjs": "5f17fc1387aa482fb34df0b58513170ec4dd1a49582a7bee0d115e854c2cdddf",
+    "src/scene/palace/special/EastResidentialFacades.js": "10685a888adade27cf3dbfca94564567db9d3d56d01eb233bfd09ffb86007406",
+    "data/zones/east-six.json": "08526251d18aca894684286addae0464814b1ef437310331049573aa81959926",
+    "src/scene/zones/ZoneBase.js": "509e784a584139e976a929789734446a5a3fb6de0e3b448910d2315285bd9819",
+    "public/textures/hd/manifest.json": "8bcc0e0da4f186a826324d40b29162ad43971e9a5bdfda7dd68462d7323d5cca",
+    "src/scene/palace/special/YongheCanopyKnees.js": "9f24e8d16eb69d9e38fd056ba9405a56ee8088775c2bb82e6fed691f52d5ff00"
+  },
+  "triangles": 7505,
+  "geometrySha256": "a9acadfba8a4b166e5ae0e3eb7077e4b3dc66d092118193d11e89fedca73ce30",
+  "retainedSnapshot": {
+    "meshCount": 437,
+    "triangles": 7265,
+    "meshHash": "2a4c763e48dbaf8fd4b937c66bef20082522ae3e0d4e3d3d1140ffb12df29463",
+    "physicsHash": "ff6e5acfe328d961ddb843471e5c97b6ca7647c123779e73aadffc5ffd3efb5f",
+    "plaqueHash": "5f52b53130263e95127ac1632c9231a953439a2dc25e346439b1dd0be89c4fd6"
+  },
+  "qa": {
+    "count": 6,
+    "triangles": 240,
+    "lowestY": 5.948799988079071,
+    "health": [
+      {
+        "triangles": 40,
+        "finite": true,
+        "minArea": 0.00010000237971530268,
+        "signedVolume": 0.053475999792248,
+        "closed": true
+      },
+      {
+        "triangles": 40,
+        "finite": true,
+        "minArea": 0.00010000237971530268,
+        "signedVolume": 0.053475999792248,
+        "closed": true
+      },
+      {
+        "triangles": 40,
+        "finite": true,
+        "minArea": 0.00010000237971530268,
+        "signedVolume": 0.053475999792248,
+        "closed": true
+      },
+      {
+        "triangles": 40,
+        "finite": true,
+        "minArea": 0.00010000237971530268,
+        "signedVolume": 0.053475999792248,
+        "closed": true
+      },
+      {
+        "triangles": 40,
+        "finite": true,
+        "minArea": 0.00010000237971530268,
+        "signedVolume": 0.053475999792248,
+        "closed": true
+      },
+      {
+        "triangles": 40,
+        "finite": true,
+        "minArea": 0.00010000237971530268,
+        "signedVolume": 0.053475999792248,
+        "closed": true
+      }
+    ],
+    "positiveVolumeAabbIntersectionsWithRetained": [],
+    "snapshot": {
+      "meshCount": 437,
+      "triangles": 7265,
+      "meshHash": "2a4c763e48dbaf8fd4b937c66bef20082522ae3e0d4e3d3d1140ffb12df29463",
+      "physicsHash": "ff6e5acfe328d961ddb843471e5c97b6ca7647c123779e73aadffc5ffd3efb5f",
+      "plaqueHash": "5f52b53130263e95127ac1632c9231a953439a2dc25e346439b1dd0be89c4fd6"
+    }
+  },
+  "views": [
+    {
+      "name": "front-canopy",
+      "camera": [
+        0,
+        2.3,
+        -19
+      ],
+      "target": [
+        0,
+        6,
+        -8.2
+      ],
+      "fov": 70,
+      "path": "reports/r62-yonghe-canopy-knees/front-canopy-after.png",
+      "sha256": "e07e102ff5e91ae5caed43e02280627cafe67e31645b23787223f59f73a33cba"
+    },
+    {
+      "name": "east-junction-detail",
+      "camera": [
+        -5.6,
+        4.7,
+        -11.8
+      ],
+      "target": [
+        -2.4,
+        6.25,
+        -8.2
+      ],
+      "fov": 52,
+      "path": "reports/r62-yonghe-canopy-knees/east-junction-detail-after.png",
+      "sha256": "f126f2415040d4178fd85d900f1f7b6bdc43a5b8a7c481ea8857505d4c4df4ad"
+    }
+  ],
+  "limitations": [
+    "CPU actual albedo and UV only, not production WebGL PBR, normal mapping, dynamic shadow, tone mapping or performance.",
+    "Official reference photographs remain outside repository/public/package.",
+    "Photo date and carving subjects unknown. All new contour dimensions and color are reversible model FIT, not surveyed."
+  ]
+}

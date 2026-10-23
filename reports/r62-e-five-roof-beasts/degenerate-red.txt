@@ -1,0 +1,39 @@
+✔ actual low 2: zero legacy animals becomes four rows of five, plus four separate riders (48.048953ms)
+✔ actual low 2: every original mesh, material, physics and nav stays exact (33.094238ms)
+✔ actual low 2: real foot vertices touch corresponding original ridge triangles; outward facing and no neighboring envelope overlap (18.755182ms)
+✔ actual low 16: zero legacy animals becomes four rows of five, plus four separate riders (19.555049ms)
+✔ actual low 16: every original mesh, material, physics and nav stays exact (39.426187ms)
+✔ actual low 16: real foot vertices touch corresponding original ridge triangles; outward facing and no neighboring envelope overlap (18.646208ms)
+✔ non-target indexes/zones are no-ops; exact target dimension/rotation/scale/mesh drift fails before mutation (262.223382ms)
+✔ reapplication is rejected without mutation; final production merge retains actual contact vertices and fixed budget (47.97777ms)
+✔ new source/intermediate/temporary geometry has exactly one disposal owner, with no new material (31.702233ms)
+✔ pure existing-world consumer survives final material merge and detects metadata-only contacts (52.174466ms)
+✖ new merged ornament batch submits no zero-area triangles (8.480021ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 10
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 800.290894
+
+✖ failing tests:
+
+test at tests/current-state/r62-e-five-roof-beasts.test.mjs:17:1
+✖ new merged ornament batch submits no zero-area triangles (8.480021ms)
+  AssertionError [ERR_ASSERTION]: new cone apex triangles must be filtered, not retained
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-e-five-roof-beasts/tests/current-state/r62-e-five-roof-beasts.test.mjs:17:217)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

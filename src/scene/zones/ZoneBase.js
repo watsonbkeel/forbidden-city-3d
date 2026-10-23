@@ -1,3 +1,10 @@
+import {validateEastUnknownAnnexInventoryPolicy,applyEastUnknownAnnexInventory} from '../palace/special/EastUnknownAnnexInventory.js';
+import {applyEastFiveRoofBeasts} from '../palace/special/EastFiveRoofBeasts.js';
+import {applyJingrenRearWindows} from '../palace/special/JingrenRearWindows.js';
+import {buildFengxianRearHall} from '../palace/special/FengxianRearProfile.js';
+import {validateEastUnknownThroneInventoryPolicy,applyEastUnknownThroneInventory} from '../palace/special/EastUnknownThroneInventory.js';
+import {applyFengxianFrontWindows} from '../palace/special/FengxianFrontWindows.js';
+import {buildJingyangRearFacade} from '../palace/special/JingyangRearFacade.js';
 import {applyDonghuaCentralDoorFront} from '../palace/special/DonghuaCentralDoorFront.js';
 import {validateNansansuoInventoryPolicy} from '../palace/NansansuoInventoryPolicy.js';
 import { applyZuoyiDoorFront } from '../palace/special/ZuoyiDoorFront.js';
@@ -144,6 +151,21 @@ export class ZoneBase {
   // ───────────────────────── 各 kind 构建方法 ─────────────────────────
 
   buildHall(item) {
+    const itemIndex=this.zoneJson.items.indexOf(item);
+    const inventoryContext=this.zoneJson.id==='east-six'&&[2,9,16,30,37].includes(itemIndex)
+      ? {zoneId:this.zoneJson.id,itemIndex,item:{...item,furnishingPolicy:{mode:'unknown-inventory',target:`east-six/items/${itemIndex}`,scope:'r62-east-five-generic-thrones-only'}}}:null;
+    if(inventoryContext)validateEastUnknownThroneInventoryPolicy(inventoryContext);
+    const annexContext=this.zoneJson.id==='east-six'&&[3,4,5,10,11,12,17,18,19,24,25,26,31,32,33,38,39,40,44,45,46,47,48,54].includes(itemIndex)
+      ? {zoneId:this.zoneJson.id,itemIndex,item:{...item,furnishingPolicy:{mode:'unknown-inventory',target:`east-six/items/${itemIndex}`,scope:'r62-east-24-unnamed-annex-furnish-room-only'}}}:null;
+    if(annexContext)validateEastUnknownAnnexInventoryPolicy(annexContext);
+    const finish=built=>{
+      applyEastFiveRoofBeasts(this.kit,this.zoneJson.id,itemIndex,item,built);
+      if(annexContext)return applyEastUnknownAnnexInventory(this.kit,annexContext,built);
+      return inventoryContext?applyEastUnknownThroneInventory(this.kit,inventoryContext,built):built;
+    };
+    const fengxianRear=buildFengxianRearHall(this.kit,item,itemIndex);
+    if(fengxianRear)return finish(fengxianRear);
+    if(this.zoneJson.id==='east-six'&&this.zoneJson.items.indexOf(item)===38)return finish(buildJingyangRearFacade(this.kit,item,this.zoneJson.id));
     if (item.furnishingPolicy !== undefined) validateNansansuoInventoryPolicy({zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     // R48 exact-identity profiles are opt-in by the reviewed catalog binding.
     // Existing dedicated builders remain the sole owner for augmentation.
@@ -151,10 +173,15 @@ export class ZoneBase {
       .map(([resolve,build,augment])=>({profile:resolve(this.zoneJson.id,item),build,augment})).filter(x=>x.profile);
     if(candidates.length>1)throw Error('Ambiguous R48 named-building profile');
     const selected=candidates[0];
-    if(selected?.profile.mode==='replace')return applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,selected.build(this.kit,item,selected.profile));
+    if(selected?.profile.mode==='replace')return finish(applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,selected.build(this.kit,item,selected.profile)));
     const built=this.buildHallBaseline(item);
-    if(selected?.profile.mode==='augment')return applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,selected.augment(this.kit,item,built,selected.profile));
-    return applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,built);
+    if(this.zoneJson.id==='east-six'&&itemIndex===3){
+      built.f.updateWorldMatrix(true,false);
+      if(!applyJingrenRearWindows(this.kit,built.f,item))throw Error('Jingren rear window profile failed closed');
+    }
+    applyFengxianFrontWindows(this.kit,this.zoneJson.id,item,built);
+    if(selected?.profile.mode==='augment')return finish(applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,selected.augment(this.kit,item,built,selected.profile)));
+    return finish(applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,built));
   }
 
   buildHallBaseline(item) {

@@ -1,0 +1,29 @@
+// Actual existing local production builders with the actual albedo/UV assets.
+// This is explicitly not a browser, whole-world camera, or rendering acceptance.
+import '../tests/lib/inner-palace-fixture.mjs';
+import fs from 'node:fs';import path from 'node:path';import {execFileSync} from 'node:child_process';import {createHash} from 'node:crypto';import {createRequire} from 'node:module';import * as THREE from 'three';
+import {buildR61JingyangRearBaseline} from './lib/r62-jingyang-rear-baseline.mjs';
+import {ZoneBase} from '../src/scene/zones/ZoneBase.js';
+import {CourtKit} from '../src/scene/palace/kit.js';
+import {TextureLibrary,TEXTURE_SPECS} from '../src/utils/TextureLibrary.js';
+const {createCanvas,loadImage,GlobalFonts}=createRequire(import.meta.url)('@napi-rs/canvas');
+GlobalFonts.registerFromPath('/usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc','SimSun');globalThis.document={createElement:()=>createCanvas(1,1),createElementNS:()=>({addEventListener(){},removeEventListener(){}})};
+const sha=b=>createHash('sha256').update(b).digest('hex');
+const key='jingyang-rear',state=process.argv[2]??'before',out=path.resolve(`reports/r62-jingyang-rear/${state}`),temp=fs.mkdtempSync('/tmp/r62-jingyang-');fs.mkdirSync(out,{recursive:true});
+const lib=new TextureLibrary();lib.manifest=JSON.parse(fs.readFileSync('public/textures/hd/manifest.json'));
+for(const name of Object.keys(TEXTURE_SPECS))for(const kind of['color','normal']){const file=lib.manifest.textures[name]?.[kind];if(!file)continue;const im=await loadImage(path.resolve('public/textures/hd',file)),canvas=createCanvas(im.width,im.height);canvas.getContext('2d').drawImage(im,0,0);(kind==='color'?lib.colors:lib.normals).set(name,lib.configure(new THREE.CanvasTexture(canvas),name,kind));}
+const zone=JSON.parse(fs.readFileSync('data/zones/east-six.json')),item=zone.items[38],controller=new ZoneBase(lib,zone),kit=controller.kit;
+const names={'jingyang-rear':'景阳宫后殿御书房'};
+if(state==='before')buildR61JingyangRearBaseline(controller,item);
+else {
+ const file='src/scene/palace/special/JingyangRearFacade.js';
+ const module=state==='f1-reference'?'data:text/javascript;base64,'+Buffer.from(execFileSync('git',['show','f1c71d4387ec95a47313001e9342f37cdcc6718e:'+file],{encoding:'utf8'}).replace("from 'three'",`from '${import.meta.resolve('three')}'`)).toString('base64'):'../'+file;
+ const {buildJingyangRearFacade}=await import(module);buildJingyangRearFacade(kit,item,zone.id);
+}
+kit.buildPlaqueAtlas();kit.root.updateMatrixWorld(true);const frame=kit.root.children[0],materials=[],ids=new Map(),triangles=[];
+function mid(m){if(ids.has(m))return ids.get(m);const id=materials.length;let texture=null;if(m.map?.isDataTexture&&m.map.image?.data){const im=m.map.image,c=createCanvas(im.width,im.height),ctx=c.getContext('2d'),pixels=ctx.createImageData(im.width,im.height);if(im.data.length!==im.width*im.height*4)throw Error('Unsupported data texture format');for(let y=0;y<im.height;y++){const sy=m.map.flipY?y:im.height-1-y;pixels.data.set(im.data.subarray(sy*im.width*4,(sy+1)*im.width*4),y*im.width*4);}ctx.putImageData(pixels,0,0);texture=`texture-${id}.png`;fs.writeFileSync(path.join(temp,texture),c.toBuffer('image/png'));}else if(m.map?.image?.toBuffer){texture=`texture-${id}.png`;fs.writeFileSync(path.join(temp,texture),m.map.image.toBuffer('image/png'));}materials.push({name:m.name,color:m.color?.getHexString()??'ffffff',texture,wrapS:m.map?.wrapS,wrapT:m.map?.wrapT,side:m.side,opacity:m.opacity??1,normalMapPresent:!!m.normalMap});ids.set(m,id);return id;}
+frame.traverse(m=>{if(!m.isMesh)return;const a=m.geometry.attributes,p=a.position,ix=m.geometry.index;for(let i=0;i<(ix?.count??p.count);i+=3){const js=[0,1,2].map(j=>ix?ix.getX(i+j):i+j);triangles.push({role:m.userData.role??m.name,v:js.map(j=>new THREE.Vector3().fromBufferAttribute(p,j).applyMatrix4(m.matrixWorld).sub(new THREE.Vector3(item.x,0,item.z)).toArray()),uv:a.uv?js.map(j=>[a.uv.getX(j),a.uv.getY(j)]):null,material:mid(m.material)});}});
+const payload=JSON.stringify({name:names[key],state,materials,triangles,boundary:'CPU LOCAL ACTUAL MODEL, NOT BROWSER OR WHOLE-WORLD CAMERA ACCEPTANCE'});fs.writeFileSync(path.join(temp,'geometry.json'),payload);
+const views=[{name:'south',eye:[0,1.7,-32],target:[0,4.3,-1],fov:48},{name:'south-window',eye:[8,1.7,-11.5],target:[7.2,2.9,-4.8],fov:60},{name:'window-return-oblique',eye:[10.5,2.0,-6.2],target:[7.2,3,-4.8],fov:60}];
+for(const v of views){const file=path.join(out,`${key}-${v.name}.png`);if(fs.existsSync(file))throw Error('Do not overwrite a frozen image');execFileSync('python',['tests/r49b-plaque-cpu-render.py',temp,file,JSON.stringify(v.eye),JSON.stringify(v.target),String(v.fov)],{stdio:'inherit'});v.path=path.relative(process.cwd(),file);v.sha256=sha(fs.readFileSync(file));}
+fs.writeFileSync(path.join(out,`${key}.json`),JSON.stringify({key,state,captureCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),helperRevision:state==='f1-reference'?'f1c71d4387ec95a47313001e9342f37cdcc6718e':'WORKTREE_BYTES',productionSourceHashes:Object.fromEntries(['src/scene/palace/kit.js','src/scene/zones/ZoneBase.js','src/scene/palace/special/JingyangRearFacade.js','data/zones/east-six.json'].filter(p=>fs.existsSync(p)).map(p=>[p,sha(state==='f1-reference'&&p.endsWith('/JingyangRearFacade.js')?execFileSync('git',['show','f1c71d4387ec95a47313001e9342f37cdcc6718e:'+p]):fs.readFileSync(p))])),geometrySHA256:sha(payload),triangles:triangles.length,materials:materials.length,colliders:kit.colliders.length,walkables:kit.walkables.length,views,boundary:'Real local production builder and HD albedo/UV; CPU omits WebGL normal maps/PBR/shadows/tone mapping. Not whole-world or GPU acceptance.'},null,2)+'\n');kit.dispose(kit.root);lib.dispose();console.log(key,triangles.length);

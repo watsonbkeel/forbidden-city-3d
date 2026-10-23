@@ -1,0 +1,37 @@
+TAP version 13
+# Subtest: R62 annex existing-W consumer verifies 24 raw/merged LOCAL halls; rejects ghost render/COL/missing floor/evidence
+not ok 1 - R62 annex existing-W consumer verifies 24 raw/merged LOCAL halls; rejects ghost render/COL/missing floor/evidence
+  ---
+  duration_ms: 130.680596
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex-world-consumer.test.mjs:7:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    existing-W consumer must exist
+    + actual - expected
+
+    + 'undefined'
+    - 'function'
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'function'
+  actual: 'undefined'
+  operator: 'strictEqual'
+  stack: |-
+    check (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex-world-consumer.test.mjs:6:24)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-east-unknown-annex/tests/r62-east-unknown-annex-world-consumer.test.mjs:10:59)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 311.948017

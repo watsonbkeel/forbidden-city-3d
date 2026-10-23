@@ -1,0 +1,108 @@
+✔ legacy no-profile roof is byte-exact: baohe-high (70.449424ms)
+✔ legacy no-profile roof is byte-exact: baohe-low (87.717603ms)
+✔ legacy no-profile roof is byte-exact: zhonghe-high (13.891694ms)
+✔ legacy no-profile roof is byte-exact: zhonghe-low (5.36378ms)
+✔ legacy no-profile roof is byte-exact: taihe-high (39.147369ms)
+✔ legacy no-profile roof is byte-exact: taihe-low (4.42297ms)
+✔ legacy no-profile roof is byte-exact: wudian-1-high (7.972394ms)
+✔ legacy no-profile roof is byte-exact: wudian-1-low (2.896255ms)
+✔ legacy no-profile roof is byte-exact: wudian-2-high (16.704745ms)
+✔ legacy no-profile roof is byte-exact: wudian-2-low (4.090753ms)
+✔ legacy no-profile roof is byte-exact: xieshan-1-high (12.074775ms)
+✔ legacy no-profile roof is byte-exact: xieshan-1-low (3.751406ms)
+✔ legacy no-profile roof is byte-exact: xieshan-2-high (35.73797ms)
+✔ legacy no-profile roof is byte-exact: xieshan-2-low (5.538751ms)
+✔ legacy no-profile roof is byte-exact: pavilion-1-high (12.931137ms)
+✔ legacy no-profile roof is byte-exact: pavilion-1-low (2.488816ms)
+✔ legacy no-profile roof is byte-exact: pavilion-2-high (15.488735ms)
+✔ legacy no-profile roof is byte-exact: pavilion-2-low (4.852679ms)
+✔ legacy no-profile roof is byte-exact: gable-1-high (7.448579ms)
+✔ legacy no-profile roof is byte-exact: gable-1-low (2.347069ms)
+✔ legacy no-profile roof is byte-exact: gable-2-high (5.3108ms)
+✔ legacy no-profile roof is byte-exact: gable-2-low (1.796299ms)
+✔ legacy no-profile roof is byte-exact: octagonal (32.089484ms)
+✔ legacy no-profile roof is byte-exact: hard-gable (6.968181ms)
+✔ explicit Baohe and Zhonghe profiles emit separate walking animal / rider counts (78.226441ms)
+✔ baohe: every non-walking mesh, rider, ridge, tile and material stays byte-exact (49.763765ms)
+✔ baohe: actual submitted triangle budget counts every corner on every level (43.424256ms)
+✔ baohe: low-detail omission policy does not pretend to generate rows (7.725564ms)
+✔ zhonghe: every non-walking mesh, rider, ridge, tile and material stays byte-exact (17.648168ms)
+✔ zhonghe: actual submitted triangle budget counts every corner on every level (17.367342ms)
+✔ zhonghe: low-detail omission policy does not pretend to generate rows (4.790085ms)
+✔ baohe: all animal base vertices contact actual ridge triangles and all stations follow the actual curved hip (52.571223ms)
+✔ zhonghe: all animal base vertices contact actual ridge triangles and all stations follow the actual curved hip (27.407832ms)
+✔ profiles fail closed on changed hall dimensions or ambiguous level overrides before creating materials (1.280256ms)
+✔ temporary and submitted geometry resources and owned materials have one clear disposal owner (179.394627ms)
+✔ pure W consumer verifies existing roof fragments before and after final hall-material merge without adding a world (124.944007ms)
+✔ actual walking body/head bounds clear adjacent animals and the retained rider, not just station metadata (65.113468ms)
+✔ reviewed widths accept actual production arithmetic without rounding or changing the roof input (37.397439ms)
+✔ exact owner HOOKUP.patch rehearsal uses actual production inputs and retains all hall physics and all other hall meshes (475.551451ms)
+✔ unconfigured legacy calls still ignore the newly reserved walking-layer field (26.897167ms)
+✔ Taihe explicitly realizes ten walking beasts on each of eight corners, with eight separate riders (112.489564ms)
+✔ actual production Taihe hall alone installs the reviewed profile (195.855503ms)
+✔ profile selectors reject non-string coercion instead of accepting an array or object alias (0.925595ms)
+✔ Taihe retains every non-walking mesh including all eight old riders, ridges, tiles and materials (77.931225ms)
+✔ Taihe has exactly 80 actual replacement bodies/heads, 8 separate riders and no duplicated old animals (61.276363ms)
+✔ Taihe all 320 real body corners contact submitted hip triangles and remain spaced on the true curved path (70.598548ms)
+✔ Taihe low-detail remains byte-exact to legacy omission without claiming visible animals (8.479793ms)
+✔ Taihe guard fails closed before materials for wrong type, every dimension/layer override and unknown profiles (1.021119ms)
+✔ Taihe valid real caller arithmetic and finite baseY offsets retain reviewed counts (235.026587ms)
+✔ baohe entire already-reviewed roof/profile matches c9a82aa exactly (54.134804ms)
+✔ zhonghe entire already-reviewed roof/profile matches c9a82aa exactly (20.414548ms)
+✔ 太和殿 actual hall retains baseline physics and non-target roof/nonroof bytes (129.712124ms)
+✔ 保和殿 actual hall retains baseline physics and non-target roof/nonroof bytes (134.487933ms)
+✔ 中和殿 actual hall retains baseline physics and non-target roof/nonroof bytes (62.425404ms)
+✖ 交泰殿 actual hall retains baseline physics and non-target roof/nonroof bytes (68.880216ms)
+✔ 乾清宫 actual hall retains baseline physics and non-target roof/nonroof bytes (120.075218ms)
+✔ Taihe repeated rebuild/dispose gives every temporary/final geometry and owned material one owner (166.725093ms)
+✔ three-hall pure W successor measures all 720 base/ridge-triangle contacts after actual final material merge (348.690043ms)
+✔ three-hall consumer rejects missing support even when every actual walking-body foot vertex remains (130.681092ms)
+✔ actual low 2: zero legacy animals becomes four rows of five, plus four separate riders (61.065298ms)
+✔ actual low 2: every original mesh, material, physics and nav stays exact (45.782151ms)
+✔ actual low 2: real foot vertices touch corresponding original ridge triangles; outward facing and no neighboring envelope overlap (19.48008ms)
+✔ actual low 16: zero legacy animals becomes four rows of five, plus four separate riders (18.810467ms)
+✔ actual low 16: every original mesh, material, physics and nav stays exact (58.957993ms)
+✔ actual low 16: real foot vertices touch corresponding original ridge triangles; outward facing and no neighboring envelope overlap (14.965172ms)
+✔ non-target indexes/zones are no-ops; exact target dimension/rotation/scale/mesh drift fails before mutation (293.06137ms)
+✔ reapplication is rejected without mutation; final production merge retains actual contact vertices and fixed budget (58.075072ms)
+✔ new source/intermediate/temporary geometry has exactly one disposal owner, with no new material (40.962486ms)
+✔ pure existing-world consumer survives final material merge and detects metadata-only contacts (81.098014ms)
+✔ new merged ornament batch submits no zero-area triangles (30.757862ms)
+✔ zero-area filter preserves every positive-area triangle position/normal/UV and foot contact (70.278319ms)
+ℹ tests 71
+ℹ suites 0
+ℹ pass 70
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2225.781769
+
+✖ failing tests:
+
+test at tests/current-state/r58-taihe-beasts.test.mjs:116:51
+✖ 交泰殿 actual hall retains baseline physics and non-target roof/nonroof bytes (68.880216ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    {
+  +   hash: 'c99974312c64061105b96e2192f66e759e9a62d60bf927f0dec4f376147e0ee9',
+  +   meshes: 216
+  -   hash: 'f4f3c6caa9ce624fef6dff221b15fa97a1c5d9450ff6965c7076f4e3d3739967',
+  -   meshes: 180
+    }
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r62-e-five-roof-beasts/tests/current-state/r58-taihe-beasts.test.mjs:118:77)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { hash: 'c99974312c64061105b96e2192f66e759e9a62d60bf927f0dec4f376147e0ee9', meshes: 216 },
+    expected: { hash: 'f4f3c6caa9ce624fef6dff221b15fa97a1c5d9450ff6965c7076f4e3d3739967', meshes: 180 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
