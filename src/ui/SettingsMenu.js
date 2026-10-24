@@ -18,7 +18,8 @@ export class SettingsMenu {
     this.characterStatusKey = null;
   }
 
-  init({ getCharacterStatus, onOpen, onResume, onQualityChange, onSoundToggle, onCharactersToggle, initialCharacters = true, charactersAvailable = true, charactersApproved = false, allowCharacterPreview = false, characterPreviewActive = false, onCharacterPreviewToggle, initialQuality = 'high', initialSound = true } = {}) {
+  init({ onDuanmenToggle, getCharacterStatus, onOpen, onResume, onQualityChange, onSoundToggle, onCharactersToggle, initialCharacters = true, charactersAvailable = true, charactersApproved = false, allowCharacterPreview = false, characterPreviewActive = false, onCharacterPreviewToggle, initialQuality = 'high', initialSound = true } = {}) {
+    this.onDuanmenToggle = onDuanmenToggle;
     this.onOpen = onOpen;
     this.onResume = onResume;
     this.onQualityChange = onQualityChange;
@@ -79,6 +80,11 @@ export class SettingsMenu {
           <label for="characters-toggle-btn">宫廷人物</label>
           <button id="characters-toggle-btn" type="button" aria-describedby="characters-status characters-acceptance">宫廷人物已开启（候选）</button>
         </div>
+        <div class="settings-control">
+          <label for="duanmen-backdrop-toggle">端门南向远景</label>
+          <input id="duanmen-backdrop-toggle" type="checkbox" checked aria-describedby="duanmen-backdrop-note">
+        </div>
+        <p id="duanmen-backdrop-note" class="settings-notice">边界外远景，尚不可进入。从午门向南看；位置、尺度和树列为合理拟合，非测绘。屋顶形制与轴线参考故宫资料；未复原室内、匾额和门洞。</p>
         <p id="characters-status" class="settings-notice" role="status" aria-live="polite">${!this.charactersEnabled ? '人物已关闭。' : this.charactersAvailable ? '人物准备中：等待加载状态。' : '人物内容暂不可用。'}</p>
         <p id="characters-acceptance" class="settings-notice">人物外观已确认；GPU／手机性能、具体史料仍未完整验收。</p>
         <p id="characters-interpretation" class="settings-notice">建筑按现状呈现；宫廷人物与活动为清代主题演绎，人数经过缩编。太和殿为乾隆朝元旦大朝候礼主题示意，元旦指农历正月初一；正式跪拜、使臣与城墙巡行尚未启用。</p>
@@ -151,6 +157,8 @@ export class SettingsMenu {
   }
 
   bindEvents() {
+    const duanmenToggle = this.panel.querySelector('#duanmen-backdrop-toggle');
+    if (duanmenToggle) this.listen(duanmenToggle, 'change', () => this.onDuanmenToggle?.(duanmenToggle.checked));
     this.listen(this.launcher, 'click', () => this.show());
     // A second finger does not necessarily synthesize click while the first
     // is held on the joystick. Handle only this launcher gesture directly.

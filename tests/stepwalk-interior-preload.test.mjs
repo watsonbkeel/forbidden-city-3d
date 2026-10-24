@@ -12,7 +12,7 @@ const { captureTaihePermanentNavigation: capture, assertTaihePermanentNavigation
 const cfg=JSON.parse(fs.readFileSync(new URL('../data/interiors/taihe.json',import.meta.url)));
 function setup(){const a=captureTaiheControl('太和殿'),cm=new CollisionManager();cm.addColliders(a.builder.colliders);cm.addWalkables(a.builder.walkables);cm.addWalkable({type:'box',box:new THREE.Box3(new THREE.Vector3(-31.5,0,-18.5),new THREE.Vector3(31.5,P.frame.floorY,18.5))});return{...a,cm,floor:cm.walkables.at(-1)};}
 test('actual permanent builder supplies exact permanent columns, dais, four sloped rails, four incense envelopes, 21 steps and cover',()=>{
- const s=setup();try{const before=capture(s.cm,cfg,P.frame.floorY,P);assert.equal(before.colliders.length,39);assert.equal(before.walkables.length,22);assert.deepEqual(retained(s.cm,before,cfg,P.frame.floorY,P),{permanentCol:39,permanentWalk:22,permanentRetained:true});}finally{s.builder.dispose();}
+ const s=setup();try{const before=capture(s.cm,cfg,P.frame.floorY,P);assert.equal(before.colliders.length,46);assert.equal(before.walkables.length,30);assert.deepEqual(retained(s.cm,before,cfg,P.frame.floorY,P),{permanentCol:46,permanentWalk:30,permanentRetained:true});}finally{s.builder.dispose();}
 });
 for(const mutation of ['missing-all','one-column','one-step','tagged-col','tagged-step','rescue','duplicate','wrong-floor','wrong-frame','remove-floor','wrong-floor-height','fixed-floor-bypass','one-table','one-rail','missing-cover','tagged-cover','wrong-cover-height','duplicate-cover'])test(`preload rejects initially invalid permanent navigation: ${mutation}`,()=>{
  const s=setup();try{const before=capture(s.cm,cfg,P.frame.floorY,P);let floor=P.frame.floorY,config=cfg;
@@ -21,7 +21,7 @@ for(const mutation of ['missing-all','one-column','one-step','tagged-col','tagge
   if(mutation==='one-step')s.cm.walkables.splice(s.cm.walkables.indexOf(before.walkables[0].object),1);
   if(mutation==='tagged-col')before.colliders[0].object.tag='interior:taihe';
   if(mutation==='tagged-step')before.walkables[0].object.tag='zone:temporary';
-  if(mutation==='rescue')before.walkables[0].object.rescue=true;
+  if(mutation==='rescue')before.walkables.find(r=>r.object.rescue===false).object.rescue=true;
   if(mutation==='duplicate')s.cm.colliders.push({...before.colliders[0].object});
   if(mutation==='wrong-floor')floor=0;
   if(mutation==='wrong-frame')config={...cfg,frame:{...cfg.frame,z:11}};
@@ -48,7 +48,7 @@ for(const mutation of ['same-box-new-object','new-box','bounds','remove-reinsert
   assert.throws(()=>retained(s.cm,before,cfg,P.frame.floorY,P),/Taihe/);
  }finally{s.builder.dispose();}
 });
-const taihe={id:'taihe',state:'loaded',col:0,walk:0,permanentCol:39,permanentWalk:22,permanentRetained:true};
+const taihe={id:'taihe',state:'loaded',col:0,walk:0,permanentCol:46,permanentWalk:30,permanentRetained:true};
 test('preload accepts visual-only Taihe only with verified permanent navigation and keeps ordinary interior collider requirement',async()=>{
  const rows=[taihe,{id:'qianqing',state:'loaded',col:2,walk:1}];assert.equal(await preloadInteriors({evaluate:async()=>rows}),rows);
 });

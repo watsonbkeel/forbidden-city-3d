@@ -1,0 +1,85 @@
+{
+  "review": "R68 J independent runtime review and fix verification",
+  "reviewer": "independent code reviewer",
+  "reviewedAtUTC": "2026-10-24T00:58:45Z",
+  "baseline": "709cfa97d14f14efe801abd2f5735cda0c6aa59a",
+  "frozenCommit": "b9f4ef26d440ae56b79e24e3b0d513b54da99086",
+  "runtime": {
+    "path": "src/scene/palace/special/RemainingNingshouHalls.js",
+    "sha256": "e1fe59b0954c770bb6c821d21d97ca17c092eb2b3cb1dbfaa6eb3b0747545d5f"
+  },
+  "findings": [
+    {
+      "id": "R68-P1-COLOR-MERGE",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "finding": "Production mergeByMaterial.normalizeAttributes removed vertex color attribute from new SuiChu stone facing while material.vertexColors remained true. Pre-merge tests missed it.",
+      "fix": "Only this facing sets noMerge=true; shared merge utility unchanged.",
+      "verification": "Actual CourtKit.finish preserves exact color array, world matrix, material vertexColors, and releases owned geometry/material exactly once."
+    },
+    {
+      "id": "R68-TERRAIN-CLASSIFICATION",
+      "status": "RESOLVED_WITH_BOUNDED_GEOMETRY_PROOF",
+      "finding": "Stone facing is part of existing platform support, not a new above-ground obstruction; custom role prevented existing terrain recognition.",
+      "fix": "role=platform-base, detailRole=r68-suichu-tiger-stone-facing; eliminate former 0.002 m outward offset and use polygonOffset=true, factor=-1, units=-1. No physics changes.",
+      "verification": "Facing lies wholly within original platform envelope and exactly on south plane within 1e-6; south normals Z<-0.999. Existing terrain whitelist and STEP_UP/body intersection assertions unchanged."
+    }
+  ],
+  "localEnvelopeEvidence": {
+    "coordinateSpace": "hall local; mesh matrix applied",
+    "originalPlatform": {
+      "min": [
+        -9.050000190734863,
+        0,
+        -5.550000190734863
+      ],
+      "max": [
+        9.050000190734863,
+        0.5,
+        5.550000190734863
+      ]
+    },
+    "newFacing": {
+      "min": [
+        -9.002639770507812,
+        0.033921122550964355,
+        -5.550000190734863
+      ],
+      "max": [
+        9.002394676208496,
+        0.4522315561771393,
+        -5.550000190734863
+      ]
+    },
+    "tolerance": 1e-06,
+    "physicalOutwardOffsetMeters": 0
+  },
+  "verification": {
+    "command": "node --test tests/r68-j-*.test.mjs",
+    "passed": 21,
+    "failed": 0,
+    "exitCode": 0,
+    "diffCheck": "PASS",
+    "scope": [
+      "Five exact J hosts: 33 generic meshes and corresponding 30 colliders removed; remaining geometry and collider hashes compared against baseline.",
+      "12 non-target halls preserve geometry and navigation hashes.",
+      "BiLuo five-layer finial finite vertices and consecutive vertical bounds without gaps.",
+      "Production CourtKit.finish color preservation and resource disposal."
+    ],
+    "triangleAssertions": {
+      "path": "tests/r48-independent-ningshou-final-visible-body.mjs",
+      "unchangedAgainstBaseline": true,
+      "sha256": "053a949f384dcd604a607267c254f3989b72b955192addb65c0d61221bc26678"
+    }
+  },
+  "limitations": [
+    "Reviewer did not run full-world acceptance, production build, HTTP package checks, or real GPU/mobile tests. These remain implementation/release-owner responsibilities.",
+    "CPU geometry and Node tests are not real GPU acceptance.",
+    "This report does not assert GitHub upload or Pages deployment."
+  ],
+  "remainingBlockingFindings": [],
+  "reviewerEdits": [
+    "tests/r68-j-suichu-stone.test.mjs",
+    "reports/r68-j-stage/INDEPENDENT-REVIEW.json"
+  ]
+}

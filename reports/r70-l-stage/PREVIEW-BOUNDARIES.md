@@ -1,0 +1,3 @@
+previews/corner initial CPU camera missed finial and is retained as diagnostic failure, not evidence of finial appearance. finial-close/corner uses actual production merged triangles, before/final. CPU not WebGL or GPU appearance acceptance. Official input photos not included.
+
+Corrected finial-close before/final images were both actually inspected. They frame the finial and demonstrate the replacement of the generic double-gourd silhouette with a round belly, short neck, collars and pearl. This is a CPU triangle/albedo comparison, not a renderer, GPU, phone, whole-tower or individual-four-corner acceptance.

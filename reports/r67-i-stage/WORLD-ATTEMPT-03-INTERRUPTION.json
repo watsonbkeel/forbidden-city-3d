@@ -1,0 +1,28 @@
+{
+  "attempt": "03",
+  "heapMiB": 384,
+  "status": "B_PASS_YANGXIN_INTERRUPTED_SIGKILL",
+  "completedStages": [
+    "B"
+  ],
+  "interruptedStage": "yangxin",
+  "neverStartedStages": [
+    "kunning",
+    "huangji"
+  ],
+  "testAssertionFailureObserved": false,
+  "completedViewProofs": 126,
+  "completedPathBindings": 72,
+  "lastCheckpoint": {
+    "label": "returnedB-night-views-126",
+    "memory": {
+      "rss": 929562624,
+      "heapTotal": 446664704,
+      "heapUsed": 280694672,
+      "external": 261297752,
+      "arrayBuffers": 253123871
+    }
+  },
+  "resultFileWritten": false,
+  "explanation": "Third run reduced only V8 heap. B passed in full, but Yangxin child was terminated by SIGKILL during returned-B view 126. External termination reason not established."
+}

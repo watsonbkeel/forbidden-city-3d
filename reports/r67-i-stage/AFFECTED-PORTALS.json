@@ -1,0 +1,39 @@
+{
+  "command": [
+    "node",
+    "--expose-gc",
+    "--max-old-space-size=384",
+    "--test",
+    "--test-concurrency=1",
+    "--test-reporter=tap",
+    "tests/r48-ningshou-final-world.test.mjs"
+  ],
+  "environment": {
+    "R48_ALL_NINGSHOU_PORTALS": "1"
+  },
+  "exit": 0,
+  "seconds": 20.73923087120056,
+  "passedByHost": {
+    "乐寿堂": 16,
+    "佛日楼": 8,
+    "倦勤斋": 8,
+    "养性殿": 16,
+    "宁寿宫": 32,
+    "寻沿书屋": 16,
+    "庆寿堂": 16,
+    "延趣楼": 8,
+    "景祺阁": 8,
+    "景福宫": 16,
+    "梵华楼": 8,
+    "畅音阁": 8,
+    "皇极殿": 48,
+    "碧螺亭": 8,
+    "禊赏亭": 8,
+    "符望阁": 32,
+    "萃赏楼": 24,
+    "遂初堂": 16,
+    "阅是楼": 8
+  },
+  "totalPassed": 304,
+  "scope": "Existing actual-world portal out/back movement, 10/60fps × walk/sprint × forwards/backwards, original collision/support/body-triangle assertions. Not new full interior inventories or GPU acceptance."
+}

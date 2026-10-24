@@ -1,0 +1,28 @@
+{
+  "review": "Independent read-only runtime/source review and rerun",
+  "status": "NO_OPEN_BLOCKING_FINDINGS",
+  "reviewedRuntimeCommit": "d90b269",
+  "resolved": [
+    "r34 fixture now seeds TEXTURE_SPECS; original ownership assertions retained",
+    "spec distinguishes walking -500, flight -590, initial camera -494, legacy spawn -470",
+    "real TextureLibrary private/shared disposal exactly-once test added"
+  ],
+  "independentRerun": {
+    "tests": 8,
+    "pass": 8
+  },
+  "geometry": {
+    "meshes": 51,
+    "triangles": 2604,
+    "minZ": -810,
+    "maxZ": -600,
+    "maxY": 31.1402
+  },
+  "notAccepted": [
+    "browser",
+    "GPU",
+    "phone",
+    "survey fidelity",
+    "complete Duanmen"
+  ]
+}

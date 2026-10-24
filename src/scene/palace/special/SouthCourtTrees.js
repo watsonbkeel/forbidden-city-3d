@@ -12,11 +12,13 @@ const profiles={
   tree('wenhua-west-near',-172.5,-231,16.5,3.5,.48,.24,-.12,'Viewer-left outer foreground trunk around image x=210/1920; west (+X) of approach','wenhua-front-photo'),
   tree('wenhua-west-far',-174.2,-216.5,17.2,3.3,.42,-.3,.15,'Viewer-left inner trunk around image x=500/1920; beside raised approach','wenhua-front-photo'),
   tree('wenhua-east-far',-197.8,-217.8,16.8,3.4,.44,.18,.2,'Viewer-right inner trunk around image x=1470/1920; beside raised approach','wenhua-front-photo'),
+  tree('wenhua-west-rear-small',-168.5,-210.5,10.5,2.2,.22,.10,.08,'Additional thin rear-side trunk in official image left background; reversible relative fit','wenhua-front-photo'),
+  tree('wenhua-east-rear-small',-204,-211.5,10.0,2.1,.21,-.10,.06,'Additional thin rear-side trunk in official image right background; reversible relative fit','wenhua-front-photo'),
   tree('wenhua-east-near',-200,-231.8,15.8,3.2,.38,-.2,-.12,'Viewer-right outer foreground trunk around image x=1810/1920; east (-X) of approach','wenhua-front-photo'),
  ]},
  'outer-west':{id:'wuying-approach',zone:'outer-west',axisX:219.5,dimensionStatus:FIT,countStatus:'PARTIAL_REPRESENTATION_NOT_CENSUS',sources:wuyingSources,unknowns:['Exact current count and individual species','Surveyed tree geometry and planting-pit dimensions','Low branches and needles are not individually reconstructed','Photograph shooting date'],trees:[
-  tree('wuying-west-front',237,-214.7,15.4,3.6,.46,.23,.12,'West lower court beside the west front-hall platform corner, visible stone-edged tree pit','wuying-west-tree'),
-  tree('wuying-east-front',202.3,-215.6,15.9,3.5,.44,-.26,.16,'East lower court beside the east front-hall platform corner, visible in east-side-hall photo','wuying-east-tree'),
+  tree('wuying-west-front',237,-214.7,15.4,4.5,.46,.23,.12,'West lower court beside the west front-hall platform corner, visible stone-edged tree pit','wuying-west-tree'),
+  tree('wuying-east-front',202.3,-215.6,15.9,4.4,.44,-.26,.16,'East lower court beside the east front-hall platform corner, visible in east-side-hall photo','wuying-east-tree'),
  ]},
 };
 /** Returns an independent source/fit record. Not a surveyed tree inventory. */
@@ -54,7 +56,8 @@ export function buildSouthCourtTrees(kit,zone){
   // Layered, irregular photograph-fit masses. The source does not establish
   // species, needle morphology, branch counts, or current foliage colour.
   for(let layer=0;layer<5;layer++){
-   const y=5.2+layer*(t.height-6.3)/4;
+   const crownBase=zone.id==='outer-west'?3.5:5.2;
+   const y=crownBase+layer*(t.height-crownBase-1.1)/4;
    const spread=t.crownRadius*(1-layer*.13),angle=layer*2.32+(t.x%3);
    for(let side=0;side<2;side++){
     const a=angle+side*Math.PI;

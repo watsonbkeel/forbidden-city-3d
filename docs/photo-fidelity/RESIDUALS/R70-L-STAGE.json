@@ -1,0 +1,162 @@
+{
+  "release": "R70-L",
+  "accepted": false,
+  "scope": {
+    "originalObjects": 11,
+    "requiredFeatures": 136,
+    "auxiliaryDeclarations": 0,
+    "statuses": {
+      "DIFFED": 88,
+      "BLOCKED_SOURCE": 47,
+      "PARTIAL": 1
+    }
+  },
+  "identityMigrations": [
+    {
+      "id": "FC-168251EA2D",
+      "before": {
+        "parentCandidates": [],
+        "requiredChildIds": []
+      },
+      "after": {
+        "parentCandidates": [
+          "FC-E8C2F3E267"
+        ],
+        "requiredChildIds": []
+      },
+      "reason": "Four directional towers belong to aggregate corner-tower directory; not a fifth building or surveyed topology.",
+      "physicalObjectsAdded": 0,
+      "physicalIdentityAccepted": false
+    },
+    {
+      "id": "FC-2BC4B765C8",
+      "before": {
+        "parentCandidates": [],
+        "requiredChildIds": []
+      },
+      "after": {
+        "parentCandidates": [
+          "FC-E8C2F3E267"
+        ],
+        "requiredChildIds": []
+      },
+      "reason": "Four directional towers belong to aggregate corner-tower directory; not a fifth building or surveyed topology.",
+      "physicalObjectsAdded": 0,
+      "physicalIdentityAccepted": false
+    },
+    {
+      "id": "FC-5E9F74827C",
+      "before": {
+        "parentCandidates": [],
+        "requiredChildIds": []
+      },
+      "after": {
+        "parentCandidates": [
+          "FC-E8C2F3E267"
+        ],
+        "requiredChildIds": []
+      },
+      "reason": "Four directional towers belong to aggregate corner-tower directory; not a fifth building or surveyed topology.",
+      "physicalObjectsAdded": 0,
+      "physicalIdentityAccepted": false
+    },
+    {
+      "id": "FC-540CD84282",
+      "before": {
+        "parentCandidates": [],
+        "requiredChildIds": []
+      },
+      "after": {
+        "parentCandidates": [
+          "FC-E8C2F3E267"
+        ],
+        "requiredChildIds": []
+      },
+      "reason": "Four directional towers belong to aggregate corner-tower directory; not a fifth building or surveyed topology.",
+      "physicalObjectsAdded": 0,
+      "physicalIdentityAccepted": false
+    }
+  ],
+  "objects": [
+    {
+      "id": "FC-5ECC54DC81",
+      "name": "神武门",
+      "remaining": "Layout/13 已有北门声明，GateTowerProfiles/GateTowerShell 已实现独立公布轴网与三券门、上层殿体；不是五间三进深华门复制体，本轮不改。 所有完整对象仍未验收；具体残项见每个feature。",
+      "accepted": false
+    },
+    {
+      "id": "FC-E8C2F3E267",
+      "name": "角楼",
+      "remaining": "Enclosure.buildCornerTowers 四次循环复用29m包围盒轮廓和27.5m总高拟合；本轮仅共享铜鎏金宝顶圆腹、短颈、顶珠轮廓，不代表复合屋顶整体准确。 所有完整对象仍未验收；具体残项见每个feature。",
+      "accepted": false
+    },
+    {
+      "id": "FC-47E803E147",
+      "name": "西华门内北值房",
+      "remaining": "官方名称及门内北侧关系明确；当前无精确运行绑定，不能另造一个普通房屋作为完成。 所有完整对象仍未验收；具体残项见每个feature。",
+      "accepted": false
+    },
+    {
+      "id": "FC-0A6C0E1D71",
+      "name": "内金水河",
+      "remaining": "Layout/3 声明由 palace/river.js 与 R36 南部河道和明确桥位驱动；遗留 dimensions 100×15 不是实测河道矩形，本轮保留几何。 所有完整对象仍未验收；具体残项见每个feature。",
+      "accepted": false
+    },
+    {
+      "id": "FC-168251EA2D",
+      "name": "东北角楼",
+      "remaining": "Enclosure.buildCornerTowers 已有该方位独立实例，共用29m模型与宝顶模板；本轮继承共享拟合，不作该方位照片独立验收。 所有完整对象仍未验收；具体残项见每个feature。",
+      "accepted": false
+    },
+    {
+      "id": "FC-2BC4B765C8",
+      "name": "东南角楼",
+      "remaining": "Enclosure.buildCornerTowers 已有该方位独立实例，共用29m模型与宝顶模板；本轮继承共享拟合，不作该方位照片独立验收。 所有完整对象仍未验收；具体残项见每个feature。",
+      "accepted": false
+    },
+    {
+      "id": "FC-5E9F74827C",
+      "name": "西北角楼",
+      "remaining": "Enclosure.buildCornerTowers 已有该方位独立实例，共用29m模型与宝顶模板；本轮继承共享拟合，不作该方位照片独立验收。 所有完整对象仍未验收；具体残项见每个feature。",
+      "accepted": false
+    },
+    {
+      "id": "FC-540CD84282",
+      "name": "西南角楼",
+      "remaining": "Enclosure.buildCornerTowers 已有该方位独立实例，共用29m模型与宝顶模板；本轮继承共享拟合，不作该方位照片独立验收。 所有完整对象仍未验收；具体残项见每个feature。",
+      "accepted": false
+    },
+    {
+      "id": "FC-95FE4AAEE9",
+      "name": "紫禁城城墙",
+      "remaining": "Layout/1 与 Enclosure.buildOuterWalls 已有四边城墙。PALACE_RECT 实际 minZ=-425/maxZ=547，南北972m；旧注释961m与实际不同。官方961m已知，此为工程坐标残项而非资料不足。 所有完整对象仍未验收；具体残项见每个feature。",
+      "accepted": false
+    },
+    {
+      "id": "FC-C5FADE84B6",
+      "name": "护城河",
+      "remaining": "Layout/0 筒子河外框940.5×1147.5、riverWidth=52为既有工程参数；官方约52m宽仅支持总说，不证明四边现状岸线。 所有完整对象仍未验收；具体残项见每个feature。",
+      "accepted": false
+    },
+    {
+      "id": "FC-B3FB517883",
+      "name": "城隍庙",
+      "remaining": "当前无运行绑定；官方西北隅西墙旁及山门、庙门、正殿、配殿应逐项定位，不生成无定位的院落。 所有完整对象仍未验收；具体残项见每个feature。",
+      "accepted": false
+    }
+  ],
+  "previousResiduals": [
+    "docs/photo-fidelity/RESIDUALS/R58-A-STAGE.json",
+    "docs/photo-fidelity/RESIDUALS/R59-B-STAGE.json",
+    "docs/photo-fidelity/RESIDUALS/R60-C-STAGE.json",
+    "docs/photo-fidelity/RESIDUALS/R61-D-STAGE.json",
+    "docs/photo-fidelity/RESIDUALS/R62-E-STAGE.json",
+    "docs/photo-fidelity/RESIDUALS/R63-F-STAGE.json",
+    "docs/photo-fidelity/RESIDUALS/R64-G-STAGE.json",
+    "docs/photo-fidelity/RESIDUALS/R66-H-STAGE.json",
+    "docs/photo-fidelity/RESIDUALS/R67-I-STAGE.json",
+    "docs/photo-fidelity/RESIDUALS/R68-J-STAGE.json",
+    "docs/photo-fidelity/RESIDUALS/R69-K-STAGE.json"
+  ],
+  "verificationBoundary": "CPU engineering and exact changed-input checks only; browser/GPU, physical phone, full continuous route and current exhibition inventories remain unverified."
+}

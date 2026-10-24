@@ -4,7 +4,7 @@ import * as THREE from 'three';
  *  One opaque, vertex-coloured merged mesh per template / pose / LOD.
  *  Metres, Y up, facing +Z; bare-headed standing calibration height 1.70 m.
  */
-export const CHARACTER_POSES = Object.freeze(['standing', 'seated', 'kneeling']);
+export const CHARACTER_POSES = Object.freeze(['standing', 'seated', 'kneeling', 'sleeping']);
 export const CHARACTER_TEMPLATES = Object.freeze({
   'emperor-ceremonial': { label:'Imperial ceremonial', robe:0xc9982d, trim:0x332c25, lining:0x87702e, accent:0xe7c66a, hat:'court', motif:'roundel', silhouette:'imperial', evidenceRefs:['H1','H3'] },
   'official-ceremonial': { label:'Court official', robe:0x253b55, trim:0x182331, lining:0x546b78, accent:0xc5ab67, hat:'court', motif:'rank-square', silhouette:'official', evidenceRefs:['H1','H3'] },
@@ -420,10 +420,33 @@ function* arm(b,t,pose,lod,off,z,side,femalePose='resting',seatVariant='standard
  * Work is bounded, not wall-clock time: JS scheduling/GC may delay any step.
  */
 export function* createCharacterGeometrySteps(templateId,pose='standing',lod=0,options={}){
+ // R72 adult, normally clothed resting pose derived from the approved outfit.
+ // Static sleeping pose deliberately has no standing/ kneeling shader motion.
+ if(pose==='sleeping'){
+  if(!['consort-daily','maid-daily'].includes(templateId))throw new Error('Sleeping pose requires an adult residential female template');
+  const g=yield* createCharacterGeometrySteps(templateId,'standing',lod,{...options,seatVariant:'standard',femalePose:'resting'});
+  // Preserve the preparation work budget: rigid transform in bounded batches,
+  // with analytical bounds instead of synchronous whole-mesh rescans.
+  const oldBounds=g.boundingBox.clone(),minZ=oldBounds.min.z,cy=(oldBounds.min.y+oldBounds.max.y)/2;
+  const p=g.attributes.position,n=g.attributes.normal;let complete=false;
+  try{
+   for(let start=0;start<p.count;start+=MAX_WORK_UNITS){const end=Math.min(p.count,start+MAX_WORK_UNITS);
+    for(let i=start;i<end;i++){const y=p.getY(i),z=p.getZ(i);p.setXYZ(i,p.getX(i),z-minZ,cy-y);if(n){const ny=n.getY(i),nz=n.getZ(i);n.setXYZ(i,n.getX(i),nz,-ny);}}
+    yield{kind:'character-geometry',phase:'sleep-transform',workUnits:end-start,maxWorkUnits:MAX_WORK_UNITS,work:{transformedVertices:end-start}};
+   }
+   g.boundingBox.set(new THREE.Vector3(oldBounds.min.x,0,cy-oldBounds.max.y),new THREE.Vector3(oldBounds.max.x,oldBounds.max.z-minZ,cy-oldBounds.min.y));
+   if(g.boundingSphere){const c=g.boundingSphere.center,y=c.y,z=c.z;c.set(c.x,z-minZ,cy-y);}else g.boundingSphere=g.boundingBox.getBoundingSphere(new THREE.Sphere());
+   p.needsUpdate=true;if(n)n.needsUpdate=true;complete=true;
+  }finally{if(!complete)g.dispose();}
+  g.userData={...g.userData,pose:'sleeping',poseIndex:3,groundContacts:[],seatContact:null,seatPelvis:null,
+   bodyHeightMeters:g.boundingBox.max.y,sleepingBounds:g.boundingBox.toArray?.()??{min:g.boundingBox.min.toArray(),max:g.boundingBox.max.toArray()},
+   poseTransitions:'discrete-checked-bed-transfer',historyStatus:'requested-gameplay-rest-not-historical-schedule'};
+  return g;
+ }
  const t=CHARACTER_TEMPLATES[templateId];if(!t)throw new Error(`Unknown character template: ${templateId}`);if(!CHARACTER_POSES.includes(pose))throw new Error(`Unknown character pose: ${pose}`);if(!Number.isInteger(lod)||lod<0||lod>2)throw new Error(`Invalid character LOD: ${lod}`);
  const femalePose=options.femalePose??'resting';if(!['resting','walking'].includes(femalePose))throw new Error('Unknown female sample pose');if(femalePose==='walking'&&!isFemale(t))throw new Error('Female sample pose requires a female template');if(femalePose==='walking'&&pose!=='standing')throw new Error('Female walking sample requires standing pose');
- const seatVariant=options.seatVariant??'standard';if(!['standard','raised-footstool','kang-low','throne-front-perch'].includes(seatVariant))throw new Error(`Unknown seat variant: ${seatVariant}`);if(pose!=='seated'&&seatVariant!=='standard')throw new Error('A seat variant requires seated pose');
- const footY=['raised-footstool','throne-front-perch'].includes(seatVariant)?.30:seatVariant==='kang-low'?.06:0,footZ=seatVariant==='raised-footstool'?.79:seatVariant==='throne-front-perch'?.555:.51;
+ const seatVariant=options.seatVariant??'standard';if(!['standard','raised-footstool','kang-low','throne-front-perch','qianqing-low-foot'].includes(seatVariant))throw new Error(`Unknown seat variant: ${seatVariant}`);if(pose!=='seated'&&seatVariant!=='standard')throw new Error('A seat variant requires seated pose');
+ const footY=['raised-footstool','throne-front-perch'].includes(seatVariant)?.30:seatVariant==='kang-low'?.06:seatVariant==='qianqing-low-foot'?-.10:0,footZ=seatVariant==='raised-footstool'?.79:seatVariant==='throne-front-perch'?.555:.51;
  const b=new Builder(lod),seg=[28,12,7][lod],off=pose==='standing'?0:pose==='seated'?-.29:-.58,z=pose==='seated'?-.04:pose==='kneeling'?.04:0;
  try {
  const pelvis=pose==='standing'?.89:pose==='seated'?.57:.33;
@@ -436,6 +459,7 @@ export function* createCharacterGeometrySteps(templateId,pose='standing',lod=0,o
  else if(pose==='seated')lower=[{y:.055,rx:.265,rz:.139,z:.48,wave:.008},{y:.18,rx:.263,rz:.142,z:.48},{y:.40,rx:.25,rz:.148,z:.44},{y:.52,rx:.255,rz:.276,z:.20},{y:.66,rx:.185,rz:.14,z:-.04}];
  else lower=[{y:.032,rx:.302,rz:.397,z:-.015,wave:.009},{y:.075,rx:.308,rz:.368,z:.025},{y:.18,rx:.265,rz:.294,z:.105},{y:.29,rx:.205,rz:.205,z:.07},{y:.39,rx:.184,rz:.138,z:.04}];
  if(pose==='seated'&&seatVariant==='kang-low'){lower=lower.map((r,i)=>({...r,y:r.y+footY*Math.max(0,1-i/3)}));lower.splice(3,0,{y:.49,rx:.255,rz:.175,z:.36});}
+ if(pose==='seated'&&seatVariant==='qianqing-low-foot')lower=lower.map((r,i)=>({...r,y:r.y+footY*Math.max(0,1-i/3)}));
  if(isFemale(t)&&lod<2){
   // One continuous garment shell removes the false blouse/skirt seam. The
   // existing part IDs, pivots and weights are retained below the waist.

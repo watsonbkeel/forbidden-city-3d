@@ -1,3 +1,4 @@
+import {RoomNightLights} from './src/scene/sky/RoomNightLights.js';
 import * as THREE from 'three';
 import { Environment } from './src/scene/Environment.js';
 import { PalaceBuilder } from './src/scene/PalaceBuilder.js';
@@ -156,6 +157,12 @@ class ForbiddenCityApp {
         this.collisionManager.setRegions(this.zoneManager.getRegions());
         // 所有可进入房间（世界坐标，含门/掩体/刷怪点），后续玩法从这里取
         this.rooms = this.zoneManager.getRooms();
+        const axialRooms=PALACE_LAYOUT.filter(h=>h.type==='palace').map(h=>{
+          const {x,z}=h.position,w=h.dimensions.width,d=h.dimensions.depth;
+          const floorY=this.collisionManager.getGroundHeight(x+w*.25,z,0,30);
+          return{name:h.name,floorY,min:{x:x-w/2+1,y:floorY,z:z-d/2+1},max:{x:x+w/2-1,y:floorY+7,z:z+d/2-1}};
+        });
+        this.roomNightLights=new RoomNightLights({scene:this.scene,rooms:[...this.rooms,...axialRooms],collisionManager:this.collisionManager,additionalColliders:[...this.zoneManager.prebuilt.values()].flatMap(e=>e.data.colliders)});
         // S 档内景：按距离流式加载 GLB（失败回退 B 档）
         // base：部署到子路径（如 GitHub Pages /forbidden-city-3d/）时，模型与 draco/basis 解码器都要带前缀；根路径部署时为 ''
         const base = (import.meta.env?.BASE_URL ?? '/').replace(/\/$/, '');
@@ -362,6 +369,7 @@ class ForbiddenCityApp {
     });
     this.settingsMenu = new SettingsMenu(document.body);
     this.settingsMenu.init({
+      onDuanmenToggle: enabled => this.environment?.setDuanmenVisible(enabled),
       getCharacterStatus: () => this.characters?.statusSnapshot(),
       initialQuality: this.currentQuality,
       initialSound: true,
@@ -584,12 +592,13 @@ class ForbiddenCityApp {
     this.environment.update(this.camera, dt);
     this.dayNightPanel?.update();
     this.historicalLamps?.update(this.environment.dayCycle.lighting.daylight);
+    this.roomNightLights?.update(this.environment.dayCycle.lighting.daylight,this.camera.position,this.currentQuality);
     this.palaceBuilder.update?.(dt);
     this.enclosure.update(dt);
     this.garden.update(dt);
     this.interiors?.update(this.camera.position);
     this.zoneManager.update(this.flight?.occupied ? this.flight.position : this.camera.position);
-    this.characters?.update(dt, { daylight: this.environment.dayCycle.lighting.daylight, quality: this.currentQuality, viewportHeight: height });
+    this.characters?.update(dt, { beijingTime:this.environment.dayCycle.beijingTime, daylight: this.environment.dayCycle.lighting.daylight, quality: this.currentQuality, viewportHeight: height });
     // Keep the DEV notice honest after a runtime failure automatically disables
     // the same System. No extra update loop, renderer, or persistent setting.
     this._syncCharacterStatus?.();
@@ -615,6 +624,7 @@ class ForbiddenCityApp {
     this.disposed = true;
     cancelAnimationFrame(this.animationFrame);
     this.characters?.dispose();
+    this.roomNightLights?.dispose();
     this.flight?.dispose();
     this.dayNightPanel?.dispose();
     this.historicalLamps?.dispose();

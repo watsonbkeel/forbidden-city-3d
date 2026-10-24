@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "scope": "Original nine candidate-only current-state failures; read-only audit, with owner Qinan test migration reverified",
+  "rows": [
+    {
+      "title": "actual assembly owns the low annex, closed north wall and no generic room or furniture",
+      "assertion": "tests/current-state/qinan-hall.test.mjs:42:72; expected rooms.length=0, actual=2",
+      "oldContract": "Qinan registers no generic interior room or furniture; low annex and closed north wall retained.",
+      "authorizedRequirement": "Every interior room has night lighting.",
+      "change": "QinanHall registers two named virtual-tour lighting rooms for main hall and south annex; geometry and navigation are unchanged.",
+      "replacementAssessment": "Original R72 lighting test with two synthetic rooms was not sufficient. Owner migrated this test to expect two rooms while retaining architecture assertions. Independently rerun migrated test passed.",
+      "status": "CLOSED by semantic migration; no runtime defect found"
+    },
+    {
+      "title": "actual ZoneManager three-cycle lifecycle preserves deterministic metadata and zone ownership",
+      "assertion": "tests/current-state/qinan-hall.test.mjs:92:159; expected rooms.length=0, actual=2",
+      "oldContract": "Zero rooms plus deterministic metadata, bounded colliders/supports and three unload/rebuild cycles with exactly-once resource disposal.",
+      "authorizedRequirement": "Every room needs night lighting without leaking scene lights or resources.",
+      "change": "The same two Qinan room registrations.",
+      "replacementAssessment": "Original test stopped before lifecycle/resource checks. Owner migrated expected room count, retained original lifecycle checks and added real-room lamp coverage/dispose/no leaked light root. Independently rerun passed. Separate read-only audit also confirmed 156 zone colliders,22 supports and20 owned resources disposed once in each of3 cycles.",
+      "status": "CLOSED by semantic migration; no runtime defect found"
+    },
+    {
+      "title": "crest reverses only exact full bytes and two unique review hunks without mutating input",
+      "assertion": "r32-crest-source-retention.test.mjs:85; current Qianqing source SHA60656930… != frozen crest SHA8831a0f2…",
+      "oldContract": "Only registered R32 full-file bytes may reverse two crest hunks; mutations fail closed and input is immutable.",
+      "authorizedRequirement": "Emperor physically moves from Taihe to Qianqing chair at night.",
+      "change": "QianqingCentralSetting replaces one whole-scene exclusion with27 local solids/27 supports and changes navigation metadata; visual crest code unchanged.",
+      "replacementAssessment": "R72 navigation/seat/route semantics do not replace exact-source mutation rejection. Direct R71/R72 capture proves unchanged geometry/materials; final bounded source/runtime inventory must bind the new version, while historical helper remains fail-closed.",
+      "status": "Historical source contract superseded; not a runtime failure; final new-version identity gate still required"
+    },
+    {
+      "title": "all historical entry chains consume crest only through exact full-byte dispatch",
+      "assertion": "r32-crest-source-retention.test.mjs:122 -> tests/lib/r32-crest-source-retention.mjs:30; exact R32 crest candidate rejects60656930…",
+      "oldContract": "All historical restore chains recognize only exact registered crest bytes and preserve unknown bytes unchanged.",
+      "authorizedRequirement": "Emperor reaches and works at Qianqing chair.",
+      "change": "Same bounded local navigation edit changes full-file identity.",
+      "replacementAssessment": "Failure is before chain semantics; a successful emperor walk cannot prove historical dispatch. Do not normalize unknown R72 bytes into R32. Keep helper strict and bind R72 source scope separately.",
+      "status": "Historical generation contract superseded; no evidence of an unsafe dispatch bypass"
+    },
+    {
+      "title": "unregistered paths and changed epochs cannot acquire a crest exception",
+      "assertion": "r32-crest-source-retention.test.mjs:164 -> helper:30; rejection while preparing R31 bytes from new candidate",
+      "oldContract": "Unknown paths remain unchanged; older epochs never gain the R32 crest exception.",
+      "authorizedRequirement": "Emperor moves to Qianqing chair.",
+      "change": "Same Qianqing source identity edit.",
+      "replacementAssessment": "Unknown-path loop occurs before failure, but the historical-epoch checks after line164 do not execute. New route tests cannot substitute for epoch isolation. The helper currently rejects, rather than accidentally accepting, new source.",
+      "status": "Historical preparation incompatibility; preserve fail-closed behavior"
+    },
+    {
+      "title": "src/scene/palace/QianqingCentralSetting.js: screen reverses only exact full bytes and five unique review hunks",
+      "assertion": "r32-screen-source-retention.test.mjs:78;60656930… != aa186b44…",
+      "oldContract": "Exact crest/frieze normalization followed by five unique screen reversals, mutation rejection and no input mutation.",
+      "authorizedRequirement": "Night emperor chair access.",
+      "change": "Same local navigation and metadata changes; screen visual source unchanged.",
+      "replacementAssessment": "Crest conditional normalization correctly leaves unregistered new bytes untouched, so screen hash fails. R71/R72 actual capture shows unchanged screen/crest/material bytes; that is bounded visual evidence, not a replacement for frozen historical reverse dispatch.",
+      "status": "Historical source contract superseded; final scoped R72 identity gate required"
+    },
+    {
+      "title": "src/scene/palace/QianqingCentralSetting.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "assertion": "r32-source-retention.test.mjs:89;60656930… !=3350402d…",
+      "oldContract": "After registered later-layer reversals, complete R32 source reverses to exact R31 and rejects arbitrary changes.",
+      "authorizedRequirement": "Night emperor chair access.",
+      "change": "Same bounded navigation edit.",
+      "replacementAssessment": "The current failure is correct fail-closed rejection of an unregistered epoch, not proof of a broken runtime scene. R72 semantics plus final source scope/hash gate are required; do not weaken or relabel this as passing.",
+      "status": "Historical source contract superseded; no runtime failure established"
+    },
+    {
+      "title": "太和殿 actual hall retains baseline physics and non-target roof/nonroof bytes",
+      "assertion": "r58-taihe-beasts.test.mjs:119:73; physics SHA6bf43a10… !=758eb7b7…",
+      "oldContract": "Walking-beast-only edit leaves every collider/walkable and non-target visual byte identical.",
+      "authorizedRequirement": "Fix player falling into/sticking beneath Taihe throne.",
+      "change": "Replace one4m coarse blocker with8 local dais/chair/table/support solids and add8 permanent support boxes; hall111/22 collider/walkable becomes118/30.",
+      "replacementAssessment": "14 real-controller trap cases at10/60fps plus navigation/preload checks address the authorized physics migration. Independently compared R71/R72 actual hall: roof/remainder/material/triangle/record identity unchanged; exactly1 collider removed,8 added,0 walkables removed,8 added; all retained order unchanged.",
+      "status": "Intentional physics-contract migration; scoped CPU evidence passes, not visual/GPU acceptance"
+    },
+    {
+      "title": "乾清宫 actual hall retains baseline physics and non-target roof/nonroof bytes",
+      "assertion": "r58-taihe-beasts.test.mjs:119:73; physics SHA123c6868… !=80a6e082…",
+      "oldContract": "Unrelated hall physics and non-target visual bytes identical to R58.",
+      "authorizedRequirement": "Emperor physically traverses the hall and sits at Qianqing chair for night work.",
+      "change": "Replace one entire exhibit blocker with27 local solids and27 walkables; hall79/0 becomes105/27.",
+      "replacementAssessment": "One sparse navigation unit test and3 seat-contact tests pass but alone do not cover the whole route or collision-volume preservation. Actual emperor-world test exists; owner is validating four real-world journeys. Independently compared R71/R72 actual hall and resident: non-target bytes unchanged, only1 removed/27 added colliders and27 new walkables.",
+      "status": "Intentional physics-contract migration; scope proven, final world routine acceptance owned by implementer"
+    }
+  ],
+  "summary": "No new runtime behavior failure was established by these nine error stacks. Two Qinan tests now pass after bounded semantic migration. Five exact-source dispatch contracts and two old physics identities remain intentionally incompatible and must not be reported green. Final R72 scope/source/world gates are separate requirements."
+}

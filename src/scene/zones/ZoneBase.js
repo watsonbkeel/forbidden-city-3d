@@ -1,3 +1,4 @@
+import {buildNightBeds} from '../characters/NightBeds.js';
 import {applyTongdaoRoof} from '../palace/special/TongdaoRoof.js';
 import {applyWestRearSouthWindows} from '../palace/special/WestRearSouthWindows.js';
 import {validateWestUnknownAnnexInventoryPolicy,applyWestUnknownAnnexInventory} from '../palace/special/WestUnknownAnnexInventory.js';
@@ -116,6 +117,8 @@ export class ZoneBase {
     if (this.zoneJson.courtyardProfile !== undefined) buildChuxiuCourtyard(this.kit, this.zoneJson);
 
     if (this.zoneJson.southTreeProfile !== undefined) buildSouthCourtTrees(this.kit, this.zoneJson);
+
+    buildNightBeds(this.kit,this.zoneJson);
 
     // Keep distance levels out of the ordinary recursive material merge.
     const yanxiFrames = detachYanxiRuinFrames(this.kit.root);

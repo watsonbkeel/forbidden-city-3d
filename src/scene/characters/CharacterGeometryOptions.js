@@ -22,7 +22,7 @@ export function characterResourceKey(templateId, pose, lod, options = {}) {
   if (!['resting', 'walking'].includes(femalePose)) throw new Error('Unknown female pose');
   if (femalePose === 'walking' && !isFemale(templateId)) throw new Error('Female walking pose requires a female template');
   if (femalePose === 'walking' && pose !== 'standing') throw new Error('Female walking pose requires standing pose');
-  if (!['standard', 'raised-footstool', 'kang-low', 'throne-front-perch'].includes(seatVariant)) throw new Error(`Unknown seat variant: ${seatVariant}`);
+  if (!['standard', 'raised-footstool', 'kang-low', 'throne-front-perch', 'qianqing-low-foot'].includes(seatVariant)) throw new Error(`Unknown seat variant: ${seatVariant}`);
   if (pose !== 'seated' && seatVariant !== 'standard') throw new Error('A seat variant requires seated pose');
   return `${templateId}|${pose}|${lod}|${seatVariant}${femalePose === 'walking' ? '|femalePose=walking' : ''}`;
 }

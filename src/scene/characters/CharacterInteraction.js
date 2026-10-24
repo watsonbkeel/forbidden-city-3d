@@ -19,6 +19,7 @@ export class CharacterInteraction {
   const readyGroups=new Map();
   for(const state of states){
    if(!state.binding)continue;
+   if(state.routineSample){this.samples.set(state.actor.id,state.routineSample);continue;}
    if(state.patrol){const key=state.actor.placement.pathRef;if(!readyGroups.has(key))readyGroups.set(key,[]);readyGroups.get(key).push(state);}
    else this.samples.set(state.actor.id,{position:state.binding.position,rotationYRad:state.binding.rotationYRad,speedMetersPerSecond:0});
   }

@@ -86,8 +86,7 @@
       "AUX-FA644986A43E",
       "AUX-07B73FD6FAA8",
       "AUX-D47143552DD1",
-      "AUX-07127691FCD1",
-      "AUX-3001DA0EEDCA"
+      "AUX-07127691FCD1"
     ],
     "expansionTaskIds": [
       "EXPAND-06"
@@ -18079,69 +18078,6 @@
       "currentCycleAccepted": false,
       "optional": false,
       "priority": 5652,
-      "facets": {
-        "exterior": {
-          "status": "DIFFED",
-          "notApplicableReason": null,
-          "currentCycleReview": "DIFFED",
-          "nextAction": "Resolve physical parent, instance boundary and appropriate interior/exterior applicability; never infer completion from unnamed geometry.",
-          "currentCycleAccepted": false
-        },
-        "interior": {
-          "status": "DIFFED",
-          "notApplicableReason": null,
-          "currentCycleReview": "DIFFED",
-          "nextAction": "Resolve physical parent, instance boundary and appropriate interior/exterior applicability; never infer completion from unnamed geometry.",
-          "currentCycleAccepted": false
-        }
-      },
-      "bindingStatus": "REPOSITORY_INSTANCE_UNMAPPED",
-      "sourceEvidence": {},
-      "sourceLine": null,
-      "cautions": "Code zone is not physical courtyard. Static declaration is not proof of rendered entity. Reclassify with migration record; do not remove from scope.",
-      "nextAction": "Inspect source declaration + builder dispatch + actual scene, attach to existing physical entity if same, otherwise append independently evidenced entity; record merge without shrinking original register.",
-      "sectionAssignment": "PROVISIONAL_CODE_ZONE_NOT_PHYSICAL_COURT",
-      "isNewBuildingProposal": false,
-      "mayMergeWithExistingId": true,
-      "persistentIdPolicy": "Preserve this ID after imports; record mergedInto + reason rather than deleting if declaration belongs to an existing physical entity.",
-      "currentCycleDeclarationReview": {
-        "at": "2026-10-23T04:24:53.770080+00:00",
-        "evidence": "F-REVIEW/SIX-COURTS-AUDIT.json",
-        "identityAccepted": false,
-        "existingDeclarationOnly": true,
-        "inventory": "NOT_REVIEWED",
-        "knownEmpty": false,
-        "presetUse": "UNVERIFIED",
-        "roomBoundaries": "NOT_VALIDATED",
-        "genericFurnitureWithheld": false
-      }
-    },
-    {
-      "id": "AUX-3001DA0EEDCA",
-      "name": "west-six / courtWalls / 53",
-      "section": "F",
-      "release": "R63-F",
-      "kind": "repository_auxiliary_or_region",
-      "entityId": null,
-      "entityCountStatus": "EXISTING_DECLARATION_AUDIT_NOT_ADDITIONAL_PHYSICAL_BUILDING",
-      "runtimeBindings": [
-        {
-          "inventoryId": "RI-3001DA0EEDCA",
-          "ref": "data/zones/west-six.json#/items/53",
-          "kind": "courtWalls",
-          "bindingStatus": "STATIC_DECLARATION_NOT_CURRENT_RENDER_PROOF"
-        }
-      ],
-      "parentCandidates": [],
-      "requiredChildIds": [],
-      "expansionTaskIds": [
-        "EXPAND-06"
-      ],
-      "actualChanges": [],
-      "acceptanceRecords": [],
-      "currentCycleAccepted": false,
-      "optional": false,
-      "priority": 5653,
       "facets": {
         "exterior": {
           "status": "DIFFED",

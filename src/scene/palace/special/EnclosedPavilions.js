@@ -85,6 +85,21 @@ export function buildEnclosedPavilion(kit,item) {
   box(key==='linxi'?'linxi-flat-ceiling':'arrow-plain-ceiling','ceiling',2*A,.08,2*B,0,y+H,0,false);
   for(const s of[-1,1]){box(key+'-frame-beam','red',p.w+.5,.4,.35,0,y+p.colH-.2,s*p.d/2,false);box(key+'-frame-beam','red',.35,.4,p.d+.5,s*p.w/2,y+p.colH-.2,0,false);}
   if(key==='arrow')buildArrowSouthKnees(kit,f,item);
+  if(key==='linxi') {
+    const candidates=[];f.traverse(m=>{if(m.isMesh&&m.material===kit.gold&&m.parent.name.startsWith('roof'))candidates.push(m)});
+    if(candidates.length!==1)throw Error('R69 Linxi exact retained gold finial required');
+    const prior=candidates[0];prior.geometry.computeBoundingBox();const b=prior.geometry.boundingBox;
+    if(Math.abs(b.min.x+b.max.x)>1e-5||Math.abs(b.min.z+b.max.z)>1e-5||b.max.y<=b.min.y)throw Error('R69 Linxi finial geometry drift');
+    const Y=b.min.y,H=b.max.y-Y,root=prior.parent;
+    const fit={source:'https://img.dpm.org.cn/Uploads/Picture/2020/07/15/s5f0ebf845b521.jpg',status:'ROUND_CROWN_NECK_AND_BASE_PHOTO_FIT_NOT_SURVEYED',accepted:false,photographyDate:null,retainedRoof:true,decoration:'PLAIN_BANDS_NO_INVENTED_MOTIFS'};
+    prior.removeFromParent();prior.geometry.dispose();
+    const add=(suffix,geometry,yy)=>{const m=kit.mesh(root,geometry,kit.gold,0,yy,0);m.name=m.userData.role='r69-linxi-finial-'+suffix;m.userData.sourceFit={...fit};return m};
+    add('base',new THREE.CylinderGeometry(H*.24,H*.30,H*.15,24),Y+H*.075);
+    add('rim',new THREE.CylinderGeometry(H*.27,H*.26,H*.08,24),Y+H*.19);
+    add('neck',new THREE.CylinderGeometry(H*.15,H*.20,H*.18,24),Y+H*.32);
+    add('round-crown',new THREE.SphereGeometry(H*.30,24,16),Y+H*.70);
+    g.finialFit=fit;
+  }
   kit._lastFurnish={cover:[],spawns:[{x:0,z:0}]};
   kit.registerRoom(f,{name:item.name,kind:key+'-viewing-region',x0:-A+.25,x1:A-.25,z0:-B,z1:B,y,h:H,doors:[{x:0,z:-B},{x:0,z:B}]});
   f.userData.structure=g;f.name=item.name+'·有围护布局局部拟合';return{...built,g};

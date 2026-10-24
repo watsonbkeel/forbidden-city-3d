@@ -1,0 +1,262 @@
+{
+  "schemaVersion": "r71-m-review/v1",
+  "at": "2026-10-24T08:02:06.060430+00:00",
+  "scope": {
+    "masterObjects": 1,
+    "featuresReviewed": 14,
+    "featureStatusCounts": {
+      "PARTIAL": 4,
+      "BLOCKED_SOURCE": 10
+    },
+    "acceptedObjects": 0
+  },
+  "record": {
+    "id": "FC-88674ADACB",
+    "name": "端门",
+    "section": "M",
+    "parentText": "午门以南",
+    "nature": "建筑或构筑物",
+    "sourceLine": 798,
+    "cautions": "官方端门数字馆公告确认端门内展厅及东西马道出入关系。；本来源为2017年公告，只确认历史使用关系；未核到现状内外建筑专图。若项目边界限紫禁城城墙内，则保留为外延可选项。",
+    "kind": "building_or_structure_candidate",
+    "release": "R70-M",
+    "entityId": "FC-88674ADACB",
+    "entityCountStatus": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
+    "aliases": [],
+    "parentCandidates": [],
+    "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+    "registryBindings": [],
+    "placeBindings": [],
+    "runtimeBindings": [
+      {
+        "ref": "src/scene/palace/special/DuanmenBackdrop.js#buildDuanmenBackdrop",
+        "kind": "non-enterable-boundary-exterior-backdrop",
+        "bindingStatus": "ACTUAL_MESH_CPU_VERIFIED_PARTIAL_NOT_SURVEYED"
+      }
+    ],
+    "bindingStatus": "DISTANT_EXTERIOR_ONLY_PARTIAL",
+    "identitySourceIds": [
+      "SRC-17C6205AB027"
+    ],
+    "sourceEvidence": {
+      "exterior": {
+        "inputStatus": "NO_CONFIRMED_IMAGE_IN_INPUT",
+        "inputText": "未找到本体外观图；待定位/补图",
+        "sourceIds": [
+          "R71-M-FIG17",
+          "R71-M-P161"
+        ],
+        "actuallyViewedThisPlanningPass": true,
+        "full360Viewed": false,
+        "targetVersionConfirmed": false
+      },
+      "interior": {
+        "inputStatus": "NO_CONFIRMED_IMAGE_IN_INPUT",
+        "inputText": "未找到可确认的本项室内图；待补",
+        "sourceIds": [],
+        "actuallyViewedThisPlanningPass": false,
+        "full360Viewed": false,
+        "targetVersionConfirmed": false
+      }
+    },
+    "facets": {
+      "exterior": {
+        "status": "PARTIAL",
+        "currentCycleReview": "PARTIAL",
+        "inheritedProgressRetained": false,
+        "baselineRecords": [],
+        "sourceIds": [
+          "R71-M-FIG17",
+          "R71-M-P161"
+        ],
+        "notApplicableReason": null,
+        "features": [
+          {
+            "id": "footprint_orientation_court_connections",
+            "status": "PARTIAL",
+            "acceptedScope": null,
+            "currentCycleAccepted": false,
+            "reviewEvidence": "M-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "remaining": "South axial distant fit at z=-760; spacing, size and ground patch estimated; no surveyed courtyard connections or entry."
+          },
+          {
+            "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+            "status": "PARTIAL",
+            "acceptedScope": null,
+            "currentCycleAccepted": false,
+            "reviewEvidence": "M-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "remaining": "Double-eaved hip-and-gable yellow tile class supported. Generic roof details, pitch, scale, ridge beasts and joinery unverified."
+          },
+          {
+            "id": "bays_columns_brackets_beams_paint_zones",
+            "status": "BLOCKED_SOURCE",
+            "acceptedScope": null,
+            "currentCycleAccepted": false,
+            "reviewEvidence": "M-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "remaining": "No sufficiently resolved current-state source. No invented interior, plaque, portal or architectural detail."
+          },
+          {
+            "id": "doors_windows_openings_walls_screens",
+            "status": "BLOCKED_SOURCE",
+            "acceptedScope": null,
+            "currentCycleAccepted": false,
+            "reviewEvidence": "M-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "remaining": "No sufficiently resolved current-state source. No invented interior, plaque, portal or architectural detail."
+          },
+          {
+            "id": "terrace_steps_imperial_ramp_rails_posts",
+            "status": "PARTIAL",
+            "acceptedScope": null,
+            "currentCycleAccepted": false,
+            "reviewEvidence": "M-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "remaining": "Coarse red platform mass fitted to distant photo; steps, ramps, parapet and rails unresolved and unbuilt."
+          },
+          {
+            "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+            "status": "BLOCKED_SOURCE",
+            "acceptedScope": null,
+            "currentCycleAccepted": false,
+            "reviewEvidence": "M-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "remaining": "No sufficiently resolved current-state source. No invented interior, plaque, portal or architectural detail."
+          },
+          {
+            "id": "plaques_text_placement_orientation_occlusion",
+            "status": "BLOCKED_SOURCE",
+            "acceptedScope": null,
+            "currentCycleAccepted": false,
+            "reviewEvidence": "M-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "remaining": "No sufficiently resolved current-state source. No invented interior, plaque, portal or architectural detail."
+          },
+          {
+            "id": "unique_courtyard_facilities_locations",
+            "status": "PARTIAL",
+            "acceptedScope": null,
+            "currentCycleAccepted": false,
+            "reviewEvidence": "M-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "remaining": "Parallel modern tree-row impression; count, species, height and spacing fitted, not historical inventory. No other facilities claimed."
+          }
+        ],
+        "visualEvidence": {
+          "before": null,
+          "after": null,
+          "referenceComparison": null,
+          "browserRun": null
+        },
+        "targetVersion": {
+          "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+          "photographyDate": null,
+          "doNotMixPeriods": true
+        },
+        "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+        "currentCycleAccepted": false,
+        "currentCycleScopeReview": {
+          "at": "2026-10-24T08:02:06.060430+00:00",
+          "scopeScanComplete": true,
+          "browserAcceptance": false,
+          "wholeObjectAccepted": false
+        }
+      },
+      "interior": {
+        "status": "BLOCKED_SOURCE",
+        "currentCycleReview": "BLOCKED_SOURCE",
+        "inheritedProgressRetained": false,
+        "baselineRecords": [],
+        "sourceIds": [],
+        "notApplicableReason": null,
+        "features": [
+          {
+            "id": "room_partitions_portals_column_grid_levels_steps_floor",
+            "status": "BLOCKED_SOURCE",
+            "acceptedScope": null,
+            "currentCycleAccepted": false,
+            "reviewEvidence": "M-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "remaining": "No sufficiently resolved current-state source. No invented interior, plaque, portal or architectural detail."
+          },
+          {
+            "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+            "status": "BLOCKED_SOURCE",
+            "acceptedScope": null,
+            "currentCycleAccepted": false,
+            "reviewEvidence": "M-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "remaining": "No sufficiently resolved current-state source. No invented interior, plaque, portal or architectural detail."
+          },
+          {
+            "id": "principal_furniture_type_count_location_facing_scale",
+            "status": "BLOCKED_SOURCE",
+            "acceptedScope": null,
+            "currentCycleAccepted": false,
+            "reviewEvidence": "M-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "remaining": "No sufficiently resolved current-state source. No invented interior, plaque, portal or architectural detail."
+          },
+          {
+            "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+            "status": "BLOCKED_SOURCE",
+            "acceptedScope": null,
+            "currentCycleAccepted": false,
+            "reviewEvidence": "M-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "remaining": "No sufficiently resolved current-state source. No invented interior, plaque, portal or architectural detail."
+          },
+          {
+            "id": "function_specificity_worship_library_residential_exhibition",
+            "status": "BLOCKED_SOURCE",
+            "acceptedScope": null,
+            "currentCycleAccepted": false,
+            "reviewEvidence": "M-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "remaining": "No sufficiently resolved current-state source. No invented interior, plaque, portal or architectural detail."
+          },
+          {
+            "id": "visible_missing_objects_and_unsupported_model_objects",
+            "status": "BLOCKED_SOURCE",
+            "acceptedScope": null,
+            "currentCycleAccepted": false,
+            "reviewEvidence": "M-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "remaining": "No sufficiently resolved current-state source. No invented interior, plaque, portal or architectural detail."
+          }
+        ],
+        "visualEvidence": {
+          "before": null,
+          "after": null,
+          "referenceComparison": null,
+          "browserRun": null
+        },
+        "targetVersion": {
+          "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+          "photographyDate": null,
+          "doNotMixPeriods": true
+        },
+        "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+        "currentCycleAccepted": false,
+        "currentCycleScopeReview": {
+          "at": "2026-10-24T08:02:06.060430+00:00",
+          "scopeScanComplete": true,
+          "browserAcceptance": false,
+          "wholeObjectAccepted": false
+        }
+      }
+    },
+    "requiredChildIds": [],
+    "expansionTaskIds": [],
+    "actualChanges": [
+      {
+        "release": "R71-M",
+        "scope": "Reversible non-enterable southern distant exterior only",
+        "runtimeRef": "src/scene/palace/special/DuanmenBackdrop.js#buildDuanmenBackdrop",
+        "measured": false,
+        "navigationChanged": false
+      }
+    ],
+    "acceptanceRecords": [],
+    "currentCycleAccepted": false,
+    "optional": true,
+    "priority": 12000,
+    "nextAction": "Resolve exact exterior metrics, close views and current interior sources; traversable extension remains deferred. No full object acceptance.",
+    "scopeReviewCompleted": true
+  },
+  "limitations": [
+    "No surveyed dimensions",
+    "No room or plaque acceptance",
+    "No portal route",
+    "No new map point",
+    "No GPU/mobile/full route verification"
+  ]
+}

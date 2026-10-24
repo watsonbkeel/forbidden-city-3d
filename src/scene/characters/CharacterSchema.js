@@ -5,7 +5,7 @@ const text=value=>typeof value==='string'&&value.length>0;
 const finiteRange=(value,min,max)=>Number.isFinite(value)&&value>=min&&value<=max;
 const horizontal=value=>vec(value)&&Math.hypot(value[0],value[2])>1e-6&&Math.abs(value[1])<1e-6;
 const orderedBounds=value=>vec(value,4)&&value[0]<value[1]&&value[2]<value[3];
-const POSES=['standing','seated','kneeling'];
+const POSES=['standing','seated','kneeling','sleeping'];
 const REQUIRED_IDS=Object.freeze([...frozenScope.requiredActorIds]);
 const REQUIRED_SCENES=Object.freeze({...frozenScope.requiredScenes});
 const RELEASE_COVERAGE=Object.freeze(structuredClone(frozenScope.releaseCoverage));
@@ -63,7 +63,7 @@ export function validateCharacterRegistry(registry){
  for(const s of maps.seats.values()){
   const q=`seats.${s.id}`,a=ref('anchors',s.anchorRef,q+'.anchorRef'),surface=ref('surfaces',s.surfaceRef,q+'.surfaceRef');sameZone(s,a,q);sameZone(s,surface,q);
   if(!vec(s.localSeatContactMeters)||!vec(s.localPelvisMeters)||!orderedBounds(s.seatBoundsLocalMeters)||!Number.isFinite(s.seatTopHeightMeters)||!horizontal(s.forwardLocal))err(q,'Complete finite seat contact, pelvis and facing required');
-  if(!['standard','raised-footstool','throne-front-perch','kang-low'].includes(s.seatVariant))err(q+'.seatVariant','Verified pose variant required');
+  if(!['standard','raised-footstool','throne-front-perch','kang-low','qianqing-low-foot'].includes(s.seatVariant))err(q+'.seatVariant','Verified pose variant required');
   if(!Array.isArray(s.footSupport?.localContactsMeters)||s.footSupport.localContactsMeters.length!==2||s.footSupport.localContactsMeters.some(v=>!vec(v)))err(q+'.footSupport','Two real foot-support contacts required');
   if(!finiteRange(s.footSupport?.heightToleranceMeters,.000001,.03)||!text(s.geometrySource))err(q,'Foot tolerance and geometry source required');
   if(vec(s.localSeatContactMeters)&&Math.abs(s.localSeatContactMeters[1]-s.seatTopHeightMeters)>.001)err(q,'Seat contact must use the named actual seat height');

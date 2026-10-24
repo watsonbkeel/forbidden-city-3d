@@ -46,7 +46,7 @@ export class CharacterManager {
     if (this.enabled === !!enabled) return;
     this.enabled = !!enabled; this.generation++;
     if (!this.enabled) {
-      this.nearIds.clear();
+      this.nearIds.clear();this.routines?.reset(this.states.values());
       for (const state of this.states.values()) { state.patrol?.dispose?.(); state.patrol = null; state.binding = null; state.pending = false; state.request = null; state.revision = undefined; state.lod = 3; state.activeSchedule = null;state.interactionActivated=false; }
       this.interaction?.clear();this.renderer.clear(); this._clearStats();
     }
@@ -82,7 +82,7 @@ export class CharacterManager {
       } else this._acceptBinding(state, result);
     } catch (error) { this._acceptBinding(state, { status: 'error', reason: String(error) }); }
   }
-  update(dt, { camera, daylight = 1, quality = 'high', viewportHeight = 1080, hidden = false } = {}) {
+  update(dt, { camera, daylight = 1, quality = 'high', viewportHeight = 1080, hidden = false, beijingTime = null } = {}) {
     if (this.disposed || !this.enabled) return;
     if (hidden) { this.hidden = true;this.interaction?.clear(); return; }
     const start = this.now();
@@ -95,13 +95,14 @@ export class CharacterManager {
     const candidates = [];
     for (const state of this.states.values()) {
       const actor = state.actor;
-      this._resolve(state);
+      if(!state.routine)this._resolve(state);
       if (state.pending) this.stats.pending++;
       if (state.error) this.stats.errors++;
       if (!state.binding) continue;
       this.stats.loaded++;
-      if(actor.placement?.mode==='path'&&this.patrolFactory)state.patrol??=this.patrolFactory(actor,state.binding);
+      if(!state.routine&&actor.placement?.mode==='path'&&this.patrolFactory)state.patrol??=this.patrolFactory(actor,state.binding);
     }
+    this.routines?.update(this.states.values(),elapsed,beijingTime);
     this.interaction?.begin(this.states.values(),elapsed);
     for (const state of this.states.values()) {
       if(!state.binding)continue;
@@ -115,7 +116,7 @@ export class CharacterManager {
         const sample = state.patrol.sample(this.simulationSeconds, actor.behavior?.followerIndex ?? 0);
         if (sample?.position) { position = sample.position; rotationYRad = sample.rotationYRad; speed = sample.speedMetersPerSecond ?? sample.speed ?? 0; }
       }
-      const projection = characterProjection(position, camera, viewportHeight);
+      const projection = characterProjection(position, camera, viewportHeight,actor.behavior?.basePose);
       if(this.interaction?.nearby({position}))projection.inFrustum=true;
       // All-day virtual-tour availability; original schedule metadata remains
       // interpretive, not a claim of real historical overnight ceremonies.
@@ -143,7 +144,7 @@ export class CharacterManager {
     return { ...this.stats, enabled:this.enabled, rollout:this.rollout,
       contentEnabled:this.contentEnabled, contentApproved:false, previewActive:this.developmentPreviewActive,
       acceptance:{complete:false,appearance:'confirmed',gpu:'unverified',mobile:'unverified',history:'partial'},
-      simulationSeconds: this.simulationSeconds, interaction:this.interaction?{...this.interaction.last}:null, updateP50Ms: percentile(this.samples,.5), updateP95Ms: percentile(this.samples,.95),
+      simulationSeconds: this.simulationSeconds, routine:this.routines?{night:this.routines.night,...this.routines.stats}:null, interaction:this.interaction?{...this.interaction.last}:null, updateP50Ms: percentile(this.samples,.5), updateP95Ms: percentile(this.samples,.95),
       ...(this.renderer.snapshot?.() ?? {}), diagnostics:[...this.states.values()].filter(s=>s.error||s.pending).map(s=>({id:s.actor.id,required:s.actor.required,status:s.error?'error':'pending',reason:s.error??'waiting-support'})) };
   }
   dispose() {

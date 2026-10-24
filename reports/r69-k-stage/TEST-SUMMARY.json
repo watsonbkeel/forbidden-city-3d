@@ -1,0 +1,32 @@
+{
+  "focusedInventoryAndFinial": {
+    "pass": 12,
+    "fail": 0,
+    "report": "combined-inventory-finial.log"
+  },
+  "affectedOuterWorldEntryPhysics": {
+    "pass": 100,
+    "fail": 0,
+    "report": "affected-outer-physics.tap.gz"
+  },
+  "queueStorage": {
+    "pass": 29,
+    "fail": 0,
+    "report": "queue-tests.log"
+  },
+  "currentMaterialAndMerge": {
+    "pass": 28,
+    "fail": 0,
+    "report": "current-real-materials.tap.gz"
+  },
+  "historicalMaterial": {
+    "pass": 27,
+    "fail": 1,
+    "report": "real-materials.tap.gz",
+    "baselineFailureReproduced": "baseline-r68-jiyun-material.tap.gz",
+    "note": "Jiyun multimaterial nameboard array checked as scalar by unchanged R48 test. Current test validates each actual material and shared ownership."
+  },
+  "GPU": false,
+  "physicalPhone": false,
+  "completeContinuousRoute": false
+}

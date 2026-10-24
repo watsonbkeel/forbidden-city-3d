@@ -23,7 +23,7 @@ for(const id of ['outer-east','outer-west']){
   const trunks=[],crowns=[];b.kit.root.traverse(o=>{if(o.userData.role==='south-tree-trunk')trunks.push(o);if(o.userData.role==='south-tree-crown')crowns.push(o);});
   assert.equal(trunks.length,p.trees.length);assert.ok(crowns.length>=p.trees.length);b.kit.root.updateMatrixWorld(true);
   for(const trunk of trunks){const box=new THREE.Box3().setFromObject(trunk),collider=b.kit.colliders.find(c=>c.containsBox(box));assert.ok(collider,'actual complete trunk must be contained by its collider');}
-  for(const crown of crowns){const box=new THREE.Box3().setFromObject(crown);assert.ok(box.min.y>3,'no uncollidable low crown at pedestrian body height');assert.ok(b.kit.owned.includes(crown.material));assert.equal(crown.material.vertexColors,false,'colors survive ordinary merge');}
+  for(const crown of crowns){const box=new THREE.Box3().setFromObject(crown);assert.ok(box.min.y>2.2,'photo-fitted lower crown remains above pedestrian head height');assert.ok(b.kit.owned.includes(crown.material));assert.equal(crown.material.vertexColors,false,'colors survive ordinary merge');}
   assert.ok(b.kit.colliders.length===p.trees.length);assert.ok(result.triangles<16000);
  });
  test(`${id} final merged tree geometry forbids flight landing and retains open axial pedestrian approach`,()=>{

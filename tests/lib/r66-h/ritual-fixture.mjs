@@ -1,0 +1,2 @@
+import{readFileSync}from'node:fs';import{CourtKit}from'../../../src/scene/palace/kit.js';import{library}from'../inner-palace-fixture.mjs';import{buildRitualHall}from'../../../src/scene/palace/special/RitualHalls.js';
+export function ritualFixture(name='英华殿'){const item=JSON.parse(readFileSync(new URL('../../../data/zones/outer-west.json',import.meta.url))).items.find(i=>i.kind==='hall'&&i.name===name),kit=new CourtKit(library(),'outer-west'),b=buildRitualHall(kit,item);kit.root.updateMatrixWorld(true);return{kit,item,...b,dispose:()=>kit.dispose(kit.root)}};

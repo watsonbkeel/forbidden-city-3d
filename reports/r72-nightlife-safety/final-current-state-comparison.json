@@ -1,0 +1,29 @@
+{
+  "candidate": {
+    "pass": 1139,
+    "fail": 151,
+    "total": 1290
+  },
+  "baseline": {
+    "pass": 1146,
+    "fail": 144,
+    "total": 1290
+  },
+  "candidateOnly": [
+    "all historical entry chains consume crest only through exact full-byte dispatch",
+    "crest reverses only exact full bytes and two unique review hunks without mutating input",
+    "src/scene/palace/QianqingCentralSetting.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+    "src/scene/palace/QianqingCentralSetting.js: screen reverses only exact full bytes and five unique review hunks",
+    "unregistered paths and changed epochs cannot acquire a crest exception",
+    "乾清宫 actual hall retains baseline physics and non-target roof/nonroof bytes",
+    "太和殿 actual hall retains baseline physics and non-target roof/nonroof bytes"
+  ],
+  "baselineOnly": [],
+  "shared": 144,
+  "sharedAuditCategories": {
+    "actualDrift": 15,
+    "affectedDomainMasked": 27,
+    "oldFirstFailureUnchanged": 102
+  },
+  "wholeHistoricalSuiteGreen": false
+}

@@ -1,0 +1,105 @@
+✖ R69 exact K legacy inventory withheld: 含清斋 (106.957605ms)
+✖ R69 exact K legacy inventory withheld: 延寿堂 (46.016477ms)
+✖ R69 exact K legacy inventory withheld: 慈荫楼 (51.575616ms)
+✖ R69 exact K legacy inventory withheld: 大佛堂 (26.835306ms)
+✖ R69 exact K legacy inventory withheld: 寿安宫 (22.93264ms)
+✔ R69 non-target retained: 慈宁宫 (48.613797ms)
+✔ R69 non-target retained: 宝相楼 (144.574694ms)
+✔ R69 non-target retained: 吉云楼 (65.372696ms)
+✔ R69 non-target retained: 延春阁 (85.307767ms)
+✔ R69 non-target retained: 南薰殿 (36.032564ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 5
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 844.540438
+
+✖ failing tests:
+
+test at tests/r69-k-unknown-inventory.test.mjs:3:25
+✖ R69 exact K legacy inventory withheld: 含清斋 (106.957605ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  6 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r69-k-cining-fidelity/tests/r69-k-unknown-inventory.test.mjs:3:295)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 6,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r69-k-unknown-inventory.test.mjs:3:25
+✖ R69 exact K legacy inventory withheld: 延寿堂 (46.016477ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  6 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r69-k-cining-fidelity/tests/r69-k-unknown-inventory.test.mjs:3:295)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 6,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r69-k-unknown-inventory.test.mjs:3:25
+✖ R69 exact K legacy inventory withheld: 慈荫楼 (51.575616ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  8 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r69-k-cining-fidelity/tests/r69-k-unknown-inventory.test.mjs:3:295)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 8,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r69-k-unknown-inventory.test.mjs:3:25
+✖ R69 exact K legacy inventory withheld: 大佛堂 (26.835306ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  8 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r69-k-cining-fidelity/tests/r69-k-unknown-inventory.test.mjs:3:295)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 8,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r69-k-unknown-inventory.test.mjs:3:25
+✖ R69 exact K legacy inventory withheld: 寿安宫 (22.93264ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  8 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r69-k-cining-fidelity/tests/r69-k-unknown-inventory.test.mjs:3:295)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 8,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,57 @@
+{
+  "scope": "ACTUAL_PRODUCTION_TRIANGLES_HD_ALBEDO_CPU_NOT_WEBGL",
+  "sourcePhotoRedistributed": false,
+  "source": "https://www.dpm.org.cn/explore/building/236568.html",
+  "sourcePhoto": "https://img.dpm.org.cn/Uploads/Picture/dc/8412.jpg",
+  "sourceCommit": "7f34f7c01dddf11ff685d14426a768d95a28ee78",
+  "modifiedSourceHashes": {
+    "src/scene/palace/kit.js": "2e44cd79dd92d09f28bcacdc82925c9279b93f851b10dcf22d94278038cd6aa2",
+    "src/scene/palace/special/YinghuaGate.js": "9f519bfb184497da95b6721ff10dc24fd1010560db359cf89ea339b6d2bce50f",
+    "data/zones/outer-west.json": "1871bb7c32e1a90c76890a6ecd08194ee1367fc568a1dd9df2266ff1e5f3e33a"
+  },
+  "limitation": "No GPU PBR, normal maps or contact shadows; fixed camera before/after, no historical measured reconstruction.",
+  "views": [
+    {
+      "state": "after",
+      "view": {
+        "name": "south",
+        "eye": [
+          0,
+          1.7,
+          -15
+        ],
+        "target": [
+          0,
+          2.8,
+          0
+        ],
+        "fov": 55
+      },
+      "path": "reports/r66-h-stage/yinghua-gate-preview/south-after.png",
+      "sha256": "54517066753ad236261e3eb58b73423da7c30859b4ecc81eb8d34ed87765c525",
+      "geometrySHA256": "aad71cdf23963d0e097646bc48c770f22cfe1cf22bcf4271476142c283fed424",
+      "triangles": 1380
+    },
+    {
+      "state": "after",
+      "view": {
+        "name": "arch",
+        "eye": [
+          0,
+          1.7,
+          -6
+        ],
+        "target": [
+          0,
+          2.6,
+          0
+        ],
+        "fov": 65
+      },
+      "path": "reports/r66-h-stage/yinghua-gate-preview/arch-after.png",
+      "sha256": "2e9d2086215822efced28d48a0907d974b79efe972df5d77348c2ec822828496",
+      "geometrySHA256": "aad71cdf23963d0e097646bc48c770f22cfe1cf22bcf4271476142c283fed424",
+      "triangles": 1380
+    }
+  ]
+}

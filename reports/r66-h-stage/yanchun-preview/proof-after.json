@@ -1,0 +1,57 @@
+{
+  "scope": "ACTUAL_PRODUCTION_TRIANGLES_HD_ALBEDO_CPU_NOT_WEBGL",
+  "sourcePhotoRedistributed": false,
+  "source": "https://www.dpm.org.cn/explore/building/236524.html",
+  "sourcePhoto": "https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d41b19d7f7.jpg",
+  "sourceSHA256": "fda0c35ed50b0d23f5b4151702faec1089f74fff3c9e999d170579d159e162f9",
+  "sourceCommit": "aa5793395a16fbd870ce758174a5f9438f3bc423",
+  "modifiedSourceHashes": {
+    "src/scene/palace/special/RemainingOuterHalls.js": "7620a73cad10957843339414e8eb731a50f82a6623cacc8e3bc9ddab4df8cdd7",
+    "src/scene/palace/special/YanchunSouthPhotoFit.js": "025c96f2e693fc95f4c83813aa6596416bee18f5b356b1048135951a0379cef3"
+  },
+  "limitation": "No GPU PBR, normal maps or contact shadows; fixed camera before/after, no historical measured reconstruction.",
+  "views": [
+    {
+      "state": "after",
+      "view": {
+        "name": "south",
+        "eye": [
+          0,
+          2.3,
+          -40
+        ],
+        "target": [
+          0,
+          5,
+          0
+        ],
+        "fov": 51
+      },
+      "path": "reports/r66-h-stage/yanchun-preview/south-after.png",
+      "sha256": "9668603af82be5203adc3f66886c0195e2267a65aac1857acb96136d2376622d",
+      "geometrySHA256": "4c12f93fd0df8f91e6506ddcbff53d6f7ccbdb16f2c2267f0ba20c9207a9dfab",
+      "triangles": 21152
+    },
+    {
+      "state": "after",
+      "view": {
+        "name": "front-detail",
+        "eye": [
+          0,
+          2.3,
+          -25
+        ],
+        "target": [
+          0,
+          5,
+          -12
+        ],
+        "fov": 65
+      },
+      "path": "reports/r66-h-stage/yanchun-preview/front-detail-after.png",
+      "sha256": "6c077f09086ff3966ec09a7190df7f7862663df65b7899cc9d2c2a710a3bd0c0",
+      "geometrySHA256": "4c12f93fd0df8f91e6506ddcbff53d6f7ccbdb16f2c2267f0ba20c9207a9dfab",
+      "triangles": 21152
+    }
+  ]
+}

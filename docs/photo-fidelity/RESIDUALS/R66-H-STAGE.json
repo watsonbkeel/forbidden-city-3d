@@ -1,0 +1,628 @@
+{
+  "release": "R66-H",
+  "stage": "ALL43_EXECUTABILITY_SCAN_WITH_BOUNDED_IMPLEMENTATION_NOT_FULL_ACCEPTANCE",
+  "scope": {
+    "originalObjects": 43,
+    "requiredFeatures": 586,
+    "auxiliaryDeclarations": 3,
+    "featureStatuses": {
+      "DIFFED": 508,
+      "PARTIAL": 12,
+      "BLOCKED_SOURCE": 66
+    },
+    "accepted": 0
+  },
+  "objects": [
+    {
+      "id": "FC-DC1832BAF2",
+      "name": "重华宫",
+      "boundedChanges": {
+        "E3": "只新增已看正面三开间抱厦下六个素轮廓肩撑，实接旧柱梁；未雕花、未改整殿。",
+        "E6": "只新增已看正面三开间抱厦下六个素轮廓肩撑，实接旧柱梁；未雕花、未改整殿。",
+        "I3": "仅精确移除四件无源通用宝座及一个专属包络，UNKNOWN/knownEmpty=false；无据房间边界不变且标未验。",
+        "I6": "仅精确移除四件无源通用宝座及一个专属包络，UNKNOWN/knownEmpty=false；无据房间边界不变且标未验。"
+      },
+      "remaining": "背面、两侧、真实雕刻和彩画、全院定位、殿内完整固定装修及本殿家具摆放仍未核。",
+      "categories": [
+        "BOUNDED_IMPLEMENTATION",
+        "VERIFY_PENDING_BROWSER",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-ED17D936A5",
+      "name": "崇敬殿",
+      "boundedChanges": {},
+      "remaining": "乐善堂照片的完整房间边界、当期陈设、现存前院外立面、位置和通行连接待核；缺少模型绑定不是没有室内来源。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "SOURCE_POSITIVE_IDENTITY_OR_ROOM_MAPPING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-D16E18CADB",
+      "name": "葆中殿",
+      "boundedChanges": {},
+      "remaining": "缺本殿具名现状外观、古香斋房间总览、当期家具摆放和坐标。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "DIRECT_IMAGE_SOURCE_GAP",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-EDE61DA470",
+      "name": "浴德殿",
+      "boundedChanges": {},
+      "remaining": "抑斋整室边界、拍摄年代、现状外观、殿间位置与通行连接仍待核。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "SOURCE_POSITIVE_IDENTITY_OR_ROOM_MAPPING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-8A90E1618A",
+      "name": "翠云馆",
+      "boundedChanges": {},
+      "remaining": "本体各面、长春书屋/主室图像、后院几何及附属实例定位未核。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "DIRECT_IMAGE_SOURCE_GAP",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-BA950A5527",
+      "name": "重华门",
+      "boundedChanges": {},
+      "remaining": "门洞、顶形、门扇姿态、梁架、匾额、院墙接缝及精确位置仍需本门图像。",
+      "categories": [
+        "DIRECT_IMAGE_SOURCE_GAP",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-AD667FFA69",
+      "name": "漱芳斋",
+      "boundedChanges": {},
+      "remaining": "房间精确定位、整室陈设、现代接待/历史布置分期、前后殿连接和坐标未核。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-DCA93F15C3",
+      "name": "金昭玉粹",
+      "boundedChanges": {},
+      "remaining": "五间后殿包络、穿堂接续、东西室精确方位/边界、其余房间和当期陈设未知。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "SOURCE_POSITIVE_IDENTITY_OR_ROOM_MAPPING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [
+        "FC-1E7AEF1723",
+        "FC-700739D144"
+      ],
+      "accepted": false
+    },
+    {
+      "id": "FC-8741AF42DE",
+      "name": "漱芳斋院内戏台",
+      "boundedChanges": {},
+      "remaining": "背面、后台、梁架完整范围、台基高差、朝向/院落连接和通行尚未完成。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-1E7AEF1723",
+      "name": "风雅存戏台",
+      "boundedChanges": {},
+      "remaining": "舞台与后部耳房的实际连接、尺寸、当前陈设时期以及宿主坐标未核。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "INDOOR_COMPONENT_NOT_STANDALONE_BUILDING",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-700739D144",
+      "name": "高云情",
+      "boundedChanges": {},
+      "remaining": "与对面风雅存的轴线、房间边界、家具完整数量/朝向及拍摄日期未核。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "INDOOR_COMPONENT_NOT_STANDALONE_BUILDING",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-255E648E8D",
+      "name": "建福宫",
+      "boundedChanges": {},
+      "remaining": "本体照片、室内总览/陈设、南北宫院关系及未毁/复建分期未核。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "DIRECT_IMAGE_SOURCE_GAP",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-68CF4F3028",
+      "name": "建福门",
+      "boundedChanges": {},
+      "remaining": "现存屋顶/门洞、门厅梁架、门扇、题额、台阶及院墙接合需本体证据。",
+      "categories": [
+        "DIRECT_IMAGE_SOURCE_GAP",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-737B0B10BA",
+      "name": "抚辰殿",
+      "boundedChanges": {},
+      "remaining": "本殿现状外立面、前后廊深度/连接、房间和陈设图像不足。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "DIRECT_IMAGE_SOURCE_GAP",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-E548FCFDBA",
+      "name": "惠风亭",
+      "boundedChanges": {},
+      "remaining": "具名亭体照片、亭内梁架、基座、接廊和实际位置待核。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "DIRECT_IMAGE_SOURCE_GAP",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-85A6DA4349",
+      "name": "静怡轩",
+      "boundedChanges": {},
+      "remaining": "后侧及侧立面、廊接关系、内景、尺寸与当前坐标未核。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-9CB03D7316",
+      "name": "慧曜楼",
+      "boundedChanges": {},
+      "remaining": "现存阶段、楼体边界与方向、各层和室内直接图像不足。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "DIRECT_IMAGE_SOURCE_GAP",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-DA597AAE85",
+      "name": "建福宫花园",
+      "boundedChanges": {},
+      "remaining": "所有必需子建筑、廊道、院墙与真实地形的定位以及全部子空间状态均未闭合。",
+      "categories": [
+        "AGGREGATE_NOT_BUILDING",
+        "CHILD_COMPLETION_REQUIRED"
+      ],
+      "requiredChildren": [
+        "FC-12BEB1BB0E",
+        "FC-922969BB62",
+        "FC-F4907EE1B9",
+        "FC-6C3C39B8A7",
+        "FC-0565E86C7A",
+        "FC-5264A545B2",
+        "FC-7463C11B05",
+        "AUX-EED7F7F3C66E"
+      ],
+      "accepted": false
+    },
+    {
+      "id": "FC-12BEB1BB0E",
+      "name": "延春阁",
+      "boundedChanges": {
+        "E7": "已有注册竖匾移到正面高梁区；完整牌框与真实支承/视线检查，未新增同名牌。",
+        "I3": "精确移除八件无据通用家具与八碰撞，未改变楼层/承托/原栏；UNKNOWN不等于历史空房。",
+        "I6": "精确移除八件无据通用家具与八碰撞，未改变楼层/承托/原栏；UNKNOWN不等于历史空房。"
+      },
+      "remaining": "南侧浅色转棒栏与悬垂挂落有直接来源，但本轮不交付其换形。上层真实跳跃轨迹暴露普通盒碰撞 STEP_CLEARANCE 的脚踝漏碰与旧下屋裙缺少碰撞支承，基线和试作同样存在；必须独立解决栏杆开口、接檐与支承工程问题。材种、背/侧面、雕纹、当前内装/楼梯/家具仍未知。",
+      "categories": [
+        "BOUNDED_IMPLEMENTATION",
+        "VERIFY_PENDING_BROWSER",
+        "SOURCE_POSITIVE_ENGINEERING_RESIDUAL",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-922969BB62",
+      "name": "敬胜斋",
+      "boundedChanges": {},
+      "remaining": "背/侧面、内部固定装修及陈设、与延春阁的精确距离和尺度未核。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-F4907EE1B9",
+      "name": "碧琳馆",
+      "boundedChanges": {},
+      "remaining": "八方门与馆体的实体边界、庭院连接、背侧面、全室图和陈设未核。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-6C3C39B8A7",
+      "name": "积翠亭",
+      "boundedChanges": {},
+      "remaining": "假山与亭基高差、完整柱网/梁架、背面和可走路径需定位。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-0565E86C7A",
+      "name": "吉云楼（建福宫花园）",
+      "boundedChanges": {},
+      "remaining": "花园内实际位置、廊接、侧后面、楼层/楼梯和当前室内陈设未核。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-5264A545B2",
+      "name": "妙莲华室",
+      "boundedChanges": {},
+      "remaining": "现存阶段、准确主体边界、外立面、室内用途/固定装修和陈设待核。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "DIRECT_IMAGE_SOURCE_GAP",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-7463C11B05",
+      "name": "凝晖堂",
+      "boundedChanges": {},
+      "remaining": "当前殿体位置、形制细节、背侧面、室内分隔及陈设待核。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "DIRECT_IMAGE_SOURCE_GAP",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-ADC59D34D5",
+      "name": "雨花阁",
+      "boundedChanges": {},
+      "remaining": "第一/二层图的完整房间映射、全楼梯路径、各层尺度、第三/顶层内景、现行陈列清单/日期未知。天花局部具体楼层未确认。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-DAA0E0A7B9",
+      "name": "梵宗楼",
+      "boundedChanges": {},
+      "remaining": "1923存毁/复建文字范围存在冲突；不得把无日期残损图当今日状态。上下层图像定位、整室陈设及楼梯路径未闭合。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-F0C6383E88",
+      "name": "宝华殿",
+      "boundedChanges": {},
+      "remaining": "本殿边界/抱厦、被遮的各面、当期全室陈设及位置未核。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-66378DAD81",
+      "name": "中正殿",
+      "boundedChanges": {},
+      "remaining": "群像单体归属、当前正殿外观和室内研究/陈列用途、坐标变换未核。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "SOURCE_POSITIVE_IDENTITY_OR_ROOM_MAPPING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-87A0A561ED",
+      "name": "淡远楼",
+      "boundedChanges": {},
+      "remaining": "复建后后殿的单体图、十一间现存核对、侧配殿和室内用途未核。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "SOURCE_POSITIVE_IDENTITY_OR_ROOM_MAPPING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-E5EEAB2373",
+      "name": "中正殿东配殿",
+      "boundedChanges": {},
+      "remaining": "东侧单体身份、现存形制、房间用途及附属配房边界未核。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "SOURCE_POSITIVE_IDENTITY_OR_ROOM_MAPPING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-77D6708679",
+      "name": "中正殿西配殿",
+      "boundedChanges": {},
+      "remaining": "西侧单体位置、现存各面、内部研究/陈列用途和配房区分未核。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "SOURCE_POSITIVE_IDENTITY_OR_ROOM_MAPPING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-3295FB46B4",
+      "name": "香云亭",
+      "boundedChanges": {},
+      "remaining": "现存亭体在群像中的身份、亭顶/梁架、台基、精确位置待核。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "SOURCE_POSITIVE_IDENTITY_OR_ROOM_MAPPING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-F95F60645E",
+      "name": "雨花阁东配楼",
+      "boundedChanges": {},
+      "remaining": "东楼单体图、现存层数、楼梯/楼层、内景及与雨花阁连接未知。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "SOURCE_POSITIVE_IDENTITY_OR_ROOM_MAPPING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-C7BA2B3690",
+      "name": "雨花阁西配楼",
+      "boundedChanges": {},
+      "remaining": "现存楼体位置、上下层与楼梯、各面和室内用途未核。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "SOURCE_POSITIVE_IDENTITY_OR_ROOM_MAPPING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-2953884F94",
+      "name": "昭福门",
+      "boundedChanges": {},
+      "remaining": "前景门体归属/年代、门额现状、洞口/梁架、连接院墙和通行条件未核。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "SOURCE_POSITIVE_IDENTITY_OR_ROOM_MAPPING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-98F5C6BC6B",
+      "name": "春华门",
+      "boundedChanges": {},
+      "remaining": "现存门体、题额、洞口、顶形、内梁架与院墙接合未核。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "SOURCE_POSITIVE_IDENTITY_OR_ROOM_MAPPING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-C7765A0D84",
+      "name": "英华殿",
+      "boundedChanges": {
+        "E4": "16南窗叶上新增三方向素框格并闭合边框，保原不通透窗叶和全部物理；不是精确三交六椀雕饰。"
+      },
+      "remaining": "雕刻六椀单元/精确尺寸、背侧面、主殿全室、佛龛/佛像位置未知。藻井的殿内位置、尺寸、深度及梁架关系未核。",
+      "categories": [
+        "BOUNDED_IMPLEMENTATION",
+        "VERIFY_PENDING_BROWSER",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [
+        "AUX-676F8D0E5A22"
+      ],
+      "accepted": false
+    },
+    {
+      "id": "FC-F5D7ED5F35",
+      "name": "英华殿山门",
+      "boundedChanges": {},
+      "remaining": "三洞门体的南北两院位置、背面、门扇、内梁架/洞顶及台阶连接待核。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-0EACBA1911",
+      "name": "英华门",
+      "boundedChanges": {
+        "E1": "既有锚点上一座单券门实造曲面开口、匹配拱顶曲线实体、外开素门与真实0.10m低门槛支承；保原地图外包络。",
+        "E4": "既有锚点上一座单券门实造曲面开口、匹配拱顶曲线实体、外开素门与真实0.10m低门槛支承；保原地图外包络。",
+        "E5": "既有锚点上一座单券门实造曲面开口、匹配拱顶曲线实体、外开素门与真实0.10m低门槛支承；保原地图外包络。",
+        "I1": "既有锚点上一座单券门实造曲面开口、匹配拱顶曲线实体、外开素门与真实0.10m低门槛支承；保原地图外包络。"
+      },
+      "remaining": "开口尺寸仅保留包络内照片拟合；当前门扇姿态、匾额、材色/植被和游客开放状态未核。",
+      "categories": [
+        "BOUNDED_IMPLEMENTATION",
+        "VERIFY_PENDING_BROWSER",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-D385802B72",
+      "name": "英华殿碑亭",
+      "boundedChanges": {},
+      "remaining": "亭位、碑体/亭体边界、全柱网、亭内顶部、围栏/台阶及周边高差未核。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-634F1BA680",
+      "name": "英华殿东耳殿",
+      "boundedChanges": {},
+      "remaining": "东耳殿本体、门窗/顶形、与主殿连接、室内与陈设图像缺失。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "DIRECT_IMAGE_SOURCE_GAP",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    },
+    {
+      "id": "FC-BA2BB4F70D",
+      "name": "英华殿西耳殿",
+      "boundedChanges": {},
+      "remaining": "树后形制、与主殿的连接、背侧面、内景和实际位置未核。",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "requiredChildren": [],
+      "accepted": false
+    }
+  ],
+  "migration": {
+    "at": "2026-10-23T17:26:39.728244+00:00",
+    "id": "AUX-3001DA0EEDCA",
+    "fromSection": "F",
+    "fromRelease": "R63-F",
+    "toSection": "H",
+    "toHistoricalPlan": "R65-H",
+    "runtimeRef": "data/zones/west-six.json#/items/53",
+    "reason": "Existing courtWalls encloses Chonghua at92.62..145.18/460..505.6; code zone west-six does not assign physical court to F.",
+    "newEntity": false,
+    "previousReviewRetained": {
+      "at": "2026-10-23T04:24:53.770080+00:00",
+      "evidence": "F-REVIEW/SIX-COURTS-AUDIT.json",
+      "identityAccepted": false,
+      "existingDeclarationOnly": true,
+      "inventory": "NOT_REVIEWED",
+      "knownEmpty": false,
+      "presetUse": "UNVERIFIED",
+      "roomBoundaries": "NOT_VALIDATED",
+      "genericFurnitureWithheld": false
+    }
+  },
+  "expansionsIncomplete": [
+    "EXPAND-02",
+    "EXPAND-03",
+    "EXPAND-06"
+  ],
+  "previousResiduals": [
+    "docs/photo-fidelity/RESIDUALS/R58-A-STAGE.json",
+    "docs/photo-fidelity/RESIDUALS/R59-B-STAGE.json",
+    "docs/photo-fidelity/RESIDUALS/R60-C-STAGE.json",
+    "docs/photo-fidelity/RESIDUALS/R61-D-STAGE.json",
+    "docs/photo-fidelity/RESIDUALS/R62-E-STAGE.json",
+    "docs/photo-fidelity/RESIDUALS/R63-F-STAGE.json",
+    "docs/photo-fidelity/RESIDUALS/R64-G-STAGE.json"
+  ],
+  "verificationBoundary": "Functional CPU geometry and independently rebuilt B/S worlds reported separately. Browser/GPU, physical phone, full360 and period inventories remain unverified."
+}

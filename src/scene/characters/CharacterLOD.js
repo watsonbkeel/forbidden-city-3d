@@ -10,18 +10,19 @@ export function selectCharacterLOD({ distance, projectedHeight, inFrustum = true
   if (previousLOD === 2 && distance >= 40 * .82) return 2;
   return distance < 12 ? 0 : distance < 40 ? 1 : 2;
 }
-export function characterProjection(position, camera, viewportHeight = 1080) {
+export function characterProjection(position, camera, viewportHeight = 1080, pose = 'standing') {
   if (!camera) return { distance: 0, projectedHeight: 0, inFrustum: false };
-  const center = new THREE.Vector3(position[0], position[1] + .9, position[2]);
+  const sleeping=pose==='sleeping',height=sleeping?.65:1.85;
+  const center = new THREE.Vector3(position[0], position[1] + (sleeping?.325:.9), position[2]);
   const distance = center.distanceTo(camera.position);
-  const bodyPoint = new THREE.Vector3(position[0], Math.max(position[1]+.15, Math.min(position[1]+1.8,camera.position.y)), position[2]);
+  const bodyPoint = new THREE.Vector3(position[0], Math.max(position[1]+.15, Math.min(position[1]+height,camera.position.y)), position[2]);
   const nearBody = bodyPoint.distanceTo(camera.position) < .4;
   const frustum = new THREE.Frustum().setFromProjectionMatrix(new THREE.Matrix4().multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse));
   const inFrustum = frustum.intersectsSphere(new THREE.Sphere(center, 1.05));
   const viewCenter = center.clone().applyMatrix4(camera.matrixWorldInverse);
   const projectedHeight = camera.isOrthographicCamera
-    ? 1.85 * viewportHeight / Math.max(.01, camera.top - camera.bottom) * camera.zoom
-    : 1.85 * viewportHeight / (2 * Math.max(.01, -viewCenter.z) * Math.tan((camera.fov ?? 60) * Math.PI / 360));
+    ? height * viewportHeight / Math.max(.01, camera.top - camera.bottom) * camera.zoom
+    : height * viewportHeight / (2 * Math.max(.01, -viewCenter.z) * Math.tan((camera.fov ?? 60) * Math.PI / 360));
   return { distance, projectedHeight, inFrustum: inFrustum && !nearBody };
 }
 const taihe = a => a.sceneId === 'taihe' || a.id.startsWith('taihe-');

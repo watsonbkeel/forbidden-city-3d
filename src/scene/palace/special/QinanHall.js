@@ -64,6 +64,9 @@ export function buildQinanHall(kit,item){
   solid('qinan-railing-panel','marble',alongX?len:t,g.supportApproximation.railPanelHeight,alongX?t:len,(x0+x1)/2,floor+g.supportApproximation.railPanelCenterAboveFloor,(z0+z1)/2);
   solid('qinan-railing-hand','marble',alongX?len:t,g.supportApproximation.railHandHeight,alongX?t:len,(x0+x1)/2,floor+g.supportApproximation.railHandCenterAboveFloor,(z0+z1)/2);
  }
+ // R72 room registration only, preserving architecture and virtual-entry policy.
+ kit.registerRoom(f,{name:'钦安殿·主殿',kind:'virtual-tour',x0:-b.width/2+.4,x1:b.width/2-.4,z0:b.zs[0]+.3,z1:b.zs.at(-1)-.4,y:floor,h:g.levels.eaveColumnTop-floor-.3,doors:[]});
+ kit.registerRoom(f,{name:'钦安殿·前抱厦',kind:'virtual-tour',x0:-b.width/2+.4,x1:b.width/2-.4,z0:g.southAnnex.frontZ+.3,z1:b.zs[0]-.1,y:floor,h:g.southAnnex.columnTopY-floor-.3,doors:[]});
  buildQinanRoof(kit,f,g);
  buildQinanNamePlaque(kit,f,g);
  f.updateMatrixWorld(true);

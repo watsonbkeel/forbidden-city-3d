@@ -1,0 +1,22 @@
+{
+  "attempt": "01",
+  "status": "INTERRUPTED_SIGKILL",
+  "testAssertionFailureObserved": false,
+  "phase": "B",
+  "completedViewProofs": 36,
+  "completedPathBindings": 24,
+  "loadedActorsAtFreshCheckpoint": 108,
+  "lastCheckpoint": {
+    "label": "B-night-views-36",
+    "memory": {
+      "rss": 875474944,
+      "heapTotal": 424325120,
+      "heapUsed": 276141256,
+      "external": 258254305,
+      "arrayBuffers": 249713879
+    }
+  },
+  "resultFileWritten": false,
+  "explanation": "Node test child terminated by SIGKILL before finally; exact external cause not established. Resource contention is a hypothesis only. No weakened tests or discarded evidence. Other three stages never started.",
+  "nextAction": "Wait for concurrent CPU preview completion, then repeat same unchanged test and 512 MiB heap with a new attempt number."
+}

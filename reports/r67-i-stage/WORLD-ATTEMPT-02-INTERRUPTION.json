@@ -1,0 +1,22 @@
+{
+  "attempt": "02",
+  "status": "INTERRUPTED_SIGKILL",
+  "testAssertionFailureObserved": false,
+  "phase": "B",
+  "completedViewProofs": 18,
+  "completedPathBindings": 24,
+  "loadedActorsAtFreshCheckpoint": 108,
+  "lastCheckpoint": {
+    "label": "B-night-views-18",
+    "memory": {
+      "rss": 917065728,
+      "heapTotal": 436121600,
+      "heapUsed": 276277384,
+      "external": 260642837,
+      "arrayBuffers": 252161483
+    }
+  },
+  "resultFileWritten": false,
+  "explanation": "Same 512 MiB V8 heap, parent reports no concurrent heavy tasks. Node test child terminated by SIGKILL before finally; exact external cause not established. Other three stages never started.",
+  "nextAction": "Single-variable bounded retry: reduce V8 heap to 384 MiB, preserve every original assertion and phase."
+}

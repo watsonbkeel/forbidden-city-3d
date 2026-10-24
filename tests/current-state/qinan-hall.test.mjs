@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
 import * as THREE from 'three';
+import {RoomNightLights} from '../../src/scene/sky/RoomNightLights.js';
 import { CourtKit } from '../../src/scene/palace/kit.js';
 import { ZoneBase } from '../../src/scene/zones/ZoneBase.js';
 const url=new URL('../../src/scene/palace/special/QinanProfile.js',import.meta.url);
@@ -37,11 +38,11 @@ test('bad transform, missing annex and generic overrides fail before any geometr
  const missing=structuredClone(api.QINAN_PROFILE);delete missing.southAnnex;assert.throws(()=>geometry({},missing),/annex|profile/i);
  const malformed=structuredClone(api.QINAN_PROFILE);malformed.roofBoard.width=Infinity;assert.throws(()=>geometry({},malformed),/finite|profile|dimension/i);
 });
-test('actual assembly owns the low annex, closed north wall and no generic room or furniture',()=>{
+test('actual assembly owns the low annex, closed north wall, two dedicated lighting rooms and no generic furniture',()=>{
  const f=fixture();assert.equal(nodes(f.root,'qinan-main-column').length,16);assert.equal(nodes(f.root,'qinan-annex-column').length,6);assert.equal(nodes(f.root,'qinan-north-wall').length,1);
- assert.equal(nodes(f.root,'qinan-annex-front-panel').length,5);assert.equal(f.kit.rooms.length,0);assert.equal(f.root.userData.structure.id,'garden/qinan');assert.equal(f.root.userData.structure.eaveCount,2);
+ assert.equal(nodes(f.root,'qinan-annex-front-panel').length,5);assert.equal(f.kit.rooms.length,2);assert.equal(f.root.userData.structure.id,'garden/qinan');assert.equal(f.root.userData.structure.eaveCount,2);
  assert.equal(f.kit.walkables.every(s=>s.rescue===false&&s.supportId.startsWith('qinan-')),true);
- const zone=new ZoneBase(library(),{id:'garden',items:[item]});const data=zone.build();assert.equal(data.group.userData.architecture[0].profileId,api.QINAN_PROFILE.profileId);assert.equal(data.rooms.length,0);zone.dispose();
+ const zone=new ZoneBase(library(),{id:'garden',items:[item]});const data=zone.build();assert.equal(data.group.userData.architecture[0].profileId,api.QINAN_PROFILE.profileId);assert.equal(data.rooms.length,2);zone.dispose();
 });
 
 test('explicit role accounting records R48 golden columns and R49 split side doors without counting alternative LOD twice',()=>{
@@ -89,9 +90,13 @@ test('actual ZoneManager three-cycle lifecycle preserves deterministic metadata 
  manager.register({id:'garden',name:'Qinan lifecycle fixture',bounds:{x0:-40,x1:40,z0:450,z1:520},neighbors:[],items:[item]});manager.init(scene,lib,cm,{x:18,z:477});
  const first=structuredClone(manager.loaded.get('garden').data.group.userData.architecture),map=structuredClone(manager.getMapItems());let colliderCount,supportCount;
  for(let cycle=0;cycle<3;cycle++){
-  const loaded=manager.loaded.get('garden');assert.deepEqual(loaded.data.group.userData.architecture,first);assert.deepEqual(loaded.data.mapItems,map);assert.equal(loaded.data.rooms.length,0);
+  const loaded=manager.loaded.get('garden');assert.deepEqual(loaded.data.group.userData.architecture,first);assert.deepEqual(loaded.data.mapItems,map);assert.equal(loaded.data.rooms.length,2);
+  assert.deepEqual(loaded.data.rooms.map(r=>r.name),['钦安殿·主殿','钦安殿·前抱厦']);
+  const lamps=new RoomNightLights({scene,rooms:loaded.data.rooms,collisionManager:cm});assert.equal(lamps.rooms.length,2);assert.ok(lamps.sites.some(v=>v.room===0)&&lamps.sites.some(v=>v.room===1));
+  let disposed=0;lamps.fixtures.addEventListener('dispose',()=>disposed++);lamps.update(0,new THREE.Vector3(0,3,477));assert.ok(lamps.lights.some(l=>l.visible));
   colliderCount??=cm.colliders.filter(c=>c.tag==='garden').length;supportCount??=cm.walkables.filter(s=>s.tag==='garden').length;assert.equal(cm.colliders.filter(c=>c.tag==='garden').length,colliderCount);assert.equal(cm.walkables.filter(s=>s.tag==='garden').length,supportCount);assert.equal(manager.silhouettes.get('garden').visible,false);
   const counts=new Map(),resources=new Set([...loaded.builder.kit.owned,...(loaded.builder.kit.ownedTextures??[])]);loaded.data.group.traverse(o=>{if(o.geometry)resources.add(o.geometry);});for(const r of resources){counts.set(r,0);r.addEventListener('dispose',()=>counts.set(r,counts.get(r)+1));}
+  lamps.dispose();assert.equal(disposed,1);assert.equal(lamps.root.parent,null);assert.equal(scene.children.filter(o=>o.name==='r72-interpretive-room-lights').length,0);
   manager.unloadZone('garden');assert.equal(cm.colliders.filter(c=>c.tag==='garden').length,0);assert.equal(cm.walkables.filter(s=>s.tag==='garden').length,0);assert.equal(cm.colliders.filter(c=>c.tag==='static-garden-fixture').length,1);assert.equal(manager.silhouettes.get('garden').visible,true);assert.ok([...counts.values()].every(n=>n===1));if(cycle<2)manager.loadZone('garden');
  }
  manager.dispose();

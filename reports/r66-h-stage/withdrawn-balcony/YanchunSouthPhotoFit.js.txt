@@ -1,0 +1,35 @@
+import * as THREE from 'three';
+import { fitRegisteredNameboard } from './FittedNameboardMount.js';
+
+export const YANCHUN_SOUTH_FIT=Object.freeze({
+ entityId:'FC-12BEB1BB0E',status:'PHOTO_FIT_NOT_SURVEYED',visualAcceptance:'VERIFY_PENDING',photographyDate:null,
+ page:'https://www.dpm.org.cn/explore/building/236524.html',
+ photo:'https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d41b19d7f7.jpg',
+ photoSHA256:'fda0c35ed50b0d23f5b4151702faec1089f74fff3c9e999d170579d159e162f9',
+ scope:'SOUTH_FRONT_ONLY_FINISHED_STATE_PHOTO',unknown:['carved ornament','exact dimensions','rear/side baluster forms','capture date'],
+});
+function guard(c){if(c.p.key!=='yanchun'||c.item.name!=='延春阁'||c.item.x!==216||c.item.z!==485.5||c.g.w!==23.5||c.g.d!==24.3)throw Error('Yanchun photo fit requires exact retained host');}
+/** South only. Keep the other three unverified elevations and all floors.
+ * Twenty-five spindles are a reversible fit to retained width, not a photo count.
+ * Each visible member has its own tight proxy; never fence with a whole wall. */
+export function buildYanchunSouthBalcony(c){
+ guard(c);if(c.f.userData.r66YanchunSouth)throw Error('Yanchun south fit already installed');
+ const {kit,f}=c,x0=-7.72,x1=7.72,z=-8.12,y=7,n=24,indices=[];
+ const pale=new THREE.MeshStandardMaterial({name:'r66_yanchun_south_pale_baluster_fit',color:0xdcd6ba,roughness:.8});kit.owned.push(pale);
+ const role=s=>'r66-yanchun-south-'+s,record={...YANCHUN_SOUTH_FIT,balusterCountStatus:'FITTED_NOT_SURVEYED',fittedDimensions:{width:15.44,railY:7.92,maxSpindleRadius:.045,fasciaDepth:.08}};
+ const box=(suffix,material,w,h,d,x,yy,zz,solid)=>{const i=kit.colliders.length,m=c.box(role(suffix),material,w,h,d,x,yy,zz,solid,record);if(solid){m.userData.r66Collider=i;indices.push(i)}return m;};
+ box('top-bar','red',x1-x0,.12,.10,0,y+.92,z,true);
+ box('lower-bar','red',x1-x0,.09,.08,0,y+.35,z,true);
+ // A restrained turned outline, not invented surface carving. The open lathe
+ // ends are concealed by the retained floor and the visible upper bar.
+ const pts=[[.025,0],[.031,.07],[.022,.18],[.028,.30],[.045,.37],[.036,.43],[.022,.53],[.022,.60],[.031,.68],[.031,.92]].map(([r,h])=>new THREE.Vector2(r,h));
+ for(let k=0;k<=n;k++){
+  const geo=new THREE.LatheGeometry(pts,8),m=kit.mesh(f,geo,pale,x0+(x1-x0)*k/n,y,z);m.name=role('turned-baluster');m.userData={...record,role:m.name,index:k};
+  const i=kit.colliders.length;kit.col(f,m.position.x-.045,y,z-.045,m.position.x+.045,y+.92,z+.045);m.userData.r66Collider=i;indices.push(i);
+ }
+ // Finished photo proves hanging decoration, but the retained lower roof
+ // occludes a fitted first attempt. No hidden ornament is shipped as success.
+ record.hangingFascia={status:'BLOCKED_IMPLEMENTATION',reason:'RETAINED_LOWER_SKIRT_JOIN_REQUIRES_SEPARATE_PHYSICAL_GEOMETRY_FIT',sourceSeen:true,geometryAdded:false};
+ f.userData.r66YanchunSouth={...record,colliderIndices:indices};return f.userData.r66YanchunSouth;
+}
+export function fitYanchunFrontPlaque(c){guard(c);return fitRegisteredNameboard(c.kit,c.f,'延春阁',{x:0,y:4.97,z:-12.35,...YANCHUN_SOUTH_FIT,reason:'FINISHED_PHOTO_HIGH_FRONT_BEAM_NOT_RECESSED_GROUND_WALL',fitRange:{y:[4.8,5.1],z:[-12.5,-12.25]},width:.9,height:1.5});}

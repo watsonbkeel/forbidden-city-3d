@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+const base='709cfa97d14f14efe801abd2f5735cda0c6aa59a',sha=b=>createHash('sha256').update(b).digest('hex');
+const p='data/characters/world-source-freeze.json',old=execFileSync('git',['show',base+':'+p]),previous=JSON.parse(old);
+const archive='data/characters/world-source-freeze-r67-i-ningshou.json';if(fs.existsSync(archive)&&!fs.readFileSync(archive).equals(old))throw Error('Previous manifest archive differs');fs.writeFileSync(archive,old);
+const extra=['src/scene/palace/special/NingshouSouthPhotoWindows.js'];
+const files=[...new Set([...previous.files.map(f=>f.path),...extra])].sort().map(path=>({path,sha256:sha(fs.readFileSync(path))}));
+const changed=previous.files.filter(f=>sha(fs.readFileSync(f.path))!==f.sha256).map(f=>({path:f.path,beforeSHA256:f.sha256,afterSHA256:sha(fs.readFileSync(f.path))}));
+const freeze={schemaVersion:24,baselineCommit:base,purpose:'R68-J exact five-host UNKNOWN inventory, Biluo plain finial and Suichu south stone facing. Preserves all prior R67/R65 cumulative behavior. Not complete J acceptance or GPU verification',provenance:{previousWorldVersion:'R67-I',previousReleaseCommit:base,previousManifestPath:archive,previousManifestSHA256:sha(old),previousFileCount:previous.files.length,fileCount:files.length,changedPreviouslyTrackedSources:changed,newlyTrackedSources:files.filter(f=>!previous.files.some(o=>o.path===f.path))},files};
+fs.writeFileSync(p,JSON.stringify(freeze,null,2)+'\n');
+fs.writeFileSync('release.json',JSON.stringify({release:'R68'},null,2)+'\n');
+fs.mkdirSync('release/r68',{recursive:true});fs.writeFileSync('release/r68/start.mjs',fs.readFileSync('release/r67/start.mjs','utf8').replaceAll('R67','R68'));
+console.log(JSON.stringify({worldSourceFiles:files.length,changed:changed.map(f=>f.path),archiveSha:sha(old)}));

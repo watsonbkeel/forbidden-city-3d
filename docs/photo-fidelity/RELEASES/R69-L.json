@@ -24,14 +24,15 @@
     ],
     "after": "R68-K integration checkpoint; unresolved acceptance stays open",
     "optional": false,
-    "status": "PLANNED_NOT_STARTED",
+    "status": "FUNCTIONAL_STAGE_IN_PROGRESS_NOT_FULL_ACCEPTANCE",
     "fullSectionAccepted": false,
     "localBranchNameConflict": false,
     "remoteVersionConflict": "NOT_CHECKED; release owner must reserve against current remote before publish",
     "minimumWork": "All listed objects retain fixed exterior+interior tasks; inspect available work throughout section, implement supported differences and preserve unresolved subitems. Three micro-edits do not close the section.",
     "acceptanceGate": "Every required facet/child/expansion resolved and ACCEPTED or justified NOT_APPLICABLE; no VERIFY_PENDING/PARTIAL/BLOCKED_* treated as accepted; actual browser before/after evidence at final commit/content hash.",
-    "partialPublicationLabel": "If code is safely published before whole-zone acceptance, name it R69-L incremental candidate with explicit remaining list; never say entire zone verified.",
-    "nextSectionPolicy": "After section-wide executable pass/integration, continue next section when local blocked items remain; retain prior section as incomplete and rescan all unfinished items, never delete blocked work."
+    "partialPublicationLabel": "R70-L bounded cumulative stage;136 required features remain unaccepted",
+    "nextSectionPolicy": "After section-wide executable pass/integration, continue next section when local blocked items remain; retain prior section as incomplete and rescan all unfinished items, never delete blocked work.",
+    "executionRelease": "R70-L"
   },
   "objects": [
     {
@@ -95,8 +96,8 @@
       },
       "facets": {
         "exterior": {
-          "status": "UNREVIEWED",
-          "currentCycleReview": "UNREVIEWED",
+          "status": "DIFFED",
+          "currentCycleReview": "DIFFED",
           "inheritedProgressRetained": false,
           "baselineRecords": [],
           "sourceIds": [
@@ -106,43 +107,123 @@
           "features": [
             {
               "id": "footprint_orientation_court_connections",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "已公布五间一进深轴网保留；北门与972m宫墙工程坐标仍需联合核查。",
+              "residualAction": "神武门／footprint_orientation_court_connections：已公布五间一进深轴网保留；北门与972m宫墙工程坐标仍需联合核查。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "storeys_roof_type_ridge_pitch_eaves_colour",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "重檐庑殿既有专用造型，本轮无实景屋坡/檐高验收。",
+              "residualAction": "神武门／storeys_roof_type_ridge_pitch_eaves_colour：重檐庑殿既有专用造型，本轮无实景屋坡/檐高验收。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "bays_columns_brackets_beams_paint_zones",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "专用轴网、围廊柱梁保留；彩画及局部斗栱仍未逐构件核。",
+              "residualAction": "神武门／bays_columns_brackets_beams_paint_zones：专用轴网、围廊柱梁保留；彩画及局部斗栱仍未逐构件核。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "doors_windows_openings_walls_screens",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "三券门及上层门窗已有专用构造，完整开口照片比例待核。",
+              "residualAction": "神武门／doors_windows_openings_walls_screens：三券门及上层门窗已有专用构造，完整开口照片比例待核。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "terrace_steps_imperial_ramp_rails_posts",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "城台石栏及门洞既有几何，踏步/栏柱相接需连续通路验证。",
+              "residualAction": "神武门／terrace_steps_imperial_ramp_rails_posts：城台石栏及门洞既有几何，踏步/栏柱相接需连续通路验证。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "四周围廊不可按华门三进深复制；围廊竖向接缝待实景核。",
+              "residualAction": "神武门／porches_corridors_ear_rooms_rear_halls_vertical_joins：四周围廊不可按华门三进深复制；围廊竖向接缝待实景核。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "plaques_text_placement_orientation_occlusion",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "牌匾模块保留；本轮未做该门新视点遮挡验收。",
+              "residualAction": "神武门／plaques_text_placement_orientation_occlusion：牌匾模块保留；本轮未做该门新视点遮挡验收。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "unique_courtyard_facilities_locations",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "钟鼓文字有据，但具体形制位置未有已核内景，不添任意陈设。",
+              "residualAction": "神武门／unique_courtyard_facilities_locations：钟鼓文字有据，但具体形制位置未有已核内景，不添任意陈设。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             }
           ],
           "visualEvidence": {
@@ -156,11 +237,19 @@
             "photographyDate": null,
             "doNotMixPeriods": true
           },
-          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "currentCycleAccepted": false,
+          "currentCycleScopeReview": {
+            "at": "2026-10-24T01:21:08.504405+00:00",
+            "scopeScanComplete": true,
+            "evidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "browserAcceptance": false,
+            "wholeObjectAccepted": false
+          }
         },
         "interior": {
-          "status": "UNREVIEWED",
-          "currentCycleReview": "UNREVIEWED",
+          "status": "DIFFED",
+          "currentCycleReview": "DIFFED",
           "inheritedProgressRetained": false,
           "baselineRecords": [],
           "sourceIds": [],
@@ -168,33 +257,93 @@
           "features": [
             {
               "id": "room_partitions_portals_column_grid_levels_steps_floor",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "五间一进深及围廊已有正式轴网和专用代码；保留现有实现，楼层踏步分隔本轮未作实景验收。",
+              "residualAction": "神武门／room_partitions_portals_column_grid_levels_steps_floor：五间一进深及围廊已有正式轴网和专用代码；保留现有实现，楼层踏步分隔本轮未作实景验收。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "天花、藻井、梁架和彩画：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "神武门／ceilings_caissons_frames_paint_screens_fixed_joinery：天花、藻井、梁架和彩画：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "principal_furniture_type_count_location_facing_scale",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "主家具数量、位置和朝向：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "神武门／principal_furniture_type_count_location_facing_scale：主家具数量、位置和朝向：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "挂画、对联、镜灯及帘幕关系：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "神武门／pictures_couplets_mirrors_lights_curtains_ornament_relations：挂画、对联、镜灯及帘幕关系：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "function_specificity_worship_library_residential_exhibition",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "现状使用功能及陈设时期：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "神武门／function_specificity_worship_library_residential_exhibition：现状使用功能及陈设时期：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "visible_missing_objects_and_unsupported_model_objects",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "遗漏物件与无证物件：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "神武门／visible_missing_objects_and_unsupported_model_objects：遗漏物件与无证物件：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             }
           ],
           "visualEvidence": {
@@ -208,7 +357,15 @@
             "photographyDate": null,
             "doNotMixPeriods": true
           },
-          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "currentCycleAccepted": false,
+          "currentCycleScopeReview": {
+            "at": "2026-10-24T01:21:08.504405+00:00",
+            "scopeScanComplete": true,
+            "evidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "browserAcceptance": false,
+            "wholeObjectAccepted": false
+          }
         }
       },
       "requiredChildIds": [],
@@ -220,7 +377,25 @@
       "currentCycleAccepted": false,
       "optional": false,
       "priority": 11000,
-      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views."
+      "nextAction": "Layout/13 已有北门声明，GateTowerProfiles/GateTowerShell 已实现独立公布轴网与三券门、上层殿体；不是五间三进深华门复制体，本轮不改。 所有完整对象仍未验收；具体残项见每个feature。",
+      "scopeReviewCompleted": true,
+      "sourceModelReviewR70": {
+        "at": "2026-10-24T01:21:08.504405+00:00",
+        "currentModel": "Layout/13 已有北门声明，GateTowerProfiles/GateTowerShell 已实现独立公布轴网与三券门、上层殿体；不是五间三进深华门复制体，本轮不改。",
+        "sourceReviewEvidence": {
+          "inheritedInputSourceIds": [
+            "SRC-CE03D8F8B915",
+            "SRC-B3306FF2E518"
+          ],
+          "inspectedImages": [],
+          "imageInspectionByThisWorker": false,
+          "imageInspectionReportedByImplementationOwner": false,
+          "allSourcecardImageURLsAreViewed": false,
+          "browserComparisonPerformedByThisSynthesisWorker": false,
+          "sourceReadScope": "Master official-source captions, current queue and dedicated runtime code. Actual two generic corner-tower image inspections reported by implementation owner; no per-direction identity assigned."
+        },
+        "accepted": false
+      }
     },
     {
       "id": "FC-E8C2F3E267",
@@ -267,8 +442,8 @@
       },
       "facets": {
         "exterior": {
-          "status": "UNREVIEWED",
-          "currentCycleReview": "UNREVIEWED",
+          "status": "PARTIAL",
+          "currentCycleReview": "PARTIAL",
           "inheritedProgressRetained": false,
           "baselineRecords": [],
           "sourceIds": [
@@ -279,43 +454,123 @@
           "features": [
             {
               "id": "footprint_orientation_court_connections",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "十字交叉平面与内外抱厦深度不同有官方文本；29m统一包围盒不等于测绘。",
+              "residualAction": "角楼／footprint_orientation_court_connections：十字交叉平面与内外抱厦深度不同有官方文本；29m统一包围盒不等于测绘。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "storeys_roof_type_ridge_pitch_eaves_colour",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "PARTIAL",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "本轮已看官方角楼两图，仅圆腹/短颈/顶珠宝顶轮廓共享拟合；屋坡、三层檐和复合歇山其余部分不验收。",
+              "residualAction": "角楼／storeys_roof_type_ridge_pitch_eaves_colour：本轮已看官方角楼两图，仅圆腹/短颈/顶珠宝顶轮廓共享拟合；屋坡、三层檐和复合歇山其余部分不验收。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "bays_columns_brackets_beams_paint_zones",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "共享柱梁斗栱仍为通用模板，不能据宝顶局部改动标全部准确。",
+              "residualAction": "角楼／bays_columns_brackets_beams_paint_zones：共享柱梁斗栱仍为通用模板，不能据宝顶局部改动标全部准确。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "doors_windows_openings_walls_screens",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "门窗仅模板；独立方位开口和墙面不明。",
+              "residualAction": "角楼／doors_windows_openings_walls_screens：门窗仅模板；独立方位开口和墙面不明。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "terrace_steps_imperial_ramp_rails_posts",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "石台与城墙连接采用既有模型，未测各侧台基栏杆高度。",
+              "residualAction": "角楼／terrace_steps_imperial_ramp_rails_posts：石台与城墙连接采用既有模型，未测各侧台基栏杆高度。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "抱厦交叉与檐部接合残项保留，不另加一个父组室内。",
+              "residualAction": "角楼／porches_corridors_ear_rooms_rear_halls_vertical_joins：抱厦交叉与檐部接合残项保留，不另加一个父组室内。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "plaques_text_placement_orientation_occlusion",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "泛称角楼图不确认四座牌额；不凭总组创造文字。",
+              "residualAction": "角楼／plaques_text_placement_orientation_occlusion：泛称角楼图不确认四座牌额；不凭总组创造文字。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "unique_courtyard_facilities_locations",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "四角楼及城墙护城河关系已声明，泛称照片不支持逐方位设施定位。",
+              "residualAction": "角楼／unique_courtyard_facilities_locations：四角楼及城墙护城河关系已声明，泛称照片不支持逐方位设施定位。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             }
           ],
           "visualEvidence": {
@@ -329,11 +584,19 @@
             "photographyDate": null,
             "doNotMixPeriods": true
           },
-          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "currentCycleAccepted": false,
+          "currentCycleScopeReview": {
+            "at": "2026-10-24T01:21:08.504405+00:00",
+            "scopeScanComplete": true,
+            "evidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "browserAcceptance": false,
+            "wholeObjectAccepted": false
+          }
         },
         "interior": {
-          "status": "UNREVIEWED",
-          "currentCycleReview": "UNREVIEWED",
+          "status": "BLOCKED_SOURCE",
+          "currentCycleReview": "BLOCKED_SOURCE",
           "inheritedProgressRetained": false,
           "baselineRecords": [],
           "sourceIds": [],
@@ -341,33 +604,93 @@
           "features": [
             {
               "id": "room_partitions_portals_column_grid_levels_steps_floor",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "分隔、柱网、楼层及踏步：仅汇总四子空间待核项，禁止在父组另造通用室内；子楼内部图证不足。",
+              "residualAction": "角楼／room_partitions_portals_column_grid_levels_steps_floor：分隔、柱网、楼层及踏步：仅汇总四子空间待核项，禁止在父组另造通用室内；子楼内部图证不足。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "天花、藻井、梁架和彩画：仅汇总四子空间待核项，禁止在父组另造通用室内；子楼内部图证不足。",
+              "residualAction": "角楼／ceilings_caissons_frames_paint_screens_fixed_joinery：天花、藻井、梁架和彩画：仅汇总四子空间待核项，禁止在父组另造通用室内；子楼内部图证不足。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "principal_furniture_type_count_location_facing_scale",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "主家具数量、位置和朝向：仅汇总四子空间待核项，禁止在父组另造通用室内；子楼内部图证不足。",
+              "residualAction": "角楼／principal_furniture_type_count_location_facing_scale：主家具数量、位置和朝向：仅汇总四子空间待核项，禁止在父组另造通用室内；子楼内部图证不足。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "挂画、对联、镜灯及帘幕关系：仅汇总四子空间待核项，禁止在父组另造通用室内；子楼内部图证不足。",
+              "residualAction": "角楼／pictures_couplets_mirrors_lights_curtains_ornament_relations：挂画、对联、镜灯及帘幕关系：仅汇总四子空间待核项，禁止在父组另造通用室内；子楼内部图证不足。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "function_specificity_worship_library_residential_exhibition",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "现状使用功能及陈设时期：仅汇总四子空间待核项，禁止在父组另造通用室内；子楼内部图证不足。",
+              "residualAction": "角楼／function_specificity_worship_library_residential_exhibition：现状使用功能及陈设时期：仅汇总四子空间待核项，禁止在父组另造通用室内；子楼内部图证不足。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "visible_missing_objects_and_unsupported_model_objects",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "遗漏物件与无证物件：仅汇总四子空间待核项，禁止在父组另造通用室内；子楼内部图证不足。",
+              "residualAction": "角楼／visible_missing_objects_and_unsupported_model_objects：遗漏物件与无证物件：仅汇总四子空间待核项，禁止在父组另造通用室内；子楼内部图证不足。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             }
           ],
           "visualEvidence": {
@@ -381,7 +704,15 @@
             "photographyDate": null,
             "doNotMixPeriods": true
           },
-          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "currentCycleAccepted": false,
+          "currentCycleScopeReview": {
+            "at": "2026-10-24T01:21:08.504405+00:00",
+            "scopeScanComplete": true,
+            "evidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "browserAcceptance": false,
+            "wholeObjectAccepted": false
+          }
         }
       },
       "requiredChildIds": [
@@ -398,8 +729,30 @@
       "currentCycleAccepted": false,
       "optional": false,
       "priority": 11001,
-      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views.",
-      "unresolvedChildEnumeration": true
+      "nextAction": "Enclosure.buildCornerTowers 四次循环复用29m包围盒轮廓和27.5m总高拟合；本轮仅共享铜鎏金宝顶圆腹、短颈、顶珠轮廓，不代表复合屋顶整体准确。 所有完整对象仍未验收；具体残项见每个feature。",
+      "unresolvedChildEnumeration": true,
+      "scopeReviewCompleted": true,
+      "sourceModelReviewR70": {
+        "at": "2026-10-24T01:21:08.504405+00:00",
+        "currentModel": "Enclosure.buildCornerTowers 四次循环复用29m包围盒轮廓和27.5m总高拟合；本轮仅共享铜鎏金宝顶圆腹、短颈、顶珠轮廓，不代表复合屋顶整体准确。",
+        "sourceReviewEvidence": {
+          "inheritedInputSourceIds": [
+            "SRC-5DAC4119103F",
+            "SRC-50AD9A5FFA9C",
+            "SRC-EB3DCD7BFC05"
+          ],
+          "inspectedImages": [
+            "https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d3ef250ba9.jpg",
+            "https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d3f0db3657.jpg"
+          ],
+          "imageInspectionByThisWorker": false,
+          "imageInspectionReportedByImplementationOwner": true,
+          "allSourcecardImageURLsAreViewed": false,
+          "browserComparisonPerformedByThisSynthesisWorker": false,
+          "sourceReadScope": "Master official-source captions, current queue and dedicated runtime code. Actual two generic corner-tower image inspections reported by implementation owner; no per-direction identity assigned."
+        },
+        "accepted": false
+      }
     },
     {
       "id": "FC-47E803E147",
@@ -447,8 +800,8 @@
       },
       "facets": {
         "exterior": {
-          "status": "UNREVIEWED",
-          "currentCycleReview": "UNREVIEWED",
+          "status": "DIFFED",
+          "currentCycleReview": "DIFFED",
           "inheritedProgressRetained": false,
           "baselineRecords": [],
           "sourceIds": [
@@ -458,43 +811,123 @@
           "features": [
             {
               "id": "footprint_orientation_court_connections",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "名称/门内北侧关系有据；精确落点和运行绑定待工程定位。",
+              "residualAction": "西华门内北值房／footprint_orientation_court_connections：名称/门内北侧关系有据；精确落点和运行绑定待工程定位。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "storeys_roof_type_ridge_pitch_eaves_colour",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "官方专图8007.jpg存在；完整屋坡/尺寸尚缺，不造默认屋顶。",
+              "residualAction": "西华门内北值房／storeys_roof_type_ridge_pitch_eaves_colour：官方专图8007.jpg存在；完整屋坡/尺寸尚缺，不造默认屋顶。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "bays_columns_brackets_beams_paint_zones",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "未有运行模型对照；柱数梁架局部证据待专图核查。",
+              "residualAction": "西华门内北值房／bays_columns_brackets_beams_paint_zones：未有运行模型对照；柱数梁架局部证据待专图核查。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "doors_windows_openings_walls_screens",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "门窗完整立面未核；不可沿用六宫默认开间。",
+              "residualAction": "西华门内北值房／doors_windows_openings_walls_screens：门窗完整立面未核；不可沿用六宫默认开间。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "terrace_steps_imperial_ramp_rails_posts",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "台基阶石与地坪连接未定位，不伪造可达路线。",
+              "residualAction": "西华门内北值房／terrace_steps_imperial_ramp_rails_posts：台基阶石与地坪连接未定位，不伪造可达路线。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "与西华门和附房连接尚未在代码绑定。",
+              "residualAction": "西华门内北值房／porches_corridors_ear_rooms_rear_halls_vertical_joins：与西华门和附房连接尚未在代码绑定。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "plaques_text_placement_orientation_occlusion",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "无可确认牌额文字与位置，不造牌匾。",
+              "residualAction": "西华门内北值房／plaques_text_placement_orientation_occlusion：无可确认牌额文字与位置，不造牌匾。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "unique_courtyard_facilities_locations",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "独立值房身份保留，不以父门构件替代完成。",
+              "residualAction": "西华门内北值房／unique_courtyard_facilities_locations：独立值房身份保留，不以父门构件替代完成。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             }
           ],
           "visualEvidence": {
@@ -508,11 +941,19 @@
             "photographyDate": null,
             "doNotMixPeriods": true
           },
-          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "currentCycleAccepted": false,
+          "currentCycleScopeReview": {
+            "at": "2026-10-24T01:21:08.504405+00:00",
+            "scopeScanComplete": true,
+            "evidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "browserAcceptance": false,
+            "wholeObjectAccepted": false
+          }
         },
         "interior": {
-          "status": "UNREVIEWED",
-          "currentCycleReview": "UNREVIEWED",
+          "status": "BLOCKED_SOURCE",
+          "currentCycleReview": "BLOCKED_SOURCE",
           "inheritedProgressRetained": false,
           "baselineRecords": [],
           "sourceIds": [],
@@ -520,33 +961,93 @@
           "features": [
             {
               "id": "room_partitions_portals_column_grid_levels_steps_floor",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "分隔、柱网、楼层及踏步：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "西华门内北值房／room_partitions_portals_column_grid_levels_steps_floor：分隔、柱网、楼层及踏步：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "天花、藻井、梁架和彩画：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "西华门内北值房／ceilings_caissons_frames_paint_screens_fixed_joinery：天花、藻井、梁架和彩画：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "principal_furniture_type_count_location_facing_scale",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "主家具数量、位置和朝向：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "西华门内北值房／principal_furniture_type_count_location_facing_scale：主家具数量、位置和朝向：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "挂画、对联、镜灯及帘幕关系：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "西华门内北值房／pictures_couplets_mirrors_lights_curtains_ornament_relations：挂画、对联、镜灯及帘幕关系：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "function_specificity_worship_library_residential_exhibition",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "现状使用功能及陈设时期：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "西华门内北值房／function_specificity_worship_library_residential_exhibition：现状使用功能及陈设时期：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "visible_missing_objects_and_unsupported_model_objects",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "遗漏物件与无证物件：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "西华门内北值房／visible_missing_objects_and_unsupported_model_objects：遗漏物件与无证物件：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             }
           ],
           "visualEvidence": {
@@ -560,7 +1061,15 @@
             "photographyDate": null,
             "doNotMixPeriods": true
           },
-          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "currentCycleAccepted": false,
+          "currentCycleScopeReview": {
+            "at": "2026-10-24T01:21:08.504405+00:00",
+            "scopeScanComplete": true,
+            "evidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "browserAcceptance": false,
+            "wholeObjectAccepted": false
+          }
         }
       },
       "requiredChildIds": [],
@@ -572,7 +1081,25 @@
       "currentCycleAccepted": false,
       "optional": false,
       "priority": 11002,
-      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views."
+      "nextAction": "官方名称及门内北侧关系明确；当前无精确运行绑定，不能另造一个普通房屋作为完成。 所有完整对象仍未验收；具体残项见每个feature。",
+      "scopeReviewCompleted": true,
+      "sourceModelReviewR70": {
+        "at": "2026-10-24T01:21:08.504405+00:00",
+        "currentModel": "官方名称及门内北侧关系明确；当前无精确运行绑定，不能另造一个普通房屋作为完成。",
+        "sourceReviewEvidence": {
+          "inheritedInputSourceIds": [
+            "SRC-E0DB409C76B2",
+            "SRC-2C6A71E122EE"
+          ],
+          "inspectedImages": [],
+          "imageInspectionByThisWorker": false,
+          "imageInspectionReportedByImplementationOwner": false,
+          "allSourcecardImageURLsAreViewed": false,
+          "browserComparisonPerformedByThisSynthesisWorker": false,
+          "sourceReadScope": "Master official-source captions, current queue and dedicated runtime code. Actual two generic corner-tower image inspections reported by implementation owner; no per-direction identity assigned."
+        },
+        "accepted": false
+      }
     },
     {
       "id": "FC-0A6C0E1D71",
@@ -627,8 +1154,8 @@
       },
       "facets": {
         "exterior": {
-          "status": "UNREVIEWED",
-          "currentCycleReview": "UNREVIEWED",
+          "status": "DIFFED",
+          "currentCycleReview": "DIFFED",
           "inheritedProgressRetained": false,
           "baselineRecords": [],
           "sourceIds": [
@@ -638,43 +1165,123 @@
           "features": [
             {
               "id": "footprint_orientation_court_connections",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "已有R36南部蜿蜒河道/桥位；全河走向涵洞宽度坡度未全核。",
+              "residualAction": "内金水河／footprint_orientation_court_connections：已有R36南部蜿蜒河道/桥位；全河走向涵洞宽度坡度未全核。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "storeys_roof_type_ridge_pitch_eaves_colour",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "无建筑屋顶；本细项转核露天水面剖面与岸石顶缘，不生成檐口。",
+              "residualAction": "内金水河／storeys_roof_type_ridge_pitch_eaves_colour：无建筑屋顶；本细项转核露天水面剖面与岸石顶缘，不生成檐口。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "bays_columns_brackets_beams_paint_zones",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "无殿堂柱梁；对应桥栏与岸石承托，非柱网建模任务。",
+              "residualAction": "内金水河／bays_columns_brackets_beams_paint_zones：无殿堂柱梁；对应桥栏与岸石承托，非柱网建模任务。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "doors_windows_openings_walls_screens",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "无门窗；对应桥下过水开口及涵洞，后者缺全程图证。",
+              "residualAction": "内金水河／doors_windows_openings_walls_screens：无门窗；对应桥下过水开口及涵洞，后者缺全程图证。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "terrace_steps_imperial_ramp_rails_posts",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "局部岸石和水面有官方桥图；全河岸高/阶石不能按局部图验收。",
+              "residualAction": "内金水河／terrace_steps_imperial_ramp_rails_posts：局部岸石和水面有官方桥图；全河岸高/阶石不能按局部图验收。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "对应桥梁-河岸过渡及连续岸线；保留原桥位，不宣称全河连通已验。",
+              "residualAction": "内金水河／porches_corridors_ear_rooms_rear_halls_vertical_joins：对应桥梁-河岸过渡及连续岸线；保留原桥位，不宣称全河连通已验。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "plaques_text_placement_orientation_occlusion",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "无已确认建筑牌额；不得为河道添加默认牌匾。",
+              "residualAction": "内金水河／plaques_text_placement_orientation_occlusion：无已确认建筑牌额；不得为河道添加默认牌匾。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "unique_courtyard_facilities_locations",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "明确内金水桥等桥位与河道关联；各段桥型及设施仍待分别比对。",
+              "residualAction": "内金水河／unique_courtyard_facilities_locations：明确内金水桥等桥位与河道关联；各段桥型及设施仍待分别比对。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             }
           ],
           "visualEvidence": {
@@ -688,7 +1295,15 @@
             "photographyDate": null,
             "doNotMixPeriods": true
           },
-          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "currentCycleAccepted": false,
+          "currentCycleScopeReview": {
+            "at": "2026-10-24T01:21:08.504405+00:00",
+            "scopeScanComplete": true,
+            "evidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "browserAcceptance": false,
+            "wholeObjectAccepted": false
+          }
         },
         "interior": {
           "status": "NOT_APPLICABLE",
@@ -721,7 +1336,25 @@
       "currentCycleAccepted": false,
       "optional": false,
       "priority": 11003,
-      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views."
+      "nextAction": "Layout/3 声明由 palace/river.js 与 R36 南部河道和明确桥位驱动；遗留 dimensions 100×15 不是实测河道矩形，本轮保留几何。 所有完整对象仍未验收；具体残项见每个feature。",
+      "scopeReviewCompleted": true,
+      "sourceModelReviewR70": {
+        "at": "2026-10-24T01:21:08.504405+00:00",
+        "currentModel": "Layout/3 声明由 palace/river.js 与 R36 南部河道和明确桥位驱动；遗留 dimensions 100×15 不是实测河道矩形，本轮保留几何。",
+        "sourceReviewEvidence": {
+          "inheritedInputSourceIds": [
+            "SRC-D45E386F561E",
+            "SRC-697BB57688E6"
+          ],
+          "inspectedImages": [],
+          "imageInspectionByThisWorker": false,
+          "imageInspectionReportedByImplementationOwner": false,
+          "allSourcecardImageURLsAreViewed": false,
+          "browserComparisonPerformedByThisSynthesisWorker": false,
+          "sourceReadScope": "Master official-source captions, current queue and dedicated runtime code. Actual two generic corner-tower image inspections reported by implementation owner; no per-direction identity assigned."
+        },
+        "accepted": false
+      }
     },
     {
       "id": "FC-168251EA2D",
@@ -736,8 +1369,10 @@
       "entityId": "FC-168251EA2D",
       "entityCountStatus": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
       "aliases": [],
-      "parentCandidates": [],
-      "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+      "parentCandidates": [
+        "FC-E8C2F3E267"
+      ],
+      "parentResolution": "MASTER_TEXT_GROUP_MEMBERSHIP_NOT_SURVEYED_COORDINATES",
       "registryBindings": [],
       "placeBindings": [],
       "runtimeBindings": [
@@ -772,8 +1407,8 @@
       },
       "facets": {
         "exterior": {
-          "status": "UNREVIEWED",
-          "currentCycleReview": "UNREVIEWED",
+          "status": "DIFFED",
+          "currentCycleReview": "DIFFED",
           "inheritedProgressRetained": false,
           "baselineRecords": [],
           "sourceIds": [],
@@ -781,43 +1416,131 @@
           "features": [
             {
               "id": "footprint_orientation_court_connections",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "四隅实例已有独立绑定；父组关系只作目录，不是测绘坐标确认。",
+              "residualAction": "东北角楼／footprint_orientation_court_connections：四隅实例已有独立绑定；父组关系只作目录，不是测绘坐标确认。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "storeys_roof_type_ridge_pitch_eaves_colour",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "继承共享宝顶拟合，但无该方位独立照片，仍DIFFED不PARTIAL。",
+              "residualAction": "东北角楼／storeys_roof_type_ridge_pitch_eaves_colour：继承共享宝顶拟合，但无该方位独立照片，仍DIFFED不PARTIAL。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "bays_columns_brackets_beams_paint_zones",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "共享柱梁斗栱模板，逐座差异待带方位图核查。",
+              "residualAction": "东北角楼／bays_columns_brackets_beams_paint_zones：共享柱梁斗栱模板，逐座差异待带方位图核查。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "doors_windows_openings_walls_screens",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "各方位门窗开口缺独立照片，保持未验。",
+              "residualAction": "东北角楼／doors_windows_openings_walls_screens：各方位门窗开口缺独立照片，保持未验。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "terrace_steps_imperial_ramp_rails_posts",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "台基/城墙接缝未作逐座实景尺寸验收。",
+              "residualAction": "东北角楼／terrace_steps_imperial_ramp_rails_posts：台基/城墙接缝未作逐座实景尺寸验收。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "复合歇山抱厦相接使用通用模型，独立方向形体仍待核。",
+              "residualAction": "东北角楼／porches_corridors_ear_rooms_rear_halls_vertical_joins：复合歇山抱厦相接使用通用模型，独立方向形体仍待核。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "plaques_text_placement_orientation_occlusion",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "没有该方位牌额证据，不造新文字。",
+              "residualAction": "东北角楼／plaques_text_placement_orientation_occlusion：没有该方位牌额证据，不造新文字。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "unique_courtyard_facilities_locations",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "现有方位和护城河关系仅工程声明，不代表逐座景观独立核验。",
+              "residualAction": "东北角楼／unique_courtyard_facilities_locations：现有方位和护城河关系仅工程声明，不代表逐座景观独立核验。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             }
           ],
           "visualEvidence": {
@@ -831,11 +1554,19 @@
             "photographyDate": null,
             "doNotMixPeriods": true
           },
-          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "currentCycleAccepted": false,
+          "currentCycleScopeReview": {
+            "at": "2026-10-24T01:21:08.504405+00:00",
+            "scopeScanComplete": true,
+            "evidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "browserAcceptance": false,
+            "wholeObjectAccepted": false
+          }
         },
         "interior": {
-          "status": "UNREVIEWED",
-          "currentCycleReview": "UNREVIEWED",
+          "status": "BLOCKED_SOURCE",
+          "currentCycleReview": "BLOCKED_SOURCE",
           "inheritedProgressRetained": false,
           "baselineRecords": [],
           "sourceIds": [],
@@ -843,33 +1574,93 @@
           "features": [
             {
               "id": "room_partitions_portals_column_grid_levels_steps_floor",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "分隔、柱网、楼层及踏步：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "东北角楼／room_partitions_portals_column_grid_levels_steps_floor：分隔、柱网、楼层及踏步：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "天花、藻井、梁架和彩画：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "东北角楼／ceilings_caissons_frames_paint_screens_fixed_joinery：天花、藻井、梁架和彩画：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "principal_furniture_type_count_location_facing_scale",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "主家具数量、位置和朝向：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "东北角楼／principal_furniture_type_count_location_facing_scale：主家具数量、位置和朝向：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "挂画、对联、镜灯及帘幕关系：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "东北角楼／pictures_couplets_mirrors_lights_curtains_ornament_relations：挂画、对联、镜灯及帘幕关系：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "function_specificity_worship_library_residential_exhibition",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "现状使用功能及陈设时期：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "东北角楼／function_specificity_worship_library_residential_exhibition：现状使用功能及陈设时期：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "visible_missing_objects_and_unsupported_model_objects",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "遗漏物件与无证物件：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "东北角楼／visible_missing_objects_and_unsupported_model_objects：遗漏物件与无证物件：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             }
           ],
           "visualEvidence": {
@@ -883,7 +1674,15 @@
             "photographyDate": null,
             "doNotMixPeriods": true
           },
-          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "currentCycleAccepted": false,
+          "currentCycleScopeReview": {
+            "at": "2026-10-24T01:21:08.504405+00:00",
+            "scopeScanComplete": true,
+            "evidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "browserAcceptance": false,
+            "wholeObjectAccepted": false
+          }
         }
       },
       "requiredChildIds": [],
@@ -895,7 +1694,25 @@
       "currentCycleAccepted": false,
       "optional": false,
       "priority": 11004,
-      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views."
+      "nextAction": "Enclosure.buildCornerTowers 已有该方位独立实例，共用29m模型与宝顶模板；本轮继承共享拟合，不作该方位照片独立验收。 所有完整对象仍未验收；具体残项见每个feature。",
+      "physicalIdentityAccepted": false,
+      "scopeReviewCompleted": true,
+      "sourceModelReviewR70": {
+        "at": "2026-10-24T01:21:08.504405+00:00",
+        "currentModel": "Enclosure.buildCornerTowers 已有该方位独立实例，共用29m模型与宝顶模板；本轮继承共享拟合，不作该方位照片独立验收。",
+        "sourceReviewEvidence": {
+          "inheritedInputSourceIds": [
+            "SRC-5DAC4119103F"
+          ],
+          "inspectedImages": [],
+          "imageInspectionByThisWorker": false,
+          "imageInspectionReportedByImplementationOwner": false,
+          "allSourcecardImageURLsAreViewed": false,
+          "browserComparisonPerformedByThisSynthesisWorker": false,
+          "sourceReadScope": "Master official-source captions, current queue and dedicated runtime code. Actual two generic corner-tower image inspections reported by implementation owner; no per-direction identity assigned."
+        },
+        "accepted": false
+      }
     },
     {
       "id": "FC-2BC4B765C8",
@@ -910,8 +1727,10 @@
       "entityId": "FC-2BC4B765C8",
       "entityCountStatus": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
       "aliases": [],
-      "parentCandidates": [],
-      "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+      "parentCandidates": [
+        "FC-E8C2F3E267"
+      ],
+      "parentResolution": "MASTER_TEXT_GROUP_MEMBERSHIP_NOT_SURVEYED_COORDINATES",
       "registryBindings": [],
       "placeBindings": [],
       "runtimeBindings": [
@@ -946,8 +1765,8 @@
       },
       "facets": {
         "exterior": {
-          "status": "UNREVIEWED",
-          "currentCycleReview": "UNREVIEWED",
+          "status": "DIFFED",
+          "currentCycleReview": "DIFFED",
           "inheritedProgressRetained": false,
           "baselineRecords": [],
           "sourceIds": [],
@@ -955,43 +1774,131 @@
           "features": [
             {
               "id": "footprint_orientation_court_connections",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "四隅实例已有独立绑定；父组关系只作目录，不是测绘坐标确认。",
+              "residualAction": "东南角楼／footprint_orientation_court_connections：四隅实例已有独立绑定；父组关系只作目录，不是测绘坐标确认。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "storeys_roof_type_ridge_pitch_eaves_colour",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "继承共享宝顶拟合，但无该方位独立照片，仍DIFFED不PARTIAL。",
+              "residualAction": "东南角楼／storeys_roof_type_ridge_pitch_eaves_colour：继承共享宝顶拟合，但无该方位独立照片，仍DIFFED不PARTIAL。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "bays_columns_brackets_beams_paint_zones",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "共享柱梁斗栱模板，逐座差异待带方位图核查。",
+              "residualAction": "东南角楼／bays_columns_brackets_beams_paint_zones：共享柱梁斗栱模板，逐座差异待带方位图核查。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "doors_windows_openings_walls_screens",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "各方位门窗开口缺独立照片，保持未验。",
+              "residualAction": "东南角楼／doors_windows_openings_walls_screens：各方位门窗开口缺独立照片，保持未验。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "terrace_steps_imperial_ramp_rails_posts",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "台基/城墙接缝未作逐座实景尺寸验收。",
+              "residualAction": "东南角楼／terrace_steps_imperial_ramp_rails_posts：台基/城墙接缝未作逐座实景尺寸验收。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "复合歇山抱厦相接使用通用模型，独立方向形体仍待核。",
+              "residualAction": "东南角楼／porches_corridors_ear_rooms_rear_halls_vertical_joins：复合歇山抱厦相接使用通用模型，独立方向形体仍待核。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "plaques_text_placement_orientation_occlusion",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "没有该方位牌额证据，不造新文字。",
+              "residualAction": "东南角楼／plaques_text_placement_orientation_occlusion：没有该方位牌额证据，不造新文字。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "unique_courtyard_facilities_locations",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "现有方位和护城河关系仅工程声明，不代表逐座景观独立核验。",
+              "residualAction": "东南角楼／unique_courtyard_facilities_locations：现有方位和护城河关系仅工程声明，不代表逐座景观独立核验。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             }
           ],
           "visualEvidence": {
@@ -1005,11 +1912,19 @@
             "photographyDate": null,
             "doNotMixPeriods": true
           },
-          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "currentCycleAccepted": false,
+          "currentCycleScopeReview": {
+            "at": "2026-10-24T01:21:08.504405+00:00",
+            "scopeScanComplete": true,
+            "evidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "browserAcceptance": false,
+            "wholeObjectAccepted": false
+          }
         },
         "interior": {
-          "status": "UNREVIEWED",
-          "currentCycleReview": "UNREVIEWED",
+          "status": "BLOCKED_SOURCE",
+          "currentCycleReview": "BLOCKED_SOURCE",
           "inheritedProgressRetained": false,
           "baselineRecords": [],
           "sourceIds": [],
@@ -1017,33 +1932,93 @@
           "features": [
             {
               "id": "room_partitions_portals_column_grid_levels_steps_floor",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "分隔、柱网、楼层及踏步：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "东南角楼／room_partitions_portals_column_grid_levels_steps_floor：分隔、柱网、楼层及踏步：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "天花、藻井、梁架和彩画：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "东南角楼／ceilings_caissons_frames_paint_screens_fixed_joinery：天花、藻井、梁架和彩画：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "principal_furniture_type_count_location_facing_scale",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "主家具数量、位置和朝向：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "东南角楼／principal_furniture_type_count_location_facing_scale：主家具数量、位置和朝向：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "挂画、对联、镜灯及帘幕关系：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "东南角楼／pictures_couplets_mirrors_lights_curtains_ornament_relations：挂画、对联、镜灯及帘幕关系：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "function_specificity_worship_library_residential_exhibition",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "现状使用功能及陈设时期：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "东南角楼／function_specificity_worship_library_residential_exhibition：现状使用功能及陈设时期：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "visible_missing_objects_and_unsupported_model_objects",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "遗漏物件与无证物件：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "东南角楼／visible_missing_objects_and_unsupported_model_objects：遗漏物件与无证物件：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             }
           ],
           "visualEvidence": {
@@ -1057,7 +2032,15 @@
             "photographyDate": null,
             "doNotMixPeriods": true
           },
-          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "currentCycleAccepted": false,
+          "currentCycleScopeReview": {
+            "at": "2026-10-24T01:21:08.504405+00:00",
+            "scopeScanComplete": true,
+            "evidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "browserAcceptance": false,
+            "wholeObjectAccepted": false
+          }
         }
       },
       "requiredChildIds": [],
@@ -1069,7 +2052,25 @@
       "currentCycleAccepted": false,
       "optional": false,
       "priority": 11005,
-      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views."
+      "nextAction": "Enclosure.buildCornerTowers 已有该方位独立实例，共用29m模型与宝顶模板；本轮继承共享拟合，不作该方位照片独立验收。 所有完整对象仍未验收；具体残项见每个feature。",
+      "physicalIdentityAccepted": false,
+      "scopeReviewCompleted": true,
+      "sourceModelReviewR70": {
+        "at": "2026-10-24T01:21:08.504405+00:00",
+        "currentModel": "Enclosure.buildCornerTowers 已有该方位独立实例，共用29m模型与宝顶模板；本轮继承共享拟合，不作该方位照片独立验收。",
+        "sourceReviewEvidence": {
+          "inheritedInputSourceIds": [
+            "SRC-5DAC4119103F"
+          ],
+          "inspectedImages": [],
+          "imageInspectionByThisWorker": false,
+          "imageInspectionReportedByImplementationOwner": false,
+          "allSourcecardImageURLsAreViewed": false,
+          "browserComparisonPerformedByThisSynthesisWorker": false,
+          "sourceReadScope": "Master official-source captions, current queue and dedicated runtime code. Actual two generic corner-tower image inspections reported by implementation owner; no per-direction identity assigned."
+        },
+        "accepted": false
+      }
     },
     {
       "id": "FC-5E9F74827C",
@@ -1084,8 +2085,10 @@
       "entityId": "FC-5E9F74827C",
       "entityCountStatus": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
       "aliases": [],
-      "parentCandidates": [],
-      "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+      "parentCandidates": [
+        "FC-E8C2F3E267"
+      ],
+      "parentResolution": "MASTER_TEXT_GROUP_MEMBERSHIP_NOT_SURVEYED_COORDINATES",
       "registryBindings": [],
       "placeBindings": [],
       "runtimeBindings": [
@@ -1120,8 +2123,8 @@
       },
       "facets": {
         "exterior": {
-          "status": "UNREVIEWED",
-          "currentCycleReview": "UNREVIEWED",
+          "status": "DIFFED",
+          "currentCycleReview": "DIFFED",
           "inheritedProgressRetained": false,
           "baselineRecords": [],
           "sourceIds": [],
@@ -1129,43 +2132,131 @@
           "features": [
             {
               "id": "footprint_orientation_court_connections",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "四隅实例已有独立绑定；父组关系只作目录，不是测绘坐标确认。",
+              "residualAction": "西北角楼／footprint_orientation_court_connections：四隅实例已有独立绑定；父组关系只作目录，不是测绘坐标确认。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "storeys_roof_type_ridge_pitch_eaves_colour",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "继承共享宝顶拟合，但无该方位独立照片，仍DIFFED不PARTIAL。",
+              "residualAction": "西北角楼／storeys_roof_type_ridge_pitch_eaves_colour：继承共享宝顶拟合，但无该方位独立照片，仍DIFFED不PARTIAL。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "bays_columns_brackets_beams_paint_zones",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "共享柱梁斗栱模板，逐座差异待带方位图核查。",
+              "residualAction": "西北角楼／bays_columns_brackets_beams_paint_zones：共享柱梁斗栱模板，逐座差异待带方位图核查。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "doors_windows_openings_walls_screens",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "各方位门窗开口缺独立照片，保持未验。",
+              "residualAction": "西北角楼／doors_windows_openings_walls_screens：各方位门窗开口缺独立照片，保持未验。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "terrace_steps_imperial_ramp_rails_posts",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "台基/城墙接缝未作逐座实景尺寸验收。",
+              "residualAction": "西北角楼／terrace_steps_imperial_ramp_rails_posts：台基/城墙接缝未作逐座实景尺寸验收。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "复合歇山抱厦相接使用通用模型，独立方向形体仍待核。",
+              "residualAction": "西北角楼／porches_corridors_ear_rooms_rear_halls_vertical_joins：复合歇山抱厦相接使用通用模型，独立方向形体仍待核。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "plaques_text_placement_orientation_occlusion",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "没有该方位牌额证据，不造新文字。",
+              "residualAction": "西北角楼／plaques_text_placement_orientation_occlusion：没有该方位牌额证据，不造新文字。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "unique_courtyard_facilities_locations",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "现有方位和护城河关系仅工程声明，不代表逐座景观独立核验。",
+              "residualAction": "西北角楼／unique_courtyard_facilities_locations：现有方位和护城河关系仅工程声明，不代表逐座景观独立核验。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             }
           ],
           "visualEvidence": {
@@ -1179,11 +2270,19 @@
             "photographyDate": null,
             "doNotMixPeriods": true
           },
-          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "currentCycleAccepted": false,
+          "currentCycleScopeReview": {
+            "at": "2026-10-24T01:21:08.504405+00:00",
+            "scopeScanComplete": true,
+            "evidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "browserAcceptance": false,
+            "wholeObjectAccepted": false
+          }
         },
         "interior": {
-          "status": "UNREVIEWED",
-          "currentCycleReview": "UNREVIEWED",
+          "status": "BLOCKED_SOURCE",
+          "currentCycleReview": "BLOCKED_SOURCE",
           "inheritedProgressRetained": false,
           "baselineRecords": [],
           "sourceIds": [],
@@ -1191,33 +2290,93 @@
           "features": [
             {
               "id": "room_partitions_portals_column_grid_levels_steps_floor",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "分隔、柱网、楼层及踏步：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "西北角楼／room_partitions_portals_column_grid_levels_steps_floor：分隔、柱网、楼层及踏步：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "天花、藻井、梁架和彩画：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "西北角楼／ceilings_caissons_frames_paint_screens_fixed_joinery：天花、藻井、梁架和彩画：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "principal_furniture_type_count_location_facing_scale",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "主家具数量、位置和朝向：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "西北角楼／principal_furniture_type_count_location_facing_scale：主家具数量、位置和朝向：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "挂画、对联、镜灯及帘幕关系：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "西北角楼／pictures_couplets_mirrors_lights_curtains_ornament_relations：挂画、对联、镜灯及帘幕关系：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "function_specificity_worship_library_residential_exhibition",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "现状使用功能及陈设时期：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "西北角楼／function_specificity_worship_library_residential_exhibition：现状使用功能及陈设时期：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "visible_missing_objects_and_unsupported_model_objects",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "遗漏物件与无证物件：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "西北角楼／visible_missing_objects_and_unsupported_model_objects：遗漏物件与无证物件：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             }
           ],
           "visualEvidence": {
@@ -1231,7 +2390,15 @@
             "photographyDate": null,
             "doNotMixPeriods": true
           },
-          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "currentCycleAccepted": false,
+          "currentCycleScopeReview": {
+            "at": "2026-10-24T01:21:08.504405+00:00",
+            "scopeScanComplete": true,
+            "evidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "browserAcceptance": false,
+            "wholeObjectAccepted": false
+          }
         }
       },
       "requiredChildIds": [],
@@ -1243,7 +2410,25 @@
       "currentCycleAccepted": false,
       "optional": false,
       "priority": 11006,
-      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views."
+      "nextAction": "Enclosure.buildCornerTowers 已有该方位独立实例，共用29m模型与宝顶模板；本轮继承共享拟合，不作该方位照片独立验收。 所有完整对象仍未验收；具体残项见每个feature。",
+      "physicalIdentityAccepted": false,
+      "scopeReviewCompleted": true,
+      "sourceModelReviewR70": {
+        "at": "2026-10-24T01:21:08.504405+00:00",
+        "currentModel": "Enclosure.buildCornerTowers 已有该方位独立实例，共用29m模型与宝顶模板；本轮继承共享拟合，不作该方位照片独立验收。",
+        "sourceReviewEvidence": {
+          "inheritedInputSourceIds": [
+            "SRC-5DAC4119103F"
+          ],
+          "inspectedImages": [],
+          "imageInspectionByThisWorker": false,
+          "imageInspectionReportedByImplementationOwner": false,
+          "allSourcecardImageURLsAreViewed": false,
+          "browserComparisonPerformedByThisSynthesisWorker": false,
+          "sourceReadScope": "Master official-source captions, current queue and dedicated runtime code. Actual two generic corner-tower image inspections reported by implementation owner; no per-direction identity assigned."
+        },
+        "accepted": false
+      }
     },
     {
       "id": "FC-540CD84282",
@@ -1258,8 +2443,10 @@
       "entityId": "FC-540CD84282",
       "entityCountStatus": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
       "aliases": [],
-      "parentCandidates": [],
-      "parentResolution": "TEXT_RELATION_CANDIDATE_NOT_SPATIAL_VERIFIED",
+      "parentCandidates": [
+        "FC-E8C2F3E267"
+      ],
+      "parentResolution": "MASTER_TEXT_GROUP_MEMBERSHIP_NOT_SURVEYED_COORDINATES",
       "registryBindings": [],
       "placeBindings": [],
       "runtimeBindings": [
@@ -1294,8 +2481,8 @@
       },
       "facets": {
         "exterior": {
-          "status": "UNREVIEWED",
-          "currentCycleReview": "UNREVIEWED",
+          "status": "DIFFED",
+          "currentCycleReview": "DIFFED",
           "inheritedProgressRetained": false,
           "baselineRecords": [],
           "sourceIds": [],
@@ -1303,43 +2490,131 @@
           "features": [
             {
               "id": "footprint_orientation_court_connections",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "四隅实例已有独立绑定；父组关系只作目录，不是测绘坐标确认。",
+              "residualAction": "西南角楼／footprint_orientation_court_connections：四隅实例已有独立绑定；父组关系只作目录，不是测绘坐标确认。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "storeys_roof_type_ridge_pitch_eaves_colour",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "继承共享宝顶拟合，但无该方位独立照片，仍DIFFED不PARTIAL。",
+              "residualAction": "西南角楼／storeys_roof_type_ridge_pitch_eaves_colour：继承共享宝顶拟合，但无该方位独立照片，仍DIFFED不PARTIAL。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "bays_columns_brackets_beams_paint_zones",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "共享柱梁斗栱模板，逐座差异待带方位图核查。",
+              "residualAction": "西南角楼／bays_columns_brackets_beams_paint_zones：共享柱梁斗栱模板，逐座差异待带方位图核查。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "doors_windows_openings_walls_screens",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "各方位门窗开口缺独立照片，保持未验。",
+              "residualAction": "西南角楼／doors_windows_openings_walls_screens：各方位门窗开口缺独立照片，保持未验。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "terrace_steps_imperial_ramp_rails_posts",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "台基/城墙接缝未作逐座实景尺寸验收。",
+              "residualAction": "西南角楼／terrace_steps_imperial_ramp_rails_posts：台基/城墙接缝未作逐座实景尺寸验收。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "复合歇山抱厦相接使用通用模型，独立方向形体仍待核。",
+              "residualAction": "西南角楼／porches_corridors_ear_rooms_rear_halls_vertical_joins：复合歇山抱厦相接使用通用模型，独立方向形体仍待核。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "plaques_text_placement_orientation_occlusion",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "没有该方位牌额证据，不造新文字。",
+              "residualAction": "西南角楼／plaques_text_placement_orientation_occlusion：没有该方位牌额证据，不造新文字。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "unique_courtyard_facilities_locations",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "现有方位和护城河关系仅工程声明，不代表逐座景观独立核验。",
+              "residualAction": "西南角楼／unique_courtyard_facilities_locations：现有方位和护城河关系仅工程声明，不代表逐座景观独立核验。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER",
+                "SOURCE_DIRECTIONAL_IDENTITY"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             }
           ],
           "visualEvidence": {
@@ -1353,11 +2628,19 @@
             "photographyDate": null,
             "doNotMixPeriods": true
           },
-          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "currentCycleAccepted": false,
+          "currentCycleScopeReview": {
+            "at": "2026-10-24T01:21:08.504405+00:00",
+            "scopeScanComplete": true,
+            "evidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "browserAcceptance": false,
+            "wholeObjectAccepted": false
+          }
         },
         "interior": {
-          "status": "UNREVIEWED",
-          "currentCycleReview": "UNREVIEWED",
+          "status": "BLOCKED_SOURCE",
+          "currentCycleReview": "BLOCKED_SOURCE",
           "inheritedProgressRetained": false,
           "baselineRecords": [],
           "sourceIds": [],
@@ -1365,33 +2648,93 @@
           "features": [
             {
               "id": "room_partitions_portals_column_grid_levels_steps_floor",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "分隔、柱网、楼层及踏步：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "西南角楼／room_partitions_portals_column_grid_levels_steps_floor：分隔、柱网、楼层及踏步：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "天花、藻井、梁架和彩画：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "西南角楼／ceilings_caissons_frames_paint_screens_fixed_joinery：天花、藻井、梁架和彩画：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "principal_furniture_type_count_location_facing_scale",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "主家具数量、位置和朝向：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "西南角楼／principal_furniture_type_count_location_facing_scale：主家具数量、位置和朝向：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "挂画、对联、镜灯及帘幕关系：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "西南角楼／pictures_couplets_mirrors_lights_curtains_ornament_relations：挂画、对联、镜灯及帘幕关系：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "function_specificity_worship_library_residential_exhibition",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "现状使用功能及陈设时期：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "西南角楼／function_specificity_worship_library_residential_exhibition：现状使用功能及陈设时期：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "visible_missing_objects_and_unsupported_model_objects",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "遗漏物件与无证物件：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "西南角楼／visible_missing_objects_and_unsupported_model_objects：遗漏物件与无证物件：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             }
           ],
           "visualEvidence": {
@@ -1405,7 +2748,15 @@
             "photographyDate": null,
             "doNotMixPeriods": true
           },
-          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "currentCycleAccepted": false,
+          "currentCycleScopeReview": {
+            "at": "2026-10-24T01:21:08.504405+00:00",
+            "scopeScanComplete": true,
+            "evidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "browserAcceptance": false,
+            "wholeObjectAccepted": false
+          }
         }
       },
       "requiredChildIds": [],
@@ -1417,7 +2768,25 @@
       "currentCycleAccepted": false,
       "optional": false,
       "priority": 11007,
-      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views."
+      "nextAction": "Enclosure.buildCornerTowers 已有该方位独立实例，共用29m模型与宝顶模板；本轮继承共享拟合，不作该方位照片独立验收。 所有完整对象仍未验收；具体残项见每个feature。",
+      "physicalIdentityAccepted": false,
+      "scopeReviewCompleted": true,
+      "sourceModelReviewR70": {
+        "at": "2026-10-24T01:21:08.504405+00:00",
+        "currentModel": "Enclosure.buildCornerTowers 已有该方位独立实例，共用29m模型与宝顶模板；本轮继承共享拟合，不作该方位照片独立验收。",
+        "sourceReviewEvidence": {
+          "inheritedInputSourceIds": [
+            "SRC-5DAC4119103F"
+          ],
+          "inspectedImages": [],
+          "imageInspectionByThisWorker": false,
+          "imageInspectionReportedByImplementationOwner": false,
+          "allSourcecardImageURLsAreViewed": false,
+          "browserComparisonPerformedByThisSynthesisWorker": false,
+          "sourceReadScope": "Master official-source captions, current queue and dedicated runtime code. Actual two generic corner-tower image inspections reported by implementation owner; no per-direction identity assigned."
+        },
+        "accepted": false
+      }
     },
     {
       "id": "FC-95FE4AAEE9",
@@ -1472,8 +2841,8 @@
       },
       "facets": {
         "exterior": {
-          "status": "UNREVIEWED",
-          "currentCycleReview": "UNREVIEWED",
+          "status": "DIFFED",
+          "currentCycleReview": "DIFFED",
           "inheritedProgressRetained": false,
           "baselineRecords": [],
           "sourceIds": [
@@ -1483,43 +2852,123 @@
           "features": [
             {
               "id": "footprint_orientation_court_connections",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "官方南北961m/东西753m；实际代码南北972m，调整必须联动神武门北墙四角楼及路线。",
+              "residualAction": "紫禁城城墙／footprint_orientation_court_connections：官方南北961m/东西753m；实际代码南北972m，调整必须联动神武门北墙四角楼及路线。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "storeys_roof_type_ridge_pitch_eaves_colour",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "无殿堂屋顶；对应女墙顶缘和城墙冠部，逐段差异未核。",
+              "residualAction": "紫禁城城墙／storeys_roof_type_ridge_pitch_eaves_colour：无殿堂屋顶；对应女墙顶缘和城墙冠部，逐段差异未核。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "bays_columns_brackets_beams_paint_zones",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "无殿堂柱梁；对应墙体结构/垛口段落，不能套柱网。",
+              "residualAction": "紫禁城城墙／bays_columns_brackets_beams_paint_zones：无殿堂柱梁；对应墙体结构/垛口段落，不能套柱网。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "doors_windows_openings_walls_screens",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "对应四门洞口及墙段接合；现代码北门开口沿用神武门宽度。",
+              "residualAction": "紫禁城城墙／doors_windows_openings_walls_screens：对应四门洞口及墙段接合；现代码北门开口沿用神武门宽度。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "terrace_steps_imperial_ramp_rails_posts",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "官方约10m高支持总说；台基厚度、墙坡及马道逐段未知。",
+              "residualAction": "紫禁城城墙／terrace_steps_imperial_ramp_rails_posts：官方约10m高支持总说；台基厚度、墙坡及马道逐段未知。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "对应墙-门-角楼接合，972m与961m残项不得盲缩北墙解决。",
+              "residualAction": "紫禁城城墙／porches_corridors_ear_rooms_rear_halls_vertical_joins：对应墙-门-角楼接合，972m与961m残项不得盲缩北墙解决。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "plaques_text_placement_orientation_occlusion",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "不把宫门牌额算作每段城墙牌额；无额外文字证据不造。",
+              "residualAction": "紫禁城城墙／plaques_text_placement_orientation_occlusion：不把宫门牌额算作每段城墙牌额；无额外文字证据不造。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "unique_courtyard_facilities_locations",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "女墙、排水、马道与维修段尚未逐段核验，保留工程和图证残项。",
+              "residualAction": "紫禁城城墙／unique_courtyard_facilities_locations：女墙、排水、马道与维修段尚未逐段核验，保留工程和图证残项。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             }
           ],
           "visualEvidence": {
@@ -1533,7 +2982,15 @@
             "photographyDate": null,
             "doNotMixPeriods": true
           },
-          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "currentCycleAccepted": false,
+          "currentCycleScopeReview": {
+            "at": "2026-10-24T01:21:08.504405+00:00",
+            "scopeScanComplete": true,
+            "evidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "browserAcceptance": false,
+            "wholeObjectAccepted": false
+          }
         },
         "interior": {
           "status": "NOT_APPLICABLE",
@@ -1566,7 +3023,25 @@
       "currentCycleAccepted": false,
       "optional": false,
       "priority": 11008,
-      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views."
+      "nextAction": "Layout/1 与 Enclosure.buildOuterWalls 已有四边城墙。PALACE_RECT 实际 minZ=-425/maxZ=547，南北972m；旧注释961m与实际不同。官方961m已知，此为工程坐标残项而非资料不足。 所有完整对象仍未验收；具体残项见每个feature。",
+      "scopeReviewCompleted": true,
+      "sourceModelReviewR70": {
+        "at": "2026-10-24T01:21:08.504405+00:00",
+        "currentModel": "Layout/1 与 Enclosure.buildOuterWalls 已有四边城墙。PALACE_RECT 实际 minZ=-425/maxZ=547，南北972m；旧注释961m与实际不同。官方961m已知，此为工程坐标残项而非资料不足。",
+        "sourceReviewEvidence": {
+          "inheritedInputSourceIds": [
+            "SRC-12713FF20CC7",
+            "SRC-DF4FC76F4602"
+          ],
+          "inspectedImages": [],
+          "imageInspectionByThisWorker": false,
+          "imageInspectionReportedByImplementationOwner": false,
+          "allSourcecardImageURLsAreViewed": false,
+          "browserComparisonPerformedByThisSynthesisWorker": false,
+          "sourceReadScope": "Master official-source captions, current queue and dedicated runtime code. Actual two generic corner-tower image inspections reported by implementation owner; no per-direction identity assigned."
+        },
+        "accepted": false
+      }
     },
     {
       "id": "FC-C5FADE84B6",
@@ -1621,8 +3096,8 @@
       },
       "facets": {
         "exterior": {
-          "status": "UNREVIEWED",
-          "currentCycleReview": "UNREVIEWED",
+          "status": "DIFFED",
+          "currentCycleReview": "DIFFED",
           "inheritedProgressRetained": false,
           "baselineRecords": [],
           "sourceIds": [
@@ -1632,43 +3107,123 @@
           "features": [
             {
               "id": "footprint_orientation_court_connections",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "既有矩形外框不是现状岸线测绘；四边分别复核，不据52m总说全验。",
+              "residualAction": "护城河／footprint_orientation_court_connections：既有矩形外框不是现状岸线测绘；四边分别复核，不据52m总说全验。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "storeys_roof_type_ridge_pitch_eaves_colour",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "无屋顶；对应水面高度和岸石顶缘，不新增建筑檐部。",
+              "residualAction": "护城河／storeys_roof_type_ridge_pitch_eaves_colour：无屋顶；对应水面高度和岸石顶缘，不新增建筑檐部。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "bays_columns_brackets_beams_paint_zones",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "无柱梁；对应岸石与桥下支承，跨河桥须独立定位。",
+              "residualAction": "护城河／bays_columns_brackets_beams_paint_zones：无柱梁；对应岸石与桥下支承，跨河桥须独立定位。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "doors_windows_openings_walls_screens",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "无门窗；对应桥下通水开口，不凭默认门洞生成。",
+              "residualAction": "护城河／doors_windows_openings_walls_screens：无门窗；对应桥下通水开口，不凭默认门洞生成。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "terrace_steps_imperial_ramp_rails_posts",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "约52m河宽文字有据，岸石坡度/水位/平台无逐段尺度。",
+              "residualAction": "护城河／terrace_steps_imperial_ramp_rails_posts：约52m河宽文字有据，岸石坡度/水位/平台无逐段尺度。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "对应河岸连续接头、桥岸过渡及城台关系，沿用几何不宣称全路线通过。",
+              "residualAction": "护城河／porches_corridors_ear_rooms_rear_halls_vertical_joins：对应河岸连续接头、桥岸过渡及城台关系，沿用几何不宣称全路线通过。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "plaques_text_placement_orientation_occlusion",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "无建筑牌额任务；河道不生成默认文字。",
+              "residualAction": "护城河／plaques_text_placement_orientation_occlusion：无建筑牌额任务；河道不生成默认文字。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "unique_courtyard_facilities_locations",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "河岸植被及四边跨河桥未逐一确认；不均匀复制树木或桥。",
+              "residualAction": "护城河／unique_courtyard_facilities_locations：河岸植被及四边跨河桥未逐一确认；不均匀复制树木或桥。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             }
           ],
           "visualEvidence": {
@@ -1682,7 +3237,15 @@
             "photographyDate": null,
             "doNotMixPeriods": true
           },
-          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "currentCycleAccepted": false,
+          "currentCycleScopeReview": {
+            "at": "2026-10-24T01:21:08.504405+00:00",
+            "scopeScanComplete": true,
+            "evidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "browserAcceptance": false,
+            "wholeObjectAccepted": false
+          }
         },
         "interior": {
           "status": "NOT_APPLICABLE",
@@ -1715,7 +3278,25 @@
       "currentCycleAccepted": false,
       "optional": false,
       "priority": 11009,
-      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views."
+      "nextAction": "Layout/0 筒子河外框940.5×1147.5、riverWidth=52为既有工程参数；官方约52m宽仅支持总说，不证明四边现状岸线。 所有完整对象仍未验收；具体残项见每个feature。",
+      "scopeReviewCompleted": true,
+      "sourceModelReviewR70": {
+        "at": "2026-10-24T01:21:08.504405+00:00",
+        "currentModel": "Layout/0 筒子河外框940.5×1147.5、riverWidth=52为既有工程参数；官方约52m宽仅支持总说，不证明四边现状岸线。",
+        "sourceReviewEvidence": {
+          "inheritedInputSourceIds": [
+            "SRC-12713FF20CC7",
+            "SRC-50AD9A5FFA9C"
+          ],
+          "inspectedImages": [],
+          "imageInspectionByThisWorker": false,
+          "imageInspectionReportedByImplementationOwner": false,
+          "allSourcecardImageURLsAreViewed": false,
+          "browserComparisonPerformedByThisSynthesisWorker": false,
+          "sourceReadScope": "Master official-source captions, current queue and dedicated runtime code. Actual two generic corner-tower image inspections reported by implementation owner; no per-direction identity assigned."
+        },
+        "accepted": false
+      }
     },
     {
       "id": "FC-B3FB517883",
@@ -1762,8 +3343,8 @@
       },
       "facets": {
         "exterior": {
-          "status": "UNREVIEWED",
-          "currentCycleReview": "UNREVIEWED",
+          "status": "DIFFED",
+          "currentCycleReview": "DIFFED",
           "inheritedProgressRetained": false,
           "baselineRecords": [],
           "sourceIds": [
@@ -1774,43 +3355,123 @@
           "features": [
             {
               "id": "footprint_orientation_court_connections",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "西北隅西墙旁有文本，仍无精确运行绑定；独立院落定位是工程残项。",
+              "residualAction": "城隍庙／footprint_orientation_court_connections：西北隅西墙旁有文本，仍无精确运行绑定；独立院落定位是工程残项。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "storeys_roof_type_ridge_pitch_eaves_colour",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "官方外景/琉璃门图已列，山门庙门正殿配殿屋顶需分别比对。",
+              "residualAction": "城隍庙／storeys_roof_type_ridge_pitch_eaves_colour：官方外景/琉璃门图已列，山门庙门正殿配殿屋顶需分别比对。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "bays_columns_brackets_beams_paint_zones",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "无已绑定实体柱梁，不能以一总名充作多座完成。",
+              "residualAction": "城隍庙／bays_columns_brackets_beams_paint_zones：无已绑定实体柱梁，不能以一总名充作多座完成。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "doors_windows_openings_walls_screens",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "琉璃门官方图可供核查，不推定正殿全部门窗。",
+              "residualAction": "城隍庙／doors_windows_openings_walls_screens：琉璃门官方图可供核查，不推定正殿全部门窗。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "terrace_steps_imperial_ramp_rails_posts",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "台基阶石与西墙地坪关系未定位；不虚构可进入路径。",
+              "residualAction": "城隍庙／terrace_steps_imperial_ramp_rails_posts：台基阶石与西墙地坪关系未定位；不虚构可进入路径。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "山门、庙门、正殿、配殿应逐项展开，不能无证扩成多个既定建筑。",
+              "residualAction": "城隍庙／porches_corridors_ear_rooms_rear_halls_vertical_joins：山门、庙门、正殿、配殿应逐项展开，不能无证扩成多个既定建筑。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "plaques_text_placement_orientation_occlusion",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "牌额字形和挂位未专项核验，不能仅用总名造牌匾。",
+              "residualAction": "城隍庙／plaques_text_placement_orientation_occlusion：牌额字形和挂位未专项核验，不能仅用总名造牌匾。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "unique_courtyard_facilities_locations",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "DIFFED",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "庙宇功能并不证明当前神像/香案清单；不添无证设施。",
+              "residualAction": "城隍庙／unique_courtyard_facilities_locations：庙宇功能并不证明当前神像/香案清单；不添无证设施。",
+              "residualCategories": [
+                "ENGINEERING",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             }
           ],
           "visualEvidence": {
@@ -1824,11 +3485,19 @@
             "photographyDate": null,
             "doNotMixPeriods": true
           },
-          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "currentCycleAccepted": false,
+          "currentCycleScopeReview": {
+            "at": "2026-10-24T01:21:08.504405+00:00",
+            "scopeScanComplete": true,
+            "evidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "browserAcceptance": false,
+            "wholeObjectAccepted": false
+          }
         },
         "interior": {
-          "status": "UNREVIEWED",
-          "currentCycleReview": "UNREVIEWED",
+          "status": "BLOCKED_SOURCE",
+          "currentCycleReview": "BLOCKED_SOURCE",
           "inheritedProgressRetained": false,
           "baselineRecords": [],
           "sourceIds": [],
@@ -1836,33 +3505,93 @@
           "features": [
             {
               "id": "room_partitions_portals_column_grid_levels_steps_floor",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "分隔、柱网、楼层及踏步：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "城隍庙／room_partitions_portals_column_grid_levels_steps_floor：分隔、柱网、楼层及踏步：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "天花、藻井、梁架和彩画：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "城隍庙／ceilings_caissons_frames_paint_screens_fixed_joinery：天花、藻井、梁架和彩画：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "principal_furniture_type_count_location_facing_scale",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "主家具数量、位置和朝向：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "城隍庙／principal_furniture_type_count_location_facing_scale：主家具数量、位置和朝向：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "挂画、对联、镜灯及帘幕关系：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "城隍庙／pictures_couplets_mirrors_lights_curtains_ornament_relations：挂画、对联、镜灯及帘幕关系：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "function_specificity_worship_library_residential_exhibition",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "现状使用功能及陈设时期：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "城隍庙／function_specificity_worship_library_residential_exhibition：现状使用功能及陈设时期：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             },
             {
               "id": "visible_missing_objects_and_unsupported_model_objects",
-              "status": "UNREVIEWED",
-              "acceptedScope": null
+              "status": "BLOCKED_SOURCE",
+              "acceptedScope": null,
+              "currentCycleAccepted": false,
+              "scopeScanComplete": true,
+              "reviewNote": "遗漏物件与无证物件：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualAction": "城隍庙／visible_missing_objects_and_unsupported_model_objects：遗漏物件与无证物件：缺可确认当前内部图，不把官方功能文字扩成精确陈设。",
+              "residualCategories": [
+                "SOURCE_CURRENT_INTERIOR",
+                "BROWSER"
+              ],
+              "reviewEvidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "targetVersionConfirmed": false
             }
           ],
           "visualEvidence": {
@@ -1876,7 +3605,15 @@
             "photographyDate": null,
             "doNotMixPeriods": true
           },
-          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features."
+          "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+          "currentCycleAccepted": false,
+          "currentCycleScopeReview": {
+            "at": "2026-10-24T01:21:08.504405+00:00",
+            "scopeScanComplete": true,
+            "evidence": "L-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+            "browserAcceptance": false,
+            "wholeObjectAccepted": false
+          }
         }
       },
       "requiredChildIds": [],
@@ -1888,7 +3625,26 @@
       "currentCycleAccepted": false,
       "optional": false,
       "priority": 11010,
-      "nextAction": "Resolve physical identity and existing scene binding, then execute available exterior and interior tasks without waiting for all panorama views."
+      "nextAction": "当前无运行绑定；官方西北隅西墙旁及山门、庙门、正殿、配殿应逐项定位，不生成无定位的院落。 所有完整对象仍未验收；具体残项见每个feature。",
+      "scopeReviewCompleted": true,
+      "sourceModelReviewR70": {
+        "at": "2026-10-24T01:21:08.504405+00:00",
+        "currentModel": "当前无运行绑定；官方西北隅西墙旁及山门、庙门、正殿、配殿应逐项定位，不生成无定位的院落。",
+        "sourceReviewEvidence": {
+          "inheritedInputSourceIds": [
+            "SRC-289A79BB4B0B",
+            "SRC-DBDEA0B2A21E",
+            "SRC-3DFC00811D9E"
+          ],
+          "inspectedImages": [],
+          "imageInspectionByThisWorker": false,
+          "imageInspectionReportedByImplementationOwner": false,
+          "allSourcecardImageURLsAreViewed": false,
+          "browserComparisonPerformedByThisSynthesisWorker": false,
+          "sourceReadScope": "Master official-source captions, current queue and dedicated runtime code. Actual two generic corner-tower image inspections reported by implementation owner; no per-direction identity assigned."
+        },
+        "accepted": false
+      }
     }
   ],
   "expansionTasks": [

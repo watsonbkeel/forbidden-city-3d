@@ -1,3 +1,4 @@
+import {DailyRoutine} from './DailyRoutine.js';
 import { CHARACTER_REGISTRY } from '../../../data/characters/index.js';
 import { CharacterManager } from './CharacterManager.js';
 import { CharacterWorldAdapter } from './CharacterWorldAdapter.js';
@@ -38,6 +39,7 @@ export class CharacterSystem {
         return new PatrolController({path:binding.path,
           speedMetersPerSecond:b.speedMetersPerSecond,pauseSeconds:b.pauseSeconds,followerSpacingMeters:b.followerSpacingMeters??1.4});
       }});
+    this.manager.routines=new DailyRoutine({world:this.world,collisionManager,interaction:this.interaction,registry:effectiveRegistry});
     if(!this.validation.valid)this.lastError=`Invalid character registry: ${this.validation.errors.map(e=>e.path+': '+e.message).join('; ')}`;
     this._visibility=()=>{if(this.document?.hidden){this.manager.hidden=true;this.interaction.clear();this.world.cancelPending?.('Document hidden');}};
     this.document?.addEventListener?.('visibilitychange',this._visibility);this._visibility();
@@ -56,6 +58,9 @@ export class CharacterSystem {
     // camera/quality later cannot synchronously author a missing template.
     const pose=actor.behavior?.basePose??'standing',options=characterGeometryOptionsFor(actor);
     for(let lod=0;lod<3;lod++)yield* this.pool.prepare(actor.templateId,pose,lod,options);
+    if(['consort-daily','maid-daily'].includes(actor.templateId))for(let lod=0;lod<3;lod++){yield* this.pool.prepare(actor.templateId,'sleeping',lod,{seatVariant:'standard'});yield* this.pool.prepare(actor.templateId,'standing',lod,{seatVariant:'standard',femalePose:'walking'});}
+    if(actor.templateId==='emperor-ceremonial')for(let lod=0;lod<3;lod++)yield* this.pool.prepare(actor.templateId,'seated',lod,{seatVariant:'qianqing-low-foot'});
+    if(pose==='seated')for(let lod=0;lod<3;lod++)yield* this.pool.prepare(actor.templateId,'standing',lod,{seatVariant:'standard'});
     return this.metricsFor(actor);
   }
   get enabled(){return this.manager.enabled;}
@@ -73,14 +78,14 @@ export class CharacterSystem {
     return this.developmentPreviewActive;
   }
   setEnabled(enabled){if(!this.validation.valid&&enabled)return;this.manager.setEnabled(enabled);if(!enabled)this.world.cancelPending?.('Characters disabled');}
-  update(dt,{daylight=1,quality='high',viewportHeight=1080}={}){
+  update(dt,{daylight=1,quality='high',viewportHeight=1080,beijingTime=null}={}){
     if(this.disposed)return;
     this.lastDaylight=daylight;
     const start=performance.now();
     try{
       // Only share read snapshots within this synchronous Manager traversal.
       // End before advancing resumable jobs, whose evidence is always fresh.
-      try{this.world.beginReadFrame?.();this.manager.update(dt,{camera:this.camera,daylight,quality,viewportHeight,hidden:!!this.document?.hidden});}
+      try{this.world.beginReadFrame?.();this.manager.update(dt,{camera:this.camera,daylight,quality,viewportHeight,beijingTime,hidden:!!this.document?.hidden});}
       finally{this.world.endReadFrame?.();}
       if(this.manager.enabled&&this.manager.canRunContent&&!this.document?.hidden){
         const budget=typeof this.preparationBudgetMs==='number'?this.preparationBudgetMs:this.preparationBudgetMs[quality]??1;

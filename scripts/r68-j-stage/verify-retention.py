@@ -1,0 +1,13 @@
+from pathlib import Path
+import subprocess,json,hashlib
+P=Path(__file__).resolve().parents[2];base='709cfa97d14f14efe801abd2f5735cda0c6aa59a'
+allowed={'src/scene/palace/special/RemainingNingshouHalls.js','release.json'}
+files=subprocess.check_output(['git','ls-tree','-r','--name-only',base,'--','src','data','public','main.js','index.html','style.css','package.json','package-lock.json','vite.config.js'],cwd=P,text=True).splitlines();retained=[]
+for p in files:
+ if p in allowed or p=='data/characters/world-source-freeze.json':continue
+ assert (P/p).read_bytes()==subprocess.check_output(['git','show',base+':'+p],cwd=P),p;retained.append(p)
+f=json.loads((P/'data/characters/world-source-freeze.json').read_text())
+for row in f['files']:assert hashlib.sha256((P/row['path']).read_bytes()).hexdigest()==row['sha256'],row['path']
+archive=P/'data/characters/world-source-freeze-r67-i-ningshou.json';assert archive.read_bytes()==subprocess.check_output(['git','show',base+':data/characters/world-source-freeze.json'],cwd=P)
+r={'base':base,'status':'PASS','retainedFiles':retained,'count':len(retained),'allowedExistingRuntimeEdits':sorted(allowed),'newRuntimeModules':['src/scene/palace/special/'+n for n in []],'worldSources':len(f['files']),'scope':'All prior R67/R66/R65 runtime/public/dependency bytes retained except one NingShou host module, release and source-manifest metadata; exact unchanged 108 actors/24 paths, NPC mutual collision/day/night/credit/control/Kit, H and other architecture. Shared helper host retention separately asserted.'}
+(P/'reports/r68-j-stage/RETAINED-INPUTS.json').write_text(json.dumps(r,ensure_ascii=False,indent=2)+'\n');print(json.dumps({'status':'PASS','exactRetained':len(retained),'worldSources':len(f['files'])}))

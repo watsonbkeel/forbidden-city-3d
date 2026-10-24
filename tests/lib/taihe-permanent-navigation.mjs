@@ -14,28 +14,40 @@ export function captureTaihePermanentNavigation(cm, cfg, floorY, profile) {
   if (typeof cm.getGroundHeight !== 'function' || !equal([cm.getGroundHeight(f.x, f.z, 0, 999)], [f.floorY])) throw Error('Taihe actual floor support differs from frozen profile');
   if (Object.values(cfg.anchor ?? {}).some(v => v !== 0)) throw Error('Taihe navigation anchor is not zero');
   const {x: x0, z: z0} = f, y = floorY, d = profile.dais, c = profile.columns;
-  const expectedCol = [], expectedWalk = [], radius = Math.max(c.clearanceRadius, c.baseRadius);
+  const expectedCol = [], expectedWalk = [], expectedSolidWalk = [], radius = Math.max(c.clearanceRadius, c.baseRadius);
   for (const x of c.x) for (const z of c.goldZ) expectedCol.push(box(x0+x-radius,y,z0+z-radius,x0+x+radius,y+c.height,z0+z+radius));
-  expectedCol.push(box(x0-d.width/2,y,z0+d.z0,x0+d.width/2,y+4,z0+d.z1));
+  // R72 intentional contract migration: visible dais plus individual furniture.
+  const T=profile.throne,S=profile.screen;
+  const solids=[[-d.width/2,d.z0,d.width/2,d.z1,0,d.height+.06,.5],
+    [-.92,T.z-1.13,.92,T.z+.57,d.height,T.baseY],
+    [-T.footstoolWidth/2,T.z-.83-T.footstoolDepth/2,T.footstoolWidth/2,T.z-.83+T.footstoolDepth/2,T.baseY,T.baseY+T.footstoolHeight],
+    [-T.lowerWidth/2,T.z-T.lowerDepth/2,T.lowerWidth/2,T.z+T.lowerDepth/2,T.baseY,T.baseY+T.seatHeight],
+    [-.795,T.z+.35,.795,T.z+.48,T.baseY,T.baseY+T.overallHeight],
+    ...[-1,1].map(sign=>[sign*.75-.045,T.z-.375,sign*.75+.045,T.z+.375,T.baseY+T.seatHeight,T.baseY+T.seatHeight+.48]),
+    [-S.width/2,S.z-S.depth/2,S.width/2,S.z+S.depth/2,S.baseY,S.baseY+S.height]];
+  for(const [xa,za,xb,zb,bottom,top,pad=0]of solids){
+    expectedCol.push(box(x0+xa,y+bottom,z0+za,x0+xb,y+top,z0+zb));
+    expectedSolidWalk.push(box(x0+xa-pad,y+bottom,z0+za-pad,x0+xb+pad,y+top,z0+zb+pad));
+  }
   const toe=z0+d.z0-d.steps*d.stepRun;
   for(const x of D.railX)for(let k=0;k<d.steps;k++){
     const za=toe+k*d.stepRun;expectedCol.push(box(x0+x-D.railWidth/2,y+d.height*k/d.steps,za,x0+x+D.railWidth/2,y+d.height*(k+1)/d.steps+D.railHeight,za+d.stepRun));
   }
-  const t=D.incenseTables;
+  const t={...D.incenseTables,z:D.incenseTables.z+profile.spatialFit.deltaZ};
   for(const x of t.x)expectedCol.push(box(x0+x-t.width*.53,y,z0+t.z-t.depth*.53,x0+x+t.width*.53,y+t.totalHeight,z0+t.z+t.depth*.53));
   for(const f of D.frontFlights)for(let k=0;k<d.steps;k++){
     const za=toe+k*d.stepRun;expectedWalk.push(box(x0+f.x-f.width/2,y,za,x0+f.x+f.width/2,y+d.height*(k+1)/d.steps,za+d.stepRun));
   }
   const expectedRamp=[x0-D.cover.width/2,x0+D.cover.width/2,toe,z0+d.z0-d.stepRun,toe,z0+d.z0-d.stepRun,y+d.height/d.steps+D.cover.offset,y+d.height+D.cover.offset];
-  if(expectedCol.length!==39||expectedWalk.length!==21)throw Error('Unexpected frozen Taihe navigation cardinality');
+  if(expectedCol.length!==46||expectedWalk.length!==21||expectedSolidWalk.length!==8)throw Error('Unexpected frozen Taihe navigation cardinality');
   const pick = (all, expected, kind) => expected.map((bounds, i) => {
-    const matches=all.filter(o => o.tag === undefined && o.box && (kind==='COL' || (o.type==='box' && o.rescue===false)) && equal(values(o.box),bounds));
+    const matches=all.filter(o => o.tag === undefined && o.box && (kind==='COL' || (o.type==='box' && o.rescue===(kind==='SOLID'&&i===0))) && equal(values(o.box),bounds));
     if (matches.length !== 1) throw Error(`Taihe permanent ${kind}[${i}] expected exactly once; found ${matches.length}`);
     return {object: matches[0], box: matches[0].box, bounds: values(matches[0].box)};
   });
   const ramps=cm.walkables.filter(o=>o.tag===undefined&&o.type==='ramp'&&o.axis==='z'&&equal(rampValues(o),expectedRamp));
   if(ramps.length!==1)throw Error('Taihe central cover support expected exactly once');
-  return {colliders:pick(cm.colliders,expectedCol,'COL'),walkables:pick(cm.walkables,expectedWalk,'WALK').concat({object:ramps[0],box:null,bounds:rampValues(ramps[0])})};
+  return {colliders:pick(cm.colliders,expectedCol,'COL'),walkables:pick(cm.walkables,expectedSolidWalk,'SOLID').concat(pick(cm.walkables,expectedWalk,'WALK')).concat({object:ramps[0],box:null,bounds:rampValues(ramps[0])})};
 }
 
 export function assertTaihePermanentNavigationRetained(cm, before, cfg, floorY, profile) {

@@ -1,0 +1,100 @@
+{
+  "attempt": "04",
+  "purpose": "Parent-authorized QA-only collection after each completed proveView, preserving all original views/rays/assertions/paths and four independent worlds",
+  "authorization": "Parent explicitly approved this single new diagnostic; if it still fails, stop and report resource blocker.",
+  "command": "R66_ATTEMPT=04 R67_HEAP_MB=384 R67_EXPECTED_SOURCE_FINGERPRINT=73e142e251ae36b95e54c8d4707d728a0e244e7c8e1104696bb0b78c2fbcefde python3 reports/r67-i-stage/run-worlds-r67-view-gc.py",
+  "frozenSourceFingerprint": "73e142e251ae36b95e54c8d4707d728a0e244e7c8e1104696bb0b78c2fbcefde",
+  "sourceManifestFiles": 263,
+  "sha256": {
+    "scripts/r66-h-stage/run-worlds.py": "d060733d0a57e6616eefa5d72a08e32fe4299d9d071b6982965817c3c7c600ef",
+    "tests/r66-h-world.test.mjs": "6fd23f797e12ffa25a35f5fd9dd23755be7b72b5f4865cb09f6f582c57cda2bc",
+    "reports/r67-i-stage/world-report-view-gc-hook.mjs": "795846f803a3a44a6f091627eb0f2301cef3ff7a54a2a7ee58dd05dead6442a9",
+    "reports/r67-i-stage/run-worlds-r67-view-gc.py": "ac34de1e22c8a23be4abf741d662c621c4a709864bd2e29b2020be3c58929786"
+  },
+  "expectedEdits": [
+    {
+      "kind": "output-root",
+      "count": 1
+    },
+    {
+      "kind": "global.gc() after completed proveView",
+      "count": 1
+    }
+  ],
+  "priorAttemptsPreserved": [
+    "01",
+    "02",
+    "03"
+  ],
+  "assertionEquivalenceProof": {
+    "originalTestSha256": "6fd23f797e12ffa25a35f5fd9dd23755be7b72b5f4865cb09f6f582c57cda2bc",
+    "frozenR66TestSha256": "6fd23f797e12ffa25a35f5fd9dd23755be7b72b5f4865cb09f6f582c57cda2bc",
+    "executedTestSha256": "8b0a5065e62a7bed4a566cdaa3927c52e4544cbacce855559350dbe7a6700837",
+    "originalAndFrozenTestIdentical": true,
+    "assertCallCount": {
+      "original": 65,
+      "executed": 65
+    },
+    "assertCallSequenceIdentical": true,
+    "assertCallsByMethod": {
+      "ok": 26,
+      "equal": 34,
+      "notEqual": 3,
+      "deepEqual": 2
+    },
+    "proveViewInvocationTextCount": {
+      "original": 1,
+      "executed": 1
+    },
+    "gcInvocationCount": {
+      "original": 1,
+      "executed": 2
+    },
+    "onlyAddedStatement": "if(global.gc)global.gc();",
+    "onlyOtherChange": "Report output root reports/r66-h-stage -> reports/r67-i-stage",
+    "reverseEditsRestoreOriginalBytes": true,
+    "unchangedLoopSemantics": "For every registry actor call proveView exactly once per views(label), still assert 108 completed views per label. B has one label; each S-room world has S-night and returnedB-night labels, so total expected views = 108 + 3*(108+108) = 756.",
+    "unchangedPathSemantics": "24 distinct registry paths remain; B validates initial 24, each S-room world validates initial/S/returnedB 24 each, total report path validation rows = 24 + 3*72 = 240.",
+    "executionLogChecks": {
+      "B": {
+        "sourceHashesMatch": true,
+        "replacementCounts": [
+          1,
+          1
+        ]
+      },
+      "yangxin": {
+        "sourceHashesMatch": true,
+        "replacementCounts": [
+          1,
+          1
+        ]
+      },
+      "kunning": {
+        "sourceHashesMatch": true,
+        "replacementCounts": [
+          1,
+          1
+        ]
+      },
+      "huangji": {
+        "sourceHashesMatch": true,
+        "replacementCounts": [
+          1,
+          1
+        ]
+      }
+    },
+    "unifiedDiff": "--- original-frozen-r66-test\n+++ qa-output-root-plus-post-view-gc-test\n@@ -25 +25 @@\n-const out=`reports/r66-h-stage/world-${phase}-${process.env.R66_ATTEMPT??'01'}`;fs.mkdirSync(out,{recursive:true});\n+const out=`reports/r67-i-stage/world-${phase}-${process.env.R66_ATTEMPT??'01'}`;fs.mkdirSync(out,{recursive:true});\n@@ -69 +69 @@\n- async function views(label){player=null;for(const actor of registry.actors){await proveView(actor,label);if(report.views.length%18===0)save(label+'-views-'+report.views.length);}assert.equal(report.views.filter(v=>v.label===label).length,108);}\n+ async function views(label){player=null;for(const actor of registry.actors){await proveView(actor,label);if(global.gc)global.gc();if(report.views.length%18===0)save(label+'-views-'+report.views.length);}assert.equal(report.views.filter(v=>v.label===label).length,108);}\n"
+  },
+  "completedVerification": {
+    "status": "PASS_FOUR_INDEPENDENT_FULL_WORLDS",
+    "totalViewProofs": 756,
+    "totalPathValidationRows": 240,
+    "actorsPerWorld": 108,
+    "pathsPerWorld": 24,
+    "sourceManifestHashesMatch": 263,
+    "sourceFingerprintUnchanged": true,
+    "report": "reports/r67-i-stage/WORLD-VERIFICATION-04.json"
+  }
+}

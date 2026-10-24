@@ -43,7 +43,7 @@ async function preloadInteriors(page) {
     }));
   });
   const bad = res.filter(r => r.state !== 'loaded' || (r.id === 'taihe'
-    ? r.col !== 0 || r.walk !== 0 || r.permanentCol !== 39 || r.permanentWalk !== 22 || r.permanentRetained !== true
+    ? r.col !== 0 || r.walk !== 0 || r.permanentCol !== 46 || r.permanentWalk !== 30 || r.permanentRetained !== true
     : r.col < 1));
   console.log('[stepwalk] 预加载 S 档内景：' + res.map(r => `${r.id}=${r.state}(COL ${r.col}/WALK ${r.walk})`).join(' '));
   if (bad.length) throw new Error('S 档内景预加载失败：' + bad.map(r => `${r.id}(state=${r.state}, COL=${r.col})`).join(', '));
