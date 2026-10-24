@@ -45,9 +45,10 @@ export class SettingsMenu {
     this.launcher.setAttribute('aria-haspopup', 'dialog');
     this.launcher.setAttribute('aria-controls', 'settings-panel');
     this.launcher.setAttribute('aria-expanded', 'false');
-    this.launcher.setAttribute('aria-label', '作者 陈华山&陈诺，打开设置与来源说明');
-    this.launcher.innerHTML = '<strong>作者</strong><span></span>';
-    this.launcher.querySelector('span').textContent = '陈华山&陈诺';
+    // 常驻入口使用中性功能名；作者署名放在面板「资料来源与限制」内，
+    // 精度与开放路线声明放在 #preview-limit，避免常驻按钮承载过多负面限定语。
+    this.launcher.setAttribute('aria-label', '打开设置与来源说明');
+    this.launcher.innerHTML = '<strong>游览设置</strong><span>画质 · 音效 · 时刻 · 资料来源</span>';
     this.container.appendChild(this.launcher);
 
     this.overlay = document.createElement('div');
@@ -99,6 +100,7 @@ export class SettingsMenu {
         <p class="settings-help">按 M 显示/隐藏小地图。地图打开时仍可用方向键、WASD 或屏幕方向盘移动；拖动地图不会改变行走方向。点击建筑名称查看介绍，再点“前往”传送；传送后，请松开再重新按键或触摸方向盘。设置菜单会暂停移动。数字键 1–8：午门、太和殿、乾清宫、御花园、东六宫、西六宫、宁寿宫、神武门。</p>
         <details id="preview-details">
           <summary>资料来源与限制（各项核查日期见下）</summary>
+          <p id="author-credit" class="settings-notice">作者：陈华山、陈诺</p>
           <h3>有资料支持的结构</h3>
           <p>弘义阁、体仁阁的柱网与竖向层次依据杨新成《故宫弘义阁、体仁阁研究》（2006 年）。三大殿共用台基的东西腰部台阶位置关系，参考 1960 年平面图和 2020 年刊载的照片。</p>
           <ul>
@@ -355,12 +357,12 @@ export class SettingsMenu {
       button.textContent = this.characterPreviewActive ? '人物实验预览：已开启（preview 未验收）' : '人物实验预览：已关闭';
       button.setAttribute('aria-pressed', String(this.characterPreviewActive));
       this.panel.querySelector('#characters-preview-status').textContent = this.characterPreviewActive ? '人物 preview 未验收：已开启实验预览。' : '人物实验预览已关闭（preview 未验收）。';
-      // The notice remains visible on the existing launcher after dismissal.
-      // Compact map CSS hides the subtitle, so its title also retains the limit.
-      this.launcher.querySelector('strong').textContent = this.characterPreviewActive ? '人物 preview 未验收' : '结构研究预览';
+      // Compact map CSS hides the subtitle, so the title must stay meaningful
+      // on its own. 实验功能开启时才把未验收状态提到标题，平时的常驻入口保持中性功能名。
+      this.launcher.querySelector('strong').textContent = this.characterPreviewActive ? '人物 preview 未验收' : '游览设置';
       this.launcher.querySelector('span').textContent = this.characterPreviewActive
         ? '人物 preview 未验收：尚未完成实机性能、完整场景及具体史料验收。本次页面有效，刷新恢复关闭。游戏路线不代表现场开放。'
-        : '游戏路线不代表现场开放 · 设置与来源';
+        : '画质 · 音效 · 时刻 · 资料来源';
       this.updateCharactersButton();
     }
     return this.characterPreviewActive;

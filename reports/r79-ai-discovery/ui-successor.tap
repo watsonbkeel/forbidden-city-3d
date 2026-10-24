@@ -1,0 +1,250 @@
+TAP version 13
+# Subtest: DEV opt-in exposes an accessible preview button but initial true never activates it
+ok 1 - DEV opt-in exposes an accessible preview button but initial true never activates it
+  ---
+  duration_ms: 6.856431
+  type: 'test'
+  ...
+# Subtest: DEV default hides preview without changing ordinary character defaults
+ok 2 - DEV default hides preview without changing ordinary character defaults
+  ---
+  duration_ms: 1.381906
+  type: 'test'
+  ...
+# Subtest: DEV candidate availability suppresses a duplicate experimental preview control
+ok 3 - DEV candidate availability suppresses a duplicate experimental preview control
+  ---
+  duration_ms: 1.110498
+  type: 'test'
+  ...
+# Subtest: candidate availability arriving in a snapshot hides and deactivates the stale DEV control
+ok 4 - candidate availability arriving in a snapshot hides and deactivates the stale DEV control
+  ---
+  duration_ms: 2.149479
+  type: 'test'
+  ...
+# Subtest: DEV experimental snapshot reports its real preparation rather than unavailable content
+ok 5 - DEV experimental snapshot reports its real preparation rather than unavailable content
+  ---
+  duration_ms: 1.359813
+  type: 'test'
+  ...
+# Subtest: production candidate is on without approval and retains incomplete acceptance notice
+ok 6 - production candidate is on without approval and retains incomplete acceptance notice
+  ---
+  duration_ms: 1.728387
+  type: 'test'
+  ...
+# Subtest: DEV explicit refusal cannot be bypassed by an initial active state or public synchronization
+ok 7 - DEV explicit refusal cannot be bypassed by an initial active state or public synchronization
+  ---
+  duration_ms: 0.896717
+  type: 'test'
+  ...
+# Subtest: ordinary character clicks and opening settings cannot enable the experimental preview
+ok 8 - ordinary character clicks and opening settings cannot enable the experimental preview
+  ---
+  duration_ms: 1.392902
+  type: 'test'
+  ...
+# Subtest: preview clicks display only the returned actual state and never change approval
+ok 9 - preview clicks display only the returned actual state and never change approval
+  ---
+  duration_ms: 2.377312
+  type: 'test'
+  ...
+# Subtest: false return leaves preview off rather than claiming activation
+ok 10 - false return leaves preview off rather than claiming activation
+  ---
+  duration_ms: 0.923467
+  type: 'test'
+  ...
+# Subtest: throw and invalid return keep the prior state and show a local failure hint
+ok 11 - throw and invalid return keep the prior state and show a local failure hint
+  ---
+  duration_ms: 1.516829
+  type: 'test'
+  ...
+# Subtest: main can synchronize ordinary off without invoking preview callbacks
+ok 12 - main can synchronize ordinary off without invoking preview callbacks
+  ---
+  duration_ms: 1.057218
+  type: 'test'
+  ...
+# Subtest: same-state synchronization is a no-op and preserves local transition failure feedback
+ok 13 - same-state synchronization is a no-op and preserves local transition failure feedback
+  ---
+  duration_ms: 0.896397
+  type: 'test'
+  ...
+# Subtest: preview participates in the existing focus trap, Escape, and second-finger touch path only
+ok 14 - preview participates in the existing focus trap, Escape, and second-finger touch path only
+  ---
+  duration_ms: 1.367445
+  type: 'test'
+  ...
+# Subtest: dispose removes preview callbacks and reinit starts off without stale click handlers
+ok 15 - dispose removes preview callbacks and reinit starts off without stale click handlers
+  ---
+  duration_ms: 1.806214
+  type: 'test'
+  ...
+# Subtest: real production bundle removes preview UI and callback path despite injected options and setters
+ok 16 - real production bundle removes preview UI and callback path despite injected options and setters
+  ---
+  duration_ms: 0.888134
+  type: 'test'
+  ...
+# Subtest: uncompiled Node module is fail-closed when import.meta.env is missing
+ok 17 - uncompiled Node module is fail-closed when import.meta.env is missing
+  ---
+  duration_ms: 1.189357
+  type: 'test'
+  ...
+# Subtest: initial controls show the actual low-quality and muted state before first open
+ok 18 - initial controls show the actual low-quality and muted state before first open
+  ---
+  duration_ms: 7.971576
+  type: 'test'
+  ...
+# Subtest: one quality-button click emits the selected setting exactly once
+ok 19 - one quality-button click emits the selected setting exactly once
+  ---
+  duration_ms: 4.921785
+  type: 'test'
+  ...
+# Subtest: opening and closing the menu never changes quality or emits a quality callback
+ok 20 - opening and closing the menu never changes quality or emits a quality callback
+  ---
+  duration_ms: 2.384852
+  type: 'test'
+  ...
+# Subtest: settings modal is above the welcome blocker and below the loading screen
+ok 21 - settings modal is above the welcome blocker and below the loading screen
+  ---
+  duration_ms: 1.971302
+  type: 'test'
+  ...
+# Subtest: short-height panel has separate non-scrolling actions and a bounded scroll region
+ok 22 - short-height panel has separate non-scrolling actions and a bounded scroll region
+  ---
+  duration_ms: 2.560637
+  type: 'test'
+  ...
+# Subtest: preview label opens the accessible settings dialog without a keyboard
+ok 23 - preview label opens the accessible settings dialog without a keyboard
+  ---
+  duration_ms: 2.200095
+  type: 'test'
+  ...
+# Subtest: source details distinguish measured structure, provisional geometry and dated visitor access
+ok 24 - source details distinguish measured structure, provisional geometry and dated visitor access
+  ---
+  duration_ms: 3.027559
+  type: 'test'
+  ...
+# Subtest: modal opening is idempotent and closes once through each visible action
+ok 25 - modal opening is idempotent and closes once through each visible action
+  ---
+  duration_ms: 2.827808
+  type: 'test'
+  ...
+# Subtest: Tab wraps in the dialog, skips closed details, and restores the opener on dismissal
+ok 26 - Tab wraps in the dialog, skips closed details, and restores the opener on dismissal
+  ---
+  duration_ms: 4.232609
+  type: 'test'
+  ...
+# Subtest: Escape closes once without propagating to the global toggle; key scrolling retains its default
+ok 27 - Escape closes once without propagating to the global toggle; key scrolling retains its default
+  ---
+  duration_ms: 1.771682
+  type: 'test'
+  ...
+# Subtest: modal pointer and touch gestures do not reach body game handlers or force preventDefault
+ok 28 - modal pointer and touch gestures do not reach body game handlers or force preventDefault
+  ---
+  duration_ms: 1.580043
+  type: 'test'
+  ...
+# Subtest: dispose restores prior inert states and removes DOM/global listeners without resuming
+ok 29 - dispose restores prior inert states and removes DOM/global listeners without resuming
+  ---
+  duration_ms: 1.269617
+  type: 'test'
+  ...
+# Subtest: a secondary touch opens the launcher once without waiting for a compatibility click
+ok 30 - a secondary touch opens the launcher once without waiting for a compatibility click
+  ---
+  duration_ms: 1.878602
+  type: 'test'
+  ...
+# Subtest: a single launcher touch retains its ordinary click activation and default behavior
+ok 31 - a single launcher touch retains its ordinary click activation and default behavior
+  ---
+  duration_ms: 1.186232
+  type: 'test'
+  ...
+# Subtest: secondary taps activate existing sound/quality, disclosure, links and dismissal once
+ok 32 - secondary taps activate existing sound/quality, disclosure, links and dismissal once
+  ---
+  duration_ms: 2.577162
+  type: 'test'
+  ...
+# Subtest: secondary drags and cancelled touches never activate controls or disclosures
+ok 33 - secondary drags and cancelled touches never activate controls or disclosures
+  ---
+  duration_ms: 1.197399
+  type: 'test'
+  ...
+# Subtest: closing clears pending secondary touches so reopening cannot apply a stale tap
+ok 34 - closing clears pending secondary touches so reopening cannot apply a stale tap
+  ---
+  duration_ms: 1.846805
+  type: 'test'
+  ...
+# Subtest: secondary long presses and displaced endings do not become clicks
+ok 35 - secondary long presses and displaced endings do not become clicks
+  ---
+  duration_ms: 1.483029
+  type: 'test'
+  ...
+# Subtest: map mode places the same settings entry in map flow and restores its original host
+ok 36 - map mode places the same settings entry in map flow and restores its original host
+  ---
+  duration_ms: 0.91864
+  type: 'test'
+  ...
+# Subtest: map entry uses a normal-flow sticky header with a reserved focus-scroll inset
+ok 37 - map entry uses a normal-flow sticky header with a reserved focus-scroll inset
+  ---
+  duration_ms: 0.627513
+  type: 'test'
+  ...
+# Subtest: reparenting the map entry while settings are open preserves inertness and modal focus
+ok 38 - reparenting the map entry while settings are open preserves inertness and modal focus
+  ---
+  duration_ms: 0.816206
+  type: 'test'
+  ...
+# Subtest: an uncancelable secondary launcher touch still opens once without attempting cancellation
+ok 39 - an uncancelable secondary launcher touch still opens once without attempting cancellation
+  ---
+  duration_ms: 1.321305
+  type: 'test'
+  ...
+# Subtest: an uncancelable secondary control tap still activates once without attempting cancellation
+ok 40 - an uncancelable secondary control tap still activates once without attempting cancellation
+  ---
+  duration_ms: 0.868655
+  type: 'test'
+  ...
+1..40
+# tests 40
+# suites 0
+# pass 40
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 406.107613
