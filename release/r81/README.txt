@@ -1,0 +1,4 @@
+R81 cumulative southern moat and shared water safety update. Run node start.mjs.
+Includes R80 three-side moat, all R79 discovery documents and prior gameplay. Two southern water arms are added, leaving a central dry passage with engineering half-width100m. This is not a measured bridge or a historical restoration claim.
+The same five water strips drive visible surfaces/ground holes, player and NPC water checks, map and helicopter landing masks. Existing player movement subdivision prevents high-speed entry; NPC routes, gates, walls, initial spawn and helicopter home remain unchanged. The old false full-south flight-water mask is replaced only within the dry passage.
+CPU geometry, navigation and night checks do not establish real GPU/mobile appearance. This package does not deploy or merge main.

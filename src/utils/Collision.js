@@ -1,3 +1,4 @@
+import { canCrossOuterMoat, canTraverseOuterMoat } from '../scene/palace/special/OuterMoat.js';
 import * as THREE from 'three';
 import { DIMENSIONS, LAYOUT, PLAYER } from '../config/constants.js';
 import { PALACE_LAYOUT } from '../scene/Layout.js';
@@ -27,6 +28,7 @@ export class CollisionManager {
     this.playerSize = new THREE.Vector3();
     this.playerCenter = new THREE.Vector3();
     this.rivers = PALACE_LAYOUT.filter(item => item.type === 'river');
+    this.moats = PALACE_LAYOUT.filter(item => item.type === 'moat');
     // Separate pedestrian channel: never part of static grids, support,
     // world-generation proofs, raycasts or helicopter flight envelopes.
     this.dynamicBodies = new Map();
@@ -158,7 +160,7 @@ export class CollisionManager {
   }
 
   checkCollision(position, radius = DEFAULT_PLAYER_RADIUS, dynamicFrom = null) {
-    if (!this.checkBoundary(position, radius) || !this.checkRiverCrossing(position, radius)) return true;
+    if (!this.checkBoundary(position, radius) || !this.checkRiverCrossing(position, radius, dynamicFrom)) return true;
     // 视点是头部（脚面 + PLAYER.HEIGHT）；碰撞体从脚面上方 STEP_CLEARANCE 到头顶，矮台阶可直接跨过。
     const feetY = position.y - PLAYER.HEIGHT;
     const bottom = feetY + STEP_CLEARANCE;
@@ -255,8 +257,9 @@ export class CollisionManager {
       position.z - radius >= minZ && position.z + radius <= maxZ;
   }
 
-  checkRiverCrossing(position, radius) {
-    return this.rivers.every(river => canCrossPalaceWater(river, position, radius));
+  checkRiverCrossing(position, radius, from = null) {
+    return this.rivers.every(river => canCrossPalaceWater(river, position, radius)) &&
+      this.moats.every(moat => from ? canTraverseOuterMoat(moat, from, position, radius) : canCrossOuterMoat(moat, position, radius));
   }
 
   /**

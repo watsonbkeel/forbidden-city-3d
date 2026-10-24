@@ -140,7 +140,7 @@ export class Minimap {
     this.container.appendChild(this.canvas);
     const moatNotice = document.createElement('p');
     moatNotice.id = 'minimap-moat-status';
-    moatNotice.textContent = '筒子河北、东、西三侧已建模（工程拟合）；南侧待补。飞行仍沿用四侧保守禁降水域。';
+    moatNotice.textContent = '筒子河五段水面（工程拟合）；南侧中央保留陆地通道，非考证桥梁。飞行禁降沿实际水面保守判定。';
     moatNotice.style.cssText = 'font-size:11px;line-height:1.4;margin:4px 0';
     this.container.appendChild(moatNotice);
     this.ctx = this.canvas.getContext('2d');
@@ -1003,10 +1003,6 @@ export class Minimap {
           const [x,y,w,h] = this.rectOf((strip.minX+strip.maxX)/2,(strip.minZ+strip.maxZ)/2,strip.maxX-strip.minX,strip.maxZ-strip.minZ);
           ctx.fillRect(x,y,w,h);
         }
-        // Faint diagram only: south is NOT rendered and has no invented bridge.
-        const [sx,sy,sw,sh] = this.rectOf(p.x,p.z-d.depth/2+d.riverWidth/2,d.width,d.riverWidth);
-        ctx.strokeStyle = 'rgba(60, 110, 170, 0.35)';ctx.lineWidth=1;
-        ctx.strokeRect(sx,sy,sw,sh);
         continue;
       }
       if (type === 'outer_wall') {
