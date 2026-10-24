@@ -1,3 +1,4 @@
+import {southCourtGeometry} from './special/SouthCourtProfiles.js';
 import { buildYinghuaGate } from './special/YinghuaGate.js';
 import {validateNansansuoInventoryPolicy} from './NansansuoInventoryPolicy.js';
 import { validateGalleryInventoryPolicy, galleryRoomEvidence } from './GalleryInventoryPolicy.js';
@@ -20,6 +21,7 @@ import { buildTianyiGate } from './special/TianyiGate.js';
 
 const STEP_RUN = 1.6; // 台阶水平长 / 高
 const _v = new THREE.Vector3();
+const WUYING_INNER_JOIN = Symbol('validated-wuying-inner-join');
 const GALLERY_POLICY = Symbol('validated-gallery-inventory-policy');
 const GALLERY_FRAMES = new WeakMap();
 
@@ -484,6 +486,15 @@ export class CourtKit {
     return this.hall({...options,[GALLERY_POLICY]:policy});
   }
 
+  // Explicit two-target specialization. The private symbol cannot be supplied by zone JSON.
+  wuyingJoinedHall(options,item) {
+    const g=southCourtGeometry(item);
+    if(this.root.name!=='outer-west'||g.court!=='wuying'||!['front','rear'].includes(g.part))throw Error('Wuying join target mismatch');
+    for(const key of ['x','z','w','d','ph','pad','colH','bays','name'])if(options[key]!==g[key])throw Error('Wuying join fitted options mismatch');
+    if(options.rot!==0||options.enter!==true||options.backDoor!==true||options.open||options.throne||options.interior!=='empty'||options.roomBays||options.frontEnclosureInset||options.frontSteps===false)throw Error('Wuying join requires retained open hall interfaces');
+    return this.hall({...options,[WUYING_INNER_JOIN]:g.part==='front'?1:-1});
+  }
+
   hall(o) {
     if (o.furnishingPolicy !== undefined) throw new Error('Gallery inventory policy requires an explicit corridor target');
     if (o.structure === 'qinan-hall') return buildQinanHall(this, o);
@@ -535,7 +546,7 @@ export class CourtKit {
     if (ph > 0.55) {
       const sw = Math.min(Math.max(bay * 1.05, 2.4), 4.6);
       const dirs = open ? [-1, 1] : backDoor ? [-1, 1] : [-1];
-      for (const s of dirs) if (s > 0 || frontSteps) this.steps(f, { zEdge: s * PD / 2, dir: s, y: ph, width: sw });
+      for (const s of dirs) if (s !== o[WUYING_INNER_JOIN] && (s > 0 || frontSteps)) this.steps(f, { zEdge: s * PD / 2, dir: s, y: ph, width: sw });
     }
 
     const r = THREE.MathUtils.clamp(bay * 0.07, 0.2, 0.34);
@@ -587,7 +598,7 @@ export class CourtKit {
           if (enter) this.col(f, xc - bay / 2, y0, zf - 0.25, xc + bay / 2, y0 + 3, zf + 0.25);
         }
         this.box(f, 'wall_red', w, colH - beamH - doorH, 0.3, 0, y0 + doorH + (colH - beamH - doorH) / 2, zf);
-        if (openFace) {
+        if (openFace && side !== o[WUYING_INNER_JOIN]) {
           for (const i of doorBays) this.box(f, 'wood_column', bay - 2 * r, 0.22, 0.3, -w / 2 + (i + 0.5) * bay, y0 + 0.11, zf);
         }
       }

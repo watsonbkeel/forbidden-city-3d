@@ -1,0 +1,48 @@
+✔ R36 wenhua: real merged zone preserves each display and one room/region/map identity per named hall (1086.819837ms)
+✔ R36 wenhua: gate/front/link/rear round trip starts once on real ground at 10Hz sprint=false (299.566949ms)
+✔ R36 wenhua: gate/front/link/rear round trip starts once on real ground at 10Hz sprint=true (190.212005ms)
+✔ R36 wenhua: gate/front/link/rear round trip starts once on real ground at 60Hz sprint=false (524.167428ms)
+✔ R36 wenhua: gate/front/link/rear round trip starts once on real ground at 60Hz sprint=true (247.778556ms)
+✔ R36 wuying: real merged zone preserves each display and one room/region/map identity per named hall (2076.804124ms)
+✔ R36 wuying: gate/front/link/rear round trip starts once on real ground at 10Hz sprint=false (245.516775ms)
+✔ R36 wuying: gate/front/link/rear round trip starts once on real ground at 10Hz sprint=true (152.900524ms)
+✔ R36 wuying: gate/front/link/rear round trip starts once on real ground at 60Hz sprint=false (465.495608ms)
+✔ R36 wuying: gate/front/link/rear round trip starts once on real ground at 60Hz sprint=true (252.186596ms)
+✔ R36 south interiors are actual distinct equipment/composition, not mirrored geometry with different labels (17.657806ms)
+✔ R36 Wuying cabinet topology matches independent photo identities, not camera-map coordinates (137.54374ms)
+✔ R36 Wenhua keeps a physically passable front circle and a physically closed rear circular display (6.052425ms)
+✖ R36 actual court walls close every sampled non-gate boundary and meet both dedicated gate ends (44.01155ms)
+✔ R36 Wenhua continuous connector displays do not inherit Wuying fire-exit gaps (34.164025ms)
+✔ R36 Wuying seven-case exhibit remains physically reachable through both photographed side openings at 10Hz (68.21548ms)
+✔ R36 Wuying seven-case exhibit remains physically reachable through both photographed side openings at 60Hz (84.447629ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 16
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6686.980912
+
+✖ failing tests:
+
+test at tests/r36-south-independent-hall-integration.test.mjs:240:1
+✖ R36 actual court walls close every sampled non-gate boundary and meet both dedicated gate ends (44.01155ms)
+  AssertionError [ERR_ASSERTION]: outer gate bays remain closed, not five invented portals
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r75-hongde-courtyard/tests/r36-south-independent-hall-integration.test.mjs:267:37)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
