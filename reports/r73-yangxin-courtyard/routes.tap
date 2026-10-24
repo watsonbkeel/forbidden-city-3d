@@ -1,0 +1,25 @@
+✖ R73 route from Zunyi through glazed gate and rear screen reaches Yangxin front in both directions (574.105622ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 752.543324
+
+✖ failing tests:
+
+test at tests/r73-yangxin-routes.test.mjs:4:1
+✖ R73 route from Zunyi through glazed gate and rear screen reaches Yangxin front in both directions (574.105622ms)
+  AssertionError [ERR_ASSERTION]: {"from":[108.6,265],"to":[109,257],"reached":-1,"total":8.009993757800315,"end":[108.6,265],"feet":0}
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r73-yangxin-courtyard/tests/r73-yangxin-routes.test.mjs:7:175)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

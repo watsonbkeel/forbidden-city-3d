@@ -1,3 +1,4 @@
+import {buildYangxinCourtEntrance} from '../palace/special/YangxinCourtEntrance.js';
 import {buildNightBeds} from '../characters/NightBeds.js';
 import {applyTongdaoRoof} from '../palace/special/TongdaoRoof.js';
 import {applyWestRearSouthWindows} from '../palace/special/WestRearSouthWindows.js';
@@ -117,6 +118,8 @@ export class ZoneBase {
     if (this.zoneJson.courtyardProfile !== undefined) buildChuxiuCourtyard(this.kit, this.zoneJson);
 
     if (this.zoneJson.southTreeProfile !== undefined) buildSouthCourtTrees(this.kit, this.zoneJson);
+
+    if (this.zoneJson.yangxinEntranceProfile !== undefined) buildYangxinCourtEntrance(this.kit,this.zoneJson);
 
     buildNightBeds(this.kit,this.zoneJson);
 
