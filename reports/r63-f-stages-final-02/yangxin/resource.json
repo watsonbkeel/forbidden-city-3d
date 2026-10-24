@@ -1,0 +1,20 @@
+{
+  "phase": "yangxin",
+  "command": [
+    "node",
+    "--expose-gc",
+    "--max-old-space-size=1024",
+    "--test",
+    "--test-reporter=tap",
+    "--test-concurrency=1",
+    "tests/r63-f-staged-world.test.mjs"
+  ],
+  "startedAt": "2026-10-23T04:47:06.755094+00:00",
+  "endedAt": "2026-10-23T04:48:13.376621+00:00",
+  "exitCode": 0,
+  "wallSeconds": 66.62155165700824,
+  "maxRssKiBCumulativeUpperBound": 1310136,
+  "userCpuSeconds": 92.11673099999996,
+  "systemCpuSeconds": 1.1085320000000003,
+  "boundary": "Serial independently initialized full-world QA. RSS is cumulative largest child so far, not per-stage exact or gameplay/GPU performance."
+}

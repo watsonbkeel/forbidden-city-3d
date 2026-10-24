@@ -1,0 +1,161 @@
+✖ Tongdao fails atomically for kit-wide same BufferGeometry (42.365763ms)
+✖ Tongdao fails atomically for kit-wide same position BufferAttribute (20.229344ms)
+✖ Tongdao fails atomically for kit-wide new attribute with same typed array (12.079924ms)
+✖ Tongdao fails atomically for kit-wide new typed-array view with same ArrayBuffer (8.564331ms)
+✖ Tongdao fails atomically for kit-wide interleaved attribute borrowing source payload (24.525546ms)
+✖ Tongdao fails atomically for kit-wide index view borrowing source payload (14.992884ms)
+✖ Tongdao fails atomically for kit-wide morph attribute borrowing source payload (9.409386ms)
+✖ Tongdao fails atomically for kit-wide hidden nested line borrowing source payload (9.214244ms)
+✔ independently cloned payload is not borrowed and retains identical successful roof output (19.933321ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 1
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 375.332743
+
+✖ failing tests:
+
+test at tests/current-state/r63-tongdao-roof-ownership.test.mjs:19:35
+✖ Tongdao fails atomically for kit-wide same BufferGeometry (42.365763ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception: must reject before replacement or disposal
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-tongdao-roof-ownership/tests/current-state/r63-tongdao-roof-ownership.test.mjs:23:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /Tongdao roof:.*borrowed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-tongdao-roof-ownership.test.mjs:19:35
+✖ Tongdao fails atomically for kit-wide same position BufferAttribute (20.229344ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception: must reject before replacement or disposal
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-tongdao-roof-ownership/tests/current-state/r63-tongdao-roof-ownership.test.mjs:23:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /Tongdao roof:.*borrowed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-tongdao-roof-ownership.test.mjs:19:35
+✖ Tongdao fails atomically for kit-wide new attribute with same typed array (12.079924ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception: must reject before replacement or disposal
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-tongdao-roof-ownership/tests/current-state/r63-tongdao-roof-ownership.test.mjs:23:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /Tongdao roof:.*borrowed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-tongdao-roof-ownership.test.mjs:19:35
+✖ Tongdao fails atomically for kit-wide new typed-array view with same ArrayBuffer (8.564331ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception: must reject before replacement or disposal
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-tongdao-roof-ownership/tests/current-state/r63-tongdao-roof-ownership.test.mjs:23:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /Tongdao roof:.*borrowed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-tongdao-roof-ownership.test.mjs:19:35
+✖ Tongdao fails atomically for kit-wide interleaved attribute borrowing source payload (24.525546ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception: must reject before replacement or disposal
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-tongdao-roof-ownership/tests/current-state/r63-tongdao-roof-ownership.test.mjs:23:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /Tongdao roof:.*borrowed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-tongdao-roof-ownership.test.mjs:19:35
+✖ Tongdao fails atomically for kit-wide index view borrowing source payload (14.992884ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception: must reject before replacement or disposal
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-tongdao-roof-ownership/tests/current-state/r63-tongdao-roof-ownership.test.mjs:23:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /Tongdao roof:.*borrowed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-tongdao-roof-ownership.test.mjs:19:35
+✖ Tongdao fails atomically for kit-wide morph attribute borrowing source payload (9.409386ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception: must reject before replacement or disposal
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-tongdao-roof-ownership/tests/current-state/r63-tongdao-roof-ownership.test.mjs:23:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /Tongdao roof:.*borrowed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r63-tongdao-roof-ownership.test.mjs:19:35
+✖ Tongdao fails atomically for kit-wide hidden nested line borrowing source payload (9.214244ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception: must reject before replacement or disposal
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r63-tongdao-roof-ownership/tests/current-state/r63-tongdao-roof-ownership.test.mjs:23:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /Tongdao roof:.*borrowed/,
+    operator: 'throws',
+    diff: 'simple'
+  }

@@ -44,7 +44,9 @@ export class SettingsMenu {
     this.launcher.setAttribute('aria-haspopup', 'dialog');
     this.launcher.setAttribute('aria-controls', 'settings-panel');
     this.launcher.setAttribute('aria-expanded', 'false');
-    // 常驻入口使用中性功能名；精度与开放路线声明保留在设置面板内（#preview-limit）与 docs/LIMITATIONS.md。
+    // 常驻入口使用中性功能名；作者署名放在面板「资料来源与限制」内，
+    // 精度与开放路线声明放在 #preview-limit，避免常驻按钮承载过多负面限定语。
+    this.launcher.setAttribute('aria-label', '打开设置与来源说明');
     this.launcher.innerHTML = '<strong>游览设置</strong><span>画质 · 音效 · 时刻 · 资料来源</span>';
     this.container.appendChild(this.launcher);
 
@@ -92,6 +94,7 @@ export class SettingsMenu {
         <p class="settings-help">按 M 显示/隐藏小地图。地图打开时仍可用方向键、WASD 或屏幕方向盘移动；拖动地图不会改变行走方向。点击建筑名称查看介绍，再点“前往”传送；传送后，请松开再重新按键或触摸方向盘。设置菜单会暂停移动。数字键 1–8：午门、太和殿、乾清宫、御花园、东六宫、西六宫、宁寿宫、神武门。</p>
         <details id="preview-details">
           <summary>资料来源与限制（各项核查日期见下）</summary>
+          <p id="author-credit" class="settings-notice">作者：陈华山、陈诺</p>
           <h3>有资料支持的结构</h3>
           <p>弘义阁、体仁阁的柱网与竖向层次依据杨新成《故宫弘义阁、体仁阁研究》（2006 年）。三大殿共用台基的东西腰部台阶位置关系，参考 1960 年平面图和 2020 年刊载的照片。</p>
           <ul>
@@ -330,7 +333,7 @@ export class SettingsMenu {
     else if (errors > 0) heading = '人物加载失败';
     else if (registered > 0 && loaded === registered && pending === 0) heading = '人物数据就绪（候选）';
     if (import.meta.env?.DEV === true && preview) heading = `人物实验预览（未验收） · ${heading}`;
-    const text = `${heading}：已注册 ${registered} · 已加载 ${loaded} · 当前可见 ${visible} · 准备中 ${pending} · 失败 ${errors}。${night && enabled && (available || preview) ? ' 夜间：朝会／生活人物按计划休息，守卫保留。' : ''}`;
+    const text = `${heading}：已注册 ${registered} · 已加载 ${loaded} · 当前可见 ${visible} · 准备中 ${pending} · 失败 ${errors}。${night && enabled && (available || preview) ? ' 夜间仍展示人物；全天游览演绎，不代表历史作息。' : ''}`;
     const status = this.panel.querySelector('#characters-status');
     if (status.textContent !== text) status.textContent = text;
   }

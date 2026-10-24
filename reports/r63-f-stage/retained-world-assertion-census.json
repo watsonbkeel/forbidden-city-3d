@@ -1,0 +1,37 @@
+{
+  "status": "PASS_STATIC_INVOCATION_AND_ROUTE_CENSUS_NOT_EXECUTION",
+  "baseline": "f87342d7e1506713df4a6877943eb377e8299593",
+  "oldSha256": "58b5969d07c1db25ed114a1f846222fe48fa2b05023f5e19af739db3d4825dc2",
+  "newSha256": "e4ce67583a894cabc68c0d5d5c1f1f0092617ee9504e1fafb68366682eb18a48",
+  "preservedFullAssertions": 164,
+  "removedOnlyPhysicalCountExpectations": {
+    "assert.equal(report.world.colliders,24686+report.r62e.geometry.verifiedColliderDelta,'R61 plus independently verified exact E collider delta')": 1,
+    "assert.equal(report.world.walkables,1125+(36-1))": 1
+  },
+  "addedFullAssertions": {
+    "assert.equal(report.world.colliders,24686+report.r62e.geometry.verifiedColliderDelta+report.r63f.geometry.verifiedColliderDelta,'R62 plus independently verified exact F collider delta')": 1,
+    "assert.equal(report.world.walkables,1125+(36-1)+report.r63f.geometry.verifiedSupportDelta)": 1,
+    "assert.deepEqual(report.r63f.afterReload,report.r63f.geometry)": 1,
+    "assert.deepEqual(assertR63FInWorld({...W,rooms:W.zoneManager.allRooms},{layer:'B',interiorLoader:interiors}),report.r63f.geometry)": 1
+  },
+  "routeCollectors": {
+    "report.batch3.galleryRoutes.push": 1,
+    "report.batch4.routes.push": 1,
+    "report.batch4.jumps.push": 1,
+    "report.batch5.declarationRoutes.push": 1,
+    "report.batch5.inheritedBlockedEntries.push": 1,
+    "report.r59b1.nansansuoRoutes.push": 1,
+    "report.r60c.routes.push": 1,
+    "report.r61d.routes.push": 3,
+    "report.batch1.zhenduRoutes.push": 1,
+    "report.batch1.wumenJumps.push": 1,
+    "report.batch1.firewallController.push": 1,
+    "report.batch1.taihemenController.push": 1,
+    "report.batch2.baoheRoutes.push": 1,
+    "report.batch2.facadeRoutes.push": 1,
+    "report.paths.push": 1,
+    "report.bindings.push": 1,
+    "report.lifecycle.push": 1
+  },
+  "boundary": "Same five independent full worlds and complete retained assertion/route sets, plus F geometry/new routes/reload and actual Yangxin S footstool. Not one continuous three-S world."
+}

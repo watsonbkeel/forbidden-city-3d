@@ -1,0 +1,226 @@
+{
+  "status": "PASS_FIVE_INDEPENDENT_FULL_WORLDS_NOT_ONE_CONTINUOUS_THREE_S_SESSION",
+  "sourceCommit": "85759557c38ccef488953cdccd0d7b5b7fa8cb8d",
+  "sourceFingerprint": "af480273f15833f6d57d743216155864983fb861f7da29334df53a35220cbbc3",
+  "worldSourceFiles": 245,
+  "world": {
+    "colliders": 24396,
+    "walkables": 1161,
+    "zones": [
+      "axis-courts",
+      "east-six",
+      "west-six",
+      "outer-east",
+      "outer-west",
+      "garden",
+      "ningshou"
+    ]
+  },
+  "registry": 108,
+  "visibleBudget": {
+    "high": 64,
+    "low": 32,
+    "near": 2,
+    "lowCourt": 12
+  },
+  "freshIndividualViewIDsPerApplicablePhase": 108,
+  "uniquePaths": 24,
+  "retainedCRouteReplays": 56,
+  "retainedDRouteReplays": 272,
+  "retainedERouteReplays": 218,
+  "newFRouteReplays": 136,
+  "actualYangxinSFootstoolRouteReplays": 16,
+  "sevenZoneReloadsInB": 7,
+  "stages": [
+    {
+      "phase": "B-current",
+      "success": true,
+      "report": "reports/r63-f-stages-final-02/B-current/one-world-validation.json.gz",
+      "reportSHA256": "ebcea46408f6c6da21613d2e66383b1a211baf7013daa2ede30822646e997ab2",
+      "reportBytes": 268071,
+      "freshBindings": 108,
+      "BIndividualIDs": 108,
+      "SIndividualIDs": 0,
+      "returnedBIndividualIDs": 0,
+      "observationGroups": 101,
+      "pathCount": 24,
+      "generationTransitionsToReturnedB": 0,
+      "QAResources": {
+        "phase": "B-current",
+        "command": [
+          "node",
+          "--expose-gc",
+          "--max-old-space-size=1024",
+          "--test",
+          "--test-reporter=tap",
+          "--test-concurrency=1",
+          "tests/r63-f-staged-world.test.mjs"
+        ],
+        "startedAt": "2026-10-23T04:42:23.224831+00:00",
+        "endedAt": "2026-10-23T04:44:09.259427+00:00",
+        "exitCode": 0,
+        "wallSeconds": 106.03463722998276,
+        "maxRssKiBCumulativeUpperBound": 1310136,
+        "userCpuSeconds": 181.119846,
+        "systemCpuSeconds": 1.866254,
+        "boundary": "Serial independently initialized full-world QA. RSS is cumulative largest child so far, not per-stage exact or gameplay/GPU performance."
+      }
+    },
+    {
+      "phase": "B-retained",
+      "success": true,
+      "report": "reports/r63-f-stages-final-02/B-retained/one-world-validation.json.gz",
+      "reportSHA256": "24eaeed052bd1504f1960078cad71384cfa6f2d7df471d2dc62eded4a15fc969",
+      "reportBytes": 404821,
+      "freshBindings": 108,
+      "BIndividualIDs": 108,
+      "SIndividualIDs": 0,
+      "returnedBIndividualIDs": 0,
+      "observationGroups": 100,
+      "pathCount": 24,
+      "generationTransitionsToReturnedB": 0,
+      "QAResources": {
+        "phase": "B-retained",
+        "command": [
+          "node",
+          "--expose-gc",
+          "--max-old-space-size=1024",
+          "--test",
+          "--test-reporter=tap",
+          "--test-concurrency=1",
+          "tests/r63-f-staged-world.test.mjs"
+        ],
+        "startedAt": "2026-10-23T04:44:09.260672+00:00",
+        "endedAt": "2026-10-23T04:47:06.754672+00:00",
+        "exitCode": 0,
+        "wallSeconds": 177.49405229400145,
+        "maxRssKiBCumulativeUpperBound": 1310136,
+        "userCpuSeconds": 218.16253500000002,
+        "systemCpuSeconds": 1.154722,
+        "boundary": "Serial independently initialized full-world QA. RSS is cumulative largest child so far, not per-stage exact or gameplay/GPU performance."
+      }
+    },
+    {
+      "phase": "yangxin",
+      "success": true,
+      "report": "reports/r63-f-stages-final-02/yangxin/one-world-validation.json.gz",
+      "reportSHA256": "5b145fb779acb77ccd1db2998195c78c425be14c5e3ae352bdc38fa17af2744d",
+      "reportBytes": 545161,
+      "freshBindings": 108,
+      "BIndividualIDs": 108,
+      "SIndividualIDs": 108,
+      "returnedBIndividualIDs": 108,
+      "observationGroups": 300,
+      "pathCount": 24,
+      "generationTransitionsToReturnedB": 108,
+      "QAResources": {
+        "phase": "yangxin",
+        "command": [
+          "node",
+          "--expose-gc",
+          "--max-old-space-size=1024",
+          "--test",
+          "--test-reporter=tap",
+          "--test-concurrency=1",
+          "tests/r63-f-staged-world.test.mjs"
+        ],
+        "startedAt": "2026-10-23T04:47:06.755094+00:00",
+        "endedAt": "2026-10-23T04:48:13.376621+00:00",
+        "exitCode": 0,
+        "wallSeconds": 66.62155165700824,
+        "maxRssKiBCumulativeUpperBound": 1310136,
+        "userCpuSeconds": 92.11673099999996,
+        "systemCpuSeconds": 1.1085320000000003,
+        "boundary": "Serial independently initialized full-world QA. RSS is cumulative largest child so far, not per-stage exact or gameplay/GPU performance."
+      }
+    },
+    {
+      "phase": "kunning",
+      "success": true,
+      "report": "reports/r63-f-stages-final-02/kunning/one-world-validation.json.gz",
+      "reportSHA256": "b6f612f0eb224e9b8ac3283f1a45a7d81c8ff9189c6d90a74ccfe29ffd06a73c",
+      "reportBytes": 537718,
+      "freshBindings": 108,
+      "BIndividualIDs": 108,
+      "SIndividualIDs": 108,
+      "returnedBIndividualIDs": 108,
+      "observationGroups": 300,
+      "pathCount": 24,
+      "generationTransitionsToReturnedB": 108,
+      "QAResources": {
+        "phase": "kunning",
+        "command": [
+          "node",
+          "--expose-gc",
+          "--max-old-space-size=1024",
+          "--test",
+          "--test-reporter=tap",
+          "--test-concurrency=1",
+          "tests/r63-f-staged-world.test.mjs"
+        ],
+        "startedAt": "2026-10-23T04:48:13.377027+00:00",
+        "endedAt": "2026-10-23T04:49:16.543342+00:00",
+        "exitCode": 0,
+        "wallSeconds": 63.16634441100177,
+        "maxRssKiBCumulativeUpperBound": 1310136,
+        "userCpuSeconds": 87.65100799999999,
+        "systemCpuSeconds": 0.9083099999999993,
+        "boundary": "Serial independently initialized full-world QA. RSS is cumulative largest child so far, not per-stage exact or gameplay/GPU performance."
+      }
+    },
+    {
+      "phase": "huangji",
+      "success": true,
+      "report": "reports/r63-f-stages-final-02/huangji/one-world-validation.json.gz",
+      "reportSHA256": "baa680a8968cba63dfa5c7956d510ec990ce7ce68920bbea590f33fd6bb6fad4",
+      "reportBytes": 546760,
+      "freshBindings": 108,
+      "BIndividualIDs": 108,
+      "SIndividualIDs": 108,
+      "returnedBIndividualIDs": 108,
+      "observationGroups": 300,
+      "pathCount": 24,
+      "generationTransitionsToReturnedB": 108,
+      "QAResources": {
+        "phase": "huangji",
+        "command": [
+          "node",
+          "--expose-gc",
+          "--max-old-space-size=1024",
+          "--test",
+          "--test-reporter=tap",
+          "--test-concurrency=1",
+          "tests/r63-f-staged-world.test.mjs"
+        ],
+        "startedAt": "2026-10-23T04:49:16.543981+00:00",
+        "endedAt": "2026-10-23T04:50:31.563822+00:00",
+        "exitCode": 0,
+        "wallSeconds": 75.01986703500734,
+        "maxRssKiBCumulativeUpperBound": 1310136,
+        "userCpuSeconds": 101.525666,
+        "systemCpuSeconds": 1.0541090000000004,
+        "boundary": "Serial independently initialized full-world QA. RSS is cumulative largest child so far, not per-stage exact or gameplay/GPU performance."
+      }
+    }
+  ],
+  "totalObservationGroups": 1101,
+  "QAResourceBoundary": "CPU Node geometry/controls only. No gameplay/GPU claim. MaxRSS is a cumulative largest-child upper bound on later phases.",
+  "initialFBlockedRouteFailurePreserved": "reports/r63-f-stages-final/B-current",
+  "initialEBlockedRouteFailurePreserved": "reports/r62-e-stages/B-current",
+  "priorFailedDStagesPreserved": [
+    "reports/r61-d-stages/B",
+    "reports/r61-d-stages-final/B",
+    "reports/r61-d-stages-five/B-current"
+  ],
+  "priorCFailedCumulativeAttemptsPreserved": [
+    "reports/r60-c-world",
+    "reports/r60-c-world-recheck",
+    "reports/r60-c-world-bounded"
+  ],
+  "notEstablished": [
+    "one world surviving all three consecutive S transitions",
+    "browser WebGL and mobile fidelity/performance",
+    "whole historic full-library green",
+    "full F55 accepted"
+  ]
+}

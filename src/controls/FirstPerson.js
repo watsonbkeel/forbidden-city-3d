@@ -502,11 +502,16 @@ export class FirstPersonControls {
       const g = PLAYER.GRAVITY ?? 14;
       this.verticalVelocity = Math.max(this.verticalVelocity - g * delta, -(PLAYER.MAX_FALL_SPEED ?? 30));
       const targetFeet = this.feetY + this.verticalVelocity * delta;
-      const allowedFeet = this.verticalVelocity > 0
+      let allowedFeet = this.verticalVelocity > 0
         ? this.collisionManager.limitUpwardFeet?.(this.camera.position.x, this.camera.position.z,
           this.feetY, targetFeet, 0.5, PLAYER.HEIGHT) ?? targetFeet
         : targetFeet;
-      if (allowedFeet < targetFeet) this.verticalVelocity = 0;
+      // Dynamic people are solid in vertical motion too, but never added to
+      // supportHeight/ground. Contact stays airborne (no head-standing jump
+      // reset); moving off the temporary contact continues the normal fall.
+      allowedFeet=this.collisionManager.limitDynamicFeet?.(this.camera.position.x,this.camera.position.z,
+        this.feetY,allowedFeet,.5,PLAYER.HEIGHT)??allowedFeet;
+      if (allowedFeet !== targetFeet) this.verticalVelocity = 0;
       this.feetY = allowedFeet;
       if (this.verticalVelocity <= 0 && this.feetY <= groundY) {
         this.feetY = groundY;

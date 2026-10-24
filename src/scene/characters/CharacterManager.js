@@ -4,16 +4,17 @@ import { characterProjection, selectCharacterLOD, selectCharacterBudget } from '
 
 const percentile = (samples, q) => samples.length ? [...samples].sort((a,b)=>a-b)[Math.min(samples.length-1,Math.floor(q*(samples.length-1)))] : 0;
 /** One owner for logical IDs, simulation time, lifecycle and render submissions.
- * The adapter is read-only. Neither this module nor its renderer adds colliders,
- * raycast targets, audio, network messages, global RAFs or per-actor timers. */
+ * The adapter is read-only. The optional interaction owner uses a separate
+ * dynamic pedestrian channel; never architectural colliders or walkables. */
 export class CharacterManager {
   #developmentPreviewActive = false;
-  constructor({ registry, adapter, renderer, enabled = true, contentApproved = false, contentEnabled = contentApproved, patrolFactory = null, now = () => performance.now() }) {
+  constructor({ registry, adapter, renderer, enabled = true, contentApproved = false, contentEnabled = contentApproved, patrolFactory = null, interaction = null, now = () => performance.now() }) {
     this.registry = registry; this.adapter = adapter; this.renderer = renderer;
     this.enabled = !!enabled; this.contentEnabled = !!contentEnabled;
     // Legacy constructor contentApproved is only an input alias for content
     // availability. It never grants historical, GPU or complete acceptance.
     this.patrolFactory = patrolFactory; this.now = now;
+    this.interaction=interaction;
     this.simulationSeconds = 0; this.states = new Map(); this.generation = 0;
     this.nearIds = new Set();
     this.disposed = false; this.hidden = false; this.samples = [];
@@ -46,21 +47,21 @@ export class CharacterManager {
     this.enabled = !!enabled; this.generation++;
     if (!this.enabled) {
       this.nearIds.clear();
-      for (const state of this.states.values()) { state.patrol?.dispose?.(); state.patrol = null; state.binding = null; state.pending = false; state.request = null; state.revision = undefined; state.lod = 3; state.activeSchedule = null; }
-      this.renderer.clear(); this._clearStats();
+      for (const state of this.states.values()) { state.patrol?.dispose?.(); state.patrol = null; state.binding = null; state.pending = false; state.request = null; state.revision = undefined; state.lod = 3; state.activeSchedule = null;state.interactionActivated=false; }
+      this.interaction?.clear();this.renderer.clear(); this._clearStats();
     }
   }
   _clearStats() { for (const key of ['loaded','visible','near','renderCopies','pending','errors','batches','trianglesEstimate']) this.stats[key]=0; }
   _acceptBinding(state, binding) {
     state.pending = false;
     if (binding?.status === 'ready' && Array.isArray(binding.position) && binding.position.every(Number.isFinite) && Number.isFinite(binding.rotationYRad)) {
-      if(!state.binding)state.readiness=0;
+      if(!state.binding){state.readiness=0;state.interactionActivated=false;}
       state.binding = binding; state.error = null;
-    } else { state.binding = null; state.error = binding?.status === 'error' ? binding.reason ?? 'invalid-support' : null; state.pending = !state.error; }
+    } else { state.binding = null;state.interactionActivated=false; state.error = binding?.status === 'error' ? binding.reason ?? 'invalid-support' : null; state.pending = !state.error; }
   }
   _resolve(state) {
     const revision = this.adapter.getRevision?.(state.actor);
-    if (state.revision !== revision) { this.nearIds.delete(state.actor.id); state.patrol?.dispose?.(); state.patrol = null; state.asyncResolved = false; state.request = null; state.binding = null; state.pending = false; state.revision = revision; }
+    if (state.revision !== revision) { this.nearIds.delete(state.actor.id); state.patrol?.dispose?.(); state.patrol = null; state.asyncResolved = false; state.request = null; state.binding = null; state.pending = false; state.revision = revision;state.interactionActivated=false; }
     if (state.request) return;
     if (state.asyncResolved && state.binding && this.adapter.getRevision) return;
     const generation = this.generation;
@@ -83,13 +84,13 @@ export class CharacterManager {
   }
   update(dt, { camera, daylight = 1, quality = 'high', viewportHeight = 1080, hidden = false } = {}) {
     if (this.disposed || !this.enabled) return;
-    if (hidden) { this.hidden = true; return; }
+    if (hidden) { this.hidden = true;this.interaction?.clear(); return; }
     const start = this.now();
     if (this.hidden) { dt = 0; this.hidden = false; }
     const elapsed = Number.isFinite(dt) ? Math.max(0, Math.min(.1, dt)) : 0;
     this.simulationSeconds += elapsed;
     this._clearStats();
-    if (!this.canRunContent) { this.nearIds.clear(); this.renderer.clear(); return; }
+    if (!this.canRunContent) { this.nearIds.clear();this.interaction?.clear(); this.renderer.clear(); return; }
     camera?.updateMatrixWorld?.();
     const candidates = [];
     for (const state of this.states.values()) {
@@ -99,17 +100,26 @@ export class CharacterManager {
       if (state.error) this.stats.errors++;
       if (!state.binding) continue;
       this.stats.loaded++;
+      if(actor.placement?.mode==='path'&&this.patrolFactory)state.patrol??=this.patrolFactory(actor,state.binding);
+    }
+    this.interaction?.begin(this.states.values(),elapsed);
+    for (const state of this.states.values()) {
+      if(!state.binding)continue;
+      const actor=state.actor;
       state.readiness=Math.min(1,state.readiness+elapsed/.35);
       let position = state.binding.position, rotationYRad = state.binding.rotationYRad, speed = 0;
-      if (actor.placement?.mode === 'path' && this.patrolFactory) {
-        state.patrol ??= this.patrolFactory(actor, state.binding);
-        const sample = state.patrol?.sample(this.simulationSeconds, actor.behavior?.followerIndex ?? 0);
+      if(this.interaction){
+        const sample=this.interaction.samples.get(actor.id);if(!sample){state.lod=3;continue;}
+        position=sample.position;rotationYRad=sample.rotationYRad;speed=sample.speedMetersPerSecond??0;
+      }else if (state.patrol) {
+        const sample = state.patrol.sample(this.simulationSeconds, actor.behavior?.followerIndex ?? 0);
         if (sample?.position) { position = sample.position; rotationYRad = sample.rotationYRad; speed = sample.speedMetersPerSecond ?? sample.speed ?? 0; }
       }
       const projection = characterProjection(position, camera, viewportHeight);
-      const scheduled = actor.schedule === 'guard-duty' || daylight > .12;
-      if (state.activeSchedule === null || !projection.inFrustum) { state.activeSchedule = scheduled; state.visibility = scheduled ? 1 : 0; }
-      else { state.visibility = Math.max(0,Math.min(1,(state.visibility ?? 1)+(scheduled ? 1 : -1)*elapsed/2)); state.activeSchedule = scheduled; }
+      if(this.interaction?.nearby({position}))projection.inFrustum=true;
+      // All-day virtual-tour availability; original schedule metadata remains
+      // interpretive, not a claim of real historical overnight ceremonies.
+      state.activeSchedule=true;state.visibility=1;
       const visibility=state.visibility*state.readiness;
       if (visibility <= 0) { state.lod = 3; continue; }
       state.lod = selectCharacterLOD({ ...projection, previousLOD: state.lod });
@@ -126,18 +136,19 @@ export class CharacterManager {
     Object.assign(this.stats, renderStats);
     this.stats.visible = selected.length; this.stats.near = selected.filter(x=>x.lod===0).length;
     this.stats.renderCopies = renderStats.renderCopies ?? selected.length;
+    this.interaction?.commit(this.states.values(),selected,quality);
     this.samples.push(Math.max(0, this.now()-start)); if (this.samples.length > 600) this.samples.shift();
   }
   snapshot() {
     return { ...this.stats, enabled:this.enabled, rollout:this.rollout,
       contentEnabled:this.contentEnabled, contentApproved:false, previewActive:this.developmentPreviewActive,
       acceptance:{complete:false,appearance:'confirmed',gpu:'unverified',mobile:'unverified',history:'partial'},
-      simulationSeconds: this.simulationSeconds, updateP50Ms: percentile(this.samples,.5), updateP95Ms: percentile(this.samples,.95),
+      simulationSeconds: this.simulationSeconds, interaction:this.interaction?{...this.interaction.last}:null, updateP50Ms: percentile(this.samples,.5), updateP95Ms: percentile(this.samples,.95),
       ...(this.renderer.snapshot?.() ?? {}), diagnostics:[...this.states.values()].filter(s=>s.error||s.pending).map(s=>({id:s.actor.id,required:s.actor.required,status:s.error?'error':'pending',reason:s.error??'waiting-support'})) };
   }
   dispose() {
     if (this.disposed) return; this.#developmentPreviewActive = false; this.disposed = true; this.generation++;
     for (const state of this.states.values()) state.patrol?.dispose?.();
-    this.renderer.dispose(); this.states.clear(); this.nearIds.clear(); this._clearStats();
+    this.interaction?.dispose();this.renderer.dispose(); this.states.clear(); this.nearIds.clear(); this._clearStats();
   }
 }

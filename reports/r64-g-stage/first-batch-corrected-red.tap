@@ -1,0 +1,79 @@
+✖ R64 Qinan official visible marble support and inset front joinery, not brick/full-lattice (55.703084ms)
+✔ R64 Qinan exact non-target mesh/material/physics, R32 measured grid, annex and old routes retained (76.699543ms)
+✖ R64 浮碧亭 observed coffer structure is real geometry, no borrowed flower/dragon image (17.96612ms)
+✖ R64 澄瑞亭 observed coffer structure is real geometry, no borrowed flower/dragon image (3.935074ms)
+✔ R64 浮碧亭 exact original non-target and collider/support retention (21.570249ms)
+✔ R64 澄瑞亭 exact original non-target and collider/support retention (19.49873ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 3
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 367.794025
+
+✖ failing tests:
+
+test at tests/r64-garden-first-batch.test.mjs:8:1
+✖ R64 Qinan official visible marble support and inset front joinery, not brick/full-lattice (55.703084ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'wall_brick'
+  - 'marble'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r64-g-garden-fidelity/tests/r64-garden-first-batch.test.mjs:8:192)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'wall_brick',
+    expected: 'marble',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r64-garden-first-batch.test.mjs:10:33
+✖ R64 浮碧亭 observed coffer structure is real geometry, no borrowed flower/dragon image (17.96612ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(select(f.f,'r64-bridge-coffer-frame').length>=12)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r64-g-garden-fidelity/tests/r64-garden-first-batch.test.mjs:10:213)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r64-garden-first-batch.test.mjs:10:33
+✖ R64 澄瑞亭 observed coffer structure is real geometry, no borrowed flower/dragon image (3.935074ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(select(f.f,'r64-bridge-coffer-frame').length>=12)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r64-g-garden-fidelity/tests/r64-garden-first-batch.test.mjs:10:213)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

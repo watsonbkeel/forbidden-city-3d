@@ -1,0 +1,36 @@
+✔ R64 Qinan official visible marble support and inset front joinery, not brick/full-lattice (68.100028ms)
+✔ R64 Qinan exact non-target mesh/material/physics, R32 measured grid, annex and old routes retained (102.403268ms)
+✔ R64 浮碧亭 observed coffer structure is real geometry, no borrowed flower/dragon image (7.582556ms)
+✔ R64 澄瑞亭 observed coffer structure is real geometry, no borrowed flower/dragon image (4.232149ms)
+✔ R64 浮碧亭 exact original non-target and collider/support retention (25.426296ms)
+✔ R64 澄瑞亭 exact original non-target and collider/support retention (18.645714ms)
+✔ R64 Qinan panes use actual plain square lattice bars, not a generic decorated full-door texture (19.966134ms)
+✔ R64 浮碧亭 unresolved flower/dragon fields are plain, not stretched beam decoration (3.047943ms)
+✔ R64 澄瑞亭 unresolved flower/dragon fields are plain, not stretched beam decoration (2.683396ms)
+✔ R64 qinan frozen R63 builder still matches its independent full baseline output (22.330612ms)
+✔ R64 浮碧亭 frozen R63 builder still matches its independent full baseline output (8.603268ms)
+✔ R64 澄瑞亭 frozen R63 builder still matches its independent full baseline output (10.963798ms)
+✔ R64 material-only Qinan base and retained ceiling/lid surfaces keep all geometry and transforms exact (36.99624ms)
+✔ R64 new joinery and ceiling relief have finite positive-area triangles and bounded cost (35.721411ms)
+✖ R64 Qinan source square lattice stays near-square across the unequal measured bays (18.362178ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 14
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 556.228392
+
+✖ failing tests:
+
+test at tests/r64-garden-first-batch.test.mjs:18:1
+✖ R64 Qinan source square lattice stays near-square across the unequal measured bays (18.362178ms)
+  TypeError: Cannot read properties of undefined (reading 'width')
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r64-g-garden-fidelity/tests/r64-garden-first-batch.test.mjs:18:509)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)

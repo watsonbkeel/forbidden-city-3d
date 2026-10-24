@@ -1,0 +1,30 @@
+// Actual existing local production builders with the actual albedo/UV assets.
+// This is explicitly not a browser, whole-world camera, or rendering acceptance.
+import '../../tests/lib/inner-palace-fixture.mjs';
+import fs from 'node:fs';import path from 'node:path';import {execFileSync} from 'node:child_process';import {createHash} from 'node:crypto';import {createRequire} from 'node:module';import * as THREE from 'three';
+import {loadTongdaoZoneBase} from '../../tests/lib/r63-tongdao-hookup-loader.mjs';
+import {signature,retained,physics} from '../../tests/lib/r63-tongdao-roof-fixture.mjs';
+import {assertTongdaoRoofInWorld} from '../../tests/lib/r63-tongdao-roof-world-check.mjs';
+
+
+
+
+import {TextureLibrary,TEXTURE_SPECS} from '../../src/utils/TextureLibrary.js';
+const {createCanvas,loadImage,GlobalFonts}=createRequire(import.meta.url)('@napi-rs/canvas');
+GlobalFonts.registerFromPath('/usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc','SimSun');globalThis.document={createElement:()=>createCanvas(1,1),createElementNS:()=>({addEventListener(){},removeEventListener(){}})};
+const sha=b=>createHash('sha256').update(b).digest('hex');
+const key='tongdao',state=process.argv[2]??'before',out=path.resolve(`reports/r63-tongdao-roof/${state}`),temp=fs.mkdtempSync('/tmp/r63-tongdao-');
+if(!['before','after'].includes(state))throw Error('Expected before or after');
+const {ZoneBase}=await loadTongdaoZoneBase({enabled:state==='after'});fs.mkdirSync(out,{recursive:true});
+const lib=new TextureLibrary();lib.manifest=JSON.parse(fs.readFileSync('public/textures/hd/manifest.json'));
+for(const name of Object.keys(TEXTURE_SPECS))for(const kind of['color','normal']){const file=lib.manifest.textures[name]?.[kind];if(!file)continue;const im=await loadImage(path.resolve('public/textures/hd',file)),canvas=createCanvas(im.width,im.height);canvas.getContext('2d').drawImage(im,0,0);(kind==='color'?lib.colors:lib.normals).set(name,lib.configure(new THREE.CanvasTexture(canvas),name,kind));}
+const cfg=JSON.parse(fs.readFileSync('data/zones/west-six.json')),item=cfg.items[47],zone=new ZoneBase(lib,cfg),kit=zone.kit,built=zone.buildHall(item),f={kit,built};
+const roof=built.f.children.find(o=>o.name.startsWith('roof_')),roofProof=signature(roof),retainedProof=retained(f),physicsProof=physics(f),metadata=built.f.userData.tongdaoRoof;
+const frame=kit.finish();frame.updateMatrixWorld(true);const scene=new THREE.Scene();scene.add(frame);const consumer=state==='after'?assertTongdaoRoofInWorld({scene,cm:{colliders:kit.colliders,walkables:kit.walkables}}):null;
+const materials=[],ids=new Map(),triangles=[],names={tongdao:'同道堂（咸福宫后殿）'};
+function mid(m,colour=null){const key=m.uuid+'-'+(colour??'default');if(ids.has(key))return ids.get(key);const id=materials.length;let texture=null;if(m.map?.isDataTexture&&m.map.image?.data){const im=m.map.image,c=createCanvas(im.width,im.height),ctx=c.getContext('2d'),pixels=ctx.createImageData(im.width,im.height);if(im.data.length!==im.width*im.height*4)throw Error('Unsupported data texture format');for(let y=0;y<im.height;y++){const sy=m.map.flipY?y:im.height-1-y;pixels.data.set(im.data.subarray(sy*im.width*4,(sy+1)*im.width*4),y*im.width*4);}ctx.putImageData(pixels,0,0);texture=`texture-${id}.png`;fs.writeFileSync(path.join(temp,texture),c.toBuffer('image/png'));}else if(m.map?.image?.toBuffer){texture=`texture-${id}.png`;fs.writeFileSync(path.join(temp,texture),m.map.image.toBuffer('image/png'));}materials.push({name:m.name,color:colour??m.color?.getHexString()??'ffffff',texture,wrapS:m.map?.wrapS,wrapT:m.map?.wrapT,side:m.side,opacity:m.opacity??1,normalMapPresent:!!m.normalMap});ids.set(key,id);return id;}
+frame.traverse(m=>{if(!m.isMesh)return;const a=m.geometry.attributes,p=a.position,ix=m.geometry.index;for(let i=0;i<(ix?.count??p.count);i+=3){const js=[0,1,2].map(j=>ix?ix.getX(i+j):i+j);triangles.push({role:m.userData.role??m.name,v:js.map(j=>new THREE.Vector3().fromBufferAttribute(p,j).applyMatrix4(m.matrixWorld).sub(new THREE.Vector3(item.x,0,item.z)).toArray()),uv:a.uv?js.map(j=>[a.uv.getX(j),a.uv.getY(j)]):null,material:mid(Array.isArray(m.material)?m.material[m.geometry.groups.find(k=>i>=k.start&&i<k.start+k.count)?.materialIndex]:m.material,a.color?new THREE.Color().fromBufferAttribute(a.color,js[0]).getHexString():null)});}});
+const payload=JSON.stringify({name:names[key],state,materials,triangles,boundary:'CPU LOCAL ACTUAL MODEL, NOT BROWSER OR WHOLE-WORLD CAMERA ACCEPTANCE'});fs.writeFileSync(path.join(temp,'geometry.json'),payload);
+const views=[{name:'south',eye:[0,4,-37],target:[0,8,0],fov:58},{name:'southwest',eye:[-30,5,-28],target:[0,8,0],fov:58},{name:'west-end',eye:[-28,8,-.5],target:[0,9,0],fov:54}];
+for(const v of views){const file=path.join(out,`${key}-${v.name}.png`);if(fs.existsSync(file))throw Error('Do not overwrite a frozen image');execFileSync('python',['tests/r49b-plaque-cpu-render.py',temp,file,JSON.stringify(v.eye),JSON.stringify(v.target),String(v.fov)],{stdio:'inherit'});v.path=path.relative(process.cwd(),file);v.sha256=sha(fs.readFileSync(file));}
+fs.writeFileSync(path.join(out,`${key}.json`),JSON.stringify({key,state,roofProof,retainedProof,physicsProof,metadata,consumer,captureCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),productionSourceHashes:Object.fromEntries(['data/zones/west-six.json','src/scene/palace/kit.js','src/scene/RoofBuilder.js','src/scene/palace/special/TongdaoRoof.js','src/scene/zones/ZoneBase.js','tests/lib/r63-tongdao-hookup-loader.mjs'].filter(p=>fs.existsSync(p)).map(p=>[p,sha(fs.readFileSync(p))])),geometrySHA256:sha(payload),triangles:triangles.length,materials:materials.length,colliders:kit.colliders.length,walkables:kit.walkables.length,views,boundary:'Exact minimal ZoneBase hookup rehearsed in memory; real local production geometry and HD albedo/UV; CPU omits WebGL normal maps/PBR/shadows/tone mapping. Not whole-world or GPU acceptance.'},null,2)+'\n');kit.dispose(frame);lib.dispose();fs.rmSync(temp,{recursive:true,force:true});console.log(key,triangles.length);

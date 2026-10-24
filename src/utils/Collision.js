@@ -3,6 +3,7 @@ import { DIMENSIONS, LAYOUT, PLAYER } from '../config/constants.js';
 import { PALACE_LAYOUT } from '../scene/Layout.js';
 import { canCrossPalaceWater } from '../scene/palace/special/SouthWaterSystem.js';
 import {cloneOverheadShape, overheadIntersectsBox, overheadHeightAtFootprint} from './OverheadShape.js';
+import {validateDynamicBodies, bodyPenetration, sweptPlayerBodyPenetration, pointSegmentDistance} from '../scene/characters/CharacterBody.js';
 
 /** 玩家碰撞盒底部离脚面的抬升量：低于此高度的台阶/门槛直接跨过，不当成墙。 */
 const STEP_CLEARANCE = 0.35;
@@ -26,6 +27,9 @@ export class CollisionManager {
     this.playerSize = new THREE.Vector3();
     this.playerCenter = new THREE.Vector3();
     this.rivers = PALACE_LAYOUT.filter(item => item.type === 'river');
+    // Separate pedestrian channel: never part of static grids, support,
+    // world-generation proofs, raycasts or helicopter flight envelopes.
+    this.dynamicBodies = new Map();
   }
 
   addCollider(object, tag) {
@@ -125,7 +129,35 @@ export class CollisionManager {
     return Math.max(ground, rescue);
   }
 
-  checkCollision(position, radius = DEFAULT_PLAYER_RADIUS) {
+  setDynamicBodies(owner, bodies) {
+    if(!owner)throw new TypeError('Dynamic bodies require an owner');
+    const validated=validateDynamicBodies(bodies); // atomic: invalid update keeps the old set
+    if(validated.length)this.dynamicBodies.set(owner,validated);else this.dynamicBodies.delete(owner);
+  }
+  clearDynamicBodies(owner) { this.dynamicBodies.delete(owner); }
+  checkDynamicCollision(position,radius=DEFAULT_PLAYER_RADIUS,from=null) {
+    const player={position:[position.x,position.y-PLAYER.HEIGHT,position.z],radius,height:PLAYER.HEIGHT};
+    const previous=from?{...player,position:[from.x,from.y-PLAYER.HEIGHT,from.z]}:null;
+    for(const bodies of this.dynamicBodies.values())for(const body of bodies){
+      const depth=bodyPenetration(body,player);
+      if(!previous){if(depth>1e-7)return true;continue;}
+      const old=bodyPenetration(body,previous),swept=sweptPlayerBodyPenetration(body,previous,player);
+      if(old>1e-7&&depth<old-1e-7&&swept<=old+1e-7)continue; // only outward escape
+      if(swept>1e-7)return true;
+    }
+    return false;
+  }
+  limitDynamicFeet(x,z,fromFeet,toFeet,radius=DEFAULT_PLAYER_RADIUS,height=PLAYER.HEIGHT) {
+    let allowed=toFeet;
+    for(const bodies of this.dynamicBodies.values())for(const body of bodies)for(const p of body.parts){
+      if(pointSegmentDistance(x,z,p)>=radius+p.radius-1e-7)continue;
+      if(toFeet>fromFeet&&fromFeet+height<=p.minY+1e-7&&toFeet+height>p.minY)allowed=Math.min(allowed,p.minY-height);
+      if(toFeet<fromFeet&&fromFeet>=p.maxY-1e-7&&toFeet<p.maxY)allowed=Math.max(allowed,p.maxY);
+    }
+    return allowed;
+  }
+
+  checkCollision(position, radius = DEFAULT_PLAYER_RADIUS, dynamicFrom = null) {
     if (!this.checkBoundary(position, radius) || !this.checkRiverCrossing(position, radius)) return true;
     // 视点是头部（脚面 + PLAYER.HEIGHT）；碰撞体从脚面上方 STEP_CLEARANCE 到头顶，矮台阶可直接跨过。
     const feetY = position.y - PLAYER.HEIGHT;
@@ -142,7 +174,7 @@ export class CollisionManager {
     this._overheadBodyBox.max.y = position.y;
     return this.queryBox(this.playerBox).some(collider => collider.overhead
       ? overheadIntersectsBox(collider.overhead, this._overheadBodyBox)
-      : this.playerBox.intersectsBox(collider.box));
+      : this.playerBox.intersectsBox(collider.box)) || this.checkDynamicCollision(position,radius,dynamicFrom);
   }
 
   /** Upward-only head sweep for explicitly tagged curved solids. No ceiling
@@ -250,7 +282,7 @@ export class CollisionManager {
       const g = track ? this.getGroundHeight(x, z, air ? Math.max(airFeet, ground) : ground, stepUp) : 0;
       const bodyFeet = air ? Math.max(g, airFeet) : g;
       candidate.set(x, track ? bodyFeet + PLAYER.HEIGHT : valid.y, z);
-      if (this.checkCollision(candidate, radius)) return false;
+      if (this.checkCollision(candidate, radius, valid)) return false;
       valid.copy(candidate);
       if (track) ground = g;
       return true;
@@ -280,6 +312,7 @@ export class CollisionManager {
     this.colliders.length = 0;
     this.walkables.length = 0;
     this._grid = null;
+    this.dynamicBodies.clear();
   }
 
   /** 两侧宫院的命名区域（世界坐标矩形），优先于中轴 z 分段判断 */

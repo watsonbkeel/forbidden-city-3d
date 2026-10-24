@@ -1,7 +1,9 @@
 import * as THREE from 'three';
+import {addYujingSouthRail} from './GardenSilhouetteDetails.js';
 import anchors from '../../../data/anchors.json' with {type:'json'};
 import {applyBoxUV} from '../../utils/GeometryUV.js';
 import {buildBalustrade} from '../HallKit.js';
+import {addBridgeCeilingRelief} from './BridgeCeilingRelief.js';
 
 const SOURCES={浮碧亭:'https://www.dpm.org.cn/explore/building/236498.html',澄瑞亭:'https://www.dpm.org.cn/explore/building/236443.html'};
 export function bridgeGardenProfile(name){
@@ -99,6 +101,7 @@ export function buildBridgeGardenPavilion(builder,root,input){const p=bridgeGard
  const lidGeo=new THREE.CircleGeometry(.65,8);lidGeo.rotateX(Math.PI/2);const lid=new THREE.Mesh(lidGeo,beam);lid.position.y=5.275;lid.name='bridge-caisson-lid';g.add(lid);
  box('bridge-annex-ceiling',7.6,.1,2.4,0,4.02,-5,beam,false);
  const finial=new THREE.Mesh(new THREE.SphereGeometry(.25,12,8),yellow);finial.name='bridge-finial';finial.position.set(0,7.65,0);g.add(finial);
+ addBridgeCeilingRelief(builder,g,p);
  g.userData.bridgePavilion=p;builder.group.userData.bridgePavilions??=[];builder.group.userData.bridgePavilions.push(p);return g;
 }
 
@@ -109,7 +112,8 @@ export function buildYujingEnclosure(builder,root,{x,z,y}){
   for(let j=0;j<4;j++){const pos=-1.2+j*.8;box('yujing-closed-door-leaf',horizontal?.78:.14,2.25,horizontal?.14:.78,horizontal?pos:at,1.475,horizontal?at:pos,lib.material('lattice_doors'),false);}
   box('yujing-door-header',horizontal?3.6:.22,.4,horizontal?.22:3.6,horizontal?0:at,2.8,horizontal?at:0,wood,false);
   // Surrounding stone rail is an exterior silhouette only; no invented summit route.
-  box('yujing-stone-balustrade',horizontal?4.8:.2,.65,horizontal?.2:4.8,horizontal?0:sign*2.4,.675,horizontal?sign*2.4:0,stone,false);
+  if(k===0)addYujingSouthRail(box,stone);
+  else box('yujing-stone-balustrade',horizontal?4.8:.2,.65,horizontal?.2:4.8,horizontal?0:sign*2.4,.675,horizontal?sign*2.4:0,stone,false);
  }
- const profile={id:'garden-procedural-御景亭',name:'御景亭',source:'https://www.dpm.org.cn/explore/building/236490.html',externalDoorGroups:4,columns:4,doorPose:'CLOSED_FIT_PHOTO_INFORMED_NOT_ACCESS_PERMISSION',dimensions:'RETAINED_FITTED_MOUNTAIN_PLATFORM',interior:'UNRECONSTRUCTED_THRONE_LOCATION_AND_INVENTORY_UNKNOWN',access:'NO_NEW_SUMMIT_SUPPORT_OR_TELEPORT',accepted:false};g.userData.yujingProfile=profile;builder.group.userData.yujingProfile=profile;return g;
+ const profile={id:'garden-procedural-御景亭',name:'御景亭',source:'https://www.dpm.org.cn/explore/building/236490.html',externalDoorGroups:4,columns:4,doorPose:'CLOSED_FIT_PHOTO_INFORMED_NOT_ACCESS_PERMISSION',dimensions:'RETAINED_FITTED_MOUNTAIN_PLATFORM',rail:'SOUTH_VISIBLE_POSTS_AND_OPEN_RAILS_PHOTO_FIT_THREE_OTHER_SLABS_UNVERIFIED_RETAINED',interior:'UNRECONSTRUCTED_THRONE_LOCATION_AND_INVENTORY_UNKNOWN',access:'NO_NEW_SUMMIT_SUPPORT_OR_TELEPORT',accepted:false};g.userData.yujingProfile=profile;builder.group.userData.yujingProfile=profile;return g;
 }

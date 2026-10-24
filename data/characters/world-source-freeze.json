@@ -1,54 +1,61 @@
 {
-  "schemaVersion": 18,
-  "baselineCommit": "6b396800b6a03582aebf513fcef4966e9f5d0db3",
-  "purpose": "R62-E nine bounded source/unknown-inventory changes; E61/854 full scan and residuals separate, no whole-section or browser acceptance.",
+  "schemaVersion": 21,
+  "baselineCommit": "6a2803b9238a2f3f2225a2bc45a4084b1fbfe0d0",
+  "purpose": "R65 optional pedestrian-only dynamic body channel and all-day virtual-tour availability. Exact R64 architecture,108 logical roles,24 paths and Kit retained. Night fill is interpretive, no GPU or historical acceptance.",
   "provenance": {
-    "previousWorldVersion": "R61-D",
-    "previousReleaseCommit": "6b396800b6a03582aebf513fcef4966e9f5d0db3",
-    "previousManifestPath": "data/characters/world-source-freeze-r61-d.json",
-    "previousManifestSHA256": "9fc5e3bf46a164fb7296f40d5f6d3bed916890f8f28f98efc0e9c6a9593e4cb6",
-    "previousFileCount": 232,
-    "fileCount": 241,
+    "previousWorldVersion": "R64-G",
+    "previousReleaseCommit": "6a2803b9238a2f3f2225a2bc45a4084b1fbfe0d0",
+    "previousManifestPath": "data/characters/world-source-freeze-r64-g.json",
+    "previousManifestSHA256": "1057f3e02ccf6fb905f1b0782383f315612893bf085553eb8ba9e2aa4540ae1b",
+    "previousFileCount": 250,
+    "fileCount": 257,
     "changedPreviouslyTrackedSources": [
       {
-        "path": "data/zones/east-six.json",
-        "beforeSHA256": "08526251d18aca894684286addae0464814b1ef437310331049573aa81959926",
-        "afterSHA256": "284d7ec8ec83a64d221692a49e36f951fe926d1ada8d4d0f539a6e3b8e18ce09"
+        "path": "src/controls/FirstPerson.js",
+        "beforeSHA256": "4e2783609e8e13ca8e3a6e9afb9c720af1a97a5bad53fb5e10acfe8fcfa34fb9",
+        "afterSHA256": "00567838c2c34ff829684c3f9d6d6f2117f6df29a3f9f24e2d00cd28ed1c8267"
       },
       {
-        "path": "src/scene/palace/HallNameboardMount.js",
-        "beforeSHA256": "4cd6644ed425919b4131198aceb389814d12af7c31d6165f0f7f14b0643c3881",
-        "afterSHA256": "794a383d00f3edec8f7ac8aa4ce625283fc6acbe7a426a9ef53b616e4abfc6d7"
+        "path": "src/scene/Environment.js",
+        "beforeSHA256": "0a2739d5714ccf4ac2d0ae84fb5cb1881eb614ab83890be016817a718d88b361",
+        "afterSHA256": "05405673f32843a753f5dd3860378c6e558b8ecbf69e5d3f9bfae7a9d011ab24"
       },
       {
-        "path": "src/scene/palace/special/EastResidentialFacades.js",
-        "beforeSHA256": "10685a888adade27cf3dbfca94564567db9d3d56d01eb233bfd09ffb86007406",
-        "afterSHA256": "9297574cbb22ef35b01b7d2d7aeef2145fa3d0f50cf07db08e04d3d908810169"
-      },
-      {
-        "path": "src/scene/palace/special/SourceGuidedNameboardMounts.js",
-        "beforeSHA256": "b1da50adbc66309d78afbcf03e9351b5858e9b18ecf4d2c93ddce019c0c99df2",
-        "afterSHA256": "119a715c6bfd3eb25721dbbd28c5607a031a1a70f00280fda216219a7f657084"
-      },
-      {
-        "path": "src/scene/zones/ZoneBase.js",
-        "beforeSHA256": "509e784a584139e976a929789734446a5a3fb6de0e3b448910d2315285bd9819",
-        "afterSHA256": "b0016f34fa817b8986fc889e526ff89a0871dfa242e1ff7158c675d080582587"
+        "path": "src/utils/Collision.js",
+        "beforeSHA256": "ebf5f3f8638da711af08a518e20eb36a9cccef86ceda8fd14167f146058e9235",
+        "afterSHA256": "76423913a37cbd7140d00743b1e6827d39841c52618c0f19c867eff3ac7e0de1"
       }
     ],
     "newlyTrackedSources": [
-      "src/scene/palace/special/EastFiveRoofBeasts.js",
-      "src/scene/palace/special/EastUnknownAnnexInventory.js",
-      "src/scene/palace/special/EastUnknownThroneInventory.js",
-      "src/scene/palace/special/FengxianFrontWindows.js",
-      "src/scene/palace/special/FengxianRearProfile.js",
-      "src/scene/palace/special/JingrenRearWindows.js",
-      "src/scene/palace/special/JingrenSouthWindows.js",
-      "src/scene/palace/special/JingyangRearFacade.js",
-      "src/scene/palace/special/YongheCanopyKnees.js"
-    ],
-    "characterRegistryKitAndCaps": "Exact unchanged from R61; all108/24 must bind anew in this source world.",
-    "acceptance": "RESULTS_IN_VERSIONED_REPORT_NOT_THIS_SOURCE_INPUT; BROWSER_ACCEPTANCE_NOT_PERFORMED"
+      {
+        "path": "main.js",
+        "sha256": "2c5217e817ef01d098950eae6cb72f4bca8c23ebabd5026df5e42c682a67d685"
+      },
+      {
+        "path": "src/scene/characters/CharacterBody.js",
+        "sha256": "74b044d30faf5b64af2486068a967c5b0f20fd357d5488399765b16758584fe8"
+      },
+      {
+        "path": "src/scene/characters/CharacterInteraction.js",
+        "sha256": "bbc72e195705d1eb13437307ce0f4769f65b2d5570f814d9d4f6cee1c600e423"
+      },
+      {
+        "path": "src/scene/characters/CharacterLOD.js",
+        "sha256": "6e2f0009b1f83458adfe08227e5b4ad6600a8e58987c7f959b2294de9cac4ee2"
+      },
+      {
+        "path": "src/scene/characters/CharacterManager.js",
+        "sha256": "7dcd11b45e98351483a99659346981e2c6b596623b47f7303c0392691960ffef"
+      },
+      {
+        "path": "src/scene/characters/CharacterSystem.js",
+        "sha256": "5445b5e180d94e7396aaebfd34cf5c90f16a20565c62352253bffaa813c1a93d"
+      },
+      {
+        "path": "src/scene/sky/NightTourLighting.js",
+        "sha256": "80700a47464346b3564af0a345da5b8683a6c52674914cce51604464fe14cd29"
+      }
+    ]
   },
   "files": [
     {
@@ -105,7 +112,7 @@
     },
     {
       "path": "data/zones/garden.json",
-      "sha256": "e90353986b38d58b9c4db2fb2d4b7d56c9e6e758306a620baebacd481c564586"
+      "sha256": "5d5f7fcb71d34fc20aabddf83bae119e83dd1de8a3939121c506cbbe8b748ae8"
     },
     {
       "path": "data/zones/index.js",
@@ -128,6 +135,10 @@
       "sha256": "042285c8053df6586233b7827fefcbf0353bb08ada141e5c4a9784a8a61d72b7"
     },
     {
+      "path": "main.js",
+      "sha256": "2c5217e817ef01d098950eae6cb72f4bca8c23ebabd5026df5e42c682a67d685"
+    },
+    {
       "path": "public/models/interiors/kunning-v6-0c83b4364eef.glb",
       "sha256": "0c83b4364eef7febe30f976158c8a015bab49dcc3f40989f510c98e8edd6a9e4"
     },
@@ -141,7 +152,7 @@
     },
     {
       "path": "src/controls/FirstPerson.js",
-      "sha256": "4e2783609e8e13ca8e3a6e9afb9c720af1a97a5bad53fb5e10acfe8fcfa34fb9"
+      "sha256": "00567838c2c34ff829684c3f9d6d6f2117f6df29a3f9f24e2d00cd28ed1c8267"
     },
     {
       "path": "src/scene/Enclosure.js",
@@ -149,11 +160,11 @@
     },
     {
       "path": "src/scene/Environment.js",
-      "sha256": "0a2739d5714ccf4ac2d0ae84fb5cb1881eb614ab83890be016817a718d88b361"
+      "sha256": "05405673f32843a753f5dd3860378c6e558b8ecbf69e5d3f9bfae7a9d011ab24"
     },
     {
       "path": "src/scene/GardenBuilder.js",
-      "sha256": "3577bab50cf78f376b6c266b8f8e432348a5025c0c8f2fc2b368857ccf67269e"
+      "sha256": "f4a2eb2eaf9ae352889a6b0be787524b7788c2831203c77e6a4677821a2e7637"
     },
     {
       "path": "src/scene/HallKit.js",
@@ -172,6 +183,26 @@
       "sha256": "bc027e3dbf413265781aa17d869361f8ae9169fc7f3539109c3a62734eb5f8e7"
     },
     {
+      "path": "src/scene/characters/CharacterBody.js",
+      "sha256": "74b044d30faf5b64af2486068a967c5b0f20fd357d5488399765b16758584fe8"
+    },
+    {
+      "path": "src/scene/characters/CharacterInteraction.js",
+      "sha256": "bbc72e195705d1eb13437307ce0f4769f65b2d5570f814d9d4f6cee1c600e423"
+    },
+    {
+      "path": "src/scene/characters/CharacterLOD.js",
+      "sha256": "6e2f0009b1f83458adfe08227e5b4ad6600a8e58987c7f959b2294de9cac4ee2"
+    },
+    {
+      "path": "src/scene/characters/CharacterManager.js",
+      "sha256": "7dcd11b45e98351483a99659346981e2c6b596623b47f7303c0392691960ffef"
+    },
+    {
+      "path": "src/scene/characters/CharacterSystem.js",
+      "sha256": "5445b5e180d94e7396aaebfd34cf5c90f16a20565c62352253bffaa813c1a93d"
+    },
+    {
       "path": "src/scene/flight/FlightEnvelope.js",
       "sha256": "7eaffeab8a20f67c3c1d9cbc73195d7e60540b3295a93f83a5aac9e8bab59334"
     },
@@ -188,12 +219,24 @@
       "sha256": "ea20024558cf5f3aa4c8a9ad8ad5d73b98a4b62d45747a4324dc1d673dc59170"
     },
     {
+      "path": "src/scene/garden/BridgeCeilingRelief.js",
+      "sha256": "1f25ba59db643e9010ce6fdbeea8199d5af7cea411d3e1eff1f7e186afb3bb33"
+    },
+    {
       "path": "src/scene/garden/CrossGardenPavilions.js",
-      "sha256": "fa4dcda745555ffadc8fd32e275f55da4c4afd63e70c6491b790234c14c55443"
+      "sha256": "a0122e9f2a9974b4a34a8057d30047e3f80f45453fc6c6c84cb971ceb8fcfa87"
+    },
+    {
+      "path": "src/scene/garden/GardenSilhouetteDetails.js",
+      "sha256": "c205d8213da7f35e2ad3680b8c493d54cb4129fa4f5fa4c7d67d72cfd8887a6d"
     },
     {
       "path": "src/scene/garden/RemainingGardenPavilions.js",
-      "sha256": "d0774d1ee9af0c3957769b7d1857be42d6379d5b8ec2296d36c50f6a5799b263"
+      "sha256": "75edc45a41b10237364836be151d63586bc5f4b35352e050b97d2fc840f7a7b3"
+    },
+    {
+      "path": "src/scene/garden/TianyiGroundFit.js",
+      "sha256": "956c804804b9fba6b3c3457d6f31e098ad5fc77d2a198092498395449b34b6d5"
     },
     {
       "path": "src/scene/garden/noise.js",
@@ -405,7 +448,7 @@
     },
     {
       "path": "src/scene/palace/kit.js",
-      "sha256": "c88e56f25b543ce1132b6f1c51905d6a7be439f619f141dc1cfafdd20500a278"
+      "sha256": "952b7ca98e3c291251e733800cc2a87f2abbd47b788177ae175a628f547c7795"
     },
     {
       "path": "src/scene/palace/river.js",
@@ -636,8 +679,12 @@
       "sha256": "5455ec101de5d0b2e49eec3f96fb698d9eb4138f9d280a1d866d6c1813190745"
     },
     {
+      "path": "src/scene/palace/special/QinanFrontJoinery.js",
+      "sha256": "a99bc4ba397ed6f6ad642b426beea4ff9ab24fe86e650f3df8b0239bb111be18"
+    },
+    {
       "path": "src/scene/palace/special/QinanHall.js",
-      "sha256": "d5f4c0780df323ea91e16556f58c9a83b1182b46d0fd83abce3932579446f333"
+      "sha256": "0a4006937a3d4166a8307de587ae92323219acc9489b7a893a08a31075a625e9"
     },
     {
       "path": "src/scene/palace/special/QinanNamePlaque.js",
@@ -650,6 +697,10 @@
     {
       "path": "src/scene/palace/special/QinanRoof.js",
       "sha256": "38ca60dc40b3a04d92f17a333a6dfadeb72058d10bddb604b7f7b0bb77776490"
+    },
+    {
+      "path": "src/scene/palace/special/QinzhengFootstool.js",
+      "sha256": "99fea981b288bfb233a32253ea6b22d150a664355b36d89228a1d87f1dd4d5a7"
     },
     {
       "path": "src/scene/palace/special/RearHallProfiles.js",
@@ -665,7 +716,7 @@
     },
     {
       "path": "src/scene/palace/special/RemainingResidentialHalls.js",
-      "sha256": "0e9c32f33c9df590dba98f8fc32990bbb8f601f7d17cc80b9013ec7d28bfeba8"
+      "sha256": "a469913059cc2e9d34b53e31fa2e82d5bdc2c4c8ff8b078a26acf724f0b2d91e"
     },
     {
       "path": "src/scene/palace/special/RitualHalls.js",
@@ -824,8 +875,16 @@
       "sha256": "cb800f7ebd46df9b26be1e50031607fd7bee28e3eb8723865750950aee72bfe9"
     },
     {
+      "path": "src/scene/palace/special/TianyiGate.js",
+      "sha256": "f136821515b35bc942611e4c886a0c41dac8c1a44cdb3d5b2a6f3247caa0fbf8"
+    },
+    {
       "path": "src/scene/palace/special/TirenPavilion.js",
       "sha256": "246e56761a6b105db33b6623daaffe7ce517db9805e5d05016c0da1b54000c9f"
+    },
+    {
+      "path": "src/scene/palace/special/TongdaoRoof.js",
+      "sha256": "303ddb916b184687822882480569f226d4aed7260ef5f3636f7f3865353b0634"
     },
     {
       "path": "src/scene/palace/special/WenhuaGateSouthWindows.js",
@@ -842,6 +901,14 @@
     {
       "path": "src/scene/palace/special/WestDomesticHalls.js",
       "sha256": "3bd9990e7efa35e552c99b6520e772cfca9f3171840968732cb288ac7791c3bc"
+    },
+    {
+      "path": "src/scene/palace/special/WestRearSouthWindows.js",
+      "sha256": "bc224b6645c5720c185f1687ef1b68748236cfa3407103e960c0a7fb53b9e49e"
+    },
+    {
+      "path": "src/scene/palace/special/WestUnknownAnnexInventory.js",
+      "sha256": "5f3fd9fcc2c81353bd599202a6571d5084a9da5198f2b4ced8e60cc599490e41"
     },
     {
       "path": "src/scene/palace/special/WumenAscent.js",
@@ -980,6 +1047,10 @@
       "sha256": "fbb1f0957d22f7c92a75f1db0e02ab0d2955173072293990746afaf562254317"
     },
     {
+      "path": "src/scene/sky/NightTourLighting.js",
+      "sha256": "80700a47464346b3564af0a345da5b8683a6c52674914cce51604464fe14cd29"
+    },
+    {
       "path": "src/scene/sky/SkyDome.js",
       "sha256": "fce040c9ebb96b4aa2065db4f4589d2f388106aab0e8296be9747139def69201"
     },
@@ -1001,7 +1072,7 @@
     },
     {
       "path": "src/scene/zones/ZoneBase.js",
-      "sha256": "b0016f34fa817b8986fc889e526ff89a0871dfa242e1ff7158c675d080582587"
+      "sha256": "c753ad4276a1f411c05a342f27d156ff0ada5a297779080a83b807533c01c3f1"
     },
     {
       "path": "src/scene/zones/ZoneManager.js",
@@ -1009,7 +1080,7 @@
     },
     {
       "path": "src/utils/Collision.js",
-      "sha256": "ebf5f3f8638da711af08a518e20eb36a9cccef86ceda8fd14167f146058e9235"
+      "sha256": "76423913a37cbd7140d00743b1e6827d39841c52618c0f19c867eff3ac7e0de1"
     },
     {
       "path": "src/utils/OverheadShape.js",

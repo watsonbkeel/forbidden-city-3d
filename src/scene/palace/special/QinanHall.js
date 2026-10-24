@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { qinanGeometry } from './QinanProfile.js';
 import { buildQinanRoof } from './QinanRoof.js';
 import { buildQinanNamePlaque } from './QinanNamePlaque.js';
+import { buildQinanFrontJoinery } from './QinanFrontJoinery.js';
 const tag=(o,role,extra={})=>{o.name=role;Object.assign(o.userData,{role,...extra});return o;};
 
 /** Zone-owned model; virtual side doors use the retained stairs and floor, never a north-through shortcut. */
@@ -11,7 +12,7 @@ export function buildQinanHall(kit,item){
  const box=(role,mat,w,h,d,x,y,z,extra={})=>tag(kit.box(f,mat,w,h,d,x,y,z,['caihua_beam','lattice_doors'].includes(mat)?'band':'box'),role,extra);
  const solid=(role,mat,w,h,d,x,y,z,extra={})=>{const m=box(role,mat,w,h,d,x,y,z,extra);kit.col(f,x-w/2,y-h/2,z-d/2,x+w/2,y+h/2,z+d/2);return m;};
  for(const s of g.slabs){const w=s.maxX-s.minX,d=s.maxZ-s.minZ,x=(s.minX+s.maxX)/2,z=(s.minZ+s.maxZ)/2,t=g.supportApproximation.pavingThickness;
-  solid('qinan-support-body','wall_brick',w,floor-t,d,x,(floor-t)/2,z,{supportId:s.supportId,status:'PROVISIONAL'});
+  solid('qinan-support-body','marble',w,floor-t,d,x,(floor-t)/2,z,{supportId:s.supportId,status:'PROVISIONAL'});
   solid('qinan-support-paving','stone_slab',w,t,d,x,floor-t/2,z,{supportId:s.supportId,status:'PROVISIONAL'});
  }
  for(const s of g.steps)solid('qinan-side-stair-step','stone_slab',s.maxX-s.minX,s.topY,s.maxZ-s.minZ,(s.minX+s.maxX)/2,s.topY/2,(s.minZ+s.maxZ)/2,{supportId:s.supportId,side:s.side,status:'PROVISIONAL_HEIGHT'});
@@ -33,7 +34,7 @@ export function buildQinanHall(kit,item){
  const stripBottom=g.southAnnex.rearRoofY,stripH=g.levels.eaveColumnTop-stripBottom;
  if(stripH>0)solid('qinan-main-south-upper-strip','wall_red',b.width,stripH,a.wallThickness,0,stripBottom+stripH/2,b.zs[0]);
  const n=g.southAnnex,nh=n.columnTopY-floor,nt=n.skin.wallThickness;
- for(let i=0;i<5;i++){const left=b.xs[i]+n.skin.columnRadius,right=b.xs[i+1]-n.skin.columnRadius;solid('qinan-annex-front-panel','lattice_doors',right-left,nh,nt,(left+right)/2,floor+nh/2,n.frontZ,{bay:i+1,status:'PROVISIONAL_CLOSED_PREVIEW_PANEL',currentDoorState:'UNKNOWN'});}
+ buildQinanFrontJoinery(kit,f,g);
  // The old unverified side panels sealed the landing of both real stair
  // models. Split only those placeholder skins: a virtual open doorway is not
  // evidence that today's museum opens this route. Keep all exterior dimensions.

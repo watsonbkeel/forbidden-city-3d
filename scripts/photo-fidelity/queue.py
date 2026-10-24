@@ -37,6 +37,6 @@ def main():
   if not out:raise SystemExit(1)
  else:
   todo=[x for x in q['items'] if (not a.section or x['section']==a.section) and not x['optional'] and any(f['status'] not in ['ACCEPTED','NOT_APPLICABLE'] for f in x['facets'].values()) and (a.include_owned or x.get('activeWork',{}).get('state')!='IN_PROGRESS')]
-  out=[{'id':x['id'],'name':x['name'],'release':x['release'],'exterior':x['facets']['exterior']['status'],'interior':x['facets']['interior']['status'],'action':x['nextAction']} for x in sorted(todo,key=lambda x:x['priority'])[:a.limit]]
+  out=[{'id':x['id'],'name':x['name'],'release':next((r['release'] for r in q.get('executionSchedule',[]) if r['section']==x['section']),x['release']),'originalPlanRelease':x['release'],'exterior':x['facets']['exterior']['status'],'interior':x['facets']['interior']['status'],'action':x['nextAction']} for x in sorted(todo,key=lambda x:x['priority'])[:a.limit]]
  print(json.dumps(out,ensure_ascii=False,indent=2))
 if __name__=='__main__':main()

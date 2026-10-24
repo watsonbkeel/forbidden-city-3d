@@ -1,0 +1,9 @@
+from pathlib import Path
+import subprocess,json,hashlib
+P=Path(__file__).resolve().parents[2];base='bfafb63aff4984b266b02600d1364001000e0bc6'
+files=subprocess.check_output(['git','ls-tree','-r','--name-only',base,'--','src/scene/characters','data/characters','public','data/zones','main.js','src/ui','src/utils/Collision.js','src/controls','package.json','package-lock.json'],cwd=P,text=True).splitlines();files=[s for s in files if not s.startswith('data/characters/world-source-freeze') and s!='data/zones/garden.json']
+for s in files:assert(P/s).read_bytes()==subprocess.check_output(['git','show',base+':'+s],cwd=P),s
+garden=json.loads((P/'data/zones/garden.json').read_text());oldGarden=json.loads(subprocess.check_output(['git','show',base+':data/zones/garden.json'],cwd=P));assert garden['items'][:40]==oldGarden['items'] and len(garden['items'])==41;assert {k:v for k,v in garden.items() if k!='items'}=={k:v for k,v in oldGarden.items() if k!='items'}
+freeze=json.loads((P/'data/characters/world-source-freeze.json').read_text());assert freeze['schemaVersion']==20 and len(freeze['files'])==250
+for f in freeze['files']:assert hashlib.sha256((P/f['path']).read_bytes()).hexdigest()==f['sha256'],f['path']
+out={'status':'EXACT_BYTE_RETAINED','baseline':base,'files':files,'fileCount':len(files),'worldSourceFiles':250,'newWorldSources':freeze['provenance']['newlyTrackedSources'],'changedWorldSources':freeze['provenance']['changedPreviouslyTrackedSources'],'scope':'All preexisting character data/Kit/runtime/108 IDs/24 paths/caps, all other zone declarations, public assets, main/UI/control/Collision and dependencies remain exact. World freeze is explicitly versioned; new local footprint must bind afresh. Not runtime/browser acceptance.'};(P/'reports/r64-g-stage/RETAINED-INPUTS.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n');print(json.dumps({'unchangedFiles':len(files),'worldSources':250}))
