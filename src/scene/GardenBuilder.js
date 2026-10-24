@@ -409,7 +409,7 @@ export class GardenBuilder {
   buildRockeryAndTop(root) {
     const lib = this.library;
     const topY = Math.max(7, this.rockDim.height ?? 8);
-    const { geometries, colliders } = buildRockery({
+    const { geometries, colliders, walkables } = buildRockery({
       center: this.rockPos, radiusX: (this.rockDim.width ?? 10) * 0.65, radiusZ: (this.rockDim.depth ?? 10) * 0.55,
       topY, seed: 2024, tile: lib.tileSize('rock'),
     });
@@ -426,6 +426,7 @@ export class GardenBuilder {
     rock.userData.noMerge = true; // 顶点色需保留
     root.add(rock);
     colliders.forEach(b => this.addCollider(b));
+    this.walkables.push(...walkables);
     this.stats.rockTriangles = geo.attributes.position.count / 3;
     // 山顶御景亭
     const marble = lib.material('marble', { roughness: 0.7 });

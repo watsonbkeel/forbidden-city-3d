@@ -1,0 +1,93 @@
+{
+  "release": "R72",
+  "runtimeFreezeCommit": "008feb8daa653cf5d40ca62bdb05fd656093fc92",
+  "sourceFingerprint": "21cc4c9245e61f477db834800497699906e8508a678d66e45262096f20042b97",
+  "fullRuntimeInputs": 501,
+  "runtimeChangesAgainstR71": 30,
+  "newRuntimeFiles": 8,
+  "focusedTests": {
+    "passed": 150,
+    "failed": 0
+  },
+  "worlds": [
+    {
+      "phase": "B",
+      "retainedWorld": "../r65-character-experience/world-B-r72-frozen/result.json.gz",
+      "retainedPassed": true,
+      "nightWorld": "night-world-B.json",
+      "nightPassed": true,
+      "nightFrames": 6507,
+      "dayFrames": 6505
+    },
+    {
+      "phase": "yangxin",
+      "retainedWorld": "../r65-character-experience/world-yangxin-r72-frozen/result.json.gz",
+      "retainedPassed": true,
+      "nightWorld": "night-world-yangxin.json",
+      "nightPassed": true,
+      "nightFrames": 6507,
+      "dayFrames": 6505
+    },
+    {
+      "phase": "kunning",
+      "retainedWorld": "../r65-character-experience/world-kunning-r72-frozen/result.json.gz",
+      "retainedPassed": true,
+      "nightWorld": "night-world-kunning.json",
+      "nightPassed": true,
+      "nightFrames": 6507,
+      "dayFrames": 6505
+    },
+    {
+      "phase": "huangji",
+      "retainedWorld": "../r65-character-experience/world-huangji-r72-frozen/result.json.gz",
+      "retainedPassed": true,
+      "nightWorld": "night-world-huangji.json",
+      "nightPassed": true,
+      "nightFrames": 6507,
+      "dayFrames": 6505
+    }
+  ],
+  "nightCoverage": {
+    "women": 28,
+    "uniqueAssignedBeds": 28,
+    "totalBeds": 30,
+    "actors": 108,
+    "oldPatrolPaths": 24,
+    "guardsAndEunuchsMoving": 51,
+    "emperorRoutePoints": 1062,
+    "playerBlocksEmperorWalking": true,
+    "blockedWakingRoutePreserved": true,
+    "zoneUnloadReload": true,
+    "previewBoundaries": [
+      1259,
+      1260,
+      1439,
+      0,
+      359,
+      360
+    ]
+  },
+  "lighting": {
+    "registeredRooms": 285,
+    "fixtures": 1189,
+    "pointLightsHigh": 4,
+    "pointLightsLow": 2,
+    "pointLightsDay": 0,
+    "noShadows": true
+  },
+  "legacyCurrentState": {
+    "passed": 1139,
+    "failed": 151,
+    "baselineFailed": 144,
+    "sevenAdditionalExactSourceOrLocalPhysicsContracts": true,
+    "allGreenClaim": false
+  },
+  "limits": [
+    "CPU only; no real GPU/browser/mobile night visual acceptance.",
+    "No complete continuous visitor-route acceptance.",
+    "Local posture changes discrete, not animated; route walking continuous and player-blocked.",
+    "Beds, schedules, tree sizes/positions and emperor work transfer are gameplay fits, not historical reconstruction.",
+    "Old R65 report boundary phrase about no source changes describes test operation only; R72 intentionally changes authorized runtime.",
+    "No remote/main/Pages/permissions writes by local owner."
+  ]
+}

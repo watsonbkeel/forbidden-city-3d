@@ -1,0 +1,9 @@
+# R71-M: bounded Duanmen distant exterior
+
+User requested cumulative post-R70 development and authorized reasonable reversible fitting where official measurements are absent; Pages publication is handled by the user. This is the optional M distant-exterior stage, not complete Duanmen reconstruction.
+
+The retained walking bounds end at z=-500 and flight bounds at z=-590, while Wumen is at -419.6, the initial camera at -494 and the retained performance spawn at -470. Inserting Duanmen into that gap distorts the composition. Expanding the traversable world would require new routes, ground and collision acceptance beyond this stage. The chosen approach is an independently switchable, distant south backdrop outside the existing navigation bounds. It adds no map destination, teleport, NPC, collider or fake traversable portal. All existing 159 places remain unchanged.
+
+Official Fig17 of forum_detail/100138.html supports the south axial composition, parallel tree rows, red base and yellow roof silhouette. The paper Ming-dynasty Beijing inner gates, printed p161, supports double-eaved hip-and-gable yellow tile roof; its adjacent illustrations depict Zhonghuamen and are excluded. Width, height, spacing and tree counts are engineering fits, not measured facts. No plaque inscription, furniture or digital exhibition is invented. The feature is identified as boundary-exterior and not enterable in settings. The implementation adds no third-party reference images to the distributable.
+
+Keep the old environment ground intact. Give the remote backdrop its own shallow ground patch joined at the existing south ground edge; all backdrop pieces remain beyond navigation bounds. Reuse low-detail roof construction but do not change the shared roof builder. Owned geometry/material disposal must be verified. Preserve spawn view north, Wumen exits, helicopter return, old map bounds, NPC behavior and all prior A–L residuals.

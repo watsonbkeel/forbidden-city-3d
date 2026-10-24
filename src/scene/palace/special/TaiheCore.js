@@ -125,7 +125,21 @@ export function buildTaiheCeiling(builder,g,{x0,z0,y,w,d}) {
 export function buildTaiheNavigation(builder,{x0,z0,y}) {
   const d=P.dais;
   for(const x of P.columns.x)for(const z of P.columns.goldZ){const r=Math.max(P.columns.clearanceRadius,P.columns.baseRadius);builder.col(x0+x-r,y,z0+z-r,x0+x+r,y+P.columns.height,z0+z+r);}
-  // Platform is a closed exhibition support, not a route through the throne.
-  builder.col(x0-d.width/2,y,z0+d.z0,x0+d.width/2,y+4,z0+d.z1);
+  // R72: navigation matches the visible solid dais (including its 6cm cap).
+  // The former 4m box enclosed the stair landing inside an invisible wall.
+  const solid=(xa,za,xb,zb,bottom,top,pad=0)=>{
+    builder.col(x0+xa,y+bottom,z0+za,x0+xb,y+top,z0+zb);
+    builder.walkables.push({type:'box',rescue:pad>0,box:new THREE.Box3(
+      new THREE.Vector3(x0+xa-pad,y+bottom,z0+za-pad),new THREE.Vector3(x0+xb+pad,y+top,z0+zb+pad))});
+  };
+  solid(-d.width/2,d.z0,d.width/2,d.z1,0,d.height+.06,.5);
+  // Closed furniture volumes are permanent navigation, never embedded in GLB.
+  const t=P.throne,s=P.screen;
+  solid(-.92,t.z-1.13,.92,t.z+.57,d.height,t.baseY);
+  solid(-t.footstoolWidth/2,t.z-.83-t.footstoolDepth/2,t.footstoolWidth/2,t.z-.83+t.footstoolDepth/2,t.baseY,t.baseY+t.footstoolHeight);
+  solid(-t.lowerWidth/2,t.z-t.lowerDepth/2,t.lowerWidth/2,t.z+t.lowerDepth/2,t.baseY,t.baseY+t.seatHeight);
+  solid(-.795,t.z+.35,.795,t.z+.48,t.baseY,t.baseY+t.overallHeight);
+  for(const sign of [-1,1])solid(sign*.75-.045,t.z-.375,sign*.75+.045,t.z+.375,t.baseY+t.seatHeight,t.baseY+t.seatHeight+.48);
+  solid(-s.width/2,s.z-s.depth/2,s.width/2,s.z+s.depth/2,s.baseY,s.baseY+s.height);
   buildTaiheDaisFrontNavigation(builder,{x0,z0,y});
 }

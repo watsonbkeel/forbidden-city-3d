@@ -25,6 +25,7 @@ import { qinanGeometry } from '../../src/scene/palace/special/QinanProfile.js';
 import { pavilionGeometry } from '../../src/scene/palace/special/PavilionProfiles.js';
 import { southCourtGateGeometry } from '../../src/scene/palace/special/SouthCourtGates.js';
 import { tianyiProfile } from '../../src/scene/palace/special/TianyiGate.js';
+import { yinghuaGateProfile } from '../../src/scene/palace/special/YinghuaGate.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const src = p => import(path.join(ROOT, 'src', p));
@@ -42,6 +43,10 @@ export const parseRot = r => (r === undefined || r === null ? 0 : typeof r === '
 
 /** 门通行几何；profile 的 front/rear 包含各自完整坡道，platformY 仅用于台面起点。 */
 export function gateGeom(item) {
+  if (item.gateProfile === 'yinghua') {
+    const p=yinghuaGateProfile(item);
+    return {x:p.x,z:p.z,rot:0,dir:[0,1],half:1.65,front:1.65,rear:1.65,platformY:p.floor,profile:{...p,rot:0,platformY:p.floor,portalCenters:[0],ramps:[],toWorld:(x,z)=>[p.x+x,p.z+z]}};
+  }
   if (item.gateProfile === 'tianyi') {
     const p=tianyiProfile(item), half=p.platformDepth/2, toe=half+p.stairRun;
     const profile={...p,rot:0,platformY:p.floor,portalCenters:[0],

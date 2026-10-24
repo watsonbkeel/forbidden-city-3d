@@ -1,3 +1,5 @@
+import {withholdHUnknownInventory} from './HUnknownInventory.js';
+import {buildChonghuaSouthKnees} from './ChonghuaSouthKnees.js';
 import {buildQinzhengFootstool} from './QinzhengFootstool.js';
 import {buildYangxinWestWarmRooms} from './YangxinWestWarmRooms.js';
 import {fitCanopyToMainRoof} from './CanopyRoofSurfaceJoint.js';
@@ -203,6 +205,12 @@ export function buildRemainingHall(kit, item, p) {
     doorPose: 'MODEL_VIEWING_ACCESS_NOT_CURRENT_OR_HISTORICAL_OPEN_STATE',
     roofSource: p.roofSource ?? p.source, roofSourcePage: p.roofSourcePage ?? null,
     limitations: ['No complete period inventory is asserted.', 'Unspecified pre-existing furnishings are retained as unverified placeholders.', 'All new component dimensions, materials, grid spacing and opening poses are model fits.'] };
+  if (p.key === 'chonghua-middle-name-fit') {
+    built.f.userData.structure.inventory = withholdHUnknownInventory(kit, item, built.f);
+    built.f.userData.structure.furniturePolicy = 'UNKNOWN_INVENTORY_GENERIC_PLACEHOLDERS_WITHHELD_NOT_EMPTY';
+    built.f.userData.structure.retainedUnverified = ['exact-column-spacing', 'carving-and-painting', 'room-boundaries'];
+    built.f.userData.structure.limitations[1] = 'The four generic throne components are withheld; this is not evidence of a historically empty room.';
+  }
   return { ...built, p };
 }
 
@@ -407,6 +415,7 @@ function buildChonghuaBaoxia(kit, item, f, p) {
     const joint=fitCanopyToMainRoof({hall:f,mainRoof,meshes,capParent:roof,capMaterial:kit.lib.material('roof_tile')});
     tag(roof,'r48-chonghua-baoxia-roof-fit',{...provenance(p),roofSurfaceJoint:joint,joinStatus:joint.status});
   }
+  buildChonghuaSouthKnees(kit, f, item);
   f.userData.nameboardMount=fitRegisteredNameboard(kit,f,item.plaqueText??item.name,{
     y:y+(item.colH-THREE.MathUtils.clamp(item.colH*.12,.45,.85))*.8+.06+.735,
     z:front-.36,width:.945,height:1.35,

@@ -1,0 +1,26 @@
+{
+  "purpose": "R67 cumulative verification with original R66 world tests and unchanged assertions",
+  "baseDriver": "scripts/r66-h-stage/run-worlds.py",
+  "baseTest": "tests/r66-h-world.test.mjs",
+  "adaptations": [
+    "Output roots redirected to reports/r67-i-stage only",
+    "V8 heap budget reduced from 1024 to default 512 MiB; no assertion changes",
+    "Require parent-frozen source fingerprint",
+    "Per-attempt summary name preserves every failed and successful attempt",
+    "Summary source-file count read from active manifest instead of hardcoded R66 262"
+  ],
+  "sha256": {
+    "scripts/r66-h-stage/run-worlds.py": "d060733d0a57e6616eefa5d72a08e32fe4299d9d071b6982965817c3c7c600ef",
+    "tests/r66-h-world.test.mjs": "6fd23f797e12ffa25a35f5fd9dd23755be7b72b5f4865cb09f6f582c57cda2bc",
+    "reports/r67-i-stage/world-report-hook.mjs": "f5c84e63644c1b457d36f6ccf771742ed5821861c9f0feeba68ad05b425ce8b3",
+    "reports/r67-i-stage/run-worlds-r67.py": "763eb8ca01aeba879c8987c50cc2947c701009d412741a7d60c4fec27d8b250c"
+  },
+  "command": "R66_ATTEMPT=01 R67_HEAP_MB=512 R67_EXPECTED_SOURCE_FINGERPRINT=<parent-frozen-fingerprint> python3 reports/r67-i-stage/run-worlds-r67.py",
+  "started": true,
+  "frozenSourceFingerprint": "73e142e251ae36b95e54c8d4707d728a0e244e7c8e1104696bb0b78c2fbcefde",
+  "startHead": "3eb01a9f7f84cdc5284b7ea930d1fde985db7e79",
+  "sourceManifestPreflight": {
+    "files": 263,
+    "hashesMatch": true
+  }
+}

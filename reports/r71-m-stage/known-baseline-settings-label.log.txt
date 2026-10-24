@@ -1,0 +1,54 @@
+✔ initial controls show the actual low-quality and muted state before first open (5.4095ms)
+✔ one quality-button click emits the selected setting exactly once (3.839807ms)
+✔ opening and closing the menu never changes quality or emits a quality callback (1.378977ms)
+✔ settings modal is above the welcome blocker and below the loading screen (1.101871ms)
+✔ short-height panel has separate non-scrolling actions and a bounded scroll region (1.706698ms)
+✖ preview label opens the accessible settings dialog without a keyboard (1.72104ms)
+✔ source details distinguish measured structure, provisional geometry and dated visitor access (2.082331ms)
+✔ modal opening is idempotent and closes once through each visible action (1.316343ms)
+✔ Tab wraps in the dialog, skips closed details, and restores the opener on dismissal (3.069912ms)
+✔ Escape closes once without propagating to the global toggle; key scrolling retains its default (1.650454ms)
+✔ modal pointer and touch gestures do not reach body game handlers or force preventDefault (1.047981ms)
+✔ dispose restores prior inert states and removes DOM/global listeners without resuming (1.061531ms)
+✔ a secondary touch opens the launcher once without waiting for a compatibility click (0.866379ms)
+✔ a single launcher touch retains its ordinary click activation and default behavior (0.854601ms)
+✔ secondary taps activate existing sound/quality, disclosure, links and dismissal once (1.990233ms)
+✔ secondary drags and cancelled touches never activate controls or disclosures (0.949163ms)
+✔ closing clears pending secondary touches so reopening cannot apply a stale tap (0.892968ms)
+✔ secondary long presses and displaced endings do not become clicks (1.810054ms)
+✔ map mode places the same settings entry in map flow and restores its original host (0.706529ms)
+✔ map entry uses a normal-flow sticky header with a reserved focus-scroll inset (0.575984ms)
+✔ reparenting the map entry while settings are open preserves inertness and modal focus (0.722022ms)
+✔ an uncancelable secondary launcher touch still opens once without attempting cancellation (0.606439ms)
+✔ an uncancelable secondary control tap still activates once without attempting cancellation (0.755282ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 22
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 122.128748
+
+✖ failing tests:
+
+test at tests/settings-menu.test.mjs:76:1
+✖ preview label opens the accessible settings dialog without a keyboard (1.72104ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /结构研究预览/. Input:
+  
+  '作者陈华山&陈诺'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r70-l-water-walls/tests/settings-menu.test.mjs:82:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '作者陈华山&陈诺',
+    expected: /结构研究预览/,
+    operator: 'match',
+    diff: 'simple'
+  }

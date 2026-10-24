@@ -9,9 +9,29 @@ export function qianqingCentralFrame({x0,y,H,ztb0,ztb1,thW,bayW}){
 }
 export function registerQianqingCentral(b,g,args){
  const f=qianqingCentralFrame(args),marker=new THREE.Group();marker.name=f.id;marker.userData.structure=f;g.add(marker);
- // Retain the entire inherited exclusion, including its height and order.
- // The photographed steps are a visual display detail, not a new public route.
- b.col(f.bounds.minX,f.y,f.bounds.minZ,f.bounds.maxX,f.y+3,f.bounds.maxZ);return f;
+ // R72 replaces the coarse whole-scene exclusion with actual local solids.
+ // Permanent navigation remains independent of decorative LOD / GLB loading.
+ const solid=(x0,z0,x1,z1,bottom,top,support=true,pad=0)=>{
+  b.col(x0,bottom,z0,x1,top,z1);
+  if(support)b.walkables.push({type:'box',rescue:pad>0,box:new THREE.Box3(
+   new THREE.Vector3(x0-pad,bottom,z0-pad),new THREE.Vector3(x1+pad,top,z1+pad))});
+ };
+ const top=f.y+f.daisHeight;
+ solid(-f.thW/2,f.ztb0,f.thW/2,f.ztb1,f.y,top,true,.5);
+ const stepW=f.thW*.245,run=f.stepRun/f.stepCount;
+ for(const x of[-f.thW/3,0,f.thW/3])for(let k=0;k<f.stepCount;k++){
+  const z=f.ztb0-f.stepRun+k*run,h=f.y+f.daisHeight*(k+1)/f.stepCount;
+  solid(x-stepW/2,z,x+stepW/2,z+run,f.y,h,true,.5);
+ }
+ // Chair, front table, articulated screen and architectural backing.
+ solid(-.825,f.tz-.50,.825,f.tz+.70,top,top+.59);
+ solid(-.86,f.tz+.59,.86,f.tz+.71,top+.54,top+1.81);
+ for(const x of[-.79,.79])solid(x-.06,f.tz-.455,x+.06,f.tz+.595,top+.70,top+.975);
+ solid(-1,f.tz-1.26,1,f.tz-.46,top,top+1.14);
+ const xs=[-2.34,-1.26,0,1.26,2.34],ws=[1.04,1.12,1.4,1.12,1.04],hs=[2.55,2.95,3.3,2.95,2.55];
+ for(let i=0;i<5;i++){const z=f.ztb1-.56-Math.abs(xs[i])*.045;solid(xs[i]-ws[i]/2-.02,z-.15,xs[i]+ws[i]/2+.02,z+.15,top,top+hs[i]);}
+ const fw=Math.min(f.thW-.18,7.4);solid(-fw/2,f.ztb1-.24,fw/2,f.ztb1-.04,top,f.y+f.H-.23);
+ return f;
 }
 function shape(points){const s=new THREE.Shape();points.forEach(([x,y],i)=>s[i?'lineTo':'moveTo'](x,y));s.closePath();return s;}
 function reliefOutline(w,h){return [[-w/2,0],[w/2,0],[w/2,h*.52],[w*.37,h*.7],[w*.27,h*.64],[w*.18,h*.87],[0,h],[-w*.18,h*.87],[-w*.27,h*.64],[-w*.37,h*.7],[-w/2,h*.52]];}
@@ -77,5 +97,5 @@ export function buildQianqingCentralLevel(mat,f,fine){
 export function installQianqingCentral(b,root){
  if(b.ox||b.oz||root.userData.qianqingCentral)throw Error('Qianqing installation must be world aligned and unique');const all=root.userData.architecture?.filter(x=>x.id===QIANQING_CENTRAL.id);if(all?.length!==1)throw Error('Missing unique Qianqing frame');const f=all[0],mat=qianqingCentralMaterial(b),lod=new THREE.LOD();lod.name='qianqing-central-setting-detail';lod.userData={displayRevision:'r32-photo-relative-main-scene',displaySummary:{frontTable:true,chairBack:'articulated-outline',screens:5,stairFlights:3},photoDateUnknown:true};lod.position.set(f.x0,f.y,f.tz);
  for(const fine of[true,false])lod.addLevel(mergeByMaterial(buildQianqingCentralLevel(mat,f,fine),{name:fine?'qianqing-central-near':'qianqing-central-far'}),fine?0:f.lodDistance,fine?0:f.lodHysteresis);
- lod.levels[1].object.visible=false;root.add(lod);root.userData.qianqingCentral={...structuredClone(f),navigation:'INHERITED_EXCLUSION_IDENTICAL_NO_NEW_STEP_ROUTE'};return lod;
+ lod.levels[1].object.visible=false;root.add(lod);root.userData.qianqingCentral={...structuredClone(f),navigation:'R72_LOCAL_SOLIDS_STEPS_AND_SIDE_SEAT_APPROACH'};return lod;
 }

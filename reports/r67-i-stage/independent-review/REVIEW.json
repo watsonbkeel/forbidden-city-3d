@@ -1,0 +1,148 @@
+{
+  "review": "R67-I independent read-only source review",
+  "reviewedAtUTC": "2026-10-24T00:19:55Z",
+  "baseCommit": "838945e3aa14983cfdbeee4ae2b25596271d6496",
+  "headCommit": "3eb01a9f7f84cdc5284b7ea930d1fde985db7e79",
+  "verdict": "PASS_WITH_NONBLOCKING_HARDENING_NOTE",
+  "criticalImportantBlockers": [],
+  "findings": [
+    {
+      "id": "R67-REVIEW-01",
+      "severity": "P3",
+      "blocking": false,
+      "path": "src/scene/palace/special/NingshouSouthPhotoWindows.js",
+      "line": 8,
+      "title": "Old straight-mullion count is not included in drift preflight",
+      "evidence": "Removing one straight-mullion in the sixth baseline window still lets fitNingshouSouthPhotoWindows complete. The helper preflights six backing meshes and four frames/two crossbars per row, but not the old vertical bars.",
+      "impact": "Defensive guard/test coverage only. Current frozen R66 host and R67 output are exact and all explicit target-preservation tests pass. No present visual or physics defect found.",
+      "suggestion": "Optionally require expected straight-mullion count/locations per row and add a last-bay missing-mullion atomic negative test before a future shared-panel change. Safe to defer."
+    }
+  ],
+  "scopeChecks": {
+    "inventory": {
+      "hosts": [
+        "寻沿书屋",
+        "庆寿堂",
+        "景福宫",
+        "景祺阁",
+        "阅是楼",
+        "乐寿堂",
+        "畅音阁"
+      ],
+      "removedMeshes": 48,
+      "removedDedicatedColliders": 43,
+      "unknownNotEmpty": true,
+      "roomGeometryPreservedExceptInventoryMetadata": true,
+      "other10ReplacementHostsExact": true
+    },
+    "ningshou": "Six south closed bays only. Backings/colliders, east secondary doorway+sidelights, rear, roof, other geometry, walkables, rooms/maps/regions are byte/semantic exact against R66 outside target bars. Three upper transom/lower-leaf metadata agrees with generated divisions. Red frame color is a fitted approximation, not measured paint.",
+    "jingqi": "frontPattern defaults to pattern, and upperFrontPattern defaults to pattern. Only Jingqi opts into upperFrontPattern=steps. Ground glass and upper rear/side output remain exact; upper south backing geometry is retained while glass becomes paper behind the simplified step lattice. Stair/stage/floor/physics unchanged apart from dedicated furniture colliders.",
+    "yueshi": "sourceVerge defaults false and only Yueshi enables it. Two green curved closed FrontSide shells, 196 triangles each, positive signed volume about 0.10890008, minimum triangle area about 0.00495000, every topological edge has two opposite directed uses. Decorative overlay adds no support or collision and makes no exact tile/hip-corner ornament claim.",
+    "changyin": "Only changyin-ground-perimeter-rail and changyin-upper-stage-rail material references are replaced with owned red material. No shared material color mutation. Other rail/guard/stair roles and geometric shapes retained.",
+    "actorsAndRoutes": "No actor or path source/data file differs between base and reviewed head. All 263 active source-manifest hashes match. Reviewer did not rerun 108/24 full-world population checks; that runtime gate remains the parent world verification responsibility."
+  },
+  "verification": [
+    {
+      "command": "node --test tests/r67-i-*.test.mjs",
+      "result": "PASS",
+      "tests": 22,
+      "passed": 22,
+      "failed": 0
+    },
+    {
+      "command": "node /tmp/r67-i-review-probes.mjs",
+      "result": "PASS_EXPECTED_GUARDS_AND_TOPOLOGY; P3_DRIFT_COVERAGE_REPRODUCED",
+      "artifact": "/tmp/r67-i-review-probes.json",
+      "atomicNegatives": [
+        "wrong world position",
+        "missing sixth backing",
+        "missing sixth-bay frame",
+        "duplicate invocation"
+      ],
+      "atomicResult": "All four reject with zero geometry disposal and zero additional mutation."
+    },
+    {
+      "command": "node --test --test-name-pattern=\"real production library|actual finish return\" tests/r48-ningshou-real-materials.test.mjs",
+      "result": "PASS",
+      "tests": 38,
+      "passed": 38,
+      "failed": 0,
+      "artifact": "/tmp/r67-i-review-materials.tap"
+    },
+    {
+      "command": "node --test tests/r48-ningshou-halls.test.mjs tests/r48-ningshou-levels.test.mjs tests/r48-ningshou-physical.test.mjs tests/r48-ningshou-roof-contact.test.mjs tests/r48-ningshou-room-routes.test.mjs tests/r48-ningshou-room-clearance.test.mjs tests/r48-ningshou-regressions.test.mjs tests/r48-ningshou-final-physical.test.mjs tests/r48-ningshou-real-materials.test.mjs",
+      "result": "HISTORICAL_CONTRACT_CONFLICTS_NOT_ALL_GREEN",
+      "tests": 155,
+      "passed": 153,
+      "failed": 2,
+      "artifact": "/tmp/r67-i-review-regression.tap",
+      "failures": [
+        "R48 old legacy furnishing preservation contradicts authorized R67 withholding.",
+        "R48 real-material full file initially reported a generic file-level failure; isolated complete re-run resolves it to exactly eight historical snapshot mismatches for the eight deliberately changed hosts. All current material/merge/disposal checks pass."
+      ]
+    },
+    {
+      "command": "node --test --test-reporter=tap tests/r48-ningshou-real-materials.test.mjs",
+      "result": "EIGHT_EXPECTED_HISTORICAL_SNAPSHOT_MISMATCHES_ONLY",
+      "tests": 57,
+      "passed": 49,
+      "failed": 8,
+      "artifact": "/tmp/r67-i-review-material-full.tap",
+      "failedHistoricalHosts": [
+        "宁寿宫",
+        "乐寿堂",
+        "景祺阁",
+        "畅音阁",
+        "阅是楼",
+        "寻沿书屋",
+        "庆寿堂",
+        "景福宫"
+      ],
+      "note": "All failures are original 996d stub geometry/material/navigation snapshot equality. All 38 current real-library and actual merged-return/disposal tests pass; all 11 unchanged hosts retain their old snapshots."
+    },
+    {
+      "command": "node --test --test-reporter=tap --test-name-pattern=\"R48 actual materials 宁寿宫: original stub geometry\" tests/r48-ningshou-real-materials.test.mjs",
+      "result": "EXPECTED_HISTORICAL_SNAPSHOT_MISMATCH",
+      "tests": 1,
+      "passed": 0,
+      "failed": 1,
+      "artifact": "/tmp/r67-i-review-historical-material.tap",
+      "detail": "Old 564 meshes/11838 triangles become 378/15006 as intended; navigation hash remains 212d211f2ce6aa2e595ff6da6205cebdfa28096959fc1ea42264b6c4d38ce30d."
+    },
+    {
+      "command": "SHA-256 verification of data/characters/world-source-freeze.json files",
+      "result": "PASS",
+      "sourceFileCount": 263,
+      "mismatches": []
+    }
+  ],
+  "photoReview": {
+    "audit": "/tmp/r67-i-source-audit/observations.md",
+    "actualPixelsViewed": [
+      "ningshougong-2020-a.jpg",
+      "jingqi-front.jpg",
+      "yueshi.jpg",
+      "changyin-front.jpg"
+    ],
+    "cachedDiagnosticPreviewsViewed": [
+      "reports/r67-i-stage/previews/宁寿宫/diagnostic-final.png",
+      "reports/r67-i-stage/previews/阅是楼/diagnostic-final.png"
+    ],
+    "conclusion": "The four bounded features are consistent with the visible categorical source evidence. Approximate sizes/palette remain photo/model fits. Uploaded dates are not claimed as photography dates; interior omission is UNKNOWN, not proof of an empty current room.",
+    "limitations": [
+      "No independent browser/GPU/mobile rendering acceptance.",
+      "No measured dimensions, exact carved motifs, full roof ornament or whole-I historical acceptance.",
+      "Diagnostic previews are CPU evidence only; metadata sourceCommit predates the reviewed packaging commit, so they are contextual rather than exact final-build GPU proof."
+    ]
+  },
+  "sourceHashes": {
+    "src/scene/palace/special/RemainingNingshouHalls.js": "2dcf524f76739180f9954f6602de0709f38c177cd0fb6b73ab1a3fbb39f0f581",
+    "src/scene/palace/special/NingshouSouthPhotoWindows.js": "a37cd04baf9c9d4b713789d81987a67868171aff3910af2c94acc7445493b459"
+  },
+  "writes": "Only review scripts, logs and JSON under /tmp. No product, remote, main, branch, Pages, account or credential writes.",
+  "integratorResolution": {
+    "P3": "Deferred guard strengthening, not present host/output defect. Actual baseline source and negative controls retained.",
+    "historicalContractFailures": "All red raw evidence retained; expected legacy inventory/full-geometry snapshots not rewritten to fabricate pass. New exact R66-vs-R67 scope tests cover intentional changes.",
+    "wholeWorldGate": "Separate current R67 reports, not borrowed from reviewer or previous versions."
+  }
+}

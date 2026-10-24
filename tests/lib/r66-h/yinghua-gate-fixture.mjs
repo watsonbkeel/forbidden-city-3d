@@ -1,0 +1,3 @@
+import fs from'node:fs';import * as THREE from'three';import{CourtKit}from'../../../src/scene/palace/kit.js';import{CollisionManager}from'../../../src/utils/Collision.js';import{library}from'../inner-palace-fixture.mjs';
+export const yinghuaGateItem=()=>JSON.parse(fs.readFileSync(new URL('../../../data/zones/outer-west.json',import.meta.url))).items[41];
+export function gateFixture(patch={}){const kit=new CourtKit(library(),'outer-west'),item={...yinghuaGateItem(),...patch},width=kit.gate(item);kit.root.updateMatrixWorld(true);const cm=new CollisionManager();cm.rivers=[];cm.addColliders(kit.colliders,'r66-yinghua');cm.addWalkables(kit.walkables,'r66-yinghua');return{kit,item,width,f:kit.root.children[0],cm,THREE,dispose:()=>kit.dispose(kit.root)}};

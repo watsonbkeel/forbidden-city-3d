@@ -1,0 +1,9 @@
+import fs from'node:fs';import{buildR52World}from'/workspace/scratch/02a8023d1a85/r72-nightlife-safety/tests/lib/r52-world.mjs';
+const W=await buildR52World({loadAll:true}),T=W.THREE,trees=[];W.scene.traverse(o=>{if(o.userData.southTrees)trees.push(...o.userData.southTrees.rendered);});
+const box=t=>new T.Box3(new T.Vector3(...t.trunkBounds.min),new T.Vector3(...t.trunkBounds.max));const boxes=trees.map(box);const same=(a,b)=>a.min.distanceTo(b.min)<1e-5&&a.max.distanceTo(b.max)<1e-5;const nonTree=W.cm.colliders.filter(c=>!boxes.some(b=>same(c.box,b)));
+const sep=(a,b)=>Math.hypot(Math.max(0,b.min.x-a.max.x,a.min.x-b.max.x),Math.max(0,b.min.z-a.max.z,a.min.z-b.max.z));
+const result=[];for(const t of trees.filter(x=>x.id.includes('rear-small'))){const b=box(t);const conflicts=nonTree.filter(c=>c.box.intersectsBox(b));const near=nonTree.filter(c=>c.box.max.y>.1&&c.box.min.y<1.8).map(c=>({tag:c.tag,clearance:sep(b,c.box),min:c.box.min.toArray(),max:c.box.max.toArray()})).sort((a,b)=>a.clearance-b.clearance).slice(0,4);
+ const doors=W.rooms.flatMap(r=>(r.doors??[]).map(d=>({room:r.name,x:d.x,z:d.z,clearance:Math.hypot(Math.max(0,b.min.x-d.x,d.x-b.max.x),Math.max(0,b.min.z-d.z,d.z-b.max.z))}))).sort((a,b)=>a.clearance-b.clearance).slice(0,5);
+ const walkables=W.cm.walkables.filter(w=>w.type==='box'&&w.box.max.y>.05&&new T.Box3(new T.Vector3(w.box.min.x,-100,w.box.min.z),new T.Vector3(w.box.max.x,100,w.box.max.z)).intersectsBox(b)).map(w=>({tag:w.tag,min:w.box.min.toArray(),max:w.box.max.toArray()}));
+ result.push({id:t.id,bounds:t.trunkBounds,conflicts:conflicts.map(c=>({tag:c.tag,min:c.box.min.toArray(),max:c.box.max.toArray()})),nearestPedestrianSolids:near,nearestDoors:doors,overlappingRaisedWalkables:walkables});}
+fs.writeFileSync('/tmp/r72-tree-placement-probe.json',JSON.stringify({treeBoundsCount:trees.length,nonTreeColliderCount:nonTree.length,results:result},null,2));console.log(JSON.stringify(result));W.dispose();

@@ -1,0 +1,1876 @@
+{
+  "schemaVersion": 1,
+  "review": "R66-H H43 object-specific source/model observations",
+  "historicalPlanId": "R65-H",
+  "executionRelease": "R66-H",
+  "reviewDate": "2026-10-23",
+  "scope": "All 43 original H objects, without treating the list as 43 accepted buildings. Observations do not replace the separate all-required-feature audit.",
+  "baselineCommit": "aa5793395a16fbd870ce758174a5f9438f3bc423",
+  "method": {
+    "sourceEvidence": "Recorded official pixel inspections attributed in the source index; compiler verified metadata, original byte hashes, supplied requirements, declarations and current bounded implementation. No new source download.",
+    "newPixelInspectionByCompiler": false,
+    "newBrowserOrGPUInspection": false,
+    "worldInstantiated": false,
+    "productionOrCanonicalFilesEditedByThisReview": false,
+    "sourcePhotosOrPDFsRedistributed": false,
+    "allRequiredFeatureAcceptanceClaimed": false
+  },
+  "summary": {
+    "namedObjects": 43,
+    "buildingOrStructureCandidates": 40,
+    "indoorComponents": 2,
+    "aggregateGroups": 1,
+    "objectsWithRuntimeDeclarations": 7,
+    "runtimeDeclarationEntries": 9,
+    "namedObjectsWithoutConfirmedRuntimeBinding": 36,
+    "objectsWithBoundedProductionChanges": 4,
+    "wholeObjectExteriorAccepted": 0,
+    "wholeObjectInteriorAccepted": 0,
+    "wholeObjectBothAccepted": 0,
+    "browserVisualAccepted": 0,
+    "categoryCounts": {
+      "BOUNDED_IMPLEMENTATION": 4,
+      "VERIFY_PENDING_BROWSER": 4,
+      "UNSEEN_COVERAGE_UNKNOWN": 42,
+      "MODEL_BINDING_ENGINEERING_REQUIRED": 36,
+      "SOURCE_POSITIVE_IDENTITY_OR_ROOM_MAPPING_REQUIRED": 12,
+      "DIRECT_IMAGE_SOURCE_GAP": 11,
+      "INDOOR_COMPONENT_NOT_STANDALONE_BUILDING": 2,
+      "AGGREGATE_NOT_BUILDING": 1,
+      "CHILD_COMPLETION_REQUIRED": 1,
+      "SOURCE_POSITIVE_ENGINEERING_RESIDUAL": 1
+    }
+  },
+  "objects": [
+    {
+      "id": "FC-DC1832BAF2",
+      "name": "重华宫",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "正殿五间硬山接三间抱厦；图集多张室内尚未逐张定位子房间。；弘历潜邸升宫；不同年代室内改装需留差异记录。",
+      "originalParentContext": "重华宫区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236506.html",
+      "sourceStatus": "SOURCE_POSITIVE_BOUNDED_EXISTING_OBJECT_DELTA",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-060",
+        "R66-H-SRC-061"
+      ],
+      "sourceURLs": [
+        "https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5eff075737310.jpg",
+        "https://img.dpm.org.cn/Uploads/Picture/2020/07/06/s5f0293fb25b6d.jpg"
+      ],
+      "sourceObservation": "南正面照片可见三开间抱厦梁下肩部；两张室内照分别属于乐善堂和抑斋，并非当前同名中院正殿的家具证据。",
+      "modelBindingStatus": "DEDICATED_IMPLEMENTATION_RETAIN",
+      "runtimeBindings": [
+        {
+          "zone": "west-six",
+          "itemIndex": 54,
+          "kind": "hall",
+          "evidence": "STATIC_DECLARATION_AND_RECORDED_EXACT_BUILDER_ROUTE_NOT_BROWSER_ACCEPTANCE"
+        },
+        {
+          "zone": "west-six",
+          "itemIndex": 55,
+          "kind": "region",
+          "evidence": "STATIC_DECLARATION_AND_RECORDED_EXACT_BUILDER_ROUTE_NOT_BROWSER_ACCEPTANCE"
+        }
+      ],
+      "currentModelObservation": "现有专用中院正殿保留五间硬山、三间抱厦、东侧葫芦落地罩类型及西侧隔断；新增六个南面素轮廓梁下肩撑。精确移除四件无依据通用宝座网格及其专属碰撞，库存 UNKNOWN、knownEmpty=false。",
+      "exteriorReviewStatus": "PARTIAL_WITH_VERIFY_PENDING",
+      "interiorReviewStatus": "UNKNOWN_INVENTORY_UNSUPPORTED_PLACEHOLDERS_WITHHELD",
+      "categories": [
+        "BOUNDED_IMPLEMENTATION",
+        "VERIFY_PENDING_BROWSER",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "背面、两侧、真实雕刻和彩画、全院定位、殿内完整固定装修及本殿家具摆放仍未核。",
+      "nextAction": "保留现有拟合结构；补同机位浏览器对照和当前中院正殿房间映射，不借用邻殿陈设。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false,
+      "inventoryPolicy": {
+        "status": "UNKNOWN",
+        "knownEmpty": false,
+        "removedUnsupportedMeshCount": 4,
+        "currentInventoryVerified": false,
+        "roomBounds": "UNVERIFIED_RETAINED_MODEL_BOUNDS"
+      }
+    },
+    {
+      "id": "FC-ED17D936A5",
+      "name": "崇敬殿",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "各有独立形制/室名；室内额名不能自动另造一栋；重华宫总图集室内未精确定位到本殿。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "originalParentContext": "重华宫区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-DC1832BAF2"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236506.html",
+      "sourceStatus": "SOURCE_POSITIVE_NAMED_ROOM_HOST_MAPPING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-062"
+      ],
+      "sourceURLs": [
+        "https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5eff075738d0d.jpg"
+      ],
+      "sourceObservation": "官方文字明确前院五间、进深三间、歇山顶及三间抱厦；已查看的乐善堂匾室内照为具名空间的正向证据。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "未有可确认的独立命名或别名模型；当前重华宫中院模型不是崇敬殿。",
+      "exteriorReviewStatus": "BLOCKED_SOURCE_EXACT_EXTERIOR_VIEW",
+      "interiorReviewStatus": "SOURCE_POSITIVE_PARTIAL_VIEWS_ENGINEERING_PENDING",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "SOURCE_POSITIVE_IDENTITY_OR_ROOM_MAPPING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "乐善堂照片的完整房间边界、当期陈设、现存前院外立面、位置和通行连接待核；缺少模型绑定不是没有室内来源。",
+      "nextAction": "先把乐善堂实景与崇敬殿宿主、朝向和现存前院位置对应，再推进独立模型。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-D16E18CADB",
+      "name": "葆中殿",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "各有独立形制/室名；室内额名不能自动另造一栋；重华宫总图集室内未精确定位到本殿。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "originalParentContext": "重华宫区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-DC1832BAF2"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236506.html",
+      "sourceStatus": "OFFICIAL_TEXT_AVAILABLE_DIRECT_OBJECT_IMAGE_GAP",
+      "sourceEvidenceIds": [],
+      "sourceURLs": [],
+      "sourceObservation": "官方正文明确中院东配殿，三间硬山，内额古香斋；总页不是本殿独立外观或家具照片。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "未确认独立命名或别名模型；不能复制西配殿抑斋或中院正殿。",
+      "exteriorReviewStatus": "BLOCKED_SOURCE_EXACT_OBJECT_VIEW",
+      "interiorReviewStatus": "BLOCKED_SOURCE_COMPLETE_ROOM_INVENTORY_UNKNOWN",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "DIRECT_IMAGE_SOURCE_GAP",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "缺本殿具名现状外观、古香斋房间总览、当期家具摆放和坐标。",
+      "nextAction": "核对东配殿本体及古香斋照片归属，先定位再补建。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-EDE61DA470",
+      "name": "浴德殿",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "各有独立形制/室名；室内额名不能自动另造一栋；重华宫总图集室内未精确定位到本殿。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "originalParentContext": "重华宫区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-DC1832BAF2"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236506.html",
+      "sourceStatus": "SOURCE_POSITIVE_NAMED_ROOM_HOST_MAPPING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-063"
+      ],
+      "sourceURLs": [
+        "https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5eff07573438b.jpg"
+      ],
+      "sourceObservation": "官方正文明确中院西配殿三间硬山、室内额抑斋；已查看抑斋照片为本殿具名空间候选证据。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "未确认独立模型；不得绑到武英殿区域的浴德堂，也不得把抑斋家具放进中院重华宫正殿。",
+      "exteriorReviewStatus": "BLOCKED_SOURCE_EXACT_EXTERIOR_VIEW",
+      "interiorReviewStatus": "SOURCE_POSITIVE_PARTIAL_VIEWS_ENGINEERING_PENDING",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "SOURCE_POSITIVE_IDENTITY_OR_ROOM_MAPPING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "抑斋整室边界、拍摄年代、现状外观、殿间位置与通行连接仍待核。",
+      "nextAction": "完成抑斋到浴德殿宿主的空间/年代绑定，再按已见范围制作。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-8A90E1618A",
+      "name": "翠云馆",
+      "objectType": "building_or_structure",
+      "aliases": [
+        "重华宫后殿"
+      ],
+      "sourceRequirements": "同项名：重华宫后殿；各有独立形制/室名；室内额名不能自动另造一栋；重华宫总图集室内未精确定位到本殿。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "originalParentContext": "重华宫区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-DC1832BAF2"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236506.html",
+      "sourceStatus": "OFFICIAL_TEXT_AVAILABLE_DIRECT_OBJECT_IMAGE_GAP",
+      "sourceEvidenceIds": [],
+      "sourceURLs": [],
+      "sourceObservation": "官方正文说明后院五间硬山正殿、耳房和东西配殿，黑漆描金装修及东次间长春书屋；别名重华宫后殿。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "规范名与别名均无已确认运行时模型；不另按别名增计一栋。",
+      "exteriorReviewStatus": "BLOCKED_SOURCE_EXACT_OBJECT_VIEW",
+      "interiorReviewStatus": "BLOCKED_SOURCE_COMPLETE_ROOM_INVENTORY_UNKNOWN",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "DIRECT_IMAGE_SOURCE_GAP",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "本体各面、长春书屋/主室图像、后院几何及附属实例定位未核。",
+      "nextAction": "以一实体保留两个名称，补本体和房间定位；耳房/配殿保留展开义务。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-BA950A5527",
+      "name": "重华门",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "官刊研究明确正门名称；须补现存门照片。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "originalParentContext": "重华宫区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-DC1832BAF2"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236506.html",
+      "sourceStatus": "OFFICIAL_TEXT_AVAILABLE_DIRECT_OBJECT_IMAGE_GAP",
+      "sourceEvidenceIds": [],
+      "sourceURLs": [],
+      "sourceObservation": "正式名称有官方研究依据；当前资料没有已归属本门的可核外观/门厅像。",
+      "modelBindingStatus": "GENERIC_GATE_DECLARATION",
+      "runtimeBindings": [
+        {
+          "zone": "west-six",
+          "itemIndex": 52,
+          "kind": "gate",
+          "evidence": "STATIC_DECLARATION_AND_RECORDED_EXACT_BUILDER_ROUTE_NOT_BROWSER_ACCEPTANCE"
+        }
+      ],
+      "currentModelObservation": "保留现有通用门声明和入口，不把现有估计模型当实景通过。",
+      "exteriorReviewStatus": "BLOCKED_SOURCE_EXACT_OBJECT_VIEW",
+      "interiorReviewStatus": "GATEWAY_FRAME_AND_OPENING_REVIEW_REQUIRED_NOT_FURNITURE_NA",
+      "categories": [
+        "DIRECT_IMAGE_SOURCE_GAP",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "门洞、顶形、门扇姿态、梁架、匾额、院墙接缝及精确位置仍需本门图像。",
+      "nextAction": "先查清本门现存图像和开口；不因没有家具将门厅判为不适用。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-AD667FFA69",
+      "name": "漱芳斋",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "工字形前后殿；前殿与院内大戏台，后殿室内小戏台不能混合。；现供贵宾接待；照片中的现代接待家具与历史陈设应分层登记。",
+      "originalParentContext": "重华宫区/漱芳斋；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-DC1832BAF2"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236449.html",
+      "sourceStatus": "SOURCE_POSITIVE_POSITION_ENGINEERING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-051",
+        "R66-H-SRC-054"
+      ],
+      "sourceURLs": [
+        "https://img.dpm.org.cn/Uploads/Picture/2017/12/21/s5a3b2db2ef7ba.jpg",
+        "https://img.dpm.org.cn/Uploads/Picture/2017/12/21/s5a3b28d27f343.jpg"
+      ],
+      "sourceObservation": "已查看外檐匾额与栏杆近景、内檐木雕落地罩近景；照片不是工字形前后殿的完整包络。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "未确认前殿独立模型；前殿、穿堂、后殿、院内戏台须区别。",
+      "exteriorReviewStatus": "SOURCE_POSITIVE_ENGINEERING_PENDING",
+      "interiorReviewStatus": "SOURCE_POSITIVE_PARTIAL_VIEWS_ENGINEERING_PENDING",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "房间精确定位、整室陈设、现代接待/历史布置分期、前后殿连接和坐标未核。",
+      "nextAction": "先验证工字形宿主及房间映射；不要把近景扩成全斋已验收。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-DCA93F15C3",
+      "name": "金昭玉粹",
+      "objectType": "building_or_structure",
+      "aliases": [
+        "漱芳斋后殿"
+      ],
+      "sourceRequirements": "同项名：漱芳斋后殿；五间后殿，以穿堂接前殿；东高云情、西风雅存小戏台。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "originalParentContext": "漱芳斋后殿；建筑或构筑物",
+      "immediatePhysicalParentId": "FC-AD667FFA69",
+      "contextParentCandidates": [
+        "FC-AD667FFA69"
+      ],
+      "requiredChildIds": [
+        "FC-1E7AEF1723",
+        "FC-700739D144"
+      ],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236449.html",
+      "sourceStatus": "CHILD_ROOM_INTERIORS_AVAILABLE_PARENT_EXTERIOR_MAPPING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-053",
+        "R66-H-SRC-055"
+      ],
+      "sourceURLs": [
+        "https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5efefa881c873.jpg",
+        "https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5efefa881acd4.jpg"
+      ],
+      "sourceObservation": "后殿小戏台和东间高云情均有已看具名照片；它们是本后殿的子空间来源，不是后殿完整外立面证据。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "未确认后殿实体；风雅存戏台与高云情的直接物理宿主应为本 ID，漱芳斋只保留更大背景关系。",
+      "exteriorReviewStatus": "SOURCE_POSITIVE_ENGINEERING_PENDING",
+      "interiorReviewStatus": "SOURCE_POSITIVE_PARTIAL_VIEWS_ENGINEERING_PENDING",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "SOURCE_POSITIVE_IDENTITY_OR_ROOM_MAPPING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "五间后殿包络、穿堂接续、东西室精确方位/边界、其余房间和当期陈设未知。",
+      "nextAction": "先确定后殿位置和包络，再放入两具名子空间；不将房额变为独立外部建筑。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false,
+      "relationshipStatus": "CONNECTED_REAR_HALL_CONTEXT_NOT_DUPLICATE_OF_FRONT_HALL"
+    },
+    {
+      "id": "FC-8741AF42DE",
+      "name": "漱芳斋院内戏台",
+      "objectType": "building_or_structure",
+      "aliases": [
+        "漱芳斋戏台"
+      ],
+      "sourceRequirements": "同项名：漱芳斋戏台；独立单层亭式大戏台；不可与室内风雅存戏台合并。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "originalParentContext": "漱芳斋前院；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-AD667FFA69"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236565.html",
+      "sourceStatus": "SOURCE_POSITIVE_POSITION_ENGINEERING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-052"
+      ],
+      "sourceURLs": [
+        "https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5efefa882002c.jpg"
+      ],
+      "sourceObservation": "已看独立大戏台正面，双檐但只有单一表演层；与室内风雅存小戏台不同。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "未确认独立戏台模型或实际坐标。",
+      "exteriorReviewStatus": "SOURCE_POSITIVE_ENGINEERING_PENDING",
+      "interiorReviewStatus": "SOURCE_POSITIVE_PARTIAL_VIEWS_ENGINEERING_PENDING",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "背面、后台、梁架完整范围、台基高差、朝向/院落连接和通行尚未完成。",
+      "nextAction": "按独立单层亭式戏台定位；不得把双檐当第二楼层。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-1E7AEF1723",
+      "name": "风雅存戏台",
+      "objectType": "component",
+      "aliases": [],
+      "sourceRequirements": "室内亭式小台，台后与耳房联系须核。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "originalParentContext": "漱芳斋后殿西梢间；室内分区/附属构件",
+      "immediatePhysicalParentId": "FC-DCA93F15C3",
+      "contextParentCandidates": [
+        "FC-DCA93F15C3",
+        "FC-AD667FFA69"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236449.html",
+      "sourceStatus": "SOURCE_POSITIVE_POSITION_ENGINEERING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-053"
+      ],
+      "sourceURLs": [
+        "https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5efefa881c873.jpg"
+      ],
+      "sourceObservation": "已看后殿西梢间亭式小戏台；正文支持面东，照片朝西为文献关系推定。",
+      "modelBindingStatus": "UNBOUND_INTERIOR_COMPONENT",
+      "runtimeBindings": [],
+      "currentModelObservation": "未绑定室内构件；直接宿主为金昭玉粹，不是独立殿院。",
+      "exteriorReviewStatus": "HOST_GEOMETRY_REQUIRED_NOT_STANDALONE_EXTERIOR",
+      "interiorReviewStatus": "SOURCE_POSITIVE_PARTIAL_VIEWS_ENGINEERING_PENDING",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "INDOOR_COMPONENT_NOT_STANDALONE_BUILDING",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "舞台与后部耳房的实际连接、尺寸、当前陈设时期以及宿主坐标未核。",
+      "nextAction": "在后殿西侧已证实房间内建立局部，保留耳房接续待核。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false,
+      "relationshipStatus": "OFFICIAL_REAR_HALL_HOST_CONFIRMED_SCENE_PLACEMENT_PENDING"
+    },
+    {
+      "id": "FC-700739D144",
+      "name": "高云情",
+      "objectType": "component",
+      "aliases": [],
+      "sourceRequirements": "房间匾题；与对面室内戏台空间关系以照片校核，不另造独立院落。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "originalParentContext": "漱芳斋后殿东室；室内分区/附属构件",
+      "immediatePhysicalParentId": "FC-DCA93F15C3",
+      "contextParentCandidates": [
+        "FC-DCA93F15C3",
+        "FC-AD667FFA69"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236449.html",
+      "sourceStatus": "SOURCE_POSITIVE_POSITION_ENGINEERING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-055"
+      ],
+      "sourceURLs": [
+        "https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5efefa881acd4.jpg"
+      ],
+      "sourceObservation": "已看后殿东室具名内景，包含额、桌椅、钟和蓝色槅心；相机位置未核。",
+      "modelBindingStatus": "UNBOUND_INTERIOR_COMPONENT",
+      "runtimeBindings": [],
+      "currentModelObservation": "未绑定室内分区；直接宿主为金昭玉粹，不另造院落。",
+      "exteriorReviewStatus": "HOST_GEOMETRY_REQUIRED_NOT_STANDALONE_EXTERIOR",
+      "interiorReviewStatus": "SOURCE_POSITIVE_PARTIAL_VIEWS_ENGINEERING_PENDING",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "INDOOR_COMPONENT_NOT_STANDALONE_BUILDING",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "与对面风雅存的轴线、房间边界、家具完整数量/朝向及拍摄日期未核。",
+      "nextAction": "先绑定后殿东室，再逐物登记照片可见关系。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false,
+      "relationshipStatus": "OFFICIAL_REAR_HALL_HOST_CONFIRMED_SCENE_PLACEMENT_PENDING"
+    },
+    {
+      "id": "FC-255E648E8D",
+      "name": "建福宫",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "三间卷棚歇山、黄瓦绿剪边；本页图集主要是花园子建筑，不能拿敬胜斋/延春阁照片当本殿。；建福宫与抚辰殿、惠风亭为未毁主体；后区花园复建部分要分开。",
+      "originalParentContext": "建福宫区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236524.html",
+      "sourceStatus": "OFFICIAL_TEXT_AVAILABLE_DIRECT_CURRENT_IMAGE_GAP",
+      "sourceEvidenceIds": [],
+      "sourceURLs": [],
+      "sourceObservation": "官方文字支持三间卷棚歇山、黄瓦绿剪边；该页成套已看图主要是花园子建筑，不能代替本正殿。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "正殿未有已确认模型；已存在建福门、花园区域、延春阁不代表正殿已建。",
+      "exteriorReviewStatus": "BLOCKED_SOURCE_EXACT_OBJECT_VIEW",
+      "interiorReviewStatus": "BLOCKED_SOURCE_COMPLETE_ROOM_INVENTORY_UNKNOWN",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "DIRECT_IMAGE_SOURCE_GAP",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "本体照片、室内总览/陈设、南北宫院关系及未毁/复建分期未核。",
+      "nextAction": "寻找本殿具名现状视图并定位；保留文字支持的形制，不移植花园图片。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-68CF4F3028",
+      "name": "建福门",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "南端正门，依次入抚辰殿、建福宫。；须分辨1923年火灾前旧影、2000—2006年复建过程照片与复建后现状。",
+      "originalParentContext": "建福宫区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-255E648E8D"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236524.html",
+      "sourceStatus": "OFFICIAL_TEXT_AVAILABLE_DIRECT_CURRENT_IMAGE_GAP",
+      "sourceEvidenceIds": [],
+      "sourceURLs": [],
+      "sourceObservation": "正文支持南端正门以及抚辰殿、建福宫序列；没有本门已归属直观照片。",
+      "modelBindingStatus": "GENERIC_GATE_DECLARATION",
+      "runtimeBindings": [
+        {
+          "zone": "outer-west",
+          "itemIndex": 37,
+          "kind": "gate",
+          "evidence": "STATIC_DECLARATION_AND_RECORDED_EXACT_BUILDER_ROUTE_NOT_BROWSER_ACCEPTANCE"
+        }
+      ],
+      "currentModelObservation": "保留现有通用门声明，不改为花园子建筑的构造。",
+      "exteriorReviewStatus": "BLOCKED_SOURCE_EXACT_OBJECT_VIEW",
+      "interiorReviewStatus": "GATEWAY_FRAME_AND_OPENING_REVIEW_REQUIRED_NOT_FURNITURE_NA",
+      "categories": [
+        "DIRECT_IMAGE_SOURCE_GAP",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "现存屋顶/门洞、门厅梁架、门扇、题额、台阶及院墙接合需本体证据。",
+      "nextAction": "从南端入口与抚辰殿关系定位本门，门厅仍纳入室内核对。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-737B0B10BA",
+      "name": "抚辰殿",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "蓝瓦绿剪边卷棚歇山，前后廊。；须分辨1923年火灾前旧影、2000—2006年复建过程照片与复建后现状。",
+      "originalParentContext": "建福宫区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-255E648E8D"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236524.html",
+      "sourceStatus": "OFFICIAL_TEXT_AVAILABLE_DIRECT_CURRENT_IMAGE_GAP",
+      "sourceEvidenceIds": [],
+      "sourceURLs": [],
+      "sourceObservation": "官方文字记录蓝瓦绿剪边卷棚歇山及前后廊；与后区复建花园子殿的照片不可混用。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "无已确认命名/别名模型。",
+      "exteriorReviewStatus": "BLOCKED_SOURCE_EXACT_OBJECT_VIEW",
+      "interiorReviewStatus": "BLOCKED_SOURCE_COMPLETE_ROOM_INVENTORY_UNKNOWN",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "DIRECT_IMAGE_SOURCE_GAP",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "本殿现状外立面、前后廊深度/连接、房间和陈设图像不足。",
+      "nextAction": "补本殿直观图并建立与建福门、建福宫的空间关系。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-E548FCFDBA",
+      "name": "惠风亭",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "紫色瓦、孔雀蓝剪边的重檐攒尖亭；不可按普通黄瓦亭替代。；须分辨1923年火灾前旧影、2000—2006年复建过程照片与复建后现状。",
+      "originalParentContext": "建福宫区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-255E648E8D"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236524.html",
+      "sourceStatus": "OFFICIAL_TEXT_AVAILABLE_DIRECT_CURRENT_IMAGE_GAP",
+      "sourceEvidenceIds": [],
+      "sourceURLs": [],
+      "sourceObservation": "官方文字指向紫色瓦、孔雀蓝剪边的重檐攒尖亭，不是普通黄瓦亭。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "无已确认独立模型；没有按通用黄瓦亭补造。",
+      "exteriorReviewStatus": "BLOCKED_SOURCE_EXACT_OBJECT_VIEW",
+      "interiorReviewStatus": "BLOCKED_SOURCE_COMPLETE_ROOM_INVENTORY_UNKNOWN",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "DIRECT_IMAGE_SOURCE_GAP",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "具名亭体照片、亭内梁架、基座、接廊和实际位置待核。",
+      "nextAction": "先查本亭现状，再核特殊瓦色/顶形；亭内梁架不可因无家具跳过。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-85A6DA4349",
+      "name": "静怡轩",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "后区复建建筑；官方静态照片有明确图题。；须分辨1923年火灾前旧影、2000—2006年复建过程照片与复建后现状。",
+      "originalParentContext": "建福宫区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-255E648E8D"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236524.html",
+      "sourceStatus": "SOURCE_POSITIVE_POSITION_ENGINEERING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-006"
+      ],
+      "sourceURLs": [
+        "https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d418ee58b5.jpg"
+      ],
+      "sourceObservation": "已看有官方图题的复建后成形正立面；南面方向为轴线推定。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "无已确认独立运行时绑定；照片来源已存在，缺口是空间/工程定位。",
+      "exteriorReviewStatus": "SOURCE_POSITIVE_ENGINEERING_PENDING",
+      "interiorReviewStatus": "BLOCKED_SOURCE_COMPLETE_ROOM_INVENTORY_UNKNOWN",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "后侧及侧立面、廊接关系、内景、尺寸与当前坐标未核。",
+      "nextAction": "用具名实景和园内关系建立位置/边界，不把来源阳性改记为缺图。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-9CB03D7316",
+      "name": "慧曜楼",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "由建福宫后区划入西花园的楼；现状复建情况需配实图。；须分辨1923年火灾前旧影、2000—2006年复建过程照片与复建后现状。",
+      "originalParentContext": "建福宫区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-255E648E8D"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236524.html",
+      "sourceStatus": "OFFICIAL_TEXT_AVAILABLE_DIRECT_CURRENT_IMAGE_GAP",
+      "sourceEvidenceIds": [],
+      "sourceURLs": [],
+      "sourceObservation": "文字与历史园图确认名称及其后区/西花园关系，尚无可靠归属的完工现状直接照片。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "无已确认模型；现存复建状态不能由旧火灾/遗址文字决定。",
+      "exteriorReviewStatus": "BLOCKED_SOURCE_EXACT_OBJECT_VIEW",
+      "interiorReviewStatus": "BLOCKED_SOURCE_COMPLETE_ROOM_INVENTORY_UNKNOWN",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "DIRECT_IMAGE_SOURCE_GAP",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "现存阶段、楼体边界与方向、各层和室内直接图像不足。",
+      "nextAction": "先协调建筑阶段与现存实体，再找本体图像，既不自动重建也不自动删除。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-DA597AAE85",
+      "name": "建福宫花园",
+      "objectType": "aggregate",
+      "aliases": [],
+      "sourceRequirements": "综合院落目录项；页内大量历史图、火场与施工照片不代表现状。；1923年焚毁；官方页称2006年复建完成。现代复建实景应优先，旧影只用于沿革比对。",
+      "originalParentContext": "建福宫区；院落/设施组",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-255E648E8D"
+      ],
+      "requiredChildIds": [
+        "FC-12BEB1BB0E",
+        "FC-922969BB62",
+        "FC-F4907EE1B9",
+        "FC-6C3C39B8A7",
+        "FC-0565E86C7A",
+        "FC-5264A545B2",
+        "FC-7463C11B05",
+        "AUX-EED7F7F3C66E"
+      ],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236492.html",
+      "sourceStatus": "AGGREGATE_SOURCE_ONLY_NO_GENERIC_INTERIOR",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-036"
+      ],
+      "sourceURLs": [
+        "https://img.dpm.org.cn/Uploads/Picture/dc/2648[1024].jpg"
+      ],
+      "sourceObservation": "已看官方总平面图，但测绘时期未明；子建筑另有完工实景。历史、火场、施工与完工图分别保留。",
+      "modelBindingStatus": "AGGREGATE_REGION_ONLY",
+      "runtimeBindings": [
+        {
+          "zone": "outer-west",
+          "itemIndex": 40,
+          "kind": "region",
+          "evidence": "STATIC_DECLARATION_AND_RECORDED_EXACT_BUILDER_ROUTE_NOT_BROWSER_ACCEPTANCE"
+        }
+      ],
+      "currentModelObservation": "仅有聚合/导航区域和既有院墙，不是独立室内或额外一栋。",
+      "exteriorReviewStatus": "AGGREGATE_CHILD_REVIEW_PENDING",
+      "interiorReviewStatus": "NO_PARENT_ROOM_CHILD_INTERIORS_REQUIRED",
+      "categories": [
+        "AGGREGATE_NOT_BUILDING",
+        "CHILD_COMPLETION_REQUIRED"
+      ],
+      "specificResidual": "所有必需子建筑、廊道、院墙与真实地形的定位以及全部子空间状态均未闭合。",
+      "nextAction": "按子项汇总进度；不创建通用父院落室内，不用图上比例直接换成当前米制坐标。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-12BEB1BB0E",
+      "name": "延春阁",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "西部中心建筑，重檐攒尖；不能将1922旧照当现状。；复建后建筑与清代旧影/火场/施工照必须分期。",
+      "originalParentContext": "建福宫花园；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-DA597AAE85",
+        "FC-255E648E8D"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236524.html",
+      "sourceStatus": "SOURCE_POSITIVE_BOUNDED_EXISTING_OBJECT_DELTA",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-007",
+        "R66-H-SRC-008"
+      ],
+      "sourceURLs": [
+        "https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d41a1d280f.jpg",
+        "https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d41b19d7f7.jpg"
+      ],
+      "sourceObservation": "两张完工南面照片支持高位竖匾、浅色细车旋栏杆和悬垂重复挂落轮廓。",
+      "modelBindingStatus": "DEDICATED_IMPLEMENTATION_RETAIN",
+      "runtimeBindings": [
+        {
+          "zone": "outer-west",
+          "itemIndex": 39,
+          "kind": "hall",
+          "evidence": "STATIC_DECLARATION_AND_RECORDED_EXACT_BUILDER_ROUTE_NOT_BROWSER_ACCEPTANCE"
+        }
+      ],
+      "currentModelObservation": "保留原专用体量/三实体层/屋面承接和地面通行；最终仅将已有注册竖匾移至照片支持的高位。南侧转棒栏杆换形全部回退，原有栏杆几何与碰撞恢复；挂落试作同样撤回。精确移除8件通用家具及其专属碰撞，库存 UNKNOWN、knownEmpty=false。",
+      "exteriorReviewStatus": "PARTIAL_WITH_VERIFY_PENDING",
+      "interiorReviewStatus": "UNKNOWN_INVENTORY_UNSUPPORTED_PLACEHOLDERS_WITHHELD",
+      "categories": [
+        "BOUNDED_IMPLEMENTATION",
+        "VERIFY_PENDING_BROWSER",
+        "SOURCE_POSITIVE_ENGINEERING_RESIDUAL",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "南侧浅色转棒栏与悬垂挂落有直接来源，但本轮不交付其换形。上层真实跳跃轨迹暴露普通盒碰撞 STEP_CLEARANCE 的脚踝漏碰与旧下屋裙缺少碰撞支承，基线和试作同样存在；必须独立解决栏杆开口、接檐与支承工程问题。材种、背/侧面、雕纹、当前内装/楼梯/家具仍未知。",
+      "nextAction": "将南转棒栏、挂落和下屋裙支承保留为来源阳性工程残余；旧试作截图/红检查不作最终证据。保持基线栏杆几何/碰撞，核实高位竖匾的浏览器同视角效果；不向未知三面复制，不添加未证楼梯。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false,
+      "inventoryPolicy": {
+        "status": "UNKNOWN",
+        "knownEmpty": false,
+        "removedUnsupportedMeshCount": 8,
+        "currentInventoryVerified": false,
+        "roomBounds": "UNVERIFIED_RETAINED_MODEL_BOUNDS"
+      },
+      "finalScopeCorrection": {
+        "retainedChange": "Existing registered vertical plaque moved to the source-supported high position; unsupported generic inventory withheld.",
+        "withdrawnTrial": "South 25-spindle and 2-bar replacement, and hanging fascia.",
+        "retention": "All original south railing geometry and colliders restored according to final integration record.",
+        "unresolved": "Ordinary-box step-clearance ankle behavior and retained lower-roof-skirt collision/support require separate engineering; baseline and trial share the defect.",
+        "trialMediaIsFinalEvidence": false,
+        "visualAcceptance": false
+      }
+    },
+    {
+      "id": "FC-922969BB62",
+      "name": "敬胜斋",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "延春阁北侧。；复建后建筑与清代旧影/火场/施工照必须分期。",
+      "originalParentContext": "建福宫花园；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-DA597AAE85",
+        "FC-255E648E8D"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236524.html",
+      "sourceStatus": "SOURCE_POSITIVE_POSITION_ENGINEERING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-001"
+      ],
+      "sourceURLs": [
+        "https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d407b2a9fe.jpg"
+      ],
+      "sourceObservation": "已看官方具名正立面，位于延春阁北侧；南向为院落位置推定。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "尚无独立模型绑定；属于已有可用外观来源但需定位。",
+      "exteriorReviewStatus": "SOURCE_POSITIVE_ENGINEERING_PENDING",
+      "interiorReviewStatus": "BLOCKED_SOURCE_COMPLETE_ROOM_INVENTORY_UNKNOWN",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "背/侧面、内部固定装修及陈设、与延春阁的精确距离和尺度未核。",
+      "nextAction": "将具名立面与园内北边界定位，补必要其他视角。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-F4907EE1B9",
+      "name": "碧琳馆",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "延春阁西侧园中建筑。；复建后建筑与清代旧影/火场/施工照必须分期。",
+      "originalParentContext": "建福宫花园；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-DA597AAE85",
+        "FC-255E648E8D"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236524.html",
+      "sourceStatus": "SOURCE_POSITIVE_POSITION_ENGINEERING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-004"
+      ],
+      "sourceURLs": [
+        "https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d41389b966.jpg"
+      ],
+      "sourceObservation": "已看官方具名照片，画面含八方门及后部建筑；精确摄影机位与主体边界仍需核。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "尚无已确认运行时实体。",
+      "exteriorReviewStatus": "SOURCE_POSITIVE_ENGINEERING_PENDING",
+      "interiorReviewStatus": "BLOCKED_SOURCE_COMPLETE_ROOM_INVENTORY_UNKNOWN",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "八方门与馆体的实体边界、庭院连接、背侧面、全室图和陈设未核。",
+      "nextAction": "先解开可见门/馆体的宿主关系，不能把前景门误作整个馆。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-6C3C39B8A7",
+      "name": "积翠亭",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "官方建福宫图集有本亭外景图题。；复建后建筑与清代旧影/火场/施工照必须分期。",
+      "originalParentContext": "建福宫花园；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-DA597AAE85",
+        "FC-255E648E8D"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236524.html",
+      "sourceStatus": "SOURCE_POSITIVE_POSITION_ENGINEERING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-005"
+      ],
+      "sourceURLs": [
+        "https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d414db8dbf.jpg"
+      ],
+      "sourceObservation": "已看具名亭、假山与部分开放梁架，树木遮挡；方位未定。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "尚无已确认独立亭体模型。",
+      "exteriorReviewStatus": "SOURCE_POSITIVE_ENGINEERING_PENDING",
+      "interiorReviewStatus": "SOURCE_POSITIVE_PARTIAL_VIEWS_ENGINEERING_PENDING",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "假山与亭基高差、完整柱网/梁架、背面和可走路径需定位。",
+      "nextAction": "用已看亭体作为来源阳性，先确定山亭结构/通行，不虚填家具。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-0565E86C7A",
+      "name": "吉云楼（建福宫花园）",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "与慈宁花园吉云楼为不同实体，必须带父院落。；复建后建筑与清代旧影/火场/施工照必须分期。",
+      "originalParentContext": "建福宫花园；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-DA597AAE85",
+        "FC-255E648E8D"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236524.html",
+      "sourceStatus": "SOURCE_POSITIVE_POSITION_ENGINEERING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-002",
+        "R66-H-SRC-003"
+      ],
+      "sourceURLs": [
+        "https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d410fed04c.jpg",
+        "https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d412337533.jpg"
+      ],
+      "sourceObservation": "两张具名完工图显示楼正立面及连接廊；拍摄方位按院落关系推定。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "此实体未绑定；现有慈宁花园同名吉云楼不是本条模型。",
+      "exteriorReviewStatus": "SOURCE_POSITIVE_ENGINEERING_PENDING",
+      "interiorReviewStatus": "BLOCKED_SOURCE_COMPLETE_ROOM_INVENTORY_UNKNOWN",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "花园内实际位置、廊接、侧后面、楼层/楼梯和当前室内陈设未核。",
+      "nextAction": "保留完整带父院落名称，先定位本楼而非复用慈宁花园同名绑定。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-5264A545B2",
+      "name": "妙莲华室",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "文中确认西部建筑；独立现状照片未核。；复建后建筑与清代旧影/火场/施工照必须分期。",
+      "originalParentContext": "建福宫花园；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-DA597AAE85",
+        "FC-255E648E8D"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236492.html",
+      "sourceStatus": "OFFICIAL_TEXT_AVAILABLE_DIRECT_CURRENT_IMAGE_GAP",
+      "sourceEvidenceIds": [],
+      "sourceURLs": [],
+      "sourceObservation": "官方文字及园内沿革支持西部建筑名称；未找到足以归属现状主体/室内的直接完工照片。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "无已确认独立模型。",
+      "exteriorReviewStatus": "BLOCKED_SOURCE_EXACT_OBJECT_VIEW",
+      "interiorReviewStatus": "BLOCKED_SOURCE_COMPLETE_ROOM_INVENTORY_UNKNOWN",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "DIRECT_IMAGE_SOURCE_GAP",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "现存阶段、准确主体边界、外立面、室内用途/固定装修和陈设待核。",
+      "nextAction": "结合复建后证据确认其现存状态，不能拿旧遗址照片代表今日。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-7463C11B05",
+      "name": "凝晖堂",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "文中确认西部建筑；独立现状照片未核。；复建后建筑与清代旧影/火场/施工照必须分期。",
+      "originalParentContext": "建福宫花园；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-DA597AAE85",
+        "FC-255E648E8D"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236492.html",
+      "sourceStatus": "OFFICIAL_TEXT_AVAILABLE_DIRECT_CURRENT_IMAGE_GAP",
+      "sourceEvidenceIds": [],
+      "sourceURLs": [],
+      "sourceObservation": "官方文字说明西部建筑，历史/施工图不能直接证明当前整殿外观和内装。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "无已确认独立模型。",
+      "exteriorReviewStatus": "BLOCKED_SOURCE_EXACT_OBJECT_VIEW",
+      "interiorReviewStatus": "BLOCKED_SOURCE_COMPLETE_ROOM_INVENTORY_UNKNOWN",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "DIRECT_IMAGE_SOURCE_GAP",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "当前殿体位置、形制细节、背侧面、室内分隔及陈设待核。",
+      "nextAction": "补现存具名图并分清施工阶段，保留此实体未完成而非删除分母。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-ADC59D34D5",
+      "name": "雨花阁",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "明三暗四；每层瓦色、顶层鎏金铜瓦及行龙不同；室内按层核对四部佛堂。；1923火灾中幸存；本页有一层、二层室内照片，不能据两层图补造其余楼层。",
+      "originalParentContext": "中正殿佛堂区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-66378DAD81"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236446.html",
+      "sourceStatus": "SOURCE_POSITIVE_POSITION_ENGINEERING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-019",
+        "R66-H-SRC-024",
+        "R66-H-SRC-026",
+        "R66-H-SRC-028",
+        "R66-H-SRC-029",
+        "R66-H-SRC-030"
+      ],
+      "sourceURLs": [
+        "https://img.dpm.org.cn/Uploads/Picture/dc/7985[1024].jpg",
+        "https://img.dpm.org.cn/Uploads/Picture/dc/8224[1024].jpg",
+        "https://img.dpm.org.cn/Uploads/Picture/dc/8031[1024].jpg",
+        "https://img.dpm.org.cn/Uploads/Picture/dc/3932[1024].jpg",
+        "https://img.dpm.org.cn/Uploads/Picture/dc/2679[1024].jpg",
+        "https://img.dpm.org.cn/Uploads/Picture/dc/8225[1024].jpg"
+      ],
+      "sourceObservation": "已看高位外景、一层正中龛/供案、另一一层龛视角、二层楼梯间、二层龛和六字真言天花局部；明三暗四及层间材色由官方说明支持。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "没有雨花阁专用模型或已确认定位；已有一二层照片不能判为全楼室内无来源。",
+      "exteriorReviewStatus": "SOURCE_POSITIVE_ENGINEERING_PENDING",
+      "interiorReviewStatus": "SOURCE_POSITIVE_PARTIAL_VIEWS_ENGINEERING_PENDING",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "第一/二层图的完整房间映射、全楼梯路径、各层尺度、第三/顶层内景、现行陈列清单/日期未知。天花局部具体楼层未确认。",
+      "nextAction": "建立楼体坐标与分层宿主，再只实现已定位的可见部分，不向三/顶层外推佛像清单。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-DAA0E0A7B9",
+      "name": "梵宗楼",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "三间卷棚歇山两层；官方页有“楼上内景”，须进一步确认照片年代与复建关系。；青少地图正文称梵宗楼毁于1923火灾，但2012官方复建报道的受灾清单未包括昭福门南的梵宗楼；存在资料范围/表述冲突。建筑页内景无实拍日期，不能仅据旧青少文案断定遗失或复建。",
+      "originalParentContext": "中正殿佛堂区/雨花阁西北；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-ADC59D34D5",
+        "FC-66378DAD81"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236538.html",
+      "sourceStatus": "SOURCE_POSITIVE_POSITION_ENGINEERING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-031",
+        "R66-H-SRC-032",
+        "R66-H-SRC-033"
+      ],
+      "sourceURLs": [
+        "https://img.dpm.org.cn/Uploads/Picture/dc/8221[1024].jpg",
+        "https://img.dpm.org.cn/Uploads/Picture/dc/8032[1024].jpg",
+        "https://img.dpm.org.cn/Uploads/Picture/dc/8357[1024].jpg"
+      ],
+      "sourceObservation": "已看三间两层卷棚歇山外景、楼上内景及文殊像近景；照片有损坏天花/灰墙且没有拍摄日期。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "无已确认模型和楼梯/坐标绑定。",
+      "exteriorReviewStatus": "SOURCE_POSITIVE_ENGINEERING_PENDING",
+      "interiorReviewStatus": "SOURCE_POSITIVE_PARTIAL_VIEWS_ENGINEERING_PENDING",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "1923存毁/复建文字范围存在冲突；不得把无日期残损图当今日状态。上下层图像定位、整室陈设及楼梯路径未闭合。",
+      "nextAction": "先协调年代与实体身份并定位现存楼体，再按已见内部范围处理。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-F0C6383E88",
+      "name": "宝华殿",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "三间歇山，后檐明间接抱厦一间；官方说明陈设尚在但格局有变，不能机械复原清代文字布置。；2012年官方复建报道明确为昭福门北院落火灾中保存完整的建筑；与复建中正殿分开。",
+      "originalParentContext": "中正殿佛堂区/昭福门内；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-66378DAD81",
+        "FC-2953884F94"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236532.html",
+      "sourceStatus": "SOURCE_POSITIVE_POSITION_ENGINEERING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-034"
+      ],
+      "sourceURLs": [
+        "https://img.dpm.org.cn/Uploads/Picture/dc/8202.jpg"
+      ],
+      "sourceObservation": "新归属官方8202照片为高位外景，前景昭福门、后部宝华殿，不是室内。文字指三间歇山及后檐抱厦，并说明陈设格局曾变。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "无已确认独立模型；不与复建中正殿合并。",
+      "exteriorReviewStatus": "SOURCE_POSITIVE_ENGINEERING_PENDING",
+      "interiorReviewStatus": "BLOCKED_SOURCE_COMPLETE_ROOM_INVENTORY_UNKNOWN",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "本殿边界/抱厦、被遮的各面、当期全室陈设及位置未核。",
+      "nextAction": "定位照片中的后景殿体；不可用清代文字或通用佛龛替代当前陈设。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-66378DAD81",
+      "name": "中正殿",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "方向/用途工作名，非牌匾名；单体正殿与整个佛堂区域同名，模型实体须区别；旧词条的“仅存遗址”已不能代表复建后状态。；区域部分建筑毁于1923年，官方2012年报道复建竣工；室内含研究中心/内部陈列用途，不能当清代全套原状。",
+      "originalParentContext": "中正殿佛堂区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/classify_detail/261959.html",
+      "sourceStatus": "GROUP_EXTERIOR_OR_SCHEMATIC_AVAILABLE_SINGLE_OBJECT_MAPPING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-058",
+        "R66-H-SRC-059"
+      ],
+      "sourceURLs": [
+        "https://www.dpm.org.cn/Uploads/File/2018/11/13/u5bea8322905bf.pdf",
+        "https://img.dpm.org.cn/Uploads/Picture/2023/11/24/s656037926cce8.jpg"
+      ],
+      "sourceObservation": "2010年鉴具名完工后建筑群照片及2023历史图/布局比较已查看；群像前景不能直接命名为北侧正殿。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "无独立命名模型；本正殿与同名整个佛堂区必须区分。",
+      "exteriorReviewStatus": "SOURCE_POSITIVE_ENGINEERING_PENDING",
+      "interiorReviewStatus": "BLOCKED_SOURCE_COMPLETE_ROOM_INVENTORY_UNKNOWN",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "SOURCE_POSITIVE_IDENTITY_OR_ROOM_MAPPING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "群像单体归属、当前正殿外观和室内研究/陈列用途、坐标变换未核。",
+      "nextAction": "先识别群像内正殿与相邻殿的边界，按复建后实物而非旧遗址文字制作。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-87A0A561ED",
+      "name": "淡远楼",
+      "objectType": "building_or_structure",
+      "aliases": [
+        "中正殿后殿"
+      ],
+      "sourceRequirements": "同项名：中正殿后殿；1762年改为单层十一间，名字有楼不代表现状双层；以复建后实景复核。；区域部分建筑毁于1923年，官方2012年报道复建竣工；室内含研究中心/内部陈列用途，不能当清代全套原状。",
+      "originalParentContext": "中正殿佛堂区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-66378DAD81"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/classify_detail/261959.html",
+      "sourceStatus": "GROUP_EXTERIOR_OR_SCHEMATIC_AVAILABLE_SINGLE_OBJECT_MAPPING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-058",
+        "R66-H-SRC-059"
+      ],
+      "sourceURLs": [
+        "https://www.dpm.org.cn/Uploads/File/2018/11/13/u5bea8322905bf.pdf",
+        "https://img.dpm.org.cn/Uploads/Picture/2023/11/24/s656037926cce8.jpg"
+      ],
+      "sourceObservation": "群像/历史布局提供区域证据；文字记录1762年改为单层十一间，不能因为名称含楼就做双层。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "无已确认实体；别名中正殿后殿不另计。",
+      "exteriorReviewStatus": "SOURCE_POSITIVE_ENGINEERING_PENDING",
+      "interiorReviewStatus": "BLOCKED_SOURCE_COMPLETE_ROOM_INVENTORY_UNKNOWN",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "SOURCE_POSITIVE_IDENTITY_OR_ROOM_MAPPING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "复建后后殿的单体图、十一间现存核对、侧配殿和室内用途未核。",
+      "nextAction": "定位北侧后殿与东西配殿，补现状层数/开间证据。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-E5EEAB2373",
+      "name": "中正殿东配殿",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "方向/用途工作名，非牌匾名；方向工作名；须按复建后实景逐栋定位。；区域部分建筑毁于1923年，官方2012年报道复建竣工；室内含研究中心/内部陈列用途，不能当清代全套原状。",
+      "originalParentContext": "中正殿佛堂区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-66378DAD81"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/classify_detail/261959.html",
+      "sourceStatus": "GROUP_EXTERIOR_OR_SCHEMATIC_AVAILABLE_SINGLE_OBJECT_MAPPING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-058",
+        "R66-H-SRC-059"
+      ],
+      "sourceURLs": [
+        "https://www.dpm.org.cn/Uploads/File/2018/11/13/u5bea8322905bf.pdf",
+        "https://img.dpm.org.cn/Uploads/Picture/2023/11/24/s656037926cce8.jpg"
+      ],
+      "sourceObservation": "群像与布局比较支持北院区域；方向工作名并非已见匾额，仍需逐栋对应。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "无命名或别名模型；不可自动镜像西殿。",
+      "exteriorReviewStatus": "SOURCE_POSITIVE_ENGINEERING_PENDING",
+      "interiorReviewStatus": "BLOCKED_SOURCE_COMPLETE_ROOM_INVENTORY_UNKNOWN",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "SOURCE_POSITIVE_IDENTITY_OR_ROOM_MAPPING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "东侧单体身份、现存形制、房间用途及附属配房边界未核。",
+      "nextAction": "结合复建照片定位东配殿，勿与展开队列中的东配房重复计数。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-77D6708679",
+      "name": "中正殿西配殿",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "方向/用途工作名，非牌匾名；方向工作名；须按复建后实景逐栋定位。；区域部分建筑毁于1923年，官方2012年报道复建竣工；室内含研究中心/内部陈列用途，不能当清代全套原状。",
+      "originalParentContext": "中正殿佛堂区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-66378DAD81"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/classify_detail/261959.html",
+      "sourceStatus": "GROUP_EXTERIOR_OR_SCHEMATIC_AVAILABLE_SINGLE_OBJECT_MAPPING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-058",
+        "R66-H-SRC-059"
+      ],
+      "sourceURLs": [
+        "https://www.dpm.org.cn/Uploads/File/2018/11/13/u5bea8322905bf.pdf",
+        "https://img.dpm.org.cn/Uploads/Picture/2023/11/24/s656037926cce8.jpg"
+      ],
+      "sourceObservation": "群像与布局比较可作北院关系线索；不是本西殿已独立验收的立面。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "无命名或别名模型；不可直接复制东配殿。",
+      "exteriorReviewStatus": "SOURCE_POSITIVE_ENGINEERING_PENDING",
+      "interiorReviewStatus": "BLOCKED_SOURCE_COMPLETE_ROOM_INVENTORY_UNKNOWN",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "SOURCE_POSITIVE_IDENTITY_OR_ROOM_MAPPING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "西侧单体位置、现存各面、内部研究/陈列用途和配房区分未核。",
+      "nextAction": "单独验证西配殿边界，保留方向工作名而非编造匾名。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-3295FB46B4",
+      "name": "香云亭",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "2012及2023资料均称香云亭，青少旧文一处写香云楼，不凭此另造一楼。；区域部分建筑毁于1923年，官方2012年报道复建竣工；室内含研究中心/内部陈列用途，不能当清代全套原状。",
+      "originalParentContext": "中正殿佛堂区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-66378DAD81"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/classify_detail/261959.html",
+      "sourceStatus": "GROUP_EXTERIOR_OR_SCHEMATIC_AVAILABLE_SINGLE_OBJECT_MAPPING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-058",
+        "R66-H-SRC-059"
+      ],
+      "sourceURLs": [
+        "https://www.dpm.org.cn/Uploads/File/2018/11/13/u5bea8322905bf.pdf",
+        "https://img.dpm.org.cn/Uploads/Picture/2023/11/24/s656037926cce8.jpg"
+      ],
+      "sourceObservation": "2012/2023资料均称香云亭，旧材料香云楼为名称冲突；群像/布局只给区域关系。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "无已确认亭体，不另添一座香云楼。",
+      "exteriorReviewStatus": "SOURCE_POSITIVE_ENGINEERING_PENDING",
+      "interiorReviewStatus": "BLOCKED_SOURCE_COMPLETE_ROOM_INVENTORY_UNKNOWN",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "SOURCE_POSITIVE_IDENTITY_OR_ROOM_MAPPING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "现存亭体在群像中的身份、亭顶/梁架、台基、精确位置待核。",
+      "nextAction": "先对齐亭的现存边界及年代，开放亭内梁架也须复核。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-F95F60645E",
+      "name": "雨花阁东配楼",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "方向/用途工作名，非牌匾名；1759年前后建筑阶段不同，不能把历史殿名自动对应成另一现存建筑。；区域部分建筑毁于1923年，官方2012年报道复建竣工；室内含研究中心/内部陈列用途，不能当清代全套原状。",
+      "originalParentContext": "中正殿佛堂区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-66378DAD81"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/classify_detail/261959.html",
+      "sourceStatus": "GROUP_EXTERIOR_OR_SCHEMATIC_AVAILABLE_SINGLE_OBJECT_MAPPING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-058",
+        "R66-H-SRC-059"
+      ],
+      "sourceURLs": [
+        "https://www.dpm.org.cn/Uploads/File/2018/11/13/u5bea8322905bf.pdf",
+        "https://img.dpm.org.cn/Uploads/Picture/2023/11/24/s656037926cce8.jpg"
+      ],
+      "sourceObservation": "历史图及现存区域群像可作关系线索；1759年前后名称/阶段变化不能变成多座现代建筑。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "无独立运行时实体或历史别名可靠绑定。",
+      "exteriorReviewStatus": "SOURCE_POSITIVE_ENGINEERING_PENDING",
+      "interiorReviewStatus": "BLOCKED_SOURCE_COMPLETE_ROOM_INVENTORY_UNKNOWN",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "SOURCE_POSITIVE_IDENTITY_OR_ROOM_MAPPING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "东楼单体图、现存层数、楼梯/楼层、内景及与雨花阁连接未知。",
+      "nextAction": "用复建后单体证据定位东配楼，历史殿名仅作阶段注记。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-C7BA2B3690",
+      "name": "雨花阁西配楼",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "方向/用途工作名，非牌匾名；按现存楼体查证，不能以东楼镜像替代实景。；区域部分建筑毁于1923年，官方2012年报道复建竣工；室内含研究中心/内部陈列用途，不能当清代全套原状。",
+      "originalParentContext": "中正殿佛堂区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-66378DAD81"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/classify_detail/261959.html",
+      "sourceStatus": "GROUP_EXTERIOR_OR_SCHEMATIC_AVAILABLE_SINGLE_OBJECT_MAPPING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-058",
+        "R66-H-SRC-059"
+      ],
+      "sourceURLs": [
+        "https://www.dpm.org.cn/Uploads/File/2018/11/13/u5bea8322905bf.pdf",
+        "https://img.dpm.org.cn/Uploads/Picture/2023/11/24/s656037926cce8.jpg"
+      ],
+      "sourceObservation": "历史图/区域群像提供关系线索，并非独立西楼各面照片。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "无已确认独立模型；不从东楼镜像得出通过。",
+      "exteriorReviewStatus": "SOURCE_POSITIVE_ENGINEERING_PENDING",
+      "interiorReviewStatus": "BLOCKED_SOURCE_COMPLETE_ROOM_INVENTORY_UNKNOWN",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "SOURCE_POSITIVE_IDENTITY_OR_ROOM_MAPPING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "现存楼体位置、上下层与楼梯、各面和室内用途未核。",
+      "nextAction": "单独找西楼对应并定位；与梵宗楼边界须区别。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-2953884F94",
+      "name": "昭福门",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "是中正殿区域南北两院的界门。；区域部分建筑毁于1923年，官方2012年报道复建竣工；室内含研究中心/内部陈列用途，不能当清代全套原状。",
+      "originalParentContext": "中正殿佛堂区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-66378DAD81"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/classify_detail/261959.html",
+      "sourceStatus": "GROUP_EXTERIOR_OR_SCHEMATIC_AVAILABLE_SINGLE_OBJECT_MAPPING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-058",
+        "R66-H-SRC-059",
+        "R66-H-SRC-034"
+      ],
+      "sourceURLs": [
+        "https://www.dpm.org.cn/Uploads/File/2018/11/13/u5bea8322905bf.pdf",
+        "https://img.dpm.org.cn/Uploads/Picture/2023/11/24/s656037926cce8.jpg",
+        "https://img.dpm.org.cn/Uploads/Picture/dc/8202.jpg"
+      ],
+      "sourceObservation": "官方资料明确两院界门；宝华殿高位图前景有门体，区域布局/群像另有关系线索，身份与当前状态需对应。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "无已确认门模型；它不是宝华殿的实体宿主。",
+      "exteriorReviewStatus": "SOURCE_POSITIVE_ENGINEERING_PENDING",
+      "interiorReviewStatus": "GATEWAY_FRAME_AND_OPENING_REVIEW_REQUIRED_NOT_FURNITURE_NA",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "SOURCE_POSITIVE_IDENTITY_OR_ROOM_MAPPING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "前景门体归属/年代、门额现状、洞口/梁架、连接院墙和通行条件未核。",
+      "nextAction": "先将前景门体与两院边界匹配，再制作门洞；不能凭名字跳过门厅核对。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-98F5C6BC6B",
+      "name": "春华门",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "2023官方讲座明确凝华门即今天的春华门；门额现状应另核。；区域部分建筑毁于1923年，官方2012年报道复建竣工；室内含研究中心/内部陈列用途，不能当清代全套原状。",
+      "originalParentContext": "中正殿佛堂区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-66378DAD81"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/classify_detail/261959.html",
+      "sourceStatus": "GROUP_EXTERIOR_OR_SCHEMATIC_AVAILABLE_SINGLE_OBJECT_MAPPING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-058",
+        "R66-H-SRC-059"
+      ],
+      "sourceURLs": [
+        "https://www.dpm.org.cn/Uploads/File/2018/11/13/u5bea8322905bf.pdf",
+        "https://img.dpm.org.cn/Uploads/Picture/2023/11/24/s656037926cce8.jpg"
+      ],
+      "sourceObservation": "2023官方说明凝华门即今春华门；布局/群像用于定位线索，尚无本门完整现状像。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "无已确认模型；凝华门是历史名称关系，不创建第二座门。",
+      "exteriorReviewStatus": "SOURCE_POSITIVE_ENGINEERING_PENDING",
+      "interiorReviewStatus": "GATEWAY_FRAME_AND_OPENING_REVIEW_REQUIRED_NOT_FURNITURE_NA",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "SOURCE_POSITIVE_IDENTITY_OR_ROOM_MAPPING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "现存门体、题额、洞口、顶形、内梁架与院墙接合未核。",
+      "nextAction": "核对当代门额和空间位置，再处理历史名称兼容。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false,
+      "historicalNameRelationship": {
+        "name": "凝华门",
+        "status": "OFFICIAL_TEXT_RELATION_CURRENT_PLAQUE_UNVERIFIED"
+      }
+    },
+    {
+      "id": "FC-C7765A0D84",
+      "name": "英华殿",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "五间单檐庑殿，左右三间耳殿；礼佛用途，不作寝宫模板。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "originalParentContext": "内廷外西路/英华殿区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [],
+      "requiredChildIds": [
+        "AUX-676F8D0E5A22"
+      ],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236568.html",
+      "sourceStatus": "SOURCE_POSITIVE_BOUNDED_EXISTING_OBJECT_DELTA",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-015",
+        "R66-H-SRC-057"
+      ],
+      "sourceURLs": [
+        "https://img.dpm.org.cn/Uploads/Picture/dc/8416.jpg",
+        "https://www.dpm.org.cn/Uploads/File/2019/07/25/u5d39787cea17e.pdf"
+      ],
+      "sourceObservation": "官方8416南面可见密斜棂，正文称三交六椀；独立官刊第62页有具名藻井仰视局部。",
+      "modelBindingStatus": "DEDICATED_IMPLEMENTATION_RETAIN",
+      "runtimeBindings": [
+        {
+          "zone": "outer-west",
+          "itemIndex": 43,
+          "kind": "hall",
+          "evidence": "STATIC_DECLARATION_AND_RECORDED_EXACT_BUILDER_ROUTE_NOT_BROWSER_ACCEPTANCE"
+        },
+        {
+          "zone": "outer-west",
+          "itemIndex": 44,
+          "kind": "region",
+          "evidence": "STATIC_DECLARATION_AND_RECORDED_EXACT_BUILDER_ROUTE_NOT_BROWSER_ACCEPTANCE"
+        }
+      ],
+      "currentModelObservation": "保留五间单檐庑殿主殿；南面16片窗改为三方向素线轮廓，不声称完成雕刻六椀。既有平顶保留，藻井未任意开洞；七佛龛仅文字有据，未配未证空间。",
+      "exteriorReviewStatus": "PARTIAL_WITH_VERIFY_PENDING",
+      "interiorReviewStatus": "SOURCE_POSITIVE_PARTIAL_VIEWS_ENGINEERING_PENDING",
+      "categories": [
+        "BOUNDED_IMPLEMENTATION",
+        "VERIFY_PENDING_BROWSER",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "雕刻六椀单元/精确尺寸、背侧面、主殿全室、佛龛/佛像位置未知。藻井的殿内位置、尺寸、深度及梁架关系未核。",
+      "nextAction": "补浏览器同视角复核；先定位藻井再做顶棚，勿以局部天花照确定任意中轴开口。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-F5D7ED5F35",
+      "name": "英华殿山门",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "方向/用途工作名，非牌匾名；按官方图题及正文的南北两进院定位；西耳殿图题亦称西侧朵殿。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "originalParentContext": "英华殿区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-C7765A0D84"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236568.html",
+      "sourceStatus": "SOURCE_POSITIVE_POSITION_ENGINEERING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-009"
+      ],
+      "sourceURLs": [
+        "https://img.dpm.org.cn/Uploads/Picture/dc/8417.jpg"
+      ],
+      "sourceObservation": "已看8417具名三券洞山门；与8412单券洞英华门不是同一对象。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "尚无已确认独立山门模型；当前英华门不能抵充此项。",
+      "exteriorReviewStatus": "SOURCE_POSITIVE_ENGINEERING_PENDING",
+      "interiorReviewStatus": "GATEWAY_FRAME_AND_OPENING_REVIEW_REQUIRED_NOT_FURNITURE_NA",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "三洞门体的南北两院位置、背面、门扇、内梁架/洞顶及台阶连接待核。",
+      "nextAction": "先定位独立三门洞建筑，不把三洞数移植到已存在的英华门。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-0EACBA1911",
+      "name": "英华门",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "按官方图题及正文的南北两进院定位；西耳殿图题亦称西侧朵殿。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "originalParentContext": "英华殿区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-C7765A0D84"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236568.html",
+      "sourceStatus": "SOURCE_POSITIVE_BOUNDED_EXISTING_OBJECT_DELTA",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-010"
+      ],
+      "sourceURLs": [
+        "https://img.dpm.org.cn/Uploads/Picture/dc/8412.jpg"
+      ],
+      "sourceObservation": "已看8412具名单券洞门；只支持一个拱券，照片未注明年代。",
+      "modelBindingStatus": "SOURCE_SPECIFIC_GATE_DECLARATION",
+      "runtimeBindings": [
+        {
+          "zone": "outer-west",
+          "itemIndex": 41,
+          "kind": "gate",
+          "evidence": "STATIC_DECLARATION_AND_RECORDED_EXACT_BUILDER_ROUTE_NOT_BROWSER_ACCEPTANCE"
+        }
+      ],
+      "currentModelObservation": "已有同名门改成一个真实拱券开口及匹配的洞顶/门扇几何与碰撞，保留原地图包络、黄色屋面和低门槛；不是新增三洞山门。",
+      "exteriorReviewStatus": "PARTIAL_WITH_VERIFY_PENDING",
+      "interiorReviewStatus": "GATEWAY_FRAME_AND_OPENING_REVIEW_REQUIRED_NOT_FURNITURE_NA",
+      "categories": [
+        "BOUNDED_IMPLEMENTATION",
+        "VERIFY_PENDING_BROWSER",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "开口尺寸仅保留包络内照片拟合；当前门扇姿态、匾额、材色/植被和游客开放状态未核。",
+      "nextAction": "补浏览器真实通行/视觉对照；游戏开放姿态不能称为现场今日开放姿态。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-D385802B72",
+      "name": "英华殿碑亭",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "按官方图题及正文的南北两进院定位；西耳殿图题亦称西侧朵殿。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "originalParentContext": "英华殿区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-C7765A0D84"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236568.html",
+      "sourceStatus": "SOURCE_POSITIVE_POSITION_ENGINEERING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-013",
+        "R66-H-SRC-014"
+      ],
+      "sourceURLs": [
+        "https://img.dpm.org.cn/Uploads/Picture/dc/8418.jpg",
+        "https://img.dpm.org.cn/Uploads/Picture/dc/8419.jpg"
+      ],
+      "sourceObservation": "已看从英华门向北看碑亭与碑亭/菩提树侧斜视，开放梁架和白石栏杆部分可见。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "无已确认独立碑亭模型。",
+      "exteriorReviewStatus": "SOURCE_POSITIVE_ENGINEERING_PENDING",
+      "interiorReviewStatus": "SOURCE_POSITIVE_PARTIAL_VIEWS_ENGINEERING_PENDING",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "亭位、碑体/亭体边界、全柱网、亭内顶部、围栏/台阶及周边高差未核。",
+      "nextAction": "由具名照片建立碑亭位置；开放亭不需家具但仍需梁架和碑刻构件核对。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-634F1BA680",
+      "name": "英华殿东耳殿",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "方向/用途工作名，非牌匾名；按官方图题及正文的南北两进院定位；西耳殿图题亦称西侧朵殿。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "originalParentContext": "英华殿区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-C7765A0D84"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236568.html",
+      "sourceStatus": "OFFICIAL_TEXT_AVAILABLE_NO_DIRECT_VIEW_DO_NOT_MIRROR_WEST",
+      "sourceEvidenceIds": [],
+      "sourceURLs": [],
+      "sourceObservation": "文字支持主殿两侧三间耳殿；本次没有已归属东耳殿的直接照片。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "未确认独立模型；主殿东边间并不是东耳殿。",
+      "exteriorReviewStatus": "BLOCKED_SOURCE_EXACT_OBJECT_VIEW",
+      "interiorReviewStatus": "BLOCKED_SOURCE_COMPLETE_ROOM_INVENTORY_UNKNOWN",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "DIRECT_IMAGE_SOURCE_GAP",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "东耳殿本体、门窗/顶形、与主殿连接、室内与陈设图像缺失。",
+      "nextAction": "补东侧直接视图，不能用西侧朵殿照片镜像作为东侧独立验收。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    },
+    {
+      "id": "FC-BA2BB4F70D",
+      "name": "英华殿西耳殿",
+      "objectType": "building_or_structure",
+      "aliases": [],
+      "sourceRequirements": "方向/用途工作名，非牌匾名；按官方图题及正文的南北两进院定位；西耳殿图题亦称西侧朵殿。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "originalParentContext": "英华殿区；建筑或构筑物",
+      "immediatePhysicalParentId": null,
+      "contextParentCandidates": [
+        "FC-C7765A0D84"
+      ],
+      "requiredChildIds": [],
+      "officialPageURL": "https://www.dpm.org.cn/explore/building/236568.html",
+      "sourceStatus": "SOURCE_POSITIVE_POSITION_ENGINEERING_REQUIRED",
+      "sourceEvidenceIds": [
+        "R66-H-SRC-016"
+      ],
+      "sourceURLs": [
+        "https://img.dpm.org.cn/Uploads/Picture/dc/8420.jpg"
+      ],
+      "sourceObservation": "已看官方题西侧朵殿的8420图，树木遮挡部分主体连接；朵殿是本条候选称法，不新增实体。",
+      "modelBindingStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING",
+      "runtimeBindings": [],
+      "currentModelObservation": "未确认独立西耳殿模型；不将主殿西边间当成它。",
+      "exteriorReviewStatus": "SOURCE_POSITIVE_ENGINEERING_PENDING",
+      "interiorReviewStatus": "BLOCKED_SOURCE_COMPLETE_ROOM_INVENTORY_UNKNOWN",
+      "categories": [
+        "MODEL_BINDING_ENGINEERING_REQUIRED",
+        "UNSEEN_COVERAGE_UNKNOWN"
+      ],
+      "specificResidual": "树后形制、与主殿的连接、背侧面、内景和实际位置未核。",
+      "nextAction": "明确西耳殿本体边界及与主殿接合，保留照片可见范围与遮挡残余。",
+      "exteriorAccepted": false,
+      "interiorAccepted": false,
+      "currentCycleAccepted": false,
+      "browserVisualAcceptance": false,
+      "reviewIsRequiredFeatureAcceptance": false
+    }
+  ],
+  "supplementaryAudit": {
+    "auxiliaryGeometryOutsideH43": [
+      {
+        "id": "AUX-3001DA0EEDCA",
+        "zone": "west-six",
+        "itemIndex": 53,
+        "kind": "courtWalls",
+        "relation": "Existing Chonghua court wall around the retained hall and 重华门.",
+        "migration": "Separate EXPAND-06 coverage migration/cross-reference must retain original F history and this ID; do not mint a duplicate entity. This observation does not itself apply canonical migration.",
+        "buildingCount": 0
+      },
+      {
+        "id": "AUX-EED7F7F3C66E",
+        "zone": "outer-west",
+        "itemIndex": 38,
+        "kind": "courtWalls",
+        "relation": "Existing Jianfu garden boundary; retained, not a set of proven named buildings.",
+        "buildingCount": 0
+      },
+      {
+        "id": "AUX-676F8D0E5A22",
+        "zone": "outer-west",
+        "itemIndex": 42,
+        "kind": "courtWalls",
+        "relation": "Existing Yinghua boundary; not proof that all gates or ear halls are modeled.",
+        "buildingCount": 0
+      }
+    ],
+    "openExpansions": [
+      {
+        "id": "EXPAND-02",
+        "scope": "崇敬殿及翠云馆两侧配殿、各耳房、东西井亭",
+        "status": "REQUIRED_INSTANCE_ENUMERATION_AND_PLACEMENT_PENDING",
+        "constraint": "西井亭为对称结构，没有证据可开凿真实井口。"
+      },
+      {
+        "id": "EXPAND-03",
+        "scope": "中正殿东西配房、淡远楼东西配殿及复建后单体照片",
+        "status": "REQUIRED_INSTANCE_ENUMERATION_AND_PLACEMENT_PENDING",
+        "constraint": "勿把已列东西配殿与未展开配房重复计数；群像不是全单体完成。"
+      },
+      {
+        "id": "EXPAND-06",
+        "scope": "Three relevant existing H-area wall groups and all current ancillary parts",
+        "status": "EXISTING_ID_COVERAGE_RECONCILIATION_REQUIRED",
+        "constraint": "网格/屋面/楼板不是各自独立实地建筑；AUX-3001DA0EEDCA 单独留迁移历史。"
+      }
+    ]
+  }
+}

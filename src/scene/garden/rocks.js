@@ -50,6 +50,7 @@ export function buildRockery({ center, radiusX = 6.5, radiusZ = 5.5, topY = 8, s
   const rng = mulberry32(seed);
   const geometries = [];
   const colliders = [];
+  const walkables = [];
   const m = new THREE.Matrix4();
   const q = new THREE.Quaternion();
   const e = new THREE.Euler();
@@ -62,13 +63,13 @@ export function buildRockery({ center, radiusX = 6.5, radiusZ = 5.5, topY = 8, s
     geometries.push(geo);
     geo.computeBoundingBox();
     const bb = geo.boundingBox;
-    if (bb.min.y < center.y + 0.6 && !opts.noCollide) {
+    if (!opts.noCollide) {
       const box = bb.clone();
       // 外缘石块的包围盒略收缩，贴近可见表面
       const shrink = 0.15;
       box.min.x += sx * shrink; box.max.x -= sx * shrink;
       box.min.z += sz * shrink; box.max.z -= sz * shrink;
-      box.min.y = center.y; box.max.y = Math.min(box.max.y, center.y + 3);
+      box.min.y = center.y; box.max.y = Math.min(bb.max.y, topY);
       colliders.push(box);
     }
     return geo;
@@ -119,5 +120,17 @@ export function buildRockery({ center, radiusX = 6.5, radiusZ = 5.5, topY = 8, s
   colliders.push(new THREE.Box3(
     new THREE.Vector3(center.x - radiusX * 0.75, center.y, center.z - radiusZ * 0.75),
     new THREE.Vector3(center.x + radiusX * 0.75, center.y + 3, center.z + radiusZ * 0.75)));
-  return { geometries, colliders, topY };
+  // R72: bounded stepped inner mass closes the former 3m-high hollow core.
+  // These are conservative gameplay proxies, not surveyed stone surfaces.
+  for (const [scale, height] of [[.60, topY*.68],[.43,topY]]) {
+    colliders.push(new THREE.Box3(
+      new THREE.Vector3(center.x-radiusX*scale,center.y,center.z-radiusZ*scale),
+      new THREE.Vector3(center.x+radiusX*scale,center.y+height,center.z+radiusZ*scale)));
+  }
+  for(const box of colliders)walkables.push({type:'box',rescue:true,box:box.clone().expandByVector(new THREE.Vector3(.5,0,.5))});
+  // Actual 5.6m square summit platform extends from topY to topY+.5.
+  const summit=new THREE.Box3(new THREE.Vector3(center.x-2.8,center.y,center.z-2.8),
+    new THREE.Vector3(center.x+2.8,topY+.5,center.z+2.8));
+  colliders.push(summit);walkables.push({type:'box',rescue:true,box:summit.clone().expandByVector(new THREE.Vector3(.5,0,.5))});
+  return { geometries, colliders, walkables, topY };
 }

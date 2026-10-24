@@ -1,3 +1,5 @@
+import {withholdHUnknownInventory} from './HUnknownInventory.js';
+import { fitYanchunFrontPlaque } from './YanchunSouthPhotoFit.js';
 import { applyYudeDomeBrickCourses } from './YudeDomeBrickCourses.js';
 import { withholdNanxunPlaceholderFurniture, applyNanxunCeilingBaseColors } from './NanxunReviewedInterior.js';
 import * as THREE from 'three';
@@ -740,6 +742,7 @@ function installRoofUnderboardsAndBearings(c,skins,baseY,key) {
 
 function finish(c,extra={}) {
   Object.assign(c.g,extra);
+  if(c.g.inventory?.status==='UNKNOWN')for(const r of c.kit.rooms)if(r.name===c.item.name||r.name?.startsWith(c.item.name+'·'))r.inventory={...c.g.inventory};
   if(c.p.navigation)c.g.navigation={...c.p.navigation,...(c.g.navigation??{})};
   c.f.name=c.p.name+' · R48 局部来源拟合';
   c.f.userData.structure={...c.g,remainingProfile:c.p.key,evidenceStatus:c.p.evidenceStatus,
@@ -753,6 +756,21 @@ function finish(c,extra={}) {
  * Their nodes never acquire the architectural source claim. */
 function retainLegacyFurniture(c) {
   const {kit,item,p,f,g}=c,start=f.children.length,cs=kit.colliders.length;
+  // R69 explicit K-only inventory decision: these generated movable presets
+  // have no room-level placement evidence. Keep sourced cabinets/displays and
+  // architecture elsewhere; absence of a model is not proof of an empty room.
+  const withheldKeys=new Set(['hanqing','yanshou','ciyin','dafotang','shouan']);
+  if(withheldKeys.has(p.key)) {
+    const expected=RECORDS.find(r=>r.key===p.key);
+    if(!expected||p.id!==expected.id||item.kind!=='hall'||item.name!==expected.name||['x','z','w','d'].some(k=>item[k]!==expected[k]))throw Error('R69 exact K inventory host mismatch');
+    // Counts are frozen against the preceding runtime by regression tests;
+    // no placeholder mesh is instantiated or moved into another room.
+    const counts={hanqing:[6,6],yanshou:[6,6],ciyin:[8,8],dafotang:[8,8],shouan:[8,8]}[p.key];
+    g.inventory={status:'UNKNOWN',knownEmpty:false,accepted:false,entityId:p.id,withheldMeshCount:counts[0],withheldColliderCount:counts[1],reason:'UNSOURCED_GENERATED_MOVABLE_PRESET_WITHHELD_NOT_EMPTY_ROOM',source:null};
+    g.furnitureStatus='UNKNOWN_INVENTORY_WITHHELD_NOT_KNOWN_EMPTY';
+    return;
+  }
+
   const n=item.bays??(Math.max(3,Math.round(item.w/3.6)|1)),bay=item.w/n;
   if(item.throne){
     const tz=item.d/2-Math.min(2.6,item.d*.3),tw=Math.min(bay*1.4,5),y=item.ph??.9;
@@ -1083,8 +1101,12 @@ function buildYanchunPavilion(kit,item,p) {
   top.traverse(n=>{if(n.isMesh&&['kit_ridge','roof_ridge_glaze'].includes(materialKey(kit,n.material)))n.material=blue;});
   retainLegacyFurniture(c);
   kit.plaque(c.f,item.name,0,g.y+groundH-.5,-wallZ-.25,.9,1.5);
+  fitYanchunFrontPlaque(c);
   c.register(item.name+'·底层',-wallX+.2,wallX-.2,-wallZ,wallZ,g.y,groundH,[{x:0,z:-wallZ}],{x:0,z:-wallZ+1.25});
-  return finish(c,{lowerBays:5,upperBays:3,internalLevels:[{level:1,floorY:g.y},{level:2,floorY:midY,hidden:true},{level:3,floorY:upperY}],upperWidth:upperW,upperDepth:upperD,balcony:{width:balconyW,depth:balconyD,floorY:upperY},interiorPeriod:'HISTORICAL_THREE_LEVEL_TOPOLOGY__COMPLEX_PARTITIONS_NOT_RECONSTRUCTED',rebuildPeriod:'1923_FIRE__GARDEN_REBUILT_2006__PHOTO_SHOWS_REBUILD_CONSTRUCTION',constructionPhoto:image,upperAccess:'NO_VERIFIED_STAIR_NO_UPPER_ROOM_OR_AUTOMATIC_DESTINATION',partialGridStatus:'FOUR_SIDED_LOWER_FIVE_UPPER_THREE_EXTERIOR_BAY_COUNTS__INTERNAL_SUPPORT_POSITIONS_FITTED',lowerRoof:{kind:'OPEN_CENTER_FOUR_SIDED_SKIRT',innerHalfWidth:iw,innerHalfDepth:id,innerY:high,outerY:low},unknown:['Complicated lower-floor partitions and stair position remain unverified; no Fuwang layout is borrowed','Rebuild construction photo does not establish completed current furniture or paint inventory','Legacy generic ground furnishings are retained but remain unverified','Upper side infill is conservative solid wall; finished side fenestration is not verified']});
+  c.g.inventory=withholdHUnknownInventory(kit,item,c.f);
+  c.g.furnitureStatus='UNKNOWN_INVENTORY_GENERIC_PLACEHOLDERS_WITHHELD_NOT_EMPTY';
+  delete c.g.retainedFurniture;
+  return finish(c,{lowerBays:5,upperBays:3,internalLevels:[{level:1,floorY:g.y},{level:2,floorY:midY,hidden:true},{level:3,floorY:upperY}],upperWidth:upperW,upperDepth:upperD,balcony:{width:balconyW,depth:balconyD,floorY:upperY},interiorPeriod:'HISTORICAL_THREE_LEVEL_TOPOLOGY__COMPLEX_PARTITIONS_NOT_RECONSTRUCTED',rebuildPeriod:'1923_FIRE__GARDEN_REBUILT_2006__PHOTO_SHOWS_REBUILD_CONSTRUCTION',constructionPhoto:image,upperAccess:'NO_VERIFIED_STAIR_NO_UPPER_ROOM_OR_AUTOMATIC_DESTINATION',partialGridStatus:'FOUR_SIDED_LOWER_FIVE_UPPER_THREE_EXTERIOR_BAY_COUNTS__INTERNAL_SUPPORT_POSITIONS_FITTED',lowerRoof:{kind:'OPEN_CENTER_FOUR_SIDED_SKIRT',innerHalfWidth:iw,innerHalfDepth:id,innerY:high,outerY:low},unknown:['Complicated lower-floor partitions and stair position remain unverified; no Fuwang layout is borrowed','Rebuild construction photo does not establish completed current furniture or paint inventory','Generic ground furniture is withheld; current inventory is UNKNOWN, not known empty','Upper side infill is conservative solid wall; finished side fenestration is not verified']});
 }
 
 export function buildRemainingHall(kit,item,profile) {

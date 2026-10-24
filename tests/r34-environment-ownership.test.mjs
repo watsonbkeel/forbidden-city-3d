@@ -2,10 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
 import {Environment} from '../src/scene/Environment.js';
-import {TextureLibrary} from '../src/utils/TextureLibrary.js';
+import {TextureLibrary,TEXTURE_SPECS} from '../src/utils/TextureLibrary.js';
 function fixture(t) {
  const library=new TextureLibrary(),scene=new THREE.Scene();
- for(const name of ['ground_brick','stone_slab','skyline'])library.colors.set(name,new THREE.Texture({width:1211,height:301}));
+ for(const name of Object.keys(TEXTURE_SPECS))library.colors.set(name,new THREE.Texture({width:1211,height:301}));
  const targets=[];
  t.mock.method(THREE.PMREMGenerator.prototype,'fromScene',()=>{const target={texture:new THREE.Texture(),count:0,dispose(){this.count++;this.texture.dispose();}};targets.push(target);return target;});
  const e=new Environment(scene,{compile(){}},library);

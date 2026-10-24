@@ -843,6 +843,22 @@ export function buildCornerTower(lib, { size = 12 } = {}) {
     top = Math.max(top, r.top);
     g.add(sub);
   }
-  addFinial(ctx, g, top - s * 0.02, s * 0.09);
-  return finalize(ctx, g, sk.eaveY);
+  // R70: shared, unlabeled official corner-tower photo supports a round belly,
+  // short neck, stacked collars and small upper pearl, not four individual views.
+  // Retain the old height datum so Enclosure's bounding-box scaling stays exact.
+  const hf=s*.09, y=top-s*.02;
+  const profile=[[0,0],[.38,0],[.5,.08],[.42,.16],[.25,.23],
+    [.22,.30],[.38,.37],[.49,.49],[.5,.58],[.44,.68],[.28,.75],
+    [.17,.78],[.17,.84],[.28,.86],[.28,.90],[.16,.93],
+    [.12,.97],[.21,1.02],[.17,1.10],[.06,1.16],[0,1.18]];
+  const finial=add(g,new THREE.LatheGeometry(profile.map(([r,h])=>new THREE.Vector2(r*hf*.55,h*hf)),ctx.seg.lathe),ctx.mat.gold);
+  finial.position.y=y;
+  const result=finalize(ctx,g,sk.eaveY);
+  result.userData.finialFit={status:'SHARED_PHOTO_SILHOUETTE_FIT_NOT_SURVEYED',
+    source:'https://www.dpm.org.cn/explore/building/236522.html',
+    photo:'https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d3f0db3657.jpg',
+    sourceText:'copper gilded finial at intersecting ridges',individualCornersVerified:false,
+    profile,radialScale:.55,heightScale:.09,retainedHeightDatum:true,
+    limits:'No engraved details, dimensions, four corner identity, shell/roof layout or interior acceptance.'};
+  return result;
 }

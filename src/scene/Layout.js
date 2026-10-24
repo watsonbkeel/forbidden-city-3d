@@ -7,7 +7,7 @@ import { JINSHUI_BRIDGES } from './palace/river.js';
  */
 
 const { halfX: PALACE_HALF_X, minZ: PALACE_MIN_Z, maxZ: PALACE_MAX_Z } = LAYOUT.PALACE_RECT;
-const PALACE_CZ = (PALACE_MIN_Z + PALACE_MAX_Z) / 2; // 55.5
+const PALACE_CZ = (PALACE_MIN_Z + PALACE_MAX_Z) / 2; // derived from current model bounds; not the official survey centre
 const CITY_WALL_T = 8.6; // 宫城城墙厚（底宽 8.62，dimensions.md）
 
 // 御花园：园墙 z 422.7（坤宁门）~ 518.3（顺贞门），东西墙 x ±68
@@ -28,14 +28,14 @@ export const PALACE_LAYOUT = [
     },
   },
   
-  // 外围城墙 - 紫禁城最外层（外皮 x ±376.5、z −425 ~ 536；内侧尺寸 = 外皮 − 2 × 墙厚）
+  // 外围城墙 - 紫禁城最外层（外皮 x ±376.5、z −425 ~ 547 (current model; official 961m extent remains an engineering residual)；内侧尺寸 = 外皮 − 2 × 墙厚）
   {
     name: '外围城墙',
     type: 'outer_wall',
     position: { x: 0, y: 0, z: PALACE_CZ },
     dimensions: {
       width: PALACE_HALF_X * 2 - CITY_WALL_T * 2,                // ≈ 735.8 内侧总宽
-      depth: PALACE_MAX_Z - PALACE_MIN_Z - CITY_WALL_T * 2,      // ≈ 943.8 内侧总深
+      depth: PALACE_MAX_Z - PALACE_MIN_Z - CITY_WALL_T * 2,      // derived inner depth; do not confuse current model 972m extent with official 961m
       wallHeight: 10,
       wallThickness: CITY_WALL_T,
     },

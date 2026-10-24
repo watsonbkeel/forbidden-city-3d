@@ -1,3 +1,4 @@
+import {buildDuanmenBackdrop} from './palace/special/DuanmenBackdrop.js';
 import { palaceWaterGroundPaths } from './palace/special/SouthWaterSystem.js';
 import * as THREE from 'three';
 import { COLORS, LAYOUT } from '../config/constants.js';
@@ -49,6 +50,7 @@ export class Environment {
     this.setupSky();
     this.setupSkyline();
     this.setupGround();
+    this.setupDuanmenBackdrop();
     this.setupFog();
     this.setupLights();
     this.applyDayCycle(new Date(), true);
@@ -59,6 +61,14 @@ export class Environment {
   /**
    * 设置天空（Preetham 天空模型）
    */
+  setupDuanmenBackdrop() {
+    this.duanmenBackdrop = this.addObject(buildDuanmenBackdrop(this.library));
+  }
+
+  setDuanmenVisible(enabled) {
+    if (this.duanmenBackdrop) this.duanmenBackdrop.visible = enabled === true;
+  }
+
   setupSky() {
     const sky = createSky();
     updateSkyUniforms(sky, this.sunPosition);
@@ -318,6 +328,9 @@ export class Environment {
     for (const object of this.objects) {
       object.traverse(node => {
         if (node.geometry) geometries.add(node.geometry);
+        for (const material of node.userData?.ownedMaterials ?? []) {
+          if (!this.borrowedMaterials.has(material) && !this.library.owns?.(material)) materials.add(material);
+        }
         const slots = Array.isArray(node.material) ? node.material : [node.material];
         for (const material of slots) if (material && !this.borrowedMaterials.has(material) && !this.library.owns?.(material)) materials.add(material);
         if (node.shadow) shadows.add(node.shadow);

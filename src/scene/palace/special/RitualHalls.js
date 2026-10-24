@@ -1,3 +1,4 @@
+import {buildYinghuaSouthLattice} from './YinghuaSouthLattice.js';
 import * as THREE from 'three';
 const PAGE=n=>`https://www.dpm.org.cn/explore/building/${n}.html`;
 const P={yinghua:{name:'英华殿',profile:'yinghua-five-bay-wudian-v1',x:276.6,z:489.9,w:32.7,d:18.2,pad:1,ph:.9,colH:7.36,roof:'wudian',source:PAGE(236568)},xianruo:{name:'咸若馆',profile:'xianruo-enclosed-baoxia-dated-cabinets-v1',x:258.6,z:107.8,w:26.7,d:20.6,pad:.8,ph:.6,colH:7.36,roof:'xieshan',source:PAGE(236534)}};
@@ -26,7 +27,7 @@ export function buildRitualHall(kit,item){
  const doorH=4.6;
  function front(x0,x1,z,door=false){const w=x1-x0,c=(x0+x1)/2;box(key+'-facade-head','red',w,H-doorH,.24,c,y+doorH+(H-doorH)/2,z);for(const x of[x0,x1])box(key+'-facade-post','red',.14,doorH,.24,x,y+doorH/2,z);const lw=(w-.4)/4;
   if(door){for(const s of[-1,1])for(let i=0;i<2;i++)box(key+'-front-door-leaf','wood',.1,doorH-.1,lw,c+s*(w/2-.26-i*.15),y+(doorH-.1)/2,z+lw/2+.04);}
-  else{box(key+'-sill-wall','wall',w,.9,.28,c,y+.45,z);for(let i=0;i<4;i++){const x=x0+.2+(i+.5)*lw;box(key+'-window-leaf','panel',lw-.025,doorH-.9,.12,x,y+.9+(doorH-.9)/2,z);for(let j=1;j<4;j++)box(key+'-plain-window-grid','wood',.05,doorH-1,.17,x-lw/2+j*lw/4,y+.9+(doorH-.9)/2,z,false);for(let j=1;j<5;j++)box(key+'-plain-window-grid','wood',lw,.05,.17,x,y+.9+j*(doorH-.9)/5,z,false);}}
+  else{box(key+'-sill-wall','wall',w,.9,.28,c,y+.45,z);for(let i=0;i<4;i++){const x=x0+.2+(i+.5)*lw;box(key+'-window-leaf','panel',lw-.025,doorH-.9,.12,x,y+.9+(doorH-.9)/2,z);if(key==='yinghua')buildYinghuaSouthLattice(kit,f,mats.wood,{x,y:y+.9+(doorH-.9)/2,z,width:lw-.025,height:doorH-.9});else{for(let j=1;j<4;j++)box(key+'-plain-window-grid','wood',.05,doorH-1,.17,x-lw/2+j*lw/4,y+.9+(doorH-.9)/2,z,false);for(let j=1;j<5;j++)box(key+'-plain-window-grid','wood',lw,.05,.17,x,y+.9+j*(doorH-.9)/5,z,false);}}}
  }
  function ceiling(x0,x1,z0,z1,yy=y+H){box(key+'-plain-ceiling','ceiling',x1-x0,.08,z1-z0,(x0+x1)/2,yy,(z0+z1)/2,false);}
  if(key==='yinghua'){

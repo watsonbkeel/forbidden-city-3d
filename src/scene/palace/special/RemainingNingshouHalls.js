@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {fitNingshouSouthPhotoWindows} from './NingshouSouthPhotoWindows.js';
 
 /**
  * R48 isolated, exact-identity NingShou architecture. Sources establish forms,
@@ -171,12 +172,12 @@ function wallLine(c,{a0,a1,at,y,h,side=false,doors=[],mat='red',role='enclosure-
  let cursor=a0;for(const door of [...doors].sort((a,b)=>a.at-b.at)){const l=Math.max(a0,door.at-door.w/2),r=Math.min(a1,door.at+door.w/2);if(l>cursor)add(cursor,l,y,h);opening(c,{x:side?at:door.at,z:side?door.at:at,w:door.w,h:Math.min(3.15,h-.25),y,side,role:'partition-door'});const dh=Math.min(3.15,h-.25);if(h>dh+.2)add(l,r,y+dh+.18,h-dh-.18);cursor=Math.max(cursor,r);}if(a1>cursor)add(cursor,a1,y,h);
  function add(lo,hi,yy,hh){if(hi-lo<.01||hh<.01)return;c.box(role,mat,side?.18:hi-lo,hh,side?hi-lo:.18,side?at:(lo+hi)/2,yy+hh/2,side?(lo+hi)/2:at,true);}
 }
-function facade(c,{w=c.p.localW,d=c.p.localD,y=c.p.ph,h=c.p.colH-.42,bays=c.p.bays,depthBays=c.p.depthBays,sideDoors=[],inset=c.p.gallery,rearInset=inset,frontDoors=[Math.floor(c.p.bays/2)],backDoors=[],backWindows=true,sideWindows=false,pattern='steps',wall='red'}={}) {
+function facade(c,{w=c.p.localW,d=c.p.localD,y=c.p.ph,h=c.p.colH-.42,bays=c.p.bays,depthBays=c.p.depthBays,sideDoors=[],inset=c.p.gallery,rearInset=inset,frontDoors=[Math.floor(c.p.bays/2)],backDoors=[],backWindows=true,sideWindows=false,pattern='steps',frontPattern=pattern,wall='red'}={}) {
  const iw=w-(sideWindows?inset*2:0),front=-d/2+inset,rear=d/2-rearInset,bw=iw/bays;
  for(const sign of[-1,1])for(let i=0;i<bays;i++){
-  const x=-iw/2+(i+.5)*bw,z=sign<0?front:rear,door=(sign<0?frontDoors:backDoors).includes(i),pw=Math.max(.6,bw-.16);
-  if(door){const dw=Math.min(pw-.14,3.2);opening(c,{x,z,w:dw,h:Math.min(3.2,h-.35),y});if(pw>dw+.1){for(const s of[-1,1]){const fill=(pw-dw)/2-.03;if(fill>.3)panel(c,{x:x+s*(dw/2+(pw-dw)/4),z,w:fill,h,y,pattern,wall});else c.box('door-side-filler','wood',fill,h,.15,x+s*(dw/2+(pw-dw)/4),y+h/2,z,true);}}const dh=Math.min(3.2,h-.35);if(h-dh>.22)c.box('door-transom','wood',dw,h-dh-.18,.14,x,y+dh+.18+(h-dh-.18)/2,z,true);}
-  else if(sign<0||backWindows)panel(c,{x,z,w:pw,h,y,pattern,wall});
+  const x=-iw/2+(i+.5)*bw,z=sign<0?front:rear,door=(sign<0?frontDoors:backDoors).includes(i),pw=Math.max(.6,bw-.16),facePattern=sign<0?frontPattern:pattern;
+  if(door){const dw=Math.min(pw-.14,3.2);opening(c,{x,z,w:dw,h:Math.min(3.2,h-.35),y});if(pw>dw+.1){for(const s of[-1,1]){const fill=(pw-dw)/2-.03;if(fill>.3)panel(c,{x:x+s*(dw/2+(pw-dw)/4),z,w:fill,h,y,pattern:facePattern,wall});else c.box('door-side-filler','wood',fill,h,.15,x+s*(dw/2+(pw-dw)/4),y+h/2,z,true);}}const dh=Math.min(3.2,h-.35);if(h-dh>.22)c.box('door-transom','wood',dw,h-dh-.18,.14,x,y+dh+.18+(h-dh-.18)/2,z,true);}
+  else if(sign<0||backWindows)panel(c,{x,z,w:pw,h,y,pattern:facePattern,wall});
   else c.box('rear-masonry','red',bw,h,.2,x,y+h/2,z,true);
  }
  for(const sign of[-1,1]){
@@ -220,7 +221,7 @@ function surface(c,role,vertices,indices,mat,extra={}) {
 }
 /** Curved no-ridge barrel roof, with a hipped lower skirt and closed end board.
  * Sections and rise are fits, not a measured Qing roof framing reconstruction. */
-function rolledRoof(c,{w=c.p.localW+.6,d=c.p.localD+.8,x=0,z=0,y=c.p.ph+c.p.colH,rise=Math.min(d*.27,2.6),tile='green',trim='yellow',hip=true}={}) {
+function rolledRoof(c,{w=c.p.localW+.6,d=c.p.localD+.8,x=0,z=0,y=c.p.ph+c.p.colH,rise=Math.min(d*.27,2.6),tile='green',trim='yellow',hip=true,sourceVerge=false}={}) {
  const marker=new THREE.Group();marker.name=`${c.p.key}-rolled-roof-unit`;marker.userData={role:'rolled-roof-unit',dimensionStatus:FIT};c.f.add(marker);
  const end=hip?Math.min(d*.24,w*.15):0,core=w-2*end,steps=24,rows=6,vs=[],idx=[];
  for(let i=0;i<=rows;i++)for(let j=0;j<=steps;j++){
@@ -237,6 +238,14 @@ function rolledRoof(c,{w=c.p.localW+.6,d=c.p.localD+.8,x=0,z=0,y=c.p.ph+c.p.colH
   }
   const verts=[x+sign*core/2,y,z];for(let j=0;j<=steps;j++){const q=-1+2*j/steps;verts.push(x+sign*core/2,y+rise*Math.pow(Math.max(0,Math.cos(q*Math.PI/2)),.72),z+d*q/2);}const ix=[];for(let j=1;j<=steps;j++)ix.push(0,j,j+1);surface(c,'roof-curved-gable',verts,ix,'wood',{endSign:sign,closure:'SOLID_END_BOARD_NOT_OPEN_BARREL'});
   c.box('glazed-eave-edge',trim,w,.13,.15,x,y,z+sign*d/2);
+  if(sourceVerge){
+   // The official YueShi front photograph shows green bands following the
+   // rolled gable. Width/rise reuse the existing roof fit, not surveyed tiles.
+   const ribbon=[],faces=[],width=.22;
+   for(let j=0;j<=steps;j++){const q=-1+2*j/steps,yy=y+.055+rise*Math.pow(Math.max(0,Math.cos(q*Math.PI/2)),.72);for(const offset of[-width/2,width/2])ribbon.push(x+sign*core/2+offset,yy,z+d*q/2);}
+   for(let j=0;j<steps;j++){const a=j*2;faces.push(a,a+2,a+1,a+1,a+2,a+3);}
+   const geo=shellGeometry(ribbon,faces,[0,-.045,0]);c.tag(c.kit.mesh(c.f,geo,c.mats[trim],0,0,0),'r67-yueshi-green-curved-verge',{source:'https://img.dpm.org.cn/Uploads/Picture/dc/1565.jpg',dimensionStatus:FIT,measured:false,exactTileCount:false,physics:'DECORATIVE_EXISTING_ROOF_ENVELOPE',scope:'TWO_ROLLED_GABLE_CURVES_ONLY_HIP_CORNER_ORNAMENT_UNVERIFIED'});
+  }
  }
  // Plain fitted bearing frame physically connects the rolled shell to the
  // existing eave beams. It is intentionally uncarved, not an invented dougong.
@@ -284,6 +293,7 @@ function finish(c,extra={}) {
  const legacyNameSign=retainLegacyNameSign(c);
  const doors=p.portals.map(q=>({x:q.x,z:q.z})),spawn=p.navigation.spawn;
  kit._lastFurnish={cover:[],spawns:[spawn]};kit.registerRoom(f,{name:p.name,kind:`r48-${p.key}-ground-viewing`,x0:-w/2+.35,x1:w/2-.35,z0:-d/2,z1:d/2,y:p.ph,h:Math.min(p.colH,4),doors});
+ if(extra.legacyInventory?.status==='UNKNOWN'){const room=kit.rooms.at(-1);room.inventory={...extra.legacyInventory};}
  kit.mapRect(f,'hall',p.name,w+2*(c.item.pad??.5),d+2*(c.item.pad??.5),{profileId:p.id,fitStatus:FIT});
  f.userData.structure={...p,...extra,legacyNameSign,portals:p.portals,groundNavigation:p.navigation,actualComponentCount:0};f.traverse(m=>{if(m.isMesh)f.userData.structure.actualComponentCount++;});
  f.name=`${p.name}·官方形制局部拟合`;
@@ -293,26 +303,47 @@ function finish(c,extra={}) {
  * historic/current inventory. The three attested through halls lose only the
  * rear central table/chairs that obstruct their newly established through bay. */
 function retainLegacyHall(c,{central=false,centralX=0,sideInset=0,benchZ=0}={}) {
- const{p}=c,rear=p.localD/2-p.gallery-.65;
+ const{p}=c;
+ // R67 I and R68 J exact reviewed hosts only. Generic presets do not
+ // establish current museum inventory; UNKNOWN is not a known-empty room.
+ if(['xunyan','qingshou','jingfu','jingqi','yueshi','leshou','changyin','suichu','cuishang','fuwang'].includes(p.key))return{source:'LEGACY_GENERIC_HALL_PRESET_NOT_MUSEUM_INVENTORY',status:'UNKNOWN',knownEmpty:false,accepted:false,currentInventoryVerified:false,retained:[],withheldMeshCount:central?8:4,withheldColliderCount:central?7:4,withheld:central?['table','table-gold-strip','two-chairs','two-cabinets','two-benches']:['two-cabinets','two-benches'],missingEvidence:['CURRENT_ROOM_INVENTORY','PLACEMENT','PERIOD_MAPPING'],notProofOfEmptyRoom:true};
+ const rear=p.localD/2-p.gallery-.65;
  const put=(kind,w,h,d,x,z,mat='wood',raise=0)=>{const o=c.box('legacy-unverified-'+kind,mat,w,h,d,x,p.ph+raise+h/2,z,h>.36);o.userData.inventoryStatus='LEGACY_UNVERIFIED';o.userData.source='src/scene/palace/interiors.js PRESETS.hall';o.userData.placementStatus='FITTED_TO_REVISED_ENCLOSURE_NOT_HISTORIC_PLACEMENT';return o;};
  for(const sign of[-1,1]){put('cabinet',1.2,2.1,.55,p.key==='jingqi'&&sign<0?-6.7:sign*(p.key==='jingfu'?3.4:p.localW/2-1.05-sideInset),rear);put('bench',.5,.48,Math.min(2.4,(p.localD-2*p.gallery)*.35),p.key==='jingqi'&&sign<0?-7.9:sign*(p.localW/2-p.gallery*(p.key==='jingfu'?1:0)-.65-sideInset),p.key==='jingqi'&&sign<0?-1.1:benchZ,'red');}
  if(central){put('table',2.4,.85,.8,centralX,rear-.45);put('table-gold-strip',2.16,.06,.06,centralX,rear-.07,'gold',.86);for(const sign of[-1,1])put('chair',.6,1.1,.6,centralX+sign*.72,rear-1.35,'red');}
  return{source:'LEGACY_GENERIC_HALL_PRESET_NOT_MUSEUM_INVENTORY',retained:central?['table','two-chairs','two-cabinets','two-benches']:['two-cabinets','two-benches'],removed:central?[]:['central-table-and-chairs-conflict-with-attested-through-bay']};
 }
 function buildNingshou(c) {
- const{p}=c;platform(c);frame(c);facade(c,{frontDoors:[2],backDoors:[2,3,4],backWindows:false,pattern:'straight'});ceiling(c,{round:true});ordinaryRoof(c);
+ const{p}=c;platform(c);frame(c);facade(c,{frontDoors:[2],backDoors:[2,3,4],backWindows:false,pattern:'straight'});fitNingshouSouthPhotoWindows(c);ceiling(c,{round:true});ordinaryRoof(c);
  // Additional interior rows follow the attested three-deep organization. Equal
  // spacings are only a fit; removed ritual kang and stove inventories are absent.
  for(const x of[-p.localW*2/7,p.localW*2/7])for(const z of[-p.localD/6,p.localD/6])column(c,x,z,p.ph,p.colH-.42,{role:'inner-column',r:.23});
  return finish(c,{interiorPolicy:'REMOVED_KANG_NOT_RECREATED_EXHIBITION_INVENTORY_UNKNOWN',roofForm:'single-eave-xieshan',roomLayout:'seven-bay-three-depth-shell-east-secondary-entry',currentInventoryVerified:false});
 }
+/** Source-visible south tiger-stone facing, not a copied masonry map or survey.
+ * Flat colored polygons remain on the existing plinth, no support/collider edits. */
+function suichuStoneFacing(c){
+ if(c.p.key!=='suichu')return;
+ const w=c.p.localW+Math.min(c.item.pad??.5,.8)*2,h=c.p.ph-.05,z=-(c.p.localD+Math.min(c.item.pad??.5,.8)*2)/2;
+ const positions=[],colors=[],palette=[0x8e9484,0x746f62,0xa69b87,0x68776e,0x9b7367,0xaaa99a].map(v=>new THREE.Color(v));
+ const n=36,rows=2,dx=w/n,dy=h/rows;
+ for(let j=0;j<rows;j++)for(let i=0;i<n;i++){
+  const x=-w/2+(i+.5)*dx,y=(j+.5)*dy+.018,rx=dx*.46,ry=dy*.45,poly=[];
+  for(let k=0;k<7;k++){const a=Math.PI*2*k/7,rr=.86+.12*Math.sin((i+1)*17+(j+1)*13+k*7);poly.push([x+Math.cos(a)*rx*rr,y+Math.sin(a)*ry*rr,z]);}
+  const col=palette[(i*7+j*3)%palette.length];
+  for(let k=0;k<7;k++){positions.push(x,y,z,...poly[(k+1)%7],...poly[k]);for(let v=0;v<3;v++)colors.push(col.r,col.g,col.b);}
+ }
+ const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));geo.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));geo.computeVertexNormals();
+ const mat=new THREE.MeshStandardMaterial({name:'r68-suichu-stone-palette-fit',vertexColors:true,roughness:.94,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-1});c.kit.owned.push(mat);
+ c.tag(c.kit.mesh(c.f,geo,mat,0,0,0),'platform-base',{detailRole:'r68-suichu-tiger-stone-facing',noMerge:true,scope:'SOUTH_PLINTH_FACE_ONLY',exactStoneLayout:false,sourceImage:'https://img.dpm.org.cn/Uploads/Picture/dc/1533[1024].jpg',photographyDate:null,accepted:false});
+}
 function buildThroughHall(c) {
- const{p}=c,brick=p.key!=='suichu';platform(c);frame(c);facade(c,{frontDoors:[2],backDoors:[2],pattern:'steps',wall:brick?'brick':'red'});ceiling(c,{nz:1});rolledRoof(c,{hip:!brick,tile:p.key==='qingshou'?'yellow':'green',trim:p.key==='qingshou'?'green':'yellow'});
+ const{p}=c,brick=p.key!=='suichu';platform(c);suichuStoneFacing(c);frame(c);facade(c,{frontDoors:[2],backDoors:[2],pattern:'steps',wall:brick?'brick':'red'});ceiling(c,{nz:1});rolledRoof(c,{hip:!brick,tile:p.key==='qingshou'?'yellow':'green',trim:p.key==='qingshou'?'green':'yellow'});
  // Inner gallery column rows and the through-bay remain separate from the
  // exterior columns. No speculative bedroom/library furniture is inserted.
  for(const sign of[-1,1])for(let i=0;i<=p.bays;i++)column(c,-p.localW/2+i*p.localW/p.bays,sign*(p.localD/2-p.gallery),p.ph,p.colH-.4,{role:'inner-column',r:.15});
  const legacyInventory=retainLegacyHall(c);
- return finish(c,{legacyInventory,roofForm:p.key==='suichu'?'rolled-hip-gable':'rolled-hard-gable',interiorPolicy:'SOURCED_THROUGH_PLAN_WITH_NONCONFLICTING_LEGACY_UNVERIFIED_SIDE_PIECES',gallerySides:['south','north']});
+ return finish(c,{legacyInventory,roofForm:p.key==='suichu'?'rolled-hip-gable':'rolled-hard-gable',interiorPolicy:legacyInventory.status==='UNKNOWN'?'SOURCED_THROUGH_PLAN_CURRENT_INVENTORY_UNKNOWN':'SOURCED_THROUGH_PLAN_WITH_NONCONFLICTING_LEGACY_UNVERIFIED_SIDE_PIECES',gallerySides:['south','north']});
 }
 function buildJingfu(c) {
  const{p}=c;platform(c);frame(c);facade(c,{frontDoors:[2],backDoors:[0],sideWindows:true});ceiling(c,{nx:5,nz:5});
@@ -404,11 +435,20 @@ function buildBiluo(c) {
   positions.needsUpdate=true;bearer.geometry.computeVertexNormals();bearer.geometry.computeBoundingBox();bearer.geometry.computeBoundingSphere();bearer.userData.capPolicy='ACTUAL_VERTEX_SLOPED_CAP_EMBEDDED_IN_ROOF_SHELL';
  }
 
- c.cylinder('blue-white-finial','blue',.18,.5,0,y+h+2.95,0,false);c.cylinder('white-finial-band','stone',.21,.1,0,y+h+2.99,0,false);
+ // Official close view 1442: layered foot, neck, bowl, gold waist and ovoid.
+ // Only the silhouette and color families are fitted; no ice-plum artwork.
+ const finialBase=y+h+2.8,finialParts=[];
+ finialParts.push(c.cylinder('r68-biluo-finial-foot','yellow',.20,.12,0,finialBase+.04,0,false,24));
+ finialParts.push(c.cylinder('r68-biluo-finial-neck','blue',.17,.17,0,finialBase+.175,0,false,24));
+ const bowl=c.tag(c.kit.mesh(c.f,new THREE.CylinderGeometry(.29,.17,.18,24),c.mats.blue,0,finialBase+.35,0),'r68-biluo-finial-bowl');finialParts.push(bowl);
+ finialParts.push(c.cylinder('r68-biluo-finial-waist','yellow',.29,.09,0,finialBase+.475,0,false,24));
+ const ball=c.tag(c.kit.mesh(c.f,new THREE.SphereGeometry(1,24,16),c.mats.blue,0,finialBase+.81,0),'r68-biluo-finial-ovoid');ball.scale.set(.30,.40,.30);finialParts.push(ball);
+ for(const m of finialParts)m.userData.patternStatus='PLAIN_SILHOUETTE_NO_REPLICATED_ICE_PLUM_MOTIF';
+ const finialFit={sourceImage:'https://img.dpm.org.cn/Uploads/Picture/dc/1442[1024].jpg',dimensionStatus:FIT,accepted:false,photographyDate:null,scope:'FIVE_PLAIN_LAYERS_AND_COLOR_FAMILIES_ONLY'};
  // Applied five-petal ceiling motif, visibly geometric rather than a claim to
  // reproduce the exceptionally fine surviving plum relief carving.
  c.cylinder('plum-ceiling-ground','wood',r,.07,0,y+h-.12,0,false,30);for(let i=0;i<5;i++){const a=i*2*Math.PI/5;c.cylinder('plum-ceiling-petal','paper',.22,.045,Math.cos(a)*.25,y+h-.17,Math.sin(a)*.25,false,12);}
- return finish(c,{planForm:'five-petal-five-column',occupiedFloorCount:1,mountainBridgeStatus:'DEFERRED_NOT_PLACED_ON_FALSE_SURVEYED_MOUNTAIN',roofForm:'double-eave-five-petal-pointed',interiorPolicy:'OPEN_PAVILION_NO_GENERIC_FURNISHINGS'});
+ return finish(c,{finialFit,planForm:'five-petal-five-column',occupiedFloorCount:1,mountainBridgeStatus:'DEFERRED_NOT_PLACED_ON_FALSE_SURVEYED_MOUNTAIN',roofForm:'double-eave-five-petal-pointed',interiorPolicy:'OPEN_PAVILION_NO_GENERIC_FURNISHINGS'});
 }
 
 /** Meshes describe upper floors even where navigation must remain ground-only.
@@ -436,13 +476,13 @@ function perimeterRail(c,y,{front=true,rear=true,sides=true}={}) {
  if(rear)rail(c,{x:0,z:d/2,length:w,y});
  if(sides)for(const sign of[-1,1])rail(c,{x:sign*w/2,z:0,length:d,y,side:true});
 }
-function twoLevelFrame(c,{groundGallery=c.p.gallery,upperGallery=c.p.gallery,frontDoors=[Math.floor(c.p.bays/2)],rearDoors=[],pattern='steps',wall='red',sideWindows=false,rearInset=groundGallery}={}) {
+function twoLevelFrame(c,{groundGallery=c.p.gallery,upperGallery=c.p.gallery,frontDoors=[Math.floor(c.p.bays/2)],rearDoors=[],pattern='steps',wall='red',sideWindows=false,rearInset=groundGallery,upperFrontPattern=pattern}={}) {
  const{p}=c,h0=p.upperFloorY-p.ph,h1=p.ph+p.colH-p.upperFloorY;
  platform(c);
  frame(c,{h:h0-.08});
  facade(c,{h:h0-.35,inset:groundGallery,rearInset,frontDoors,backDoors:rearDoors,pattern,wall,sideWindows});
  frame(c,{y:p.upperFloorY,h:h1,role:'upper-level-frame'});
- facade(c,{y:p.upperFloorY,h:h1-.35,inset:upperGallery,rearInset,frontDoors:[Math.floor(p.bays/2)],backDoors:[],pattern,wall,sideWindows});
+ facade(c,{y:p.upperFloorY,h:h1-.35,inset:upperGallery,rearInset,frontDoors:[Math.floor(p.bays/2)],backDoors:[],pattern,frontPattern:upperFrontPattern,wall,sideWindows});
  return{h0,h1};
 }
 function hangingFrieze(c,{y=c.p.ph+c.p.colH-.45,z=-c.p.localD/2,w=c.p.localW,bays=c.p.bays}={}) {
@@ -453,6 +493,7 @@ function hangingFrieze(c,{y=c.p.ph+c.p.colH-.45,z=-c.p.localD/2,w=c.p.localW,bay
  }
 }
 function retainLegacyRoom(c) {
+ if(c.p.key==='yanqu')return{source:'LEGACY_GENERIC_ROOM_PRESET_NOT_MUSEUM_INVENTORY',status:'UNKNOWN',knownEmpty:false,accepted:false,currentInventoryVerified:false,retained:[],withheldMeshCount:6,withheldColliderCount:5,withheld:['kang','mattress','small-table','two-stools','cabinet'],notProofOfEmptyRoom:true,missingEvidence:['CURRENT_ROOM_INVENTORY','PLACEMENT','PERIOD_MAPPING']};
  const{p}=c,back=p.localD/2-p.gallery-.45,right=(p.localW-2*p.gallery)*.28,left=-right;
  const put=(kind,w,h,d,x,z,mat='wood',raise=0)=>{const m=c.box('legacy-unverified-'+kind,mat,w,h,d,x,p.ph+raise+h/2,z,h>.36);m.userData.inventoryStatus='LEGACY_UNVERIFIED';m.userData.source='src/scene/palace/interiors.js PRESETS.room';};
  put('kang',2.6,.62,1.7,right,back-.65);put('mattress',2.34,.08,1.445,right,back-.65,'paper',.62);
@@ -460,7 +501,8 @@ function retainLegacyRoom(c) {
  return{source:'LEGACY_GENERIC_ROOM_PRESET_NOT_MUSEUM_INVENTORY',retained:['kang','mattress','small-table','two-stools','cabinet'],placementStatus:'FITTED_WITHIN_REVISED_ENCLOSURE'};
 }
 function buildJingqi(c) {
- const{p}=c;twoLevelFrame(c,{pattern:'glass',upperGallery:.7});
+ const{p}=c;twoLevelFrame(c,{pattern:'glass',upperFrontPattern:'steps',upperGallery:.7});
+ c.f.userData.r67JingqiUpperWindow={source:'https://www.dpm.org.cn/explore/building/236480.html',photo:'https://img.dpm.org.cn/Uploads/Picture/dc/4750[1024].jpg',scope:'UPPER_SOUTH_FIELDS_ONLY_LOWER_GLASS_UNCHANGED',motif:'SIMPLIFIED_STEP_LATTICE_NOT_EXACT_BUBUJIN_REPLICA',measured:false,accepted:false};
  const hole={x0:-14.7,x1:-12.1,z0:-3.5,z1:3.35};
  const floorVoids=upperFloor(c,{holes:[hole],walk:true});guardOpening(c,hole,{openFront:true});perimeterRail(c,p.upperFloorY);
  // A real sloping stair in the attested east end bay. Run, pitch, direction,
@@ -501,7 +543,7 @@ function buildYanqu(c) {
  }
  const legacyInventory=retainLegacyRoom(c);
  rolledRoof(c,{tile:'green',trim:'yellow'});ceiling(c,{y:p.ph+p.colH-.25,nx:5,nz:3});
- return finish(c,{legacyInventory,removedBridgeRecreated:false,gallerySides:['east','north','south'],interiorPolicy:'REAL_TWO_LEVEL_ENCLOSURE_WITH_PORCELAIN_MATERIAL_CUES_AND_LEGACY_UNVERIFIED_FURNISHINGS',upperNavigation:'VIEW_ONLY_NO_UNVERIFIED_STAIR_OR_BRIDGE'});
+ return finish(c,{legacyInventory,removedBridgeRecreated:false,gallerySides:['east','north','south'],interiorPolicy:'REAL_TWO_LEVEL_ENCLOSURE_WITH_PORCELAIN_MATERIAL_CUES_CURRENT_INVENTORY_UNKNOWN',upperNavigation:'VIEW_ONLY_NO_UNVERIFIED_STAIR_OR_BRIDGE'});
 }
 function buildCuishang(c) {
  const{p}=c;twoLevelFrame(c,{rearDoors:[1,3]});upperFloor(c);perimeterRail(c,p.upperFloorY);
@@ -518,7 +560,7 @@ function buildYueshi(c) {
  // remain outside the clear aperture; counts are ornament bands, not extra walls.
  for(const[y,n]of[[p.ph,3],[p.upperFloorY,6]])for(let i=0;i<n;i++)c.box('yueshi-glass-door-transom','glass',p.localW/5/n-.06,.55,.055,-p.localW/10+(i+.5)*p.localW/5/n,y+2.95,-p.localD/2+p.gallery);
  const legacyInventory=retainLegacyHall(c,{central:true});
- rolledRoof(c,{tile:'yellow',trim:'green'});ceiling(c,{y:p.ph+p.colH-.25,nx:5,nz:3});
+ rolledRoof(c,{tile:'yellow',trim:'green',sourceVerge:true});ceiling(c,{y:p.ph+p.colH-.25,nx:5,nz:3});
  return finish(c,{legacyInventory,removedTerracesRecreated:false,roofForm:'SINGLE_ROLLED_HIP_GABLE_OVER_TWO_STOREYS',interiorPolicy:'ARCHITECTURAL_THEATRE_VIEWING_HALL_NOT_RECREATED_HISTORIC_THRONE_IN_CURRENT_EXHIBITION',upperNavigation:'VIEW_ONLY_STAIR_LOCATION_UNKNOWN'});
 }
 function altarOutline(c,{x,z,w,d,y=c.p.ph,role='dated-altar-plinth'}) {
@@ -815,12 +857,11 @@ function buildJuanqin(c) {
   for(const sign of[-1,1])c.box('juanqin-bamboo-screen-upright','bamboo',.12,4.3,.12,screenX+sign*1.5,p.ph+2.15,z,true);
   c.box('juanqin-bamboo-screen-top','bamboo',3.1,.12,.12,screenX,p.ph+4.3,z);
  }
- // Preserve the old generic movable inventory in the east-side rooms, away
- // from the attested performance space, explicitly not a period reconstruction.
- const legacy=[];const put=(kind,ww,hh,dd,x,z,mat='wood')=>{const m=c.box('legacy-unverified-'+kind,mat,ww,hh,dd,x,p.ph+hh/2,z,hh>.36);m.userData.inventoryStatus='LEGACY_UNVERIFIED';m.userData.placementStatus='MOVED_FROM_GENERIC_HALL_TO_EAST_ROOMS_TO_CLEAR_ATTESTED_THEATRE';legacy.push(kind);};
- put('table',2.4,.85,.8,-7,3.2);for(const s of[-1,1]){put('chair',.6,1.1,.6,-7+s*.72,2.3,'red');put('cabinet',1.2,2.1,.55,s<0?-14.7:.65,3.7);put('bench',.5,.48,2.4,s<0?-14.8:.8,-.2,'red');}
+ // R68: withhold seven unsupported generic movable pieces. Attested
+ // theatre, dais, loft and screen outlines remain separate architectural fits.
+ const legacyInventory={source:'LEGACY_GENERIC_HALL_PRESET_NOT_MUSEUM_INVENTORY',status:'UNKNOWN',knownEmpty:false,accepted:false,currentInventoryVerified:false,retained:[],withheldMeshCount:7,withheldColliderCount:7,withheld:['table','two-chairs','two-cabinets','two-benches'],notProofOfEmptyRoom:true,missingEvidence:['CURRENT_ROOM_INVENTORY','PLACEMENT','PERIOD_MAPPING']};
  rolledRoof(c,{hip:false,tile:'yellow',trim:'yellow'});ceiling(c,{y:p.ph+p.colH-.3,nx:9,nz:2});
- return finish(c,{eastBays:5,westBays:4,stageFaces:'east',audienceFaces:'west',eastLoftVoid:{x0:left,x1:right,z0:front,z1:backBand},stage,audience,legacyInventory:{retained:legacy,removed:[],status:'LEGACY_UNVERIFIED_FURNITURE_RELOCATED_NOT_SOURCE_INVENTORY'},upperNavigation:'REAL_U_LOFT_AND_AUDIENCE_BALCONY_VIEW_ONLY_UNMEASURED_STAIRS_OMITTED',artworkPolicy:'NO_FABRICATED_PANORAMA_BAMBOO_CARVING_OR_PAINTING'});
+ return finish(c,{eastBays:5,westBays:4,stageFaces:'east',audienceFaces:'west',eastLoftVoid:{x0:left,x1:right,z0:front,z1:backBand},stage,audience,legacyInventory,upperNavigation:'REAL_U_LOFT_AND_AUDIENCE_BALCONY_VIEW_ONLY_UNMEASURED_STAIRS_OMITTED',artworkPolicy:'NO_FABRICATED_PANORAMA_BAMBOO_CARVING_OR_PAINTING'});
 }
 
 function stageRingFloor(c,{w,d,y,hole,role}) {
@@ -859,6 +900,7 @@ function buildChangyin(c) {
   if(level===1)for(const sign of[-1,1])c.box('changyin-upper-floor-bearing','wood',midW,.4,.3,0,levels[2]-.2,sign*midD/2);
  }
  for(const sign of[-1,1]){c.box('changyin-upper-floor-crossbearing','wood',midW,.4,.28,0,levels[2]-.2,sign*topD/2);c.box('changyin-upper-floor-crossbearing','wood',.28,.4,midD,sign*topW/2,levels[2]-.2,0);}
+ c.f.traverse(m=>{if(m.isMesh&&['changyin-ground-perimeter-rail','changyin-upper-stage-rail'].includes(m.userData.role)){m.material=c.mats.red;m.userData.colorStatus='OFFICIAL_PHOTO_RED_APPROXIMATION_NOT_MEASURED_PAINT';}});
  c.f.traverse(m=>{if(m.isMesh&&['column','changyin-upper-perimeter-column'].includes(m.userData.role)){m.material=c.mats.green;m.userData.colorStatus='OFFICIAL_EXTERIOR_PHOTO_GREEN_COLUMN_COLOUR_APPROXIMATION';}});
  // Closed trapdoor is a real timber lid, never a painted hole or a new fall
  // hazard. The subterranean wells are omitted because their geometry is unknown.

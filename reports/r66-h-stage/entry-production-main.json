@@ -1,0 +1,279 @@
+{
+  "boundary": "Production-compiled main with retained explicit CPU seams; real ground-only support, character pipeline, Settings and collision manager. Not a browser, WebGL or all-building acceptance.",
+  "entry": {
+    "kind": "Vite production-compiled complete main class with explicit CPU dependency seams",
+    "mainSourceSha256": "2c5217e817ef01d098950eae6cb72f4bca8c23ebabd5026df5e42c682a67d685",
+    "mainClassBytesSha256": "b1901cbdc534151fa429a27a831f72ed6336461201cf68d921383339936a7b59",
+    "productionBundleSha256": "fdd1c4941a7c82ccfb6ddcd143e6b50770bef7023de90b7f92e74a3d1280c3fd",
+    "mainTransform": "Only remove automatic bootstrap beginning at const app = new ForbiddenCityApp(); and export ForbiddenCityApp; all preceding bytes unchanged.",
+    "unmodifiedMainMethods": [
+      "constructor",
+      "init",
+      "createScene",
+      "createCamera",
+      "createRenderer",
+      "createUI",
+      "animate",
+      "dispose"
+    ],
+    "realCharacterModules": [
+      "CharacterSystem",
+      "CharacterManager",
+      "CharacterWorldAdapter",
+      "CharacterRenderer",
+      "CharacterResourcePool",
+      "CharacterKit",
+      "PatrolController",
+      "SettingsMenu"
+    ],
+    "dependencySeams": [
+      "src/utils/TextureLibrary.js",
+      "src/scene/Environment.js",
+      "src/scene/PalaceBuilder.js",
+      "src/scene/Enclosure.js",
+      "src/scene/GardenBuilder.js",
+      "src/utils/Collision.js",
+      "src/scene/zones/ZoneManager.js",
+      "src/controls/FirstPerson.js",
+      "src/scene/interior/InteriorLoader.js",
+      "src/scene/flight/FlightEnvelope.js",
+      "src/render/PostProcessing.js",
+      "src/audio/Ambience.js",
+      "src/ui/Minimap.js",
+      "src/ui/Teleport.js",
+      "src/ui/PerfHUD.js",
+      "src/scene/flight/FlightTour.js",
+      "src/scene/sky/HistoricalSkyLamps.js",
+      "src/ui/DayNightPanel.js",
+      "src/ui/HelpPanel.js"
+    ],
+    "gpuSeam": "THREE.WebGLRenderer shell only. All other THREE classes, including Scene, PerspectiveCamera, Mesh, and InstancedMesh, are real.",
+    "sources": {
+      "main.js": "2c5217e817ef01d098950eae6cb72f4bca8c23ebabd5026df5e42c682a67d685",
+      "src/scene/characters/CharacterSystem.js": "5445b5e180d94e7396aaebfd34cf5c90f16a20565c62352253bffaa813c1a93d",
+      "src/scene/characters/CharacterManager.js": "7dcd11b45e98351483a99659346981e2c6b596623b47f7303c0392691960ffef",
+      "src/scene/characters/CharacterRenderer.js": "e45e2fa438797310c36a2af4b71f1d9138e1e9a56dba5c5961ef333b6e044c8b",
+      "src/scene/characters/CharacterWorldAdapter.js": "ccb552b78fbec725d7241c2a8d795b97a7e4cc2c9b32f25473ff833dafb42829",
+      "src/ui/SettingsMenu.js": "403aa1a046862e9dbaf6b78adaae31d4f7c16350f1880c36c3922a3b4366eaf6"
+    }
+  },
+  "checks": {
+    "registration": {
+      "registered": 108,
+      "defaultOn": true,
+      "formalAcceptance": false
+    },
+    "actualDayNightSubmission": true,
+    "all108TimeEligibility": {
+      "boundary": "Production manager class with synthetic same-position supports and a renderer recorder; proves schedule eligibility and budgets only, not world binding or GPU drawing.",
+      "rows": [
+        {
+          "daylight": 1,
+          "registered": 108,
+          "timeEligible": 108,
+          "highQualitySubmitted": 64,
+          "schedules": [
+            "ceremony-daylight",
+            "daily-daylight",
+            "guard-duty"
+          ],
+          "lowQualitySubmitted": 32
+        },
+        {
+          "daylight": 0.5,
+          "registered": 108,
+          "timeEligible": 108,
+          "highQualitySubmitted": 64,
+          "schedules": [
+            "ceremony-daylight",
+            "daily-daylight",
+            "guard-duty"
+          ],
+          "lowQualitySubmitted": 32
+        },
+        {
+          "daylight": 0,
+          "registered": 108,
+          "timeEligible": 108,
+          "highQualitySubmitted": 64,
+          "schedules": [
+            "ceremony-daylight",
+            "daily-daylight",
+            "guard-duty"
+          ],
+          "lowQualitySubmitted": 32
+        },
+        {
+          "daylight": 0.01,
+          "registered": 108,
+          "timeEligible": 108,
+          "highQualitySubmitted": 64,
+          "schedules": [
+            "ceremony-daylight",
+            "daily-daylight",
+            "guard-duty"
+          ],
+          "lowQualitySubmitted": 32
+        },
+        {
+          "daylight": 1,
+          "registered": 108,
+          "timeEligible": 108,
+          "highQualitySubmitted": 64,
+          "schedules": [
+            "ceremony-daylight",
+            "daily-daylight",
+            "guard-duty"
+          ],
+          "lowQualitySubmitted": 32
+        }
+      ]
+    },
+    "playerCallback": {
+      "boundary": "Actual compiled main closure; finite feet/ground/bob and occupied values are supplied on the documented controller/flight shells. Real flight/controller integration is a separate retained test suite.",
+      "groundedUsesMaxFeetAndGround": true,
+      "airborneUsesFeet": true,
+      "bobRemoved": true,
+      "flightCases": [
+        {
+          "cameraPosition": [
+            100,
+            30,
+            100
+          ],
+          "result": null
+        },
+        {
+          "cameraPosition": [
+            0,
+            120,
+            -80
+          ],
+          "result": null
+        },
+        {
+          "cameraPosition": [
+            -50,
+            8,
+            20
+          ],
+          "result": null
+        }
+      ],
+      "restoredAfterFlight": true
+    },
+    "settingsOffOn": {
+      "offClearsInstances": true,
+      "offClearsDynamicBodies": true,
+      "unrelatedOwnerPreserved": true,
+      "onRestoresBoth": true,
+      "formalAcceptance": false
+    },
+    "sameSettingsActivation": {
+      "events": [
+        "click",
+        "Escape through actual main handler",
+        "secondary-touch"
+      ],
+      "samePanel": true,
+      "samePauseSession": true,
+      "focusRestored": true,
+      "extraShell": "FlightTour.clearInput no-op and finite aircraft position for main location lookup; flight implementation is not under test here."
+    }
+  },
+  "dayFrames": 44,
+  "day": {
+    "status": {
+      "registered": 108,
+      "loaded": 1,
+      "visible": 1,
+      "near": 0,
+      "renderCopies": 1,
+      "pending": 107,
+      "errors": 0,
+      "batches": 1,
+      "trianglesEstimate": 1272,
+      "rollout": "candidate-visible",
+      "enabled": true,
+      "contentEnabled": true,
+      "daylight": 1,
+      "lastError": null,
+      "interaction": {
+        "bodies": 1,
+        "blockedGroups": 0,
+        "retreatingGroups": 0,
+        "activationWaiting": 0
+      }
+    },
+    "render": {
+      "rootName": "QingInterpretationCharacters",
+      "rootAttachedToMainScene": true,
+      "instances": 1,
+      "meshes": [
+        {
+          "name": "characters:official-ceremonial|standing|1|static|standard",
+          "isInstancedMesh": true,
+          "count": 1,
+          "vertices": 812,
+          "indices": 3816
+        }
+      ]
+    },
+    "bodies": 1
+  },
+  "nightFrames": 36,
+  "night": {
+    "status": {
+      "registered": 108,
+      "loaded": 16,
+      "visible": 10,
+      "near": 2,
+      "renderCopies": 10,
+      "pending": 92,
+      "errors": 0,
+      "batches": 2,
+      "trianglesEstimate": 17038,
+      "rollout": "candidate-visible",
+      "enabled": true,
+      "contentEnabled": true,
+      "daylight": 0,
+      "lastError": null,
+      "interaction": {
+        "bodies": 16,
+        "blockedGroups": 0,
+        "retreatingGroups": 0,
+        "activationWaiting": 0
+      }
+    },
+    "render": {
+      "rootName": "QingInterpretationCharacters",
+      "rootAttachedToMainScene": true,
+      "instances": 10,
+      "meshes": [
+        {
+          "name": "characters:official-ceremonial|standing|1|static|standard",
+          "isInstancedMesh": true,
+          "count": 8,
+          "vertices": 812,
+          "indices": 3816
+        },
+        {
+          "name": "characters:official-ceremonial|standing|0|static|standard",
+          "isInstancedMesh": true,
+          "count": 2,
+          "vertices": 2279,
+          "indices": 10293
+        }
+      ]
+    },
+    "bodies": 16,
+    "eligibleSchedules": [
+      "ceremony-daylight"
+    ]
+  },
+  "reenabledFrames": 3,
+  "pass": true,
+  "disposal": {
+    "dynamicOwners": 0
+  }
+}

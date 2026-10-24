@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+const base='aa5793395a16fbd870ce758174a5f9438f3bc423',sha=b=>createHash('sha256').update(b).digest('hex');
+const p='data/characters/world-source-freeze.json',old=execFileSync('git',['show',base+':'+p]),previous=JSON.parse(old);
+const archive='data/characters/world-source-freeze-r65-character-experience.json';if(fs.existsSync(archive)&&!fs.readFileSync(archive).equals(old))throw Error('Previous manifest archive differs');fs.writeFileSync(archive,old);
+const extra=['ChonghuaSouthKnees','YanchunSouthPhotoFit','HUnknownInventory','YinghuaSouthLattice','YinghuaGate'].map(n=>'src/scene/palace/special/'+n+'.js');
+const files=[...new Set([...previous.files.map(f=>f.path),...extra])].sort().map(path=>({path,sha256:sha(fs.readFileSync(path))}));
+const changed=previous.files.filter(f=>sha(fs.readFileSync(f.path))!==f.sha256).map(f=>({path:f.path,beforeSHA256:f.sha256,afterSHA256:sha(fs.readFileSync(f.path))}));
+const freeze={schemaVersion:22,baselineCommit:base,purpose:'R66 H bounded source-guided joinery, plaque, lattice and gate fits; original Yanchun rail restored; exact two-host UNKNOWN furniture withholding. All R65 character,108 logical roles,24 paths, Kit, day/night and credit bytes retained. No GPU or whole-H historical acceptance.',provenance:{previousWorldVersion:'R65-character-experience',previousReleaseCommit:base,previousManifestPath:archive,previousManifestSHA256:sha(old),previousFileCount:previous.files.length,fileCount:files.length,changedPreviouslyTrackedSources:changed,newlyTrackedSources:files.filter(f=>!previous.files.some(o=>o.path===f.path))},files};
+fs.writeFileSync(p,JSON.stringify(freeze,null,2)+'\n');
+fs.writeFileSync('release.json',JSON.stringify({release:'R66'},null,2)+'\n');
+fs.mkdirSync('release/r66',{recursive:true});fs.writeFileSync('release/r66/start.mjs',fs.readFileSync('release/r65/start.mjs','utf8').replaceAll('R65','R66'));
+console.log(JSON.stringify({worldSourceFiles:files.length,changed:changed.map(f=>f.path),archiveSha:sha(old)}));

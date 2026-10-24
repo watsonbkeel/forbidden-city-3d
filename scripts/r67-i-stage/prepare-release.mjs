@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+const base='838945e3aa14983cfdbeee4ae2b25596271d6496',sha=b=>createHash('sha256').update(b).digest('hex');
+const p='data/characters/world-source-freeze.json',old=execFileSync('git',['show',base+':'+p]),previous=JSON.parse(old);
+const archive='data/characters/world-source-freeze-r66-h-northwest.json';if(fs.existsSync(archive)&&!fs.readFileSync(archive).equals(old))throw Error('Previous manifest archive differs');fs.writeFileSync(archive,old);
+const extra=['src/scene/palace/special/NingshouSouthPhotoWindows.js'];
+const files=[...new Set([...previous.files.map(f=>f.path),...extra])].sort().map(path=>({path,sha256:sha(fs.readFileSync(path))}));
+const changed=previous.files.filter(f=>sha(fs.readFileSync(f.path))!==f.sha256).map(f=>({path:f.path,beforeSHA256:f.sha256,afterSHA256:sha(fs.readFileSync(f.path))}));
+const freeze={schemaVersion:23,baselineCommit:base,purpose:'R67-I bounded six south NingShou window fits, JingQi upper south lattice, YueShi curved green verge, ChangYin exterior rail paint and exact seven-host UNKNOWN inventory. Preserves all R66/R65 cumulative physics,108actors24paths. Not complete I acceptance or GPU verification',provenance:{previousWorldVersion:'R66-H',previousReleaseCommit:base,previousManifestPath:archive,previousManifestSHA256:sha(old),previousFileCount:previous.files.length,fileCount:files.length,changedPreviouslyTrackedSources:changed,newlyTrackedSources:files.filter(f=>!previous.files.some(o=>o.path===f.path))},files};
+fs.writeFileSync(p,JSON.stringify(freeze,null,2)+'\n');
+fs.writeFileSync('release.json',JSON.stringify({release:'R67'},null,2)+'\n');
+fs.mkdirSync('release/r67',{recursive:true});fs.writeFileSync('release/r67/start.mjs',fs.readFileSync('release/r66/start.mjs','utf8').replaceAll('R66','R67'));
+console.log(JSON.stringify({worldSourceFiles:files.length,changed:changed.map(f=>f.path),archiveSha:sha(old)}));
