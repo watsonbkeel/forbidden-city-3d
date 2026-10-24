@@ -1,0 +1,88 @@
+TAP version 13
+# Subtest: R77 all 886 crenels face outward and are supported within unchanged wall-top footprints
+ok 1 - R77 all 886 crenels face outward and are supported within unchanged wall-top footprints
+  ---
+  duration_ms: 61.675896
+  type: 'test'
+  ...
+# Subtest: R77 exact delta omits only 22 Wumen ascent slots and shifts remaining 886 crenel centers
+ok 2 - R77 exact delta omits only 22 Wumen ascent slots and shifts remaining 886 crenel centers
+  ---
+  duration_ms: 52.162367
+  type: 'test'
+  ...
+# Subtest: R77 supported south crenels do not intrude either retained Wumen folded ascent clearance
+ok 3 - R77 supported south crenels do not intrude either retained Wumen folded ascent clearance
+  ---
+  duration_ms: 19.317845
+  type: 'test'
+  ...
+# Subtest: Wumen wall-cap fit has an isolated geometry-only entry point
+ok 4 - Wumen wall-cap fit has an isolated geometry-only entry point
+  ---
+  duration_ms: 1.056174
+  type: 'test'
+  ...
+# Subtest: cap fit side -1 preserves ownership, topology and every remote-end vertex attribute
+ok 5 - cap fit side -1 preserves ownership, topology and every remote-end vertex attribute
+  ---
+  duration_ms: 10.88071
+  type: 'test'
+  ...
+# Subtest: cap fit side -1 moves existing closed ends and keeps longitudinal texture coordinates registered
+ok 6 - cap fit side -1 moves existing closed ends and keeps longitudinal texture coordinates registered
+  ---
+  duration_ms: 4.902803
+  type: 'test'
+  ...
+# Subtest: cap fit side -1 clears the provisional Wumen flight footprint without moving the remote cap
+ok 7 - cap fit side -1 clears the provisional Wumen flight footprint without moving the remote cap
+  ---
+  duration_ms: 3.058687
+  type: 'test'
+  ...
+# Subtest: cap fit side 1 preserves ownership, topology and every remote-end vertex attribute
+ok 8 - cap fit side 1 preserves ownership, topology and every remote-end vertex attribute
+  ---
+  duration_ms: 1.317596
+  type: 'test'
+  ...
+# Subtest: cap fit side 1 moves existing closed ends and keeps longitudinal texture coordinates registered
+ok 9 - cap fit side 1 moves existing closed ends and keeps longitudinal texture coordinates registered
+  ---
+  duration_ms: 2.171487
+  type: 'test'
+  ...
+# Subtest: cap fit side 1 clears the provisional Wumen flight footprint without moving the remote cap
+ok 10 - cap fit side 1 clears the provisional Wumen flight footprint without moving the remote cap
+  ---
+  duration_ms: 1.665988
+  type: 'test'
+  ...
+# Subtest: zero trim is an exact no-op
+ok 11 - zero trim is an exact no-op
+  ---
+  duration_ms: 0.881923
+  type: 'test'
+  ...
+# Subtest: invalid fit parameters fail before any cap geometry changes
+ok 12 - invalid fit parameters fail before any cap geometry changes
+  ---
+  duration_ms: 8.178947
+  type: 'test'
+  ...
+# Subtest: unexpected generated geometry fails closed with no partial mutation of earlier meshes
+ok 13 - unexpected generated geometry fails closed with no partial mutation of earlier meshes
+  ---
+  duration_ms: 6.297075
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 382.917088

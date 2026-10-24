@@ -1,3 +1,4 @@
+import { outerMoatGroundPath, buildOuterMoat } from './palace/special/OuterMoat.js';
 import {buildDuanmenBackdrop} from './palace/special/DuanmenBackdrop.js';
 import { palaceWaterGroundPaths } from './palace/special/SouthWaterSystem.js';
 import * as THREE from 'three';
@@ -100,6 +101,8 @@ export class Environment {
     shape.closePath();
     const rivers = PALACE_LAYOUT.filter(item => item.type === 'river');
     for (const river of rivers) shape.holes.push(...palaceWaterGroundPaths(river));
+    const moat = PALACE_LAYOUT.find(item => item.type === 'moat');
+    if (moat) shape.holes.push(outerMoatGroundPath(moat));
     // Permanent dry-pool opening matches the dedicated current-state ruin.
     // It is protected by physical guards; it does not create an entry route.
     const cut = YANXI_RUIN_GROUND_CUTOUT, poolHole = new THREE.Path();
@@ -119,6 +122,7 @@ export class Environment {
     ground.position.y = 0;
     ground.receiveShadow = true;
     this.addObject(ground);
+    if (moat) this.addObject(buildOuterMoat(this.library, moat));
     
     // 中轴御道（stone_slab，沿 z 轴从场景南界（午门外）到神武门）
     const roadWidth = 8;

@@ -1,0 +1,48 @@
+TAP version 13
+# Subtest: R80 U ground cutout exposes water and preserves courtyard/south spawn/road dry ground
+not ok 1 - R80 U ground cutout exposes water and preserves courtyard/south spawn/road dry ground
+  ---
+  duration_ms: 26.042132
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r80-three-side-moat/tests/r80-ground-lifecycle.test.mjs:4:1'
+  failureType: 'testCodeFailure'
+  error: '0,590'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r80-three-side-moat/tests/r80-ground-lifecycle.test.mjs:4:455)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: R80 environment owns water/bank clones once, preserves borrowed materials, and recreates cleanly
+ok 2 - R80 environment owns water/bank clones once, preserves borrowed materials, and recreates cleanly
+  ---
+  duration_ms: 7.605826
+  type: 'test'
+  ...
+# Subtest: R80 profile has three disjoint strips and one open-south contour at inherited coordinates
+ok 3 - R80 profile has three disjoint strips and one open-south contour at inherited coordinates
+  ---
+  duration_ms: 1.383308
+  type: 'test'
+  ...
+# Subtest: R80 water and bed stay under the shared hole; banks are separate axis-aligned owned meshes
+ok 4 - R80 water and bed stay under the shared hole; banks are separate axis-aligned owned meshes
+  ---
+  duration_ms: 3.184364
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 3
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 176.985394
