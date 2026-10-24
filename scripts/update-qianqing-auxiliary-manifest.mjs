@@ -1,8 +1,0 @@
-// Run only after the explicitly reviewed Blender source is exported. This
-// regenerates the registry's full-file SHA and the runtime mesh identity table.
-// It does not approve the changed model; focused tests and pixel review follow.
-import fs from 'node:fs';import {createHash} from 'node:crypto';import {GLTFLoader}from'three/examples/jsm/loaders/GLTFLoader.js';import{qianqingVisibleSignatures}from'../src/scene/interior/QianqingAuxiliarySignature.js';
-const cfgPath=new URL('../data/interiors/qianqing.json',import.meta.url),cfg=JSON.parse(fs.readFileSync(cfgPath)),sha=b=>createHash('sha256').update(b).digest('hex'),bytes=fs.readFileSync(new URL('../public'+cfg.model,import.meta.url)),assetSHA=sha(bytes),r=(await new GLTFLoader().parseAsync(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.length),'')).scene;
-const meshes=qianqingVisibleSignatures(r);let tris=0;r.traverse(o=>{if(o.isMesh&&!/^(COL_|WALK_)/.test(o.name))tris+=(o.geometry.index?.count??o.geometry.attributes.position.count)/3});
-cfg.asset={...cfg.asset,sourceSHA256:sha(fs.readFileSync(new URL('../assets-src/interiors/build_qianqing_auxiliary.py',import.meta.url))),sha256:assetSHA,renderableTriangles:tris,visibleMeshes:meshes.length};
-fs.writeFileSync(cfgPath,JSON.stringify(cfg,null,2)+'\n');fs.writeFileSync(new URL('../src/scene/interior/QianqingAuxiliaryManifest.js',import.meta.url),'// Generated from the exact decoded, reviewed Qianqing auxiliary asset.\nexport const QIANQING_AUXILIARY_ASSET_SHA256='+JSON.stringify(assetSHA)+';\nexport const QIANQING_AUXILIARY_MESHES='+JSON.stringify(meshes,null,2)+';\n');console.log(JSON.stringify({bytes:bytes.length,...cfg.asset,meshNames:meshes.map(m=>m.name)},null,2));

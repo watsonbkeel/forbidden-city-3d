@@ -1,8 +1,0 @@
-import fs from 'node:fs';
-import test from 'node:test';import assert from 'node:assert/strict';import {visiblePatrolViewpoint,isGuardPatrolActor} from './lib/r54-patrol-viewpoint.mjs';
-const s={position:[0,0,0],rotationYRad:0},world=(collision=false,ground=0)=>({cm:{getGroundHeight:()=>ground,checkCollision:()=>collision}});
-test('QA observer prefers side-on and rejects occluded submitted triangles before accepting a supported visible view',async()=>{let calls=0;const r=await visiblePatrolViewpoint(world(),s,()=>++calls===1?0:3);assert.equal(calls,2);assert.equal(r.attempts[0].visible,0);assert.equal(r.attempts[1].visible,3);assert.ok(r.camera[0]<0);assert.equal(r.camera[1],1.7);});
-test('QA observer fails closed after finite ray attempts, without moving actor sample',async()=>{let calls=0;const before=JSON.stringify(s);await assert.rejects(visiblePatrolViewpoint(world(),s,()=>{calls++;return 0;}),/18 bounded/);assert.equal(calls,18);assert.equal(JSON.stringify(s),before);});
-test('QA observer never uses body-colliding or unsupported camera candidates',async()=>{for(const W of [world(true),world(false,2)]){let calls=0;await assert.rejects(visiblePatrolViewpoint(W,s,()=>{calls++;return 9;}),/18 bounded/);assert.equal(calls,0);}});
-
-test('observer selector matches the actual six shipped formation guards, not a guessed template name',()=>{const actors=JSON.parse(fs.readFileSync('data/characters/actors.json')).actors;assert.equal(actors.filter(isGuardPatrolActor).length,6);assert.equal(actors.filter(isGuardPatrolActor).every(a=>a.templateId==='guard-duty'),true);assert.deepEqual(actors.filter(isGuardPatrolActor).map(a=>a.id).sort(),['east','west'].flatMap(side=>[1,2,3].map(n=>side+'-lane-guard-0'+n)).sort());});

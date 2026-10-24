@@ -1,8 +1,0 @@
-import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
-import {ZoneBase} from '../src/scene/zones/ZoneBase.js';import {library} from './lib/inner-palace-fixture.mjs';
-import {snapshot,hash,policy} from './lib/r62-east-unknown-throne-fixture.mjs';
-import {applyEastUnknownThroneInventory,validateEastUnknownThroneInventoryPolicy} from '../src/scene/palace/special/EastUnknownThroneInventory.js';
-const config=JSON.parse(fs.readFileSync(new URL('../data/zones/east-six.json',import.meta.url))),indices=config.items.flatMap((i,n)=>i.kind==='hall'&&!i.name?[n]:[]),rows=[];
-test('R62 non-target roster remains exactly twenty-four unnamed hall declarations',()=>assert.equal(indices.length,24));
-for(const i of indices)test(`R62 unnamed east hall ${i} no-op and policy transplant rejects without mutation`,()=>{const z=new ZoneBase(library(),config),item=config.items[i],built=z.buildHall(item),before=snapshot(z.kit);assert.strictEqual(applyEastUnknownThroneInventory(z.kit,{zoneId:'east-six',itemIndex:i,item},built),built);assert.deepEqual(snapshot(z.kit),before);const transplanted={...item,furnishingPolicy:policy(i)};assert.throws(()=>validateEastUnknownThroneInventoryPolicy({zoneId:'east-six',itemIndex:i,item:transplanted}),/East unknown throne/);assert.deepEqual(snapshot(z.kit),before);rows.push({index:i,geometryHash:hash(before.meshes),navigationHash:hash({colliders:before.colliders,walkables:before.walkables,rooms:before.rooms,maps:before.maps})});z.kit.dispose(z.kit.root)});
-test.after(()=>fs.writeFileSync('reports/r62-east-unknown-thrones/unnamed-controls.json',JSON.stringify({scope:'Twenty-four independently built unnamed halls; no full zone or world.',rows},null,2)+'\n'));

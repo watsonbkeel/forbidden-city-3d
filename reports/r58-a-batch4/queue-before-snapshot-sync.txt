@@ -1,7 +1,0 @@
-Traceback (most recent call last):
-  File "/workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/scripts/photo-fidelity/validate.py", line 34, in <module>
-    ck('Release snapshots contain exact same tasks as queue',all(rd('RELEASES/'+r['release']+'.json')['objects']==[x for x in q['items'] if x['section']==r['section']] for r in q['releasePlan']))
-  File "/workspace/scratch/02a8023d1a85/r58-a-axis-fidelity/scripts/photo-fidelity/validate.py", line 9, in ck
-    if not condition:raise AssertionError(name)
-                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
-AssertionError: Release snapshots contain exact same tasks as queue
