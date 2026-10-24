@@ -1,0 +1,8 @@
+# R74 bounded exterior ledger
+R73 frozen local37325601 / remote f0f38303 verified before new worktree. Existing R73 runtime inventory captured before modifications, not replaced.
+Viewed official236581 page, photo436e0b34… and official plan46dbb034… pixels. PDF has no elevation. Parent accepted conservative ground0 plus .16m lip, width16 outside retained Qianqing terrace. Complete terrace joining and full courtyard remain unresolved. No new2mstairs or closed guessed courtyard.
+Component red: missingopt-in; later merged registration failed because integration insertion did not match whitespace. Fixed dispatch and reran; original logs retained.
+Drop fixture first failed because fakeDOM canvas lacked getContext; build geometry before controls fakeDOM. No product change needed. Final low/highfps drop can exit through doorway.
+Historical r30 passages suite fails at obsolete R32 PalaceBuilder source identity before executing tests; same failure actual/expected hashes reproduced on frozen R73. Preserve failure, use actual-world Qianqing two-passage round trips as successor behavioral evidence.
+Independent review caught accessible shell missing RoomNightLights registration. Added explicit empty interpretive room, no inventory or NPCspawn, within existing4/2lightpool. Red/green lighting tests retained; new fingerprint requires final retention reruns. Earlier night evidence is superseded, not relabeled current.
+Frozen final result:9focused,44cumulative and4full night worlds PASS;1290current-state1139pass151samefailures. Build and134-file backup bytechecks PASS. Independent reviewer approved lighting correction. No runtime edits after0506bef.

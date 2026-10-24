@@ -1,0 +1,252 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: exact R32 source candidate: src/scene/PalaceBuilder.js
++ actual - expected
+
++ 'c3a4cf4b1131d5420ac9348146098a463ec8920caad38cb546c47824401a6ee2'
+- '376f661ab30c75395a9e91a67f7824977e1d92352efe59db45beb96b824a7245'
+
+    at restorePreR32Source (file:///workspace/scratch/02a8023d1a85/r74-zhaoren-courtyard/tests/lib/r32-source-retention.mjs:40:10)
+    at historicalModule (file:///workspace/scratch/02a8023d1a85/r74-zhaoren-courtyard/tests/lib/historical-r31-scene-dependencies.mjs:16:17)
+    at historicalR31Dependency (file:///workspace/scratch/02a8023d1a85/r74-zhaoren-courtyard/tests/lib/historical-r31-scene-dependencies.mjs:28:82)
+    at file:///workspace/scratch/02a8023d1a85/r74-zhaoren-courtyard/tests/r30-qianqing-passages.test.mjs:18:68
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'c3a4cf4b1131d5420ac9348146098a463ec8920caad38cb546c47824401a6ee2',
+  expected: '376f661ab30c75395a9e91a67f7824977e1d92352efe59db45beb96b824a7245',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
+✖ tests/r30-qianqing-passages.test.mjs (253.178613ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=128,376, 树木=34棵, 碰撞器=455
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 293 个 region, 222 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 439.9ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 400.2ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 498.2ms
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 加载区域 east-six（东六宫），耗时 640.7ms
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 加载区域 east-six（东六宫），耗时 574.7ms
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 加载区域 east-six（东六宫），耗时 439.9ms
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 加载区域 outer-west（外西路），耗时 876.1ms
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 加载区域 outer-west（外西路），耗时 729.9ms
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 加载区域 outer-west（外西路），耗时 706.9ms
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 627.3ms
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 810.6ms
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 693.7ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 garden
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 ningshou
+✔ thirty beds remain unique across three actual zone unload/rebuild cycles and release owned resources (13652.495764ms)
+✔ 30 beds cover twelve palace compounds and all 28 distinct women without assigning men (0.952268ms)
+PASS: three blocked wake ticks preserve the checked route and release resumes walking.
+✔ tests/r72-blocked-wakeup.test.mjs (109.378278ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=128,376, 树木=34棵, 碰撞器=455
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 293 个 region, 222 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+✔ all 51 guards and eunuchs keep existing patrols or move near their posts at night (7135.144868ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=128,376, 树木=34棵, 碰撞器=455
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 293 个 region, 222 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+✔ single emperor walks from Taihe to Qianqing and returns at six (24471.067827ms)
+故宫 3D 初始化完成
+✔ production main owns real room lamps, passes same Beijing snapshot, updates budgets and disposes (58.71934ms)
+✔ Qianqing permanent navigation exposes actual stair and side approach, not a full exclusion box (8.297773ms)
+✔ Qianqing emperor seat and feet fit actual model surfaces LOD0 (18.462858ms)
+✔ Qianqing emperor seat and feet fit actual model surfaces LOD1 (5.365291ms)
+✔ Qianqing emperor seat and feet fit actual model surfaces LOD2 (1.148464ms)
+✔ each room has fitted lamps; bounded light pool follows camera without day changes (4.287835ms)
+✔ UTC+08 rest schedule crosses midnight with exact 21:00 and 06:00 boundaries (2.239861ms)
+✔ all 108 IDs retained, all 28 women assigned sleep role, only one emperor (0.224126ms)
+✔ bounded routine planner walks around wall instead of crossing it (201.115035ms)
+✔ sealed route fails explicitly with no invented fallback (220.444247ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=128,376, 树木=34棵, 碰撞器=455
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 293 个 region, 222 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+✔ all 28 women continuously reach individual beds and return at six without changing IDs (11725.906686ms)
+[
+  {
+    "template": "consort-daily",
+    "lod": 0,
+    "vertices": 5777,
+    "transformSteps": 46,
+    "maxWrites": 256,
+    "finalMs": 0.05319000000000074
+  },
+  {
+    "template": "consort-daily",
+    "lod": 1,
+    "vertices": 995,
+    "transformSteps": 8,
+    "maxWrites": 256,
+    "finalMs": 0.006069000000024971
+  },
+  {
+    "template": "consort-daily",
+    "lod": 2,
+    "vertices": 277,
+    "transformSteps": 3,
+    "maxWrites": 256,
+    "finalMs": 0.004146000000019967
+  },
+  {
+    "template": "maid-daily",
+    "lod": 0,
+    "vertices": 4215,
+    "transformSteps": 33,
+    "maxWrites": 256,
+    "finalMs": 0.007240999999993392
+  },
+  {
+    "template": "maid-daily",
+    "lod": 1,
+    "vertices": 867,
+    "transformSteps": 7,
+    "maxWrites": 256,
+    "finalMs": 0.005077999999997473
+  },
+  {
+    "template": "maid-daily",
+    "lod": 2,
+    "vertices": 277,
+    "transformSteps": 3,
+    "maxWrites": 256,
+    "finalMs": 0.0033859999999776846
+  }
+]
+PASS: 6 template/LOD transforms match former geometry, every transform step ≤128 vertices, no bulk rescans, bounds contain all vertices, 12 return/throw cancellation paths dispose exactly once.
+✔ tests/r72-sleep-budget.test.mjs (243.797809ms)
+✔ consort-daily sleeping LOD0 remains clothed, horizontal and on mattress (38.832556ms)
+✔ consort-daily sleeping LOD1 remains clothed, horizontal and on mattress (4.821573ms)
+✔ consort-daily sleeping LOD2 remains clothed, horizontal and on mattress (1.88585ms)
+✔ maid-daily sleeping LOD0 remains clothed, horizontal and on mattress (14.83176ms)
+✔ maid-daily sleeping LOD1 remains clothed, horizontal and on mattress (2.583355ms)
+✔ maid-daily sleeping LOD2 remains clothed, horizontal and on mattress (0.853561ms)
+✔ Taihe landing matches visible 2.06m dais, can leave without map at 10fps (27.260045ms)
+✔ Taihe landing matches visible 2.06m dais, can leave without map at 60fps (17.372502ms)
+✔ rockery high drop lands on sealed summit instead of internal void at 10fps (77.873413ms)
+✔ rockery high drop lands on sealed summit instead of internal void at 60fps (75.80394ms)
+✔ rockery summit KeyD jump escape at 10fps (67.770307ms)
+✔ rockery summit KeyA jump escape at 10fps (55.722799ms)
+✔ rockery summit KeyS jump escape at 10fps (53.08657ms)
+✔ rockery summit KeyW jump escape at 10fps (51.108842ms)
+✔ rockery summit KeyD jump escape at 60fps (61.151588ms)
+✔ rockery summit KeyA jump escape at 60fps (58.834612ms)
+✔ rockery summit KeyS jump escape at 60fps (59.197466ms)
+✔ rockery summit KeyW jump escape at 60fps (57.659019ms)
+✔ Taihe centre flight reaches dais, throne remains solid, can back away 10fps (26.207566ms)
+✔ Taihe centre flight reaches dais, throne remains solid, can back away 60fps (48.052247ms)
+✔ R73 registers independent Yangxin entrance without renaming Zunyi (1.308863ms)
+✔ R73 source-fit masonry portal is clear and full-height sides remain solid (31.940046ms)
+✔ R73 independent wood screen has central opening and two bypasses (10.380091ms)
+✔ R73 rejects invalid profile before allocating geometry (9.952171ms)
+✔ R73 actual merged west-six lifecycle retains one gate and releases new materials (992.977264ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=128,376, 树木=34棵, 碰撞器=455
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 293 个 region, 222 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+✔ R73 real merged complete world and real Yangxin GLB retain gate-to-hall round trip (6285.207062ms)
+✔ R73 route from Zunyi through glazed gate and rear screen reaches Yangxin front in both directions (635.544798ms)
+ℹ tests 45
+ℹ suites 0
+ℹ pass 44
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 70868.794282
+
+✖ failing tests:
+
+test at tests/r30-qianqing-passages.test.mjs:1:1
+✖ tests/r30-qianqing-passages.test.mjs (253.178613ms)
+  'test failed'

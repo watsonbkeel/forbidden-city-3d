@@ -1,0 +1,41 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: exact R32 source candidate: src/scene/PalaceBuilder.js
++ actual - expected
+
++ 'c3a4cf4b1131d5420ac9348146098a463ec8920caad38cb546c47824401a6ee2'
+- '376f661ab30c75395a9e91a67f7824977e1d92352efe59db45beb96b824a7245'
+
+    at restorePreR32Source (file:///workspace/scratch/02a8023d1a85/r73-yangxin-courtyard/tests/lib/r32-source-retention.mjs:40:10)
+    at historicalModule (file:///workspace/scratch/02a8023d1a85/r73-yangxin-courtyard/tests/lib/historical-r31-scene-dependencies.mjs:16:17)
+    at historicalR31Dependency (file:///workspace/scratch/02a8023d1a85/r73-yangxin-courtyard/tests/lib/historical-r31-scene-dependencies.mjs:28:82)
+    at file:///workspace/scratch/02a8023d1a85/r73-yangxin-courtyard/tests/r30-qianqing-passages.test.mjs:18:68
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'c3a4cf4b1131d5420ac9348146098a463ec8920caad38cb546c47824401a6ee2',
+  expected: '376f661ab30c75395a9e91a67f7824977e1d92352efe59db45beb96b824a7245',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
+✖ tests/r30-qianqing-passages.test.mjs (246.723158ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 253.558753
+
+✖ failing tests:
+
+test at tests/r30-qianqing-passages.test.mjs:1:1
+✖ tests/r30-qianqing-passages.test.mjs (246.723158ms)
+  'test failed'
