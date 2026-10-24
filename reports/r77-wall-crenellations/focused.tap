@@ -1,0 +1,51 @@
+✔ R77 exact R76 successor rejects unlisted mutation, deletion, addition and old-byte drift (90.542893ms)
+✔ R77 all 908 crenels face outward and are supported within unchanged wall-top footprints (56.936765ms)
+✔ R77 exact enclosure delta changes only crenel transverse positions, no mesh geometry or collider (54.863537ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=128,376, 树木=34棵, 碰撞器=455
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+✔ R77 actual fullworld collision, walkable, room and map registries remain byte-equivalent to R76 (5617.952792ms)
+✔ both production merged fold landings have only stone at y=10, with adjacent red wall tops retained (270.976107ms)
+✔ only the two upward faces change; every non-top vertex/normal/UV and physics stays exact (122.920958ms)
+✔ the mirrored notch is conservatively contained by the covered patch, with remaining top area and UV registration retained (119.444756ms)
+✔ actual merged Float32 notch is contained by the actual paving, without an epsilon hiding a gap (63.157912ms)
+ℹ {"side":"west","mergedNotch":{"minX":91.69999694824219,"maxX":97.9000015258789,"minZ":-422.5999755859375,"maxZ":-416.3999938964844},"mergedPaving":{"min":[91.69999694824219,9.880000114440918,-422.6000002384186],"max":[97.9000015258789,10,-409.7499996185303]},"southInsetMicrometres":24.65248110183893}
+ℹ {"side":"east","mergedNotch":{"minX":-97.9000015258789,"maxX":-91.69999694824219,"minZ":-422.5999755859375,"maxZ":-416.3999938964844},"mergedPaving":{"min":[-97.9000015258789,9.880000114440918,-422.6000002384186],"max":[-91.69999694824219,10,-409.7499996185303]},"southInsetMicrometres":24.65248110183893}
+✔ top UVs are interpolated from the original mapping, not remapped with assumed tile dimensions (55.554636ms)
+✔ unexpected inputs fail closed before changing any wall attribute (354.258881ms)
+✔ Wumen wall-cap fit has an isolated geometry-only entry point (0.858868ms)
+✔ cap fit side -1 preserves ownership, topology and every remote-end vertex attribute (9.502299ms)
+✔ cap fit side -1 moves existing closed ends and keeps longitudinal texture coordinates registered (3.794661ms)
+✔ cap fit side -1 clears the provisional Wumen flight footprint without moving the remote cap (2.330725ms)
+✔ cap fit side 1 preserves ownership, topology and every remote-end vertex attribute (1.239619ms)
+✔ cap fit side 1 moves existing closed ends and keeps longitudinal texture coordinates registered (2.108542ms)
+✔ cap fit side 1 clears the provisional Wumen flight footprint without moving the remote cap (1.571767ms)
+✔ zero trim is an exact no-op (0.944196ms)
+✔ invalid fit parameters fail before any cap geometry changes (6.820457ms)
+✔ unexpected generated geometry fails closed with no partial mutation of earlier meshes (5.64843ms)
+✔ only two local caps and covered wall-top notches change; every other enclosure face and all crenels remain exact (40.093522ms)
+✔ actual fitted cap end stays outside the return-flight and fold footprint at both signs (0.72708ms)
+✔ wall-top notches add exactly eight triangles; cap fit adds none, with no new material, texture or wall walkable (1.301286ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7991.195544

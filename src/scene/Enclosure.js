@@ -85,28 +85,28 @@ export class Enclosure {
     // 南墙：午门城台两侧接出（开口 = 午门城台宽）
     const wm = getBuildingData('午门');
     const wHalf = (wm.dimensions.platformWidth ?? wm.dimensions.width) / 2;
-    this.addWallSegment(parent, { x1: wm.position.x + wHalf, x2: X, z: zS, h: wallH, t: wallT, brickH,
+    this.addWallSegment(parent, { x1: wm.position.x + wHalf, x2: X, z: zS, outwardSide: -1, h: wallH, t: wallT, brickH,
       wumenCapFit: { side: 1, trimDistance: WUMEN_ASCENT_PROFILE.wallInterface.absoluteX[1] - wHalf } }, redMat, brickMat);
-    this.addWallSegment(parent, { x1: -X, x2: wm.position.x - wHalf, z: zS, h: wallH, t: wallT, brickH,
+    this.addWallSegment(parent, { x1: -X, x2: wm.position.x - wHalf, z: zS, outwardSide: -1, h: wallH, t: wallT, brickH,
       wumenCapFit: { side: -1, trimDistance: WUMEN_ASCENT_PROFILE.wallInterface.absoluteX[1] - wHalf } }, redMat, brickMat);
 
     // 北墙：神武门城台两侧接出（开口 = 神武门面阔）
     const sw = getBuildingData('神武门');
     const sHalf = sw.dimensions.width / 2;
-    this.addWallSegment(parent, { x1: sw.position.x + sHalf, x2: X, z: zN, h: wallH, t: wallT, brickH }, redMat, brickMat);
-    this.addWallSegment(parent, { x1: -X, x2: sw.position.x - sHalf, z: zN, h: wallH, t: wallT, brickH }, redMat, brickMat);
+    this.addWallSegment(parent, { x1: sw.position.x + sHalf, x2: X, z: zN, outwardSide: 1, h: wallH, t: wallT, brickH }, redMat, brickMat);
+    this.addWallSegment(parent, { x1: -X, x2: sw.position.x - sHalf, z: zN, outwardSide: 1, h: wallH, t: wallT, brickH }, redMat, brickMat);
 
     // 东西墙：东华门 / 西华门城台（zone outer-east / outer-west 的 cityGate，W = 30）处断开
     for (const [x, gz] of [[-X, EAST_GATE_Z], [X, WEST_GATE_Z]]) {
-      this.addWallSegmentZ(parent, { z1: zS, z2: gz - CITY_GATE_W / 2, x, h: wallH, t: wallT, brickH }, redMat, brickMat);
-      this.addWallSegmentZ(parent, { z1: gz + CITY_GATE_W / 2, z2: zN, x, h: wallH, t: wallT, brickH }, redMat, brickMat);
+      this.addWallSegmentZ(parent, { z1: zS, z2: gz - CITY_GATE_W / 2, x, outwardSide: Math.sign(x), h: wallH, t: wallT, brickH }, redMat, brickMat);
+      this.addWallSegmentZ(parent, { z1: gz + CITY_GATE_W / 2, z2: zN, x, outwardSide: Math.sign(x), h: wallH, t: wallT, brickH }, redMat, brickMat);
     }
   }
 
   /**
    * 添加一段沿 X 方向的墙（x1 到 x2，固定 z）
    */
-  addWallSegment(parent, { x1, x2, z, h, t, brickH, wumenCapFit }, redMat, brickMat) {
+  addWallSegment(parent, { x1, x2, z, h, t, brickH, wumenCapFit, outwardSide = -1 }, redMat, brickMat) {
     const len = Math.abs(x2 - x1);
     const cx = (x1 + x2) / 2;
     
@@ -143,11 +143,22 @@ export class Enclosure {
     const spacing = 3.5;
     const count = Math.floor(len / spacing);
     for (let i = 0; i < count; i++) {
+      const crenelX = x1 + (i + 0.5) * (len / count);
+      // The retained Wumen folded ascent occupies the existing south-wall cap exclusion.
+      // Leave intersecting crenel slots open; never obstruct its landings or sloped return.
+      const p = WUMEN_ASCENT_PROFILE;
+      const landingZ = p.retained.worldAnchorZ + p.fit.upperBand[0];
+      const southInterface = outwardSide === -1
+        && Math.abs(z - (p.retained.worldAnchorZ + (p.retained.southWallMinZ + p.retained.southWallMaxZ) / 2)) < 1e-6
+        && h === p.retained.southWallTop;
+      if (southInterface && z - t * 0.1 > landingZ
+        && Math.abs(crenelX) + crenelW / 2 > p.wallInterface.absoluteX[0]
+        && Math.abs(crenelX) - crenelW / 2 < p.wallInterface.absoluteX[1]) continue;
       const crenel = new THREE.Mesh(
         new THREE.BoxGeometry(crenelW, crenelH, t * 0.4),
         redMat
       );
-      crenel.position.set(x1 + (i + 0.5) * (len / count), h + crenelH / 2, z - t / 2 - t * 0.2);
+      crenel.position.set(crenelX, h + crenelH / 2, z + outwardSide * t * 0.3);
       crenel.castShadow = true;
       parent.add(crenel);
     }
@@ -162,7 +173,7 @@ export class Enclosure {
   /**
    * 添加一段沿 Z 方向的墙（z1 到 z2，固定 x）
    */
-  addWallSegmentZ(parent, { z1, z2, x, h, t, brickH }, redMat, brickMat) {
+  addWallSegmentZ(parent, { z1, z2, x, h, t, brickH, outwardSide = Math.sign(x) }, redMat, brickMat) {
     const len = Math.abs(z2 - z1);
     const cz = (z1 + z2) / 2;
     
@@ -200,8 +211,8 @@ export class Enclosure {
         new THREE.BoxGeometry(t * 0.4, crenelH, crenelW),
         redMat
       );
-      const side = x > 0 ? 1 : -1;
-      crenel.position.set(x + side * (t / 2 + t * 0.2), h + crenelH / 2, z1 + (i + 0.5) * (len / count));
+      // Engineering fit: outer face flush, entire .4t depth supported on wall.
+      crenel.position.set(x + outwardSide * t * 0.3, h + crenelH / 2, z1 + (i + 0.5) * (len / count));
       crenel.castShadow = true;
       parent.add(crenel);
     }

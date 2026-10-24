@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {navSnapshot} from './lib/r77-world-nav.mjs';
+test('R77 actual fullworld collision, walkable, room and map registries remain byte-equivalent to R76',async()=>{const expected=JSON.parse(fs.readFileSync('reports/r77-wall-crenellations/baseline-world-nav.json')),actual=await navSnapshot();assert.deepEqual(actual,expected);fs.writeFileSync('reports/r77-wall-crenellations/current-world-nav.json',JSON.stringify(actual,null,2));});

@@ -1,0 +1,33 @@
+✔ R77 exact R76 successor rejects unlisted mutation, deletion, addition and old-byte drift (124.189956ms)
+✔ R77 all 886 crenels face outward and are supported within unchanged wall-top footprints (80.039055ms)
+✔ R77 exact delta omits only 22 Wumen ascent slots and shifts remaining 886 crenel centers (77.81085ms)
+✔ R77 supported south crenels do not intrude either retained Wumen folded ascent clearance (25.223884ms)
+✔ both production merged fold landings have only stone at y=10, with adjacent red wall tops retained (412.651908ms)
+✔ only the two upward faces change; every non-top vertex/normal/UV and physics stays exact (166.838701ms)
+✔ the mirrored notch is conservatively contained by the covered patch, with remaining top area and UV registration retained (146.928668ms)
+✔ actual merged Float32 notch is contained by the actual paving, without an epsilon hiding a gap (70.58029ms)
+ℹ {"side":"west","mergedNotch":{"minX":91.69999694824219,"maxX":97.9000015258789,"minZ":-422.5999755859375,"maxZ":-416.3999938964844},"mergedPaving":{"min":[91.69999694824219,9.880000114440918,-422.6000002384186],"max":[97.9000015258789,10,-409.7499996185303]},"southInsetMicrometres":24.65248110183893}
+ℹ {"side":"east","mergedNotch":{"minX":-97.9000015258789,"maxX":-91.69999694824219,"minZ":-422.5999755859375,"maxZ":-416.3999938964844},"mergedPaving":{"min":[-97.9000015258789,9.880000114440918,-422.6000002384186],"max":[-91.69999694824219,10,-409.7499996185303]},"southInsetMicrometres":24.65248110183893}
+✔ top UVs are interpolated from the original mapping, not remapped with assumed tile dimensions (71.395102ms)
+✔ unexpected inputs fail closed before changing any wall attribute (543.517585ms)
+✔ Wumen wall-cap fit has an isolated geometry-only entry point (1.054581ms)
+✔ cap fit side -1 preserves ownership, topology and every remote-end vertex attribute (11.49968ms)
+✔ cap fit side -1 moves existing closed ends and keeps longitudinal texture coordinates registered (4.867327ms)
+✔ cap fit side -1 clears the provisional Wumen flight footprint without moving the remote cap (2.837463ms)
+✔ cap fit side 1 preserves ownership, topology and every remote-end vertex attribute (1.495031ms)
+✔ cap fit side 1 moves existing closed ends and keeps longitudinal texture coordinates registered (2.590644ms)
+✔ cap fit side 1 clears the provisional Wumen flight footprint without moving the remote cap (1.929863ms)
+✔ zero trim is an exact no-op (1.052038ms)
+✔ invalid fit parameters fail before any cap geometry changes (5.003221ms)
+✔ unexpected generated geometry fails closed with no partial mutation of earlier meshes (3.920998ms)
+✔ only two local caps and covered wall-top notches change; every other enclosure face and all crenels remain exact (36.282152ms)
+✔ actual fitted cap end stays outside the return-flight and fold footprint at both signs (0.451717ms)
+✔ wall-top notches add exactly eight triangles; cap fit adds none, with no new material, texture or wall walkable (1.278867ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2795.91105

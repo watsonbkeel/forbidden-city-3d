@@ -1,0 +1,44 @@
+✔ R77 all 908 crenels face outward and are supported within unchanged wall-top footprints (56.153386ms)
+✔ R77 exact enclosure delta changes only crenel transverse positions, no mesh geometry or collider (55.5663ms)
+✖ R77 actual fullworld collision, walkable, room and map registries remain byte-equivalent to R76 (0.863605ms)
+✔ both production merged fold landings have only stone at y=10, with adjacent red wall tops retained (312.235ms)
+✔ only the two upward faces change; every non-top vertex/normal/UV and physics stays exact (146.582896ms)
+✔ the mirrored notch is conservatively contained by the covered patch, with remaining top area and UV registration retained (146.933856ms)
+✔ actual merged Float32 notch is contained by the actual paving, without an epsilon hiding a gap (82.545324ms)
+ℹ {"side":"west","mergedNotch":{"minX":91.69999694824219,"maxX":97.9000015258789,"minZ":-422.5999755859375,"maxZ":-416.3999938964844},"mergedPaving":{"min":[91.69999694824219,9.880000114440918,-422.6000002384186],"max":[97.9000015258789,10,-409.7499996185303]},"southInsetMicrometres":24.65248110183893}
+ℹ {"side":"east","mergedNotch":{"minX":-97.9000015258789,"maxX":-91.69999694824219,"minZ":-422.5999755859375,"maxZ":-416.3999938964844},"mergedPaving":{"min":[-97.9000015258789,9.880000114440918,-422.6000002384186],"max":[-91.69999694824219,10,-409.7499996185303]},"southInsetMicrometres":24.65248110183893}
+✔ top UVs are interpolated from the original mapping, not remapped with assumed tile dimensions (61.745949ms)
+✔ unexpected inputs fail closed before changing any wall attribute (363.849448ms)
+✔ Wumen wall-cap fit has an isolated geometry-only entry point (0.770937ms)
+✔ cap fit side -1 preserves ownership, topology and every remote-end vertex attribute (12.190443ms)
+✔ cap fit side -1 moves existing closed ends and keeps longitudinal texture coordinates registered (3.789964ms)
+✔ cap fit side -1 clears the provisional Wumen flight footprint without moving the remote cap (2.799409ms)
+✔ cap fit side 1 preserves ownership, topology and every remote-end vertex attribute (1.212869ms)
+✔ cap fit side 1 moves existing closed ends and keeps longitudinal texture coordinates registered (2.288112ms)
+✔ cap fit side 1 clears the provisional Wumen flight footprint without moving the remote cap (1.555503ms)
+✔ zero trim is an exact no-op (1.262194ms)
+✔ invalid fit parameters fail before any cap geometry changes (7.68733ms)
+✔ unexpected generated geometry fails closed with no partial mutation of earlier meshes (6.680289ms)
+✔ only two local caps and covered wall-top notches change; every other enclosure face and all crenels remain exact (37.52426ms)
+✔ actual fitted cap end stays outside the return-flight and fold footprint at both signs (0.525689ms)
+✔ wall-top notches add exactly eight triangles; cap fit adds none, with no new material, texture or wall walkable (1.09353ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 21
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2221.30573
+
+✖ failing tests:
+
+test at tests/r77-world-nav.test.mjs:2:1
+✖ R77 actual fullworld collision, walkable, room and map registries remain byte-equivalent to R76 (0.863605ms)
+  SyntaxError: Unexpected token 'G', "[GardenBuil"... is not valid JSON
+      at JSON.parse (<anonymous>)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r77-wall-crenellations/tests/r77-world-nav.test.mjs:2:134)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)

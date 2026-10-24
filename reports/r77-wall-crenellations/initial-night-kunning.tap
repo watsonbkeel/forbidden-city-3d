@@ -1,0 +1,50 @@
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=128,376, 树木=34棵, 碰撞器=455
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 483.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+[ZoneManager] 卸载区域 west-six
+✖ R77 retention actual kunning world night beds, emperor, blocking, reload and civil-time boundaries (45927.589854ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 46344.075248
+
+✖ failing tests:
+
+test at tests/r77-night-four-world.test.mjs:5:1
+✖ R77 retention actual kunning world night beds, emperor, blocking, reload and civil-time boundaries (45927.589854ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '7e23d6afee67d8c6719cee83fa351929043429c7591a9124c7f4f32e87184e6c'
+  - 'c8f12ec374243be9a97c599129bd1395ab1cde944c2c36551d10b41b6722bd33'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r77-wall-crenellations/tests/r77-night-four-world.test.mjs:31:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '7e23d6afee67d8c6719cee83fa351929043429c7591a9124c7f4f32e87184e6c',
+    expected: 'c8f12ec374243be9a97c599129bd1395ab1cde944c2c36551d10b41b6722bd33',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
