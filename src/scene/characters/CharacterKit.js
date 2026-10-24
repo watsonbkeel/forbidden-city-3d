@@ -1,3 +1,4 @@
+const SLEEP_EYES = Symbol('sleeping-eyelids');
 import * as THREE from 'three';
 
 /** Qing-themed interpretation, not a reconstruction of a dated individual costume.
@@ -196,7 +197,7 @@ function* femaleHair(b,t,lod,off,z,rig){
   for(const side of [-1,1])yield* b.tube([[side*.076,1.516+off,z+.003],[side*.077,1.492+off,z+.005]],[[.0015,.0015],[.0028,.0028]],5,t.accent,rig);
  }
 }
-function* femaleHead(b,t,lod,off,z){
+function* femaleHead(b,t,lod,off,z,closedEyes=false){
  const consort=t.hat==='dressed-hair',seg=[32,10,6][lod],pivot=[0,1.425+off,z],rig={part:1,pivot,weight:p=>clamp((p[1]-(1.405+off))/.04),torsoWeight:1};
  yield* b.loft([{y:1.405+off,rx:.042,rz:.040,z},{y:1.450+off,rx:.041,rz:.038,z},{y:1.473+off,rx:.033,rz:.030,z:z-.008},{y:1.495+off,rx:.034,rz:.030,z:z-.005}],seg,FEMALE_SKIN,rig);
  const shapedHeadStart=b.p.length/3;
@@ -209,12 +210,14 @@ function* femaleHead(b,t,lod,off,z){
    const eyePoint=(x,y,depth=.004)=>{const sk=femaleSkullAt(y-off);return [x,y,z+sk.z+sk.rz*Math.sqrt(Math.max(.02,1-(x/(sk.rx*(consort?1:1.025)))**2))+depth];};
    const eyeDisk=function*(radius,color,depth,count){const pts=[];for(let k=0;k<count;k++){const angle=k/count*Math.PI*2;pts.push(eyePoint(ex+radius*Math.cos(angle),ey+.0003+radius*Math.sin(angle),depth));}yield* b.patch(pts,color,rig);};
    const eye=[[-.016,0,-.003],[-.010,.005,.001],[0,.006,.003],[.010,.004,.001],[.016,-.001,-.004],[.008,-.004,.001],[0,-.005,.003],[-.009,-.003,.001]].map(([x,y,zz])=>eyePoint(ex+x,ey+y,.003+Math.max(0,zz)*.6));
+   if(!closedEyes){
    yield* b.patch(eye,0xe5ddd0,rig);
    yield* eyeDisk(.0052,0x6b4932,.0056,14);
    yield* eyeDisk(.0028,0x171716,.0061,12);
    const glint=eyePoint(ex-.0014,ey+.002,.0065);yield* circularPatch(b,glint,.0011,0xf4eee2,rig,6);
    yield* b.ribbon(eye.slice(0,5),.0017,0x49352b,rig);
    yield* b.ribbon([eye[4],...eye.slice(5),eye[0]],.0008,0x9e735d,rig);
+   }
    yield* b.ribbon([eyePoint(ex-.016,ey+.012,.0025),eyePoint(ex-.007,ey+.016,.003),eyePoint(ex+.006,ey+.017,.003),eyePoint(ex+.017,ey+.013,.0025)],.0026,0x4b3c30,rig);
   }
   yield* b.loft([{y:1.528+off,rx:.007,rz:.007,z:z+.074},{y:1.534+off,rx:.010,rz:.011,z:z+.078},{y:1.540+off,rx:.009,rz:.012,z:z+.078},{y:1.548+off,rx:.006,rz:.009,z:z+.075},{y:1.560+off,rx:.005,rz:.006,z:z+.072},{y:1.574+off,rx:.003,rz:.004,z:z+.069}],12,0xd1a487,rig);
@@ -222,6 +225,11 @@ function* femaleHead(b,t,lod,off,z){
   const lip=consort?.017:.018,ly=1.502+off;
   yield* b.loft([{y:ly-.006,rx:.006,rz:.003,z:z+.068},{y:ly-.002,rx:lip*.82,rz:.0045,z:z+.070},{y:ly+.001,rx:lip,rz:.0037,z:z+.070},{y:ly+.004,rx:.007,rz:.003,z:z+.069}],12,0xc08c79,rig);
   yield* b.ribbon([[-lip*.85,ly,z+.072],[0,ly-.0008,z+.075],[lip*.85,ly,z+.072]],.0009,0x825d4e,rig);
+ }
+ if(closedEyes)for(const side of[-1,1]){
+  const ex=side*(consort?.0315:.033),ey=1.565+off;
+  const points=[[-.016,.001],[-.008,-.002],[0,-.003],[.008,-.002],[.016,.001]].map(([dx,dy])=>{const x=ex+dx,y=ey+dy,sk=femaleSkullAt(y-off);return[x,y,z+sk.z+sk.rz*Math.sqrt(Math.max(.02,1-(x/(sk.rx*(consort?1:1.025)))**2))+.004];});
+  yield* b.ribbon(points,lod===0?.0018:.0024,0x513b32,rig);
  }
  yield* femaleHair(b,t,lod,off,z,rig);
  // Keep the adult crown height and all facial feature distances. Translate
@@ -354,8 +362,8 @@ function* femaleOutfit(b,t,pose,lod,off,z,bodyRig,skirtRig,lower,seg){
  }
 }
 
-function* head(b,t,lod,off,z){
-  if(isFemale(t)){yield* femaleHead(b,t,lod,off,z);return;}
+function* head(b,t,lod,off,z,closedEyes=false){
+  if(isFemale(t)){yield* femaleHead(b,t,lod,off,z,closedEyes);return;}
   const seg=[20,8,6][lod],pivot=[0,1.425+off,z],rig={part:1,pivot,weight:p=>clamp((p[1]-(1.405+off))/.04),torsoWeight:1};
   yield* b.loft([{y:1.405+off,rx:.049,rz:.046,z},{y:1.465+off,rx:.054,rz:.051,z}],seg,SKIN,rig);
   yield* b.loft([{y:1.452+off,rx:.035,rz:.042,z:z+.012},{y:1.47+off,rx:.057,rz:.066,z:z+.008},{y:1.51+off,rx:.076,rz:.077,z},{y:1.56+off,rx:.081,rz:.076,z},{y:1.61+off,rx:.077,rz:.069,z:z-.004},{y:1.665+off,rx:.055,rz:.047,z:z-.006},{y:1.70+off,rx:.012,rz:.012,z:z-.007}],seg,SKIN_LIGHT,rig);
@@ -424,7 +432,7 @@ export function* createCharacterGeometrySteps(templateId,pose='standing',lod=0,o
  // Static sleeping pose deliberately has no standing/ kneeling shader motion.
  if(pose==='sleeping'){
   if(!['consort-daily','maid-daily'].includes(templateId))throw new Error('Sleeping pose requires an adult residential female template');
-  const g=yield* createCharacterGeometrySteps(templateId,'standing',lod,{...options,seatVariant:'standard',femalePose:'resting'});
+  const g=yield* createCharacterGeometrySteps(templateId,'standing',lod,{...options,[SLEEP_EYES]:true,seatVariant:'standard',femalePose:'resting'});
   // Preserve the preparation work budget: rigid transform in bounded batches,
   // with analytical bounds instead of synchronous whole-mesh rescans.
   const oldBounds=g.boundingBox.clone(),minZ=oldBounds.min.z,cy=(oldBounds.min.y+oldBounds.max.y)/2;
@@ -438,7 +446,7 @@ export function* createCharacterGeometrySteps(templateId,pose='standing',lod=0,o
    if(g.boundingSphere){const c=g.boundingSphere.center,y=c.y,z=c.z;c.set(c.x,z-minZ,cy-y);}else g.boundingSphere=g.boundingBox.getBoundingSphere(new THREE.Sphere());
    p.needsUpdate=true;if(n)n.needsUpdate=true;complete=true;
   }finally{if(!complete)g.dispose();}
-  g.userData={...g.userData,pose:'sleeping',poseIndex:3,groundContacts:[],seatContact:null,seatPelvis:null,
+  g.userData={...g.userData,eyeState:'closed',pose:'sleeping',poseIndex:3,groundContacts:[],seatContact:null,seatPelvis:null,
    bodyHeightMeters:g.boundingBox.max.y,sleepingBounds:g.boundingBox.toArray?.()??{min:g.boundingBox.min.toArray(),max:g.boundingBox.max.toArray()},
    poseTransitions:'discrete-checked-bed-transfer',historyStatus:'requested-gameplay-rest-not-historical-schedule'};
   return g;
@@ -490,7 +498,7 @@ export function* createCharacterGeometrySteps(templateId,pose='standing',lod=0,o
  }
  }
  for(const side of [-1,1])yield* arm(b,t,pose,lod,off,z,side,femalePose,seatVariant);
- yield* head(b,t,lod,off,z);
+ yield* head(b,t,lod,off,z,options[SLEEP_EYES]===true);
  if(pose==='standing'){yield* shoe(b,-.105,0,.005,lod,4,pose);yield* shoe(b,.105,0,.005,lod,5,pose);}
  else if(pose==='seated'){yield* shoe(b,-.12,footY,footZ,lod,4,pose);yield* shoe(b,.12,footY,footZ,lod,5,pose);}
  else{yield* shoe(b,-.15,0,-.26,lod,4,pose);yield* shoe(b,.15,0,-.26,lod,5,pose);}

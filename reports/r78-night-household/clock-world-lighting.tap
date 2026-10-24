@@ -1,0 +1,247 @@
+✖ R78 exact civil boundaries, reversed preview and live resume retain ambient and outdoor light (9.008871ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=128,376, 树木=34棵, 碰撞器=455
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+✔ R78 actual occupied bedrooms dim and emperor working room stays lit in both quality modes (5371.922256ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5699.647781
+
+✖ failing tests:
+
+test at tests/r78-environment-clock.test.mjs:2:1
+✖ R78 exact civil boundaries, reversed preview and live resume retain ambient and outdoor light (9.008871ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /roomNightLights\.update\([^;]*this\.environment\.dayCycle\.beijingTime/. Input:
+  
+  "import {RoomNightLights} from './src/scene/sky/RoomNightLights.js';\n" +
+    "import * as THREE from 'three';\n" +
+    "import { Environment } from './src/scene/Environment.js';\n" +
+    "import { PalaceBuilder } from './src/scene/PalaceBuilder.js';\n" +
+    "import { PALACE_LAYOUT } from './src/scene/Layout.js';\n" +
+    "import { FirstPersonControls } from './src/controls/FirstPerson.js';\n" +
+    "import { CollisionManager } from './src/utils/Collision.js';\n" +
+    "import { PostProcessing } from './src/render/PostProcessing.js';\n" +
+    "import { ShadowSetup } from './src/render/ShadowSetup.js';\n" +
+    "import { TextureLibrary } from './src/utils/TextureLibrary.js';\n" +
+    "import { Enclosure } from './src/scene/Enclosure.js';\n" +
+    "import { GardenBuilder } from './src/scene/GardenBuilder.js';\n" +
+    "import { ZoneManager } from './src/scene/zones/ZoneManager.js';\n" +
+    "import { InteriorLoader } from './src/scene/interior/InteriorLoader.js';\n" +
+    "import { ZONES } from './data/zones/index.js';\n" +
+    "import { Ambience } from './src/audio/Ambience.js';\n" +
+    "import { Minimap } from './src/ui/Minimap.js';\n" +
+    "import { Teleport } from './src/ui/Teleport.js';\n" +
+    "import { SettingsMenu } from './src/ui/SettingsMenu.js';\n" +
+    "import { SettingsTourSession } from './src/ui/SettingsTourSession.js';\n" +
+    "import { MapTourSession } from './src/ui/MapTourSession.js';\n" +
+    "import { hasShortcutModifier, isTextEntryTarget } from './src/controls/InputTargets.js';\n" +
+    "import { PerfHUD } from './src/ui/PerfHUD.js';\n" +
+    "import { LAYOUT, PERFORMANCE, TELEPORT, PLAYER } from './src/config/constants.js';\n" +
+    "import { INITIAL_VIEW_POSITION } from './src/config/initialView.js';\n" +
+    "import { createPalaceFlightEnvelope, FLIGHT_BOUNDS } from './src/scene/flight/FlightEnvelope.js';\n" +
+    "import { FlightTour } from './src/scene/flight/FlightTour.js';\n" +
+    "import { HistoricalSkyLamps } from './src/scene/sky/HistoricalSkyLamps.js';\n" +
+    "import { DayNightPanel } from './src/ui/DayNightPanel.js';\n" +
+    "import { HelpPanel } from './src/ui/HelpPanel.js';\n" +
+    "import { modelFidelityFor } from './src/ui/ModelFidelity.js';\n" +
+    "import { CharacterSystem } from './src/scene/characters/CharacterSystem.js';\n" +
+    '\n' +
+    '/**\n' +
+    ' * 故宫 3D 虚拟游览主程序\n' +
+    ' */\n' +
+    '\n' +
+    'class ForbiddenCityApp {\n' +
+    '  constructor() {\n' +
+    '    this.scene = null;\n' +
+    '    this.camera = null;\n' +
+    '    this.renderer = null;\n' +
+    '    this.controls = null;\n' +
+    '    this.postProcessing = null;\n' +
+    '    this.collisionManager = null;\n' +
+    '    \n' +
+    "    this.currentQuality = 'high';\n" +
+    '    this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||\n' +
+    '      (/Macintosh/i.test(navigator.userAgent) && navigator.maxTouchPoints > 1);\n' +
+    '    this.lastLocation = null;\n' +
+    '    this.lastShadowUpdate = 0;\n' +
+    '    this.shadowObjects = [];\n' +
+    '    this.disposed = false;\n' +
+    '    this._animate = this.animate.bind(this);\n' +
+    '    this._onResize = this.onResize.bind(this);\n' +
+    '    \n' +
+    '    // 加载管理\n' +
+    '    this.loadingManager = new THREE.LoadingManager();\n' +
+    '    this.loadingManager.onProgress = (url, loaded, total) => {\n' +
+    '      const progress = (loaded / total) * 100;\n' +
+    '      this.updateLoadingProgress(progress, url);\n' +
+    '    };\n' +
+    '    this.loadingManager.onLoad = () => {\n' +
+    '      this.onLoadComplete();\n' +
+    '    };\n' +
+    '  }\n' +
+    '  \n' +
+    '  /**\n' +
+    '   * 初始化\n' +
+    '   */\n' +
+    '  async init() {\n' +
+    '    // 显示加载界面\n' +
+    '    this.showLoading();\n' +
+    '    \n' +
+    '    // 尺寸监听必须在加载前注册：之前放在加载完成后，手机在加载过程中转横屏，\n' +
+    '    // 画布会停留在竖屏尺寸，横屏时只占左半边、右边黑屏。\n' +
+    '    // 微信 / iOS 转屏时 resize 可能不触发或触发时尺寸还没更新，所以再加 orientationchange、\n' +
+    '    // visualViewport 两路兜底，并在转屏后延迟复查；动画循环里也会每帧比对尺寸。\n' +
+    '    this._onOrientationChange = () => {\n' +
+    '      this.onResize();\n' +
+    '      clearTimeout(this._resizeTimer1);\n' +
+    '      clearTimeout(this._resizeTimer2);\n' +
+    '      this._resizeTimer1 = setTimeout(this._onResize, 200);\n' +
+    '      this._resizeTimer2 = setTimeout(this._onResize, 600);\n' +
+    '    };\n' +
+    "    window.addEventListener('resize', this._onResize);\n" +
+    "    window.addEventListener('orientationchange', this._onOrientationChange);\n" +
+    "    window.visualViewport?.addEventListener('resize', this._onResize);\n" +
+    '    \n' +
+    '    // 说明：本项目的纹理（Canvas）和几何体都是程序化同步生成的，不经过任何 Loader，\n' +
+    '    // LoadingManager 不会自动收到进度，onLoad 也不会触发（之前加载界面卡在 0% 的根因）。\n' +
+    '    // 这里把每个构建步骤手动登记到 LoadingManager：先全部 itemStart，每完成一步 itemEnd，\n' +
+    '    // 这样 onProgress 能正常推进进度条，最后一步完成时 onLoad 自动触发并关闭加载界面。\n' +
+    "    const quality = this.isMobile ? 'low' : 'high';\n" +
+    '    const steps = [\n' +
+    "      ['渲染器', () => {\n" +
+    '        this.createScene();\n' +
+    '        this.createCamera();\n' +
+    '        this.createRenderer();\n' +
+    '        this.shadowSetup = new ShadowSetup(this.renderer);\n' +
+    '        this.shadowSetup.init(quality);\n' +
+    '      }],\n' +
+    "      ['材质贴图', async () => {\n" +
+    '        // 手机用 512 档贴图，桌面用 1024 档；加载失败的贴图自动回退为程序化贴图\n' +
+    '        const maxAniso = this.renderer.capabilities.getMaxAnisotropy();\n' +
+    '        this.library = new TextureLibrary({\n' +
+    "          quality: this.isMobile ? 'sd' : 'hd',\n" +
+    '          anisotropy: Math.min(maxAniso, this.isMobile ? 2 : 8),\n' +
+    '        });\n' +
+    "        const stepIndex = steps.findIndex(([name]) => name === '材质贴图');\n" +
+    '        await this.library.load((done, total) => {\n' +
+    '          const progress = ((stepIndex + done / Math.max(total, 1)) / steps.length) * 100;\n' +
+    '          this.updateLoadingProgress(progress, `材质贴图 ${done}/${total}`);\n' +
+    '        });\n' +
+    '      }],\n' +
+    "      ['天空与光照', () => {\n" +
+    '        this.environment = new Environment(this.scene, this.renderer, this.library);\n' +
+    '        this.environment.init();\n' +
+    "        this.environment.setQuality(quality === 'high');\n" +
+    '      }],\n' +
+    "      ['宫殿建筑', () => {\n" +
+    '        this.palaceBuilder = new PalaceBuilder(this.scene, this.library);\n' +
+    '        this.palaceBuilder.buildAll(PALACE_LAYOUT);\n' +
+    '      }],\n' +
+    "      ['宫墙与庑房', () => {\n" +
+    '        this.enclosure = new Enclosure(this.scene, this.library).build();\n' +
+    '      }],\n' +
+    "      ['御花园', () => {\n" +
+    "        const garden = PALACE_LAYOUT.find(item => item.type === 'garden');\n" +
+    '        this.garden = new GardenBuilder(this.scene, this.library).build(garden);\n' +
+    '        // 静态场景（中轴/宫墙/御花园）进入阴影 LOD 列表；分区网格由 ZoneManager 回调增删\n' +
+    '        this.scene.traverse(object => {\n' +
+    '          if (object.isMesh) this.shadowObjects.push(object);\n' +
+    '        });\n' +
+    '      }],\n' +
+    "      ['东西六宫与两路宫殿', () => {\n" +
+    '        // 碰撞管理器先建：ZoneManager 加载区时要往里注册带 tag 的碰撞体\n' +
+    '        this.collisionManager = new CollisionManager();\n' +
+    '        this.zoneManager = new ZoneManager();\n' +
+    '        this.zoneManager.onLoad = (_id, group) => group.traverse(o => { if (o.isMesh) this.shadowObjects.push(o); });\n' +
+    '        this.zoneManager.onUnload = (_id, group) => {\n' +
+    '          const gone = new Set();\n' +
+    '          group.traverse(o => { if (o.isMesh) gone.add(o); });\n' +
+    '          this.shadowObjects = this.shadowObjects.filter(o => !gone.has(o));\n' +
+    '        };\n' +
+    '        ZONES.forEach(zone => this.zoneManager.register(zone));\n' +
+    '        const start = INITIAL_VIEW_POSITION;\n' +
+    '        this.zoneManager.init(this.scene, this.library, this.collisionManager, { x: start.x, z: start.z });\n' +
+    '      }],\n' +
+    "      ['碰撞检测', () => {\n" +
+    '        this.collisionManager.addColliders(this.palaceBuilder.getColliders());\n' +
+    '        this.collisionManager.addWalkables(this.palaceBuilder.getWalkables());\n' +
+    '        this.collisionManager.addColliders(this.enclosure.getColliders());\n' +
+    '        this.collisionManager.addColliders(this.garden.getColliders());\n' +
+    '        this.collisionManager.addWalkables(this.garden.getWalkables());\n' +
+    '        // 分区的 colliders/walkables 由 ZoneManager 带 tag 注册/移除；regions 启动时已覆盖全部分区\n' +
+    '        this.collisionManager.setRegions(this.zoneManager.getRegions());\n' +
+    '        // 所有可进入房间（世界坐标，含门/掩体/刷怪点），后续玩法从这里取\n' +
+    '        this.rooms = this.zoneManager.getRooms();\n' +
+    "        const axialRooms=PALACE_LAYOUT.filter(h=>h.type==='palace').map(h=>{\n" +
+    '          const {x,z}=h.position,w=h.dimensions.width,d=h.dimensions.depth;\n' +
+    '          const floorY=this.collisionManager.getGroundHeight(x+w*.25,z,0,30);\n' +
+    '          return{name:h.name,floorY,min:{x:x-w/2+1,y:floorY,z:z-d/2+1},max:{x:x+w/2-1,y:floorY+7,z:z+d/2-1}};\n' +
+    '        });\n' +
+    '        this.roomNightLights=new RoomNightLights({scene:this.scene,rooms:[...this.rooms,...axialRooms],collisionManager:this.collisionManager,additionalColliders:[...this.zoneManager.prebuilt.values()].flatMap(e=>e.data.colliders)});\n' +
+    '        // S 档内景：按距离流式加载 GLB（失败回退 B 档）\n' +
+    "        // base：部署到子路径（如 GitHub Pages /forbidden-city-3d/）时，模型与 draco/basis 解码器都要带前缀；根路径部署时为 ''\n" +
+    "        const base = (import.meta.env?.BASE_URL ?? '/').replace(/\\/$/, '');\n" +
+    '        this.interiors = new InteriorLoader(this.scene, this.collisionManager, { renderer: this.renderer, base });\n' +
+    '      }],\n' +
+    "      ['控制器', () => {\n" +
+    '        this.controls = new FirstPersonControls(this.camera, document.body, this.collisionManager);\n' +
+    '        const start = INITIAL_VIEW_POSITION;\n' +
+    '        this.controls.setPosition(start.x, start.y, start.z);\n' +
+    '        // 相机默认朝向 -Z（背对故宫），出生时转身面向北边的午门\n' +
+    '        this.controls.lookAt(0, LAYOUT.WUMEN_Z);\n' +
+    '        this.bindWelcomeOverlay();\n' +
+    '      }],\n' +
+    "      ['后期处理', () => {\n" +
+    '        this.postProcessing = new PostProcessing(this.renderer, this.scene, this.camera);\n' +
+    '        this.postProcessing.init(quality);\n' +
+    '        this.currentQuality = quality;\n' +
+    '      }],\n' +
+    "      ['飞行净空', () => {\n" +
+    '        this.flightEnvelope = createPalaceFlightEnvelope({palaceBuilder:this.palaceBuilder,\n' +
+    '          enclosure:this.enclosure,garden:this.garden,zoneManager:this.zoneManager,layout:PALACE_LAYOUT});\n' +
+    '      }],\n' +
+    "      ['界面', () => {\n" +
+    '        this.ambience = new Ambience();\n' +
+    '        this.characters = new CharacterSystem({ scene: this.scene, camera: this.camera, collisionManager: this.collisionManager, zoneManager: this.zoneManager, interiors: this.interiors,\n' +
+    '          getPlayerState:()=>this.flight?.occupied||!Number.isFinite(this.controls?.feetY)?null:{\n' +
+    '            position:[this.camera.position.x-(this.controls.bobOffset?.x??0),\n' +
+    '              this.controls.airborne?this.controls.feetY:Math.max(this.controls.feetY,this.controls.groundY??0),\n' +
+    '              this.camera.position.z-(this.controls.bobOffset?.z??0)],radius:.5,height:PLAYER.HEIGHT} });\n' +
+    '        this.createUI();\n' +
+    '        this.historicalLamps = new HistoricalSkyLamps({scene:this.scene,collisionManager:this.collisionManager,envelope:this.flightEnvelope,playerPosition:()=>this.camera.position,flightState:()=>this.flight?.state});\n' +
+    '        this.dayNightPanel = new DayNightPanel(this.environment,this.historicalLamps);\n' +
+    '        this.flight = new FlightTour({scene:this.scene,camera:this.camera,controls:this.controls,\n' +
+    '          collisionManager:this.collis'... 18311 more characters
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r78-night-household/tests/r78-environment-clock.test.mjs:2:1139)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: "import {RoomNightLights} from './src/scene/sky/RoomNightLights.js';\nimport * as THREE from 'three';\nimport { Environment } from './src/scene/Environment.js';\nimport { PalaceBuilder } from './src/scene/PalaceBuilder.js';\nimport { PALACE_LAYOUT } from './src/scene/Layout.js';\nimport { FirstPersonControls } from './src/controls/FirstPerson.js';\nimport { CollisionManager } from './src/utils/Collision.js';\nimport { PostProcessing } from './src/render/PostProcessing.js';\nimport { ShadowSetup } from './src/render/ShadowSetup.js';\nimport { TextureLibrary } from './src/utils/TextureLibrary.js';\nimport { Enclosure } from './src/scene/Enclosure.js';\nimport { GardenBuilder } from './src/scene/GardenBuilder.js';\nimport { ZoneManager } from './src/scene/zones/ZoneManager.js';\nimport { InteriorLoader } from './src/scene/interior/InteriorLoader.js';\nimport { ZONES } from './data/zones/index.js';\nimport { Ambience } from './src/audio/Ambience.js';\nimport { Minimap } from './src/ui/Minimap.js';\nimport { Teleport } from './src/ui/Teleport.js';\nimport { SettingsMenu } from './src/ui/SettingsMenu.js';\nimport { SettingsTourSession } from './src/ui/SettingsTourSession.js';\nimport { MapTourSession } from './src/ui/MapTourSession.js';\nimport { hasShortcutModifier, isTextEntryTarget } from './src/controls/InputTargets.js';\nimport { PerfHUD } from './src/ui/PerfHUD.js';\nimport { LAYOUT, PERFORMANCE, TELEPORT, PLAYER } from './src/config/constants.js';\nimport { INITIAL_VIEW_POSITION } from './src/config/initialView.js';\nimport { createPalaceFlightEnvelope, FLIGHT_BOUNDS } from './src/scene/flight/FlightEnvelope.js';\nimport { FlightTour } from './src/scene/flight/FlightTour.js';\nimport { HistoricalSkyLamps } from './src/scene/sky/HistoricalSkyLamps.js';\nimport { DayNightPanel } from './src/ui/DayNightPanel.js';\nimport { HelpPanel } from './src/ui/HelpPanel.js';\nimport { modelFidelityFor } from './src/ui/ModelFidelity.js';\nimport { CharacterSystem } from './src/scene/characters/CharacterSystem.js';\n\n/**\n * 故宫 3D 虚拟游览主程序\n */\n\nclass ForbiddenCityApp {\n  constructor() {\n    this.scene = null;\n    this.camera = null;\n    this.renderer = null;\n    this.controls = null;\n    this.postProcessing = null;\n    this.collisionManager = null;\n    \n    this.currentQuality = 'high';\n    this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||\n      (/Macintosh/i.test(navigator.userAgent) && navigator.maxTouchPoints > 1);\n    this.lastLocation = null;\n    this.lastShadowUpdate = 0;\n    this.shadowObjects = [];\n    this.disposed = false;\n    this._animate = this.animate.bind(this);\n    this._onResize = this.onResize.bind(this);\n    \n    // 加载管理\n    this.loadingManager = new THREE.LoadingManager();\n    this.loadingManager.onProgress = (url, loaded, total) => {\n      const progress = (loaded / total) * 100;\n      this.updateLoadingProgress(progress, url);\n    };\n    this.loadingManager.onLoad = () => {\n      this.onLoadComplete();\n    };\n  }\n  \n  /**\n   * 初始化\n   */\n  async init() {\n    // 显示加载界面\n    this.showLoading();\n    \n    // 尺寸监听必须在加载前注册：之前放在加载完成后，手机在加载过程中转横屏，\n    // 画布会停留在竖屏尺寸，横屏时只占左半边、右边黑屏。\n    // 微信 / iOS 转屏时 resize 可能不触发或触发时尺寸还没更新，所以再加 orientationchange、\n    // visualViewport 两路兜底，并在转屏后延迟复查；动画循环里也会每帧比对尺寸。\n    this._onOrientationChange = () => {\n      this.onResize();\n      clearTimeout(this._resizeTimer1);\n      clearTimeout(this._resizeTimer2);\n      this._resizeTimer1 = setTimeout(this._onResize, 200);\n      this._resizeTimer2 = setTimeout(this._onResize, 600);\n    };\n    window.addEventListener('resize', this._onResize);\n    window.addEventListener('orientationchange', this._onOrientationChange);\n    window.visualViewport?.addEventListener('resize', this._onResize);\n    \n    // 说明：本项目的纹理（Canvas）和几何体都是程序化同步生成的，不经过任何 Loader，\n    // LoadingManager 不会自动收到进度，onLoad 也不会触发（之前加载界面卡在 0% 的根因）。\n    // 这里把每个构建步骤手动登记到 LoadingManager：先全部 itemStart，每完成一步 itemEnd，\n    // 这样 onProgress 能正常推进进度条，最后一步完成时 onLoad 自动触发并关闭加载界面。\n    const quality = this.isMobile ? 'low' : 'high';\n    const steps = [\n      ['渲染器', () => {\n        this.createScene();\n        this.createCamera();\n        this.createRenderer();\n        this.shadowSetup = new ShadowSetup(this.renderer);\n        this.shadowSetup.init(quality);\n      }],\n      ['材质贴图', async () => {\n        // 手机用 512 档贴图，桌面用 1024 档；加载失败的贴图自动回退为程序化贴图\n        const maxAniso = this.renderer.capabilities.getMaxAnisotropy();\n        this.library = new TextureLibrary({\n          quality: this.isMobile ? 'sd' : 'hd',\n          anisotropy: Math.min(maxAniso, this.isMobile ? 2 : 8),\n        });\n        const stepIndex = steps.findIndex(([name]) => name === '材质贴图');\n        await this.library.load((done, total) => {\n          const progress = ((stepIndex + done / Math.max(total, 1)) / steps.length) * 100;\n          this.updateLoadingProgress(progress, `材质贴图 ${done}/${total}`);\n        });\n      }],\n      ['天空与光照', () => {\n        this.environment = new Environment(this.scene, this.renderer, this.library);\n        this.environment.init();\n        this.environment.setQuality(quality === 'high');\n      }],\n      ['宫殿建筑', () => {\n        this.palaceBuilder = new PalaceBuilder(this.scene, this.library);\n        this.palaceBuilder.buildAll(PALACE_LAYOUT);\n      }],\n      ['宫墙与庑房', () => {\n        this.enclosure = new Enclosure(this.scene, this.library).build();\n      }],\n      ['御花园', () => {\n        const garden = PALACE_LAYOUT.find(item => item.type === 'garden');\n        this.garden = new GardenBuilder(this.scene, this.library).build(garden);\n        // 静态场景（中轴/宫墙/御花园）进入阴影 LOD 列表；分区网格由 ZoneManager 回调增删\n        this.scene.traverse(object => {\n          if (object.isMesh) this.shadowObjects.push(object);\n        });\n      }],\n      ['东西六宫与两路宫殿', () => {\n        // 碰撞管理器先建：ZoneManager 加载区时要往里注册带 tag 的碰撞体\n        this.collisionManager = new CollisionManager();\n        this.zoneManager = new ZoneManager();\n        this.zoneManager.onLoad = (_id, group) => group.traverse(o => { if (o.isMesh) this.shadowObjects.push(o); });\n        this.zoneManager.onUnload = (_id, group) => {\n          const gone = new Set();\n          group.traverse(o => { if (o.isMesh) gone.add(o); });\n          this.shadowObjects = this.shadowObjects.filter(o => !gone.has(o));\n        };\n        ZONES.forEach(zone => this.zoneManager.register(zone));\n        const start = INITIAL_VIEW_POSITION;\n        this.zoneManager.init(this.scene, this.library, this.collisionManager, { x: start.x, z: start.z });\n      }],\n      ['碰撞检测', () => {\n        this.collisionManager.addColliders(this.palaceBuilder.getColliders());\n        this.collisionManager.addWalkables(this.palaceBuilder.getWalkables());\n        this.collisionManager.addColliders(this.enclosure.getColliders());\n        this.collisionManager.addColliders(this.garden.getColliders());\n        this.collisionManager.addWalkables(this.garden.getWalkables());\n        // 分区的 colliders/walkables 由 ZoneManager 带 tag 注册/移除；regions 启动时已覆盖全部分区\n        this.collisionManager.setRegions(this.zoneManager.getRegions());\n        // 所有可进入房间（世界坐标，含门/掩体/刷怪点），后续玩法从这里取\n        this.rooms = this.zoneManager.getRooms();\n        const axialRooms=PALACE_LAYOUT.filter(h=>h.type==='palace').map(h=>{\n          const {x,z}=h.position,w=h.dimensions.width,d=h.dimensions.depth;\n          const floorY=this.collisionManager.getGroundHeight(x+w*.25,z,0,30);\n          return{name:h.name,floorY,min:{x:x-w/2+1,y:floorY,z:z-d/2+1},max:{x:x+w/2-1,y:floorY+7,z:z+d/2-1}};\n        });\n        this.roomNightLights=new RoomNightLights({scene:this.scene,rooms:[...this.rooms,...axialRooms],collisionManager:this.collisionManager,additionalColliders:[...this.zoneManager.prebuilt.values()].flatMap(e=>e.data.colliders)});\n        // S 档内景：按距离流式加载 GLB（失败回退 B 档）\n        // base：部署到子路径（如 GitHub Pages /forbidden-city-3d/）时，模型与 draco/basis 解码器都要带前缀；根路径部署时为 ''\n        const base = (import.meta.env?.BASE_URL ?? '/').replace(/\\/$/, '');\n        this.interiors = new InteriorLoader(this.scene, this.collisionManager, { renderer: this.renderer, base });\n      }],\n      ['控制器', () => {\n        this.controls = new FirstPersonControls(this.camera, document.body, this.collisionManager);\n        const start = INITIAL_VIEW_POSITION;\n        this.controls.setPosition(start.x, start.y, start.z);\n        // 相机默认朝向 -Z（背对故宫），出生时转身面向北边的午门\n        this.controls.lookAt(0, LAYOUT.WUMEN_Z);\n        this.bindWelcomeOverlay();\n      }],\n      ['后期处理', () => {\n        this.postProcessing = new PostProcessing(this.renderer, this.scene, this.camera);\n        this.postProcessing.init(quality);\n        this.currentQuality = quality;\n      }],\n      ['飞行净空', () => {\n        this.flightEnvelope = createPalaceFlightEnvelope({palaceBuilder:this.palaceBuilder,\n          enclosure:this.enclosure,garden:this.garden,zoneManager:this.zoneManager,layout:PALACE_LAYOUT});\n      }],\n      ['界面', () => {\n        this.ambience = new Ambience();\n        this.characters = new CharacterSystem({ scene: this.scene, camera: this.camera, collisionManager: this.collisionManager, zoneManager: this.zoneManager, interiors: this.interiors,\n          getPlayerState:()=>this.flight?.occupied||!Number.isFinite(this.controls?.feetY)?null:{\n            position:[this.camera.position.x-(this.controls.bobOffset?.x??0),\n              this.controls.airborne?this.controls.feetY:Math.max(this.controls.feetY,this.controls.groundY??0),\n              this.camera.position.z-(this.controls.bobOffset?.z??0)],radius:.5,height:PLAYER.HEIGHT} });\n        this.createUI();\n        this.historicalLamps = new HistoricalSkyLamps({scene:this.scene,collisionManager:this.collisionManager,envelope:this.flightEnvelope,playerPosition:()=>this.camera.position,flightState:()=>this.flight?.state});\n        this.dayNightPanel = new DayNightPanel(this.environment,this.historicalLamps);\n        this.flight = new FlightTour({scene:this.scene,camera:this.camera,controls:this.controls,\n          collisionManager:this.collis"... 18311 more characters,
+    expected: /roomNightLights\.update\([^;]*this\.environment\.dayCycle\.beijingTime/,
+    operator: 'match',
+    diff: 'simple'
+  }

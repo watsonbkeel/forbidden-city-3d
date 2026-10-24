@@ -1,0 +1,6 @@
+# R78 household rest and lighting
+Priority user requirements:19:00–21:00 fitted room lights on;21:00–06:00 sleeping quarters' strong fixtures/point lights off, ambient readability retained and exterior lights on. Working emperor room stays lit. Use the single Environment Beijing-time snapshot, including preview and resume; do not create another clock.
+Split bounded room fixture instancing into sleeping-room and other fixtures so shared emissive cannot leave beds brightly lit. In a sleeping room suppress the camera-local point pool to prevent adjacent-room spill. Existing global ambient/moon aid remains; no claim GPU readability before observation.
+Six consorts need separate private larger beds/rooms; maids smaller grouped beds. Preserve28 unique occupied assignments and12 six-palace coverage. Fit independently to actual room/collision bounds and regenerate valid approach routes. No historical furniture placement claim. Bed-top height remains.60 unless explicitly tested otherwise.
+Sleeping female geometry uses closed eyelids before pose transform for all3 LODs; standing/seated/kneeling appearance/cache unchanged. Wake uses the original awake pose. No unrelated actor appearance changes.
+No deletion,main/Pages/GitHub mutation by implementer. Worktree capacity317MB; one build+backup only if>=200MB remains. Parent commissions independent review.

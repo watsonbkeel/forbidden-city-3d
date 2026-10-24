@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import source from '../../../data/characters/night-beds.json' with {type:'json'};
 export const NIGHT_BEDS=Object.freeze(source.beds.map(b=>Object.freeze(b)));
 export const BED_TOP=.60;
+export const NIGHT_PARTITIONS=Object.freeze((source.partitions??[]).map(p=>Object.freeze(p)));
 /** Beds are explicitly fictional gameplay fittings. One assigned bed per adult
  * female actor, plus one empty bed in each otherwise unoccupied six-palace site. */
 export function buildNightBeds(kit,zone){
@@ -12,11 +13,17 @@ export function buildNightBeds(kit,zone){
  for(const b of beds){
   const f=kit.frame(b.x,b.z);f.name=b.id;f.userData.gameplayBed={...b};
   const box=(material,w,h,d,x,y,z)=>{const g=new THREE.BoxGeometry(w,h,d),m=new THREE.Mesh(g,material);m.position.set(x,b.floorY+y,z);m.castShadow=false;m.receiveShadow=true;f.add(m);return m;};
-  box(wood,1.2,.42,2.25,0,.29,0);box(quilt,1.15,.10,2.16,0,.55,0);
-  box(wood,1.25,.85,.08,0,.425,1.12);box(pillow,.72,.10,.35,0,.65,.78);
-  kit.col(f,-.6,b.floorY,-1.125,.6,b.floorY+BED_TOP,1.125);
+  const w=b.width,d=b.depth;
+  box(wood,w,.42,d,0,.29,0);box(quilt,w-.05,.10,d-.09,0,.55,0);
+  box(wood,w+.05,.85,.08,0,.425,d/2-.005);box(pillow,w*.6,.10,.35,0,.65,d/2-.345);
+  kit.col(f,-w/2,b.floorY,-d/2,w/2,b.floorY+BED_TOP,d/2);
   // Full footprint support lasts until the player's body clears the edge.
   kit.walkables.push({type:'box',rescue:false,box:new THREE.Box3(
-   new THREE.Vector3(b.x-1.1,b.floorY,b.z-1.625),new THREE.Vector3(b.x+1.1,b.floorY+BED_TOP,b.z+1.625))});
+   new THREE.Vector3(b.x-w/2-.5,b.floorY,b.z-d/2-.5),new THREE.Vector3(b.x+w/2+.5,b.floorY+BED_TOP,b.z+d/2+.5))});
  }
+ for(const p of NIGHT_PARTITIONS.filter(p=>p.zoneRef===zone.id)){
+  const f=kit.frame(0,0);f.name=p.id;f.userData.gameplayPrivacy={status:p.status,palace:p.palace};
+  for(const panel of p.panels){const[a,b]=[panel.min,panel.max];const mesh=new THREE.Mesh(new THREE.BoxGeometry(b[0]-a[0],b[1]-a[1],b[2]-a[2]),wood);mesh.position.set((a[0]+b[0])/2,(a[1]+b[1])/2,(a[2]+b[2])/2);mesh.receiveShadow=true;f.add(mesh);kit.col(f,...a,...b);}
+ }
+
 }
