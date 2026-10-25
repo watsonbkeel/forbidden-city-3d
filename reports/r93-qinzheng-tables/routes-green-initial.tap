@@ -1,0 +1,31 @@
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 54 个 region, 36 个 mapItem
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 450.3ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 364.8ms
+[ZoneManager] 卸载区域 west-six
+✔ R88 successor R53 actual S GLB proxies stream in/out without removing permanent west-room geometry or collisions (268.001142ms)
+✔ R88 successor R53 in-flight S load cancellation preserves west-room structure and allows a later actual reload (101.224394ms)
+✔ R88 successor R53 actual S controls preserve all two-turn doorway routes, 10Hz sprint=false (82.993071ms)
+✔ R88 successor R53 actual S controls preserve all two-turn doorway routes, 10Hz sprint=true (79.024776ms)
+✔ R88 successor R53 actual S controls preserve all two-turn doorway routes, 60Hz sprint=false (92.591121ms)
+✔ R88 successor R53 actual S controls preserve all two-turn doorway routes, 60Hz sprint=true (74.087939ms)
+✔ R88 successor R53 B visible triangles leave the complete 1m-wide player body clear, not just proxy boxes (58.594985ms)
+✔ R88 successor R53 S visible triangles leave the complete 1m-wide player body clear, not just proxy boxes (83.851329ms)
+✔ R88 successor R53 all new navigation spawns stay clear when actual S collision proxies are installed (57.1986ms)
+✔ R88 successor R53 real ZoneManager unload/re-entry recreates the four rooms and removes every tagged collision/support (1389.912454ms)
+✔ R88 successor R53 reusable caller-world audit also verifies actual loaded S, never simulated proxy evidence (87.062617ms)
+✔ R93 adds exactly two photo-supported floor-standing tables, not taller replacements of existing low tables (117.035397ms)
+✔ R93 preserves every pre-existing mesh/material/collider/support and protected bytes (72.905125ms)
+✔ R93 all visible solid boxes and supports match physical bounds, feet touch retained floor and empty under-table volume remains open (64.766544ms)
+✔ R93 wrong identity and duplicate reject without appending; resources dispose once (66.340445ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2578.818127

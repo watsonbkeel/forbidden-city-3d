@@ -1,0 +1,61 @@
+✔ R93 B 10Hz sprint=false complete hall/west rooms round trip and rendered body clearance (165.132308ms)
+✔ R93 B 10Hz sprint=true complete hall/west rooms round trip and rendered body clearance (92.984901ms)
+✔ R93 B 30Hz sprint=false complete hall/west rooms round trip and rendered body clearance (92.219372ms)
+✖ R93 B 30Hz sprint=true complete hall/west rooms round trip and rendered body clearance (72.870672ms)
+✔ R93 B 60Hz sprint=false complete hall/west rooms round trip and rendered body clearance (86.584929ms)
+✔ R93 B 60Hz sprint=true complete hall/west rooms round trip and rendered body clearance (69.501438ms)
+✔ R93 S 10Hz sprint=false complete hall/west rooms round trip and rendered body clearance (189.067139ms)
+✔ R93 S 10Hz sprint=true complete hall/west rooms round trip and rendered body clearance (89.09173ms)
+✔ R93 S 30Hz sprint=false complete hall/west rooms round trip and rendered body clearance (91.501736ms)
+✖ R93 S 30Hz sprint=true complete hall/west rooms round trip and rendered body clearance (89.274414ms)
+✔ R93 S 60Hz sprint=false complete hall/west rooms round trip and rendered body clearance (82.952849ms)
+✔ R93 S 60Hz sprint=true complete hall/west rooms round trip and rendered body clearance (85.374242ms)
+✔ R93 furniture genuinely blocks the former turn; southward approach changes only route, not door or walls (53.729744ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 11
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1451.234807
+
+✖ failing tests:
+
+test at tests/r93-qinzheng-world.test.mjs:3:88
+✖ R93 B 30Hz sprint=true complete hall/west rooms round trip and rendered body clearance (72.870672ms)
+  AssertionError [ERR_ASSERTION]: {"arrived":false,"stuckAt":[124.89999999999999,274],"startFeet":0,"maxFeet":0.6,"maxSpeed":11.999609634345944,"driver":{"crossings":[{"index":1,"point":[108.6,274.5],"hit":[108.6,274.5],"lateralDistance":0},{"index":2,"point":[113.39999999999999,274.5],"hit":[113.39999999999999,274.5],"lateralDistance":0},{"index":3,"point":[113.39999999999999,276.66],"hit":[113.39999999999999,276.66],"lateralDistance":0},{"index":4,"point":[114.6,276.66],"hit":[114.6,276.7149938373488],"lateralDistance":0.05499383734877483},{"index":5,"point":[116.1,276.66],"hit":[116.1,276.66],"lateralDistance":0},{"index":6,"point":[116.1,273],"hit":[116.1,273],"lateralDistance":0},{"index":7,"point":[118.8,273],"hit":[118.8,273],"lateralDistance":0},{"index":8,"point":[122.6,274.3],"hit":[122.6,274.3],"lateralDistance":0},{"index":9,"point":[122.6,276.15],"hit":[122.6,276.15],"lateralDistance":0},{"index":10,"point":[124.89999999999999,276.15],"hit":[124.89999999999999,276.15],"lateralDistance":0}],"brakingFrames":171,"endpointSettleSeconds":2},"end":[124.88090953755463,274.0810239005261,0.6]}
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-world.test.mjs:3:480)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r93-qinzheng-world.test.mjs:3:88
+✖ R93 S 30Hz sprint=true complete hall/west rooms round trip and rendered body clearance (89.274414ms)
+  AssertionError [ERR_ASSERTION]: {"arrived":false,"stuckAt":[124.89999999999999,274],"startFeet":0,"maxFeet":0.6,"maxSpeed":11.999609634345944,"driver":{"crossings":[{"index":1,"point":[108.6,274.5],"hit":[108.6,274.5],"lateralDistance":0},{"index":2,"point":[113.39999999999999,274.5],"hit":[113.39999999999999,274.5],"lateralDistance":0},{"index":3,"point":[113.39999999999999,276.66],"hit":[113.39999999999999,276.66],"lateralDistance":0},{"index":4,"point":[114.6,276.66],"hit":[114.6,276.7149938373488],"lateralDistance":0.05499383734877483},{"index":5,"point":[116.1,276.66],"hit":[116.1,276.66],"lateralDistance":0},{"index":6,"point":[116.1,273],"hit":[116.1,273],"lateralDistance":0},{"index":7,"point":[118.8,273],"hit":[118.8,273],"lateralDistance":0},{"index":8,"point":[122.6,274.3],"hit":[122.6,274.3],"lateralDistance":0},{"index":9,"point":[122.6,276.15],"hit":[122.6,276.15],"lateralDistance":0},{"index":10,"point":[124.89999999999999,276.15],"hit":[124.89999999999999,276.15],"lateralDistance":0}],"brakingFrames":171,"endpointSettleSeconds":2},"end":[124.88090953755463,274.0810239005261,0.6]}
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-world.test.mjs:3:480)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

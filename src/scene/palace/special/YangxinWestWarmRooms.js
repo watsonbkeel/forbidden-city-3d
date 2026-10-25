@@ -54,7 +54,7 @@ export const YANGXIN_WEST_ROOM_PLAN = deepFreeze({
     { id: 'qinzheng-to-sanxi', axis: 'x', at: (qWest + sEast) / 2, center: qDoor, width: 1.6, source: 'p125 west wall north opening', status: FIT },
     { id: 'sanxi-north-to-south', axis: 'z', at: southDivider, center: 16.3, width: 1.35, source: 'p127 southern partition, p129 open frame visual', status: FIT },
   ],
-  route: [[6,-.84],[7.5,-.84],[7.5,-4.5],[10.2,-4.5],[14,-3.2],[14,qDoor],[16.3,qDoor],[16.3,-3.5]],
+  route: [[6,-.84],[7.5,-.84],[7.5,-4.5],[10.2,-4.5],[14,-3.2],[14,-1.35],[16.3,-1.35],[16.3,-3.3]],
   rearPolicy: 'UNBUILT_NO_DEFAULT_FURNITURE',
   limitations: [
     'This is a source-based basic-form/material partial, not a finished current-state or historical restoration.',

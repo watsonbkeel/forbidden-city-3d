@@ -1,0 +1,27 @@
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 54 个 region, 36 个 mapItem
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 435.3ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 389.0ms
+[ZoneManager] 卸载区域 west-six
+✔ R88 successor R53 actual S GLB proxies stream in/out without removing permanent west-room geometry or collisions (240.376892ms)
+✔ R88 successor R53 in-flight S load cancellation preserves west-room structure and allows a later actual reload (98.550907ms)
+✔ R88 successor R53 actual S controls preserve all two-turn doorway routes, 10Hz sprint=false (85.377781ms)
+✔ R88 successor R53 actual S controls preserve all two-turn doorway routes, 10Hz sprint=true (83.678542ms)
+✔ R88 successor R53 actual S controls preserve all two-turn doorway routes, 60Hz sprint=false (91.701639ms)
+✔ R88 successor R53 actual S controls preserve all two-turn doorway routes, 60Hz sprint=true (80.450668ms)
+✔ R88 successor R53 B visible triangles leave the complete 1m-wide player body clear, not just proxy boxes (58.577691ms)
+✔ R88 successor R53 S visible triangles leave the complete 1m-wide player body clear, not just proxy boxes (99.002354ms)
+✔ R88 successor R53 all new navigation spawns stay clear when actual S collision proxies are installed (66.913607ms)
+✔ R88 successor R53 real ZoneManager unload/re-entry recreates the four rooms and removes every tagged collision/support (1389.676741ms)
+✔ R88 successor R53 reusable caller-world audit also verifies actual loaded S, never simulated proxy evidence (93.323364ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2581.109449

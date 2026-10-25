@@ -1,0 +1,104 @@
+✖ R93 adds exactly two photo-supported floor-standing tables, not taller replacements of existing low tables (112.614689ms)
+✖ R93 preserves every pre-existing mesh/material/collider/support and protected bytes (65.553778ms)
+✖ R93 all visible solid boxes and supports match physical bounds, feet touch retained floor and empty under-table volume remains open (57.604391ms)
+✖ R93 wrong identity and duplicate reject without appending; resources dispose once (56.572021ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 465.910441
+
+✖ failing tests:
+
+test at tests/r93-qinzheng-high-tables.test.mjs:3:1
+✖ R93 adds exactly two photo-supported floor-standing tables, not taller replacements of existing low tables (112.614689ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-high-tables.test.mjs:3:149)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r93-qinzheng-high-tables.test.mjs:4:1
+✖ R93 preserves every pre-existing mesh/material/collider/support and protected bytes (65.553778ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-high-tables.test.mjs:4:126)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r93-qinzheng-high-tables.test.mjs:5:1
+✖ R93 all visible solid boxes and supports match physical bounds, feet touch retained floor and empty under-table volume remains open (57.604391ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-high-tables.test.mjs:5:174)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r93-qinzheng-high-tables.test.mjs:6:1
+✖ R93 wrong identity and duplicate reject without appending; resources dispose once (56.572021ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-high-tables.test.mjs:6:120)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
