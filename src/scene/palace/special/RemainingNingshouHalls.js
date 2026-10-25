@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {buildXishangChannel} from './XishangChannel.js';
 import {fitNingshouSouthPhotoWindows} from './NingshouSouthPhotoWindows.js';
 
 /**
@@ -46,6 +47,8 @@ function profile(row) {
  p.portals=p.portals.map(q=>({...q,localX:q.x,localZ:q.z,worldX:x+Math.cos(p.rot)*q.x+Math.sin(p.rot)*q.z,worldZ:z-Math.sin(p.rot)*q.x+Math.cos(p.rot)*q.z}));
  for(const q of p.portals){const sign=q.side==='rear'?1:-1,pad=key==='ningshou'? .8:['jingfu','jingqi'].includes(key)?.8:.5,edge=key==='biluo'?sign*Math.min(localW,localD)*.38*1.35:sign*(localD/2+pad),toe=edge+sign*(ph>.55?ph*2.1:.05);q.approachX=key==='jingfu'&&q.side==='rear'?q.x-.8:q.x;const ax=q.approachX;const points=[[ax,toe+sign,0],[ax,toe,0],...(ph>.55?[[ax,(toe+edge)/2,ph/2]]:[]),[ax,edge-sign*.15,ph],...(ax!==q.x?[[ax,sign*(localD/2-.9),ph],[q.x,q.z+sign*.65,ph]]:[]),[q.x,q.z,ph],[q.x,q.z-sign*.7,ph]];q.approachPoints=points.map(([lx,lz,feetY])=>({localX:lx,localZ:lz,x:x+Math.cos(p.rot)*lx+Math.sin(p.rot)*lz,z:z-Math.sin(p.rot)*lx+Math.cos(p.rot)*lz,feetY}));}
  if(key==='biluo'){const q=p.portals[0];q.approachX=-3.6;q.normalLocalX=-1;q.normalLocalZ=0;q.normalWorldX=-1;q.normalWorldZ=0;q.approachPoints=[[-3.6,-.47,0],[-3.1,-.47,0],[-2.65,-.47,ph/2],[-2.2,-.47,ph],[-1.45,-.47,ph],[-.65,-.25,ph]].map(([localX,localZ,feetY])=>({localX,localZ,x:x+localX,z:z+localZ,feetY}));}
+ // Local stone-field support only; route coordinates and the pavilion floor stay fixed.
+ if(key==='xishang')for(const q of p.portals.flatMap(q=>q.approachPoints)){const halfW=localW*.66*.78/2,center=-localD*.32,halfD=localD*.32/2;if(Math.abs(q.localX)<=halfW&&Math.abs(q.localZ-center)<=halfD)q.feetY=ph+.2;}
  p.navigation={floorY:ph,upperDestinations:false,portals:p.portals,approachPoints:p.portals[0].approachPoints,spawn:key==='ningshou'?{x:-localW/7,z:-localD*.15}:key==='xishang'?{x:0,z:-localD*.3}:{x:0,z:0},status:'MODEL_CIRCULATION_NOT_MUSEUM_PERMISSION'};
  return freeze(p);
 }
@@ -366,17 +369,10 @@ function buildXishang(c) {
  // The dark screen is at the west/rear, not across the east entrance.
  c.box('rear-black-screen','black',mainW*.8,3.35,.15,0,p.ph+1.675,mainD/2-.1,true);
  for(const x of[-mainW*.4,mainW*.4])c.box('screen-gold-edge','gold',.04,3.2,.035,x,p.ph+1.67,mainD/2-.19);
- // Actual shallow exposed channel bed. Separate stone blocks leave a visible
- // depression; it is not an opaque blue stripe painted on a solid floor.
- const z0=-d*.32,ww=mainW*.78,dd=d*.32,th=.085;
- const path=[[-ww*.42,z0-dd*.32],[ww*.33,z0-dd*.32],[ww*.33,z0],[ -ww*.25,z0],[-ww*.25,z0+dd*.32],[ww*.42,z0+dd*.32]];
- const trenches=path.slice(1).map((b,i)=>{const a=path[i];return{x0:Math.min(a[0],b[0])-.062,x1:Math.max(a[0],b[0])+.062,z0:Math.min(a[1],b[1])-.062,z1:Math.max(a[1],b[1])+.062};});
- const xs=[-ww/2,ww/2,...trenches.flatMap(t=>[t.x0,t.x1])].sort((a,b)=>a-b),zs=[z0-dd/2,z0+dd/2,...trenches.flatMap(t=>[t.z0,t.z1])].sort((a,b)=>a-b);
- for(let a=1;a<xs.length;a++)for(let b=1;b<zs.length;b++){const xx=(xs[a-1]+xs[a])/2,zz=(zs[b-1]+zs[b])/2;if(!trenches.some(t=>xx>t.x0&&xx<t.x1&&zz>t.z0&&zz<t.z1))slab(c,'channel-stone-field',xs[a-1],xs[a],zs[b-1],zs[b],p.ph+.2,{thickness:.17,mat:'stone',solid:false});}
- for(let i=1;i<path.length;i++){const[a,b]=[path[i-1],path[i]],dx=b[0]-a[0],dz=b[1]-a[1],length=Math.hypot(dx,dz),x=(a[0]+b[0])/2,z=(a[1]+b[1])/2;const bed=c.box('stream-channel-bed','water',length,.018,.12,x,p.ph+.147,z);bed.rotation.y=-Math.atan2(dz,dx);for(const s of[-1,1]){const edge=c.box('stream-channel-bank','stone',length,.055,.035,x+Math.sin(Math.atan2(dz,dx))*s*.09,p.ph+.17,z-Math.cos(Math.atan2(dz,dx))*s*.09);edge.rotation.y=bed.rotation.y;}}
+ const channel=buildXishangChannel(c);
  for(const sign of[-1,1])rail(c,{x:sign*mainW/2,z:0,length:mainD,y:p.ph,side:true,mat:'stone',role:'bamboo-stone-rail'});
  ceiling(c,{x0:-mainW/2,x1:mainW/2,z0:-mainD/2,z1:mainD/2,nx:3,nz:3});
- return finish(c,{planForm:'convex-cross-three-projections',streamLengthHistoricalMetres:27,streamLengthModelStatus:'UNMEASURED_REDUCED_SCHEMATIC_NOT_27M_REPLICA',interiorPolicy:'STONE_CHANNEL_AND_REAR_SCREEN_NO_FURNITURE'});
+ return finish(c,{planForm:'convex-cross-three-projections',streamLengthHistoricalMetres:27,streamLengthModelStatus:'MEASURED_MODEL_CURVE_NOT_27M_SITE_REPLICA',channel,interiorPolicy:'STONE_CHANNEL_AND_REAR_SCREEN_NO_FURNITURE'});
 }
 function petalRoof(c,{y,radius,rise,tile,trim}) {
  const rings=9,segs=60,vs=[],ix=[];

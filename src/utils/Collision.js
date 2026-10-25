@@ -1,3 +1,5 @@
+import {triangleInstance, triangleFootContact, triangleBodyIntersects, triangleBodySweptIntersects, triangleBodySweepFraction} from './TriangleSupport.js';
+import { canCrossOuterMoat, canTraverseOuterMoat } from '../scene/palace/special/OuterMoat.js';
 import * as THREE from 'three';
 import { DIMENSIONS, LAYOUT, PLAYER } from '../config/constants.js';
 import { PALACE_LAYOUT } from '../scene/Layout.js';
@@ -27,6 +29,7 @@ export class CollisionManager {
     this.playerSize = new THREE.Vector3();
     this.playerCenter = new THREE.Vector3();
     this.rivers = PALACE_LAYOUT.filter(item => item.type === 'river');
+    this.moats = PALACE_LAYOUT.filter(item => item.type === 'moat');
     // Separate pedestrian channel: never part of static grids, support,
     // world-generation proofs, raycasts or helicopter flight envelopes.
     this.dynamicBodies = new Map();
@@ -35,7 +38,11 @@ export class CollisionManager {
   addCollider(object, tag) {
     const box = object.isBox3 ? object.clone() : new THREE.Box3().setFromObject(object);
     const overhead = object.overhead === undefined ? null : cloneOverheadShape(object.overhead, box);
-    if (!box.isEmpty()) this.colliders.push({ mesh: object, box, tag, ...(overhead ? {overhead} : {}) });
+    const input = object.triangleSupport;
+    const triangleSupport = input ? triangleInstance(input.template, input.offset.toArray(), input.id) : null;
+    if (triangleSupport && (overhead || !box.equals(triangleSupport.box))) throw new TypeError('Triangle collider requires exact owned bounds');
+    if (triangleSupport && this.colliders.some(c => c.triangleSupport?.id === triangleSupport.id)) throw new TypeError('Duplicate triangle owner');
+    if (!box.isEmpty()) this.colliders.push({ mesh: object, box, tag, ...(overhead ? {overhead} : {}), ...(triangleSupport ? {triangleSupport} : {}) });
   }
 
   addColliders(objects, tag) {
@@ -126,7 +133,7 @@ export class CollisionManager {
       if (top > limit || top <= ground) continue;
       ground = top;
     }
-    return Math.max(ground, rescue);
+    return Math.max(ground, rescue, this.supportContact(x,z,limit)?.height ?? -Infinity);
   }
 
   setDynamicBodies(owner, bodies) {
@@ -158,7 +165,7 @@ export class CollisionManager {
   }
 
   checkCollision(position, radius = DEFAULT_PLAYER_RADIUS, dynamicFrom = null) {
-    if (!this.checkBoundary(position, radius) || !this.checkRiverCrossing(position, radius)) return true;
+    if (!this.checkBoundary(position, radius) || !this.checkRiverCrossing(position, radius, dynamicFrom)) return true;
     // 视点是头部（脚面 + PLAYER.HEIGHT）；碰撞体从脚面上方 STEP_CLEARANCE 到头顶，矮台阶可直接跨过。
     const feetY = position.y - PLAYER.HEIGHT;
     const bottom = feetY + STEP_CLEARANCE;
@@ -172,7 +179,17 @@ export class CollisionManager {
     this._overheadBodyBox.copy(this.playerBox);
     this._overheadBodyBox.min.y = feetY;
     this._overheadBodyBox.max.y = position.y;
-    return this.queryBox(this.playerBox).some(collider => collider.overhead
+    this._triangleBodyBox ??= new THREE.Box3();
+    this._triangleBodyBox.copy(this._overheadBodyBox);
+    // Explicit marked solids retain full feet-to-eye contact; only numerical
+    // boundary coincidence is excluded, never a positive-depth foot region.
+    this._triangleBodyBox.min.y+=1e-8;
+    this._triangleFromBox ??= new THREE.Box3();
+    if(dynamicFrom)this._triangleFromBox.copy(this._triangleBodyBox).translate(new THREE.Vector3().subVectors(dynamicFrom,position));
+    const broad=this._triangleBodyBox.clone();if(dynamicFrom)broad.union(this._triangleFromBox);
+    return this.queryBox(broad).some(collider => collider.triangleSupport
+      ? (dynamicFrom ? triangleBodySweptIntersects(collider.triangleSupport,this._triangleFromBox,this._triangleBodyBox) : triangleBodyIntersects(collider.triangleSupport, this._triangleBodyBox))
+      : collider.overhead
       ? overheadIntersectsBox(collider.overhead, this._overheadBodyBox)
       : this.playerBox.intersectsBox(collider.box)) || this.checkDynamicCollision(position,radius,dynamicFrom);
   }
@@ -194,6 +211,33 @@ export class CollisionManager {
         allowed = Math.min(allowed, Math.max(fromFeet, ceiling-height-0.001));
     }
     return allowed;
+  }
+
+  /** Explicit triangle-only continuous vertical impact. Non-foot body contact
+   * remains airborne and slides at a bounded 1m/s, never grants a jump/floor.
+   * Old boxes/ramps and dynamic actors keep their existing paths. */
+  resolveTriangleVertical(x,z,fromFeet,toFeet,delta,radius=.5,height=PLAYER.HEIGHT) {
+    const make=(xx,zz,y)=>new THREE.Box3(new THREE.Vector3(xx-radius,y+1e-8,zz-radius),new THREE.Vector3(xx+radius,y+height,zz+radius));
+    const start=make(x,z,fromFeet),target=make(x,z,toFeet),shapes=this.queryBox(start.clone().union(target)).filter(c=>c.triangleSupport);
+    if(!shapes.length)return null;
+    let fraction=null,impacted=null;
+    for(const c of shapes){const t=triangleBodySweepFraction(c.triangleSupport,start,target);if(t!==null&&(fraction===null||t<fraction)){fraction=t;impacted=c;}}
+    if(fraction===null)return null;
+    const feet=fromFeet+(toFeet-fromFeet)*Math.max(0,fraction-1e-9);
+    if(toFeet>=fromFeet)return {x,z,feet,landed:false,kind:'head-impact'};
+    const witness=this.supportContact(x,z,feet+1e-7);
+    if(witness&&Math.abs(witness.height-feet)<1e-6)return {x,z,feet:witness.height,landed:true,witness,kind:'foot-impact'};
+    const center=impacted.box.getCenter(new THREE.Vector3()),size=impacted.box.getSize(new THREE.Vector3());
+    // Long rail bands slide across their narrow side, not toward a remote end.
+    const dx=size.x*2<size.z ? Math.sign(x-center.x)||1 : x-center.x;
+    const dz=size.z*2<size.x ? Math.sign(z-center.z)||1 : size.x*2<size.z ? 0 : z-center.z;
+    const length=Math.hypot(dx,dz);
+    if(length<1e-9)return {x,z,feet,landed:false,kind:'blocked-body-impact'};
+    const distance=Math.min(Math.max(0,delta),.1),xx=x+dx/length*distance,zz=z+dz/length*distance;
+    const eye=new THREE.Vector3(xx,feet+height,zz),before=new THREE.Vector3(x,feet+height,z);
+    // Entire response displacement obeys normal water, static, and actor guards.
+    if(!this.checkCollision(eye,radius,before))return {x:xx,z:zz,feet,landed:false,kind:'bounded-body-slide'};
+    return {x,z,feet,landed:false,kind:'blocked-body-impact'};
   }
 
   /**
@@ -233,13 +277,27 @@ export class CollisionManager {
    * 脚下碰撞体能提供的支撑高度：脚印（半径 r）范围内、顶面不高于 maxTop 的碰撞体顶面最大值。
    * 跳到栏杆、家具、矮墙上时用它当"地面"，避免从上方落进碰撞体里卡死。没有则返回 -Infinity。
    */
+  supportContact(x, z, maxTop, r = 0.3) {
+    const box = new THREE.Box3(new THREE.Vector3(x-r,-1e3,z-r),new THREE.Vector3(x+r,1e3,z+r));
+    let best = null;
+    for (const c of this.queryBox(box)) if (c.triangleSupport) {
+      const hit = triangleFootContact(c.triangleSupport,x,z,r,1e6);
+      if (hit && (!best || hit.height > best.height)) best = hit;
+    }
+    if(!best || best.height > maxTop + 1e-8)return null;
+    const body=new THREE.Box3(new THREE.Vector3(x-.5,best.height+1e-8,z-.5),new THREE.Vector3(x+.5,best.height+PLAYER.HEIGHT,z+.5));
+    if(this.queryBox(body).some(c=>c.triangleSupport&&triangleBodyIntersects(c.triangleSupport,body)))return null;
+    return best;
+  }
+
   supportHeight(x, z, maxTop, r = 0.3) {
     this._footBox ??= new THREE.Box3();
     this._footBox.min.set(x - r, -1e3, z - r);
     this._footBox.max.set(x + r, 1e3, z + r);
-    let best = -Infinity;
+    let best = this.supportContact(x,z,maxTop,r)?.height ?? -Infinity;
     for (const c of this.queryBox(this._footBox)) {
       // Head-only proxies must not create support from their broadphase top.
+      if (c.triangleSupport) continue;
       if (c.overhead) continue;
       const b = c.box;
       if (b.max.y > maxTop || b.max.y <= best) continue;
@@ -255,8 +313,9 @@ export class CollisionManager {
       position.z - radius >= minZ && position.z + radius <= maxZ;
   }
 
-  checkRiverCrossing(position, radius) {
-    return this.rivers.every(river => canCrossPalaceWater(river, position, radius));
+  checkRiverCrossing(position, radius, from = null) {
+    return this.rivers.every(river => canCrossPalaceWater(river, position, radius)) &&
+      this.moats.every(moat => from ? canTraverseOuterMoat(moat, from, position, radius) : canCrossOuterMoat(moat, position, radius));
   }
 
   /**
@@ -302,6 +361,13 @@ export class CollisionManager {
       const box = object.isBox3 ? object.clone() : new THREE.Box3().setFromObject(object);
       if (collider.overhead && object.overhead === undefined) throw new TypeError('Scoped overhead shape cannot disappear during an update');
       const overhead = object.overhead === undefined ? null : cloneOverheadShape(object.overhead, box);
+      if (collider.triangleSupport) {
+        const input=object.triangleSupport;
+        if(!input || input.id!==collider.triangleSupport.id)throw new TypeError('Triangle ownership cannot disappear');
+        const next=triangleInstance(input.template,input.offset.toArray(),input.id);
+        if(!box.equals(next.box))throw new TypeError('Triangle bounds mismatch');
+        collider.triangleSupport=next;
+      }
       collider.box.copy(box);
       if (overhead) collider.overhead = overhead;
       this._grid = null;

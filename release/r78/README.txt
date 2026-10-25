@@ -1,0 +1,5 @@
+R78 cumulative night household update. Run node start.mjs.
+Includes the complete R77 cumulative architecture, navigation and character updates.
+New: Beijing 19:00 evening lights; 21:00–06:00 sleeping-room strong lights off while ambient, outdoor and working-room lighting remain. Six larger private consort beds and grouped smaller maid beds preserve 28 unique assignments across 12 palace sites. Five opaque gameplay screens remain present by day; Yongshou uses separate halls. Sleeping eyes close in every LOD and restore on waking.
+Bed dimensions, assignments, lamps and screens are reversible gameplay fittings, not a historical inventory or surveyed restoration. Screens partly occlude retained decorative openwork. CPU geometry/routes and lighting policy checks do not establish GPU/mobile appearance or all-palace visual acceptance. Chromium screenshot launch was blocked before page load; no screenshot is claimed.
+This package does not deploy or merge main. Parent handles authorized GitHub branch delivery separately.

@@ -1,3 +1,5 @@
+import {fubiPoolGroundPath} from './garden/FubiArchPool.js';
+import { outerMoatGroundPath, buildOuterMoat } from './palace/special/OuterMoat.js';
 import {buildDuanmenBackdrop} from './palace/special/DuanmenBackdrop.js';
 import { palaceWaterGroundPaths } from './palace/special/SouthWaterSystem.js';
 import * as THREE from 'three';
@@ -8,6 +10,7 @@ import { YANXI_RUIN_GROUND_CUTOUT } from './palace/special/YanxiRuin.js';
 import { createSky, getSunPosition, updateSkyUniforms } from './sky/SkySetup.js';
 import { createSkylineRing } from './sky/Skyline.js';
 import { getBeijingDayCycle } from './sky/BeijingDayCycle.js';
+import {householdLightingPolicy} from './sky/HouseholdLightingPolicy.js';
 import { nightTourLighting } from './sky/NightTourLighting.js';
 
 /**
@@ -99,6 +102,9 @@ export class Environment {
     shape.closePath();
     const rivers = PALACE_LAYOUT.filter(item => item.type === 'river');
     for (const river of rivers) shape.holes.push(...palaceWaterGroundPaths(river));
+    const moat = PALACE_LAYOUT.find(item => item.type === 'moat');
+    if (moat) shape.holes.push(outerMoatGroundPath(moat));
+    shape.holes.push(fubiPoolGroundPath());
     // Permanent dry-pool opening matches the dedicated current-state ruin.
     // It is protected by physical guards; it does not create an entry route.
     const cut = YANXI_RUIN_GROUND_CUTOUT, poolHole = new THREE.Path();
@@ -118,6 +124,7 @@ export class Environment {
     ground.position.y = 0;
     ground.receiveShadow = true;
     this.addObject(ground);
+    if (moat) this.addObject(buildOuterMoat(this.library, moat));
     
     // 中轴御道（stone_slab，沿 z 轴从场景南界（午门外）到神武门）
     const roadWidth = 8;
@@ -270,8 +277,9 @@ export class Environment {
     this.moonLight.intensity=tour.moonIntensity;
     // Warm broad fill reaches axis facades and paving everywhere; the cool
     // retained sky separates this readable virtual night from daylight.
-    this.nightLampGlow.visible = l.daylight < 1;
-    this.nightLampGlow.material.opacity = 1 - l.daylight;
+    const exteriorGain=Math.max(1-l.daylight,householdLightingPolicy(l.daylight,state.beijingTime).gain);
+    this.nightLampGlow.visible = exteriorGain > 0;
+    this.nightLampGlow.material.opacity = exteriorGain;
     this.dirLight.color.fromArray(l.sunColor);
     this.dirLight.intensity = l.sunIntensity;
     this.dirLight.castShadow = state.sun.elevationDegrees > 0;

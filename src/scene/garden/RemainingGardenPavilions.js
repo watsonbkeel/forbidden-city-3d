@@ -3,6 +3,7 @@ import {addYujingSouthRail} from './GardenSilhouetteDetails.js';
 import anchors from '../../../data/anchors.json' with {type:'json'};
 import {applyBoxUV} from '../../utils/GeometryUV.js';
 import {buildBalustrade} from '../HallKit.js';
+import {FUBI_ARCH_POOL,buildFubiArchPool} from './FubiArchPool.js';
 import {addBridgeCeilingRelief} from './BridgeCeilingRelief.js';
 
 const SOURCES={浮碧亭:'https://www.dpm.org.cn/explore/building/236498.html',澄瑞亭:'https://www.dpm.org.cn/explore/building/236443.html'};
@@ -34,14 +35,14 @@ export function buildBridgeGardenPavilion(builder,root,input){const p=bridgeGard
  const rims=[[-pw/2,0,rimT,pd-rimT],[pw/2,0,rimT,pd-rimT]];
  for(const s of[-1,1])for(const zz of[-pd/2,pd/2])rims.push([s*(half+seg/2),zz,seg,rimT]);
  for(const [xx,zz,w,d]of rims)box('bridge-pool-rim',w,rimH,d,xx,rimH/2,zz,stone,false);
- const water=new THREE.Mesh(new THREE.PlaneGeometry(14.5,9.5),lib.material('water',{roughness:.12,metalness:.15}));water.name='bridge-pool-water';water.rotation.x=-Math.PI/2;water.position.y=.3;g.add(water);
+ const water=new THREE.Mesh(new THREE.PlaneGeometry(14.5,9.5),lib.material('water',{roughness:.12,metalness:.15}));water.name='bridge-pool-water';water.rotation.x=-Math.PI/2;water.position.y=p.name==='浮碧亭'?FUBI_ARCH_POOL.waterY:.3;g.add(water);
  const rails=[[-pw/2,0,pd,Math.PI/2],[pw/2,0,pd,-Math.PI/2]];
  for(const s of[-1,1])rails.push([s*(half+(pw/2-half)/2),-pd/2,pw/2-half,0],[s*(half+(pw/2-half)/2),pd/2,pw/2-half,Math.PI]);
  for(const [xx,zz,len,rot]of rails){const r=buildBalustrade(lib,{length:len,height:.85});r.position.set(xx,rimH,zz);r.rotation.y=rot;g.add(r);}
  const obstruction=(x0,x1,z0,z1)=>builder.addCollider(new THREE.Box3(new THREE.Vector3(x+x0,0,z+z0),new THREE.Vector3(x+x1,1.6,z+z1)));
  obstruction(-7.8,-4.2,-5.3,5.3);obstruction(4.2,7.8,-5.3,5.3);obstruction(-4.2,-1.2,4.2,5.3);obstruction(1.2,4.2,4.2,5.3);
  // Each registered support has a real top face. No invisible extension over water.
- box('bridge-main-plinth',8.4,.9,8.4,0,.45,0,stone,false);walk(-4.2,4.2,-4.2,4.2,.9);
+ if(p.name==='浮碧亭')p.archPool=buildFubiArchPool(g,stone);else box('bridge-main-plinth',8.4,.9,8.4,0,.45,0,stone,false);walk(-4.2,4.2,-4.2,4.2,.9);
  box('bridge-annex-plinth',8.4,.5,2.4,0,.25,-5.4,stone,false);walk(-4.2,4.2,-6.6,-4.2,.5);
  box('bridge-north-deck',2.4,.5,2.6,0,.25,5.5,stone,false);walk(-1.2,1.2,4.2,6.8,.5);
  function stairs(role,from,to,low,high,count){const step=(to-from)/count;for(let i=0;i<count;i++){const h=low+(high-low)*(i+1)/count;box(role,2.4,h,Math.abs(step),0,h/2,from+(i+.5)*step,stone,false);}ramp(-1.2,1.2,from,to,low,high);}
@@ -58,7 +59,7 @@ export function buildBridgeGardenPavilion(builder,root,input){const p=bridgeGard
  stairs('bridge-north-main-step',4.6,4.2,.5,.9,2);
  p.northApproach={retainedBedEdgeWorldZ:[506.4,506.7],retainedEdgeTop:.32,groundToeWorldZ:507.6,width:2.4,status:'LOCAL_VISIBLE_ACCESS_FIT_NOT_HISTORICAL_STAIR_MEASUREMENT'};
  // Low edge blockers match the plinth's visible sides, with true central gaps.
- for(const s of[-1,1]){box('bridge-main-edge',.16,.9,8.4,s*4.12,.45,0,stone);box('bridge-annex-edge',.16,.5,2.4,s*4.12,.25,-5.4,stone);for(const zz of[-4.12,4.12])box('bridge-main-edge',2.92,.9,.16,s*2.66,.45,zz,stone);box('bridge-annex-front-edge',2.92,.5,.16,s*2.66,.25,-6.52,stone);}
+ for(const s of[-1,1]){if(p.name==='浮碧亭'){/* Retain body guard, but do not cap the photographed low arch with a visible box. */builder.addCollider(new THREE.Box3(new THREE.Vector3(x+s*4.12-.08,0,z-4.2),new THREE.Vector3(x+s*4.12+.08,.9,z+4.2)));}else box('bridge-main-edge',.16,.9,8.4,s*4.12,.45,0,stone);box('bridge-annex-edge',.16,.5,2.4,s*4.12,.25,-5.4,stone);for(const zz of[-4.12,4.12])box('bridge-main-edge',2.92,.9,.16,s*2.66,.45,zz,stone);box('bridge-annex-front-edge',2.92,.5,.16,s*2.66,.25,-6.52,stone);}
  const xs=[-3.8,-1.4,1.4,3.8],top=4.7;
  for(const xx of xs)for(const zz of[-3.8,3.8])col('bridge-main-column',xx,zz,.9,top);
  for(const xx of[-3.8,3.8])for(const zz of[-1.4,1.4])col('bridge-main-column',xx,zz,.9,top);
@@ -105,15 +106,16 @@ export function buildBridgeGardenPavilion(builder,root,input){const p=bridgeGard
  g.userData.bridgePavilion=p;builder.group.userData.bridgePavilions??=[];builder.group.userData.bridgePavilions.push(p);return g;
 }
 
-export function buildYujingEnclosure(builder,root,{x,z,y}){
+export function buildYujingEnclosure(builder,root,{x,z,y,playableExit=false}){
  const a=assembly(builder,root,{name:'yujing_four_door_enclosure',x,z,y}),{g,lib,wood,stone,box}=a;
  for(let k=0;k<4;k++){
   const horizontal=k%2===0,sign=k<2?-1:1,at=sign*1.8;
-  for(let j=0;j<4;j++){const pos=-1.2+j*.8;box('yujing-closed-door-leaf',horizontal?.78:.14,2.25,horizontal?.14:.78,horizontal?pos:at,1.475,horizontal?at:pos,lib.material('lattice_doors'),false);}
-  box('yujing-door-header',horizontal?3.6:.22,.4,horizontal?.22:3.6,horizontal?0:at,2.8,horizontal?at:0,wood,false);
+  for(let j=0;j<4;j++){const pos=-1.2+j*.8;if(playableExit&&k===0&&(j===1||j===2))box('yujing-open-door-leaf-gameplay',.14,2.25,.78,j===1?-.81:.81,1.475,-1.41,lib.material('lattice_doors'),true);else box('yujing-closed-door-leaf',horizontal?.78:.14,2.25,horizontal?.14:.78,horizontal?pos:at,1.475,horizontal?at:pos,lib.material('lattice_doors'),playableExit);}
+  box('yujing-door-header',horizontal?3.6:.22,.4,horizontal?.22:3.6,horizontal?0:at,2.8,horizontal?at:0,wood,playableExit);
   // Surrounding stone rail is an exterior silhouette only; no invented summit route.
-  if(k===0)addYujingSouthRail(box,stone);
-  else box('yujing-stone-balustrade',horizontal?4.8:.2,.65,horizontal?.2:4.8,horizontal?0:sign*2.4,.675,horizontal?sign*2.4:0,stone,false);
+  if(k===0){if(playableExit){for(const xx of[-2.4,-.8,.8,2.4])box('yujing-south-rail-post',.18,.85,.2,xx,.775,-2.4,stone,true);for(const yy of[.40,.86])for(const xx of[-1.6,1.6])box('yujing-south-rail-horizontal-gameplay-opening',1.6,.1,.18,xx,yy,-2.4,stone,true);}else addYujingSouthRail(box,stone);}
+  else box('yujing-stone-balustrade',horizontal?4.8:.2,.65,horizontal?.2:4.8,horizontal?0:sign*2.4,.675,horizontal?sign*2.4:0,stone,playableExit);
  }
- const profile={id:'garden-procedural-御景亭',name:'御景亭',source:'https://www.dpm.org.cn/explore/building/236490.html',externalDoorGroups:4,columns:4,doorPose:'CLOSED_FIT_PHOTO_INFORMED_NOT_ACCESS_PERMISSION',dimensions:'RETAINED_FITTED_MOUNTAIN_PLATFORM',rail:'SOUTH_VISIBLE_POSTS_AND_OPEN_RAILS_PHOTO_FIT_THREE_OTHER_SLABS_UNVERIFIED_RETAINED',interior:'UNRECONSTRUCTED_THRONE_LOCATION_AND_INVENTORY_UNKNOWN',access:'NO_NEW_SUMMIT_SUPPORT_OR_TELEPORT',accepted:false};g.userData.yujingProfile=profile;builder.group.userData.yujingProfile=profile;return g;
+ if(playableExit){builder.walkables.push({type:'box',rescue:false,box:new THREE.Box3(new THREE.Vector3(x-2.7,y+.35,z-2.7),new THREE.Vector3(x+2.7,y+.35,z+2.7))});for(const xx of[-1.8,1.8])for(const zz of[-1.8,1.8])builder.addCollider(new THREE.Box3(new THREE.Vector3(x+xx-.2,y+.35,z+zz-.2),new THREE.Vector3(x+xx+.2,y+3.15,z+zz+.2)));}
+ const profile={id:'garden-procedural-御景亭',name:'御景亭',source:'https://www.dpm.org.cn/explore/building/236490.html',externalDoorGroups:4,columns:4,doorPose:'CLOSED_FIT_PHOTO_INFORMED_NOT_ACCESS_PERMISSION',dimensions:'RETAINED_FITTED_MOUNTAIN_PLATFORM',rail:'SOUTH_VISIBLE_POSTS_AND_OPEN_RAILS_PHOTO_FIT_THREE_OTHER_SLABS_UNVERIFIED_RETAINED',interior:'UNRECONSTRUCTED_THRONE_LOCATION_AND_INVENTORY_UNKNOWN',access:'NO_NEW_SUMMIT_SUPPORT_OR_TELEPORT',accepted:false};if(playableExit){profile.doorPose='SOUTH_TWO_LEAVES_OPEN_GAMEPLAY_ADAPTATION_OTHER_GROUPS_CLOSED';profile.access='EXPLICIT_GAMEPLAY_SOUTH_DOOR_AND_RAIL_OPENING_NOT_HISTORICAL_PUBLIC_ACCESS';profile.rail='SOUTH_CENTER_GAP_GAMEPLAY_ADAPTATION_OTHER_GEOMETRY_RETAINED';profile.minimumExitWidth=1.42;}g.userData.yujingProfile=profile;builder.group.userData.yujingProfile=profile;return g;
 }

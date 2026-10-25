@@ -1,0 +1,246 @@
+TAP version 13
+# Subtest: desktop ordinary release retains natural braking at 16.666666666666668 ms
+ok 1 - desktop ordinary release retains natural braking at 16.666666666666668 ms
+  ---
+  duration_ms: 91.597377
+  type: 'test'
+  ...
+# {"mobile":false,"interval":16.666666666666668,"releaseSpeed":11.999999999999995,"brakingMetres":1.1017708906238335,"settleFrames":43,"wallTimeToSettleMs":716.6666666666667}
+# Subtest: desktop ordinary release retains natural braking at 33.333333333333336 ms
+ok 2 - desktop ordinary release retains natural braking at 33.333333333333336 ms
+  ---
+  duration_ms: 35.307177
+  type: 'test'
+  ...
+# {"mobile":false,"interval":33.333333333333336,"releaseSpeed":11.999999999999998,"brakingMetres":1.0101685939889609,"settleFrames":22,"wallTimeToSettleMs":733.3333333333334}
+# Subtest: desktop ordinary release retains natural braking at 100 ms
+ok 3 - desktop ordinary release retains natural braking at 100 ms
+  ---
+  duration_ms: 21.671883
+  type: 'test'
+  ...
+# {"mobile":false,"interval":100,"releaseSpeed":12,"brakingMetres":0.6977352153671514,"settleFrames":8,"wallTimeToSettleMs":800}
+# Subtest: desktop ordinary release retains natural braking at 666.6 ms
+ok 4 - desktop ordinary release retains natural braking at 666.6 ms
+  ---
+  duration_ms: 25.338874
+  type: 'test'
+  ...
+# {"mobile":false,"interval":666.6,"releaseSpeed":12,"brakingMetres":0.6977352153671514,"settleFrames":8,"wallTimeToSettleMs":5332.8}
+# Subtest: mobile ordinary release retains natural braking at 16.666666666666668 ms
+ok 5 - mobile ordinary release retains natural braking at 16.666666666666668 ms
+  ---
+  duration_ms: 35.045397
+  type: 'test'
+  ...
+# {"mobile":true,"interval":16.666666666666668,"releaseSpeed":8.999999999999995,"brakingMetres":0.8260297964847451,"settleFrames":41,"wallTimeToSettleMs":683.3333333333334}
+# Subtest: mobile ordinary release retains natural braking at 33.333333333333336 ms
+ok 6 - mobile ordinary release retains natural braking at 33.333333333333336 ms
+  ---
+  duration_ms: 21.93445
+  type: 'test'
+  ...
+# {"mobile":true,"interval":33.333333333333336,"releaseSpeed":8.999999999999998,"brakingMetres":0.7573528809020542,"settleFrames":21,"wallTimeToSettleMs":700}
+# Subtest: mobile ordinary release retains natural braking at 100 ms
+ok 7 - mobile ordinary release retains natural braking at 100 ms
+  ---
+  duration_ms: 12.957775
+  type: 'test'
+  ...
+# {"mobile":true,"interval":100,"releaseSpeed":9,"brakingMetres":0.5224807177563644,"settleFrames":7,"wallTimeToSettleMs":700}
+# Subtest: mobile ordinary release retains natural braking at 666.6 ms
+ok 8 - mobile ordinary release retains natural braking at 666.6 ms
+  ---
+  duration_ms: 17.099539
+  type: 'test'
+  ...
+# {"mobile":true,"interval":666.6,"releaseSpeed":9,"brakingMetres":0.5224807177563644,"settleFrames":7,"wallTimeToSettleMs":4666.2}
+# Subtest: desktop walk/diagonal normalization and wall-clock auto-run keep their original thresholds
+ok 9 - desktop walk/diagonal normalization and wall-clock auto-run keep their original thresholds
+  ---
+  duration_ms: 1.725279
+  type: 'test'
+  ...
+# Subtest: R36 helicopter proximity is a non-modal enter/leave/re-enter interaction, not persistent flight UI
+ok 10 - R36 helicopter proximity is a non-modal enter/leave/re-enter interaction, not persistent flight UI
+  ---
+  duration_ms: 21.059076
+  type: 'test'
+  ...
+# Subtest: R36 keyboard exit after native Escape restores real walking mouse and releases every aircraft input
+ok 11 - R36 keyboard exit after native Escape restores real walking mouse and releases every aircraft input
+  ---
+  duration_ms: 19.406648
+  type: 'test'
+  ...
+# Subtest: R36 button exit after native Escape restores real walking mouse and releases every aircraft input
+ok 12 - R36 button exit after native Escape restores real walking mouse and releases every aircraft input
+  ---
+  duration_ms: 11.012383
+  type: 'test'
+  ...
+# Subtest: R36 leaving and approaching again permits a second real boarding without stale focus or flight state
+ok 13 - R36 leaving and approaching again permits a second real boarding without stale focus or flight state
+  ---
+  duration_ms: 11.192046
+  type: 'test'
+  ...
+# Subtest: R36 map-open disembark preserves the existing unlocked walking-map ownership
+ok 14 - R36 map-open disembark preserves the existing unlocked walking-map ownership
+  ---
+  duration_ms: 4.881562
+  type: 'test'
+  ...
+# Subtest: R36 mobile exit returns actual touch look and joystick ownership without requesting desktop pointer lock
+ok 15 - R36 mobile exit returns actual touch look and joystick ownership without requesting desktop pointer lock
+  ---
+  duration_ms: 6.074946
+  type: 'test'
+  ...
+# Subtest: R36 asynchronous native rejection leaves walking ownership intact and explicit retry restores actual mouse look
+ok 16 - R36 asynchronous native rejection leaves walking ownership intact and explicit retry restores actual mouse look
+  ---
+  duration_ms: 5.493858
+  type: 'test'
+  ...
+# Subtest: R36 delayed flight lock after disembark cannot recapture a walking map or reopen aircraft controls
+ok 17 - R36 delayed flight lock after disembark cannot recapture a walking map or reopen aircraft controls
+  ---
+  duration_ms: 5.057523
+  type: 'test'
+  ...
+# Subtest: H dismount after native Escape restores actual walking mouse and keys, not only the mode flag
+ok 18 - H dismount after native Escape restores actual walking mouse and keys, not only the mode flag
+  ---
+  duration_ms: 57.268754
+  type: 'test'
+  ...
+# Subtest: proximity only shows a non-modal boarding affordance; far H belongs to ordinary walking
+ok 19 - proximity only shows a non-modal boarding affordance; far H belongs to ordinary walking
+  ---
+  duration_ms: 21.564099
+  type: 'test'
+  ...
+# Subtest: rejected native lock Promise keeps dismount complete and offers a fresh walking retry
+ok 20 - rejected native lock Promise keeps dismount complete and offers a fresh walking retry
+  ---
+  duration_ms: 17.485092
+  type: 'test'
+  ...
+# Subtest: a late exit lock after opening the map is released without returning to flight
+ok 21 - a late exit lock after opening the map is released without returning to flight
+  ---
+  duration_ms: 8.028641
+  type: 'test'
+  ...
+# Subtest: an old flight-resume Promise rejection cannot cancel a fresh boarding request
+ok 22 - an old flight-resume Promise rejection cannot cancel a fresh boarding request
+  ---
+  duration_ms: 5.347407
+  type: 'test'
+  ...
+# Subtest: native unlock delivered after H dismount offers walking recovery, never reopens flight operations
+ok 23 - native unlock delivered after H dismount offers walking recovery, never reopens flight operations
+  ---
+  duration_ms: 4.679216
+  type: 'test'
+  ...
+# Subtest: completed dismount does not label a later ordinary walking unlock as flight recovery (delayed=false)
+ok 24 - completed dismount does not label a later ordinary walking unlock as flight recovery (delayed=false)
+  ---
+  duration_ms: 4.642991
+  type: 'test'
+  ...
+# Subtest: completed dismount does not label a later ordinary walking unlock as flight recovery (delayed=true)
+ok 25 - completed dismount does not label a later ordinary walking unlock as flight recovery (delayed=true)
+  ---
+  duration_ms: 4.852278
+  type: 'test'
+  ...
+# Subtest: R79 static body exposes honest project identity and working sibling discovery links without WebGL
+ok 26 - R79 static body exposes honest project identity and working sibling discovery links without WebGL
+  ---
+  duration_ms: 1.468381
+  type: 'test'
+  ...
+# Subtest: R79 structured metadata and sitemap are truthful and llms links are absolute
+ok 27 - R79 structured metadata and sitemap are truthful and llms links are absolute
+  ---
+  duration_ms: 1.497184
+  type: 'test'
+  ...
+# Subtest: R81 U ground cutout exposes water and preserves courtyard/south spawn/road dry ground
+ok 28 - R81 U ground cutout exposes water and preserves courtyard/south spawn/road dry ground
+  ---
+  duration_ms: 53.07993
+  type: 'test'
+  ...
+# Subtest: R81 environment owns water/bank clones once, preserves borrowed materials, and recreates cleanly
+ok 29 - R81 environment owns water/bank clones once, preserves borrowed materials, and recreates cleanly
+  ---
+  duration_ms: 19.894105
+  type: 'test'
+  ...
+# Subtest: R81 map desktop discloses three modeled sides and conservative pending south
+ok 30 - R81 map desktop discloses three modeled sides and conservative pending south
+  ---
+  duration_ms: 44.259441
+  type: 'test'
+  ...
+# Subtest: R81 map mobile discloses three modeled sides and conservative pending south
+ok 31 - R81 map mobile discloses three modeled sides and conservative pending south
+  ---
+  duration_ms: 14.822876
+  type: 'test'
+  ...
+# Subtest: R81 five nonoverlapping water strips preserve central engineering dry passage
+ok 32 - R81 five nonoverlapping water strips preserve central engineering dry passage
+  ---
+  duration_ms: 6.1097
+  type: 'test'
+  ...
+# Subtest: R81 shared circle-radius predicate blocks shore contacts, not dry spawn/home
+ok 33 - R81 shared circle-radius predicate blocks shore contacts, not dry spawn/home
+  ---
+  duration_ms: 0.691225
+  type: 'test'
+  ...
+# Subtest: R81 exact six-path successor rejects unrelated changes and deletions
+ok 34 - R81 exact six-path successor rejects unrelated changes and deletions
+  ---
+  duration_ms: 130.898545
+  type: 'test'
+  ...
+# Subtest: R81 retains main17 imports and every R79 discovery runtime input unchanged
+ok 35 - R81 retains main17 imports and every R79 discovery runtime input unchanged
+  ---
+  duration_ms: 8.821229
+  type: 'test'
+  ...
+# Subtest: R81 0.32 radius movement subdivides high speed and slides along shore
+ok 36 - R81 0.32 radius movement subdivides high speed and slides along shore
+  ---
+  duration_ms: 608.166818
+  type: 'test'
+  ...
+# Subtest: R81 0.5 radius movement subdivides high speed and slides along shore
+ok 37 - R81 0.5 radius movement subdivides high speed and slides along shore
+  ---
+  duration_ms: 363.758169
+  type: 'test'
+  ...
+# Subtest: R81 NPC adapter and routine path consume the same moat predicate without route edits
+ok 38 - R81 NPC adapter and routine path consume the same moat predicate without route edits
+  ---
+  duration_ms: 117.766231
+  type: 'test'
+  ...
+1..38
+# tests 38
+# suites 0
+# pass 38
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1364.014491

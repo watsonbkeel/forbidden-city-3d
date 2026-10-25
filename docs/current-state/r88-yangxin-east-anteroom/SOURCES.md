@@ -1,0 +1,9 @@
+# Sources and uncertainty
+
+Actual pixels inspected: official building page https://www.dpm.org.cn/explore/building/236442.html , image https://img.dpm.org.cn/Uploads/image/2026/04/30/5-blzCDKuUt313.jpg . Download SHA256 29584393bd5fa0221cf62b3f3dd1b2c7695143e80563f42b6ee6d3169fdf5447. Image is not embedded in the project.
+
+The page describes the east warm room; identifying this particular view as its front-room composition is an interpretation from the furnishings/window relationships, not a measured camera solution. The path date 2026/04/30 is not asserted as capture date. Separate contextual evidence is the Beijing government republication of Beijing Daily dated 2025-12-26 announcing the reopening and exhibition rearrangement. That report does not timestamp this image or prove an unchanged 19th-century inventory.
+
+Visible support: low dark-wood seat and footstool, yellow textiles behind/over the seat, long south-window kang, north wooden partition with openings, pale low ceiling. World orientation is a reversible fit to the retained shell and source plan, not a photograph-derived survey. Dimensions, simplified rectangular parts, plain wooden interface, no carving/painted panels, and no ceremonial lettering are explicitly low-detail PHOTO_FIT. Current product does not reproduce all objects, window details or historical wall decorations.
+
+No whole-hall model was regenerated. Original non-target decoded POSITION/NORMAL/UV, oriented indices, material JSON and node transformations are retained. Sixteen entirely unaffected Draco primitives retain their original compressed bytes. Four shared-material primitives are rewritten uncompressed after removing uniquely source-owned faces; two wholly target-owned nodes are removed. New 27 visual and27 collider nodes are author-generated and independent.

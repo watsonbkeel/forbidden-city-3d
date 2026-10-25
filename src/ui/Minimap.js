@@ -1,3 +1,4 @@
+import { outerMoatProfile } from '../scene/palace/special/OuterMoat.js';
 import { palaceWaterPolygons } from '../scene/palace/special/SouthWaterSystem.js';
 import * as THREE from 'three';
 import { PALACE_LAYOUT } from '../scene/Layout.js';
@@ -137,6 +138,11 @@ export class Minimap {
       cursor: grab;
     `;
     this.container.appendChild(this.canvas);
+    const moatNotice = document.createElement('p');
+    moatNotice.id = 'minimap-moat-status';
+    moatNotice.textContent = '筒子河五段水面（工程拟合）；南侧中央保留陆地通道，非考证桥梁。飞行禁降沿实际水面保守判定。';
+    moatNotice.style.cssText = 'font-size:11px;line-height:1.4;margin:4px 0';
+    this.container.appendChild(moatNotice);
     this.ctx = this.canvas.getContext('2d');
 
     // 缩放工具条
@@ -991,16 +997,12 @@ export class Minimap {
       const { type, position: p, dimensions: d, name } = item;
 
       if (type === 'moat') {
-        const [ox, oy, ow, oh] = this.rectOf(p.x, p.z, d.width, d.depth);
-        const [ix, iy, iw, ih] = this.rectOf(p.x, p.z, d.width - d.riverWidth * 2, d.depth - d.riverWidth * 2);
+        const profile = outerMoatProfile(item);
         ctx.fillStyle = 'rgba(80, 140, 200, 0.5)';
-        ctx.fillRect(ox, oy, ow, oh);
-        ctx.fillStyle = '#f0ebdc';
-        ctx.fillRect(ix, iy, iw, ih);
-        ctx.strokeStyle = 'rgba(60, 110, 170, 0.8)';
-        ctx.lineWidth = 1.5;
-        ctx.strokeRect(ox, oy, ow, oh);
-        ctx.strokeRect(ix, iy, iw, ih);
+        for (const strip of profile.strips) {
+          const [x,y,w,h] = this.rectOf((strip.minX+strip.maxX)/2,(strip.minZ+strip.maxZ)/2,strip.maxX-strip.minX,strip.maxZ-strip.minZ);
+          ctx.fillRect(x,y,w,h);
+        }
         continue;
       }
       if (type === 'outer_wall') {

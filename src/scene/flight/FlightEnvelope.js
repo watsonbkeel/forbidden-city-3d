@@ -1,3 +1,4 @@
+import { outerMoatProfile } from '../palace/special/OuterMoat.js';
 import { southWaterProfile } from '../palace/special/SouthWaterSystem.js';
 import * as THREE from 'three';
 import { innerJinshuiProfile } from '../palace/special/InnerJinshui.js';
@@ -121,10 +122,9 @@ export function createPalaceFlightEnvelope({palaceBuilder,enclosure,garden,zoneM
       grid.addRect(Math.min(...points.map(p=>p.x)),Math.max(...points.map(p=>p.x)),Math.min(...points.map(p=>p.z)),Math.max(...points.map(p=>p.z)),0,{water:true});
     }
   }
-  // Conservatively mark the exterior moat belt; no ground landing on water.
+  // Same five water strips as rendering and pedestrian/NPC checks. Raster
+  // cells remain conservative at edges, but the central south passage is dry.
   const moat=layout.find(i=>i.type==='moat');
-  if(moat){const p=moat.position,d=moat.dimensions,w=d.riverWidth,x0=p.x-d.width/2,x1=p.x+d.width/2,z0=p.z-d.depth/2,z1=p.z+d.depth/2;
-    grid.addRect(x0,x0+w,z0,z1,0,{water:true});grid.addRect(x1-w,x1,z0,z1,0,{water:true});
-    grid.addRect(x0,x1,z0,z0+w,0,{water:true});grid.addRect(x0,x1,z1-w,z1,0,{water:true});}
+  if(moat)for(const s of outerMoatProfile(moat).strips)grid.addRect(s.minX,s.maxX,s.minZ,s.maxZ,0,{water:true});
   return grid;
 }

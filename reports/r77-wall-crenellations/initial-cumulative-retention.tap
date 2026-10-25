@@ -1,0 +1,281 @@
+✔ map entry preserves already-held keyboard ownership and timing (38.683393ms)
+✔ map entry preserves already-held joystick ownership and timing (14.370261ms)
+✔ map blank/title clicks cannot relock; close keeps explicit stop and lock-failure fallback (6.303263ms)
+✔ map KeyW moves without native scrolling (6.752507ms)
+✔ map KeyA moves without native scrolling (5.935762ms)
+✔ map KeyS moves without native scrolling (7.965315ms)
+✔ map KeyD moves without native scrolling (6.238716ms)
+✔ map ArrowUp moves without native scrolling (6.032026ms)
+✔ map ArrowDown moves without native scrolling (6.057835ms)
+✔ map ArrowLeft moves without native scrolling (9.823953ms)
+✔ map ArrowRight moves without native scrolling (5.289823ms)
+✔ map text-entry input does not walk or jump or toggle map (6.07467ms)
+✔ map text-entry textarea does not walk or jump or toggle map (5.470214ms)
+✔ map text-entry select does not walk or jump or toggle map (4.543694ms)
+✔ map text-entry contenteditable does not walk or jump or toggle map (5.759798ms)
+✔ map text-entry textbox does not walk or jump or toggle map (6.633107ms)
+✔ map preserves ctrlKey shortcuts (4.993519ms)
+✔ map preserves metaKey shortcuts (4.227289ms)
+✔ map preserves altKey shortcuts (5.556183ms)
+✔ map controls retain native Space/Enter/Tab; keyup clears movement after focus changes (5.243383ms)
+✔ successful teleport cancels movement/jump until fresh key or touch; repeats cannot re-arm (5.011766ms)
+✔ map-target touch cannot acquire joystick even inside the padded joystick region (5.756584ms)
+✔ settings from a moving map still pauses and resumes with fresh input only (4.905998ms)
+✔ map accessibility is non-modal with keyboard-reachable preview and visible close (4.382332ms)
+✔ main wires map lifecycle explicitly while original physics/render loops remain separate (0.344627ms)
+✔ a hold first started in settings requires fresh admission after returning to walking (5.222412ms)
+✔ a hold first started in editable requires fresh admission after returning to walking (3.936964ms)
+✔ a hold first started in modifier requires fresh admission after returning to walking (4.150164ms)
+✔ map state changes during settings pause do not enable movement before dismissal (4.910184ms)
+✔ settings rejects a cancelled repeat but accepts a fresh press (4.212017ms)
+✔ close rejects a cancelled repeat but accepts a fresh press (4.13427ms)
+✔ teleport rejects a cancelled repeat but accepts a fresh press (4.948391ms)
+✔ short mobile map canvas uses the visual viewport and actual panel content height (3.973589ms)
+✔ unlabelled real Yanxi footprint opens correct card in desktop map without travel (2695.147071ms)
+✔ unlabelled real Yanxi footprint opens correct card in touch map without travel (32.003174ms)
+✔ visible text keeps precedence; blank ground and overlapping different footprints do not guess (20.283539ms)
+✔ duplicate names, changed source center and unknown items cannot borrow a footprint card (28.017307ms)
+✔ rerender replaces footprint list and compact/closed/disposed maps cannot select (37.60771ms)
+✔ drag on a real footprint cannot accidentally open card (23.741846ms)
+✔ pinch on a real footprint cannot accidentally open card (18.89072ms)
+✔ cancel on a real footprint cannot accidentally open card (18.30388ms)
+✔ native-style pointer tap on footprint opens card while held walking input continues (25.573823ms)
+✔ R36 helicopter proximity is a non-modal enter/leave/re-enter interaction, not persistent flight UI (19.921075ms)
+✔ R36 keyboard exit after native Escape restores real walking mouse and releases every aircraft input (19.580434ms)
+✔ R36 button exit after native Escape restores real walking mouse and releases every aircraft input (11.76217ms)
+✔ R36 leaving and approaching again permits a second real boarding without stale focus or flight state (6.263723ms)
+✔ R36 map-open disembark preserves the existing unlocked walking-map ownership (3.550104ms)
+✔ R36 mobile exit returns actual touch look and joystick ownership without requesting desktop pointer lock (5.06767ms)
+✔ R36 asynchronous native rejection leaves walking ownership intact and explicit retry restores actual mouse look (4.16751ms)
+✔ R36 delayed flight lock after disembark cannot recapture a walking map or reopen aircraft controls (4.616543ms)
+✔ H dismount after native Escape restores actual walking mouse and keys, not only the mode flag (23.943948ms)
+✔ proximity only shows a non-modal boarding affordance; far H belongs to ordinary walking (6.190153ms)
+✔ rejected native lock Promise keeps dismount complete and offers a fresh walking retry (7.169792ms)
+✔ a late exit lock after opening the map is released without returning to flight (4.418727ms)
+✔ an old flight-resume Promise rejection cannot cancel a fresh boarding request (5.080664ms)
+✔ native unlock delivered after H dismount offers walking recovery, never reopens flight operations (5.215291ms)
+✔ completed dismount does not label a later ordinary walking unlock as flight recovery (delayed=false) (3.728612ms)
+✔ completed dismount does not label a later ordinary walking unlock as flight recovery (delayed=true) (6.098937ms)
+✔ R73 registers independent Yangxin entrance without renaming Zunyi (1.147992ms)
+✔ R73 source-fit masonry portal is clear and full-height sides remain solid (31.73378ms)
+✔ R73 independent wood screen has central opening and two bypasses (9.916131ms)
+✔ R73 rejects invalid profile before allocating geometry (11.924513ms)
+✔ R73 actual merged west-six lifecycle retains one gate and releases new materials (990.725654ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=128,376, 树木=34棵, 碰撞器=455
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+✔ R73 real merged complete world and real Yangxin GLB retain gate-to-hall round trip (5947.675989ms)
+✔ R73 route from Zunyi through glazed gate and rear screen reaches Yangxin front in both directions (636.232149ms)
+✔ R74 bounded shell remains outside existing terrace with explicit uncertain elevation (35.784842ms)
+✔ R74 clear porch central entrance and return; sill windows stay solid (12.434036ms)
+✔ R74 merged garden identity survives lifecycle without duplicate map entry (428.083708ms)
+✔ R74 bare accessible shell receives interpretive night lights within existing budget (9.944462ms)
+✔ R74 high drop into bare shell can walk back through central exit at 10fps (56.826331ms)
+✔ R74 high drop into bare shell can walk back through central exit at 60fps (31.758315ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=128,376, 树木=34棵, 碰撞器=455
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=128,376, 树木=34棵, 碰撞器=455
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 garden
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 133.2ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+✔ R74 full merged world retains Longguang ground route and porch return without terrace overlap (5591.224215ms)
+✔ R74 actual prebuilt-room registration lights bare shell after garden unload/reload (4487.220119ms)
+✔ R75 bounded shell remains outside existing terrace with explicit uncertain elevation (35.262812ms)
+✔ R75 clear porch central entrance and return; sill windows stay solid (11.707967ms)
+✔ R75 merged garden identity survives lifecycle without duplicate map entry (412.760464ms)
+✔ R75 bare accessible shell receives interpretive night lights within existing budget (9.891123ms)
+✔ R75 high drop into bare shell can walk back through central exit at 10fps (61.491371ms)
+✔ R75 high drop into bare shell can walk back through central exit at 60fps (30.640738ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=128,376, 树木=34棵, 碰撞器=455
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=128,376, 树木=34棵, 碰撞器=455
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 garden
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 142.2ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+✔ R75 full merged world retains Fengcai ground route and porch return without terrace overlap (5627.516715ms)
+✔ R75 actual prebuilt-room registration lights bare shell after garden unload/reload (4434.531059ms)
+✔ R76 private join opt-in rejects foreign targets or altered geometry before allocation (4.342882ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=128,376, 树木=34棵, 碰撞器=455
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=128,376, 树木=34棵, 碰撞器=455
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=128,376, 树木=34棵, 碰撞器=455
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=128,376, 树木=34棵, 碰撞器=455
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+✔ R76 real player descent and backtrack innerjoin-190.8 at10fps (5557.77076ms)
+✔ R76 real player descent and backtrack innerjoin-171.4 at10fps (4394.273459ms)
+✔ R76 real player descent and backtrack innerjoin-190.8 at60fps (4405.28484ms)
+✔ R76 real player descent and backtrack innerjoin-171.4 at60fps (4324.514722ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=128,376, 树木=34棵, 碰撞器=455
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 加载区域 outer-west（外西路），耗时 668.4ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 garden
+[ZoneManager] 卸载区域 outer-west
+✔ R76 fullworld diagonal offset and reverse inner-join paths retain1.2m datum and gallery light lifecycle (6247.815853ms)
+ℹ tests 87
+ℹ suites 0
+ℹ pass 87
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 60464.918142

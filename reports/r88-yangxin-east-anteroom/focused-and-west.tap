@@ -1,0 +1,41 @@
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 54 个 region, 36 个 mapItem
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 468.9ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 389.3ms
+[ZoneManager] 卸载区域 west-six
+✔ R88 successor R53 actual S GLB proxies stream in/out without removing permanent west-room geometry or collisions (333.955487ms)
+✔ R88 successor R53 in-flight S load cancellation preserves west-room structure and allows a later actual reload (130.589014ms)
+✔ R88 successor R53 actual S controls preserve all two-turn doorway routes, 10Hz sprint=false (102.422465ms)
+✔ R88 successor R53 actual S controls preserve all two-turn doorway routes, 10Hz sprint=true (80.797339ms)
+✔ R88 successor R53 actual S controls preserve all two-turn doorway routes, 60Hz sprint=false (109.993797ms)
+✔ R88 successor R53 actual S controls preserve all two-turn doorway routes, 60Hz sprint=true (95.03483ms)
+✔ R88 successor R53 B visible triangles leave the complete 1m-wide player body clear, not just proxy boxes (54.3883ms)
+✔ R88 successor R53 S visible triangles leave the complete 1m-wide player body clear, not just proxy boxes (104.449386ms)
+✔ R88 successor R53 all new navigation spawns stay clear when actual S collision proxies are installed (77.614318ms)
+✔ R88 successor R53 real ZoneManager unload/re-entry recreates the four rooms and removes every tagged collision/support (1386.284211ms)
+✔ R88 successor R53 reusable caller-world audit also verifies actual loaded S, never simulated proxy evidence (103.89583ms)
+✔ R88 replaces the old three-metre east ghost collider with stable fitted furniture (0.936124ms)
+✔ R88 Yangxin partial registration rollback removes tags group lights and fade (165.311341ms)
+✔ R88 Yangxin normal install and cancel/unload restore B without duplicate owned resources (60.144414ms)
+✔ R88 malformed layer fails before registration, and shared owned geometry disposes once (36.797525ms)
+✔ R88 pale ceiling has head collision but never becomes an upstairs support floor (16.545142ms)
+✔ R88 every retained triangle preserves all typed corner attributes and original material/transform (11.816755ms)
+✔ R88 new furniture proxies match named visible objects and no WALK floor is invented (4.581021ms)
+✔ R88 untouched Draco blocks are byte-identical and ownership is exactly frozen source roles (8.15717ms)
+✔ R88 real controller main to east front/side chair and north opening returns 10Hz sprint=false (304.347907ms)
+✔ R88 real controller main to east front/side chair and north opening returns 10Hz sprint=true (135.728859ms)
+✔ R88 real controller main to east front/side chair and north opening returns 60Hz sprint=false (115.71894ms)
+✔ R88 real controller main to east front/side chair and north opening returns 60Hz sprint=true (88.39529ms)
+✔ R88 falling onto kang and chair has real support and can leave 10Hz (82.019922ms)
+✔ R88 falling onto kang and chair has real support and can leave 60Hz (91.19862ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2813.183428

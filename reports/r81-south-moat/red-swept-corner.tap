@@ -1,0 +1,54 @@
+TAP version 13
+# Subtest: R81 0.32 radius movement subdivides high speed and slides along shore
+ok 1 - R81 0.32 radius movement subdivides high speed and slides along shore
+  ---
+  duration_ms: 531.924631
+  type: 'test'
+  ...
+# Subtest: R81 0.5 radius movement subdivides high speed and slides along shore
+ok 2 - R81 0.5 radius movement subdivides high speed and slides along shore
+  ---
+  duration_ms: 303.005
+  type: 'test'
+  ...
+# Subtest: R81 NPC adapter and routine path consume the same moat predicate without route edits
+ok 3 - R81 NPC adapter and routine path consume the same moat predicate without route edits
+  ---
+  duration_ms: 109.677934
+  type: 'test'
+  ...
+# Subtest: R81 exact convex-shore sweep rejects dry endpoints whose radius crosses water between them
+not ok 4 - R81 exact convex-shore sweep rejects dry endpoints whose radius crosses water between them
+  ---
+  duration_ms: 1.458038
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r81-south-moat/tests/r81-water-collision.test.mjs:5:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r81-south-moat/tests/r81-water-collision.test.mjs:5:397)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 3
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1080.742097

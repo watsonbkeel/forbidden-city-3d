@@ -1,0 +1,57 @@
+✖ R74 high drop into bare shell can walk back through central exit at 10fps (3.341473ms)
+✖ R74 high drop into bare shell can walk back through central exit at 60fps (0.773641ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=128,376, 树木=34棵, 碰撞器=455
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 293 个 region, 222 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+✔ R74 full merged world retains Longguang ground route and porch return without terrace overlap (6108.999685ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 1
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6455.289703
+
+✖ failing tests:
+
+test at tests/r74-zhaoren-drop.test.mjs:2:25
+✖ R74 high drop into bare shell can walk back through central exit at 10fps (3.341473ms)
+  TypeError: c.getContext is not a function
+      at makeGoldBrickTexture (file:///workspace/scratch/02a8023d1a85/r74-zhaoren-courtyard/src/scene/palace/interiors.js:30:15)
+      at goldBrickTexture (file:///workspace/scratch/02a8023d1a85/r74-zhaoren-courtyard/src/scene/palace/interiors.js:23:52)
+      at new CourtKit (file:///workspace/scratch/02a8023d1a85/r74-zhaoren-courtyard/src/scene/palace/kit.js:52:29)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r74-zhaoren-courtyard/tests/r74-zhaoren-drop.test.mjs:2:159)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at tests/r74-zhaoren-drop.test.mjs:2:25
+✖ R74 high drop into bare shell can walk back through central exit at 60fps (0.773641ms)
+  TypeError: c.getContext is not a function
+      at makeGoldBrickTexture (file:///workspace/scratch/02a8023d1a85/r74-zhaoren-courtyard/src/scene/palace/interiors.js:30:15)
+      at goldBrickTexture (file:///workspace/scratch/02a8023d1a85/r74-zhaoren-courtyard/src/scene/palace/interiors.js:23:52)
+      at new CourtKit (file:///workspace/scratch/02a8023d1a85/r74-zhaoren-courtyard/src/scene/palace/kit.js:52:29)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r74-zhaoren-courtyard/tests/r74-zhaoren-drop.test.mjs:2:159)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)

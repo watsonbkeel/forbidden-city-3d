@@ -716,3 +716,12 @@ body:has(#minimap.minimap-touch[data-compact="true"]) #location-panel {
     top: calc(112px + env(safe-area-inset-top, 0px)) !important;
   }
 }
+
+/* R79 readable project entry; links retain the existing anchor input exclusion. */
+.welcome-content { max-height: calc(100dvh - 40px); overflow-y: auto; }
+.welcome-content .project-summary { font-size: 14px; line-height: 1.55; margin: 10px 0; }
+.project-discovery { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 14px 0; }
+.project-discovery a { color: #f1d58d; text-decoration: underline; padding: 5px; }
+.project-discovery a:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.no-script-project { position: fixed; inset: 0; z-index: 10001; overflow: auto; padding: 2rem; background: #171b23; color: #fff; }
+.no-script-project a { color: #f1d58d; }

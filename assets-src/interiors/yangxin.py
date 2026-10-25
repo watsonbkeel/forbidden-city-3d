@@ -19,6 +19,7 @@
 资料：docs/research/interiors-yangxin.md
 """
 import sys, os
+sys.dont_write_bytecode=True
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bpy, math
 from throne_hall import build
@@ -85,7 +86,7 @@ def wood_floors():
             z += 0.22; i += 1
 
 
-def east_throne():
+def legacy_east_throne():
     """东暖阁西向宝座：地平床 + 宝座（面向 +X）+ 脚踏；碰撞整块"""
     gold = mat('gold_lacquer'); lacq = mat('red_lacquer'); silk = mat('yellow_silk'); stone = mat('white_marble')
     gauze = mat('yellow_gauze', (0.92, 0.74, 0.14), metallic=0.0, roughness=0.85)
@@ -115,6 +116,12 @@ def east_throne():
             off = 0.05 if k % 2 else -0.05
             h = 2.7 - 0.05 * k       # 向外侧渐短（挽起的弧线）
             box(f'gauze_fold_{s}', 0.08, h, 0.17, xg + off, DOOR_H - 0.38 - h / 2, zz, gauze)
+
+
+def east_throne():
+    """R88 only: named, collision-matched PHOTO_FIT front room."""
+    from yangxin_east_furniture import build_east
+    build_east()
 
 
 def incense():
@@ -173,6 +180,7 @@ def extra(cfg):
 
 
 cfg = dict(
+    mergeSkipPrefix=('COL_', 'WALK_', 'R88_YX_'), exportExtras=True,
     w=W, d=D, H=CEIL,
     ztb0=TZ - 1.2, ztb1=TZ + 1.3, thW=4.58,
     # 明间金砖地（x ±5.9 / z ±5.9）
@@ -190,4 +198,9 @@ cfg = dict(
     extra=extra,
     draco=True,
 )
-build(cfg, out)
+if "--east-only" in sys.argv:
+    reset_scene()
+    east_throne()
+    export_glb(out, draco=False, export_extras=True)
+else:
+    build(cfg, out)

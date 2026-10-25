@@ -1,0 +1,90 @@
+✖ R83 Xishang radius .5 actual controller entrance and channel crossing roundtrip 10Hz (74.407968ms)
+✖ R83 Xishang radius .5 actual controller entrance and channel crossing roundtrip 60Hz (48.641394ms)
+✖ R83 Xishang shallow channel drop can leave without map 10Hz (37.613879ms)
+✖ R83 Xishang shallow channel drop can leave without map 60Hz (22.804955ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 336.979342
+
+✖ failing tests:
+
+test at tests/r83-player-routes.test.mjs:2:25
+✖ R83 Xishang radius .5 actual controller entrance and channel crossing roundtrip 10Hz (74.407968ms)
+  AssertionError [ERR_ASSERTION]: feet must reach actual stone top, not retained lower hall floor
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r83-xishang-channel/tests/r83-player-routes.test.mjs:2:655)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r83-player-routes.test.mjs:2:25
+✖ R83 Xishang radius .5 actual controller entrance and channel crossing roundtrip 60Hz (48.641394ms)
+  AssertionError [ERR_ASSERTION]: feet must reach actual stone top, not retained lower hall floor
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r83-xishang-channel/tests/r83-player-routes.test.mjs:2:655)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r83-player-routes.test.mjs:3:25
+✖ R83 Xishang shallow channel drop can leave without map 10Hz (37.613879ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(Math.abs(v.controls.feetY-(p.ph+.2))<.01)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r83-xishang-channel/tests/r83-player-routes.test.mjs:3:439)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r83-player-routes.test.mjs:3:25
+✖ R83 Xishang shallow channel drop can leave without map 60Hz (22.804955ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(Math.abs(v.controls.feetY-(p.ph+.2))<.01)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r83-xishang-channel/tests/r83-player-routes.test.mjs:3:439)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

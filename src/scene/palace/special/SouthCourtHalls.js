@@ -32,13 +32,13 @@ export function buildSouthCourtHall(kit,item){
   const ceiling=new THREE.PlaneGeometry(g.w,g.d);ceiling.rotateX(Math.PI/2);kit.mesh(f,ceiling,kit.lib.material('caihua_beam'),0,g.ph+g.colH-.52,0);
  }else{
   const {structure,southCourtProfile,...plain}=item;
-  const result=kit.hall({...plain,rot:0,throne:false,interior:'empty',backDoor:true,plaque:false});f=result.f;
+  const options={...plain,rot:0,throne:false,interior:'empty',backDoor:true,plaque:false};
+  const result=g.court==='wuying'?kit.wuyingJoinedHall(options,item):kit.hall(options);f=result.f;
   kit.rooms.splice(roomStart);
   kit.regions.splice(regionStart);
-  // The main and rear halls meet the connector on the same platform; remove
-  // only the two unused inward stairs, never foreign geometry/collision.
-  // Their geometry stays within the fitted connector platform and is hidden
-  // below its floor; the platform top is the sole navigation datum.
+  // Wuying inner joins share the existing platform datum: omit only their
+  // inward generic stair/ramp and raised wood threshold at construction.
+  // Wenhua and all external door/stair treatments remain unchanged.
   if(item.name){
    if(g.part==='rear'){
     // A rear-hall board belongs below the connector ceiling, not embedded

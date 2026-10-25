@@ -1,0 +1,39 @@
+✔ all22 actual downward lands have precise witnessed contact at 10Hz (149.863324ms)
+✔ all22 actual downward lands have precise witnessed contact at 60Hz (224.429085ms)
+✔ bridge2 real jump 10Hz has actual contact (121.372486ms)
+✖ bridge2 real rail walk 10Hz has actual contact (62.732531ms)
+✔ bridge2 real jump 60Hz has actual contact (73.160081ms)
+✔ bridge2 real rail walk 60Hz has actual contact (89.243295ms)
+✔ tilted disk maximum has an actual triangle/foot witness, not apex clamp (1.63818ms)
+✔ flat triangle has witness at edge but square-only corner misses (0.238098ms)
+✔ closed shape body detects surface and fully contained box, not broadphase gaps (1.059001ms)
+✔ invalid and degenerate geometry rejected; downward triangle not support (0.33962ms)
+✔ swept body detects intermediate corner strike with clear endpoints (0.820562ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 10
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 499.016232
+
+✖ failing tests:
+
+test at tests/r87-controller-contact.test.mjs:3:66
+✖ bridge2 real rail walk 10Hz has actual contact (62.732531ms)
+  AssertionError [ERR_ASSERTION]: blocked old short input returns to bridge, not rescued
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r87-bridge2-triangle-contact/tests/r87-controller-contact.test.mjs:6:146)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

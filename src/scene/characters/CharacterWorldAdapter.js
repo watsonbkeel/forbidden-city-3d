@@ -215,6 +215,7 @@ export class CharacterWorldAdapter{
   }return null;
  }
  _forbiddenSegment(a,b,radius=0){
+  if(this.cm?.checkRiverCrossing&&!this.cm.checkRiverCrossing({x:b[0],y:b[1],z:b[2]},radius,{x:a[0],y:a[1],z:a[2]}))return'Water or unverified bridge crossing';
   for(const site of HELICOPTER_CLEARANCES){const dx=b[0]-a[0],dz=b[2]-a[2],n=dx*dx+dz*dz,t=n?Math.max(0,Math.min(1,((site.x-a[0])*dx+(site.z-a[2])*dz)/n)):0;if(Math.hypot(a[0]+t*dx-site.x,a[2]+t*dz-site.z)<FLIGHT_RULES.radius+1+radius)return `Helicopter parking/disembark clearance at (${site.x}, ${site.z})`;}return null;
  }
  _forbidden(p,radius=0){const helicopter=this._forbiddenSegment(p,p,radius);if(helicopter)return helicopter;const cut=YANXI_RUIN_GROUND_CUTOUT;if(p[0]+radius>=cut.x-cut.w/2&&p[0]-radius<=cut.x+cut.w/2&&p[2]+radius>=cut.z-cut.d/2&&p[2]-radius<=cut.z+cut.d/2)return'Yanxi water-palace exclusion';

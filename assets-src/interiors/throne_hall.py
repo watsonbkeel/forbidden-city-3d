@@ -392,5 +392,5 @@ def build(cfg, out):
             col_box(f'COL_orn_{kind}', x - 0.55, 0, z - 0.55, x + 0.55, 2.2, z + 0.55)
     print(f'[build] tris={tri_count()}')
     # 同材质合并 → 每殿 ≈ 9 个 draw call（否则 300+ 个小 mesh 会吃掉 P1-R 省下的 call 预算）
-    if cfg.get('merge', True): merge_by_material()
-    export_glb(out, draco=cfg.get('draco', True))
+    if cfg.get('merge', True): merge_by_material(skip_prefix=cfg.get('mergeSkipPrefix', ('COL_', 'WALK_')))
+    export_glb(out, draco=cfg.get('draco', True), export_extras=cfg.get('exportExtras', False))

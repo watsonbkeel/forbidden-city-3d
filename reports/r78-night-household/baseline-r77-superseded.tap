@@ -1,0 +1,103 @@
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=128,376, 树木=34棵, 碰撞器=455
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 457.7ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 413.8ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 475.7ms
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 加载区域 east-six（东六宫），耗时 472.2ms
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 加载区域 east-six（东六宫），耗时 568.4ms
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 加载区域 east-six（东六宫），耗时 446.3ms
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 加载区域 outer-west（外西路），耗时 830.5ms
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 加载区域 outer-west（外西路），耗时 804.8ms
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 加载区域 outer-west（外西路），耗时 704.2ms
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 750.8ms
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 721.1ms
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 741.1ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 garden
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 ningshou
+✔ thirty beds remain unique across three actual zone unload/rebuild cycles and release owned resources (13027.537465ms)
+[
+  {
+    "template": "consort-daily",
+    "lod": 0,
+    "vertices": 5777,
+    "transformSteps": 46,
+    "maxWrites": 256,
+    "finalMs": 0.055414000000013175
+  },
+  {
+    "template": "consort-daily",
+    "lod": 1,
+    "vertices": 995,
+    "transformSteps": 8,
+    "maxWrites": 256,
+    "finalMs": 0.009525000000024875
+  },
+  {
+    "template": "consort-daily",
+    "lod": 2,
+    "vertices": 277,
+    "transformSteps": 3,
+    "maxWrites": 256,
+    "finalMs": 0.0045769999999834
+  },
+  {
+    "template": "maid-daily",
+    "lod": 0,
+    "vertices": 4215,
+    "transformSteps": 33,
+    "maxWrites": 256,
+    "finalMs": 0.014791999999999916
+  },
+  {
+    "template": "maid-daily",
+    "lod": 1,
+    "vertices": 867,
+    "transformSteps": 7,
+    "maxWrites": 256,
+    "finalMs": 0.005728999999973894
+  },
+  {
+    "template": "maid-daily",
+    "lod": 2,
+    "vertices": 277,
+    "transformSteps": 3,
+    "maxWrites": 256,
+    "finalMs": 0.004817000000002736
+  }
+]
+PASS: 6 template/LOD transforms match former geometry, every transform step ≤128 vertices, no bulk rescans, bounds contain all vertices, 12 return/throw cancellation paths dispose exactly once.
+✔ tests/r72-sleep-budget.test.mjs (285.902385ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13440.781065

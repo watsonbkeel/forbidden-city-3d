@@ -1,0 +1,479 @@
+✖ R77 all 886 crenels face outward and are supported within unchanged wall-top footprints (51.987702ms)
+✖ R77 exact delta omits only 22 Wumen ascent slots and shifts remaining 886 crenel centers (126.518263ms)
+✖ R77 supported south crenels do not intrude either retained Wumen folded ascent clearance (21.646927ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 0
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 447.724733
+
+✖ failing tests:
+
+test at tests/r77-wall-crenellations.test.mjs:2:1
+✖ R77 all 886 crenels face outward and are supported within unchanged wall-top footprints (51.987702ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      east: 266,
+      north: 198,
+  +   south: 174,
+  -   south: 156,
+      west: 266
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r77-wall-crenellations/tests/r77-wall-crenellations.test.mjs:2:889)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { north: 198, south: 174, east: 266, west: 266 },
+    expected: { north: 198, south: 156, east: 266, west: 266 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r77-wall-crenellations.test.mjs:3:1
+✖ R77 exact delta omits only 22 Wumen ascent slots and shifts remaining 886 crenel centers (126.518263ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      {
+        geometry: 'a0c86ff88910a48e989fed6102543f1813cdc98b5e394f41e5178105dacd7a47',
+        material: 'wall_brick',
+        name: '',
+  ...
+        position: [
+  +       61.75393258426966,
+  +       10.6,
+  +       -423.28
+  +     ],
+  +     quaternion: [
+  +       0,
+  +       0,
+  +       0,
+  +       1
+  +     ],
+  +     scale: [
+  +       1,
+  +       1,
+  +       1
+  +     ]
+  +   },
+  +   {
+  +     geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d',
+  +     material: 'wall_red',
+  +     name: '',
+  +     position: [
+  +       65.26179775280899,
+  +       10.6,
+  +       -423.28
+  +     ],
+  +     quaternion: [
+  +       0,
+  +       0,
+  +       0,
+  +       1
+  +     ],
+  +     scale: [
+  +       1,
+  +       1,
+  +       1
+  +     ]
+  +   },
+  +   {
+  +     geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d',
+  +     material: 'wall_red',
+  +     name: '',
+  +     position: [
+  +       68.76966292134831,
+  +       10.6,
+  +       -423.28
+  +     ],
+  +     quaternion: [
+  +       0,
+  +       0,
+  +       0,
+  +       1
+  +     ],
+  +     scale: [
+  +       1,
+  +       1,
+  +       1
+  +     ]
+  +   },
+  +   {
+  +     geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d',
+  +     material: 'wall_red',
+  +     name: '',
+  +     position: [
+  +       72.27752808988764,
+  +       10.6,
+  +       -423.28
+  +     ],
+  +     quaternion: [
+  +       0,
+  +       0,
+  +       0,
+  +       1
+  +     ],
+  +     scale: [
+  +       1,
+  +       1,
+  +       1
+  +     ]
+  +   },
+  +   {
+  +     geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d',
+  +     material: 'wall_red',
+  +     name: '',
+  +     position: [
+  +       75.78539325842696,
+  +       10.6,
+  +       -423.28
+  +     ],
+  +     quaternion: [
+  +       0,
+  +       0,
+  +       0,
+  +       1
+  +     ],
+  +     scale: [
+  +       1,
+  +       1,
+  +       1
+  +     ]
+  +   },
+  +   {
+  +     geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d',
+  +     material: 'wall_red',
+  +     name: '',
+  +     position: [
+  +       79.29325842696629,
+  +       10.6,
+  +       -423.28
+  +     ],
+  +     quaternion: [
+  +       0,
+  +       0,
+  +       0,
+  +       1
+  +     ],
+  +     scale: [
+  +       1,
+  +       1,
+  +       1
+  +     ]
+  +   },
+  +   {
+  +     geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d',
+  +     material: 'wall_red',
+  +     name: '',
+  +     position: [
+  +       82.80112359550562,
+  +       10.6,
+  +       -423.28
+  +     ],
+  +     quaternion: [
+  +       0,
+  +       0,
+  +       0,
+  +       1
+  +     ],
+  +     scale: [
+  +       1,
+  +       1,
+  +       1
+  +     ]
+  +   },
+  +   {
+  +     geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d',
+  +     material: 'wall_red',
+  +     name: '',
+  +     position: [
+  +       86.30898876404494,
+  +       10.6,
+  +       -423.28
+  +     ],
+  +     quaternion: [
+  +       0,
+  +       0,
+  +       0,
+  +       1
+  +     ],
+  +     scale: [
+  +       1,
+  +       1,
+  +       1
+  +     ]
+  +   },
+  +   {
+  +     geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d',
+  +     material: 'wall_red',
+  +     name: '',
+  +     position: [
+  +       89.81685393258427,
+  +       10.6,
+  +       -423.28
+  +     ],
+  +     quaternion: [
+  +       0,
+  +       0,
+  +       0,
+  +       1
+  +     ],
+  +     scale: [
+  +       1,
+  +       1,
+  +       1
+  +     ]
+  +   },
+  +   {
+  +     geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d',
+  +     material: 'wall_red',
+  +     name: '',
+  +     position: [
+          100.34044943820226,
+          10.6,
+          -423.28
+        ],
+        quaternion: [
+  ...
+      {
+  +     geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d',
+  +     material: 'wall_red',
+  +     name: '',
+  +     position: [
+  +       -89.81685393258425,
+  +       10.6,
+  +       -423.28
+  +     ],
+  +     quaternion: [
+  +       0,
+  +       0,
+  +       0,
+  +       1
+  +     ],
+  +     scale: [
+  +       1,
+  +       1,
+  +       1
+  +     ]
+  +   },
+  +   {
+  +     geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d',
+  +     material: 'wall_red',
+  +     name: '',
+  +     position: [
+  +       -86.30898876404495,
+  +       10.6,
+  +       -423.28
+  +     ],
+  +     quaternion: [
+  +       0,
+  +       0,
+  +       0,
+  +       1
+  +     ],
+  +     scale: [
+  +       1,
+  +       1,
+  +       1
+  +     ]
+  +   },
+  +   {
+  +     geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d',
+  +     material: 'wall_red',
+  +     name: '',
+  +     position: [
+  +       -82.8011235955056,
+  +       10.6,
+  +       -423.28
+  +     ],
+  +     quaternion: [
+  +       0,
+  +       0,
+  +       0,
+  +       1
+  +     ],
+  +     scale: [
+  +       1,
+  +       1,
+  +       1
+  +     ]
+  +   },
+  +   {
+  +     geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d',
+  +     material: 'wall_red',
+  +     name: '',
+  +     position: [
+  +       -79.2932584269663,
+  +       10.6,
+  +       -423.28
+  +     ],
+  +     quaternion: [
+  +       0,
+  +       0,
+  +       0,
+  +       1
+  +     ],
+  +     scale: [
+  +       1,
+  +       1,
+  +       1
+  +     ]
+  +   },
+  +   {
+  +     geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d',
+  +     material: 'wall_red',
+  +     name: '',
+  +     position: [
+  +       -75.78539325842695,
+  +       10.6,
+  +       -423.28
+  +     ],
+  +     quaternion: [
+  +       0,
+  +       0,
+  +       0,
+  +       1
+  +     ],
+  +     scale: [
+  +       1,
+  +       1,
+  +       1
+  +     ]
+  +   },
+  +   {
+  +     geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d',
+  +     material: 'wall_red',
+  +     name: '',
+  +     position: [
+  +       -72.27752808988765,
+  +       10.6,
+  +       -423.28
+  +     ],
+  +     quaternion: [
+  +       0,
+  +       0,
+  +       0,
+  +       1
+  +     ],
+  +     scale: [
+  +       1,
+  +       1,
+  +       1
+  +     ]
+  +   },
+  +   {
+  +     geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d',
+  +     material: 'wall_red',
+  +     name: '',
+  +     position: [
+  +       -68.7696629213483,
+  +       10.6,
+  +       -423.28
+  +     ],
+  +     quaternion: [
+  +       0,
+  +       0,
+  +       0,
+  +       1
+  +     ],
+  +     scale: [
+  +       1,
+  +       1,
+  +       1
+  +     ]
+  +   },
+  +   {
+  +     geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d',
+  +     material: 'wall_red',
+  +     name: '',
+  +     position: [
+  +       -65.261797752809,
+  +       10.6,
+  +       -423.28
+  +     ],
+  +     quaternion: [
+  +       0,
+  +       0,
+  +       0,
+  +       1
+  +     ],
+  +     scale: [
+  +       1,
+  +       1,
+  +       1
+  +     ]
+  +   },
+  +   {
+  +     geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d',
+  +     material: 'wall_red',
+  +     name: '',
+  +     position: [
+  +       -61.75393258426965,
+  +       10.6,
+  +       -423.28
+  +     ],
+  +     quaternion: [
+  +       0,
+  +       0,
+  +       0,
+  +       1
+  +     ],
+  +     scale: [
+  +       1,
+  +       1,
+  +       1
+  +     ]
+  +   },
+  +   {
+        geometry: 'bbb38daee4f2593b583aee6112e6c0c6eb422170975200c81292165a99e329f1',
+        material: 'wall_brick',
+        name: '',
+        position: [
+          198.64499999999998,
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r77-wall-crenellations/tests/r77-wall-crenellations.test.mjs:3:895)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { name: '', material: 'wall_brick', position: [Array], quaternion: [Array], scale: [Array], geometry: 'a0c86ff88910a48e989fed6102543f1813cdc98b5e394f41e5178105dacd7a47' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: 'c0aa05912062ad085c7afe41540ee8c5ddcd9bae02c1ccfa7c02b7c32d9a25f7' }, { name: 'wall_cap_wall_red', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '1d282b13f436f494ebb72022c7ec4907aaf1017f2f02b8cebe0dbea588613fd8' }, { name: 'wall_cap_roof_tile', material: 'roof_tile', position: [Array], quaternion: [Array], scale: [Array], geometry: '55219d2116d92a3ffcf6b3132b12d6c53546dc655472c0c69529541da70bcfc1' }, { name: 'wall_cap_roof_ridge_glaze', material: 'roof_ridge_glaze', position: [Array], quaternion: [Array], scale: [Array], geometry: '9ad8be3a058d3887167f54862475fd5822c13179b092c6de1ee0ac7161f1bc66' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_brick', position: [Array], quaternion: [Array], scale: [Array], geometry: 'a0c86ff88910a48e989fed6102543f1813cdc98b5e394f41e5178105dacd7a47' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: 'a78bebb338b52ba9355d0a0c82f7c0cc2f39abf716a2d9b9cfde156c4df6d95b' }, { name: 'wall_cap_wall_red', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '59e22881c7baa410e58465e37ea775cc2d57ef1ddfc77ef97f3f0051ec1e7d0c' }, { name: 'wall_cap_roof_tile', material: 'roof_tile', position: [Array], quaternion: [Array], scale: [Array], geometry: 'b14ea8840eb38d3560c69c60416101aa34754e58e12b8fbe4cfd5938db4b8be4' }, { name: 'wall_cap_roof_ridge_glaze', material: 'roof_ridge_glaze', position: [Array], quaternion: [Array], scale: [Array], geometry: '8fbc94c6e03a5efdb132f947639eb6e979b08100bc731613972b37b4851a729d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, ... 844 more items ],
+    expected: [ { name: '', material: 'wall_brick', position: [Array], quaternion: [Array], scale: [Array], geometry: 'a0c86ff88910a48e989fed6102543f1813cdc98b5e394f41e5178105dacd7a47' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: 'c0aa05912062ad085c7afe41540ee8c5ddcd9bae02c1ccfa7c02b7c32d9a25f7' }, { name: 'wall_cap_wall_red', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '1d282b13f436f494ebb72022c7ec4907aaf1017f2f02b8cebe0dbea588613fd8' }, { name: 'wall_cap_roof_tile', material: 'roof_tile', position: [Array], quaternion: [Array], scale: [Array], geometry: '55219d2116d92a3ffcf6b3132b12d6c53546dc655472c0c69529541da70bcfc1' }, { name: 'wall_cap_roof_ridge_glaze', material: 'roof_ridge_glaze', position: [Array], quaternion: [Array], scale: [Array], geometry: '9ad8be3a058d3887167f54862475fd5822c13179b092c6de1ee0ac7161f1bc66' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_brick', position: [Array], quaternion: [Array], scale: [Array], geometry: 'a0c86ff88910a48e989fed6102543f1813cdc98b5e394f41e5178105dacd7a47' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: 'a78bebb338b52ba9355d0a0c82f7c0cc2f39abf716a2d9b9cfde156c4df6d95b' }, { name: 'wall_cap_wall_red', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '59e22881c7baa410e58465e37ea775cc2d57ef1ddfc77ef97f3f0051ec1e7d0c' }, { name: 'wall_cap_roof_tile', material: 'roof_tile', position: [Array], quaternion: [Array], scale: [Array], geometry: 'b14ea8840eb38d3560c69c60416101aa34754e58e12b8fbe4cfd5938db4b8be4' }, { name: 'wall_cap_roof_ridge_glaze', material: 'roof_ridge_glaze', position: [Array], quaternion: [Array], scale: [Array], geometry: '8fbc94c6e03a5efdb132f947639eb6e979b08100bc731613972b37b4851a729d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, { name: '', material: 'wall_red', position: [Array], quaternion: [Array], scale: [Array], geometry: '4f8d8b3e5b443448a4f88c28125ad28446eacb20e390275b4de5fdc7c9fefd2d' }, ... 826 more items ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r77-wall-crenellations.test.mjs:4:1
+✖ R77 supported south crenels do not intrude either retained Wumen folded ascent clearance (21.646927ms)
+  AssertionError [ERR_ASSERTION]: [-89.81685393258425,10.6,-423.28]
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r77-wall-crenellations/tests/r77-wall-crenellations.test.mjs:4:312)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

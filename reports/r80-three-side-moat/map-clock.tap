@@ -1,0 +1,400 @@
+TAP version 13
+# Subtest: compact layout preserves live keyboard walking and exact view state
+ok 1 - compact layout preserves live keyboard walking and exact view state
+  ---
+  duration_ms: 52.182986
+  type: 'test'
+  ...
+# Subtest: compact layout preserves live joystick walking and exact view state
+ok 2 - compact layout preserves live joystick walking and exact view state
+  ---
+  duration_ms: 16.350852
+  type: 'test'
+  ...
+# Subtest: compact closes normally, restores full-map default and keeps the closed mobile preview distinct
+ok 3 - compact closes normally, restores full-map default and keeps the closed mobile preview distinct
+  ---
+  duration_ms: 7.024213
+  type: 'test'
+  ...
+# Subtest: compact details are hidden and inert, focused details move to expand, and disclosure stays reachable
+ok 4 - compact details are hidden and inert, focused details move to expand, and disclosure stays reachable
+  ---
+  duration_ms: 7.552877
+  type: 'test'
+  ...
+# Subtest: existing disclosure pauses compact desktop movement and resumes with fresh input
+ok 5 - existing disclosure pauses compact desktop movement and resumes with fresh input
+  ---
+  duration_ms: 8.503428
+  type: 'test'
+  ...
+# Subtest: existing disclosure pauses compact touch movement and resumes with fresh input
+ok 6 - existing disclosure pauses compact touch movement and resumes with fresh input
+  ---
+  duration_ms: 9.814972
+  type: 'test'
+  ...
+# Subtest: compact map taps never teleport; pan and wheel still work; expanded labels select before explicit travel
+ok 7 - compact map taps never teleport; pan and wheel still work; expanded labels select before explicit travel
+  ---
+  duration_ms: 8.622021
+  type: 'test'
+  ...
+# Subtest: mode switch cancels canvas capture and pending secondary taps without cancelling held joystick
+ok 8 - mode switch cancels canvas capture and pending secondary taps without cancelling held joystick
+  ---
+  duration_ms: 12.09167
+  type: 'test'
+  ...
+# Subtest: compact canvas budget is bounded at 390×844; very short mode keeps an explicit expand control
+ok 9 - compact canvas budget is bounded at 390×844; very short mode keeps an explicit expand control
+  ---
+  duration_ms: 17.824665
+  type: 'test'
+  ...
+# Subtest: compact canvas budget is bounded at 844×390; very short mode keeps an explicit expand control
+ok 10 - compact canvas budget is bounded at 844×390; very short mode keeps an explicit expand control
+  ---
+  duration_ms: 5.370311
+  type: 'test'
+  ...
+# Subtest: compact canvas budget is bounded at 1280×720; very short mode keeps an explicit expand control
+ok 11 - compact canvas budget is bounded at 1280×720; very short mode keeps an explicit expand control
+  ---
+  duration_ms: 6.132235
+  type: 'test'
+  ...
+# Subtest: compact canvas budget is bounded at 844×240; very short mode keeps an explicit expand control
+ok 12 - compact canvas budget is bounded at 844×240; very short mode keeps an explicit expand control
+  ---
+  duration_ms: 7.854649
+  type: 'test'
+  ...
+# Subtest: compact follows the visual viewport and restores canvas when the viewport recovers
+ok 13 - compact follows the visual viewport and restores canvas when the viewport recovers
+  ---
+  duration_ms: 5.638553
+  type: 'test'
+  ...
+# Subtest: heading uses +Z north and +X west, with no redundant text mutations
+ok 14 - heading uses +Z north and +X west, with no redundant text mutations
+  ---
+  duration_ms: 7.217193
+  type: 'test'
+  ...
+# Subtest: recovering a hidden compact canvas measures its visible width after the layout state changes
+ok 15 - recovering a hidden compact canvas measures its visible width after the layout state changes
+  ---
+  duration_ms: 7.520468
+  type: 'test'
+  ...
+# Subtest: compact pinch zoom retains multi-contact ownership and never teleports on the final lift
+ok 16 - compact pinch zoom retains multi-contact ownership and never teleports on the final lift
+  ---
+  duration_ms: 4.696279
+  type: 'test'
+  ...
+# Subtest: unowned pointerup cannot end a map gesture or teleport
+ok 17 - unowned pointerup cannot end a map gesture or teleport
+  ---
+  duration_ms: 24.320384
+  type: 'test'
+  ...
+# Subtest: unowned pointercancel cannot end a map gesture or teleport
+ok 18 - unowned pointercancel cannot end a map gesture or teleport
+  ---
+  duration_ms: 11.913493
+  type: 'test'
+  ...
+# Subtest: unowned lostpointercapture cannot end a map gesture or teleport
+ok 19 - unowned lostpointercapture cannot end a map gesture or teleport
+  ---
+  duration_ms: 22.678635
+  type: 'test'
+  ...
+# Subtest: pinch with no motion cannot turn the last finger lift into a teleport
+ok 20 - pinch with no motion cannot turn the last finger lift into a teleport
+  ---
+  duration_ms: 9.692859
+  type: 'test'
+  ...
+# Subtest: pointercancel clears map capture and a fresh one-finger drag is independent
+ok 21 - pointercancel clears map capture and a fresh one-finger drag is independent
+  ---
+  duration_ms: 7.231694
+  type: 'test'
+  ...
+# Subtest: lostpointercapture clears map capture and a fresh one-finger drag is independent
+ok 22 - lostpointercapture clears map capture and a fresh one-finger drag is independent
+  ---
+  duration_ms: 7.907379
+  type: 'test'
+  ...
+# Subtest: close clears map capture and a fresh one-finger drag is independent
+ok 23 - close clears map capture and a fresh one-finger drag is independent
+  ---
+  duration_ms: 6.893968
+  type: 'test'
+  ...
+# Subtest: held look/joystick touch remains independent while another finger drags map
+ok 24 - held look/joystick touch remains independent while another finger drags map
+  ---
+  duration_ms: 11.570177
+  type: 'test'
+  ...
+# Subtest: second-finger preview opens exactly once while joystick stays held
+ok 25 - second-finger preview opens exactly once while joystick stays held
+  ---
+  duration_ms: 8.478306
+  type: 'test'
+  ...
+# Subtest: second-finger toolbar tap activates once; a cancelled or dragged tap does not
+ok 26 - second-finger toolbar tap activates once; a cancelled or dragged tap does not
+  ---
+  duration_ms: 10.23956
+  type: 'test'
+  ...
+# Subtest: three-contact sequence remains ineligible for tap after pointerup
+ok 27 - three-contact sequence remains ineligible for tap after pointerup
+  ---
+  duration_ms: 23.914961
+  type: 'test'
+  ...
+# Subtest: three-contact sequence remains ineligible for tap after pointercancel
+ok 28 - three-contact sequence remains ineligible for tap after pointercancel
+  ---
+  duration_ms: 6.464132
+  type: 'test'
+  ...
+# Subtest: three-contact sequence remains ineligible for tap after lostpointercapture
+ok 29 - three-contact sequence remains ineligible for tap after lostpointercapture
+  ---
+  duration_ms: 6.833397
+  type: 'test'
+  ...
+# Subtest: close clears pending secondary button taps and map captures
+ok 30 - close clears pending secondary button taps and map captures
+  ---
+  duration_ms: 7.034338
+  type: 'test'
+  ...
+# Subtest: dispose clears pending secondary button taps and map captures
+ok 31 - dispose clears pending secondary button taps and map captures
+  ---
+  duration_ms: 6.910943
+  type: 'test'
+  ...
+# Subtest: map entry preserves already-held keyboard ownership and timing
+ok 32 - map entry preserves already-held keyboard ownership and timing
+  ---
+  duration_ms: 41.70615
+  type: 'test'
+  ...
+# Subtest: map entry preserves already-held joystick ownership and timing
+ok 33 - map entry preserves already-held joystick ownership and timing
+  ---
+  duration_ms: 15.413115
+  type: 'test'
+  ...
+# Subtest: map blank/title clicks cannot relock; close keeps explicit stop and lock-failure fallback
+ok 34 - map blank/title clicks cannot relock; close keeps explicit stop and lock-failure fallback
+  ---
+  duration_ms: 6.7287
+  type: 'test'
+  ...
+# Subtest: map KeyW moves without native scrolling
+ok 35 - map KeyW moves without native scrolling
+  ---
+  duration_ms: 6.936221
+  type: 'test'
+  ...
+# Subtest: map KeyA moves without native scrolling
+ok 36 - map KeyA moves without native scrolling
+  ---
+  duration_ms: 5.8035
+  type: 'test'
+  ...
+# Subtest: map KeyS moves without native scrolling
+ok 37 - map KeyS moves without native scrolling
+  ---
+  duration_ms: 5.313175
+  type: 'test'
+  ...
+# Subtest: map KeyD moves without native scrolling
+ok 38 - map KeyD moves without native scrolling
+  ---
+  duration_ms: 6.07643
+  type: 'test'
+  ...
+# Subtest: map ArrowUp moves without native scrolling
+ok 39 - map ArrowUp moves without native scrolling
+  ---
+  duration_ms: 6.488428
+  type: 'test'
+  ...
+# Subtest: map ArrowDown moves without native scrolling
+ok 40 - map ArrowDown moves without native scrolling
+  ---
+  duration_ms: 7.066907
+  type: 'test'
+  ...
+# Subtest: map ArrowLeft moves without native scrolling
+ok 41 - map ArrowLeft moves without native scrolling
+  ---
+  duration_ms: 11.288053
+  type: 'test'
+  ...
+# Subtest: map ArrowRight moves without native scrolling
+ok 42 - map ArrowRight moves without native scrolling
+  ---
+  duration_ms: 5.950673
+  type: 'test'
+  ...
+# Subtest: map text-entry input does not walk or jump or toggle map
+ok 43 - map text-entry input does not walk or jump or toggle map
+  ---
+  duration_ms: 6.527918
+  type: 'test'
+  ...
+# Subtest: map text-entry textarea does not walk or jump or toggle map
+ok 44 - map text-entry textarea does not walk or jump or toggle map
+  ---
+  duration_ms: 6.476611
+  type: 'test'
+  ...
+# Subtest: map text-entry select does not walk or jump or toggle map
+ok 45 - map text-entry select does not walk or jump or toggle map
+  ---
+  duration_ms: 4.371091
+  type: 'test'
+  ...
+# Subtest: map text-entry contenteditable does not walk or jump or toggle map
+ok 46 - map text-entry contenteditable does not walk or jump or toggle map
+  ---
+  duration_ms: 6.196782
+  type: 'test'
+  ...
+# Subtest: map text-entry textbox does not walk or jump or toggle map
+ok 47 - map text-entry textbox does not walk or jump or toggle map
+  ---
+  duration_ms: 12.399266
+  type: 'test'
+  ...
+# Subtest: map preserves ctrlKey shortcuts
+ok 48 - map preserves ctrlKey shortcuts
+  ---
+  duration_ms: 6.728594
+  type: 'test'
+  ...
+# Subtest: map preserves metaKey shortcuts
+ok 49 - map preserves metaKey shortcuts
+  ---
+  duration_ms: 6.466766
+  type: 'test'
+  ...
+# Subtest: map preserves altKey shortcuts
+ok 50 - map preserves altKey shortcuts
+  ---
+  duration_ms: 5.104793
+  type: 'test'
+  ...
+# Subtest: map controls retain native Space/Enter/Tab; keyup clears movement after focus changes
+ok 51 - map controls retain native Space/Enter/Tab; keyup clears movement after focus changes
+  ---
+  duration_ms: 7.531034
+  type: 'test'
+  ...
+# Subtest: successful teleport cancels movement/jump until fresh key or touch; repeats cannot re-arm
+ok 52 - successful teleport cancels movement/jump until fresh key or touch; repeats cannot re-arm
+  ---
+  duration_ms: 7.532706
+  type: 'test'
+  ...
+# Subtest: map-target touch cannot acquire joystick even inside the padded joystick region
+ok 53 - map-target touch cannot acquire joystick even inside the padded joystick region
+  ---
+  duration_ms: 7.979647
+  type: 'test'
+  ...
+# Subtest: settings from a moving map still pauses and resumes with fresh input only
+ok 54 - settings from a moving map still pauses and resumes with fresh input only
+  ---
+  duration_ms: 6.476721
+  type: 'test'
+  ...
+# Subtest: map accessibility is non-modal with keyboard-reachable preview and visible close
+ok 55 - map accessibility is non-modal with keyboard-reachable preview and visible close
+  ---
+  duration_ms: 4.604832
+  type: 'test'
+  ...
+# Subtest: main wires map lifecycle explicitly while original physics/render loops remain separate
+ok 56 - main wires map lifecycle explicitly while original physics/render loops remain separate
+  ---
+  duration_ms: 0.349705
+  type: 'test'
+  ...
+# Subtest: a hold first started in settings requires fresh admission after returning to walking
+ok 57 - a hold first started in settings requires fresh admission after returning to walking
+  ---
+  duration_ms: 6.654558
+  type: 'test'
+  ...
+# Subtest: a hold first started in editable requires fresh admission after returning to walking
+ok 58 - a hold first started in editable requires fresh admission after returning to walking
+  ---
+  duration_ms: 6.528218
+  type: 'test'
+  ...
+# Subtest: a hold first started in modifier requires fresh admission after returning to walking
+ok 59 - a hold first started in modifier requires fresh admission after returning to walking
+  ---
+  duration_ms: 4.780285
+  type: 'test'
+  ...
+# Subtest: map state changes during settings pause do not enable movement before dismissal
+ok 60 - map state changes during settings pause do not enable movement before dismissal
+  ---
+  duration_ms: 6.284703
+  type: 'test'
+  ...
+# Subtest: settings rejects a cancelled repeat but accepts a fresh press
+ok 61 - settings rejects a cancelled repeat but accepts a fresh press
+  ---
+  duration_ms: 4.552974
+  type: 'test'
+  ...
+# Subtest: close rejects a cancelled repeat but accepts a fresh press
+ok 62 - close rejects a cancelled repeat but accepts a fresh press
+  ---
+  duration_ms: 4.325853
+  type: 'test'
+  ...
+# Subtest: teleport rejects a cancelled repeat but accepts a fresh press
+ok 63 - teleport rejects a cancelled repeat but accepts a fresh press
+  ---
+  duration_ms: 7.104373
+  type: 'test'
+  ...
+# Subtest: short mobile map canvas uses the visual viewport and actual panel content height
+ok 64 - short mobile map canvas uses the visual viewport and actual panel content height
+  ---
+  duration_ms: 4.520294
+  type: 'test'
+  ...
+# Subtest: R78 exact civil boundaries, reversed preview and live resume retain ambient and outdoor light
+ok 65 - R78 exact civil boundaries, reversed preview and live resume retain ambient and outdoor light
+  ---
+  duration_ms: 7.154779
+  type: 'test'
+  ...
+1..65
+# tests 65
+# suites 0
+# pass 65
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 424.269891

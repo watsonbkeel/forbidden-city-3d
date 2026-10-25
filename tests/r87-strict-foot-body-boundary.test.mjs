@@ -1,0 +1,6 @@
+import test from 'node:test';import assert from 'node:assert/strict';import * as THREE from 'three';
+import {finialFixture} from './lib/r58-bridge-contact-probe.mjs';import {triangleFootContact,triangleBodyIntersects} from '../src/utils/TriangleSupport.js';
+test('strict contract rejects real cap eccentric foot witness with full body intrusion',()=>{const W=finialFixture(),s=W.cm.colliders.find(c=>c.triangleSupport?.id.endsWith('cap:0')).triangleSupport;
+ for(const dx of [.35,.4]){const x=s.offset.x+dx,z=s.offset.z,hit=triangleFootContact(s,x,z,.3,10);assert.ok(hit);const body=new THREE.Box3(new THREE.Vector3(x-.5,hit.height+1e-8,z-.5),new THREE.Vector3(x+.5,hit.height+1.7,z+.5));assert.equal(triangleBodyIntersects(s,body),true);assert.ok(s.box.max.y-hit.height>.02,'positive penetration is not tolerance');}
+});
+test('apex inside true foot disk permits full body contact without penetration',()=>{const W=finialFixture(),s=W.cm.colliders.find(c=>c.triangleSupport?.id.endsWith('cap:0')).triangleSupport;for(const dx of [0,.1,.2,.299]){const x=s.offset.x+dx,z=s.offset.z,hit=triangleFootContact(s,x,z,.3,10);assert.ok(hit);assert.equal(triangleBodyIntersects(s,new THREE.Box3(new THREE.Vector3(x-.5,hit.height+1e-8,z-.5),new THREE.Vector3(x+.5,hit.height+1.7,z+.5))),false);}});

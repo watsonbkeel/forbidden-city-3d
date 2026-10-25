@@ -1,0 +1,30 @@
+✖ emperor keeps every point outside original indices354..367 and physically bypasses the new left column both directions (96.682518ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 270.991877
+
+✖ failing tests:
+
+test at tests/r86-emperor-detour.test.mjs:3:1
+✖ emperor keeps every point outside original indices354..367 and physically bypasses the new left column both directions (96.682518ms)
+  AssertionError [ERR_ASSERTION]: [-2.8000000000000003,8.6,68.30499999999962]
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r86-emperor-detour.test.mjs:3:1092)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

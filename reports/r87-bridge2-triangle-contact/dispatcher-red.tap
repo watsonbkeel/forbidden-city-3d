@@ -1,0 +1,42 @@
+✖ explicit owner surface carries witness, unregister/reload and update preserve dispatch (2.25718ms)
+✖ unmarked box retains square support while marked body cannot use coarse box gaps (1.437829ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 168.862879
+
+✖ failing tests:
+
+test at tests/r87-collision-dispatch.test.mjs:5:1
+✖ explicit owner surface carries witness, unregister/reload and update preserve dispatch (2.25718ms)
+  TypeError: cm.supportContact is not a function
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r87-bridge2-triangle-contact/tests/r87-collision-dispatch.test.mjs:6:89)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at tests/r87-collision-dispatch.test.mjs:9:1
+✖ unmarked box retains square support while marked body cannot use coarse box gaps (1.437829ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1.5 !== -Infinity
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r87-bridge2-triangle-contact/tests/r87-collision-dispatch.test.mjs:10:70)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1.5,
+    expected: -Infinity,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

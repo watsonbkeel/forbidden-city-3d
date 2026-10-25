@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import {PLAYER} from '../../config/constants.js';
 import {CollisionManager} from '../../utils/Collision.js';
-export function staticRoutineNavigation(source){const cm=new CollisionManager();cm.colliders=source.colliders;cm.walkables=source.walkables;cm.rivers=source.rivers;cm._grid=source._grid;return cm;}
+export function staticRoutineNavigation(source){const cm=new CollisionManager();cm.colliders=source.colliders;cm.walkables=source.walkables;cm.rivers=source.rivers;cm.moats=source.moats;cm._grid=source._grid;return cm;}
 /** Bounded incremental A* over actual static controller navigation. No rays
  * through walls, fixed-height guesses or teleport fallback. One caller advances
  * a few yields per frame; failure preserves the character's current position. */

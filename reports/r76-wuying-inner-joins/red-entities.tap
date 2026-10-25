@@ -1,0 +1,464 @@
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=128,376, 树木=34棵, 碰撞器=455
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+✖ R76 exact128fullworld hall consumers differ only by two inward stair sets and wood thresholds (6393.358895ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6805.008333
+
+✖ failing tests:
+
+test at tests/r76-hall-consumers.test.mjs:2:1
+✖ R76 exact128fullworld hall consumers differ only by two inward stair sets and wood thresholds (6393.358895ms)
+  AssertionError [ERR_ASSERTION]: ["axis-courts","体仁阁",-98.4,-109.3,43.712,16.736]
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      colliders: [
+        {
+          max: [
+            -80.1,
+  ...
+            0.6914107176547127,
+  +         -0,
+  -         0,
+            0.7071067811865476
+          ],
+          scale: [
+            1,
+            1,
+  ...
+            0.6914107176547127,
+  +         -0,
+  -         0,
+            0.7071067811865476
+          ],
+          scale: [
+            1,
+            1,
+  ...
+            0.6914107176547127,
+  +         -0,
+  -         0,
+            0.7071067811865476
+          ],
+          scale: [
+            1,
+            1,
+  ...
+            0.6914107176547127,
+  +         -0,
+  -         0,
+            0.7071067811865476
+          ],
+          scale: [
+            1,
+            1,
+  ...
+          quaternion: [
+  +         -0,
+  -         0,
+            0.9234842985885261,
+            0,
+            0.3836362212571406
+          ],
+          scale: [
+  ...
+          quaternion: [
+  +         -0,
+  -         0,
+            0.9410328276908044,
+            0,
+            0.33831526304358267
+          ],
+          scale: [
+  ...
+          quaternion: [
+  +         -0,
+  -         0,
+            0.9635934411510079,
+            0,
+            0.2673718013754617
+          ],
+          scale: [
+  ...
+          quaternion: [
+  +         -0,
+  -         0,
+            0.9838191896471143,
+            0,
+            0.1791641763358271
+          ],
+          scale: [
+  ...
+          quaternion: [
+  +         -0,
+  -         0,
+            0.9971499472367521,
+            0,
+            0.07544522997342024
+          ],
+          scale: [
+  ...
+          quaternion: [
+  +         -0,
+  -         0,
+            -0.9971499472367521,
+            0,
+            0.07544522997342024
+          ],
+          scale: [
+  ...
+          quaternion: [
+  +         -0,
+  -         0,
+            -0.9838191896471143,
+            0,
+            0.17916417633582632
+          ],
+          scale: [
+  ...
+          quaternion: [
+  +         -0,
+  -         0,
+            -0.9635934411510081,
+            0,
+            0.26737180137546035
+          ],
+          scale: [
+  ...
+          quaternion: [
+  +         -0,
+  -         0,
+            -0.9410328276908044,
+            0,
+            0.33831526304358267
+          ],
+          scale: [
+  ...
+          quaternion: [
+  +         -0,
+  -         0,
+            -0.9235022899330341,
+            0,
+            0.3835929098516321
+          ],
+          scale: [
+  ...
+          quaternion: [
+  +         -0,
+  -         0,
+            0.8542537417879491,
+            0,
+            0.5198562730613989
+          ],
+          scale: [
+  ...
+          quaternion: [
+  +         -0,
+  -         0,
+            -0.8542688567739833,
+            0,
+            0.5198314345497695
+          ],
+          scale: [
+  ...
+        {
+  +       box: Box3 {
+  -       box: {
+            isBox3: true,
+  +         max: Vector3 {
+  -         max: {
+              x: -80.1,
+              y: 3.6999999999999997,
+              z: -77.64999999999999
+            },
+  +         min: Vector3 {
+  -         min: {
+              x: -107.60000000000001,
+              y: 3.6999999999999997,
+              z: -140.95
+            }
+          },
+  ...
+        {
+  +       box: Box3 {
+  -       box: {
+            isBox3: true,
+  +         max: Vector3 {
+  -         max: {
+              x: -90.032,
+              y: 3.8,
+              z: -87.44399999999999
+            },
+  +         min: Vector3 {
+  -         min: {
+              x: -106.76800000000001,
+              y: 3.8,
+              z: -131.156
+            }
+          },
+  ...
+        {
+  +       box: Box3 {
+  -       box: {
+            isBox3: true,
+  +         max: Vector3 {
+  -         max: {
+              x: -89.282,
+              y: 2.8,
+              z: -143.95
+            },
+  +         min: Vector3 {
+  -         min: {
+              x: -94.182,
+              y: 2.8,
+              z: -145.15
+            }
+          },
+  ...
+        {
+  +       box: Box3 {
+  -       box: {
+            isBox3: true,
+  +         max: Vector3 {
+  -         max: {
+              x: -89.28200000000001,
+              y: 2.8,
+              z: -73.44999999999999
+            },
+  +         min: Vector3 {
+  -         min: {
+              x: -94.18200000000002,
+              y: 2.8,
+              z: -74.65
+            }
+          },
+  ...
+        {
+  +       box: Box3 {
+  -       box: {
+            isBox3: true,
+  +         max: Vector3 {
+  -         max: {
+              x: -92.08,
+              y: 13.594999999999999,
+              z: -89.456
+            },
+  +         min: Vector3 {
+  -         min: {
+              x: -104.72000000000001,
+              y: 13.594999999999999,
+              z: -129.14
+            }
+          },
+  ...
+        {
+  +       box: Box3 {
+  -       box: {
+            isBox3: true,
+  +         max: Vector3 {
+  -         max: {
+              x: -90.32,
+              y: 13.594999999999999,
+              z: -87.696
+            },
+  +         min: Vector3 {
+  -         min: {
+              x: -92.08000000000001,
+              y: 13.594999999999999,
+              z: -130.9
+            }
+          },
+  ...
+        {
+  +       box: Box3 {
+  -       box: {
+            isBox3: true,
+  +         max: Vector3 {
+  -         max: {
+              x: -104.72,
+              y: 13.594999999999999,
+              z: -87.696
+            },
+  +         min: Vector3 {
+  -         min: {
+              x: -106.48000000000002,
+              y: 13.594999999999999,
+              z: -130.9
+            }
+          },
+  ...
+        {
+  +       box: Box3 {
+  -       box: {
+            isBox3: true,
+  +         max: Vector3 {
+  -         max: {
+              x: -90.32,
+              y: 13.594999999999999,
+              z: -129.14
+            },
+  +         min: Vector3 {
+  -         min: {
+              x: -106.48,
+              y: 13.594999999999999,
+              z: -130.9
+            }
+          },
+  ...
+        {
+  +       box: Box3 {
+  -       box: {
+            isBox3: true,
+  +         max: Vector3 {
+  -         max: {
+              x: -90.32000000000001,
+              y: 13.594999999999999,
+              z: -87.696
+            },
+  +         min: Vector3 {
+  -         min: {
+              x: -106.48000000000002,
+              y: 13.594999999999999,
+              z: -89.46000000000001
+            }
+          },
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r76-wuying-inner-joins/tests/r76-hall-consumers.test.mjs:2:507)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: {
+      key: '["axis-courts","体仁阁",-98.4,-109.3,43.712,16.736]',
+      meshes: [
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        ... 1224 more items
+      ],
+      colliders: [
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        ... 815 more items
+      ],
+      walkables: [
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object]
+      ],
+      rooms: [ [Object] ],
+      mapItems: [ [Object] ]
+    },
+    expected: {
+      key: '["axis-courts","体仁阁",-98.4,-109.3,43.712,16.736]',
+      meshes: [
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        ... 1224 more items
+      ],
+      colliders: [
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        ... 815 more items
+      ],
+      walkables: [
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object]
+      ],
+      rooms: [ [Object] ],
+      mapItems: [ [Object] ]
+    },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

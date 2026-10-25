@@ -1,0 +1,79 @@
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,202, 树木=34棵, 碰撞器=3033
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+✔ R85 exterior cloud plaque does not change whole-world flight water or height masks (5834.911141ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,202, 树木=34棵, 碰撞器=3033
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+✖ R85 entire world preserves all R84 navigation, rooms, map entries and mountain profile (5970.555606ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12300.562055
+
+✖ failing tests:
+
+test at tests/r85-world-nav.test.mjs:2:1
+✖ R85 entire world preserves all R84 navigation, rooms, map entries and mountain profile (5970.555606ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      counts: {
+        colliders: 27038,
+        mapItems: 223,
+        rooms: 281,
+  ...
+        cellSize: 0.25,
+  +     cells: undefined,
+        center: [
+          -29.1,
+          0,
+          509.1
+        ],
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r85-taihe-exterior-plaque/tests/r85-world-nav.test.mjs:2:228)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { retained: { colliders: '75bf2d938ade6c055f6707687f732b9af6179209485c5abf7bf2adc9f4c32f94', walkables: 'ff8f7b1c90fa1fa3ac7614768ebf09dd3055860b85c40659b4bf0ffefd4d4eed', rooms: '5b3848c63413d8004d3d008e502c533f952915a887879469b0980763f595398e', mapItems: '361732dac2f6ea22009af89fcd34882ad63f8189c4980838c15745b266428fdf' }, counts: { colliders: 27038, walkables: 3571, rooms: 281, mapItems: 223 }, mountain: { colliders: 2623, walkables: 2327 }, profile: { status: 'PHOTO_TOPOLOGY_ENGINEERING_FIT_NOT_SURVEY', accepted: false, source: 'https://www.dpm.org.cn/explore/building/236429.html', center: [Array], radiusX: 12.545000000000002, radiusZ: 8.305, topY: 10, summitY: 10.5, cellSize: 0.25, stepRise: 0.1, cave: [Object], routes: [Array], unknown: [Array], cells: undefined, solidCellCount: 6487 } },
+    expected: { retained: { colliders: '75bf2d938ade6c055f6707687f732b9af6179209485c5abf7bf2adc9f4c32f94', walkables: 'ff8f7b1c90fa1fa3ac7614768ebf09dd3055860b85c40659b4bf0ffefd4d4eed', rooms: '5b3848c63413d8004d3d008e502c533f952915a887879469b0980763f595398e', mapItems: '361732dac2f6ea22009af89fcd34882ad63f8189c4980838c15745b266428fdf' }, counts: { colliders: 27038, walkables: 3571, rooms: 281, mapItems: 223 }, mountain: { colliders: 2623, walkables: 2327 }, profile: { status: 'PHOTO_TOPOLOGY_ENGINEERING_FIT_NOT_SURVEY', accepted: false, source: 'https://www.dpm.org.cn/explore/building/236429.html', center: [Array], radiusX: 12.545000000000002, radiusZ: 8.305, topY: 10, summitY: 10.5, cellSize: 0.25, stepRise: 0.1, cave: [Object], routes: [Array], unknown: [Array], solidCellCount: 6487 } },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

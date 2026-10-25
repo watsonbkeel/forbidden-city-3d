@@ -1,3 +1,4 @@
+import { validateYangxinEast } from './YangxinEastContract.js';
 import { huangjiColumnSafetyBoxes } from './HuangjiColumnSafety.js';
 import { validateHuangjiLayer, huangjiFallbackMeshes } from './HuangjiFallbackContract.js';
 import {validateQianqingAuxiliary} from './QianqingAuxiliaryContract.js';
@@ -130,7 +131,7 @@ export class InteriorLoader {
           resolve(true);
         } catch (err) {
           console.warn(`[InteriorLoader] ${h.cfg.hall} 安装失败，保留 B 档：`, err);
-          if (h.id === 'kunning' || h.id === 'taihe' || h.id === 'qianqing' || h.id === 'huangji') {
+          if (h.id === 'kunning' || h.id === 'taihe' || h.id === 'qianqing' || h.id === 'huangji' || h.id === 'yangxin') {
             if (h.id === 'taihe' || h.id === 'huangji') this._restoreTaiheFallback(h);
             this.cm?.removeByTag(`interior:${h.id}`);
             if (h.group) this.scene.remove(h.group);
@@ -161,6 +162,7 @@ export class InteriorLoader {
 
   _install(h, root, t0) {
     const cfg = h.cfg;
+    if (h.id === 'yangxin') validateYangxinEast(root);
     // Validate the optional layer before a collider, light, fade or scene object is registered.
     if (h.id === 'kunning') validateKunningFurniture(root, cfg);
     if (h.id === 'qianqing') validateQianqingAuxiliary(root,cfg,this.scene);
@@ -181,7 +183,7 @@ export class InteriorLoader {
     const floorY = this._floorY(cfg);
     const group = new THREE.Group();
     group.name = `interior:${h.id}`;
-    if (h.id === 'kunning' || h.id === 'taihe' || h.id === 'qianqing' || h.id === 'huangji') h.group = group; // rollback owns even a partially installed group
+    if (h.id === 'kunning' || h.id === 'taihe' || h.id === 'qianqing' || h.id === 'huangji' || h.id === 'yangxin') h.group = group; // rollback owns even a partially installed group
     group.position.set(f.x + (cfg.anchor?.x ?? 0), floorY + (cfg.anchor?.y ?? 0), f.z + (cfg.anchor?.z ?? 0));
     group.rotation.y = f.rot ?? 0;
     group.add(root);
@@ -197,6 +199,10 @@ export class InteriorLoader {
       if (name.startsWith('COL_') || name.startsWith('WALK_')) {
         const box = new THREE.Box3().setFromObject(o);
         o.visible = false;
+        if (h.id === 'yangxin' && name === 'COL_R88_YX_PALE_CEILING') {
+          // A fitted visible ceiling catches heads but is never a walkable upper storey.
+          box.overhead = {type:'piecewise-linear-x', sourceId:'r88-yangxin-east-ceiling', points:[[box.min.x,box.min.y],[box.max.x,box.min.y]], minZ:box.min.z,maxZ:box.max.z,topY:box.max.y};
+        }
         if (name.startsWith('COL_')) colliders.push(box); else walkables.push({ type: 'box', box, rescue: false });
         return;
       }
@@ -331,15 +337,16 @@ export class InteriorLoader {
 }
 
 function disposeObject(root) {
-  const mats = new Set(), texs = new Set();
+  const mats = new Set(), texs = new Set(), geometries = new Set();
   root.traverse(o => {
     if (o.isMesh) {
-      o.geometry?.dispose();
+      if (o.geometry) geometries.add(o.geometry);
       const list = Array.isArray(o.material) ? o.material : [o.material];
       list.forEach(m => m && mats.add(m));
     }
     if (o.isLight) o.dispose?.();
   });
+  for (const g of geometries) g.dispose();
   for (const m of mats) {
     for (const v of Object.values(m)) if (v && v.isTexture && !isTaiheSharedAtlas(m, v)) texs.add(v);
     m.dispose();

@@ -1,0 +1,33 @@
+✔ R78 stationary Beijing 19/21/06 and midnight transitions dim sleeping fixtures without disabling working room (5.282544ms)
+✖ R78 sub-half-metre sleep boundary crossing invalidates cached point lights in both directions (4.888903ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 113.51098
+
+✖ failing tests:
+
+test at tests/r78-household-lighting.test.mjs:4:1
+✖ R78 sub-half-metre sleep boundary crossing invalidates cached point lights in both directions (4.888903ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(s.lights.every(l=>l.intensity===0))
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r78-night-household/tests/r78-household-lighting.test.mjs:4:355)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

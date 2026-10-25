@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {snapshotR84} from './lib/r84-world-nav.mjs';
+test('R85 entire world preserves all R84 navigation, rooms, map entries and mountain profile',async()=>{const before=JSON.parse(fs.readFileSync('reports/r84-duixiu-cave-routes/world-nav.json')),after=JSON.parse(JSON.stringify(await snapshotR84()));assert.deepEqual(after,before);fs.writeFileSync('reports/r85-taihe-exterior-plaque/world-nav.json',JSON.stringify(after,null,2));});

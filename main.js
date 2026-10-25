@@ -592,7 +592,7 @@ class ForbiddenCityApp {
     this.environment.update(this.camera, dt);
     this.dayNightPanel?.update();
     this.historicalLamps?.update(this.environment.dayCycle.lighting.daylight);
-    this.roomNightLights?.update(this.environment.dayCycle.lighting.daylight,this.camera.position,this.currentQuality);
+    this.roomNightLights?.update(this.environment.dayCycle.lighting.daylight,this.camera.position,this.currentQuality,this.environment.dayCycle.beijingTime);
     this.palaceBuilder.update?.(dt);
     this.enclosure.update(dt);
     this.garden.update(dt);

@@ -1,0 +1,55 @@
+✔ desktop ordinary release retains natural braking at 16.666666666666668 ms (117.549613ms)
+ℹ {"mobile":false,"interval":16.666666666666668,"releaseSpeed":11.999999999999995,"brakingMetres":1.1017708906238335,"settleFrames":43,"wallTimeToSettleMs":716.6666666666667}
+✔ desktop ordinary release retains natural braking at 33.333333333333336 ms (56.086962ms)
+ℹ {"mobile":false,"interval":33.333333333333336,"releaseSpeed":11.999999999999998,"brakingMetres":1.0101685939889609,"settleFrames":22,"wallTimeToSettleMs":733.3333333333334}
+✔ desktop ordinary release retains natural braking at 100 ms (36.426399ms)
+ℹ {"mobile":false,"interval":100,"releaseSpeed":12,"brakingMetres":0.6977352153671514,"settleFrames":8,"wallTimeToSettleMs":800}
+✔ desktop ordinary release retains natural braking at 666.6 ms (31.9919ms)
+ℹ {"mobile":false,"interval":666.6,"releaseSpeed":12,"brakingMetres":0.6977352153671514,"settleFrames":8,"wallTimeToSettleMs":5332.8}
+✔ mobile ordinary release retains natural braking at 16.666666666666668 ms (34.729061ms)
+ℹ {"mobile":true,"interval":16.666666666666668,"releaseSpeed":8.999999999999995,"brakingMetres":0.8260297964847451,"settleFrames":41,"wallTimeToSettleMs":683.3333333333334}
+✔ mobile ordinary release retains natural braking at 33.333333333333336 ms (26.758932ms)
+ℹ {"mobile":true,"interval":33.333333333333336,"releaseSpeed":8.999999999999998,"brakingMetres":0.7573528809020542,"settleFrames":21,"wallTimeToSettleMs":700}
+✔ mobile ordinary release retains natural braking at 100 ms (16.200978ms)
+ℹ {"mobile":true,"interval":100,"releaseSpeed":9,"brakingMetres":0.5224807177563644,"settleFrames":7,"wallTimeToSettleMs":700}
+✔ mobile ordinary release retains natural braking at 666.6 ms (17.3143ms)
+ℹ {"mobile":true,"interval":666.6,"releaseSpeed":9,"brakingMetres":0.5224807177563644,"settleFrames":7,"wallTimeToSettleMs":4666.2}
+✔ desktop walk/diagonal normalization and wall-clock auto-run keep their original thresholds (1.228495ms)
+✔ R36 helicopter proximity is a non-modal enter/leave/re-enter interaction, not persistent flight UI (22.295325ms)
+✔ R36 keyboard exit after native Escape restores real walking mouse and releases every aircraft input (20.003653ms)
+✔ R36 button exit after native Escape restores real walking mouse and releases every aircraft input (10.604054ms)
+✔ R36 leaving and approaching again permits a second real boarding without stale focus or flight state (9.893246ms)
+✔ R36 map-open disembark preserves the existing unlocked walking-map ownership (4.154269ms)
+✔ R36 mobile exit returns actual touch look and joystick ownership without requesting desktop pointer lock (5.497595ms)
+✔ R36 asynchronous native rejection leaves walking ownership intact and explicit retry restores actual mouse look (4.656543ms)
+✔ R36 delayed flight lock after disembark cannot recapture a walking map or reopen aircraft controls (4.161809ms)
+✔ H dismount after native Escape restores actual walking mouse and keys, not only the mode flag (71.735852ms)
+✔ proximity only shows a non-modal boarding affordance; far H belongs to ordinary walking (12.176094ms)
+✔ rejected native lock Promise keeps dismount complete and offers a fresh walking retry (18.342244ms)
+✔ a late exit lock after opening the map is released without returning to flight (9.986757ms)
+✔ an old flight-resume Promise rejection cannot cancel a fresh boarding request (9.459334ms)
+✔ native unlock delivered after H dismount offers walking recovery, never reopens flight operations (8.8232ms)
+✔ completed dismount does not label a later ordinary walking unlock as flight recovery (delayed=false) (8.103438ms)
+✔ completed dismount does not label a later ordinary walking unlock as flight recovery (delayed=true) (6.759301ms)
+✔ R79 static body exposes honest project identity and working sibling discovery links without WebGL (1.797299ms)
+✔ R79 structured metadata and sitemap are truthful and llms links are absolute (1.510338ms)
+✔ R81 U ground cutout exposes water and preserves courtyard/south spawn/road dry ground (74.849172ms)
+✔ R81 environment owns water/bank clones once, preserves borrowed materials, and recreates cleanly (20.834716ms)
+✔ R81 map desktop discloses three modeled sides and conservative pending south (35.146193ms)
+✔ R81 map mobile discloses three modeled sides and conservative pending south (16.572106ms)
+✔ R81 five nonoverlapping water strips preserve central engineering dry passage (7.438209ms)
+✔ R81 shared circle-radius predicate blocks shore contacts, not dry spawn/home (1.320333ms)
+✔ R81 exact seven-path successor rejects unrelated changes and deletions (136.873536ms)
+✔ R81 retains main17 imports and every R79 discovery runtime input unchanged (3.404442ms)
+✔ R81 0.32 radius movement subdivides high speed and slides along shore (708.956342ms)
+✔ R81 0.5 radius movement subdivides high speed and slides along shore (443.581747ms)
+✔ R81 NPC adapter and routine path consume the same moat predicate without route edits (180.364119ms)
+✔ R81 exact convex-shore sweep rejects dry endpoints whose radius crosses water between them (19.25882ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1668.371359

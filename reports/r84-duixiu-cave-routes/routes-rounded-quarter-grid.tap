@@ -1,0 +1,58 @@
+✔ R84 east physical ascent and return 10Hz (329.295122ms)
+✔ R84 west physical ascent and return 10Hz (255.133923ms)
+✔ R84 east physical ascent and return 30Hz (199.375742ms)
+✖ R84 west physical ascent and return 30Hz (190.673767ms)
+✖ R84 east physical ascent and return 60Hz (208.161704ms)
+✔ R84 west physical ascent and return 60Hz (190.399045ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 4
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1582.819487
+
+✖ failing tests:
+
+test at tests/r84-duixiu-routes.test.mjs:7:63
+✖ R84 west physical ascent and return 30Hz (190.673767ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(result.maxFeet>=10.4)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r84-duixiu-cave-routes/tests/r84-duixiu-routes.test.mjs:11:164)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r84-duixiu-routes.test.mjs:7:63
+✖ R84 east physical ascent and return 60Hz (208.161704ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(result.maxFeet>=10.4)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r84-duixiu-cave-routes/tests/r84-duixiu-routes.test.mjs:11:164)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

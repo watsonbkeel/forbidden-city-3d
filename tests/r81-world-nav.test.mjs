@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import fs from'node:fs';import{snapshot}from'./lib/r78-world-nav.mjs';
+test('R81 no collider/support/room/map-item coordinate changes',async()=>{const now=await snapshot(),old=JSON.parse(fs.readFileSync('reports/r80-three-side-moat/world-nav.json'));assert.deepEqual(now,old);fs.writeFileSync('reports/r81-south-moat/world-nav.json',JSON.stringify(now,null,2)+'\n');});

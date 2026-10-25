@@ -1,0 +1,4 @@
+R80 cumulative three-side outer moat update. Run node start.mjs.
+Includes all R79 discovery/documentation and earlier gameplay updates. North, east and west moat water, bed and bank faces now render through a matching ground cutout. The south strip is intentionally not rendered because the inherited rectangular mask crosses the initial spawn. No bridge or new end wall is invented.
+Dimensions, level and bank surfaces are reversible model fitting, not surveyed restoration. Existing collision, walking bounds, NPC routines, gates and conservative four-side flight water mask are unchanged. The map explicitly marks the partial rendering and pending south side.
+CPU geometry/navigation/night checks and build verification are not real GPU/mobile visual acceptance. This package does not deploy or merge main.

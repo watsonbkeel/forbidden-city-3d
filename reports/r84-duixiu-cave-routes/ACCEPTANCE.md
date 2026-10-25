@@ -1,0 +1,31 @@
+# R84 coherent Duixiu mountain candidate
+
+## Implemented and qualified
+The old random solid-core instance is replaced by one deterministic, closed terraced mountain with a real front vault, closed rear wall, two independent rounded ascent routes, and a connected exterior summit ring. The generic old rock generator remains unchanged for its other consumers. The fitted cave is 3m wide, 4.5m deep and approximately3m high; its thin .02m floor covers inherited grass without a raised entrance barrier. Curved overhead collision ends at a real .1m stone cap, so cave jumps stop correctly while feet on the cap do not collide with the vault's closed boundary. All new mountain and summit supports have rescue:false. No invisible ejection, invented north tunnel, global collision relaxation, new NPC path or survey claim.
+
+Routes are1.8m wide, approximately27.1857m and27.4050m, with centerline maximum grades .39946 and .39615. Their exact bends, steps and stone courses are reversible engineering fit. A documented gameplay exception opens two central south pavilion leaves and a matching rail passage, with1.42m clear width; retained closed leaves, rails and corner columns are physical. The actual5.4m cap has matching10.85m non-rescue support. Original roof, visible columns, three closed door groups, outer south leaves and rail posts remain geometrically unchanged. The roof remains an inherited non-walkable/non-colliding roof, not a reconstructed walkable rooftop. The tested escape no longer relies on crossing closed doors or rail meshes.
+
+Runtime fingerprint: a878dd3836b3154089b425f7b1d13e98616a07a0be958fa5ff1d91cfbb1c4c3a.
+Runtime implementation commit:030392f23bca8105204757a9420d599b484d175c.
+Build source commit:52762b373a08181232fecefe90433db4419887f1, clean runtime inputs.
+Exact four-path R83 successor: GardenBuilder.js, new DuixiuMountain.js, scoped optional Yujing exit in RemainingGardenPavilions.js, release.json. Main17 and R79 GEO runtime bytes remain exact. No main, Pages, credential or GitHub write by implementation owner.
+
+## Final-byte checks
+-21 focused PASS: closed positive-volume solids, actual vault rays/head clearance, both routes10/30/60Hz, summit air-drop retreat, entire exterior ring, center/door-frame/rail-mouth landings and actual southern exit, 5.4m cap support, source negative controls, retained geometry/trees/routes.
+-59 expanded affected retention PASS: R72 trap intents, sleep eyes/lighting/bed lifecycle, shared moat sweep and ground/map behavior, Fubi real arch/pool and nearby routes, Xishang curved channel/stone/controller consumers.
+-3 complete-world PASS: both directions at10/30/60Hz; exact non-mountain physics/room/map hashes; flight changes confined to mountain neighborhood, unchanged water exclusion, no helicopter passage through the cave, original Wuying descent10/60Hz.
+-4 complete night worlds PASS, B/Yangxin/Kunning/Huangji: each final fingerprint,108registered actors,28unique occupied beds, emperor travel/work/wake, actor blocking, time boundaries, unloading/reloading, and rendering budget checks. These are CPU scene/manager checks, not screenshots.
+-3 production checks PASS: root and/gugong/ HTTP resources and discoverable HTML links, plus actual package launcher.
+-Total selected final-byte checks90 PASS. Raw historical suite:1,290 tests,1,138 PASS/152 FAIL, with all152 failure labels exactly equal to frozen R83; no labels added or removed. Raw output and comparison are retained. This is not a globally green suite.
+
+Full-world colliders24,460→27,038; supports1,289→3,571. Mountain/summit replacement45→2,623colliders and45→2,327supports accounts for the entire delta. All other registered physics entries are exact;281rooms and223map entries remain exact. Original34tree placements, beds and garden paths are exact. Flight mask water hash remains9a8d783544fa1f5d9a5111b4adcfa46392d67dff091a31e1b9c0263b69317aaf.
+
+Initial tests exposed sharp-turn riser blockage, exact-top overhead contact and undersized summit support. Raw intermediate outputs are retained. An earlier night-B run was deliberately interrupted for the final cap-footprint repair and is not acceptance evidence. Four completed final runs replace it without deleting it.
+
+## Cost and backup
+6,728closed generated geometries merge into one mountain mesh; the garden remains41mesh objects, not6,728draw calls. Garden triangles129,334→199,202. Exactly adjacent equal-height physical cells compact to2,588mountain colliders/2,326supports, with the separate pavilion exit additions above. Collision queries use the existing spatial index. Ground-support lookup remains linear: CPU garden-only microbenchmark rises from about.000345ms/query to.01055ms/query (~30.6×, about10.2microseconds additional). This cloud measurement can overlap other regressions and is not a mobile/frame-rate or GPU guarantee. Fullworld/night runtime completed with this cost; further support indexing could be a separately verified optimization.
+
+One cumulative production backup has139files and41,688,087bytes; manifest SHA2560b869413f093fd15ce45ca54eac6a021e7e30bc0de2e31771219b973bc35fee6. Relative toR83, one hashed JS bundle replaces its predecessor; build identity, index reference, launcher and package readme change. about/contribute/sitemap/llms are unchanged. Six main README screenshots remain source assets, not newly dropped runtime files. Root build R84-c06204faff1b; subpath identity is in runtime-identity.json. No public deployment claim.
+
+## Remaining limits
+The official sources establish a front vaulted cave and two ascents, not these dimensions, individual stones or exact stair counts. Terraced geometric stone courses are a bounded structural approximation, not accepted natural-rock visual fidelity. No GPU model rendering, device/mobile assessment, photo-match acceptance, inscription/fountain recreation or pavilion interior inventory was obtained. The retained roof is not a fully walkable roof. Northeast-wall and overall972m calibration residuals remain; phase4 garden work is not declared complete. Prior denied Chromium route was not retried. Independent focused review closed both summit safety issues; final artifact identity review is separate.

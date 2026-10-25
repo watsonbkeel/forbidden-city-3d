@@ -1,0 +1,5 @@
+R88 cumulative Yangxin east anteroom candidate. Run node start.mjs.
+Includes the earlier R87 bridge2 contact, R86 Zhonghe columns and emperor detour, R85 exterior nameboard, R84 mountain, R83 channel, R82 arch/pool, R81 water safety and R79 discovery work.
+Only source-owned old east furnishing/entry curtain/high ghost collider are replaced. The fitted low dark-wood chair, footstool, curtain behind chair, south window kang, open north wooden interface and pale ceiling are simplified PHOTO_FIT, not measured restoration. All non-east triangle attributes and original materials are retained. The ceiling catches upward heads but is not an upstairs floor.
+Yangxin validates before installation and rolls back tags, scene objects, lights and owned resources after a failed install. Main/west rooms, retained partition doors, characters108/beds28/privacy screens5 and R86 emperor movement remain within the tested retention scope.
+Current-state suite contains inherited and explicitly superseded historical failures; see source report. CPU geometry/control/load checks are not GPU/mobile/visual acceptance. No public deployment or main merge is included.

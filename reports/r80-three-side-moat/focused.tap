@@ -1,0 +1,856 @@
+TAP version 13
+# Subtest: pointer-lock mouse turn moves along the latest view on the next update
+ok 1 - pointer-lock mouse turn moves along the latest view on the next update
+  ---
+  duration_ms: 39.888786
+  type: 'test'
+  ...
+# Subtest: touch turn moves along the latest view on the next update
+ok 2 - touch turn moves along the latest view on the next update
+  ---
+  duration_ms: 4.922465
+  type: 'test'
+  ...
+# Subtest: map KeyQ turn is used by movement in the same update
+ok 3 - map KeyQ turn is used by movement in the same update
+  ---
+  duration_ms: 9.029649
+  type: 'test'
+  ...
+# Subtest: map KeyE turn is used by movement in the same update
+ok 4 - map KeyE turn is used by movement in the same update
+  ---
+  duration_ms: 3.687252
+  type: 'test'
+  ...
+# Subtest: touchend then same-frame joystick reacquisition starts a fresh run delay
+ok 5 - touchend then same-frame joystick reacquisition starts a fresh run delay
+  ---
+  duration_ms: 7.769326
+  type: 'test'
+  ...
+# Subtest: touchcancel then same-frame joystick reacquisition starts a fresh run delay
+ok 6 - touchcancel then same-frame joystick reacquisition starts a fresh run delay
+  ---
+  duration_ms: 6.451178
+  type: 'test'
+  ...
+# Subtest: blur then same-frame joystick reacquisition starts a fresh run delay
+ok 7 - blur then same-frame joystick reacquisition starts a fresh run delay
+  ---
+  duration_ms: 6.766843
+  type: 'test'
+  ...
+# Subtest: blur cancels an unconsumed jump request
+ok 8 - blur cancels an unconsumed jump request
+  ---
+  duration_ms: 1.054732
+  type: 'test'
+  ...
+# Subtest: unlock cancels an unconsumed jump request
+ok 9 - unlock cancels an unconsumed jump request
+  ---
+  duration_ms: 0.764267
+  type: 'test'
+  ...
+# Subtest: compact layout preserves live keyboard walking and exact view state
+ok 10 - compact layout preserves live keyboard walking and exact view state
+  ---
+  duration_ms: 73.353065
+  type: 'test'
+  ...
+# Subtest: compact layout preserves live joystick walking and exact view state
+ok 11 - compact layout preserves live joystick walking and exact view state
+  ---
+  duration_ms: 28.075874
+  type: 'test'
+  ...
+# Subtest: compact closes normally, restores full-map default and keeps the closed mobile preview distinct
+ok 12 - compact closes normally, restores full-map default and keeps the closed mobile preview distinct
+  ---
+  duration_ms: 12.545022
+  type: 'test'
+  ...
+# Subtest: compact details are hidden and inert, focused details move to expand, and disclosure stays reachable
+ok 13 - compact details are hidden and inert, focused details move to expand, and disclosure stays reachable
+  ---
+  duration_ms: 11.998212
+  type: 'test'
+  ...
+# Subtest: existing disclosure pauses compact desktop movement and resumes with fresh input
+ok 14 - existing disclosure pauses compact desktop movement and resumes with fresh input
+  ---
+  duration_ms: 12.638843
+  type: 'test'
+  ...
+# Subtest: existing disclosure pauses compact touch movement and resumes with fresh input
+ok 15 - existing disclosure pauses compact touch movement and resumes with fresh input
+  ---
+  duration_ms: 13.505192
+  type: 'test'
+  ...
+# Subtest: compact map taps never teleport; pan and wheel still work; expanded labels select before explicit travel
+ok 16 - compact map taps never teleport; pan and wheel still work; expanded labels select before explicit travel
+  ---
+  duration_ms: 16.889881
+  type: 'test'
+  ...
+# Subtest: mode switch cancels canvas capture and pending secondary taps without cancelling held joystick
+ok 17 - mode switch cancels canvas capture and pending secondary taps without cancelling held joystick
+  ---
+  duration_ms: 13.65044
+  type: 'test'
+  ...
+# Subtest: compact canvas budget is bounded at 390×844; very short mode keeps an explicit expand control
+ok 18 - compact canvas budget is bounded at 390×844; very short mode keeps an explicit expand control
+  ---
+  duration_ms: 29.056945
+  type: 'test'
+  ...
+# Subtest: compact canvas budget is bounded at 844×390; very short mode keeps an explicit expand control
+ok 19 - compact canvas budget is bounded at 844×390; very short mode keeps an explicit expand control
+  ---
+  duration_ms: 9.659634
+  type: 'test'
+  ...
+# Subtest: compact canvas budget is bounded at 1280×720; very short mode keeps an explicit expand control
+ok 20 - compact canvas budget is bounded at 1280×720; very short mode keeps an explicit expand control
+  ---
+  duration_ms: 10.693273
+  type: 'test'
+  ...
+# Subtest: compact canvas budget is bounded at 844×240; very short mode keeps an explicit expand control
+ok 21 - compact canvas budget is bounded at 844×240; very short mode keeps an explicit expand control
+  ---
+  duration_ms: 19.083782
+  type: 'test'
+  ...
+# Subtest: compact follows the visual viewport and restores canvas when the viewport recovers
+ok 22 - compact follows the visual viewport and restores canvas when the viewport recovers
+  ---
+  duration_ms: 9.925341
+  type: 'test'
+  ...
+# Subtest: heading uses +Z north and +X west, with no redundant text mutations
+ok 23 - heading uses +Z north and +X west, with no redundant text mutations
+  ---
+  duration_ms: 10.233304
+  type: 'test'
+  ...
+# Subtest: recovering a hidden compact canvas measures its visible width after the layout state changes
+ok 24 - recovering a hidden compact canvas measures its visible width after the layout state changes
+  ---
+  duration_ms: 10.173182
+  type: 'test'
+  ...
+# Subtest: compact pinch zoom retains multi-contact ownership and never teleports on the final lift
+ok 25 - compact pinch zoom retains multi-contact ownership and never teleports on the final lift
+  ---
+  duration_ms: 8.450208
+  type: 'test'
+  ...
+# Subtest: unowned pointerup cannot end a map gesture or teleport
+ok 26 - unowned pointerup cannot end a map gesture or teleport
+  ---
+  duration_ms: 39.033845
+  type: 'test'
+  ...
+# Subtest: unowned pointercancel cannot end a map gesture or teleport
+ok 27 - unowned pointercancel cannot end a map gesture or teleport
+  ---
+  duration_ms: 13.746154
+  type: 'test'
+  ...
+# Subtest: unowned lostpointercapture cannot end a map gesture or teleport
+ok 28 - unowned lostpointercapture cannot end a map gesture or teleport
+  ---
+  duration_ms: 12.194266
+  type: 'test'
+  ...
+# Subtest: pinch with no motion cannot turn the last finger lift into a teleport
+ok 29 - pinch with no motion cannot turn the last finger lift into a teleport
+  ---
+  duration_ms: 10.714004
+  type: 'test'
+  ...
+# Subtest: pointercancel clears map capture and a fresh one-finger drag is independent
+ok 30 - pointercancel clears map capture and a fresh one-finger drag is independent
+  ---
+  duration_ms: 9.78416
+  type: 'test'
+  ...
+# Subtest: lostpointercapture clears map capture and a fresh one-finger drag is independent
+ok 31 - lostpointercapture clears map capture and a fresh one-finger drag is independent
+  ---
+  duration_ms: 10.0976
+  type: 'test'
+  ...
+# Subtest: close clears map capture and a fresh one-finger drag is independent
+ok 32 - close clears map capture and a fresh one-finger drag is independent
+  ---
+  duration_ms: 7.833964
+  type: 'test'
+  ...
+# Subtest: held look/joystick touch remains independent while another finger drags map
+ok 33 - held look/joystick touch remains independent while another finger drags map
+  ---
+  duration_ms: 12.476989
+  type: 'test'
+  ...
+# Subtest: second-finger preview opens exactly once while joystick stays held
+ok 34 - second-finger preview opens exactly once while joystick stays held
+  ---
+  duration_ms: 9.966223
+  type: 'test'
+  ...
+# Subtest: second-finger toolbar tap activates once; a cancelled or dragged tap does not
+ok 35 - second-finger toolbar tap activates once; a cancelled or dragged tap does not
+  ---
+  duration_ms: 12.071251
+  type: 'test'
+  ...
+# Subtest: three-contact sequence remains ineligible for tap after pointerup
+ok 36 - three-contact sequence remains ineligible for tap after pointerup
+  ---
+  duration_ms: 10.662317
+  type: 'test'
+  ...
+# Subtest: three-contact sequence remains ineligible for tap after pointercancel
+ok 37 - three-contact sequence remains ineligible for tap after pointercancel
+  ---
+  duration_ms: 22.64127
+  type: 'test'
+  ...
+# Subtest: three-contact sequence remains ineligible for tap after lostpointercapture
+ok 38 - three-contact sequence remains ineligible for tap after lostpointercapture
+  ---
+  duration_ms: 16.035969
+  type: 'test'
+  ...
+# Subtest: close clears pending secondary button taps and map captures
+ok 39 - close clears pending secondary button taps and map captures
+  ---
+  duration_ms: 9.756287
+  type: 'test'
+  ...
+# Subtest: dispose clears pending secondary button taps and map captures
+ok 40 - dispose clears pending secondary button taps and map captures
+  ---
+  duration_ms: 8.589818
+  type: 'test'
+  ...
+# Subtest: map entry preserves already-held keyboard ownership and timing
+ok 41 - map entry preserves already-held keyboard ownership and timing
+  ---
+  duration_ms: 67.676909
+  type: 'test'
+  ...
+# Subtest: map entry preserves already-held joystick ownership and timing
+ok 42 - map entry preserves already-held joystick ownership and timing
+  ---
+  duration_ms: 26.171978
+  type: 'test'
+  ...
+# Subtest: map blank/title clicks cannot relock; close keeps explicit stop and lock-failure fallback
+ok 43 - map blank/title clicks cannot relock; close keeps explicit stop and lock-failure fallback
+  ---
+  duration_ms: 10.658321
+  type: 'test'
+  ...
+# Subtest: map KeyW moves without native scrolling
+ok 44 - map KeyW moves without native scrolling
+  ---
+  duration_ms: 12.372171
+  type: 'test'
+  ...
+# Subtest: map KeyA moves without native scrolling
+ok 45 - map KeyA moves without native scrolling
+  ---
+  duration_ms: 10.367364
+  type: 'test'
+  ...
+# Subtest: map KeyS moves without native scrolling
+ok 46 - map KeyS moves without native scrolling
+  ---
+  duration_ms: 10.547485
+  type: 'test'
+  ...
+# Subtest: map KeyD moves without native scrolling
+ok 47 - map KeyD moves without native scrolling
+  ---
+  duration_ms: 10.026492
+  type: 'test'
+  ...
+# Subtest: map ArrowUp moves without native scrolling
+ok 48 - map ArrowUp moves without native scrolling
+  ---
+  duration_ms: 15.328358
+  type: 'test'
+  ...
+# Subtest: map ArrowDown moves without native scrolling
+ok 49 - map ArrowDown moves without native scrolling
+  ---
+  duration_ms: 11.438141
+  type: 'test'
+  ...
+# Subtest: map ArrowLeft moves without native scrolling
+ok 50 - map ArrowLeft moves without native scrolling
+  ---
+  duration_ms: 13.092083
+  type: 'test'
+  ...
+# Subtest: map ArrowRight moves without native scrolling
+ok 51 - map ArrowRight moves without native scrolling
+  ---
+  duration_ms: 31.096114
+  type: 'test'
+  ...
+# Subtest: map text-entry input does not walk or jump or toggle map
+ok 52 - map text-entry input does not walk or jump or toggle map
+  ---
+  duration_ms: 11.815999
+  type: 'test'
+  ...
+# Subtest: map text-entry textarea does not walk or jump or toggle map
+ok 53 - map text-entry textarea does not walk or jump or toggle map
+  ---
+  duration_ms: 10.272832
+  type: 'test'
+  ...
+# Subtest: map text-entry select does not walk or jump or toggle map
+ok 54 - map text-entry select does not walk or jump or toggle map
+  ---
+  duration_ms: 11.182888
+  type: 'test'
+  ...
+# Subtest: map text-entry contenteditable does not walk or jump or toggle map
+ok 55 - map text-entry contenteditable does not walk or jump or toggle map
+  ---
+  duration_ms: 9.459732
+  type: 'test'
+  ...
+# Subtest: map text-entry textbox does not walk or jump or toggle map
+ok 56 - map text-entry textbox does not walk or jump or toggle map
+  ---
+  duration_ms: 11.240335
+  type: 'test'
+  ...
+# Subtest: map preserves ctrlKey shortcuts
+ok 57 - map preserves ctrlKey shortcuts
+  ---
+  duration_ms: 11.314595
+  type: 'test'
+  ...
+# Subtest: map preserves metaKey shortcuts
+ok 58 - map preserves metaKey shortcuts
+  ---
+  duration_ms: 4.292319
+  type: 'test'
+  ...
+# Subtest: map preserves altKey shortcuts
+ok 59 - map preserves altKey shortcuts
+  ---
+  duration_ms: 6.464379
+  type: 'test'
+  ...
+# Subtest: map controls retain native Space/Enter/Tab; keyup clears movement after focus changes
+ok 60 - map controls retain native Space/Enter/Tab; keyup clears movement after focus changes
+  ---
+  duration_ms: 6.662266
+  type: 'test'
+  ...
+# Subtest: successful teleport cancels movement/jump until fresh key or touch; repeats cannot re-arm
+ok 61 - successful teleport cancels movement/jump until fresh key or touch; repeats cannot re-arm
+  ---
+  duration_ms: 5.839341
+  type: 'test'
+  ...
+# Subtest: map-target touch cannot acquire joystick even inside the padded joystick region
+ok 62 - map-target touch cannot acquire joystick even inside the padded joystick region
+  ---
+  duration_ms: 6.262336
+  type: 'test'
+  ...
+# Subtest: settings from a moving map still pauses and resumes with fresh input only
+ok 63 - settings from a moving map still pauses and resumes with fresh input only
+  ---
+  duration_ms: 7.068375
+  type: 'test'
+  ...
+# Subtest: map accessibility is non-modal with keyboard-reachable preview and visible close
+ok 64 - map accessibility is non-modal with keyboard-reachable preview and visible close
+  ---
+  duration_ms: 4.476136
+  type: 'test'
+  ...
+# Subtest: main wires map lifecycle explicitly while original physics/render loops remain separate
+ok 65 - main wires map lifecycle explicitly while original physics/render loops remain separate
+  ---
+  duration_ms: 0.352279
+  type: 'test'
+  ...
+# Subtest: a hold first started in settings requires fresh admission after returning to walking
+ok 66 - a hold first started in settings requires fresh admission after returning to walking
+  ---
+  duration_ms: 8.300243
+  type: 'test'
+  ...
+# Subtest: a hold first started in editable requires fresh admission after returning to walking
+ok 67 - a hold first started in editable requires fresh admission after returning to walking
+  ---
+  duration_ms: 7.621915
+  type: 'test'
+  ...
+# Subtest: a hold first started in modifier requires fresh admission after returning to walking
+ok 68 - a hold first started in modifier requires fresh admission after returning to walking
+  ---
+  duration_ms: 3.993231
+  type: 'test'
+  ...
+# Subtest: map state changes during settings pause do not enable movement before dismissal
+ok 69 - map state changes during settings pause do not enable movement before dismissal
+  ---
+  duration_ms: 4.542847
+  type: 'test'
+  ...
+# Subtest: settings rejects a cancelled repeat but accepts a fresh press
+ok 70 - settings rejects a cancelled repeat but accepts a fresh press
+  ---
+  duration_ms: 6.543568
+  type: 'test'
+  ...
+# Subtest: close rejects a cancelled repeat but accepts a fresh press
+ok 71 - close rejects a cancelled repeat but accepts a fresh press
+  ---
+  duration_ms: 4.23961
+  type: 'test'
+  ...
+# Subtest: teleport rejects a cancelled repeat but accepts a fresh press
+ok 72 - teleport rejects a cancelled repeat but accepts a fresh press
+  ---
+  duration_ms: 5.173362
+  type: 'test'
+  ...
+# Subtest: short mobile map canvas uses the visual viewport and actual panel content height
+ok 73 - short mobile map canvas uses the visual viewport and actual panel content height
+  ---
+  duration_ms: 6.05819
+  type: 'test'
+  ...
+# Subtest: settings identity is visible and diagnostic copies allowlisted current counts only
+ok 74 - settings identity is visible and diagnostic copies allowlisted current counts only
+  ---
+  duration_ms: 10.912612
+  type: 'test'
+  ...
+# Subtest: version check is on-demand, same-base, bypasses cache, and never reloads itself
+ok 75 - version check is on-demand, same-base, bypasses cache, and never reloads itself
+  ---
+  duration_ms: 2.830397
+  type: 'test'
+  ...
+# Subtest: same build and failed or malformed checks keep refresh hidden and permit retries
+ok 76 - same build and failed or malformed checks keep refresh hidden and permit retries
+  ---
+  duration_ms: 3.55215
+  type: 'test'
+  ...
+# Subtest: overlapping clicks and disposed pending checks cannot expose refresh or reload
+ok 77 - overlapping clicks and disposed pending checks cannot expose refresh or reload
+  ---
+  duration_ms: 1.667171
+  type: 'test'
+  ...
+# Subtest: clipboard denial offers safe selectable diagnostics without implying successful copy
+ok 78 - clipboard denial offers safe selectable diagnostics without implying successful copy
+  ---
+  duration_ms: 3.500693
+  type: 'test'
+  ...
+# Subtest: release label stays at the top with diagnostic controls in a compact disclosure
+ok 79 - release label stays at the top with diagnostic controls in a compact disclosure
+  ---
+  duration_ms: 1.191598
+  type: 'test'
+  ...
+# Subtest: mixed HTML and JavaScript build identities remain visible and safely diagnosable
+ok 80 - mixed HTML and JavaScript build identities remain visible and safely diagnosable
+  ---
+  duration_ms: 3.826742
+  type: 'test'
+  ...
+# Subtest: R78 exact civil boundaries, reversed preview and live resume retain ambient and outdoor light
+ok 81 - R78 exact civil boundaries, reversed preview and live resume retain ambient and outdoor light
+  ---
+  duration_ms: 9.866633
+  type: 'test'
+  ...
+# Subtest: R78 stationary Beijing 19/21/06 and midnight transitions dim sleeping fixtures without disabling working room
+ok 82 - R78 stationary Beijing 19/21/06 and midnight transitions dim sleeping fixtures without disabling working room
+  ---
+  duration_ms: 8.361465
+  type: 'test'
+  ...
+# Subtest: R78 sub-half-metre sleep boundary crossing invalidates cached point lights in both directions
+ok 83 - R78 sub-half-metre sleep boundary crossing invalidates cached point lights in both directions
+  ---
+  duration_ms: 0.788423
+  type: 'test'
+  ...
+# Subtest: R78 consort-daily sleeping LOD0 has closed lids, no open eye white and wakes unchanged
+ok 84 - R78 consort-daily sleeping LOD0 has closed lids, no open eye white and wakes unchanged
+  ---
+  duration_ms: 283.719426
+  type: 'test'
+  ...
+# Subtest: R78 consort-daily sleeping LOD1 has closed lids, no open eye white and wakes unchanged
+ok 85 - R78 consort-daily sleeping LOD1 has closed lids, no open eye white and wakes unchanged
+  ---
+  duration_ms: 27.025507
+  type: 'test'
+  ...
+# Subtest: R78 consort-daily sleeping LOD2 has closed lids, no open eye white and wakes unchanged
+ok 86 - R78 consort-daily sleeping LOD2 has closed lids, no open eye white and wakes unchanged
+  ---
+  duration_ms: 7.15867
+  type: 'test'
+  ...
+# Subtest: R78 maid-daily sleeping LOD0 has closed lids, no open eye white and wakes unchanged
+ok 87 - R78 maid-daily sleeping LOD0 has closed lids, no open eye white and wakes unchanged
+  ---
+  duration_ms: 100.828797
+  type: 'test'
+  ...
+# Subtest: R78 maid-daily sleeping LOD1 has closed lids, no open eye white and wakes unchanged
+ok 88 - R78 maid-daily sleeping LOD1 has closed lids, no open eye white and wakes unchanged
+  ---
+  duration_ms: 21.712807
+  type: 'test'
+  ...
+# Subtest: R78 maid-daily sleeping LOD2 has closed lids, no open eye white and wakes unchanged
+ok 89 - R78 maid-daily sleeping LOD2 has closed lids, no open eye white and wakes unchanged
+  ---
+  duration_ms: 9.015276
+  type: 'test'
+  ...
+# Subtest: R78 sleep/wake and near/far/near pool reuse never contaminate awake eyes
+ok 90 - R78 sleep/wake and near/far/near pool reuse never contaminate awake eyes
+  ---
+  duration_ms: 74.367127
+  type: 'test'
+  ...
+# Subtest: R79 static body exposes honest project identity and working sibling discovery links without WebGL
+ok 91 - R79 static body exposes honest project identity and working sibling discovery links without WebGL
+  ---
+  duration_ms: 1.464878
+  type: 'test'
+  ...
+# Subtest: R79 structured metadata and sitemap are truthful and llms links are absolute
+ok 92 - R79 structured metadata and sitemap are truthful and llms links are absolute
+  ---
+  duration_ms: 1.608813
+  type: 'test'
+  ...
+# Subtest: DEV opt-in exposes an accessible preview button but initial true never activates it
+ok 93 - DEV opt-in exposes an accessible preview button but initial true never activates it
+  ---
+  duration_ms: 5.328614
+  type: 'test'
+  ...
+# Subtest: DEV default hides preview without changing ordinary character defaults
+ok 94 - DEV default hides preview without changing ordinary character defaults
+  ---
+  duration_ms: 1.980311
+  type: 'test'
+  ...
+# Subtest: DEV candidate availability suppresses a duplicate experimental preview control
+ok 95 - DEV candidate availability suppresses a duplicate experimental preview control
+  ---
+  duration_ms: 1.240511
+  type: 'test'
+  ...
+# Subtest: candidate availability arriving in a snapshot hides and deactivates the stale DEV control
+ok 96 - candidate availability arriving in a snapshot hides and deactivates the stale DEV control
+  ---
+  duration_ms: 2.891288
+  type: 'test'
+  ...
+# Subtest: DEV experimental snapshot reports its real preparation rather than unavailable content
+ok 97 - DEV experimental snapshot reports its real preparation rather than unavailable content
+  ---
+  duration_ms: 1.431498
+  type: 'test'
+  ...
+# Subtest: production candidate is on without approval and retains incomplete acceptance notice
+ok 98 - production candidate is on without approval and retains incomplete acceptance notice
+  ---
+  duration_ms: 2.490957
+  type: 'test'
+  ...
+# Subtest: DEV explicit refusal cannot be bypassed by an initial active state or public synchronization
+ok 99 - DEV explicit refusal cannot be bypassed by an initial active state or public synchronization
+  ---
+  duration_ms: 0.895363
+  type: 'test'
+  ...
+# Subtest: ordinary character clicks and opening settings cannot enable the experimental preview
+ok 100 - ordinary character clicks and opening settings cannot enable the experimental preview
+  ---
+  duration_ms: 1.438869
+  type: 'test'
+  ...
+# Subtest: preview clicks display only the returned actual state and never change approval
+ok 101 - preview clicks display only the returned actual state and never change approval
+  ---
+  duration_ms: 1.452208
+  type: 'test'
+  ...
+# Subtest: false return leaves preview off rather than claiming activation
+ok 102 - false return leaves preview off rather than claiming activation
+  ---
+  duration_ms: 0.961893
+  type: 'test'
+  ...
+# Subtest: throw and invalid return keep the prior state and show a local failure hint
+ok 103 - throw and invalid return keep the prior state and show a local failure hint
+  ---
+  duration_ms: 1.277717
+  type: 'test'
+  ...
+# Subtest: main can synchronize ordinary off without invoking preview callbacks
+ok 104 - main can synchronize ordinary off without invoking preview callbacks
+  ---
+  duration_ms: 2.669386
+  type: 'test'
+  ...
+# Subtest: same-state synchronization is a no-op and preserves local transition failure feedback
+ok 105 - same-state synchronization is a no-op and preserves local transition failure feedback
+  ---
+  duration_ms: 1.083186
+  type: 'test'
+  ...
+# Subtest: preview participates in the existing focus trap, Escape, and second-finger touch path only
+ok 106 - preview participates in the existing focus trap, Escape, and second-finger touch path only
+  ---
+  duration_ms: 1.341793
+  type: 'test'
+  ...
+# Subtest: dispose removes preview callbacks and reinit starts off without stale click handlers
+ok 107 - dispose removes preview callbacks and reinit starts off without stale click handlers
+  ---
+  duration_ms: 1.465149
+  type: 'test'
+  ...
+# Subtest: real production bundle removes preview UI and callback path despite injected options and setters
+ok 108 - real production bundle removes preview UI and callback path despite injected options and setters
+  ---
+  duration_ms: 1.009485
+  type: 'test'
+  ...
+# Subtest: uncompiled Node module is fail-closed when import.meta.env is missing
+ok 109 - uncompiled Node module is fail-closed when import.meta.env is missing
+  ---
+  duration_ms: 1.137707
+  type: 'test'
+  ...
+# Subtest: R80 U ground cutout exposes water and preserves courtyard/south spawn/road dry ground
+ok 110 - R80 U ground cutout exposes water and preserves courtyard/south spawn/road dry ground
+  ---
+  duration_ms: 84.629984
+  type: 'test'
+  ...
+# Subtest: R80 environment owns water/bank clones once, preserves borrowed materials, and recreates cleanly
+ok 111 - R80 environment owns water/bank clones once, preserves borrowed materials, and recreates cleanly
+  ---
+  duration_ms: 21.795932
+  type: 'test'
+  ...
+# Subtest: R80 map desktop discloses three modeled sides and conservative pending south
+ok 112 - R80 map desktop discloses three modeled sides and conservative pending south
+  ---
+  duration_ms: 39.35377
+  type: 'test'
+  ...
+# Subtest: R80 map mobile discloses three modeled sides and conservative pending south
+ok 113 - R80 map mobile discloses three modeled sides and conservative pending south
+  ---
+  duration_ms: 25.077765
+  type: 'test'
+  ...
+# Subtest: R80 original flight mask and physical bounds are unchanged source bytes
+ok 114 - R80 original flight mask and physical bounds are unchanged source bytes
+  ---
+  duration_ms: 1.965118
+  type: 'test'
+  ...
+# Subtest: R80 profile has three disjoint strips and one open-south contour at inherited coordinates
+ok 115 - R80 profile has three disjoint strips and one open-south contour at inherited coordinates
+  ---
+  duration_ms: 2.056355
+  type: 'test'
+  ...
+# Subtest: R80 water and bed stay under the shared hole; banks are separate axis-aligned owned meshes
+ok 116 - R80 water and bed stay under the shared hole; banks are separate axis-aligned owned meshes
+  ---
+  duration_ms: 4.54576
+  type: 'test'
+  ...
+# Subtest: R80 exact four-path successor rejects unrelated changes and deletions
+ok 117 - R80 exact four-path successor rejects unrelated changes and deletions
+  ---
+  duration_ms: 130.045998
+  type: 'test'
+  ...
+# Subtest: R80 retains main17 imports and every R79 discovery runtime input unchanged
+ok 118 - R80 retains main17 imports and every R79 discovery runtime input unchanged
+  ---
+  duration_ms: 4.013542
+  type: 'test'
+  ...
+# Subtest: initial controls show the actual low-quality and muted state before first open
+ok 119 - initial controls show the actual low-quality and muted state before first open
+  ---
+  duration_ms: 9.532071
+  type: 'test'
+  ...
+# Subtest: one quality-button click emits the selected setting exactly once
+ok 120 - one quality-button click emits the selected setting exactly once
+  ---
+  duration_ms: 5.691218
+  type: 'test'
+  ...
+# Subtest: opening and closing the menu never changes quality or emits a quality callback
+ok 121 - opening and closing the menu never changes quality or emits a quality callback
+  ---
+  duration_ms: 2.428594
+  type: 'test'
+  ...
+# Subtest: settings modal is above the welcome blocker and below the loading screen
+ok 122 - settings modal is above the welcome blocker and below the loading screen
+  ---
+  duration_ms: 1.98563
+  type: 'test'
+  ...
+# Subtest: short-height panel has separate non-scrolling actions and a bounded scroll region
+ok 123 - short-height panel has separate non-scrolling actions and a bounded scroll region
+  ---
+  duration_ms: 2.516886
+  type: 'test'
+  ...
+# Subtest: preview label opens the accessible settings dialog without a keyboard
+ok 124 - preview label opens the accessible settings dialog without a keyboard
+  ---
+  duration_ms: 2.04009
+  type: 'test'
+  ...
+# Subtest: source details distinguish measured structure, provisional geometry and dated visitor access
+ok 125 - source details distinguish measured structure, provisional geometry and dated visitor access
+  ---
+  duration_ms: 2.858138
+  type: 'test'
+  ...
+# Subtest: modal opening is idempotent and closes once through each visible action
+ok 126 - modal opening is idempotent and closes once through each visible action
+  ---
+  duration_ms: 2.774833
+  type: 'test'
+  ...
+# Subtest: Tab wraps in the dialog, skips closed details, and restores the opener on dismissal
+ok 127 - Tab wraps in the dialog, skips closed details, and restores the opener on dismissal
+  ---
+  duration_ms: 4.944208
+  type: 'test'
+  ...
+# Subtest: Escape closes once without propagating to the global toggle; key scrolling retains its default
+ok 128 - Escape closes once without propagating to the global toggle; key scrolling retains its default
+  ---
+  duration_ms: 1.827892
+  type: 'test'
+  ...
+# Subtest: modal pointer and touch gestures do not reach body game handlers or force preventDefault
+ok 129 - modal pointer and touch gestures do not reach body game handlers or force preventDefault
+  ---
+  duration_ms: 1.452489
+  type: 'test'
+  ...
+# Subtest: dispose restores prior inert states and removes DOM/global listeners without resuming
+ok 130 - dispose restores prior inert states and removes DOM/global listeners without resuming
+  ---
+  duration_ms: 1.287251
+  type: 'test'
+  ...
+# Subtest: a secondary touch opens the launcher once without waiting for a compatibility click
+ok 131 - a secondary touch opens the launcher once without waiting for a compatibility click
+  ---
+  duration_ms: 1.947442
+  type: 'test'
+  ...
+# Subtest: a single launcher touch retains its ordinary click activation and default behavior
+ok 132 - a single launcher touch retains its ordinary click activation and default behavior
+  ---
+  duration_ms: 1.202354
+  type: 'test'
+  ...
+# Subtest: secondary taps activate existing sound/quality, disclosure, links and dismissal once
+ok 133 - secondary taps activate existing sound/quality, disclosure, links and dismissal once
+  ---
+  duration_ms: 2.57942
+  type: 'test'
+  ...
+# Subtest: secondary drags and cancelled touches never activate controls or disclosures
+ok 134 - secondary drags and cancelled touches never activate controls or disclosures
+  ---
+  duration_ms: 1.571468
+  type: 'test'
+  ...
+# Subtest: closing clears pending secondary touches so reopening cannot apply a stale tap
+ok 135 - closing clears pending secondary touches so reopening cannot apply a stale tap
+  ---
+  duration_ms: 2.595014
+  type: 'test'
+  ...
+# Subtest: secondary long presses and displaced endings do not become clicks
+ok 136 - secondary long presses and displaced endings do not become clicks
+  ---
+  duration_ms: 1.826861
+  type: 'test'
+  ...
+# Subtest: map mode places the same settings entry in map flow and restores its original host
+ok 137 - map mode places the same settings entry in map flow and restores its original host
+  ---
+  duration_ms: 1.550206
+  type: 'test'
+  ...
+# Subtest: map entry uses a normal-flow sticky header with a reserved focus-scroll inset
+ok 138 - map entry uses a normal-flow sticky header with a reserved focus-scroll inset
+  ---
+  duration_ms: 0.717797
+  type: 'test'
+  ...
+# Subtest: reparenting the map entry while settings are open preserves inertness and modal focus
+ok 139 - reparenting the map entry while settings are open preserves inertness and modal focus
+  ---
+  duration_ms: 1.475503
+  type: 'test'
+  ...
+# Subtest: an uncancelable secondary launcher touch still opens once without attempting cancellation
+ok 140 - an uncancelable secondary launcher touch still opens once without attempting cancellation
+  ---
+  duration_ms: 2.223215
+  type: 'test'
+  ...
+# Subtest: an uncancelable secondary control tap still activates once without attempting cancellation
+ok 141 - an uncancelable secondary control tap still activates once without attempting cancellation
+  ---
+  duration_ms: 1.353851
+  type: 'test'
+  ...
+1..141
+# tests 141
+# suites 0
+# pass 141
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 839.580856
