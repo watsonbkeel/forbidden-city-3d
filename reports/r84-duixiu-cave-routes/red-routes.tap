@@ -1,0 +1,122 @@
+✖ R84 east physical ascent and return 10Hz (105.693939ms)
+✖ R84 west physical ascent and return 10Hz (57.555528ms)
+✖ R84 east physical ascent and return 30Hz (58.457755ms)
+✖ R84 west physical ascent and return 30Hz (50.777066ms)
+✖ R84 east physical ascent and return 60Hz (57.30547ms)
+✖ R84 west physical ascent and return 60Hz (56.597155ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 0
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 571.538809
+
+✖ failing tests:
+
+test at tests/r84-duixiu-routes.test.mjs:7:63
+✖ R84 east physical ascent and return 10Hz (105.693939ms)
+  AssertionError [ERR_ASSERTION]: {"arrived":false,"stuckAt":[-10.3,5.1],"startFeet":0,"maxFeet":4.3,"maxSpeed":11.999799579590519,"driver":{"crossings":[{"index":1,"point":[-10.3,-7.35],"hit":[-10.3,-7.35],"lateralDistance":0}],"brakingFrames":21,"endpointSettleSeconds":2},"end":[-10.3,3.961633717313935,4.3]}
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r84-duixiu-cave-routes/tests/r84-duixiu-routes.test.mjs:11:93)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r84-duixiu-routes.test.mjs:7:63
+✖ R84 west physical ascent and return 10Hz (57.555528ms)
+  AssertionError [ERR_ASSERTION]: {"arrived":false,"stuckAt":[10.4,5.6],"startFeet":0,"maxFeet":4.4,"maxSpeed":11.99992626945176,"driver":{"crossings":[{"index":1,"point":[10.4,-7.35],"hit":[10.4,-7.35],"lateralDistance":0}],"brakingFrames":21,"endpointSettleSeconds":2},"end":[10.4,4.39101046680915,4.4]}
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r84-duixiu-cave-routes/tests/r84-duixiu-routes.test.mjs:11:93)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r84-duixiu-routes.test.mjs:7:63
+✖ R84 east physical ascent and return 30Hz (58.457755ms)
+  AssertionError [ERR_ASSERTION]: {"arrived":false,"stuckAt":[-10.3,5.1],"startFeet":0,"maxFeet":4.3,"maxSpeed":11.999897100730774,"driver":{"crossings":[{"index":1,"point":[-10.3,-7.35],"hit":[-10.3,-7.35],"lateralDistance":0}],"brakingFrames":63,"endpointSettleSeconds":2},"end":[-10.3,3.966004045609348,4.3]}
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r84-duixiu-cave-routes/tests/r84-duixiu-routes.test.mjs:11:93)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r84-duixiu-routes.test.mjs:7:63
+✖ R84 west physical ascent and return 30Hz (50.777066ms)
+  AssertionError [ERR_ASSERTION]: {"arrived":false,"stuckAt":[10.4,5.6],"startFeet":0,"maxFeet":4.4,"maxSpeed":11.999926269451759,"driver":{"crossings":[{"index":1,"point":[10.4,-7.35],"hit":[10.4,-7.35],"lateralDistance":0}],"brakingFrames":62,"endpointSettleSeconds":2},"end":[10.4,4.492254683600601,4.4]}
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r84-duixiu-cave-routes/tests/r84-duixiu-routes.test.mjs:11:93)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r84-duixiu-routes.test.mjs:7:63
+✖ R84 east physical ascent and return 60Hz (57.30547ms)
+  AssertionError [ERR_ASSERTION]: {"arrived":false,"stuckAt":[-10.3,5.1],"startFeet":0,"maxFeet":4.3,"maxSpeed":11.999878438876815,"driver":{"crossings":[{"index":1,"point":[-10.3,-7.35],"hit":[-10.3,-7.35],"lateralDistance":0}],"brakingFrames":127,"endpointSettleSeconds":2},"end":[-10.3,3.9776102483602696,4.3]}
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r84-duixiu-cave-routes/tests/r84-duixiu-routes.test.mjs:11:93)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r84-duixiu-routes.test.mjs:7:63
+✖ R84 west physical ascent and return 60Hz (56.597155ms)
+  AssertionError [ERR_ASSERTION]: {"arrived":false,"stuckAt":[10.4,5.6],"startFeet":0,"maxFeet":4.4,"maxSpeed":11.999926269451755,"driver":{"crossings":[{"index":1,"point":[10.4,-7.35],"hit":[10.4,-7.35],"lateralDistance":0}],"brakingFrames":124,"endpointSettleSeconds":2},"end":[10.400000000000002,4.443572414461717,4.4]}
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r84-duixiu-cave-routes/tests/r84-duixiu-routes.test.mjs:11:93)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

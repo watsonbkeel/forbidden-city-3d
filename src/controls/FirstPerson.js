@@ -479,8 +479,8 @@ export class FirstPersonControls {
     const sup = this.collisionManager.supportHeight?.(
       this.camera.position.x, this.camera.position.z, this.feetY + 0.05
     ) ?? -Infinity;
-    const groundY = Math.max(walkY, sup);
-    this.onSupport = sup > walkY + 0.01;
+    let groundY = Math.max(walkY, sup);
+    this.onSupport = sup > walkY + 0.01 || !!this.collisionManager.supportContact?.(this.camera.position.x,this.camera.position.z,this.feetY+.05);
     this.groundY = groundY;
     // 地面骤降（从台基边缘、栏杆上走下去）转入空中状态：按真实身体高度判碰撞，不会卡进栏杆
     if (!this.airborne && groundY < this.feetY - (PLAYER.STEP_UP ?? 0.6)) {
@@ -506,6 +506,19 @@ export class FirstPersonControls {
         ? this.collisionManager.limitUpwardFeet?.(this.camera.position.x, this.camera.position.z,
           this.feetY, targetFeet, 0.5, PLAYER.HEIGHT) ?? targetFeet
         : targetFeet;
+      const triangleImpact=this.collisionManager.resolveTriangleVertical?.(
+        this.camera.position.x,this.camera.position.z,this.feetY,allowedFeet,delta,.5,PLAYER.HEIGHT);
+      if(triangleImpact){
+        const moved=triangleImpact.x!==this.camera.position.x||triangleImpact.z!==this.camera.position.z;
+        this.camera.position.x=triangleImpact.x;this.camera.position.z=triangleImpact.z;
+        allowedFeet=triangleImpact.feet;
+        if(moved){
+          const nextWalk=this.collisionManager.getGroundHeight(triangleImpact.x,triangleImpact.z,this.feetY,PLAYER.STEP_UP??.6);
+          const nextSupport=this.collisionManager.supportHeight?.(triangleImpact.x,triangleImpact.z,this.feetY+.05)??-Infinity;
+          groundY=Math.max(nextWalk,nextSupport);this.groundY=groundY;this.onSupport=nextSupport>nextWalk+.01;
+        }
+        if(triangleImpact.landed){this.feetY=allowedFeet;this.groundY=allowedFeet;this.verticalVelocity=0;this.airborne=false;this.onSupport=true;this._landed=true;return;}
+      }
       // Dynamic people are solid in vertical motion too, but never added to
       // supportHeight/ground. Contact stays airborne (no head-standing jump
       // reset); moving off the temporary contact continues the normal fall.

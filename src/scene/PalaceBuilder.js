@@ -49,6 +49,7 @@ import { buildQianqingWarmRooms } from './palace/QianqingWarmRooms.js';
 import { paintQianqingUpperEnclosure } from './palace/QianqingUpperEnclosure.js';
 import { buildBaoheRearEnclosure } from './palace/BaoheRearEnclosure.js';
 import { positionHallNameboard } from './palace/HallNameboardMount.js';
+import {buildTaiheExteriorPlaque,mountTaiheExteriorPlaque} from './palace/TaiheExteriorPlaque.js';
 import { buildBaoheColumnCouplets } from './palace/BaoheColumnCouplets.js';
 import { baoheInteriorFrame, baoheHighColumn, buildBaoheInteriorCeiling } from './palace/BaoheInteriorFrame.js';
 import { buildBaoheHallPlinth } from './palace/BaoheHallPlinth.js';
@@ -872,7 +873,7 @@ export class PalaceBuilder {
     let exteriorPlaque = null;
     if (spec.plaque !== false) {
       const ph = THREE.MathUtils.clamp(H * 0.32, 1.8, 3.4);
-      const plaque = this.plaqueMesh(data.name, ph * 0.62, ph, true);
+      const plaque = data.name === '太和殿' ? buildTaiheExteriorPlaque(this,{height:ph}) : this.plaqueMesh(data.name, ph * 0.62, ph, true);
       plaque.position.set(x0, y + doorH + (H - beamH - doorH) / 2 + 0.2, z0 - d / 2 - 0.4);
       plaque.rotation.y = Math.PI;
       g.add(plaque);
@@ -897,7 +898,8 @@ export class PalaceBuilder {
     g.add(roof);
     this.ownedMaterials.push(...(roof.userData.ownedMaterials ?? []));
     paintQianqingUpperEnclosure(roof,this.library,data.name);
-    if (exteriorPlaque) positionHallNameboard(exteriorPlaque,roof,data.name,{fitSizeToBand:data.name==='太和门'});
+    if (exteriorPlaque && data.name==='太和殿') exteriorPlaque=mountTaiheExteriorPlaque(this,exteriorPlaque,roof);
+    else if (exteriorPlaque) positionHallNameboard(exteriorPlaque,roof,data.name,{fitSizeToBand:data.name==='太和门'});
   }
 
   throneArea(g, { x0, y, H, ztb0, ztb1, thW, bayW, text, caisson = true, baohe = false, jiaotai = false, qianqing = false }) {

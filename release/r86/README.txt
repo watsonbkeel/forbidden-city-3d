@@ -1,0 +1,4 @@
+R86 cumulative Zhonghe near-column pair candidate. Run node start.mjs.
+Includes all earlier R85 exterior cloud nameboard, R84 mountain, R83 channel, R82 arch/pool, R81 water safety and R79 discovery documents.
+Exactly two near red columns and one shallow joining beam use reversible photo-fit coordinates. Original enclosure/veranda columns, four doors, low platform and furniture are retained. Five visible solids have matching full-height physical envelopes; player radius is not reduced. One short Zhonghe section of the emperor route detours continuously around the left column; endpoints, every other waypoint, identity, schedule and speed are unchanged.
+Approximate pinhole consistency is not a recovered source camera or GPU visual acceptance. Hidden framing, exact diameters, carving and mobile appearance remain unverified. No public deployment or main merge.

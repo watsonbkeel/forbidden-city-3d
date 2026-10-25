@@ -5,6 +5,7 @@ import {buildJiaotaiCeiling} from './JiaotaiCentralInterior.js';
 import {buildJiaotaiDisplaySetting} from './JiaotaiDisplaySetting.js';
 import {applyJiaotaiSouthWindows} from './JiaotaiSouthWindows.js';
 import {buildZhongheDisplaySetting} from './ZhongheDisplaySetting.js';
+import {buildZhongheInteriorColumns} from './ZhongheInteriorColumns.js';
 
 /**
  * Evidence-led enclosure topologies, not a claim of survey-grade dimensions.
@@ -184,6 +185,7 @@ export function buildSquareHall(builder, parent, data, y) {
   const ztb0 = ztb1 - Math.min(5.2, id * 0.28);
   if (data.name === '交泰殿') buildJiaotaiDisplaySetting(builder,shell,{x0,y,H,ztb0,ztb1,thW:Math.min(5.0,iw*.24),bayW:iw/3});
   else buildZhongheDisplaySetting(builder,shell,{x0,z0,y,H,ztb0,ztb1,thW:Math.min(5.0,iw*.24),bayW:iw/3});
+  if(data.name==='中和殿') buildZhongheInteriorColumns(builder,shell,{x0,z0,y});
   const plaqueH = 1.75;
   const plaque = builder.plaqueMesh(data.name, plaqueH * 0.62, plaqueH, true);
   plaque.position.set(x0, y + H - plaqueH * 0.25, z0 - d / 2 - 0.45);

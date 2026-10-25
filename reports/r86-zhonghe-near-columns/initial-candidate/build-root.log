@@ -1,0 +1,20 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> forbidden-city-3d@1.0.0 build
+> vite build
+
+vite v5.4.21 building for production...
+transforming...
+✓ 359 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/build-info.json                0.26 kB │ gzip:     0.20 kB
+dist/index.html                     4.53 kB │ gzip:     2.27 kB
+dist/assets/index-B1n7_wTD.css     16.71 kB │ gzip:     4.04 kB
+dist/assets/index-CcOcsa_g.js   3,481.72 kB │ gzip: 1,050.65 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.16s

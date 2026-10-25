@@ -1,3 +1,4 @@
+import {clipFubiPoolRectangle} from './garden/FubiArchPool.js';
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { buildRoof } from './RoofBuilder.js';
@@ -6,7 +7,7 @@ import { applyBoxUV, applyBandUV, scaleCylinderUV } from '../utils/GeometryUV.js
 import { mergeByMaterial } from '../utils/MergeUtils.js';
 import { mulberry32 } from './garden/noise.js';
 import { buildTreeVariant, createFoliageMaterial } from './garden/trees.js';
-import { buildRockery } from './garden/rocks.js';
+import { buildDuixiuMountain } from './garden/DuixiuMountain.js';
 import { buildCrossGardenPavilion } from './garden/CrossGardenPavilions.js';
 import { buildBridgeGardenPavilion, bridgeGardenProfile, buildYujingEnclosure } from './garden/RemainingGardenPavilions.js';
 import {clipTianyiBedRectangle,isTianyiConflictingLegacyLantern} from './garden/TianyiGroundFit.js';
@@ -188,9 +189,9 @@ export class GardenBuilder {
     const marble = lib.material('marble', { roughness: 0.7 });
 
     // 草地底层（整园）
-    root.add(new THREE.Mesh(quadGeometry(x0 + 0.5, x1 - 0.5, z0 + 0.5, z1 - 0.5, GRASS_Y, lib.tileSize('grass')), grassMat));
+    for(const[a,b,c,d]of clipFubiPoolRectangle([x0+.5,x1-.5,z0+.5,z1-.5]))root.add(new THREE.Mesh(quadGeometry(a,b,c,d,GRASS_Y,lib.tileSize('grass')),grassMat));
     // 卵石甬路
-    const pathGeos = paths.map(([a, b, c, e]) => quadGeometry(a, b, c, e, PATH_Y, lib.tileSize('pebble_path')));
+    const pathGeos = paths.flatMap(r=>clipFubiPoolRectangle(r)).map(([a,b,c,e])=>quadGeometry(a,b,c,e,PATH_Y,lib.tileSize('pebble_path')));
     root.add(new THREE.Mesh(mergeGeometries(pathGeos), pathMat));
     pathGeos.forEach(g => g.dispose());
     // 甬路边的青砖牙子（只沿主轴与东西向主路两侧，细条）
@@ -211,14 +212,14 @@ export class GardenBuilder {
     // 花坛：汉白玉围边 + 草顶
     const bedTops = [];
     for (const [a, b, c, e] of beds) {
-      for(const [x0,x1,z0,z1] of clipTianyiBedRectangle([a+.2,b-.2,c+.2,e-.2]))bedTops.push(quadGeometry(x0,x1,z0,z1,BED_H-.03,lib.tileSize('grass')));
+      for(const [x0,x1,z0,z1] of clipTianyiBedRectangle([a+.2,b-.2,c+.2,e-.2]).flatMap(clipFubiPoolRectangle))bedTops.push(quadGeometry(x0,x1,z0,z1,BED_H-.03,lib.tileSize('grass')));
       const t = 0.3;
       const parts = [
         [(a + b) / 2, c + t / 2, b - a, t], [(a + b) / 2, e - t / 2, b - a, t],
         [a + t / 2, (c + e) / 2, t, e - c - 2 * t], [b - t / 2, (c + e) / 2, t, e - c - 2 * t],
       ];
       for (const [x, z, sx, sz] of parts) {
-        const original=[x-sx/2,x+sx/2,z-sz/2,z+sz/2],pieces=clipTianyiBedRectangle(original);
+        const original=[x-sx/2,x+sx/2,z-sz/2,z+sz/2],pieces=clipTianyiBedRectangle(original).flatMap(clipFubiPoolRectangle);
         for(const r of pieces){
           const unchanged=r===original,w=unchanged?sx:r[1]-r[0],d=unchanged?sz:r[3]-r[2];
           const m=new THREE.Mesh(applyBoxUV(new THREE.BoxGeometry(w,BED_H,d),lib.tileSize('marble')),marble);
@@ -409,10 +410,11 @@ export class GardenBuilder {
   buildRockeryAndTop(root) {
     const lib = this.library;
     const topY = Math.max(7, this.rockDim.height ?? 8);
-    const { geometries, colliders, walkables } = buildRockery({
+    const { geometries, colliders, walkables, profile } = buildDuixiuMountain({
       center: this.rockPos, radiusX: (this.rockDim.width ?? 10) * 0.65, radiusZ: (this.rockDim.depth ?? 10) * 0.55,
-      topY, seed: 2024, tile: lib.tileSize('rock'),
+      topY, tile: lib.tileSize('rock'),
     });
+    this.group.userData.duixiuProfile = profile;
     const geo = mergeGeometries(geometries, false);
     geometries.forEach(g => g.dispose());
     geo.computeBoundingSphere();
@@ -434,7 +436,7 @@ export class GardenBuilder {
     plat.position.set(this.rockPos.x, topY + 0.25, this.rockPos.z);
     root.add(plat);
     this.makePavilion(root, { x: this.rockPos.x, y: topY + 0.5, z: this.rockPos.z, size: 3.6, baseH: 0.35, colH: 2.8, cols: 'square4', sides: 4, layers: 1, collide: false });
-    buildYujingEnclosure(this, root, {x:this.rockPos.x,z:this.rockPos.z,y:topY+.5});
+    buildYujingEnclosure(this, root, {x:this.rockPos.x,z:this.rockPos.z,y:topY+.5,playableExit:true});
   }
 
   /* ---------------------------------------------------------------- 小品 */

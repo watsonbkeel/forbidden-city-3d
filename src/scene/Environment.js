@@ -1,3 +1,4 @@
+import {fubiPoolGroundPath} from './garden/FubiArchPool.js';
 import { outerMoatGroundPath, buildOuterMoat } from './palace/special/OuterMoat.js';
 import {buildDuanmenBackdrop} from './palace/special/DuanmenBackdrop.js';
 import { palaceWaterGroundPaths } from './palace/special/SouthWaterSystem.js';
@@ -103,6 +104,7 @@ export class Environment {
     for (const river of rivers) shape.holes.push(...palaceWaterGroundPaths(river));
     const moat = PALACE_LAYOUT.find(item => item.type === 'moat');
     if (moat) shape.holes.push(outerMoatGroundPath(moat));
+    shape.holes.push(fubiPoolGroundPath());
     // Permanent dry-pool opening matches the dedicated current-state ruin.
     // It is protected by physical guards; it does not create an entry route.
     const cut = YANXI_RUIN_GROUND_CUTOUT, poolHole = new THREE.Path();

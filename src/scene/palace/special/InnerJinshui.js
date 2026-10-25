@@ -1,3 +1,4 @@
+import {bridge2ContactOwner,addBridge2Caps} from './InnerJinshuiBridge2Contact.js';
 import * as THREE from 'three';
 import { JINSHUI_BRIDGES, JINSHUI_BRIDGE_LENGTH } from '../river.js';
 import { applyBoxUV } from '../../../utils/GeometryUV.js';
@@ -169,6 +170,7 @@ export function buildInnerJinshui(library,river,waterMaterial) {
   const root=new THREE.Group();root.name='金水河';root.position.set(ox,0,oz);
   const masonry=new THREE.Group();masonry.name='inner-jinshui-masonry';
   const colliders=[],walkables=[];
+  const precise=bridge2ContactOwner(colliders,ox,oz),caps=[];
   const marble=library.material('marble'),brick=library.material('wall_brick'),stone=library.material('stone_slab');
   const tile=name=>library.tileSize(name);
   const mesh=(geo,mat)=>{const m=new THREE.Mesh(geo,mat);m.castShadow=m.receiveShadow=true;masonry.add(m);return m;};
@@ -207,12 +209,13 @@ export function buildInnerJinshui(library,river,waterMaterial) {
       const rx=b.x+s*b.railX;
       for(const [low,high] of [[.14,.65],[.92,1.04]]){
         const band=[...railPoints.map(v=>({z:v.z,y:v.y+low})),...railPoints.slice().reverse().map(v=>({z:v.z,y:v.y+high}))];
-        mesh(extrudeYZ(band,P.railThickness,rx-P.railThickness/2,tile('marble')),marble);
+        const rail=mesh(extrudeYZ(band,P.railThickness,rx-P.railThickness/2,tile('marble')),marble);
+        if(b.id==='inner-jinshui:bridge-2')precise(rail,`band:${s}:${low}`);
       }
-      for(let i=0;i<=10;i++){const z=railMin+(railMax-railMin)*i/10,y=deckAt(b,z);box(marble,.26,1.17,.26,rx,y+.585,z);}
+      for(let i=0;i<=10;i++){const z=railMin+(railMax-railMin)*i/10,y=deckAt(b,z);const shaft=box(marble,.26,1.17,.26,rx,y+.585,z);if(b.id==='inner-jinshui:bridge-2'){precise(shaft,`shaft:${s}:${i}`);caps.push({x:rx,y:y+1.17,z});}}
       for(let i=1;i<railPoints.length;i++){
         const a=railPoints[i-1],c=railPoints[i];
-        col(rx-.13,Math.min(a.y,c.y),a.z,rx+.13,Math.max(a.y,c.y)+1.17,c.z);
+        if(b.id!=='inner-jinshui:bridge-2')col(rx-.13,Math.min(a.y,c.y),a.z,rx+.13,Math.max(a.y,c.y)+1.17,c.z);
       }
     }
     for(let i=1;i<b.deck.length;i++){
@@ -222,6 +225,7 @@ export function buildInnerJinshui(library,river,waterMaterial) {
     }
   }
   root.add(mergeByMaterial(masonry,{name:'inner-jinshui-masonry'}));
+  addBridge2Caps(root,marble,caps,colliders,ox,oz);
   const water=new THREE.Mesh(flatPlan(profile.waterPolygon.map(local),P.waterY,1),waterMaterial);
   water.name='inner-jinshui-water';water.userData.isWater=true;water.receiveShadow=true;root.add(water);
   root.userData.structure={id:profile.id,status:profile.status,bridgeCount:5,ends:profile.ends};

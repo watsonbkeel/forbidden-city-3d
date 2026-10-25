@@ -1,0 +1,50 @@
+✔ R48 NingShou first seven profiles guard exact identities and do not claim completed inventories (1.238917ms)
+✔ R48 宁寿宫 creates finite fitted structure, one map identity and no generic furnishing preset (74.236589ms)
+✔ R48 遂初堂 creates finite fitted structure, one map identity and no generic furnishing preset (25.526098ms)
+✔ R48 寻沿书屋 creates finite fitted structure, one map identity and no generic furnishing preset (22.872435ms)
+✔ R48 庆寿堂 creates finite fitted structure, one map identity and no generic furnishing preset (13.874674ms)
+✔ R48 景福宫 creates finite fitted structure, one map identity and no generic furnishing preset (29.862585ms)
+✔ R48 禊赏亭 creates finite fitted structure, one map identity and no generic furnishing preset (16.581442ms)
+✔ R48 碧螺亭 creates finite fitted structure, one map identity and no generic furnishing preset (39.553846ms)
+✔ R48 NingShou has seven bays and an east secondary-bay entrance, never a recreated kang (28.001515ms)
+✔ R48 XiShang is east-facing, composite-roofed and contains a true shallow channel (10.406884ms)
+✔ R48 JingFu has three connected rolled roof volumes, not one generic xieshan (25.194346ms)
+✔ R48 BiLuo is one occupied level with five columns, five petals and two colored eaves (24.430731ms)
+✔ R48 XiShang channel is recessed into segmented paving, not painted over an opaque slab (14.169416ms)
+✔ R48 all registered first-batch portals are on supported ground floors with no rescue teleport (136.068059ms)
+✔ R48 first seven actual controller routes enter and leave their real portals at 60 Hz (160.056226ms)
+✖ R48 preserves unverified legacy furnishings unless a sourced plan or pavilion use conflicts (17.49391ms)
+✔ R48 own surfaces are finite nondegenerate triangles and survive merge/resource disposal (231.796068ms)
+✔ R48 every published approach path is reversibly traversable by the real controller (147.94078ms)
+✔ R48 approachPoints feetY equals actual support even at low-platform edge endpoints (98.885038ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1302.335827
+
+✖ failing tests:
+
+test at tests/r48-ningshou-halls.test.mjs:43:1
+✖ R48 preserves unverified legacy furnishings unless a sourced plan or pavilion use conflicts (17.49391ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r82-fubi-arch-pool/tests/r48-ningshou-halls.test.mjs:44:72)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

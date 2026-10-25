@@ -1,0 +1,62 @@
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=196,298, 树木=34棵, 碰撞器=2955
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=196,298, 树木=34棵, 碰撞器=2955
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=196,298, 树木=34棵, 碰撞器=2955
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=196,298, 树木=34棵, 碰撞器=2955
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=196,298, 树木=34棵, 碰撞器=2955
+✔ R84 summit air-drop exits by both real routes and cave jump does not eject 10Hz (679.811689ms)
+✔ R84 summit air-drop exits by both real routes and cave jump does not eject 30Hz (492.604799ms)
+✔ R84 summit air-drop exits by both real routes and cave jump does not eject 60Hz (479.218391ms)
+✖ R84 exterior summit ring avoids closed pavilion doors and balustrades 10Hz (561.201301ms)
+✖ R84 exterior summit ring avoids closed pavilion doors and balustrades 60Hz (1140.098445ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 3
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3567.082836
+
+✖ failing tests:
+
+test at tests/r84-drop-cave.test.mjs:5:26
+✖ R84 exterior summit ring avoids closed pavilion doors and balustrades 10Hz (561.201301ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(follow(f,points,fps))
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r84-duixiu-cave-routes/tests/r84-drop-cave.test.mjs:5:527)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r84-drop-cave.test.mjs:5:26
+✖ R84 exterior summit ring avoids closed pavilion doors and balustrades 60Hz (1140.098445ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(follow(f,points,fps))
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r84-duixiu-cave-routes/tests/r84-drop-cave.test.mjs:5:527)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

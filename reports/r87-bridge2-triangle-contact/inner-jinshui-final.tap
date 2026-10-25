@@ -1,0 +1,52 @@
+✔ documentary topology is separate from fitted reach and retained independent bridge entries (2.642414ms)
+✔ actual water and ground cutout share the bowed polygon rather than a rectangle (115.949687ms)
+✔ each real vault is open across its full bridge width, with masonry above and at springing (63.56522ms)
+✔ generated deck triangles and every production walk ramp agree throughout all five crossings (613.750435ms)
+✔ water guard rejects curved non-bridge water and radius overlap, while bank rail gaps keep five entrances open (38.900819ms)
+✖ translation moves actual water, bridge decks, support and colliders once with unchanged topology (82.625303ms)
+✔ finite merged geometry stays bounded and all resources are caller-owned/disposable (61.70218ms)
+✔ independent bridge entries control real geometry and reject unsupported registrations (29.354277ms)
+✔ both reach boundaries remain open instead of becoming transverse masonry dams (27.917111ms)
+✔ all five bridges use real controller 10Hz sprint=false reverse=false (48.59371ms)
+✔ all five bridges use real controller 10Hz sprint=false reverse=true (42.955872ms)
+✔ all five bridges use real controller 10Hz sprint=true reverse=false (45.116112ms)
+✔ all five bridges use real controller 10Hz sprint=true reverse=true (32.561539ms)
+✔ all five bridges use real controller 60Hz sprint=false reverse=false (70.214865ms)
+✔ all five bridges use real controller 60Hz sprint=false reverse=true (63.025931ms)
+✔ all five bridges use real controller 60Hz sprint=true reverse=false (45.945256ms)
+✔ all five bridges use real controller 60Hz sprint=true reverse=true (48.517025ms)
+✔ north-bank approaches reach both retained side-gateway ramps 10Hz sprint=false (147.595361ms)
+✔ north-bank approaches reach both retained side-gateway ramps 10Hz sprint=true (108.027141ms)
+✔ north-bank approaches reach both retained side-gateway ramps 60Hz sprint=false (159.622343ms)
+✔ north-bank approaches reach both retained side-gateway ramps 60Hz sprint=true (118.816577ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 20
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2128.9726
+
+✖ failing tests:
+
+test at tests/inner-jinshui.test.mjs:107:1
+✖ translation moves actual water, bridge decks, support and colliders once with unchanged topology (82.625303ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(a.colliders[i].clone().translate(new THREE.Vector3(7,0,20)).equals(b.colliders[i]))
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r87-bridge2-triangle-contact/tests/inner-jinshui.test.mjs:110:47)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

@@ -1,0 +1,30 @@
+✔ R88 real controller main to east front/side chair and north opening returns 10Hz sprint=false (238.103401ms)
+✔ R88 real controller main to east front/side chair and north opening returns 10Hz sprint=true (102.51707ms)
+✔ R88 real controller main to east front/side chair and north opening returns 60Hz sprint=false (103.423068ms)
+✔ R88 real controller main to east front/side chair and north opening returns 60Hz sprint=true (90.338149ms)
+✔ R88 falling onto kang and chair has real support and can leave 10Hz (83.97289ms)
+✖ R88 falling onto kang and chair has real support and can leave 60Hz (71.435299ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 882.755697
+
+✖ failing tests:
+
+test at tests/r88-yangxin/routes.test.mjs:7:25
+✖ R88 falling onto kang and chair has real support and can leave 60Hz (71.435299ms)
+  AssertionError [ERR_ASSERTION]: returns to retained floor
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r88-yangxin-east-anteroom/tests/r88-yangxin/routes.test.mjs:7:1017)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

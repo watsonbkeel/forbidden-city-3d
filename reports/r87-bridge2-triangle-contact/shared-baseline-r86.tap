@@ -1,0 +1,809 @@
+✔ documentary topology is separate from fitted reach and retained independent bridge entries (4.199284ms)
+✔ actual water and ground cutout share the bowed polygon rather than a rectangle (180.565586ms)
+✔ each real vault is open across its full bridge width, with masonry above and at springing (89.879843ms)
+✔ generated deck triangles and every production walk ramp agree throughout all five crossings (775.97366ms)
+✔ water guard rejects curved non-bridge water and radius overlap, while bank rail gaps keep five entrances open (53.730107ms)
+✔ translation moves actual water, bridge decks, support and colliders once with unchanged topology (76.007058ms)
+✔ finite merged geometry stays bounded and all resources are caller-owned/disposable (59.77984ms)
+✔ independent bridge entries control real geometry and reject unsupported registrations (41.570569ms)
+✔ both reach boundaries remain open instead of becoming transverse masonry dams (46.780164ms)
+✔ all five bridges use real controller 10Hz sprint=false reverse=false (69.377146ms)
+✔ all five bridges use real controller 10Hz sprint=false reverse=true (66.584473ms)
+✔ all five bridges use real controller 10Hz sprint=true reverse=false (36.506322ms)
+✔ all five bridges use real controller 10Hz sprint=true reverse=true (44.905731ms)
+✔ all five bridges use real controller 60Hz sprint=false reverse=false (97.21865ms)
+✔ all five bridges use real controller 60Hz sprint=false reverse=true (75.744144ms)
+✔ all five bridges use real controller 60Hz sprint=true reverse=false (57.789791ms)
+✔ all five bridges use real controller 60Hz sprint=true reverse=true (71.876017ms)
+✔ north-bank approaches reach both retained side-gateway ramps 10Hz sprint=false (297.217034ms)
+✔ north-bank approaches reach both retained side-gateway ramps 10Hz sprint=true (163.404576ms)
+✔ north-bank approaches reach both retained side-gateway ramps 60Hz sprint=false (294.784688ms)
+✔ north-bank approaches reach both retained side-gateway ramps 60Hz sprint=true (186.285378ms)
+✔ desktop ordinary release retains natural braking at 16.666666666666668 ms (98.328786ms)
+ℹ {"mobile":false,"interval":16.666666666666668,"releaseSpeed":11.999999999999995,"brakingMetres":1.1017708906238335,"settleFrames":43,"wallTimeToSettleMs":716.6666666666667}
+✔ desktop ordinary release retains natural braking at 33.333333333333336 ms (35.042174ms)
+ℹ {"mobile":false,"interval":33.333333333333336,"releaseSpeed":11.999999999999998,"brakingMetres":1.0101685939889609,"settleFrames":22,"wallTimeToSettleMs":733.3333333333334}
+✔ desktop ordinary release retains natural braking at 100 ms (38.131842ms)
+ℹ {"mobile":false,"interval":100,"releaseSpeed":12,"brakingMetres":0.6977352153671514,"settleFrames":8,"wallTimeToSettleMs":800}
+✔ desktop ordinary release retains natural braking at 666.6 ms (33.474521ms)
+ℹ {"mobile":false,"interval":666.6,"releaseSpeed":12,"brakingMetres":0.6977352153671514,"settleFrames":8,"wallTimeToSettleMs":5332.8}
+✔ mobile ordinary release retains natural braking at 16.666666666666668 ms (64.400134ms)
+ℹ {"mobile":true,"interval":16.666666666666668,"releaseSpeed":8.999999999999995,"brakingMetres":0.8260297964847451,"settleFrames":41,"wallTimeToSettleMs":683.3333333333334}
+✔ mobile ordinary release retains natural braking at 33.333333333333336 ms (46.311631ms)
+ℹ {"mobile":true,"interval":33.333333333333336,"releaseSpeed":8.999999999999998,"brakingMetres":0.7573528809020542,"settleFrames":21,"wallTimeToSettleMs":700}
+✔ mobile ordinary release retains natural braking at 100 ms (22.388689ms)
+ℹ {"mobile":true,"interval":100,"releaseSpeed":9,"brakingMetres":0.5224807177563644,"settleFrames":7,"wallTimeToSettleMs":700}
+✔ mobile ordinary release retains natural braking at 666.6 ms (26.588664ms)
+ℹ {"mobile":true,"interval":666.6,"releaseSpeed":9,"brakingMetres":0.5224807177563644,"settleFrames":7,"wallTimeToSettleMs":4666.2}
+✔ desktop walk/diagonal normalization and wall-clock auto-run keep their original thresholds (2.456478ms)
+✖ R32 palace coverage is exactly eleven explicit principal halls (4.209559ms)
+✖ 景仁宫: actual columns, closed window panels and collision agree with 5 bays (7150.081061ms)
+✖ 景仁宫: real controller center stair/entrance round trip (60Hz) (0.607652ms)
+✖ 景仁宫: real controller left stair/entrance round trip (10Hz) (0.171638ms)
+✖ 景仁宫: real controller right stair/entrance round trip (10Hz) (0.158558ms)
+✔ 景仁宫: closed windows, column grid, side walls and rear wall reject shortcuts (59.016472ms)
+✖ 承乾宫: actual columns, closed window panels and collision agree with 5 bays (20.878612ms)
+✔ 承乾宫: real controller center stair/entrance round trip (60Hz) (66.710652ms)
+ℹ {"lane":"center","queries":278,"supportSequence":["ground","承乾宫:stair:0","承乾宫:platform","承乾宫:stair:0","ground"],"maxFeet":0.6,"maxSpeed":4.999999999978446,"end":[-93.6,370.2886516268465,0]}
+✔ 承乾宫: real controller left stair/entrance round trip (10Hz) (15.68897ms)
+ℹ {"lane":"left","queries":83,"supportSequence":["ground","承乾宫:stair:0","承乾宫:platform","承乾宫:stair:0","ground"],"maxFeet":0.6,"maxSpeed":11.95914381421801,"end":[-95,370.0998873358151,0]}
+✔ 承乾宫: real controller right stair/entrance round trip (10Hz) (16.545558ms)
+ℹ {"lane":"right","queries":83,"supportSequence":["ground","承乾宫:stair:0","承乾宫:platform","承乾宫:stair:0","ground"],"maxFeet":0.6,"maxSpeed":11.95914381421801,"end":[-92.19999999999999,370.0998873358151,0]}
+✖ 承乾宫: closed windows, column grid, side walls and rear wall reject shortcuts (14.086425ms)
+✖ 钟粹宫: actual columns, closed window panels and collision agree with 5 bays (22.119264ms)
+✔ 钟粹宫: real controller center stair/entrance round trip (60Hz) (49.536059ms)
+ℹ {"lane":"center","queries":278,"supportSequence":["ground","钟粹宫:stair:0","钟粹宫:platform","钟粹宫:stair:0","ground"],"maxFeet":0.6,"maxSpeed":4.999999999978446,"end":[-93.4,421.33865162684646,0]}
+✔ 钟粹宫: real controller left stair/entrance round trip (10Hz) (9.044237ms)
+ℹ {"lane":"left","queries":83,"supportSequence":["ground","钟粹宫:stair:0","钟粹宫:platform","钟粹宫:stair:0","ground"],"maxFeet":0.6,"maxSpeed":11.95914381421801,"end":[-94.80000000000001,421.14988733581504,0]}
+✔ 钟粹宫: real controller right stair/entrance round trip (10Hz) (8.828302ms)
+ℹ {"lane":"right","queries":83,"supportSequence":["ground","钟粹宫:stair:0","钟粹宫:platform","钟粹宫:stair:0","ground"],"maxFeet":0.6,"maxSpeed":11.95914381421801,"end":[-92,421.14988733581504,0]}
+✖ 钟粹宫: closed windows, column grid, side walls and rear wall reject shortcuts (0.368733ms)
+✖ 永和宫: actual columns, closed window panels and collision agree with 5 bays (189.299773ms)
+✖ 永和宫: real controller center stair/entrance round trip (60Hz) (0.241422ms)
+✖ 永和宫: real controller left stair/entrance round trip (10Hz) (0.122594ms)
+✖ 永和宫: real controller right stair/entrance round trip (10Hz) (0.089865ms)
+✔ 永和宫: closed windows, column grid, side walls and rear wall reject shortcuts (18.473942ms)
+✖ 景阳宫: actual columns, closed window panels and collision agree with 3 bays (5.950332ms)
+✔ 景阳宫: real controller center stair/entrance round trip (60Hz) (39.003339ms)
+ℹ {"lane":"center","queries":278,"supportSequence":["ground","景阳宫:stair:0","景阳宫:platform","景阳宫:stair:0","ground"],"maxFeet":0.6,"maxSpeed":4.999999999978446,"end":[-149.5,420.7386516268465,0]}
+✔ 景阳宫: real controller left stair/entrance round trip (10Hz) (10.374764ms)
+ℹ {"lane":"left","queries":83,"supportSequence":["ground","景阳宫:stair:0","景阳宫:platform","景阳宫:stair:0","ground"],"maxFeet":0.6,"maxSpeed":11.95914381421801,"end":[-150.9,420.549887335815,0]}
+✔ 景阳宫: real controller right stair/entrance round trip (10Hz) (10.783588ms)
+ℹ {"lane":"right","queries":83,"supportSequence":["ground","景阳宫:stair:0","景阳宫:platform","景阳宫:stair:0","ground"],"maxFeet":0.6,"maxSpeed":11.95914381421801,"end":[-148.1,420.549887335815,0]}
+✖ 景阳宫: closed windows, column grid, side walls and rear wall reject shortcuts (5.635459ms)
+✖ 永寿宫: actual columns, closed window panels and collision agree with 5 bays (9.997658ms)
+✖ 永寿宫: real controller center stair/entrance round trip (60Hz) (0.216846ms)
+✖ 永寿宫: real controller left stair/entrance round trip (10Hz) (0.123355ms)
+✖ 永寿宫: real controller right stair/entrance round trip (10Hz) (0.103856ms)
+✖ 永寿宫: closed windows, column grid, side walls and rear wall reject shortcuts (9.18007ms)
+✖ 翊坤宫: actual columns, closed window panels and collision agree with 5 bays (7.529833ms)
+✔ 翊坤宫: real controller center stair/entrance round trip (60Hz) (39.395078ms)
+ℹ {"lane":"center","queries":278,"supportSequence":["ground","翊坤宫:stair:0","翊坤宫:platform","翊坤宫:stair:0","ground"],"maxFeet":0.6,"maxSpeed":4.999999999978446,"end":[94,371.33865162684646,0]}
+✔ 翊坤宫: real controller left stair/entrance round trip (10Hz) (13.658683ms)
+ℹ {"lane":"left","queries":83,"supportSequence":["ground","翊坤宫:stair:0","翊坤宫:platform","翊坤宫:stair:0","ground"],"maxFeet":0.6,"maxSpeed":11.95914381421801,"end":[92.6,371.14988733581504,0]}
+✔ 翊坤宫: real controller right stair/entrance round trip (10Hz) (10.621094ms)
+ℹ {"lane":"right","queries":83,"supportSequence":["ground","翊坤宫:stair:0","翊坤宫:platform","翊坤宫:stair:0","ground"],"maxFeet":0.6,"maxSpeed":11.95914381421801,"end":[95.4,371.14988733581504,0]}
+✖ 翊坤宫: closed windows, column grid, side walls and rear wall reject shortcuts (13.386966ms)
+✖ 储秀宫: actual columns, closed window panels and collision agree with 5 bays (17.92693ms)
+✔ 储秀宫: real controller center stair/entrance round trip (60Hz) (37.985772ms)
+ℹ {"lane":"center","queries":278,"supportSequence":["ground","储秀宫:stair:0","储秀宫:platform","储秀宫:stair:0","ground"],"maxFeet":0.6,"maxSpeed":4.999999999978446,"end":[94.8,423.13865162684647,0]}
+✖ 储秀宫: real controller left stair/entrance round trip (10Hz) (44.064487ms)
+✖ 储秀宫: real controller right stair/entrance round trip (10Hz) (45.082355ms)
+✖ 储秀宫: closed windows, column grid, side walls and rear wall reject shortcuts (0.368664ms)
+✖ 太极殿: actual columns, closed window panels and collision agree with 5 bays (8.794921ms)
+✖ 太极殿: real controller center stair/entrance round trip (60Hz) (0.149655ms)
+✖ 太极殿: real controller left stair/entrance round trip (10Hz) (0.119179ms)
+✖ 太极殿: real controller right stair/entrance round trip (10Hz) (0.090065ms)
+✖ 太极殿: closed windows, column grid, side walls and rear wall reject shortcuts (0.262093ms)
+✖ 长春宫: actual columns, closed window panels and collision agree with 5 bays (7.917655ms)
+✔ 长春宫: real controller center stair/entrance round trip (60Hz) (40.274768ms)
+ℹ {"lane":"center","queries":278,"supportSequence":["ground","长春宫:stair:0","长春宫:platform","长春宫:stair:0","ground"],"maxFeet":0.6,"maxSpeed":4.999999999978446,"end":[150.2,368.4386516268465,0]}
+✔ 长春宫: real controller left stair/entrance round trip (10Hz) (13.407687ms)
+ℹ {"lane":"left","queries":83,"supportSequence":["ground","长春宫:stair:0","长春宫:platform","长春宫:stair:0","ground"],"maxFeet":0.6,"maxSpeed":11.95914381421801,"end":[148.79999999999998,368.24988733581506,0]}
+✔ 长春宫: real controller right stair/entrance round trip (10Hz) (12.464951ms)
+ℹ {"lane":"right","queries":83,"supportSequence":["ground","长春宫:stair:0","长春宫:platform","长春宫:stair:0","ground"],"maxFeet":0.6,"maxSpeed":11.95914381421801,"end":[151.6,368.24988733581506,0]}
+✖ 长春宫: closed windows, column grid, side walls and rear wall reject shortcuts (9.741854ms)
+✖ 咸福宫: actual columns, closed window panels and collision agree with 3 bays (5.903753ms)
+✖ 咸福宫: real controller center stair/entrance round trip (60Hz) (0.131847ms)
+✖ 咸福宫: real controller left stair/entrance round trip (10Hz) (0.129004ms)
+✖ 咸福宫: real controller right stair/entrance round trip (10Hz) (0.086179ms)
+✖ 咸福宫: closed windows, column grid, side walls and rear wall reject shortcuts (2.983999ms)
+file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/lib/auto-routes.mjs:403
+      const go = [front.zToe - 2, front.zToe, front.zTop, rear.zTop, rear.zToe, rear.zToe + 2].map(z => g.toWorld(x, z));
+                        ^
+
+TypeError: Cannot read properties of undefined (reading 'zToe')
+    at file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/lib/auto-routes.mjs:403:25
+    at Array.map (<anonymous>)
+    at file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/lib/auto-routes.mjs:402:28
+    at Array.flatMap (<anonymous>)
+    at file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/lib/auto-routes.mjs:393:133
+    at Array.flatMap (<anonymous>)
+    at profileGateRoutes (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/lib/auto-routes.mjs:393:16)
+    at buildAutoRoutes (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/lib/auto-routes.mjs:453:89)
+    at file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/terrace-routes.test.mjs:17:24
+
+Node.js v24.19.0
+✖ tests/terrace-routes.test.mjs (8701.802117ms)
+✔ only a selected actual ramp with matching full contract is labelled as the expected flight (2.243047ms)
+✔ actual support follows first eligible strictly-higher max, including ties and higher overlaps (0.434782ms)
+✔ actual support preserves ramp eligibility, taper bounds, rescue precedence and zero-ground ties (4.687827ms)
+ℹ tests 90
+ℹ suites 0
+ℹ pass 51
+ℹ fail 39
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8717.62488
+
+✖ failing tests:
+
+test at tests/r32-palace-collision.test.mjs:68:1
+✖ R32 palace coverage is exactly eleven explicit principal halls (4.209559ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      '储秀宫',
+      '咸福宫',
+      '太极殿',
+  +   '奉先殿',
+      '承乾宫',
+      '景仁宫',
+      '景阳宫',
+      '永和宫',
+      '永寿宫',
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:72:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+      '储秀宫', '咸福宫',
+      '太极殿', '奉先殿',
+      '承乾宫', '景仁宫',
+      '景阳宫', '永和宫',
+      '永寿宫', '翊坤宫',
+      '钟粹宫', '长春宫'
+    ],
+    expected: [
+      '储秀宫', '咸福宫',
+      '太极殿', '承乾宫',
+      '景仁宫', '景阳宫',
+      '永和宫', '永寿宫',
+      '翊坤宫', '钟粹宫',
+      '长春宫'
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:76:3
+✖ 景仁宫: actual columns, closed window panels and collision agree with 5 bays (7150.081061ms)
+  AssertionError [ERR_ASSERTION]: only the central bay is an entrance
+  
+  0 !== 4
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:106:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 4,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:139:6
+✖ 景仁宫: real controller center stair/entrance round trip (60Hz) (0.607652ms)
+  AssertionError [ERR_ASSERTION]: 景仁宫: existing central front flight only
+  
+  2 !== 1
+  
+      at supportProfile (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:49:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:140:64)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:139:6
+✖ 景仁宫: real controller left stair/entrance round trip (10Hz) (0.171638ms)
+  AssertionError [ERR_ASSERTION]: 景仁宫: existing central front flight only
+  
+  2 !== 1
+  
+      at supportProfile (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:49:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:140:64)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:139:6
+✖ 景仁宫: real controller right stair/entrance round trip (10Hz) (0.158558ms)
+  AssertionError [ERR_ASSERTION]: 景仁宫: existing central front flight only
+  
+  2 !== 1
+  
+      at supportProfile (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:49:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:140:64)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:76:3
+✖ 承乾宫: actual columns, closed window panels and collision agree with 5 bays (20.878612ms)
+  AssertionError [ERR_ASSERTION]: only the central bay is an entrance
+  
+  0 !== 4
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:106:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 4,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:171:3
+✖ 承乾宫: closed windows, column grid, side walls and rear wall reject shortcuts (14.086425ms)
+  AssertionError [ERR_ASSERTION]: 承乾宫/front-column-2: start must be clear, {"reached":-1,"total":2.7999999999999545,"end":[-96.36999999999999,375.95],"feet":0.6}
+      at blocked (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:62:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:179:7)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:76:3
+✖ 钟粹宫: actual columns, closed window panels and collision agree with 5 bays (22.119264ms)
+  AssertionError [ERR_ASSERTION]: only the central bay is an entrance
+  
+  0 !== 4
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:106:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 4,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:171:3
+✖ 钟粹宫: closed windows, column grid, side walls and rear wall reject shortcuts (0.368733ms)
+  AssertionError [ERR_ASSERTION]: 钟粹宫/closed-window-0: start must be clear, {"reached":-1,"total":2.8000000000000114,"end":[-104.84,427],"feet":0.6}
+      at blocked (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:62:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:175:7)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:76:3
+✖ 永和宫: actual columns, closed window panels and collision agree with 5 bays (189.299773ms)
+  AssertionError [ERR_ASSERTION]: only the central bay is an entrance
+  
+  0 !== 4
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:106:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 4,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:139:6
+✖ 永和宫: real controller center stair/entrance round trip (60Hz) (0.241422ms)
+  AssertionError [ERR_ASSERTION]: 永和宫: one actual platform
+  
+  2 !== 1
+  
+      at supportProfile (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:48:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:140:64)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:139:6
+✖ 永和宫: real controller left stair/entrance round trip (10Hz) (0.122594ms)
+  AssertionError [ERR_ASSERTION]: 永和宫: one actual platform
+  
+  2 !== 1
+  
+      at supportProfile (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:48:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:140:64)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:139:6
+✖ 永和宫: real controller right stair/entrance round trip (10Hz) (0.089865ms)
+  AssertionError [ERR_ASSERTION]: 永和宫: one actual platform
+  
+  2 !== 1
+  
+      at supportProfile (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:48:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:140:64)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:76:3
+✖ 景阳宫: actual columns, closed window panels and collision agree with 3 bays (5.950332ms)
+  AssertionError [ERR_ASSERTION]: only the central bay is an entrance
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:106:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:171:3
+✖ 景阳宫: closed windows, column grid, side walls and rear wall reject shortcuts (5.635459ms)
+  AssertionError [ERR_ASSERTION]: 景阳宫/front-column-1: start must be clear, {"reached":-1,"total":2.8000000000000114,"end":[-152.95,426.4],"feet":0.6}
+      at blocked (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:62:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:179:7)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:76:3
+✖ 永寿宫: actual columns, closed window panels and collision agree with 5 bays (9.997658ms)
+  AssertionError [ERR_ASSERTION]: only the central bay is an entrance
+  
+  0 !== 4
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:106:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 4,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:139:6
+✖ 永寿宫: real controller center stair/entrance round trip (60Hz) (0.216846ms)
+  AssertionError [ERR_ASSERTION]: 永寿宫: existing central front flight only
+  
+  2 !== 1
+  
+      at supportProfile (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:49:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:140:64)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:139:6
+✖ 永寿宫: real controller left stair/entrance round trip (10Hz) (0.123355ms)
+  AssertionError [ERR_ASSERTION]: 永寿宫: existing central front flight only
+  
+  2 !== 1
+  
+      at supportProfile (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:49:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:140:64)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:139:6
+✖ 永寿宫: real controller right stair/entrance round trip (10Hz) (0.103856ms)
+  AssertionError [ERR_ASSERTION]: 永寿宫: existing central front flight only
+  
+  2 !== 1
+  
+      at supportProfile (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:49:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:140:64)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:171:3
+✖ 永寿宫: closed windows, column grid, side walls and rear wall reject shortcuts (9.18007ms)
+  AssertionError [ERR_ASSERTION]: 永寿宫/front-column-2: start must be clear, {"reached":-1,"total":2.8000000000000114,"end":[92.19,325.5],"feet":0.6}
+      at blocked (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:62:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:179:7)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:76:3
+✖ 翊坤宫: actual columns, closed window panels and collision agree with 5 bays (7.529833ms)
+  AssertionError [ERR_ASSERTION]: registered door aligned to middle bay: 85.87 != 94
+      at near (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:25:40)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:128:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:171:3
+✖ 翊坤宫: closed windows, column grid, side walls and rear wall reject shortcuts (13.386966ms)
+  AssertionError [ERR_ASSERTION]: 翊坤宫/front-column-1: start must be clear, {"reached":-1,"total":2.8000000000000114,"end":[85.87,377],"feet":0.6}
+      at blocked (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:62:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:179:7)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:76:3
+✖ 储秀宫: actual columns, closed window panels and collision agree with 5 bays (17.92693ms)
+  AssertionError [ERR_ASSERTION]: only the central bay is an entrance
+  
+  0 !== 4
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:106:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 4,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:139:6
+✖ 储秀宫: real controller left stair/entrance round trip (10Hz) (44.064487ms)
+  AssertionError [ERR_ASSERTION]: {"stuckAt":[93.39999999999999,429.90000000000003],"end":[93.39999999999999,428.7079506528835,0.6]}
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:150:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:139:6
+✖ 储秀宫: real controller right stair/entrance round trip (10Hz) (45.082355ms)
+  AssertionError [ERR_ASSERTION]: {"stuckAt":[96.2,429.90000000000003],"end":[96.2,428.7079506528835,0.6]}
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:150:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:171:3
+✖ 储秀宫: closed windows, column grid, side walls and rear wall reject shortcuts (0.368664ms)
+  AssertionError [ERR_ASSERTION]: 储秀宫/closed-window-0: start must be clear, {"reached":-1,"total":2.8000000000000114,"end":[83.96,428.8],"feet":0.6}
+      at blocked (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:62:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:175:7)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:76:3
+✖ 太极殿: actual columns, closed window panels and collision agree with 5 bays (8.794921ms)
+  AssertionError [ERR_ASSERTION]: only the central bay is an entrance
+  
+  0 !== 4
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:106:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 4,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:139:6
+✖ 太极殿: real controller center stair/entrance round trip (60Hz) (0.149655ms)
+  AssertionError [ERR_ASSERTION]: 太极殿: existing central front flight only
+  
+  3 !== 1
+  
+      at supportProfile (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:49:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:140:64)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 3,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:139:6
+✖ 太极殿: real controller left stair/entrance round trip (10Hz) (0.119179ms)
+  AssertionError [ERR_ASSERTION]: 太极殿: existing central front flight only
+  
+  3 !== 1
+  
+      at supportProfile (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:49:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:140:64)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 3,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:139:6
+✖ 太极殿: real controller right stair/entrance round trip (10Hz) (0.090065ms)
+  AssertionError [ERR_ASSERTION]: 太极殿: existing central front flight only
+  
+  3 !== 1
+  
+      at supportProfile (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:49:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:140:64)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 3,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:171:3
+✖ 太极殿: closed windows, column grid, side walls and rear wall reject shortcuts (0.262093ms)
+  AssertionError [ERR_ASSERTION]: 太极殿/closed-window-0: start must be clear, {"reached":-1,"total":2.8000000000000114,"end":[139.35999999999999,324.4],"feet":0.6}
+      at blocked (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:62:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:175:7)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:76:3
+✖ 长春宫: actual columns, closed window panels and collision agree with 5 bays (7.917655ms)
+  AssertionError [ERR_ASSERTION]: registered door aligned to middle bay: 147.49 != 150.2
+      at near (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:25:40)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:128:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:171:3
+✖ 长春宫: closed windows, column grid, side walls and rear wall reject shortcuts (9.741854ms)
+  AssertionError [ERR_ASSERTION]: 长春宫/front-column-2: start must be clear, {"reached":-1,"total":2.8000000000000114,"end":[147.48999999999998,374.1],"feet":0.6}
+      at blocked (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:62:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:179:7)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:76:3
+✖ 咸福宫: actual columns, closed window panels and collision agree with 3 bays (5.903753ms)
+  AssertionError [ERR_ASSERTION]: only the central bay is an entrance
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:106:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:139:6
+✖ 咸福宫: real controller center stair/entrance round trip (60Hz) (0.131847ms)
+  AssertionError [ERR_ASSERTION]: 咸福宫: existing central front flight only
+  
+  2 !== 1
+  
+      at supportProfile (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:49:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:140:64)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:139:6
+✖ 咸福宫: real controller left stair/entrance round trip (10Hz) (0.129004ms)
+  AssertionError [ERR_ASSERTION]: 咸福宫: existing central front flight only
+  
+  2 !== 1
+  
+      at supportProfile (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:49:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:140:64)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:139:6
+✖ 咸福宫: real controller right stair/entrance round trip (10Hz) (0.086179ms)
+  AssertionError [ERR_ASSERTION]: 咸福宫: existing central front flight only
+  
+  2 !== 1
+  
+      at supportProfile (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:49:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:140:64)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r32-palace-collision.test.mjs:171:3
+✖ 咸福宫: closed windows, column grid, side walls and rear wall reject shortcuts (2.983999ms)
+  AssertionError [ERR_ASSERTION]: 咸福宫/front-column-1: start must be clear, {"reached":-1,"total":2.8000000000000114,"end":[146.38333333333335,424.8],"feet":0.6}
+      at blocked (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:62:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r32-palace-collision.test.mjs:179:7)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/terrace-routes.test.mjs:1:1
+✖ tests/terrace-routes.test.mjs (8701.802117ms)
+  'test failed'

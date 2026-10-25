@@ -1,0 +1,49 @@
+✔ all22 actual downward lands have precise witnessed contact at 10Hz (268.755641ms)
+✔ all22 actual downward lands have precise witnessed contact at 60Hz (290.353566ms)
+✔ production only bridge2 owns 22 real heads and precise side assemblies; decks unchanged (123.631567ms)
+✔ explicit owner surface carries witness, unregister/reload and update preserve dispatch (5.438239ms)
+✔ unmarked box retains square support while marked body cannot use coarse box gaps (2.522724ms)
+✔ bridge2 real jump 10Hz has actual contact (172.808907ms)
+✔ bridge2 real rail walk 10Hz has actual contact (79.435859ms)
+✔ bridge2 real jump 60Hz has actual contact (97.16745ms)
+✖ bridge2 real rail walk 60Hz has actual contact (779.433474ms)
+✔ eccentric real descent cannot finish inside cap at 10Hz (164.574944ms)
+✔ eccentric real descent cannot finish inside cap at 60Hz (104.059539ms)
+✔ strict contract rejects real cap eccentric foot witness with full body intrusion (157.220521ms)
+✔ apex inside true foot disk permits full body contact without penetration (47.223734ms)
+✔ tilted disk maximum has an actual triangle/foot witness, not apex clamp (2.51342ms)
+✔ flat triangle has witness at edge but square-only corner misses (0.403876ms)
+✔ closed shape body detects surface and fully contained box, not broadphase gaps (1.577216ms)
+✔ invalid and degenerate geometry rejected; downward triangle not support (0.500671ms)
+✔ swept body detects intermediate corner strike with clear endpoints (1.444497ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1315.05824
+
+✖ failing tests:
+
+test at tests/r87-controller-contact.test.mjs:3:66
+✖ bridge2 real rail walk 60Hz has actual contact (779.433474ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r87-bridge2-triangle-contact/tests/r87-controller-contact.test.mjs:6:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

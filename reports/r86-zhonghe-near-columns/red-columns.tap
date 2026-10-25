@@ -1,0 +1,31 @@
+✖ Zhonghe adds exactly two fitted near columns and one shallow top beam, preserving all old meshes and navigation (138.029312ms)
+✔ Jiaotai and the existing Zhonghe display source are untouched (56.074982ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 358.155659
+
+✖ failing tests:
+
+test at tests/r86-columns.test.mjs:2:1
+✖ Zhonghe adds exactly two fitted near columns and one shallow top beam, preserving all old meshes and navigation (138.029312ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(p)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r86-zhonghe-near-columns/tests/r86-columns.test.mjs:2:222)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

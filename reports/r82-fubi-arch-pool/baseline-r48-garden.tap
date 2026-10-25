@@ -1,0 +1,42 @@
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=128,376, 树木=34棵, 碰撞器=455
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=128,376, 树木=34棵, 碰撞器=455
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=128,376, 树木=34棵, 碰撞器=455
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=128,376, 树木=34棵, 碰撞器=455
+✔ R48 浮碧亭 has real open three-bay main and southern annex topology (20.562647ms)
+✖ R48 澄瑞亭 has real open three-bay main and southern annex topology (7.827998ms)
+✔ R48 whole garden both bridge-pavilion north/south traversal 10Hz sprint=false (294.839856ms)
+✔ R48 whole garden both bridge-pavilion north/south traversal 10Hz sprint=true (147.17899ms)
+✔ R48 whole garden both bridge-pavilion north/south traversal 60Hz sprint=false (278.640044ms)
+✔ R48 whole garden both bridge-pavilion north/south traversal 60Hz sprint=true (252.005274ms)
+✔ R48 bridge profiles reject wrong named anchors before allocating geometry (0.685398ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1159.857217
+
+✖ failing tests:
+
+test at tests/r48-garden-remaining.test.mjs:11:25
+✖ R48 澄瑞亭 has real open three-bay main and southern annex topology (7.827998ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r81-south-moat/tests/r48-garden-remaining.test.mjs:11:377)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

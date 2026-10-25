@@ -1,0 +1,3 @@
+import * as THREE from 'three';import {FirstPersonControls} from '../../src/controls/FirstPerson.js';
+export function withController(t,cm,run){const d=globalThis.document,w=globalThis.window,noop=()=>{},doc={addEventListener:noop,removeEventListener:noop,exitPointerLock:noop};globalThis.document=doc;globalThis.window={addEventListener:noop,removeEventListener:noop};let now=0;const mock=t.mock.method(performance,'now',()=>now),camera=new THREE.PerspectiveCamera(),c=new FirstPersonControls(camera,{ownerDocument:doc,addEventListener:noop,removeEventListener:noop},cm);c.controls.isLocked=true;
+ try{return run(c,camera,(fps)=>{now+=1000/fps;c.update();});}finally{c.dispose();mock.mock.restore();globalThis.document=d;globalThis.window=w;}}

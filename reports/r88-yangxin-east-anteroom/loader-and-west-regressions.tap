@@ -1,0 +1,80 @@
+✔ R48 Huangji successful install atomically hides only four fallback parts and restores them on unload (212.545781ms)
+✔ R48 Huangji malformed asset and partial-install failure leave the complete fallback and no tagged side effects (71.301806ms)
+✔ R48 Huangji cancellation and suspension never leave an empty or duplicated live furniture layer (64.63327ms)
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 54 个 region, 36 个 mapItem
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 452.5ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 393.4ms
+[ZoneManager] 卸载区域 west-six
+✖ R53 actual S GLB proxies stream in/out without removing permanent west-room geometry or collisions (250.634428ms)
+✖ R53 in-flight S load cancellation preserves west-room structure and allows a later actual reload (105.10223ms)
+✔ R53 actual S controls preserve all two-turn doorway routes, 10Hz sprint=false (85.571602ms)
+✔ R53 actual S controls preserve all two-turn doorway routes, 10Hz sprint=true (70.723087ms)
+✔ R53 actual S controls preserve all two-turn doorway routes, 60Hz sprint=false (81.434388ms)
+✔ R53 actual S controls preserve all two-turn doorway routes, 60Hz sprint=true (74.96538ms)
+✔ R53 B visible triangles leave the complete 1m-wide player body clear, not just proxy boxes (57.531541ms)
+✔ R53 S visible triangles leave the complete 1m-wide player body clear, not just proxy boxes (87.156655ms)
+✔ R53 all new navigation spawns stay clear when actual S collision proxies are installed (62.310457ms)
+✔ R53 real ZoneManager unload/re-entry recreates the four rooms and removes every tagged collision/support (1406.564896ms)
+✖ R53 reusable caller-world audit also verifies actual loaded S, never simulated proxy evidence (82.174524ms)
+✔ R88 replaces the old three-metre east ghost collider with stable fitted furniture (0.670427ms)
+✔ R88 Yangxin partial registration rollback removes tags group lights and fade (121.123967ms)
+✔ R88 Yangxin normal install and cancel/unload restore B without duplicate owned resources (59.44131ms)
+✔ R88 every retained triangle preserves all typed corner attributes and original material/transform (7.876512ms)
+✔ R88 new furniture proxies match named visible objects and no WALK floor is invented (5.521254ms)
+✔ R88 untouched Draco blocks are byte-identical and ownership is exactly frozen source roles (9.122854ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 17
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2601.505362
+
+✖ failing tests:
+
+test at tests/r53-yangxin-streaming-and-clearance.test.mjs:23:1
+✖ R53 actual S GLB proxies stream in/out without removing permanent west-room geometry or collisions (250.634428ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  36 !== 10
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r88-yangxin-east-anteroom/tests/r53-yangxin-streaming-and-clearance.test.mjs:25:52)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 36,
+    expected: 10,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r53-yangxin-streaming-and-clearance.test.mjs:28:1
+✖ R53 in-flight S load cancellation preserves west-room structure and allows a later actual reload (105.10223ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  185 !== 159
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r88-yangxin-east-anteroom/tests/r53-yangxin-streaming-and-clearance.test.mjs:29:298)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 185,
+    expected: 159,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r53-yangxin-streaming-and-clearance.test.mjs:50:1
+✖ R53 reusable caller-world audit also verifies actual loaded S, never simulated proxy evidence (82.174524ms)
+  Error: Requested S, but actual interior:yangxin collision count is 36
+      at auditYangxinWorld (file:///workspace/scratch/02a8023d1a85/r88-yangxin-east-anteroom/tests/r53-yangxin/world-audit.mjs:28:66)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r88-yangxin-east-anteroom/tests/r53-yangxin-streaming-and-clearance.test.mjs:50:157)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)

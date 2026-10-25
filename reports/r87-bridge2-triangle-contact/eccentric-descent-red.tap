@@ -1,0 +1,56 @@
+✖ eccentric real descent cannot finish inside cap at 10Hz (96.032346ms)
+✖ eccentric real descent cannot finish inside cap at 60Hz (73.96575ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 300.880038
+
+✖ failing tests:
+
+test at tests/r87-eccentric-descent.test.mjs:2:26
+✖ eccentric real descent cannot finish inside cap at 10Hz (96.032346ms)
+  AssertionError [ERR_ASSERTION]: actual cap intrusion feet=1.4947941205271587
+  
+  true !== false
+  
+      at file:///workspace/scratch/02a8023d1a85/r87-bridge2-triangle-contact/tests/r87-eccentric-descent.test.mjs:2:597
+      at withController (file:///workspace/scratch/02a8023d1a85/r87-bridge2-triangle-contact/tests/lib/r87-contact-controller.mjs:3:13)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r87-bridge2-triangle-contact/tests/r87-eccentric-descent.test.mjs:2:203)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r87-eccentric-descent.test.mjs:2:26
+✖ eccentric real descent cannot finish inside cap at 60Hz (73.96575ms)
+  AssertionError [ERR_ASSERTION]: actual cap intrusion feet=1.4947941205271587
+  
+  true !== false
+  
+      at file:///workspace/scratch/02a8023d1a85/r87-bridge2-triangle-contact/tests/r87-eccentric-descent.test.mjs:2:597
+      at withController (file:///workspace/scratch/02a8023d1a85/r87-bridge2-triangle-contact/tests/lib/r87-contact-controller.mjs:3:13)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r87-bridge2-triangle-contact/tests/r87-eccentric-descent.test.mjs:2:203)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,35 @@
+✔ all22 actual downward lands have precise witnessed contact at 10Hz (206.376902ms)
+✔ all22 actual downward lands have precise witnessed contact at 60Hz (535.543755ms)
+✖ explicit owner surface carries witness, unregister/reload and update preserve dispatch (4.535094ms)
+✔ unmarked box retains square support while marked body cannot use coarse box gaps (0.46682ms)
+✔ eccentric real descent cannot finish inside cap at 10Hz (129.722266ms)
+✔ eccentric real descent cannot finish inside cap at 60Hz (103.645351ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 866.61228
+
+✖ failing tests:
+
+test at tests/r87-collision-dispatch.test.mjs:5:1
+✖ explicit owner surface carries witness, unregister/reload and update preserve dispatch (4.535094ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1.5 !== -Infinity
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r87-bridge2-triangle-contact/tests/r87-collision-dispatch.test.mjs:6:190)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1.5,
+    expected: -Infinity,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

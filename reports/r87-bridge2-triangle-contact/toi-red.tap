@@ -1,0 +1,23 @@
+✔ tilted disk maximum has an actual triangle/foot witness, not apex clamp (1.717407ms)
+✔ flat triangle has witness at edge but square-only corner misses (0.251889ms)
+✔ closed shape body detects surface and fully contained box, not broadphase gaps (0.99567ms)
+✔ invalid and degenerate geometry rejected; downward triangle not support (0.412511ms)
+✔ swept body detects intermediate corner strike with clear endpoints (0.856931ms)
+✖ continuous impact time is exact, not repeated binary body probes (0.775047ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 110.4801
+
+✖ failing tests:
+
+test at tests/r87-triangle-support.test.mjs:29:1
+✖ continuous impact time is exact, not repeated binary body probes (0.775047ms)
+  TypeError: triangleBodySweepFraction is not a function
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r87-bridge2-triangle-contact/tests/r87-triangle-support.test.mjs:29:368)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
