@@ -1,0 +1,32 @@
+✔ separate numeric fields apply 21:00 once, only on Apply or Enter; drafts survive clock refresh (8.57811ms)
+✔ reject invalid clock :00 without changing simulation (2.284978ms)
+✔ reject invalid clock 24:00 without changing simulation (1.710206ms)
+✔ reject invalid clock -1:00 without changing simulation (1.83947ms)
+✔ reject invalid clock 21:60 without changing simulation (1.415684ms)
+✔ reject invalid clock 21:-1 without changing simulation (1.6995ms)
+✔ reject invalid clock 21.5:00 without changing simulation (1.417576ms)
+✔ reject invalid clock 21:0.5 without changing simulation (1.263615ms)
+✔ reject invalid clock NaN:00 without changing simulation (1.404117ms)
+✔ accept boundary 00:00 and preserve slider/live controls (1.442193ms)
+✔ accept boundary 23:59 and preserve slider/live controls (1.510646ms)
+✔ a fresh world click releases old range focus and real controller moves without map teleport (12.292673ms)
+✔ focusing a time control stops previously held input rather than drifting while editing (4.760852ms)
+✔ settings #settings-close-btn, map=false: former time-field focus cannot trap new movement (7.194243ms)
+✔ settings #resume-btn, map=false: former time-field focus cannot trap new movement (6.800112ms)
+✔ settings Escape, map=false: former time-field focus cannot trap new movement (6.130377ms)
+✔ settings #settings-close-btn, map=true: former time-field focus cannot trap new movement (4.304198ms)
+✔ settings #resume-btn, map=true: former time-field focus cannot trap new movement (4.815785ms)
+✔ settings Escape, map=true: former time-field focus cannot trap new movement (4.861824ms)
+✔ time disclosure closes by Escape/button without global settings toggle or hidden input focus (1.133221ms)
+✔ editing time during map-open flight clears held flight keys without dismounting or locking (22.492225ms)
+✔ draft blur, Escape, close and reopen never apply a hidden or invalid clock (1.51279ms)
+✔ input-focus listener stops mobile joystick, release and resume require no pointer lock (3.835775ms)
+✔ real unlock and subsequent lock event release stale number focus without claiming lock early (1.207272ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 236.111732

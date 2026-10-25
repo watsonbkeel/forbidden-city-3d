@@ -62,6 +62,35 @@ export class DailyRoutine {
   const group=this.interaction?.groups.get(actor.placement?.pathRef);if(group&&Number.isFinite(r.dayClock))group.time=r.dayClock;
   delete state.routine;delete state.routineSample;delete state.dayActor;return true;
  }
+ /** Consume distance, not one waypoint per frame. The same .1s frame cap as
+  * FirstPerson/CharacterManager plus <=.15m static sweeps prevents low-FPS
+  * shortcuts across walls, stair supports or the player's occupied body. */
+ advanceWork(state, dt) {
+  const r=state.routine, speed=PLAYER.SPRINT_SPEED, radius=.36;
+  let remaining=speed*Math.max(0,Math.min(Number.isFinite(dt)?dt:0,.1));
+  state.routineSample={...state.routineSample,speedMetersPerSecond:0};
+  let substeps=0;
+  while(remaining>1e-9&&r.index<r.points.length&&substeps++<128){
+   const old=state.routineSample,target=r.points[r.index];
+   const dx=target[0]-old.position[0],dz=target[2]-old.position[2],d=Math.hypot(dx,dz);
+   if(d<.015){r.index++;continue;}
+   const amount=Math.min(d,remaining,.15),t=amount/d;
+   const proposed=sample([old.position[0]+dx*t,old.position[1],old.position[2]+dz*t],Math.atan2(dx,dz),speed);
+   const previousEye=new THREE.Vector3(old.position[0],old.position[1]+PLAYER.HEIGHT,old.position[2]);
+   const goal=new THREE.Vector3(proposed.position[0],previousEye.y,proposed.position[2]);
+   const support=this.nav.supportHeight(goal.x,goal.z,old.position[1]+PLAYER.STEP_UP,radius);
+   const eye=this.nav.getValidPosition(previousEye,goal,radius,old.position[1],PLAYER.STEP_UP,Math.max(old.position[1],support));
+   const floor=Math.max(this.nav.getGroundHeight(eye.x,eye.z,old.position[1],PLAYER.STEP_UP),this.nav.supportHeight(eye.x,eye.z,old.position[1]+PLAYER.STEP_UP,radius));
+   eye.y=floor+PLAYER.HEIGHT;proposed.position=[eye.x,floor,eye.z];
+   const travelled=Math.hypot(eye.x-old.position[0],eye.z-old.position[2]);
+   const blocked=travelled<.0001||floor-old.position[1]>PLAYER.STEP_UP+.001||
+    sweptBodyIntersectsPlayer(characterBody(state.actor,old),characterBody(state.actor,proposed),this.playerState())||this.nav.checkCollision(eye,radius);
+   if(blocked){state.routineSample={...old,speedMetersPerSecond:0};this.stats.waiting++;return;}
+   state.routineSample=proposed;remaining-=travelled;
+   if(Math.hypot(eye.x-target[0],eye.z-target[2])<.015)r.index++;
+  }
+  this.stats.travelling++;
+ }
  update(states,dt,beijingTime){
   this.night=isRestTime(beijingTime);this.stats={sleeping:0,travelling:0,duty:0,waiting:0};
   if(!this.cm)return;
@@ -92,6 +121,7 @@ export class DailyRoutine {
     }
     r.points.reverse();r.index=1;continue;
    }
+   if(r.kind==='work'){this.advanceWork(state,dt);continue;}
    const old=state.routineSample,d=Math.hypot(old.position[0]-target[0],old.position[2]-target[2]),amount=Math.min(d,(r.kind==='duty'?.40:.65)*dt),t=d?amount/d:1;
    const proposed=sample(old.position.map((v,i)=>v+(target[i]-v)*t),Math.atan2(target[0]-old.position[0],target[2]-old.position[2]),amount>0?(r.kind==='duty'?.40:.65):0);
    const radius=['consort-daily','maid-daily'].includes(state.actor.templateId)?.30:.36;

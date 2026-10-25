@@ -1,0 +1,51 @@
+✔ separate numeric fields apply 21:00 once, only on Apply or Enter; drafts survive clock refresh (9.531342ms)
+✔ reject invalid clock :00 without changing simulation (2.389265ms)
+✔ reject invalid clock 24:00 without changing simulation (1.698509ms)
+✔ reject invalid clock -1:00 without changing simulation (2.075245ms)
+✔ reject invalid clock 21:60 without changing simulation (1.457988ms)
+✔ reject invalid clock 21:-1 without changing simulation (1.70554ms)
+✔ reject invalid clock 21.5:00 without changing simulation (2.054523ms)
+✔ reject invalid clock 21:0.5 without changing simulation (1.327021ms)
+✔ reject invalid clock NaN:00 without changing simulation (1.714273ms)
+✔ accept boundary 00:00 and preserve slider/live controls (1.43318ms)
+✔ accept boundary 23:59 and preserve slider/live controls (2.044988ms)
+✔ a fresh world click releases old range focus and real controller moves without map teleport (9.367847ms)
+✔ focusing a time control stops previously held input rather than drifting while editing (2.991564ms)
+✔ settings #settings-close-btn, map=false: former time-field focus cannot trap new movement (3.093582ms)
+✔ settings #resume-btn, map=false: former time-field focus cannot trap new movement (2.85961ms)
+✔ settings Escape, map=false: former time-field focus cannot trap new movement (2.72558ms)
+✔ settings #settings-close-btn, map=true: former time-field focus cannot trap new movement (2.596626ms)
+✔ settings #resume-btn, map=true: former time-field focus cannot trap new movement (2.897588ms)
+✔ settings Escape, map=true: former time-field focus cannot trap new movement (2.285279ms)
+✔ time disclosure closes by Escape/button without global settings toggle or hidden input focus (0.99968ms)
+✔ editing time during map-open flight clears held flight keys without dismounting or locking (21.601775ms)
+✔ draft blur, Escape, close and reopen never apply a hidden or invalid clock (2.354904ms)
+✔ input-focus listener stops mobile joystick, release and resume require no pointer lock (2.687122ms)
+✔ real unlock and subsequent lock event release stale number focus without claiming lock early (1.450036ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,202, 树木=34棵, 碰撞器=3033
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+✔ independent actual B/S 60/10Hz round trips, precise movement budgets, rail rejection and seat/return occupancy (28321.916367ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 28723.274932

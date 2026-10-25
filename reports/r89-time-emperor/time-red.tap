@@ -1,0 +1,421 @@
+✖ separate numeric fields apply 21:00 once, only on Apply or Enter; drafts survive clock refresh (7.866013ms)
+✖ reject invalid clock :00 without changing simulation (1.735414ms)
+✖ reject invalid clock 24:00 without changing simulation (1.555584ms)
+✖ reject invalid clock -1:00 without changing simulation (1.908063ms)
+✖ reject invalid clock 21:60 without changing simulation (1.216906ms)
+✖ reject invalid clock 21:-1 without changing simulation (1.275134ms)
+✖ reject invalid clock 21.5:00 without changing simulation (1.560172ms)
+✖ reject invalid clock 21:0.5 without changing simulation (5.921224ms)
+✖ reject invalid clock NaN:00 without changing simulation (1.269405ms)
+✖ accept boundary 00:00 and preserve slider/live controls (1.520993ms)
+✖ accept boundary 23:59 and preserve slider/live controls (0.901613ms)
+✖ a fresh world click releases old range focus and real controller moves without map teleport (2.767022ms)
+✖ focusing a time control stops previously held input rather than drifting while editing (12.198875ms)
+✖ settings #settings-close-btn, map=false: former time-field focus cannot trap new movement (6.436829ms)
+✖ settings #resume-btn, map=false: former time-field focus cannot trap new movement (1.838709ms)
+✖ settings Escape, map=false: former time-field focus cannot trap new movement (1.365569ms)
+✖ settings #settings-close-btn, map=true: former time-field focus cannot trap new movement (1.559991ms)
+✖ settings #resume-btn, map=true: former time-field focus cannot trap new movement (1.870547ms)
+✖ settings Escape, map=true: former time-field focus cannot trap new movement (1.541743ms)
+✖ time disclosure closes by Escape/button without global settings toggle or hidden input focus (0.9331ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 0
+ℹ fail 20
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 193.789524
+
+✖ failing tests:
+
+test at tests/r89-time-controls.test.mjs:32:1
+✖ separate numeric fields apply 21:00 once, only on Apply or Enter; drafts survive clock refresh (7.866013ms)
+  AssertionError [ERR_ASSERTION]: separate hour/minute inputs and an explicit Apply button
+      at fields (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:30:184)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:33:72)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r89-time-controls.test.mjs:39:137
+✖ reject invalid clock :00 without changing simulation (1.735414ms)
+  AssertionError [ERR_ASSERTION]: separate hour/minute inputs and an explicit Apply button
+      at fields (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:30:184)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:40:51)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r89-time-controls.test.mjs:39:137
+✖ reject invalid clock 24:00 without changing simulation (1.555584ms)
+  AssertionError [ERR_ASSERTION]: separate hour/minute inputs and an explicit Apply button
+      at fields (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:30:184)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:40:51)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r89-time-controls.test.mjs:39:137
+✖ reject invalid clock -1:00 without changing simulation (1.908063ms)
+  AssertionError [ERR_ASSERTION]: separate hour/minute inputs and an explicit Apply button
+      at fields (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:30:184)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:40:51)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r89-time-controls.test.mjs:39:137
+✖ reject invalid clock 21:60 without changing simulation (1.216906ms)
+  AssertionError [ERR_ASSERTION]: separate hour/minute inputs and an explicit Apply button
+      at fields (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:30:184)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:40:51)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r89-time-controls.test.mjs:39:137
+✖ reject invalid clock 21:-1 without changing simulation (1.275134ms)
+  AssertionError [ERR_ASSERTION]: separate hour/minute inputs and an explicit Apply button
+      at fields (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:30:184)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:40:51)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r89-time-controls.test.mjs:39:137
+✖ reject invalid clock 21.5:00 without changing simulation (1.560172ms)
+  AssertionError [ERR_ASSERTION]: separate hour/minute inputs and an explicit Apply button
+      at fields (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:30:184)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:40:51)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r89-time-controls.test.mjs:39:137
+✖ reject invalid clock 21:0.5 without changing simulation (5.921224ms)
+  AssertionError [ERR_ASSERTION]: separate hour/minute inputs and an explicit Apply button
+      at fields (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:30:184)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:40:51)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r89-time-controls.test.mjs:39:137
+✖ reject invalid clock NaN:00 without changing simulation (1.269405ms)
+  AssertionError [ERR_ASSERTION]: separate hour/minute inputs and an explicit Apply button
+      at fields (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:30:184)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:40:51)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r89-time-controls.test.mjs:42:54
+✖ accept boundary 00:00 and preserve slider/live controls (1.520993ms)
+  AssertionError [ERR_ASSERTION]: separate hour/minute inputs and an explicit Apply button
+      at fields (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:30:184)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:43:72)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r89-time-controls.test.mjs:42:54
+✖ accept boundary 23:59 and preserve slider/live controls (0.901613ms)
+  AssertionError [ERR_ASSERTION]: separate hour/minute inputs and an explicit Apply button
+      at fields (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:30:184)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:43:72)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r89-time-controls.test.mjs:48:1
+✖ a fresh world click releases old range focus and real controller moves without map teleport (2.767022ms)
+  AssertionError [ERR_ASSERTION]: WASD must not remain addressed to the old range input
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:50:149)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r89-time-controls.test.mjs:53:1
+✖ focusing a time control stops previously held input rather than drifting while editing (12.198875ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:55:61)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r89-time-controls.test.mjs:57:95
+✖ settings #settings-close-btn, map=false: former time-field focus cannot trap new movement (6.436829ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(controls.camera.position.distanceTo(before)>.1)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:61:212)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r89-time-controls.test.mjs:57:95
+✖ settings #resume-btn, map=false: former time-field focus cannot trap new movement (1.838709ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(controls.camera.position.distanceTo(before)>.1)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:61:212)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r89-time-controls.test.mjs:57:95
+✖ settings Escape, map=false: former time-field focus cannot trap new movement (1.365569ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(controls.camera.position.distanceTo(before)>.1)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:61:212)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r89-time-controls.test.mjs:57:95
+✖ settings #settings-close-btn, map=true: former time-field focus cannot trap new movement (1.559991ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(controls.camera.position.distanceTo(before)>.1)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:61:212)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r89-time-controls.test.mjs:57:95
+✖ settings #resume-btn, map=true: former time-field focus cannot trap new movement (1.870547ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(controls.camera.position.distanceTo(before)>.1)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:61:212)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r89-time-controls.test.mjs:57:95
+✖ settings Escape, map=true: former time-field focus cannot trap new movement (1.541743ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(controls.camera.position.distanceTo(before)>.1)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:61:212)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r89-time-controls.test.mjs:65:1
+✖ time disclosure closes by Escape/button without global settings toggle or hidden input focus (0.9331ms)
+  AssertionError [ERR_ASSERTION]: separate hour/minute inputs and an explicit Apply button
+      at fields (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:30:184)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r89-time-emperor-fixes/tests/r89-time-controls.test.mjs:66:41)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

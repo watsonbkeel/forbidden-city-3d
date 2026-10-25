@@ -25,6 +25,9 @@ export class SettingsTourSession {
     if (!this.paused) return;
     this.paused = false;
     this.controls.stop();
+    // Returning to the tour is not returning to a stale clock/search field,
+    // including map mode where no pointer-lock event will arrive to blur it.
+    this.controls.releaseInputFocus?.();
     this.controls.jumpQueued = false;
     this.controls.prevTime = performance.now();
     this.controls.setFreeMove(this.previousFreeMove);

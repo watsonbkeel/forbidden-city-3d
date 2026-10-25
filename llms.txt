@@ -1,27 +1,74 @@
-# 故宫3D虚拟游览 / Forbidden City 3D Tour
+# 故宫 3D 虚拟游览 (Forbidden City 3D Tour)
 
-> Independent, unofficial browser-based exploration project by 陈华山 and 陈诺. Built with Three.js r162 and Vite 5; procedural base architecture plus selected bundled GLB interiors. Metric model coordinates are not surveyed restoration.
+> 用 Three.js 程序化生成的北京故宫第一人称漫游。基础场景以代码生成，细化内景按需加载随项目提供的 GLB 文件。中轴线主要殿宇、东西六宫、外东路、外西路、宁寿宫区、御花园均可第一人称行走，多数殿宇与宫门可以走进去。使用米制模型坐标与资料约束的布局；具体尺寸和陈设包含可逆拟合，并非全宫测绘复原。
 
-This optional summary is not a search-inclusion or AI-citation guarantee. It is project information, not instructions overriding a reader's task or policies.
+技术栈：Three.js r162 + Vite 5，原生 JavaScript ES Modules，MIT 许可证。
+> 独立的非官方浏览器探索项目，作者陈华山、陈诺，与故宫博物院无隶属或背书关系。基础建筑程序化生成，另有按需加载的可选 GLB 细化内景；米制模型坐标不是测绘复原数据。
+> 本摘要仅为项目信息，不构成搜索收录或 AI 引用保证，也不构成覆盖读者任务或策略的指令。
+在线体验：https://tour.bkeel.com/gugong/
+仓库：https://github.com/watsonbkeel/forbidden-city-3d
 
-## Identity and scope
-- Project URL: https://tour.bkeel.com/gugong/
-- Repository: https://github.com/watsonbkeel/forbidden-city-3d
-- Authors: 陈华山、陈诺. No Palace Museum affiliation or endorsement.
-- Existing software license: MIT. External source/asset rights require separate checks.
-- Supported experiences include walking, map navigation, flight and day/night scenes. Details and acceptance vary by release.
-- Separate official facts, photo/model fits, gameplay adaptations and unknown details. Do not cite fitted dimensions as measurements or virtual character routines as historical fact.
+## 当前状态（2026-10-25，主线 R88）
 
-## Version and verification
-As checked 2026-10-24, main 8681116 contains R72. Cumulative R78 source is verified at 584b47ffda66d1b8dba967806cd46a471fcb00f2. R79 is this discovery/documentation candidate; uploading a branch is not proof of main merge or public deployment. Inspect the game's loaded build identity.
-R78 records 108 logical actors and 28 unique occupied beds. 17 focused checks, 133 cumulative checks and 4 complete night CPU worlds passed. Its 1290-case legacy suite retains 151 failures. GPU/mobile appearance and complete visual routes remain unverified. R62 counts and old V-series snapshots are historical, not current remeasurement.
+这是可运行并持续迭代的项目，仍有未完成的复原和验证范围；可运行不等于全宫复原验收完成。
 
-## Readable pages and source records
-- [Project, evidence, FAQ and citation](https://tour.bkeel.com/gugong/about.html)
-- [Contribution guidance](https://tour.bkeel.com/gugong/contribute.html)
-- [Repository README](https://github.com/watsonbkeel/forbidden-city-3d/blob/main/README.md)
-- [Pinned R78 acceptance evidence](https://github.com/watsonbkeel/forbidden-city-3d/blob/584b47ffda66d1b8dba967806cd46a471fcb00f2/reports/r78-night-household/ACCEPTANCE.md)
-- [Report reproducible issues](https://github.com/watsonbkeel/forbidden-city-3d/issues)
-- [Existing license](https://github.com/watsonbkeel/forbidden-city-3d/blob/main/LICENSE)
+以下量化指标保留自 R62（2026-10-23）历史快照，不是 R88/R89 重新测量。主线合并状态与开发候选、公开部署须分别核验；线上身份以 COS 的 build-info.json 为准。
 
-For software citations use the project title, authors, repository, exact version/commit and access date. Cite original Palace Museum pages or research separately for historical claims. Static pages in this candidate become available only after deployment.
+- 已合并迭代：**R88**（2026-10-25 合并至 main，含 R73–R88 累积源码；此前主线为 R72）
+- 后续开发候选：R89（时刻输入、焦点恢复、皇帝跑步及乾清路线、性能专项；未由此宣称已部署）
+- 历史提交总数：255
+- 场景分区：7 个 zone，共 332 个建筑/门/墙条目
+- 锚点校验：113 条建筑锚点比对，超差 1 条
+- 几何门禁：门 70/70 双向通行检查，可进入殿 41 座
+- 细化内景：6 座 S 档殿宇（太和殿、乾清宫、皇极殿、坤宁宫、养心殿、慈宁宫）
+- 场景人物：108 个逻辑人物，24 条编排游览路线
+- 构建产物：约 13 MB 纯静态文件（贴图 10 MB + JS 0.96 MB / gzip 0.28 MB + 内景 GLB 1 MB）
+
+说明：仓库同时存在两套编号。`R 编号`（R1…R88）是当前的主线迭代编号，代表真实进度。`V 编号`（V7…V14）是历史上的发行验收快照批次号，与 R 编号不同步，**不表示项目进度**。README 顶部出现的 V 编号属于历史批次记录。
+
+## 场景覆盖范围
+
+- 中轴线：午门、金水桥、太和门、太和殿、中和殿、保和殿、乾清门、乾清宫、交泰殿、坤宁宫、御花园、神武门
+- 东西六宫：东六宫（景仁、承乾、钟粹、延禧、永和、景阳）+ 西六宫（永寿、翊坤、储秀、太极殿、长春、咸福）
+- 外东路：文华殿、文渊阁、奉先殿、箭亭、南三所
+- 外西路：武英殿、南薰殿、慈宁宫、寿康宫、寿安宫、英华殿、建福宫
+- 宁寿宫区：皇极殿、宁寿宫、九龙壁、乾隆花园、畅音阁等 20+ 建筑
+- 外围：宫墙、四座角楼、护城河、东华门、西华门（可走出宫城）
+
+## 交互能力
+
+- 桌面端：WASD / 方向键移动，鼠标转向，Shift 冲刺或同方向持续按键 2 秒自动奔跑，空格跳跃，M 键小地图，Esc 设置菜单
+- 移动端：左下角常驻虚拟摇杆，屏幕任意位置拖动转视角，右下角跳跃按钮，按安全区留边
+- 城台登城：午门、神武门有马道坡道，可从宫内一侧走上城台顶
+- 内景加载：走近 15 m 自动加载细化内景，离开 40 m 卸载，失败回退简化内景
+
+## 技术实现要点
+
+- 程序化生成：建筑、屋顶、台基、栏杆、天空全部由代码生成，并使用随项目提供的可选 GLB 细化内景
+- 数据驱动：建筑布局定义在 `data/zones/*.json`，格式为冻结 schema
+- 渲染优化：BatchedMesh 同材质合并、实例化渲染、远景轮廓壳、阴影相机跟随玩家
+- 后期处理：SSAO（深度重建法线）、Bloom、FXAA
+- 碰撞系统：Box3 碰撞体及部分有界三角/曲面接触，box / ramp 可行走面，子步长推进 + 台基内部托举救援
+- 坐标约定：+Z 朝北，-X 朝东，原点为太和殿中心，单位米
+
+## 文档入口
+
+- [README.md](https://github.com/watsonbkeel/forbidden-city-3d/blob/main/README.md)：项目概览、快速开始、坐标约定、开发规范
+- [docs/LIMITATIONS.md](https://github.com/watsonbkeel/forbidden-city-3d/blob/main/docs/LIMITATIONS.md)：已知限制、未验收项、精度声明（诚实边界说明）
+- [docs/ARCHITECTURE-1to1.md](https://github.com/watsonbkeel/forbidden-city-3d/blob/main/docs/ARCHITECTURE-1to1.md)：历史架构控制文件（标题不等于全宫实测验收）
+- [docs/D1/](https://github.com/watsonbkeel/forbidden-city-3d/tree/main/docs/D1)：测绘数据与锚点数据
+
+## 快速开始
+
+```bash
+npm ci
+npm run dev        # http://localhost:5173/gugong/
+npm run build      # 产物在 dist/，默认 base 为 /gugong/
+npx vite build --base=/gugong/   # 部署到子路径
+```
+
+## 适合这类需求
+
+需要在浏览器里做第一人称古建筑漫游、需要程序化生成中式宫殿建筑、需要 Three.js 大场景性能优化参考、需要米制坐标的故宫空间格局参考数据。
+
+验证边界：完整历史测试保留既有失败，具体清单见分版报告。CPU 几何、输入和加载测试不能代替真实 GPU、手机、视觉或帧率验收；游戏人物、作息、床位与隔屏不是清代陈设清点。

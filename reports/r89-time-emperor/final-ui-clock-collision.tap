@@ -1,0 +1,180 @@
+✔ unowned pointerup cannot end a map gesture or teleport (38.72519ms)
+✔ unowned pointercancel cannot end a map gesture or teleport (10.790514ms)
+✔ unowned lostpointercapture cannot end a map gesture or teleport (14.878331ms)
+✔ pinch with no motion cannot turn the last finger lift into a teleport (13.054582ms)
+✔ pointercancel clears map capture and a fresh one-finger drag is independent (9.106699ms)
+✔ lostpointercapture clears map capture and a fresh one-finger drag is independent (9.642721ms)
+✔ close clears map capture and a fresh one-finger drag is independent (10.801252ms)
+✔ held look/joystick touch remains independent while another finger drags map (14.180813ms)
+✔ second-finger preview opens exactly once while joystick stays held (16.33032ms)
+✔ second-finger toolbar tap activates once; a cancelled or dragged tap does not (27.389557ms)
+✔ three-contact sequence remains ineligible for tap after pointerup (8.351094ms)
+✔ three-contact sequence remains ineligible for tap after pointercancel (14.531945ms)
+✔ three-contact sequence remains ineligible for tap after lostpointercapture (11.78954ms)
+✔ close clears pending secondary button taps and map captures (12.928322ms)
+✔ dispose clears pending secondary button taps and map captures (9.839859ms)
+✔ map entry preserves already-held keyboard ownership and timing (59.289193ms)
+✔ map entry preserves already-held joystick ownership and timing (29.244251ms)
+✔ map blank/title clicks cannot relock; close keeps explicit stop and lock-failure fallback (18.986656ms)
+✔ map KeyW moves without native scrolling (11.282683ms)
+✔ map KeyA moves without native scrolling (10.270845ms)
+✔ map KeyS moves without native scrolling (11.916886ms)
+✔ map KeyD moves without native scrolling (14.586102ms)
+✔ map ArrowUp moves without native scrolling (14.982996ms)
+✔ map ArrowDown moves without native scrolling (14.277027ms)
+✔ map ArrowLeft moves without native scrolling (41.655328ms)
+✔ map ArrowRight moves without native scrolling (11.490585ms)
+✔ map text-entry input does not walk or jump or toggle map (9.946218ms)
+✔ map text-entry textarea does not walk or jump or toggle map (6.480917ms)
+✔ map text-entry select does not walk or jump or toggle map (8.264874ms)
+✔ map text-entry contenteditable does not walk or jump or toggle map (9.717565ms)
+✔ map text-entry textbox does not walk or jump or toggle map (8.676532ms)
+✔ map preserves ctrlKey shortcuts (12.564448ms)
+✔ map preserves metaKey shortcuts (6.868928ms)
+✔ map preserves altKey shortcuts (6.383781ms)
+✔ map controls retain native Space/Enter/Tab; keyup clears movement after focus changes (6.833917ms)
+✔ successful teleport cancels movement/jump until fresh key or touch; repeats cannot re-arm (5.682749ms)
+✔ map-target touch cannot acquire joystick even inside the padded joystick region (5.73006ms)
+✔ settings from a moving map still pauses and resumes with fresh input only (7.153517ms)
+✔ map accessibility is non-modal with keyboard-reachable preview and visible close (5.944121ms)
+✔ main wires map lifecycle explicitly while original physics/render loops remain separate (0.375384ms)
+✔ a hold first started in settings requires fresh admission after returning to walking (5.209889ms)
+✔ a hold first started in editable requires fresh admission after returning to walking (6.355898ms)
+✔ a hold first started in modifier requires fresh admission after returning to walking (4.414376ms)
+✔ map state changes during settings pause do not enable movement before dismissal (4.526114ms)
+✔ settings rejects a cancelled repeat but accepts a fresh press (6.787627ms)
+✔ close rejects a cancelled repeat but accepts a fresh press (5.474235ms)
+✔ teleport rejects a cancelled repeat but accepts a fresh press (4.233474ms)
+✔ short mobile map canvas uses the visual viewport and actual panel content height (4.214045ms)
+✔ R78 exact civil boundaries, reversed preview and live resume retain ambient and outdoor light (13.010087ms)
+[
+  {
+    "template": "consort-daily",
+    "lod": 0,
+    "vertices": 5665,
+    "transformSteps": 45,
+    "maxWrites": 256,
+    "finalMs": 0.013579999999990378
+  },
+  {
+    "template": "consort-daily",
+    "lod": 1,
+    "vertices": 1027,
+    "transformSteps": 9,
+    "maxWrites": 256,
+    "finalMs": 0.00852300000002515
+  },
+  {
+    "template": "consort-daily",
+    "lod": 2,
+    "vertices": 309,
+    "transformSteps": 3,
+    "maxWrites": 256,
+    "finalMs": 0.00420600000001059
+  },
+  {
+    "template": "maid-daily",
+    "lod": 0,
+    "vertices": 4103,
+    "transformSteps": 33,
+    "maxWrites": 256,
+    "finalMs": 0.00950399999999263
+  },
+  {
+    "template": "maid-daily",
+    "lod": 1,
+    "vertices": 899,
+    "transformSteps": 8,
+    "maxWrites": 256,
+    "finalMs": 0.008603000000050542
+  },
+  {
+    "template": "maid-daily",
+    "lod": 2,
+    "vertices": 309,
+    "transformSteps": 3,
+    "maxWrites": 256,
+    "finalMs": 0.004125999999985197
+  }
+]
+PASS: 6 template/LOD transforms match closed-eye synchronous publication, every transform step ≤128 vertices, no bulk rescans, bounds contain all vertices, 12 return/throw cancellation paths dispose exactly once.
+✔ tests/r78-sleep-budget.test.mjs (505.021607ms)
+✔ R78 consort-daily sleeping LOD0 has closed lids, no open eye white and wakes unchanged (246.242811ms)
+✔ R78 consort-daily sleeping LOD1 has closed lids, no open eye white and wakes unchanged (32.29555ms)
+✔ R78 consort-daily sleeping LOD2 has closed lids, no open eye white and wakes unchanged (7.005294ms)
+✔ R78 maid-daily sleeping LOD0 has closed lids, no open eye white and wakes unchanged (84.729916ms)
+✔ R78 maid-daily sleeping LOD1 has closed lids, no open eye white and wakes unchanged (28.142498ms)
+✔ R78 maid-daily sleeping LOD2 has closed lids, no open eye white and wakes unchanged (7.186706ms)
+✔ R78 sleep/wake and near/far/near pool reuse never contaminate awake eyes (76.260324ms)
+✔ emperor covers the actual player sprint distance across many small waypoints, independent of frame rate (6.926296ms)
+✔ low-FPS emperor sweep cannot cross a thin wall between clear frame endpoints (1.096085ms)
+✔ low-FPS running emperor pauses at player, never penetrates, then resumes at sprint speed (1.630016ms)
+✔ R89 Qianqing floor correction preserves every other frozen R88 field (14.262436ms)
+✔ separate numeric fields apply 21:00 once, only on Apply or Enter; drafts survive clock refresh (20.272596ms)
+✔ reject invalid clock :00 without changing simulation (3.876118ms)
+✔ reject invalid clock 24:00 without changing simulation (3.17197ms)
+✔ reject invalid clock -1:00 without changing simulation (3.227875ms)
+✔ reject invalid clock 21:60 without changing simulation (4.65782ms)
+✔ reject invalid clock 21:-1 without changing simulation (2.651549ms)
+✔ reject invalid clock 21.5:00 without changing simulation (2.908645ms)
+✔ reject invalid clock 21:0.5 without changing simulation (3.088626ms)
+✔ reject invalid clock NaN:00 without changing simulation (2.070148ms)
+✔ accept boundary 00:00 and preserve slider/live controls (2.367954ms)
+✔ accept boundary 23:59 and preserve slider/live controls (1.933362ms)
+✔ a fresh world click releases old range focus and real controller moves without map teleport (14.437387ms)
+✔ focusing a time control stops previously held input rather than drifting while editing (4.397641ms)
+✔ settings #settings-close-btn, map=false: former time-field focus cannot trap new movement (6.698203ms)
+✔ settings #resume-btn, map=false: former time-field focus cannot trap new movement (4.969949ms)
+✔ settings Escape, map=false: former time-field focus cannot trap new movement (4.490489ms)
+✔ settings #settings-close-btn, map=true: former time-field focus cannot trap new movement (8.284915ms)
+✔ settings #resume-btn, map=true: former time-field focus cannot trap new movement (11.485038ms)
+✔ settings Escape, map=true: former time-field focus cannot trap new movement (4.411662ms)
+✔ time disclosure closes by Escape/button without global settings toggle or hidden input focus (1.81232ms)
+✔ editing time during map-open flight clears held flight keys without dismounting or locking (41.667766ms)
+✔ far northern movement reuses conservative bounds without rescanning polygon vertices (15.686163ms)
+✔ optimized water decisions equal the frozen R88 narrow phase at banks, AABB borders, bridge edges and random footprints (610.129066ms)
+✔ real desktop controller stops held movement, ignores modal keys, then resumes map mode on Escape (57.537544ms)
+✔ real mobile joystick resets on opening and modal touches do not reactivate it; Continue restores walking (10.144786ms)
+✔ disposing an open menu removes its handlers without changing the controller mode or adding a relock (12.024777ms)
+✔ a second finger can open settings while the real joystick remains held, without a synthetic click (11.07358ms)
+✔ initial controls show the actual low-quality and muted state before first open (9.539938ms)
+✔ one quality-button click emits the selected setting exactly once (12.056376ms)
+✔ opening and closing the menu never changes quality or emits a quality callback (2.706051ms)
+✔ settings modal is above the welcome blocker and below the loading screen (1.998389ms)
+✔ short-height panel has separate non-scrolling actions and a bounded scroll region (3.15842ms)
+✔ preview label opens the accessible settings dialog without a keyboard (3.394896ms)
+✔ source details distinguish measured structure, provisional geometry and dated visitor access (12.255985ms)
+✔ modal opening is idempotent and closes once through each visible action (3.032851ms)
+✔ Tab wraps in the dialog, skips closed details, and restores the opener on dismissal (19.956722ms)
+✔ Escape closes once without propagating to the global toggle; key scrolling retains its default (1.702985ms)
+✔ modal pointer and touch gestures do not reach body game handlers or force preventDefault (1.602915ms)
+✔ dispose restores prior inert states and removes DOM/global listeners without resuming (1.407573ms)
+✔ a secondary touch opens the launcher once without waiting for a compatibility click (1.624057ms)
+✔ a single launcher touch retains its ordinary click activation and default behavior (1.954072ms)
+✔ secondary taps activate existing sound/quality, disclosure, links and dismissal once (5.340546ms)
+✔ secondary drags and cancelled touches never activate controls or disclosures (2.05206ms)
+✔ closing clears pending secondary touches so reopening cannot apply a stale tap (2.642406ms)
+✔ secondary long presses and displaced endings do not become clicks (1.896086ms)
+✔ map mode places the same settings entry in map flow and restores its original host (1.397106ms)
+✔ map entry uses a normal-flow sticky header with a reserved focus-scroll inset (0.730847ms)
+✔ reparenting the map entry while settings are open preserves inertness and modal focus (1.332691ms)
+✔ an uncancelable secondary launcher touch still opens once without attempting cancellation (2.321434ms)
+✔ an uncancelable secondary control tap still activates once without attempting cancellation (1.394863ms)
+✔ opening settings clears pending inputs and freezes updates on desktop (4.023048ms)
+✔ opening settings clears pending inputs and freezes updates on mobile (0.281102ms)
+✔ closing settings restores map free-move without locking or closing the map (0.216125ms)
+✔ source/quality actions cannot alter session state and every reopening captures current map mode (0.225318ms)
+✔ a denied desktop relock leaves the welcome click fallback usable and the session unpaused (0.417045ms)
+✔ main app wires menu opening, resuming and frame updates through the session (0.641723ms)
+✔ closing a menu opened unlocked restores its flex welcome state without entering pointer lock (0.289464ms)
+✔ closing a menu opened unlocked restores its none welcome state without entering pointer lock (0.262343ms)
+✔ native Escape already unlocked before menu opening retains the ordinary click-to-resume fallback (0.281853ms)
+✔ a programmatic map change during settings updates the eventual mode without unpausing inputs (0.583446ms)
+ℹ tests 121
+ℹ suites 0
+ℹ pass 121
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 944.098059

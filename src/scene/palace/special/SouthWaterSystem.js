@@ -18,13 +18,22 @@ const sources=[
  {url:'https://img.dpm.org.cn/static/themes/image/xf/map3.jpg',use:'Diagrammatic topology, not a scale plan'},
 ];
 const cache=new WeakMap();
+// Profile polygons are built once per river and remain unchanged for its lifetime.
+// Reject only strictly disjoint footprint bounds; touching edges still use the
+// original narrow phase, preserving bridge/bank decisions at floating boundaries.
+const polygonBounds=new WeakMap();
+function outsideWaterBounds(poly,x,z,r){
+ let b=polygonBounds.get(poly);
+ if(!b){b={minX:Infinity,maxX:-Infinity,minZ:Infinity,maxZ:-Infinity};for(const p of poly){b.minX=Math.min(b.minX,p.x);b.maxX=Math.max(b.maxX,p.x);b.minZ=Math.min(b.minZ,p.z);b.maxZ=Math.max(b.maxZ,p.z);}polygonBounds.set(poly,b);}
+ return x+r<b.minX||x-r>b.maxX||z+r<b.minZ||z-r>b.maxZ;
+}
 const WUYING_GATE_SOUTH_TOE=-249.8-(17.9+1.6)/2-.8*1.6;
 const WUYING_BRIDGE_Z=WUYING_GATE_SOUTH_TOE-4.8-18.4/2;
 function path(points,hole=false){const s=hole?new THREE.Path():new THREE.Shape();points.forEach((p,i)=>s[i?'lineTo':'moveTo'](p.x,-p.z));s.closePath();return s;}
 function flat(points,y){const geo=new THREE.ShapeGeometry(path(points));geo.rotateX(-Math.PI/2);geo.translate(0,y,0);return geo;}
 function contains(poly,x,z){let v=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const a=poly[i],b=poly[j];if((a.z>z)!==(b.z>z)&&x<(b.x-a.x)*(z-a.z)/(b.z-a.z)+a.x)v=!v;}return v;}
 function segmentBox(a,b,x,z,r){let lo=0,hi=1;for(const[p,d,mn,mx]of[[a.x,b.x-a.x,x-r,x+r],[a.z,b.z-a.z,z-r,z+r]]){if(Math.abs(d)<1e-10){if(p<mn||p>mx)return false;}else{let aa=(mn-p)/d,bb=(mx-p)/d;lo=Math.max(lo,Math.min(aa,bb));hi=Math.min(hi,Math.max(aa,bb));if(lo>hi)return false;}}return true;}
-function touches(poly,x,z,r){if(contains(poly,x,z))return true;for(const xx of[x-r,x+r])for(const zz of[z-r,z+r])if(contains(poly,xx,zz))return true;return poly.some((a,i)=>segmentBox(a,poly[(i+1)%poly.length],x,z,r));}
+function touches(poly,x,z,r){if(outsideWaterBounds(poly,x,z,r))return false;if(contains(poly,x,z))return true;for(const xx of[x-r,x+r])for(const zz of[z-r,z+r])if(contains(poly,xx,zz))return true;return poly.some((a,i)=>segmentBox(a,poly[(i+1)%poly.length],x,z,r));}
 // Mitered polyline, sampled <= 1.5 m. Width changes are explicit; no hidden
 // global smoothing that moves the bridge/culvert interfaces off their anchors.
 function reach(id,controls){

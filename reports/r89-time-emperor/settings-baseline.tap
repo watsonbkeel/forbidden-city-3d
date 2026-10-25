@@ -1,0 +1,45 @@
+✔ real desktop controller stops held movement, ignores modal keys, then resumes map mode on Escape (38.276789ms)
+✔ real mobile joystick resets on opening and modal touches do not reactivate it; Continue restores walking (6.336714ms)
+✔ disposing an open menu removes its handlers without changing the controller mode or adding a relock (2.482203ms)
+✔ a second finger can open settings while the real joystick remains held, without a synthetic click (5.20108ms)
+✔ initial controls show the actual low-quality and muted state before first open (8.103995ms)
+✔ one quality-button click emits the selected setting exactly once (5.870815ms)
+✔ opening and closing the menu never changes quality or emits a quality callback (2.631677ms)
+✔ settings modal is above the welcome blocker and below the loading screen (2.328872ms)
+✔ short-height panel has separate non-scrolling actions and a bounded scroll region (2.702513ms)
+✔ preview label opens the accessible settings dialog without a keyboard (2.636935ms)
+✔ source details distinguish measured structure, provisional geometry and dated visitor access (1.958948ms)
+✔ modal opening is idempotent and closes once through each visible action (2.726319ms)
+✔ Tab wraps in the dialog, skips closed details, and restores the opener on dismissal (4.813219ms)
+✔ Escape closes once without propagating to the global toggle; key scrolling retains its default (1.357126ms)
+✔ modal pointer and touch gestures do not reach body game handlers or force preventDefault (1.336555ms)
+✔ dispose restores prior inert states and removes DOM/global listeners without resuming (0.941592ms)
+✔ a secondary touch opens the launcher once without waiting for a compatibility click (1.487491ms)
+✔ a single launcher touch retains its ordinary click activation and default behavior (0.741702ms)
+✔ secondary taps activate existing sound/quality, disclosure, links and dismissal once (1.621842ms)
+✔ secondary drags and cancelled touches never activate controls or disclosures (1.254131ms)
+✔ closing clears pending secondary touches so reopening cannot apply a stale tap (2.118988ms)
+✔ secondary long presses and displaced endings do not become clicks (1.223775ms)
+✔ map mode places the same settings entry in map flow and restores its original host (0.871928ms)
+✔ map entry uses a normal-flow sticky header with a reserved focus-scroll inset (0.614351ms)
+✔ reparenting the map entry while settings are open preserves inertness and modal focus (1.60031ms)
+✔ an uncancelable secondary launcher touch still opens once without attempting cancellation (0.70712ms)
+✔ an uncancelable secondary control tap still activates once without attempting cancellation (0.810856ms)
+✔ opening settings clears pending inputs and freezes updates on desktop (3.483896ms)
+✔ opening settings clears pending inputs and freezes updates on mobile (0.406619ms)
+✔ closing settings restores map free-move without locking or closing the map (0.314662ms)
+✔ source/quality actions cannot alter session state and every reopening captures current map mode (0.371698ms)
+✔ a denied desktop relock leaves the welcome click fallback usable and the session unpaused (0.622303ms)
+✔ main app wires menu opening, resuming and frame updates through the session (1.174571ms)
+✔ closing a menu opened unlocked restores its flex welcome state without entering pointer lock (0.512478ms)
+✔ closing a menu opened unlocked restores its none welcome state without entering pointer lock (0.382293ms)
+✔ native Escape already unlocked before menu opening retains the ordinary click-to-resume fallback (0.461933ms)
+✔ a programmatic map change during settings updates the eventual mode without unpausing inputs (0.887531ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 185.413058

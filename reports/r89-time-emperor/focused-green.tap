@@ -1,0 +1,32 @@
+✔ R89 Qianqing floor correction preserves every other frozen R88 field (10.703748ms)
+✔ separate numeric fields apply 21:00 once, only on Apply or Enter; drafts survive clock refresh (8.033412ms)
+✔ reject invalid clock :00 without changing simulation (2.368023ms)
+✔ reject invalid clock 24:00 without changing simulation (1.567582ms)
+✔ reject invalid clock -1:00 without changing simulation (2.024387ms)
+✔ reject invalid clock 21:60 without changing simulation (1.57342ms)
+✔ reject invalid clock 21:-1 without changing simulation (3.007162ms)
+✔ reject invalid clock 21.5:00 without changing simulation (1.404457ms)
+✔ reject invalid clock 21:0.5 without changing simulation (1.882634ms)
+✔ reject invalid clock NaN:00 without changing simulation (1.339339ms)
+✔ accept boundary 00:00 and preserve slider/live controls (1.501964ms)
+✔ accept boundary 23:59 and preserve slider/live controls (1.511367ms)
+✔ a fresh world click releases old range focus and real controller moves without map teleport (8.202196ms)
+✔ focusing a time control stops previously held input rather than drifting while editing (2.498859ms)
+✔ settings #settings-close-btn, map=false: former time-field focus cannot trap new movement (2.948133ms)
+✔ settings #resume-btn, map=false: former time-field focus cannot trap new movement (3.025529ms)
+✔ settings Escape, map=false: former time-field focus cannot trap new movement (2.326ms)
+✔ settings #settings-close-btn, map=true: former time-field focus cannot trap new movement (2.548414ms)
+✔ settings #resume-btn, map=true: former time-field focus cannot trap new movement (3.324908ms)
+✔ settings Escape, map=true: former time-field focus cannot trap new movement (2.141583ms)
+✔ time disclosure closes by Escape/button without global settings toggle or hidden input focus (1.23973ms)
+✔ editing time during map-open flight clears held flight keys without dismounting or locking (20.288378ms)
+✔ far northern movement reuses conservative bounds without rescanning polygon vertices (5.964559ms)
+✔ optimized water decisions equal the frozen R88 narrow phase at banks, AABB borders, bridge edges and random footprints (513.368965ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 675.763769
