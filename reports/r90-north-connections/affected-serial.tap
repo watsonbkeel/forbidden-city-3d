@@ -1,0 +1,160 @@
+✔ R77 all 886 crenels face outward and are supported within unchanged wall-top footprints (61.6823ms)
+✔ R77 exact delta omits only 22 Wumen ascent slots and shifts remaining 886 crenel centers (53.061329ms)
+✔ R77 supported south crenels do not intrude either retained Wumen folded ascent clearance (22.134826ms)
+✔ R84 east physical ascent and return 10Hz (332.025367ms)
+✔ R84 west physical ascent and return 10Hz (284.826105ms)
+✔ R84 east physical ascent and return 30Hz (267.510811ms)
+✔ R84 west physical ascent and return 30Hz (212.036542ms)
+✔ R84 east physical ascent and return 60Hz (265.632203ms)
+✔ R84 west physical ascent and return 60Hz (232.879937ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,202, 树木=34棵, 碰撞器=3033
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+✔ R84 actual complete world permits both fitted ascents and retreat at low and high frame rates (6550.421423ms)
+✔ emperor covers the actual player sprint distance across many small waypoints, independent of frame rate (4.256855ms)
+✔ low-FPS emperor sweep cannot cross a thin wall between clear frame endpoints (1.072361ms)
+✔ low-FPS running emperor pauses at player, never penetrates, then resumes at sprint speed (1.156367ms)
+✔ separate numeric fields apply 21:00 once, only on Apply or Enter; drafts survive clock refresh (8.405729ms)
+✔ reject invalid clock :00 without changing simulation (2.453396ms)
+✔ reject invalid clock 24:00 without changing simulation (1.832813ms)
+✔ reject invalid clock -1:00 without changing simulation (2.184101ms)
+✔ reject invalid clock 21:60 without changing simulation (1.800785ms)
+✔ reject invalid clock 21:-1 without changing simulation (2.025052ms)
+✔ reject invalid clock 21.5:00 without changing simulation (2.431172ms)
+✔ reject invalid clock 21:0.5 without changing simulation (1.349428ms)
+✔ reject invalid clock NaN:00 without changing simulation (1.468948ms)
+✔ accept boundary 00:00 and preserve slider/live controls (1.485713ms)
+✔ accept boundary 23:59 and preserve slider/live controls (1.574576ms)
+✔ a fresh world click releases old range focus and real controller moves without map teleport (8.352299ms)
+✔ focusing a time control stops previously held input rather than drifting while editing (2.400967ms)
+✔ settings #settings-close-btn, map=false: former time-field focus cannot trap new movement (3.407339ms)
+✔ settings #resume-btn, map=false: former time-field focus cannot trap new movement (3.321039ms)
+✔ settings Escape, map=false: former time-field focus cannot trap new movement (2.818875ms)
+✔ settings #settings-close-btn, map=true: former time-field focus cannot trap new movement (2.639405ms)
+✔ settings #resume-btn, map=true: former time-field focus cannot trap new movement (2.490111ms)
+✔ settings Escape, map=true: former time-field focus cannot trap new movement (1.837601ms)
+✔ time disclosure closes by Escape/button without global settings toggle or hidden input focus (0.994905ms)
+✔ editing time during map-open flight clears held flight keys without dismounting or locking (19.343472ms)
+✔ draft blur, Escape, close and reopen never apply a hidden or invalid clock (3.878842ms)
+✔ input-focus listener stops mobile joystick, release and resume require no pointer lock (8.282588ms)
+✔ real unlock and subsequent lock event release stale number focus without claiming lock early (1.05849ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,202, 树木=34棵, 碰撞器=3033
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+✔ independent actual B/S 60/10Hz round trips, precise movement budgets, rail rejection and seat/return occupancy (30537.648918ms)
+✔ R89 Qianqing floor correction preserves every other frozen R88 field (9.2826ms)
+✔ separate numeric fields apply 21:00 once, only on Apply or Enter; drafts survive clock refresh (8.466033ms)
+✔ reject invalid clock :00 without changing simulation (2.316689ms)
+✔ reject invalid clock 24:00 without changing simulation (1.634464ms)
+✔ reject invalid clock -1:00 without changing simulation (2.454926ms)
+✔ reject invalid clock 21:60 without changing simulation (1.516186ms)
+✔ reject invalid clock 21:-1 without changing simulation (2.247315ms)
+✔ reject invalid clock 21.5:00 without changing simulation (1.539021ms)
+✔ reject invalid clock 21:0.5 without changing simulation (1.711881ms)
+✔ reject invalid clock NaN:00 without changing simulation (1.503118ms)
+✔ accept boundary 00:00 and preserve slider/live controls (1.483378ms)
+✔ accept boundary 23:59 and preserve slider/live controls (1.806643ms)
+✔ a fresh world click releases old range focus and real controller moves without map teleport (8.371612ms)
+✔ focusing a time control stops previously held input rather than drifting while editing (2.406233ms)
+✔ settings #settings-close-btn, map=false: former time-field focus cannot trap new movement (3.042319ms)
+✔ settings #resume-btn, map=false: former time-field focus cannot trap new movement (2.814727ms)
+✔ settings Escape, map=false: former time-field focus cannot trap new movement (2.820626ms)
+✔ settings #settings-close-btn, map=true: former time-field focus cannot trap new movement (2.48378ms)
+✔ settings #resume-btn, map=true: former time-field focus cannot trap new movement (1.975046ms)
+✔ settings Escape, map=true: former time-field focus cannot trap new movement (1.941796ms)
+✔ time disclosure closes by Escape/button without global settings toggle or hidden input focus (1.049156ms)
+✔ editing time during map-open flight clears held flight keys without dismounting or locking (20.485554ms)
+✔ far northern movement reuses conservative bounds without rescanning polygon vertices (5.230845ms)
+✔ optimized water decisions equal the frozen R88 narrow phase at banks, AABB borders, bridge edges and random footprints (479.44303ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,202, 树木=34棵, 碰撞器=3033
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 garden
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 163.8ms
+[ZoneManager] 卸载区域 garden
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 124.2ms
+[ZoneManager] 卸载区域 garden
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 131.3ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+✔ R90 map geometry and real teleport approach remain safe through zone reloads (6113.315488ms)
+✔ R90 production map allows one unambiguous Shunzhen selection (20.476838ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,202, 树木=34棵, 碰撞器=3033
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+✔ R90 route enumerator consumes the real Shunzhen profile rather than guessing a generic side gate (1.364739ms)
+✔ R90 actual world preserves north passage and all three portal round trips at 10/30/60Hz (6694.85108ms)
+✔ R90 Shunzhen has three explicitly fitted portals and one map identity (206.336278ms)
+✔ R90 profile does not reinterpret an unrelated legacy gate (0.221683ms)
+✔ R90 all three clear apertures traverse the real north wall while masonry remains solid (132.518814ms)
+✔ R90 named fit rejects geometry-changing or closed-state misuse (0.400541ms)
+✔ R90 visible door leaves carry matching physical body proxies and finite geometry (103.970244ms)
+✔ R90 retains one central plaque facing north toward Shenwu without invented side plaques (130.571611ms)
+✔ R90 garden delta changes only the one Shunzhen gate record and no wall coordinate (2.292021ms)
+✔ R90 generic CourtKit source is byte-identical after removing only dedicated dispatch (0.424538ms)
+ℹ tests 74
+ℹ suites 0
+ℹ pass 74
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 55603.276222

@@ -1,3 +1,4 @@
+import {buildShunzhenGate} from './special/ShunzhenGate.js';
 import {southCourtGeometry} from './special/SouthCourtProfiles.js';
 import { buildYinghuaGate } from './special/YinghuaGate.js';
 import {validateNansansuoInventoryPolicy} from './NansansuoInventoryPolicy.js';
@@ -271,6 +272,7 @@ export class CourtKit {
    * - style 'hall'：门殿（三间，明间为门道，门扇在中柱一线、打开后贴两侧隔墙），开口宽 = 门殿面阔
    */
   gate({ x, z, rot, w = 3.6, h = 4.4, t = 1, style = 'wall', gateKind, gateProfile, open, plaque, name, roof = 'xieshan', brackets = true, layers = 1, eaveCount }) {
+    if (gateProfile === 'shunzhen') return buildShunzhenGate(this, {x,z,rot,w,h,gateKind,gateProfile,open,name});
     if (gateProfile === 'yinghua') return buildYinghuaGate(this, {x,z,rot,w,h,t,gateKind,gateProfile,open,name});
     if (gateProfile === 'tianyi') return buildTianyiGate(this, {x,z,rot,w,gateKind,gateProfile,open,name});
     if (gateProfile === 'kunning') return buildKunningGate(this, {x,z,rot,w,style,gateKind,gateProfile,open,name});
