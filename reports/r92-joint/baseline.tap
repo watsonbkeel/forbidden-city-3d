@@ -1,0 +1,151 @@
+✔ published exposed bottom stone and three grouped approaches remain distinct from ordinary stairs (4.65209ms)
+✔ real controller round trip inner/-1/60/false/false (107.56969ms)
+✔ real controller round trip inner/-1/60/false/true (83.829626ms)
+✔ real controller round trip inner/-1/60/true/false (28.835882ms)
+✔ real controller round trip inner/-1/60/true/true (32.738599ms)
+✔ real controller round trip inner/-1/10/false/false (18.897412ms)
+✔ real controller round trip inner/-1/10/false/true (20.432155ms)
+✔ real controller round trip inner/-1/10/true/false (23.432336ms)
+✔ real controller round trip inner/-1/10/true/true (25.153428ms)
+✔ real controller round trip inner/1/60/false/false (78.593236ms)
+✔ real controller round trip inner/1/60/false/true (64.928603ms)
+✔ real controller round trip inner/1/60/true/false (34.308624ms)
+✔ real controller round trip inner/1/60/true/true (38.174735ms)
+✔ real controller round trip inner/1/10/false/false (23.184815ms)
+✔ real controller round trip inner/1/10/false/true (19.512495ms)
+✔ real controller round trip inner/1/10/true/false (18.432515ms)
+✔ real controller round trip inner/1/10/true/true (18.997312ms)
+✔ real controller round trip outer/-1/60/false/false (88.609814ms)
+✔ real controller round trip outer/-1/60/false/true (63.887693ms)
+✔ real controller round trip outer/-1/60/true/false (31.261222ms)
+✔ real controller round trip outer/-1/60/true/true (31.566049ms)
+✔ real controller round trip outer/-1/10/false/false (17.285453ms)
+✔ real controller round trip outer/-1/10/false/true (17.34308ms)
+✔ real controller round trip outer/-1/10/true/false (27.414416ms)
+✔ real controller round trip outer/-1/10/true/true (23.10506ms)
+✔ real controller round trip outer/1/60/false/false (76.607496ms)
+✔ real controller round trip outer/1/60/false/true (68.046442ms)
+✔ real controller round trip outer/1/60/true/false (35.975955ms)
+✔ real controller round trip outer/1/60/true/true (46.807387ms)
+✔ real controller round trip outer/1/10/false/false (19.708259ms)
+✔ real controller round trip outer/1/10/false/true (21.104994ms)
+✔ real controller round trip outer/1/10/true/false (20.499987ms)
+✔ real controller round trip outer/1/10/true/true (21.151655ms)
+✔ missing registered ramp fails rather than platform rescue: baohe-north-separated-approaches:1:inner:-1 (12.104931ms)
+✔ missing registered ramp fails rather than platform rescue: baohe-north-separated-approaches:1:outer:-1 (10.124841ms)
+✔ missing registered ramp fails rather than platform rescue: baohe-north-separated-approaches:1:inner:1 (8.746362ms)
+✔ missing registered ramp fails rather than platform rescue: baohe-north-separated-approaches:1:outer:1 (6.469466ms)
+✔ missing registered ramp fails rather than platform rescue: baohe-north-separated-approaches:2:inner:-1 (7.61872ms)
+✔ missing registered ramp fails rather than platform rescue: baohe-north-separated-approaches:2:outer:-1 (7.079642ms)
+✔ missing registered ramp fails rather than platform rescue: baohe-north-separated-approaches:2:inner:1 (8.00435ms)
+✔ missing registered ramp fails rather than platform rescue: baohe-north-separated-approaches:2:outer:1 (7.379882ms)
+✔ missing registered ramp fails rather than platform rescue: baohe-north-separated-approaches:3:inner:-1 (8.440273ms)
+✔ missing registered ramp fails rather than platform rescue: baohe-north-separated-approaches:3:outer:-1 (7.608365ms)
+✔ missing registered ramp fails rather than platform rescue: baohe-north-separated-approaches:3:inner:1 (7.371119ms)
+✔ missing registered ramp fails rather than platform rescue: baohe-north-separated-approaches:3:outer:1 (8.189487ms)
+✔ stone or retaining front is not an ordinary stair at x=0 (4.240843ms)
+✔ stone or retaining front is not an ordinary stair at x=-6 (24.41503ms)
+✔ stone or retaining front is not an ordinary stair at x=6 (21.772886ms)
+✔ stone or retaining front is not an ordinary stair at x=-17 (22.413978ms)
+✔ stone or retaining front is not an ordinary stair at x=17 (12.606474ms)
+✔ near/far stairs are closed, slope toward north, and LOD never changes colliders or walks (22.514399ms)
+file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/src/scene/RoofBuilder.js:51
+    aspect: { dougong: lib.aspect('dougong_band'), caihua: lib.aspect('caihua_beam') },
+                           ^
+
+TypeError: lib.aspect is not a function
+    at makeCtx (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/src/scene/RoofBuilder.js:51:28)
+    at buildWallCap (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/src/scene/RoofBuilder.js:743:15)
+    at buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/src/scene/palace/special/AxisFirewalls.js:34:15)
+    at PalaceBuilder.buildComplex (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/src/scene/PalaceBuilder.js:523:7)
+    at captureTaiheFrontTiers (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/lib/taihe-front-route.mjs:10:5)
+    at buildRoutes (/workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/stepwalk.cjs:77:37)
+    at async /workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/stepwalk.cjs:187:40
+
+Node.js v24.19.0
+node:internal/errors:985
+  const err = new Error(message);
+              ^
+
+Error: Command failed: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node tests/stepwalk.cjs 60 0 all
+file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/src/scene/RoofBuilder.js:51
+    aspect: { dougong: lib.aspect('dougong_band'), caihua: lib.aspect('caihua_beam') },
+                           ^
+
+TypeError: lib.aspect is not a function
+    at makeCtx (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/src/scene/RoofBuilder.js:51:28)
+    at buildWallCap (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/src/scene/RoofBuilder.js:743:15)
+    at buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/src/scene/palace/special/AxisFirewalls.js:34:15)
+    at PalaceBuilder.buildComplex (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/src/scene/PalaceBuilder.js:523:7)
+    at captureTaiheFrontTiers (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/lib/taihe-front-route.mjs:10:5)
+    at buildRoutes (/workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/stepwalk.cjs:77:37)
+    at async /workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/stepwalk.cjs:187:40
+
+Node.js v24.19.0
+
+    at genericNodeError (node:internal/errors:985:15)
+    at wrappedFn (node:internal/errors:539:14)
+    at checkExecSyncError (node:child_process:942:11)
+    at execFileSync (node:child_process:978:15)
+    at file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r19-baohe-north-cross-route.test.mjs:16:14
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  status: 1,
+  signal: null,
+  output: [
+    null,
+    '',
+    'file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/src/scene/RoofBuilder.js:51\n' +
+      "    aspect: { dougong: lib.aspect('dougong_band'), caihua: lib.aspect('caihua_beam') },\n" +
+      '                           ^\n' +
+      '\n' +
+      'TypeError: lib.aspect is not a function\n' +
+      '    at makeCtx (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/src/scene/RoofBuilder.js:51:28)\n' +
+      '    at buildWallCap (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/src/scene/RoofBuilder.js:743:15)\n' +
+      '    at buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/src/scene/palace/special/AxisFirewalls.js:34:15)\n' +
+      '    at PalaceBuilder.buildComplex (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/src/scene/PalaceBuilder.js:523:7)\n' +
+      '    at captureTaiheFrontTiers (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/lib/taihe-front-route.mjs:10:5)\n' +
+      '    at buildRoutes (/workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/stepwalk.cjs:77:37)\n' +
+      '    at async /workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/stepwalk.cjs:187:40\n' +
+      '\n' +
+      'Node.js v24.19.0\n'
+  ],
+  pid: 37,
+  stdout: '',
+  stderr: 'file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/src/scene/RoofBuilder.js:51\n' +
+    "    aspect: { dougong: lib.aspect('dougong_band'), caihua: lib.aspect('caihua_beam') },\n" +
+    '                           ^\n' +
+    '\n' +
+    'TypeError: lib.aspect is not a function\n' +
+    '    at makeCtx (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/src/scene/RoofBuilder.js:51:28)\n' +
+    '    at buildWallCap (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/src/scene/RoofBuilder.js:743:15)\n' +
+    '    at buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/src/scene/palace/special/AxisFirewalls.js:34:15)\n' +
+    '    at PalaceBuilder.buildComplex (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/src/scene/PalaceBuilder.js:523:7)\n' +
+    '    at captureTaiheFrontTiers (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/lib/taihe-front-route.mjs:10:5)\n' +
+    '    at buildRoutes (/workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/stepwalk.cjs:77:37)\n' +
+    '    at async /workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/stepwalk.cjs:187:40\n' +
+    '\n' +
+    'Node.js v24.19.0\n'
+}
+
+Node.js v24.19.0
+✖ tests/r19-baohe-north-cross-route.test.mjs (970.291898ms)
+✔ R93 adds exactly two photo-supported floor-standing tables, not taller replacements of existing low tables (113.130144ms)
+✔ R93 preserves every pre-existing mesh/material/collider/support and protected bytes (98.679733ms)
+✔ R93 all visible solid boxes and supports match physical bounds, feet touch retained floor and empty under-table volume remains open (68.725647ms)
+✔ R93 wrong identity and duplicate reject without appending; resources dispose once (86.139329ms)
+ℹ tests 56
+ℹ suites 0
+ℹ pass 55
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6400.078302
+
+✖ failing tests:
+
+test at tests/r19-baohe-north-cross-route.test.mjs:1:1
+✖ tests/r19-baohe-north-cross-route.test.mjs (970.291898ms)
+  'test failed'

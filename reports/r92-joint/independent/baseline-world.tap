@@ -1,0 +1,59 @@
+✖ northStairs 10Hz sprint=false reverse=false (30.389475ms)
+✖ northStairs 10Hz sprint=false reverse=true (6.850219ms)
+✔ northStairs 10Hz sprint=true reverse=false (18.523551ms)
+✔ northStairs 10Hz sprint=true reverse=true (11.866164ms)
+✔ northStairs 30Hz sprint=false reverse=false (28.399049ms)
+✔ northStairs 30Hz sprint=false reverse=true (19.359366ms)
+✔ northStairs 30Hz sprint=true reverse=false (13.604131ms)
+✔ northStairs 30Hz sprint=true reverse=true (13.353726ms)
+✔ northStairs 60Hz sprint=false reverse=false (36.84422ms)
+✔ northStairs 60Hz sprint=false reverse=true (33.700683ms)
+✔ northStairs 60Hz sprint=true reverse=false (19.193768ms)
+✔ northStairs 60Hz sprint=true reverse=true (19.069151ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 10
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5800.873449
+
+✖ failing tests:
+
+test at r92-joint-independent-review/runtime/baseline-world.test.mjs:10:147
+✖ northStairs 10Hz sprint=false reverse=false (30.389475ms)
+  AssertionError [ERR_ASSERTION]: {"name":"northStairs","fps":10,"sprint":false,"backward":false,"arrived":false,"stuckAt":[-2.285,194.35401445789043],"startFeet":0,"maxFeet":0,"maxSpeed":4.9954405901724614,"driver":{"crossings":[{"index":1,"point":[-2.285,195.75401445789043],"hit":[-2.285,195.75401445789043],"lateralDistance":0}],"brakingFrames":0,"endpointSettleSeconds":2},"end":[-2.545663932279348,195.00462158081746,0],"minFeet":0}
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r92-joint-independent-review/runtime/baseline-world.test.mjs:10:423)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at r92-joint-independent-review/runtime/baseline-world.test.mjs:10:147
+✖ northStairs 10Hz sprint=false reverse=true (6.850219ms)
+  AssertionError [ERR_ASSERTION]: {"name":"northStairs","fps":10,"sprint":false,"backward":true,"arrived":false,"stuckAt":[-2.285,194.35401445789043],"startFeet":0,"maxFeet":0,"maxSpeed":4.9954405901724614,"driver":{"crossings":[{"index":1,"point":[-2.285,195.75401445789043],"hit":[-2.285,195.75401445789043],"lateralDistance":0}],"brakingFrames":0,"endpointSettleSeconds":2},"end":[-2.545663932279348,195.00462158081746,0],"minFeet":0}
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r92-joint-independent-review/runtime/baseline-world.test.mjs:10:423)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

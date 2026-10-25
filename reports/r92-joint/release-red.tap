@@ -1,0 +1,30 @@
+✖ R93a identity advances R93 cumulatively and closes only approved R92, not unfinished R91 (1.775584ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 105.26519
+
+✖ failing tests:
+
+test at tests/r93a-release-source.test.mjs:2:1
+✖ R93a identity advances R93 cumulatively and closes only approved R92, not unfinished R91 (1.775584ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'R93' !== 'R93a'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r93a-release-source.test.mjs:2:109)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'R93',
+    expected: 'R93a',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

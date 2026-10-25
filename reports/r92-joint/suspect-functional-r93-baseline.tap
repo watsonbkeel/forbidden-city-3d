@@ -1,0 +1,159 @@
+file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/src/scene/RoofBuilder.js:51
+    aspect: { dougong: lib.aspect('dougong_band'), caihua: lib.aspect('caihua_beam') },
+                           ^
+
+TypeError: lib.aspect is not a function
+    at makeCtx (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/src/scene/RoofBuilder.js:51:28)
+    at buildWallCap (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/src/scene/RoofBuilder.js:743:15)
+    at buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/src/scene/palace/special/AxisFirewalls.js:34:15)
+    at PalaceBuilder.buildComplex (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/src/scene/PalaceBuilder.js:523:7)
+    at captureTaiheFrontTiers (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/lib/taihe-front-route.mjs:10:5)
+    at buildRoutes (/workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/stepwalk.cjs:77:37)
+    at async /workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/stepwalk.cjs:187:40
+
+Node.js v24.19.0
+✖ missing actual Kunning shared terrace rejects teleport; box rescue cannot bless the landing (1.792465ms)
+ℹ Error: A resource generated asynchronous activity after the test ended. This activity created the error "Error: Command failed: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node tests/stepwalk.cjs 60,10 0,1 all
+file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/src/scene/RoofBuilder.js:51
+    aspect: { dougong: lib.aspect('dougong_band'), caihua: lib.aspect('caihua_beam') },
+                           ^
+
+TypeError: lib.aspect is not a function
+    at makeCtx (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/src/scene/RoofBuilder.js:51:28)
+    at buildWallCap (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/src/scene/RoofBuilder.js:743:15)
+    at buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/src/scene/palace/special/AxisFirewalls.js:34:15)
+    at PalaceBuilder.buildComplex (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/src/scene/PalaceBuilder.js:523:7)
+    at captureTaiheFrontTiers (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/lib/taihe-front-route.mjs:10:5)
+    at buildRoutes (/workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/stepwalk.cjs:77:37)
+    at async /workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/stepwalk.cjs:187:40
+
+Node.js v24.19.0
+" which triggered an uncaughtException event, caught by the test runner.
+✖ full world connects8m shared terrace to9m hall through every registered north strip (5896.961955ms)
+✖ Taihe binds only the source-visible east wall and derives all levels from retained terrace controls (1469.46846ms)
+✖ same-world firewall QA survives the real production material merge and architecture metadata retention (1306.406598ms)
+✖ Baohe candidate 31 retains its 12 actual solid partitions and is not silently converted to a source-unlocated arch (1272.827684ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 0
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6582.750952
+
+✖ failing tests:
+
+test at tests/kunning-navigation.test.mjs:48:1
+✖ missing actual Kunning shared terrace rejects teleport; box rescue cannot bless the landing (1.792465ms)
+  AssertionError [ERR_ASSERTION]: identify actual shared Kunning deck
+  
+  19 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/kunning-navigation.test.mjs:51:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+      at run (node:internal/test_runner/harness:398:12)
+      at test (node:internal/test_runner/harness:407:12)
+      at file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/kunning-navigation.test.mjs:48:1 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 19,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r17-baohe-plinth.test.mjs:17:1
+✖ full world connects8m shared terrace to9m hall through every registered north strip (5896.961955ms)
+  AssertionError [ERR_ASSERTION]: 9.416666666666666 != 9
+      at near (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r17-baohe-plinth.test.mjs:9:33)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r17-baohe-plinth.test.mjs:17:190)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r58-axis-firewalls.test.mjs:20:1
+✖ Taihe binds only the source-visible east wall and derives all levels from retained terrace controls (1469.46846ms)
+  AssertionError [ERR_ASSERTION]: Frozen axis firewall baseline mismatch: fullGeometryHash
+  + actual - expected
+  
+  + '87170c5bdc22317f32f5d034c5ca179a139b00b2663e6e6a73f4221d47beecbf'
+  - '50fce1db91b0443e82a3fa775fc64c1b97507858ea55aa6d276fb185251d06fc'
+  
+      at verifyFrozen (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r58-axis-firewalls/baseline-inverse.mjs:32:135)
+      at restoreFrozenAxisFirewallBaseline (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r58-axis-firewalls/baseline-inverse.mjs:56:76)
+      at axisFirewallBaseline (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r58-axis-firewalls/baseline.mjs:25:22)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r58-axis-firewalls.test.mjs:13:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r58-axis-firewalls.test.mjs:21:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '87170c5bdc22317f32f5d034c5ca179a139b00b2663e6e6a73f4221d47beecbf',
+    expected: '50fce1db91b0443e82a3fa775fc64c1b97507858ea55aa6d276fb185251d06fc',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r58-axis-firewalls.test.mjs:118:1
+✖ same-world firewall QA survives the real production material merge and architecture metadata retention (1306.406598ms)
+  AssertionError [ERR_ASSERTION]: Frozen axis firewall baseline mismatch: fullGeometryHash
+  + actual - expected
+  
+  + '87170c5bdc22317f32f5d034c5ca179a139b00b2663e6e6a73f4221d47beecbf'
+  - '50fce1db91b0443e82a3fa775fc64c1b97507858ea55aa6d276fb185251d06fc'
+  
+      at verifyFrozen (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r58-axis-firewalls/baseline-inverse.mjs:32:135)
+      at restoreFrozenAxisFirewallBaseline (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r58-axis-firewalls/baseline-inverse.mjs:56:76)
+      at axisFirewallBaseline (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r58-axis-firewalls/baseline.mjs:25:22)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r58-axis-firewalls.test.mjs:13:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r58-axis-firewalls.test.mjs:119:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+      at run (node:internal/test_runner/harness:398:12) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '87170c5bdc22317f32f5d034c5ca179a139b00b2663e6e6a73f4221d47beecbf',
+    expected: '50fce1db91b0443e82a3fa775fc64c1b97507858ea55aa6d276fb185251d06fc',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r58-axis-firewalls.test.mjs:136:1
+✖ Baohe candidate 31 retains its 12 actual solid partitions and is not silently converted to a source-unlocated arch (1272.827684ms)
+  AssertionError [ERR_ASSERTION]: Frozen axis firewall baseline mismatch: fullGeometryHash
+  + actual - expected
+  
+  + '87170c5bdc22317f32f5d034c5ca179a139b00b2663e6e6a73f4221d47beecbf'
+  - '50fce1db91b0443e82a3fa775fc64c1b97507858ea55aa6d276fb185251d06fc'
+  
+      at verifyFrozen (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r58-axis-firewalls/baseline-inverse.mjs:32:135)
+      at restoreFrozenAxisFirewallBaseline (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r58-axis-firewalls/baseline-inverse.mjs:56:76)
+      at axisFirewallBaseline (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r58-axis-firewalls/baseline.mjs:25:22)
+      at fixture (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r58-axis-firewalls.test.mjs:13:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r58-axis-firewalls.test.mjs:137:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at node:internal/test_runner/test:1285:31 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '87170c5bdc22317f32f5d034c5ca179a139b00b2663e6e6a73f4221d47beecbf',
+    expected: '50fce1db91b0443e82a3fa775fc64c1b97507858ea55aa6d276fb185251d06fc',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
