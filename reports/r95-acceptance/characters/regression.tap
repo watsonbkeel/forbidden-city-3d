@@ -1,0 +1,101 @@
+✔ candidate characters default on without approval or developer mode (8.634099ms)
+✔ ordinary candidate toggle remains reversible and emits only requested state (4.725813ms)
+✔ availability is independent of approval and approval cannot claim full acceptance (2.719832ms)
+✔ an initially disabled feature is not advertised as preparing (3.134063ms)
+✔ before the first snapshot the UI reports preparation rather than completion (2.309175ms)
+✔ read-only readiness synchronization distinguishes registered, loaded, visible and pending (1.976677ms)
+✔ failures remain explicit even while other characters are still preparing (1.955815ms)
+✔ a system failure remains visible when the system disables characters for safety (1.857808ms)
+✔ all loaded is data readiness only and does not remove the acceptance caveat (2.59859ms)
+✔ a zero or incomplete registration never masquerades as ready (2.141143ms)
+✖ night explains scheduled rest without changing daylight or character counts (10.383043ms)
+✔ snapshot off and unavailable are separate and invoke no command callback (2.006331ms)
+✔ same-value snapshots and unrelated metrics do not write the DOM each frame (2.23908ms)
+✔ reinitialization resets readiness and disposed synchronization is harmless (2.007243ms)
+node:fs:484
+    return binding.readFileUtf8(path, stringToFlags(options.flag));
+                   ^
+
+Error: ENOENT: no such file or directory, open '/workspace/scratch/02a8023d1a85/r95-acceptance-ledger/reports/r50-followup/female-reference/candidate06-07/CharacterKit-source.js'
+    at Object.readFileSync (node:fs:484:20)
+    at file:///workspace/scratch/02a8023d1a85/r95-acceptance-ledger/tests/helpers/r51-frozen-character-kit.mjs:12:33
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/workspace/scratch/02a8023d1a85/r95-acceptance-ledger/reports/r50-followup/female-reference/candidate06-07/CharacterKit-source.js'
+}
+
+Node.js v24.19.0
+✖ tests/r51-lod2-foot-contact.test.mjs (116.870156ms)
+✔ pending jobs progress and all seven roles reach submissions under persistent 1.25ms cost (101.208922ms)
+✔ pending jobs progress and all seven roles reach submissions under persistent 2ms cost (47.259095ms)
+✔ disabled and hidden states run no pending work; cleared queue receives no reserve (45.803691ms)
+✔ repeated generation changes discard old jobs and submit only current bindings (35.437784ms)
+✔ explicit zero preparation budget remains zero rather than silently enabling work (1.334583ms)
+✔ authored standing, seated and kneeling bodies have distinct height/footprint and finite rotated parts (3.284609ms)
+✔ owner-scoped dynamic bodies do not become architectural colliders, supports or broadphase entries (6.70373ms)
+✔ player swept walking/sprinting cannot tunnel through a standing person but can leave an initial overlap (140.142543ms)
+✔ NPC swept proposals detect a player even when both endpoint bodies are clear (1.809185ms)
+✔ short grazing player chord cannot cut a capsule between clear endpoints; overlap escape cannot cross through the centre (1.545559ms)
+✔ dynamic vertical sweep blocks upward and downward penetration without making an architectural ground (0.614893ms)
+✔ invalid or duplicate dynamic records fail atomically, owners clear independently and static clear removes all bodies (1.104698ms)
+✔ bounded dynamic channel accepts128 synthetic bodies and rejects129 without discarding the prior valid set (1.443056ms)
+✔ a stationary player blocks the actual patrol, bounded retreat stays on route, then resume has no catch-up (19.479956ms)
+✔ mutual player/NPC sweep, formation=1, dt=0.016666666666666666 (86.868304ms)
+✔ mutual player/NPC sweep, formation=1, dt=0.1 (30.886153ms)
+✔ mutual player/NPC sweep, formation=3, dt=0.016666666666666666 (54.927895ms)
+✔ mutual player/NPC sweep, formation=3, dt=0.1 (14.471078ms)
+✔ turning away never removes a near body; toggles, background, revisions and missing support clear ownership (1.783727ms)
+✔ late support activation overlapping a teleported player waits rather than materializing around them (0.551919ms)
+✔ flight callback null is not replaced by follow-camera position (1.077708ms)
+✔ a patrol at route-clock zero resumes after a near-start pedestrian leaves (3.340773ms)
+✔ elevated retreat sweeps the same facing that it commits, including legs (0.404227ms)
+✔ low-tier suppression then high restoration waits when the player occupies an omitted role (6.501127ms)
+✔ near render-budget suppression is a fresh physical activation on restoration (0.381442ms)
+✔ background-cleared bodies recheck an occupied spawn on resume without refading clear actors (0.362154ms)
+✔ demand renderer never synchronously authors a missing resource, then submits prepared actual instances (20.681779ms)
+✔ a prepared coarse same-pose resource stays visible while requested detailed LOD prepares (6.709229ms)
+✔ first binding preparation does not build sleeping/walking/high-detail variants for standing maid (7.02271ms)
+✔ status counts actual renderer submissions rather than selected but preparing actors (1.715965ms)
+✔ nearby cold character preparation starts before earlier distant roles, without extra budget (2.026732ms)
+✔ preparation fairness gives oldest distant job a turn amid newly requested near roles (0.474942ms)
+✔ an in-flight generator completes without interleaving duplicate template construction (0.454061ms)
+✔ priority uses real rotated placement metadata only and follows the current camera (1.214422ms)
+ℹ tests 49
+ℹ suites 0
+ℹ pass 47
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 427.139656
+
+✖ failing tests:
+
+test at tests/r51-character-ui.test.mjs:114:1
+✖ night explains scheduled rest without changing daylight or character counts (10.383043ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /朝会.*生活.*按计划休息.*守卫保留/. Input:
+  
+  '人物数据就绪（候选）：已注册 38 · 已加载 38 · 当前可见 2 · 准备中 0 · 失败 0。 夜间仍展示人物；全天游览演绎，不代表历史作息。'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r95-acceptance-ledger/tests/r51-character-ui.test.mjs:119:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '人物数据就绪（候选）：已注册 38 · 已加载 38 · 当前可见 2 · 准备中 0 · 失败 0。 夜间仍展示人物；全天游览演绎，不代表历史作息。',
+    expected: /朝会.*生活.*按计划休息.*守卫保留/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/r51-lod2-foot-contact.test.mjs:1:1
+✖ tests/r51-lod2-foot-contact.test.mjs (116.870156ms)
+  'test failed'

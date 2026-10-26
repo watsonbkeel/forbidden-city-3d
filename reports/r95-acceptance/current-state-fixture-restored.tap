@@ -1,0 +1,64 @@
+✔ legacy no-profile roof is byte-exact: baohe-high (53.789024ms)
+✔ legacy no-profile roof is byte-exact: baohe-low (74.691623ms)
+✔ legacy no-profile roof is byte-exact: zhonghe-high (9.998075ms)
+✔ legacy no-profile roof is byte-exact: zhonghe-low (4.84482ms)
+✔ legacy no-profile roof is byte-exact: taihe-high (33.671082ms)
+✔ legacy no-profile roof is byte-exact: taihe-low (4.479142ms)
+✔ legacy no-profile roof is byte-exact: wudian-1-high (8.860767ms)
+✔ legacy no-profile roof is byte-exact: wudian-1-low (2.602736ms)
+✔ legacy no-profile roof is byte-exact: wudian-2-high (13.39976ms)
+✔ legacy no-profile roof is byte-exact: wudian-2-low (3.233453ms)
+✔ legacy no-profile roof is byte-exact: xieshan-1-high (11.051416ms)
+✔ legacy no-profile roof is byte-exact: xieshan-1-low (1.968554ms)
+✔ legacy no-profile roof is byte-exact: xieshan-2-high (16.071319ms)
+✔ legacy no-profile roof is byte-exact: xieshan-2-low (5.109107ms)
+✔ legacy no-profile roof is byte-exact: pavilion-1-high (7.295007ms)
+✔ legacy no-profile roof is byte-exact: pavilion-1-low (1.651669ms)
+✔ legacy no-profile roof is byte-exact: pavilion-2-high (11.039207ms)
+✔ legacy no-profile roof is byte-exact: pavilion-2-low (2.859401ms)
+✔ legacy no-profile roof is byte-exact: gable-1-high (5.869278ms)
+✔ legacy no-profile roof is byte-exact: gable-1-low (1.367041ms)
+✔ legacy no-profile roof is byte-exact: gable-2-high (4.738171ms)
+✔ legacy no-profile roof is byte-exact: gable-2-low (1.375344ms)
+✔ legacy no-profile roof is byte-exact: octagonal (25.637466ms)
+✔ legacy no-profile roof is byte-exact: hard-gable (5.882708ms)
+✔ explicit Baohe and Zhonghe profiles emit separate walking animal / rider counts (63.269742ms)
+✔ baohe: every non-walking mesh, rider, ridge, tile and material stays byte-exact (43.13218ms)
+✔ baohe: actual submitted triangle budget counts every corner on every level (31.680534ms)
+✔ baohe: low-detail omission policy does not pretend to generate rows (7.033225ms)
+✔ zhonghe: every non-walking mesh, rider, ridge, tile and material stays byte-exact (15.253452ms)
+✔ zhonghe: actual submitted triangle budget counts every corner on every level (12.425898ms)
+✔ zhonghe: low-detail omission policy does not pretend to generate rows (3.641485ms)
+✔ baohe: all animal base vertices contact actual ridge triangles and all stations follow the actual curved hip (54.346801ms)
+✔ zhonghe: all animal base vertices contact actual ridge triangles and all stations follow the actual curved hip (27.233776ms)
+✔ profiles fail closed on changed hall dimensions or ambiguous level overrides before creating materials (1.065128ms)
+✔ temporary and submitted geometry resources and owned materials have one clear disposal owner (145.424991ms)
+✔ pure W consumer verifies existing roof fragments before and after final hall-material merge without adding a world (106.146139ms)
+✔ actual walking body/head bounds clear adjacent animals and the retained rider, not just station metadata (51.768411ms)
+✔ reviewed widths accept actual production arithmetic without rounding or changing the roof input (41.268363ms)
+✖ exact owner HOOKUP.patch rehearsal uses actual production inputs and retains all hall physics and all other hall meshes (315.836061ms)
+✔ unconfigured legacy calls still ignore the newly reserved walking-layer field (18.803059ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 39
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1410.18546
+
+✖ failing tests:
+
+test at tests/current-state/r58-hall-beasts.test.mjs:130:1
+✖ exact owner HOOKUP.patch rehearsal uses actual production inputs and retains all hall physics and all other hall meshes (315.836061ms)
+  TypeError: m.material.toJSON is not a function
+      at file:///workspace/scratch/02a8023d1a85/r95-acceptance-ledger/tests/lib/r58-hall-beast-fixture.mjs:8:380
+      at Mesh.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7600:3)
+      at Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)
+      at signature (file:///workspace/scratch/02a8023d1a85/r95-acceptance-ledger/tests/lib/r58-hall-beast-fixture.mjs:8:107)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r95-acceptance-ledger/tests/current-state/r58-hall-beasts.test.mjs:137:29)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)

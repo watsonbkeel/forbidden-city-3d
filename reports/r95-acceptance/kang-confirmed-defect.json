@@ -1,0 +1,12 @@
+{
+  "sourceCommit": "c6a2a28736b4faa3d7a1826840deb4b0954f9bce",
+  "status": "CONFIRMED_DEFECT_NOT_FIXED_IN_R95",
+  "reproduction": "Real B/S ground approach -> jump onto old low-table/kang edge -> normal south retreat, 10/30/60Hz; downward update creates body overlap. Jump retreat remains possible.",
+  "cause": "ordinary support footprint .3 vs actual body .5, plus absent ordinary-solid vertical sweep. radius-only diagnostic is insufficient.",
+  "next": "R96 scoped Yangxin/furniture support and full-body vertical collision consistency; no global shrink or foot exemption",
+  "independentEvidence": [
+    "r96-movement-independent/REVIEW.md",
+    "r96-movement-independent/regression-red.tap",
+    "r96-movement-independent/hypothesis-radius-only.json"
+  ]
+}

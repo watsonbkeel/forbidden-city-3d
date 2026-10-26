@@ -1,0 +1,131 @@
+{
+  "sourceCommit": "c6a2a28736b4faa3d7a1826840deb4b0954f9bce",
+  "scope": "R95只读草稿，原需求为既有会话和release归纳，不伪装逐字用户原话。仅writer采纳，不构成新实施授权或全园重做。",
+  "rows": [
+    {
+      "id": "R95-REQ-001",
+      "originalRequirement": "时分设置、移动输入与皇帝往返正常",
+      "currentImplementation": "R89时分整数校验/焦点、12m/s、乾清真实B/S；R94保留",
+      "status": "已实现_CPU验收",
+      "evidence": "r94-integration-audit/CHECKPOINT-25e93ee-REVIEW.md; R89 RELEASE",
+      "nextStep": "R95补真实浏览器时间→地图→飞行→回步行组合；无证据不重写"
+    },
+    {
+      "id": "R95-REQ-002",
+      "originalRequirement": "顺贞门门墙与北端通行协调",
+      "currentImplementation": "三座随墙门、中央北牌匾、真实门扇碰撞/统一地图身份",
+      "status": "已实现_CPU验收",
+      "evidence": "docs/current-state/r90-north-connections/RELEASE.md;累计11/11",
+      "nextStep": "保留R90；不扩为三小院重建"
+    },
+    {
+      "id": "R95-REQ-003",
+      "originalRequirement": "堆秀山石面、实体与通路一致",
+      "currentImplementation": "正面/前肩/非路侧坡/外脚已改；洞/两路/平台保留",
+      "status": "限定范围完成_剩余边界保留",
+      "evidence": "docs/current-state/r94-duixiu/VALIDATION.md;src/scene/GardenBuilder.js:410-415",
+      "nextStep": "后侧/部分承托墙不冒称完成；按用户后续明确范围再做，不挤入R95"
+    },
+    {
+      "id": "R95-REQ-004",
+      "originalRequirement": "保和东露台与横墙小门联合校正",
+      "currentImplementation": "非等退距东三级、灰框净空/接头/实际路线通过",
+      "status": "已实现_CPU验收_测绘未知",
+      "evidence": "docs/current-state/r93a-baohe-east/VALIDATION.md;累计116/116",
+      "nextStep": "保留旧西/北控制；未知长廊拱门不重建"
+    },
+    {
+      "id": "R95-REQ-005",
+      "originalRequirement": "勤政亲贤炕外两高几并保留旧室内",
+      "currentImplementation": "两高几已入生产；地面B/S通路、生命周期通过",
+      "status": "已实现_CPU验收",
+      "evidence": "src/scene/palace/special/RemainingResidentialHalls.js:227;累计10/10",
+      "nextStep": "R95只真实体验核对，R96单独处理旧落脚限制"
+    },
+    {
+      "id": "R95-REQ-006",
+      "originalRequirement": "登炕后能合理退回，不发生无效落脚",
+      "currentImplementation": "旧低几区域可达身体重叠；普通退出受限，跳+后退可回地面",
+      "status": "确证既有体验限制_非硬困死",
+      "evidence": "r94-integration-audit/kang-obstructions.json;kang-exits.json;FINAL-CANDIDATE-REVIEW.md",
+      "nextStep": "R96局部合法支撑/姿态与退出修复；禁止为了抹红全局放松碰撞"
+    },
+    {
+      "id": "R95-REQ-007",
+      "originalRequirement": "实际设备启动、游览流程与交付身份可靠",
+      "currentImplementation": "三base137HTTP、139包字节/CRC；桌面GPU/手机/真实Node20未跑",
+      "status": "部分已验_实机NOT_RUN",
+      "evidence": "r94-integration-audit/FINAL-CANDIDATE-REVIEW.md;final-package-independent.json",
+      "nextStep": "R95在获准可达环境补桌面/手机与Node20；条件缺失保留NOT_RUN"
+    },
+    {
+      "id": "R95-REQ-008",
+      "originalRequirement": "减少加载/游览停顿，保留物理与人物",
+      "currentImplementation": "水域CPU优化已保留；Garden重载374→556ms，约+0.18s；尾峰公开",
+      "status": "确证性能取舍_未解决",
+      "evidence": "docs/current-state/r94-duixiu/VALIDATION.md;reports/r94/verification/performance-summary.json",
+      "nextStep": "R97按实际设备帧时间和重入成本验收，不减人物/删碰撞凑快"
+    },
+    {
+      "id": "R95-REQ-009",
+      "originalRequirement": "历史失败不掩盖真实问题",
+      "currentImplementation": "163全名本轮分类118旧身份契约/7fixture/38待核；0项当前确证产品缺陷不代表无缺陷",
+      "status": "完整列举_行为核查未穷尽",
+      "evidence": "failure-ledger-163.json;FAILURES-163.md;pending-behavior-queue.json",
+      "nextStep": "R95先启动和真实路径；不重跑716，不整体更新golden凑全绿"
+    },
+    {
+      "id": "R95-REQ-010",
+      "originalRequirement": "锚点与当前范围说明准确",
+      "currentImplementation": "神武门11m偏差被R90明确保留；R62/旧backlog文本不能直接代表当前",
+      "status": "待核精度_文档时效需归并",
+      "evidence": "docs/current-state/r90-north-connections/RELEASE.md;docs/LIMITATIONS.md",
+      "nextStep": "逐条后继源码/验收交叉核对；不调锚点/容差消报警，不重做全园"
+    },
+    {
+      "id": "R95-REQ-011",
+      "originalRequirement": "旧R52建筑待办与实际进度一致",
+      "currentImplementation": "queued-not-complete属于历史快照；已有R52路线/R76接面后继实例",
+      "status": "未全量归并_不得宣称全部未做或已做",
+      "evidence": "wuying/REVIEW.md;docs/LIMITATIONS.md",
+      "nextStep": "writer按最新稳定ID台账做有限对账；未核条目明确未知，不转成自动重建任务"
+    },
+    {
+      "id": "R95-WUYING-001",
+      "originalRequirement": "武英门北向可正常出门",
+      "currentImplementation": "实体甬道与侧门/侧北阶；合法连续平台路线",
+      "status": "implemented_runtime_pass_lint_fixture_defect",
+      "evidence": [
+        "current-routes.json:legacy[0]",
+        "current-routes.json:gateContinuation",
+        "current-routes.json:routes",
+        "zone-lint-r94.log"
+      ],
+      "next": "只迁移lint连续脚高/合法起点，保留旧失败证据，不改生产碰撞"
+    },
+    {
+      "id": "R95-WUYING-002",
+      "originalRequirement": "武英殿可从外部正常进殿并返回",
+      "currentImplementation": "真实月台两侧八阶与R52后继自动路线，R76内接面保留",
+      "status": "implemented_runtime_pass_lint_fixture_defect",
+      "evidence": [
+        "current-routes.json:legacy[1]",
+        "current-routes.json:hallWalkWithExistingSupport",
+        "current-routes.json:routes"
+      ],
+      "next": "以地面侧阶连续入殿代替月台内feet0初始化；不得用救援地面抹错"
+    },
+    {
+      "id": "R95-WUYING-003",
+      "originalRequirement": "当前限制说明反映准确可玩状态",
+      "currentImplementation": "LIMITATIONS仍将R62泛型报警表述当前真实未修玩家缺陷",
+      "status": "confirmed_document_contract_issue",
+      "evidence": [
+        "REVIEW.md",
+        "zone-lint-r94.log",
+        "current-routes.tap"
+      ],
+      "next": "由writer改说明为旧探针/合法路线实测边界，保留历史日志与其他未验项"
+    }
+  ]
+}

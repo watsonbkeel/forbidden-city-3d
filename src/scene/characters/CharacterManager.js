@@ -135,9 +135,9 @@ export class CharacterManager {
     this.nearIds = new Set(selected.filter(actor => actor.lod === 0).map(actor => actor.id));
     const renderStats = this.renderer.render(selected, { simulationSeconds: this.simulationSeconds, camera, quality }) ?? {};
     Object.assign(this.stats, renderStats);
-    this.stats.visible = selected.length; this.stats.near = selected.filter(x=>x.lod===0).length;
+    this.stats.visible = renderStats.visible ?? selected.length; this.stats.near = renderStats.near ?? selected.filter(x=>x.lod===0).length;
     this.stats.renderCopies = renderStats.renderCopies ?? selected.length;
-    this.interaction?.commit(this.states.values(),selected,quality);
+    this.interaction?.commit(this.states.values(),this.renderer.submittedActors??selected,quality);
     this.samples.push(Math.max(0, this.now()-start)); if (this.samples.length > 600) this.samples.shift();
   }
   snapshot() {

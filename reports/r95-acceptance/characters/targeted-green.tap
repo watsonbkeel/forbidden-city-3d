@@ -1,0 +1,22 @@
+✔ pending jobs progress and all seven roles reach submissions under persistent 1.25ms cost (88.112387ms)
+✔ pending jobs progress and all seven roles reach submissions under persistent 2ms cost (59.811133ms)
+✔ disabled and hidden states run no pending work; cleared queue receives no reserve (35.783844ms)
+✔ repeated generation changes discard old jobs and submit only current bindings (34.294228ms)
+✔ explicit zero preparation budget remains zero rather than silently enabling work (1.125199ms)
+✔ demand renderer never synchronously authors a missing resource, then submits prepared actual instances (22.783162ms)
+✔ a prepared coarse same-pose resource stays visible while requested detailed LOD prepares (4.689358ms)
+✔ first binding preparation does not build sleeping/walking/high-detail variants for standing maid (6.399029ms)
+✔ status counts actual renderer submissions rather than selected but preparing actors (2.311269ms)
+✔ nearby cold character preparation starts before earlier distant roles, without extra budget (1.585549ms)
+✔ preparation fairness gives oldest distant job a turn amid newly requested near roles (0.377527ms)
+✔ an in-flight generator completes without interleaving duplicate template construction (0.398458ms)
+✔ priority uses real rotated placement metadata only and follows the current camera (0.944377ms)
+✔ near actor waiting for its exact pose geometry is not an invisible dynamic blocker (21.79851ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 397.524226

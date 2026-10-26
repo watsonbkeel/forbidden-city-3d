@@ -4,7 +4,7 @@ import { CharacterManager } from './CharacterManager.js';
 import { CharacterWorldAdapter } from './CharacterWorldAdapter.js';
 import { CharacterRenderer } from './CharacterRenderer.js';
 import { CharacterResourcePool } from './CharacterResourcePool.js';
-import { characterGeometryOptionsFor } from './CharacterGeometryOptions.js';
+import { characterGeometryOptionsFor, characterResourceKey } from './CharacterGeometryOptions.js';
 import { PatrolController } from './PatrolController.js';
 import { CeremonyController } from './CeremonyController.js';
 import { validateCharacterRegistry } from './CharacterSchema.js';
@@ -25,12 +25,12 @@ export class CharacterSystem {
     const effectiveRegistry=this.validation.valid?registry:{actors:[],templates:[],anchors:[],surfaces:[],seats:[],paths:[],ceremonies:[]};
     this.pool=new CharacterResourcePool();this.metrics=new Map();
     this.world=adapter??new CharacterWorldAdapter({scene,collisionManager,zoneManager,interiors,registry:effectiveRegistry});
-    this.renderer=renderer??new CharacterRenderer({scene,pool:this.pool});
+    this.renderer=renderer??new CharacterRenderer({scene,pool:this.pool,requestPreparation:actor=>this.prepareVisible(actor)});
     this.ceremony=new CeremonyController(effectiveRegistry.ceremonies?.[0]);
     this.interaction=new CharacterInteraction({collisionManager,getPlayerState,registry:effectiveRegistry});
     const readonlyAdapter={
       getRevision:actor=>this.world.getRevision?.(actor)??this.world.getGeneration?.(actor.zoneRef),
-      resolve:actor=>this.world.request?this.world.request(actor,a=>this.prepareFor(a)):this.world.resolve(actor,this.metricsFor(actor)),
+      resolve:actor=>this.world.request?this.world.request(actor,a=>this.prepareFor(a),{priority:()=>this.world.preparationPriority?.(actor,this.camera?.position)??0}):this.world.resolve(actor,this.metricsFor(actor)),
     };
     this.manager=new CharacterManager({registry:effectiveRegistry,adapter:readonlyAdapter,renderer:this.renderer,
       enabled:this.validation.valid,contentEnabled,interaction:this.interaction,
@@ -53,14 +53,22 @@ export class CharacterSystem {
     }
     return this.metrics.get(key);
   }
+  prepareVisible(actor){
+    const options=characterGeometryOptionsFor(actor),key=characterResourceKey(actor.templateId,actor.pose,actor.lod,options);
+    if(this.pool.entries.has(key))return;
+    const version=this.world._workVersion?.();
+    if(!this.world.work||version===undefined)return;
+    if(this.world.work.jobs.has('render:'+key))return;
+    const pool=this.pool;
+    this.world.work.request('render:'+key,function*(){yield* pool.prepare(actor.templateId,actor.pose,actor.lod,options);return{status:'ready'};},{version,identity:key,priority:-1}).then(result=>{if(!this.disposed&&result?.status==='error'){this.lastError=this.lastFailure=result.reason;this.setEnabled(false);}});
+  }
   *prepareFor(actor){
-    // Prepare all three LODs before a binding becomes visible, so turning the
-    // camera/quality later cannot synchronously author a missing template.
+    // First visible coarse pose only; detailed LODs and changed daily poses
+    // enter the SAME bounded queue when actually requested by the renderer.
     const pose=actor.behavior?.basePose??'standing',options=characterGeometryOptionsFor(actor);
-    for(let lod=0;lod<3;lod++)yield* this.pool.prepare(actor.templateId,pose,lod,options);
-    if(['consort-daily','maid-daily'].includes(actor.templateId))for(let lod=0;lod<3;lod++){yield* this.pool.prepare(actor.templateId,'sleeping',lod,{seatVariant:'standard'});yield* this.pool.prepare(actor.templateId,'standing',lod,{seatVariant:'standard',femalePose:'walking'});}
-    if(actor.templateId==='emperor-ceremonial')for(let lod=0;lod<3;lod++)yield* this.pool.prepare(actor.templateId,'seated',lod,{seatVariant:'qianqing-low-foot'});
-    if(pose==='seated')for(let lod=0;lod<3;lod++)yield* this.pool.prepare(actor.templateId,'standing',lod,{seatVariant:'standard'});
+    yield* this.pool.prepare(actor.templateId,pose,2,options);
+    // Seat validation retains the original exact authored contact metrics.
+    if(actor.placement?.mode==='seat')yield* this.pool.prepare(actor.templateId,'seated',0,options);
     return this.metricsFor(actor);
   }
   get enabled(){return this.manager.enabled;}

@@ -1,0 +1,6 @@
+R95 cumulative development candidate, retaining the user-merged R94/main content.
+Run node start.mjs and open the printed local address. No dependencies are needed for this prebuilt package. This is not a main merge or a public deployment. Keep R94 as rollback.
+Nearby characters are prepared first. Initial necessary models are followed by bounded on-demand LOD/posture detail, without increasing the preparation budget or changing character count, placement, or shape. This is NOT a guarantee that all 108 characters load immediately or every role is in the current camera view.
+Five paired CPU runs improved nearby first submissions; steady CPU p95 had a median +0.240ms regression. Device seconds, GPU/mobile performance and actual browser gameplay remain NOT_RUN. User-main Node20 CI built R94 successfully; local R95 tests/builds use Node24, not Node20.
+R94 Duixiu front/sides/foot, cave/routes/top, R89–R93 features retained. Rear/foundation-wall completion, Yangxin ordinary kang-edge movement and Garden rebuild performance remain tracked future work. Historical 163 failures remain disclosed and triaged, not waived.
+See docs/current-state/r95-acceptance/VALIDATION.md and requirements.json in the source repository for exact scope/evidence. The package manifest binds this prebuilt artifact to its verified source identity.

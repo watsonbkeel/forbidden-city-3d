@@ -87,7 +87,16 @@ export class CharacterWorldAdapter{
   return ready({id,position:a.resolver==='zone-region'?[(item.x0+item.x1)/2,0,(item.z0+item.z1)/2]:[item.x,0,item.z],rotationYRad:rot,zoneRef:a.zoneRef,source:a.source,building:item});
  }
  _workVersion(){return this.getGeneration('static')+':'+[...(this.zoneManager?.loaded?.entries?.()??[])].map(([id,e])=>id+'='+this._id(e.data?.group)).join(',')+':'+(this.scene?.children??[]).map(o=>this._id(o)).join(',')+':'+this._id(this.cm?.colliders)+':'+(this.cm?.colliders?.length??0)+':'+this._id(this.cm?.walkables)+':'+(this.cm?.walkables?.length??0);}
- request(actor,metricsProvider=()=>({})){
+ // Scheduling hint only; physical placement is still fully validated below.
+ preparationPriority(actor,camera){
+  if(!camera||!Number.isFinite(camera.x)||!Number.isFinite(camera.z))return 0;
+  const p=actor?.placement??{},seat=this.maps.seats.get(p.seatRef),path=this.maps.paths.get(p.pathRef);
+  const anchor=this.resolveAnchor(p.anchorRef??seat?.anchorRef??path?.anchorRef);
+  const local=seat?.localPelvisMeters??path?.pointsLocalMeters?.[0]??p.offsetMeters;
+  if(anchor.status!=='ready'||!finiteVector(local))return Infinity;
+  const position=point(anchor,local);return (position[0]-camera.x)**2+(position[2]-camera.z)**2;
+ }
+ request(actor,metricsProvider=()=>({}),{priority=0}={}){
   const owner=this,version=this._workVersion(),revision=this.getRevision(actor);
   return this.work.request(actor?.id??'invalid',function*(){
    try{
@@ -97,7 +106,7 @@ export class CharacterWorldAdapter{
    const result=yield* owner._resolveSteps(actor,metrics);
    if(revision!==owner.getRevision(actor)||version!==owner._workVersion()){owner.cache.delete(actor.id);owner.physicalProofs.delete(actor.id);if(actor.placement?.pathRef)owner.pathCache.delete(actor.placement.pathRef);return pending('Stale character support discarded');}return result;
    }catch(e){owner.meshCache=null;owner.colliderCache=null;owner.cache.delete(actor.id);owner.physicalProofs.delete(actor.id);if(actor.placement?.pathRef)owner.pathCache.delete(actor.placement.pathRef);return error(String(e));}
-  },{version,identity:revision,isCurrent:()=>revision===owner.getRevision(actor)});
+  },{version,identity:revision,priority,isCurrent:()=>revision===owner.getRevision(actor)});
  }
  advance(options={}){return this.work.advance({...options,version:this._workVersion()});}
  cancelPending(reason){this.work.cancel(reason);}

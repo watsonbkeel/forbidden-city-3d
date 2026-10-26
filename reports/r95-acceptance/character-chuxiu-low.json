@@ -1,0 +1,2296 @@
+{
+  "scope": "Actual production CPU world + manager + renderer submissions, not GPU pixels",
+  "target": "chuxiu",
+  "quality": "low",
+  "cycle": {
+    "year": 2026,
+    "month": 10,
+    "day": 26,
+    "hour": 12,
+    "minute": 48,
+    "second": 0,
+    "millisecond": 0,
+    "dayOfYear": 299,
+    "daysInYear": 365,
+    "minutesOfDay": 768,
+    "utcOffsetMinutes": 480,
+    "dateLabel": "2026-10-26",
+    "timeLabel": "12:48:00"
+  },
+  "elapsedCpuWallMs": 1821.8764499999997,
+  "first": {
+    "chuxiu-maid-01": 65,
+    "chuxiu-consort-01": 134,
+    "chonghua-maid-01": 251,
+    "chonghua-eunuch-01": 314
+  },
+  "rows": [
+    {
+      "frame": 0,
+      "stats": {
+        "registered": 108,
+        "loaded": 0,
+        "visible": 0,
+        "near": 0,
+        "renderCopies": 0,
+        "pending": 108,
+        "errors": 0,
+        "batches": 0,
+        "trianglesEstimate": 0,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 0,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "queue": {
+        "frames": 1,
+        "steps": 0,
+        "completed": 0,
+        "cancelled": 0,
+        "totalCpuMs": 0.4564350000000559,
+        "maxFrameMs": 0.4564350000000559,
+        "maxStepMs": 0,
+        "maxStepKind": null,
+        "maxStepWorkUnits": 0,
+        "maxOverrunMs": 0.20643500000005588,
+        "pending": 108
+      },
+      "head": [
+        "taihe-emperor-01",
+        "taihe-official-east-01-01",
+        "taihe-official-east-01-02",
+        "taihe-official-east-02-01"
+      ],
+      "roles": [
+        {
+          "id": "taihe-emperor-01",
+          "binding": false,
+          "lod": 3,
+          "pending": true,
+          "error": null,
+          "request": true
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "binding": false,
+          "lod": 3,
+          "pending": true,
+          "error": null,
+          "request": true
+        },
+        {
+          "id": "chuxiu-maid-01",
+          "binding": false,
+          "lod": 3,
+          "pending": true,
+          "error": null,
+          "request": true
+        },
+        {
+          "id": "chuxiu-maid-02",
+          "binding": false,
+          "lod": 3,
+          "pending": true,
+          "error": null,
+          "request": true
+        },
+        {
+          "id": "chuxiu-eunuch-01",
+          "binding": false,
+          "lod": 3,
+          "pending": true,
+          "error": null,
+          "request": true
+        }
+      ],
+      "submitted": []
+    },
+    {
+      "frame": 120,
+      "stats": {
+        "registered": 108,
+        "loaded": 1,
+        "visible": 1,
+        "near": 0,
+        "renderCopies": 1,
+        "pending": 107,
+        "errors": 0,
+        "batches": 1,
+        "trianglesEstimate": 1292,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 1,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "queue": {
+        "frames": 121,
+        "steps": 6586,
+        "completed": 2,
+        "cancelled": 0,
+        "totalCpuMs": 113.40082300000267,
+        "maxFrameMs": 16.639772999999877,
+        "maxStepMs": 3.1649999999999636,
+        "maxStepKind": "character-geometry:mesh",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 16.077870999999504,
+        "pending": 107
+      },
+      "head": [
+        "taihe-emperor-01",
+        "taihe-official-east-01-01",
+        "taihe-official-east-01-02",
+        "taihe-official-east-02-01"
+      ],
+      "roles": [
+        {
+          "id": "taihe-emperor-01",
+          "binding": false,
+          "lod": 3,
+          "pending": true,
+          "error": null,
+          "request": true
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "binding": false,
+          "lod": 3,
+          "pending": true,
+          "error": null,
+          "request": true
+        },
+        {
+          "id": "chuxiu-maid-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-02",
+          "binding": false,
+          "lod": 3,
+          "pending": true,
+          "error": null,
+          "request": true
+        },
+        {
+          "id": "chuxiu-eunuch-01",
+          "binding": false,
+          "lod": 3,
+          "pending": true,
+          "error": null,
+          "request": true
+        }
+      ],
+      "submitted": [
+        {
+          "id": "chuxiu-maid-01",
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 1,
+          "visibility": 1
+        }
+      ]
+    },
+    {
+      "frame": 240,
+      "stats": {
+        "registered": 108,
+        "loaded": 3,
+        "visible": 2,
+        "near": 0,
+        "renderCopies": 2,
+        "pending": 105,
+        "errors": 0,
+        "batches": 2,
+        "trianglesEstimate": 2782,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 3,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "queue": {
+        "frames": 241,
+        "steps": 15920,
+        "completed": 6,
+        "cancelled": 0,
+        "totalCpuMs": 205.41434400000162,
+        "maxFrameMs": 16.639772999999877,
+        "maxStepMs": 3.1649999999999636,
+        "maxStepKind": "character-geometry:mesh",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 16.077870999999504,
+        "pending": 104
+      },
+      "head": [
+        "taihe-official-east-01-01",
+        "taihe-official-east-01-02",
+        "taihe-official-east-02-01",
+        "taihe-official-east-02-02"
+      ],
+      "roles": [
+        {
+          "id": "taihe-emperor-01",
+          "binding": true,
+          "position": [
+            4.898587196589413e-18,
+            12.207499990463257,
+            9.010000000000002
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-02",
+          "binding": true,
+          "position": [
+            97.8,
+            -9.303668946358812e-14,
+            419
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-eunuch-01",
+          "binding": false,
+          "lod": 3,
+          "pending": true,
+          "error": null,
+          "request": true
+        }
+      ],
+      "submitted": [
+        {
+          "id": "chuxiu-maid-01",
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 1,
+          "visibility": 1
+        }
+      ]
+    },
+    {
+      "frame": 360,
+      "stats": {
+        "registered": 108,
+        "loaded": 15,
+        "visible": 4,
+        "near": 0,
+        "renderCopies": 4,
+        "pending": 93,
+        "errors": 0,
+        "batches": 4,
+        "trianglesEstimate": 3644,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 15,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "queue": {
+        "frames": 361,
+        "steps": 21276,
+        "completed": 17,
+        "cancelled": 0,
+        "totalCpuMs": 287.171763000003,
+        "maxFrameMs": 16.639772999999877,
+        "maxStepMs": 3.1649999999999636,
+        "maxStepKind": "character-geometry:mesh",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 16.077870999999504,
+        "pending": 93
+      },
+      "head": [
+        "taihe-official-east-02-02",
+        "taihe-official-east-03-01",
+        "taihe-official-east-03-02",
+        "taihe-official-east-04-01"
+      ],
+      "roles": [
+        {
+          "id": "taihe-emperor-01",
+          "binding": true,
+          "position": [
+            4.898587196589413e-18,
+            12.207499990463257,
+            9.010000000000002
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-02",
+          "binding": true,
+          "position": [
+            97.8,
+            -9.303668946358812e-14,
+            419
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-eunuch-01",
+          "binding": true,
+          "position": [
+            88.8,
+            -9.332534744999066e-14,
+            420.3
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        }
+      ],
+      "submitted": [
+        {
+          "id": "chuxiu-maid-01",
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-maid-01",
+          "position": [
+            108.9,
+            -1.0620393453564248e-13,
+            478.3
+          ],
+          "lod": 2,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-eunuch-01",
+          "position": [
+            128.9,
+            -1.06542996647363e-13,
+            479.827
+          ],
+          "lod": 2,
+          "visibility": 1
+        }
+      ]
+    },
+    {
+      "frame": 480,
+      "stats": {
+        "registered": 108,
+        "loaded": 22,
+        "visible": 4,
+        "near": 0,
+        "renderCopies": 4,
+        "pending": 86,
+        "errors": 0,
+        "batches": 4,
+        "trianglesEstimate": 3644,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 22,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "queue": {
+        "frames": 481,
+        "steps": 27008,
+        "completed": 24,
+        "cancelled": 0,
+        "totalCpuMs": 369.86483000000044,
+        "maxFrameMs": 16.639772999999877,
+        "maxStepMs": 3.1649999999999636,
+        "maxStepKind": "character-geometry:mesh",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 16.077870999999504,
+        "pending": 86
+      },
+      "head": [
+        "taihe-official-east-03-02",
+        "taihe-official-east-04-01",
+        "taihe-official-east-04-02",
+        "taihe-official-west-01-01"
+      ],
+      "roles": [
+        {
+          "id": "taihe-emperor-01",
+          "binding": true,
+          "position": [
+            4.898587196589413e-18,
+            12.207499990463257,
+            9.010000000000002
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-02",
+          "binding": true,
+          "position": [
+            97.8,
+            -9.303668946358812e-14,
+            419
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-eunuch-01",
+          "binding": true,
+          "position": [
+            88.8,
+            -9.332534744999066e-14,
+            420.3
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        }
+      ],
+      "submitted": [
+        {
+          "id": "chuxiu-maid-01",
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-maid-01",
+          "position": [
+            108.9,
+            -1.0620393453564248e-13,
+            478.3
+          ],
+          "lod": 2,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-eunuch-01",
+          "position": [
+            128.9,
+            -1.0672951411550003e-13,
+            480.66700000000003
+          ],
+          "lod": 2,
+          "visibility": 1
+        }
+      ]
+    },
+    {
+      "frame": 600,
+      "stats": {
+        "registered": 108,
+        "loaded": 27,
+        "visible": 4,
+        "near": 0,
+        "renderCopies": 4,
+        "pending": 81,
+        "errors": 0,
+        "batches": 4,
+        "trianglesEstimate": 3644,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 27,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "queue": {
+        "frames": 601,
+        "steps": 32648,
+        "completed": 29,
+        "cancelled": 0,
+        "totalCpuMs": 451.8515500000012,
+        "maxFrameMs": 16.639772999999877,
+        "maxStepMs": 3.1649999999999636,
+        "maxStepKind": "character-geometry:mesh",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 16.077870999999504,
+        "pending": 81
+      },
+      "head": [
+        "taihe-official-east-04-01",
+        "taihe-official-east-04-02",
+        "taihe-official-west-01-01",
+        "taihe-official-west-01-02"
+      ],
+      "roles": [
+        {
+          "id": "taihe-emperor-01",
+          "binding": true,
+          "position": [
+            4.898587196589413e-18,
+            12.207499990463257,
+            9.010000000000002
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-02",
+          "binding": true,
+          "position": [
+            97.8,
+            -9.303668946358812e-14,
+            419
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-eunuch-01",
+          "binding": true,
+          "position": [
+            88.8,
+            -9.332534744999066e-14,
+            420.3
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        }
+      ],
+      "submitted": [
+        {
+          "id": "chuxiu-maid-01",
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-maid-01",
+          "position": [
+            108.9,
+            -1.0620393453564248e-13,
+            478.3
+          ],
+          "lod": 2,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-eunuch-01",
+          "position": [
+            128.9,
+            -1.0675904604795506e-13,
+            480.8
+          ],
+          "lod": 2,
+          "visibility": 1
+        }
+      ]
+    },
+    {
+      "frame": 720,
+      "stats": {
+        "registered": 108,
+        "loaded": 32,
+        "visible": 4,
+        "near": 0,
+        "renderCopies": 4,
+        "pending": 76,
+        "errors": 0,
+        "batches": 4,
+        "trianglesEstimate": 3644,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 31,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "queue": {
+        "frames": 721,
+        "steps": 38242,
+        "completed": 34,
+        "cancelled": 0,
+        "totalCpuMs": 531.481721999995,
+        "maxFrameMs": 16.639772999999877,
+        "maxStepMs": 3.1649999999999636,
+        "maxStepKind": "character-geometry:mesh",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 16.077870999999504,
+        "pending": 76
+      },
+      "head": [
+        "taihe-official-east-04-02",
+        "taihe-official-west-01-01",
+        "taihe-official-west-01-02",
+        "taihe-official-west-02-01"
+      ],
+      "roles": [
+        {
+          "id": "taihe-emperor-01",
+          "binding": true,
+          "position": [
+            4.898587196589413e-18,
+            12.207499990463257,
+            9.010000000000002
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-02",
+          "binding": true,
+          "position": [
+            97.8,
+            -9.303668946358812e-14,
+            419
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-eunuch-01",
+          "binding": true,
+          "position": [
+            88.8,
+            -9.332534744999066e-14,
+            420.3
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        }
+      ],
+      "submitted": [
+        {
+          "id": "chuxiu-maid-01",
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-maid-01",
+          "position": [
+            108.9,
+            -1.0620393453564248e-13,
+            478.3
+          ],
+          "lod": 2,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-eunuch-01",
+          "position": [
+            128.9,
+            -1.0669531924634155e-13,
+            480.5129999999999
+          ],
+          "lod": 2,
+          "visibility": 1
+        }
+      ]
+    },
+    {
+      "frame": 840,
+      "stats": {
+        "registered": 108,
+        "loaded": 64,
+        "visible": 4,
+        "near": 0,
+        "renderCopies": 4,
+        "pending": 44,
+        "errors": 0,
+        "batches": 4,
+        "trianglesEstimate": 3644,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 54,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "queue": {
+        "frames": 841,
+        "steps": 43069,
+        "completed": 135,
+        "cancelled": 0,
+        "totalCpuMs": 603.9175589999986,
+        "maxFrameMs": 16.639772999999877,
+        "maxStepMs": 3.1649999999999636,
+        "maxStepKind": "character-geometry:mesh",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 16.077870999999504,
+        "pending": 44
+      },
+      "head": [
+        "taihe-official-west-06-01",
+        "taihe-official-west-06-02",
+        "taihe-attendant-east-02",
+        "taihe-attendant-west-02"
+      ],
+      "roles": [
+        {
+          "id": "taihe-emperor-01",
+          "binding": true,
+          "position": [
+            4.898587196589413e-18,
+            12.207499990463257,
+            9.010000000000002
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-02",
+          "binding": true,
+          "position": [
+            97.8,
+            -9.303668946358812e-14,
+            419
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-eunuch-01",
+          "binding": true,
+          "position": [
+            88.8,
+            -9.332534744999066e-14,
+            420.3
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        }
+      ],
+      "submitted": [
+        {
+          "id": "chuxiu-maid-01",
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-maid-01",
+          "position": [
+            108.9,
+            -1.0620393453564248e-13,
+            478.3
+          ],
+          "lod": 2,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-eunuch-01",
+          "position": [
+            128.9,
+            -1.0650880177820452e-13,
+            479.6729999999999
+          ],
+          "lod": 2,
+          "visibility": 1
+        }
+      ]
+    },
+    {
+      "frame": 960,
+      "stats": {
+        "registered": 108,
+        "loaded": 78,
+        "visible": 4,
+        "near": 0,
+        "renderCopies": 4,
+        "pending": 30,
+        "errors": 0,
+        "batches": 4,
+        "trianglesEstimate": 3644,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 60,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "queue": {
+        "frames": 961,
+        "steps": 46705,
+        "completed": 1024,
+        "cancelled": 0,
+        "totalCpuMs": 663.6080259999999,
+        "maxFrameMs": 16.639772999999877,
+        "maxStepMs": 3.1649999999999636,
+        "maxStepKind": "character-geometry:mesh",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 16.077870999999504,
+        "pending": 0
+      },
+      "head": [],
+      "roles": [
+        {
+          "id": "taihe-emperor-01",
+          "binding": true,
+          "position": [
+            4.898587196589413e-18,
+            12.207499990463257,
+            9.010000000000002
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-02",
+          "binding": true,
+          "position": [
+            97.8,
+            -9.303668946358812e-14,
+            419
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-eunuch-01",
+          "binding": true,
+          "position": [
+            88.8,
+            -9.332534744999066e-14,
+            420.3
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        }
+      ],
+      "submitted": [
+        {
+          "id": "chuxiu-maid-01",
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-maid-01",
+          "position": [
+            108.9,
+            -1.0620393453564248e-13,
+            478.3
+          ],
+          "lod": 2,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-eunuch-01",
+          "position": [
+            128.9,
+            -1.0632228431006748e-13,
+            478.83299999999986
+          ],
+          "lod": 2,
+          "visibility": 1
+        }
+      ]
+    },
+    {
+      "frame": 1080,
+      "stats": {
+        "registered": 108,
+        "loaded": 78,
+        "visible": 4,
+        "near": 0,
+        "renderCopies": 4,
+        "pending": 30,
+        "errors": 0,
+        "batches": 4,
+        "trianglesEstimate": 3644,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 60,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "queue": {
+        "frames": 1081,
+        "steps": 50051,
+        "completed": 4370,
+        "cancelled": 0,
+        "totalCpuMs": 704.732726000002,
+        "maxFrameMs": 16.639772999999877,
+        "maxStepMs": 3.1649999999999636,
+        "maxStepKind": "character-geometry:mesh",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 16.077870999999504,
+        "pending": 0
+      },
+      "head": [],
+      "roles": [
+        {
+          "id": "taihe-emperor-01",
+          "binding": true,
+          "position": [
+            4.898587196589413e-18,
+            12.207499990463257,
+            9.010000000000002
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-02",
+          "binding": true,
+          "position": [
+            97.8,
+            -9.303668946358812e-14,
+            419
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-eunuch-01",
+          "binding": true,
+          "position": [
+            88.8,
+            -9.332534744999066e-14,
+            420.3
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        }
+      ],
+      "submitted": [
+        {
+          "id": "chuxiu-maid-01",
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-maid-01",
+          "position": [
+            108.9,
+            -1.0620393453564248e-13,
+            478.3
+          ],
+          "lod": 2,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-eunuch-01",
+          "position": [
+            128.9,
+            -1.0613576684193046e-13,
+            477.9929999999999
+          ],
+          "lod": 2,
+          "visibility": 1
+        }
+      ]
+    },
+    {
+      "frame": 1200,
+      "stats": {
+        "registered": 108,
+        "loaded": 78,
+        "visible": 4,
+        "near": 0,
+        "renderCopies": 4,
+        "pending": 30,
+        "errors": 0,
+        "batches": 4,
+        "trianglesEstimate": 3644,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 60,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "queue": {
+        "frames": 1201,
+        "steps": 53568,
+        "completed": 7887,
+        "cancelled": 0,
+        "totalCpuMs": 749.573519000006,
+        "maxFrameMs": 16.639772999999877,
+        "maxStepMs": 3.1649999999999636,
+        "maxStepKind": "character-geometry:mesh",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 16.077870999999504,
+        "pending": 0
+      },
+      "head": [],
+      "roles": [
+        {
+          "id": "taihe-emperor-01",
+          "binding": true,
+          "position": [
+            4.898587196589413e-18,
+            12.207499990463257,
+            9.010000000000002
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-02",
+          "binding": true,
+          "position": [
+            97.8,
+            -9.303668946358812e-14,
+            419
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-eunuch-01",
+          "binding": true,
+          "position": [
+            88.8,
+            -9.332534744999066e-14,
+            420.3
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        }
+      ],
+      "submitted": [
+        {
+          "id": "chuxiu-maid-01",
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-maid-01",
+          "position": [
+            108.9,
+            -1.0620393453564248e-13,
+            478.3
+          ],
+          "lod": 2,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-eunuch-01",
+          "position": [
+            128.9,
+            -1.0598188993071745e-13,
+            477.3
+          ],
+          "lod": 2,
+          "visibility": 1
+        }
+      ]
+    },
+    {
+      "frame": 1320,
+      "stats": {
+        "registered": 108,
+        "loaded": 78,
+        "visible": 4,
+        "near": 0,
+        "renderCopies": 4,
+        "pending": 30,
+        "errors": 0,
+        "batches": 4,
+        "trianglesEstimate": 3644,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 60,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "queue": {
+        "frames": 1321,
+        "steps": 56824,
+        "completed": 11143,
+        "cancelled": 0,
+        "totalCpuMs": 790.5147360000028,
+        "maxFrameMs": 16.639772999999877,
+        "maxStepMs": 3.1649999999999636,
+        "maxStepKind": "character-geometry:mesh",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 16.077870999999504,
+        "pending": 0
+      },
+      "head": [],
+      "roles": [
+        {
+          "id": "taihe-emperor-01",
+          "binding": true,
+          "position": [
+            4.898587196589413e-18,
+            12.207499990463257,
+            9.010000000000002
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-02",
+          "binding": true,
+          "position": [
+            97.8,
+            -9.303668946358812e-14,
+            419
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-eunuch-01",
+          "binding": true,
+          "position": [
+            88.8,
+            -9.332534744999066e-14,
+            420.3
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        }
+      ],
+      "submitted": [
+        {
+          "id": "chuxiu-maid-01",
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-maid-01",
+          "position": [
+            108.9,
+            -1.0620393453564248e-13,
+            478.3
+          ],
+          "lod": 2,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-eunuch-01",
+          "position": [
+            128.9,
+            -1.0598188993071745e-13,
+            477.3
+          ],
+          "lod": 2,
+          "visibility": 1
+        }
+      ]
+    },
+    {
+      "frame": 1440,
+      "stats": {
+        "registered": 108,
+        "loaded": 78,
+        "visible": 4,
+        "near": 0,
+        "renderCopies": 4,
+        "pending": 30,
+        "errors": 0,
+        "batches": 4,
+        "trianglesEstimate": 3644,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 60,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "queue": {
+        "frames": 1441,
+        "steps": 60370,
+        "completed": 14689,
+        "cancelled": 0,
+        "totalCpuMs": 831.5459170000086,
+        "maxFrameMs": 16.639772999999877,
+        "maxStepMs": 3.1649999999999636,
+        "maxStepKind": "character-geometry:mesh",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 16.077870999999504,
+        "pending": 0
+      },
+      "head": [],
+      "roles": [
+        {
+          "id": "taihe-emperor-01",
+          "binding": true,
+          "position": [
+            4.898587196589413e-18,
+            12.207499990463257,
+            9.010000000000002
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-02",
+          "binding": true,
+          "position": [
+            97.8,
+            -9.303668946358812e-14,
+            419
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-eunuch-01",
+          "binding": true,
+          "position": [
+            88.8,
+            -9.332534744999066e-14,
+            420.3
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        }
+      ],
+      "submitted": [
+        {
+          "id": "chuxiu-maid-01",
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-maid-01",
+          "position": [
+            108.9,
+            -1.0620393453564248e-13,
+            478.3
+          ],
+          "lod": 2,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-eunuch-01",
+          "position": [
+            128.9,
+            -1.0610778922170993e-13,
+            477.86699999999996
+          ],
+          "lod": 2,
+          "visibility": 1
+        }
+      ]
+    },
+    {
+      "frame": 1560,
+      "stats": {
+        "registered": 108,
+        "loaded": 78,
+        "visible": 4,
+        "near": 0,
+        "renderCopies": 4,
+        "pending": 30,
+        "errors": 0,
+        "batches": 4,
+        "trianglesEstimate": 3644,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 60,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "queue": {
+        "frames": 1561,
+        "steps": 63928,
+        "completed": 18247,
+        "cancelled": 0,
+        "totalCpuMs": 875.1620860000094,
+        "maxFrameMs": 16.639772999999877,
+        "maxStepMs": 3.1649999999999636,
+        "maxStepKind": "character-geometry:mesh",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 16.077870999999504,
+        "pending": 0
+      },
+      "head": [],
+      "roles": [
+        {
+          "id": "taihe-emperor-01",
+          "binding": true,
+          "position": [
+            4.898587196589413e-18,
+            12.207499990463257,
+            9.010000000000002
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-02",
+          "binding": true,
+          "position": [
+            97.8,
+            -9.303668946358812e-14,
+            419
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-eunuch-01",
+          "binding": true,
+          "position": [
+            88.8,
+            -9.332534744999066e-14,
+            420.3
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        }
+      ],
+      "submitted": [
+        {
+          "id": "chuxiu-maid-01",
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-maid-01",
+          "position": [
+            108.9,
+            -1.0620393453564248e-13,
+            478.3
+          ],
+          "lod": 2,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-eunuch-01",
+          "position": [
+            128.9,
+            -1.0629430668984695e-13,
+            478.70699999999994
+          ],
+          "lod": 2,
+          "visibility": 1
+        }
+      ]
+    },
+    {
+      "frame": 1680,
+      "stats": {
+        "registered": 108,
+        "loaded": 78,
+        "visible": 4,
+        "near": 0,
+        "renderCopies": 4,
+        "pending": 30,
+        "errors": 0,
+        "batches": 4,
+        "trianglesEstimate": 3644,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 60,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "queue": {
+        "frames": 1681,
+        "steps": 67494,
+        "completed": 21813,
+        "cancelled": 0,
+        "totalCpuMs": 917.5166740000068,
+        "maxFrameMs": 16.639772999999877,
+        "maxStepMs": 3.1649999999999636,
+        "maxStepKind": "character-geometry:mesh",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 16.077870999999504,
+        "pending": 0
+      },
+      "head": [],
+      "roles": [
+        {
+          "id": "taihe-emperor-01",
+          "binding": true,
+          "position": [
+            4.898587196589413e-18,
+            12.207499990463257,
+            9.010000000000002
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-02",
+          "binding": true,
+          "position": [
+            97.8,
+            -9.303668946358812e-14,
+            419
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-eunuch-01",
+          "binding": true,
+          "position": [
+            88.8,
+            -9.332534744999066e-14,
+            420.3
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        }
+      ],
+      "submitted": [
+        {
+          "id": "chuxiu-maid-01",
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-maid-01",
+          "position": [
+            108.9,
+            -1.0620393453564248e-13,
+            478.3
+          ],
+          "lod": 2,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-eunuch-01",
+          "position": [
+            128.9,
+            -1.0648082415798396e-13,
+            479.54699999999985
+          ],
+          "lod": 2,
+          "visibility": 1
+        }
+      ]
+    },
+    {
+      "frame": 1799,
+      "stats": {
+        "registered": 108,
+        "loaded": 78,
+        "visible": 4,
+        "near": 0,
+        "renderCopies": 4,
+        "pending": 30,
+        "errors": 0,
+        "batches": 4,
+        "trianglesEstimate": 3644,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 60,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "queue": {
+        "frames": 1800,
+        "steps": 70999,
+        "completed": 25318,
+        "cancelled": 0,
+        "totalCpuMs": 961.8908570000058,
+        "maxFrameMs": 16.639772999999877,
+        "maxStepMs": 3.1649999999999636,
+        "maxStepKind": "character-geometry:mesh",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 16.077870999999504,
+        "pending": 0
+      },
+      "head": [],
+      "roles": [
+        {
+          "id": "taihe-emperor-01",
+          "binding": true,
+          "position": [
+            4.898587196589413e-18,
+            12.207499990463257,
+            9.010000000000002
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-01",
+          "binding": true,
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 0,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-maid-02",
+          "binding": true,
+          "position": [
+            97.8,
+            -9.303668946358812e-14,
+            419
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        },
+        {
+          "id": "chuxiu-eunuch-01",
+          "binding": true,
+          "position": [
+            88.8,
+            -9.332534744999066e-14,
+            420.3
+          ],
+          "lod": 3,
+          "pending": false,
+          "error": null,
+          "request": false
+        }
+      ],
+      "submitted": [
+        {
+          "id": "chuxiu-maid-01",
+          "position": [
+            100.22,
+            0.6200000047683716,
+            435.5
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chuxiu-consort-01",
+          "position": [
+            100.22,
+            0.5599999523162842,
+            438.15999999999997
+          ],
+          "lod": 1,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-maid-01",
+          "position": [
+            108.9,
+            -1.0620393453564248e-13,
+            478.3
+          ],
+          "lod": 2,
+          "visibility": 1
+        },
+        {
+          "id": "chonghua-eunuch-01",
+          "position": [
+            128.9,
+            -1.066657873138865e-13,
+            480.3799999999998
+          ],
+          "lod": 2,
+          "visibility": 1
+        }
+      ]
+    }
+  ]
+}

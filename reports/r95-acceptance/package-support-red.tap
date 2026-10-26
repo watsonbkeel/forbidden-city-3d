@@ -1,0 +1,27 @@
+✖ R95 local package has correctly labelled launch support and honest ability/performance boundaries (3.01233ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 91.037972
+
+✖ failing tests:
+
+test at tests/r95-package-support.test.mjs:2:1
+✖ R95 local package has correctly labelled launch support and honest ability/performance boundaries (3.01233ms)
+  AssertionError [ERR_ASSERTION]: release/r95/start.mjs
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r95-acceptance-ledger/tests/r95-package-support.test.mjs:2:184)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
