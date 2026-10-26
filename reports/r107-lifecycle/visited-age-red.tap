@@ -1,0 +1,63 @@
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 0 个 region, 3 个 mapItem
+[ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+[ZoneManager] 进入区域: west-six
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 加载区域 west-six（west-six），耗时 0.0ms
+[ZoneManager] 进入区域: east-six
+[ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 0 个 region, 3 个 mapItem
+[ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+[ZoneManager] 进入区域: west-six
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 加载区域 west-six（west-six），耗时 0.0ms
+[ZoneManager] 进入区域: east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 east-six（east-six），耗时 0.1ms
+[ZoneManager] 进入区域: west-six
+[ZoneManager] 加载区域 west-six（west-six），耗时 0.0ms
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 0 个 region, 3 个 mapItem
+[ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+[ZoneManager] 加载区域 garden（garden），耗时 0.0ms
+[ZoneManager] 进入区域: west-six
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 garden
+[ZoneManager] 加载区域 west-six（west-six），耗时 0.0ms
+[ZoneManager] 卸载区域 west-six
+✔ normal update-driven current-zone return claims cached destination before old zone admission, even one-entry budget (6.099914ms)
+✔ east-six cached quality invalidates, loaded remains until exit; unrelated cache survives; final dispose once (1.564828ms)
+✖ later background preloading must not evict the actually visited zone before its first return (1.766791ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 206.991742
+
+✖ failing tests:
+
+test at tests/r107-zone-reuse.test.mjs:5:1
+✖ later background preloading must not evict the actually visited zone before its first return (1.766791ms)
+  AssertionError [ERR_ASSERTION]: unvisited later-loaded garden must not displace visited east
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r107-zone-resource-lifecycle/tests/r107-zone-reuse.test.mjs:5:283)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

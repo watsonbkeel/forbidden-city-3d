@@ -149,6 +149,15 @@ export class ZoneBase {
     };
   }
 
+  /** Cache admission only: mergeByMaterial already disposed these source
+   * geometries and moved noMerge/LOD objects into the finished group. Drop
+   * obsolete construction references; never dispose live merged resources. */
+  releaseConstructionReferences() {
+    if (!this.group || this.group === this.kit.root) throw new Error('Zone is not finished');
+    this.kit.root.clear();
+    this.kit.plaques.length = 0;
+  }
+
   update(dt) {
     // 当前无动画需求，预留接口
   }

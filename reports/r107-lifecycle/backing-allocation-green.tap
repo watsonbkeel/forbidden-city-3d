@@ -1,0 +1,16 @@
+✔ bounded cache transfer, LRU, expiry and owner disposal are exact and idempotent (2.257958ms)
+✔ oversize, source/quality changes, pending pins reject without hidden overbudget retention (0.346129ms)
+✔ resource accounting includes owned RGBA+mips, deduplicates shared resources, rejects unknown texture dimensions (1.897607ms)
+✔ unknown or non-RGBA8 owned GPU storage is not silently undercounted (0.373791ms)
+✔ admission uses actual last-use age, not incidental same-frame unload iteration order (0.741012ms)
+✔ rejected admission does not partially evict useful older retained owners (0.208163ms)
+✔ budget includes retained construction roots, plaque references and non-rendered owned material maps (0.74684ms)
+✔ CPU backing allocation is counted once in full even for shared subarray attributes (0.581413ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 125.800939

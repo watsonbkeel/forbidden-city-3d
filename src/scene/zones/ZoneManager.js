@@ -1,3 +1,4 @@
+import {InactiveZoneCache,zoneRetainedResourceCost} from './InactiveZoneCache.js';
 import {buildingDetailQuality} from '../../render/BuildingDetailQuality.js';
 import { ZoneBase } from './ZoneBase.js';
 import { buildSilhouette } from '../../render/SilhouetteBuilder.js';
@@ -18,7 +19,8 @@ import { buildSilhouette } from '../../render/SilhouetteBuilder.js';
  * URL 参数 ?zones=all：全部区常驻不卸载（验证零变化和调试）
  */
 export class ZoneManager {
-  constructor() {
+  constructor({reuseInactive=false}={}) {
+    this.inactiveCache = reuseInactive ? new InactiveZoneCache() : null;
     /** 已注册的 zone 配置：{ id, name, bounds, neighbors, items, BuilderClass } */
     this.zones = new Map();
     /** 已加载的 zone 实例：id → { builder, data } */
@@ -84,7 +86,7 @@ export class ZoneManager {
       this.allMapItems.push(...data.mapItems);
       this.allRooms.push(...data.rooms);
       // 启动时预合并；流式加载只提交已完成的结果，不再重复构建。
-      this.prebuilt.set(id, { builder, data, detailQuality: buildingDetailQuality(this.library) });
+      this.prebuilt.set(id, { builder, data, detailQuality: this.detailQualityFor(id), config });
       const silhouette = buildSilhouette(data.group);
       if (silhouette) {
         data.silhouette = silhouette;
@@ -128,6 +130,7 @@ export class ZoneManager {
    * @param {object} playerPos - 玩家位置 { x, z }
    */
   update(playerPos) {
+    this.inactiveCache?.prune();
     if (this.loadAll) return; // ?zones=all 模式无需动态加载
 
     // 更新当前所在区
@@ -188,6 +191,13 @@ export class ZoneManager {
     const config = this.zones.get(zoneId);
     if (!config) return;
 
+    // Claim a cached destination before admitting the departing zone: this
+    // transfers ownership without exceeding the idle budget or rebuilding.
+    if (!this.loaded.has(zoneId) && this.inactiveCache?.has(zoneId,config,this.detailQualityFor(zoneId))) this.loadZone(zoneId);
+
+    const visited = this.loaded.get(zoneId);
+    if (visited) visited.lastUsedAt = performance.now();
+
     // 当前区优先级 0，neighbors 优先级 1
     if (!this.loaded.has(zoneId)) {
       this.buildQueue.push({ zoneId, priority: 0 });
@@ -222,9 +232,12 @@ export class ZoneManager {
   // Geometry quality is build-time only. Never disturb a loaded zone/player.
   // Queued entries contain only IDs; their synchronous build reads the latest
   // policy when consumed, so no in-flight old builder can revive stale meshes.
+  detailQualityFor(id) { return id === 'east-six' ? buildingDetailQuality(this.library) : 'independent'; }
+
   invalidateBuildingDetailPrebuilt() {
     const quality = buildingDetailQuality(this.library), removed = [];
     for (const id of ['east-six']) {
+      this.inactiveCache?.has(id,this.zones.get(id),quality);
       const cached = this.prebuilt?.get(id);
       if (!cached || this.loaded.has(id) || cached.detailQuality === quality) continue;
       this.prebuilt.delete(id);
@@ -239,7 +252,8 @@ export class ZoneManager {
     if (!config || this.loaded.has(zoneId)) return;
 
     const start = performance.now();
-    const cached = this.prebuilt.get(zoneId);
+    const detailQuality = this.detailQualityFor(zoneId);
+    const cached = this.prebuilt.get(zoneId) ?? this.inactiveCache?.take(zoneId,config,detailQuality);
     const builder = cached?.builder ?? new config.BuilderClass(this.library, config);
     const data = cached?.data ?? builder.build();
     this.prebuilt.delete(zoneId);
@@ -254,7 +268,11 @@ export class ZoneManager {
     this.collisionManager.addColliders(data.colliders, zoneId);
     this.collisionManager.addWalkables(data.walkables, zoneId);
 
-    this.loaded.set(zoneId, { builder, data });
+    const entry = cached ?? { builder, data, config, detailQuality };
+    // A background preload is not a player visit. Giving it a newer age can
+    // evict the just-visited current zone before the very first return.
+    entry.lastUsedAt = zoneId === this.currentId ? performance.now() : (entry.lastUsedAt ?? 0);
+    this.loaded.set(zoneId, entry);
     this.buildTimes.set(zoneId, +elapsed.toFixed(1));
     this.onLoad?.(zoneId, data.group);
     console.log(`[ZoneManager] 加载区域 ${zoneId}（${config.name}），耗时 ${elapsed.toFixed(1)}ms`);
@@ -263,7 +281,7 @@ export class ZoneManager {
   /**
    * 卸载一个区：移除场景 + 删除碰撞 + dispose
    */
-  unloadZone(zoneId) {
+  unloadZone(zoneId, {retain=true}={}) {
     const entry = this.loaded.get(zoneId);
     if (!entry) return;
 
@@ -271,7 +289,11 @@ export class ZoneManager {
     this.onUnload?.(zoneId, data.group);
     data.group.removeFromParent();
     this.collisionManager.removeByTag(zoneId);
-    builder.dispose();
+    if (retain && this.inactiveCache && entry.config === this.zones.get(zoneId) && entry.detailQuality === this.detailQualityFor(zoneId)) {
+      builder.releaseConstructionReferences?.();
+      entry.cost = zoneRetainedResourceCost(entry,this.library);
+      this.inactiveCache.put(zoneId,entry,new Set(this.buildQueue.map(q=>q.zoneId)));
+    } else builder.dispose();
     const silhouette = this.silhouettes.get(zoneId);
     if (silhouette) silhouette.visible = true;
     this.loaded.delete(zoneId);
@@ -360,8 +382,9 @@ export class ZoneManager {
    */
   dispose() {
     for (const id of this.loaded.keys()) {
-      this.unloadZone(id);
+      this.unloadZone(id,{retain:false});
     }
+    this.inactiveCache?.clear();
     for (const { builder } of this.prebuilt.values()) builder.dispose();
     this.prebuilt.clear();
     for (const silhouette of this.silhouettes.values()) {

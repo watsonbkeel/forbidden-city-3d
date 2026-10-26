@@ -1,12 +1,18 @@
 # 故宫 3D 虚拟游览
 
-> **版本状态（2026-10-26核对）**：R105为累计验收开发候选，运行功能承接最终R104，不新增模型或通行算法；R97/R98仍为未采纳实验记录。main最后核到R99，部署、CPU验证和实际GPU游玩分别记录，不把候选说成上线。
+> **版本状态（2026-10-26 14:45核对）**：用户已合并并部署R105，main为 `1d264afe`；当前累计开发包含R106低档局部质量和R107有界离区复用，运行release暂保R105，待R110统一大版本验收。开发小版不是独立部署建议，CPU/HTTP不代替GPU实机。
 
 ![Three.js](https://img.shields.io/badge/Three.js-r162-blue)
 ![Vite](https://img.shields.io/badge/Vite-5-purple)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Status](https://img.shields.io/badge/mainline-R99-brightgreen)
+![Status](https://img.shields.io/badge/mainline-R105-brightgreen)
 ![Validation](https://img.shields.io/badge/validation-see_release_records-blue)
+
+## R106–R107：首批性能开发阶段（待 R110 累计验收）
+
+- R106：交泰低档纹理直接256²，承乾窗格低档减密保形；已加载建筑不热重建，重入才应用建筑档位。交泰map即时替换有CPU成本。锡庆低色面试验因收益不可信已撤回。
+- R107：仅短期离区重返复用，最多2个闲置区、32MiB已知资源预算、120秒TTL；启动原全区预建和常驻Garden成本未解决，不承诺无卡顿。合批废构建图漏计已被发现并修正，旧性能/错误计量证据保留，最终数据单列。
+- 见[R106验证](docs/current-state/r106/VALIDATION.md)、[R107验证](docs/current-state/r107/VALIDATION.md)。R110将给单独累计大版本发布说明、准确SHA、条件合并建议与回滚，不需逐小版合并。
 
 ## R105：累计验收（供评审合并 main 的大版本候选）
 
