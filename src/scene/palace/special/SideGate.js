@@ -124,7 +124,9 @@ export function buildSideGate(kit,opts) {
   const roofHeight=g.ridgeAbovePlatform-h-bracketH-3.324*hr;
   const roof=kit.roof(f,{type:'xieshan',width:roofW,depth:roofD,baseY:ph+h,height:roofHeight,layers:1,brackets:true});
   tag(roof,'side-gate-roof');
-  if(opts.plaque!==false)kit.plaque(f,g.name,0,ph+h-.9,-d/2-.29,.8,1.4);
+  // Xiehe only: move the complete plaque clear of the painted beam (engineering fit).
+  const plaqueZ=-d/2-.29-(g.profile==='xiehe'?.07:0);
+  if(opts.plaque!==false)kit.plaque(f,g.name,0,ph+h-.9,plaqueZ,.8,1.4);
   if(g.profile==='xihe')buildXiheCourtyardCorbels(kit,f,g);
   if(g.profile==='xiehe')buildXieheCourtyardKnees(kit,f,g);
   kit.mapRect(f,'gate',opts.name??g.name,w,d,{gateProfile:g.profile,portalCount:3,platformY:ph});
