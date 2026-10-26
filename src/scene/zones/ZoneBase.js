@@ -1,3 +1,4 @@
+import {registerStairInterfaces} from '../../controls/StairInterfaces.js';
 import {buildXiqingGate,xiqingWallGaps} from '../palace/special/XiqingGate.js';
 import {applyChengqianRearSouthWindows} from '../palace/special/ChengqianSouthWindows.js';
 import {buildHongdeCourt} from '../palace/special/HongdeCourt.js';
@@ -128,6 +129,7 @@ export class ZoneBase {
     if (this.zoneJson.yangxinEntranceProfile !== undefined) buildYangxinCourtEntrance(this.kit,this.zoneJson);
 
     buildNightBeds(this.kit,this.zoneJson);
+    registerStairInterfaces(this.kit,this.zoneJson);
 
     // Keep distance levels out of the ordinary recursive material merge.
     const yanxiFrames = detachYanxiRuinFrames(this.kit.root);

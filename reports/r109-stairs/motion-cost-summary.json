@@ -1,0 +1,351 @@
+{
+  "source": [
+    {
+      "root": "/workspace/scratch/02a8023d1a85/r108-character-transition-validation",
+      "commit": "4cd064b70f95ef29ebe3ca49e6b771cd20fe05e0",
+      "hashes": {
+        "src/controls/FurnitureMotion.js": "d0eb81aa18433a75bf716a4e5598f66807d1e697136635ebc74e49a3957e50f2",
+        "src/scene/zones/ZoneBase.js": "76429e9f2d8520ad91827c460092d154b70bfbf63bad5e33ff3b43b8f0e764dc"
+      }
+    },
+    {
+      "root": "/workspace/scratch/02a8023d1a85/r109-stair-body-contact",
+      "commit": "8424e85dc3140b6558978c113f968e1e3fabff38",
+      "hashes": {
+        "src/controls/FurnitureMotion.js": "566a22bfe2c4ab3a7974c74e84078a8282900fb55f644b134eda725171c54697",
+        "src/controls/StairInterfaces.js": "c1cc9b0a57fb4295b352318aa5f32f973d4af5d12f570e47492140cc4d8ba088",
+        "src/scene/zones/ZoneBase.js": "e240120d3eb2ba419c7de483f51314ebb16db4ea175ea1f20032ae65d2179c26"
+      }
+    }
+  ],
+  "scope": "5 alternating same-process warm full-world FirstPerson trajectories, actual gameplay movement; no rendering or full-load measurement",
+  "groups": {
+    "chengqian": {
+      "pairs": [
+        {
+          "round": 0,
+          "baseline": {
+            "p50": 0.024267,
+            "p95": 0.097426,
+            "p99": 0.196555,
+            "max": 3.509387
+          },
+          "candidate": {
+            "p50": 0.031858,
+            "p95": 0.095804,
+            "p99": 0.189945,
+            "max": 2.468505
+          },
+          "poseExact": false,
+          "frames": 900
+        },
+        {
+          "round": 1,
+          "baseline": {
+            "p50": 0.014131,
+            "p95": 0.029184,
+            "p99": 0.089554,
+            "max": 0.971679
+          },
+          "candidate": {
+            "p50": 0.014402,
+            "p95": 0.029575,
+            "p99": 0.058788,
+            "max": 0.275794
+          },
+          "poseExact": false,
+          "frames": 900
+        },
+        {
+          "round": 2,
+          "baseline": {
+            "p50": 0.01319,
+            "p95": 0.025839,
+            "p99": 0.081963,
+            "max": 0.236034
+          },
+          "candidate": {
+            "p50": 0.01321,
+            "p95": 0.034232,
+            "p99": 0.108513,
+            "max": 0.496505
+          },
+          "poseExact": false,
+          "frames": 900
+        },
+        {
+          "round": 3,
+          "baseline": {
+            "p50": 0.012359,
+            "p95": 0.015333,
+            "p99": 0.047492,
+            "max": 0.130205
+          },
+          "candidate": {
+            "p50": 0.012819,
+            "p95": 0.025227,
+            "p99": 0.084487,
+            "max": 0.150666
+          },
+          "poseExact": false,
+          "frames": 900
+        },
+        {
+          "round": 4,
+          "baseline": {
+            "p50": 0.012269,
+            "p95": 0.026991,
+            "p99": 0.125418,
+            "max": 1.176762
+          },
+          "candidate": {
+            "p50": 0.012949,
+            "p95": 0.047572,
+            "p99": 0.116094,
+            "max": 0.405779
+          },
+          "poseExact": false,
+          "frames": 900
+        }
+      ],
+      "median": {
+        "p50": [
+          0.01319,
+          0.01321
+        ],
+        "p95": [
+          0.026991,
+          0.034232
+        ],
+        "p99": [
+          0.089554,
+          0.108513
+        ],
+        "max": [
+          0.971679,
+          0.405779
+        ]
+      },
+      "allPosesExact": false,
+      "candidateMax": 2.468505
+    },
+    "jingfu": {
+      "pairs": [
+        {
+          "round": 0,
+          "baseline": {
+            "p50": 0.019249,
+            "p95": 0.084747,
+            "p99": 0.188723,
+            "max": 5.258942
+          },
+          "candidate": {
+            "p50": 0.021863,
+            "p95": 0.098718,
+            "p99": 0.168342,
+            "max": 1.851028
+          },
+          "poseExact": false,
+          "frames": 900
+        },
+        {
+          "round": 1,
+          "baseline": {
+            "p50": 0.014452,
+            "p95": 0.046751,
+            "p99": 0.106891,
+            "max": 0.372169
+          },
+          "candidate": {
+            "p50": 0.015864,
+            "p95": 0.081572,
+            "p99": 0.150405,
+            "max": 1.030787
+          },
+          "poseExact": false,
+          "frames": 900
+        },
+        {
+          "round": 2,
+          "baseline": {
+            "p50": 0.01301,
+            "p95": 0.040531,
+            "p99": 0.08006,
+            "max": 0.297346
+          },
+          "candidate": {
+            "p50": 0.021643,
+            "p95": 0.084727,
+            "p99": 0.164186,
+            "max": 0.841673
+          },
+          "poseExact": false,
+          "frames": 900
+        },
+        {
+          "round": 3,
+          "baseline": {
+            "p50": 0.013099,
+            "p95": 0.045919,
+            "p99": 0.117696,
+            "max": 0.237206
+          },
+          "candidate": {
+            "p50": 0.020461,
+            "p95": 0.083916,
+            "p99": 0.137216,
+            "max": 0.952389
+          },
+          "poseExact": false,
+          "frames": 900
+        },
+        {
+          "round": 4,
+          "baseline": {
+            "p50": 0.012849,
+            "p95": 0.041593,
+            "p99": 0.098908,
+            "max": 0.250316
+          },
+          "candidate": {
+            "p50": 0.014802,
+            "p95": 0.082153,
+            "p99": 0.140321,
+            "max": 1.097096
+          },
+          "poseExact": false,
+          "frames": 900
+        }
+      ],
+      "median": {
+        "p50": [
+          0.013099,
+          0.020461
+        ],
+        "p95": [
+          0.045919,
+          0.083916
+        ],
+        "p99": [
+          0.106891,
+          0.150405
+        ],
+        "max": [
+          0.297346,
+          1.030787
+        ]
+      },
+      "allPosesExact": false,
+      "candidateMax": 1.851028
+    },
+    "outside": {
+      "pairs": [
+        {
+          "round": 0,
+          "baseline": {
+            "p50": 0.072079,
+            "p95": 0.184406,
+            "p99": 0.329845,
+            "max": 1.231383
+          },
+          "candidate": {
+            "p50": 0.072028,
+            "p95": 0.177286,
+            "p99": 0.327622,
+            "max": 1.373692
+          },
+          "poseExact": true,
+          "frames": 900
+        },
+        {
+          "round": 1,
+          "baseline": {
+            "p50": 0.06702,
+            "p95": 0.134863,
+            "p99": 0.214332,
+            "max": 1.061123
+          },
+          "candidate": {
+            "p50": 0.068182,
+            "p95": 0.151978,
+            "p99": 0.250185,
+            "max": 1.453602
+          },
+          "poseExact": true,
+          "frames": 900
+        },
+        {
+          "round": 2,
+          "baseline": {
+            "p50": 0.066349,
+            "p95": 0.142384,
+            "p99": 0.396435,
+            "max": 2.140372
+          },
+          "candidate": {
+            "p50": 0.065008,
+            "p95": 0.138938,
+            "p99": 0.324257,
+            "max": 1.796215
+          },
+          "poseExact": true,
+          "frames": 900
+        },
+        {
+          "round": 3,
+          "baseline": {
+            "p50": 0.067281,
+            "p95": 0.176185,
+            "p99": 0.335363,
+            "max": 1.517077
+          },
+          "candidate": {
+            "p50": 0.067902,
+            "p95": 0.136365,
+            "p99": 0.320231,
+            "max": 0.928153
+          },
+          "poseExact": true,
+          "frames": 900
+        },
+        {
+          "round": 4,
+          "baseline": {
+            "p50": 0.070766,
+            "p95": 0.181632,
+            "p99": 0.309735,
+            "max": 1.144097
+          },
+          "candidate": {
+            "p50": 0.068663,
+            "p95": 0.180942,
+            "p99": 0.280421,
+            "max": 0.931208
+          },
+          "poseExact": true,
+          "frames": 900
+        }
+      ],
+      "median": {
+        "p50": [
+          0.067281,
+          0.068182
+        ],
+        "p95": [
+          0.176185,
+          0.151978
+        ],
+        "p99": [
+          0.329845,
+          0.320231
+        ],
+        "max": [
+          1.231383,
+          1.373692
+        ]
+      },
+      "allPosesExact": true,
+      "candidateMax": 1.796215
+    }
+  }
+}

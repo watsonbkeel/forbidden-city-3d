@@ -1,0 +1,20 @@
+✔ source-owned stair kind is accepted only for two IDs (1.627163ms)
+✔ full square ramp maximum rather than center, no artificial maxTop cut (1.362624ms)
+✔ real platform top wins at ramp junction; floor retained when NPC blocks pose (0.982454ms)
+✔ ramp ascent lifts exact feet and checks source low beam, never airborne autostep (0.961614ms)
+✔ real gravity lands on existing ramp witness, not on NPC or a cut plane (0.61302ms)
+✔ airborne horizontal ascent cannot cross downward through the engineering ramp, though below-sheet initial poses are not closed solids (0.258008ms)
+✔ wide platform front edge stays in full-body scope through lateral movement and input release (26.116846ms)
+✔ held navigation follows exact ramp copy, source translation, same-count update and unload (8.716181ms)
+✔ invalid ramp update atomically retains prior generation and rejects tapered surface (0.50635ms)
+✔ complete square support ends at side contact not at center edge; no phantom ramp outside (0.313921ms)
+✔ thin post between clear endpoints blocks the complete translate segment (0.86583ms)
+✔ dynamic actor stops descent without becoming floor; removing actor next call restores ramp landing (1.357437ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 163.795427

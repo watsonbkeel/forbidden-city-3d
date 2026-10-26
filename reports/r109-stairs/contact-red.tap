@@ -1,0 +1,127 @@
+✖ source-owned stair kind is accepted only for two IDs (1.53964ms)
+✖ full square ramp maximum rather than center, no artificial maxTop cut (1.117346ms)
+✖ real platform top wins at ramp junction; floor retained when NPC blocks pose (1.237557ms)
+✖ ramp ascent lifts exact feet and checks source low beam, never airborne autostep (0.638749ms)
+✖ real gravity lands on existing ramp witness, not on NPC or a cut plane (0.693001ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 0
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 128.364056
+
+✖ failing tests:
+
+test at tests/r109-stair-contact.test.mjs:5:1
+✖ source-owned stair kind is accepted only for two IDs (1.53964ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "Furniture scope requires finite ordered ordinary-box ownership"
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r109-stair-body-contact/tests/r109-stair-contact.test.mjs:5:256)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: Furniture scope requires finite ordered ordinary-box ownership
+        at Module.cloneFurnitureMotionScope (file:///workspace/scratch/02a8023d1a85/r109-stair-body-contact/src/controls/FurnitureMotion.js:55:419)
+        at file:///workspace/scratch/02a8023d1a85/r109-stair-body-contact/tests/r109-stair-contact.test.mjs:5:277
+        at getActual (node:assert:611:5)
+        at strict.doesNotThrow (node:assert:779:32)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r109-stair-body-contact/tests/r109-stair-contact.test.mjs:5:256)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.start (node:internal/test_runner/test:1242:17)
+        at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at tests/r109-stair-contact.test.mjs:6:1
+✖ full square ramp maximum rather than center, no artificial maxTop cut (1.117346ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 0.5
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r109-stair-body-contact/tests/r109-stair-contact.test.mjs:6:103)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 0.5,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r109-stair-contact.test.mjs:7:1
+✖ real platform top wins at ramp junction; floor retained when NPC blocks pose (1.237557ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 0.5
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r109-stair-body-contact/tests/r109-stair-contact.test.mjs:7:317)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 0.5,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r109-stair-contact.test.mjs:8:1
+✖ ramp ascent lifts exact feet and checks source low beam, never airborne autostep (0.638749ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0.25 !== 0.35
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r109-stair-body-contact/tests/r109-stair-contact.test.mjs:8:268)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0.25,
+    expected: 0.35,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r109-stair-contact.test.mjs:9:1
+✖ real gravity lands on existing ramp witness, not on NPC or a cut plane (0.693001ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 0.2599999999999999
+  - 0.5
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r109-stair-body-contact/tests/r109-stair-contact.test.mjs:9:218)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0.2599999999999999,
+    expected: 0.5,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
