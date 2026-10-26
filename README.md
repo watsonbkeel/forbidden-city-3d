@@ -8,6 +8,10 @@
 ![Status](https://img.shields.io/badge/mainline-R105-brightgreen)
 ![Validation](https://img.shields.io/badge/validation-see_release_records-blue)
 
+## R111：山体形体方法验证记录（未采纳，整组未完成）
+
+一次低面负X平台候选虽改变近景，但仍像三角支挡板，writer/独审一致拒绝；运行与构建输入精确恢复R110，不建议为此切换版本。五组后侧/平台/路线承托欠项全部保留，未把单面或编号算整山完成。[负结果与完整剩余账](docs/current-state/r111/EXPERIMENT-RESULT.md)。
+
 ## R110：供用户一次合并 main 的累计大版本候选
 
 **先读[单独大版本发布说明](docs/current-state/r110/MAJOR-RELEASE.md)**，再核最终远端SHA与目标设备体验；不需要逐个合并R106–R109。
