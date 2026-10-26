@@ -1,0 +1,4 @@
+import fs from'node:fs';import{pathToFileURL}from'node:url';import path from'node:path';
+const roots=[path.resolve(process.argv[2]??'../r101-xiehe-plaque-interface'),process.cwd()];const mods=await Promise.all(roots.map(async r=>(await import(pathToFileURL(r+'/tests/lib/r54-jiaotai-fragment.mjs')))));
+function run(i){const t=process.hrtime.bigint(),h=mods[i].hallFragment();h.builder.ownedObjects.add(h.group);h.builder.dispose();return Number(process.hrtime.bigint()-t)/1e6;}
+for(let i=0;i<2;i++){run(0);run(1);}const rows=[];for(let i=0;i<5;i++){const samples=[[],[]],order=i%2?[1,0]:[0,1];for(const k of order)for(let n=0;n<10;n++)samples[k].push(run(k));rows.push({order,samples});}console.log(JSON.stringify({scope:'same-process warm local Jiaotai fragment construct + dispose CPU; not fullworld/GPU',rows},null,2));

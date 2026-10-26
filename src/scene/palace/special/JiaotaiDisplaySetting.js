@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import {buildJiaotaiBackdrop} from './JiaotaiCentralInterior.js';
+import {installJiaotaiTextileMaps,jiaotaiClothUV} from './JiaotaiTextileSurfaces.js';
 
 /** The official photographs show a present-day display, not an inventory of
  * original seals. These reversible dimensions fit the inherited 19 m shell.
@@ -39,7 +40,9 @@ export function buildJiaotaiDisplaySetting(builder,shell,{x0,y,ztb0,ztb1,thW}) {
     replacement:{call:'SquareHalls/Jiaotai/throneArea',removed:['legacy-double-platform-and-three-stairs','legacy-gold-block-chair','legacy-paired-bronze-tripods','legacy-tall-furniture-collider'],retained:'R28 upper fields/plaque/beam exact; only red screen and two side-frame lower vertices extended to the fitted rear floor' }};
   shell.userData.structure.displaySetting=record;
   const mats=Object.fromEntries(Object.entries(PALETTE).map(([id,p])=>[id,builder.ownMat(`r54-jiaotai-${id}`,{name:`r54-jiaotai-${id}`,...p})]));
+  installJiaotaiTextileMaps(mats);
   function add(id,geo,material,x,cy,z,{solid=false}={}) {
+    if(material==='textile')jiaotaiClothUV(geo);
     const m=new THREE.Mesh(geo,mats[material]);m.name=`r54-jiaotai-${id}`;
     m.userData.jiaotaiDisplayId=m.name;m.position.set(x0+x,y+cy,z0+z);
     m.castShadow=true;m.receiveShadow=true;shell.add(m);

@@ -1,0 +1,35 @@
+✔ R102 actual 26 cloth faces and one rug bind two real bounded patterned textures (110.087157ms)
+✔ R102 geometric body, physical registration and all non-target surfaces stay exact (93.357208ms)
+✔ R102 maps share within builder, regenerate identically and dispose once on every unload (97.879876ms)
+✖ R102 no positive-area target triangle loses its two-dimensional UV footprint (32.637165ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 510.530214
+
+✖ failing tests:
+
+test at tests/r102-jiaotai-textiles.test.mjs:6:1
+✖ R102 no positive-area target triangle loses its two-dimensional UV footprint (32.637165ms)
+  AssertionError [ERR_ASSERTION]: r54-jiaotai-west-cover-sample-1-visible-tip tri 2
+      at file:///workspace/scratch/02a8023d1a85/r102-jiaotai-textile-surfaces/tests/r102-jiaotai-textiles.test.mjs:6:645
+      at Mesh.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7600:3)
+      at Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)
+      at Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r102-jiaotai-textile-surfaces/tests/r102-jiaotai-textiles.test.mjs:6:121)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 0,
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }
