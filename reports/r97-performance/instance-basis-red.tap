@@ -1,0 +1,95 @@
+✔ static second frame performs no matrix upload or bounds recompute while animation/fade/time still update (13.713327ms)
+✔ all slot/count/pose/retained transitions stay byte/value exact with frozen R96 (28.414127ms)
+✖ in-place positions, signed zero and renderer basis changes retain exact old matrices (7.322012ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 179.156965
+
+✖ failing tests:
+
+test at tests/r97-performance/instance-transform-dirty.test.mjs:6:1
+✖ in-place positions, signed zero and renderer basis changes retain exact old matrices (7.322012ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      batches: [
+        {
+          anim: [
+            0.20000000298023224,
+  ...
+            max: [
+  +           0.4685527801513672,
+  +           1.9130000591278076,
+  +           -9.68778741657734
+  -           0.5154080693376727,
+  -           2.2956001621723203,
+  -           -9.7290087228945
+            ],
+            min: [
+  +           -0.4685527801513672,
+  +           -0.2,
+  +           -10.466927793622016
+  -           -0.5154080693376727,
+  -           -0.24000000953674316,
+  -           -10.430235043658557
+            ]
+          },
+          count: 1,
+          key: 'maid-daily|standing|2|west-six|standard',
+          matrix: [
+  +         1,
+  -         1.100000023841858,
+            0,
+            0,
+            0,
+            0,
+  +         1,
+  -         1.2000000476837158,
+            0,
+            0,
+            0,
+            0,
+  +         1,
+  -         0.8999999761581421,
+            0,
+            -0,
+            0,
+            -10.100000381469727,
+            1,
+  ...
+              0,
+  +           0.8565000295639038,
+  +           -10.077357605099678
+  -           1.0278000763177886,
+  -           -10.079621883276529
+            ],
+  +         radius: 1.074413612604233
+  -         radius: 1.289296386357113
+          },
+          visibility: [
+            1,
+            1,
+            1,
+  
+      at render (file:///workspace/scratch/02a8023d1a85/r97-remaining-performance/tests/r97-performance/instance-transform-dirty.test.mjs:6:385)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r97-remaining-performance/tests/r97-performance/instance-transform-dirty.test.mjs:6:559)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { last: { visible: 1, near: 0, renderCopies: 1, batches: 1, residentBatches: 1, trianglesEstimate: 466 }, submitted: [ [Object] ], time: 2, pool: { entries: 1, geometries: 1, references: 1, geometryBytes: 19416, textureBytes: 0 }, batches: [ [Object] ] },
+    expected: { last: { visible: 1, near: 0, renderCopies: 1, batches: 1, residentBatches: 1, trianglesEstimate: 466 }, submitted: [ [Object] ], time: 2, pool: { entries: 1, geometries: 1, references: 1, geometryBytes: 19416, textureBytes: 0 }, batches: [ [Object] ] },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

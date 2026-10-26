@@ -500,3 +500,9 @@ MIT License，详见 [LICENSE](./LICENSE)。
 
 逐对象照片复核的唯一进度入口为 `docs/photo-fidelity/QUEUE.json`。它是透明无损 gzip 分片的版本化索引，不是运行时数据；使用 `python -B scripts/photo-fidelity/queue.py stats` 读取，勿直接解析或编辑索引作为任务对象。读写、导出及回滚说明见 [队列存储](docs/photo-fidelity/QUEUE-STORAGE.md)，当前续作入口见 [RESUME](docs/photo-fidelity/RESUME.md)。
 
+
+## R97 性能验证记录：未采纳运行优化
+
+已评估帧级相机/视锥复用、未变人物矩阵/包围盒跳更新、堆秀山外脚行缓存。虽然减少了内部调用且修后等价检查通过，实际储秀人物首显/整帧CPU没有可信收益，部分回退；Garden配对收益也小于噪声。因此恢复全部运行源码为已交付R96，运行版本仍R96，不宣称R97加速或解决Garden约+182ms重建成本。R97仅为可回滚的验证记录/测试提交，不需要重建或部署同一运行树。
+
+完整正反证据及下一步边界见 [R97实验结论](docs/current-state/r97/EXPERIMENT-RESULT.md)。后续R98限定形体工作不继承这些未采纳运行实验。

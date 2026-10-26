@@ -1,0 +1,91 @@
+✔ static second frame performs no matrix upload or bounds recompute while animation/fade/time still update (13.260161ms)
+✔ all slot/count/pose/retained transitions stay byte/value exact with frozen R96 (26.190927ms)
+✔ in-place positions, signed zero and renderer basis changes retain exact old matrices (3.521775ms)
+✖ a slot returning after count shrink and basis change cannot reuse its pre-change matrix (9.117383ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 178.650308
+
+✖ failing tests:
+
+test at tests/r97-performance/instance-transform-dirty.test.mjs:7:1
+✖ a slot returning after count shrink and basis change cannot reuse its pre-change matrix (9.117383ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      batches: [
+        {
+          anim: [
+            0.20000000298023224,
+  ...
+            max: [
+  +           101.46855278015137,
+  -           101.51540806933767,
+              2.2956001621723203,
+  +           431.4122129648924
+  -           431.37099165857524
+            ],
+            min: [
+              99.48459193066233,
+              -0.24000000953674316,
+              429.66976533781116
+  ...
+            1,
+  +         1,
+  -         1.100000023841858,
+            0,
+            0,
+            0,
+            0,
+  +         1,
+  -         1.2000000476837158,
+            0,
+            0,
+            0,
+            0,
+  +         1,
+  -         0.8999999761581421,
+            0,
+            101,
+            0,
+            431,
+            1,
+  ...
+            center: [
+  +           100.42466284398407,
+  +           0.9550553112886815,
+  +           430.4460028969874
+  -           100.5,
+  -           1.0278000763177886,
+  -           430.5203784981932
+            ],
+  +         radius: 1.8949253658063272
+  -         radius: 1.9964031675436638
+          },
+          visibility: [
+            1,
+            1,
+            1,
+  
+      at frame (file:///workspace/scratch/02a8023d1a85/r97-remaining-performance/tests/r97-performance/instance-transform-dirty.test.mjs:7:348)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r97-remaining-performance/tests/r97-performance/instance-transform-dirty.test.mjs:7:451)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { last: { visible: 2, near: 0, renderCopies: 2, batches: 1, residentBatches: 1, trianglesEstimate: 932 }, submitted: [ [Object], [Object] ], time: 3, pool: { entries: 1, geometries: 1, references: 1, geometryBytes: 19416, textureBytes: 0 }, batches: [ [Object] ] },
+    expected: { last: { visible: 2, near: 0, renderCopies: 2, batches: 1, residentBatches: 1, trianglesEstimate: 932 }, submitted: [ [Object], [Object] ], time: 3, pool: { entries: 1, geometries: 1, references: 1, geometryBytes: 19416, textureBytes: 0 }, batches: [ [Object] ] },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

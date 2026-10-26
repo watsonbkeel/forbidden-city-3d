@@ -1,0 +1,48 @@
+✔ 64 same-template characters use one real InstancedMesh and distinct matrices (8.89546ms)
+✔ raycast does not intercept place and treasure clicks (2.875365ms)
+✔ 20 render/clear cycles remove all instances, preserve finite cache, release references (4.234656ms)
+✔ LOD and zone changes replace batches without duplicate render copies (0.753461ms)
+✔ shader injects matching position and normal deformation and shared time (0.73911ms)
+✔ seated support variant is part of the actual batch geometry key (22.100618ms)
+✔ night visibility uses opaque dither coverage instead of transparent sorting or global time (0.587922ms)
+✔ demand renderer never synchronously authors a missing resource, then submits prepared actual instances (33.168149ms)
+✔ a prepared coarse same-pose resource stays visible while requested detailed LOD prepares (4.177329ms)
+✔ first binding preparation does not build sleeping/walking/high-detail variants for standing maid (6.275177ms)
+✔ status counts actual renderer submissions rather than selected but preparing actors (2.050477ms)
+✔ failed on-demand geometry preparation remains visible as a system failure and disables safely (3.147239ms)
+✔ near actor waiting for its exact pose geometry is not an invisible dynamic blocker (23.345677ms)
+✔ pure authored contact metrics exactly match every original R95 template pose seat and LOD without building a model (3.027284ms)
+✔ pure contact identity rejects unrelated seat poses and invented variants (0.265899ms)
+✔ all existing geometry attributes indices and metadata remain exact to frozen R95 source fixture (463.356482ms)
+✔ near unresolved person precedes peripheral prewarm and visible refinement, not first coarse model (1.6191ms)
+✔ successful near metadata yields before starting another long job, so Promise consumers can queue coarse first (1.194212ms)
+✔ pending metadata does not yield the frame or starve another available job (0.194902ms)
+✔ ready handoff may defer one oldest turn but repays it immediately after urgent coarse (0.335563ms)
+✔ ground distance latches are independent of resource completion and frustum (1.128354ms)
+✔ first interest beyond40 but within60 prewarms without drawing and uses actual position not an anchor (0.234381ms)
+✔ flight uses aircraft XZ rather than altitude or offset camera and has display exit hysteresis (0.138678ms)
+✔ teleport or dismount immediately recomputes interest while preserving caller logical records (0.856486ms)
+✔ hidden but resident batch retains one lease and zero actual submissions until final exit (23.142152ms)
+✔ same actor resident with a new pose cannot pin obsolete pose or quality resources (42.417855ms)
+✔ two zones hold independent batch leases to one immutable shared geometry (1.757648ms)
+✔ cancelling one model key returns its partial generator without cancelling logical jobs (0.598488ms)
+✔ streaming status separates logical positions from nearby prepared models and actual visible actors (11.120144ms)
+✔ distant logical bindings resolve without generating any character models (29.909939ms)
+✔ resident key users are complete before cancellation: one leaving user cannot kill another (2.801424ms)
+✔ pose change releases obsolete model interest while retaining only exact new pose and valid detail (1.753798ms)
+✔ camera teleport activates current near models without resetting logical bindings or synchronously acquiring missing geometry (184.415977ms)
+✔ static second frame performs no matrix upload or bounds recompute while animation/fade/time still update (16.294315ms)
+✔ all slot/count/pose/retained transitions stay byte/value exact with frozen R96 (26.167232ms)
+✔ in-place positions, signed zero and renderer basis changes retain exact old matrices (4.246153ms)
+✔ a slot returning after count shrink and basis change cannot reuse its pre-change matrix (3.202657ms)
+✔ manager makes one projection frustum per nonempty frame and zero for no display-interest actor (6.178242ms)
+✔ frame snapshot projection exactly equals frozen R96 for cameras, poses, boundaries and refresh (39.792846ms)
+✔ two interleaved managers retain independent scratch state and exact selected IDs (2.357669ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 40
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 595.148615
