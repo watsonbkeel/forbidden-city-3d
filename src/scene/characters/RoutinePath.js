@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import {PLAYER} from '../../config/constants.js';
 import {CollisionManager} from '../../utils/Collision.js';
-export function staticRoutineNavigation(source){const cm=new CollisionManager();cm.colliders=source.colliders;cm.walkables=source.walkables;cm.rivers=source.rivers;cm.moats=source.moats;cm._grid=source._grid;return cm;}
+export function staticRoutineNavigation(source){const cm=new CollisionManager();cm.colliders=source.colliders;cm.walkables=source.walkables;cm.rivers=source.rivers;cm.moats=source.moats;cm._grid=source._duixiuGrid();cm.duixiuTerrainSource=source;return cm;}
 /** Bounded incremental A* over actual static controller navigation. No rays
  * through walls, fixed-height guesses or teleport fallback. One caller advances
  * a few yields per frame; failure preserves the character's current position. */
@@ -9,9 +9,9 @@ export function* findRoutinePath(cm,start,target,{step=.65,maxNodes=30000,margin
  const clearSegment=(a,b)=>{
   const eye=new THREE.Vector3(a[0],a[1]+PLAYER.HEIGHT,a[2]);
   const goal=new THREE.Vector3(b[0],a[1]+PLAYER.HEIGHT,b[2]);
-  const result=cm.getValidPosition(eye,goal,radius,a[1],PLAYER.STEP_UP,a[1]);
+  const result=cm.getValidPosition(eye,goal,radius,a[1],PLAYER.STEP_UP,a[1],{kind:'kinematic',airborne:false});
   if(Math.hypot(result.x-b[0],result.z-b[2])>.015)return null;
-  const floor=Math.max(cm.getGroundHeight(result.x,result.z,a[1],PLAYER.STEP_UP),cm.supportHeight(result.x,result.z,a[1]+PLAYER.STEP_UP,radius));
+  const floor=Math.max(cm.getGroundHeight(result.x,result.z,a[1],PLAYER.STEP_UP,radius),cm.supportHeight(result.x,result.z,a[1]+PLAYER.STEP_UP,radius));
   if(Math.abs(floor-a[1])>PLAYER.STEP_UP+.001)return null;
   result.y=floor+PLAYER.HEIGHT;const p=[result.x,floor,result.z];
   return cm.checkCollision(result,radius)?null:p;

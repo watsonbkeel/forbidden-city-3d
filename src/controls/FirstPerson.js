@@ -445,11 +445,16 @@ export class FirstPersonControls {
         0.5,
         air ? (this.groundY ?? 0) : baseFeet,
         PLAYER.STEP_UP ?? 0.6,
-        (air || this.onSupport) ? this.feetY : null
+        (air || this.onSupport) ? this.feetY : null,
+        {kind:'player',airborne:air}
       );
       this._trackedGround = this.collisionManager.lastGroundY ?? null;
       
       this.camera.position.copy(validPosition);
+      if(!air && this.collisionManager.lastDuixiuStepFeet != null) {
+        this.feetY=this.collisionManager.lastDuixiuStepFeet;
+        this.groundY=this.feetY;this.verticalVelocity=0;this.onSupport=true;
+      }
       
       // 碰撞修正后的实际水平速度
       if (delta > 0) {
@@ -474,6 +479,13 @@ export class FirstPersonControls {
    * 脚面高度跟随地面：上台阶/上坡平滑抬升；地面降低时按重力下落（走下台阶、从台基边缘下来）
    */
   updateGround(delta) {
+    const terrain=this.collisionManager.resolveDuixiuVertical?.({x:this.camera.position.x,z:this.camera.position.z,feetY:this.feetY,groundY:this.groundY,airborne:this.airborne,verticalVelocity:this.verticalVelocity},delta,.5);
+    if(terrain) {
+      this.feetY=terrain.feetY;this.groundY=terrain.groundY;this.airborne=terrain.airborne;
+      this.verticalVelocity=terrain.verticalVelocity;this.onSupport=terrain.onSupport;
+      if(terrain.landed)this._landed=true;
+      return;
+    }
     // 以"逻辑地面"（上一帧所站的面）为基准查询，避免上长楼梯时镜头平滑滞后超过可迈高度而误判掉落
     const base = Math.max(this.feetY, this.groundY ?? 0);
     // 本帧移动过：用移动过程中逐小步追踪得到的地面；否则在原地查询

@@ -51,7 +51,7 @@ export class DailyRoutine {
   const current=this.current(state),start=current.position,nav=this.nav;
   for(const [dx,dz]of [[1.2,0],[-1.2,0],[0,1.2],[0,-1.2],[.85,.85],[-.85,-.85]]){
    const eye=new THREE.Vector3(start[0],start[1]+PLAYER.HEIGHT,start[2]),target=eye.clone().add(new THREE.Vector3(dx,0,dz));
-   const p=nav.getValidPosition(eye,target,.36,start[1]);if(Math.hypot(p.x-target.x,p.z-target.z)>.02||Math.abs(p.y-PLAYER.HEIGHT-start[1])>.15)continue;
+   const p=nav.getValidPosition(eye,target,.36,start[1],PLAYER.STEP_UP,null,{kind:'kinematic',airborne:false});if(Math.hypot(p.x-target.x,p.z-target.z)>.02||Math.abs(p.y-PLAYER.HEIGHT-start[1])>.15)continue;
    state.dayActor=state.actor;state.routine={kind:'duty',phase:'duty',points:[[...start],[p.x,p.y-PLAYER.HEIGHT,p.z]],index:1,originalBinding:state.binding,originalPatrol:null,daySample:current};state.routineSample=sample(start,current.rotationYRad);return;
   }
  }
@@ -79,8 +79,8 @@ export class DailyRoutine {
    const previousEye=new THREE.Vector3(old.position[0],old.position[1]+PLAYER.HEIGHT,old.position[2]);
    const goal=new THREE.Vector3(proposed.position[0],previousEye.y,proposed.position[2]);
    const support=this.nav.supportHeight(goal.x,goal.z,old.position[1]+PLAYER.STEP_UP,radius);
-   const eye=this.nav.getValidPosition(previousEye,goal,radius,old.position[1],PLAYER.STEP_UP,Math.max(old.position[1],support));
-   const floor=Math.max(this.nav.getGroundHeight(eye.x,eye.z,old.position[1],PLAYER.STEP_UP),this.nav.supportHeight(eye.x,eye.z,old.position[1]+PLAYER.STEP_UP,radius));
+   const eye=this.nav.getValidPosition(previousEye,goal,radius,old.position[1],PLAYER.STEP_UP,Math.max(old.position[1],support),{kind:'kinematic',airborne:false});
+   const floor=Math.max(this.nav.getGroundHeight(eye.x,eye.z,old.position[1],PLAYER.STEP_UP,radius),this.nav.supportHeight(eye.x,eye.z,old.position[1]+PLAYER.STEP_UP,radius));
    eye.y=floor+PLAYER.HEIGHT;proposed.position=[eye.x,floor,eye.z];
    const travelled=Math.hypot(eye.x-old.position[0],eye.z-old.position[2]);
    const blocked=travelled<.0001||floor-old.position[1]>PLAYER.STEP_UP+.001||
@@ -128,9 +128,9 @@ export class DailyRoutine {
    const previousEye=new THREE.Vector3(old.position[0],old.position[1]+PLAYER.HEIGHT,old.position[2]);
    const goal=new THREE.Vector3(proposed.position[0],previousEye.y,proposed.position[2]);
    const stepFloor=Math.max(old.position[1],this.nav.supportHeight(goal.x,goal.z,old.position[1]+PLAYER.STEP_UP,radius));
-   const eye=this.nav.getValidPosition(previousEye,goal,radius,old.position[1],PLAYER.STEP_UP,stepFloor);
+   const eye=this.nav.getValidPosition(previousEye,goal,radius,old.position[1],PLAYER.STEP_UP,stepFloor,{kind:'kinematic',airborne:false});
    if(d>.001&&Math.hypot(eye.x-old.position[0],eye.z-old.position[2])<.0001){this.stats.waiting++;continue;}
-   let floor=Math.max(this.nav.getGroundHeight(eye.x,eye.z,old.position[1],PLAYER.STEP_UP),this.nav.supportHeight(eye.x,eye.z,old.position[1]+PLAYER.STEP_UP,radius));
+   let floor=Math.max(this.nav.getGroundHeight(eye.x,eye.z,old.position[1],PLAYER.STEP_UP,radius),this.nav.supportHeight(eye.x,eye.z,old.position[1]+PLAYER.STEP_UP,radius));
    if(floor-old.position[1]>PLAYER.STEP_UP+.001){this.stats.waiting++;continue;}
    floor=Math.max(floor,old.position[1]-3*dt);
    eye.y=floor+PLAYER.HEIGHT;proposed.position=[eye.x,floor,eye.z];

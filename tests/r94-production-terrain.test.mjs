@@ -1,0 +1,11 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import crypto from 'node:crypto';
+import * as THREE from 'three';
+import {GardenBuilder} from '../src/scene/GardenBuilder.js';
+import {OuterRockGardenBuilder} from './lib/r91-outer-rock-garden-fixture.mjs';
+import {gardenLibrary} from './lib/r48-garden-fixture.mjs';
+import {PALACE_LAYOUT} from '../src/scene/Layout.js';
+const geometryHash=g=>{const h=crypto.createHash('sha256');for(const n of Object.keys(g.attributes).sort()){h.update(n);h.update(new Uint8Array(g.attributes[n].array.buffer));}if(g.index)h.update(new Uint8Array(g.index.array.buffer));return h.digest('hex');};
+const collider=c=>({box:[...c.min.toArray(),...c.max.toArray()],terrain:c.duixiuTerrain,overhead:c.overhead,shape:c.triangleSupport?{id:c.triangleSupport.id,offset:c.triangleSupport.offset,triangles:c.triangleSupport.template.triangles.map(q=>[q.triangle.a.toArray(),q.triangle.b.toArray(),q.triangle.c.toArray()])}:null});
+test('R94 production Garden equals frozen independently reviewed replacement, including other objects and supports',()=>{const a=new GardenBuilder(new THREE.Scene(),gardenLibrary()),b=new OuterRockGardenBuilder(new THREE.Scene(),gardenLibrary());try{const layout=PALACE_LAYOUT.find(x=>x.type==='garden');a.build(layout);b.build(layout);assert.ok(a.group.userData.duixiuProfile.outerRock,'production must enable reviewed natural geometry');const meshes=q=>{q.group.updateMatrixWorld(true);const list=[];q.group.traverse(m=>{if(m.isMesh)list.push({name:m.name,geometry:geometryHash(m.geometry),matrix:m.matrix.toArray(),position:m.position.toArray(),quaternion:m.quaternion.toArray(),scale:m.scale.toArray(),world:m.matrixWorld.toArray()});});return list;};assert.deepEqual(meshes(a),meshes(b));assert.deepEqual(a.colliders.map(collider),b.colliders.map(collider));assert.deepEqual(a.walkables,b.walkables);assert.ok(a.colliders.some(c=>c.duixiuTerrain));}finally{a.dispose();b.dispose();}});

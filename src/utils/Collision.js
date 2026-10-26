@@ -1,3 +1,5 @@
+import {duixiuScope,duixiuContact,duixiuTryStep,resolveDuixiuVertical} from '../scene/garden/DuixiuMotion.js';
+import {DuixiuTerrainIndex} from '../scene/garden/DuixiuTerrain.js';
 import {triangleInstance, triangleFootContact, triangleBodyIntersects, triangleBodySweptIntersects, triangleBodySweepFraction} from './TriangleSupport.js';
 import { canCrossOuterMoat, canTraverseOuterMoat } from '../scene/palace/special/OuterMoat.js';
 import * as THREE from 'three';
@@ -39,14 +41,27 @@ export class CollisionManager {
     const box = object.isBox3 ? object.clone() : new THREE.Box3().setFromObject(object);
     const overhead = object.overhead === undefined ? null : cloneOverheadShape(object.overhead, box);
     const input = object.triangleSupport;
+    if (object.duixiuTerrain && !input) throw new TypeError('Duixiu terrain requires exact triangle ownership');
     const triangleSupport = input ? triangleInstance(input.template, input.offset.toArray(), input.id) : null;
     if (triangleSupport && (overhead || !box.equals(triangleSupport.box))) throw new TypeError('Triangle collider requires exact owned bounds');
-    if (triangleSupport && this.colliders.some(c => c.triangleSupport?.id === triangleSupport.id)) throw new TypeError('Duplicate triangle owner');
-    if (!box.isEmpty()) this.colliders.push({ mesh: object, box, tag, ...(overhead ? {overhead} : {}), ...(triangleSupport ? {triangleSupport} : {}) });
+    if (triangleSupport && (object.duixiuTerrain === true && this._duixiuBatchIds
+      ? this._duixiuBatchIds.has(triangleSupport.id)
+      : this.colliders.some(c => c.triangleSupport?.id === triangleSupport.id))) throw new TypeError('Duplicate triangle owner');
+    if (!box.isEmpty()) this.colliders.push({ mesh: object, box, tag, ...(overhead ? {overhead} : {}), ...(triangleSupport ? {triangleSupport} : {}), ...(object.duixiuTerrain === true ? {duixiuTerrain:true} : {}) });
+    if (!box.isEmpty() && triangleSupport && this._duixiuBatchIds) this._duixiuBatchIds.add(triangleSupport.id);
   }
 
   addColliders(objects, tag) {
-    objects.forEach(object => this.addCollider(object, tag));
+    if (!objects.some(object => object.duixiuTerrain === true)) {
+      objects.forEach(object => this.addCollider(object, tag));
+      return;
+    }
+    // Explicit terrain batches keep all per-object validation but avoid O(N²)
+    // duplicate scans during streamed zone registration. Never a persistent cache.
+    const previous=this._duixiuBatchIds;
+    this._duixiuBatchIds=new Set(this.colliders.filter(c=>c.triangleSupport).map(c=>c.triangleSupport.id));
+    try { objects.forEach(object => this.addCollider(object, tag)); }
+    finally { if(previous===undefined)delete this._duixiuBatchIds;else this._duixiuBatchIds=previous; }
   }
 
   addWalkable(walkable, tag) {
@@ -100,7 +115,7 @@ export class CollisionManager {
    * 脚点 (x, z) 处的地面高度：取所有覆盖该点、且顶面不高于 feetY + stepUp 的可行走面中最高者；
    * 没有任何可行走面时为地面 0。
    */
-  getGroundHeight(x, z, feetY = 0, stepUp = 0.6) {
+  getGroundHeight(x, z, feetY = 0, stepUp = 0.6, radius = .5) {
     let ground = 0;
     let rescue = 0;
     const limit = feetY + stepUp;
@@ -133,7 +148,9 @@ export class CollisionManager {
       if (top > limit || top <= ground) continue;
       ground = top;
     }
-    return Math.max(ground, rescue, this.supportContact(x,z,limit)?.height ?? -Infinity);
+    const p = new THREE.Vector3(x,0,z);
+    const terrain = duixiuScope(this,p,p,radius) ? duixiuContact(this,x,z,limit,radius) : null;
+    return Math.max(ground, rescue, this.supportContact(x,z,limit)?.height ?? -Infinity, terrain?.poseClear ? terrain.surface.height : -Infinity);
   }
 
   setDynamicBodies(owner, bodies) {
@@ -248,6 +265,7 @@ export class CollisionManager {
     const CELL = 8;
     const grid = new Map();
     for (const c of this.colliders) {
+      if (c.duixiuTerrain) continue;
       const b = c.box;
       const i0 = Math.floor(b.min.x / CELL), i1 = Math.floor(b.max.x / CELL);
       const k0 = Math.floor(b.min.z / CELL), k1 = Math.floor(b.max.z / CELL);
@@ -258,7 +276,9 @@ export class CollisionManager {
         list.push(c);
       }
     }
-    this._grid = { CELL, grid, count: this.colliders.length };
+    this._grid = { CELL, grid, count: this.colliders.length,
+      terrainIndex: new DuixiuTerrainIndex(this.colliders.filter(c => c.duixiuTerrain)),
+      order: new Map(this.colliders.map((c,i) => [c,i])) };
   }
 
   /** 返回与 box 的 XZ 投影可能相交的碰撞体（去重） */
@@ -267,10 +287,13 @@ export class CollisionManager {
     const { CELL, grid } = this._grid;
     const i0 = Math.floor(box.min.x / CELL), i1 = Math.floor(box.max.x / CELL);
     const k0 = Math.floor(box.min.z / CELL), k1 = Math.floor(box.max.z / CELL);
-    if (i0 === i1 && k0 === k1) return grid.get(i0 * 100003 + k0) ?? [];
+    const terrainGrid=this._duixiuGrid(),terrain = terrainGrid.terrainIndex.query(box);
+    const order=c=>terrainGrid.order.get(c)??this._grid.order.get(c);
+    const merge = original => terrain.length ? [...original,...terrain].sort((a,b) => order(a)-order(b)) : original;
+    if (i0 === i1 && k0 === k1) return merge(grid.get(i0 * 100003 + k0) ?? []);
     const out = new Set();
     for (let i = i0; i <= i1; i++) for (let k = k0; k <= k1; k++) grid.get(i * 100003 + k)?.forEach(c => out.add(c));
-    return [...out];
+    return merge([...out]);
   }
 
   /**
@@ -280,7 +303,7 @@ export class CollisionManager {
   supportContact(x, z, maxTop, r = 0.3) {
     const box = new THREE.Box3(new THREE.Vector3(x-r,-1e3,z-r),new THREE.Vector3(x+r,1e3,z+r));
     let best = null;
-    for (const c of this.queryBox(box)) if (c.triangleSupport) {
+    for (const c of this.queryBox(box)) if (c.triangleSupport && !c.duixiuTerrain) {
       const hit = triangleFootContact(c.triangleSupport,x,z,r,1e6);
       if (hit && (!best || hit.height > best.height)) best = hit;
     }
@@ -325,7 +348,8 @@ export class CollisionManager {
    * 继续以地面高度从楼梯口钻进台基内部（表现为走到楼梯顶突然掉到台基下面）。
    * 结果的地面高度写入 this.lastGroundY。
    */
-  getValidPosition(currentPosition, targetPosition, radius = DEFAULT_PLAYER_RADIUS, feetY = null, stepUp = PLAYER.STEP_UP ?? 0.6, airFeet = null) {
+  getValidPosition(currentPosition, targetPosition, radius = DEFAULT_PLAYER_RADIUS, feetY = null, stepUp = PLAYER.STEP_UP ?? 0.6, airFeet = null, motion = null) {
+    this.lastDuixiuStepFeet = null;
     // airFeet：空中（跳跃/下落）时的实际脚面高度。碰撞按身体真实高度判定（可越过矮栏杆），
     // 落脚面按真实脚面查询（跳到高于原地面的台面上也能落住）。
     const distance = Math.hypot(targetPosition.x - currentPosition.x, targetPosition.z - currentPosition.z);
@@ -338,6 +362,14 @@ export class CollisionManager {
     let ground = track ? feetY : 0;
     const air = track && airFeet !== null && airFeet !== undefined;
     const tryMove = (x, z) => {
+      const proposed = new THREE.Vector3(x,valid.y,z);
+      if(duixiuScope(this,valid,proposed,radius)) {
+        const result=duixiuTryStep(this,valid,proposed,radius,stepUp,motion);
+        if(!result.accepted)return false;
+        valid.copy(result.position);ground=result.groundY;
+        this.lastDuixiuStepFeet=result.settled?result.feetY:null;
+        return true;
+      }
       const g = track ? this.getGroundHeight(x, z, air ? Math.max(airFeet, ground) : ground, stepUp) : 0;
       const bodyFeet = air ? Math.max(g, airFeet) : g;
       candidate.set(x, track ? bodyFeet + PLAYER.HEIGHT : valid.y, z);
@@ -361,6 +393,7 @@ export class CollisionManager {
       const box = object.isBox3 ? object.clone() : new THREE.Box3().setFromObject(object);
       if (collider.overhead && object.overhead === undefined) throw new TypeError('Scoped overhead shape cannot disappear during an update');
       const overhead = object.overhead === undefined ? null : cloneOverheadShape(object.overhead, box);
+      if (collider.duixiuTerrain && object.duixiuTerrain !== true) throw new TypeError('Duixiu terrain marker cannot disappear');
       if (collider.triangleSupport) {
         const input=object.triangleSupport;
         if(!input || input.id!==collider.triangleSupport.id)throw new TypeError('Triangle ownership cannot disappear');
@@ -380,6 +413,14 @@ export class CollisionManager {
     this._grid = null;
     this.dynamicBodies.clear();
   }
+
+  _duixiuGrid() {
+    const source=this.duixiuTerrainSource??this;
+    if(!source._grid||source._grid.count!==source.colliders.length)source._buildGrid();
+    return source._grid;
+  }
+  resolveDuixiuVertical(state, delta, radius=.5) { return resolveDuixiuVertical(this,state,delta,radius); }
+  duixiuContact(x,z,maxTop,radius=.5) { return duixiuContact(this,x,z,maxTop,radius); }
 
   /** 两侧宫院的命名区域（世界坐标矩形），优先于中轴 z 分段判断 */
   setRegions(regions) {
