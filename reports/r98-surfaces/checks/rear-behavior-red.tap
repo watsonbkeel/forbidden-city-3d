@@ -1,0 +1,46 @@
+✖ rear canonical solid replaces the proven complete union and preserves every other owner/geometry (1076.735156ms)
+✖ canonical rear has real shallow relief, exact rendered physics vertices, oriented closed edges and fixed caps (367.486036ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1642.341903
+
+✖ failing tests:
+
+test at tests/r98-rear-surface.test.mjs:4:1
+✖ rear canonical solid replaces the proven complete union and preserves every other owner/geometry (1076.735156ms)
+  AssertionError [ERR_ASSERTION]: bounded rear feature missing
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r98-duixiu-bounded-surfaces/tests/r98-rear-surface.test.mjs:4:176)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r98-rear-surface.test.mjs:5:1
+✖ canonical rear has real shallow relief, exact rendered physics vertices, oriented closed edges and fixed caps (367.486036ms)
+  AssertionError [ERR_ASSERTION]: bounded rear feature missing
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r98-duixiu-bounded-surfaces/tests/r98-rear-surface.test.mjs:5:191)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
