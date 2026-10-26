@@ -37,8 +37,8 @@ export function qianqingFrontMaterial(b) {
   const canvas=document.createElement('canvas');canvas.width=1024;canvas.height=512;
   const c=canvas.getContext('2d');
   c.fillStyle='#60302a';c.fillRect(0,0,1024,512);
-  // Retain the current two folded virtual leaves per central bay. Subdivision
-  // and hinge mechanics are not inferred from the photograph's closed pose.
+  // Four leaves per central bay are photo-supported; the folded playable
+  // pose and hinge spacing remain an engineering fit, not museum access.
   drawLattice(c,16,24,224,292);
   c.strokeStyle='#a88a50';c.lineWidth=3;c.strokeRect(12,20,232,300);
   for(const[y,h]of [[336,34],[391,96]]){

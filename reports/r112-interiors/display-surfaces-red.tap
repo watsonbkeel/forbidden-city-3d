@@ -1,0 +1,30 @@
+✖ four permanent exact display surface owners, not a whole dais exclusion (21.052217ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 148.2164
+
+✖ failing tests:
+
+test at tests/r112/display-surfaces.test.mjs:4:1
+✖ four permanent exact display surface owners, not a whole dais exclusion (21.052217ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 4
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r112-qianqing-jiaotai-interiors/tests/r112/display-surfaces.test.mjs:4:182)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 4,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

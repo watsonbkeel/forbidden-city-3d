@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {createXiqingSurface} from '../../controls/XiqingRoofSurface.js';
 import source from '../../../data/architecture/qianqing-display-geometry.json' with { type: 'json' };
 import {mergeByMaterial} from '../../utils/MergeUtils.js';
 export const QIANQING_DISPLAY=Object.freeze({
@@ -50,6 +51,16 @@ export function installQianqingDisplay(builder,hall){
  lod.levels[1].object.visible=false;lod.position.set(QIANQING_DISPLAY.frame.x,QIANQING_DISPLAY.frame.y,QIANQING_DISPLAY.frame.z);hall.add(lod);
  const p=QIANQING_DISPLAY.incense,f=QIANQING_DISPLAY.frame;
  for(const sign of[-1,1])builder.col(sign*p.x-p.radius,f.y,f.z+p.z-p.radius,sign*p.x+p.radius,f.y+p.height,f.z+p.z+p.radius);
+ // Permanent collision comes from the ACTUAL finished near-level Float32
+ // geometry. The inherited field name is the existing open-surface dispatch
+ // API, not an assertion that these display objects are Xiqing roofs.
+ hall.updateWorldMatrix(true,true);
+ for(let i=0;i<QIANQING_DISPLAY.vesselCentres.length;i++){
+  const x=QIANQING_DISPLAY.vesselCentres[i],faces=[];let mesh=0;
+  merged.traverse(m=>{if(!m.isMesh)return;const p=m.geometry.attributes.position,index=m.geometry.index;for(let k=0;k<(index?.count??p.count);k+=3){const vs=[0,1,2].map(j=>new THREE.Vector3().fromBufferAttribute(p,index?index.getX(k+j):k+j));if(!vs.every(v=>Math.abs(v.x-x)<.5&&Math.abs(v.z-QIANQING_DISPLAY.vesselZ)<.5))continue;faces.push({source:{mesh,triangle:k/3},vertices:vs.map(v=>v.applyMatrix4(m.matrixWorld))});}mesh++;});
+  const id='qianqing-display-vessel-'+i,surface=createXiqingSurface(faces,id),owner=surface.box.clone();owner.xiqingRoofSurface=surface;
+  owner.furnitureMotionScope={kind:'qianqing-display',id,minOffsetX:-.8,maxOffsetX:owner.max.x-owner.min.x+.8,minOffsetZ:-.8,maxOffsetZ:owner.max.z-owner.min.z+.8};builder.colliders.push(owner);
+ }
  return lod;
 }
 
