@@ -1,0 +1,1811 @@
+{
+  "protocol": "same-process alternating five paired rounds, eight samples per quality/round after equal two warmups; actual local build + production merge + dispose CPU. Raw first builds retained, NOT fresh-process/browser/whole-zone/GPU.",
+  "resources": {
+    "textile": {
+      "high": {
+        "meshes": 220,
+        "triangles": 11340,
+        "attributeBytes": 964704,
+        "materials": 23,
+        "actualDataTextureBytes": 2097152,
+        "dataTextureSizes": [
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ]
+      },
+      "low": {
+        "meshes": 220,
+        "triangles": 11340,
+        "attributeBytes": 964704,
+        "materials": 23,
+        "actualDataTextureBytes": 524288,
+        "dataTextureSizes": [
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ]
+        ]
+      }
+    },
+    "windows": {
+      "high": {
+        "meshes": 21,
+        "triangles": 15904,
+        "attributeBytes": 1526784,
+        "materials": 21,
+        "actualDataTextureBytes": 0,
+        "dataTextureSizes": []
+      },
+      "low": {
+        "meshes": 21,
+        "triangles": 10250,
+        "attributeBytes": 984000,
+        "materials": 21,
+        "actualDataTextureBytes": 0,
+        "dataTextureSizes": []
+      }
+    },
+    "gate": {
+      "high": {
+        "meshes": 10,
+        "triangles": 3998,
+        "attributeBytes": 383808,
+        "materials": 10,
+        "actualDataTextureBytes": 0,
+        "dataTextureSizes": []
+      },
+      "low": {
+        "meshes": 10,
+        "triangles": 3710,
+        "attributeBytes": 356160,
+        "materials": 10,
+        "actualDataTextureBytes": 0,
+        "dataTextureSizes": []
+      }
+    }
+  },
+  "rawCold": [
+    {
+      "kind": "textile",
+      "quality": "high",
+      "buildMs": 102.0589,
+      "disposeMs": 1.283076,
+      "totalMs": 103.341976,
+      "resources": {
+        "meshes": 220,
+        "triangles": 11340,
+        "attributeBytes": 964704,
+        "materials": 23,
+        "actualDataTextureBytes": 2097152,
+        "dataTextureSizes": [
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ]
+      }
+    },
+    {
+      "kind": "textile",
+      "quality": "low",
+      "buildMs": 36.269825,
+      "disposeMs": 0.345368,
+      "totalMs": 36.615193,
+      "resources": {
+        "meshes": 220,
+        "triangles": 11340,
+        "attributeBytes": 964704,
+        "materials": 23,
+        "actualDataTextureBytes": 524288,
+        "dataTextureSizes": [
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ]
+        ]
+      }
+    },
+    {
+      "kind": "windows",
+      "quality": "high",
+      "buildMs": 61.563569,
+      "disposeMs": 0.115233,
+      "totalMs": 61.678802,
+      "resources": {
+        "meshes": 21,
+        "triangles": 15904,
+        "attributeBytes": 1526784,
+        "materials": 21,
+        "actualDataTextureBytes": 0,
+        "dataTextureSizes": []
+      }
+    },
+    {
+      "kind": "windows",
+      "quality": "low",
+      "buildMs": 25.070935,
+      "disposeMs": 0.042253,
+      "totalMs": 25.113188,
+      "resources": {
+        "meshes": 21,
+        "triangles": 10250,
+        "attributeBytes": 984000,
+        "materials": 21,
+        "actualDataTextureBytes": 0,
+        "dataTextureSizes": []
+      }
+    },
+    {
+      "kind": "gate",
+      "quality": "high",
+      "buildMs": 34.797921,
+      "disposeMs": 0.041562,
+      "totalMs": 34.839483,
+      "resources": {
+        "meshes": 10,
+        "triangles": 3998,
+        "attributeBytes": 383808,
+        "materials": 10,
+        "actualDataTextureBytes": 0,
+        "dataTextureSizes": []
+      }
+    },
+    {
+      "kind": "gate",
+      "quality": "low",
+      "buildMs": 19.775517,
+      "disposeMs": 0.030215,
+      "totalMs": 19.805732,
+      "resources": {
+        "meshes": 10,
+        "triangles": 3710,
+        "attributeBytes": 356160,
+        "materials": 10,
+        "actualDataTextureBytes": 0,
+        "dataTextureSizes": []
+      }
+    }
+  ],
+  "rows": [
+    {
+      "kind": "textile",
+      "pair": 0,
+      "order": [
+        "high",
+        "low"
+      ],
+      "samples": {
+        "high": [
+          {
+            "buildMs": 33.911702,
+            "disposeMs": 0.05331,
+            "totalMs": 33.965012
+          },
+          {
+            "buildMs": 31.489486,
+            "disposeMs": 0.080772,
+            "totalMs": 31.570258
+          },
+          {
+            "buildMs": 32.000674,
+            "disposeMs": 0.064467,
+            "totalMs": 32.065141
+          },
+          {
+            "buildMs": 29.981503,
+            "disposeMs": 0.059499,
+            "totalMs": 30.041002
+          },
+          {
+            "buildMs": 30.281593,
+            "disposeMs": 0.059179,
+            "totalMs": 30.340772
+          },
+          {
+            "buildMs": 29.186551,
+            "disposeMs": 0.060341,
+            "totalMs": 29.246892
+          },
+          {
+            "buildMs": 30.615705,
+            "disposeMs": 0.056044,
+            "totalMs": 30.671749
+          },
+          {
+            "buildMs": 30.874965,
+            "disposeMs": 0.057006,
+            "totalMs": 30.931971
+          }
+        ],
+        "low": [
+          {
+            "buildMs": 22.332084,
+            "disposeMs": 0.052368,
+            "totalMs": 22.384452
+          },
+          {
+            "buildMs": 22.929721,
+            "disposeMs": 0.050236,
+            "totalMs": 22.979957
+          },
+          {
+            "buildMs": 22.833136,
+            "disposeMs": 0.054311,
+            "totalMs": 22.887447
+          },
+          {
+            "buildMs": 22.604302,
+            "disposeMs": 0.054642,
+            "totalMs": 22.658944
+          },
+          {
+            "buildMs": 21.957001,
+            "disposeMs": 0.091678,
+            "totalMs": 22.048679
+          },
+          {
+            "buildMs": 22.457021,
+            "disposeMs": 0.046329,
+            "totalMs": 22.50335
+          },
+          {
+            "buildMs": 25.338615,
+            "disposeMs": 0.050266,
+            "totalMs": 25.388881
+          },
+          {
+            "buildMs": 23.743362,
+            "disposeMs": 0.077906,
+            "totalMs": 23.821268
+          }
+        ]
+      }
+    },
+    {
+      "kind": "textile",
+      "pair": 1,
+      "order": [
+        "low",
+        "high"
+      ],
+      "samples": {
+        "low": [
+          {
+            "buildMs": 42.874537,
+            "disposeMs": 0.183015,
+            "totalMs": 43.057552
+          },
+          {
+            "buildMs": 35.739925,
+            "disposeMs": 0.13344,
+            "totalMs": 35.873365
+          },
+          {
+            "buildMs": 27.61408,
+            "disposeMs": 0.073761,
+            "totalMs": 27.687841
+          },
+          {
+            "buildMs": 31.262807,
+            "disposeMs": 0.118859,
+            "totalMs": 31.381666
+          },
+          {
+            "buildMs": 30.223456,
+            "disposeMs": 0.07312,
+            "totalMs": 30.296576
+          },
+          {
+            "buildMs": 23.826937,
+            "disposeMs": 0.104157,
+            "totalMs": 23.931094
+          },
+          {
+            "buildMs": 25.05509,
+            "disposeMs": 0.074272,
+            "totalMs": 25.129362
+          },
+          {
+            "buildMs": 25.391295,
+            "disposeMs": 0.131868,
+            "totalMs": 25.523163
+          }
+        ],
+        "high": [
+          {
+            "buildMs": 32.347584,
+            "disposeMs": 0.0865,
+            "totalMs": 32.434084
+          },
+          {
+            "buildMs": 30.561204,
+            "disposeMs": 0.100901,
+            "totalMs": 30.662105
+          },
+          {
+            "buildMs": 31.335946,
+            "disposeMs": 0.07991,
+            "totalMs": 31.415856
+          },
+          {
+            "buildMs": 31.807693,
+            "disposeMs": 0.071968,
+            "totalMs": 31.879661
+          },
+          {
+            "buildMs": 30.739211,
+            "disposeMs": 0.178007,
+            "totalMs": 30.917218
+          },
+          {
+            "buildMs": 31.668735,
+            "disposeMs": 0.074892,
+            "totalMs": 31.743627
+          },
+          {
+            "buildMs": 32.243378,
+            "disposeMs": 0.100951,
+            "totalMs": 32.344329
+          },
+          {
+            "buildMs": 31.971299,
+            "disposeMs": 0.084146,
+            "totalMs": 32.055445
+          }
+        ]
+      }
+    },
+    {
+      "kind": "textile",
+      "pair": 2,
+      "order": [
+        "high",
+        "low"
+      ],
+      "samples": {
+        "high": [
+          {
+            "buildMs": 30.594614,
+            "disposeMs": 0.090676,
+            "totalMs": 30.68529
+          },
+          {
+            "buildMs": 33.569458,
+            "disposeMs": 0.108302,
+            "totalMs": 33.67776
+          },
+          {
+            "buildMs": 34.864491,
+            "disposeMs": 0.070796,
+            "totalMs": 34.935287
+          },
+          {
+            "buildMs": 26.873038,
+            "disposeMs": 0.115594,
+            "totalMs": 26.988632
+          },
+          {
+            "buildMs": 27.948853,
+            "disposeMs": 0.118438,
+            "totalMs": 28.067291
+          },
+          {
+            "buildMs": 30.813081,
+            "disposeMs": 0.082244,
+            "totalMs": 30.895325
+          },
+          {
+            "buildMs": 28.597596,
+            "disposeMs": 0.088723,
+            "totalMs": 28.686319
+          },
+          {
+            "buildMs": 30.580763,
+            "disposeMs": 0.075944,
+            "totalMs": 30.656707
+          }
+        ],
+        "low": [
+          {
+            "buildMs": 21.605693,
+            "disposeMs": 0.127351,
+            "totalMs": 21.733044
+          },
+          {
+            "buildMs": 23.459665,
+            "disposeMs": 0.071988,
+            "totalMs": 23.531653
+          },
+          {
+            "buildMs": 20.306225,
+            "disposeMs": 0.131937,
+            "totalMs": 20.438162
+          },
+          {
+            "buildMs": 20.519313,
+            "disposeMs": 0.179459,
+            "totalMs": 20.698772
+          },
+          {
+            "buildMs": 23.960077,
+            "disposeMs": 0.052318,
+            "totalMs": 24.012395
+          },
+          {
+            "buildMs": 20.496128,
+            "disposeMs": 0.057346,
+            "totalMs": 20.553474
+          },
+          {
+            "buildMs": 21.471102,
+            "disposeMs": 0.171678,
+            "totalMs": 21.64278
+          },
+          {
+            "buildMs": 38.447218,
+            "disposeMs": 0.091908,
+            "totalMs": 38.539126
+          }
+        ]
+      }
+    },
+    {
+      "kind": "textile",
+      "pair": 3,
+      "order": [
+        "low",
+        "high"
+      ],
+      "samples": {
+        "low": [
+          {
+            "buildMs": 21.521297,
+            "disposeMs": 0.075894,
+            "totalMs": 21.597191
+          },
+          {
+            "buildMs": 27.509573,
+            "disposeMs": 0.108994,
+            "totalMs": 27.618567
+          },
+          {
+            "buildMs": 22.452985,
+            "disposeMs": 0.088122,
+            "totalMs": 22.541107
+          },
+          {
+            "buildMs": 23.69586,
+            "disposeMs": 0.064487,
+            "totalMs": 23.760347
+          },
+          {
+            "buildMs": 23.42938,
+            "disposeMs": 0.082955,
+            "totalMs": 23.512335
+          },
+          {
+            "buildMs": 19.639963,
+            "disposeMs": 0.084657,
+            "totalMs": 19.72462
+          },
+          {
+            "buildMs": 21.674607,
+            "disposeMs": 0.068974,
+            "totalMs": 21.743581
+          },
+          {
+            "buildMs": 18.748516,
+            "disposeMs": 0.072589,
+            "totalMs": 18.821105
+          }
+        ],
+        "high": [
+          {
+            "buildMs": 29.745089,
+            "disposeMs": 0.063034,
+            "totalMs": 29.808123
+          },
+          {
+            "buildMs": 25.688811,
+            "disposeMs": 0.073521,
+            "totalMs": 25.762332
+          },
+          {
+            "buildMs": 24.880408,
+            "disposeMs": 0.088723,
+            "totalMs": 24.969131
+          },
+          {
+            "buildMs": 27.379027,
+            "disposeMs": 0.067261,
+            "totalMs": 27.446288
+          },
+          {
+            "buildMs": 24.200458,
+            "disposeMs": 0.071477,
+            "totalMs": 24.271935
+          },
+          {
+            "buildMs": 27.730586,
+            "disposeMs": 0.0668,
+            "totalMs": 27.797386
+          },
+          {
+            "buildMs": 27.959338,
+            "disposeMs": 0.130916,
+            "totalMs": 28.090254
+          },
+          {
+            "buildMs": 25.16182,
+            "disposeMs": 0.114392,
+            "totalMs": 25.276212
+          }
+        ]
+      }
+    },
+    {
+      "kind": "textile",
+      "pair": 4,
+      "order": [
+        "high",
+        "low"
+      ],
+      "samples": {
+        "high": [
+          {
+            "buildMs": 31.123147,
+            "disposeMs": 0.072789,
+            "totalMs": 31.195936
+          },
+          {
+            "buildMs": 40.834481,
+            "disposeMs": 0.101111,
+            "totalMs": 40.935592
+          },
+          {
+            "buildMs": 36.451342,
+            "disposeMs": 0.077897,
+            "totalMs": 36.529239
+          },
+          {
+            "buildMs": 31.075876,
+            "disposeMs": 0.073921,
+            "totalMs": 31.149797
+          },
+          {
+            "buildMs": 25.615932,
+            "disposeMs": 0.099029,
+            "totalMs": 25.714961
+          },
+          {
+            "buildMs": 25.057494,
+            "disposeMs": 0.07995,
+            "totalMs": 25.137444
+          },
+          {
+            "buildMs": 30.89851,
+            "disposeMs": 0.079119,
+            "totalMs": 30.977629
+          },
+          {
+            "buildMs": 26.26113,
+            "disposeMs": 0.084847,
+            "totalMs": 26.345977
+          }
+        ],
+        "low": [
+          {
+            "buildMs": 17.581144,
+            "disposeMs": 0.074652,
+            "totalMs": 17.655796
+          },
+          {
+            "buildMs": 20.378102,
+            "disposeMs": 0.08022,
+            "totalMs": 20.458322
+          },
+          {
+            "buildMs": 16.835845,
+            "disposeMs": 0.074111,
+            "totalMs": 16.909956
+          },
+          {
+            "buildMs": 17.672301,
+            "disposeMs": 0.116124,
+            "totalMs": 17.788425
+          },
+          {
+            "buildMs": 22.096691,
+            "disposeMs": 0.074322,
+            "totalMs": 22.171013
+          },
+          {
+            "buildMs": 17.513152,
+            "disposeMs": 0.072359,
+            "totalMs": 17.585511
+          },
+          {
+            "buildMs": 17.607404,
+            "disposeMs": 0.077496,
+            "totalMs": 17.6849
+          },
+          {
+            "buildMs": 21.358242,
+            "disposeMs": 0.074202,
+            "totalMs": 21.432444
+          }
+        ]
+      }
+    },
+    {
+      "kind": "windows",
+      "pair": 0,
+      "order": [
+        "high",
+        "low"
+      ],
+      "samples": {
+        "high": [
+          {
+            "buildMs": 25.498435,
+            "disposeMs": 0.027391,
+            "totalMs": 25.525826
+          },
+          {
+            "buildMs": 20.768417,
+            "disposeMs": 0.020661,
+            "totalMs": 20.789078
+          },
+          {
+            "buildMs": 26.02712,
+            "disposeMs": 0.012338,
+            "totalMs": 26.039458
+          },
+          {
+            "buildMs": 35.666164,
+            "disposeMs": 0.014632,
+            "totalMs": 35.680796
+          },
+          {
+            "buildMs": 31.833162,
+            "disposeMs": 0.01325,
+            "totalMs": 31.846412
+          },
+          {
+            "buildMs": 27.115822,
+            "disposeMs": 0.012549,
+            "totalMs": 27.128371
+          },
+          {
+            "buildMs": 23.058494,
+            "disposeMs": 0.011627,
+            "totalMs": 23.070121
+          },
+          {
+            "buildMs": 24.984262,
+            "disposeMs": 0.012328,
+            "totalMs": 24.99659
+          }
+        ],
+        "low": [
+          {
+            "buildMs": 17.333672,
+            "disposeMs": 0.014853,
+            "totalMs": 17.348525
+          },
+          {
+            "buildMs": 15.151855,
+            "disposeMs": 0.010536,
+            "totalMs": 15.162391
+          },
+          {
+            "buildMs": 22.078728,
+            "disposeMs": 0.01301,
+            "totalMs": 22.091738
+          },
+          {
+            "buildMs": 15.475311,
+            "disposeMs": 0.010346,
+            "totalMs": 15.485657
+          },
+          {
+            "buildMs": 15.500989,
+            "disposeMs": 0.011357,
+            "totalMs": 15.512346
+          },
+          {
+            "buildMs": 15.158986,
+            "disposeMs": 0.012128,
+            "totalMs": 15.171114
+          },
+          {
+            "buildMs": 17.832381,
+            "disposeMs": 0.011547,
+            "totalMs": 17.843928
+          },
+          {
+            "buildMs": 17.22546,
+            "disposeMs": 0.011648,
+            "totalMs": 17.237108
+          }
+        ]
+      }
+    },
+    {
+      "kind": "windows",
+      "pair": 1,
+      "order": [
+        "low",
+        "high"
+      ],
+      "samples": {
+        "low": [
+          {
+            "buildMs": 15.302848,
+            "disposeMs": 0.031947,
+            "totalMs": 15.334795
+          },
+          {
+            "buildMs": 18.23797,
+            "disposeMs": 0.012379,
+            "totalMs": 18.250349
+          },
+          {
+            "buildMs": 14.301699,
+            "disposeMs": 0.011978,
+            "totalMs": 14.313677
+          },
+          {
+            "buildMs": 13.411061,
+            "disposeMs": 0.010506,
+            "totalMs": 13.421567
+          },
+          {
+            "buildMs": 14.321107,
+            "disposeMs": 0.010686,
+            "totalMs": 14.331793
+          },
+          {
+            "buildMs": 23.165891,
+            "disposeMs": 0.013531,
+            "totalMs": 23.179422
+          },
+          {
+            "buildMs": 16.7529,
+            "disposeMs": 0.01377,
+            "totalMs": 16.76667
+          },
+          {
+            "buildMs": 15.406008,
+            "disposeMs": 0.06041,
+            "totalMs": 15.466418
+          }
+        ],
+        "high": [
+          {
+            "buildMs": 24.725774,
+            "disposeMs": 0.01322,
+            "totalMs": 24.738994
+          },
+          {
+            "buildMs": 21.226008,
+            "disposeMs": 0.01331,
+            "totalMs": 21.239318
+          },
+          {
+            "buildMs": 25.776923,
+            "disposeMs": 0.016745,
+            "totalMs": 25.793668
+          },
+          {
+            "buildMs": 26.566008,
+            "disposeMs": 0.010115,
+            "totalMs": 26.576123
+          },
+          {
+            "buildMs": 23.943648,
+            "disposeMs": 0.01311,
+            "totalMs": 23.956758
+          },
+          {
+            "buildMs": 20.961971,
+            "disposeMs": 0.012559,
+            "totalMs": 20.97453
+          },
+          {
+            "buildMs": 32.669383,
+            "disposeMs": 0.019099,
+            "totalMs": 32.688482
+          },
+          {
+            "buildMs": 22.330196,
+            "disposeMs": 0.010716,
+            "totalMs": 22.340912
+          }
+        ]
+      }
+    },
+    {
+      "kind": "windows",
+      "pair": 2,
+      "order": [
+        "high",
+        "low"
+      ],
+      "samples": {
+        "high": [
+          {
+            "buildMs": 22.246661,
+            "disposeMs": 0.012049,
+            "totalMs": 22.25871
+          },
+          {
+            "buildMs": 19.048468,
+            "disposeMs": 0.012208,
+            "totalMs": 19.060676
+          },
+          {
+            "buildMs": 22.100371,
+            "disposeMs": 0.012408,
+            "totalMs": 22.112779
+          },
+          {
+            "buildMs": 19.737563,
+            "disposeMs": 0.010976,
+            "totalMs": 19.748539
+          },
+          {
+            "buildMs": 23.982147,
+            "disposeMs": 0.010746,
+            "totalMs": 23.992893
+          },
+          {
+            "buildMs": 19.138142,
+            "disposeMs": 0.0134,
+            "totalMs": 19.151542
+          },
+          {
+            "buildMs": 18.671832,
+            "disposeMs": 0.011167,
+            "totalMs": 18.682999
+          },
+          {
+            "buildMs": 22.124027,
+            "disposeMs": 0.012669,
+            "totalMs": 22.136696
+          }
+        ],
+        "low": [
+          {
+            "buildMs": 13.827826,
+            "disposeMs": 0.010496,
+            "totalMs": 13.838322
+          },
+          {
+            "buildMs": 13.13739,
+            "disposeMs": 0.009034,
+            "totalMs": 13.146424
+          },
+          {
+            "buildMs": 16.315843,
+            "disposeMs": 0.037397,
+            "totalMs": 16.35324
+          },
+          {
+            "buildMs": 14.012775,
+            "disposeMs": 0.010345,
+            "totalMs": 14.02312
+          },
+          {
+            "buildMs": 13.149809,
+            "disposeMs": 0.011036,
+            "totalMs": 13.160845
+          },
+          {
+            "buildMs": 17.97131,
+            "disposeMs": 0.012188,
+            "totalMs": 17.983498
+          },
+          {
+            "buildMs": 13.90259,
+            "disposeMs": 0.012438,
+            "totalMs": 13.915028
+          },
+          {
+            "buildMs": 13.765704,
+            "disposeMs": 0.011718,
+            "totalMs": 13.777422
+          }
+        ]
+      }
+    },
+    {
+      "kind": "windows",
+      "pair": 3,
+      "order": [
+        "low",
+        "high"
+      ],
+      "samples": {
+        "low": [
+          {
+            "buildMs": 16.885158,
+            "disposeMs": 0.011037,
+            "totalMs": 16.896195
+          },
+          {
+            "buildMs": 14.051953,
+            "disposeMs": 0.010737,
+            "totalMs": 14.06269
+          },
+          {
+            "buildMs": 17.207873,
+            "disposeMs": 0.012459,
+            "totalMs": 17.220332
+          },
+          {
+            "buildMs": 15.495682,
+            "disposeMs": 0.010966,
+            "totalMs": 15.506648
+          },
+          {
+            "buildMs": 16.908764,
+            "disposeMs": 0.012559,
+            "totalMs": 16.921323
+          },
+          {
+            "buildMs": 13.104001,
+            "disposeMs": 0.013129,
+            "totalMs": 13.11713
+          },
+          {
+            "buildMs": 13.533033,
+            "disposeMs": 0.010296,
+            "totalMs": 13.543329
+          },
+          {
+            "buildMs": 17.289266,
+            "disposeMs": 0.013951,
+            "totalMs": 17.303217
+          }
+        ],
+        "high": [
+          {
+            "buildMs": 21.602187,
+            "disposeMs": 0.015433,
+            "totalMs": 21.61762
+          },
+          {
+            "buildMs": 33.883993,
+            "disposeMs": 0.017456,
+            "totalMs": 33.901449
+          },
+          {
+            "buildMs": 20.575711,
+            "disposeMs": 0.041032,
+            "totalMs": 20.616743
+          },
+          {
+            "buildMs": 21.277195,
+            "disposeMs": 0.011297,
+            "totalMs": 21.288492
+          },
+          {
+            "buildMs": 20.396311,
+            "disposeMs": 0.011738,
+            "totalMs": 20.408049
+          },
+          {
+            "buildMs": 26.83433,
+            "disposeMs": 0.013461,
+            "totalMs": 26.847791
+          },
+          {
+            "buildMs": 23.639643,
+            "disposeMs": 0.015183,
+            "totalMs": 23.654826
+          },
+          {
+            "buildMs": 21.422162,
+            "disposeMs": 0.011878,
+            "totalMs": 21.43404
+          }
+        ]
+      }
+    },
+    {
+      "kind": "windows",
+      "pair": 4,
+      "order": [
+        "high",
+        "low"
+      ],
+      "samples": {
+        "high": [
+          {
+            "buildMs": 24.23658,
+            "disposeMs": 0.011206,
+            "totalMs": 24.247786
+          },
+          {
+            "buildMs": 20.274048,
+            "disposeMs": 0.009905,
+            "totalMs": 20.283953
+          },
+          {
+            "buildMs": 22.241554,
+            "disposeMs": 0.011066,
+            "totalMs": 22.25262
+          },
+          {
+            "buildMs": 19.354146,
+            "disposeMs": 0.011257,
+            "totalMs": 19.365403
+          },
+          {
+            "buildMs": 24.966375,
+            "disposeMs": 0.011648,
+            "totalMs": 24.978023
+          },
+          {
+            "buildMs": 18.087013,
+            "disposeMs": 0.010826,
+            "totalMs": 18.097839
+          },
+          {
+            "buildMs": 24.251562,
+            "disposeMs": 0.014602,
+            "totalMs": 24.266164
+          },
+          {
+            "buildMs": 20.772587,
+            "disposeMs": 0.013269,
+            "totalMs": 20.785856
+          }
+        ],
+        "low": [
+          {
+            "buildMs": 14.536451,
+            "disposeMs": 0.010616,
+            "totalMs": 14.547067
+          },
+          {
+            "buildMs": 18.42733,
+            "disposeMs": 0.011848,
+            "totalMs": 18.439178
+          },
+          {
+            "buildMs": 15.281139,
+            "disposeMs": 0.010516,
+            "totalMs": 15.291655
+          },
+          {
+            "buildMs": 13.772504,
+            "disposeMs": 0.011397,
+            "totalMs": 13.783901
+          },
+          {
+            "buildMs": 18.002647,
+            "disposeMs": 0.012439,
+            "totalMs": 18.015086
+          },
+          {
+            "buildMs": 15.012156,
+            "disposeMs": 0.012098,
+            "totalMs": 15.024254
+          },
+          {
+            "buildMs": 15.654471,
+            "disposeMs": 0.015052,
+            "totalMs": 15.669523
+          },
+          {
+            "buildMs": 18.699313,
+            "disposeMs": 0.011287,
+            "totalMs": 18.7106
+          }
+        ]
+      }
+    },
+    {
+      "kind": "gate",
+      "pair": 0,
+      "order": [
+        "high",
+        "low"
+      ],
+      "samples": {
+        "high": [
+          {
+            "buildMs": 11.176481,
+            "disposeMs": 0.008132,
+            "totalMs": 11.184613
+          },
+          {
+            "buildMs": 10.373078,
+            "disposeMs": 0.007141,
+            "totalMs": 10.380219
+          },
+          {
+            "buildMs": 25.765636,
+            "disposeMs": 0.013901,
+            "totalMs": 25.779537
+          },
+          {
+            "buildMs": 15.867871,
+            "disposeMs": 0.008663,
+            "totalMs": 15.876534
+          },
+          {
+            "buildMs": 11.238908,
+            "disposeMs": 0.00641,
+            "totalMs": 11.245318
+          },
+          {
+            "buildMs": 11.496296,
+            "disposeMs": 0.008753,
+            "totalMs": 11.505049
+          },
+          {
+            "buildMs": 16.420801,
+            "disposeMs": 0.008142,
+            "totalMs": 16.428943
+          },
+          {
+            "buildMs": 11.325659,
+            "disposeMs": 0.00631,
+            "totalMs": 11.331969
+          }
+        ],
+        "low": [
+          {
+            "buildMs": 15.142982,
+            "disposeMs": 0.007211,
+            "totalMs": 15.150193
+          },
+          {
+            "buildMs": 9.292386,
+            "disposeMs": 0.005618,
+            "totalMs": 9.298004
+          },
+          {
+            "buildMs": 19.889079,
+            "disposeMs": 0.007281,
+            "totalMs": 19.89636
+          },
+          {
+            "buildMs": 10.265647,
+            "disposeMs": 0.007572,
+            "totalMs": 10.273219
+          },
+          {
+            "buildMs": 9.155941,
+            "disposeMs": 0.006269,
+            "totalMs": 9.16221
+          },
+          {
+            "buildMs": 17.125309,
+            "disposeMs": 0.008212,
+            "totalMs": 17.133521
+          },
+          {
+            "buildMs": 9.286107,
+            "disposeMs": 0.005448,
+            "totalMs": 9.291555
+          },
+          {
+            "buildMs": 10.250615,
+            "disposeMs": 0.006449,
+            "totalMs": 10.257064
+          }
+        ]
+      }
+    },
+    {
+      "kind": "gate",
+      "pair": 1,
+      "order": [
+        "low",
+        "high"
+      ],
+      "samples": {
+        "low": [
+          {
+            "buildMs": 9.560858,
+            "disposeMs": 0.006009,
+            "totalMs": 9.566867
+          },
+          {
+            "buildMs": 17.748805,
+            "disposeMs": 0.007792,
+            "totalMs": 17.756597
+          },
+          {
+            "buildMs": 9.059927,
+            "disposeMs": 0.00686,
+            "totalMs": 9.066787
+          },
+          {
+            "buildMs": 9.03514,
+            "disposeMs": 0.00656,
+            "totalMs": 9.0417
+          },
+          {
+            "buildMs": 8.432524,
+            "disposeMs": 0.005989,
+            "totalMs": 8.438513
+          },
+          {
+            "buildMs": 15.877274,
+            "disposeMs": 0.007982,
+            "totalMs": 15.885256
+          },
+          {
+            "buildMs": 9.307389,
+            "disposeMs": 0.005938,
+            "totalMs": 9.313327
+          },
+          {
+            "buildMs": 8.780587,
+            "disposeMs": 0.005608,
+            "totalMs": 8.786195
+          }
+        ],
+        "high": [
+          {
+            "buildMs": 13.419844,
+            "disposeMs": 0.007972,
+            "totalMs": 13.427816
+          },
+          {
+            "buildMs": 18.372782,
+            "disposeMs": 0.00647,
+            "totalMs": 18.379252
+          },
+          {
+            "buildMs": 8.73597,
+            "disposeMs": 0.005498,
+            "totalMs": 8.741468
+          },
+          {
+            "buildMs": 8.900027,
+            "disposeMs": 0.005858,
+            "totalMs": 8.905885
+          },
+          {
+            "buildMs": 8.702279,
+            "disposeMs": 0.005679,
+            "totalMs": 8.707958
+          },
+          {
+            "buildMs": 17.777859,
+            "disposeMs": 0.007541,
+            "totalMs": 17.7854
+          },
+          {
+            "buildMs": 8.677442,
+            "disposeMs": 0.005769,
+            "totalMs": 8.683211
+          },
+          {
+            "buildMs": 8.626806,
+            "disposeMs": 0.005258,
+            "totalMs": 8.632064
+          }
+        ]
+      }
+    },
+    {
+      "kind": "gate",
+      "pair": 2,
+      "order": [
+        "high",
+        "low"
+      ],
+      "samples": {
+        "high": [
+          {
+            "buildMs": 8.978675,
+            "disposeMs": 0.006309,
+            "totalMs": 8.984984
+          },
+          {
+            "buildMs": 18.188816,
+            "disposeMs": 0.007771,
+            "totalMs": 18.196587
+          },
+          {
+            "buildMs": 9.011003,
+            "disposeMs": 0.005859,
+            "totalMs": 9.016862
+          },
+          {
+            "buildMs": 8.614428,
+            "disposeMs": 0.005848,
+            "totalMs": 8.620276
+          },
+          {
+            "buildMs": 21.446489,
+            "disposeMs": 0.008893,
+            "totalMs": 21.455382
+          },
+          {
+            "buildMs": 21.22694,
+            "disposeMs": 0.007341,
+            "totalMs": 21.234281
+          },
+          {
+            "buildMs": 11.041863,
+            "disposeMs": 0.007421,
+            "totalMs": 11.049284
+          },
+          {
+            "buildMs": 11.581904,
+            "disposeMs": 0.00683,
+            "totalMs": 11.588734
+          }
+        ],
+        "low": [
+          {
+            "buildMs": 9.860349,
+            "disposeMs": 0.007201,
+            "totalMs": 9.86755
+          },
+          {
+            "buildMs": 15.555542,
+            "disposeMs": 0.00657,
+            "totalMs": 15.562112
+          },
+          {
+            "buildMs": 9.383012,
+            "disposeMs": 0.005698,
+            "totalMs": 9.38871
+          },
+          {
+            "buildMs": 9.350133,
+            "disposeMs": 0.005668,
+            "totalMs": 9.355801
+          },
+          {
+            "buildMs": 22.069184,
+            "disposeMs": 0.009134,
+            "totalMs": 22.078318
+          },
+          {
+            "buildMs": 15.110823,
+            "disposeMs": 0.007391,
+            "totalMs": 15.118214
+          },
+          {
+            "buildMs": 8.863862,
+            "disposeMs": 0.007231,
+            "totalMs": 8.871093
+          },
+          {
+            "buildMs": 8.729841,
+            "disposeMs": 0.00684,
+            "totalMs": 8.736681
+          }
+        ]
+      }
+    },
+    {
+      "kind": "gate",
+      "pair": 3,
+      "order": [
+        "low",
+        "high"
+      ],
+      "samples": {
+        "low": [
+          {
+            "buildMs": 16.724627,
+            "disposeMs": 0.007972,
+            "totalMs": 16.732599
+          },
+          {
+            "buildMs": 8.553947,
+            "disposeMs": 0.005909,
+            "totalMs": 8.559856
+          },
+          {
+            "buildMs": 8.573135,
+            "disposeMs": 0.005919,
+            "totalMs": 8.579054
+          },
+          {
+            "buildMs": 8.238523,
+            "disposeMs": 0.004767,
+            "totalMs": 8.24329
+          },
+          {
+            "buildMs": 17.151398,
+            "disposeMs": 0.008773,
+            "totalMs": 17.160171
+          },
+          {
+            "buildMs": 8.852454,
+            "disposeMs": 0.006971,
+            "totalMs": 8.859425
+          },
+          {
+            "buildMs": 8.845334,
+            "disposeMs": 0.007712,
+            "totalMs": 8.853046
+          },
+          {
+            "buildMs": 8.620797,
+            "disposeMs": 0.005318,
+            "totalMs": 8.626115
+          }
+        ],
+        "high": [
+          {
+            "buildMs": 16.951979,
+            "disposeMs": 0.007601,
+            "totalMs": 16.95958
+          },
+          {
+            "buildMs": 8.849179,
+            "disposeMs": 0.008323,
+            "totalMs": 8.857502
+          },
+          {
+            "buildMs": 8.659546,
+            "disposeMs": 0.005949,
+            "totalMs": 8.665495
+          },
+          {
+            "buildMs": 8.610562,
+            "disposeMs": 0.005318,
+            "totalMs": 8.61588
+          },
+          {
+            "buildMs": 20.965336,
+            "disposeMs": 0.007681,
+            "totalMs": 20.973017
+          },
+          {
+            "buildMs": 9.090513,
+            "disposeMs": 0.006059,
+            "totalMs": 9.096572
+          },
+          {
+            "buildMs": 8.483942,
+            "disposeMs": 0.005638,
+            "totalMs": 8.48958
+          },
+          {
+            "buildMs": 8.502589,
+            "disposeMs": 0.005909,
+            "totalMs": 8.508498
+          }
+        ]
+      }
+    },
+    {
+      "kind": "gate",
+      "pair": 4,
+      "order": [
+        "high",
+        "low"
+      ],
+      "samples": {
+        "high": [
+          {
+            "buildMs": 18.638191,
+            "disposeMs": 0.007502,
+            "totalMs": 18.645693
+          },
+          {
+            "buildMs": 9.016321,
+            "disposeMs": 0.00669,
+            "totalMs": 9.023011
+          },
+          {
+            "buildMs": 8.378583,
+            "disposeMs": 0.005268,
+            "totalMs": 8.383851
+          },
+          {
+            "buildMs": 15.956254,
+            "disposeMs": 0.008572,
+            "totalMs": 15.964826
+          },
+          {
+            "buildMs": 8.72253,
+            "disposeMs": 0.00671,
+            "totalMs": 8.72924
+          },
+          {
+            "buildMs": 8.333145,
+            "disposeMs": 0.005349,
+            "totalMs": 8.338494
+          },
+          {
+            "buildMs": 8.748269,
+            "disposeMs": 0.004927,
+            "totalMs": 8.753196
+          },
+          {
+            "buildMs": 25.850483,
+            "disposeMs": 0.010956,
+            "totalMs": 25.861439
+          }
+        ],
+        "low": [
+          {
+            "buildMs": 15.71403,
+            "disposeMs": 0.006991,
+            "totalMs": 15.721021
+          },
+          {
+            "buildMs": 11.291548,
+            "disposeMs": 0.00667,
+            "totalMs": 11.298218
+          },
+          {
+            "buildMs": 11.707653,
+            "disposeMs": 0.00707,
+            "totalMs": 11.714723
+          },
+          {
+            "buildMs": 9.527759,
+            "disposeMs": 0.005929,
+            "totalMs": 9.533688
+          },
+          {
+            "buildMs": 16.696987,
+            "disposeMs": 0.007451,
+            "totalMs": 16.704438
+          },
+          {
+            "buildMs": 10.189152,
+            "disposeMs": 0.006019,
+            "totalMs": 10.195171
+          },
+          {
+            "buildMs": 9.149421,
+            "disposeMs": 0.008132,
+            "totalMs": 9.157553
+          },
+          {
+            "buildMs": 9.24239,
+            "disposeMs": 0.005218,
+            "totalMs": 9.247608
+          }
+        ]
+      }
+    }
+  ],
+  "hot": [
+    {
+      "quality": "low",
+      "ms": 7.386232,
+      "resources": {
+        "meshes": 220,
+        "triangles": 11340,
+        "attributeBytes": 964704,
+        "materials": 23,
+        "actualDataTextureBytes": 524288,
+        "dataTextureSizes": [
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ]
+        ]
+      }
+    },
+    {
+      "quality": "high",
+      "ms": 18.276809,
+      "resources": {
+        "meshes": 220,
+        "triangles": 11340,
+        "attributeBytes": 964704,
+        "materials": 23,
+        "actualDataTextureBytes": 2097152,
+        "dataTextureSizes": [
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ]
+      }
+    },
+    {
+      "quality": "low",
+      "ms": 7.07171,
+      "resources": {
+        "meshes": 220,
+        "triangles": 11340,
+        "attributeBytes": 964704,
+        "materials": 23,
+        "actualDataTextureBytes": 524288,
+        "dataTextureSizes": [
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ]
+        ]
+      }
+    },
+    {
+      "quality": "high",
+      "ms": 13.899234,
+      "resources": {
+        "meshes": 220,
+        "triangles": 11340,
+        "attributeBytes": 964704,
+        "materials": 23,
+        "actualDataTextureBytes": 2097152,
+        "dataTextureSizes": [
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ]
+      }
+    },
+    {
+      "quality": "low",
+      "ms": 6.615946,
+      "resources": {
+        "meshes": 220,
+        "triangles": 11340,
+        "attributeBytes": 964704,
+        "materials": 23,
+        "actualDataTextureBytes": 524288,
+        "dataTextureSizes": [
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ]
+        ]
+      }
+    },
+    {
+      "quality": "high",
+      "ms": 13.780126,
+      "resources": {
+        "meshes": 220,
+        "triangles": 11340,
+        "attributeBytes": 964704,
+        "materials": 23,
+        "actualDataTextureBytes": 2097152,
+        "dataTextureSizes": [
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ]
+      }
+    },
+    {
+      "quality": "low",
+      "ms": 8.081417,
+      "resources": {
+        "meshes": 220,
+        "triangles": 11340,
+        "attributeBytes": 964704,
+        "materials": 23,
+        "actualDataTextureBytes": 524288,
+        "dataTextureSizes": [
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ]
+        ]
+      }
+    },
+    {
+      "quality": "high",
+      "ms": 14.100716,
+      "resources": {
+        "meshes": 220,
+        "triangles": 11340,
+        "attributeBytes": 964704,
+        "materials": 23,
+        "actualDataTextureBytes": 2097152,
+        "dataTextureSizes": [
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ]
+      }
+    },
+    {
+      "quality": "low",
+      "ms": 6.429066,
+      "resources": {
+        "meshes": 220,
+        "triangles": 11340,
+        "attributeBytes": 964704,
+        "materials": 23,
+        "actualDataTextureBytes": 524288,
+        "dataTextureSizes": [
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ]
+        ]
+      }
+    },
+    {
+      "quality": "high",
+      "ms": 14.321919,
+      "resources": {
+        "meshes": 220,
+        "triangles": 11340,
+        "attributeBytes": 964704,
+        "materials": 23,
+        "actualDataTextureBytes": 2097152,
+        "dataTextureSizes": [
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ]
+      }
+    }
+  ]
+}

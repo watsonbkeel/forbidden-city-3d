@@ -1,3 +1,4 @@
+import {buildingDetailQuality} from '../../render/BuildingDetailQuality.js';
 import { ZoneBase } from './ZoneBase.js';
 import { buildSilhouette } from '../../render/SilhouetteBuilder.js';
 
@@ -83,7 +84,7 @@ export class ZoneManager {
       this.allMapItems.push(...data.mapItems);
       this.allRooms.push(...data.rooms);
       // 启动时预合并；流式加载只提交已完成的结果，不再重复构建。
-      this.prebuilt.set(id, { builder, data });
+      this.prebuilt.set(id, { builder, data, detailQuality: buildingDetailQuality(this.library) });
       const silhouette = buildSilhouette(data.group);
       if (silhouette) {
         data.silhouette = silhouette;
@@ -218,6 +219,21 @@ export class ZoneManager {
   /**
    * 加载一个区：构建 + 加入场景 + 注册碰撞
    */
+  // Geometry quality is build-time only. Never disturb a loaded zone/player.
+  // Queued entries contain only IDs; their synchronous build reads the latest
+  // policy when consumed, so no in-flight old builder can revive stale meshes.
+  invalidateBuildingDetailPrebuilt() {
+    const quality = buildingDetailQuality(this.library), removed = [];
+    for (const id of ['east-six']) {
+      const cached = this.prebuilt?.get(id);
+      if (!cached || this.loaded.has(id) || cached.detailQuality === quality) continue;
+      this.prebuilt.delete(id);
+      cached.builder.dispose();
+      removed.push(id);
+    }
+    return removed;
+  }
+
   loadZone(zoneId) {
     const config = this.zones.get(zoneId);
     if (!config || this.loaded.has(zoneId)) return;

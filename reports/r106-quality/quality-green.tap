@@ -1,0 +1,47 @@
+✔ R106 explicit building quality defaults high, isolates libraries and validates atomically (1.917477ms)
+✔ front low reduces real geometry while high and physical contracts stay exact (120.087876ms)
+✔ rear low reduces real geometry while high and physical contracts stay exact (45.478821ms)
+✔ gate low reduces real geometry while high and physical contracts stay exact (181.420748ms)
+✔ R106 high textile pixels exact R105; low directly returns quarter RGBA footprint (67.480686ms)
+✔ R106 cold low and high-low-high maps update actual material and release once without stale listeners (82.109084ms)
+[ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（ningshou），耗时 0.0ms
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+✔ unloaded affected prebuilds invalidate once; loaded/shared/other state survives and queued builds use latest policy (2.87251ms)
+✔ main initial and hot quality use explicit building policy; menu tells loaded geometry reload boundary (0.669845ms)
+✔ real desktop controller stops held movement, ignores modal keys, then resumes map mode on Escape (28.254557ms)
+✔ real mobile joystick resets on opening and modal touches do not reactivate it; Continue restores walking (7.667835ms)
+✔ disposing an open menu removes its handlers without changing the controller mode or adding a relock (3.354713ms)
+✔ a second finger can open settings while the real joystick remains held, without a synthetic click (10.737466ms)
+✔ initial controls show the actual low-quality and muted state before first open (10.438557ms)
+✔ one quality-button click emits the selected setting exactly once (12.545553ms)
+✔ opening and closing the menu never changes quality or emits a quality callback (5.754454ms)
+✔ settings modal is above the welcome blocker and below the loading screen (2.503756ms)
+✔ short-height panel has separate non-scrolling actions and a bounded scroll region (2.658008ms)
+✔ preview label opens the accessible settings dialog without a keyboard (1.941784ms)
+✔ source details distinguish measured structure, provisional geometry and dated visitor access (2.063556ms)
+✔ modal opening is idempotent and closes once through each visible action (2.262044ms)
+✔ Tab wraps in the dialog, skips closed details, and restores the opener on dismissal (7.187118ms)
+✔ Escape closes once without propagating to the global toggle; key scrolling retains its default (2.160772ms)
+✔ modal pointer and touch gestures do not reach body game handlers or force preventDefault (2.42956ms)
+✔ dispose restores prior inert states and removes DOM/global listeners without resuming (1.923126ms)
+✔ a secondary touch opens the launcher once without waiting for a compatibility click (3.957878ms)
+✔ a single launcher touch retains its ordinary click activation and default behavior (1.744257ms)
+✔ secondary taps activate existing sound/quality, disclosure, links and dismissal once (4.991469ms)
+✔ secondary drags and cancelled touches never activate controls or disclosures (2.30606ms)
+✔ closing clears pending secondary touches so reopening cannot apply a stale tap (2.942315ms)
+✔ secondary long presses and displaced endings do not become clicks (1.985439ms)
+✔ map mode places the same settings entry in map flow and restores its original host (2.101423ms)
+✔ map entry uses a normal-flow sticky header with a reserved focus-scroll inset (0.800321ms)
+✔ reparenting the map entry while settings are open preserves inertness and modal focus (1.091958ms)
+✔ an uncancelable secondary launcher touch still opens once without attempting cancellation (7.888195ms)
+✔ an uncancelable secondary control tap still activates once without attempting cancellation (1.253271ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 35
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 607.762815
