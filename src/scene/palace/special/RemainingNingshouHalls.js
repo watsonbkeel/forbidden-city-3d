@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import {buildXishangChannel} from './XishangChannel.js';
+import {buildXishangStoneRails} from './XishangStoneRails.js';
 import {fitNingshouSouthPhotoWindows} from './NingshouSouthPhotoWindows.js';
 
 /**
@@ -372,9 +373,9 @@ function buildXishang(c) {
  c.box('rear-black-screen','black',mainW*.8,3.35,.15,0,p.ph+1.675,mainD/2-.1,true);
  for(const x of[-mainW*.4,mainW*.4])c.box('screen-gold-edge','gold',.04,3.2,.035,x,p.ph+1.67,mainD/2-.19);
  const channel=buildXishangChannel(c);
- for(const sign of[-1,1])rail(c,{x:sign*mainW/2,z:0,length:mainD,y:p.ph,side:true,mat:'stone',role:'bamboo-stone-rail'});
+ const stoneRails=buildXishangStoneRails(c,{mainW,mainD});
  ceiling(c,{x0:-mainW/2,x1:mainW/2,z0:-mainD/2,z1:mainD/2,nx:3,nz:3});
- return finish(c,{planForm:'convex-cross-three-projections',streamLengthHistoricalMetres:27,streamLengthModelStatus:'MEASURED_MODEL_CURVE_NOT_27M_SITE_REPLICA',channel,interiorPolicy:'STONE_CHANNEL_AND_REAR_SCREEN_NO_FURNITURE'});
+ return finish(c,{planForm:'convex-cross-three-projections',streamLengthHistoricalMetres:27,streamLengthModelStatus:'MEASURED_MODEL_CURVE_NOT_27M_SITE_REPLICA',channel,stoneRails,interiorPolicy:'STONE_CHANNEL_AND_REAR_SCREEN_NO_FURNITURE'});
 }
 function petalRoof(c,{y,radius,rise,tile,trim}) {
  const rings=9,segs=60,vs=[],ix=[];

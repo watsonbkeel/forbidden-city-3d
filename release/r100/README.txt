@@ -1,0 +1,5 @@
+R100 cumulative development candidate. Run node start.mjs and open the printed local address.
+Only Xishang's existing two side lattice rails become solid stone panels/posts within the retained envelope, with a continuous real top rail. No front/rear railing is added. Existing channel, support, pavilion and entrance remain.
+Raised-post/low-cap trial introduced 12 new body penetrations and was rejected. The final continuous-top candidate adds no new/deeper/longer penetration in 144 independent landing/exit trajectories; 96 inherited edge-overlap trajectories remain disclosed. Detailed bamboo relief/protruding posts are not precisely reproduced.
+Sampled channel centerline remains 14.424m (dense resampling about 14.426m). Official 27m description lacks an exact measurement line/endpoints; no invented loops or forced length change.
+Retains R99 northeast overlap correction, R96 furniture/character/emperor features and R97/R98 rejected-experiment records. This package is not a main merge or deployment. CPU diagnostics are not GPU/mobile or Node20 execution; those remain NOT_RUN. Keep R99 as rollback.
