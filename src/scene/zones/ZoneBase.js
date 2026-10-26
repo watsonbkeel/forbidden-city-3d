@@ -1,3 +1,4 @@
+import {applyChengqianRearSouthWindows} from '../palace/special/ChengqianSouthWindows.js';
 import {buildHongdeCourt} from '../palace/special/HongdeCourt.js';
 import {buildZhaorenCourt} from '../palace/special/ZhaorenCourt.js';
 import {buildYangxinCourtEntrance} from '../palace/special/YangxinCourtEntrance.js';
@@ -199,6 +200,10 @@ export class ZoneBase {
     if(this.zoneJson.id==='east-six'&&itemIndex===3){
       built.f.updateWorldMatrix(true,false);
       if(!applyJingrenRearWindows(this.kit,built.f,item))throw Error('Jingren rear window profile failed closed');
+    }
+    if(this.zoneJson.id==='east-six'&&itemIndex===10){
+      built.f.updateWorldMatrix(true,true);
+      if(!applyChengqianRearSouthWindows(this.kit,built.f,item,itemIndex))throw Error('Chengqian rear south window profile failed closed');
     }
     applyFengxianFrontWindows(this.kit,this.zoneJson.id,item,built);
     if(selected?.profile.mode==='augment')return finish(applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,selected.augment(this.kit,item,built,selected.profile)));

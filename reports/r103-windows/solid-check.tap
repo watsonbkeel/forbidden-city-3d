@@ -1,0 +1,44 @@
+✔ R103 only Chengqian south four plus four have the source-bounded distinct field forms (106.707304ms)
+✔ R103 retains original complete movement/map input and every non-target mesh (107.70397ms)
+✔ R103 rear closed windows block oblique edge sightlines between grille and opaque glazing (9.618487ms)
+✖ R103 all new solids have nondegenerate position/UV triangles and oppositely paired closed edges (42.156532ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 467.880988
+
+✖ failing tests:
+
+test at tests/r103-chengqian-windows.test.mjs:6:1
+✖ R103 all new solids have nondegenerate position/UV triangles and oppositely paired closed edges (42.156532ms)
+  AssertionError [ERR_ASSERTION]: r103-chengqian-wide-rectangular-grille closed edge
+  + actual - expected
+  
+    [
+  +   1,
+  +   1
+  -   2,
+  -   0
+    ]
+  
+      at file:///workspace/scratch/02a8023d1a85/r103-chengqian-south-windows/tests/r103-chengqian-windows.test.mjs:6:1048
+      at Mesh.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7600:3)
+      at Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)
+      at Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)
+      at Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r103-chengqian-south-windows/tests/r103-chengqian-windows.test.mjs:6:170)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ 1, 1 ],
+    expected: [ 2, 0 ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

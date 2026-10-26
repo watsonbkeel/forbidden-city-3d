@@ -1,0 +1,6 @@
+R103 cumulative development candidate. Run node start.mjs and open the printed local address.
+Only the four existing south windows of each Chengqian front/rear hall change: broad rectangular + narrow diamond fields, and high masonry sill with opaque rectangular glazing. Original openings, central doors, collisions, supports, beds/characters and the other 56 halls remain unchanged.
+Repeat counts, colors and dimensions are reversible photo-inspired fits, not measured restoration. Opaque backing and full-depth reveals retain privacy. CPU geometry views omit existing Canvas patterns and are not GPU/mobile screenshots.
+Two-hall warm construction + material merge + dispose median about 10.10 to 28.22ms; triangles 3968 to 15904, merged meshes/materials 18 to 21, attribute bytes about +1.093MiB. Low quality uses the same geometry. This is an appearance change with cost, not performance optimization. A denser rejected repetition candidate and all measurements remain recorded.
+Retains R102 textiles, R101 plaque, R100 rails, R99 layout, R96 movement/nearby characters/emperor, and R97/R98 negative records. Existing floor-edge overlaps, unfinished rear rock walls and Garden reload cost remain disclosed. Actual Node20/GPU/mobile are NOT_RUN.
+Not a main merge or deployment; keep delivered R102 as rollback.

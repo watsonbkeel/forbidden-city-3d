@@ -1,0 +1,962 @@
+✖ R103 only Chengqian south four plus four have the source-bounded distinct field forms (47.28928ms)
+✖ R103 retains original complete movement/map input and every non-target mesh (83.137466ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 347.387257
+
+✖ failing tests:
+
+test at tests/r103-chengqian-windows.test.mjs:3:1
+✖ R103 only Chengqian south four plus four have the source-bounded distinct field forms (47.28928ms)
+  AssertionError [ERR_ASSERTION]: front
+  
+  0 !== 4
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r103-chengqian-south-windows/tests/r103-chengqian-windows.test.mjs:3:293)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 4,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r103-chengqian-windows.test.mjs:4:1
+✖ R103 retains original complete movement/map input and every non-target mesh (83.137466ms)
+  AssertionError [ERR_ASSERTION]: front/non-target
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      {
+        attrs: {
+          normal: [
+            3,
+  ...
+            3,
+  +         '30703c85f81a4e226b52ceb6f85c203176649845277f87b47e9f53042b013f59'
+  +       ],
+  +       uv: [
+  +         2,
+  +         '9acbda3fe508de1f96b8f061ef5888cfba15a3e6ae752467e73665e4dfe3182a'
+  +       ]
+  +     },
+  +     flags: [
+  +       true,
+  +       true
+  +     ],
+  +     index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898',
+  +     mat: {
+  +       color: 16777215,
+  +       depthWrite: true,
+  +       name: 'r48_chengqian-front_schematic_lattice',
+  +       opacity: 1,
+  +       side: 0,
+  +       transparent: false
+  +     },
+  +     matrix: [
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       -104.67999999999999,
+  +       3.4404399999999997,
+  +       374.55,
+  +       1
+  +     ],
+  +     position: [
+  +       -11.08,
+  +       3.4404399999999997,
+  +       -7.25
+  +     ],
+  +     role: 'r48-residential-window-panel'
+  +   },
+  +   {
+  +     attrs: {
+  +       normal: [
+  +         3,
+  +         'cf38d80691f04d52b9686807b830aec77584c7ecdc0ceed56144923548dd5593'
+  +       ],
+  +       position: [
+  +         3,
+            '38e1accfa2075d8beeb50a0bdf789c90a294b9ccd6dbadd9735ecd4e3c4fc1d5'
+          ],
+          uv: [
+            2,
+            '9acbda3fe508de1f96b8f061ef5888cfba15a3e6ae752467e73665e4dfe3182a'
+  ...
+            3,
+  +         '258733e0289f937c7915909b4ca64c1d830785c331ed2f9bf9d161a019a374fb'
+  +       ],
+  +       uv: [
+  +         2,
+  +         '9acbda3fe508de1f96b8f061ef5888cfba15a3e6ae752467e73665e4dfe3182a'
+  +       ]
+  +     },
+  +     flags: [
+  +       true,
+  +       true
+  +     ],
+  +     index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898',
+  +     mat: {
+  +       color: 16777215,
+  +       depthWrite: true,
+  +       name: 'wood_column',
+  +       opacity: 1,
+  +       side: 0,
+  +       transparent: false
+  +     },
+  +     matrix: [
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       -105.49,
+  +       3.4404399999999997,
+  +       374.49,
+  +       1
+  +     ],
+  +     position: [
+  +       -11.89,
+  +       3.4404399999999997,
+  +       -7.31
+  +     ],
+  +     role: 'r48-residential-window-mullion'
+  +   },
+  +   {
+  +     attrs: {
+  +       normal: [
+  +         3,
+  +         'cf38d80691f04d52b9686807b830aec77584c7ecdc0ceed56144923548dd5593'
+  +       ],
+  +       position: [
+  +         3,
+  +         '258733e0289f937c7915909b4ca64c1d830785c331ed2f9bf9d161a019a374fb'
+  +       ],
+  +       uv: [
+  +         2,
+  +         '9acbda3fe508de1f96b8f061ef5888cfba15a3e6ae752467e73665e4dfe3182a'
+  +       ]
+  +     },
+  +     flags: [
+  +       true,
+  +       true
+  +     ],
+  +     index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898',
+  +     mat: {
+  +       color: 16777215,
+  +       depthWrite: true,
+  +       name: 'wood_column',
+  +       opacity: 1,
+  +       side: 0,
+  +       transparent: false
+  +     },
+  +     matrix: [
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       -103.86999999999999,
+  +       3.4404399999999997,
+  +       374.49,
+  +       1
+  +     ],
+  +     position: [
+  +       -10.27,
+  +       3.4404399999999997,
+  +       -7.31
+  +     ],
+  +     role: 'r48-residential-window-mullion'
+  +   },
+  +   {
+  +     attrs: {
+  +       normal: [
+  +         3,
+  +         'cf38d80691f04d52b9686807b830aec77584c7ecdc0ceed56144923548dd5593'
+  +       ],
+  +       position: [
+  +         3,
+  +         '32c19db99b2c285f17b9b18068bf7b36e1bb0c32fd0a0695dbd3efbae768575b'
+  +       ],
+  +       uv: [
+  +         2,
+  +         '9acbda3fe508de1f96b8f061ef5888cfba15a3e6ae752467e73665e4dfe3182a'
+  +       ]
+  +     },
+  +     flags: [
+  +       true,
+  +       true
+  +     ],
+  +     index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898',
+  +     mat: {
+  +       color: 16777215,
+  +       depthWrite: true,
+  +       name: 'wood_column',
+  +       opacity: 1,
+  +       side: 0,
+  +       transparent: false
+  +     },
+  +     matrix: [
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       -104.67999999999999,
+  +       3.3648223999999995,
+  +       374.49,
+  +       1
+  +     ],
+  +     position: [
+  +       -11.08,
+  +       3.3648223999999995,
+  +       -7.31
+  +     ],
+  +     role: 'r48-residential-window-transom'
+  +   },
+  +   {
+  +     attrs: {
+  +       normal: [
+  +         3,
+  +         'cf38d80691f04d52b9686807b830aec77584c7ecdc0ceed56144923548dd5593'
+  +       ],
+  +       position: [
+  +         3,
+            '99b69b83c335703c2397ee8348a0b313a3f32d53fbd3a14d6e5065f0d525c51c'
+          ],
+          uv: [
+            2,
+            '9acbda3fe508de1f96b8f061ef5888cfba15a3e6ae752467e73665e4dfe3182a'
+  ...
+            3,
+  +         '30703c85f81a4e226b52ceb6f85c203176649845277f87b47e9f53042b013f59'
+  +       ],
+  +       uv: [
+  +         2,
+  +         '9acbda3fe508de1f96b8f061ef5888cfba15a3e6ae752467e73665e4dfe3182a'
+  +       ]
+  +     },
+  +     flags: [
+  +       true,
+  +       true
+  +     ],
+  +     index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898',
+  +     mat: {
+  +       color: 16777215,
+  +       depthWrite: true,
+  +       name: 'r48_chengqian-front_schematic_lattice',
+  +       opacity: 1,
+  +       side: 0,
+  +       transparent: false
+  +     },
+  +     matrix: [
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       -99.13999999999999,
+  +       3.4404399999999997,
+  +       374.55,
+  +       1
+  +     ],
+  +     position: [
+  +       -5.539999999999999,
+  +       3.4404399999999997,
+  +       -7.25
+  +     ],
+  +     role: 'r48-residential-window-panel'
+  +   },
+  +   {
+  +     attrs: {
+  +       normal: [
+  +         3,
+  +         'cf38d80691f04d52b9686807b830aec77584c7ecdc0ceed56144923548dd5593'
+  +       ],
+  +       position: [
+  +         3,
+            '38e1accfa2075d8beeb50a0bdf789c90a294b9ccd6dbadd9735ecd4e3c4fc1d5'
+          ],
+          uv: [
+            2,
+            '9acbda3fe508de1f96b8f061ef5888cfba15a3e6ae752467e73665e4dfe3182a'
+  ...
+            3,
+  +         'cf38d80691f04d52b9686807b830aec77584c7ecdc0ceed56144923548dd5593'
+  +       ],
+  +       position: [
+  +         3,
+  +         '258733e0289f937c7915909b4ca64c1d830785c331ed2f9bf9d161a019a374fb'
+  +       ],
+  +       uv: [
+  +         2,
+  +         '9acbda3fe508de1f96b8f061ef5888cfba15a3e6ae752467e73665e4dfe3182a'
+  +       ]
+  +     },
+  +     flags: [
+  +       true,
+  +       true
+  +     ],
+  +     index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898',
+  +     mat: {
+  +       color: 16777215,
+  +       depthWrite: true,
+  +       name: 'wood_column',
+  +       opacity: 1,
+  +       side: 0,
+  +       transparent: false
+  +     },
+  +     matrix: [
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       -99.94999999999999,
+  +       3.4404399999999997,
+  +       374.49,
+  +       1
+  +     ],
+  +     position: [
+  +       -6.349999999999999,
+  +       3.4404399999999997,
+  +       -7.31
+  +     ],
+  +     role: 'r48-residential-window-mullion'
+  +   },
+  +   {
+  +     attrs: {
+  +       normal: [
+  +         3,
+  +         'cf38d80691f04d52b9686807b830aec77584c7ecdc0ceed56144923548dd5593'
+  +       ],
+  +       position: [
+  +         3,
+  +         '258733e0289f937c7915909b4ca64c1d830785c331ed2f9bf9d161a019a374fb'
+  +       ],
+  +       uv: [
+  +         2,
+  +         '9acbda3fe508de1f96b8f061ef5888cfba15a3e6ae752467e73665e4dfe3182a'
+  +       ]
+  +     },
+  +     flags: [
+  +       true,
+  +       true
+  +     ],
+  +     index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898',
+  +     mat: {
+  +       color: 16777215,
+  +       depthWrite: true,
+  +       name: 'wood_column',
+  +       opacity: 1,
+  +       side: 0,
+  +       transparent: false
+  +     },
+  +     matrix: [
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       -98.33,
+  +       3.4404399999999997,
+  +       374.49,
+  +       1
+  +     ],
+  +     position: [
+  +       -4.729999999999999,
+  +       3.4404399999999997,
+  +       -7.31
+  +     ],
+  +     role: 'r48-residential-window-mullion'
+  +   },
+  +   {
+  +     attrs: {
+  +       normal: [
+  +         3,
+  +         'cf38d80691f04d52b9686807b830aec77584c7ecdc0ceed56144923548dd5593'
+  +       ],
+  +       position: [
+  +         3,
+  +         '32c19db99b2c285f17b9b18068bf7b36e1bb0c32fd0a0695dbd3efbae768575b'
+  +       ],
+  +       uv: [
+  +         2,
+  +         '9acbda3fe508de1f96b8f061ef5888cfba15a3e6ae752467e73665e4dfe3182a'
+  +       ]
+  +     },
+  +     flags: [
+  +       true,
+  +       true
+  +     ],
+  +     index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898',
+  +     mat: {
+  +       color: 16777215,
+  +       depthWrite: true,
+  +       name: 'wood_column',
+  +       opacity: 1,
+  +       side: 0,
+  +       transparent: false
+  +     },
+  +     matrix: [
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       -99.13999999999999,
+  +       3.3648223999999995,
+  +       374.49,
+  +       1
+  +     ],
+  +     position: [
+  +       -5.539999999999999,
+  +       3.3648223999999995,
+  +       -7.31
+  +     ],
+  +     role: 'r48-residential-window-transom'
+  +   },
+  +   {
+  +     attrs: {
+  +       normal: [
+  +         3,
+            '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+          ],
+          position: [
+            3,
+            '01f340cacaaedd011b3c411a19714171f4dea52413222f4de927f155c78b942b'
+  ...
+            3,
+  +         '30703c85f81a4e226b52ceb6f85c203176649845277f87b47e9f53042b013f59'
+  +       ],
+  +       uv: [
+  +         2,
+  +         '9acbda3fe508de1f96b8f061ef5888cfba15a3e6ae752467e73665e4dfe3182a'
+  +       ]
+  +     },
+  +     flags: [
+  +       true,
+  +       true
+  +     ],
+  +     index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898',
+  +     mat: {
+  +       color: 16777215,
+  +       depthWrite: true,
+  +       name: 'r48_chengqian-front_schematic_lattice',
+  +       opacity: 1,
+  +       side: 0,
+  +       transparent: false
+  +     },
+  +     matrix: [
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       -88.05999999999999,
+  +       3.4404399999999997,
+  +       374.55,
+  +       1
+  +     ],
+  +     position: [
+  +       5.540000000000001,
+  +       3.4404399999999997,
+  +       -7.25
+  +     ],
+  +     role: 'r48-residential-window-panel'
+  +   },
+  +   {
+  +     attrs: {
+  +       normal: [
+  +         3,
+  +         'cf38d80691f04d52b9686807b830aec77584c7ecdc0ceed56144923548dd5593'
+  +       ],
+  +       position: [
+  +         3,
+            '38e1accfa2075d8beeb50a0bdf789c90a294b9ccd6dbadd9735ecd4e3c4fc1d5'
+          ],
+          uv: [
+            2,
+            '9acbda3fe508de1f96b8f061ef5888cfba15a3e6ae752467e73665e4dfe3182a'
+  ...
+            3,
+  +         '258733e0289f937c7915909b4ca64c1d830785c331ed2f9bf9d161a019a374fb'
+  +       ],
+  +       uv: [
+  +         2,
+  +         '9acbda3fe508de1f96b8f061ef5888cfba15a3e6ae752467e73665e4dfe3182a'
+  +       ]
+  +     },
+  +     flags: [
+  +       true,
+  +       true
+  +     ],
+  +     index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898',
+  +     mat: {
+  +       color: 16777215,
+  +       depthWrite: true,
+  +       name: 'wood_column',
+  +       opacity: 1,
+  +       side: 0,
+  +       transparent: false
+  +     },
+  +     matrix: [
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       -88.86999999999999,
+  +       3.4404399999999997,
+  +       374.49,
+  +       1
+  +     ],
+  +     position: [
+  +       4.73,
+  +       3.4404399999999997,
+  +       -7.31
+  +     ],
+  +     role: 'r48-residential-window-mullion'
+  +   },
+  +   {
+  +     attrs: {
+  +       normal: [
+  +         3,
+  +         'cf38d80691f04d52b9686807b830aec77584c7ecdc0ceed56144923548dd5593'
+  +       ],
+  +       position: [
+  +         3,
+  +         '258733e0289f937c7915909b4ca64c1d830785c331ed2f9bf9d161a019a374fb'
+  +       ],
+  +       uv: [
+  +         2,
+  +         '9acbda3fe508de1f96b8f061ef5888cfba15a3e6ae752467e73665e4dfe3182a'
+  +       ]
+  +     },
+  +     flags: [
+  +       true,
+  +       true
+  +     ],
+  +     index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898',
+  +     mat: {
+  +       color: 16777215,
+  +       depthWrite: true,
+  +       name: 'wood_column',
+  +       opacity: 1,
+  +       side: 0,
+  +       transparent: false
+  +     },
+  +     matrix: [
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       -87.25,
+  +       3.4404399999999997,
+  +       374.49,
+  +       1
+  +     ],
+  +     position: [
+  +       6.350000000000001,
+  +       3.4404399999999997,
+  +       -7.31
+  +     ],
+  +     role: 'r48-residential-window-mullion'
+  +   },
+  +   {
+  +     attrs: {
+  +       normal: [
+  +         3,
+  +         'cf38d80691f04d52b9686807b830aec77584c7ecdc0ceed56144923548dd5593'
+  +       ],
+  +       position: [
+  +         3,
+  +         '32c19db99b2c285f17b9b18068bf7b36e1bb0c32fd0a0695dbd3efbae768575b'
+  +       ],
+  +       uv: [
+  +         2,
+  +         '9acbda3fe508de1f96b8f061ef5888cfba15a3e6ae752467e73665e4dfe3182a'
+  +       ]
+  +     },
+  +     flags: [
+  +       true,
+  +       true
+  +     ],
+  +     index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898',
+  +     mat: {
+  +       color: 16777215,
+  +       depthWrite: true,
+  +       name: 'wood_column',
+  +       opacity: 1,
+  +       side: 0,
+  +       transparent: false
+  +     },
+  +     matrix: [
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       -88.05999999999999,
+  +       3.3648223999999995,
+  +       374.49,
+  +       1
+  +     ],
+  +     position: [
+  +       5.540000000000001,
+  +       3.3648223999999995,
+  +       -7.31
+  +     ],
+  +     role: 'r48-residential-window-transom'
+  +   },
+  +   {
+  +     attrs: {
+  +       normal: [
+  +         3,
+  +         'cf38d80691f04d52b9686807b830aec77584c7ecdc0ceed56144923548dd5593'
+  +       ],
+  +       position: [
+  +         3,
+            '99b69b83c335703c2397ee8348a0b313a3f32d53fbd3a14d6e5065f0d525c51c'
+          ],
+          uv: [
+            2,
+            '9acbda3fe508de1f96b8f061ef5888cfba15a3e6ae752467e73665e4dfe3182a'
+  ...
+            3,
+  +         '30703c85f81a4e226b52ceb6f85c203176649845277f87b47e9f53042b013f59'
+  +       ],
+  +       uv: [
+  +         2,
+  +         '9acbda3fe508de1f96b8f061ef5888cfba15a3e6ae752467e73665e4dfe3182a'
+  +       ]
+  +     },
+  +     flags: [
+  +       true,
+  +       true
+  +     ],
+  +     index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898',
+  +     mat: {
+  +       color: 16777215,
+  +       depthWrite: true,
+  +       name: 'r48_chengqian-front_schematic_lattice',
+  +       opacity: 1,
+  +       side: 0,
+  +       transparent: false
+  +     },
+  +     matrix: [
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       -82.52,
+  +       3.4404399999999997,
+  +       374.55,
+  +       1
+  +     ],
+  +     position: [
+  +       11.08,
+  +       3.4404399999999997,
+  +       -7.25
+  +     ],
+  +     role: 'r48-residential-window-panel'
+  +   },
+  +   {
+  +     attrs: {
+  +       normal: [
+  +         3,
+  +         'cf38d80691f04d52b9686807b830aec77584c7ecdc0ceed56144923548dd5593'
+  +       ],
+  +       position: [
+  +         3,
+            '38e1accfa2075d8beeb50a0bdf789c90a294b9ccd6dbadd9735ecd4e3c4fc1d5'
+          ],
+          uv: [
+            2,
+            '9acbda3fe508de1f96b8f061ef5888cfba15a3e6ae752467e73665e4dfe3182a'
+  ...
+            3,
+  +         'cf38d80691f04d52b9686807b830aec77584c7ecdc0ceed56144923548dd5593'
+  +       ],
+  +       position: [
+  +         3,
+  +         '258733e0289f937c7915909b4ca64c1d830785c331ed2f9bf9d161a019a374fb'
+  +       ],
+  +       uv: [
+  +         2,
+  +         '9acbda3fe508de1f96b8f061ef5888cfba15a3e6ae752467e73665e4dfe3182a'
+  +       ]
+  +     },
+  +     flags: [
+  +       true,
+  +       true
+  +     ],
+  +     index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898',
+  +     mat: {
+  +       color: 16777215,
+  +       depthWrite: true,
+  +       name: 'wood_column',
+  +       opacity: 1,
+  +       side: 0,
+  +       transparent: false
+  +     },
+  +     matrix: [
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       -83.33,
+  +       3.4404399999999997,
+  +       374.49,
+  +       1
+  +     ],
+  +     position: [
+  +       10.27,
+  +       3.4404399999999997,
+  +       -7.31
+  +     ],
+  +     role: 'r48-residential-window-mullion'
+  +   },
+  +   {
+  +     attrs: {
+  +       normal: [
+  +         3,
+  +         'cf38d80691f04d52b9686807b830aec77584c7ecdc0ceed56144923548dd5593'
+  +       ],
+  +       position: [
+  +         3,
+  +         '258733e0289f937c7915909b4ca64c1d830785c331ed2f9bf9d161a019a374fb'
+  +       ],
+  +       uv: [
+  +         2,
+  +         '9acbda3fe508de1f96b8f061ef5888cfba15a3e6ae752467e73665e4dfe3182a'
+  +       ]
+  +     },
+  +     flags: [
+  +       true,
+  +       true
+  +     ],
+  +     index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898',
+  +     mat: {
+  +       color: 16777215,
+  +       depthWrite: true,
+  +       name: 'wood_column',
+  +       opacity: 1,
+  +       side: 0,
+  +       transparent: false
+  +     },
+  +     matrix: [
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       -81.71,
+  +       3.4404399999999997,
+  +       374.49,
+  +       1
+  +     ],
+  +     position: [
+  +       11.89,
+  +       3.4404399999999997,
+  +       -7.31
+  +     ],
+  +     role: 'r48-residential-window-mullion'
+  +   },
+  +   {
+  +     attrs: {
+  +       normal: [
+  +         3,
+  +         'cf38d80691f04d52b9686807b830aec77584c7ecdc0ceed56144923548dd5593'
+  +       ],
+  +       position: [
+  +         3,
+  +         '32c19db99b2c285f17b9b18068bf7b36e1bb0c32fd0a0695dbd3efbae768575b'
+  +       ],
+  +       uv: [
+  +         2,
+  +         '9acbda3fe508de1f96b8f061ef5888cfba15a3e6ae752467e73665e4dfe3182a'
+  +       ]
+  +     },
+  +     flags: [
+  +       true,
+  +       true
+  +     ],
+  +     index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898',
+  +     mat: {
+  +       color: 16777215,
+  +       depthWrite: true,
+  +       name: 'wood_column',
+  +       opacity: 1,
+  +       side: 0,
+  +       transparent: false
+  +     },
+  +     matrix: [
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       0,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       -82.52,
+  +       3.3648223999999995,
+  +       374.49,
+  +       1
+  +     ],
+  +     position: [
+  +       11.08,
+  +       3.3648223999999995,
+  +       -7.31
+  +     ],
+  +     role: 'r48-residential-window-transom'
+  +   },
+  +   {
+  +     attrs: {
+  +       normal: [
+  +         3,
+            '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+          ],
+          position: [
+            3,
+            '5fe1cd368504ac798a6112fd4591d254a6a036c3c4f4a5e69c711d2d8eae573f'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r103-chengqian-south-windows/tests/r103-chengqian-windows.test.mjs:4:441)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: 'r48-residential-window-sill', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-panel', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-jamb', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-jamb', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-rail', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-rail', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-mullion', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-mullion', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-transom', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-sill', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-panel', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-jamb', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-jamb', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-rail', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-rail', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-mullion', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-mullion', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-transom', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: 'r48-residential-window-sill', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-panel', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-jamb', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-jamb', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-rail', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-rail', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-mullion', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-mullion', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-transom', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-sill', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-panel', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-jamb', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-jamb', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-rail', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-rail', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-mullion', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-mullion', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-transom', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: 'e6681333c21d3bedc5c5d4ea4503e8acc5b95e8d8e2aabffd97d12425a145443', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-painted-plane', position: [Array], matrix: [Array], attrs: [Object], index: 'e6681333c21d3bedc5c5d4ea4503e8acc5b95e8d8e2aabffd97d12425a145443', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'roof_xieshan_dougong_band', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: 'roof_xieshan_rafters', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: 'roof_xieshan_roof_tile', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: 'roof_xieshan_roof_ridge_glaze', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: 'roof_xieshan_wall_red', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: 'roof_xieshan_wood_column', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: 'e6681333c21d3bedc5c5d4ea4503e8acc5b95e8d8e2aabffd97d12425a145443', mat: [Object], flags: [Array] }, { role: 'r48-residential-attested-plaque', position: [Array], matrix: [Array], attrs: [Object], index: 'e6681333c21d3bedc5c5d4ea4503e8acc5b95e8d8e2aabffd97d12425a145443', mat: [Object], flags: [Array] } ],
+    expected: [ { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: 'r48-residential-window-sill', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-jamb', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-jamb', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-rail', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-rail', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-sill', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-jamb', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-jamb', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-rail', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-rail', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: 'r48-residential-window-sill', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-jamb', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-jamb', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-rail', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-rail', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-sill', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-jamb', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-jamb', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-rail', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-window-rail', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: 'e6681333c21d3bedc5c5d4ea4503e8acc5b95e8d8e2aabffd97d12425a145443', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-painted-plane', position: [Array], matrix: [Array], attrs: [Object], index: 'e6681333c21d3bedc5c5d4ea4503e8acc5b95e8d8e2aabffd97d12425a145443', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'r48-residential-ceiling-grid', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: 'roof_xieshan_dougong_band', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: 'roof_xieshan_rafters', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: 'roof_xieshan_roof_tile', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: 'roof_xieshan_roof_ridge_glaze', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: 'roof_xieshan_wall_red', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: 'roof_xieshan_wood_column', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '7d2c65fffb490f18b89d5d949a36ac6fe37f052789bdc3ad49759abb3ecd0898', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: 'e6681333c21d3bedc5c5d4ea4503e8acc5b95e8d8e2aabffd97d12425a145443', mat: [Object], flags: [Array] }, { role: 'r48-residential-attested-plaque', position: [Array], matrix: [Array], attrs: [Object], index: 'e6681333c21d3bedc5c5d4ea4503e8acc5b95e8d8e2aabffd97d12425a145443', mat: [Object], flags: [Array] } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
