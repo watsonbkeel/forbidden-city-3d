@@ -1,0 +1,256 @@
+TAP version 13
+# Subtest: place selection preserves held keyboard timing and map lifecycle
+ok 1 - place selection preserves held keyboard timing and map lifecycle
+  ---
+  duration_ms: 32.672297
+  type: 'test'
+  ...
+# Subtest: place selection preserves held joystick timing and map lifecycle
+ok 2 - place selection preserves held joystick timing and map lifecycle
+  ---
+  duration_ms: 13.952545
+  type: 'test'
+  ...
+# Subtest: known and unknown cards need a separately resolved explicit travel button
+ok 3 - known and unknown cards need a separately resolved explicit travel button
+  ---
+  duration_ms: 9.084317
+  type: 'test'
+  ...
+# Subtest: replace invalidates pending and detached travel clicks
+ok 4 - replace invalidates pending and detached travel clicks
+  ---
+  duration_ms: 8.079252
+  type: 'test'
+  ...
+# Subtest: back invalidates pending and detached travel clicks
+ok 5 - back invalidates pending and detached travel clicks
+  ---
+  duration_ms: 8.366827
+  type: 'test'
+  ...
+# Subtest: compact invalidates pending and detached travel clicks
+ok 6 - compact invalidates pending and detached travel clicks
+  ---
+  duration_ms: 8.767614
+  type: 'test'
+  ...
+# Subtest: close invalidates pending and detached travel clicks
+ok 7 - close invalidates pending and detached travel clicks
+  ---
+  duration_ms: 7.334011
+  type: 'test'
+  ...
+# Subtest: dispose invalidates pending and detached travel clicks
+ok 8 - dispose invalidates pending and detached travel clicks
+  ---
+  duration_ms: 10.534759
+  type: 'test'
+  ...
+# Subtest: travel failure keeps card; second-finger success deduplicates compatibility click
+ok 9 - travel failure keeps card; second-finger success deduplicates compatibility click
+  ---
+  duration_ms: 11.131473
+  type: 'test'
+  ...
+# Subtest: map has 159 keyboard information buttons, separate unchanged quick travel, safe sources and nonmodal region
+ok 10 - map has 159 keyboard information buttons, separate unchanged quick travel, safe sources and nonmodal region
+  ---
+  duration_ms: 7.727824
+  type: 'test'
+  ...
+# Subtest: compact hides details and returns to summary with explicit continue-reading
+ok 11 - compact hides details and returns to summary with explicit continue-reading
+  ---
+  duration_ms: 10.569151
+  type: 'test'
+  ...
+# Subtest: repeated map tap and resize while reading do not redraw or reset selection/view
+ok 12 - repeated map tap and resize while reading do not redraw or reset selection/view
+  ---
+  duration_ms: 6.599345
+  type: 'test'
+  ...
+# Subtest: missing or ambiguous side binding never borrows a card and unknown ID is inert
+ok 13 - missing or ambiguous side binding never borrows a card and unknown ID is inert
+  ---
+  duration_ms: 5.656175
+  type: 'test'
+  ...
+# Subtest: compatibility and double clicks alone cannot activate newly shown travel
+ok 14 - compatibility and double clicks alone cannot activate newly shown travel
+  ---
+  duration_ms: 6.517362
+  type: 'test'
+  ...
+# Subtest: travel pointercancel cannot activate through a later native click
+ok 15 - travel pointercancel cannot activate through a later native click
+  ---
+  duration_ms: 7.740538
+  type: 'test'
+  ...
+# Subtest: travel drag cannot activate through a later native click
+ok 16 - travel drag cannot activate through a later native click
+  ---
+  duration_ms: 5.256174
+  type: 'test'
+  ...
+# Subtest: source links accept the existing validated second-finger tap without travel
+ok 17 - source links accept the existing validated second-finger tap without travel
+  ---
+  duration_ms: 5.919451
+  type: 'test'
+  ...
+# Subtest: settings pauses and resumes the same detail card with fresh inputs
+ok 18 - settings pauses and resumes the same detail card with fresh inputs
+  ---
+  duration_ms: 7.93122
+  type: 'test'
+  ...
+# Subtest: detail controls retain native keyboard behavior and release held movement after focus changes
+ok 19 - detail controls retain native keyboard behavior and release held movement after focus changes
+  ---
+  duration_ms: 5.93832
+  type: 'test'
+  ...
+# Subtest: closed/disposed maps reject new cards, and re-open starts with the existing player view
+ok 20 - closed/disposed maps reject new cards, and re-open starts with the existing player view
+  ---
+  duration_ms: 7.547256
+  type: 'test'
+  ...
+# Subtest: ambiguous side-items cannot offer name-only travel even when the existing target map resolves
+ok 21 - ambiguous side-items cannot offer name-only travel even when the existing target map resolves
+  ---
+  duration_ms: 7.095793
+  type: 'test'
+  ...
+# Subtest: ambiguous canvas-labels cannot offer name-only travel even when the existing target map resolves
+ok 22 - ambiguous canvas-labels cannot offer name-only travel even when the existing target map resolves
+  ---
+  duration_ms: 4.800518
+  type: 'test'
+  ...
+# Subtest: ambiguous layout-and-side cannot offer name-only travel even when the existing target map resolves
+ok 23 - ambiguous layout-and-side cannot offer name-only travel even when the existing target map resolves
+  ---
+  duration_ms: 5.31434
+  type: 'test'
+  ...
+# Subtest: travel cancels a mouse drag that exits and re-enters the button near its press point
+ok 24 - travel cancels a mouse drag that exits and re-enters the button near its press point
+  ---
+  duration_ms: 5.640411
+  type: 'test'
+  ...
+# Subtest: non-hover touch pointerleave after a valid release retains its native click
+ok 25 - non-hover touch pointerleave after a valid release retains its native click
+  ---
+  duration_ms: 4.717783
+  type: 'test'
+  ...
+# Subtest: R36 helicopter proximity is a non-modal enter/leave/re-enter interaction, not persistent flight UI
+ok 26 - R36 helicopter proximity is a non-modal enter/leave/re-enter interaction, not persistent flight UI
+  ---
+  duration_ms: 23.596092
+  type: 'test'
+  ...
+# Subtest: R36 keyboard exit after native Escape restores real walking mouse and releases every aircraft input
+ok 27 - R36 keyboard exit after native Escape restores real walking mouse and releases every aircraft input
+  ---
+  duration_ms: 18.004315
+  type: 'test'
+  ...
+# Subtest: R36 button exit after native Escape restores real walking mouse and releases every aircraft input
+ok 28 - R36 button exit after native Escape restores real walking mouse and releases every aircraft input
+  ---
+  duration_ms: 6.67533
+  type: 'test'
+  ...
+# Subtest: R36 leaving and approaching again permits a second real boarding without stale focus or flight state
+ok 29 - R36 leaving and approaching again permits a second real boarding without stale focus or flight state
+  ---
+  duration_ms: 6.4562
+  type: 'test'
+  ...
+# Subtest: R36 map-open disembark preserves the existing unlocked walking-map ownership
+ok 30 - R36 map-open disembark preserves the existing unlocked walking-map ownership
+  ---
+  duration_ms: 4.49715
+  type: 'test'
+  ...
+# Subtest: R36 mobile exit returns actual touch look and joystick ownership without requesting desktop pointer lock
+ok 31 - R36 mobile exit returns actual touch look and joystick ownership without requesting desktop pointer lock
+  ---
+  duration_ms: 6.326364
+  type: 'test'
+  ...
+# Subtest: R36 asynchronous native rejection leaves walking ownership intact and explicit retry restores actual mouse look
+ok 32 - R36 asynchronous native rejection leaves walking ownership intact and explicit retry restores actual mouse look
+  ---
+  duration_ms: 6.747007
+  type: 'test'
+  ...
+# Subtest: R36 delayed flight lock after disembark cannot recapture a walking map or reopen aircraft controls
+ok 33 - R36 delayed flight lock after disembark cannot recapture a walking map or reopen aircraft controls
+  ---
+  duration_ms: 3.862845
+  type: 'test'
+  ...
+# Subtest: H dismount after native Escape restores actual walking mouse and keys, not only the mode flag
+ok 34 - H dismount after native Escape restores actual walking mouse and keys, not only the mode flag
+  ---
+  duration_ms: 32.667444
+  type: 'test'
+  ...
+# Subtest: proximity only shows a non-modal boarding affordance; far H belongs to ordinary walking
+ok 35 - proximity only shows a non-modal boarding affordance; far H belongs to ordinary walking
+  ---
+  duration_ms: 11.999405
+  type: 'test'
+  ...
+# Subtest: rejected native lock Promise keeps dismount complete and offers a fresh walking retry
+ok 36 - rejected native lock Promise keeps dismount complete and offers a fresh walking retry
+  ---
+  duration_ms: 10.498304
+  type: 'test'
+  ...
+# Subtest: a late exit lock after opening the map is released without returning to flight
+ok 37 - a late exit lock after opening the map is released without returning to flight
+  ---
+  duration_ms: 6.485925
+  type: 'test'
+  ...
+# Subtest: an old flight-resume Promise rejection cannot cancel a fresh boarding request
+ok 38 - an old flight-resume Promise rejection cannot cancel a fresh boarding request
+  ---
+  duration_ms: 5.043563
+  type: 'test'
+  ...
+# Subtest: native unlock delivered after H dismount offers walking recovery, never reopens flight operations
+ok 39 - native unlock delivered after H dismount offers walking recovery, never reopens flight operations
+  ---
+  duration_ms: 6.312753
+  type: 'test'
+  ...
+# Subtest: completed dismount does not label a later ordinary walking unlock as flight recovery (delayed=false)
+ok 40 - completed dismount does not label a later ordinary walking unlock as flight recovery (delayed=false)
+  ---
+  duration_ms: 4.008735
+  type: 'test'
+  ...
+# Subtest: completed dismount does not label a later ordinary walking unlock as flight recovery (delayed=true)
+ok 41 - completed dismount does not label a later ordinary walking unlock as flight recovery (delayed=true)
+  ---
+  duration_ms: 4.707507
+  type: 'test'
+  ...
+1..41
+# tests 41
+# suites 0
+# pass 41
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1003.670499

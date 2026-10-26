@@ -1,0 +1,166 @@
+TAP version 13
+# Subtest: near unresolved person precedes peripheral prewarm and visible refinement, not first coarse model
+ok 1 - near unresolved person precedes peripheral prewarm and visible refinement, not first coarse model
+  ---
+  duration_ms: 1.622438
+  type: 'test'
+  ...
+# Subtest: successful near metadata yields before starting another long job, so Promise consumers can queue coarse first
+ok 2 - successful near metadata yields before starting another long job, so Promise consumers can queue coarse first
+  ---
+  duration_ms: 1.041935
+  type: 'test'
+  ...
+# Subtest: pending metadata does not yield the frame or starve another available job
+ok 3 - pending metadata does not yield the frame or starve another available job
+  ---
+  duration_ms: 0.257667
+  type: 'test'
+  ...
+# Subtest: ready handoff may defer one oldest turn but repays it immediately after urgent coarse
+ok 4 - ready handoff may defer one oldest turn but repays it immediately after urgent coarse
+  ---
+  duration_ms: 0.474793
+  type: 'test'
+  ...
+# Subtest: hidden but resident batch retains one lease and zero actual submissions until final exit
+ok 5 - hidden but resident batch retains one lease and zero actual submissions until final exit
+  ---
+  duration_ms: 12.306739
+  type: 'test'
+  ...
+# Subtest: same actor resident with a new pose cannot pin obsolete pose or quality resources
+ok 6 - same actor resident with a new pose cannot pin obsolete pose or quality resources
+  ---
+  duration_ms: 26.992061
+  type: 'test'
+  ...
+# Subtest: two zones hold independent batch leases to one immutable shared geometry
+ok 7 - two zones hold independent batch leases to one immutable shared geometry
+  ---
+  duration_ms: 2.393677
+  type: 'test'
+  ...
+# Subtest: cancelling one model key returns its partial generator without cancelling logical jobs
+ok 8 - cancelling one model key returns its partial generator without cancelling logical jobs
+  ---
+  duration_ms: 0.996047
+  type: 'test'
+  ...
+# Subtest: streaming status separates logical positions from nearby prepared models and actual visible actors
+ok 9 - streaming status separates logical positions from nearby prepared models and actual visible actors
+  ---
+  duration_ms: 7.032435
+  type: 'test'
+  ...
+# Subtest: distant logical bindings resolve without generating any character models
+ok 10 - distant logical bindings resolve without generating any character models
+  ---
+  duration_ms: 37.76785
+  type: 'test'
+  ...
+# Subtest: resident key users are complete before cancellation: one leaving user cannot kill another
+ok 11 - resident key users are complete before cancellation: one leaving user cannot kill another
+  ---
+  duration_ms: 2.499746
+  type: 'test'
+  ...
+# Subtest: pose change releases obsolete model interest while retaining only exact new pose and valid detail
+ok 12 - pose change releases obsolete model interest while retaining only exact new pose and valid detail
+  ---
+  duration_ms: 1.637841
+  type: 'test'
+  ...
+# Subtest: camera teleport activates current near models without resetting logical bindings or synchronously acquiring missing geometry
+ok 13 - camera teleport activates current near models without resetting logical bindings or synchronously acquiring missing geometry
+  ---
+  duration_ms: 232.068221
+  type: 'test'
+  ...
+# Subtest: actual Zhonghe sit and stand transitions wait for player occupancy without teleporting or changing identity
+ok 14 - actual Zhonghe sit and stand transitions wait for player occupancy without teleporting or changing identity
+  ---
+  duration_ms: 3.567189
+  type: 'test'
+  ...
+# Subtest: emperor Zhonghe variant has actual seat and foot support, no invented floor LOD0
+ok 15 - emperor Zhonghe variant has actual seat and foot support, no invented floor LOD0
+  ---
+  duration_ms: 87.697602
+  type: 'test'
+  ...
+# Subtest: emperor Zhonghe variant has actual seat and foot support, no invented floor LOD1
+ok 16 - emperor Zhonghe variant has actual seat and foot support, no invented floor LOD1
+  ---
+  duration_ms: 45.401639
+  type: 'test'
+  ...
+# Subtest: emperor Zhonghe variant has actual seat and foot support, no invented floor LOD2
+ok 17 - emperor Zhonghe variant has actual seat and foot support, no invented floor LOD2
+  ---
+  duration_ms: 26.901375
+  type: 'test'
+  ...
+# Subtest: Zhonghe adaptation cannot silently modify another role or a standing pose
+ok 18 - Zhonghe adaptation cannot silently modify another role or a standing pose
+  ---
+  duration_ms: 0.966833
+  type: 'test'
+  ...
+# Subtest: all actual garment triangles avoid positive-area penetration into original chair arms/back/seat LOD0
+ok 19 - all actual garment triangles avoid positive-area penetration into original chair arms/back/seat LOD0
+  ---
+  duration_ms: 63.790561
+  type: 'test'
+  ...
+# Subtest: all actual garment triangles avoid positive-area penetration into original chair arms/back/seat LOD1
+ok 20 - all actual garment triangles avoid positive-area penetration into original chair arms/back/seat LOD1
+  ---
+  duration_ms: 29.436313
+  type: 'test'
+  ...
+# Subtest: all actual garment triangles avoid positive-area penetration into original chair arms/back/seat LOD2
+ok 21 - all actual garment triangles avoid positive-area penetration into original chair arms/back/seat LOD2
+  ---
+  duration_ms: 20.683895
+  type: 'test'
+  ...
+# Subtest: seated idle animation keeps the new contact-bearing lower garment and shoes fixed
+ok 22 - seated idle animation keeps the new contact-bearing lower garment and shoes fixed
+  ---
+  duration_ms: 13.519831
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 295 个 region, 223 个 mapItem
+# [ZoneManager] ?zones=all 模式：加载所有区...
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# [ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+# [ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+# [ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+# [ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+# [ZoneManager] 卸载区域 axis-courts
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 卸载区域 ningshou
+# [ZoneManager] 卸载区域 outer-east
+# [ZoneManager] 卸载区域 outer-west
+# [ZoneManager] 卸载区域 garden
+# Subtest: one emperor continuously follows the short actual-world route, sits in Zhonghe and returns at six
+ok 23 - one emperor continuously follows the short actual-world route, sits in Zhonghe and returns at six
+  ---
+  duration_ms: 7560.660463
+  type: 'test'
+  ...
+1..23
+# tests 23
+# suites 0
+# pass 23
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9339.596083

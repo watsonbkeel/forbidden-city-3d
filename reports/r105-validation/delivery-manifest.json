@@ -1,0 +1,90 @@
+{
+  "release": "R105",
+  "classification": "cumulative major candidate for user main merge; conditional deployment recommendation only",
+  "baseLocal": "7d878e42b2e53212aa7befb33a731ecda45bedac",
+  "baseRemote": "9c47d2e63c93bb4c11d8a9b88c1bd591808a2759",
+  "buildSource": "cc377f70f0101e59b89e531e564fbc7a99b150bf",
+  "runtime404ExactR104": true,
+  "builds": {
+    "root": {
+      "schema": 1,
+      "release": "R105",
+      "buildId": "R105-b25e967ed106",
+      "sourceFingerprint": "b61e50bc0354372728074a9d37faf1069a635e74a3aca9a31ffdc538068b0de8",
+      "sourceCommit": "cc377f70f0101e59b89e531e564fbc7a99b150bf",
+      "sourceDirty": false,
+      "base": "/"
+    },
+    "pages": {
+      "schema": 1,
+      "release": "R105",
+      "buildId": "R105-c2c4e45180b6",
+      "sourceFingerprint": "b61e50bc0354372728074a9d37faf1069a635e74a3aca9a31ffdc538068b0de8",
+      "sourceCommit": "cc377f70f0101e59b89e531e564fbc7a99b150bf",
+      "sourceDirty": false,
+      "base": "/forbidden-city-3d/"
+    },
+    "gugong": {
+      "schema": 1,
+      "release": "R105",
+      "buildId": "R105-3e35799f730e",
+      "sourceFingerprint": "b61e50bc0354372728074a9d37faf1069a635e74a3aca9a31ffdc538068b0de8",
+      "sourceCommit": "cc377f70f0101e59b89e531e564fbc7a99b150bf",
+      "sourceDirty": false,
+      "base": "/gugong/"
+    }
+  },
+  "cumulative": {
+    "checkpoint": "35f5c008b1134231b73d39437b4973884bb6f7ee",
+    "tests": 184,
+    "pass": 184
+  },
+  "integration": {
+    "interaction": [
+      41,
+      41
+    ],
+    "charactersEmperor": [
+      23,
+      23
+    ],
+    "retention": [
+      2,
+      2
+    ]
+  },
+  "currentState": {
+    "checkpoint": "c02c1ceb23865d6032d76efe825d0aaee50ffd3f",
+    "completeRun": true,
+    "tests": 1290,
+    "pass": 1127,
+    "fail": 163,
+    "added": [],
+    "removed": [],
+    "exceptionSignaturesExactR104": true,
+    "meaning": "Historical failures retained; some legacy route entries never execute because existing fixture exceptions remain."
+  },
+  "independentHTTP": {
+    "bases": 3,
+    "filesPerBase": 137,
+    "status": "PASS"
+  },
+  "package": {
+    "output": "/workspace/scratch/02a8023d1a85/r105-production-package",
+    "buildId": "R105-b25e967ed106",
+    "sourceFingerprint": "b61e50bc0354372728074a9d37faf1069a635e74a3aca9a31ffdc538068b0de8",
+    "files": 139,
+    "totalBytes": 42199860,
+    "manifestSha256": "14ec1f2ea7b6b032ecb927dd84b81708299e34ebaa45aa7c1dbf5f4f716fa0ab"
+  },
+  "limitations": [
+    "R97 optimizations rejected; Garden +182ms reload unresolved",
+    "R98 rear mountain geometry incomplete",
+    "R102/R103 bounded surfaces/windows not all axis interiors/east-west palaces",
+    "R104 16/144 non-grounded stress starts, 5/8 escape per fps in separate24; p95 up to6.535408ms/max13.722394ms",
+    "GPU/mobile/candidate actualNode20 NOT_RUN"
+  ],
+  "majorReleaseNotes": "docs/current-state/r105/MAJOR-RELEASE.md",
+  "remoteStatus": "PENDING_UNIQUE_UPLOADER_FULL_READBACK",
+  "mainPagesOperated": false
+}
