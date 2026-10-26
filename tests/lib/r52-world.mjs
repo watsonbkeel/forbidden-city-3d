@@ -12,7 +12,7 @@ import {Environment} from '../../src/scene/Environment.js';
 import {ZoneManager} from '../../src/scene/zones/ZoneManager.js';
 import {CollisionManager} from '../../src/utils/Collision.js';
 
-export async function buildR52World({loadAll=true,initialPosition={x:0,z:-494},createLibrary=null}={}){
+export async function buildR52World({loadAll=true,initialPosition={x:0,z:-494},createLibrary=null,zoneManagerOptions={}}={}){
  const dom=createDOM(),create=dom.document.createElement,{createCanvas}=createRequire(import.meta.url)('@napi-rs/canvas');
  dom.document.createElement=type=>type==='canvas'?createCanvas(1,1):create(type);
  dom.document.createElementNS=()=>({addEventListener(){},removeEventListener(){}});
@@ -45,7 +45,7 @@ export async function buildR52World({loadAll=true,initialPosition={x:0,z:-494},c
  cm.addColliders(palaceBuilder.getColliders(),'static');cm.addWalkables(palaceBuilder.getWalkables(),'static');
  const enclosure=new Enclosure(scene,library).build();cm.addColliders(enclosure.getColliders(),'static');
  const garden=new GardenBuilder(scene,library).build(PALACE_LAYOUT.find(p=>p.type==='garden'));cm.addColliders(garden.getColliders(),'static');cm.addWalkables(garden.getWalkables(),'static');
- const zoneManager=new ZoneManager();for(const zone of ZONES)zoneManager.register(zone);zoneManager.init(scene,library,cm,initialPosition);scene.updateMatrixWorld(true);
+ const zoneManager=new ZoneManager(zoneManagerOptions);for(const zone of ZONES)zoneManager.register(zone);zoneManager.init(scene,library,cm,initialPosition);scene.updateMatrixWorld(true);
  const zones=ZONES.map(json=>({json})),gates=[],halls=[];
  for(const {json}of zones)for(const item of json.items){if(['gate','cityGate'].includes(item.kind))gates.push({zone:json.id,item,...gateGeom(item)});if(item.kind==='hall')halls.push({zone:json.id,item,g:hallGeom(item)});}
  return{THREE,scene,cm,zoneManager,palaceBuilder,enclosure,garden,environment,library,libraryEvidence:libraryResources?.evidence??null,dom,zones,gates,halls,

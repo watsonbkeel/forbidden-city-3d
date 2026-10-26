@@ -8,10 +8,11 @@
 ![Status](https://img.shields.io/badge/mainline-R105-brightgreen)
 ![Validation](https://img.shields.io/badge/validation-see_release_records-blue)
 
-## R106–R107：首批性能开发阶段（待 R110 累计验收）
+## R106–R108：首批性能与人物复验开发阶段（待 R110 累计验收）
 
 - R106：交泰低档纹理直接256²，承乾窗格低档减密保形；已加载建筑不热重建，重入才应用建筑档位。交泰map即时替换有CPU成本。锡庆低色面试验因收益不可信已撤回。
 - R107：仅短期离区重返复用，最多2个闲置区、32MiB已知资源预算、120秒TTL；启动原全区预建和常驻Garden成本未解决，不承诺无卡顿。合批废构建图漏计已被发现并修正，旧性能/错误计量证据保留，最终数据单列。
+- R108：人物稳定性复验，运行代码不变；真实实例/近动态身体、缓存重返与受控视角切换验证，保留跨区异步重绑暂隐和设备未验限制，不冒称新的提速实现。见[R108记录](docs/current-state/r108/VALIDATION.md)。
 - 见[R106验证](docs/current-state/r106/VALIDATION.md)、[R107验证](docs/current-state/r107/VALIDATION.md)。R110将给单独累计大版本发布说明、准确SHA、条件合并建议与回滚，不需逐小版合并。
 
 ## R105：累计验收（供评审合并 main 的大版本候选）

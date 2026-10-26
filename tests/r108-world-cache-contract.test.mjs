@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import{buildR52World}from'./lib/r52-world.mjs';
+test('explicit production zone options reach the real full-world manager',async()=>{const w=await buildR52World({loadAll:false,initialPosition:{x:100.22,z:434.1},zoneManagerOptions:{reuseInactive:true}});try{assert.ok(w.zoneManager.inactiveCache,'R107 production cache must really be enabled');assert.equal(w.zoneManager.inactiveCache.maxBytes,32*1024*1024);assert.ok(w.cm.colliders.length>0);assert.ok(w.zoneManager.loaded.size>0);}finally{w.dispose();}});

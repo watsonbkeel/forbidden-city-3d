@@ -1,0 +1,16 @@
+✔ ground distance latches are independent of resource completion and frustum (1.000842ms)
+✔ first interest beyond40 but within60 prewarms without drawing and uses actual position not an anchor (0.232389ms)
+✔ flight uses aircraft XZ rather than altitude or offset camera and has display exit hysteresis (0.150556ms)
+✔ teleport or dismount immediately recomputes interest while preserving caller logical records (0.687512ms)
+✔ distant logical bindings resolve without generating any character models (32.586681ms)
+✔ resident key users are complete before cancellation: one leaving user cannot kill another (1.803697ms)
+✔ pose change releases obsolete model interest while retaining only exact new pose and valid detail (1.1724ms)
+✔ camera teleport activates current near models without resetting logical bindings or synchronously acquiring missing geometry (181.273086ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 361.545751
