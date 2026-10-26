@@ -1,0 +1,27 @@
+✖ R113 actual Lijing retains shell and supplies the whole source-guided west-room group (57.701679ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 253.192807
+
+✖ failing tests:
+
+test at tests/r113/lijing-room.test.mjs:3:1
+✖ R113 actual Lijing retains shell and supplies the whole source-guided west-room group (57.701679ms)
+  AssertionError [ERR_ASSERTION]: complete west room missing
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r113-chuxiu-courtyard-interior/tests/r113/lijing-room.test.mjs:4:118)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

@@ -1,3 +1,5 @@
+import {applyLijingWestRoom} from '../palace/special/LijingWestRoom.js';
+import {registerChuxiuSideAccess} from '../../controls/ChuxiuSideAccess.js';
 import {registerStairInterfaces} from '../../controls/StairInterfaces.js';
 import {buildXiqingGate,xiqingWallGaps} from '../palace/special/XiqingGate.js';
 import {applyChengqianRearSouthWindows} from '../palace/special/ChengqianSouthWindows.js';
@@ -130,6 +132,7 @@ export class ZoneBase {
 
     buildNightBeds(this.kit,this.zoneJson);
     registerStairInterfaces(this.kit,this.zoneJson);
+    registerChuxiuSideAccess(this.kit,this.zoneJson);
 
     // Keep distance levels out of the ordinary recursive material merge.
     const yanxiFrames = detachYanxiRuinFrames(this.kit.root);
@@ -208,6 +211,7 @@ export class ZoneBase {
     if(this.zoneJson.id==='west-six'&&[24,47].includes(itemIndex)){
       built.f.updateWorldMatrix(true,true);
       if(!applyWestRearSouthWindows(this.kit,built.f,item,itemIndex))throw Error('West rear south window profile failed closed');
+      applyLijingWestRoom(this.kit,this.zoneJson.id,itemIndex,item,built);
     }
     if(this.zoneJson.id==='east-six'&&itemIndex===3){
       built.f.updateWorldMatrix(true,false);

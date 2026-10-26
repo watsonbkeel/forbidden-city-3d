@@ -12,24 +12,35 @@ export const CHUXIU_COURTYARD_FIT=Object.freeze({
 const SOURCES=Object.freeze(['https://www.dpm.org.cn/explore/building/236486.html','https://www.dpm.org.cn/explore/building/236529.html']);
 const tag=(o,role)=>{o.name=role;o.userData.role=role;return o;};
 const near=(a,b)=>Number.isFinite(a)&&Math.abs(a-b)<1e-7;
+/** Only the two existing estimated front wings. The original declaration is
+ * retained for historical fixture replay; the fitted variant requires all keys. */
+export function chuxiuWingOriginalDeclaration(item,index){
+ if(item.positionFit===undefined)return item;
+ const fit=item.positionFit;
+ if(![25,26].includes(index)||item.kind!=='hall'||item.x!==(index===25?78.32:111.28)||item.rot!==(index===25?'west':'east')||item.z!==422||
+   JSON.stringify(Object.keys(fit).sort())!==JSON.stringify(['deltaZ','previousZ','profile','status'])||fit.profile!=='chuxiu-side-access-fit-v1'||fit.previousZ!==423.1||fit.deltaZ!==-1.1||fit.status!=='estimated-coordinate-correction')throw Error('Chuxiu side access fitted declaration mismatch');
+ const {positionFit,...original}=item;return {...original,z:423.1};
+}
 export function chuxiuCourtyardGeometry(zone){
  const p=CHUXIU_COURTYARD_FIT;
+ const wingZ=zone.items?.[25]?.positionFit?422:423.1;
+ for(const i of[25,26]){const a=zone.items?.[i];if(a?.positionFit)chuxiuWingOriginalDeclaration(a,i);if(a?.z!==wingZ)throw Error('Chuxiu wing pair fit mismatch');}
  if(zone.id!=='west-six')throw Error('Chuxiu courtyard belongs only to west-six');
  if(zone.courtyardProfile!==p.profile)throw Error('Chuxiu courtyard requires the explicit fitted profile');
  for(const expected of[
   {name:'储秀宫',x:94.8,z:434.3,w:27.1,d:13.8,ph:.6},
   {name:'翊坤宫后殿',x:94,z:401.5,w:26.2,d:12.9,ph:.45},
-  {x:78.32,z:423.1,w:11.2,d:7.04,ph:.45,rot:'west'},
-  {x:111.28,z:423.1,w:11.2,d:7.04,ph:.45,rot:'east'},
+  {x:78.32,z:wingZ,w:11.2,d:7.04,ph:.45,rot:'west'},
+  {x:111.28,z:wingZ,w:11.2,d:7.04,ph:.45,rot:'east'},
  ]){
   const item=zone.items?.find(i=>i.kind==='hall'&&(expected.name?i.name===expected.name:near(i.x,expected.x)&&near(i.z,expected.z)));
   if(!item||Object.entries(expected).some(([k,v])=>typeof v==='number'?!near(item[k],v):item[k]!==v))throw Error('Chuxiu courtyard retained envelope mismatch');
  }
- return {...p,dimensionStatus:'official-topology-model-fit',sources:[...SOURCES],
+ return {...p,wingZ,dimensionStatus:'official-topology-model-fit',sources:[...SOURCES],
   identities:{main:'储秀宫',south:'体和殿（翊坤宫后殿）',east:'储秀宫东配殿',west:'储秀宫西配殿'},
   routes:{
    loop:[[p.eastX,p.northZ],[p.eastX,p.southZ],[p.westX,p.southZ],[p.westX,p.northZ],[p.eastX,p.northZ]],
-   entries:[[[94,399],[94,p.southZ],[94,418],[94.8,425],[94.8,433.5]],[[78.9,423.1],[p.eastX,423.1],[89,423.1]],[[110.7,423.1],[p.westX,423.1],[100,423.1]],[[79.7,412],[79.7,409],[79.7,395]],[[108.9,412],[108.9,409],[108.9,395]]],
+   entries:[[[94,399],[94,p.southZ],[94,418],[94.8,425],[94.8,433.5]],[[78.9,wingZ],[p.eastX,wingZ],[89,wingZ]],[[110.7,wingZ],[p.westX,wingZ],[100,wingZ]],[[79.7,412],[79.7,409],[79.7,395]],[[108.9,412],[108.9,409],[108.9,395]]],
   },
   limitations:['The connection topology is documented; widths, heights, mitered shed roofs, pillar positions and floor transitions are reversible model fits.','The two accessory halls retain their existing geometry and generic interior; the historic identities Yanghe/Suifu are not assigned to individual model sides without separate verification.','No measured survey, detailed tile inscription reconstruction, or browser visual acceptance is claimed.'],
  };
@@ -61,7 +72,7 @@ export function buildChuxiuCourtyard(kit,zone){
  kit.walkBox(f,p.innerEast,p.outerSouth,p.innerWest,p.innerSouth,p.floorY);
  // Three shallow paved approaches give the raised gallery a legible transition
  // to the retained ground-level open court. They do not move any hall threshold.
- for(const[x,z,rot,width]of[[p.innerEast,423.1,Math.PI/2,p.approachWidth],[p.innerWest,423.1,-Math.PI/2,p.approachWidth],[94,p.innerSouth,0,4.2]]){
+ for(const[x,z,rot,width]of[[p.innerEast,g.wingZ,Math.PI/2,p.approachWidth],[p.innerWest,g.wingZ,-Math.PI/2,p.approachWidth],[94,p.innerSouth,0,4.2]]){
   const stepFrame=new THREE.Group();stepFrame.position.set(x,0,z);stepFrame.rotation.y=rot;f.add(stepFrame);stepFrame.updateMatrixWorld(true);
   for(let i=0;i<3;i++){
    const top=p.floorY*(3-i)/4,run=p.approachRun/3;

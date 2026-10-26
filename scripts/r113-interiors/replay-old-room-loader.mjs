@@ -1,0 +1,1 @@
+import{registerHooks}from'node:module';import{execFileSync}from'node:child_process';registerHooks({load(u,c,n){if(u.endsWith('/src/scene/palace/special/LijingWestRoom.js'))return{format:'module',shortCircuit:true,source:execFileSync('git',['show','3ab224cc:src/scene/palace/special/LijingWestRoom.js'],{encoding:'utf8'})};return n(u,c)}});

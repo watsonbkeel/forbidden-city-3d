@@ -1,0 +1,191 @@
+{
+  "runtime": "19135d9a70ed48b31d4d45b18575919a101268f8",
+  "baseline": "670119e557d4561ad0b9e2df21c50b5679ed86e9",
+  "currentHead": "e5799208339a45eb8945b0d1c0d317ebcbe7768e",
+  "raws": {
+    "reports/r113-interiors/cost/pair-1-baseline.json": "0e8e6e45bba644eb9210bbeeebf0ae96001b0ef70772710db5cf419b1d7785ea",
+    "reports/r113-interiors/cost/pair-2-baseline.json": "afa7893bc67d8324e34cf0931c8629cf6e3142f8d9288cf1c31663cba9900c60",
+    "reports/r113-interiors/cost/pair-3-baseline.json": "e176025cadf02da896bd88e21302df74daa725a186faffda6707ac63786e7953",
+    "reports/r113-interiors/cost/pair-4-baseline.json": "cc0ba55f4b27db767f7d103a3f34d69603cb65c671f449aaad895a1c4dd1ea8f",
+    "reports/r113-interiors/cost/pair-5-baseline.json": "ab8befd1cda54abaeac5b1ffda33ae9bab9f9c89adf2de124f3b385cc97bfe1f",
+    "reports/r113-interiors/cost/pair-1-candidate.json": "0aa1d996667c6653c889088ca04f5d00333ca58798a1c1877adac159d41adeae",
+    "reports/r113-interiors/cost/pair-2-candidate.json": "5ae1f1b7f73334d07c4ec2e138a0c97d63b785d6c0a5594d2d550dac03037144",
+    "reports/r113-interiors/cost/pair-3-candidate.json": "7e5dbd6e49d543f3fe8d1ae60086e23f55dfbb2267000e9237f516c6c2eee6de",
+    "reports/r113-interiors/cost/pair-4-candidate.json": "892f5c8f4da1d737cdfb883fcf78abc1c4f3b015efdcbba5282374cd5073b64c",
+    "reports/r113-interiors/cost/pair-5-candidate.json": "4c13ab836e26f29daa9c72801ecc2ff7a90508338e0b4ad552692c77e5a957f3",
+    "reports/r113-interiors/shared-targeted.tap": "33c69f7400c5bc83454ca213e0a6ef6237db6e13d41c2864005ed1ac4a0ff2a9",
+    "reports/r113-interiors/shared-stair-contact.tap": "cbf98031239b50882d88c7731a2044f844ea1356a0ba0b45481f8fe5cb842090",
+    "reports/r113-interiors/night-household.json": "9f124f0b8143116789b442c971d382e14054db4a4ed5b93004203f8179c2faca"
+  },
+  "cost": {
+    "baseline": {
+      "buildMedian": 595.6904619932175,
+      "registerMedian": 1.4332720041275024,
+      "disposeMedian": 0.33897900581359863,
+      "resource": {
+        "meshes": 91,
+        "triangles": 106073,
+        "geometries": 2814,
+        "materials": 100,
+        "geometryArrayBufferBytes": 17794524,
+        "knownTextureBytes": 14155776,
+        "unknownTextures": 0,
+        "textureBudgetMeaning": "Known RGBA/canvas base-pixel estimate only; excludes mip/GPU duplication/JS and physics; unknown not zero."
+      },
+      "paths": {
+        "room-through": {
+          "p50": 0.033950984477996826,
+          "p95": 0.09559398889541626,
+          "p99": 0.20377600193023682,
+          "max": 10.461924016475677,
+          "firstFrameMs": [
+            4.569599986076355,
+            6.577915012836456,
+            4.613224983215332,
+            4.634586989879608,
+            4.437512040138245
+          ],
+          "allPeak": 10.461924016475677
+        },
+        "room-table-blocked": {
+          "p50": 0.01889801025390625,
+          "p95": 0.059738993644714355,
+          "p99": 0.14128202199935913,
+          "max": 4.048897981643677,
+          "firstFrameMs": [
+            0.09660500288009644,
+            0.08060097694396973,
+            0.409945011138916,
+            0.05983000993728638,
+            0.06831300258636475
+          ],
+          "allPeak": 4.048897981643677
+        },
+        "side-turn": {
+          "p50": 0.01603400707244873,
+          "p95": 0.0362740159034729,
+          "p99": 0.09523200988769531,
+          "max": 9.67900002002716,
+          "firstFrameMs": [
+            0.07910895347595215,
+            0.08256399631500244,
+            0.08890300989151001,
+            0.0844070315361023,
+            0.07333999872207642
+          ],
+          "allPeak": 29.129635989665985
+        },
+        "outside": {
+          "p50": 0.0074310302734375,
+          "p95": 0.016725003719329834,
+          "p99": 0.045478999614715576,
+          "max": 0.4088839888572693,
+          "firstFrameMs": [
+            0.04723995923995972,
+            0.046639978885650635,
+            0.05047500133514404,
+            0.06298500299453735,
+            0.045749008655548096
+          ],
+          "allPeak": 0.4088839888572693
+        }
+      },
+      "allSamples": 12000,
+      "warmSamples": 9600
+    },
+    "candidate": {
+      "buildMedian": 620.4334359765053,
+      "registerMedian": 1.826291024684906,
+      "disposeMedian": 0.3610219955444336,
+      "resource": {
+        "meshes": 96,
+        "triangles": 107527,
+        "geometries": 2941,
+        "materials": 105,
+        "geometryArrayBufferBytes": 18035888,
+        "knownTextureBytes": 14221312,
+        "unknownTextures": 0,
+        "textureBudgetMeaning": "Known RGBA/canvas base-pixel estimate only; excludes mip/GPU duplication/JS and physics; unknown not zero."
+      },
+      "paths": {
+        "room-through": {
+          "p50": 0.03446197509765625,
+          "p95": 0.11704599857330322,
+          "p99": 0.22593903541564941,
+          "max": 5.694671034812927,
+          "firstFrameMs": [
+            1.27572500705719,
+            1.5810779929161072,
+            1.4267119765281677,
+            1.2408620119094849,
+            1.224166989326477
+          ],
+          "allPeak": 6.561138987541199
+        },
+        "room-table-blocked": {
+          "p50": 0.04632997512817383,
+          "p95": 0.10898298025131226,
+          "p99": 0.2825939655303955,
+          "max": 1.4966470003128052,
+          "firstFrameMs": [
+            0.2442460060119629,
+            0.08769100904464722,
+            0.16824305057525635,
+            0.0921279788017273,
+            0.1913279891014099
+          ],
+          "allPeak": 1.4966470003128052
+        },
+        "side-turn": {
+          "p50": 0.019258975982666016,
+          "p95": 0.04698997735977173,
+          "p99": 0.1171259880065918,
+          "max": 0.7428849935531616,
+          "firstFrameMs": [
+            0.0686829686164856,
+            0.10148203372955322,
+            0.08678001165390015,
+            0.14600998163223267,
+            0.07910799980163574
+          ],
+          "allPeak": 0.7428849935531616
+        },
+        "outside": {
+          "p50": 0.009804010391235352,
+          "p95": 0.030725955963134766,
+          "p99": 0.0856279730796814,
+          "max": 3.2832189798355103,
+          "firstFrameMs": [
+            0.11485201120376587,
+            0.08404600620269775,
+            0.06716001033782959,
+            0.07819700241088867,
+            0.0789790153503418
+          ],
+          "allPeak": 3.2832189798355103
+        }
+      },
+      "allSamples": 12000,
+      "warmSamples": 9600
+    }
+  },
+  "allRuntimeHashesMatched": 412,
+  "copiedReportMatches": true,
+  "observedRootBuildInfo": {
+    "schema": 1,
+    "release": "R110",
+    "buildId": "R110-fe836f8fa0d5",
+    "sourceFingerprint": "1231598e40710e45e4ea9cbf36021827335b38f15ded4ed06dd39626b64a5996",
+    "sourceCommit": "e5799208339a45eb8945b0d1c0d317ebcbe7768e",
+    "sourceDirty": false,
+    "base": "/"
+  },
+  "buildLogSha": "830a2febebcdc37c162ff1fbb167097124553bc060a8d140a90c553e7a9f126c",
+  "buildNote": "Fresh read-back of writer build output; not an independently re-executed build. Exit status supplied by writer/auditor, log ends built in 5.82s.",
+  "limits": [
+    "Actual west-six fixture construction and controlled CPU frames only, no GPU/phone/Node20/Garden-first-load claim.",
+    "600 frames per path; retained first120 excluded only from warm quantiles. No cost samples discarded.",
+    "Night raw records actual three-bed 21/06 logical DailyRoutine, not full108 physical routes.",
+    "Scoped functional/geometry/material gate; not whole courtyard completion."
+  ]
+}
