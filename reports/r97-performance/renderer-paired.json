@@ -1,0 +1,305 @@
+{
+  "scope": "Prepared real Renderer microbenchmark,24 same-template actors; 300 warmup+1500 samples each; not world/GPU FPS. All animation/visibility uploads preserved.",
+  "rows": [
+    {
+      "round": 0,
+      "mode": "static",
+      "kind": "baseline",
+      "instances": 24,
+      "timings": {
+        "p50": 0.015453000000007933,
+        "p95": 0.030055000000004384,
+        "p99": 0.12241399999999203,
+        "max": 10.981328999999988
+      },
+      "matrixVersions": [
+        1800
+      ]
+    },
+    {
+      "round": 0,
+      "mode": "static",
+      "kind": "candidate",
+      "instances": 24,
+      "timings": {
+        "p50": 0.010034999999987804,
+        "p95": 0.01226800000000594,
+        "p99": 0.03494200000000092,
+        "max": 1.5528410000000008
+      },
+      "matrixVersions": [
+        1
+      ]
+    },
+    {
+      "round": 0,
+      "mode": "moving",
+      "kind": "baseline",
+      "instances": 24,
+      "timings": {
+        "p50": 0.01576400000001854,
+        "p95": 0.018368000000009488,
+        "p99": 0.05536299999999983,
+        "max": 0.18337500000001228
+      },
+      "matrixVersions": [
+        1800
+      ]
+    },
+    {
+      "round": 0,
+      "mode": "moving",
+      "kind": "candidate",
+      "instances": 24,
+      "timings": {
+        "p50": 0.01591400000000931,
+        "p95": 0.018438000000003285,
+        "p99": 0.07249899999999343,
+        "max": 0.38022000000000844
+      },
+      "matrixVersions": [
+        1800
+      ]
+    },
+    {
+      "round": 1,
+      "mode": "static",
+      "kind": "candidate",
+      "instances": 24,
+      "timings": {
+        "p50": 0.010154999999997472,
+        "p95": 0.01733600000000024,
+        "p99": 0.04872299999999541,
+        "max": 0.48433699999998225
+      },
+      "matrixVersions": [
+        1
+      ]
+    },
+    {
+      "round": 1,
+      "mode": "static",
+      "kind": "baseline",
+      "instances": 24,
+      "timings": {
+        "p50": 0.01496300000002293,
+        "p95": 0.02216299999997773,
+        "p99": 0.07549299999999448,
+        "max": 2.2348449999999502
+      },
+      "matrixVersions": [
+        1800
+      ]
+    },
+    {
+      "round": 1,
+      "mode": "moving",
+      "kind": "candidate",
+      "instances": 24,
+      "timings": {
+        "p50": 0.015724000000034266,
+        "p95": 0.043774999999982356,
+        "p99": 0.11205799999999044,
+        "max": 0.42200900000000274
+      },
+      "matrixVersions": [
+        1800
+      ]
+    },
+    {
+      "round": 1,
+      "mode": "moving",
+      "kind": "baseline",
+      "instances": 24,
+      "timings": {
+        "p50": 0.014951999999993859,
+        "p95": 0.020891000000005988,
+        "p99": 0.09853699999996479,
+        "max": 1.5558959999999615
+      },
+      "matrixVersions": [
+        1800
+      ]
+    },
+    {
+      "round": 2,
+      "mode": "static",
+      "kind": "baseline",
+      "instances": 24,
+      "timings": {
+        "p50": 0.014221999999961099,
+        "p95": 0.029284000000018295,
+        "p99": 0.19183800000001838,
+        "max": 2.14540199999999
+      },
+      "matrixVersions": [
+        1800
+      ]
+    },
+    {
+      "round": 2,
+      "mode": "static",
+      "kind": "candidate",
+      "instances": 24,
+      "timings": {
+        "p50": 0.009364000000005035,
+        "p95": 0.013500000000021828,
+        "p99": 0.09202799999997069,
+        "max": 2.074194000000034
+      },
+      "matrixVersions": [
+        1
+      ]
+    },
+    {
+      "round": 2,
+      "mode": "moving",
+      "kind": "baseline",
+      "instances": 24,
+      "timings": {
+        "p50": 0.014341999999942345,
+        "p95": 0.02851199999997789,
+        "p99": 0.11471299999993789,
+        "max": 0.3201410000000351
+      },
+      "matrixVersions": [
+        1800
+      ]
+    },
+    {
+      "round": 2,
+      "mode": "moving",
+      "kind": "candidate",
+      "instances": 24,
+      "timings": {
+        "p50": 0.015023000000041975,
+        "p95": 0.01848799999993389,
+        "p99": 0.07123599999999897,
+        "max": 0.31648500000005697
+      },
+      "matrixVersions": [
+        1800
+      ]
+    },
+    {
+      "round": 3,
+      "mode": "static",
+      "kind": "candidate",
+      "instances": 24,
+      "timings": {
+        "p50": 0.009494000000017877,
+        "p95": 0.015582999999992353,
+        "p99": 0.04776200000003428,
+        "max": 0.3103159999999434
+      },
+      "matrixVersions": [
+        1
+      ]
+    },
+    {
+      "round": 3,
+      "mode": "static",
+      "kind": "baseline",
+      "instances": 24,
+      "timings": {
+        "p50": 0.014171000000033018,
+        "p95": 0.01994999999999436,
+        "p99": 0.08129299999995965,
+        "max": 0.31707600000004277
+      },
+      "matrixVersions": [
+        1800
+      ]
+    },
+    {
+      "round": 3,
+      "mode": "moving",
+      "kind": "candidate",
+      "instances": 24,
+      "timings": {
+        "p50": 0.014982999999915592,
+        "p95": 0.03074699999990571,
+        "p99": 0.09954899999991085,
+        "max": 2.2101579999999785
+      },
+      "matrixVersions": [
+        1800
+      ]
+    },
+    {
+      "round": 3,
+      "mode": "moving",
+      "kind": "baseline",
+      "instances": 24,
+      "timings": {
+        "p50": 0.01437199999998029,
+        "p95": 0.0378369999999677,
+        "p99": 0.11529400000006262,
+        "max": 1.5869430000000193
+      },
+      "matrixVersions": [
+        1800
+      ]
+    },
+    {
+      "round": 4,
+      "mode": "static",
+      "kind": "baseline",
+      "instances": 24,
+      "timings": {
+        "p50": 0.014210999999932028,
+        "p95": 0.029465000000072905,
+        "p99": 0.09820700000000215,
+        "max": 0.46339499999999134
+      },
+      "matrixVersions": [
+        1800
+      ]
+    },
+    {
+      "round": 4,
+      "mode": "static",
+      "kind": "candidate",
+      "instances": 24,
+      "timings": {
+        "p50": 0.009233999999992193,
+        "p95": 0.010786999999936597,
+        "p99": 0.05823699999996279,
+        "max": 0.28589899999997215
+      },
+      "matrixVersions": [
+        1
+      ]
+    },
+    {
+      "round": 4,
+      "mode": "moving",
+      "kind": "baseline",
+      "instances": 24,
+      "timings": {
+        "p50": 0.014250999999944725,
+        "p95": 0.022973999999976513,
+        "p99": 0.08293500000002041,
+        "max": 0.4197000000000344
+      },
+      "matrixVersions": [
+        1800
+      ]
+    },
+    {
+      "round": 4,
+      "mode": "moving",
+      "kind": "candidate",
+      "instances": 24,
+      "timings": {
+        "p50": 0.014912999999978638,
+        "p95": 0.016104000000041196,
+        "p99": 0.07093599999996059,
+        "max": 0.5195699999999306
+      },
+      "matrixVersions": [
+        1800
+      ]
+    }
+  ]
+}

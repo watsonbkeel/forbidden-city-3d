@@ -1,3 +1,4 @@
+import {CHARACTER_SEAT_VARIANTS} from './CharacterSeatVariants.js';
 import { CHARACTER_POSES, CHARACTER_TEMPLATES } from './CharacterKit.js';
 
 const isFemale = templateId => templateId === 'consort-daily' || templateId === 'maid-daily';
@@ -22,7 +23,8 @@ export function characterResourceKey(templateId, pose, lod, options = {}) {
   if (!['resting', 'walking'].includes(femalePose)) throw new Error('Unknown female pose');
   if (femalePose === 'walking' && !isFemale(templateId)) throw new Error('Female walking pose requires a female template');
   if (femalePose === 'walking' && pose !== 'standing') throw new Error('Female walking pose requires standing pose');
-  if (!['standard', 'raised-footstool', 'kang-low', 'throne-front-perch', 'qianqing-low-foot'].includes(seatVariant)) throw new Error(`Unknown seat variant: ${seatVariant}`);
+  if (!CHARACTER_SEAT_VARIANTS.includes(seatVariant)) throw new Error(`Unknown seat variant: ${seatVariant}`);
+  if(seatVariant==='zhonghe-low-foot'&&templateId!=='emperor-ceremonial')throw new Error('Zhonghe seat adaptation is emperor-only');
   if (pose !== 'seated' && seatVariant !== 'standard') throw new Error('A seat variant requires seated pose');
   return `${templateId}|${pose}|${lod}|${seatVariant}${femalePose === 'walking' ? '|femalePose=walking' : ''}`;
 }

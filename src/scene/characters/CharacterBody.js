@@ -1,3 +1,4 @@
+import {CHARACTER_SEAT_FOOT_Y} from './CharacterSeatVariants.js';
 /** R65 pedestrian-only 2.5D capsules. Metres, same +Z-facing pose frame as
  * CharacterKit. These approximate clothed body volumes, not arms/hat ornaments
  * or furniture. They never provide architectural ground or navigation proof. */
@@ -13,7 +14,7 @@ export function characterBody(actor,{position,rotationYRad=0}){
  }else if(pose==='seated'){
   const variant=actor.behavior?.seatVariant??'standard';
   const footZ=variant==='raised-footstool'?.815:variant==='throne-front-perch'?.58:.535;
-  const footY=['raised-footstool','throne-front-perch'].includes(variant)?.30:variant==='kang-low'?.06:variant==='qianqing-low-foot'?-.10:0;
+  const footY=CHARACTER_SEAT_FOOT_Y[variant]??0;
   parts=[part(0,-.04,0,.25,.27,.45,.74),part(0,.27,0,footZ,.255,footY,.60),part(0,-.04,0,-.04,torso,.66,1.18),part(0,-.04,0,-.04,.18,1.12,1.44)];
  }else if(pose==='kneeling'){
   parts=[part(0,-.20,0,.29,.275,0,.47),part(0,.04,0,.04,torso,.32,.91),part(0,.04,0,.04,.18,.84,1.15)];

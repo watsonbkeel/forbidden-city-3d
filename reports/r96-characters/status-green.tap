@@ -1,0 +1,53 @@
+✔ candidate characters default on without approval or developer mode (6.313745ms)
+✔ ordinary candidate toggle remains reversible and emits only requested state (3.048886ms)
+✔ availability is independent of approval and approval cannot claim full acceptance (1.554473ms)
+✔ an initially disabled feature is not advertised as preparing (1.403066ms)
+✔ before the first snapshot the UI reports preparation rather than completion (2.000262ms)
+✔ read-only readiness synchronization distinguishes registered, loaded, visible and pending (1.323126ms)
+✔ failures remain explicit even while other characters are still preparing (1.689546ms)
+✔ a system failure remains visible when the system disables characters for safety (1.343446ms)
+✔ all loaded is data readiness only and does not remove the acceptance caveat (1.886731ms)
+✔ a zero or incomplete registration never masquerades as ready (1.130517ms)
+✖ night explains scheduled rest without changing daylight or character counts (1.860883ms)
+✔ snapshot off and unavailable are separate and invoke no command callback (1.48558ms)
+✔ same-value snapshots and unrelated metrics do not write the DOM each frame (1.605789ms)
+✔ reinitialization resets readiness and disposed synchronization is harmless (1.270757ms)
+✔ settings identity is visible and diagnostic copies allowlisted current counts only (9.53523ms)
+✔ version check is on-demand, same-base, bypasses cache, and never reloads itself (2.353242ms)
+✔ same build and failed or malformed checks keep refresh hidden and permit retries (2.982637ms)
+✔ overlapping clicks and disposed pending checks cannot expose refresh or reload (4.094194ms)
+✔ clipboard denial offers safe selectable diagnostics without implying successful copy (1.508314ms)
+✔ release label stays at the top with diagnostic controls in a compact disclosure (0.97261ms)
+✔ mixed HTML and JavaScript build identities remain visible and safely diagnosable (2.091979ms)
+✔ streaming status separates logical positions from nearby prepared models and actual visible actors (8.959837ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 21
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 140.457721
+
+✖ failing tests:
+
+test at tests/r51-character-ui.test.mjs:114:1
+✖ night explains scheduled rest without changing daylight or character counts (1.860883ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /朝会.*生活.*按计划休息.*守卫保留/. Input:
+  
+  '人物数据就绪（候选）：已注册 38 · 已加载 38 · 当前可见 2 · 准备中 0 · 失败 0。 夜间仍展示人物；全天游览演绎，不代表历史作息。'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r51-character-ui.test.mjs:119:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '人物数据就绪（候选）：已注册 38 · 已加载 38 · 当前可见 2 · 准备中 0 · 失败 0。 夜间仍展示人物；全天游览演绎，不代表历史作息。',
+    expected: /朝会.*生活.*按计划休息.*守卫保留/,
+    operator: 'match',
+    diff: 'simple'
+  }

@@ -1,0 +1,30 @@
+✖ a later plain substep retains the exact foot lift already accepted in the same horizontal call (4.646114ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 126.277272
+
+✖ failing tests:
+
+test at tests/r96-movement/substep-feet.test.mjs:3:1
+✖ a later plain substep retains the exact foot lift already accepted in the same horizontal call (4.646114ms)
+  AssertionError [ERR_ASSERTION]: controller must receive the actual final foot, not lose it on later plain substeps
+  
+  null !== 0.3
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/substep-feet.test.mjs:3:585)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: 0.3,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

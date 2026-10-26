@@ -1,3 +1,4 @@
+import {CharacterResidency} from './CharacterResidency.js';
 import { REGISTERED_CHARACTER_LIMIT } from './CharacterLimits.js';
 import { characterEnvironmentMotion } from './CharacterBehavior.js';
 import { characterProjection, selectCharacterLOD, selectCharacterBudget } from './CharacterLOD.js';
@@ -8,13 +9,13 @@ const percentile = (samples, q) => samples.length ? [...samples].sort((a,b)=>a-b
  * dynamic pedestrian channel; never architectural colliders or walkables. */
 export class CharacterManager {
   #developmentPreviewActive = false;
-  constructor({ registry, adapter, renderer, enabled = true, contentApproved = false, contentEnabled = contentApproved, patrolFactory = null, interaction = null, now = () => performance.now() }) {
+  constructor({ registry, adapter, renderer, enabled = true, contentApproved = false, contentEnabled = contentApproved, patrolFactory = null, interaction = null, getViewState = null, prepareResidents = null, now = () => performance.now() }) {
     this.registry = registry; this.adapter = adapter; this.renderer = renderer;
     this.enabled = !!enabled; this.contentEnabled = !!contentEnabled;
     // Legacy constructor contentApproved is only an input alias for content
     // availability. It never grants historical, GPU or complete acceptance.
     this.patrolFactory = patrolFactory; this.now = now;
-    this.interaction=interaction;
+    this.interaction=interaction;this.getViewState=getViewState;this.prepareResidents=prepareResidents;this.residency=new CharacterResidency();
     this.simulationSeconds = 0; this.states = new Map(); this.generation = 0;
     this.nearIds = new Set();
     this.disposed = false; this.hidden = false; this.samples = [];
@@ -46,12 +47,12 @@ export class CharacterManager {
     if (this.enabled === !!enabled) return;
     this.enabled = !!enabled; this.generation++;
     if (!this.enabled) {
-      this.nearIds.clear();this.routines?.reset(this.states.values());
+      this.nearIds.clear();this.residency.clear();this.routines?.reset(this.states.values());
       for (const state of this.states.values()) { state.patrol?.dispose?.(); state.patrol = null; state.binding = null; state.pending = false; state.request = null; state.revision = undefined; state.lod = 3; state.activeSchedule = null;state.interactionActivated=false; }
       this.interaction?.clear();this.renderer.clear(); this._clearStats();
     }
   }
-  _clearStats() { for (const key of ['loaded','visible','near','renderCopies','pending','errors','batches','trianglesEstimate']) this.stats[key]=0; }
+  _clearStats() { for (const key of ['loaded','visible','near','renderCopies','pending','errors','batches','trianglesEstimate','resident','residentModels','modelPending','preparedResources','residentBatches']) this.stats[key]=0; }
   _acceptBinding(state, binding) {
     state.pending = false;
     if (binding?.status === 'ready' && Array.isArray(binding.position) && binding.position.every(Number.isFinite) && Number.isFinite(binding.rotationYRad)) {
@@ -104,6 +105,14 @@ export class CharacterManager {
     }
     this.routines?.update(this.states.values(),elapsed,beijingTime);
     this.interaction?.begin(this.states.values(),elapsed);
+    const logicalActors=[];
+    for(const state of this.states.values()){
+      if(!state.binding)continue;
+      const logical=state.routineSample??state.interactionSample??this.interaction?.samples.get(state.actor.id)??(state.patrol?state.patrol.sample(this.simulationSeconds,state.actor.behavior?.followerIndex??0):state.binding);
+      logicalActors.push({...state.actor,position:logical.position,rotationYRad:logical.rotationYRad,pose:state.actor.behavior?.basePose??'standing',lod:2});
+    }
+    const interest=this.residency.update(logicalActors,this.getViewState?.()??{mode:'ground',position:camera?.position});
+    const residents=logicalActors.filter(a=>interest.get(a.id)?.resident).map(a=>({...a,distance:interest.get(a.id).distance}));
     for (const state of this.states.values()) {
       if(!state.binding)continue;
       const actor=state.actor;
@@ -116,6 +125,7 @@ export class CharacterManager {
         const sample = state.patrol.sample(this.simulationSeconds, actor.behavior?.followerIndex ?? 0);
         if (sample?.position) { position = sample.position; rotationYRad = sample.rotationYRad; speed = sample.speedMetersPerSecond ?? sample.speed ?? 0; }
       }
+      if(!interest.get(actor.id)?.display){state.lod=3;continue;}
       const projection = characterProjection(position, camera, viewportHeight,actor.behavior?.basePose);
       if(this.interaction?.nearby({position}))projection.inFrustum=true;
       // All-day virtual-tour availability; original schedule metadata remains
@@ -133,7 +143,8 @@ export class CharacterManager {
     // Keep only currently submitted IDs. Missing support, frustum exits and low
     // quality release slots; geometric state.lod/readiness remain untouched.
     this.nearIds = new Set(selected.filter(actor => actor.lod === 0).map(actor => actor.id));
-    const renderStats = this.renderer.render(selected, { simulationSeconds: this.simulationSeconds, camera, quality }) ?? {};
+    Object.assign(this.stats,this.prepareResidents?.(residents,selected)??{resident:residents.length});
+    const renderStats = this.renderer.render(selected, { simulationSeconds: this.simulationSeconds, camera, quality, residentActors:residents }) ?? {};
     Object.assign(this.stats, renderStats);
     this.stats.visible = renderStats.visible ?? selected.length; this.stats.near = renderStats.near ?? selected.filter(x=>x.lod===0).length;
     this.stats.renderCopies = renderStats.renderCopies ?? selected.length;
@@ -150,6 +161,6 @@ export class CharacterManager {
   dispose() {
     if (this.disposed) return; this.#developmentPreviewActive = false; this.disposed = true; this.generation++;
     for (const state of this.states.values()) state.patrol?.dispose?.();
-    this.interaction?.dispose();this.renderer.dispose(); this.states.clear(); this.nearIds.clear(); this._clearStats();
+    this.interaction?.dispose();this.renderer.dispose(); this.states.clear(); this.nearIds.clear();this.residency.clear(); this._clearStats();
   }
 }

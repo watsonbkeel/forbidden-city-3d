@@ -1,0 +1,149 @@
+✔ Fanhua actual mesh and all collider pairs are outside unchanged NE corner solids (266.636289ms)
+✖ bounded engineering location uses exact profile identity and preserves every local mesh; neighbors unchanged (215.656977ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 654.740984
+
+✖ failing tests:
+
+test at tests/r99-northeast-interface.test.mjs:4:1
+✖ bounded engineering location uses exact profile identity and preserves every local mesh; neighbors unchanged (215.656977ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      colliders: [
+        [
+          [
+            -349.15,
+  ...
+          axis: 'z',
+  +       box: undefined,
+          maxX: -337.1,
+          maxZ: 481.55,
+          minX: -339.9,
+          minZ: 479.87,
+          type: 'ramp',
+  ...
+          axis: 'z',
+  +       box: undefined,
+          maxX: -344.735,
+          maxZ: 504.53,
+          minX: -346.985,
+          minZ: 502.84999999999997,
+          type: 'ramp',
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r99-northeast-interface/tests/r99-northeast-interface.test.mjs:4:663)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: {
+      frame: [
+             1, 0,     0, 0,
+             0, 1,     0, 0,
+             0, 0,     1, 0,
+        -338.5, 0, 492.2, 1
+      ],
+      meshes: [
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        ... 804 more items
+      ],
+      colliders: [
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array]
+      ],
+      walkables: [ [Object], [Object], [Object] ],
+      map: [ [Object] ],
+      rooms: [ [Object] ],
+      portals: [ [Object], [Object] ]
+    },
+    expected: {
+      frame: [
+             1, 0,     0, 0,
+             0, 1,     0, 0,
+             0, 0,     1, 0,
+        -338.5, 0, 492.2, 1
+      ],
+      meshes: [
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        ... 804 more items
+      ],
+      colliders: [
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array], [Array], [Array], [Array], [Array], [Array],
+        [Array]
+      ],
+      walkables: [ [Object], [Object], [Object] ],
+      map: [ [Object] ],
+      rooms: [ [Object] ],
+      portals: [ [Object], [Object] ]
+    },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

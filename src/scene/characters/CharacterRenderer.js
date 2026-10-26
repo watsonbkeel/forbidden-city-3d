@@ -4,6 +4,7 @@ import { characterGeometryOptionsFor, characterResourceKey } from './CharacterGe
 import { CHARACTER_DEFORM_GLSL } from './CharacterAnimation.js';
 
 const CAPACITY = 96;
+const batchKey=actor=>{const options=characterGeometryOptionsFor(actor);return[actor.templateId,actor.pose,actor.lod,actor.zoneRef,options.seatVariant].join('|')+(options.femalePose?'|femalePose='+options.femalePose:'');};
 const bytesOf = geometry => Object.values(geometry.attributes).reduce((n,a)=>n+a.array.byteLength,geometry.index?.array.byteLength??0);
 /** Actual InstancedMesh renderer. Template cache is shared; each live spatial
  * batch owns its instance stream and GPU-safe clone, reported separately. */
@@ -44,7 +45,7 @@ export class CharacterRenderer {
     this.batches.set(key,batch);return batch;
   }
   _remove(key,batch){this.root.remove(batch.mesh);batch.mesh.geometry.dispose();batch.mesh.dispose();this.pool.release(batch.resourceKey);this.batches.delete(key);}
-  render(actors, { simulationSeconds = 0 } = {}) {
+  render(actors, { simulationSeconds = 0, residentActors = null } = {}) {
     if(this.disposed)return this.last;
     this.timeUniform.value=simulationSeconds;
     if(this.requestPreparation){
@@ -61,16 +62,19 @@ export class CharacterRenderer {
     }
     const groups=new Map();
     for(const actor of actors){
-      const options=characterGeometryOptionsFor(actor);
-      const key=[actor.templateId,actor.pose,actor.lod,actor.zoneRef,options.seatVariant].join('|')+(options.femalePose?'|femalePose='+options.femalePose:'');
+      const key=batchKey(actor);
       if(!groups.has(key))groups.set(key,[]);groups.get(key).push(actor);
     }
-    for(const [key,batch]of this.batches)if(!groups.has(key))this._remove(key,batch);
+    const retained=new Set((residentActors??[]).map(batchKey));
+    for(const [key,batch]of this.batches)if(!groups.has(key)){
+      if(retained.has(key)){batch.mesh.count=0;batch.mesh.visible=false;}
+      else this._remove(key,batch);
+    }
     let trianglesEstimate=0,renderCopies=0;
     for(const [key,list]of groups){
       if(list.length>CAPACITY)throw new Error('Character instance capacity exceeded');
       const batch=this.batches.get(key)??this._create(key,list[0]),mesh=batch.mesh,anim=mesh.geometry.attributes.characterAnim;
-      mesh.count=list.length;
+      mesh.count=list.length;mesh.visible=true;
       list.forEach((actor,index)=>{
         this.position.fromArray(actor.position);this.quaternion.setFromAxisAngle(THREE.Object3D.DEFAULT_UP,actor.rotationYRad);
         this.matrix.compose(this.position,this.quaternion,this.scale);mesh.setMatrixAt(index,this.matrix);
@@ -82,11 +86,11 @@ export class CharacterRenderer {
       trianglesEstimate+=batch.triangles*list.length;renderCopies+=list.length;
     }
     this.submittedActors=actors;
-    this.last={visible:actors.length,near:actors.filter(a=>a.lod===0).length,renderCopies,batches:this.batches.size,trianglesEstimate};return {...this.last};
+    this.last={visible:actors.length,near:actors.filter(a=>a.lod===0).length,renderCopies,batches:groups.size,residentBatches:this.batches.size,trianglesEstimate};return {...this.last};
   }
   snapshot(){let batchGeometryBytes=0,instanceBytes=0;for(const b of this.batches.values()){batchGeometryBytes+=b.geometryBytes;instanceBytes+=b.mesh.instanceMatrix.array.byteLength;}
     return {batchGeometryBytes,instanceBytes,sharedResources:this.pool.stats(),textureGpuEstimateBytes:0,castShadow:false,
-      performanceEvidence:'CPU submission estimates; full-frame WebGL A/B not measured',drawCallsEstimate:this.batches.size};}
+      performanceEvidence:'CPU submission estimates; full-frame WebGL A/B not measured',drawCallsEstimate:this.last.batches};}
   clear(){this.submittedActors=[];for(const [key,batch]of this.batches)this._remove(key,batch);this.last={visible:0,renderCopies:0,batches:0,trianglesEstimate:0};}
   dispose(){if(this.disposed)return;this.clear();this.scene.remove(this.root);this.material.dispose();this.pool.dispose();this.disposed=true;}
 }

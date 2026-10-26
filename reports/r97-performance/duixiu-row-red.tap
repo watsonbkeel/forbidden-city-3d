@@ -1,0 +1,29 @@
+✖ each actual row/sign is scanned at most once, while frozen R96 proves duplicate scans exist (1243.144602ms)
+✔ all geometry/physics/profile bytes match frozen R96 across source-only modes and fresh translated builds (3115.590321ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4638.262889
+
+✖ failing tests:
+
+test at tests/r97-performance/duixiu-row-cache.test.mjs:4:1
+✖ each actual row/sign is scanned at most once, while frozen R96 proves duplicate scans exist (1243.144602ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  5 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r97-remaining-performance/tests/r97-performance/duixiu-row-cache.test.mjs:4:744)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 5,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

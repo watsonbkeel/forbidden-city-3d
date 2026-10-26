@@ -188,6 +188,7 @@ class ForbiddenCityApp {
       ['界面', () => {
         this.ambience = new Ambience();
         this.characters = new CharacterSystem({ scene: this.scene, camera: this.camera, collisionManager: this.collisionManager, zoneManager: this.zoneManager, interiors: this.interiors,
+          getViewState:()=>this.flight?.occupied?{mode:'flight',position:this.flight.position}:{mode:'ground',position:this.camera.position},
           getPlayerState:()=>this.flight?.occupied||!Number.isFinite(this.controls?.feetY)?null:{
             position:[this.camera.position.x-(this.controls.bobOffset?.x??0),
               this.controls.airborne?this.controls.feetY:Math.max(this.controls.feetY,this.controls.groundY??0),

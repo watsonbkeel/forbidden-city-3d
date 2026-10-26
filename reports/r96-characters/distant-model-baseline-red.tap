@@ -1,0 +1,28 @@
+✖ distant logical bindings resolve without generating any character models (107.01609ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 257.278115
+
+✖ failing tests:
+
+test at tests/r96-characters/.baseline-system-check.mjs:5:1
+✖ distant logical bindings resolve without generating any character models (107.01609ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  12 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-characters/.baseline-system-check.mjs:5:287)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 12,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

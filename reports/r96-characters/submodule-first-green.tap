@@ -1,0 +1,41 @@
+✔ pure authored contact metrics exactly match R95 geometry for every seat variant and template without building a model (235.521346ms)
+✔ shared authoring and standalone metrics agree for nonseated poses and reject invalid seat identities (2.455839ms)
+✔ metrics extraction does not change any existing generated geometry attributes or metadata (275.655291ms)
+✔ ground distance latches are independent of resource completion and frustum (1.260263ms)
+✔ first interest beyond40 but within60 prewarms without drawing and uses actual position not an anchor (0.185209ms)
+✔ flight uses aircraft XZ rather than altitude or offset camera and has display exit hysteresis (0.194933ms)
+✔ teleport or dismount immediately recomputes interest while preserving caller logical records (0.891018ms)
+✔ hidden but resident batch retains one lease and zero actual submissions until final exit (11.615918ms)
+✔ same actor resident with a new pose cannot pin obsolete pose or quality resources (23.998168ms)
+✔ two zones hold independent batch leases to one immutable shared geometry (2.055658ms)
+✔ cancelling one model key returns its partial generator without cancelling logical jobs (0.560422ms)
+✖ distant logical bindings resolve without generating any character models (7.840177ms)
+✔ resident key users are complete before cancellation: one leaving user cannot kill another (1.714836ms)
+✔ pose change releases obsolete model interest while retaining only exact new pose and valid detail (1.022065ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 13
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 636.738164
+
+✖ failing tests:
+
+test at tests/r96-characters/system-residency.test.mjs:5:1
+✖ distant logical bindings resolve without generating any character models (7.840177ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-characters/system-residency.test.mjs:5:241)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

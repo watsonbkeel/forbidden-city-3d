@@ -1,0 +1,35 @@
+✔ near unresolved person precedes peripheral prewarm and visible refinement, not first coarse model (1.368083ms)
+✔ successful near metadata yields before starting another long job, so Promise consumers can queue coarse first (0.925589ms)
+✔ pending metadata does not yield the frame or starve another available job (0.189635ms)
+✖ ready handoff may defer one oldest turn but repays it immediately after urgent coarse (1.183707ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 142.380202
+
+✖ failing tests:
+
+test at tests/r96-characters/first-model-priority.test.mjs:6:1
+✖ ready handoff may defer one oldest turn but repays it immediately after urgent coarse (1.183707ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  +   'far'
+  -   'coarse'
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-characters/first-model-priority.test.mjs:6:605)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'far' ],
+    expected: [ 'coarse' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

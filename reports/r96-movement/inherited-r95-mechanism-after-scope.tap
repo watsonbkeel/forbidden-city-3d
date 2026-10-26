@@ -1,0 +1,18 @@
+✔ demand renderer never synchronously authors a missing resource, then submits prepared actual instances (17.948177ms)
+✔ a prepared coarse same-pose resource stays visible while requested detailed LOD prepares (3.007083ms)
+✔ first binding preparation does not build sleeping/walking/high-detail variants for standing maid (5.355727ms)
+✔ status counts actual renderer submissions rather than selected but preparing actors (1.690046ms)
+✔ failed on-demand geometry preparation remains visible as a system failure and disables safely (1.84583ms)
+✔ nearby cold character preparation starts before earlier distant roles, without extra budget (1.482235ms)
+✔ preparation fairness gives oldest distant job a turn amid newly requested near roles (0.312108ms)
+✔ an in-flight generator completes without interleaving duplicate template construction (0.274041ms)
+✔ priority uses real rotated placement metadata only and follows the current camera (0.709765ms)
+✔ near actor waiting for its exact pose geometry is not an invisible dynamic blocker (17.493443ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 177.074073

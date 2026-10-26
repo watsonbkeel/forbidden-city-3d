@@ -1,0 +1,13 @@
+✔ static second frame performs no matrix upload or bounds recompute while animation/fade/time still update (12.514581ms)
+✔ all slot/count/pose/retained transitions stay byte/value exact with frozen R96 (23.043444ms)
+✔ in-place positions, signed zero and renderer basis changes retain exact old matrices (3.47845ms)
+✔ a slot returning after count shrink and basis change cannot reuse its pre-change matrix (2.969707ms)
+✔ a dormant tail slot also refreshes after DEFAULT_UP changes (2.247653ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 162.475013

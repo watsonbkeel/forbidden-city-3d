@@ -1,3 +1,4 @@
+import {CHARACTER_SEAT_VARIANTS} from './CharacterSeatVariants.js';
 import { REGISTERED_CHARACTER_LIMIT } from './CharacterLimits.js';
 import frozenScope from '../../../data/characters/scope.json' with {type:'json'};
 const vec=(value,n=3)=>Array.isArray(value)&&value.length===n&&value.every(Number.isFinite);
@@ -63,7 +64,7 @@ export function validateCharacterRegistry(registry){
  for(const s of maps.seats.values()){
   const q=`seats.${s.id}`,a=ref('anchors',s.anchorRef,q+'.anchorRef'),surface=ref('surfaces',s.surfaceRef,q+'.surfaceRef');sameZone(s,a,q);sameZone(s,surface,q);
   if(!vec(s.localSeatContactMeters)||!vec(s.localPelvisMeters)||!orderedBounds(s.seatBoundsLocalMeters)||!Number.isFinite(s.seatTopHeightMeters)||!horizontal(s.forwardLocal))err(q,'Complete finite seat contact, pelvis and facing required');
-  if(!['standard','raised-footstool','throne-front-perch','kang-low','qianqing-low-foot'].includes(s.seatVariant))err(q+'.seatVariant','Verified pose variant required');
+  if(!CHARACTER_SEAT_VARIANTS.includes(s.seatVariant))err(q+'.seatVariant','Verified pose variant required');
   if(!Array.isArray(s.footSupport?.localContactsMeters)||s.footSupport.localContactsMeters.length!==2||s.footSupport.localContactsMeters.some(v=>!vec(v)))err(q+'.footSupport','Two real foot-support contacts required');
   if(!finiteRange(s.footSupport?.heightToleranceMeters,.000001,.03)||!text(s.geometrySource))err(q,'Foot tolerance and geometry source required');
   if(vec(s.localSeatContactMeters)&&Math.abs(s.localSeatContactMeters[1]-s.seatTopHeightMeters)>.001)err(q,'Seat contact must use the named actual seat height');
@@ -88,6 +89,7 @@ export function validateCharacterRegistry(registry){
  const scenes={},actors=Array.isArray(r.actors)?r.actors:[],routeSlots=new Map();let required=0;
  for(const a of maps.actors.values()){
   const q=`actors.${a.id}`,t=ref('templates',a.templateId,q+'.templateId'),b=a.behavior??{},p=a.placement??{};
+  if(b.seatVariant==='zhonghe-low-foot'&&a.templateId!=='emperor-ceremonial')err(q+'.behavior.seatVariant','Zhonghe seat adaptation is emperor-only');
   if(typeof a.required!=='boolean')err(q+'.required','Boolean required flag needed');
   if(a.required)required++;scenes[a.sceneRef]=(scenes[a.sceneRef]??0)+1;
   if(!text(a.zoneRef)||!text(a.sceneRef))err(q,'Zone and scene required');

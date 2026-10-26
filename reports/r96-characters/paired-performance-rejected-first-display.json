@@ -1,0 +1,662 @@
+{
+  "scope": "Five alternating CPU-only actual cold zone+CharacterSystem+InstancedMesh submissions; dt30Hz not device FPS or wall seconds",
+  "budgetMs": 1,
+  "progressReserveMs": 0.25,
+  "rows": [
+    {
+      "round": 0,
+      "kind": "baseline",
+      "first": {
+        "chuxiu-maid-01": 51,
+        "chuxiu-consort-01": 126,
+        "chonghua-maid-01": 235,
+        "chonghua-eunuch-01": 296
+      },
+      "cold": {
+        "p50": 1.017217000000528,
+        "p95": 1.1136310000001686,
+        "p99": 2.2927709999994477,
+        "max": 11.356874000000062
+      },
+      "steadyAfter1200": {
+        "p50": 0.7462900000000445,
+        "p95": 0.9758950000004916,
+        "p99": 2.5725499999998647,
+        "max": 3.2409939999997732
+      },
+      "status": {
+        "registered": 108,
+        "loaded": 78,
+        "visible": 4,
+        "near": 0,
+        "renderCopies": 4,
+        "pending": 30,
+        "errors": 0,
+        "batches": 4,
+        "trianglesEstimate": 3644,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 60,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "pool": {
+        "entries": 14,
+        "geometries": 14,
+        "references": 4,
+        "geometryBytes": 860034,
+        "textureBytes": 0
+      },
+      "preparation": {
+        "frames": 1500,
+        "steps": 65771,
+        "completed": 20090,
+        "cancelled": 0,
+        "totalCpuMs": 861.9550549999967,
+        "maxFrameMs": 5.0638399999998,
+        "maxStepMs": 4.614645000000564,
+        "maxStepKind": "character-geometry:normals",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 4.308567000000039,
+        "pending": 0
+      }
+    },
+    {
+      "round": 0,
+      "kind": "candidate",
+      "first": {
+        "chuxiu-maid-01": 59,
+        "chuxiu-consort-01": 201
+      },
+      "cold": {
+        "p50": 1.0191199999990204,
+        "p95": 1.1482730000006995,
+        "p99": 2.6967379999987315,
+        "max": 11.653008999999656
+      },
+      "steadyAfter1200": {
+        "p50": 0.7760749999997643,
+        "p95": 1.0606410000000324,
+        "p99": 2.979601000000912,
+        "max": 3.64381400000093
+      },
+      "status": {
+        "registered": 108,
+        "loaded": 78,
+        "visible": 2,
+        "near": 0,
+        "renderCopies": 2,
+        "pending": 30,
+        "errors": 0,
+        "batches": 2,
+        "trianglesEstimate": 2782,
+        "resident": 8,
+        "residentModels": 8,
+        "modelPending": 0,
+        "preparedResources": 6,
+        "residentBatches": 4,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 60,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "pool": {
+        "entries": 6,
+        "geometries": 6,
+        "references": 4,
+        "geometryBytes": 205068,
+        "textureBytes": 0
+      },
+      "preparation": {
+        "frames": 1500,
+        "steps": 61115,
+        "completed": 17888,
+        "cancelled": 0,
+        "totalCpuMs": 837.0400229999686,
+        "maxFrameMs": 4.72418000000107,
+        "maxStepMs": 4.483118000000104,
+        "maxStepKind": "character-geometry:mesh",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 4.064400999999634,
+        "pending": 0
+      }
+    },
+    {
+      "round": 1,
+      "kind": "candidate",
+      "first": {
+        "chuxiu-maid-01": 101,
+        "chuxiu-consort-01": 146
+      },
+      "cold": {
+        "p50": 1.0133409999980358,
+        "p95": 1.0783980000014708,
+        "p99": 2.3615439999994123,
+        "max": 28.05645799999911
+      },
+      "steadyAfter1200": {
+        "p50": 0.712269000003289,
+        "p95": 0.9659290000017791,
+        "p99": 3.8501980000000913,
+        "max": 4.282286999998178
+      },
+      "status": {
+        "registered": 108,
+        "loaded": 78,
+        "visible": 2,
+        "near": 0,
+        "renderCopies": 2,
+        "pending": 30,
+        "errors": 0,
+        "batches": 2,
+        "trianglesEstimate": 2782,
+        "resident": 8,
+        "residentModels": 8,
+        "modelPending": 0,
+        "preparedResources": 6,
+        "residentBatches": 4,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 60,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "pool": {
+        "entries": 6,
+        "geometries": 6,
+        "references": 4,
+        "geometryBytes": 205068,
+        "textureBytes": 0
+      },
+      "preparation": {
+        "frames": 1500,
+        "steps": 66510,
+        "completed": 23283,
+        "cancelled": 0,
+        "totalCpuMs": 818.36666099996,
+        "maxFrameMs": 27.39716899999985,
+        "maxStepMs": 3.561655999998038,
+        "maxStepKind": "collider-cell:",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 27.034896000001027,
+        "pending": 0
+      }
+    },
+    {
+      "round": 1,
+      "kind": "baseline",
+      "first": {
+        "chuxiu-maid-01": 50,
+        "chuxiu-consort-01": 104,
+        "chonghua-maid-01": 186,
+        "chonghua-eunuch-01": 237
+      },
+      "cold": {
+        "p50": 1.015534000001935,
+        "p95": 1.1939219999985653,
+        "p99": 3.0446200000005774,
+        "max": 33.09238499999992
+      },
+      "steadyAfter1200": {
+        "p50": 0.7434460000004037,
+        "p95": 1.0305970000008529,
+        "p99": 3.039781999999832,
+        "max": 5.79307400000107
+      },
+      "status": {
+        "registered": 108,
+        "loaded": 78,
+        "visible": 4,
+        "near": 0,
+        "renderCopies": 4,
+        "pending": 30,
+        "errors": 0,
+        "batches": 4,
+        "trianglesEstimate": 3644,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 60,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "pool": {
+        "entries": 14,
+        "geometries": 14,
+        "references": 4,
+        "geometryBytes": 860034,
+        "textureBytes": 0
+      },
+      "preparation": {
+        "frames": 1500,
+        "steps": 66454,
+        "completed": 20773,
+        "cancelled": 0,
+        "totalCpuMs": 895.723848999969,
+        "maxFrameMs": 32.75441800000044,
+        "maxStepMs": 32.39526900000055,
+        "maxStepKind": "character-geometry:mesh",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 32.077322000001004,
+        "pending": 0
+      }
+    },
+    {
+      "round": 2,
+      "kind": "baseline",
+      "first": {
+        "chuxiu-maid-01": 43,
+        "chuxiu-consort-01": 87,
+        "chonghua-maid-01": 166,
+        "chonghua-eunuch-01": 219
+      },
+      "cold": {
+        "p50": 1.015784999995958,
+        "p95": 1.1084140000020852,
+        "p99": 2.6301080000048387,
+        "max": 8.613156999999774
+      },
+      "steadyAfter1200": {
+        "p50": 0.7149429999990389,
+        "p95": 1.00939500000095,
+        "p99": 2.7038979999997537,
+        "max": 3.1545740000001388
+      },
+      "status": {
+        "registered": 108,
+        "loaded": 78,
+        "visible": 4,
+        "near": 0,
+        "renderCopies": 4,
+        "pending": 30,
+        "errors": 0,
+        "batches": 4,
+        "trianglesEstimate": 3644,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 60,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "pool": {
+        "entries": 14,
+        "geometries": 14,
+        "references": 4,
+        "geometryBytes": 860034,
+        "textureBytes": 0
+      },
+      "preparation": {
+        "frames": 1500,
+        "steps": 67948,
+        "completed": 22267,
+        "cancelled": 0,
+        "totalCpuMs": 860.0308309998145,
+        "maxFrameMs": 6.066885000000184,
+        "maxStepMs": 5.329597999996622,
+        "maxStepKind": "world-bounds-vertices:",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 5.213404999994964,
+        "pending": 0
+      }
+    },
+    {
+      "round": 2,
+      "kind": "candidate",
+      "first": {
+        "chuxiu-maid-01": 61,
+        "chuxiu-consort-01": 102
+      },
+      "cold": {
+        "p50": 1.0124900000009802,
+        "p95": 1.0649479999992764,
+        "p99": 1.997968999996374,
+        "max": 10.45663400000194
+      },
+      "steadyAfter1200": {
+        "p50": 0.7415630000032252,
+        "p95": 1.0120089999982156,
+        "p99": 3.1395310000007157,
+        "max": 3.7181710000004387
+      },
+      "status": {
+        "registered": 108,
+        "loaded": 78,
+        "visible": 2,
+        "near": 0,
+        "renderCopies": 2,
+        "pending": 30,
+        "errors": 0,
+        "batches": 2,
+        "trianglesEstimate": 2782,
+        "resident": 8,
+        "residentModels": 8,
+        "modelPending": 0,
+        "preparedResources": 6,
+        "residentBatches": 4,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 60,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "pool": {
+        "entries": 6,
+        "geometries": 6,
+        "references": 4,
+        "geometryBytes": 205068,
+        "textureBytes": 0
+      },
+      "preparation": {
+        "frames": 1500,
+        "steps": 67758,
+        "completed": 24531,
+        "cancelled": 0,
+        "totalCpuMs": 802.9904849999584,
+        "maxFrameMs": 5.04006500000105,
+        "maxStepMs": 4.2812360000025365,
+        "maxStepKind": "world-bounds-vertices:",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 4.192513000001782,
+        "pending": 0
+      }
+    },
+    {
+      "round": 3,
+      "kind": "candidate",
+      "first": {
+        "chuxiu-maid-01": 108,
+        "chuxiu-consort-01": 150
+      },
+      "cold": {
+        "p50": 1.0169860000023618,
+        "p95": 1.1759450000026845,
+        "p99": 2.960484000002907,
+        "max": 22.467461000000185
+      },
+      "steadyAfter1200": {
+        "p50": 0.7796500000040396,
+        "p95": 1.0136510000011185,
+        "p99": 3.872793000002275,
+        "max": 3.9550559999988764
+      },
+      "status": {
+        "registered": 108,
+        "loaded": 78,
+        "visible": 2,
+        "near": 0,
+        "renderCopies": 2,
+        "pending": 30,
+        "errors": 0,
+        "batches": 2,
+        "trianglesEstimate": 2782,
+        "resident": 8,
+        "residentModels": 8,
+        "modelPending": 0,
+        "preparedResources": 6,
+        "residentBatches": 4,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 60,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "pool": {
+        "entries": 6,
+        "geometries": 6,
+        "references": 4,
+        "geometryBytes": 205068,
+        "textureBytes": 0
+      },
+      "preparation": {
+        "frames": 1500,
+        "steps": 64052,
+        "completed": 20825,
+        "cancelled": 0,
+        "totalCpuMs": 849.4548849999628,
+        "maxFrameMs": 3.9794529999999213,
+        "maxStepMs": 3.369366999999329,
+        "maxStepKind": "collider-cell:",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 3.368977999998606,
+        "pending": 0
+      }
+    },
+    {
+      "round": 3,
+      "kind": "baseline",
+      "first": {
+        "chuxiu-maid-01": 72,
+        "chuxiu-consort-01": 110,
+        "chonghua-maid-01": 186,
+        "chonghua-eunuch-01": 234
+      },
+      "cold": {
+        "p50": 1.0128399999957765,
+        "p95": 1.0610229999947478,
+        "p99": 3.2017959999939194,
+        "max": 24.811867999997048
+      },
+      "steadyAfter1200": {
+        "p50": 0.6991290000005392,
+        "p95": 0.988814000003913,
+        "p99": 3.0223059999989346,
+        "max": 3.328536000000895
+      },
+      "status": {
+        "registered": 108,
+        "loaded": 78,
+        "visible": 4,
+        "near": 0,
+        "renderCopies": 4,
+        "pending": 30,
+        "errors": 0,
+        "batches": 4,
+        "trianglesEstimate": 3644,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 60,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "pool": {
+        "entries": 14,
+        "geometries": 14,
+        "references": 4,
+        "geometryBytes": 860034,
+        "textureBytes": 0
+      },
+      "preparation": {
+        "frames": 1500,
+        "steps": 70318,
+        "completed": 24637,
+        "cancelled": 0,
+        "totalCpuMs": 828.1576779998795,
+        "maxFrameMs": 11.794491000000562,
+        "maxStepMs": 11.618376999998873,
+        "maxStepKind": "support-triangles:",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 11.013208999997005,
+        "pending": 0
+      }
+    },
+    {
+      "round": 4,
+      "kind": "baseline",
+      "first": {
+        "chuxiu-maid-01": 42,
+        "chuxiu-consort-01": 78,
+        "chonghua-maid-01": 147,
+        "chonghua-eunuch-01": 193
+      },
+      "cold": {
+        "p50": 1.0120690000039758,
+        "p95": 1.0892349999994622,
+        "p99": 2.5407429999977467,
+        "max": 5.396288000003551
+      },
+      "steadyAfter1200": {
+        "p50": 0.7210720000002766,
+        "p95": 1.1010020000030636,
+        "p99": 3.1298170000009122,
+        "max": 4.189767999996548
+      },
+      "status": {
+        "registered": 108,
+        "loaded": 78,
+        "visible": 4,
+        "near": 0,
+        "renderCopies": 4,
+        "pending": 30,
+        "errors": 0,
+        "batches": 4,
+        "trianglesEstimate": 3644,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 60,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "pool": {
+        "entries": 14,
+        "geometries": 14,
+        "references": 4,
+        "geometryBytes": 860034,
+        "textureBytes": 0
+      },
+      "preparation": {
+        "frames": 1500,
+        "steps": 70298,
+        "completed": 24617,
+        "cancelled": 0,
+        "totalCpuMs": 824.2746850000331,
+        "maxFrameMs": 3.776138000001083,
+        "maxStepMs": 3.5248809999975492,
+        "maxStepKind": "world-bounds-vertices:",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 3.0277159999968717,
+        "pending": 0
+      }
+    },
+    {
+      "round": 4,
+      "kind": "candidate",
+      "first": {
+        "chuxiu-maid-01": 84,
+        "chuxiu-consort-01": 127
+      },
+      "cold": {
+        "p50": 1.0131499999988591,
+        "p95": 1.2118489999993471,
+        "p99": 2.619840999992448,
+        "max": 29.291576999996323
+      },
+      "steadyAfter1200": {
+        "p50": 0.7170159999950556,
+        "p95": 1.0077820000005886,
+        "p99": 3.6477949999971315,
+        "max": 5.06692299999122
+      },
+      "status": {
+        "registered": 108,
+        "loaded": 78,
+        "visible": 2,
+        "near": 0,
+        "renderCopies": 2,
+        "pending": 30,
+        "errors": 0,
+        "batches": 2,
+        "trianglesEstimate": 2782,
+        "resident": 8,
+        "residentModels": 8,
+        "modelPending": 0,
+        "preparedResources": 6,
+        "residentBatches": 4,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 60,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "pool": {
+        "entries": 6,
+        "geometries": 6,
+        "references": 4,
+        "geometryBytes": 205068,
+        "textureBytes": 0
+      },
+      "preparation": {
+        "frames": 1500,
+        "steps": 66775,
+        "completed": 23548,
+        "cancelled": 0,
+        "totalCpuMs": 828.1860720002587,
+        "maxFrameMs": 8.806606999991345,
+        "maxStepMs": 3.566181999995024,
+        "maxStepKind": "completion",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 8.531564999982947,
+        "pending": 0
+      }
+    }
+  ]
+}

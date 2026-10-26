@@ -1,0 +1,585 @@
+{
+  "protocol": "10 fresh node processes; five alternating complete pairs; low30Hz simulated frames, not device seconds; identical driver, no warmup before cold; all raw samples retained",
+  "rows": [
+    {
+      "round": 0,
+      "kind": "baseline",
+      "first": {
+        "chuxiu-maid-01": 63,
+        "chuxiu-consort-01": 113
+      },
+      "targetWork": {
+        "frame": 113,
+        "steps": 6448,
+        "prepCpuMs": 92.62123700000393,
+        "preparation": {
+          "steps": 7,
+          "elapsedMs": 0.516765999999734,
+          "maxStepMs": 0.21514299999944342,
+          "overrunMs": 0.1480940000001283,
+          "pending": 108,
+          "nominalTotalBudgetMs": 1,
+          "submissionElapsedMs": 0.6313280000003942,
+          "remainingBudgetMs": 0.36867199999960576,
+          "progressReserveMs": 0.25,
+          "grantedPreparationBudgetMs": 0.36867199999960576,
+          "totalBudgetOverrunMs": 0.16059300000051735
+        }
+      },
+      "coldFirst300": {
+        "p50": 1.0182280000008177,
+        "p95": 1.313412000000426,
+        "p99": 4.021155999999792,
+        "max": 12.111182999999983
+      },
+      "all600": {
+        "p50": 1.0185389999996914,
+        "p95": 1.1446990000004007,
+        "p99": 2.1386810000003607,
+        "max": 12.111182999999983
+      },
+      "queue": {
+        "frames": 600,
+        "steps": 32221,
+        "completed": 34,
+        "cancelled": 0,
+        "totalCpuMs": 432.67529099999683,
+        "maxFrameMs": 5.668180000000575,
+        "maxStepMs": 5.163561999999729,
+        "maxStepKind": "world-bounds-vertices:",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 4.825696000000789,
+        "pending": 80
+      },
+      "pool": {
+        "entries": 6,
+        "geometries": 6,
+        "references": 4,
+        "geometryBytes": 205068,
+        "textureBytes": 0
+      }
+    },
+    {
+      "round": 0,
+      "kind": "candidate",
+      "first": {
+        "chuxiu-maid-01": 60,
+        "chuxiu-consort-01": 107
+      },
+      "targetWork": {
+        "frame": 107,
+        "steps": 6448,
+        "prepCpuMs": 94.9894780000077,
+        "preparation": {
+          "steps": 7,
+          "elapsedMs": 0.4830449999999473,
+          "maxStepMs": 0.26355599999988044,
+          "overrunMs": 0.012980999999854248,
+          "pending": 108,
+          "nominalTotalBudgetMs": 1,
+          "submissionElapsedMs": 0.5299359999999069,
+          "remainingBudgetMs": 0.4700640000000931,
+          "progressReserveMs": 0.25,
+          "grantedPreparationBudgetMs": 0.4700640000000931,
+          "totalBudgetOverrunMs": 0.020863000000645116
+        }
+      },
+      "coldFirst300": {
+        "p50": 1.0181490000004487,
+        "p95": 1.551499999999578,
+        "p99": 3.6384140000000116,
+        "max": 11.531455000000278
+      },
+      "all600": {
+        "p50": 1.0195810000004712,
+        "p95": 1.2879739999998492,
+        "p99": 2.8074350000006234,
+        "max": 11.531455000000278
+      },
+      "queue": {
+        "frames": 600,
+        "steps": 29856,
+        "completed": 28,
+        "cancelled": 0,
+        "totalCpuMs": 435.916662000006,
+        "maxFrameMs": 5.518485999999939,
+        "maxStepMs": 5.309252000000015,
+        "maxStepKind": "world-bounds-vertices:",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 4.864505999999892,
+        "pending": 86
+      },
+      "pool": {
+        "entries": 6,
+        "geometries": 6,
+        "references": 4,
+        "geometryBytes": 205068,
+        "textureBytes": 0
+      }
+    },
+    {
+      "round": 1,
+      "kind": "candidate",
+      "first": {
+        "chuxiu-maid-01": 57,
+        "chuxiu-consort-01": 108
+      },
+      "targetWork": {
+        "frame": 108,
+        "steps": 6449,
+        "prepCpuMs": 88.09859900000447,
+        "preparation": {
+          "steps": 8,
+          "elapsedMs": 0.5501059999996869,
+          "maxStepMs": 0.25856800000019575,
+          "overrunMs": 0.06488899999931164,
+          "pending": 108,
+          "nominalTotalBudgetMs": 1,
+          "submissionElapsedMs": 0.5147829999996247,
+          "remainingBudgetMs": 0.48521700000037526,
+          "progressReserveMs": 0.25,
+          "grantedPreparationBudgetMs": 0.48521700000037526,
+          "totalBudgetOverrunMs": 0.07338199999958306
+        }
+      },
+      "coldFirst300": {
+        "p50": 1.0175680000002103,
+        "p95": 1.3056509999996706,
+        "p99": 4.490566000000399,
+        "max": 12.005593000000772
+      },
+      "all600": {
+        "p50": 1.0182589999994889,
+        "p95": 1.096346000000267,
+        "p99": 2.3501799999994546,
+        "max": 12.005593000000772
+      },
+      "queue": {
+        "frames": 600,
+        "steps": 32794,
+        "completed": 34,
+        "cancelled": 0,
+        "totalCpuMs": 433.7393920000168,
+        "maxFrameMs": 5.303646999999728,
+        "maxStepMs": 4.987149999999929,
+        "maxStepKind": "world-bounds-vertices:",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 4.451129000000037,
+        "pending": 80
+      },
+      "pool": {
+        "entries": 6,
+        "geometries": 6,
+        "references": 4,
+        "geometryBytes": 205068,
+        "textureBytes": 0
+      }
+    },
+    {
+      "round": 1,
+      "kind": "baseline",
+      "first": {
+        "chuxiu-maid-01": 51,
+        "chuxiu-consort-01": 90
+      },
+      "targetWork": {
+        "frame": 90,
+        "steps": 6450,
+        "prepCpuMs": 89.57522400000016,
+        "preparation": {
+          "steps": 9,
+          "elapsedMs": 0.5367249999999331,
+          "maxStepMs": 0.2034460000004401,
+          "overrunMs": 0.00658099999964179,
+          "pending": 108,
+          "nominalTotalBudgetMs": 1,
+          "submissionElapsedMs": 0.46985599999970873,
+          "remainingBudgetMs": 0.5301440000002913,
+          "progressReserveMs": 0.25,
+          "grantedPreparationBudgetMs": 0.5301440000002913,
+          "totalBudgetOverrunMs": 0.015304999999898428
+        }
+      },
+      "coldFirst300": {
+        "p50": 1.0170069999994666,
+        "p95": 1.2118489999993471,
+        "p99": 4.367848999999296,
+        "max": 11.510354000000007
+      },
+      "all600": {
+        "p50": 1.0172880000000077,
+        "p95": 1.1241070000005493,
+        "p99": 2.3509500000000116,
+        "max": 11.510354000000007
+      },
+      "queue": {
+        "frames": 600,
+        "steps": 33040,
+        "completed": 34,
+        "cancelled": 0,
+        "totalCpuMs": 443.8008379999992,
+        "maxFrameMs": 8.05699900000036,
+        "maxStepMs": 6.964342000000215,
+        "maxStepKind": "world-bounds-vertices:",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 7.508437000000413,
+        "pending": 80
+      },
+      "pool": {
+        "entries": 6,
+        "geometries": 6,
+        "references": 4,
+        "geometryBytes": 205068,
+        "textureBytes": 0
+      }
+    },
+    {
+      "round": 2,
+      "kind": "baseline",
+      "first": {
+        "chuxiu-maid-01": 58,
+        "chuxiu-consort-01": 110
+      },
+      "targetWork": {
+        "frame": 110,
+        "steps": 6448,
+        "prepCpuMs": 90.0746730000028,
+        "preparation": {
+          "steps": 7,
+          "elapsedMs": 0.4709080000002359,
+          "maxStepMs": 0.2543020000002798,
+          "overrunMs": 0.1593010000005961,
+          "pending": 108,
+          "nominalTotalBudgetMs": 1,
+          "submissionElapsedMs": 0.6883930000003602,
+          "remainingBudgetMs": 0.3116069999996398,
+          "progressReserveMs": 0.25,
+          "grantedPreparationBudgetMs": 0.3116069999996398,
+          "totalBudgetOverrunMs": 0.1682940000000599
+        }
+      },
+      "coldFirst300": {
+        "p50": 1.0215640000005806,
+        "p95": 1.5143639999996594,
+        "p99": 5.276092999999491,
+        "max": 12.278077999999368
+      },
+      "all600": {
+        "p50": 1.0198109999992084,
+        "p95": 1.2839079999994283,
+        "p99": 2.4195629999994708,
+        "max": 12.278077999999368
+      },
+      "queue": {
+        "frames": 600,
+        "steps": 30613,
+        "completed": 34,
+        "cancelled": 0,
+        "totalCpuMs": 430.7511469999963,
+        "maxFrameMs": 4.486206999999922,
+        "maxStepMs": 2.6687480000000505,
+        "maxStepKind": "character-geometry:mesh",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 4.236206999999922,
+        "pending": 80
+      },
+      "pool": {
+        "entries": 6,
+        "geometries": 6,
+        "references": 4,
+        "geometryBytes": 205068,
+        "textureBytes": 0
+      }
+    },
+    {
+      "round": 2,
+      "kind": "candidate",
+      "first": {
+        "chuxiu-maid-01": 62,
+        "chuxiu-consort-01": 111
+      },
+      "targetWork": {
+        "frame": 111,
+        "steps": 6448,
+        "prepCpuMs": 97.28515900000275,
+        "preparation": {
+          "steps": 7,
+          "elapsedMs": 0.486601000000519,
+          "maxStepMs": 0.1983380000001489,
+          "overrunMs": 0.03289100000074541,
+          "pending": 108,
+          "nominalTotalBudgetMs": 1,
+          "submissionElapsedMs": 0.5462900000002264,
+          "remainingBudgetMs": 0.45370999999977357,
+          "progressReserveMs": 0.25,
+          "grantedPreparationBudgetMs": 0.45370999999977357,
+          "totalBudgetOverrunMs": 0.04408700000021781
+        }
+      },
+      "coldFirst300": {
+        "p50": 1.0180789999994886,
+        "p95": 1.432540999999219,
+        "p99": 3.000406000000112,
+        "max": 12.032366999999795
+      },
+      "all600": {
+        "p50": 1.018909999999778,
+        "p95": 1.169386000000486,
+        "p99": 2.5706300000001647,
+        "max": 12.032366999999795
+      },
+      "queue": {
+        "frames": 600,
+        "steps": 29048,
+        "completed": 28,
+        "cancelled": 0,
+        "totalCpuMs": 432.0360219999984,
+        "maxFrameMs": 5.930073999999877,
+        "maxStepMs": 5.603274000000056,
+        "maxStepKind": "world-bounds-vertices:",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 5.110614999999598,
+        "pending": 86
+      },
+      "pool": {
+        "entries": 6,
+        "geometries": 6,
+        "references": 4,
+        "geometryBytes": 205068,
+        "textureBytes": 0
+      }
+    },
+    {
+      "round": 3,
+      "kind": "candidate",
+      "first": {
+        "chuxiu-maid-01": 54,
+        "chuxiu-consort-01": 95
+      },
+      "targetWork": {
+        "frame": 95,
+        "steps": 6449,
+        "prepCpuMs": 90.2859720000015,
+        "preparation": {
+          "steps": 8,
+          "elapsedMs": 0.5384880000001431,
+          "maxStepMs": 0.19587400000000343,
+          "overrunMs": 0.04467800000020361,
+          "pending": 108,
+          "nominalTotalBudgetMs": 1,
+          "submissionElapsedMs": 0.5061900000000605,
+          "remainingBudgetMs": 0.49380999999993946,
+          "progressReserveMs": 0.25,
+          "grantedPreparationBudgetMs": 0.49380999999993946,
+          "totalBudgetOverrunMs": 0.05324100000052567
+        }
+      },
+      "coldFirst300": {
+        "p50": 1.0163860000002387,
+        "p95": 1.3147040000003472,
+        "p99": 4.741079000000354,
+        "max": 11.460738000000674
+      },
+      "all600": {
+        "p50": 1.0179189999998925,
+        "p95": 1.176977000000079,
+        "p99": 2.1897879999996803,
+        "max": 11.460738000000674
+      },
+      "queue": {
+        "frames": 600,
+        "steps": 34117,
+        "completed": 38,
+        "cancelled": 0,
+        "totalCpuMs": 451.60176599999704,
+        "maxFrameMs": 8.284357999999884,
+        "maxStepMs": 5.474969999999303,
+        "maxStepKind": "world-bounds-vertices:",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 7.608654999999999,
+        "pending": 76
+      },
+      "pool": {
+        "entries": 6,
+        "geometries": 6,
+        "references": 4,
+        "geometryBytes": 205068,
+        "textureBytes": 0
+      }
+    },
+    {
+      "round": 3,
+      "kind": "baseline",
+      "first": {
+        "chuxiu-maid-01": 52,
+        "chuxiu-consort-01": 90
+      },
+      "targetWork": {
+        "frame": 90,
+        "steps": 6450,
+        "prepCpuMs": 80.89533100000699,
+        "preparation": {
+          "steps": 9,
+          "elapsedMs": 0.535914999999477,
+          "maxStepMs": 0.17134700000042358,
+          "overrunMs": 0.0018449999988661148,
+          "pending": 108,
+          "nominalTotalBudgetMs": 1,
+          "submissionElapsedMs": 0.4659299999993891,
+          "remainingBudgetMs": 0.5340700000006109,
+          "progressReserveMs": 0.25,
+          "grantedPreparationBudgetMs": 0.5340700000006109,
+          "totalBudgetOverrunMs": 0.010107000000061817
+        }
+      },
+      "coldFirst300": {
+        "p50": 1.0159249999996973,
+        "p95": 1.3741330000002563,
+        "p99": 4.641720999999961,
+        "max": 11.12393400000019
+      },
+      "all600": {
+        "p50": 1.0169770000002245,
+        "p95": 1.101093999999648,
+        "p99": 2.1708400000006804,
+        "max": 11.12393400000019
+      },
+      "queue": {
+        "frames": 600,
+        "steps": 35038,
+        "completed": 39,
+        "cancelled": 0,
+        "totalCpuMs": 445.6487250000173,
+        "maxFrameMs": 6.938940000000002,
+        "maxStepMs": 6.531657999999879,
+        "maxStepKind": "world-bounds-vertices:",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 6.132450999999492,
+        "pending": 75
+      },
+      "pool": {
+        "entries": 6,
+        "geometries": 6,
+        "references": 4,
+        "geometryBytes": 205068,
+        "textureBytes": 0
+      }
+    },
+    {
+      "round": 4,
+      "kind": "baseline",
+      "first": {
+        "chuxiu-maid-01": 54,
+        "chuxiu-consort-01": 99
+      },
+      "targetWork": {
+        "frame": 99,
+        "steps": 6447,
+        "prepCpuMs": 85.37801900000795,
+        "preparation": {
+          "steps": 6,
+          "elapsedMs": 0.8971270000001823,
+          "maxStepMs": 0.669636000000537,
+          "overrunMs": 0.4753049999999348,
+          "pending": 108,
+          "nominalTotalBudgetMs": 1,
+          "submissionElapsedMs": 0.5781779999997525,
+          "remainingBudgetMs": 0.4218220000002475,
+          "progressReserveMs": 0.25,
+          "grantedPreparationBudgetMs": 0.4218220000002475,
+          "totalBudgetOverrunMs": 0.48420900000019174
+        }
+      },
+      "coldFirst300": {
+        "p50": 1.0165960000003906,
+        "p95": 1.331938999999693,
+        "p99": 3.710541999999805,
+        "max": 12.04380399999991
+      },
+      "all600": {
+        "p50": 1.0170869999992647,
+        "p95": 1.144709000000148,
+        "p99": 2.558100999999624,
+        "max": 12.04380399999991
+      },
+      "queue": {
+        "frames": 600,
+        "steps": 33130,
+        "completed": 34,
+        "cancelled": 0,
+        "totalCpuMs": 443.8486289999919,
+        "maxFrameMs": 5.267848999999842,
+        "maxStepMs": 4.505034000000705,
+        "maxStepKind": "world-bounds-vertices:",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 4.4345989999992526,
+        "pending": 80
+      },
+      "pool": {
+        "entries": 6,
+        "geometries": 6,
+        "references": 4,
+        "geometryBytes": 205068,
+        "textureBytes": 0
+      }
+    },
+    {
+      "round": 4,
+      "kind": "candidate",
+      "first": {
+        "chuxiu-maid-01": 62,
+        "chuxiu-consort-01": 108
+      },
+      "targetWork": {
+        "frame": 108,
+        "steps": 6449,
+        "prepCpuMs": 94.88144200000534,
+        "preparation": {
+          "steps": 8,
+          "elapsedMs": 0.5391589999999269,
+          "maxStepMs": 0.1892839999991338,
+          "overrunMs": 0.07199899999977788,
+          "pending": 108,
+          "nominalTotalBudgetMs": 1,
+          "submissionElapsedMs": 0.532839999999851,
+          "remainingBudgetMs": 0.467160000000149,
+          "progressReserveMs": 0.25,
+          "grantedPreparationBudgetMs": 0.467160000000149,
+          "totalBudgetOverrunMs": 0.08168400000067777
+        }
+      },
+      "coldFirst300": {
+        "p50": 1.0178390000000945,
+        "p95": 1.432130000000143,
+        "p99": 3.6727639999999155,
+        "max": 11.401769999999487
+      },
+      "all600": {
+        "p50": 1.0182389999999941,
+        "p95": 1.1740230000004885,
+        "p99": 2.575887999999395,
+        "max": 11.401769999999487
+      },
+      "queue": {
+        "frames": 600,
+        "steps": 32903,
+        "completed": 34,
+        "cancelled": 0,
+        "totalCpuMs": 445.8750340000024,
+        "maxFrameMs": 7.062824999999975,
+        "maxStepMs": 6.7147619999996095,
+        "maxStepKind": "world-bounds-vertices:",
+        "maxStepWorkUnits": 256,
+        "maxOverrunMs": 6.31649600000037,
+        "pending": 80
+      },
+      "pool": {
+        "entries": 6,
+        "geometries": 6,
+        "references": 4,
+        "geometryBytes": 205068,
+        "textureBytes": 0
+      }
+    }
+  ]
+}

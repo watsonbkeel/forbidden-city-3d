@@ -1,0 +1,36 @@
+✔ scope is explicit metadata, uses swept square footprint and includes high airborne poses (1.836877ms)
+✔ invalid region metadata is rejected atomically without registering geometry (0.410326ms)
+✔ registration copies metadata and caller mutation cannot silently move an installed region (0.175544ms)
+✔ same-count update follows explicit owner translation and held navigation clone sees it (0.280211ms)
+✔ held clone reads live local S obstacles after append/update/remove without a stale collider array (0.615123ms)
+✔ cold and warm per-frame navigation clones borrow one source-generation region index (0.618638ms)
+✔ a registered scope cannot disappear during collider update (0.24652ms)
+✖ scope owner cannot be an overhead proxy masquerading as ordinary solid ownership (0.821252ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 115.215016
+
+✖ failing tests:
+
+test at tests/r96-movement/lifecycle.test.mjs:11:1
+✖ scope owner cannot be an overhead proxy masquerading as ordinary solid ownership (0.821252ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/lifecycle.test.mjs:11:249)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /Furniture scope/,
+    operator: 'throws',
+    diff: 'simple'
+  }
