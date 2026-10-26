@@ -1,3 +1,4 @@
+import {shunzhenProfile} from '../../src/scene/palace/special/ShunzhenGate.js';
 import{resolveRemainingProfile as resolveOuter}from'../../src/scene/palace/special/RemainingOuterHalls.js';
 import {resolveRemainingProfile as resolveNingshou} from '../../src/scene/palace/special/RemainingNingshouHalls.js';
 import { southCourtGeometry } from '../../src/scene/palace/special/SouthCourtProfiles.js';
@@ -43,6 +44,10 @@ export const parseRot = r => (r === undefined || r === null ? 0 : typeof r === '
 
 /** 门通行几何；profile 的 front/rear 包含各自完整坡道，platformY 仅用于台面起点。 */
 export function gateGeom(item) {
+  if (item.gateProfile === 'shunzhen') {
+    const p=shunzhenProfile(item),profile={...p,rot:0,platformY:0,portalCenters:p.portals.map(o=>o.x),ramps:[],toWorld:(x,z)=>[p.x+x,p.z+z]};
+    return {x:p.x,z:p.z,rot:0,dir:[0,1],half:p.depth/2,front:p.depth/2,rear:p.depth/2,platformY:0,profile};
+  }
   if (item.gateProfile === 'yinghua') {
     const p=yinghuaGateProfile(item);
     return {x:p.x,z:p.z,rot:0,dir:[0,1],half:1.65,front:1.65,rear:1.65,platformY:p.floor,profile:{...p,rot:0,platformY:p.floor,portalCenters:[0],ramps:[],toWorld:(x,z)=>[p.x+x,p.z+z]}};

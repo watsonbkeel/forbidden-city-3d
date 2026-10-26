@@ -1,0 +1,222 @@
+✔ R93 B 10Hz sprint=false complete hall/west rooms round trip and rendered body clearance (170.778699ms)
+✔ R93 B 10Hz sprint=true complete hall/west rooms round trip and rendered body clearance (86.183551ms)
+✔ R93 B 30Hz sprint=false complete hall/west rooms round trip and rendered body clearance (84.577036ms)
+✖ R93 B 30Hz sprint=true complete hall/west rooms round trip and rendered body clearance (76.070178ms)
+✔ R93 B 60Hz sprint=false complete hall/west rooms round trip and rendered body clearance (78.038375ms)
+✔ R93 B 60Hz sprint=true complete hall/west rooms round trip and rendered body clearance (76.370788ms)
+✔ R93 S 10Hz sprint=false complete hall/west rooms round trip and rendered body clearance (179.975267ms)
+✔ R93 S 10Hz sprint=true complete hall/west rooms round trip and rendered body clearance (97.469674ms)
+✔ R93 S 30Hz sprint=false complete hall/west rooms round trip and rendered body clearance (92.284946ms)
+✖ R93 S 30Hz sprint=true complete hall/west rooms round trip and rendered body clearance (80.169929ms)
+✔ R93 S 60Hz sprint=false complete hall/west rooms round trip and rendered body clearance (83.817001ms)
+✔ R93 S 60Hz sprint=true complete hall/west rooms round trip and rendered body clearance (82.532083ms)
+✔ R93 furniture genuinely blocks the former turn; southward approach changes only route, not door or walls (50.07719ms)
+✖ R93 B 10Hz east actual drop onto legal tabletop patch and walk off without rescue (52.130902ms)
+✖ R93 B 10Hz west actual drop onto legal tabletop patch and walk off without rescue (49.63042ms)
+✖ R93 B 60Hz east actual drop onto legal tabletop patch and walk off without rescue (51.844973ms)
+✖ R93 B 60Hz west actual drop onto legal tabletop patch and walk off without rescue (54.407398ms)
+✖ R93 S 10Hz east actual drop onto legal tabletop patch and walk off without rescue (61.08086ms)
+✖ R93 S 10Hz west actual drop onto legal tabletop patch and walk off without rescue (84.532004ms)
+✖ R93 S 60Hz east actual drop onto legal tabletop patch and walk off without rescue (62.313549ms)
+✖ R93 S 60Hz west actual drop onto legal tabletop patch and walk off without rescue (58.62803ms)
+✔ R93 actual S repeated/cancelled streaming retains exactly two permanent tables and disposes material once (121.178785ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 12
+ℹ fail 10
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2047.092575
+
+✖ failing tests:
+
+test at tests/r93-qinzheng-world.test.mjs:3:88
+✖ R93 B 30Hz sprint=true complete hall/west rooms round trip and rendered body clearance (76.070178ms)
+  AssertionError [ERR_ASSERTION]: {"arrived":false,"stuckAt":[122.6,276.15],"startFeet":0,"maxFeet":0.6,"maxSpeed":11.999609634345944,"driver":{"crossings":[{"index":1,"point":[108.6,274.5],"hit":[108.6,274.5],"lateralDistance":0},{"index":2,"point":[113.39999999999999,274.5],"hit":[113.39999999999999,274.5],"lateralDistance":0},{"index":3,"point":[113.39999999999999,276.66],"hit":[113.39999999999999,276.66],"lateralDistance":0},{"index":4,"point":[114.6,276.66],"hit":[114.6,276.7149938373488],"lateralDistance":0.05499383734877483},{"index":5,"point":[116.1,276.66],"hit":[116.1,276.66],"lateralDistance":0},{"index":6,"point":[116.1,273],"hit":[116.1,273],"lateralDistance":0},{"index":7,"point":[118.8,273],"hit":[118.8,273],"lateralDistance":0},{"index":8,"point":[122.6,274.3],"hit":[122.6,274.3],"lateralDistance":0}],"brakingFrames":151,"endpointSettleSeconds":2},"end":[122.6,276.03599145670523,0.6]}
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-world.test.mjs:3:480)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r93-qinzheng-world.test.mjs:3:88
+✖ R93 S 30Hz sprint=true complete hall/west rooms round trip and rendered body clearance (80.169929ms)
+  AssertionError [ERR_ASSERTION]: {"arrived":false,"stuckAt":[122.6,276.15],"startFeet":0,"maxFeet":0.6,"maxSpeed":11.999609634345944,"driver":{"crossings":[{"index":1,"point":[108.6,274.5],"hit":[108.6,274.5],"lateralDistance":0},{"index":2,"point":[113.39999999999999,274.5],"hit":[113.39999999999999,274.5],"lateralDistance":0},{"index":3,"point":[113.39999999999999,276.66],"hit":[113.39999999999999,276.66],"lateralDistance":0},{"index":4,"point":[114.6,276.66],"hit":[114.6,276.7149938373488],"lateralDistance":0.05499383734877483},{"index":5,"point":[116.1,276.66],"hit":[116.1,276.66],"lateralDistance":0},{"index":6,"point":[116.1,273],"hit":[116.1,273],"lateralDistance":0},{"index":7,"point":[118.8,273],"hit":[118.8,273],"lateralDistance":0},{"index":8,"point":[122.6,274.3],"hit":[122.6,274.3],"lateralDistance":0}],"brakingFrames":151,"endpointSettleSeconds":2},"end":[122.6,276.03599145670523,0.6]}
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-world.test.mjs:3:480)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r93-qinzheng-world.test.mjs:6:86
+✖ R93 B 10Hz east actual drop onto legal tabletop patch and walk off without rescue (52.130902ms)
+  AssertionError [ERR_ASSERTION]: legal body-clear landing patch, not teleport inside retained north/east wall
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-world.test.mjs:6:595)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r93-qinzheng-world.test.mjs:6:86
+✖ R93 B 10Hz west actual drop onto legal tabletop patch and walk off without rescue (49.63042ms)
+  AssertionError [ERR_ASSERTION]: legal body-clear landing patch, not teleport inside retained north/east wall
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-world.test.mjs:6:595)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r93-qinzheng-world.test.mjs:6:86
+✖ R93 B 60Hz east actual drop onto legal tabletop patch and walk off without rescue (51.844973ms)
+  AssertionError [ERR_ASSERTION]: legal body-clear landing patch, not teleport inside retained north/east wall
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-world.test.mjs:6:595)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r93-qinzheng-world.test.mjs:6:86
+✖ R93 B 60Hz west actual drop onto legal tabletop patch and walk off without rescue (54.407398ms)
+  AssertionError [ERR_ASSERTION]: legal body-clear landing patch, not teleport inside retained north/east wall
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-world.test.mjs:6:595)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r93-qinzheng-world.test.mjs:6:86
+✖ R93 S 10Hz east actual drop onto legal tabletop patch and walk off without rescue (61.08086ms)
+  AssertionError [ERR_ASSERTION]: legal body-clear landing patch, not teleport inside retained north/east wall
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-world.test.mjs:6:595)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r93-qinzheng-world.test.mjs:6:86
+✖ R93 S 10Hz west actual drop onto legal tabletop patch and walk off without rescue (84.532004ms)
+  AssertionError [ERR_ASSERTION]: legal body-clear landing patch, not teleport inside retained north/east wall
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-world.test.mjs:6:595)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r93-qinzheng-world.test.mjs:6:86
+✖ R93 S 60Hz east actual drop onto legal tabletop patch and walk off without rescue (62.313549ms)
+  AssertionError [ERR_ASSERTION]: legal body-clear landing patch, not teleport inside retained north/east wall
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-world.test.mjs:6:595)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r93-qinzheng-world.test.mjs:6:86
+✖ R93 S 60Hz west actual drop onto legal tabletop patch and walk off without rescue (58.62803ms)
+  AssertionError [ERR_ASSERTION]: legal body-clear landing patch, not teleport inside retained north/east wall
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-world.test.mjs:6:595)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,69 @@
+{
+  "$schema": "./schema.md",
+  "hall": "乾清宫",
+  "id": "qianqing",
+  "tier": "S",
+  "model": "/models/interiors/qianqing-r33.glb",
+  "fallback": "B",
+  "budget": {
+    "tris": 400000,
+    "textureMB": 8
+  },
+  "frame": {
+    "x": 0,
+    "z": 316.8,
+    "rot": 0,
+    "w": 46,
+    "d": 25
+  },
+  "floor": {
+    "mode": "ground",
+    "y": null
+  },
+  "anchor": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "preload": {
+    "enter": 15,
+    "exit": 40
+  },
+  "throne": {
+    "ztb0": 1,
+    "ztb1": 8,
+    "thW": 8.18,
+    "bayW": 5.111,
+    "dBay": 8.333
+  },
+  "lights": [
+    {
+      "type": "point",
+      "x": 0,
+      "y": 5,
+      "z": 3,
+      "color": "#ffd9a0",
+      "intensity": 2,
+      "distance": 26
+    },
+    {
+      "type": "point",
+      "x": 0,
+      "y": 4.5,
+      "z": -7,
+      "color": "#ffe6c0",
+      "intensity": 0.8,
+      "distance": 26
+    }
+  ],
+  "source": "docs/research/interiors-qianqing.md",
+  "asset": {
+    "contract": "r29-permanent-five-panel-core",
+    "sourceSHA256": "c05357b209084393a4e6e92e81f3b5f514a95406e2c77e3e28fe9b9ff240f3b8",
+    "sha256": "839045f387626841ae15fde25fafd3f22b7c386ace7e5834e314c11417f937b7",
+    "renderableTriangles": 5408,
+    "visibleMeshes": 2,
+    "profileSHA256": "50e52fa4f3f18e946a9d836568a10356dda1a8479ff91744c8107957dc868b7e",
+    "surfaceSourceSHA256": "7d036da5d51808c4f4b480d8392980e3d32157680701f931790639ffd266661e"
+  }
+}

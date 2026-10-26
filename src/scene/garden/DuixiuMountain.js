@@ -20,11 +20,17 @@ export function buildDuixiuMountain(options){const p=duixiuMountainProfile(optio
  for(let i=1;i<xs.length;i++)for(let j=1;j<zs.length;j++){const x0=xs[i-1],x1=xs[i],z0=zs[j-1],z1=zs[j],x=(x0+x1)/2,z=(z0+z1)/2,h=heightAt(p,x,z);if(h<.05)continue;const cave=x0>=-1.5&&x1<=1.5&&z0>=p.cave.frontZ&&z1<=p.cave.rearZ;let g,box;
   if(cave){const points=[];for(let k=0;k<=4;k++){const xx=x0+(x1-x0)*k/4,yy=p.cave.springY+Math.sqrt(Math.max(0,1-(xx/1.5)**2));points.push([xx,yy]);}const shape=new THREE.Shape();shape.moveTo(points[0][0],points[0][1]);points.slice(1).forEach(q=>shape.lineTo(...q));shape.lineTo(x1,h-.1);shape.lineTo(x0,h-.1);shape.closePath();g=new THREE.ExtrudeGeometry(shape,{depth:z1-z0,bevelEnabled:false});g.translate(cx,cy,cz+z0);const min=Math.min(...points.map(q=>q[1]));box=new THREE.Box3(new THREE.Vector3(cx+x0,cy+min,cz+z0),new THREE.Vector3(cx+x1,cy+h-.1,cz+z1));box.overhead={type:'piecewise-linear-x',sourceId:'duixiu-front-vault-fit',points:points.map(([x,y])=>[cx+x,cy+y]),minZ:cz+z0,maxZ:cz+z1,topY:cy+h-.1};const cap=new THREE.BoxGeometry(x1-x0,.1,z1-z0);cap.translate(cx+x,cy+h-.05,cz+z);caps.push(finishGeometry(cap,tile));colliders.push(new THREE.Box3(new THREE.Vector3(cx+x0,cy+h-.1,cz+z0),new THREE.Vector3(cx+x1,cy+h,cz+z1)));
   }else{g=new THREE.BoxGeometry(x1-x0,h,z1-z0);g.translate(cx+x,cy+h/2,cz+z);box=new THREE.Box3(new THREE.Vector3(cx+x0,cy,cz+z0),new THREE.Vector3(cx+x1,cy+h,cz+z1));}
-  geometries.push(finishGeometry(g,tile));colliders.push(box);addSupport(x0,x1,z0,z1,h);cells.push({x0,x1,z0,z1,top:h,cave,route:closestRoute(p,x,z).distance<=.9?closestRoute(p,x,z).route:null});
+  // A downstream exact replacement may need only this old cell's real
+  // Float32 source bounds. Keep original BoxGeometry quantization, but avoid
+  // normals/UV/color expansion that would be immediately discarded.
+  const sourceOnly = !cave && options.sourceOnlyCell && (g.computeBoundingBox(), options.sourceOnlyCell({x0,x1,z0,z1}, g.boundingBox));
+  if (sourceOnly) { g.userData.duixiuSourceOnly = true; geometries.push(g); }
+  else geometries.push(finishGeometry(g,tile));
+  colliders.push(box);addSupport(x0,x1,z0,z1,h);cells.push({x0,x1,z0,z1,top:h,cave,route:closestRoute(p,x,z).distance<=.9?closestRoute(p,x,z).route:null});
  }
  geometries.push(...caps);
  const floor=new THREE.BoxGeometry(3,p.cave.floorY,p.cave.rearZ+p.radiusZ);floor.translate(cx,cy+p.cave.floorY/2,cz+(p.cave.rearZ-p.radiusZ)/2);geometries.push(finishGeometry(floor,tile));addSupport(-1.5,1.5,-p.radiusZ,p.cave.rearZ,p.cave.floorY);
  // The retained real pavilion platform (rendered by GardenBuilder) is .5m thick.
  addSupport(-2.8,2.8,-2.8,2.8,p.summitY);
- return{geometries,colliders:compactBoxes(colliders),walkables:compactBoxes(walkables.map(w=>w.box)).map(box=>({type:'box',rescue:false,box})),topY:p.topY,profile:{...p,cells,solidCellCount:cells.length}};
+ return{geometries,colliders:compactBoxes(colliders),walkables:compactBoxes(walkables.map(w=>w.box)).map(box=>({type:'box',rescue:false,box})),topY:p.topY,profile:{...p,cells,solidCellCount:cells.length,...(options.sourceOnlyCell?{sourceOnlyGeometryCount:geometries.filter(g=>g.userData.duixiuSourceOnly).length}:{})}};
 }

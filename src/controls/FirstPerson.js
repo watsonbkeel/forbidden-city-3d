@@ -87,6 +87,8 @@ export class FirstPersonControls {
     this._onKeyDown = this.onKeyDown.bind(this);
     this._onKeyUp = this.onKeyUp.bind(this);
     this._onStop = this.stop.bind(this);
+    this._onInputFocus = event => { if (isTextEntryTarget(event.target)) this.stop(); };
+    this._onLockFocus = () => this.releaseInputFocus();
     // 解锁（Esc / 打开地图）时清空输入；地图打开时（freeMove）保留，让玩家能边看地图边走
     this._onUnlockStop = () => { if (!this.freeMove) this.stop(); };
     // freeMove：不依赖指针锁定也接受键盘移动（打开地图时使用）
@@ -102,11 +104,13 @@ export class FirstPersonControls {
    */
   setupEventListeners() {
     window.addEventListener('blur', this._onStop);
+    document.addEventListener('focusin', this._onInputFocus);
     if (!this.isMobile) {
       // 点击启动指针锁定（桌面端）；点在按钮上不触发
       this._onClick = (e) => {
+        if (e.target?.closest?.('button, a, input, select, textarea, summary, [role="button"]')) return;
+        this.releaseInputFocus();
         if (this.mapOpen) return;
-        if (e.target?.closest?.('button, a, input, select, textarea, [role="button"]')) return;
         if (!this.controls.isLocked) {
           try { this.lock(); } catch { /* Keep the click-to-start overlay available. */ }
         }
@@ -119,6 +123,7 @@ export class FirstPersonControls {
       
       // 解锁时立即清空输入和速度
       this.controls.addEventListener('unlock', this._onUnlockStop);
+      this.controls.addEventListener('lock', this._onLockFocus);
     } else {
       // 移动端：视角锁定按钮 + 右半屏拖动视角 + 跳跃按钮
       this.createLookLockButton();
@@ -440,11 +445,16 @@ export class FirstPersonControls {
         0.5,
         air ? (this.groundY ?? 0) : baseFeet,
         PLAYER.STEP_UP ?? 0.6,
-        (air || this.onSupport) ? this.feetY : null
+        (air || this.onSupport) ? this.feetY : null,
+        {kind:'player',airborne:air}
       );
       this._trackedGround = this.collisionManager.lastGroundY ?? null;
       
       this.camera.position.copy(validPosition);
+      if(!air && this.collisionManager.lastDuixiuStepFeet != null) {
+        this.feetY=this.collisionManager.lastDuixiuStepFeet;
+        this.groundY=this.feetY;this.verticalVelocity=0;this.onSupport=true;
+      }
       
       // 碰撞修正后的实际水平速度
       if (delta > 0) {
@@ -469,6 +479,13 @@ export class FirstPersonControls {
    * 脚面高度跟随地面：上台阶/上坡平滑抬升；地面降低时按重力下落（走下台阶、从台基边缘下来）
    */
   updateGround(delta) {
+    const terrain=this.collisionManager.resolveDuixiuVertical?.({x:this.camera.position.x,z:this.camera.position.z,feetY:this.feetY,groundY:this.groundY,airborne:this.airborne,verticalVelocity:this.verticalVelocity},delta,.5);
+    if(terrain) {
+      this.feetY=terrain.feetY;this.groundY=terrain.groundY;this.airborne=terrain.airborne;
+      this.verticalVelocity=terrain.verticalVelocity;this.onSupport=terrain.onSupport;
+      if(terrain.landed)this._landed=true;
+      return;
+    }
     // 以"逻辑地面"（上一帧所站的面）为基准查询，避免上长楼梯时镜头平滑滞后超过可迈高度而误判掉落
     const base = Math.max(this.feetY, this.groundY ?? 0);
     // 本帧移动过：用移动过程中逐小步追踪得到的地面；否则在原地查询
@@ -674,6 +691,12 @@ export class FirstPersonControls {
   /**
    * 锁定指针
    */
+  releaseInputFocus() {
+    // Pointer lock does not itself blur a range/number input. Without this,
+    // subsequent WASD events still target that field and are correctly ignored.
+    if (isTextEntryTarget(document.activeElement)) document.activeElement.blur?.();
+  }
+
   lock() {
     if (!this.isMobile) {
       // Three's wrapper discards the native Promise. Return it so mode handoffs
@@ -721,6 +744,8 @@ export class FirstPersonControls {
   dispose() {
     this.stop();
     window.removeEventListener('blur', this._onStop);
+    document.removeEventListener('focusin', this._onInputFocus);
+    this.controls.removeEventListener('lock', this._onLockFocus);
     document.removeEventListener('keydown', this._onKeyDown);
     document.removeEventListener('keyup', this._onKeyUp);
     this.controls.removeEventListener('unlock', this._onUnlockStop);

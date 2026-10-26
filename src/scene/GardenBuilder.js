@@ -7,7 +7,7 @@ import { applyBoxUV, applyBandUV, scaleCylinderUV } from '../utils/GeometryUV.js
 import { mergeByMaterial } from '../utils/MergeUtils.js';
 import { mulberry32 } from './garden/noise.js';
 import { buildTreeVariant, createFoliageMaterial } from './garden/trees.js';
-import { buildDuixiuMountain } from './garden/DuixiuMountain.js';
+import { buildDuixiuOuterRock } from './garden/DuixiuOuterRock.js';
 import { buildCrossGardenPavilion } from './garden/CrossGardenPavilions.js';
 import { buildBridgeGardenPavilion, bridgeGardenProfile, buildYujingEnclosure } from './garden/RemainingGardenPavilions.js';
 import {clipTianyiBedRectangle,isTianyiConflictingLegacyLantern} from './garden/TianyiGroundFit.js';
@@ -407,14 +407,25 @@ export class GardenBuilder {
 
   /* ---------------------------------------------------------------- 堆秀山 */
 
+  buildDuixiu(options) {
+    const result = buildDuixiuOuterRock(options);
+    result.profile.release = { version: 'R94', status: 'CANDIDATE',
+      scope: 'front, cave-roof shoulder, nonpath side relief and outer foot; protected routes/platform retained',
+      limitation: 'remaining rear/route-foundation walls are retained model geometry, not surveyed reconstruction' };
+    for (const key of ['terrain', 'naturalFront', 'sideRelief', 'outerRock'])
+      if (result.profile[key]) result.profile[key].status = 'R94_CANDIDATE';
+    return result;
+  }
+
   buildRockeryAndTop(root) {
     const lib = this.library;
     const topY = Math.max(7, this.rockDim.height ?? 8);
-    const { geometries, colliders, walkables, profile } = buildDuixiuMountain({
+    const { geometries, colliders, walkables, profile } = this.buildDuixiu({
       center: this.rockPos, radiusX: (this.rockDim.width ?? 10) * 0.65, radiusZ: (this.rockDim.depth ?? 10) * 0.55,
       topY, tile: lib.tileSize('rock'),
     });
     this.group.userData.duixiuProfile = profile;
+    if (profile.terrain) this.group.userData.duixiuTerrain = profile.terrain;
     const geo = mergeGeometries(geometries, false);
     geometries.forEach(g => g.dispose());
     geo.computeBoundingSphere();
@@ -437,6 +448,16 @@ export class GardenBuilder {
     root.add(plat);
     this.makePavilion(root, { x: this.rockPos.x, y: topY + 0.5, z: this.rockPos.z, size: 3.6, baseH: 0.35, colH: 2.8, cols: 'square4', sides: 4, layers: 1, collide: false });
     buildYujingEnclosure(this, root, {x:this.rockPos.x,z:this.rockPos.z,y:topY+.5,playableExit:true});
+    if (profile.terrain) {
+      // The same visible pavilion cap is an exact terrain solid; no legacy
+      // center-height support may bypass full-footprint landing clearance.
+      const cap = this.walkables.findIndex(q => q.type === 'box'
+        && Math.abs(q.box.min.x - (this.rockPos.x - 2.7)) < 1e-8
+        && Math.abs(q.box.max.x - (this.rockPos.x + 2.7)) < 1e-8
+        && Math.abs(q.box.max.y - (profile.summitY + .35)) < 1e-8);
+      if (cap < 0) throw new Error('Missing actual Duixiu pavilion cap support');
+      this.walkables.splice(cap, 1);
+    }
   }
 
   /* ---------------------------------------------------------------- 小品 */

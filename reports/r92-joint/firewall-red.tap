@@ -1,0 +1,148 @@
+✖ R92 production installs one long upper east wall with an independently placed opening (379.744433ms)
+✖ R92 actual visual aperture and physical aperture agree; jamb and lintel remain solid (310.157088ms)
+✖ R92 real player roundtrip door 10Hz sprint=false (188.888504ms)
+✖ R92 real player roundtrip door 10Hz sprint=true (263.774891ms)
+✖ R92 real player roundtrip door 60Hz sprint=false (216.346278ms)
+✖ R92 real player roundtrip door 60Hz sprint=true (180.198174ms)
+✖ R92 invalid or duplicate firewall installation cannot append solids (185.1946ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 0
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1981.072493
+
+✖ failing tests:
+
+test at tests/r92-joint-east-firewall.test.mjs:5:1
+✖ R92 production installs one long upper east wall with an independently placed opening (379.744433ms)
+  AssertionError [ERR_ASSERTION]: production Baohe joint firewall absent
+      at setup (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r92-joint-east-firewall.test.mjs:4:111)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r92-joint-east-firewall.test.mjs:5:107)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r92-joint-east-firewall.test.mjs:6:1
+✖ R92 actual visual aperture and physical aperture agree; jamb and lintel remain solid (310.157088ms)
+  AssertionError [ERR_ASSERTION]: production Baohe joint firewall absent
+      at setup (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r92-joint-east-firewall.test.mjs:4:111)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r92-joint-east-firewall.test.mjs:6:106)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r92-joint-east-firewall.test.mjs:7:57
+✖ R92 real player roundtrip door 10Hz sprint=false (188.888504ms)
+  AssertionError [ERR_ASSERTION]: production Baohe joint firewall absent
+      at setup (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r92-joint-east-firewall.test.mjs:4:111)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r92-joint-east-firewall.test.mjs:7:133)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r92-joint-east-firewall.test.mjs:7:57
+✖ R92 real player roundtrip door 10Hz sprint=true (263.774891ms)
+  AssertionError [ERR_ASSERTION]: production Baohe joint firewall absent
+      at setup (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r92-joint-east-firewall.test.mjs:4:111)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r92-joint-east-firewall.test.mjs:7:133)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r92-joint-east-firewall.test.mjs:7:57
+✖ R92 real player roundtrip door 60Hz sprint=false (216.346278ms)
+  AssertionError [ERR_ASSERTION]: production Baohe joint firewall absent
+      at setup (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r92-joint-east-firewall.test.mjs:4:111)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r92-joint-east-firewall.test.mjs:7:133)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r92-joint-east-firewall.test.mjs:7:57
+✖ R92 real player roundtrip door 60Hz sprint=true (180.198174ms)
+  AssertionError [ERR_ASSERTION]: production Baohe joint firewall absent
+      at setup (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r92-joint-east-firewall.test.mjs:4:111)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r92-joint-east-firewall.test.mjs:7:133)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r92-joint-east-firewall.test.mjs:8:1
+✖ R92 invalid or duplicate firewall installation cannot append solids (185.1946ms)
+  AssertionError [ERR_ASSERTION]: production Baohe joint firewall absent
+      at setup (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r92-joint-east-firewall.test.mjs:4:111)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r92-joint-east-firewall.test.mjs:8:89)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

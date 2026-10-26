@@ -1,0 +1,375 @@
+✔ R93 adds exactly two photo-supported floor-standing tables, not taller replacements of existing low tables (109.174344ms)
+✖ R93 preserves every pre-existing mesh/material/collider/support and protected bytes (87.089678ms)
+✔ R93 all visible solid boxes and supports match physical bounds, feet touch retained floor and empty under-table volume remains open (60.287936ms)
+✔ R93 wrong identity and duplicate reject without appending; resources dispose once (54.414713ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 518.492031
+
+✖ failing tests:
+
+test at tests/r93-qinzheng-high-tables.test.mjs:4:1
+✖ R93 preserves every pre-existing mesh/material/collider/support and protected bytes (87.089678ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      colliders: [
+        {
+          max: [
+            127.55,
+  ...
+        {
+  +       box: Box3 {
+  -       box: {
+            isBox3: true,
+  +         max: Vector3 {
+  -         max: {
+              x: 127.6,
+              y: 0.6,
+              z: 284.5
+            },
+  +         min: Vector3 {
+  -         min: {
+              x: 89.6,
+              y: 0.6,
+              z: 270.5
+            }
+          },
+  ...
+        {
+  +       box: Box3 {
+  -       box: {
+            isBox3: true,
+  +         max: Vector3 {
+  -         max: {
+              x: 127.14999999999999,
+              y: 0.6,
+              z: 270.51
+            },
+  +         min: Vector3 {
+  -         min: {
+              x: 102.05,
+              y: 0.6,
+              z: 265.45
+            }
+          },
+  ...
+        {
+  +       box: Box3 {
+  -       box: {
+            isBox3: true,
+  +         max: Vector3 {
+  -         max: {
+              x: 121.85,
+              y: 1.27,
+              z: 277.25
+            },
+  +         min: Vector3 {
+  -         min: {
+              x: 118.55,
+              y: 1.27,
+              z: 275.45
+            }
+          },
+  ...
+        {
+  +       box: Box3 {
+  -       box: {
+            isBox3: true,
+  +         max: Vector3 {
+  -         max: {
+              x: 121.81,
+              y: 1.29,
+              z: 277.21
+            },
+  +         min: Vector3 {
+  -         min: {
+              x: 118.58999999999999,
+              y: 1.29,
+              z: 275.49
+            }
+          },
+  ...
+        {
+  +       box: Box3 {
+  -       box: {
+            isBox3: true,
+  +         max: Vector3 {
+  -         max: {
+              x: 121.1,
+              y: 1.4300000000000002,
+              z: 277.02
+            },
+  +         min: Vector3 {
+  -         min: {
+              x: 119.3,
+              y: 1.4300000000000002,
+              z: 275.65
+            }
+          },
+  ...
+        {
+  +       box: Box3 {
+  -       box: {
+            isBox3: true,
+  +         max: Vector3 {
+  -         max: {
+              x: 119.17999999999999,
+              y: 1.92,
+              z: 277
+            },
+  +         min: Vector3 {
+  -         min: {
+              x: 118.64999999999999,
+              y: 1.92,
+              z: 275.7
+            }
+          },
+  ...
+        {
+  +       box: Box3 {
+  -       box: {
+            isBox3: true,
+  +         max: Vector3 {
+  -         max: {
+              x: 121.75,
+              y: 1.92,
+              z: 277
+            },
+  +         min: Vector3 {
+  -         min: {
+              x: 121.22,
+              y: 1.92,
+              z: 275.7
+            }
+          },
+  ...
+        {
+  +       box: Box3 {
+  -       box: {
+            isBox3: true,
+  +         max: Vector3 {
+  -         max: {
+              x: 126.02,
+              y: 1.22,
+              z: 273.45
+            },
+  +         min: Vector3 {
+  -         min: {
+              x: 123.84486699507389,
+              y: 1.22,
+              z: 271.98
+            }
+          },
+  ...
+        {
+  +       box: Box3 {
+  -       box: {
+            isBox3: true,
+  +         max: Vector3 {
+  -         max: {
+              x: 126.02,
+              y: 1.24,
+              z: 273.45
+            },
+  +         min: Vector3 {
+  -         min: {
+              x: 123.84486699507389,
+              y: 1.24,
+              z: 271.98
+            }
+          },
+  ...
+        {
+  +       box: Box3 {
+  -       box: {
+            isBox3: true,
+  +         max: Vector3 {
+  -         max: {
+              x: 124.58486699507388,
+              y: 1.37,
+              z: 273.2
+            },
+  +         min: Vector3 {
+  -         min: {
+              x: 123.88486699507388,
+              y: 1.37,
+              z: 272.1
+            }
+          },
+  ...
+        {
+  +       box: Box3 {
+  -       box: {
+            isBox3: true,
+  +         max: Vector3 {
+  -         max: {
+              x: 125.38,
+              y: 1.87,
+              z: 273.28
+            },
+  +         min: Vector3 {
+  -         min: {
+              x: 125.05,
+              y: 1.87,
+              z: 272.2
+            }
+          },
+  ...
+        {
+  +       box: Box3 {
+  -       box: {
+            isBox3: true,
+  +         max: Vector3 {
+  -         max: {
+              x: 126.02,
+              y: 1.3199999999999998,
+              z: 271.96
+            },
+  +         min: Vector3 {
+  -         min: {
+              x: 123.84486699507389,
+              y: 1.3199999999999998,
+              z: 271.36
+            }
+          },
+  ...
+        {
+  +       box: Box3 {
+  -       box: {
+            isBox3: true,
+  +         max: Vector3 {
+  -         max: {
+              x: 120.64999999999999,
+              y: 0.76,
+              z: 275.4
+            },
+  +         min: Vector3 {
+  -         min: {
+              x: 119.75,
+              y: 0.76,
+              z: 274.86
+            }
+          },
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-high-tables.test.mjs:4:190)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: {
+      meshes: [
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        ... 177 more items
+      ],
+      colliders: [
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        ... 49 more items
+      ],
+      supports: [
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object]
+      ]
+    },
+    expected: {
+      meshes: [
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        ... 177 more items
+      ],
+      colliders: [
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        ... 49 more items
+      ],
+      supports: [
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object]
+      ]
+    },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

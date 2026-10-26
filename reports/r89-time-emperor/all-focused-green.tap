@@ -1,0 +1,91 @@
+✔ emperor covers the actual player sprint distance across many small waypoints, independent of frame rate (9.374805ms)
+✔ low-FPS emperor sweep cannot cross a thin wall between clear frame endpoints (1.28668ms)
+✔ low-FPS running emperor pauses at player, never penetrates, then resumes at sprint speed (1.965829ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,202, 树木=34棵, 碰撞器=3033
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+✔ actual Qianqing B/S floor, sprint round trips, player blockage, time reversal and streaming (15544.786963ms)
+✔ R89 Qianqing floor correction preserves every other frozen R88 field (12.851181ms)
+✔ separate numeric fields apply 21:00 once, only on Apply or Enter; drafts survive clock refresh (15.288287ms)
+✔ reject invalid clock :00 without changing simulation (3.637047ms)
+✔ reject invalid clock 24:00 without changing simulation (3.237748ms)
+✔ reject invalid clock -1:00 without changing simulation (4.303897ms)
+✔ reject invalid clock 21:60 without changing simulation (3.010307ms)
+✔ reject invalid clock 21:-1 without changing simulation (3.126651ms)
+✔ reject invalid clock 21.5:00 without changing simulation (2.735514ms)
+✔ reject invalid clock 21:0.5 without changing simulation (2.601203ms)
+✔ reject invalid clock NaN:00 without changing simulation (1.944847ms)
+✔ accept boundary 00:00 and preserve slider/live controls (2.028864ms)
+✔ accept boundary 23:59 and preserve slider/live controls (1.38681ms)
+✔ a fresh world click releases old range focus and real controller moves without map teleport (11.408056ms)
+✔ focusing a time control stops previously held input rather than drifting while editing (3.672129ms)
+✔ settings #settings-close-btn, map=false: former time-field focus cannot trap new movement (4.78593ms)
+✔ settings #resume-btn, map=false: former time-field focus cannot trap new movement (4.265559ms)
+✔ settings Escape, map=false: former time-field focus cannot trap new movement (2.87257ms)
+✔ settings #settings-close-btn, map=true: former time-field focus cannot trap new movement (2.865329ms)
+✔ settings #resume-btn, map=true: former time-field focus cannot trap new movement (2.988053ms)
+✔ settings Escape, map=true: former time-field focus cannot trap new movement (2.663386ms)
+✔ time disclosure closes by Escape/button without global settings toggle or hidden input focus (1.194953ms)
+✔ editing time during map-open flight clears held flight keys without dismounting or locking (42.319361ms)
+✔ far northern movement reuses conservative bounds without rescanning polygon vertices (15.162858ms)
+✔ optimized water decisions equal the frozen R88 narrow phase at banks, AABB borders, bridge edges and random footprints (556.61076ms)
+✔ real desktop controller stops held movement, ignores modal keys, then resumes map mode on Escape (17.771502ms)
+✔ real mobile joystick resets on opening and modal touches do not reactivate it; Continue restores walking (7.021153ms)
+✔ disposing an open menu removes its handlers without changing the controller mode or adding a relock (3.869024ms)
+✔ a second finger can open settings while the real joystick remains held, without a synthetic click (5.846512ms)
+✔ initial controls show the actual low-quality and muted state before first open (10.375376ms)
+✔ one quality-button click emits the selected setting exactly once (5.707904ms)
+✔ opening and closing the menu never changes quality or emits a quality callback (2.422094ms)
+✔ settings modal is above the welcome blocker and below the loading screen (2.419009ms)
+✔ short-height panel has separate non-scrolling actions and a bounded scroll region (3.290968ms)
+✔ preview label opens the accessible settings dialog without a keyboard (2.667843ms)
+✔ source details distinguish measured structure, provisional geometry and dated visitor access (7.796167ms)
+✔ modal opening is idempotent and closes once through each visible action (10.959092ms)
+✔ Tab wraps in the dialog, skips closed details, and restores the opener on dismissal (8.713012ms)
+✔ Escape closes once without propagating to the global toggle; key scrolling retains its default (5.684208ms)
+✔ modal pointer and touch gestures do not reach body game handlers or force preventDefault (2.274012ms)
+✔ dispose restores prior inert states and removes DOM/global listeners without resuming (1.227411ms)
+✔ a secondary touch opens the launcher once without waiting for a compatibility click (6.062496ms)
+✔ a single launcher touch retains its ordinary click activation and default behavior (1.082774ms)
+✔ secondary taps activate existing sound/quality, disclosure, links and dismissal once (2.187582ms)
+✔ secondary drags and cancelled touches never activate controls or disclosures (1.570366ms)
+✔ closing clears pending secondary touches so reopening cannot apply a stale tap (12.008306ms)
+✔ secondary long presses and displaced endings do not become clicks (1.673741ms)
+✔ map mode places the same settings entry in map flow and restores its original host (1.191929ms)
+✔ map entry uses a normal-flow sticky header with a reserved focus-scroll inset (0.628082ms)
+✔ reparenting the map entry while settings are open preserves inertness and modal focus (6.07851ms)
+✔ an uncancelable secondary launcher touch still opens once without attempting cancellation (1.75331ms)
+✔ an uncancelable secondary control tap still activates once without attempting cancellation (1.167272ms)
+✔ opening settings clears pending inputs and freezes updates on desktop (3.625039ms)
+✔ opening settings clears pending inputs and freezes updates on mobile (0.44627ms)
+✔ closing settings restores map free-move without locking or closing the map (0.351488ms)
+✔ source/quality actions cannot alter session state and every reopening captures current map mode (0.378628ms)
+✔ a denied desktop relock leaves the welcome click fallback usable and the session unpaused (0.608282ms)
+✔ main app wires menu opening, resuming and frame updates through the session (0.934442ms)
+✔ closing a menu opened unlocked restores its flex welcome state without entering pointer lock (0.416225ms)
+✔ closing a menu opened unlocked restores its none welcome state without entering pointer lock (0.319349ms)
+✔ native Escape already unlocked before menu opening retains the ordinary click-to-resume fallback (0.548242ms)
+✔ a programmatic map change during settings updates the eventual mode without unpausing inputs (0.945569ms)
+ℹ tests 65
+ℹ suites 0
+ℹ pass 65
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16007.163238

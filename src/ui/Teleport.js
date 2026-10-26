@@ -132,7 +132,7 @@ export class Teleport {
     if (toFront < 1e-3) return false;
     const walk = Math.min(TELEPORT.PROBE_WALK, toFront);
     const goal = new THREE.Vector3(p.x + dx / toFront * walk, eye.y, p.z + dz / toFront * walk);
-    const end = cm.getValidPosition(eye, goal, 0.5, ground, PLAYER.STEP_UP);
+    const end = cm.getValidPosition(eye, goal, 0.5, ground, PLAYER.STEP_UP, null, {kind:'kinematic',airborne:false});
     // 只计朝正面方向的有效位移（排除沿墙滑行）
     const progressed = (end.x - p.x) * dx / toFront + (end.z - p.z) * dz / toFront;
     const remain = Math.hypot(g.frontX - end.x, g.frontZ - end.z);
@@ -230,7 +230,7 @@ export class Teleport {
       for (let i = 1; i <= steps; i++) {
         const wanted = new THREE.Vector3(start.x + (target.x - start.x) * i / steps,
           feet + PLAYER.HEIGHT, start.z + (target.z - start.z) * i / steps);
-        const next = cm.getValidPosition(eye, wanted, 0.5, feet, PLAYER.STEP_UP);
+        const next = cm.getValidPosition(eye, wanted, 0.5, feet, PLAYER.STEP_UP, null, {kind:'kinematic',airborne:false});
         if (Math.hypot(next.x - wanted.x, next.z - wanted.z) > 0.01) return false;
         const ground = cm.getGroundHeight(next.x, next.z, feet, PLAYER.STEP_UP);
         if (!Number.isFinite(ground) || Math.abs(ground - feet) > PLAYER.STEP_UP + 1e-6) return false;

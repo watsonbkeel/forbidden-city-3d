@@ -1,0 +1,30 @@
+✖ R93 release identity and launcher identify only accepted cumulative R89 R90 R93 work (1.55982ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 84.379465
+
+✖ failing tests:
+
+test at tests/r93-release-source.test.mjs:2:1
+✖ R93 release identity and launcher identify only accepted cumulative R89 R90 R93 work (1.55982ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'R90' !== 'R93'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-release-source.test.mjs:2:105)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'R90',
+    expected: 'R93',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

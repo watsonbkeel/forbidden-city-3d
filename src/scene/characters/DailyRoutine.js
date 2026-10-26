@@ -51,7 +51,7 @@ export class DailyRoutine {
   const current=this.current(state),start=current.position,nav=this.nav;
   for(const [dx,dz]of [[1.2,0],[-1.2,0],[0,1.2],[0,-1.2],[.85,.85],[-.85,-.85]]){
    const eye=new THREE.Vector3(start[0],start[1]+PLAYER.HEIGHT,start[2]),target=eye.clone().add(new THREE.Vector3(dx,0,dz));
-   const p=nav.getValidPosition(eye,target,.36,start[1]);if(Math.hypot(p.x-target.x,p.z-target.z)>.02||Math.abs(p.y-PLAYER.HEIGHT-start[1])>.15)continue;
+   const p=nav.getValidPosition(eye,target,.36,start[1],PLAYER.STEP_UP,null,{kind:'kinematic',airborne:false});if(Math.hypot(p.x-target.x,p.z-target.z)>.02||Math.abs(p.y-PLAYER.HEIGHT-start[1])>.15)continue;
    state.dayActor=state.actor;state.routine={kind:'duty',phase:'duty',points:[[...start],[p.x,p.y-PLAYER.HEIGHT,p.z]],index:1,originalBinding:state.binding,originalPatrol:null,daySample:current};state.routineSample=sample(start,current.rotationYRad);return;
   }
  }
@@ -61,6 +61,35 @@ export class DailyRoutine {
   state.actor=actor;state.binding=r.originalBinding;state.patrol=r.originalPatrol;state.interactionSample=point;
   const group=this.interaction?.groups.get(actor.placement?.pathRef);if(group&&Number.isFinite(r.dayClock))group.time=r.dayClock;
   delete state.routine;delete state.routineSample;delete state.dayActor;return true;
+ }
+ /** Consume distance, not one waypoint per frame. The same .1s frame cap as
+  * FirstPerson/CharacterManager plus <=.15m static sweeps prevents low-FPS
+  * shortcuts across walls, stair supports or the player's occupied body. */
+ advanceWork(state, dt) {
+  const r=state.routine, speed=PLAYER.SPRINT_SPEED, radius=.36;
+  let remaining=speed*Math.max(0,Math.min(Number.isFinite(dt)?dt:0,.1));
+  state.routineSample={...state.routineSample,speedMetersPerSecond:0};
+  let substeps=0;
+  while(remaining>1e-9&&r.index<r.points.length&&substeps++<128){
+   const old=state.routineSample,target=r.points[r.index];
+   const dx=target[0]-old.position[0],dz=target[2]-old.position[2],d=Math.hypot(dx,dz);
+   if(d<.015){r.index++;continue;}
+   const amount=Math.min(d,remaining,.15),t=amount/d;
+   const proposed=sample([old.position[0]+dx*t,old.position[1],old.position[2]+dz*t],Math.atan2(dx,dz),speed);
+   const previousEye=new THREE.Vector3(old.position[0],old.position[1]+PLAYER.HEIGHT,old.position[2]);
+   const goal=new THREE.Vector3(proposed.position[0],previousEye.y,proposed.position[2]);
+   const support=this.nav.supportHeight(goal.x,goal.z,old.position[1]+PLAYER.STEP_UP,radius);
+   const eye=this.nav.getValidPosition(previousEye,goal,radius,old.position[1],PLAYER.STEP_UP,Math.max(old.position[1],support),{kind:'kinematic',airborne:false});
+   const floor=Math.max(this.nav.getGroundHeight(eye.x,eye.z,old.position[1],PLAYER.STEP_UP,radius),this.nav.supportHeight(eye.x,eye.z,old.position[1]+PLAYER.STEP_UP,radius));
+   eye.y=floor+PLAYER.HEIGHT;proposed.position=[eye.x,floor,eye.z];
+   const travelled=Math.hypot(eye.x-old.position[0],eye.z-old.position[2]);
+   const blocked=travelled<.0001||floor-old.position[1]>PLAYER.STEP_UP+.001||
+    sweptBodyIntersectsPlayer(characterBody(state.actor,old),characterBody(state.actor,proposed),this.playerState())||this.nav.checkCollision(eye,radius);
+   if(blocked){state.routineSample={...old,speedMetersPerSecond:0};this.stats.waiting++;return;}
+   state.routineSample=proposed;remaining-=travelled;
+   if(Math.hypot(eye.x-target[0],eye.z-target[2])<.015)r.index++;
+  }
+  this.stats.travelling++;
  }
  update(states,dt,beijingTime){
   this.night=isRestTime(beijingTime);this.stats={sleeping:0,travelling:0,duty:0,waiting:0};
@@ -92,15 +121,16 @@ export class DailyRoutine {
     }
     r.points.reverse();r.index=1;continue;
    }
+   if(r.kind==='work'){this.advanceWork(state,dt);continue;}
    const old=state.routineSample,d=Math.hypot(old.position[0]-target[0],old.position[2]-target[2]),amount=Math.min(d,(r.kind==='duty'?.40:.65)*dt),t=d?amount/d:1;
    const proposed=sample(old.position.map((v,i)=>v+(target[i]-v)*t),Math.atan2(target[0]-old.position[0],target[2]-old.position[2]),amount>0?(r.kind==='duty'?.40:.65):0);
    const radius=['consort-daily','maid-daily'].includes(state.actor.templateId)?.30:.36;
    const previousEye=new THREE.Vector3(old.position[0],old.position[1]+PLAYER.HEIGHT,old.position[2]);
    const goal=new THREE.Vector3(proposed.position[0],previousEye.y,proposed.position[2]);
    const stepFloor=Math.max(old.position[1],this.nav.supportHeight(goal.x,goal.z,old.position[1]+PLAYER.STEP_UP,radius));
-   const eye=this.nav.getValidPosition(previousEye,goal,radius,old.position[1],PLAYER.STEP_UP,stepFloor);
+   const eye=this.nav.getValidPosition(previousEye,goal,radius,old.position[1],PLAYER.STEP_UP,stepFloor,{kind:'kinematic',airborne:false});
    if(d>.001&&Math.hypot(eye.x-old.position[0],eye.z-old.position[2])<.0001){this.stats.waiting++;continue;}
-   let floor=Math.max(this.nav.getGroundHeight(eye.x,eye.z,old.position[1],PLAYER.STEP_UP),this.nav.supportHeight(eye.x,eye.z,old.position[1]+PLAYER.STEP_UP,radius));
+   let floor=Math.max(this.nav.getGroundHeight(eye.x,eye.z,old.position[1],PLAYER.STEP_UP,radius),this.nav.supportHeight(eye.x,eye.z,old.position[1]+PLAYER.STEP_UP,radius));
    if(floor-old.position[1]>PLAYER.STEP_UP+.001){this.stats.waiting++;continue;}
    floor=Math.max(floor,old.position[1]-3*dt);
    eye.y=floor+PLAYER.HEIGHT;proposed.position=[eye.x,floor,eye.z];

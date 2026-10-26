@@ -1,0 +1,71 @@
+✖ R92 actual asymmetric Baohe east tiers provide source-registered support rather than generic margin4 (2.407962ms)
+✔ R92 retains actual west supports, north approach identities, and all old rect anchors (7.086872ms)
+✖ R92 wall17 is shortened outside new lower edge without moving gate or gallery (0.238698ms)
+✖ R92 east extension has no retained vertical rail at the old east edge (0.688442ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 1
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 632.444434
+
+✖ failing tests:
+
+test at tests/r92-joint-east-terrace.test.mjs:8:1
+✖ R92 actual asymmetric Baohe east tiers provide source-registered support rather than generic margin4 (2.407962ms)
+  AssertionError [ERR_ASSERTION]: 0 != 8
+      at near (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r92-joint-east-terrace.test.mjs:7:26)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r92-joint-east-terrace.test.mjs:9:92)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r92-joint-east-terrace.test.mjs:17:1
+✖ R92 wall17 is shortened outside new lower edge without moving gate or gallery (0.238698ms)
+  AssertionError [ERR_ASSERTION]: -40.5 != -64.97666666666667
+      at near (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r92-joint-east-terrace.test.mjs:7:26)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r92-joint-east-terrace.test.mjs:18:23)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r92-joint-east-terrace.test.mjs:20:1
+✖ R92 east extension has no retained vertical rail at the old east edge (0.688442ms)
+  AssertionError [ERR_ASSERTION]: tier1 interior rail
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r92-joint-east-terrace.test.mjs:24:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

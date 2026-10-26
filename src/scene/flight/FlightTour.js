@@ -185,7 +185,7 @@ export class FlightTour {
         if(this.operationsOpen||this.controls.mapOpen)this.controls.unlock();
       }else if(!this.controls.mapOpen&&!this.isPaused())this.openOperations();
     });
-    this.listen(document,'focusin',e=>{if(this.operationsOpen&&!this.isPaused()&&!this.panel.contains(e.target))this.focusOperations();});
+    this.listen(document,'focusin',e=>{if(isTextEntryTarget(e.target))this.clearInput();if(this.operationsOpen&&!this.isPaused()&&!this.panel.contains(e.target))this.focusOperations();});
     this.listen(document,'pointerlockerror',()=>this.onPointerLockError());
     this.listen(window,'blur',()=>{this.active=false;this.clearInput();});
     this.listen(window,'focus',()=>{this.active=true;this.clearInput();});

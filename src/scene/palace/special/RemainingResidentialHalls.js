@@ -1,6 +1,7 @@
 import {withholdHUnknownInventory} from './HUnknownInventory.js';
 import {buildChonghuaSouthKnees} from './ChonghuaSouthKnees.js';
 import {buildQinzhengFootstool} from './QinzhengFootstool.js';
+import {buildQinzhengHighSideTables} from './QinzhengHighSideTables.js';
 import {buildYangxinWestWarmRooms} from './YangxinWestWarmRooms.js';
 import {fitCanopyToMainRoof} from './CanopyRoofSurfaceJoint.js';
 import {fitRegisteredNameboard} from './FittedNameboardMount.js';
@@ -223,10 +224,11 @@ export function augmentRemainingHall(kit, item, built, p) {
   if (p.key === 'yangxin-caisson-augmentation') {
     buildYangxinWestWarmRooms(kit, item, built.f);
     buildQinzhengFootstool(kit, item, built.f);
+    buildQinzhengHighSideTables(kit, item, built.f);
   }
   built.f.userData.r48ResidentialAugmented = true;
   built.f.userData.structure = { ...built.f.userData.structure, id: built.f.userData.structure?.id ?? `${p.zone}/r48-${p.key}`, catalogId: p.catalogId, remainingResidentialProfile: p.key, source: p.source, ...(built.f.userData.nameboardMount?{nameboardMount:built.f.userData.nameboardMount}:{}),
-    currentInventoryVerified: false, ...(built.f.userData.qinzhengFootstool ? { qinzhengFootstool: built.f.userData.qinzhengFootstool } : {}), ...(built.f.userData.yangxinWestWarmRooms ? { yangxinWestWarmRooms: built.f.userData.yangxinWestWarmRooms } : {}), glbPolicy: p.caisson ? 'UNCHANGED_BYTES_AND_OVERLAY' : 'NOT_APPLICABLE',
+    currentInventoryVerified: false, ...(built.f.userData.qinzhengHighSideTables ? { qinzhengHighSideTables: built.f.userData.qinzhengHighSideTables } : {}), ...(built.f.userData.qinzhengFootstool ? { qinzhengFootstool: built.f.userData.qinzhengFootstool } : {}), ...(built.f.userData.yangxinWestWarmRooms ? { yangxinWestWarmRooms: built.f.userData.yangxinWestWarmRooms } : {}), glbPolicy: p.caisson ? 'UNCHANGED_BYTES_AND_OVERLAY' : 'NOT_APPLICABLE',
     exteriorStatus: p.frontAssembly ? 'actual-change' : 'reviewed-retained', interiorStatus: p.caisson ? 'actual-change' : 'evidence-blocked',
     reviewedOnly: !!p.reviewedRetained,
     limitations: p.reviewedRetained ? ['Existing dedicated stone/iron ruin retained without geometry changes.', 'Historical ceramic-wall wording does not establish surviving tile distribution; no tile patches added.', 'No intact palace or invented interior furnishings.'] : ['Central octagonal caisson is a plain type frame, not a dragon carving or lantern replica.', 'Three primary bays and nine front subdivisions replace the old eleven-grid facade; 36m equal spacing is a retained-envelope fit, not measured spacing.', 'Middle/west contiguous roll-roof baoxia follows the official plan; roof pitch, projection and .35m facade-post clearance shift are model fits.', 'Existing GLB, main roof and furniture are retained; rear entrance, 工字 connection and exact west warm-room inventory have not been rebuilt.'] };

@@ -1,0 +1,152 @@
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 54 个 region, 36 个 mapItem
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 411.5ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 357.9ms
+[ZoneManager] 卸载区域 west-six
+✔ R88 successor R53 actual S GLB proxies stream in/out without removing permanent west-room geometry or collisions (237.055297ms)
+✔ R88 successor R53 in-flight S load cancellation preserves west-room structure and allows a later actual reload (97.295192ms)
+✖ R88 successor R53 actual S controls preserve all two-turn doorway routes, 10Hz sprint=false (84.563574ms)
+✖ R88 successor R53 actual S controls preserve all two-turn doorway routes, 10Hz sprint=true (81.723378ms)
+✖ R88 successor R53 actual S controls preserve all two-turn doorway routes, 60Hz sprint=false (86.461928ms)
+✖ R88 successor R53 actual S controls preserve all two-turn doorway routes, 60Hz sprint=true (73.795873ms)
+✖ R88 successor R53 B visible triangles leave the complete 1m-wide player body clear, not just proxy boxes (55.957067ms)
+✖ R88 successor R53 S visible triangles leave the complete 1m-wide player body clear, not just proxy boxes (88.544292ms)
+✔ R88 successor R53 all new navigation spawns stay clear when actual S collision proxies are installed (59.826684ms)
+✔ R88 successor R53 real ZoneManager unload/re-entry recreates the four rooms and removes every tagged collision/support (1324.113406ms)
+✖ R88 successor R53 reusable caller-world audit also verifies actual loaded S, never simulated proxy evidence (89.186455ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 4
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2477.27766
+
+✖ failing tests:
+
+test at tests/r88-west-streaming-successor.test.mjs:31:57
+✖ R88 successor R53 actual S controls preserve all two-turn doorway routes, 10Hz sprint=false (84.563574ms)
+  AssertionError [ERR_ASSERTION]: {"arrived":false,"stuckAt":[122.6,276.4],"startFeet":0,"maxFeet":0.6,"maxSpeed":5.0000000000004885,"driver":{"crossings":[{"index":1,"point":[108.6,274.5],"hit":[108.6,274.5],"lateralDistance":0},{"index":2,"point":[113.39999999999999,274.5],"hit":[113.39999999999999,274.5],"lateralDistance":0},{"index":3,"point":[113.39999999999999,276.66],"hit":[113.39999999999998,276.66],"lateralDistance":1.4210854715202004e-14},{"index":4,"point":[114.6,276.66],"hit":[114.6,276.7663039526735],"lateralDistance":0.10630395267349968},{"index":5,"point":[116.1,276.66],"hit":[116.1,276.66],"lateralDistance":0},{"index":6,"point":[116.1,273],"hit":[116.1,273],"lateralDistance":0},{"index":7,"point":[118.8,273],"hit":[118.8,273],"lateralDistance":0},{"index":8,"point":[122.6,274.3],"hit":[122.57729224569614,274.36637651258053],"lateralDistance":0.07015328593783636}],"brakingFrames":0,"endpointSettleSeconds":2},"end":[122.60000194397952,276.1362528690097,0.6]}
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r88-west-streaming-successor.test.mjs:32:313)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r88-west-streaming-successor.test.mjs:31:57
+✖ R88 successor R53 actual S controls preserve all two-turn doorway routes, 10Hz sprint=true (81.723378ms)
+  AssertionError [ERR_ASSERTION]: {"arrived":false,"stuckAt":[122.6,276.4],"startFeet":0,"maxFeet":0.6,"maxSpeed":11.999455200842135,"driver":{"crossings":[{"index":1,"point":[108.6,274.5],"hit":[108.6,274.5],"lateralDistance":0},{"index":2,"point":[113.39999999999999,274.5],"hit":[113.39999999999999,274.5],"lateralDistance":0},{"index":3,"point":[113.39999999999999,276.66],"hit":[113.40113637930362,276.65169128568186],"lateralDistance":0.00838606531947746},{"index":4,"point":[114.6,276.66],"hit":[114.6,276.6553821040153],"lateralDistance":0.004617895984722509},{"index":5,"point":[116.1,276.66],"hit":[116.1,276.6600000000001],"lateralDistance":5.684341886080802e-14},{"index":6,"point":[116.1,273],"hit":[116.10000000000001,273],"lateralDistance":1.4210854715202004e-14},{"index":7,"point":[118.8,273],"hit":[118.79273905779345,272.9993665109825],"lateralDistance":0.007288524546302102},{"index":8,"point":[122.6,274.3],"hit":[122.57907435987845,274.36116725573993],"lateralDistance":0.06464762632339226}],"brakingFrames":51,"endpointSettleSeconds":2},"end":[122.59999999250297,276.09648132229404,0.6]}
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r88-west-streaming-successor.test.mjs:32:313)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r88-west-streaming-successor.test.mjs:31:57
+✖ R88 successor R53 actual S controls preserve all two-turn doorway routes, 60Hz sprint=false (86.461928ms)
+  AssertionError [ERR_ASSERTION]: {"arrived":false,"stuckAt":[122.6,276.4],"startFeet":0,"maxFeet":0.6,"maxSpeed":5.00000000000167,"driver":{"crossings":[{"index":1,"point":[108.6,274.5],"hit":[108.6,274.5],"lateralDistance":0},{"index":2,"point":[113.39999999999999,274.5],"hit":[113.39999999999999,274.5],"lateralDistance":0},{"index":3,"point":[113.39999999999999,276.66],"hit":[113.39999999999999,276.66],"lateralDistance":0},{"index":4,"point":[114.6,276.66],"hit":[114.6,276.6634063115513],"lateralDistance":0.0034063115512594777},{"index":5,"point":[116.1,276.66],"hit":[116.1,276.66],"lateralDistance":0},{"index":6,"point":[116.1,273],"hit":[116.1,273],"lateralDistance":0},{"index":7,"point":[118.8,273],"hit":[118.8,273],"lateralDistance":0},{"index":8,"point":[122.6,274.3],"hit":[122.6,274.3],"lateralDistance":0}],"brakingFrames":0,"endpointSettleSeconds":2},"end":[122.60000000000001,276.14330819481444,0.6]}
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r88-west-streaming-successor.test.mjs:32:313)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r88-west-streaming-successor.test.mjs:31:57
+✖ R88 successor R53 actual S controls preserve all two-turn doorway routes, 60Hz sprint=true (73.795873ms)
+  AssertionError [ERR_ASSERTION]: {"arrived":false,"stuckAt":[122.6,276.4],"startFeet":0,"maxFeet":0.6,"maxSpeed":11.999538837468464,"driver":{"crossings":[{"index":1,"point":[108.6,274.5],"hit":[108.6,274.5],"lateralDistance":0},{"index":2,"point":[113.39999999999999,274.5],"hit":[113.39999999999999,274.5],"lateralDistance":0},{"index":3,"point":[113.39999999999999,276.66],"hit":[113.39999999999999,276.66],"lateralDistance":0},{"index":4,"point":[114.6,276.66],"hit":[114.6,276.6706534675332],"lateralDistance":0.010653467533188632},{"index":5,"point":[116.1,276.66],"hit":[116.1,276.66],"lateralDistance":0},{"index":6,"point":[116.1,273],"hit":[116.1,273],"lateralDistance":0},{"index":7,"point":[118.8,273],"hit":[118.8,273],"lateralDistance":0},{"index":8,"point":[122.6,274.3],"hit":[122.59320365955482,274.2976716481058],"lateralDistance":0.007184112053001096}],"brakingFrames":305,"endpointSettleSeconds":2},"end":[122.59999999999998,276.1934306549065,0.6]}
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r88-west-streaming-successor.test.mjs:32:313)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r88-west-streaming-successor.test.mjs:34:29
+✖ R88 successor R53 B visible triangles leave the complete 1m-wide player body clear, not just proxy boxes (55.957067ms)
+  AssertionError [ERR_ASSERTION]: B: r93-qinzheng-high-table-west-top at 14,-1.2555555555555555
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r88-west-streaming-successor.test.mjs:36:390)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r88-west-streaming-successor.test.mjs:34:29
+✖ R88 successor R53 S visible triangles leave the complete 1m-wide player body clear, not just proxy boxes (88.544292ms)
+  AssertionError [ERR_ASSERTION]: S: r93-qinzheng-high-table-west-top at 14,-1.2555555555555555
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r88-west-streaming-successor.test.mjs:36:390)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r88-west-streaming-successor.test.mjs:50:1
+✖ R88 successor R53 reusable caller-world audit also verifies actual loaded S, never simulated proxy evidence (89.186455ms)
+  AssertionError [ERR_ASSERTION]: [{"kind":"collision","x":122.6,"z":276.2444444444444},{"kind":"visible-triangle","name":"r93-qinzheng-high-table-west-top","x":122.6,"z":276.2444444444444},{"kind":"collision","x":122.6,"z":276.3222222222222},{"kind":"visible-triangle","name":"r93-qinzheng-high-table-west-top","x":122.6,"z":276.3222222222222},{"kind":"collision","x":122.6,"z":276.4},{"kind":"visible-triangle","name":"r93-qinzheng-high-table-west-top","x":122.6,"z":276.4},{"kind":"collision","x":122.6,"z":276.4},{"kind":"visible-triangle","name":"r93-qinzheng-high-table-west-top","x":122.6,"z":276.4},{"kind":"collision","x":122.67931034482758,"z":276.4},{"kind":"visible-triangle","name":"r93-qinzheng-high-table-west-top","x":122.67931034482758,"z":276.4},{"kind":"collision","x":122.75862068965516,"z":276.4},{"kind":"visible-triangle","name":"r93-qinzheng-high-table-west-top","x":122.75862068965516,"z":276.4},{"kind":"collision","x":122.83793103448275,"z":276.4},{"kind":"visible-triangle","name":"r93-qinzheng-high-table-west-top","x":122.83793103448275,"z":276.4},{"kind":"collision","x":122.91724137931033,"z":276.4},{"kind":"visible-triangle","name":"r93-qinzheng-high-table-west-top","x":122.91724137931033,"z":276.4}]
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r88-west-streaming-successor.test.mjs:50:234)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

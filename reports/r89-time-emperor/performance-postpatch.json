@@ -1,0 +1,424 @@
+{
+  "root": "/workspace/scratch/02a8023d1a85/r89-time-emperor-fixes",
+  "scope": "Node CPU deterministic samples, real production world geometry; no browser/GPU/FPS evidence; routine states reset outside timed region",
+  "loadAll": false,
+  "totalHarnessMs": 15967.14044,
+  "waterPolygonVertices": 1528,
+  "world": {
+    "colliders": 13546,
+    "walkables": 3201,
+    "zones": [
+      "west-six",
+      "outer-west",
+      "garden"
+    ],
+    "registered": 108,
+    "bound": 78,
+    "nightStates": [
+      {
+        "id": "taihe-emperor-01",
+        "kind": "work"
+      },
+      {
+        "id": "taihe-guard-east-01",
+        "kind": "duty"
+      },
+      {
+        "id": "taihe-guard-east-02",
+        "kind": "duty"
+      },
+      {
+        "id": "taihe-guard-west-01",
+        "kind": "duty"
+      },
+      {
+        "id": "taihe-guard-west-02",
+        "kind": "duty"
+      },
+      {
+        "id": "wumen-guard-east-01",
+        "kind": "duty"
+      },
+      {
+        "id": "wumen-guard-west-01",
+        "kind": "duty"
+      },
+      {
+        "id": "shenwu-guard-east-01",
+        "kind": "duty"
+      },
+      {
+        "id": "shenwu-guard-west-01",
+        "kind": "duty"
+      },
+      {
+        "id": "qianqing-guard-east-01",
+        "kind": "duty"
+      },
+      {
+        "id": "qianqing-guard-west-01",
+        "kind": "duty"
+      },
+      {
+        "id": "chuxiu-consort-01",
+        "kind": "bed"
+      },
+      {
+        "id": "chuxiu-maid-01",
+        "kind": "bed"
+      },
+      {
+        "id": "yikun-consort-01",
+        "kind": "bed"
+      },
+      {
+        "id": "yikun-eunuch-01",
+        "kind": "duty"
+      },
+      {
+        "id": "yongshou-consort-01",
+        "kind": "bed"
+      },
+      {
+        "id": "yongshou-maid-01",
+        "kind": "bed"
+      },
+      {
+        "id": "taihe-guard-east-03",
+        "kind": "duty"
+      },
+      {
+        "id": "taihe-guard-east-04",
+        "kind": "duty"
+      },
+      {
+        "id": "taihe-guard-west-03",
+        "kind": "duty"
+      },
+      {
+        "id": "taihe-guard-west-04",
+        "kind": "duty"
+      },
+      {
+        "id": "xihua-guard-north-01",
+        "kind": "duty"
+      },
+      {
+        "id": "xihua-guard-south-01",
+        "kind": "duty"
+      },
+      {
+        "id": "changchun-consort-01",
+        "kind": "bed"
+      },
+      {
+        "id": "changchun-maid-01",
+        "kind": "bed"
+      },
+      {
+        "id": "xianfu-eunuch-01",
+        "kind": "duty"
+      },
+      {
+        "id": "xianfu-maid-01",
+        "kind": "bed"
+      },
+      {
+        "id": "taiji-maid-01",
+        "kind": "bed"
+      },
+      {
+        "id": "chuxiu-maid-02",
+        "kind": "bed"
+      },
+      {
+        "id": "chuxiu-eunuch-01",
+        "kind": "duty"
+      },
+      {
+        "id": "yikun-maid-01",
+        "kind": "bed"
+      },
+      {
+        "id": "yongshou-maid-02",
+        "kind": "bed"
+      },
+      {
+        "id": "yongshou-eunuch-01",
+        "kind": "duty"
+      },
+      {
+        "id": "changchun-maid-02",
+        "kind": "bed"
+      },
+      {
+        "id": "changchun-eunuch-01",
+        "kind": "duty"
+      },
+      {
+        "id": "shoukang-maid-01",
+        "kind": "bed"
+      },
+      {
+        "id": "cining-maid-01",
+        "kind": "bed"
+      },
+      {
+        "id": "shouan-maid-01",
+        "kind": "bed"
+      },
+      {
+        "id": "yangxin-eunuch-01",
+        "kind": "duty"
+      },
+      {
+        "id": "chonghua-maid-01",
+        "kind": "bed"
+      }
+    ],
+    "meshes": 558,
+    "lamps": 1086
+  },
+  "results": [
+    {
+      "name": "fresh staticRoutineNavigation + warm query",
+      "milliseconds": {
+        "n": 600,
+        "p50": 0.0008909999996831175,
+        "p95": 0.0020530000001599547,
+        "p99": 0.01599400000031892,
+        "worst": 0.23208799999974872
+      },
+      "callsPerSample": {
+        "queryBox": 1
+      }
+    },
+    {
+      "name": "stale source, nav rebuilt every frame (flight analogue)",
+      "milliseconds": {
+        "n": 200,
+        "p50": 0.5897249999998166,
+        "p95": 0.8681720000004134,
+        "p99": 1.353320000000167,
+        "worst": 1.9689039999993838
+      },
+      "callsPerSample": {
+        "queryBox": 1,
+        "_buildGrid": 1
+      }
+    },
+    {
+      "name": "player idle ground+support+contact",
+      "milliseconds": {
+        "n": 600,
+        "p50": 0.017646000000240747,
+        "p95": 0.02476699999988341,
+        "p99": 0.05588400000033289,
+        "worst": 0.2737910000005286
+      },
+      "callsPerSample": {
+        "getGroundHeight": 1,
+        "supportContact": 3,
+        "queryBox": 4,
+        "supportHeight": 1
+      }
+    },
+    {
+      "name": "water+moat collision check north clear",
+      "milliseconds": {
+        "n": 600,
+        "p50": 0.003905999999915366,
+        "p95": 0.006889999999657448,
+        "p99": 0.03437099999973725,
+        "worst": 0.7150930000007065
+      },
+      "callsPerSample": {
+        "checkRiverCrossing": 1
+      }
+    },
+    {
+      "name": "ground 29 night actors batch",
+      "milliseconds": {
+        "n": 600,
+        "p50": 0.4997299999995448,
+        "p95": 0.6523389999993014,
+        "p99": 0.8133899999993446,
+        "worst": 4.082854999999654
+      },
+      "callsPerSample": {
+        "getGroundHeight": 29,
+        "supportContact": 29,
+        "queryBox": 29
+      }
+    },
+    {
+      "name": "108 characterProjection calls",
+      "milliseconds": {
+        "n": 600,
+        "p50": 0.034793000000718166,
+        "p95": 0.08494800000062241,
+        "p99": 0.16122200000063458,
+        "worst": 2.241932999999335
+      },
+      "callsPerSample": {}
+    },
+    {
+      "name": "dynamic player sweep 78 bodies",
+      "milliseconds": {
+        "n": 600,
+        "p50": 0.028822999999647436,
+        "p95": 0.056335000000217406,
+        "p99": 0.12877300000036485,
+        "worst": 1.014100999999755
+      },
+      "callsPerSample": {
+        "checkDynamicCollision": 1
+      }
+    },
+    {
+      "name": "setDynamicBodies validation 78 bodies",
+      "milliseconds": {
+        "n": 600,
+        "p50": 0.025317999999970198,
+        "p95": 0.049504999999953725,
+        "p99": 0.11740600000030099,
+        "worst": 2.5631560000001627
+      },
+      "callsPerSample": {}
+    },
+    {
+      "name": "250ms shadow LOD 558 meshes",
+      "milliseconds": {
+        "n": 300,
+        "p50": 0.08599899999990157,
+        "p95": 0.16618900000048598,
+        "p99": 0.26272400000016205,
+        "worst": 0.9269509999994625
+      },
+      "callsPerSample": {}
+    },
+    {
+      "name": "room night lights stationary 1086 sites",
+      "milliseconds": {
+        "n": 600,
+        "p50": 0.00048099999912665226,
+        "p95": 0.0010220000003755558,
+        "p99": 0.0020939999994880054,
+        "worst": 0.049274000000878004
+      },
+      "callsPerSample": {}
+    },
+    {
+      "name": "room night lights move >0.5m",
+      "milliseconds": {
+        "n": 600,
+        "p50": 0.14469699999972363,
+        "p95": 0.2252279999993334,
+        "p99": 0.34192299999995157,
+        "worst": 2.824117000000115
+      },
+      "callsPerSample": {}
+    },
+    {
+      "name": "night routine stable warm 60Hz",
+      "milliseconds": {
+        "n": 600,
+        "p50": 2.0331400000013673,
+        "p95": 3.479459999998653,
+        "p99": 4.662089999999807,
+        "worst": 9.031499999999141
+      },
+      "callsPerSample": {
+        "supportHeight": 84,
+        "supportContact": 168,
+        "queryBox": 336,
+        "getValidPosition": 42,
+        "getGroundHeight": 84,
+        "checkCollision": 84,
+        "checkRiverCrossing": 84,
+        "checkDynamicCollision": 84
+      }
+    },
+    {
+      "name": "night routine stable warm 10Hz",
+      "milliseconds": {
+        "n": 600,
+        "p50": 2.483737000000474,
+        "p95": 3.9404220000014902,
+        "p99": 5.074233000001186,
+        "worst": 8.367002000000866
+      },
+      "callsPerSample": {
+        "supportHeight": 98,
+        "supportContact": 196,
+        "queryBox": 392,
+        "getValidPosition": 49,
+        "getGroundHeight": 98,
+        "checkCollision": 98,
+        "checkRiverCrossing": 98,
+        "checkDynamicCollision": 98
+      }
+    },
+    {
+      "name": "night routine stale source 60Hz flight analogue",
+      "milliseconds": {
+        "n": 200,
+        "p50": 3.12925499999983,
+        "p95": 4.26755299999968,
+        "p99": 5.445700000000215,
+        "worst": 7.214770000000499
+      },
+      "callsPerSample": {
+        "supportHeight": 84,
+        "supportContact": 168,
+        "queryBox": 336,
+        "_buildGrid": 1,
+        "getValidPosition": 42,
+        "getGroundHeight": 84,
+        "checkCollision": 84,
+        "checkRiverCrossing": 84,
+        "checkDynamicCollision": 84
+      }
+    },
+    {
+      "name": "TEST ONLY conservative water bounds early-out routine60Hz",
+      "milliseconds": {
+        "n": 600,
+        "p50": 1.9190789999993285,
+        "p95": 3.1709670000000187,
+        "p99": 3.2807620000003226,
+        "worst": 4.8487740000000485
+      },
+      "callsPerSample": {
+        "supportHeight": 84,
+        "supportContact": 168,
+        "queryBox": 336,
+        "getValidPosition": 42,
+        "getGroundHeight": 84,
+        "checkCollision": 84,
+        "checkRiverCrossing": 84,
+        "checkDynamicCollision": 84
+      }
+    },
+    {
+      "name": "TEST ONLY conservative water bounds early-out routine10Hz",
+      "milliseconds": {
+        "n": 600,
+        "p50": 2.417967999999746,
+        "p95": 3.7942719999991823,
+        "p99": 4.142294999999649,
+        "worst": 8.620122000000265
+      },
+      "callsPerSample": {
+        "supportHeight": 98,
+        "supportContact": 196,
+        "queryBox": 392,
+        "getValidPosition": 49,
+        "getGroundHeight": 98,
+        "checkCollision": 98,
+        "checkRiverCrossing": 98,
+        "checkDynamicCollision": 98
+      }
+    }
+  ]
+}

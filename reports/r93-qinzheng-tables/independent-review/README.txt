@@ -1,0 +1,1 @@
+Archived independent review scripts retain their original workspace-relative import paths for provenance; runnable maintained regression entry points are tests/r93-*.test.mjs. No claim that archived scripts are portable standalone commands.

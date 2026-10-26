@@ -1,0 +1,231 @@
+✔ R93 B 10Hz sprint=false complete hall/west rooms round trip and rendered body clearance (154.700473ms)
+✔ R93 B 10Hz sprint=true complete hall/west rooms round trip and rendered body clearance (79.5317ms)
+✔ R93 B 30Hz sprint=false complete hall/west rooms round trip and rendered body clearance (79.882166ms)
+✔ R93 B 30Hz sprint=true complete hall/west rooms round trip and rendered body clearance (64.907226ms)
+✔ R93 B 60Hz sprint=false complete hall/west rooms round trip and rendered body clearance (74.324276ms)
+✔ R93 B 60Hz sprint=true complete hall/west rooms round trip and rendered body clearance (63.394857ms)
+✔ R93 S 10Hz sprint=false complete hall/west rooms round trip and rendered body clearance (173.573463ms)
+✔ R93 S 10Hz sprint=true complete hall/west rooms round trip and rendered body clearance (90.125767ms)
+✔ R93 S 30Hz sprint=false complete hall/west rooms round trip and rendered body clearance (91.84688ms)
+✔ R93 S 30Hz sprint=true complete hall/west rooms round trip and rendered body clearance (83.891432ms)
+✔ R93 S 60Hz sprint=false complete hall/west rooms round trip and rendered body clearance (85.505574ms)
+✔ R93 S 60Hz sprint=true complete hall/west rooms round trip and rendered body clearance (82.941797ms)
+✔ R93 furniture genuinely blocks the former turn; southward approach changes only route, not door or walls (50.70841ms)
+✖ R93 B 10Hz east real jump approach is collision-safe and can retreat (64.109218ms)
+✖ R93 B 10Hz west real jump approach is collision-safe and can retreat (53.150313ms)
+✖ R93 B 30Hz east real jump approach is collision-safe and can retreat (56.412789ms)
+✖ R93 B 30Hz west real jump approach is collision-safe and can retreat (58.459029ms)
+✖ R93 B 60Hz east real jump approach is collision-safe and can retreat (60.478401ms)
+✖ R93 B 60Hz west real jump approach is collision-safe and can retreat (52.746397ms)
+✖ R93 S 10Hz east real jump approach is collision-safe and can retreat (62.092152ms)
+✖ R93 S 10Hz west real jump approach is collision-safe and can retreat (61.87125ms)
+✖ R93 S 30Hz east real jump approach is collision-safe and can retreat (61.289907ms)
+✖ R93 S 30Hz west real jump approach is collision-safe and can retreat (60.323969ms)
+✖ R93 S 60Hz east real jump approach is collision-safe and can retreat (64.849859ms)
+✖ R93 S 60Hz west real jump approach is collision-safe and can retreat (66.927157ms)
+✔ R93 actual S repeated/cancelled streaming retains exactly two permanent tables and disposes material once (114.638279ms)
+✔ R93 10Hz production flight descent cannot create an indoor tabletop spawn (68.078464ms)
+✔ R93 30Hz production flight descent cannot create an indoor tabletop spawn (62.657771ms)
+✔ R93 60Hz production flight descent cannot create an indoor tabletop spawn (63.295477ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 17
+ℹ fail 12
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2395.91775
+
+✖ failing tests:
+
+test at tests/r93-qinzheng-world.test.mjs:8:89
+✖ R93 B 10Hz east real jump approach is collision-safe and can retreat (64.109218ms)
+  AssertionError [ERR_ASSERTION]: can retreat south from blocked jump
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-world.test.mjs:8:1057)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r93-qinzheng-world.test.mjs:8:89
+✖ R93 B 10Hz west real jump approach is collision-safe and can retreat (53.150313ms)
+  AssertionError [ERR_ASSERTION]: can retreat south from blocked jump
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-world.test.mjs:8:1057)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r93-qinzheng-world.test.mjs:8:89
+✖ R93 B 30Hz east real jump approach is collision-safe and can retreat (56.412789ms)
+  AssertionError [ERR_ASSERTION]: can retreat south from blocked jump
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-world.test.mjs:8:1057)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r93-qinzheng-world.test.mjs:8:89
+✖ R93 B 30Hz west real jump approach is collision-safe and can retreat (58.459029ms)
+  AssertionError [ERR_ASSERTION]: can retreat south from blocked jump
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-world.test.mjs:8:1057)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r93-qinzheng-world.test.mjs:8:89
+✖ R93 B 60Hz east real jump approach is collision-safe and can retreat (60.478401ms)
+  AssertionError [ERR_ASSERTION]: can retreat south from blocked jump
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-world.test.mjs:8:1057)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r93-qinzheng-world.test.mjs:8:89
+✖ R93 B 60Hz west real jump approach is collision-safe and can retreat (52.746397ms)
+  AssertionError [ERR_ASSERTION]: can retreat south from blocked jump
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-world.test.mjs:8:1057)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r93-qinzheng-world.test.mjs:8:89
+✖ R93 S 10Hz east real jump approach is collision-safe and can retreat (62.092152ms)
+  AssertionError [ERR_ASSERTION]: can retreat south from blocked jump
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-world.test.mjs:8:1057)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r93-qinzheng-world.test.mjs:8:89
+✖ R93 S 10Hz west real jump approach is collision-safe and can retreat (61.87125ms)
+  AssertionError [ERR_ASSERTION]: can retreat south from blocked jump
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-world.test.mjs:8:1057)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r93-qinzheng-world.test.mjs:8:89
+✖ R93 S 30Hz east real jump approach is collision-safe and can retreat (61.289907ms)
+  AssertionError [ERR_ASSERTION]: can retreat south from blocked jump
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-world.test.mjs:8:1057)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r93-qinzheng-world.test.mjs:8:89
+✖ R93 S 30Hz west real jump approach is collision-safe and can retreat (60.323969ms)
+  AssertionError [ERR_ASSERTION]: can retreat south from blocked jump
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-world.test.mjs:8:1057)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r93-qinzheng-world.test.mjs:8:89
+✖ R93 S 60Hz east real jump approach is collision-safe and can retreat (64.849859ms)
+  AssertionError [ERR_ASSERTION]: can retreat south from blocked jump
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-world.test.mjs:8:1057)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r93-qinzheng-world.test.mjs:8:89
+✖ R93 S 60Hz west real jump approach is collision-safe and can retreat (66.927157ms)
+  AssertionError [ERR_ASSERTION]: can retreat south from blocked jump
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r93-qinzheng-tables/tests/r93-qinzheng-world.test.mjs:8:1057)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

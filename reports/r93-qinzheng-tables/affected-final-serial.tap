@@ -1,0 +1,183 @@
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 54 个 region, 36 个 mapItem
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 407.2ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 395.6ms
+[ZoneManager] 卸载区域 west-six
+✔ R88 successor R53 actual S GLB proxies stream in/out without removing permanent west-room geometry or collisions (242.024482ms)
+✔ R88 successor R53 in-flight S load cancellation preserves west-room structure and allows a later actual reload (101.95448ms)
+✔ R88 successor R53 actual S controls preserve all two-turn doorway routes, 10Hz sprint=false (89.267168ms)
+✔ R88 successor R53 actual S controls preserve all two-turn doorway routes, 10Hz sprint=true (101.295611ms)
+✔ R88 successor R53 actual S controls preserve all two-turn doorway routes, 60Hz sprint=false (101.784607ms)
+✔ R88 successor R53 actual S controls preserve all two-turn doorway routes, 60Hz sprint=true (92.135732ms)
+✔ R88 successor R53 B visible triangles leave the complete 1m-wide player body clear, not just proxy boxes (66.956271ms)
+✔ R88 successor R53 S visible triangles leave the complete 1m-wide player body clear, not just proxy boxes (100.716673ms)
+✔ R88 successor R53 all new navigation spawns stay clear when actual S collision proxies are installed (72.89559ms)
+✔ R88 successor R53 real ZoneManager unload/re-entry recreates the four rooms and removes every tagged collision/support (1445.35939ms)
+✔ R88 successor R53 reusable caller-world audit also verifies actual loaded S, never simulated proxy evidence (98.152352ms)
+✔ emperor covers the actual player sprint distance across many small waypoints, independent of frame rate (4.520561ms)
+✔ low-FPS emperor sweep cannot cross a thin wall between clear frame endpoints (0.865198ms)
+✔ low-FPS running emperor pauses at player, never penetrates, then resumes at sprint speed (1.297656ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,202, 树木=34棵, 碰撞器=3033
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+✔ independent actual B/S 60/10Hz round trips, precise movement budgets, rail rejection and seat/return occupancy (36173.703131ms)
+✔ R89 Qianqing floor correction preserves every other frozen R88 field (9.415907ms)
+✔ separate numeric fields apply 21:00 once, only on Apply or Enter; drafts survive clock refresh (8.021656ms)
+✔ reject invalid clock :00 without changing simulation (2.22614ms)
+✔ reject invalid clock 24:00 without changing simulation (1.724066ms)
+✔ reject invalid clock -1:00 without changing simulation (1.93936ms)
+✔ reject invalid clock 21:60 without changing simulation (1.354373ms)
+✔ reject invalid clock 21:-1 without changing simulation (2.671528ms)
+✔ reject invalid clock 21.5:00 without changing simulation (1.77925ms)
+✔ reject invalid clock 21:0.5 without changing simulation (1.896115ms)
+✔ reject invalid clock NaN:00 without changing simulation (1.444577ms)
+✔ accept boundary 00:00 and preserve slider/live controls (1.431077ms)
+✔ accept boundary 23:59 and preserve slider/live controls (1.34671ms)
+✔ a fresh world click releases old range focus and real controller moves without map teleport (7.798801ms)
+✔ focusing a time control stops previously held input rather than drifting while editing (2.69917ms)
+✔ settings #settings-close-btn, map=false: former time-field focus cannot trap new movement (3.537318ms)
+✔ settings #resume-btn, map=false: former time-field focus cannot trap new movement (3.630467ms)
+✔ settings Escape, map=false: former time-field focus cannot trap new movement (3.403787ms)
+✔ settings #settings-close-btn, map=true: former time-field focus cannot trap new movement (2.532459ms)
+✔ settings #resume-btn, map=true: former time-field focus cannot trap new movement (2.382224ms)
+✔ settings Escape, map=true: former time-field focus cannot trap new movement (1.810066ms)
+✔ time disclosure closes by Escape/button without global settings toggle or hidden input focus (1.268863ms)
+✔ editing time during map-open flight clears held flight keys without dismounting or locking (23.406599ms)
+✔ far northern movement reuses conservative bounds without rescanning polygon vertices (6.077538ms)
+✔ optimized water decisions equal the frozen R88 narrow phase at banks, AABB borders, bridge edges and random footprints (479.460394ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,202, 树木=34棵, 碰撞器=3033
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 garden
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 140.1ms
+[ZoneManager] 卸载区域 garden
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 130.7ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+✔ independent R90 near-jamb backward/sprint paths, map landing and repeated garden lifecycle (6951.459318ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,202, 树木=34棵, 碰撞器=3033
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 garden
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 161.2ms
+[ZoneManager] 卸载区域 garden
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 124.0ms
+[ZoneManager] 卸载区域 garden
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 124.3ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+✔ R90 map geometry and real teleport approach remain safe through zone reloads (6797.247731ms)
+✔ R90 production map allows one unambiguous Shunzhen selection (25.016464ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,202, 树木=34棵, 碰撞器=3033
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 223 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+✔ R90 route enumerator consumes the real Shunzhen profile rather than guessing a generic side gate (1.606339ms)
+✔ R90 actual world preserves north passage and all three portal round trips at 10/30/60Hz (6903.895523ms)
+✔ R90 Shunzhen has three explicitly fitted portals and one map identity (272.107812ms)
+✔ R90 profile does not reinterpret an unrelated legacy gate (0.364327ms)
+✔ R90 all three clear apertures traverse the real north wall while masonry remains solid (205.24795ms)
+✔ R90 named fit rejects geometry-changing or closed-state misuse (0.549153ms)
+✔ R90 visible door leaves carry matching physical body proxies and finite geometry (173.277166ms)
+✔ R90 retains one central plaque facing north toward Shenwu without invented side plaques (187.47322ms)
+✔ R90 garden delta changes only the one Shunzhen gate record and no wall coordinate (4.231427ms)
+✔ R90 generic CourtKit source is byte-identical after removing only dedicated dispatch (0.789444ms)
+✔ R93 adds exactly two photo-supported floor-standing tables, not taller replacements of existing low tables (140.259656ms)
+✔ R93 preserves every pre-existing mesh/material/collider/support and protected bytes (92.466765ms)
+✔ R93 all visible solid boxes and supports match physical bounds, feet touch retained floor and empty under-table volume remains open (108.005592ms)
+✔ R93 wrong identity and duplicate reject without appending; resources dispose once (65.612896ms)
+✔ R93 B 10Hz sprint=false complete hall/west rooms round trip and rendered body clearance (242.162677ms)
+✔ R93 B 10Hz sprint=true complete hall/west rooms round trip and rendered body clearance (143.411038ms)
+✔ R93 B 30Hz sprint=false complete hall/west rooms round trip and rendered body clearance (140.718781ms)
+✔ R93 B 30Hz sprint=true complete hall/west rooms round trip and rendered body clearance (122.947199ms)
+✔ R93 B 60Hz sprint=false complete hall/west rooms round trip and rendered body clearance (136.854645ms)
+✔ R93 B 60Hz sprint=true complete hall/west rooms round trip and rendered body clearance (127.233183ms)
+✔ R93 S 10Hz sprint=false complete hall/west rooms round trip and rendered body clearance (237.112125ms)
+✔ R93 S 10Hz sprint=true complete hall/west rooms round trip and rendered body clearance (123.22436ms)
+✔ R93 S 30Hz sprint=false complete hall/west rooms round trip and rendered body clearance (125.822847ms)
+✔ R93 S 30Hz sprint=true complete hall/west rooms round trip and rendered body clearance (95.675348ms)
+✔ R93 S 60Hz sprint=false complete hall/west rooms round trip and rendered body clearance (106.920876ms)
+✔ R93 S 60Hz sprint=true complete hall/west rooms round trip and rendered body clearance (134.510088ms)
+✔ R93 furniture genuinely blocks the former turn; southward approach changes only route, not door or walls (89.586105ms)
+✔ R93 B 10Hz east real jump approach is collision-safe and can retreat (59.340827ms)
+✔ R93 B 10Hz west real jump approach is collision-safe and can retreat (90.860386ms)
+✔ R93 B 30Hz east real jump approach is collision-safe and can retreat (62.647348ms)
+✔ R93 B 30Hz west real jump approach is collision-safe and can retreat (61.212124ms)
+✔ R93 B 60Hz east real jump approach is collision-safe and can retreat (101.233539ms)
+✔ R93 B 60Hz west real jump approach is collision-safe and can retreat (95.669494ms)
+✔ R93 S 10Hz east real jump approach is collision-safe and can retreat (79.35854ms)
+✔ R93 S 10Hz west real jump approach is collision-safe and can retreat (74.905954ms)
+✔ R93 S 30Hz east real jump approach is collision-safe and can retreat (90.235688ms)
+✔ R93 S 30Hz west real jump approach is collision-safe and can retreat (138.735153ms)
+✔ R93 S 60Hz east real jump approach is collision-safe and can retreat (100.04076ms)
+✔ R93 S 60Hz west real jump approach is collision-safe and can retreat (113.399251ms)
+✔ R93 actual S repeated/cancelled streaming retains exactly two permanent tables and disposes material once (196.577543ms)
+✔ R93 10Hz production flight descent cannot create an indoor tabletop spawn (130.704624ms)
+✔ R93 30Hz production flight descent cannot create an indoor tabletop spawn (123.354337ms)
+✔ R93 60Hz production flight descent cannot create an indoor tabletop spawn (109.025335ms)
+ℹ tests 85
+ℹ suites 0
+ℹ pass 85
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 67624.326478
