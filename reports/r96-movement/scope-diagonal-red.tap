@@ -1,0 +1,40 @@
+✔ scope is explicit metadata, uses swept square footprint and includes high airborne poses (1.971519ms)
+✔ invalid region metadata is rejected atomically without registering geometry (0.471919ms)
+✔ registration copies metadata and caller mutation cannot silently move an installed region (0.167211ms)
+✔ same-count update follows explicit owner translation and held navigation clone sees it (0.352879ms)
+✔ held clone reads live local S obstacles after append/update/remove without a stale collider array (0.589314ms)
+✔ cold and warm per-frame navigation clones borrow one source-generation region index (0.55262ms)
+✔ a registered scope cannot disappear during collider update (0.196124ms)
+✔ scope owner cannot be an overhead proxy masquerading as ordinary solid ownership (0.390827ms)
+✖ a diagonal swept bounding rectangle alone cannot activate an untouched domain (0.855454ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 8
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 123.31295
+
+✖ failing tests:
+
+test at tests/r96-movement/lifecycle.test.mjs:12:1
+✖ a diagonal swept bounding rectangle alone cannot activate an untouched domain (0.855454ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/lifecycle.test.mjs:12:272)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

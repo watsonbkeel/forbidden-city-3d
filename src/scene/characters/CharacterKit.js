@@ -1,3 +1,4 @@
+import {CHARACTER_SEAT_FOOT_Y,CHARACTER_SEAT_VARIANTS} from './CharacterSeatVariants.js';
 const SLEEP_EYES = Symbol('sleeping-eyelids');
 import * as THREE from 'three';
 
@@ -15,6 +16,14 @@ export const CHARACTER_TEMPLATES = Object.freeze({
   'eunuch-daily': { label:'Palace attendant', robe:0x646d7c, trim:0x292f3c, lining:0x8c9296, accent:0xa5a086, hat:'cap', motif:'border', silhouette:'attendant', evidenceRefs:['H6'] },
   'guard-duty': { label:'Gate guard', robe:0x35475d, trim:0x1f2935, lining:0x596576, accent:0xb89955, hat:'guard', motif:'studs', silhouette:'guard', evidenceRefs:['H1'] },
 });
+
+/** Authored contact landmarks shared by logical placement and geometry.
+ * No mesh generation or resource lease is needed to validate a distant seat. */
+export function characterContactMetrics(pose='standing',seatVariant='standard'){
+ if(!CHARACTER_POSES.includes(pose)||!CHARACTER_SEAT_VARIANTS.includes(seatVariant)||pose!=='seated'&&seatVariant!=='standard')throw new Error('Invalid character contact identity');
+ const footY=CHARACTER_SEAT_FOOT_Y[seatVariant];
+ return{groundContacts:pose==='sleeping'?[]:pose==='standing'?[[-.105,0,.03],[.105,0,.03]]:pose==='seated'?[[-.12,footY,seatVariant==='raised-footstool'?.815:seatVariant==='throne-front-perch'?.58:.535],[.12,footY,seatVariant==='raised-footstool'?.815:seatVariant==='throne-front-perch'?.58:.535]]:[[-.15,0,-.235],[.15,0,-.235],[-.15,.032,.31],[.15,.032,.31]],seatPelvis:pose==='seated'?[0,.57,-.04]:null,seatContact:pose==='seated'?[0,.49,-.04]:null};
+}
 
 const SKIN=0xbe8e6d, SKIN_LIGHT=0xd0a281, HAIR=0x201c1b, SOLE=0x695b48;
 const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
@@ -446,15 +455,16 @@ export function* createCharacterGeometrySteps(templateId,pose='standing',lod=0,o
    if(g.boundingSphere){const c=g.boundingSphere.center,y=c.y,z=c.z;c.set(c.x,z-minZ,cy-y);}else g.boundingSphere=g.boundingBox.getBoundingSphere(new THREE.Sphere());
    p.needsUpdate=true;if(n)n.needsUpdate=true;complete=true;
   }finally{if(!complete)g.dispose();}
-  g.userData={...g.userData,eyeState:'closed',pose:'sleeping',poseIndex:3,groundContacts:[],seatContact:null,seatPelvis:null,
+  g.userData={...g.userData,eyeState:'closed',pose:'sleeping',poseIndex:3,...characterContactMetrics('sleeping'),
    bodyHeightMeters:g.boundingBox.max.y,sleepingBounds:g.boundingBox.toArray?.()??{min:g.boundingBox.min.toArray(),max:g.boundingBox.max.toArray()},
    poseTransitions:'discrete-checked-bed-transfer',historyStatus:'requested-gameplay-rest-not-historical-schedule'};
   return g;
  }
  const t=CHARACTER_TEMPLATES[templateId];if(!t)throw new Error(`Unknown character template: ${templateId}`);if(!CHARACTER_POSES.includes(pose))throw new Error(`Unknown character pose: ${pose}`);if(!Number.isInteger(lod)||lod<0||lod>2)throw new Error(`Invalid character LOD: ${lod}`);
  const femalePose=options.femalePose??'resting';if(!['resting','walking'].includes(femalePose))throw new Error('Unknown female sample pose');if(femalePose==='walking'&&!isFemale(t))throw new Error('Female sample pose requires a female template');if(femalePose==='walking'&&pose!=='standing')throw new Error('Female walking sample requires standing pose');
- const seatVariant=options.seatVariant??'standard';if(!['standard','raised-footstool','kang-low','throne-front-perch','qianqing-low-foot'].includes(seatVariant))throw new Error(`Unknown seat variant: ${seatVariant}`);if(pose!=='seated'&&seatVariant!=='standard')throw new Error('A seat variant requires seated pose');
- const footY=['raised-footstool','throne-front-perch'].includes(seatVariant)?.30:seatVariant==='kang-low'?.06:seatVariant==='qianqing-low-foot'?-.10:0,footZ=seatVariant==='raised-footstool'?.79:seatVariant==='throne-front-perch'?.555:.51;
+ const seatVariant=options.seatVariant??'standard';if(!CHARACTER_SEAT_VARIANTS.includes(seatVariant))throw new Error(`Unknown seat variant: ${seatVariant}`);if(pose!=='seated'&&seatVariant!=='standard')throw new Error('A seat variant requires seated pose');
+ if(seatVariant==='zhonghe-low-foot'&&templateId!=='emperor-ceremonial')throw new Error('Zhonghe seat adaptation is emperor-only');
+ const footY=CHARACTER_SEAT_FOOT_Y[seatVariant],footZ=seatVariant==='raised-footstool'?.79:seatVariant==='throne-front-perch'?.555:.51;
  const b=new Builder(lod),seg=[28,12,7][lod],off=pose==='standing'?0:pose==='seated'?-.29:-.58,z=pose==='seated'?-.04:pose==='kneeling'?.04:0;
  try {
  const pelvis=pose==='standing'?.89:pose==='seated'?.57:.33;
@@ -467,7 +477,10 @@ export function* createCharacterGeometrySteps(templateId,pose='standing',lod=0,o
  else if(pose==='seated')lower=[{y:.055,rx:.265,rz:.139,z:.48,wave:.008},{y:.18,rx:.263,rz:.142,z:.48},{y:.40,rx:.25,rz:.148,z:.44},{y:.52,rx:.255,rz:.276,z:.20},{y:.66,rx:.185,rz:.14,z:-.04}];
  else lower=[{y:.032,rx:.302,rz:.397,z:-.015,wave:.009},{y:.075,rx:.308,rz:.368,z:.025},{y:.18,rx:.265,rz:.294,z:.105},{y:.29,rx:.205,rz:.205,z:.07},{y:.39,rx:.184,rz:.138,z:.04}];
  if(pose==='seated'&&seatVariant==='kang-low'){lower=lower.map((r,i)=>({...r,y:r.y+footY*Math.max(0,1-i/3)}));lower.splice(3,0,{y:.49,rx:.255,rz:.175,z:.36});}
- if(pose==='seated'&&seatVariant==='qianqing-low-foot')lower=lower.map((r,i)=>({...r,y:r.y+footY*Math.max(0,1-i/3)}));
+ if(pose==='seated'&&['qianqing-low-foot','zhonghe-low-foot'].includes(seatVariant))lower=lower.map((r,i)=>({...r,y:r.y+footY*Math.max(0,1-i/3)}));
+ // Keep the front drape outside the real chair until it reaches the pad top.
+ // A straight diagonal from the lowered hem to the lap would cut the seat.
+ if(pose==='seated'&&seatVariant==='zhonghe-low-foot')lower.splice(3,0,{y:.49,rx:.255,rz:.14,z:.5});
  if(isFemale(t)&&lod<2){
   // One continuous garment shell removes the false blouse/skirt seam. The
   // existing part IDs, pivots and weights are retained below the waist.
@@ -503,7 +516,7 @@ export function* createCharacterGeometrySteps(templateId,pose='standing',lod=0,o
  else if(pose==='seated'){yield* shoe(b,-.12,footY,footZ,lod,4,pose);yield* shoe(b,.12,footY,footZ,lod,5,pose);}
  else{yield* shoe(b,-.15,0,-.26,lod,4,pose);yield* shoe(b,.15,0,-.26,lod,5,pose);}
  const g=yield* b.geometry();
- g.userData={templateId,pose,lod,seatVariant,bodyHeightMeters:1.70,frontBackDecoration:true,materialCount:1,poseIndex:CHARACTER_POSES.indexOf(pose),groundContacts:pose==='standing'?[[-.105,0,.03],[.105,0,.03]]:pose==='seated'?[[-.12,footY,seatVariant==='raised-footstool'?.815:seatVariant==='throne-front-perch'?.58:.535],[.12,footY,seatVariant==='raised-footstool'?.815:seatVariant==='throne-front-perch'?.58:.535]]:[[-.15,0,-.235],[.15,0,-.235],[-.15,.032,.31],[.15,.032,.31]],seatPelvis:pose==='seated'?[0,.57,-.04]:null,seatContact:pose==='seated'?[0,.49,-.04]:null,boundsPaddingMeters:.20,triangles:g.index.count/3,evidenceRefs:t.evidenceRefs,historyStatus:'interpretive-simplification',poseTransitions:'not-implemented'};
+ g.userData={templateId,pose,lod,seatVariant,bodyHeightMeters:1.70,frontBackDecoration:true,materialCount:1,poseIndex:CHARACTER_POSES.indexOf(pose),...characterContactMetrics(pose,seatVariant),boundsPaddingMeters:.20,triangles:g.index.count/3,evidenceRefs:t.evidenceRefs,historyStatus:'interpretive-simplification',poseTransitions:'not-implemented'};
  if(femalePose==='walking'){g.userData.samplePose='walking';}
  return g;
  } finally { b.clear(); }

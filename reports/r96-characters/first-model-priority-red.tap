@@ -1,0 +1,50 @@
+✖ near unresolved person precedes peripheral prewarm and visible refinement, not first coarse model (2.342225ms)
+✖ successful near metadata yields before starting another long job, so Promise consumers can queue coarse first (4.728495ms)
+✔ pending metadata does not yield the frame or starve another available job (0.380511ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 1
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 200.106829
+
+✖ failing tests:
+
+test at tests/r96-characters/first-model-priority.test.mjs:3:1
+✖ near unresolved person precedes peripheral prewarm and visible refinement, not first coarse model (2.342225ms)
+  AssertionError [ERR_ASSERTION]: optional refinement must not outrank nearby first identity
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-characters/first-model-priority.test.mjs:3:890)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r96-characters/first-model-priority.test.mjs:4:1
+✖ successful near metadata yields before starting another long job, so Promise consumers can queue coarse first (4.728495ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      'near-ready',
+  +   'far-start'
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-characters/first-model-priority.test.mjs:4:591)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'near-ready', 'far-start' ],
+    expected: [ 'near-ready' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

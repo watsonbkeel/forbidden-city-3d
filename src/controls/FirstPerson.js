@@ -446,13 +446,18 @@ export class FirstPersonControls {
         air ? (this.groundY ?? 0) : baseFeet,
         PLAYER.STEP_UP ?? 0.6,
         (air || this.onSupport) ? this.feetY : null,
-        {kind:'player',airborne:air}
+        {kind:'player',airborne:air,feetY:this.feetY}
       );
       this._trackedGround = this.collisionManager.lastGroundY ?? null;
       
       this.camera.position.copy(validPosition);
       if(!air && this.collisionManager.lastDuixiuStepFeet != null) {
         this.feetY=this.collisionManager.lastDuixiuStepFeet;
+        this.groundY=this.feetY;this.verticalVelocity=0;this.onSupport=true;
+      }
+      
+      if(!air && this.collisionManager.lastFurnitureStepFeet != null) {
+        this.feetY=this.collisionManager.lastFurnitureStepFeet;
         this.groundY=this.feetY;this.verticalVelocity=0;this.onSupport=true;
       }
       
@@ -479,7 +484,8 @@ export class FirstPersonControls {
    * 脚面高度跟随地面：上台阶/上坡平滑抬升；地面降低时按重力下落（走下台阶、从台基边缘下来）
    */
   updateGround(delta) {
-    const terrain=this.collisionManager.resolveDuixiuVertical?.({x:this.camera.position.x,z:this.camera.position.z,feetY:this.feetY,groundY:this.groundY,airborne:this.airborne,verticalVelocity:this.verticalVelocity},delta,.5);
+    const furniture=this.collisionManager.resolveFurnitureVertical?.({x:this.camera.position.x,z:this.camera.position.z,feetY:this.feetY,groundY:this.groundY,airborne:this.airborne,verticalVelocity:this.verticalVelocity},delta,.5);
+    const terrain=furniture??this.collisionManager.resolveDuixiuVertical?.({x:this.camera.position.x,z:this.camera.position.z,feetY:this.feetY,groundY:this.groundY,airborne:this.airborne,verticalVelocity:this.verticalVelocity},delta,.5);
     if(terrain) {
       this.feetY=terrain.feetY;this.groundY=terrain.groundY;this.airborne=terrain.airborne;
       this.verticalVelocity=terrain.verticalVelocity;this.onSupport=terrain.onSupport;

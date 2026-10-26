@@ -1,0 +1,17 @@
+✔ local falling body lands exactly on thin real top with physical support (1.955725ms)
+✔ airborne query cannot snap a lower foot upward onto a nearby high top (0.329745ms)
+✔ upward head hits real roof and remains airborne, without changing floor into roof support (0.576235ms)
+✔ NPC vertical collision does not ground player or reset jump (1.235163ms)
+✔ outside region vertical returns null and does not mutate airborne state (0.150225ms)
+✔ grounded step uses lift translate settle and head clearance, not only endpoint (0.40658ms)
+✔ airborne and unspecified callers cannot auto-step (0.17971ms)
+✔ walking off a ledge preserves true feet until a swept gravity descent (0.155143ms)
+✔ existing NPC overlap permits unlifted retreat but never grants grounded autostep (0.407241ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 130.060691

@@ -1,0 +1,249 @@
+✖ full body landing has exact top witness without foot exemption or body shrink (1.600902ms)
+✖ face cutting contact permits tangential/away movement and immediately blocks inward motion (0.329494ms)
+✖ corner and edge-only contact are not positive volume, but diagonal inward is blocked (0.177776ms)
+✖ long horizontal motion cannot tunnel through a thin real board (0.165278ms)
+✖ jump head sweep stops at a low ceiling, not its bounding top (0.250856ms)
+✖ square foot corner overlaps actual table top beyond the old radius .3 (0.213901ms)
+✖ upper roof cannot hide a reachable lower floor; low roof blocks pose without erasing floor (0.18626ms)
+✖ a taller neighboring solid blocks a lower landing pose rather than becoming a fake floor (0.157856ms)
+✖ unsupported non-box ownership is rejected explicitly, never reinterpreted as an AABB floor (0.755113ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 0
+ℹ fail 9
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 117.218576
+
+✖ failing tests:
+
+test at tests/r96-movement/contact-sweep.test.mjs:6:1
+✖ full body landing has exact top witness without foot exemption or body shrink (1.600902ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at sweep (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/contact-sweep.test.mjs:4:30)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/contact-sweep.test.mjs:6:134)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r96-movement/contact-sweep.test.mjs:7:1
+✖ face cutting contact permits tangential/away movement and immediately blocks inward motion (0.329494ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at sweep (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/contact-sweep.test.mjs:4:30)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/contact-sweep.test.mjs:7:144)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r96-movement/contact-sweep.test.mjs:8:1
+✖ corner and edge-only contact are not positive volume, but diagonal inward is blocked (0.177776ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at sweep (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/contact-sweep.test.mjs:4:30)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/contact-sweep.test.mjs:8:138)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r96-movement/contact-sweep.test.mjs:9:1
+✖ long horizontal motion cannot tunnel through a thin real board (0.165278ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at sweep (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/contact-sweep.test.mjs:4:30)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/contact-sweep.test.mjs:9:120)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r96-movement/contact-sweep.test.mjs:10:1
+✖ jump head sweep stops at a low ceiling, not its bounding top (0.250856ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at sweep (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/contact-sweep.test.mjs:4:30)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/contact-sweep.test.mjs:10:84)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r96-movement/contact-sweep.test.mjs:11:1
+✖ square foot corner overlaps actual table top beyond the old radius .3 (0.213901ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at contact (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/contact-sweep.test.mjs:5:40)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/contact-sweep.test.mjs:11:161)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r96-movement/contact-sweep.test.mjs:12:1
+✖ upper roof cannot hide a reachable lower floor; low roof blocks pose without erasing floor (0.18626ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at contact (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/contact-sweep.test.mjs:5:40)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/contact-sweep.test.mjs:12:187)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r96-movement/contact-sweep.test.mjs:13:1
+✖ a taller neighboring solid blocks a lower landing pose rather than becoming a fake floor (0.157856ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at contact (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/contact-sweep.test.mjs:5:40)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/contact-sweep.test.mjs:13:184)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r96-movement/contact-sweep.test.mjs:14:1
+✖ unsupported non-box ownership is rejected explicitly, never reinterpreted as an AABB floor (0.755113ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Unsupported furniture-domain shape/. Input:
+  
+  'AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/contact-sweep.test.mjs:14:111)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+        at contact (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/contact-sweep.test.mjs:5:40)
+        at file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/contact-sweep.test.mjs:14:122
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/contact-sweep.test.mjs:14:111)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12),
+    expected: /Unsupported furniture-domain shape/,
+    operator: 'throws',
+    diff: 'simple'
+  }

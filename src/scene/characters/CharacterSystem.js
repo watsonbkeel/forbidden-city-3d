@@ -1,3 +1,4 @@
+import {characterContactMetrics} from './CharacterKit.js';
 import {DailyRoutine} from './DailyRoutine.js';
 import { CHARACTER_REGISTRY } from '../../../data/characters/index.js';
 import { CharacterManager } from './CharacterManager.js';
@@ -18,8 +19,9 @@ export const CHARACTER_CONTENT_ENABLED = true;
 export class CharacterSystem {
   constructor({ scene, camera, collisionManager, zoneManager, interiors, registry = CHARACTER_REGISTRY,
     adapter = null, renderer = null, documentObject = globalThis.document, contentApproved, contentEnabled = contentApproved ?? CHARACTER_CONTENT_ENABLED,
-    preparationBudgetMs = {high:1,low:1}, getPlayerState = null } = {}) {
+    preparationBudgetMs = {high:1,low:1}, getPlayerState = null, getViewState = null } = {}) {
     this.camera=camera;this.document=documentObject;this.disposed=false;this.lastError=null;this.lastFailure=null;this.lastDaylight=1;
+    this.getViewState=getViewState;this.residentResourceUsers=new Map();this.resourcePriorities=new Map();this.modelInterestActive=false;
     this.preparationBudgetMs=preparationBudgetMs;this.totalUpdateSamples=[];this.lastPreparation=null;
     this.validation=validateCharacterRegistry(registry);
     const effectiveRegistry=this.validation.valid?registry:{actors:[],templates:[],anchors:[],surfaces:[],seats:[],paths:[],ceremonies:[]};
@@ -30,10 +32,11 @@ export class CharacterSystem {
     this.interaction=new CharacterInteraction({collisionManager,getPlayerState,registry:effectiveRegistry});
     const readonlyAdapter={
       getRevision:actor=>this.world.getRevision?.(actor)??this.world.getGeneration?.(actor.zoneRef),
-      resolve:actor=>this.world.request?this.world.request(actor,a=>this.prepareFor(a),{priority:()=>this.world.preparationPriority?.(actor,this.camera?.position)??0}):this.world.resolve(actor,this.metricsFor(actor)),
+      resolve:actor=>this.world.request?this.world.request(actor,a=>this.metricsFor(a),{priority:()=>this.world.preparationPriority?.(actor,this.getViewState?.()?.position??this.camera?.position)??0,yieldAfterReady:()=>{const view=this.getViewState?.(),limit=view?.mode==='flight'?140:45;return (this.world.preparationPriority?.(actor,view?.position??this.camera?.position)??Infinity)<=limit*limit;}}):this.world.resolve(actor,this.metricsFor(actor)),
     };
     this.manager=new CharacterManager({registry:effectiveRegistry,adapter:readonlyAdapter,renderer:this.renderer,
       enabled:this.validation.valid,contentEnabled,interaction:this.interaction,
+      getViewState:()=>this.getViewState?.()??{mode:'ground',position:this.camera?.position},prepareResidents:(resident,selected)=>this.prepareResidents(resident,selected),
       patrolFactory:(actor,binding)=>{
         const b=actor.behavior;
         return new PatrolController({path:binding.path,
@@ -48,8 +51,7 @@ export class CharacterSystem {
     if(actor.placement?.mode!=='seat')return{};
     const variant=actor.behavior?.seatVariant??'standard',key=`${actor.templateId}|${variant}`;
     if(!this.metrics.has(key)){
-      const r=this.pool.acquire(actor.templateId,'seated',0,{seatVariant:variant}),d=r.geometry.userData;
-      this.metrics.set(key,{seatPelvis:d.seatPelvis,seatContact:d.seatContact,groundContacts:d.groundContacts,seatVariant:variant});this.pool.release(r.key);
+      this.metrics.set(key,{...characterContactMetrics('seated',variant),seatVariant:variant});
     }
     return this.metrics.get(key);
   }
@@ -60,7 +62,22 @@ export class CharacterSystem {
     if(!this.world.work||version===undefined)return;
     if(this.world.work.jobs.has('render:'+key))return;
     const pool=this.pool;
-    this.world.work.request('render:'+key,function*(){yield* pool.prepare(actor.templateId,actor.pose,actor.lod,options);return{status:'ready'};},{version,identity:key,priority:-1}).then(result=>{if(!this.disposed&&result?.status==='error'){this.lastError=this.lastFailure=result.reason;this.setEnabled(false);}});
+    this.world.work.request('render:'+key,function*(){yield* pool.prepare(actor.templateId,actor.pose,actor.lod,options);return{status:'ready'};},{version,identity:key,priority:()=>this.modelInterestActive?(this.resourcePriorities.get(key)??Infinity):-1,isCurrent:()=>!this.modelInterestActive||this.residentResourceUsers.has(key)}).then(result=>{if(!this.disposed&&result?.status==='error'){this.lastError=this.lastFailure=result.reason;this.setEnabled(false);}});
+  }
+  prepareResidents(residents,selected){
+    const users=new Map(),descriptors=new Map(),priorities=new Map(),visibleIds=new Set(selected.map(a=>a.id));
+    const add=(actor,priority)=>{const key=characterResourceKey(actor.templateId,actor.pose,actor.lod,characterGeometryOptionsFor(actor));if(!users.has(key))users.set(key,new Set());users.get(key).add(actor.id);descriptors.set(key,actor);priorities.set(key,Math.min(priorities.get(key)??Infinity,priority));};
+    for(const actor of residents)add({...actor,lod:2},visibleIds.has(actor.id)?-2:1+(actor.distance??0)**2);
+    const detailFloor=this.getViewState?.()?.mode==='flight'?140**2:45**2;
+    for(const actor of selected)add(actor,detailFloor+(actor.distance??0)**2);
+    // Publish the complete user table before cancelling any key. A later
+    // actor in traversal may still require the same shared immutable model.
+    this.modelInterestActive=true;this.residentResourceUsers=users;this.resourcePriorities=priorities;
+    for(const key of this.world.work?.jobs?.keys()??[])if(key.startsWith('render:')&&!users.has(key.slice(7)))this.world.work.cancelKey(key,'No current resident model users');
+    for(const actor of descriptors.values())this.prepareVisible(actor);
+    let residentModels=0;
+    for(const actor of residents)if([0,1,2].some(lod=>this.pool.entries.has(characterResourceKey(actor.templateId,actor.pose,lod,characterGeometryOptionsFor(actor)))))residentModels++;
+    return{resident:residents.length,residentModels,modelPending:[...(this.world.work?.jobs?.keys()??[])].filter(k=>k.startsWith('render:')).length,preparedResources:this.pool.entries.size};
   }
   *prepareFor(actor){
     // First visible coarse pose only; detailed LODs and changed daily poses
@@ -85,7 +102,7 @@ export class CharacterSystem {
     }
     return this.developmentPreviewActive;
   }
-  setEnabled(enabled){if(!this.validation.valid&&enabled)return;this.manager.setEnabled(enabled);if(!enabled)this.world.cancelPending?.('Characters disabled');}
+  setEnabled(enabled){if(!this.validation.valid&&enabled)return;this.manager.setEnabled(enabled);if(!enabled){this.world.cancelPending?.('Characters disabled');this.residentResourceUsers.clear();this.resourcePriorities.clear();}}
   update(dt,{daylight=1,quality='high',viewportHeight=1080,beijingTime=null}={}){
     if(this.disposed)return;
     this.lastDaylight=daylight;

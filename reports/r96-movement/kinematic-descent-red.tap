@@ -1,0 +1,41 @@
+✔ local falling body lands exactly on thin real top with physical support (2.64557ms)
+✔ airborne query cannot snap a lower foot upward onto a nearby high top (0.323165ms)
+✔ upward head hits real roof and remains airborne, without changing floor into roof support (0.500211ms)
+✔ NPC vertical collision does not ground player or reset jump (1.025088ms)
+✔ outside region vertical returns null and does not mutate airborne state (0.173651ms)
+✔ grounded step uses lift translate settle and head clearance, not only endpoint (0.341473ms)
+✔ airborne and unspecified callers cannot auto-step (0.20685ms)
+✔ walking off a ledge preserves true feet until a swept gravity descent (0.171137ms)
+✔ existing NPC overlap permits unlifted retreat but never grants grounded autostep (1.747152ms)
+✖ kinematic grounded descent settles with a full-body sweep but refuses unsupported large drops (1.154132ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 9
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 134.851741
+
+✖ failing tests:
+
+test at tests/r96-movement/controller.test.mjs:14:1
+✖ kinematic grounded descent settles with a full-body sweep but refuses unsupported large drops (1.154132ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0.3 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/controller.test.mjs:14:272)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0.3,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

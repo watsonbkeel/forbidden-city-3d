@@ -1,0 +1,85 @@
+✖ emperor Zhonghe variant has actual seat and foot support, no invented floor LOD0 (70.562947ms)
+✖ emperor Zhonghe variant has actual seat and foot support, no invented floor LOD1 (33.212866ms)
+✖ emperor Zhonghe variant has actual seat and foot support, no invented floor LOD2 (27.334637ms)
+✖ Zhonghe adaptation cannot silently modify another role or a standing pose (1.13875ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 298.297528
+
+✖ failing tests:
+
+test at tests/r96-emperor/seat-contact.test.mjs:3:25
+✖ emperor Zhonghe variant has actual seat and foot support, no invented floor LOD0 (70.562947ms)
+  Error: Unknown seat variant: zhonghe-low-foot
+      at createCharacterGeometrySteps (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/src/scene/characters/CharacterKit.js:464:168)
+      at createCharacterGeometrySteps.next (<anonymous>)
+      at createCharacterGeometry (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/src/scene/characters/CharacterKit.js:523:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-emperor/seat-contact.test.mjs:3:360)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at tests/r96-emperor/seat-contact.test.mjs:3:25
+✖ emperor Zhonghe variant has actual seat and foot support, no invented floor LOD1 (33.212866ms)
+  Error: Unknown seat variant: zhonghe-low-foot
+      at createCharacterGeometrySteps (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/src/scene/characters/CharacterKit.js:464:168)
+      at createCharacterGeometrySteps.next (<anonymous>)
+      at createCharacterGeometry (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/src/scene/characters/CharacterKit.js:523:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-emperor/seat-contact.test.mjs:3:360)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests/r96-emperor/seat-contact.test.mjs:3:25
+✖ emperor Zhonghe variant has actual seat and foot support, no invented floor LOD2 (27.334637ms)
+  Error: Unknown seat variant: zhonghe-low-foot
+      at createCharacterGeometrySteps (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/src/scene/characters/CharacterKit.js:464:168)
+      at createCharacterGeometrySteps.next (<anonymous>)
+      at createCharacterGeometry (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/src/scene/characters/CharacterKit.js:523:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-emperor/seat-contact.test.mjs:3:360)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r96-emperor/seat-contact.test.mjs:4:1
+✖ Zhonghe adaptation cannot silently modify another role or a standing pose (1.13875ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /emperor/i. Input:
+  
+  'Error: Unknown seat variant: zhonghe-low-foot'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-emperor/seat-contact.test.mjs:4:94)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Unknown seat variant: zhonghe-low-foot
+        at createCharacterGeometrySteps (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/src/scene/characters/CharacterKit.js:464:168)
+        at createCharacterGeometrySteps.next (<anonymous>)
+        at createCharacterGeometry (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/src/scene/characters/CharacterKit.js:523:18)
+        at file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-emperor/seat-contact.test.mjs:4:105
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-emperor/seat-contact.test.mjs:4:94)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18),
+    expected: /emperor/i,
+    operator: 'throws',
+    diff: 'simple'
+  }

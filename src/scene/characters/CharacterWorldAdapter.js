@@ -96,7 +96,7 @@ export class CharacterWorldAdapter{
   if(anchor.status!=='ready'||!finiteVector(local))return Infinity;
   const position=point(anchor,local);return (position[0]-camera.x)**2+(position[2]-camera.z)**2;
  }
- request(actor,metricsProvider=()=>({}),{priority=0}={}){
+ request(actor,metricsProvider=()=>({}),{priority=0,yieldAfterReady=false}={}){
   const owner=this,version=this._workVersion(),revision=this.getRevision(actor);
   return this.work.request(actor?.id??'invalid',function*(){
    try{
@@ -106,7 +106,7 @@ export class CharacterWorldAdapter{
    const result=yield* owner._resolveSteps(actor,metrics);
    if(revision!==owner.getRevision(actor)||version!==owner._workVersion()){owner.cache.delete(actor.id);owner.physicalProofs.delete(actor.id);if(actor.placement?.pathRef)owner.pathCache.delete(actor.placement.pathRef);return pending('Stale character support discarded');}return result;
    }catch(e){owner.meshCache=null;owner.colliderCache=null;owner.cache.delete(actor.id);owner.physicalProofs.delete(actor.id);if(actor.placement?.pathRef)owner.pathCache.delete(actor.placement.pathRef);return error(String(e));}
-  },{version,identity:revision,priority,isCurrent:()=>revision===owner.getRevision(actor)});
+  },{version,identity:revision,priority,yieldAfterReady,isCurrent:()=>revision===owner.getRevision(actor)});
  }
  advance(options={}){return this.work.advance({...options,version:this._workVersion()});}
  cancelPending(reason){this.work.cancel(reason);}

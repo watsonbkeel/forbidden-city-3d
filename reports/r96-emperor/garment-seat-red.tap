@@ -1,0 +1,277 @@
+✔ emperor Zhonghe variant has actual seat and foot support, no invented floor LOD0 (90.245427ms)
+✔ emperor Zhonghe variant has actual seat and foot support, no invented floor LOD1 (39.587478ms)
+✔ emperor Zhonghe variant has actual seat and foot support, no invented floor LOD2 (24.606795ms)
+✔ Zhonghe adaptation cannot silently modify another role or a standing pose (0.637247ms)
+✖ all actual garment triangles avoid positive-area penetration into original chair arms/back/seat LOD0 (64.894524ms)
+✖ all actual garment triangles avoid positive-area penetration into original chair arms/back/seat LOD1 (29.954424ms)
+✖ all actual garment triangles avoid positive-area penetration into original chair arms/back/seat LOD2 (20.305917ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 4
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 446.534568
+
+✖ failing tests:
+
+test at tests/r96-emperor/seat-contact.test.mjs:6:25
+✖ all actual garment triangles avoid positive-area penetration into original chair arms/back/seat LOD0 (64.894524ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 127
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 128
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 129
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 130
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 131
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 132
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 133
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 134
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 135
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 136
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 137
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 138
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 139
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 140
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 141
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 142
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 143
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 144
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 145
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 146
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 147
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 148
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 149
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 150
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 151
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 152
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 153
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-emperor/seat-contact.test.mjs:6:840)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { triangle: 127, name: 'r55-zhonghe-chair-seat' }, { triangle: 128, name: 'r55-zhonghe-chair-seat' }, { triangle: 129, name: 'r55-zhonghe-chair-seat' }, { triangle: 130, name: 'r55-zhonghe-chair-seat' }, { triangle: 131, name: 'r55-zhonghe-chair-seat' }, { triangle: 132, name: 'r55-zhonghe-chair-seat' }, { triangle: 133, name: 'r55-zhonghe-chair-seat' }, { triangle: 134, name: 'r55-zhonghe-chair-seat' }, { triangle: 135, name: 'r55-zhonghe-chair-seat' }, { triangle: 136, name: 'r55-zhonghe-chair-seat' }, { triangle: 137, name: 'r55-zhonghe-chair-seat' }, { triangle: 138, name: 'r55-zhonghe-chair-seat' }, { triangle: 139, name: 'r55-zhonghe-chair-seat' }, { triangle: 140, name: 'r55-zhonghe-chair-seat' }, { triangle: 141, name: 'r55-zhonghe-chair-seat' }, { triangle: 142, name: 'r55-zhonghe-chair-seat' }, { triangle: 143, name: 'r55-zhonghe-chair-seat' }, { triangle: 144, name: 'r55-zhonghe-chair-seat' }, { triangle: 145, name: 'r55-zhonghe-chair-seat' }, { triangle: 146, name: 'r55-zhonghe-chair-seat' }, { triangle: 147, name: 'r55-zhonghe-chair-seat' }, { triangle: 148, name: 'r55-zhonghe-chair-seat' }, { triangle: 149, name: 'r55-zhonghe-chair-seat' }, { triangle: 150, name: 'r55-zhonghe-chair-seat' }, { triangle: 151, name: 'r55-zhonghe-chair-seat' }, { triangle: 152, name: 'r55-zhonghe-chair-seat' }, { triangle: 153, name: 'r55-zhonghe-chair-seat' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r96-emperor/seat-contact.test.mjs:6:25
+✖ all actual garment triangles avoid positive-area penetration into original chair arms/back/seat LOD1 (29.954424ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 54
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 55
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 56
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 57
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 58
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 59
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 60
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 61
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 62
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 63
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 64
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 65
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-emperor/seat-contact.test.mjs:6:840)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { triangle: 54, name: 'r55-zhonghe-chair-seat' }, { triangle: 55, name: 'r55-zhonghe-chair-seat' }, { triangle: 56, name: 'r55-zhonghe-chair-seat' }, { triangle: 57, name: 'r55-zhonghe-chair-seat' }, { triangle: 58, name: 'r55-zhonghe-chair-seat' }, { triangle: 59, name: 'r55-zhonghe-chair-seat' }, { triangle: 60, name: 'r55-zhonghe-chair-seat' }, { triangle: 61, name: 'r55-zhonghe-chair-seat' }, { triangle: 62, name: 'r55-zhonghe-chair-seat' }, { triangle: 63, name: 'r55-zhonghe-chair-seat' }, { triangle: 64, name: 'r55-zhonghe-chair-seat' }, { triangle: 65, name: 'r55-zhonghe-chair-seat' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r96-emperor/seat-contact.test.mjs:6:25
+✖ all actual garment triangles avoid positive-area penetration into original chair arms/back/seat LOD2 (20.305917ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 17
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 18
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 19
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 20
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 21
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 22
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 23
+  +   },
+  +   {
+  +     name: 'r55-zhonghe-chair-seat',
+  +     triangle: 24
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-emperor/seat-contact.test.mjs:6:840)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { triangle: 17, name: 'r55-zhonghe-chair-seat' }, { triangle: 18, name: 'r55-zhonghe-chair-seat' }, { triangle: 19, name: 'r55-zhonghe-chair-seat' }, { triangle: 20, name: 'r55-zhonghe-chair-seat' }, { triangle: 21, name: 'r55-zhonghe-chair-seat' }, { triangle: 22, name: 'r55-zhonghe-chair-seat' }, { triangle: 23, name: 'r55-zhonghe-chair-seat' }, { triangle: 24, name: 'r55-zhonghe-chair-seat' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

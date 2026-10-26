@@ -1,0 +1,17 @@
+✔ full body landing has exact top witness without foot exemption or body shrink (1.109575ms)
+✔ face cutting contact permits tangential/away movement and immediately blocks inward motion (0.490225ms)
+✔ corner and edge-only contact are not positive volume, but diagonal inward is blocked (0.331878ms)
+✔ long horizontal motion cannot tunnel through a thin real board (0.114352ms)
+✔ jump head sweep stops at a low ceiling, not its bounding top (0.199609ms)
+✔ square foot corner overlaps actual table top beyond the old radius .3 (0.29339ms)
+✔ upper roof cannot hide a reachable lower floor; low roof blocks pose without erasing floor (0.193631ms)
+✔ a taller neighboring solid blocks a lower landing pose rather than becoming a fake floor (0.115223ms)
+✔ unsupported non-box ownership is rejected explicitly, never reinterpreted as an AABB floor (0.498038ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 114.368335

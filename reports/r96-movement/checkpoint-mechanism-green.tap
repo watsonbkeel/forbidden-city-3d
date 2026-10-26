@@ -1,0 +1,302 @@
+✔ composed surface keeps physical floor beneath an obstructing NPC and does not make NPC a support (2.472871ms)
+✔ dynamic retreat never bypasses a static box or a second actor (2.783518ms)
+✔ composed contact selects legal floor below overhead room roof and preserves blocked low roof (0.336045ms)
+✔ scope-local live clone obstacles are used without importing navigation-excluded dynamic actors (0.278798ms)
+✔ world ground is physical support, not a rescue onto a roof above the feet (0.3929ms)
+✔ local sweep checks full feet-to-head and the actual world boundary interfaces (0.26009ms)
+✔ synthetic empty collision space without an explicit world-ground witness has no invented floor (0.181603ms)
+✔ full body landing has exact top witness without foot exemption or body shrink (1.507723ms)
+✔ face cutting contact permits tangential/away movement and immediately blocks inward motion (0.281602ms)
+✔ corner and edge-only contact are not positive volume, but diagonal inward is blocked (0.180081ms)
+✔ long horizontal motion cannot tunnel through a thin real board (0.143345ms)
+✔ jump head sweep stops at a low ceiling, not its bounding top (0.269314ms)
+✔ square foot corner overlaps actual table top beyond the old radius .3 (0.415083ms)
+✔ upper roof cannot hide a reachable lower floor; low roof blocks pose without erasing floor (0.281743ms)
+✔ a taller neighboring solid blocks a lower landing pose rather than becoming a fake floor (0.175404ms)
+✔ unsupported non-box ownership is rejected explicitly, never reinterpreted as an AABB floor (0.60665ms)
+✔ invalid body dimensions and nonfinite/inverted solids are rejected rather than bypassed (0.409975ms)
+✔ a separated first axis cannot hide invalid geometry on a later axis (0.218698ms)
+✔ local falling body lands exactly on thin real top with physical support (2.572782ms)
+✔ airborne query cannot snap a lower foot upward onto a nearby high top (0.377517ms)
+✔ upward head hits real roof and remains airborne, without changing floor into roof support (0.616896ms)
+✔ NPC vertical collision does not ground player or reset jump (1.248263ms)
+✔ outside region vertical returns null and does not mutate airborne state (0.250155ms)
+✔ grounded step uses lift translate settle and head clearance, not only endpoint (0.518839ms)
+✔ airborne and unspecified callers cannot auto-step (0.261502ms)
+✔ walking off a ledge preserves true feet until a swept gravity descent (0.21965ms)
+✔ existing NPC overlap permits unlifted retreat but never grants grounded autostep (0.550646ms)
+✔ kinematic grounded descent settles with a full-body sweep but refuses unsupported large drops (5.128797ms)
+✔ square corner overlap with an actual NPC capsule is not missed by circular-player math (2.3584ms)
+✔ a falling square body contacts NPC top but moving away from exact contact is free (0.804618ms)
+✔ existing dynamic overlap may strictly retreat but never deepen or cross through the actor (0.750707ms)
+✔ long motion cannot tunnel through an NPC when both endpoints are clear (3.518511ms)
+✔ exact square-to-capsule boundary touch is clear while positive depth blocks (0.671728ms)
+✔ deep centered overlap permits a small provably outward step instead of saturated-distance lock (0.181943ms)
+✔ escaping one capsule part cannot introduce overlap with another part of the same actor (0.501643ms)
+✔ invalid later dynamic parts and motion are rejected before broadphase early exits (0.791207ms)
+✔ scope is explicit metadata, uses swept square footprint and includes high airborne poses (1.897768ms)
+✔ invalid region metadata is rejected atomically without registering geometry (0.39286ms)
+✔ registration copies metadata and caller mutation cannot silently move an installed region (0.208643ms)
+✔ same-count update follows explicit owner translation and held navigation clone sees it (0.310126ms)
+✔ held clone reads live local S obstacles after append/update/remove without a stale collider array (0.567292ms)
+✔ cold and warm per-frame navigation clones borrow one source-generation region index (0.497677ms)
+✔ a registered scope cannot disappear during collider update (0.192228ms)
+✔ scope owner cannot be an overhead proxy masquerading as ordinary solid ownership (0.324648ms)
+✔ a diagonal swept bounding rectangle alone cannot activate an untouched domain (0.21322ms)
+✔ actual permanent Yangxin B owns exactly one dispatch region across S load and unload (263.178279ms)
+[
+  {
+    layer: 'B',
+    fps: 10,
+    dir: 6,
+    ground: {
+      x: 9.719999999999999,
+      z: -2.776500896388029,
+      feet: 0.6,
+      ground: 0.6,
+      air: false,
+      onSupport: true
+    },
+    landed: {
+      x: 9.721537694541723,
+      z: -1.0278059823649528,
+      feet: 1.94,
+      ground: 1.94,
+      air: false,
+      onSupport: true
+    },
+    end: {
+      x: 9.721537694541723,
+      z: -5.634133327169764,
+      feet: 0.6,
+      ground: 0.6,
+      air: false,
+      onSupport: true
+    },
+    afterJump: {
+      x: 9.721537694541723,
+      z: -5.672793030306252,
+      feet: 0.6,
+      ground: 0.6,
+      air: false,
+      onSupport: true
+    },
+    firstVerticalOverlap: null,
+    distance: 4.606327344804811,
+    engineCollision: false
+  },
+  {
+    layer: 'B',
+    fps: 30,
+    dir: 6,
+    ground: {
+      x: 9.719999999999999,
+      z: -2.900313063737201,
+      feet: 0.6,
+      ground: 0.6,
+      air: false,
+      onSupport: true
+    },
+    landed: {
+      x: 9.724362345722412,
+      z: -0.9134712690392348,
+      feet: 1.94,
+      ground: 1.94,
+      air: false,
+      onSupport: true
+    },
+    end: {
+      x: 9.724362345722412,
+      z: -5.689830596466265,
+      feet: 0.6,
+      ground: 0.6,
+      air: false,
+      onSupport: true
+    },
+    afterJump: {
+      x: 9.724362345722412,
+      z: -5.689830596466265,
+      feet: 0.6,
+      ground: 0.6,
+      air: false,
+      onSupport: true
+    },
+    firstVerticalOverlap: null,
+    distance: 4.776359327427031,
+    engineCollision: false
+  },
+  {
+    layer: 'B',
+    fps: 60,
+    dir: 6,
+    ground: {
+      x: 9.719999999999999,
+      z: -2.9366135349945353,
+      feet: 0.6,
+      ground: 0.6,
+      air: false,
+      onSupport: true
+    },
+    landed: {
+      x: 9.725207735239223,
+      z: -0.8689992431559972,
+      feet: 1.94,
+      ground: 1.94,
+      air: false,
+      onSupport: true
+    },
+    end: {
+      x: 9.725207735239223,
+      z: -5.689941716015653,
+      feet: 0.6,
+      ground: 0.6,
+      air: false,
+      onSupport: true
+    },
+    afterJump: {
+      x: 9.725207735239223,
+      z: -5.689941716015653,
+      feet: 0.6,
+      ground: 0.6,
+      air: false,
+      onSupport: true
+    },
+    firstVerticalOverlap: null,
+    distance: 4.820942472859656,
+    engineCollision: false
+  },
+  {
+    layer: 'S',
+    fps: 10,
+    dir: 6,
+    ground: {
+      x: 9.719999999999999,
+      z: -2.776500896388029,
+      feet: 0.6,
+      ground: 0.6,
+      air: false,
+      onSupport: true
+    },
+    landed: {
+      x: 9.721537694541723,
+      z: -1.0278059823649528,
+      feet: 1.94,
+      ground: 1.94,
+      air: false,
+      onSupport: true
+    },
+    end: {
+      x: 9.721537694541723,
+      z: -5.634133327169764,
+      feet: 0.6,
+      ground: 0.6,
+      air: false,
+      onSupport: true
+    },
+    afterJump: {
+      x: 9.721537694541723,
+      z: -5.672793030306252,
+      feet: 0.6,
+      ground: 0.6,
+      air: false,
+      onSupport: true
+    },
+    firstVerticalOverlap: null,
+    distance: 4.606327344804811,
+    engineCollision: false
+  },
+  {
+    layer: 'S',
+    fps: 30,
+    dir: 6,
+    ground: {
+      x: 9.719999999999999,
+      z: -2.900313063737201,
+      feet: 0.6,
+      ground: 0.6,
+      air: false,
+      onSupport: true
+    },
+    landed: {
+      x: 9.724362345722412,
+      z: -0.9134712690392348,
+      feet: 1.94,
+      ground: 1.94,
+      air: false,
+      onSupport: true
+    },
+    end: {
+      x: 9.724362345722412,
+      z: -5.689830596466265,
+      feet: 0.6,
+      ground: 0.6,
+      air: false,
+      onSupport: true
+    },
+    afterJump: {
+      x: 9.724362345722412,
+      z: -5.689830596466265,
+      feet: 0.6,
+      ground: 0.6,
+      air: false,
+      onSupport: true
+    },
+    firstVerticalOverlap: null,
+    distance: 4.776359327427031,
+    engineCollision: false
+  },
+  {
+    layer: 'S',
+    fps: 60,
+    dir: 6,
+    ground: {
+      x: 9.719999999999999,
+      z: -2.9366135349945353,
+      feet: 0.6,
+      ground: 0.6,
+      air: false,
+      onSupport: true
+    },
+    landed: {
+      x: 9.725207735239223,
+      z: -0.8689992431559972,
+      feet: 1.94,
+      ground: 1.94,
+      air: false,
+      onSupport: true
+    },
+    end: {
+      x: 9.725207735239223,
+      z: -5.689941716015653,
+      feet: 0.6,
+      ground: 0.6,
+      air: false,
+      onSupport: true
+    },
+    afterJump: {
+      x: 9.725207735239223,
+      z: -5.689941716015653,
+      feet: 0.6,
+      ground: 0.6,
+      air: false,
+      onSupport: true
+    },
+    firstVerticalOverlap: null,
+    distance: 4.820942472859656,
+    engineCollision: false
+  }
+]
+✔ reachable east kang ordinary south descent stays collision-free B/10 (1.246771ms)
+✔ reachable east kang ordinary south descent stays collision-free B/30 (0.114532ms)
+✔ reachable east kang ordinary south descent stays collision-free B/60 (0.068593ms)
+✔ reachable east kang ordinary south descent stays collision-free S/10 (0.072569ms)
+✔ reachable east kang ordinary south descent stays collision-free S/30 (0.106009ms)
+✔ reachable east kang ordinary south descent stays collision-free S/60 (0.069865ms)
+ℹ tests 52
+ℹ suites 0
+ℹ pass 52
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 731.178251

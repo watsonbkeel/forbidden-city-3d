@@ -317,10 +317,11 @@ export class SettingsMenu {
     const count = key => Number.isFinite(snapshot[key]) ? Math.max(0, Math.floor(snapshot[key])) : 0;
     const registered = count('registered'), loaded = count('loaded'), visible = count('visible');
     const pending = count('pending'), errors = count('errors');
+    const streaming=Number.isFinite(snapshot.resident),resident=count('resident'),residentModels=count('residentModels'),modelPending=count('modelPending');
     const night = Number.isFinite(snapshot.daylight) && snapshot.daylight <= 0.12;
     const systemError = !!snapshot.lastError;
     const preview = import.meta.env?.DEV === true && this.allowCharacterPreview && !available && snapshot.rollout === 'preview-unverified';
-    const key = [enabled, available, registered, loaded, visible, pending, errors, night, systemError, preview].join('|');
+    const key = [enabled, available, registered, loaded, visible, pending, errors, night, systemError, preview,streaming,resident,residentModels,modelPending].join('|');
     if (key === this.characterStatusKey && enabled === this.charactersEnabled && available === this.charactersAvailable) return;
     if (import.meta.env?.DEV === true && this.allowCharacterPreview && available !== this.charactersAvailable) {
       if (available) this.setCharacterPreviewActive(false);
@@ -339,9 +340,10 @@ export class SettingsMenu {
     else if (!enabled) heading = '人物已关闭';
     else if (!available && !preview) heading = '人物内容暂不可用';
     else if (errors > 0) heading = '人物加载失败';
+    else if (streaming && modelPending > 0) heading = '附近人物模型准备中';
     else if (registered > 0 && loaded === registered && pending === 0) heading = '人物数据就绪（候选）';
     if (import.meta.env?.DEV === true && preview) heading = `人物实验预览（未验收） · ${heading}`;
-    const text = `${heading}：已注册 ${registered} · 已加载 ${loaded} · 当前可见 ${visible} · 准备中 ${pending} · 失败 ${errors}。${night && enabled && (available || preview) ? ' 夜间仍展示人物；全天游览演绎，不代表历史作息。' : ''}`;
+    const text = `${heading}：已注册 ${registered} · ${streaming?`逻辑定位 ${loaded} · 附近模型就绪 ${residentModels}/${resident}`:`已加载 ${loaded}`} · 当前可见 ${visible} · ${streaming?`定位准备 ${pending} · 模型任务 ${modelPending}`:`准备中 ${pending}`} · 失败 ${errors}。${night && enabled && (available || preview) ? ' 夜间仍展示人物；全天游览演绎，不代表历史作息。' : ''}`;
     const status = this.panel.querySelector('#characters-status');
     if (status.textContent !== text) status.textContent = text;
   }

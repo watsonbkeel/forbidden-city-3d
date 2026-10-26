@@ -47,7 +47,7 @@ export class ReleaseIdentityPanel {
     return JSON.stringify({ build:{ release:i.release, buildId:i.buildId, sourceFingerprint:i.sourceFingerprint,
       sourceCommit:i.sourceCommit, sourceDirty:i.sourceDirty, base:i.base },
       html:{...this.html},
-      characters:{registered:count(s.registered),ready:count(s.loaded),visible:count(s.visible),pending:count(s.pending),errors:count(s.errors)} }, null, 2);
+      characters:{registered:count(s.registered),ready:count(s.loaded),visible:count(s.visible),pending:count(s.pending),errors:count(s.errors),...(Number.isFinite(s.resident)?{resident:count(s.resident),residentModels:count(s.residentModels),modelPending:count(s.modelPending)}:{})} }, null, 2);
   }
   async copy() {
     if (this.disposed || this.copying) return;

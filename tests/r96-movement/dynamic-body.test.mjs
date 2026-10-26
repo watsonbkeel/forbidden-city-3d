@@ -1,0 +1,11 @@
+import test from'node:test';import assert from'node:assert/strict';import * as T from'three';import * as api from'../../src/controls/FurnitureMotion.js';
+const p=(x,y,z)=>new T.Vector3(x,y,z),body=(x,z,r=.15)=>({id:'npc',parts:[{ax:x,az:z,bx:x,bz:z,radius:r,minY:0,maxY:1.7}]});
+const sweep=(a,b,npc)=>{assert.equal(typeof api.furnitureDynamicSweep,'function');return api.furnitureDynamicSweep(a,b,npc,.5,1.7);};
+test('square corner overlap with an actual NPC capsule is not missed by circular-player math',()=>{assert.equal(sweep(p(0,0,0),p(0,0,0),body(.6,.6)).fraction,0);assert.equal(sweep(p(0,0,0),p(0,0,0),body(.61,.61)),null);});
+test('a falling square body contacts NPC top but moving away from exact contact is free',()=>{const n=body(0,0,.3),hit=sweep(p(0,3,0),p(0,1,0),n);assert.ok(Math.abs(hit.fraction-.65)<1e-8);assert.equal(hit.kind,'dynamic');assert.equal(sweep(p(0,1.7,0),p(1,1.7,0),n),null);});
+test('existing dynamic overlap may strictly retreat but never deepen or cross through the actor',()=>{const n=body(.6,.6);assert.equal(sweep(p(0,0,0),p(-.01,0,0),n),null);assert.equal(sweep(p(0,0,0),p(.01,0,0),n).fraction,0);assert.equal(sweep(p(0,0,0),p(2,0,2),n).fraction,0);});
+test('long motion cannot tunnel through an NPC when both endpoints are clear',()=>{const hit=sweep(p(-5,0,0),p(5,0,0),body(0,0,.3));assert.ok(Math.abs(hit.fraction-.42)<1e-8);});
+test('exact square-to-capsule boundary touch is clear while positive depth blocks',()=>{assert.equal(sweep(p(0,0,0),p(0,0,0),body(.8,0,.3)),null);assert.equal(sweep(p(0,0,0),p(0,0,0),body(.8-1e-9,0,.3)).fraction,0);});
+test('deep centered overlap permits a small provably outward step instead of saturated-distance lock',()=>{assert.equal(sweep(p(0,0,0),p(.01,0,0),body(0,0,.3)),null);});
+test('escaping one capsule part cannot introduce overlap with another part of the same actor',()=>{const n=body(.6,.6);n.parts.push(body(-1.5,0,.3).parts[0]);assert.ok(sweep(p(0,0,0),p(-2,0,0),n));});
+test('invalid later dynamic parts and motion are rejected before broadphase early exits',()=>{const n=body(100,100);n.parts.push({...n.parts[0],az:NaN});assert.throws(()=>sweep(p(0,0,0),p(0,0,0),n),TypeError);assert.throws(()=>sweep(p(0,NaN,0),p(0,0,0),body(100,100)),TypeError);assert.throws(()=>sweep(p(0,0,0),p(0,0,0),{id:'bad',parts:[{...body(0,0).parts[0],maxY:-1}]}),TypeError);});

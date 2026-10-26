@@ -1,3 +1,4 @@
+import {cloneFurnitureMotionScope,furnitureScope,furnitureContact,furnitureTryStep,resolveFurnitureVertical} from '../controls/FurnitureMotion.js';
 import {duixiuScope,duixiuContact,duixiuTryStep,resolveDuixiuVertical} from '../scene/garden/DuixiuMotion.js';
 import {DuixiuTerrainIndex} from '../scene/garden/DuixiuTerrain.js';
 import {triangleInstance, triangleFootContact, triangleBodyIntersects, triangleBodySweptIntersects, triangleBodySweepFraction} from './TriangleSupport.js';
@@ -39,15 +40,17 @@ export class CollisionManager {
 
   addCollider(object, tag) {
     const box = object.isBox3 ? object.clone() : new THREE.Box3().setFromObject(object);
+    const furnitureMotionScope=cloneFurnitureMotionScope(object.furnitureMotionScope,box);
     const overhead = object.overhead === undefined ? null : cloneOverheadShape(object.overhead, box);
     const input = object.triangleSupport;
+    if(furnitureMotionScope&&(overhead||input))throw new TypeError('Furniture scope owner must be an ordinary solid box');
     if (object.duixiuTerrain && !input) throw new TypeError('Duixiu terrain requires exact triangle ownership');
     const triangleSupport = input ? triangleInstance(input.template, input.offset.toArray(), input.id) : null;
     if (triangleSupport && (overhead || !box.equals(triangleSupport.box))) throw new TypeError('Triangle collider requires exact owned bounds');
     if (triangleSupport && (object.duixiuTerrain === true && this._duixiuBatchIds
       ? this._duixiuBatchIds.has(triangleSupport.id)
       : this.colliders.some(c => c.triangleSupport?.id === triangleSupport.id))) throw new TypeError('Duplicate triangle owner');
-    if (!box.isEmpty()) this.colliders.push({ mesh: object, box, tag, ...(overhead ? {overhead} : {}), ...(triangleSupport ? {triangleSupport} : {}), ...(object.duixiuTerrain === true ? {duixiuTerrain:true} : {}) });
+    if (!box.isEmpty()) this.colliders.push({ mesh: object, box, tag, ...(overhead ? {overhead} : {}), ...(triangleSupport ? {triangleSupport} : {}), ...(object.duixiuTerrain === true ? {duixiuTerrain:true} : {}), ...(furnitureMotionScope ? {furnitureMotionScope} : {}) });
     if (!box.isEmpty() && triangleSupport && this._duixiuBatchIds) this._duixiuBatchIds.add(triangleSupport.id);
   }
 
@@ -116,6 +119,8 @@ export class CollisionManager {
    * 没有任何可行走面时为地面 0。
    */
   getGroundHeight(x, z, feetY = 0, stepUp = 0.6, radius = .5) {
+    const furniturePoint=new THREE.Vector3(x,feetY,z);
+    if(Number.isFinite(feetY)&&furnitureScope(this,furniturePoint,furniturePoint,radius))return furnitureContact(this,x,z,feetY+stepUp,radius).surface?.height??0;
     let ground = 0;
     let rescue = 0;
     const limit = feetY + stepUp;
@@ -350,6 +355,7 @@ export class CollisionManager {
    */
   getValidPosition(currentPosition, targetPosition, radius = DEFAULT_PLAYER_RADIUS, feetY = null, stepUp = PLAYER.STEP_UP ?? 0.6, airFeet = null, motion = null) {
     this.lastDuixiuStepFeet = null;
+    this.lastFurnitureStepFeet = null;
     // airFeet：空中（跳跃/下落）时的实际脚面高度。碰撞按身体真实高度判定（可越过矮栏杆），
     // 落脚面按真实脚面查询（跳到高于原地面的台面上也能落住）。
     const distance = Math.hypot(targetPosition.x - currentPosition.x, targetPosition.z - currentPosition.z);
@@ -361,8 +367,19 @@ export class CollisionManager {
     const track = feetY !== null && feetY !== undefined;
     let ground = track ? feetY : 0;
     const air = track && airFeet !== null && airFeet !== undefined;
+    let furnitureFeet=motion?.feetY??(motion?.kind==='kinematic'?feetY:airFeet??feetY)??(currentPosition.y-PLAYER.HEIGHT);
     const tryMove = (x, z) => {
       const proposed = new THREE.Vector3(x,valid.y,z);
+      if(furnitureScope(this,valid,proposed,radius)) {
+        const fromFeet=new THREE.Vector3(valid.x,furnitureFeet,valid.z),toFeet=new THREE.Vector3(x,furnitureFeet,z);
+        const result=furnitureTryStep(this,fromFeet,toFeet,radius,stepUp,motion);
+        if(!result.accepted)return false;
+        furnitureFeet=result.feetY;valid.set(result.position.x,furnitureFeet+PLAYER.HEIGHT,result.position.z);ground=result.groundY;
+        // Every accepted local substep carries the final exact feet scalar; a
+        // later plain segment must not erase a lift accepted earlier this call.
+        this.lastFurnitureStepFeet=result.feetY;
+        return true;
+      }
       if(duixiuScope(this,valid,proposed,radius)) {
         const result=duixiuTryStep(this,valid,proposed,radius,stepUp,motion);
         if(!result.accepted)return false;
@@ -391,8 +408,11 @@ export class CollisionManager {
     const collider = this.colliders.find(item => item.mesh === object);
     if (collider) {
       const box = object.isBox3 ? object.clone() : new THREE.Box3().setFromObject(object);
+      if(collider.furnitureMotionScope&&object.furnitureMotionScope===undefined)throw new TypeError('Furniture scope cannot disappear');
+      const furnitureMotionScope=cloneFurnitureMotionScope(object.furnitureMotionScope,box);
       if (collider.overhead && object.overhead === undefined) throw new TypeError('Scoped overhead shape cannot disappear during an update');
       const overhead = object.overhead === undefined ? null : cloneOverheadShape(object.overhead, box);
+      if(furnitureMotionScope&&(overhead||object.triangleSupport))throw new TypeError('Furniture scope owner must be an ordinary solid box');
       if (collider.duixiuTerrain && object.duixiuTerrain !== true) throw new TypeError('Duixiu terrain marker cannot disappear');
       if (collider.triangleSupport) {
         const input=object.triangleSupport;
@@ -402,6 +422,7 @@ export class CollisionManager {
         collider.triangleSupport=next;
       }
       collider.box.copy(box);
+      if(furnitureMotionScope)collider.furnitureMotionScope=furnitureMotionScope;
       if (overhead) collider.overhead = overhead;
       this._grid = null;
     }
@@ -419,6 +440,7 @@ export class CollisionManager {
     if(!source._grid||source._grid.count!==source.colliders.length)source._buildGrid();
     return source._grid;
   }
+  resolveFurnitureVertical(state,delta,radius=.5) { return resolveFurnitureVertical(this,state,delta,radius); }
   resolveDuixiuVertical(state, delta, radius=.5) { return resolveDuixiuVertical(this,state,delta,radius); }
   duixiuContact(x,z,maxTop,radius=.5) { return duixiuContact(this,x,z,maxTop,radius); }
 

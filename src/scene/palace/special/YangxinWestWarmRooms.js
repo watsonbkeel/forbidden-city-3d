@@ -76,6 +76,7 @@ function assertIdentity(kit, item, f) {
 export function buildYangxinWestWarmRooms(kit, item, f) {
   assertIdentity(kit, item, f);
   const plan = YANGXIN_WEST_ROOM_PLAN;
+  const firstCollider = kit.colliders.length;
   const g = new THREE.Group(); g.name = 'r53-yangxin-west-warm-rooms';
   g.userData = { role: g.name, stage: STAGE, dimensionStatus: FIT, source: PAPER, rearPolicy: plan.rearPolicy };
   f.add(g); f.updateWorldMatrix(true, true);
@@ -206,6 +207,11 @@ export function buildYangxinWestWarmRooms(kit, item, f) {
     Object.assign(kit.rooms.at(-1),{sourceKey:r.key,stage:STAGE,dimensionStatus:FIT,spawnsStatus:'CLEAR_NAVIGATION_CANDIDATES_NOT_NEW_CHARACTERS'});
   }
   const metadata = { id: plan.id, stage: STAGE, dimensionStatus: FIT, source: PAPER, printedPages: plan.sources.paper.printedPages, rearPolicy: plan.rearPolicy, transform: plan.transform, sourceDimensions: plan.sourceDimensions, layoutCheckpoint:plan.layoutCheckpoint, materialStatus:'PLAIN_COLORS_NO_INVENTED_BROCADE_OR_CARVING', photoDates: { path: plan.sources.photos.urlDate, capture: null }, sources:plan.sources, limitations:plan.limitations, navigationRooms:rooms.map(r=>r.key), streamingOwnership:'PERMANENT_ZONE_B_SHELL_NOT_OPTIONAL_INTERIOR_GLB' };
+  // Dispatch metadata on an existing permanent ordinary solid only. The
+  // 0.8m margin is an engineering interface buffer, not a surveyed dimension.
+  const scopeOwner=kit.colliders[firstCollider];
+  const scopeBox=new THREE.Box3(new THREE.Vector3(east-.8,0,south-.8),new THREE.Vector3(west+.8,0,Math.max(north,sNorth)+.8)).applyMatrix4(f.matrixWorld);
+  scopeOwner.furnitureMotionScope={kind:'yangxin-furniture',id:'yangxin-west-furniture',groundY:0,minOffsetX:scopeBox.min.x-scopeOwner.min.x,maxOffsetX:scopeBox.max.x-scopeOwner.min.x,minOffsetZ:scopeBox.min.z-scopeOwner.min.z,maxOffsetZ:scopeBox.max.z-scopeOwner.min.z};
   f.userData.yangxinWestWarmRooms = metadata;
   return metadata;
 }

@@ -1,0 +1,38 @@
+✔ full body landing has exact top witness without foot exemption or body shrink (1.022955ms)
+✔ face cutting contact permits tangential/away movement and immediately blocks inward motion (0.201873ms)
+✔ corner and edge-only contact are not positive volume, but diagonal inward is blocked (0.195844ms)
+✔ long horizontal motion cannot tunnel through a thin real board (0.114692ms)
+✔ jump head sweep stops at a low ceiling, not its bounding top (0.320601ms)
+✔ square foot corner overlaps actual table top beyond the old radius .3 (0.288092ms)
+✔ upper roof cannot hide a reachable lower floor; low roof blocks pose without erasing floor (0.19307ms)
+✔ a taller neighboring solid blocks a lower landing pose rather than becoming a fake floor (0.118318ms)
+✔ unsupported non-box ownership is rejected explicitly, never reinterpreted as an AABB floor (0.557707ms)
+✖ invalid body dimensions and nonfinite/inverted solids are rejected rather than bypassed (0.775885ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 9
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 123.743824
+
+✖ failing tests:
+
+test at tests/r96-movement/contact-sweep.test.mjs:15:1
+✖ invalid body dimensions and nonfinite/inverted solids are rejected rather than bypassed (0.775885ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/contact-sweep.test.mjs:15:108)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /Invalid furniture/,
+    operator: 'throws',
+    diff: 'simple'
+  }

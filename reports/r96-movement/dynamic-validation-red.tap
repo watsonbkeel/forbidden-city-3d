@@ -1,0 +1,35 @@
+✔ square corner overlap with an actual NPC capsule is not missed by circular-player math (1.390246ms)
+✔ a falling square body contacts NPC top but moving away from exact contact is free (0.328303ms)
+✔ existing dynamic overlap may strictly retreat but never deepen or cross through the actor (0.240682ms)
+✔ long motion cannot tunnel through an NPC when both endpoints are clear (1.424448ms)
+✔ exact square-to-capsule boundary touch is clear while positive depth blocks (0.190706ms)
+✔ deep centered overlap permits a small provably outward step instead of saturated-distance lock (0.114522ms)
+✔ escaping one capsule part cannot introduce overlap with another part of the same actor (0.328153ms)
+✖ invalid later dynamic parts and motion are rejected before broadphase early exits (0.69292ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 102.718569
+
+✖ failing tests:
+
+test at tests/r96-movement/dynamic-body.test.mjs:11:1
+✖ invalid later dynamic parts and motion are rejected before broadphase early exits (0.69292ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (TypeError).
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/dynamic-body.test.mjs:11:161)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }

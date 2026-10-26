@@ -1,0 +1,233 @@
+✖ local falling body lands exactly on thin real top with physical support (1.771118ms)
+✖ airborne query cannot snap a lower foot upward onto a nearby high top (0.238508ms)
+✖ upward head hits real roof and remains airborne, without changing floor into roof support (0.209604ms)
+✖ NPC vertical collision does not ground player or reset jump (0.178207ms)
+✖ outside region vertical returns null and does not mutate airborne state (0.232399ms)
+✖ grounded step uses lift translate settle and head clearance, not only endpoint (0.218428ms)
+✖ airborne and unspecified callers cannot auto-step (0.23993ms)
+✖ walking off a ledge preserves true feet until a swept gravity descent (0.170776ms)
+✖ existing NPC overlap permits unlifted retreat but never grants grounded autostep (0.227301ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 0
+ℹ fail 9
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 110.88857
+
+✖ failing tests:
+
+test at tests/r96-movement/controller.test.mjs:5:1
+✖ local falling body lands exactly on thin real top with physical support (1.771118ms)
+  AssertionError [ERR_ASSERTION]: resolveFurnitureVertical
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at call (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/controller.test.mjs:4:33)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/controller.test.mjs:5:121)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r96-movement/controller.test.mjs:6:1
+✖ airborne query cannot snap a lower foot upward onto a nearby high top (0.238508ms)
+  AssertionError [ERR_ASSERTION]: resolveFurnitureVertical
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at call (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/controller.test.mjs:4:33)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/controller.test.mjs:6:116)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r96-movement/controller.test.mjs:7:1
+✖ upward head hits real roof and remains airborne, without changing floor into roof support (0.209604ms)
+  AssertionError [ERR_ASSERTION]: resolveFurnitureVertical
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at call (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/controller.test.mjs:4:33)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/controller.test.mjs:7:140)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r96-movement/controller.test.mjs:8:1
+✖ NPC vertical collision does not ground player or reset jump (0.178207ms)
+  AssertionError [ERR_ASSERTION]: resolveFurnitureVertical
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at call (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/controller.test.mjs:4:33)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/controller.test.mjs:8:188)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r96-movement/controller.test.mjs:9:1
+✖ outside region vertical returns null and does not mutate airborne state (0.232399ms)
+  AssertionError [ERR_ASSERTION]: resolveFurnitureVertical
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at call (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/controller.test.mjs:4:33)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/controller.test.mjs:9:140)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r96-movement/controller.test.mjs:10:1
+✖ grounded step uses lift translate settle and head clearance, not only endpoint (0.218428ms)
+  AssertionError [ERR_ASSERTION]: furnitureTryStep
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at call (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/controller.test.mjs:4:33)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/controller.test.mjs:10:140)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r96-movement/controller.test.mjs:11:1
+✖ airborne and unspecified callers cannot auto-step (0.23993ms)
+  AssertionError [ERR_ASSERTION]: furnitureTryStep
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at call (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/controller.test.mjs:4:33)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/controller.test.mjs:11:151)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r96-movement/controller.test.mjs:12:1
+✖ walking off a ledge preserves true feet until a swept gravity descent (0.170776ms)
+  AssertionError [ERR_ASSERTION]: furnitureTryStep
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at call (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/controller.test.mjs:4:33)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/controller.test.mjs:12:116)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r96-movement/controller.test.mjs:13:1
+✖ existing NPC overlap permits unlifted retreat but never grants grounded autostep (0.227301ms)
+  AssertionError [ERR_ASSERTION]: furnitureTryStep
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at call (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/controller.test.mjs:4:33)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r96-yangxin-furniture-motion/tests/r96-movement/controller.test.mjs:13:239)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

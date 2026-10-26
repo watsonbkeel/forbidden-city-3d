@@ -1,0 +1,16 @@
+✔ square corner overlap with an actual NPC capsule is not missed by circular-player math (1.422585ms)
+✔ a falling square body contacts NPC top but moving away from exact contact is free (0.368553ms)
+✔ existing dynamic overlap may strictly retreat but never deepen or cross through the actor (0.284146ms)
+✔ long motion cannot tunnel through an NPC when both endpoints are clear (1.478289ms)
+✔ exact square-to-capsule boundary touch is clear while positive depth blocks (0.220692ms)
+✔ deep centered overlap permits a small provably outward step instead of saturated-distance lock (0.115864ms)
+✔ escaping one capsule part cannot introduce overlap with another part of the same actor (0.231748ms)
+✔ invalid later dynamic parts and motion are rejected before broadphase early exits (0.456305ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 105.127938

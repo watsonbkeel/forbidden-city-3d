@@ -116,7 +116,8 @@ export class PerfHUD {
       `Loaded ${loaded}`;
     const c = this.characterProvider?.();
     if (c) this.el.textContent += `\nNPC ${c.registered} reg / ${c.loaded} loaded / ${c.visible} visible / ${c.near} near` +
-      `\nReady ${c.loaded} / pending ${c.pending ?? 0} / failed ${c.errors ?? 0}` +
+      `\nLogical ${c.loaded} / pending ${c.pending ?? 0} / failed ${c.errors ?? 0}` +
+      (Number.isFinite(c.resident)?`\nModels ${c.residentModels??0}/${c.resident} / tasks ${c.modelPending??0} / resident batches ${c.residentBatches??0}`:'') +
       `\nCopies ${c.renderCopies} / batches ${c.batches} / tris~ ${c.trianglesEstimate}` +
       `\nCPU p50/p95 ${(c.updateP50Ms ?? 0).toFixed(2)}/${(c.updateP95Ms ?? 0).toFixed(2)} ms`;
 
