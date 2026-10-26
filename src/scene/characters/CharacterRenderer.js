@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { CharacterResourcePool } from './CharacterResourcePool.js';
-import { characterGeometryOptionsFor } from './CharacterGeometryOptions.js';
+import { characterGeometryOptionsFor, characterResourceKey } from './CharacterGeometryOptions.js';
 import { CHARACTER_DEFORM_GLSL } from './CharacterAnimation.js';
 
 const CAPACITY = 96;
@@ -8,8 +8,8 @@ const bytesOf = geometry => Object.values(geometry.attributes).reduce((n,a)=>n+a
 /** Actual InstancedMesh renderer. Template cache is shared; each live spatial
  * batch owns its instance stream and GPU-safe clone, reported separately. */
 export class CharacterRenderer {
-  constructor({ scene, pool = new CharacterResourcePool() }) {
-    this.scene=scene; this.pool=pool; this.batches=new Map(); this.disposed=false;
+  constructor({ scene, pool = new CharacterResourcePool(), requestPreparation = null }) {
+    this.scene=scene; this.pool=pool; this.requestPreparation=requestPreparation; this.batches=new Map(); this.disposed=false;this.submittedActors=[];
     this.root=new THREE.Group();this.root.name='QingInterpretationCharacters';this.root.userData.nonInteractive=true;this.root.userData.characterLayer=true;scene.add(this.root);
     this.timeUniform={value:0};
     this.material=new THREE.MeshStandardMaterial({vertexColors:true,roughness:.91,metalness:.02,transparent:false,depthWrite:true});
@@ -47,6 +47,18 @@ export class CharacterRenderer {
   render(actors, { simulationSeconds = 0 } = {}) {
     if(this.disposed)return this.last;
     this.timeUniform.value=simulationSeconds;
+    if(this.requestPreparation){
+      const ready=[];
+      for(const actor of actors){
+        const options=characterGeometryOptionsFor(actor),key=characterResourceKey(actor.templateId,actor.pose,actor.lod,options);
+        if(this.pool.entries.has(key)){ready.push(actor);continue;}
+        this.requestPreparation(actor);
+        // Only substitute an already prepared LOD of the EXACT pose/seat.
+        // No synchronous authoring on a camera, quality, or day/night change.
+        for(let lod=2;lod>=0;lod--)if(this.pool.entries.has(characterResourceKey(actor.templateId,actor.pose,lod,options))){ready.push({...actor,lod});break;}
+      }
+      actors=ready;
+    }
     const groups=new Map();
     for(const actor of actors){
       const options=characterGeometryOptionsFor(actor);
@@ -69,11 +81,12 @@ export class CharacterRenderer {
       mesh.computeBoundingBox();mesh.computeBoundingSphere();
       trianglesEstimate+=batch.triangles*list.length;renderCopies+=list.length;
     }
-    this.last={visible:actors.length,renderCopies,batches:this.batches.size,trianglesEstimate};return {...this.last};
+    this.submittedActors=actors;
+    this.last={visible:actors.length,near:actors.filter(a=>a.lod===0).length,renderCopies,batches:this.batches.size,trianglesEstimate};return {...this.last};
   }
   snapshot(){let batchGeometryBytes=0,instanceBytes=0;for(const b of this.batches.values()){batchGeometryBytes+=b.geometryBytes;instanceBytes+=b.mesh.instanceMatrix.array.byteLength;}
     return {batchGeometryBytes,instanceBytes,sharedResources:this.pool.stats(),textureGpuEstimateBytes:0,castShadow:false,
       performanceEvidence:'CPU submission estimates; full-frame WebGL A/B not measured',drawCallsEstimate:this.batches.size};}
-  clear(){for(const [key,batch]of this.batches)this._remove(key,batch);this.last={visible:0,renderCopies:0,batches:0,trianglesEstimate:0};}
+  clear(){this.submittedActors=[];for(const [key,batch]of this.batches)this._remove(key,batch);this.last={visible:0,renderCopies:0,batches:0,trianglesEstimate:0};}
   dispose(){if(this.disposed)return;this.clear();this.scene.remove(this.root);this.material.dispose();this.pool.dispose();this.disposed=true;}
 }

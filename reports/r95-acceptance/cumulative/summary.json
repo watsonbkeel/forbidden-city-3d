@@ -1,0 +1,165 @@
+{
+  "node": "v24.19.0",
+  "entrySHA256": "b0c56b7b3f4d7ca171628a393b46a6053099803fee24789cad8a17a197331b5d",
+  "sha": "19fc7c56337783d5d0caef446fabaa7c29038f1f",
+  "root": "/workspace/scratch/02a8023d1a85/r95-acceptance-ledger",
+  "baseline": "c6a2a28736b4faa3d7a1826840deb4b0954f9bce",
+  "changed": [
+    {
+      "path": "public/llms.txt",
+      "baseline": "d076ab138486b3b309a7ad4ef04107161d4c4567a43a182d958e1fe7d82cf3a5",
+      "candidate": "9939f05f96636f92c507e7a66f4db95bfbb3b805d51126c9f556bb29a1046542"
+    },
+    {
+      "path": "release.json",
+      "baseline": "c40c80d5998aecce41e55a192ca0bb161c112b01c157f386836f814a84e1af6f",
+      "candidate": "f48c18655b9a16c988a7f5cfdb094b18eff9c4c2699f75df456ff302a5ed4520"
+    },
+    {
+      "path": "src/scene/characters/CharacterManager.js",
+      "baseline": "185a52f1bb6826e58bb080a8f7d381832a8d1a3807a3e9e8100805aa500a1ffb",
+      "candidate": "ecc4391d0206ef473763cd4ab37f7eddde811bbafecaf5d2cb28daf7b1825f58"
+    },
+    {
+      "path": "src/scene/characters/CharacterRenderer.js",
+      "baseline": "e45e2fa438797310c36a2af4b71f1d9138e1e9a56dba5c5961ef333b6e044c8b",
+      "candidate": "a155ad9a789212b72fe5e8bd818c02cc85ed77f48622b893c2417d19e9646fa9"
+    },
+    {
+      "path": "src/scene/characters/CharacterSystem.js",
+      "baseline": "640561cd7e0a7fda12e0a58cb58b5a16f0902a04724f93bc4511c2758917d82f",
+      "candidate": "0c1cbf8f2d7900f61846559398534b6a72a686f740ba584c23a40d9c1dbb5e94"
+    },
+    {
+      "path": "src/scene/characters/CharacterWorkQueue.js",
+      "baseline": "2e5e2d24c746647123bf6a20b9c169fe062e4a3db5cc28f86a0c531e304ad7b2",
+      "candidate": "ac5dee7ea48859a4abf32f7c54a10dad7ea9fc293e0cf57bfd36cc8718152d1c"
+    },
+    {
+      "path": "src/scene/characters/CharacterWorldAdapter.js",
+      "baseline": "4abe0de4db88f6b31c21dacd5fa84da9d117bca6e75044541f367007415e5492",
+      "candidate": "87f31fa361866e1e28719cbbacaf71d7ba2fdde4b6ae3d4b2a14d61a42205a28"
+    }
+  ],
+  "unapprovedChanges": [],
+  "docs": {
+    "mainSHA": "bba88da13cd475de9b513f80515aa85265ac8e71",
+    "historicalRows": 17,
+    "missingMainRows": [],
+    "authors": true,
+    "llmsIdentical": true,
+    "conflictFree": true,
+    "mainEssentials": true,
+    "R95Summary": true
+  },
+  "suites": {
+    "R89": {
+      "exit": 0,
+      "seconds": 9.26,
+      "log": "/workspace/scratch/02a8023d1a85/r95-independent-audit/cumulative-19fc7c563377-1792991429142249808/R89.tap"
+    },
+    "R90": {
+      "exit": 0,
+      "seconds": 21.38,
+      "log": "/workspace/scratch/02a8023d1a85/r95-independent-audit/cumulative-19fc7c563377-1792991429142249808/R90.tap"
+    },
+    "R92": {
+      "exit": 0,
+      "seconds": 14.44,
+      "log": "/workspace/scratch/02a8023d1a85/r95-independent-audit/cumulative-19fc7c563377-1792991429142249808/R92.tap"
+    },
+    "R93": {
+      "exit": 0,
+      "seconds": 7.03,
+      "log": "/workspace/scratch/02a8023d1a85/r95-independent-audit/cumulative-19fc7c563377-1792991429142249808/R93.tap"
+    }
+  },
+  "scope": "CPU cumulative retention only; R91 specialist, build/HTTP, browser, final remote refresh NOT included",
+  "selfCheck": false,
+  "runtimeCheckpoint": false,
+  "sparseFixtures": {
+    "reports/r92-joint/baseline-retention.json": {
+      "path": "/workspace/scratch/02a8023d1a85/r95-independent-audit/cumulative-19fc7c563377-1792991429142249808/inputs/reports/r92-joint/baseline-retention.json",
+      "sha256": "99f750b3fdf85bdb47ea032119a77729a736597bc1f7525b3ad6804edfba7dcf"
+    }
+  },
+  "testDefinitions": [
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r89-independent-ui.test.mjs",
+      "sha256": "78806fc1b6af5a624eacbb0860651770e307bd26e3adbe773e480c37065e24fd",
+      "wrapper": "/workspace/scratch/02a8023d1a85/r95-independent-audit/cumulative-19fc7c563377-1792991429142249808/wrappers/R89-r89-independent-ui.test.mjs"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r89-time-controls.test.mjs",
+      "sha256": "474cba237ed1834f10438ff0eee57f7e83d9a0e6cba3633c3c0a58e598c2b566",
+      "wrapper": "/workspace/scratch/02a8023d1a85/r95-independent-audit/cumulative-19fc7c563377-1792991429142249808/wrappers/R89-r89-time-controls.test.mjs"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r89-water-broadphase.test.mjs",
+      "sha256": "af3201119d8eef6591bd7dcdcd637f89cd612613f02b11f061bfa3c700569cb1",
+      "wrapper": "/workspace/scratch/02a8023d1a85/r95-independent-audit/cumulative-19fc7c563377-1792991429142249808/wrappers/R89-r89-water-broadphase.test.mjs"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r94-integration-audit/r89-world.test.mjs",
+      "sha256": "2a57205453f725d77ca3bdaf1472aec6481ad38142968afaf580b9352c17d746",
+      "wrapper": "/workspace/scratch/02a8023d1a85/r95-independent-audit/cumulative-19fc7c563377-1792991429142249808/wrappers/R89-r89-world.test.mjs"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r90-shunzhen-topology.test.mjs",
+      "sha256": "c131e7a7eba0b33725b79eb11c0515d38c7d66c2434509c50e218fc8d9cab371",
+      "wrapper": "/workspace/scratch/02a8023d1a85/r95-independent-audit/cumulative-19fc7c563377-1792991429142249808/wrappers/R90-r90-shunzhen-topology.test.mjs"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r90-map-contract.test.mjs",
+      "sha256": "f02e8266ac97144202e91c29b75356b99bad4d812ec40d60ad57390ef77bfe75",
+      "wrapper": "/workspace/scratch/02a8023d1a85/r95-independent-audit/cumulative-19fc7c563377-1792991429142249808/wrappers/R90-r90-map-contract.test.mjs"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r90-independent-boundaries.test.mjs",
+      "sha256": "860d0c863756dbea5478b32e31a4d07b4609bc95470896257662fda5be16af09",
+      "wrapper": "/workspace/scratch/02a8023d1a85/r95-independent-audit/cumulative-19fc7c563377-1792991429142249808/wrappers/R90-r90-independent-boundaries.test.mjs"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r90-north-world-routes.test.mjs",
+      "sha256": "881a0e7df2a65a8dbd54ea751866768416d815e51255cb27a2c538cba3c63115",
+      "wrapper": "/workspace/scratch/02a8023d1a85/r95-independent-audit/cumulative-19fc7c563377-1792991429142249808/wrappers/R90-r90-north-world-routes.test.mjs"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r92-joint-east-firewall.test.mjs",
+      "sha256": "a668a4e402c732d5710a2f8b05ef4993f7cc9eae177629a9ac3063561fc082ca",
+      "wrapper": "/workspace/scratch/02a8023d1a85/r95-independent-audit/cumulative-19fc7c563377-1792991429142249808/wrappers/R92-r92-joint-east-firewall.test.mjs"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r92-joint-east-terrace.test.mjs",
+      "sha256": "e5ad3748f8cbdb26f4f52e6604f22476880d2381d014b92de0166957d50af69d",
+      "wrapper": "/workspace/scratch/02a8023d1a85/r95-independent-audit/cumulative-19fc7c563377-1792991429142249808/wrappers/R92-r92-joint-east-terrace.test.mjs"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r92-joint-world.test.mjs",
+      "sha256": "ade8ff50270961fc9af76bc7f8c50ac729e600781637e97921bf15ce8a8719eb",
+      "wrapper": "/workspace/scratch/02a8023d1a85/r95-independent-audit/cumulative-19fc7c563377-1792991429142249808/wrappers/R92-r92-joint-world.test.mjs"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r92-independent/straight-north.test.mjs",
+      "sha256": "4f837b61f47eb8bcb0bea4ce0de2b7b9ee7cfb6e8789c62c7fcce8cd19afb360",
+      "wrapper": "/workspace/scratch/02a8023d1a85/r95-independent-audit/cumulative-19fc7c563377-1792991429142249808/wrappers/R92-straight-north.test.mjs"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r92-joint-east-terrace/tests/r93-qinzheng-high-tables.test.mjs",
+      "sha256": "85c583474f1725d9ec51b04ee0be36669749c32c4e14585eb04e5c3460c2f26c",
+      "wrapper": "/workspace/scratch/02a8023d1a85/r95-independent-audit/cumulative-19fc7c563377-1792991429142249808/wrappers/R93-r93-qinzheng-high-tables.test.mjs"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r94-integration-audit/r93-ground-lifecycle.test.mjs",
+      "sha256": "50dfd2d8019d8e5ba9eaff2dba80e5087be04229560cc9c44bb429f1d6b31278",
+      "wrapper": "/workspace/scratch/02a8023d1a85/r95-independent-audit/cumulative-19fc7c563377-1792991429142249808/wrappers/R93-r93-ground-lifecycle.test.mjs"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r94-integration-audit/kang-exits.test.mjs",
+      "sha256": "2af0d7db6a2180ddf8515e290f3d19fb52a22e219d809a45bdf01299a7b3925d",
+      "wrapper": "/workspace/scratch/02a8023d1a85/r95-independent-audit/cumulative-19fc7c563377-1792991429142249808/wrappers/R93-kang-exits.test.mjs"
+    }
+  ],
+  "trackedCleanAfter": true,
+  "status": "SCOPED_CPU_PASS_NOT_RELEASE_APPROVAL"
+}

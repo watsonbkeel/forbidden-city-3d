@@ -1,0 +1,31 @@
+✔ demand renderer never synchronously authors a missing resource, then submits prepared actual instances (20.336059ms)
+✔ a prepared coarse same-pose resource stays visible while requested detailed LOD prepares (4.357109ms)
+✔ first binding preparation does not build sleeping/walking/high-detail variants for standing maid (5.460114ms)
+✖ status counts actual renderer submissions rather than selected but preparing actors (2.409426ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 185.562069
+
+✖ failing tests:
+
+test at tests/r95-character-demand.test.mjs:8:1
+✖ status counts actual renderer submissions rather than selected but preparing actors (2.409426ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r95-acceptance-ledger/tests/r95-character-demand.test.mjs:8:657)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

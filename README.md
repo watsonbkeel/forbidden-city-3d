@@ -1,16 +1,24 @@
 # 故宫 3D 虚拟游览
 
-> **版本状态（2026-10-25 核对）**：已核对主线合并 **R88**（含 R73–R88 累积源码）；当前开发候选为 **R94**，基于已交付 R93a 累计 R89–R93 五项更新。堆秀山完成本版限定范围的几何与物理验收，最终构建/包身份检查以候选报告为准，不代表已合并 main 或公开部署。分支上传、合并主线、公开部署是三个不同状态，线上实际版本以 COS 上的 build-info.json 为准。V7–V14 是历史验收快照批次，不与 R 迭代编号对应。
+> **版本状态（2026-10-26核对）**：用户已将R94合并main（`c32e6d44`），官方Node20 CI构建/Pages部署成功，GitHub Pages线上读取到 `R94-44444072f87e`。当前R95为累计开发候选，保留main额外报告修正；重点修人物首次显示排队并建立需求/失败对账。分支上传、main合并与部署分别记录，不将候选说成已上线。V系列仍为历史验收快照。
 
 ![Three.js](https://img.shields.io/badge/Three.js-r162-blue)
 ![Vite](https://img.shields.io/badge/Vite-5-purple)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Status](https://img.shields.io/badge/mainline-R88-brightgreen)
+![Status](https://img.shields.io/badge/mainline-R94-brightgreen)
 ![Validation](https://img.shields.io/badge/validation-see_release_records-blue)
 
-## R94：五项更新的累计开发候选
+## R95：人物首次显示与需求对账（开发候选）
 
-R94 面向后续由维护者合并 main，累计 R89 + R90 + R91 + R92 + R93。安全回滚基线为已交付 R93a；累计185项与堆秀山专项85项通过。准确冻结源码、完整回归、构建和能力边界见 [R94验证说明](docs/current-state/r94-duixiu/VALIDATION.md)。本节不宣称全历史测试全部通过、已合并或已部署。
+R94低画质下储秀宫缺人已复现为准备队列延迟，不是人物关闭或加载报错。R95候选按相机附近优先准备，并将未使用LOD/日夜姿态改为有界按需准备；不提高每帧预算、不改角色数量/位置。实际实例提交、日夜/画质/隐藏恢复与独立功能审核已通过，最终构建/累计验收另记，不能将CPU检查说成手机实测。
+
+[需求状态与R95–R105计划](docs/current-state/r95-acceptance/requirements.json)逐项区分已交付、部分交付、真实遗留和未验能力。前面需求不是全部做完：炕沿普通退步问题留R96，加载回退留R97，堆秀山后侧等留R98；其余分区按证据推进，不重复已解决武英门殿问题。
+
+R94原163失败完整保留：118身份/保留契约待迁移、7夹具、38待核是分诊不是豁免。云Chrome确认线上身份但WebGL Disabled，实际操作仍NOT_RUN；不是已通过手机/GPU验收。
+
+## R94：已合并的五项累计更新（历史交付范围）
+
+R94 已由用户合并 main，累计 R89 + R90 + R91 + R92 + R93。安全回滚基线为已交付 R93a；累计185项与堆秀山专项85项通过。准确冻结源码、完整回归、构建和能力边界见 [R94验证说明](docs/current-state/r94-duixiu/VALIDATION.md)。本节保留当时限定验收范围，不宣称全历史测试全部通过。
 
 | 原计划 | 累计内容 | 本次状态边界 |
 |---|---|---|

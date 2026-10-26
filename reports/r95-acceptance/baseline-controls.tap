@@ -1,0 +1,56 @@
+✔ separate numeric fields apply 21:00 once, only on Apply or Enter; drafts survive clock refresh (10.992892ms)
+✔ reject invalid clock :00 without changing simulation (3.769278ms)
+✔ reject invalid clock 24:00 without changing simulation (3.335327ms)
+✔ reject invalid clock -1:00 without changing simulation (2.137168ms)
+✔ reject invalid clock 21:60 without changing simulation (2.516258ms)
+✔ reject invalid clock 21:-1 without changing simulation (2.877299ms)
+✔ reject invalid clock 21.5:00 without changing simulation (2.847043ms)
+✔ reject invalid clock 21:0.5 without changing simulation (1.8055ms)
+✔ reject invalid clock NaN:00 without changing simulation (2.033753ms)
+✔ accept boundary 00:00 and preserve slider/live controls (2.517679ms)
+✔ accept boundary 23:59 and preserve slider/live controls (2.523788ms)
+✔ a fresh world click releases old range focus and real controller moves without map teleport (10.836637ms)
+✔ focusing a time control stops previously held input rather than drifting while editing (3.783419ms)
+✔ settings #settings-close-btn, map=false: former time-field focus cannot trap new movement (6.050753ms)
+✔ settings #resume-btn, map=false: former time-field focus cannot trap new movement (4.09759ms)
+✔ settings Escape, map=false: former time-field focus cannot trap new movement (4.926084ms)
+✔ settings #settings-close-btn, map=true: former time-field focus cannot trap new movement (3.872693ms)
+✔ settings #resume-btn, map=true: former time-field focus cannot trap new movement (4.701117ms)
+✔ settings Escape, map=true: former time-field focus cannot trap new movement (4.562349ms)
+✔ time disclosure closes by Escape/button without global settings toggle or hidden input focus (1.634584ms)
+✔ editing time during map-open flight clears held flight keys without dismounting or locking (26.062752ms)
+✔ draft blur, Escape, close and reopen never apply a hidden or invalid clock (2.230919ms)
+✔ input-focus listener stops mobile joystick, release and resume require no pointer lock (3.554316ms)
+✔ real unlock and subsequent lock event release stale number focus without claiming lock early (1.541244ms)
+✔ separate numeric fields apply 21:00 once, only on Apply or Enter; drafts survive clock refresh (9.532319ms)
+✔ reject invalid clock :00 without changing simulation (2.335937ms)
+✔ reject invalid clock 24:00 without changing simulation (2.619422ms)
+✔ reject invalid clock -1:00 without changing simulation (1.395675ms)
+✔ reject invalid clock 21:60 without changing simulation (2.101444ms)
+✔ reject invalid clock 21:-1 without changing simulation (2.044769ms)
+✔ reject invalid clock 21.5:00 without changing simulation (2.221956ms)
+✔ reject invalid clock 21:0.5 without changing simulation (1.35222ms)
+✔ reject invalid clock NaN:00 without changing simulation (1.452561ms)
+✔ accept boundary 00:00 and preserve slider/live controls (1.724919ms)
+✔ accept boundary 23:59 and preserve slider/live controls (1.790197ms)
+✔ a fresh world click releases old range focus and real controller moves without map teleport (8.98706ms)
+✔ focusing a time control stops previously held input rather than drifting while editing (2.96441ms)
+✔ settings #settings-close-btn, map=false: former time-field focus cannot trap new movement (3.999072ms)
+✔ settings #resume-btn, map=false: former time-field focus cannot trap new movement (2.441224ms)
+✔ settings Escape, map=false: former time-field focus cannot trap new movement (3.178582ms)
+✔ settings #settings-close-btn, map=true: former time-field focus cannot trap new movement (2.926613ms)
+✔ settings #resume-btn, map=true: former time-field focus cannot trap new movement (2.601215ms)
+✔ settings Escape, map=true: former time-field focus cannot trap new movement (3.038241ms)
+✔ time disclosure closes by Escape/button without global settings toggle or hidden input focus (1.478099ms)
+✔ editing time during map-open flight clears held flight keys without dismounting or locking (27.337911ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+✔ R94 production Garden equals frozen independently reviewed replacement, including other objects and supports (1954.17792ms)
+ℹ tests 46
+ℹ suites 0
+ℹ pass 46
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2144.019044

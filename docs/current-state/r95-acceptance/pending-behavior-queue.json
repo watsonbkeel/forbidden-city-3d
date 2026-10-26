@@ -1,0 +1,648 @@
+[
+  {
+    "id": "R95-F-84aa3621a4cc",
+    "row": 1,
+    "originalRequirement": "午门: six rotated ground leaves register their actual body-height world bounds exactly once",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/gate-ground-door-colliders.test.mjs:88:3",
+      "log": "reports/r94/verification/current-state-1290.tap:1811",
+      "error": "  AssertionError [ERR_ASSERTION]: only Wumen child 27 is in ascent scope\n  \n  42 !== 41\n  \n      at scope (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/lib/wumen-ascent-retention.mjs:51:10)\n      at restorePreWumenAscent (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/lib/wumen-ascent-retention.mjs:82:7)\n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/gate-ground-door-colliders.test.mjs:92:18)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.start (node:internal/test_runner/test:1242:17)\n      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: 42,\n    expected: 41,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": "tests/lib/wumen-ascent-retention.mjs"
+    },
+    "finding": "Wumen历史restore helper先遇到children42!=41；没有抵达目标行为检查。新增对象的后继身份尚未在本轮逐项重建，因此保守待核而非硬判过时。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-0cc072135f26",
+    "row": 2,
+    "originalRequirement": "午门: collider registration retains every mesh, material, triangle and production render batch",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/gate-ground-door-colliders.test.mjs:167:3",
+      "log": "reports/r94/verification/current-state-1290.tap:1832",
+      "error": "  AssertionError [ERR_ASSERTION]: only Wumen child 27 is in ascent scope\n  \n  42 !== 41\n  \n      at scope (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/lib/wumen-ascent-retention.mjs:51:10)\n      at restorePreWumenAscent (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/lib/wumen-ascent-retention.mjs:82:7)\n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/gate-ground-door-colliders.test.mjs:168:22)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: 42,\n    expected: 41,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": "tests/lib/wumen-ascent-retention.mjs"
+    },
+    "finding": "Wumen历史restore helper先遇到children42!=41；没有抵达目标行为检查。新增对象的后继身份尚未在本轮逐项重建，因此保守待核而非硬判过时。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-2ed8ee3100da",
+    "row": 7,
+    "originalRequirement": "午门: explicit candidate budget replaces one mesh, adds one material, and preserves physics",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/gate-plaques.test.mjs:130:29",
+      "log": "reports/r94/verification/current-state-1290.tap:1915",
+      "error": "  AssertionError [ERR_ASSERTION]: only Wumen child 27 is in ascent scope\n  \n  42 !== 41\n  \n      at scope (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/lib/wumen-ascent-retention.mjs:51:10)\n      at restorePreWumenAscent (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/lib/wumen-ascent-retention.mjs:82:7)\n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/gate-plaques.test.mjs:133:3)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: 42,\n    expected: 41,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": "tests/lib/wumen-ascent-retention.mjs"
+    },
+    "finding": "Wumen历史restore helper先遇到children42!=41；没有抵达目标行为检查。新增对象的后继身份尚未在本轮逐项重建，因此保守待核而非硬判过时。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-fe48f8ac56b8",
+    "row": 8,
+    "originalRequirement": "tests/current-state/gate-rail-capless.test.mjs",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/gate-rail-capless.test.mjs:1:1",
+      "log": "reports/r94/verification/current-state-1290.tap:1938",
+      "error": "  'test failed'\n\n",
+      "extra": "tests/lib/wumen-ascent-retention.mjs"
+    },
+    "finding": "Wumen历史restore helper先遇到children42!=41；没有抵达目标行为检查。新增对象的后继身份尚未在本轮逐项重建，因此保守待核而非硬判过时。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-3b24dac55f78",
+    "row": 9,
+    "originalRequirement": "Wumen preserves all geometry outside the finite reviewed main-tower profile",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/gate-tower-render-geometry.test.mjs:8:1",
+      "log": "reports/r94/verification/current-state-1290.tap:1942",
+      "error": "  AssertionError [ERR_ASSERTION]: only Wumen child 27 is in ascent scope\n  \n  42 !== 41\n  \n      at scope (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/lib/wumen-ascent-retention.mjs:51:10)\n      at restorePreWumenAscent (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/lib/wumen-ascent-retention.mjs:82:7)\n      at unscopedWumen (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/lib/wumen-vertical-profile-controls.mjs:9:4)\n      at assertUnscopedWumen (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/lib/wumen-vertical-profile-controls.mjs:16:69)\n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/gate-tower-render-geometry.test.mjs:8:88)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.start (node:internal/test_runner/test:1242:17)\n      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: 42,\n    expected: 41,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": "tests/lib/wumen-ascent-retention.mjs"
+    },
+    "finding": "Wumen历史restore helper先遇到children42!=41；没有抵达目标行为检查。新增对象的后继身份尚未在本轮逐项重建，因此保守待核而非硬判过时。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-ee3c90462c06",
+    "row": 10,
+    "originalRequirement": "Wumen historical top and ramp support golden survives only the exact folded-ascent restoration",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/gate-tower-render-geometry.test.mjs:12:1",
+      "log": "reports/r94/verification/current-state-1290.tap:1965",
+      "error": "  AssertionError [ERR_ASSERTION]: only Wumen child 27 is in ascent scope\n  \n  42 !== 41\n  \n      at scope (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/lib/wumen-ascent-retention.mjs:51:10)\n      at restorePreWumenAscent (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/lib/wumen-ascent-retention.mjs:82:7)\n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/gate-tower-render-geometry.test.mjs:12:124)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: 42,\n    expected: 41,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": "tests/lib/wumen-ascent-retention.mjs"
+    },
+    "finding": "Wumen历史restore helper先遇到children42!=41；没有抵达目标行为检查。新增对象的后继身份尚未在本轮逐项重建，因此保守待核而非硬判过时。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-4793a8c31ea5",
+    "row": 12,
+    "originalRequirement": "unhooked experimental caps reproduce jump penetration at 10Hz",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/inner-jinshui-finial-contact-blocker.test.mjs:9:66",
+      "log": "reports/r94/verification/current-state-1290.tap:1995",
+      "error": "  AssertionError [ERR_ASSERTION]: actual cap is reached without disabling water guard\n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/inner-jinshui-finial-contact-blocker.test.mjs:13:49)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.start (node:internal/test_runner/test:1242:17)\n      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: false,\n    expected: true,\n    operator: '==',\n    diff: 'simple'\n  }\n\n",
+      "extra": "tests/current-state/inner-jinshui-finial-contact-blocker.test.mjs:1-12;tests/lib/r58-bridge-contact-probe.mjs"
+    },
+    "finding": "这组是未接入实验cap的历史BLOCKER REPRODUCTION，期望旧穿透/到达值；失败不能直接算生产路线退化，也不能反向证明当前生产安全。需重绑真实生产实体复核。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P1"
+  },
+  {
+    "id": "R95-F-81ac07325a57",
+    "row": 13,
+    "originalRequirement": "unhooked experimental caps reproduce rail-walk penetration at 10Hz",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/inner-jinshui-finial-contact-blocker.test.mjs:9:66",
+      "log": "reports/r94/verification/current-state-1290.tap:2011",
+      "error": "  AssertionError [ERR_ASSERTION]: actual cap is reached without disabling water guard\n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/inner-jinshui-finial-contact-blocker.test.mjs:13:49)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: false,\n    expected: true,\n    operator: '==',\n    diff: 'simple'\n  }\n\n",
+      "extra": "tests/current-state/inner-jinshui-finial-contact-blocker.test.mjs:1-12;tests/lib/r58-bridge-contact-probe.mjs"
+    },
+    "finding": "这组是未接入实验cap的历史BLOCKER REPRODUCTION，期望旧穿透/到达值；失败不能直接算生产路线退化，也不能反向证明当前生产安全。需重绑真实生产实体复核。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P1"
+  },
+  {
+    "id": "R95-F-64c911e4b0b4",
+    "row": 14,
+    "originalRequirement": "unhooked experimental caps reproduce jump penetration at 60Hz",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/inner-jinshui-finial-contact-blocker.test.mjs:9:66",
+      "log": "reports/r94/verification/current-state-1290.tap:2029",
+      "error": "  AssertionError [ERR_ASSERTION]: documented penetration changed: -0.03381606964878081\n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/inner-jinshui-finial-contact-blocker.test.mjs:13:146)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: false,\n    expected: true,\n    operator: '==',\n    diff: 'simple'\n  }\n\n",
+      "extra": "tests/current-state/inner-jinshui-finial-contact-blocker.test.mjs:1-12;tests/lib/r58-bridge-contact-probe.mjs"
+    },
+    "finding": "这组是未接入实验cap的历史BLOCKER REPRODUCTION，期望旧穿透/到达值；失败不能直接算生产路线退化，也不能反向证明当前生产安全。需重绑真实生产实体复核。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P1"
+  },
+  {
+    "id": "R95-F-02494849bc6a",
+    "row": 15,
+    "originalRequirement": "unhooked experimental caps reproduce rail-walk penetration at 60Hz",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/inner-jinshui-finial-contact-blocker.test.mjs:9:66",
+      "log": "reports/r94/verification/current-state-1290.tap:2047",
+      "error": "  AssertionError [ERR_ASSERTION]: actual cap is reached without disabling water guard\n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/inner-jinshui-finial-contact-blocker.test.mjs:13:49)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: false,\n    expected: true,\n    operator: '==',\n    diff: 'simple'\n  }\n\n",
+      "extra": "tests/current-state/inner-jinshui-finial-contact-blocker.test.mjs:1-12;tests/lib/r58-bridge-contact-probe.mjs"
+    },
+    "finding": "这组是未接入实验cap的历史BLOCKER REPRODUCTION，期望旧穿透/到达值；失败不能直接算生产路线退化，也不能反向证明当前生产安全。需重绑真实生产实体复核。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P1"
+  },
+  {
+    "id": "R95-F-e5b372e1c6d9",
+    "row": 16,
+    "originalRequirement": "height-preserving local replacement exposes inherited support gap at 10Hz",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/inner-jinshui-finial-replacement-prototype.test.mjs:8:26",
+      "log": "reports/r94/verification/current-state-1290.tap:2065",
+      "error": "  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n  \n    assert.ok(result.actualCapSurfaceY!==null)\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/inner-jinshui-finial-replacement-prototype.test.mjs:11:90)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.start (node:internal/test_runner/test:1242:17)\n      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: false,\n    expected: true,\n    operator: '==',\n    diff: 'simple'\n  }\n\n",
+      "extra": "tests/current-state/inner-jinshui-finial-contact-blocker.test.mjs:1-12;tests/lib/r58-bridge-contact-probe.mjs"
+    },
+    "finding": "这组是未接入实验cap的历史BLOCKER REPRODUCTION，期望旧穿透/到达值；失败不能直接算生产路线退化，也不能反向证明当前生产安全。需重绑真实生产实体复核。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P1"
+  },
+  {
+    "id": "R95-F-e3321aace880",
+    "row": 17,
+    "originalRequirement": "only the four side bridges receive caps on their 88 existing posts",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/inner-jinshui-side-finials.test.mjs:18:1",
+      "log": "reports/r94/verification/current-state-1290.tap:2084",
+      "error": "  AssertionError [ERR_ASSERTION]: 1.5524998053482308 != 1.3325\n      at close (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/inner-jinshui-side-finials.test.mjs:16:27)\n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/inner-jinshui-side-finials.test.mjs:28:211)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.start (node:internal/test_runner/test:1242:17)\n      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: false,\n    expected: true,\n    operator: '==',\n    diff: 'simple'\n  }\n\n",
+      "extra": ""
+    },
+    "finding": "原始红项存在，但未有足够证据把当前产品行为归为缺陷或过时契约；不得按继承失败豁免。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-a5b7651d4139",
+    "row": 18,
+    "originalRequirement": "hongyi: hidden faces give a bounded triangle reduction while all 28 lattice leaves keep their bars",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/pavilion-render-geometry.test.mjs:161:3",
+      "log": "reports/r94/verification/current-state-1290.tap:2101",
+      "error": "  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n  \n    assert.ok(count(baselineMeshes) - count(currentMeshes) >= (profile === 'hongyi' ? 2600 : 2700))\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/pavilion-render-geometry.test.mjs:164:12)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: false,\n    expected: true,\n    operator: '==',\n    diff: 'simple'\n  }\n\n",
+      "extra": ""
+    },
+    "finding": "原始红项存在，但未有足够证据把当前产品行为归为缺陷或过时契约；不得按继承失败豁免。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-ee0fde017fa0",
+    "row": 20,
+    "originalRequirement": "explicit role accounting records R48 golden columns and R49 split side doors without counting alternative LOD twice",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/qinan-hall.test.mjs:48:1",
+      "log": "reports/r94/verification/current-state-1290.tap:2126",
+      "error": "  AssertionError [ERR_ASSERTION]: original exterior + R48 columns/bases + R49 split side doors + 124-triangle name plaque\n  \n  9040 !== 3616\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/qinan-hall.test.mjs:50:9)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: 9040,\n    expected: 3616,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": ""
+    },
+    "finding": "原始红项存在，但未有足够证据把当前产品行为归为缺陷或过时契约；不得按继承失败豁免。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-8db7e553ead3",
+    "row": 21,
+    "originalRequirement": "new Qin’an lattice panels and painted beam boxes use full-height band UVs, not cropped box sampling",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/qinan-hall.test.mjs:196:1",
+      "log": "reports/r94/verification/current-state-1290.tap:2147",
+      "error": "  AssertionError [ERR_ASSERTION]: five front panels, ten side-door panels/leaves, and five beam boxes\n  \n  15 !== 20\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/qinan-hall.test.mjs:199:9)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: 15,\n    expected: 20,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": ""
+    },
+    "finding": "原始红项存在，但未有足够证据把当前产品行为归为缺陷或过时契约；不得按继承失败豁免。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-7358c555f521",
+    "row": 104,
+    "originalRequirement": "src/scene/palace/special/InnerJinshui.js: added R32 source has a complete fixed identity",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/r32-source-retention.test.mjs:119:3",
+      "log": "reports/r94/verification/current-state-1290.tap:4072",
+      "error": "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  \n  14244 !== 13812\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/r32-source-retention.test.mjs:123:12)\n      at async Test.run (node:internal/test_runner/test:1389:7)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: 14244,\n    expected: 13812,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": ""
+    },
+    "finding": "原始红项存在，但未有足够证据把当前产品行为归为缺陷或过时契约；不得按继承失败豁免。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-5dbd76b67a82",
+    "row": 105,
+    "originalRequirement": "src/scene/palace/special/YanxiStorehouses.js: added R32 source has a complete fixed identity",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/r32-source-retention.test.mjs:119:3",
+      "log": "reports/r94/verification/current-state-1290.tap:4089",
+      "error": "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  \n  7441 !== 7421\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/r32-source-retention.test.mjs:123:12)\n      at async Test.run (node:internal/test_runner/test:1389:7)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: 7441,\n    expected: 7421,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": ""
+    },
+    "finding": "原始红项存在，但未有足够证据把当前产品行为归为缺陷或过时契约；不得按继承失败豁免。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-36f341d3bb1d",
+    "row": 121,
+    "originalRequirement": "R34 existing garden lamp faces glow only at night with no new lights, collision geometry or shadows",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/r34-night-lighting.test.mjs:15:1",
+      "log": "reports/r94/verification/current-state-1290.tap:4368",
+      "error": "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  \n  4 !== 3\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/r34-night-lighting.test.mjs:20:9)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: 4,\n    expected: 3,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": ""
+    },
+    "finding": "原始红项存在，但未有足够证据把当前产品行为归为缺陷或过时契约；不得按继承失败豁免。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-bf40de103be7",
+    "row": 130,
+    "originalRequirement": "R35 binds the complete raw finish scope, independent R34 sources, unchanged product inventory and all previous fixtures",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/r35-source-retention.test.mjs:20:1",
+      "log": "reports/r94/verification/current-state-1290.tap:4550",
+      "error": "  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  ... Skipped lines\n  \n    [\n      'data/anchors.json',\n  +   'data/architecture/building-fidelity.json',\n  +   'data/architecture/hongde-court.json',\n      'data/architecture/kunning.json',\n      'data/architecture/qianqing-display-geometry.json',\n      'data/architecture/qianqing-material.json',\n      'data/architecture/qinan.json',\n      'data/architecture/taihe-column-grid.json',\n      'data/architecture/taihe-core.json',\n      'data/architecture/taihe-dais-front.json',\n  +   'data/architecture/wuying-2021-cases.json',\n  +   'data/architecture/yangxin-court-entrance.json',\n  +   'data/architecture/zhaoren-court.json',\n  +   'data/characters/actors.json',\n  +   'data/characters/anchors.json',\n  +   'data/characters/ceremonies.json',\n  +   'data/characters/emperor-night-route.json',\n  +   'data/characters/evidence.json',\n  +   'data/characters/fragments/r52-court-life.json',\n  +   'data/characters/fragments/r53-household-life.json',\n  +   'data/characters/fragments/r54-courtyard-staff.json',\n  +   'data/characters/fragments/r55-courtyard-staff.json',\n  +   'data/characters/fragments/r56-courtyard-presence.json',\n  +   'data/characters/fragments/r57-front-space-presence.json',\n  +   'data/characters/index.js',\n  +   'data/characters/night-beds.json',\n  +   'data/characters/night-routes.json',\n  +   'data/characters/paths.json',\n  +   'data/characters/schema.json',\n  +   'data/characters/scope.json',\n  +   'data/characters/seats.json',\n  +   'data/characters/surfaces.json',\n  +   'data/characters/templates.json',\n  +   'data/characters/world-source-freeze-r49.json',\n  +   'data/characters/world-source-freeze-r49b.json',\n  +   'data/characters/world-source-freeze-r49d.json',\n  +   'data/characters/world-source-freeze-r51.json',\n  +   'data/characters/world-source-freeze-r52.json',\n  +   'data/characters/world-source-freeze-r53.json',\n  +   'data/characters/world-source-freeze-r54.json',\n  +   'data/characters/world-source-freeze-r55.json',\n  +   'data/characters/world-source-freeze-r58-a-batch1.json',\n  +   'data/characters/world-source-freeze-r58-a-batch2.json',\n  +   'data/characters/world-source-freeze-r58-a-batch3.json',\n  +   'data/characters/world-source-freeze-r58-a-batch4.json',\n  +   'data/characters/world-source-freeze-r58-a-batch5.json',\n  +   'data/characters/world-source-freeze-r59-b-batch1.json',\n  +   'data/characters/world-source-freeze-r59-b-batch2.json',\n  +   'data/characters/world-source-freeze-r60-c.json',\n  +   'data/characters/world-source-freeze-r61-d.json',\n  +   'data/characters/world-source-freeze-r62-e.json',\n  +   'data/characters/world-source-freeze-r63-f.json',\n  +   'data/characters/world-source-freeze-r64-g.json',\n  +   'data/characters/world-source-freeze-r65-character-experience.json',\n  +   'data/characters/world-source-freeze-r66-h-northwest.json',\n  +   'data/characters/world-source-freeze-r67-i-ningshou.json',\n  +   'data/characters/world-source-freeze-r68-j-qianlong-garden.json',\n  +   'data/characters/world-source-freeze-r69-k-cining-area.json',\n  +   'data/characters/world-source-freeze-r70-l-water-walls.json',\n  +   'data/characters/world-source-freeze.json',\n      'data/interiors/cining.json',\n      'data/interiors/huangji.json',\n      'data/interiors/kunning.json',\n      'data/interiors/qianqing.json',\n      'data/interiors/schema.md',\n  ...\n      'data/zones/west-six.json',\n  +   'public/about.html',\n      'public/basis/basis_transcoder.js',\n      'public/basis/basis_transcoder.wasm',\n  +   'public/contribute.html',\n      'public/draco/draco_decoder.js',\n      'public/draco/draco_decoder.wasm',\n      'public/draco/draco_wasm_wrapper.js',\n  +   'public/llms.txt',\n      'public/models/interiors/_minimal.glb',\n      'public/models/interiors/cining.glb',\n      'public/models/interiors/huangji-aligned-0a79ec49e8cd.glb',\n      'public/models/interiors/huangji.glb',\n      'public/models/interiors/kunning-v6-0c83b4364eef.glb',\n  +   'public/models/interiors/kunning-v6-5adbf53a3114.glb',\n      'public/models/interiors/kunning-v6-ca7d98404e70.glb',\n      'public/models/interiors/kunning.glb',\n      'public/models/interiors/qianqing-r29.glb',\n      'public/models/interiors/qianqing-r31.glb',\n      'public/models/interiors/qianqing-r32.glb',\n  ...\n      'public/models/interiors/yangxin.glb',\n  +   'public/project-info.css',\n  +   'public/sitemap.xml',\n      'public/textures/art/qianqing-ceiling-illustration-r32.webp',\n      'public/textures/art/qianqing-five-dragon-illustration-r32.webp',\n      'public/textures/art/qianqing-screen-illustration-r32.webp',\n      'public/textures/hd/balustrade.webp',\n      'public/textures/hd/balustrade_n.webp',\n  ...\n      'src/scene/RoofBuilder.js',\n  +   'src/scene/characters/CeremonyController.js',\n  +   'src/scene/characters/CharacterAnimation.js',\n  +   'src/scene/characters/CharacterBehavior.js',\n  +   'src/scene/characters/CharacterBody.js',\n  +   'src/scene/characters/CharacterGeometryOptions.js',\n  +   'src/scene/characters/CharacterInteraction.js',\n  +   'src/scene/characters/CharacterKit.js',\n  +   'src/scene/characters/CharacterLOD.js',\n  +   'src/scene/characters/CharacterLimits.js',\n  +   'src/scene/characters/CharacterManager.js',\n  +   'src/scene/characters/CharacterRenderer.js',\n  +   'src/scene/characters/CharacterResourcePool.js',\n  +   'src/scene/characters/CharacterSchema.js',\n  +   'src/scene/characters/CharacterSystem.js',\n  +   'src/scene/characters/CharacterWorkQueue.js',\n  +   'src/scene/characters/CharacterWorldAdapter.js',\n  +   'src/scene/characters/DailyRoutine.js',\n  +   'src/scene/characters/DailyRoutineClock.js',\n  +   'src/scene/characters/NightBeds.js',\n  +   'src/scene/characters/PatrolController.js',\n  +   'src/scene/characters/RoutinePath.js',\n      'src/scene/flight/FlightEnvelope.js',\n      'src/scene/flight/FlightState.js',\n      'src/scene/flight/FlightTour.js',\n      'src/scene/flight/HelicopterModel.js',\n  +   'src/scene/garden/BridgeCeilingRelief.js',\n  +   'src/scene/garden/CrossGardenPavilions.js',\n  +   'src/scene/garden/DuixiuBaseUnion.js',\n  +   'src/scene/garden/DuixiuMotion.js',\n  +   'src/scene/garden/DuixiuMountain.js',\n  +   'src/scene/garden/DuixiuNaturalFront.js',\n  +   'src/scene/garden/DuixiuOuterRock.js',\n  +   'src/scene/garden/DuixiuSideRelief.js',\n  +   'src/scene/garden/DuixiuTerrain.js',\n  +   'src/scene/garden/DuixiuTerrainBuild.js',\n  +   'src/scene/garden/DuixiuTriangleBody.js',\n  +   'src/scene/garden/FubiArchPool.js',\n  +   'src/scene/garden/GardenSilhouetteDetails.js',\n  +   'src/scene/garden/RemainingGardenPavilions.js',\n  +   'src/scene/garden/TianyiGroundFit.js',\n      'src/scene/garden/noise.js',\n      'src/scene/garden/rocks.js',\n      'src/scene/garden/shapes.js',\n      'src/scene/garden/trees.js',\n  +   'src/scene/interior/HuangjiColumnSafety.js',\n  +   'src/scene/interior/HuangjiFallbackContract.js',\n      'src/scene/interior/InteriorLoader.js',\n      'src/scene/interior/QianqingAuxiliaryContract.js',\n      'src/scene/interior/QianqingAuxiliaryManifest.js',\n      'src/scene/interior/QianqingAuxiliarySignature.js',\n      'src/scene/interior/TaiheCoreContract.js',\n  +   'src/scene/interior/YangxinEastContract.js',\n      'src/scene/interior/registry.js',\n      'src/scene/palace/BaoheColumnCouplets.js',\n      'src/scene/palace/BaoheColumnGrid.js',\n      'src/scene/palace/BaoheColumnIdentity.js',\n  +   'src/scene/palace/BaoheDaisApproach.js',\n      'src/scene/palace/BaoheDepthGrid.js',\n  +   'src/scene/palace/BaoheEastFirewall.js',\n  +   'src/scene/palace/BaoheEastTerrace.js',\n      'src/scene/palace/BaoheFrontDoors.js',\n      'src/scene/palace/BaoheFrontEnclosure.js',\n      'src/scene/palace/BaoheHallPlinth.js',\n      'src/scene/palace/BaoheInteriorFrame.js',\n      'src/scene/palace/BaoheNorthApproaches.js',\n      'src/scene/palace/BaoheRearEnclosure.js',\n      'src/scene/palace/BaoheThroneScreen.js',\n  +   'src/scene/palace/BaoheWarmRooms.js',\n  +   'src/scene/palace/GalleryInventoryPolicy.js',\n      'src/scene/palace/HallNameboardMount.js',\n  +   'src/scene/palace/NansansuoInventoryPolicy.js',\n      'src/scene/palace/QianqingCeiling.js',\n      'src/scene/palace/QianqingCeilingPaint.js',\n      'src/scene/palace/QianqingCentralArt.js',\n      'src/scene/palace/QianqingCentralSetting.js',\n      'src/scene/palace/QianqingDepthGrid.js',\n  ...\n      'src/scene/palace/QianqingWarmRooms.js',\n  +   'src/scene/palace/TaiheExteriorPlaque.js',\n      'src/scene/palace/TaiheFrontApproaches.js',\n  +   'src/scene/palace/TaihePlaqueClearance.js',\n  +   'src/scene/palace/TaihemenSouthApproach.js',\n      'src/scene/palace/ThreeHallTerrace.js',\n      'src/scene/palace/ZhongheImperialApproach.js',\n      'src/scene/palace/colliders.js',\n      'src/scene/palace/gate.js',\n      'src/scene/palace/gateAscent.js',\n  ...\n      'src/scene/palace/river.js',\n  +   'src/scene/palace/special/ArrowSouthKnees.js',\n  +   'src/scene/palace/special/AxisFirewallProfiles.js',\n  +   'src/scene/palace/special/AxisFirewalls.js',\n  +   'src/scene/palace/special/BaoyunStorehouse.js',\n  +   'src/scene/palace/special/CanopyRoofSurfaceJoint.js',\n  +   'src/scene/palace/special/ChangchunEastAlcove.js',\n  +   'src/scene/palace/special/ChonghuaSouthKnees.js',\n      'src/scene/palace/special/ChuxiuCourtyard.js',\n      'src/scene/palace/special/ChuxiuHall.js',\n  +   'src/scene/palace/special/CourtyardWindowLeaves.js',\n  +   'src/scene/palace/special/DonghuaCentralDoorFront.js',\n  +   'src/scene/palace/special/DuanmenBackdrop.js',\n  +   'src/scene/palace/special/EastFiveRoofBeasts.js',\n  +   'src/scene/palace/special/EastResidentialFacades.js',\n  +   'src/scene/palace/special/EastUnknownAnnexInventory.js',\n  +   'src/scene/palace/special/EastUnknownThroneInventory.js',\n      'src/scene/palace/special/EastWestCityGate.js',\n  +   'src/scene/palace/special/EnclosedPavilions.js',\n  +   'src/scene/palace/special/FengxianFrontWindows.js',\n  +   'src/scene/palace/special/FengxianRearProfile.js',\n  +   'src/scene/palace/special/FittedNameboardMount.js',\n      'src/scene/palace/special/GatePlaques.js',\n      'src/scene/palace/special/GateTowerMeasurements.js',\n      'src/scene/palace/special/GateTowerProfiles.js',\n      'src/scene/palace/special/GateTowerShell.js',\n  +   'src/scene/palace/special/GuhuaPavilion.js',\n  +   'src/scene/palace/special/HUnknownInventory.js',\n  +   'src/scene/palace/special/HallWalkingBeasts.js',\n  +   'src/scene/palace/special/HongdeCourt.js',\n  +   'src/scene/palace/special/HongyiLowerWindowLeaves.js',\n  +   'src/scene/palace/special/HorizontalNameboardAtlas.js',\n      'src/scene/palace/special/HuangjiGate.js',\n      'src/scene/palace/special/InnerJinshui.js',\n  +   'src/scene/palace/special/InnerJinshuiBridge2Contact.js',\n  +   'src/scene/palace/special/InnerJinshuiSideFinials.js',\n      'src/scene/palace/special/InnerPalaceGlazeLOD.js',\n      'src/scene/palace/special/InnerPalaceLevels.js',\n      'src/scene/palace/special/InnerPalaceTerrace.js',\n      'src/scene/palace/special/JiaotaiCeilingFrame.js',\n      'src/scene/palace/special/JiaotaiCentralArt.js',\n      'src/scene/palace/special/JiaotaiCentralInterior.js',\n  +   'src/scene/palace/special/JiaotaiDisplaySetting.js',\n      'src/scene/palace/special/JiaotaiLandmarkArt.js',\n      'src/scene/palace/special/JiaotaiLandmarks.js',\n  +   'src/scene/palace/special/JiaotaiSouthWindows.js',\n  +   'src/scene/palace/special/JingrenRearWindows.js',\n  +   'src/scene/palace/special/JingrenSouthWindows.js',\n  +   'src/scene/palace/special/JingyangRearFacade.js',\n  +   'src/scene/palace/special/JiyunNamePlaque.js',\n  +   'src/scene/palace/special/KunningGate.js',\n      'src/scene/palace/special/KunningPalace.js',\n      'src/scene/palace/special/KunningProfile.js',\n  +   'src/scene/palace/special/NanxunReviewedInterior.js',\n  +   'src/scene/palace/special/NingshouSouthPhotoWindows.js',\n  +   'src/scene/palace/special/OuterMoat.js',\n  +   'src/scene/palace/special/PavilionLowerWindowLeaves.js',\n      'src/scene/palace/special/PavilionMeasurements.js',\n      'src/scene/palace/special/PavilionProfiles.js',\n      'src/scene/palace/special/QianqingGate.js',\n  +   'src/scene/palace/special/QianqingGatePlaque.js',\n  +   'src/scene/palace/special/QianqingGatePorchCoffers.js',\n  +   'src/scene/palace/special/QianqingGateSouthWindows.js',\n      'src/scene/palace/special/QianqingImperialStair.js',\n  +   'src/scene/palace/special/QinanFrontJoinery.js',\n      'src/scene/palace/special/QinanHall.js',\n  +   'src/scene/palace/special/QinanNamePlaque.js',\n      'src/scene/palace/special/QinanProfile.js',\n      'src/scene/palace/special/QinanRoof.js',\n  +   'src/scene/palace/special/QinzhengFootstool.js',\n  +   'src/scene/palace/special/QinzhengHighSideTables.js',\n  +   'src/scene/palace/special/RearHallProfiles.js',\n  +   'src/scene/palace/special/RemainingNingshouHalls.js',\n  +   'src/scene/palace/special/RemainingOuterHalls.js',\n  +   'src/scene/palace/special/RemainingResidentialHalls.js',\n  +   'src/scene/palace/special/RitualHalls.js',\n  +   'src/scene/palace/special/ShoukangEastWarmRoom.js',\n  +   'src/scene/palace/special/ShoukangHall.js',\n  +   'src/scene/palace/special/ShunzhenGate.js',\n      'src/scene/palace/special/SideGate.js',\n  +   'src/scene/palace/special/SideGateExteriorDetails.js',\n      'src/scene/palace/special/SideGateProfiles.js',\n  +   'src/scene/palace/special/SourceGuidedNameboardMounts.js',\n  +   'src/scene/palace/special/SourcedNameInscriptions.js',\n  +   'src/scene/palace/special/SouthCourtGates.js',\n  +   'src/scene/palace/special/SouthCourtHalls.js',\n  +   'src/scene/palace/special/SouthCourtProfiles.js',\n  +   'src/scene/palace/special/SouthCourtTrees.js',\n  +   'src/scene/palace/special/SouthGalleryDisplays.js',\n  +   'src/scene/palace/special/SouthWaterSystem.js',\n      'src/scene/palace/special/SquareHalls.js',\n      'src/scene/palace/special/SurveyedPavilion.js',\n      'src/scene/palace/special/TaiheBeamFrame.js',\n      'src/scene/palace/special/TaiheCaissonDetail.js',\n      'src/scene/palace/special/TaiheCaissonFallbackData.js',\n  ...\n      'src/scene/palace/special/TaiheRearEnclosure.js',\n  +   'src/scene/palace/special/TaihemenEnclosure.js',\n  +   'src/scene/palace/special/TaihemenProfile.js',\n  +   'src/scene/palace/special/TaihemenSouthKnees.js',\n  +   'src/scene/palace/special/TianyiGate.js',\n      'src/scene/palace/special/TirenPavilion.js',\n  +   'src/scene/palace/special/TongdaoRoof.js',\n  +   'src/scene/palace/special/WenhuaGateSouthWindows.js',\n  +   'src/scene/palace/special/WenyuanPavilion.js',\n  +   'src/scene/palace/special/WenyuanUpperSouthWindows.js',\n  +   'src/scene/palace/special/WestDomesticHalls.js',\n  +   'src/scene/palace/special/WestRearSouthWindows.js',\n  +   'src/scene/palace/special/WestUnknownAnnexInventory.js',\n      'src/scene/palace/special/WumenAscent.js',\n      'src/scene/palace/special/WumenAscentProfile.js',\n      'src/scene/palace/special/WumenLandingWallTop.js',\n  +   'src/scene/palace/special/WumenNorthPortal.js',\n  +   'src/scene/palace/special/WumenPavilionColumns.js',\n  +   'src/scene/palace/special/WumenSouthPortalCanopies.js',\n      'src/scene/palace/special/WumenVerticalProfile.js',\n      'src/scene/palace/special/WumenWallCapFit.js',\n  +   'src/scene/palace/special/WuyingGateSouthRails.js',\n  +   'src/scene/palace/special/WuyingGateSouthWindows.js',\n  +   'src/scene/palace/special/WuyingMoonTerrace.js',\n  +   'src/scene/palace/special/WuyingObservedCases.js',\n  +   'src/scene/palace/special/WuyingRepresentativeDetails.js',\n  +   'src/scene/palace/special/XieheCourtyardKnees.js',\n  +   'src/scene/palace/special/XihuaOuterWindowBand.js',\n  +   'src/scene/palace/special/XishangChannel.js',\n  +   'src/scene/palace/special/YanchunSouthPhotoFit.js',\n  +   'src/scene/palace/special/YangxinCourtEntrance.js',\n  +   'src/scene/palace/special/YangxinWestWarmRooms.js',\n      'src/scene/palace/special/YanxiRuin.js',\n      'src/scene/palace/special/YanxiRuinLOD.js',\n      'src/scene/palace/special/YanxiStorehouses.js',\n  +   'src/scene/palace/special/YiheHall.js',\n      'src/scene/palace/special/YikunSideAccess.js',\n  +   'src/scene/palace/special/YinghuaGate.js',\n  +   'src/scene/palace/special/YinghuaSouthLattice.js',\n  +   'src/scene/palace/special/YongheCanopyKnees.js',\n  +   'src/scene/palace/special/YudeBath.js',\n  +   'src/scene/palace/special/YudeDomeBrickCourses.js',\n      'src/scene/palace/special/ZhaodeGate.js',\n      'src/scene/palace/special/ZhaodeGateProfile.js',\n  +   'src/scene/palace/special/ZhaodeSouthPanels.js',\n  +   'src/scene/palace/special/ZhaorenCourt.js',\n  +   'src/scene/palace/special/ZhenduGate.js',\n  +   'src/scene/palace/special/ZhenduGateProfile.js',\n  +   'src/scene/palace/special/ZhongheDisplaySetting.js',\n  +   'src/scene/palace/special/ZhongheInteriorColumns.js',\n  +   'src/scene/palace/special/ZuoyiDoorFront.js',\n      'src/scene/palace/towerShell.js',\n      'src/scene/sky/BeijingDayCycle.js',\n      'src/scene/sky/HistoricalSkyLamps.js',\n  +   'src/scene/sky/HouseholdLightingPolicy.js',\n  +   'src/scene/sky/NightTourLighting.js',\n  +   'src/scene/sky/RoomNightLights.js',\n      'src/scene/sky/SkyDome.js',\n      'src/scene/sky/SkySetup.js',\n      'src/scene/sky/Skyline.js',\n      'src/scene/zones/CourtWallContract.js',\n      'src/scene/zones/HistoricalGateSites.js',\n      'src/scene/zones/ZoneBase.js',\n      'src/scene/zones/ZoneManager.js',\n  +   'src/ui/BuildingFidelity.js',\n      'src/ui/DayNightPanel.js',\n      'src/ui/HelpPanel.js',\n      'src/ui/MapTourSession.js',\n      'src/ui/Minimap.js',\n      'src/ui/ModelFidelity.js',\n  ...\n      'src/ui/PlaceInfoPanel.js',\n  +   'src/ui/ReleaseIdentityPanel.js',\n      'src/ui/SettingsMenu.js',\n      'src/ui/SettingsTourSession.js',\n      'src/ui/Teleport.js',\n      'src/ui/TourTools.js',\n      'src/utils/Collision.js',\n  ...\n      'src/utils/MergeUtils.js',\n  +   'src/utils/OverheadShape.js',\n      'src/utils/TextureGenerator.js',\n      'src/utils/TextureLibrary.js',\n  +   'src/utils/TriangleSupport.js'\n    ]\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/r35-source-retention.test.mjs:36:10)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.start (node:internal/test_runner/test:1242:17)\n      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: [\n      'data/anchors.json',                                              'data/architecture/building-fidelity.json',\n      'data/architecture/hongde-court.json',                            'data/architecture/kunning.json',\n      'data/architecture/qianqing-display-geometry.json',               'data/architecture/qianqing-material.json',\n      'data/architecture/qinan.json',                                   'data/architecture/taihe-column-grid.json',\n      'data/architecture/taihe-core.json',                              'data/architecture/taihe-dais-front.json',\n      'data/architecture/wuying-2021-cases.json',                       'data/architecture/yangxin-court-entrance.json',\n      'data/architecture/zhaoren-court.json',                           'data/characters/actors.json',\n      'data/characters/anchors.json',                                   'data/characters/ceremonies.json',\n      'data/characters/emperor-night-route.json',                       'data/characters/evidence.json',\n      'data/characters/fragments/r52-court-life.json',                  'data/characters/fragments/r53-household-life.json',\n      'data/characters/fragments/r54-courtyard-staff.json',             'data/characters/fragments/r55-courtyard-staff.json',\n      'data/characters/fragments/r56-courtyard-presence.json',          'data/characters/fragments/r57-front-space-presence.json',\n      'data/characters/index.js',                                       'data/characters/night-beds.json',\n      'data/characters/night-routes.json',                              'data/characters/paths.json',\n      'data/characters/schema.json',                                    'data/characters/scope.json',\n      'data/characters/seats.json',                                     'data/characters/surfaces.json',\n      'data/characters/templates.json',                                 'data/characters/world-source-freeze-r49.json',\n      'data/characters/world-source-freeze-r49b.json',                  'data/characters/world-source-freeze-r49d.json',\n      'data/characters/world-source-freeze-r51.json',                   'data/characters/world-source-freeze-r52.json',\n      'data/characters/world-source-freeze-r53.json',                   'data/characters/world-source-freeze-r54.json',\n      'data/characters/world-source-freeze-r55.json',                   'data/characters/world-source-freeze-r58-a-batch1.json',\n      'data/characters/world-source-freeze-r58-a-batch2.json',          'data/characters/world-source-freeze-r58-a-batch3.json',\n      'data/characters/world-source-freeze-r58-a-batch4.json',          'data/characters/world-source-freeze-r58-a-batch5.json',\n      'data/characters/world-source-freeze-r59-b-batch1.json',          'data/characters/world-source-freeze-r59-b-batch2.json',\n      'data/characters/world-source-freeze-r60-c.json',                 'data/characters/world-source-freeze-r61-d.json',\n      'data/characters/world-source-freeze-r62-e.json',                 'data/characters/world-source-freeze-r63-f.json',\n      'data/characters/world-source-freeze-r64-g.json',                 'data/characters/world-source-freeze-r65-character-experience.json',\n      'data/characters/world-source-freeze-r66-h-northwest.json',       'data/characters/world-source-freeze-r67-i-ningshou.json',\n      'data/characters/world-source-freeze-r68-j-qianlong-garden.json', 'data/characters/world-source-freeze-r69-k-cining-area.json',\n      'data/characters/world-source-freeze-r70-l-water-walls.json',     'data/characters/world-source-freeze.json',\n      'data/interiors/cining.json',                                     'data/interiors/huangji.json',\n      'data/interiors/kunning.json',                                    'data/interiors/qianqing.json',\n      'data/interiors/schema.md',                                       'data/interiors/taihe.json',\n      'data/interiors/yangxin.json',                                    'data/places/catalog.schema.json',\n      'data/places/zh-CN.json',                                         'data/schema.md',\n      'data/zones/axis-courts.json',                                    'data/zones/east-six.json',\n      'data/zones/garden.json',                                         'data/zones/index.js',\n      'data/zones/ningshou.json',                                       'data/zones/outer-east.json',\n      'data/zones/outer-west.json',                                     'data/zones/west-six.json',\n      'public/about.html',                                              'public/basis/basis_transcoder.js',\n      'public/basis/basis_transcoder.wasm',                             'public/contribute.html',\n      'public/draco/draco_decoder.js',                                  'public/draco/draco_decoder.wasm',\n      'public/draco/draco_wasm_wrapper.js',                             'public/llms.txt',\n      'public/models/interiors/_minimal.glb',                           'public/models/interiors/cining.glb',\n      'public/models/interiors/huangji-aligned-0a79ec49e8cd.glb',       'public/models/interiors/huangji.glb',\n      'public/models/interiors/kunning-v6-0c83b4364eef.glb',            'public/models/interiors/kunning-v6-5adbf53a3114.glb',\n      'public/models/interiors/kunning-v6-ca7d98404e70.glb',            'public/models/interiors/kunning.glb',\n      'public/models/interiors/qianqing-r29.glb',                       'public/models/interiors/qianqing-r31.glb',\n      'public/models/interiors/qianqing-r32.glb',                       'public/models/interiors/qianqing-r33.glb',\n      'public/models/interiors/qianqing.glb',                           'public/models/interiors/taihe-caisson-9067bcce8b91.glb',\n      ... 427 more items\n    ],\n    expected: [\n      'data/anchors.json',                                                  'data/architecture/kunning.json',\n      'data/architecture/qianqing-display-geometry.json',                   'data/architecture/qianqing-material.json',\n      'data/architecture/qinan.json',                                       'data/architecture/taihe-column-grid.json',\n      'data/architecture/taihe-core.json',                                  'data/architecture/taihe-dais-front.json',\n      'data/interiors/cining.json',                                         'data/interiors/huangji.json',\n      'data/interiors/kunning.json',                                        'data/interiors/qianqing.json',\n      'data/interiors/schema.md',                                           'data/interiors/taihe.json',\n      'data/interiors/yangxin.json',                                        'data/places/catalog.schema.json',\n      'data/places/zh-CN.json',                                             'data/schema.md',\n      'data/zones/axis-courts.json',                                        'data/zones/east-six.json',\n      'data/zones/garden.json',                                             'data/zones/index.js',\n      'data/zones/ningshou.json',                                           'data/zones/outer-east.json',\n      'data/zones/outer-west.json',                                         'data/zones/west-six.json',\n      'public/basis/basis_transcoder.js',                                   'public/basis/basis_transcoder.wasm',\n      'public/draco/draco_decoder.js',                                      'public/draco/draco_decoder.wasm',\n      'public/draco/draco_wasm_wrapper.js',                                 'public/models/interiors/_minimal.glb',\n      'public/models/interiors/cining.glb',                                 'public/models/interiors/huangji-aligned-0a79ec49e8cd.glb',\n      'public/models/interiors/huangji.glb',                                'public/models/interiors/kunning-v6-0c83b4364eef.glb',\n      'public/models/interiors/kunning-v6-ca7d98404e70.glb',                'public/models/interiors/kunning.glb',\n      'public/models/interiors/qianqing-r29.glb',                           'public/models/interiors/qianqing-r31.glb',\n      'public/models/interiors/qianqing-r32.glb',                           'public/models/interiors/qianqing-r33.glb',\n      'public/models/interiors/qianqing.glb',                               'public/models/interiors/taihe-caisson-9067bcce8b91.glb',\n      'public/models/interiors/taihe-caisson-a8f75f7325e4.glb',             'public/models/interiors/taihe-caisson-d951f4500302.glb',\n      'public/models/interiors/taihe-dais-front-24481a47ba8d.glb',          'public/models/interiors/taihe-dais-front-5dc82d83258d.glb',\n      'public/models/interiors/taihe-display-grid-6012719f9618.glb',        'public/models/interiors/taihe-enamel-cranes-052bec6dbe4b.glb',\n      'public/models/interiors/taihe-furnishing-surfaces-a4a0b82f9f76.glb', 'public/models/interiors/taihe-furniture-0bfa52b758cb.glb',\n      'public/models/interiors/taihe-hanging-fit-b032ccb094e0.glb',         'public/models/interiors/taihe-screen-crowns-22c6acdf581d.glb',\n      'public/models/interiors/taihe-v16-ba59e7321fda.glb',                 'public/models/interiors/taihe-v16-bdc5d69b1265.glb',\n      'public/models/interiors/taihe-v17-a8e358509558.glb',                 'public/models/interiors/taihe-v17-display-28d7a11dbeda.glb',\n      'public/models/interiors/taihe-v17-display-7c41b735b90f.glb',         'public/models/interiors/taihe.glb',\n      'public/models/interiors/yangxin.glb',                                'public/textures/art/qianqing-ceiling-illustration-r32.webp',\n      'public/textures/art/qianqing-five-dragon-illustration-r32.webp',     'public/textures/art/qianqing-screen-illustration-r32.webp',\n      'public/textures/hd/balustrade.webp',                                 'public/textures/hd/balustrade_n.webp',\n      'public/textures/hd/bark.webp',                                       'public/textures/hd/bark_n.webp',\n      'public/textures/hd/caihua_beam.webp',                                'public/textures/hd/caihua_beam_n.webp',\n      'public/textures/hd/door_studded.webp',                               'public/textures/hd/door_studded_n.webp',\n      'public/textures/hd/dougong_band.webp',                               'public/textures/hd/dougong_band_n.webp',\n      'public/textures/hd/foliage.webp',                                    'public/textures/hd/foliage_n.webp',\n      'public/textures/hd/grass.webp',                                      'public/textures/hd/grass_n.webp',\n      'public/textures/hd/ground_brick.webp',                               'public/textures/hd/ground_brick_n.webp',\n      'public/textures/hd/lattice_doors.webp',                              'public/textures/hd/lattice_doors_n.webp',\n      'public/textures/hd/manifest.json',                                   'public/textures/hd/marble.webp',\n      'public/textures/hd/marble_n.webp',                                   'public/textures/hd/pebble_path.webp',\n      'public/textures/hd/pebble_path_n.webp',                              'public/textures/hd/rafters.webp',\n      'public/textures/hd/rafters_n.webp',                                  'public/textures/hd/rock.webp',\n      'public/textures/hd/rock_n.webp',                                     'public/textures/hd/roof_tile.webp',\n      'public/textures/hd/roof_tile_n.webp',                                'public/textures/hd/skyline.webp',\n      'public/textures/hd/stone_slab.webp',                                 'public/textures/hd/stone_slab_n.webp',\n      'public/textures/hd/sumeru_band.webp',                                'public/textures/hd/sumeru_band_n.webp',\n      'public/textures/hd/wall_brick.webp',                                 'public/textures/hd/wall_brick_n.webp',\n      ... 215 more items\n    ],\n    operator: 'deepStrictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": ""
+    },
+    "finding": "原始红项存在，但未有足够证据把当前产品行为归为缺陷或过时契约；不得按继承失败豁免。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-4a45cb818875",
+    "row": 134,
+    "originalRequirement": "exact owner HOOKUP.patch rehearsal uses actual production inputs and retains all hall physics and all other hall meshes",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/r58-hall-beasts.test.mjs:130:1",
+      "log": "reports/r94/verification/current-state-1290.tap:5112",
+      "error": "  TypeError: m.material.toJSON is not a function\n      at file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/lib/r58-hall-beast-fixture.mjs:8:380\n      at Mesh.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7600:3)\n      at Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)\n      at signature (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/lib/r58-hall-beast-fixture.mjs:8:107)\n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/r58-hall-beasts.test.mjs:137:29)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n\n",
+      "extra": "tests/lib/r58-hall-beast-fixture.mjs:8"
+    },
+    "finding": "测试signature直接m.material.toJSON失败，疑为未兼容合法多材质数组；尚未独立确认实际值类型，因此仍待核，不直接认生产材质失效。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-2a58b47372e4",
+    "row": 135,
+    "originalRequirement": "太和殿 actual hall retains baseline physics and non-target roof/nonroof bytes",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/r58-taihe-beasts.test.mjs:116:51",
+      "log": "reports/r94/verification/current-state-1290.tap:5126",
+      "error": "  TypeError: m.material.toJSON is not a function\n      at file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/lib/r58-hall-beast-fixture.mjs:8:380\n      at Mesh.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7600:3)\n      at Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)\n      at signature (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/lib/r58-hall-beast-fixture.mjs:8:107)\n      at hallCapture (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/lib/r58-taihe-beast-fixture.mjs:31:43)\n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/r58-taihe-beasts.test.mjs:117:16)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n\n",
+      "extra": "tests/lib/r58-hall-beast-fixture.mjs:8"
+    },
+    "finding": "测试signature直接m.material.toJSON失败，疑为未兼容合法多材质数组；尚未独立确认实际值类型，因此仍待核，不直接认生产材质失效。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-b920379cd3a4",
+    "row": 136,
+    "originalRequirement": "中和殿 actual hall retains baseline physics and non-target roof/nonroof bytes",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/r58-taihe-beasts.test.mjs:116:51",
+      "log": "reports/r94/verification/current-state-1290.tap:5140",
+      "error": "  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  \n    {\n  +   hash: '8f920f9947e253304d151ec5e2d47d855ee13f1f1c416d54b4621254687dc8bf',\n  +   meshes: 154\n  -   hash: '51f29a5a071d68a99f3ac1d8922669a7f392bd21c0b5312fcc6786d7ffb483cf',\n  -   meshes: 149\n    }\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/r58-taihe-beasts.test.mjs:118:77)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: { hash: '8f920f9947e253304d151ec5e2d47d855ee13f1f1c416d54b4621254687dc8bf', meshes: 154 },\n    expected: { hash: '51f29a5a071d68a99f3ac1d8922669a7f392bd21c0b5312fcc6786d7ffb483cf', meshes: 149 },\n    operator: 'deepStrictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": ""
+    },
+    "finding": "原始红项存在，但未有足够证据把当前产品行为归为缺陷或过时契约；不得按继承失败豁免。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-d3ced75a8b31",
+    "row": 137,
+    "originalRequirement": "交泰殿 actual hall retains baseline physics and non-target roof/nonroof bytes",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/r58-taihe-beasts.test.mjs:116:51",
+      "log": "reports/r94/verification/current-state-1290.tap:5167",
+      "error": "  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  \n    {\n  +   hash: 'c99974312c64061105b96e2192f66e759e9a62d60bf927f0dec4f376147e0ee9',\n  +   meshes: 216\n  -   hash: 'f4f3c6caa9ce624fef6dff221b15fa97a1c5d9450ff6965c7076f4e3d3739967',\n  -   meshes: 180\n    }\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/r58-taihe-beasts.test.mjs:118:77)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: { hash: 'c99974312c64061105b96e2192f66e759e9a62d60bf927f0dec4f376147e0ee9', meshes: 216 },\n    expected: { hash: 'f4f3c6caa9ce624fef6dff221b15fa97a1c5d9450ff6965c7076f4e3d3739967', meshes: 180 },\n    operator: 'deepStrictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": ""
+    },
+    "finding": "原始红项存在，但未有足够证据把当前产品行为归为缺陷或过时契约；不得按继承失败豁免。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-eb10b5e6fec0",
+    "row": 138,
+    "originalRequirement": "乾清宫 actual hall retains baseline physics and non-target roof/nonroof bytes",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/r58-taihe-beasts.test.mjs:116:51",
+      "log": "reports/r94/verification/current-state-1290.tap:5194",
+      "error": "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  + actual - expected\n  \n  + '123c6868920647d147832ed577ab18d22320a333e4a2bd6d813792cd78bdeccf'\n  - '80a6e082dab7002899f703d9597fd643eca42cd4eb9c0c506a537c2ca4b88b8e'\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/r58-taihe-beasts.test.mjs:119:73)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: '123c6868920647d147832ed577ab18d22320a333e4a2bd6d813792cd78bdeccf',\n    expected: '80a6e082dab7002899f703d9597fd643eca42cd4eb9c0c506a537c2ca4b88b8e',\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": ""
+    },
+    "finding": "原始红项存在，但未有足够证据把当前产品行为归为缺陷或过时契约；不得按继承失败豁免。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-375f80328caf",
+    "row": 139,
+    "originalRequirement": "Hongyi, including its six original windows and upper gallery, is byte-identical",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/r58-tiren-lower-leaves.test.mjs:20:1",
+      "log": "reports/r94/verification/current-state-1290.tap:5217",
+      "error": "  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  ... Skipped lines\n  \n    {\n  +   all: '7ca53fcb2e73758020bc76f350582687fe09d8439b14d61ae0649665d44e8dc4',\n  +   materials: '93d5053a33b59972967db2dceed8384c6cfcc9e7bf08fade3d3ffa152abd7ce6',\n  +   meshes: 1264,\n  -   all: '5be6cdbbb9c7f83e5a62ff6f415e550419310655b3ea2b2d2326d0549d360f74',\n  -   materials: '54d4359363b909ed66b757646addf8e4b4b8211fd3f27aeb1018aa5d26f0e8a9',\n  -   meshes: 1210,\n      physicalCounts: {\n        colliders: 915,\n        mapItems: 1,\n        regions: 1,\n        rooms: 1,\n  ...\n      retainedWithoutLowerWindows: '7eda138c1e7929d4a00eccc5573ebdfe250186146df182a4fcfe13ac9c6e47dd',\n  +   triangles: 17442\n  -   triangles: 16374\n    }\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/r58-tiren-lower-leaves.test.mjs:20:126)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: { triangles: 17442, meshes: 1264, all: '7ca53fcb2e73758020bc76f350582687fe09d8439b14d61ae0649665d44e8dc4', retainedWithoutLowerWindows: '7eda138c1e7929d4a00eccc5573ebdfe250186146df182a4fcfe13ac9c6e47dd', materials: '93d5053a33b59972967db2dceed8384c6cfcc9e7bf08fade3d3ffa152abd7ce6', physics: 'c34f90eaf2dfba367cf95b6b7aed2431eb541d660849489f61eba3eaa7f55c35', physicalCounts: { colliders: 915, walkables: 14, rooms: 1, mapItems: 1, regions: 1 } },\n    expected: { triangles: 16374, meshes: 1210, all: '5be6cdbbb9c7f83e5a62ff6f415e550419310655b3ea2b2d2326d0549d360f74', retainedWithoutLowerWindows: '7eda138c1e7929d4a00eccc5573ebdfe250186146df182a4fcfe13ac9c6e47dd', materials: '54d4359363b909ed66b757646addf8e4b4b8211fd3f27aeb1018aa5d26f0e8a9', physics: 'c34f90eaf2dfba367cf95b6b7aed2431eb541d660849489f61eba3eaa7f55c35', physicalCounts: { colliders: 915, walkables: 14, rooms: 1, mapItems: 1, regions: 1 } },\n    operator: 'deepStrictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": ""
+    },
+    "finding": "原始红项存在，但未有足够证据把当前产品行为归为缺陷或过时契约；不得按继承失败豁免。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-95852d00dcae",
+    "row": 140,
+    "originalRequirement": "raw pre-pruning source and final corbel triangles are all nondegenerate",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/r58-xihe-corbels.test.mjs:8:1",
+      "log": "reports/r94/verification/current-state-1290.tap:5256",
+      "error": "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  \n  10696 !== 7600\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/r58-xihe-corbels.test.mjs:8:246)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.start (node:internal/test_runner/test:1242:17)\n      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: 10696,\n    expected: 7600,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": ""
+    },
+    "finding": "原始红项存在，但未有足够证据把当前产品行为归为缺陷或过时契约；不得按继承失败豁免。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-d43a4d51e85e",
+    "row": 141,
+    "originalRequirement": "six curved Xihe rear corbels are added while all baseline geometry, materials and registrations stay exact",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/r58-xihe-corbels.test.mjs:10:1",
+      "log": "reports/r94/verification/current-state-1290.tap:5275",
+      "error": "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  + actual - expected\n  \n  + 'f5fb5d9c2c27b3bae92e093ad1e66a6ab38bfb5cf8f8b22f26830fbc80798b8f'\n  - 'ec269f971abae8dfda2fb4e6b44cb733a25f705180775f4e7c244ee403d69299'\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/r58-xihe-corbels.test.mjs:12:9)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: 'f5fb5d9c2c27b3bae92e093ad1e66a6ab38bfb5cf8f8b22f26830fbc80798b8f',\n    expected: 'ec269f971abae8dfda2fb4e6b44cb733a25f705180775f4e7c244ee403d69299',\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": ""
+    },
+    "finding": "原始红项存在，但未有足够证据把当前产品行为归为缺陷或过时契约；不得按继承失败豁免。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-b4b4b0b30f3e",
+    "row": 142,
+    "originalRequirement": "xiehe remains byte-identical and gets no copied Xihe silhouette",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/r58-xihe-corbels.test.mjs:17:53",
+      "log": "reports/r94/verification/current-state-1290.tap:5298",
+      "error": "  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  ... Skipped lines\n  \n    {\n  +   all: '5815c0c9b76845e732f709f196cd194fbcdb22e253fea4ff11e03b408e68af76',\n  +   materials: '7b73ea15834dc5f427706db618570094126ac434e22a1ea9dcfe2336e39ea3a2',\n  +   meshes: 585,\n  -   all: '977d7f999baffeb29a73c9a07f66d21031524b17494d7f28a49f27ebdafc32f6',\n  -   materials: '4080bc1f55d7f64e7e46e0529fbc0d2a38c164c8b3ebf37e9073cbb6d0e04306',\n  -   meshes: 329,\n      physicalCounts: {\n        colliders: 559,\n        mapItems: 1,\n        regions: 0,\n        rooms: 0,\n  ...\n      physics: '798dd0b9ca578a6b5969826ddabc988a8ba0637959000daa004779698c3bfa6f',\n  +   retainedWithoutLowerWindows: '5815c0c9b76845e732f709f196cd194fbcdb22e253fea4ff11e03b408e68af76',\n  +   triangles: 9592\n  -   retainedWithoutLowerWindows: '977d7f999baffeb29a73c9a07f66d21031524b17494d7f28a49f27ebdafc32f6',\n  -   triangles: 6096\n    }\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/r58-xihe-corbels.test.mjs:17:166)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: { triangles: 9592, meshes: 585, all: '5815c0c9b76845e732f709f196cd194fbcdb22e253fea4ff11e03b408e68af76', retainedWithoutLowerWindows: '5815c0c9b76845e732f709f196cd194fbcdb22e253fea4ff11e03b408e68af76', materials: '7b73ea15834dc5f427706db618570094126ac434e22a1ea9dcfe2336e39ea3a2', physics: '798dd0b9ca578a6b5969826ddabc988a8ba0637959000daa004779698c3bfa6f', physicalCounts: { colliders: 559, walkables: 3, rooms: 0, mapItems: 1, regions: 0 } },\n    expected: { triangles: 6096, meshes: 329, all: '977d7f999baffeb29a73c9a07f66d21031524b17494d7f28a49f27ebdafc32f6', retainedWithoutLowerWindows: '977d7f999baffeb29a73c9a07f66d21031524b17494d7f28a49f27ebdafc32f6', materials: '4080bc1f55d7f64e7e46e0529fbc0d2a38c164c8b3ebf37e9073cbb6d0e04306', physics: '798dd0b9ca578a6b5969826ddabc988a8ba0637959000daa004779698c3bfa6f', physicalCounts: { colliders: 559, walkables: 3, rooms: 0, mapItems: 1, regions: 0 } },\n    operator: 'deepStrictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": ""
+    },
+    "finding": "原始红项存在，但未有足够证据把当前产品行为归为缺陷或过时契约；不得按继承失败豁免。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-41c981fd8fd8",
+    "row": 144,
+    "originalRequirement": "xiehe: real production materials achieve only the exact bounded covered-face reduction",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/side-gate-render-geometry.test.mjs:125:3",
+      "log": "reports/r94/verification/current-state-1290.tap:5360",
+      "error": "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  \n  10530 !== 7530\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/side-gate-render-geometry.test.mjs:127:12)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.start (node:internal/test_runner/test:1242:17)\n      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: 10530,\n    expected: 7530,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": ""
+    },
+    "finding": "原始红项存在，但未有足够证据把当前产品行为归为缺陷或过时契约；不得按继承失败豁免。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-682bbee92031",
+    "row": 145,
+    "originalRequirement": "xihe: real production materials achieve only the exact bounded covered-face reduction",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/side-gate-render-geometry.test.mjs:125:3",
+      "log": "reports/r94/verification/current-state-1290.tap:5379",
+      "error": "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  \n  10710 !== 7614\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/side-gate-render-geometry.test.mjs:127:12)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: 10710,\n    expected: 7614,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": ""
+    },
+    "finding": "原始红项存在，但未有足够证据把当前产品行为归为缺陷或过时契约；不得按继承失败豁免。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-df40a39a3aa0",
+    "row": 146,
+    "originalRequirement": "xiehe: all cardinal rotations, open/closed leaves and plaque modes keep exact premerge state",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/side-gate-render-geometry.test.mjs:156:3",
+      "log": "reports/r94/verification/current-state-1290.tap:5400",
+      "error": "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  \n  10530 !== 7530\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/side-gate-render-geometry.test.mjs:161:14)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: 10530,\n    expected: 7530,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": ""
+    },
+    "finding": "原始红项存在，但未有足够证据把当前产品行为归为缺陷或过时契约；不得按继承失败豁免。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-b60066dc260e",
+    "row": 147,
+    "originalRequirement": "xihe: all cardinal rotations, open/closed leaves and plaque modes keep exact premerge state",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/side-gate-render-geometry.test.mjs:156:3",
+      "log": "reports/r94/verification/current-state-1290.tap:5421",
+      "error": "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  \n  10710 !== 7614\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/side-gate-render-geometry.test.mjs:161:14)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: 10710,\n    expected: 7614,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": ""
+    },
+    "finding": "原始红项存在，但未有足够证据把当前产品行为归为缺陷或过时契约；不得按继承失败豁免。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-f0428543f540",
+    "row": 148,
+    "originalRequirement": "the gate never touches sibling assemblies or patches shared CourtKit methods",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/side-gate-render-geometry.test.mjs:202:1",
+      "log": "reports/r94/verification/current-state-1290.tap:5442",
+      "error": "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  \n  9606 !== 6542\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/side-gate-render-geometry.test.mjs:214:10)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: 9606,\n    expected: 6542,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": ""
+    },
+    "finding": "原始红项存在，但未有足够证据把当前产品行为归为缺陷或过时契约；不得按继承失败豁免。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-f9d3a8276902",
+    "row": 149,
+    "originalRequirement": "fresh gates own disjoint geometry; merging and unloading never dispose shared library materials",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/side-gate-render-geometry.test.mjs:218:1",
+      "log": "reports/r94/verification/current-state-1290.tap:5463",
+      "error": "  AssertionError [ERR_ASSERTION]: other live assembly is still intact\n  \n  9606 !== 6542\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/side-gate-render-geometry.test.mjs:235:10)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: 9606,\n    expected: 6542,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": ""
+    },
+    "finding": "原始红项存在，但未有足够证据把当前产品行为归为缺陷或过时契约；不得按继承失败豁免。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-6fdeff0fede9",
+    "row": 156,
+    "originalRequirement": "lower nine bays are brick, three windows, double plank door, three windows, brick",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/tiren.test.mjs:83:1",
+      "log": "reports/r94/verification/current-state-1290.tap:5561",
+      "error": "  AssertionError [ERR_ASSERTION]: real bars, not a door texture\n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/tiren.test.mjs:90:10)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: false,\n    expected: true,\n    operator: '==',\n    diff: 'simple'\n  }\n\n",
+      "extra": ""
+    },
+    "finding": "原始红项存在，但未有足够证据把当前产品行为归为缺陷或过时契约；不得按继承失败豁免。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-1f945dd75ee4",
+    "row": 158,
+    "originalRequirement": "all unscoped Wumen geometry, materials, wings, platform and portals stay byte-exact",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/wumen-vertical-profile.test.mjs:29:1",
+      "log": "reports/r94/verification/current-state-1290.tap:5583",
+      "error": "  AssertionError [ERR_ASSERTION]: only Wumen child 27 is in ascent scope\n  \n  42 !== 41\n  \n      at scope (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/lib/wumen-ascent-retention.mjs:51:10)\n      at restorePreWumenAscent (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/lib/wumen-ascent-retention.mjs:82:7)\n      at unscopedWumen (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/lib/wumen-vertical-profile-controls.mjs:9:4)\n      at assertUnscopedWumen (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/lib/wumen-vertical-profile-controls.mjs:16:69)\n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/wumen-vertical-profile.test.mjs:29:97)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: 42,\n    expected: 41,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": "tests/lib/wumen-ascent-retention.mjs"
+    },
+    "finding": "Wumen历史restore helper先遇到children42!=41；没有抵达目标行为检查。新增对象的后继身份尚未在本轮逐项重建，因此保守待核而非硬判过时。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-1b8c4c46352f",
+    "row": 159,
+    "originalRequirement": "after exact folded-ascent restoration, all old physics retains only the 46 keyed submicrometre foot deltas",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/wumen-vertical-profile.test.mjs:105:1",
+      "log": "reports/r94/verification/current-state-1290.tap:5607",
+      "error": "  AssertionError [ERR_ASSERTION]: only Wumen child 27 is in ascent scope\n  \n  42 !== 41\n  \n      at scope (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/lib/wumen-ascent-retention.mjs:51:10)\n      at restorePreWumenAscent (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/lib/wumen-ascent-retention.mjs:82:7)\n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/wumen-vertical-profile.test.mjs:106:17)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: 42,\n    expected: 41,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": "tests/lib/wumen-ascent-retention.mjs"
+    },
+    "finding": "Wumen历史restore helper先遇到children42!=41；没有抵达目标行为检查。新增对象的后继身份尚未在本轮逐项重建，因此保守待核而非硬判过时。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  },
+  {
+    "id": "R95-F-e7bd152c8033",
+    "row": 162,
+    "originalRequirement": "only the two explicit corridor ends resolve to the profile envelope and remain closed",
+    "currentImplementation": "R94 c6a2a287;原测试所引当前源码/夹具见location",
+    "category": "仍待核",
+    "evidence": {
+      "test": "tests/current-state/zhaode-gate.test.mjs:77:1",
+      "log": "reports/r94/verification/current-state-1290.tap:5670",
+      "error": "  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  \n  4 !== 2\n  \n      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r94-duixiu-cumulative/tests/current-state/zhaode-gate.test.mjs:78:54)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)\n      at Test.postRun (node:internal/test_runner/test:1522:19)\n      at Test.run (node:internal/test_runner/test:1447:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: 4,\n    expected: 2,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\n",
+      "extra": ""
+    },
+    "finding": "原始红项存在，但未有足够证据把当前产品行为归为缺陷或过时契约；不得按继承失败豁免。",
+    "productImpact": "未知，按可达路径/启动优先复核",
+    "nextStep": "先读后继版本契约/实际实体，再用真实合法起点独立复现；未确认前不改产品",
+    "priority": "P2"
+  }
+]
