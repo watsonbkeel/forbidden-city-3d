@@ -23,7 +23,9 @@ const BASE = [
  ['place-ningshou-b6cde8615b','萃赏楼',-260.7,456.3,20.5,10.9,.5,8,5,3,236433,'cuishang'],
  ['place-ningshou-78e6a34c2d','阅是楼',-334.5,390.1,18.4,10.2,.5,8,5,3,236461,'yueshi'],
  ['place-ningshou-2318b5f73b','佛日楼',-319.8,513.3,11.5,8.9,.5,7,3,1,236573,'fori'],
- ['place-ningshou-d40cef5893','梵华楼',-340,513.3,25.8,8.6,.5,7,7,1,236572,'fanhua'], ['place-ningshou-e32471b7c3','养性殿',-293.8,386.3,37.9,23.3,.9,7.36,9,4,236458,'yangxing'],
+ // R99 bounded engineering clearance fit, not a survey: move this entire
+ // hall 2.25 south to clear the NE corner solid while retaining Jingfu access.
+ ['place-ningshou-d40cef5893','梵华楼',-340,511.05,25.8,8.6,.5,7,7,1,236572,'fanhua'], ['place-ningshou-e32471b7c3','养性殿',-293.8,386.3,37.9,23.3,.9,7.36,9,4,236458,'yangxing'],
  ['place-ningshou-c715f850da','乐寿堂',-293.4,435.3,36.15,23.2,.9,7.36,7,3,236470,'leshou'],
  ['place-ningshou-722e40e471','符望阁',-259.1,484.6,23.1,22.5,1,12,5,5,236495,'fuwang'],
  ['place-ningshou-f4d12b27e6','倦勤斋',-252.6,513.6,31.5,8.8,.5,5.5,9,1,236478,'juanqin'],

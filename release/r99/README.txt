@@ -1,0 +1,4 @@
+R99 cumulative development candidate. Run node start.mjs and open the printed local URL.
+Fanhua is shifted south 2.25m with its source frame, geometry, collision, support, portal and map identity synchronized. Nine former overlaps with the northeast corner base are removed. The approximately 0.34m gap is an engineering fit, not surveyed and not a new pedestrian route. North walls, corner geometry and other Ningshou objects are retained.
+R96 furniture movement, nearby-character residency and Taihe-Zhonghe emperor routine remain. R97 performance and R98 rear-rock trials were not adopted; the records and unresolved limitations remain. Jingfu's old platform-transition body overlaps remain unchanged. See docs/current-state/r99/VALIDATION.md for exact evidence.
+This prebuilt package is not a main merge or public deployment. Keep R96 as runtime rollback. GPU/mobile and this release's actual Node20 execution are NOT_RUN; CPU tests are not device performance claims.
