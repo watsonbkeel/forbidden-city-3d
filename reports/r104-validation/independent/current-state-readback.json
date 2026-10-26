@@ -1,0 +1,51 @@
+{
+  "fullRawSummary": [
+    "ℹ tests 1290",
+    "ℹ pass 1127",
+    "ℹ fail 163",
+    "ℹ cancelled 0",
+    "ℹ skipped 0"
+  ],
+  "failureMultisetEqualsR95": true,
+  "affectedSummary": [
+    "ℹ tests 119",
+    "ℹ pass 91",
+    "ℹ fail 28",
+    "ℹ cancelled 0",
+    "ℹ skipped 0"
+  ],
+  "affectedFailures": {
+    "tests/current-state/qinan-exterior-routes.test.mjs": 1,
+    "tests/current-state/r32-route-retention.test.mjs": 1,
+    "historical R27/R28 retained-driver guards bind all three exact R32 test-source deltas": 1,
+    "data/interiors/qianqing.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed": 1,
+    "data/places/zh-CN.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed": 1,
+    "data/zones/east-six.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed": 1,
+    "data/zones/ningshou.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed": 1,
+    "data/zones/west-six.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed": 1,
+    "main.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed": 1,
+    "src/scene/Environment.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed": 1,
+    "src/scene/PalaceBuilder.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed": 1,
+    "src/scene/flight/FlightEnvelope.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed": 1,
+    "src/scene/palace/QianqingCentralSetting.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed": 1,
+    "src/scene/palace/kit.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed": 1,
+    "src/scene/zones/ZoneBase.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed": 1,
+    "src/ui/Minimap.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed": 1,
+    "src/ui/Teleport.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed": 1,
+    "src/utils/Collision.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed": 1,
+    "style.css: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed": 1,
+    "tests/lib/auto-routes.mjs: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed": 1,
+    "tests/lib/world.mjs: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed": 1,
+    "tests/stepwalk.cjs: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed": 1,
+    "src/scene/palace/special/InnerJinshui.js: added R32 source has a complete fixed identity": 1,
+    "src/scene/palace/special/YanxiStorehouses.js: added R32 source has a complete fixed identity": 1,
+    "older source guard entry chains consume R32 only through exact full-byte dispatch": 1,
+    "later product inventory lists only independently bound R31 and R32 additions": 1,
+    "later product inventory rejects every missing, duplicated, appended or mutated source/asset and wrong GLB binding": 1,
+    "V7 historical routes retain exact descriptors with only the later Qin’an and R6 Ningshou replacements isolated": 1
+  },
+  "affectedAllInOriginal": true,
+  "fixtureExactOwnHEAD": 166,
+  "oldR103ZToeErrors": 2,
+  "qualification": "Full original run predates test-helper-only Xiqing branch. Old shunzhen/yinghua zToe blockers persist; isolated Xiqing fixture corrected. Do not claim all historical routes executed."
+}

@@ -1,0 +1,25 @@
+✖ R104 route fixture derives all three flat Xiqing openings from actual production profile without fictitious ramps (2.872046ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 176.625874
+
+✖ failing tests:
+
+test at tests/r104-route-fixture.test.mjs:6:1
+✖ R104 route fixture derives all three flat Xiqing openings from actual production profile without fictitious ramps (2.872046ms)
+  TypeError: Cannot read properties of undefined (reading 'find')
+      at file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/auto-routes.mjs:401:27
+      at Array.flatMap (<anonymous>)
+      at file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/auto-routes.mjs:393:133
+      at Array.flatMap (<anonymous>)
+      at profileGateRoutes (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/auto-routes.mjs:393:16)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/r104-route-fixture.test.mjs:8:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)

@@ -1,0 +1,194 @@
+{
+  "sourceHashes": {
+    "src/controls/XiqingRoofSurface.js": "861cc060689b6824b5499b02c511f867d2705d7769e92d24f9598713b7f4f955",
+    "src/controls/XiqingRoofExact.js": "0722d5136c81bb117ab519265f08f252891d9d8cc005df941032d115795a073d",
+    "src/controls/FurnitureMotion.js": "1c30084586b790d2b0d061ad4677922fb48ac72a55a6c41f96da8391f8be845e",
+    "src/utils/Collision.js": "59f22d134ec2347db2d65cc45266a8e7f809d2fa0dbed26b4903b25fc8aaaac4",
+    "src/scene/palace/special/XiqingGate.js": "307d0c0973054f8c0967d67bf8f09ccfe05b82b510566340e83857d302bfb8a0"
+  },
+  "scope": "two source-cold local real FP 60Hz runs, forced 18m drop on real vertical eave edge, stationary/blocked west/east escape/settle; includes first-touch, not GPU/full world",
+  "rawSHA256": "8b814b6c588d3ed65832cbae8354e0d3c1416974bd8058ae175d587edbb19ed1",
+  "rawBytes": 182655,
+  "rows": [
+    {
+      "round": 0,
+      "phases": {
+        "pressure-drop": {
+          "count": 240,
+          "p50": 32.411313,
+          "p95": 39.779151,
+          "p99": 41.496367,
+          "max": 42.954716,
+          "end": {
+            "frame": 239,
+            "phase": "pressure-drop",
+            "ms": 32.117622,
+            "x": -231.4,
+            "z": 133,
+            "feet": 5.7900775470246675,
+            "airborne": true,
+            "vy": 0
+          }
+        },
+        "stationary-perch": {
+          "count": 120,
+          "p50": 35.070248,
+          "p95": 42.789087,
+          "p99": 46.724584,
+          "max": 76.957873,
+          "end": {
+            "frame": 359,
+            "phase": "stationary-perch",
+            "ms": 32.323871,
+            "x": -231.4,
+            "z": 133,
+            "feet": 5.7900775470246675,
+            "airborne": true,
+            "vy": 0
+          }
+        },
+        "blocked-west": {
+          "count": 120,
+          "p50": 36.148982,
+          "p95": 42.014135,
+          "p99": 45.155719,
+          "max": 54.603033,
+          "end": {
+            "frame": 479,
+            "phase": "blocked-west",
+            "ms": 36.540259,
+            "x": -231.41279318959246,
+            "z": 133,
+            "feet": 5.7900775470246675,
+            "airborne": true,
+            "vy": 0
+          }
+        },
+        "escape-east": {
+          "count": 180,
+          "p50": 0.017346,
+          "p95": 0.189955,
+          "p99": 31.534226,
+          "max": 36.928062,
+          "end": {
+            "frame": 659,
+            "phase": "escape-east",
+            "ms": 0.01334,
+            "x": -216.41279319053874,
+            "z": 133,
+            "feet": 0,
+            "airborne": false,
+            "vy": 0
+          }
+        },
+        "settle": {
+          "count": 60,
+          "p50": 0.013871,
+          "p95": 0.02642,
+          "p99": 0.059859,
+          "max": 0.22684,
+          "end": {
+            "frame": 719,
+            "phase": "settle",
+            "ms": 0.007141,
+            "x": -215.9542670960922,
+            "z": 133,
+            "feet": 0,
+            "airborne": false,
+            "vy": 0
+          }
+        }
+      }
+    },
+    {
+      "round": 1,
+      "phases": {
+        "pressure-drop": {
+          "count": 240,
+          "p50": 31.992474,
+          "p95": 36.025732,
+          "p99": 39.078439,
+          "max": 41.53839,
+          "end": {
+            "frame": 239,
+            "phase": "pressure-drop",
+            "ms": 33.672605,
+            "x": -231.4,
+            "z": 133,
+            "feet": 5.7900775470246675,
+            "airborne": true,
+            "vy": 0
+          }
+        },
+        "stationary-perch": {
+          "count": 120,
+          "p50": 32.406426,
+          "p95": 36.693459,
+          "p99": 39.5458,
+          "max": 40.807643,
+          "end": {
+            "frame": 359,
+            "phase": "stationary-perch",
+            "ms": 34.942241,
+            "x": -231.4,
+            "z": 133,
+            "feet": 5.7900775470246675,
+            "airborne": true,
+            "vy": 0
+          }
+        },
+        "blocked-west": {
+          "count": 120,
+          "p50": 37.825348,
+          "p95": 42.953002,
+          "p99": 45.48315,
+          "max": 55.772137,
+          "end": {
+            "frame": 479,
+            "phase": "blocked-west",
+            "ms": 36.908632,
+            "x": -231.41279318959246,
+            "z": 133,
+            "feet": 5.7900775470246675,
+            "airborne": true,
+            "vy": 0
+          }
+        },
+        "escape-east": {
+          "count": 180,
+          "p50": 0.01338,
+          "p95": 0.065689,
+          "p99": 34.991876,
+          "max": 38.545039,
+          "end": {
+            "frame": 659,
+            "phase": "escape-east",
+            "ms": 0.010186,
+            "x": -216.41279319053874,
+            "z": 133,
+            "feet": 0,
+            "airborne": false,
+            "vy": 0
+          }
+        },
+        "settle": {
+          "count": 60,
+          "p50": 0.010696,
+          "p95": 0.029694,
+          "p99": 0.069434,
+          "max": 0.09364,
+          "end": {
+            "frame": 719,
+            "phase": "settle",
+            "ms": 0.008022,
+            "x": -215.9542670960922,
+            "z": 133,
+            "feet": 0,
+            "airborne": false,
+            "vy": 0
+          }
+        }
+      }
+    }
+  ]
+}

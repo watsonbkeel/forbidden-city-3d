@@ -1,0 +1,36 @@
+✔ R104 explicit open surface owner never supplies support/collision from empty bbox corners (7.544914ms)
+✔ R104 ordinary and roof surfaces combine in one vertical contact, upward head impact never lands (12.285989ms)
+✔ R104 surface registry clones input, rejects identity/bounds mutation atomically and removes all ownership (0.864447ms)
+✔ R104 descending actual sloped-face contact becomes stable support with the exact witness, not a post-solver clamp (56.381146ms)
+✖ R104 three actual roofs register exactly their original 988 positive world faces and twenty zero-face source mappings (38.83289ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 310.835926
+
+✖ failing tests:
+
+test at tests/r104-roof-integration.test.mjs:10:1
+✖ R104 three actual roofs register exactly their original 988 positive world faces and twenty zero-face source mappings (38.83289ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 3
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/r104-roof-integration.test.mjs:10:234)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 3,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

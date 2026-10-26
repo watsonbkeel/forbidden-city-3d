@@ -21,6 +21,7 @@ import { zhenduGateGeometry } from '../../src/scene/palace/special/ZhenduGatePro
 import { eastWestCityGateGeometry } from '../../src/scene/palace/special/EastWestCityGate.js';
 import { huangjiGateGeometry } from '../../src/scene/palace/special/HuangjiGate.js';
 import { yanxiRuinGeometry } from '../../src/scene/palace/special/YanxiRuin.js';
+import { xiqingGeometry } from '../../src/scene/palace/special/XiqingGate.js';
 import { sideGateGeometry } from '../../src/scene/palace/special/SideGateProfiles.js';
 import { qinanGeometry } from '../../src/scene/palace/special/QinanProfile.js';
 import { pavilionGeometry } from '../../src/scene/palace/special/PavilionProfiles.js';
@@ -104,6 +105,11 @@ export function gateGeom(item) {
   if (item.gateProfile === 'huangji') {
     const profile=huangjiGateGeometry(item);
     return {x:profile.x,z:profile.z,rot:0,dir:[0,1],half:2.4,front:profile.front,rear:profile.rear,platformY:0,profile};
+  }
+  if (item.gateProfile === 'xiqing') {
+    const profile = xiqingGeometry(item, 'ningshou', 0);
+    return { x: profile.x, z: profile.z, rot: profile.rot, dir: [Math.sin(profile.rot), Math.cos(profile.rot)],
+      half: profile.depth / 2, front: profile.depth / 2, rear: profile.depth / 2, platformY: 0, profile };
   }
   if (item.gateProfile) {
     const profile = sideGateGeometry(item);

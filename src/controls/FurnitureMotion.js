@@ -1,3 +1,4 @@
+import {xiqingSurfaceFootContact,xiqingSurfaceBodyIntersects,xiqingSurfaceSweep} from './XiqingRoofSurface.js';
 import * as THREE from 'three';
 import {PLAYER} from '../config/constants.js';
 
@@ -33,6 +34,7 @@ export function furnitureStaticContact(colliders,x,z,maxTop,radius=.5,height=PLA
   let surface=null;
   for(const owner of colliders){
     if(owner.triangleSupport||owner.overhead)throw new TypeError('Unsupported furniture-domain shape');
+    if(owner.xiqingRoofSurface){const hit=xiqingSurfaceFootContact(owner.xiqingRoofSurface,x,z,maxTop,radius);if(hit&&(!surface||hit.height>surface.height))surface={...hit,owner};continue;}
     const box=owner.box??owner;
     const x0=Math.max(x-radius,box.min.x),x1=Math.min(x+radius,box.max.x);
     const z0=Math.max(z-radius,box.min.z),z1=Math.min(z+radius,box.max.z);
@@ -41,7 +43,7 @@ export function furnitureStaticContact(colliders,x,z,maxTop,radius=.5,height=PLA
   }
   if(!surface)return{surface:null,poseClear:false,blocker:null};
   const feet=new THREE.Vector3(x,surface.height,z);
-  for(const owner of colliders)if(furnitureBoxSweep(feet,feet,owner.box??owner,radius,height))return{surface,poseClear:false,blocker:owner};
+  for(const owner of colliders)if(owner.xiqingRoofSurface?xiqingSurfaceBodyIntersects(owner.xiqingRoofSurface,feetBox(feet,radius,height)):furnitureBoxSweep(feet,feet,owner.box??owner,radius,height))return{surface,poseClear:false,blocker:owner};
   return{surface,poseClear:true,blocker:null};
 }
 
@@ -50,7 +52,7 @@ export function furnitureStaticContact(colliders,x,z,maxTop,radius=.5,height=PLA
 export function cloneFurnitureMotionScope(input,ownerBox){
   if(input===undefined)return null;
   const keys=['minOffsetX','maxOffsetX','minOffsetZ','maxOffsetZ'];
-  if(input?.kind!=='yangxin-furniture'||typeof input.id!=='string'||!input.id||!keys.every(k=>Number.isFinite(input[k]))||input.minOffsetX>=input.maxOffsetX||input.minOffsetZ>=input.maxOffsetZ||!['x','y','z'].every(k=>Number.isFinite(ownerBox.min[k])&&Number.isFinite(ownerBox.max[k])&&ownerBox.min[k]<ownerBox.max[k]))throw new TypeError('Furniture scope requires finite ordered ordinary-box ownership');
+  if(!['yangxin-furniture','xiqing-gates'].includes(input?.kind)||(input.kind==='xiqing-gates'&&input.id!=='ningshou-xiqing-gates')||typeof input.id!=='string'||!input.id||!keys.every(k=>Number.isFinite(input[k]))||input.minOffsetX>=input.maxOffsetX||input.minOffsetZ>=input.maxOffsetZ||!['x','y','z'].every(k=>Number.isFinite(ownerBox.min[k])&&Number.isFinite(ownerBox.max[k])&&ownerBox.min[k]<ownerBox.max[k]))throw new TypeError('Furniture scope requires finite ordered ordinary-box ownership');
   if(input.groundY!==undefined&&input.groundY!==0)throw new TypeError('Furniture world ground witness must be the existing zero plane');
   return Object.freeze({kind:input.kind,id:input.id,...(input.groundY===0?{groundY:0}:{}),minX:ownerBox.min.x+input.minOffsetX,maxX:ownerBox.min.x+input.maxOffsetX,minZ:ownerBox.min.z+input.minOffsetZ,maxZ:ownerBox.min.z+input.maxOffsetZ});
 }
@@ -148,19 +150,27 @@ export function furnitureDynamicSweep(fromFeet,toFeet,actor,radius=.5,height=PLA
 const feetBox=(p,r,h)=>new THREE.Box3(new THREE.Vector3(p.x-r,p.y,p.z-r),new THREE.Vector3(p.x+r,p.y+h,p.z+r));
 /** Full static and dynamic occupancy on every straight subsegment. Navigation
  * borrows live static owners, but deliberately keeps its own dynamic exclusion. */
-export function furnitureBodySweep(cm,fromFeet,toFeet,radius=.5,height=PLAYER.HEIGHT){
+function bodySweep(cm,fromFeet,toFeet,radius,height,staticMemo=null){
   const fromEye=new THREE.Vector3(fromFeet.x,fromFeet.y+height,fromFeet.z),toEye=new THREE.Vector3(toFeet.x,toFeet.y+height,toFeet.z);
   if(!cm.checkBoundary(toEye,radius)||!cm.checkRiverCrossing(toEye,radius,fromEye))return{fraction:0,kind:'world-boundary'};
   const bounds=feetBox(fromFeet,radius,height).union(feetBox(toFeet,radius,height));let first=null;
-  for(const owner of furnitureLocalColliders(cm,bounds)){
+  // A memo exists only inside one roof vertical solve. Static ownership is
+  // generation-bound; world limits and every dynamic part are ALWAYS queried.
+  const source=furnitureMotionSource(cm),key=Object.is(toFeet.y,-0)?'negative-zero':toFeet.y;
+  if(staticMemo){const generation=source._duixiuGrid();if(staticMemo.generation!==generation){staticMemo.values.clear();staticMemo.generation=generation;}}
+  if(staticMemo?.values.has(key))first=staticMemo.values.get(key);
+  else {for(const owner of furnitureLocalColliders(cm,bounds)){
     if(!bounds.intersectsBox(owner.box))continue;
     if(owner.triangleSupport||owner.overhead)throw new TypeError('Unsupported furniture-domain shape');
+    if(owner.xiqingRoofSurface){const hit=xiqingSurfaceSweep(owner.xiqingRoofSurface,feetBox(fromFeet,radius,height),feetBox(toFeet,radius,height));if(hit&&(!first||hit.fraction<first.fraction))first={...hit,kind:'surface',collider:owner};continue;}
     const hit=furnitureBoxSweep(fromFeet,toFeet,owner.box,radius,height);
     if(hit&&(!first||hit.fraction<first.fraction))first={...hit,kind:'solid',collider:owner};
   }
+  if(staticMemo)staticMemo.values.set(key,first);}
   for(const actors of cm.dynamicBodies.values())for(const actor of actors){const hit=furnitureDynamicSweep(fromFeet,toFeet,actor,radius,height);if(hit&&(!first||hit.fraction<first.fraction))first=hit;}
   return first;
 }
+export function furnitureBodySweep(cm,fromFeet,toFeet,radius=.5,height=PLAYER.HEIGHT){return bodySweep(cm,fromFeet,toFeet,radius,height);}
 export function furnitureContact(cm,x,z,maxTop,radius=.5,height=PLAYER.HEIGHT){
   const bounds=new THREE.Box3(new THREE.Vector3(x-radius,-Infinity,z-radius),new THREE.Vector3(x+radius,Infinity,z+radius));
   const owners=furnitureLocalColliders(cm,bounds).filter(c=>bounds.intersectsBox(c.box));
@@ -215,7 +225,12 @@ export function resolveFurnitureVertical(cm,state,delta,radius=.5){
   // Use a representably clear prefix if an upward arithmetic roundtrip would
   // leave positive depth. This does not shrink the body or permit penetration.
   const at=new THREE.Vector3(state.x,feet,state.z);
-  if(furnitureBodySweep(cm,from,at,radius)&&impact.fraction>0){let low=0,high=impact.fraction;for(let i=0;i<48;i++){const mid=(low+high)/2;at.y=from.y+(to.y-from.y)*mid;if(furnitureBodySweep(cm,from,at,radius))high=mid;else low=mid;}feet=from.y+(to.y-from.y)*low;}
+  // Preserve all 48 fraction updates and their exact binary64 output. Repeated
+  // represented heights need no duplicate static SAT; this cache cannot escape
+  // the synchronous call, and never stores dynamic-NPC decisions.
+  const staticMemo=impact.kind==='surface'?{generation:null,values:new Map()}:null;
+  const probe=()=>bodySweep(cm,from,at,radius,PLAYER.HEIGHT,staticMemo);
+  if(probe()&&impact.fraction>0){let low=0,high=impact.fraction;for(let i=0;i<48;i++){const mid=(low+high)/2;at.y=from.y+(to.y-from.y)*mid;if(probe())high=mid;else low=mid;}feet=from.y+(to.y-from.y)*low;}
   const final=furnitureContact(cm,state.x,state.z,feet,radius);
   const landed=velocity<=0&&impact.kind!=='dynamic'&&final.surface?.height===feet&&final.poseClear;
   return{...state,feetY:feet,groundY:final.surface?.height??0,verticalVelocity:0,airborne:!landed,onSupport:!!landed,landed:!!landed,blockedPose:!final.poseClear};

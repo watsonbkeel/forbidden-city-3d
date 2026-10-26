@@ -1,0 +1,70 @@
+✖ R104 surface square footprint has a real witness and upper roof does not hide reachable lower face (1.516065ms)
+✖ R104 open sheet blocks both directions but has no imaginary parity volume (0.168493ms)
+✖ R104 surface input keeps all positive faces, filters only exact zero with source map, rejects invalid source/id (3.212752ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 0
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 121.05211
+
+✖ failing tests:
+
+test at tests/r104-roof-surface.test.mjs:6:1
+✖ R104 surface square footprint has a real witness and upper roof does not hide reachable lower face (1.516065ms)
+  AssertionError [ERR_ASSERTION]: explicit Xiqing surface primitive module required
+      at shape (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/r104-roof-surface.test.mjs:4:34)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/r104-roof-surface.test.mjs:6:120)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r104-roof-surface.test.mjs:7:1
+✖ R104 open sheet blocks both directions but has no imaginary parity volume (0.168493ms)
+  AssertionError [ERR_ASSERTION]: explicit Xiqing surface primitive module required
+      at shape (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/r104-roof-surface.test.mjs:4:34)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/r104-roof-surface.test.mjs:7:95)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r104-roof-surface.test.mjs:8:1
+✖ R104 surface input keeps all positive faces, filters only exact zero with source map, rejects invalid source/id (3.212752ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(api)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/r104-roof-surface.test.mjs:8:132)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

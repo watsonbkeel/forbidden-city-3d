@@ -1,0 +1,27 @@
+✖ R104 owned roof triangles match actual finished production Float32 render triangles exactly (138.740947ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 366.730089
+
+✖ failing tests:
+
+test at tests/r104-roof-integration.test.mjs:12:1
+✖ R104 owned roof triangles match actual finished production Float32 render triangles exactly (138.740947ms)
+  AssertionError [ERR_ASSERTION]: actual postmerge source xiqing-roof-south:0/0
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/r104-roof-integration.test.mjs:12:652)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

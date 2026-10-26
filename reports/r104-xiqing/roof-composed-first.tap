@@ -1,0 +1,63 @@
+✔ R104 explicit open surface owner never supplies support/collision from empty bbox corners (17.058064ms)
+✔ R104 ordinary and roof surfaces combine in one vertical contact, upward head impact never lands (51.770858ms)
+✔ R104 surface registry clones input, rejects identity/bounds mutation atomically and removes all ownership (0.993581ms)
+✔ R104 descending actual sloped-face contact becomes stable support with the exact witness, not a post-solver clamp (98.850074ms)
+✔ R104 three actual roofs register exactly their original 988 positive world faces and twenty zero-face source mappings (81.779742ms)
+✔ R104 actual three roof pressure descents land on visible upward source rather than the lower lintel (1407.959113ms)
+✔ R104 surface square footprint has a real witness and upper roof does not hide reachable lower face (4.667616ms)
+✔ R104 open sheet blocks both directions but has no imaginary parity volume (7.760259ms)
+✔ R104 surface input keeps all positive faces, filters only exact zero with source map, rejects invalid source/id (1.462225ms)
+✔ R104 surface registration snapshot preserves zero-face provenance and rejects altered source bounds (0.501663ms)
+✔ R104 roof source deep immutability and bounded fine query retain exact face order (1.855445ms)
+✔ R104 actual production sloped-edge contact rounds toward a provably clear representable foot, not a broad epsilon (2.068645ms)
+✔ R104 exact roof height is the least representable upper bound across signs, not a fixed uplift (23.666854ms)
+✔ R104 actual source-double SAT separates a conservative foot and still rejects real 1nm penetration (3.147855ms)
+✔ R104 distinct Xiqing ordinary-box scope kind is accepted; unrelated kinds remain rejected (1.230137ms)
+✔ R104 actual three-gate owner marks only its finite ordinary-box domain (199.35375ms)
+✖ R104 new south pier high descent stays clear in the scoped domain and escapes new solids; legacy exterior overlaps recorded (217.274119ms)
+✔ R104 actual Xiqing consists of three distinct hipped roof gate groups, not one generic gateHall (148.240213ms)
+✔ R104 only Xiqing caller changes; Lianxi old full local snapshot and stable catalog identity remain (14.5433ms)
+✔ R104 actual wall cuts are three clear passages with solid interstitials, headers and unshifted central floor (76.331488ms)
+✔ R104 independent roof envelopes do not interpenetrate one another or reach adjacent south/cross walls (48.972258ms)
+✔ R104 source guards reject wrong caller and wrong wall before geometry allocation (3.568076ms)
+✔ R104 all new registered solid meshes and open leaves own their exact world box, central depth stays original (44.81648ms)
+✔ R104 glazed fields replace solid front faces without projecting new thin landing ledges (12.655732ms)
+✔ R104 painted box front partitions cover exactly one original face without geometric or UV degeneracy (20.585609ms)
+✔ R104 whole-world gate metadata uses actual Xiqing profile without generic side-gate substitution (0.999009ms)
+✔ R104 merged gate owns and releases new materials and merged geometries once per build (72.366531ms)
+✔ R104 existing actual-mesh flight collector covers all three roofs after production material merge (32.287323ms)
+✔ R104 actually open leaves are not buried inside masonry pier solids (17.830164ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 28
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1915.199359
+
+✖ failing tests:
+
+test at tests/r104-xiqing-motion.test.mjs:5:1
+✖ R104 new south pier high descent stays clear in the scoped domain and escapes new solids; legacy exterior overlaps recorded (217.274119ms)
+  AssertionError [ERR_ASSERTION]: {"fps":10,"dir":0,"startX":-231.49,"feet":5.462969393416701,"scoped":true}
+  
+  true !== false
+  
+      at audit (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/r104-xiqing-motion.test.mjs:5:1160)
+      at file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/r104-xiqing-motion.test.mjs:5:1275
+      at withTerrainController (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/r91-controller-clock.mjs:3:633)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/r104-xiqing-motion.test.mjs:5:341)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
