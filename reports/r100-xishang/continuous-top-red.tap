@@ -1,0 +1,35 @@
+✔ R100 replaces only the two thin open side rails with eight solid stone panels and ten broad posts (61.15446ms)
+✔ R100 every rail collider is the exact world envelope of its own visible box, never a hidden span (46.642256ms)
+✔ R100 preserves every non-rail attribute, collider, support, map and actual channel sample exactly (42.788427ms)
+✖ R100 retains a real uninterrupted equal-height top rail across the entire side span (26.582425ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 322.016237
+
+✖ failing tests:
+
+test at tests/r100-xishang-stone-rails.test.mjs:7:1
+✖ R100 retains a real uninterrupted equal-height top rail across the entire side span (26.582425ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  8 !== 2
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r100-xishang-stone-rails/tests/r100-xishang-stone-rails.test.mjs:7:217)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 8,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

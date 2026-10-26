@@ -1,3 +1,4 @@
+import {buildChengqianFrontFields} from './ChengqianSouthWindows.js';
 import {withholdHUnknownInventory} from './HUnknownInventory.js';
 import {buildChonghuaSouthKnees} from './ChonghuaSouthKnees.js';
 import {buildQinzhengFootstool} from './QinzhengFootstool.js';
@@ -86,9 +87,11 @@ function windowBuilder(kit, p) {
     const g = tag(new THREE.Group(), 'r48-residential-window', { ...provenance(p), pattern: p.window, side, bayIndex, patternStatus: 'SOURCE_TYPE_SCHEMATIC_NOT_EXACT_PATTERN', sillHeight: .95 }); f.add(g);
     const sill = .95, upper = height - sill, mid = floorY + sill + upper / 2;
     block(kit, g, 'r48-residential-window-sill', kit.lib.material('wall_brick'), width, sill, .38, x, floorY + sill / 2, z);
-    block(kit, g, 'r48-residential-window-panel', p.window === 'rectangular-glazing' ? glass : paper, width - .12, upper - .08, .06, x, mid, z);
+
+    if(!(p.key==='chengqian-front'&&side===-1))block(kit, g, 'r48-residential-window-panel', p.window === 'rectangular-glazing' ? glass : paper, width - .12, upper - .08, .06, x, mid, z);
     for (const sx of [-1, 1]) block(kit, g, 'r48-residential-window-jamb', wood, .12, upper, .16, x + sx * (width - .12) / 2, mid, z - .055);
     for (const yy of [floorY + sill + .05, floorY + height - .05]) block(kit, g, 'r48-residential-window-rail', wood, width, .1, .16, x, yy, z - .055);
+    if(p.key==='chengqian-front'&&side===-1){buildChengqianFrontFields(kit,g,{x,z,width,height,floorY,bayIndex});return true;}
     const panels = p.window === 'rectangular-glazing' ? 4 : 3;
     for (let k = 1; k < panels; k++) block(kit, g, 'r48-residential-window-mullion', wood, .08, upper, .13, x - width / 2 + k * width / panels, mid, z - .06);
     block(kit, g, 'r48-residential-window-transom', wood, width, .09, .13, x, floorY + sill + upper * .48, z - .06);

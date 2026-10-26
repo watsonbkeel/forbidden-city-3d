@@ -393,6 +393,11 @@ export function profileGateRoutes(zones) {
   return zones.flatMap(zone => zone.items.filter(item => item.kind === 'gate' && item.gateProfile && item.gateProfile !== 'zhaode').flatMap(item => {
     if(item.gateProfile==='kunning'){const go=kunningGateAccess(item);return [{name:`[${zone.id}] ${item.name}门道1→实际两侧踏步→返回`,zone:zone.id,gate:item.name,gateProfile:'kunning',portalCenter:0,waypointDriver:'physical-crossing-v1',plan:['独立阶梯门壳不适用旧侧门双坡道接口；保留实际全部踏步/台面转向点'],pts:[...go,...go.slice(0,-1).reverse()]}];}
     const { profile: g } = gateGeom(item);
+    if(g.profile==='xiqing')return g.portals.map((portal,index)=>({
+      name:`[${zone.id}] ${item.name}门道${index+1}→真实分立门地面→返回`,zone:zone.id,gate:item.name,gateProfile:'xiqing',portalCenter:portal.x,
+      plan:['按生产三门位置与实际门深生成地面路线，不虚构坡道'],
+      pts:[-g.depth/2-2,0,g.depth/2+2,0,-g.depth/2-2].map(z=>[g.x+portal.x*Math.cos(g.rot)+z*Math.sin(g.rot),g.z-portal.x*Math.sin(g.rot)+z*Math.cos(g.rot)]),
+    }));
     if(g.profile==='huangji')return g.portals.map((portal,index)=>({
       name:`[${zone.id}] ${item.name}门道${index+1}→真实三洞地面→返回`,zone:zone.id,gate:item.name,gateProfile:'huangji',portalCenter:portal.x,
       plan:['独立保留三处实际券洞，地面通过，不借用抬高门殿坡道'],

@@ -1,0 +1,6 @@
+R102 cumulative development candidate. Run node start.mjs and open the printed local address.
+Only existing Jiaotai cloth and rug surfaces receive two self-authored 512-square RGBA maps and bounded UV changes. Positions, normals, indices, transforms, physical supports, display objects and characters remain unchanged.
+Pale textile curves and blue rug border/field divisions are photo-inspired simplifications, not exact historic weaving, writing, dragons or seal contents. Tiny cylindrical tips retain their original UVs. No hidden furniture or additional exhibits are invented.
+Actual RGBA/UV CPU diagnostics are not GPU/mobile acceptance. Distant real mipmap/alias behavior is NOT_RUN. Base texture bytes total 2MiB (about 2.67MiB with mips); local warm construction median rose about 8.18 to 22.01ms. This is an appearance change with cost, not a performance optimization.
+Retains R101 plaque interface, R100 rails and original channel, R99 layout, R96 furniture/nearby characters/emperor features and R97/R98 negative records. Existing narrow-edge contact and Garden reload limitations remain.
+This package is not a main merge or deployment. Actual Node20 execution is NOT_RUN. Keep delivered R101 as rollback.

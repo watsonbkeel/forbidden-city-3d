@@ -1,0 +1,41 @@
+✔ R104 actual Xiqing consists of three distinct hipped roof gate groups, not one generic gateHall (98.894707ms)
+✔ R104 only Xiqing caller changes; Lianxi old full local snapshot and stable catalog identity remain (12.171554ms)
+✔ R104 actual wall cuts are three clear passages with solid interstitials, headers and unshifted central floor (62.848628ms)
+✔ R104 independent roof envelopes do not interpenetrate one another or reach adjacent south/cross walls (32.071235ms)
+✔ R104 source guards reject wrong caller and wrong wall before geometry allocation (4.507945ms)
+✔ R104 all new registered solid meshes and open leaves own their exact world box, central depth stays original (34.499809ms)
+✖ R104 glazed fields replace solid front faces without projecting new thin landing ledges (14.937354ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 501.149532
+
+✖ failing tests:
+
+test at tests/r104-xiqing-three-gates.test.mjs:10:1
+✖ R104 glazed fields replace solid front faces without projecting new thin landing ledges (14.937354ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(m.geometry.attributes.color)
+  
+      at file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/r104-xiqing-three-gates.test.mjs:10:422
+      at Mesh.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7600:3)
+      at Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)
+      at Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/r104-xiqing-three-gates.test.mjs:10:154)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

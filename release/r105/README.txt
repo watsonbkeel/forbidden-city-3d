@@ -1,0 +1,4 @@
+R105 cumulative acceptance development candidate. Run node start.mjs and open the printed address.
+No new runtime geometry, character behavior or collision algorithm: exact functional inputs inherited from final R104. This package also retains R89-R103 bounded deliveries and rejected R97/R98 experiment records.
+Partial restoration is not full completion: rear rock walls, Garden reload +182ms, unverified details and old floor-edge limitations remain. R104 open vertical eave edge pressure poses may need sideways movement to a true upward-facing surface before grounded jumping; pathological p95 up to6.535ms/max13.722ms remains disclosed.
+CPU/HTTP checks are not GPU/mobile acceptance. Candidate Node20/GPU/mobile NOT_RUN. Historical163 test failures and blocked legacy route fixtures are not silently declared passed. Main/Pages are user-controlled; retain R104 as rollback.

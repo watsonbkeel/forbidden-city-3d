@@ -1,0 +1,43 @@
+✔ R104 actual Xiqing consists of three distinct hipped roof gate groups, not one generic gateHall (94.24789ms)
+✔ R104 only Xiqing caller changes; Lianxi old full local snapshot and stable catalog identity remain (12.667501ms)
+✔ R104 actual wall cuts are three clear passages with solid interstitials, headers and unshifted central floor (57.11038ms)
+✔ R104 independent roof envelopes do not interpenetrate one another or reach adjacent south/cross walls (32.122368ms)
+✔ R104 source guards reject wrong caller and wrong wall before geometry allocation (3.25211ms)
+✔ R104 all new registered solid meshes and open leaves own their exact world box, central depth stays original (35.425626ms)
+✔ R104 glazed fields replace solid front faces without projecting new thin landing ledges (6.000636ms)
+✔ R104 painted box front partitions cover exactly one original face without geometric or UV degeneracy (8.08286ms)
+✔ R104 whole-world gate metadata uses actual Xiqing profile without generic side-gate substitution (0.823015ms)
+✔ R104 merged gate owns and releases new materials and merged geometries once per build (38.94581ms)
+✔ R104 existing actual-mesh flight collector covers all three roofs after production material merge (16.699953ms)
+✖ R104 actually open leaves are not buried inside masonry pier solids (8.137663ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 11
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 556.775308
+
+✖ failing tests:
+
+test at tests/r104-xiqing-three-gates.test.mjs:17:1
+✖ R104 actually open leaves are not buried inside masonry pier solids (8.137663ms)
+  AssertionError [ERR_ASSERTION]: opened leaf must stand outside real pier, not only metadata
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/r104-xiqing-three-gates.test.mjs:17:504)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

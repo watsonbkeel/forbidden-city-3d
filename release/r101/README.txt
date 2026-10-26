@@ -1,0 +1,5 @@
+R101 cumulative development candidate. Run node start.mjs and open the printed local address.
+Only Xiehe Gate's complete plaque frame and lettering plane move outward by 0.07m to remove the frame's upper rear intersection with the painted beam. The approximately 0.01m remaining gap is an engineering fit, not a surveyed mounting dimension.
+The lettering, frame geometry, doorway, header, collision, supports, map and other four reviewed gates remain unchanged. The previous letters were already visible; this is not a blocked-door or unreadable-sign fix. Curved ornament, calligraphy and support rods are not precisely reconstructed.
+Retains R100 solid-panel side rails and original R83 channel, R99 northeast interface correction, R96 furniture/nearby characters/emperor features and the R97/R98 rejected-experiment records. Existing narrow-rail edge overlaps and Garden loading cost remain unresolved.
+This package is not a main merge or deployment. CPU geometry diagnostics do not demonstrate GPU/mobile performance or actual Node20 execution; those remain NOT_RUN. Keep delivered R100 as rollback.

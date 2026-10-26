@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "unrelatedObjectsExact": 42,
+  "roomsExact": true,
+  "otherMapExact": true,
+  "gateMap": {
+    "before": [
+      {
+        "kind": "gate",
+        "name": "锡庆门",
+        "x": -233.2,
+        "z": 135.5,
+        "w": 2.8,
+        "d": 6.4
+      }
+    ],
+    "after": [
+      {
+        "kind": "gate",
+        "name": "锡庆门",
+        "x": -233.2,
+        "z": 135.5,
+        "w": 2.8,
+        "d": 18.8,
+        "gateProfile": "xiqing",
+        "portalCount": 3,
+        "dimensionStatus": "MODEL_FIT_NOT_SURVEYED"
+      }
+    ]
+  },
+  "changes": [
+    {
+      "index": 0,
+      "kind": "gate",
+      "beforeMeshes": 16,
+      "afterMeshes": 45,
+      "beforeColliders": 2,
+      "afterColliders": 24
+    },
+    {
+      "index": 41,
+      "kind": "wall",
+      "beforeMeshes": 20,
+      "afterMeshes": 30,
+      "beforeColliders": 4,
+      "afterColliders": 6
+    }
+  ]
+}

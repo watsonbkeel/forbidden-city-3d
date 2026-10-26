@@ -1,0 +1,71 @@
+{
+  "sourceCheckpoint": "c02bb93cc996ead34baa0fbe558947487876248f",
+  "scope": "same-process warm local Jiaotai fragment construct + dispose CPU; not fullworld/GPU",
+  "pairs": [
+    [
+      {
+        "p50": 9.7338825,
+        "p95": 11.319429,
+        "max": 11.319429
+      },
+      {
+        "p50": 24.7537785,
+        "p95": 40.564454,
+        "max": 40.564454
+      }
+    ],
+    [
+      {
+        "p50": 8.537779,
+        "p95": 9.360449,
+        "max": 9.360449
+      },
+      {
+        "p50": 22.0101995,
+        "p95": 28.36978,
+        "max": 28.36978
+      }
+    ],
+    [
+      {
+        "p50": 8.181199,
+        "p95": 8.848861,
+        "max": 8.848861
+      },
+      {
+        "p50": 21.968912,
+        "p95": 24.457247,
+        "max": 24.457247
+      }
+    ],
+    [
+      {
+        "p50": 7.699911,
+        "p95": 9.580589,
+        "max": 9.580589
+      },
+      {
+        "p50": 22.6436695,
+        "p95": 29.324041,
+        "max": 29.324041
+      }
+    ],
+    [
+      {
+        "p50": 7.5693105,
+        "p95": 9.503974,
+        "max": 9.503974
+      },
+      {
+        "p50": 21.667169,
+        "p95": 23.564065,
+        "max": 23.564065
+      }
+    ]
+  ],
+  "medianP50": [
+    8.181199,
+    22.0101995
+  ],
+  "note": "10 samples/group p95 nearest rank is max; full raw retained. Later CylinderGeometry early-return only removes tiny UV work; texture generator unchanged; not a new timing claim."
+}

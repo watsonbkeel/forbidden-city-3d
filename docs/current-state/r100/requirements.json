@@ -1,0 +1,332 @@
+{
+  "schema": 1,
+  "release": "R100",
+  "updated": "2026-10-26",
+  "baseline": {
+    "local": "f6efd406bad4646c46af92bce39cb1dd8799797b",
+    "remote": "d5f9722776a668fc3975e82f749587ecd5deb277",
+    "main": "96f658fd2b2e1f40e8b6fb24930a3dd2d095551d",
+    "runtimeRemote": "d5f9722776a668fc3975e82f749587ecd5deb277",
+    "mainEqualsDeliveredR99Tree": true,
+    "recordOnlyAncestorRemote": "0dd0b6d8fb6abbc085ff1cc710e3f114e6e22cb0"
+  },
+  "scope": "需求摘要不是逐字用户原话；已交付范围不等于全宫完工。该清单为可维护分诊入口，非穷尽所有历史愿望。",
+  "items": [
+    {
+      "id": "REQ-R89",
+      "status": "DELIVERED_BOUNDED",
+      "requirement": "时分输入、移动焦点、皇帝往返与水域CPU改进",
+      "implementation": "R89已实现，R94保留；R95时分/焦点/实际控制器46项复核通过",
+      "source": "c6a2a28736b4faa3d7a1826840deb4b0954f9bce",
+      "evidence": [
+        "docs/current-state/r89-time-emperor/RELEASE.md",
+        "reports/r95-acceptance/baseline-controls.tap"
+      ],
+      "boundary": "CPU事件/控制器不是浏览器GPU游玩全验",
+      "next": "保持；R97另处理有证据性能项",
+      "auditId": "R95-REQ-001"
+    },
+    {
+      "id": "REQ-R90",
+      "status": "DELIVERED_BOUNDED",
+      "requirement": "顺贞门门墙与北端通行协调",
+      "implementation": "三座随墙门、中央北牌匾、真实门叶碰撞、地图身份已交付",
+      "source": "c6a2a28736b4faa3d7a1826840deb4b0954f9bce",
+      "evidence": [
+        "docs/current-state/r90-north-connections/VALIDATION.md"
+      ],
+      "boundary": "尺寸工程拟合；不扩为未经定位的新院落",
+      "next": "保持既有通路，R101只处理新核实差项",
+      "auditId": "R95-REQ-002"
+    },
+    {
+      "id": "REQ-R91",
+      "status": "PARTIAL_DELIVERED",
+      "requirement": "堆秀山自然岩面与可见碰撞通路一致",
+      "implementation": "R94已交正面/前肩/非路侧坡/外脚，保留洞、两路、平台",
+      "source": "c6a2a28736b4faa3d7a1826840deb4b0954f9bce",
+      "evidence": [
+        "docs/current-state/r94-duixiu/VALIDATION.md"
+      ],
+      "boundary": "后侧及部分路线/平台承托墙仍旧模型，非整山测绘还原",
+      "next": "R98形体/材质试验均未采纳，后侧及承托墙欠项保持；未来须重评建模方法，不继续参数试错",
+      "auditId": "R95-REQ-003"
+    },
+    {
+      "id": "REQ-R92",
+      "status": "DELIVERED_BOUNDED",
+      "requirement": "保和殿东台阶与横墙小门联合协调",
+      "implementation": "三级东露台、灰框门和接头已交付并累计",
+      "source": "c6a2a28736b4faa3d7a1826840deb4b0954f9bce",
+      "evidence": [
+        "docs/current-state/r93a-baohe-east/VALIDATION.md"
+      ],
+      "boundary": "1941图/照片工程拟合；原西侧/北侧兼容边界保留，未知长廊拱门不捏造",
+      "next": "保持；新定位依据再入相应后续版",
+      "auditId": "R95-REQ-004"
+    },
+    {
+      "id": "REQ-R93",
+      "status": "DELIVERED_BOUNDED",
+      "requirement": "勤政亲贤炕外两高几，保留旧室内",
+      "implementation": "两高几与原两低几、脚踏、S内景均保留",
+      "source": "c6a2a28736b4faa3d7a1826840deb4b0954f9bce",
+      "evidence": [
+        "docs/current-state/r93-qinzheng-tables/VALIDATION.md"
+      ],
+      "boundary": "物件拟合非实测；新增两高几完成不等于旧低几边缘移动无问题",
+      "next": "保留物件；旧低几退出问题见MOVE-KANG-001",
+      "auditId": "R95-REQ-005"
+    },
+    {
+      "id": "MOVE-KANG-001",
+      "status": "DELIVERED_BOUNDED",
+      "requirement": "可达炕沿/旧低几上普通退回不应产生身体穿入",
+      "implementation": "R96限定养心实际家具域，完整方形足印、静态/动态连续扫掠、精确落脚；真实B/S×10/30/60×8方向独立无正穿入",
+      "source": "33e7865a74e9ecd3858938f972cb33dd12824c46",
+      "evidence": [
+        "reports/r96-movement/substep-fixed-green.tap",
+        "docs/current-state/r96/VALIDATION.md"
+      ],
+      "boundary": "域外旧控制保留；6条人工高空下降域外失败与R95一致。允许合法家具阻挡，不承诺任意方向穿越实体",
+      "next": "累计/性能/构建最终门；保留R95原始RED记录",
+      "auditId": "R95-REQ-006"
+    },
+    {
+      "id": "LOAD-GARDEN-001",
+      "status": "KNOWN_REGRESSION",
+      "requirement": "园林加载不增加明显停顿",
+      "implementation": "R94五重建/登记/索引CPU中位374→556ms，已如实保留",
+      "source": "c6a2a28736b4faa3d7a1826840deb4b0954f9bce",
+      "evidence": [
+        "docs/current-state/r94-duixiu/VALIDATION.md"
+      ],
+      "boundary": "约+182ms不是GPU帧率；首载单样本不外推",
+      "next": "R97未采纳运行优化，Garden约182ms重载增量仍未解决"
+    },
+    {
+      "id": "WUYING-001",
+      "status": "HISTORICAL_PROBE_SUPERSEDED",
+      "requirement": "武英门北向正常出门",
+      "implementation": "R95真实生产世界16走/跑/前进/倒退场景已验；旧lint将已抬高起点脚高重置0",
+      "source": "c6a2a28736b4faa3d7a1826840deb4b0954f9bce",
+      "evidence": [
+        "reports/r95-acceptance/wuying/REVIEW.md",
+        "reports/r95-acceptance/wuying/r95-current-routes.tap"
+      ],
+      "boundary": "仅已测合法路线；原lint仍2errors/20warnings，不据此判断玩家进不去或全园无错",
+      "next": "使用tests/r95-wuying-current-routes.test.mjs后继合同；旧lint报警保留供显式迁移",
+      "auditId": "R95-WUYING-001"
+    },
+    {
+      "id": "WUYING-002",
+      "status": "HISTORICAL_PROBE_SUPERSEDED",
+      "requirement": "武英殿地面侧阶进入并返回",
+      "implementation": "R95真实生产世界16走/跑/前进/倒退场景已验；旧lint将已抬高起点脚高重置0",
+      "source": "c6a2a28736b4faa3d7a1826840deb4b0954f9bce",
+      "evidence": [
+        "reports/r95-acceptance/wuying/REVIEW.md",
+        "reports/r95-acceptance/wuying/r95-current-routes.tap"
+      ],
+      "boundary": "仅已测合法路线；原lint仍2errors/20warnings，不据此判断玩家进不去或全园无错",
+      "next": "使用tests/r95-wuying-current-routes.test.mjs后继合同；旧lint报警保留供显式迁移",
+      "auditId": "R95-WUYING-002"
+    },
+    {
+      "id": "HISTORICAL-163",
+      "status": "UNRESOLVED",
+      "requirement": "历史失败逐项有可追溯当前结论",
+      "implementation": "保留163完整名称；118身份/保留契约不匹配需确认迁移、7fixture、38仍待核",
+      "source": "c6a2a28736b4faa3d7a1826840deb4b0954f9bce",
+      "evidence": [
+        "docs/current-state/r95-acceptance/failure-ledger-163.json",
+        "docs/current-state/r95-acceptance/FAILURES-163.md"
+      ],
+      "boundary": "分类不是结案；旧hash失败不能证明旧要求被批准替代，失败数未降低；716中止旧扫测未穷尽",
+      "next": "按可达玩家流程优先逐项确认替代/保留证据，不全园无限扫测"
+    },
+    {
+      "id": "CAP-WEBGL",
+      "status": "CAPABILITY_BLOCKED",
+      "requirement": "实际浏览器进入3D并验证时间/地图/步行交互",
+      "implementation": "R94/main线上身份/HTTP通过；已有云Chrome实际加载因WebGL Disabled失败",
+      "source": "c6a2a28736b4faa3d7a1826840deb4b0954f9bce",
+      "evidence": [
+        "reports/r95-acceptance/cloud-browser-result.md",
+        "reports/r95-acceptance/live-main-build-info.json"
+      ],
+      "boundary": "BLOCKED_ENVIRONMENT；游戏内时分/地图/步行均NOT_RUN；不是新产品bug，也不是手机GPU验收",
+      "next": "等待可用真实WebGL设备，不重试已拒环境/不关闭sandbox"
+    },
+    {
+      "id": "CAP-NODE20",
+      "status": "VERIFIED_BASELINE",
+      "requirement": "部署环境Node20可构建",
+      "implementation": "用户main c32e6d44的既有CI实际Node20.20.2构建和部署job成功",
+      "source": "c32e6d44dea8db4d779a46380570d20753ff8d2f",
+      "evidence": [
+        "reports/r95-acceptance/main-node20-ci.json"
+      ],
+      "boundary": "只证明该main基底的CI；本地仍Node24，R95新CI与Node20 CPU测试未跑",
+      "next": "后续R95实际CI按准确提交另记，不能沿用基底完成标记"
+    },
+    {
+      "id": "SCOPE-SURVEY",
+      "status": "UNRESOLVED",
+      "requirement": "历史形制/格局持续依据资料核对",
+      "implementation": "现有分区为程序化工程拟合，具体已交和未知范围分版保留",
+      "source": "c6a2a28736b4faa3d7a1826840deb4b0954f9bce",
+      "evidence": [
+        "docs/LIMITATIONS.md"
+      ],
+      "boundary": "未全量对齐R52旧backlog，queued不自动成为当前任务；不声称全宫还原",
+      "next": "R99–R104按当前证据定位具体对象后实施，不重做已解决项"
+    },
+    {
+      "id": "CHAR-STARTUP-001",
+      "status": "DELIVERED_BOUNDED",
+      "requirement": "低画质储秀宫人物首次显示过慢；皇帝等角色实际可见性",
+      "implementation": "R95已实现并经独立功能审核：近处优先、当前必需资源有界按需准备，显示/近处身体集合一致，保留精确姿态和座位",
+      "source": "4d9aa8562238bd121f8682b72696f835bc4d65d4",
+      "evidence": [
+        "reports/r95-acceptance/characters/baseline-low.json",
+        "reports/r95-acceptance/characters/targeted-green.tap",
+        "reports/r95-acceptance/characters/demand-low-15.json",
+        "reports/r95-acceptance/characters/demand-low-30.json",
+        "reports/r95-acceptance/characters/demand-low-60.json",
+        "reports/r95-acceptance/characters/independent/REVIEW.md",
+        "reports/r95-acceptance/characters/paired-summary.json"
+      ],
+      "boundary": "CPU真实InstancedMesh提交不是用户设备GPU像素或FPS。初稿隐形动态体RED已修并独立复验；稳态CPU p95配对中位+0.240ms取舍保留，未称全面提速",
+      "next": "R95已由用户合main；R96仅扩展附近驻留与首显调度，非所有角色首显都更快"
+    },
+    {
+      "id": "CHAR-RESIDENCY-001",
+      "status": "DELIVERED_BOUNDED",
+      "requirement": "只预备附近人物模型，保留远处作息位置和共享资源",
+      "implementation": "地面40/45显示滞后、60/70驻留滞后；飞行飞机XZ宽窗口；当前pose/key用户引用管理",
+      "source": "bc0b8b02bb9cfc7e8be005eca5376c4636551b02",
+      "evidence": [
+        "reports/r96-characters/MODEL-CHECKPOINT.md"
+      ],
+      "boundary": "程序化模型而非逐人GLB下载；GPU/手机NOT_RUN，CPU性能另验"
+    },
+    {
+      "id": "EMPEROR-ZHONGHE-001",
+      "status": "DELIVERED_BOUNDED",
+      "requirement": "皇帝夜间改往中和，保留21:00/06:00作息",
+      "implementation": "379点约124.53m，真实中和座垫/平台臀脚接触，皇帝专用variant",
+      "source": "e93e71ee3ec03bf19b0fd863c1d2b65643790492",
+      "evidence": [
+        "reports/r96-emperor/CHECKPOINT.md"
+      ],
+      "boundary": "游戏编排非历史作息考据；坐站是离散占位转换，不声称每帧成本按路长下降"
+    },
+    {
+      "id": "LAYOUT-FANHUA-NE-001",
+      "status": "DELIVERED_BOUNDED",
+      "requirement": "消除梵华楼与东北角墩真实实体相穿并保既有路线",
+      "implementation": "同源整体南移2.25m，原9对碰撞相穿归零",
+      "source": "699af72801219da28ce1ded4367084aa518ce988",
+      "evidence": [
+        "docs/current-state/r99/VALIDATION.md"
+      ],
+      "boundary": "工程拟合非测绘，0.34m非玩家通路；景福旧台基身体交叠未修；外连梯/上层复原未补齐",
+      "next": "保持限定联动；其他分区按R100–R105计划推进"
+    },
+    {
+      "id": "WATER-XISHANG-RAILS-001",
+      "status": "CANDIDATE_FUNCTIONAL_VERIFIED",
+      "requirement": "禊赏既有两侧石栏形制及渠长口径对账",
+      "implementation": "实体石板/框柱、保原连续真实压顶和全部非栏几何/支撑；渠长不改",
+      "source": "87f90480bd69f0d342356f58092abecda321cca0",
+      "evidence": [
+        "docs/current-state/r100/VALIDATION.md"
+      ],
+      "boundary": "浅雕/凸柱头未精确复原，27m测线未明；原96条边沿交叠不扩大，本版未修全局落脚；北联系与阶仍待核",
+      "next": "不按长度目标造回环；其他已批准分区依证据继续"
+    },
+    {
+      "id": "MOVE-NARROW-RAIL-001",
+      "status": "KNOWN_INHERITED_LIMITATION",
+      "requirement": "真实身体在窄栏边走下不应短暂穿实体",
+      "implementation": "R100未改全局普通盒support较小足印；几何避免新增高柱/低帽阶差",
+      "source": "R99 baseline and R100 87f90480 paired full-world matrix",
+      "evidence": [
+        "docs/current-state/r100/VALIDATION.md"
+      ],
+      "boundary": "原144条中96条/228帧、最多4帧每条、最大.0466666667m旧交叠，R100不新增/不加深/不延长；可走出不等于绝对零穿入",
+      "next": "后续如扩全局窄支撑落脚需单独设计/回归，不在石栏形制版暗改"
+    }
+  ],
+  "roadmap": [
+    {
+      "release": "R95",
+      "goal": "需求对账与实际操作验收",
+      "status": "DELIVERED_BOUNDED",
+      "gate": "按本版准确源码/证据及独立评审，不以编号代替完成度"
+    },
+    {
+      "release": "R96",
+      "goal": "养心家具落脚、40m附近人物模型流式、皇帝太和—中和夜间往返",
+      "status": "DELIVERED_BOUNDED",
+      "gate": "96专项+184保留门；1290全套原179经fixture恢复93项复验回归原163残留；三base与包通过，GPU/手机NOT_RUN"
+    },
+    {
+      "release": "R97",
+      "goal": "加载与运行性能",
+      "status": "RECORD_ONLY_RUNTIME_REJECTED",
+      "gate": "负结果和未完成范围保留，运行实验未采纳，不以编号称完成"
+    },
+    {
+      "release": "R98",
+      "goal": "堆秀山后侧/承托墙残余",
+      "status": "RECORD_ONLY_RUNTIME_REJECTED",
+      "gate": "负结果和未完成范围保留，运行实验未采纳，不以编号称完成"
+    },
+    {
+      "release": "R99",
+      "goal": "梵华楼—东北角墩局部相穿及必要联动",
+      "status": "DELIVERED_BOUNDED",
+      "gate": "独立局部几何/15真实路线及视觉通过；184累计、原1290=1127/163无新增、三base与包2/2完成；实机GPU/Node20 NOT_RUN"
+    },
+    {
+      "release": "R100",
+      "goal": "禊赏既有两侧石栏与渠长来源口径；不扩为全园新水网",
+      "status": "CANDIDATE_FUNCTIONAL_VERIFIED",
+      "gate": "独立6地面/144真下降差分无新增；15局部与184累计通过；原1290=1127/163无新增；三fresh base/包2/2完成；GPU/手机/Node20 NOT_RUN"
+    },
+    {
+      "release": "R101",
+      "goal": "牌匾门墙",
+      "status": "PLANNED",
+      "gate": "按本版准确源码/证据及独立评审，不以编号代替完成度"
+    },
+    {
+      "release": "R102",
+      "goal": "中轴重点内景",
+      "status": "PLANNED",
+      "gate": "按本版准确源码/证据及独立评审，不以编号代替完成度"
+    },
+    {
+      "release": "R103",
+      "goal": "东西六宫",
+      "status": "PLANNED",
+      "gate": "按本版准确源码/证据及独立评审，不以编号代替完成度"
+    },
+    {
+      "release": "R104",
+      "goal": "其他分区重点补缺",
+      "status": "PLANNED",
+      "gate": "按本版准确源码/证据及独立评审，不以编号代替完成度"
+    },
+    {
+      "release": "R105",
+      "goal": "累计验收",
+      "status": "PLANNED",
+      "gate": "按本版准确源码/证据及独立评审，不以编号代替完成度"
+    }
+  ],
+  "releaseStage": "SCOPED_CHECKS_COMPLETE_DEVELOPMENT_CANDIDATE",
+  "previousLedger": "docs/current-state/r99/requirements.json"
+}

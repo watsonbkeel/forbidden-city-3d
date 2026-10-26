@@ -1,3 +1,5 @@
+import {buildXiqingGate,xiqingWallGaps} from '../palace/special/XiqingGate.js';
+import {applyChengqianRearSouthWindows} from '../palace/special/ChengqianSouthWindows.js';
 import {buildHongdeCourt} from '../palace/special/HongdeCourt.js';
 import {buildZhaorenCourt} from '../palace/special/ZhaorenCourt.js';
 import {buildYangxinCourtEntrance} from '../palace/special/YangxinCourtEntrance.js';
@@ -200,6 +202,10 @@ export class ZoneBase {
       built.f.updateWorldMatrix(true,false);
       if(!applyJingrenRearWindows(this.kit,built.f,item))throw Error('Jingren rear window profile failed closed');
     }
+    if(this.zoneJson.id==='east-six'&&itemIndex===10){
+      built.f.updateWorldMatrix(true,true);
+      if(!applyChengqianRearSouthWindows(this.kit,built.f,item,itemIndex))throw Error('Chengqian rear south window profile failed closed');
+    }
     applyFengxianFrontWindows(this.kit,this.zoneJson.id,item,built);
     if(selected?.profile.mode==='augment')return finish(applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,selected.augment(this.kit,item,built,selected.profile)));
     return finish(applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,built));
@@ -293,6 +299,7 @@ export class ZoneBase {
   }
 
   buildGate(item) {
+    if(item.gateProfile==='xiqing'){const built=buildXiqingGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,built.geometry);return built.width;}
     if (item.southGateProfile !== undefined) return buildSouthCourtGate(this.kit,item).width;
     if (item.historicalSite !== undefined) {
       this.kit.mapItems.push(historicalGateMapItem(item));
@@ -330,7 +337,7 @@ export class ZoneBase {
   buildWall(item) {
     const [x1, z1] = item.from;
     const [x2, z2] = item.to;
-    const gaps = this.resolveGaps(item.gaps);
+    const gaps = item.gaps?.some(g=>g.gate==='锡庆门') ? xiqingWallGaps(item,this.gateGeometries.get('锡庆门'),this.gateWidths) : this.resolveGaps(item.gaps);
     const params = { h: item.h, t: item.t, gaps };
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
     this.kit.wall(x1, z1, x2, z2, params);

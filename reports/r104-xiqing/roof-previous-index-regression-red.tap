@@ -1,0 +1,33 @@
+✔ R104 surface square footprint has a real witness and upper roof does not hide reachable lower face (1.911899ms)
+✔ R104 open sheet blocks both directions but has no imaginary parity volume (0.954652ms)
+✔ R104 surface input keeps all positive faces, filters only exact zero with source map, rejects invalid source/id (0.987842ms)
+✔ R104 surface registration snapshot preserves zero-face provenance and rejects altered source bounds (0.364137ms)
+✖ R104 roof source deep immutability and bounded fine query retain exact face order (1.085178ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 122.629144
+
+✖ failing tests:
+
+test at tests/r104-roof-surface.test.mjs:10:1
+✖ R104 roof source deep immutability and bounded fine query retain exact face order (1.085178ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/r104-roof-surface.test.mjs:10:129)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }

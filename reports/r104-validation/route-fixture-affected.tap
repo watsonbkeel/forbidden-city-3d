@@ -1,0 +1,749 @@
+file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/auto-routes.mjs:408
+      const go = [front.zToe - 2, front.zToe, front.zTop, rear.zTop, rear.zToe, rear.zToe + 2].map(z => g.toWorld(x, z));
+                        ^
+
+TypeError: Cannot read properties of undefined (reading 'zToe')
+    at file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/auto-routes.mjs:408:25
+    at Array.map (<anonymous>)
+    at file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/auto-routes.mjs:407:28
+    at Array.flatMap (<anonymous>)
+    at file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/auto-routes.mjs:393:133
+    at Array.flatMap (<anonymous>)
+    at profileGateRoutes (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/auto-routes.mjs:393:16)
+    at buildAutoRoutes (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/auto-routes.mjs:458:89)
+    at file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/qinan-exterior-routes.test.mjs:21:33
+
+Node.js v24.19.0
+✖ tests/current-state/qinan-exterior-routes.test.mjs (6603.360739ms)
+file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/auto-routes.mjs:408
+      const go = [front.zToe - 2, front.zToe, front.zTop, rear.zTop, rear.zToe, rear.zToe + 2].map(z => g.toWorld(x, z));
+                        ^
+
+TypeError: Cannot read properties of undefined (reading 'zToe')
+    at file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/auto-routes.mjs:408:25
+    at Array.map (<anonymous>)
+    at file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/auto-routes.mjs:407:28
+    at Array.flatMap (<anonymous>)
+    at file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/auto-routes.mjs:393:133
+    at Array.flatMap (<anonymous>)
+    at profileGateRoutes (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/auto-routes.mjs:393:16)
+    at buildAutoRoutes (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/auto-routes.mjs:458:89)
+    at file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-route-retention.test.mjs:3:102
+
+Node.js v24.19.0
+✖ tests/current-state/r32-route-retention.test.mjs (6229.901189ms)
+✔ R32 historical source adapter and immutable exact registry are required (44.432365ms)
+✖ historical R27/R28 retained-driver guards bind all three exact R32 test-source deltas (68.306415ms)
+✔ assets-src/interiors/build_qianqing_auxiliary.py: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (3.588245ms)
+✖ data/interiors/qianqing.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.601102ms)
+✖ data/places/zh-CN.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (1.13983ms)
+✖ data/zones/east-six.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.467212ms)
+✖ data/zones/ningshou.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.463145ms)
+✖ data/zones/west-six.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.524497ms)
+✖ main.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.497807ms)
+✖ src/scene/Environment.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.548904ms)
+✖ src/scene/PalaceBuilder.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.784318ms)
+✖ src/scene/flight/FlightEnvelope.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.355674ms)
+✔ src/scene/interior/QianqingAuxiliaryContract.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (2.30517ms)
+✔ src/scene/interior/QianqingAuxiliaryManifest.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (2.340473ms)
+✔ src/scene/palace/QianqingCentralArt.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (1.930067ms)
+✖ src/scene/palace/QianqingCentralSetting.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.382944ms)
+✖ src/scene/palace/kit.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.422485ms)
+✖ src/scene/zones/ZoneBase.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.442043ms)
+✖ src/ui/Minimap.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.411788ms)
+✔ src/ui/PlaceInfoPanel.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (2.33194ms)
+✖ src/ui/Teleport.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.400921ms)
+✖ src/utils/Collision.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.369875ms)
+✖ style.css: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.505459ms)
+✖ tests/lib/auto-routes.mjs: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.361262ms)
+✖ tests/lib/world.mjs: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.429154ms)
+✖ tests/stepwalk.cjs: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.370746ms)
+✔ assets-src/interiors/bind_qianqing_auxiliary.mjs: added R32 source has a complete fixed identity (0.965489ms)
+✔ assets-src/interiors/export_qianqing_display.mjs: added R32 source has a complete fixed identity (0.449715ms)
+✔ data/architecture/qianqing-display-geometry.json: added R32 source has a complete fixed identity (1.501844ms)
+✔ src/scene/palace/QianqingCeiling.js: added R32 source has a complete fixed identity (0.665809ms)
+✔ src/scene/palace/QianqingDisplay.js: added R32 source has a complete fixed identity (0.449645ms)
+✔ src/scene/palace/special/HuangjiGate.js: added R32 source has a complete fixed identity (0.629224ms)
+✖ src/scene/palace/special/InnerJinshui.js: added R32 source has a complete fixed identity (0.372188ms)
+✔ src/scene/palace/special/YanxiRuin.js: added R32 source has a complete fixed identity (0.556615ms)
+✔ src/scene/palace/special/YanxiRuinLOD.js: added R32 source has a complete fixed identity (0.456064ms)
+✖ src/scene/palace/special/YanxiStorehouses.js: added R32 source has a complete fixed identity (0.304096ms)
+✔ src/ui/HelpPanel.js: added R32 source has a complete fixed identity (0.432228ms)
+✔ src/ui/ModelFidelity.js: added R32 source has a complete fixed identity (0.649785ms)
+✔ unknown paths receive no R32 restoration and cannot masquerade as added sources (0.352128ms)
+✖ older source guard entry chains consume R32 only through exact full-byte dispatch (27.993914ms)
+✖ later product inventory lists only independently bound R31 and R32 additions (3.295085ms)
+✖ later product inventory rejects every missing, duplicated, appended or mutated source/asset and wrong GLB binding (55.560772ms)
+file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/src/scene/RoofBuilder.js:51
+    aspect: { dougong: lib.aspect('dougong_band'), caihua: lib.aspect('caihua_beam') },
+                           ^
+
+TypeError: lib.aspect is not a function
+    at makeCtx (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/src/scene/RoofBuilder.js:51:28)
+    at buildWallCap (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/src/scene/RoofBuilder.js:743:15)
+    at buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/src/scene/palace/special/AxisFirewalls.js:34:15)
+    at PalaceBuilder.buildComplex (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/src/scene/PalaceBuilder.js:536:7)
+    at captureTaiheFrontTiers (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/taihe-front-route.mjs:10:5)
+    at buildRoutes (/workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/stepwalk.cjs:77:37)
+    at async /workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/stepwalk.cjs:187:40
+
+Node.js v24.19.0
+✔ 昭德 route geometry dispatches its explicit three-bay profile and independent approaches (4.838962ms)
+✖ V7 historical routes retain exact descriptors with only the later Qin’an and R6 Ningshou replacements isolated (491.787429ms)
+✔ 昭德 true support front origin 60Hz walk forward rescueDisabled=false (6642.02096ms)
+ℹ {"queries":1532,"maxFeet":3.216,"maxSpeed":5.0000000000007505,"maxFeetGroundSeparation":0.08654814920028575,"maxUpwardQuery":0.016242424242426168,"end":[-62.4,-243.70134963303974,0]}
+✔ 昭德 true support front origin 60Hz walk backward rescueDisabled=false (699.830586ms)
+ℹ {"queries":1532,"maxFeet":3.216,"maxSpeed":5.0000000000007505,"maxFeetGroundSeparation":0.08654814920028575,"maxUpwardQuery":0.016242424242426168,"end":[-62.4,-243.70134963303974,0]}
+✔ 昭德 true support front origin 60Hz sprint forward rescueDisabled=false (604.416652ms)
+ℹ {"queries":727,"maxFeet":3.216,"maxSpeed":12.000000000000806,"maxFeetGroundSeparation":0.25662449799198916,"maxUpwardQuery":0.03898181503851905,"end":[-62.4,-243.7068641554175,0]}
+✔ 昭德 true support front origin 60Hz sprint backward rescueDisabled=false (579.394153ms)
+ℹ {"queries":727,"maxFeet":3.216,"maxSpeed":12.000000000000806,"maxFeetGroundSeparation":0.25662449799198916,"maxUpwardQuery":0.03898181503851905,"end":[-62.4,-243.7068641554175,0]}
+✔ 昭德 true support front origin 10Hz walk forward rescueDisabled=false (568.963376ms)
+ℹ {"queries":493,"maxFeet":3.216,"maxSpeed":5,"maxFeetGroundSeparation":0.03189792698092786,"maxUpwardQuery":0.04872727272727273,"end":[-62.4,-243.78125541885476,0]}
+✔ 昭德 true support front origin 10Hz walk backward rescueDisabled=false (618.463512ms)
+ℹ {"queries":493,"maxFeet":3.216,"maxSpeed":5,"maxFeetGroundSeparation":0.03189792698092786,"maxUpwardQuery":0.04872727272727273,"end":[-62.4,-243.78125541885476,0]}
+✔ 昭德 true support front origin 10Hz sprint forward rescueDisabled=false (601.324171ms)
+ℹ {"queries":519,"maxFeet":3.216,"maxSpeed":12.000000000000455,"maxFeetGroundSeparation":0.17096385542168702,"maxUpwardQuery":0.04677817655399341,"end":[-62.4,-243.82177002344352,0]}
+✔ 昭德 true support front origin 10Hz sprint backward rescueDisabled=false (585.456823ms)
+ℹ {"queries":519,"maxFeet":3.216,"maxSpeed":12.000000000000455,"maxFeetGroundSeparation":0.17096385542168702,"maxUpwardQuery":0.04677817655399341,"end":[-62.4,-243.82177002344352,0]}
+✔ 昭德 true support rear origin 60Hz walk forward rescueDisabled=false (685.101839ms)
+ℹ {"queries":1532,"maxFeet":3.216,"maxSpeed":5.0000000000007505,"maxFeetGroundSeparation":0.08654814920032561,"maxUpwardQuery":0.01624242424242639,"end":[-62.4,-184.19865036696024,0]}
+✔ 昭德 true support rear origin 60Hz walk backward rescueDisabled=false (702.42191ms)
+ℹ {"queries":1532,"maxFeet":3.216,"maxSpeed":5.0000000000007505,"maxFeetGroundSeparation":0.08654814920032561,"maxUpwardQuery":0.01624242424242639,"end":[-62.4,-184.19865036696024,0]}
+✔ 昭德 true support rear origin 60Hz sprint forward rescueDisabled=false (641.797958ms)
+ℹ {"queries":727,"maxFeet":3.216,"maxSpeed":12.000000000000806,"maxFeetGroundSeparation":0.2953714859437806,"maxUpwardQuery":0.038981815406889275,"end":[-62.4,-184.19313584458249,0]}
+✔ 昭德 true support rear origin 60Hz sprint backward rescueDisabled=false (619.663863ms)
+ℹ {"queries":727,"maxFeet":3.216,"maxSpeed":12.000000000000806,"maxFeetGroundSeparation":0.2953714859437806,"maxUpwardQuery":0.038981815406889275,"end":[-62.4,-184.19313584458249,0]}
+✔ 昭德 true support rear origin 10Hz walk forward rescueDisabled=false (637.204112ms)
+ℹ {"queries":493,"maxFeet":3.216,"maxSpeed":5,"maxFeetGroundSeparation":0.03189792698092786,"maxUpwardQuery":0.048727272727273174,"end":[-62.4,-184.11874458114522,0]}
+✔ 昭德 true support rear origin 10Hz walk backward rescueDisabled=false (769.49068ms)
+ℹ {"queries":493,"maxFeet":3.216,"maxSpeed":5,"maxFeetGroundSeparation":0.03189792698092786,"maxUpwardQuery":0.048727272727273174,"end":[-62.4,-184.11874458114522,0]}
+✔ 昭德 true support rear origin 10Hz sprint forward rescueDisabled=false (987.24189ms)
+ℹ {"queries":519,"maxFeet":3.216,"maxSpeed":12.000000000000455,"maxFeetGroundSeparation":0.17096385542168702,"maxUpwardQuery":0.04677817890028946,"end":[-62.4,-184.07822997655646,0]}
+✔ 昭德 true support rear origin 10Hz sprint backward rescueDisabled=false (852.012164ms)
+ℹ {"queries":519,"maxFeet":3.216,"maxSpeed":12.000000000000455,"maxFeetGroundSeparation":0.17096385542168702,"maxUpwardQuery":0.04677817890028946,"end":[-62.4,-184.07822997655646,0]}
+✔ 昭德 true support front origin 60Hz walk forward rescueDisabled=true (872.057202ms)
+ℹ {"queries":1532,"maxFeet":3.216,"maxSpeed":5.0000000000007505,"maxFeetGroundSeparation":0.08654814920028575,"maxUpwardQuery":0.016242424242426168,"end":[-62.4,-243.70134963303974,0]}
+✔ 昭德 true support front origin 60Hz walk backward rescueDisabled=true (839.32197ms)
+ℹ {"queries":1532,"maxFeet":3.216,"maxSpeed":5.0000000000007505,"maxFeetGroundSeparation":0.08654814920028575,"maxUpwardQuery":0.016242424242426168,"end":[-62.4,-243.70134963303974,0]}
+✔ 昭德 true support front origin 60Hz sprint forward rescueDisabled=true (650.564883ms)
+ℹ {"queries":727,"maxFeet":3.216,"maxSpeed":12.000000000000806,"maxFeetGroundSeparation":0.25662449799198916,"maxUpwardQuery":0.03898181503851905,"end":[-62.4,-243.7068641554175,0]}
+✔ 昭德 true support front origin 60Hz sprint backward rescueDisabled=true (706.187219ms)
+ℹ {"queries":727,"maxFeet":3.216,"maxSpeed":12.000000000000806,"maxFeetGroundSeparation":0.25662449799198916,"maxUpwardQuery":0.03898181503851905,"end":[-62.4,-243.7068641554175,0]}
+✔ 昭德 true support front origin 10Hz walk forward rescueDisabled=true (603.550065ms)
+ℹ {"queries":493,"maxFeet":3.216,"maxSpeed":5,"maxFeetGroundSeparation":0.03189792698092786,"maxUpwardQuery":0.04872727272727273,"end":[-62.4,-243.78125541885476,0]}
+✔ 昭德 true support front origin 10Hz walk backward rescueDisabled=true (610.60942ms)
+ℹ {"queries":493,"maxFeet":3.216,"maxSpeed":5,"maxFeetGroundSeparation":0.03189792698092786,"maxUpwardQuery":0.04872727272727273,"end":[-62.4,-243.78125541885476,0]}
+✔ 昭德 true support front origin 10Hz sprint forward rescueDisabled=true (617.274794ms)
+ℹ {"queries":519,"maxFeet":3.216,"maxSpeed":12.000000000000455,"maxFeetGroundSeparation":0.17096385542168702,"maxUpwardQuery":0.04677817655399341,"end":[-62.4,-243.82177002344352,0]}
+✔ 昭德 true support front origin 10Hz sprint backward rescueDisabled=true (610.548808ms)
+ℹ {"queries":519,"maxFeet":3.216,"maxSpeed":12.000000000000455,"maxFeetGroundSeparation":0.17096385542168702,"maxUpwardQuery":0.04677817655399341,"end":[-62.4,-243.82177002344352,0]}
+✔ 昭德 true support rear origin 60Hz walk forward rescueDisabled=true (680.252245ms)
+ℹ {"queries":1532,"maxFeet":3.216,"maxSpeed":5.0000000000007505,"maxFeetGroundSeparation":0.08654814920032561,"maxUpwardQuery":0.01624242424242639,"end":[-62.4,-184.19865036696024,0]}
+✔ 昭德 true support rear origin 60Hz walk backward rescueDisabled=true (715.809221ms)
+ℹ {"queries":1532,"maxFeet":3.216,"maxSpeed":5.0000000000007505,"maxFeetGroundSeparation":0.08654814920032561,"maxUpwardQuery":0.01624242424242639,"end":[-62.4,-184.19865036696024,0]}
+✔ 昭德 true support rear origin 60Hz sprint forward rescueDisabled=true (716.205891ms)
+ℹ {"queries":727,"maxFeet":3.216,"maxSpeed":12.000000000000806,"maxFeetGroundSeparation":0.2953714859437806,"maxUpwardQuery":0.038981815406889275,"end":[-62.4,-184.19313584458249,0]}
+✔ 昭德 true support rear origin 60Hz sprint backward rescueDisabled=true (653.710245ms)
+ℹ {"queries":727,"maxFeet":3.216,"maxSpeed":12.000000000000806,"maxFeetGroundSeparation":0.2953714859437806,"maxUpwardQuery":0.038981815406889275,"end":[-62.4,-184.19313584458249,0]}
+✔ 昭德 true support rear origin 10Hz walk forward rescueDisabled=true (637.955446ms)
+ℹ {"queries":493,"maxFeet":3.216,"maxSpeed":5,"maxFeetGroundSeparation":0.03189792698092786,"maxUpwardQuery":0.048727272727273174,"end":[-62.4,-184.11874458114522,0]}
+✔ 昭德 true support rear origin 10Hz walk backward rescueDisabled=true (658.986123ms)
+ℹ {"queries":493,"maxFeet":3.216,"maxSpeed":5,"maxFeetGroundSeparation":0.03189792698092786,"maxUpwardQuery":0.048727272727273174,"end":[-62.4,-184.11874458114522,0]}
+✔ 昭德 true support rear origin 10Hz sprint forward rescueDisabled=true (662.256753ms)
+ℹ {"queries":519,"maxFeet":3.216,"maxSpeed":12.000000000000455,"maxFeetGroundSeparation":0.17096385542168702,"maxUpwardQuery":0.04677817890028946,"end":[-62.4,-184.07822997655646,0]}
+✔ 昭德 true support rear origin 10Hz sprint backward rescueDisabled=true (657.696577ms)
+ℹ {"queries":519,"maxFeet":3.216,"maxSpeed":12.000000000000455,"maxFeetGroundSeparation":0.17096385542168702,"maxUpwardQuery":0.04677817890028946,"end":[-62.4,-184.07822997655646,0]}
+✔ both clear-aperture sides are physically usable: -1, front (654.329263ms)
+✔ both clear-aperture sides are physically usable: -1, rear (639.75393ms)
+✔ both clear-aperture sides are physically usable: 1, front (643.903641ms)
+✔ both clear-aperture sides are physically usable: 1, rear (612.338588ms)
+✔ support mutation delete front ramp is rejected with rescueDisabled=false (604.095407ms)
+ℹ XY arrived=false; physical support correctly rejected delete:zhaode-front-ramp
+✔ support mutation shift front ramp is rejected with rescueDisabled=false (647.900906ms)
+ℹ XY arrived=false; physical support correctly rejected shift:zhaode-front-ramp
+✔ support mutation delete rear ramp is rejected with rescueDisabled=false (649.338328ms)
+ℹ XY arrived=false; physical support correctly rejected delete:zhaode-rear-ramp
+✔ support mutation shift rear ramp is rejected with rescueDisabled=false (608.096621ms)
+ℹ XY arrived=false; physical support correctly rejected shift:zhaode-rear-ramp
+✔ support mutation delete front ramp is rejected with rescueDisabled=true (701.478194ms)
+ℹ XY arrived=false; physical support correctly rejected delete:zhaode-front-ramp
+✔ support mutation shift front ramp is rejected with rescueDisabled=true (659.031374ms)
+ℹ XY arrived=false; physical support correctly rejected shift:zhaode-front-ramp
+✔ support mutation delete rear ramp is rejected with rescueDisabled=true (631.794623ms)
+ℹ XY arrived=false; physical support correctly rejected delete:zhaode-rear-ramp
+✔ support mutation shift rear ramp is rejected with rescueDisabled=true (628.53093ms)
+ℹ XY arrived=false; physical support correctly rejected shift:zhaode-rear-ramp
+✔ endpoint arrival cannot hide deleted front support behind an unowned substitute, noRescue=false (618.623878ms)
+✔ endpoint arrival cannot hide shiftd front support behind an unowned substitute, noRescue=false (703.989501ms)
+✔ endpoint arrival cannot hide deleted rear support behind an unowned substitute, noRescue=false (785.45965ms)
+✔ endpoint arrival cannot hide shiftd rear support behind an unowned substitute, noRescue=false (839.388945ms)
+✔ endpoint arrival cannot hide deleted front support behind an unowned substitute, noRescue=true (696.85285ms)
+✔ endpoint arrival cannot hide shiftd front support behind an unowned substitute, noRescue=true (700.694062ms)
+✔ endpoint arrival cannot hide deleted rear support behind an unowned substitute, noRescue=true (604.756778ms)
+✔ endpoint arrival cannot hide shiftd rear support behind an unowned substitute, noRescue=true (625.539435ms)
+✔ side retaining walls, platform rails, side panels, columns and closed wing caps block independent shortcuts (149.928457ms)
+✔ a deliberately shut leaf physically blocks the unique central aperture (16.114839ms)
+✔ ground support ends at the actual ramp polygon with no invisible raised shelf (0.489945ms)
+✔ additive browser dispatch leaves both published old driver bodies byte-exact (1.459329ms)
+✔ shared live-app helper uses actual production controller: 60/false/false/front (752.016613ms)
+✔ shared live-app helper uses actual production controller: 60/false/false/rear (719.551362ms)
+✔ shared live-app helper uses actual production controller: 60/false/true/front (718.909721ms)
+✔ shared live-app helper uses actual production controller: 60/false/true/rear (710.769882ms)
+✔ shared live-app helper uses actual production controller: 60/true/false/front (666.459266ms)
+✔ shared live-app helper uses actual production controller: 60/true/false/rear (662.466298ms)
+✔ shared live-app helper uses actual production controller: 60/true/true/front (667.855792ms)
+✔ shared live-app helper uses actual production controller: 60/true/true/rear (594.260529ms)
+✔ shared live-app helper uses actual production controller: 10/false/false/front (598.91969ms)
+✔ shared live-app helper uses actual production controller: 10/false/false/rear (619.861925ms)
+✔ shared live-app helper uses actual production controller: 10/false/true/front (590.824182ms)
+✔ shared live-app helper uses actual production controller: 10/false/true/rear (626.214077ms)
+✔ shared live-app helper uses actual production controller: 10/true/false/front (611.274493ms)
+✔ shared live-app helper uses actual production controller: 10/true/false/rear (595.353333ms)
+✔ shared live-app helper uses actual production controller: 10/true/true/front (634.637773ms)
+✔ shared live-app helper uses actual production controller: 10/true/true/rear (613.73544ms)
+✔ compiled-app diagnostic injection bundles only hashed observers and the unchanged waypoint helper (6.265524ms)
+ℹ tests 119
+ℹ suites 0
+ℹ pass 91
+ℹ fail 28
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 52761.85979
+
+✖ failing tests:
+
+test at tests/current-state/qinan-exterior-routes.test.mjs:1:1
+✖ tests/current-state/qinan-exterior-routes.test.mjs (6603.360739ms)
+  'test failed'
+
+test at tests/current-state/r32-route-retention.test.mjs:1:1
+✖ tests/current-state/r32-route-retention.test.mjs (6229.901189ms)
+  'test failed'
+
+test at tests/current-state/r32-source-retention.test.mjs:63:1
+✖ historical R27/R28 retained-driver guards bind all three exact R32 test-source deltas (68.306415ms)
+  AssertionError [ERR_ASSERTION]: exact retained R27 dependency: tests/lib/auto-routes.mjs
+  + actual - expected
+  
+  + '8028434a3d247d09afcdfc0507dd8599bebdd02e356b43ca568128e93a80709d'
+  - 'ffd8e5ad8e44b0296daf4df1511822dd0d10779e05348177929e57de774d2f26'
+  
+      at assertR28RetainedSource (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/r28-jiaotai-central-retention.mjs:41:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:71:19)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '8028434a3d247d09afcdfc0507dd8599bebdd02e356b43ca568128e93a80709d',
+    expected: 'ffd8e5ad8e44b0296daf4df1511822dd0d10779e05348177929e57de774d2f26',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r32-source-retention.test.mjs:85:3
+✖ data/interiors/qianqing.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.601102ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '2b4a513c47a83b827c94eeeb0017efecbbcc19c6db58c2f4bf284b64a25f4ee5'
+  - '48f08c727abaa72d79e8780240b1ed1293d327e0eb034c36a71ea6b12a033f82'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:89:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '2b4a513c47a83b827c94eeeb0017efecbbcc19c6db58c2f4bf284b64a25f4ee5',
+    expected: '48f08c727abaa72d79e8780240b1ed1293d327e0eb034c36a71ea6b12a033f82',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r32-source-retention.test.mjs:85:3
+✖ data/places/zh-CN.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (1.13983ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '34638faeb0b5979b136ed51177408ba3b982b1d4d28a8ca86519a76d29970b7c'
+  - 'e1bf5eb45428132dddf1b75c64bd41ee3108bbeafd5e5fef4db37cb0fc4bd8c1'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:89:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '34638faeb0b5979b136ed51177408ba3b982b1d4d28a8ca86519a76d29970b7c',
+    expected: 'e1bf5eb45428132dddf1b75c64bd41ee3108bbeafd5e5fef4db37cb0fc4bd8c1',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r32-source-retention.test.mjs:85:3
+✖ data/zones/east-six.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.467212ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '284d7ec8ec83a64d221692a49e36f951fe926d1ada8d4d0f539a6e3b8e18ce09'
+  - '5de65a538e5b03661a72eda40b70557afd84e78d37a43fee1c666af6e9d5e7ff'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:89:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '284d7ec8ec83a64d221692a49e36f951fe926d1ada8d4d0f539a6e3b8e18ce09',
+    expected: '5de65a538e5b03661a72eda40b70557afd84e78d37a43fee1c666af6e9d5e7ff',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r32-source-retention.test.mjs:85:3
+✖ data/zones/ningshou.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.463145ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '3d7906a94d0ae48f4321bb98ce545de668a0ff4c7279535a2b431c6620a1421c'
+  - 'f5a284f6f61493eac736dd30ba7daf554873a335a9e383edbbff2b4d6733db63'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:89:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '3d7906a94d0ae48f4321bb98ce545de668a0ff4c7279535a2b431c6620a1421c',
+    expected: 'f5a284f6f61493eac736dd30ba7daf554873a335a9e383edbbff2b4d6733db63',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r32-source-retention.test.mjs:85:3
+✖ data/zones/west-six.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.524497ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '8d02dd08407c6dbf00e0c6779ce3d88b3904b6451a00d62ea2520e9290b4f8d9'
+  - 'cd2ce132668edd0e9df7f73a38543088d972f6056730dd205eda46a0017fc5d3'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:89:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '8d02dd08407c6dbf00e0c6779ce3d88b3904b6451a00d62ea2520e9290b4f8d9',
+    expected: 'cd2ce132668edd0e9df7f73a38543088d972f6056730dd205eda46a0017fc5d3',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r32-source-retention.test.mjs:85:3
+✖ main.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.497807ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'e880872de6e6c6fee8e87b7de788d3e7bbab784f700411aba38533a14312598b'
+  - '775d963be19cbd1c8d160d3256db5672ffb8827036165515c835aee4b004c2d8'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:89:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'e880872de6e6c6fee8e87b7de788d3e7bbab784f700411aba38533a14312598b',
+    expected: '775d963be19cbd1c8d160d3256db5672ffb8827036165515c835aee4b004c2d8',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r32-source-retention.test.mjs:85:3
+✖ src/scene/Environment.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.548904ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'b239ed5e2873eded658a79ff36529c71c6dd0954456721932a4898476858fb22'
+  - '6db3a9604414bfb05724e78f32f7b87900892313110e4402ff44a501bb801a17'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:89:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'b239ed5e2873eded658a79ff36529c71c6dd0954456721932a4898476858fb22',
+    expected: '6db3a9604414bfb05724e78f32f7b87900892313110e4402ff44a501bb801a17',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r32-source-retention.test.mjs:85:3
+✖ src/scene/PalaceBuilder.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.784318ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '12d224bf14066a2ef46cdee922072694072f1d6fd2b968b462f56f24d6a8671a'
+  - '376f661ab30c75395a9e91a67f7824977e1d92352efe59db45beb96b824a7245'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:89:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '12d224bf14066a2ef46cdee922072694072f1d6fd2b968b462f56f24d6a8671a',
+    expected: '376f661ab30c75395a9e91a67f7824977e1d92352efe59db45beb96b824a7245',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r32-source-retention.test.mjs:85:3
+✖ src/scene/flight/FlightEnvelope.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.355674ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '00f94400eedb5d80c4b3cf227b80afbe015207c7658bc555c7ec7662d9050d76'
+  - '3025ed0bd81a0e58eeac9f073a4e240ca06e5a92c2127e1ae268bdb5d7b5a09a'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:89:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '00f94400eedb5d80c4b3cf227b80afbe015207c7658bc555c7ec7662d9050d76',
+    expected: '3025ed0bd81a0e58eeac9f073a4e240ca06e5a92c2127e1ae268bdb5d7b5a09a',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r32-source-retention.test.mjs:85:3
+✖ src/scene/palace/QianqingCentralSetting.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.382944ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '606569307a93b051e46f58b4935a4862dfa1d3984a36ab00b90ec316bfe54bbb'
+  - '3350402d42f73ec17d9ec85d6142ca05075c33d51f62294c2e4d4c363fcaa701'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:89:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '606569307a93b051e46f58b4935a4862dfa1d3984a36ab00b90ec316bfe54bbb',
+    expected: '3350402d42f73ec17d9ec85d6142ca05075c33d51f62294c2e4d4c363fcaa701',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r32-source-retention.test.mjs:85:3
+✖ src/scene/palace/kit.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.422485ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'c86a594663029f01d1ee187a70699052cb6e8d0e6e3e62b1c4e48aee7385c4d5'
+  - '1012ddd83e14163e997e61c617d8dd9963c563e5d5648bf64a59864a25e18e44'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:89:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'c86a594663029f01d1ee187a70699052cb6e8d0e6e3e62b1c4e48aee7385c4d5',
+    expected: '1012ddd83e14163e997e61c617d8dd9963c563e5d5648bf64a59864a25e18e44',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r32-source-retention.test.mjs:85:3
+✖ src/scene/zones/ZoneBase.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.442043ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '30cd9bb050df607700817b9c6b2a9893275de7ab5b2163c045972ac1c1437d8d'
+  - '70543aad6cb86dda383bce47165419df391db6459e9e6ce86873060a3f23f3ed'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:89:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '30cd9bb050df607700817b9c6b2a9893275de7ab5b2163c045972ac1c1437d8d',
+    expected: '70543aad6cb86dda383bce47165419df391db6459e9e6ce86873060a3f23f3ed',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r32-source-retention.test.mjs:85:3
+✖ src/ui/Minimap.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.411788ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '576226e41b4f553fe708dfb140766d58a60aceef025106ffacfbb79bb0a8ea79'
+  - 'b8f5a6826c2070fb93b66ef2c8f876bc5e58429970aac36f5ede04781a69e964'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:89:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '576226e41b4f553fe708dfb140766d58a60aceef025106ffacfbb79bb0a8ea79',
+    expected: 'b8f5a6826c2070fb93b66ef2c8f876bc5e58429970aac36f5ede04781a69e964',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r32-source-retention.test.mjs:85:3
+✖ src/ui/Teleport.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.400921ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'eff9d3b5739ed96652187eb33ba991b03692df2d759e03fc65c6236c1b3fcd3e'
+  - 'a06dbda9d20de9b593c7d83926dcfd91e1d8f02cbb45f1911793af0c1626be6f'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:89:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'eff9d3b5739ed96652187eb33ba991b03692df2d759e03fc65c6236c1b3fcd3e',
+    expected: 'a06dbda9d20de9b593c7d83926dcfd91e1d8f02cbb45f1911793af0c1626be6f',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r32-source-retention.test.mjs:85:3
+✖ src/utils/Collision.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.369875ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '59f22d134ec2347db2d65cc45266a8e7f809d2fa0dbed26b4903b25fc8aaaac4'
+  - 'f1bd8afe3a9dc361b4c332315c0f9edeed8f55f2fc13d924ed1c89ccf5d01b60'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:89:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '59f22d134ec2347db2d65cc45266a8e7f809d2fa0dbed26b4903b25fc8aaaac4',
+    expected: 'f1bd8afe3a9dc361b4c332315c0f9edeed8f55f2fc13d924ed1c89ccf5d01b60',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r32-source-retention.test.mjs:85:3
+✖ style.css: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.505459ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'bdb077dc3c10ff1df47dff8d823792b5758d2284303ca23e501fc51101a21f4c'
+  - 'c4462b9ff94179a2df890fc5b53a32ef2d076e20931c2c41c4d2c7a47ef33767'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:89:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'bdb077dc3c10ff1df47dff8d823792b5758d2284303ca23e501fc51101a21f4c',
+    expected: 'c4462b9ff94179a2df890fc5b53a32ef2d076e20931c2c41c4d2c7a47ef33767',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r32-source-retention.test.mjs:85:3
+✖ tests/lib/auto-routes.mjs: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.361262ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '8028434a3d247d09afcdfc0507dd8599bebdd02e356b43ca568128e93a80709d'
+  - 'd956fc6775dfcdbe48557f68d58d8b49bf4dcd736d347d745338c10b13e722e0'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:89:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '8028434a3d247d09afcdfc0507dd8599bebdd02e356b43ca568128e93a80709d',
+    expected: 'd956fc6775dfcdbe48557f68d58d8b49bf4dcd736d347d745338c10b13e722e0',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r32-source-retention.test.mjs:85:3
+✖ tests/lib/world.mjs: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.429154ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'cc692a7f9b0705de6ed3a91204e6d36200858655d3ae2fa238e78aceb2380446'
+  - 'ed4c144f8775e7a47b1cc0217eb3097700dd3d39b7de2a1654b205a6b2524c53'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:89:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'cc692a7f9b0705de6ed3a91204e6d36200858655d3ae2fa238e78aceb2380446',
+    expected: 'ed4c144f8775e7a47b1cc0217eb3097700dd3d39b7de2a1654b205a6b2524c53',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r32-source-retention.test.mjs:85:3
+✖ tests/stepwalk.cjs: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.370746ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '87659eaf375c74261f86ad17a25d94ab922b8354872ad56bc95b3ca66fcad84d'
+  - 'eb64a627b1beb219a6c1e3024770d2530bf01f0b545c6def97b0c08a73ad7d10'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:89:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '87659eaf375c74261f86ad17a25d94ab922b8354872ad56bc95b3ca66fcad84d',
+    expected: 'eb64a627b1beb219a6c1e3024770d2530bf01f0b545c6def97b0c08a73ad7d10',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r32-source-retention.test.mjs:119:3
+✖ src/scene/palace/special/InnerJinshui.js: added R32 source has a complete fixed identity (0.372188ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  14244 !== 13812
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:123:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 14244,
+    expected: 13812,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r32-source-retention.test.mjs:119:3
+✖ src/scene/palace/special/YanxiStorehouses.js: added R32 source has a complete fixed identity (0.304096ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  7441 !== 7421
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:123:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 7441,
+    expected: 7421,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r32-source-retention.test.mjs:141:1
+✖ older source guard entry chains consume R32 only through exact full-byte dispatch (27.993914ms)
+  AssertionError [ERR_ASSERTION]: exact R32 source candidate: data/interiors/qianqing.json
+  + actual - expected
+  
+  + '2b4a513c47a83b827c94eeeb0017efecbbcc19c6db58c2f4bf284b64a25f4ee5'
+  - '48f08c727abaa72d79e8780240b1ed1293d327e0eb034c36a71ea6b12a033f82'
+  
+      at restorePreR32Source (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/r32-source-retention.mjs:40:10)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:148:37)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '2b4a513c47a83b827c94eeeb0017efecbbcc19c6db58c2f4bf284b64a25f4ee5',
+    expected: '48f08c727abaa72d79e8780240b1ed1293d327e0eb034c36a71ea6b12a033f82',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r32-source-retention.test.mjs:155:1
+✖ later product inventory lists only independently bound R31 and R32 additions (3.295085ms)
+  AssertionError [ERR_ASSERTION]: exact R32 added source: src/scene/palace/special/InnerJinshui.js
+  + actual - expected
+  
+  + '0aeb268b1f96a7f8159f058eed35b18e4e7ae655454793dd5e98b7eeb39f55d6'
+  - '6f2efa66c5afa01d52a1e7e4c22e7b8c1c5b38e86c99fa456b7c730a9a3cdc95'
+  
+      at assertR32AddedSource (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/r32-source-retention.mjs:71:10)
+      at verifiedR32AddedProductPaths (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/r32-product-inventory.mjs:33:29)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:162:20)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '0aeb268b1f96a7f8159f058eed35b18e4e7ae655454793dd5e98b7eeb39f55d6',
+    expected: '6f2efa66c5afa01d52a1e7e4c22e7b8c1c5b38e86c99fa456b7c730a9a3cdc95',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/current-state/r32-source-retention.test.mjs:184:1
+✖ later product inventory rejects every missing, duplicated, appended or mutated source/asset and wrong GLB binding (55.560772ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /exact R32 asset-binding config/. Input:
+  
+  'AssertionError [ERR_ASSERTION]: exact R32 added source: src/scene/palace/special/InnerJinshui.js\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ '0aeb268b1f96a7f8159f058eed35b18e4e7ae655454793dd5e98b7eeb39f55d6'\n" +
+    "- '6f2efa66c5afa01d52a1e7e4c22e7b8c1c5b38e86c99fa456b7c730a9a3cdc95'\n"
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:198:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: exact R32 added source: src/scene/palace/special/InnerJinshui.js
+    + actual - expected
+    
+    + '0aeb268b1f96a7f8159f058eed35b18e4e7ae655454793dd5e98b7eeb39f55d6'
+    - '6f2efa66c5afa01d52a1e7e4c22e7b8c1c5b38e86c99fa456b7c730a9a3cdc95'
+    
+        at assertR32AddedSource (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/r32-source-retention.mjs:71:10)
+        at verifiedR32AddedProductPaths (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/r32-product-inventory.mjs:33:29)
+        at file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:198:23
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/r32-source-retention.test.mjs:198:10)
+        at async Test.run (node:internal/test_runner/test:1389:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:960:7),
+    expected: /exact R32 asset-binding config/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/current-state/zhaode-gate-routes.test.mjs:35:1
+✖ V7 historical routes retain exact descriptors with only the later Qin’an and R6 Ningshou replacements isolated (491.787429ms)
+  Error: Command failed: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node tests/stepwalk.cjs 60 0 all
+  file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/src/scene/RoofBuilder.js:51
+      aspect: { dougong: lib.aspect('dougong_band'), caihua: lib.aspect('caihua_beam') },
+                             ^
+  
+  TypeError: lib.aspect is not a function
+      at makeCtx (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/src/scene/RoofBuilder.js:51:28)
+      at buildWallCap (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/src/scene/RoofBuilder.js:743:15)
+      at buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/src/scene/palace/special/AxisFirewalls.js:34:15)
+      at PalaceBuilder.buildComplex (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/src/scene/PalaceBuilder.js:536:7)
+      at captureTaiheFrontTiers (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/taihe-front-route.mjs:10:5)
+      at buildRoutes (/workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/stepwalk.cjs:77:37)
+      at async /workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/stepwalk.cjs:187:40
+  
+  Node.js v24.19.0
+  
+      at genericNodeError (node:internal/errors:985:15)
+      at wrappedFn (node:internal/errors:539:14)
+      at checkExecSyncError (node:child_process:942:11)
+      at execFileSync (node:child_process:978:15)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/current-state/zhaode-gate-routes.test.mjs:36:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12) {
+    status: 1,
+    signal: null,
+    output: [ null, '', "file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/src/scene/RoofBuilder.js:51\n    aspect: { dougong: lib.aspect('dougong_band'), caihua: lib.aspect('caihua_beam') },\n                           ^\n\nTypeError: lib.aspect is not a function\n    at makeCtx (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/src/scene/RoofBuilder.js:51:28)\n    at buildWallCap (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/src/scene/RoofBuilder.js:743:15)\n    at buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/src/scene/palace/special/AxisFirewalls.js:34:15)\n    at PalaceBuilder.buildComplex (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/src/scene/PalaceBuilder.js:536:7)\n    at captureTaiheFrontTiers (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/taihe-front-route.mjs:10:5)\n    at buildRoutes (/workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/stepwalk.cjs:77:37)\n    at async /workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/stepwalk.cjs:187:40\n\nNode.js v24.19.0\n" ],
+    pid: 60,
+    stdout: '',
+    stderr: "file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/src/scene/RoofBuilder.js:51\n    aspect: { dougong: lib.aspect('dougong_band'), caihua: lib.aspect('caihua_beam') },\n                           ^\n\nTypeError: lib.aspect is not a function\n    at makeCtx (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/src/scene/RoofBuilder.js:51:28)\n    at buildWallCap (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/src/scene/RoofBuilder.js:743:15)\n    at buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/src/scene/palace/special/AxisFirewalls.js:34:15)\n    at PalaceBuilder.buildComplex (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/src/scene/PalaceBuilder.js:536:7)\n    at captureTaiheFrontTiers (file:///workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/lib/taihe-front-route.mjs:10:5)\n    at buildRoutes (/workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/stepwalk.cjs:77:37)\n    at async /workspace/scratch/02a8023d1a85/r104-xiqing-three-gates/tests/stepwalk.cjs:187:40\n\nNode.js v24.19.0\n"
+  }

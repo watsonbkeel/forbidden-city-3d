@@ -1,3 +1,4 @@
+import {cloneXiqingSurface,xiqingSurfaceFootContact,xiqingSurfaceBodyIntersects,xiqingSurfaceSweep} from '../controls/XiqingRoofSurface.js';
 import {cloneFurnitureMotionScope,furnitureScope,furnitureContact,furnitureTryStep,resolveFurnitureVertical} from '../controls/FurnitureMotion.js';
 import {duixiuScope,duixiuContact,duixiuTryStep,resolveDuixiuVertical} from '../scene/garden/DuixiuMotion.js';
 import {DuixiuTerrainIndex} from '../scene/garden/DuixiuTerrain.js';
@@ -43,6 +44,9 @@ export class CollisionManager {
     const furnitureMotionScope=cloneFurnitureMotionScope(object.furnitureMotionScope,box);
     const overhead = object.overhead === undefined ? null : cloneOverheadShape(object.overhead, box);
     const input = object.triangleSupport;
+    const xiqingRoofSurface=cloneXiqingSurface(object.xiqingRoofSurface,box);
+    if(xiqingRoofSurface&&(input||overhead||furnitureMotionScope||object.duixiuTerrain))throw new TypeError('Xiqing surface has exclusive explicit ownership');
+    if(xiqingRoofSurface&&this.colliders.some(c=>c.xiqingRoofSurface?.id===xiqingRoofSurface.id))throw new TypeError('Duplicate Xiqing roof owner');
     if(furnitureMotionScope&&(overhead||input))throw new TypeError('Furniture scope owner must be an ordinary solid box');
     if (object.duixiuTerrain && !input) throw new TypeError('Duixiu terrain requires exact triangle ownership');
     const triangleSupport = input ? triangleInstance(input.template, input.offset.toArray(), input.id) : null;
@@ -50,7 +54,7 @@ export class CollisionManager {
     if (triangleSupport && (object.duixiuTerrain === true && this._duixiuBatchIds
       ? this._duixiuBatchIds.has(triangleSupport.id)
       : this.colliders.some(c => c.triangleSupport?.id === triangleSupport.id))) throw new TypeError('Duplicate triangle owner');
-    if (!box.isEmpty()) this.colliders.push({ mesh: object, box, tag, ...(overhead ? {overhead} : {}), ...(triangleSupport ? {triangleSupport} : {}), ...(object.duixiuTerrain === true ? {duixiuTerrain:true} : {}), ...(furnitureMotionScope ? {furnitureMotionScope} : {}) });
+    if (!box.isEmpty()) this.colliders.push({ mesh: object, box, tag, ...(overhead ? {overhead} : {}), ...(triangleSupport ? {triangleSupport} : {}), ...(xiqingRoofSurface ? {xiqingRoofSurface} : {}), ...(object.duixiuTerrain === true ? {duixiuTerrain:true} : {}), ...(furnitureMotionScope ? {furnitureMotionScope} : {}) });
     if (!box.isEmpty() && triangleSupport && this._duixiuBatchIds) this._duixiuBatchIds.add(triangleSupport.id);
   }
 
@@ -209,7 +213,9 @@ export class CollisionManager {
     this._triangleFromBox ??= new THREE.Box3();
     if(dynamicFrom)this._triangleFromBox.copy(this._triangleBodyBox).translate(new THREE.Vector3().subVectors(dynamicFrom,position));
     const broad=this._triangleBodyBox.clone();if(dynamicFrom)broad.union(this._triangleFromBox);
-    return this.queryBox(broad).some(collider => collider.triangleSupport
+    return this.queryBox(broad).some(collider => collider.xiqingRoofSurface
+      ? (dynamicFrom ? !!xiqingSurfaceSweep(collider.xiqingRoofSurface,this._overheadBodyBox.clone().translate(new THREE.Vector3().subVectors(dynamicFrom,position)),this._overheadBodyBox) : xiqingSurfaceBodyIntersects(collider.xiqingRoofSurface,this._overheadBodyBox))
+      : collider.triangleSupport
       ? (dynamicFrom ? triangleBodySweptIntersects(collider.triangleSupport,this._triangleFromBox,this._triangleBodyBox) : triangleBodyIntersects(collider.triangleSupport, this._triangleBodyBox))
       : collider.overhead
       ? overheadIntersectsBox(collider.overhead, this._overheadBodyBox)
@@ -307,15 +313,18 @@ export class CollisionManager {
    */
   supportContact(x, z, maxTop, r = 0.3) {
     const box = new THREE.Box3(new THREE.Vector3(x-r,-1e3,z-r),new THREE.Vector3(x+r,1e3,z+r));
-    let best = null;
-    for (const c of this.queryBox(box)) if (c.triangleSupport && !c.duixiuTerrain) {
+    let roofBest=null,best=null;
+    for (const c of this.queryBox(box)) {
+      if(c.xiqingRoofSurface){const hit=xiqingSurfaceFootContact(c.xiqingRoofSurface,x,z,maxTop,r);if(hit&&(!roofBest||hit.height>roofBest.height))roofBest=hit;}
+      if (c.triangleSupport && !c.duixiuTerrain) {
       const hit = triangleFootContact(c.triangleSupport,x,z,r,1e6);
       if (hit && (!best || hit.height > best.height)) best = hit;
+      }
     }
-    if(!best || best.height > maxTop + 1e-8)return null;
+    if(!best || best.height > maxTop + 1e-8)return roofBest;
     const body=new THREE.Box3(new THREE.Vector3(x-.5,best.height+1e-8,z-.5),new THREE.Vector3(x+.5,best.height+PLAYER.HEIGHT,z+.5));
-    if(this.queryBox(body).some(c=>c.triangleSupport&&triangleBodyIntersects(c.triangleSupport,body)))return null;
-    return best;
+    if(this.queryBox(body).some(c=>c.triangleSupport&&triangleBodyIntersects(c.triangleSupport,body)))return roofBest;
+    return roofBest&&roofBest.height>best.height?roofBest:best;
   }
 
   supportHeight(x, z, maxTop, r = 0.3) {
@@ -325,7 +334,7 @@ export class CollisionManager {
     let best = this.supportContact(x,z,maxTop,r)?.height ?? -Infinity;
     for (const c of this.queryBox(this._footBox)) {
       // Head-only proxies must not create support from their broadphase top.
-      if (c.triangleSupport) continue;
+      if (c.triangleSupport || c.xiqingRoofSurface) continue;
       if (c.overhead) continue;
       const b = c.box;
       if (b.max.y > maxTop || b.max.y <= best) continue;
@@ -412,6 +421,10 @@ export class CollisionManager {
       const furnitureMotionScope=cloneFurnitureMotionScope(object.furnitureMotionScope,box);
       if (collider.overhead && object.overhead === undefined) throw new TypeError('Scoped overhead shape cannot disappear during an update');
       const overhead = object.overhead === undefined ? null : cloneOverheadShape(object.overhead, box);
+      if(collider.xiqingRoofSurface&&object.xiqingRoofSurface?.id!==collider.xiqingRoofSurface.id)throw new TypeError('Xiqing surface ownership cannot disappear');
+      const xiqingRoofSurface=cloneXiqingSurface(object.xiqingRoofSurface,box);
+      if(xiqingRoofSurface&&(furnitureMotionScope||overhead||object.triangleSupport||object.duixiuTerrain))throw new TypeError('Xiqing surface has exclusive explicit ownership');
+      if(xiqingRoofSurface&&this.colliders.some(c=>c!==collider&&c.xiqingRoofSurface?.id===xiqingRoofSurface.id))throw new TypeError('Duplicate Xiqing roof owner');
       if(furnitureMotionScope&&(overhead||object.triangleSupport))throw new TypeError('Furniture scope owner must be an ordinary solid box');
       if (collider.duixiuTerrain && object.duixiuTerrain !== true) throw new TypeError('Duixiu terrain marker cannot disappear');
       if (collider.triangleSupport) {
@@ -422,6 +435,7 @@ export class CollisionManager {
         collider.triangleSupport=next;
       }
       collider.box.copy(box);
+      if(xiqingRoofSurface)collider.xiqingRoofSurface=xiqingRoofSurface;
       if(furnitureMotionScope)collider.furnitureMotionScope=furnitureMotionScope;
       if (overhead) collider.overhead = overhead;
       this._grid = null;
