@@ -1,0 +1,50 @@
+✖ actual loaded low TextureLibrary builds all seven zones without invented material keys (1378.094979ms)
+✖ actual loaded high TextureLibrary builds all seven zones without invented material keys (1207.986077ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3166.377862
+
+✖ failing tests:
+
+test at tests/r116/real-material-startup.test.mjs:11:37
+✖ actual loaded low TextureLibrary builds all seven zones without invented material keys (1378.094979ms)
+  AssertionError [ERR_ASSERTION]: unsupported real material: wood_red
+      at lib.material (file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/tests/r116/real-material-startup.test.mjs:14:107)
+      at CourtKit.box (file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/src/scene/palace/kit.js:77:44)
+      at box (file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/src/scene/palace/special/ChengqianCourtyardGroup.js:17:14)
+      at buildChengqianCourtyardGroup (file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/src/scene/palace/special/ChengqianCourtyardGroup.js:53:363)
+      at ZoneBase.build (file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/src/scene/zones/ZoneBase.js:134:5)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/tests/r116/real-material-startup.test.mjs:15:81)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r116/real-material-startup.test.mjs:11:37
+✖ actual loaded high TextureLibrary builds all seven zones without invented material keys (1207.986077ms)
+  AssertionError [ERR_ASSERTION]: unsupported real material: wood_red
+      at lib.material (file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/tests/r116/real-material-startup.test.mjs:14:107)
+      at CourtKit.box (file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/src/scene/palace/kit.js:77:44)
+      at box (file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/src/scene/palace/special/ChengqianCourtyardGroup.js:17:14)
+      at buildChengqianCourtyardGroup (file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/src/scene/palace/special/ChengqianCourtyardGroup.js:53:363)
+      at ZoneBase.build (file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/src/scene/zones/ZoneBase.js:134:5)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/tests/r116/real-material-startup.test.mjs:15:81)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

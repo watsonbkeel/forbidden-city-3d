@@ -1,11 +1,11 @@
 # 故宫 3D 虚拟游览
 
-> **版本状态（2026-10-26）**：用户main/Pages已为R105（`1d264afe`）。当前R115是第二批累计大版本候选，包含R106–R114的已采纳成果及拒绝记录；本地检查/远端读回独立，GPU/手机未验，不自动合并部署。
+> **紧急启动修复（2026-10-27）**：用户已合并 R115 到 main `dc2db009`；随后真实材质启动检验发现承乾新门两类非法材质 key。当前 **R115-fix** 仅修复这两类调用（木构/屋脊使用已有正式材质），不含性能改造。原 R115 启动失败证据保留，GPU/手机仍未验。详见 [热修复说明](docs/current-state/r115-fix/README.md)。
 
 ![Three.js](https://img.shields.io/badge/Three.js-r162-blue)
 ![Vite](https://img.shields.io/badge/Vite-5-purple)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Status](https://img.shields.io/badge/mainline-R105-brightgreen)
+![Status](https://img.shields.io/badge/mainline-R115-brightgreen)
 ![Validation](https://img.shields.io/badge/validation-see_release_records-blue)
 
 ## R115 第二批宫殿成组累计大版本候选
