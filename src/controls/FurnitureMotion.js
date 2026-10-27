@@ -1,3 +1,4 @@
+import {chengqianEnvironmentWitness} from './ChengqianEnvironmentWitness.js';
 import {LIJING_ROOM_ID,cloneLijingFloor,registeredLijingFloor} from './LijingRoomSupport.js';
 import {CHUXIU_SIDE_IDS} from './ChuxiuSideAccess.js';
 import {QIANQING_ASSEMBLY_IDS,cloneQianqingFloor,registeredQianqingFloor} from './QianqingAssemblySupport.js';
@@ -56,12 +57,13 @@ export function furnitureStaticContact(colliders,x,z,maxTop,radius=.5,height=PLA
 export function cloneFurnitureMotionScope(input,ownerBox){
   if(input===undefined)return null;
   const keys=['minOffsetX','maxOffsetX','minOffsetZ','maxOffsetZ'];
-  if(!['yangxin-furniture','xiqing-gates','stair-interface','qianqing-display','qianqing-assemblies','chuxiu-side-access','lijing-west-room'].includes(input?.kind)||(input.kind==='lijing-west-room'&&input.id!==LIJING_ROOM_ID)||(input.kind==='chuxiu-side-access'&&!CHUXIU_SIDE_IDS.includes(input.id))||(input.kind==='xiqing-gates'&&input.id!=='ningshou-xiqing-gates')||(input.kind==='qianqing-assemblies'&&!QIANQING_ASSEMBLY_IDS.includes(input.id))||(input.kind==='qianqing-display'&&!/^qianqing-display-vessel-[0-3]$/.test(input.id))||(input.kind==='stair-interface'&&!STAIR_IDS.includes(input.id))||typeof input.id!=='string'||!input.id||!keys.every(k=>Number.isFinite(input[k]))||input.minOffsetX>=input.maxOffsetX||input.minOffsetZ>=input.maxOffsetZ||!['x','y','z'].every(k=>Number.isFinite(ownerBox.min[k])&&Number.isFinite(ownerBox.max[k])&&ownerBox.min[k]<ownerBox.max[k]))throw new TypeError('Furniture scope requires finite ordered ordinary-box ownership');
+  if(!['yangxin-furniture','xiqing-gates','stair-interface','qianqing-display','qianqing-assemblies','chuxiu-side-access','lijing-west-room','chengqian-court-access'].includes(input?.kind)||(input.kind==='chengqian-court-access'&&!['chengqian-west-court-access','chengqian-west-wing-entry'].includes(input.id))||(input.kind==='lijing-west-room'&&input.id!==LIJING_ROOM_ID)||(input.kind==='chuxiu-side-access'&&!CHUXIU_SIDE_IDS.includes(input.id))||(input.kind==='xiqing-gates'&&input.id!=='ningshou-xiqing-gates')||(input.kind==='qianqing-assemblies'&&!QIANQING_ASSEMBLY_IDS.includes(input.id))||(input.kind==='qianqing-display'&&!/^qianqing-display-vessel-[0-3]$/.test(input.id))||(input.kind==='stair-interface'&&!STAIR_IDS.includes(input.id))||typeof input.id!=='string'||!input.id||!keys.every(k=>Number.isFinite(input[k]))||input.minOffsetX>=input.maxOffsetX||input.minOffsetZ>=input.maxOffsetZ||!['x','y','z'].every(k=>Number.isFinite(ownerBox.min[k])&&Number.isFinite(ownerBox.max[k])&&ownerBox.min[k]<ownerBox.max[k]))throw new TypeError('Furniture scope requires finite ordered ordinary-box ownership');
   if(input.groundY!==undefined&&input.groundY!==0)throw new TypeError('Furniture world ground witness must be the existing zero plane');
+  if(input.environmentGroundHandoff!==undefined&&(input.environmentGroundHandoff!==true||!((input.kind==='stair-interface'&&input.id==='chengqian-front-stair')||(input.kind==='chengqian-court-access'&&['chengqian-west-court-access','chengqian-west-wing-entry'].includes(input.id)))||input.groundY!==0))throw new TypeError('Explicit Chengqian Environment handoff identity required');
   const ramp=input.kind==='stair-interface'?cloneStairRamp(input.ramp,input.rampOrigin,ownerBox):null;
   const region={minX:ownerBox.min.x+input.minOffsetX,maxX:ownerBox.min.x+input.maxOffsetX,minZ:ownerBox.min.z+input.minOffsetZ,maxZ:ownerBox.min.z+input.maxOffsetZ};
   const floor=input.kind==='lijing-west-room'?cloneLijingFloor(input.floor,input.id,region):input.kind==='qianqing-assemblies'&&input.id.startsWith('qianqing-terrace-')?cloneQianqingFloor(input.floor,input.id,region):null;
-  return Object.freeze({kind:input.kind,id:input.id,...(floor?{floor}:{}),...(ramp?{ramp}:{}),...(input.groundY===0?{groundY:0}:{}),minX:ownerBox.min.x+input.minOffsetX,maxX:ownerBox.min.x+input.maxOffsetX,minZ:ownerBox.min.z+input.minOffsetZ,maxZ:ownerBox.min.z+input.maxOffsetZ});
+  return Object.freeze({kind:input.kind,id:input.id,...(input.environmentGroundHandoff?{environmentGroundHandoff:true}:{}),...(floor?{floor}:{}),...(ramp?{ramp}:{}),...(input.groundY===0?{groundY:0}:{}),minX:ownerBox.min.x+input.minOffsetX,maxX:ownerBox.min.x+input.maxOffsetX,minZ:ownerBox.min.z+input.minOffsetZ,maxZ:ownerBox.min.z+input.maxOffsetZ});
 }
 export const furnitureMotionSource=cm=>cm.furnitureMotionSource??cm;
 export function furnitureRegionIndex(cm){
@@ -226,7 +228,7 @@ export function resolveFurnitureVertical(cm,state,delta,radius=.5){
     return{...state,groundY:state.feetY,verticalVelocity:0,onSupport:true,landed:false,blockedPose:!contact.poseClear};
   const velocity=Math.max((state.airborne?state.verticalVelocity:0)-(PLAYER.GRAVITY??14)*delta,-(PLAYER.MAX_FALL_SPEED??30));
   const to=new THREE.Vector3(state.x,state.feetY+velocity*delta,state.z);let impact=furnitureBodySweep(cm,from,to,radius);
-  if(furnitureGroundWitness(cm,state.x,state.z,radius)?.source==='environment-ground'&&velocity<=0&&to.y<0&&from.y>=0){const fraction=from.y/(from.y-to.y);if(!impact||fraction<impact.fraction)impact={fraction,kind:'ground'};}
+  if(['environment-ground','existing-environment-ground-r114-handoff'].includes(furnitureGroundWitness(cm,state.x,state.z,radius)?.source)&&velocity<=0&&to.y<0&&from.y>=0){const fraction=from.y/(from.y-to.y);if(!impact||fraction<impact.fraction)impact={fraction,kind:'ground'};}
   if(velocity<=0&&contact.surface?.source==='existing-qianqing-engineering-floor'&&to.y<contact.surface.height&&from.y>=contact.surface.height){const fraction=(from.y-contact.surface.height)/(from.y-to.y);if(!impact||fraction<impact.fraction)impact={fraction,kind:'qianqing-floor',surface:contact.surface};}
   if(velocity<=0&&contact.surface?.source==='existing-lijing-engineering-floor'&&to.y<contact.surface.height&&from.y>=contact.surface.height){const fraction=(from.y-contact.surface.height)/(from.y-to.y);if(!impact||fraction<impact.fraction)impact={fraction,kind:'lijing-floor',surface:contact.surface};}
   if(velocity<=0&&contact.surface?.source==='existing-engineering-ramp'&&to.y<contact.surface.height&&from.y>=contact.surface.height){const fraction=(from.y-contact.surface.height)/(from.y-to.y);if(!impact||fraction<impact.fraction)impact={fraction,kind:'stair-ramp',surface:contact.surface};}
@@ -257,6 +259,7 @@ export function furnitureGroundWitness(cm,x,z,radius=.5){
   const regions=furnitureRegionIndex(cm).regions;
   for(const r of regions)if(r.kind==='lijing-west-room'){const floor=registeredLijingFloor(furnitureMotionSource(cm),r,x,z,radius);if(floor)return{...floor,witness:new THREE.Vector3(x,floor.height,z)};}
   for(const r of regions)if(r.kind==='qianqing-assemblies'){const floor=registeredQianqingFloor(furnitureMotionSource(cm),r,x,z,radius);if(floor)return{...floor,witness:new THREE.Vector3(x,floor.height,z)};}
-  const region=regions.find(r=>r.groundY===0&&x+radius>=r.minX&&x-radius<=r.maxX&&z+radius>=r.minZ&&z-radius<=r.maxZ);
+  for(const r of regions)if(r.environmentGroundHandoff){const floor=chengqianEnvironmentWitness(furnitureMotionSource(cm),r,x,z,radius);if(floor)return{...floor,witness:new THREE.Vector3(x,0,z)};}
+  const region=regions.find(r=>!r.environmentGroundHandoff&&r.groundY===0&&x+radius>=r.minX&&x-radius<=r.maxX&&z+radius>=r.minZ&&z-radius<=r.maxZ);
   return region?{height:0,witness:new THREE.Vector3(x,0,z),owner:null,source:'environment-ground',regionId:region.id}:null;
 }

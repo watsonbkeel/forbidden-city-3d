@@ -1,3 +1,4 @@
+import {chengqianWestWingOriginalDeclaration} from './ChengqianCourtyardGroup.js';
 import * as THREE from 'three';
 import {furnishRoom} from '../interiors.js';
 
@@ -369,7 +370,7 @@ export function validateEastUnknownAnnexInventoryPolicy({zoneId,itemIndex,item} 
   const policy = {mode:'unknown-inventory',target:`east-six/items/${itemIndex}`,scope:SCOPE};
   if (zoneId !== 'east-six' || !Number.isInteger(itemIndex) || !expected || !equal(item.furnishingPolicy,policy)) fail('explicit policy/target mismatch');
   const {furnishingPolicy,...declaration} = item;
-  if (!equal(declaration,expected)) fail('declaration identity/envelope drift');
+  if (!equal(itemIndex===12?chengqianWestWingOriginalDeclaration(declaration,itemIndex):declaration,expected)) fail('declaration identity/envelope drift');
   return Object.freeze(policy);
 }
 function transformMatches(object,position,rotation=0) {

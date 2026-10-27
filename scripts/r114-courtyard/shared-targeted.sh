@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+files=(tests/r96-movement/contact-sweep.test.mjs tests/r96-movement/composed-motion.test.mjs tests/r96-movement/dynamic-body.test.mjs tests/r96-movement/lifecycle.test.mjs tests/r104-roof-surface.test.mjs tests/r104-roof-integration.test.mjs tests/r104-roof-prefix-equivalence.test.mjs tests/r109-stair-contact.test.mjs tests/r109-stair-domain-handoff.test.mjs tests/r109-stair-lifecycle.test.mjs tests/r112/arrival-assemblies.test.mjs tests/r112/display-surfaces.test.mjs tests/r112/floor-source.test.mjs tests/r113/side-access-fit.test.mjs tests/r113/side-contact.test.mjs tests/r113/lijing-room.test.mjs tests/r113/lijing-contact.test.mjs tests/r114/environment-vertical.test.mjs tests/r114/wing-entry.test.mjs tests/r114/wing-platform-source.test.mjs tests/r114/flight-source.test.mjs tests/r114/west-wing-fit.test.mjs tests/r114/group-source.test.mjs tests/r114/source-atomic.test.mjs tests/r114/environment-handoff.test.mjs)
+for file in "${files[@]}"; do test -f "$file" || exit 2; done
+node --test --test-concurrency=1 "${files[@]}"

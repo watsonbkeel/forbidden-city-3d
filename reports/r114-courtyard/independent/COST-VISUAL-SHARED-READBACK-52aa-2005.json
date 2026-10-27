@@ -1,0 +1,337 @@
+{
+  "reviewedAt": "2026-10-26T20:05:11.113693+00:00",
+  "runtime": "52aa349cc3c6617e74541ef011ada4ebc5fd98d8",
+  "baseline": "da6bc5ac450139e90cdbb864f57fee64ca15baed",
+  "currentHead": "c28d89767227fa9f9bf9299224acfb9b00c7b3e7",
+  "raws": {
+    "reports/r114-courtyard/cost/pair-1-baseline.json": "43c57d1665958a48f2b0c716603939fa63d0b8d3e9566aa97c396adda1f0e86a",
+    "reports/r114-courtyard/cost/pair-2-baseline.json": "a8171441ea38be7333f710e12316276fd86d7804611166572fe56e780de9455f",
+    "reports/r114-courtyard/cost/pair-3-baseline.json": "0e7e3a4232c53563448191cf92fda2d1c01e8c5322559e6f872bfb719f4b1a58",
+    "reports/r114-courtyard/cost/pair-4-baseline.json": "d1368cc3e2a0195b07890cba386e0625246d675bc9101f3cb49c51dd941da0f1",
+    "reports/r114-courtyard/cost/pair-5-baseline.json": "c185443df6c6bd1bcebbfe896ff6175e35ae406e468e97e28605ec9e55118e44",
+    "reports/r114-courtyard/cost/pair-1-candidate.json": "780c4924b42d9f61f53f44807a004dc962fc7e653e344b437949953252b8aa81",
+    "reports/r114-courtyard/cost/pair-2-candidate.json": "9f830f4217c471192fcf2fbafb76acc181404b60971bf576bac8b06369bfbdf7",
+    "reports/r114-courtyard/cost/pair-3-candidate.json": "405055ffa03a084dfecff900944d7eb66afa4c00085f1bda4bb50eb30739ecfc",
+    "reports/r114-courtyard/cost/pair-4-candidate.json": "203f564fc25de274ac6caa49297f13b100aa9077b6708a15979c8355a49569bd",
+    "reports/r114-courtyard/cost/pair-5-candidate.json": "b39efbeedf5e11817ad477b2fed425a57eb2a9c997aa99674e8de2dde57288f3",
+    "reports/r114-courtyard/night-household.json": "56081d4cee3e169d054ac64c4878bf8494efb5fbd6ad60a3cb155cbc4d7161c6",
+    "reports/r114-courtyard/shared-targeted.tap": "01d60d5bac0d41389e85146a6716f37205005384cf693a27d7f2d8f5b70b6aff"
+  },
+  "cost": {
+    "baseline": {
+      "medians": {
+        "buildMs": 791.7160260081291,
+        "registerMs": 1.6082050204277039,
+        "disposeMs": 0.6236760020256042,
+        "environmentSetupMs": 18.780350983142853,
+        "bindMs": 0
+      },
+      "resource": {
+        "meshes": 60,
+        "triangles": 109673,
+        "geometries": 2459,
+        "materials": 67,
+        "geometryArrayBufferBytes": 18211236,
+        "knownTextureBytes": 9437184,
+        "unknownTextures": 0,
+        "textureBudgetMeaning": "Known RGBA/canvas base-pixel estimate only; excludes mip/GPU duplication/JS and physics; unknown not zero."
+      },
+      "paths": {
+        "terrace-entry": {
+          "p50": 0.027081012725830078,
+          "p95": 0.07620400190353394,
+          "p99": 0.1239660382270813,
+          "max": 3.4967510104179382,
+          "firstFrameMs": [
+            2.515236020088196,
+            2.1329830288887024,
+            2.3113110065460205,
+            2.1362169981002808,
+            2.142818033695221
+          ],
+          "allPeak": 3.4967510104179382
+        },
+        "terrace-shoulder": {
+          "p50": 0.03904902935028076,
+          "p95": 0.11166799068450928,
+          "p99": 0.26763200759887695,
+          "max": 1.6695070266723633,
+          "firstFrameMs": [
+            0.1750730276107788,
+            0.2136409878730774,
+            0.2029150128364563,
+            0.216344952583313,
+            0.3315979838371277
+          ],
+          "allPeak": 1.6695070266723633
+        },
+        "wing-entry": {
+          "p50": 0.017886042594909668,
+          "p95": 0.047912001609802246,
+          "p99": 0.104716956615448,
+          "max": 0.8077230453491211,
+          "firstFrameMs": [
+            0.08570897579193115,
+            0.08664000034332275,
+            0.16400599479675293,
+            0.18690001964569092,
+            0.10318499803543091
+          ],
+          "allPeak": 0.8077230453491211
+        },
+        "wing-jamb-blocked": {
+          "p50": 0.03388100862503052,
+          "p95": 0.07512199878692627,
+          "p99": 0.1574469804763794,
+          "max": 0.9696459770202637,
+          "firstFrameMs": [
+            0.025088012218475342,
+            0.038317978382110596,
+            0.022193968296051025,
+            0.03559297323226929,
+            0.022153019905090332
+          ],
+          "allPeak": 0.9696459770202637
+        },
+        "gate-through": {
+          "p50": 0.014071047306060791,
+          "p95": 0.016995012760162354,
+          "p99": 0.08103203773498535,
+          "max": 0.545648992061615,
+          "firstFrameMs": [
+            0.023554980754852295,
+            0.023495018482208252,
+            0.02166295051574707,
+            0.022643983364105225,
+            0.02530801296234131
+          ],
+          "allPeak": 0.545648992061615
+        },
+        "gate-jamb-blocked": {
+          "p50": 0.013570010662078857,
+          "p95": 0.027019977569580078,
+          "p99": 0.06723099946975708,
+          "max": 0.5781579613685608,
+          "firstFrameMs": [
+            0.016134023666381836,
+            0.013369977474212646,
+            0.01387101411819458,
+            0.012930035591125488,
+            0.013540029525756836
+          ],
+          "allPeak": 0.5781579613685608
+        },
+        "roof-drop-pressure": {
+          "p50": 0.004136025905609131,
+          "p95": 0.005589008331298828,
+          "p99": 0.02720099687576294,
+          "max": 0.41795796155929565,
+          "firstFrameMs": [
+            0.3603609800338745,
+            0.3842770457267761,
+            0.5672119855880737,
+            0.3560250401496887,
+            0.5800710320472717
+          ],
+          "allPeak": 0.5800710320472717
+        },
+        "outside": {
+          "p50": 0.007771015167236328,
+          "p95": 0.013621032238006592,
+          "p99": 0.04719102382659912,
+          "max": 0.48589998483657837,
+          "firstFrameMs": [
+            0.06476700305938721,
+            0.05988997220993042,
+            0.05012601613998413,
+            0.07491201162338257,
+            0.062242984771728516
+          ],
+          "allPeak": 0.48589998483657837
+        }
+      },
+      "allSamples": 24000,
+      "warmSamples": 19200
+    },
+    "candidate": {
+      "medians": {
+        "buildMs": 792.6489070057869,
+        "registerMs": 2.1668840050697327,
+        "disposeMs": 0.6593000292778015,
+        "environmentSetupMs": 19.731278955936432,
+        "bindMs": 0.13436198234558105
+      },
+      "resource": {
+        "meshes": 62,
+        "triangles": 109801,
+        "geometries": 2472,
+        "materials": 69,
+        "geometryArrayBufferBytes": 18235812,
+        "knownTextureBytes": 9437184,
+        "unknownTextures": 0,
+        "textureBudgetMeaning": "Known RGBA/canvas base-pixel estimate only; excludes mip/GPU duplication/JS and physics; unknown not zero."
+      },
+      "paths": {
+        "terrace-entry": {
+          "p50": 0.027640998363494873,
+          "p95": 0.07392096519470215,
+          "p99": 0.12650001049041748,
+          "max": 1.1938430070877075,
+          "firstFrameMs": [
+            1.391830027103424,
+            1.4529420137405396,
+            1.6574190258979797,
+            1.3809030055999756,
+            1.5599219799041748
+          ],
+          "allPeak": 1.6574190258979797
+        },
+        "terrace-shoulder": {
+          "p50": 0.046890974044799805,
+          "p95": 0.10844194889068604,
+          "p99": 0.1960439682006836,
+          "max": 3.0408259630203247,
+          "firstFrameMs": [
+            0.1921379566192627,
+            0.19488203525543213,
+            0.12298500537872314,
+            0.12741202116012573,
+            0.17834800481796265
+          ],
+          "allPeak": 3.0408259630203247
+        },
+        "wing-entry": {
+          "p50": 0.018096983432769775,
+          "p95": 0.034011006355285645,
+          "p99": 0.08190304040908813,
+          "max": 0.6715580224990845,
+          "firstFrameMs": [
+            0.05195796489715576,
+            0.04080098867416382,
+            0.038057029247283936,
+            0.037876009941101074,
+            0.03645503520965576
+          ],
+          "allPeak": 0.6715580224990845
+        },
+        "wing-jamb-blocked": {
+          "p50": 0.04760098457336426,
+          "p95": 0.1036759614944458,
+          "p99": 0.18519800901412964,
+          "max": 11.179157018661499,
+          "firstFrameMs": [
+            0.02772200107574463,
+            0.04271501302719116,
+            0.04694998264312744,
+            0.02938401699066162,
+            0.028182029724121094
+          ],
+          "allPeak": 11.179157018661499
+        },
+        "gate-through": {
+          "p50": 0.04607003927230835,
+          "p95": 0.1041259765625,
+          "p99": 0.20090198516845703,
+          "max": 3.811343014240265,
+          "firstFrameMs": [
+            0.029924988746643066,
+            0.0329899787902832,
+            0.03130704164505005,
+            0.04625898599624634,
+            0.04705101251602173
+          ],
+          "allPeak": 5.165616989135742
+        },
+        "gate-jamb-blocked": {
+          "p50": 0.03534400463104248,
+          "p95": 0.08203303813934326,
+          "p99": 0.27942901849746704,
+          "max": 3.399533987045288,
+          "firstFrameMs": [
+            0.026279985904693604,
+            0.030466020107269287,
+            0.019890010356903076,
+            0.021751999855041504,
+            0.03808796405792236
+          ],
+          "allPeak": 3.399533987045288
+        },
+        "roof-drop-pressure": {
+          "p50": 0.1506659984588623,
+          "p95": 0.2674010396003723,
+          "p99": 0.4398910403251648,
+          "max": 1.014934003353119,
+          "firstFrameMs": [
+            0.2806520462036133,
+            0.3444470167160034,
+            0.2991499900817871,
+            0.2666800022125244,
+            0.8344129920005798
+          ],
+          "allPeak": 1.014934003353119
+        },
+        "outside": {
+          "p50": 0.00744098424911499,
+          "p95": 0.010356009006500244,
+          "p99": 0.05216801166534424,
+          "max": 0.4975370168685913,
+          "firstFrameMs": [
+            0.07707500457763672,
+            0.06054103374481201,
+            0.05817699432373047,
+            0.06166201829910278,
+            0.07390099763870239
+          ],
+          "allPeak": 0.5597710013389587
+        }
+      },
+      "allSamples": 24000,
+      "warmSamples": 19200
+    }
+  },
+  "allRuntimeHashesMatched": 414,
+  "visuals": {
+    "front": {
+      "beforeSource": "da6bc5ac450139e90cdbb864f57fee64ca15baed",
+      "afterSource": "52aa349cc3c6617e74541ef011ada4ebc5fd98d8",
+      "sameCamera": true,
+      "files": {
+        "reports/r114-courtyard/visual/front-before.json.gz": "7624472fbc8b2207620e5ef7c1c7ed21f56190299669654727ef8a5d3c5c8194",
+        "reports/r114-courtyard/visual/front-before.png": "504b30effc8f46831308345829211c9d4cbca5df6b1410a7714132d559c13b03",
+        "reports/r114-courtyard/visual/front-after.json.gz": "ddffd2274edddf1c858579cf9bc014ea488ee4693e4741fa043bc120dee60bd1",
+        "reports/r114-courtyard/visual/front-after.png": "6a5226f47245cf317a222d8d0d9513aade30c7ea07e30552fe97e832fd898827"
+      }
+    },
+    "courtyard": {
+      "beforeSource": "da6bc5ac450139e90cdbb864f57fee64ca15baed",
+      "afterSource": "52aa349cc3c6617e74541ef011ada4ebc5fd98d8",
+      "sameCamera": true,
+      "files": {
+        "reports/r114-courtyard/visual/courtyard-before.json.gz": "1eec5cf75a76aed0597d019f250c0790000ff4a01a7585475afee053fb2555cb",
+        "reports/r114-courtyard/visual/courtyard-before.png": "7b2c6d55b0621cbbbb14b6eec1d5e933720fcd974134ff901a845227bcfba7cd",
+        "reports/r114-courtyard/visual/courtyard-after.json.gz": "4cf55298a7250350815bf5536422123011d2322ce6220f7bf763c801d1babcbe",
+        "reports/r114-courtyard/visual/courtyard-after.png": "fc77cbcf0c0127557c589aa1c6840141e7fde64d6c62969e7f5739665ccaf5da"
+      }
+    },
+    "gate": {
+      "beforeSource": "da6bc5ac450139e90cdbb864f57fee64ca15baed",
+      "afterSource": "52aa349cc3c6617e74541ef011ada4ebc5fd98d8",
+      "sameCamera": true,
+      "files": {
+        "reports/r114-courtyard/visual/gate-before.json.gz": "319bd2d00c49ac9d30e7639def0a0a01fde3a6535d063bf91625905772e1fad2",
+        "reports/r114-courtyard/visual/gate-before.png": "e86b53b55d3ffd1116d43a311b9c75f00bb8639d672e326fad686b5629b70daf",
+        "reports/r114-courtyard/visual/gate-after.json.gz": "600f7bd4962268479dc3017e75df593c4ea9654ba9feaa1d5453d7c0a50c2ea8",
+        "reports/r114-courtyard/visual/gate-after.png": "bec414e901a06711599ed616948172ed24e03ea9655ae752c55d98a314f16814"
+      }
+    }
+  },
+  "limits": [
+    "No new performance executions by reviewer; fresh 10 raw files were independently recomputed exactly.",
+    "24,000 samples/version; 120 retained cold +480 warm per path/process. No samples discarded.",
+    "Only actual east-six zone ownership is counted; common actual Environment.setupGround and binding separately timed, not included in zone geometry bytes. Not full world, Garden first load, GPU, phone or Node20.",
+    "Two wing cost probes use each version's doorway-relative coordinates, not the same world coordinates. Other probes use same world input.",
+    "Terrace-shoulder starts at candidate cap height .610000014 in both versions; baseline has no raised terrace there. It is a controlled geometry/settling comparison, not matched grounded normal routes.",
+    "Roof-drop feet8 is artificial pressure, not a legal ordinary approach.",
+    "Final images are CPU geometry/diagnostic colors only, not texture/PBR/GPU fidelity."
+  ]
+}

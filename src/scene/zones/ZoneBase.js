@@ -1,3 +1,4 @@
+import {buildChengqianCourtyardGroup,bindChengqianTerraceDomain,chengqianWingHardGable} from '../palace/special/ChengqianCourtyardGroup.js';
 import {applyLijingWestRoom} from '../palace/special/LijingWestRoom.js';
 import {registerChuxiuSideAccess} from '../../controls/ChuxiuSideAccess.js';
 import {registerStairInterfaces} from '../../controls/StairInterfaces.js';
@@ -130,8 +131,10 @@ export class ZoneBase {
     if (this.zoneJson.zhaorenProfile !== undefined) buildZhaorenCourt(this.kit,this.zoneJson);
     if (this.zoneJson.yangxinEntranceProfile !== undefined) buildYangxinCourtEntrance(this.kit,this.zoneJson);
 
+    buildChengqianCourtyardGroup(this.kit,this.zoneJson);
     buildNightBeds(this.kit,this.zoneJson);
     registerStairInterfaces(this.kit,this.zoneJson);
+    bindChengqianTerraceDomain(this.kit,this.zoneJson);
     registerChuxiuSideAccess(this.kit,this.zoneJson);
 
     // Keep distance levels out of the ordinary recursive material merge.
@@ -299,7 +302,7 @@ export class ZoneBase {
     };
     // 过滤 undefined 参数，让 kit 方法使用默认值
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
-    if(rearProfile)params.hardGableEnd=true;
+    if(rearProfile||chengqianWingHardGable(this.zoneJson.id,this.zoneJson.items.indexOf(item),item))params.hardGableEnd=true;
     const result=item.furnishingPolicy===undefined ? this.kit.hall(params) : this.kit.nansansuoUnknownHall(params,{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     if(rearProfile){
       result.f.userData.rearHall=rearProfile;

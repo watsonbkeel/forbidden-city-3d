@@ -232,12 +232,12 @@
       -8,
       8,
       -18,
-      -10
+      -11.3
     ],
     "expectedHeightMeters": 0,
     "heightToleranceMeters": 0.03,
     "source": "src/scene/Environment.js#setupGround",
-    "verification": "Requires actual rendered ground triangles, full-body margin and collision checks in the named real courtyard; no world-ground or origin fallback."
+    "verification": "Requires actual rendered ground triangles, full-body margin and collision checks in the named real courtyard; no world-ground or origin fallback. R114 moon-terrace stair occupies the old northern strip; validation bounds are narrowed only, actor day positions remain unchanged."
   },
   {
     "id": "zhongcui-r52-court-ground",

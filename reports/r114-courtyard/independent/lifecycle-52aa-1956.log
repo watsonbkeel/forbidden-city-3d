@@ -1,0 +1,43 @@
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 224 个 mapItem
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 加载区域 east-six（东六宫），耗时 581.3ms
+[ZoneManager] 卸载区域 east-six
+[
+  {
+    status: 'PASS',
+    checks: [
+      'three_unique_source_scopes',
+      'held_navigation_original_environment',
+      'visible_source_remove_readd',
+      'replacement_geometry_invalidates_cached_triangles',
+      'draw_range_visibility_and_manual_matrix_fail_closed',
+      'invalid_id_update_is_atomic_and_wrong_kind_cannot_borrow',
+      'translated_marker_cannot_borrow_far_ground_patch',
+      'cache_retake_0',
+      'cache_retake_1',
+      'cache_retake_2',
+      'forced_eviction_fresh_build_and_exact_once_disposal'
+    ],
+    actualR52EnvironmentAndZoneManager: true,
+    initialZoneCounts: { colliders: 1242, walkables: 53 },
+    finishedGeometryCount: 62,
+    firstGenerationDisposalCounts: [
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+      1, 1
+    ],
+    newGeometryOrMaterialInventedByTest: false
+  }
+]

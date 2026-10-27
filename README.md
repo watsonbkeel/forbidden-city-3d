@@ -8,6 +8,12 @@
 ![Status](https://img.shields.io/badge/mainline-R105-brightgreen)
 ![Validation](https://img.shields.io/badge/validation-see_release_records-blue)
 
+## R112–R114：第二批开发小版（整组仍部分完成）
+
+乾清月台四炉/三门折叶/四器架有限安全、储秀前后院连续通路与丽景西次间整室组合、承乾中央月台/单侧院间门与两前配硬山已作限定核对。承乾西配南移3.5m是工程拟合：南端死带3.74→.24m不再可走，原低木槛仍有继承交叠；未定位后配/耳房/井亭与未知内景不算完成。R111自然叠石未采纳。GPU/手机未验；等待R115独立累计大版说明，不要求逐小版合并。
+
+[R112](docs/current-state/r112/VALIDATION.md) · [R113](docs/current-state/r113/VALIDATION.md) · [R114范围、成本与限制](docs/current-state/r114/VALIDATION.md)
+
 ## R111：山体形体方法验证记录（未采纳，整组未完成）
 
 一次低面负X平台候选虽改变近景，但仍像三角支挡板，writer/独审一致拒绝；运行与构建输入精确恢复R110，不建议为此切换版本。五组后侧/平台/路线承托欠项全部保留，未把单面或编号算整山完成。[负结果与完整剩余账](docs/current-state/r111/EXPERIMENT-RESULT.md)。

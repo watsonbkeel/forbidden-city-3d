@@ -1,0 +1,20 @@
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 224 个 mapItem
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 卸载区域 east-six
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: all three reach their original bed [{"id":"chengqian-consort-01","phase":"sleeping","sample":{"position":[-104.5,1.2,387],"rotationYRad":3.141592653589793,"speedMetersPerSecond":0}},{"id":"chengqian-maid-01","phase":"to-bed","sample":{"position":[-90.84924484484597,0,371.7878858223317],"rotationYRad":-0.0016889517647695233,"speedMetersPerSecond":0.65},"point":[-90.85000000000002,0,372.30000000000035]},{"id":"chengqian-maid-02","phase":"to-bed","sample":{"position":[-96.70064247913984,0,371.773276874766],"rotationYRad":0.0017761603760732018,"speedMetersPerSecond":0.65},"point":[-96.69999999999996,0,372.20000000000056]}]
+    at file:///workspace/scratch/02a8023d1a85/r114-chengqian-courtyard-group/scripts/r114-courtyard/night-household.mjs:3:586 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
