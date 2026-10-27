@@ -1,0 +1,141 @@
+{
+  "baseline": "cb77e454db5b4b494caa1198a827210bb7077b8d",
+  "sourceFingerprint": "8938de15545ac0fd46b7dfbde5a2d8c30e650ed130ecfbbb5cb8f7783cabfdcb",
+  "scope": "actual CPU diagnostics; no GPU/whole-frame/VRAM claim;59 native texture representations remain unknown in conservative inventory",
+  "rows": [
+    {
+      "id": "RB1",
+      "category": "repeated construction",
+      "sourceHashes": {
+        "src/scene/zones/ZoneManager.js": "420ea49c3e5cfa158149aa7d7324330f368aa50ea50b4acb62624500ba9c0173",
+        "src/scene/zones/InactiveZoneCache.js": "49d7b2a03b5630d56611673947af4654a8237edb2954a54330f6b059e6b690d9"
+      },
+      "hotspotEvidence": "baseline/startup-{low,high}.json: exactly seven initial distinct zone builds;19 total only after8 actual Teleport returns and TTL eviction. No duplicate same-generation initial work.",
+      "proposedFiles": [],
+      "preservedOutputs": "complete same art/108actors/geometry/material pixels/physics/night/source lifecycle/allready",
+      "targetMetric": "category actual build/resource/cost evidence",
+      "counterMetrics": [
+        "P95/P99/max",
+        "initialization",
+        "first-entry/return",
+        "owned resources/end-route memory"
+      ],
+      "expectedMechanism": "Reducing intentional eviction rebuilds would enlarge/alter cache; forbidden.",
+      "risk": "no new safe causally justified mechanism; do not trade quality/retention policy for cost",
+      "decision": "BLOCKED_SCOPE"
+    },
+    {
+      "id": "MG1",
+      "category": "immutable material/geometry reuse",
+      "sourceHashes": {
+        "src/utils/MergeUtils.js": "dfdf0496a4317cee8fbd1f97502b449177be88903f1334d9d95bd5bff6300cb4",
+        "src/scene/GardenBuilder.js": "97c5360cccf80ec7adea8b7741978f50bb6c2dc9b062378dae50c2c3c7017f9b",
+        "src/scene/palace/special/CanopyRoofSurfaceJoint.js": "d91cd99d70ea61b2b836c5e9ea57295464bba6d16b3fb8f639a6edebdf268d6a"
+      },
+      "hotspotEvidence": "Current inventory181219238/183877670 reachable ArrayBuffer bytes; source audit: merged transform outputs/source lifetimes differ. Prior R116 Float32 merge/canopy and R117/R97 template/rock-row candidates rejected; no new changed premise.",
+      "proposedFiles": [],
+      "preservedOutputs": "complete same art/108actors/geometry/material pixels/physics/night/source lifecycle/allready",
+      "targetMetric": "category actual build/resource/cost evidence",
+      "counterMetrics": [
+        "P95/P99/max",
+        "initialization",
+        "first-entry/return",
+        "owned resources/end-route memory"
+      ],
+      "expectedMechanism": "No new material/geometry reuse mechanism justified; do not relabel old microbenchmark gains.",
+      "risk": "no new safe causally justified mechanism; do not trade quality/retention policy for cost",
+      "decision": "REJECT_NO_BENEFIT"
+    },
+    {
+      "id": "NR1",
+      "category": "character updates",
+      "sourceHashes": {
+        "src/scene/characters/SharedRestNavigation.js": "8b695f95e14c10b370e28eb442b4fceef88fd77940b41f17b504300183896ba2"
+      },
+      "hotspotEvidence": "Full8616-frame source validation4110/4874ms instrumented; sampled numericCurrent3191.6ms.45124/48170 existing proof records frozen. ab-low primary5/5 improves but construction pair2+45.389ms>A/A25.020ms.",
+      "proposedFiles": [
+        "src/scene/characters/SharedRestNavigation.js",
+        "src/scene/characters/SharedRestNumericSource.js"
+      ],
+      "preservedOutputs": "complete same art/108actors/geometry/material pixels/physics/night/source lifecycle/allready",
+      "targetMetric": "newRoute.totalMs 5pairs vs frozen A/A1073.935735ms",
+      "counterMetrics": [
+        "P95/P99/max",
+        "initialization",
+        "first-entry/return",
+        "owned resources/end-route memory"
+      ],
+      "expectedMechanism": "REJECT_COUNTER: keep all old raw/source. Not accepted despite strong hot-loop benefit.",
+      "risk": "shallow freeze is not deep; retain mutable descendants/getters/NaN/root identity; no general Proxy detector",
+      "decision": "REJECT_NO_BENEFIT"
+    },
+    {
+      "id": "NR1b",
+      "category": "character updates",
+      "sourceHashes": {
+        "src/scene/characters/SharedRestNavigation.js": "8b695f95e14c10b370e28eb442b4fceef88fd77940b41f17b504300183896ba2"
+      },
+      "hotspotEvidence": "Same mechanism refined once: actual four-rail compile explicit temporary-array expressions85120→13336, identical16 proof records/checks; diagnostic old9–18ms/new7–10ms only, not acceptance.",
+      "proposedFiles": [
+        "src/scene/characters/SharedRestNavigation.js",
+        "src/scene/characters/SharedRestNumericSource.js"
+      ],
+      "preservedOutputs": "complete same art/108actors/geometry/material pixels/physics/night/source lifecycle/allready",
+      "targetMetric": "newRoute.totalMs 5pairs vs frozen A/A1073.935735ms",
+      "counterMetrics": [
+        "P95/P99/max",
+        "initialization",
+        "first-entry/return",
+        "owned resources/end-route memory"
+      ],
+      "expectedMechanism": "REJECT_COUNTER: primary and initial construction improve, but frozen inherited-prefix P95, world-ready and end-route ArrayBuffer guards exceeded. Runtime restored to PRE_PERF; no further retry.",
+      "risk": "shallow freeze is not deep; retain mutable descendants/getters/NaN/root identity; no general Proxy detector",
+      "decision": "REJECT_NO_BENEFIT"
+    },
+    {
+      "id": "RL1",
+      "category": "resource release",
+      "sourceHashes": {
+        "src/scene/characters/CharacterResourcePool.js": "6f572fda687d9539b51cb25d4ef0dcac739673c0b193c89bb07ad461553bd29b",
+        "src/scene/characters/SharedRestNavigation.js": "8b695f95e14c10b370e28eb442b4fceef88fd77940b41f17b504300183896ba2",
+        "src/scene/zones/ZoneManager.js": "420ea49c3e5cfa158149aa7d7324330f368aa50ea50b4acb62624500ba9c0173",
+        "src/scene/sky/RoomNightLights.js": "2ad93b522a64f628e7bd7e704c39928d13d92f01205e9599dbe3cfb346ef4fac"
+      },
+      "hotspotEvidence": "R120 two-detail exact-once source/finished lifecycle PASS; source audit covers pool entries, prebuilt/cache/silhouette, routine proof and night lights. Post-dispose process heap/RSS nonzero includes diagnostic/module references; no new product leak proven.",
+      "proposedFiles": [],
+      "preservedOutputs": "complete same art/108actors/geometry/material pixels/physics/night/source lifecycle/allready",
+      "targetMetric": "category actual build/resource/cost evidence",
+      "counterMetrics": [
+        "P95/P99/max",
+        "initialization",
+        "first-entry/return",
+        "owned resources/end-route memory"
+      ],
+      "expectedMechanism": "Do not delete live source data or claim unknown native allocations are0. No separate release optimization selected.",
+      "risk": "no new safe causally justified mechanism; do not trade quality/retention policy for cost",
+      "decision": "REJECT_NO_BENEFIT"
+    },
+    {
+      "id": "FS1",
+      "category": "first-screen all-ready blocking",
+      "sourceHashes": {
+        "main.js": "b18c4a7cf10a69d758f1b4b84d4c27f0a9153ce718424edf7224c58daab10788",
+        "src/scene/zones/ZoneManager.js": "420ea49c3e5cfa158149aa7d7324330f368aa50ea50b4acb62624500ba9c0173",
+        "src/scene/flight/FlightEnvelope.js": "00f94400eedb5d80c4b3cf227b80afbe015207c7658bc555c7ec7662d9050d76"
+      },
+      "hotspotEvidence": "Current CPU setup≈7011/6893ms, paint wait6–7ms separately; zones≈3987–4191ms, palace≈1090ms, Garden≈661–677ms dominate. Allready outputs feed flight/night/character. Corrected driver adds allReadyCpuMs after paints; old raw preserved.",
+      "proposedFiles": [],
+      "preservedOutputs": "complete same art/108actors/geometry/material pixels/physics/night/source lifecycle/allready",
+      "targetMetric": "category actual build/resource/cost evidence",
+      "counterMetrics": [
+        "P95/P99/max",
+        "initialization",
+        "first-entry/return",
+        "owned resources/end-route memory"
+      ],
+      "expectedMechanism": "No worker/catalog/late preparation rewrite; no first-visit wait. Setup-before-paint is not the primary all-ready metric.",
+      "risk": "no new safe causally justified mechanism; do not trade quality/retention policy for cost",
+      "decision": "BLOCKED_SCOPE"
+    }
+  ]
+}

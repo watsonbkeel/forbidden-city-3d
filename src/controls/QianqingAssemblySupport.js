@@ -1,6 +1,6 @@
 /** Existing registered engineering floors, not newly created physical surfaces.
  * The visible retained terrace is 0.02 m above its old engineering support. */
-export const QIANQING_ASSEMBLY_IDS=Object.freeze(['qianqing-terrace-hall-lip',...Array.from({length:4},(_,i)=>'qianqing-terrace-burner-'+i),...['3','4','5'].map(i=>'qianqing-front-doors-'+i)]);
+export const QIANQING_ASSEMBLY_IDS=Object.freeze(['qianqing-terrace-hall-lip',...Array.from({length:4},(_,i)=>'qianqing-stair-rail-'+i),...Array.from({length:4},(_,i)=>'qianqing-terrace-burner-'+i),...['3','4','5'].map(i=>'qianqing-front-doors-'+i)]);
 export const QIANQING_FLOORS=Object.freeze({terrace:Object.freeze({minX:-28,maxX:28,minZ:298.3,maxZ:334.3,height:2}),hall:Object.freeze({minX:-24.5,maxX:24.5,minZ:302.8,maxZ:330.8,height:2.16})});
 export function cloneQianqingFloor(input,id,region){
  const key=id.startsWith('qianqing-terrace-')?'terrace':'hall',expected=QIANQING_FLOORS[key];

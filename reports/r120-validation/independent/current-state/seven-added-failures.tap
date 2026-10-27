@@ -1,0 +1,168 @@
+# Subtest: src/scene/palace/QianqingCeiling.js: follow-through reverses only exact full bytes and seven unique review hunks
+not ok 515 - src/scene/palace/QianqingCeiling.js: follow-through reverses only exact full bytes and seven unique review hunks
+  ---
+  duration_ms: 66.340412
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/current-state/r32-followthrough-source-retention.test.mjs:72:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'd70696233607a27a83f54734bc8c81035fad519c79eef838b997562426eb3a47'
+    - '5aeedc1627bb7b00f35b32d69d144f7b08d61dfdc2658d6652ba46ca0b6a1a60'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '5aeedc1627bb7b00f35b32d69d144f7b08d61dfdc2658d6652ba46ca0b6a1a60'
+  actual: 'd70696233607a27a83f54734bc8c81035fad519c79eef838b997562426eb3a47'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/current-state/r32-followthrough-source-retention.test.mjs:79:12)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: src/scene/palace/QianqingCentralArt.js: frieze reverses only exact full bytes and three unique review hunks
+not ok 537 - src/scene/palace/QianqingCentralArt.js: frieze reverses only exact full bytes and three unique review hunks
+  ---
+  duration_ms: 66.364689
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/current-state/r32-frieze-source-retention.test.mjs:73:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'e19d40285d18727b8383b1cea8790651a9a717d7ea55bc06be0c2f54b80db54d'
+    - '80fdf121a4c4e3598bc34346b44defee51e7223173a17a6b6b59792a73648e77'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '80fdf121a4c4e3598bc34346b44defee51e7223173a17a6b6b59792a73648e77'
+  actual: 'e19d40285d18727b8383b1cea8790651a9a717d7ea55bc06be0c2f54b80db54d'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/current-state/r32-frieze-source-retention.test.mjs:80:12)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: unregistered paths and changed epochs cannot acquire a frieze exception
+not ok 545 - unregistered paths and changed epochs cannot acquire a frieze exception
+  ---
+  duration_ms: 0.757057
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/current-state/r32-frieze-source-retention.test.mjs:140:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    exact R32 frieze source candidate: src/scene/palace/QianqingCentralArt.js
+    + actual - expected
+    
+    + 'e19d40285d18727b8383b1cea8790651a9a717d7ea55bc06be0c2f54b80db54d'
+    - '80fdf121a4c4e3598bc34346b44defee51e7223173a17a6b6b59792a73648e77'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '80fdf121a4c4e3598bc34346b44defee51e7223173a17a6b6b59792a73648e77'
+  actual: 'e19d40285d18727b8383b1cea8790651a9a717d7ea55bc06be0c2f54b80db54d'
+  operator: 'strictEqual'
+  stack: |-
+    restorePreR32FriezeSource (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/lib/r32-frieze-source-retention.mjs:32:10)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/current-state/r32-frieze-source-retention.test.mjs:151:77)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: src/scene/palace/QianqingCentralArt.js: screen reverses only exact full bytes and five unique review hunks
+not ok 563 - src/scene/palace/QianqingCentralArt.js: screen reverses only exact full bytes and five unique review hunks
+  ---
+  duration_ms: 66.266785
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/current-state/r32-screen-source-retention.test.mjs:71:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'e19d40285d18727b8383b1cea8790651a9a717d7ea55bc06be0c2f54b80db54d'
+    - '087020210cc88715d4cd03bdea87dfbf59004c0f7b6faa617b2d10064ef1113e'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '087020210cc88715d4cd03bdea87dfbf59004c0f7b6faa617b2d10064ef1113e'
+  actual: 'e19d40285d18727b8383b1cea8790651a9a717d7ea55bc06be0c2f54b80db54d'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/current-state/r32-screen-source-retention.test.mjs:78:12)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: unregistered paths and changed epochs cannot acquire a screen exception
+not ok 570 - unregistered paths and changed epochs cannot acquire a screen exception
+  ---
+  duration_ms: 0.645249
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/current-state/r32-screen-source-retention.test.mjs:137:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    exact R32 screen source candidate: src/scene/palace/QianqingCentralArt.js
+    + actual - expected
+    
+    + 'e19d40285d18727b8383b1cea8790651a9a717d7ea55bc06be0c2f54b80db54d'
+    - '087020210cc88715d4cd03bdea87dfbf59004c0f7b6faa617b2d10064ef1113e'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '087020210cc88715d4cd03bdea87dfbf59004c0f7b6faa617b2d10064ef1113e'
+  actual: 'e19d40285d18727b8383b1cea8790651a9a717d7ea55bc06be0c2f54b80db54d'
+  operator: 'strictEqual'
+  stack: |-
+    restorePreR32ScreenSource (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/lib/r32-screen-source-retention.mjs:30:10)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/current-state/r32-screen-source-retention.test.mjs:148:77)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: src/scene/palace/QianqingCentralArt.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed
+not ok 586 - src/scene/palace/QianqingCentralArt.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed
+  ---
+  duration_ms: 0.297126
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/current-state/r32-source-retention.test.mjs:85:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'e19d40285d18727b8383b1cea8790651a9a717d7ea55bc06be0c2f54b80db54d'
+    - '189ea53d720c3ad82bdc5f5d57eb9049dcd6d3b296c0e41762a5c96542db4e4b'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '189ea53d720c3ad82bdc5f5d57eb9049dcd6d3b296c0e41762a5c96542db4e4b'
+  actual: 'e19d40285d18727b8383b1cea8790651a9a717d7ea55bc06be0c2f54b80db54d'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/current-state/r32-source-retention.test.mjs:89:12)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: src/scene/palace/QianqingCeiling.js: added R32 source has a complete fixed identity
+not ok 601 - src/scene/palace/QianqingCeiling.js: added R32 source has a complete fixed identity
+  ---
+  duration_ms: 0.23298
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/current-state/r32-source-retention.test.mjs:119:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    4067 !== 2875
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 2875
+  actual: 4067
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/current-state/r32-source-retention.test.mjs:123:12)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...

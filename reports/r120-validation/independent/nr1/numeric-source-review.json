@@ -1,0 +1,2939 @@
+{
+  "head": "cb77e454db5b4b494caa1198a827210bb7077b8d",
+  "before": "15e8dbd6cb90a4e855ff7c6cc16c6e7d71165357193828606489e982bb38699d",
+  "after": "15e8dbd6cb90a4e855ff7c6cc16c6e7d71165357193828606489e982bb38699d",
+  "baseline": "cb77e454db5b4b494caa1198a827210bb7077b8d",
+  "oldFunctionsSHA256": "f0b1bc879b59057730ebe1865657fddedbce76cb1baa23dfd22f3f9a92c57c5e",
+  "candidateFileSHA256": "6f9e9394bf5a8bd8320f89c0076e6e0798e6031635d2be79a176b4501b69624b",
+  "scriptSHA256": "ead38df169aa0e9fd24d9f18882928a09897ce292fc5e7e8076d508e9b7175ab",
+  "scope": "Small-object differential only. Ordinary own-enumerable data/frozen invariants; no generic Proxy-side-effect guarantee or world/timing claims.",
+  "pass": 172,
+  "fail": 0,
+  "cases": [
+    {
+      "name": "deep frozen data prunes rows but retains root",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 3,
+      "newRows": 1
+    },
+    {
+      "name": "different root same data denied",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 1,
+      "newRows": 1
+    },
+    {
+      "name": "shallow frozen mutable normal denied",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 3,
+      "newRows": 2
+    },
+    {
+      "name": "same-count frozen child replacement denied",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 2,
+      "newRows": 1
+    },
+    {
+      "name": "typed descendant mutation denied",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 2,
+      "newRows": 2
+    },
+    {
+      "name": "frozen getter value mutation denied",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 1,
+      "newRows": 1
+    },
+    {
+      "name": "frozen getter becomes throwing fails closed",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": true,
+        "error": "Error"
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 1,
+      "newRows": 1
+    },
+    {
+      "name": "frozen nested NaN preserves old rejection",
+      "initial": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 2,
+      "newRows": 2
+    },
+    {
+      "name": "frozen infinity and negative zero preserve old acceptance",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 1,
+      "newRows": 1
+    },
+    {
+      "name": "mutable key deleted and replaced same count",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 1,
+      "newRows": 1
+    },
+    {
+      "name": "mesh remains identity-only per old contract",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 1,
+      "newRows": 1
+    },
+    {
+      "name": "nonenumerable fields remain outside old contract",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 1,
+      "newRows": 1
+    },
+    {
+      "name": "mixed tree 0",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 1",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 2",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 3",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 4",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 5",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 6",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 7",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 8",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 9",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 10",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 11",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 12",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 13",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 14",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 15",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 16",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 17",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 18",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 19",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 20",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 21",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 22",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 23",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 24",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 25",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 26",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 27",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 28",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 29",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 30",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 31",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 32",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 33",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 34",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 35",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 36",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 37",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 38",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 39",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 40",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 41",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 42",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 43",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 44",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 45",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 46",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 47",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 48",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 49",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 50",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 51",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 52",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 53",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 54",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 55",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 56",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 57",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 58",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 59",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 60",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 61",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 62",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 63",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 64",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 65",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 66",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 67",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 68",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 69",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 70",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 71",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 72",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 73",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 74",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 75",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 76",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 77",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 78",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 79",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 80",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 81",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 82",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 83",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 84",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 85",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 86",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 87",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 88",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 89",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 90",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 91",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 92",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 93",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 94",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 95",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 96",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 97",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 98",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 99",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 100",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 101",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 102",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 103",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 104",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 105",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 106",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 107",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 108",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 109",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 110",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 111",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 112",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 113",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 114",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 115",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 116",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 117",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 118",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 119",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 120",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 121",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 122",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 123",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 124",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 125",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 126",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 127",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 128",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 129",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 130",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 131",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 132",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 133",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 134",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 135",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 136",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 137",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 138",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 139",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 140",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 141",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 142",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 143",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 144",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 145",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 146",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 147",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 148",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 149",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 150",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 151",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 152",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 153",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 2
+    },
+    {
+      "name": "mixed tree 154",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 4
+    },
+    {
+      "name": "mixed tree 155",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 156",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 157",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 158",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    },
+    {
+      "name": "mixed tree 159",
+      "initial": {
+        "accepted": true,
+        "throws": false
+      },
+      "oldAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "newAfter": {
+        "accepted": false,
+        "throws": false
+      },
+      "oldRows": 4,
+      "newRows": 3
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+import fs from'node:fs';import path from'node:path';import{pathToFileURL}from'node:url';import{createHash}from'node:crypto';import{readyScene}from'./ready-scene.mjs';import{sourceFingerprint}from'../build-identity.mjs';
+const hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
+export async function retained(root='.'){
+ root=path.resolve(root);const h=await readyScene('high',root),{buildQianqingCentralLevel}=await import(pathToFileURL(root+'/src/scene/palace/QianqingCentralSetting.js')),lod=h.scene.getObjectByName('qianqing-central-setting-detail'),f=lod.parent.userData.qianqingCentral,raw=buildQianqingCentralLevel(h.builder._own.get('qianqing-central-private-atlas'),f,true);raw.updateMatrixWorld(true);
+ const geom=m=>({name:m.name,matrix:m.matrixWorld.toArray(),attributes:Object.fromEntries(Object.entries(m.geometry.attributes).map(([k,a])=>[k,{itemSize:a.itemSize,array:Array.from(a.array)}])),index:m.geometry.index?Array.from(m.geometry.index.array):null}),central=[];
+ raw.traverse(m=>{if(!m.isMesh||['qianqing-high-gilt-frieze','qianqing-zhengdaguangming-plaque','qianqing-stair-lower-curved-rail','qianqing-stair-open-gilt-return'].includes(m.name))return;central.push(hash(geom(m)));});central.sort();const display=[];h.scene.getObjectByName('qianqing-permanent-display').traverse(m=>{if(m.isMesh)display.push(geom(m));});
+ const ceilingFar=[];h.scene.getObjectByName('qianqing-panelled-ceiling-r32').levels[1].object.traverse(m=>{if(m.isMesh)ceilingFar.push(geom(m));});
+ const result={sourceFingerprint:sourceFingerprint(root),physicsExceptFourRails:hash({colliders:h.builder.colliders.filter(c=>!c.furnitureMotionScope?.id?.startsWith('qianqing-stair-rail-')),walkables:h.builder.walkables}),retainedCentralGeometry:hash(central),centralMeshCount:central.length,display:hash(display),ceilingFar:hash(ceilingFar),paintFiles:h.paint.files};h.dispose();raw.traverse(m=>m.geometry?.dispose());return result;
+}
+if(process.argv[1]?.endsWith('capture-retained.mjs')){const r=await retained(process.argv[2]??'.');fs.writeFileSync(process.argv[3],JSON.stringify(r,null,2));console.log(r);}

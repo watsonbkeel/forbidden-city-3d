@@ -1,0 +1,145 @@
+TAP version 13
+# Subtest: independent same-value worlds compare exact despite UUIDs
+ok 1 - independent same-value worlds compare exact despite UUIDs
+  ---
+  duration_ms: 5.34748
+  type: 'test'
+  ...
+# Subtest: real attribute/world transform/texture pixel/filter/physics changes cannot pass equivalence
+ok 2 - real attribute/world transform/texture pixel/filter/physics changes cannot pass equivalence
+  ---
+  duration_ms: 6.067783
+  type: 'test'
+  ...
+# Subtest: cached inactive geometry participates, not just currently visible scene
+ok 3 - cached inactive geometry participates, not just currently visible scene
+  ---
+  duration_ms: 2.03558
+  type: 'test'
+  ...
+# Subtest: nearest-rank retains tail and refuses invalid samples
+ok 4 - nearest-rank retains tail and refuses invalid samples
+  ---
+  duration_ms: 2.670214
+  type: 'test'
+  ...
+# Subtest: retained backing buffers deduplicate aliases but count complete allocation
+ok 5 - retained backing buffers deduplicate aliases but count complete allocation
+  ---
+  duration_ms: 0.483788
+  type: 'test'
+  ...
+# Subtest: unknown texture stays explicitly unknown; shared texture only counted once
+ok 6 - unknown texture stays explicitly unknown; shared texture only counted once
+  ---
+  duration_ms: 0.371709
+  type: 'test'
+  ...
+# Subtest: explicit absolute root and tracked clean source are required
+not ok 7 - explicit absolute root and tracked clean source are required
+  ---
+  duration_ms: 12.786904
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/r120-performance/measurement-contract.test.mjs:9:1'
+  failureType: 'testCodeFailure'
+  error: 'tracked source is dirty: M docs/current-state/r120/PROGRESS.md'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    bindRoot (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/scripts/r120-performance/measurement.mjs:14:80)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/r120-performance/measurement-contract.test.mjs:9:267)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: nonzero child, missing output, wrong root and missing source cannot silently pass
+ok 8 - nonzero child, missing output, wrong root and missing source cannot silently pass
+  ---
+  duration_ms: 1.973466
+  type: 'test'
+  ...
+# Subtest: R120 axial plaque and dragon band are a bounded combined photo-fit in actual Float32 geometry
+ok 9 - R120 axial plaque and dragon band are a bounded combined photo-fit in actual Float32 geometry
+  ---
+  duration_ms: 1.76317
+  type: 'test'
+  ...
+# Subtest: R120 four actual open rail rows have lower connections and source-mapped finite owners, not filled boxes
+ok 10 - R120 four actual open rail rows have lower connections and source-mapped finite owners, not filled boxes
+  ---
+  duration_ms: 8.396283
+  type: 'test'
+  ...
+# Subtest: R120 real coffer reveals add shallow oblique faces within original 23x12 continuous ceiling envelope, far unchanged
+ok 11 - R120 real coffer reveals add shallow oblique faces within original 23x12 continuous ceiling envelope, far unchanged
+  ---
+  duration_ms: 1.421106
+  type: 'test'
+  ...
+# Subtest: R120 retained 106 central parts, all six display objects, far ceiling, and every old collider/walkable are exact R119
+ok 12 - R120 retained 106 central parts, all six display objects, far ceiling, and every old collider/walkable are exact R119
+  ---
+  duration_ms: 382.724246
+  type: 'test'
+  ...
+# Subtest: R120 high genuine paints and source/finished geometry ownership release once
+ok 13 - R120 high genuine paints and source/finished geometry ownership release once
+  ---
+  duration_ms: 744.165444
+  type: 'test'
+  ...
+# Subtest: R120 low genuine paints and source/finished geometry ownership release once
+ok 14 - R120 low genuine paints and source/finished geometry ownership release once
+  ---
+  duration_ms: 256.250125
+  type: 'test'
+  ...
+# Subtest: R120 rail openings are real exact open surfaces, not their filled AABB; owner lifecycle is finite
+ok 15 - R120 rail openings are real exact open surfaces, not their filled AABB; owner lifecycle is finite
+  ---
+  duration_ms: 18.933625
+  type: 'test'
+  ...
+# Subtest: R120 normal complete .5m-body door three-flight return and side loop 10Hz backward=false
+ok 16 - R120 normal complete .5m-body door three-flight return and side loop 10Hz backward=false
+  ---
+  duration_ms: 57.80079
+  type: 'test'
+  ...
+# Subtest: R120 normal complete .5m-body door three-flight return and side loop 10Hz backward=true
+ok 17 - R120 normal complete .5m-body door three-flight return and side loop 10Hz backward=true
+  ---
+  duration_ms: 32.420572
+  type: 'test'
+  ...
+# Subtest: R120 normal complete .5m-body door three-flight return and side loop 30Hz backward=false
+ok 18 - R120 normal complete .5m-body door three-flight return and side loop 30Hz backward=false
+  ---
+  duration_ms: 45.85494
+  type: 'test'
+  ...
+# Subtest: R120 normal complete .5m-body door three-flight return and side loop 30Hz backward=true
+ok 19 - R120 normal complete .5m-body door three-flight return and side loop 30Hz backward=true
+  ---
+  duration_ms: 44.333622
+  type: 'test'
+  ...
+# Subtest: R120 normal complete .5m-body door three-flight return and side loop 60Hz backward=false
+ok 20 - R120 normal complete .5m-body door three-flight return and side loop 60Hz backward=false
+  ---
+  duration_ms: 65.39011
+  type: 'test'
+  ...
+# Subtest: R120 normal complete .5m-body door three-flight return and side loop 60Hz backward=true
+ok 21 - R120 normal complete .5m-body door three-flight return and side loop 60Hz backward=true
+  ---
+  duration_ms: 60.250562
+  type: 'test'
+  ...
+1..21
+# tests 21
+# suites 0
+# pass 20
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3766.352792

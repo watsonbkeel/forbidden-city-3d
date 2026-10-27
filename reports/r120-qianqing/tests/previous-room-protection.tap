@@ -1,0 +1,182 @@
+TAP version 13
+# Subtest: Qianqing three southern door groups each retain four actual folded leaves
+ok 1 - Qianqing three southern door groups each retain four actual folded leaves
+  ---
+  duration_ms: 81.986198
+  type: 'test'
+  ...
+# Subtest: four separate front-terrace burners exist and leave the central axis clear
+ok 2 - four separate front-terrace burners exist and leave the central axis clear
+  ---
+  duration_ms: 264.156632
+  type: 'test'
+  ...
+# Subtest: production four terrace instances actually register their matching surface owners
+ok 3 - production four terrace instances actually register their matching surface owners
+  ---
+  duration_ms: 202.139028
+  type: 'test'
+  ...
+# Subtest: four permanent exact display surface owners, not a whole dais exclusion
+ok 4 - four permanent exact display surface owners, not a whole dais exclusion
+  ---
+  duration_ms: 33.89414
+  type: 'test'
+  ...
+# Subtest: existing finite floor preserves exact engineering height and no source means no witness
+ok 5 - existing finite floor preserves exact engineering height and no source means no witness
+  ---
+  duration_ms: 6.483279
+  type: 'test'
+  ...
+# Subtest: scope must protect full half-metre footprint on activation and handoff
+ok 6 - scope must protect full half-metre footprint on activation and handoff
+  ---
+  duration_ms: 0.360671
+  type: 'test'
+  ...
+# Subtest: source-bound floor catches descent, does not create ceiling or reset upward jump
+ok 7 - source-bound floor catches descent, does not create ceiling or reset upward jump
+  ---
+  duration_ms: 0.794022
+  type: 'test'
+  ...
+# Subtest: leaving bounded scope retains actual floor for the final horizontal handoff
+ok 8 - leaving bounded scope retains actual floor for the final horizontal handoff
+  ---
+  duration_ms: 0.597927
+  type: 'test'
+  ...
+# Subtest: south exit hands back the inherited center-floor semantics only after leaving local scope
+ok 9 - south exit hands back the inherited center-floor semantics only after leaving local scope
+  ---
+  duration_ms: 0.574612
+  type: 'test'
+  ...
+# Subtest: R119 finished room contains real blue-gold inner frame faces, not only metadata
+ok 10 - R119 finished room contains real blue-gold inner frame faces, not only metadata
+  ---
+  duration_ms: 1.504107
+  type: 'test'
+  ...
+# Subtest: R119 near caisson adds actual inset edge lips and connected suspension end rings while retaining mirror datum
+ok 11 - R119 near caisson adds actual inset edge lips and connected suspension end rings while retaining mirror datum
+  ---
+  duration_ms: 4.127784
+  type: 'test'
+  ...
+# Subtest: R119 preserves exact R118 navigation, display geometry, clocks, doors and registered opening
+not ok 12 - R119 preserves exact R118 navigation, display geometry, clocks, doors and registered opening
+  ---
+  duration_ms: 53.712788
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/r119/jiaotai-assembly.test.mjs:8:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    physics
+    + actual - expected
+    
+    + '22a6e8eb1b315fd8cf0a8a75b053e0aad79b0323ba6b68ffe08fd9f60b9cea5e'
+    - '583c8c4685595f508fa8dfdeca74ba03f0c6f5f7dc718ecb8773cc00508b8780'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '583c8c4685595f508fa8dfdeca74ba03f0c6f5f7dc718ecb8773cc00508b8780'
+  actual: '22a6e8eb1b315fd8cf0a8a75b053e0aad79b0323ba6b68ffe08fd9f60b9cea5e'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/r119/jiaotai-assembly.test.mjs:8:211)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R119 upper screen has source-supported dense red-gold field and physical framed edge inside retained envelope
+ok 13 - R119 upper screen has source-supported dense red-gold field and physical framed edge inside retained envelope
+  ---
+  duration_ms: 4.348105
+  type: 'test'
+  ...
+# Subtest: R119 west bracket arms join an actual vertical stem instead of floating below the ceiling
+ok 14 - R119 west bracket arms join an actual vertical stem instead of floating below the ceiling
+  ---
+  duration_ms: 2.507283
+  type: 'test'
+  ...
+# Subtest: R119 long painted beams repeat the horizontal atlas at fitted aspect rather than stretching one cell across a whole wall
+ok 15 - R119 long painted beams repeat the horizontal atlas at fitted aspect rather than stretching one cell across a whole wall
+  ---
+  duration_ms: 1.391648
+  type: 'test'
+  ...
+# Subtest: R119 far caisson geometry remains byte-value exact R118 despite the near detail addition
+ok 16 - R119 far caisson geometry remains byte-value exact R118 despite the near detail addition
+  ---
+  duration_ms: 1.5458
+  type: 'test'
+  ...
+# Subtest: R119 fresh high real-library owned atlas is bounded, shared and released exactly once
+ok 17 - R119 fresh high real-library owned atlas is bounded, shared and released exactly once
+  ---
+  duration_ms: 775.786484
+  type: 'test'
+  ...
+# Subtest: R119 fresh low real-library owned atlas is bounded, shared and released exactly once
+ok 18 - R119 fresh low real-library owned atlas is bounded, shared and released exactly once
+  ---
+  duration_ms: 278.761518
+  type: 'test'
+  ...
+# Subtest: R119 actual ready room retains four open doors and clock/clepsydra/platform observation support
+ok 19 - R119 actual ready room retains four open doors and clock/clepsydra/platform observation support
+  ---
+  duration_ms: 20.510146
+  type: 'test'
+  ...
+# Subtest: R119 real controller four-door clock/clepsydra rear-loop return 10Hz backward=false
+ok 20 - R119 real controller four-door clock/clepsydra rear-loop return 10Hz backward=false
+  ---
+  duration_ms: 27.263449
+  type: 'test'
+  ...
+# Subtest: R119 real controller four-door clock/clepsydra rear-loop return 10Hz backward=true
+ok 21 - R119 real controller four-door clock/clepsydra rear-loop return 10Hz backward=true
+  ---
+  duration_ms: 17.833861
+  type: 'test'
+  ...
+# Subtest: R119 real controller four-door clock/clepsydra rear-loop return 30Hz backward=false
+ok 22 - R119 real controller four-door clock/clepsydra rear-loop return 30Hz backward=false
+  ---
+  duration_ms: 26.865022
+  type: 'test'
+  ...
+# Subtest: R119 real controller four-door clock/clepsydra rear-loop return 30Hz backward=true
+ok 23 - R119 real controller four-door clock/clepsydra rear-loop return 30Hz backward=true
+  ---
+  duration_ms: 17.881041
+  type: 'test'
+  ...
+# Subtest: R119 real controller four-door clock/clepsydra rear-loop return 60Hz backward=false
+ok 24 - R119 real controller four-door clock/clepsydra rear-loop return 60Hz backward=false
+  ---
+  duration_ms: 34.361171
+  type: 'test'
+  ...
+# Subtest: R119 real controller four-door clock/clepsydra rear-loop return 60Hz backward=true
+ok 25 - R119 real controller four-door clock/clepsydra rear-loop return 60Hz backward=true
+  ---
+  duration_ms: 33.275461
+  type: 'test'
+  ...
+1..25
+# tests 25
+# suites 0
+# pass 24
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4184.098182

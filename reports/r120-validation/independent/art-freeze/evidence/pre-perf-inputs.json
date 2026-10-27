@@ -1,0 +1,24 @@
+{
+  "label": "R120_PRE_PERF",
+  "commit": "cb77e454db5b4b494caa1198a827210bb7077b8d",
+  "tree": "c97647ba477efe98910713a8f9b511f4a0b5979d",
+  "sourceFingerprint": "8938de15545ac0fd46b7dfbde5a2d8c30e650ed130ecfbbb5cb8f7783cabfdcb",
+  "release": "R120",
+  "artVisualFingerprint": "f1165a9b167baef8b8cc7a557460fe965475cd635262fe60480db8852382af4c",
+  "versionOnlyDifference": "release.json R119→R120; no geometry/algorithm difference",
+  "gates": {
+    "r120": 13,
+    "r120WithR106": 16,
+    "r118": 27,
+    "previousRooms": {
+      "pass": 24,
+      "fail": 1,
+      "conflict": "R119 complete physics hash expects no new rail owners"
+    }
+  },
+  "limits": [
+    "CPU diagnostics, not GPU/mobile",
+    "No performance change yet",
+    "R116/R117 not delivered"
+  ]
+}

@@ -1,0 +1,115 @@
+TAP version 13
+# Subtest: immutable own-data nodes are pruned while all mutable descendant records stay current
+not ok 1 - immutable own-data nodes are pruned while all mutable descendant records stay current
+  ---
+  duration_ms: 1.583246
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/r120-performance/numeric-source-proof.test.mjs:8:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    only mutable normal, box and root records; old production repeatedly recorded all frozen nodes
+    
+    10 !== 3
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 3
+  actual: 10
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/r120-performance/numeric-source-proof.test.mjs:8:164)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: current source rejects same-count child replacement
+ok 2 - current source rejects same-count child replacement
+  ---
+  duration_ms: 0.370927
+  type: 'test'
+  ...
+# Subtest: current source rejects numeric scalar edit
+ok 3 - current source rejects numeric scalar edit
+  ---
+  duration_ms: 0.183315
+  type: 'test'
+  ...
+# Subtest: current source rejects same-count field rename
+ok 4 - current source rejects same-count field rename
+  ---
+  duration_ms: 0.145718
+  type: 'test'
+  ...
+# Subtest: current source rejects added key
+ok 5 - current source rejects added key
+  ---
+  duration_ms: 0.136255
+  type: 'test'
+  ...
+# Subtest: current source rejects same-value proxy replacement
+ok 6 - current source rejects same-value proxy replacement
+  ---
+  duration_ms: 0.123095
+  type: 'test'
+  ...
+# Subtest: current source rejects frozen source replacement
+ok 7 - current source rejects frozen source replacement
+  ---
+  duration_ms: 0.111538
+  type: 'test'
+  ...
+# Subtest: root identity is checked even if the complete root is frozen pure data
+ok 8 - root identity is checked even if the complete root is frozen pure data
+  ---
+  duration_ms: 0.105789
+  type: 'test'
+  ...
+# Subtest: freezing the parent does not freeze its typed-array payload
+ok 9 - freezing the parent does not freeze its typed-array payload
+  ---
+  duration_ms: 0.243886
+  type: 'test'
+  ...
+# Subtest: frozen getter is never treated as a constant data field
+ok 10 - frozen getter is never treated as a constant data field
+  ---
+  duration_ms: 0.325959
+  type: 'test'
+  ...
+# Subtest: descriptor/key exceptions during current validation fail closed, never ready
+not ok 11 - descriptor/key exceptions during current validation fail closed, never ready
+  ---
+  duration_ms: 0.176585
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/r120-performance/numeric-source-proof.test.mjs:15:1'
+  failureType: 'testCodeFailure'
+  error: 'revoked source-like key failure'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    Object.ownKeys (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/r120-performance/numeric-source-proof.test.mjs:15:163)
+    Object.keys (<anonymous>)
+    numericCurrent (data:text/javascript,const%20numericProof%3Droot%3D%3E%7Bconst%20rows%3D%5B%5D%2Cvisit%3Do%3D%3E%7Bconst%20keys%3DObject.keys(o)%2Cvalues%3D%5B%5D%2Crefs%3D%5B%5D%3Bfor(const%20key%20of%20keys)%7Bconst%20value%3Do%5Bkey%5D%3Bif(value%26%26typeof%20value%3D%3D%3D'object')%7Brefs.push(%5Bkey%2Cnew%20WeakRef(value)%5D)%3Bif(key!%3D%3D'mesh')visit(value)%3B%7Delse%20values.push(%5Bkey%2Cvalue%5D)%3B%7Drows.push(%7Bobject%3Anew%20WeakRef(o)%2Ccount%3Akeys.length%2Cvalues%2Crefs%7D)%3B%7D%3Bvisit(root)%3Breturn%20rows%3B%7D%3B%0Aconst%20numericCurrent%3D(object%2Crows)%3D%3E%7Bif(object!%3D%3Drows.at(-1).object.deref())return%20false%3Bfor(const%20r%20of%20rows)%7Bconst%20o%3Dr.object.deref()%3Bif(!o%7C%7CObject.keys(o).length!%3D%3Dr.count)return%20false%3Bfor(const%5Bk%2Cv%5Dof%20r.values)if(o%5Bk%5D!%3D%3Dv)return%20false%3Bfor(const%5Bk%2Cv%5Dof%20r.refs)if(o%5Bk%5D!%3D%3Dv.deref())return%20false%3B%7Dreturn%20true%3B%7D%3B%0Aexport%20%7BnumericProof%20as%20captureNumericSource%2CnumericCurrent%20as%20numericSourceCurrent%7D%3B:2:150)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/r120-performance/numeric-source-proof.test.mjs:15:301)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: symbol and non-enumerable values retain the original own-enumerable observation contract
+ok 12 - symbol and non-enumerable values retain the original own-enumerable observation contract
+  ---
+  duration_ms: 0.164537
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 10
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 87.138192

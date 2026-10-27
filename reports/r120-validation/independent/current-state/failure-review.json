@@ -1,0 +1,79 @@
+{
+  "utc": "2026-10-27T05:08:27.364401+00:00",
+  "scope": "Read existing terminal raw, unchanged test/helper/fixture bytes and actual source diff; no test rerun/world construction.",
+  "baselineSummary": [
+    "# tests 1289",
+    "# pass 1101",
+    "# fail 188",
+    "# cancelled 0",
+    "# skipped 0"
+  ],
+  "currentSummary": [
+    "# tests 1289",
+    "# pass 1094",
+    "# fail 195",
+    "# cancelled 0",
+    "# skipped 0"
+  ],
+  "baselineFailures": 188,
+  "currentFailures": 195,
+  "added": [
+    "src/scene/palace/QianqingCeiling.js: follow-through reverses only exact full bytes and seven unique review hunks",
+    "src/scene/palace/QianqingCentralArt.js: frieze reverses only exact full bytes and three unique review hunks",
+    "unregistered paths and changed epochs cannot acquire a frieze exception",
+    "src/scene/palace/QianqingCentralArt.js: screen reverses only exact full bytes and five unique review hunks",
+    "unregistered paths and changed epochs cannot acquire a screen exception",
+    "src/scene/palace/QianqingCentralArt.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+    "src/scene/palace/QianqingCeiling.js: added R32 source has a complete fixed identity"
+  ],
+  "removed": [],
+  "allSevenAssertionErrors": true,
+  "allSevenAtSourceIdentityGuards": true,
+  "newTypeErrorAmongAddedFailures": false,
+  "all112CurrentStateTestsByteExactR119": true,
+  "unchangedGateFiles": {
+    "tests/current-state/r32-followthrough-source-retention.test.mjs": "7f1eca4264b6d13cea6279b8001a3b2cd8def3799962b7325e300377036b8e9d",
+    "tests/current-state/r32-frieze-source-retention.test.mjs": "707206f02b763c64f38767a57e66ffd60ccc1e2272827cbcfa49409ab0a596af",
+    "tests/current-state/r32-screen-source-retention.test.mjs": "025ff4460dcd6571594b83eceb5f33c6743725505fb40208c4e80496987286f2",
+    "tests/current-state/r32-source-retention.test.mjs": "45281b05bfb5dd3f16fc527ff9732d30b344694a79e15fd240a162ab70e5f4c5",
+    "tests/lib/r32-followthrough-source-retention.mjs": "0384c8a673fdb620b412edc484e013b8835141f2af663636e4156b385a0d5095",
+    "tests/lib/r32-frieze-source-retention.mjs": "6f8f603c010487cbc7fb1c01a6120ab3b581a4cad1b8dbdeed2162517dbf5fdb",
+    "tests/lib/r32-screen-source-retention.mjs": "7aa9a78c63e416fa24479f97e7c89f0e2327d3256a0dab914ec776244bc266c2",
+    "tests/lib/r32-source-retention.mjs": "59d2eeed2059b7cd8cb38dff248cb94356a3d3b55eb8f380b3e740b7c406e680",
+    "tests/fixtures/r32-crest-source-delta.json": "5882d02fff96235eeff75fd9c880ff4d5f1f0f71061e03a7947f6d5919a2e2db",
+    "tests/fixtures/r32-source-delta.json": "233e700c22d2fc2bc1db1049ab9b8aca98ae88bea0a0596ab282dbf70e4013aa",
+    "tests/fixtures/r32-screen-source-delta.json": "2d359fc84375bb3da5c1943f6358412fcb4224440e7084bdcef5f32c62bd87bf",
+    "tests/fixtures/r32-followthrough-source-delta.json": "dfe07135afa71d04ec492f7d6bdc6453d09aa03f4448b8eb25887bdf650cceb2",
+    "tests/fixtures/r32-frieze-source-delta.json": "4998d76b66b08d12a34774de4267f7046b35afb7009c0e6df16b15399e48412e"
+  },
+  "products": {
+    "src/scene/palace/QianqingCentralArt.js": {
+      "currentSHA256": "e19d40285d18727b8383b1cea8790651a9a717d7ea55bc06be0c2f54b80db54d",
+      "currentBytes": 5634,
+      "r119SHA256": "80fdf121a4c4e3598bc34346b44defee51e7223173a17a6b6b59792a73648e77",
+      "r119Bytes": 5634
+    },
+    "src/scene/palace/QianqingCeiling.js": {
+      "currentSHA256": "d70696233607a27a83f54734bc8c81035fad519c79eef838b997562426eb3a47",
+      "currentBytes": 4067,
+      "r119SHA256": "5aeedc1627bb7b00f35b32d69d144f7b08d61dfdc2658d6652ba46ca0b6a1a60",
+      "r119Bytes": 3058
+    }
+  },
+  "raw": {
+    "baseline": {
+      "path": "/workspace/scratch/02a8023d1a85/r119-jiaotai-room/reports/r119-jiaotai/current-state-all.tap",
+      "sha256": "e28b443de45ce0c8bbfd20cc81c38f242815b200b26626df35b61cbb1f024546"
+    },
+    "current": {
+      "path": "/workspace/scratch/02a8023d1a85/r120-qianqing-major/reports/r120-validation/current-state-all.tap",
+      "sha256": "683c60845bc824c00be789b3031725e9a79571294bbb2ea3657e448e6b88d8ad"
+    }
+  },
+  "scriptSHA256": "17f29fcb504f92de4d108eba5423902fdaa56ca336be04a3d09cc8d260b22391",
+  "limits": [
+    "Seven newly failing source locks remain failures; no historical expected changed or broad bypass added.",
+    "188 inherited failures remain unresolved. Matching failure-name counts do not prove their internal causes unchanged.",
+    "These source identity assertions fail before actual runtime creation; they are not evidence that arbitrary runtime code has no TypeError."
+  ]
+}
