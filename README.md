@@ -1,5 +1,9 @@
 # 故宫 3D 虚拟游览
 
+> **R125 承乾后配与后院通路开发版（部分完成）**：新增两座朝院三间后配及真实短阶/低台，旧主后殿/前配/西门/月台与储秀累计frame不动。三次位置原型保留真实失败，最终保普通身体/步高通行；未知耳房/井亭不造，R126木屏门/后殿剩余到达留后。见[R125范围](docs/current-state/r125/README.md)。
+>
+> **重要计时纠偏**：R123/R124旧paired build/allReady helper两侧装载不对称，其增减数不再作可靠因果结论；原raw/冻树保留，资源和功能证据不因此推翻。R125仅对称修driver后重测一次，没有性能优化。见[历史勘误](docs/current-state/r125/COST-ERRATUM.md)。仍有卡顿/旧通路与GPU手机未验；R116/R117、R121/R122未交付，下个major R126。
+
 > **R124 储秀门窗与前院组合开发版（部分完成）**：累计R123与实际R118–R120；主门木裙/玻璃分段、窗格有限连接，三前立面梁内浅色/灰绿分框，两前配砖槛玻璃格窗及前柱色区。保父frame/门洞/碰撞/room/床路线，0新增贴图；照片合理示意，非测绘或精确雕花。中央四罩五屏保留但未新完成。见[R124范围](docs/current-state/r124/README.md)。
 >
 > **仍有卡顿与旧通路限制**：标准门1076PASS/213FAIL与R123逐case相同；旧外院直达/部分短转角未修，不称全线零穿。最新双routineCPU观测新段P95 **2.670ms**、P99 **18.831ms**、max **50.533ms**，不是全帧；与旧轮不是成对因果测量，不归因确定回退/改善。真实GPU/手机未验，性能候选未复活。详见[验证](docs/current-state/r124/VALIDATION.md)/[成本](docs/current-state/r124/COST.md)。R116/R117及R121/R122未交付，下个majorR126。
@@ -21,7 +25,7 @@
 ![Three.js](https://img.shields.io/badge/Three.js-r162-blue)
 ![Vite](https://img.shields.io/badge/Vite-5-purple)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Status](https://img.shields.io/badge/development-R124-brightgreen)
+![Status](https://img.shields.io/badge/development-R125-brightgreen)
 ![Validation](https://img.shields.io/badge/validation-see_release_records-blue)
 
 ## 历史记录：R115 第二批宫殿成组累计大版本候选

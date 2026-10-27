@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {buildChengqianRearWing} from '../../src/scene/palace/special/ChengqianRearWings.js';
+const base=JSON.parse(fs.readFileSync(new URL('../../data/zones/east-six.json',import.meta.url)));
+test('R125 wrong named or mapped rear target fails before kit allocation',()=>{for(const [key,value]of [['name','not the approved building'],['map','not-hall'],['kind','gate'],['x',-111.1],['z',396],['interior','hall']]){const zone=structuredClone(base),item=zone.items[56];item[key]=value;assert.throws(()=>buildChengqianRearWing({owned:[]},item,zone),/approved identity mismatch/,key)}});

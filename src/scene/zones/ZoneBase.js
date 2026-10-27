@@ -1,3 +1,4 @@
+import {buildChengqianRearWing} from '../palace/special/ChengqianRearWings.js';
 import {applyChuxiuFrontWing} from '../palace/special/ChuxiuFrontEnsemble.js';
 import {buildChuxiuRearWing} from '../palace/special/ChuxiuRearWings.js';
 import {buildChengqianCourtyardGroup,bindChengqianTerraceDomain,chengqianWingHardGable} from '../palace/special/ChengqianCourtyardGroup.js';
@@ -185,6 +186,7 @@ export class ZoneBase {
   // ───────────────────────── 各 kind 构建方法 ─────────────────────────
 
   buildHall(item) {
+    if(item.structure==='chengqian-rear-wing')return buildChengqianRearWing(this.kit,item,this.zoneJson);
     const itemIndex=this.zoneJson.items.indexOf(item);
     const inventoryContext=this.zoneJson.id==='east-six'&&[2,9,16,30,37].includes(itemIndex)
       ? {zoneId:this.zoneJson.id,itemIndex,item:{...item,furnishingPolicy:{mode:'unknown-inventory',target:`east-six/items/${itemIndex}`,scope:'r62-east-five-generic-thrones-only'}}}:null;

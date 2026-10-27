@@ -1,0 +1,128 @@
+{
+  "status": "INDEPENDENT_REPLAY_OF_RECORDED_ENDPOINTS_AND_ACCEPTED_MICROSTEPS",
+  "selfTests": {
+    "centralBodyPenetration": true,
+    "supportContactExcluded": true,
+    "sweepDetectsBetweenClearEndpoints": true
+  },
+  "routeSourceBefore": "a7b4c7c2281adbaf4155d73ed84355fd8e3eddc751258d6d52daed11e2aac68c",
+  "routeSourceAfter": "a7b4c7c2281adbaf4155d73ed84355fd8e3eddc751258d6d52daed11e2aac68c",
+  "geometrySource": "a7b4c7c2281adbaf4155d73ed84355fd8e3eddc751258d6d52daed11e2aac68c",
+  "inputHashes": {
+    "room-prototype-b-high.json.gz": "6d8a78d5226a13c109d0b8c3fb57b6accf700132c4710a5020d79cf79d224fe0",
+    "local-body-10hz.json": "1b4972c273fceab15f4c5d702a781b7435dffd1956cd0fdeb128cee88ad8aa33"
+  },
+  "oracleBounds": {
+    "minX": -115,
+    "maxX": -72,
+    "minY": 0,
+    "maxY": 4,
+    "minZ": 376,
+    "maxZ": 405
+  },
+  "actualTrianglesInScope": 5572,
+  "rows": [
+    {
+      "id": "west-gate-corner-both-rear-doors-rearfront-return",
+      "fps": 10,
+      "mode": "forward",
+      "complete": true,
+      "endpoints": 259,
+      "microsteps": 571,
+      "endpointHits": 12,
+      "microHits": 24,
+      "firstEndpoint": {
+        "frame": 215,
+        "pose": [
+          -83.99999999973431,
+          0,
+          390.30000000000007,
+          false
+        ],
+        "row": 137,
+        "name": "east-six_wall_brick_material",
+        "vertices": [
+          [
+            -108.25,
+            0.6000000238418579,
+            389.8500061035156
+          ],
+          [
+            -78.94999694824219,
+            0.6000000238418579,
+            389.8500061035156
+          ],
+          [
+            -78.94999694824219,
+            0.6000000238418579,
+            373.75
+          ]
+        ]
+      },
+      "firstMicro": {
+        "index": 455,
+        "pose": [
+          -83.99999999990037,
+          0,
+          390.30000000000007
+        ],
+        "row": 137,
+        "name": "east-six_wall_brick_material",
+        "vertices": [
+          [
+            -108.25,
+            0.6000000238418579,
+            389.8500061035156
+          ],
+          [
+            -78.94999694824219,
+            0.6000000238418579,
+            389.8500061035156
+          ],
+          [
+            -78.94999694824219,
+            0.6000000238418579,
+            373.75
+          ]
+        ]
+      }
+    },
+    {
+      "id": "court-west-door-return",
+      "fps": 10,
+      "mode": "forward",
+      "complete": true,
+      "endpoints": 70,
+      "microsteps": 140,
+      "endpointHits": 0,
+      "microHits": 0,
+      "firstEndpoint": null,
+      "firstMicro": null
+    },
+    {
+      "id": "court-east-door-return",
+      "fps": 10,
+      "mode": "forward",
+      "complete": true,
+      "endpoints": 74,
+      "microsteps": 148,
+      "endpointHits": 0,
+      "microHits": 0,
+      "firstEndpoint": null,
+      "firstMicro": null
+    }
+  ],
+  "totals": {
+    "endpoints": 403,
+    "microsteps": 859,
+    "endpointHits": 12,
+    "microHits": 24
+  },
+  "narrowPhaseTests": 66,
+  "limits": [
+    "Saved actual finished triangles and full unshrunk .5 halfwidth/1.7 height square; no world construction or product source predicates.",
+    "Every recorded endpoint and actual accepted substep independently clipped; no first-hit counts used to hide old/new intersections.",
+    "No arbitrary continuous sweep or rejected intermediate-step claim.",
+    "No dynamics/lifecycle/full-world ground/GPU/mobile acceptance from this replay."
+  ]
+}

@@ -1,0 +1,2 @@
+import fs from 'node:fs';import {readyScene,root} from './ready-zone.mjs';import {sourceFingerprint} from '../build-identity.mjs';
+const before=sourceFingerprint(root),h=await readyScene(),after=sourceFingerprint(root);if(before!==after)throw Error('Runtime changed');fs.writeFileSync('reports/r125-chengqian/baseline/final-physical.json',JSON.stringify({before,after,paint:h.paint,...h.finalPhysical},null,2));console.log(JSON.stringify({before,after,paint:h.paint,colliders:h.finalPhysical.colliders.length,walkables:h.finalPhysical.walkables.length}));h.dispose();

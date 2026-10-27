@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: R125 appends exact two rear wings, preserving all old declarations
+not ok 1 - R125 appends exact two rear wings, preserving all old declarations
+  ---
+  duration_ms: 2.163278
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r125-chengqian-rear-court/tests/r125/rear-pair.test.mjs:4:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    395.1 !== 395.55
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 395.55
+  actual: 395.1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r125-chengqian-rear-court/tests/r125/rear-pair.test.mjs:4:396)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: R125 real ready pair is bounded, four-leaf, two-window and retains all old physical payload
+not ok 2 - R125 real ready pair is bounded, four-leaf, two-window and retains all old physical payload
+  ---
+  duration_ms: 1222.091397
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r125-chengqian-rear-court/tests/r125/rear-pair.test.mjs:5:1'
+  failureType: 'testCodeFailure'
+  error: 'full Z -114.02999992370606,-5.960464483090178e-9,390.5899997711182,-108.30999999970199,5.432400226593018,399.61000022888186'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r125-chengqian-rear-court/tests/r125/rear-pair.test.mjs:5:580)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 0
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1443.197122

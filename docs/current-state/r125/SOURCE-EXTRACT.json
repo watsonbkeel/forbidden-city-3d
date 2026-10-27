@@ -1,0 +1,107 @@
+{
+  "scope": "R125 official source metadata/URLs and reviewed pixel hashes only; no original images copied",
+  "labels": {
+    "FACT": "dedicated official text/label",
+    "PHOTO_FIT": "visually reviewed pixel evidence with view limitations",
+    "MODEL_FIT": "reversible engineering fit, not survey",
+    "UNKNOWN": "not established; must not fabricate"
+  },
+  "metadata_requests": [
+    {
+      "url": "https://api-pano.dpm.org.cn/panorama/api/panorama/vpGroupDetail",
+      "method": "POST",
+      "json": {
+        "id": "164",
+        "viewpointId": "3432"
+      },
+      "path": "r123-r126-source-preflight/sources/vpGroupDetail-164.json",
+      "bytes": 733,
+      "sha256": "2720d97aa584936d944fe6c15e8dadc7ffd0698e9e08d1f3966442c2081912fb",
+      "code": "000000",
+      "manifest": "r123-r126-source-preflight/metadata-fetch-manifest.json"
+    },
+    {
+      "url": "https://api-pano.dpm.org.cn/panorama/api/panorama/vpGroupDetail",
+      "method": "POST",
+      "json": {
+        "id": "165",
+        "viewpointId": "3433"
+      },
+      "path": "r123-r126-source-preflight/sources/vpGroupDetail-165.json",
+      "bytes": 733,
+      "sha256": "ef4b8fc144358f750f3b00974ea779510a8923df3136fd304afa239904735bd1",
+      "code": "000000",
+      "manifest": "r123-r126-source-preflight/metadata-fetch-manifest.json"
+    }
+  ],
+  "images": [
+    {
+      "name": "承乾宫后殿东配殿",
+      "url": "https://file-pano.dpm.org.cn/panorama/2025/07/10/fbdc4a08-1830-40ac-a45b-0e70ee07df03.jpg",
+      "path": "r123-r126-source-preflight/images/group-164.jpg",
+      "role": "official-panorama-group-cover",
+      "bytes": 82548,
+      "size": [
+        600,
+        338
+      ],
+      "sha256": "28af5205d79b8238cc7e389105b1403aedab8facae800f88ce00641afd3253f4",
+      "manifest": "r123-r126-source-preflight/group-covers-manifest.json",
+      "pixels_viewed": true,
+      "image_evidence_class": "PHOTO_FIT",
+      "capture_date": "unknown; URL directory date is not photographic capture date"
+    },
+    {
+      "name": "承乾宫后殿西配殿",
+      "url": "https://file-pano.dpm.org.cn/panorama/2025/07/10/8aa50cf1-cb81-4d67-918a-c1d0bcbb564a.jpg",
+      "path": "r123-r126-source-preflight/images/group-165.jpg",
+      "role": "official-panorama-group-cover",
+      "bytes": 83827,
+      "size": [
+        600,
+        338
+      ],
+      "sha256": "bdf6ee69580f116de1befde2bec9586b5ddc8e4e676e668fb90053a16deacb5f",
+      "manifest": "r123-r126-source-preflight/group-covers-manifest.json",
+      "pixels_viewed": true,
+      "image_evidence_class": "PHOTO_FIT",
+      "capture_date": "unknown; URL directory date is not photographic capture date"
+    },
+    {
+      "name": "承乾宫后殿",
+      "url": "https://file-pano.dpm.org.cn/hotspotImage/2025/08/19/fC5t84ym8bfSsFSe0nAb9ZddyprD2n2E8THzDpRb.jpg",
+      "file": "hotspot-1957711600935600128-0.jpg",
+      "source": "/workspace/scratch/02a8023d1a85/r123-r126-source-preflight/sources/vpGroupDetail-127.json",
+      "role": "official-hotspot-photo",
+      "path": "r123-r126-source-preflight/images/hotspot-1957711600935600128-0.jpg",
+      "bytes": 760463,
+      "sha256": "05272bd989721484e4ce383652191af72167f444eec8c5c51be3e1e6b5e8cf6f",
+      "size": [
+        1920,
+        1280
+      ],
+      "manifest": "r123-r126-source-preflight/image-manifest.json",
+      "pixels_viewed": true,
+      "image_evidence_class": "PHOTO_FIT",
+      "capture_date": "unknown; URL directory date is not photographic capture date"
+    },
+    {
+      "name": "承乾宫后殿",
+      "url": "https://file-pano.dpm.org.cn/hotspotImage/2025/08/19/cPaoVBsB27JRY1ovKucdMT5oXcaKqwWE2rIM5gtk.jpg",
+      "file": "hotspot-1957711600935600128-1.jpg",
+      "source": "/workspace/scratch/02a8023d1a85/r123-r126-source-preflight/sources/vpGroupDetail-127.json",
+      "role": "official-hotspot-photo",
+      "path": "r123-r126-source-preflight/images/hotspot-1957711600935600128-1.jpg",
+      "bytes": 736361,
+      "sha256": "358f08bb416a0e4cd1832c773beccc18a80f000cec01cf21c388524c37b31043",
+      "size": [
+        1920,
+        1280
+      ],
+      "manifest": "r123-r126-source-preflight/image-manifest.json",
+      "pixels_viewed": true,
+      "image_evidence_class": "PHOTO_FIT",
+      "capture_date": "unknown; URL directory date is not photographic capture date"
+    }
+  ]
+}
