@@ -1,0 +1,904 @@
+{
+  "schema": 1,
+  "release": "R126",
+  "dimensions": {
+    "E1": "平面邻接",
+    "E2": "屋顶",
+    "E3": "柱梁彩画",
+    "E4": "围护门窗",
+    "E5": "台阶道路",
+    "E6": "附属通道",
+    "E7": "外匾文字",
+    "E8": "院落设施",
+    "I1": "室内空间",
+    "I2": "固定装修",
+    "I3": "家具库存",
+    "I4": "字画灯帘",
+    "I5": "目标时期",
+    "I6": "缺物/无据预设"
+  },
+  "statusVocabulary": [
+    "ACCEPTED",
+    "PARTIAL",
+    "VERIFY_PENDING",
+    "BLOCKED_SOURCE"
+  ],
+  "objects": [
+    {
+      "id": "q-main",
+      "name": "乾清宫主殿/中央组合",
+      "fields": {
+        "E1": "PARTIAL",
+        "E2": "PARTIAL",
+        "E3": "PARTIAL",
+        "E4": "PARTIAL",
+        "E5": "PARTIAL",
+        "E6": "PARTIAL",
+        "E7": "PARTIAL",
+        "E8": "PARTIAL",
+        "I1": "PARTIAL",
+        "I2": "PARTIAL",
+        "I3": "PARTIAL",
+        "I4": "PARTIAL",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [
+        "R112",
+        "R118",
+        "R120"
+      ],
+      "remaining": "R112外炉/门叶、R118低台、R120轴牌/五龙带/开栏/格顶局部验收；全屋顶兽列、背檐、北围护、准确器物/副联/整年代仍待核",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "q-东暖阁",
+      "name": "乾清东暖阁",
+      "fields": {
+        "E1": "BLOCKED_SOURCE",
+        "E2": "BLOCKED_SOURCE",
+        "E3": "BLOCKED_SOURCE",
+        "E4": "BLOCKED_SOURCE",
+        "E5": "BLOCKED_SOURCE",
+        "E6": "BLOCKED_SOURCE",
+        "E7": "BLOCKED_SOURCE",
+        "E8": "BLOCKED_SOURCE",
+        "I1": "BLOCKED_SOURCE",
+        "I2": "BLOCKED_SOURCE",
+        "I3": "BLOCKED_SOURCE",
+        "I4": "BLOCKED_SOURCE",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [],
+      "remaining": "仅已知房间类型/局部外界，不补未知开口、楼梯或历史27床",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "q-西暖阁",
+      "name": "乾清西暖阁",
+      "fields": {
+        "E1": "BLOCKED_SOURCE",
+        "E2": "BLOCKED_SOURCE",
+        "E3": "BLOCKED_SOURCE",
+        "E4": "BLOCKED_SOURCE",
+        "E5": "BLOCKED_SOURCE",
+        "E6": "BLOCKED_SOURCE",
+        "E7": "BLOCKED_SOURCE",
+        "E8": "BLOCKED_SOURCE",
+        "I1": "BLOCKED_SOURCE",
+        "I2": "BLOCKED_SOURCE",
+        "I3": "BLOCKED_SOURCE",
+        "I4": "BLOCKED_SOURCE",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [],
+      "remaining": "仅已知房间类型/局部外界，不补未知开口、楼梯或历史27床",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "q-仙楼及隐蔽层间",
+      "name": "乾清仙楼及隐蔽层间",
+      "fields": {
+        "E1": "BLOCKED_SOURCE",
+        "E2": "BLOCKED_SOURCE",
+        "E3": "BLOCKED_SOURCE",
+        "E4": "BLOCKED_SOURCE",
+        "E5": "BLOCKED_SOURCE",
+        "E6": "BLOCKED_SOURCE",
+        "E7": "BLOCKED_SOURCE",
+        "E8": "BLOCKED_SOURCE",
+        "I1": "BLOCKED_SOURCE",
+        "I2": "BLOCKED_SOURCE",
+        "I3": "BLOCKED_SOURCE",
+        "I4": "BLOCKED_SOURCE",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [],
+      "remaining": "仅已知房间类型/局部外界，不补未知开口、楼梯或历史27床",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "j-main",
+      "name": "交泰殿",
+      "fields": {
+        "E1": "PARTIAL",
+        "E2": "PARTIAL",
+        "E3": "PARTIAL",
+        "E4": "PARTIAL",
+        "E5": "PARTIAL",
+        "E6": "PARTIAL",
+        "E7": "PARTIAL",
+        "E8": "PARTIAL",
+        "I1": "PARTIAL",
+        "I2": "PARTIAL",
+        "I3": "PARTIAL",
+        "I4": "PARTIAL",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [
+        "R119"
+      ],
+      "remaining": "R119已见主屏框/9层口沿/悬笼、中央与西内檐接受；四门/黄罩/钟漏保留；未知东南北内面、精雕/全文/罩下藏物留账",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "j-东侧低屋",
+      "name": "交泰东侧低屋",
+      "fields": {
+        "E1": "BLOCKED_SOURCE",
+        "E2": "BLOCKED_SOURCE",
+        "E3": "BLOCKED_SOURCE",
+        "E4": "BLOCKED_SOURCE",
+        "E5": "BLOCKED_SOURCE",
+        "E6": "BLOCKED_SOURCE",
+        "E7": "BLOCKED_SOURCE",
+        "E8": "BLOCKED_SOURCE",
+        "I1": "BLOCKED_SOURCE",
+        "I2": "BLOCKED_SOURCE",
+        "I3": "BLOCKED_SOURCE",
+        "I4": "BLOCKED_SOURCE",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [],
+      "remaining": "拓扑有文，具体位置/形体/室内绑定未闭",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "j-西侧低屋",
+      "name": "交泰西侧低屋",
+      "fields": {
+        "E1": "BLOCKED_SOURCE",
+        "E2": "BLOCKED_SOURCE",
+        "E3": "BLOCKED_SOURCE",
+        "E4": "BLOCKED_SOURCE",
+        "E5": "BLOCKED_SOURCE",
+        "E6": "BLOCKED_SOURCE",
+        "E7": "BLOCKED_SOURCE",
+        "E8": "BLOCKED_SOURCE",
+        "I1": "BLOCKED_SOURCE",
+        "I2": "BLOCKED_SOURCE",
+        "I3": "BLOCKED_SOURCE",
+        "I4": "BLOCKED_SOURCE",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [],
+      "remaining": "拓扑有文，具体位置/形体/室内绑定未闭",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "c-tihe",
+      "name": "储秀组体和殿",
+      "fields": {
+        "E1": "PARTIAL",
+        "E2": "PARTIAL",
+        "E3": "PARTIAL",
+        "E4": "PARTIAL",
+        "E5": "PARTIAL",
+        "E6": "PARTIAL",
+        "E7": "PARTIAL",
+        "E8": "PARTIAL",
+        "I1": "PARTIAL",
+        "I2": "PARTIAL",
+        "I3": "PARTIAL",
+        "I4": "PARTIAL",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [],
+      "remaining": "现壳与门保留，未借R123/124改成全殿复原",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "c-main",
+      "name": "储秀宫正殿",
+      "fields": {
+        "E1": "PARTIAL",
+        "E2": "PARTIAL",
+        "E3": "PARTIAL",
+        "E4": "PARTIAL",
+        "E5": "PARTIAL",
+        "E6": "PARTIAL",
+        "E7": "PARTIAL",
+        "E8": "PARTIAL",
+        "I1": "PARTIAL",
+        "I2": "PARTIAL",
+        "I3": "PARTIAL",
+        "I4": "PARTIAL",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [
+        "R118",
+        "R123",
+        "R124"
+      ],
+      "remaining": "R123父frame−5及R118双slot实际重绑；R124前围护/浅色梁分区；中央四罩五屏已对照保留未新闭项，西炕/未见面/雕纹/库存仍缺",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "c-front-e",
+      "name": "储秀前东配",
+      "fields": {
+        "E1": "PARTIAL",
+        "E2": "PARTIAL",
+        "E3": "PARTIAL",
+        "E4": "PARTIAL",
+        "E5": "PARTIAL",
+        "E6": "PARTIAL",
+        "E7": "PARTIAL",
+        "E8": "PARTIAL",
+        "I1": "PARTIAL",
+        "I2": "PARTIAL",
+        "I3": "PARTIAL",
+        "I4": "PARTIAL",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [
+        "R124"
+      ],
+      "remaining": "R124独立官图前柱/侧窗/门裙玻璃示意；全壳、后面、精细格纹/彩画与室内未闭",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "c-front-w",
+      "name": "储秀前西配",
+      "fields": {
+        "E1": "PARTIAL",
+        "E2": "PARTIAL",
+        "E3": "PARTIAL",
+        "E4": "PARTIAL",
+        "E5": "PARTIAL",
+        "E6": "PARTIAL",
+        "E7": "PARTIAL",
+        "E8": "PARTIAL",
+        "I1": "PARTIAL",
+        "I2": "PARTIAL",
+        "I3": "PARTIAL",
+        "I4": "PARTIAL",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [
+        "R124"
+      ],
+      "remaining": "同属R124但独立官图核，不镜像未见面；商店陈列不建历史家具",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "c-lijing",
+      "name": "丽景轩",
+      "fields": {
+        "E1": "PARTIAL",
+        "E2": "PARTIAL",
+        "E3": "PARTIAL",
+        "E4": "PARTIAL",
+        "E5": "PARTIAL",
+        "E6": "PARTIAL",
+        "E7": "PARTIAL",
+        "E8": "PARTIAL",
+        "I1": "PARTIAL",
+        "I2": "PARTIAL",
+        "I3": "PARTIAL",
+        "I4": "PARTIAL",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [
+        "R113",
+        "R123"
+      ],
+      "remaining": "保R113西次间曲口/镜/柜案白布餐组及R123实际接续；全殿房间/北面和年代未知",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "c-rear-e",
+      "name": "储秀后东配",
+      "fields": {
+        "E1": "PARTIAL",
+        "E2": "PARTIAL",
+        "E3": "PARTIAL",
+        "E4": "PARTIAL",
+        "E5": "PARTIAL",
+        "E6": "PARTIAL",
+        "E7": "PARTIAL",
+        "E8": "PARTIAL",
+        "I1": "PARTIAL",
+        "I2": "PARTIAL",
+        "I3": "PARTIAL",
+        "I4": "PARTIAL",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [
+        "R123"
+      ],
+      "remaining": "R123独立后配三间朝院工程fit；后面/牌字/室内未核",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "c-rear-w",
+      "name": "储秀后西配",
+      "fields": {
+        "E1": "PARTIAL",
+        "E2": "PARTIAL",
+        "E3": "PARTIAL",
+        "E4": "PARTIAL",
+        "E5": "PARTIAL",
+        "E6": "PARTIAL",
+        "E7": "PARTIAL",
+        "E8": "PARTIAL",
+        "I1": "PARTIAL",
+        "I2": "PARTIAL",
+        "I3": "PARTIAL",
+        "I4": "PARTIAL",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [
+        "R123"
+      ],
+      "remaining": "R123三间朝院；猗兰室/馆异名不当牌面已核；室内未知",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "c-court",
+      "name": "储秀回廊/两进院界/设施",
+      "fields": {
+        "E1": "PARTIAL",
+        "E2": "PARTIAL",
+        "E3": "PARTIAL",
+        "E4": "PARTIAL",
+        "E5": "PARTIAL",
+        "E6": "PARTIAL",
+        "E7": "PARTIAL",
+        "E8": "PARTIAL",
+        "I1": "PARTIAL",
+        "I2": "PARTIAL",
+        "I3": "PARTIAL",
+        "I4": "PARTIAL",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [
+        "R113",
+        "R123",
+        "R124"
+      ],
+      "remaining": "14柱回廊及R123南端固定北端缩、真实坡支持保；琉璃赋全文/树缸精确实例/细彩画未闭",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "c-丽景东耳房",
+      "name": "储秀丽景东耳房",
+      "fields": {
+        "E1": "BLOCKED_SOURCE",
+        "E2": "BLOCKED_SOURCE",
+        "E3": "BLOCKED_SOURCE",
+        "E4": "BLOCKED_SOURCE",
+        "E5": "BLOCKED_SOURCE",
+        "E6": "BLOCKED_SOURCE",
+        "E7": "BLOCKED_SOURCE",
+        "E8": "BLOCKED_SOURCE",
+        "I1": "BLOCKED_SOURCE",
+        "I2": "BLOCKED_SOURCE",
+        "I3": "BLOCKED_SOURCE",
+        "I4": "BLOCKED_SOURCE",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [],
+      "remaining": "整院无尺平面可见窄房带/官文类型，不足全形/独立门/内库存；未硬塞，不宣布不存在",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "c-丽景西耳房",
+      "name": "储秀丽景西耳房",
+      "fields": {
+        "E1": "BLOCKED_SOURCE",
+        "E2": "BLOCKED_SOURCE",
+        "E3": "BLOCKED_SOURCE",
+        "E4": "BLOCKED_SOURCE",
+        "E5": "BLOCKED_SOURCE",
+        "E6": "BLOCKED_SOURCE",
+        "E7": "BLOCKED_SOURCE",
+        "E8": "BLOCKED_SOURCE",
+        "I1": "BLOCKED_SOURCE",
+        "I2": "BLOCKED_SOURCE",
+        "I3": "BLOCKED_SOURCE",
+        "I4": "BLOCKED_SOURCE",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [],
+      "remaining": "整院无尺平面可见窄房带/官文类型，不足全形/独立门/内库存；未硬塞，不宣布不存在",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "c-其它未可靠绑定耳房",
+      "name": "储秀其它未可靠绑定耳房",
+      "fields": {
+        "E1": "BLOCKED_SOURCE",
+        "E2": "BLOCKED_SOURCE",
+        "E3": "BLOCKED_SOURCE",
+        "E4": "BLOCKED_SOURCE",
+        "E5": "BLOCKED_SOURCE",
+        "E6": "BLOCKED_SOURCE",
+        "E7": "BLOCKED_SOURCE",
+        "E8": "BLOCKED_SOURCE",
+        "I1": "BLOCKED_SOURCE",
+        "I2": "BLOCKED_SOURCE",
+        "I3": "BLOCKED_SOURCE",
+        "I4": "BLOCKED_SOURCE",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [],
+      "remaining": "整院无尺平面可见窄房带/官文类型，不足全形/独立门/内库存；未硬塞，不宣布不存在",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "e-gate",
+      "name": "承乾门",
+      "fields": {
+        "E1": "PARTIAL",
+        "E2": "PARTIAL",
+        "E3": "PARTIAL",
+        "E4": "PARTIAL",
+        "E5": "PARTIAL",
+        "E6": "PARTIAL",
+        "E7": "PARTIAL",
+        "E8": "PARTIAL",
+        "I1": "PARTIAL",
+        "I2": "PARTIAL",
+        "I3": "PARTIAL",
+        "I4": "PARTIAL",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [
+        "R126"
+      ],
+      "remaining": "原generic gate开口/两叶/台板保；R126实际台板支持完成；整体琉璃门框/比例彩饰仍示意、非官图全复原",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "e-screen",
+      "name": "承乾门北木屏门",
+      "fields": {
+        "E1": "PARTIAL",
+        "E2": "PARTIAL",
+        "E3": "PARTIAL",
+        "E4": "PARTIAL",
+        "E5": "PARTIAL",
+        "E6": "PARTIAL",
+        "E7": "PARTIAL",
+        "E8": "PARTIAL",
+        "I1": "PARTIAL",
+        "I2": "PARTIAL",
+        "I3": "PARTIAL",
+        "I4": "PARTIAL",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [
+        "R126"
+      ],
+      "remaining": "R126闭实板/前矩形框/石脚/可证上收口接受；背面必要素闭体UNKNOWN，未造屋顶/铰链/全文；不是砖影壁",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "e-main",
+      "name": "承乾宫前殿",
+      "fields": {
+        "E1": "PARTIAL",
+        "E2": "PARTIAL",
+        "E3": "PARTIAL",
+        "E4": "PARTIAL",
+        "E5": "PARTIAL",
+        "E6": "PARTIAL",
+        "E7": "PARTIAL",
+        "E8": "PARTIAL",
+        "I1": "PARTIAL",
+        "I2": "PARTIAL",
+        "I3": "PARTIAL",
+        "I4": "PARTIAL",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [
+        "R114",
+        "R118"
+      ],
+      "remaining": "保R114月台/原阶南移/西门、R118旧西配木槛；原main阶及台F32接触仍有反证命中，北檐/完整内部未闭",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "e-rear",
+      "name": "承乾宫后殿",
+      "fields": {
+        "E1": "PARTIAL",
+        "E2": "PARTIAL",
+        "E3": "PARTIAL",
+        "E4": "PARTIAL",
+        "E5": "PARTIAL",
+        "E6": "PARTIAL",
+        "E7": "PARTIAL",
+        "E8": "PARTIAL",
+        "I1": "PARTIAL",
+        "I2": "PARTIAL",
+        "I3": "PARTIAL",
+        "I4": "PARTIAL",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [
+        "R103",
+        "R126"
+      ],
+      "remaining": "原R103四南窗/门叶保；R126中央短阶/斜帮/帽地槛支持；侧北围护、耳房接合、室内库存仍未知",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "e-前东配",
+      "name": "承乾前东配",
+      "fields": {
+        "E1": "PARTIAL",
+        "E2": "PARTIAL",
+        "E3": "PARTIAL",
+        "E4": "PARTIAL",
+        "E5": "PARTIAL",
+        "E6": "PARTIAL",
+        "E7": "PARTIAL",
+        "E8": "PARTIAL",
+        "I1": "PARTIAL",
+        "I2": "PARTIAL",
+        "I3": "PARTIAL",
+        "I4": "PARTIAL",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [
+        "R114"
+      ],
+      "remaining": "保R114硬山/西配南移3.5m及旧南带损失；未新造全立面或室内",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "e-前西配",
+      "name": "承乾前西配",
+      "fields": {
+        "E1": "PARTIAL",
+        "E2": "PARTIAL",
+        "E3": "PARTIAL",
+        "E4": "PARTIAL",
+        "E5": "PARTIAL",
+        "E6": "PARTIAL",
+        "E7": "PARTIAL",
+        "E8": "PARTIAL",
+        "I1": "PARTIAL",
+        "I2": "PARTIAL",
+        "I3": "PARTIAL",
+        "I4": "PARTIAL",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [
+        "R114"
+      ],
+      "remaining": "保R114硬山/西配南移3.5m及旧南带损失；未新造全立面或室内",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "e-后东配",
+      "name": "承乾后东配",
+      "fields": {
+        "E1": "PARTIAL",
+        "E2": "PARTIAL",
+        "E3": "PARTIAL",
+        "E4": "PARTIAL",
+        "E5": "PARTIAL",
+        "E6": "PARTIAL",
+        "E7": "PARTIAL",
+        "E8": "PARTIAL",
+        "I1": "PARTIAL",
+        "I2": "PARTIAL",
+        "I3": "PARTIAL",
+        "I4": "PARTIAL",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [
+        "R125"
+      ],
+      "remaining": "R125独立三间向院/短阶真实支撑、C布局；脊低于旧墙帽是工程局限，不据照片擅移墙；全室/背面未闭",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "e-后西配",
+      "name": "承乾后西配",
+      "fields": {
+        "E1": "PARTIAL",
+        "E2": "PARTIAL",
+        "E3": "PARTIAL",
+        "E4": "PARTIAL",
+        "E5": "PARTIAL",
+        "E6": "PARTIAL",
+        "E7": "PARTIAL",
+        "E8": "PARTIAL",
+        "I1": "PARTIAL",
+        "I2": "PARTIAL",
+        "I3": "PARTIAL",
+        "I4": "PARTIAL",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [
+        "R125"
+      ],
+      "remaining": "R125独立三间向院/短阶真实支撑、C布局；脊低于旧墙帽是工程局限，不据照片擅移墙；全室/背面未闭",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "e-后东耳房",
+      "name": "承乾后东耳房",
+      "fields": {
+        "E1": "BLOCKED_SOURCE",
+        "E2": "BLOCKED_SOURCE",
+        "E3": "BLOCKED_SOURCE",
+        "E4": "BLOCKED_SOURCE",
+        "E5": "BLOCKED_SOURCE",
+        "E6": "BLOCKED_SOURCE",
+        "E7": "BLOCKED_SOURCE",
+        "E8": "BLOCKED_SOURCE",
+        "I1": "BLOCKED_SOURCE",
+        "I2": "BLOCKED_SOURCE",
+        "I3": "BLOCKED_SOURCE",
+        "I4": "BLOCKED_SOURCE",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [],
+      "remaining": "来源不足以全形/独立门/井口定位，不凭侧照小门复制；未施工",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "e-后西耳房",
+      "name": "承乾后西耳房",
+      "fields": {
+        "E1": "BLOCKED_SOURCE",
+        "E2": "BLOCKED_SOURCE",
+        "E3": "BLOCKED_SOURCE",
+        "E4": "BLOCKED_SOURCE",
+        "E5": "BLOCKED_SOURCE",
+        "E6": "BLOCKED_SOURCE",
+        "E7": "BLOCKED_SOURCE",
+        "E8": "BLOCKED_SOURCE",
+        "I1": "BLOCKED_SOURCE",
+        "I2": "BLOCKED_SOURCE",
+        "I3": "BLOCKED_SOURCE",
+        "I4": "BLOCKED_SOURCE",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [],
+      "remaining": "来源不足以全形/独立门/井口定位，不凭侧照小门复制；未施工",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "e-后院井亭",
+      "name": "承乾后院井亭",
+      "fields": {
+        "E1": "BLOCKED_SOURCE",
+        "E2": "BLOCKED_SOURCE",
+        "E3": "BLOCKED_SOURCE",
+        "E4": "BLOCKED_SOURCE",
+        "E5": "BLOCKED_SOURCE",
+        "E6": "BLOCKED_SOURCE",
+        "E7": "BLOCKED_SOURCE",
+        "E8": "BLOCKED_SOURCE",
+        "I1": "BLOCKED_SOURCE",
+        "I2": "BLOCKED_SOURCE",
+        "I3": "BLOCKED_SOURCE",
+        "I4": "BLOCKED_SOURCE",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [],
+      "remaining": "来源不足以全形/独立门/井口定位，不凭侧照小门复制；未施工",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "e-court",
+      "name": "承乾两进院界/门路/设施",
+      "fields": {
+        "E1": "PARTIAL",
+        "E2": "PARTIAL",
+        "E3": "PARTIAL",
+        "E4": "PARTIAL",
+        "E5": "PARTIAL",
+        "E6": "PARTIAL",
+        "E7": "PARTIAL",
+        "E8": "PARTIAL",
+        "I1": "PARTIAL",
+        "I2": "PARTIAL",
+        "I3": "PARTIAL",
+        "I4": "PARTIAL",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [
+        "R114",
+        "R125",
+        "R126"
+      ],
+      "remaining": "R114/R125/R126限定到达组合接受；北余窄不开放北绕，旧frame/无名树缸实际位置与全外界待核",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "duixiu-2051",
+      "name": "堆秀山负X平台侧",
+      "fields": {
+        "E1": "PARTIAL",
+        "E2": "PARTIAL",
+        "E3": "PARTIAL",
+        "E4": "PARTIAL",
+        "E5": "PARTIAL",
+        "E6": "PARTIAL",
+        "E7": "PARTIAL",
+        "E8": "PARTIAL",
+        "I1": "PARTIAL",
+        "I2": "PARTIAL",
+        "I3": "PARTIAL",
+        "I4": "PARTIAL",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [],
+      "remaining": "58.80m²工程投影，R121三次候选拒绝恢复；原防卡通路保，全部自然化仍未交付；非测绘/可见面积/完成比例",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "duixiu-2053",
+      "name": "堆秀山正X平台侧",
+      "fields": {
+        "E1": "PARTIAL",
+        "E2": "PARTIAL",
+        "E3": "PARTIAL",
+        "E4": "PARTIAL",
+        "E5": "PARTIAL",
+        "E6": "PARTIAL",
+        "E7": "PARTIAL",
+        "E8": "PARTIAL",
+        "I1": "PARTIAL",
+        "I2": "PARTIAL",
+        "I3": "PARTIAL",
+        "I4": "PARTIAL",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [],
+      "remaining": "37.27m²工程投影，未扩案；原防卡通路保，全部自然化仍未交付；非测绘/可见面积/完成比例",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "duixiu-2054",
+      "name": "堆秀山后中央",
+      "fields": {
+        "E1": "PARTIAL",
+        "E2": "PARTIAL",
+        "E3": "PARTIAL",
+        "E4": "PARTIAL",
+        "E5": "PARTIAL",
+        "E6": "PARTIAL",
+        "E7": "PARTIAL",
+        "E8": "PARTIAL",
+        "I1": "PARTIAL",
+        "I2": "PARTIAL",
+        "I3": "PARTIAL",
+        "I4": "PARTIAL",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [],
+      "remaining": "94.50m²工程投影，R122未实现；原防卡通路保，全部自然化仍未交付；非测绘/可见面积/完成比例",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "duixiu-negative-route-25",
+      "name": "堆秀山负X路承托25owners",
+      "fields": {
+        "E1": "PARTIAL",
+        "E2": "PARTIAL",
+        "E3": "PARTIAL",
+        "E4": "PARTIAL",
+        "E5": "PARTIAL",
+        "E6": "PARTIAL",
+        "E7": "PARTIAL",
+        "E8": "PARTIAL",
+        "I1": "PARTIAL",
+        "I2": "PARTIAL",
+        "I3": "PARTIAL",
+        "I4": "PARTIAL",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [],
+      "remaining": "16.79m²模型裁域投影，未实现；原防卡通路保，全部自然化仍未交付；非测绘/可见面积/完成比例",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "duixiu-positive-route-24",
+      "name": "堆秀山正X路承托24owners",
+      "fields": {
+        "E1": "PARTIAL",
+        "E2": "PARTIAL",
+        "E3": "PARTIAL",
+        "E4": "PARTIAL",
+        "E5": "PARTIAL",
+        "E6": "PARTIAL",
+        "E7": "PARTIAL",
+        "E8": "PARTIAL",
+        "I1": "PARTIAL",
+        "I2": "PARTIAL",
+        "I3": "PARTIAL",
+        "I4": "PARTIAL",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [],
+      "remaining": "16.79m²模型裁域投影，未实现；原防卡通路保，全部自然化仍未交付；非测绘/可见面积/完成比例",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    },
+    {
+      "id": "duixiu-other",
+      "name": "御景亭/洞/水法等既有邻项",
+      "fields": {
+        "E1": "PARTIAL",
+        "E2": "PARTIAL",
+        "E3": "PARTIAL",
+        "E4": "PARTIAL",
+        "E5": "PARTIAL",
+        "E6": "PARTIAL",
+        "E7": "PARTIAL",
+        "E8": "PARTIAL",
+        "I1": "PARTIAL",
+        "I2": "PARTIAL",
+        "I3": "PARTIAL",
+        "I4": "PARTIAL",
+        "I5": "BLOCKED_SOURCE",
+        "I6": "PARTIAL"
+      },
+      "acceptedBounded": [],
+      "remaining": "非R121/122接受改动；旧亭/洞可见实现保留，未见内部/水法与全山体不得随五组算完成",
+      "statusMeaning": "PARTIAL includes retained/new accepted local work, never all views/period/whole building completion; UNKNOWN inventory intentionally not fabricated"
+    }
+  ],
+  "limitations": "Full14 dimensions retained per affected building/sub-building; no numeric completion rate; outside this batch original MASTER-PROMPT total inventory remains governing."
+}

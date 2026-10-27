@@ -1,0 +1,38 @@
+{
+  "status": "INDEPENDENT_SAVED_POSES_CLIPPED",
+  "source": "faa2d3aa8519dfbec0ed5615d1c2731a37cc06ce19c1cc94c30562cc50bcaef6",
+  "selfTests": {
+    "centralBodyPenetration": true,
+    "supportContactExcluded": true,
+    "sweepDetectsBetweenClearEndpoints": true
+  },
+  "allLocal": {
+    "actualTrianglesInScope": 14534,
+    "totals": {
+      "endpoints": 22794,
+      "microsteps": 19166,
+      "endpointHits": 405,
+      "microHits": 471
+    },
+    "narrowPhaseTests": 2061
+  },
+  "allAdded": {
+    "actualTrianglesInScope": 244,
+    "totals": {
+      "endpoints": 22794,
+      "microsteps": 19166,
+      "endpointHits": 0,
+      "microHits": 0
+    },
+    "narrowPhaseTests": 1185
+  },
+  "limits": [
+    "Saved actual finished triangles and full unshrunk .5 halfwidth/1.7 height square; no world construction or product source predicates.",
+    "Every recorded endpoint and actual accepted substep independently clipped; no first-hit counts used to hide old/new intersections.",
+    "No arbitrary continuous sweep or rejected intermediate-step claim.",
+    "No dynamics/lifecycle/full-world ground/GPU/mobile acceptance from this replay.",
+    "R126 adapter widens only source Z range376\u2192354 and optionally independently indexes full-row additions; same clipping and body dimensions."
+  ],
+  "allAddedNoFirstOldMask": true,
+  "firstAdapterRunNote": "Initial general0..4Y range excluded4new bottom triangles slightly below0; preserved added-only.json is240faces. Final added-all244 index deliberately includes every new face with no region filter; same0hits."
+}

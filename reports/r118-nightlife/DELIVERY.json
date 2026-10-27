@@ -1,0 +1,128 @@
+{
+  "release": "R118",
+  "status": "SCOPED_CPU_PASS_WITH_DOCUMENTED_INHERITED_FAILURES_AND_GPU_BLOCKED",
+  "localBaseCommit": "8955d49d35aba2c9091fbef0d30bd3b323b50478",
+  "runtimeIdentity": {
+    "schema": 1,
+    "release": "R118",
+    "buildId": "R118-257ab63f2b45",
+    "sourceFingerprint": "a20989ae9a74d6d2deb686bf1e76b6fc8d33b8f599918b66d8e5816cabd90333",
+    "sourceCommit": "8955d49d35aba2c9091fbef0d30bd3b323b50478",
+    "sourceDirty": true,
+    "base": "/forbidden-city-3d/"
+  },
+  "freshProtectedTests": {
+    "r118": 27,
+    "motion": 90,
+    "resources": 41
+  },
+  "independentActualOracle": {
+    "fps": [
+      10,
+      30,
+      60
+    ],
+    "completeFrames": [
+      1438,
+      4310,
+      8616
+    ],
+    "newEmperorAndWholeConsortCapsuleEndpoints": 0,
+    "newEmperorAndWholeConsortLOD0Crossings": 0,
+    "runtimeAggregate": "ed4cef463e3c9553b6068cc43899115fec76d97e7c369a5769e58298ad1ff5c6",
+    "scope": "Old emperor prefix is not zero-overlap; GPU/mobile/S/dynamic lifecycle not borrowed from this oracle."
+  },
+  "historicalCurrentState": {
+    "completeRun": {
+      "tests": 1289,
+      "pass": 1100,
+      "fail": 189
+    },
+    "baselineFailedFilesOnly": {
+      "files": 54,
+      "tests": 675,
+      "pass": 487,
+      "fail": 188
+    },
+    "sharedFailedAssertionIdentities": 188,
+    "candidateOnlyRegression": "Original geometry-only col/walkBox builder API: fixed and old assertion now passes; production Array branch exact."
+  },
+  "legacySupersededAssertions": 4,
+  "standardGate": {
+    "build": "PASS",
+    "zones": "INHERITED_FAIL_3_ERRORS_20_WARNINGS",
+    "anchors": "INHERITED_FAIL_1_DEVIATION_1_KIND_UNCOMPARED",
+    "smoke": "ENVIRONMENT_BLOCKED_BEFORE_PAGE_SOCKET_EPERM_SIGABRT",
+    "gpu": "NOT_RUN",
+    "physicalMobile": "NOT_RUN"
+  },
+  "latestCost": {
+    "scope": "One actual streamed CPU world; complete outbound + return at 60 Hz, two routine updates only. Not GPU, whole frame or mobile.",
+    "constructionMs": 451.87372700000014,
+    "navigation": {
+      "colliders": 703,
+      "walkables": 106,
+      "numericBytesEstimate": 122656,
+      "buildMs": 447.87556499999937
+    },
+    "surfaces": {
+      "triangles": 1331,
+      "ownedNumericScalars": 34606,
+      "scalarBytesAtFloat64": 276848,
+      "cells": 796,
+      "cellRowReferences": 5737,
+      "globalRowReferences": 30,
+      "excludes": "JS objects/arrays/maps/WeakRef overhead; not heap bytes or peak RSS"
+    },
+    "stages": [
+      {
+        "leg": "outbound",
+        "frames": 4308,
+        "simulatedSeconds": 71.8
+      },
+      {
+        "leg": "return",
+        "frames": 4308,
+        "simulatedSeconds": 71.8
+      }
+    ],
+    "groups": {
+      "outbound": {
+        "count": 4308,
+        "p50Ms": 0.10124200000063865,
+        "p95Ms": 1.795154999999795,
+        "maxMs": 13.697371000000203,
+        "totalMs": 1314.0143810000354
+      },
+      "return": {
+        "count": 4308,
+        "p50Ms": 0.10156300000016927,
+        "p95Ms": 1.8171080000010988,
+        "maxMs": 9.472719999999754,
+        "totalMs": 1228.360151999952
+      },
+      "inheritedPrefix": {
+        "count": 1149,
+        "p50Ms": 0.1376170000003185,
+        "p95Ms": 0.3989789999995992,
+        "maxMs": 13.697371000000203,
+        "totalMs": 216.54569800001354
+      },
+      "newRoute": {
+        "count": 7466,
+        "p50Ms": 0.0977069999989908,
+        "p95Ms": 1.983806999999615,
+        "maxMs": 10.413641999999527,
+        "totalMs": 2325.5395109999727
+      },
+      "sleeping": {
+        "count": 1,
+        "p50Ms": 0.2893240000012156,
+        "p95Ms": 0.2893240000012156,
+        "maxMs": 0.2893240000012156,
+        "totalMs": 0.2893240000012156
+      }
+    }
+  },
+  "deliveryPolicy": "Root handles complete frozen git tree upload on a development branch; never include local node_modules symlink, never mutate/merge main or Pages here. R116/R117 rejected/undelivered diagnostics remain evidence, not accepted optimizations. Cumulative releases remain R120/R126."
+}

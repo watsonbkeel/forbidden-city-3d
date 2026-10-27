@@ -1,0 +1,27 @@
+TAP version 13
+# Subtest: R124 package support labels the actual partial release, not the R123 previous candidate
+not ok 1 - R124 package support labels the actual partial release, not the R123 previous candidate
+  ---
+  duration_ms: 1.390808
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r124-chuxiu-front-room/tests/r124-build/release-support.test.mjs:2:1'
+  failureType: 'testCodeFailure'
+  error: "ENOENT: no such file or directory, open 'release/r124/start.mjs'"
+  code: 'ENOENT'
+  stack: |-
+    Object.readFileSync (node:fs:484:20)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r124-chuxiu-front-room/tests/r124-build/release-support.test.mjs:2:112)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 100.224728

@@ -1,0 +1,71 @@
+✔ emperor has a closed-eye static normally-clothed sleeping model LOD0 (26.764568ms)
+✔ emperor has a closed-eye static normally-clothed sleeping model LOD1 (6.406308ms)
+✔ emperor has a closed-eye static normally-clothed sleeping model LOD2 (2.240564ms)
+✔ sleep support remains a narrow adult-template allowlist (0.724919ms)
+✖ closed eyelids are actual narrow facial geometry, not only metadata LOD0 (12.60772ms)
+✖ closed eyelids are actual narrow facial geometry, not only metadata LOD1 (3.440546ms)
+✖ closed eyelids are actual narrow facial geometry, not only metadata LOD2 (2.125031ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 4
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 187.234742
+
+✖ failing tests:
+
+test at tests/r118/emperor-sleep-model.test.mjs:7:25
+✖ closed eyelids are actual narrow facial geometry, not only metadata LOD0 (12.60772ms)
+  AssertionError [ERR_ASSERTION]: closed lid is a narrow line, not the old open eye patch
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r118-chuxiu-shared-rest/tests/r118/emperor-sleep-model.test.mjs:7:768)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r118/emperor-sleep-model.test.mjs:7:25
+✖ closed eyelids are actual narrow facial geometry, not only metadata LOD1 (3.440546ms)
+  AssertionError [ERR_ASSERTION]: each closed lid is rendered at every LOD
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r118-chuxiu-shared-rest/tests/r118/emperor-sleep-model.test.mjs:7:701)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r118/emperor-sleep-model.test.mjs:7:25
+✖ closed eyelids are actual narrow facial geometry, not only metadata LOD2 (2.125031ms)
+  AssertionError [ERR_ASSERTION]: each closed lid is rendered at every LOD
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r118-chuxiu-shared-rest/tests/r118/emperor-sleep-model.test.mjs:7:701)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

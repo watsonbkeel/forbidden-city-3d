@@ -1,3 +1,7 @@
+import {applyChengqianGateArrival,applyChengqianRearArrival} from '../palace/special/ChengqianArrival.js';
+import {buildChengqianRearWing} from '../palace/special/ChengqianRearWings.js';
+import {applyChuxiuFrontWing} from '../palace/special/ChuxiuFrontEnsemble.js';
+import {buildChuxiuRearWing} from '../palace/special/ChuxiuRearWings.js';
 import {buildChengqianCourtyardGroup,bindChengqianTerraceDomain,chengqianWingHardGable} from '../palace/special/ChengqianCourtyardGroup.js';
 import {applyLijingWestRoom} from '../palace/special/LijingWestRoom.js';
 import {registerChuxiuSideAccess} from '../../controls/ChuxiuSideAccess.js';
@@ -183,6 +187,7 @@ export class ZoneBase {
   // ───────────────────────── 各 kind 构建方法 ─────────────────────────
 
   buildHall(item) {
+    if(item.structure==='chengqian-rear-wing')return buildChengqianRearWing(this.kit,item,this.zoneJson);
     const itemIndex=this.zoneJson.items.indexOf(item);
     const inventoryContext=this.zoneJson.id==='east-six'&&[2,9,16,30,37].includes(itemIndex)
       ? {zoneId:this.zoneJson.id,itemIndex,item:{...item,furnishingPolicy:{mode:'unknown-inventory',target:`east-six/items/${itemIndex}`,scope:'r62-east-five-generic-thrones-only'}}}:null;
@@ -195,7 +200,7 @@ export class ZoneBase {
     if(westAnnexContext)validateWestUnknownAnnexInventoryPolicy(westAnnexContext);
     const finish=built=>{
       applyEastFiveRoofBeasts(this.kit,this.zoneJson.id,itemIndex,item,built);
-      if(westAnnexContext)return applyWestUnknownAnnexInventory(this.kit,westAnnexContext,built);
+      if(westAnnexContext)return applyChuxiuFrontWing(this.kit,this.zoneJson.id,itemIndex,item,applyWestUnknownAnnexInventory(this.kit,westAnnexContext,built));
       if(annexContext)return applyEastUnknownAnnexInventory(this.kit,annexContext,built);
       return inventoryContext?applyEastUnknownThroneInventory(this.kit,inventoryContext,built):built;
     };
@@ -223,6 +228,7 @@ export class ZoneBase {
     if(this.zoneJson.id==='east-six'&&itemIndex===10){
       built.f.updateWorldMatrix(true,true);
       if(!applyChengqianRearSouthWindows(this.kit,built.f,item,itemIndex))throw Error('Chengqian rear south window profile failed closed');
+      applyChengqianRearArrival(this.kit,built.f,item,this.zoneJson,itemIndex);
     }
     applyFengxianFrontWindows(this.kit,this.zoneJson.id,item,built);
     if(selected?.profile.mode==='augment')return finish(applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,selected.augment(this.kit,item,built,selected.profile)));
@@ -230,6 +236,7 @@ export class ZoneBase {
   }
 
   buildHallBaseline(item) {
+    if(item.structure==='chuxiu-rear-wing'||item.rearCourtProfile!==undefined)return buildChuxiuRearWing(this.kit,item,this.zoneJson);
     if(item.structure==='ritual-hall'||item.ritualProfile!==undefined){const g=ritualHallGeometry(item);if(this.zoneJson.id!=='outer-west')throw Error('Ritual hall wrong zone');return buildRitualHall(this.kit,item);}
     if(item.structure==='enclosed-pavilion'||item.enclosureProfile!==undefined){const g=enclosedPavilionGeometry(item);if(this.zoneJson.id!==g.id.split('/')[0])throw Error('Enclosed pavilion wrong zone');return buildEnclosedPavilion(this.kit,item);}
     if(item.structure==='shoukang-front-hall'||item.shoukangProfile!==undefined){if(this.zoneJson.id!=='outer-west')throw Error('Shoukang requires outer-west zone');return buildShoukangHall(this.kit,item);}
@@ -349,6 +356,7 @@ export class ZoneBase {
     const width = this.kit.gate(params);
     applyZuoyiDoorFront(this.kit, this.kit.root.children.at(-1), {zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     if (item.gateProfile === 'zhaode' || item.gateProfile === 'zhendu' || item.gateProfile === 'huangji') this.gateGeometries.set(item.name, this.kit.root.children.at(-1).userData.gateGeometry);
+    if(this.zoneJson.id==='east-six'&&this.zoneJson.items.indexOf(item)===7)applyChengqianGateArrival(this.kit,this.kit.root.children.at(-1),item,this.zoneJson,7);
     return width; // 返回开口宽度
   }
 

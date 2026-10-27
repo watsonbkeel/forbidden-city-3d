@@ -1,0 +1,289 @@
+{
+  "status": "STATIC_TIMER_AND_RECORDED_PAIR_READBACK_NO_NEW_BENCHMARK",
+  "runtime": "8755dbbd677e75a4c72193929eaa872c3f41f1042d5ec65577168b90ba403a7a",
+  "initialR125DriverBytes": "NOT_PRESERVED; no exact original driver SHA inferred or reconstructed",
+  "currentDriverScope": "Both source roots dynamically import only target runtime graph inside readyScene; cost caller passes capture:false. No product algorithm/geometry change; no new samples beyond one complete corrected 3 pairs/quality batch.",
+  "timerFindings": {
+    "legacyAllReady": "Outer timer starts after eagerly importing current helper/module graph, before readyScene. Only non-current source takes additional dynamic target imports inside timer: direct asymmetric import inclusion.",
+    "legacyBuild": "Inner buildMs timer begins after target imports/library.load; import duration not directly included. builder.build includes wrapper per-hall matrix/bounds/physical snapshot work. Duplicate graph and diagnostic allocations make execution context different, but their causal milliseconds cannot be isolated from these samples.",
+    "correctedBuild": "Same builder.build timer; capture:false removes diagnostic wrapper and finalPhysical snapshot, not production geometry/physics work. Current and old source each import only their own target graph before this inner timer.",
+    "memoryAfterDispose": "Legacy old-source process retains two module graphs; h.frames/captured objects may remain. RSS/heap not clean production owned-heap comparison. Corrected capture:false changes this diagnostic retention too.",
+    "dispose": "disposeMs is separately timed after object scanning; raw call observations retained, not direct import-time counts or a causal isolated optimization claim."
+  },
+  "historicalScope": {
+    "confirmedSameHelper": [
+      "R123 paired cost scripts/r123/cost-pairs.mjs + ready-zone.mjs",
+      "R124 paired cost scripts/r124/cost-pairs.mjs calling scripts/r123/cost-process.mjs"
+    ],
+    "notSameSpecificBranch": [
+      "R119 ready-scene target dynamic imports for both roots",
+      "R120 ready-scene target dynamic imports for both roots"
+    ],
+    "notInvalidated": [
+      "Deterministic final-group triangle/buffer/material/texture/collider counts",
+      "Disposed target objects exactly-once counts",
+      "Source-bound saved actual geometry, functional/controller/body data",
+      "Separate startup/routine reports are not erased by this specific helper defect; their independent timing/NOT_RUN limitations still apply"
+    ],
+    "unknown": "No blanket audit or rejection of older unrelated benchmark drivers."
+  },
+  "resourceCountsIdenticalAcrossBothBatches": true,
+  "batches": {
+    "initial_asymmetric": {
+      "rawPath": "r125-chengqian-rear-court/reports/r125-chengqian/cost/initial-asymmetric-import/pairs.json",
+      "sha256": "46cb2a107111242083169879801c729b58345dcb9270b99eff783693d4c042ed",
+      "rows": 12,
+      "qualities": {
+        "high": {
+          "deltas": [
+            {
+              "pair": 1,
+              "buildMs": -24.475746000000072,
+              "allReadyMs": -134.20525499999985,
+              "disposeMs": -0.03197700000009718
+            },
+            {
+              "pair": 2,
+              "buildMs": -17.010930999999914,
+              "allReadyMs": -103.33976899999993,
+              "disposeMs": 0.08230300000013813
+            },
+            {
+              "pair": 3,
+              "buildMs": -86.01408400000003,
+              "allReadyMs": -178.72935800000005,
+              "disposeMs": 0.026128999999855296
+            }
+          ],
+          "medianDelta": {
+            "buildMs": -24.475746000000072,
+            "allReadyMs": -134.20525499999985,
+            "disposeMs": 0.026128999999855296
+          },
+          "resourceDelta": {
+            "meshes": 2,
+            "triangles": 3652,
+            "uniqueGeometries": 2,
+            "geometryArrayBufferBytes": 350592,
+            "uniqueMaterials": 2,
+            "ownedMaterials": 2,
+            "uniqueTextures": 0,
+            "logicalDecodedRgbaBytes": 0,
+            "colliders": 54,
+            "walkables": 6,
+            "rooms": 2,
+            "mapItems": 2,
+            "scopeOwners": 2,
+            "actualSurfaceSourceFaces": 0,
+            "actualSurfaceSourceVertexScalarBytes": 0,
+            "ordinaryColliderBoxScalarPayloadBytes": 2592
+          }
+        },
+        "low": {
+          "deltas": [
+            {
+              "pair": 1,
+              "buildMs": -4.278326000000106,
+              "allReadyMs": -78.77921900000001,
+              "disposeMs": 0.11546399999997448
+            },
+            {
+              "pair": 2,
+              "buildMs": -176.08183399999996,
+              "allReadyMs": -304.4096279999999,
+              "disposeMs": 0.0960539999998673
+            },
+            {
+              "pair": 3,
+              "buildMs": -133.76214900000002,
+              "allReadyMs": -232.9070859999997,
+              "disposeMs": 0.12124199999971097
+            }
+          ],
+          "medianDelta": {
+            "buildMs": -133.76214900000002,
+            "allReadyMs": -232.9070859999997,
+            "disposeMs": 0.11546399999997448
+          },
+          "resourceDelta": {
+            "meshes": 2,
+            "triangles": 3652,
+            "uniqueGeometries": 2,
+            "geometryArrayBufferBytes": 350592,
+            "uniqueMaterials": 2,
+            "ownedMaterials": 2,
+            "uniqueTextures": 0,
+            "logicalDecodedRgbaBytes": 0,
+            "colliders": 54,
+            "walkables": 6,
+            "rooms": 2,
+            "mapItems": 2,
+            "scopeOwners": 2,
+            "actualSurfaceSourceFaces": 0,
+            "actualSurfaceSourceVertexScalarBytes": 0,
+            "ordinaryColliderBoxScalarPayloadBytes": 2592
+          }
+        }
+      }
+    },
+    "corrected_symmetric": {
+      "rawPath": "r125-chengqian-rear-court/reports/r125-chengqian/cost/pairs.json",
+      "sha256": "63cdbbd89250a70e72212ba6c97a7831f6b27b7011a74df01cf09ee98c90a09f",
+      "rows": 12,
+      "qualities": {
+        "high": {
+          "deltas": [
+            {
+              "pair": 1,
+              "buildMs": 146.84143099999983,
+              "allReadyMs": 154.2906539999999,
+              "disposeMs": -0.02370599999994738
+            },
+            {
+              "pair": 2,
+              "buildMs": 24.783096000000114,
+              "allReadyMs": -4.053765000000112,
+              "disposeMs": -0.010336000000052081
+            },
+            {
+              "pair": 3,
+              "buildMs": 199.750986,
+              "allReadyMs": 272.39749499999994,
+              "disposeMs": -0.07983999999987645
+            }
+          ],
+          "medianDelta": {
+            "buildMs": 146.84143099999983,
+            "allReadyMs": 154.2906539999999,
+            "disposeMs": -0.02370599999994738
+          },
+          "resourceDelta": {
+            "meshes": 2,
+            "triangles": 3652,
+            "uniqueGeometries": 2,
+            "geometryArrayBufferBytes": 350592,
+            "uniqueMaterials": 2,
+            "ownedMaterials": 2,
+            "uniqueTextures": 0,
+            "logicalDecodedRgbaBytes": 0,
+            "colliders": 54,
+            "walkables": 6,
+            "rooms": 2,
+            "mapItems": 2,
+            "scopeOwners": 2,
+            "actualSurfaceSourceFaces": 0,
+            "actualSurfaceSourceVertexScalarBytes": 0,
+            "ordinaryColliderBoxScalarPayloadBytes": 2592
+          }
+        },
+        "low": {
+          "deltas": [
+            {
+              "pair": 1,
+              "buildMs": -3.208031000000119,
+              "allReadyMs": -41.39454599999999,
+              "disposeMs": 0.023986000000149943
+            },
+            {
+              "pair": 2,
+              "buildMs": -79.87889299999995,
+              "allReadyMs": -213.09798000000023,
+              "disposeMs": -0.09475300000008247
+            },
+            {
+              "pair": 3,
+              "buildMs": 28.042206999999962,
+              "allReadyMs": 38.71672200000012,
+              "disposeMs": 0.05677500000001601
+            }
+          ],
+          "medianDelta": {
+            "buildMs": -3.208031000000119,
+            "allReadyMs": -41.39454599999999,
+            "disposeMs": 0.023986000000149943
+          },
+          "resourceDelta": {
+            "meshes": 2,
+            "triangles": 3652,
+            "uniqueGeometries": 2,
+            "geometryArrayBufferBytes": 350592,
+            "uniqueMaterials": 2,
+            "ownedMaterials": 2,
+            "uniqueTextures": 0,
+            "logicalDecodedRgbaBytes": 0,
+            "colliders": 54,
+            "walkables": 6,
+            "rooms": 2,
+            "mapItems": 2,
+            "scopeOwners": 2,
+            "actualSurfaceSourceFaces": 0,
+            "actualSurfaceSourceVertexScalarBytes": 0,
+            "ordinaryColliderBoxScalarPayloadBytes": 2592
+          }
+        }
+      }
+    }
+  },
+  "evidence": [
+    {
+      "sourcePath": "r125-chengqian-rear-court/scripts/r125/ready-zone.mjs",
+      "saved": "0-r125-ready-zone.mjs",
+      "bytes": 3980,
+      "sha256": "7d6c99fa052123d13656cedf666c5434f9c4fbe1b8de2fe6dca4c4ef0147f087"
+    },
+    {
+      "sourcePath": "r125-chengqian-rear-court/scripts/r125/cost-process.mjs",
+      "saved": "1-r125-cost-process.mjs",
+      "bytes": 3507,
+      "sha256": "e20f7893af7aeefc85442b959a6d2f705a4796da815aba3d3af9eeb974ff68dd"
+    },
+    {
+      "sourcePath": "r125-chengqian-rear-court/scripts/r125/cost-pairs.mjs",
+      "saved": "2-r125-cost-pairs.mjs",
+      "bytes": 959,
+      "sha256": "1b01f5ee39f4decd20e1d2a3212380de5dc463a21f7db1f80ffbd0363f84a6da"
+    },
+    {
+      "sourcePath": "r124-chuxiu-front-room/scripts/r123/ready-zone.mjs",
+      "saved": "3-r123-ready-zone.mjs",
+      "bytes": 3860,
+      "sha256": "2e035a13548f2bee00f70f445d33d843426b983b02d604d21b99f662f5efe64a"
+    },
+    {
+      "sourcePath": "r124-chuxiu-front-room/scripts/r123/cost-process.mjs",
+      "saved": "4-r123-cost-process.mjs",
+      "bytes": 3019,
+      "sha256": "35e7411ef44c4c33272316a995a2bf7196cb991b8c7e2779e291e116493a956d"
+    },
+    {
+      "sourcePath": "r124-chuxiu-front-room/scripts/r124/cost-pairs.mjs",
+      "saved": "5-r124-cost-pairs.mjs",
+      "bytes": 956,
+      "sha256": "573a10732d2866a726ed94f87e5a1f17043a41a7077557d647c2374fe099c9c5"
+    },
+    {
+      "sourcePath": "r124-chuxiu-front-room/scripts/r120/ready-scene.mjs",
+      "saved": "6-r120-ready-scene.mjs",
+      "bytes": 3183,
+      "sha256": "abc98838a8fec6431a96d8cbe73fbec65b6f375646c31a8a0fdd2c9810771e72"
+    },
+    {
+      "sourcePath": "r124-chuxiu-front-room/scripts/r119/ready-scene.mjs",
+      "saved": "7-r119-ready-scene.mjs",
+      "bytes": 1644,
+      "sha256": "35af0c9112b8aed9869eb000dc60b5dfa3e4e5c0af60a8f7e5d93c946fd4a38f"
+    },
+    {
+      "sourcePath": "r125-chengqian-rear-court/scripts/r115-fix/cpu-platform.mjs",
+      "saved": "8-r115-fix-cpu-platform.mjs",
+      "bytes": 2365,
+      "sha256": "fc2487e269d5553d5fbcfa549db897cdb3a4617edb063b01f755c7c92212dbc4"
+    }
+  ],
+  "limits": [
+    "No world/build/benchmark rerun by reviewer.",
+    "Initial all-negative timing deltas are not a speedup; corrected low negative medians are not speedup either.",
+    "Do not subtract the two batches to estimate pure import overhead: both import and diagnostic capture boundaries changed and fresh-run noise remains.",
+    "Historical frozen trees remain untouched; publish an external/current-release erratum with raw provenance, not rewritten old evidence."
+  ]
+}

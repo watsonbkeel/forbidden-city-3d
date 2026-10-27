@@ -1,0 +1,94 @@
+TAP version 13
+# Subtest: immutable own-data nodes are pruned while all mutable descendant records stay current
+ok 1 - immutable own-data nodes are pruned while all mutable descendant records stay current
+  ---
+  duration_ms: 1.216806
+  type: 'test'
+  ...
+# Subtest: current source rejects same-count child replacement
+ok 2 - current source rejects same-count child replacement
+  ---
+  duration_ms: 0.221031
+  type: 'test'
+  ...
+# Subtest: current source rejects numeric scalar edit
+ok 3 - current source rejects numeric scalar edit
+  ---
+  duration_ms: 0.129624
+  type: 'test'
+  ...
+# Subtest: current source rejects same-count field rename
+ok 4 - current source rejects same-count field rename
+  ---
+  duration_ms: 0.115843
+  type: 'test'
+  ...
+# Subtest: current source rejects added key
+ok 5 - current source rejects added key
+  ---
+  duration_ms: 0.173581
+  type: 'test'
+  ...
+# Subtest: current source rejects same-value proxy replacement
+ok 6 - current source rejects same-value proxy replacement
+  ---
+  duration_ms: 0.211558
+  type: 'test'
+  ...
+# Subtest: current source rejects frozen source replacement
+ok 7 - current source rejects frozen source replacement
+  ---
+  duration_ms: 0.13343
+  type: 'test'
+  ...
+# Subtest: root identity is checked even if the complete root is frozen pure data
+ok 8 - root identity is checked even if the complete root is frozen pure data
+  ---
+  duration_ms: 0.142314
+  type: 'test'
+  ...
+# Subtest: freezing the parent does not freeze its typed-array payload
+ok 9 - freezing the parent does not freeze its typed-array payload
+  ---
+  duration_ms: 0.290355
+  type: 'test'
+  ...
+# Subtest: frozen getter is never treated as a constant data field
+ok 10 - frozen getter is never treated as a constant data field
+  ---
+  duration_ms: 0.311868
+  type: 'test'
+  ...
+# Subtest: descriptor/key exceptions during current validation fail closed, never ready
+ok 11 - descriptor/key exceptions during current validation fail closed, never ready
+  ---
+  duration_ms: 0.224086
+  type: 'test'
+  ...
+# Subtest: symbol and non-enumerable values retain the original own-enumerable observation contract
+ok 12 - symbol and non-enumerable values retain the original own-enumerable observation contract
+  ---
+  duration_ms: 0.110456
+  type: 'test'
+  ...
+# Subtest: frozen NaN preserves old immediate-invalid === semantics, while infinities and signed zero retain old meaning
+ok 13 - frozen NaN preserves old immediate-invalid === semantics, while infinities and signed zero retain old meaning
+  ---
+  duration_ms: 0.138418
+  type: 'test'
+  ...
+# Subtest: NR1b capture executes no per-leaf temporary values/reference arrays for immutable data
+ok 14 - NR1b capture executes no per-leaf temporary values/reference arrays for immutable data
+  ---
+  duration_ms: 2.35312
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 85.292299

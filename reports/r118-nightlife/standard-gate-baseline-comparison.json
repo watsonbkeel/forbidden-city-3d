@@ -1,0 +1,45 @@
+{
+  "scope": "Fresh exact HEAD versus candidate, identical standard driver inputs; errors retained, not fixed by R118",
+  "zones": {
+    "candidate": [
+      "❌ 错误: 3",
+      "⚠️  警告: 20",
+      "❌ outer-west: gate「武英门」(220.8, -249.8) 北侧 出门 0.7 m 处即被挡（站不下玩家）",
+      "❌ east-six: hall「承乾宫」(-93.6, 381.8) 前门 从门前 2 m 沿中线走不进殿内（车道 +0.0：走了 0/4.76 m 停在 [-93.6,370.79]）；门前 2 m（门洞宽 4.9 m）内有：east-six:?",
+      "❌ outer-west: hall「武英殿」(219.5, -199.2) 前门 从门前 2 m 沿中线走不进殿内（车道 +0.0：起点即在碰撞体内）"
+    ],
+    "baseline": [
+      "❌ outer-west: gate「武英门」(220.8, -249.8) 北侧 出门 0.7 m 处即被挡（站不下玩家）",
+      "❌ east-six: hall「承乾宫」(-93.6, 381.8) 前门 从门前 2 m 沿中线走不进殿内（车道 +0.0：走了 0/4.76 m 停在 [-93.6,370.79]）；门前 2 m（门洞宽 4.9 m）内有：east-six:?",
+      "❌ outer-west: hall「武英殿」(219.5, -199.2) 前门 从门前 2 m 沿中线走不进殿内（车道 +0.0：起点即在碰撞体内）",
+      "❌ 错误: 3",
+      "⚠️  警告: 20"
+    ],
+    "identical": true,
+    "comparison": "Exact error-line multiset; gate concatenates captured stdout then stderr, standalone preserves stream arrival order."
+  },
+  "anchors": {
+    "candidate": [
+      "✗ 神武门            Layout.js     gate           中    0.0     11.0   11.0    5",
+      "比较 114 条（zones 100 + Layout.js 14），超差 1 条",
+      "kind 不兼容未比较 1 条：east-six:gate「乾东五所」≠ 锚点 group"
+    ],
+    "baseline": [
+      "✗ 神武门            Layout.js     gate           中    0.0     11.0   11.0    5",
+      "比较 114 条（zones 100 + Layout.js 14），超差 1 条",
+      "kind 不兼容未比较 1 条：east-six:gate「乾东五所」≠ 锚点 group"
+    ],
+    "identical": true
+  },
+  "finalCompatibilitySource": {
+    "fingerprint": "a20989ae9a74d6d2deb686bf1e76b6fc8d33b8f599918b66d8e5816cabd90333",
+    "zones": [
+      "❌ 错误: 3",
+      "⚠️  警告: 20",
+      "❌ outer-west: gate「武英门」(220.8, -249.8) 北侧 出门 0.7 m 处即被挡（站不下玩家）",
+      "❌ east-six: hall「承乾宫」(-93.6, 381.8) 前门 从门前 2 m 沿中线走不进殿内（车道 +0.0：走了 0/4.76 m 停在 [-93.6,370.79]）；门前 2 m（门洞宽 4.9 m）内有：east-six:?",
+      "❌ outer-west: hall「武英殿」(219.5, -199.2) 前门 从门前 2 m 沿中线走不进殿内（车道 +0.0：起点即在碰撞体内）"
+    ],
+    "sameErrorMultisetAsBaseline": true
+  }
+}

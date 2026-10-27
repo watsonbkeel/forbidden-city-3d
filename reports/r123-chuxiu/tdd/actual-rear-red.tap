@@ -1,0 +1,24 @@
+✖ real ready west-six builds bounded rear pair and rebinds both R118 slots to the shifted finished bed (985.896499ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1244.612817
+
+✖ failing tests:
+
+test at tests/r123/actual-rear-frame.test.mjs:2:1
+✖ real ready west-six builds bounded rear pair and rebinds both R118 slots to the shifted finished bed (985.896499ms)
+  Error: Unsupported hall structure: chuxiu-rear-wing
+      at CourtKit.hall (file:///workspace/scratch/02a8023d1a85/r123-chuxiu-rear-frame/src/scene/palace/kit.js:507:28)
+      at ZoneBase.buildHallBaseline (file:///workspace/scratch/02a8023d1a85/r123-chuxiu-rear-frame/src/scene/zones/ZoneBase.js:306:63)
+      at ZoneBase.buildHall (file:///workspace/scratch/02a8023d1a85/r123-chuxiu-rear-frame/src/scene/zones/ZoneBase.js:213:22)
+      at builder.buildHall (file:///workspace/scratch/02a8023d1a85/r123-chuxiu-rear-frame/scripts/r123/ready-zone.mjs:7:349)
+      at ZoneBase.build (file:///workspace/scratch/02a8023d1a85/r123-chuxiu-rear-frame/src/scene/zones/ZoneBase.js:95:16)
+      at readyScene (file:///workspace/scratch/02a8023d1a85/r123-chuxiu-rear-frame/scripts/r123/ready-zone.mjs:8:41)
+      at async TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r123-chuxiu-rear-frame/tests/r123/actual-rear-frame.test.mjs:3:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)

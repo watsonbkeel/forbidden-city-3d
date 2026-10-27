@@ -1,0 +1,31 @@
+✖ R123 moved corridor ramps support the complete original foot on actual F32 visible faces (1178.512454ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1442.207082
+
+✖ failing tests:
+
+test at tests/r123/corridor-ramp.test.mjs:2:1
+✖ R123 moved corridor ramps support the complete original foot on actual F32 visible faces (1178.512454ms)
+  AssertionError [ERR_ASSERTION]: actual main floor continuation
+  + actual - expected
+  
+  + 0.6100000143051147
+  - 0.6200000047683716
+       ^
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r123-chuxiu-rear-frame/tests/r123/corridor-ramp.test.mjs:2:695)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0.6100000143051147,
+    expected: 0.6200000047683716,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

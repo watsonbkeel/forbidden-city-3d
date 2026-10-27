@@ -1,0 +1,304 @@
+{
+  "export": {
+    "stage": "before",
+    "quality": "high",
+    "controlledCandidate": false,
+    "sourceRoot": "/workspace/scratch/02a8023d1a85/r123-chuxiu-rear-frame",
+    "sourceCommit": "f0dea01abf8e809ba1f476f9bfd13fa945a1e518",
+    "beforeSourceFingerprint": "8938de15545ac0fd46b7dfbde5a2d8c30e650ed130ecfbbb5cb8f7783cabfdcb",
+    "afterSourceFingerprint": "8938de15545ac0fd46b7dfbde5a2d8c30e650ed130ecfbbb5cb8f7783cabfdcb",
+    "paint": {
+      "states": {
+        "textureLibrary": "ready"
+      },
+      "requests": 43,
+      "errors": [],
+      "waitMs": 0.010786000000052809
+    },
+    "scope": "real TextureLibrary 22 color + 21 normal file decode; West-six complete; all tracked image loads ready; texture matrix applied; no GPU/PBR claim",
+    "buildMs": 649.735476,
+    "selectedMeshes": 36,
+    "triangles": 25606,
+    "textureCount": 15,
+    "textureBytes": 16160768,
+    "keys": [
+      "caihua_beam",
+      "door_studded",
+      "dougong_band",
+      "lattice_doors",
+      "marble",
+      "rafters",
+      "roof_tile",
+      "stone_slab",
+      "wall_brick",
+      "wall_red",
+      "wood_column"
+    ],
+    "cameras": [
+      [
+        "front",
+        [
+          94.8,
+          9,
+          414
+        ],
+        [
+          94.8,
+          5,
+          443
+        ],
+        62
+      ],
+      [
+        "rear-court",
+        [
+          94.8,
+          7.2,
+          441.8
+        ],
+        [
+          94.5,
+          4.1,
+          450.2
+        ],
+        70
+      ],
+      [
+        "top",
+        [
+          94.8,
+          68,
+          437
+        ],
+        [
+          94.8,
+          0,
+          437
+        ],
+        55
+      ],
+      [
+        "west-side",
+        [
+          118,
+          10,
+          442
+        ],
+        [
+          100,
+          4,
+          442
+        ],
+        62
+      ]
+    ]
+  },
+  "frames": [
+    {
+      "itemIndex": 15,
+      "item": {
+        "kind": "hall",
+        "name": "翊坤宫后殿",
+        "x": 94,
+        "z": 401.5,
+        "w": 26.2,
+        "d": 12.9,
+        "pad": 0.6,
+        "ph": 0.45,
+        "colH": 6.08,
+        "roof": "gable",
+        "map": "hall",
+        "backDoor": true,
+        "bays": 5,
+        "interior": "empty",
+        "brackets": false,
+        "plaqueText": "体和殿",
+        "structureStatus": "source-supported-topology-provisional-dimensions"
+      },
+      "renderBounds": [
+        80.23999977111816,
+        5.960464483090178e-09,
+        392.78270053863525,
+        107.76000022888184,
+        12.37995719909668,
+        410.21729946136475
+      ],
+      "colliderBounds": [
+        80.55,
+        0.4499999162292485,
+        394.71,
+        107.45,
+        5.800400000000001,
+        408.29
+      ]
+    },
+    {
+      "itemIndex": 23,
+      "item": {
+        "kind": "hall",
+        "name": "储秀宫",
+        "structure": "chuxiu-household",
+        "chuxiuProfile": "chuxiu-official-topology-fit-v1",
+        "x": 94.8,
+        "z": 434.3,
+        "w": 27.1,
+        "d": 13.8,
+        "pad": 0.8,
+        "ph": 0.6,
+        "colH": 6.72,
+        "bays": 5,
+        "baysSource": "https://www.dpm.org.cn/explore/building/236486.html",
+        "baySpacingStatus": "equal-subdivision-provisional",
+        "roof": "xieshan",
+        "enter": true,
+        "throne": false,
+        "interior": "empty"
+      },
+      "renderBounds": [
+        78.4291217803955,
+        -0.07719973954973963,
+        424.55271797180177,
+        111.17087821960449,
+        14.992865562438965,
+        444.04728202819825
+      ],
+      "colliderBounds": [
+        80.5,
+        0,
+        426.65000000000003,
+        109.1,
+        6.5136,
+        441.95
+      ]
+    },
+    {
+      "itemIndex": 24,
+      "item": {
+        "kind": "hall",
+        "name": "储秀宫后殿",
+        "x": 94.5,
+        "z": 450.2,
+        "w": 26.2,
+        "d": 12.9,
+        "pad": 0.6,
+        "ph": 0.45,
+        "colH": 6.08,
+        "roof": "gable",
+        "bays": 5,
+        "rearHallProfile": "lijingxuan",
+        "map": "hall"
+      },
+      "renderBounds": [
+        80.73999977111816,
+        5.960464483090178e-09,
+        441.48270053863524,
+        108.26000022888184,
+        13.049957275390625,
+        458.91729946136473
+      ],
+      "colliderBounds": [
+        81.05,
+        0.44999995827674866,
+        443.40999999999997,
+        107.95,
+        4.179999828338623,
+        456.99
+      ]
+    },
+    {
+      "itemIndex": 25,
+      "item": {
+        "kind": "hall",
+        "x": 78.32,
+        "z": 422,
+        "positionFit": {
+          "profile": "chuxiu-side-access-fit-v1",
+          "previousZ": 423.1,
+          "deltaZ": -1.1,
+          "status": "estimated-coordinate-correction"
+        },
+        "rot": "west",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "renderBounds": [
+        73.07232172012328,
+        5.960464483090178e-09,
+        415.82999992370605,
+        83.5676782798767,
+        9.23840045928955,
+        428.17000007629395
+      ],
+      "colliderBounds": [
+        74.49999999999999,
+        0.45,
+        416.05,
+        82.10133333333333,
+        3.45,
+        427.95
+      ]
+    },
+    {
+      "itemIndex": 26,
+      "item": {
+        "kind": "hall",
+        "x": 111.28,
+        "z": 422,
+        "positionFit": {
+          "profile": "chuxiu-side-access-fit-v1",
+          "previousZ": 423.1,
+          "deltaZ": -1.1,
+          "status": "estimated-coordinate-correction"
+        },
+        "rot": "east",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "renderBounds": [
+        106.03232172012329,
+        5.960464483090178e-09,
+        415.82999992370605,
+        116.52767827987671,
+        9.23840045928955,
+        428.17000007629395
+      ],
+      "colliderBounds": [
+        107.49866666666667,
+        0.45,
+        416.05,
+        115.10000000000001,
+        3.45,
+        427.95
+      ]
+    }
+  ],
+  "personallyViewed": [
+    "top-north-up-before-high.png",
+    "rear-court-ground-before-high.png"
+  ],
+  "limits": [
+    "Actual ready render/collider envelopes only, not triangle intersection proof",
+    "Only two listed images inspected in this baseline pass",
+    "No new frame authorized by these observed bounds"
+  ],
+  "files": {
+    "/workspace/scratch/02a8023d1a85/r123-chuxiu-rear-frame/reports/r123-chuxiu/baseline/frame-inventory.json": "b1decbf7bd629579d50bc2d2a1b49798f2fc683830fc15b115a3dd7ce8d5945d",
+    "/workspace/scratch/02a8023d1a85/r123-chuxiu-rear-frame/reports/r123-chuxiu/baseline/export-before-high.json": "fede39e0180765427ff8984b4074818c90620c1b9b5bf983d0ff6fe74453616a",
+    "/workspace/scratch/02a8023d1a85/r123-chuxiu-rear-frame/reports/r123-chuxiu/baseline/top-north-up-before-high.png": "0d0e5d640381ed10e02793ace5eef5e918227aa6fb139963ef4dd3892337abef",
+    "/workspace/scratch/02a8023d1a85/r123-chuxiu-rear-frame/reports/r123-chuxiu/baseline/rear-court-ground-before-high.png": "a9fe5867fad7561a44d0df7cb5bb9591d2bfa3cdfdb665c2266e757172c0f1fe"
+  }
+}

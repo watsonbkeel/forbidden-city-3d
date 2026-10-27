@@ -1,12 +1,14 @@
+import {bindChuxiuCorridorRamp} from '../../../controls/ChuxiuCorridorSupport.js';
+import {CHUXIU_MAIN_Z,CHUXIU_FRONT_WING_Z,CHUXIU_COURTYARD_PROFILE,CHUXIU_WING_POSITION_PROFILE,chuxiuShiftedZ} from './ChuxiuRearCourtFrame.js';
 import * as THREE from 'three';
 
 /** Official relationship, reversible dimensions. No measurements are asserted. */
 export const CHUXIU_COURTYARD_FIT=Object.freeze({
- id:'west-six/chuxiu-courtyard', profile:'chuxiu-return-corridor-fit-v1',
- eastX:83.2,westX:106.4,southZ:409.55,northZ:428.35,
+ id:'west-six/chuxiu-courtyard', profile:CHUXIU_COURTYARD_PROFILE,
+ eastX:83.2,westX:106.4,southZ:409.55,northZ:chuxiuShiftedZ(428.35),
  outerEast:81.8,innerEast:84.6,innerWest:105,outerWest:107.8,
- outerSouth:407.95,innerSouth:410.9,roofEndZ:427.6,
- floorY:.45,mainFloorY:.6,rampStartZ:425.6,rampEndZ:426.6,
+ outerSouth:407.95,innerSouth:410.9,roofEndZ:chuxiuShiftedZ(427.6),
+ floorY:.45,mainFloorY:.6,rampStartZ:chuxiuShiftedZ(425.6),rampEndZ:chuxiuShiftedZ(426.6),
  approachRun:.9,approachWidth:2.6,roofOuterY:5.35,roofInnerY:4.55,roofThickness:.12,columnRadius:.13,
 });
 const SOURCES=Object.freeze(['https://www.dpm.org.cn/explore/building/236486.html','https://www.dpm.org.cn/explore/building/236529.html']);
@@ -17,18 +19,18 @@ const near=(a,b)=>Number.isFinite(a)&&Math.abs(a-b)<1e-7;
 export function chuxiuWingOriginalDeclaration(item,index){
  if(item.positionFit===undefined)return item;
  const fit=item.positionFit;
- if(![25,26].includes(index)||item.kind!=='hall'||item.x!==(index===25?78.32:111.28)||item.rot!==(index===25?'west':'east')||item.z!==422||
-   JSON.stringify(Object.keys(fit).sort())!==JSON.stringify(['deltaZ','previousZ','profile','status'])||fit.profile!=='chuxiu-side-access-fit-v1'||fit.previousZ!==423.1||fit.deltaZ!==-1.1||fit.status!=='estimated-coordinate-correction')throw Error('Chuxiu side access fitted declaration mismatch');
+ if(![25,26].includes(index)||item.kind!=='hall'||item.x!==(index===25?78.32:111.28)||item.rot!==(index===25?'west':'east')||item.z!==CHUXIU_FRONT_WING_Z||
+   JSON.stringify(Object.keys(fit).sort())!==JSON.stringify(['deltaZ','previousZ','profile','status'])||fit.profile!==CHUXIU_WING_POSITION_PROFILE||fit.previousZ!==423.1||fit.deltaZ!==-6.1||fit.status!=='estimated-coordinate-correction')throw Error('Chuxiu side access fitted declaration mismatch');
  const {positionFit,...original}=item;return {...original,z:423.1};
 }
 export function chuxiuCourtyardGeometry(zone){
  const p=CHUXIU_COURTYARD_FIT;
- const wingZ=zone.items?.[25]?.positionFit?422:423.1;
+ const wingZ=zone.items?.[25]?.positionFit?CHUXIU_FRONT_WING_Z:423.1;
  for(const i of[25,26]){const a=zone.items?.[i];if(a?.positionFit)chuxiuWingOriginalDeclaration(a,i);if(a?.z!==wingZ)throw Error('Chuxiu wing pair fit mismatch');}
  if(zone.id!=='west-six')throw Error('Chuxiu courtyard belongs only to west-six');
  if(zone.courtyardProfile!==p.profile)throw Error('Chuxiu courtyard requires the explicit fitted profile');
  for(const expected of[
-  {name:'储秀宫',x:94.8,z:434.3,w:27.1,d:13.8,ph:.6},
+  {name:'储秀宫',x:94.8,z:CHUXIU_MAIN_Z,w:27.1,d:13.8,ph:.6},
   {name:'翊坤宫后殿',x:94,z:401.5,w:26.2,d:12.9,ph:.45},
   {x:78.32,z:wingZ,w:11.2,d:7.04,ph:.45,rot:'west'},
   {x:111.28,z:wingZ,w:11.2,d:7.04,ph:.45,rot:'east'},
@@ -40,7 +42,7 @@ export function chuxiuCourtyardGeometry(zone){
   identities:{main:'储秀宫',south:'体和殿（翊坤宫后殿）',east:'储秀宫东配殿',west:'储秀宫西配殿'},
   routes:{
    loop:[[p.eastX,p.northZ],[p.eastX,p.southZ],[p.westX,p.southZ],[p.westX,p.northZ],[p.eastX,p.northZ]],
-   entries:[[[94,399],[94,p.southZ],[94,418],[94.8,425],[94.8,433.5]],[[78.9,wingZ],[p.eastX,wingZ],[89,wingZ]],[[110.7,wingZ],[p.westX,wingZ],[100,wingZ]],[[79.7,412],[79.7,409],[79.7,395]],[[108.9,412],[108.9,409],[108.9,395]]],
+   entries:[[[94,399],[94,p.southZ],[94,chuxiuShiftedZ(418)],[94.8,chuxiuShiftedZ(425)],[94.8,chuxiuShiftedZ(433.5)]],[[78.9,wingZ],[p.eastX,wingZ],[89,wingZ]],[[110.7,wingZ],[p.westX,wingZ],[100,wingZ]],[[79.7,412],[79.7,409],[79.7,395]],[[108.9,412],[108.9,409],[108.9,395]]],
   },
   limitations:['The connection topology is documented; widths, heights, mitered shed roofs, pillar positions and floor transitions are reversible model fits.','The two accessory halls retain their existing geometry and generic interior; the historic identities Yanghe/Suifu are not assigned to individual model sides without separate verification.','No measured survey, detailed tile inscription reconstruction, or browser visual acceptance is claimed.'],
  };
@@ -56,16 +58,17 @@ export function buildChuxiuCourtyard(kit,zone){
  // Visual slabs stop at old slab edges; walkable support spans seams. Existing
  // side-platform/porch geometry is retained and is not covered by coplanar slabs.
  for(const [x0,x1,side]of[[p.outerEast,p.innerEast,'east'],[p.innerWest,p.outerWest,'west']]){
-  floor(x0,x1,408.61,416.94);
+  floor(x0,x1,408.61,chuxiuShiftedZ(416.94));
   // A 1 mm landing overlap closes Float32 edge cracks without a perceptible height change.
-  floor(side==='east'?82.4:x0,side==='east'?x1:107.2,416.94,p.rampStartZ+.001);
+  const landing=floor(side==='east'?82.4:x0,side==='east'?x1:107.2,chuxiuShiftedZ(416.94),p.rampStartZ+.001);
   kit.walkBox(f,x0,p.outerSouth,x1,p.rampStartZ,p.floorY);
   const ax=side==='east'?82.4:x0,bx=side==='east'?x1:107.2;
   const geo=new THREE.BufferGeometry();
   const a=p.rampStartZ,b=p.rampEndZ,y0=p.floorY+.01,y1=p.mainFloorY+.01;
   geo.setAttribute('position',new THREE.Float32BufferAttribute([ax,y0,a,bx,y0,a,ax,y1,b,bx,y1,b],3));
   geo.setAttribute('uv',new THREE.Float32BufferAttribute([0,0,bx-ax,0,0,b-a,bx-ax,b-a],2));geo.setIndex([0,2,1,1,2,3]);geo.computeVertexNormals();
-  tag(kit.mesh(f,geo,kit.lib.material('stone_slab'),0,0,0),'chuxiu-corridor-threshold-ramp');
+  const ramp=tag(kit.mesh(f,geo,kit.lib.material('stone_slab'),0,0,0),'chuxiu-corridor-threshold-ramp');
+  bindChuxiuCorridorRamp(kit,f,landing,ramp,side);
   kit.walkRamp(f,x0,x1,a,b,p.floorY,p.mainFloorY);
  }
  floor(p.innerEast,p.innerWest,408.61,p.innerSouth);
@@ -110,7 +113,7 @@ export function buildChuxiuCourtyard(kit,zone){
  for(const x of[p.outerEast,p.outerWest])box('chuxiu-corridor-outer-fascia','wood_column',x-.07,x+.07,p.outerSouth,p.roofEndZ,5.15,5.35);
  box('chuxiu-corridor-outer-fascia','wood_column',p.outerEast,p.outerWest,p.outerSouth-.07,p.outerSouth+.07,5.15,5.35);
  const posts=[];
- for(const x of[p.innerEast,p.innerWest])for(const z of[411.5,415,418.5,421,425])posts.push([x,z]);
+ for(const x of[p.innerEast,p.innerWest])for(const z of[411.5,415,418.5,421,425])posts.push([x,411.5+(z-411.5)*(420-411.5)/(425-411.5)]);
  // The broad central Tihe axis remains completely open.
  for(const x of[87.8,91,97,101.5])posts.push([x,p.innerSouth]);
  for(const[x,z]of posts){

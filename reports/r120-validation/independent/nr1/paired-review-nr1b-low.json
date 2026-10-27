@@ -1,0 +1,412 @@
+{
+  "generatedUtc": "2026-10-27T05:01:21.333514+00:00",
+  "quality": "low",
+  "candidateDirectoryPrefix": "nr1b",
+  "scriptSHA256": "5affe6f773739c1f6101eabcb61f5300a39d8298ae180cce3a8a501ab4947239",
+  "sources": [
+    "629149b309cd0161a09f359d1a4e8c343a499a2e4af06dd93e403ee77e5db881",
+    "8938de15545ac0fd46b7dfbde5a2d8c30e650ed130ecfbbb5cb8f7783cabfdcb"
+  ],
+  "trajectorySHA256": "f5a62143da377c3b2be5c9e0f22cc2d1792f306aa16de172cbc642008077a8d8",
+  "stages": [
+    {
+      "leg": "outbound",
+      "frames": 4308
+    },
+    {
+      "leg": "return",
+      "frames": 4308
+    }
+  ],
+  "primaryGate": true,
+  "everyPairCounterExceedances": [
+    "groups.inheritedPrefix.p95Ms",
+    "worldReadyMs",
+    "memory.ready.arrayBuffers"
+  ],
+  "metrics": {
+    "groups.newRoute.totalMs": {
+      "aaDeltas": [
+        -970.3739200000309,
+        -150.2288239999889,
+        1073.9357350001392,
+        101.95502500002385,
+        439.3229880000663
+      ],
+      "aaMaxAbsDelta": 1073.9357350001392,
+      "abDeltas": [
+        -2223.2796340000314,
+        -3441.986025000014,
+        -2312.8717640000477,
+        -2973.451272999928,
+        -3643.6800000000467
+      ],
+      "medianABDelta": -2973.451272999928,
+      "everyPairImproved": true,
+      "counterEveryPairWithinAANoise": true,
+      "counterMedianWithinAANoise": true
+    },
+    "groups.newRoute.p95Ms": {
+      "aaDeltas": [
+        -0.09083500000087952,
+        0.14304399999946327,
+        0.2624020000002929,
+        0.27166699999906996,
+        0.06894400000055612
+      ],
+      "aaMaxAbsDelta": 0.27166699999906996,
+      "abDeltas": [
+        -1.0881630000003497,
+        -1.4489549999998417,
+        -1.1499770000000353,
+        -1.2472719999996116,
+        -1.2676700000001802
+      ],
+      "medianABDelta": -1.2472719999996116,
+      "everyPairImproved": true,
+      "counterEveryPairWithinAANoise": true,
+      "counterMedianWithinAANoise": true
+    },
+    "groups.newRoute.p99Ms": {
+      "aaDeltas": [
+        -4.417074999999386,
+        -1.0028760000022885,
+        4.964979999999741,
+        -0.9673930000008113,
+        1.6327890000011394
+      ],
+      "aaMaxAbsDelta": 4.964979999999741,
+      "abDeltas": [
+        -10.497699000000466,
+        -15.562487999999576,
+        -10.20767700000033,
+        -13.500780000000304,
+        -16.32328300000063
+      ],
+      "medianABDelta": -13.500780000000304,
+      "everyPairImproved": true,
+      "counterEveryPairWithinAANoise": true,
+      "counterMedianWithinAANoise": true
+    },
+    "groups.newRoute.maxMs": {
+      "aaDeltas": [
+        -11.276136000000406,
+        1.6532699999988836,
+        20.268730999998297,
+        5.106602000000748,
+        12.22121000000061
+      ],
+      "aaMaxAbsDelta": 20.268730999998297,
+      "abDeltas": [
+        -13.034797000000253,
+        -29.30771900000127,
+        -17.09051399999953,
+        -17.88507899999877,
+        -33.42447099999936
+      ],
+      "medianABDelta": -17.88507899999877,
+      "everyPairImproved": true,
+      "counterEveryPairWithinAANoise": true,
+      "counterMedianWithinAANoise": true
+    },
+    "groups.inheritedPrefix.p95Ms": {
+      "aaDeltas": [
+        0.010726999999860709,
+        -0.014873000000079628,
+        0.028351999999358668,
+        0.011287000000265834,
+        0.026159000000006927
+      ],
+      "aaMaxAbsDelta": 0.028351999999358668,
+      "abDeltas": [
+        0.0052779999996346305,
+        -0.08581899999899179,
+        0.07261899999957677,
+        -0.003230999999686901,
+        -0.08637199999975564
+      ],
+      "medianABDelta": -0.003230999999686901,
+      "everyPairImproved": false,
+      "counterEveryPairWithinAANoise": false,
+      "counterMedianWithinAANoise": true
+    },
+    "groups.inheritedPrefix.p99Ms": {
+      "aaDeltas": [
+        0.014742000000296684,
+        -0.03490299999975832,
+        0.3643680000004679,
+        0.16219400000136375,
+        -0.01577499999984866
+      ],
+      "aaMaxAbsDelta": 0.3643680000004679,
+      "abDeltas": [
+        -0.019048999999540683,
+        -0.18550900000082038,
+        0.10970400000041991,
+        0.00665000000026339,
+        -0.008209000000533706
+      ],
+      "medianABDelta": -0.008209000000533706,
+      "everyPairImproved": false,
+      "counterEveryPairWithinAANoise": true,
+      "counterMedianWithinAANoise": true
+    },
+    "groups.inheritedPrefix.maxMs": {
+      "aaDeltas": [
+        2.2460449999998673,
+        -0.2911789999998291,
+        1.6555529999995997,
+        1.431706999999733,
+        -0.44528900000113936
+      ],
+      "aaMaxAbsDelta": 2.2460449999998673,
+      "abDeltas": [
+        -0.5600990000002639,
+        -5.553200999999717,
+        0.9714519999997719,
+        0.8530060000002777,
+        -1.3185600000006161
+      ],
+      "medianABDelta": -0.5600990000002639,
+      "everyPairImproved": false,
+      "counterEveryPairWithinAANoise": true,
+      "counterMedianWithinAANoise": true
+    },
+    "groups.inheritedPrefix.totalMs": {
+      "aaDeltas": [
+        6.271598000003905,
+        4.159920000008242,
+        9.639573999978893,
+        22.7691149999946,
+        11.08099599995603
+      ],
+      "aaMaxAbsDelta": 22.7691149999946,
+      "abDeltas": [
+        17.244371999961004,
+        -32.20595899997534,
+        15.406162999980552,
+        -1.397309999965728,
+        -29.5582469999963
+      ],
+      "medianABDelta": -1.397309999965728,
+      "everyPairImproved": false,
+      "counterEveryPairWithinAANoise": true,
+      "counterMedianWithinAANoise": true
+    },
+    "constructionMs": {
+      "aaDeltas": [
+        0.9833060000000842,
+        22.800402999999278,
+        25.020191000000523,
+        21.494714999999815,
+        -13.727630000000318
+      ],
+      "aaMaxAbsDelta": 25.020191000000523,
+      "abDeltas": [
+        -34.05816800000048,
+        -64.82807400000092,
+        -90.76695099999961,
+        -72.91121799999928,
+        -42.21595999999954
+      ],
+      "medianABDelta": -64.82807400000092,
+      "everyPairImproved": true,
+      "counterEveryPairWithinAANoise": true,
+      "counterMedianWithinAANoise": true
+    },
+    "worldReadyMs": {
+      "aaDeltas": [
+        31.82072700000026,
+        181.63975000000028,
+        -134.8807509999997,
+        -210.6885659999998,
+        68.57867299999998
+      ],
+      "aaMaxAbsDelta": 210.6885659999998,
+      "abDeltas": [
+        374.957985,
+        -113.60619499999939,
+        -488.1404769999999,
+        -25.727904999999737,
+        -399.9230459999999
+      ],
+      "medianABDelta": -113.60619499999939,
+      "everyPairImproved": false,
+      "counterEveryPairWithinAANoise": false,
+      "counterMedianWithinAANoise": true
+    },
+    "memory.maxRssKiB": {
+      "aaDeltas": [
+        66676,
+        81200,
+        -50840,
+        21356,
+        -20504
+      ],
+      "aaMaxAbsDelta": 81200,
+      "abDeltas": [
+        -65328,
+        31520,
+        -61664,
+        -19276,
+        -54780
+      ],
+      "medianABDelta": -54780,
+      "everyPairImproved": false,
+      "counterEveryPairWithinAANoise": true,
+      "counterMedianWithinAANoise": true
+    },
+    "memory.ready.heapUsed": {
+      "aaDeltas": [
+        39911632,
+        67893944,
+        -60369232,
+        -9163904,
+        33772584
+      ],
+      "aaMaxAbsDelta": 67893944,
+      "abDeltas": [
+        -61598904,
+        51844784,
+        -91649136,
+        -6317880,
+        -49527608
+      ],
+      "medianABDelta": -49527608,
+      "everyPairImproved": false,
+      "counterEveryPairWithinAANoise": true,
+      "counterMedianWithinAANoise": true
+    },
+    "memory.ready.external": {
+      "aaDeltas": [
+        28529512,
+        38230229,
+        -74169801,
+        2001024,
+        0
+      ],
+      "aaMaxAbsDelta": 74169801,
+      "abDeltas": [
+        -64696613,
+        30722776,
+        -30591256,
+        -2001024,
+        0
+      ],
+      "medianABDelta": -2001024,
+      "everyPairImproved": false,
+      "counterEveryPairWithinAANoise": true,
+      "counterMedianWithinAANoise": true
+    },
+    "memory.ready.arrayBuffers": {
+      "aaDeltas": [
+        28529512,
+        38230229,
+        -74169801,
+        2001024,
+        0
+      ],
+      "aaMaxAbsDelta": 74169801,
+      "abDeltas": [
+        -64696613,
+        75370196,
+        -30591256,
+        -2001024,
+        0
+      ],
+      "medianABDelta": -2001024,
+      "everyPairImproved": false,
+      "counterEveryPairWithinAANoise": false,
+      "counterMedianWithinAANoise": true
+    }
+  },
+  "manifest": {
+    "reports/r120-performance/aa-low/1-a.json": {
+      "bytes": 462758,
+      "sha256": "b0cddfb7da4f59f49e0e90005df3cdc9d93426362f80ef7e933211c088c00655"
+    },
+    "reports/r120-performance/aa-low/1-b.json": {
+      "bytes": 462993,
+      "sha256": "c39bef4dd80a30e6498d9dc1a87e47c4890f99d396cfefe8ef97728fc19f120b"
+    },
+    "reports/r120-performance/aa-low/2-a.json": {
+      "bytes": 462924,
+      "sha256": "5d7a1d00e6049e3a3d2a777c832d2e150670c425bcd8d8fd863a6fc145c4bb6a"
+    },
+    "reports/r120-performance/aa-low/2-b.json": {
+      "bytes": 462429,
+      "sha256": "7ad0b92cdf284456e9b1abba35a390f3bf54f81243b3c614653e521b6bf80b94"
+    },
+    "reports/r120-performance/aa-low/3-a.json": {
+      "bytes": 463093,
+      "sha256": "26bb7c6fa1b9770325770849472ebe9e2fe61e3164d7ba2ea70ccf8166342107"
+    },
+    "reports/r120-performance/aa-low/3-b.json": {
+      "bytes": 462991,
+      "sha256": "d8ebf51eb93f11afa8157ce298e0d0e037b4005fc8879fb6065d8e4163c149a3"
+    },
+    "reports/r120-performance/aa-low/4-a.json": {
+      "bytes": 463207,
+      "sha256": "ebb3115bb0f99d9ecf7c1ddbc82e0ced7c1c4f14b65316f0d965f89e14bc7547"
+    },
+    "reports/r120-performance/aa-low/4-b.json": {
+      "bytes": 462717,
+      "sha256": "7688ceb3f617e0bf06eb33d804361e3e64f66aa2f454d65a76c60308597c8c1d"
+    },
+    "reports/r120-performance/aa-low/5-a.json": {
+      "bytes": 463320,
+      "sha256": "afaf08f3f44987db42c38abf841fea46c206169edd71cf5ec35f991b7d1db870"
+    },
+    "reports/r120-performance/aa-low/5-b.json": {
+      "bytes": 462983,
+      "sha256": "f65f643536383e1c6fbb3f09a26bd82994bbd1cdb16589a4490f684a6d68263f"
+    },
+    "reports/r120-performance/nr1b-low/1-a.json": {
+      "bytes": 463068,
+      "sha256": "e52448f5358a2d09d7087977dbdfb9d6cd7ae5e4e7af1e99b4da2463ab3eea8c"
+    },
+    "reports/r120-performance/nr1b-low/1-b.json": {
+      "bytes": 463497,
+      "sha256": "5ed96ef523171a43a919cfce3c365594b527f170b859934aba5aafa889136979"
+    },
+    "reports/r120-performance/nr1b-low/2-a.json": {
+      "bytes": 462649,
+      "sha256": "e911de4e4cf8bd079b98964114174df3d09f75fd39d51ac8c576ee8fd064d455"
+    },
+    "reports/r120-performance/nr1b-low/2-b.json": {
+      "bytes": 463884,
+      "sha256": "a79855aed556b43dbc70999b9ca92b6dad56a09bfaa7726d7f82a717f8715e5f"
+    },
+    "reports/r120-performance/nr1b-low/3-a.json": {
+      "bytes": 463068,
+      "sha256": "e56b84966d8812d627dfc6b7ceeaefdfd9d0b3725ca48766aad2fd89037a23fb"
+    },
+    "reports/r120-performance/nr1b-low/3-b.json": {
+      "bytes": 464056,
+      "sha256": "c8442054d47e75d6e8cb868db67a2317d370d28b857cf5097eeeaac8d5cb5d95"
+    },
+    "reports/r120-performance/nr1b-low/4-a.json": {
+      "bytes": 462643,
+      "sha256": "0bd2362167116e5b5b2eaafc3ff029da7594054747428efe067ac49c1211d060"
+    },
+    "reports/r120-performance/nr1b-low/4-b.json": {
+      "bytes": 463613,
+      "sha256": "93eac5bab1e48f1238c0a38602df7391d548a2cc999ebcc0d9fdedb097a6a7bb"
+    },
+    "reports/r120-performance/nr1b-low/5-a.json": {
+      "bytes": 462666,
+      "sha256": "9cb45a5050c722d3cfc951f75bb3ac520114db996876dbd8dce6287507fd4d20"
+    },
+    "reports/r120-performance/nr1b-low/5-b.json": {
+      "bytes": 464129,
+      "sha256": "37a7248cf64f37533d37db48e163988a834132917bd00fa7b9a4d37396dd7312"
+    }
+  },
+  "limits": [
+    "No samples excluded; all 5 fresh AA and AB pairs read.",
+    "Counter every-pair and median interpretations both exposed, not retroactively selecting the easier one.",
+    "memory.ready is historical name for end-route boundary, not initial ready.",
+    "Raw instrument driver SHA was not embedded by routine-process; product fingerprints are bound.",
+    "No GPU/wholeframe/mobile or unrelated route claim."
+  ]
+}

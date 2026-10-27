@@ -1,0 +1,108 @@
+{
+  "status": "PASS_RECORDED_STARTUP_BINDING_AND_READINESS",
+  "runtime": "ba885f34073e6fde52f2ee6cb59d2225190173ae7fc5bb0c3d966bf9dace9073",
+  "runtimeInputCount": 571,
+  "qualities": {
+    "low": {
+      "raw": "r126-chengqian-arrival-major/reports/r126-chengqian/startup/low.json",
+      "sha256": "49c2892f63449e4f0f378b464d74f3afa6738e665823def02a86a5c05a59fa4d",
+      "commit": "76f0e76d696cb001f6f35c32ba9e24ae11075e0b",
+      "tree": "b0acc50610545d35bc262cd9a3f3b4c082bfcd76",
+      "boundRuntimeFiles": 431,
+      "fullCurrentInputEqualsCheckpoint": true,
+      "textureQuality": "sd",
+      "setupCpuMs": 7079.971071,
+      "allReadyCpuMs": 7087.306891,
+      "threePaintsReady": true,
+      "pending": 0,
+      "errors": 0,
+      "firstEntryMs": [
+        63.933513,
+        111.303909
+      ],
+      "firstEntryBuildCounts": [
+        [
+          7,
+          7
+        ],
+        [
+          7,
+          7
+        ]
+      ],
+      "returnRangeMs": [
+        903.34441,
+        1510.450523
+      ],
+      "ttlExpiryMs": 2246.483579,
+      "resources": {
+        "arrayBufferBytes": 182561342,
+        "arrayBufferCount": 104079,
+        "textureCount": 110,
+        "knownTextureEstimatedBytes": 42983468
+      },
+      "unknownTextureCount": 59,
+      "NOT_RUN": [
+        "GPU renderer/shader/upload/IBL",
+        "browser/network loading",
+        "mobile device",
+        "character first submitted instance (separate scenario pending)",
+        "UI and postprocessing readiness"
+      ]
+    },
+    "high": {
+      "raw": "r126-chengqian-arrival-major/reports/r126-chengqian/startup/high.json",
+      "sha256": "ccb59959eca59ab8d83821a69d7120a5076fe8cc4aa449e2f740966a3d7d4f92",
+      "commit": "76f0e76d696cb001f6f35c32ba9e24ae11075e0b",
+      "tree": "b0acc50610545d35bc262cd9a3f3b4c082bfcd76",
+      "boundRuntimeFiles": 431,
+      "fullCurrentInputEqualsCheckpoint": true,
+      "textureQuality": "hd",
+      "setupCpuMs": 7072.473485,
+      "allReadyCpuMs": 7079.012536,
+      "threePaintsReady": true,
+      "pending": 0,
+      "errors": 0,
+      "firstEntryMs": [
+        147.243832,
+        138.491179
+      ],
+      "firstEntryBuildCounts": [
+        [
+          7,
+          7
+        ],
+        [
+          7,
+          7
+        ]
+      ],
+      "returnRangeMs": [
+        972.573382,
+        1704.7237
+      ],
+      "ttlExpiryMs": 2210.075658,
+      "resources": {
+        "arrayBufferBytes": 185219774,
+        "arrayBufferCount": 104079,
+        "textureCount": 110,
+        "knownTextureEstimatedBytes": 160707791
+      },
+      "unknownTextureCount": 59,
+      "NOT_RUN": [
+        "GPU renderer/shader/upload/IBL",
+        "browser/network loading",
+        "mobile device",
+        "character first submitted instance (separate scenario pending)",
+        "UI and postprocessing readiness"
+      ]
+    }
+  },
+  "limits": [
+    "One fresh sample per quality; not paired speed comparison.",
+    "Teleport setup is not FPS/continuous walk; ordinary returns and TTL expiry are separate.",
+    "Inventory covers explicitly supplied reachable ownership roots; not all private character pools, heap/native/GPU/VRAM.",
+    "Resource inventory/after-dispose snapshots occur after entry exercise; not the pre-entry allReady boundary.",
+    "Tracked clean enforced by driver at76f0 checkpoint; later report/doc dirt is not reported as clean runtime change."
+  ]
+}

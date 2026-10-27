@@ -1,0 +1,30 @@
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 224 个 mapItem
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 卸载区域 west-six
+✖ shared resting slots bind the actual northwest merged surface, never the eastern game bed or daytime kang (6783.842444ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7182.353213
+
+✖ failing tests:
+
+test at tests/r118/chuxiu-northwest-bed.test.mjs:2:1
+✖ shared resting slots bind the actual northwest merged surface, never the eastern game bed or daytime kang (6783.842444ms)
+  AssertionError [ERR_ASSERTION]: equal-valued same-count source replacement has a new identity
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r118-chuxiu-shared-rest/tests/r118/chuxiu-northwest-bed.test.mjs:2:963)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'a652ef78-d9af-43cd-b0bd-89341b98f148:42c6170b-c5b6-4da2-ac1f-ea88e7f97c8a:0:-1',
+    expected: 'a652ef78-d9af-43cd-b0bd-89341b98f148:42c6170b-c5b6-4da2-ac1f-ea88e7f97c8a:0:-1',
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }

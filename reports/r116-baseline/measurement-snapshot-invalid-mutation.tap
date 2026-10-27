@@ -1,0 +1,66 @@
+✔ independent same-value worlds compare exact despite UUIDs (6.286085ms)
+✖ real attribute/world transform/texture pixel/filter/physics changes cannot pass equivalence (12.156959ms)
+✔ cached inactive geometry participates, not just currently visible scene (3.150066ms)
+✔ nearest-rank retains tail and refuses invalid samples (3.803747ms)
+✔ retained backing buffers deduplicate aliases but count complete allocation (0.715193ms)
+✔ unknown texture stays explicitly unknown; shared texture only counted once (0.423736ms)
+✔ explicit absolute root and tracked clean source are required (70.377565ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 176.378785
+
+✖ failing tests:
+
+test at tests/r120-performance/equivalence.test.mjs:5:1
+✖ real attribute/world transform/texture pixel/filter/physics changes cannot pass equivalence (12.156959ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" not to be strictly deep-equal to:
+  
+  {
+    actors: null,
+    metadata: {
+      sha256: 'a9d5c34155be3cfe4d8cdc176b4f2c050f3dad99164ba3feb866d7c39b32c5f7'
+    },
+    physics: {
+      colliders: 1,
+      sha256: 'beba3a012c089b34078ed1d5cec2d5df2fe2b76ef0a8c17ec173218908893613',
+      walkables: 0
+    },
+    render: {
+      objects: 2,
+      sha256: '864175eed1ed20d8f8cb589899b32c5ab3682371efdf856fce772cc2ad8633ee',
+      textures: [
+        'f49f55827ecb8124dbeb28368f986a4adeb6a4f5f21b3a53282f5d4c118e7174'
+      ],
+      unknownTextures: 0
+    },
+    resources: {
+      arrayBufferBytes: 844,
+      arrayBufferCount: 5,
+      knownTextureEstimatedBytes: 4,
+      meaning: 'CPU ArrayBuffer retention plus separate RGBA8+mip upload estimate; native images, JS overhead and GPU allocations are not measured',
+      objectCount: 104,
+      textureCount: 1,
+      unknownTextures: []
+    },
+    scope: 'actual rendered attributes/world matrices/material pixels plus all active collision records; not GPU rendering or character simulation'
+  }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r116-startup-performance/tests/r120-performance/equivalence.test.mjs:5:448)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { render: { objects: 2, sha256: '864175eed1ed20d8f8cb589899b32c5ab3682371efdf856fce772cc2ad8633ee', textures: [Array], unknownTextures: 0 }, physics: { sha256: 'beba3a012c089b34078ed1d5cec2d5df2fe2b76ef0a8c17ec173218908893613', colliders: 1, walkables: 0 }, metadata: { sha256: 'a9d5c34155be3cfe4d8cdc176b4f2c050f3dad99164ba3feb866d7c39b32c5f7' }, actors: null, resources: { arrayBufferBytes: 844, arrayBufferCount: 5, textureCount: 1, knownTextureEstimatedBytes: 4, unknownTextures: [], objectCount: 104, meaning: 'CPU ArrayBuffer retention plus separate RGBA8+mip upload estimate; native images, JS overhead and GPU allocations are not measured' }, scope: 'actual rendered attributes/world matrices/material pixels plus all active collision records; not GPU rendering or character simulation' },
+    expected: { render: { objects: 2, sha256: '864175eed1ed20d8f8cb589899b32c5ab3682371efdf856fce772cc2ad8633ee', textures: [Array], unknownTextures: 0 }, physics: { sha256: 'beba3a012c089b34078ed1d5cec2d5df2fe2b76ef0a8c17ec173218908893613', colliders: 1, walkables: 0 }, metadata: { sha256: 'a9d5c34155be3cfe4d8cdc176b4f2c050f3dad99164ba3feb866d7c39b32c5f7' }, actors: null, resources: { arrayBufferBytes: 844, arrayBufferCount: 5, textureCount: 1, knownTextureEstimatedBytes: 4, unknownTextures: [], objectCount: 104, meaning: 'CPU ArrayBuffer retention plus separate RGBA8+mip upload estimate; native images, JS overhead and GPU allocations are not measured' }, scope: 'actual rendered attributes/world matrices/material pixels plus all active collision records; not GPU rendering or character simulation' },
+    operator: 'notDeepStrictEqual',
+    diff: 'simple'
+  }

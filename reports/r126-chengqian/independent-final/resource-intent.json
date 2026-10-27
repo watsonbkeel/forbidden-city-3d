@@ -1,0 +1,41 @@
+{
+  "status": "INTENTIONAL_ADDITION_CONFLICT_NOT_ALL_GREEN",
+  "counts": {
+    "tests": 41,
+    "pass": 40,
+    "fail": 1,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "failureNames": [
+    "rear accepted quality scope preserves high and physical contracts"
+  ],
+  "oldRear": {
+    "triangles": 3424,
+    "bytes": 298456,
+    "hash": "c9f1509d18c315e723229414c56e4a5f55f02b9ab6f74779895e4f69fa824953"
+  },
+  "actualBytesFromTAP": 302296,
+  "byteDelta": 3840,
+  "actualHashFromTAP": "9c8842418fba76f8ee6bf751c5a608c844a173d7bfff55d5494170f0e0ef5db2",
+  "interpretation": "First high full-snapshot assert detects approved40 stair/cheek triangles +7rear source colliders/+2walkables. Byte delta3840 equals40*3*32. Not runtime TypeError.",
+  "assertionsNotReached": [
+    "low triangles < high*.95",
+    "low bytes < high",
+    "low/high physical, walkable, map, rooms exact"
+  ],
+  "requiredSuccessor": "Fresh real-library targeted high/low retained geometry/physics/quality check; old expected stays unchanged.",
+  "inputSHA": {
+    "r126-chengqian-arrival-major/reports/r126-chengqian/gates/resources-final.tap": "2f29b5b727dedcb4e7be74e8ef4473e3c6f766967636c8d41b4866fb981dab4e",
+    "r126-chengqian-arrival-major/tests/r106-model-quality.test.mjs": "c98e1b8f2c007cff21a2602043682baa8d646625de80be335c2d1d541753dc85",
+    "r126-chengqian-arrival-major/tests/fixtures/r106/model-high.json.gz": "98fccd9f83c331e98c62e9e8c411ca632730faf9bf16e16e2477fa990e88107b"
+  },
+  "successorTerminal": {
+    "path": "r126-chengqian-arrival-major/reports/r126-chengqian/gates/r126-quality-successor-final.tap",
+    "tests": 8,
+    "pass": 8,
+    "fail": 0,
+    "sha256": "fda60d383be62b9b5c1f8eaabd4d83918be1e2d8612ab874a8590f0692b04af3",
+    "testSourceSHA256": "ed910c72c16a8e23ad1b5989ffdd170410f209c41342a746fd2b272e370f3faf"
+  }
+}

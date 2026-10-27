@@ -1,0 +1,65 @@
+TAP version 13
+# Subtest: R125 finite entry admits only its two registered scopes without changing ordinary solver rules
+not ok 1 - R125 finite entry admits only its two registered scopes without changing ordinary solver rules
+  ---
+  duration_ms: 1.654358
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r125-chengqian-rear-court/tests/r125/finite-entry.test.mjs:2:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Got unwanted exception.
+    Actual message: "Furniture scope requires finite ordered ordinary-box ownership"
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  actual:
+  error: 'Furniture scope requires finite ordered ordinary-box ownership'
+  name: 'TypeError'
+  stack: |-
+    cloneFurnitureMotionScope (file:///workspace/scratch/02a8023d1a85/r125-chengqian-rear-court/src/controls/FurnitureMotion.js:61:1136)
+    file:///workspace/scratch/02a8023d1a85/r125-chengqian-rear-court/tests/r125/finite-entry.test.mjs:2:371
+    getActual (node:assert:611:5)
+    strict.doesNotThrow (node:assert:779:32)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r125-chengqian-rear-court/tests/r125/finite-entry.test.mjs:2:354)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  operator: 'doesNotThrow'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r125-chengqian-rear-court/tests/r125/finite-entry.test.mjs:2:354)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: R125 actual slab binding rejects unknown/incorrect source and height
+not ok 2 - R125 actual slab binding rejects unknown/incorrect source and height
+  ---
+  duration_ms: 0.702575
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r125-chengqian-rear-court/tests/r125/finite-entry.test.mjs:3:1'
+  failureType: 'testCodeFailure'
+  error: 'dedicated actual-source binding required'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r125-chengqian-rear-court/tests/r125/finite-entry.test.mjs:3:171)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 0
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 132.091832

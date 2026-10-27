@@ -1,0 +1,70 @@
+{
+  "group": "motion",
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "tests/r109-stair-contact.test.mjs",
+    "tests/r109-stair-domain-handoff.test.mjs",
+    "tests/r109-stair-lifecycle.test.mjs",
+    "tests/r112/arrival-assemblies.test.mjs",
+    "tests/r112/display-surfaces.test.mjs",
+    "tests/r112/floor-source.test.mjs",
+    "tests/r113/lijing-contact.test.mjs",
+    "tests/r113/lijing-room.test.mjs",
+    "tests/r113/side-access-fit.test.mjs",
+    "tests/r113/side-contact.test.mjs",
+    "tests/r114/environment-handoff.test.mjs",
+    "tests/r114/environment-vertical.test.mjs",
+    "tests/r114/flight-source.test.mjs",
+    "tests/r114/group-source.test.mjs",
+    "tests/r114/source-atomic.test.mjs",
+    "tests/r114/west-wing-fit.test.mjs",
+    "tests/r114/wing-entry.test.mjs",
+    "tests/r114/wing-platform-source.test.mjs",
+    "tests/r96-movement/composed-motion.test.mjs",
+    "tests/r96-movement/contact-sweep.test.mjs",
+    "tests/r96-movement/controller.test.mjs",
+    "tests/r96-movement/dynamic-body.test.mjs",
+    "tests/r96-movement/lifecycle.test.mjs",
+    "tests/r96-movement/production-scope.test.mjs",
+    "tests/r96-movement/reachable-kang.test.mjs",
+    "tests/r96-movement/substep-feet.test.mjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "durationMs": 16685.044373,
+  "beforeSourceFingerprint": "a20989ae9a74d6d2deb686bf1e76b6fc8d33b8f599918b66d8e5816cabd90333",
+  "afterSourceFingerprint": "a20989ae9a74d6d2deb686bf1e76b6fc8d33b8f599918b66d8e5816cabd90333",
+  "sourceUnchanged": true,
+  "expectedContract": "MUST_PASS",
+  "error": null
+}
+      x: 9.725207735239223,
+      z: -5.689941716015653,
+      feet: 0.6,
+      ground: 0.6,
+      air: false,
+      onSupport: true
+    },
+    firstVerticalOverlap: null,
+    distance: 4.820942472859656,
+    engineCollision: false
+  }
+]
+✔ reachable east kang ordinary south descent stays collision-free B/10 (0.76648ms)
+✔ reachable east kang ordinary south descent stays collision-free B/30 (0.13317ms)
+✔ reachable east kang ordinary south descent stays collision-free B/60 (0.076805ms)
+✔ reachable east kang ordinary south descent stays collision-free S/10 (0.067792ms)
+✔ reachable east kang ordinary south descent stays collision-free S/30 (0.131378ms)
+✔ reachable east kang ordinary south descent stays collision-free S/60 (0.075192ms)
+✔ a later plain substep retains the exact foot lift already accepted in the same horizontal call (2.866333ms)
+ℹ tests 90
+ℹ suites 0
+ℹ pass 90
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16565.306472
+

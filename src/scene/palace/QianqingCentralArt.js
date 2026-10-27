@@ -13,7 +13,7 @@ export function qianqingCentralMaterial(b){
  cell(0,()=>{c.save();c.scale(.75,1);oldPanel();c.restore();c.save();c.translate(192,0);c.scale(.25,1);oldPanel();c.restore();});
  cell(1,()=>{fill('#315564');c.fillStyle='#777c72';c.fillRect(0,0,256,56);c.fillStyle='#ba9d57';c.fillRect(0,64,256,9);c.fillRect(0,239,256,9);c.strokeStyle='#c3a762';c.lineWidth=6;for(let x=30;x<250;x+=62)scroll(x,159,24);});
  cell(2,()=>{fill('#913a31');c.strokeStyle='#bb9d60';c.lineWidth=4;c.strokeRect(4,5,248,246);c.strokeRect(12,13,232,230);for(let y=52;y<235;y+=76)for(let x=36;x<250;x+=63)scroll(x,y,25);});
- cell(3,()=>{fill('#635a41');c.fillStyle='#af9560';c.fillRect(7,7,242,242);c.fillStyle='#b7a77c';c.fillRect(13,13,230,230);c.fillStyle='#1e2528';c.fillRect(21,25,214,206);c.fillStyle='#d4c297';c.save();c.scale(1.25/3.8,1);c.font='bold 147px "STKaiti","KaiTi","Kaiti SC","Songti SC","SimSun",serif';c.textAlign='center';c.textBaseline='middle';[...'明光大正'].forEach((ch,i)=>c.fillText(ch,(48+i*53)/(1.25/3.8),131));c.restore();});
+ cell(3,()=>{fill('#635a41');c.fillStyle='#af9560';c.fillRect(7,7,242,242);c.fillStyle='#b7a77c';c.fillRect(13,13,230,230);c.fillStyle='#1e2528';c.fillRect(21,25,214,206);c.fillStyle='#d4c297';c.save();c.scale(1.30/4.5,1);c.font='bold 147px "STKaiti","KaiTi","Kaiti SC","Songti SC","SimSun",serif';c.textAlign='center';c.textBaseline='middle';[...'明光大正'].forEach((ch,i)=>c.fillText(ch,(48+i*53)/(1.30/4.5),131));c.restore();});
  ['#c3a365','#87362e','#282927'].forEach((s,i)=>cell(4+i,()=>fill(s)));
  cell(7,()=>{fill('#d4cba9');
   // The official view shows a light cover, a dark top and two hanging bands.

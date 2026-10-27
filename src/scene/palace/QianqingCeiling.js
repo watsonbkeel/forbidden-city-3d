@@ -19,6 +19,15 @@ export function installQianqingCeiling(b,hall){
  const add=(w,d,x,z)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,p.depth,d),frame);m.position.set(x,-p.depth/2,z);m.castShadow=m.receiveShadow=true;raw.add(m);};
  for(let i=0;i<=p.nx;i++)add(.055,p.d,-p.w/2+i*p.w/p.nx,0);
  for(let i=0;i<=p.nz;i++)add(p.w,.055,0,-p.d/2+i*p.d/p.nz);
+ // R120: four shallow reveals per EXISTING cell. The old batten depth,
+ // panel datum, map, cell count and far plane remain unchanged; no caisson.
+ const points=[],cw=p.w/p.nx,cd=p.d/p.nz;
+ for(let ix=0;ix<p.nx;ix++)for(let iz=0;iz<p.nz;iz++){
+  const x=-p.w/2+(ix+.5)*cw,z=-p.d/2+(iz+.5)*cd;
+  const outer=[[-cw/2+.0275,-cd/2+.0275],[cw/2-.0275,-cd/2+.0275],[cw/2-.0275,cd/2-.0275],[-cw/2+.0275,cd/2-.0275]],inner=outer.map(([a,b])=>[a-Math.sign(a)*.075,b-Math.sign(b)*.075]);
+  for(let k=0;k<4;k++){const j=(k+1)%4,a=[x+outer[k][0],-.08,z+outer[k][1]],b=[x+outer[j][0],-.08,z+outer[j][1]],c=[x+inner[j][0],0,z+inner[j][1]],d=[x+inner[k][0],0,z+inner[k][1]];points.push(...a,...b,...c,...a,...c,...d);}
+ }
+ const reveal=new THREE.BufferGeometry();reveal.setAttribute('position',new THREE.Float32BufferAttribute(points,3));reveal.computeVertexNormals();const reveals=new THREE.Mesh(reveal,frame);reveals.name='qianqing-coffer-shallow-reveals';reveals.castShadow=reveals.receiveShadow=true;raw.add(reveals);
  const near=mergeByMaterial(raw,{name:p.id}),far=new THREE.Group();far.name='qianqing-ceiling-far';
  // The same panel texture preserves every cell at distance. Only the 55 mm
  // projecting grid battens are omitted after they become subpixel details.

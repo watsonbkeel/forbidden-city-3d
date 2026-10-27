@@ -1,0 +1,77 @@
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 224 个 mapItem
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+{
+  "scope": "One actual streamed CPU world; complete outbound + return at 60 Hz, two routine updates only. Not GPU, whole frame or mobile.",
+  "sourceBefore": "a20989ae9a74d6d2deb686bf1e76b6fc8d33b8f599918b66d8e5816cabd90333",
+  "sourceAfter": "a20989ae9a74d6d2deb686bf1e76b6fc8d33b8f599918b66d8e5816cabd90333",
+  "sourceUnchanged": true,
+  "status": "ready",
+  "constructionMs": 451.87372700000014,
+  "navigation": {
+    "colliders": 703,
+    "walkables": 106,
+    "numericBytesEstimate": 122656,
+    "buildMs": 447.87556499999937
+  },
+  "surfaces": {
+    "triangles": 1331,
+    "ownedNumericScalars": 34606,
+    "scalarBytesAtFloat64": 276848,
+    "cells": 796,
+    "cellRowReferences": 5737,
+    "globalRowReferences": 30,
+    "excludes": "JS objects/arrays/maps/WeakRef overhead; not heap bytes or peak RSS"
+  },
+  "stages": [
+    {
+      "leg": "outbound",
+      "frames": 4308,
+      "simulatedSeconds": 71.8
+    },
+    {
+      "leg": "return",
+      "frames": 4308,
+      "simulatedSeconds": 71.8
+    }
+  ],
+  "groups": {
+    "outbound": {
+      "count": 4308,
+      "p50Ms": 0.10124200000063865,
+      "p95Ms": 1.795154999999795,
+      "maxMs": 13.697371000000203,
+      "totalMs": 1314.0143810000354
+    },
+    "return": {
+      "count": 4308,
+      "p50Ms": 0.10156300000016927,
+      "p95Ms": 1.8171080000010988,
+      "maxMs": 9.472719999999754,
+      "totalMs": 1228.360151999952
+    },
+    "inheritedPrefix": {
+      "count": 1149,
+      "p50Ms": 0.1376170000003185,
+      "p95Ms": 0.3989789999995992,
+      "maxMs": 13.697371000000203,
+      "totalMs": 216.54569800001354
+    },
+    "newRoute": {
+      "count": 7466,
+      "p50Ms": 0.0977069999989908,
+      "p95Ms": 1.983806999999615,
+      "maxMs": 10.413641999999527,
+      "totalMs": 2325.5395109999727
+    },
+    "sleeping": {
+      "count": 1,
+      "p50Ms": 0.2893240000012156,
+      "p95Ms": 0.2893240000012156,
+      "maxMs": 0.2893240000012156,
+      "totalMs": 0.2893240000012156
+    }
+  }
+}
+[ZoneManager] 卸载区域 axis-courts

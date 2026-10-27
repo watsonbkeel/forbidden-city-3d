@@ -1,0 +1,9 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const path=new URL('../../scripts/r120-performance/measurement.mjs',import.meta.url);
+async function api(){assert.ok(fs.existsSync(path),'measurement API must exist');return import(path.href);}
+test('nearest-rank retains tail and refuses invalid samples',async()=>{const {distribution}=await api();assert.deepEqual(distribution([1,2,3,4,100]),{count:5,p50:3,p95:100,p99:100,max:100,min:1});assert.throws(()=>distribution([]));assert.throws(()=>distribution([NaN]));});
+test('retained backing buffers deduplicate aliases but count complete allocation',async()=>{const {resourceInventory}=await api();const b=new ArrayBuffer(128),a=new Float32Array(b,16,4);const v=resourceInventory([{attributes:{position:{array:a},normal:{array:new Uint8Array(b,0,8)}}},{same:a}]);assert.equal(v.arrayBufferBytes,128);assert.equal(v.arrayBufferCount,1);});
+test('unknown texture stays explicitly unknown; shared texture only counted once',async()=>{const {resourceInventory}=await api();const t={isTexture:true,image:{width:4,height:8},type:1009,generateMipmaps:true},u={isTexture:true,image:{}};const v=resourceInventory([{map:t},{map:t},{map:u}]);assert.equal(v.textureCount,2);assert.equal(v.knownTextureEstimatedBytes,Math.ceil(4*8*4*4/3));assert.equal(v.unknownTextures.length,1);});
+test('explicit absolute root and tracked clean source are required',async()=>{const {bindRoot}=await api();assert.throws(()=>bindRoot('relative'));assert.throws(()=>bindRoot('/tmp/no-such-r116-root'));const root=new URL('../..',import.meta.url).pathname;const bound=bindRoot(root);assert.ok(bound.runtimeFiles.some(f=>f.path==='main.js'));assert.equal(new Set(bound.runtimeFiles.map(f=>f.path)).size,bound.runtimeFiles.length);assert.ok(bound.commit.match(/^[a-f0-9]{40}$/));});

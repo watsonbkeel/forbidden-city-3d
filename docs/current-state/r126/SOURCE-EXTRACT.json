@@ -1,0 +1,156 @@
+{
+  "scope": "R126 official metadata/photo hashes only; no original reference pixels redistributed",
+  "labels": {
+    "FACT": "dedicated official text/label",
+    "PHOTO_FIT": "visually reviewed pixel evidence with view limitations",
+    "MODEL_FIT": "reversible engineering fit, not survey",
+    "UNKNOWN": "not established; must not fabricate"
+  },
+  "images": [
+    {
+      "url": "https://file-pano.dpm.org.cn/sphPic/2026/07/15/2838862850384d73bdeaeef83e89e36d.jpg",
+      "path": "r123-r126-source-preflight/images/vp-3746.jpg",
+      "bytes": 13580,
+      "sha256": "949971c9d7397abbde482835b8310309974013549149ab88b4aff83fb1b99bbf",
+      "purpose": "official named Chengqian gate north wooden screen-door node; thumbnail not panorama",
+      "manifest": "r123-r126-source-preflight/gate-screen-manifest.json",
+      "pixels_viewed": true,
+      "image_evidence_class": "PHOTO_FIT",
+      "capture_date": "unknown; URL directory date is not photographic capture date",
+      "size": [
+        240,
+        240
+      ],
+      "limitation": "240px node thumbnail; not a panorama, calibrated image, or walking-width proof"
+    },
+    {
+      "name": "承乾门",
+      "url": "https://file-pano.dpm.org.cn/panorama/2025/07/10/ed47915d-b8d9-4105-90fd-0bdc15480651.jpg",
+      "path": "r123-r126-source-preflight/images/group-124.jpg",
+      "role": "official-panorama-group-cover",
+      "bytes": 77206,
+      "size": [
+        600,
+        338
+      ],
+      "sha256": "f348e6f4136d905e6ae0b27ca0f548fd6aae06c00171e2474686ed1e992ddb89",
+      "manifest": "r123-r126-source-preflight/group-covers-manifest.json",
+      "pixels_viewed": true,
+      "image_evidence_class": "PHOTO_FIT",
+      "capture_date": "unknown; URL directory date is not photographic capture date"
+    },
+    {
+      "name": "承乾宫后殿",
+      "url": "https://file-pano.dpm.org.cn/hotspotImage/2025/08/19/fC5t84ym8bfSsFSe0nAb9ZddyprD2n2E8THzDpRb.jpg",
+      "file": "hotspot-1957711600935600128-0.jpg",
+      "source": "/workspace/scratch/02a8023d1a85/r123-r126-source-preflight/sources/vpGroupDetail-127.json",
+      "role": "official-hotspot-photo",
+      "path": "r123-r126-source-preflight/images/hotspot-1957711600935600128-0.jpg",
+      "bytes": 760463,
+      "sha256": "05272bd989721484e4ce383652191af72167f444eec8c5c51be3e1e6b5e8cf6f",
+      "size": [
+        1920,
+        1280
+      ],
+      "manifest": "r123-r126-source-preflight/image-manifest.json",
+      "pixels_viewed": true,
+      "image_evidence_class": "PHOTO_FIT",
+      "capture_date": "unknown; URL directory date is not photographic capture date"
+    },
+    {
+      "name": "承乾宫后殿",
+      "url": "https://file-pano.dpm.org.cn/hotspotImage/2025/08/19/cPaoVBsB27JRY1ovKucdMT5oXcaKqwWE2rIM5gtk.jpg",
+      "file": "hotspot-1957711600935600128-1.jpg",
+      "source": "/workspace/scratch/02a8023d1a85/r123-r126-source-preflight/sources/vpGroupDetail-127.json",
+      "role": "official-hotspot-photo",
+      "path": "r123-r126-source-preflight/images/hotspot-1957711600935600128-1.jpg",
+      "bytes": 736361,
+      "sha256": "358f08bb416a0e4cd1832c773beccc18a80f000cec01cf21c388524c37b31043",
+      "size": [
+        1920,
+        1280
+      ],
+      "manifest": "r123-r126-source-preflight/image-manifest.json",
+      "pixels_viewed": true,
+      "image_evidence_class": "PHOTO_FIT",
+      "capture_date": "unknown; URL directory date is not photographic capture date"
+    }
+  ],
+  "metadata_requests": [
+    {
+      "url": "https://api-pano.dpm.org.cn/panorama/api/panorama/vpGroupDetail",
+      "method": "POST",
+      "json": {
+        "id": "124",
+        "viewpointId": "3430"
+      },
+      "path": "r123-r126-source-preflight/sources/vpGroupDetail-124.json",
+      "bytes": 1874,
+      "sha256": "24a092ce9adceba8261f8f8cf574afc42bc23ee3ce28918bec60619866fa39f9",
+      "code": "000000",
+      "manifest": "r123-r126-source-preflight/metadata-fetch-manifest.json"
+    },
+    {
+      "url": "https://api-pano.dpm.org.cn/panorama/api/panorama/sphPicDetail",
+      "method": "POST",
+      "json": {
+        "id": "1943371463570608128"
+      },
+      "path": "r123-r126-source-preflight/sources/sphPicDetail-1943371463570608128.json",
+      "bytes": 9864,
+      "sha256": "788ccb41f3fd41a95a74af89f820cf6f2a87d6cd55c19447cf56a5d566e92bb2",
+      "code": "000000"
+    }
+  ],
+  "bindings": {
+    "status": "READONLY_PREFLIGHT_NOT_R126_IMPLEMENTATION",
+    "runtimeContext": "R125e5b; old rear and gate retained from R124",
+    "photosViewed": true,
+    "photoCaptureDates": "UNKNOWN",
+    "officialOriginalsCopied": false,
+    "files": [
+      {
+        "path": "r123-r126-source-preflight/images/vp-3746.jpg",
+        "sha256": "949971c9d7397abbde482835b8310309974013549149ab88b4aff83fb1b99bbf"
+      },
+      {
+        "path": "r123-r126-source-preflight/images/group-124.jpg",
+        "sha256": "f348e6f4136d905e6ae0b27ca0f548fd6aae06c00171e2474686ed1e992ddb89"
+      },
+      {
+        "path": "r123-r126-source-preflight/images/hotspot-1957711600935600128-0.jpg",
+        "sha256": "05272bd989721484e4ce383652191af72167f444eec8c5c51be3e1e6b5e8cf6f"
+      },
+      {
+        "path": "r123-r126-source-preflight/images/hotspot-1957711600935600128-1.jpg",
+        "sha256": "358f08bb416a0e4cd1832c773beccc18a80f000cec01cf21c388524c37b31043"
+      },
+      {
+        "path": "r123-r126-source-preflight/sources/vpGroupDetail-124.json",
+        "sha256": "24a092ce9adceba8261f8f8cf574afc42bc23ee3ce28918bec60619866fa39f9"
+      },
+      {
+        "path": "r123-r126-source-preflight/sources/sphPicDetail-1943371463570608128.json",
+        "sha256": "788ccb41f3fd41a95a74af89f820cf6f2a87d6cd55c19447cf56a5d566e92bb2"
+      },
+      {
+        "path": "r125-chengqian-rear-court/src/scene/palace/kit.js",
+        "sha256": "c86a594663029f01d1ee187a70699052cb6e8d0e6e3e62b1c4e48aee7385c4d5"
+      },
+      {
+        "path": "r125-chengqian-rear-court/src/scene/zones/ZoneBase.js",
+        "sha256": "c9ed551e79a6080461b46b3c40a8b464a9dfff9335455678c3e4c494f997e5be"
+      },
+      {
+        "path": "r125-chengqian-rear-court/reports/r125-chengqian/baseline/frame-inventory.json",
+        "sha256": "fe0fa76da5ac4542134b3adfda4bb46ee637fd5f8ca3d2be4defcba6ebf1efd5"
+      }
+    ]
+  },
+  "unknown": [
+    "capture date/latest2026 condition",
+    "precise metric dimensions",
+    "screen backside carving/whole roof/operability",
+    "ear rooms/well pavilion/full interior inventory"
+  ]
+}

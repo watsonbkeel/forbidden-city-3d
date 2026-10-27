@@ -1,0 +1,58 @@
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 224 个 mapItem
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 卸载区域 east-six
+✔ only the retained Chengqian west-wing actual wooden threshold has a full Float32 solid owner (7878.643938ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 224 个 mapItem
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 卸载区域 west-six
+✖ shared resting slots bind the actual northwest merged surface, never the eastern game bed or daytime kang (8017.199663ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 224 个 mapItem
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+✖ 21:00 emperor and consort continuously reach separate northwest sleeping slots; 06:00 returns to the original throne (8481.769141ms)
+✔ emperor has a closed-eye static normally-clothed sleeping model LOD0 (32.62821ms)
+✔ emperor has a closed-eye static normally-clothed sleeping model LOD1 (7.279386ms)
+✔ emperor has a closed-eye static normally-clothed sleeping model LOD2 (2.499168ms)
+✔ sleep support remains a narrow adult-template allowlist (0.733991ms)
+✔ closed eyelids are actual narrow facial geometry, not only metadata LOD0 (17.437049ms)
+✔ closed eyelids are actual narrow facial geometry, not only metadata LOD1 (5.418526ms)
+✔ closed eyelids are actual narrow facial geometry, not only metadata LOD2 (1.925678ms)
+✔ Qianqing low lip is sourced at its true Float32 top and full-body step activates before the south edge (12.226275ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 9
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8901.161806
+
+✖ failing tests:
+
+test at tests/r118/chuxiu-northwest-bed.test.mjs:2:1
+✖ shared resting slots bind the actual northwest merged surface, never the eastern game bed or daytime kang (8017.199663ms)
+  AssertionError [ERR_ASSERTION]: same-count changed actual vertex must fail
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r118-chuxiu-shared-rest/tests/r118/chuxiu-northwest-bed.test.mjs:2:1040)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'ready',
+    expected: 'ready',
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r118/emperor-chuxiu-route.test.mjs:3:1
+✖ 21:00 emperor and consort continuously reach separate northwest sleeping slots; 06:00 returns to the original throne (8481.769141ms)
+  TypeError: Cannot read properties of undefined (reading 'seatVariant')
+      at DailyRoutine.update (file:///workspace/scratch/02a8023d1a85/r118-chuxiu-shared-rest/src/scene/characters/DailyRoutine.js:116:127)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r118-chuxiu-shared-rest/tests/r118/emperor-chuxiu-route.test.mjs:3:781)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)

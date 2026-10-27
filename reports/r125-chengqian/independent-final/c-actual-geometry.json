@@ -1,0 +1,76 @@
+{
+  "status": "NUMERIC_REVIEW_NOT_BODY_OR_GPU_ACCEPTANCE",
+  "sourceBefore": "8755dbbd677e75a4c72193929eaa872c3f41f1042d5ec65577168b90ba403a7a",
+  "sourceAfter": "8755dbbd677e75a4c72193929eaa872c3f41f1042d5ec65577168b90ba403a7a",
+  "oldRows": 23368,
+  "newRows": 27020,
+  "fullRowRetained": 23368,
+  "fullRowRemoved": 0,
+  "numericRetained": 23368,
+  "numericRemoved": 0,
+  "added": 3652,
+  "domains": {
+    "east": {
+      "triangles": 1826,
+      "bounds": [
+        -114.02999877929688,
+        -108.30999755859375,
+        -5.9604645663569045e-9,
+        5.432400226593018,
+        391.5400085449219,
+        400.55999755859375
+      ]
+    },
+    "west": {
+      "triangles": 1826,
+      "bounds": [
+        -78.88999938964844,
+        -73.16999816894531,
+        -5.9604645663569045e-9,
+        5.432400226593018,
+        391.5400085449219,
+        400.55999755859375
+      ]
+    }
+  },
+  "strictSurfaceCrossings": {
+    "possiblePairs": 0,
+    "positivePairs": 0,
+    "byMaterial": {},
+    "hits": []
+  },
+  "roofHeight": {
+    "main": {
+      "oldRows": 1163,
+      "newRoofRows": 1296,
+      "positiveAreaProjectedPairs": 36,
+      "minSignedVerticalGap": 3.665945319695177,
+      "witness": {
+        "x": -76.88218145017271,
+        "z": 391.95001220703125,
+        "newY": 4.5383979444960625,
+        "oldY": 8.20434326419124,
+        "newRow": 6443,
+        "oldRow": 6367
+      }
+    },
+    "rear": {
+      "oldRows": 648,
+      "newRoofRows": 1296,
+      "positiveAreaProjectedPairs": 0,
+      "minSignedVerticalGap": null,
+      "witness": null
+    }
+  },
+  "inputSHA256": {
+    "/workspace/scratch/02a8023d1a85/r125-chengqian-rear-court/reports/r125-chengqian/baseline/room-before-high.json.gz": "05af8e5f3029d0f99e8e394d2db28643e0183c277a66ed945e835f3cd30d62c3",
+    "/workspace/scratch/02a8023d1a85/r125-chengqian-rear-court/reports/r125-chengqian/prototype-c/room-prototype-c-high.json.gz": "b1d38213e4e7239d0b2907faa0419b21fcad4271ded169c75b167915f3233993",
+    "/workspace/scratch/02a8023d1a85/r125-chengqian-rear-court/reports/r125-chengqian/prototype-c/export-prototype-c-high.json": "9eae929b35e390f2a88eb7cb881a56d36e477f4c38bfe9d6e96b170922b3a622"
+  },
+  "limits": [
+    "Saved actual exports only; no world built.",
+    "Strict surface-crossing excludes coplanar touching and contained volume.",
+    "No arbitrary route/body, drainage, GPU depth or historical dimensions acceptance.",
+    "Roof-height proof covers nonvertical identified material rows in unchanged main/rear world bounds only."
+  ]
+}

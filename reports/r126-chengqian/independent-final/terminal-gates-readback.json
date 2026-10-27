@@ -1,0 +1,130 @@
+{
+  "status": "TERMINAL_CURRENT_STATE_NO_ADDED_NAMES_PLUS_DECLARED_RESOURCE_SNAPSHOT_FAILURE",
+  "sourceBefore": "ba885f34073e6fde52f2ee6cb59d2225190173ae7fc5bb0c3d966bf9dace9073",
+  "sourceAfter": "ba885f34073e6fde52f2ee6cb59d2225190173ae7fc5bb0c3d966bf9dace9073",
+  "baseline": {
+    "raw": "r125-chengqian-rear-court/reports/r125-chengqian/gates/current-state-final.tap",
+    "sha256": "bd4520d9319b642c2880e7bc210b1884eb4caab7ede4cccd98e515398a2147bd",
+    "tests": 1289,
+    "pass": 1076,
+    "fail": 213,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "candidate": {
+    "raw": "r126-chengqian-arrival-major/reports/r126-chengqian/gates/current-state-final.tap",
+    "sha256": "b678822b6d08b906fda483f37fef1458950018fc8785f2f1897e58512838d891",
+    "tests": 1289,
+    "pass": 1076,
+    "fail": 213,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "addedFailureNames": [],
+  "removedFailureNames": [],
+  "terminalGates": [
+    {
+      "gate": "r126",
+      "tests": 7,
+      "pass": 7,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "failureNames": [],
+      "failureNamesExactR125": null,
+      "rawSHA256": "bc320afe329215fc82ef4e5f40b00fc30a0849d66849e85497189c8406546aa4"
+    },
+    {
+      "gate": "r126-quality-successor",
+      "tests": 8,
+      "pass": 8,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "failureNames": [],
+      "failureNamesExactR125": null,
+      "rawSHA256": "fda60d383be62b9b5c1f8eaabd4d83918be1e2d8612ab874a8590f0692b04af3"
+    },
+    {
+      "gate": "r125",
+      "tests": 7,
+      "pass": 7,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "failureNames": [],
+      "failureNamesExactR125": true,
+      "rawSHA256": "7f2c8221b78ddaee8168a0cd4b390c49e52d294e748ec95101830e9c74480af1"
+    },
+    {
+      "gate": "r124",
+      "tests": 11,
+      "pass": 11,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "failureNames": [],
+      "failureNamesExactR125": true,
+      "rawSHA256": "e0db2a4e0b85c223ee9635fe31b04797cfbb35d836b1c66af631c5de7ed701b4"
+    },
+    {
+      "gate": "r123",
+      "tests": 9,
+      "pass": 9,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "failureNames": [],
+      "failureNamesExactR125": true,
+      "rawSHA256": "30ac3e07ff39d5b872aeea23733000ccceb7804ff9790431c638c28fa03c3858"
+    },
+    {
+      "gate": "resources",
+      "tests": 41,
+      "pass": 40,
+      "fail": 1,
+      "cancelled": 0,
+      "skipped": 0,
+      "failureNames": [
+        "rear accepted quality scope preserves high and physical contracts"
+      ],
+      "failureNamesExactR125": false,
+      "rawSHA256": "2f29b5b727dedcb4e7be74e8ef4473e3c6f766967636c8d41b4866fb981dab4e"
+    },
+    {
+      "gate": "motion",
+      "tests": 90,
+      "pass": 89,
+      "fail": 1,
+      "cancelled": 0,
+      "skipped": 0,
+      "failureNames": [
+        "R113 two fitted front wings preserve scale and create a bounded rear circulation gap"
+      ],
+      "failureNamesExactR125": true,
+      "rawSHA256": "418dc3ae3c050277eeee0add82bcb8d455bd9f6d320a78bee313c2e39b7f3e6f"
+    },
+    {
+      "gate": "r119-r120",
+      "tests": 29,
+      "pass": 28,
+      "fail": 1,
+      "cancelled": 0,
+      "skipped": 0,
+      "failureNames": [
+        "R119 preserves exact R118 navigation, display geometry, clocks, doors and registered opening"
+      ],
+      "failureNamesExactR125": true,
+      "rawSHA256": "da6d52360bd030effd1feac6014220eeed66c0b27b2540b8c9f4bf9f3214aef4"
+    }
+  ],
+  "shallowScalarErrorFieldChanges": [],
+  "finalGatesMetaSHA256": "513cba2f411f228b91b43e28aba172a73815ce0d06397ac4ef9ab2f8e838e58b",
+  "limits": [
+    "213 current-state failures remain, not all-green; resource suite40/41 has one approved old rear-snapshot conflict.",
+    "R126 successor full suite8/8 separately checks actual-library high/low reduction and full physical equality; old R106 expected is not edited.",
+    "Failure-name equality is not a claim every full stack string is byte-identical or all hidden later assertions run.",
+    "No new world/test rerun by reviewer; terminal TAP and recorded source bindings independently read.",
+    "R126 body/source/provenance proof is separately scoped; GPU/mobile not verified."
+  ]
+}

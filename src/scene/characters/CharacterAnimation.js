@@ -10,6 +10,7 @@ export function deformCharacterVertex(position,normal,attributes,state={}){
  let p=[...position],n=[...normal];const time=state.time??0,phase=state.phase??0,amp=state.amplitude??1,speed=state.walkSpeed??0;
  if(amp===0&&speed===0)return {position:p,normal:n};
  const pose=state.poseIndex??(typeof state.pose==='number'?state.pose:({standing:0,seated:1,kneeling:2,sleeping:3}[state.pose??'standing']));
+ if(pose>2.5)return {position:p,normal:n};
  const t=time+phase,part=attributes.part??attributes.characterPart??0,pivot=attributes.pivot??attributes.characterPivot??[0,0,0],w=attributes.weight??attributes.characterWeight??1,tw=attributes.torsoWeight??attributes.characterTorsoWeight??0;
  const motion=Math.sin(t*.72)*amp,step=Math.sin(t*speed/.60*Math.PI*2)*Math.min(speed,1)*amp;
  let angle=0,fn=rotX;

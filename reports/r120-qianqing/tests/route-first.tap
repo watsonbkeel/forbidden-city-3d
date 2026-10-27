@@ -1,0 +1,174 @@
+✖ R120 rail openings are real exact open surfaces, not their filled AABB; owner lifecycle is finite (4.94386ms)
+✖ R120 normal complete .5m-body door three-flight return and side loop 10Hz backward=false (186.884569ms)
+✖ R120 normal complete .5m-body door three-flight return and side loop 10Hz backward=true (120.019286ms)
+✖ R120 normal complete .5m-body door three-flight return and side loop 30Hz backward=false (241.181649ms)
+✖ R120 normal complete .5m-body door three-flight return and side loop 30Hz backward=true (241.476647ms)
+✖ R120 normal complete .5m-body door three-flight return and side loop 60Hz backward=false (463.813078ms)
+✖ R120 normal complete .5m-body door three-flight return and side loop 60Hz backward=true (460.303072ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 0
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2599.096572
+
+✖ failing tests:
+
+test at tests/r120/qianqing-route.test.mjs:7:1
+✖ R120 rail openings are real exact open surfaces, not their filled AABB; owner lifecycle is finite (4.94386ms)
+  AssertionError [ERR_ASSERTION]: small local opening probe, NOT a shrunken player
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/r120/qianqing-route.test.mjs:7:323)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r120/qianqing-route.test.mjs:8:63
+✖ R120 normal complete .5m-body door three-flight return and side loop 10Hz backward=false (186.884569ms)
+  AssertionError [ERR_ASSERTION]: {"fps":10,"backward":false,"at":13,"position":[4.199872088886176,326.5000000000018],"feet":2.1600000858306885}
+  
+  false !== true
+  
+      at file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/r120/qianqing-route.test.mjs:11:9
+      at withTerrainController (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/lib/r91-controller-clock.mjs:3:633)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/r120/qianqing-route.test.mjs:10:2)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r120/qianqing-route.test.mjs:8:63
+✖ R120 normal complete .5m-body door three-flight return and side loop 10Hz backward=true (120.019286ms)
+  AssertionError [ERR_ASSERTION]: {"fps":10,"backward":true,"at":13,"position":[4.199872088886176,326.5000000000018],"feet":2.1600000858306885}
+  
+  false !== true
+  
+      at file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/r120/qianqing-route.test.mjs:11:9
+      at withTerrainController (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/lib/r91-controller-clock.mjs:3:633)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/r120/qianqing-route.test.mjs:10:2)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r120/qianqing-route.test.mjs:8:63
+✖ R120 normal complete .5m-body door three-flight return and side loop 30Hz backward=false (241.181649ms)
+  AssertionError [ERR_ASSERTION]: {"fps":30,"backward":false,"at":13,"position":[4.199940057282358,326.5000000000018],"feet":2.1600000858306885}
+  
+  false !== true
+  
+      at file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/r120/qianqing-route.test.mjs:11:9
+      at withTerrainController (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/lib/r91-controller-clock.mjs:3:633)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/r120/qianqing-route.test.mjs:10:2)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r120/qianqing-route.test.mjs:8:63
+✖ R120 normal complete .5m-body door three-flight return and side loop 30Hz backward=true (241.476647ms)
+  AssertionError [ERR_ASSERTION]: {"fps":30,"backward":true,"at":13,"position":[4.199940057282358,326.5000000000018],"feet":2.1600000858306885}
+  
+  false !== true
+  
+      at file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/r120/qianqing-route.test.mjs:11:9
+      at withTerrainController (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/lib/r91-controller-clock.mjs:3:633)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/r120/qianqing-route.test.mjs:10:2)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r120/qianqing-route.test.mjs:8:63
+✖ R120 normal complete .5m-body door three-flight return and side loop 60Hz backward=false (463.813078ms)
+  AssertionError [ERR_ASSERTION]: {"fps":60,"backward":false,"at":13,"position":[4.1999400676002345,326.5000000000037],"feet":2.1600000858306885}
+  
+  false !== true
+  
+      at file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/r120/qianqing-route.test.mjs:11:9
+      at withTerrainController (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/lib/r91-controller-clock.mjs:3:633)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/r120/qianqing-route.test.mjs:10:2)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r120/qianqing-route.test.mjs:8:63
+✖ R120 normal complete .5m-body door three-flight return and side loop 60Hz backward=true (460.303072ms)
+  AssertionError [ERR_ASSERTION]: {"fps":60,"backward":true,"at":13,"position":[4.1999400676002345,326.5000000000037],"feet":2.1600000858306885}
+  
+  false !== true
+  
+      at file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/r120/qianqing-route.test.mjs:11:9
+      at withTerrainController (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/lib/r91-controller-clock.mjs:3:633)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r120-qianqing-major/tests/r120/qianqing-route.test.mjs:10:2)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,33 @@
+✖ real ready west-six builds bounded rear pair and rebinds both R118 slots to the shifted finished bed (1094.682742ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1318.12346
+
+✖ failing tests:
+
+test at tests/r123/actual-rear-frame.test.mjs:2:1
+✖ real ready west-six builds bounded rear pair and rebinds both R118 slots to the shifted finished bed (1094.682742ms)
+  AssertionError [ERR_ASSERTION]: retained rendered platform F32 source
+  + actual - expected
+  
+  + []
+  - [
+  -   0.6000000238418579,
+  -   0.6100000143051147
+  - ]
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r123-chuxiu-rear-frame/tests/r123/actual-rear-frame.test.mjs:4:158)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ 0.6000000238418579, 0.6100000143051147 ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

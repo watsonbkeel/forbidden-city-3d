@@ -1,0 +1,105 @@
+{
+  "status": "PASS_RECORDED_NECESSARY_GATES_NO_ADDED_FAILURE_NAMES",
+  "sourceBefore": "e5b914b560372429517662d3761ced65808a3ace2c14a19380bd36048a320604",
+  "sourceAfter": "e5b914b560372429517662d3761ced65808a3ace2c14a19380bd36048a320604",
+  "baseline": {
+    "raw": "r124-chuxiu-front-room/reports/r124-chuxiu/gates/current-state-final.tap",
+    "sha256": "08d2ebe6d773fcb35140c2465ac0ac4e7e72af1c68da925da761bc1cb0a11653",
+    "tests": 1289,
+    "pass": 1076,
+    "fail": 213,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "candidate": {
+    "raw": "r125-chengqian-rear-court/reports/r125-chengqian/gates/current-state-final.tap",
+    "sha256": "bd4520d9319b642c2880e7bc210b1884eb4caab7ede4cccd98e515398a2147bd",
+    "tests": 1289,
+    "pass": 1076,
+    "fail": 213,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "addedFailureNames": [],
+  "removedFailureNames": [],
+  "terminalGates": [
+    {
+      "gate": "r125",
+      "tests": 7,
+      "pass": 7,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "failureNames": [],
+      "failureNamesExactR124": null,
+      "rawSHA256": "dc56585d62dd33a47cd0f33f7a2033acf30ee143b457338a947a2f9bb84ac26c"
+    },
+    {
+      "gate": "r124",
+      "tests": 11,
+      "pass": 11,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "failureNames": [],
+      "failureNamesExactR124": true,
+      "rawSHA256": "34fb7354ff7b574736113f67a75a081347f02f6f476069f64e57cdcb142fbca0"
+    },
+    {
+      "gate": "r123",
+      "tests": 9,
+      "pass": 9,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "failureNames": [],
+      "failureNamesExactR124": true,
+      "rawSHA256": "6ab5f7d5c442166fef4b1f5bdfb75a1cf1505250c817294141611fddcd5e2f79"
+    },
+    {
+      "gate": "resources",
+      "tests": 41,
+      "pass": 41,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "failureNames": [],
+      "failureNamesExactR124": true,
+      "rawSHA256": "a780c05db7f11bdd9ceb49b75708aa26a9e6b9cb541800e3dc7a7d7298418ba4"
+    },
+    {
+      "gate": "motion",
+      "tests": 90,
+      "pass": 89,
+      "fail": 1,
+      "cancelled": 0,
+      "skipped": 0,
+      "failureNames": [
+        "R113 two fitted front wings preserve scale and create a bounded rear circulation gap"
+      ],
+      "failureNamesExactR124": true,
+      "rawSHA256": "4b7090570986b05ade44aae3386685d4defc0dbbbdba84c298973aa05648e5e4"
+    },
+    {
+      "gate": "r119-r120",
+      "tests": 29,
+      "pass": 28,
+      "fail": 1,
+      "cancelled": 0,
+      "skipped": 0,
+      "failureNames": [
+        "R119 preserves exact R118 navigation, display geometry, clocks, doors and registered opening"
+      ],
+      "failureNamesExactR124": true,
+      "rawSHA256": "9be77735d8987a61d3fe9dc3333541ac6e40e0b6f871e737859d57475ac86388"
+    }
+  ],
+  "shallowScalarErrorFieldChanges": [],
+  "finalGatesMetaSHA256": "d659423e7d9c661f1fc4cb125845935f766da68b7ac8a1b5af1c7234e0d53e0b",
+  "limits": [
+    "213 current-state failures remain, not all-green.",
+    "Failure-name equality is not a claim every full stack string is byte-identical or all hidden later assertions run.",
+    "No new world/test rerun by reviewer; terminal TAP and recorded source bindings independently read.",
+    "R125 body/source/provenance proof is separately scoped; GPU/mobile not verified."
+  ]
+}

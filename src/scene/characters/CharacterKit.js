@@ -380,13 +380,14 @@ function* head(b,t,lod,off,z,closedEyes=false){
     for(const s of [-1,1]){
       yield* b.loft([{x:s*.078,y:1.512+off,rx:.008,rz:.013,z:z-.003},{x:s*.083,y:1.544+off,rx:.012,rz:.015,z:z-.004},{x:s*.077,y:1.565+off,rx:.005,rz:.01,z:z-.004}],8,SKIN,rig);
       const ey=1.566+off,ex=s*.034,ez=z+.071;
-      yield* b.patch([[ex-.019,ey,ez],[ex-.009,ey+.004,ez+.003],[ex+.012,ey+.003,ez],[ex+.018,ey-.001,ez],[ex+.004,ey-.004,ez+.002]],HAIR,rig);
+      if(!closedEyes)yield* b.patch([[ex-.019,ey,ez],[ex-.009,ey+.004,ez+.003],[ex+.012,ey+.003,ez],[ex+.018,ey-.001,ez],[ex+.004,ey-.004,ez+.002]],HAIR,rig);
       yield* b.ribbon([[ex-.019,ey+.015,ez-.002],[ex,ey+.019,ez+.001],[ex+.018,ey+.014,ez-.002]],.006,HAIR,rig);
     }
     yield* b.patch([[-.013,1.575+off,z+.071],[.013,1.575+off,z+.071],[.017,1.526+off,z+.080],[0,1.526+off,z+.104],[-.017,1.526+off,z+.080]],SKIN,rig);
     yield* b.patch([[-.024,1.500+off,z+.075],[0,1.496+off,z+.084],[.024,1.500+off,z+.075],[0,1.504+off,z+.083]],0x865647,rig);
     yield* b.ribbon([[-.019,1.500+off,z+.080],[0,1.499+off,z+.086],[.019,1.500+off,z+.080]],.002,0x5c3e34,rig);
   }
+  if(closedEyes)for(const side of[-1,1]){const ex=side*.034,ey=1.566+off,ez=z+.074;yield* b.ribbon([[ex-.018,ey,ez],[ex,ey-.002,ez+.002],[ex+.018,ey,ez]],.002,HAIR,rig);}
   if(t.hat==='dressed-hair'||t.hat==='simple-hair'){
     yield* b.loft([{y:1.603+off,rx:.08,rz:.072,z:z-.005},{y:1.66+off,rx:.079,rz:.070,z:z-.01},{y:1.703+off,rx:.043,rz:.044,z:z-.012}],seg,HAIR,rig);
     yield* b.loft([{y:1.67+off,rx:.041,rz:.045,z:z-.058},{y:1.735+off,rx:.043,rz:.039,z:z-.05},{y:1.755+off,rx:.01,rz:.01,z:z-.04}],seg,HAIR,rig);
@@ -440,7 +441,7 @@ export function* createCharacterGeometrySteps(templateId,pose='standing',lod=0,o
  // R72 adult, normally clothed resting pose derived from the approved outfit.
  // Static sleeping pose deliberately has no standing/ kneeling shader motion.
  if(pose==='sleeping'){
-  if(!['consort-daily','maid-daily'].includes(templateId))throw new Error('Sleeping pose requires an adult residential female template');
+  if(!['consort-daily','maid-daily','emperor-ceremonial'].includes(templateId))throw new Error('Sleeping pose requires an approved adult resting template');
   const g=yield* createCharacterGeometrySteps(templateId,'standing',lod,{...options,[SLEEP_EYES]:true,seatVariant:'standard',femalePose:'resting'});
   // Preserve the preparation work budget: rigid transform in bounded batches,
   // with analytical bounds instead of synchronous whole-mesh rescans.

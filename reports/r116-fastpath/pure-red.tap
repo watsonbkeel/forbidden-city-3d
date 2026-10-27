@@ -1,0 +1,68 @@
+✖ indexed/nonindexed transformed output byte-exact to actual legacy Three path (1.480903ms)
+✖ unsupported whole bucket fails closed without mutation or disposal (0.301833ms)
+✖ writer does not own or dispose shared source geometries (0.238008ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 0
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 114.614645
+
+✖ failing tests:
+
+test at tests/r116/merge-float32.test.mjs:9:1
+✖ indexed/nonindexed transformed output byte-exact to actual legacy Three path (1.480903ms)
+  AssertionError [ERR_ASSERTION]: bounded direct Float32 writer must exist
+      at writer (file:///workspace/scratch/02a8023d1a85/r116-startup-performance/tests/r116/merge-float32.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r116-startup-performance/tests/r116/merge-float32.test.mjs:9:111)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r116/merge-float32.test.mjs:10:1
+✖ unsupported whole bucket fails closed without mutation or disposal (0.301833ms)
+  AssertionError [ERR_ASSERTION]: bounded direct Float32 writer must exist
+      at writer (file:///workspace/scratch/02a8023d1a85/r116-startup-performance/tests/r116/merge-float32.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r116-startup-performance/tests/r116/merge-float32.test.mjs:10:101)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r116/merge-float32.test.mjs:11:1
+✖ writer does not own or dispose shared source geometries (0.238008ms)
+  AssertionError [ERR_ASSERTION]: bounded direct Float32 writer must exist
+      at writer (file:///workspace/scratch/02a8023d1a85/r116-startup-performance/tests/r116/merge-float32.test.mjs:4:32)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r116-startup-performance/tests/r116/merge-float32.test.mjs:11:90)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

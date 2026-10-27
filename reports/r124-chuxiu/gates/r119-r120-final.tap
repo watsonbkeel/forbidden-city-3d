@@ -1,0 +1,206 @@
+TAP version 13
+# Subtest: R119 finished room contains real blue-gold inner frame faces, not only metadata
+ok 1 - R119 finished room contains real blue-gold inner frame faces, not only metadata
+  ---
+  duration_ms: 1.66623
+  type: 'test'
+  ...
+# Subtest: R119 near caisson adds actual inset edge lips and connected suspension end rings while retaining mirror datum
+ok 2 - R119 near caisson adds actual inset edge lips and connected suspension end rings while retaining mirror datum
+  ---
+  duration_ms: 4.250268
+  type: 'test'
+  ...
+# Subtest: R119 preserves exact R118 navigation, display geometry, clocks, doors and registered opening
+not ok 3 - R119 preserves exact R118 navigation, display geometry, clocks, doors and registered opening
+  ---
+  duration_ms: 65.491072
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r124-chuxiu-front-room/tests/r119/jiaotai-assembly.test.mjs:8:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    physics
+    + actual - expected
+    
+    + '22a6e8eb1b315fd8cf0a8a75b053e0aad79b0323ba6b68ffe08fd9f60b9cea5e'
+    - '583c8c4685595f508fa8dfdeca74ba03f0c6f5f7dc718ecb8773cc00508b8780'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '583c8c4685595f508fa8dfdeca74ba03f0c6f5f7dc718ecb8773cc00508b8780'
+  actual: '22a6e8eb1b315fd8cf0a8a75b053e0aad79b0323ba6b68ffe08fd9f60b9cea5e'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r124-chuxiu-front-room/tests/r119/jiaotai-assembly.test.mjs:8:211)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R119 upper screen has source-supported dense red-gold field and physical framed edge inside retained envelope
+ok 4 - R119 upper screen has source-supported dense red-gold field and physical framed edge inside retained envelope
+  ---
+  duration_ms: 4.329487
+  type: 'test'
+  ...
+# Subtest: R119 west bracket arms join an actual vertical stem instead of floating below the ceiling
+ok 5 - R119 west bracket arms join an actual vertical stem instead of floating below the ceiling
+  ---
+  duration_ms: 2.526381
+  type: 'test'
+  ...
+# Subtest: R119 long painted beams repeat the horizontal atlas at fitted aspect rather than stretching one cell across a whole wall
+ok 6 - R119 long painted beams repeat the horizontal atlas at fitted aspect rather than stretching one cell across a whole wall
+  ---
+  duration_ms: 0.977267
+  type: 'test'
+  ...
+# Subtest: R119 far caisson geometry remains byte-value exact R118 despite the near detail addition
+ok 7 - R119 far caisson geometry remains byte-value exact R118 despite the near detail addition
+  ---
+  duration_ms: 1.839931
+  type: 'test'
+  ...
+# Subtest: R119 fresh high real-library owned atlas is bounded, shared and released exactly once
+ok 8 - R119 fresh high real-library owned atlas is bounded, shared and released exactly once
+  ---
+  duration_ms: 759.39615
+  type: 'test'
+  ...
+# Subtest: R119 fresh low real-library owned atlas is bounded, shared and released exactly once
+ok 9 - R119 fresh low real-library owned atlas is bounded, shared and released exactly once
+  ---
+  duration_ms: 289.184023
+  type: 'test'
+  ...
+# Subtest: R119 actual ready room retains four open doors and clock/clepsydra/platform observation support
+ok 10 - R119 actual ready room retains four open doors and clock/clepsydra/platform observation support
+  ---
+  duration_ms: 14.344515
+  type: 'test'
+  ...
+# Subtest: R119 real controller four-door clock/clepsydra rear-loop return 10Hz backward=false
+ok 11 - R119 real controller four-door clock/clepsydra rear-loop return 10Hz backward=false
+  ---
+  duration_ms: 32.593
+  type: 'test'
+  ...
+# Subtest: R119 real controller four-door clock/clepsydra rear-loop return 10Hz backward=true
+ok 12 - R119 real controller four-door clock/clepsydra rear-loop return 10Hz backward=true
+  ---
+  duration_ms: 17.123826
+  type: 'test'
+  ...
+# Subtest: R119 real controller four-door clock/clepsydra rear-loop return 30Hz backward=false
+ok 13 - R119 real controller four-door clock/clepsydra rear-loop return 30Hz backward=false
+  ---
+  duration_ms: 21.087064
+  type: 'test'
+  ...
+# Subtest: R119 real controller four-door clock/clepsydra rear-loop return 30Hz backward=true
+ok 14 - R119 real controller four-door clock/clepsydra rear-loop return 30Hz backward=true
+  ---
+  duration_ms: 17.941383
+  type: 'test'
+  ...
+# Subtest: R119 real controller four-door clock/clepsydra rear-loop return 60Hz backward=false
+ok 15 - R119 real controller four-door clock/clepsydra rear-loop return 60Hz backward=false
+  ---
+  duration_ms: 38.884912
+  type: 'test'
+  ...
+# Subtest: R119 real controller four-door clock/clepsydra rear-loop return 60Hz backward=true
+ok 16 - R119 real controller four-door clock/clepsydra rear-loop return 60Hz backward=true
+  ---
+  duration_ms: 36.134575
+  type: 'test'
+  ...
+# Subtest: R120 axial plaque and dragon band are a bounded combined photo-fit in actual Float32 geometry
+ok 17 - R120 axial plaque and dragon band are a bounded combined photo-fit in actual Float32 geometry
+  ---
+  duration_ms: 2.163476
+  type: 'test'
+  ...
+# Subtest: R120 four actual open rail rows have lower connections and source-mapped finite owners, not filled boxes
+ok 18 - R120 four actual open rail rows have lower connections and source-mapped finite owners, not filled boxes
+  ---
+  duration_ms: 13.749694
+  type: 'test'
+  ...
+# Subtest: R120 real coffer reveals add shallow oblique faces within original 23x12 continuous ceiling envelope, far unchanged
+ok 19 - R120 real coffer reveals add shallow oblique faces within original 23x12 continuous ceiling envelope, far unchanged
+  ---
+  duration_ms: 2.143416
+  type: 'test'
+  ...
+# Subtest: R120 retained 106 central parts, all six display objects, far ceiling, and every old collider/walkable are exact R119
+ok 20 - R120 retained 106 central parts, all six display objects, far ceiling, and every old collider/walkable are exact R119
+  ---
+  duration_ms: 467.198743
+  type: 'test'
+  ...
+# Subtest: R120 high genuine paints and source/finished geometry ownership release once
+ok 21 - R120 high genuine paints and source/finished geometry ownership release once
+  ---
+  duration_ms: 887.548287
+  type: 'test'
+  ...
+# Subtest: R120 low genuine paints and source/finished geometry ownership release once
+ok 22 - R120 low genuine paints and source/finished geometry ownership release once
+  ---
+  duration_ms: 304.333878
+  type: 'test'
+  ...
+# Subtest: R120 rail openings are real exact open surfaces, not their filled AABB; owner lifecycle is finite
+ok 23 - R120 rail openings are real exact open surfaces, not their filled AABB; owner lifecycle is finite
+  ---
+  duration_ms: 20.69203
+  type: 'test'
+  ...
+# Subtest: R120 normal complete .5m-body door three-flight return and side loop 10Hz backward=false
+ok 24 - R120 normal complete .5m-body door three-flight return and side loop 10Hz backward=false
+  ---
+  duration_ms: 99.245796
+  type: 'test'
+  ...
+# Subtest: R120 normal complete .5m-body door three-flight return and side loop 10Hz backward=true
+ok 25 - R120 normal complete .5m-body door three-flight return and side loop 10Hz backward=true
+  ---
+  duration_ms: 41.871358
+  type: 'test'
+  ...
+# Subtest: R120 normal complete .5m-body door three-flight return and side loop 30Hz backward=false
+ok 26 - R120 normal complete .5m-body door three-flight return and side loop 30Hz backward=false
+  ---
+  duration_ms: 60.533138
+  type: 'test'
+  ...
+# Subtest: R120 normal complete .5m-body door three-flight return and side loop 30Hz backward=true
+ok 27 - R120 normal complete .5m-body door three-flight return and side loop 30Hz backward=true
+  ---
+  duration_ms: 49.016566
+  type: 'test'
+  ...
+# Subtest: R120 normal complete .5m-body door three-flight return and side loop 60Hz backward=false
+ok 28 - R120 normal complete .5m-body door three-flight return and side loop 60Hz backward=false
+  ---
+  duration_ms: 90.351243
+  type: 'test'
+  ...
+# Subtest: R120 normal complete .5m-body door three-flight return and side loop 60Hz backward=true
+ok 29 - R120 normal complete .5m-body door three-flight return and side loop 60Hz backward=true
+  ---
+  duration_ms: 91.068495
+  type: 'test'
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 28
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7663.061093

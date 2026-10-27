@@ -1,0 +1,33 @@
+# R123 progress / not final acceptance
+
+Base: accepted R120 `f0dea01a`; runtime `8938de15`. R118/R119/R120 retained. R116/R117 performance candidates rejected; R121/R122 three rock candidates rejected and restored. None is relabeled delivered.
+
+## Scope and prototype decisions
+- Official2024 no-scale courtyard plan + two independent rear-wing elevations establish pair/facing/three bays/central door and flanking sill windows. Metres, open-state, glazing material and fine patterns are reversible engineering/photo fits, not a survey. New plaque lettering unverified and omitted. Ear-room entrances unknown: no invented doors, not a four-building completion claim.
+- Root approved main/front wings−5, Tihe/Lijing/outer wall fixed,14 corridor posts and existing main interior sizes retained. All absolute beds/privacy/routes moved once; anchor-relative seats unchanged.
+- Prototype A: rear wings center444.5/W9.4. **REJECT_LAYOUT** despite initial3 target PASS. Their doors sat north of Lijing front; point rays were clear but most facades were hidden and full-body access relied on side strips. Invalid direct-front camera inside Lijing is separately retained, not blamed on product. All A source/images/raw preserved.
+- Root07:04 approved B once: centers(77,440.85)/(112.6,440.85),W8.2/D4.4,colH3.3/roofH1.35,.55tile eave with bounded tip fit; fullX E74.15..79.90/W109.70..115.45,fullZ436.30..445.40. No main/outer-wall/Lijing further displacement.
+- Independent actualtri: new roof vs main rear roof projected675pairs, minimum true vertical gap3.3863m.121strictcross pairs are bounded structural joins into the existing thick outer wall inner surface only (Y3.38..3.95); each stays~.87m inside outer face, not a public body path. Root chose to keep the join. **Not all-geometry zero intersection; no GPU z-fighting/drainage claim.**
+
+## Current verified gates (input hashes retained in raw)
+- Data-frame/unrelated-item retention + full actual finished northwest bed six-face12tri/top coverage/winding/slot clearance + full new wing envelope:3PASS. Current rest slots[106.19,1.0499999523,434.4] and[105.09,1.0499999523,434.4]. Stale main frame fails closed.
+- Actual new low slabs/steps initially exposed foot penetration/stall. Two closed-ID source-owned scopes use the existing finite solver; no body/STEP math change. Original main brick/stone F32 tops separately registered only for side/rear dispatch; visible source unchanged.
+-45 routes =5 paths×10/30/60×forward/backward/strafe,15522frames: complete and actualtriangle endpoint overlaps0 at a7add29f. Independent replay0;14652constant-feet continuous segments0,825height-changing segments not reconstructed from endpoints.
+- Air/stop:21cases,10/30/60, zero endpoint overlap and grounded. New room jumping exposed an unowned generic ceiling; two existing undersides became4cm actual closed panels above the unchanged datum, source-owned finite head contact. Net+20tri; no global resolver change. Original drop fixture initially placed head in header, corrected to valid1m feet start; original raw retained.
+- R118 connected tail fitted from actual current CM: first1928points exact,2119points total.10Hz functional1430samples outbound/midnight/returnPASS; original speed and no horizontal snap. Old Taihe prefix not claimed zero-penetration.
+- Current coordinate-equivalent normal lighting/player-approach wait/cache/evict/rebuild/40m/currentbody/bad-source/manual-clock gate4PASS. Original R118 rendered-streaming old-coordinate FAIL kept; only new R123 fixture coordinates adapted, no old expected erased.
+- Geometry43ab→a7add actual28662triangle rows/UV/normal/colors and15decoded textures exact. Closed ceilings then24new−4oldtri only,15textures exact. Frozen runtime `ddfbd0e4cd0052af1b1ccfeb40111c729039c39c412e8c5c41e6d110d1506c53` includes R123 release metadata and new route.
+
+## Pending
+Independent new-source30/60 full capsule/LOD0; final current-source local/air/whole connection; high/low true-library upfront all-ready/resources/disposal/cost; necessary cumulative protected tests/build/clean readback. No final playable/overallPASS/GPU/mobile claim until those finish. Normal prebuilt startup retained, no first-visit-wait/catalog change.
+
+07:32 independent full new-source oracle completed: ddfbd0e4 before=after,10/30/60Hz1430/4284/8566frames complete outbound+return; no new capsule/actualLOD0 intersections in R123 new tail or all consort travel. Existing Taihe prefix and three index333 inherited transition candidates remain separately disclosed. Numerical oracle unchanged; no dynamic/GPU whole-world guarantee.
+
+## Whole-connection follow-through (07:53 UTC)
+- The original five local routes cover actual triangles only Z421–446. They do **not** certify the Tihe-to-Lijing complete connection. Original bounded raw remains unchanged.
+- Whole physical route (Z399–453.7) first failed at an invalid turn target Z423.65: the complete ±0.5 foot overlaps the actual front-window lower wall (proxy Z424.14–424.46). Target corrected to Z423.50, not a changed solid. The approximately1.1m retained passage for a1m-wide body is **tight**, not generous or a survey dimension.
+- A real moved-corridor interface defect was found: existing displayed F32 ramp .46→.61 vs legacy center-only .45→.60 walkable. Two exact rendered slopes now enter the existing finite stair-interface solver, with complete foot contact and two actual closed landing owners; no render/STEP/body/solver mathematics change.
+- The next existing visible main floor is .6200000048, not its stone slab .6100000143. Its exact existing two world-F32 triangles now have a single bounded actual-surface ID. This is not added invisible support or an enlarged building.
+- Whole connected route now reaches both rear wings and the Lijing west room and returns. The expanded actual-triangle window is X74–116, Z398–455, Y0–3; includes full body margin for this fixed route. Endpoint and accepted-substep evidence are distinct, not an all-segment sweep claim.
+- Wider oracle retains inherited Tihe/south-gallery and Lijing contact differences. Exact R120 same-driver short-route counterexamples: Tihe/south gallery102 frames/102 hits old and current; Lijing61frames/61old hits,60current hits, same first source/pose. Do not claim whole-route zero penetration or fix inherited areas without a separate scope decision.
+- Source3cf969f6 vs ddf: all28,682 finished triangle rows,15texture descriptors (except evidence filenames), and decodedRGBA are exact. Added construction/source tests cover detached/mutated ramp, repeated landing face, invalid CM update, unload/re-add. No per-frame mesh scanning added.

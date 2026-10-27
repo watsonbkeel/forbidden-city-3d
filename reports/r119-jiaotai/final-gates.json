@@ -1,0 +1,50 @@
+{
+  "before": "6f9a617a6f297c5dce35e68bd7cbabe4b203d1ae4af086a43dc62ea86a714786",
+  "after": "6f9a617a6f297c5dce35e68bd7cbabe4b203d1ae4af086a43dc62ea86a714786",
+  "unchanged": true,
+  "results": [
+    {
+      "name": "r119",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "tests/r119/jiaotai-assembly.test.mjs",
+        "tests/r119/jiaotai-lifecycle.test.mjs",
+        "tests/r119/jiaotai-route.test.mjs",
+        "tests/r106-detail-quality.test.mjs",
+        "tests/r106-textile-quality.test.mjs"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 3437.164492
+    },
+    {
+      "name": "r118",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "tests/r118/actual-route-surfaces.test.mjs",
+        "tests/r118/chengqian-threshold.test.mjs",
+        "tests/r118/chuxiu-northwest-bed.test.mjs",
+        "tests/r118/emperor-chuxiu-route.test.mjs",
+        "tests/r118/emperor-sleep-model.test.mjs",
+        "tests/r118/low-surface-transitions.test.mjs",
+        "tests/r118/night-lights.test.mjs",
+        "tests/r118/rendered-streaming.test.mjs",
+        "tests/r118/retained-low-surfaces.test.mjs",
+        "tests/r118/routine-clock.test.mjs",
+        "tests/r118/shared-sleep-slots.test.mjs",
+        "tests/r118/streamed-night-roundtrip.test.mjs",
+        "tests/r118/surface-geometry.test.mjs",
+        "tests/r118/unchanged-contracts.test.mjs"
+      ],
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 58460.485318
+    }
+  ]
+}

@@ -1,10 +1,12 @@
 import * as THREE from 'three';
 import source from '../../../data/characters/night-beds.json' with {type:'json'};
 export const NIGHT_BEDS=Object.freeze(source.beds.map(b=>Object.freeze(b)));
+export const SHARED_REST_AREAS=Object.freeze((source.sharedRestAreas??[]).map(a=>Object.freeze(a)));
 export const BED_TOP=.60;
 export const NIGHT_PARTITIONS=Object.freeze((source.partitions??[]).map(p=>Object.freeze(p)));
-/** Beds are explicitly fictional gameplay fittings. One assigned bed per adult
- * female actor, plus one empty bed in each otherwise unoccupied six-palace site. */
+/** Beds are explicitly fictional gameplay fittings. Ordinary assigned beds remain
+ * unchanged; the two shared-rest adults bind the existing northwest canopy
+ * separately instead of adding another gameplay bed. */
 export function buildNightBeds(kit,zone){
  const beds=NIGHT_BEDS.filter(b=>b.zoneRef===zone.id);if(!beds.length)return;
  const wood=new THREE.MeshStandardMaterial({name:'r72-gameplay-bed-wood',color:0x563b2a,roughness:.9});
@@ -27,3 +29,4 @@ export function buildNightBeds(kit,zone){
  }
 
 }
+export {resolveChuxiuSharedRest} from './SharedRestSlots.js';

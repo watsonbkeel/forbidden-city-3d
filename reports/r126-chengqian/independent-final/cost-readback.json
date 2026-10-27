@@ -1,0 +1,188 @@
+{
+  "status": "PASS_RECORDED_SYMMETRIC_DRIVER_COST_NOT_OPTIMIZATION",
+  "timingAudit": "R126 cost-process imports only target graph through R125 corrected ready-zone for BOTH sources; capture:false; buildMs after target imports/library decode. Timer boundaries manually read, same12 fresh process protocol.",
+  "qualities": {
+    "high": {
+      "pairs": [
+        {
+          "pair": 1,
+          "buildDeltaMs": 177.67464799999993,
+          "allReadyDeltaMs": 191.7085619999998,
+          "oldSource": "e5b914b560372429517662d3761ced65808a3ace2c14a19380bd36048a320604",
+          "newSource": "ba885f34073e6fde52f2ee6cb59d2225190173ae7fc5bb0c3d966bf9dace9073",
+          "oldDispose": [
+            119,
+            119
+          ],
+          "newDispose": [
+            123,
+            123
+          ]
+        },
+        {
+          "pair": 2,
+          "buildDeltaMs": 9.08623,
+          "allReadyDeltaMs": 108.10106100000007,
+          "oldSource": "e5b914b560372429517662d3761ced65808a3ace2c14a19380bd36048a320604",
+          "newSource": "ba885f34073e6fde52f2ee6cb59d2225190173ae7fc5bb0c3d966bf9dace9073",
+          "oldDispose": [
+            119,
+            119
+          ],
+          "newDispose": [
+            123,
+            123
+          ]
+        },
+        {
+          "pair": 3,
+          "buildDeltaMs": -21.56021199999998,
+          "allReadyDeltaMs": -66.48534399999994,
+          "oldSource": "e5b914b560372429517662d3761ced65808a3ace2c14a19380bd36048a320604",
+          "newSource": "ba885f34073e6fde52f2ee6cb59d2225190173ae7fc5bb0c3d966bf9dace9073",
+          "oldDispose": [
+            119,
+            119
+          ],
+          "newDispose": [
+            123,
+            123
+          ]
+        }
+      ],
+      "medianBuildDeltaMs": 9.08623,
+      "medianAllReadyDeltaMs": 108.10106100000007
+    },
+    "low": {
+      "pairs": [
+        {
+          "pair": 1,
+          "buildDeltaMs": 109.43955399999993,
+          "allReadyDeltaMs": 131.95386500000018,
+          "oldSource": "e5b914b560372429517662d3761ced65808a3ace2c14a19380bd36048a320604",
+          "newSource": "ba885f34073e6fde52f2ee6cb59d2225190173ae7fc5bb0c3d966bf9dace9073",
+          "oldDispose": [
+            119,
+            119
+          ],
+          "newDispose": [
+            123,
+            123
+          ]
+        },
+        {
+          "pair": 2,
+          "buildDeltaMs": 17.830713000000173,
+          "allReadyDeltaMs": -4.593711000000212,
+          "oldSource": "e5b914b560372429517662d3761ced65808a3ace2c14a19380bd36048a320604",
+          "newSource": "ba885f34073e6fde52f2ee6cb59d2225190173ae7fc5bb0c3d966bf9dace9073",
+          "oldDispose": [
+            119,
+            119
+          ],
+          "newDispose": [
+            123,
+            123
+          ]
+        },
+        {
+          "pair": 3,
+          "buildDeltaMs": 6.14469999999983,
+          "allReadyDeltaMs": 32.785098999999946,
+          "oldSource": "e5b914b560372429517662d3761ced65808a3ace2c14a19380bd36048a320604",
+          "newSource": "ba885f34073e6fde52f2ee6cb59d2225190173ae7fc5bb0c3d966bf9dace9073",
+          "oldDispose": [
+            119,
+            119
+          ],
+          "newDispose": [
+            123,
+            123
+          ]
+        }
+      ],
+      "medianBuildDeltaMs": 17.830713000000173,
+      "medianAllReadyDeltaMs": 32.785098999999946
+    }
+  },
+  "resourceDeltaExactAllPairs": {
+    "meshes": 2,
+    "triangles": 244,
+    "uniqueGeometries": 2,
+    "geometryArrayBufferBytes": 23424,
+    "uniqueMaterials": 2,
+    "ownedMaterials": 2,
+    "uniqueTextures": 0,
+    "logicalDecodedRgbaBytes": 0,
+    "colliders": 25,
+    "walkables": 2,
+    "rooms": 0,
+    "mapItems": 0,
+    "scopeOwners": 3,
+    "actualSurfaceSourceFaces": 18,
+    "actualSurfaceSourceVertexScalarBytes": 1296,
+    "ordinaryColliderBoxScalarPayloadBytes": 1056
+  },
+  "singleRoutineObservation": {
+    "scope": "R120 complete real streamed all-prebuilt CPU world; all paints ready; two routines full outbound+return60Hz; no GPU/wholeframe claim",
+    "before": "ba885f34073e6fde52f2ee6cb59d2225190173ae7fc5bb0c3d966bf9dace9073",
+    "after": "ba885f34073e6fde52f2ee6cb59d2225190173ae7fc5bb0c3d966bf9dace9073",
+    "constructionMs": 441.03061100000014,
+    "trajectorySHA256": "6aabc1fa1755848ec69684c0872df1be97c1c2092bf525e6b5e1954787ef8c13",
+    "groups": {
+      "outbound": {
+        "count": 4283,
+        "p50Ms": 0.17436199999974633,
+        "p95Ms": 2.39429200000086,
+        "p99Ms": 20.889271000000008,
+        "maxMs": 29.849325000001045,
+        "totalMs": 4509.0249670000485
+      },
+      "return": {
+        "count": 4283,
+        "p50Ms": 0.16755099999863887,
+        "p95Ms": 2.59385199999997,
+        "p99Ms": 19.056681000000026,
+        "maxMs": 52.12734099999943,
+        "totalMs": 4102.548806999952
+      },
+      "inheritedPrefix": {
+        "count": 1148,
+        "p50Ms": 0.8353539999989152,
+        "p95Ms": 1.59698600000047,
+        "p99Ms": 2.209835000001476,
+        "maxMs": 20.00448299999971,
+        "totalMs": 780.5461619999751
+      },
+      "newRoute": {
+        "count": 7417,
+        "p50Ms": 0.1645170000010694,
+        "p95Ms": 2.8151039999975183,
+        "p99Ms": 20.957753999999113,
+        "maxMs": 52.12734099999943,
+        "totalMs": 7828.643184000026
+      },
+      "sleeping": {
+        "count": 1,
+        "p50Ms": 2.3844279999993887,
+        "p95Ms": 2.3844279999993887,
+        "p99Ms": 2.3844279999993887,
+        "maxMs": 2.3844279999993887,
+        "totalMs": 2.3844279999993887
+      }
+    },
+    "phase": {}
+  },
+  "limits": [
+    "3pairs per quality, not speedup/no-regression or causal wholeworld conclusion.",
+    "Feature cost counts final east-six geometry/owned resources, excludes full JS/native/GPU/VRAM.",
+    "Routine single sample is not paired regression or wholeframe FPS.",
+    "Historical R123/R124 asymmetric import/capture cost erratum persists; original raw/frozen trees untouched."
+  ],
+  "inputSHA": {
+    "r126-chengqian-arrival-major/reports/r126-chengqian/cost/pairs.json": "9b628b5b156946538d3762264f1a545c9967f9ffb6c823914e4ef0e67dc595d9",
+    "r126-chengqian-arrival-major/reports/r126-chengqian/cost/routine-final-low.json": "62aafc57283085e14a8eebd337bf14af5163c0a9ab8c9d5869959fa5a472ff6a",
+    "r126-chengqian-arrival-major/scripts/r126/cost-process.mjs": "a178a048cd2583424d583e81c45266b5b03f0585d7df88274d2dc65e0ed7ede0",
+    "r126-chengqian-arrival-major/scripts/r125/ready-zone.mjs": "7d6c99fa052123d13656cedf666c5434f9c4fbe1b8de2fe6dca4c4ef0147f087"
+  }
+}

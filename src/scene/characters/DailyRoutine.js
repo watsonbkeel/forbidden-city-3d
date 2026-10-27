@@ -1,3 +1,5 @@
+import {SharedRestRoutine} from './SharedRestRoutine.js';
+import {SHARED_REST_IDS} from './SharedRestSlots.js';
 import * as THREE from 'three';
 import emperorRoute from '../../../data/characters/emperor-night-route.json' with {type:'json'};
 import routes from '../../../data/characters/night-routes.json' with {type:'json'};
@@ -12,7 +14,9 @@ const sample=(position,rotationYRad=0,speed=0)=>({position:[...position],rotatio
  * Transitioning a posture is discrete and occupancy-checked; walking itself is
  * continuous, and a blocked player pauses progress rather than being crossed. */
 export class DailyRoutine {
- constructor({world,collisionManager,interaction,registry}){Object.assign(this,{world,cm:collisionManager,interaction,registry});this.beds=new Map(NIGHT_BEDS.filter(b=>b.actorId).map(b=>[b.actorId,b]));this.paths=new Map(routes.paths.map(p=>[p.bedId,p.points]));this.night=false;this.stats={sleeping:0,travelling:0,duty:0,waiting:0};}
+ constructor({world,collisionManager,interaction,registry}){Object.assign(this,{world,cm:collisionManager,interaction,registry});this.beds=new Map(NIGHT_BEDS.filter(b=>b.actorId).map(b=>[b.actorId,b]));this.paths=new Map(routes.paths.map(p=>[p.bedId,p.points]));this.night=false;this.stats={sleeping:0,travelling:0,duty:0,waiting:0};this.shared=new SharedRestRoutine(this);}
+ prepareState(state){return this.shared.prepareState(state);}
+ dispose(){this.shared.dispose();}
  effective(original,pose='standing') {return{...original,placement:{mode:'path',pathRef:`routine:${original.id}`},behavior:{...original.behavior,basePose:pose,seatVariant:'standard',followerIndex:0}};}
  reset(states){for(const state of states){if(state.dayActor)state.actor=state.dayActor;delete state.routine;delete state.routineSample;delete state.dayActor;}}
  current(state){return state.routineSample??state.interactionSample??sample(state.binding.position,state.binding.rotationYRad);}
@@ -94,8 +98,10 @@ export class DailyRoutine {
  update(states,dt,beijingTime){
   this.night=isRestTime(beijingTime);this.stats={sleeping:0,travelling:0,duty:0,waiting:0};
   if(!this.cm)return;
+  states=[...states];this.shared.update(states,dt,this.night);
   this.nav=staticRoutineNavigation(this.cm);
   for(const state of states){
+   if(SHARED_REST_IDS.includes(state.actor.id))continue;
    if(!state.binding)continue;
    if(state.routine&&this.world.isZoneReady&&!this.world.isZoneReady(state.dayActor.zoneRef)){this.reset([state]);state.binding=null;continue;}
    const role=routineRole(state.dayActor??state.actor);

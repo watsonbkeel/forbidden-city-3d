@@ -38,6 +38,14 @@ export function buildJiaotaiCaissonLevel(mat,fine){
     const rail=b.box('polygonal-red-rail',.065,.065,delta.length(),...(a.add(v).multiplyScalar(.5).toArray()),5);rail.quaternion.setFromUnitVectors(new THREE.Vector3(0,0,1),delta.normalize());
    }
   }
+  // Narrow gilt mouths distinguish nested tiers at a human viewing angle.
+  // They follow the existing profile vertices; no new opening/datum is fitted.
+  for(const [h,c,y]of[profiles[1],profiles[4],profiles[7]]){
+   const q=poly(h,c);for(let i=0;i<q.length;i++){
+    const a=new THREE.Vector3(q[i][0],y-.018,q[i][1]),n=q[(i+1)%q.length],v=new THREE.Vector3(n[0],y-.018,n[1]),delta=v.clone().sub(a);
+    const lip=b.box('caisson-inset-gilt-lip',.028,.028,delta.length(),...a.add(v).multiplyScalar(.5).toArray());lip.quaternion.setFromUnitVectors(new THREE.Vector3(0,0,1),delta.normalize());
+   }
+  }
   const disc=new THREE.CylinderGeometry(1.60,1.60,.045,24);b.add('round-dragon-field',disc,0,H+1.54,0,6);
   const border=new THREE.TorusGeometry(1.55,.055,4,24);border.rotateX(Math.PI/2);b.add('round-dragon-field-rim',border,0,H+1.48,0);
   const curve=[];for(let i=0;i<=20;i++){const a=i/20*Math.PI*1.82,r=.91-i/20*.21;curve.push(new THREE.Vector3(Math.cos(a)*r,H+1.39-Math.sin(a)*.035,Math.sin(a)*r));}
@@ -51,7 +59,9 @@ export function buildJiaotaiCaissonLevel(mat,fine){
  const centreY=H+P.ceilingOffset+P.mirrorCentreAboveCeiling;
  const topY=H+1.46,ballTop=centreY+P.mirrorRadius;
  b.add('mirror-suspension',new THREE.CylinderGeometry(.055,.065,topY-ballTop,fine?8:4),0,(topY+ballTop)/2,0,6);
- if(fine){const cage=new THREE.CylinderGeometry(.24,.23,.52,8,1,true);b.add('mirror-hanging-cage',cage,0,ballTop+.23,0,1,false);}
+ if(fine){const cage=new THREE.CylinderGeometry(.24,.23,.52,8,1,true);b.add('mirror-hanging-cage',cage,0,ballTop+.23,0,1,false);
+  for(const [id,r,y]of[['lower',.23,ballTop-.03],['upper',.24,ballTop+.49]]){const ring=new THREE.TorusGeometry(r,.018,4,12);ring.rotateX(Math.PI/2);b.add('mirror-cage-end-ring-'+id,ring,0,y,0);}
+ }
  b.add('central-xuanyuan-mirror',new THREE.SphereGeometry(P.mirrorRadius,fine?12:8,fine?8:5),0,centreY,0,7);
  g.userData.caisson={id:P.id,modelFit:true,fine,zones:['square','polygonal','round'],mirror:true};return g;
 }
@@ -63,7 +73,9 @@ export function buildJiaotaiBackdrop(builder,g,{x0,ty,tz,depth,thW}){
  // Retain original screen width/station and dais collision. Only the raised
  // visual backdrop changes; its maximum footprint stays inside the old solid.
  b.box('jiaotai-red-rear-screen',w,4.48,.30,x0,floor+3.49,z,5);
- b.box('jiaotai-upper-gilt-screen-field',w-.16,1.54,.025,x0,floor+4.85,z-.165,3);
+ b.box('jiaotai-upper-gilt-screen-field',w-.22,1.48,.025,x0,floor+4.85,z-.165,3);
+ // Recessed inner image and four fitted edges share the old field envelope.
+ for(const sign of[-1,1]){b.box('jiaotai-upper-field-gilt-rim',w-.16,.03,.025,x0,floor+4.85+sign*.755,z-.165,4);b.box('jiaotai-upper-field-gilt-rim',.03,1.48,.025,x0+sign*((w-.16)/2-.015),floor+4.85,z-.165,4);}
  b.box('jiaotai-lower-inscription-field-untranscribed',w-.16,2.38,.025,x0,floor+2.49,z-.165,4);
  for(const s of[-1,1])b.box('jiaotai-screen-side-frame',.10,4.5,.34,x0+s*(w/2-.04),floor+3.49,z,4);
  b.box('jiaotai-rear-plaque-bearing-beam',w+.12,.18,.34,x0,floor+5.78,z,5);

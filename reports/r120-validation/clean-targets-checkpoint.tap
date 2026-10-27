@@ -1,0 +1,136 @@
+TAP version 13
+# Subtest: independent same-value worlds compare exact despite UUIDs
+ok 1 - independent same-value worlds compare exact despite UUIDs
+  ---
+  duration_ms: 4.993535
+  type: 'test'
+  ...
+# Subtest: real attribute/world transform/texture pixel/filter/physics changes cannot pass equivalence
+ok 2 - real attribute/world transform/texture pixel/filter/physics changes cannot pass equivalence
+  ---
+  duration_ms: 8.963473
+  type: 'test'
+  ...
+# Subtest: cached inactive geometry participates, not just currently visible scene
+ok 3 - cached inactive geometry participates, not just currently visible scene
+  ---
+  duration_ms: 1.925881
+  type: 'test'
+  ...
+# Subtest: nearest-rank retains tail and refuses invalid samples
+ok 4 - nearest-rank retains tail and refuses invalid samples
+  ---
+  duration_ms: 2.696737
+  type: 'test'
+  ...
+# Subtest: retained backing buffers deduplicate aliases but count complete allocation
+ok 5 - retained backing buffers deduplicate aliases but count complete allocation
+  ---
+  duration_ms: 0.463485
+  type: 'test'
+  ...
+# Subtest: unknown texture stays explicitly unknown; shared texture only counted once
+ok 6 - unknown texture stays explicitly unknown; shared texture only counted once
+  ---
+  duration_ms: 0.327411
+  type: 'test'
+  ...
+# Subtest: explicit absolute root and tracked clean source are required
+ok 7 - explicit absolute root and tracked clean source are required
+  ---
+  duration_ms: 40.866408
+  type: 'test'
+  ...
+# Subtest: nonzero child, missing output, wrong root and missing source cannot silently pass
+ok 8 - nonzero child, missing output, wrong root and missing source cannot silently pass
+  ---
+  duration_ms: 1.870047
+  type: 'test'
+  ...
+# Subtest: R120 axial plaque and dragon band are a bounded combined photo-fit in actual Float32 geometry
+ok 9 - R120 axial plaque and dragon band are a bounded combined photo-fit in actual Float32 geometry
+  ---
+  duration_ms: 1.451588
+  type: 'test'
+  ...
+# Subtest: R120 four actual open rail rows have lower connections and source-mapped finite owners, not filled boxes
+ok 10 - R120 four actual open rail rows have lower connections and source-mapped finite owners, not filled boxes
+  ---
+  duration_ms: 8.427919
+  type: 'test'
+  ...
+# Subtest: R120 real coffer reveals add shallow oblique faces within original 23x12 continuous ceiling envelope, far unchanged
+ok 11 - R120 real coffer reveals add shallow oblique faces within original 23x12 continuous ceiling envelope, far unchanged
+  ---
+  duration_ms: 1.293241
+  type: 'test'
+  ...
+# Subtest: R120 retained 106 central parts, all six display objects, far ceiling, and every old collider/walkable are exact R119
+ok 12 - R120 retained 106 central parts, all six display objects, far ceiling, and every old collider/walkable are exact R119
+  ---
+  duration_ms: 378.105265
+  type: 'test'
+  ...
+# Subtest: R120 high genuine paints and source/finished geometry ownership release once
+ok 13 - R120 high genuine paints and source/finished geometry ownership release once
+  ---
+  duration_ms: 737.217381
+  type: 'test'
+  ...
+# Subtest: R120 low genuine paints and source/finished geometry ownership release once
+ok 14 - R120 low genuine paints and source/finished geometry ownership release once
+  ---
+  duration_ms: 258.544833
+  type: 'test'
+  ...
+# Subtest: R120 rail openings are real exact open surfaces, not their filled AABB; owner lifecycle is finite
+ok 15 - R120 rail openings are real exact open surfaces, not their filled AABB; owner lifecycle is finite
+  ---
+  duration_ms: 18.482869
+  type: 'test'
+  ...
+# Subtest: R120 normal complete .5m-body door three-flight return and side loop 10Hz backward=false
+ok 16 - R120 normal complete .5m-body door three-flight return and side loop 10Hz backward=false
+  ---
+  duration_ms: 59.253043
+  type: 'test'
+  ...
+# Subtest: R120 normal complete .5m-body door three-flight return and side loop 10Hz backward=true
+ok 17 - R120 normal complete .5m-body door three-flight return and side loop 10Hz backward=true
+  ---
+  duration_ms: 31.133896
+  type: 'test'
+  ...
+# Subtest: R120 normal complete .5m-body door three-flight return and side loop 30Hz backward=false
+ok 18 - R120 normal complete .5m-body door three-flight return and side loop 30Hz backward=false
+  ---
+  duration_ms: 44.666726
+  type: 'test'
+  ...
+# Subtest: R120 normal complete .5m-body door three-flight return and side loop 30Hz backward=true
+ok 19 - R120 normal complete .5m-body door three-flight return and side loop 30Hz backward=true
+  ---
+  duration_ms: 44.162109
+  type: 'test'
+  ...
+# Subtest: R120 normal complete .5m-body door three-flight return and side loop 60Hz backward=false
+ok 20 - R120 normal complete .5m-body door three-flight return and side loop 60Hz backward=false
+  ---
+  duration_ms: 72.803514
+  type: 'test'
+  ...
+# Subtest: R120 normal complete .5m-body door three-flight return and side loop 60Hz backward=true
+ok 21 - R120 normal complete .5m-body door three-flight return and side loop 60Hz backward=true
+  ---
+  duration_ms: 64.508014
+  type: 'test'
+  ...
+1..21
+# tests 21
+# suites 0
+# pass 21
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3849.698651

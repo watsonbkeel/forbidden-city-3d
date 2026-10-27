@@ -1,0 +1,42 @@
+TAP version 13
+# Subtest: R125 wrong named or mapped rear target fails before kit allocation
+not ok 1 - R125 wrong named or mapped rear target fails before kit allocation
+  ---
+  duration_ms: 3.076867
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r125-chengqian-rear-court/tests/r125/identity-guard.test.mjs:3:1'
+  failureType: 'testCodeFailure'
+  error: 'name'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+  error: "Cannot read properties of undefined (reading 'length')"
+  name: 'TypeError'
+  stack: |-
+    buildChengqianRearWing (file:///workspace/scratch/02a8023d1a85/r125-chengqian-rear-court/src/scene/palace/special/ChengqianRearWings.js:17:71)
+    file:///workspace/scratch/02a8023d1a85/r125-chengqian-rear-court/tests/r125/identity-guard.test.mjs:3:309
+    getActual (node:assert:611:5)
+    strict.throws (node:assert:759:24)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r125-chengqian-rear-court/tests/r125/identity-guard.test.mjs:3:298)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r125-chengqian-rear-court/tests/r125/identity-guard.test.mjs:3:298)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 144.440604

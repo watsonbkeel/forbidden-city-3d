@@ -1,0 +1,144 @@
+TAP version 13
+# Subtest: R124 main door has four same-envelope skirt/glass framed lights instead of solid tall boards
+not ok 1 - R124 main door has four same-envelope skirt/glass framed lights instead of solid tall boards
+  ---
+  duration_ms: 1.414728
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r124-chuxiu-front-room/tests/r124/front-ensemble.test.mjs:5:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 4
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 4
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r124-chuxiu-front-room/tests/r124/front-ensemble.test.mjs:5:113)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: R124 main upper lattice has sixteen nested schematic cells and lower mullions
+not ok 2 - R124 main upper lattice has sixteen nested schematic cells and lower mullions
+  ---
+  duration_ms: 0.55547
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r124-chuxiu-front-room/tests/r124/front-ensemble.test.mjs:6:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 128
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 128
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r124-chuxiu-front-room/tests/r124/front-ensemble.test.mjs:6:98)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: R124 both separately sourced front wings have sill, glass, lattice and green front columns
+not ok 3 - R124 both separately sourced front wings have sill, glass, lattice and green front columns
+  ---
+  duration_ms: 0.196357
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r124-chuxiu-front-room/tests/r124/front-ensemble.test.mjs:7:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 2
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 2
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r124-chuxiu-front-room/tests/r124/front-ensemble.test.mjs:7:134)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R124 three front beam bodies have pale fields rather than only the generic repeated blue band
+not ok 4 - R124 three front beam bodies have pale fields rather than only the generic repeated blue band
+  ---
+  duration_ms: 4.169562
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r124-chuxiu-front-room/tests/r124/front-ensemble.test.mjs:8:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(roles(i,'chuxiu-front-pale-field').length>=3)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r124-chuxiu-front-room/tests/r124/front-ensemble.test.mjs:8:139)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R124 all collision, support, room, map declarations and shared rest still equal R123
+ok 5 - R124 all collision, support, room, map declarations and shared rest still equal R123
+  ---
+  duration_ms: 55.107436
+  type: 'test'
+  ...
+# Subtest: R124 no new texture request and bounded real geometry/material allocation
+not ok 6 - R124 no new texture request and bounded real geometry/material allocation
+  ---
+  duration_ms: 0.639827
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r124-chuxiu-front-room/tests/r124/front-ensemble.test.mjs:10:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(s.triangles>baseline.triangles)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r124-chuxiu-front-room/tests/r124/front-ensemble.test.mjs:10:207)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 1
+# fail 5
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1348.774333

@@ -1,0 +1,441 @@
+{
+  "UTC": "2026-10-27T04:12:02.700330+00:00",
+  "HEAD": "3d40ed95af8009b2bff6620cc3a5ed5236c5fa15",
+  "buildSourceFingerprint": "6f9a617a6f297c5dce35e68bd7cbabe4b203d1ae4af086a43dc62ea86a714786",
+  "scope": "Read terminal writer evidence and independently verify source bindings, output/artifact hashes, exact resource source inputs. Did not re-run whole world or all writer tests.",
+  "bindings": {
+    "final-gates.json": {
+      "before": "6f9a617a6f297c5dce35e68bd7cbabe4b203d1ae4af086a43dc62ea86a714786",
+      "after": "6f9a617a6f297c5dce35e68bd7cbabe4b203d1ae4af086a43dc62ea86a714786",
+      "unchanged": true,
+      "results": [
+        {
+          "name": "r119",
+          "command": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+            "--test",
+            "--test-concurrency=1",
+            "--test-reporter=tap",
+            "tests/r119/jiaotai-assembly.test.mjs",
+            "tests/r119/jiaotai-lifecycle.test.mjs",
+            "tests/r119/jiaotai-route.test.mjs",
+            "tests/r106-detail-quality.test.mjs",
+            "tests/r106-textile-quality.test.mjs"
+          ],
+          "exitCode": 0,
+          "signal": null,
+          "durationMs": 3437.164492
+        },
+        {
+          "name": "r118",
+          "command": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+            "--test",
+            "--test-concurrency=1",
+            "--test-reporter=tap",
+            "tests/r118/actual-route-surfaces.test.mjs",
+            "tests/r118/chengqian-threshold.test.mjs",
+            "tests/r118/chuxiu-northwest-bed.test.mjs",
+            "tests/r118/emperor-chuxiu-route.test.mjs",
+            "tests/r118/emperor-sleep-model.test.mjs",
+            "tests/r118/low-surface-transitions.test.mjs",
+            "tests/r118/night-lights.test.mjs",
+            "tests/r118/rendered-streaming.test.mjs",
+            "tests/r118/retained-low-surfaces.test.mjs",
+            "tests/r118/routine-clock.test.mjs",
+            "tests/r118/shared-sleep-slots.test.mjs",
+            "tests/r118/streamed-night-roundtrip.test.mjs",
+            "tests/r118/surface-geometry.test.mjs",
+            "tests/r118/unchanged-contracts.test.mjs"
+          ],
+          "exitCode": 0,
+          "signal": null,
+          "durationMs": 58460.485318
+        }
+      ]
+    },
+    "startup-high-hd.json": {
+      "before": "6f9a617a6f297c5dce35e68bd7cbabe4b203d1ae4af086a43dc62ea86a714786",
+      "after": "6f9a617a6f297c5dce35e68bd7cbabe4b203d1ae4af086a43dc62ea86a714786",
+      "quality": "high",
+      "resolution": "hd",
+      "elapsedMs": 6535.195856,
+      "library": {
+        "colors": 22,
+        "normals": 23,
+        "requestedKeys": [
+          "balustrade",
+          "bark",
+          "caihua_beam",
+          "door_studded",
+          "dougong_band",
+          "grass",
+          "ground_brick",
+          "lattice_doors",
+          "marble",
+          "pebble_path",
+          "rafters",
+          "roof_tile",
+          "stone_slab",
+          "sumeru_band",
+          "wall_brick",
+          "wall_red",
+          "water",
+          "wood_column",
+          "yulu"
+        ]
+      },
+      "meshes": 336,
+      "materials": 195,
+      "uniqueRoomAtlases": 1,
+      "processMemory": {
+        "rss": 1120264192,
+        "heapTotal": 478412800,
+        "heapUsed": 349898104,
+        "external": 321024743,
+        "arrayBuffers": 314629717
+      },
+      "scope": "fresh process, real production all-prebuilt initialization + normal streaming loadAll=false; local image transport, no WebGL/page/UI claim"
+    },
+    "startup-low-sd.json": {
+      "before": "6f9a617a6f297c5dce35e68bd7cbabe4b203d1ae4af086a43dc62ea86a714786",
+      "after": "6f9a617a6f297c5dce35e68bd7cbabe4b203d1ae4af086a43dc62ea86a714786",
+      "quality": "low",
+      "resolution": "sd",
+      "elapsedMs": 6196.3837570000005,
+      "library": {
+        "colors": 22,
+        "normals": 23,
+        "requestedKeys": [
+          "balustrade",
+          "bark",
+          "caihua_beam",
+          "door_studded",
+          "dougong_band",
+          "grass",
+          "ground_brick",
+          "lattice_doors",
+          "marble",
+          "pebble_path",
+          "rafters",
+          "roof_tile",
+          "stone_slab",
+          "sumeru_band",
+          "wall_brick",
+          "wall_red",
+          "water",
+          "wood_column",
+          "yulu"
+        ]
+      },
+      "meshes": 336,
+      "materials": 195,
+      "uniqueRoomAtlases": 1,
+      "processMemory": {
+        "rss": 1037680640,
+        "heapTotal": 477958144,
+        "heapUsed": 404603704,
+        "external": 348961599,
+        "arrayBuffers": 342566573
+      },
+      "scope": "fresh process, real production all-prebuilt initialization + normal streaming loadAll=false; local image transport, no WebGL/page/UI claim"
+    }
+  },
+  "finalCostSamples": [
+    {
+      "file": "cost/r119-high-1.json",
+      "sourceHashesMatchCurrent": true,
+      "buildMs": 329.12068400000004,
+      "resource": {
+        "meshes": 63,
+        "triangles": 68584,
+        "visibleMeshes": 54,
+        "visibleTriangles": 65464,
+        "geometries": 60,
+        "materials": 50,
+        "geometryArrayBufferBytes": 6390692,
+        "uniqueAlbedoMaps": 27,
+        "logicalAlbedoBytes": 28224512,
+        "ownedJiaotaiAtlases": [
+          {
+            "name": "jiaotai-room-atlas-r119",
+            "width": 512,
+            "height": 256,
+            "rawBackingPixels": 524288,
+            "fullMipRGBAEstimate": 699052,
+            "references": 1
+          },
+          {
+            "name": "jiaotai-central-atlas",
+            "width": 1024,
+            "height": 512,
+            "rawBackingPixels": 2097152,
+            "fullMipRGBAEstimate": 2796204,
+            "references": 3
+          }
+        ]
+      }
+    },
+    {
+      "file": "cost/r119-high-2.json",
+      "sourceHashesMatchCurrent": true,
+      "buildMs": 316.42593,
+      "resource": {
+        "meshes": 63,
+        "triangles": 68584,
+        "visibleMeshes": 54,
+        "visibleTriangles": 65464,
+        "geometries": 60,
+        "materials": 50,
+        "geometryArrayBufferBytes": 6390692,
+        "uniqueAlbedoMaps": 27,
+        "logicalAlbedoBytes": 28224512,
+        "ownedJiaotaiAtlases": [
+          {
+            "name": "jiaotai-room-atlas-r119",
+            "width": 512,
+            "height": 256,
+            "rawBackingPixels": 524288,
+            "fullMipRGBAEstimate": 699052,
+            "references": 1
+          },
+          {
+            "name": "jiaotai-central-atlas",
+            "width": 1024,
+            "height": 512,
+            "rawBackingPixels": 2097152,
+            "fullMipRGBAEstimate": 2796204,
+            "references": 3
+          }
+        ]
+      }
+    },
+    {
+      "file": "cost/r119-high-3.json",
+      "sourceHashesMatchCurrent": true,
+      "buildMs": 316.14865900000007,
+      "resource": {
+        "meshes": 63,
+        "triangles": 68584,
+        "visibleMeshes": 54,
+        "visibleTriangles": 65464,
+        "geometries": 60,
+        "materials": 50,
+        "geometryArrayBufferBytes": 6390692,
+        "uniqueAlbedoMaps": 27,
+        "logicalAlbedoBytes": 28224512,
+        "ownedJiaotaiAtlases": [
+          {
+            "name": "jiaotai-room-atlas-r119",
+            "width": 512,
+            "height": 256,
+            "rawBackingPixels": 524288,
+            "fullMipRGBAEstimate": 699052,
+            "references": 1
+          },
+          {
+            "name": "jiaotai-central-atlas",
+            "width": 1024,
+            "height": 512,
+            "rawBackingPixels": 2097152,
+            "fullMipRGBAEstimate": 2796204,
+            "references": 3
+          }
+        ]
+      }
+    },
+    {
+      "file": "cost/r119-low-1.json",
+      "sourceHashesMatchCurrent": true,
+      "buildMs": 295.43121099999996,
+      "resource": {
+        "meshes": 63,
+        "triangles": 68584,
+        "visibleMeshes": 54,
+        "visibleTriangles": 65464,
+        "geometries": 60,
+        "materials": 50,
+        "geometryArrayBufferBytes": 6390692,
+        "uniqueAlbedoMaps": 27,
+        "logicalAlbedoBytes": 26651648,
+        "ownedJiaotaiAtlases": [
+          {
+            "name": "jiaotai-room-atlas-r119",
+            "width": 512,
+            "height": 256,
+            "rawBackingPixels": 524288,
+            "fullMipRGBAEstimate": 699052,
+            "references": 1
+          },
+          {
+            "name": "jiaotai-central-atlas",
+            "width": 1024,
+            "height": 512,
+            "rawBackingPixels": 2097152,
+            "fullMipRGBAEstimate": 2796204,
+            "references": 3
+          }
+        ]
+      }
+    },
+    {
+      "file": "cost/r119-low-2.json",
+      "sourceHashesMatchCurrent": true,
+      "buildMs": 306.50970800000005,
+      "resource": {
+        "meshes": 63,
+        "triangles": 68584,
+        "visibleMeshes": 54,
+        "visibleTriangles": 65464,
+        "geometries": 60,
+        "materials": 50,
+        "geometryArrayBufferBytes": 6390692,
+        "uniqueAlbedoMaps": 27,
+        "logicalAlbedoBytes": 26651648,
+        "ownedJiaotaiAtlases": [
+          {
+            "name": "jiaotai-room-atlas-r119",
+            "width": 512,
+            "height": 256,
+            "rawBackingPixels": 524288,
+            "fullMipRGBAEstimate": 699052,
+            "references": 1
+          },
+          {
+            "name": "jiaotai-central-atlas",
+            "width": 1024,
+            "height": 512,
+            "rawBackingPixels": 2097152,
+            "fullMipRGBAEstimate": 2796204,
+            "references": 3
+          }
+        ]
+      }
+    },
+    {
+      "file": "cost/r119-low-3.json",
+      "sourceHashesMatchCurrent": true,
+      "buildMs": 288.864236,
+      "resource": {
+        "meshes": 63,
+        "triangles": 68584,
+        "visibleMeshes": 54,
+        "visibleTriangles": 65464,
+        "geometries": 60,
+        "materials": 50,
+        "geometryArrayBufferBytes": 6390692,
+        "uniqueAlbedoMaps": 27,
+        "logicalAlbedoBytes": 26651648,
+        "ownedJiaotaiAtlases": [
+          {
+            "name": "jiaotai-room-atlas-r119",
+            "width": 512,
+            "height": 256,
+            "rawBackingPixels": 524288,
+            "fullMipRGBAEstimate": 699052,
+            "references": 1
+          },
+          {
+            "name": "jiaotai-central-atlas",
+            "width": 1024,
+            "height": 512,
+            "rawBackingPixels": 2097152,
+            "fullMipRGBAEstimate": 2796204,
+            "references": 3
+          }
+        ]
+      }
+    }
+  ],
+  "finalLowExport": {
+    "stage": "after",
+    "quality": "low",
+    "sourceRoot": "/workspace/scratch/02a8023d1a85/r119-jiaotai-room",
+    "sourceCommit": "3d40ed95af8009b2bff6620cc3a5ed5236c5fa15",
+    "beforeSourceFingerprint": "6f9a617a6f297c5dce35e68bd7cbabe4b203d1ae4af086a43dc62ea86a714786",
+    "afterSourceFingerprint": "6f9a617a6f297c5dce35e68bd7cbabe4b203d1ae4af086a43dc62ea86a714786",
+    "scope": "real TextureLibrary 22 color + 21 normal decoded, synchronous Jiaotai central atlas; no GPU/PBR claim",
+    "buildMs": 313.530808,
+    "selectedMeshes": 28,
+    "triangles": 13759,
+    "textureCount": 17,
+    "textureBytes": 17304576,
+    "keys": [
+      "balustrade",
+      "caihua_beam",
+      "dougong_band",
+      "lattice_doors",
+      "marble",
+      "rafters",
+      "roof_tile",
+      "stone_slab",
+      "sumeru_band",
+      "wall_brick",
+      "wall_red",
+      "wood_column",
+      "yulu"
+    ],
+    "cameras": [
+      [
+        "front",
+        [
+          0,
+          4.1,
+          346
+        ],
+        [
+          0,
+          5.7,
+          357.12
+        ],
+        68
+      ],
+      [
+        "clock",
+        [
+          3.6,
+          4.3,
+          349
+        ],
+        [
+          6.15,
+          6.1,
+          354.1
+        ],
+        70
+      ],
+      [
+        "caisson",
+        [
+          0,
+          4.1,
+          351.6
+        ],
+        [
+          0,
+          8.9,
+          357.12
+        ],
+        72
+      ]
+    ]
+  },
+  "artifactHashes": {
+    "final-gates.json": "faeee2bf22cba9edae004e18a659f46e69cf3ecaa36f25603f0fe0f8113bbe10",
+    "final-r119.tap": "b6d2206c4b9d5649c3da864f255deaf2cd04789dc9cb6aec768aa3e051898c8d",
+    "final-r118.tap": "679f8ffab06cba34a0505ba25be83648394cdc09d5b46a5d1dff52b5e4e271b6",
+    "startup-high-hd.json": "301d19881c6ec6c4d964d86de0f9a1e9d930f2094107c93d48aef70840100bd9",
+    "startup-low-sd.json": "91f7cb365a08fc917d073cd742b9f1cee48c20409711fc0c714f5de3291f8fc2",
+    "current-state-differential.json": "7ad6d944cc69f45305d0bcf325472086ba23665fb57354b5559efb26e5379fdd",
+    "existing-differential.json": "845d06037cb9a0ce834c86d3d6125fc61ebafa718c70fcf83af34546e52ae5d3",
+    "cost/summary.json": "4606123d2299c2bb4cf89f1e380bcab42caea716239684c104ffffae4e0cd4c9",
+    "build.log": "ebb389b0d0d57b5f1474831640e6ae4f095a931dd4fbf6b428751515b91f5dbb",
+    "visual-final/front-after-low.png": "cf3fcdea3ffa609be2cdb9de7261ae19ec4d3dd561e32c681a940d92487d4a24"
+  },
+  "readbackNotes": [
+    "Three final high PNGs byte-exact to personally reviewed after/before images",
+    "Personally reviewed final low front PNG",
+    "New geometry scope independently checked by compare-exported-geometry.py --final",
+    "No GPU/mobile/browser execution"
+  ]
+}

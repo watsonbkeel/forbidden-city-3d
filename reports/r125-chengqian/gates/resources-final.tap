@@ -1,0 +1,295 @@
+TAP version 13
+# Subtest: R106 explicit building quality defaults high, isolates libraries and validates atomically
+ok 1 - R106 explicit building quality defaults high, isolates libraries and validates atomically
+  ---
+  duration_ms: 1.393822
+  type: 'test'
+  ...
+# Subtest: low grilles contain only positive-area triangles and noncollapsed UV after actual Float32 construction
+ok 2 - low grilles contain only positive-area triangles and noncollapsed UV after actual Float32 construction
+  ---
+  duration_ms: 86.885482
+  type: 'test'
+  ...
+# Subtest: front accepted quality scope preserves high and physical contracts
+ok 3 - front accepted quality scope preserves high and physical contracts
+  ---
+  duration_ms: 111.03965
+  type: 'test'
+  ...
+# Subtest: rear accepted quality scope preserves high and physical contracts
+ok 4 - rear accepted quality scope preserves high and physical contracts
+  ---
+  duration_ms: 36.713097
+  type: 'test'
+  ...
+# Subtest: gate accepted quality scope preserves high and physical contracts
+ok 5 - gate accepted quality scope preserves high and physical contracts
+  ---
+  duration_ms: 149.858858
+  type: 'test'
+  ...
+# Subtest: R106 high textile pixels exact R105; low directly returns quarter RGBA footprint
+ok 6 - R106 high textile pixels exact R105; low directly returns quarter RGBA footprint
+  ---
+  duration_ms: 43.774218
+  type: 'test'
+  ...
+# Subtest: R106 cold low and high-low-high maps update actual material and release once without stale listeners
+ok 7 - R106 cold low and high-low-high maps update actual material and release once without stale listeners
+  ---
+  duration_ms: 50.423292
+  type: 'test'
+  ...
+# [ZoneManager] 加载区域 west-six（west-six），耗时 0.0ms
+# [ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+# Subtest: unloaded affected prebuilds invalidate once; loaded/shared/other state survives and queued builds use latest policy
+ok 8 - unloaded affected prebuilds invalidate once; loaded/shared/other state survives and queued builds use latest policy
+  ---
+  duration_ms: 3.877459
+  type: 'test'
+  ...
+# Subtest: main initial and hot quality use explicit building policy; menu tells loaded geometry reload boundary
+ok 9 - main initial and hot quality use explicit building policy; menu tells loaded geometry reload boundary
+  ---
+  duration_ms: 0.702174
+  type: 'test'
+  ...
+# Subtest: cache-only completed ZoneBase construction references can be dropped without disposal or changing live merged data
+ok 10 - cache-only completed ZoneBase construction references can be dropped without disposal or changing live merged data
+  ---
+  duration_ms: 1546.531531
+  type: 'test'
+  ...
+# Subtest: bounded cache transfer, LRU, expiry and owner disposal are exact and idempotent
+ok 11 - bounded cache transfer, LRU, expiry and owner disposal are exact and idempotent
+  ---
+  duration_ms: 2.042485
+  type: 'test'
+  ...
+# Subtest: oversize, source/quality changes, pending pins reject without hidden overbudget retention
+ok 12 - oversize, source/quality changes, pending pins reject without hidden overbudget retention
+  ---
+  duration_ms: 0.471197
+  type: 'test'
+  ...
+# Subtest: resource accounting includes owned RGBA+mips, deduplicates shared resources, rejects unknown texture dimensions
+ok 13 - resource accounting includes owned RGBA+mips, deduplicates shared resources, rejects unknown texture dimensions
+  ---
+  duration_ms: 1.348433
+  type: 'test'
+  ...
+# Subtest: unknown or non-RGBA8 owned GPU storage is not silently undercounted
+ok 14 - unknown or non-RGBA8 owned GPU storage is not silently undercounted
+  ---
+  duration_ms: 0.370906
+  type: 'test'
+  ...
+# Subtest: admission uses actual last-use age, not incidental same-frame unload iteration order
+ok 15 - admission uses actual last-use age, not incidental same-frame unload iteration order
+  ---
+  duration_ms: 0.258699
+  type: 'test'
+  ...
+# Subtest: rejected admission does not partially evict useful older retained owners
+ok 16 - rejected admission does not partially evict useful older retained owners
+  ---
+  duration_ms: 0.227882
+  type: 'test'
+  ...
+# Subtest: budget includes retained construction roots, plaque references and non-rendered owned material maps
+ok 17 - budget includes retained construction roots, plaque references and non-rendered owned material maps
+  ---
+  duration_ms: 0.542814
+  type: 'test'
+  ...
+# Subtest: CPU backing allocation is counted once in full even for shared subarray attributes
+ok 18 - CPU backing allocation is counted once in full even for shared subarray attributes
+  ---
+  duration_ms: 0.328493
+  type: 'test'
+  ...
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 0 个 region, 3 个 mapItem
+# [ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+# [ZoneManager] 进入区域: west-six
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 加载区域 west-six（west-six），耗时 0.0ms
+# [ZoneManager] 进入区域: east-six
+# [ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 0 个 region, 3 个 mapItem
+# [ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+# [ZoneManager] 进入区域: west-six
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 加载区域 west-six（west-six），耗时 0.0ms
+# [ZoneManager] 进入区域: east-six
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 加载区域 east-six（east-six），耗时 0.1ms
+# [ZoneManager] 进入区域: west-six
+# [ZoneManager] 加载区域 west-six（west-six），耗时 0.0ms
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 0 个 region, 3 个 mapItem
+# [ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+# [ZoneManager] 加载区域 garden（garden），耗时 0.0ms
+# [ZoneManager] 进入区域: west-six
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 卸载区域 garden
+# [ZoneManager] 加载区域 west-six（west-six），耗时 0.0ms
+# [ZoneManager] 进入区域: east-six
+# [ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 卸载区域 east-six
+# Subtest: normal update-driven current-zone return claims cached destination before old zone admission, even one-entry budget
+ok 19 - normal update-driven current-zone return claims cached destination before old zone admission, even one-entry budget
+  ---
+  duration_ms: 7.10979
+  type: 'test'
+  ...
+# Subtest: east-six cached quality invalidates, loaded remains until exit; unrelated cache survives; final dispose once
+ok 20 - east-six cached quality invalidates, loaded remains until exit; unrelated cache survives; final dispose once
+  ---
+  duration_ms: 1.775013
+  type: 'test'
+  ...
+# Subtest: later background preloading must not evict the actually visited zone before its first return
+ok 21 - later background preloading must not evict the actually visited zone before its first return
+  ---
+  duration_ms: 1.476506
+  type: 'test'
+  ...
+# Subtest: pure authored contact metrics exactly match every original R95 template pose seat and LOD without building a model
+ok 22 - pure authored contact metrics exactly match every original R95 template pose seat and LOD without building a model
+  ---
+  duration_ms: 2.569025
+  type: 'test'
+  ...
+# Subtest: pure contact identity rejects unrelated seat poses and invented variants
+ok 23 - pure contact identity rejects unrelated seat poses and invented variants
+  ---
+  duration_ms: 0.255864
+  type: 'test'
+  ...
+# Subtest: all existing geometry attributes indices and metadata remain exact to frozen R95 source fixture
+ok 24 - all existing geometry attributes indices and metadata remain exact to frozen R95 source fixture
+  ---
+  duration_ms: 418.319244
+  type: 'test'
+  ...
+# Subtest: near unresolved person precedes peripheral prewarm and visible refinement, not first coarse model
+ok 25 - near unresolved person precedes peripheral prewarm and visible refinement, not first coarse model
+  ---
+  duration_ms: 1.49254
+  type: 'test'
+  ...
+# Subtest: successful near metadata yields before starting another long job, so Promise consumers can queue coarse first
+ok 26 - successful near metadata yields before starting another long job, so Promise consumers can queue coarse first
+  ---
+  duration_ms: 1.08617
+  type: 'test'
+  ...
+# Subtest: pending metadata does not yield the frame or starve another available job
+ok 27 - pending metadata does not yield the frame or starve another available job
+  ---
+  duration_ms: 0.19277
+  type: 'test'
+  ...
+# Subtest: ready handoff may defer one oldest turn but repays it immediately after urgent coarse
+ok 28 - ready handoff may defer one oldest turn but repays it immediately after urgent coarse
+  ---
+  duration_ms: 0.354151
+  type: 'test'
+  ...
+# Subtest: ground distance latches are independent of resource completion and frustum
+ok 29 - ground distance latches are independent of resource completion and frustum
+  ---
+  duration_ms: 0.938658
+  type: 'test'
+  ...
+# Subtest: first interest beyond40 but within60 prewarms without drawing and uses actual position not an anchor
+ok 30 - first interest beyond40 but within60 prewarms without drawing and uses actual position not an anchor
+  ---
+  duration_ms: 0.250566
+  type: 'test'
+  ...
+# Subtest: flight uses aircraft XZ rather than altitude or offset camera and has display exit hysteresis
+ok 31 - flight uses aircraft XZ rather than altitude or offset camera and has display exit hysteresis
+  ---
+  duration_ms: 0.209966
+  type: 'test'
+  ...
+# Subtest: teleport or dismount immediately recomputes interest while preserving caller logical records
+ok 32 - teleport or dismount immediately recomputes interest while preserving caller logical records
+  ---
+  duration_ms: 0.703345
+  type: 'test'
+  ...
+# Subtest: hidden but resident batch retains one lease and zero actual submissions until final exit
+ok 33 - hidden but resident batch retains one lease and zero actual submissions until final exit
+  ---
+  duration_ms: 13.783024
+  type: 'test'
+  ...
+# Subtest: same actor resident with a new pose cannot pin obsolete pose or quality resources
+ok 34 - same actor resident with a new pose cannot pin obsolete pose or quality resources
+  ---
+  duration_ms: 29.383578
+  type: 'test'
+  ...
+# Subtest: two zones hold independent batch leases to one immutable shared geometry
+ok 35 - two zones hold independent batch leases to one immutable shared geometry
+  ---
+  duration_ms: 1.724748
+  type: 'test'
+  ...
+# Subtest: cancelling one model key returns its partial generator without cancelling logical jobs
+ok 36 - cancelling one model key returns its partial generator without cancelling logical jobs
+  ---
+  duration_ms: 0.801022
+  type: 'test'
+  ...
+# Subtest: streaming status separates logical positions from nearby prepared models and actual visible actors
+ok 37 - streaming status separates logical positions from nearby prepared models and actual visible actors
+  ---
+  duration_ms: 6.773155
+  type: 'test'
+  ...
+# Subtest: distant logical bindings resolve without generating any character models
+ok 38 - distant logical bindings resolve without generating any character models
+  ---
+  duration_ms: 39.184696
+  type: 'test'
+  ...
+# Subtest: resident key users are complete before cancellation: one leaving user cannot kill another
+ok 39 - resident key users are complete before cancellation: one leaving user cannot kill another
+  ---
+  duration_ms: 2.550327
+  type: 'test'
+  ...
+# Subtest: pose change releases obsolete model interest while retaining only exact new pose and valid detail
+ok 40 - pose change releases obsolete model interest while retaining only exact new pose and valid detail
+  ---
+  duration_ms: 1.844058
+  type: 'test'
+  ...
+# Subtest: camera teleport activates current near models without resetting logical bindings or synchronously acquiring missing geometry
+ok 41 - camera teleport activates current near models without resetting logical bindings or synchronously acquiring missing geometry
+  ---
+  duration_ms: 206.854037
+  type: 'test'
+  ...
+1..41
+# tests 41
+# suites 0
+# pass 41
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4892.754344

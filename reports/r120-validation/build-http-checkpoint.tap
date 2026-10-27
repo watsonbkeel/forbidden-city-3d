@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: R120 launcher labels this release and serves readable discovery files
+ok 1 - R120 launcher labels this release and serves readable discovery files
+  ---
+  duration_ms: 83.583938
+  type: 'test'
+  ...
+# Subtest: every packaged payload byte matches manifest and the frozen root build identity
+ok 2 - every packaged payload byte matches manifest and the frozen root build identity
+  ---
+  duration_ms: 56.143159
+  type: 'test'
+  ...
+# Subtest: R120 clean / actual HTTP/static bytes and embedded identity
+ok 3 - R120 clean / actual HTTP/static bytes and embedded identity
+  ---
+  duration_ms: 519.249668
+  type: 'test'
+  ...
+# Subtest: R120 clean /gugong/ actual HTTP/static bytes and embedded identity
+ok 4 - R120 clean /gugong/ actual HTTP/static bytes and embedded identity
+  ---
+  duration_ms: 465.549481
+  type: 'test'
+  ...
+# Subtest: R120 clean /forbidden-city-3d/ actual HTTP/static bytes and embedded identity
+ok 5 - R120 clean /forbidden-city-3d/ actual HTTP/static bytes and embedded identity
+  ---
+  duration_ms: 449.766919
+  type: 'test'
+  ...
+# Subtest: build metadata is deterministic for source bytes and base, not runtime HEAD
+ok 6 - build metadata is deterministic for source bytes and base, not runtime HEAD
+  ---
+  duration_ms: 23.816065
+  type: 'test'
+  ...
+# Subtest: packaging rejects absent or stale build metadata before copying a package
+ok 7 - packaging rejects absent or stale build metadata before copying a package
+  ---
+  duration_ms: 18.873617
+  type: 'test'
+  ...
+# Subtest: build metadata refuses remote or query-bearing base paths
+ok 8 - build metadata refuses remote or query-bearing base paths
+  ---
+  duration_ms: 0.610967
+  type: 'test'
+  ...
+# Subtest: packaging rejects a current manifest mixed with old HTML or missing/old compiled JS
+ok 9 - packaging rejects a current manifest mixed with old HTML or missing/old compiled JS
+  ---
+  duration_ms: 17.718097
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1914.488237
