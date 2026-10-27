@@ -1,0 +1,98 @@
+TAP version 13
+# Subtest: R124 main door has four same-envelope skirt/glass framed lights instead of solid tall boards
+ok 1 - R124 main door has four same-envelope skirt/glass framed lights instead of solid tall boards
+  ---
+  duration_ms: 0.976856
+  type: 'test'
+  ...
+# Subtest: R124 main upper lattice has sixteen nested schematic cells and lower mullions
+ok 2 - R124 main upper lattice has sixteen nested schematic cells and lower mullions
+  ---
+  duration_ms: 0.181272
+  type: 'test'
+  ...
+# Subtest: R124 both separately sourced front wings have sill, glass, lattice and green front columns
+ok 3 - R124 both separately sourced front wings have sill, glass, lattice and green front columns
+  ---
+  duration_ms: 0.16655
+  type: 'test'
+  ...
+# Subtest: R124 three front beam bodies have pale fields rather than only the generic repeated blue band
+ok 4 - R124 three front beam bodies have pale fields rather than only the generic repeated blue band
+  ---
+  duration_ms: 0.115043
+  type: 'test'
+  ...
+# Subtest: R124 all collision, support, room, map declarations and shared rest still equal R123
+ok 5 - R124 all collision, support, room, map declarations and shared rest still equal R123
+  ---
+  duration_ms: 54.194863
+  type: 'test'
+  ...
+# Subtest: R124 no new texture request and bounded real geometry/material allocation
+ok 6 - R124 no new texture request and bounded real geometry/material allocation
+  ---
+  duration_ms: 0.292169
+  type: 'test'
+  ...
+# Subtest: R124 nested lattice is joined to top/bottom frames rather than floating rings
+not ok 7 - R124 nested lattice is joined to top/bottom frames rather than floating rings
+  ---
+  duration_ms: 1.065379
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r124-chuxiu-front-room/tests/r124/front-ensemble.test.mjs:11:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 32
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 32
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r124-chuxiu-front-room/tests/r124/front-ensemble.test.mjs:11:98)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R124 pale beam fields have independently visible grey-green end fields inside the same beam
+not ok 8 - R124 pale beam fields have independently visible grey-green end fields inside the same beam
+  ---
+  duration_ms: 0.254232
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r124-chuxiu-front-room/tests/r124/front-ensemble.test.mjs:12:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 10
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 10
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r124-chuxiu-front-room/tests/r124/front-ensemble.test.mjs:12:112)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 6
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1556.565648

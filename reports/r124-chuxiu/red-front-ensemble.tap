@@ -1,0 +1,250 @@
+✖ R124 main door has four same-envelope skirt/glass framed lights instead of solid tall boards (1.562144ms)
+✖ R124 main upper lattice has sixteen nested schematic cells and lower mullions (0.277407ms)
+✖ R124 both separately sourced front wings have sill, glass, lattice and green front columns (0.1798ms)
+✖ R124 three front beam bodies have pale fields rather than only the generic repeated blue band (3.975646ms)
+✖ R124 all collision, support, room, map declarations and shared rest still equal R123 (8.285123ms)
+✖ R124 no new texture request and bounded real geometry/material allocation (0.595744ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 0
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1376.961627
+
+✖ failing tests:
+
+test at tests/r124/front-ensemble.test.mjs:5:1
+✖ R124 main door has four same-envelope skirt/glass framed lights instead of solid tall boards (1.562144ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 4
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r124-chuxiu-front-room/tests/r124/front-ensemble.test.mjs:5:113)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 4,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r124/front-ensemble.test.mjs:6:1
+✖ R124 main upper lattice has sixteen nested schematic cells and lower mullions (0.277407ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 128
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r124-chuxiu-front-room/tests/r124/front-ensemble.test.mjs:6:98)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 128,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r124/front-ensemble.test.mjs:7:1
+✖ R124 both separately sourced front wings have sill, glass, lattice and green front columns (0.1798ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r124-chuxiu-front-room/tests/r124/front-ensemble.test.mjs:7:134)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r124/front-ensemble.test.mjs:8:1
+✖ R124 three front beam bodies have pale fields rather than only the generic repeated blue band (3.975646ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(roles(i,'chuxiu-front-pale-field').length>=3)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r124-chuxiu-front-room/tests/r124/front-ensemble.test.mjs:8:139)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r124/front-ensemble.test.mjs:9:1
+✖ R124 all collision, support, room, map declarations and shared rest still equal R123 (8.285123ms)
+  AssertionError [ERR_ASSERTION]: mapItems
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      {
+        d: 6.4,
+        kind: 'gate',
+        name: '遵义门',
+  ...
+        kind: 'hall',
+  +     name: undefined,
+        w: 17.9,
+        x: 87.6,
+        z: 290.9
+      },
+      {
+  ...
+        kind: 'hall',
+  +     name: undefined,
+        w: 8.04,
+        x: 78.42,
+        z: 319.8
+      },
+      {
+        d: 12.2,
+        kind: 'hall',
+  +     name: undefined,
+        w: 8.04,
+        x: 111.38,
+        z: 319.8
+      },
+      {
+  ...
+        kind: 'hall',
+  +     name: undefined,
+        w: 8.04,
+        x: 77.52,
+        z: 367.3
+      },
+      {
+        d: 12.2,
+        kind: 'hall',
+  +     name: undefined,
+        w: 8.04,
+        x: 110.48,
+        z: 367.3
+      },
+      {
+  ...
+        kind: 'hall',
+  +     name: undefined,
+        w: 8.04,
+        x: 78.32,
+        z: 417
+      },
+      {
+        d: 12.2,
+        kind: 'hall',
+  +     name: undefined,
+        w: 8.04,
+        x: 111.28,
+        z: 417
+      },
+      {
+  ...
+        kind: 'hall',
+  +     name: undefined,
+        w: 8.04,
+        x: 133.72,
+        z: 318.7
+      },
+      {
+        d: 12.2,
+        kind: 'hall',
+  +     name: undefined,
+        w: 8.04,
+        x: 166.68,
+        z: 318.7
+      },
+      {
+  ...
+        kind: 'hall',
+  +     name: undefined,
+        w: 8.04,
+        x: 133.72,
+        z: 368.4
+      },
+      {
+        d: 12.2,
+        kind: 'hall',
+  +     name: undefined,
+        w: 8.04,
+        x: 166.68,
+        z: 368.4
+      },
+      {
+  ...
+        kind: 'hall',
+  +     name: undefined,
+        w: 8.04,
+        x: 133.32,
+        z: 419.1
+      },
+      {
+        d: 12.2,
+        kind: 'hall',
+  +     name: undefined,
+        w: 8.04,
+        x: 166.28,
+        z: 419.1
+      },
+      {
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r124-chuxiu-front-room/tests/r124/front-ensemble.test.mjs:9:164)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ { kind: 'gate', name: '遵义门', x: 70, z: 248.9, w: 2.8, d: 6.4 }, { kind: 'gate', name: '永寿门', x: 95.4, z: 303.6, w: 6.4, d: 2.8 }, { kind: 'gate', name: '翊坤门', x: 94.6, z: 359.5, w: 6.4, d: 2.8 }, { kind: 'gate', name: '储秀门', x: 94.8, z: 414.8, w: 0, d: 0, historicalSite: true, coordinateStatus: 'estimated' }, { kind: 'gate', name: '太极门', x: 139.5, z: 304.5, w: 6.4, d: 2.8 }, { kind: 'gate', name: '长春门', x: 150.2, z: 358, w: 0, d: 0, historicalSite: true, coordinateStatus: 'estimated' }, { kind: 'gate', name: '咸福门', x: 150.5, z: 408.3, w: 6.4, d: 2.8 }, { kind: 'gate', name: '重华门', x: 120.2, z: 460, w: 6.4, d: 2.8 }, { kind: 'hall', name: '养心殿', x: 108.6, z: 277.5, w: 38, d: 14 }, { kind: 'hall', name: undefined, x: 87.6, z: 290.9, w: 17.9, d: 9.7 }, { kind: 'hall', name: '永寿宫', x: 94.9, z: 331, w: 28.700000000000003, d: 15.4 }, { kind: 'hall', name: '永寿宫后殿', x: 95, z: 349.2, w: 27.4, d: 14.1 }, { kind: 'hall', name: undefined, x: 78.42, z: 319.8, w: 8.04, d: 12.2 }, { kind: 'hall', name: undefined, x: 111.38, z: 319.8, w: 8.04, d: 12.2 }, { kind: 'hall', name: '翊坤宫', x: 94, z: 382.5, w: 28.700000000000003, d: 15.4 }, { kind: 'hall', name: '翊坤宫后殿', x: 94, z: 401.5, w: 27.4, d: 14.1 }, { kind: 'hall', name: undefined, x: 77.52, z: 367.3, w: 8.04, d: 12.2 }, { kind: 'hall', name: undefined, x: 110.48, z: 367.3, w: 8.04, d: 12.2 }, { kind: 'hall', name: '储秀宫', x: 94.8, z: 429.3, w: 28.700000000000003, d: 15.4 }, { kind: 'hall', name: '储秀宫后殿', x: 94.5, z: 450.2, w: 27.4, d: 14.1 }, { kind: 'hall', name: undefined, x: 78.32, z: 417, w: 8.04, d: 12.2 }, { kind: 'hall', name: undefined, x: 111.28, z: 417, w: 8.04, d: 12.2 }, { kind: 'hall', name: '太极殿', x: 150.2, z: 329.9, w: 28.700000000000003, d: 15.4 }, { kind: 'hall', name: '太极殿后殿', x: 150.1, z: 348.2, w: 27.4, d: 14.1 }, { kind: 'hall', name: undefined, x: 133.72, z: 318.7, w: 8.04, d: 12.2 }, { kind: 'hall', name: undefined, x: 166.68, z: 318.7, w: 8.04, d: 12.2 }, { kind: 'hall', name: '长春宫', x: 150.2, z: 379.6, w: 28.700000000000003, d: 15.4 }, { kind: 'hall', name: '长春宫后殿', x: 149.8, z: 398.5, w: 27.4, d: 14.1 }, { kind: 'hall', name: undefined, x: 133.72, z: 368.4, w: 8.04, d: 12.2 }, { kind: 'hall', name: undefined, x: 166.68, z: 368.4, w: 8.04, d: 12.2 }, { kind: 'hall', name: '咸福宫', x: 149.8, z: 430.3, w: 22.1, d: 15.4 }, { kind: 'hall', name: '咸福宫后殿', x: 149.3, z: 449.8, w: 27.4, d: 14.1 }, { kind: 'hall', name: undefined, x: 133.32, z: 419.1, w: 8.04, d: 12.2 }, { kind: 'hall', name: undefined, x: 166.28, z: 419.1, w: 8.04, d: 12.2 }, { kind: 'hall', name: '重华宫', x: 118.9, z: 498.3, w: 23.5, d: 10.6 }, { kind: 'hall', name: '凤光室', x: 77, z: 440.85, w: 5.1000000000000005, d: 8.899999999999999, stableId: 'west-six/chuxiu-rear-east', sourceStatus: 'REVERSIBLE_PHOTO_TOPOLOGY_FIT_NOT_SURVEYED', nameVariant: null }, { kind: 'hall', name: '猗兰室', x: 112.6, z: 440.85, w: 5.1000000000000005, d: 8.899999999999999, stableId: 'west-six/chuxiu-rear-west', sourceStatus: 'REVERSIBLE_PHOTO_TOPOLOGY_FIT_NOT_SURVEYED', nameVariant: '猗兰室 / 猗兰馆 (official metadata variant; plaque unverified)' }, { kind: 'gate', name: '养心门', x: 109, z: 251.8, w: 16.2, d: 1.1 } ],
+    expected: [ { kind: 'gate', name: '遵义门', x: 70, z: 248.9, w: 2.8, d: 6.4 }, { kind: 'gate', name: '永寿门', x: 95.4, z: 303.6, w: 6.4, d: 2.8 }, { kind: 'gate', name: '翊坤门', x: 94.6, z: 359.5, w: 6.4, d: 2.8 }, { kind: 'gate', name: '储秀门', x: 94.8, z: 414.8, w: 0, d: 0, historicalSite: true, coordinateStatus: 'estimated' }, { kind: 'gate', name: '太极门', x: 139.5, z: 304.5, w: 6.4, d: 2.8 }, { kind: 'gate', name: '长春门', x: 150.2, z: 358, w: 0, d: 0, historicalSite: true, coordinateStatus: 'estimated' }, { kind: 'gate', name: '咸福门', x: 150.5, z: 408.3, w: 6.4, d: 2.8 }, { kind: 'gate', name: '重华门', x: 120.2, z: 460, w: 6.4, d: 2.8 }, { kind: 'hall', name: '养心殿', x: 108.6, z: 277.5, w: 38, d: 14 }, { kind: 'hall', x: 87.6, z: 290.9, w: 17.9, d: 9.7 }, { kind: 'hall', name: '永寿宫', x: 94.9, z: 331, w: 28.700000000000003, d: 15.4 }, { kind: 'hall', name: '永寿宫后殿', x: 95, z: 349.2, w: 27.4, d: 14.1 }, { kind: 'hall', x: 78.42, z: 319.8, w: 8.04, d: 12.2 }, { kind: 'hall', x: 111.38, z: 319.8, w: 8.04, d: 12.2 }, { kind: 'hall', name: '翊坤宫', x: 94, z: 382.5, w: 28.700000000000003, d: 15.4 }, { kind: 'hall', name: '翊坤宫后殿', x: 94, z: 401.5, w: 27.4, d: 14.1 }, { kind: 'hall', x: 77.52, z: 367.3, w: 8.04, d: 12.2 }, { kind: 'hall', x: 110.48, z: 367.3, w: 8.04, d: 12.2 }, { kind: 'hall', name: '储秀宫', x: 94.8, z: 429.3, w: 28.700000000000003, d: 15.4 }, { kind: 'hall', name: '储秀宫后殿', x: 94.5, z: 450.2, w: 27.4, d: 14.1 }, { kind: 'hall', x: 78.32, z: 417, w: 8.04, d: 12.2 }, { kind: 'hall', x: 111.28, z: 417, w: 8.04, d: 12.2 }, { kind: 'hall', name: '太极殿', x: 150.2, z: 329.9, w: 28.700000000000003, d: 15.4 }, { kind: 'hall', name: '太极殿后殿', x: 150.1, z: 348.2, w: 27.4, d: 14.1 }, { kind: 'hall', x: 133.72, z: 318.7, w: 8.04, d: 12.2 }, { kind: 'hall', x: 166.68, z: 318.7, w: 8.04, d: 12.2 }, { kind: 'hall', name: '长春宫', x: 150.2, z: 379.6, w: 28.700000000000003, d: 15.4 }, { kind: 'hall', name: '长春宫后殿', x: 149.8, z: 398.5, w: 27.4, d: 14.1 }, { kind: 'hall', x: 133.72, z: 368.4, w: 8.04, d: 12.2 }, { kind: 'hall', x: 166.68, z: 368.4, w: 8.04, d: 12.2 }, { kind: 'hall', name: '咸福宫', x: 149.8, z: 430.3, w: 22.1, d: 15.4 }, { kind: 'hall', name: '咸福宫后殿', x: 149.3, z: 449.8, w: 27.4, d: 14.1 }, { kind: 'hall', x: 133.32, z: 419.1, w: 8.04, d: 12.2 }, { kind: 'hall', x: 166.28, z: 419.1, w: 8.04, d: 12.2 }, { kind: 'hall', name: '重华宫', x: 118.9, z: 498.3, w: 23.5, d: 10.6 }, { kind: 'hall', name: '凤光室', x: 77, z: 440.85, w: 5.1000000000000005, d: 8.899999999999999, stableId: 'west-six/chuxiu-rear-east', sourceStatus: 'REVERSIBLE_PHOTO_TOPOLOGY_FIT_NOT_SURVEYED', nameVariant: null }, { kind: 'hall', name: '猗兰室', x: 112.6, z: 440.85, w: 5.1000000000000005, d: 8.899999999999999, stableId: 'west-six/chuxiu-rear-west', sourceStatus: 'REVERSIBLE_PHOTO_TOPOLOGY_FIT_NOT_SURVEYED', nameVariant: '猗兰室 / 猗兰馆 (official metadata variant; plaque unverified)' }, { kind: 'gate', name: '养心门', x: 109, z: 251.8, w: 16.2, d: 1.1 } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r124/front-ensemble.test.mjs:10:1
+✖ R124 no new texture request and bounded real geometry/material allocation (0.595744ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(s.triangles>baseline.triangles)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r124-chuxiu-front-room/tests/r124/front-ensemble.test.mjs:10:207)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

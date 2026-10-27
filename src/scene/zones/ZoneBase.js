@@ -1,3 +1,4 @@
+import {applyChuxiuFrontWing} from '../palace/special/ChuxiuFrontEnsemble.js';
 import {buildChuxiuRearWing} from '../palace/special/ChuxiuRearWings.js';
 import {buildChengqianCourtyardGroup,bindChengqianTerraceDomain,chengqianWingHardGable} from '../palace/special/ChengqianCourtyardGroup.js';
 import {applyLijingWestRoom} from '../palace/special/LijingWestRoom.js';
@@ -196,7 +197,7 @@ export class ZoneBase {
     if(westAnnexContext)validateWestUnknownAnnexInventoryPolicy(westAnnexContext);
     const finish=built=>{
       applyEastFiveRoofBeasts(this.kit,this.zoneJson.id,itemIndex,item,built);
-      if(westAnnexContext)return applyWestUnknownAnnexInventory(this.kit,westAnnexContext,built);
+      if(westAnnexContext)return applyChuxiuFrontWing(this.kit,this.zoneJson.id,itemIndex,item,applyWestUnknownAnnexInventory(this.kit,westAnnexContext,built));
       if(annexContext)return applyEastUnknownAnnexInventory(this.kit,annexContext,built);
       return inventoryContext?applyEastUnknownThroneInventory(this.kit,inventoryContext,built):built;
     };

@@ -1,0 +1,118 @@
+{
+  "status": "PASS_RECORDED_GATES_NO_ADDED_FAILURE_NAMES",
+  "baselineCurrentState": {
+    "source": "R1233cf",
+    "raw": "r123-chuxiu-rear-frame/reports/r123-chuxiu/gates/current-state-final.tap",
+    "sha256": "02f0a80607d941b209ecdcf1eab390fdf736e62f5d62b38984fb0c10cdb81cc2",
+    "tests": 1289,
+    "pass": 1076,
+    "fail": 213,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "candidateCurrentState": {
+    "source": "R1240773",
+    "raw": "r124-chuxiu-front-room/reports/r124-chuxiu/gates/current-state-final.tap",
+    "sha256": "08d2ebe6d773fcb35140c2465ac0ac4e7e72af1c68da925da761bc1cb0a11653",
+    "tests": 1289,
+    "pass": 1076,
+    "fail": 213,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "addedFailureNames": [],
+  "removedFailureNames": [],
+  "namedFailureCount": 213,
+  "terminalGates": [
+    {
+      "gate": "r124",
+      "tests": 11,
+      "pass": 11,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "failures": [],
+      "rawSHA256": "d99e78119938d216e69b172b9e1dc9c007cbe1ec1afd19c81852423ea9b894dc"
+    },
+    {
+      "gate": "r123",
+      "tests": 9,
+      "pass": 9,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "failures": [],
+      "rawSHA256": "049447ea3bb55da2405fe2ccea3f9bd416780b9efcbbb9fb452d97c4eb7547d7"
+    },
+    {
+      "gate": "resources",
+      "tests": 41,
+      "pass": 41,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "failures": [],
+      "rawSHA256": "0e3820978675637890d018ec7156ad8fccf62470da7fc99b0a18335b1d5cb809"
+    },
+    {
+      "gate": "motion",
+      "tests": 90,
+      "pass": 89,
+      "fail": 1,
+      "cancelled": 0,
+      "skipped": 0,
+      "failures": [
+        "R113 two fitted front wings preserve scale and create a bounded rear circulation gap"
+      ],
+      "rawSHA256": "dbfbd02a34604153a30863e5d90151f0eb9345c88ee43f3113aea0fe84b22bab"
+    },
+    {
+      "gate": "r119-r120",
+      "tests": 29,
+      "pass": 28,
+      "fail": 1,
+      "cancelled": 0,
+      "skipped": 0,
+      "failures": [
+        "R119 preserves exact R118 navigation, display geometry, clocks, doors and registered opening"
+      ],
+      "rawSHA256": "17feddf091723c4a6245d0a52bc98ba0f5ace8f44f5cbd387f6b58fa0eb82d70"
+    }
+  ],
+  "pairedCostSummarySHA256": "3da74a791c7578b3e32fedbdbf8317548e6e724625669bbc904c9660deaed19d",
+  "recomputedPairedCosts": [
+    {
+      "quality": "high",
+      "medianBuildDeltaMs": 29.654511999999954,
+      "medianReadyDeltaMs": -56.50960299999997,
+      "triangleDelta": 3996,
+      "geometryArrayBufferDeltaBytes": 383616,
+      "ownedMaterialDelta": 6,
+      "unchanged": [
+        "textures/decodedRGBA",
+        "collider/walkable/room/map counts",
+        "finite-source count/scalar data"
+      ],
+      "scope": "Final group resources and ordinary-box scalar payload only; excludes JavaScript object/index/temporary/cache/global owners. LogicalRGBA is not GPU allocation/full VRAM."
+    },
+    {
+      "quality": "low",
+      "medianBuildDeltaMs": 35.841061999999965,
+      "medianReadyDeltaMs": 26.549307,
+      "triangleDelta": 3996,
+      "geometryArrayBufferDeltaBytes": 383616,
+      "ownedMaterialDelta": 6,
+      "unchanged": [
+        "textures/decodedRGBA",
+        "collider/walkable/room/map counts",
+        "finite-source count/scalar data"
+      ],
+      "scope": "Final group resources and ordinary-box scalar payload only; excludes JavaScript object/index/temporary/cache/global owners. LogicalRGBA is not GPU allocation/full VRAM."
+    }
+  ],
+  "limits": [
+    "Current state remains213fail, not all-green.",
+    "No independent timing rerun; arithmetic readback only.",
+    "Source-bound target/physics/scene contracts remain narrower than GPU/mobile acceptance."
+  ]
+}

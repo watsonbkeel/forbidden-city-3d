@@ -1,8 +1,12 @@
 # 故宫 3D 虚拟游览
 
+> **R124 储秀门窗与前院组合开发版（部分完成）**：累计R123与实际R118–R120；主门木裙/玻璃分段、窗格有限连接，三前立面梁内浅色/灰绿分框，两前配砖槛玻璃格窗及前柱色区。保父frame/门洞/碰撞/room/床路线，0新增贴图；照片合理示意，非测绘或精确雕花。中央四罩五屏保留但未新完成。见[R124范围](docs/current-state/r124/README.md)。
+>
+> **仍有卡顿与旧通路限制**：标准门1076PASS/213FAIL与R123逐case相同；旧外院直达/部分短转角未修，不称全线零穿。最新双routineCPU观测新段P95 **2.670ms**、P99 **18.831ms**、max **50.533ms**，不是全帧；与旧轮不是成对因果测量，不归因确定回退/改善。真实GPU/手机未验，性能候选未复活。详见[验证](docs/current-state/r124/VALIDATION.md)/[成本](docs/current-state/r124/COST.md)。R116/R117及R121/R122未交付，下个majorR126。
+
 > **R123 储秀后院成组开发版（部分完成）**：累计 R118–R120，保留帝妃西北同床与21:00/06:00连续往返。按官方无尺平面与两后配正立面，主殿/前配南移5m作工程拟合，新增朝向后院的两座三间后配；丽景、体和与外墙不动。未知耳房入口不臆造，不能称储秀全院完成。R121/R122三次山石候选视觉拒绝并恢复，未交付；R116/R117和R120性能候选均无采纳运行优化。
 >
-> 本版空间更紧、功能有成本：前侧约1.1m净带对应1m身体，保有限结构接合；全线到达不等于全线零穿。最新双角色CPU新段P95 **2.299ms**、P99 **13.570ms**、max **29.052ms**，GPU/手机未验，不称提速/无卡顿。见[R123范围](docs/current-state/r123/README.md)、[验证与旧问题](docs/current-state/r123/VALIDATION.md)、[成本](docs/current-state/r123/COST.md)。下个累计大版仍为R126，main/Pages不由本工作树自动改动。
+> 本版空间更紧、功能有成本：前侧约1.1m净带对应1m身体，保有限结构接合；全线到达不等于全线零穿。R123当时双角色CPU新段P95 **2.299ms**、P99 **13.570ms**、max **29.052ms**，GPU/手机未验，不称提速/无卡顿。见[R123范围](docs/current-state/r123/README.md)、[验证与旧问题](docs/current-state/r123/VALIDATION.md)、[成本](docs/current-state/r123/COST.md)。下个累计大版仍为R126，main/Pages不由本工作树自动改动。
 
 > **R120 累计大版本候选（未部署 main/Pages）**：累计实际 R118 帝妃储秀西北同床夜归/晨返和有限接触修复、R119 交泰成组细化；本版增加乾清轴上牌/五龙带整体比例拟合、四条真实开栏及原 23×12 格顶浅口沿。保原楼地面/柱轴/台阶/陈设、全部准备好再进入，不新增首访等待。照片拟合不是测绘或精确雕花复刻。
 >
@@ -17,7 +21,7 @@
 ![Three.js](https://img.shields.io/badge/Three.js-r162-blue)
 ![Vite](https://img.shields.io/badge/Vite-5-purple)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Status](https://img.shields.io/badge/development-R123-brightgreen)
+![Status](https://img.shields.io/badge/development-R124-brightgreen)
 ![Validation](https://img.shields.io/badge/validation-see_release_records-blue)
 
 ## 历史记录：R115 第二批宫殿成组累计大版本候选

@@ -1,0 +1,133 @@
+{
+  "status": "PASS_NO_NEW_ACTOR_INTERSECTIONS_WITH_INHERITED_FAILURES",
+  "sourceBefore": "0773b81f1dc8678edd5f289e132eceedcc2c89e69a23336a14d9c0b76084116c",
+  "sourceAfter": "0773b81f1dc8678edd5f289e132eceedcc2c89e69a23336a14d9c0b76084116c",
+  "stable": true,
+  "rows": [
+    {
+      "fps": 10,
+      "complete": true,
+      "frames": 1430,
+      "failuresInherited": {
+        "capsuleEndpoint": 4343,
+        "capsuleSweptCandidate": 359,
+        "renderCross": 181
+      },
+      "rawSHA256": "a7151f8383be10448136345f2aee8ab9e71f38858f803bdbe87e9d019d023612",
+      "rawByteExactR123": true,
+      "baselineRaw": "r123-independent-review/r118-support-final-10hz/routine-10hz.json",
+      "raw": "r124-independent-review/r118-final-10hz/routine-10hz.json",
+      "inheritedIndex333SweptCandidates": [
+        {
+          "scope": "capsuleSweptCandidate|emperor-new-route|outbound|\u4e09\u53f0_sumeru_band_material",
+          "count": 1,
+          "firstIndex": 333,
+          "firstPosition": [
+            -2.1,
+            8.630000114440918,
+            59.24999999999975
+          ],
+          "lastIndex": 333
+        },
+        {
+          "scope": "capsuleSweptCandidate|emperor-new-route|outbound|\u4e09\u53f0_stone_slab_material",
+          "count": 2,
+          "firstIndex": 333,
+          "firstPosition": [
+            -2.1,
+            8.630000114440918,
+            59.24999999999975
+          ],
+          "lastIndex": 333
+        }
+      ],
+      "newTailAndConsortNewIntersections": 0
+    },
+    {
+      "fps": 30,
+      "complete": true,
+      "frames": 4284,
+      "failuresInherited": {
+        "capsuleEndpoint": 4816,
+        "capsuleSweptCandidate": 358,
+        "renderCross": 542
+      },
+      "rawSHA256": "64ef051a2e034c971c51f94604714da7d3180d855174f4a87bb3318779f026a8",
+      "rawByteExactR123": true,
+      "baselineRaw": "r123-independent-review/r118-support-final-30-60hz/routine-30hz.json",
+      "raw": "r124-independent-review/r118-final-30-60hz/routine-30hz.json",
+      "inheritedIndex333SweptCandidates": [
+        {
+          "scope": "capsuleSweptCandidate|emperor-new-route|outbound|\u4e09\u53f0_sumeru_band_material",
+          "count": 1,
+          "firstIndex": 333,
+          "firstPosition": [
+            -2.1,
+            8.630000114440918,
+            59.24999999999975
+          ],
+          "lastIndex": 333
+        },
+        {
+          "scope": "capsuleSweptCandidate|emperor-new-route|outbound|\u4e09\u53f0_stone_slab_material",
+          "count": 2,
+          "firstIndex": 333,
+          "firstPosition": [
+            -2.1,
+            8.630000114440918,
+            59.24999999999975
+          ],
+          "lastIndex": 333
+        }
+      ],
+      "newTailAndConsortNewIntersections": 0
+    },
+    {
+      "fps": 60,
+      "complete": true,
+      "frames": 8566,
+      "failuresInherited": {
+        "capsuleEndpoint": 5755,
+        "capsuleSweptCandidate": 360,
+        "renderCross": 1083
+      },
+      "rawSHA256": "6de77753ea534bfeb7b0eb41d1efb31019a1c964ce95f534b46c4ff79f086744",
+      "rawByteExactR123": true,
+      "baselineRaw": "r123-independent-review/r118-support-final-30-60hz/routine-60hz.json",
+      "raw": "r124-independent-review/r118-final-30-60hz/routine-60hz.json",
+      "inheritedIndex333SweptCandidates": [
+        {
+          "scope": "capsuleSweptCandidate|emperor-new-route|outbound|\u4e09\u53f0_sumeru_band_material",
+          "count": 1,
+          "firstIndex": 333,
+          "firstPosition": [
+            -2.1,
+            8.630000114440918,
+            59.18661059203827
+          ],
+          "lastIndex": 333
+        },
+        {
+          "scope": "capsuleSweptCandidate|emperor-new-route|outbound|\u4e09\u53f0_stone_slab_material",
+          "count": 2,
+          "firstIndex": 333,
+          "firstPosition": [
+            -2.1,
+            8.630000114440918,
+            59.18661059203827
+          ],
+          "lastIndex": 333
+        }
+      ],
+      "newTailAndConsortNewIntersections": 0
+    }
+  ],
+  "oracle": "unchanged R118 independent numeric capsule endpoint / conservative stepped sweep / strict deformed LOD0 rendered triangle crossing",
+  "oracleFilesExactR123": true,
+  "limits": [
+    "CPU actual geometry only, not GPU/mobile.",
+    "Inherited Taihe body/render intersections and index333 three swept-only candidates remain; not whole-world zero.",
+    "Swept-only candidates are conservative hull reports, not automatically confirmed penetration.",
+    "These are actual final0773 executions, not relabelled earlier evidence."
+  ]
+}

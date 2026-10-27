@@ -1,3 +1,4 @@
+import {applyChuxiuMainFront} from './ChuxiuFrontEnsemble.js';
 import {CHUXIU_MAIN_Z,CHUXIU_MAIN_PROFILE} from './ChuxiuRearCourtFrame.js';
 import * as THREE from 'three';
 
@@ -205,6 +206,7 @@ export function buildChuxiuHall(kit,item){
   kit._lastFurnish={cover:[],spawns:[{x:(x0+x1)/2,z:g.passageZ}]};
   kit.registerRoom(f,{name:`储秀宫·${names[i]}`,kind:'chuxiu-navigation-zone',x0,x1,z0:g.front,z1:g.rear,y,h,doors});
  }
+ applyChuxiuMainFront(kit,f,item);
  const total=count(f);g.budget={baselineTriangles:baseline.triangles,totalTriangles:total.triangles,addedTriangles:total.triangles-baseline.triangles,addedMeshes:total.meshes-baseline.meshes};
  f.userData.structure={...g,storeys:1,eaveCount:1,fit:p,accessStatus:'model-circulation-not-site-permission'};
  f.name='储秀宫·官方拓扑拟合';
