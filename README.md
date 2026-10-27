@@ -1,5 +1,6 @@
 # 故宫 3D 虚拟游览
 
+> **R119 交泰整室组合开发版（未部署 main/Pages）**：累计 R118，按官方内景细化屏框/红金上屏、藻井口沿与悬笼连接、现有中央框与有证西侧内檐；米制参数和纹样为示意拟合，不是测绘/精确复刻。保留四门通路、钟漏、黄罩、原开口及 R118 帝妃路线；南/东/北未知内檐不铺同款。真实图库/CPU 组合与通路验证见 [R119 记录](docs/current-state/r119/README.md)，GPU/手机未验。R116/R117 无采纳性能改造；下一累计大版为 R120（含保质性能专项），再到 R126。
 
 > **R118 独立开发验证版（未部署 main/Pages）**：本工作树增加皇帝21:00从太和连续跑到储秀西北现存罩床，与后妃分开睡位；06:00连续返回。另修乾清原低台、承乾原木槛的有限接触。保全区预建，无首次进区等待；不包含未采纳的R116/R117优化。本轮CPU门/保护回归已过，标准全gate仍有已核继承旧错，GPU/手机未验；main/Pages没有因此变更。见 [R118范围与来源](docs/current-state/r118/README.md) / [验证冻结账](docs/current-state/r118/VALIDATION.md)。
 
@@ -8,7 +9,7 @@
 ![Three.js](https://img.shields.io/badge/Three.js-r162-blue)
 ![Vite](https://img.shields.io/badge/Vite-5-purple)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Status](https://img.shields.io/badge/development-R118-brightgreen)
+![Status](https://img.shields.io/badge/development-R119-brightgreen)
 ![Validation](https://img.shields.io/badge/validation-see_release_records-blue)
 
 ## R115 第二批宫殿成组累计大版本候选

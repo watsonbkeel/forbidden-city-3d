@@ -1,0 +1,37 @@
+{
+  "scope": "identical 9 test files, fresh baseline R118 vs R119; neither expected hashes nor old tests modified",
+  "baselineFail": [
+    "tests/r27-jiaotai-landmarks.test.mjs",
+    "tests/r27-jiaotai-retention.test.mjs",
+    "tests/r28-jiaotai-central.test.mjs",
+    "Jiaotai alone has a source-bounded low display setting instead of the generic throneArea",
+    "all R27/R28 sources and the complete Zhonghe fragment remain byte-identical",
+    "base-material checkpoint retains every neutral vertex, UV, index, transform and physical bound",
+    "tests/r61-jiaotai-south-windows.test.mjs"
+  ],
+  "currentFail": [
+    "R102 geometric body, physical registration and all non-target surfaces stay exact",
+    "tests/r27-jiaotai-landmarks.test.mjs",
+    "tests/r27-jiaotai-retention.test.mjs",
+    "tests/r28-jiaotai-central.test.mjs",
+    "Jiaotai alone has a source-bounded low display setting instead of the generic throneArea",
+    "all R27/R28 sources and the complete Zhonghe fragment remain byte-identical",
+    "base-material checkpoint retains every neutral vertex, UV, index, transform and physical bound",
+    "both actual resident clock/clepsydra and caisson LOD meshes retain their frozen R53 signatures",
+    "tests/r61-jiaotai-south-windows.test.mjs"
+  ],
+  "inherited": [
+    "Jiaotai alone has a source-bounded low display setting instead of the generic throneArea",
+    "all R27/R28 sources and the complete Zhonghe fragment remain byte-identical",
+    "base-material checkpoint retains every neutral vertex, UV, index, transform and physical bound",
+    "tests/r27-jiaotai-landmarks.test.mjs",
+    "tests/r27-jiaotai-retention.test.mjs",
+    "tests/r28-jiaotai-central.test.mjs",
+    "tests/r61-jiaotai-south-windows.test.mjs"
+  ],
+  "new": [
+    "R102 geometric body, physical registration and all non-target surfaces stay exact",
+    "both actual resident clock/clepsydra and caisson LOD meshes retain their frozen R53 signatures"
+  ],
+  "resolved": []
+}

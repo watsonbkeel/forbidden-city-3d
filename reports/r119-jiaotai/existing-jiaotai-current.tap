@@ -1,0 +1,2044 @@
+TAP version 13
+# Subtest: R102 actual 26 cloth faces and one rug bind two real bounded patterned textures
+ok 1 - R102 actual 26 cloth faces and one rug bind two real bounded patterned textures
+  ---
+  duration_ms: 147.797983
+  type: 'test'
+  ...
+# Subtest: R102 geometric body, physical registration and all non-target surfaces stay exact
+not ok 2 - R102 geometric body, physical registration and all non-target surfaces stay exact
+  ---
+  duration_ms: 88.329658
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r119-jiaotai-room/tests/r102-jiaotai-textiles.test.mjs:4:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    291 !== 221
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 221
+  actual: 291
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r119-jiaotai-room/tests/r102-jiaotai-textiles.test.mjs:4:267)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: R102 maps share within builder, regenerate identically and dispose once on every unload
+ok 3 - R102 maps share within builder, regenerate identically and dispose once on every unload
+  ---
+  duration_ms: 100.684512
+  type: 'test'
+  ...
+# Subtest: R102 no positive-area target triangle loses its two-dimensional UV footprint
+ok 4 - R102 no positive-area target triangle loses its two-dimensional UV footprint
+  ---
+  duration_ms: 31.747
+  type: 'test'
+  ...
+# Subtest: R106 explicit building quality defaults high, isolates libraries and validates atomically
+ok 5 - R106 explicit building quality defaults high, isolates libraries and validates atomically
+  ---
+  duration_ms: 1.424458
+  type: 'test'
+  ...
+# Subtest: R106 high textile pixels exact R105; low directly returns quarter RGBA footprint
+ok 6 - R106 high textile pixels exact R105; low directly returns quarter RGBA footprint
+  ---
+  duration_ms: 57.488262
+  type: 'test'
+  ...
+# Subtest: R106 cold low and high-low-high maps update actual material and release once without stale listeners
+ok 7 - R106 cold low and high-low-high maps update actual material and release once without stale listeners
+  ---
+  duration_ms: 55.911601
+  type: 'test'
+  ...
+# node:internal/modules/run_main:107
+#     triggerUncaughtException(
+#     ^
+# AssertionError [ERR_ASSERTION]: exact R32 ordered navigation
+# + actual - expected
+# + 'da9aa4926728f49db2e8ca37a94d54cafcb648b45783c072991eb271379df8b4'
+# - '0abd676091d1fc28e7392565a41782326ff04ab679ec1c395356e5efe49ce68b'
+#     at restorePreR32Navigation (file:///workspace/scratch/02a8023d1a85/r119-jiaotai-room/tests/lib/r32-scene-retention.mjs:104:10)
+#     at file:///workspace/scratch/02a8023d1a85/r119-jiaotai-room/tests/r27-jiaotai-landmarks.test.mjs:17:31
+#     at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+#     at async node:internal/modules/esm/loader:643:26
+#     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+#   generatedMessage: false,
+#   code: 'ERR_ASSERTION',
+#   actual: 'da9aa4926728f49db2e8ca37a94d54cafcb648b45783c072991eb271379df8b4',
+#   expected: '0abd676091d1fc28e7392565a41782326ff04ab679ec1c395356e5efe49ce68b',
+#   operator: 'strictEqual',
+#   diff: 'simple'
+# }
+# Node.js v24.19.0
+# Subtest: tests/r27-jiaotai-landmarks.test.mjs
+not ok 4 - tests/r27-jiaotai-landmarks.test.mjs
+  ---
+  duration_ms: 1536.919135
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r119-jiaotai-room/tests/r27-jiaotai-landmarks.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# node:internal/modules/run_main:107
+#     triggerUncaughtException(
+#     ^
+# AssertionError [ERR_ASSERTION]: exact retained R29 dependency: data/anchors.json
+# + actual - expected
+# + '439b27b4c7f228bca5f527f01492852c6a43b00414bada653ab1cf0418c33809'
+# - 'c720ba58979c12b3c9eb763593bd8f27cdae59d1b21fd5a0bda70170a2ba668a'
+#     at assertR30RetainedSource (file:///workspace/scratch/02a8023d1a85/r119-jiaotai-room/tests/lib/r30-qianqing-passage-retention.mjs:41:10)
+#     at file:///workspace/scratch/02a8023d1a85/r119-jiaotai-room/tests/lib/historical-r29-qianqing-fixture.mjs:11:56
+#     at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+#     at async node:internal/modules/esm/loader:643:26
+#     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+#   generatedMessage: false,
+#   code: 'ERR_ASSERTION',
+#   actual: '439b27b4c7f228bca5f527f01492852c6a43b00414bada653ab1cf0418c33809',
+#   expected: 'c720ba58979c12b3c9eb763593bd8f27cdae59d1b21fd5a0bda70170a2ba668a',
+#   operator: 'strictEqual',
+#   diff: 'simple'
+# }
+# Node.js v24.19.0
+# Subtest: tests/r27-jiaotai-retention.test.mjs
+not ok 5 - tests/r27-jiaotai-retention.test.mjs
+  ---
+  duration_ms: 191.2022
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r119-jiaotai-room/tests/r27-jiaotai-retention.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# node:internal/modules/run_main:107
+#     triggerUncaughtException(
+#     ^
+# AssertionError [ERR_ASSERTION]: exact retained R29 dependency: data/anchors.json
+# + actual - expected
+# + '439b27b4c7f228bca5f527f01492852c6a43b00414bada653ab1cf0418c33809'
+# - 'c720ba58979c12b3c9eb763593bd8f27cdae59d1b21fd5a0bda70170a2ba668a'
+#     at assertR30RetainedSource (file:///workspace/scratch/02a8023d1a85/r119-jiaotai-room/tests/lib/r30-qianqing-passage-retention.mjs:41:10)
+#     at file:///workspace/scratch/02a8023d1a85/r119-jiaotai-room/tests/lib/historical-r29-qianqing-fixture.mjs:11:56
+#     at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+#     at async node:internal/modules/esm/loader:643:26
+#     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+#   generatedMessage: false,
+#   code: 'ERR_ASSERTION',
+#   actual: '439b27b4c7f228bca5f527f01492852c6a43b00414bada653ab1cf0418c33809',
+#   expected: 'c720ba58979c12b3c9eb763593bd8f27cdae59d1b21fd5a0bda70170a2ba668a',
+#   operator: 'strictEqual',
+#   diff: 'simple'
+# }
+# Node.js v24.19.0
+# Subtest: tests/r28-jiaotai-central.test.mjs
+not ok 6 - tests/r28-jiaotai-central.test.mjs
+  ---
+  duration_ms: 228.93664
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r119-jiaotai-room/tests/r28-jiaotai-central.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: Jiaotai alone has a source-bounded low display setting instead of the generic throneArea
+not ok 11 - Jiaotai alone has a source-bounded low display setting instead of the generic throneArea
+  ---
+  duration_ms: 136.727697
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r119-jiaotai-room/tests/r54-jiaotai-display.test.mjs:8:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    all retained meshes except the three documented lower-screen revisions preserve exact identity
+    + actual - expected
+    ... Skipped lines
+    
+      [
+        {
+          displayId: null,
+          hash: '2ec95b9a6771928712e6f73251cad6b1480082a9d11609bccfd2eb5c3ff1e7e9',
+          name: '内殿柱'
+    ...
+          displayId: null,
+    +     hash: 'bf641d7521429624ebade1feed199ecd5900e52f47f592493b6fa664e8d3e6a0',
+    -     hash: '73e4c149366365c78d2f801790c7a0a50e54b9584c7df460771f13251040091c',
+          name: 'south·lattice_doors'
+        },
+        {
+          displayId: null,
+          hash: 'ccb2d300fc7ae7484c7e4098fdee5a97b1e6347e47bbc98e6ae9cb86a1c36ed9',
+    ...
+          displayId: null,
+    +     hash: '8ce3f97038e938fbd724fdb1abaeca2047d677ae9aa4b14b49de5949a199b18a',
+    -     hash: 'cc4df0bb3e1483f939c57e57d86f0d66204e59ef2850d24763a06514d3f8481f',
+          name: 'south·lattice_doors'
+        },
+        {
+          displayId: null,
+          hash: 'f8130aaac3a5059d7b46b8171a65ba7b07f67af51a554ffeee2d6b1df896edab',
+    ...
+          displayId: null,
+    +     hash: '4f9a4605f81e6ed7e398d8292971085bbf069c6e8119a2e90c92e413ccfb688d',
+    +     name: 'r61-jiaotai-south-opaque-recess'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '47a577827c678508d2de46adffb913a590d7fe5739af47c11af1177b3a1b292b',
+    +     name: 'r61-jiaotai-south-major-frame'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '7e66454bdb568ef01ce15090e4652058d8121e24b5cf0105fb2675dc582f22e8',
+    +     name: 'r61-jiaotai-south-major-frame'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '1682b9ffd09a382ffc501adeb26e1c76348a20479f9b2b393b5e5554b2ba6092',
+    +     name: 'r61-jiaotai-south-major-frame'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '22159c785e37d7ed0d2284418250bbd0edc0cb3ff3c424f4b258b5447c12671f',
+    +     name: 'r61-jiaotai-south-major-frame'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '6cdb279f6675b77d68bb412c71b640878d1c38840203f03ab6cb4e5a1d03b7a9',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '529f24eaa6e6399b40ba10809cd08a4c980f9171fbb8bf476e0af5eefc05e85e',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '814e80490ba272c725531a66e6d094c980a4aa2469566d629a43271b1821b68f',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '01f8a783e854f8adc4abd62614524f49d373e5a7d80d4c5ec590a864f25807f6',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '9411c8ea5f839f6de34afc3cc2f6eba5722698c0000492c830f7158b52988603',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'ed8965ce6f3f3b780c64746bf8f4dafb414147407154bd62a371446bbe7795aa',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '70d8ac6388382a736038ac3b4c99365adc51e95b4122d0ebf16405ffc91a634c',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'a15b76bf58b4946ba19e7df21ff27f91055ceb9268a69ffc355bd54c0ff5cbbc',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '5af6d681199415c512d05fe082cf1b89001bb04bc761aaf6f725d9f28f12206b',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'e6d2f89a870fffe708a65c5538d36f095f70dd93451020e2e1036e55fadbbb39',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '7cb71c3b9877710aadfa88d59ef08d63a533b4448c074c646df8f367d489c4ae',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'eca31e8922115592c78c0fb48a9dcfe3a0dc413b8a672d35f624623d1aa348a2',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '139bf08d116ac83870cc1aa94c2690db6764306bc39bd3b1ab497d1f4878d315',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '91b73b90fb69eb60d2967e5a96daef12214b8abc87a68046457c9505956a1601',
+    +     name: 'r61-jiaotai-south-opaque-recess'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'ffc0d84e1bf3590531879a0c4b188000449f6f6efe350ae1cfbdf01ce7492cc4',
+    +     name: 'r61-jiaotai-south-major-frame'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '3e56d65722acc5803f3d059dffce155431163959ac0010d84b12171ade9b4530',
+    +     name: 'r61-jiaotai-south-major-frame'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'c32b8e61131b2c82788d6ee4dc52f21b79a5b83f1dcbc5ac6ee0b847bd154b00',
+    +     name: 'r61-jiaotai-south-major-frame'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'b806609e0c2999aceb0c381be93092c7422a819991e19e0851de00a012418f27',
+    +     name: 'r61-jiaotai-south-major-frame'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '2a778b2ef09414fe47234e5d8ff3d2acfe67174cabae78673443a7508da244c4',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '76d673f3ab9b1407d5219ad9d4ac94a7d944e8cd1507570cfd56f68630c29375',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '842a87314503bf69fc58c6fdeaafc20b0242fcb434847f8dcafb0448d3e317fb',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'd0e9ee8af707f656df7a00f44327dc9fab2b7c50108d37f9f5fd8e2a66f85247',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '709a77fca112c629233c20627c2db55aee009eec62eef3c06f683db9130dda46',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'da766d18270b253337ccbd7c6d93e955c1ae1b0feaa5bb606335b0c1974853ca',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'd9efc8d339fca599d3d17679f274d8d5a14cbcbcca6eb940ebbdfec4ee308a67',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'e2f8a5f2f8487e5e489a448b5788cda681e79068fee79f67879529fd518cba01',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '1b926df944e7bdb2233d13dac16949c81568e1291c36d7cd2826c9a1ecc15f95',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '8ef18d844e9bfbf2c332f3492711f4cb670ffba8fd01d8bfcccd745726ce5166',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'e4a18f1e308d9aac3233b79c62ee379f39b8512dd256de48a6cd8c152c527a0b',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '40ea19510686caa8066d3e552ab03cfbfe478dadf3cace86ea542a2e096e0adf',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'e592e3a2ad1328cfb22b03c5d2156fd10a71da8ce5c645289bf111babd414c55',
+    +     name: 'r61-jiaotai-south-straight-grid'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'af6a038966f6cde8a6799482a85269985dd39a32d03e554c6bce9120bf5689ef',
+    +     name: 'jiaotai-central-painted-apron'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '73b52a9cb3c45021e87d5c52174b7616c338c21b37fedb47c5b4d7ab049e1fd8',
+    +     name: 'jiaotai-central-painted-apron'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'ef3312ed7a92f232cb1a61e4e90084060d56be087fb5b2d7abcabac8f7d7c66c',
+    +     name: 'jiaotai-central-painted-apron'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '28a7a36dd4fd2f9239d0073c89bbb5f360ada92692b73d970c6cd012b76da62b',
+    +     name: 'jiaotai-central-painted-apron'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'c1cd343dd32de7ce0791a8021b6d6658f1a67da6c4296631c9b01531f68dee93',
+    +     name: 'jiaotai-west-inner-frieze'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '4110f70234a7c14f37ca5bc573fa1543557e434451f9330e5a8a0a2ba5b264b6',
+    +     name: 'jiaotai-west-inner-frieze'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '384c0f65a492643420ce2b1efe6541944db6710b543ac863607806abf3e8f8ef',
+    +     name: 'jiaotai-west-inner-bracket-stem'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '2e4586f0d5b748a37e616bc41e053e512d84b4788d8fbe6052546968dbecc305',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'd56fc2e2b16eb1ee663174209440b95a5b459799c4767f9f22cd271b503516c0',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '695154b76677113672afc7689361a66b5dcd77b8a52cf1aea39f5b6daa0ed0e1',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '96c92dfa8c0340dd198475d9999985714b3db60ac4f59ba890672fc7d13c400c',
+    +     name: 'jiaotai-west-inner-bracket-stem'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '89853f1ed71abf527dc33e1741732b0b504de0298651410b75fa5dbfe7a00046',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '3eca29ae103ffb55a838bcf77b7d7e9f5350f670c64c24e6edf7adf07dbd4930',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '4093e3f850dbc494d8ea10e3c615010036db229057a698a3c550697165ea2158',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'd20d0ec19d0f3ab0e4fa06eb62e699a27c523b33e350d2263eaca03bff079e8e',
+    +     name: 'jiaotai-west-inner-bracket-stem'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'deee63e88dabe1da47df91a1d0162bb25da3773c7801632be79f8b5a3bb14cff',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '9c78ff2394af6dfc77051fc36d752b8e3ad1db5ce2906f9ec2e0360bb4440846',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '5e4cbe1e9ae80c598aec9fe5843c82fb0a111c20fedd5a2372ac2251380b10f4',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'db98173c6637782975db915e8d7c052a64fa63305d918aedf07523f257ed4d22',
+    +     name: 'jiaotai-west-inner-bracket-stem'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '0b154fb50663364a663c31611c71864cd0ec51170045f0f976b390bb14e1b988',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'af3769bee7867283a5b289bb5c3c9db250cef8b0c651ce781c63a5c40bde684d',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'e0e812ea2d9047feb7bbb11dcf60a3a2681515116d2611e40f8c481c4a7af6d4',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '62c44ec0c33a3c698efa49e34c88ac754c87f6419a51a28d5f6a0718023076ab',
+    +     name: 'jiaotai-west-inner-bracket-stem'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '4f89473abb46ed0f72cfc62eaefeabc54243cc014644edbe5c8599115c0fea84',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '6469ba8094e0afe16477635f0c804d281e445a9107e072e2cd0b9562ea317855',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '4b0b1d3c9d8e48b6bfea4f3d73aa29cc59a1ec6db816f0d280b452c33f007478',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '8b53986871a5183bea757bdd60200288ca8e27ee2a170a34cc537354792874f1',
+    +     name: 'jiaotai-west-inner-bracket-stem'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '4074eab839e97a942678675b1bfdd6a56273c18f60c0545f737b3e3d70a20b6d',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '4a5c7dff035c2b33c3a457dea5f4405e3f12db4c3a2b25a87a149cff156d58e1',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '99b258dac2364bac093b2c6d8f23e48652bb384c88a0dd8d4338d7c2cfd0b1d1',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '8d910dad8e7ea07e41514fbe605f56c11e717395e12fd1a11ec0c71a78a52a43',
+    +     name: 'jiaotai-west-inner-bracket-stem'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '21f4cdd958402464453e95c35fa750daf0607d9a3a3b4ef60b9aa6d61435990f',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'e4f0e06f18d6c16398506efa943bfc67f5532381b66a47b41d755e9c9d330395',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '80433745787950c8cfcc88c08adbca179ff895e3001169b8f3f0509f9fba7b8a',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '9e012432fecc569bc5dc916aba90a63eb9b88efe244c24b5750941cba0671c2e',
+    +     name: 'jiaotai-west-inner-bracket-stem'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'ebd3aac2a9bf789bbbf5b70e1d56f2ac2033e025de9ed1ec27964b3e2718ed65',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '53371c1d1f8cac0a5843e7cc7cbeb424ee10b9e6c5327cb349631ecd94c371f1',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '1d12f04ab462f6a41f0416a37ab6f0d8d6f0e5bd5e9d612b766ce0e74f51e2d2',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '5213d3a69cc63cb0a4ec6e41aee0b95dd7930e98c2aeaab3aadbcce870b60073',
+    +     name: 'jiaotai-west-inner-bracket-stem'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '6e269cb18de8acb0adfa67f4f2c39535f8149ea22fb931513333489178ece1fc',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'fabcac59262dbaff62b4dd2c7cd29a983a39d38c9642037806156bd1559abfb5',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'f07c3ad501a6283bc2bcc6cede6c9a60f71e4e25797b627407cc7b573e817a6d',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '8048b9eef35bf4105e5a64a984acc14c60d0a9c9a7de4e23a04c407712513d3a',
+    +     name: 'jiaotai-west-inner-bracket-stem'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'b244729c52f476ab1d6dfd4149db3d30b832847ec4ff1b9dd14d19511aba47f5',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'e84c5ae1e9e281504d52bbee168a482fd805c6c1890d3d1bad25c5150b1dd52a',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '453b62e2f451e540408d78a1766614ea910e5f19137bbfc726f729ae5badd396',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'e3110b7dd0ed649a23b402f71cb9f5470cbb0c7a36bf75d7e8963b837474f444',
+    +     name: 'jiaotai-west-inner-bracket-stem'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'c9283688cb0fc03eb775ea074a1cb4ada1f542078a531120d1e1fce5849a72ca',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '67568eafcb816c56a769d7a5f9fae5c2624eb8006d4ade02da597e0697f34ed5',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'b435810a848a1a182135ac980133ab9627b76219420e88c81a9ef518456cd5ad',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '1edebc6e4d3b760bd64e2572619759b7fda1385c3a44aa958b155c855e1690e2',
+    +     name: 'jiaotai-west-inner-bracket-stem'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '09d8356184af2f36bd6dd6aeaecd51fa4836329eee1b6fa92c6b57c1249b9545',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'caeddec120d4de8b771c4a25b9a3d7e3fd329c2d605c02b933c085e1be654f0f',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '3fb788f1761c59955da27109bbc7f589a95d0f08bd5d6a24c62e096de3e30a44',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '1a41ac11e33d0e515e9c6dcc46de491185168c6ea7278bc7a22c3e077ec92104',
+    +     name: 'jiaotai-west-inner-bracket-stem'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'a926f9402292fb95c9d16aaf04a3417af7137128f0f2759ab76907f627f0821f',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'f05b03532b8da3b143f85fec9f181131c745cd2f9f7818c5b64e4a2d9f064a02',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'eaf3ed6b31e5623ce14df9cc481e9518c40149d3cfed48cc42c37fa878e8e27b',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '89027b20e84690e60c40768c0f760cc6e08186cbb148ff576487965e37582e58',
+    +     name: 'jiaotai-west-inner-bracket-stem'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'efc17f6a0c0bd635cea2d027b5651d922d58294d8442d5db3b87895b1a60a4ec',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '7367dba4b6504953c2a909fbae109ef523f6b36fa90e828b433973e4fb4caf7a',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '506e6713ed327896cdc594685ddce96c0f5e4991bca162e70a683458cf0d5635',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'e7d1afafd14da709bfe9e745d30eb3bb56ae2c3684a6af72d0d7d77f189ca13b',
+    +     name: 'jiaotai-west-inner-bracket-stem'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'c29edd39d6ac30719638ade2c9ef32fbe625cb3b92d67460ee52ea74cb7b21a2',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'f0d892d886bbe4118de0fa455c4b2f37aeefa820b9726af4b42752267c0558e9',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: '0dfd932839f10282546273b3d70d99f821009b90d6ba26349d9db46d2803a9fa',
+    +     name: 'jiaotai-west-inner-bracket'
+    +   },
+    +   {
+    +     displayId: null,
+          hash: '95775ccf955042eb26cc6e7dab773de3e3b2ac6ee8d79a0dba23dd9fb3995709',
+          name: ''
+        },
+        {
+          displayId: null,
+    ...
+          displayId: null,
+    +     hash: 'a3d62cb0551249df1ce63248fd3daa01676168d28492fa5d25edcff9b4c53930',
+    -     hash: 'bd52c381ab00a654e37ed4ba687c48bf69ae3890cbe5db78496ff1b94942a8c1',
+          name: 'jiaotai-upper-gilt-screen-field'
+        },
+        {
+          displayId: null,
+    +     hash: 'a3e9e9a4072984a84b9f690a87fe9d06ce0086121ae4b97e928f8d73c511e0c6',
+    +     name: 'jiaotai-upper-field-gilt-rim'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'ed93b56443b3740670561649e491934ef45c5885bc330a2fef56358d864bffa4',
+    +     name: 'jiaotai-upper-field-gilt-rim'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'fd40a00d3953ba67c736aaeee76d90c27f85d955872c16d0d507ae372928b409',
+    +     name: 'jiaotai-upper-field-gilt-rim'
+    +   },
+    +   {
+    +     displayId: null,
+    +     hash: 'f17d6715c22f3519d78da716b4ab4f0535a3e9a3f5bf0b6083b74fb3d37c7e33',
+    +     name: 'jiaotai-upper-field-gilt-rim'
+    +   },
+    +   {
+    +     displayId: null,
+          hash: 'bcbb7030e91272489a3d3b2dda3df5cabdd25bb425774fcc5f315f82df483e78',
+          name: 'jiaotai-lower-inscription-field-untranscribed'
+        },
+        {
+          displayId: null,
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0:
+      name: '内殿柱'
+      displayId: ~
+      hash: '2ec95b9a6771928712e6f73251cad6b1480082a9d11609bccfd2eb5c3ff1e7e9'
+    1:
+      name: ''
+      displayId: ~
+      hash: 'c7f628c91e78cd5c016db02a5e76d7e4c57e39bd1c859b5f951090a2e6f97e13'
+    2:
+      name: '内殿柱'
+      displayId: ~
+      hash: 'd6e2981aeb93fa690235ab5430fbd242db6d530d553d6b6b6161fe8d6def799d'
+    3:
+      name: ''
+      displayId: ~
+      hash: 'c77c70f04a741704fa3ce6216d7abe9ab2bc878f7663159b5f8069eb746b8b70'
+    4:
+      name: '内殿柱'
+      displayId: ~
+      hash: 'cd7d6f5f0bb394f780ae2fa96840512b89704ed574ade0d686818364639ef2b2'
+    5:
+      name: ''
+      displayId: ~
+      hash: 'a7ebb8a8adbf1cbc81a31b099b9d5d00ef81483c0a840580a383dc3dd1362228'
+    6:
+      name: '内殿柱'
+      displayId: ~
+      hash: '6fb4e49c175fb25ba1e6a993b343ef9d1c52e9e9ceac041fadadfe6537e63c76'
+    7:
+      name: ''
+      displayId: ~
+      hash: '7d5acad993c132535889b59b6ca7b51470a98c4d9325102f64d330a352dcb4bb'
+    8:
+      name: '内殿柱'
+      displayId: ~
+      hash: 'b152e62276d17e8450b87114238898dea08cec4067efcfb43d049777bf8d3df5'
+    9:
+      name: ''
+      displayId: ~
+      hash: '2ba2f937812150d32e905aebe748b8071082ff998cc306d796ebd58f2e6c82b3'
+    10:
+      name: '内殿柱'
+      displayId: ~
+      hash: '58c4f68e5d336be15649755f90d743645b0df918ab7365a9e0084a3545838bd5'
+    11:
+      name: ''
+      displayId: ~
+      hash: '7d424b3bac144a99f0cfc5e4f306b7d6fe8bc7de0068c7528b917f7eac16e307'
+    12:
+      name: '内殿柱'
+      displayId: ~
+      hash: '31012e49ae8d6ea7acb2992edeec761ed2b9411d92caa8bcfbd692da8cb9eed9'
+    13:
+      name: ''
+      displayId: ~
+      hash: 'aa577aee3c5853207178c8978ed35bfa182db9adddc6727fc89f3d3fa40f384d'
+    14:
+      name: '内殿柱'
+      displayId: ~
+      hash: 'd83ba1983c951300246111ebe0ab6220035456af3c98af827f20e2ef20b0cbb4'
+    15:
+      name: ''
+      displayId: ~
+      hash: '294a74f2de547fc4565d23a6c59dfa9f8fc2f1ab889617b3312386041e445698'
+    16:
+      name: '内殿柱'
+      displayId: ~
+      hash: 'e0f43dc99901c070ba3cae6d694220de1e11d8940e33152b400377bf6266ffbe'
+    17:
+      name: ''
+      displayId: ~
+      hash: 'f51661ac55dd33a093c8c77db692620a9f5d0b53d1f450014fb41404405015f5'
+    18:
+      name: '内殿柱'
+      displayId: ~
+      hash: 'd2a07ff682f2125f7ffafa503c657adf3386fb0a75306f32b4a25bc217a8df1a'
+    19:
+      name: ''
+      displayId: ~
+      hash: '632fb7f0b2755de27bf75dc5db7843fbd642c10dec5e799e6d85792b27e26d85'
+    20:
+      name: '内殿柱'
+      displayId: ~
+      hash: 'fc7d2089e5283bd52a1b47c50462ea17fec709756e2278b30bf6da444ec270f9'
+    21:
+      name: ''
+      displayId: ~
+      hash: '262c12ff8da80cebe5722701315c69c0773c3bc475cdce74d1af2368c4a41bc0'
+    22:
+      name: '内殿柱'
+      displayId: ~
+      hash: '58b03db61b4c89350186ed81e79531cc95e46a0ae29e86ab49723e51133487fa'
+    23:
+      name: ''
+      displayId: ~
+      hash: 'cdae5093f206e1f7fd72c37850a2f5510bdf545f8bc15db3368020dd458b6739'
+    24:
+      name: 'south·wall_brick'
+      displayId: ~
+      hash: '1ea6e66f3fed0c42677f75d2d3b93b7e09dbfaecac862944a4a78e7421a4c39c'
+    25:
+      name: 'south·lattice_doors'
+      displayId: ~
+      hash: '73e4c149366365c78d2f801790c7a0a50e54b9584c7df460771f13251040091c'
+    26:
+      name: 'south·门扇1'
+      displayId: ~
+      hash: 'ccb2d300fc7ae7484c7e4098fdee5a97b1e6347e47bbc98e6ae9cb86a1c36ed9'
+    27:
+      name: 'south·门扇2'
+      displayId: ~
+      hash: '6dbd71a553fa3acf8e3dec1590885ae9fedc3988982b959179567e849162eae1'
+    28:
+      name: 'south·门扇1'
+      displayId: ~
+      hash: 'd6d02c74755906edfdc0ccb13dc7abf07b043a17c06e9db80d4607d41795f40b'
+    29:
+      name: 'south·门扇2'
+      displayId: ~
+      hash: 'ac38fb6a5faf993c28a23963d6e5673e0266bbb22ff88530eeac4fb78a3afc1f'
+    30:
+      name: 'south·wood_column'
+      displayId: ~
+      hash: '9cb89a9dd520cf8984d3f2c64b590ba788358fa3fa0bd21a9a766e7e201509f1'
+    31:
+      name: 'south·wall_brick'
+      displayId: ~
+      hash: '344fdddb59a855b53becfdf43d558c1375478bd3dfb1590e78d8315e7eb3333c'
+    32:
+      name: 'south·lattice_doors'
+      displayId: ~
+      hash: 'cc4df0bb3e1483f939c57e57d86f0d66204e59ef2850d24763a06514d3f8481f'
+    33:
+      name: 'south·wall_red'
+      displayId: ~
+      hash: 'f8130aaac3a5059d7b46b8171a65ba7b07f67af51a554ffeee2d6b1df896edab'
+    34:
+      name: 'south·caihua_beam'
+      displayId: ~
+      hash: 'daa10d95a33a17da59ac631806a957e0cbf8466637304d846b5ac90efc0cd07c'
+    35:
+      name: 'north·wall_red'
+      displayId: ~
+      hash: '821f04ffa5d0c515e7fc622a97c3c51e171003393ae87df43a75bc09e916e7df'
+    36:
+      name: 'north·wall_brick'
+      displayId: ~
+      hash: '5a279f42615aa733baaf2b03d62c8269cfb49136ecb232a618cffdb108245e49'
+    37:
+      name: 'north·门扇1'
+      displayId: ~
+      hash: 'f9786d5e99d9a0a925f6c0d01281495315728c5deff824fb76a014690c704c5d'
+    38:
+      name: 'north·门扇2'
+      displayId: ~
+      hash: '3fa82af017889361d420237be1dd489a5cf5576dcac2020620d964f72b54ef83'
+    39:
+      name: 'north·门扇1'
+      displayId: ~
+      hash: '4cfd57028e6979283a6cd0ecfecfe70ed660def67f729c5faa055249efb2930e'
+    40:
+      name: 'north·门扇2'
+      displayId: ~
+      hash: 'df14a22e5687119600dfb04ad19a72cf3cded608a8192fac7ce5754f93e1700e'
+    41:
+      name: 'north·wood_column'
+      displayId: ~
+      hash: '0e3c97d3ec116e2edf80a3f911b9530922cabc65bdde51cba6521b339d330ca4'
+    42:
+      name: 'north·wall_red'
+      displayId: ~
+      hash: '23a890ad27c9d69a90c31a0ea931d5757c929b565474ca0b002acf235eb3fa13'
+    43:
+      name: 'north·wall_brick'
+      displayId: ~
+      hash: '6a736386dcfcbc7474bcea9f5c6fd72a2e56ded3c9d4cc44dcf05bdfce2837bd'
+    44:
+      name: 'north·wall_red'
+      displayId: ~
+      hash: '637c02cf004738edfe1daa52538a0e8fe646fe885a9d2c2dad3882852c169f67'
+    45:
+      name: 'north·caihua_beam'
+      displayId: ~
+      hash: '88f70001f9250f488ca547f14a14a5ebf099e4038ee0ee6d762113f2b0a8ac51'
+    46:
+      name: 'east·wall_red'
+      displayId: ~
+      hash: '7927935662e130ec4048a751aafbd05d1983c2b7b0cbf5a4e85bb62f44710a7b'
+    47:
+      name: 'east·wall_brick'
+      displayId: ~
+      hash: 'e75a5ecf9fe913544b1d5c9034b8bb9bf700552680ac65593f7f0f5bbfd5b378'
+    48:
+      name: 'east·门扇1'
+      displayId: ~
+      hash: '8146381f9ebabe061f883507a7da137e61571888c6a70120b6711a21ed6a1d5b'
+    49:
+      name: 'east·门扇2'
+      displayId: ~
+      hash: '2d508a535a7cae5978feaa10a3e51b0d38c57ebc6ff8e0b573669194b479f08b'
+    50:
+      name: 'east·门扇1'
+      displayId: ~
+      hash: '34514cb7e235a2c689dce456052cb9f8edaee24fa15bb3732a86c74720919c1e'
+    51:
+      name: 'east·门扇2'
+      displayId: ~
+      hash: 'f945bf7738441c448cb1aa5f56d80df80cb78c82ac7b0f40f0b30461b263e989'
+    52:
+      name: 'east·wood_column'
+      displayId: ~
+      hash: '84bd7313ce059d95ad21c0aee6619719622c624e4b4b446a505afdbccd9a327d'
+    53:
+      name: 'east·wall_red'
+      displayId: ~
+      hash: 'c7c3db20aefa0fe91e327d3143ad81feb6b519b8ae12d4e0c08b44835f561ce3'
+    54:
+      name: 'east·wall_brick'
+      displayId: ~
+      hash: 'c482145509a49a5e58c98b101a049664fe370c332c0dd00b678b6957a7edc679'
+    55:
+      name: 'east·wall_red'
+      displayId: ~
+      hash: 'ad259b1a379c43d918193b1c1131c95f24e0920694636fd299d9b3dc142a5479'
+    56:
+      name: 'east·caihua_beam'
+      displayId: ~
+      hash: '0cc8439d1de53c70c6d43c1fe125d329fd2437bb2e03c6dc640e8ec097c5d608'
+    57:
+      name: 'west·wall_red'
+      displayId: ~
+      hash: '9c4b981458f60ae61fe0e10617b7be74c28a822665fc42fa35eaad1fffcca9d8'
+    58:
+      name: 'west·wall_brick'
+      displayId: ~
+      hash: 'b4cda18ddbb86c248cb21a704fce68486fce4b966739a07b088968c7fdb09ba0'
+    59:
+      name: 'west·门扇1'
+      displayId: ~
+      hash: 'c0d259354b9128be74bfdfba219fc86212db7bab2ffee251b4207819cae1f3ff'
+    60:
+      name: 'west·门扇2'
+      displayId: ~
+      hash: '02763e467983235ba094e41ed385a11d82c6f8a4a40d948520b5f859d6df3a3b'
+    61:
+      name: 'west·门扇1'
+      displayId: ~
+      hash: '8ce47e936c6e0d978fbe25e3b518fc113bdcde2cb6ed18bd80b5536e53c870cd'
+    62:
+      name: 'west·门扇2'
+      displayId: ~
+      hash: 'd9d153756f4e1dc84a8696771b26ab726a52169cdc29d1f4d62b18eaa0b77e2e'
+    63:
+      name: 'west·wood_column'
+      displayId: ~
+      hash: 'cba358d77e7046956d765188c6110d6722c5de383ddb3c2595029adc336890ae'
+    64:
+      name: 'west·wall_red'
+      displayId: ~
+      hash: 'deed92a06b571386ffe6192ad38bf26ce073a87891750fe0f8ae50efc9ebc91c'
+    65:
+      name: 'west·wall_brick'
+      displayId: ~
+      hash: 'db60dd35d82c3cb6765bffe4ead4b177b050755c78135ecaa8689057b617b521'
+    66:
+      name: 'west·wall_red'
+      displayId: ~
+      hash: '46441547ae1a24fad3f3e9e5326710ffef6d4401bea0d19fad001d6870e137fc'
+    67:
+      name: 'west·caihua_beam'
+      displayId: ~
+      hash: '6d4942e7cb71431b84bc40559d2a0a263d09b815df801da4e798152a04fe52d5'
+    68:
+      name: ''
+      displayId: ~
+      hash: '95775ccf955042eb26cc6e7dab773de3e3b2ac6ee8d79a0dba23dd9fb3995709'
+    69:
+      name: 'jiaotai-retained-ceiling-open-centre'
+      displayId: ~
+      hash: '4cb5574ac5de92baffc206eb1e2cd1abb10ab22badb096097a27595dbb54214a'
+    70:
+      name: 'jiaotai-upper-gilt-screen-field'
+      displayId: ~
+      hash: 'bd52c381ab00a654e37ed4ba687c48bf69ae3890cbe5db78496ff1b94942a8c1'
+    71:
+      name: 'jiaotai-lower-inscription-field-untranscribed'
+      displayId: ~
+      hash: 'bcbb7030e91272489a3d3b2dda3df5cabdd25bb425774fcc5f315f82df483e78'
+    72:
+      name: 'jiaotai-rear-plaque-bearing-beam'
+      displayId: ~
+      hash: '3f34677d0e77996f85d74dded61092616b2f520aed1086c04bd59b5f6493cd85'
+    73:
+      name: 'jiaotai-wuwei-plaque'
+      displayId: ~
+      hash: 'ea18aa786026304cf94ca31123aef1126d776e0c87d9c84a5eeb91af1c8f9cb8'
+    74:
+      name: 'jiaotai-plaque-hanger'
+      displayId: ~
+      hash: '9160eaf4acbfe432ab9442c3c3c9e14b5395ecf67127371fe5a6559b675c6dff'
+    75:
+      name: 'jiaotai-plaque-hanger'
+      displayId: ~
+      hash: 'f862993e2712bfd70b22ac3518be46d26143028c6826b0ce84e2f5511cd44e63'
+    76:
+      name: ''
+      displayId: ~
+      hash: '935ae5e77db4a574a751735312462c20a79f860b09199b86d8d02183ee6c6ab4'
+    77:
+      name: 'roof_pavilion_dougong_band'
+      displayId: ~
+      hash: '9b34c457ed8fc04dd772e69fe4e863a973384c5522e6ae9d8432e5f19a267d11'
+    78:
+      name: 'roof_pavilion_rafters'
+      displayId: ~
+      hash: '40e2fcc8b6a84be3d3fe92544e2ff4905d8596671c3a930328e8710d94241561'
+    79:
+      name: 'roof_pavilion_roof_tile'
+      displayId: ~
+      hash: '1b4ffcb87c8f6b92f979c157c1ab791d7b284d930cfaf56750e4cf655ee90fe7'
+    80:
+      name: 'roof_pavilion_roof_ridge_glaze'
+      displayId: ~
+      hash: '7c8dfc03564357cc0621c5aa5b650fb12d74c5a9c9e6fa4cb6326c35fc7fed2e'
+    81:
+      name: 'roof_pavilion_roof_finial_gold'
+      displayId: ~
+      hash: '10e12f2534141e7e12d9971da73f2d4d1321fb1e05f1fbc7c0bdc487a2a4f6d9'
+  actual:
+    0:
+      name: '内殿柱'
+      displayId: ~
+      hash: '2ec95b9a6771928712e6f73251cad6b1480082a9d11609bccfd2eb5c3ff1e7e9'
+    1:
+      name: ''
+      displayId: ~
+      hash: 'c7f628c91e78cd5c016db02a5e76d7e4c57e39bd1c859b5f951090a2e6f97e13'
+    2:
+      name: '内殿柱'
+      displayId: ~
+      hash: 'd6e2981aeb93fa690235ab5430fbd242db6d530d553d6b6b6161fe8d6def799d'
+    3:
+      name: ''
+      displayId: ~
+      hash: 'c77c70f04a741704fa3ce6216d7abe9ab2bc878f7663159b5f8069eb746b8b70'
+    4:
+      name: '内殿柱'
+      displayId: ~
+      hash: 'cd7d6f5f0bb394f780ae2fa96840512b89704ed574ade0d686818364639ef2b2'
+    5:
+      name: ''
+      displayId: ~
+      hash: 'a7ebb8a8adbf1cbc81a31b099b9d5d00ef81483c0a840580a383dc3dd1362228'
+    6:
+      name: '内殿柱'
+      displayId: ~
+      hash: '6fb4e49c175fb25ba1e6a993b343ef9d1c52e9e9ceac041fadadfe6537e63c76'
+    7:
+      name: ''
+      displayId: ~
+      hash: '7d5acad993c132535889b59b6ca7b51470a98c4d9325102f64d330a352dcb4bb'
+    8:
+      name: '内殿柱'
+      displayId: ~
+      hash: 'b152e62276d17e8450b87114238898dea08cec4067efcfb43d049777bf8d3df5'
+    9:
+      name: ''
+      displayId: ~
+      hash: '2ba2f937812150d32e905aebe748b8071082ff998cc306d796ebd58f2e6c82b3'
+    10:
+      name: '内殿柱'
+      displayId: ~
+      hash: '58c4f68e5d336be15649755f90d743645b0df918ab7365a9e0084a3545838bd5'
+    11:
+      name: ''
+      displayId: ~
+      hash: '7d424b3bac144a99f0cfc5e4f306b7d6fe8bc7de0068c7528b917f7eac16e307'
+    12:
+      name: '内殿柱'
+      displayId: ~
+      hash: '31012e49ae8d6ea7acb2992edeec761ed2b9411d92caa8bcfbd692da8cb9eed9'
+    13:
+      name: ''
+      displayId: ~
+      hash: 'aa577aee3c5853207178c8978ed35bfa182db9adddc6727fc89f3d3fa40f384d'
+    14:
+      name: '内殿柱'
+      displayId: ~
+      hash: 'd83ba1983c951300246111ebe0ab6220035456af3c98af827f20e2ef20b0cbb4'
+    15:
+      name: ''
+      displayId: ~
+      hash: '294a74f2de547fc4565d23a6c59dfa9f8fc2f1ab889617b3312386041e445698'
+    16:
+      name: '内殿柱'
+      displayId: ~
+      hash: 'e0f43dc99901c070ba3cae6d694220de1e11d8940e33152b400377bf6266ffbe'
+    17:
+      name: ''
+      displayId: ~
+      hash: 'f51661ac55dd33a093c8c77db692620a9f5d0b53d1f450014fb41404405015f5'
+    18:
+      name: '内殿柱'
+      displayId: ~
+      hash: 'd2a07ff682f2125f7ffafa503c657adf3386fb0a75306f32b4a25bc217a8df1a'
+    19:
+      name: ''
+      displayId: ~
+      hash: '632fb7f0b2755de27bf75dc5db7843fbd642c10dec5e799e6d85792b27e26d85'
+    20:
+      name: '内殿柱'
+      displayId: ~
+      hash: 'fc7d2089e5283bd52a1b47c50462ea17fec709756e2278b30bf6da444ec270f9'
+    21:
+      name: ''
+      displayId: ~
+      hash: '262c12ff8da80cebe5722701315c69c0773c3bc475cdce74d1af2368c4a41bc0'
+    22:
+      name: '内殿柱'
+      displayId: ~
+      hash: '58b03db61b4c89350186ed81e79531cc95e46a0ae29e86ab49723e51133487fa'
+    23:
+      name: ''
+      displayId: ~
+      hash: 'cdae5093f206e1f7fd72c37850a2f5510bdf545f8bc15db3368020dd458b6739'
+    24:
+      name: 'south·wall_brick'
+      displayId: ~
+      hash: '1ea6e66f3fed0c42677f75d2d3b93b7e09dbfaecac862944a4a78e7421a4c39c'
+    25:
+      name: 'south·lattice_doors'
+      displayId: ~
+      hash: 'bf641d7521429624ebade1feed199ecd5900e52f47f592493b6fa664e8d3e6a0'
+    26:
+      name: 'south·门扇1'
+      displayId: ~
+      hash: 'ccb2d300fc7ae7484c7e4098fdee5a97b1e6347e47bbc98e6ae9cb86a1c36ed9'
+    27:
+      name: 'south·门扇2'
+      displayId: ~
+      hash: '6dbd71a553fa3acf8e3dec1590885ae9fedc3988982b959179567e849162eae1'
+    28:
+      name: 'south·门扇1'
+      displayId: ~
+      hash: 'd6d02c74755906edfdc0ccb13dc7abf07b043a17c06e9db80d4607d41795f40b'
+    29:
+      name: 'south·门扇2'
+      displayId: ~
+      hash: 'ac38fb6a5faf993c28a23963d6e5673e0266bbb22ff88530eeac4fb78a3afc1f'
+    30:
+      name: 'south·wood_column'
+      displayId: ~
+      hash: '9cb89a9dd520cf8984d3f2c64b590ba788358fa3fa0bd21a9a766e7e201509f1'
+    31:
+      name: 'south·wall_brick'
+      displayId: ~
+      hash: '344fdddb59a855b53becfdf43d558c1375478bd3dfb1590e78d8315e7eb3333c'
+    32:
+      name: 'south·lattice_doors'
+      displayId: ~
+      hash: '8ce3f97038e938fbd724fdb1abaeca2047d677ae9aa4b14b49de5949a199b18a'
+    33:
+      name: 'south·wall_red'
+      displayId: ~
+      hash: 'f8130aaac3a5059d7b46b8171a65ba7b07f67af51a554ffeee2d6b1df896edab'
+    34:
+      name: 'south·caihua_beam'
+      displayId: ~
+      hash: 'daa10d95a33a17da59ac631806a957e0cbf8466637304d846b5ac90efc0cd07c'
+    35:
+      name: 'north·wall_red'
+      displayId: ~
+      hash: '821f04ffa5d0c515e7fc622a97c3c51e171003393ae87df43a75bc09e916e7df'
+    36:
+      name: 'north·wall_brick'
+      displayId: ~
+      hash: '5a279f42615aa733baaf2b03d62c8269cfb49136ecb232a618cffdb108245e49'
+    37:
+      name: 'north·门扇1'
+      displayId: ~
+      hash: 'f9786d5e99d9a0a925f6c0d01281495315728c5deff824fb76a014690c704c5d'
+    38:
+      name: 'north·门扇2'
+      displayId: ~
+      hash: '3fa82af017889361d420237be1dd489a5cf5576dcac2020620d964f72b54ef83'
+    39:
+      name: 'north·门扇1'
+      displayId: ~
+      hash: '4cfd57028e6979283a6cd0ecfecfe70ed660def67f729c5faa055249efb2930e'
+    40:
+      name: 'north·门扇2'
+      displayId: ~
+      hash: 'df14a22e5687119600dfb04ad19a72cf3cded608a8192fac7ce5754f93e1700e'
+    41:
+      name: 'north·wood_column'
+      displayId: ~
+      hash: '0e3c97d3ec116e2edf80a3f911b9530922cabc65bdde51cba6521b339d330ca4'
+    42:
+      name: 'north·wall_red'
+      displayId: ~
+      hash: '23a890ad27c9d69a90c31a0ea931d5757c929b565474ca0b002acf235eb3fa13'
+    43:
+      name: 'north·wall_brick'
+      displayId: ~
+      hash: '6a736386dcfcbc7474bcea9f5c6fd72a2e56ded3c9d4cc44dcf05bdfce2837bd'
+    44:
+      name: 'north·wall_red'
+      displayId: ~
+      hash: '637c02cf004738edfe1daa52538a0e8fe646fe885a9d2c2dad3882852c169f67'
+    45:
+      name: 'north·caihua_beam'
+      displayId: ~
+      hash: '88f70001f9250f488ca547f14a14a5ebf099e4038ee0ee6d762113f2b0a8ac51'
+    46:
+      name: 'east·wall_red'
+      displayId: ~
+      hash: '7927935662e130ec4048a751aafbd05d1983c2b7b0cbf5a4e85bb62f44710a7b'
+    47:
+      name: 'east·wall_brick'
+      displayId: ~
+      hash: 'e75a5ecf9fe913544b1d5c9034b8bb9bf700552680ac65593f7f0f5bbfd5b378'
+    48:
+      name: 'east·门扇1'
+      displayId: ~
+      hash: '8146381f9ebabe061f883507a7da137e61571888c6a70120b6711a21ed6a1d5b'
+    49:
+      name: 'east·门扇2'
+      displayId: ~
+      hash: '2d508a535a7cae5978feaa10a3e51b0d38c57ebc6ff8e0b573669194b479f08b'
+    50:
+      name: 'east·门扇1'
+      displayId: ~
+      hash: '34514cb7e235a2c689dce456052cb9f8edaee24fa15bb3732a86c74720919c1e'
+    51:
+      name: 'east·门扇2'
+      displayId: ~
+      hash: 'f945bf7738441c448cb1aa5f56d80df80cb78c82ac7b0f40f0b30461b263e989'
+    52:
+      name: 'east·wood_column'
+      displayId: ~
+      hash: '84bd7313ce059d95ad21c0aee6619719622c624e4b4b446a505afdbccd9a327d'
+    53:
+      name: 'east·wall_red'
+      displayId: ~
+      hash: 'c7c3db20aefa0fe91e327d3143ad81feb6b519b8ae12d4e0c08b44835f561ce3'
+    54:
+      name: 'east·wall_brick'
+      displayId: ~
+      hash: 'c482145509a49a5e58c98b101a049664fe370c332c0dd00b678b6957a7edc679'
+    55:
+      name: 'east·wall_red'
+      displayId: ~
+      hash: 'ad259b1a379c43d918193b1c1131c95f24e0920694636fd299d9b3dc142a5479'
+    56:
+      name: 'east·caihua_beam'
+      displayId: ~
+      hash: '0cc8439d1de53c70c6d43c1fe125d329fd2437bb2e03c6dc640e8ec097c5d608'
+    57:
+      name: 'west·wall_red'
+      displayId: ~
+      hash: '9c4b981458f60ae61fe0e10617b7be74c28a822665fc42fa35eaad1fffcca9d8'
+    58:
+      name: 'west·wall_brick'
+      displayId: ~
+      hash: 'b4cda18ddbb86c248cb21a704fce68486fce4b966739a07b088968c7fdb09ba0'
+    59:
+      name: 'west·门扇1'
+      displayId: ~
+      hash: 'c0d259354b9128be74bfdfba219fc86212db7bab2ffee251b4207819cae1f3ff'
+    60:
+      name: 'west·门扇2'
+      displayId: ~
+      hash: '02763e467983235ba094e41ed385a11d82c6f8a4a40d948520b5f859d6df3a3b'
+    61:
+      name: 'west·门扇1'
+      displayId: ~
+      hash: '8ce47e936c6e0d978fbe25e3b518fc113bdcde2cb6ed18bd80b5536e53c870cd'
+    62:
+      name: 'west·门扇2'
+      displayId: ~
+      hash: 'd9d153756f4e1dc84a8696771b26ab726a52169cdc29d1f4d62b18eaa0b77e2e'
+    63:
+      name: 'west·wood_column'
+      displayId: ~
+      hash: 'cba358d77e7046956d765188c6110d6722c5de383ddb3c2595029adc336890ae'
+    64:
+      name: 'west·wall_red'
+      displayId: ~
+      hash: 'deed92a06b571386ffe6192ad38bf26ce073a87891750fe0f8ae50efc9ebc91c'
+    65:
+      name: 'west·wall_brick'
+      displayId: ~
+      hash: 'db60dd35d82c3cb6765bffe4ead4b177b050755c78135ecaa8689057b617b521'
+    66:
+      name: 'west·wall_red'
+      displayId: ~
+      hash: '46441547ae1a24fad3f3e9e5326710ffef6d4401bea0d19fad001d6870e137fc'
+    67:
+      name: 'west·caihua_beam'
+      displayId: ~
+      hash: '6d4942e7cb71431b84bc40559d2a0a263d09b815df801da4e798152a04fe52d5'
+    68:
+      name: 'r61-jiaotai-south-opaque-recess'
+      displayId: ~
+      hash: '4f9a4605f81e6ed7e398d8292971085bbf069c6e8119a2e90c92e413ccfb688d'
+    69:
+      name: 'r61-jiaotai-south-major-frame'
+      displayId: ~
+      hash: '47a577827c678508d2de46adffb913a590d7fe5739af47c11af1177b3a1b292b'
+    70:
+      name: 'r61-jiaotai-south-major-frame'
+      displayId: ~
+      hash: '7e66454bdb568ef01ce15090e4652058d8121e24b5cf0105fb2675dc582f22e8'
+    71:
+      name: 'r61-jiaotai-south-major-frame'
+      displayId: ~
+      hash: '1682b9ffd09a382ffc501adeb26e1c76348a20479f9b2b393b5e5554b2ba6092'
+    72:
+      name: 'r61-jiaotai-south-major-frame'
+      displayId: ~
+      hash: '22159c785e37d7ed0d2284418250bbd0edc0cb3ff3c424f4b258b5447c12671f'
+    73:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: '6cdb279f6675b77d68bb412c71b640878d1c38840203f03ab6cb4e5a1d03b7a9'
+    74:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: '529f24eaa6e6399b40ba10809cd08a4c980f9171fbb8bf476e0af5eefc05e85e'
+    75:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: '814e80490ba272c725531a66e6d094c980a4aa2469566d629a43271b1821b68f'
+    76:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: '01f8a783e854f8adc4abd62614524f49d373e5a7d80d4c5ec590a864f25807f6'
+    77:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: '9411c8ea5f839f6de34afc3cc2f6eba5722698c0000492c830f7158b52988603'
+    78:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: 'ed8965ce6f3f3b780c64746bf8f4dafb414147407154bd62a371446bbe7795aa'
+    79:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: '70d8ac6388382a736038ac3b4c99365adc51e95b4122d0ebf16405ffc91a634c'
+    80:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: 'a15b76bf58b4946ba19e7df21ff27f91055ceb9268a69ffc355bd54c0ff5cbbc'
+    81:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: '5af6d681199415c512d05fe082cf1b89001bb04bc761aaf6f725d9f28f12206b'
+    82:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: 'e6d2f89a870fffe708a65c5538d36f095f70dd93451020e2e1036e55fadbbb39'
+    83:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: '7cb71c3b9877710aadfa88d59ef08d63a533b4448c074c646df8f367d489c4ae'
+    84:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: 'eca31e8922115592c78c0fb48a9dcfe3a0dc413b8a672d35f624623d1aa348a2'
+    85:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: '139bf08d116ac83870cc1aa94c2690db6764306bc39bd3b1ab497d1f4878d315'
+    86:
+      name: 'r61-jiaotai-south-opaque-recess'
+      displayId: ~
+      hash: '91b73b90fb69eb60d2967e5a96daef12214b8abc87a68046457c9505956a1601'
+    87:
+      name: 'r61-jiaotai-south-major-frame'
+      displayId: ~
+      hash: 'ffc0d84e1bf3590531879a0c4b188000449f6f6efe350ae1cfbdf01ce7492cc4'
+    88:
+      name: 'r61-jiaotai-south-major-frame'
+      displayId: ~
+      hash: '3e56d65722acc5803f3d059dffce155431163959ac0010d84b12171ade9b4530'
+    89:
+      name: 'r61-jiaotai-south-major-frame'
+      displayId: ~
+      hash: 'c32b8e61131b2c82788d6ee4dc52f21b79a5b83f1dcbc5ac6ee0b847bd154b00'
+    90:
+      name: 'r61-jiaotai-south-major-frame'
+      displayId: ~
+      hash: 'b806609e0c2999aceb0c381be93092c7422a819991e19e0851de00a012418f27'
+    91:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: '2a778b2ef09414fe47234e5d8ff3d2acfe67174cabae78673443a7508da244c4'
+    92:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: '76d673f3ab9b1407d5219ad9d4ac94a7d944e8cd1507570cfd56f68630c29375'
+    93:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: '842a87314503bf69fc58c6fdeaafc20b0242fcb434847f8dcafb0448d3e317fb'
+    94:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: 'd0e9ee8af707f656df7a00f44327dc9fab2b7c50108d37f9f5fd8e2a66f85247'
+    95:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: '709a77fca112c629233c20627c2db55aee009eec62eef3c06f683db9130dda46'
+    96:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: 'da766d18270b253337ccbd7c6d93e955c1ae1b0feaa5bb606335b0c1974853ca'
+    97:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: 'd9efc8d339fca599d3d17679f274d8d5a14cbcbcca6eb940ebbdfec4ee308a67'
+    98:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: 'e2f8a5f2f8487e5e489a448b5788cda681e79068fee79f67879529fd518cba01'
+    99:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: '1b926df944e7bdb2233d13dac16949c81568e1291c36d7cd2826c9a1ecc15f95'
+    100:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: '8ef18d844e9bfbf2c332f3492711f4cb670ffba8fd01d8bfcccd745726ce5166'
+    101:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: 'e4a18f1e308d9aac3233b79c62ee379f39b8512dd256de48a6cd8c152c527a0b'
+    102:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: '40ea19510686caa8066d3e552ab03cfbfe478dadf3cace86ea542a2e096e0adf'
+    103:
+      name: 'r61-jiaotai-south-straight-grid'
+      displayId: ~
+      hash: 'e592e3a2ad1328cfb22b03c5d2156fd10a71da8ce5c645289bf111babd414c55'
+    104:
+      name: 'jiaotai-central-painted-apron'
+      displayId: ~
+      hash: 'af6a038966f6cde8a6799482a85269985dd39a32d03e554c6bce9120bf5689ef'
+    105:
+      name: 'jiaotai-central-painted-apron'
+      displayId: ~
+      hash: '73b52a9cb3c45021e87d5c52174b7616c338c21b37fedb47c5b4d7ab049e1fd8'
+    106:
+      name: 'jiaotai-central-painted-apron'
+      displayId: ~
+      hash: 'ef3312ed7a92f232cb1a61e4e90084060d56be087fb5b2d7abcabac8f7d7c66c'
+    107:
+      name: 'jiaotai-central-painted-apron'
+      displayId: ~
+      hash: '28a7a36dd4fd2f9239d0073c89bbb5f360ada92692b73d970c6cd012b76da62b'
+    108:
+      name: 'jiaotai-west-inner-frieze'
+      displayId: ~
+      hash: 'c1cd343dd32de7ce0791a8021b6d6658f1a67da6c4296631c9b01531f68dee93'
+    109:
+      name: 'jiaotai-west-inner-frieze'
+      displayId: ~
+      hash: '4110f70234a7c14f37ca5bc573fa1543557e434451f9330e5a8a0a2ba5b264b6'
+    110:
+      name: 'jiaotai-west-inner-bracket-stem'
+      displayId: ~
+      hash: '384c0f65a492643420ce2b1efe6541944db6710b543ac863607806abf3e8f8ef'
+    111:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '2e4586f0d5b748a37e616bc41e053e512d84b4788d8fbe6052546968dbecc305'
+    112:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: 'd56fc2e2b16eb1ee663174209440b95a5b459799c4767f9f22cd271b503516c0'
+    113:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '695154b76677113672afc7689361a66b5dcd77b8a52cf1aea39f5b6daa0ed0e1'
+    114:
+      name: 'jiaotai-west-inner-bracket-stem'
+      displayId: ~
+      hash: '96c92dfa8c0340dd198475d9999985714b3db60ac4f59ba890672fc7d13c400c'
+    115:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '89853f1ed71abf527dc33e1741732b0b504de0298651410b75fa5dbfe7a00046'
+    116:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '3eca29ae103ffb55a838bcf77b7d7e9f5350f670c64c24e6edf7adf07dbd4930'
+    117:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '4093e3f850dbc494d8ea10e3c615010036db229057a698a3c550697165ea2158'
+    118:
+      name: 'jiaotai-west-inner-bracket-stem'
+      displayId: ~
+      hash: 'd20d0ec19d0f3ab0e4fa06eb62e699a27c523b33e350d2263eaca03bff079e8e'
+    119:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: 'deee63e88dabe1da47df91a1d0162bb25da3773c7801632be79f8b5a3bb14cff'
+    120:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '9c78ff2394af6dfc77051fc36d752b8e3ad1db5ce2906f9ec2e0360bb4440846'
+    121:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '5e4cbe1e9ae80c598aec9fe5843c82fb0a111c20fedd5a2372ac2251380b10f4'
+    122:
+      name: 'jiaotai-west-inner-bracket-stem'
+      displayId: ~
+      hash: 'db98173c6637782975db915e8d7c052a64fa63305d918aedf07523f257ed4d22'
+    123:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '0b154fb50663364a663c31611c71864cd0ec51170045f0f976b390bb14e1b988'
+    124:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: 'af3769bee7867283a5b289bb5c3c9db250cef8b0c651ce781c63a5c40bde684d'
+    125:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: 'e0e812ea2d9047feb7bbb11dcf60a3a2681515116d2611e40f8c481c4a7af6d4'
+    126:
+      name: 'jiaotai-west-inner-bracket-stem'
+      displayId: ~
+      hash: '62c44ec0c33a3c698efa49e34c88ac754c87f6419a51a28d5f6a0718023076ab'
+    127:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '4f89473abb46ed0f72cfc62eaefeabc54243cc014644edbe5c8599115c0fea84'
+    128:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '6469ba8094e0afe16477635f0c804d281e445a9107e072e2cd0b9562ea317855'
+    129:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '4b0b1d3c9d8e48b6bfea4f3d73aa29cc59a1ec6db816f0d280b452c33f007478'
+    130:
+      name: 'jiaotai-west-inner-bracket-stem'
+      displayId: ~
+      hash: '8b53986871a5183bea757bdd60200288ca8e27ee2a170a34cc537354792874f1'
+    131:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '4074eab839e97a942678675b1bfdd6a56273c18f60c0545f737b3e3d70a20b6d'
+    132:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '4a5c7dff035c2b33c3a457dea5f4405e3f12db4c3a2b25a87a149cff156d58e1'
+    133:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '99b258dac2364bac093b2c6d8f23e48652bb384c88a0dd8d4338d7c2cfd0b1d1'
+    134:
+      name: 'jiaotai-west-inner-bracket-stem'
+      displayId: ~
+      hash: '8d910dad8e7ea07e41514fbe605f56c11e717395e12fd1a11ec0c71a78a52a43'
+    135:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '21f4cdd958402464453e95c35fa750daf0607d9a3a3b4ef60b9aa6d61435990f'
+    136:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: 'e4f0e06f18d6c16398506efa943bfc67f5532381b66a47b41d755e9c9d330395'
+    137:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '80433745787950c8cfcc88c08adbca179ff895e3001169b8f3f0509f9fba7b8a'
+    138:
+      name: 'jiaotai-west-inner-bracket-stem'
+      displayId: ~
+      hash: '9e012432fecc569bc5dc916aba90a63eb9b88efe244c24b5750941cba0671c2e'
+    139:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: 'ebd3aac2a9bf789bbbf5b70e1d56f2ac2033e025de9ed1ec27964b3e2718ed65'
+    140:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '53371c1d1f8cac0a5843e7cc7cbeb424ee10b9e6c5327cb349631ecd94c371f1'
+    141:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '1d12f04ab462f6a41f0416a37ab6f0d8d6f0e5bd5e9d612b766ce0e74f51e2d2'
+    142:
+      name: 'jiaotai-west-inner-bracket-stem'
+      displayId: ~
+      hash: '5213d3a69cc63cb0a4ec6e41aee0b95dd7930e98c2aeaab3aadbcce870b60073'
+    143:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '6e269cb18de8acb0adfa67f4f2c39535f8149ea22fb931513333489178ece1fc'
+    144:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: 'fabcac59262dbaff62b4dd2c7cd29a983a39d38c9642037806156bd1559abfb5'
+    145:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: 'f07c3ad501a6283bc2bcc6cede6c9a60f71e4e25797b627407cc7b573e817a6d'
+    146:
+      name: 'jiaotai-west-inner-bracket-stem'
+      displayId: ~
+      hash: '8048b9eef35bf4105e5a64a984acc14c60d0a9c9a7de4e23a04c407712513d3a'
+    147:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: 'b244729c52f476ab1d6dfd4149db3d30b832847ec4ff1b9dd14d19511aba47f5'
+    148:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: 'e84c5ae1e9e281504d52bbee168a482fd805c6c1890d3d1bad25c5150b1dd52a'
+    149:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '453b62e2f451e540408d78a1766614ea910e5f19137bbfc726f729ae5badd396'
+    150:
+      name: 'jiaotai-west-inner-bracket-stem'
+      displayId: ~
+      hash: 'e3110b7dd0ed649a23b402f71cb9f5470cbb0c7a36bf75d7e8963b837474f444'
+    151:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: 'c9283688cb0fc03eb775ea074a1cb4ada1f542078a531120d1e1fce5849a72ca'
+    152:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '67568eafcb816c56a769d7a5f9fae5c2624eb8006d4ade02da597e0697f34ed5'
+    153:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: 'b435810a848a1a182135ac980133ab9627b76219420e88c81a9ef518456cd5ad'
+    154:
+      name: 'jiaotai-west-inner-bracket-stem'
+      displayId: ~
+      hash: '1edebc6e4d3b760bd64e2572619759b7fda1385c3a44aa958b155c855e1690e2'
+    155:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '09d8356184af2f36bd6dd6aeaecd51fa4836329eee1b6fa92c6b57c1249b9545'
+    156:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: 'caeddec120d4de8b771c4a25b9a3d7e3fd329c2d605c02b933c085e1be654f0f'
+    157:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '3fb788f1761c59955da27109bbc7f589a95d0f08bd5d6a24c62e096de3e30a44'
+    158:
+      name: 'jiaotai-west-inner-bracket-stem'
+      displayId: ~
+      hash: '1a41ac11e33d0e515e9c6dcc46de491185168c6ea7278bc7a22c3e077ec92104'
+    159:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: 'a926f9402292fb95c9d16aaf04a3417af7137128f0f2759ab76907f627f0821f'
+    160:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: 'f05b03532b8da3b143f85fec9f181131c745cd2f9f7818c5b64e4a2d9f064a02'
+    161:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: 'eaf3ed6b31e5623ce14df9cc481e9518c40149d3cfed48cc42c37fa878e8e27b'
+    162:
+      name: 'jiaotai-west-inner-bracket-stem'
+      displayId: ~
+      hash: '89027b20e84690e60c40768c0f760cc6e08186cbb148ff576487965e37582e58'
+    163:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: 'efc17f6a0c0bd635cea2d027b5651d922d58294d8442d5db3b87895b1a60a4ec'
+    164:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '7367dba4b6504953c2a909fbae109ef523f6b36fa90e828b433973e4fb4caf7a'
+    165:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '506e6713ed327896cdc594685ddce96c0f5e4991bca162e70a683458cf0d5635'
+    166:
+      name: 'jiaotai-west-inner-bracket-stem'
+      displayId: ~
+      hash: 'e7d1afafd14da709bfe9e745d30eb3bb56ae2c3684a6af72d0d7d77f189ca13b'
+    167:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: 'c29edd39d6ac30719638ade2c9ef32fbe625cb3b92d67460ee52ea74cb7b21a2'
+    168:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: 'f0d892d886bbe4118de0fa455c4b2f37aeefa820b9726af4b42752267c0558e9'
+    169:
+      name: 'jiaotai-west-inner-bracket'
+      displayId: ~
+      hash: '0dfd932839f10282546273b3d70d99f821009b90d6ba26349d9db46d2803a9fa'
+    170:
+      name: ''
+      displayId: ~
+      hash: '95775ccf955042eb26cc6e7dab773de3e3b2ac6ee8d79a0dba23dd9fb3995709'
+    171:
+      name: 'jiaotai-retained-ceiling-open-centre'
+      displayId: ~
+      hash: '4cb5574ac5de92baffc206eb1e2cd1abb10ab22badb096097a27595dbb54214a'
+    172:
+      name: 'jiaotai-upper-gilt-screen-field'
+      displayId: ~
+      hash: 'a3d62cb0551249df1ce63248fd3daa01676168d28492fa5d25edcff9b4c53930'
+    173:
+      name: 'jiaotai-upper-field-gilt-rim'
+      displayId: ~
+      hash: 'a3e9e9a4072984a84b9f690a87fe9d06ce0086121ae4b97e928f8d73c511e0c6'
+    174:
+      name: 'jiaotai-upper-field-gilt-rim'
+      displayId: ~
+      hash: 'ed93b56443b3740670561649e491934ef45c5885bc330a2fef56358d864bffa4'
+    175:
+      name: 'jiaotai-upper-field-gilt-rim'
+      displayId: ~
+      hash: 'fd40a00d3953ba67c736aaeee76d90c27f85d955872c16d0d507ae372928b409'
+    176:
+      name: 'jiaotai-upper-field-gilt-rim'
+      displayId: ~
+      hash: 'f17d6715c22f3519d78da716b4ab4f0535a3e9a3f5bf0b6083b74fb3d37c7e33'
+    177:
+      name: 'jiaotai-lower-inscription-field-untranscribed'
+      displayId: ~
+      hash: 'bcbb7030e91272489a3d3b2dda3df5cabdd25bb425774fcc5f315f82df483e78'
+    178:
+      name: 'jiaotai-rear-plaque-bearing-beam'
+      displayId: ~
+      hash: '3f34677d0e77996f85d74dded61092616b2f520aed1086c04bd59b5f6493cd85'
+    179:
+      name: 'jiaotai-wuwei-plaque'
+      displayId: ~
+      hash: 'ea18aa786026304cf94ca31123aef1126d776e0c87d9c84a5eeb91af1c8f9cb8'
+    180:
+      name: 'jiaotai-plaque-hanger'
+      displayId: ~
+      hash: '9160eaf4acbfe432ab9442c3c3c9e14b5395ecf67127371fe5a6559b675c6dff'
+    181:
+      name: 'jiaotai-plaque-hanger'
+      displayId: ~
+      hash: 'f862993e2712bfd70b22ac3518be46d26143028c6826b0ce84e2f5511cd44e63'
+    182:
+      name: ''
+      displayId: ~
+      hash: '935ae5e77db4a574a751735312462c20a79f860b09199b86d8d02183ee6c6ab4'
+    183:
+      name: 'roof_pavilion_dougong_band'
+      displayId: ~
+      hash: '9b34c457ed8fc04dd772e69fe4e863a973384c5522e6ae9d8432e5f19a267d11'
+    184:
+      name: 'roof_pavilion_rafters'
+      displayId: ~
+      hash: '40e2fcc8b6a84be3d3fe92544e2ff4905d8596671c3a930328e8710d94241561'
+    185:
+      name: 'roof_pavilion_roof_tile'
+      displayId: ~
+      hash: '1b4ffcb87c8f6b92f979c157c1ab791d7b284d930cfaf56750e4cf655ee90fe7'
+    186:
+      name: 'roof_pavilion_roof_ridge_glaze'
+      displayId: ~
+      hash: '7c8dfc03564357cc0621c5aa5b650fb12d74c5a9c9e6fa4cb6326c35fc7fed2e'
+    187:
+      name: 'roof_pavilion_roof_finial_gold'
+      displayId: ~
+      hash: '10e12f2534141e7e12d9971da73f2d4d1321fb1e05f1fbc7c0bdc487a2a4f6d9'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r119-jiaotai-room/tests/r54-jiaotai-display.test.mjs:18:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: all R27/R28 sources and the complete Zhonghe fragment remain byte-identical
+not ok 12 - all R27/R28 sources and the complete Zhonghe fragment remain byte-identical
+  ---
+  duration_ms: 0.715304
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r119-jiaotai-room/tests/r54-jiaotai-display.test.mjs:31:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    JiaotaiCentralInterior.js
+    + actual - expected
+    
+    + 'b8066d39966a0d07073dd65c736ce189bc207ede946adf5ce5bf75a27e6dfb3b'
+    - '55562a8949dd512a8903cdfdc3f658470201cdd45993a222c3b30daa843ac5cd'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '55562a8949dd512a8903cdfdc3f658470201cdd45993a222c3b30daa843ac5cd'
+  actual: 'b8066d39966a0d07073dd65c736ce189bc207ede946adf5ce5bf75a27e6dfb3b'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r119-jiaotai-room/tests/r54-jiaotai-display.test.mjs:32:76)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: every new collider has a visible geometric owner; only the real low base is a new walkable
+ok 13 - every new collider has a visible geometric owner; only the real low base is a new walkable
+  ---
+  duration_ms: 40.333068
+  type: 'test'
+  ...
+# Subtest: base-material checkpoint retains every neutral vertex, UV, index, transform and physical bound
+not ok 14 - base-material checkpoint retains every neutral vertex, UV, index, transform and physical bound
+  ---
+  duration_ms: 88.654056
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r119-jiaotai-room/tests/r54-jiaotai-display.test.mjs:66:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'a23027157a0dd40422f6e4fcc96544b4c155cba776f1badcd74a71029d971dc5'
+    - '60b0586e2ac4394a64e9421b6749a430e5be69d2008fc4935c621a6b90591307'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '60b0586e2ac4394a64e9421b6749a430e5be69d2008fc4935c621a6b90591307'
+  actual: 'a23027157a0dd40422f6e4fcc96544b4c155cba776f1badcd74a71029d971dc5'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r119-jiaotai-room/tests/r54-jiaotai-display.test.mjs:69:9)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: Jiaotai merged rear-palace fragment binds the real geometry, support and legal observation positions
+ok 15 - Jiaotai merged rear-palace fragment binds the real geometry, support and legal observation positions
+  ---
+  duration_ms: 13.955927
+  type: 'test'
+  ...
+# Subtest: Jiaotai four-door continuous circuit 10 Hz sprint=false backward=false
+ok 16 - Jiaotai four-door continuous circuit 10 Hz sprint=false backward=false
+  ---
+  duration_ms: 53.300371
+  type: 'test'
+  ...
+# Subtest: Jiaotai four-door continuous circuit 10 Hz sprint=false backward=true
+ok 17 - Jiaotai four-door continuous circuit 10 Hz sprint=false backward=true
+  ---
+  duration_ms: 27.571124
+  type: 'test'
+  ...
+# Subtest: Jiaotai four-door continuous circuit 10 Hz sprint=true backward=false
+ok 18 - Jiaotai four-door continuous circuit 10 Hz sprint=true backward=false
+  ---
+  duration_ms: 16.94245
+  type: 'test'
+  ...
+# Subtest: Jiaotai four-door continuous circuit 10 Hz sprint=true backward=true
+ok 19 - Jiaotai four-door continuous circuit 10 Hz sprint=true backward=true
+  ---
+  duration_ms: 14.814426
+  type: 'test'
+  ...
+# Subtest: Jiaotai four-door continuous circuit 60 Hz sprint=false backward=false
+ok 20 - Jiaotai four-door continuous circuit 60 Hz sprint=false backward=false
+  ---
+  duration_ms: 56.99011
+  type: 'test'
+  ...
+# Subtest: Jiaotai four-door continuous circuit 60 Hz sprint=false backward=true
+ok 21 - Jiaotai four-door continuous circuit 60 Hz sprint=false backward=true
+  ---
+  duration_ms: 47.616019
+  type: 'test'
+  ...
+# Subtest: Jiaotai four-door continuous circuit 60 Hz sprint=true backward=false
+ok 22 - Jiaotai four-door continuous circuit 60 Hz sprint=true backward=false
+  ---
+  duration_ms: 28.8813
+  type: 'test'
+  ...
+# Subtest: Jiaotai four-door continuous circuit 60 Hz sprint=true backward=true
+ok 23 - Jiaotai four-door continuous circuit 60 Hz sprint=true backward=true
+  ---
+  duration_ms: 30.051225
+  type: 'test'
+  ...
+# Subtest: both actual resident clock/clepsydra and caisson LOD meshes retain their frozen R53 signatures
+not ok 24 - both actual resident clock/clepsydra and caisson LOD meshes retain their frozen R53 signatures
+  ---
+  duration_ms: 15.86967
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r119-jiaotai-room/tests/r54-jiaotai-navigation.test.mjs:16:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    jiaotai-central-ceiling-detail
+    + actual - expected
+    
+      [
+        {
+          displayId: null,
+    +     hash: 'f06d8e7ed2a0a1d4aa45ca164261374615f247c241c514636e374f840652cad6',
+    -     hash: 'c13a046fff872e6b27caa510846a3e76ed278521f2acfd463849be706804209a',
+          name: 'jiaotai-central-near_jiaotai-central-atlas'
+        },
+        {
+          displayId: null,
+          hash: '58339aa2cdb63c81835f78bbf472e101798b7ee9a23bbf887c773e6548064987',
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0:
+      name: 'jiaotai-central-near_jiaotai-central-atlas'
+      displayId: ~
+      hash: 'c13a046fff872e6b27caa510846a3e76ed278521f2acfd463849be706804209a'
+    1:
+      name: 'jiaotai-central-far_jiaotai-central-atlas'
+      displayId: ~
+      hash: '58339aa2cdb63c81835f78bbf472e101798b7ee9a23bbf887c773e6548064987'
+  actual:
+    0:
+      name: 'jiaotai-central-near_jiaotai-central-atlas'
+      displayId: ~
+      hash: 'f06d8e7ed2a0a1d4aa45ca164261374615f247c241c514636e374f840652cad6'
+    1:
+      name: 'jiaotai-central-far_jiaotai-central-atlas'
+      displayId: ~
+      hash: '58339aa2cdb63c81835f78bbf472e101798b7ee9a23bbf887c773e6548064987'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r119-jiaotai-room/tests/r54-jiaotai-navigation.test.mjs:16:283)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: Jiaotai original front map landing is retained by the actual Teleport resolver
+ok 25 - Jiaotai original front map landing is retained by the actual Teleport resolver
+  ---
+  duration_ms: 4.365002
+  type: 'test'
+  ...
+# Subtest: new furniture bounds do not penetrate either conservative retained R27 landmark envelope
+ok 26 - new furniture bounds do not penetrate either conservative retained R27 landmark envelope
+  ---
+  duration_ms: 70.393208
+  type: 'test'
+  ...
+# Subtest: all frozen actor IDs remain and Jiaotai stays unbound when other districts gain actors
+ok 27 - all frozen actor IDs remain and Jiaotai stays unbound when other districts gain actors
+  ---
+  duration_ms: 4.26448
+  type: 'test'
+  ...
+# Subtest: tests/r61-jiaotai-south-windows.test.mjs
+not ok 9 - tests/r61-jiaotai-south-windows.test.mjs
+  ---
+  duration_ms: 10090.491084
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r119-jiaotai-room/tests/r61-jiaotai-south-windows.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: ~
+  signal: 'SIGKILL'
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+1..28
+# tests 28
+# suites 0
+# pass 19
+# fail 9
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 14319.033262
