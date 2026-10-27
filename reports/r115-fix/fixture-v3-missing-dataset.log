@@ -1,0 +1,29 @@
+environmentCpu: 49.760 ms
+palaceBuild: 1141.680 ms
+enclosureBuild: 171.896 ms
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+gardenBuild: 709.091 ms
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 224 个 mapItem
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+zoneInit: 4008.490 ms
+staticRegistration: 27.350 ms
+roomNightLights: 28.520 ms
+controlsReady: 0.908 ms
+flightEnvelope: 242.975 ms
+interiorLoaderSetup: 0.244 ms
+characterSystemSetup: 2.927 ms
+historicalLampsSetup: 3.286 ms
+file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/src/scene/flight/FlightTour.js:315
+    for(const b of this.panel.querySelectorAll('[data-action]'))b.disabled=b.dataset.action==='resume'?!!this.resumePending:b.dataset.action==='board'?(this.occupied?!this.canExit():!this.canBoard()):!this.occupied;
+                                                                                     ^
+
+TypeError: Cannot read properties of undefined (reading 'action')
+    at FlightTour.updateUI (file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/src/scene/flight/FlightTour.js:315:86)
+    at new FlightTour (file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/src/scene/flight/FlightTour.js:23:91)
+    at file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/scripts/r115-fix/profile-process.mjs:43:46
+    at measure (file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/scripts/r115-fix/measurement.mjs:40:61)
+    at phase (file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/scripts/r115-fix/profile-process.mjs:20:33)
+    at file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/scripts/r115-fix/profile-process.mjs:43:18
+
+Node.js v24.19.0

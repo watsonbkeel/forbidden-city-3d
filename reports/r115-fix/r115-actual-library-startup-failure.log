@@ -1,0 +1,23 @@
+environmentCpu: 42.274 ms
+palaceBuild: 1222.952 ms
+enclosureBuild: 143.519 ms
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+gardenBuild: 698.951 ms
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+file:///workspace/scratch/02a8023d1a85/r115-palace-group-cumulative/src/utils/TextureLibrary.js:159
+    if (!TEXTURE_SPECS[name]) throw new Error(`未知贴图 ${name}`);
+                                    ^
+
+Error: 未知贴图 wood_red
+    at TextureLibrary.color (file:///workspace/scratch/02a8023d1a85/r115-palace-group-cumulative/src/utils/TextureLibrary.js:159:37)
+    at TextureLibrary.material (file:///workspace/scratch/02a8023d1a85/r115-palace-group-cumulative/src/utils/TextureLibrary.js:181:17)
+    at CourtKit.box (file:///workspace/scratch/02a8023d1a85/r115-palace-group-cumulative/src/scene/palace/kit.js:77:44)
+    at box (file:///workspace/scratch/02a8023d1a85/r115-palace-group-cumulative/src/scene/palace/special/ChengqianCourtyardGroup.js:17:14)
+    at buildChengqianCourtyardGroup (file:///workspace/scratch/02a8023d1a85/r115-palace-group-cumulative/src/scene/palace/special/ChengqianCourtyardGroup.js:53:363)
+    at ZoneBase.build (file:///workspace/scratch/02a8023d1a85/r115-palace-group-cumulative/src/scene/zones/ZoneBase.js:134:5)
+    at file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/scripts/r120-performance/profile-process.mjs:18:113
+    at measure (file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/scripts/r120-performance/measurement.mjs:40:61)
+    at ZoneBase.build (file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/scripts/r120-performance/profile-process.mjs:18:92)
+    at ZoneManager.init (file:///workspace/scratch/02a8023d1a85/r115-palace-group-cumulative/src/scene/zones/ZoneManager.js:86:28)
+
+Node.js v24.19.0

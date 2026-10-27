@@ -1,0 +1,29 @@
+environmentCpu: 90.049 ms
+palaceBuild: 1408.903 ms
+enclosureBuild: 172.409 ms
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+gardenBuild: 756.937 ms
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 224 个 mapItem
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+zoneInit: 4252.905 ms
+staticRegistration: 24.944 ms
+roomNightLights: 32.887 ms
+controlsReady: 0.891 ms
+flightEnvelope: 245.801 ms
+interiorLoaderSetup: 0.303 ms
+characterSystemSetup: 2.754 ms
+historicalLampsSetup: 4.029 ms
+file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/src/scene/flight/FlightTour.js:267
+    `;document.head.appendChild(this.style);
+                    ^
+
+TypeError: Cannot read properties of undefined (reading 'appendChild')
+    at FlightTour.buildUI (file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/src/scene/flight/FlightTour.js:267:21)
+    at new FlightTour (file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/src/scene/flight/FlightTour.js:23:10)
+    at file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/scripts/r120-performance/profile-process.mjs:43:46
+    at measure (file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/scripts/r120-performance/measurement.mjs:40:61)
+    at phase (file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/scripts/r120-performance/profile-process.mjs:20:33)
+    at file:///workspace/scratch/02a8023d1a85/r116-startup-dependencies/scripts/r120-performance/profile-process.mjs:43:18
+
+Node.js v24.19.0
