@@ -1,0 +1,9 @@
+# R126 first A — partial geometric proof, back-surface blocker
+
+Actual saved source92fe1c13afcddbd7a19a904755c136dd3415adf012c57ab6f048bd1c1ff1bf8b. Seven after CPU views personally seen. Closed timber screen and paired rear stair/cheek composition are meaningful changes; moulding/paint remain schematic photo-fit, not exact ornament/PBR restoration.
+
+Independent geometry-review proves all27020old complete rows preserved,244new rows,15descriptors/decodedRGBAexact; old fullphysical payload retained with+25owners/+2walkables. Nineteen ordinary new boxes each have six outward complementary triangle-covered faces (rejecting duplicate-overlap/hole bbox+area counterexamples). Both eight-triangle cheek sources are closed, consistently outward, and all coordinates exactly match actual render. Tread/cheek/cap join coordinates match in F32. Strict new-versus-old crossings0, but this is not a new-versus-new coplanarity, containment or body result.
+
+**First A is NOT fully visually accepted:** the last back-facing camera (`gate-court-after-high.png`) reveals speckled competing colors on side/back-frame strips. Independent `back-coplanar.py` proves28positive-area pairs of opposite materials at identical worldZ364.44000244140625, both outward+Z, summed pair area3.575211m²(not union). Existing core back and frame backs overlap exactly. Reported immediately to writer/root; minimum internal frame-back inset/unique closed back is requested, retaining approved outer domain/front and not using polygonOffset to hide geometry. Source/back unknown does not authorize visibly competing surfaces.
+
+Earlier scoped geometry PASS remains valid for its stated checks but does not override this new explicit blocker. Fix must be exported/rebound and back view rechecked before final visual acceptance. No reviewer product edit/world/cost run.

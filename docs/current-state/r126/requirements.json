@@ -1,0 +1,223 @@
+{
+  "release": "R126",
+  "base": "32cf227a1eae16486b9cbafa5411e96c53165720",
+  "runtime": "ba885f34073e6fde52f2ee6cb59d2225190173ae7fc5bb0c3d966bf9dace9073",
+  "acceptedCumulative": [
+    "R115-fix",
+    "R118",
+    "R119",
+    "R120-art",
+    "R123",
+    "R124",
+    "R125",
+    "R126-bounded-arrival"
+  ],
+  "notDelivered": [
+    "R116/R117 performance",
+    "R121/R122 all5 natural-rock groups",
+    "unknown ear-room full shape/entrances",
+    "well pavilion unknown details",
+    "screen rear ornament/whole roof/operability",
+    "whole palace surveyed-era fidelity"
+  ],
+  "allReadyEntry": true,
+  "globalBodySolverChanged": false,
+  "geometry": {
+    "newTriangles": 244,
+    "arrayBufferBytes": 23424,
+    "owners": 25,
+    "walkables": 2,
+    "scopeOwners": 3,
+    "ownedMaterials": 2,
+    "textures": 0
+  },
+  "functional": {
+    "targetTests": [
+      8,
+      8
+    ],
+    "localRoutes": 45,
+    "fullArrivalRoutes": 9,
+    "frequencies": [
+      10,
+      30,
+      60
+    ],
+    "fullArrivalInheritedEndpointPerDirection": [
+      14,
+      40,
+      81
+    ],
+    "fullArrivalInheritedMicroPerDirection": [
+      38,
+      39,
+      80
+    ],
+    "allAddedReplayCases": 114,
+    "allAddedEndpointSamples": 22794,
+    "allAddedMicroSamples": 19166,
+    "allAddedHits": [
+      0,
+      0
+    ],
+    "airGrounded": 48,
+    "closedScreenBlocked": 12,
+    "womenLogicalRowsExactR125": true,
+    "independentActors": {
+      "source": "ba885f34073e6fde52f2ee6cb59d2225190173ae7fc5bb0c3d966bf9dace9073",
+      "fps": [
+        10,
+        30,
+        60
+      ],
+      "frames": [
+        1430,
+        4284,
+        8566
+      ],
+      "completeRawExactR125": true,
+      "inheritedTaiheHitsPreserved": true
+    }
+  },
+  "wholeScopeLedger": "whole-scope-ledger.json",
+  "currentStateBaseline": {
+    "release": "R125",
+    "tests": 1289,
+    "pass": 1076,
+    "fail": 213
+  },
+  "finalGatesStartupBuild": "GATES_STARTUP_EXPORT_TERMINAL; build/package/HTTP must read exact post-commit external DELIVERY.json",
+  "historicalCostErratum": "COST-ERRATUM.md",
+  "notRun": [
+    "GPU/PBR/mobile",
+    "wholeframeFPS",
+    "full heap/native/VRAM",
+    "wholeworldzerooverlap",
+    "survey/singlehistoricalperiod"
+  ],
+  "currentStateFinal": {
+    "tests": 1289,
+    "pass": 1076,
+    "fail": 213,
+    "newFailures": 0,
+    "removedFailures": 0
+  },
+  "cumulativeGates": {
+    "r126": [
+      8,
+      8
+    ],
+    "r125": [
+      7,
+      7
+    ],
+    "r124": [
+      11,
+      11
+    ],
+    "r123": [
+      9,
+      9
+    ],
+    "r119r120": [
+      28,
+      29
+    ],
+    "motion": [
+      89,
+      90
+    ],
+    "resources": [
+      40,
+      41
+    ],
+    "resourceNewFailure": "Retained R106 whole-rear high snapshot intentionally differs; successor actual-library high/low >5% geometry reduction and physical equality PASS, original expected unchanged"
+  },
+  "startupFinal": {
+    "high": {
+      "startupCommit": "76f0e76d696cb001f6f35c32ba9e24ae11075e0b",
+      "startupAllReadyMs": 7079.012536,
+      "setupMs": 7072.473485,
+      "firstEntryMs": [
+        147.243832,
+        138.491179
+      ],
+      "ordinaryReturnMs": [
+        1351.642351,
+        972.573382,
+        1704.7237,
+        1076.244801,
+        1509.933072,
+        1010.525734
+      ],
+      "ttlExpiryMs": 2210.075658,
+      "startupInputFiles": 431
+    },
+    "low": {
+      "startupCommit": "76f0e76d696cb001f6f35c32ba9e24ae11075e0b",
+      "startupAllReadyMs": 7087.306891,
+      "setupMs": 7079.971071,
+      "firstEntryMs": [
+        63.933513,
+        111.303909
+      ],
+      "ordinaryReturnMs": [
+        1510.450523,
+        903.34441,
+        1484.619762,
+        1028.213155,
+        1460.855166,
+        1043.914255
+      ],
+      "ttlExpiryMs": 2246.483579,
+      "startupInputFiles": 431
+    }
+  },
+  "finalActualExport": {
+    "high": {
+      "triangles": 27264,
+      "oldRowsRetained": 27020,
+      "added": 244,
+      "textures": 15,
+      "decodedRgbaBytes": 17399808,
+      "physical": {
+        "colliders": 1322,
+        "walkables": 61,
+        "rooms": 32,
+        "mapItems": 42
+      },
+      "exportSource": "ba885f34073e6fde52f2ee6cb59d2225190173ae7fc5bb0c3d966bf9dace9073"
+    },
+    "low": {
+      "triangles": 21610,
+      "oldRowsRetained": 21366,
+      "added": 244,
+      "textures": 15,
+      "decodedRgbaBytes": 17399808,
+      "physical": {
+        "colliders": 1322,
+        "walkables": 61,
+        "rooms": 32,
+        "mapItems": 42
+      },
+      "exportSource": "ba885f34073e6fde52f2ee6cb59d2225190173ae7fc5bb0c3d966bf9dace9073"
+    }
+  },
+  "buildEvidenceContract": {
+    "bases": [
+      "/",
+      "/gugong/",
+      "/forbidden-city-3d/"
+    ],
+    "location": "r126-final-delivery/DELIVERY.json and build-manifest.json outside frozen repository",
+    "reason": "Avoid circular claim that self-edited delivery evidence was itself built. Final external readback binds exact commit/tree/runtime and all input files."
+  },
+  "independentReview": {
+    "path": "reports/r126-chengqian/independent-final/REVIEW-R126.md",
+    "files": 23,
+    "rawReferences": 80,
+    "fullRuntimeBuildInputs": 571,
+    "runtime": "ba885f34073e6fde52f2ee6cb59d2225190173ae7fc5bb0c3d966bf9dace9073",
+    "officialOriginalImagesIncluded": false
+  }
+}

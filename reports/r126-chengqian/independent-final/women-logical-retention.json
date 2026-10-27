@@ -1,0 +1,36 @@
+{
+  "status": "ALL_THREE_WOMEN_LOGICAL_ROWS_EXACT_R125",
+  "baseline": "r125-chengqian-rear-court/reports/r125-chengqian/household/r125.json",
+  "candidate": "r126-chengqian-arrival-major/reports/r126-chengqian/final-routes/chengqian-women.json",
+  "baselineSHA": "a7a20a9b2798bec58ce8813ed53c5cbc782e7134c39361a382962cd1052ced32",
+  "candidateSHA": "9f1de347e6f889c087f6883521bf8d1d8f865096e899443932315483d0956f17",
+  "rows": 3,
+  "sourceBefore": "ba885f34073e6fde52f2ee6cb59d2225190173ae7fc5bb0c3d966bf9dace9073",
+  "sourceAfter": "ba885f34073e6fde52f2ee6cb59d2225190173ae7fc5bb0c3d966bf9dace9073",
+  "protectedDeclarations": [
+    {
+      "path": "data/characters/actors.json",
+      "sha256": "b5f2e5a39ea3ec33eaffb6f6aef7eeede8b9bd4709fda43c7b48a4bf29c8bf97",
+      "exactR125": true
+    },
+    {
+      "path": "data/characters/night-beds.json",
+      "sha256": "d559ec36150bdd1c27a74fce94e7b30f4d587ea4b4b570bf7e7a704fde154a20",
+      "exactR125": true
+    },
+    {
+      "path": "data/characters/night-routes.json",
+      "sha256": "8b4e8d306633f1f547e3ef7b4e87bf434fbbd2ef1b6609345c0c7c8e2e5d12e5",
+      "exactR125": true
+    },
+    {
+      "path": "data/characters/emperor-night-route.json",
+      "sha256": "d8b3a4c3650d7e6e4cd7b9a5ee2161620f489053b4eab4536dae6a167a7e4d75",
+      "exactR125": true
+    }
+  ],
+  "limits": [
+    "Logical DailyRoutine trajectory/beds, not new complete deformed-mesh oracle for the three women.",
+    "R118 emperor/consort have a separately executed actual-body oracle."
+  ]
+}

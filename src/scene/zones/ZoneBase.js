@@ -1,3 +1,4 @@
+import {applyChengqianGateArrival,applyChengqianRearArrival} from '../palace/special/ChengqianArrival.js';
 import {buildChengqianRearWing} from '../palace/special/ChengqianRearWings.js';
 import {applyChuxiuFrontWing} from '../palace/special/ChuxiuFrontEnsemble.js';
 import {buildChuxiuRearWing} from '../palace/special/ChuxiuRearWings.js';
@@ -227,6 +228,7 @@ export class ZoneBase {
     if(this.zoneJson.id==='east-six'&&itemIndex===10){
       built.f.updateWorldMatrix(true,true);
       if(!applyChengqianRearSouthWindows(this.kit,built.f,item,itemIndex))throw Error('Chengqian rear south window profile failed closed');
+      applyChengqianRearArrival(this.kit,built.f,item,this.zoneJson,itemIndex);
     }
     applyFengxianFrontWindows(this.kit,this.zoneJson.id,item,built);
     if(selected?.profile.mode==='augment')return finish(applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,selected.augment(this.kit,item,built,selected.profile)));
@@ -354,6 +356,7 @@ export class ZoneBase {
     const width = this.kit.gate(params);
     applyZuoyiDoorFront(this.kit, this.kit.root.children.at(-1), {zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     if (item.gateProfile === 'zhaode' || item.gateProfile === 'zhendu' || item.gateProfile === 'huangji') this.gateGeometries.set(item.name, this.kit.root.children.at(-1).userData.gateGeometry);
+    if(this.zoneJson.id==='east-six'&&this.zoneJson.items.indexOf(item)===7)applyChengqianGateArrival(this.kit,this.kit.root.children.at(-1),item,this.zoneJson,7);
     return width; // 返回开口宽度
   }
 
