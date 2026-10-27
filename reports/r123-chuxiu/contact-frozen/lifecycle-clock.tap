@@ -1,0 +1,49 @@
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 297 个 region, 226 个 mapItem
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 卸载区域 west-six
+✖ production lighting, normal cache/evict/rebuild and 40m interest preserve current shared poses and visible bodies (7159.885496ms)
+✔ the Environment civil clock has exact 21/06 boundaries and stays asleep across midnight (0.684047ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 297 个 region, 226 个 mapItem
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+✔ mid-route manual clock changes reverse the current segment without respawning, and removed live corridor owners pause (6792.863962ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 297 个 region, 226 个 mapItem
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 461.4ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 556.5ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 west-six
+✔ R123 shifted-bed prebuilt verified logical seeds and private navigation survive only official west-six unload and rebind rebuilt sources (7825.546102ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 23023.983505
+
+✖ failing tests:
+
+test at tests/r118/rendered-streaming.test.mjs:2:1
+✖ production lighting, normal cache/evict/rebuild and 40m interest preserve current shared poses and visible bodies (7159.885496ms)
+  AssertionError [ERR_ASSERTION]: player occupies the common south approach, so arrival must wait
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r123-chuxiu-rear-frame/tests/r118/rendered-streaming.test.mjs:2:1343)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

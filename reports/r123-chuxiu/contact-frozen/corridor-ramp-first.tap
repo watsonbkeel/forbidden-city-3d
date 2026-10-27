@@ -1,0 +1,22 @@
+✖ R123 moved corridor ramps support the complete original foot on actual F32 visible faces (969.919013ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1215.080606
+
+✖ failing tests:
+
+test at tests/r123/corridor-ramp.test.mjs:2:1
+✖ R123 moved corridor ramps support the complete original foot on actual F32 visible faces (969.919013ms)
+  Error: Chuxiu corridor landing box changed
+      at bindChuxiuCorridorRamp (file:///workspace/scratch/02a8023d1a85/r123-chuxiu-rear-frame/src/controls/ChuxiuCorridorSupport.js:12:61)
+      at buildChuxiuCourtyard (file:///workspace/scratch/02a8023d1a85/r123-chuxiu-rear-frame/src/scene/palace/special/ChuxiuCourtyard.js:71:3)
+      at ZoneBase.build (file:///workspace/scratch/02a8023d1a85/r123-chuxiu-rear-frame/src/scene/zones/ZoneBase.js:127:55)
+      at readyScene (file:///workspace/scratch/02a8023d1a85/r123-chuxiu-rear-frame/scripts/r123/ready-zone.mjs:9:41)
+      at async TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r123-chuxiu-rear-frame/tests/r123/corridor-ramp.test.mjs:2:115)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)

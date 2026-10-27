@@ -1,0 +1,1464 @@
+diff --git a/data/anchors.json b/data/anchors.json
+index ec3ffa54..9f36b34c 100644
+--- a/data/anchors.json
++++ b/data/anchors.json
+@@ -94,7 +94,7 @@
+   "永寿宫": { "kind": "hall", "x": 94.9, "z": 331.0, "w": 27.1, "d": 13.8, "conf": "中", "src": "dimensions.md:241" },
+   "翊坤门": { "kind": "gate", "x": 94.6, "z": 359.5, "conf": "中", "src": "dimensions.md:244" },
+   "翊坤宫": { "kind": "hall", "x": 94.0, "z": 382.5, "w": 27.1, "conf": "中", "src": "dimensions.md:245" },
+-  "储秀宫": { "kind": "hall", "x": 94.8, "z": 434.3, "w": 27.1, "conf": "中", "src": "dimensions.md:249" },
++  "储秀宫": { "kind": "hall", "x": 94.8, "z": 429.3, "w": 27.1, "conf": "中", "src": "dimensions.md:249" },
+   "启祥门": { "kind": "gate", "x": 139.5, "z": 304.5, "conf": "中", "src": "dimensions.md:254", "note": "太极殿院门；JSON 名「太极门」按别名对应" },
+   "太极殿": { "kind": "hall", "x": 150.2, "z": 329.9, "w": 27.1, "conf": "中", "src": "dimensions.md:255" },
+   "长春宫": { "kind": "hall", "x": 150.2, "z": 379.6, "w": 27.1, "conf": "中", "src": "dimensions.md:259" },
+diff --git a/data/characters/night-beds.json b/data/characters/night-beds.json
+index 289bf190..39664b16 100644
+--- a/data/characters/night-beds.json
++++ b/data/characters/night-beds.json
+@@ -5,14 +5,14 @@
+       "actorId": null,
+       "palace": "储秀宫",
+       "x": 83.8,
+-      "z": 439.3,
++      "z": 434.3,
+       "floorY": 0.6,
+       "room": "储秀宫·东梢间",
+       "roomBounds": [
+         81.42999999999999,
+         86.49,
+-        429.3,
+-        441.2
++        424.3,
++        436.2
+       ],
+       "rotationYRad": 3.141592653589793,
+       "status": "GAMEPLAY_FIT_NOT_HISTORICAL_FURNITURE",
+@@ -26,14 +26,14 @@
+       "actorId": "chuxiu-maid-01",
+       "palace": "储秀宫",
+       "x": 88.6,
+-      "z": 439.5,
++      "z": 434.5,
+       "floorY": 0.6,
+       "room": "储秀宫·东次间",
+       "roomBounds": [
+         86.85,
+         91.91,
+-        429.3,
+-        441.2
++        424.3,
++        436.2
+       ],
+       "rotationYRad": 3.141592653589793,
+       "status": "GAMEPLAY_FIT_NOT_HISTORICAL_FURNITURE",
+@@ -47,14 +47,14 @@
+       "actorId": "chuxiu-maid-02",
+       "palace": "储秀宫",
+       "x": 90.4,
+-      "z": 439.5,
++      "z": 434.5,
+       "floorY": 0.6,
+       "room": "储秀宫·东次间",
+       "roomBounds": [
+         86.85,
+         91.91,
+-        429.3,
+-        441.2
++        424.3,
++        436.2
+       ],
+       "rotationYRad": 3.141592653589793,
+       "status": "GAMEPLAY_FIT_NOT_HISTORICAL_FURNITURE",
+@@ -705,14 +705,14 @@
+           "max": [
+             -100.34,
+             3.1,
+-            432.0
++            432
+           ]
+         },
+         {
+           "min": [
+             -100.46000000000001,
+             0.6,
+-            434.0
++            434
+           ],
+           "max": [
+             -100.34,
+@@ -725,13 +725,13 @@
+         "x0": -100.46000000000001,
+         "x1": -100.34,
+         "z0": 432.0,
+-        "z1": 434.0
++        "z1": 434
+       },
+       "approachBounds": [
+         -102.4,
+         -98.4,
+-        432.0,
+-        434.0
++        432,
++        434
+       ],
+       "zoneRef": "east-six",
+       "id": "zhongcui-gameplay-privacy-screen"
+@@ -843,9 +843,9 @@
+     {
+       "palace": "储秀宫",
+       "x": 86.4,
+-      "z0": 429.3,
+-      "z1": 441.2,
+-      "doorZ": 433.5,
++      "z0": 424.3,
++      "z1": 436.2,
++      "doorZ": 428.5,
+       "doorWidth": 2.4,
+       "floorY": 0.6,
+       "height": 2.5,
+@@ -856,38 +856,38 @@
+           "min": [
+             86.34,
+             0.6,
+-            429.3
++            424.3
+           ],
+           "max": [
+             86.46000000000001,
+             3.1,
+-            432.3
++            427.3
+           ]
+         },
+         {
+           "min": [
+             86.34,
+             0.6,
+-            434.7
++            429.7
+           ],
+           "max": [
+             86.46000000000001,
+             3.1,
+-            441.2
++            436.2
+           ]
+         }
+       ],
+       "doorBounds": {
+         "x0": 86.34,
+         "x1": 86.46000000000001,
+-        "z0": 432.3,
+-        "z1": 434.7
++        "z0": 427.3,
++        "z1": 429.7
+       },
+       "approachBounds": [
+         84.4,
+         88.4,
+-        432.3,
+-        434.7
++        427.3,
++        429.7
+       ],
+       "zoneRef": "west-six",
+       "id": "chuxiu-gameplay-privacy-screen"
+@@ -904,8 +904,8 @@
+       "roomBounds": [
+         103.11,
+         108.17,
+-        429.3,
+-        441.2
++        424.3,
++        436.2
+       ],
+       "floorY": 0.6,
+       "status": "GAMEPLAY_SHARED_REST_ON_EXISTING_MODEL_FIT"
+diff --git a/data/characters/night-routes.json b/data/characters/night-routes.json
+index be3bc1b0..53c479ad 100644
+--- a/data/characters/night-routes.json
++++ b/data/characters/night-routes.json
+@@ -7,172 +7,172 @@
+         [
+           100.22,
+           1.05,
+-          438.15999999999997
++          433.15999999999997
+         ],
+         [
+           99.57,
+           0.6,
+-          437.5099999999999
++          432.5099999999999
+         ],
+         [
+           98.91999999999999,
+           0.6,
+-          436.8599999999998
++          431.8599999999998
+         ],
+         [
+           98.26999999999998,
+           0.6,
+-          436.2099999999997
++          431.2099999999997
+         ],
+         [
+           98.26999999999998,
+           0.6,
+-          435.5599999999997
++          430.5599999999997
+         ],
+         [
+           98.26999999999998,
+           0.6,
+-          434.90999999999974
++          429.90999999999974
+         ],
+         [
+           98.26999999999998,
+           0.6,
+-          434.25999999999976
++          429.25999999999976
+         ],
+         [
+           97.62,
+           0.6,
+-          434.25999999999976
++          429.25999999999976
+         ],
+         [
+           96.97000000000003,
+           0.6,
+-          434.25999999999976
++          429.25999999999976
+         ],
+         [
+           96.32000000000005,
+           0.6,
+-          434.25999999999976
++          429.25999999999976
+         ],
+         [
+           95.67000000000007,
+           0.6,
+-          434.25999999999976
++          429.25999999999976
+         ],
+         [
+           95.0200000000001,
+           0.6,
+-          434.25999999999976
++          429.25999999999976
+         ],
+         [
+           94.37000000000012,
+           0.6,
+-          434.25999999999976
++          429.25999999999976
+         ],
+         [
+           93.72000000000014,
+           0.6,
+-          434.25999999999976
++          429.25999999999976
+         ],
+         [
+           93.07000000000016,
+           0.6,
+-          434.25999999999976
++          429.25999999999976
+         ],
+         [
+           92.42000000000019,
+           0.6,
+-          434.25999999999976
++          429.25999999999976
+         ],
+         [
+           91.77000000000021,
+           0.6,
+-          434.25999999999976
++          429.25999999999976
+         ],
+         [
+           91.12000000000023,
+           0.6,
+-          434.25999999999976
++          429.25999999999976
+         ],
+         [
+           90.47000000000025,
+           0.6,
+-          434.25999999999976
++          429.25999999999976
+         ],
+         [
+           89.82000000000028,
+           0.6,
+-          434.25999999999976
++          429.25999999999976
+         ],
+         [
+           89.1700000000003,
+           0.6,
+-          434.25999999999976
++          429.25999999999976
+         ],
+         [
+           88.52000000000032,
+           0.6,
+-          434.25999999999976
++          429.25999999999976
+         ],
+         [
+           87.87000000000035,
+           0.6,
+-          434.25999999999976
++          429.25999999999976
+         ],
+         [
+           87.22000000000037,
+           0.6,
+-          434.25999999999976
++          429.25999999999976
+         ],
+         [
+           86.57000000000039,
+           0.6,
+-          434.25999999999976
++          429.25999999999976
+         ],
+         [
+           85.92000000000041,
+           0.6,
+-          434.25999999999976
++          429.25999999999976
+         ],
+         [
+           85.92000000000041,
+           0.6,
+-          434.90999999999974
++          429.90999999999974
+         ],
+         [
+           85.27000000000041,
+           0.6,
+-          435.55999999999983
++          430.55999999999983
+         ],
+         [
+           85.27000000000041,
+           0.6,
+-          436.2099999999998
++          431.2099999999998
+         ],
+         [
+           85.27000000000041,
+           0.6,
+-          436.8599999999998
++          431.8599999999998
+         ],
+         [
+           84.6200000000004,
+           1.2,
+-          437.5099999999999
++          432.5099999999999
+         ],
+         [
+           84.6200000000004,
+           1.2,
+-          438.15999999999985
++          433.15999999999985
+         ],
+         [
+           83.9700000000004,
+           1.2,
+-          438.80999999999995
++          433.80999999999995
+         ],
+         [
+           83.8,
+           1.2,
+-          439.3
++          434.3
+         ]
+       ]
+     },
+@@ -182,112 +182,112 @@
+         [
+           100.22,
+           0.6,
+-          435.5
++          430.5
+         ],
+         [
+           99.57000000000002,
+           0.6,
+-          435.5
++          430.5
+         ],
+         [
+           98.92000000000002,
+           0.6,
+-          434.8499999999999
++          429.8499999999999
+         ],
+         [
+           98.27000000000001,
+           0.6,
+-          434.1999999999998
++          429.1999999999998
+         ],
+         [
+           97.62000000000003,
+           0.6,
+-          434.1999999999998
++          429.1999999999998
+         ],
+         [
+           96.97000000000006,
+           0.6,
+-          434.1999999999998
++          429.1999999999998
+         ],
+         [
+           96.32000000000008,
+           0.6,
+-          434.1999999999998
++          429.1999999999998
+         ],
+         [
+           95.6700000000001,
+           0.6,
+-          434.1999999999998
++          429.1999999999998
+         ],
+         [
+           95.02000000000012,
+           0.6,
+-          434.1999999999998
++          429.1999999999998
+         ],
+         [
+           94.37000000000015,
+           0.6,
+-          434.1999999999998
++          429.1999999999998
+         ],
+         [
+           93.72000000000017,
+           0.6,
+-          434.1999999999998
++          429.1999999999998
+         ],
+         [
+           93.07000000000019,
+           0.6,
+-          434.1999999999998
++          429.1999999999998
+         ],
+         [
+           92.42000000000021,
+           0.6,
+-          434.1999999999998
++          429.1999999999998
+         ],
+         [
+           91.77000000000024,
+           0.6,
+-          434.1999999999998
++          429.1999999999998
+         ],
+         [
+           91.12000000000023,
+           0.6,
+-          434.8499999999999
++          429.8499999999999
+         ],
+         [
+           90.47000000000023,
+           0.6,
+-          435.5
++          430.5
+         ],
+         [
+           89.82000000000022,
+           0.6,
+-          436.1500000000001
++          431.1500000000001
+         ],
+         [
+           89.82000000000022,
+           0.6,
+-          436.80000000000007
++          431.80000000000007
+         ],
+         [
+           89.82000000000022,
+           0.6,
+-          437.45000000000005
++          432.45000000000005
+         ],
+         [
+           89.17000000000021,
+           1.2,
+-          438.10000000000014
++          433.10000000000014
+         ],
+         [
+           89.17000000000021,
+           1.2,
+-          438.7500000000001
++          433.7500000000001
+         ],
+         [
+           88.6,
+           1.2,
+-          439.5
++          434.5
+         ]
+       ]
+     },
+@@ -297,167 +297,167 @@
+         [
+           97.8,
+           0,
+-          419
++          414
+         ],
+         [
+           97.8,
+           0,
+-          419.65
++          414.65
+         ],
+         [
+           97.8,
+           0,
+-          420.29999999999995
++          415.29999999999995
+         ],
+         [
+           97.8,
+           0,
+-          420.94999999999993
++          415.94999999999993
+         ],
+         [
+           97.8,
+           0,
+-          421.5999999999999
++          416.5999999999999
+         ],
+         [
+           97.8,
+           0,
+-          422.2499999999999
++          417.2499999999999
+         ],
+         [
+           97.8,
+           0,
+-          422.89999999999986
++          417.89999999999986
+         ],
+         [
+           97.8,
+           0,
+-          423.54999999999984
++          418.54999999999984
+         ],
+         [
+           97.14999999999999,
+           0,
+-          424.19999999999993
++          419.19999999999993
+         ],
+         [
+           97.14999999999999,
+           0,
+-          424.8499999999999
++          419.8499999999999
+         ],
+         [
+           97.14999999999999,
+           0,
+-          425.4999999999999
++          420.4999999999999
+         ],
+         [
+           96.49999999999999,
+           0.3187499999999822,
+-          426.15
++          421.15
+         ],
+         [
+           95.84999999999998,
+           0.6,
+-          426.80000000000007
++          421.80000000000007
+         ],
+         [
+           95.84999999999998,
+           0.6,
+-          427.45000000000005
++          422.45000000000005
+         ],
+         [
+           95.84999999999998,
+           0.6,
+-          428.1
++          423.1
+         ],
+         [
+           95.19999999999997,
+           0.6,
+-          428.7500000000001
++          423.7500000000001
+         ],
+         [
+           95.19999999999997,
+           0.6,
+-          429.4000000000001
++          424.4000000000001
+         ],
+         [
+           94.54999999999997,
+           0.6,
+-          430.0500000000002
++          425.0500000000002
+         ],
+         [
+           94.54999999999997,
+           0.6,
+-          430.70000000000016
++          425.70000000000016
+         ],
+         [
+           93.89999999999996,
+           0.6,
+-          431.35000000000025
++          426.35000000000025
+         ],
+         [
+           93.89999999999996,
+           0.6,
+-          432.0000000000002
++          427.0000000000002
+         ],
+         [
+           93.24999999999996,
+           0.6,
+-          432.6500000000003
++          427.6500000000003
+         ],
+         [
+           92.59999999999995,
+           0.6,
+-          433.3000000000004
++          428.3000000000004
+         ],
+         [
+           91.94999999999995,
+           0.6,
+-          433.9500000000005
++          428.9500000000005
+         ],
+         [
+           91.29999999999994,
+           0.6,
+-          434.6000000000006
++          429.6000000000006
+         ],
+         [
+           91.29999999999994,
+           0.6,
+-          435.25000000000057
++          430.25000000000057
+         ],
+         [
+           91.29999999999994,
+           0.6,
+-          435.90000000000055
++          430.90000000000055
+         ],
+         [
+           91.29999999999994,
+           0.6,
+-          436.5500000000005
++          431.5500000000005
+         ],
+         [
+           91.29999999999994,
+           0.6,
+-          437.2000000000005
++          432.2000000000005
+         ],
+         [
+           91.29999999999994,
+           0.6,
+-          437.8500000000005
++          432.8500000000005
+         ],
+         [
+           90.64999999999993,
+           1.2,
+-          438.50000000000057
++          433.50000000000057
+         ],
+         [
+           90.64999999999993,
+           1.2,
+-          439.15000000000055
++          434.15000000000055
+         ],
+         [
+           90.4,
+           1.2,
+-          439.5
++          434.5
+         ]
+       ]
+     },
+@@ -5443,442 +5443,442 @@
+         [
+           100.22,
+           1.05,
+-          438.16
++          433.16
+         ],
+         [
+           100.22,
+           1.05,
+-          437.96000000000004
++          432.96000000000004
+         ],
+         [
+           100.22,
+           1.05,
+-          437.76
++          432.76
+         ],
+         [
+           100.22,
+           0.6,
+-          437.55999999999995
++          432.55999999999995
+         ],
+         [
+           100.22,
+           0.6,
+-          437.3599999999999
++          432.3599999999999
+         ],
+         [
+           100.22,
+           0.6,
+-          437.15999999999985
++          432.15999999999985
+         ],
+         [
+           100.22,
+           0.6,
+-          436.9599999999998
++          431.9599999999998
+         ],
+         [
+           100.22,
+           0.6,
+-          436.8
++          431.8
+         ],
+         [
+           100.22,
+           0.6,
+-          436.6
++          431.6
+         ],
+         [
+           100.22,
+           0.6,
+-          436.4
++          431.4
+         ],
+         [
+           100.22,
+           0.6,
+-          436.19999999999993
++          431.19999999999993
+         ],
+         [
+           100.22,
+           0.6,
+-          435.9999999999999
++          430.9999999999999
+         ],
+         [
+           100.22,
+           0.6,
+-          435.79999999999984
++          430.79999999999984
+         ],
+         [
+           100.22,
+           0.6,
+-          435.5999999999998
++          430.5999999999998
+         ],
+         [
+           100.22,
+           0.6,
+-          435.39999999999975
++          430.39999999999975
+         ],
+         [
+           100.22,
+           0.6,
+-          435.1999999999997
++          430.1999999999997
+         ],
+         [
+           100.22,
+           0.6,
+-          434.99999999999966
++          429.99999999999966
+         ],
+         [
+           100.22,
+           0.6,
+-          434.7999999999996
++          429.7999999999996
+         ],
+         [
+           100.22,
+           0.6,
+-          434.59999999999957
++          429.59999999999957
+         ],
+         [
+           100.22,
+           0.6,
+-          434.3999999999995
++          429.3999999999995
+         ],
+         [
+           100.22,
+           0.6,
+-          434.1999999999995
++          429.1999999999995
+         ],
+         [
+           100.22,
+           0.6,
+-          433.99999999999943
++          428.99999999999943
+         ],
+         [
+           100.22,
+           0.6,
+-          433.7999999999994
++          428.7999999999994
+         ],
+         [
+           100.22,
+           0.6,
+-          433.5
++          428.5
+         ],
+         [
+           100.41999999999999,
+           0.6,
+-          433.5
++          428.5
+         ],
+         [
+           100.61999999999998,
+           0.6,
+-          433.5
++          428.5
+         ],
+         [
+           100.81999999999996,
+           0.6,
+-          433.5
++          428.5
+         ],
+         [
+           101.01999999999995,
+           0.6,
+-          433.5
++          428.5
+         ],
+         [
+           101.21999999999994,
+           0.6,
+-          433.5
++          428.5
+         ],
+         [
+           101.41999999999993,
+           0.6,
+-          433.5
++          428.5
+         ],
+         [
+           101.61999999999992,
+           0.6,
+-          433.5
++          428.5
+         ],
+         [
+           101.81999999999991,
+           0.6,
+-          433.5
++          428.5
+         ],
+         [
+           102.0199999999999,
+           0.6,
+-          433.5
++          428.5
+         ],
+         [
+           102.21999999999989,
+           0.6,
+-          433.5
++          428.5
+         ],
+         [
+           102.41999999999987,
+           0.6,
+-          433.5
++          428.5
+         ],
+         [
+           102.61999999999986,
+           0.6,
+-          433.5
++          428.5
+         ],
+         [
+           102.81999999999985,
+           0.6,
+-          433.5
++          428.5
+         ],
+         [
+           103.01999999999984,
+           0.6,
+-          433.5
++          428.5
+         ],
+         [
+           103.21999999999983,
+           0.6,
+-          433.5
++          428.5
+         ],
+         [
+           103.41999999999982,
+           0.6,
+-          433.5
++          428.5
+         ],
+         [
+           103.6199999999998,
+           0.6,
+-          433.5
++          428.5
+         ],
+         [
+           103.8199999999998,
+           0.6,
+-          433.5
++          428.5
+         ],
+         [
+           104.01999999999978,
+           0.6,
+-          433.5
++          428.5
+         ],
+         [
+           104.21999999999977,
+           0.6,
+-          433.5
++          428.5
+         ],
+         [
+           104.41999999999976,
+           0.6,
+-          433.5
++          428.5
+         ],
+         [
+           104.61999999999975,
+           0.6,
+-          433.5
++          428.5
+         ],
+         [
+           104.81999999999974,
+           0.6,
+-          433.5
++          428.5
+         ],
+         [
+           105.09,
+           0.6,
+-          433.5
++          428.5
+         ],
+         [
+           105.09,
+           0.6,
+-          433.70000000000005
++          428.70000000000005
+         ],
+         [
+           105.09,
+           0.6,
+-          433.9000000000001
++          428.9000000000001
+         ],
+         [
+           105.09,
+           0.6,
+-          434.10000000000014
++          429.10000000000014
+         ],
+         [
+           105.09,
+           0.6,
+-          434.3000000000002
++          429.3000000000002
+         ],
+         [
+           105.09,
+           0.6,
+-          434.5000000000002
++          429.5000000000002
+         ],
+         [
+           105.09,
+           0.6,
+-          434.7000000000003
++          429.7000000000003
+         ],
+         [
+           105.09,
+           0.6,
+-          434.9000000000003
++          429.9000000000003
+         ],
+         [
+           105.09,
+           0.6,
+-          435.10000000000036
++          430.10000000000036
+         ],
+         [
+           105.09,
+           0.6,
+-          435.3000000000004
++          430.3000000000004
+         ],
+         [
+           105.09,
+           0.6,
+-          435.50000000000045
++          430.50000000000045
+         ],
+         [
+           105.09,
+           0.6,
+-          435.7000000000005
++          430.7000000000005
+         ],
+         [
+           105.09,
+           0.6,
+-          435.90000000000055
++          430.90000000000055
+         ],
+         [
+           105.09,
+           0.6,
+-          436.1000000000006
++          431.1000000000006
+         ],
+         [
+           105.09,
+           0.6,
+-          436.30000000000064
++          431.30000000000064
+         ],
+         [
+           105.09,
+           0.6,
+-          436.5000000000007
++          431.5000000000007
+         ],
+         [
+           105.09,
+           0.6,
+-          436.7000000000007
++          431.7000000000007
+         ],
+         [
+           105.09,
+           0.6,
+-          436.9000000000008
++          431.9000000000008
+         ],
+         [
+           105.09,
+           0.6,
+-          437.1000000000008
++          432.1000000000008
+         ],
+         [
+           105.09,
+           0.6,
+-          437.3
++          432.3
+         ],
+         [
+           105.09,
+           0.6,
+-          437.40000000000003
++          432.40000000000003
+         ],
+         [
+           105.09,
+           0.6,
+-          437.5
++          432.5
+         ],
+         [
+           105.09,
+           0.6,
+-          437.6
++          432.6
+         ],
+         [
+           105.09,
+           1.05,
+-          437.7
++          432.7
+         ],
+         [
+           105.09,
+           1.05,
+-          437.8
++          432.8
+         ],
+         [
+           105.09,
+           1.05,
+-          437.9
++          432.9
+         ],
+         [
+           105.09,
+           1.05,
+-          438
++          433
+         ],
+         [
+           105.09,
+           1.05,
+-          438.1
++          433.1
+         ],
+         [
+           105.09,
+           1.05,
+-          438.2
++          433.2
+         ],
+         [
+           105.09,
+           1.05,
+-          438.3
++          433.3
+         ],
+         [
+           105.09,
+           1.05,
+-          438.4
++          433.4
+         ],
+         [
+           105.09,
+           1.05,
+-          438.5
++          433.5
+         ],
+         [
+           105.09,
+           1.05,
+-          438.59999999999997
++          433.59999999999997
+         ],
+         [
+           105.09,
+           1.05,
+-          438.7
++          433.7
+         ],
+         [
+           105.09,
+           1.05,
+-          438.8
++          433.8
+         ],
+         [
+           105.09,
+           1.05,
+-          438.9
++          433.9
+         ],
+         [
+           105.09,
+           1.05,
+-          439
++          434
+         ],
+         [
+           105.09,
+           1.05,
+-          439.09999999999997
++          434.09999999999997
+         ],
+         [
+           105.09,
+           1.05,
+-          439.2
++          434.2
+         ],
+         [
+           105.09,
+           1.05,
+-          439.29999999999995
++          434.29999999999995
+         ],
+         [
+           105.09,
+           1.05,
+-          439.4
++          434.4
+         ]
+       ]
+     }
+diff --git a/data/zones/west-six.json b/data/zones/west-six.json
+index 971b1891..69756122 100644
+--- a/data/zones/west-six.json
++++ b/data/zones/west-six.json
+@@ -1,7 +1,8 @@
+ {
+   "id": "west-six",
+   "yangxinEntranceProfile": "yangxin-glazed-entrance-photo-fit-r73",
+-  "courtyardProfile": "chuxiu-return-corridor-fit-v1",
++  "courtyardProfile": "chuxiu-return-corridor-fit-r123",
++  "rearCourtProfile": "chuxiu-rear-court-r123",
+   "yikunAccessProfile": "yikun-side-access-fit-v1",
+   "name": "西六宫与养心殿",
+   "bounds": {"x0": 69.15, "x1": 177.65, "z0": 233.5, "z1": 512.1},
+@@ -30,10 +31,10 @@
+     {"kind": "courtWalls", "x0": 73.8, "x1": 115.8, "z0": 414.8, "z1": 456, "gates": [{"side": "s", "at": 94.8, "w": 42.0}]},
+     {"kind": "wall", "from": [73, 409.5], "to": [73.8, 414.8], "source": "estimated", "repairRole": "connected-court-perimeter"},
+     {"kind": "wall", "from": [115, 409.5], "to": [115.8, 414.8], "source": "estimated", "repairRole": "connected-court-perimeter"},
+-    {"kind": "hall", "name": "储秀宫", "structure": "chuxiu-household", "chuxiuProfile": "chuxiu-official-topology-fit-v1", "x": 94.8, "z": 434.3, "w": 27.1, "d": 13.8, "pad": 0.8, "ph": 0.6, "colH": 6.72, "bays": 5, "baysSource": "https://www.dpm.org.cn/explore/building/236486.html", "baySpacingStatus": "equal-subdivision-provisional", "roof": "xieshan", "enter": true, "throne": false, "interior": "empty"},
++    {"kind": "hall", "name": "储秀宫", "structure": "chuxiu-household", "chuxiuProfile": "chuxiu-official-topology-fit-r123", "x": 94.8, "z": 429.3, "w": 27.1, "d": 13.8, "pad": 0.8, "ph": 0.6, "colH": 6.72, "bays": 5, "baysSource": "https://www.dpm.org.cn/explore/building/236486.html", "baySpacingStatus": "equal-subdivision-provisional", "roof": "xieshan", "enter": true, "throne": false, "interior": "empty"},
+     {"kind": "hall", "name": "储秀宫后殿", "x": 94.5, "z": 450.2, "w": 26.2, "d": 12.9, "pad": 0.6, "ph": 0.45, "colH": 6.08, "roof": "gable", "bays": 5, "rearHallProfile": "lijingxuan", "map": "hall"},
+-    {"kind": "hall", "x": 78.32, "z": 422.0, "positionFit": {"profile":"chuxiu-side-access-fit-v1","previousZ":423.1,"deltaZ":-1.1,"status":"estimated-coordinate-correction"}, "rot": "west", "w": 11.2, "d": 7.04, "pad": 0.5, "ph": 0.45, "colH": 5.44, "roof": "gable", "brackets": false, "map": "hall", "source": "estimated"},
+-    {"kind": "hall", "x": 111.28, "z": 422.0, "positionFit": {"profile":"chuxiu-side-access-fit-v1","previousZ":423.1,"deltaZ":-1.1,"status":"estimated-coordinate-correction"}, "rot": "east", "w": 11.2, "d": 7.04, "pad": 0.5, "ph": 0.45, "colH": 5.44, "roof": "gable", "brackets": false, "map": "hall", "source": "estimated"},
++    {"kind": "hall", "x": 78.32, "z": 417, "positionFit": {"profile": "chuxiu-side-access-fit-r123", "previousZ": 423.1, "deltaZ": -6.1, "status": "estimated-coordinate-correction"}, "rot": "west", "w": 11.2, "d": 7.04, "pad": 0.5, "ph": 0.45, "colH": 5.44, "roof": "gable", "brackets": false, "map": "hall", "source": "estimated"},
++    {"kind": "hall", "x": 111.28, "z": 417, "positionFit": {"profile": "chuxiu-side-access-fit-r123", "previousZ": 423.1, "deltaZ": -6.1, "status": "estimated-coordinate-correction"}, "rot": "east", "w": 11.2, "d": 7.04, "pad": 0.5, "ph": 0.45, "colH": 5.44, "roof": "gable", "brackets": false, "map": "hall", "source": "estimated"},
+     {"kind": "region", "name": "储秀宫", "x0": 73.8, "x1": 115.8, "z0": 414.8, "z1": 456, "source": "estimated"},
+     {"kind": "gate", "name": "太极门", "x": 139.5, "z": 304.5},
+     {"kind": "courtWalls", "x0": 129.2, "x1": 171.2, "z0": 304.5, "z1": 354, "gates": [{"side": "s", "at": 139.5, "gate": "太极门"}, {"side": "n", "at": 150.2, "w": 42.0}]},
+@@ -62,6 +63,8 @@
+     {"kind": "gate", "name": "重华门", "x": 120.2, "z": 460},
+     {"kind": "courtWalls", "x0": 92.62, "x1": 145.18, "z0": 460, "z1": 505.6, "gates": [{"side": "s", "at": 120.2, "gate": "重华门"}], "source": "estimated"},
+     {"kind": "hall", "name": "重华宫", "x": 118.9, "z": 498.3, "w": 21.5, "d": 8.6, "pad": 1, "ph": 0.75, "colH": 5.49, "roof": "xieshan", "enter": true, "throne": true},
+-    {"kind": "region", "name": "重华宫", "x0": 92.62, "x1": 145.18, "z0": 460, "z1": 505.6, "source": "estimated"}
++    {"kind": "region", "name": "重华宫", "x0": 92.62, "x1": 145.18, "z0": 460, "z1": 505.6, "source": "estimated"},
++    {"kind": "hall", "name": "凤光室", "structure": "chuxiu-rear-wing", "rearCourtProfile": "chuxiu-rear-court-r123", "rearWing": "east", "x": 77, "z": 444.5, "w": 9.4, "d": 4.4, "pad": 0.35, "ph": 0.45, "colH": 3.6, "roof": "gable", "bays": 3, "rot": "west", "enter": true, "interior": "empty", "plaque": false, "source": "official-topology-reversible-model-fit"},
++    {"kind": "hall", "name": "猗兰室", "structure": "chuxiu-rear-wing", "rearCourtProfile": "chuxiu-rear-court-r123", "rearWing": "west", "x": 112.6, "z": 444.5, "w": 9.4, "d": 4.4, "pad": 0.35, "ph": 0.45, "colH": 3.6, "roof": "gable", "bays": 3, "rot": "east", "enter": true, "interior": "empty", "plaque": false, "source": "official-topology-reversible-model-fit"}
+   ]
+ }
+diff --git a/src/controls/ChuxiuSideAccess.js b/src/controls/ChuxiuSideAccess.js
+index 0e69378c..f0f5c08e 100644
+--- a/src/controls/ChuxiuSideAccess.js
++++ b/src/controls/ChuxiuSideAccess.js
+@@ -1,10 +1,11 @@
++import {CHUXIU_MAIN_Z,chuxiuShiftedZ} from '../scene/palace/special/ChuxiuRearCourtFrame.js';
+ /** Two original ordinary side-wall owners, only the front platform turn.
+  * No added collider/floor and no changed mathematical resolver. */
+ export const CHUXIU_SIDE_IDS=Object.freeze(['chuxiu-east-side-turn','chuxiu-west-side-turn']);
+ export function registerChuxiuSideAccess(kit,zone){
+  if(zone.id!=='west-six'||!zone.items?.[25]?.positionFit)return;
+- const main=zone.items[23];if(main.name!=='储秀宫'||main.x!==94.8||main.z!==434.3||main.w!==27.1||main.d!==13.8||main.ph!==.6)throw Error('Chuxiu side interface main source mismatch');
++ const main=zone.items[23];if(main.name!=='储秀宫'||main.x!==94.8||main.z!==CHUXIU_MAIN_Z||main.w!==27.1||main.d!==13.8||main.ph!==.6)throw Error('Chuxiu side interface main source mismatch');
+  const targets=[{id:CHUXIU_SIDE_IDS[0],x0:80.89999999999999,x1:81.6,lo:79.3,hi:82},{id:CHUXIU_SIDE_IDS[1],x0:108,x1:108.7,lo:107.6,hi:110.3}];
+- const rows=targets.map(t=>{const matches=kit.colliders.filter(b=>b.isBox3&&b.min.x===t.x0&&b.max.x===t.x1&&b.min.z===429.3&&b.max.z===441.2&&b.min.y===.6000000000000001&&b.max.y===6.5136);if(matches.length!==1||matches[0].furnitureMotionScope)throw Error('Chuxiu side interface exact owner mismatch');return{...t,b:matches[0]}});
+- for(const t of rows)t.b.furnitureMotionScope={kind:'chuxiu-side-access',id:t.id,groundY:0,minOffsetX:t.lo-t.b.min.x,maxOffsetX:t.hi-t.b.min.x,minOffsetZ:427.8-t.b.min.z,maxOffsetZ:430.2-t.b.min.z};
++ const rows=targets.map(t=>{const matches=kit.colliders.filter(b=>b.isBox3&&b.min.x===t.x0&&b.max.x===t.x1&&b.min.z===chuxiuShiftedZ(429.3)&&b.max.z===chuxiuShiftedZ(441.2)&&b.min.y===.6000000000000001&&b.max.y===6.5136);if(matches.length!==1||matches[0].furnitureMotionScope)throw Error('Chuxiu side interface exact owner mismatch');return{...t,b:matches[0]}});
++ for(const t of rows)t.b.furnitureMotionScope={kind:'chuxiu-side-access',id:t.id,groundY:0,minOffsetX:t.lo-t.b.min.x,maxOffsetX:t.hi-t.b.min.x,minOffsetZ:chuxiuShiftedZ(427.8)-t.b.min.z,maxOffsetZ:chuxiuShiftedZ(430.2)-t.b.min.z};
+ }
+diff --git a/src/scene/characters/SharedRestSlots.js b/src/scene/characters/SharedRestSlots.js
+index f6649259..d5861ebc 100644
+--- a/src/scene/characters/SharedRestSlots.js
++++ b/src/scene/characters/SharedRestSlots.js
+@@ -1,7 +1,8 @@
++import {CHUXIU_MAIN_Z,chuxiuShiftedZ} from '../palace/special/ChuxiuRearCourtFrame.js';
+ import * as THREE from 'three';
+ export const SHARED_REST_IDS=Object.freeze(['taihe-emperor-01','chuxiu-consort-01']);
+ const sourceIds=new WeakMap();let nextSourceId=0;const sourceId=object=>{if(!object)return 0;if(!sourceIds.has(object))sourceIds.set(object,++nextSourceId);return sourceIds.get(object);};
+-const bounds=Object.freeze({minX:103.73999786376953,maxX:107.54000091552734,minZ:438.04998779296875,maxZ:440.75,top:1.0499999523162842});
++const bounds=Object.freeze({minX:103.73999786376953,maxX:107.54000091552734,minZ:chuxiuShiftedZ(438.04998779296875),maxZ:chuxiuShiftedZ(440.75),top:1.0499999523162842});
+ const identityMatrix=m=>m.elements.every((v,i)=>v===(i%5===0?1:0));
+ /** Binds the existing finished Float32 top triangles, not a source mesh/name or
+  * a room bounding box. All dimensions remain game/model fits, not a survey. */
+@@ -9,7 +10,7 @@ export function resolveChuxiuSharedRest(group,{actorIds=SHARED_REST_IDS,allowDet
+  const fail=reason=>({status:'error',reason});if(!group)return{status:'pending',reason:'West-six source has not been constructed'};
+  if(actorIds.length!==2||new Set(actorIds).size!==2||actorIds.some(id=>!SHARED_REST_IDS.includes(id)))return fail('Exactly the two authorized adults are required');
+  const frames=group.userData?.architecture?.filter(a=>a.id==='west-six/chuxiu-household')??[];
+- if(frames.length!==1||frames[0].x!==94.8||frames[0].z!==434.3||frames[0].w!==27.1||frames[0].d!==13.8||frames[0].floorY!==.6||frames[0].warmAlcove?.x!==2*(27.1/5)||frames[0].warmAlcove?.z!==6.9-2.7/2-.45)return fail('Northwest canopy frame changed');
++ if(frames.length!==1||frames[0].x!==94.8||frames[0].z!==CHUXIU_MAIN_Z||frames[0].w!==27.1||frames[0].d!==13.8||frames[0].floorY!==.6||frames[0].warmAlcove?.x!==2*(27.1/5)||frames[0].warmAlcove?.z!==6.9-2.7/2-.45)return fail('Northwest canopy frame changed');
+  group.updateMatrixWorld(true);if((!allowDetached&&!group.parent?.isScene)||!group.visible||!identityMatrix(group.matrixWorld))return fail('World-aligned live source required');
+  const meshes=group.children.filter(m=>m.isMesh&&m.material?.name==='chuxiu_zitan_fit');if(meshes.length!==1)return fail('Unique actual platform batch missing');
+  const mesh=meshes[0],g=mesh.geometry,p=g?.attributes.position,idx=g?.index;
+@@ -23,8 +24,8 @@ export function resolveChuxiuSharedRest(group,{actorIds=SHARED_REST_IDS,allowDet
+  const signatures=top.map(t=>t.map(v=>v.join(',')).sort().join('|'));if(new Set(signatures).size!==2)return fail('Duplicate top triangle');
+  const edgeCounts=new Map();for(const t of top)for(let i=0;i<3;i++){const k=[t[i].join(','),t[(i+1)%3].join(',')].sort().join('|');edgeCounts.set(k,(edgeCounts.get(k)??0)+1);}const shared=[...edgeCounts].filter(([,n])=>n===2);if(shared.length!==1)return fail('Top triangles must share exactly their diagonal');const ends=shared[0][0].split('|').map(v=>v.split(',').map(Number));if(ends[0][0]===ends[1][0]||ends[0][2]===ends[1][2])return fail('Top shared edge is not a diagonal');
+  const area=top.reduce((s,t)=>s+Math.abs((t[1][0]-t[0][0])*(t[2][2]-t[0][2])-(t[2][0]-t[0][0])*(t[1][2]-t[0][2]))/2,0);if(area!==(bounds.maxX-bounds.minX)*(bounds.maxZ-bounds.minZ))return fail('Incomplete top coverage');
+- const slots=[['taihe-emperor-01',106.19],['chuxiu-consort-01',105.09]].map(([actorId,x])=>({id:actorId+'-northwest-rest',actorId,position:[x,bounds.top,439.4],rotationYRad:Math.PI,approach:[x,Math.fround(.62),437.3],exit:[x,Math.fround(.62),437.3]}));
+- const clearance=slots.flatMap(s=>[new THREE.Box3(new THREE.Vector3(s.position[0]-.42,bounds.top,438.32),new THREE.Vector3(s.position[0]+.42,bounds.top+1.73,440.48)),new THREE.Box3(new THREE.Vector3(s.position[0]-.36,Math.fround(.62),436.94),new THREE.Vector3(s.position[0]+.36,2.33,437.66))]);
++ const slots=[['taihe-emperor-01',106.19],['chuxiu-consort-01',105.09]].map(([actorId,x])=>({id:actorId+'-northwest-rest',actorId,position:[x,bounds.top,chuxiuShiftedZ(439.4)],rotationYRad:Math.PI,approach:[x,Math.fround(.62),chuxiuShiftedZ(437.3)],exit:[x,Math.fround(.62),chuxiuShiftedZ(437.3)]}));
++ const clearance=slots.flatMap(s=>[new THREE.Box3(new THREE.Vector3(s.position[0]-.42,bounds.top,chuxiuShiftedZ(438.32)),new THREE.Vector3(s.position[0]+.42,bounds.top+1.73,chuxiuShiftedZ(440.48))),new THREE.Box3(new THREE.Vector3(s.position[0]-.36,Math.fround(.62),chuxiuShiftedZ(436.94)),new THREE.Vector3(s.position[0]+.36,2.33,chuxiuShiftedZ(437.66)))]);
+  let obstruction=false;group.traverse(o=>{if(obstruction||!o.isMesh||!o.visible||o.material?.visible===false||o.material?.opacity===0)return;const gp=o.geometry?.attributes.position,gi=o.geometry?.index;if(!gp)return;const mb=new THREE.Box3().setFromObject(o);if(!clearance.some(b=>b.intersectsBox(mb)))return;for(let i=0;i<(gi?.count??gp.count);i+=3){const t=[0,1,2].map(k=>new THREE.Vector3().fromBufferAttribute(gp,gi?gi.getX(i+k):i+k).applyMatrix4(o.matrixWorld));if(clearance.some(b=>triangleInside(t,b))){obstruction={name:o.name,triangle:i/3,vertices:t.map(v=>v.toArray())};break;}}});
+  if(obstruction)return fail('Actual geometry obstructs a shared slot or south entrance: '+JSON.stringify(obstruction));
+  return{status:'ready',bedId:'chuxiu-northwest-canopy',sourceIdentity:`${group.uuid}:${mesh.uuid}:${mesh.material.uuid}:${g.uuid}:${sourceId(p)}:${sourceId(p.array)}:${p.version}:${sourceId(idx)}:${sourceId(idx?.array)}:${idx?.version??-1}`,contactY:bounds.top,bounds,slots,source:{mesh,geometry:g,position:p,index:idx},statusNote:'GAMEPLAY_SHARED_REST_ON_EXISTING_FITTED_CANOPY_NOT_HISTORICAL_SLEEPING_INVENTORY'};
+diff --git a/src/scene/palace/special/ChuxiuCourtyard.js b/src/scene/palace/special/ChuxiuCourtyard.js
+index 523c0e00..f5590163 100644
+--- a/src/scene/palace/special/ChuxiuCourtyard.js
++++ b/src/scene/palace/special/ChuxiuCourtyard.js
+@@ -1,12 +1,13 @@
++import {CHUXIU_MAIN_Z,CHUXIU_FRONT_WING_Z,CHUXIU_COURTYARD_PROFILE,CHUXIU_WING_POSITION_PROFILE,chuxiuShiftedZ} from './ChuxiuRearCourtFrame.js';
+ import * as THREE from 'three';
+ 
+ /** Official relationship, reversible dimensions. No measurements are asserted. */
+ export const CHUXIU_COURTYARD_FIT=Object.freeze({
+- id:'west-six/chuxiu-courtyard', profile:'chuxiu-return-corridor-fit-v1',
+- eastX:83.2,westX:106.4,southZ:409.55,northZ:428.35,
++ id:'west-six/chuxiu-courtyard', profile:CHUXIU_COURTYARD_PROFILE,
++ eastX:83.2,westX:106.4,southZ:409.55,northZ:chuxiuShiftedZ(428.35),
+  outerEast:81.8,innerEast:84.6,innerWest:105,outerWest:107.8,
+- outerSouth:407.95,innerSouth:410.9,roofEndZ:427.6,
+- floorY:.45,mainFloorY:.6,rampStartZ:425.6,rampEndZ:426.6,
++ outerSouth:407.95,innerSouth:410.9,roofEndZ:chuxiuShiftedZ(427.6),
++ floorY:.45,mainFloorY:.6,rampStartZ:chuxiuShiftedZ(425.6),rampEndZ:chuxiuShiftedZ(426.6),
+  approachRun:.9,approachWidth:2.6,roofOuterY:5.35,roofInnerY:4.55,roofThickness:.12,columnRadius:.13,
+ });
+ const SOURCES=Object.freeze(['https://www.dpm.org.cn/explore/building/236486.html','https://www.dpm.org.cn/explore/building/236529.html']);
+@@ -17,18 +18,18 @@ const near=(a,b)=>Number.isFinite(a)&&Math.abs(a-b)<1e-7;
+ export function chuxiuWingOriginalDeclaration(item,index){
+  if(item.positionFit===undefined)return item;
+  const fit=item.positionFit;
+- if(![25,26].includes(index)||item.kind!=='hall'||item.x!==(index===25?78.32:111.28)||item.rot!==(index===25?'west':'east')||item.z!==422||
+-   JSON.stringify(Object.keys(fit).sort())!==JSON.stringify(['deltaZ','previousZ','profile','status'])||fit.profile!=='chuxiu-side-access-fit-v1'||fit.previousZ!==423.1||fit.deltaZ!==-1.1||fit.status!=='estimated-coordinate-correction')throw Error('Chuxiu side access fitted declaration mismatch');
++ if(![25,26].includes(index)||item.kind!=='hall'||item.x!==(index===25?78.32:111.28)||item.rot!==(index===25?'west':'east')||item.z!==CHUXIU_FRONT_WING_Z||
++   JSON.stringify(Object.keys(fit).sort())!==JSON.stringify(['deltaZ','previousZ','profile','status'])||fit.profile!==CHUXIU_WING_POSITION_PROFILE||fit.previousZ!==423.1||fit.deltaZ!==-6.1||fit.status!=='estimated-coordinate-correction')throw Error('Chuxiu side access fitted declaration mismatch');
+  const {positionFit,...original}=item;return {...original,z:423.1};
+ }
+ export function chuxiuCourtyardGeometry(zone){
+  const p=CHUXIU_COURTYARD_FIT;
+- const wingZ=zone.items?.[25]?.positionFit?422:423.1;
++ const wingZ=zone.items?.[25]?.positionFit?CHUXIU_FRONT_WING_Z:423.1;
+  for(const i of[25,26]){const a=zone.items?.[i];if(a?.positionFit)chuxiuWingOriginalDeclaration(a,i);if(a?.z!==wingZ)throw Error('Chuxiu wing pair fit mismatch');}
+  if(zone.id!=='west-six')throw Error('Chuxiu courtyard belongs only to west-six');
+  if(zone.courtyardProfile!==p.profile)throw Error('Chuxiu courtyard requires the explicit fitted profile');
+  for(const expected of[
+-  {name:'储秀宫',x:94.8,z:434.3,w:27.1,d:13.8,ph:.6},
++  {name:'储秀宫',x:94.8,z:CHUXIU_MAIN_Z,w:27.1,d:13.8,ph:.6},
+   {name:'翊坤宫后殿',x:94,z:401.5,w:26.2,d:12.9,ph:.45},
+   {x:78.32,z:wingZ,w:11.2,d:7.04,ph:.45,rot:'west'},
+   {x:111.28,z:wingZ,w:11.2,d:7.04,ph:.45,rot:'east'},
+@@ -40,7 +41,7 @@ export function chuxiuCourtyardGeometry(zone){
+   identities:{main:'储秀宫',south:'体和殿（翊坤宫后殿）',east:'储秀宫东配殿',west:'储秀宫西配殿'},
+   routes:{
+    loop:[[p.eastX,p.northZ],[p.eastX,p.southZ],[p.westX,p.southZ],[p.westX,p.northZ],[p.eastX,p.northZ]],
+-   entries:[[[94,399],[94,p.southZ],[94,418],[94.8,425],[94.8,433.5]],[[78.9,wingZ],[p.eastX,wingZ],[89,wingZ]],[[110.7,wingZ],[p.westX,wingZ],[100,wingZ]],[[79.7,412],[79.7,409],[79.7,395]],[[108.9,412],[108.9,409],[108.9,395]]],
++   entries:[[[94,399],[94,p.southZ],[94,chuxiuShiftedZ(418)],[94.8,chuxiuShiftedZ(425)],[94.8,chuxiuShiftedZ(433.5)]],[[78.9,wingZ],[p.eastX,wingZ],[89,wingZ]],[[110.7,wingZ],[p.westX,wingZ],[100,wingZ]],[[79.7,412],[79.7,409],[79.7,395]],[[108.9,412],[108.9,409],[108.9,395]]],
+   },
+   limitations:['The connection topology is documented; widths, heights, mitered shed roofs, pillar positions and floor transitions are reversible model fits.','The two accessory halls retain their existing geometry and generic interior; the historic identities Yanghe/Suifu are not assigned to individual model sides without separate verification.','No measured survey, detailed tile inscription reconstruction, or browser visual acceptance is claimed.'],
+  };
+@@ -56,9 +57,9 @@ export function buildChuxiuCourtyard(kit,zone){
+  // Visual slabs stop at old slab edges; walkable support spans seams. Existing
+  // side-platform/porch geometry is retained and is not covered by coplanar slabs.
+  for(const [x0,x1,side]of[[p.outerEast,p.innerEast,'east'],[p.innerWest,p.outerWest,'west']]){
+-  floor(x0,x1,408.61,416.94);
++  floor(x0,x1,408.61,chuxiuShiftedZ(416.94));
+   // A 1 mm landing overlap closes Float32 edge cracks without a perceptible height change.
+-  floor(side==='east'?82.4:x0,side==='east'?x1:107.2,416.94,p.rampStartZ+.001);
++  floor(side==='east'?82.4:x0,side==='east'?x1:107.2,chuxiuShiftedZ(416.94),p.rampStartZ+.001);
+   kit.walkBox(f,x0,p.outerSouth,x1,p.rampStartZ,p.floorY);
+   const ax=side==='east'?82.4:x0,bx=side==='east'?x1:107.2;
+   const geo=new THREE.BufferGeometry();
+@@ -110,7 +111,7 @@ export function buildChuxiuCourtyard(kit,zone){
+  for(const x of[p.outerEast,p.outerWest])box('chuxiu-corridor-outer-fascia','wood_column',x-.07,x+.07,p.outerSouth,p.roofEndZ,5.15,5.35);
+  box('chuxiu-corridor-outer-fascia','wood_column',p.outerEast,p.outerWest,p.outerSouth-.07,p.outerSouth+.07,5.15,5.35);
+  const posts=[];
+- for(const x of[p.innerEast,p.innerWest])for(const z of[411.5,415,418.5,421,425])posts.push([x,z]);
++ for(const x of[p.innerEast,p.innerWest])for(const z of[411.5,415,418.5,421,425])posts.push([x,411.5+(z-411.5)*(420-411.5)/(425-411.5)]);
+  // The broad central Tihe axis remains completely open.
+  for(const x of[87.8,91,97,101.5])posts.push([x,p.innerSouth]);
+  for(const[x,z]of posts){
+diff --git a/src/scene/palace/special/ChuxiuHall.js b/src/scene/palace/special/ChuxiuHall.js
+index 98576bb6..736dc34b 100644
+--- a/src/scene/palace/special/ChuxiuHall.js
++++ b/src/scene/palace/special/ChuxiuHall.js
+@@ -1,3 +1,4 @@
++import {CHUXIU_MAIN_Z,CHUXIU_MAIN_PROFILE} from './ChuxiuRearCourtFrame.js';
+ import * as THREE from 'three';
+ 
+ const SOURCE='https://www.dpm.org.cn/explore/building/236486.html';
+@@ -12,7 +13,7 @@ export const CHUXIU_RESTORED_KANG=Object.freeze([
+ ]);
+ /** All lengths below are reversible modelling fits, not survey measurements. */
+ export const CHUXIU_FIT=Object.freeze({
+- id:'west-six/chuxiu-household',profile:'chuxiu-official-topology-fit-v1',
++ id:'west-six/chuxiu-household',profile:CHUXIU_MAIN_PROFILE,
+  porchDepth:1.9,passageZ:-.8,passageWidth:2.4,partitionHeight:4.5,
+  frameThickness:.14,panelThickness:.09,lowerPanelHeight:.95,glassOpacity:.28,
+  frontDoorWidth:3.2,windowSillHeight:.9,windowGlassHeight:1.55,latticeHeight:1.5,
+@@ -25,7 +26,7 @@ const near=(a,b)=>Math.abs(a-b)<1e-7;
+ function count(root){let meshes=0,triangles=0;root.traverse(o=>{if(o.isMesh){meshes++;triangles+=(o.geometry.index?.count??o.geometry.attributes.position.count)/3;}});return{meshes,triangles};}
+ export function chuxiuGeometry(item){
+  if(item.name!=='储秀宫'||item.structure!=='chuxiu-household'||item.chuxiuProfile!==CHUXIU_FIT.profile)throw Error('Chuxiu single-building profile required');
+- for(const[k,v]of Object.entries({x:94.8,z:434.3,w:27.1,d:13.8,ph:.6,colH:6.72,bays:5}))if(!near(item[k],v))throw Error(`Chuxiu retained envelope mismatch: ${k}`);
++ for(const[k,v]of Object.entries({x:94.8,z:CHUXIU_MAIN_Z,w:27.1,d:13.8,ph:.6,colH:6.72,bays:5}))if(!near(item[k],v))throw Error(`Chuxiu retained envelope mismatch: ${k}`);
+  if(item.roof!=='xieshan'||item.enter!==true||item.backDoor||item.open||item.roomBays)throw Error('Chuxiu requires retained five-bay shell and central entry');
+  if(item.rot!==undefined&&item.rot!==0&&item.rot!=='south')throw Error('Chuxiu requires south-facing rotation');
+  const b=item.w/5,front=-item.d/2+CHUXIU_FIT.porchDepth,rear=item.d/2;
+diff --git a/src/scene/zones/ZoneBase.js b/src/scene/zones/ZoneBase.js
+index 3458620b..0f039ff8 100644
+--- a/src/scene/zones/ZoneBase.js
++++ b/src/scene/zones/ZoneBase.js
+@@ -1,3 +1,4 @@
++import {buildChuxiuRearWing} from '../palace/special/ChuxiuRearWings.js';
+ import {buildChengqianCourtyardGroup,bindChengqianTerraceDomain,chengqianWingHardGable} from '../palace/special/ChengqianCourtyardGroup.js';
+ import {applyLijingWestRoom} from '../palace/special/LijingWestRoom.js';
+ import {registerChuxiuSideAccess} from '../../controls/ChuxiuSideAccess.js';
+@@ -230,6 +231,7 @@ export class ZoneBase {
+   }
+ 
+   buildHallBaseline(item) {
++    if(item.structure==='chuxiu-rear-wing'||item.rearCourtProfile!==undefined)return buildChuxiuRearWing(this.kit,item,this.zoneJson);
+     if(item.structure==='ritual-hall'||item.ritualProfile!==undefined){const g=ritualHallGeometry(item);if(this.zoneJson.id!=='outer-west')throw Error('Ritual hall wrong zone');return buildRitualHall(this.kit,item);}
+     if(item.structure==='enclosed-pavilion'||item.enclosureProfile!==undefined){const g=enclosedPavilionGeometry(item);if(this.zoneJson.id!==g.id.split('/')[0])throw Error('Enclosed pavilion wrong zone');return buildEnclosedPavilion(this.kit,item);}
+     if(item.structure==='shoukang-front-hall'||item.shoukangProfile!==undefined){if(this.zoneJson.id!=='outer-west')throw Error('Shoukang requires outer-west zone');return buildShoukangHall(this.kit,item);}

@@ -1,7 +1,8 @@
 {
   "id": "west-six",
   "yangxinEntranceProfile": "yangxin-glazed-entrance-photo-fit-r73",
-  "courtyardProfile": "chuxiu-return-corridor-fit-v1",
+  "courtyardProfile": "chuxiu-return-corridor-fit-r123",
+  "rearCourtProfile": "chuxiu-rear-court-r123",
   "yikunAccessProfile": "yikun-side-access-fit-v1",
   "name": "西六宫与养心殿",
   "bounds": {"x0": 69.15, "x1": 177.65, "z0": 233.5, "z1": 512.1},
@@ -30,10 +31,10 @@
     {"kind": "courtWalls", "x0": 73.8, "x1": 115.8, "z0": 414.8, "z1": 456, "gates": [{"side": "s", "at": 94.8, "w": 42.0}]},
     {"kind": "wall", "from": [73, 409.5], "to": [73.8, 414.8], "source": "estimated", "repairRole": "connected-court-perimeter"},
     {"kind": "wall", "from": [115, 409.5], "to": [115.8, 414.8], "source": "estimated", "repairRole": "connected-court-perimeter"},
-    {"kind": "hall", "name": "储秀宫", "structure": "chuxiu-household", "chuxiuProfile": "chuxiu-official-topology-fit-v1", "x": 94.8, "z": 434.3, "w": 27.1, "d": 13.8, "pad": 0.8, "ph": 0.6, "colH": 6.72, "bays": 5, "baysSource": "https://www.dpm.org.cn/explore/building/236486.html", "baySpacingStatus": "equal-subdivision-provisional", "roof": "xieshan", "enter": true, "throne": false, "interior": "empty"},
+    {"kind": "hall", "name": "储秀宫", "structure": "chuxiu-household", "chuxiuProfile": "chuxiu-official-topology-fit-r123", "x": 94.8, "z": 429.3, "w": 27.1, "d": 13.8, "pad": 0.8, "ph": 0.6, "colH": 6.72, "bays": 5, "baysSource": "https://www.dpm.org.cn/explore/building/236486.html", "baySpacingStatus": "equal-subdivision-provisional", "roof": "xieshan", "enter": true, "throne": false, "interior": "empty"},
     {"kind": "hall", "name": "储秀宫后殿", "x": 94.5, "z": 450.2, "w": 26.2, "d": 12.9, "pad": 0.6, "ph": 0.45, "colH": 6.08, "roof": "gable", "bays": 5, "rearHallProfile": "lijingxuan", "map": "hall"},
-    {"kind": "hall", "x": 78.32, "z": 422.0, "positionFit": {"profile":"chuxiu-side-access-fit-v1","previousZ":423.1,"deltaZ":-1.1,"status":"estimated-coordinate-correction"}, "rot": "west", "w": 11.2, "d": 7.04, "pad": 0.5, "ph": 0.45, "colH": 5.44, "roof": "gable", "brackets": false, "map": "hall", "source": "estimated"},
-    {"kind": "hall", "x": 111.28, "z": 422.0, "positionFit": {"profile":"chuxiu-side-access-fit-v1","previousZ":423.1,"deltaZ":-1.1,"status":"estimated-coordinate-correction"}, "rot": "east", "w": 11.2, "d": 7.04, "pad": 0.5, "ph": 0.45, "colH": 5.44, "roof": "gable", "brackets": false, "map": "hall", "source": "estimated"},
+    {"kind": "hall", "x": 78.32, "z": 417, "positionFit": {"profile": "chuxiu-side-access-fit-r123", "previousZ": 423.1, "deltaZ": -6.1, "status": "estimated-coordinate-correction"}, "rot": "west", "w": 11.2, "d": 7.04, "pad": 0.5, "ph": 0.45, "colH": 5.44, "roof": "gable", "brackets": false, "map": "hall", "source": "estimated"},
+    {"kind": "hall", "x": 111.28, "z": 417, "positionFit": {"profile": "chuxiu-side-access-fit-r123", "previousZ": 423.1, "deltaZ": -6.1, "status": "estimated-coordinate-correction"}, "rot": "east", "w": 11.2, "d": 7.04, "pad": 0.5, "ph": 0.45, "colH": 5.44, "roof": "gable", "brackets": false, "map": "hall", "source": "estimated"},
     {"kind": "region", "name": "储秀宫", "x0": 73.8, "x1": 115.8, "z0": 414.8, "z1": 456, "source": "estimated"},
     {"kind": "gate", "name": "太极门", "x": 139.5, "z": 304.5},
     {"kind": "courtWalls", "x0": 129.2, "x1": 171.2, "z0": 304.5, "z1": 354, "gates": [{"side": "s", "at": 139.5, "gate": "太极门"}, {"side": "n", "at": 150.2, "w": 42.0}]},
@@ -62,6 +63,8 @@
     {"kind": "gate", "name": "重华门", "x": 120.2, "z": 460},
     {"kind": "courtWalls", "x0": 92.62, "x1": 145.18, "z0": 460, "z1": 505.6, "gates": [{"side": "s", "at": 120.2, "gate": "重华门"}], "source": "estimated"},
     {"kind": "hall", "name": "重华宫", "x": 118.9, "z": 498.3, "w": 21.5, "d": 8.6, "pad": 1, "ph": 0.75, "colH": 5.49, "roof": "xieshan", "enter": true, "throne": true},
-    {"kind": "region", "name": "重华宫", "x0": 92.62, "x1": 145.18, "z0": 460, "z1": 505.6, "source": "estimated"}
+    {"kind": "region", "name": "重华宫", "x0": 92.62, "x1": 145.18, "z0": 460, "z1": 505.6, "source": "estimated"},
+    {"kind": "hall", "name": "凤光室", "structure": "chuxiu-rear-wing", "rearCourtProfile": "chuxiu-rear-court-r123", "rearWing": "east", "x": 77, "z": 440.85, "w": 8.2, "d": 4.4, "pad": 0.35, "ph": 0.45, "colH": 3.3, "roof": "gable", "bays": 3, "rot": "west", "enter": true, "interior": "empty", "plaque": false, "source": "official-topology-reversible-model-fit"},
+    {"kind": "hall", "name": "猗兰室", "structure": "chuxiu-rear-wing", "rearCourtProfile": "chuxiu-rear-court-r123", "rearWing": "west", "x": 112.6, "z": 440.85, "w": 8.2, "d": 4.4, "pad": 0.35, "ph": 0.45, "colH": 3.3, "roof": "gable", "bays": 3, "rot": "east", "enter": true, "interior": "empty", "plaque": false, "source": "official-topology-reversible-model-fit"}
   ]
 }

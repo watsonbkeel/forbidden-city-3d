@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-export const STAIR_IDS=Object.freeze(['chengqian-front-stair','jingfu-rear-stair']);
+export const STAIR_IDS=Object.freeze(['chengqian-front-stair','jingfu-rear-stair','chuxiu-corridor-east-ramp','chuxiu-corridor-west-ramp']);
 const fields=['minX','maxX','minZ','maxZ','a0','a1','y0','y1'];
 /** Original registered rectangular engineering ramp, not a closed solid or a
  * new render surface. Copy its exact source values before any owner translation. */

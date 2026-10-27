@@ -1,7 +1,8 @@
+import {CHUXIU_MAIN_Z,chuxiuShiftedZ} from '../palace/special/ChuxiuRearCourtFrame.js';
 import * as THREE from 'three';
 export const SHARED_REST_IDS=Object.freeze(['taihe-emperor-01','chuxiu-consort-01']);
 const sourceIds=new WeakMap();let nextSourceId=0;const sourceId=object=>{if(!object)return 0;if(!sourceIds.has(object))sourceIds.set(object,++nextSourceId);return sourceIds.get(object);};
-const bounds=Object.freeze({minX:103.73999786376953,maxX:107.54000091552734,minZ:438.04998779296875,maxZ:440.75,top:1.0499999523162842});
+const bounds=Object.freeze({minX:103.73999786376953,maxX:107.54000091552734,minZ:chuxiuShiftedZ(438.04998779296875),maxZ:chuxiuShiftedZ(440.75),top:1.0499999523162842});
 const identityMatrix=m=>m.elements.every((v,i)=>v===(i%5===0?1:0));
 /** Binds the existing finished Float32 top triangles, not a source mesh/name or
  * a room bounding box. All dimensions remain game/model fits, not a survey. */
@@ -9,7 +10,7 @@ export function resolveChuxiuSharedRest(group,{actorIds=SHARED_REST_IDS,allowDet
  const fail=reason=>({status:'error',reason});if(!group)return{status:'pending',reason:'West-six source has not been constructed'};
  if(actorIds.length!==2||new Set(actorIds).size!==2||actorIds.some(id=>!SHARED_REST_IDS.includes(id)))return fail('Exactly the two authorized adults are required');
  const frames=group.userData?.architecture?.filter(a=>a.id==='west-six/chuxiu-household')??[];
- if(frames.length!==1||frames[0].x!==94.8||frames[0].z!==434.3||frames[0].w!==27.1||frames[0].d!==13.8||frames[0].floorY!==.6||frames[0].warmAlcove?.x!==2*(27.1/5)||frames[0].warmAlcove?.z!==6.9-2.7/2-.45)return fail('Northwest canopy frame changed');
+ if(frames.length!==1||frames[0].x!==94.8||frames[0].z!==CHUXIU_MAIN_Z||frames[0].w!==27.1||frames[0].d!==13.8||frames[0].floorY!==.6||frames[0].warmAlcove?.x!==2*(27.1/5)||frames[0].warmAlcove?.z!==6.9-2.7/2-.45)return fail('Northwest canopy frame changed');
  group.updateMatrixWorld(true);if((!allowDetached&&!group.parent?.isScene)||!group.visible||!identityMatrix(group.matrixWorld))return fail('World-aligned live source required');
  const meshes=group.children.filter(m=>m.isMesh&&m.material?.name==='chuxiu_zitan_fit');if(meshes.length!==1)return fail('Unique actual platform batch missing');
  const mesh=meshes[0],g=mesh.geometry,p=g?.attributes.position,idx=g?.index;
@@ -23,8 +24,8 @@ export function resolveChuxiuSharedRest(group,{actorIds=SHARED_REST_IDS,allowDet
  const signatures=top.map(t=>t.map(v=>v.join(',')).sort().join('|'));if(new Set(signatures).size!==2)return fail('Duplicate top triangle');
  const edgeCounts=new Map();for(const t of top)for(let i=0;i<3;i++){const k=[t[i].join(','),t[(i+1)%3].join(',')].sort().join('|');edgeCounts.set(k,(edgeCounts.get(k)??0)+1);}const shared=[...edgeCounts].filter(([,n])=>n===2);if(shared.length!==1)return fail('Top triangles must share exactly their diagonal');const ends=shared[0][0].split('|').map(v=>v.split(',').map(Number));if(ends[0][0]===ends[1][0]||ends[0][2]===ends[1][2])return fail('Top shared edge is not a diagonal');
  const area=top.reduce((s,t)=>s+Math.abs((t[1][0]-t[0][0])*(t[2][2]-t[0][2])-(t[2][0]-t[0][0])*(t[1][2]-t[0][2]))/2,0);if(area!==(bounds.maxX-bounds.minX)*(bounds.maxZ-bounds.minZ))return fail('Incomplete top coverage');
- const slots=[['taihe-emperor-01',106.19],['chuxiu-consort-01',105.09]].map(([actorId,x])=>({id:actorId+'-northwest-rest',actorId,position:[x,bounds.top,439.4],rotationYRad:Math.PI,approach:[x,Math.fround(.62),437.3],exit:[x,Math.fround(.62),437.3]}));
- const clearance=slots.flatMap(s=>[new THREE.Box3(new THREE.Vector3(s.position[0]-.42,bounds.top,438.32),new THREE.Vector3(s.position[0]+.42,bounds.top+1.73,440.48)),new THREE.Box3(new THREE.Vector3(s.position[0]-.36,Math.fround(.62),436.94),new THREE.Vector3(s.position[0]+.36,2.33,437.66))]);
+ const slots=[['taihe-emperor-01',106.19],['chuxiu-consort-01',105.09]].map(([actorId,x])=>({id:actorId+'-northwest-rest',actorId,position:[x,bounds.top,chuxiuShiftedZ(439.4)],rotationYRad:Math.PI,approach:[x,Math.fround(.62),chuxiuShiftedZ(437.3)],exit:[x,Math.fround(.62),chuxiuShiftedZ(437.3)]}));
+ const clearance=slots.flatMap(s=>[new THREE.Box3(new THREE.Vector3(s.position[0]-.42,bounds.top,chuxiuShiftedZ(438.32)),new THREE.Vector3(s.position[0]+.42,bounds.top+1.73,chuxiuShiftedZ(440.48))),new THREE.Box3(new THREE.Vector3(s.position[0]-.36,Math.fround(.62),chuxiuShiftedZ(436.94)),new THREE.Vector3(s.position[0]+.36,2.33,chuxiuShiftedZ(437.66)))]);
  let obstruction=false;group.traverse(o=>{if(obstruction||!o.isMesh||!o.visible||o.material?.visible===false||o.material?.opacity===0)return;const gp=o.geometry?.attributes.position,gi=o.geometry?.index;if(!gp)return;const mb=new THREE.Box3().setFromObject(o);if(!clearance.some(b=>b.intersectsBox(mb)))return;for(let i=0;i<(gi?.count??gp.count);i+=3){const t=[0,1,2].map(k=>new THREE.Vector3().fromBufferAttribute(gp,gi?gi.getX(i+k):i+k).applyMatrix4(o.matrixWorld));if(clearance.some(b=>triangleInside(t,b))){obstruction={name:o.name,triangle:i/3,vertices:t.map(v=>v.toArray())};break;}}});
  if(obstruction)return fail('Actual geometry obstructs a shared slot or south entrance: '+JSON.stringify(obstruction));
  return{status:'ready',bedId:'chuxiu-northwest-canopy',sourceIdentity:`${group.uuid}:${mesh.uuid}:${mesh.material.uuid}:${g.uuid}:${sourceId(p)}:${sourceId(p.array)}:${p.version}:${sourceId(idx)}:${sourceId(idx?.array)}:${idx?.version??-1}`,contactY:bounds.top,bounds,slots,source:{mesh,geometry:g,position:p,index:idx},statusNote:'GAMEPLAY_SHARED_REST_ON_EXISTING_FITTED_CANOPY_NOT_HISTORICAL_SLEEPING_INVENTORY'};

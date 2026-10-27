@@ -1,0 +1,125 @@
+{
+  "beforeSource": "8938de15545ac0fd46b7dfbde5a2d8c30e650ed130ecfbbb5cb8f7783cabfdcb",
+  "currentSource": "3cf969f6115745cde365ddaf72dd7236705f676711a789d1a8a13dca79118d08",
+  "beforeAfterStable": true,
+  "inheritedShortRoutes": [
+    {
+      "id": "inherited-tihe-south-corridor-return",
+      "posesExact": 102,
+      "beforeHits": 102,
+      "currentHits": 102,
+      "beforeComplete": true,
+      "currentComplete": true
+    },
+    {
+      "id": "inherited-lijing-entry-west-room-return",
+      "posesExact": 61,
+      "beforeHits": 61,
+      "currentHits": 60,
+      "beforeComplete": true,
+      "currentComplete": true
+    }
+  ],
+  "sharedDriverFiles": {
+    "src/utils/Collision.js": {
+      "R120ByteExact": true,
+      "sha256": "00b9389806c80a691a776b5e08351976ee7e8f1c16f1a65afaab5a015fa39d09"
+    },
+    "src/controls/FirstPerson.js": {
+      "R120ByteExact": true,
+      "sha256": "7dadd8a7d6ed1d8b314d6014a03f6d6fef760048db8b67e85e7740497d51820e"
+    },
+    "tests/lib/r91-controller-clock.mjs": {
+      "R120ByteExact": true,
+      "sha256": "08ab293c343ac274bf6bd560d4f0d33c7d90c9b559438bbe36287f577d4f5121"
+    },
+    "tests/lib/physical-waypoints.mjs": {
+      "R120ByteExact": true,
+      "sha256": "a23729b2b7adaabc82b3ff95102c14e6c2db60be8bb297d3c24522eb3eef0463"
+    }
+  },
+  "wideOracleBounds": {
+    "minX": 74,
+    "maxX": 116,
+    "minY": 0,
+    "maxY": 3,
+    "minZ": 398,
+    "maxZ": 455
+  },
+  "wideRoutes": [
+    {
+      "fps": 10,
+      "mode": "forward",
+      "complete": true,
+      "frames": 504,
+      "actualTriangleHitFrames": 160
+    },
+    {
+      "fps": 10,
+      "mode": "backward",
+      "complete": true,
+      "frames": 504,
+      "actualTriangleHitFrames": 160
+    },
+    {
+      "fps": 10,
+      "mode": "right",
+      "complete": true,
+      "frames": 504,
+      "actualTriangleHitFrames": 160
+    },
+    {
+      "fps": 30,
+      "mode": "forward",
+      "complete": true,
+      "frames": 1495,
+      "actualTriangleHitFrames": 474
+    },
+    {
+      "fps": 30,
+      "mode": "backward",
+      "complete": true,
+      "frames": 1495,
+      "actualTriangleHitFrames": 474
+    },
+    {
+      "fps": 30,
+      "mode": "right",
+      "complete": true,
+      "frames": 1495,
+      "actualTriangleHitFrames": 474
+    },
+    {
+      "fps": 60,
+      "mode": "forward",
+      "complete": true,
+      "frames": 2970,
+      "actualTriangleHitFrames": 941
+    },
+    {
+      "fps": 60,
+      "mode": "backward",
+      "complete": true,
+      "frames": 2970,
+      "actualTriangleHitFrames": 941
+    },
+    {
+      "fps": 60,
+      "mode": "right",
+      "complete": true,
+      "frames": 2970,
+      "actualTriangleHitFrames": 941
+    }
+  ],
+  "limits": [
+    "Two short counterexamples demonstrate inherited local floor/platform hits with identical physical poses; they are not a full before/after connected-route traversal.",
+    "New wide oracle now covers actual Tihe399 to Lijing453.7 path within Z398..455; inherited hits remain, so not a zero-penetration gate.",
+    "Controller imported from current tree but the four driver/controller files are byte-exact R120; scene/source builders use their declared sourceRoot.",
+    "No new world, dynamic-body, GPU or performance test."
+  ],
+  "rawHashes": {
+    "inherited-r120.json": "4e6a4745095ae85aca0b9b8a27865232e201a5e0209522e1f30e125f79def549",
+    "inherited-r123.json": "d6b1af14150ce74293bdfed31d3b5ed31d302ce768cdd82ccf7c8b0d3bb7bfa9",
+    "connected-full-3freq-directions.json": "a1ce6595546e3da6eb3155a6464cc878d03d8caf669219a0bc64a60fbfaa1625"
+  }
+}

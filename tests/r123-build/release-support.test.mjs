@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import fs from'node:fs';
+test('R123 package support labels the actual partial release, not the R120 major',()=>{const s=fs.readFileSync('release/r123/start.mjs','utf8'),r=fs.readFileSync('release/r123/README.txt','utf8');assert.match(s,/R123 production package/);assert.doesNotMatch(s,/R120 production package/);assert.match(r,/R123/);assert.match(r,/PARTIAL/);});

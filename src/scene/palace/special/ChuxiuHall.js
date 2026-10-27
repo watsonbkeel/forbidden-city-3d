@@ -1,3 +1,4 @@
+import {CHUXIU_MAIN_Z,CHUXIU_MAIN_PROFILE} from './ChuxiuRearCourtFrame.js';
 import * as THREE from 'three';
 
 const SOURCE='https://www.dpm.org.cn/explore/building/236486.html';
@@ -12,7 +13,7 @@ export const CHUXIU_RESTORED_KANG=Object.freeze([
 ]);
 /** All lengths below are reversible modelling fits, not survey measurements. */
 export const CHUXIU_FIT=Object.freeze({
- id:'west-six/chuxiu-household',profile:'chuxiu-official-topology-fit-v1',
+ id:'west-six/chuxiu-household',profile:CHUXIU_MAIN_PROFILE,
  porchDepth:1.9,passageZ:-.8,passageWidth:2.4,partitionHeight:4.5,
  frameThickness:.14,panelThickness:.09,lowerPanelHeight:.95,glassOpacity:.28,
  frontDoorWidth:3.2,windowSillHeight:.9,windowGlassHeight:1.55,latticeHeight:1.5,
@@ -25,7 +26,7 @@ const near=(a,b)=>Math.abs(a-b)<1e-7;
 function count(root){let meshes=0,triangles=0;root.traverse(o=>{if(o.isMesh){meshes++;triangles+=(o.geometry.index?.count??o.geometry.attributes.position.count)/3;}});return{meshes,triangles};}
 export function chuxiuGeometry(item){
  if(item.name!=='储秀宫'||item.structure!=='chuxiu-household'||item.chuxiuProfile!==CHUXIU_FIT.profile)throw Error('Chuxiu single-building profile required');
- for(const[k,v]of Object.entries({x:94.8,z:434.3,w:27.1,d:13.8,ph:.6,colH:6.72,bays:5}))if(!near(item[k],v))throw Error(`Chuxiu retained envelope mismatch: ${k}`);
+ for(const[k,v]of Object.entries({x:94.8,z:CHUXIU_MAIN_Z,w:27.1,d:13.8,ph:.6,colH:6.72,bays:5}))if(!near(item[k],v))throw Error(`Chuxiu retained envelope mismatch: ${k}`);
  if(item.roof!=='xieshan'||item.enter!==true||item.backDoor||item.open||item.roomBays)throw Error('Chuxiu requires retained five-bay shell and central entry');
  if(item.rot!==undefined&&item.rot!==0&&item.rot!=='south')throw Error('Chuxiu requires south-facing rotation');
  const b=item.w/5,front=-item.d/2+CHUXIU_FIT.porchDepth,rear=item.d/2;

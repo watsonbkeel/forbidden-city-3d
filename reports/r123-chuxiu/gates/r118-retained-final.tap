@@ -1,0 +1,135 @@
+TAP version 13
+# Subtest: emperor has a closed-eye static normally-clothed sleeping model LOD0
+ok 1 - emperor has a closed-eye static normally-clothed sleeping model LOD0
+  ---
+  duration_ms: 26.656279
+  type: 'test'
+  ...
+# Subtest: emperor has a closed-eye static normally-clothed sleeping model LOD1
+ok 2 - emperor has a closed-eye static normally-clothed sleeping model LOD1
+  ---
+  duration_ms: 5.298222
+  type: 'test'
+  ...
+# Subtest: emperor has a closed-eye static normally-clothed sleeping model LOD2
+ok 3 - emperor has a closed-eye static normally-clothed sleeping model LOD2
+  ---
+  duration_ms: 1.396235
+  type: 'test'
+  ...
+# Subtest: sleep support remains a narrow adult-template allowlist
+ok 4 - sleep support remains a narrow adult-template allowlist
+  ---
+  duration_ms: 0.522975
+  type: 'test'
+  ...
+# Subtest: closed eyelids are actual narrow facial geometry, not only metadata LOD0
+ok 5 - closed eyelids are actual narrow facial geometry, not only metadata LOD0
+  ---
+  duration_ms: 13.217198
+  type: 'test'
+  ...
+# Subtest: closed eyelids are actual narrow facial geometry, not only metadata LOD1
+ok 6 - closed eyelids are actual narrow facial geometry, not only metadata LOD1
+  ---
+  duration_ms: 3.722608
+  type: 'test'
+  ...
+# Subtest: closed eyelids are actual narrow facial geometry, not only metadata LOD2
+ok 7 - closed eyelids are actual narrow facial geometry, not only metadata LOD2
+  ---
+  duration_ms: 2.010888
+  type: 'test'
+  ...
+# Subtest: retained low lip full player body: walking, release, strafe, airborne entry and finite exit 10Hz
+ok 8 - retained low lip full player body: walking, release, strafe, airborne entry and finite exit 10Hz
+  ---
+  duration_ms: 21.516044
+  type: 'test'
+  ...
+# Subtest: retained low lip full player body: walking, release, strafe, airborne entry and finite exit 30Hz
+ok 9 - retained low lip full player body: walking, release, strafe, airborne entry and finite exit 30Hz
+  ---
+  duration_ms: 10.296996
+  type: 'test'
+  ...
+# Subtest: retained low lip full player body: walking, release, strafe, airborne entry and finite exit 60Hz
+ok 10 - retained low lip full player body: walking, release, strafe, airborne entry and finite exit 60Hz
+  ---
+  duration_ms: 12.871679
+  type: 'test'
+  ...
+# Subtest: local low-lip handoff never reuses a removed or changed terrace owner
+ok 11 - local low-lip handoff never reuses a removed or changed terrace owner
+  ---
+  duration_ms: 1.291939
+  type: 'test'
+  ...
+# Subtest: the northwest shared room is a sleeping quarter while maid quarters retain their own beds
+not ok 12 - the northwest shared room is a sleeping quarter while maid quarters retain their own beds
+  ---
+  duration_ms: 4.486594
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r123-chuxiu-rear-frame/tests/r118/night-lights.test.mjs:2:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r123-chuxiu-rear-frame/tests/r118/night-lights.test.mjs:2:170)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: Qianqing low lip is sourced at its true Float32 top and full-body step activates before the south edge
+ok 13 - Qianqing low lip is sourced at its true Float32 top and full-body step activates before the south edge
+  ---
+  duration_ms: 8.298245
+  type: 'test'
+  ...
+# Subtest: the Environment civil clock has exact 21/06 boundaries and stays asleep across midnight
+ok 14 - the Environment civil clock has exact 21/06 boundaries and stays asleep across midnight
+  ---
+  duration_ms: 0.93902
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 297 个 region, 226 个 mapItem
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 卸载区域 axis-courts
+# Subtest: mid-route manual clock changes reverse the current segment without respawning, and removed live corridor owners pause
+ok 15 - mid-route manual clock changes reverse the current segment without respawning, and removed live corridor owners pause
+  ---
+  duration_ms: 8059.578986
+  type: 'test'
+  ...
+# Subtest: contact footprint tests the actual triangle, never its filled bounding rectangle
+ok 16 - contact footprint tests the actual triangle, never its filled bounding rectangle
+  ---
+  duration_ms: 0.827201
+  type: 'test'
+  ...
+# Subtest: unchanged full moving lower render body fits the conservative .45m support footprint
+ok 17 - unchanged full moving lower render body fits the conservative .45m support footprint
+  ---
+  duration_ms: 687.734321
+  type: 'test'
+  ...
+1..17
+# tests 17
+# suites 0
+# pass 16
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9872.815036

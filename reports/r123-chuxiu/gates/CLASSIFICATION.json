@@ -1,0 +1,69 @@
+{
+  "source": "3cf969f6115745cde365ddaf72dd7236705f676711a789d1a8a13dca79118d08",
+  "standardCurrentState": {
+    "tests": 1289,
+    "pass": 1076,
+    "fail": 213,
+    "baselineR120": {
+      "pass": 1094,
+      "fail": 195
+    },
+    "added": 18,
+    "removed": 0,
+    "categories": [
+      {
+        "count": 17,
+        "kind": "historical-fixture-dispatch-incompatible",
+        "reason": "frozen R62 buildHallBaseline consumes newly appended Chuxiu rear wing but has no dispatch; current production ZoneBase builds it"
+      },
+      {
+        "count": 1,
+        "kind": "approved-frame-intent-conflict",
+        "reason": "current R63 expects old isolated Lijing start blocked by original Chuxiu wall; approved -5 moves it away"
+      }
+    ]
+  },
+  "targeted": {
+    "r123Main": {
+      "pass": 8,
+      "fail": 0
+    },
+    "r123NightLightsAdditional": {
+      "pass": 1,
+      "fail": 0
+    },
+    "r119R120": {
+      "pass": 28,
+      "fail": 1,
+      "classification": "R119 broad R118 physics hash: same case also fails exact R120"
+    },
+    "motionFirst": {
+      "tests": 85,
+      "pass": 83,
+      "fail": 2
+    },
+    "motionHarnessRetry": {
+      "pass": 6,
+      "fail": 0,
+      "note": "old file 6 tests were not run due missing reports parent; mkdir added to final-gates driver; prior raw unchanged"
+    },
+    "motionRemaining": {
+      "count": 1,
+      "kind": "approved front wing417 vs old422 exact-coordinate assertion"
+    },
+    "resources": {
+      "pass": 41,
+      "fail": 0
+    },
+    "r118Retained": {
+      "pass": 16,
+      "fail": 1,
+      "classification": "old night-light absolute439.4/439.5 points; added R123 -5 semantic counterpart passes; clock2/model7/finite surfaces retain original tests"
+    }
+  },
+  "limitations": [
+    "Not an all-green suite",
+    "No old expected/helper altered",
+    "Legacy original raw retained; classified, not suppressed"
+  ]
+}

@@ -1,3 +1,4 @@
+import {buildChuxiuRearWing} from '../palace/special/ChuxiuRearWings.js';
 import {buildChengqianCourtyardGroup,bindChengqianTerraceDomain,chengqianWingHardGable} from '../palace/special/ChengqianCourtyardGroup.js';
 import {applyLijingWestRoom} from '../palace/special/LijingWestRoom.js';
 import {registerChuxiuSideAccess} from '../../controls/ChuxiuSideAccess.js';
@@ -230,6 +231,7 @@ export class ZoneBase {
   }
 
   buildHallBaseline(item) {
+    if(item.structure==='chuxiu-rear-wing'||item.rearCourtProfile!==undefined)return buildChuxiuRearWing(this.kit,item,this.zoneJson);
     if(item.structure==='ritual-hall'||item.ritualProfile!==undefined){const g=ritualHallGeometry(item);if(this.zoneJson.id!=='outer-west')throw Error('Ritual hall wrong zone');return buildRitualHall(this.kit,item);}
     if(item.structure==='enclosed-pavilion'||item.enclosureProfile!==undefined){const g=enclosedPavilionGeometry(item);if(this.zoneJson.id!==g.id.split('/')[0])throw Error('Enclosed pavilion wrong zone');return buildEnclosedPavilion(this.kit,item);}
     if(item.structure==='shoukang-front-hall'||item.shoukangProfile!==undefined){if(this.zoneJson.id!=='outer-west')throw Error('Shoukang requires outer-west zone');return buildShoukangHall(this.kit,item);}

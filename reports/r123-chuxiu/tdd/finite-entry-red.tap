@@ -1,0 +1,28 @@
+✖ real ready west-six builds bounded rear pair and rebinds both R118 slots to the shifted finished bed (980.146659ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1201.973098
+
+✖ failing tests:
+
+test at tests/r123/actual-rear-frame.test.mjs:2:1
+✖ real ready west-six builds bounded rear pair and rebinds both R118 slots to the shifted finished bed (980.146659ms)
+  AssertionError [ERR_ASSERTION]: two actual slab-owned bounded entry scopes
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r123-chuxiu-rear-frame/tests/r123/actual-rear-frame.test.mjs:4:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

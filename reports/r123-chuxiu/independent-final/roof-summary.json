@@ -1,0 +1,177 @@
+{
+  "beforeSourceFingerprint": "ddfbd0e4cd0052af1b1ccfeb40111c729039c39c412e8c5c41e6d110d1506c53",
+  "afterSourceFingerprint": "ddfbd0e4cd0052af1b1ccfeb40111c729039c39c412e8c5c41e6d110d1506c53",
+  "oldActualRows": 28662,
+  "newActualRows": 28682,
+  "unchangedActualRows": 25606,
+  "changedRearWingRows": 3076,
+  "strictActualCrossing": {
+    "potential3dBBoxPairs": 240,
+    "positiveTrianglePairs": 121,
+    "countsByRetainedRow": {
+      "382": 60,
+      "383": 1,
+      "437": 60
+    },
+    "countsByMaterialPair": {
+      "west-six_wall_red_material \u2192 west-six_wall_red_material": 9,
+      "west-six_rafters_material \u2192 west-six_wall_red_material": 40,
+      "west-six_roof_tile_material \u2192 west-six_wall_red_material": 40,
+      "west-six_kit_ridge \u2192 west-six_wall_red_material": 32
+    },
+    "firstThreeWitnesses": [
+      {
+        "newRow": 1304,
+        "newName": "west-six_wall_red_material",
+        "newVertices": [
+          [
+            74.70833587646484,
+            3.539715051651001,
+            436.75
+          ],
+          [
+            74.25,
+            3.380948066711426,
+            436.75
+          ],
+          [
+            74.25,
+            3.755948066711426,
+            436.75
+          ]
+        ],
+        "oldRow": 382,
+        "oldName": "west-six_wall_red_material",
+        "oldVertices": [
+          [
+            74.30000305175781,
+            6.5,
+            456
+          ],
+          [
+            74.30000305175781,
+            1,
+            456
+          ],
+          [
+            74.30000305175781,
+            6.5,
+            414.79998779296875
+          ]
+        ]
+      },
+      {
+        "newRow": 1304,
+        "newName": "west-six_wall_red_material",
+        "newVertices": [
+          [
+            74.70833587646484,
+            3.539715051651001,
+            436.75
+          ],
+          [
+            74.25,
+            3.380948066711426,
+            436.75
+          ],
+          [
+            74.25,
+            3.755948066711426,
+            436.75
+          ]
+        ],
+        "oldRow": 383,
+        "oldName": "west-six_wall_red_material",
+        "oldVertices": [
+          [
+            74.30000305175781,
+            1,
+            456
+          ],
+          [
+            74.30000305175781,
+            1,
+            414.79998779296875
+          ],
+          [
+            74.30000305175781,
+            6.5,
+            414.79998779296875
+          ]
+        ]
+      },
+      {
+        "newRow": 1305,
+        "newName": "west-six_wall_red_material",
+        "newVertices": [
+          [
+            74.70833587646484,
+            3.539715051651001,
+            436.75
+          ],
+          [
+            74.25,
+            3.755948066711426,
+            436.75
+          ],
+          [
+            74.70833587646484,
+            3.914715051651001,
+            436.75
+          ]
+        ],
+        "oldRow": 382,
+        "oldName": "west-six_wall_red_material",
+        "oldVertices": [
+          [
+            74.30000305175781,
+            6.5,
+            456
+          ],
+          [
+            74.30000305175781,
+            1,
+            456
+          ],
+          [
+            74.30000305175781,
+            6.5,
+            414.79998779296875
+          ]
+        ]
+      }
+    ]
+  },
+  "roofHeightSeparation": {
+    "newRoofRows": 1296,
+    "retainedMainRoofRows": 1120,
+    "positiveAreaProjectionPairs": 675,
+    "minSignedVerticalGap": 3.386295299269798,
+    "witness": {
+      "x": 79.09190178607393,
+      "z": 436.8699951171875,
+      "newY": 4.082070208789051,
+      "oldY": 7.468365508058849,
+      "newRow": 6281,
+      "newName": "west-six_kit_ridge",
+      "oldRow": 2337,
+      "oldName": "west-six_rafters_material"
+    },
+    "totalOverlappingTrianglePairArea": 15.56077851111695,
+    "areaCaveat": "Sum across face pairs may overlap; not physical footprint area"
+  },
+  "inputHashes": {
+    "prototype/room-prototype-high.json.gz": "b9f9966e5831f071e77df8766f65b05bffda6125e24abed669b59012c6f36033",
+    "prototype-b/room-prototype-b-high.json.gz": "0cf1b7e66c5827e3f77584db0ba5e5a3b17bac97574747f85e6a4ece9c298cc9",
+    "contact-frozen/room-frozen-high.json.gz": "c6c45e19c1f946d641c10fface99bc7c5f51169e17812285ec6e5513f709057c",
+    "contact-frozen/export-frozen-high.json": "34c6b385ea63213e9f374435ac73784fd397a6b4f455946a43c150dccac725f5"
+  },
+  "limits": [
+    "No world built; data from actual saved finished exports",
+    "Strict surface crossing excludes coplanar touch; no contained-volume or whole-body route acceptance",
+    "Height-gap proof applies to identified nonvertical roof/rafter/ridge projected triangle pairs only",
+    "Exact full-row multiset from original A/B comparison localizes retained geometry; full new roof/main source classification uses exact rows and model bounds, not historical survey"
+  ],
+  "fullRaw": "../frozen-geometry/roof-intersections.json",
+  "fullRawSHA256": "602e2890bd2b15a7e2e799a81f414e094d2317ba521baeec402de481a418a9e7"
+}
