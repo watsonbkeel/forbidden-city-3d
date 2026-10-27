@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import {CollisionManager} from '../../utils/Collision.js';
 import {householdLightingPolicy} from './HouseholdLightingPolicy.js';
-import {NIGHT_BEDS} from '../characters/NightBeds.js';
+import {NIGHT_BEDS,SHARED_REST_AREAS} from '../characters/NightBeds.js';
 /** Fitted virtual-tour fixtures, not a historical lamp inventory. All room
  * fixtures use two instanced groups for independent sleeping-quarter dimming;
  * only four non-shadow local lights exist.
@@ -9,7 +9,7 @@ import {NIGHT_BEDS} from '../characters/NightBeds.js';
 export class RoomNightLights {
  constructor({scene,rooms=[],collisionManager=null,additionalColliders=[],beds=NIGHT_BEDS}){
   this.scene=scene;this.unplaced=[];const cm=new CollisionManager();if(collisionManager)cm.colliders=[...collisionManager.colliders];cm.addColliders(additionalColliders);
-  this.sleepAreas=beds.filter(b=>b.actorId&&b.roomBounds).map(b=>({bounds:b.roomBounds,floorY:b.floorY}));
+  this.sleepAreas=[...beds.filter(b=>b.actorId&&b.roomBounds),...SHARED_REST_AREAS].map(b=>({bounds:b.roomBounds,floorY:b.floorY}));
   this.isSleepPoint=(x,y,z)=>this.sleepAreas.some(a=>x>=a.bounds[0]&&x<=a.bounds[1]&&z>=a.bounds[2]&&z<=a.bounds[3]&&y>=a.floorY&&y<a.floorY+5);
   this.rooms=rooms.filter(r=>r.min&&r.max&&Number.isFinite(r.floorY));this.sites=[];
   for(const [index,r]of this.rooms.entries()){
@@ -28,7 +28,7 @@ export class RoomNightLights {
     if(site)this.sites.push(site);else this.unplaced.push({room:index,x,z,reason:'No clear fitted lamp volume'});
    }
   }
-  this.root=new THREE.Group();this.root.name='r72-interpretive-room-lights';scene.add(this.root);
+  this.root=new THREE.Group();this.root.name='r72-interpretive-room-lights';this.root.userData.nonArchitecturalLighting=true;scene.add(this.root);
   this.geometry=new THREE.CylinderGeometry(.13,.13,.28,6);
   this.lampMaterial=new THREE.MeshStandardMaterial({color:0xd2b377,emissive:0xffcc88,emissiveIntensity:0,roughness:.9});
   this.sleepLampMaterial=this.lampMaterial.clone();

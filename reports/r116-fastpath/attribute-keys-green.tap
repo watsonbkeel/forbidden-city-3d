@@ -1,0 +1,17 @@
+✔ indexed/nonindexed transformed output byte-exact to actual legacy Three path (14.570517ms)
+✔ unsupported whole bucket fails closed without mutation or disposal (2.167774ms)
+✔ writer does not own or dispose shared source geometries (2.608615ms)
+✔ large Uint32 indices and offset views preserve all binary32 bytes and insertion order (12.050895ms)
+✔ malformed counts, triangle tail and GPU type are not fastpath inputs (0.697947ms)
+✔ custom accessors and malformed records are refused rather than read differently from clone/raw conversion (0.441603ms)
+✔ only three own data attributes are supported, never inherited or getter aliases (0.301643ms)
+✔ common bucket avoids intermediate nonindex allocations; shared sources disposed only once after construction (11.111495ms)
+✔ unsupported bucket retains legacy normalization and output exactly (2.71172ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 169.74318

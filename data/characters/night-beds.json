@@ -2,7 +2,7 @@
   "beds": [
     {
       "id": "chuxiu-bed-1",
-      "actorId": "chuxiu-consort-01",
+      "actorId": null,
       "palace": "储秀宫",
       "x": 83.8,
       "z": 439.3,
@@ -891,6 +891,24 @@
       ],
       "zoneRef": "west-six",
       "id": "chuxiu-gameplay-privacy-screen"
+    }
+  ],
+  "sharedRestAreas": [
+    {
+      "id": "chuxiu-northwest-canopy",
+      "actorIds": [
+        "taihe-emperor-01",
+        "chuxiu-consort-01"
+      ],
+      "room": "储秀宫·西梢间暖阁",
+      "roomBounds": [
+        103.11,
+        108.17,
+        429.3,
+        441.2
+      ],
+      "floorY": 0.6,
+      "status": "GAMEPLAY_SHARED_REST_ON_EXISTING_MODEL_FIT"
     }
   ]
 }

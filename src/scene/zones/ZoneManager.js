@@ -45,6 +45,7 @@ export class ZoneManager {
     /** 单区构建耗时记录：id → ms（最近一次） */
     this.buildTimes = new Map();
     /** 可选回调：区加载/卸载时通知外部（如阴影 LOD 列表维护） */
+    this.lifecycleListeners = new Set();
     this.onLoad = null;
     this.onUnload = null;
   }
@@ -261,6 +262,9 @@ export class ZoneManager {
     this.prebuilt.delete(zoneId);
     const elapsed = performance.now() - start;
 
+    // A cached group may have been hidden by the previous view-only cull.
+    // Re-entered architecture is ready before render policy evaluates it again.
+    data.group.visible = true;
     // 加入场景
     this.scene.add(data.group);
     const silhouette = this.silhouettes.get(zoneId);
@@ -276,6 +280,7 @@ export class ZoneManager {
     entry.lastUsedAt = zoneId === this.currentId ? performance.now() : (entry.lastUsedAt ?? 0);
     this.loaded.set(zoneId, entry);
     this.buildTimes.set(zoneId, +elapsed.toFixed(1));
+    for (const listener of this.lifecycleListeners) listener('load',zoneId,data);
     this.onLoad?.(zoneId, data.group);
     console.log(`[ZoneManager] 加载区域 ${zoneId}（${config.name}），耗时 ${elapsed.toFixed(1)}ms`);
   }
@@ -288,6 +293,7 @@ export class ZoneManager {
     if (!entry) return;
 
     const { builder, data } = entry;
+    for (const listener of this.lifecycleListeners) listener('unload',zoneId,data);
     this.onUnload?.(zoneId, data.group);
     data.group.removeFromParent();
     this.collisionManager.removeByTag(zoneId);

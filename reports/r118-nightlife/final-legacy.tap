@@ -1,0 +1,82 @@
+✖ R78 six consorts have private larger beds; maids have compact grouped smaller beds (1.334563ms)
+✖ actual Zhonghe sit and stand transitions wait for player occupancy without teleporting or changing identity (0.799911ms)
+✖ night emperor route targets real Zhonghe seat and preserves the accepted Taihe ascent prefix (1.349265ms)
+✖ new approach has full body clearance and actual controller traversal in both directions (0.284257ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 401.270246
+
+✖ failing tests:
+
+test at tests/r78-bed-households.test.mjs:2:1
+✖ R78 six consorts have private larger beds; maids have compact grouped smaller beds (1.334563ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  5 !== 6
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r118-chuxiu-shared-rest/tests/r78-bed-households.test.mjs:2:171)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 5,
+    expected: 6,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r96-emperor/occupancy.test.mjs:3:1
+✖ actual Zhonghe sit and stand transitions wait for player occupancy without teleporting or changing identity (0.799911ms)
+  TypeError: Cannot read properties of undefined (reading 'footContactY')
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r118-chuxiu-shared-rest/tests/r96-emperor/occupancy.test.mjs:3:161)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at tests/r96-emperor/route.test.mjs:3:1
+✖ night emperor route targets real Zhonghe seat and preserves the accepted Taihe ascent prefix (1.349265ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  '储秀宫' !== '中和殿'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r118-chuxiu-shared-rest/tests/r96-emperor/route.test.mjs:3:113)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '储秀宫',
+    expected: '中和殿',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r96-emperor/route.test.mjs:4:1
+✖ new approach has full body clearance and actual controller traversal in both directions (0.284257ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  '储秀宫' !== '中和殿'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r118-chuxiu-shared-rest/tests/r96-emperor/route.test.mjs:4:108)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '储秀宫',
+    expected: '中和殿',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

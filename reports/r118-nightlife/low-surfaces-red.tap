@@ -1,0 +1,32 @@
+✖ Qianqing low lip is sourced at its true Float32 top and full-body step activates before the south edge (2.168335ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 141.230053
+
+✖ failing tests:
+
+test at tests/r118/retained-low-surfaces.test.mjs:2:1
+✖ Qianqing low lip is sourced at its true Float32 top and full-body step activates before the south edge (2.168335ms)
+  AssertionError [ERR_ASSERTION]: contact top must be the finished Float32 surface
+  + actual - expected
+  
+  + 2.16
+  - 2.1600000858306885
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r118-chuxiu-shared-rest/tests/r118/retained-low-surfaces.test.mjs:2:569)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2.16,
+    expected: 2.1600000858306885,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

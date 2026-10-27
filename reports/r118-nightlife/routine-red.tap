@@ -1,0 +1,32 @@
+✖ 21:00 emperor and consort continuously reach separate northwest sleeping slots; 06:00 returns to the original throne (1.615294ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 286.705287
+
+✖ failing tests:
+
+test at tests/r118/emperor-chuxiu-route.test.mjs:3:1
+✖ 21:00 emperor and consort continuously reach separate northwest sleeping slots; 06:00 returns to the original throne (1.615294ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'chuxiu-northwest-canopy'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r118-chuxiu-shared-rest/tests/r118/emperor-chuxiu-route.test.mjs:3:142)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'chuxiu-northwest-canopy',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -82,3 +82,11 @@ export function validateDynamicBodies(bodies){
   })};
  });
 }
+/** Same unshrunk capsules used by the player's pedestrian channel. */
+export function bodiesIntersect(a,b){return a.parts.some(p=>b.parts.some(q=>p.minY<q.maxY-EPS&&p.maxY>q.minY+EPS&&segmentDistance(p,q)<p.radius+q.radius-EPS));}
+export function sweptBodiesIntersect(from,to,other){
+ if(from.parts.length!==to.parts.length)throw Error('A body sweep requires matching pose parts');
+ let travel=0;for(let i=0;i<from.parts.length;i++){const a=from.parts[i],b=to.parts[i];travel=Math.max(travel,Math.hypot(b.ax-a.ax,b.az-a.az),Math.hypot(b.bx-a.bx,b.bz-a.bz),Math.abs(b.minY-a.minY),Math.abs(b.maxY-a.maxY));}
+ const steps=Math.max(1,Math.ceil(travel/.025)),padding=travel/steps/2;
+ for(let n=0;n<=steps;n++){const t=n/steps,parts=from.parts.map((a,i)=>{const b=to.parts[i],p={radius:Math.max(a.radius,b.radius)+padding};for(const k of ['ax','az','bx','bz','minY','maxY'])p[k]=a[k]+(b[k]-a[k])*t;return p;});if(bodiesIntersect({parts},other))return true;}return false;
+}

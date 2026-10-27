@@ -1,0 +1,36 @@
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 224 个 mapItem
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+✖ shared private support uses actual F32 thresholds and full lower-body edge contact, not authored center floor (6928.596284ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7332.209743
+
+✖ failing tests:
+
+test at tests/r118/actual-route-surfaces.test.mjs:2:1
+✖ shared private support uses actual F32 thresholds and full lower-body edge contact, not authored center floor (6928.596284ms)
+  AssertionError [ERR_ASSERTION]: consort actual finished floor
+  + actual - expected
+  
+  + 0.6100000143051147
+  - 0.6000000238418579
+       ^
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r118-chuxiu-shared-rest/tests/r118/actual-route-surfaces.test.mjs:12:77)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0.6100000143051147,
+    expected: 0.6000000238418579,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

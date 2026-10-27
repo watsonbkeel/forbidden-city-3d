@@ -1,0 +1,32 @@
+✖ shared resting slots bind the actual northwest merged surface, never the eastern game bed or daytime kang (3.147986ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 295.879437
+
+✖ failing tests:
+
+test at tests/r118/chuxiu-northwest-bed.test.mjs:2:1
+✖ shared resting slots bind the actual northwest merged surface, never the eastern game bed or daytime kang (3.147986ms)
+  AssertionError [ERR_ASSERTION]: actual merged-source resolver is required
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r118-chuxiu-shared-rest/tests/r118/chuxiu-northwest-bed.test.mjs:2:131)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

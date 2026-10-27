@@ -96,7 +96,7 @@ export class CharacterManager {
     const candidates = [];
     for (const state of this.states.values()) {
       const actor = state.actor;
-      if(!state.routine)this._resolve(state);
+      if(!state.routine&&!this.routines?.prepareState(state))this._resolve(state);
       if (state.pending) this.stats.pending++;
       if (state.error) this.stats.errors++;
       if (!state.binding) continue;
@@ -109,6 +109,7 @@ export class CharacterManager {
     for(const state of this.states.values()){
       if(!state.binding)continue;
       const logical=state.routineSample??state.interactionSample??this.interaction?.samples.get(state.actor.id)??(state.patrol?state.patrol.sample(this.simulationSeconds,state.actor.behavior?.followerIndex??0):state.binding);
+      if(state.routineRenderable===false)continue;
       logicalActors.push({...state.actor,position:logical.position,rotationYRad:logical.rotationYRad,pose:state.actor.behavior?.basePose??'standing',lod:2});
     }
     const interest=this.residency.update(logicalActors,this.getViewState?.()??{mode:'ground',position:camera?.position});
@@ -125,6 +126,7 @@ export class CharacterManager {
         const sample = state.patrol.sample(this.simulationSeconds, actor.behavior?.followerIndex ?? 0);
         if (sample?.position) { position = sample.position; rotationYRad = sample.rotationYRad; speed = sample.speedMetersPerSecond ?? sample.speed ?? 0; }
       }
+      if(state.routineRenderable===false){state.lod=3;continue;}
       if(!interest.get(actor.id)?.display){state.lod=3;continue;}
       const projection = characterProjection(position, camera, viewportHeight,actor.behavior?.basePose);
       if(this.interaction?.nearby({position}))projection.inFrustum=true;
@@ -161,6 +163,6 @@ export class CharacterManager {
   dispose() {
     if (this.disposed) return; this.#developmentPreviewActive = false; this.disposed = true; this.generation++;
     for (const state of this.states.values()) state.patrol?.dispose?.();
-    this.interaction?.dispose();this.renderer.dispose(); this.states.clear(); this.nearIds.clear();this.residency.clear(); this._clearStats();
+    this.routines?.dispose();this.interaction?.dispose();this.renderer.dispose(); this.states.clear(); this.nearIds.clear();this.residency.clear(); this._clearStats();
   }
 }

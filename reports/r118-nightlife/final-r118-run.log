@@ -1,0 +1,58 @@
+{
+  "group": "r118",
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "tests/r118/actual-route-surfaces.test.mjs",
+    "tests/r118/chengqian-threshold.test.mjs",
+    "tests/r118/chuxiu-northwest-bed.test.mjs",
+    "tests/r118/emperor-chuxiu-route.test.mjs",
+    "tests/r118/emperor-sleep-model.test.mjs",
+    "tests/r118/low-surface-transitions.test.mjs",
+    "tests/r118/night-lights.test.mjs",
+    "tests/r118/rendered-streaming.test.mjs",
+    "tests/r118/retained-low-surfaces.test.mjs",
+    "tests/r118/routine-clock.test.mjs",
+    "tests/r118/shared-sleep-slots.test.mjs",
+    "tests/r118/streamed-night-roundtrip.test.mjs",
+    "tests/r118/surface-geometry.test.mjs",
+    "tests/r118/unchanged-contracts.test.mjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "durationMs": 59938.926206,
+  "beforeSourceFingerprint": "a20989ae9a74d6d2deb686bf1e76b6fc8d33b8f599918b66d8e5816cabd90333",
+  "afterSourceFingerprint": "a20989ae9a74d6d2deb686bf1e76b6fc8d33b8f599918b66d8e5816cabd90333",
+  "sourceUnchanged": true,
+  "expectedContract": "MUST_PASS",
+  "error": null
+}
+[ZoneManager] 卸载区域 axis-courts
+✔ mid-route manual clock changes reverse the current segment without respawning, and removed live corridor owners pause (6847.809894ms)
+✔ full original capsules fit parallel slots and entry sweeps cannot cross the already sleeping adult (1.850137ms)
+✔ all three actual clothed sleeping LODs stay on their separate real canopy footprints (50.564176ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 224 个 mapItem
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 445.4ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 437.9ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 west-six
+✔ prebuilt verified logical seeds and private navigation survive only official west-six unload and rebind rebuilt sources (7910.05872ms)
+✔ contact footprint tests the actual triangle, never its filled bounding rectangle (0.778018ms)
+✔ unchanged full moving lower render body fits the conservative .45m support footprint (608.646964ms)
+✔ all 108 identities and the other 106 roles remain; only Chuxiu consort mapping leaves the old east bed (11.814257ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 59818.186739
+

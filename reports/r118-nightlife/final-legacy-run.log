@@ -1,0 +1,47 @@
+{
+  "group": "legacy",
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "tests/r78-bed-households.test.mjs",
+    "tests/r96-emperor/occupancy.test.mjs",
+    "tests/r96-emperor/route.test.mjs"
+  ],
+  "exitCode": 1,
+  "signal": null,
+  "durationMs": 518.181274,
+  "beforeSourceFingerprint": "f9710b3b52ce1f17cce8c6449fb4efc6ad9501b58f57809d2c0ba446108fe5b7",
+  "afterSourceFingerprint": "f9710b3b52ce1f17cce8c6449fb4efc6ad9501b58f57809d2c0ba446108fe5b7",
+  "sourceUnchanged": true,
+  "expectedContract": "SUPERSEDED_BY_USER_R118_EXPECT_FAILURE_NOT_A_PROTECTED_PASS",
+  "error": null
+}
+    code: 'ERR_ASSERTION',
+    actual: '储秀宫',
+    expected: '中和殿',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r96-emperor/route.test.mjs:4:1
+✖ new approach has full body clearance and actual controller traversal in both directions (0.284257ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  '储秀宫' !== '中和殿'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r118-chuxiu-shared-rest/tests/r96-emperor/route.test.mjs:4:108)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '储秀宫',
+    expected: '中和殿',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+

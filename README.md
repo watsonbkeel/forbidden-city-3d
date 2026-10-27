@@ -1,11 +1,14 @@
 # 故宫 3D 虚拟游览
 
-> **紧急启动修复（2026-10-27）**：用户已合并 R115 到 main `dc2db009`；随后真实材质启动检验发现承乾新门两类非法材质 key。当前 **R115-fix** 仅修复这两类调用（木构/屋脊使用已有正式材质），不含性能改造。原 R115 启动失败证据保留，GPU/手机仍未验。详见 [热修复说明](docs/current-state/r115-fix/README.md)。
+
+> **R118 独立开发验证版（未部署 main/Pages）**：本工作树增加皇帝21:00从太和连续跑到储秀西北现存罩床，与后妃分开睡位；06:00连续返回。另修乾清原低台、承乾原木槛的有限接触。保全区预建，无首次进区等待；不包含未采纳的R116/R117优化。本轮CPU门/保护回归已过，标准全gate仍有已核继承旧错，GPU/手机未验；main/Pages没有因此变更。见 [R118范围与来源](docs/current-state/r118/README.md) / [验证冻结账](docs/current-state/r118/VALIDATION.md)。
+
+> **紧急启动修复（2026-10-27）**：用户已合并 R115 到 main `dc2db009`；随后真实材质启动检验发现承乾新门两类非法材质 key。上一版 **R115-fix** 仅修复这两类调用（木构/屋脊使用已有正式材质），不含性能改造。原 R115 启动失败证据保留，GPU/手机仍未验。详见 [热修复说明](docs/current-state/r115-fix/README.md)。
 
 ![Three.js](https://img.shields.io/badge/Three.js-r162-blue)
 ![Vite](https://img.shields.io/badge/Vite-5-purple)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Status](https://img.shields.io/badge/mainline-R115-brightgreen)
+![Status](https://img.shields.io/badge/development-R118-brightgreen)
 ![Validation](https://img.shields.io/badge/validation-see_release_records-blue)
 
 ## R115 第二批宫殿成组累计大版本候选

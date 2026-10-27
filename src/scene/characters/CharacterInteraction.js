@@ -68,7 +68,7 @@ export class CharacterInteraction {
  commit(states,selected,quality){
   const chosen=new Set(selected.map(a=>a.id)),eligible=characterQualityEligibleIds(this.registry.actors,quality),bodies=[];
   for(const state of states){const sample=this.samples.get(state.actor.id);
-   if(!sample||!state.binding||!state.interactionActivated||state.readiness<=0||!eligible.has(state.actor.id)){state.interactionActivated=false;continue;}
+   if(state.routineRenderable===false||!sample||!state.binding||!state.interactionActivated||state.readiness<=0||!eligible.has(state.actor.id)){state.interactionActivated=false;continue;}
    // Frustum never removes near physical presence. If an actual render budget
    // cannot submit a nearby actor, it must not become an invisible obstacle.
    if(this.nearby(sample)&&!chosen.has(state.actor.id)){state.interactionActivated=false;continue;}

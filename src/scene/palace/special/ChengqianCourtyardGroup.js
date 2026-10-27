@@ -39,9 +39,19 @@ export function buildChengqianCourtyardGroup(kit,zone){
  for(let i=0;i<steps.length;i++){const g=steps[i].geometry;g.computeBoundingBox();const half=i<4?[Math.fround(2.3),Math.fround([.24,.18,.12,.06][i]),Math.fround(.12)]:[Math.fround(.2),Math.fround(.15),Math.fround(Math.hypot(.96,.6)/2)];if(!g.boundingBox.min.toArray().every((v,k)=>v===-half[k])||!g.boundingBox.max.toArray().every((v,k)=>v===half[k]))throw Error('Original stair geometry bounds changed');}
  if(ramps.length!==1||owners.length!==1||new Set(steps).size!==6)throw Error('Original single platform/ramp source mismatch');
  const wingBodies=retainedWingPlatform(kit);
+ // R118 registers the original visible wooden threshold, not a new door or
+ // invisible lip. Exact item/frame/material/local geometry identity fails closed.
+ const wing=kit.root.children.find(f=>f.position.x===-77.12&&f.position.z===367.1&&f.rotation.y===Math.PI/2);
+ const thresholds=wing?.children.filter(m=>m.isMesh&&m.material===kit.lib.material('wood_column')&&m.position.x===0&&m.position.y===.56&&m.position.z===-3.52&&m.rotation.x===0&&m.rotation.y===0&&m.rotation.z===0)??[];
+ if(thresholds.length!==1)throw Error('Missing unique retained Chengqian threshold');
+ const threshold=thresholds[0];threshold.updateWorldMatrix(true,false);const tp=threshold.geometry.attributes.position,tpoints=[];
+ for(let i=0;i<tp.count;i++){const v=new THREE.Vector3().fromBufferAttribute(tp,i).applyMatrix4(threshold.matrixWorld);tpoints.push(v.set(Math.fround(v.x),Math.fround(v.y),Math.fround(v.z)));}
+ const thresholdBox=new THREE.Box3().setFromPoints(tpoints);
+ if(!thresholdBox.min.toArray().every((v,i)=>v===[-80.79000091552734,.44999998807907104,365.4946594238281][i])||!thresholdBox.max.toArray().every((v,i)=>v===[-80.48999786376953,.6700000166893005,368.705322265625][i]))throw Error('Retained Chengqian threshold geometry changed');
+ thresholdBox.chengqianThreshold={source:'existing-visible-west-wing-wood-threshold',itemIndex:12};
  // All retained source checks above precede the first mutation.
  const wb=wingBodies[0];wb.furnitureMotionScope={kind:'chengqian-court-access',id:'chengqian-west-wing-entry',groundY:0,environmentGroundHandoff:true,minOffsetX:-83-wb.min.x,maxOffsetX:-79-wb.min.x,minOffsetZ:365.8-wb.min.z,maxOffsetZ:368.4-wb.min.z};
- kit.colliders.push(...wingBodies);
+ kit.colliders.push(...wingBodies,thresholdBox);
  for(const m of steps)m.position.z-=1.6;const ramp=ramps[0];for(const key of['minZ','maxZ','a0','a1'])ramp[key]-=1.6;
  const terrace=new THREE.Group();terrace.name='chengqian-central-moon-terrace';terrace.userData={status:FIT,width:23,projection:1.6,source:'https://www.dpm.org.cn/explore/building/236438.html',image:'s5e980b05dbe20.jpg',originalMainPlatformRetained:true};kit.root.add(terrace);
  const brick=box(kit,terrace,'wall_brick',-105.1,0,372.15,-82.1,.6,373.75,'chengqian-moon-terrace-brick');
