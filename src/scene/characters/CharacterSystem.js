@@ -62,7 +62,7 @@ export class CharacterSystem {
     if(!this.world.work||version===undefined)return;
     if(this.world.work.jobs.has('render:'+key))return;
     const pool=this.pool;
-    this.world.work.request('render:'+key,function*(){yield* pool.prepare(actor.templateId,actor.pose,actor.lod,options);return{status:'ready'};},{version,identity:key,priority:()=>this.modelInterestActive?(this.resourcePriorities.get(key)??Infinity):-1,isCurrent:()=>!this.modelInterestActive||this.residentResourceUsers.has(key)}).then(result=>{if(!this.disposed&&result?.status==='error'){this.lastError=this.lastFailure=result.reason;this.setEnabled(false);}});
+    this.world.work.request('render:'+key,function*(){yield* pool.prepare(actor.templateId,actor.pose,actor.lod,options);return{status:'ready'};},{version,identity:key,preemptible:true,priority:()=>this.modelInterestActive?(this.resourcePriorities.get(key)??Infinity):-1,isCurrent:()=>!this.modelInterestActive||this.residentResourceUsers.has(key)}).then(result=>{if(!this.disposed&&result?.status==='error'){this.lastError=this.lastFailure=result.reason;this.setEnabled(false);}});
   }
   prepareResidents(residents,selected){
     const users=new Map(),descriptors=new Map(),priorities=new Map(),visibleIds=new Set(selected.map(a=>a.id));

@@ -1,10 +1,12 @@
 # 故宫 3D 虚拟游览
 
+> **R128 人物准备队列局部修复**：累计保留 R126；长巡逻仅在完整物理样点间可让近处请求插入，公平进展与资源取消保留，默认预算/人数/距离/品质不变。39/39针对性保护通过，**未证明稳定首现提速，性能仍未解决**。R127候选已拒绝恢复；GPU/手机及旧213失败不抹掉。见[R128范围与证据](docs/current-state/r128/README.md)。第一累计大版仍为R131。
+
+## 历史阶段记录（各段“最新/下个major”仅指当时状态）
+
 > **R126 最终累计 major 候选（局部完成，非全宫/全绿/提速版）**：累计实际 R118/119/120/123/124/125，新增承乾门北闭木屏及后殿短阶、门—前院—西侧—后院—后殿到达组合；保旧 frame 与全部床路线。**R116/R117、R121/R122 未交付；保质性能没有采纳运行优化。** 未知耳房/井亭/背纹不造，标准112集合本版1076PASS/213FAIL与R125逐case相同；另资源旧rear快照1项意图冲突由真库高低档后继门补验，不因大版消失；GPU/手机与历史单一时代复原未验。见 [R126累计范围](docs/current-state/r126/MAJOR-RELEASE.md)/[完整分母](docs/current-state/r126/WHOLE-SCOPE-LEDGER.md)。
 >
 > **卡顿风险仍在**：最新双routine CPU新段 P95 **2.815ms**、P99 **20.958ms**、max **52.127ms**，不是wholeframe，不与非配对旧轮归因回退/改善。R123/R124旧paired build/allReady导入不对称，增减不作可靠因果结论；[历史勘误](docs/current-state/r126/COST-ERRATUM.md)保原raw。用户全ready入口不改，不新增首访准备等待。完整到达仍有继承主阶/主台接触，**不称全线零穿**。冻结/上传/Pages状态由最终manifest与root读回说明。
-
-## 历史阶段记录（各段“最新/下个major”仅指当时状态）
 
 > **R125 承乾后配与后院通路开发版（部分完成）**：新增两座朝院三间后配及真实短阶/低台，旧主后殿/前配/西门/月台与储秀累计frame不动。三次位置原型保留真实失败，最终保普通身体/步高通行；未知耳房/井亭不造，R126木屏门/后殿剩余到达留后。见[R125范围](docs/current-state/r125/README.md)。
 >
@@ -31,7 +33,7 @@
 ![Three.js](https://img.shields.io/badge/Three.js-r162-blue)
 ![Vite](https://img.shields.io/badge/Vite-5-purple)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Status](https://img.shields.io/badge/development-R126-brightgreen)
+![Status](https://img.shields.io/badge/development-R128-brightgreen)
 ![Validation](https://img.shields.io/badge/validation-see_release_records-blue)
 
 ## 历史记录：R115 第二批宫殿成组累计大版本候选
