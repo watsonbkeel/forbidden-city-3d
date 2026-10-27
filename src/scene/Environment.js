@@ -122,6 +122,7 @@ export class Environment {
     const ground = new THREE.Mesh(groundGeometry, groundMaterial);
     ground.rotation.x = -Math.PI / 2;
     ground.position.y = 0;
+    ground.userData.environmentGroundSource = true;
     ground.receiveShadow = true;
     this.addObject(ground);
     if (moat) this.addObject(buildOuterMoat(this.library, moat));

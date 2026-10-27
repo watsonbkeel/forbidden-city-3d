@@ -1,3 +1,5 @@
+import {registerQianqingFoldedLeaves} from './palace/QianqingAssemblyPhysics.js';
+import {installQianqingTerraceBurners} from './palace/QianqingTerraceBurners.js';
 import {createBaoheEastFirewallProfile,buildBaoheEastFirewall} from './palace/BaoheEastFirewall.js';
 import {baoheEastTerraceProfile} from './palace/BaoheEastTerrace.js';
 import { buildBaoheDaisApproach, registerBaoheDaisFurnishingSolids } from './palace/BaoheDaisApproach.js';
@@ -543,7 +545,7 @@ export class PalaceBuilder {
     const finished = this.finish(g);
     if (coarse) installInnerGlazeLOD(finished, coarse);
     if (baoheNorth) installBaoheNorthDetail(finished, baoheNorth);
-    if (name === '后三宫') { installJiaotaiLandmarks(this, finished); installJiaotaiCentral(this, finished); installQianqingCentral(this, finished); installQianqingDisplay(this, finished); installQianqingCeiling(this, finished); }
+    if (name === '后三宫') { installJiaotaiLandmarks(this, finished); installJiaotaiCentral(this, finished); installQianqingCentral(this, finished); installQianqingDisplay(this, finished); installQianqingCeiling(this, finished); installQianqingTerraceBurners(this, finished); }
   }
 
   /**
@@ -821,15 +823,19 @@ export class PalaceBuilder {
             buildBaoheFrontDoors(this,g,{xc,zf,y,height:doorH,bayWidth:facadeBayW,columnRadius:r});
             continue;
           }
-          // 敞开的门：两扇隔扇折向两侧
-          for (const side of [-1, 1]) {
+          const qianqingLeaves=[];
+          // Qianqing photograph establishes four leaves per central bay;
+          // retain the playable folded pose rather than the museum closed state.
+          for (const side of [-1, 1]) for(const fold of (qianqingDepth&&s===-1?[0,1]:[0])) {
             const leaf = data.name === '乾清宫' && s === -1
               ? qianqingFrontBox(this,g,{kind:'leaf',bay:i,w:facadeBayW*.25,h:doorH,d:.12,
-                x:xc+side*(facadeBayW/2-r-.1),y:y+doorH/2,z:zf-s*(facadeBayW*.13+.2)})
+                x:xc+side*(facadeBayW/2-r-.1+fold*.14),y:y+doorH/2,z:zf-s*(facadeBayW*.13+.2)+fold*.2})
               : this.libBox(g, 'lattice_doors', facadeBayW * 0.25, doorH, 0.12,
                 xc + side * (facadeBayW / 2 - r - 0.1), y + doorH / 2, zf - s * (facadeBayW * 0.13 + 0.2), 'band');
             leaf.rotation.y = Math.PI / 2;
+            if(qianqingDepth&&s===-1){qianqingLeaves.push(leaf);leaf.userData.qianqingFold={side,fold,pose:"PLAYABLE_FOLDED_ENGINEERING_FIT",leafCountPerBay:4};}
           }
+          if(qianqingLeaves.length)registerQianqingFoldedLeaves(this,qianqingLeaves,i);
           continue;
         }
         if (baoheColumns && s === -1) buildBaoheClosedFront(this,g,{bay:i,xc,zf,y,height:doorH,width:facadeBayW-2*r});

@@ -1,3 +1,7 @@
+import {buildChengqianCourtyardGroup,bindChengqianTerraceDomain,chengqianWingHardGable} from '../palace/special/ChengqianCourtyardGroup.js';
+import {applyLijingWestRoom} from '../palace/special/LijingWestRoom.js';
+import {registerChuxiuSideAccess} from '../../controls/ChuxiuSideAccess.js';
+import {registerStairInterfaces} from '../../controls/StairInterfaces.js';
 import {buildXiqingGate,xiqingWallGaps} from '../palace/special/XiqingGate.js';
 import {applyChengqianRearSouthWindows} from '../palace/special/ChengqianSouthWindows.js';
 import {buildHongdeCourt} from '../palace/special/HongdeCourt.js';
@@ -127,7 +131,11 @@ export class ZoneBase {
     if (this.zoneJson.zhaorenProfile !== undefined) buildZhaorenCourt(this.kit,this.zoneJson);
     if (this.zoneJson.yangxinEntranceProfile !== undefined) buildYangxinCourtEntrance(this.kit,this.zoneJson);
 
+    buildChengqianCourtyardGroup(this.kit,this.zoneJson);
     buildNightBeds(this.kit,this.zoneJson);
+    registerStairInterfaces(this.kit,this.zoneJson);
+    bindChengqianTerraceDomain(this.kit,this.zoneJson);
+    registerChuxiuSideAccess(this.kit,this.zoneJson);
 
     // Keep distance levels out of the ordinary recursive material merge.
     const yanxiFrames = detachYanxiRuinFrames(this.kit.root);
@@ -147,6 +155,15 @@ export class ZoneBase {
       regions: [...this.kit.regions],
       silhouette,
     };
+  }
+
+  /** Cache admission only: mergeByMaterial already disposed these source
+   * geometries and moved noMerge/LOD objects into the finished group. Drop
+   * obsolete construction references; never dispose live merged resources. */
+  releaseConstructionReferences() {
+    if (!this.group || this.group === this.kit.root) throw new Error('Zone is not finished');
+    this.kit.root.clear();
+    this.kit.plaques.length = 0;
   }
 
   update(dt) {
@@ -197,6 +214,7 @@ export class ZoneBase {
     if(this.zoneJson.id==='west-six'&&[24,47].includes(itemIndex)){
       built.f.updateWorldMatrix(true,true);
       if(!applyWestRearSouthWindows(this.kit,built.f,item,itemIndex))throw Error('West rear south window profile failed closed');
+      applyLijingWestRoom(this.kit,this.zoneJson.id,itemIndex,item,built);
     }
     if(this.zoneJson.id==='east-six'&&itemIndex===3){
       built.f.updateWorldMatrix(true,false);
@@ -284,7 +302,7 @@ export class ZoneBase {
     };
     // 过滤 undefined 参数，让 kit 方法使用默认值
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
-    if(rearProfile)params.hardGableEnd=true;
+    if(rearProfile||chengqianWingHardGable(this.zoneJson.id,this.zoneJson.items.indexOf(item),item))params.hardGableEnd=true;
     const result=item.furnishingPolicy===undefined ? this.kit.hall(params) : this.kit.nansansuoUnknownHall(params,{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     if(rearProfile){
       result.f.userData.rearHall=rearProfile;

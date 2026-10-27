@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "stage": "R108",
+  "kind": "stability-validation-no-runtime-change",
+  "runtimeRemote": "92945ab539af7989ffeaa3d9c253570182917907",
+  "release": "R105",
+  "requirements": [
+    {
+      "id": "R108-COLD-001",
+      "status": "SCOPED_CPU_VALIDATED",
+      "result": "five fresh pairs retained; actual submission measured; no R108 speedup claim"
+    },
+    {
+      "id": "R108-TRANSITION-002",
+      "status": "SCOPED_CPU_VALIDATED_WITH_INHERITED_LIMITATION",
+      "result": "9588 frames actual cache/map/hidden/quality/daynight/occupancy; asynchronous scene rebinding may temporarily hide models"
+    },
+    {
+      "id": "R108-FLIGHT-003",
+      "status": "CONTROLLED_VIEW_ONLY",
+      "result": "aircraft XZ/view-to-ground tested; actual controller dismount path NOT_RUN"
+    },
+    {
+      "id": "R108-DEVICE-004",
+      "status": "NOT_RUN",
+      "result": "GPU/mobile/real Node20 unavailable"
+    }
+  ]
+}

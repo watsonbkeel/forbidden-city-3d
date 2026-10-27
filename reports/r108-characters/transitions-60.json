@@ -1,0 +1,600 @@
+{
+  "fps": 60,
+  "frames": 3327,
+  "scope": "actual full CPU world/production map/cache; boundary positions and aircraft view are explicit TELEPORT_SETUP/synthetic pressure, not continuous walking or actual flight-controller descent; no GPU/device timing claim",
+  "first": {
+    "chuxiu-maid-01": 66,
+    "chuxiu-consort-01": 111,
+    "chuxiu-eunuch-01": 601,
+    "chuxiu-maid-02": 601,
+    "chengqian-eunuch-01": 748,
+    "chengqian-consort-01": 751
+  },
+  "boundary": [
+    {
+      "distance": 39,
+      "display": true,
+      "resident": true,
+      "actual": true
+    },
+    {
+      "distance": 42,
+      "display": true,
+      "resident": true,
+      "actual": true
+    },
+    {
+      "distance": 46,
+      "display": false,
+      "resident": true,
+      "actual": false
+    },
+    {
+      "distance": 59,
+      "display": false,
+      "resident": true,
+      "actual": false
+    },
+    {
+      "distance": 65,
+      "display": false,
+      "resident": true,
+      "actual": false
+    },
+    {
+      "distance": 71,
+      "display": false,
+      "resident": false,
+      "actual": false
+    },
+    {
+      "distance": 59,
+      "display": false,
+      "resident": true,
+      "actual": false
+    },
+    {
+      "distance": 39,
+      "display": true,
+      "resident": true,
+      "actual": true
+    }
+  ],
+  "phases": [
+    {
+      "name": "cold-low",
+      "frame": 600,
+      "mode": "ground",
+      "quality": "low",
+      "minutes": 768,
+      "actual": [
+        "chuxiu-maid-01",
+        "chuxiu-consort-01"
+      ],
+      "status": {
+        "registered": 108,
+        "loaded": 23,
+        "visible": 2,
+        "near": 0,
+        "renderCopies": 2,
+        "pending": 85,
+        "errors": 0,
+        "batches": 2,
+        "trianglesEstimate": 2782,
+        "resident": 8,
+        "residentModels": 8,
+        "modelPending": 0,
+        "preparedResources": 6,
+        "residentBatches": 4,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 23,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "pool": {
+        "entries": 6,
+        "geometries": 6,
+        "references": 4,
+        "geometryBytes": 205068,
+        "textureBytes": 0
+      },
+      "loaded": [
+        "west-six",
+        "outer-west",
+        "garden"
+      ],
+      "inactive": []
+    },
+    {
+      "name": "fixed-registered-world-actual-logical-boundary-latches",
+      "frame": 608,
+      "mode": "ground",
+      "quality": "low",
+      "minutes": 768,
+      "actual": [
+        "chuxiu-eunuch-01",
+        "chuxiu-consort-01",
+        "chuxiu-maid-01"
+      ],
+      "status": {
+        "registered": 108,
+        "loaded": 28,
+        "visible": 3,
+        "near": 0,
+        "renderCopies": 3,
+        "pending": 80,
+        "errors": 0,
+        "batches": 3,
+        "trianglesEstimate": 3178,
+        "resident": 4,
+        "residentModels": 4,
+        "modelPending": 1,
+        "preparedResources": 6,
+        "residentBatches": 3,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 27,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "pool": {
+        "entries": 6,
+        "geometries": 6,
+        "references": 3,
+        "geometryBytes": 205068,
+        "textureBytes": 0
+      },
+      "loaded": [
+        "west-six",
+        "outer-west",
+        "garden"
+      ],
+      "inactive": []
+    },
+    {
+      "name": "production-map-cached-return",
+      "frame": 1148,
+      "mode": "ground",
+      "quality": "low",
+      "minutes": 768,
+      "actual": [
+        "chuxiu-maid-02",
+        "chuxiu-maid-01"
+      ],
+      "status": {
+        "registered": 108,
+        "loaded": 4,
+        "visible": 2,
+        "near": 0,
+        "renderCopies": 2,
+        "pending": 104,
+        "errors": 0,
+        "batches": 2,
+        "trianglesEstimate": 1758,
+        "resident": 3,
+        "residentModels": 3,
+        "modelPending": 1,
+        "preparedResources": 7,
+        "residentBatches": 2,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 4,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "pool": {
+        "entries": 7,
+        "geometries": 7,
+        "references": 2,
+        "geometryBytes": 224484,
+        "textureBytes": 0
+      },
+      "loaded": [
+        "garden",
+        "west-six",
+        "outer-west"
+      ],
+      "inactive": [
+        "east-six"
+      ]
+    },
+    {
+      "name": "hidden-toggle-restored",
+      "frame": 1528,
+      "mode": "ground",
+      "quality": "low",
+      "minutes": 768,
+      "actual": [
+        "chuxiu-maid-01",
+        "chuxiu-consort-01"
+      ],
+      "status": {
+        "registered": 108,
+        "loaded": 21,
+        "visible": 2,
+        "near": 0,
+        "renderCopies": 2,
+        "pending": 87,
+        "errors": 0,
+        "batches": 2,
+        "trianglesEstimate": 2782,
+        "resident": 9,
+        "residentModels": 9,
+        "modelPending": 0,
+        "preparedResources": 8,
+        "residentBatches": 2,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 21,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "pool": {
+        "entries": 8,
+        "geometries": 8,
+        "references": 2,
+        "geometryBytes": 284256,
+        "textureBytes": 0
+      },
+      "loaded": [
+        "garden",
+        "west-six",
+        "outer-west"
+      ],
+      "inactive": [
+        "east-six"
+      ]
+    },
+    {
+      "name": "quality-high-low",
+      "frame": 1768,
+      "mode": "ground",
+      "quality": "low",
+      "minutes": 768,
+      "actual": [
+        "chuxiu-maid-01",
+        "chuxiu-consort-01"
+      ],
+      "status": {
+        "registered": 108,
+        "loaded": 49,
+        "visible": 2,
+        "near": 0,
+        "renderCopies": 2,
+        "pending": 59,
+        "errors": 0,
+        "batches": 2,
+        "trianglesEstimate": 2782,
+        "resident": 9,
+        "residentModels": 9,
+        "modelPending": 0,
+        "preparedResources": 8,
+        "residentBatches": 2,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 45,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "pool": {
+        "entries": 8,
+        "geometries": 8,
+        "references": 2,
+        "geometryBytes": 284256,
+        "textureBytes": 0
+      },
+      "loaded": [
+        "garden",
+        "west-six",
+        "outer-west"
+      ],
+      "inactive": []
+    },
+    {
+      "name": "synthetic-aircraft-24mps-100m",
+      "frame": 2248,
+      "mode": "flight",
+      "quality": "low",
+      "minutes": 768,
+      "actual": [],
+      "status": {
+        "registered": 108,
+        "loaded": 15,
+        "visible": 0,
+        "near": 0,
+        "renderCopies": 0,
+        "pending": 93,
+        "errors": 0,
+        "batches": 0,
+        "trianglesEstimate": 0,
+        "resident": 15,
+        "residentModels": 15,
+        "modelPending": 0,
+        "preparedResources": 10,
+        "residentBatches": 0,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 15,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "pool": {
+        "entries": 10,
+        "geometries": 10,
+        "references": 0,
+        "geometryBytes": 322416,
+        "textureBytes": 0
+      },
+      "loaded": [
+        "garden",
+        "west-six",
+        "axis-courts",
+        "east-six"
+      ],
+      "inactive": []
+    },
+    {
+      "name": "synthetic-flight-to-real-teleport-ground",
+      "frame": 2549,
+      "mode": "ground",
+      "quality": "low",
+      "minutes": 768,
+      "actual": [
+        "chuxiu-maid-02",
+        "chuxiu-maid-01",
+        "chuxiu-consort-01"
+      ],
+      "status": {
+        "registered": 108,
+        "loaded": 20,
+        "visible": 3,
+        "near": 0,
+        "renderCopies": 3,
+        "pending": 88,
+        "errors": 0,
+        "batches": 3,
+        "trianglesEstimate": 4074,
+        "resident": 9,
+        "residentModels": 9,
+        "modelPending": 0,
+        "preparedResources": 10,
+        "residentBatches": 3,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 20,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "pool": {
+        "entries": 10,
+        "geometries": 10,
+        "references": 3,
+        "geometryBytes": 322416,
+        "textureBytes": 0
+      },
+      "loaded": [
+        "garden",
+        "west-six",
+        "outer-west"
+      ],
+      "inactive": [
+        "east-six"
+      ]
+    },
+    {
+      "name": "night",
+      "frame": 2729,
+      "mode": "ground",
+      "quality": "low",
+      "minutes": 1380,
+      "actual": [
+        "chuxiu-maid-02",
+        "chuxiu-maid-01",
+        "chuxiu-consort-01"
+      ],
+      "status": {
+        "registered": 108,
+        "loaded": 20,
+        "visible": 3,
+        "near": 0,
+        "renderCopies": 3,
+        "pending": 88,
+        "errors": 0,
+        "batches": 2,
+        "trianglesEstimate": 3050,
+        "resident": 9,
+        "residentModels": 9,
+        "modelPending": 1,
+        "preparedResources": 10,
+        "residentBatches": 2,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 20,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "pool": {
+        "entries": 10,
+        "geometries": 10,
+        "references": 2,
+        "geometryBytes": 322416,
+        "textureBytes": 0
+      },
+      "loaded": [
+        "garden",
+        "west-six",
+        "outer-west"
+      ],
+      "inactive": [
+        "east-six"
+      ]
+    },
+    {
+      "name": "day-restored",
+      "frame": 2909,
+      "mode": "ground",
+      "quality": "low",
+      "minutes": 768,
+      "actual": [
+        "chuxiu-maid-02",
+        "chuxiu-maid-01",
+        "chuxiu-consort-01"
+      ],
+      "status": {
+        "registered": 108,
+        "loaded": 24,
+        "visible": 3,
+        "near": 0,
+        "renderCopies": 3,
+        "pending": 84,
+        "errors": 0,
+        "batches": 3,
+        "trianglesEstimate": 4074,
+        "resident": 9,
+        "residentModels": 9,
+        "modelPending": 0,
+        "preparedResources": 11,
+        "residentBatches": 4,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 24,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "pool": {
+        "entries": 11,
+        "geometries": 11,
+        "references": 4,
+        "geometryBytes": 390576,
+        "textureBytes": 0
+      },
+      "loaded": [
+        "garden",
+        "west-six",
+        "outer-west"
+      ],
+      "inactive": [
+        "east-six"
+      ]
+    },
+    {
+      "name": "cold-occupied-release",
+      "frame": 3327,
+      "mode": "ground",
+      "quality": "low",
+      "minutes": 768,
+      "actual": [
+        "chuxiu-maid-01",
+        "chuxiu-consort-01"
+      ],
+      "status": {
+        "registered": 108,
+        "loaded": 22,
+        "visible": 2,
+        "near": 0,
+        "renderCopies": 2,
+        "pending": 86,
+        "errors": 0,
+        "batches": 2,
+        "trianglesEstimate": 1800,
+        "resident": 8,
+        "residentModels": 8,
+        "modelPending": 1,
+        "preparedResources": 5,
+        "residentBatches": 4,
+        "rollout": "candidate-visible",
+        "enabled": true,
+        "contentEnabled": true,
+        "daylight": 1,
+        "lastError": null,
+        "interaction": {
+          "bodies": 22,
+          "blockedGroups": 0,
+          "retreatingGroups": 0,
+          "activationWaiting": 0
+        }
+      },
+      "pool": {
+        "entries": 5,
+        "geometries": 5,
+        "references": 4,
+        "geometryBytes": 135348,
+        "textureBytes": 0
+      },
+      "loaded": [
+        "garden",
+        "west-six",
+        "outer-west"
+      ],
+      "inactive": [
+        "east-six"
+      ]
+    }
+  ],
+  "missingAcquire": 0,
+  "occupiedModelHeldFrames": 300,
+  "occupiedReleaseShown": true,
+  "source": "R108 cumulative actual world with R107 cache opt-in",
+  "status": "PASS",
+  "final": {
+    "sceneChildren": 0,
+    "cacheBytes": 0,
+    "characterPool": 0,
+    "dynamicBodies": 0
+  }
+}

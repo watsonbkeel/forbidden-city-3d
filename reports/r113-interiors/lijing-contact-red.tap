@@ -1,0 +1,27 @@
+✖ R113 Lijing local body uses only its live existing floor and allows clear paired openings (623.048352ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 877.585158
+
+✖ failing tests:
+
+test at tests/r113/lijing-contact.test.mjs:3:1
+✖ R113 Lijing local body uses only its live existing floor and allows clear paired openings (623.048352ms)
+  AssertionError [ERR_ASSERTION]: missing distinct room scope
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r113-chuxiu-courtyard-interior/tests/r113/lijing-contact.test.mjs:3:360)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

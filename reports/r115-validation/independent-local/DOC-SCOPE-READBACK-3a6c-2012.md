@@ -1,0 +1,13 @@
+# R115 independent whole-scope / major-release wording review
+
+2026-10-26 20:12 UTC; source documentation HEAD **3a6c86a332394463914db947ae7ed98b68b93375**. **PASS for scoped documentation, not final release acceptance.** Read-only product review, no repeated geometry, physics, nightly, shared, full-suite, performance or build execution.
+
+Read the final candidate MAJOR/requirements/VALIDATION, root/public llms and inherited whole-group ledgers. The first checkpoint's stale R110 build identity, prematurely complete release stage, old R113/R114 “not started” wording and R96/R95 llms version line were reported and corrected in 3a6c. Requirements now distinguish the original whole-group goals from actual limited implementation, rather than replacing the former with the latter; R111–115 roadmap states are explicit. MAJOR also explicitly retains the sourced-but-unimplemented Jiaotai screen/ceiling/interior color-layer and Qianqing central-composition refinements, not just unknown inscriptions or side rooms.
+
+The denominator remains: R111 five unfinished rock/support groups; R112 two buildings each E1–E8/I1–I6; R113 front/rear halls, both front wings, corridor, both rear wings and both Lijing ears plus documented court/historical components; R114 eleven listed objects each fourteen categories, including unbound rear wings, ears and well pavilion. No completion percentage is inferred. R113's documented demolished gate and absent well pavilion are not manufactured anew. Prior implementations are not recounted as new work.
+
+These WHOLE-* documents are explicitly preimplementation research snapshots. Their old coordinates and “proposed/not run” statuses must remain contextual, not presented as final geometry or erased to simulate completion. Current actual delivery and fit decisions are in the later per-version VALIDATION and cumulative MAJOR: R111 rejected; R112–114 partial. The accepted R114 southern dead-end accessible-area loss and inherited low wood threshold remain conspicuous; cost increases and GPU/mobile/real Node20 exclusions remain explicit.
+
+All 32 requirement IDs are unique. All referenced evidence paths resolve in Git HEAD; 14 currently unexpanded sparse-checkout references are not missing repository evidence. Root and public llms are byte-identical. Exact hashes and check counts are in the JSON sidecar.
+
+Final 184/current-state comparison, three-base build identity, HTTP/artifact/package validation, final docs/runtime binding and remote authorization/readback remain integrator gates. Nothing in this scope review makes those pending gates pass or constitutes an unconditional deployment recommendation.

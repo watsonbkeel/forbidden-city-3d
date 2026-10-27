@@ -1,0 +1,45 @@
+[ZoneManager] 加载区域 west-six（west-six），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+✔ unloaded affected prebuilds invalidate once; loaded/shared/other state survives and queued builds use latest policy (3.683018ms)
+✔ main initial and hot quality use explicit building policy; menu tells loaded geometry reload boundary (0.940852ms)
+✔ bounded cache transfer, LRU, expiry and owner disposal are exact and idempotent (3.19804ms)
+✔ oversize, source/quality changes, pending pins reject without hidden overbudget retention (0.322975ms)
+✔ resource accounting includes owned RGBA+mips, deduplicates shared resources, rejects unknown texture dimensions (1.718409ms)
+✔ unknown or non-RGBA8 owned GPU storage is not silently undercounted (1.450377ms)
+✔ admission uses actual last-use age, not incidental same-frame unload iteration order (0.363125ms)
+✔ rejected admission does not partially evict useful older retained owners (0.341543ms)
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 0 个 region, 3 个 mapItem
+[ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+[ZoneManager] 进入区域: west-six
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 加载区域 west-six（west-six），耗时 0.0ms
+[ZoneManager] 进入区域: east-six
+[ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 0 个 region, 3 个 mapItem
+[ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+[ZoneManager] 进入区域: west-six
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 加载区域 west-six（west-six），耗时 0.0ms
+[ZoneManager] 进入区域: east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 east-six（east-six），耗时 0.1ms
+[ZoneManager] 进入区域: west-six
+[ZoneManager] 加载区域 west-six（west-six），耗时 0.0ms
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+✔ normal update-driven current-zone return claims cached destination before old zone admission, even one-entry budget (5.542809ms)
+✔ east-six cached quality invalidates, loaded remains until exit; unrelated cache survives; final dispose once (1.578939ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 269.736925

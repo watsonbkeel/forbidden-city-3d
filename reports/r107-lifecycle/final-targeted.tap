@@ -1,0 +1,61 @@
+[ZoneManager] 加载区域 west-six（west-six），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（east-six），耗时 0.1ms
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+✔ unloaded affected prebuilds invalidate once; loaded/shared/other state survives and queued builds use latest policy (2.920443ms)
+✔ main initial and hot quality use explicit building policy; menu tells loaded geometry reload boundary (0.672009ms)
+✔ cache-only completed ZoneBase construction references can be dropped without disposal or changing live merged data (1437.089668ms)
+✔ bounded cache transfer, LRU, expiry and owner disposal are exact and idempotent (2.800774ms)
+✔ oversize, source/quality changes, pending pins reject without hidden overbudget retention (0.461493ms)
+✔ resource accounting includes owned RGBA+mips, deduplicates shared resources, rejects unknown texture dimensions (1.97157ms)
+✔ unknown or non-RGBA8 owned GPU storage is not silently undercounted (0.65955ms)
+✔ admission uses actual last-use age, not incidental same-frame unload iteration order (0.382374ms)
+✔ rejected admission does not partially evict useful older retained owners (0.345108ms)
+✔ budget includes retained construction roots, plaque references and non-rendered owned material maps (0.765649ms)
+✔ CPU backing allocation is counted once in full even for shared subarray attributes (0.341152ms)
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 0 个 region, 3 个 mapItem
+[ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+[ZoneManager] 进入区域: west-six
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 加载区域 west-six（west-six），耗时 0.0ms
+[ZoneManager] 进入区域: east-six
+[ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 0 个 region, 3 个 mapItem
+[ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+[ZoneManager] 进入区域: west-six
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 加载区域 west-six（west-six），耗时 0.0ms
+[ZoneManager] 进入区域: east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 east-six（east-six），耗时 0.1ms
+[ZoneManager] 进入区域: west-six
+[ZoneManager] 加载区域 west-six（west-six），耗时 0.0ms
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 0 个 region, 3 个 mapItem
+[ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+[ZoneManager] 加载区域 garden（garden），耗时 0.0ms
+[ZoneManager] 进入区域: west-six
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 garden
+[ZoneManager] 加载区域 west-six（west-six），耗时 0.0ms
+[ZoneManager] 进入区域: east-six
+[ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 east-six
+✔ normal update-driven current-zone return claims cached destination before old zone admission, even one-entry budget (8.086297ms)
+✔ east-six cached quality invalidates, loaded remains until exit; unrelated cache survives; final dispose once (1.726401ms)
+✔ later background preloading must not evict the actually visited zone before its first return (1.275535ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1711.844346

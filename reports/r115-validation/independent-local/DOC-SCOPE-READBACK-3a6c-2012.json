@@ -1,0 +1,37 @@
+{
+  "reviewedAt": "2026-10-26T20:13:02.971019+00:00",
+  "head": "3a6c86a332394463914db947ae7ed98b68b93375",
+  "disposition": "PASS_SCOPED_DOCUMENTATION_NOT_RELEASE_ACCEPTANCE",
+  "requirementsCount": 32,
+  "duplicateIds": 0,
+  "evidenceReferenceCount": 58,
+  "missingGitEvidence": [],
+  "sparseNotExpandedCount": 14,
+  "rootPublicLlmsByteIdentical": true,
+  "sha256": {
+    "docs/current-state/r115/MAJOR-RELEASE.md": "26274c52595d007040242ea7f6841652c1b7e3b0cc527e2a052e33abe5c48a76",
+    "docs/current-state/r115/requirements.json": "93013eb816c751367b5cd49465d305902c13dda1f6602b4e9e17dfc4d6afd56c",
+    "docs/current-state/r115/VALIDATION.md": "9e99c21ed37d639ac31b0c13eacf9cebd0dc6d5abfba06233571222b5469117e",
+    "llms.txt": "d06a9d3298c5bf713f676701cb76b6d71bbba71b2d2f4a1fb89572e1b300e94c",
+    "public/llms.txt": "d06a9d3298c5bf713f676701cb76b6d71bbba71b2d2f4a1fb89572e1b300e94c",
+    "docs/current-state/r111/EXPERIMENT-RESULT.md": "8cb93739b9e5de2498acc7aea29fdb869d91caf6821d7b9999e308d2905a3900",
+    "docs/current-state/r112/WHOLE-BUILDING-READONLY-LEDGER.md": "0b76d85305a9b37199cf3d473a4360d4c180cece28aa0b6ebffd533b70b59b86",
+    "docs/current-state/r113/WHOLE-COMPOUND-LEDGER.md": "316ef3f9d30c02b990c2205d804069a7b270e5dcf33210dc430a931457de8e41",
+    "docs/current-state/r114/WHOLE-GROUP-READONLY-LEDGER.md": "eb0aa7233290a963affc9dc997ea6627cd545407e2055dc0cf4bae960b518490"
+  },
+  "resolvedFindings": [
+    "R110 build metadata no longer presented as R115 build",
+    "Release stage correctly pending while validation runs",
+    "R111-R114 requirement fields retain requested whole-group goals separately from actual partial implementation",
+    "R111-R115 roadmap and remaining scopes reflect rejected/partial/in-progress states",
+    "MAJOR explicitly retains sourced-but-unimplemented Qianqing/Jiaotai refinements, not only unknown text/rooms",
+    "llms iteration identity corrected from R96/R95 to candidate R115/main R105"
+  ],
+  "limits": [
+    "Read-only textual/source-reference review; no product writes or new CPU matrix",
+    "All original whole-group ledgers are preimplementation research snapshots; current delivery dispositions are in final local VALIDATION and MAJOR, not retroactively relabeled complete",
+    "No percentage completion inferred from E/I categories or object counts",
+    "Final cumulative/full/build/artifact/remote acceptance remains separate with integrator",
+    "Target GPU/mobile/real Node20 NOT_RUN"
+  ]
+}

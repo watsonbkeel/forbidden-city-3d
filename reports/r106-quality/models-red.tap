@@ -1,0 +1,213 @@
+✖ front low reduces real geometry while high and physical contracts stay exact (126.666317ms)
+✖ rear low reduces real geometry while high and physical contracts stay exact (40.773892ms)
+✖ gate low reduces real geometry while high and physical contracts stay exact (114.457059ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 0
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 522.948017
+
+✖ failing tests:
+
+test at tests/r106-model-quality.test.mjs:7:47
+✖ front low reduces real geometry while high and physical contracts stay exact (126.666317ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      bytes: 1159928,
+      hash: '00573d50311a995b2c9c8a9ad1d57526fb744f4ec2a6988b0c450dc5680f6993',
+      map: [
+        {
+  ...
+      triangles: 12480,
+  +   walkable: [
+  +     {
+  +       box: Box3 {
+  +         isBox3: true,
+  +         max: Vector3 {
+  +           x: -78.94999999999999,
+  +           y: 0.6,
+  +           z: 389.85
+  +         },
+  +         min: Vector3 {
+  +           x: -108.25,
+  +           y: 0.6,
+  +           z: 373.75
+  +         }
+  +       },
+  +       type: 'box'
+  +     },
+  +     {
+  +       a0: 373.75,
+  +       a1: 372.79,
+  +       axis: 'z',
+  +       maxX: -91.3,
+  +       maxZ: 373.75,
+  +       minX: -95.89999999999999,
+  +       minZ: 372.79,
+  +       type: 'ramp',
+  +       y0: 0.6,
+  +       y1: 0
+  +     }
+  +   ]
+  -   walkable: []
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r106-building-detail-quality/tests/r106-model-quality.test.mjs:7:276)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: {
+      triangles: 12480,
+      bytes: 1159928,
+      hash: '00573d50311a995b2c9c8a9ad1d57526fb744f4ec2a6988b0c450dc5680f6993',
+      physical: [
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object]
+      ],
+      walkable: [],
+      map: [ [Object] ],
+      rooms: [ [Object] ]
+    },
+    expected: {
+      triangles: 12480,
+      bytes: 1159928,
+      hash: '00573d50311a995b2c9c8a9ad1d57526fb744f4ec2a6988b0c450dc5680f6993',
+      physical: [
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object]
+      ],
+      walkable: [],
+      map: [ [Object] ],
+      rooms: [ [Object] ]
+    },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r106-model-quality.test.mjs:7:47
+✖ rear low reduces real geometry while high and physical contracts stay exact (40.773892ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      bytes: 298456,
+      hash: 'c9f1509d18c315e723229414c56e4a5f55f02b9ab6f74779895e4f69fa824953',
+      map: [
+        {
+          d: 10.799999999999999,
+          kind: 'hall',
+  +       name: undefined,
+          w: 25.2,
+          x: -93,
+          z: 403.9
+        }
+      ],
+  ...
+      triangles: 3424,
+  +   walkable: [
+  +     {
+  +       box: Box3 {
+  +         isBox3: true,
+  +         max: Vector3 {
+  +           x: -80.4,
+  +           y: 0.45,
+  +           z: 409.29999999999995
+  +         },
+  +         min: Vector3 {
+  +           x: -105.6,
+  +           y: 0.45,
+  +           z: 398.5
+  +         }
+  +       },
+  +       type: 'box'
+  +     }
+  +   ]
+  -   walkable: []
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r106-building-detail-quality/tests/r106-model-quality.test.mjs:7:276)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: {
+      triangles: 3424,
+      bytes: 298456,
+      hash: 'c9f1509d18c315e723229414c56e4a5f55f02b9ab6f74779895e4f69fa824953',
+      physical: [
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object]
+      ],
+      walkable: [],
+      map: [ [Object] ],
+      rooms: [ [Object] ]
+    },
+    expected: {
+      triangles: 3424,
+      bytes: 298456,
+      hash: 'c9f1509d18c315e723229414c56e4a5f55f02b9ab6f74779895e4f69fa824953',
+      physical: [
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object], [Object], [Object],
+        [Object]
+      ],
+      walkable: [],
+      map: [ [Object] ],
+      rooms: [ [Object] ]
+    },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r106-model-quality.test.mjs:7:47
+✖ gate low reduces real geometry while high and physical contracts stay exact (114.457059ms)
+  AssertionError [ERR_ASSERTION]: 3998 / 3998
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r106-building-detail-quality/tests/r106-model-quality.test.mjs:7:303)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

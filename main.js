@@ -1,3 +1,4 @@
+import {setBuildingDetailQuality} from './src/render/BuildingDetailQuality.js';
 import {RoomNightLights} from './src/scene/sky/RoomNightLights.js';
 import * as THREE from 'three';
 import { Environment } from './src/scene/Environment.js';
@@ -107,6 +108,7 @@ class ForbiddenCityApp {
           quality: this.isMobile ? 'sd' : 'hd',
           anisotropy: Math.min(maxAniso, this.isMobile ? 2 : 8),
         });
+        setBuildingDetailQuality(this.library, quality);
         const stepIndex = steps.findIndex(([name]) => name === '材质贴图');
         await this.library.load((done, total) => {
           const progress = ((stepIndex + done / Math.max(total, 1)) / steps.length) * 100;
@@ -136,7 +138,7 @@ class ForbiddenCityApp {
       ['东西六宫与两路宫殿', () => {
         // 碰撞管理器先建：ZoneManager 加载区时要往里注册带 tag 的碰撞体
         this.collisionManager = new CollisionManager();
-        this.zoneManager = new ZoneManager();
+        this.zoneManager = new ZoneManager({reuseInactive:true});
         this.zoneManager.onLoad = (_id, group) => group.traverse(o => { if (o.isMesh) this.shadowObjects.push(o); });
         this.zoneManager.onUnload = (_id, group) => {
           const gone = new Set();
@@ -457,6 +459,7 @@ class ForbiddenCityApp {
     // No-argument calls still toggle for keyboard/testing callers.
     if (quality !== 'high' && quality !== 'low') throw new Error(`Unsupported quality: ${quality}`);
     this.currentQuality = quality;
+    if (this.library && setBuildingDetailQuality(this.library, quality)) this.zoneManager?.invalidateBuildingDetailPrebuilt();
     
     // 更新渲染设置
     this.renderer.setPixelRatio(this.getPixelRatio(this.currentQuality));

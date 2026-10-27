@@ -1,0 +1,32 @@
+✖ low grilles contain only positive-area triangles and noncollapsed UV after actual Float32 construction (80.168411ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 319.380911
+
+✖ failing tests:
+
+test at tests/r106-low-triangles.test.mjs:2:1
+✖ low grilles contain only positive-area triangles and noncollapsed UV after actual Float32 construction (80.168411ms)
+  AssertionError [ERR_ASSERTION]: r103-chengqian-left-diamond-grille 105
+      at file:///workspace/scratch/02a8023d1a85/r106-building-detail-quality/tests/r106-low-triangles.test.mjs:2:574
+      at Mesh.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7600:3)
+      at Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)
+      at Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)
+      at Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)
+      at Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r106-building-detail-quality/tests/r106-low-triangles.test.mjs:2:181)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

@@ -1,0 +1,49 @@
+✔ near unresolved person precedes peripheral prewarm and visible refinement, not first coarse model (2.17046ms)
+✔ successful near metadata yields before starting another long job, so Promise consumers can queue coarse first (1.405031ms)
+✔ pending metadata does not yield the frame or starve another available job (0.313682ms)
+✔ ready handoff may defer one oldest turn but repays it immediately after urgent coarse (0.535534ms)
+✔ ground distance latches are independent of resource completion and frustum (1.794355ms)
+✔ first interest beyond40 but within60 prewarms without drawing and uses actual position not an anchor (0.212549ms)
+✔ flight uses aircraft XZ rather than altitude or offset camera and has display exit hysteresis (0.255464ms)
+✔ teleport or dismount immediately recomputes interest while preserving caller logical records (0.942406ms)
+✔ streaming status separates logical positions from nearby prepared models and actual visible actors (10.851929ms)
+✔ distant logical bindings resolve without generating any character models (51.16675ms)
+✔ resident key users are complete before cancellation: one leaving user cannot kill another (4.019057ms)
+✔ pose change releases obsolete model interest while retaining only exact new pose and valid detail (3.976879ms)
+✔ camera teleport activates current near models without resetting logical bindings or synchronously acquiring missing geometry (264.88622ms)
+✔ actual Zhonghe sit and stand transitions wait for player occupancy without teleporting or changing identity (11.369123ms)
+✔ emperor Zhonghe variant has actual seat and foot support, no invented floor LOD0 (146.073418ms)
+✔ emperor Zhonghe variant has actual seat and foot support, no invented floor LOD1 (67.861591ms)
+✔ emperor Zhonghe variant has actual seat and foot support, no invented floor LOD2 (39.294181ms)
+✔ Zhonghe adaptation cannot silently modify another role or a standing pose (1.212922ms)
+✔ all actual garment triangles avoid positive-area penetration into original chair arms/back/seat LOD0 (96.317153ms)
+✔ all actual garment triangles avoid positive-area penetration into original chair arms/back/seat LOD1 (45.819793ms)
+✔ all actual garment triangles avoid positive-area penetration into original chair arms/back/seat LOD2 (35.269597ms)
+✔ seated idle animation keeps the new contact-bearing lower garment and shoes fixed (20.179942ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 295 个 region, 224 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+✔ one emperor continuously follows the short actual-world route, sits in Zhonghe and returns at six (8275.660626ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8942.193089

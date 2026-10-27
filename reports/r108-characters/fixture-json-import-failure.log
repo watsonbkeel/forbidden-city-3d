@@ -1,0 +1,19 @@
+node:internal/modules/esm/assert:99
+        throw new ERR_IMPORT_ATTRIBUTE_MISSING(url, 'type', validType);
+              ^
+
+TypeError [ERR_IMPORT_ATTRIBUTE_MISSING]: Module "file:///workspace/scratch/02a8023d1a85/r108-character-transition-validation/data/zones/axis-courts.json" needs an import attribute of "type: json"
+    at validateAttributes (node:internal/modules/esm/assert:99:15)
+    at defaultLoadSync (node:internal/modules/esm/load:163:3)
+    at #loadAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:802:12)
+    at #loadSync (node:internal/modules/esm/loader:834:53)
+    at ModuleLoader.load (node:internal/modules/esm/loader:783:26)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:494:31)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+    at afterResolve (node:internal/modules/esm/loader:607:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:613:12)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33) {
+  code: 'ERR_IMPORT_ATTRIBUTE_MISSING'
+}
+
+Node.js v24.19.0

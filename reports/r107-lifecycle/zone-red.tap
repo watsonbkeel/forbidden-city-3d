@@ -1,0 +1,53 @@
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 0 个 region, 3 个 mapItem
+[ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 0 个 region, 3 个 mapItem
+[ZoneManager] 加载区域 east-six（east-six），耗时 0.0ms
+[ZoneManager] 进入区域: west-six
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 加载区域 west-six（west-six），耗时 0.0ms
+[ZoneManager] 卸载区域 west-six
+✖ normal update-driven current-zone return claims cached destination before old zone admission, even one-entry budget (8.441399ms)
+✖ east-six cached quality invalidates, loaded remains until exit; unrelated cache survives; final dispose once (1.921404ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 243.288483
+
+✖ failing tests:
+
+test at tests/r107-zone-reuse.test.mjs:3:1
+✖ normal update-driven current-zone return claims cached destination before old zone admission, even one-entry budget (8.441399ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(m.inactiveCache)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r107-zone-resource-lifecycle/tests/r107-zone-reuse.test.mjs:3:187)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r107-zone-reuse.test.mjs:4:1
+✖ east-six cached quality invalidates, loaded remains until exit; unrelated cache survives; final dispose once (1.921404ms)
+  TypeError: Cannot read properties of undefined (reading 'entries')
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r107-zone-resource-lifecycle/tests/r107-zone-reuse.test.mjs:4:211)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)

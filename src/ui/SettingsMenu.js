@@ -75,8 +75,9 @@ export class SettingsMenu {
         </div>
         <div class="settings-control">
           <label for="quality-toggle-btn">画质</label>
-          <button id="quality-toggle-btn" type="button">高画质</button>
+          <button id="quality-toggle-btn" type="button" aria-describedby="building-quality-note">高画质</button>
         </div>
+        <p id="building-quality-note" class="settings-notice">织物贴图立即切换；建筑细节在分区重新加载后应用。低档保留主要形制与通路。</p>
         <div class="settings-control">
           <label for="characters-toggle-btn">宫廷人物</label>
           <button id="characters-toggle-btn" type="button" aria-describedby="characters-status characters-acceptance">宫廷人物已开启（候选）</button>

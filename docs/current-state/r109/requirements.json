@@ -1,0 +1,51 @@
+{
+  "stage": "R109 development minor; R110 cumulative gate pending",
+  "baseline": {
+    "local": "4cd064b70f95ef29ebe3ca49e6b771cd20fe05e0",
+    "remote": "fc7211b7ec1d6c5a36e424f7e4010c2f1af53aa3",
+    "release": "R105"
+  },
+  "requirements": [
+    {
+      "id": "R109-STAIR-001",
+      "status": "SCOPED_FUNCTION_PASS",
+      "scope": "Chengqian front and Jingfu rear normal-ground stairs, full-body platform contact",
+      "evidence": [
+        "reports/r109-stairs/contact-red.tap",
+        "reports/r109-stairs/chengqian-2bf.json",
+        "reports/r109-stairs/jingfu-2bf.json",
+        "reports/r109-stairs/independent/REVIEW.md"
+      ]
+    },
+    {
+      "id": "R109-HANDOFF-002",
+      "status": "SCOPED_FUNCTION_PASS",
+      "scope": "source-bound platform-edge dispatch, movement then input release, airborne one-way original ramp support",
+      "evidence": [
+        "reports/r109-stairs/narrow-domain-red.tap",
+        "reports/r109-stairs/airborne-ramp-red.tap",
+        "reports/r109-stairs/targeted-final.tap",
+        "reports/r109-stairs/independent/REVIEW.md"
+      ]
+    },
+    {
+      "id": "R109-PERF-003",
+      "status": "MEASURED_SCOPED_CPU_COST",
+      "scope": "five alternating warm controller pairs, all samples retained; outside4500poses exact",
+      "evidence": [
+        "reports/r109-stairs/motion-cost-final.json",
+        "reports/r109-stairs/motion-cost-summary.json"
+      ]
+    },
+    {
+      "id": "R109-WHOLE-ROUTE-004",
+      "status": "PARTIAL_NOT_EXHAUSTIVE",
+      "scope": "not all garden stairs/rails/furniture or continuous whole-palace tour; inherited pressure failures remain"
+    },
+    {
+      "id": "R109-DEVICE-005",
+      "status": "NOT_RUN",
+      "scope": "GPU/mobile/real-device camera comfort and input handoff; CPU fixtures are not device acceptance"
+    }
+  ]
+}

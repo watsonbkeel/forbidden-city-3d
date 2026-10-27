@@ -1,0 +1,35 @@
+✔ bounded cache transfer, LRU, expiry and owner disposal are exact and idempotent (1.638809ms)
+✔ oversize, source/quality changes, pending pins reject without hidden overbudget retention (0.285619ms)
+✔ resource accounting includes owned RGBA+mips, deduplicates shared resources, rejects unknown texture dimensions (1.142315ms)
+✖ unknown or non-RGBA8 owned GPU storage is not silently undercounted (0.956866ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 120.132495
+
+✖ failing tests:
+
+test at tests/r107-inactive-cache.test.mjs:6:1
+✖ unknown or non-RGBA8 owned GPU storage is not silently undercounted (0.956866ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r107-zone-resource-lifecycle/tests/r107-inactive-cache.test.mjs:6:316)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

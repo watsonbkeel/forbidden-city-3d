@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "stage": "R107",
+  "kind": "development-stage-for-R110",
+  "release": "R105",
+  "baselineLocal": "f7766260df17006ed76fba6e98c7fecbfc919b93",
+  "baselineRemote": "29078a34c9f3d3a06548492d27ec53e7e08319a4",
+  "observedMain": "1d264afe424892b89d647a33d153060ee7260c5e",
+  "requirements": [
+    {
+      "id": "R107-REENTRY-001",
+      "status": "IMPLEMENTED_SCOPED_CPU_VALIDATED",
+      "scope": "bounded inactive ZoneManager reuse, only actual current visits update LRU; 2 entries/32MiB/120s",
+      "evidence": "reports/r107-lifecycle/paired-final/summary.json"
+    },
+    {
+      "id": "R107-RESOURCE-002",
+      "status": "IMPLEMENTED_SCOPED_CPU_VALIDATED",
+      "scope": "cache admission only releases completed source references without disposing live resources; complete retained backing/owned texture accounting",
+      "evidence": "reports/r107-lifecycle/construction-retention-green.tap"
+    },
+    {
+      "id": "R107-STARTUP-003",
+      "status": "NOT_RESOLVED",
+      "scope": "all-zone startup prebuild and always-resident Garden construction unchanged"
+    },
+    {
+      "id": "R107-DEVICE-004",
+      "status": "NOT_RUN",
+      "scope": "GPU/mobile/actualNode20 not validated"
+    }
+  ],
+  "rejectedStages": [
+    "f735 incomplete source-reference budget",
+    "bd80 first-return miss due background load age"
+  ],
+  "runtimePaths": [
+    "main.js",
+    "src/scene/zones/ZoneManager.js",
+    "src/scene/zones/InactiveZoneCache.js",
+    "src/scene/zones/ZoneBase.js"
+  ]
+}

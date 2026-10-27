@@ -1,0 +1,92 @@
+{
+  "reviewedAt": "2026-10-26T18:14:00Z",
+  "reviewer": "review_remaining_palace_batch",
+  "runtimeCommit": "c892bbd0f9ee621472839289a44349b3854c440e",
+  "runtimeSourceHashes": {
+    "r112-qianqing-jiaotai-interiors/src/controls/FurnitureMotion.js": "41cfabd5a2704a1290b3b2b4933600d44d0e767cc6fdea91fc807c593234e484",
+    "r112-qianqing-jiaotai-interiors/src/controls/QianqingAssemblySupport.js": "54a0ee2db8bb2244802e948c510e723c95ee0ea8d2a77e2d2d56a4cafd42ead1",
+    "r112-qianqing-jiaotai-interiors/src/controls/XiqingRoofSurface.js": "590e60dd29dbcd7b11b9485298bb222192ecea28fda2ed88448afd200f322661",
+    "r112-qianqing-jiaotai-interiors/src/utils/Collision.js": "00b9389806c80a691a776b5e08351976ee7e8f1c16f1a65afaab5a015fa39d09",
+    "r112-qianqing-jiaotai-interiors/src/scene/PalaceBuilder.js": "414d46802b565ef458c8f1578d7dd8f8a6b55c38fd249c1a4c02ef65bdf33ed3",
+    "r112-qianqing-jiaotai-interiors/src/scene/palace/QianqingDisplay.js": "1fd504b8f26f249235c1def87b43f5aadba2901877634cfcd4b7c810cc3a6240",
+    "r112-qianqing-jiaotai-interiors/src/scene/palace/QianqingAssemblyPhysics.js": "05b555524cf52851ee525b4b5e8df92310583e7dcf1dfd5e37e11f47ae9f25b8",
+    "r112-qianqing-jiaotai-interiors/src/scene/palace/QianqingFrontEnclosure.js": "cc53496c49ebc71c09012f6438d2d436094196dfd3960367602a301de8c73630",
+    "r112-qianqing-jiaotai-interiors/src/scene/palace/QianqingTerraceBurners.js": "ed3d3e64172ed76af8e93c2bfa8034e18378fbdc2d339d1f115e048dbc0e39d1"
+  },
+  "evidenceHashes": {
+    "r112-interiors-independent/source-c892.sha256": "231812a641b4dcdeab42817f2dee864cdfb76ca06814753ba296bccec3c0d5f4",
+    "r112-interiors-independent/group-fc176.json": "e258ab21fda8d0a301cf0d489e3dc0df741c0d429a7255e019b8d27675107ffe",
+    "r112-interiors-independent/display-approach-c892.json": "13b52fecd7a48aed8107eaa967cfeb1afd10a93c7761291d4152300b83f47832",
+    "r112-interiors-independent/handoff-c892.json": "ec61f36e8543ebff29469619a4edde8da0284700f4b0ab7117e9ad70d6249ddb",
+    "r112-interiors-independent/ownership-c892.json": "c0ca528cacebc46af5eb932f2fc206cc20810725b3ecf993ee37b62214cdbd98",
+    "r112-interiors-independent/retention-fc176.json": "61170426cf9829ea0b8ee54b65af39f8ce1e7721910088d70fce14d725b4b7c9",
+    "r112-interiors-independent/pressure-fc176.json": "91c0f6d4d4f44d8b2f6534b42058839906d0059b2022ee6a39343be261816f28",
+    "r112-interiors-independent/pressure-recovery-c892.json": "0ea8d2b00cf824ba9c0aa9f9d41f9e23ff26394999cada4fbb35e58d1eda220f"
+  },
+  "verdict": "SCOPED_GEOMETRY_PHYSICS_MATERIAL_PASS_NOT_RELEASE_GATE",
+  "freshChecks": [
+    "All 9 runtime hashes match frozen source-c892.sha256",
+    "10 cost-process raw current-source hash maps verified",
+    "Every aggregate cost percentile/max/allPeak recomputed exactly from raw; 600 samples per 4 paths per 10 processes",
+    "All 9 handoff pose and original-error arrays exactly equal baseline",
+    "Final source diff inspected: after fc176 only floor witness handoff semantics changed",
+    "Actual 3 CPU diagnostic PNGs inspected; not GPU or final textured gameplay"
+  ],
+  "costAccepted": {
+    "baseline": "05c3e7f832dd0aa2b35b4011be9920bb86b8e846",
+    "candidate": "c892bbd0f9ee621472839289a44349b3854c440e",
+    "rawPath": "r112-qianqing-jiaotai-interiors/reports/r112-interiors/cost",
+    "invalidPath": "r112-qianqing-jiaotai-interiors/reports/r112-interiors/cost-invalid-clock",
+    "invalidReason": "16.666667ms virtual clock advances, 10 floating representations are not elapsed CPU timing",
+    "buildMedianMs": [
+      341.9357870221138,
+      366.3039280176163
+    ],
+    "registerMedianMs": [
+      0.977636992931366,
+      20.26187002658844
+    ],
+    "p95Ms": {
+      "terrace-blocked": [
+        0.08153200149536133,
+        0.1967560052871704
+      ],
+      "display-blocked": [
+        0.04563796520233154,
+        0.11165797710418701
+      ],
+      "outside": [
+        0.014030992984771729,
+        0.032678961753845215
+      ]
+    },
+    "candidateAllPeakMs": 5.733102977275848
+  },
+  "coverage": {
+    "displayNormalApproachCases": 12,
+    "burnerApproachCases": 12,
+    "doorRouteCases": 9,
+    "sourceFacesExactlyRendered": 4416,
+    "retainedOldTriangles": 64520,
+    "retainedOldColliders": 444,
+    "pressureCasesZeroIntersections": 64,
+    "finalRecoveryCases": 6,
+    "note": "Old 64-case pressure contains 2 60Hz settle/jump false flags; final 6-case recovery closes these, not 64 universally good flags."
+  },
+  "bindingLimitations": [
+    "pressure-recovery-c892.json and its script hardcode sourceCommit fc17633f despite c892 filename; do not treat that field as cryptographic source binding or silently rewrite historical raw",
+    "Existing final raw carries source snapshot through source-c892.sha256 and current content verification; reviewed as prior evidence, not falsely claimed freshly rerun by this reviewer"
+  ],
+  "remainingIntegrationGates": [
+    "shared-targeted.tap was zero bytes at 18:13 UTC; pending writer confirmation/run",
+    "root Vite build pending",
+    "VALIDATION currently fc176/unfinished; final binding and invalid clock exclusion annotation needed"
+  ],
+  "notRun": [
+    "GPU/game screenshot",
+    "target phone",
+    "Node20",
+    "entire courtyard/full palace completion",
+    "remote publication"
+  ]
+}

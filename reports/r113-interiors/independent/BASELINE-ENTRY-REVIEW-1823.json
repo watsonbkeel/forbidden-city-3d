@@ -1,0 +1,38 @@
+{
+  "reviewAt": "2026-10-26T18:23:00Z",
+  "status": "BASELINE_ENTRY_BLOCKED_GEOMETRY",
+  "scope": "normal upright FirstPerson from existing front courtyard into Lijing; no teleport, no back fake door, no shrinking body; route failure alone not universal unreachability proof",
+  "finalBoundInput": "670119e557d4561ad0b9e2df21c50b5679ed86e9",
+  "runtimeEquivalentTo": "c892bbd0f9ee621472839289a44349b3854c440e",
+  "explicitGapMeasurements": {
+    "eastOuterCourtWallInnerX": 74.3,
+    "eastAnnexBackWallOuterX": 74.5,
+    "westAnnexBackWallOuterX": 115.1,
+    "westOuterCourtWallInnerX": 115.3,
+    "outerGapsM": 0.2,
+    "annexNorthWallZ": [
+      428.35,
+      429.05
+    ],
+    "mainSideWallsStartZ": 429.3,
+    "innerGapsM": 0.25,
+    "playerFullWidthM": 1
+  },
+  "evidenceHashes": {
+    "r113-courtyard-independent/baseline-route-1818.json": "6427c0feff167a4ef6af8e433da15ff4a614f5a231e067cf85a46158a18ad711",
+    "r113-courtyard-independent/baseline-route-outer-corrected-1821.json": "c9927487ee8e354af7ba4675afd25032801693de75a688ab84cb0b10f1939731",
+    "r113-courtyard-independent/baseline-route-outer-1819.json": "6e53c561584f89bcb0b9946e847aeedf946c211bf379ca0f5e8cc8d6034a552d",
+    "r113-courtyard-independent/baseline-route-outer-corrected-1821.provenance.json": "2abd2f23e776991af42d1a10b387dd0ac705ce49bce6e71da1990b356c926988",
+    "r113-courtyard-independent/baseline-route-1818.mjs": "aa63136e14452c19df65940b7fe93fbf3bd2cc46417a4e9891477c6ccabbe455",
+    "r113-courtyard-independent/baseline-route-outer-1819.mjs": "085218ec68cd494108b1a3aa4e2055076e1a55b6f49d57a2ba10b086e4265bed",
+    "r113-courtyard-independent/baseline-route-outer-corrected-1821.mjs": "0a278279b932fddabebeac80270378b4b6e342df57f064bae863a7d47e7a1bb7"
+  },
+  "nextGate": "writer bounded layout correction; independently test front courtyard→side bypass→Lijing front door→west-room region and back before accepting isolated interior group",
+  "notRun": [
+    "Lijing west-room arrival - never reached",
+    "photo-to-room compass alignment",
+    "post-change routes",
+    "target phone/GPU"
+  ],
+  "productWrites": false
+}

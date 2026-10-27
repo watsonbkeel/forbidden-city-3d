@@ -1,16 +1,18 @@
 import * as THREE from 'three';
+import {buildingDetailQuality,onBuildingDetailQuality} from '../../../render/BuildingDetailQuality.js';
 
 // Self-authored, non-semantic curves following the photographs' color/field
 // relationship. Not an identification or reproduction of a historic weave.
 export const JIAOTAI_TEXTILE_ART=Object.freeze({size:512,clothRepeatMetres:.64,status:'PHOTO_INSPIRED_SIMPLIFICATION_NOT_REPLICA',photographyDate:null});
-const SIZE=512;
-function raster(base){
+function raster(base,SIZE=512){
+ if(SIZE!==512&&SIZE!==256)throw new TypeError('Textile size must be 512 or 256');
  const data=new Uint8Array(SIZE*SIZE*4);
  for(let y=0;y<SIZE;y++)for(let x=0;x<SIZE;x++){
-  const k=(y*SIZE+x)*4,thread=(x%4===0?1:0)-(y%4===0?1:0);
+  const k=(y*SIZE+x)*4,thread=(x%(SIZE===512?4:2)===0?1:0)-(y%(SIZE===512?4:2)===0?1:0);
   for(let c=0;c<3;c++)data[k+c]=base[c]+thread;data[k+3]=255;
  }
  function line(a,b,color,width){
+  if(SIZE!==512){const scale=SIZE/512;a=a.map(v=>v*scale);b=b.map(v=>v*scale);width*=scale;}
   const dx=b[0]-a[0],dy=b[1]-a[1],len=dx*dx+dy*dy,r=width/2;
   const x0=Math.max(0,Math.floor(Math.min(a[0],b[0])-r-1)),x1=Math.min(SIZE-1,Math.ceil(Math.max(a[0],b[0])+r+1));
   const y0=Math.max(0,Math.floor(Math.min(a[1],b[1])-r-1)),y1=Math.min(SIZE-1,Math.ceil(Math.max(a[1],b[1])+r+1));
@@ -21,11 +23,11 @@ function raster(base){
   }
  }
  function curve(a,b,c,d,color,width){let prev=a;for(let i=1;i<=24;i++){const t=i/24,u=1-t,p=[0,1].map(k=>u*u*u*a[k]+3*u*u*t*b[k]+3*u*t*t*c[k]+t*t*t*d[k]);line(prev,p,color,width);prev=p;}}
- const rect=(inset,color,width)=>{const lo=inset,hi=SIZE-inset;line([lo,lo],[hi,lo],color,width);line([hi,lo],[hi,hi],color,width);line([hi,hi],[lo,hi],color,width);line([lo,hi],[lo,lo],color,width);};
+ const rect=(inset,color,width)=>{const lo=inset,hi=512-inset;line([lo,lo],[hi,lo],color,width);line([hi,lo],[hi,hi],color,width);line([hi,hi],[lo,hi],color,width);line([lo,hi],[lo,lo],color,width);};
  return{data,line,curve,rect};
 }
-export function jiaotaiClothPixels(){
- const r=raster([205,179,82]),light=[225,210,157],soft=[216,197,126];
+export function jiaotaiClothPixels(size=512){
+ const r=raster([205,179,82],size),light=[225,210,157],soft=[216,197,126];
  for(let y=0;y<4;y++)for(let x=0;x<4;x++){
   const ox=x*128,oy=y*128,flip=(x+y)%2?-1:1,point=(a,b)=>[ox+64+(a-64)*flip,oy+b];
   r.curve(point(22,20),point(112,12),point(108,84),point(63,75),light,3.2);
@@ -36,8 +38,8 @@ export function jiaotaiClothPixels(){
  }
  return r.data;
 }
-export function jiaotaiRugPixels(){
- const r=raster([112,119,94]),blue=[57,88,105],pale=[157,157,116],muted=[86,111,113];
+export function jiaotaiRugPixels(size=512){
+ const r=raster([112,119,94],size),blue=[57,88,105],pale=[157,157,116],muted=[86,111,113];
  for(const[inset,color,width]of[[9,blue,5],[18,pale,3],[27,blue,3],[49,blue,4],[59,pale,2]])r.rect(inset,color,width);
  for(let i=0;i<12;i++){
   const a=36+i*36;for(const y of[37,475])r.curve([a-9,y],[a-2,y-8],[a+6,y+8],[a+13,y],muted,2.5);
@@ -53,18 +55,26 @@ export function jiaotaiRugPixels(){
  }
  return r.data;
 }
-function attach(material,data,repeat){
+function attach(material,repeat,library){
  if(material.map)return;
- const t=new THREE.DataTexture(data,SIZE,SIZE,THREE.RGBAFormat,THREE.UnsignedByteType);
- t.name=material.name+'-r102';t.colorSpace=THREE.SRGBColorSpace;t.flipY=false;
- t.wrapS=t.wrapT=repeat?THREE.RepeatWrapping:THREE.ClampToEdgeWrapping;
- t.magFilter=THREE.LinearFilter;t.minFilter=THREE.LinearMipmapLinearFilter;t.generateMipmaps=true;t.anisotropy=4;t.needsUpdate=true;
- material.color.set(0xffffff);material.map=t;material.userData.artStatus=JIAOTAI_TEXTILE_ART.status;material.needsUpdate=true;
- let disposed=false;material.addEventListener('dispose',()=>{if(!disposed){disposed=true;t.dispose();}});
+ let disposed=false;
+ const refresh=()=>{
+  if(disposed)return;
+  const size=buildingDetailQuality(library)==='low'?256:512;
+  const data=repeat?jiaotaiClothPixels(size):jiaotaiRugPixels(size);
+  const t=new THREE.DataTexture(data,size,size,THREE.RGBAFormat,THREE.UnsignedByteType);
+  t.name=material.name+'-r102';t.colorSpace=THREE.SRGBColorSpace;t.flipY=false;
+  t.wrapS=t.wrapT=repeat?THREE.RepeatWrapping:THREE.ClampToEdgeWrapping;
+  t.magFilter=THREE.LinearFilter;t.minFilter=THREE.LinearMipmapLinearFilter;t.generateMipmaps=true;t.anisotropy=4;t.needsUpdate=true;
+  const previous=material.map;material.color.set(0xffffff);material.map=t;material.userData.artStatus=JIAOTAI_TEXTILE_ART.status;material.needsUpdate=true;
+  previous?.dispose();
+ };
+ refresh();const unsubscribe=onBuildingDetailQuality(library,refresh);
+ material.addEventListener('dispose',()=>{if(!disposed){disposed=true;unsubscribe();material.map?.dispose();}});
 }
-export function installJiaotaiTextileMaps(materials){
- if(!materials.textile.map)attach(materials.textile,jiaotaiClothPixels(),true);
- if(!materials.carpet.map)attach(materials.carpet,jiaotaiRugPixels(),false);
+export function installJiaotaiTextileMaps(materials,library){
+ if(!materials.textile.map)attach(materials.textile,true,library);
+ if(!materials.carpet.map)attach(materials.carpet,false,library);
 }
 export function jiaotaiClothUV(geometry){
  // Tiny existing tips retain their continuous cylindrical unwrap; dominant-axis

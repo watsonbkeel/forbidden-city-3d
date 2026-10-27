@@ -1,6 +1,8 @@
+import {QIANQING_ASSEMBLY_IDS} from './QianqingAssemblySupport.js';
 import * as THREE from 'three';
 import { exactSquareWitness, ceilingExact, exactDouble, compareExact, serializeExact, intervalSurfaceIntersects, exactSurfaceIntersects, exactSurfaceSweep } from './XiqingRoofExact.js';
-const IDS=new Set(['xiqing-roof-south','xiqing-roof-middle','xiqing-roof-north']);
+const IDS=new Set(['chengqian-west-court-roof','xiqing-roof-south','xiqing-roof-middle','xiqing-roof-north',...QIANQING_ASSEMBLY_IDS,...Array.from({length:4},(_,i)=>'qianqing-display-vessel-'+i)]);
+const surfaceKind=id=>id==='chengqian-west-court-roof'?'chengqian-court-roof-surface':id.startsWith('qianqing-display-')?'qianqing-display-surface':QIANQING_ASSEMBLY_IDS.includes(id)?'qianqing-assembly-surface':'xiqing-roof-surface';
 const basis=[new THREE.Vector3(1,0,0),new THREE.Vector3(0,1,0),new THREE.Vector3(0,0,1)];
 const axesCache=new WeakMap(),gridCache=new WeakMap();
 const freezeBox=b=>{Object.freeze(b.min);Object.freeze(b.max);return Object.freeze(b);};
@@ -23,11 +25,11 @@ export function createXiqingSurface(faces,id){
  }
  if(!triangles.length)throw new TypeError('Roof requires a positive-area face');
  if(bounds.max.x-bounds.min.x>32||bounds.max.z-bounds.min.z>32)throw new TypeError('Xiqing roof exceeds bounded local surface domain');freezeBox(bounds);
- return Object.freeze({kind:'xiqing-roof-surface',id,template:Object.freeze({triangles:Object.freeze(triangles),omitted:Object.freeze(omitted),sourceFaces:Object.freeze(sourceFaces),bounds}),box:freezeBox(bounds.clone())});
+ return Object.freeze({kind:surfaceKind(id),id,template:Object.freeze({triangles:Object.freeze(triangles),omitted:Object.freeze(omitted),sourceFaces:Object.freeze(sourceFaces),bounds}),box:freezeBox(bounds.clone())});
 }
 export function cloneXiqingSurface(input,box){
  if(input===undefined)return null;
- if(input?.kind!=='xiqing-roof-surface'||!IDS.has(input.id)||!input.template?.triangles?.length||!input.box?.equals(box)||!input.template.bounds?.equals(box))throw new TypeError('Xiqing surface requires exact owned bounds');
+ if(input?.kind!==surfaceKind(input?.id??'')||!IDS.has(input.id)||!input.template?.triangles?.length||!input.box?.equals(box)||!input.template.bounds?.equals(box))throw new TypeError('Xiqing surface requires exact owned bounds');
  // Copy/validate the full CPU source, not only a mutable bounding box.
  const copy=createXiqingSurface(input.template.sourceFaces,input.id);if(!copy.box.equals(box))throw new TypeError('Roof source differs from owned bounds');return copy;
 }

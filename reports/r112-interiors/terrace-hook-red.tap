@@ -1,0 +1,41 @@
+✔ Qianqing three southern door groups each retain four actual folded leaves (115.369944ms)
+✔ four separate front-terrace burners exist and leave the central axis clear (285.113773ms)
+✖ production four terrace instances actually register their matching surface owners (203.257323ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 851.992827
+
+✖ failing tests:
+
+test at tests/r112/arrival-assemblies.test.mjs:5:1
+✖ production four terrace instances actually register their matching surface owners (203.257323ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + []
+  - [
+  -   'qianqing-terrace-burner-0',
+  -   'qianqing-terrace-burner-1',
+  -   'qianqing-terrace-burner-2',
+  -   'qianqing-terrace-burner-3'
+  - ]
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r112-qianqing-jiaotai-interiors/tests/r112/arrival-assemblies.test.mjs:5:138)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ 'qianqing-terrace-burner-0', 'qianqing-terrace-burner-1', 'qianqing-terrace-burner-2', 'qianqing-terrace-burner-3' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

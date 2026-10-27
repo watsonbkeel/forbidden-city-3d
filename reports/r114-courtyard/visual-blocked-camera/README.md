@@ -1,0 +1,1 @@
+REJECTED DIAGNOSTIC CAMERAS: original courtyard/gate camera points intersected retained front-wing geometry. Not product visual evidence. Replaced with clear courtyard / north-side views; source unchanged.

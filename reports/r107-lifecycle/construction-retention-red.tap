@@ -1,0 +1,48 @@
+✖ cache-only completed ZoneBase construction references can be dropped without disposal or changing live merged data (800.726055ms)
+✔ bounded cache transfer, LRU, expiry and owner disposal are exact and idempotent (2.225208ms)
+✔ oversize, source/quality changes, pending pins reject without hidden overbudget retention (0.29991ms)
+✔ resource accounting includes owned RGBA+mips, deduplicates shared resources, rejects unknown texture dimensions (1.187392ms)
+✔ unknown or non-RGBA8 owned GPU storage is not silently undercounted (0.481953ms)
+✔ admission uses actual last-use age, not incidental same-frame unload iteration order (0.289695ms)
+✔ rejected admission does not partially evict useful older retained owners (0.281563ms)
+✖ budget includes retained construction roots, plaque references and non-rendered owned material maps (1.076585ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 6
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1007.476567
+
+✖ failing tests:
+
+test at tests/r107-construction-release.test.mjs:5:1
+✖ cache-only completed ZoneBase construction references can be dropped without disposal or changing live merged data (800.726055ms)
+  TypeError: b.releaseConstructionReferences is not a function
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r107-zone-resource-lifecycle/tests/r107-construction-release.test.mjs:5:826)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at tests/r107-inactive-cache.test.mjs:9:1
+✖ budget includes retained construction roots, plaque references and non-rendered owned material maps (1.076585ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  840 !== 1680
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r107-zone-resource-lifecycle/tests/r107-inactive-cache.test.mjs:9:639)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 840,
+    expected: 1680,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
