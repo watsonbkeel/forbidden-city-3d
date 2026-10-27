@@ -1,0 +1,55 @@
+{
+  "status": "CAUSAL_IDENTITY_TRIAGE_ONLY",
+  "checkpoint": "3a6c86a332394463914db947ae7ed98b68b93375",
+  "baseline": "05c3e7f832dd0aa2b35b4011be9920bb86b8e846",
+  "sourceManifestUnchanged": true,
+  "rawSuiteStillFailures": 176,
+  "qualifier": "Five new tests remain FAIL. Two approved changed source identities cause five strict historical-contract failures; diagnostic callback substitution only isolates cascades and is not historical normalization or product acceptance.",
+  "qianqing": {
+    "currentBytes": 7685,
+    "currentSHA256": "1fd504b8f26f249235c1def87b43f5aadba2901877634cfcd4b7c810cc3a6240",
+    "historicalBytes": 6462,
+    "historicalSHA256": "1066882fa79171ae478eaa2003fb3b639f6cf73b29d321d2576ee069191a2e95",
+    "test": "r32-source-retention.test.mjs:123"
+  },
+  "chuxiu": {
+    "currentSHA256": "2bbbbcbd77d61f829259b3eb0fb977fa0b655a36676402869ab75eee8d051774",
+    "historicalSHA256": "50f9bedda75da00eaa8d487e64acd46a319f06312e923237bf95f5657d48ee0e",
+    "test": "r34-source-retention.test.mjs:89"
+  },
+  "yikun": {
+    "sourceExactR110": true,
+    "sha256": "7372203703cff7b3ceaf1fc4d148c9645813b859f2d2f5e341f5977ade3d5331",
+    "directHistoricalBinding": "PASS",
+    "actualFailure": "Chuxiu source guard preempts intended missing-Yikun assertion at test line98",
+    "counterfactualMissingYikun": {
+      "ok": false,
+      "message": "missing exact addition"
+    }
+  },
+  "inventory": {
+    "actualR34": {
+      "ok": false,
+      "message": "exact R34 added source: src/scene/palace/special/ChuxiuCourtyard.js\n+ actual - expected\n\n+ '2bbbbcbd77d61f829259b3eb0fb977fa0b655a36676402869ab75eee8d051774'\n- '50f9bedda75da00eaa8d487e64acd46a319f06312e923237bf95f5657d48ee0e'\n"
+    },
+    "counterfactualHistoricalChuxiu": {
+      "ok": true,
+      "value": [
+        "public/models/interiors/taihe-display-grid-6012719f9618.glb",
+        "src/scene/palace/QianqingFrontageGrid.js",
+        "src/scene/palace/QianqingWarmRooms.js",
+        "src/scene/palace/special/ChuxiuCourtyard.js",
+        "src/scene/palace/special/YikunSideAccess.js"
+      ]
+    }
+  },
+  "assetConfig": {
+    "sourceExactR110": true,
+    "sha256": "b59ad455f8ebe35224f4557708fa87c727e53203a8f6d44b1b0d62ca84cd740c",
+    "actualFailure": "Chuxiu source guard preempts intended config corruption assertion at line133",
+    "counterfactualChangedConfig": {
+      "ok": false,
+      "message": "exact R34 asset-binding config\n+ actual - expected\n\n+ 'cf6a3c9bde13cec75161ed6a192a666268724200fa7502487f9621516bff8a25'\n- 'b59ad455f8ebe35224f4557708fa87c727e53203a8f6d44b1b0d62ca84cd740c'\n"
+    }
+  }
+}

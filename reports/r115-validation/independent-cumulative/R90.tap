@@ -1,0 +1,140 @@
+TAP version 13
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 295 个 region, 224 个 mapItem
+# [ZoneManager] ?zones=all 模式：加载所有区...
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# [ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+# [ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+# [ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+# [ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+# [ZoneManager] 卸载区域 garden
+# [ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 157.5ms
+# [ZoneManager] 卸载区域 garden
+# [ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 155.7ms
+# [ZoneManager] 卸载区域 axis-courts
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 卸载区域 ningshou
+# [ZoneManager] 卸载区域 outer-east
+# [ZoneManager] 卸载区域 outer-west
+# [ZoneManager] 卸载区域 garden
+# Subtest: independent R90 near-jamb backward/sprint paths, map landing and repeated garden lifecycle
+ok 1 - independent R90 near-jamb backward/sprint paths, map landing and repeated garden lifecycle
+  ---
+  duration_ms: 7144.156418
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 295 个 region, 224 个 mapItem
+# [ZoneManager] ?zones=all 模式：加载所有区...
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# [ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+# [ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+# [ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+# [ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+# [ZoneManager] 卸载区域 garden
+# [ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 185.6ms
+# [ZoneManager] 卸载区域 garden
+# [ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 158.6ms
+# [ZoneManager] 卸载区域 garden
+# [ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 153.1ms
+# [ZoneManager] 卸载区域 axis-courts
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 卸载区域 ningshou
+# [ZoneManager] 卸载区域 outer-east
+# [ZoneManager] 卸载区域 outer-west
+# [ZoneManager] 卸载区域 garden
+# Subtest: R90 map geometry and real teleport approach remain safe through zone reloads
+ok 2 - R90 map geometry and real teleport approach remain safe through zone reloads
+  ---
+  duration_ms: 6803.050401
+  type: 'test'
+  ...
+# Subtest: R90 production map allows one unambiguous Shunzhen selection
+ok 3 - R90 production map allows one unambiguous Shunzhen selection
+  ---
+  duration_ms: 21.871061
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 295 个 region, 224 个 mapItem
+# [ZoneManager] ?zones=all 模式：加载所有区...
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# [ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+# [ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+# [ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+# [ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+# [ZoneManager] 卸载区域 axis-courts
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 卸载区域 ningshou
+# [ZoneManager] 卸载区域 outer-east
+# [ZoneManager] 卸载区域 outer-west
+# [ZoneManager] 卸载区域 garden
+# Subtest: R90 route enumerator consumes the real Shunzhen profile rather than guessing a generic side gate
+ok 4 - R90 route enumerator consumes the real Shunzhen profile rather than guessing a generic side gate
+  ---
+  duration_ms: 1.662587
+  type: 'test'
+  ...
+# Subtest: R90 actual world preserves north passage and all three portal round trips at 10/30/60Hz
+ok 5 - R90 actual world preserves north passage and all three portal round trips at 10/30/60Hz
+  ---
+  duration_ms: 7164.412142
+  type: 'test'
+  ...
+# Subtest: R90 Shunzhen has three explicitly fitted portals and one map identity
+ok 6 - R90 Shunzhen has three explicitly fitted portals and one map identity
+  ---
+  duration_ms: 214.757058
+  type: 'test'
+  ...
+# Subtest: R90 profile does not reinterpret an unrelated legacy gate
+ok 7 - R90 profile does not reinterpret an unrelated legacy gate
+  ---
+  duration_ms: 0.2593
+  type: 'test'
+  ...
+# Subtest: R90 all three clear apertures traverse the real north wall while masonry remains solid
+ok 8 - R90 all three clear apertures traverse the real north wall while masonry remains solid
+  ---
+  duration_ms: 145.427549
+  type: 'test'
+  ...
+# Subtest: R90 named fit rejects geometry-changing or closed-state misuse
+ok 9 - R90 named fit rejects geometry-changing or closed-state misuse
+  ---
+  duration_ms: 0.519091
+  type: 'test'
+  ...
+# Subtest: R90 visible door leaves carry matching physical body proxies and finite geometry
+ok 10 - R90 visible door leaves carry matching physical body proxies and finite geometry
+  ---
+  duration_ms: 146.420065
+  type: 'test'
+  ...
+# Subtest: R90 retains one central plaque facing north toward Shenwu without invented side plaques
+ok 11 - R90 retains one central plaque facing north toward Shenwu without invented side plaques
+  ---
+  duration_ms: 132.458703
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 23200.160323

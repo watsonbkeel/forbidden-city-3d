@@ -1,0 +1,78 @@
+TAP version 13
+# Subtest: reachable kang-edge stop retains ordinary and jumping exits in frozen baseline
+ok 1 - reachable kang-edge stop retains ordinary and jumping exits in frozen baseline
+  ---
+  duration_ms: 4886.810875
+  type: 'test'
+  ...
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 54 个 region, 36 个 mapItem
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 440.5ms
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 459.2ms
+# [ZoneManager] 卸载区域 west-six
+# Subtest: R93 independent B real controls forward/backward 10/30/60Hz both speeds and full visible body
+ok 2 - R93 independent B real controls forward/backward 10/30/60Hz both speeds and full visible body
+  ---
+  duration_ms: 325.462288
+  type: 'test'
+  ...
+# Subtest: R93 independent S real controls forward/backward 10/30/60Hz both speeds and full visible body
+ok 3 - R93 independent S real controls forward/backward 10/30/60Hz both speeds and full visible body
+  ---
+  duration_ms: 343.79203
+  type: 'test'
+  ...
+# Subtest: R93 independent S load/cancel/reload keeps exactly two permanent stands and one owned material until B disposal
+ok 4 - R93 independent S load/cancel/reload keeps exactly two permanent stands and one owned material until B disposal
+  ---
+  duration_ms: 162.606334
+  type: 'test'
+  ...
+# Subtest: R93 actual exterior flight envelope forbids indoor descent rather than pretending table-centre forced spawn is reachable
+ok 5 - R93 actual exterior flight envelope forbids indoor descent rather than pretending table-centre forced spawn is reachable
+  ---
+  duration_ms: 73.789269
+  type: 'test'
+  ...
+# Subtest: R93 independent three real west-six unload/re-entry cycles retain counts and dispose table resources once
+ok 6 - R93 independent three real west-six unload/re-entry cycles retain counts and dispose table resources once
+  ---
+  duration_ms: 1572.46674
+  type: 'test'
+  ...
+# Subtest: R93 adds exactly two photo-supported floor-standing tables, not taller replacements of existing low tables
+ok 7 - R93 adds exactly two photo-supported floor-standing tables, not taller replacements of existing low tables
+  ---
+  duration_ms: 121.143105
+  type: 'test'
+  ...
+# Subtest: R93 preserves every pre-existing mesh/material/collider/support and protected bytes
+ok 8 - R93 preserves every pre-existing mesh/material/collider/support and protected bytes
+  ---
+  duration_ms: 72.954588
+  type: 'test'
+  ...
+# Subtest: R93 all visible solid boxes and supports match physical bounds, feet touch retained floor and empty under-table volume remains open
+ok 9 - R93 all visible solid boxes and supports match physical bounds, feet touch retained floor and empty under-table volume remains open
+  ---
+  duration_ms: 67.924859
+  type: 'test'
+  ...
+# Subtest: R93 wrong identity and duplicate reject without appending; resources dispose once
+ok 10 - R93 wrong identity and duplicate reject without appending; resources dispose once
+  ---
+  duration_ms: 62.65742
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 8243.119273

@@ -1,0 +1,41 @@
+✔ place selection preserves held keyboard timing and map lifecycle (37.649321ms)
+✔ place selection preserves held joystick timing and map lifecycle (12.953838ms)
+✔ known and unknown cards need a separately resolved explicit travel button (8.192456ms)
+✔ replace invalidates pending and detached travel clicks (7.03061ms)
+✔ back invalidates pending and detached travel clicks (7.317872ms)
+✔ compact invalidates pending and detached travel clicks (8.558621ms)
+✔ close invalidates pending and detached travel clicks (13.33545ms)
+✔ dispose invalidates pending and detached travel clicks (7.301066ms)
+✔ travel failure keeps card; second-finger success deduplicates compatibility click (8.969412ms)
+✔ map has 159 keyboard information buttons, separate unchanged quick travel, safe sources and nonmodal region (15.129335ms)
+✔ compact hides details and returns to summary with explicit continue-reading (8.32175ms)
+✔ repeated map tap and resize while reading do not redraw or reset selection/view (12.8231ms)
+✔ missing or ambiguous side binding never borrows a card and unknown ID is inert (15.508424ms)
+✔ compatibility and double clicks alone cannot activate newly shown travel (9.135962ms)
+✔ travel pointercancel cannot activate through a later native click (11.852352ms)
+✔ travel drag cannot activate through a later native click (10.415946ms)
+✔ source links accept the existing validated second-finger tap without travel (9.978112ms)
+✔ settings pauses and resumes the same detail card with fresh inputs (8.511945ms)
+✔ detail controls retain native keyboard behavior and release held movement after focus changes (9.095832ms)
+✔ closed/disposed maps reject new cards, and re-open starts with the existing player view (8.60895ms)
+✔ ambiguous side-items cannot offer name-only travel even when the existing target map resolves (5.607403ms)
+✔ ambiguous canvas-labels cannot offer name-only travel even when the existing target map resolves (5.590037ms)
+✔ ambiguous layout-and-side cannot offer name-only travel even when the existing target map resolves (6.903039ms)
+✔ travel cancels a mouse drag that exits and re-enters the button near its press point (5.622545ms)
+✔ non-hover touch pointerleave after a valid release retains its native click (6.465221ms)
+✔ H dismount after native Escape restores actual walking mouse and keys, not only the mode flag (38.933876ms)
+✔ proximity only shows a non-modal boarding affordance; far H belongs to ordinary walking (12.367196ms)
+✔ rejected native lock Promise keeps dismount complete and offers a fresh walking retry (14.604267ms)
+✔ a late exit lock after opening the map is released without returning to flight (8.031583ms)
+✔ an old flight-resume Promise rejection cannot cancel a fresh boarding request (5.482235ms)
+✔ native unlock delivered after H dismount offers walking recovery, never reopens flight operations (6.550268ms)
+✔ completed dismount does not label a later ordinary walking unlock as flight recovery (delayed=false) (4.834992ms)
+✔ completed dismount does not label a later ordinary walking unlock as flight recovery (delayed=true) (5.121322ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 502.853794

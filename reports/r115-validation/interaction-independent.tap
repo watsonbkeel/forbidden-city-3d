@@ -1,0 +1,16 @@
+✔ R36 helicopter proximity is a non-modal enter/leave/re-enter interaction, not persistent flight UI (26.719376ms)
+✔ R36 keyboard exit after native Escape restores real walking mouse and releases every aircraft input (19.942231ms)
+✔ R36 button exit after native Escape restores real walking mouse and releases every aircraft input (6.652814ms)
+✔ R36 leaving and approaching again permits a second real boarding without stale focus or flight state (7.653336ms)
+✔ R36 map-open disembark preserves the existing unlocked walking-map ownership (4.961627ms)
+✔ R36 mobile exit returns actual touch look and joystick ownership without requesting desktop pointer lock (6.297752ms)
+✔ R36 asynchronous native rejection leaves walking ownership intact and explicit retry restores actual mouse look (9.936652ms)
+✔ R36 delayed flight lock after disembark cannot recapture a walking map or reopen aircraft controls (3.935307ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 456.277932
