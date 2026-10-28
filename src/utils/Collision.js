@@ -45,7 +45,7 @@ export class CollisionManager {
     const overhead = object.overhead === undefined ? null : cloneOverheadShape(object.overhead, box);
     const input = object.triangleSupport;
     const xiqingRoofSurface=cloneXiqingSurface(object.xiqingRoofSurface,box);
-    if(xiqingRoofSurface&&(input||overhead||(furnitureMotionScope&&!(['qianqing-display','qianqing-assemblies'].includes(furnitureMotionScope.kind)&&furnitureMotionScope.id===xiqingRoofSurface.id))||object.duixiuTerrain))throw new TypeError('Xiqing surface has exclusive explicit ownership');
+    if(xiqingRoofSurface&&(input||overhead||(furnitureMotionScope&&!(['qianqing-display','qianqing-assemblies','fengxian-front-vats'].includes(furnitureMotionScope.kind)&&furnitureMotionScope.id===xiqingRoofSurface.id))||object.duixiuTerrain))throw new TypeError('Xiqing surface has exclusive explicit ownership');
     if(xiqingRoofSurface&&this.colliders.some(c=>c.xiqingRoofSurface?.id===xiqingRoofSurface.id))throw new TypeError('Duplicate Xiqing roof owner');
     if(furnitureMotionScope&&(overhead||input))throw new TypeError('Furniture scope owner must be an ordinary solid box');
     if (object.duixiuTerrain && !input) throw new TypeError('Duixiu terrain requires exact triangle ownership');
@@ -423,7 +423,7 @@ export class CollisionManager {
       const overhead = object.overhead === undefined ? null : cloneOverheadShape(object.overhead, box);
       if(collider.xiqingRoofSurface&&object.xiqingRoofSurface?.id!==collider.xiqingRoofSurface.id)throw new TypeError('Xiqing surface ownership cannot disappear');
       const xiqingRoofSurface=cloneXiqingSurface(object.xiqingRoofSurface,box);
-      if(xiqingRoofSurface&&((furnitureMotionScope&&!(['qianqing-display','qianqing-assemblies'].includes(furnitureMotionScope.kind)&&furnitureMotionScope.id===xiqingRoofSurface.id))||overhead||object.triangleSupport||object.duixiuTerrain))throw new TypeError('Xiqing surface has exclusive explicit ownership');
+      if(xiqingRoofSurface&&((furnitureMotionScope&&!(['qianqing-display','qianqing-assemblies','fengxian-front-vats'].includes(furnitureMotionScope.kind)&&furnitureMotionScope.id===xiqingRoofSurface.id))||overhead||object.triangleSupport||object.duixiuTerrain))throw new TypeError('Xiqing surface has exclusive explicit ownership');
       if(xiqingRoofSurface&&this.colliders.some(c=>c!==collider&&c.xiqingRoofSurface?.id===xiqingRoofSurface.id))throw new TypeError('Duplicate Xiqing roof owner');
       if(furnitureMotionScope&&(overhead||object.triangleSupport))throw new TypeError('Furniture scope owner must be an ordinary solid box');
       if (collider.duixiuTerrain && object.duixiuTerrain !== true) throw new TypeError('Duixiu terrain marker cannot disappear');

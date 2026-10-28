@@ -1,3 +1,4 @@
+import {buildWenyuanUpperFrame} from './WenyuanUpperFrame.js';
 import { buildNanxunCaissonRings } from './NanxunCaissonRings.js';
 import {withholdHUnknownInventory} from './HUnknownInventory.js';
 import { fitYanchunFrontPlaque } from './YanchunSouthPhotoFit.js';
@@ -1253,6 +1254,7 @@ function augmentWenyuanLevels(kit,item,built,p) {
   box('wenyuan-third-floor-photo-bed-base','timber',2.3,.5,1.6,axis,upperY+.25,2.5,true,bedInfo);
   box('wenyuan-third-floor-photo-bed-back','timber',2.3,1.2,.12,axis,upperY+1.1,3.24,true,bedInfo);
   for(const x of[axis-1.1,axis+1.1])box('wenyuan-third-floor-photo-bed-side','timber',.1,.5,1.5,x,upperY+.75,2.5,true,bedInfo);
+  buildWenyuanUpperFrame(c,{axis,upperY,source:source3});
   // Only source-identified visual regions are added now. Automatic upper
   // destinations remain withheld until the real controller replay is accepted.
   const world=(x,z,yy)=>{const v=f.localToWorld(new THREE.Vector3(x,yy,z));return{x:v.x,y:v.y,z:v.z};};
