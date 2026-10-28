@@ -1,0 +1,3011 @@
+TAP version 13
+# Subtest: R135 rear only has eight primary vertical dividers and two retained-angle skirted template leaves
+not ok 1 - R135 rear only has eight primary vertical dividers and two retained-angle skirted template leaves
+  ---
+  duration_ms: 67.180193
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r135/rear-detail.test.mjs:3:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 8
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 8
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r135/rear-detail.test.mjs:3:312)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: R135 all original physical/map declarations and non-target rendered meshes remain byte-identical
+not ok 2 - R135 all original physical/map declarations and non-target rendered meshes remain byte-identical
+  ---
+  duration_ms: 29.796644
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r135/rear-detail.test.mjs:4:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    ... Skipped lines
+    
+      [
+        {
+          attrs: {
+            normal: [
+              3,
+    ...
+              3,
+    +         '7c9ab3bdaea7c2f1e324359e986caebdec46229dc1d62ef40abc952f137d186e'
+    +       ],
+    +       uv: [
+    +         2,
+    +         '16305982d82e76dda4f5b38b73e0887aa2d7083f91e4b3d5de178eb320b78d29'
+    +       ]
+    +     },
+    +     flags: [
+    +       true,
+    +       true
+    +     ],
+    +     index: null,
+    +     mat: {
+    +       color: 16777215,
+    +       depthWrite: true,
+    +       name: 'lattice_doors',
+    +       opacity: 1,
+    +       side: 0,
+    +       transparent: false
+    +     },
+    +     matrix: [
+    +       2.220446049250313e-16,
+    +       0,
+    +       -1,
+    +       0,
+    +       0,
+    +       1,
+    +       0,
+    +       0,
+    +       1,
+    +       0,
+    +       2.220446049250313e-16,
+    +       0,
+    +       -94.984,
+    +       2.5901600000000005,
+    +       399.924,
+    +       1
+    +     ],
+    +     position: [
+    +       -1.984,
+    +       2.5901600000000005,
+    +       -3.976
+    +     ],
+    +     role: ''
+    +   },
+    +   {
+    +     attrs: {
+    +       normal: [
+    +         3,
+    +         '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+    +       ],
+    +       position: [
+    +         3,
+    +         '7c9ab3bdaea7c2f1e324359e986caebdec46229dc1d62ef40abc952f137d186e'
+    +       ],
+    +       uv: [
+    +         2,
+    +         '16305982d82e76dda4f5b38b73e0887aa2d7083f91e4b3d5de178eb320b78d29'
+    +       ]
+    +     },
+    +     flags: [
+    +       true,
+    +       true
+    +     ],
+    +     index: null,
+    +     mat: {
+    +       color: 16777215,
+    +       depthWrite: true,
+    +       name: 'lattice_doors',
+    +       opacity: 1,
+    +       side: 0,
+    +       transparent: false
+    +     },
+    +     matrix: [
+    +       2.220446049250313e-16,
+    +       0,
+    +       -1,
+    +       0,
+    +       0,
+    +       1,
+    +       0,
+    +       0,
+    +       1,
+    +       0,
+    +       2.220446049250313e-16,
+    +       0,
+    +       -91.016,
+    +       2.5901600000000005,
+    +       399.924,
+    +       1
+    +     ],
+    +     position: [
+    +       1.984,
+    +       2.5901600000000005,
+    +       -3.976
+    +     ],
+    +     role: ''
+    +   },
+    +   {
+    +     attrs: {
+    +       normal: [
+    +         3,
+    +         '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+    +       ],
+    +       position: [
+    +         3,
+              '3fc5d1ce4c4649305b1a86e8c175cba2ab1fd10c348b93f8d51913a0748561bf'
+            ],
+            uv: [
+              2,
+              '102bfd643063e94aaf65e7a6e889d35515fbc9c7a444feaecc26ef4fa2e2c68b'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0:
+      role: ''
+      position:
+        0: 0
+        1: 0.225
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 0.225
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '4da3d85953907e16cdb45102f3fec6d19c40070642f90b222cdb9c82b3c42b17'
+        normal:
+          0: 3
+          1: '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+        uv:
+          0: 2
+          1: '559ebf2ead40a371be34ca15d67ba6d03f1993b8753ff12aabcd5c3026da353f'
+      index: ~
+      mat:
+        name: 'wall_brick'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    1:
+      role: ''
+      position:
+        0: 0
+        1: 0.42000000000000004
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 0.42000000000000004
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '8f175f1525bf24172458f4f2f6ef8b3ebf2df85e6bb0a17d90bd1546be8386b7'
+        normal:
+          0: 3
+          1: '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+        uv:
+          0: 2
+          1: 'c74753b03e98e2e3d82fe78570201b620facb936973ad7a7d58c0713064dc59a'
+      index: ~
+      mat:
+        name: 'stone_slab'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    2:
+      role: ''
+      position:
+        0: -12
+        1: 3.49
+        2: -4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -105
+        13: 3.49
+        14: 399.09999999999997
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '69dff193298abf449b23def39c9553aa47d48d4dc84baa37d221153566dba753'
+        normal:
+          0: 3
+          1: '3949ea449f7f8020935761e812f30fa9873a8b0619c8fdb0c58a48500d40c69f'
+        uv:
+          0: 2
+          1: '39d4e63152e6009bee1fb47633d142c76ad22135d4fd8d0479fa153895deb13c'
+      index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310'
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    3:
+      role: ''
+      position:
+        0: -12
+        1: 3.49
+        2: 4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -105
+        13: 3.49
+        14: 408.7
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '69dff193298abf449b23def39c9553aa47d48d4dc84baa37d221153566dba753'
+        normal:
+          0: 3
+          1: '3949ea449f7f8020935761e812f30fa9873a8b0619c8fdb0c58a48500d40c69f'
+        uv:
+          0: 2
+          1: '39d4e63152e6009bee1fb47633d142c76ad22135d4fd8d0479fa153895deb13c'
+      index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310'
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    4:
+      role: ''
+      position:
+        0: -7.2
+        1: 3.49
+        2: -4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -100.2
+        13: 3.49
+        14: 399.09999999999997
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '69dff193298abf449b23def39c9553aa47d48d4dc84baa37d221153566dba753'
+        normal:
+          0: 3
+          1: '3949ea449f7f8020935761e812f30fa9873a8b0619c8fdb0c58a48500d40c69f'
+        uv:
+          0: 2
+          1: '39d4e63152e6009bee1fb47633d142c76ad22135d4fd8d0479fa153895deb13c'
+      index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310'
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    5:
+      role: ''
+      position:
+        0: -7.2
+        1: 3.49
+        2: 4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -100.2
+        13: 3.49
+        14: 408.7
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '69dff193298abf449b23def39c9553aa47d48d4dc84baa37d221153566dba753'
+        normal:
+          0: 3
+          1: '3949ea449f7f8020935761e812f30fa9873a8b0619c8fdb0c58a48500d40c69f'
+        uv:
+          0: 2
+          1: '39d4e63152e6009bee1fb47633d142c76ad22135d4fd8d0479fa153895deb13c'
+      index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310'
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    6:
+      role: ''
+      position:
+        0: -2.4000000000000004
+        1: 3.49
+        2: -4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -95.4
+        13: 3.49
+        14: 399.09999999999997
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '69dff193298abf449b23def39c9553aa47d48d4dc84baa37d221153566dba753'
+        normal:
+          0: 3
+          1: '3949ea449f7f8020935761e812f30fa9873a8b0619c8fdb0c58a48500d40c69f'
+        uv:
+          0: 2
+          1: '39d4e63152e6009bee1fb47633d142c76ad22135d4fd8d0479fa153895deb13c'
+      index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310'
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    7:
+      role: ''
+      position:
+        0: -2.4000000000000004
+        1: 3.49
+        2: 4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -95.4
+        13: 3.49
+        14: 408.7
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '69dff193298abf449b23def39c9553aa47d48d4dc84baa37d221153566dba753'
+        normal:
+          0: 3
+          1: '3949ea449f7f8020935761e812f30fa9873a8b0619c8fdb0c58a48500d40c69f'
+        uv:
+          0: 2
+          1: '39d4e63152e6009bee1fb47633d142c76ad22135d4fd8d0479fa153895deb13c'
+      index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310'
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    8:
+      role: ''
+      position:
+        0: 2.3999999999999986
+        1: 3.49
+        2: -4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -90.6
+        13: 3.49
+        14: 399.09999999999997
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '69dff193298abf449b23def39c9553aa47d48d4dc84baa37d221153566dba753'
+        normal:
+          0: 3
+          1: '3949ea449f7f8020935761e812f30fa9873a8b0619c8fdb0c58a48500d40c69f'
+        uv:
+          0: 2
+          1: '39d4e63152e6009bee1fb47633d142c76ad22135d4fd8d0479fa153895deb13c'
+      index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310'
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    9:
+      role: ''
+      position:
+        0: 2.3999999999999986
+        1: 3.49
+        2: 4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -90.6
+        13: 3.49
+        14: 408.7
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '69dff193298abf449b23def39c9553aa47d48d4dc84baa37d221153566dba753'
+        normal:
+          0: 3
+          1: '3949ea449f7f8020935761e812f30fa9873a8b0619c8fdb0c58a48500d40c69f'
+        uv:
+          0: 2
+          1: '39d4e63152e6009bee1fb47633d142c76ad22135d4fd8d0479fa153895deb13c'
+      index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310'
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    10:
+      role: ''
+      position:
+        0: 7.199999999999999
+        1: 3.49
+        2: -4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -85.8
+        13: 3.49
+        14: 399.09999999999997
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '69dff193298abf449b23def39c9553aa47d48d4dc84baa37d221153566dba753'
+        normal:
+          0: 3
+          1: '3949ea449f7f8020935761e812f30fa9873a8b0619c8fdb0c58a48500d40c69f'
+        uv:
+          0: 2
+          1: '39d4e63152e6009bee1fb47633d142c76ad22135d4fd8d0479fa153895deb13c'
+      index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310'
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    11:
+      role: ''
+      position:
+        0: 7.199999999999999
+        1: 3.49
+        2: 4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -85.8
+        13: 3.49
+        14: 408.7
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '69dff193298abf449b23def39c9553aa47d48d4dc84baa37d221153566dba753'
+        normal:
+          0: 3
+          1: '3949ea449f7f8020935761e812f30fa9873a8b0619c8fdb0c58a48500d40c69f'
+        uv:
+          0: 2
+          1: '39d4e63152e6009bee1fb47633d142c76ad22135d4fd8d0479fa153895deb13c'
+      index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310'
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    12:
+      role: ''
+      position:
+        0: 12
+        1: 3.49
+        2: -4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -81
+        13: 3.49
+        14: 399.09999999999997
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '69dff193298abf449b23def39c9553aa47d48d4dc84baa37d221153566dba753'
+        normal:
+          0: 3
+          1: '3949ea449f7f8020935761e812f30fa9873a8b0619c8fdb0c58a48500d40c69f'
+        uv:
+          0: 2
+          1: '39d4e63152e6009bee1fb47633d142c76ad22135d4fd8d0479fa153895deb13c'
+      index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310'
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    13:
+      role: ''
+      position:
+        0: 12
+        1: 3.49
+        2: 4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -81
+        13: 3.49
+        14: 408.7
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '69dff193298abf449b23def39c9553aa47d48d4dc84baa37d221153566dba753'
+        normal:
+          0: 3
+          1: '3949ea449f7f8020935761e812f30fa9873a8b0619c8fdb0c58a48500d40c69f'
+        uv:
+          0: 2
+          1: '39d4e63152e6009bee1fb47633d142c76ad22135d4fd8d0479fa153895deb13c'
+      index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310'
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    14:
+      role: ''
+      position:
+        0: 0
+        1: 6.1652000000000005
+        2: -4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 6.1652000000000005
+        14: 399.09999999999997
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '149df9a71da76e417942741c2aced0444037f08ac0574ea0d8bdcfa063b2cda7'
+        normal:
+          0: 3
+          1: '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+        uv:
+          0: 2
+          1: '30afb2f4279d64d649bbf5253ef4d1edf70ea2586de631720156c7b7424ca852'
+      index: ~
+      mat:
+        name: 'caihua_beam'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    15:
+      role: ''
+      position:
+        0: -12
+        1: 6.1652000000000005
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -105
+        13: 6.1652000000000005
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: 'e7534d0e91bdde05cb7a771328333df011c3654ff4f9f53b740fd444f33e3d8e'
+        normal:
+          0: 3
+          1: '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+        uv:
+          0: 2
+          1: 'c9ae9179f763b06fa144cb00962bc5a44766ae08779b19ef9caf44a8ed055b8b'
+      index: ~
+      mat:
+        name: 'caihua_beam'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    16:
+      role: ''
+      position:
+        0: 0
+        1: 6.1652000000000005
+        2: 4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 6.1652000000000005
+        14: 408.7
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '149df9a71da76e417942741c2aced0444037f08ac0574ea0d8bdcfa063b2cda7'
+        normal:
+          0: 3
+          1: '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+        uv:
+          0: 2
+          1: '30afb2f4279d64d649bbf5253ef4d1edf70ea2586de631720156c7b7424ca852'
+      index: ~
+      mat:
+        name: 'caihua_beam'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    17:
+      role: ''
+      position:
+        0: 12
+        1: 6.1652000000000005
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -81
+        13: 6.1652000000000005
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: 'e7534d0e91bdde05cb7a771328333df011c3654ff4f9f53b740fd444f33e3d8e'
+        normal:
+          0: 3
+          1: '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+        uv:
+          0: 2
+          1: 'c9ae9179f763b06fa144cb00962bc5a44766ae08779b19ef9caf44a8ed055b8b'
+      index: ~
+      mat:
+        name: 'caihua_beam'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    18:
+      role: ''
+      position:
+        0: -12
+        1: 3.1252000000000004
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -105
+        13: 3.1252000000000004
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: 'f233251fa8fde7d43407994df82680938952d1f135bbdab287a83ac37e301294'
+        normal:
+          0: 3
+          1: '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+        uv:
+          0: 2
+          1: '68b9d2f5770aa91d19a5af1b7aa8ca7102706329ccf9d18f07478e603bf4291a'
+      index: ~
+      mat:
+        name: 'wall_red'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    19:
+      role: ''
+      position:
+        0: 12
+        1: 3.1252000000000004
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -81
+        13: 3.1252000000000004
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: 'f233251fa8fde7d43407994df82680938952d1f135bbdab287a83ac37e301294'
+        normal:
+          0: 3
+          1: '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+        uv:
+          0: 2
+          1: '68b9d2f5770aa91d19a5af1b7aa8ca7102706329ccf9d18f07478e603bf4291a'
+      index: ~
+      mat:
+        name: 'wall_red'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    20:
+      role: ''
+      position:
+        0: 0
+        1: 5.265360000000001
+        2: -4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 5.265360000000001
+        14: 399.09999999999997
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '3fc5d1ce4c4649305b1a86e8c175cba2ab1fd10c348b93f8d51913a0748561bf'
+        normal:
+          0: 3
+          1: '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+        uv:
+          0: 2
+          1: '102bfd643063e94aaf65e7a6e889d35515fbc9c7a444feaecc26ef4fa2e2c68b'
+      index: ~
+      mat:
+        name: 'wall_red'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    21:
+      role: ''
+      position:
+        0: 0
+        1: 0.56
+        2: -4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 0.56
+        14: 399.09999999999997
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '8d8f4a111d2e9c69765e3a196c95f10afaaecc957cfe1b92d60a9de4bb2b0660'
+        normal:
+          0: 3
+          1: '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+        uv:
+          0: 2
+          1: '1759276e83c5a3f2e6797bf7747110ccfc1ea7341287301b78e5932f9a313f04'
+      index: ~
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    22:
+      role: ''
+      position:
+        0: 0
+        1: 3.1252000000000004
+        2: 4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 3.1252000000000004
+        14: 408.7
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: 'f0d146ddc3985613671979a3eb1f6d4b2c7195108d5b2f5ed6c2e3104e41cd30'
+        normal:
+          0: 3
+          1: '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+        uv:
+          0: 2
+          1: 'd3a2bdc7af69ea3dc803eda4bada45efee2ec645f2aae88aa27d048d989cb4cb'
+      index: ~
+      mat:
+        name: 'wall_red'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    23:
+      role: ''
+      position:
+        0: 0
+        1: 0.47000000000000003
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 0.47000000000000003
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: 'a75e3b76879d3f66478d6e8a5009c556179d59099ead744de3680fda44eacdcb'
+        normal:
+          0: 3
+          1: '132d57fa87f2e37b4ba78b662a7aeb99820ae8f3c440d1a3a8e3e085c775c282'
+        uv:
+          0: 2
+          1: '49ae17c818e0ce643d201670b61b0cf8410d591058fee22b536a4e96115a7d44'
+      index: 'e6681333c21d3bedc5c5d4ea4503e8acc5b95e8d8e2aabffd97d12425a145443'
+      mat:
+        name: 'kit_floor_flat'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: false
+        1: true
+    24:
+      role: ''
+      position:
+        0: 0
+        1: 5.7804
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 5.7804
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '15103c354cf5810965db6c762b4d4a757ef42a0d906d7291bf45baa424a2e6ac'
+        normal:
+          0: 3
+          1: '4b7547b0c6b0262d878a6e3022a9b6e16df6c5a74670844e5399cfdb6865510c'
+        uv:
+          0: 2
+          1: 'f3a0a46301c6859e5b64beadee234c4eeec1dec8c4735dc7bf40ea09e762e189'
+      index: 'e6681333c21d3bedc5c5d4ea4503e8acc5b95e8d8e2aabffd97d12425a145443'
+      mat:
+        name: 'caihua_beam'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: false
+        1: true
+    25:
+      role: 'roof_gable_dougong_band'
+      position:
+        0: 0
+        1: 0
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 0
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: 'e43761dba1f9909eac4aaa882a13457e05aee99b4dc7661f69d92437fbc1ec7e'
+        uv:
+          0: 2
+          1: '414af8f38a6cce2a1e56cdb97ca78142a93099dd30d937e08abac8d7f5092e46'
+        normal:
+          0: 3
+          1: 'cae17b001c663d9fa5a6f5223abc3bb0ac82c179fc4c6ca567326ade29aeb682'
+      index: ~
+      mat:
+        name: 'dougong_band'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    26:
+      role: 'roof_gable_rafters'
+      position:
+        0: 0
+        1: 0
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 0
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '5075d018563d7067d33648d930c845baebebc1c88360ec1751163322fba0adf1'
+        uv:
+          0: 2
+          1: 'bb768c779e9f2230dc113bf1a7eb15a10f03076d68cfc4c75c38325b196f37cb'
+        normal:
+          0: 3
+          1: 'b8ebf7524bad3ee15e6722b00a00f7fc70730c438866e4b2ba2f99915bab9e5f'
+      index: ~
+      mat:
+        name: 'rafters'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    27:
+      role: 'roof_gable_roof_tile'
+      position:
+        0: 0
+        1: 0
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 0
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: 'e5f7046c7507517200f65963a78ee189af449335c17d9eafce5970e80f9a8318'
+        uv:
+          0: 2
+          1: '31ad6e71de8d75944d700e0fe87fe2809bc820eae84a0670a16dc330ca3c72d5'
+        normal:
+          0: 3
+          1: '9b5b98aaa587b8384b290039d7647c6226e992404b21f13c952002ce04075571'
+      index: ~
+      mat:
+        name: 'roof_tile'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    28:
+      role: 'roof_gable_roof_ridge_glaze'
+      position:
+        0: 0
+        1: 0
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 0
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: 'e07a504c2c0c0dfc9b801c1cfdf9941ff1db60b4f4be27947897bc3fde1e3039'
+        normal:
+          0: 3
+          1: '46f1c61a9c941bb6212172adcdcea840c6daf671bdc0a6b817f5c94e95b3c2d0'
+        uv:
+          0: 2
+          1: '1ff51906ff01cd39582639b93abe438052b4d4c5c1f1583764b62d61a1ee62cb'
+      index: ~
+      mat:
+        name: 'kit_ridge'
+        color: 13209388
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    29:
+      role: 'roof_gable_wall_red'
+      position:
+        0: 0
+        1: 0
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 0
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: 'e34f11b786e1404912d8951f919fc71beecf5ba0f7ba8209b35f4c8ec9b81fe9'
+        uv:
+          0: 2
+          1: 'aaedfa0039a9a0a9b7fa2c3d28a5ba688d1582911e014597f91c5245a9ca458c'
+        normal:
+          0: 3
+          1: '98999f33e96e985beb8599c5bf84adfab72509eac6db1a6995a86fd535fa5335'
+      index: ~
+      mat:
+        name: 'wall_red'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+  actual:
+    0:
+      role: ''
+      position:
+        0: 0
+        1: 0.225
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 0.225
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '4da3d85953907e16cdb45102f3fec6d19c40070642f90b222cdb9c82b3c42b17'
+        normal:
+          0: 3
+          1: '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+        uv:
+          0: 2
+          1: '559ebf2ead40a371be34ca15d67ba6d03f1993b8753ff12aabcd5c3026da353f'
+      index: ~
+      mat:
+        name: 'wall_brick'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    1:
+      role: ''
+      position:
+        0: 0
+        1: 0.42000000000000004
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 0.42000000000000004
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '8f175f1525bf24172458f4f2f6ef8b3ebf2df85e6bb0a17d90bd1546be8386b7'
+        normal:
+          0: 3
+          1: '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+        uv:
+          0: 2
+          1: 'c74753b03e98e2e3d82fe78570201b620facb936973ad7a7d58c0713064dc59a'
+      index: ~
+      mat:
+        name: 'stone_slab'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    2:
+      role: ''
+      position:
+        0: -12
+        1: 3.49
+        2: -4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -105
+        13: 3.49
+        14: 399.09999999999997
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '69dff193298abf449b23def39c9553aa47d48d4dc84baa37d221153566dba753'
+        normal:
+          0: 3
+          1: '3949ea449f7f8020935761e812f30fa9873a8b0619c8fdb0c58a48500d40c69f'
+        uv:
+          0: 2
+          1: '39d4e63152e6009bee1fb47633d142c76ad22135d4fd8d0479fa153895deb13c'
+      index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310'
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    3:
+      role: ''
+      position:
+        0: -12
+        1: 3.49
+        2: 4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -105
+        13: 3.49
+        14: 408.7
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '69dff193298abf449b23def39c9553aa47d48d4dc84baa37d221153566dba753'
+        normal:
+          0: 3
+          1: '3949ea449f7f8020935761e812f30fa9873a8b0619c8fdb0c58a48500d40c69f'
+        uv:
+          0: 2
+          1: '39d4e63152e6009bee1fb47633d142c76ad22135d4fd8d0479fa153895deb13c'
+      index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310'
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    4:
+      role: ''
+      position:
+        0: -7.2
+        1: 3.49
+        2: -4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -100.2
+        13: 3.49
+        14: 399.09999999999997
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '69dff193298abf449b23def39c9553aa47d48d4dc84baa37d221153566dba753'
+        normal:
+          0: 3
+          1: '3949ea449f7f8020935761e812f30fa9873a8b0619c8fdb0c58a48500d40c69f'
+        uv:
+          0: 2
+          1: '39d4e63152e6009bee1fb47633d142c76ad22135d4fd8d0479fa153895deb13c'
+      index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310'
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    5:
+      role: ''
+      position:
+        0: -7.2
+        1: 3.49
+        2: 4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -100.2
+        13: 3.49
+        14: 408.7
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '69dff193298abf449b23def39c9553aa47d48d4dc84baa37d221153566dba753'
+        normal:
+          0: 3
+          1: '3949ea449f7f8020935761e812f30fa9873a8b0619c8fdb0c58a48500d40c69f'
+        uv:
+          0: 2
+          1: '39d4e63152e6009bee1fb47633d142c76ad22135d4fd8d0479fa153895deb13c'
+      index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310'
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    6:
+      role: ''
+      position:
+        0: -2.4000000000000004
+        1: 3.49
+        2: -4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -95.4
+        13: 3.49
+        14: 399.09999999999997
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '69dff193298abf449b23def39c9553aa47d48d4dc84baa37d221153566dba753'
+        normal:
+          0: 3
+          1: '3949ea449f7f8020935761e812f30fa9873a8b0619c8fdb0c58a48500d40c69f'
+        uv:
+          0: 2
+          1: '39d4e63152e6009bee1fb47633d142c76ad22135d4fd8d0479fa153895deb13c'
+      index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310'
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    7:
+      role: ''
+      position:
+        0: -2.4000000000000004
+        1: 3.49
+        2: 4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -95.4
+        13: 3.49
+        14: 408.7
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '69dff193298abf449b23def39c9553aa47d48d4dc84baa37d221153566dba753'
+        normal:
+          0: 3
+          1: '3949ea449f7f8020935761e812f30fa9873a8b0619c8fdb0c58a48500d40c69f'
+        uv:
+          0: 2
+          1: '39d4e63152e6009bee1fb47633d142c76ad22135d4fd8d0479fa153895deb13c'
+      index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310'
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    8:
+      role: ''
+      position:
+        0: 2.3999999999999986
+        1: 3.49
+        2: -4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -90.6
+        13: 3.49
+        14: 399.09999999999997
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '69dff193298abf449b23def39c9553aa47d48d4dc84baa37d221153566dba753'
+        normal:
+          0: 3
+          1: '3949ea449f7f8020935761e812f30fa9873a8b0619c8fdb0c58a48500d40c69f'
+        uv:
+          0: 2
+          1: '39d4e63152e6009bee1fb47633d142c76ad22135d4fd8d0479fa153895deb13c'
+      index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310'
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    9:
+      role: ''
+      position:
+        0: 2.3999999999999986
+        1: 3.49
+        2: 4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -90.6
+        13: 3.49
+        14: 408.7
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '69dff193298abf449b23def39c9553aa47d48d4dc84baa37d221153566dba753'
+        normal:
+          0: 3
+          1: '3949ea449f7f8020935761e812f30fa9873a8b0619c8fdb0c58a48500d40c69f'
+        uv:
+          0: 2
+          1: '39d4e63152e6009bee1fb47633d142c76ad22135d4fd8d0479fa153895deb13c'
+      index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310'
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    10:
+      role: ''
+      position:
+        0: 7.199999999999999
+        1: 3.49
+        2: -4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -85.8
+        13: 3.49
+        14: 399.09999999999997
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '69dff193298abf449b23def39c9553aa47d48d4dc84baa37d221153566dba753'
+        normal:
+          0: 3
+          1: '3949ea449f7f8020935761e812f30fa9873a8b0619c8fdb0c58a48500d40c69f'
+        uv:
+          0: 2
+          1: '39d4e63152e6009bee1fb47633d142c76ad22135d4fd8d0479fa153895deb13c'
+      index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310'
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    11:
+      role: ''
+      position:
+        0: 7.199999999999999
+        1: 3.49
+        2: 4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -85.8
+        13: 3.49
+        14: 408.7
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '69dff193298abf449b23def39c9553aa47d48d4dc84baa37d221153566dba753'
+        normal:
+          0: 3
+          1: '3949ea449f7f8020935761e812f30fa9873a8b0619c8fdb0c58a48500d40c69f'
+        uv:
+          0: 2
+          1: '39d4e63152e6009bee1fb47633d142c76ad22135d4fd8d0479fa153895deb13c'
+      index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310'
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    12:
+      role: ''
+      position:
+        0: 12
+        1: 3.49
+        2: -4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -81
+        13: 3.49
+        14: 399.09999999999997
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '69dff193298abf449b23def39c9553aa47d48d4dc84baa37d221153566dba753'
+        normal:
+          0: 3
+          1: '3949ea449f7f8020935761e812f30fa9873a8b0619c8fdb0c58a48500d40c69f'
+        uv:
+          0: 2
+          1: '39d4e63152e6009bee1fb47633d142c76ad22135d4fd8d0479fa153895deb13c'
+      index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310'
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    13:
+      role: ''
+      position:
+        0: 12
+        1: 3.49
+        2: 4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -81
+        13: 3.49
+        14: 408.7
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '69dff193298abf449b23def39c9553aa47d48d4dc84baa37d221153566dba753'
+        normal:
+          0: 3
+          1: '3949ea449f7f8020935761e812f30fa9873a8b0619c8fdb0c58a48500d40c69f'
+        uv:
+          0: 2
+          1: '39d4e63152e6009bee1fb47633d142c76ad22135d4fd8d0479fa153895deb13c'
+      index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310'
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    14:
+      role: ''
+      position:
+        0: 0
+        1: 6.1652000000000005
+        2: -4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 6.1652000000000005
+        14: 399.09999999999997
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '149df9a71da76e417942741c2aced0444037f08ac0574ea0d8bdcfa063b2cda7'
+        normal:
+          0: 3
+          1: '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+        uv:
+          0: 2
+          1: '30afb2f4279d64d649bbf5253ef4d1edf70ea2586de631720156c7b7424ca852'
+      index: ~
+      mat:
+        name: 'caihua_beam'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    15:
+      role: ''
+      position:
+        0: -12
+        1: 6.1652000000000005
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -105
+        13: 6.1652000000000005
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: 'e7534d0e91bdde05cb7a771328333df011c3654ff4f9f53b740fd444f33e3d8e'
+        normal:
+          0: 3
+          1: '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+        uv:
+          0: 2
+          1: 'c9ae9179f763b06fa144cb00962bc5a44766ae08779b19ef9caf44a8ed055b8b'
+      index: ~
+      mat:
+        name: 'caihua_beam'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    16:
+      role: ''
+      position:
+        0: 0
+        1: 6.1652000000000005
+        2: 4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 6.1652000000000005
+        14: 408.7
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '149df9a71da76e417942741c2aced0444037f08ac0574ea0d8bdcfa063b2cda7'
+        normal:
+          0: 3
+          1: '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+        uv:
+          0: 2
+          1: '30afb2f4279d64d649bbf5253ef4d1edf70ea2586de631720156c7b7424ca852'
+      index: ~
+      mat:
+        name: 'caihua_beam'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    17:
+      role: ''
+      position:
+        0: 12
+        1: 6.1652000000000005
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -81
+        13: 6.1652000000000005
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: 'e7534d0e91bdde05cb7a771328333df011c3654ff4f9f53b740fd444f33e3d8e'
+        normal:
+          0: 3
+          1: '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+        uv:
+          0: 2
+          1: 'c9ae9179f763b06fa144cb00962bc5a44766ae08779b19ef9caf44a8ed055b8b'
+      index: ~
+      mat:
+        name: 'caihua_beam'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    18:
+      role: ''
+      position:
+        0: -12
+        1: 3.1252000000000004
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -105
+        13: 3.1252000000000004
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: 'f233251fa8fde7d43407994df82680938952d1f135bbdab287a83ac37e301294'
+        normal:
+          0: 3
+          1: '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+        uv:
+          0: 2
+          1: '68b9d2f5770aa91d19a5af1b7aa8ca7102706329ccf9d18f07478e603bf4291a'
+      index: ~
+      mat:
+        name: 'wall_red'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    19:
+      role: ''
+      position:
+        0: 12
+        1: 3.1252000000000004
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -81
+        13: 3.1252000000000004
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: 'f233251fa8fde7d43407994df82680938952d1f135bbdab287a83ac37e301294'
+        normal:
+          0: 3
+          1: '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+        uv:
+          0: 2
+          1: '68b9d2f5770aa91d19a5af1b7aa8ca7102706329ccf9d18f07478e603bf4291a'
+      index: ~
+      mat:
+        name: 'wall_red'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    20:
+      role: ''
+      position:
+        0: -1.984
+        1: 2.5901600000000005
+        2: -3.976
+      matrix:
+        0: 2.220446049250313e-16
+        1: 0
+        2: -1
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 1
+        9: 0
+        10: 2.220446049250313e-16
+        11: 0
+        12: -94.984
+        13: 2.5901600000000005
+        14: 399.924
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '7c9ab3bdaea7c2f1e324359e986caebdec46229dc1d62ef40abc952f137d186e'
+        normal:
+          0: 3
+          1: '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+        uv:
+          0: 2
+          1: '16305982d82e76dda4f5b38b73e0887aa2d7083f91e4b3d5de178eb320b78d29'
+      index: ~
+      mat:
+        name: 'lattice_doors'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    21:
+      role: ''
+      position:
+        0: 1.984
+        1: 2.5901600000000005
+        2: -3.976
+      matrix:
+        0: 2.220446049250313e-16
+        1: 0
+        2: -1
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 1
+        9: 0
+        10: 2.220446049250313e-16
+        11: 0
+        12: -91.016
+        13: 2.5901600000000005
+        14: 399.924
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '7c9ab3bdaea7c2f1e324359e986caebdec46229dc1d62ef40abc952f137d186e'
+        normal:
+          0: 3
+          1: '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+        uv:
+          0: 2
+          1: '16305982d82e76dda4f5b38b73e0887aa2d7083f91e4b3d5de178eb320b78d29'
+      index: ~
+      mat:
+        name: 'lattice_doors'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    22:
+      role: ''
+      position:
+        0: 0
+        1: 5.265360000000001
+        2: -4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 5.265360000000001
+        14: 399.09999999999997
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '3fc5d1ce4c4649305b1a86e8c175cba2ab1fd10c348b93f8d51913a0748561bf'
+        normal:
+          0: 3
+          1: '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+        uv:
+          0: 2
+          1: '102bfd643063e94aaf65e7a6e889d35515fbc9c7a444feaecc26ef4fa2e2c68b'
+      index: ~
+      mat:
+        name: 'wall_red'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    23:
+      role: ''
+      position:
+        0: 0
+        1: 0.56
+        2: -4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 0.56
+        14: 399.09999999999997
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '8d8f4a111d2e9c69765e3a196c95f10afaaecc957cfe1b92d60a9de4bb2b0660'
+        normal:
+          0: 3
+          1: '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+        uv:
+          0: 2
+          1: '1759276e83c5a3f2e6797bf7747110ccfc1ea7341287301b78e5932f9a313f04'
+      index: ~
+      mat:
+        name: 'wood_column'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    24:
+      role: ''
+      position:
+        0: 0
+        1: 3.1252000000000004
+        2: 4.8
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 3.1252000000000004
+        14: 408.7
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: 'f0d146ddc3985613671979a3eb1f6d4b2c7195108d5b2f5ed6c2e3104e41cd30'
+        normal:
+          0: 3
+          1: '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+        uv:
+          0: 2
+          1: 'd3a2bdc7af69ea3dc803eda4bada45efee2ec645f2aae88aa27d048d989cb4cb'
+      index: ~
+      mat:
+        name: 'wall_red'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    25:
+      role: ''
+      position:
+        0: 0
+        1: 0.47000000000000003
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 0.47000000000000003
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: 'a75e3b76879d3f66478d6e8a5009c556179d59099ead744de3680fda44eacdcb'
+        normal:
+          0: 3
+          1: '132d57fa87f2e37b4ba78b662a7aeb99820ae8f3c440d1a3a8e3e085c775c282'
+        uv:
+          0: 2
+          1: '49ae17c818e0ce643d201670b61b0cf8410d591058fee22b536a4e96115a7d44'
+      index: 'e6681333c21d3bedc5c5d4ea4503e8acc5b95e8d8e2aabffd97d12425a145443'
+      mat:
+        name: 'kit_floor_flat'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: false
+        1: true
+    26:
+      role: ''
+      position:
+        0: 0
+        1: 5.7804
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 5.7804
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '15103c354cf5810965db6c762b4d4a757ef42a0d906d7291bf45baa424a2e6ac'
+        normal:
+          0: 3
+          1: '4b7547b0c6b0262d878a6e3022a9b6e16df6c5a74670844e5399cfdb6865510c'
+        uv:
+          0: 2
+          1: 'f3a0a46301c6859e5b64beadee234c4eeec1dec8c4735dc7bf40ea09e762e189'
+      index: 'e6681333c21d3bedc5c5d4ea4503e8acc5b95e8d8e2aabffd97d12425a145443'
+      mat:
+        name: 'caihua_beam'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: false
+        1: true
+    27:
+      role: 'roof_gable_dougong_band'
+      position:
+        0: 0
+        1: 0
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 0
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: 'e43761dba1f9909eac4aaa882a13457e05aee99b4dc7661f69d92437fbc1ec7e'
+        uv:
+          0: 2
+          1: '414af8f38a6cce2a1e56cdb97ca78142a93099dd30d937e08abac8d7f5092e46'
+        normal:
+          0: 3
+          1: 'cae17b001c663d9fa5a6f5223abc3bb0ac82c179fc4c6ca567326ade29aeb682'
+      index: ~
+      mat:
+        name: 'dougong_band'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    28:
+      role: 'roof_gable_rafters'
+      position:
+        0: 0
+        1: 0
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 0
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: '5075d018563d7067d33648d930c845baebebc1c88360ec1751163322fba0adf1'
+        uv:
+          0: 2
+          1: 'bb768c779e9f2230dc113bf1a7eb15a10f03076d68cfc4c75c38325b196f37cb'
+        normal:
+          0: 3
+          1: 'b8ebf7524bad3ee15e6722b00a00f7fc70730c438866e4b2ba2f99915bab9e5f'
+      index: ~
+      mat:
+        name: 'rafters'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    29:
+      role: 'roof_gable_roof_tile'
+      position:
+        0: 0
+        1: 0
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 0
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: 'e5f7046c7507517200f65963a78ee189af449335c17d9eafce5970e80f9a8318'
+        uv:
+          0: 2
+          1: '31ad6e71de8d75944d700e0fe87fe2809bc820eae84a0670a16dc330ca3c72d5'
+        normal:
+          0: 3
+          1: '9b5b98aaa587b8384b290039d7647c6226e992404b21f13c952002ce04075571'
+      index: ~
+      mat:
+        name: 'roof_tile'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    30:
+      role: 'roof_gable_roof_ridge_glaze'
+      position:
+        0: 0
+        1: 0
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 0
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: 'e07a504c2c0c0dfc9b801c1cfdf9941ff1db60b4f4be27947897bc3fde1e3039'
+        normal:
+          0: 3
+          1: '46f1c61a9c941bb6212172adcdcea840c6daf671bdc0a6b817f5c94e95b3c2d0'
+        uv:
+          0: 2
+          1: '1ff51906ff01cd39582639b93abe438052b4d4c5c1f1583764b62d61a1ee62cb'
+      index: ~
+      mat:
+        name: 'kit_ridge'
+        color: 13209388
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+    31:
+      role: 'roof_gable_wall_red'
+      position:
+        0: 0
+        1: 0
+        2: 0
+      matrix:
+        0: 1
+        1: 0
+        2: 0
+        3: 0
+        4: 0
+        5: 1
+        6: 0
+        7: 0
+        8: 0
+        9: 0
+        10: 1
+        11: 0
+        12: -93
+        13: 0
+        14: 403.9
+        15: 1
+      attrs:
+        position:
+          0: 3
+          1: 'e34f11b786e1404912d8951f919fc71beecf5ba0f7ba8209b35f4c8ec9b81fe9'
+        uv:
+          0: 2
+          1: 'aaedfa0039a9a0a9b7fa2c3d28a5ba688d1582911e014597f91c5245a9ca458c'
+        normal:
+          0: 3
+          1: '98999f33e96e985beb8599c5bf84adfab72509eac6db1a6995a86fd535fa5335'
+      index: ~
+      mat:
+        name: 'wall_red'
+        color: 16777215
+        side: 0
+        transparent: false
+        opacity: 1
+        depthWrite: true
+      flags:
+        0: true
+        1: true
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r135/rear-detail.test.mjs:4:380)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: R135 malformed last-leaf-vertex atomically rejects four windows and both leaves
+not ok 3 - R135 malformed last-leaf-vertex atomically rejects four windows and both leaves
+  ---
+  duration_ms: 13.280171
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r135/rear-detail.test.mjs:5:83'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r135/rear-detail.test.mjs:5:761)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R135 malformed leaf-scale atomically rejects four windows and both leaves
+not ok 4 - R135 malformed leaf-scale atomically rejects four windows and both leaves
+  ---
+  duration_ms: 11.818976
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r135/rear-detail.test.mjs:5:83'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r135/rear-detail.test.mjs:5:761)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R135 malformed leaf-shared atomically rejects four windows and both leaves
+not ok 5 - R135 malformed leaf-shared atomically rejects four windows and both leaves
+  ---
+  duration_ms: 11.340568
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r135/rear-detail.test.mjs:5:83'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r135/rear-detail.test.mjs:5:761)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R135 malformed leaf-missing atomically rejects four windows and both leaves
+not ok 6 - R135 malformed leaf-missing atomically rejects four windows and both leaves
+  ---
+  duration_ms: 10.473877
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r135/rear-detail.test.mjs:5:83'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r135/rear-detail.test.mjs:5:761)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 0
+# fail 6
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 386.994348

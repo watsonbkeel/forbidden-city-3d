@@ -59,23 +59,40 @@ export function buildChengqianFrontFields(kit,parent,{x,z,width,height,floorY,ba
 }
 const expected={kind:'hall',x:-93,z:403.9,w:24,d:9.6,pad:.6,ph:.45,colH:6.08,roof:'gable',bays:5,rearHallProfile:'chengqian-rear',map:'hall'};
 const near=(a,b)=>Number.isFinite(a)&&Math.abs(a-b)<1e-7;
-function sameGeometry(a,b){if(a.index||Object.keys(a.attributes).sort().join()!==Object.keys(b.attributes).sort().join())return false;return Object.entries(b.attributes).every(([k,v])=>{const x=a.attributes[k];return x.itemSize===v.itemSize&&x.array.constructor===v.array.constructor&&x.array.length===v.array.length&&x.array.every((n,i)=>n===v.array[i]);});}
+function sameGeometry(a,b){if(a.index||Object.keys(a.attributes).sort().join()!==Object.keys(b.attributes).sort().join())return false;return Object.entries(b.attributes).every(([k,v])=>{const x=a.attributes[k];return x.normalized===v.normalized&&x.itemSize===v.itemSize&&x.array.constructor===v.array.constructor&&x.array.length===v.array.length&&x.array.every((n,i)=>n===v.array[i]);});}
 /** Atomic source-guarded replacement of precisely four original closed bays. */
 export function applyChengqianRearSouthWindows(kit,frame,item,itemIndex){
  const g=frame?.userData.structure;
- if(itemIndex!==10||kit?.root.name!=='east-six'||!item||Object.entries(expected).some(([k,v])=>item[k]!==v)||!g||g.id!=='east-six/chengqian-rear'||g.profile!=='chengqian-rear'||!Object.isExtensible(g)||'chengqianSouthWindows'in g||frame.parent!==kit.root||!near(frame.position.x,item.x)||!near(frame.position.z,item.z)||frame.position.y||frame.rotation.x||frame.rotation.y||frame.rotation.z||!frame.scale.equals(new THREE.Vector3(1,1,1)))return false;
+ if(itemIndex!==10||kit?.root.name!=='east-six'||!item||Object.entries(expected).some(([k,v])=>item[k]!==v)||!g||g.id!=='east-six/chengqian-rear'||g.profile!=='chengqian-rear'||!Object.isExtensible(g)||'chengqianSouthWindows'in g||frame.parent!==kit.root||!frame.matrixAutoUpdate||!near(frame.position.x,item.x)||!near(frame.position.z,item.z)||frame.position.y||frame.rotation.x||frame.rotation.y||frame.rotation.z||!frame.scale.equals(new THREE.Vector3(1,1,1)))return false;
  const bay=24/5,width=bay-2*bay*.07,height=(6.08-6.08*.12)*.8,z=-4.8,cy=.45+height/2,centers=[0,1,3,4].map(i=>-12+(i+.5)*bay),tile=kit.lib.tileSize('lattice_doors');if(!Number.isFinite(tile)||tile<=0)return false;
  const ref=applyBandUV(new THREE.BoxGeometry(width,height,.14),tile),targets=[],all=[];kit.root.traverse(m=>{if(m.isMesh)all.push(m);});
- for(const x of centers){const found=frame.children.filter(m=>m.isMesh&&near(m.position.x,x)&&near(m.position.y,cy)&&near(m.position.z,z)&&m.rotation.y===0);if(found.length!==1){ref.dispose();return false;}const m=found[0];if(m.material!==kit.lib.material('lattice_doors')||m.rotation.x||m.rotation.z||!m.visible||!m.scale.equals(new THREE.Vector3(1,1,1))||!sameGeometry(m.geometry,ref)||all.some(o=>o!==m&&o.geometry===m.geometry)){ref.dispose();return false;}targets.push(m);}
- ref.dispose();const low=buildingDetailQuality(kit.lib)==='low',mats=materials(kit),groups=[];
+ for(const x of centers){const found=frame.children.filter(m=>m.isMesh&&near(m.position.x,x)&&near(m.position.y,cy)&&near(m.position.z,z)&&m.rotation.y===0);if(found.length!==1){ref.dispose();return false;}const m=found[0];if(m.material!==kit.lib.material('lattice_doors')||m.rotation.x||m.rotation.z||!m.visible||!m.matrixAutoUpdate||!m.scale.equals(new THREE.Vector3(1,1,1))||!sameGeometry(m.geometry,ref)||all.some(o=>o!==m&&o.geometry===m.geometry)){ref.dispose();return false;}targets.push(m);}
+ // Validate both original template leaves before touching any of the six sources.
+ const leafRef=applyBandUV(new THREE.BoxGeometry(bay*.26,height,.1),tile),leaves=[];
+ for(const x of[-1,1].map(sign=>sign*(bay/2-bay*.07-.08))){
+  const found=frame.children.filter(m=>m.isMesh&&near(m.position.x,x)&&near(m.position.y,cy)&&near(m.position.z,z+bay*.13+.2)&&m.rotation.y===Math.PI/2);
+  if(found.length!==1){ref.dispose();leafRef.dispose();return false;}
+  const m=found[0];if(m.material!==kit.lib.material('lattice_doors')||m.rotation.x||m.rotation.z||!m.visible||!m.matrixAutoUpdate||!m.scale.equals(new THREE.Vector3(1,1,1))||!sameGeometry(m.geometry,leafRef)||all.some(o=>o!==m&&o.geometry===m.geometry)){ref.dispose();leafRef.dispose();return false;}leaves.push(m);
+ }
+ ref.dispose();leafRef.dispose();const low=buildingDetailQuality(kit.lib)==='low',mats=materials(kit),groups=[];
  for(let i=0;i<targets.length;i++){
   const source=targets[i],b=new THREE.Box3().setFromBufferAttribute(source.geometry.attributes.position),a=b.min.x,c=b.max.x,lo=b.min.y,hi=b.max.y,z0=b.min.z,z1=b.max.z,cut=lo+1.05,t=.1,gr=group(i,'rear');gr.position.copy(source.position);
   // All coordinates derive from the original Float32 local solid bounds.
   mesh(kit,gr,boundedBox(a,c,lo,cut,z0,z1),mats.stone,'high-masonry-sill');
   mesh(kit,gr,boundedBox(a+t,c-t,cut+t,hi-t,z1-.05,z1),mats.glass,'opaque-glass-backing');
   for(const[xa,xb,ya,yb]of[[a,a+t,cut,hi],[c-t,c,cut,hi],[a+t,c-t,cut,cut+t],[a+t,c-t,hi-t,hi]])mesh(kit,gr,boundedBox(xa,xb,ya,yb,z0,z1),mats.wood,'outer-window-frame');
-  mesh(kit,gr,rectGrid(a+t,c-t,cut+t,hi-t,low?4:6,low?3:4,z0+.005,z0+.045),mats.wood,'large-rectangular-grille');groups.push(gr);
+  mesh(kit,gr,rectGrid(a+t,c-t,cut+t,hi-t,low?4:6,low?3:4,z0+.005,z0+.045),mats.wood,'large-rectangular-grille');
+  for(const part of[1,2]){const x=a+t+(c-a-2*t)*part/3;mesh(kit,gr,boundedBox(x-.04,x+.04,cut+t,hi-t,z0,z0+.055),mats.wood,'primary-vertical-divider');}groups.push(gr);
  }
- groups.forEach(gr=>frame.add(gr));for(const m of targets){m.removeFromParent();m.geometry.dispose();}
+ for(const source of leaves){
+  const b=new THREE.Box3().setFromBufferAttribute(source.geometry.attributes.position),a=b.min.x,c=b.max.x,lo=b.min.y,hi=b.max.y,z0=b.min.z,z1=b.max.z,cut=lo+1.05,t=.08,gr=new THREE.Group();gr.name='r135-chengqian-rear-template-leaf';gr.userData.chengqianRearLeaf={status,scope:'EXISTING_TEMPLATE_LEAF_SOLID_ONLY'};gr.position.copy(source.position);gr.rotation.copy(source.rotation);gr.scale.copy(source.scale);
+  const upper=applyBandUV(boundedBox(a,c,cut,hi,z0,z1),tile),up=upper.attributes.position,un=upper.attributes.normal,uv=upper.attributes.uv;
+  // Preserve the original full-height band coordinate on all retained side faces.
+  for(let i=0;i<up.count;i++)if(Math.abs(un.getY(i))<.5)uv.setY(i,(up.getY(i)-lo)/(hi-lo));else uv.setY(i,.5+up.getZ(i)/tile);uv.needsUpdate=true;
+  mesh(kit,gr,upper,source.material,'rear-leaf-upper');
+  mesh(kit,gr,boundedBox(a+t,c-t,lo+t,cut-t,z0+.02,z1),mats.wood,'rear-leaf-skirt');
+  for(const[xa,xb,ya,yb]of[[a,a+t,lo,cut],[c-t,c,lo,cut],[a+t,c-t,lo,lo+t],[a+t,c-t,cut-t,cut]])mesh(kit,gr,boundedBox(xa,xb,ya,yb,z0,z1),mats.wood,'rear-leaf-skirt-border');groups.push(gr);
+ }
+ groups.forEach(gr=>frame.add(gr));for(const m of[...targets,...leaves]){m.removeFromParent();m.geometry.dispose();}
  g.chengqianSouthWindows={status,windowCount:4,sillHeight:1.05,closedCollision:'ORIGINAL_UNCHANGED',photographyDate:null};return true;
 }

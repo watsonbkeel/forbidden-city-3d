@@ -1,0 +1,108 @@
+✔ R135 rear only has eight primary vertical dividers and two retained-angle skirted template leaves (79.102661ms)
+✔ R135 all original physical/map declarations and non-target rendered meshes remain byte-identical (20.020707ms)
+✔ R135 malformed last-leaf-vertex atomically rejects four windows and both leaves (5.858417ms)
+✔ R135 malformed leaf-scale atomically rejects four windows and both leaves (5.9344ms)
+✔ R135 malformed leaf-shared atomically rejects four windows and both leaves (4.780889ms)
+✔ R135 malformed leaf-missing atomically rejects four windows and both leaves (5.666949ms)
+✖ R135 malformed window-manual-matrix atomically rejects four windows and both leaves (11.862762ms)
+✖ R135 malformed frame-manual-matrix atomically rejects four windows and both leaves (10.14966ms)
+✖ R135 malformed leaf-normalized-attribute atomically rejects four windows and both leaves (11.093812ms)
+✔ R135 retained-angle leaves keep every replacement vertex inside the actual original F32 solid (67.210319ms)
+✔ R135 new leaf and primary-divider geometries are disposed exactly once on zone teardown (17.483943ms)
+✖ R135 upper leaf retains original full-height side UV mapping rather than stretching the motif (26.01334ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 8
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 395.2107
+
+✖ failing tests:
+
+test at tests/r135/rear-detail.test.mjs:5:156
+✖ R135 malformed window-manual-matrix atomically rejects four windows and both leaves (11.862762ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r135/rear-detail.test.mjs:5:1219)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r135/rear-detail.test.mjs:5:156
+✖ R135 malformed frame-manual-matrix atomically rejects four windows and both leaves (10.14966ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r135/rear-detail.test.mjs:5:1219)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r135/rear-detail.test.mjs:5:156
+✖ R135 malformed leaf-normalized-attribute atomically rejects four windows and both leaves (11.093812ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r135/rear-detail.test.mjs:5:1219)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r135/source-envelope.test.mjs:6:1
+✖ R135 upper leaf retains original full-height side UV mapping rather than stretching the motif (26.01334ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 0
+  - 0.2453087419271469
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r135/source-envelope.test.mjs:6:450)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 0.2453087419271469,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
