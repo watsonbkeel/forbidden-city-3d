@@ -1,5 +1,5 @@
 {
-  "status": "R123_REBOUND_R118_GAMEPLAY_CONTINUOUS_ROUTE_NOT_HISTORICAL",
+  "status": "R129_ACTUAL_TAIHE_PREFIX_AND_R123_CHUXIU_GAMEPLAY_ROUTE_NOT_HISTORICAL",
   "sourceSeat": "taihe-throne-seat",
   "destinationBuilding": "储秀宫",
   "destinationBed": "chuxiu-northwest-canopy",
@@ -46,34 +46,34 @@
       8.23
     ],
     [
-      1.2000000000000002,
+      1.2,
       12.2075,
-      8.43
+      8.23
     ],
     [
-      1.4000000000000004,
+      1.3199999999999998,
       11.9975,
-      8.629999999999999
+      8.204
     ],
     [
-      1.6000000000000005,
+      1.44,
       11.9975,
-      8.829999999999998
+      8.178
     ],
     [
-      1.8,
+      1.56,
       11.9975,
-      9
+      8.152000000000001
     ],
     [
-      1.8,
+      1.68,
       11.9975,
-      8.7
+      8.126000000000001
     ],
     [
-      1.8,
+      1.7999999999999998,
       11.9975,
-      8.399999999999999
+      8.1
     ],
     [
       1.8,
@@ -10615,6 +10615,22 @@
     "profile": "chuxiu-rear-court-r123",
     "retainedPrefixPointCount": 1928,
     "retainedPrefixSha256": "283985eadef86803544de1dd6cdbfa0c772076eeca73a6279771959058d4ecf1",
-    "modelFrameDeltaZ": -5
+    "modelFrameDeltaZ": -5,
+    "status": "HISTORICAL_R123_REBIND_BASELINE_PREFIX_HASH_NOT_CURRENT_R129"
+  },
+  "r129DepartureCorrection": {
+    "scope": "indices 6..11 only; south of retained east display plinth, same original departure/bed endpoints",
+    "reason": "actual retained plinth footprint x[1.8,2.3],z[8.8,9.4]; preserve unshrunk .45m lower-body footprint",
+    "historicalClaim": false,
+    "changedIndices": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "currentPrefixPointCount": 1928,
+    "currentPrefixSha256": "fb2bca1cc346e1b97a61896f31328098ab5ada88f9986e83e1ea39568766b86e"
   }
 }

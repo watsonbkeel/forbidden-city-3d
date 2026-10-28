@@ -1,0 +1,42 @@
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 299 个 region, 228 个 mapItem
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+✖ shared private support uses actual F32 thresholds and full lower-body edge contact, not authored center floor (10631.495529ms)
+✔ Qianqing actual side stair stays away from the raised central yulu edge (3.535456ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 299 个 region, 228 个 mapItem
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+[ZoneManager] 卸载区域 axis-courts
+✔ actual Taihe prefix paving and door thresholds have the same finite support channel as the rest of the route (10832.895716ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11247.727022
+
+✖ failing tests:
+
+test at tests/r118/actual-route-surfaces.test.mjs:2:1
+✖ shared private support uses actual F32 thresholds and full lower-body edge contact, not authored center floor (10631.495529ms)
+  AssertionError [ERR_ASSERTION]: Chuxiu south actual threshold
+  + actual - expected
+  
+  + 0.6200000047683716
+  - 0.8199999928474426
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r118/actual-route-surfaces.test.mjs:12:77)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0.6200000047683716,
+    expected: 0.8199999928474426,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

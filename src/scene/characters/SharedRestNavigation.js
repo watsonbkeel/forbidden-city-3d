@@ -83,7 +83,7 @@ export class SharedRestNavigation {
   for(const row of this.staticMeshes){if(positions&&!near(row.bounds))continue;const object=row.object.deref();let attached=false;for(let p=object;p;p=p.parent)if(p===this.world.scene)attached=true;if(!attached||!proofCurrent(row.proof))return fail('Verified static route geometry changed or detached');}
   this.status='ready';this.reason=null;return true;
  }
- surfaceHeight(x,z,feet,radius){if(z<59.1)return -Infinity;const y=this.surfaces.height(x,z,feet,radius,zone=>this.sources.get(zone)?.offline===true);if(Number.isNaN(y)){this.status='error';this.reason='Current actual support vertices changed';}return y;}
+ surfaceHeight(x,z,feet,radius){const y=this.surfaces.height(x,z,feet,radius,zone=>this.sources.get(zone)?.offline===true);if(Number.isNaN(y)){this.status='error';this.reason='Current actual support vertices changed';}return y;}
  renderable(position){const zone=this.zm?.findZone(position[0],position[2]);return this.status==='ready'&&(!zone||this.zm.loaded.get(zone)?.data.group.visible===true);}
  dispose(){this.surfaces?.dispose();this.zm?.lifecycleListeners?.delete(this.listener);this.sources.clear();this.seeds.clear();this.liveCorridorOwners=[];this.staticMeshes=[];this.corridorBaselines.clear();this.ownerCells?.clear();this.ownerGlobals=[];this.ownerLookup=new WeakMap();this.nav?.clear?.();this.nav=null;this.slots=null;}
 }

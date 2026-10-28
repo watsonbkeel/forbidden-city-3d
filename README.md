@@ -1,5 +1,7 @@
 # 故宫 3D 虚拟游览
 
+> **R129 太和旧前缀与帝妃完整去返修复**：累计R128；有限真实砖地/槛/阶罩支持取代59.1m硬切，六个起步节点绕开原摆件，不改身体/建筑。最终三频CPU完整去返检查见[R129验证](docs/current-state/r129/README.md)；不是GPU验收或全宫零穿。R127首载收益仍未实现，下一累计大版R131。
+
 > **R128 人物准备队列局部修复**：累计保留 R126；长巡逻仅在完整物理样点间可让近处请求插入，公平进展与资源取消保留，默认预算/人数/距离/品质不变。39/39针对性保护通过，**未证明稳定首现提速，性能仍未解决**。R127候选已拒绝恢复；GPU/手机及旧213失败不抹掉。见[R128范围与证据](docs/current-state/r128/README.md)。第一累计大版仍为R131。
 
 ## 历史阶段记录（各段“最新/下个major”仅指当时状态）
@@ -33,7 +35,7 @@
 ![Three.js](https://img.shields.io/badge/Three.js-r162-blue)
 ![Vite](https://img.shields.io/badge/Vite-5-purple)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Status](https://img.shields.io/badge/development-R128-brightgreen)
+![Status](https://img.shields.io/badge/development-R129-brightgreen)
 ![Validation](https://img.shields.io/badge/validation-see_release_records-blue)
 
 ## 历史记录：R115 第二批宫殿成组累计大版本候选
