@@ -1,0 +1,295 @@
+{
+  "scope": "Actual complete immutable drivers at 10/30/60Hz x forward/backward/right; matrices remain separate, incomplete cases not dropped",
+  "canonical": "54 Chengqian +45 Chuxiu +9 connected =108 complete zero contacts; 18 Chengqian boundaries only3 complete; front45 only21 complete; tighter front-local45 only39 complete",
+  "invalid": "chengqian-invalid-empty-filter.json selected nonexistent canonical substring and produced zero rows; NOT accepted as verification. Replaced by full actual R130 driver all72 rows above.",
+  "groups": [
+    {
+      "file": "reports/r136/routes/chuxiu-canonical.json",
+      "sourceBefore": "4f3c2e79c223ed9bd68711738e2a3bc554d571c464c574cd929189e2d8a5ed42",
+      "sourceAfter": "4f3c2e79c223ed9bd68711738e2a3bc554d571c464c574cd929189e2d8a5ed42",
+      "driverSHA256": "0c4ee8d94bb95698a81fa9e7253a5d18f12b81d95a0533f93ee24b254d826035",
+      "rows": 45,
+      "completed": 45,
+      "endpointContacts": 0,
+      "microContacts": 0,
+      "incomplete": [],
+      "sha256": "198e7bce64327f958c0ba0ebaba0e06ac592cd1ca6ec42a5e8bc96cc86de92b6"
+    },
+    {
+      "file": "reports/r136/routes/chengqian-canonical-and-boundaries.json",
+      "sourceBefore": "4f3c2e79c223ed9bd68711738e2a3bc554d571c464c574cd929189e2d8a5ed42",
+      "sourceAfter": "4f3c2e79c223ed9bd68711738e2a3bc554d571c464c574cd929189e2d8a5ed42",
+      "driverSHA256": "8a36753d6694763eafdbfea32bdaa90937e1c6e01cb8b720dc01b0d3144f321f",
+      "rows": 72,
+      "completed": 57,
+      "endpointContacts": 0,
+      "microContacts": 0,
+      "incomplete": [
+        {
+          "id": "gate-bypass-westcourt-rear-return-z373.55",
+          "fps": 30,
+          "mode": "forward"
+        },
+        {
+          "id": "gate-bypass-westcourt-rear-return-z373.55",
+          "fps": 30,
+          "mode": "backward"
+        },
+        {
+          "id": "gate-bypass-westcourt-rear-return-z373.55",
+          "fps": 30,
+          "mode": "right"
+        },
+        {
+          "id": "gate-bypass-westcourt-rear-return-z373.55",
+          "fps": 60,
+          "mode": "forward"
+        },
+        {
+          "id": "gate-bypass-westcourt-rear-return-z373.55",
+          "fps": 60,
+          "mode": "backward"
+        },
+        {
+          "id": "gate-bypass-westcourt-rear-return-z373.55",
+          "fps": 60,
+          "mode": "right"
+        },
+        {
+          "id": "gate-bypass-westcourt-rear-return-z373.7",
+          "fps": 10,
+          "mode": "forward"
+        },
+        {
+          "id": "gate-bypass-westcourt-rear-return-z373.7",
+          "fps": 10,
+          "mode": "backward"
+        },
+        {
+          "id": "gate-bypass-westcourt-rear-return-z373.7",
+          "fps": 10,
+          "mode": "right"
+        },
+        {
+          "id": "gate-bypass-westcourt-rear-return-z373.7",
+          "fps": 30,
+          "mode": "forward"
+        },
+        {
+          "id": "gate-bypass-westcourt-rear-return-z373.7",
+          "fps": 30,
+          "mode": "backward"
+        },
+        {
+          "id": "gate-bypass-westcourt-rear-return-z373.7",
+          "fps": 30,
+          "mode": "right"
+        },
+        {
+          "id": "gate-bypass-westcourt-rear-return-z373.7",
+          "fps": 60,
+          "mode": "forward"
+        },
+        {
+          "id": "gate-bypass-westcourt-rear-return-z373.7",
+          "fps": 60,
+          "mode": "backward"
+        },
+        {
+          "id": "gate-bypass-westcourt-rear-return-z373.7",
+          "fps": 60,
+          "mode": "right"
+        }
+      ],
+      "sha256": "a67a560aa8c313ca0d67478c40b3fe27148ce38f1d287a77b295d3c7ed9f536b"
+    },
+    {
+      "file": "reports/r136/routes/front.json",
+      "sourceBefore": "4f3c2e79c223ed9bd68711738e2a3bc554d571c464c574cd929189e2d8a5ed42",
+      "sourceAfter": "4f3c2e79c223ed9bd68711738e2a3bc554d571c464c574cd929189e2d8a5ed42",
+      "driverSHA256": null,
+      "rows": 45,
+      "completed": 21,
+      "endpointContacts": 0,
+      "microContacts": 0,
+      "incomplete": [
+        {
+          "id": "yanghe-front-door-return",
+          "fps": 10,
+          "mode": "forward"
+        },
+        {
+          "id": "yanghe-front-door-return",
+          "fps": 10,
+          "mode": "backward"
+        },
+        {
+          "id": "yanghe-front-door-return",
+          "fps": 10,
+          "mode": "right"
+        },
+        {
+          "id": "yanghe-front-door-return",
+          "fps": 30,
+          "mode": "forward"
+        },
+        {
+          "id": "yanghe-front-door-return",
+          "fps": 30,
+          "mode": "backward"
+        },
+        {
+          "id": "yanghe-front-door-return",
+          "fps": 30,
+          "mode": "right"
+        },
+        {
+          "id": "yanghe-front-door-return",
+          "fps": 60,
+          "mode": "forward"
+        },
+        {
+          "id": "yanghe-front-door-return",
+          "fps": 60,
+          "mode": "backward"
+        },
+        {
+          "id": "yanghe-front-door-return",
+          "fps": 60,
+          "mode": "right"
+        },
+        {
+          "id": "suifu-front-door-return",
+          "fps": 10,
+          "mode": "forward"
+        },
+        {
+          "id": "suifu-front-door-return",
+          "fps": 10,
+          "mode": "backward"
+        },
+        {
+          "id": "suifu-front-door-return",
+          "fps": 10,
+          "mode": "right"
+        },
+        {
+          "id": "suifu-front-door-return",
+          "fps": 30,
+          "mode": "forward"
+        },
+        {
+          "id": "suifu-front-door-return",
+          "fps": 30,
+          "mode": "backward"
+        },
+        {
+          "id": "suifu-front-door-return",
+          "fps": 30,
+          "mode": "right"
+        },
+        {
+          "id": "suifu-front-door-return",
+          "fps": 60,
+          "mode": "forward"
+        },
+        {
+          "id": "suifu-front-door-return",
+          "fps": 60,
+          "mode": "backward"
+        },
+        {
+          "id": "suifu-front-door-return",
+          "fps": 60,
+          "mode": "right"
+        },
+        {
+          "id": "main-east-tight-turn-return",
+          "fps": 10,
+          "mode": "forward"
+        },
+        {
+          "id": "main-east-tight-turn-return",
+          "fps": 10,
+          "mode": "backward"
+        },
+        {
+          "id": "main-east-tight-turn-return",
+          "fps": 10,
+          "mode": "right"
+        },
+        {
+          "id": "main-west-tight-turn-return",
+          "fps": 10,
+          "mode": "forward"
+        },
+        {
+          "id": "main-west-tight-turn-return",
+          "fps": 10,
+          "mode": "backward"
+        },
+        {
+          "id": "main-west-tight-turn-return",
+          "fps": 10,
+          "mode": "right"
+        }
+      ],
+      "sha256": "60a6cc01a3ea470aad28ea6f9a323ab366a9ce140ca7de6d5ae37170841349ce"
+    },
+    {
+      "file": "reports/r136/routes/front-local.json",
+      "sourceBefore": "4f3c2e79c223ed9bd68711738e2a3bc554d571c464c574cd929189e2d8a5ed42",
+      "sourceAfter": "4f3c2e79c223ed9bd68711738e2a3bc554d571c464c574cd929189e2d8a5ed42",
+      "driverSHA256": null,
+      "rows": 45,
+      "completed": 39,
+      "endpointContacts": 0,
+      "microContacts": 0,
+      "incomplete": [
+        {
+          "id": "main-east-tight-turn-return",
+          "fps": 60,
+          "mode": "forward"
+        },
+        {
+          "id": "main-east-tight-turn-return",
+          "fps": 60,
+          "mode": "backward"
+        },
+        {
+          "id": "main-east-tight-turn-return",
+          "fps": 60,
+          "mode": "right"
+        },
+        {
+          "id": "main-west-tight-turn-return",
+          "fps": 60,
+          "mode": "forward"
+        },
+        {
+          "id": "main-west-tight-turn-return",
+          "fps": 60,
+          "mode": "backward"
+        },
+        {
+          "id": "main-west-tight-turn-return",
+          "fps": 60,
+          "mode": "right"
+        }
+      ],
+      "sha256": "c14e4793859ec50531231b48e8ae2c25d7a41a84c11e5b09ef13bdeafec18bf1"
+    },
+    {
+      "file": "reports/r136/routes/connected.json",
+      "sourceBefore": "4f3c2e79c223ed9bd68711738e2a3bc554d571c464c574cd929189e2d8a5ed42",
+      "sourceAfter": "4f3c2e79c223ed9bd68711738e2a3bc554d571c464c574cd929189e2d8a5ed42",
+      "driverSHA256": null,
+      "rows": 9,
+      "completed": 9,
+      "endpointContacts": 0,
+      "microContacts": 0,
+      "incomplete": [],
+      "sha256": "ab2d09802231647e7580a8d0c13b9e2243e20598bb47bf414b442060d70a8ea8"
+    }
+  ]
+}

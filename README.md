@@ -1,5 +1,8 @@
 # 故宫 3D 虚拟游览
 
+> **R136 第二累计大版候选（本地验收完成，远端以上传读回为准）**：累计R131与R134/R135的真实修复及有限照片拟合。108条主要路线、帝妃完整三频去返和真实资源成熟/三base包已核；另45项额外探针未完成，标准213旧失败及累计目标8失败保留。**稳定提速、自然堆秀山未完成，GPU/手机未验。** 见[R136累计交付与限制](docs/current-state/r136/README.md)。R132/R133拒绝候选未入产品，不凑空版本。
+
+
 > **R134 储秀柱头/门裙及有限入口修复**：累计R131，新增22个照片合理拟合的柱头简化闭体与既有门裙框；修正主殿及两前配真实旧阶/木槛支持。帝妃完整去返三频零接触，另两组front探针仍分别24/6未完成，不称全通。R132/R133山体五候选被拒，旧山体原样保留，不空发版本。见[R134范围与限制](docs/current-state/r134/README.md)；下一累计大版R136，远端以上传读回为准。
 
 > **R131 第一累计大版候选（本地验收完成，远端以读回为准）**：包含R126及R128–R130的实际修复；R127性能候选拒绝恢复，不能称性能已解决。完整累计范围、未完成探针与交付门见[R131大版说明](docs/current-state/r131/MAJOR-RELEASE.md)。R132–R136仍属后半计划，本页不代替上传读回回执。
@@ -41,7 +44,7 @@
 ![Three.js](https://img.shields.io/badge/Three.js-r162-blue)
 ![Vite](https://img.shields.io/badge/Vite-5-purple)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Status](https://img.shields.io/badge/development-R129-brightgreen)
+![Status](https://img.shields.io/badge/development-R136-brightgreen)
 ![Validation](https://img.shields.io/badge/validation-see_release_records-blue)
 
 ## 历史记录：R115 第二批宫殿成组累计大版本候选

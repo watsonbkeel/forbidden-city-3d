@@ -1,0 +1,88 @@
+TAP version 13
+# Subtest: R135 rear only has eight primary vertical dividers and two retained-angle skirted template leaves
+ok 1 - R135 rear only has eight primary vertical dividers and two retained-angle skirted template leaves
+  ---
+  duration_ms: 53.130441
+  type: 'test'
+  ...
+# Subtest: R135 all original physical/map declarations and non-target rendered meshes remain byte-identical
+ok 2 - R135 all original physical/map declarations and non-target rendered meshes remain byte-identical
+  ---
+  duration_ms: 18.842933
+  type: 'test'
+  ...
+# Subtest: R135 malformed last-leaf-vertex atomically rejects four windows and both leaves
+ok 3 - R135 malformed last-leaf-vertex atomically rejects four windows and both leaves
+  ---
+  duration_ms: 6.928844
+  type: 'test'
+  ...
+# Subtest: R135 malformed leaf-scale atomically rejects four windows and both leaves
+ok 4 - R135 malformed leaf-scale atomically rejects four windows and both leaves
+  ---
+  duration_ms: 6.773321
+  type: 'test'
+  ...
+# Subtest: R135 malformed leaf-shared atomically rejects four windows and both leaves
+ok 5 - R135 malformed leaf-shared atomically rejects four windows and both leaves
+  ---
+  duration_ms: 4.730854
+  type: 'test'
+  ...
+# Subtest: R135 malformed leaf-missing atomically rejects four windows and both leaves
+ok 6 - R135 malformed leaf-missing atomically rejects four windows and both leaves
+  ---
+  duration_ms: 4.511604
+  type: 'test'
+  ...
+# Subtest: R135 malformed window-manual-matrix atomically rejects four windows and both leaves
+ok 7 - R135 malformed window-manual-matrix atomically rejects four windows and both leaves
+  ---
+  duration_ms: 4.184363
+  type: 'test'
+  ...
+# Subtest: R135 malformed frame-manual-matrix atomically rejects four windows and both leaves
+ok 8 - R135 malformed frame-manual-matrix atomically rejects four windows and both leaves
+  ---
+  duration_ms: 3.757242
+  type: 'test'
+  ...
+# Subtest: R135 malformed leaf-normalized-attribute atomically rejects four windows and both leaves
+ok 9 - R135 malformed leaf-normalized-attribute atomically rejects four windows and both leaves
+  ---
+  duration_ms: 3.471122
+  type: 'test'
+  ...
+# Subtest: R135 real whole east-six keeps materials textures physics counts and +216 triangles/+20736 bytes in both detail tiers
+ok 10 - R135 real whole east-six keeps materials textures physics counts and +216 triangles/+20736 bytes in both detail tiers
+  ---
+  duration_ms: 1937.97534
+  type: 'test'
+  ...
+# Subtest: R135 retained-angle leaves keep every replacement vertex inside the actual original F32 solid
+ok 11 - R135 retained-angle leaves keep every replacement vertex inside the actual original F32 solid
+  ---
+  duration_ms: 52.554523
+  type: 'test'
+  ...
+# Subtest: R135 new leaf and primary-divider geometries are disposed exactly once on zone teardown
+ok 12 - R135 new leaf and primary-divider geometries are disposed exactly once on zone teardown
+  ---
+  duration_ms: 16.838167
+  type: 'test'
+  ...
+# Subtest: R135 upper leaf retains original full-height side UV mapping rather than stretching the motif
+ok 13 - R135 upper leaf retains original full-height side UV mapping rather than stretching the motif
+  ---
+  duration_ms: 14.970563
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2635.131421
