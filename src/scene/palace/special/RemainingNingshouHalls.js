@@ -1,3 +1,4 @@
+import {addSuichuFrontBasins} from './SuichuFrontBasins.js';
 import {fitBiluoBowlSurface} from './BiluoBowlSurface.js';
 import {fitBiluoFinialSurface} from './BiluoFinialSurface.js';
 import {fitFanhuaFloorFascia} from './FanhuaFloorFascia.js';
@@ -348,7 +349,7 @@ function suichuStoneFacing(c){
  c.tag(c.kit.mesh(c.f,geo,mat,0,0,0),'platform-base',{detailRole:'r68-suichu-tiger-stone-facing',noMerge:true,scope:'SOUTH_PLINTH_FACE_ONLY',exactStoneLayout:false,sourceImage:'https://img.dpm.org.cn/Uploads/Picture/dc/1533[1024].jpg',photographyDate:null,accepted:false});
 }
 function buildThroughHall(c) {
- const{p}=c,brick=p.key!=='suichu';platform(c);suichuStoneFacing(c);frame(c);facade(c,{frontDoors:[2],backDoors:[2],pattern:'steps',wall:brick?'brick':'red'});ceiling(c,{nz:1});rolledRoof(c,{hip:!brick,tile:p.key==='qingshou'?'yellow':'green',trim:p.key==='qingshou'?'green':'yellow'});
+ const{p}=c,brick=p.key!=='suichu';platform(c);suichuStoneFacing(c);if(p.key==='suichu')addSuichuFrontBasins(c);frame(c);facade(c,{frontDoors:[2],backDoors:[2],pattern:'steps',wall:brick?'brick':'red'});ceiling(c,{nz:1});rolledRoof(c,{hip:!brick,tile:p.key==='qingshou'?'yellow':'green',trim:p.key==='qingshou'?'green':'yellow'});
  // Inner gallery column rows and the through-bay remain separate from the
  // exterior columns. No speculative bedroom/library furniture is inserted.
  for(const sign of[-1,1])for(let i=0;i<=p.bays;i++)column(c,-p.localW/2+i*p.localW/p.bays,sign*(p.localD/2-p.gallery),p.ph,p.colH-.4,{role:'inner-column',r:.15});
