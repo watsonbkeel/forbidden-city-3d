@@ -12,10 +12,35 @@ export function taiheCloudOutline(width,height){
  return points.map(p=>new THREE.Vector2((p.x-center.x)/size.x*width,(p.y-center.y)/size.y*height));
 }
 function extrusion(points,depth,z){const shape=new THREE.Shape(points),g=new THREE.ExtrudeGeometry(shape,{depth,bevelEnabled:false,steps:1});g.translate(0,0,z);return g;}
+// Eight visible inward curls from the cited front photograph. The curves are
+// original geometric interpretations; exact tool marks and worn paint are not
+// reproduced. Extruded ribbon caps make every curl a closed shallow solid.
+function innerScrollGeometry(width,height){
+ const outline=taiheCloudOutline(width,height);
+ const paths=[
+  [[.115,.475],[.14,.46],[.16,.432],[.19,.435],[.194,.430],[.179,.443],[.167,.441]],
+  [[.292,.342],[.283,.312],[.292,.287],[.280,.261],[.258,.273],[.258,.298],[.276,.303]],
+  [[.296,-.231],[.281,-.256],[.29,-.28],[.277,-.305],[.255,-.286],[.257,-.263],[.276,-.26]],
+  [[.112,-.348],[.144,-.333],[.161,-.294],[.19,-.296],[.205,-.312],[.192,-.332],[.17,-.319],[.18,-.306]]
+ ];
+ const pieces=[];
+ for(const side of[-1,1])for(const raw of paths){
+  const pts=raw.map(p=>[...p]),start=new THREE.Vector2(side*pts[0][0]*width,pts[0][1]*height);let edge=outline[0];for(const p of outline)if(p.distanceToSquared(start)<edge.distanceToSquared(start))edge=p;pts.unshift([Math.abs(edge.x)*.982/width,edge.y*.982/height]);
+  const curve=new THREE.CatmullRomCurve3(pts.map(([x,y])=>new THREE.Vector3(side*x*width,y*height,0))),points=curve.getPoints(36),left=[],right=[],half=height*.0026;
+  for(let i=0;i<points.length;i++){const prev=points[Math.max(0,i-1)],next=points[Math.min(points.length-1,i+1)],d=next.clone().sub(prev).normalize(),n=new THREE.Vector2(-d.y,d.x).multiplyScalar(half);left.push(new THREE.Vector2(points[i].x+n.x,points[i].y+n.y));right.push(new THREE.Vector2(points[i].x-n.x,points[i].y-n.y));}
+  pieces.push(extrusion([...left,...right.reverse()],.004,.0705));
+ }
+ for(const side of[-1,1])for(const [x0,y0,x1,y1]of[[.235,.399,.305,.405],[.235,-.231,.299,-.382]]){
+  const a=new THREE.Vector2(side*x0*width,y0*height),b=new THREE.Vector2(side*x1*width,y1*height),d=b.clone().sub(a).normalize(),n=new THREE.Vector2(-d.y,d.x).multiplyScalar(height*.004);
+  pieces.push(extrusion([a.clone().add(n),b.clone().add(n),b.clone().sub(n),a.clone().sub(n)],.004,.0705));
+ }
+ const combined=mergeGeometries(pieces,false);pieces.forEach(g=>g.dispose());return combined;
+}
 export function buildTaiheExteriorPlaque(builder,{height,ratio=1.085}={}){
  const width=height*ratio,depth=.15,outline=taiheCloudOutline(width,height);
  const gold=builder.ownMat('taihe-exterior-cloud-gold',{color:0xb99542,roughness:.56,metalness:.32}),red=builder.ownMat('taihe-exterior-cloud-red',{color:0x782b21,roughness:.75,metalness:.05});
- const root=new THREE.Mesh(extrusion(outline,.135,-.075),gold);root.name='taihe-exterior-cloud-nameboard';root.userData.noMerge=true;root.geometry.parameters={width,height,depth};
+ const outer=extrusion(outline,.135,-.075),scrolls=innerScrollGeometry(width,height),scrollTriangles=scrolls.attributes.position.count/3,rootGeometry=mergeGeometries([outer,scrolls],false);outer.dispose();scrolls.dispose();
+ const root=new THREE.Mesh(rootGeometry,gold);root.name='taihe-exterior-cloud-nameboard';root.userData.noMerge=true;root.geometry.parameters={width,height,depth};
  const inset=new THREE.Mesh(extrusion(outline.map(p=>p.clone().multiplyScalar(.975)),.01,.06),red);inset.name='taihe-exterior-cloud-red-inset';root.add(inset);
  const blueWidth=width*.47,blueHeight=height*.63,offset=height*.084;
  const border=new THREE.Mesh(new THREE.BoxGeometry(blueWidth+.055,blueHeight+.055,.01),gold);border.name='taihe-exterior-blue-border';border.position.set(0,offset,.0675);root.add(border);
@@ -30,7 +55,7 @@ export function buildTaiheExteriorPlaque(builder,{height,ratio=1.085}={}){
  const pieces=[root,...root.children],parts=[],materials=[];
  for(const piece of pieces){piece.updateMatrix();const geometry=piece.geometry.index?piece.geometry.toNonIndexed():piece.geometry.clone();geometry.applyMatrix4(piece.matrix);parts.push(geometry);materials.push(piece.material);}
  const combined=mergeGeometries(parts,true);parts.forEach(g=>g.dispose());pieces.forEach(p=>p.geometry.dispose());root.remove(...root.children);root.geometry=combined;root.geometry.parameters={width,height,depth};root.material=materials;root.castShadow=root.receiveShadow=true;
- root.userData.taiheExteriorPlaque={status:'PHOTO_FIT_NOT_SURVEYED',accepted:false,source:'https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5efefbd5093a9.jpg',sourceSha256:'eebdbe096e5aeecc55d08e380775171438c75b635846dc013c452bce55f36c1c',outerRatio:ratio,blueWidthFraction:.47,blueHeightFraction:.63,blueCenterYFraction:.084,lettering:'SYSTEM_FONT_UNVERIFIED_NOT_CALLIGRAPHY',back:'BACK_THICKNESS_HARDWARE_CARVING_UNVERIFIED',depthFit:depth,blueCore:{width:blueWidth,height:blueHeight,centerY:offset,materialGroup:3},officialPixelsEmbedded:false};
+ root.userData.taiheExteriorPlaque={status:'PHOTO_FIT_NOT_SURVEYED',accepted:false,source:'https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5efefbd5093a9.jpg',sourceSha256:'eebdbe096e5aeecc55d08e380775171438c75b635846dc013c452bce55f36c1c',outerRatio:ratio,blueWidthFraction:.47,blueHeightFraction:.63,blueCenterYFraction:.084,lettering:'SYSTEM_FONT_UNVERIFIED_NOT_CALLIGRAPHY',back:'BACK_THICKNESS_HARDWARE_CARVING_UNVERIFIED',depthFit:depth,innerScrolls:{count:8,diagonalCornerConnections:4,triangles:scrollTriangles,depthStatus:'SHALLOW_FIT_NOT_MEASURED',sourceObserved:true,exactCarvingAccepted:false},blueCore:{width:blueWidth,height:blueHeight,centerY:offset,materialGroup:3},officialPixelsEmbedded:false};
  return root;
 }
 
