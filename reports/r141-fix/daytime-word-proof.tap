@@ -1,0 +1,30 @@
+TAP version 13
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# INSTALL true
+# VISIBLE {"id":"taihe-emperor-01","quality":"low","first":97,"frames":109,"status":"ready","reason":null,"error":null,"actor":{"id":"taihe-emperor-01","pose":"seated","lod":2,"visibility":1,"position":[4.898587196589413e-18,12.207499990463257,9.010000000000002]},"batchCounts":[{"key":"emperor-ceremonial|seated|2|static|throne-front-perch","count":1,"visible":true}],"cpu":{"p50":3.4189619999997376,"p95":5.517762000001312,"max":166.6473220000007},"rays":[{"dy":0.8,"body":2.9239753962941983,"architecture":{"distance":3.5965490951273726,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true},{"dy":1.1,"body":2.9378881958470098,"architecture":{"distance":3.5669798148658645,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true},{"dy":1.4,"body":2.980282231116774,"architecture":{"distance":3.572913248101711,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true}]}
+# VISIBLE {"id":"taihe-emperor-01","quality":"high","first":0,"frames":12,"status":"ready","reason":null,"error":null,"actor":{"id":"taihe-emperor-01","pose":"seated","lod":2,"visibility":1,"position":[4.898587196589413e-18,12.207499990463257,9.010000000000002]},"batchCounts":[{"key":"emperor-ceremonial|seated|2|static|throne-front-perch","count":1,"visible":true}],"cpu":{"p50":3.077058999999281,"p95":4.401976999999533,"max":4.401976999999533},"rays":[{"dy":0.8,"body":2.9239753962941983,"architecture":{"distance":3.5965490951273726,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true},{"dy":1.1,"body":2.9378881958470098,"architecture":{"distance":3.5669798148658645,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true},{"dy":1.4,"body":2.980282231116774,"architecture":{"distance":3.572913248101711,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true}]}
+# VISIBLE {"id":"chuxiu-consort-01","quality":"low","first":103,"frames":115,"status":"ready","reason":null,"error":null,"actor":{"id":"chuxiu-consort-01","pose":"seated","lod":2,"visibility":1,"position":[100.22,0.5599999523162842,433.15999999999997]},"batchCounts":[{"key":"consort-daily|seated|2|west-six|kang-low","count":1,"visible":true}],"cpu":{"p50":3.2396829999997863,"p95":4.85329400000046,"max":5.717802999999549},"rays":[{"dy":0.8,"body":2.9370412042887875,"architecture":{"distance":5.7907912928312575,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true},{"dy":1.1,"body":2.956120185219171,"architecture":{"distance":5.743181896672698,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true},{"dy":1.4,"body":2.995147815098526,"architecture":{"distance":5.752735297060109,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true}]}
+# VISIBLE {"id":"chuxiu-consort-01","quality":"high","first":0,"frames":12,"status":"ready","reason":null,"error":null,"actor":{"id":"chuxiu-consort-01","pose":"seated","lod":2,"visibility":1,"position":[100.22,0.5599999523162842,433.15999999999997]},"batchCounts":[{"key":"consort-daily|seated|2|west-six|kang-low","count":1,"visible":true}],"cpu":{"p50":3.2363580000001093,"p95":3.94923800000106,"max":3.94923800000106},"rays":[{"dy":0.8,"body":2.9370412042887875,"architecture":{"distance":5.7907912928312575,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true},{"dy":1.1,"body":2.956120185219171,"architecture":{"distance":5.743181896672698,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true},{"dy":1.4,"body":2.995147815098526,"architecture":{"distance":5.752735297060109,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true}]}
+# VALIDATION_COST {"label":"S-live","samples":120,"p50":2.439352000001236,"p95":2.9912399999993795,"max":4.9027790000000095}
+# VALIDATION_COST {"label":"B-restored","samples":120,"p50":0.20112200000039593,"p95":0.46889399999963643,"max":1.1540820000009262}
+# [ZoneManager] 卸载区域 axis-courts
+# [ZoneManager] 卸载区域 west-six
+# Subtest: tests/r141-fix/daytime-submission.test.mjs
+ok 1 - tests/r141-fix/daytime-submission.test.mjs
+  ---
+  duration_ms: 9447.613662
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9455.952539

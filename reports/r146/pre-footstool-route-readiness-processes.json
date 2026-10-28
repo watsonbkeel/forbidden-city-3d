@@ -1,0 +1,122 @@
+[
+  {
+    "name": "chuxiu-canonical",
+    "command": [
+      "node",
+      "scripts/r130/chuxiu-body.mjs",
+      "reports/r146/routes/chuxiu-canonical.json",
+      "10,30,60",
+      "forward,backward,right"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 9.638085993938148
+  },
+  {
+    "name": "chengqian-canonical-and-boundaries",
+    "command": [
+      "node",
+      "scripts/r130/chengqian-body.mjs",
+      "reports/r146/routes/chengqian-canonical-and-boundaries.json",
+      "10,30,60",
+      "forward,backward,right"
+    ],
+    "environment": {},
+    "exitCode": 1,
+    "seconds": 12.596343524986878,
+    "knownIncompleteOutcomesExactlyRetained": true
+  },
+  {
+    "name": "connected",
+    "command": [
+      "node",
+      "scripts/r130/chuxiu-body.mjs",
+      "reports/r146/routes/connected.json",
+      "10,30,60",
+      "forward,backward,right",
+      "connected"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 13.254050407907926
+  },
+  {
+    "name": "front",
+    "command": [
+      "node",
+      "scripts/r134/front-routes.mjs",
+      "reports/r146/routes/front.json",
+      "10,30,60",
+      "forward,backward,right",
+      "front"
+    ],
+    "environment": {},
+    "exitCode": 1,
+    "seconds": 6.810972102917731,
+    "knownIncompleteOutcomesExactlyRetained": true
+  },
+  {
+    "name": "front-local",
+    "command": [
+      "node",
+      "scripts/r134/front-routes.mjs",
+      "reports/r146/routes/front-local.json",
+      "10,30,60",
+      "forward,backward,right",
+      "front-local"
+    ],
+    "environment": {},
+    "exitCode": 1,
+    "seconds": 6.376320219016634,
+    "knownIncompleteOutcomesExactlyRetained": true
+  },
+  {
+    "name": "emperor",
+    "command": [
+      "node",
+      "--import",
+      "./tests/r141-fix/json-hooks.mjs",
+      "scripts/r146/routine-oracle-with-interior.mjs",
+      ".",
+      "reports/r146/emperor"
+    ],
+    "environment": {
+      "FPS": "10,30,60"
+    },
+    "exitCode": 0,
+    "seconds": 163.43295703199692,
+    "actualSGeometryRows": [
+      {
+        "fps": 10,
+        "arrived": true,
+        "complete": true,
+        "failures": {
+          "capsuleEndpoint": 70,
+          "capsuleSweptCandidate": 12,
+          "renderCross": 0
+        }
+      },
+      {
+        "fps": 30,
+        "arrived": true,
+        "complete": true,
+        "failures": {
+          "capsuleEndpoint": 80,
+          "capsuleSweptCandidate": 12,
+          "renderCross": 1
+        }
+      },
+      {
+        "fps": 60,
+        "arrived": true,
+        "complete": true,
+        "failures": {
+          "capsuleEndpoint": 95,
+          "capsuleSweptCandidate": 12,
+          "renderCross": 5
+        }
+      }
+    ],
+    "semanticPass": false
+  }
+]

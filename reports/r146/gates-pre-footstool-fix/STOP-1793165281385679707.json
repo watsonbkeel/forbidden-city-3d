@@ -1,0 +1,176 @@
+{
+  "sourceBefore": "e11fe9a2c0e40c002f44f59bd67d90e610fc69d744144469cc60898833eea3b7",
+  "sourceAfter": "e11fe9a2c0e40c002f44f59bd67d90e610fc69d744144469cc60898833eea3b7",
+  "sourceCommit": "621bac80dac436c0c559e121a26312c12685e1a9",
+  "gates": [
+    {
+      "name": "r137-r145-plus-hotfix",
+      "command": [
+        "node",
+        "--import",
+        "./tests/r141-fix/json-hooks.mjs",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "tests/current-state/r137-nanxun-relief.test.mjs",
+        "tests/current-state/r137-taihe-plaque-scrolls.test.mjs",
+        "tests/r138/jiaotai-low-rooms.test.mjs",
+        "tests/r138/world-check.test.mjs",
+        "tests/r138/yangxin-lettering.test.mjs",
+        "tests/r139/details.test.mjs",
+        "tests/r139/world-check.test.mjs",
+        "tests/r140/details.test.mjs",
+        "tests/r140/world-check.test.mjs",
+        "tests/r142/chengrui-seats.test.mjs",
+        "tests/r142/world-check.test.mjs",
+        "tests/r143/details.test.mjs",
+        "tests/r144/details.test.mjs",
+        "tests/r144/world.test.mjs",
+        "tests/r145/links.test.mjs",
+        "tests/r145/regressions.test.mjs",
+        "tests/r145/world.test.mjs",
+        "tests/r141-fix/actual-interior.test.mjs",
+        "tests/r141-fix/daytime-submission.test.mjs",
+        "tests/r141-fix/exact-bytes.test.mjs",
+        "tests/r141-fix/rendered-streaming.test.mjs",
+        "tests/r141-fix/roundtrip.test.mjs"
+      ],
+      "exitCode": 1,
+      "durationSeconds": 221.5267331060022,
+      "summary": {
+        "tests": 96,
+        "pass": 95,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "failures": [
+        "all previous palace geometry and contacts retained; no extra flat walkable added"
+      ],
+      "addedFailures": [],
+      "removedFailures": [],
+      "inheritedVerifiedSourceCommit": "548ac14f37e3fc62f6f3d909d72499605c131b8d"
+    },
+    {
+      "name": "r135",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "tests/r135/rear-detail.test.mjs",
+        "tests/r135/resource-bound.test.mjs",
+        "tests/r135/source-envelope.test.mjs"
+      ],
+      "exitCode": 1,
+      "durationSeconds": 2.19852510408964,
+      "summary": {
+        "tests": 13,
+        "pass": 12,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "failures": [
+        "R135 real whole east-six keeps materials textures physics counts and +216 triangles/+20736 bytes in both detail tiers"
+      ],
+      "addedFailures": [],
+      "removedFailures": []
+    },
+    {
+      "name": "r134",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "tests/r134/facade-relief.test.mjs",
+        "tests/r134/high-contact.test.mjs",
+        "tests/r134/main-stair.test.mjs",
+        "tests/r134/main-threshold.test.mjs",
+        "tests/r134/resource-bound.test.mjs",
+        "tests/r134/shared-rest-return.test.mjs",
+        "tests/r134/source-guards.test.mjs",
+        "tests/r134/streaming.test.mjs",
+        "tests/r134/wing-entry.test.mjs"
+      ],
+      "exitCode": 1,
+      "durationSeconds": 29.199379367986694,
+      "summary": {
+        "tests": 15,
+        "pass": 14,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "failures": [
+        "R134 additional detail has explicit bounded cost while textures/materials/whole-zone draw meshes stay unchanged"
+      ],
+      "addedFailures": [],
+      "removedFailures": []
+    },
+    {
+      "name": "r127-r130",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "tests/r127/mountain-equivalence.test.mjs",
+        "tests/r128/checkpoint-priority.test.mjs",
+        "tests/r128/path-checkpoint.test.mjs",
+        "tests/r128/resumable-geometry.test.mjs",
+        "tests/r129/actual-prefix-support.test.mjs",
+        "tests/r129/departure-clearance.test.mjs",
+        "tests/r129/sloped-footprint.test.mjs",
+        "tests/r130/finished-courtyard-support.test.mjs",
+        "tests/r130/retained-source-domain.test.mjs"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 16.355080289999023,
+      "summary": {
+        "tests": 21,
+        "pass": 21,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "failures": [],
+      "addedFailures": [],
+      "removedFailures": []
+    },
+    {
+      "name": "r126",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "tests/r126/arrival-ensemble.test.mjs",
+        "tests/r126/owner-lifecycle.test.mjs",
+        "tests/r126/quality-retention.test.mjs",
+        "tests/r126/screen-back.test.mjs",
+        "tests/r126/source-guard.test.mjs",
+        "tests/r126/streaming.test.mjs"
+      ],
+      "exitCode": 1,
+      "durationSeconds": 13.985973233007826,
+      "summary": {
+        "tests": 7,
+        "pass": 6,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "failures": [
+        "tests/r126/arrival-ensemble.test.mjs"
+      ],
+      "addedFailures": [
+        "tests/r126/arrival-ensemble.test.mjs"
+      ],
+      "removedFailures": []
+    }
+  ],
+  "preservedGeneratedReports": [],
+  "sourceUnchanged": true
+}

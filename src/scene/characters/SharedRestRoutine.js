@@ -15,7 +15,12 @@ export class SharedRestRoutine {
  update(states,dt,night){
   this.states=states.filter(s=>SHARED_REST_IDS.includes(s.actor.id));for(const state of this.states)this.prepareState(state);const valid=this.navigation.validate(this.states.filter(s=>s.binding).map(s=>this.owner.current(s).position));
   for(const state of this.states){this.prepareState(state);if(!state.binding)continue;const current=this.owner.current(state);state.routineRenderable=valid&&this.navigation.renderable(current.position);if(!valid){if(state.routineSample)state.routineSample={...state.routineSample,speedMetersPerSecond:0};this.owner.stats.waiting++;continue;}
-   if(!state.routine&&night){const original=state.actor,points=SHARED_REST_PATHS.get(original.id),standing=this.owner.effective(original),first=sample(points[0],current.rotationYRad);if(!this.safe(original,current,standing,first)){this.owner.stats.waiting++;continue;}state.dayActor=original;state.routine={kind:'shared-rest',phase:'to-bed',points,index:1,direction:1,originalBinding:state.binding,originalPatrol:state.patrol,daySample:current};state.actor=standing;state.patrol=null;state.routineSample=first;}
+   if(!state.routine&&night){const original=state.actor,points=SHARED_REST_PATHS.get(original.id),standing=this.owner.effective(original),first=sample(points[0],current.rotationYRad);
+    // A validated S asset can bake a profile height to a slightly higher F32
+    // plane. Bind the first standing sample to that actual source as movement
+    // already does; never change X/Z, the body, the route, or its tolerance.
+    if(original.id===SHARED_REST_IDS[0]&&this.navigation.taiheReplacement){const y=this.navigation.surfaceHeight(first.position[0],first.position[2],first.position[1],.45);if(!Number.isFinite(y)){this.owner.stats.waiting++;continue;}first.position[1]=Math.max(first.position[1],y);}
+    if(!this.safe(original,current,standing,first)){this.owner.stats.waiting++;continue;}state.dayActor=original;state.routine={kind:'shared-rest',phase:'to-bed',points,index:1,direction:1,originalBinding:state.binding,originalPatrol:state.patrol,daySample:current};state.actor=standing;state.patrol=null;state.routineSample=first;}
    const r=state.routine;if(r?.kind!=='shared-rest')continue;
    const direction=night?1:-1;
    if(direction!==r.direction){const actor=this.owner.effective(state.dayActor),point=state.routineSample;if(!this.safe(state.actor,point,actor,point)){this.owner.stats.waiting++;continue;}state.actor=actor;r.index+=direction;r.direction=direction;r.phase=night?'to-bed':'return';}

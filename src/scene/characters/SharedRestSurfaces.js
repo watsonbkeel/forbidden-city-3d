@@ -26,6 +26,10 @@ export function triangleDiskMaxY(x,z,r,v){
 function taiheDaisSupport(mesh,v,approved=false){
  if((!approved&&mesh.userData.taiheCoreOwner!==TAIHE_FALLBACK_OWNER)||!/^taihe_(lacquer|dark_gold)$/.test(mesh.material?.name??''))return false;
  const d=TAIHE_CORE.dais,epsilon=1e-5,within=(p,x0,x1,z0,z1,y0,y1)=>p[0]>=x0-epsilon&&p[0]<=x1+epsilon&&p[2]>=z0-epsilon&&p[2]<=z1+epsilon&&p[1]>=y0-epsilon&&p[1]<=y1+epsilon;
+ // R146: the authored throne footstool is a real prefix support too. Match
+ // only its original profile-local top; actual F32 vertices supply the height.
+ const t=TAIHE_CORE.throne,stoolY=t.baseY+t.footstoolHeight,stoolZ=t.z-.83;
+ if(v.every(p=>within(p,-t.footstoolWidth/2,t.footstoolWidth/2,stoolZ-t.footstoolDepth/2,stoolZ+t.footstoolDepth/2,stoolY,stoolY)))return true;
  if(v.every(p=>within(p,-d.width/2-.02,d.width/2+.02,d.z0-.02,d.z1+.02,d.height,d.height+.06)))return true;
  const half=TAIHE_DAIS_FRONT.cover.width/2,toe=d.z0-d.steps*d.stepRun;
  return v.every(p=>within(p,-half,half,toe,d.z0,0,d.height+.06));

@@ -1,0 +1,94 @@
+{
+  "sourceBefore": "e11fe9a2c0e40c002f44f59bd67d90e610fc69d744144469cc60898833eea3b7",
+  "sourceAfter": "e11fe9a2c0e40c002f44f59bd67d90e610fc69d744144469cc60898833eea3b7",
+  "sourceCommit": "548ac14f37e3fc62f6f3d909d72499605c131b8d",
+  "gates": [
+    {
+      "name": "r137-r145-plus-hotfix",
+      "command": [
+        "node",
+        "--import",
+        "./tests/r141-fix/json-hooks.mjs",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "tests/current-state/r137-nanxun-relief.test.mjs",
+        "tests/current-state/r137-taihe-plaque-scrolls.test.mjs",
+        "tests/r138/jiaotai-low-rooms.test.mjs",
+        "tests/r138/world-check.test.mjs",
+        "tests/r138/yangxin-lettering.test.mjs",
+        "tests/r139/details.test.mjs",
+        "tests/r139/world-check.test.mjs",
+        "tests/r140/details.test.mjs",
+        "tests/r140/world-check.test.mjs",
+        "tests/r142/chengrui-seats.test.mjs",
+        "tests/r142/world-check.test.mjs",
+        "tests/r143/details.test.mjs",
+        "tests/r144/details.test.mjs",
+        "tests/r144/world.test.mjs",
+        "tests/r145/links.test.mjs",
+        "tests/r145/regressions.test.mjs",
+        "tests/r145/world.test.mjs",
+        "tests/r141-fix/actual-interior.test.mjs",
+        "tests/r141-fix/daytime-submission.test.mjs",
+        "tests/r141-fix/exact-bytes.test.mjs",
+        "tests/r141-fix/rendered-streaming.test.mjs",
+        "tests/r141-fix/roundtrip.test.mjs"
+      ],
+      "exitCode": 1,
+      "durationSeconds": 221.5267331060022,
+      "summary": {
+        "tests": 96,
+        "pass": 95,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "failures": [
+        "all previous palace geometry and contacts retained; no extra flat walkable added"
+      ],
+      "addedFailures": [],
+      "removedFailures": []
+    },
+    {
+      "name": "r135",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "tests/r135/rear-detail.test.mjs",
+        "tests/r135/resource-bound.test.mjs",
+        "tests/r135/source-envelope.test.mjs"
+      ],
+      "exitCode": 1,
+      "durationSeconds": 2.1616872549057007,
+      "summary": {
+        "tests": 13,
+        "pass": 12,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "failures": [
+        "R135 real whole east-six keeps materials textures physics counts and +216 triangles/+20736 bytes in both detail tiers"
+      ],
+      "addedFailures": [
+        "R135 real whole east-six keeps materials textures physics counts and +216 triangles/+20736 bytes in both detail tiers"
+      ],
+      "removedFailures": []
+    }
+  ],
+  "preservedGeneratedReports": [
+    "reports/r138/full-static-routes.json",
+    "reports/r139/full-static-routes.json",
+    "reports/r140/full-static-routes.json",
+    "reports/r142/airborne-closed-loops.json",
+    "reports/r142/full-static-routes.json",
+    "reports/r144/full-zone-routes.json",
+    "reports/r145/merged-world-routes.json",
+    "reports/r145/outside-domain-frame-equivalence.json",
+    "reports/r145/r138-whole-builder-attribution.json"
+  ],
+  "sourceUnchanged": true
+}
