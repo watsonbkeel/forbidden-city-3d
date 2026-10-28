@@ -1,0 +1,297 @@
+TAP version 13
+# Subtest: Biluo retained bowl has source-visible blue/yellow pendant petal surface without claiming actual relief
+ok 1 - Biluo retained bowl has source-visible blue/yellow pendant petal surface without claiming actual relief
+  ---
+  duration_ms: 146.499446
+  type: 'test'
+  ...
+# Subtest: original bowl faces partition exactly into side/caps; all other geometry and every physical source remain identical
+ok 2 - original bowl faces partition exactly into side/caps; all other geometry and every physical source remain identical
+  ---
+  duration_ms: 152.674504
+  type: 'test'
+  ...
+# Subtest: real Canvas contains deterministic blue/yellow pendant motif and finite wrap seam
+ok 3 - real Canvas contains deterministic blue/yellow pendant motif and finite wrap seam
+  ---
+  duration_ms: 736.279245
+  type: 'test'
+  ...
+# Subtest: both partitioned geometries, owned side material and map dispose once without polluting original shared blue
+ok 4 - both partitioned geometries, owned side material and map dispose once without polluting original shared blue
+  ---
+  duration_ms: 146.155844
+  type: 'test'
+  ...
+# Subtest: foreign frame, transformed or mutated original cylinder/groups rejects before owning artwork
+ok 5 - foreign frame, transformed or mutated original cylinder/groups rejects before owning artwork
+  ---
+  duration_ms: 307.893648
+  type: 'test'
+  ...
+# Subtest: previous delivered ovoid artwork remains pixel-identical and caps keep original blue
+ok 6 - previous delivered ovoid artwork remains pixel-identical and caps keep original blue
+  ---
+  duration_ms: 426.970998
+  type: 'test'
+  ...
+# Subtest: actual CourtKit.finish includes all 96 original bowl triangles and the side artwork in real material batches
+ok 7 - actual CourtKit.finish includes all 96 original bowl triangles and the side artwork in real material batches
+  ---
+  duration_ms: 97.767427
+  type: 'test'
+  ...
+# Subtest: Biluo retained east-side route uses full static collision world at 10/60 Hz, walking and running
+not ok 8 - Biluo retained east-side route uses full static collision world at 10/60 Hz, walking and running
+  ---
+  duration_ms: 5053.261903
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-biluo-bowl/world-route.test.mjs:2:1'
+  failureType: 'testCodeFailure'
+  error: "ENOENT: no such file or directory, open 'reports/followup-biluo-bowl/world-route.json'"
+  code: 'ENOENT'
+  stack: |-
+    Object.writeFileSync (node:fs:2483:20)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-biluo-bowl/world-route.test.mjs:2:663)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: Biluo source-visible ice-crackle and five-petal pattern belongs only to its existing finial
+ok 9 - Biluo source-visible ice-crackle and five-petal pattern belongs only to its existing finial
+  ---
+  duration_ms: 72.018439
+  type: 'test'
+  ...
+# Subtest: only one finial material changes; every original geometry, matrix and physical source remains identical
+not ok 10 - only one finial material changes; every original geometry, matrix and physical source remains identical
+  ---
+  duration_ms: 93.146699
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-biluo/details.test.mjs:11:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + '9eed5c90464ac7fd04a508e2cbffbab3331b5ea7068a0268214be3246e8ab9fc'
+    - '3ef9a5b27888d76db0e2a5796a3a8abcb75ee550011bccad26e06f3395b66729'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '3ef9a5b27888d76db0e2a5796a3a8abcb75ee550011bccad26e06f3395b66729'
+  actual: '9eed5c90464ac7fd04a508e2cbffbab3331b5ea7068a0268214be3246e8ab9fc'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-biluo/details.test.mjs:11:315)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+    run (node:internal/test_runner/harness:398:12)
+    test (node:internal/test_runner/harness:407:12)
+    file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-biluo/details.test.mjs:11:1
+  ...
+# Subtest: real Canvas contains deterministic irregular pale network and five-petal flowers; wrapped seam remains bounded
+ok 11 - real Canvas contains deterministic irregular pale network and five-petal flowers; wrapped seam remains bounded
+  ---
+  duration_ms: 715.529569
+  type: 'test'
+  ...
+# Subtest: owned motif material and map dispose once across three rebuilds without polluting original blue lower neck
+ok 12 - owned motif material and map dispose once across three rebuilds without polluting original blue lower neck
+  ---
+  duration_ms: 120.570134
+  type: 'test'
+  ...
+# Subtest: foreign frame, transformed or mutated original sphere rejects before owning artwork
+ok 13 - foreign frame, transformed or mutated original sphere rejects before owning artwork
+  ---
+  duration_ms: 138.833128
+  type: 'test'
+  ...
+# Subtest: Biluo retained east-side route uses full static collision world at 10/60 Hz, walking and running
+not ok 14 - Biluo retained east-side route uses full static collision world at 10/60 Hz, walking and running
+  ---
+  duration_ms: 5673.542461
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-biluo/world-route.test.mjs:2:1'
+  failureType: 'testCodeFailure'
+  error: "ENOENT: no such file or directory, open 'reports/followup-biluo/world-route.json'"
+  code: 'ENOENT'
+  stack: |-
+    Object.writeFileSync (node:fs:2483:20)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-biluo/world-route.test.mjs:2:663)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: Fanhua source front floor-edge scroll surface is present without claiming whole-object restoration
+ok 15 - Fanhua source front floor-edge scroll surface is present without claiming whole-object restoration
+  ---
+  duration_ms: 94.395336
+  type: 'test'
+  ...
+# Subtest: only one existing front-band visual changes; all original physics, six openings and non-target mesh bytes stay identical
+ok 16 - only one existing front-band visual changes; all original physics, six openings and non-target mesh bytes stay identical
+  ---
+  duration_ms: 309.786139
+  type: 'test'
+  ...
+# Subtest: actual Canvas has green field and gold curls and only south face uses full pattern
+ok 17 - actual Canvas has green field and gold curls and only south face uses full pattern
+  ---
+  duration_ms: 346.516536
+  type: 'test'
+  ...
+# Subtest: three build/unload cycles release private pattern material and map once and do not replace shared green material
+ok 18 - three build/unload cycles release private pattern material and map once and do not replace shared green material
+  ---
+  duration_ms: 89.146543
+  type: 'test'
+  ...
+# Subtest: duplicate, foreign and transformed identity reject before allocating or changing band
+ok 19 - duplicate, foreign and transformed identity reject before allocating or changing band
+  ---
+  duration_ms: 45.989126
+  type: 'test'
+  ...
+# Subtest: fitted band stays attached to retained structural beam and cannot introduce a floor, opening or reachable upper platform
+ok 20 - fitted band stays attached to retained structural beam and cannot introduce a floor, opening or reachable upper platform
+  ---
+  duration_ms: 32.158285
+  type: 'test'
+  ...
+# Subtest: mutated real band buffers reject even when constructor parameters and bounding envelope remain unchanged
+ok 21 - mutated real band buffers reject even when constructor parameters and bounding envelope remain unchanged
+  ---
+  duration_ms: 124.327498
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,798, 树木=34棵, 碰撞器=2034
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# DIAG {"label":"before","status":"ready","reason":null,"seeds":2,"actors":[{"id":"taihe-emperor-01","binding":true,"renderable":true,"position":[4.898587196589413e-18,12.207499990463257,9.010000000000002]},{"id":"chuxiu-consort-01","binding":true,"renderable":false,"position":[100.22,0.5599999523162842,433.15999999999997]}]}
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 474.3ms
+# PASS real S/B lifecycle, both actors, real S supports, hostile source changes and streamed zone recovery
+# [ZoneManager] 卸载区域 axis-courts
+# [ZoneManager] 卸载区域 west-six
+# Subtest: tests/r141-fix/actual-interior.test.mjs
+ok 6 - tests/r141-fix/actual-interior.test.mjs
+  ---
+  duration_ms: 10018.522026
+  type: 'test'
+  ...
+# Subtest: runtime replacement byte proof: odd Uint16 count, offset 0, exact subarray window
+ok 23 - runtime replacement byte proof: odd Uint16 count, offset 0, exact subarray window
+  ---
+  duration_ms: 3.81046
+  type: 'test'
+  ...
+# Subtest: runtime replacement byte proof: odd Uint16 count, offset 2, exact subarray window
+ok 24 - runtime replacement byte proof: odd Uint16 count, offset 2, exact subarray window
+  ---
+  duration_ms: 0.79261
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,798, 树木=34棵, 碰撞器=2034
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.1ms
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 494.2ms
+# [ZoneManager] 卸载区域 west-six
+# Subtest: R123 shifted-bed production lighting, normal cache/evict/rebuild and 40m interest preserve current shared poses and visible bodies
+ok 25 - R123 shifted-bed production lighting, normal cache/evict/rebuild and 40m interest preserve current shared poses and visible bodies
+  ---
+  duration_ms: 14950.62696
+  type: 'test'
+  ...
+# Subtest: only exact Environment sky/skyline mesh identities qualify; lookalikes, new children, foreign scenes and detach do not
+ok 26 - only exact Environment sky/skyline mesh identities qualify; lookalikes, new children, foreign scenes and detach do not
+  ---
+  duration_ms: 4.965124
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,798, 树木=34棵, 碰撞器=2034
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# {"fps":10,"outboundFrames":714,"returnFrames":714,"dayPositions":[[4.898587196589413e-18,12.207499990463257,9.010000000000002],[100.22,0.5599999523162842,433.15999999999997]],"actualTaiheSurfaces":24}
+# {"fps":30,"outboundFrames":2139,"returnFrames":2139,"dayPositions":[[4.898587196589413e-18,12.207499990463257,9.010000000000002],[100.22,0.5599999523162842,433.15999999999997]],"actualTaiheSurfaces":24}
+# {"fps":60,"outboundFrames":4277,"returnFrames":4277,"dayPositions":[[4.898587196589413e-18,12.207499990463257,9.010000000000002],[100.22,0.5599999523162842,433.15999999999997]],"actualTaiheSurfaces":24}
+# [ZoneManager] 卸载区域 axis-courts
+# [ZoneManager] 卸载区域 west-six
+# Subtest: actual moving sky/skyline and S interior remain compatible with 21:00/06:00 roundtrip at 10/30/60Hz
+ok 27 - actual moving sky/skyline and S interior remain compatible with 21:00/06:00 roundtrip at 10/30/60Hz
+  ---
+  duration_ms: 51434.118823
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,798, 树木=34棵, 碰撞器=2034
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# [ZoneManager] 卸载区域 axis-courts
+# [ZoneManager] 卸载区域 west-six
+# Subtest: actual view-following sky and skyline do not invalidate the two imperial routines while architectural source guards remain strict
+ok 28 - actual view-following sky and skyline do not invalidate the two imperial routines while architectural source guards remain strict
+  ---
+  duration_ms: 7643.082473
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,798, 树木=34棵, 碰撞器=2034
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+# [ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+# [ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+# [ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+# VISIBLE {"id":"taihe-emperor-01","quality":"low","first":87,"frames":99,"status":"ready","reason":null,"error":null,"actor":{"id":"taihe-emperor-01","pose":"seated","lod":2,"visibility":1,"position":[4.898587196589413e-18,12.207499990463257,9.010000000000002]},"batchCounts":[{"key":"emperor-ceremonial|seated|2|static|throne-front-perch","count":1,"visible":true}],"cpu":{"p50":2.9958480000004784,"p95":4.093676000000414,"max":174.96990499999993},"rays":[{"dy":0.8,"body":2.9239753962941983,"architecture":{"distance":3.5965490951273726,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true},{"dy":1.1,"body":2.9378881958470098,"architecture":{"distance":3.5669798148658645,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true},{"dy":1.4,"body":2.980282231116774,"architecture":{"distance":3.572913248101711,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true}]}
+# VISIBLE {"id":"taihe-emperor-01","quality":"high","first":0,"frames":12,"status":"ready","reason":null,"error":null,"actor":{"id":"taihe-emperor-01","pose":"seated","lod":2,"visibility":1,"position":[4.898587196589413e-18,12.207499990463257,9.010000000000002]},"batchCounts":[{"key":"emperor-ceremonial|seated|2|static|throne-front-perch","count":1,"visible":true}],"cpu":{"p50":4.914237999999386,"p95":5.364364999999452,"max":5.364364999999452},"rays":[{"dy":0.8,"body":2.9239753962941983,"architecture":{"distance":3.5965490951273726,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true},{"dy":1.1,"body":2.9378881958470098,"architecture":{"distance":3.5669798148658645,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true},{"dy":1.4,"body":2.980282231116774,"architecture":{"distance":3.572913248101711,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true}]}
+# [ZoneManager] 进入区域: west-six
+# [ZoneManager] 卸载区域 axis-courts
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 卸载区域 outer-east
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# VISIBLE {"id":"chuxiu-consort-01","quality":"low","first":49,"frames":61,"status":"ready","reason":null,"error":null,"actor":{"id":"chuxiu-consort-01","pose":"seated","lod":2,"visibility":1,"position":[100.22,0.5599999523162842,433.15999999999997]},"batchCounts":[{"key":"consort-daily|seated|2|west-six|kang-low","count":1,"visible":true}],"cpu":{"p50":1.0978089999989606,"p95":2.2773489999999583,"max":7.094092000001183},"rays":[{"dy":0.8,"body":2.9370412042887875,"architecture":{"distance":5.7907912928312575,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true},{"dy":1.1,"body":2.956120185219171,"architecture":{"distance":5.743181896672698,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true},{"dy":1.4,"body":2.995147815098526,"architecture":{"distance":5.752735297060109,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true}]}
+# VISIBLE {"id":"chuxiu-consort-01","quality":"high","first":0,"frames":12,"status":"ready","reason":null,"error":null,"actor":{"id":"chuxiu-consort-01","pose":"seated","lod":2,"visibility":1,"position":[100.22,0.5599999523162842,433.15999999999997]},"batchCounts":[{"key":"consort-daily|seated|2|west-six|kang-low","count":1,"visible":true}],"cpu":{"p50":1.2566970000007132,"p95":2.0756860000001325,"max":2.0756860000001325},"rays":[{"dy":0.8,"body":2.9370412042887875,"architecture":{"distance":5.7907912928312575,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true},{"dy":1.1,"body":2.956120185219171,"architecture":{"distance":5.743181896672698,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true},{"dy":1.4,"body":2.995147815098526,"architecture":{"distance":5.752735297060109,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true}]}
+# VALIDATION_COST {"label":"S-live","samples":120,"p50":0.5838160000002972,"p95":0.9704569999994419,"max":110.50290999999925}
+# VALIDATION_COST {"label":"B-restored","samples":120,"p50":0.15420200000153272,"p95":0.2354429999995773,"max":0.2959050000008574}
+# [ZoneManager] 卸载区域 outer-west
+# [ZoneManager] 卸载区域 garden
+# [ZoneManager] 卸载区域 west-six
+# Subtest: tests/r146-fix/production-frame-daytime.test.mjs
+ok 12 - tests/r146-fix/production-frame-daytime.test.mjs
+  ---
+  duration_ms: 9054.377096
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,798, 树木=34棵, 碰撞器=2034
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 卸载区域 axis-courts
+# Subtest: validated actual S footstool supports initial and moving original emperor body at exact F32 surface, without changing route coordinates
+ok 30 - validated actual S footstool supports initial and moving original emperor body at exact F32 surface, without changing route coordinates
+  ---
+  duration_ms: 12032.883768
+  type: 'test'
+  ...
+1..30
+# tests 30
+# suites 0
+# pass 27
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 122908.597618

@@ -1,0 +1,130 @@
+TAP version 13
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,798, 树木=34棵, 碰撞器=2034
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# DIAG {"label":"before","status":"ready","reason":null,"seeds":2,"actors":[{"id":"taihe-emperor-01","binding":true,"renderable":true,"position":[4.898587196589413e-18,12.207499990463257,9.010000000000002]},{"id":"chuxiu-consort-01","binding":true,"renderable":false,"position":[100.22,0.5599999523162842,433.15999999999997]}]}
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 487.1ms
+# PASS real S/B lifecycle, both actors, real S supports, hostile source changes and streamed zone recovery
+# [ZoneManager] 卸载区域 axis-courts
+# [ZoneManager] 卸载区域 west-six
+# Subtest: tests/r141-fix/actual-interior.test.mjs
+ok 1 - tests/r141-fix/actual-interior.test.mjs
+  ---
+  duration_ms: 9356.889006
+  type: 'test'
+  ...
+# Subtest: runtime replacement byte proof: odd Uint16 count, offset 0, exact subarray window
+ok 2 - runtime replacement byte proof: odd Uint16 count, offset 0, exact subarray window
+  ---
+  duration_ms: 3.272621
+  type: 'test'
+  ...
+# Subtest: runtime replacement byte proof: odd Uint16 count, offset 2, exact subarray window
+ok 3 - runtime replacement byte proof: odd Uint16 count, offset 2, exact subarray window
+  ---
+  duration_ms: 0.756636
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,798, 树木=34棵, 碰撞器=2034
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.1ms
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 571.0ms
+# [ZoneManager] 卸载区域 west-six
+# Subtest: R123 shifted-bed production lighting, normal cache/evict/rebuild and 40m interest preserve current shared poses and visible bodies
+ok 4 - R123 shifted-bed production lighting, normal cache/evict/rebuild and 40m interest preserve current shared poses and visible bodies
+  ---
+  duration_ms: 15059.264691
+  type: 'test'
+  ...
+# Subtest: only exact Environment sky/skyline mesh identities qualify; lookalikes, new children, foreign scenes and detach do not
+ok 5 - only exact Environment sky/skyline mesh identities qualify; lookalikes, new children, foreign scenes and detach do not
+  ---
+  duration_ms: 5.056838
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,798, 树木=34棵, 碰撞器=2034
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# {"fps":10,"outboundFrames":714,"returnFrames":714,"dayPositions":[[4.898587196589413e-18,12.207499990463257,9.010000000000002],[100.22,0.5599999523162842,433.15999999999997]],"actualTaiheSurfaces":24}
+# {"fps":30,"outboundFrames":2139,"returnFrames":2139,"dayPositions":[[4.898587196589413e-18,12.207499990463257,9.010000000000002],[100.22,0.5599999523162842,433.15999999999997]],"actualTaiheSurfaces":24}
+# {"fps":60,"outboundFrames":4277,"returnFrames":4277,"dayPositions":[[4.898587196589413e-18,12.207499990463257,9.010000000000002],[100.22,0.5599999523162842,433.15999999999997]],"actualTaiheSurfaces":24}
+# [ZoneManager] 卸载区域 axis-courts
+# [ZoneManager] 卸载区域 west-six
+# Subtest: actual moving sky/skyline and S interior remain compatible with 21:00/06:00 roundtrip at 10/30/60Hz
+ok 6 - actual moving sky/skyline and S interior remain compatible with 21:00/06:00 roundtrip at 10/30/60Hz
+  ---
+  duration_ms: 51148.847132
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,798, 树木=34棵, 碰撞器=2034
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.2ms
+# [ZoneManager] 卸载区域 axis-courts
+# [ZoneManager] 卸载区域 west-six
+# Subtest: actual view-following sky and skyline do not invalidate the two imperial routines while architectural source guards remain strict
+ok 7 - actual view-following sky and skyline do not invalidate the two imperial routines while architectural source guards remain strict
+  ---
+  duration_ms: 7669.709485
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,798, 树木=34棵, 碰撞器=2034
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+# [ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+# [ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+# [ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+# VISIBLE {"id":"taihe-emperor-01","quality":"low","first":84,"frames":96,"status":"ready","reason":null,"error":null,"actor":{"id":"taihe-emperor-01","pose":"seated","lod":2,"visibility":1,"position":[4.898587196589413e-18,12.207499990463257,9.010000000000002]},"batchCounts":[{"key":"emperor-ceremonial|seated|2|static|throne-front-perch","count":1,"visible":true}],"cpu":{"p50":3.1102280000013707,"p95":4.974405000000843,"max":172.75716900000043},"rays":[{"dy":0.8,"body":2.9239753962941983,"architecture":{"distance":3.5965490951273726,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true},{"dy":1.1,"body":2.9378881958470098,"architecture":{"distance":3.5669798148658645,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true},{"dy":1.4,"body":2.980282231116774,"architecture":{"distance":3.572913248101711,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true}]}
+# VISIBLE {"id":"taihe-emperor-01","quality":"high","first":0,"frames":12,"status":"ready","reason":null,"error":null,"actor":{"id":"taihe-emperor-01","pose":"seated","lod":2,"visibility":1,"position":[4.898587196589413e-18,12.207499990463257,9.010000000000002]},"batchCounts":[{"key":"emperor-ceremonial|seated|2|static|throne-front-perch","count":1,"visible":true}],"cpu":{"p50":4.693724000000657,"p95":6.34266800000114,"max":6.34266800000114},"rays":[{"dy":0.8,"body":2.9239753962941983,"architecture":{"distance":3.5965490951273726,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true},{"dy":1.1,"body":2.9378881958470098,"architecture":{"distance":3.5669798148658645,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true},{"dy":1.4,"body":2.980282231116774,"architecture":{"distance":3.572913248101711,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true}]}
+# [ZoneManager] 进入区域: west-six
+# [ZoneManager] 卸载区域 axis-courts
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 卸载区域 outer-east
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# VISIBLE {"id":"chuxiu-consort-01","quality":"low","first":39,"frames":51,"status":"ready","reason":null,"error":null,"actor":{"id":"chuxiu-consort-01","pose":"seated","lod":2,"visibility":1,"position":[100.22,0.5599999523162842,433.15999999999997]},"batchCounts":[{"key":"consort-daily|seated|2|west-six|kang-low","count":1,"visible":true}],"cpu":{"p50":1.037546999999904,"p95":2.385960999999952,"max":11.586167999999816},"rays":[{"dy":0.8,"body":2.9370412042887875,"architecture":{"distance":5.7907912928312575,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true},{"dy":1.1,"body":2.956120185219171,"architecture":{"distance":5.743181896672698,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true},{"dy":1.4,"body":2.995147815098526,"architecture":{"distance":5.752735297060109,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true}]}
+# VISIBLE {"id":"chuxiu-consort-01","quality":"high","first":0,"frames":12,"status":"ready","reason":null,"error":null,"actor":{"id":"chuxiu-consort-01","pose":"seated","lod":2,"visibility":1,"position":[100.22,0.5599999523162842,433.15999999999997]},"batchCounts":[{"key":"consort-daily|seated|2|west-six|kang-low","count":1,"visible":true}],"cpu":{"p50":1.0519490000006044,"p95":1.8569569999999658,"max":1.8569569999999658},"rays":[{"dy":0.8,"body":2.9370412042887875,"architecture":{"distance":5.7907912928312575,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true},{"dy":1.1,"body":2.956120185219171,"architecture":{"distance":5.743181896672698,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true},{"dy":1.4,"body":2.995147815098526,"architecture":{"distance":5.752735297060109,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true}]}
+# VALIDATION_COST {"label":"S-live","samples":120,"p50":0.6091540000015812,"p95":1.2826050000003306,"max":103.60446600000068}
+# VALIDATION_COST {"label":"B-restored","samples":120,"p50":0.15591400000084832,"p95":0.28863300000011805,"max":0.46186300000044866}
+# [ZoneManager] 卸载区域 outer-west
+# [ZoneManager] 卸载区域 garden
+# [ZoneManager] 卸载区域 west-six
+# Subtest: tests/r146-fix/production-frame-daytime.test.mjs
+ok 7 - tests/r146-fix/production-frame-daytime.test.mjs
+  ---
+  duration_ms: 9614.016614
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,798, 树木=34棵, 碰撞器=2034
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 卸载区域 axis-courts
+# Subtest: validated actual S footstool supports initial and moving original emperor body at exact F32 surface, without changing route coordinates
+ok 9 - validated actual S footstool supports initial and moving original emperor body at exact F32 surface, without changing route coordinates
+  ---
+  duration_ms: 12728.366301
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 107528.262645

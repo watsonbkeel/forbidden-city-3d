@@ -1,3 +1,4 @@
+import {registerViewFollowingVisual,revokeViewFollowingVisual} from './sky/EnvironmentVisualOwnership.js';
 import {fubiPoolGroundPath} from './garden/FubiArchPool.js';
 import { outerMoatGroundPath, buildOuterMoat } from './palace/special/OuterMoat.js';
 import {buildDuanmenBackdrop} from './palace/special/DuanmenBackdrop.js';
@@ -77,6 +78,7 @@ export class Environment {
     updateSkyUniforms(sky, this.sunPosition);
     sky.frustumCulled = false;
     this.sky = this.addObject(sky);
+    registerViewFollowingVisual(this.scene, this.sky);
   }
   
   /**
@@ -85,6 +87,7 @@ export class Environment {
   setupSkyline() {
     const ring = createSkylineRing(this.library);
     this.skylineRing = this.addObject(ring);
+    registerViewFollowingVisual(this.scene, this.skylineRing);
   }
   
   /**
@@ -335,6 +338,7 @@ export class Environment {
   dispose() {
     const geometries = new Set(), materials = new Set(), shadows = new Set();
     for (const object of this.objects) {
+      revokeViewFollowingVisual(object);
       object.traverse(node => {
         if (node.geometry) geometries.add(node.geometry);
         for (const material of node.userData?.ownedMaterials ?? []) {

@@ -1,0 +1,38 @@
+TAP version 13
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,798, 树木=34棵, 碰撞器=2034
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+# [ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+# [ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+# [ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+# VISIBLE {"id":"taihe-emperor-01","quality":"low","first":89,"frames":101,"status":"ready","reason":null,"error":null,"actor":{"id":"taihe-emperor-01","pose":"seated","lod":2,"visibility":1,"position":[4.898587196589413e-18,12.207499990463257,9.010000000000002]},"batchCounts":[{"key":"emperor-ceremonial|seated|2|static|throne-front-perch","count":1,"visible":true}],"cpu":{"p50":3.0332739999994374,"p95":5.832587000000785,"max":180.230227},"rays":[{"dy":0.8,"body":2.9239753962941983,"architecture":{"distance":3.5965490951273726,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true},{"dy":1.1,"body":2.9378881958470098,"architecture":{"distance":3.5669798148658645,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true},{"dy":1.4,"body":2.980282231116774,"architecture":{"distance":3.572913248101711,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true}]}
+# VISIBLE {"id":"taihe-emperor-01","quality":"high","first":0,"frames":12,"status":"ready","reason":null,"error":null,"actor":{"id":"taihe-emperor-01","pose":"seated","lod":2,"visibility":1,"position":[4.898587196589413e-18,12.207499990463257,9.010000000000002]},"batchCounts":[{"key":"emperor-ceremonial|seated|2|static|throne-front-perch","count":1,"visible":true}],"cpu":{"p50":4.6898720000008325,"p95":5.578246000000945,"max":5.578246000000945},"rays":[{"dy":0.8,"body":2.9239753962941983,"architecture":{"distance":3.5965490951273726,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true},{"dy":1.1,"body":2.9378881958470098,"architecture":{"distance":3.5669798148658645,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true},{"dy":1.4,"body":2.980282231116774,"architecture":{"distance":3.572913248101711,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true}]}
+# [ZoneManager] 进入区域: west-six
+# [ZoneManager] 卸载区域 axis-courts
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 卸载区域 outer-east
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# VISIBLE {"id":"chuxiu-consort-01","quality":"low","first":85,"frames":97,"status":"ready","reason":null,"error":null,"actor":{"id":"chuxiu-consort-01","pose":"seated","lod":2,"visibility":1,"position":[100.22,0.5599999523162842,433.15999999999997]},"batchCounts":[{"key":"consort-daily|seated|2|west-six|kang-low","count":1,"visible":true}],"cpu":{"p50":1.1745539999992616,"p95":2.6353559999988647,"max":12.03366399999868},"rays":[{"dy":0.8,"body":2.9370412042887875,"architecture":{"distance":5.7907912928312575,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true},{"dy":1.1,"body":2.956120185219171,"architecture":{"distance":5.743181896672698,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true},{"dy":1.4,"body":2.995147815098526,"architecture":{"distance":5.752735297060109,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true}]}
+# VISIBLE {"id":"chuxiu-consort-01","quality":"high","first":0,"frames":12,"status":"ready","reason":null,"error":null,"actor":{"id":"chuxiu-consort-01","pose":"seated","lod":2,"visibility":1,"position":[100.22,0.5599999523162842,433.15999999999997]},"batchCounts":[{"key":"consort-daily|seated|2|west-six|kang-low","count":1,"visible":true}],"cpu":{"p50":1.281925000001138,"p95":3.0641800000012154,"max":3.0641800000012154},"rays":[{"dy":0.8,"body":2.9370412042887875,"architecture":{"distance":5.7907912928312575,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true},{"dy":1.1,"body":2.956120185219171,"architecture":{"distance":5.743181896672698,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true},{"dy":1.4,"body":2.995147815098526,"architecture":{"distance":5.752735297060109,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true}]}
+# VALIDATION_COST {"label":"S-live","samples":120,"p50":0.7022150000011607,"p95":1.6478920000008657,"max":133.77185500000087}
+# VALIDATION_COST {"label":"B-restored","samples":120,"p50":0.182875000000422,"p95":0.5494440000002214,"max":2.436286000000109}
+# [ZoneManager] 卸载区域 outer-west
+# [ZoneManager] 卸载区域 garden
+# [ZoneManager] 卸载区域 west-six
+# Subtest: tests/r146-fix/production-frame-daytime.test.mjs
+ok 1 - tests/r146-fix/production-frame-daytime.test.mjs
+  ---
+  duration_ms: 9726.086648
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9734.19221

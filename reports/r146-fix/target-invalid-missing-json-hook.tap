@@ -1,0 +1,173 @@
+TAP version 13
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,798, 树木=34棵, 碰撞器=2034
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# DIAG {"label":"before","status":"ready","reason":null,"seeds":2,"actors":[{"id":"taihe-emperor-01","binding":true,"renderable":true,"position":[4.898587196589413e-18,12.207499990463257,9.010000000000002]},{"id":"chuxiu-consort-01","binding":true,"renderable":false,"position":[100.22,0.5599999523162842,433.15999999999997]}]}
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 565.9ms
+# PASS real S/B lifecycle, both actors, real S supports, hostile source changes and streamed zone recovery
+# [ZoneManager] 卸载区域 axis-courts
+# [ZoneManager] 卸载区域 west-six
+# Subtest: tests/r141-fix/actual-interior.test.mjs
+ok 1 - tests/r141-fix/actual-interior.test.mjs
+  ---
+  duration_ms: 10840.261272
+  type: 'test'
+  ...
+# Subtest: runtime replacement byte proof: odd Uint16 count, offset 0, exact subarray window
+ok 2 - runtime replacement byte proof: odd Uint16 count, offset 0, exact subarray window
+  ---
+  duration_ms: 3.903787
+  type: 'test'
+  ...
+# Subtest: runtime replacement byte proof: odd Uint16 count, offset 2, exact subarray window
+ok 3 - runtime replacement byte proof: odd Uint16 count, offset 2, exact subarray window
+  ---
+  duration_ms: 0.591578
+  type: 'test'
+  ...
+# node:internal/modules/esm/assert:99
+#         throw new ERR_IMPORT_ATTRIBUTE_MISSING(url, 'type', validType);
+#               ^
+# TypeError [ERR_IMPORT_ATTRIBUTE_MISSING]: Module "file:///workspace/scratch/02a8023d1a85/r146-imperial-visibility-fix/data/interiors/taihe.json" needs an import attribute of "type: json"
+#     at validateAttributes (node:internal/modules/esm/assert:99:15)
+#     at defaultLoadSync (node:internal/modules/esm/load:163:3)
+#     at \#loadAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:802:12)
+#     at \#loadSync (node:internal/modules/esm/loader:834:53)
+#     at ModuleLoader.load (node:internal/modules/esm/loader:783:26)
+#     at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:494:31)
+#     at \#getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+#     at afterResolve (node:internal/modules/esm/loader:607:52)
+#     at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:613:12)
+#     at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33) {
+#   code: 'ERR_IMPORT_ATTRIBUTE_MISSING'
+# }
+# Node.js v24.19.0
+# Subtest: tests/r141-fix/rendered-streaming.test.mjs
+not ok 3 - tests/r141-fix/rendered-streaming.test.mjs
+  ---
+  duration_ms: 108.918891
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r146-imperial-visibility-fix/tests/r141-fix/rendered-streaming.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: only exact Environment sky/skyline mesh identities qualify; lookalikes, new children, foreign scenes and detach do not
+ok 5 - only exact Environment sky/skyline mesh identities qualify; lookalikes, new children, foreign scenes and detach do not
+  ---
+  duration_ms: 6.178471
+  type: 'test'
+  ...
+# node:internal/modules/esm/assert:99
+#         throw new ERR_IMPORT_ATTRIBUTE_MISSING(url, 'type', validType);
+#               ^
+# TypeError [ERR_IMPORT_ATTRIBUTE_MISSING]: Module "file:///workspace/scratch/02a8023d1a85/r146-imperial-visibility-fix/data/interiors/taihe.json" needs an import attribute of "type: json"
+#     at validateAttributes (node:internal/modules/esm/assert:99:15)
+#     at defaultLoadSync (node:internal/modules/esm/load:163:3)
+#     at \#loadAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:802:12)
+#     at \#loadSync (node:internal/modules/esm/loader:834:53)
+#     at ModuleLoader.load (node:internal/modules/esm/loader:783:26)
+#     at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:494:31)
+#     at \#getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+#     at afterResolve (node:internal/modules/esm/loader:607:52)
+#     at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:613:12)
+#     at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33) {
+#   code: 'ERR_IMPORT_ATTRIBUTE_MISSING'
+# }
+# Node.js v24.19.0
+# Subtest: tests/r146-fix/environment-roundtrip.test.mjs
+not ok 5 - tests/r146-fix/environment-roundtrip.test.mjs
+  ---
+  duration_ms: 288.253452
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r146-imperial-visibility-fix/tests/r146-fix/environment-roundtrip.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,798, 树木=34棵, 碰撞器=2034
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# [ZoneManager] 卸载区域 axis-courts
+# [ZoneManager] 卸载区域 west-six
+# Subtest: actual view-following sky and skyline do not invalidate the two imperial routines while architectural source guards remain strict
+ok 7 - actual view-following sky and skyline do not invalidate the two imperial routines while architectural source guards remain strict
+  ---
+  duration_ms: 8010.924338
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,798, 树木=34棵, 碰撞器=2034
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+# [ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+# [ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+# [ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+# VISIBLE {"id":"taihe-emperor-01","quality":"low","first":87,"frames":99,"status":"ready","reason":null,"error":null,"actor":{"id":"taihe-emperor-01","pose":"seated","lod":2,"visibility":1,"position":[4.898587196589413e-18,12.207499990463257,9.010000000000002]},"batchCounts":[{"key":"emperor-ceremonial|seated|2|static|throne-front-perch","count":1,"visible":true}],"cpu":{"p50":3.025188999999955,"p95":5.827634000001126,"max":170.5454579999996},"rays":[{"dy":0.8,"body":2.9239753962941983,"architecture":{"distance":3.5965490951273726,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true},{"dy":1.1,"body":2.9378881958470098,"architecture":{"distance":3.5669798148658645,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true},{"dy":1.4,"body":2.980282231116774,"architecture":{"distance":3.572913248101711,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true}]}
+# VISIBLE {"id":"taihe-emperor-01","quality":"high","first":0,"frames":12,"status":"ready","reason":null,"error":null,"actor":{"id":"taihe-emperor-01","pose":"seated","lod":2,"visibility":1,"position":[4.898587196589413e-18,12.207499990463257,9.010000000000002]},"batchCounts":[{"key":"emperor-ceremonial|seated|2|static|throne-front-perch","count":1,"visible":true}],"cpu":{"p50":4.686671999999817,"p95":5.033272000000579,"max":5.033272000000579},"rays":[{"dy":0.8,"body":2.9239753962941983,"architecture":{"distance":3.5965490951273726,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true},{"dy":1.1,"body":2.9378881958470098,"architecture":{"distance":3.5669798148658645,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true},{"dy":1.4,"body":2.980282231116774,"architecture":{"distance":3.572913248101711,"name":"merged_taihe_dark_gold","material":"taihe_dark_gold"},"bodyFirst":true}]}
+# [ZoneManager] 进入区域: west-six
+# [ZoneManager] 卸载区域 axis-courts
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 卸载区域 outer-east
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# VISIBLE {"id":"chuxiu-consort-01","quality":"low","first":47,"frames":59,"status":"ready","reason":null,"error":null,"actor":{"id":"chuxiu-consort-01","pose":"seated","lod":2,"visibility":1,"position":[100.22,0.5599999523162842,433.15999999999997]},"batchCounts":[{"key":"consort-daily|seated|2|west-six|kang-low","count":1,"visible":true}],"cpu":{"p50":1.114093000000139,"p95":5.0233509999998205,"max":7.654780999999275},"rays":[{"dy":0.8,"body":2.9370412042887875,"architecture":{"distance":5.7907912928312575,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true},{"dy":1.1,"body":2.956120185219171,"architecture":{"distance":5.743181896672698,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true},{"dy":1.4,"body":2.995147815098526,"architecture":{"distance":5.752735297060109,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true}]}
+# VISIBLE {"id":"chuxiu-consort-01","quality":"high","first":0,"frames":12,"status":"ready","reason":null,"error":null,"actor":{"id":"chuxiu-consort-01","pose":"seated","lod":2,"visibility":1,"position":[100.22,0.5599999523162842,433.15999999999997]},"batchCounts":[{"key":"consort-daily|seated|2|west-six|kang-low","count":1,"visible":true}],"cpu":{"p50":1.1235969999997906,"p95":2.062395999999353,"max":2.062395999999353},"rays":[{"dy":0.8,"body":2.9370412042887875,"architecture":{"distance":5.7907912928312575,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true},{"dy":1.1,"body":2.956120185219171,"architecture":{"distance":5.743181896672698,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true},{"dy":1.4,"body":2.995147815098526,"architecture":{"distance":5.752735297060109,"name":"west-six_wall_red_material","material":"wall_red_material"},"bodyFirst":true}]}
+# VALIDATION_COST {"label":"S-live","samples":120,"p50":0.6130900000007387,"p95":1.1943630000005214,"max":98.87991800000054}
+# VALIDATION_COST {"label":"B-restored","samples":120,"p50":0.16615900000033434,"p95":0.34637000000111584,"max":0.5156139999999141}
+# [ZoneManager] 卸载区域 outer-west
+# [ZoneManager] 卸载区域 garden
+# [ZoneManager] 卸载区域 west-six
+# Subtest: tests/r146-fix/production-frame-daytime.test.mjs
+ok 7 - tests/r146-fix/production-frame-daytime.test.mjs
+  ---
+  duration_ms: 9330.361309
+  type: 'test'
+  ...
+# node:internal/modules/esm/assert:99
+#         throw new ERR_IMPORT_ATTRIBUTE_MISSING(url, 'type', validType);
+#               ^
+# TypeError [ERR_IMPORT_ATTRIBUTE_MISSING]: Module "file:///workspace/scratch/02a8023d1a85/r146-imperial-visibility-fix/data/interiors/taihe.json" needs an import attribute of "type: json"
+#     at validateAttributes (node:internal/modules/esm/assert:99:15)
+#     at defaultLoadSync (node:internal/modules/esm/load:163:3)
+#     at \#loadAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:802:12)
+#     at \#loadSync (node:internal/modules/esm/loader:834:53)
+#     at ModuleLoader.load (node:internal/modules/esm/loader:783:26)
+#     at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:494:31)
+#     at \#getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+#     at afterResolve (node:internal/modules/esm/loader:607:52)
+#     at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:613:12)
+#     at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33) {
+#   code: 'ERR_IMPORT_ATTRIBUTE_MISSING'
+# }
+# Node.js v24.19.0
+# Subtest: tests/r146/taihe-footstool-source.test.mjs
+not ok 8 - tests/r146/taihe-footstool-source.test.mjs
+  ---
+  duration_ms: 257.486207
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r146-imperial-visibility-fix/tests/r146/taihe-footstool-source.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 6
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 29518.193501

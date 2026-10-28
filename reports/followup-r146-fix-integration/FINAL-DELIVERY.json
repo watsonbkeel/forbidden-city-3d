@@ -1,0 +1,41 @@
+{
+  "sourceCommit": "760eb6b49d29f894cdfb45ccb6af1cccd57865b7",
+  "kind": "original-scope followup integration, not separate hotfix or new numbered major",
+  "sourceFilesVerified": 372,
+  "combinedInitial": {
+    "tests": 30,
+    "pass": 27,
+    "fail": 3,
+    "hotfixSubsetPass": 9,
+    "failures": [
+      "two report-output directories missing after sparse merge; fixed by mkdir and original tests rerun",
+      "one inherited pre-bowl exact non-target geometry hash assertion"
+    ]
+  },
+  "followupRerun": {
+    "tests": 21,
+    "pass": 20,
+    "fail": 1,
+    "inheritedActualHash": "9eed5c90464ac7fd04a508e2cbffbab3331b5ea7068a0268214be3246e8ab9fc",
+    "inheritedExpectedHash": "3ef9a5b27888d76db0e2a5796a3a8abcb75ee550011bccad26e06f3395b66729"
+  },
+  "environment": {
+    "tests": 32,
+    "pass": 32,
+    "fail": 0
+  },
+  "builds": {
+    "bases": [
+      "/gugong/",
+      "/forbidden-city-3d/",
+      "/"
+    ],
+    "filesEach": 137,
+    "HTTPAndHashChecked": 411
+  },
+  "fullStandard": "not rerun; previous 216 failures not declared resolved",
+  "GPU": "unverified; CPU instances and rays do not establish actual rendered pixels",
+  "scope": "397 mandatory original objects and 7 expanded groups remain incomplete; no performance phase",
+  "main": "unchanged by implementer; user main d21c2692",
+  "remote": "pending unique uploader fixed-tree readback"
+}
