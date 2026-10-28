@@ -1,3 +1,4 @@
+import {buildShoukangSouthSteps} from './ShoukangSouthSteps.js';
 import * as THREE from 'three';
 import {buildShoukangEastWarmRoom} from './ShoukangEastWarmRoom.js';
 const SOURCE='https://www.dpm.org.cn/explore/building/236448.html',SURVEY='https://www.dpm.org.cn/Uploads/File/pdf/ff/8e/7f/ff8e7f5fee79130164656141fe26d725.pdf',DISPLAY='https://www.dpm.org.cn/Uploads/File/2019/11/30/u5de26f7031b50.pdf';
@@ -12,11 +13,12 @@ export function shoukangGeometry(item){
 }
 export function buildShoukangHall(kit,item){
  const g=shoukangGeometry(item),p=SHOUKANG_FIT,y=item.ph,H=item.colH-.85,front=-item.d/2+p.frontInset,rear=item.d/2,axes=g.bayAxes,cs=kit.colliders.length,rs=kit.rooms.length,gs=kit.regions.length;
- const{structure,shoukangProfile,...shell}=item,built=kit.hall({...shell,bays:7,rot:0,throne:false,interior:'empty'}),f=built.f;
- // Preserve only original roof/platform/front stairs/floor and plaque. Remove
+ const{structure,shoukangProfile,...shell}=item,built=kit.hall({...shell,bays:7,rot:0,throne:false,interior:'empty',frontSteps:false}),f=built.f;
+ // Preserve only original roof/platform/floor and plaque. Remove
  // the generic seven-bay enclosure, painted ceiling and empty room registration.
  const remove=new Set(['wood_column','wall_red','lattice_doors','caihua_beam'].map(key=>kit.lib.material(key))),geos=new Set();for(const m of [...f.children])if(m.isMesh&&remove.has(m.material)){geos.add(m.geometry);m.removeFromParent();}for(const geo of geos)geo.dispose();
  kit.colliders.splice(cs,kit.colliders.length-cs,...kit.colliders.slice(cs).filter(c=>c.min.y<y-1e-7));kit.rooms.splice(rs);kit.regions.splice(gs);
+ buildShoukangSouthSteps(kit,item,f);
  const mats={};for(const[n,c]of Object.entries({red:0x83332a,wood:0x4a3025,panel:0x77908a,plaster:0xbaab8d,cloth:0xc7aa54,blue:0x334f65,ceiling:0x514c3d})){mats[n]=new THREE.MeshStandardMaterial({name:'shoukang_'+n+'_fit',color:c,roughness:.8});kit.owned.push(mats[n]);}
  function box(role,mat,w,h,d,x,yy,z,solid=true,parent=f){const m=kit.mesh(parent,new THREE.BoxGeometry(w,h,d),mats[mat],x,yy,z);m.name=role;m.userData={role,dimensionStatus:g.dimensionStatus};if(solid)kit.col(f,x-w/2,yy-h/2,z-d/2,x+w/2,yy+h/2,z+d/2);return m;}
  for(const x of axes)for(const z of[-item.d/2,rear]){const r=.31,m=kit.mesh(f,new THREE.CylinderGeometry(r,r*1.05,item.colH,12),mats.red,x,y+item.colH/2,z);m.name='shoukang-column';m.userData.role=m.name;kit.col(f,x-r,y,z-r,x+r,y+3,z+r);}

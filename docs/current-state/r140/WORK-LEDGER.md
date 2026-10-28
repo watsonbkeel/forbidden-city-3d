@@ -1,0 +1,11 @@
+# R140 K/L source-bounded implementation plan
+- K FC-83D425C911 寿康宫正殿：官方正面图 s5e98284ed0aff.jpg 已亲看，南月台东中西三组阶、中央组斜石两侧踏步和外侧垂带真实可辨。替换旧单中央通用阶（包含旧斜坡walkable），不保留重叠双支撑；保持原台明/后阶/三门/暖阁2.6m通路。位置、尺度、台阶模数为照片与既有模型兼容拟合，不称测绘；斜石雕纹不可辨不虚刻。新几何必须封闭、支撑与实际台阶对应，无跨空隙隐藏大坡。
+- L FC-95FE4AAEE9 宫城外墙：官方建筑说明236441与角楼照片支持灰砖城墙/外垛。只校正Enclosure独立外墙段主体与外垛材质/砖UV，不全局替换wall_red、不影响四城门红台/内院墙/角楼基座，不改午门接口/城墙几何/碰撞。整幅黄墙帽/内外帽区分与收分尺度仍未验，不能据此宣整墙完成。
+- Single author; reviewer sources separated from exact survey. R141 remains first cumulative major. No performance专项.
+
+## Candidate results and scoped safety fix
+- 3 south stair groups: 4 real seven-tread flights, 6 sloping side curb stones and one central plain sloping stone. Existing single front step/ramp suppressed at builder, original rear steps and every unrelated mesh/contact kept. Height .75m retained, run1.9m/flight widths/stone width photo fit. Steps are actual discrete top witnesses, not a smooth invisible broad ramp.
+- First straight center-of-side-stair probe met original front column, not a new stair blockage. Full entrance routes use real available flight X±7 and central flights±2.1 rather than walking through columns at±8.225/±3; no columns moved. All 3 actual front-door routes in full static world complete at10/60Hz.
+- Extra central-stone probe exposed generic triangular slope support blocked at toe. Fixed seven new slope IDs using existing exact square-foot triangle support plus one finite feet-scalar dispatch scope attached to actual new tread collider. Scope only front steps, no new invisible collider/plane, no Collision.js modification. All 5 stair/stone lines ×2directions×2speeds×2rates pass, plus14 finite airborne land/exit checks across all7 sloping stones.
+- Source review showed retained red corner support blocks joined grey wall awkwardly; official corner photo also supports grey brick there. Expanded only four existing corner-support BODY surfaces to grey. Corner tower wooden structure/roof, gate red platforms and inner walls not recolored. Yellow wall caps and entire wall/tower fidelity remain open.
+- Eleven targets pass, including exact world triangle/physical retention, correct discrete supports, positive closed volume, unsupported ID/transform rejection, and three unload cycles. Actual GPU/mobile and whole-route acceptance remain NOT_RUN.
