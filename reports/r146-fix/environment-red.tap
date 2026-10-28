@@ -1,0 +1,39 @@
+TAP version 13
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=199,798, 树木=34棵, 碰撞器=2034
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# [ZoneManager] 卸载区域 axis-courts
+# [ZoneManager] 卸载区域 west-six
+# Subtest: actual view-following sky and skyline do not invalidate the two imperial routines while architectural source guards remain strict
+not ok 1 - actual view-following sky and skyline do not invalidate the two imperial routines while architectural source guards remain strict
+  ---
+  duration_ms: 8316.739644
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r146-imperial-visibility-fix/tests/r146-fix/production-environment.test.mjs:3:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Verified static route geometry changed or detached
+    
+    'error' !== 'ready'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'ready'
+  actual: 'error'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r146-imperial-visibility-fix/tests/r146-fix/production-environment.test.mjs:6:128)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 8718.827582

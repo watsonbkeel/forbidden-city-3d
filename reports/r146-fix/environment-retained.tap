@@ -1,0 +1,202 @@
+TAP version 13
+# Subtest: Beijing calendar fields use fixed UTC+8 across local midnight and year rollover
+ok 1 - Beijing calendar fields use fixed UTC+8 across local midnight and year rollover
+  ---
+  duration_ms: 1.776716
+  type: 'test'
+  ...
+# Subtest: Beijing calendar handles leap days and Gregorian century boundaries
+ok 2 - Beijing calendar handles leap days and Gregorian century boundaries
+  ---
+  duration_ms: 0.217676
+  type: 'test'
+  ...
+# Subtest: output is independent of the host time zone, including DST locales
+ok 3 - output is independent of the host time zone, including DST locales
+  ---
+  duration_ms: 237.886601
+  type: 'test'
+  ...
+# Subtest: compass bearings map to west-positive X, north-positive Z, and up-positive Y
+ok 4 - compass bearings map to west-positive X, north-positive Z, and up-positive Y
+  ---
+  duration_ms: 0.444757
+  type: 'test'
+  ...
+# Subtest: equinox and solstice near-noon elevations follow Beijing latitude and axial tilt
+ok 5 - equinox and solstice near-noon elevations follow Beijing latitude and axial tilt
+  ---
+  duration_ms: 0.824698
+  type: 'test'
+  ...
+# Subtest: summer early morning and winter early morning do not share a fixed 06:00 sunrise
+ok 6 - summer early morning and winter early morning do not share a fixed 06:00 sunrise
+  ---
+  duration_ms: 0.324247
+  type: 'test'
+  ...
+# Subtest: morning and afternoon sun use the east and west half of the model respectively
+ok 7 - morning and afternoon sun use the east and west half of the model respectively
+  ---
+  duration_ms: 0.138878
+  type: 'test'
+  ...
+# Subtest: night retains zero sun, darker sky and lower total lighting with R34 readable ambient
+ok 8 - night retains zero sun, darker sky and lower total lighting with R34 readable ambient
+  ---
+  duration_ms: 0.249956
+  type: 'test'
+  ...
+# Subtest: phase labels include separate sunrise and sunset intervals driven by solar elevation
+ok 9 - phase labels include separate sunrise and sunset intervals driven by solar elevation
+  ---
+  duration_ms: 2.52544
+  type: 'test'
+  ...
+# Subtest: solar vectors and all lighting values remain finite and bounded over every hour of leap and common years
+ok 10 - solar vectors and all lighting values remain finite and bounded over every hour of leap and common years
+  ---
+  duration_ms: 182.632508
+  type: 'test'
+  ...
+# Subtest: sky and light outputs stay continuous through a full day and calendar boundaries
+ok 11 - sky and light outputs stay continuous through a full day and calendar boundaries
+  ---
+  duration_ms: 93.938604
+  type: 'test'
+  ...
+# Subtest: calls are deterministic, do not mutate Date inputs, and return independently owned data
+ok 12 - calls are deterministic, do not mutate Date inputs, and return independently owned data
+  ---
+  duration_ms: 0.456304
+  type: 'test'
+  ...
+# Subtest: invalid dates and non-finite compass input fail explicitly instead of emitting NaN
+ok 13 - invalid dates and non-finite compass input fail explicitly instead of emitting NaN
+  ---
+  duration_ms: 0.66659
+  type: 'test'
+  ...
+# Subtest: skyline renders only its inward-visible back face without changing forceSinglePass
+ok 14 - skyline renders only its inward-visible back face without changing forceSinglePass
+  ---
+  duration_ms: 1.964728
+  type: 'test'
+  ...
+# Subtest: skyline retains all 128 outward-wound side triangles and their native UVs
+ok 15 - skyline retains all 128 outward-wound side triangles and their native UVs
+  ---
+  duration_ms: 1.136996
+  type: 'test'
+  ...
+# Subtest: skyline preserves shared hd texture, alpha, fog and non-lighting state
+ok 16 - skyline preserves shared hd texture, alpha, fog and non-lighting state
+  ---
+  duration_ms: 0.61279
+  type: 'test'
+  ...
+# Subtest: skyline preserves shared sd texture, alpha, fog and non-lighting state
+ok 17 - skyline preserves shared sd texture, alpha, fog and non-lighting state
+  ---
+  duration_ms: 0.417336
+  type: 'test'
+  ...
+# Subtest: skyline preserves shared missing dimensions texture, alpha, fog and non-lighting state
+ok 18 - skyline preserves shared missing dimensions texture, alpha, fog and non-lighting state
+  ---
+  duration_ms: 0.487101
+  type: 'test'
+  ...
+# Subtest: origin, pre-update spawn and every palace-boundary corner see back faces only
+ok 19 - origin, pre-update spawn and every palace-boundary corner see back faces only
+  ---
+  duration_ms: 5.300115
+  type: 'test'
+  ...
+# Subtest: actual environment recentering keeps ground and bird-eye cameras behind every face at any height
+ok 20 - actual environment recentering keeps ground and bird-eye cameras behind every face at any height
+  ---
+  duration_ms: 9.006847
+  type: 'test'
+  ...
+# Subtest: actual animate body recenters after controls and before render (streaming, high)
+ok 21 - actual animate body recenters after controls and before render (streaming, high)
+  ---
+  duration_ms: 2.31207
+  type: 'test'
+  ...
+# Subtest: actual animate body recenters after controls and before render (streaming, low)
+ok 22 - actual animate body recenters after controls and before render (streaming, low)
+  ---
+  duration_ms: 2.470478
+  type: 'test'
+  ...
+# Subtest: actual animate body recenters after controls and before render (all zones, high)
+ok 23 - actual animate body recenters after controls and before render (all zones, high)
+  ---
+  duration_ms: 1.555244
+  type: 'test'
+  ...
+# Subtest: actual animate body recenters after controls and before render (all zones, low)
+ok 24 - actual animate body recenters after controls and before render (all zones, low)
+  ---
+  duration_ms: 1.138158
+  type: 'test'
+  ...
+# Subtest: quality changes preserve the ring, map, geometry, transform and non-casting state
+ok 25 - quality changes preserve the ring, map, geometry, transform and non-casting state
+  ---
+  duration_ms: 0.76595
+  type: 'test'
+  ...
+# Subtest: skyline stays out of runtime batches and shadow-LOD promotion
+ok 26 - skyline stays out of runtime batches and shadow-LOD promotion
+  ---
+  duration_ms: 1.522826
+  type: 'test'
+  ...
+# Subtest: outside-ring direct renders are explicitly outside the equivalence contract
+ok 27 - outside-ring direct renders are explicitly outside the equivalence contract
+  ---
+  duration_ms: 1.867062
+  type: 'test'
+  ...
+# Subtest: installed r162 PMREM remains at origin and baseline transparent path uses BackSide first
+ok 28 - installed r162 PMREM remains at origin and baseline transparent path uses BackSide first
+  ---
+  duration_ms: 0.691738
+  type: 'test'
+  ...
+# Subtest: environment releases owned geometry/sky/glow/IBL once but leaves shared library materials and textures to their owner
+ok 29 - environment releases owned geometry/sky/glow/IBL once but leaves shared library materials and textures to their owner
+  ---
+  duration_ms: 46.273851
+  type: 'test'
+  ...
+# Subtest: init is idempotent while active; dispose permits a fresh init without leaking or destroying shared materials
+ok 30 - init is idempotent while active; dispose permits a fresh init without leaking or destroying shared materials
+  ---
+  duration_ms: 26.779139
+  type: 'test'
+  ...
+# Subtest: borrowed ownership remains known if the library is disposed before the environment
+ok 31 - borrowed ownership remains known if the library is disposed before the environment
+  ---
+  duration_ms: 15.672491
+  type: 'test'
+  ...
+# Subtest: R78 exact civil boundaries, reversed preview and live resume retain ambient and outdoor light
+ok 32 - R78 exact civil boundaries, reversed preview and live resume retain ambient and outdoor light
+  ---
+  duration_ms: 6.206895
+  type: 'test'
+  ...
+1..32
+# tests 32
+# suites 0
+# pass 32
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1080.120483

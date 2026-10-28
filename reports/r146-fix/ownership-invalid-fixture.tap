@@ -1,0 +1,29 @@
+TAP version 13
+# Subtest: only exact Environment sky/skyline mesh identities qualify; lookalikes, new children, foreign scenes and detach do not
+not ok 1 - only exact Environment sky/skyline mesh identities qualify; lookalikes, new children, foreign scenes and detach do not
+  ---
+  duration_ms: 3.103194
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r146-imperial-visibility-fix/tests/r146-fix/environment-ownership.test.mjs:2:1'
+  failureType: 'testCodeFailure'
+  error: 'library.color is not a function'
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    createSkylineRing (file:///workspace/scratch/02a8023d1a85/r146-imperial-visibility-fix/src/scene/sky/Skyline.js:11:27)
+    Environment.setupSkyline (file:///workspace/scratch/02a8023d1a85/r146-imperial-visibility-fix/src/scene/Environment.js:88:18)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r146-imperial-visibility-fix/tests/r146-fix/environment-ownership.test.mjs:3:109)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 130.30502
