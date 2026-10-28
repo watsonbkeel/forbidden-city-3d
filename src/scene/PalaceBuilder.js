@@ -1,3 +1,4 @@
+import {buildJiaotaiLowRooms} from './palace/special/JiaotaiLowRooms.js';
 import {registerQianqingFoldedLeaves} from './palace/QianqingAssemblyPhysics.js';
 import {installQianqingTerraceBurners} from './palace/QianqingTerraceBurners.js';
 import {createBaoheEastFirewallProfile,buildBaoheEastFirewall} from './palace/BaoheEastFirewall.js';
@@ -526,6 +527,7 @@ export class PalaceBuilder {
     } else {
       halls.forEach(h => this.buildHall(g, h, top));
     }
+    if (name === '后三宫') buildJiaotaiLowRooms(this,g,rects,sideStairProfile);
     if (name === '三台') this.terraceOrnaments(g, rects[0], top);
     if (name === '三台') {
       const hallIndex = halls.findIndex(h => h.name === '太和殿');

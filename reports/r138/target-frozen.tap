@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: six source-confirmed title/couplet faces have explicit readable text, orientation and non-calligraphy status
+ok 1 - six source-confirmed title/couplet faces have explicit readable text, orientation and non-calligraphy status
+  ---
+  duration_ms: 112.892194
+  type: 'test'
+  ...
+# Subtest: source-visible west stair flanks have two low exterior rows below terrace rail, not invented interiors
+ok 2 - source-visible west stair flanks have two low exterior rows below terrace rail, not invented interiors
+  ---
+  duration_ms: 1104.606016
+  type: 'test'
+  ...
+# Subtest: front triangles are partitioned without changing any physical surface or non-front UV
+ok 3 - front triangles are partitioned without changing any physical surface or non-front UV
+  ---
+  duration_ms: 211.003853
+  type: 'test'
+  ...
+# Subtest: six faces share one owned atlas, merged rendering retains it and lifecycle releases it once
+ok 4 - six faces share one owned atlas, merged rendering retains it and lifecycle releases it once
+  ---
+  duration_ms: 203.832245
+  type: 'test'
+  ...
+# Subtest: identity and duplicate application reject before any allocation or UV mutation
+ok 5 - identity and duplicate application reject before any allocation or UV mutation
+  ---
+  duration_ms: 223.666346
+  type: 'test'
+  ...
+# Subtest: native Canvas2D atlas contains actual nonempty distinct glyph pixels with visible margins
+ok 6 - native Canvas2D atlas contains actual nonempty distinct glyph pixels with visible margins
+  ---
+  duration_ms: 391.242615
+  type: 'test'
+  ...
+# Subtest: all previous palace geometry and contacts retained; no extra flat walkable added
+ok 7 - all previous palace geometry and contacts retained; no extra flat walkable added
+  ---
+  duration_ms: 5244.029777
+  type: 'test'
+  ...
+# Subtest: roof is closed positive-volume corrugation with exact triangle bounds and non-flat foot support
+ok 8 - roof is closed positive-volume corrugation with exact triangle bounds and non-flat foot support
+  ---
+  duration_ms: 891.701967
+  type: 'test'
+  ...
+# Subtest: real controller retains both stairs and west exterior bypass at 10/60Hz walk/run/backward
+ok 9 - real controller retains both stairs and west exterior bypass at 10/60Hz walk/run/backward
+  ---
+  duration_ms: 1060.005871
+  type: 'test'
+  ...
+# Subtest: finite airborne initial state lands on each actual roof and walks down to courtyard without hover
+ok 10 - finite airborne initial state lands on each actual roof and walks down to courtyard without hover
+  ---
+  duration_ms: 4119.757943
+  type: 'test'
+  ...
+# Subtest: only two named low-roof scopes accepted; transformed binding and unknown surface IDs reject
+ok 11 - only two named low-roof scopes accepted; transformed binding and unknown surface IDs reject
+  ---
+  duration_ms: 786.910743
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 14617.985344

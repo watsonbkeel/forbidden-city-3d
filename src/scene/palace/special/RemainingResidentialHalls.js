@@ -3,6 +3,7 @@ import {withholdHUnknownInventory} from './HUnknownInventory.js';
 import {buildChonghuaSouthKnees} from './ChonghuaSouthKnees.js';
 import {buildQinzhengFootstool} from './QinzhengFootstool.js';
 import {buildQinzhengHighSideTables} from './QinzhengHighSideTables.js';
+import {applyYangxinReviewedLettering} from './YangxinReviewedLettering.js';
 import {buildYangxinWestWarmRooms} from './YangxinWestWarmRooms.js';
 import {fitCanopyToMainRoof} from './CanopyRoofSurfaceJoint.js';
 import {fitRegisteredNameboard} from './FittedNameboardMount.js';
@@ -228,6 +229,7 @@ export function augmentRemainingHall(kit, item, built, p) {
     buildYangxinWestWarmRooms(kit, item, built.f);
     buildQinzhengFootstool(kit, item, built.f);
     buildQinzhengHighSideTables(kit, item, built.f);
+    applyYangxinReviewedLettering(kit, item, built.f);
   }
   built.f.userData.r48ResidentialAugmented = true;
   built.f.userData.structure = { ...built.f.userData.structure, id: built.f.userData.structure?.id ?? `${p.zone}/r48-${p.key}`, catalogId: p.catalogId, remainingResidentialProfile: p.key, source: p.source, ...(built.f.userData.nameboardMount?{nameboardMount:built.f.userData.nameboardMount}:{}),
