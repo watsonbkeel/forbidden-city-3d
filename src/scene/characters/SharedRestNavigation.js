@@ -1,5 +1,7 @@
 import {SharedRestSurfaces} from './SharedRestSurfaces.js';
-import {zoneVisibilityIsManaged} from '../../render/OcclusionByWall.js';
+import {proof,proofCurrent} from '../../utils/SceneSourceProof.js';
+import {taiheFallbackMeshes} from '../interior/TaiheCoreContract.js';
+import {taiheReplacementFor} from '../interior/TaiheReplacementOwnership.js';
 import * as THREE from 'three';
 import {CollisionManager} from '../../utils/Collision.js';
 import {CharacterWorldAdapter} from './CharacterWorldAdapter.js';
@@ -9,8 +11,6 @@ import emperorRoute from '../../../data/characters/emperor-night-route.json' wit
 import routes from '../../../data/characters/night-routes.json' with {type:'json'};
 export const SHARED_REST_PATHS=new Map([[SHARED_REST_IDS[0],emperorRoute.points],[SHARED_REST_IDS[1],routes.paths.find(p=>p.bedId==='chuxiu-northwest-canopy').points]]);
 const numeric=o=>JSON.stringify(Object.fromEntries(Object.entries(o).filter(([key])=>key!=='mesh')));
-const proof=(root,shallow=false)=>{const nodes=new Set();if(shallow)nodes.add(root);else root.traverse(o=>nodes.add(o));for(let p=root.parent;p;p=p.parent)nodes.add(p);return [...nodes].map(o=>({object:new WeakRef(o),parent:o.parent?new WeakRef(o.parent):null,visible:o.visible,managedLOD:o.parent?.isLOD?o.parent.levels.findIndex(level=>level.object===o):-1,lodDistance:o.parent?.isLOD?o.parent.levels.find(level=>level.object===o)?.distance:null,children:o===root||o.isMesh?o.children.map(c=>c.uuid):null,transform:[...o.position.toArray(),...o.quaternion.toArray(),...o.scale.toArray()],geometry:o.geometry?new WeakRef(o.geometry):null,position:o.geometry?.attributes.position?new WeakRef(o.geometry.attributes.position):null,version:o.geometry?.attributes.position?.version,positionArray:o.geometry?.attributes.position?.array?new WeakRef(o.geometry.attributes.position.array):null,positionShape:o.geometry?.attributes.position?[o.geometry.attributes.position.count,o.geometry.attributes.position.itemSize]:null,index:o.geometry?.index?new WeakRef(o.geometry.index):null,indexVersion:o.geometry?.index?.version,indexArray:o.geometry?.index?.array?new WeakRef(o.geometry.index.array):null,indexShape:o.geometry?.index?[o.geometry.index.count,o.geometry.index.itemSize]:null,draw:o.geometry?[o.geometry.drawRange.start,o.geometry.drawRange.count]:null,material:o.material?new WeakRef(o.material):null,materialState:o.material?[o.material.visible,o.material.side,o.material.opacity]:null}));};
-const proofCurrent=rows=>rows.every(r=>{const o=r.object.deref();if(!o||o.parent!==(r.parent?.deref()??null))return false;if(r.managedLOD>=0){const level=o.parent?.levels?.[r.managedLOD];if(level?.object!==o||level.distance!==r.lodDistance)return false;}else if(o.visible!==r.visible&&!zoneVisibilityIsManaged(o))return false;const t=r.transform;if(o.position.x!==t[0]||o.position.y!==t[1]||o.position.z!==t[2]||o.quaternion.x!==t[3]||o.quaternion.y!==t[4]||o.quaternion.z!==t[5]||o.quaternion.w!==t[6]||o.scale.x!==t[7]||o.scale.y!==t[8]||o.scale.z!==t[9])return false;if(r.children&&(o.children.length!==r.children.length||o.children.some((c,i)=>c.uuid!==r.children[i])))return false;if(r.geometry&&(o.geometry!==r.geometry.deref()||o.geometry.attributes.position!==r.position?.deref()||o.geometry.attributes.position?.version!==r.version||o.geometry.attributes.position?.array!==r.positionArray?.deref()||o.geometry.attributes.position?.count!==r.positionShape?.[0]||o.geometry.attributes.position?.itemSize!==r.positionShape?.[1]||o.geometry.index!==(r.index?.deref()??null)||o.geometry.index?.version!==r.indexVersion||o.geometry.index?.array!==r.indexArray?.deref()||o.geometry.index?.count!==r.indexShape?.[0]||o.geometry.index?.itemSize!==r.indexShape?.[1]||o.geometry.drawRange.start!==r.draw[0]||o.geometry.drawRange.count!==r.draw[1]))return false;return !r.material||(o.material===r.material.deref()&&o.material.visible===r.materialState[0]&&o.material.side===r.materialState[1]&&o.material.opacity===r.materialState[2]);});
 const numericProof=root=>{const rows=[],visit=o=>{const keys=Object.keys(o),values=[],refs=[];for(const key of keys){const value=o[key];if(value&&typeof value==='object'){refs.push([key,new WeakRef(value)]);if(key!=='mesh')visit(value);}else values.push([key,value]);}rows.push({object:new WeakRef(o),count:keys.length,values,refs});};visit(root);return rows;};
 const numericCurrent=(object,rows)=>{if(object!==rows.at(-1).object.deref())return false;for(const r of rows){const o=r.object.deref();if(!o||Object.keys(o).length!==r.count)return false;for(const[k,v]of r.values)if(o[k]!==v)return false;for(const[k,v]of r.refs)if(o[k]!==v.deref())return false;}return true;};
 /** The two authored routes own a numeric corridor, never player collision or
@@ -31,9 +31,10 @@ export class SharedRestNavigation {
   for(const c of nav.colliders)delete c.mesh;
   for(const zone of new Set(nav.colliders.map(c=>c.tag??'static').concat(nav.walkables.map(w=>w.tag??'static'))))this.corridorBaselines.set(zone,numeric({colliders:nav.colliders.filter(c=>(c.tag??'static')===zone),walkables:nav.walkables.filter(w=>(w.tag??'static')===zone)}));
   this.captureOwners();
-  const zoneGroups=new Set([...this.zm.loaded.values()].map(e=>e.data.group).concat([...this.zm.silhouettes.values()]));world.scene.traverse(o=>{if(!o.isMesh||!o.geometry)return;for(let p=o;p;p=p.parent)if(zoneGroups.has(p)||p.userData?.characterLayer||p.userData?.isCharacter||p.userData?.nonArchitecturalLighting)return;const box=new THREE.Box3().setFromObject(o);if(box.min.y>=25||box.max.y<-.2||!relevant(box))return;this.staticMeshes.push({object:new WeakRef(o),proof:proof(o),bounds:[box.min.x,box.max.x,box.min.z,box.max.z]});});
+  const initialTaiheReplacement=taiheReplacementFor(taiheFallbackMeshes(world.scene)[0]);
+  const zoneGroups=new Set([...this.zm.loaded.values()].map(e=>e.data.group).concat([...this.zm.silhouettes.values()]));world.scene.traverse(o=>{if(!o.isMesh||!o.geometry)return;for(let p=o;p;p=p.parent)if(p===initialTaiheReplacement?.group||zoneGroups.has(p)||p.userData?.characterLayer||p.userData?.isCharacter||p.userData?.nonArchitecturalLighting)return;const box=new THREE.Box3().setFromObject(o);if(box.min.y>=25||box.max.y<-.2||!relevant(box))return;const sourceProof=proof(o);if(initialTaiheReplacement?.fallback.includes(o))for(const row of sourceProof)if(row.object.deref()===o)row.visible=true;this.staticMeshes.push({object:new WeakRef(o),proof:sourceProof,bounds:[box.min.x,box.max.x,box.min.z,box.max.z]});});
 
-  this.surfaces=new SharedRestSurfaces(relevant);for(const row of this.staticMeshes)this.surfaces.add(row.object.deref(),'static');for(const[id,e]of [...this.zm.loaded,...this.zm.prebuilt])this.surfaces.add(e.data.group,id);this.surfaces.index();this.surfaceStats=this.surfaces.stats;
+  this.surfaces=new SharedRestSurfaces(relevant);for(const row of this.staticMeshes)this.surfaces.add(row.object.deref(),'static',{allowHiddenRoot:initialTaiheReplacement?.fallback.includes(row.object.deref())===true});for(const[id,e]of [...this.zm.loaded,...this.zm.prebuilt])this.surfaces.add(e.data.group,id);this.surfaces.index();this.surfaceStats=this.surfaces.stats;
   this.stats={colliders:nav.colliders.length,walkables:nav.walkables.length,numericBytesEstimate:nav.colliders.length*160+nav.walkables.length*96,buildMs:0};
   const entry=this.zm.loaded.get('west-six')??this.zm.prebuilt.get('west-six');
   if(!entry)return;
@@ -80,10 +81,31 @@ export class SharedRestNavigation {
   // Public CollisionManager add/remove/update invalidates its spatial grid.
   // Query only the imminent swept neighborhood, not every world collider.
   if(positions){for(const p of positions){const box=new THREE.Box3(new THREE.Vector3(p[0]-3,p[1]-3,p[2]-3),new THREE.Vector3(p[0]+3,p[1]+4,p[2]+3));for(const object of this.world.cm.queryBox(box)){const row=this.ownerLookup.get(object);if(!row&&this.relevant(object.box))return fail('New current corridor collider');if(row&&!numericCurrent(object,row.proof))return fail('Changed current corridor collider');}}}
-  for(const row of this.staticMeshes){if(positions&&!near(row.bounds))continue;const object=row.object.deref();let attached=false;for(let p=object;p;p=p.parent)if(p===this.world.scene)attached=true;if(!attached||!proofCurrent(row.proof))return fail('Verified static route geometry changed or detached');}
+  const hiddenTaihe=this.staticMeshes.map(r=>r.object.deref()).find(m=>m?.userData?.taiheCoreOwner&&m.visible===false);
+  const taiheReplacement=hiddenTaihe?taiheReplacementFor(hiddenTaihe):null;
+  if(hiddenTaihe&&!taiheReplacement)return fail('Taihe fallback hidden without a current validated replacement');
+  for(const row of this.staticMeshes){if(positions&&!near(row.bounds))continue;const object=row.object.deref();let attached=false;for(let p=object;p;p=p.parent)if(p===this.world.scene)attached=true;if(!attached||!proofCurrent(row.proof,(mesh,visible)=>visible===true&&mesh.visible===false&&taiheReplacement?.fallback.includes(mesh)===true))return fail('Verified static route geometry changed or detached');}
+  if(!this.syncTaiheSurfaces(taiheReplacement))return fail('Taihe replacement support is unavailable');
   this.status='ready';this.reason=null;return true;
+ }
+ syncTaiheSurfaces(replacement){
+  const fallback=replacement?.fallback??[];
+  if(this.taiheReplacement===replacement)return true;
+  if(replacement){
+   const actor=this.registry.actors.find(a=>a.id===SHARED_REST_IDS[0]);
+   const binding=this.world.resolve(actor,characterContactMetrics('seated',actor.behavior.seatVariant));
+   if(binding.status!=='ready'||JSON.stringify(binding.position)!==JSON.stringify(this.seeds.get(actor.id).position))return false;
+   const rows=this.surfaces.collect(replacement.group,'interior:taihe',{taiheCore:true});
+   if(!rows.length)return false;
+   this.taiheBaseSurfaces??=this.surfaces.rows.filter(r=>fallback.some(m=>m.geometry===r.geometry.deref()));
+   const base=new Set(this.taiheBaseSurfaces);
+   this.surfaces.rows=this.surfaces.rows.filter(r=>!base.has(r)&&r.zone!=='interior:taihe').concat(rows);
+  }else{
+   this.surfaces.rows=this.surfaces.rows.filter(r=>r.zone!=='interior:taihe').concat(this.taiheBaseSurfaces??[]);
+  }
+  this.taiheReplacement=replacement;this.surfaces.index();return true;
  }
  surfaceHeight(x,z,feet,radius){const y=this.surfaces.height(x,z,feet,radius,zone=>this.sources.get(zone)?.offline===true);if(Number.isNaN(y)){this.status='error';this.reason='Current actual support vertices changed';}return y;}
  renderable(position){const zone=this.zm?.findZone(position[0],position[2]);return this.status==='ready'&&(!zone||this.zm.loaded.get(zone)?.data.group.visible===true);}
- dispose(){this.surfaces?.dispose();this.zm?.lifecycleListeners?.delete(this.listener);this.sources.clear();this.seeds.clear();this.liveCorridorOwners=[];this.staticMeshes=[];this.corridorBaselines.clear();this.ownerCells?.clear();this.ownerGlobals=[];this.ownerLookup=new WeakMap();this.nav?.clear?.();this.nav=null;this.slots=null;}
+ dispose(){this.taiheReplacement=null;this.taiheBaseSurfaces=null;this.surfaces?.dispose();this.zm?.lifecycleListeners?.delete(this.listener);this.sources.clear();this.seeds.clear();this.liveCorridorOwners=[];this.staticMeshes=[];this.corridorBaselines.clear();this.ownerCells?.clear();this.ownerGlobals=[];this.ownerLookup=new WeakMap();this.nav?.clear?.();this.nav=null;this.slots=null;}
 }

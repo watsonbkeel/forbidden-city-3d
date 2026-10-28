@@ -1,0 +1,187 @@
+[
+  {
+    "name": "chuxiu-canonical",
+    "command": [
+      "node",
+      "scripts/r130/chuxiu-body.mjs",
+      "reports/r146/routes/chuxiu-canonical.json",
+      "10,30,60",
+      "forward,backward,right"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 8.379568279953673
+  },
+  {
+    "name": "chengqian-canonical-and-boundaries",
+    "command": [
+      "node",
+      "scripts/r130/chengqian-body.mjs",
+      "reports/r146/routes/chengqian-canonical-and-boundaries.json",
+      "10,30,60",
+      "forward,backward,right"
+    ],
+    "environment": {},
+    "exitCode": 1,
+    "seconds": 13.063625904964283,
+    "knownIncompleteOutcomesExactlyRetained": true
+  },
+  {
+    "name": "connected",
+    "command": [
+      "node",
+      "scripts/r130/chuxiu-body.mjs",
+      "reports/r146/routes/connected.json",
+      "10,30,60",
+      "forward,backward,right",
+      "connected"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 12.872717967024073
+  },
+  {
+    "name": "front",
+    "command": [
+      "node",
+      "scripts/r134/front-routes.mjs",
+      "reports/r146/routes/front.json",
+      "10,30,60",
+      "forward,backward,right",
+      "front"
+    ],
+    "environment": {},
+    "exitCode": 1,
+    "seconds": 7.559080709004775,
+    "knownIncompleteOutcomesExactlyRetained": true
+  },
+  {
+    "name": "front-local",
+    "command": [
+      "node",
+      "scripts/r134/front-routes.mjs",
+      "reports/r146/routes/front-local.json",
+      "10,30,60",
+      "forward,backward,right",
+      "front-local"
+    ],
+    "environment": {},
+    "exitCode": 1,
+    "seconds": 6.294968566973694,
+    "knownIncompleteOutcomesExactlyRetained": true
+  },
+  {
+    "name": "emperor",
+    "command": [
+      "node",
+      "--import",
+      "./tests/r141-fix/json-hooks.mjs",
+      "scripts/r146/routine-oracle-with-interior.mjs",
+      ".",
+      "reports/r146/emperor"
+    ],
+    "environment": {
+      "FPS": "10,30,60"
+    },
+    "exitCode": 0,
+    "seconds": 0.1167018860578537,
+    "reusedFixedSourceOracle": true,
+    "actualOracleElapsedMs": 148576.52724999998,
+    "actualSGeometryRows": [
+      {
+        "fps": 10,
+        "arrived": true,
+        "complete": true,
+        "failures": {
+          "capsuleEndpoint": 0,
+          "capsuleSweptCandidate": 0,
+          "renderCross": 0
+        }
+      },
+      {
+        "fps": 30,
+        "arrived": true,
+        "complete": true,
+        "failures": {
+          "capsuleEndpoint": 0,
+          "capsuleSweptCandidate": 0,
+          "renderCross": 0
+        }
+      },
+      {
+        "fps": 60,
+        "arrived": true,
+        "complete": true,
+        "failures": {
+          "capsuleEndpoint": 0,
+          "capsuleSweptCandidate": 0,
+          "renderCross": 0
+        }
+      }
+    ],
+    "semanticPass": true
+  },
+  {
+    "name": "startup-high",
+    "command": [
+      "node",
+      "scripts/r120/performance/profile-process.mjs",
+      "--root",
+      "/workspace/scratch/02a8023d1a85/r127-r136-cumulative",
+      "--scenario",
+      "startup",
+      "--quality",
+      "high",
+      "--out",
+      "/workspace/scratch/02a8023d1a85/r127-r136-cumulative/reports/r146/readiness/startup-high.json"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 22.011969593004324
+  },
+  {
+    "name": "west-six-high",
+    "command": [
+      "node",
+      "scripts/r138/ready-resources.mjs",
+      "candidate",
+      "high",
+      "/workspace/scratch/02a8023d1a85/r127-r136-cumulative/reports/r146/readiness/west-six-high.json"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 2.638543441076763
+  },
+  {
+    "name": "startup-low",
+    "command": [
+      "node",
+      "scripts/r120/performance/profile-process.mjs",
+      "--root",
+      "/workspace/scratch/02a8023d1a85/r127-r136-cumulative",
+      "--scenario",
+      "startup",
+      "--quality",
+      "low",
+      "--out",
+      "/workspace/scratch/02a8023d1a85/r127-r136-cumulative/reports/r146/readiness/startup-low.json"
+    ],
+    "environment": {},
+    "exitCode": 1,
+    "seconds": 20.872051122016273,
+    "invalidatedReason": "Documentation commit 28d514ab occurred during low readiness probe; strict process HEAD binding rejected it. Runtime fingerprint unchanged; rerun required and no acceptance from this attempt."
+  },
+  {
+    "name": "startup-low-rerun",
+    "exitCode": 0,
+    "fixedHead": "28d514ab0b2bdee3d6b6bdad33e58ccf02aa189b",
+    "evidence": "reports/r146/readiness/startup-low.json",
+    "log": "reports/r146/startup-low-rerun.txt",
+    "reason": "Original HEAD-change-invalid attempt retained; rerun at fixed clean identity succeeded"
+  },
+  {
+    "name": "west-six-low",
+    "exitCode": 0,
+    "evidence": "reports/r146/readiness/west-six-low.json"
+  }
+]

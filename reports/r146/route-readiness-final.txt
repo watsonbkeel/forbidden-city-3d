@@ -1,0 +1,14 @@
+{"name": "chuxiu-canonical", "command": ["node", "scripts/r130/chuxiu-body.mjs", "reports/r146/routes/chuxiu-canonical.json", "10,30,60", "forward,backward,right"], "environment": {}, "exitCode": 0, "seconds": 8.379568279953673}
+{"name": "chengqian-canonical-and-boundaries", "command": ["node", "scripts/r130/chengqian-body.mjs", "reports/r146/routes/chengqian-canonical-and-boundaries.json", "10,30,60", "forward,backward,right"], "environment": {}, "exitCode": 1, "seconds": 13.063625904964283}
+{"name": "connected", "command": ["node", "scripts/r130/chuxiu-body.mjs", "reports/r146/routes/connected.json", "10,30,60", "forward,backward,right", "connected"], "environment": {}, "exitCode": 0, "seconds": 12.872717967024073}
+{"name": "front", "command": ["node", "scripts/r134/front-routes.mjs", "reports/r146/routes/front.json", "10,30,60", "forward,backward,right", "front"], "environment": {}, "exitCode": 1, "seconds": 7.559080709004775}
+{"name": "front-local", "command": ["node", "scripts/r134/front-routes.mjs", "reports/r146/routes/front-local.json", "10,30,60", "forward,backward,right", "front-local"], "environment": {}, "exitCode": 1, "seconds": 6.294968566973694}
+{"name": "emperor", "command": ["node", "--import", "./tests/r141-fix/json-hooks.mjs", "scripts/r146/routine-oracle-with-interior.mjs", ".", "reports/r146/emperor"], "environment": {"FPS": "10,30,60"}, "exitCode": 0, "seconds": 0.1167018860578537}
+{"name": "startup-high", "command": ["node", "scripts/r120/performance/profile-process.mjs", "--root", "/workspace/scratch/02a8023d1a85/r127-r136-cumulative", "--scenario", "startup", "--quality", "high", "--out", "/workspace/scratch/02a8023d1a85/r127-r136-cumulative/reports/r146/readiness/startup-high.json"], "environment": {}, "exitCode": 0, "seconds": 22.011969593004324}
+{"name": "west-six-high", "command": ["node", "scripts/r138/ready-resources.mjs", "candidate", "high", "/workspace/scratch/02a8023d1a85/r127-r136-cumulative/reports/r146/readiness/west-six-high.json"], "environment": {}, "exitCode": 0, "seconds": 2.638543441076763}
+{"name": "startup-low", "command": ["node", "scripts/r120/performance/profile-process.mjs", "--root", "/workspace/scratch/02a8023d1a85/r127-r136-cumulative", "--scenario", "startup", "--quality", "low", "--out", "/workspace/scratch/02a8023d1a85/r127-r136-cumulative/reports/r146/readiness/startup-low.json"], "environment": {}, "exitCode": 1, "seconds": 20.872051122016273}
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r127-r136-cumulative/scripts/r146/routes-and-readiness.py", line 23, in <module>
+    elif r.returncode:raise RuntimeError(name+' failed; inspect without masking')
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: startup-low failed; inspect without masking

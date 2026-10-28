@@ -1,0 +1,15 @@
+import * as THREE from 'three';
+/** A shallow, source-related outline on the existing south balcony edge.
+ * The old roof/ledge spacing cannot fit the photograph's complete deep apron:
+ * retain that limitation instead of moving the roof or fabricating supports. */
+export function addYanchunSouthApron(c){
+ const {f,item,p,kit}=c;
+ if(p.key!=='yanchun'||item.x!==216||item.z!==485.5||item.w!==23.5||item.d!==24.3||f.position.x!==216||f.position.y!==0||f.position.z!==485.5||f.rotation.toArray().slice(0,3).some(Boolean)||f.scale.toArray().some(x=>x!==1)||f.userData.r144YanchunApron)throw Error('R144 Yanchun balcony binding mismatch');
+ const support=f.children.find(m=>m.name==='yanchun-lower-roof-balcony-junction'&&m.position.z===-8.2);if(!support||support.position.y!==6.82||support.geometry.parameters.width!==15.6||support.geometry.parameters.height!==.24||support.geometry.parameters.depth!==.28)throw Error('R144 original south edge missing');
+ const md={originalObjectId:'FC-12BEB1BB0E',sources:['https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d41b19d7f7.jpg','https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d41a1d280f.jpg'],photographyDate:null,scope:'SHALLOW_SOUTH_EDGE_CLOUD_OUTLINE_ONLY',dimensions:'SHALLOW_MODEL_CLEARANCE_FIT_NOT_SURVEYED',wholeObjectAccepted:false,completeApron:false,residual:['Photographed full hanging height and roof/ledge relationship not achieved','Fine interlaced carving and original pigment patterns','Side and rear decoration unverified','Existing upper-access and roof-jump limitations retained']};
+ const gold=new THREE.MeshStandardMaterial({name:'r144-yanchun-apron-gold-fit',color:0xc8a952,roughness:.7}),green=new THREE.MeshStandardMaterial({name:'r144-yanchun-apron-green-fit',color:0x42756d,roughness:.82});kit.owned.push(gold,green);
+ const width=15.6,count=40,step=width/count,top=6.98,bottom=6.86;
+ function outline(inset=0){const w=width-2*inset,s=new THREE.Shape();s.moveTo(-w/2,top-inset);s.lineTo(w/2,top-inset);s.lineTo(w/2,top-.035);for(let i=count-1;i>=0;i--){const x=-width/2+i*step,l=Math.max(-w/2,x+inset),r=Math.min(w/2,x+step-inset),mid=(l+r)/2;s.lineTo(r,top-.035);s.bezierCurveTo(r,top-.075,mid+.065,bottom+inset,mid,bottom+inset);s.bezierCurveTo(mid-.065,bottom+inset,l,top-.075,l,top-.035);}s.lineTo(-w/2,top-inset);s.closePath();return s;}
+ for(const [name,mat,inset,front,depth]of[['outline',gold,0,-8.375,.075],['field',green,.012,-8.38,.015]]){const geo=new THREE.ExtrudeGeometry(outline(inset),{depth,curveSegments:4,steps:1,bevelEnabled:false});geo.translate(0,0,front);const m=kit.mesh(f,geo,mat,0,0,0);m.name='r144-yanchun-apron-'+name;m.userData.r144YanchunApron=md;m.userData.physics='HIGH_EDGE_DECORATION_NO_NEW_WALKABLE_OR_SUPPORT';}
+ f.userData.r144YanchunApron=md;return md;
+}

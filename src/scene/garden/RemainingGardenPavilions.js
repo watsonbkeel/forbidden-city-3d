@@ -4,6 +4,7 @@ import anchors from '../../../data/anchors.json' with {type:'json'};
 import {applyBoxUV} from '../../utils/GeometryUV.js';
 import {buildBalustrade} from '../HallKit.js';
 import {FUBI_ARCH_POOL,buildFubiArchPool} from './FubiArchPool.js';
+import {addChengruiSouthSeats} from './ChengruiSouthSeats.js';
 import {addBridgeCeilingRelief} from './BridgeCeilingRelief.js';
 
 const SOURCES={浮碧亭:'https://www.dpm.org.cn/explore/building/236498.html',澄瑞亭:'https://www.dpm.org.cn/explore/building/236443.html'};
@@ -75,8 +76,9 @@ export function buildBridgeGardenPavilion(builder,root,input){const p=bridgeGard
   box('bridge-annex-seat',2.35,.12,.42,s*2.6,1.03,-6.2,wood);
   for(const xx of[s*1.7,s*3.5])box('bridge-annex-seat-support',.3,.47,.40,xx,.735,-6.2,stone);
   // Uprights stop careless lateral exit while retaining the central 2.8m opening.
-  for(const zz of[-3.8,3.8])box('bridge-end-stone-panel',2.35,.6,.18,s*2.6,1.2,zz,stone);
+  for(const zz of[-3.8,3.8])if(!(p.name==='澄瑞亭'&&zz===-3.8))box('bridge-end-stone-panel',2.35,.6,.18,s*2.6,1.2,zz,stone);
  }
+ if(p.name==='澄瑞亭')addChengruiSouthSeats(builder,a,p);
  // Main roof is square pyramidal. Annex is a transverse gable, not a second pyramid.
  const corners=[[-4.25,4.85,-4.25],[4.25,4.85,-4.25],[4.25,4.85,4.25],[-4.25,4.85,4.25]],peak=[0,7.4,0];
  const main=corners.map((v,i)=>[v,peak,corners[(i+1)%4]]);roofMesh(g,'bridge-main-roof',main,green,beam);

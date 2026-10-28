@@ -1,0 +1,125 @@
+{
+  "sourceCommit": "d1286cf5921edbd339ae5ec7e27ce19f9ea4ce2f",
+  "group": "EXPAND-07",
+  "groupComplete": false,
+  "notPhysicalSurvey": true,
+  "wallSource": "src/scene/Enclosure.js:80-113",
+  "wallSegments": [
+    {
+      "side": "south",
+      "pieces": 2,
+      "gateGap": "午门platformWidth"
+    },
+    {
+      "side": "north",
+      "pieces": 2,
+      "gateGap": "神武门width"
+    },
+    {
+      "side": "east",
+      "pieces": 2,
+      "gateGap": "东华门30 at z−257"
+    },
+    {
+      "side": "west",
+      "pieces": 2,
+      "gateGap": "西华门30 at z−260.6"
+    }
+  ],
+  "wallsComment": "8 code-generated wall segments; upper caps/crenels loops not separate buildings. Existing fit bounds x±376.5,z−425..547 not official surveyed 961m north-south dimension.",
+  "corners": [
+    {
+      "name": "西南角楼",
+      "originalId": "FC-540CD84282",
+      "worldCenterModelFit": [
+        361.09999999999997,
+        -409.59999999999997
+      ],
+      "source": "src/scene/Enclosure.js:243-271",
+      "template": "buildCornerTower(size20), scaled span29 height17.5",
+      "ownSourcePhotoLocatedAndVerified": false,
+      "status": "FOUR_DISTINCT_CODE_INSTANCES_SHARED_TEMPLATE_NOT_FOUR_PHOTO_ACCEPTANCES"
+    },
+    {
+      "name": "东南角楼",
+      "originalId": "FC-2BC4B765C8",
+      "worldCenterModelFit": [
+        -361.09999999999997,
+        -409.59999999999997
+      ],
+      "source": "src/scene/Enclosure.js:243-271",
+      "template": "buildCornerTower(size20), scaled span29 height17.5",
+      "ownSourcePhotoLocatedAndVerified": false,
+      "status": "FOUR_DISTINCT_CODE_INSTANCES_SHARED_TEMPLATE_NOT_FOUR_PHOTO_ACCEPTANCES"
+    },
+    {
+      "name": "西北角楼",
+      "originalId": "FC-5E9F74827C",
+      "worldCenterModelFit": [
+        361.09999999999997,
+        531.6
+      ],
+      "source": "src/scene/Enclosure.js:243-271",
+      "template": "buildCornerTower(size20), scaled span29 height17.5",
+      "ownSourcePhotoLocatedAndVerified": false,
+      "status": "FOUR_DISTINCT_CODE_INSTANCES_SHARED_TEMPLATE_NOT_FOUR_PHOTO_ACCEPTANCES"
+    },
+    {
+      "name": "东北角楼",
+      "originalId": "FC-168251EA2D",
+      "worldCenterModelFit": [
+        -361.09999999999997,
+        531.6
+      ],
+      "source": "src/scene/Enclosure.js:243-271",
+      "template": "buildCornerTower(size20), scaled span29 height17.5",
+      "ownSourcePhotoLocatedAndVerified": false,
+      "status": "FOUR_DISTINCT_CODE_INSTANCES_SHARED_TEMPLATE_NOT_FOUR_PHOTO_ACCEPTANCES"
+    }
+  ],
+  "moat": {
+    "originalId": "FC-C5FADE84B6",
+    "layoutSource": "src/scene/Layout.js:18-29",
+    "constructor": "src/scene/palace/special/OuterMoat.js:outerMoatProfile/buildOuterMoat",
+    "entry": "src/scene/Environment.js:105-106,128",
+    "waterStripIds": [
+      "north",
+      "east",
+      "west",
+      "south-east",
+      "south-west"
+    ],
+    "contourBankSegments": 12,
+    "southDryHalfWidth": 100,
+    "status": "ENGINEERING_DRY_PASSAGE_NOT_MEASURED_HISTORICAL_BRIDGE",
+    "shorelineSurveyed": false
+  },
+  "residuals": [
+    "Each of four corner towers needs its own located photographs; shared unlabeled gallery pictures do not prove all four",
+    "Wall profile/cap/batter/full geometry remains fitted and partially wrong",
+    "Four gate-wall interfaces need exact own geometry/source and routes, not only holes count",
+    "Moat bank shape/south passage remain engineering fit"
+  ],
+  "sourceFiles": [
+    {
+      "path": "src/scene/Enclosure.js",
+      "sha256": "31ec78a3afcaf92db6916eb020a4fefe0fa8a6904ac38329d19d41e869b2f514"
+    },
+    {
+      "path": "src/scene/Layout.js",
+      "sha256": "e94651c0f4a5c3fac81f1b853e5f83bf80cae0b2ed9f8226689e3a85204e635c"
+    },
+    {
+      "path": "src/scene/Environment.js",
+      "sha256": "71930f758c2805f121488dae88148cf45a2f939b5477978bc08f77fc50d38885"
+    },
+    {
+      "path": "src/scene/palace/special/OuterMoat.js",
+      "sha256": "9bbb7e469a7fee42c3a52cd092a83d8a3d3944e8e392961cbf89248281d76e49"
+    },
+    {
+      "path": "src/config/constants.js",
+      "sha256": "19dfcca52781c69acf46e537661c9110c25b4eee88ea4522b21561f9dd47da7d"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "productSrcUnchangedFromR145": true,
+  "oldFixtureRestored": "reports/r58-hall-beasts/HOOKUP.patch",
+  "fixtureSHA256": "3fecbf44f0a4526d26b55a26c73312ce1fbfe50021674d9d27434ede7f563d40",
+  "previousFailure": "tests/current-state/r58-hall-beasts.test.mjs: asynchronous missing HOOKUP input",
+  "revealedFailure": "exact owner HOOKUP.patch rehearsal uses actual production inputs and retains all hall physics and all other hall meshes",
+  "actualReason": "Historical signature helper calls m.material.toJSON without handling an array. Actual Taihe exterior cloud nameboard has four materials; no R146 source changes. Original helper and failed test unchanged.",
+  "actualArrayMesh": {
+    "hall": "太和殿",
+    "name": "taihe-exterior-cloud-nameboard",
+    "materials": 4
+  },
+  "restoredOutputDirectoryRecheck": {
+    "tests": 46,
+    "pass": 41,
+    "fail": 5,
+    "failures": [
+      "unhooked experimental caps reproduce jump penetration at 10Hz",
+      "unhooked experimental caps reproduce rail-walk penetration at 10Hz",
+      "unhooked experimental caps reproduce jump penetration at 60Hz",
+      "unhooked experimental caps reproduce rail-walk penetration at 60Hz",
+      "exact owner HOOKUP.patch rehearsal uses actual production inputs and retains all hall physics and all other hall meshes"
+    ],
+    "generatedArchived": [
+      "reports/r58-a-bridge-contact-fix/jump-10hz.json",
+      "reports/r58-a-bridge-contact-fix/jump-60hz.json",
+      "reports/r58-a-bridge-contact-fix/rail-walk-10hz.json",
+      "reports/r58-a-bridge-contact-fix/rail-walk-60hz.json"
+    ]
+  },
+  "boundary": "Restoring missing historical inputs exposes a different pre-existing unsupported-material assertion, not a product fix or new acceptance.",
+  "observedSourceCommit": "b9484a72b4565b8eb2050e8c4dbd60a8ff46baab",
+  "observedRuntimeFingerprint": "e11fe9a2c0e40c002f44f59bd67d90e610fc69d744144469cc60898833eea3b7",
+  "finalR146RuntimeDiffFromR145": [
+    "src/scene/characters/SharedRestRoutine.js",
+    "src/scene/characters/SharedRestSurfaces.js"
+  ],
+  "note": "productSrcUnchangedFromR145 refers to observed pre-footstool diagnosis commit, not final R146; the two later character support changes do not change PalaceBuilder/TaiheExteriorPlaque or the historical signature helper."
+}

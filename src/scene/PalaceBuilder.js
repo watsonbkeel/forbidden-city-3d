@@ -1,3 +1,4 @@
+import {buildWumenTransverseLinks} from './palace/special/WumenTransverseLinks.js';
 import {buildJiaotaiLowRooms} from './palace/special/JiaotaiLowRooms.js';
 import {registerQianqingFoldedLeaves} from './palace/QianqingAssemblyPhysics.js';
 import {installQianqingTerraceBurners} from './palace/QianqingTerraceBurners.js';
@@ -1218,6 +1219,9 @@ export class PalaceBuilder {
     buildWumenSouthPortalCanopies(this, g, {
       openings, southZ: zS, platformHeight: PH,
     });
+    // Source-specific fit only at the retained original anchor. Generic
+    // translated gate fixtures keep their previous body/door construction.
+    if(this.ox===0&&this.oz===-419.6)buildWumenTransverseLinks(this, g);
     this.finish(g);
   }
 

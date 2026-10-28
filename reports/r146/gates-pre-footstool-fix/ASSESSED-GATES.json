@@ -1,0 +1,43 @@
+{
+  "newTargets": {
+    "tests": 96,
+    "pass": 95,
+    "fail": 1,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "retainedTargets": {
+    "tests": 244,
+    "pass": 233,
+    "fail": 11,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "standard": {
+    "tests": 1332,
+    "pass": 1117,
+    "fail": 215,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "standardAddedFailures": [
+    "exact owner HOOKUP.patch rehearsal uses actual production inputs and retains all hall physics and all other hall meshes"
+  ],
+  "standardRemovedFailures": [
+    "tests/current-state/r58-hall-beasts.test.mjs"
+  ],
+  "classification": [
+    "R138 whole-PalaceBuilder hash predates two R145 links and 14 contacts (R145 exact removal proof)",
+    "R135 exact full east-six resource budget predates R143 new four meshes/four contacts (fresh exact production removal proof)",
+    "Restored R58 HOOKUP input exposes same existing material-array-incompatible signature; module ENOENT replaced by actual assertion error; original tests retained"
+  ],
+  "attributions": [
+    "reports/r146/retained/r135-r143-attribution.json",
+    "reports/r146/retained/restored-fixture-failure-attribution.json",
+    "reports/r145/FINAL-CHECKS.json"
+  ],
+  "notAllGreen": true,
+  "unexpectedUnclassifiedFailures": [],
+  "sourceFingerprint": "e11fe9a2c0e40c002f44f59bd67d90e610fc69d744144469cc60898833eea3b7",
+  "raw": "reports/r146/gates/FINAL-GATES.json"
+}

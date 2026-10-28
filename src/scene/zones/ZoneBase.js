@@ -1,3 +1,4 @@
+import {applyFengxianFrontVats} from '../palace/special/FengxianFrontVats.js';
 import {registerRetainedCourtyardAccess,registerChuxiuMainFinishedAccess,registerChuxiuFrontWingFinishedAccess} from '../../controls/RetainedCourtyardAccess.js';
 import {applyChengqianGateArrival,applyChengqianRearArrival} from '../palace/special/ChengqianArrival.js';
 import {buildChengqianRearWing} from '../palace/special/ChengqianRearWings.js';
@@ -235,6 +236,7 @@ export class ZoneBase {
       applyChengqianRearArrival(this.kit,built.f,item,this.zoneJson,itemIndex);
     }
     applyFengxianFrontWindows(this.kit,this.zoneJson.id,item,built);
+    applyFengxianFrontVats(this.kit,this.zoneJson.id,item,built);
     if(selected?.profile.mode==='augment')return finish(applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,selected.augment(this.kit,item,built,selected.profile)));
     return finish(applySourceGuidedNameboardMount(this.kit,this.zoneJson.id,item,built));
   }

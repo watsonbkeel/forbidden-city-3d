@@ -1,0 +1,1834 @@
+{
+  "schemaVersion": 1,
+  "scope": "R145 read-only bounded EXPAND-01..05 mapping of existing declarations and implementation routing",
+  "notProductModification": true,
+  "snapshot": {
+    "readAtUTC": "2026-10-28T04:13:02.008614+00:00",
+    "head": "b7af7840653badcd8f03550a71ee96bbc4126106",
+    "sourceHashes": {
+      "data/zones/east-six.json": "ed8a435c72795cc1e640c49ab9b006670d2aa8be48a41b8a8e72c756bed71dd8",
+      "data/zones/west-six.json": "a98ddde19f72fa3facc8fdfe5ec3c3130fc1ad572c3d4550661b44885a42a66e",
+      "data/zones/outer-east.json": "5327bf3dbaff2b102c62363d70fbbad3e39eaa08e966040cb26acd33e3398b7e",
+      "src/scene/zones/ZoneBase.js": "31697b3c3bde76979258a2fc64c253df43d0b47efaebe16a3b22edd39e1c1d67",
+      "src/scene/palace/special/ChengqianCourtyardGroup.js": "b4e23f6eb2e66d1048967f1c469889fb6c8fd6a2aacea653957f1dcaf9f6248f",
+      "src/scene/palace/special/ChengqianRearWings.js": "4126a7bbf0baa1cad219bc7eb5d9fbdc483f32e31fb3a8308d897bb755064e40",
+      "src/scene/palace/special/RemainingResidentialHalls.js": "84de87e397a762553d862fa3abca138b8b1efbdf49340f77b4c7ffe3d1517e36",
+      "docs/photo-fidelity/H-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json": "f38f01474b26ad0ddac69c72fd638f99aeca1216aa852643c84634a662e12fc6",
+      "src/scene/palace/special/RemainingOuterHalls.js": "221cb7436ef6818ae3b8e1d17ee918eb26e25d9287191c489db31bd900bb04d5"
+    },
+    "note": "Active writer worktree; evidence tied to these exact bytes, not only HEAD. No runtime/GPU build performed."
+  },
+  "groups": [
+    {
+      "id": "EXPAND-01",
+      "parentText": "东六宫各院",
+      "requiredContent": "各院井亭、前后殿耳房、配殿耳房、垂花门与游廊",
+      "masterSourceLine": 806,
+      "retainedParentRequired": true,
+      "enumerationComplete": false,
+      "wholeGroupAccepted": false,
+      "instances": [
+        {
+          "instanceRef": "data/zones/east-six.json#/items/0",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": "景仁门",
+          "kind": "gate",
+          "coordinate": {
+            "x": -92.4,
+            "z": 303.2
+          },
+          "roleForExpansion": "PARENT_ENTRANCE_CONTEXT_NOT_PROVEN_CHUIHUAMEN",
+          "currentStatus": "DECLARED_AND_ROUTED_TO_BASELINE_PARTIAL_UNVERIFIED",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 7
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 332,
+              "needle": "  buildGate(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "院门/整院墙不是已核逐座垂花门及游廊。",
+          "accepted": false,
+          "parentCourt": "景仁宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/1",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "courtWalls",
+          "coordinate": {},
+          "roleForExpansion": "ESTIMATED_COURTYARD_BOUNDARY_CONTEXT",
+          "currentStatus": "DECLARED_AND_ROUTED_TO_BASELINE_PARTIAL_UNVERIFIED",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 8
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 378,
+              "needle": "  buildCourtWalls(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "院门/整院墙不是已核逐座垂花门及游廊。",
+          "accepted": false,
+          "parentCourt": "景仁宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/3",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "hall",
+          "coordinate": {
+            "x": -93,
+            "z": 347.4
+          },
+          "roleForExpansion": "REAR_HALL_CONTEXT_NOT_EAR_ROOM",
+          "currentStatus": "DECLARED_AND_ROUTED_TO_BASELINE_PARTIAL_UNVERIFIED",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 10
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "不能从后殿/配殿整体或匿名壳体反推其耳房全部存在。",
+          "accepted": false,
+          "parentCourt": "景仁宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/4",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "hall",
+          "coordinate": {
+            "x": -109.88,
+            "z": 319.8,
+            "rot": "west"
+          },
+          "roleForExpansion": "EAST_FRONT_WING_CONTEXT_NOT_EAR_ROOM",
+          "currentStatus": "DECLARED_AND_ROUTED_TO_BASELINE_PARTIAL_UNVERIFIED",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 11
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "不能从后殿/配殿整体或匿名壳体反推其耳房全部存在。",
+          "accepted": false,
+          "parentCourt": "景仁宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/5",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "hall",
+          "coordinate": {
+            "x": -77,
+            "z": 319.8,
+            "rot": "east"
+          },
+          "roleForExpansion": "WEST_FRONT_WING_CONTEXT_NOT_EAR_ROOM",
+          "currentStatus": "DECLARED_AND_ROUTED_TO_BASELINE_PARTIAL_UNVERIFIED",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 12
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "不能从后殿/配殿整体或匿名壳体反推其耳房全部存在。",
+          "accepted": false,
+          "parentCourt": "景仁宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/7",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": "承乾门",
+          "kind": "gate",
+          "coordinate": {
+            "x": -93.3,
+            "z": 360.2
+          },
+          "roleForExpansion": "PARENT_ENTRANCE_CONTEXT_NOT_PROVEN_CHUIHUAMEN",
+          "currentStatus": "DECLARED_AND_ROUTED_TO_BASELINE_PARTIAL_UNVERIFIED",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 14
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 332,
+              "needle": "  buildGate(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "院门/整院墙不是已核逐座垂花门及游廊。",
+          "accepted": false,
+          "parentCourt": "承乾宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/8",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "courtWalls",
+          "coordinate": {},
+          "roleForExpansion": "ESTIMATED_COURTYARD_BOUNDARY_CONTEXT",
+          "currentStatus": "DECLARED_AND_ROUTED_TO_BASELINE_PARTIAL_UNVERIFIED",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 15
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 378,
+              "needle": "  buildCourtWalls(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "院门/整院墙不是已核逐座垂花门及游廊。",
+          "accepted": false,
+          "parentCourt": "承乾宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/10",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "hall",
+          "coordinate": {
+            "x": -93,
+            "z": 403.9
+          },
+          "roleForExpansion": "REAR_HALL_CONTEXT_NOT_EAR_ROOM",
+          "currentStatus": "DECLARED_AND_ROUTED_TO_BASELINE_PARTIAL_UNVERIFIED",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 17
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "不能从后殿/配殿整体或匿名壳体反推其耳房全部存在。",
+          "accepted": false,
+          "parentCourt": "承乾宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/11",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "hall",
+          "coordinate": {
+            "x": -110.08,
+            "z": 370.6,
+            "rot": "west"
+          },
+          "roleForExpansion": "EAST_FRONT_WING_CONTEXT_NOT_EAR_ROOM",
+          "currentStatus": "PARTIAL_CHENGQIAN_HARD_GABLE_FRONT_WING_FIT",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 18
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            },
+            {
+              "path": "src/scene/palace/special/ChengqianCourtyardGroup.js",
+              "line": 5,
+              "needle": "export function chengqianWingHardGable"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "不能从后殿/配殿整体或匿名壳体反推其耳房全部存在。",
+          "accepted": false,
+          "parentCourt": "承乾宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/12",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "hall",
+          "coordinate": {
+            "x": -77.12,
+            "z": 367.1,
+            "rot": "east"
+          },
+          "roleForExpansion": "WEST_FRONT_WING_CONTEXT_NOT_EAR_ROOM",
+          "currentStatus": "PARTIAL_CHENGQIAN_HARD_GABLE_FRONT_WING_FIT",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 19
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            },
+            {
+              "path": "src/scene/palace/special/ChengqianCourtyardGroup.js",
+              "line": 5,
+              "needle": "export function chengqianWingHardGable"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "不能从后殿/配殿整体或匿名壳体反推其耳房全部存在。",
+          "accepted": false,
+          "parentCourt": "承乾宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/14",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": "钟粹门",
+          "kind": "gate",
+          "coordinate": {
+            "x": -93.6,
+            "z": 413.7
+          },
+          "roleForExpansion": "PARENT_ENTRANCE_CONTEXT_NOT_PROVEN_CHUIHUAMEN",
+          "currentStatus": "DECLARED_AND_ROUTED_TO_BASELINE_PARTIAL_UNVERIFIED",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 21
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 332,
+              "needle": "  buildGate(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "院门/整院墙不是已核逐座垂花门及游廊。",
+          "accepted": false,
+          "parentCourt": "钟粹宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/15",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "courtWalls",
+          "coordinate": {},
+          "roleForExpansion": "ESTIMATED_COURTYARD_BOUNDARY_CONTEXT",
+          "currentStatus": "DECLARED_AND_ROUTED_TO_BASELINE_PARTIAL_UNVERIFIED",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 22
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 378,
+              "needle": "  buildCourtWalls(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "院门/整院墙不是已核逐座垂花门及游廊。",
+          "accepted": false,
+          "parentCourt": "钟粹宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/17",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "hall",
+          "coordinate": {
+            "x": -93,
+            "z": 456
+          },
+          "roleForExpansion": "REAR_HALL_CONTEXT_NOT_EAR_ROOM",
+          "currentStatus": "DECLARED_AND_ROUTED_TO_BASELINE_PARTIAL_UNVERIFIED",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 24
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "不能从后殿/配殿整体或匿名壳体反推其耳房全部存在。",
+          "accepted": false,
+          "parentCourt": "钟粹宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/18",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "hall",
+          "coordinate": {
+            "x": -109.88,
+            "z": 422,
+            "rot": "west"
+          },
+          "roleForExpansion": "EAST_FRONT_WING_CONTEXT_NOT_EAR_ROOM",
+          "currentStatus": "DECLARED_AND_ROUTED_TO_BASELINE_PARTIAL_UNVERIFIED",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 25
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "不能从后殿/配殿整体或匿名壳体反推其耳房全部存在。",
+          "accepted": false,
+          "parentCourt": "钟粹宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/19",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "hall",
+          "coordinate": {
+            "x": -76.92,
+            "z": 422,
+            "rot": "east"
+          },
+          "roleForExpansion": "WEST_FRONT_WING_CONTEXT_NOT_EAR_ROOM",
+          "currentStatus": "DECLARED_AND_ROUTED_TO_BASELINE_PARTIAL_UNVERIFIED",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 26
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "不能从后殿/配殿整体或匿名壳体反推其耳房全部存在。",
+          "accepted": false,
+          "parentCourt": "钟粹宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/21",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": "延禧门",
+          "kind": "gate",
+          "coordinate": {
+            "x": -147.5,
+            "z": 303.2
+          },
+          "roleForExpansion": "PARENT_ENTRANCE_CONTEXT_NOT_PROVEN_CHUIHUAMEN",
+          "currentStatus": "DECLARED_AND_ROUTED_TO_BASELINE_PARTIAL_UNVERIFIED",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 28
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 332,
+              "needle": "  buildGate(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "院门/整院墙不是已核逐座垂花门及游廊。",
+          "accepted": false,
+          "parentCourt": "延禧宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/22",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "courtWalls",
+          "coordinate": {},
+          "roleForExpansion": "ESTIMATED_COURTYARD_BOUNDARY_CONTEXT",
+          "currentStatus": "DECLARED_AND_ROUTED_TO_BASELINE_PARTIAL_UNVERIFIED",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 29
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 378,
+              "needle": "  buildCourtWalls(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "院门/整院墙不是已核逐座垂花门及游廊。",
+          "accepted": false,
+          "parentCourt": "延禧宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/24",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "hall",
+          "coordinate": {
+            "x": -148.2,
+            "z": 341.6
+          },
+          "roleForExpansion": "REAR_HALL_CONTEXT_NOT_EAR_ROOM",
+          "currentStatus": "EXPLICIT_YANXI_STOREHOUSE_PROFILE_NOT_HISTORICAL_PALACE_EARROOM",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 31
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "不能从后殿/配殿整体或匿名壳体反推其耳房全部存在。",
+          "accepted": false,
+          "parentCourt": "延禧宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/25",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "hall",
+          "coordinate": {
+            "x": -164.68,
+            "z": 313.7,
+            "rot": "west"
+          },
+          "roleForExpansion": "EAST_FRONT_WING_CONTEXT_NOT_EAR_ROOM",
+          "currentStatus": "EXPLICIT_YANXI_STOREHOUSE_PROFILE_NOT_HISTORICAL_PALACE_EARROOM",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 32
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "不能从后殿/配殿整体或匿名壳体反推其耳房全部存在。",
+          "accepted": false,
+          "parentCourt": "延禧宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/26",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "hall",
+          "coordinate": {
+            "x": -131.72,
+            "z": 313.7,
+            "rot": "east"
+          },
+          "roleForExpansion": "WEST_FRONT_WING_CONTEXT_NOT_EAR_ROOM",
+          "currentStatus": "EXPLICIT_YANXI_STOREHOUSE_PROFILE_NOT_HISTORICAL_PALACE_EARROOM",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 33
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "不能从后殿/配殿整体或匿名壳体反推其耳房全部存在。",
+          "accepted": false,
+          "parentCourt": "延禧宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/28",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": "永和门",
+          "kind": "gate",
+          "coordinate": {
+            "x": -149,
+            "z": 359.8
+          },
+          "roleForExpansion": "PARENT_ENTRANCE_CONTEXT_NOT_PROVEN_CHUIHUAMEN",
+          "currentStatus": "DECLARED_AND_ROUTED_TO_BASELINE_PARTIAL_UNVERIFIED",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 35
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 332,
+              "needle": "  buildGate(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "院门/整院墙不是已核逐座垂花门及游廊。",
+          "accepted": false,
+          "parentCourt": "永和宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/29",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "courtWalls",
+          "coordinate": {},
+          "roleForExpansion": "ESTIMATED_COURTYARD_BOUNDARY_CONTEXT",
+          "currentStatus": "DECLARED_AND_ROUTED_TO_BASELINE_PARTIAL_UNVERIFIED",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 36
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 378,
+              "needle": "  buildCourtWalls(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "院门/整院墙不是已核逐座垂花门及游廊。",
+          "accepted": false,
+          "parentCourt": "永和宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/31",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "hall",
+          "coordinate": {
+            "x": -148.7,
+            "z": 401.9
+          },
+          "roleForExpansion": "REAR_HALL_CONTEXT_NOT_EAR_ROOM",
+          "currentStatus": "DECLARED_AND_ROUTED_TO_BASELINE_PARTIAL_UNVERIFIED",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 38
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "不能从后殿/配殿整体或匿名壳体反推其耳房全部存在。",
+          "accepted": false,
+          "parentCourt": "永和宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/32",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "hall",
+          "coordinate": {
+            "x": -165.48,
+            "z": 367.9,
+            "rot": "west"
+          },
+          "roleForExpansion": "EAST_FRONT_WING_CONTEXT_NOT_EAR_ROOM",
+          "currentStatus": "DECLARED_AND_ROUTED_TO_BASELINE_PARTIAL_UNVERIFIED",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 39
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "不能从后殿/配殿整体或匿名壳体反推其耳房全部存在。",
+          "accepted": false,
+          "parentCourt": "永和宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/33",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "hall",
+          "coordinate": {
+            "x": -132.52,
+            "z": 367.9,
+            "rot": "east"
+          },
+          "roleForExpansion": "WEST_FRONT_WING_CONTEXT_NOT_EAR_ROOM",
+          "currentStatus": "DECLARED_AND_ROUTED_TO_BASELINE_PARTIAL_UNVERIFIED",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 40
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "不能从后殿/配殿整体或匿名壳体反推其耳房全部存在。",
+          "accepted": false,
+          "parentCourt": "永和宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/35",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": "景阳门",
+          "kind": "gate",
+          "coordinate": {
+            "x": -148.6,
+            "z": 411.7
+          },
+          "roleForExpansion": "PARENT_ENTRANCE_CONTEXT_NOT_PROVEN_CHUIHUAMEN",
+          "currentStatus": "DECLARED_AND_ROUTED_TO_BASELINE_PARTIAL_UNVERIFIED",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 42
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 332,
+              "needle": "  buildGate(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "院门/整院墙不是已核逐座垂花门及游廊。",
+          "accepted": false,
+          "parentCourt": "景阳宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/36",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "courtWalls",
+          "coordinate": {},
+          "roleForExpansion": "ESTIMATED_COURTYARD_BOUNDARY_CONTEXT",
+          "currentStatus": "DECLARED_AND_ROUTED_TO_BASELINE_PARTIAL_UNVERIFIED",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 43
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 378,
+              "needle": "  buildCourtWalls(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "院门/整院墙不是已核逐座垂花门及游廊。",
+          "accepted": false,
+          "parentCourt": "景阳宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/38",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "hall",
+          "coordinate": {
+            "x": -148.5,
+            "z": 453.5
+          },
+          "roleForExpansion": "REAR_HALL_CONTEXT_NOT_EAR_ROOM",
+          "currentStatus": "DECLARED_AND_ROUTED_TO_BASELINE_PARTIAL_UNVERIFIED",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 45
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "不能从后殿/配殿整体或匿名壳体反推其耳房全部存在。",
+          "accepted": false,
+          "parentCourt": "景阳宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/39",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "hall",
+          "coordinate": {
+            "x": -165.98,
+            "z": 421,
+            "rot": "west"
+          },
+          "roleForExpansion": "EAST_FRONT_WING_CONTEXT_NOT_EAR_ROOM",
+          "currentStatus": "DECLARED_AND_ROUTED_TO_BASELINE_PARTIAL_UNVERIFIED",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 46
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "不能从后殿/配殿整体或匿名壳体反推其耳房全部存在。",
+          "accepted": false,
+          "parentCourt": "景阳宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/40",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "hall",
+          "coordinate": {
+            "x": -133.02,
+            "z": 421,
+            "rot": "east"
+          },
+          "roleForExpansion": "WEST_FRONT_WING_CONTEXT_NOT_EAR_ROOM",
+          "currentStatus": "DECLARED_AND_ROUTED_TO_BASELINE_PARTIAL_UNVERIFIED",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 47
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "不能从后殿/配殿整体或匿名壳体反推其耳房全部存在。",
+          "accepted": false,
+          "parentCourt": "景阳宫"
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/56",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": "承乾宫后东配殿",
+          "kind": "hall",
+          "coordinate": {
+            "x": -111.2,
+            "z": 396.05,
+            "rot": "west"
+          },
+          "roleForExpansion": "REAR_WING_NOT_ITS_EAR_ROOM",
+          "currentStatus": "DEDICATED_PHOTO_TOPOLOGY_FIT",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 63
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            },
+            {
+              "path": "src/scene/palace/special/ChengqianRearWings.js",
+              "line": 14,
+              "needle": "export function buildChengqianRearWing"
+            }
+          ],
+          "existingRuntimeId": "east-six/chengqian-rear-east",
+          "limitation": "R125已有真实新增后配，但不是未核耳房/井亭，尺寸和背面仍拟合。",
+          "accepted": false
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/57",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": "承乾宫后西配殿",
+          "kind": "hall",
+          "coordinate": {
+            "x": -76,
+            "z": 396.05,
+            "rot": "east"
+          },
+          "roleForExpansion": "REAR_WING_NOT_ITS_EAR_ROOM",
+          "currentStatus": "DEDICATED_PHOTO_TOPOLOGY_FIT",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 64
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            },
+            {
+              "path": "src/scene/palace/special/ChengqianRearWings.js",
+              "line": 14,
+              "needle": "export function buildChengqianRearWing"
+            }
+          ],
+          "existingRuntimeId": "east-six/chengqian-rear-west",
+          "limitation": "R125已有真实新增后配，但不是未核耳房/井亭，尺寸和背面仍拟合。",
+          "accepted": false
+        },
+        {
+          "instanceRef": "src/scene/palace/special/ChengqianCourtyardGroup.js#chengqian-west-court-gate",
+          "existingRuntimeId": "chengqian-west-court-access",
+          "kind": "procedural-side-gate",
+          "currentStatus": "ONE_SOURCE_BOUNDED_SIDE_GATE_FIT",
+          "roleForExpansion": "ONE_SIDE_GATE_NOT_ASSERTED_CHUIHUA_GATE",
+          "evidence": [
+            {
+              "path": "src/scene/palace/special/ChengqianCourtyardGroup.js",
+              "line": 62,
+              "needle": "gate.name='chengqian-west-court-gate'"
+            }
+          ],
+          "limitation": "西侧朝向是南向照片推断；仅一院间门，不能代替两侧游廊/所有耳房。",
+          "accepted": false
+        }
+      ],
+      "missingOrUnresolved": [
+        "六院井亭均没有本审读确认的独立模型映射",
+        "前/后殿耳房、配殿耳房及各游廊未逐实例命名定位",
+        "不能把18个原后/配殿声明+2个后配殿当20个已完成耳房",
+        "延禧1930s库房配置不能当清代耳房关系",
+        "承乾新增后配/西侧院间门只证明局部，不代表东六扩展完成"
+      ],
+      "codeEvidence": [
+        {
+          "path": "src/scene/palace/special/ChengqianCourtyardGroup.js",
+          "line": 5,
+          "needle": "export function chengqianWingHardGable"
+        },
+        {
+          "path": "src/scene/zones/ZoneBase.js",
+          "line": 195,
+          "needle": "if(item.structure==='chengqian-rear-wing')"
+        }
+      ],
+      "listedRowCount": 33,
+      "countMeaning": "READ_ONLY_LEDGER_ROWS_NOT_BUILDING_COUNT_NOT_NEW_DELIVERIES",
+      "countsAsExpansionComplete": false
+    },
+    {
+      "id": "EXPAND-02",
+      "parentText": "重华宫区",
+      "requiredContent": "崇敬殿及翠云馆两侧配殿、各耳房、东西井亭",
+      "masterSourceLine": 807,
+      "retainedParentRequired": true,
+      "enumerationComplete": false,
+      "wholeGroupAccepted": false,
+      "instances": [
+        {
+          "instanceRef": "data/zones/west-six.json#/items/52",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": "重华门",
+          "kind": "gate",
+          "coordinate": {
+            "x": 120.2,
+            "z": 460
+          },
+          "roleForExpansion": "MIDDLE_COURT_CONTEXT_ONLY",
+          "currentStatus": "PARTIAL_SINGLE_NAME_HALL_OR_GENERIC_BOUNDARY",
+          "evidence": [
+            {
+              "path": "data/zones/west-six.json",
+              "line": 63
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 332,
+              "needle": "  buildGate(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "不得当崇敬殿、翠云馆及其配殿/耳房/东西井亭。",
+          "accepted": false
+        },
+        {
+          "instanceRef": "data/zones/west-six.json#/items/53",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "courtWalls",
+          "coordinate": {},
+          "roleForExpansion": "MIDDLE_COURT_CONTEXT_ONLY",
+          "currentStatus": "PARTIAL_SINGLE_NAME_HALL_OR_GENERIC_BOUNDARY",
+          "evidence": [
+            {
+              "path": "data/zones/west-six.json",
+              "line": 64
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 378,
+              "needle": "  buildCourtWalls(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "不得当崇敬殿、翠云馆及其配殿/耳房/东西井亭。",
+          "accepted": false
+        },
+        {
+          "instanceRef": "data/zones/west-six.json#/items/54",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": "重华宫",
+          "kind": "hall",
+          "coordinate": {
+            "x": 118.9,
+            "z": 498.3
+          },
+          "roleForExpansion": "MIDDLE_COURT_CONTEXT_ONLY",
+          "currentStatus": "PARTIAL_SINGLE_NAME_HALL_OR_GENERIC_BOUNDARY",
+          "evidence": [
+            {
+              "path": "data/zones/west-six.json",
+              "line": 65
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            },
+            {
+              "path": "src/scene/palace/special/RemainingResidentialHalls.js",
+              "line": 29,
+              "needle": "key: 'chonghua-middle-name-fit'"
+            }
+          ],
+          "existingRuntimeId": "west-six/r48-chonghua-middle-name-fit",
+          "limitation": "不得当崇敬殿、翠云馆及其配殿/耳房/东西井亭。",
+          "accepted": false
+        },
+        {
+          "instanceRef": "data/zones/west-six.json#/items/55",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": "重华宫",
+          "kind": "region",
+          "coordinate": {},
+          "roleForExpansion": "MIDDLE_COURT_CONTEXT_ONLY",
+          "currentStatus": "PARTIAL_SINGLE_NAME_HALL_OR_GENERIC_BOUNDARY",
+          "evidence": [
+            {
+              "path": "data/zones/west-six.json",
+              "line": 66
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 433,
+              "needle": "  buildRegion(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "不得当崇敬殿、翠云馆及其配殿/耳房/东西井亭。",
+          "accepted": false
+        }
+      ],
+      "missingOrUnresolved": [
+        "崇敬殿、翠云馆两侧配殿与耳房无可确认的独立runtime映射",
+        "东西井亭无独立runtime映射；西井亭非真井",
+        "现中院同名殿不证明完整三进院落，坐标与source逐院映射未核"
+      ],
+      "codeEvidence": [
+        {
+          "path": "src/scene/palace/special/RemainingResidentialHalls.js",
+          "line": 29,
+          "needle": "key: 'chonghua-middle-name-fit'"
+        }
+      ],
+      "listedRowCount": 4,
+      "countMeaning": "READ_ONLY_LEDGER_ROWS_NOT_BUILDING_COUNT_NOT_NEW_DELIVERIES",
+      "countsAsExpansionComplete": false
+    },
+    {
+      "id": "EXPAND-03",
+      "parentText": "中正殿佛堂区",
+      "requiredContent": "中正殿东西配房、淡远楼东西配殿，以及所有已列单体的复建后照片",
+      "masterSourceLine": 808,
+      "retainedParentRequired": true,
+      "enumerationComplete": false,
+      "wholeGroupAccepted": false,
+      "instances": [
+        {
+          "instanceRef": "FC-ADC59D34D5",
+          "instanceIdMeaning": "EXISTING_CANONICAL_NAMED_REQUIREMENT_NOT_RUNTIME_INSTANCE",
+          "declaredName": "雨花阁",
+          "kind": "catalog-requirement",
+          "currentStatus": "NO_CONFIRMED_RUNTIME_BINDING_IN_CURRENT_ZONES_OR_SCENE",
+          "evidence": [
+            {
+              "path": "docs/photo-fidelity/H-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "line": 5791,
+              "needle": "\"id\": \"FC-ADC59D34D5\""
+            }
+          ],
+          "oldAuditFindingForContextOnly": "没有雨花阁专用模型或已确认定位；已有一二层照片不能判为全楼室内无来源。",
+          "currentCheck": "当前data/zones和src/scene搜这些名称无匹配实体；中正仁和匾额文字不是中正殿。",
+          "accepted": false
+        },
+        {
+          "instanceRef": "FC-F0C6383E88",
+          "instanceIdMeaning": "EXISTING_CANONICAL_NAMED_REQUIREMENT_NOT_RUNTIME_INSTANCE",
+          "declaredName": "宝华殿",
+          "kind": "catalog-requirement",
+          "currentStatus": "NO_CONFIRMED_RUNTIME_BINDING_IN_CURRENT_ZONES_OR_SCENE",
+          "evidence": [
+            {
+              "path": "docs/photo-fidelity/H-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "line": 6284,
+              "needle": "\"id\": \"FC-F0C6383E88\""
+            }
+          ],
+          "oldAuditFindingForContextOnly": "无已确认独立模型；不与复建中正殿合并。",
+          "currentCheck": "当前data/zones和src/scene搜这些名称无匹配实体；中正仁和匾额文字不是中正殿。",
+          "accepted": false
+        },
+        {
+          "instanceRef": "FC-66378DAD81",
+          "instanceIdMeaning": "EXISTING_CANONICAL_NAMED_REQUIREMENT_NOT_RUNTIME_INSTANCE",
+          "declaredName": "中正殿",
+          "kind": "catalog-requirement",
+          "currentStatus": "NO_CONFIRMED_RUNTIME_BINDING_IN_CURRENT_ZONES_OR_SCENE",
+          "evidence": [
+            {
+              "path": "docs/photo-fidelity/H-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "line": 6527,
+              "needle": "\"id\": \"FC-66378DAD81\""
+            }
+          ],
+          "oldAuditFindingForContextOnly": "无独立命名模型；本正殿与同名整个佛堂区必须区分。",
+          "currentCheck": "当前data/zones和src/scene搜这些名称无匹配实体；中正仁和匾额文字不是中正殿。",
+          "accepted": false
+        },
+        {
+          "instanceRef": "FC-87A0A561ED",
+          "instanceIdMeaning": "EXISTING_CANONICAL_NAMED_REQUIREMENT_NOT_RUNTIME_INSTANCE",
+          "declaredName": "淡远楼",
+          "kind": "catalog-requirement",
+          "currentStatus": "NO_CONFIRMED_RUNTIME_BINDING_IN_CURRENT_ZONES_OR_SCENE",
+          "evidence": [
+            {
+              "path": "docs/photo-fidelity/H-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "line": 6772,
+              "needle": "\"id\": \"FC-87A0A561ED\""
+            }
+          ],
+          "oldAuditFindingForContextOnly": "无已确认实体；别名中正殿后殿不另计。",
+          "currentCheck": "当前data/zones和src/scene搜这些名称无匹配实体；中正仁和匾额文字不是中正殿。",
+          "accepted": false
+        },
+        {
+          "instanceRef": "FC-E5EEAB2373",
+          "instanceIdMeaning": "EXISTING_CANONICAL_NAMED_REQUIREMENT_NOT_RUNTIME_INSTANCE",
+          "declaredName": "中正殿东配殿",
+          "kind": "catalog-requirement",
+          "currentStatus": "NO_CONFIRMED_RUNTIME_BINDING_IN_CURRENT_ZONES_OR_SCENE",
+          "evidence": [
+            {
+              "path": "docs/photo-fidelity/H-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "line": 7017,
+              "needle": "\"id\": \"FC-E5EEAB2373\""
+            }
+          ],
+          "oldAuditFindingForContextOnly": "无命名或别名模型；不可自动镜像西殿。",
+          "currentCheck": "当前data/zones和src/scene搜这些名称无匹配实体；中正仁和匾额文字不是中正殿。",
+          "accepted": false
+        },
+        {
+          "instanceRef": "FC-77D6708679",
+          "instanceIdMeaning": "EXISTING_CANONICAL_NAMED_REQUIREMENT_NOT_RUNTIME_INSTANCE",
+          "declaredName": "中正殿西配殿",
+          "kind": "catalog-requirement",
+          "currentStatus": "NO_CONFIRMED_RUNTIME_BINDING_IN_CURRENT_ZONES_OR_SCENE",
+          "evidence": [
+            {
+              "path": "docs/photo-fidelity/H-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "line": 7262,
+              "needle": "\"id\": \"FC-77D6708679\""
+            }
+          ],
+          "oldAuditFindingForContextOnly": "无命名或别名模型；不可直接复制东配殿。",
+          "currentCheck": "当前data/zones和src/scene搜这些名称无匹配实体；中正仁和匾额文字不是中正殿。",
+          "accepted": false
+        },
+        {
+          "instanceRef": "FC-3295FB46B4",
+          "instanceIdMeaning": "EXISTING_CANONICAL_NAMED_REQUIREMENT_NOT_RUNTIME_INSTANCE",
+          "declaredName": "香云亭",
+          "kind": "catalog-requirement",
+          "currentStatus": "NO_CONFIRMED_RUNTIME_BINDING_IN_CURRENT_ZONES_OR_SCENE",
+          "evidence": [
+            {
+              "path": "docs/photo-fidelity/H-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "line": 7507,
+              "needle": "\"id\": \"FC-3295FB46B4\""
+            }
+          ],
+          "oldAuditFindingForContextOnly": "无已确认亭体，不另添一座香云楼。",
+          "currentCheck": "当前data/zones和src/scene搜这些名称无匹配实体；中正仁和匾额文字不是中正殿。",
+          "accepted": false
+        },
+        {
+          "instanceRef": "FC-F95F60645E",
+          "instanceIdMeaning": "EXISTING_CANONICAL_NAMED_REQUIREMENT_NOT_RUNTIME_INSTANCE",
+          "declaredName": "雨花阁东配楼",
+          "kind": "catalog-requirement",
+          "currentStatus": "NO_CONFIRMED_RUNTIME_BINDING_IN_CURRENT_ZONES_OR_SCENE",
+          "evidence": [
+            {
+              "path": "docs/photo-fidelity/H-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "line": 7752,
+              "needle": "\"id\": \"FC-F95F60645E\""
+            }
+          ],
+          "oldAuditFindingForContextOnly": "无独立运行时实体或历史别名可靠绑定。",
+          "currentCheck": "当前data/zones和src/scene搜这些名称无匹配实体；中正仁和匾额文字不是中正殿。",
+          "accepted": false
+        },
+        {
+          "instanceRef": "FC-C7BA2B3690",
+          "instanceIdMeaning": "EXISTING_CANONICAL_NAMED_REQUIREMENT_NOT_RUNTIME_INSTANCE",
+          "declaredName": "雨花阁西配楼",
+          "kind": "catalog-requirement",
+          "currentStatus": "NO_CONFIRMED_RUNTIME_BINDING_IN_CURRENT_ZONES_OR_SCENE",
+          "evidence": [
+            {
+              "path": "docs/photo-fidelity/H-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "line": 7997,
+              "needle": "\"id\": \"FC-C7BA2B3690\""
+            }
+          ],
+          "oldAuditFindingForContextOnly": "无已确认独立模型；不从东楼镜像得出通过。",
+          "currentCheck": "当前data/zones和src/scene搜这些名称无匹配实体；中正仁和匾额文字不是中正殿。",
+          "accepted": false
+        },
+        {
+          "instanceRef": "FC-2953884F94",
+          "instanceIdMeaning": "EXISTING_CANONICAL_NAMED_REQUIREMENT_NOT_RUNTIME_INSTANCE",
+          "declaredName": "昭福门",
+          "kind": "catalog-requirement",
+          "currentStatus": "NO_CONFIRMED_RUNTIME_BINDING_IN_CURRENT_ZONES_OR_SCENE",
+          "evidence": [
+            {
+              "path": "docs/photo-fidelity/H-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "line": 8242,
+              "needle": "\"id\": \"FC-2953884F94\""
+            }
+          ],
+          "oldAuditFindingForContextOnly": "无已确认门模型；它不是宝华殿的实体宿主。",
+          "currentCheck": "当前data/zones和src/scene搜这些名称无匹配实体；中正仁和匾额文字不是中正殿。",
+          "accepted": false
+        },
+        {
+          "instanceRef": "FC-98F5C6BC6B",
+          "instanceIdMeaning": "EXISTING_CANONICAL_NAMED_REQUIREMENT_NOT_RUNTIME_INSTANCE",
+          "declaredName": "春华门",
+          "kind": "catalog-requirement",
+          "currentStatus": "NO_CONFIRMED_RUNTIME_BINDING_IN_CURRENT_ZONES_OR_SCENE",
+          "evidence": [
+            {
+              "path": "docs/photo-fidelity/H-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+              "line": 8488,
+              "needle": "\"id\": \"FC-98F5C6BC6B\""
+            }
+          ],
+          "oldAuditFindingForContextOnly": "无已确认模型；凝华门是历史名称关系，不创建第二座门。",
+          "currentCheck": "当前data/zones和src/scene搜这些名称无匹配实体；中正仁和匾额文字不是中正殿。",
+          "accepted": false
+        }
+      ],
+      "missingOrUnresolved": [
+        "中正殿东西配房、淡远楼东西配殿未有独立可核runtime绑定",
+        "原已列单体仍需逐栋复建后照片与实体对应",
+        "当前未运行GPU；源码未命中不等于证明绝无匿名几何，不能宣未命名壳体已对应"
+      ],
+      "listedRowCount": 11,
+      "countMeaning": "READ_ONLY_LEDGER_ROWS_NOT_BUILDING_COUNT_NOT_NEW_DELIVERIES",
+      "countsAsExpansionComplete": false
+    },
+    {
+      "id": "EXPAND-04",
+      "parentText": "南三所",
+      "requiredContent": "各所琉璃门，三进院东西配殿，耳房、顺山房、值房、膳房、净房、井亭及后罩房",
+      "masterSourceLine": 809,
+      "retainedParentRequired": true,
+      "enumerationComplete": false,
+      "wholeGroupAccepted": false,
+      "instances": [
+        {
+          "instanceRef": "data/zones/outer-east.json#/items/10",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": "南三所宫门",
+          "kind": "gate",
+          "coordinate": {
+            "x": -285,
+            "z": 20
+          },
+          "roleForExpansion": "GROUP_GATE_OR_BOUNDARY_CONTEXT",
+          "currentStatus": "DECLARED_GROUP_CONTEXT",
+          "evidence": [
+            {
+              "path": "data/zones/outer-east.json",
+              "line": 175
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 332,
+              "needle": "  buildGate(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "只有每所前/后两排，不是官方每所三进及全部配耳辅房。",
+          "accepted": false
+        },
+        {
+          "instanceRef": "data/zones/outer-east.json#/items/11",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "courtWalls",
+          "coordinate": {},
+          "roleForExpansion": "GROUP_GATE_OR_BOUNDARY_CONTEXT",
+          "currentStatus": "DECLARED_GROUP_CONTEXT",
+          "evidence": [
+            {
+              "path": "data/zones/outer-east.json",
+              "line": 183
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 378,
+              "needle": "  buildCourtWalls(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "只有每所前/后两排，不是官方每所三进及全部配耳辅房。",
+          "accepted": false
+        },
+        {
+          "instanceRef": "data/zones/outer-east.json#/items/12",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": "南三所西所前殿",
+          "kind": "hall",
+          "coordinate": {
+            "x": -251.8,
+            "z": 39
+          },
+          "roleForExpansion": "SIX_NAMED_HALL_DECLARATIONS_NOT_THREE_COURTYARDS_EACH",
+          "currentStatus": "SIX_HALL_ROOF_ONLY_AUGMENT_WITH_UNRESOLVED_BINDING",
+          "evidence": [
+            {
+              "path": "data/zones/outer-east.json",
+              "line": 198
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            },
+            {
+              "path": "src/scene/palace/special/RemainingOuterHalls.js",
+              "line": 88,
+              "needle": "\"key\": \"sansuo-west-front\""
+            },
+            {
+              "path": "src/scene/palace/special/RemainingOuterHalls.js",
+              "line": 1817,
+              "needle": "if(profile.key.startsWith('sansuo-')){"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "只有每所前/后两排，不是官方每所三进及全部配耳辅房。",
+          "accepted": false,
+          "builderProfileKey": "sansuo-west-front",
+          "existingInventoryId": "RI-8950897E9807"
+        },
+        {
+          "instanceRef": "data/zones/outer-east.json#/items/13",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": "南三所西所后殿",
+          "kind": "hall",
+          "coordinate": {
+            "x": -251.8,
+            "z": 68.9
+          },
+          "roleForExpansion": "SIX_NAMED_HALL_DECLARATIONS_NOT_THREE_COURTYARDS_EACH",
+          "currentStatus": "SIX_HALL_ROOF_ONLY_AUGMENT_WITH_UNRESOLVED_BINDING",
+          "evidence": [
+            {
+              "path": "data/zones/outer-east.json",
+              "line": 215
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            },
+            {
+              "path": "src/scene/palace/special/RemainingOuterHalls.js",
+              "line": 105,
+              "needle": "\"key\": \"sansuo-west-rear\""
+            },
+            {
+              "path": "src/scene/palace/special/RemainingOuterHalls.js",
+              "line": 1817,
+              "needle": "if(profile.key.startsWith('sansuo-')){"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "只有每所前/后两排，不是官方每所三进及全部配耳辅房。",
+          "accepted": false,
+          "builderProfileKey": "sansuo-west-rear",
+          "existingInventoryId": "RI-B44087B4A274"
+        },
+        {
+          "instanceRef": "data/zones/outer-east.json#/items/14",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": "南三所中所前殿",
+          "kind": "hall",
+          "coordinate": {
+            "x": -285.4,
+            "z": 39
+          },
+          "roleForExpansion": "SIX_NAMED_HALL_DECLARATIONS_NOT_THREE_COURTYARDS_EACH",
+          "currentStatus": "SIX_HALL_ROOF_ONLY_AUGMENT_WITH_UNRESOLVED_BINDING",
+          "evidence": [
+            {
+              "path": "data/zones/outer-east.json",
+              "line": 231
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            },
+            {
+              "path": "src/scene/palace/special/RemainingOuterHalls.js",
+              "line": 122,
+              "needle": "\"key\": \"sansuo-center-front\""
+            },
+            {
+              "path": "src/scene/palace/special/RemainingOuterHalls.js",
+              "line": 1817,
+              "needle": "if(profile.key.startsWith('sansuo-')){"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "只有每所前/后两排，不是官方每所三进及全部配耳辅房。",
+          "accepted": false,
+          "builderProfileKey": "sansuo-center-front",
+          "existingInventoryId": "RI-DE4AD62CF33B"
+        },
+        {
+          "instanceRef": "data/zones/outer-east.json#/items/15",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": "南三所中所后殿撷芳殿",
+          "kind": "hall",
+          "coordinate": {
+            "x": -285.1,
+            "z": 68.9
+          },
+          "roleForExpansion": "SIX_NAMED_HALL_DECLARATIONS_NOT_THREE_COURTYARDS_EACH",
+          "currentStatus": "SIX_HALL_ROOF_ONLY_AUGMENT_WITH_UNRESOLVED_BINDING",
+          "evidence": [
+            {
+              "path": "data/zones/outer-east.json",
+              "line": 248
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            },
+            {
+              "path": "src/scene/palace/special/RemainingOuterHalls.js",
+              "line": 139,
+              "needle": "\"key\": \"sansuo-center-rear\""
+            },
+            {
+              "path": "src/scene/palace/special/RemainingOuterHalls.js",
+              "line": 1817,
+              "needle": "if(profile.key.startsWith('sansuo-')){"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "只有每所前/后两排，不是官方每所三进及全部配耳辅房。",
+          "accepted": false,
+          "builderProfileKey": "sansuo-center-rear",
+          "existingInventoryId": "RI-5DAF22D29D90"
+        },
+        {
+          "instanceRef": "data/zones/outer-east.json#/items/16",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": "南三所东所前殿",
+          "kind": "hall",
+          "coordinate": {
+            "x": -317.4,
+            "z": 39
+          },
+          "roleForExpansion": "SIX_NAMED_HALL_DECLARATIONS_NOT_THREE_COURTYARDS_EACH",
+          "currentStatus": "SIX_HALL_ROOF_ONLY_AUGMENT_WITH_UNRESOLVED_BINDING",
+          "evidence": [
+            {
+              "path": "data/zones/outer-east.json",
+              "line": 266
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            },
+            {
+              "path": "src/scene/palace/special/RemainingOuterHalls.js",
+              "line": 156,
+              "needle": "\"key\": \"sansuo-east-front\""
+            },
+            {
+              "path": "src/scene/palace/special/RemainingOuterHalls.js",
+              "line": 1817,
+              "needle": "if(profile.key.startsWith('sansuo-')){"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "只有每所前/后两排，不是官方每所三进及全部配耳辅房。",
+          "accepted": false,
+          "builderProfileKey": "sansuo-east-front",
+          "existingInventoryId": "RI-24389A9919DC"
+        },
+        {
+          "instanceRef": "data/zones/outer-east.json#/items/17",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": "南三所东所后殿",
+          "kind": "hall",
+          "coordinate": {
+            "x": -317,
+            "z": 68.9
+          },
+          "roleForExpansion": "SIX_NAMED_HALL_DECLARATIONS_NOT_THREE_COURTYARDS_EACH",
+          "currentStatus": "SIX_HALL_ROOF_ONLY_AUGMENT_WITH_UNRESOLVED_BINDING",
+          "evidence": [
+            {
+              "path": "data/zones/outer-east.json",
+              "line": 283
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            },
+            {
+              "path": "src/scene/palace/special/RemainingOuterHalls.js",
+              "line": 173,
+              "needle": "\"key\": \"sansuo-east-rear\""
+            },
+            {
+              "path": "src/scene/palace/special/RemainingOuterHalls.js",
+              "line": 1817,
+              "needle": "if(profile.key.startsWith('sansuo-')){"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "只有每所前/后两排，不是官方每所三进及全部配耳辅房。",
+          "accepted": false,
+          "builderProfileKey": "sansuo-east-rear",
+          "existingInventoryId": "RI-DCC6EC3F42F8"
+        },
+        {
+          "instanceRef": "data/zones/outer-east.json#/items/18",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": "南三所",
+          "kind": "region",
+          "coordinate": {},
+          "roleForExpansion": "GROUP_GATE_OR_BOUNDARY_CONTEXT",
+          "currentStatus": "DECLARED_GROUP_CONTEXT",
+          "evidence": [
+            {
+              "path": "data/zones/outer-east.json",
+              "line": 299
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 433,
+              "needle": "  buildRegion(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "只有每所前/后两排，不是官方每所三进及全部配耳辅房。",
+          "accepted": false
+        }
+      ],
+      "missingOrUnresolved": [
+        "一个南三所宫门声明不是三所分别琉璃门验收",
+        "每所中进/三进完整轴线与东西配殿未确认",
+        "耳房、顺山房、值房、膳房、净房、井亭、黑瓦后罩房未逐实例绑定",
+        "六声明只做组共性绿瓦硬山屋顶及撤无依据家具，不可说六完整院落/或历史前后名字已核"
+      ],
+      "listedRowCount": 9,
+      "countMeaning": "READ_ONLY_LEDGER_ROWS_NOT_BUILDING_COUNT_NOT_NEW_DELIVERIES",
+      "countsAsExpansionComplete": false
+    },
+    {
+      "id": "EXPAND-05",
+      "parentText": "乾东五所",
+      "requiredContent": "头所至五所，各自三进正殿、厢房、院门和井亭",
+      "masterSourceLine": 810,
+      "retainedParentRequired": true,
+      "enumerationComplete": false,
+      "wholeGroupAccepted": false,
+      "instances": [
+        {
+          "instanceRef": "data/zones/east-six.json#/items/42",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": "乾东五所",
+          "kind": "gate",
+          "coordinate": {
+            "x": -142,
+            "z": 466
+          },
+          "roleForExpansion": "SHARED_GROUP_GATE_BOUNDARY_REGION_CONTEXT",
+          "currentStatus": "GENERIC_SHELL_NO_INDIVIDUAL_THREE_COURT_MAPPING",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 49
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 332,
+              "needle": "  buildGate(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "五间独立匿名hall声明不是头所至五所各三进院；单门及共享院墙不是五套院门。",
+          "accepted": false
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/43",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "courtWalls",
+          "coordinate": {},
+          "roleForExpansion": "SHARED_GROUP_GATE_BOUNDARY_REGION_CONTEXT",
+          "currentStatus": "GENERIC_SHELL_NO_INDIVIDUAL_THREE_COURT_MAPPING",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 50
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 378,
+              "needle": "  buildCourtWalls(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "五间独立匿名hall声明不是头所至五所各三进院；单门及共享院墙不是五套院门。",
+          "accepted": false
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/44",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "hall",
+          "coordinate": {
+            "x": -83.7,
+            "z": 501.6
+          },
+          "roleForExpansion": "FIVE_ANONYMOUS_HALL_PLACEHOLDERS",
+          "currentStatus": "GENERIC_SHELL_NO_INDIVIDUAL_THREE_COURT_MAPPING",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 51
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "五间独立匿名hall声明不是头所至五所各三进院；单门及共享院墙不是五套院门。",
+          "accepted": false
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/45",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "hall",
+          "coordinate": {
+            "x": -112.2,
+            "z": 501.6
+          },
+          "roleForExpansion": "FIVE_ANONYMOUS_HALL_PLACEHOLDERS",
+          "currentStatus": "GENERIC_SHELL_NO_INDIVIDUAL_THREE_COURT_MAPPING",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 52
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "五间独立匿名hall声明不是头所至五所各三进院；单门及共享院墙不是五套院门。",
+          "accepted": false
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/46",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "hall",
+          "coordinate": {
+            "x": -142.2,
+            "z": 501.6
+          },
+          "roleForExpansion": "FIVE_ANONYMOUS_HALL_PLACEHOLDERS",
+          "currentStatus": "GENERIC_SHELL_NO_INDIVIDUAL_THREE_COURT_MAPPING",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 53
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "五间独立匿名hall声明不是头所至五所各三进院；单门及共享院墙不是五套院门。",
+          "accepted": false
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/47",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "hall",
+          "coordinate": {
+            "x": -170.8,
+            "z": 501.6
+          },
+          "roleForExpansion": "FIVE_ANONYMOUS_HALL_PLACEHOLDERS",
+          "currentStatus": "GENERIC_SHELL_NO_INDIVIDUAL_THREE_COURT_MAPPING",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 54
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "五间独立匿名hall声明不是头所至五所各三进院；单门及共享院墙不是五套院门。",
+          "accepted": false
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/48",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": null,
+          "kind": "hall",
+          "coordinate": {
+            "x": -199.5,
+            "z": 501.6
+          },
+          "roleForExpansion": "FIVE_ANONYMOUS_HALL_PLACEHOLDERS",
+          "currentStatus": "GENERIC_SHELL_NO_INDIVIDUAL_THREE_COURT_MAPPING",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 55
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 194,
+              "needle": "  buildHall(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "五间独立匿名hall声明不是头所至五所各三进院；单门及共享院墙不是五套院门。",
+          "accepted": false
+        },
+        {
+          "instanceRef": "data/zones/east-six.json#/items/49",
+          "instanceIdMeaning": "EXISTING_JSON_POINTER_NOT_NEW_ENTITY_ID",
+          "declaredName": "乾东五所",
+          "kind": "region",
+          "coordinate": {},
+          "roleForExpansion": "SHARED_GROUP_GATE_BOUNDARY_REGION_CONTEXT",
+          "currentStatus": "GENERIC_SHELL_NO_INDIVIDUAL_THREE_COURT_MAPPING",
+          "evidence": [
+            {
+              "path": "data/zones/east-six.json",
+              "line": 56
+            },
+            {
+              "path": "src/scene/zones/ZoneBase.js",
+              "line": 433,
+              "needle": "  buildRegion(item) {"
+            }
+          ],
+          "existingRuntimeId": null,
+          "limitation": "五间独立匿名hall声明不是头所至五所各三进院；单门及共享院墙不是五套院门。",
+          "accepted": false
+        }
+      ],
+      "missingOrUnresolved": [
+        "头所至五所的个别宿主与三进殿/厢房/院门/井亭均未建立可靠映射",
+        "5壳体不能当5完整宫所或15主殿",
+        "无额外乾东专用constructor命中；现归通用匿名hall和unknown-inventory保护"
+      ],
+      "codeEvidence": [
+        {
+          "path": "src/scene/zones/ZoneBase.js",
+          "line": 200,
+          "needle": "const annexContext=this.zoneJson.id==='east-six'"
+        }
+      ],
+      "listedRowCount": 8,
+      "countMeaning": "READ_ONLY_LEDGER_ROWS_NOT_BUILDING_COUNT_NOT_NEW_DELIVERIES",
+      "countsAsExpansionComplete": false
+    }
+  ],
+  "allFiveAccepted": false
+}

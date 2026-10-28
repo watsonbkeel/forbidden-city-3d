@@ -1,3 +1,4 @@
+import {registerTaiheReplacement,revokeTaiheReplacement} from './TaiheReplacementOwnership.js';
 import { validateYangxinEast } from './YangxinEastContract.js';
 import { huangjiColumnSafetyBoxes } from './HuangjiColumnSafety.js';
 import { validateHuangjiLayer, huangjiFallbackMeshes } from './HuangjiFallbackContract.js';
@@ -245,6 +246,7 @@ export class InteriorLoader {
       h.fallback.forEach(mesh => { mesh.visible = false; });
       group.visible = true;
     }
+    if(h.id==='taihe')registerTaiheReplacement(h.fallback,group,this.scene);
     h.group = group;
     h.state = 'loaded';
     h.promise = null;
@@ -273,6 +275,7 @@ export class InteriorLoader {
   }
 
   _restoreTaiheFallback(h) {
+    if(h.id==='taihe')revokeTaiheReplacement(h.fallback);
     (h.fallback ?? []).forEach(mesh => { mesh.visible = true; });
     h.fallback = null;
   }

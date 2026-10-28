@@ -1,0 +1,4 @@
+import fs from 'node:fs';import * as T from 'three';import{captureGate}from'../lib/gate-tower-fixture.mjs';import{PalaceBuilder}from'../../src/scene/PalaceBuilder.js';
+export const source=fs.readFileSync('tests/fixtures/r145/PalaceBuilder-r144.js.txt','utf8'),loc=new URL('../../src/scene/PalaceBuilder.js',import.meta.url),old=await import('data:text/javascript;base64,'+Buffer.from(source.replace(/from\s+(['"])([^'"]+)\1/g,(_,q,id)=>`from ${q}${id.startsWith('.')?new URL(id,loc).href:import.meta.resolve(id)}${q}`)).toString('base64'));
+export function fixture(Api=PalaceBuilder){const h=captureGate();h.builder.ownedObjects.add(h.group);h.builder.dispose();const builder=new Api(new T.Scene(),h.lib);let group;builder.finish=g=>{group=g;g.updateMatrixWorld(true);return g;};builder.buildGate(h.data);builder.ownedObjects.add(group);return{...h,group,builder};}
+
