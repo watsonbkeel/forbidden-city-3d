@@ -1,3 +1,4 @@
+import {registerRetainedCourtyardAccess} from '../../controls/RetainedCourtyardAccess.js';
 import {applyChengqianGateArrival,applyChengqianRearArrival} from '../palace/special/ChengqianArrival.js';
 import {buildChengqianRearWing} from '../palace/special/ChengqianRearWings.js';
 import {applyChuxiuFrontWing} from '../palace/special/ChuxiuFrontEnsemble.js';
@@ -140,6 +141,7 @@ export class ZoneBase {
     registerStairInterfaces(this.kit,this.zoneJson);
     bindChengqianTerraceDomain(this.kit,this.zoneJson);
     registerChuxiuSideAccess(this.kit,this.zoneJson);
+    registerRetainedCourtyardAccess(this.kit,this.zoneJson);
 
     // Keep distance levels out of the ordinary recursive material merge.
     const yanxiFrames = detachYanxiRuinFrames(this.kit.root);
