@@ -1,3 +1,4 @@
+import {addYanchunSouthVessels} from './YanchunSouthVessels.js';
 import {buildWenyuanUpperFrame} from './WenyuanUpperFrame.js';
 import { buildNanxunCaissonRings } from './NanxunCaissonRings.js';
 import {withholdHUnknownInventory} from './HUnknownInventory.js';
@@ -1105,6 +1106,7 @@ function buildYanchunPavilion(kit,item,p) {
   retainLegacyFurniture(c);
   kit.plaque(c.f,item.name,0,g.y+groundH-.5,-wallZ-.25,.9,1.5);
   fitYanchunFrontPlaque(c);
+  addYanchunSouthVessels(c);
   c.register(item.name+'·底层',-wallX+.2,wallX-.2,-wallZ,wallZ,g.y,groundH,[{x:0,z:-wallZ}],{x:0,z:-wallZ+1.25});
   c.g.inventory=withholdHUnknownInventory(kit,item,c.f);
   c.g.furnitureStatus='UNKNOWN_INVENTORY_GENERIC_PLACEHOLDERS_WITHHELD_NOT_EMPTY';
