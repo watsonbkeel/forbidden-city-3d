@@ -1,0 +1,32 @@
+TAP version 13
+# Subtest: Xishang normal ground jumps below each front transom retain real head clearance at 10/60Hz
+not ok 1 - Xishang normal ground jumps below each front transom retain real head clearance at 10/60Hz
+  ---
+  duration_ms: 5381.522022
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-xishang/world-route.test.mjs:2:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(Math.abs(r.endFeet-.5)<.03)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-xishang/world-route.test.mjs:2:2307)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5577.821687

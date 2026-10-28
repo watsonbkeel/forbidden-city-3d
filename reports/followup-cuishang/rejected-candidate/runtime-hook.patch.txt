@@ -1,0 +1,18 @@
+diff --git a/src/scene/palace/special/RemainingNingshouHalls.js b/src/scene/palace/special/RemainingNingshouHalls.js
+index 797b9daa..b0d4f3d9 100644
+--- a/src/scene/palace/special/RemainingNingshouHalls.js
++++ b/src/scene/palace/special/RemainingNingshouHalls.js
+@@ -1,3 +1,4 @@
++import {fitCuishangFrontBalustrade} from './CuishangFrontBalustrade.js';
+ import {fitBiluoFinialSurface} from './BiluoFinialSurface.js';
+ import {fitFanhuaFloorFascia} from './FanhuaFloorFascia.js';
+ import {buildFanhuaFrontBalustrade} from './FanhuaFrontBalustrade.js';
+@@ -550,7 +551,7 @@ function buildYanqu(c) {
+  return finish(c,{legacyInventory,removedBridgeRecreated:false,gallerySides:['east','north','south'],interiorPolicy:'REAL_TWO_LEVEL_ENCLOSURE_WITH_PORCELAIN_MATERIAL_CUES_CURRENT_INVENTORY_UNKNOWN',upperNavigation:'VIEW_ONLY_NO_UNVERIFIED_STAIR_OR_BRIDGE'});
+ }
+ function buildCuishang(c) {
+- const{p}=c;twoLevelFrame(c,{rearDoors:[1,3]});upperFloor(c);perimeterRail(c,p.upperFloorY);
++ const{p}=c;twoLevelFrame(c,{rearDoors:[1,3]});upperFloor(c);perimeterRail(c,p.upperFloorY);fitCuishangFrontBalustrade(c);
+  const bw=p.localW/5;
+  c.box('cuishang-upper-west-dark-gallery','wood',bw-.22,3.45,.14,p.localW/2-bw/2,p.upperFloorY+1.725,-p.localD/2+.12,true);
+  for(const y of[p.upperFloorY-.35,p.ph+p.colH-.35])hangingFrieze(c,{y});

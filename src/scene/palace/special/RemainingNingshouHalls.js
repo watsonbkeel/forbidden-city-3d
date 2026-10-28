@@ -1,3 +1,4 @@
+import {fitBiluoBowlSurface} from './BiluoBowlSurface.js';
 import {fitBiluoFinialSurface} from './BiluoFinialSurface.js';
 import {fitFanhuaFloorFascia} from './FanhuaFloorFascia.js';
 import {buildFanhuaFrontBalustrade} from './FanhuaFrontBalustrade.js';
@@ -448,7 +449,8 @@ function buildBiluo(c) {
  const ball=c.tag(c.kit.mesh(c.f,new THREE.SphereGeometry(1,24,16),c.mats.blue,0,finialBase+.81,0),'r68-biluo-finial-ovoid');ball.scale.set(.30,.40,.30);finialParts.push(ball);
  for(const m of finialParts)m.userData.patternStatus='PLAIN_SILHOUETTE_NO_REPLICATED_ICE_PLUM_MOTIF';
  fitBiluoFinialSurface(c,ball);
- const finialFit={sourceImage:'https://img.dpm.org.cn/Uploads/Picture/dc/1442[1024].jpg',dimensionStatus:FIT,accepted:false,photographyDate:null,scope:'FIVE_RETAINED_LAYER_FORMS_PLUS_ORIGINAL_OVOID_SURFACE_PATTERN'};
+ fitBiluoBowlSurface(c,bowl);
+ const finialFit={sourceImage:'https://img.dpm.org.cn/Uploads/Picture/dc/1442[1024].jpg',dimensionStatus:FIT,accepted:false,photographyDate:null,scope:'FIVE_RETAINED_LAYER_FORMS_PLUS_ORIGINAL_OVOID_AND_BOWL_SIDE_SURFACE_PATTERNS'};
  // Applied five-petal ceiling motif, visibly geometric rather than a claim to
  // reproduce the exceptionally fine surviving plum relief carving.
  c.cylinder('plum-ceiling-ground','wood',r,.07,0,y+h-.12,0,false,30);for(let i=0;i<5;i++){const a=i*2*Math.PI/5;c.cylinder('plum-ceiling-petal','paper',.22,.045,Math.cos(a)*.25,y+h-.17,Math.sin(a)*.25,false,12);}

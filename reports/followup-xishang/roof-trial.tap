@@ -1,0 +1,28 @@
+✖ Xishang continuous and moving jump contact diagnostics (7516.63411ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7724.317414
+
+✖ failing tests:
+
+test at tests/followup-xishang/motion.test.mjs:4:1
+✖ Xishang continuous and moving jump contact diagnostics (7516.63411ms)
+  AssertionError [ERR_ASSERTION]: {"fps":10,"mode":"drop","x":-2.728,"cross":0,"roofCross":0,"maxFeet":9,"endFeet":5.045603360123646,"airborne":true,"end":[-243.96551175068726,374.86646097015006],"frames":[]}
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-xishang/motion.test.mjs:23:347)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,34 @@
+✔ Cuishang photo-visible four front gallery bays have lower framed panels and real waisted timber balusters (137.543518ms)
+✔ only 25 old front rods replaced; original continuous top, lower rail, west bay and all other geometry/physical data preserved (192.282916ms)
+✔ waisted wood bodies are closed positive solids and each support triangle equals transformed visible source (33.523591ms)
+✔ new material and each geometry release once in three normal rebuild/unload cycles (86.233683ms)
+✔ foreign frame and same-envelope modified old rod reject without partial deletion (87.262807ms)
+✔ Cuishang original three ground entries remain traversable in full static world at 10/60Hz walk/run (5615.422901ms)
+✖ Cuishang actual rail top fall, stable contact, exit to original upper slab and jumping across rail preserve full body (4707.770093ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11313.291604
+
+✖ failing tests:
+
+test at tests/followup-cuishang/world-motion.test.mjs:3:1
+✖ Cuishang actual rail top fall, stable contact, exit to original upper slab and jumping across rail preserve full body (4707.770093ms)
+  AssertionError [ERR_ASSERTION]: {"fps":10,"mode":"drop-exit","x":-8.246875,"cross":67,"stable":{"feet":5.147499988079071,"airborne":false},"jumped":false,"endFeet":5.147499978219071,"airborne":true,"end":[-268.946875,451.4822264586051],"target":[-268.946875,452],"frames":[{"i":3,"feet":5.147499988079071,"x":-268.946875,"z":450.95},{"i":4,"feet":5.147499988079071,"x":-268.946875,"z":450.95},{"i":5,"feet":5.147499988079071,"x":-268.946875,"z":450.95},{"i":6,"feet":5.147499988079071,"x":-268.946875,"z":450.95},{"i":7,"feet":5.147499988079071,"x":-268.946875,"z":450.95}]}
+  
+  67 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-cuishang/world-motion.test.mjs:19:262)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 67,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

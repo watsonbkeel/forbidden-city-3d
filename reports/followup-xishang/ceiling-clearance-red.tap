@@ -1,0 +1,37 @@
+TAP version 13
+# Subtest: front lattice header is below the retained ceiling grid while end hangers still reach the original beam
+not ok 1 - front lattice header is below the retained ceiling grid while end hangers still reach the original beam
+  ---
+  duration_ms: 84.346213
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-xishang/details.test.mjs:13:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(Math.abs(b.max.y-4.45)<1e-6)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-xishang/details.test.mjs:13:412)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+    run (node:internal/test_runner/harness:398:12)
+    test (node:internal/test_runner/harness:407:12)
+    file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-xishang/details.test.mjs:13:1
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 256.546787
