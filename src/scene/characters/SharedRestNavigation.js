@@ -1,3 +1,4 @@
+import {isViewFollowingVisual} from '../sky/EnvironmentVisualOwnership.js';
 import {SharedRestSurfaces} from './SharedRestSurfaces.js';
 import {proof,proofCurrent} from '../../utils/SceneSourceProof.js';
 import {taiheFallbackMeshes} from '../interior/TaiheCoreContract.js';
@@ -32,7 +33,7 @@ export class SharedRestNavigation {
   for(const zone of new Set(nav.colliders.map(c=>c.tag??'static').concat(nav.walkables.map(w=>w.tag??'static'))))this.corridorBaselines.set(zone,numeric({colliders:nav.colliders.filter(c=>(c.tag??'static')===zone),walkables:nav.walkables.filter(w=>(w.tag??'static')===zone)}));
   this.captureOwners();
   const initialTaiheReplacement=taiheReplacementFor(taiheFallbackMeshes(world.scene)[0]);
-  const zoneGroups=new Set([...this.zm.loaded.values()].map(e=>e.data.group).concat([...this.zm.silhouettes.values()]));world.scene.traverse(o=>{if(!o.isMesh||!o.geometry)return;for(let p=o;p;p=p.parent)if(p===initialTaiheReplacement?.group||zoneGroups.has(p)||p.userData?.characterLayer||p.userData?.isCharacter||p.userData?.nonArchitecturalLighting)return;const box=new THREE.Box3().setFromObject(o);if(box.min.y>=25||box.max.y<-.2||!relevant(box))return;const sourceProof=proof(o);if(initialTaiheReplacement?.fallback.includes(o))for(const row of sourceProof)if(row.object.deref()===o)row.visible=true;this.staticMeshes.push({object:new WeakRef(o),proof:sourceProof,bounds:[box.min.x,box.max.x,box.min.z,box.max.z]});});
+  const zoneGroups=new Set([...this.zm.loaded.values()].map(e=>e.data.group).concat([...this.zm.silhouettes.values()]));world.scene.traverse(o=>{if(!o.isMesh||!o.geometry||isViewFollowingVisual(o,world.scene))return;for(let p=o;p;p=p.parent)if(p===initialTaiheReplacement?.group||zoneGroups.has(p)||p.userData?.characterLayer||p.userData?.isCharacter||p.userData?.nonArchitecturalLighting)return;const box=new THREE.Box3().setFromObject(o);if(box.min.y>=25||box.max.y<-.2||!relevant(box))return;const sourceProof=proof(o);if(initialTaiheReplacement?.fallback.includes(o))for(const row of sourceProof)if(row.object.deref()===o)row.visible=true;this.staticMeshes.push({object:new WeakRef(o),proof:sourceProof,bounds:[box.min.x,box.max.x,box.min.z,box.max.z]});});
 
   this.surfaces=new SharedRestSurfaces(relevant);for(const row of this.staticMeshes)this.surfaces.add(row.object.deref(),'static',{allowHiddenRoot:initialTaiheReplacement?.fallback.includes(row.object.deref())===true});for(const[id,e]of [...this.zm.loaded,...this.zm.prebuilt])this.surfaces.add(e.data.group,id);this.surfaces.index();this.surfaceStats=this.surfaces.stats;
   this.stats={colliders:nav.colliders.length,walkables:nav.walkables.length,numericBytesEstimate:nav.colliders.length*160+nav.walkables.length*96,buildMs:0};

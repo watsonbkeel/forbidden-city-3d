@@ -1,0 +1,36 @@
+{
+  "before": {
+    "label": "before actual Environment.update",
+    "status": "ready",
+    "reason": null,
+    "skyInStatic": true,
+    "actors": [
+      {
+        "id": "taihe-emperor-01",
+        "renderable": true
+      },
+      {
+        "id": "chuxiu-consort-01",
+        "renderable": false
+      }
+    ],
+    "lastFailure": null
+  },
+  "after": {
+    "label": "after actual Environment.update",
+    "status": "error",
+    "reason": "Verified static route geometry changed or detached",
+    "skyInStatic": true,
+    "actors": [
+      {
+        "id": "taihe-emperor-01",
+        "renderable": false
+      },
+      {
+        "id": "chuxiu-consort-01",
+        "renderable": false
+      }
+    ],
+    "lastFailure": null
+  }
+}

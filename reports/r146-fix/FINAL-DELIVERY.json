@@ -1,0 +1,79 @@
+{
+  "status": "CHECKED_R146_FIX_DEVELOPMENT_BRANCH_READY_FOR_UPLOAD",
+  "sourceCommit": "9ce1d7a3e9046a92359f4363dabd21d3c24941c2",
+  "sourceFingerprint": "c570e3d15057fea6aef4464b5e0ed39a720872f89648cdeda4308dda0b19a188",
+  "baseLocalR146": "5bfc0fe07b14d2f21855c4440139c43cb3382b8e",
+  "baseTree": "94dd4f6e9585625b8cbb69c03dadc5ca68e882c1",
+  "intendedRemoteParent": "d21c26925ce18fdc3a7757103bb9717316ecf02a",
+  "branch": "fix/r146-imperial-visibility-20261028",
+  "rootCause": "Actual production view-following sky and skyline were captured as static architecture; Environment.update invalidated both shared-rest actors before display. Previous CPU fixture omitted sky/skyline.",
+  "fix": "Exact creator-owned sky and skyline mesh identities excluded only from architectural source collection; no global proof weakening or character force-show",
+  "target": {
+    "tests": 9,
+    "pass": 9,
+    "fail": 0
+  },
+  "independent": {
+    "tests": 2,
+    "pass": 2,
+    "fail": 0
+  },
+  "environmentRetained": {
+    "tests": 32,
+    "pass": 32,
+    "fail": 0
+  },
+  "fullStandard": "NOT_RERUN_FOR_THIS_P0; inherited R146 known failures remain, not claimed green",
+  "nightRoundtrip": [
+    {
+      "hz": 10,
+      "outboundFrames": 714,
+      "returnFrames": 714
+    },
+    {
+      "hz": 30,
+      "outboundFrames": 2139,
+      "returnFrames": 2139
+    },
+    {
+      "hz": 60,
+      "outboundFrames": 4277,
+      "returnFrames": 4277
+    }
+  ],
+  "daytime": {
+    "scenarios": 4,
+    "realInstances": true,
+    "architecturalCpuRays": 12,
+    "allBodyFirst": true,
+    "highAfterLow": "warm existing coarse LOD, not cold-high model readiness"
+  },
+  "build": {
+    "bases": [
+      "/gugong/",
+      "/forbidden-city-3d/",
+      "/"
+    ],
+    "filesPerBase": 137,
+    "allLocalHttpHashesMatch": true,
+    "release": "R146-fix",
+    "deployment": false
+  },
+  "scopePreserved": [
+    "R141 S/B source replacement safety",
+    "R146 actual F32 footstool support",
+    "40m interest/45m exit hysteresis",
+    "21:00 northwest Chuxiu shared bed and 06:00 return",
+    "real architecture and ground proof mutation rejection"
+  ],
+  "notIncluded": [
+    "Subsequent Fanhua/Biluo followup features",
+    "GPU or mobile acceptance",
+    "Original scope completion",
+    "Performance acceptance"
+  ],
+  "mainChanged": false,
+  "pagesDeployed": false,
+  "remoteUpload": "PENDING_UNIQUE_SERIAL_UPLOADER",
+  "userVisualAcceptance": "REQUIRED_AFTER_USER_DEPLOYMENT; local and cloud browser WebGL blocked"
+}
