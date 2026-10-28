@@ -119,11 +119,12 @@ export class Enclosure {
     base.castShadow = base.receiveShadow = true;
     parent.add(base);
     
-    // 墙身（红墙）
+    // 城墙主体：官方灰色城砖面，非宫内红院墙
     const wallBody = new THREE.Mesh(
-      applyBoxUV(new THREE.BoxGeometry(len, h - brickH, t), this.library.tileSize('wall_red')),
-      redMat
+      applyBoxUV(new THREE.BoxGeometry(len, h - brickH, t), this.library.tileSize('wall_brick')),
+      brickMat
     );
+    wallBody.userData.r140CityBrick = { originalObjectId: 'FC-95FE4AAEE9', scope: 'INDEPENDENT_CITY_WALL_BODY_ONLY', source: 'https://www.dpm.org.cn/explore/building/236441.html', brickScale: 'MODEL_FIT_NOT_SURVEY', wholeObjectAccepted: false };
     wallBody.position.set(cx, brickH + (h - brickH) / 2, z);
     if (wumenCapFit) fitWumenLandingWallTop(wallBody, wumenCapFit.side);
     wallBody.castShadow = wallBody.receiveShadow = true;
@@ -155,9 +156,10 @@ export class Enclosure {
         && Math.abs(crenelX) + crenelW / 2 > p.wallInterface.absoluteX[0]
         && Math.abs(crenelX) - crenelW / 2 < p.wallInterface.absoluteX[1]) continue;
       const crenel = new THREE.Mesh(
-        new THREE.BoxGeometry(crenelW, crenelH, t * 0.4),
-        redMat
+        applyBoxUV(new THREE.BoxGeometry(crenelW, crenelH, t * 0.4), this.library.tileSize('wall_brick')),
+        brickMat
       );
+      crenel.userData.r140CityBrick = { originalObjectId: 'FC-95FE4AAEE9', scope: 'OUTER_CRENEL_ONLY', source: 'https://www.dpm.org.cn/explore/building/236441.html', brickScale: 'MODEL_FIT_NOT_SURVEY', wholeObjectAccepted: false };
       crenel.position.set(crenelX, h + crenelH / 2, z + outwardSide * t * 0.3);
       crenel.castShadow = true;
       parent.add(crenel);
@@ -188,9 +190,10 @@ export class Enclosure {
     
     // 墙身
     const wallBody = new THREE.Mesh(
-      applyBoxUV(new THREE.BoxGeometry(t, h - brickH, len), this.library.tileSize('wall_red')),
-      redMat
+      applyBoxUV(new THREE.BoxGeometry(t, h - brickH, len), this.library.tileSize('wall_brick')),
+      brickMat
     );
+    wallBody.userData.r140CityBrick = { originalObjectId: 'FC-95FE4AAEE9', scope: 'INDEPENDENT_CITY_WALL_BODY_ONLY', source: 'https://www.dpm.org.cn/explore/building/236441.html', brickScale: 'MODEL_FIT_NOT_SURVEY', wholeObjectAccepted: false };
     wallBody.position.set(x, brickH + (h - brickH) / 2, cz);
     wallBody.castShadow = wallBody.receiveShadow = true;
     parent.add(wallBody);
@@ -208,10 +211,11 @@ export class Enclosure {
     const count = Math.floor(len / spacing);
     for (let i = 0; i < count; i++) {
       const crenel = new THREE.Mesh(
-        new THREE.BoxGeometry(t * 0.4, crenelH, crenelW),
-        redMat
+        applyBoxUV(new THREE.BoxGeometry(t * 0.4, crenelH, crenelW), this.library.tileSize('wall_brick')),
+        brickMat
       );
       // Engineering fit: outer face flush, entire .4t depth supported on wall.
+      crenel.userData.r140CityBrick = { originalObjectId: 'FC-95FE4AAEE9', scope: 'OUTER_CRENEL_ONLY', source: 'https://www.dpm.org.cn/explore/building/236441.html', brickScale: 'MODEL_FIT_NOT_SURVEY', wholeObjectAccepted: false };
       crenel.position.set(x + outwardSide * t * 0.3, h + crenelH / 2, z1 + (i + 0.5) * (len / count));
       crenel.castShadow = true;
       parent.add(crenel);
@@ -251,7 +255,8 @@ export class Enclosure {
       const base = new THREE.Mesh(applyBoxUV(new THREE.BoxGeometry(half * 2, 1.5, half * 2), this.library.tileSize('wall_brick')), brickMat);
       base.position.set(cx, 0.75, cz);
       parent.add(base);
-      const body = new THREE.Mesh(applyBoxUV(new THREE.BoxGeometry(half * 2 - 0.1, wallH - 1.5, half * 2 - 0.1), this.library.tileSize('wall_red')), redMat);
+      const body = new THREE.Mesh(applyBoxUV(new THREE.BoxGeometry(half * 2 - 0.1, wallH - 1.5, half * 2 - 0.1), this.library.tileSize('wall_brick')), brickMat);
+      body.userData.r140CityBrick = { originalObjectId: 'FC-95FE4AAEE9', scope: 'CITY_CORNER_SUPPORT_BODY_ONLY', source: 'https://www.dpm.org.cn/explore/building/236441.html', brickScale: 'MODEL_FIT_NOT_SURVEY', wholeObjectAccepted: false };
       body.position.set(cx, 1.5 + (wallH - 1.5) / 2, cz);
       parent.add(body);
       this.colliders.push(new THREE.Box3(

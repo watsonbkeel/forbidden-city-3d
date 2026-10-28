@@ -1,3 +1,4 @@
+import { buildNanxunCaissonRings } from './NanxunCaissonRings.js';
 import {withholdHUnknownInventory} from './HUnknownInventory.js';
 import { fitYanchunFrontPlaque } from './YanchunSouthPhotoFit.js';
 import { applyYudeDomeBrickCourses } from './YudeDomeBrickCourses.js';
@@ -1031,6 +1032,7 @@ function buildNanxunHall(kit,item,p) {
   kit.plaque(c.f,item.name,0,g.y+g.h-.95,g.front-.32,1.2,1.9);
   c.register(item.name,-A+.35,A-.35,g.front,g.rear,g.y,g.h-.8,[{x:0,z:g.front}],{x:0,z:g.front+1.3});
   applyNanxunCeilingBaseColors(c);
+  buildNanxunCaissonRings(c);
   return finish(c,{caisson:{source:'https://img.dpm.org.cn/Uploads/Picture/dc/3938[1024].jpg',photographyDate:null,baseY:yy,recess:1.03,positionStatus:'CENTRAL_BAY_FIT_NOT_SURVEYED',topology:'SQUARE_OCTAGONAL_CIRCULAR',dragonRelief:'UNMODELED'},facadeDetailStatus:'FIVE_BAYS_OFFICIAL__LEAF_PATTERN_AND_DIMENSIONS_UNVERIFIED_FIT',interiorPeriod:'UNDATED_OFFICIAL_CEILING_PHOTO__NOT_A_QIANLONG_INVENTORY_RECONSTRUCTION'});
 }
 

@@ -1,0 +1,902 @@
+{
+  "version": "R140",
+  "remoteParent": "c815629b66b7b3e3d1954b41d10cb573e2054e9f",
+  "productSourceCommit": "c6ca97c22fb9546ef4a4a0396a9865b7a3ed7308",
+  "standard": {
+    "oldTotal": 1320,
+    "oldPass": 1107,
+    "oldFail": 213,
+    "newTotal": 1331,
+    "newPass": 1118,
+    "newFail": 213,
+    "addedFailures": [],
+    "removedFailures": [],
+    "failedNames": [
+      "午门: six rotated ground leaves register their actual body-height world bounds exactly once",
+      "午门: collider registration retains every mesh, material, triangle and production render batch",
+      "tests/current-state/gate-ground-door-source-guard.test.mjs",
+      "tests/current-state/gate-plaque-source-guard.test.mjs",
+      "src/scene/RoofBuilder.js: no roof/builder/camera-constant edit in the visibility fix after exact V14 leaf normalization",
+      "src/scene/PalaceBuilder.js: no roof/builder/camera-constant edit in the visibility fix after exact V14 leaf normalization",
+      "午门: explicit candidate budget replaces one mesh, adds one material, and preserves physics",
+      "tests/current-state/gate-rail-capless.test.mjs",
+      "Wumen preserves all geometry outside the finite reviewed main-tower profile",
+      "Wumen historical top and ramp support golden survives only the exact folded-ascent restoration",
+      "existing ground mesh, logical support, body and head are clear inside unchanged bounds",
+      "unhooked experimental caps reproduce jump penetration at 10Hz",
+      "unhooked experimental caps reproduce rail-walk penetration at 10Hz",
+      "unhooked experimental caps reproduce jump penetration at 60Hz",
+      "unhooked experimental caps reproduce rail-walk penetration at 60Hz",
+      "height-preserving local replacement exposes inherited support gap at 10Hz",
+      "only the four side bridges receive caps on their 88 existing posts",
+      "hongyi: hidden faces give a bounded triangle reduction while all 28 lattice leaves keep their bars",
+      "tests/current-state/qinan-exterior-routes.test.mjs",
+      "explicit role accounting records R48 golden columns and R49 split side doors without counting alternative LOD twice",
+      "new Qin’an lattice panels and painted beam boxes use full-height band UVs, not cropped box sampling",
+      "tests/current-state/r15-source-retention.test.mjs",
+      "R31 combines only the ten reviewed source changes and four added product files against 2be1751",
+      "R31 restores exact R30 PalaceBuilder before the untouched older source chain",
+      "R31 aliases retain exact older R6 catalog and source contracts without changing old fixtures",
+      "historical R32 exported bytes, source/profile and all 27 collision/walking proxies remain bound",
+      "tests/current-state/r31-qianqing-scene.test.mjs",
+      "main.js: exact interaction delta restores R30 and rejects unregistered edits",
+      "src/scene/flight/FlightTour.js: exact interaction delta restores R30 and rejects unregistered edits",
+      "near exact crest geometry reverses only five registered crowns; all other bytes remain identical",
+      "far exact crest geometry reverses only five registered crowns; all other bytes remain identical",
+      "actual same-count rebuilt crest from unknown source never acquires the frozen geometry exception",
+      "independent full crest capture binds exact total budget and byte-identical navigation through every old entry point",
+      "crest scene binding rejects unknown equal-count geometry, costs, collisions, partial restoration and runtime mutations",
+      "crest reverses only exact full bytes and two unique review hunks without mutating input",
+      "all historical entry chains consume crest only through exact full-byte dispatch",
+      "added crest module has one exact identity and every inventory rejects altered or missing bytes",
+      "unregistered paths and changed epochs cannot acquire a crest exception",
+      "existing product inventory adds exactly one independently bound crest runtime module",
+      "src/scene/palace/QianqingCeiling.js: follow-through reverses only exact full bytes and seven unique review hunks",
+      "src/ui/Minimap.js: follow-through reverses only exact full bytes and seven unique review hunks",
+      "assets-src/qianqing-ceiling-paint/PROMPT.txt: follow-through added source/asset has one exact identity",
+      "assets-src/qianqing-ceiling-paint/README.md: follow-through added source/asset has one exact identity",
+      "assets-src/qianqing-ceiling-paint/generated-original-r32.png: follow-through added source/asset has one exact identity",
+      "public/textures/art/qianqing-ceiling-illustration-r32.webp: follow-through added source/asset has one exact identity",
+      "src/scene/palace/QianqingCeilingPaint.js: follow-through added source/asset has one exact identity",
+      "unregistered paths and changed epochs cannot acquire a follow-through exception",
+      "existing product inventory includes exactly the two bound follow-through product additions",
+      "R25 unchanged exact product inventory rejects extra, missing and duplicate paths",
+      "R26 unchanged exact product inventory rejects extra, missing and duplicate paths",
+      "R26 frieze unchanged exact product inventory rejects extra, missing and duplicate paths",
+      "R27 unchanged exact product inventory rejects extra, missing and duplicate paths",
+      "R28 unchanged exact product inventory rejects extra, missing and duplicate paths",
+      "R29 unchanged exact product inventory rejects extra, missing and duplicate paths",
+      "R30 unchanged exact product inventory rejects extra, missing and duplicate paths",
+      "near complete geometry including UVs remains byte-identical to independent 898b4e6",
+      "far complete geometry including UVs remains byte-identical to independent 898b4e6",
+      "actual frieze capture restores only metadata; all older exact scene entry points remain connected",
+      "frieze metadata binding rejects geometry, material, budget, collision, partial and runtime mutations",
+      "src/scene/palace/QianqingCentralArt.js: frieze reverses only exact full bytes and three unique review hunks",
+      "assets-src/qianqing-frieze-paint/CORRECTION-PROMPT.txt: frieze added source/asset has one exact identity",
+      "assets-src/qianqing-frieze-paint/PROMPT.txt: frieze added source/asset has one exact identity",
+      "assets-src/qianqing-frieze-paint/README.md: frieze added source/asset has one exact identity",
+      "assets-src/qianqing-frieze-paint/generated-original-r32.png: frieze added source/asset has one exact identity",
+      "public/textures/art/qianqing-five-dragon-illustration-r32.webp: frieze added source/asset has one exact identity",
+      "src/scene/palace/QianqingFriezePaint.js: frieze added source/asset has one exact identity",
+      "unregistered paths and changed epochs cannot acquire a frieze exception",
+      "existing product inventory includes exactly the two bound frieze product additions",
+      "historical R32 resident scene binds every captured byte and its retained resident cost",
+      "historical R32 ordered navigation retains every frozen collider and walking surface",
+      "only the exact complete R32 capture restores the complete frozen R31 capture and all earlier entrypoints",
+      "both complete capture identities reject unregistered costs, topology, fields and geometry/material identities",
+      "registered JSON runtime exceptions retain exact R31 values and never allow arbitrary omitted fields or negative zero",
+      "unknown ordered collisions and walking surfaces never receive historical restoration, including at the R30 bridge",
+      "tests/current-state/r32-route-retention.test.mjs",
+      "near central UV restoration exactly matches independent afb geometry; all other bytes remain equal",
+      "far central UV restoration exactly matches independent afb geometry; all other bytes remain equal",
+      "exact current capture restores independently rebuilt afb then original R32; navigation and costs remain unchanged",
+      "UV and metadata bridges reject unknown fields, changed values, partial reversals and runtime exceptions",
+      "src/scene/palace/QianqingCentralArt.js: screen reverses only exact full bytes and five unique review hunks",
+      "src/scene/palace/QianqingCentralSetting.js: screen reverses only exact full bytes and five unique review hunks",
+      "assets-src/qianqing-screen-paint/PROMPT.txt: screen added source/asset has one exact identity",
+      "assets-src/qianqing-screen-paint/README.md: screen added source/asset has one exact identity",
+      "assets-src/qianqing-screen-paint/generated-original-r32.png: screen added source/asset has one exact identity",
+      "public/textures/art/qianqing-screen-illustration-r32.webp: screen added source/asset has one exact identity",
+      "src/scene/palace/QianqingScreenPaint.js: screen added source/asset has one exact identity",
+      "unregistered paths and changed epochs cannot acquire a screen exception",
+      "existing product inventory includes exactly the two bound screen product additions",
+      "historical R27/R28 retained-driver guards bind all three exact R32 test-source deltas",
+      "assets-src/interiors/build_qianqing_auxiliary.py: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "data/interiors/qianqing.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "data/places/zh-CN.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "data/zones/east-six.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "data/zones/ningshou.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "data/zones/west-six.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "main.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "src/scene/Environment.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "src/scene/PalaceBuilder.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "src/scene/flight/FlightEnvelope.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "src/scene/palace/QianqingCentralArt.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "src/scene/palace/QianqingCentralSetting.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "src/scene/palace/kit.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "src/scene/zones/ZoneBase.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "src/ui/Minimap.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "src/ui/Teleport.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "src/utils/Collision.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "style.css: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "tests/lib/auto-routes.mjs: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "tests/lib/world.mjs: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "tests/stepwalk.cjs: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "assets-src/interiors/bind_qianqing_auxiliary.mjs: added R32 source has a complete fixed identity",
+      "assets-src/interiors/export_qianqing_display.mjs: added R32 source has a complete fixed identity",
+      "src/scene/palace/QianqingCeiling.js: added R32 source has a complete fixed identity",
+      "src/scene/palace/QianqingDisplay.js: added R32 source has a complete fixed identity",
+      "src/scene/palace/special/InnerJinshui.js: added R32 source has a complete fixed identity",
+      "src/scene/palace/special/YanxiStorehouses.js: added R32 source has a complete fixed identity",
+      "older source guard entry chains consume R32 only through exact full-byte dispatch",
+      "later product inventory lists only independently bound R31 and R32 additions",
+      "later product inventory rejects every missing, duplicated, appended or mutated source/asset and wrong GLB binding",
+      "tests/current-state/r33-flight-envelope-retention.test.mjs",
+      "tests/current-state/r33-scene-retention.test.mjs",
+      "assets-src/interiors/bind_qianqing_auxiliary.mjs: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation",
+      "assets-src/interiors/build_qianqing_auxiliary.py: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation",
+      "data/interiors/qianqing.json: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation",
+      "data/zones/west-six.json: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation",
+      "src/scene/PalaceBuilder.js: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation",
+      "src/scene/zones/ZoneBase.js: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation",
+      "src/ui/ModelFidelity.js: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation",
+      "existing R32 and older strict source chains dispatch only complete registered R33 identities",
+      "assets-src/interiors/fit_taihe_hanging.py: added R33 source or binary is independently byte-bound and never reversed",
+      "assets-src/interiors/taihe_hanging_fit/r32-profile.json: added R33 source or binary is independently byte-bound and never reversed",
+      "src/scene/palace/special/ChuxiuHall.js: added R33 source or binary is independently byte-bound and never reversed",
+      "R33 product inventory admits exactly two runtime modules and two GLBs after checking all source/provenance and asset bindings",
+      "unknown paths, inherited property names and older epochs cannot acquire an R33 exception",
+      "tests/current-state/r34-flight-envelope-retention.test.mjs",
+      "R34 existing garden lamp faces glow only at night with no new lights, collision geometry or shadows",
+      "Frozen R34 lighting-only checkpoint reverses to R33 and rejects mutations: src/scene/Environment.js",
+      "tests/current-state/r34-scene-retention.test.mjs",
+      "data/zones/west-six.json: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input",
+      "src/scene/Environment.js: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input",
+      "src/scene/PalaceBuilder.js: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input",
+      "src/scene/zones/ZoneBase.js: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input",
+      "tests/lib/world.mjs: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input",
+      "assets-src/interiors/fit_taihe_display_grid.py: exact historical added bytes and finite inventory reject missing, duplicated or changed data",
+      "assets-src/interiors/taihe_spatial_fit/r33-profile.json: exact historical added bytes and finite inventory reject missing, duplicated or changed data",
+      "public/models/interiors/taihe-display-grid-6012719f9618.glb: exact historical added bytes and finite inventory reject missing, duplicated or changed data",
+      "src/scene/palace/QianqingFrontageGrid.js: exact historical added bytes and finite inventory reject missing, duplicated or changed data",
+      "src/scene/palace/QianqingWarmRooms.js: exact historical added bytes and finite inventory reject missing, duplicated or changed data",
+      "src/scene/palace/special/ChuxiuCourtyard.js: exact historical added bytes and finite inventory reject missing, duplicated or changed data",
+      "src/scene/palace/special/YikunSideAccess.js: exact historical added bytes and finite inventory reject missing, duplicated or changed data",
+      "R34 inventory and dispatch allow no unregistered paths, prototype properties or broad filename exceptions",
+      "later integrated fixes preserve only the exact original lighting checkpoint and never normalize unknown sources",
+      "R34 added fine asset inventory also requires its exact current config-to-binary binding",
+      "R35 binds the complete raw finish scope, independent R34 sources, unchanged product inventory and all previous fixtures",
+      "src/scene/palace/kit.js: raw R35 bytes restore only the independently frozen R34 identity and reject every mutated candidate",
+      "src/scene/zones/ZoneBase.js: raw R35 bytes restore only the independently frozen R34 identity and reject every mutated candidate",
+      "every retained production and provenance file remains byte-exact, including binary assets",
+      "tests/current-state/r58-hall-beasts.test.mjs",
+      "太和殿 actual hall retains baseline physics and non-target roof/nonroof bytes",
+      "中和殿 actual hall retains baseline physics and non-target roof/nonroof bytes",
+      "交泰殿 actual hall retains baseline physics and non-target roof/nonroof bytes",
+      "乾清宫 actual hall retains baseline physics and non-target roof/nonroof bytes",
+      "Hongyi, including its six original windows and upper gallery, is byte-identical",
+      "raw pre-pruning source and final corbel triangles are all nondegenerate",
+      "six curved Xihe rear corbels are added while all baseline geometry, materials and registrations stay exact",
+      "xiehe remains byte-identical and gets no copied Xihe silhouette",
+      "only the three explicit declarations change from the frozen R57 axis data",
+      "R62 baseline: old isolated Lijing start remains blocked by actual Chuxiu north wall",
+      "R62 baseline: compound 24 10Hz W walk",
+      "R62 baseline: compound 24 10Hz W sprint",
+      "R62 baseline: compound 24 10Hz S walk",
+      "R62 baseline: compound 24 10Hz S sprint",
+      "R62 baseline: compound 24 60Hz W walk",
+      "R62 baseline: compound 24 60Hz W sprint",
+      "R62 baseline: compound 24 60Hz S walk",
+      "R62 baseline: compound 24 60Hz S sprint",
+      "R62 baseline: compound 47 10Hz W walk",
+      "R62 baseline: compound 47 10Hz W sprint",
+      "R62 baseline: compound 47 10Hz S walk",
+      "R62 baseline: compound 47 10Hz S sprint",
+      "R62 baseline: compound 47 60Hz W walk",
+      "R62 baseline: compound 47 60Hz W sprint",
+      "R62 baseline: compound 47 60Hz S walk",
+      "R62 baseline: compound 47 60Hz S sprint",
+      "R63 candidate: old isolated Lijing start remains blocked by actual Chuxiu north wall",
+      "R63 candidate: compound 24 10Hz W walk",
+      "R63 candidate: compound 24 10Hz W sprint",
+      "R63 candidate: compound 24 10Hz S walk",
+      "R63 candidate: compound 24 10Hz S sprint",
+      "R63 candidate: compound 24 60Hz W walk",
+      "R63 candidate: compound 24 60Hz W sprint",
+      "R63 candidate: compound 24 60Hz S walk",
+      "R63 candidate: compound 24 60Hz S sprint",
+      "xiehe: real production materials achieve only the exact bounded covered-face reduction",
+      "xihe: real production materials achieve only the exact bounded covered-face reduction",
+      "xiehe: all cardinal rotations, open/closed leaves and plaque modes keep exact premerge state",
+      "xihe: all cardinal rotations, open/closed leaves and plaque modes keep exact premerge state",
+      "the gate never touches sibling assemblies or patches shared CourtKit methods",
+      "fresh gates own disjoint geometry; merging and unloading never dispose shared library materials",
+      "xiehe: final material merging retains exact surviving triangle streams and first surfaces",
+      "xihe: final material merging retains exact surviving triangle streams and first surfaces",
+      "protected sources match V7 with only the exact accepted skyline, V9 map/gate, V10 lifecycle and V13 entry deltas",
+      "tests/current-state/taihe-core-geometry.test.mjs",
+      "tests/current-state/taihe-core-source-guard.test.mjs",
+      "new terrace metadata, colliders and owned geometry dispose cleanly, and rebuild without duplicates",
+      "lower nine bays are brick, three windows, double plank door, three windows, brick",
+      "tests/current-state/walkable-four-buildings.test.mjs",
+      "all unscoped Wumen geometry, materials, wings, platform and portals stay byte-exact",
+      "after exact folded-ascent restoration, all old physics retains only the 46 keyed submicrometre foot deltas",
+      "tests/current-state/wumen-vertical-source-guard.test.mjs",
+      "V7 historical routes retain exact descriptors with only the later Qin’an and R6 Ningshou replacements isolated",
+      "only the two explicit corridor ends resolve to the profile envelope and remain closed",
+      "four old profile gates and fourteen unrelated corridor assemblies are byte-equivalent to delivered V6"
+    ],
+    "execution": "node --test --test-concurrency=2 tests/current-state/*.test.mjs",
+    "sourceCommit": "c6ca97c22fb9546ef4a4a0396a9865b7a3ed7308"
+  },
+  "targets": {
+    "passed": 11,
+    "failed": 0,
+    "independentReview": "c6ca97c2 11/11 PASS"
+  },
+  "fullStaticWorld": {
+    "scope": "Six source-bounded entrance route replays in full static collision world, not GPU/mobile/full palace",
+    "rows": [
+      {
+        "side": "east",
+        "fps": 10,
+        "result": {
+          "arrived": true,
+          "startFeet": 0,
+          "minFeet": 0,
+          "maxFeet": 0.75,
+          "maxSpeed": 11.163523375806387,
+          "driver": {
+            "crossings": [
+              {
+                "index": 1,
+                "point": [
+                  282.2,
+                  221.8
+                ],
+                "hit": [
+                  282.2,
+                  221.8
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 2,
+                "point": [
+                  283.5874,
+                  222.8
+                ],
+                "hit": [
+                  283.5874,
+                  222.8
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 3,
+                "point": [
+                  283.5874,
+                  226
+                ],
+                "hit": [
+                  283.5874,
+                  226
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 4,
+                "point": [
+                  283.5874,
+                  222.8
+                ],
+                "hit": [
+                  283.5874,
+                  222.8
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 5,
+                "point": [
+                  282.2,
+                  221.8
+                ],
+                "hit": [
+                  282.20098992251314,
+                  221.80043103234877
+                ],
+                "lateralDistance": 0.0010796923023383804
+              },
+              {
+                "index": 6,
+                "point": [
+                  282.2,
+                  218.4
+                ],
+                "hit": [
+                  282.2,
+                  218.4
+                ],
+                "lateralDistance": 0
+              }
+            ],
+            "brakingFrames": 18,
+            "endpointSettleSeconds": 2
+          },
+          "end": [
+            282.1997698193508,
+            217.6093184954088,
+            0
+          ]
+        }
+      },
+      {
+        "side": "central",
+        "fps": 10,
+        "result": {
+          "arrived": true,
+          "startFeet": 0,
+          "minFeet": 0,
+          "maxFeet": 0.7699999809265137,
+          "maxSpeed": 11.98498699481405,
+          "driver": {
+            "crossings": [
+              {
+                "index": 1,
+                "point": [
+                  289.2,
+                  221.8
+                ],
+                "hit": [
+                  289.2,
+                  221.8
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 2,
+                "point": [
+                  289.2,
+                  222.8
+                ],
+                "hit": [
+                  289.2,
+                  222.8
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 3,
+                "point": [
+                  289.2,
+                  226
+                ],
+                "hit": [
+                  289.2,
+                  226
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 4,
+                "point": [
+                  289.2,
+                  222.8
+                ],
+                "hit": [
+                  289.2,
+                  222.8
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 5,
+                "point": [
+                  289.2,
+                  221.8
+                ],
+                "hit": [
+                  289.2,
+                  221.80014114100408
+                ],
+                "lateralDistance": 0.0001411410040645933
+              },
+              {
+                "index": 6,
+                "point": [
+                  289.2,
+                  218.4
+                ],
+                "hit": [
+                  289.2,
+                  218.4
+                ],
+                "lateralDistance": 0
+              }
+            ],
+            "brakingFrames": 4,
+            "endpointSettleSeconds": 2
+          },
+          "end": [
+            289.2,
+            217.70908273004832,
+            0
+          ]
+        }
+      },
+      {
+        "side": "west",
+        "fps": 10,
+        "result": {
+          "arrived": true,
+          "startFeet": 0,
+          "minFeet": 0,
+          "maxFeet": 0.75,
+          "maxSpeed": 11.163523375806387,
+          "driver": {
+            "crossings": [
+              {
+                "index": 1,
+                "point": [
+                  296.2,
+                  221.8
+                ],
+                "hit": [
+                  296.2,
+                  221.8
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 2,
+                "point": [
+                  294.8126,
+                  222.8
+                ],
+                "hit": [
+                  294.8126,
+                  222.8
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 3,
+                "point": [
+                  294.8126,
+                  226
+                ],
+                "hit": [
+                  294.8126,
+                  226
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 4,
+                "point": [
+                  294.8126,
+                  222.8
+                ],
+                "hit": [
+                  294.8126,
+                  222.8
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 5,
+                "point": [
+                  296.2,
+                  221.8
+                ],
+                "hit": [
+                  296.19901007748683,
+                  221.80043103234877
+                ],
+                "lateralDistance": 0.0010796923023383804
+              },
+              {
+                "index": 6,
+                "point": [
+                  296.2,
+                  218.4
+                ],
+                "hit": [
+                  296.2,
+                  218.4
+                ],
+                "lateralDistance": 0
+              }
+            ],
+            "brakingFrames": 18,
+            "endpointSettleSeconds": 2
+          },
+          "end": [
+            296.20023018064916,
+            217.6093184954088,
+            0
+          ]
+        }
+      },
+      {
+        "side": "east",
+        "fps": 60,
+        "result": {
+          "arrived": true,
+          "startFeet": 0,
+          "minFeet": 0,
+          "maxFeet": 0.75,
+          "maxSpeed": 10.679719004960845,
+          "driver": {
+            "crossings": [
+              {
+                "index": 1,
+                "point": [
+                  282.2,
+                  221.8
+                ],
+                "hit": [
+                  282.2,
+                  221.8
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 2,
+                "point": [
+                  283.5874,
+                  222.8
+                ],
+                "hit": [
+                  283.5874,
+                  222.8
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 3,
+                "point": [
+                  283.5874,
+                  226
+                ],
+                "hit": [
+                  283.5874,
+                  226
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 4,
+                "point": [
+                  283.5874,
+                  222.8
+                ],
+                "hit": [
+                  283.5874,
+                  222.8
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 5,
+                "point": [
+                  282.2,
+                  221.8
+                ],
+                "hit": [
+                  282.2,
+                  221.8
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 6,
+                "point": [
+                  282.2,
+                  218.4
+                ],
+                "hit": [
+                  282.19999836388246,
+                  218.40028648487055
+                ],
+                "lateralDistance": 0.00028648954244530706
+              }
+            ],
+            "brakingFrames": 111,
+            "endpointSettleSeconds": 2
+          },
+          "end": [
+            282.2027919222676,
+            217.91113322733383,
+            0
+          ]
+        }
+      },
+      {
+        "side": "central",
+        "fps": 60,
+        "result": {
+          "arrived": true,
+          "startFeet": 0,
+          "minFeet": 0,
+          "maxFeet": 0.7699999809265137,
+          "maxSpeed": 11.968538662536561,
+          "driver": {
+            "crossings": [
+              {
+                "index": 1,
+                "point": [
+                  289.2,
+                  221.8
+                ],
+                "hit": [
+                  289.2,
+                  221.8
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 2,
+                "point": [
+                  289.2,
+                  222.8
+                ],
+                "hit": [
+                  289.2,
+                  222.8
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 3,
+                "point": [
+                  289.2,
+                  226
+                ],
+                "hit": [
+                  289.2,
+                  226
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 4,
+                "point": [
+                  289.2,
+                  222.8
+                ],
+                "hit": [
+                  289.2,
+                  222.80302606749626
+                ],
+                "lateralDistance": 0.003026067496250562
+              },
+              {
+                "index": 5,
+                "point": [
+                  289.2,
+                  221.8
+                ],
+                "hit": [
+                  289.2,
+                  221.8
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 6,
+                "point": [
+                  289.2,
+                  218.4
+                ],
+                "hit": [
+                  289.2,
+                  218.4
+                ],
+                "lateralDistance": 0
+              }
+            ],
+            "brakingFrames": 31,
+            "endpointSettleSeconds": 2
+          },
+          "end": [
+            289.2,
+            217.8765619751892,
+            0
+          ]
+        }
+      },
+      {
+        "side": "west",
+        "fps": 60,
+        "result": {
+          "arrived": true,
+          "startFeet": 0,
+          "minFeet": 0,
+          "maxFeet": 0.75,
+          "maxSpeed": 10.679719004960845,
+          "driver": {
+            "crossings": [
+              {
+                "index": 1,
+                "point": [
+                  296.2,
+                  221.8
+                ],
+                "hit": [
+                  296.2,
+                  221.8
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 2,
+                "point": [
+                  294.8126,
+                  222.8
+                ],
+                "hit": [
+                  294.8126,
+                  222.8
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 3,
+                "point": [
+                  294.8126,
+                  226
+                ],
+                "hit": [
+                  294.8126,
+                  226
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 4,
+                "point": [
+                  294.8126,
+                  222.8
+                ],
+                "hit": [
+                  294.8126,
+                  222.8
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 5,
+                "point": [
+                  296.2,
+                  221.8
+                ],
+                "hit": [
+                  296.2,
+                  221.8
+                ],
+                "lateralDistance": 0
+              },
+              {
+                "index": 6,
+                "point": [
+                  296.2,
+                  218.4
+                ],
+                "hit": [
+                  296.2000016361175,
+                  218.40028648487055
+                ],
+                "lateralDistance": 0.00028648954244530706
+              }
+            ],
+            "brakingFrames": 111,
+            "endpointSettleSeconds": 2
+          },
+          "end": [
+            296.1972080777324,
+            217.91113322733383,
+            0
+          ]
+        }
+      }
+    ]
+  },
+  "build": {
+    "schema": 1,
+    "release": "R140",
+    "buildId": "R140-e66901c1c4e8",
+    "sourceFingerprint": "d699af57c9f347afecc3c6d8c6a246b4935fcd4e581ce39a898bd1751b4934fa",
+    "sourceCommit": "c6ca97c22fb9546ef4a4a0396a9865b7a3ed7308",
+    "sourceDirty": false,
+    "base": "/gugong/"
+  },
+  "resources": {
+    "high": {
+      "zoneBaseline": {
+        "meshes": 141,
+        "triangles": 380139,
+        "geometryBytes": 36493032,
+        "materials": 142,
+        "textures": 35
+      },
+      "zoneCandidate": {
+        "meshes": 141,
+        "triangles": 380475,
+        "geometryBytes": 36525288,
+        "materials": 142,
+        "textures": 35
+      },
+      "enclosureBaseline": {
+        "meshes": 24,
+        "triangles": 63152,
+        "geometryBytes": 6062592,
+        "materials": 24,
+        "textures": 16
+      },
+      "enclosureCandidate": {
+        "meshes": 24,
+        "triangles": 63152,
+        "geometryBytes": 6062592,
+        "materials": 24,
+        "textures": 16
+      },
+      "paint": {
+        "pending": 0,
+        "requests": 43,
+        "errors": [],
+        "loadedColors": 22,
+        "loadedNormals": 21
+      },
+      "newStairScope": 1
+    },
+    "low": {
+      "zoneBaseline": {
+        "meshes": 141,
+        "triangles": 380139,
+        "geometryBytes": 36493032,
+        "materials": 142,
+        "textures": 35
+      },
+      "zoneCandidate": {
+        "meshes": 141,
+        "triangles": 380475,
+        "geometryBytes": 36525288,
+        "materials": 142,
+        "textures": 35
+      },
+      "enclosureBaseline": {
+        "meshes": 24,
+        "triangles": 63152,
+        "geometryBytes": 6062592,
+        "materials": 24,
+        "textures": 16
+      },
+      "enclosureCandidate": {
+        "meshes": 24,
+        "triangles": 63152,
+        "geometryBytes": 6062592,
+        "materials": 24,
+        "textures": 16
+      },
+      "paint": {
+        "pending": 0,
+        "requests": 43,
+        "errors": [],
+        "loadedColors": 22,
+        "loadedNormals": 21
+      },
+      "newStairScope": 1
+    }
+  },
+  "wholeObjectNewlyAccepted": 0,
+  "GPU": "NOT_RUN",
+  "mobile": "NOT_RUN",
+  "wholePalaceRoutes": "NOT_ACCEPTED",
+  "deployment": "NOT_PERFORMED",
+  "remaining": [
+    "K actual height/proportions/central carving unknown; retained approximations",
+    "L entire yellow wall cap/section/taper still unresolved"
+  ]
+}

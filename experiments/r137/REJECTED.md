@@ -1,0 +1,2 @@
+# Rejected Nanxun dragon proposal
+The source photograph's face and asymmetric coiled body were not adequately reproduced: CPU comparisons read as a bovine head and thick pipes. The representative final proposal is retained in this directory ONLY. It is not imported by production. Earlier iterative renders are local diagnostics, not shipped features or accepted reconstructions. The actual product retains the UNMODELED central disk and only a separately bounded, source-reviewed stacked-ring increment.

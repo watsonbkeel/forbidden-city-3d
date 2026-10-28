@@ -1,3 +1,4 @@
+import {buildGuhuaFrontOpenwork} from './GuhuaFrontOpenwork.js';
 import * as THREE from 'three';
 const SOURCE='https://www.dpm.org.cn/explore/building/236431.html';
 const PHOTO='https://img.dpm.org.cn/Uploads/image/2025/09/29/c2f44b867bfa08-NeYmtDOcI218985.png';
@@ -37,7 +38,8 @@ export function buildGuhuaPavilion(kit,item){
    add('guhua-inner-frame','black',.28,.13,.14,s*(width/2-.28),y+p.openingHeight,0,true);
   }
   for(const yy of[p.openingHeight+.18,h-.07])add('guhua-inner-frame','black',width,.14,.14,0,y+yy,0,true);
-  for(let k=1;k<6;k++)add('guhua-inner-openwork','black',.045,h-p.openingHeight-.3,.08,-width/2+k*width/6,y+(h+p.openingHeight)/2,0,true);
+  if(!side&&Math.abs(cx)<1e-6&&Math.abs(cz+g.innerDepth/2)<1e-6)buildGuhuaFrontOpenwork({add,width,y,height:h,openingHeight:p.openingHeight,f,cx,cz,innerDepth:g.innerDepth});
+  else for(let k=1;k<6;k++)add('guhua-inner-openwork','black',.045,h-p.openingHeight-.3,.08,-width/2+k*width/6,y+(h+p.openingHeight)/2,0,true);
   add('guhua-inner-gold-edge','gold',width-.14,.025,.025,0,y+p.openingHeight+.18,-.084);
  }
  const bw=g.innerWidth/3;
