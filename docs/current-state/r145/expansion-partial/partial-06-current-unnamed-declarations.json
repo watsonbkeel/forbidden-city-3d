@@ -1,0 +1,3602 @@
+{
+  "sourceCommit": "d1286cf5921edbd339ae5ec7e27ce19f9ea4ce2f",
+  "group": "EXPAND-06",
+  "scope": "All unnamed top-level data/zones/*.json items only; NOT all constructor/generated objects",
+  "groupComplete": false,
+  "sourceFiles": [
+    {
+      "path": "data/zones/axis-courts.json",
+      "sha256": "3fe2c53bc67bddc3711d780121d3704ecd947481ffd760712f714adc25ad1fdc"
+    },
+    {
+      "path": "data/zones/east-six.json",
+      "sha256": "ed8a435c72795cc1e640c49ab9b006670d2aa8be48a41b8a8e72c756bed71dd8"
+    },
+    {
+      "path": "data/zones/garden.json",
+      "sha256": "42277028716552589c4a02d0a25683da4bbd795019366fce51cc673bbe29e621"
+    },
+    {
+      "path": "data/zones/ningshou.json",
+      "sha256": "3d7906a94d0ae48f4321bb98ce545de668a0ff4c7279535a2b431c6620a1421c"
+    },
+    {
+      "path": "data/zones/outer-east.json",
+      "sha256": "5327bf3dbaff2b102c62363d70fbbad3e39eaa08e966040cb26acd33e3398b7e"
+    },
+    {
+      "path": "data/zones/outer-west.json",
+      "sha256": "1871bb7c32e1a90c76890a6ecd08194ee1367fc568a1dd9df2266ff1e5f3e33a"
+    },
+    {
+      "path": "data/zones/west-six.json",
+      "sha256": "a98ddde19f72fa3facc8fdfe5ec3c3130fc1ad572c3d4550661b44885a42a66e"
+    }
+  ],
+  "declarationCount": 128,
+  "kindCounts": {
+    "wall": 27,
+    "corridor": 28,
+    "courtWalls": 28,
+    "hall": 45
+  },
+  "notPhysicalBuildingCount": true,
+  "oldCrosswalkAuxCount": 154,
+  "old44MustNotBeReused": true,
+  "dispatchEvidence": [
+    "src/scene/zones/ZoneBase.js:97-120 kinds hall/corridor/wall/courtWalls",
+    "src/scene/zones/ZoneBase.js:buildCourtWalls -> kit.courtWalls",
+    "src/scene/zones/ZoneBase.js:buildCorridor -> kit.corridor"
+  ],
+  "uncovered": [
+    "Named auxiliary declarations",
+    "Nested constructor generated groups/meshes; do not enumerate merged draw batches as buildings",
+    "Parent courtyard/direction physical identity and own photograph matching",
+    "Current actual merged scene exhaustive identity",
+    "Duplicate physical boundary resolution across zones"
+  ],
+  "instances": [
+    {
+      "reviewInstanceId": "STATIC-F7E630F7E324",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/6",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          -106.47,
+          -416
+        ],
+        "to": [
+          -106.47,
+          203.85
+        ],
+        "h": 7,
+        "gaps": [
+          {
+            "at": -300.3,
+            "gate": "协和门"
+          },
+          {
+            "at": -53.1,
+            "gate": "左翼门"
+          },
+          {
+            "at": 174.1,
+            "gate": "景运门"
+          },
+          {
+            "at": -109.3,
+            "w": 43.212,
+            "source": "pavilion-rear-shell-interface",
+            "pavilionProfile": "tiren"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-F7E630F7E324",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-DDDA43F57060",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/7",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          110.7,
+          -416
+        ],
+        "to": [
+          110.7,
+          203.85
+        ],
+        "h": 7,
+        "gaps": [
+          {
+            "at": -301.1,
+            "gate": "熙和门"
+          },
+          {
+            "at": -52.8,
+            "gate": "右翼门"
+          },
+          {
+            "at": 173.7,
+            "gate": "隆宗门"
+          },
+          {
+            "at": -110.4,
+            "w": 43.18,
+            "source": "pavilion-rear-shell-interface",
+            "pavilionProfile": "hongyi"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-DDDA43F57060",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-1541D41F2BD0",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/9",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          -25,
+          -214.2
+        ],
+        "to": [
+          -106.47,
+          -214.2
+        ],
+        "h": 7,
+        "gaps": [
+          {
+            "at": -62.4,
+            "gate": "昭德门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-1541D41F2BD0",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-6E334B911B20",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/11",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          25,
+          -214.2
+        ],
+        "to": [
+          110.7,
+          -214.2
+        ],
+        "h": 7,
+        "gaps": [
+          {
+            "at": 64.4,
+            "gate": "贞度门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-6E334B911B20",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-C7FB929C6676",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/13",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          -65.5,
+          -12.2
+        ],
+        "to": [
+          -106.47,
+          -12.2
+        ],
+        "h": 7,
+        "gaps": [
+          {
+            "at": -77,
+            "gate": "中左门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-C7FB929C6676",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-49CEF3F6A1B7",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/15",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          65.5,
+          -12.2
+        ],
+        "to": [
+          110.7,
+          -12.2
+        ],
+        "h": 7,
+        "gaps": [
+          {
+            "at": 80,
+            "gate": "中右门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-49CEF3F6A1B7",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-09E842554F1E",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/17",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          -64.97666666666667,
+          123
+        ],
+        "to": [
+          -106.47,
+          123
+        ],
+        "h": 7,
+        "gaps": [
+          {
+            "at": -76.4,
+            "gate": "后左门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-09E842554F1E",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-668D58B71944",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/19",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          40.5,
+          123
+        ],
+        "to": [
+          110.7,
+          123
+        ],
+        "h": 7,
+        "gaps": [
+          {
+            "at": 79.4,
+            "gate": "后右门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-668D58B71944",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-5B558FA4C536",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/21",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          -54.25,
+          203.85
+        ],
+        "to": [
+          -106.47,
+          203.85
+        ],
+        "h": 7,
+        "gaps": [
+          {
+            "at": -62.4,
+            "gate": "内左门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-5B558FA4C536",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-EFFBA2322C30",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/23",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          54.25,
+          203.85
+        ],
+        "to": [
+          110.7,
+          203.85
+        ],
+        "h": 7,
+        "gaps": [
+          {
+            "at": 65.4,
+            "gate": "内右门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-EFFBA2322C30",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-1DCBD55D5B90",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/26",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          -103.37,
+          -415.5
+        ],
+        "to": [
+          -103.37,
+          -314.5
+        ],
+        "facing": "x+",
+        "furnishingPolicy": {
+          "mode": "unknown-inventory",
+          "target": "axis-courts/items/26",
+          "runtimeInventoryId": "RI-1DCBD55D5B90"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-1DCBD55D5B90",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-BDA7502B3BD6",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/27",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          -103.37,
+          -286.1
+        ],
+        "to": [
+          -103.37,
+          -222.2
+        ],
+        "facing": "x+",
+        "furnishingPolicy": {
+          "mode": "unknown-inventory",
+          "target": "axis-courts/items/27",
+          "runtimeInventoryId": "RI-BDA7502B3BD6"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-BDA7502B3BD6",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-A0AE2EC49192",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/28",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          -103.37,
+          -213.7
+        ],
+        "to": [
+          -103.37,
+          -141.75
+        ],
+        "facing": "x+",
+        "furnishingPolicy": {
+          "mode": "unknown-inventory",
+          "target": "axis-courts/items/28",
+          "reviewId": "FC-CA9102BFFB"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-A0AE2EC49192",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-62D7D7354F7F",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/29",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          -103.37,
+          -76.85
+        ],
+        "to": [
+          -103.37,
+          -59.9
+        ],
+        "facing": "x+",
+        "furnishingPolicy": {
+          "mode": "unknown-inventory",
+          "target": "axis-courts/items/29",
+          "reviewId": "FC-CA9102BFFB"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-62D7D7354F7F",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-A2E23D38AABB",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/30",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          -103.37,
+          -46.3
+        ],
+        "to": [
+          -103.37,
+          -12.7
+        ],
+        "facing": "x+",
+        "furnishingPolicy": {
+          "mode": "unknown-inventory",
+          "target": "axis-courts/items/30",
+          "reviewId": "FC-CA9102BFFB"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-A2E23D38AABB",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-DAFE81531504",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/31",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          -103.37,
+          -11.7
+        ],
+        "to": [
+          -103.37,
+          122.5
+        ],
+        "facing": "x+",
+        "furnishingPolicy": {
+          "mode": "unknown-inventory",
+          "target": "axis-courts/items/31",
+          "reviewId": "FC-0D3F161564"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-DAFE81531504",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-2555B6BDA0A9",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/32",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          107.6,
+          -415.5
+        ],
+        "to": [
+          107.6,
+          -315.1
+        ],
+        "facing": "x-",
+        "furnishingPolicy": {
+          "mode": "unknown-inventory",
+          "target": "axis-courts/items/32",
+          "runtimeInventoryId": "RI-2555B6BDA0A9"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-2555B6BDA0A9",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-7D8EE589FEA1",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/33",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          107.6,
+          -287.1
+        ],
+        "to": [
+          107.6,
+          -222.2
+        ],
+        "facing": "x-",
+        "furnishingPolicy": {
+          "mode": "unknown-inventory",
+          "target": "axis-courts/items/33",
+          "runtimeInventoryId": "RI-7D8EE589FEA1"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-7D8EE589FEA1",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-E516A903CB55",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/34",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          107.6,
+          -213.7
+        ],
+        "to": [
+          107.6,
+          -142.85
+        ],
+        "facing": "x-",
+        "furnishingPolicy": {
+          "mode": "unknown-inventory",
+          "target": "axis-courts/items/34",
+          "reviewId": "FC-B31A272965"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-E516A903CB55",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-FA13CE0AEF20",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/35",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          107.6,
+          -77.95
+        ],
+        "to": [
+          107.6,
+          -59.6
+        ],
+        "facing": "x-",
+        "furnishingPolicy": {
+          "mode": "unknown-inventory",
+          "target": "axis-courts/items/35",
+          "reviewId": "FC-B31A272965"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-FA13CE0AEF20",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-2B970DF553DD",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/36",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          107.6,
+          -46
+        ],
+        "to": [
+          107.6,
+          -12.7
+        ],
+        "facing": "x-",
+        "furnishingPolicy": {
+          "mode": "unknown-inventory",
+          "target": "axis-courts/items/36",
+          "reviewId": "FC-B31A272965"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-2B970DF553DD",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-765CABB0D3A0",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/37",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          107.6,
+          -11.7
+        ],
+        "to": [
+          107.6,
+          122.5
+        ],
+        "facing": "x-",
+        "furnishingPolicy": {
+          "mode": "unknown-inventory",
+          "target": "axis-courts/items/37",
+          "reviewId": "FC-86FF7FC2AB"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-765CABB0D3A0",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-DFF4E00720E2",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/38",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          -105.97,
+          -217.3
+        ],
+        "to": [
+          -69.2,
+          -217.3
+        ],
+        "facing": "z-",
+        "gateJoin": {
+          "gate": "昭德门",
+          "side": "left",
+          "end": "to"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-DFF4E00720E2",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-1F4C4EBC7C23",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/39",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          -55.6,
+          -217.3
+        ],
+        "to": [
+          -26.5,
+          -217.3
+        ],
+        "facing": "z-",
+        "gateJoin": {
+          "gate": "昭德门",
+          "side": "right",
+          "end": "from"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-1F4C4EBC7C23",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-879615A370A1",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/40",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          26.5,
+          -217.3
+        ],
+        "to": [
+          57.6,
+          -217.3
+        ],
+        "facing": "z-",
+        "gateJoin": {
+          "gate": "贞度门",
+          "side": "left",
+          "end": "to"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-879615A370A1",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-53244716998A",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/41",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          71.2,
+          -217.3
+        ],
+        "to": [
+          110.2,
+          -217.3
+        ],
+        "facing": "z-",
+        "gateJoin": {
+          "gate": "贞度门",
+          "side": "right",
+          "end": "from"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-53244716998A",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-F50742D160B3",
+      "parentZone": "axis-courts",
+      "sourceRef": "data/zones/axis-courts.json#/items/43",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          150,
+          140
+        ],
+        "to": [
+          150,
+          170
+        ],
+        "h": 7,
+        "gaps": [
+          {
+            "at": 155,
+            "gate": "永康左门"
+          }
+        ],
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-F50742D160B3",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-CF5E4FFC0441",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/1",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": -114.4,
+        "x1": -72.4,
+        "z0": 303.2,
+        "z1": 353.2,
+        "gates": [
+          {
+            "side": "s",
+            "at": -92.4,
+            "gate": "景仁门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-CF5E4FFC0441",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-B78BF5884F40",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/3",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": -93,
+        "z": 347.4,
+        "w": 24,
+        "d": 9.6,
+        "pad": 0.6,
+        "ph": 0.45,
+        "colH": 6.08,
+        "roof": "gable",
+        "bays": 5,
+        "rearHallProfile": "jingren-rear",
+        "map": "hall"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-B78BF5884F40",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-D2563DC430D2",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/4",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": -109.88,
+        "z": 319.8,
+        "rot": "west",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-D2563DC430D2",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-AD27A837B497",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/5",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": -77,
+        "z": 319.8,
+        "rot": "east",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-AD27A837B497",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-8DACEE21645C",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/8",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": -114.6,
+        "x1": -72.6,
+        "z0": 360.2,
+        "z1": 409.7,
+        "gates": [
+          {
+            "side": "s",
+            "at": -93.3,
+            "gate": "承乾门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-8DACEE21645C",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-801BF8C9995E",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/10",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": -93,
+        "z": 403.9,
+        "w": 24,
+        "d": 9.6,
+        "pad": 0.6,
+        "ph": 0.45,
+        "colH": 6.08,
+        "roof": "gable",
+        "bays": 5,
+        "rearHallProfile": "chengqian-rear",
+        "map": "hall"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-801BF8C9995E",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-CA3D8F3C840C",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/11",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": -110.08,
+        "z": 370.6,
+        "rot": "west",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-CA3D8F3C840C",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-0A9B5F0A1341",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/12",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": -77.12,
+        "z": 367.1,
+        "rot": "east",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-0A9B5F0A1341",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-68DFFCB3C1A0",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/15",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": -114.4,
+        "x1": -72.4,
+        "z0": 413.7,
+        "z1": 462,
+        "gates": [
+          {
+            "side": "s",
+            "at": -93.6,
+            "gate": "钟粹门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-68DFFCB3C1A0",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-22F471B8D9C9",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/17",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": -93,
+        "z": 456,
+        "w": 24,
+        "d": 9.6,
+        "pad": 0.6,
+        "ph": 0.45,
+        "colH": 6.08,
+        "roof": "gable",
+        "bays": 5,
+        "rearHallProfile": "zhongcui-rear",
+        "map": "hall"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-22F471B8D9C9",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-1946BC74D03B",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/18",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": -109.88,
+        "z": 422,
+        "rot": "west",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-1946BC74D03B",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-5BDC7ACA1586",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/19",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": -76.92,
+        "z": 422,
+        "rot": "east",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-5BDC7ACA1586",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-244AA663E22F",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/22",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": -169.2,
+        "x1": -127.2,
+        "z0": 303.2,
+        "z1": 353.2,
+        "gates": [
+          {
+            "side": "s",
+            "at": -147.5,
+            "gate": "延禧门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-244AA663E22F",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-57397BB93E68",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/24",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "structure": "yanxi-storehouse",
+        "storehouseProfile": "north",
+        "x": -148.2,
+        "z": 341.6,
+        "w": 24,
+        "d": 9.6,
+        "pad": 0.6,
+        "ph": 0.45,
+        "colH": 6.08,
+        "roof": "xieshan",
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-57397BB93E68",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-71C635CAA955",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/25",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "structure": "yanxi-storehouse",
+        "storehouseProfile": "east",
+        "x": -164.68,
+        "z": 313.7,
+        "rot": "west",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-71C635CAA955",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-0E1F09D5F6AA",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/26",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "structure": "yanxi-storehouse",
+        "storehouseProfile": "west",
+        "x": -131.72,
+        "z": 313.7,
+        "rot": "east",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-0E1F09D5F6AA",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-916CDBF243FA",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/29",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": -170,
+        "x1": -128,
+        "z0": 359.8,
+        "z1": 407.7,
+        "gates": [
+          {
+            "side": "s",
+            "at": -149,
+            "gate": "永和门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-916CDBF243FA",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-11F17FF59938",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/31",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": -148.7,
+        "z": 401.9,
+        "w": 24,
+        "d": 9.6,
+        "pad": 0.6,
+        "ph": 0.45,
+        "colH": 6.08,
+        "roof": "gable",
+        "bays": 5,
+        "rearHallProfile": "yonghe-rear",
+        "map": "hall"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-11F17FF59938",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-126B949726CD",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/32",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": -165.48,
+        "z": 367.9,
+        "rot": "west",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-126B949726CD",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-C053400866A2",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/33",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": -132.52,
+        "z": 367.9,
+        "rot": "east",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-C053400866A2",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-5927A9193DB8",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/36",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": -170.5,
+        "x1": -128.5,
+        "z0": 411.7,
+        "z1": 461.7,
+        "gates": [
+          {
+            "side": "s",
+            "at": -148.6,
+            "gate": "景阳门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-5927A9193DB8",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-57593CFD52F1",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/38",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": -148.5,
+        "z": 453.5,
+        "w": 24,
+        "d": 9.6,
+        "pad": 0.6,
+        "ph": 0.45,
+        "colH": 6.08,
+        "roof": "xieshan",
+        "map": "hall"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-57593CFD52F1",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-37F85F2510DD",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/39",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": -165.98,
+        "z": 421,
+        "rot": "west",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-37F85F2510DD",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-98044C24560A",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/40",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": -133.02,
+        "z": 421,
+        "rot": "east",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-98044C24560A",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-7AFB5948A3E3",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/43",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": -211,
+        "x1": -74,
+        "z0": 466,
+        "z1": 520,
+        "gates": [
+          {
+            "side": "s",
+            "at": -142,
+            "gate": "乾东五所"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-7AFB5948A3E3",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-8BDD92185C91",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/44",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": -83.7,
+        "z": 501.6,
+        "w": 18.9,
+        "d": 7.2,
+        "pad": 0.4,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-8BDD92185C91",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-E48DBFA63D3B",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/45",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": -112.2,
+        "z": 501.6,
+        "w": 18.9,
+        "d": 7.2,
+        "pad": 0.4,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-E48DBFA63D3B",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-526FA079B97C",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/46",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": -142.2,
+        "z": 501.6,
+        "w": 18.9,
+        "d": 7.2,
+        "pad": 0.4,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-526FA079B97C",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-EC190D749F44",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/47",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": -170.8,
+        "z": 501.6,
+        "w": 18.9,
+        "d": 7.2,
+        "pad": 0.4,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-EC190D749F44",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-8CDFA2E0E096",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/48",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": -199.5,
+        "z": 501.6,
+        "w": 18.9,
+        "d": 7.2,
+        "pad": 0.4,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-8CDFA2E0E096",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-C78E9C591550",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/52",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": -215,
+        "x1": -150,
+        "z0": 203.3,
+        "z1": 300,
+        "gates": [
+          {
+            "side": "s",
+            "at": -181,
+            "gate": "奉先门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-C78E9C591550",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-BF1091B523A8",
+      "parentZone": "east-six",
+      "sourceRef": "data/zones/east-six.json#/items/54",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": -182.5,
+        "z": 283.4,
+        "w": 51.6,
+        "d": 20,
+        "pad": 1,
+        "ph": 0.9,
+        "colH": 7.36,
+        "roof": "wudian",
+        "map": "hall"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-BF1091B523A8",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-66EE49B866DE",
+      "parentZone": "garden",
+      "sourceRef": "data/zones/garden.json#/items/10",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          -54.25,
+          203.85
+        ],
+        "to": [
+          -54.25,
+          422.7
+        ],
+        "h": 7,
+        "gaps": [
+          {
+            "at": 249.6,
+            "gate": "日精门"
+          },
+          {
+            "at": 315,
+            "gate": "龙光门"
+          },
+          {
+            "at": 354.6,
+            "gate": "景和门"
+          },
+          {
+            "at": 383.7,
+            "gate": "永祥门"
+          },
+          {
+            "at": 410,
+            "gate": "基化门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-66EE49B866DE",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-F32DCF69E513",
+      "parentZone": "garden",
+      "sourceRef": "data/zones/garden.json#/items/11",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          54.25,
+          203.85
+        ],
+        "to": [
+          54.25,
+          422.7
+        ],
+        "h": 7,
+        "gaps": [
+          {
+            "at": 249.2,
+            "gate": "月华门"
+          },
+          {
+            "at": 313.7,
+            "gate": "凤彩门"
+          },
+          {
+            "at": 354.2,
+            "gate": "隆福门"
+          },
+          {
+            "at": 384.2,
+            "gate": "增瑞门"
+          },
+          {
+            "at": 410,
+            "gate": "端则门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-F32DCF69E513",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-9BD536AF02FA",
+      "parentZone": "garden",
+      "sourceRef": "data/zones/garden.json#/items/12",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          -19.3,
+          215.3
+        ],
+        "to": [
+          -54.25,
+          215.3
+        ],
+        "h": 7
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-9BD536AF02FA",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-CE888B4754B2",
+      "parentZone": "garden",
+      "sourceRef": "data/zones/garden.json#/items/13",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          19.3,
+          215.3
+        ],
+        "to": [
+          54.25,
+          215.3
+        ],
+        "h": 7
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-CE888B4754B2",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-87DE2E82FDF5",
+      "parentZone": "garden",
+      "sourceRef": "data/zones/garden.json#/items/14",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          -51.15,
+          215.8
+        ],
+        "to": [
+          -51.15,
+          242.8
+        ],
+        "facing": "x+",
+        "depth": 3.6,
+        "colH": 3.4,
+        "furnishingPolicy": {
+          "mode": "unknown-inventory",
+          "target": "garden/items/14",
+          "runtimeInventoryId": "RI-87DE2E82FDF5"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-87DE2E82FDF5",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-09B73001F108",
+      "parentZone": "garden",
+      "sourceRef": "data/zones/garden.json#/items/15",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          -51.15,
+          256.4
+        ],
+        "to": [
+          -51.15,
+          309
+        ],
+        "facing": "x+",
+        "depth": 3.6,
+        "colH": 3.4,
+        "furnishingPolicy": {
+          "mode": "unknown-inventory",
+          "target": "garden/items/15",
+          "runtimeInventoryId": "RI-09B73001F108"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-09B73001F108",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-DB7D7CFB0AFA",
+      "parentZone": "garden",
+      "sourceRef": "data/zones/garden.json#/items/16",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          -51.15,
+          321
+        ],
+        "to": [
+          -51.15,
+          347.8
+        ],
+        "facing": "x+",
+        "depth": 3.6,
+        "colH": 3.4,
+        "furnishingPolicy": {
+          "mode": "unknown-inventory",
+          "target": "garden/items/16",
+          "runtimeInventoryId": "RI-DB7D7CFB0AFA"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-DB7D7CFB0AFA",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-12444A85424A",
+      "parentZone": "garden",
+      "sourceRef": "data/zones/garden.json#/items/17",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          -51.15,
+          361.4
+        ],
+        "to": [
+          -51.15,
+          377.7
+        ],
+        "facing": "x+",
+        "depth": 3.6,
+        "colH": 3.4,
+        "furnishingPolicy": {
+          "mode": "unknown-inventory",
+          "target": "garden/items/17",
+          "runtimeInventoryId": "RI-12444A85424A"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-12444A85424A",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-A8363464C20C",
+      "parentZone": "garden",
+      "sourceRef": "data/zones/garden.json#/items/18",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          -51.15,
+          389.7
+        ],
+        "to": [
+          -51.15,
+          404
+        ],
+        "facing": "x+",
+        "depth": 3.6,
+        "colH": 3.4,
+        "furnishingPolicy": {
+          "mode": "unknown-inventory",
+          "target": "garden/items/18",
+          "runtimeInventoryId": "RI-A8363464C20C"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-A8363464C20C",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-9C4D84C0C18E",
+      "parentZone": "garden",
+      "sourceRef": "data/zones/garden.json#/items/19",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          -51.15,
+          416
+        ],
+        "to": [
+          -51.15,
+          422.2
+        ],
+        "facing": "x+",
+        "depth": 3.6,
+        "colH": 3.4,
+        "furnishingPolicy": {
+          "mode": "unknown-inventory",
+          "target": "garden/items/19",
+          "runtimeInventoryId": "RI-9C4D84C0C18E"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-9C4D84C0C18E",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-772B9B8AB63B",
+      "parentZone": "garden",
+      "sourceRef": "data/zones/garden.json#/items/20",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          51.15,
+          215.8
+        ],
+        "to": [
+          51.15,
+          242.4
+        ],
+        "facing": "x-",
+        "depth": 3.6,
+        "colH": 3.4,
+        "furnishingPolicy": {
+          "mode": "unknown-inventory",
+          "target": "garden/items/20",
+          "runtimeInventoryId": "RI-772B9B8AB63B"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-772B9B8AB63B",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-92BFC7DA5CB0",
+      "parentZone": "garden",
+      "sourceRef": "data/zones/garden.json#/items/21",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          51.15,
+          256
+        ],
+        "to": [
+          51.15,
+          307.7
+        ],
+        "facing": "x-",
+        "depth": 3.6,
+        "colH": 3.4,
+        "furnishingPolicy": {
+          "mode": "unknown-inventory",
+          "target": "garden/items/21",
+          "runtimeInventoryId": "RI-92BFC7DA5CB0"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-92BFC7DA5CB0",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-97F7F553A006",
+      "parentZone": "garden",
+      "sourceRef": "data/zones/garden.json#/items/22",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          51.15,
+          319.7
+        ],
+        "to": [
+          51.15,
+          347.4
+        ],
+        "facing": "x-",
+        "depth": 3.6,
+        "colH": 3.4,
+        "furnishingPolicy": {
+          "mode": "unknown-inventory",
+          "target": "garden/items/22",
+          "runtimeInventoryId": "RI-97F7F553A006"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-97F7F553A006",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-2B882BEB407A",
+      "parentZone": "garden",
+      "sourceRef": "data/zones/garden.json#/items/23",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          51.15,
+          361
+        ],
+        "to": [
+          51.15,
+          378.2
+        ],
+        "facing": "x-",
+        "depth": 3.6,
+        "colH": 3.4,
+        "furnishingPolicy": {
+          "mode": "unknown-inventory",
+          "target": "garden/items/23",
+          "runtimeInventoryId": "RI-2B882BEB407A"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-2B882BEB407A",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-C112A7BE8A39",
+      "parentZone": "garden",
+      "sourceRef": "data/zones/garden.json#/items/24",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          51.15,
+          390.2
+        ],
+        "to": [
+          51.15,
+          404
+        ],
+        "facing": "x-",
+        "depth": 3.6,
+        "colH": 3.4,
+        "furnishingPolicy": {
+          "mode": "unknown-inventory",
+          "target": "garden/items/24",
+          "runtimeInventoryId": "RI-C112A7BE8A39"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-C112A7BE8A39",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-AEB68F800423",
+      "parentZone": "garden",
+      "sourceRef": "data/zones/garden.json#/items/25",
+      "kind": "corridor",
+      "currentRecord": {
+        "kind": "corridor",
+        "from": [
+          51.15,
+          416
+        ],
+        "to": [
+          51.15,
+          422.2
+        ],
+        "facing": "x-",
+        "depth": 3.6,
+        "colH": 3.4,
+        "furnishingPolicy": {
+          "mode": "unknown-inventory",
+          "target": "garden/items/25",
+          "runtimeInventoryId": "RI-AEB68F800423"
+        }
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-AEB68F800423",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-CD85242914C3",
+      "parentZone": "garden",
+      "sourceRef": "data/zones/garden.json#/items/32",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          -68,
+          422.7
+        ],
+        "to": [
+          68,
+          422.7
+        ],
+        "h": 7,
+        "gaps": [
+          {
+            "at": 1.1,
+            "gate": "坤宁门"
+          },
+          {
+            "at": -64,
+            "gate": "长康左门"
+          },
+          {
+            "at": 63.7,
+            "gate": "长康右门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-CD85242914C3",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-9464433D2CE0",
+      "parentZone": "garden",
+      "sourceRef": "data/zones/garden.json#/items/33",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          -68,
+          518.3
+        ],
+        "to": [
+          68,
+          518.3
+        ],
+        "h": 7,
+        "gaps": [
+          {
+            "at": 0.5,
+            "gate": "顺贞门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-9464433D2CE0",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-BC5973A1C437",
+      "parentZone": "garden",
+      "sourceRef": "data/zones/garden.json#/items/34",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          -68,
+          422.7
+        ],
+        "to": [
+          -68,
+          518.3
+        ],
+        "h": 7,
+        "gaps": [
+          {
+            "at": 429.7,
+            "gate": "琼苑东门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-BC5973A1C437",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-FD38580F0464",
+      "parentZone": "garden",
+      "sourceRef": "data/zones/garden.json#/items/35",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          68,
+          422.7
+        ],
+        "to": [
+          68,
+          518.3
+        ],
+        "h": 7,
+        "gaps": [
+          {
+            "at": 429.7,
+            "gate": "琼苑西门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-FD38580F0464",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-6CB5D0F26459",
+      "parentZone": "ningshou",
+      "sourceRef": "data/zones/ningshou.json#/items/40",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          -354,
+          118
+        ],
+        "to": [
+          -233.2,
+          118
+        ],
+        "h": 7
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-6CB5D0F26459",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-E682EB8CDD87",
+      "parentZone": "ningshou",
+      "sourceRef": "data/zones/ningshou.json#/items/41",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          -233.2,
+          118
+        ],
+        "to": [
+          -233.2,
+          520
+        ],
+        "h": 7,
+        "gaps": [
+          {
+            "at": 135.5,
+            "gate": "锡庆门"
+          },
+          {
+            "at": 255.0,
+            "gate": "履顺门"
+          },
+          {
+            "at": 304.3,
+            "gate": "蹈和门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-E682EB8CDD87",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-C3B1E19EEE2B",
+      "parentZone": "ningshou",
+      "sourceRef": "data/zones/ningshou.json#/items/42",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          -354,
+          520
+        ],
+        "to": [
+          -233.2,
+          520
+        ],
+        "h": 7,
+        "gaps": [
+          {
+            "at": -272.3,
+            "gate": "贞顺门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-C3B1E19EEE2B",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-5A2721B9FFCB",
+      "parentZone": "ningshou",
+      "sourceRef": "data/zones/ningshou.json#/items/43",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          -354,
+          118
+        ],
+        "to": [
+          -354,
+          520
+        ],
+        "h": 7,
+        "gaps": [
+          {
+            "at": 136.8,
+            "gate": "敛禧门"
+          },
+          {
+            "at": 336.5,
+            "gate": "保泰门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-5A2721B9FFCB",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-AF5419B9A3CD",
+      "parentZone": "outer-east",
+      "sourceRef": "data/zones/outer-east.json#/items/1",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": -219,
+        "x1": -149.5,
+        "z0": -245.2,
+        "z1": -156,
+        "h": 7,
+        "gates": [
+          {
+            "side": "s",
+            "at": -186.3,
+            "gate": "文华门"
+          },
+          {
+            "side": "n",
+            "at": -186.5,
+            "w": 8,
+            "source": "Wenyuan pond bridge interface; fitted aperture"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-AF5419B9A3CD",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-BC97E8DBD217",
+      "parentZone": "outer-east",
+      "sourceRef": "data/zones/outer-east.json#/items/7",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": -219,
+        "x1": -149.5,
+        "z0": -156,
+        "z1": -115,
+        "h": 7,
+        "gates": [
+          {
+            "side": "s",
+            "at": -184.25,
+            "w": 69.5,
+            "source": "shared south partition is owned once by Wenhua north wall"
+          }
+        ],
+        "source": "interim"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-BC97E8DBD217",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-709D2756FE0D",
+      "parentZone": "outer-east",
+      "sourceRef": "data/zones/outer-east.json#/items/11",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": -335,
+        "x1": -234,
+        "z0": 20,
+        "z1": 100,
+        "h": 7,
+        "gates": [
+          {
+            "side": "s",
+            "at": -285,
+            "gate": "南三所宫门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-709D2756FE0D",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-1DA0AE7EB391",
+      "parentZone": "outer-east",
+      "sourceRef": "data/zones/outer-east.json#/items/23",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": -186.4,
+        "z": -181.75,
+        "w": 8.8,
+        "d": 17.5,
+        "colH": 5.9,
+        "pad": 0,
+        "ph": 1.2,
+        "bays": 1,
+        "roof": "gable",
+        "enter": true,
+        "backDoor": true,
+        "throne": false,
+        "structure": "south-court-hall",
+        "southCourtProfile": "wenhua-connector",
+        "interior": "empty",
+        "dimensionStatus": "OFFICIAL_TOPOLOGY_REVERSIBLE_MODEL_FIT",
+        "source": "official-topology-plus-retained-D1-group-envelope-fit"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-1DA0AE7EB391",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-9891B2910B51",
+      "parentZone": "outer-west",
+      "sourceRef": "data/zones/outer-west.json#/items/1",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": 185,
+        "x1": 256,
+        "z0": -249.8,
+        "z1": -152,
+        "gates": [
+          {
+            "side": "s",
+            "at": 220.8,
+            "gate": "武英门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-9891B2910B51",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-100234107575",
+      "parentZone": "outer-west",
+      "sourceRef": "data/zones/outer-west.json#/items/9",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": 257.56,
+        "x1": 321.64,
+        "z0": -347.74,
+        "z1": -286.57,
+        "gates": [
+          {
+            "side": "s",
+            "at": 289.6,
+            "gate": "南薰门"
+          }
+        ],
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-100234107575",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-A7ADB0D6BD86",
+      "parentZone": "outer-west",
+      "sourceRef": "data/zones/outer-west.json#/items/13",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": 232,
+        "x1": 286,
+        "z0": 18,
+        "z1": 140,
+        "gates": [
+          {
+            "side": "xmin",
+            "at": 95,
+            "gate": "揽胜门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-A7ADB0D6BD86",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-0296FDB75BF6",
+      "parentZone": "outer-west",
+      "sourceRef": "data/zones/outer-west.json#/items/23",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": 187,
+        "x1": 258,
+        "z0": 155.7,
+        "z1": 295,
+        "gates": [
+          {
+            "side": "s",
+            "at": 222.2,
+            "gate": "慈宁门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-0296FDB75BF6",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-C7EF942E17BD",
+      "parentZone": "outer-west",
+      "sourceRef": "data/zones/outer-west.json#/items/26",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": 199.2,
+        "z": 276.5,
+        "w": 14.4,
+        "d": 11.3,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-C7EF942E17BD",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-44EA68D9669E",
+      "parentZone": "outer-west",
+      "sourceRef": "data/zones/outer-west.json#/items/27",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": 223.1,
+        "z": 276.5,
+        "w": 14.4,
+        "d": 11.3,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-44EA68D9669E",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-84F494FAB7F6",
+      "parentZone": "outer-west",
+      "sourceRef": "data/zones/outer-west.json#/items/28",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": 245.9,
+        "z": 276.5,
+        "w": 12.6,
+        "d": 11.3,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-84F494FAB7F6",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-4299E86B1C8C",
+      "parentZone": "outer-west",
+      "sourceRef": "data/zones/outer-west.json#/items/31",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": 276.8,
+        "x1": 325.0,
+        "z0": -240.1,
+        "z1": -200,
+        "gates": [
+          {
+            "side": "s",
+            "at": 300.9,
+            "gate": "咸安门"
+          }
+        ],
+        "source": "R36 outer boundary fitted outside retained 46.6m compound envelope; not a measured wall line"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-4299E86B1C8C",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-EED7F7F3C66E",
+      "parentZone": "outer-west",
+      "sourceRef": "data/zones/outer-west.json#/items/38",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": 178.6,
+        "x1": 245,
+        "z0": 409.4,
+        "z1": 520,
+        "gates": [
+          {
+            "side": "s",
+            "at": 183.7,
+            "gate": "建福门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-EED7F7F3C66E",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-676F8D0E5A22",
+      "parentZone": "outer-west",
+      "sourceRef": "data/zones/outer-west.json#/items/42",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": 252,
+        "x1": 302,
+        "z0": 454.9,
+        "z1": 513.03,
+        "gates": [
+          {
+            "side": "s",
+            "at": 277.2,
+            "gate": "英华门"
+          }
+        ],
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-676F8D0E5A22",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-72EE5F4D62EA",
+      "parentZone": "outer-west",
+      "sourceRef": "data/zones/outer-west.json#/items/46",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": 268.63,
+        "x1": 309.77,
+        "z0": 193.9,
+        "z1": 273.02,
+        "gates": [
+          {
+            "side": "s",
+            "at": 288.6,
+            "gate": "寿康门"
+          }
+        ],
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-72EE5F4D62EA",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-C789FB049A24",
+      "parentZone": "outer-west",
+      "sourceRef": "data/zones/outer-west.json#/items/48",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": 288.8,
+        "z": 260.1,
+        "w": 24.7,
+        "d": 12.1,
+        "pad": 0.6,
+        "ph": 0.45,
+        "colH": 6.01,
+        "roof": "xieshan",
+        "map": "hall"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-C789FB049A24",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-9257E3DCA74D",
+      "parentZone": "outer-west",
+      "sourceRef": "data/zones/outer-west.json#/items/51",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": 256.02,
+        "x1": 297.78,
+        "z0": 362,
+        "z1": 450,
+        "gates": [
+          {
+            "side": "s",
+            "at": 277,
+            "gate": "寿安门"
+          }
+        ],
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-9257E3DCA74D",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-F24FE8B64004",
+      "parentZone": "outer-west",
+      "sourceRef": "data/zones/outer-west.json#/items/53",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": 276.9,
+        "z": 430.56,
+        "w": 27.3,
+        "d": 9.64,
+        "pad": 0.6,
+        "ph": 0.45,
+        "colH": 6.08,
+        "roof": "xieshan",
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-F24FE8B64004",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-6928C407343E",
+      "parentZone": "outer-west",
+      "sourceRef": "data/zones/outer-west.json#/items/56",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": 219.5,
+        "z": -181.1,
+        "w": 9.2,
+        "d": 19.4,
+        "colH": 5.9,
+        "pad": 0,
+        "ph": 1.2,
+        "bays": 1,
+        "roof": "gable",
+        "enter": true,
+        "backDoor": true,
+        "throne": false,
+        "structure": "south-court-hall",
+        "southCourtProfile": "wuying-connector",
+        "interior": "empty",
+        "dimensionStatus": "OFFICIAL_TOPOLOGY_REVERSIBLE_MODEL_FIT",
+        "source": "official-topology-plus-retained-D1-group-envelope-fit"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-6928C407343E",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-66CAF65E3790",
+      "parentZone": "outer-west",
+      "sourceRef": "data/zones/outer-west.json#/items/57",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": 193,
+        "z": -158.1,
+        "w": 14.6,
+        "d": 7.3,
+        "ph": 0.3,
+        "pad": 0.4,
+        "colH": 4.4,
+        "bays": 3,
+        "roof": "gable",
+        "enter": false,
+        "interior": "empty",
+        "throne": false,
+        "auxiliaryIdentity": "恒寿斋",
+        "source": "https://www.dpm.org.cn/explore/building/236500.html",
+        "dimensionStatus": "OFFICIAL_IDENTITY_AND_NE_TOPOLOGY__ENVELOPE_FIT_NOT_MEASURED"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-66CAF65E3790",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-86CF75993CC4",
+      "parentZone": "west-six",
+      "sourceRef": "data/zones/west-six.json#/items/1",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": 70,
+        "x1": 148,
+        "z0": 240,
+        "z1": 298,
+        "gates": [
+          {
+            "side": "xmin",
+            "at": 248.9,
+            "gate": "遵义门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-86CF75993CC4",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-176D8D1E53E0",
+      "parentZone": "west-six",
+      "sourceRef": "data/zones/west-six.json#/items/3",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": 87.6,
+        "z": 290.9,
+        "w": 16.9,
+        "d": 8.7,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-176D8D1E53E0",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-22C1D24E2E9A",
+      "parentZone": "west-six",
+      "sourceRef": "data/zones/west-six.json#/items/6",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": 73.9,
+        "x1": 115.9,
+        "z0": 303.6,
+        "z1": 353.6,
+        "gates": [
+          {
+            "side": "s",
+            "at": 95.4,
+            "gate": "永寿门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-22C1D24E2E9A",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-3D942EE431E3",
+      "parentZone": "west-six",
+      "sourceRef": "data/zones/west-six.json#/items/9",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": 78.42,
+        "z": 319.8,
+        "rot": "west",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-3D942EE431E3",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-E93CE4A991E1",
+      "parentZone": "west-six",
+      "sourceRef": "data/zones/west-six.json#/items/10",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": 111.38,
+        "z": 319.8,
+        "rot": "east",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-E93CE4A991E1",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-6CC949A25915",
+      "parentZone": "west-six",
+      "sourceRef": "data/zones/west-six.json#/items/13",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": 73,
+        "x1": 115,
+        "z0": 359.5,
+        "z1": 409.5,
+        "gates": [
+          {
+            "side": "s",
+            "at": 94.6,
+            "gate": "翊坤门"
+          },
+          {
+            "side": "n",
+            "at": 94.0,
+            "w": 42
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-6CC949A25915",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-D9B3D59301A7",
+      "parentZone": "west-six",
+      "sourceRef": "data/zones/west-six.json#/items/16",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": 77.52,
+        "z": 367.3,
+        "positionFit": {
+          "profile": "yikun-side-access-fit-v1",
+          "previousZ": 371.3,
+          "deltaZ": -4,
+          "status": "estimated-coordinate-correction"
+        },
+        "rot": "west",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-D9B3D59301A7",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-6369A99D256C",
+      "parentZone": "west-six",
+      "sourceRef": "data/zones/west-six.json#/items/17",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": 110.48,
+        "z": 367.3,
+        "positionFit": {
+          "profile": "yikun-side-access-fit-v1",
+          "previousZ": 371.3,
+          "deltaZ": -4,
+          "status": "estimated-coordinate-correction"
+        },
+        "rot": "east",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-6369A99D256C",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-244B5666AEA1",
+      "parentZone": "west-six",
+      "sourceRef": "data/zones/west-six.json#/items/20",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": 73.8,
+        "x1": 115.8,
+        "z0": 414.8,
+        "z1": 456,
+        "gates": [
+          {
+            "side": "s",
+            "at": 94.8,
+            "w": 42.0
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-244B5666AEA1",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-C6193C23B86C",
+      "parentZone": "west-six",
+      "sourceRef": "data/zones/west-six.json#/items/21",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          73,
+          409.5
+        ],
+        "to": [
+          73.8,
+          414.8
+        ],
+        "source": "estimated",
+        "repairRole": "connected-court-perimeter"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-C6193C23B86C",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-D12D2E896AF1",
+      "parentZone": "west-six",
+      "sourceRef": "data/zones/west-six.json#/items/22",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          115,
+          409.5
+        ],
+        "to": [
+          115.8,
+          414.8
+        ],
+        "source": "estimated",
+        "repairRole": "connected-court-perimeter"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-D12D2E896AF1",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-877C067DBF63",
+      "parentZone": "west-six",
+      "sourceRef": "data/zones/west-six.json#/items/25",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": 78.32,
+        "z": 417,
+        "positionFit": {
+          "profile": "chuxiu-side-access-fit-r123",
+          "previousZ": 423.1,
+          "deltaZ": -6.1,
+          "status": "estimated-coordinate-correction"
+        },
+        "rot": "west",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-877C067DBF63",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-37D6652E7844",
+      "parentZone": "west-six",
+      "sourceRef": "data/zones/west-six.json#/items/26",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": 111.28,
+        "z": 417,
+        "positionFit": {
+          "profile": "chuxiu-side-access-fit-r123",
+          "previousZ": 423.1,
+          "deltaZ": -6.1,
+          "status": "estimated-coordinate-correction"
+        },
+        "rot": "east",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-37D6652E7844",
+      "historicRecordExactlySame": false,
+      "historicalMappingCaution": "Index-only mapping is not reliable identity: current record differs or no old row; keep unresolved."
+    },
+    {
+      "reviewInstanceId": "STATIC-87A1BCE4AF9A",
+      "parentZone": "west-six",
+      "sourceRef": "data/zones/west-six.json#/items/29",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": 129.2,
+        "x1": 171.2,
+        "z0": 304.5,
+        "z1": 354,
+        "gates": [
+          {
+            "side": "s",
+            "at": 139.5,
+            "gate": "太极门"
+          },
+          {
+            "side": "n",
+            "at": 150.2,
+            "w": 42.0
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-87A1BCE4AF9A",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-CE4E2E4574DA",
+      "parentZone": "west-six",
+      "sourceRef": "data/zones/west-six.json#/items/32",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": 133.72,
+        "z": 318.7,
+        "rot": "west",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-CE4E2E4574DA",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-DB7E533786CC",
+      "parentZone": "west-six",
+      "sourceRef": "data/zones/west-six.json#/items/33",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": 166.68,
+        "z": 318.7,
+        "rot": "east",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-DB7E533786CC",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-66E5D4032FA1",
+      "parentZone": "west-six",
+      "sourceRef": "data/zones/west-six.json#/items/36",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": 129.2,
+        "x1": 171.2,
+        "z0": 358,
+        "z1": 404.3,
+        "gates": [
+          {
+            "side": "s",
+            "at": 150.2,
+            "w": 42.0
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-66E5D4032FA1",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-075D368C579B",
+      "parentZone": "west-six",
+      "sourceRef": "data/zones/west-six.json#/items/37",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          129.2,
+          354
+        ],
+        "to": [
+          129.2,
+          358
+        ],
+        "source": "estimated",
+        "repairRole": "connected-court-perimeter"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-075D368C579B",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-ABA5F220C641",
+      "parentZone": "west-six",
+      "sourceRef": "data/zones/west-six.json#/items/38",
+      "kind": "wall",
+      "currentRecord": {
+        "kind": "wall",
+        "from": [
+          171.2,
+          354
+        ],
+        "to": [
+          171.2,
+          358
+        ],
+        "source": "estimated",
+        "repairRole": "connected-court-perimeter"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-ABA5F220C641",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-F83E71BCE126",
+      "parentZone": "west-six",
+      "sourceRef": "data/zones/west-six.json#/items/41",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": 133.72,
+        "z": 368.4,
+        "rot": "west",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-F83E71BCE126",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-A7807131ED5B",
+      "parentZone": "west-six",
+      "sourceRef": "data/zones/west-six.json#/items/42",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": 166.68,
+        "z": 368.4,
+        "rot": "east",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-A7807131ED5B",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-FA644986A43E",
+      "parentZone": "west-six",
+      "sourceRef": "data/zones/west-six.json#/items/45",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": 128.8,
+        "x1": 170.8,
+        "z0": 408.3,
+        "z1": 456,
+        "gates": [
+          {
+            "side": "s",
+            "at": 150.5,
+            "gate": "咸福门"
+          }
+        ]
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-FA644986A43E",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-07B73FD6FAA8",
+      "parentZone": "west-six",
+      "sourceRef": "data/zones/west-six.json#/items/48",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": 133.32,
+        "z": 419.1,
+        "rot": "west",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-07B73FD6FAA8",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-D47143552DD1",
+      "parentZone": "west-six",
+      "sourceRef": "data/zones/west-six.json#/items/49",
+      "kind": "hall",
+      "currentRecord": {
+        "kind": "hall",
+        "x": 166.28,
+        "z": 419.1,
+        "rot": "east",
+        "w": 11.2,
+        "d": 7.04,
+        "pad": 0.5,
+        "ph": 0.45,
+        "colH": 5.44,
+        "roof": "gable",
+        "brackets": false,
+        "map": "hall",
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-D47143552DD1",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    },
+    {
+      "reviewInstanceId": "STATIC-3001DA0EEDCA",
+      "parentZone": "west-six",
+      "sourceRef": "data/zones/west-six.json#/items/53",
+      "kind": "courtWalls",
+      "currentRecord": {
+        "kind": "courtWalls",
+        "x0": 92.62,
+        "x1": 145.18,
+        "z0": 460,
+        "z1": 505.6,
+        "gates": [
+          {
+            "side": "s",
+            "at": 120.2,
+            "gate": "重华门"
+          }
+        ],
+        "source": "estimated"
+      },
+      "runtimeRenderVerifiedInThisPass": false,
+      "currentStatus": "STATIC_DECLARATION_AND_DISPATCH_PRESENT_NOT_REAL_BUILDING_ACCEPTANCE",
+      "historicAuxCandidate": "AUX-3001DA0EEDCA",
+      "historicRecordExactlySame": true,
+      "historicalMappingCaution": null
+    }
+  ]
+}
