@@ -1,3 +1,4 @@
+import {fitBiluoFinialSurface} from './BiluoFinialSurface.js';
 import {fitFanhuaFloorFascia} from './FanhuaFloorFascia.js';
 import {buildFanhuaFrontBalustrade} from './FanhuaFrontBalustrade.js';
 import * as THREE from 'three';
@@ -437,7 +438,8 @@ function buildBiluo(c) {
  }
 
  // Official close view 1442: layered foot, neck, bowl, gold waist and ovoid.
- // Only the silhouette and color families are fitted; no ice-plum artwork.
+ // Retained fitted silhouette/color layers; the separate ovoid-only surface
+ // hook adds original motif families, not physical carving or full restoration.
  const finialBase=y+h+2.8,finialParts=[];
  finialParts.push(c.cylinder('r68-biluo-finial-foot','yellow',.20,.12,0,finialBase+.04,0,false,24));
  finialParts.push(c.cylinder('r68-biluo-finial-neck','blue',.17,.17,0,finialBase+.175,0,false,24));
@@ -445,7 +447,8 @@ function buildBiluo(c) {
  finialParts.push(c.cylinder('r68-biluo-finial-waist','yellow',.29,.09,0,finialBase+.475,0,false,24));
  const ball=c.tag(c.kit.mesh(c.f,new THREE.SphereGeometry(1,24,16),c.mats.blue,0,finialBase+.81,0),'r68-biluo-finial-ovoid');ball.scale.set(.30,.40,.30);finialParts.push(ball);
  for(const m of finialParts)m.userData.patternStatus='PLAIN_SILHOUETTE_NO_REPLICATED_ICE_PLUM_MOTIF';
- const finialFit={sourceImage:'https://img.dpm.org.cn/Uploads/Picture/dc/1442[1024].jpg',dimensionStatus:FIT,accepted:false,photographyDate:null,scope:'FIVE_PLAIN_LAYERS_AND_COLOR_FAMILIES_ONLY'};
+ fitBiluoFinialSurface(c,ball);
+ const finialFit={sourceImage:'https://img.dpm.org.cn/Uploads/Picture/dc/1442[1024].jpg',dimensionStatus:FIT,accepted:false,photographyDate:null,scope:'FIVE_RETAINED_LAYER_FORMS_PLUS_ORIGINAL_OVOID_SURFACE_PATTERN'};
  // Applied five-petal ceiling motif, visibly geometric rather than a claim to
  // reproduce the exceptionally fine surviving plum relief carving.
  c.cylinder('plum-ceiling-ground','wood',r,.07,0,y+h-.12,0,false,30);for(let i=0;i<5;i++){const a=i*2*Math.PI/5;c.cylinder('plum-ceiling-petal','paper',.22,.045,Math.cos(a)*.25,y+h-.17,Math.sin(a)*.25,false,12);}

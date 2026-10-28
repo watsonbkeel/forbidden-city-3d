@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: Fanhua source front floor-edge scroll surface is present without claiming whole-object restoration
+ok 1 - Fanhua source front floor-edge scroll surface is present without claiming whole-object restoration
+  ---
+  duration_ms: 86.130658
+  type: 'test'
+  ...
+# Subtest: only one existing front-band visual changes; all original physics, six openings and non-target mesh bytes stay identical
+ok 2 - only one existing front-band visual changes; all original physics, six openings and non-target mesh bytes stay identical
+  ---
+  duration_ms: 304.470632
+  type: 'test'
+  ...
+# Subtest: actual Canvas has green field and gold curls and only south face uses full pattern
+ok 3 - actual Canvas has green field and gold curls and only south face uses full pattern
+  ---
+  duration_ms: 323.859823
+  type: 'test'
+  ...
+# Subtest: three build/unload cycles release private pattern material and map once and do not replace shared green material
+ok 4 - three build/unload cycles release private pattern material and map once and do not replace shared green material
+  ---
+  duration_ms: 87.90614
+  type: 'test'
+  ...
+# Subtest: duplicate, foreign and transformed identity reject before allocating or changing band
+ok 5 - duplicate, foreign and transformed identity reject before allocating or changing band
+  ---
+  duration_ms: 46.925052
+  type: 'test'
+  ...
+# Subtest: fitted band stays attached to retained structural beam and cannot introduce a floor, opening or reachable upper platform
+ok 6 - fitted band stays attached to retained structural beam and cannot introduce a floor, opening or reachable upper platform
+  ---
+  duration_ms: 35.659989
+  type: 'test'
+  ...
+# Subtest: mutated real band buffers reject even when constructor parameters and bounding envelope remain unchanged
+ok 7 - mutated real band buffers reject even when constructor parameters and bounding envelope remain unchanged
+  ---
+  duration_ms: 119.922638
+  type: 'test'
+  ...
+# Subtest: BiLuo sourced stacked finial replaces cylinder without changing roof or physics
+not ok 8 - BiLuo sourced stacked finial replaces cylinder without changing roof or physics
+  ---
+  duration_ms: 126.551791
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r68-j-biluo-finial.test.mjs:3:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'ICE_CRACKLE_FIVE_PETAL_SURFACE_FIT_NOT_RELIEF'
+    - 'PLAIN_SILHOUETTE_NO_REPLICATED_ICE_PLUM_MOTIF'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'PLAIN_SILHOUETTE_NO_REPLICATED_ICE_PLUM_MOTIF'
+  actual: 'ICE_CRACKLE_FIVE_PETAL_SURFACE_FIT_NOT_RELIEF'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r68-j-biluo-finial.test.mjs:3:603)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 7
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1463.887402

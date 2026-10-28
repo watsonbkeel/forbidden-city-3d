@@ -1,0 +1,70 @@
+TAP version 13
+# Subtest: Biluo source-visible ice-crackle and five-petal pattern belongs only to its existing finial
+ok 1 - Biluo source-visible ice-crackle and five-petal pattern belongs only to its existing finial
+  ---
+  duration_ms: 73.524024
+  type: 'test'
+  ...
+# Subtest: only one finial material changes; every original geometry, matrix and physical source remains identical
+ok 2 - only one finial material changes; every original geometry, matrix and physical source remains identical
+  ---
+  duration_ms: 117.440451
+  type: 'test'
+  ...
+# Subtest: real Canvas contains deterministic irregular pale network and five-petal flowers; wrapped seam remains bounded
+not ok 3 - real Canvas contains deterministic irregular pale network and five-petal flowers; wrapped seam remains bounded
+  ---
+  duration_ms: 470.819359
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-biluo/details.test.mjs:12:1'
+  failureType: 'testCodeFailure'
+  error: 'mean seam difference 20.19140625'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-biluo/details.test.mjs:12:871)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: owned motif material and map dispose once across three rebuilds without polluting original blue lower neck
+ok 4 - owned motif material and map dispose once across three rebuilds without polluting original blue lower neck
+  ---
+  duration_ms: 73.285238
+  type: 'test'
+  ...
+# Subtest: foreign frame, transformed or mutated original sphere rejects before owning artwork
+not ok 5 - foreign frame, transformed or mutated original sphere rejects before owning artwork
+  ---
+  duration_ms: 139.785794
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-biluo/details.test.mjs:14:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-biluo/details.test.mjs:14:450)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 3
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1048.725791
