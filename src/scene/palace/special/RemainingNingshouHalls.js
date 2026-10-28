@@ -1,3 +1,4 @@
+import {buildSuichuSouthSteps,fitSuichuSouthApproach} from './SuichuSouthSteps.js';
 import {addSuichuFrontBasins} from './SuichuFrontBasins.js';
 import {fitBiluoBowlSurface} from './BiluoBowlSurface.js';
 import {fitBiluoFinialSurface} from './BiluoFinialSurface.js';
@@ -57,6 +58,7 @@ function profile(row) {
  if(key==='biluo'){const q=p.portals[0];q.approachX=-3.6;q.normalLocalX=-1;q.normalLocalZ=0;q.normalWorldX=-1;q.normalWorldZ=0;q.approachPoints=[[-3.6,-.47,0],[-3.1,-.47,0],[-2.65,-.47,ph/2],[-2.2,-.47,ph],[-1.45,-.47,ph],[-.65,-.25,ph]].map(([localX,localZ,feetY])=>({localX,localZ,x:x+localX,z:z+localZ,feetY}));}
  // Local stone-field support only; route coordinates and the pavilion floor stay fixed.
  if(key==='xishang')for(const q of p.portals.flatMap(q=>q.approachPoints)){const halfW=localW*.66*.78/2,center=-localD*.32,halfD=localD*.32/2;if(Math.abs(q.localX)<=halfW&&Math.abs(q.localZ-center)<=halfD)q.feetY=ph+.2;}
+ fitSuichuSouthApproach(p);
  p.navigation={floorY:ph,upperDestinations:false,portals:p.portals,approachPoints:p.portals[0].approachPoints,spawn:key==='ningshou'?{x:-localW/7,z:-localD*.15}:key==='xishang'?{x:0,z:-localD*.3}:{x:0,z:0},status:'MODEL_CIRCULATION_NOT_MUSEUM_PERMISSION'};
  return freeze(p);
 }
@@ -354,6 +356,7 @@ function buildThroughHall(c) {
  // exterior columns. No speculative bedroom/library furniture is inserted.
  for(const sign of[-1,1])for(let i=0;i<=p.bays;i++)column(c,-p.localW/2+i*p.localW/p.bays,sign*(p.localD/2-p.gallery),p.ph,p.colH-.4,{role:'inner-column',r:.15});
  const legacyInventory=retainLegacyHall(c);
+ if(p.key==='suichu')buildSuichuSouthSteps(c);
  return finish(c,{legacyInventory,roofForm:p.key==='suichu'?'rolled-hip-gable':'rolled-hard-gable',interiorPolicy:legacyInventory.status==='UNKNOWN'?'SOURCED_THROUGH_PLAN_CURRENT_INVENTORY_UNKNOWN':'SOURCED_THROUGH_PLAN_WITH_NONCONFLICTING_LEGACY_UNVERIFIED_SIDE_PIECES',gallerySides:['south','north']});
 }
 function buildJingfu(c) {
