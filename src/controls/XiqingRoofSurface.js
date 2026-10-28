@@ -1,7 +1,7 @@
 import {QIANQING_ASSEMBLY_IDS} from './QianqingAssemblySupport.js';
 import * as THREE from 'three';
 import { exactSquareWitness, ceilingExact, exactDouble, compareExact, serializeExact, intervalSurfaceIntersects, exactSurfaceIntersects, exactSurfaceSweep } from './XiqingRoofExact.js';
-const COURTYARD_IDS=['chengqian-main-finished-columns','tihe-finished-access','lijing-finished-access','chuxiu-gallery-finished-access','chengqian-main-finished-access'];
+const COURTYARD_IDS=['chengqian-main-finished-columns','tihe-finished-access','lijing-finished-access','chuxiu-gallery-finished-access','chuxiu-main-finished-access','chuxiu-yanghe-entry','chuxiu-suifu-entry','chengqian-main-finished-access'];
 const ARRIVAL_IDS=['chengqian-rear-floor','chengqian-rear-cheek-east','chengqian-rear-cheek-west'];
 const IDS=new Set([...COURTYARD_IDS,...ARRIVAL_IDS,'chuxiu-main-floor','chengqian-west-court-roof','xiqing-roof-south','xiqing-roof-middle','xiqing-roof-north',...QIANQING_ASSEMBLY_IDS,...Array.from({length:4},(_,i)=>'qianqing-display-vessel-'+i)]);
 const surfaceKind=id=>COURTYARD_IDS.includes(id)?'retained-courtyard-surface':ARRIVAL_IDS.includes(id)?'chengqian-arrival-surface':id==='chuxiu-main-floor'?'chuxiu-main-floor-surface':id==='chengqian-west-court-roof'?'chengqian-court-roof-surface':id.startsWith('qianqing-display-')?'qianqing-display-surface':QIANQING_ASSEMBLY_IDS.includes(id)?'qianqing-assembly-surface':'xiqing-roof-surface';

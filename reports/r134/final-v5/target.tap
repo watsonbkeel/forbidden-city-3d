@@ -1,0 +1,200 @@
+TAP version 13
+# Subtest: the Environment civil clock has exact 21/06 boundaries and stays asleep across midnight
+ok 1 - the Environment civil clock has exact 21/06 boundaries and stays asleep across midnight
+  ---
+  duration_ms: 0.942086
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 卸载区域 axis-courts
+# Subtest: mid-route manual clock changes reverse the current segment without respawning, and removed live corridor owners pause
+ok 2 - mid-route manual clock changes reverse the current segment without respawning, and removed live corridor owners pause
+  ---
+  duration_ms: 9143.749713
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 571.9ms
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 588.7ms
+# [ZoneManager] 卸载区域 axis-courts
+# [ZoneManager] 卸载区域 west-six
+# Subtest: R123 shifted-bed prebuilt verified logical seeds and private navigation survive only official west-six unload and rebind rebuilt sources
+ok 3 - R123 shifted-bed prebuilt verified logical seeds and private navigation survive only official west-six unload and rebind rebuilt sources
+  ---
+  duration_ms: 9423.734067
+  type: 'test'
+  ...
+# Subtest: R124 exact target opt-in rejects wrong declarations before any material allocation
+ok 4 - R124 exact target opt-in rejects wrong declarations before any material allocation
+  ---
+  duration_ms: 2.228908
+  type: 'test'
+  ...
+# Subtest: R124 unrelated items are identity no-ops and missing current main source fails before modification
+ok 5 - R124 unrelated items are identity no-ops and missing current main source fails before modification
+  ---
+  duration_ms: 0.328613
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] ?zones=all 模式：加载所有区...
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# [ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+# [ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+# [ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+# [ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+# [ZoneManager] 卸载区域 axis-courts
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 卸载区域 ningshou
+# [ZoneManager] 卸载区域 outer-east
+# [ZoneManager] 卸载区域 outer-west
+# [ZoneManager] 卸载区域 garden
+# Subtest: retained Tihe Lijing Chengqian actual finished faces support full player before geometric entry
+ok 6 - retained Tihe Lijing Chengqian actual finished faces support full player before geometric entry
+  ---
+  duration_ms: 7206.297421
+  type: 'test'
+  ...
+# Subtest: finite grouped surfaces retain unique source meshes, exact face count and untouched renders
+ok 7 - finite grouped surfaces retain unique source meshes, exact face count and untouched renders
+  ---
+  duration_ms: 8.662911
+  type: 'test'
+  ...
+# Subtest: wrong authored frame fails closed without partial collider registration
+ok 8 - wrong authored frame fails closed without partial collider registration
+  ---
+  duration_ms: 1.08536
+  type: 'test'
+  ...
+# Subtest: wrong authored item dimensions fail closed; unrelated zone untouched
+ok 9 - wrong authored item dimensions fail closed; unrelated zone untouched
+  ---
+  duration_ms: 0.633822
+  type: 'test'
+  ...
+# Subtest: R134 photographed column-head pairs are closed source-owned hanging bodies on each original facade
+ok 10 - R134 photographed column-head pairs are closed source-owned hanging bodies on each original facade
+  ---
+  duration_ms: 1.402667
+  type: 'test'
+  ...
+# Subtest: R134 existing wooden skirts gain visible inset panel borders without adding a door leaf or changing glass
+ok 11 - R134 existing wooden skirts gain visible inset panel borders without adding a door leaf or changing glass
+  ---
+  duration_ms: 0.304607
+  type: 'test'
+  ...
+# Subtest: R134 preserves original collision payload, all support/room/map fields and real ready textures
+ok 12 - R134 preserves original collision payload, all support/room/map fields and real ready textures
+  ---
+  duration_ms: 3.64194
+  type: 'test'
+  ...
+# Subtest: R134 inward outlines meet original column axes rather than beam overhang ends
+ok 13 - R134 inward outlines meet original column axes rather than beam overhang ends
+  ---
+  duration_ms: 0.227832
+  type: 'test'
+  ...
+# Subtest: R134 real hanging owners block high traversal and vertical passage through normal CollisionManager
+ok 14 - R134 real hanging owners block high traversal and vertical passage through normal CollisionManager
+  ---
+  duration_ms: 70.459161
+  type: 'test'
+  ...
+# Subtest: R134 real controls released above one actual silhouette land on its top without free upward motion at 10/30/60Hz
+ok 15 - R134 real controls released above one actual silhouette land on its top without free upward motion at 10/30/60Hz
+  ---
+  duration_ms: 18.19685
+  type: 'test'
+  ...
+# Subtest: R134 original Chuxiu south marble steps carry real player from courtyard into the central doorway at 10/30/60Hz
+ok 16 - R134 original Chuxiu south marble steps carry real player from courtyard into the central doorway at 10/30/60Hz
+  ---
+  duration_ms: 1689.063282
+  type: 'test'
+  ...
+# Subtest: R134 full foot reaches actual retained .82m main wooden threshold before the .62m floor
+ok 17 - R134 full foot reaches actual retained .82m main wooden threshold before the .62m floor
+  ---
+  duration_ms: 1191.372389
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 卸载区域 axis-courts
+# Subtest: R134 south-entry support does not strand either adult on the retained bed at06:00
+ok 18 - R134 south-entry support does not strand either adult on the retained bed at06:00
+  ---
+  duration_ms: 14175.888918
+  type: 'test'
+  ...
+# Subtest: R134 rejects changed original front beam vertex before any facade replacement
+ok 19 - R134 rejects changed original front beam vertex before any facade replacement
+  ---
+  duration_ms: 680.364544
+  type: 'test'
+  ...
+# Subtest: R134 rejects changed original front beam index before any facade replacement
+ok 20 - R134 rejects changed original front beam index before any facade replacement
+  ---
+  duration_ms: 263.704751
+  type: 'test'
+  ...
+# Subtest: R134 rejects changed original front beam scale before any facade replacement
+ok 21 - R134 rejects changed original front beam scale before any facade replacement
+  ---
+  duration_ms: 231.04139
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 626.3ms
+# [ZoneManager] 卸载区域 west-six
+# Subtest: R134 actual ready west-six hanging-outline owners follow normal cache/reentry/evict without retained invisible bodies
+ok 22 - R134 actual ready west-six hanging-outline owners follow normal cache/reentry/evict without retained invisible bodies
+  ---
+  duration_ms: 8916.175875
+  type: 'test'
+  ...
+# Subtest: R134 both original front-wing wooden thresholds support the full approaching foot at the actual .67m top
+ok 23 - R134 both original front-wing wooden thresholds support the full approaching foot at the actual .67m top
+  ---
+  duration_ms: 1134.30597
+  type: 'test'
+  ...
+1..23
+# tests 23
+# suites 0
+# pass 23
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 60744.598498

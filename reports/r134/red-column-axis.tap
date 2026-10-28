@@ -1,0 +1,54 @@
+TAP version 13
+# Subtest: R134 photographed column-head pairs are closed source-owned hanging bodies on each original facade
+ok 1 - R134 photographed column-head pairs are closed source-owned hanging bodies on each original facade
+  ---
+  duration_ms: 0.993571
+  type: 'test'
+  ...
+# Subtest: R134 existing wooden skirts gain visible inset panel borders without adding a door leaf or changing glass
+ok 2 - R134 existing wooden skirts gain visible inset panel borders without adding a door leaf or changing glass
+  ---
+  duration_ms: 0.194683
+  type: 'test'
+  ...
+# Subtest: R134 preserves original collision payload, all support/room/map fields and real ready textures
+ok 3 - R134 preserves original collision payload, all support/room/map fields and real ready textures
+  ---
+  duration_ms: 2.723007
+  type: 'test'
+  ...
+# Subtest: R134 inward outlines meet original column axes rather than beam overhang ends
+not ok 4 - R134 inward outlines meet original column axes rather than beam overhang ends
+  ---
+  duration_ms: 4.462749
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r134/facade-relief.test.mjs:8:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(Math.abs(a[k*2].bounds[3]-(94.8-27.1/2+(k+1)*27.1/5))<1e-5)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r134/facade-relief.test.mjs:8:168)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 3
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1367.348925

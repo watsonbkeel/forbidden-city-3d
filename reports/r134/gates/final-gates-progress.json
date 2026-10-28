@@ -1,0 +1,270 @@
+[
+  {
+    "name": "r134",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=tap",
+      "tests/r134/facade-relief.test.mjs",
+      "tests/r134/high-contact.test.mjs",
+      "tests/r134/main-stair.test.mjs",
+      "tests/r134/main-threshold.test.mjs",
+      "tests/r134/shared-rest-return.test.mjs",
+      "tests/r134/source-guards.test.mjs",
+      "tests/r134/streaming.test.mjs",
+      "tests/r134/wing-entry.test.mjs"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 30.18315196898766,
+    "summary": [
+      "# tests 14",
+      "# pass 14",
+      "# fail 0",
+      "# cancelled 0",
+      "# skipped 0"
+    ],
+    "failures": []
+  },
+  {
+    "name": "r127-r130",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=tap",
+      "tests/r127/mountain-equivalence.test.mjs",
+      "tests/r128/checkpoint-priority.test.mjs",
+      "tests/r128/path-checkpoint.test.mjs",
+      "tests/r128/resumable-geometry.test.mjs",
+      "tests/r129/actual-prefix-support.test.mjs",
+      "tests/r129/departure-clearance.test.mjs",
+      "tests/r129/sloped-footprint.test.mjs",
+      "tests/r130/finished-courtyard-support.test.mjs",
+      "tests/r130/retained-source-domain.test.mjs"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 20.821975630009547,
+    "summary": [
+      "# tests 21",
+      "# pass 21",
+      "# fail 0",
+      "# cancelled 0",
+      "# skipped 0"
+    ],
+    "failures": []
+  },
+  {
+    "name": "r126",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=tap",
+      "tests/r126/arrival-ensemble.test.mjs",
+      "tests/r126/owner-lifecycle.test.mjs",
+      "tests/r126/quality-retention.test.mjs",
+      "tests/r126/screen-back.test.mjs",
+      "tests/r126/source-guard.test.mjs",
+      "tests/r126/streaming.test.mjs"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 16.17458416800946,
+    "summary": [
+      "# tests 8",
+      "# pass 8",
+      "# fail 0",
+      "# cancelled 0",
+      "# skipped 0"
+    ],
+    "failures": []
+  },
+  {
+    "name": "r125",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=tap",
+      "tests/r125/finite-entry.test.mjs",
+      "tests/r125/identity-guard.test.mjs",
+      "tests/r125/owner-lifecycle.test.mjs",
+      "tests/r125/rear-pair.test.mjs",
+      "tests/r125/streaming.test.mjs"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 11.454098332091235,
+    "summary": [
+      "# tests 7",
+      "# pass 7",
+      "# fail 0",
+      "# cancelled 0",
+      "# skipped 0"
+    ],
+    "failures": []
+  },
+  {
+    "name": "r124",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=tap",
+      "tests/r124/front-ensemble.test.mjs",
+      "tests/r124/target-guards.test.mjs"
+    ],
+    "exitCode": 1,
+    "durationSeconds": 1.946380594978109,
+    "summary": [
+      "# tests 11",
+      "# pass 9",
+      "# fail 2",
+      "# cancelled 0",
+      "# skipped 0"
+    ],
+    "failures": [
+      "R124 all collision, support, room, map declarations and shared rest still equal R123",
+      "R124 no new texture request and bounded real geometry/material allocation"
+    ]
+  },
+  {
+    "name": "r123",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=tap",
+      "tests/r123/actual-rear-frame.test.mjs",
+      "tests/r123/corridor-ramp.test.mjs",
+      "tests/r123/emperor-tail.test.mjs",
+      "tests/r123/finite-entry-scope.test.mjs",
+      "tests/r123/frame-and-bindings.test.mjs",
+      "tests/r123/night-lights.test.mjs",
+      "tests/r123/rendered-streaming.test.mjs",
+      "tests/r123/streamed-night-roundtrip.test.mjs"
+    ],
+    "exitCode": 1,
+    "durationSeconds": 25.196457982063293,
+    "summary": [
+      "# tests 9",
+      "# pass 7",
+      "# fail 2",
+      "# cancelled 0",
+      "# skipped 0"
+    ],
+    "failures": [
+      "R123 moved corridor ramps support the complete original foot on actual F32 visible faces",
+      "R123 emperor changes only the connected courtyard tail and reaches the actually shifted northwest slot"
+    ]
+  },
+  {
+    "name": "r119-r120",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=tap",
+      "tests/r119/jiaotai-assembly.test.mjs",
+      "tests/r119/jiaotai-lifecycle.test.mjs",
+      "tests/r119/jiaotai-route.test.mjs",
+      "tests/r120/qianqing-assembly.test.mjs",
+      "tests/r120/qianqing-lifecycle.test.mjs",
+      "tests/r120/qianqing-route.test.mjs"
+    ],
+    "exitCode": 1,
+    "durationSeconds": 7.186045968090184,
+    "summary": [
+      "# tests 29",
+      "# pass 28",
+      "# fail 1",
+      "# cancelled 0",
+      "# skipped 0"
+    ],
+    "failures": [
+      "R119 preserves exact R118 navigation, display geometry, clocks, doors and registered opening"
+    ]
+  },
+  {
+    "name": "motion",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=tap",
+      "tests/r109-stair-contact.test.mjs",
+      "tests/r109-stair-domain-handoff.test.mjs",
+      "tests/r109-stair-lifecycle.test.mjs",
+      "tests/r112/arrival-assemblies.test.mjs",
+      "tests/r112/display-surfaces.test.mjs",
+      "tests/r112/floor-source.test.mjs",
+      "tests/r113/lijing-contact.test.mjs",
+      "tests/r113/lijing-room.test.mjs",
+      "tests/r113/side-access-fit.test.mjs",
+      "tests/r113/side-contact.test.mjs",
+      "tests/r114/environment-handoff.test.mjs",
+      "tests/r114/environment-vertical.test.mjs",
+      "tests/r114/flight-source.test.mjs",
+      "tests/r114/group-source.test.mjs",
+      "tests/r114/source-atomic.test.mjs",
+      "tests/r114/west-wing-fit.test.mjs",
+      "tests/r114/wing-entry.test.mjs",
+      "tests/r114/wing-platform-source.test.mjs",
+      "tests/r96-movement/composed-motion.test.mjs",
+      "tests/r96-movement/contact-sweep.test.mjs",
+      "tests/r96-movement/controller.test.mjs",
+      "tests/r96-movement/dynamic-body.test.mjs",
+      "tests/r96-movement/lifecycle.test.mjs",
+      "tests/r96-movement/production-scope.test.mjs",
+      "tests/r96-movement/reachable-kang.test.mjs",
+      "tests/r96-movement/substep-feet.test.mjs"
+    ],
+    "exitCode": 1,
+    "durationSeconds": 21.453745380975306,
+    "summary": [
+      "# tests 90",
+      "# pass 88",
+      "# fail 2",
+      "# cancelled 0",
+      "# skipped 0"
+    ],
+    "failures": [
+      "R113 Lijing local body uses only its live existing floor and allows clear paired openings",
+      "R113 two fitted front wings preserve scale and create a bounded rear circulation gap"
+    ]
+  },
+  {
+    "name": "resources",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=tap",
+      "tests/r106-detail-quality.test.mjs",
+      "tests/r106-low-triangles.test.mjs",
+      "tests/r106-model-quality.test.mjs",
+      "tests/r106-textile-quality.test.mjs",
+      "tests/r106-zone-quality.test.mjs",
+      "tests/r107-construction-release.test.mjs",
+      "tests/r107-inactive-cache.test.mjs",
+      "tests/r107-zone-reuse.test.mjs",
+      "tests/r96-characters/contact-metrics.test.mjs",
+      "tests/r96-characters/first-model-priority.test.mjs",
+      "tests/r96-characters/residency.test.mjs",
+      "tests/r96-characters/resource-lifecycle.test.mjs",
+      "tests/r96-characters/status.test.mjs",
+      "tests/r96-characters/system-residency.test.mjs"
+    ],
+    "exitCode": 1,
+    "durationSeconds": 5.004423717968166,
+    "summary": [
+      "# tests 41",
+      "# pass 40",
+      "# fail 1",
+      "# cancelled 0",
+      "# skipped 0"
+    ],
+    "failures": [
+      "rear accepted quality scope preserves high and physical contracts"
+    ]
+  }
+]
