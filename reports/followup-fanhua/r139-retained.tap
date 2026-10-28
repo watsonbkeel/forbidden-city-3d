@@ -1,0 +1,105 @@
+TAP version 13
+# Subtest: Fanhua upper front source balustrade replaces generic poles without pretending entire hall acceptance
+ok 1 - Fanhua upper front source balustrade replaces generic poles without pretending entire hall acceptance
+  ---
+  duration_ms: 99.069549
+  type: 'test'
+  ...
+# Subtest: Guhua source-visible front central nested lattice is physical open geometry, not photo sheet
+ok 2 - Guhua source-visible front central nested lattice is physical open geometry, not photo sheet
+  ---
+  duration_ms: 22.380131
+  type: 'test'
+  ...
+# Subtest: Fanhua only previous front rail is replaced: all other meshes, floor holes, rooms and navigation preserved
+not ok 3 - Fanhua only previous front rail is replaced: all other meshes, floor holes, rooms and navigation preserved
+  ---
+  duration_ms: 200.599571
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r139/details.test.mjs:14:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'a6a703758cff4163482c5846808f1ceb8423af58f1cd2a79b8d83677eba465e6'
+    - 'ae7edcf10c27bfd6fbd1a769d44dc3eab58a9ada6cf226d48c73d93a000824a0'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'ae7edcf10c27bfd6fbd1a769d44dc3eab58a9ada6cf226d48c73d93a000824a0'
+  actual: 'a6a703758cff4163482c5846808f1ceb8423af58f1cd2a79b8d83677eba465e6'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r139/details.test.mjs:14:373)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+    run (node:internal/test_runner/harness:398:12)
+    test (node:internal/test_runner/harness:407:12)
+    file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r139/details.test.mjs:14:1
+  ...
+# Subtest: Guhua only central-front old five rods replaced; every other original mesh and all room/floor metadata retained
+ok 4 - Guhua only central-front old five rods replaced; every other original mesh and all room/floor metadata retained
+  ---
+  duration_ms: 35.745242
+  type: 'test'
+  ...
+# Subtest: Fanhua curved balusters are closed positive-volume source-bounded solids with same triangle contact owner
+ok 5 - Fanhua curved balusters are closed positive-volume source-bounded solids with same triangle contact owner
+  ---
+  duration_ms: 45.759563
+  type: 'test'
+  ...
+# Subtest: R139 all owned materials/textures release through existing kit lifecycle on three rebuilds
+ok 6 - R139 all owned materials/textures release through existing kit lifecycle on three rebuilds
+  ---
+  duration_ms: 112.124915
+  type: 'test'
+  ...
+# Subtest: Guhua source grids preserve central physical route, front/back, walk/run and 10/60Hz
+ok 7 - Guhua source grids preserve central physical route, front/back, walk/run and 10/60Hz
+  ---
+  duration_ms: 88.916104
+  type: 'test'
+  ...
+# Subtest: Fanhua foreign identity or transformed frame rejects before allocating
+ok 8 - Fanhua foreign identity or transformed frame rejects before allocating
+  ---
+  duration_ms: 34.227919
+  type: 'test'
+  ...
+# Subtest: Fanhua new geometry instances release exactly once each through normal unload
+ok 9 - Fanhua new geometry instances release exactly once each through normal unload
+  ---
+  duration_ms: 35.545542
+  type: 'test'
+  ...
+# Subtest: frozen R138 fixtures are pinned, not regenerated from candidate
+ok 10 - frozen R138 fixtures are pinned, not regenerated from candidate
+  ---
+  duration_ms: 0.595454
+  type: 'test'
+  ...
+# Subtest: Guhua every new physical bar matches visible box and all non-target old colliders remain byte-identical
+ok 11 - Guhua every new physical bar matches visible box and all non-target old colliders remain byte-identical
+  ---
+  duration_ms: 11.232921
+  type: 'test'
+  ...
+# Subtest: R139 full static collision world: Guhua central pass and Fanhua retained ground route at 10/60 Hz
+ok 12 - R139 full static collision world: Guhua central pass and Fanhua retained ground route at 10/60 Hz
+  ---
+  duration_ms: 5117.104886
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 11
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5324.800383

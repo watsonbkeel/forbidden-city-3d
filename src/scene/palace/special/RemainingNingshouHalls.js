@@ -1,3 +1,4 @@
+import {fitFanhuaFloorFascia} from './FanhuaFloorFascia.js';
 import {buildFanhuaFrontBalustrade} from './FanhuaFrontBalustrade.js';
 import * as THREE from 'three';
 import {buildXishangChannel} from './XishangChannel.js';
@@ -579,7 +580,7 @@ function buildFori(c) {
  return finish(c,{interiorPolicy:'SOURCED_PARTITIONS_AND_THREE_SIDED_ALTAR_LAYOUT_NO_INVENTED_BUDDHA',externalStairStatus:'OFFICIAL_EAST_STONE_CONNECTION_NOT_FITTED_IN_RETAINED_ENVELOPE',historicalFigureCountsNotModelled:[378],upperNavigation:'VIEW_ONLY_NO_FALSE_STAIR'});
 }
 function buildFanhua(c) {
- const{p}=c,bw=p.localW/7,h0=p.upperFloorY-p.ph,holes=[];twoLevelFrame(c,{rearInset:0});buildFanhuaFrontBalustrade(c);hangingFrieze(c);
+ const{p}=c,bw=p.localW/7,h0=p.upperFloorY-p.ph,holes=[];twoLevelFrame(c,{rearInset:0});buildFanhuaFrontBalustrade(c);fitFanhuaFloorFascia(c);hangingFrieze(c);
  for(let i=0;i<7;i++)if(i!==3){const x=-p.localW/2+(i+.5)*bw;holes.push({x0:x-.85,x1:x+.85,z0:-1.05,z1:1.05});}
  const floorVoids=upperFloor(c,{holes});for(const q of holes)guardOpening(c,q);
  for(let i=1;i<7;i++)for(const y of[p.ph,p.upperFloorY])wallLine(c,{a0:-p.localD/2+p.gallery,a1:p.localD/2,at:-p.localW/2+i*bw,y,h:(y===p.ph?h0:p.ph+p.colH-p.upperFloorY)-.22,side:true,doors:[{at:-2,w:1.7}],mat:'wood',role:'fanhua-seven-bay-partition'});

@@ -688,3 +688,8 @@ MIT License，详见 [LICENSE](./LICENSE)。
 
 ## R135 承乾后殿有限主框/原开叶木裙
 累计 R134；原四闭窗主竖框与两模板开叶浅裙，不新建门扇。全原物理/地图字节不变，新针对门13/13，旧R103同R134的rear/colliders快照FAIL保留并解释；+216三角、0新材质/纹理，不声称提速。[证据与限制](docs/current-state/r135/README.md)。第二major仍R136，未自动合并main或部署。
+
+
+## R146 后原需求续做：梵华楼前二层楼沿（未编新版本号）
+
+冻结 R146 不变；开发分支 `feat/original-scope-followup-20261028` 补 FC-D40CEF5893 绿底金卷纹的表面概形部分拟合，非精雕/整楼验收。原梁、楼板、洞口和全部物理保留。目标及独审7/7；R139保留组11/12（原精确签名变化已归因）；标准1332项1116过/216失败（R146既有215+本次目标条的旧精确签名1），不是全绿。单base开发构建137文件HTTP回读通过，不是重新交付R146，不部署。GPU/手机、原雕深度及完整原需求仍未验/未完成。详见 `docs/photo-fidelity/followup-fanhua/RESULT.md` 与 `reports/followup-fanhua/FINAL-DELIVERY.json`。

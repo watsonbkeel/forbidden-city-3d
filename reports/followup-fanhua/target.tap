@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: Fanhua source front floor-edge scroll surface is present without claiming whole-object restoration
+ok 1 - Fanhua source front floor-edge scroll surface is present without claiming whole-object restoration
+  ---
+  duration_ms: 101.254995
+  type: 'test'
+  ...
+# Subtest: only one existing front-band visual changes; all original physics, six openings and non-target mesh bytes stay identical
+ok 2 - only one existing front-band visual changes; all original physics, six openings and non-target mesh bytes stay identical
+  ---
+  duration_ms: 384.69715
+  type: 'test'
+  ...
+# Subtest: actual Canvas has green field and gold curls and only south face uses full pattern
+ok 3 - actual Canvas has green field and gold curls and only south face uses full pattern
+  ---
+  duration_ms: 364.463494
+  type: 'test'
+  ...
+# Subtest: three build/unload cycles release private pattern material and map once and do not replace shared green material
+ok 4 - three build/unload cycles release private pattern material and map once and do not replace shared green material
+  ---
+  duration_ms: 135.781275
+  type: 'test'
+  ...
+# Subtest: duplicate, foreign and transformed identity reject before allocating or changing band
+ok 5 - duplicate, foreign and transformed identity reject before allocating or changing band
+  ---
+  duration_ms: 53.072991
+  type: 'test'
+  ...
+# Subtest: fitted band stays attached to retained structural beam and cannot introduce a floor, opening or reachable upper platform
+ok 6 - fitted band stays attached to retained structural beam and cannot introduce a floor, opening or reachable upper platform
+  ---
+  duration_ms: 35.721741
+  type: 'test'
+  ...
+# Subtest: mutated real band buffers reject even when constructor parameters and bounding envelope remain unchanged
+ok 7 - mutated real band buffers reject even when constructor parameters and bounding envelope remain unchanged
+  ---
+  duration_ms: 147.082303
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1441.493064
