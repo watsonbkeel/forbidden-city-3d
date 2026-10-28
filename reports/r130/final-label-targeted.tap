@@ -1,0 +1,87 @@
+TAP version 13
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 卸载区域 axis-courts
+# Subtest: actual Taihe prefix paving and door thresholds have the same finite support channel as the rest of the route
+ok 1 - actual Taihe prefix paving and door thresholds have the same finite support channel as the rest of the route
+  ---
+  duration_ms: 9501.479082
+  type: 'test'
+  ...
+# Subtest: departure avoids the retained east display plinth without moving it or shrinking the lower-body envelope
+ok 2 - departure avoids the retained east display plinth without moving it or shrinking the lower-body envelope
+  ---
+  duration_ms: 2.048113
+  type: 'test'
+  ...
+# Subtest: finite triangle/disk support maximizes actual slope only within their intersection
+ok 3 - finite triangle/disk support maximizes actual slope only within their intersection
+  ---
+  duration_ms: 1.563626
+  type: 'test'
+  ...
+# Subtest: red/gold display furniture is not promoted to support outside the exact dais/central-cover domain
+ok 4 - red/gold display furniture is not promoted to support outside the exact dais/central-cover domain
+  ---
+  duration_ms: 2.99969
+  type: 'test'
+  ...
+# Subtest: unregistered same-material slope and source index/attribute changes fail closed
+ok 5 - unregistered same-material slope and source index/attribute changes fail closed
+  ---
+  duration_ms: 1.084137
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] ?zones=all 模式：加载所有区...
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# [ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.1ms
+# [ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+# [ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+# [ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+# [ZoneManager] 卸载区域 axis-courts
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 卸载区域 ningshou
+# [ZoneManager] 卸载区域 outer-east
+# [ZoneManager] 卸载区域 outer-west
+# [ZoneManager] 卸载区域 garden
+# Subtest: retained Tihe Lijing Chengqian actual finished faces support full player before geometric entry
+ok 6 - retained Tihe Lijing Chengqian actual finished faces support full player before geometric entry
+  ---
+  duration_ms: 9004.136453
+  type: 'test'
+  ...
+# Subtest: finite grouped surfaces retain unique source meshes, exact face count and untouched renders
+ok 7 - finite grouped surfaces retain unique source meshes, exact face count and untouched renders
+  ---
+  duration_ms: 12.651442
+  type: 'test'
+  ...
+# Subtest: wrong authored frame fails closed without partial collider registration
+ok 8 - wrong authored frame fails closed without partial collider registration
+  ---
+  duration_ms: 1.828082
+  type: 'test'
+  ...
+# Subtest: wrong authored item dimensions fail closed; unrelated zone untouched
+ok 9 - wrong authored item dimensions fail closed; unrelated zone untouched
+  ---
+  duration_ms: 0.868313
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9984.870834

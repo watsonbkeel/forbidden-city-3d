@@ -1,0 +1,833 @@
+TAP version 13
+# Subtest: source-owned stair kind is accepted only for two IDs
+ok 1 - source-owned stair kind is accepted only for two IDs
+  ---
+  duration_ms: 1.157078
+  type: 'test'
+  ...
+# Subtest: full square ramp maximum rather than center, no artificial maxTop cut
+ok 2 - full square ramp maximum rather than center, no artificial maxTop cut
+  ---
+  duration_ms: 0.906692
+  type: 'test'
+  ...
+# Subtest: real platform top wins at ramp junction; floor retained when NPC blocks pose
+ok 3 - real platform top wins at ramp junction; floor retained when NPC blocks pose
+  ---
+  duration_ms: 0.650778
+  type: 'test'
+  ...
+# Subtest: ramp ascent lifts exact feet and checks source low beam, never airborne autostep
+ok 4 - ramp ascent lifts exact feet and checks source low beam, never airborne autostep
+  ---
+  duration_ms: 0.699461
+  type: 'test'
+  ...
+# Subtest: real gravity lands on existing ramp witness, not on NPC or a cut plane
+ok 5 - real gravity lands on existing ramp witness, not on NPC or a cut plane
+  ---
+  duration_ms: 0.498619
+  type: 'test'
+  ...
+# Subtest: airborne horizontal ascent cannot cross downward through the engineering ramp, though below-sheet initial poses are not closed solids
+ok 6 - airborne horizontal ascent cannot cross downward through the engineering ramp, though below-sheet initial poses are not closed solids
+  ---
+  duration_ms: 0.152039
+  type: 'test'
+  ...
+# Subtest: wide platform front edge stays in full-body scope through lateral movement and input release
+ok 7 - wide platform front edge stays in full-body scope through lateral movement and input release
+  ---
+  duration_ms: 28.028229
+  type: 'test'
+  ...
+# Subtest: held navigation follows exact ramp copy, source translation, same-count update and unload
+ok 8 - held navigation follows exact ramp copy, source translation, same-count update and unload
+  ---
+  duration_ms: 6.547416
+  type: 'test'
+  ...
+# Subtest: invalid ramp update atomically retains prior generation and rejects tapered surface
+ok 9 - invalid ramp update atomically retains prior generation and rejects tapered surface
+  ---
+  duration_ms: 0.455084
+  type: 'test'
+  ...
+# Subtest: complete square support ends at side contact not at center edge; no phantom ramp outside
+ok 10 - complete square support ends at side contact not at center edge; no phantom ramp outside
+  ---
+  duration_ms: 0.320061
+  type: 'test'
+  ...
+# Subtest: thin post between clear endpoints blocks the complete translate segment
+ok 11 - thin post between clear endpoints blocks the complete translate segment
+  ---
+  duration_ms: 0.73865
+  type: 'test'
+  ...
+# Subtest: dynamic actor stops descent without becoming floor; removing actor next call restores ramp landing
+ok 12 - dynamic actor stops descent without becoming floor; removing actor next call restores ramp landing
+  ---
+  duration_ms: 1.304339
+  type: 'test'
+  ...
+# Subtest: failed step keeps physical floor while moving low beam and NPC are queried fresh
+ok 13 - failed step keeps physical floor while moving low beam and NPC are queried fresh
+  ---
+  duration_ms: 0.614443
+  type: 'test'
+  ...
+# Subtest: Qianqing three southern door groups each retain four actual folded leaves
+ok 14 - Qianqing three southern door groups each retain four actual folded leaves
+  ---
+  duration_ms: 84.87026
+  type: 'test'
+  ...
+# Subtest: four separate front-terrace burners exist and leave the central axis clear
+ok 15 - four separate front-terrace burners exist and leave the central axis clear
+  ---
+  duration_ms: 284.380285
+  type: 'test'
+  ...
+# Subtest: production four terrace instances actually register their matching surface owners
+ok 16 - production four terrace instances actually register their matching surface owners
+  ---
+  duration_ms: 208.674386
+  type: 'test'
+  ...
+# Subtest: four permanent exact display surface owners, not a whole dais exclusion
+ok 17 - four permanent exact display surface owners, not a whole dais exclusion
+  ---
+  duration_ms: 48.999801
+  type: 'test'
+  ...
+# Subtest: existing finite floor preserves exact engineering height and no source means no witness
+ok 18 - existing finite floor preserves exact engineering height and no source means no witness
+  ---
+  duration_ms: 6.307545
+  type: 'test'
+  ...
+# Subtest: scope must protect full half-metre footprint on activation and handoff
+ok 19 - scope must protect full half-metre footprint on activation and handoff
+  ---
+  duration_ms: 0.379019
+  type: 'test'
+  ...
+# Subtest: source-bound floor catches descent, does not create ceiling or reset upward jump
+ok 20 - source-bound floor catches descent, does not create ceiling or reset upward jump
+  ---
+  duration_ms: 1.696518
+  type: 'test'
+  ...
+# Subtest: leaving bounded scope retains actual floor for the final horizontal handoff
+ok 21 - leaving bounded scope retains actual floor for the final horizontal handoff
+  ---
+  duration_ms: 0.638219
+  type: 'test'
+  ...
+# Subtest: south exit hands back the inherited center-floor semantics only after leaving local scope
+ok 22 - south exit hands back the inherited center-floor semantics only after leaving local scope
+  ---
+  duration_ms: 2.078322
+  type: 'test'
+  ...
+# Subtest: R113 Lijing local body uses only its live existing floor and allows clear paired openings
+not ok 23 - R113 Lijing local body uses only its live existing floor and allows clear paired openings
+  ---
+  duration_ms: 926.831214
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r113/lijing-contact.test.mjs:3:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r113/lijing-contact.test.mjs:4:192)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: R113 actual Lijing retains shell and supplies the whole source-guided west-room group
+ok 24 - R113 actual Lijing retains shell and supplies the whole source-guided west-room group
+  ---
+  duration_ms: 84.54325
+  type: 'test'
+  ...
+# Subtest: R113 invalid live source floor rejects before deleting the original generic group
+ok 25 - R113 invalid live source floor rejects before deleting the original generic group
+  ---
+  duration_ms: 11.488067
+  type: 'test'
+  ...
+# Subtest: R113 two fitted front wings preserve scale and create a bounded rear circulation gap
+not ok 26 - R113 two fitted front wings preserve scale and create a bounded rear circulation gap
+  ---
+  duration_ms: 1.282727
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r113/side-access-fit.test.mjs:5:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    417 !== 422
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 422
+  actual: 417
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r113/side-access-fit.test.mjs:6:54)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: R113 two exact side interfaces retain full-square platform until the body leaves it
+ok 27 - R113 two exact side interfaces retain full-square platform until the body leaves it
+  ---
+  duration_ms: 926.086757
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+# [ZoneManager] 卸载区域 east-six
+# Subtest: R114 actual existing Environment ground witnesses a kinematic entry and loses authority when removed
+ok 28 - R114 actual existing Environment ground witnesses a kinematic entry and loses authority when removed
+  ---
+  duration_ms: 8086.979104
+  type: 'test'
+  ...
+# Subtest: R114 real Environment source catches descent after an actual header impact, without granting removed ground
+ok 29 - R114 real Environment source catches descent after an actual header impact, without granting removed ground
+  ---
+  duration_ms: 32.668024
+  type: 'test'
+  ...
+# Subtest: R114 existing flight collector includes actual moved wing and new gate finished vertices
+ok 30 - R114 existing flight collector includes actual moved wing and new gate finished vertices
+  ---
+  duration_ms: 1012.193205
+  type: 'test'
+  ...
+# Subtest: R114 actual east-six has a bounded central moon terrace and one west court passage
+ok 31 - R114 actual east-six has a bounded central moon terrace and one west court passage
+  ---
+  duration_ms: 959.723819
+  type: 'test'
+  ...
+# Subtest: R114 only two exact front wings acquire the existing hard-gable profile
+ok 32 - R114 only two exact front wings acquire the existing hard-gable profile
+  ---
+  duration_ms: 12.229134
+  type: 'test'
+  ...
+# Subtest: R114 old-kind identity cannot borrow the new environment handoff source
+ok 33 - R114 old-kind identity cannot borrow the new environment handoff source
+  ---
+  duration_ms: 1.123707
+  type: 'test'
+  ...
+# Subtest: R114 altered retained step geometry rejects before source movement or append
+ok 34 - R114 altered retained step geometry rejects before source movement or append
+  ---
+  duration_ms: 77.660526
+  type: 'test'
+  ...
+# Subtest: R114 only west front wing moves south 3.5m with its exact room/door/map identity
+ok 35 - R114 only west front wing moves south 3.5m with its exact room/door/map identity
+  ---
+  duration_ms: 953.70859
+  type: 'test'
+  ...
+# Subtest: R114 moved-wing true cap has a separately bounded source-bound original doorway entry
+ok 36 - R114 moved-wing true cap has a separately bounded source-bound original doorway entry
+  ---
+  duration_ms: 955.046955
+  type: 'test'
+  ...
+# Subtest: R114 moved west wing retains two actual visible platform bodies, not only center walkable
+ok 37 - R114 moved west wing retains two actual visible platform bodies, not only center walkable
+  ---
+  duration_ms: 980.809778
+  type: 'test'
+  ...
+# Subtest: composed surface keeps physical floor beneath an obstructing NPC and does not make NPC a support
+ok 38 - composed surface keeps physical floor beneath an obstructing NPC and does not make NPC a support
+  ---
+  duration_ms: 2.569408
+  type: 'test'
+  ...
+# Subtest: dynamic retreat never bypasses a static box or a second actor
+ok 39 - dynamic retreat never bypasses a static box or a second actor
+  ---
+  duration_ms: 2.899549
+  type: 'test'
+  ...
+# Subtest: composed contact selects legal floor below overhead room roof and preserves blocked low roof
+ok 40 - composed contact selects legal floor below overhead room roof and preserves blocked low roof
+  ---
+  duration_ms: 0.368544
+  type: 'test'
+  ...
+# Subtest: scope-local live clone obstacles are used without importing navigation-excluded dynamic actors
+ok 41 - scope-local live clone obstacles are used without importing navigation-excluded dynamic actors
+  ---
+  duration_ms: 0.214532
+  type: 'test'
+  ...
+# Subtest: world ground is physical support, not a rescue onto a roof above the feet
+ok 42 - world ground is physical support, not a rescue onto a roof above the feet
+  ---
+  duration_ms: 0.560341
+  type: 'test'
+  ...
+# Subtest: local sweep checks full feet-to-head and the actual world boundary interfaces
+ok 43 - local sweep checks full feet-to-head and the actual world boundary interfaces
+  ---
+  duration_ms: 0.177296
+  type: 'test'
+  ...
+# Subtest: synthetic empty collision space without an explicit world-ground witness has no invented floor
+ok 44 - synthetic empty collision space without an explicit world-ground witness has no invented floor
+  ---
+  duration_ms: 0.150726
+  type: 'test'
+  ...
+# Subtest: full body landing has exact top witness without foot exemption or body shrink
+ok 45 - full body landing has exact top witness without foot exemption or body shrink
+  ---
+  duration_ms: 1.569136
+  type: 'test'
+  ...
+# Subtest: face cutting contact permits tangential/away movement and immediately blocks inward motion
+ok 46 - face cutting contact permits tangential/away movement and immediately blocks inward motion
+  ---
+  duration_ms: 0.200922
+  type: 'test'
+  ...
+# Subtest: corner and edge-only contact are not positive volume, but diagonal inward is blocked
+ok 47 - corner and edge-only contact are not positive volume, but diagonal inward is blocked
+  ---
+  duration_ms: 0.129725
+  type: 'test'
+  ...
+# Subtest: long horizontal motion cannot tunnel through a thin real board
+ok 48 - long horizontal motion cannot tunnel through a thin real board
+  ---
+  duration_ms: 0.117426
+  type: 'test'
+  ...
+# Subtest: jump head sweep stops at a low ceiling, not its bounding top
+ok 49 - jump head sweep stops at a low ceiling, not its bounding top
+  ---
+  duration_ms: 0.403966
+  type: 'test'
+  ...
+# Subtest: square foot corner overlaps actual table top beyond the old radius .3
+ok 50 - square foot corner overlaps actual table top beyond the old radius .3
+  ---
+  duration_ms: 0.320502
+  type: 'test'
+  ...
+# Subtest: upper roof cannot hide a reachable lower floor; low roof blocks pose without erasing floor
+ok 51 - upper roof cannot hide a reachable lower floor; low roof blocks pose without erasing floor
+  ---
+  duration_ms: 1.685001
+  type: 'test'
+  ...
+# Subtest: a taller neighboring solid blocks a lower landing pose rather than becoming a fake floor
+ok 52 - a taller neighboring solid blocks a lower landing pose rather than becoming a fake floor
+  ---
+  duration_ms: 0.181513
+  type: 'test'
+  ...
+# Subtest: unsupported non-box ownership is rejected explicitly, never reinterpreted as an AABB floor
+ok 53 - unsupported non-box ownership is rejected explicitly, never reinterpreted as an AABB floor
+  ---
+  duration_ms: 0.520312
+  type: 'test'
+  ...
+# Subtest: invalid body dimensions and nonfinite/inverted solids are rejected rather than bypassed
+ok 54 - invalid body dimensions and nonfinite/inverted solids are rejected rather than bypassed
+  ---
+  duration_ms: 0.705274
+  type: 'test'
+  ...
+# Subtest: a separated first axis cannot hide invalid geometry on a later axis
+ok 55 - a separated first axis cannot hide invalid geometry on a later axis
+  ---
+  duration_ms: 0.365869
+  type: 'test'
+  ...
+# Subtest: local falling body lands exactly on thin real top with physical support
+ok 56 - local falling body lands exactly on thin real top with physical support
+  ---
+  duration_ms: 2.871953
+  type: 'test'
+  ...
+# Subtest: airborne query cannot snap a lower foot upward onto a nearby high top
+ok 57 - airborne query cannot snap a lower foot upward onto a nearby high top
+  ---
+  duration_ms: 0.360351
+  type: 'test'
+  ...
+# Subtest: upward head hits real roof and remains airborne, without changing floor into roof support
+ok 58 - upward head hits real roof and remains airborne, without changing floor into roof support
+  ---
+  duration_ms: 0.653471
+  type: 'test'
+  ...
+# Subtest: NPC vertical collision does not ground player or reset jump
+ok 59 - NPC vertical collision does not ground player or reset jump
+  ---
+  duration_ms: 2.349719
+  type: 'test'
+  ...
+# Subtest: outside region vertical returns null and does not mutate airborne state
+ok 60 - outside region vertical returns null and does not mutate airborne state
+  ---
+  duration_ms: 0.153491
+  type: 'test'
+  ...
+# Subtest: grounded step uses lift translate settle and head clearance, not only endpoint
+ok 61 - grounded step uses lift translate settle and head clearance, not only endpoint
+  ---
+  duration_ms: 0.517517
+  type: 'test'
+  ...
+# Subtest: airborne and unspecified callers cannot auto-step
+ok 62 - airborne and unspecified callers cannot auto-step
+  ---
+  duration_ms: 0.760782
+  type: 'test'
+  ...
+# Subtest: walking off a ledge preserves true feet until a swept gravity descent
+ok 63 - walking off a ledge preserves true feet until a swept gravity descent
+  ---
+  duration_ms: 0.3194
+  type: 'test'
+  ...
+# Subtest: existing NPC overlap permits unlifted retreat but never grants grounded autostep
+ok 64 - existing NPC overlap permits unlifted retreat but never grants grounded autostep
+  ---
+  duration_ms: 0.506371
+  type: 'test'
+  ...
+# Subtest: kinematic grounded descent settles with a full-body sweep but refuses unsupported large drops
+ok 65 - kinematic grounded descent settles with a full-body sweep but refuses unsupported large drops
+  ---
+  duration_ms: 0.370156
+  type: 'test'
+  ...
+# Subtest: square corner overlap with an actual NPC capsule is not missed by circular-player math
+ok 66 - square corner overlap with an actual NPC capsule is not missed by circular-player math
+  ---
+  duration_ms: 1.862507
+  type: 'test'
+  ...
+# Subtest: a falling square body contacts NPC top but moving away from exact contact is free
+ok 67 - a falling square body contacts NPC top but moving away from exact contact is free
+  ---
+  duration_ms: 0.510216
+  type: 'test'
+  ...
+# Subtest: existing dynamic overlap may strictly retreat but never deepen or cross through the actor
+ok 68 - existing dynamic overlap may strictly retreat but never deepen or cross through the actor
+  ---
+  duration_ms: 0.484868
+  type: 'test'
+  ...
+# Subtest: long motion cannot tunnel through an NPC when both endpoints are clear
+ok 69 - long motion cannot tunnel through an NPC when both endpoints are clear
+  ---
+  duration_ms: 1.840965
+  type: 'test'
+  ...
+# Subtest: exact square-to-capsule boundary touch is clear while positive depth blocks
+ok 70 - exact square-to-capsule boundary touch is clear while positive depth blocks
+  ---
+  duration_ms: 0.288132
+  type: 'test'
+  ...
+# Subtest: deep centered overlap permits a small provably outward step instead of saturated-distance lock
+ok 71 - deep centered overlap permits a small provably outward step instead of saturated-distance lock
+  ---
+  duration_ms: 0.138669
+  type: 'test'
+  ...
+# Subtest: escaping one capsule part cannot introduce overlap with another part of the same actor
+ok 72 - escaping one capsule part cannot introduce overlap with another part of the same actor
+  ---
+  duration_ms: 0.241522
+  type: 'test'
+  ...
+# Subtest: invalid later dynamic parts and motion are rejected before broadphase early exits
+ok 73 - invalid later dynamic parts and motion are rejected before broadphase early exits
+  ---
+  duration_ms: 0.430777
+  type: 'test'
+  ...
+# Subtest: scope is explicit metadata, uses swept square footprint and includes high airborne poses
+ok 74 - scope is explicit metadata, uses swept square footprint and includes high airborne poses
+  ---
+  duration_ms: 2.173924
+  type: 'test'
+  ...
+# Subtest: invalid region metadata is rejected atomically without registering geometry
+ok 75 - invalid region metadata is rejected atomically without registering geometry
+  ---
+  duration_ms: 0.428924
+  type: 'test'
+  ...
+# Subtest: registration copies metadata and caller mutation cannot silently move an installed region
+ok 76 - registration copies metadata and caller mutation cannot silently move an installed region
+  ---
+  duration_ms: 0.166009
+  type: 'test'
+  ...
+# Subtest: same-count update follows explicit owner translation and held navigation clone sees it
+ok 77 - same-count update follows explicit owner translation and held navigation clone sees it
+  ---
+  duration_ms: 0.714583
+  type: 'test'
+  ...
+# Subtest: held clone reads live local S obstacles after append/update/remove without a stale collider array
+ok 78 - held clone reads live local S obstacles after append/update/remove without a stale collider array
+  ---
+  duration_ms: 0.776105
+  type: 'test'
+  ...
+# Subtest: cold and warm per-frame navigation clones borrow one source-generation region index
+ok 79 - cold and warm per-frame navigation clones borrow one source-generation region index
+  ---
+  duration_ms: 0.596706
+  type: 'test'
+  ...
+# Subtest: a registered scope cannot disappear during collider update
+ok 80 - a registered scope cannot disappear during collider update
+  ---
+  duration_ms: 0.3928
+  type: 'test'
+  ...
+# Subtest: scope owner cannot be an overhead proxy masquerading as ordinary solid ownership
+ok 81 - scope owner cannot be an overhead proxy masquerading as ordinary solid ownership
+  ---
+  duration_ms: 0.336505
+  type: 'test'
+  ...
+# Subtest: a diagonal swept bounding rectangle alone cannot activate an untouched domain
+ok 82 - a diagonal swept bounding rectangle alone cannot activate an untouched domain
+  ---
+  duration_ms: 0.341532
+  type: 'test'
+  ...
+# Subtest: actual permanent Yangxin B owns exactly one dispatch region across S load and unload
+ok 83 - actual permanent Yangxin B owns exactly one dispatch region across S load and unload
+  ---
+  duration_ms: 242.536979
+  type: 'test'
+  ...
+# [
+#   {
+#     layer: 'B',
+#     fps: 10,
+#     dir: 6,
+#     ground: {
+#       x: 9.719999999999999,
+#       z: -2.776500896388029,
+#       feet: 0.6,
+#       ground: 0.6,
+#       air: false,
+#       onSupport: true
+#     },
+#     landed: {
+#       x: 9.721537694541723,
+#       z: -1.0278059823649528,
+#       feet: 1.94,
+#       ground: 1.94,
+#       air: false,
+#       onSupport: true
+#     },
+#     end: {
+#       x: 9.721537694541723,
+#       z: -5.634133327169764,
+#       feet: 0.6,
+#       ground: 0.6,
+#       air: false,
+#       onSupport: true
+#     },
+#     afterJump: {
+#       x: 9.721537694541723,
+#       z: -5.672793030306252,
+#       feet: 0.6,
+#       ground: 0.6,
+#       air: false,
+#       onSupport: true
+#     },
+#     firstVerticalOverlap: null,
+#     distance: 4.606327344804811,
+#     engineCollision: false
+#   },
+#   {
+#     layer: 'B',
+#     fps: 30,
+#     dir: 6,
+#     ground: {
+#       x: 9.719999999999999,
+#       z: -2.900313063737201,
+#       feet: 0.6,
+#       ground: 0.6,
+#       air: false,
+#       onSupport: true
+#     },
+#     landed: {
+#       x: 9.724362345722412,
+#       z: -0.9134712690392348,
+#       feet: 1.94,
+#       ground: 1.94,
+#       air: false,
+#       onSupport: true
+#     },
+#     end: {
+#       x: 9.724362345722412,
+#       z: -5.689830596466265,
+#       feet: 0.6,
+#       ground: 0.6,
+#       air: false,
+#       onSupport: true
+#     },
+#     afterJump: {
+#       x: 9.724362345722412,
+#       z: -5.689830596466265,
+#       feet: 0.6,
+#       ground: 0.6,
+#       air: false,
+#       onSupport: true
+#     },
+#     firstVerticalOverlap: null,
+#     distance: 4.776359327427031,
+#     engineCollision: false
+#   },
+#   {
+#     layer: 'B',
+#     fps: 60,
+#     dir: 6,
+#     ground: {
+#       x: 9.719999999999999,
+#       z: -2.9366135349945353,
+#       feet: 0.6,
+#       ground: 0.6,
+#       air: false,
+#       onSupport: true
+#     },
+#     landed: {
+#       x: 9.725207735239223,
+#       z: -0.8689992431559972,
+#       feet: 1.94,
+#       ground: 1.94,
+#       air: false,
+#       onSupport: true
+#     },
+#     end: {
+#       x: 9.725207735239223,
+#       z: -5.689941716015653,
+#       feet: 0.6,
+#       ground: 0.6,
+#       air: false,
+#       onSupport: true
+#     },
+#     afterJump: {
+#       x: 9.725207735239223,
+#       z: -5.689941716015653,
+#       feet: 0.6,
+#       ground: 0.6,
+#       air: false,
+#       onSupport: true
+#     },
+#     firstVerticalOverlap: null,
+#     distance: 4.820942472859656,
+#     engineCollision: false
+#   },
+#   {
+#     layer: 'S',
+#     fps: 10,
+#     dir: 6,
+#     ground: {
+#       x: 9.719999999999999,
+#       z: -2.776500896388029,
+#       feet: 0.6,
+#       ground: 0.6,
+#       air: false,
+#       onSupport: true
+#     },
+#     landed: {
+#       x: 9.721537694541723,
+#       z: -1.0278059823649528,
+#       feet: 1.94,
+#       ground: 1.94,
+#       air: false,
+#       onSupport: true
+#     },
+#     end: {
+#       x: 9.721537694541723,
+#       z: -5.634133327169764,
+#       feet: 0.6,
+#       ground: 0.6,
+#       air: false,
+#       onSupport: true
+#     },
+#     afterJump: {
+#       x: 9.721537694541723,
+#       z: -5.672793030306252,
+#       feet: 0.6,
+#       ground: 0.6,
+#       air: false,
+#       onSupport: true
+#     },
+#     firstVerticalOverlap: null,
+#     distance: 4.606327344804811,
+#     engineCollision: false
+#   },
+#   {
+#     layer: 'S',
+#     fps: 30,
+#     dir: 6,
+#     ground: {
+#       x: 9.719999999999999,
+#       z: -2.900313063737201,
+#       feet: 0.6,
+#       ground: 0.6,
+#       air: false,
+#       onSupport: true
+#     },
+#     landed: {
+#       x: 9.724362345722412,
+#       z: -0.9134712690392348,
+#       feet: 1.94,
+#       ground: 1.94,
+#       air: false,
+#       onSupport: true
+#     },
+#     end: {
+#       x: 9.724362345722412,
+#       z: -5.689830596466265,
+#       feet: 0.6,
+#       ground: 0.6,
+#       air: false,
+#       onSupport: true
+#     },
+#     afterJump: {
+#       x: 9.724362345722412,
+#       z: -5.689830596466265,
+#       feet: 0.6,
+#       ground: 0.6,
+#       air: false,
+#       onSupport: true
+#     },
+#     firstVerticalOverlap: null,
+#     distance: 4.776359327427031,
+#     engineCollision: false
+#   },
+#   {
+#     layer: 'S',
+#     fps: 60,
+#     dir: 6,
+#     ground: {
+#       x: 9.719999999999999,
+#       z: -2.9366135349945353,
+#       feet: 0.6,
+#       ground: 0.6,
+#       air: false,
+#       onSupport: true
+#     },
+#     landed: {
+#       x: 9.725207735239223,
+#       z: -0.8689992431559972,
+#       feet: 1.94,
+#       ground: 1.94,
+#       air: false,
+#       onSupport: true
+#     },
+#     end: {
+#       x: 9.725207735239223,
+#       z: -5.689941716015653,
+#       feet: 0.6,
+#       ground: 0.6,
+#       air: false,
+#       onSupport: true
+#     },
+#     afterJump: {
+#       x: 9.725207735239223,
+#       z: -5.689941716015653,
+#       feet: 0.6,
+#       ground: 0.6,
+#       air: false,
+#       onSupport: true
+#     },
+#     firstVerticalOverlap: null,
+#     distance: 4.820942472859656,
+#     engineCollision: false
+#   }
+# ]
+# Subtest: reachable east kang ordinary south descent stays collision-free B/10
+ok 84 - reachable east kang ordinary south descent stays collision-free B/10
+  ---
+  duration_ms: 1.080833
+  type: 'test'
+  ...
+# Subtest: reachable east kang ordinary south descent stays collision-free B/30
+ok 85 - reachable east kang ordinary south descent stays collision-free B/30
+  ---
+  duration_ms: 0.244047
+  type: 'test'
+  ...
+# Subtest: reachable east kang ordinary south descent stays collision-free B/60
+ok 86 - reachable east kang ordinary south descent stays collision-free B/60
+  ---
+  duration_ms: 0.11378
+  type: 'test'
+  ...
+# Subtest: reachable east kang ordinary south descent stays collision-free S/10
+ok 87 - reachable east kang ordinary south descent stays collision-free S/10
+  ---
+  duration_ms: 0.072999
+  type: 'test'
+  ...
+# Subtest: reachable east kang ordinary south descent stays collision-free S/30
+ok 88 - reachable east kang ordinary south descent stays collision-free S/30
+  ---
+  duration_ms: 0.182013
+  type: 'test'
+  ...
+# Subtest: reachable east kang ordinary south descent stays collision-free S/60
+ok 89 - reachable east kang ordinary south descent stays collision-free S/60
+  ---
+  duration_ms: 0.303976
+  type: 'test'
+  ...
+# Subtest: a later plain substep retains the exact foot lift already accepted in the same horizontal call
+ok 90 - a later plain substep retains the exact foot lift already accepted in the same horizontal call
+  ---
+  duration_ms: 3.089009
+  type: 'test'
+  ...
+1..90
+# tests 90
+# suites 0
+# pass 88
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 21390.650825

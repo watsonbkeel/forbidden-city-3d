@@ -1,0 +1,65 @@
+TAP version 13
+# Subtest: R125 finite entry admits only its two registered scopes without changing ordinary solver rules
+ok 1 - R125 finite entry admits only its two registered scopes without changing ordinary solver rules
+  ---
+  duration_ms: 1.45893
+  type: 'test'
+  ...
+# Subtest: R125 actual slab binding rejects unknown/incorrect source and height
+ok 2 - R125 actual slab binding rejects unknown/incorrect source and height
+  ---
+  duration_ms: 1.040552
+  type: 'test'
+  ...
+# Subtest: R125 wrong named or mapped rear target fails before kit allocation
+ok 3 - R125 wrong named or mapped rear target fails before kit allocation
+  ---
+  duration_ms: 2.429073
+  type: 'test'
+  ...
+# Subtest: R125 actual slab contacts use live ordinary owner registration; invalid update atomically fails and unload removes scopes
+ok 4 - R125 actual slab contacts use live ordinary owner registration; invalid update atomically fails and unload removes scopes
+  ---
+  duration_ms: 1452.918908
+  type: 'test'
+  ...
+# Subtest: R125 appends exact two rear wings, preserving all old declarations
+ok 5 - R125 appends exact two rear wings, preserving all old declarations
+  ---
+  duration_ms: 2.089294
+  type: 'test'
+  ...
+# Subtest: R125 real ready pair is bounded, four-leaf, two-window and retains all old physical payload
+ok 6 - R125 real ready pair is bounded, four-leaf, two-window and retains all old physical payload
+  ---
+  duration_ms: 1479.132116
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 加载区域 east-six（东六宫），耗时 0.1ms
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 加载区域 east-six（东六宫），耗时 917.7ms
+# [ZoneManager] 卸载区域 east-six
+# Subtest: R125 actual ready east-six new pair owners follow normal cache/reentry/evict without retained invisible bodies
+ok 7 - R125 actual ready east-six new pair owners follow normal cache/reentry/evict without retained invisible bodies
+  ---
+  duration_ms: 8891.601108
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 12892.275676

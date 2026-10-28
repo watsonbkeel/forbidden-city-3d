@@ -1,0 +1,27 @@
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+✖ retained Tihe Lijing Chengqian actual finished faces support full player before geometric entry (3999.06723ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4317.991892
+
+✖ failing tests:
+
+test at tests/r130/finished-courtyard-support.test.mjs:2:1
+✖ retained Tihe Lijing Chengqian actual finished faces support full player before geometric entry (3999.06723ms)
+  TypeError: Explicit Xiqing roof faces and identity required
+      at createXiqingSurface (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/src/controls/XiqingRoofSurface.js:18:62)
+      at file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/src/controls/RetainedCourtyardAccess.js:26:129
+      at Mesh.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7600:3)
+      at Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)
+      at registerRetainedCourtyardAccess (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/src/controls/RetainedCourtyardAccess.js:19:9)
+      at ZoneBase.build (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/src/scene/zones/ZoneBase.js:144:5)
+      at ZoneManager.init (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/src/scene/zones/ZoneManager.js:87:28)
+      at buildR52World (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/lib/r52-world.mjs:48:119)
+      at async TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r130/finished-courtyard-support.test.mjs:2:122)
+      at async Test.run (node:internal/test_runner/test:1389:7)

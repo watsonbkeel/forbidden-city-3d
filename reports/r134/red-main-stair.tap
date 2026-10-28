@@ -1,0 +1,30 @@
+TAP version 13
+# Subtest: R134 original Chuxiu south marble steps carry real player from courtyard into the central doorway at 10/30/60Hz
+not ok 1 - R134 original Chuxiu south marble steps carry real player from courtyard into the central doorway at 10/30/60Hz
+  ---
+  duration_ms: 1096.808193
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r134/main-stair.test.mjs:2:1'
+  failureType: 'testCodeFailure'
+  error: 'old route must pass original south steps, not stop at420.96'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r134/main-stair.test.mjs:2:528
+    withTerrainController (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/lib/r91-controller-clock.mjs:3:633)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r134/main-stair.test.mjs:2:310)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1349.442384

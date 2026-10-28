@@ -1,0 +1,32 @@
+TAP version 13
+# Subtest: R134 both original front-wing wooden thresholds support the full approaching foot at the actual .67m top
+not ok 1 - R134 both original front-wing wooden thresholds support the full approaching foot at the actual .67m top
+  ---
+  duration_ms: 1279.275069
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r134/wing-entry.test.mjs:2:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(furnitureContact(cm,x,417,1,.5).surface?.height>=Math.fround(.67))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r134/wing-entry.test.mjs:2:312)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1535.841147

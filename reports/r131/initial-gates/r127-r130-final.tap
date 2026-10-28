@@ -1,0 +1,159 @@
+TAP version 13
+# Subtest: R126 exact mountain geometry/physics retained at 0,0,0
+ok 1 - R126 exact mountain geometry/physics retained at 0,0,0
+  ---
+  duration_ms: 345.19685
+  type: 'test'
+  ...
+# Subtest: R126 exact mountain geometry/physics retained at 27,0,538.9
+ok 2 - R126 exact mountain geometry/physics retained at 27,0,538.9
+  ---
+  duration_ms: 306.583573
+  type: 'test'
+  ...
+# Subtest: higher priority arrival preempts only at an explicit safe checkpoint and resumes the same generator
+ok 3 - higher priority arrival preempts only at an explicit safe checkpoint and resumes the same generator
+  ---
+  duration_ms: 1.628115
+  type: 'test'
+  ...
+# Subtest: equal rank keeps active order; far checkpoints receive progress despite endless urgent arrivals
+ok 4 - equal rank keeps active order; far checkpoints receive progress despite endless urgent arrivals
+  ---
+  duration_ms: 0.735324
+  type: 'test'
+  ...
+# Subtest: preemptible render work is resumable and cancellation closes a suspended iterator exactly once
+ok 5 - preemptible render work is resumable and cancellation closes a suspended iterator exactly once
+  ---
+  duration_ms: 0.284207
+  type: 'test'
+  ...
+# Subtest: bounded render steps do not rescan all priorities for every vertex chunk within one frame
+ok 6 - bounded render steps do not rescan all priorities for every vertex chunk within one frame
+  ---
+  duration_ms: 0.378087
+  type: 'test'
+  ...
+# Subtest: same-path metadata interleaving preserves every sample, point, length and swept-body constraint
+ok 7 - same-path metadata interleaving preserves every sample, point, length and swept-body constraint
+  ---
+  duration_ms: 26.572177
+  type: 'test'
+  ...
+# Subtest: paused path cannot publish a stale binding after source changes
+ok 8 - paused path cannot publish a stale binding after source changes
+  ---
+  duration_ms: 1.515706
+  type: 'test'
+  ...
+# Subtest: paused path cannot publish a stale binding after actor-spec changes
+ok 9 - paused path cannot publish a stale binding after actor-spec changes
+  ---
+  duration_ms: 0.869766
+  type: 'test'
+  ...
+# Subtest: paused path cannot publish a stale binding after world changes
+ok 10 - paused path cannot publish a stale binding after world changes
+  ---
+  duration_ms: 1.130798
+  type: 'test'
+  ...
+# Subtest: interleaved sleeping, seated and standing preparation retains exact final geometry and bounded publication
+ok 11 - interleaved sleeping, seated and standing preparation retains exact final geometry and bounded publication
+  ---
+  duration_ms: 42.740884
+  type: 'test'
+  ...
+# Subtest: world version change cancels paused model without publishing it
+ok 12 - world version change cancels paused model without publishing it
+  ---
+  duration_ms: 0.426891
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 卸载区域 axis-courts
+# Subtest: actual Taihe prefix paving and door thresholds have the same finite support channel as the rest of the route
+ok 13 - actual Taihe prefix paving and door thresholds have the same finite support channel as the rest of the route
+  ---
+  duration_ms: 8987.444608
+  type: 'test'
+  ...
+# Subtest: departure avoids the retained east display plinth without moving it or shrinking the lower-body envelope
+ok 14 - departure avoids the retained east display plinth without moving it or shrinking the lower-body envelope
+  ---
+  duration_ms: 2.258443
+  type: 'test'
+  ...
+# Subtest: finite triangle/disk support maximizes actual slope only within their intersection
+ok 15 - finite triangle/disk support maximizes actual slope only within their intersection
+  ---
+  duration_ms: 1.789669
+  type: 'test'
+  ...
+# Subtest: red/gold display furniture is not promoted to support outside the exact dais/central-cover domain
+ok 16 - red/gold display furniture is not promoted to support outside the exact dais/central-cover domain
+  ---
+  duration_ms: 2.531994
+  type: 'test'
+  ...
+# Subtest: unregistered same-material slope and source index/attribute changes fail closed
+ok 17 - unregistered same-material slope and source index/attribute changes fail closed
+  ---
+  duration_ms: 0.810788
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] ?zones=all 模式：加载所有区...
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+# [ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+# [ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+# [ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+# [ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+# [ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+# [ZoneManager] 卸载区域 axis-courts
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 卸载区域 west-six
+# [ZoneManager] 卸载区域 ningshou
+# [ZoneManager] 卸载区域 outer-east
+# [ZoneManager] 卸载区域 outer-west
+# [ZoneManager] 卸载区域 garden
+# Subtest: retained Tihe Lijing Chengqian actual finished faces support full player before geometric entry
+ok 18 - retained Tihe Lijing Chengqian actual finished faces support full player before geometric entry
+  ---
+  duration_ms: 8128.283185
+  type: 'test'
+  ...
+# Subtest: finite grouped surfaces retain unique source meshes, exact face count and untouched renders
+ok 19 - finite grouped surfaces retain unique source meshes, exact face count and untouched renders
+  ---
+  duration_ms: 11.608064
+  type: 'test'
+  ...
+# Subtest: wrong authored frame fails closed without partial collider registration
+ok 20 - wrong authored frame fails closed without partial collider registration
+  ---
+  duration_ms: 1.4913
+  type: 'test'
+  ...
+# Subtest: wrong authored item dimensions fail closed; unrelated zone untouched
+ok 21 - wrong authored item dimensions fail closed; unrelated zone untouched
+  ---
+  duration_ms: 0.806412
+  type: 'test'
+  ...
+1..21
+# tests 21
+# suites 0
+# pass 21
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 19433.439564

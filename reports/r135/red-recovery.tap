@@ -1,0 +1,259 @@
+✖ R135 rear only has eight primary vertical dividers and two retained-angle skirted template leaves (61.574057ms)
+✖ R135 all original physical/map declarations and non-target rendered meshes remain byte-identical (21.715274ms)
+✖ R135 malformed last-leaf-vertex atomically rejects four windows and both leaves (10.844817ms)
+✖ R135 malformed leaf-scale atomically rejects four windows and both leaves (10.615605ms)
+✖ R135 malformed leaf-shared atomically rejects four windows and both leaves (8.570013ms)
+✖ R135 malformed leaf-missing atomically rejects four windows and both leaves (6.407176ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 0
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 361.897863
+
+✖ failing tests:
+
+test at tests/r135/rear-detail.test.mjs:3:1
+✖ R135 rear only has eight primary vertical dividers and two retained-angle skirted template leaves (61.574057ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 8
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r135/rear-detail.test.mjs:3:312)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 8,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r135/rear-detail.test.mjs:4:1
+✖ R135 all original physical/map declarations and non-target rendered meshes remain byte-identical (21.715274ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      {
+        attrs: {
+          normal: [
+            3,
+  ...
+            3,
+  +         '7c9ab3bdaea7c2f1e324359e986caebdec46229dc1d62ef40abc952f137d186e'
+  +       ],
+  +       uv: [
+  +         2,
+  +         '16305982d82e76dda4f5b38b73e0887aa2d7083f91e4b3d5de178eb320b78d29'
+  +       ]
+  +     },
+  +     flags: [
+  +       true,
+  +       true
+  +     ],
+  +     index: null,
+  +     mat: {
+  +       color: 16777215,
+  +       depthWrite: true,
+  +       name: 'lattice_doors',
+  +       opacity: 1,
+  +       side: 0,
+  +       transparent: false
+  +     },
+  +     matrix: [
+  +       2.220446049250313e-16,
+  +       0,
+  +       -1,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       2.220446049250313e-16,
+  +       0,
+  +       -94.984,
+  +       2.5901600000000005,
+  +       399.924,
+  +       1
+  +     ],
+  +     position: [
+  +       -1.984,
+  +       2.5901600000000005,
+  +       -3.976
+  +     ],
+  +     role: ''
+  +   },
+  +   {
+  +     attrs: {
+  +       normal: [
+  +         3,
+  +         '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+  +       ],
+  +       position: [
+  +         3,
+  +         '7c9ab3bdaea7c2f1e324359e986caebdec46229dc1d62ef40abc952f137d186e'
+  +       ],
+  +       uv: [
+  +         2,
+  +         '16305982d82e76dda4f5b38b73e0887aa2d7083f91e4b3d5de178eb320b78d29'
+  +       ]
+  +     },
+  +     flags: [
+  +       true,
+  +       true
+  +     ],
+  +     index: null,
+  +     mat: {
+  +       color: 16777215,
+  +       depthWrite: true,
+  +       name: 'lattice_doors',
+  +       opacity: 1,
+  +       side: 0,
+  +       transparent: false
+  +     },
+  +     matrix: [
+  +       2.220446049250313e-16,
+  +       0,
+  +       -1,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       0,
+  +       1,
+  +       0,
+  +       2.220446049250313e-16,
+  +       0,
+  +       -91.016,
+  +       2.5901600000000005,
+  +       399.924,
+  +       1
+  +     ],
+  +     position: [
+  +       1.984,
+  +       2.5901600000000005,
+  +       -3.976
+  +     ],
+  +     role: ''
+  +   },
+  +   {
+  +     attrs: {
+  +       normal: [
+  +         3,
+  +         '484fbf9af41361f93f6c4952a7749e006af8cdd1b17bec099cab9b7be52f7aab'
+  +       ],
+  +       position: [
+  +         3,
+            '3fc5d1ce4c4649305b1a86e8c175cba2ab1fd10c348b93f8d51913a0748561bf'
+          ],
+          uv: [
+            2,
+            '102bfd643063e94aaf65e7a6e889d35515fbc9c7a444feaecc26ef4fa2e2c68b'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r135/rear-detail.test.mjs:4:380)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: 'e6681333c21d3bedc5c5d4ea4503e8acc5b95e8d8e2aabffd97d12425a145443', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: 'e6681333c21d3bedc5c5d4ea4503e8acc5b95e8d8e2aabffd97d12425a145443', mat: [Object], flags: [Array] }, { role: 'roof_gable_dougong_band', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: 'roof_gable_rafters', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: 'roof_gable_roof_tile', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: 'roof_gable_roof_ridge_glaze', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: 'roof_gable_wall_red', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] } ],
+    expected: [ { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: '026f230f2c85e0fe2e0923dd7ba6d3be31f90ff66b638c4099f7d1569dfd4310', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: 'e6681333c21d3bedc5c5d4ea4503e8acc5b95e8d8e2aabffd97d12425a145443', mat: [Object], flags: [Array] }, { role: '', position: [Array], matrix: [Array], attrs: [Object], index: 'e6681333c21d3bedc5c5d4ea4503e8acc5b95e8d8e2aabffd97d12425a145443', mat: [Object], flags: [Array] }, { role: 'roof_gable_dougong_band', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: 'roof_gable_rafters', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: 'roof_gable_roof_tile', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: 'roof_gable_roof_ridge_glaze', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] }, { role: 'roof_gable_wall_red', position: [Array], matrix: [Array], attrs: [Object], index: null, mat: [Object], flags: [Array] } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r135/rear-detail.test.mjs:5:83
+✖ R135 malformed last-leaf-vertex atomically rejects four windows and both leaves (10.844817ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r135/rear-detail.test.mjs:5:761)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r135/rear-detail.test.mjs:5:83
+✖ R135 malformed leaf-scale atomically rejects four windows and both leaves (10.615605ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r135/rear-detail.test.mjs:5:761)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r135/rear-detail.test.mjs:5:83
+✖ R135 malformed leaf-shared atomically rejects four windows and both leaves (8.570013ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r135/rear-detail.test.mjs:5:761)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r135/rear-detail.test.mjs:5:83
+✖ R135 malformed leaf-missing atomically rejects four windows and both leaves (6.407176ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r135/rear-detail.test.mjs:5:761)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

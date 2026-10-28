@@ -40,10 +40,8 @@ export class SharedRestRoutine {
    // The unchanged engineering solver cannot certify its old exact 2.00m
    // ground when the finished slab is 2.02m. Here the verified actual surface
    // owns the lift/settle; the existing solver retains horizontal collision.
-   // Preserve the inherited Taihe prefix's movement semantics.
-   const eye=old.position[2]>=59.1
-    ?nav.getValidPosition(new THREE.Vector3(fromEye.x,liftStart+PLAYER.HEIGHT,fromEye.z),goal,radius,liftStart,PLAYER.STEP_UP,liftStart,null)
-    :nav.getValidPosition(fromEye,goal,radius,old.position[1],PLAYER.STEP_UP,liftStart,{kind:'kinematic',airborne:false});
+   // R129 includes the actual Taihe prefix instead of a geographic 59.1m cut.
+   const eye=nav.getValidPosition(new THREE.Vector3(fromEye.x,liftStart+PLAYER.HEIGHT,fromEye.z),goal,radius,liftStart,PLAYER.STEP_UP,liftStart,null);
    const floor=Math.max(nav.getGroundHeight(eye.x,eye.z,old.position[1],PLAYER.STEP_UP,radius),nav.supportHeight(eye.x,eye.z,old.position[1]+PLAYER.STEP_UP,supportRadius),this.navigation.surfaceHeight(eye.x,eye.z,old.position[1],.45));
    if(!Number.isFinite(floor)){wait();return;}
    eye.y=floor+PLAYER.HEIGHT;proposed.position=[eye.x,floor,eye.z];

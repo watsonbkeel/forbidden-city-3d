@@ -1,0 +1,5 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {createHash}from'node:crypto';import fs from'node:fs';import * as T from'three';import{buildDuixiuMountain}from'../../src/scene/garden/DuixiuMountain.js';
+const snapshot=r=>{const h=createHash('sha256');for(const g of r.geometries){for(const[n,a]of Object.entries(g.attributes)){h.update(n);h.update(Buffer.from(a.array.buffer,a.array.byteOffset,a.array.byteLength))}if(g.index)h.update(Buffer.from(g.index.array.buffer));}return{geometry:h.digest('hex'),physics:createHash('sha256').update(JSON.stringify({colliders:r.colliders,walkables:r.walkables,profile:r.profile})).digest('hex'),count:r.geometries.length}};
+const expected=JSON.parse(fs.readFileSync(new URL('./mountain-r126.json',import.meta.url)));
+for(const c of expected)test(`R126 exact mountain geometry/physics retained at ${c.center}`,()=>{const r=buildDuixiuMountain({center:new T.Vector3(...c.center)});assert.deepEqual(snapshot(r),c.snapshot);r.geometries.forEach(g=>g.dispose())});
+export {snapshot};

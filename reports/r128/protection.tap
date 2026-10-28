@@ -1,0 +1,47 @@
+✔ higher priority arrival preempts only at an explicit safe checkpoint and resumes the same generator (2.29894ms)
+✔ equal rank keeps active order; far checkpoints receive progress despite endless urgent arrivals (0.844107ms)
+✔ preemptible render work is resumable and cancellation closes a suspended iterator exactly once (0.369585ms)
+✔ bounded render steps do not rescan all priorities for every vertex chunk within one frame (0.59972ms)
+✔ same-path metadata interleaving preserves every sample, point, length and swept-body constraint (30.585094ms)
+✔ paused path cannot publish a stale binding after source changes (4.595403ms)
+✔ paused path cannot publish a stale binding after actor-spec changes (2.883508ms)
+✔ paused path cannot publish a stale binding after world changes (2.433021ms)
+✔ interleaved sleeping, seated and standing preparation retains exact final geometry and bounded publication (79.687635ms)
+✔ world version change cancels paused model without publishing it (0.704247ms)
+✔ demand renderer never synchronously authors a missing resource, then submits prepared actual instances (27.455477ms)
+✔ a prepared coarse same-pose resource stays visible while requested detailed LOD prepares (3.761134ms)
+✔ first binding preparation does not build sleeping/walking/high-detail variants for standing maid (9.019558ms)
+✔ status counts actual renderer submissions rather than selected but preparing actors (2.849576ms)
+✔ failed on-demand geometry preparation remains visible as a system failure and disables safely (3.279673ms)
+✔ nearby cold character preparation starts before earlier distant roles, without extra budget (3.362226ms)
+✔ preparation fairness gives oldest distant job a turn amid newly requested near roles (0.478408ms)
+✔ an in-flight generator completes without interleaving duplicate template construction (0.523185ms)
+✔ priority uses real rotated placement metadata only and follows the current camera (1.059861ms)
+✔ pure authored contact metrics exactly match every original R95 template pose seat and LOD without building a model (3.800494ms)
+✔ pure contact identity rejects unrelated seat poses and invented variants (0.353611ms)
+✔ all existing geometry attributes indices and metadata remain exact to frozen R95 source fixture (441.877122ms)
+✔ near unresolved person precedes peripheral prewarm and visible refinement, not first coarse model (1.953933ms)
+✔ successful near metadata yields before starting another long job, so Promise consumers can queue coarse first (1.369976ms)
+✔ pending metadata does not yield the frame or starve another available job (0.277947ms)
+✔ ready handoff may defer one oldest turn but repays it immediately after urgent coarse (0.564337ms)
+✔ ground distance latches are independent of resource completion and frustum (1.230907ms)
+✔ first interest beyond40 but within60 prewarms without drawing and uses actual position not an anchor (0.221272ms)
+✔ flight uses aircraft XZ rather than altitude or offset camera and has display exit hysteresis (0.189905ms)
+✔ teleport or dismount immediately recomputes interest while preserving caller logical records (0.974192ms)
+✔ hidden but resident batch retains one lease and zero actual submissions until final exit (12.713802ms)
+✔ same actor resident with a new pose cannot pin obsolete pose or quality resources (22.312638ms)
+✔ two zones hold independent batch leases to one immutable shared geometry (1.684187ms)
+✔ cancelling one model key returns its partial generator without cancelling logical jobs (0.639509ms)
+✔ streaming status separates logical positions from nearby prepared models and actual visible actors (8.74181ms)
+✔ distant logical bindings resolve without generating any character models (28.39021ms)
+✔ resident key users are complete before cancellation: one leaving user cannot kill another (1.730948ms)
+✔ pose change releases obsolete model interest while retaining only exact new pose and valid detail (1.793582ms)
+✔ camera teleport activates current near models without resetting logical bindings or synchronously acquiring missing geometry (209.800481ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 620.278572

@@ -297,6 +297,9 @@ export class CharacterWorldAdapter{
     const f=this._forbidden(s.position,radius);if(f)return error(`Path ${p.id}: ${f}`);
     const prev=samples.at(-1);if(prev){const noFly=this._forbiddenSegment(prev.position,s.position,radius);if(noFly)return error(`Path ${p.id}: ${noFly}`);if(Math.abs(s.position[1]-prev.position[1])>(PLAYER.STEP_UP??.6))return error(`Unverified step in ${p.id}`);const collision=(yield* this._blockedSegmentSteps(prev.position,s.position,radius,height));if(collision)return error(`Swept body hits building on ${p.id}, segment ${i}, sample ${k}`,{collision});lengthMeters+=Math.hypot(...s.position.map((v,j)=>v-prev.position[j]));}else{const collision=(yield* this._blockedSegmentSteps(s.position,s.position,radius,height));if(collision)return error(`Blocked path start ${p.id}`,{collision});}
     samples.push({position:s.position,surfaceRef:p.surfaceRef,distanceMeters:lengthMeters});if(k===0&&!i||k===steps)points.push(s.position);
+    // All nested support/raycast/cache operations have completed. The path's
+    // evidence and sample arrays are generator-local; no partial binding is published.
+    yield {...unit('path-sample-checkpoint',1),checkpoint:true};
    }
   }
   if(lengthMeters<=0)return error(`Zero-length route ${p.id}`);

@@ -1,0 +1,90 @@
+environmentCpu: 75.022 ms
+palaceBuild: 1315.729 ms
+enclosureBuild: 210.417 ms
+[GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+gardenBuild: 859.063 ms
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 299 个 region, 228 个 mapItem
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+zoneInit: 5067.692 ms
+staticRegistration: 29.966 ms
+roomNightLights: 45.889 ms
+controlsReady: 0.749 ms
+flightEnvelope: 336.254 ms
+interiorLoaderSetup: 0.359 ms
+characterSystemSetup: 655.769 ms
+historicalLampsSetup: 3.420 ms
+flightTourSetup: 8.171 ms
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 进入区域: east-six
+[ZoneManager] 加载区域 outer-east（外东路），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 进入区域: west-six
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 卸载区域 outer-east
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.1ms
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 556.5ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 905.3ms
+[ZoneManager] 进入区域: east-six
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 1014.6ms
+[ZoneManager] 进入区域: west-six
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 668.7ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 930.4ms
+[ZoneManager] 进入区域: east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 1070.4ms
+[ZoneManager] 进入区域: west-six
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 688.4ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 905.3ms
+[ZoneManager] 进入区域: east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 outer-west（外西路），耗时 1013.9ms
+[ZoneManager] 进入区域: west-six
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 ningshou
+[ZoneManager] 加载区域 east-six（东六宫），耗时 924.3ms
+[ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 609.7ms
+[ZoneManager] 加载区域 ningshou（宁寿宫区），耗时 1097.2ms
+[ZoneManager] 进入区域: east-six
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 garden
+[ZoneManager] 卸载区域 east-six
+[ZoneManager] 卸载区域 axis-courts
+[ZoneManager] 卸载区域 ningshou
+dispose: 8.268 ms
+file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/scripts/r120/performance/measurement.mjs:14
+ const dirty=git('status','--porcelain','--untracked-files=no');if(dirty)throw new Error(`tracked source is dirty: ${dirty}`);
+                                                                               ^
+
+Error: tracked source is dirty: M reports/r58-a-bridge-contact-fix/jump-10hz.json
+ M reports/r58-a-bridge-contact-fix/jump-60hz.json
+ M reports/r58-a-bridge-contact-fix/rail-walk-10hz.json
+ M reports/r58-a-bridge-contact-fix/rail-walk-60hz.json
+ M reports/r58-a-bridge-replacement-prototype/all88-envelope.json
+ M reports/r58-a-bridge-replacement-prototype/jump-60hz.json
+    at bindRoot (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/scripts/r120/performance/measurement.mjs:14:80)
+    at file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/scripts/r120/performance/profile-process.mjs:87:31
+
+Node.js v24.19.0

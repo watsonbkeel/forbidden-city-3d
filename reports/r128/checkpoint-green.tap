@@ -1,0 +1,20 @@
+✔ higher priority arrival preempts only at an explicit safe checkpoint and resumes the same generator (2.351439ms)
+✔ equal rank keeps active order; far checkpoints receive progress despite endless urgent arrivals (0.805429ms)
+✔ preemptible render work is resumable and cancellation closes a suspended iterator exactly once (0.301072ms)
+✔ bounded render steps do not rescan all priorities for every vertex chunk within one frame (0.575414ms)
+✔ nearby cold character preparation starts before earlier distant roles, without extra budget (1.715555ms)
+✔ preparation fairness gives oldest distant job a turn amid newly requested near roles (0.345789ms)
+✔ an in-flight generator completes without interleaving duplicate template construction (0.271358ms)
+✔ priority uses real rotated placement metadata only and follows the current camera (0.714182ms)
+✔ near unresolved person precedes peripheral prewarm and visible refinement, not first coarse model (1.523727ms)
+✔ successful near metadata yields before starting another long job, so Promise consumers can queue coarse first (1.142945ms)
+✔ pending metadata does not yield the frame or starve another available job (0.403305ms)
+✔ ready handoff may defer one oldest turn but repays it immediately after urgent coarse (0.352509ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 173.081626

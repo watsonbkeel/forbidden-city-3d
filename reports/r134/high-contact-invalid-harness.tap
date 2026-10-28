@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: R134 real hanging owners block high traversal and vertical passage through normal CollisionManager
+not ok 1 - R134 real hanging owners block high traversal and vertical passage through normal CollisionManager
+  ---
+  duration_ms: 1.630206
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r134/high-contact.test.mjs:3:1'
+  failureType: 'testCodeFailure'
+  error: 'cm.rebuildGrid is not a function'
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r134/high-contact.test.mjs:3:274)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: R134 real controls released above one actual silhouette land on its top without free upward motion at 10/30/60Hz
+not ok 2 - R134 real controls released above one actual silhouette land on its top without free upward motion at 10/30/60Hz
+  ---
+  duration_ms: 0.444307
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r134/high-contact.test.mjs:4:1'
+  failureType: 'testCodeFailure'
+  error: 'cm.rebuildGrid is not a function'
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r134/high-contact.test.mjs:4:270)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 0
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1337.316798

@@ -1,0 +1,329 @@
+✖ finite grouped surfaces retain unique source meshes, exact face count and untouched renders (13.142394ms)
+✔ wrong authored frame fails closed without partial collider registration (1.056799ms)
+✔ wrong authored item dimensions fail closed; unrelated zone untouched (0.656818ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 144.877873
+
+✖ failing tests:
+
+test at tests/r130/retained-source-domain.test.mjs:4:1
+✖ finite grouped surfaces retain unique source meshes, exact face count and untouched renders (13.142394ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      geometries: [
+        {
+          depth: 3,
+          depthSegments: 1,
+  ...
+                  0,
+  +               0.2,
+                  0,
+  -               0,
+                  1
+                ],
+                type: 'Mesh',
+                up: [
+                  0,
+  ...
+                  0,
+  +               -0,
+                  0,
+  +               -0,
+  +               2.220446049250313e-16,
+  +               -1,
+                  0,
+                  0,
+                  1,
+  +               2.220446049250313e-16,
+                  0,
+                  0,
+  +               0.41,
+                  0,
+  -               0,
+                  1,
+  -               0,
+  -               0,
+  -               0,
+  -               0,
+  -               1
+                ],
+                type: 'Mesh',
+                up: [
+                  0,
+                  1,
+  ...
+                  0,
+  +               -0,
+                  0,
+  +               -0,
+  +               2.220446049250313e-16,
+  +               -1,
+                  0,
+                  0,
+                  1,
+  +               2.220446049250313e-16,
+                  0,
+                  0,
+  +               0.42,
+                  0,
+  -               0,
+                  1,
+  -               0,
+  -               0,
+  -               0,
+  -               0,
+  -               1
+                ],
+                type: 'Mesh',
+                up: [
+                  0,
+                  1,
+  ...
+                  0,
+  +               50,
+  +               0.5,
+  +               50,
+  -               0,
+  -               0,
+  -               0,
+                  1
+                ],
+                type: 'Mesh',
+                up: [
+                  0,
+  ...
+              0,
+  +           94,
+              0,
+  +           401.5,
+  -           0,
+  -           0,
+              1
+            ],
+            name: '翊坤宫后殿',
+            type: 'Group',
+            up: [
+  ...
+                  0,
+  +               0.2,
+                  0,
+  -               0,
+                  1
+                ],
+                type: 'Mesh',
+                up: [
+                  0,
+  ...
+                  0,
+  +               -0,
+                  0,
+  +               -0,
+  +               2.220446049250313e-16,
+  +               -1,
+                  0,
+                  0,
+                  1,
+  +               2.220446049250313e-16,
+                  0,
+                  0,
+  +               0.41,
+                  0,
+  -               0,
+                  1,
+  -               0,
+  -               0,
+  -               0,
+  -               0,
+  -               1
+                ],
+                type: 'Mesh',
+                up: [
+                  0,
+                  1,
+  ...
+                  0,
+  +               -0,
+                  0,
+  +               -0,
+  +               2.220446049250313e-16,
+  +               -1,
+                  0,
+                  0,
+                  1,
+  +               2.220446049250313e-16,
+                  0,
+                  0,
+  +               0.42,
+                  0,
+  -               0,
+                  1,
+  -               0,
+  -               0,
+  -               0,
+  -               0,
+  -               1
+                ],
+                type: 'Mesh',
+                up: [
+                  0,
+                  1,
+  ...
+                  0,
+  +               50,
+  +               0.5,
+  +               50,
+  -               0,
+  -               0,
+  -               0,
+                  1
+                ],
+                type: 'Mesh',
+                up: [
+                  0,
+  ...
+              0,
+  +           94.5,
+              0,
+  +           450.2,
+  -           0,
+  -           0,
+              1
+            ],
+            name: '储秀宫后殿',
+            type: 'Group',
+            up: [
+  ...
+                  0,
+  +               0.2,
+                  0,
+  -               0,
+                  1
+                ],
+                type: 'Mesh',
+                up: [
+                  0,
+  ...
+                  0,
+  +               -0,
+                  0,
+  +               -0,
+  +               2.220446049250313e-16,
+  +               -1,
+                  0,
+                  0,
+                  1,
+  +               2.220446049250313e-16,
+                  0,
+                  0,
+  +               0.41,
+                  0,
+  -               0,
+                  1,
+  -               0,
+  -               0,
+  -               0,
+  -               0,
+  -               1
+                ],
+                type: 'Mesh',
+                up: [
+                  0,
+                  1,
+  ...
+                  0,
+  +               -0,
+                  0,
+  +               -0,
+  +               2.220446049250313e-16,
+  +               -1,
+                  0,
+                  0,
+                  1,
+  +               2.220446049250313e-16,
+                  0,
+                  0,
+  +               0.42,
+                  0,
+  -               0,
+                  1,
+  -               0,
+  -               0,
+  -               0,
+  -               0,
+  -               1
+                ],
+                type: 'Mesh',
+                up: [
+                  0,
+                  1,
+  ...
+                  0,
+  +               50,
+  +               0.5,
+  +               50,
+  -               0,
+  -               0,
+  -               0,
+                  1
+                ],
+                type: 'Mesh',
+                up: [
+                  0,
+  ...
+              0,
+  +           94,
+              0,
+  +           417,
+  -           0,
+  -           0,
+              1
+            ],
+            name: 'chuxiu-return-corridor',
+            type: 'Group',
+            up: [
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r130/retained-source-domain.test.mjs:4:205)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: {
+      metadata: { version: 4.6, type: 'Object', generator: 'Object3D.toJSON' },
+      geometries: [
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object]
+      ],
+      materials: [ [Object], [Object], [Object], [Object], [Object] ],
+      object: { uuid: '529550a7-6a50-4f1b-a1a1-126c1b4ff6f9', type: 'Group', layers: 1, matrix: [Array], up: [Array], children: [Array] }
+    },
+    expected: {
+      metadata: { version: 4.6, type: 'Object', generator: 'Object3D.toJSON' },
+      geometries: [
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object]
+      ],
+      materials: [ [Object], [Object], [Object], [Object], [Object] ],
+      object: { uuid: '529550a7-6a50-4f1b-a1a1-126c1b4ff6f9', type: 'Group', layers: 1, matrix: [Array], up: [Array], children: [Array] }
+    },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

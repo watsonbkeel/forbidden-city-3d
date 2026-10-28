@@ -1,0 +1,27 @@
+TAP version 13
+# Subtest: the Environment civil clock has exact 21/06 boundaries and stays asleep across midnight
+ok 1 - the Environment civil clock has exact 21/06 boundaries and stays asleep across midnight
+  ---
+  duration_ms: 0.744267
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 axis-courts（外朝（午门—乾清门广场）），耗时 0.0ms
+# [ZoneManager] 卸载区域 axis-courts
+# Subtest: mid-route manual clock changes reverse the current segment without respawning, and removed live corridor owners pause
+ok 2 - mid-route manual clock changes reverse the current segment without respawning, and removed live corridor owners pause
+  ---
+  duration_ms: 8581.574111
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9093.604492

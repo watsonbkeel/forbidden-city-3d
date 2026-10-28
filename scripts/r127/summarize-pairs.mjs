@@ -1,0 +1,3 @@
+import fs from'node:fs';
+const dir=process.argv[2]??'reports/r127/paired-startup',median=v=>[...v].sort((a,b)=>a-b)[2],rows=[];
+for(const quality of['low','high']){const pairs=Array.from({length:5},(_,n)=>Object.fromEntries(['baseline','candidate'].map(side=>[side,JSON.parse(fs.readFileSync(`${dir}/${quality}-${n+1}-${side}.json`))])));for(const name of['gardenBuild','allReadyCpuMs']){const values=side=>pairs.map(p=>name==='allReadyCpuMs'?p[side][name]:p[side].phases[name]),a=values('baseline'),b=values('candidate');rows.push({quality,name,baseline:a,candidate:b,baselineMedian:median(a),candidateMedian:median(b),improvementPercent:100*(median(a)-median(b))/median(a),improvedPairs:a.filter((v,i)=>b[i]<v).length});}}console.log(JSON.stringify(rows,null,2));

@@ -1,0 +1,87 @@
+TAP version 13
+# node:fs:622
+#   return binding.open(
+#                  ^
+# Error: ENOENT: no such file or directory, open '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/reports/r126-chengqian/baseline/final-physical.json'
+#     at Object.openSync (node:fs:622:18)
+#     at Object.readFileSync (node:fs:488:35)
+#     at file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r126/arrival-ensemble.test.mjs:2:25
+#     at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+#     at async node:internal/modules/esm/loader:643:26
+#     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+#   errno: -2,
+#   code: 'ENOENT',
+#   syscall: 'open',
+#   path: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/reports/r126-chengqian/baseline/final-physical.json'
+# }
+# Node.js v24.19.0
+# Subtest: tests/r126/arrival-ensemble.test.mjs
+not ok 1 - tests/r126/arrival-ensemble.test.mjs
+  ---
+  duration_ms: 101.208481
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r126/arrival-ensemble.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: R126 actual gate/rear contact and closed screen owners remove/rebind atomically under existing source lifecycle
+ok 2 - R126 actual gate/rear contact and closed screen owners remove/rebind atomically under existing source lifecycle
+  ---
+  duration_ms: 1416.659292
+  type: 'test'
+  ...
+# Subtest: R126 actual TextureLibrary rear high/low preserves all physical semantics and existing greater-than5percent detail reduction
+ok 3 - R126 actual TextureLibrary rear high/low preserves all physical semantics and existing greater-than5percent detail reduction
+  ---
+  duration_ms: 1527.148605
+  type: 'test'
+  ...
+# Subtest: R126 plain unknown screen back has one exterior plane, no differently coloured coplanar frame overlays
+ok 4 - R126 plain unknown screen back has one exterior plane, no differently coloured coplanar frame overlays
+  ---
+  duration_ms: 1519.23429
+  type: 'test'
+  ...
+# Subtest: R126 scope rejects a forged actual-source identity rather than authorizing any box
+ok 5 - R126 scope rejects a forged actual-source identity rather than authorizing any box
+  ---
+  duration_ms: 0.930937
+  type: 'test'
+  ...
+# Subtest: R126 actual source same-count vertex/missing box/duplicate assembly fail before writes
+ok 6 - R126 actual source same-count vertex/missing box/duplicate assembly fail before writes
+  ---
+  duration_ms: 1574.529451
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=41, 三角面=197,782, 树木=34棵, 碰撞器=2008
+# [ZoneManager] 收集所有区的 regions 和 mapItems...
+# [ZoneManager] 共 299 个 region, 228 个 mapItem
+# [ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 加载区域 east-six（东六宫），耗时 0.1ms
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 加载区域 east-six（东六宫），耗时 0.0ms
+# [ZoneManager] 卸载区域 east-six
+# [ZoneManager] 加载区域 east-six（东六宫），耗时 876.8ms
+# [ZoneManager] 卸载区域 east-six
+# Subtest: R126 actual ready east-six screen/rear arrival owners follow normal cache/reentry/evict without retained invisible bodies
+ok 7 - R126 actual ready east-six screen/rear arrival owners follow normal cache/reentry/evict without retained invisible bodies
+  ---
+  duration_ms: 8574.535948
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 6
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 15879.004088
