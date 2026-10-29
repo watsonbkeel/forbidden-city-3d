@@ -1,0 +1,64 @@
+✔ exact original platform ownership rejects duplicates downgrade synthetic ground and wrong bounds and unloads cleanly (117.799638ms)
+✔ source ground witness requires actual Environment survives only unchanged source and remains bounded outside handoff (64.385641ms)
+✔ three original upper floor strips require unique live owners and never lift lower-floor feet through the ceiling (61.538314ms)
+✖ upper-floor witness cannot leak beyond the finite front handoff even where original floor extends north (45.758517ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 467.405332
+
+✖ failing tests:
+
+test at tests/major-pilots/ciyin/guards.test.mjs:5:1
+✖ upper-floor witness cannot leak beyond the finite front handoff even where original floor extends north (45.758517ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + {
+  +   height: 4.8,
+  +   owner: {
+  +     box: Box3 {
+  +       isBox3: true,
+  +       max: Vector3 {
+  +         x: 268.88,
+  +         y: 4.8,
+  +         z: 125.82
+  +       },
+  +       min: Vector3 {
+  +         x: 246.55,
+  +         y: 4.8,
+  +         z: 122.3
+  +       }
+  +     },
+  +     rescue: false,
+  +     tag: undefined,
+  +     type: 'box'
+  +   },
+  +   regionId: 'ciyin-front',
+  +   source: 'existing-ciyin-front-upper-floor',
+  +   witness: Vector3 {
+  +     x: 258.5,
+  +     y: 4.8,
+  +     z: 125.46
+  +   }
+  + }
+  - null
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/ciyin/guards.test.mjs:5:313)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { height: 4.8, owner: { type: 'box', box: [Object], rescue: false, tag: undefined }, source: 'existing-ciyin-front-upper-floor', regionId: 'ciyin-front', witness: { x: 258.5, y: 4.8, z: 125.46 } },
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

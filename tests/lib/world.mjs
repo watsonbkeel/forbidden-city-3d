@@ -1,3 +1,4 @@
+import {bindCiyinFacadeEnvironmentWitness} from '../../src/controls/CiyinFacadeEnvironmentWitness.js';
 import {shouanEntryGeometry} from '../../src/scene/palace/special/ShouanEntry.js';
 import {bindShouanEntryEnvironmentWitness} from '../../src/controls/ShouanEntryEnvironmentWitness.js';
 import {shunzhenProfile} from '../../src/scene/palace/special/ShunzhenGate.js';
@@ -272,7 +273,7 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true, reta
   }
 
   let environmentScene=null;
-  if(cm.colliders.some(c=>c.furnitureMotionScope?.kind==='shouan-entry')){const {Environment}=await src('scene/Environment.js');environmentScene=new THREE.Scene();const env=new Environment(environmentScene,null,lib);env.setupGround();environmentScene.updateMatrixWorld(true);bindShouanEntryEnvironmentWitness(cm,environmentScene);}
+  if(cm.colliders.some(c=>['ciyin-front','shouan-entry'].includes(c.furnitureMotionScope?.kind))){const {Environment}=await src('scene/Environment.js');environmentScene=new THREE.Scene();const env=new Environment(environmentScene,null,lib);env.setupGround();environmentScene.updateMatrixWorld(true);bindShouanEntryEnvironmentWitness(cm,environmentScene);bindCiyinFacadeEnvironmentWitness(cm,environmentScene);}
   const gates = [], halls = [];
   for (const { json } of zones) for (const item of json.items) {
     if (item.kind === 'gate' || item.kind === 'cityGate') gates.push({ zone: json.id, item, ...gateGeom(item) });

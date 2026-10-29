@@ -1,0 +1,37 @@
+TAP version 13
+# Subtest: complete upper front gallery permits full-size traversal between all five bays without shrinking the body
+not ok 1 - complete upper front gallery permits full-size traversal between all five bays without shrinking the body
+  ---
+  duration_ms: 124.507485
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/ciyin/entry.test.mjs:5:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"label":0,"position":[248.82,6.5,122.97],"feet":4.8,"role":"ciyin-photo-sill","min":[246.4550018310547,4.800000190734863,123.4000015258789],"max":[251.18499755859375,5.420000076293945,123.69999694824219]}
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    inspect (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/ciyin/entry.test.mjs:3:242)
+    file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/ciyin/entry.test.mjs:5:532
+    withTerrainController (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r91-controller-clock.mjs:3:633)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/ciyin/entry.test.mjs:5:230)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 321.731431

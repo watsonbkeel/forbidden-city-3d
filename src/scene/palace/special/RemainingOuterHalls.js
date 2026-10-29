@@ -1,3 +1,4 @@
+import {buildCiyinFacade} from './CiyinFacade.js';
 import {buildJiyunLowerPanels} from './JiyunLowerPanels.js';
 import {buildJiyunRailFit} from './JiyunRailFit.js';
 import {buildCiningFrontFit} from './CiningFrontFit.js';
@@ -491,6 +492,16 @@ function primaryNavigation(p) {
   const world=(x,z,yy=y)=>({x:p.x+Math.cos(rotation)*x+Math.sin(rotation)*z,y:yy,z:centerZ-Math.sin(rotation)*x+Math.cos(rotation)*z});
   const normal={x:-Math.sin(rotation),z:-Math.cos(rotation)},primaryEntry=world(0,front),outside=world(0,-D/2-old.pad-y*1.6-(p.key==='baoxiang'?.3:.6),0);
   let approachPoints=[outside,world(0,-D/2-old.pad-y*1.6,0),world(0,-D/2-old.pad),primaryEntry,world(0,front+1.3)];
+  if(p.key==='ciyin'){
+    // Official 2020-gallery front: lower central three bays are sill windows.
+    // The lower public model route enters the source east through-bay instead.
+    const x=-p.w/2+p.w/10,west=-x,edge=-D/2-old.pad,sourceFront=front+.10;
+    // Full-body step contact starts half a metre before each visible riser.
+    // Paired points encode discrete rises, not a fictitious interpolated ramp.
+    const stairPoints=[];for(let i=0;i<5;i++){const contact=i<4?edge-.96+i*.24-.5:edge+.05-.5;stairPoints.push(world(x,contact-.0001,y*i/5),world(x,contact+.0001,y*(i+1)/5));}
+    approachPoints=[world(x,edge-1.90,0),...stairPoints,world(x,edge+.25),world(x,sourceFront),world(x,sourceFront+1.3),world(x,0),world(-p.w/2+p.w/5+1,0)];
+    return Object.freeze({id:'ciyin-actual-primary-entry',runtimeReady:true,status:'SOURCE_END_DOOR_REPLACES_FALSE_CENTRAL_MODEL_DOOR__NOT_VISITOR_PERMISSION',primaryEntry:world(x,sourceFront),secondaryEntry:world(west,sourceFront),outwardNormal:normal,center:{x:p.x,z:centerZ},localWidth:p.w,localDepth:D,bays:5,pad:old.pad,floorY:y,rotation,approachPoints});
+  }
   if(p.key==='jiyun'){
     // The source-facing east doorway is opposite Xianruo's west side. Approach
     // through the retained northern gap, not through the neighboring hall.
@@ -833,6 +844,7 @@ function buildTempleTower(kit,item,p) {
   for(const yy of[g.y,g.upperY]){
     const H=yy===g.y?4.05:g.upperH-.1;
     for(let i=0;i<bays;i++){
+      if(p.key==='ciyin')continue;
       const isPassage=p.key==='ciyin'&&yy===g.y&&i===0;
       face(-A+i*bay,-A+(i+1)*bay,g.front,yy,H,{door:i===Math.floor(bays/2)||isPassage,opened:i===Math.floor(bays/2)||isPassage,role:p.key+(yy===g.y?'-front':'-upper-front')});
     }
@@ -904,7 +916,8 @@ function buildTempleTower(kit,item,p) {
   plainCeiling(c,g.upperY+g.upperH-.12);
   g.roof=rolledRoof(c,{yy:g.upperY+g.upperH,rise:2.1});
   if(p.key==='jiyun')buildJiyunNamePlaque(kit,c.f,g);
-  c.register(item.name,-A+.35,A-.35,g.front,g.rear,g.y,3.65,[{x:0,z:g.front}],{x:0,z:g.front+1.2});
+  if(p.key==='ciyin')buildCiyinFacade(c);
+  c.register(item.name,-A+.35,A-.35,g.front,g.rear,g.y,3.65,p.key==='ciyin'?[-A+bay/2,A-bay/2].map(x=>({x,z:g.ciyinFacade.front})):[{x:0,z:g.front}],{x:0,z:g.front+1.2});
   // Upper navigation is deliberately not a historical room-count claim.
   if(p.key!=='jiyun')c.register(item.name+'·二层观览区',-A+.35,A-.35,g.front,g.rear,g.upperY,3.2,[{x:0,z:g.front}],{x:0,z:g.front+.55});
   const toWorld=(x,y,z)=>{const v=new THREE.Vector3(x,y,z).applyMatrix4(c.f.matrixWorld);return{x:v.x,y:v.y,z:v.z};};
