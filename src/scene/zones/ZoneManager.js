@@ -1,3 +1,4 @@
+import {bindCiningGateEnvironmentWitness,unbindCiningGateEnvironmentWitness} from '../../controls/CiningGateEnvironmentWitness.js';
 import {bindCiyinFacadeEnvironmentWitness,unbindCiyinFacadeEnvironmentWitness} from '../../controls/CiyinFacadeEnvironmentWitness.js';
 import {bindShouanEntryEnvironmentWitness,unbindShouanEntryEnvironmentWitness} from '../../controls/ShouanEntryEnvironmentWitness.js';
 import {bindXishangEnvironmentWitness,unbindXishangEnvironmentWitness} from '../../controls/XishangEnvironmentWitness.js';
@@ -85,6 +86,7 @@ export class ZoneManager {
     bindXishangEnvironmentWitness(collisionManager,scene);
     bindShouanEntryEnvironmentWitness(collisionManager,scene);
     bindCiyinFacadeEnvironmentWitness(collisionManager,scene);
+    bindCiningGateEnvironmentWitness(collisionManager,scene);
 
     // 收集所有区的 regions 和 mapItems（dry 模式：只构建不加入场景）
     console.log('[ZoneManager] 收集所有区的 regions 和 mapItems...');
@@ -411,6 +413,7 @@ export class ZoneManager {
     unbindXishangEnvironmentWitness(this.collisionManager);
     unbindShouanEntryEnvironmentWitness(this.collisionManager);
     unbindCiyinFacadeEnvironmentWitness(this.collisionManager);
+    unbindCiningGateEnvironmentWitness(this.collisionManager);
     delete this.scene.userData.zoneManager;
     this.zones.clear();
     this.buildQueue.length = 0;

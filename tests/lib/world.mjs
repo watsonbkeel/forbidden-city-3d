@@ -1,3 +1,5 @@
+import {bindCiningGateEnvironmentWitness} from '../../src/controls/CiningGateEnvironmentWitness.js';
+import {ciningGateGeometry} from '../../src/scene/palace/special/CiningGate.js';
 import {bindCiyinFacadeEnvironmentWitness} from '../../src/controls/CiyinFacadeEnvironmentWitness.js';
 import {shouanEntryGeometry} from '../../src/scene/palace/special/ShouanEntry.js';
 import {bindShouanEntryEnvironmentWitness} from '../../src/controls/ShouanEntryEnvironmentWitness.js';
@@ -109,6 +111,7 @@ export function gateGeom(item) {
     const profile=huangjiGateGeometry(item);
     return {x:profile.x,z:profile.z,rot:0,dir:[0,1],half:2.4,front:profile.front,rear:profile.rear,platformY:0,profile};
   }
+  if(item.gateProfile==='cining-entry'){const profile=ciningGateGeometry(item);return{x:profile.x,z:profile.z,rot:0,dir:[0,1],half:5.235,front:5.235,rear:4.595,platformY:.45,profile};}
   if(item.gateProfile==='shouan-entry'){const profile=shouanEntryGeometry(item);return{x:profile.x,z:profile.z,rot:0,dir:[0,1],half:7.7,front:2.85,rear:7.7,platformY:.36,profile};}
   if (item.gateProfile === 'xiqing') {
     const profile = xiqingGeometry(item, 'ningshou', 0);
@@ -273,7 +276,7 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true, reta
   }
 
   let environmentScene=null;
-  if(cm.colliders.some(c=>['ciyin-front','shouan-entry'].includes(c.furnitureMotionScope?.kind))){const {Environment}=await src('scene/Environment.js');environmentScene=new THREE.Scene();const env=new Environment(environmentScene,null,lib);env.setupGround();environmentScene.updateMatrixWorld(true);bindShouanEntryEnvironmentWitness(cm,environmentScene);bindCiyinFacadeEnvironmentWitness(cm,environmentScene);}
+  if(cm.colliders.some(c=>['cining-gate','ciyin-front','shouan-entry'].includes(c.furnitureMotionScope?.kind))){const {Environment}=await src('scene/Environment.js');environmentScene=new THREE.Scene();const env=new Environment(environmentScene,null,lib);env.setupGround();environmentScene.updateMatrixWorld(true);bindShouanEntryEnvironmentWitness(cm,environmentScene);bindCiyinFacadeEnvironmentWitness(cm,environmentScene);bindCiningGateEnvironmentWitness(cm,environmentScene);}
   const gates = [], halls = [];
   for (const { json } of zones) for (const item of json.items) {
     if (item.kind === 'gate' || item.kind === 'cityGate') gates.push({ zone: json.id, item, ...gateGeom(item) });

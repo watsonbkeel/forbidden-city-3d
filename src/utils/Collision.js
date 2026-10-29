@@ -60,6 +60,7 @@ export class CollisionManager {
     if(furnitureMotionScope?.kind==='jiyun-upper-front-rail'&&this.colliders.some(c=>c.furnitureMotionScope?.kind==='jiyun-upper-front-rail'))throw new TypeError('Duplicate Jiyun original anchor');
     if(furnitureMotionScope?.kind==='shouan-entry'&&this.colliders.some(c=>c.furnitureMotionScope?.kind==='shouan-entry'))throw new TypeError('Duplicate Shouan entry original anchor');
     if(furnitureMotionScope?.kind==='ciyin-front'&&this.colliders.some(c=>c.furnitureMotionScope?.kind==='ciyin-front'))throw new TypeError('Duplicate Ciyin facade original anchor');
+    if(furnitureMotionScope?.kind==='cining-gate'&&this.colliders.some(c=>c.furnitureMotionScope?.kind==='cining-gate'))throw new TypeError('Duplicate Cining gate original anchor');
     if (!box.isEmpty()) this.colliders.push({ mesh: object, box, tag, ...(overhead ? {overhead} : {}), ...(triangleSupport ? {triangleSupport} : {}), ...(xiqingRoofSurface ? {xiqingRoofSurface} : {}), ...(object.duixiuTerrain === true ? {duixiuTerrain:true} : {}), ...(furnitureMotionScope ? {furnitureMotionScope} : {}) });
     if (!box.isEmpty() && triangleSupport && this._duixiuBatchIds) this._duixiuBatchIds.add(triangleSupport.id);
   }
@@ -428,11 +429,13 @@ export class CollisionManager {
       if(collider.furnitureMotionScope?.kind==='jiyun-upper-front-rail'&&(object.furnitureMotionScope?.kind!=='jiyun-upper-front-rail'||object.furnitureMotionScope?.id!==collider.furnitureMotionScope.id))throw new TypeError('Jiyun anchor ownership cannot change');
       if(collider.furnitureMotionScope?.kind==='shouan-entry'&&(object.furnitureMotionScope?.kind!=='shouan-entry'||object.furnitureMotionScope?.id!==collider.furnitureMotionScope.id))throw new TypeError('Shouan entry anchor ownership cannot change');
       if(collider.furnitureMotionScope?.kind==='ciyin-front'&&(object.furnitureMotionScope?.kind!=='ciyin-front'||object.furnitureMotionScope?.id!==collider.furnitureMotionScope.id))throw new TypeError('Ciyin facade anchor ownership cannot change');
+      if(collider.furnitureMotionScope?.kind==='cining-gate'&&(object.furnitureMotionScope?.kind!=='cining-gate'||object.furnitureMotionScope?.id!==collider.furnitureMotionScope.id))throw new TypeError('Cining gate anchor ownership cannot change');
       const furnitureMotionScope=cloneFurnitureMotionScope(object.furnitureMotionScope,box);
       if(furnitureMotionScope?.kind==='xishang-roof-transom'&&this.colliders.some(c=>c!==collider&&c.furnitureMotionScope?.kind==='xishang-roof-transom'))throw new TypeError('Duplicate Xishang original anchor');
       if(furnitureMotionScope?.kind==='jiyun-upper-front-rail'&&this.colliders.some(c=>c!==collider&&c.furnitureMotionScope?.kind==='jiyun-upper-front-rail'))throw new TypeError('Duplicate Jiyun original anchor');
       if(furnitureMotionScope?.kind==='shouan-entry'&&this.colliders.some(c=>c!==collider&&c.furnitureMotionScope?.kind==='shouan-entry'))throw new TypeError('Duplicate Shouan entry original anchor');
       if(furnitureMotionScope?.kind==='ciyin-front'&&this.colliders.some(c=>c!==collider&&c.furnitureMotionScope?.kind==='ciyin-front'))throw new TypeError('Duplicate Ciyin facade original anchor');
+      if(furnitureMotionScope?.kind==='cining-gate'&&this.colliders.some(c=>c!==collider&&c.furnitureMotionScope?.kind==='cining-gate'))throw new TypeError('Duplicate Cining gate original anchor');
       if (collider.overhead && object.overhead === undefined) throw new TypeError('Scoped overhead shape cannot disappear during an update');
       const overhead = object.overhead === undefined ? null : cloneOverheadShape(object.overhead, box);
       if(collider.xiqingRoofSurface&&object.xiqingRoofSurface?.id!==collider.xiqingRoofSurface.id)throw new TypeError('Xiqing surface ownership cannot disappear');

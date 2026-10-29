@@ -1,3 +1,4 @@
+import {buildCiningGate} from '../palace/special/CiningGate.js';
 import {buildShouanEntry,validateShouanEntryCourtWall} from '../palace/special/ShouanEntry.js';
 import {applyFengxianFrontVats} from '../palace/special/FengxianFrontVats.js';
 import {registerRetainedCourtyardAccess,registerChuxiuMainFinishedAccess,registerChuxiuFrontWingFinishedAccess} from '../../controls/RetainedCourtyardAccess.js';
@@ -331,6 +332,7 @@ export class ZoneBase {
   }
 
   buildGate(item) {
+    if(item.gateProfile==='cining-entry'){const built=buildCiningGate(this.kit,item,this.zoneJson.id);this.gateGeometries.set(item.name,built.g);return built.width;}
     if(item.gateProfile==='shouan-entry'){const walls=this.zoneJson.items.filter(q=>q.kind==='courtWalls'&&q.gates?.some(r=>r.gate==='寿安门'));if(walls.length!==1)throw Error('Shouan requires a unique actual court wall');validateShouanEntryCourtWall(walls[0]);const built=buildShouanEntry(this.kit,item,this.zoneJson.id);this.gateGeometries.set(item.name,built.geometry);return built.width;}
     if(item.gateProfile==='xiqing'){const built=buildXiqingGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,built.geometry);return built.width;}
     if (item.southGateProfile !== undefined) return buildSouthCourtGate(this.kit,item).width;
