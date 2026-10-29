@@ -1,0 +1,117 @@
+TAP version 13
+# Subtest: R43 independent source topology: shoulder enclosure, open rear join and closed unbuilt connector
+ok 1 - R43 independent source topology: shoulder enclosure, open rear join and closed unbuilt connector
+  ---
+  duration_ms: 66.377151
+  type: 'test'
+  ...
+# Subtest: R43 independent Suian asymmetric vestibule and two necks have real width, not point-only apertures
+ok 2 - R43 independent Suian asymmetric vestibule and two necks have real width, not point-only apertures
+  ---
+  duration_ms: 22.088463
+  type: 'test'
+  ...
+# Subtest: R43 independent replacement geometry is finite and releases owned resources without shared materials
+ok 3 - R43 independent replacement geometry is finite and releases owned resources without shared materials
+  ---
+  duration_ms: 30.180269
+  type: 'test'
+  ...
+# Subtest: R43 independent retained roof platform front stair and support signature exactly match frozen R42 target
+ok 4 - R43 independent retained roof platform front stair and support signature exactly match frozen R42 target
+  ---
+  duration_ms: 24.229953
+  type: 'test'
+  ...
+# Subtest: R43 independent whole Ningshou merger preserves each Yihe material count and world bounds
+ok 5 - R43 independent whole Ningshou merger preserves each Yihe material count and world bounds
+  ---
+  duration_ms: 1403.399356
+  type: 'test'
+  ...
+# Subtest: R43 Yihe has distinct seven main and five annex bay axes with three open front bays
+ok 6 - R43 Yihe has distinct seven main and five annex bay axes with three open front bays
+  ---
+  duration_ms: 79.345319
+  type: 'test'
+  ...
+# Subtest: R43 full-zone Yihe central entry and west-facing Suian turn-in route at10Hz W sprint
+ok 7 - R43 full-zone Yihe central entry and west-facing Suian turn-in route at10Hz W sprint
+  ---
+  duration_ms: 1579.907261
+  type: 'test'
+  ...
+# Subtest: R43 full-zone Yihe central entry and west-facing Suian turn-in route at10Hz S sprint
+ok 8 - R43 full-zone Yihe central entry and west-facing Suian turn-in route at10Hz S sprint
+  ---
+  duration_ms: 1176.148255
+  type: 'test'
+  ...
+# Subtest: R43 full-zone Yihe central entry and west-facing Suian turn-in route at60Hz W sprint
+ok 9 - R43 full-zone Yihe central entry and west-facing Suian turn-in route at60Hz W sprint
+  ---
+  duration_ms: 1195.32374
+  type: 'test'
+  ...
+# Subtest: R43 full-zone Yihe central entry and west-facing Suian turn-in route at60Hz S sprint
+ok 10 - R43 full-zone Yihe central entry and west-facing Suian turn-in route at60Hz S sprint
+  ---
+  duration_ms: 1196.99298
+  type: 'test'
+  ...
+# Subtest: R43 Suian window remains blocked while west-facing vestibule aperture is genuinely open
+ok 11 - R43 Suian window remains blocked while west-facing vestibule aperture is genuinely open
+  ---
+  duration_ms: 13.856111
+  type: 'test'
+  ...
+# Subtest: R43 Yihe malformed profiles reject before geometry
+ok 12 - R43 Yihe malformed profiles reject before geometry
+  ---
+  duration_ms: 1.992845
+  type: 'test'
+  ...
+# Subtest: R43 all121 non-target halls retain independent R42 geometry material and navigation signatures
+not ok 13 - R43 all121 non-target halls retain independent R42 geometry material and navigation signatures
+  ---
+  duration_ms: 287.945333
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r43-yihe-layout.test.mjs:24:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    axis-courts/24
+    + actual - expected
+    
+      {
+    +   geometry: '1ce8c1f26cd95b2be18b9b59381f4bf55b597fcd2baedb147c70e9265a597ca0',
+    -   geometry: '451dedf64f19f2a996b64b7680b69f5a96fcae5e7ef382c9e0e488eafe621161',
+        navigation: '3b76de2608446648ba564e0ebdb646e3feec8a2b9df0bc25eadfa0c13085a950'
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    geometry: '451dedf64f19f2a996b64b7680b69f5a96fcae5e7ef382c9e0e488eafe621161'
+    navigation: '3b76de2608446648ba564e0ebdb646e3feec8a2b9df0bc25eadfa0c13085a950'
+  actual:
+    geometry: '1ce8c1f26cd95b2be18b9b59381f4bf55b597fcd2baedb147c70e9265a597ca0'
+    navigation: '3b76de2608446648ba564e0ebdb646e3feec8a2b9df0bc25eadfa0c13085a950'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r43-yihe-layout.test.mjs:25:545)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 12
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5910.193495

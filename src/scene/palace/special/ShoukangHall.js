@@ -1,3 +1,4 @@
+import {applyShoukangSouthEnclosureCandidate} from './ShoukangSouthEnclosureCandidate.js';
 import {buildShoukangSouthSteps} from './ShoukangSouthSteps.js';
 import * as THREE from 'three';
 import {buildShoukangEastWarmRoom} from './ShoukangEastWarmRoom.js';
@@ -51,5 +52,6 @@ export function buildShoukangHall(kit,item){
  const screen=group('shoukang-screen-assembly',g.objectMeasurements.screen.basis),zz=p.screenZ;box('shoukang-screen-base','wood',3.19,.12,.32,0,base+.06,zz,true,screen);
  for(const[cx,w,h]of[[0,1.45,3.1],[-1.16,.87,2.75],[1.16,.87,2.75]]){box('shoukang-screen-panel','wood',w,h-.12,.12,cx,base+.12+(h-.12)/2,zz,true,screen);box('shoukang-screen-unpainted-inset','panel',w-.15,h-.42,.025,cx,base+.12+(h-.12)/2,zz-.075,false,screen);}
  const cuts=[-item.w/2,axes[1],axes[4],item.w/2];for(let i=0;i<3;i++){const doors=i===1?[...g.bayWidths.map((_,j)=>j).filter(j=>[1,2,3].includes(j)).map(j=>({x:(axes[j]+axes[j+1])/2,z:front})),{x:0,z:rear},{x:axes[1],z:p.warmPassageZ},{x:axes[4],z:p.warmPassageZ}]:[{x:i===0?axes[1]:axes[4],z:p.warmPassageZ}];kit._lastFurnish={cover:[],spawns:[{x:i===1?0:(cuts[i]+cuts[i+1])/2,z:p.warmPassageZ}]};kit.registerRoom(f,{name:item.name,kind:i===0?'shoukang-east-warm-viewing-zone':i===2?'shoukang-west-warm-viewing-zone':'shoukang-central-viewing-zone',x0:cuts[i]+.25,x1:cuts[i+1]-.25,z0:front,z1:rear,y,h:H,doors});}
+ applyShoukangSouthEnclosureCandidate(kit,item,f,g);
  f.userData.structure=g;f.name='寿康宫·正殿局部陈列拟合';return{...built,g};
 }

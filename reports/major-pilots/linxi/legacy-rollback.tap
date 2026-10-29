@@ -1,0 +1,87 @@
+✔ R45 Arrow source door groups and fitted outer gallery replace incorrect open nine-bay shell (55.955357ms)
+✔ R45 Linxi four four-leaf doors, two-leaf flank windows, flat ceiling and water-side barriers (34.754438ms)
+✔ R45 actual arrow axial/gallery roundtrip 10Hz W sprint (308.736627ms)
+✔ R45 actual arrow axial/gallery roundtrip 10Hz S sprint (245.635145ms)
+✔ R45 actual arrow axial/gallery roundtrip 60Hz W sprint (210.404075ms)
+✔ R45 actual arrow axial/gallery roundtrip 60Hz S sprint (191.095523ms)
+✔ R45 actual linxi axial/gallery roundtrip 10Hz W sprint (939.712489ms)
+✔ R45 actual linxi axial/gallery roundtrip 10Hz S sprint (853.007273ms)
+✔ R45 actual linxi axial/gallery roundtrip 60Hz W sprint (764.090512ms)
+✔ R45 actual linxi axial/gallery roundtrip 60Hz S sprint (712.839309ms)
+✔ R45 closed side boundaries and open central doors agree with registered clear points (15.382612ms)
+✔ R45 profiles reject incompatible identities metrics and overrides before geometry (1.785259ms)
+✖ R45 all120 non-target halls retain complete R44 geometry and navigation signatures (200.527052ms)
+✔ R45 independent 箭亭 retains actual R44 roof/platform and established supports (59.61951ms)
+✖ R45 independent 临溪亭 retains actual R44 roof/platform and established supports (28.717519ms)
+✔ R45 independent 箭亭 actual merged geometry is finite, flight-covered and exactly disposed (60.187758ms)
+✔ R45 independent 临溪亭 actual merged geometry is finite, flight-covered and exactly disposed (38.079474ms)
+✔ R45 independent Arrow real facade has five south and three north multi-leaf groups, twenty perimeter columns and windowless side walls (18.224451ms)
+✔ R45 independent Linxi two window leaves per flank are not mistaken for openings; central four-leaf N/S passages and E/W barriers differ (13.380531ms)
+✔ R45 independent 箭亭 every new solid box collider is its visible mesh envelope (13.645939ms)
+✔ R45 independent 临溪亭 every new solid box collider is its visible mesh envelope (12.563755ms)
+✔ R45 independent Linxi approved 0.8-run stairs have actual visible treads and matched ground support on both approaches (15.092079ms)
+✔ R69 dedicated Linxi finial and unchanged Arrow 临溪亭 (79.486517ms)
+✔ R69 dedicated Linxi finial and unchanged Arrow 箭亭 (49.240719ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 22
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4808.297415
+
+✖ failing tests:
+
+test at tests/r45-enclosure-layout.test.mjs:20:1
+✖ R45 all120 non-target halls retain complete R44 geometry and navigation signatures (200.527052ms)
+  AssertionError [ERR_ASSERTION]: axis-courts/24
+  + actual - expected
+
+    {
+  +   geometry: '1ce8c1f26cd95b2be18b9b59381f4bf55b597fcd2baedb147c70e9265a597ca0',
+  -   geometry: '451dedf64f19f2a996b64b7680b69f5a96fcae5e7ef382c9e0e488eafe621161',
+      navigation: '3b76de2608446648ba564e0ebdb646e3feec8a2b9df0bc25eadfa0c13085a950'
+    }
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r45-enclosure-layout.test.mjs:20:578)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: { geometry: '1ce8c1f26cd95b2be18b9b59381f4bf55b597fcd2baedb147c70e9265a597ca0', navigation: '3b76de2608446648ba564e0ebdb646e3feec8a2b9df0bc25eadfa0c13085a950' },
+    expected: { geometry: '451dedf64f19f2a996b64b7680b69f5a96fcae5e7ef382c9e0e488eafe621161', navigation: '3b76de2608446648ba564e0ebdb646e3feec8a2b9df0bc25eadfa0c13085a950' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r45-independent-enclosures.test.mjs:14:30
+✖ R45 independent 临溪亭 retains actual R44 roof/platform and established supports (28.717519ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    {
+  +   count: 8,
+  +   hash: '60f4f14ae9d2f880d9ed3d7c327f29339e45f8e5bf42c4840911a58b7ea34882'
+  -   count: 5,
+  -   hash: '27f6e95c9633ed3a552236ebe1f50592199a94deed59d4433fa0e9695149897c'
+    }
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r45-independent-enclosures.test.mjs:14:228)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { count: 8, hash: '60f4f14ae9d2f880d9ed3d7c327f29339e45f8e5bf42c4840911a58b7ea34882' },
+    expected: { count: 5, hash: '27f6e95c9633ed3a552236ebe1f50592199a94deed59d4433fa0e9695149897c' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

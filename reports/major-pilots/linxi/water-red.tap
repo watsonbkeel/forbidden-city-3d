@@ -1,0 +1,31 @@
+✖ new Linxi pool cannot be entered at raised jumping height and use generic y=0 phantom ground (5.888031ms)
+✔ local pool water policy preserves courtyard samples outside its exact body-expanded footprint (0.545368ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 137.702737
+
+✖ failing tests:
+
+test at tests/major-pilots/linxi/water-boundary.test.mjs:2:1
+✖ new Linxi pool cannot be entered at raised jumping height and use generic y=0 phantom ground (5.888031ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  true !== false
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/linxi/water-boundary.test.mjs:2:221)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,3 +1,4 @@
+import {bindXishangEnvironmentWitness,unbindXishangEnvironmentWitness} from '../../controls/XishangEnvironmentWitness.js';
 import {bindChengqianEnvironmentWitness,unbindChengqianEnvironmentWitness} from '../../controls/ChengqianEnvironmentWitness.js';
 import {InactiveZoneCache,zoneRetainedResourceCost} from './InactiveZoneCache.js';
 import {buildingDetailQuality} from '../../render/BuildingDetailQuality.js';
@@ -79,6 +80,7 @@ export class ZoneManager {
     this.library = library;
     this.collisionManager = collisionManager;
     bindChengqianEnvironmentWitness(collisionManager,scene);
+    bindXishangEnvironmentWitness(collisionManager,scene);
 
     // 收集所有区的 regions 和 mapItems（dry 模式：只构建不加入场景）
     console.log('[ZoneManager] 收集所有区的 regions 和 mapItems...');
@@ -402,6 +404,7 @@ export class ZoneManager {
     }
     this.silhouettes.clear();
     unbindChengqianEnvironmentWitness(this.collisionManager);
+    unbindXishangEnvironmentWitness(this.collisionManager);
     delete this.scene.userData.zoneManager;
     this.zones.clear();
     this.buildQueue.length = 0;

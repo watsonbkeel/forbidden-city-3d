@@ -1,3 +1,4 @@
+import {addYiheSouthPorch} from './YiheSouthPorch.js';
 import * as THREE from 'three';
 const SOURCE='https://www.dpm.org.cn/explore/building/236516.html';
 const PLAN='https://www.dpm.org.cn/Uploads/file/2025/02/13/1739432388igVFOKaLW260.pdf';
@@ -64,5 +65,6 @@ export function buildYiheHall(kit,item){
  for(const[z,w]of[[p.mainFront,item.w],[p.mainRear,item.w],[p.front,annex*2],[p.rear,rear*2]])box('yihe-frame-beam','wood',w,.35,.28,0,y+item.colH-.2,z,false);
  const regions=[{kind:'yihe-main-viewing-zone',x0:-rear+.3,x1:half-.4,z0:p.mainFront+.3,z1:p.mainRear-.3,doors:[{x:0,z:p.mainFront},{x:dx,z:dz}],spawn:{x:0,z:0}},{kind:'yihe-east-wing-viewing-zone',x0:-half+.4,x1:dx-.3,z0:p.mainFront+.2,z1:p.mainRear-.3,doors:[{x:dx,z:dz},{x:dx-.78,z:p.mainFront}],spawn:{x:-10,z:0}},{kind:'yihe-suian-viewing-zone',x0:-annex+.3,x1:dx-.3,z0:p.front+.3,z1:p.mainFront,doors:[{x:dx-.78,z:p.mainFront}],spawn:{x:center,z:-6.1}}];
  for(const r of regions){kit._lastFurnish={cover:[],spawns:[r.spawn]};kit.registerRoom(f,{...r,name:item.name,y,h:H});}
+ if(kit.yiheSouthPorch!==false)addYiheSouthPorch(kit,f,item,g);
  f.userData.structure=g;f.name='颐和轩·地面布局局部拟合';return{...built,g};
 }

@@ -1,0 +1,60 @@
+✔ Fuwang own south package has four lower folded leaves and source-visible recessed upper closure/front balustrade only (161.30239ms)
+✔ source-visible central stair is broader than old approach and has two physical sloping stone side rails without narrowing actual 3.2m door (91.814322ms)
+✔ rollback removes only source package and retains original stair-core void and closed upper navigation (121.354416ms)
+✔ new lower transom clears the unchanged lower-front beam underside (41.150869ms)
+✔ every non-target roof waist stair-core rear side and interior mesh is exact, and all inherited walking rows survive (204.75809ms)
+✔ all added geometry finite nondegenerate with bounded cost; sloping stone handrails have actual-envelope collision rows (73.14914ms)
+✔ own south metadata survives merge and original owned resources dispose once (202.870034ms)
+✔ upper balustrade has a real foot rail touching original floor and supporting every baluster (68.192266ms)
+✔ real zone assets loaded, Fuwang south provenance retained, and no new upper navigation (1.323758ms)
+✔ all four original cardinal ground portals remain reversible 10/60Hz walk/run forward/backward (183.555717ms)
+✖ widened south stair side lanes enter between physical stone rails, then return at both rates and gait/direction modes (4.02256ms)
+✔ own-source Leshou south front uses three distinct bands in six window bays and four central folded leaves (182.479008ms)
+✔ south approach has one outward plain stone incline and two broad six-tread flights on inherited floor height (112.48937ms)
+✔ rollback restores old front while room plan roof datum rear and side meshes remain exact (198.64316ms)
+✔ central four-leaf doorway occupies the photographed tall lower part of the facade rather than a tiny generic portal (122.690654ms)
+✔ actual inherited 3.2m clear doorway is retained independently from 2.8m navigation metadata (87.25331ms)
+✔ every non-target mesh including all rear side roof and interior geometry is byte-exact; nonfront physical rows preserved (312.322096ms)
+✔ new geometry is finite, nondegenerate, bounded cost; ramp signed volume is positive with visible upward slope (84.807332ms)
+✔ front top clears retained beam, metadata survives merge and owned materials release exactly once (195.040194ms)
+✔ real NingShou zone assets loaded and own source metadata survives merge (1.45819ms)
+✔ Leshou broad left center right approaches roundtrip through actual doorway at 10/60Hz walk/run forward/backward (208.850292ms)
+✔ own-photo entrance has a continuous stone incline, two stair flights and recessed annex coffers (124.494811ms)
+✔ rollback removes only the new package while preserving prior room plan and rear facade (106.521603ms)
+✔ central four glass leaves preserve the clear opening and transom clears the annex beam (44.366426ms)
+✔ central incline is outward oriented with upward visible walking face (45.926457ms)
+✔ blue coffer fields use own source-bounded deep blue rather than shared turquoise (38.825208ms)
+✔ source limits survive the architectural record used by production merge (39.216094ms)
+✔ all non-target hall mesh geometry, positions, materials and physical rows remain unchanged (787.549671ms)
+✔ all inherited walking surfaces remain exact and only two adjacent stair ramps are added (42.82592ms)
+✔ new package finite mesh triangles and owned material lifecycle survive actual merge (132.179118ms)
+✔ real Ningshou zone loaded complete actual color/normal assets (1.570769ms)
+✔ central incline and both adjacent stairs round trip through retained doorway at 10/60Hz walk/run forward/backward (143.167388ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 31
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2681.691059
+
+✖ failing tests:
+
+test at tests/major-pilots/fuwang/routes.test.mjs:5:1
+✖ widened south stair side lanes enter between physical stone rails, then return at both rates and gait/direction modes (4.02256ms)
+  AssertionError [ERR_ASSERTION]: {"fps":10,"sprint":false,"backward":false,"dx":-1.8,"r":{"arrived":false,"stuckAt":[-260.90000000000003,472.6],"startFeet":0,"minFeet":0,"maxFeet":1,"maxSpeed":4.998322686860774,"driver":{"crossings":[{"index":1,"point":[-260.90000000000003,470.40000000000003],"hit":[-260.90000000000003,470.40000000000003],"lateralDistance":0}],"brakingFrames":0,"endpointSettleSeconds":2},"end":[-260.90000000000003,472.55907840983207,1]}}
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/fuwang/routes.test.mjs:5:514)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

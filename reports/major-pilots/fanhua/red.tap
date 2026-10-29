@@ -1,0 +1,33 @@
+✖ own south facade has24 lower fields28 upper fields and four lower open leaves, without fake image inventory (111.637988ms)
+✔ rollback restores only new south fields while six floor holes and closed upper access remain (119.149426ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 414.842473
+
+✖ failing tests:
+
+test at tests/major-pilots/fanhua/front.test.mjs:5:1
+✖ own south facade has24 lower fields28 upper fields and four lower open leaves, without fake image inventory (111.637988ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'FC-D40CEF5893'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/fanhua/front.test.mjs:5:154)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'FC-D40CEF5893',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,65 @@
+✔ whole Fubi envelope activates one joined roof, shaped finial and both ceiling fields; Fubi never selected (452.317955ms)
+✔ all non-target pavilion geometry and original collision/walkable references remain exact (266.201501ms)
+✔ joined roof is closed consistently oriented with finite positive-area triangles and downward underside (209.812414ms)
+✔ all new geometry triangles are finite and nondegenerate, with bounded complete-package cost (166.095993ms)
+✔ bad source vertices, transformed host and repeat apply reject before mutation (191.599192ms)
+✔ both finial components are closed positive-volume solids and all new overhead details retain walking headroom (198.673245ms)
+✔ three rebuild/dispose cycles release every live new geometry and owned material once; borrowed materials untouched (333.9625ms)
+✔ blue coffer fields are recessed above their green frame faces rather than hanging below them (84.767299ms)
+✔ each support upper triangle is clipped to the rendered underside with bounded 15mm hidden overlap (375.945817ms)
+✔ all coffer layers have physical contact to the ceiling/frame and partial cells do not become a large blank square (108.797536ms)
+✔ photographed red curved gable apron is a closed fitted solid on each annex end, without carved motif claims (100.559048ms)
+✔ Fubi own whole envelope activates joined roof and gold shaped finial with source-bounded floral field layout (298.000575ms)
+✔ Fubi selection never selects Chengrui or changes its established source record (311.845431ms)
+✔ plain circular color fields have outward closed positive-volume geometry and remain flush to green backing (219.334399ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=44, 三角面=228,018, 树木=34棵, 碰撞器=2034
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,222, 树木=34棵, 碰撞器=2034
+✔ full real garden preserves every non-target premerge mesh, trees and all physical rows; whole provenance survives material merge (4770.138647ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,222, 树木=34棵, 碰撞器=2034
+✔ real full garden has complete materials and independent merged provenance for both source-specific pavilion packages (1.281975ms)
+✔ Fubi south landing to actual north ground and return, 10/60Hz walk/run/forward/backward with offset bodies (209.762644ms)
+✔ retained Chengrui north/south route plus Fubi interior both-side circulation and pool-side body guards (62.899588ms)
+✔ Chengrui south two seats have source-visible curved red backs and cloud stone ends; annex remains backless (275.202813ms)
+✖ only two old south panels replaced: all other geometry, contacts and walkables remain exact; Fubi untouched (345.586221ms)
+✔ new curved solids have positive closed volumes and collisions share their exact Float32 faces (145.83804ms)
+✔ invalid identity/rotation/scale and repeated application reject before allocation (178.479164ms)
+✔ new geometries release exactly once with original library materials not taken over (450.420274ms)
+✔ finite stone and curved-slat landings settle, walk off and return with every-frame unshrunk body checks (10238.70963ms)
+✔ finite seat scopes bind exact live original floors without new plinth colliders; unknown source IDs reject (85.699344ms)
+✔ same-bounds reordered vertices, reversed indices and changed normals cannot claim original plinth floor (10.330515ms)
+✔ outside both seat domains central approach motion traces equal frozen R141 exactly (95.963508ms)
+✔ R142 complete static world: original central crossing and both seat-front/back routes remain walkable (7844.645172ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 27
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12061.259628
+
+✖ failing tests:
+
+test at tests/r142/chengrui-seats.test.mjs:8:1
+✖ only two old south panels replaced: all other geometry, contacts and walkables remain exact; Fubi untouched (345.586221ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + '0b13db5944c893406248a3fbbcf7d5844ba38c52d4695c0abd4a84acee136b74'
+  - '8337127d923174222e7f956330f2a909d2ab90c9e9a33c49ab985cfb6048a44e'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r142/chengrui-seats.test.mjs:8:371)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+      at run (node:internal/test_runner/harness:398:12)
+      at test (node:internal/test_runner/harness:407:12)
+      at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r142/chengrui-seats.test.mjs:8:1 {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '0b13db5944c893406248a3fbbcf7d5844ba38c52d4695c0abd4a84acee136b74',
+    expected: '8337127d923174222e7f956330f2a909d2ab90c9e9a33c49ab985cfb6048a44e',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

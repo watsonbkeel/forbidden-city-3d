@@ -18,3 +18,16 @@ export function buildFubiArchPool(group,stone){const p=FUBI_ARCH_POOL,half=p.arc
  for(const[x,z,w,d]of[[-p.poolWidth/2-.125,0,.25,p.poolDepth+.5],[p.poolWidth/2+.125,0,.25,p.poolDepth+.5],[0,-p.poolDepth/2-.125,p.poolWidth,.25],[0,p.poolDepth/2+.125,p.poolWidth,.25]]){const geo=applyBoxUV(new THREE.BoxGeometry(w,-p.bedY,d),1);geo.translate(x,p.bedY/2,z);add('fubi-pool-bank',geo);}
  group.userData.fubiArchPool=p;return p;
 }
+
+/** Bounded non-swimmable-water policy, including airborne attempts over the
+ * inherited low guards. No new collider or hidden support surface is created.
+ * The retained main bridge, south annex and north 2.4 m deck stay traversable.
+ */
+export function canCrossFubiPool(position,radius=.5) {
+ if(!Number.isFinite(radius)||radius<0)throw Error('Fubi pool radius must be finite and non-negative');
+ const p=FUBI_ARCH_POOL,x=position.x-p.x,z=position.z-p.z;
+ const X=p.poolWidth/2,Z=p.poolDepth/2,B=p.baseWidth/2,D=p.baseDepth/2;
+ const water=[[-X,-B,-Z,Z],[B,X,-Z,Z],[-B,-1.2,D,Z],[1.2,B,D,Z]];
+ for(const[x0,x1,z0,z1]of water){const dx=Math.max(x0-x,0,x-x1),dz=Math.max(z0-z,0,z-z1);if((dx===0&&dz===0)||(dx*dx+dz*dz<radius*radius-1e-10))return false;}
+ return true;
+}

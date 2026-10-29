@@ -1,0 +1,35 @@
+✔ own-source Leshou south front uses three distinct bands in six window bays and four central folded leaves (98.824806ms)
+✔ south approach has one outward plain stone incline and two broad six-tread flights on inherited floor height (58.59525ms)
+✔ rollback restores old front while room plan roof datum rear and side meshes remain exact (109.027469ms)
+✖ central four-leaf doorway occupies the photographed tall lower part of the facade rather than a tiny generic portal (57.358692ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 495.993805
+
+✖ failing tests:
+
+test at tests/major-pilots/leshou/front.test.mjs:9:1
+✖ central four-leaf doorway occupies the photographed tall lower part of the facade rather than a tiny generic portal (57.358692ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(leaves.every(m=>m.geometry.parameters.height>6))
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/leshou/front.test.mjs:9:214)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

@@ -1,0 +1,35 @@
+✖ real outer-west preserves every non-target mesh and physical row; merged parent retains truthful bridge/pool provenance (2.806927ms)
+✔ 24 actual-controller full south/north landing roundtrips pass at 10/60Hz with no rescue (151.657571ms)
+✔ retained Lansheng gate route and full exterior perimeter remain usable both directions (98.011749ms)
+✔ stone perimeter prevents normal body crossing while north/south approaches stay open (0.657158ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4407.960566
+
+✖ failing tests:
+
+test at tests/major-pilots/linxi/whole-zone.test.mjs:7:1
+✖ real outer-west preserves every non-target mesh and physical row; merged parent retains truthful bridge/pool provenance (2.806927ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'a5a7108013918110827e12e6375f14b147f87a37a910f1546fbbc4a95f176fa1'
+  - '37161067b55a36df3cd2ff7dde00a8de4a53dbd848f8c5eaed52d9cccbc234e2'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/linxi/whole-zone.test.mjs:7:140)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'a5a7108013918110827e12e6375f14b147f87a37a910f1546fbbc4a95f176fa1',
+    expected: '37161067b55a36df3cd2ff7dde00a8de4a53dbd848f8c5eaed52d9cccbc234e2',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

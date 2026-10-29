@@ -1,0 +1,7 @@
+# Independent read-only review
+
+Reviewer confirmed no central passage obstruction. Measured side-gallery clearance at the column row is approximately0.912m, less than the original player's1m diameter. Existing routes exercise the central through-hall and outside stair/basin bypass, NOT a traverse inside the lateral gallery. This is explicitly left uncompleted; no player scaling or collider weakening is used. Original lattice/carving and Su-style paint remain simplified/unreconstructed.
+
+A separate diagnostic issue was found during visual QA: generic CPU export discarded vertex colors and ignored polygonOffset, obscuring the retained stone-front cue. A local-only export resolves uniform per-triangle vertex tints and local CPU renderer applies a1e-4 coplanar bias. Six original tint materials/504 original triangles verified. This does not change production materials or geometry and does not claim exact GPU slope-scaled bias.
+
+Reviewer accepted isolation of the old whole-hall hash behind the rollback flag while default contact tests and enabled new-package retained-detail comparisons remain intact. In response to the AABB-only evidence limitation, an additional passing test compares exact retained narrow-phase triangle sourceFaces and omitted payloads for eight basin/support/cheek collision shapes. Cumulative pilots:179/179; historical basin/stair group:22/24, with the same two older parent failures disclosed.

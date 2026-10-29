@@ -1,0 +1,111 @@
+TAP version 13
+# Subtest: own five-bay two-level frontage reflects four fitted lower/upper leaves and four perforated open-gallery rails
+not ok 1 - own five-bay two-level frontage reflects four fitted lower/upper leaves and four perforated open-gallery rails
+  ---
+  duration_ms: 63.164763
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/cuishang/geometry.test.mjs:5:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + undefined
+    - 'FC-B6CDE8615B'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'FC-B6CDE8615B'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/cuishang/geometry.test.mjs:5:150)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: rollback preserves roof side rear interiors floors and all non-target geometry
+ok 2 - rollback preserves roof side rear interiors floors and all non-target geometry
+  ---
+  duration_ms: 86.642305
+  type: 'test'
+  ...
+# Subtest: actual lower door jamb width unchanged and every folded field clears original aperture
+not ok 3 - actual lower door jamb width unchanged and every folded field clears original aperture
+  ---
+  duration_ms: 49.741011
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/cuishang/geometry.test.mjs:7:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 2
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 2
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/cuishang/geometry.test.mjs:7:317)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: new triangles finite and nondegenerate including real pierced panels
+ok 4 - new triangles finite and nondegenerate including real pierced panels
+  ---
+  duration_ms: 23.467873
+  type: 'test'
+  ...
+# Subtest: metadata survives actual merge and new geometry resources dispose once
+ok 5 - metadata survives actual merge and new geometry resources dispose once
+  ---
+  duration_ms: 58.767658
+  type: 'test'
+  ...
+# Subtest: new switch has no effect on all other remaining halls
+ok 6 - new switch has no effect on all other remaining halls
+  ---
+  duration_ms: 1461.226878
+  type: 'test'
+  ...
+# Subtest: upper east-four rail panels have actual through apertures and exact triangle contacts
+not ok 7 - upper east-four rail panels have actual through apertures and exact triangle contacts
+  ---
+  duration_ms: 19.46763
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/cuishang/geometry.test.mjs:11:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 4
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 4
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/cuishang/geometry.test.mjs:11:182)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 4
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1949.810163

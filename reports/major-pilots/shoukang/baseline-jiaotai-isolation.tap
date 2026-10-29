@@ -1,0 +1,35 @@
+✖ all previous palace geometry and contacts retained; no extra flat walkable added (5987.429463ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6254.004553
+
+✖ failing tests:
+
+test at tests/r138/jiaotai-low-rooms.test.mjs:10:1
+✖ all previous palace geometry and contacts retained; no extra flat walkable added (5987.429463ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + '41d06ae8223d2cbdabb276e2eaf217ca7393d3e7147adde6f1425a8da01e69b6'
+  - 'a3231312716f9b660db84d6e8b209a521e664b4c20487db32f2356b88a5005b9'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/shoukang-baseline-isolation-677e312d/tests/r138/jiaotai-low-rooms.test.mjs:10:136)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+      at run (node:internal/test_runner/harness:398:12)
+      at test (node:internal/test_runner/harness:407:12)
+      at file:///workspace/scratch/02a8023d1a85/shoukang-baseline-isolation-677e312d/tests/r138/jiaotai-low-rooms.test.mjs:10:1 {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '41d06ae8223d2cbdabb276e2eaf217ca7393d3e7147adde6f1425a8da01e69b6',
+    expected: 'a3231312716f9b660db84d6e8b209a521e664b4c20487db32f2356b88a5005b9',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

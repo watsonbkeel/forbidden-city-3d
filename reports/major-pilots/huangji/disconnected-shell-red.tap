@@ -1,0 +1,32 @@
+✔ nine south bays receive fitted gold partition outlines while three entrances stay open (148.230724ms)
+✔ rollback retains roof platform rear doors interior fallback and every existing physical contract (119.134364ms)
+✔ upper fields have explicitly simplified fine grid and all source collision triangles match actual meshes (146.137782ms)
+✔ every fitted front part embeds into its retained backing plane rather than floating (74.939359ms)
+✖ south door passage body is not inside a disconnected overlapping decorative shell (53.139433ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 726.887834
+
+✖ failing tests:
+
+test at tests/major-pilots/huangji/geometry.test.mjs:7:1
+✖ south door passage body is not inside a disconnected overlapping decorative shell (53.139433ms)
+  AssertionError [ERR_ASSERTION]: empty doorway cannot be classified by unrelated trim parity
+
+  true !== false
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/huangji/geometry.test.mjs:7:398)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

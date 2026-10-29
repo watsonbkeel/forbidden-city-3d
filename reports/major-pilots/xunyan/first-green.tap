@@ -1,0 +1,72 @@
+TAP version 13
+# Subtest: own five-bay front has fitted four open leaves and eight upper/lower window fields
+ok 1 - own five-bay front has fitted four open leaves and eight upper/lower window fields
+  ---
+  duration_ms: 53.544652
+  type: 'test'
+  ...
+# Subtest: rollback preserves roof side rear and through navigation exactly
+ok 2 - rollback preserves roof side rear and through navigation exactly
+  ---
+  duration_ms: 57.229808
+  type: 'test'
+  ...
+# Subtest: actual old3.2m central jamb and all folded leaf fields retain real clearance
+ok 3 - actual old3.2m central jamb and all folded leaf fields retain real clearance
+  ---
+  duration_ms: 34.242385
+  type: 'test'
+  ...
+# Subtest: new geometry finite nondegenerate and hanging work clears body height
+ok 4 - new geometry finite nondegenerate and hanging work clears body height
+  ---
+  duration_ms: 26.272721
+  type: 'test'
+  ...
+# Subtest: source survives merge and custom photo-field material dispose once
+ok 5 - source survives merge and custom photo-field material dispose once
+  ---
+  duration_ms: 51.875886
+  type: 'test'
+  ...
+# Subtest: all other remaining halls including both shared through-hall siblings remain exact
+ok 6 - all other remaining halls including both shared through-hall siblings remain exact
+  ---
+  duration_ms: 1534.516372
+  type: 'test'
+  ...
+# Subtest: five fitted physical treads have exact mesh tops and walkBox support without a ramp
+not ok 7 - five fitted physical treads have exact mesh tops and walkBox support without a ramp
+  ---
+  duration_ms: 18.107908
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/xunyan/geometry.test.mjs:11:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(walks.some(q=>q.y===b.max.y))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/xunyan/geometry.test.mjs:11:510)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 6
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1977.929069

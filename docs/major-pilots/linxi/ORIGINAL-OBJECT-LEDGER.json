@@ -1,0 +1,563 @@
+{
+  "id": "FC-00B009500F",
+  "name": "临溪亭",
+  "section": "K",
+  "scope_origin": "original_markdown_object",
+  "optional": false,
+  "kind": "building_or_structure_candidate",
+  "nature": "建筑或构筑物",
+  "count_as_verified_physical_building": false,
+  "physical_identity_count_policy": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
+  "original_source_line": 763,
+  "original_requirements": {
+    "id": "FC-00B009500F",
+    "name": "临溪亭",
+    "section": "K",
+    "parentText": "慈宁宫花园中南部",
+    "nature": "建筑或构筑物",
+    "rawCells": [
+      "FC-00B009500F · **临溪亭**",
+      "慈宁宫花园中南部；建筑或构筑物；[官方来源](<https://www.dpm.org.cn/explore/building/236537.html>)",
+      "[慈宁花园-临溪亭-东侧正立面](<https://img.dpm.org.cn/Uploads/Picture/2020/07/15/s5f0ebf845b521.jpg>)；[慈宁宫花园-临溪亭](<https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5efee59eb65f0.jpg>)",
+      "未找到可确认的本项室内图；待补",
+      "跨池桥亭、四角攒尖顶、四面门窗和汉白玉水池栏板；外观多角度；室内花卉天花/藻井尚未见静态近景"
+    ],
+    "sourceLine": 763,
+    "cautions": "跨池桥亭、四角攒尖顶、四面门窗和汉白玉水池栏板；外观多角度；室内花卉天花/藻井尚未见静态近景"
+  },
+  "source_reported_exterior_status": "DIFFED",
+  "source_reported_interior_status": "DIFFED",
+  "whole_object_acceptance": "UNVERIFIED_NOT_CLOSED",
+  "current_R136_facets_independently_verified": false,
+  "source_reported_actual_changes": [],
+  "source_reported_acceptance_records": [],
+  "source_reported_facets": {
+    "exterior": {
+      "status": "DIFFED",
+      "currentCycleReview": "DIFFED",
+      "inheritedProgressRetained": true,
+      "baselineRecords": [
+        {
+          "registryId": "place-outer-west-00b009500f",
+          "value": {
+            "implementation": "dedicated-partial",
+            "dimensions": "includes-model-fits",
+            "accepted": false,
+            "unresolved": [
+              "官方为方形三间亭，既有9×8.4米外廓仍为矩形近似；1:2:1宽中间比例为照片拟合，不是实测比例。",
+              "四面中央四叶门、侧面每组两叶槛窗有文本/照片依据；南北阶的宽、跑长、级数为拟合，原屋顶近似保留。",
+              "东西护栏存在均有官方文字依据，东立面外观另有匹配照片，西侧细部只作拟合；池桥和外围石栏未完整建模。"
+            ]
+          },
+          "targetState": "现存建筑文本与官方照片的局部围护关系；拍摄日期未明，不把上传日期当拍摄日期，不代表2026年完整室内清单。",
+          "validation": {
+            "visual": "not-verified",
+            "nativePhone": "not-verified"
+          },
+          "review": null,
+          "claims": [
+            {
+              "scope": "exterior",
+              "text": "四面中央四叶门，侧间槛窗和黄绿琉璃下墙，东西临水门前木护栏，南北有阶。",
+              "source": "https://www.dpm.org.cn/explore/building/236537.html",
+              "targetState": "数量与类型依据官方说明；尺寸、柱轴/开口位置和门扇姿态分列拟合。",
+              "implemented": true
+            }
+          ],
+          "changes": [
+            {
+              "profile": "linxi-enclosed-flat-ceiling-fit-v1",
+              "area": "exterior",
+              "summary": "四面门窗围护、临水护栏与拟合南北阶，无外廊。"
+            }
+          ]
+        }
+      ],
+      "sourceIds": [
+        "SRC-B7B62D4C08FF",
+        "SRC-B70DB80B305C"
+      ],
+      "notApplicableReason": null,
+      "features": [
+        {
+          "id": "footprint_orientation_court_connections",
+          "status": "DIFFED",
+          "acceptedScope": null,
+          "currentCycleAccepted": false,
+          "scopeScanComplete": true,
+          "reviewNote": "已有独立四角攒尖、封闭四面门窗与平天花拟合，池桥/石栏应与建筑分别验收。 本细项未完成本轮实景视觉验收。",
+          "residualAction": "临溪亭／平面朝向与院落连接：花卉天花/藻井缺已定位近景；屋面、四面门窗和水池栏板仍需图对照，不以通用家具填充。",
+          "residualCategories": [
+            "ENGINEERING",
+            "BROWSER"
+          ],
+          "reviewEvidence": "K-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+          "targetVersionConfirmed": false
+        },
+        {
+          "id": "storeys_roof_type_ridge_pitch_eaves_colour",
+          "status": "PARTIAL",
+          "acceptedScope": null,
+          "currentCycleAccepted": false,
+          "scopeScanComplete": true,
+          "reviewNote": "只替换原通用尖形宝顶为圆冠、短颈、分层圆座四部件的外形拟合；保留原屋顶与物理，未复刻纹样、全屋面、格栅或池桥。照片尺寸未测绘。",
+          "residualAction": "临溪亭／层数与屋顶檐瓦：花卉天花/藻井缺已定位近景；屋面、四面门窗和水池栏板仍需图对照，不以通用家具填充。",
+          "residualCategories": [
+            "ENGINEERING",
+            "BROWSER"
+          ],
+          "reviewEvidence": "K-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+          "targetVersionConfirmed": false,
+          "implementationEvidence": "tests/r69-k-linxi-finial.test.mjs"
+        },
+        {
+          "id": "bays_columns_brackets_beams_paint_zones",
+          "status": "DIFFED",
+          "acceptedScope": null,
+          "currentCycleAccepted": false,
+          "scopeScanComplete": true,
+          "reviewNote": "已有独立四角攒尖、封闭四面门窗与平天花拟合，池桥/石栏应与建筑分别验收。 本细项未完成本轮实景视觉验收。",
+          "residualAction": "临溪亭／开间柱网与梁枋彩画：花卉天花/藻井缺已定位近景；屋面、四面门窗和水池栏板仍需图对照，不以通用家具填充。",
+          "residualCategories": [
+            "ENGINEERING",
+            "BROWSER"
+          ],
+          "reviewEvidence": "K-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+          "targetVersionConfirmed": false
+        },
+        {
+          "id": "doors_windows_openings_walls_screens",
+          "status": "DIFFED",
+          "acceptedScope": null,
+          "currentCycleAccepted": false,
+          "scopeScanComplete": true,
+          "reviewNote": "已有独立四角攒尖、封闭四面门窗与平天花拟合，池桥/石栏应与建筑分别验收。 本细项未完成本轮实景视觉验收。",
+          "residualAction": "临溪亭／门窗与墙屏：花卉天花/藻井缺已定位近景；屋面、四面门窗和水池栏板仍需图对照，不以通用家具填充。",
+          "residualCategories": [
+            "ENGINEERING",
+            "BROWSER"
+          ],
+          "reviewEvidence": "K-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+          "targetVersionConfirmed": false
+        },
+        {
+          "id": "terrace_steps_imperial_ramp_rails_posts",
+          "status": "DIFFED",
+          "acceptedScope": null,
+          "currentCycleAccepted": false,
+          "scopeScanComplete": true,
+          "reviewNote": "已有独立四角攒尖、封闭四面门窗与平天花拟合，池桥/石栏应与建筑分别验收。 本细项未完成本轮实景视觉验收。",
+          "residualAction": "临溪亭／台基台阶与栏杆：花卉天花/藻井缺已定位近景；屋面、四面门窗和水池栏板仍需图对照，不以通用家具填充。",
+          "residualCategories": [
+            "ENGINEERING",
+            "BROWSER"
+          ],
+          "reviewEvidence": "K-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+          "targetVersionConfirmed": false
+        },
+        {
+          "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+          "status": "DIFFED",
+          "acceptedScope": null,
+          "currentCycleAccepted": false,
+          "scopeScanComplete": true,
+          "reviewNote": "已有独立四角攒尖、封闭四面门窗与平天花拟合，池桥/石栏应与建筑分别验收。 本细项未完成本轮实景视觉验收。",
+          "residualAction": "临溪亭／廊与楼层连接：花卉天花/藻井缺已定位近景；屋面、四面门窗和水池栏板仍需图对照，不以通用家具填充。",
+          "residualCategories": [
+            "ENGINEERING",
+            "BROWSER"
+          ],
+          "reviewEvidence": "K-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+          "targetVersionConfirmed": false
+        },
+        {
+          "id": "plaques_text_placement_orientation_occlusion",
+          "status": "DIFFED",
+          "acceptedScope": null,
+          "currentCycleAccepted": false,
+          "scopeScanComplete": true,
+          "reviewNote": "已有独立四角攒尖、封闭四面门窗与平天花拟合，池桥/石栏应与建筑分别验收。 本细项未完成本轮实景视觉验收。",
+          "residualAction": "临溪亭／牌匾文字挂位：花卉天花/藻井缺已定位近景；屋面、四面门窗和水池栏板仍需图对照，不以通用家具填充。",
+          "residualCategories": [
+            "ENGINEERING",
+            "BROWSER"
+          ],
+          "reviewEvidence": "K-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+          "targetVersionConfirmed": false
+        },
+        {
+          "id": "unique_courtyard_facilities_locations",
+          "status": "DIFFED",
+          "acceptedScope": null,
+          "currentCycleAccepted": false,
+          "scopeScanComplete": true,
+          "reviewNote": "已有独立四角攒尖、封闭四面门窗与平天花拟合，池桥/石栏应与建筑分别验收。 本细项未完成本轮实景视觉验收。",
+          "residualAction": "临溪亭／专属院落设施：花卉天花/藻井缺已定位近景；屋面、四面门窗和水池栏板仍需图对照，不以通用家具填充。",
+          "residualCategories": [
+            "ENGINEERING",
+            "BROWSER"
+          ],
+          "reviewEvidence": "K-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+          "targetVersionConfirmed": false
+        }
+      ],
+      "visualEvidence": {
+        "before": null,
+        "after": null,
+        "referenceComparison": null,
+        "browserRun": null
+      },
+      "targetVersion": {
+        "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+        "photographyDate": null,
+        "doNotMixPeriods": true
+      },
+      "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+      "inheritedImplementationOnly": "Prior implementation/evidence retained verbatim in baselineRecords and read-only original snapshot; NOT current-cycle visual acceptance.",
+      "currentCycleAccepted": false,
+      "currentCycleScopeReview": {
+        "at": "2026-10-24T01:10:04.203010+00:00",
+        "scopeScanComplete": true,
+        "evidence": "K-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+        "browserAcceptance": false,
+        "wholeObjectAccepted": false
+      }
+    },
+    "interior": {
+      "status": "DIFFED",
+      "currentCycleReview": "DIFFED",
+      "inheritedProgressRetained": true,
+      "baselineRecords": [
+        {
+          "registryId": "place-outer-west-00b009500f",
+          "value": {
+            "implementation": "dedicated-partial",
+            "dimensions": "includes-model-fits",
+            "accepted": false,
+            "unresolved": [
+              "天花是平面绘画造成的藻井错觉，本批仅做平顶素面，尚未复制彩画；2018年论文修复前损坏不作为当前状态。",
+              "没有核实完整可移动家具清单，不增造宝座或祭坛，素空模型不代表历史上本来空置。"
+            ]
+          },
+          "targetState": "现存建筑文本与官方照片的局部围护关系；拍摄日期未明，不把上传日期当拍摄日期，不代表2026年完整室内清单。",
+          "validation": {
+            "visual": "not-verified",
+            "nativePhone": "not-verified"
+          },
+          "review": null,
+          "claims": [
+            {
+              "scope": "interior",
+              "text": "平面软天花绘制框架及八角藻井幻觉，不是实体下凹雕刻藻井。",
+              "source": "https://www.dpm.org.cn/Uploads/File/2018/12/11/u5c0f33bc7102e.pdf",
+              "targetState": "2018年院刊第46至47页；本批只实现平顶素面，未复制绘画及修复前损坏。",
+              "implemented": true
+            }
+          ],
+          "changes": [
+            {
+              "profile": "linxi-enclosed-flat-ceiling-fit-v1",
+              "area": "interior",
+              "summary": "从全敞通用壳体改为有围护的观览空间，无通用家具填充。"
+            }
+          ]
+        }
+      ],
+      "sourceIds": [],
+      "notApplicableReason": null,
+      "features": [
+        {
+          "id": "room_partitions_portals_column_grid_levels_steps_floor",
+          "status": "DIFFED",
+          "acceptedScope": null,
+          "currentCycleAccepted": false,
+          "scopeScanComplete": true,
+          "reviewNote": "已有独立四角攒尖、封闭四面门窗与平天花拟合，池桥/石栏应与建筑分别验收。 本细项未完成本轮实景视觉验收。",
+          "residualAction": "临溪亭／室内分隔柱网楼层：花卉天花/藻井缺已定位近景；屋面、四面门窗和水池栏板仍需图对照，不以通用家具填充。",
+          "residualCategories": [
+            "ENGINEERING",
+            "BROWSER"
+          ],
+          "reviewEvidence": "K-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+          "targetVersionConfirmed": false
+        },
+        {
+          "id": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+          "status": "BLOCKED_SOURCE",
+          "acceptedScope": null,
+          "currentCycleAccepted": false,
+          "scopeScanComplete": true,
+          "reviewNote": "完整当前室内图未确认，文字类型/旧用途不能证明陈设数量与方位。已有独立四角攒尖、封闭四面门窗与平天花拟合，池桥/石栏应与建筑分别验收。 本细项未完成本轮实景视觉验收。",
+          "residualAction": "临溪亭／天花固定装修：花卉天花/藻井缺已定位近景；屋面、四面门窗和水池栏板仍需图对照，不以通用家具填充。",
+          "residualCategories": [
+            "SOURCE",
+            "PERIOD",
+            "BROWSER"
+          ],
+          "reviewEvidence": "K-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+          "targetVersionConfirmed": false
+        },
+        {
+          "id": "principal_furniture_type_count_location_facing_scale",
+          "status": "BLOCKED_SOURCE",
+          "acceptedScope": null,
+          "currentCycleAccepted": false,
+          "scopeScanComplete": true,
+          "reviewNote": "完整当前室内图未确认，文字类型/旧用途不能证明陈设数量与方位。已有独立四角攒尖、封闭四面门窗与平天花拟合，池桥/石栏应与建筑分别验收。 本细项未完成本轮实景视觉验收。",
+          "residualAction": "临溪亭／家具数量方位比例：花卉天花/藻井缺已定位近景；屋面、四面门窗和水池栏板仍需图对照，不以通用家具填充。",
+          "residualCategories": [
+            "SOURCE",
+            "PERIOD",
+            "BROWSER"
+          ],
+          "reviewEvidence": "K-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+          "targetVersionConfirmed": false
+        },
+        {
+          "id": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+          "status": "BLOCKED_SOURCE",
+          "acceptedScope": null,
+          "currentCycleAccepted": false,
+          "scopeScanComplete": true,
+          "reviewNote": "完整当前室内图未确认，文字类型/旧用途不能证明陈设数量与方位。已有独立四角攒尖、封闭四面门窗与平天花拟合，池桥/石栏应与建筑分别验收。 本细项未完成本轮实景视觉验收。",
+          "residualAction": "临溪亭／画匾联与装饰关系：花卉天花/藻井缺已定位近景；屋面、四面门窗和水池栏板仍需图对照，不以通用家具填充。",
+          "residualCategories": [
+            "SOURCE",
+            "PERIOD",
+            "BROWSER"
+          ],
+          "reviewEvidence": "K-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+          "targetVersionConfirmed": false
+        },
+        {
+          "id": "function_specificity_worship_library_residential_exhibition",
+          "status": "DIFFED",
+          "acceptedScope": null,
+          "currentCycleAccepted": false,
+          "scopeScanComplete": true,
+          "reviewNote": "已有独立四角攒尖、封闭四面门窗与平天花拟合，池桥/石栏应与建筑分别验收。 本细项未完成本轮实景视觉验收。",
+          "residualAction": "临溪亭／功能与年代区分：花卉天花/藻井缺已定位近景；屋面、四面门窗和水池栏板仍需图对照，不以通用家具填充。",
+          "residualCategories": [
+            "ENGINEERING",
+            "BROWSER"
+          ],
+          "reviewEvidence": "K-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+          "targetVersionConfirmed": false
+        },
+        {
+          "id": "visible_missing_objects_and_unsupported_model_objects",
+          "status": "DIFFED",
+          "acceptedScope": null,
+          "currentCycleAccepted": false,
+          "scopeScanComplete": true,
+          "reviewNote": "已有独立四角攒尖、封闭四面门窗与平天花拟合，池桥/石栏应与建筑分别验收。 本细项未完成本轮实景视觉验收。",
+          "residualAction": "临溪亭／可见缺项和无源物件：花卉天花/藻井缺已定位近景；屋面、四面门窗和水池栏板仍需图对照，不以通用家具填充。",
+          "residualCategories": [
+            "ENGINEERING",
+            "BROWSER"
+          ],
+          "reviewEvidence": "K-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+          "targetVersionConfirmed": false
+        }
+      ],
+      "visualEvidence": {
+        "before": null,
+        "after": null,
+        "referenceComparison": null,
+        "browserRun": null
+      },
+      "targetVersion": {
+        "selection": "PENDING_OBJECT_SPECIFIC_CURRENT_STATE_OR_DATED_DISPLAY",
+        "photographyDate": null,
+        "doNotMixPeriods": true
+      },
+      "nextAction": "Inspect referenced actual images and target period, locate current rendering, make reference → model → change → verification diff; preserve inherited proven features.",
+      "inheritedImplementationOnly": "Prior implementation/evidence retained verbatim in baselineRecords and read-only original snapshot; NOT current-cycle visual acceptance.",
+      "currentCycleAccepted": false,
+      "currentCycleScopeReview": {
+        "at": "2026-10-24T01:10:04.203010+00:00",
+        "scopeScanComplete": true,
+        "evidence": "K-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+        "browserAcceptance": false,
+        "wholeObjectAccepted": false
+      }
+    }
+  },
+  "source_evidence": {
+    "exterior": {
+      "inputStatus": "INPUT_REFERENCED_STATIC_IMAGE_OR_PDF_NOT_REOPENED",
+      "inputText": "[慈宁花园-临溪亭-东侧正立面](<https://img.dpm.org.cn/Uploads/Picture/2020/07/15/s5f0ebf845b521.jpg>)；[慈宁宫花园-临溪亭](<https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5efee59eb65f0.jpg>)",
+      "sourceIds": [
+        "SRC-B7B62D4C08FF",
+        "SRC-B70DB80B305C"
+      ],
+      "actuallyViewedThisPlanningPass": false,
+      "full360Viewed": false,
+      "targetVersionConfirmed": false
+    },
+    "interior": {
+      "inputStatus": "NO_CONFIRMED_IMAGE_IN_INPUT",
+      "inputText": "未找到可确认的本项室内图；待补",
+      "sourceIds": [],
+      "actuallyViewedThisPlanningPass": false,
+      "full360Viewed": false,
+      "targetVersionConfirmed": false
+    }
+  },
+  "remaining_feature_details": [
+    {
+      "facet": "exterior",
+      "feature": "footprint_orientation_court_connections",
+      "status": "DIFFED",
+      "finding": null
+    },
+    {
+      "facet": "exterior",
+      "feature": "storeys_roof_type_ridge_pitch_eaves_colour",
+      "status": "PARTIAL",
+      "finding": null
+    },
+    {
+      "facet": "exterior",
+      "feature": "bays_columns_brackets_beams_paint_zones",
+      "status": "DIFFED",
+      "finding": null
+    },
+    {
+      "facet": "exterior",
+      "feature": "doors_windows_openings_walls_screens",
+      "status": "DIFFED",
+      "finding": null
+    },
+    {
+      "facet": "exterior",
+      "feature": "terrace_steps_imperial_ramp_rails_posts",
+      "status": "DIFFED",
+      "finding": null
+    },
+    {
+      "facet": "exterior",
+      "feature": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+      "status": "DIFFED",
+      "finding": null
+    },
+    {
+      "facet": "exterior",
+      "feature": "plaques_text_placement_orientation_occlusion",
+      "status": "DIFFED",
+      "finding": null
+    },
+    {
+      "facet": "exterior",
+      "feature": "unique_courtyard_facilities_locations",
+      "status": "DIFFED",
+      "finding": null
+    },
+    {
+      "facet": "interior",
+      "feature": "room_partitions_portals_column_grid_levels_steps_floor",
+      "status": "DIFFED",
+      "finding": null
+    },
+    {
+      "facet": "interior",
+      "feature": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+      "status": "BLOCKED_SOURCE",
+      "finding": null
+    },
+    {
+      "facet": "interior",
+      "feature": "principal_furniture_type_count_location_facing_scale",
+      "status": "BLOCKED_SOURCE",
+      "finding": null
+    },
+    {
+      "facet": "interior",
+      "feature": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+      "status": "BLOCKED_SOURCE",
+      "finding": null
+    },
+    {
+      "facet": "interior",
+      "feature": "function_specificity_worship_library_residential_exhibition",
+      "status": "DIFFED",
+      "finding": null
+    },
+    {
+      "facet": "interior",
+      "feature": "visible_missing_objects_and_unsupported_model_objects",
+      "status": "DIFFED",
+      "finding": null
+    }
+  ],
+  "remaining_feature_count": 14,
+  "source_cautions": "跨池桥亭、四角攒尖顶、四面门窗和汉白玉水池栏板；外观多角度；室内花卉天花/藻井尚未见静态近景",
+  "source_next_action": "花卉天花/藻井缺已定位近景；屋面、四面门窗和水池栏板仍需图对照，不以通用家具填充。",
+  "runtime_binding_candidates": [
+    {
+      "inventoryId": "RI-C101E117FBD6",
+      "ref": "data/zones/outer-west.json#/items/14",
+      "kind": "hall",
+      "bindingStatus": "STATIC_DECLARATION_NOT_CURRENT_RENDER_PROOF"
+    }
+  ],
+  "crosswalk_entry": {
+    "id": "FC-00B009500F",
+    "name": "临溪亭",
+    "section": "K",
+    "kind": "building_or_structure_candidate",
+    "entityId": "FC-00B009500F",
+    "entityCountStatus": "PROVISIONAL_BOUNDARY_NOT_DEDUPED_PHYSICAL_COUNT",
+    "aliases": [],
+    "parentText": "慈宁宫花园中南部",
+    "parentCandidates": [
+      "FC-E997E3CC58",
+      "FC-B9B85B682E"
+    ],
+    "requiredChildIds": [],
+    "registryBindings": [
+      {
+        "repositoryId": "place-outer-west-00b009500f",
+        "repositoryName": "临溪亭",
+        "reviewObjectId": "FC-00B009500F",
+        "canonicalName": "临溪亭",
+        "registryRef": "data/architecture/building-fidelity.json#/buildings/49",
+        "mappingBasis": "exact-name-candidate",
+        "physicalIdentityVerified": false
+      }
+    ],
+    "placeBindings": [
+      {
+        "repositoryId": "place-outer-west-00b009500f",
+        "repositoryName": "临溪亭",
+        "reviewObjectId": "FC-00B009500F",
+        "canonicalName": "临溪亭",
+        "registryRef": "data/places/zh-CN.json#/places/37",
+        "mappingBasis": "exact-name-candidate",
+        "physicalIdentityVerified": false
+      }
+    ],
+    "runtimeBindings": [
+      {
+        "inventoryId": "RI-C101E117FBD6",
+        "ref": "data/zones/outer-west.json#/items/14",
+        "kind": "hall",
+        "bindingStatus": "STATIC_DECLARATION_NOT_CURRENT_RENDER_PROOF"
+      }
+    ],
+    "bindingStatus": "EXISTING_DECLARATIVE_CANDIDATE"
+  },
+  "crosswalk_limit": "Existing derived mapping, not original REPO-CROSSWALK.json; declaration/name candidates are not rendered physical identity proof.",
+  "r126_exact_name_ledger_ids": [],
+  "r126_related_group_context_ids": [],
+  "r126_group_context_not_child_acceptance": true,
+  "proposed_priority_batch": "B09-慈宁寿康寿安",
+  "batch_status": "PROPOSED_AUDIT_ORDER_NOT_AUTHORIZED_RELEASE_PLAN",
+  "current_verification_needed": [
+    "按当前冻结源码重新验证对象绑定及未改/已改差异",
+    "引用原图与实际游戏同视角，分别闭合外观与内部；无图保持UNKNOWN",
+    "核目标时期、缺物与未知区别；院组继续拆子实例，不补通用室内"
+  ],
+  "evidence_pointer": "decoded QUEUE.json#/items/372",
+  "r136_related_bounded_update_ids": []
+}

@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: roof NPC impact remains airborne, pose replacement is live, and removal resumes real roof landing
+ok 1 - roof NPC impact remains airborne, pose replacement is live, and removal resumes real roof landing
+  ---
+  duration_ms: 7638.218362
+  type: 'test'
+  ...
+# Subtest: standing and seated actors block walk/run across the new domain boundary without becoming floors
+ok 2 - standing and seated actors block walk/run across the new domain boundary without becoming floors
+  ---
+  duration_ms: 136.306954
+  type: 'test'
+  ...
+# Subtest: only two exact retained Xishang floor boxes provide positive-overlap source witnesses
+ok 3 - only two exact retained Xishang floor boxes provide positive-overlap source witnesses
+  ---
+  duration_ms: 1.536828
+  type: 'test'
+  ...
+# Subtest: three open front bays bind all 63 real bars and 78 unchanged roof meshes to one exact source surface
+ok 4 - three open front bays bind all 63 real bars and 78 unchanged roof meshes to one exact source surface
+  ---
+  duration_ms: 970.390663
+  type: 'test'
+  ...
+# Subtest: every safety source face is an actual final merged render triangle, including Float32 baking
+ok 5 - every safety source face is an actual final merged render triangle, including Float32 baking
+  ---
+  duration_ms: 119.309084
+  type: 'test'
+  ...
+# Subtest: Xishang ground is source-bound, isolated and revocable, never synthetic
+ok 6 - Xishang ground is source-bound, isolated and revocable, never synthetic
+  ---
+  duration_ms: 20.993132
+  type: 'test'
+  ...
+# Subtest: three front bays retain repeated normal jumps without source-surface penetration at 10/60Hz
+ok 7 - three front bays retain repeated normal jumps without source-surface penetration at 10/60Hz
+  ---
+  duration_ms: 408.570862
+  type: 'test'
+  ...
+# Subtest: Xishang production registration accepts one exact anchor and rejects altered ownership
+ok 8 - Xishang production registration accepts one exact anchor and rejects altered ownership
+  ---
+  duration_ms: 144.912376
+  type: 'test'
+  ...
+# Subtest: Xishang scope identity cannot be downgraded; duplicate and tagged unload/reload do not leave owners
+ok 9 - Xishang scope identity cannot be downgraded; duplicate and tagged unload/reload do not leave owners
+  ---
+  duration_ms: 136.293426
+  type: 'test'
+  ...
+# Subtest: production threshold crossings hand off to original registered floors and ground
+ok 10 - production threshold crossings hand off to original registered floors and ground
+  ---
+  duration_ms: 569.232233
+  type: 'test'
+  ...
+# Subtest: production source-bound exact surface motion high drops settle then exit six directions without real triangle penetration
+ok 11 - production source-bound exact surface motion high drops settle then exit six directions without real triangle penetration
+  ---
+  duration_ms: 77721.170425
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 89186.904385

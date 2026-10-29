@@ -1,0 +1,74 @@
+✔ Chengrui south two seats have source-visible curved red backs and cloud stone ends; annex remains backless (142.143365ms)
+✖ only two old south panels replaced: all other geometry, contacts and walkables remain exact; Fubi untouched (99.664578ms)
+✔ new curved solids have positive closed volumes and collisions share their exact Float32 faces (81.544489ms)
+✔ invalid identity/rotation/scale and repeated application reject before allocation (62.378109ms)
+✔ new geometries release exactly once with original library materials not taken over (122.146378ms)
+✖ finite stone and curved-slat landings settle, walk off and return with every-frame unshrunk body checks (9917.366055ms)
+✔ finite seat scopes bind exact live original floors without new plinth colliders; unknown source IDs reject (53.085374ms)
+✔ same-bounds reordered vertices, reversed indices and changed normals cannot claim original plinth floor (12.161575ms)
+✔ outside both seat domains central approach motion traces equal frozen R141 exactly (66.501274ms)
+✖ R142 complete static world: original central crossing and both seat-front/back routes remain walkable (6948.374856ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 7
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10738.9329
+
+✖ failing tests:
+
+test at tests/r142/chengrui-seats.test.mjs:8:1
+✖ only two old south panels replaced: all other geometry, contacts and walkables remain exact; Fubi untouched (99.664578ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'c622a756784778918de0dc8790a0b45ec98739ad5c77f9a08306926ec49a5bd4'
+  - '7dc983450a23547710171fedeb8e9a714381ea3c9587bd804a1f41afbe4e799a'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r142/chengrui-seats.test.mjs:8:339)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+      at run (node:internal/test_runner/harness:398:12)
+      at test (node:internal/test_runner/harness:407:12)
+      at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r142/chengrui-seats.test.mjs:8:1 {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'c622a756784778918de0dc8790a0b45ec98739ad5c77f9a08306926ec49a5bd4',
+    expected: '7dc983450a23547710171fedeb8e9a714381ea3c9587bd804a1f41afbe4e799a',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r142/chengrui-seats.test.mjs:15:1
+✖ finite stone and curved-slat landings settle, walk off and return with every-frame unshrunk body checks (9917.366055ms)
+  Error: ENOENT: no such file or directory, open 'reports/r142/airborne-closed-loops.json'
+      at Object.writeFileSync (node:fs:2483:20)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r142/chengrui-seats.test.mjs:26:8)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'reports/r142/airborne-closed-loops.json'
+  }
+
+test at tests/r142/world-check.test.mjs:2:1
+✖ R142 complete static world: original central crossing and both seat-front/back routes remain walkable (6948.374856ms)
+  Error: ENOENT: no such file or directory, open 'reports/r142/full-static-routes.json'
+      at Object.writeFileSync (node:fs:2483:20)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r142/world-check.test.mjs:2:927)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'reports/r142/full-static-routes.json'
+  }

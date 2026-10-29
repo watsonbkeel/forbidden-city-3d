@@ -1,0 +1,44 @@
+✔ own-source Leshou south front uses three distinct bands in six window bays and four central folded leaves (209.11883ms)
+✔ south approach has one outward plain stone incline and two broad six-tread flights on inherited floor height (96.971677ms)
+✔ rollback restores old front while room plan roof datum rear and side meshes remain exact (235.159604ms)
+✔ real NingShou zone assets loaded and own source metadata survives merge (2.036008ms)
+✖ Leshou broad left center right approaches roundtrip through actual doorway at 10/60Hz walk/run forward/backward (41.569771ms)
+✔ own-photo entrance has a continuous stone incline, two stair flights and recessed annex coffers (143.03727ms)
+✔ rollback removes only the new package while preserving prior room plan and rear facade (106.164784ms)
+✔ central four glass leaves preserve the clear opening and transom clears the annex beam (50.661726ms)
+✔ central incline is outward oriented with upward visible walking face (56.694486ms)
+✔ blue coffer fields use own source-bounded deep blue rather than shared turquoise (55.926388ms)
+✔ source limits survive the architectural record used by production merge (39.624019ms)
+✔ all non-target hall mesh geometry, positions, materials and physical rows remain unchanged (733.216211ms)
+✔ all inherited walking surfaces remain exact and only two adjacent stair ramps are added (61.255676ms)
+✔ new package finite mesh triangles and owned material lifecycle survive actual merge (116.651483ms)
+✔ real Ningshou zone loaded complete actual color/normal assets (1.495356ms)
+✔ central incline and both adjacent stairs round trip through retained doorway at 10/60Hz walk/run forward/backward (214.803843ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 15
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2703.257803
+
+✖ failing tests:
+
+test at tests/major-pilots/leshou/routes.test.mjs:5:1
+✖ Leshou broad left center right approaches roundtrip through actual doorway at 10/60Hz walk/run forward/backward (41.569771ms)
+  AssertionError [ERR_ASSERTION]: {"fps":10,"sprint":false,"backward":false,"dx":-6.5,"r":{"arrived":false,"stuckAt":[-293.4,423.7],"startFeet":0,"minFeet":0,"maxFeet":0.9,"maxSpeed":4.999999923849445,"driver":{"crossings":[{"index":1,"point":[-299.9,420.8],"hit":[-299.9,420.8],"lateralDistance":0},{"index":2,"point":[-299.9,423.7],"hit":[-299.9,423.7],"lateralDistance":0}],"brakingFrames":0,"endpointSettleSeconds":2},"end":[-296.9033861984424,423.70413824229354,0.9]}}
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/leshou/routes.test.mjs:5:582)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

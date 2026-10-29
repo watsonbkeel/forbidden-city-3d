@@ -1,0 +1,15 @@
+{
+  "parent": "9696648e4526813507470f6cbbc9348e75cebec2",
+  "parentMode": "same runtime with ONLY suichuSouthFront=false through diagnostic preload; product unchanged",
+  "scope": "3 named frozen retention/merge checks only",
+  "tests": 3,
+  "pass": 1,
+  "fail": 2,
+  "failureNamesIdentical": true,
+  "failureNames": [
+    "all original Suichu geometry/roof/rail/junction, contacts, walkables and unknown interior policy remain byte-identical",
+    "actual production material merge retains every basin/support/plinth triangle at its exact world F32 position"
+  ],
+  "goldenFixturesModified": false,
+  "adaptedCheck": "Only later-facade rollback is used for old stair-era whole-hall retention. Enabled mode has separate exact source basin/stair retention in major-pilots geometry test."
+}

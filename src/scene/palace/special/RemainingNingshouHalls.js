@@ -1,3 +1,21 @@
+import {buildXishangFrontTransom,registerXishangRoofTransom} from './XishangFrontTransom.js';
+import {buildHuangjiSouthFront} from './HuangjiSouthFront.js';
+import {buildNingshouSouthFrieze} from './NingshouSouthFrieze.js';
+import {buildBiluoLowerCanopy,registerBiluoRetainedSign} from './BiluoLowerCanopy.js';
+import {buildChangyinNorthFront} from './ChangyinNorthFront.js';
+import {buildJingqiSouthGallery} from './JingqiSouthGallery.js';
+import {buildYanquPhotoNiche} from './YanquPhotoNiche.js';
+import {buildCuishangSouthFront} from './CuishangSouthFront.js';
+import {buildXunyanSouthFront} from './XunyanSouthFront.js';
+import {buildSuichuSouthFront} from './SuichuSouthFront.js';
+import {buildForiForecourt} from './ForiForecourt.js';
+import {buildYueshiSouthFront} from './YueshiSouthFront.js';
+import {buildFanhuaSouthFront} from './FanhuaSouthFront.js';
+import {buildJuanqinEastFront} from './JuanqinEastFront.js';
+import {buildJingfuSouthGallery} from './JingfuSouthGallery.js';
+import {buildFuwangSouthLower,buildFuwangSouthUpper,buildFuwangSouthSteps} from './FuwangSouthFront.js';
+import {buildLeshouSouthFront,buildLeshouSouthApproach} from './LeshouSouthFront.js';
+import {buildYangxingSouthDoor,yangxingSouthPanel,buildYangxingSouthSteps,buildYangxingAnnexCoffers} from './YangxingSouthEntrance.js';
 import {buildSuichuSouthSteps,fitSuichuSouthApproach} from './SuichuSouthSteps.js';
 import {addSuichuFrontBasins} from './SuichuFrontBasins.js';
 import {fitBiluoBowlSurface} from './BiluoBowlSurface.js';
@@ -134,7 +152,7 @@ function platform(c,w=c.p.localW,d=c.p.localD) {
  box('platform-base','brick',pw,p.ph,pd,0,p.ph/2,0,p.ph>.55);
  slab(c,'platform-paving',-pw/2,pw/2,-pd/2,pd/2,p.ph,{walk:true,mat:'stone',thickness:.07,solid:false});
  slab(c,'interior-floor',-w/2,w/2,-d/2,d/2,p.ph+.014,{mat:'floor',solid:false,thickness:.035});
- for(const portal of p.portals)if(p.ph>.55){if(['east','west'].includes(portal.side))exteriorSideSteps(c,(portal.side==='east'?-1:1)*pw/2,portal.z,p.ph,portal.width,portal.side);else exteriorSteps(c,portal.approachX,(portal.side==='rear'?1:-1)*pd/2,p.ph,Math.max(2.25,portal.width),portal.side);}
+ for(const portal of p.portals)if(p.ph>.55){if(['east','west'].includes(portal.side))exteriorSideSteps(c,(portal.side==='east'?-1:1)*pw/2,portal.z,p.ph,portal.width,portal.side);else if(p.key==='fuwang'&&portal.side==='front'&&c.kit.fuwangSouthFront!==false)buildFuwangSouthSteps(c,{x:portal.approachX,z:-pd/2,y:p.ph,width:Math.max(2.25,portal.width)});else if(p.key==='leshou'&&portal.side==='front'&&c.kit.leshouSouthFront!==false)buildLeshouSouthApproach(c,{x:portal.approachX,z:-pd/2,y:p.ph,width:Math.max(2.25,portal.width)});else if(p.key==='yangxing'&&portal.side==='front'&&c.kit.yangxingSouthEntrance!==false)buildYangxingSouthSteps(c,{x:portal.approachX,z:-pd/2,y:p.ph,width:Math.max(2.25,portal.width)});else exteriorSteps(c,portal.approachX,(portal.side==='rear'?1:-1)*pd/2,p.ph,Math.max(2.25,portal.width),portal.side);}
  return{pw,pd};
 }
 function exteriorSteps(c,x,z,y,width,side='front') {
@@ -185,9 +203,10 @@ function wallLine(c,{a0,a1,at,y,h,side=false,doors=[],mat='red',role='enclosure-
  let cursor=a0;for(const door of [...doors].sort((a,b)=>a.at-b.at)){const l=Math.max(a0,door.at-door.w/2),r=Math.min(a1,door.at+door.w/2);if(l>cursor)add(cursor,l,y,h);opening(c,{x:side?at:door.at,z:side?door.at:at,w:door.w,h:Math.min(3.15,h-.25),y,side,role:'partition-door'});const dh=Math.min(3.15,h-.25);if(h>dh+.2)add(l,r,y+dh+.18,h-dh-.18);cursor=Math.max(cursor,r);}if(a1>cursor)add(cursor,a1,y,h);
  function add(lo,hi,yy,hh){if(hi-lo<.01||hh<.01)return;c.box(role,mat,side?.18:hi-lo,hh,side?hi-lo:.18,side?at:(lo+hi)/2,yy+hh/2,side?(lo+hi)/2:at,true);}
 }
-function facade(c,{w=c.p.localW,d=c.p.localD,y=c.p.ph,h=c.p.colH-.42,bays=c.p.bays,depthBays=c.p.depthBays,sideDoors=[],inset=c.p.gallery,rearInset=inset,frontDoors=[Math.floor(c.p.bays/2)],backDoors=[],backWindows=true,sideWindows=false,pattern='steps',frontPattern=pattern,wall='red'}={}) {
+function facade(c,{w=c.p.localW,d=c.p.localD,y=c.p.ph,h=c.p.colH-.42,bays=c.p.bays,depthBays=c.p.depthBays,sideDoors=[],inset=c.p.gallery,rearInset=inset,frontDoors=[Math.floor(c.p.bays/2)],backDoors=[],backWindows=true,sideWindows=false,pattern='steps',frontPattern=pattern,wall='red',skipFront=false,skipFrontBays=[]}={}) {
  const iw=w-(sideWindows?inset*2:0),front=-d/2+inset,rear=d/2-rearInset,bw=iw/bays;
- for(const sign of[-1,1])for(let i=0;i<bays;i++){
+ for(const sign of(skipFront?[1]:[-1,1]))for(let i=0;i<bays;i++){
+  if(sign<0&&skipFrontBays.includes(i))continue;
   const x=-iw/2+(i+.5)*bw,z=sign<0?front:rear,door=(sign<0?frontDoors:backDoors).includes(i),pw=Math.max(.6,bw-.16),facePattern=sign<0?frontPattern:pattern;
   if(door){const dw=Math.min(pw-.14,3.2);opening(c,{x,z,w:dw,h:Math.min(3.2,h-.35),y});if(pw>dw+.1){for(const s of[-1,1]){const fill=(pw-dw)/2-.03;if(fill>.3)panel(c,{x:x+s*(dw/2+(pw-dw)/4),z,w:fill,h,y,pattern:facePattern,wall});else c.box('door-side-filler','wood',fill,h,.15,x+s*(dw/2+(pw-dw)/4),y+h/2,z,true);}}const dh=Math.min(3.2,h-.35);if(h-dh>.22)c.box('door-transom','wood',dw,h-dh-.18,.14,x,y+dh+.18+(h-dh-.18)/2,z,true);}
   else if(sign<0||backWindows)panel(c,{x,z,w:pw,h,y,pattern:facePattern,wall});
@@ -294,6 +313,7 @@ function retainLegacyNameSign(c) {
  const eave={yangxing:6.91,leshou:p.eaveY,fuwang:7.9,changyin:16.2,biluo:3.7}[p.key]??p.ph+p.colH;
  const y=p.key==='biluo'?2.85:eave-1,h=p.key==='biluo'?.95:1.35,w=h*.6;
  let target=f,x=0,z=p.key==='changyin'?-p.localD*.72/2-.24:q.localZ-.28;
+ if(p.key==='juanqin'&&kit.juanqinEastFront!==false)x=q.localX;
  // Jingqi's upper front wall has a different inset from its ground portal.
  if(p.key==='jingqi')z=-p.localD/2+.7-.22;
  if(p.key==='biluo'){target=new THREE.Group();target.position.set(q.localX-.18,0,q.localZ);target.rotation.y=Math.PI/2;f.add(target);x=0;z=0;}
@@ -304,6 +324,7 @@ function retainLegacyNameSign(c) {
 function finish(c,extra={}) {
  const {p,f,kit}=c,w=p.localW,d=p.localD;
  const legacyNameSign=retainLegacyNameSign(c);
+ if(p.key==='biluo'&&kit.biluoLowerCanopy!==false)registerBiluoRetainedSign(c);
  const doors=p.portals.map(q=>({x:q.x,z:q.z})),spawn=p.navigation.spawn;
  kit._lastFurnish={cover:[],spawns:[spawn]};kit.registerRoom(f,{name:p.name,kind:`r48-${p.key}-ground-viewing`,x0:-w/2+.35,x1:w/2-.35,z0:-d/2,z1:d/2,y:p.ph,h:Math.min(p.colH,4),doors});
  if(extra.legacyInventory?.status==='UNKNOWN'){const room=kit.rooms.at(-1);room.inventory={...extra.legacyInventory};}
@@ -327,11 +348,11 @@ function retainLegacyHall(c,{central=false,centralX=0,sideInset=0,benchZ=0}={}) 
  return{source:'LEGACY_GENERIC_HALL_PRESET_NOT_MUSEUM_INVENTORY',retained:central?['table','two-chairs','two-cabinets','two-benches']:['two-cabinets','two-benches'],removed:central?[]:['central-table-and-chairs-conflict-with-attested-through-bay']};
 }
 function buildNingshou(c) {
- const{p}=c;platform(c);frame(c);facade(c,{frontDoors:[2],backDoors:[2,3,4],backWindows:false,pattern:'straight'});fitNingshouSouthPhotoWindows(c);ceiling(c,{round:true});ordinaryRoof(c);
+ const{p}=c;platform(c);frame(c);facade(c,{frontDoors:[2],backDoors:[2,3,4],backWindows:false,pattern:'straight'});fitNingshouSouthPhotoWindows(c);ceiling(c,{round:true});ordinaryRoof(c);if(c.kit.ningshouSouthFrieze!==false)buildNingshouSouthFrieze(c);
  // Additional interior rows follow the attested three-deep organization. Equal
  // spacings are only a fit; removed ritual kang and stove inventories are absent.
  for(const x of[-p.localW*2/7,p.localW*2/7])for(const z of[-p.localD/6,p.localD/6])column(c,x,z,p.ph,p.colH-.42,{role:'inner-column',r:.23});
- return finish(c,{interiorPolicy:'REMOVED_KANG_NOT_RECREATED_EXHIBITION_INVENTORY_UNKNOWN',roofForm:'single-eave-xieshan',roomLayout:'seven-bay-three-depth-shell-east-secondary-entry',currentInventoryVerified:false});
+ return finish(c,{...(c.f.userData.ningshouSouthFrieze?{southFrieze:c.f.userData.ningshouSouthFrieze}:{}),interiorPolicy:'REMOVED_KANG_NOT_RECREATED_EXHIBITION_INVENTORY_UNKNOWN',roofForm:'single-eave-xieshan',roomLayout:'seven-bay-three-depth-shell-east-secondary-entry',currentInventoryVerified:false});
 }
 /** Source-visible south tiger-stone facing, not a copied masonry map or survey.
  * Flat colored polygons remain on the existing plinth, no support/collider edits. */
@@ -351,16 +372,16 @@ function suichuStoneFacing(c){
  c.tag(c.kit.mesh(c.f,geo,mat,0,0,0),'platform-base',{detailRole:'r68-suichu-tiger-stone-facing',noMerge:true,scope:'SOUTH_PLINTH_FACE_ONLY',exactStoneLayout:false,sourceImage:'https://img.dpm.org.cn/Uploads/Picture/dc/1533[1024].jpg',photographyDate:null,accepted:false});
 }
 function buildThroughHall(c) {
- const{p}=c,brick=p.key!=='suichu';platform(c);suichuStoneFacing(c);if(p.key==='suichu')addSuichuFrontBasins(c);frame(c);facade(c,{frontDoors:[2],backDoors:[2],pattern:'steps',wall:brick?'brick':'red'});ceiling(c,{nz:1});rolledRoof(c,{hip:!brick,tile:p.key==='qingshou'?'yellow':'green',trim:p.key==='qingshou'?'green':'yellow'});
+ const{p}=c,brick=p.key!=='suichu',southEnabled=p.key==='suichu'&&c.kit.suichuSouthFront!==false,xunyanEnabled=p.key==='xunyan'&&c.kit.xunyanSouthFront!==false;platform(c);suichuStoneFacing(c);if(p.key==='suichu')addSuichuFrontBasins(c);frame(c);facade(c,{frontDoors:[2],backDoors:[2],pattern:'steps',wall:brick?'brick':'red',skipFront:southEnabled||xunyanEnabled});if(southEnabled)buildSuichuSouthFront(c);if(xunyanEnabled)buildXunyanSouthFront(c);ceiling(c,{nz:1});rolledRoof(c,{hip:!brick,tile:p.key==='qingshou'?'yellow':'green',trim:p.key==='qingshou'?'green':'yellow'});
  // Inner gallery column rows and the through-bay remain separate from the
  // exterior columns. No speculative bedroom/library furniture is inserted.
  for(const sign of[-1,1])for(let i=0;i<=p.bays;i++)column(c,-p.localW/2+i*p.localW/p.bays,sign*(p.localD/2-p.gallery),p.ph,p.colH-.4,{role:'inner-column',r:.15});
  const legacyInventory=retainLegacyHall(c);
  if(p.key==='suichu')buildSuichuSouthSteps(c);
- return finish(c,{legacyInventory,roofForm:p.key==='suichu'?'rolled-hip-gable':'rolled-hard-gable',interiorPolicy:legacyInventory.status==='UNKNOWN'?'SOURCED_THROUGH_PLAN_CURRENT_INVENTORY_UNKNOWN':'SOURCED_THROUGH_PLAN_WITH_NONCONFLICTING_LEGACY_UNVERIFIED_SIDE_PIECES',gallerySides:['south','north']});
+ return finish(c,{...(c.f.userData.xunyanSouthFront?{southFront:c.f.userData.xunyanSouthFront}:{}),...(c.f.userData.suichuSouthFront?{southFront:c.f.userData.suichuSouthFront}:{}),legacyInventory,roofForm:p.key==='suichu'?'rolled-hip-gable':'rolled-hard-gable',interiorPolicy:legacyInventory.status==='UNKNOWN'?'SOURCED_THROUGH_PLAN_CURRENT_INVENTORY_UNKNOWN':'SOURCED_THROUGH_PLAN_WITH_NONCONFLICTING_LEGACY_UNVERIFIED_SIDE_PIECES',gallerySides:['south','north']});
 }
 function buildJingfu(c) {
- const{p}=c;platform(c);frame(c);facade(c,{frontDoors:[2],backDoors:[0],sideWindows:true});ceiling(c,{nx:5,nz:5});
+ const{p}=c,southEnabled=c.kit.jingfuSouthGallery!==false;platform(c);frame(c);facade(c,{frontDoors:[2],backDoors:[0],sideWindows:true,skipFront:southEnabled});ceiling(c,{nx:5,nz:5});if(southEnabled)buildJingfuSouthGallery(c);
  for(let j=0;j<3;j++)rolledRoof(c,{d:p.localD/3+.24,z:-p.localD/3+j*p.localD/3,rise:1.55,tile:'green',trim:'yellow'});
  // Interior column rows avoid the south central doorway and leave the main
  // central room unobstructed. The exact structural reduced-column scheme is unknown.
@@ -368,11 +389,12 @@ function buildJingfu(c) {
  c.box('inner-nameboard','wood',3.1,.66,.13,0,p.ph+p.colH-1.05,p.localD/2-p.gallery-.2);
  c.kit.plaque(c.f,'五福五代堂',0,p.ph+p.colH-1.05,p.localD/2-p.gallery-.28,.5,1.2);
  const legacyInventory=retainLegacyHall(c,{central:true});
- return finish(c,{legacyInventory,roofForm:'three-connected-rolled-hip-gables',gallerySides:['south','north','east','west'],interiorPolicy:'ARCHITECTURAL_SHELL_NO_FABRICATED_WESTERN_INSTRUMENTS'});
+ return finish(c,{...(c.f.userData.jingfuSouthGallery?{southGallery:c.f.userData.jingfuSouthGallery}:{}),legacyInventory,roofForm:'three-connected-rolled-hip-gables',gallerySides:['south','north','east','west'],interiorPolicy:'ARCHITECTURAL_SHELL_NO_FABRICATED_WESTERN_INSTRUMENTS'});
 }
 function buildXishang(c) {
  const{p}=c,w=p.localW,d=p.localD;platform(c);const mainW=w*.66,mainD=d*.7;
  frame(c,{w:mainW,d:mainD,bays:3,depthBays:3});
+  if(c.kit.xishangRoofTransom!==false)buildXishangFrontTransom(c,{mainW,mainD});
  // Front, north and south projecting roofs form a convex cross. The retained
  // world envelope is unchanged; all projection lengths are explicit fits.
  ordinaryRoof(c,{type:'cuanjian',w:mainW*.65,d:mainD*.85,height:2.1,y:p.ph+p.colH});
@@ -383,7 +405,8 @@ function buildXishang(c) {
  const channel=buildXishangChannel(c);
  const stoneRails=buildXishangStoneRails(c,{mainW,mainD});
  ceiling(c,{x0:-mainW/2,x1:mainW/2,z0:-mainD/2,z1:mainD/2,nx:3,nz:3});
- return finish(c,{planForm:'convex-cross-three-projections',streamLengthHistoricalMetres:27,streamLengthModelStatus:'MEASURED_MODEL_CURVE_NOT_27M_SITE_REPLICA',channel,stoneRails,interiorPolicy:'STONE_CHANNEL_AND_REAR_SCREEN_NO_FURNITURE'});
+ if(c.kit.xishangRoofTransom!==false)registerXishangRoofTransom(c);
+  return finish(c,{planForm:'convex-cross-three-projections',streamLengthHistoricalMetres:27,streamLengthModelStatus:'MEASURED_MODEL_CURVE_NOT_27M_SITE_REPLICA',channel,stoneRails,interiorPolicy:'STONE_CHANNEL_AND_REAR_SCREEN_NO_FURNITURE'});
 }
 function petalRoof(c,{y,radius,rise,tile,trim}) {
  const rings=9,segs=60,vs=[],ix=[];
@@ -457,8 +480,8 @@ function buildBiluo(c) {
  const finialFit={sourceImage:'https://img.dpm.org.cn/Uploads/Picture/dc/1442[1024].jpg',dimensionStatus:FIT,accepted:false,photographyDate:null,scope:'FIVE_RETAINED_LAYER_FORMS_PLUS_ORIGINAL_OVOID_AND_BOWL_SIDE_SURFACE_PATTERNS'};
  // Applied five-petal ceiling motif, visibly geometric rather than a claim to
  // reproduce the exceptionally fine surviving plum relief carving.
- c.cylinder('plum-ceiling-ground','wood',r,.07,0,y+h-.12,0,false,30);for(let i=0;i<5;i++){const a=i*2*Math.PI/5;c.cylinder('plum-ceiling-petal','paper',.22,.045,Math.cos(a)*.25,y+h-.17,Math.sin(a)*.25,false,12);}
- return finish(c,{finialFit,planForm:'five-petal-five-column',occupiedFloorCount:1,mountainBridgeStatus:'DEFERRED_NOT_PLACED_ON_FALSE_SURVEYED_MOUNTAIN',roofForm:'double-eave-five-petal-pointed',interiorPolicy:'OPEN_PAVILION_NO_GENERIC_FURNISHINGS'});
+ if(c.kit.biluoLowerCanopy!==false)buildBiluoLowerCanopy(c,{r,y,h,angles});else {c.cylinder('plum-ceiling-ground','wood',r,.07,0,y+h-.12,0,false,30);for(let i=0;i<5;i++){const a=i*2*Math.PI/5;c.cylinder('plum-ceiling-petal','paper',.22,.045,Math.cos(a)*.25,y+h-.17,Math.sin(a)*.25,false,12);}}
+ return finish(c,{...(c.f.userData.biluoLowerCanopy?{lowerCanopy:c.f.userData.biluoLowerCanopy}:{}),finialFit,planForm:'five-petal-five-column',occupiedFloorCount:1,mountainBridgeStatus:'DEFERRED_NOT_PLACED_ON_FALSE_SURVEYED_MOUNTAIN',roofForm:'double-eave-five-petal-pointed',interiorPolicy:'OPEN_PAVILION_NO_GENERIC_FURNISHINGS'});
 }
 
 /** Meshes describe upper floors even where navigation must remain ground-only.
@@ -486,13 +509,13 @@ function perimeterRail(c,y,{front=true,rear=true,sides=true}={}) {
  if(rear)rail(c,{x:0,z:d/2,length:w,y});
  if(sides)for(const sign of[-1,1])rail(c,{x:sign*w/2,z:0,length:d,y,side:true});
 }
-function twoLevelFrame(c,{groundGallery=c.p.gallery,upperGallery=c.p.gallery,frontDoors=[Math.floor(c.p.bays/2)],rearDoors=[],pattern='steps',wall='red',sideWindows=false,rearInset=groundGallery,upperFrontPattern=pattern}={}) {
+function twoLevelFrame(c,{groundGallery=c.p.gallery,upperGallery=c.p.gallery,frontDoors=[Math.floor(c.p.bays/2)],rearDoors=[],pattern='steps',wall='red',sideWindows=false,rearInset=groundGallery,upperFrontPattern=pattern,skipSouth=false}={}) {
  const{p}=c,h0=p.upperFloorY-p.ph,h1=p.ph+p.colH-p.upperFloorY;
  platform(c);
  frame(c,{h:h0-.08});
- facade(c,{h:h0-.35,inset:groundGallery,rearInset,frontDoors,backDoors:rearDoors,pattern,wall,sideWindows});
+ facade(c,{h:h0-.35,inset:groundGallery,rearInset,frontDoors,backDoors:rearDoors,pattern,wall,sideWindows,skipFront:skipSouth});
  frame(c,{y:p.upperFloorY,h:h1,role:'upper-level-frame'});
- facade(c,{y:p.upperFloorY,h:h1-.35,inset:upperGallery,rearInset,frontDoors:[Math.floor(p.bays/2)],backDoors:[],pattern,frontPattern:upperFrontPattern,wall,sideWindows});
+ facade(c,{y:p.upperFloorY,h:h1-.35,inset:upperGallery,rearInset,frontDoors:[Math.floor(p.bays/2)],backDoors:[],pattern,frontPattern:upperFrontPattern,wall,sideWindows,skipFront:skipSouth});
  return{h0,h1};
 }
 function hangingFrieze(c,{y=c.p.ph+c.p.colH-.45,z=-c.p.localD/2,w=c.p.localW,bays=c.p.bays}={}) {
@@ -511,10 +534,10 @@ function retainLegacyRoom(c) {
  return{source:'LEGACY_GENERIC_ROOM_PRESET_NOT_MUSEUM_INVENTORY',retained:['kang','mattress','small-table','two-stools','cabinet'],placementStatus:'FITTED_WITHIN_REVISED_ENCLOSURE'};
 }
 function buildJingqi(c) {
- const{p}=c;twoLevelFrame(c,{pattern:'glass',upperFrontPattern:'steps',upperGallery:.7});
+ const{p}=c,southGalleryEnabled=c.kit.jingqiSouthGallery!==false;twoLevelFrame(c,{pattern:'glass',upperFrontPattern:'steps',upperGallery:.7});
  c.f.userData.r67JingqiUpperWindow={source:'https://www.dpm.org.cn/explore/building/236480.html',photo:'https://img.dpm.org.cn/Uploads/Picture/dc/4750[1024].jpg',scope:'UPPER_SOUTH_FIELDS_ONLY_LOWER_GLASS_UNCHANGED',motif:'SIMPLIFIED_STEP_LATTICE_NOT_EXACT_BUBUJIN_REPLICA',measured:false,accepted:false};
  const hole={x0:-14.7,x1:-12.1,z0:-3.5,z1:3.35};
- const floorVoids=upperFloor(c,{holes:[hole],walk:true});guardOpening(c,hole,{openFront:true});perimeterRail(c,p.upperFloorY);
+ const floorVoids=upperFloor(c,{holes:[hole],walk:true});guardOpening(c,hole,{openFront:true});perimeterRail(c,p.upperFloorY,{front:!southGalleryEnabled});if(southGalleryEnabled)buildJingqiSouthGallery(c);
  // A real sloping stair in the attested east end bay. Run, pitch, direction,
  // opening and landing sizes are fitted, not surveyed historic stair dimensions.
  const stair={x:-13.4,zBottom:3.2,zTop:-3.5,width:2.2,y0:p.ph,y1:p.upperFloorY,positionSource:p.source,dimensionsStatus:FIT,route:[[0,2.5],[-10.5,2.5],[-10.5,3.25],[-13.4,3.25],[-13.4,3.2],[-13.4,-3.5],[-13.4,-4.2],[-10.5,-4.2]]};
@@ -541,37 +564,37 @@ function buildJingqi(c) {
  for(const sign of[-1,1])surface(c,'jingqi-waist-eave',[-p.localW/2-.4,edge,sign*(p.localD/2+.4),p.localW/2+.4,edge,sign*(p.localD/2+.4),p.localW/2,edge+.28,sign*(p.localD/2-1),-p.localW/2,edge+.28,sign*(p.localD/2-1)],[0,1,2,0,2,3],'yellow');
  for(const sign of[-1,1])surface(c,'jingqi-waist-eave',[sign*(p.localW/2+.4),edge,-p.localD/2-.4,sign*(p.localW/2+.4),edge,p.localD/2+.4,sign*(p.localW/2-1),edge+.28,p.localD/2,sign*(p.localW/2-1),edge+.28,-p.localD/2],[0,1,2,0,2,3],'yellow');
  ceiling(c,{y:p.ph+p.colH-.25,nx:7,nz:3});
- return finish(c,{floorVoids,stair,legacyInventory,upperNavigation:'PHYSICAL_STAIR_ONLY_NO_TELEPORT',interiorPolicy:'SOURCED_EAST_ROOMS_WEST_CONCAVE_STAGE_WITH_FITTED_DIMENSIONS',roofForm:'UPPER_XIESHAN_WITH_NARROW_WAIST_EAVE'});
+ return finish(c,{...(c.f.userData.jingqiSouthGallery?{southGallery:c.f.userData.jingqiSouthGallery}:{}),floorVoids,stair,legacyInventory,upperNavigation:'PHYSICAL_STAIR_ONLY_NO_TELEPORT',interiorPolicy:'SOURCED_EAST_ROOMS_WEST_CONCAVE_STAGE_WITH_FITTED_DIMENSIONS',roofForm:'UPPER_XIESHAN_WITH_NARROW_WAIST_EAVE'});
 }
 function buildYanqu(c) {
- const{p}=c;twoLevelFrame(c,{sideWindows:true});upperFloor(c);perimeterRail(c,p.upperFloorY,{rear:false});
+ const{p}=c,nicheEnabled=c.kit.yanquPhotoNiche!==false;twoLevelFrame(c,{sideWindows:true});upperFloor(c);perimeterRail(c,p.upperFloorY,{rear:false});
  for(const y of[p.ph+p.upperFloorY-p.ph-.35,p.ph+p.colH-.35])hangingFrieze(c,{y});
  // East, north and south galleries follow the east-facing frame. A plain
  // porcelain color cue is explicit approximation, not a copied inlay design.
- for(const y of[p.ph+1.8,p.upperFloorY+1.8])for(let i=0;i<12;i++){
+ if(nicheEnabled)buildYanquPhotoNiche(c);else for(const y of[p.ph+1.8,p.upperFloorY+1.8])for(let i=0;i<12;i++){
   const m=c.box('porcelain-inlay-material-cue',i%2?'blue':'paper',.12,.12,.03,-4.2+i*.76,y,p.localD/2-p.gallery-.13);m.userData.patternStatus='ABSTRACT_MATERIAL_CUE_NOT_ORIGINAL_PATTERN';
  }
  const legacyInventory=retainLegacyRoom(c);
  rolledRoof(c,{tile:'green',trim:'yellow'});ceiling(c,{y:p.ph+p.colH-.25,nx:5,nz:3});
- return finish(c,{legacyInventory,removedBridgeRecreated:false,gallerySides:['east','north','south'],interiorPolicy:'REAL_TWO_LEVEL_ENCLOSURE_WITH_PORCELAIN_MATERIAL_CUES_CURRENT_INVENTORY_UNKNOWN',upperNavigation:'VIEW_ONLY_NO_UNVERIFIED_STAIR_OR_BRIDGE'});
+ return finish(c,{...(c.f.userData.yanquPhotoNiche?{photoNiche:c.f.userData.yanquPhotoNiche}:{}),legacyInventory,removedBridgeRecreated:false,gallerySides:['east','north','south'],interiorPolicy:'REAL_TWO_LEVEL_ENCLOSURE_WITH_PORCELAIN_MATERIAL_CUES_CURRENT_INVENTORY_UNKNOWN',upperNavigation:'VIEW_ONLY_NO_UNVERIFIED_STAIR_OR_BRIDGE'});
 }
 function buildCuishang(c) {
- const{p}=c;twoLevelFrame(c,{rearDoors:[1,3]});upperFloor(c);perimeterRail(c,p.upperFloorY);
+ const{p}=c,southEnabled=c.kit.cuishangSouthFront!==false;twoLevelFrame(c,{rearDoors:[1,3],skipSouth:southEnabled});upperFloor(c);perimeterRail(c,p.upperFloorY,{front:!southEnabled});
  const bw=p.localW/5;
  c.box('cuishang-upper-west-dark-gallery','wood',bw-.22,3.45,.14,p.localW/2-bw/2,p.upperFloorY+1.725,-p.localD/2+.12,true);
- for(const y of[p.upperFloorY-.35,p.ph+p.colH-.35])hangingFrieze(c,{y});
+ if(southEnabled)buildCuishangSouthFront(c);else for(const y of[p.upperFloorY-.35,p.ph+p.colH-.35])hangingFrieze(c,{y});
  const legacyInventory=retainLegacyHall(c,{central:true});
  rolledRoof(c,{tile:'yellow',trim:'green'});ceiling(c,{y:p.ph+p.colH-.25,nx:5,nz:3});
- return finish(c,{legacyInventory,upperFrontGallery:{openBays:[0,1,2,3],enclosedWestEndBay:4},upperBridgeStatus:'KNOWN_LINK_TO_BILUO_NOT_YET_FITTED_OR_WALKABLE',interiorPolicy:'REAL_TWO_LEVEL_GALLERIES_WITH_SOURCE_BACKED_ASYMMETRIC_UPPER_FRONT'});
+ return finish(c,{...(c.f.userData.cuishangSouthFront?{southFront:c.f.userData.cuishangSouthFront}:{}),legacyInventory,upperFrontGallery:{openBays:[0,1,2,3],enclosedWestEndBay:4},upperBridgeStatus:'KNOWN_LINK_TO_BILUO_NOT_YET_FITTED_OR_WALKABLE',interiorPolicy:'REAL_TWO_LEVEL_GALLERIES_WITH_SOURCE_BACKED_ASYMMETRIC_UPPER_FRONT'});
 }
 function buildYueshi(c) {
- const{p}=c;twoLevelFrame(c,{pattern:'glass',wall:'brick'});upperFloor(c);perimeterRail(c,p.upperFloorY,{rear:false,sides:false});
+ const{p}=c,southEnabled=c.kit.yueshiSouthFront!==false;twoLevelFrame(c,{pattern:'glass',wall:'brick',skipSouth:southEnabled});upperFloor(c);if(southEnabled)buildYueshiSouthFront(c);else perimeterRail(c,p.upperFloorY,{rear:false,sides:false});
  // Ground central doors have three visual leaves, upper six. Open side leaves
  // remain outside the clear aperture; counts are ornament bands, not extra walls.
- for(const[y,n]of[[p.ph,3],[p.upperFloorY,6]])for(let i=0;i<n;i++)c.box('yueshi-glass-door-transom','glass',p.localW/5/n-.06,.55,.055,-p.localW/10+(i+.5)*p.localW/5/n,y+2.95,-p.localD/2+p.gallery);
+ if(!southEnabled)for(const[y,n]of[[p.ph,3],[p.upperFloorY,6]])for(let i=0;i<n;i++)c.box('yueshi-glass-door-transom','glass',p.localW/5/n-.06,.55,.055,-p.localW/10+(i+.5)*p.localW/5/n,y+2.95,-p.localD/2+p.gallery);
  const legacyInventory=retainLegacyHall(c,{central:true});
  rolledRoof(c,{tile:'yellow',trim:'green',sourceVerge:true});ceiling(c,{y:p.ph+p.colH-.25,nx:5,nz:3});
- return finish(c,{legacyInventory,removedTerracesRecreated:false,roofForm:'SINGLE_ROLLED_HIP_GABLE_OVER_TWO_STOREYS',interiorPolicy:'ARCHITECTURAL_THEATRE_VIEWING_HALL_NOT_RECREATED_HISTORIC_THRONE_IN_CURRENT_EXHIBITION',upperNavigation:'VIEW_ONLY_STAIR_LOCATION_UNKNOWN'});
+ return finish(c,{...(c.f.userData.yueshiSouthFront?{southFront:c.f.userData.yueshiSouthFront}:{}),legacyInventory,removedTerracesRecreated:false,roofForm:'SINGLE_ROLLED_HIP_GABLE_OVER_TWO_STOREYS',interiorPolicy:'ARCHITECTURAL_THEATRE_VIEWING_HALL_NOT_RECREATED_HISTORIC_THRONE_IN_CURRENT_EXHIBITION',upperNavigation:'VIEW_ONLY_STAIR_LOCATION_UNKNOWN'});
 }
 function altarOutline(c,{x,z,w,d,y=c.p.ph,role='dated-altar-plinth'}) {
  const m=c.box(role,'wood',w,.46,d,x,y+.23,z,true);m.userData.inventoryStatus='ARCHITECTURAL_DAIS_OUTLINE_NOT_FABRICATED_STATUE';m.userData.currentInventoryVerified=false;
@@ -586,10 +609,11 @@ function buildFori(c) {
  for(const x of[-p.localW/3,0,p.localW/3])altarOutline(c,{x,z:2.6,w:2.15,d:.8,y:p.upperFloorY,role:'fori-upper-altar-outline'});
  for(const sign of[-1,1])altarOutline(c,{x:sign*(p.localW/2-.65),z:0,w:.65,d:4.6,y:p.upperFloorY,role:'fori-upper-side-offering-outline'});
  rolledRoof(c,{tile:'yellow',trim:'green'});ceiling(c,{y:p.ph+p.colH-.25,nx:3,nz:1});
- return finish(c,{interiorPolicy:'SOURCED_PARTITIONS_AND_THREE_SIDED_ALTAR_LAYOUT_NO_INVENTED_BUDDHA',externalStairStatus:'OFFICIAL_EAST_STONE_CONNECTION_NOT_FITTED_IN_RETAINED_ENVELOPE',historicalFigureCountsNotModelled:[378],upperNavigation:'VIEW_ONLY_NO_FALSE_STAIR'});
+ if(c.kit.foriForecourt!==false)buildForiForecourt(c);
+ return finish(c,{...(c.f.userData.foriForecourt?{forecourt:c.f.userData.foriForecourt}:{}),interiorPolicy:'SOURCED_PARTITIONS_AND_THREE_SIDED_ALTAR_LAYOUT_NO_INVENTED_BUDDHA',externalStairStatus:'OFFICIAL_EAST_STONE_CONNECTION_NOT_FITTED_IN_RETAINED_ENVELOPE',historicalFigureCountsNotModelled:[378],upperNavigation:'VIEW_ONLY_NO_FALSE_STAIR'});
 }
 function buildFanhua(c) {
- const{p}=c,bw=p.localW/7,h0=p.upperFloorY-p.ph,holes=[];twoLevelFrame(c,{rearInset:0});buildFanhuaFrontBalustrade(c);fitFanhuaFloorFascia(c);hangingFrieze(c);
+ const{p}=c,bw=p.localW/7,h0=p.upperFloorY-p.ph,holes=[],southEnabled=c.kit.fanhuaSouthFront!==false;twoLevelFrame(c,{rearInset:0,skipSouth:southEnabled});if(southEnabled)buildFanhuaSouthFront(c);buildFanhuaFrontBalustrade(c);fitFanhuaFloorFascia(c);hangingFrieze(c);
  for(let i=0;i<7;i++)if(i!==3){const x=-p.localW/2+(i+.5)*bw;holes.push({x0:x-.85,x1:x+.85,z0:-1.05,z1:1.05});}
  const floorVoids=upperFloor(c,{holes});for(const q of holes)guardOpening(c,q);
  for(let i=1;i<7;i++)for(const y of[p.ph,p.upperFloorY])wallLine(c,{a0:-p.localD/2+p.gallery,a1:p.localD/2,at:-p.localW/2+i*bw,y,h:(y===p.ph?h0:p.ph+p.colH-p.upperFloorY)-.22,side:true,doors:[{at:-2,w:1.7}],mat:'wood',role:'fanhua-seven-bay-partition'});
@@ -604,7 +628,7 @@ function buildFanhua(c) {
   }
  }
  rolledRoof(c,{tile:'yellow',trim:'green'});ceiling(c,{y:p.ph+p.colH-.25,nx:7,nz:1});
- return finish(c,{floorVoids,interiorPolicy:'SIX_REAL_VERTICAL_VOIDS_AND_ALTAR_OUTLINES_NO_INVENTED_BUDDHA_OR_THANGKA',historicalFigureCountsNotModelled:[54,122,786],upperNavigation:'VIEW_ONLY_EXTERNAL_CONNECTION_UNFITTED'});
+ return finish(c,{...(c.f.userData.fanhuaSouthFront?{southFront:c.f.userData.fanhuaSouthFront}:{}),floorVoids,interiorPolicy:'SIX_REAL_VERTICAL_VOIDS_AND_ALTAR_OUTLINES_NO_INVENTED_BUDDHA_OR_THANGKA',historicalFigureCountsNotModelled:[54,122,786],upperNavigation:'VIEW_ONLY_EXTERNAL_CONNECTION_UNFITTED'});
 }
 
 function octagonalCaisson(c,{x=0,z=0,y=7,radius=2,role='octagonal-caisson-ring'}={}) {
@@ -632,6 +656,7 @@ function retainKitThrone(c,{role='retained-kit-throne',backDoor=c.item.backDoor?
 function buildYangxing(c) {
  const{p}=c,w=p.localW,d=p.localD,front=-d/2,rear=d/2,annexDepth=3.2,bodyFront=front+annexDepth,annexH=p.colH-1.35,big=w/3;
  platform(c);
+ const southPanel=c.kit.yangxingSouthEntrance===false?panel:yangxingSouthPanel;
  // Three main structural bays, each subdivided by square posts. The middle
  // three visible subdivisions are narrow/wide/narrow as in the official image.
  const weights=[1,1,1,.8,1.4,.8,1,1,1],edges=[-w/2];for(const q of weights)edges.push(edges.at(-1)+q*w/9);
@@ -642,8 +667,8 @@ function buildYangxing(c) {
  const annexIndices=[3,4,5,6],frontAnnexBays=annexIndices.map(i=>({index:i,x0:edges[i],x1:edges[i+1],z0:front,z1:bodyFront,positionStatus:'PHOTO_TOPOLOGY_CENTRE_THREE_PLUS_WEST_ONE_DIMENSIONS_FITTED'}));
  for(let i=0;i<9;i++){
   const x=(edges[i]+edges[i+1])/2,bw=edges[i+1]-edges[i],isAnnex=annexIndices.includes(i),z=isAnnex?front:bodyFront,h=isAnnex?annexH-.3:p.colH-.42;
-  if(i===4){opening(c,{x,z,w:2.8,h:3.3,y:p.ph,role:'yangxing-four-leaf-central-door'});for(const sign of[-1,1])panel(c,{x:x+sign*(bw/4+.7),z,w:(bw-2.8)/2-.12,h,y:p.ph,pattern:'glass'});c.box('yangxing-central-door-transom','glass',2.8,h-3.5,.07,x,p.ph+3.5+(h-3.5)/2,z,true);}
-  else panel(c,{x,z,w:bw-.16,h,y:p.ph,pattern:'glass'});
+  if(i===4){if(c.kit.yangxingSouthEntrance!==false)buildYangxingSouthDoor(c,{x,z,y:p.ph,h});else opening(c,{x,z,w:2.8,h:3.3,y:p.ph,role:'yangxing-four-leaf-central-door'});for(const sign of[-1,1])southPanel(c,{x:x+sign*(bw/4+.7),z,w:(bw-2.8)/2-.12,h,y:p.ph,pattern:'glass'});if(c.kit.yangxingSouthEntrance===false)c.box('yangxing-central-door-transom','glass',2.8,h-3.5,.07,x,p.ph+3.5+(h-3.5)/2,z,true);}
+  else southPanel(c,{x,z,w:bw-.16,h,y:p.ph,pattern:'glass'});
   // Central rear door, with closed glazed bays to either side; widths fitted.
   if(i===4){opening(c,{x,z:rear,w:2.8,h:3.3,y:p.ph});c.box('yangxing-rear-door-transom','wood',2.8,p.colH-3.95,.12,x,p.ph+3.55+(p.colH-3.95)/2,rear,true);for(const sign of[-1,1])panel(c,{x:x+sign*(bw/4+.7),z:rear,w:(bw-2.8)/2-.12,h:p.colH-.42,y:p.ph,pattern:'glass'});}
   else panel(c,{x,z:rear,w:bw-.16,h:p.colH-.42,y:p.ph,pattern:'glass'});
@@ -656,6 +681,7 @@ function buildYangxing(c) {
  for(const x of[-w/2,w/2])c.box('yangxing-main-gable','red',.22,p.colH-.42,rear-bodyFront,x,p.ph+(p.colH-.42)/2,(rear+bodyFront)/2,true);
  ordinaryRoof(c,{w:w+.5,d:rear-bodyFront+.5,z:(rear+bodyFront)/2});
  rolledRoof(c,{w:aw+.5,d:annexDepth+.7,x:ac,z:(front+bodyFront)/2,y:p.ph+annexH,rise:1.15,tile:'yellow',trim:'yellow'});
+ if(c.kit.yangxingSouthEntrance!==false)buildYangxingAnnexCoffers(c,{x0:ax0+.23,x1:ax1-.23,z0:front+.18,z1:bodyFront-.18,y:p.ph+annexH});
  // Attested partitions isolate the central audience hall and asymmetric east/
  // west apartments. Their exact coordinates are fitted to the retained map.
  for(const x of[-big/2,big/2])wallLine(c,{a0:bodyFront,a1:rear,at:x,y:p.ph,h:p.colH-.42,side:true,doors:[{at:-2,w:2.2}],mat:'wood',role:'yangxing-central-partition'});
@@ -683,7 +709,7 @@ function buildYangxing(c) {
  for(const z of[bodyFront+4,bodyFront+8,bodyFront+12])if(z<throne.tz-2.3)c.box('yangxing-ceiling-grid','gold',big-.4,.055,.055,0,ceilingY-.08,z);
  for(const x of[-big/6,big/6])c.box('yangxing-ceiling-grid','gold',.055,.055,throne.tz-2.3-bodyFront,x,ceilingY-.08,(bodyFront+throne.tz-2.3)/2);
  octagonalCaisson(c,{z:throne.tz,y:ceilingY-.04,radius:2.1});
- return finish(c,{frontAnnexBays,mainStructuralBays:3,facadeSubdivisions:9,throne,roomPlan:['central-audience-hall','east-front-mingchuang','east-rear-suianshi','west-front-changchun','west-rear-two-level-shrine','west-end-moyun'],omittedEarRoom:'XIANGXUE_TANG_OUTSIDE_RETAINED_ENVELOPE_POSITION_UNFITTED',upperNavigation:'WEST_SHRINE_VIEW_ONLY_NO_INVENTED_STAIR',interiorPolicy:'ATTESTED_ASYMMETRIC_APARTMENTS_AND_ONE_RETAINED_THRONE_NO_INVENTED_STATUES'});
+ return finish(c,{...(c.f.userData.yangxingSouthEntrance?{southEntrance:c.f.userData.yangxingSouthEntrance}:{}),frontAnnexBays,mainStructuralBays:3,facadeSubdivisions:9,throne,roomPlan:['central-audience-hall','east-front-mingchuang','east-rear-suianshi','west-front-changchun','west-rear-two-level-shrine','west-end-moyun'],omittedEarRoom:'XIANGXUE_TANG_OUTSIDE_RETAINED_ENVELOPE_POSITION_UNFITTED',upperNavigation:'WEST_SHRINE_VIEW_ONLY_NO_INVENTED_STAIR',interiorPolicy:'ATTESTED_ASYMMETRIC_APARTMENTS_AND_ONE_RETAINED_THRONE_NO_INVENTED_STATUES'});
 }
 
 /** Keep the roof bearing plane fixed while fitting its genuine geometry to a
@@ -714,10 +740,12 @@ function buildLeshou(c) {
  platform(c);frame(c,{h:p.eaveY-y});
  // Exterior windows are one continuous tall facade with three true stacked
  // light bands, not a second exterior storey invented from the hidden loft.
- facade(c,{h:h0-.3,sideWindows:true,frontDoors:[3],backDoors:[3],pattern:'glass'});
- for(const sign of[-1,1])for(let i=0;i<7;i++)for(let level=0;level<2;level++)panel(c,{x:-iw/2+(i+.5)*iw/7,z:sign<0?front:rear,w:iw/7-.16,h:(p.eaveY-p.upperFloorY-.3)/2,y:p.upperFloorY+level*(p.eaveY-p.upperFloorY-.3)/2,pattern:'steps',upper:true});
+ const southEnabled=c.kit.leshouSouthFront!==false;
+ facade(c,{h:h0-.3,sideWindows:true,frontDoors:[3],backDoors:[3],pattern:'glass',skipFront:southEnabled});
+ if(southEnabled)buildLeshouSouthFront(c,{front,iw,h:p.eaveY-y-.42});
+ for(const sign of(southEnabled?[1]:[-1,1]))for(let i=0;i<7;i++)for(let level=0;level<2;level++)panel(c,{x:-iw/2+(i+.5)*iw/7,z:sign<0?front:rear,w:iw/7-.16,h:(p.eaveY-p.upperFloorY-.3)/2,y:p.upperFloorY+level*(p.eaveY-p.upperFloorY-.3)/2,pattern:'steps',upper:true});
  for(const sign of[-1,1])for(let j=0;j<3;j++)panel(c,{x:sign*iw/2,z:front+(j+.5)*(rear-front)/3,w:(rear-front)/3-.16,h:p.eaveY-p.upperFloorY-.3,y:p.upperFloorY,side:true,pattern:'steps',upper:true});
- for(const sign of[-1,1])for(const yy of[p.upperFloorY-.25,p.upperFloorY+(p.eaveY-p.upperFloorY-.3)/2-.1])c.box('leshou-window-band-beam','wood',iw,.5,.23,0,yy,sign<0?front:rear);
+ for(const sign of(southEnabled?[1]:[-1,1]))for(const yy of[p.upperFloorY-.25,p.upperFloorY+(p.eaveY-p.upperFloorY-.3)/2-.1])c.box('leshou-window-band-beam','wood',iw,.5,.23,0,yy,sign<0?front:rear);
  const central=1.5*bw,outerSplit=2.5*bw,northStrip=rear-1.1,spanZ=1.2;
  const holes=[{x0:-central,x1:central,z0:front+.12,z1:-spanZ},{x0:-central,x1:central,z0:spanZ,z1:northStrip}];
  // H-shaped floor: side wings joined by the east-west middle passage. South
@@ -757,7 +785,7 @@ function buildLeshou(c) {
  ceiling(c,{x0:-iw/2,x1:iw/2,z0:front,z1:rear,y:ceilingY,nx:7,nz:5});
  for(const[x,z]of[...oldGold.map(([x,z])=>[x,z-1.82]),[-2.5*bw,rear-1.6],[2.5*bw,rear-1.6]])c.box('leshou-ceiling-support-beam','wood',bw*.9,.18,.25,x,ceilingY-.1,z);
  const roof=ordinaryRoof(c,{w:w+.3,d:d+.3,y:p.eaveY,height:5.4});const roofVerticalFit=fitRoofTop(c,roof,p.eaveY,p.modelRidgeY);
- return finish(c,{floorVoids,legacyInventory,roofVerticalFit,addedPostOffsets:{sixSouth:1.82,twoSouthOfRearEave:1.6,status:'OFFICIAL_RELATIVE_OFFSETS_WITH_FITTED_REFERENCE_POSTS'},floorPlan:'NORTH_SOUTH_DOUBLE_HEIGHT_HALLS_AND_TRANSVERSE_UPPER_PASSAGE',singleStoreyExceptions:['SOUTH_OUTER_SIDE_ROOMS','NORTH_WALL_PASSAGE'],interiorPlanDate:'HISTORIC_YANGSHILEI_TOPOLOGY_PLUS_MODERN_FAN_WINDOW_PHOTO_NOT_CURRENT_INVENTORY',upperNavigation:'REAL_PARTIAL_FLOOR_VIEW_ONLY_NO_UNVERIFIED_STAIR_OR_DESTINATION',jadeMountain:'ATTESTED_NORTH_HALL_PLINTH_ONLY_ARTWORK_NOT_FABRICATED'});
+ return finish(c,{...(c.f.userData.leshouSouthFront?{southFront:c.f.userData.leshouSouthFront}:{}),floorVoids,legacyInventory,roofVerticalFit,addedPostOffsets:{sixSouth:1.82,twoSouthOfRearEave:1.6,status:'OFFICIAL_RELATIVE_OFFSETS_WITH_FITTED_REFERENCE_POSTS'},floorPlan:'NORTH_SOUTH_DOUBLE_HEIGHT_HALLS_AND_TRANSVERSE_UPPER_PASSAGE',singleStoreyExceptions:['SOUTH_OUTER_SIDE_ROOMS','NORTH_WALL_PASSAGE'],interiorPlanDate:'HISTORIC_YANGSHILEI_TOPOLOGY_PLUS_MODERN_FAN_WINDOW_PHOTO_NOT_CURRENT_INVENTORY',upperNavigation:'REAL_PARTIAL_FLOOR_VIEW_ONLY_NO_UNVERIFIED_STAIR_OR_DESTINATION',jadeMountain:'ATTESTED_NORTH_HALL_PLINTH_ONLY_ARTWORK_NOT_FABRICATED'});
 }
 
 /** Four-sided hollow waist roof: the centre is truly absent, so no tiled sheet
@@ -772,7 +800,9 @@ function waistRoof(c,{outerW,outerD,innerW,innerD,y,rise=1,tile='yellow',trim='b
 function buildFuwang(c) {
  const{p}=c,w=p.localW,d=p.localD,iw=w-p.gallery*2,id=d-p.gallery*2,bw=iw/5,bd=id/5,coreX=bw/2,coreZ=bd/2,mid=p.upperFloorYs[0],top=p.upperFloorYs[1],eave=p.ph+p.colH;
  platform(c);frame(c,{h:7.9-p.ph});
- facade(c,{h:6.6,sideWindows:true,sideDoors:[2],frontDoors:[2],backDoors:[2],pattern:'steps'});
+ const southEnabled=c.kit.fuwangSouthFront!==false;
+ facade(c,{h:6.6,sideWindows:true,sideDoors:[2],frontDoors:[2],backDoors:[2],pattern:'steps',skipFront:southEnabled});
+ if(southEnabled)buildFuwangSouthLower(c,{w:iw,front:-id/2});
  // Four convex radial rooms surround the attested central stair room. The
  // intercardinal compartment groups are deliberately asymmetric only where
  // sources establish it; ornament and movable historic thrones are not faked.
@@ -802,7 +832,8 @@ function buildFuwang(c) {
  for(const[x0,x1,z0,z1]of[[-uW/2,-coreX,-uD/2,uD/2],[coreX,uW/2,-uD/2,uD/2],[-coreX,coreX,-uD/2,-coreZ],[-coreX,coreX,coreZ,uD/2]])slab(c,'upper-floor-slab',x0,x1,z0,z1,top,{thickness:.2});
  guardOpening(c,hole,{y:top});
  frame(c,{w:uW,d:uD,y:top,h:eave-top,bays:3,depthBays:3,role:'fuwang-upper-three-bay-column'});
- facade(c,{w:uW,d:uD,y:top,h:eave-top-.25,bays:3,depthBays:3,inset:0,rearInset:0,frontDoors:[],backDoors:[],sideWindows:true,pattern:'steps'});
+ facade(c,{w:uW,d:uD,y:top,h:eave-top-.25,bays:3,depthBays:3,inset:0,rearInset:0,frontDoors:[],backDoors:[],sideWindows:true,pattern:'steps',skipFront:southEnabled});
+ if(southEnabled)buildFuwangSouthUpper(c,{w:uW,front:-uD/2,y:top,h:eave-top-.25});
  // The actual source has stairs in the centre. These steep enclosed flights
  // express only that location; pitches/landings are model fits and not access.
  for(let flight=0;flight<2;flight++){
@@ -822,12 +853,12 @@ function buildFuwang(c) {
  const roof=ordinaryRoof(c,{type:'cuanjian',w:uW+.3,d:uD+.3,y:eave,height:3.3,tile:'yellow',trim:'blue'});
  ceiling(c,{x0:-uW/2,x1:uW/2,z0:-uD/2,z1:uD/2,y:eave-.35,nx:3,nz:3});
  const legacyInventory=retainLegacyHall(c,{central:true,centralX:5.8,sideInset:1.5,benchZ:3.9});
- return finish(c,{legacyInventory,groundPlan:'FOUR_SYMMETRIC_CONVEX_SPACES_AROUND_CENTRAL_CORE',topStoreyPlan:'OPEN_HALL',topStoreyStairVoid:hole,intermediateFloor:{side:'north',x0:-coreX,x1:coreX,z0:coreZ,z1:id/2-.12,y:mid,status:'EVIDENCE_LIMITED_PARTIAL_NOT_ASSERTED_ONLY_HISTORIC_MEZZANINE'},centralStairPolicy:'SOURCE_LOCATION_WITH_FITTED_ENCLOSED_NON_VISITABLE_FLIGHTS',upperNavigation:'VIEW_ONLY_NO_UPPER_DESTINATION',furnitureStatus:'HISTORIC_FOUR_DIRECTION_THRONES_NOT_NEWLY_INVENTED'});
+ return finish(c,{...(c.f.userData.fuwangSouthFront?{southFront:c.f.userData.fuwangSouthFront}:{}),legacyInventory,groundPlan:'FOUR_SYMMETRIC_CONVEX_SPACES_AROUND_CENTRAL_CORE',topStoreyPlan:'OPEN_HALL',topStoreyStairVoid:hole,intermediateFloor:{side:'north',x0:-coreX,x1:coreX,z0:coreZ,z1:id/2-.12,y:mid,status:'EVIDENCE_LIMITED_PARTIAL_NOT_ASSERTED_ONLY_HISTORIC_MEZZANINE'},centralStairPolicy:'SOURCE_LOCATION_WITH_FITTED_ENCLOSED_NON_VISITABLE_FLIGHTS',upperNavigation:'VIEW_ONLY_NO_UPPER_DESTINATION',furnitureStatus:'HISTORIC_FOUR_DIRECTION_THRONES_NOT_NEWLY_INVENTED'});
 }
 
 function buildJuanqin(c) {
  const{p}=c,w=p.localW,d=p.localD,bw=w/9,front=-d/2+p.gallery,rear=d/2,boundary=-w/2+5*bw,east=-w/2,west=w/2,upper=p.upperFloorY;
- platform(c);frame(c);facade(c,{frontDoors:[2],backDoors:[],backWindows:false,pattern:'steps'});
+ const eastEnabled=c.kit.juanqinEastFront!==false;platform(c);frame(c);facade(c,{frontDoors:[2],backDoors:[],backWindows:false,pattern:'steps',skipFrontBays:eastEnabled?[0,1,2,3,4]:[]});if(eastEnabled)buildJuanqinEastFront(c);
  // Eastern five bays have a U-shaped internal loft: northern strip and two
  // side returns. The front-middle volume is genuinely open above.
  const left=east+bw,right=boundary-bw,backBand=1.45;
@@ -870,8 +901,8 @@ function buildJuanqin(c) {
  // R68: withhold seven unsupported generic movable pieces. Attested
  // theatre, dais, loft and screen outlines remain separate architectural fits.
  const legacyInventory={source:'LEGACY_GENERIC_HALL_PRESET_NOT_MUSEUM_INVENTORY',status:'UNKNOWN',knownEmpty:false,accepted:false,currentInventoryVerified:false,retained:[],withheldMeshCount:7,withheldColliderCount:7,withheld:['table','two-chairs','two-cabinets','two-benches'],notProofOfEmptyRoom:true,missingEvidence:['CURRENT_ROOM_INVENTORY','PLACEMENT','PERIOD_MAPPING']};
- rolledRoof(c,{hip:false,tile:'yellow',trim:'yellow'});ceiling(c,{y:p.ph+p.colH-.3,nx:9,nz:2});
- return finish(c,{eastBays:5,westBays:4,stageFaces:'east',audienceFaces:'west',eastLoftVoid:{x0:left,x1:right,z0:front,z1:backBand},stage,audience,legacyInventory,upperNavigation:'REAL_U_LOFT_AND_AUDIENCE_BALCONY_VIEW_ONLY_UNMEASURED_STAIRS_OMITTED',artworkPolicy:'NO_FABRICATED_PANORAMA_BAMBOO_CARVING_OR_PAINTING'});
+ rolledRoof(c,{hip:false,tile:eastEnabled?'green':'yellow',trim:'yellow'});ceiling(c,{y:p.ph+p.colH-.3,nx:9,nz:2});
+ return finish(c,{...(c.f.userData.juanqinEastFront?{eastFront:c.f.userData.juanqinEastFront}:{}),eastBays:5,westBays:4,stageFaces:'east',audienceFaces:'west',eastLoftVoid:{x0:left,x1:right,z0:front,z1:backBand},stage,audience,legacyInventory,upperNavigation:'REAL_U_LOFT_AND_AUDIENCE_BALCONY_VIEW_ONLY_UNMEASURED_STAIRS_OMITTED',artworkPolicy:'NO_FABRICATED_PANORAMA_BAMBOO_CARVING_OR_PAINTING'});
 }
 
 function stageRingFloor(c,{w,d,y,hole,role}) {
@@ -879,14 +910,14 @@ function stageRingFloor(c,{w,d,y,hole,role}) {
  guardOpening(c,hole,{y});
 }
 function buildChangyin(c) {
- const{p}=c,w=p.localW,d=p.localD,levels=p.stageFloorYs,midW=w*.88,midD=d*.88,topW=w*.72,topD=d*.72;
+ const{p}=c,northEnabled=c.kit.changyinNorthFront!==false,w=p.localW,d=p.localD,levels=p.stageFloorYs,midW=w*.88,midD=d*.88,topW=w*.72,topD=d*.72;
  platform(c);frame(c,{h:4.6});
  // An open lower stage, not a conventional windowed hall. No inner posts are
  // added; the four 45-degree corner beams carry the upper performance stages.
  for(const side of[-1,1]){
   rail(c,{x:side*w/2,z:0,length:d,y:p.ph,side:true,role:'changyin-ground-perimeter-rail'});
  }
- rail(c,{x:0,z:-d/2,length:w,y:p.ph,gap:2.8,role:'changyin-ground-perimeter-rail'});
+ if(northEnabled)buildChangyinNorthFront(c);else rail(c,{x:0,z:-d/2,length:w,y:p.ph,gap:2.8,role:'changyin-ground-perimeter-rail'});
  wallLine(c,{a0:-w/2,a1:w/2,at:d/2,y:p.ph,h:4.35,doors:[{at:-w/3,w:1.8},{at:w/3,w:1.8}],mat:'wood',role:'changyin-rear-stage-screen'});
  const leg=3.7;
  for(const sx of[-1,1])for(const sz of[-1,1]){const beam=c.box('changyin-diagonal-corner-beam','wood',Math.SQRT2*leg,.4,.34,sx*(w/2-leg/2),levels[1]-.2,sz*(d/2-leg/2));beam.rotation.y=Math.atan2(sz,sx);beam.userData.placementStatus='OFFICIAL_45_DEGREE_BEAM_TYPE_FITTED_LENGTH';}
@@ -938,7 +969,7 @@ function buildChangyin(c) {
  const before=new Set(c.f.children);rolledRoof(c,{w:topW+.6,d:topD+.6,y:p.roofBaseY,rise:4.45,tile:'green',trim:'yellow'});
  const roofGroup=new THREE.Group();roofGroup.name='changyin-upper-roof-height-fit';c.f.add(roofGroup);for(const child of[...c.f.children])if(child!==roofGroup&&!before.has(child))roofGroup.attach(child);
  const roofVerticalFit=fitRoofTop(c,roofGroup,p.roofBaseY,p.modelTopY);
- return finish(c,{stageVoids,stairCount,roofVerticalFit,groundStageNoInnerColumns:true,stageNames:['寿台','禄台','福台'],heightInterpretation:p.heightDatum,stairPolicy:'FOUR_FITTED_REAR_FLIGHTS_PHYSICALLY_GUARDED_NO_UPPER_ACCESS',upperNavigation:'REAL_STAGES_AND_WELLS_VIEW_ONLY_NO_TELEPORT',rearDressingHall:'OFFICIAL_FIVE_BAY_ATTACHED_BUILDING_OUTSIDE_THIS_RETAINED_IDENTITY_ENVELOPE_NOT_NEWLY_FABRICATED',undergroundWells:'OFFICIAL_EXISTENCE_GEOMETRY_UNKNOWN_NOT_MODELLED',legacyInventory});
+ return finish(c,{...(c.f.userData.changyinNorthFront?{northFront:c.f.userData.changyinNorthFront}:{}),stageVoids,stairCount,roofVerticalFit,groundStageNoInnerColumns:true,stageNames:['寿台','禄台','福台'],heightInterpretation:p.heightDatum,stairPolicy:'FOUR_FITTED_REAR_FLIGHTS_PHYSICALLY_GUARDED_NO_UPPER_ACCESS',upperNavigation:'REAL_STAGES_AND_WELLS_VIEW_ONLY_NO_TELEPORT',rearDressingHall:'OFFICIAL_FIVE_BAY_ATTACHED_BUILDING_OUTSIDE_THIS_RETAINED_IDENTITY_ENVELOPE_NOT_NEWLY_FABRICATED',undergroundWells:'OFFICIAL_EXISTENCE_GEOMETRY_UNKNOWN_NOT_MODELLED',legacyInventory});
 }
 
 function localMeshBounds(f,mesh) {
@@ -969,6 +1000,7 @@ function buildHuangjiAugment(kit,item,built,p) {
  // enclosing facade are changed from the generic fifteen to sourced nine.
  frame(c,{bays:9,depthBays:5,h:p.colH});
  facade(c,{bays:9,frontDoors:[3,4,5],backDoors:[3,4,5],inset:p.gallery,rearInset:0,pattern:'steps'});
+ const southFront=kit.huangjiSouthFront===false?undefined:buildHuangjiSouthFront(c);
  for(const q of p.portals)exteriorSteps(c,q.x,(q.side==='rear'?1:-1)*PD/2,p.ph,q.width,q.side);
  const ceilingY=p.ph+7.77,holes=[{x0:-3.401,x1:3.401,z0:4.799,z1:11.601},...[-3.9,3.9].flatMap(x=>[6.4,11.1].map(z=>({x0:x-.48,x1:x+.48,z0:z-.48,z1:z+.48})))];
  const xs=[-w/2+.2,w/2-.2,...Array.from({length:8},(_,i)=>-w/2+(i+1)*w/9),...holes.flatMap(q=>[q.x0,q.x1])].sort((a,b)=>a-b),zs=[-d/2+p.gallery,d/2-.2,...Array.from({length:4},(_,i)=>-d/2+(i+1)*d/5),...holes.flatMap(q=>[q.z0,q.z1])].sort((a,b)=>a-b);
@@ -980,7 +1012,7 @@ function buildHuangjiAugment(kit,item,built,p) {
  const throneLocal=new THREE.Box3(new THREE.Vector3(-tw/2,p.ph,tz-1.2),new THREE.Vector3(tw/2,p.ph+3,tz+1.3)),throneWorld=throneLocal.clone().applyMatrix4(f.matrixWorld),throneProxies=kit.colliders.filter(b=>closeBounds(b,throneWorld));if(throneProxies.length!==1)throw Error('Huangji original throne collider ownership ambiguous');
  throneProxies[0].userData={role:'huangji-kit-throne-fallback-collider',identity:p.id,interiorFallbackFor:'huangji'};
  const exactRecord=r=>r.name===p.name;kit.rooms=kit.rooms.filter(r=>!exactRecord(r));kit.mapItems=kit.mapItems.filter(r=>!exactRecord(r));kit.regions=kit.regions.filter(r=>!exactRecord(r));
- const result=finish(c,{originalBays:oldBays,actualFacadeBays:9,legacyFallbackContract:{meshRole:'huangji-kit-throne-fallback',parts:fallback.map(m=>m.userData.fallbackPart),width:tw,throneZ:tz,colliderLocal:{min:throneLocal.min.toArray(),max:throneLocal.max.toArray()},colliderWorld:{min:throneWorld.min.toArray(),max:throneWorld.max.toArray()},loaderOwner:'SHARED_INTERIOR_LOADER_ATOMIC_SWITCH_REQUIRED'},existingGLB:{asset:'huangji-aligned-0a79ec49e8cd.glb',sha256:'0a79ec49e8cd442d363fdc6bccf4074d9e214ef3b0f3b56eba618297c1e88cc6',visibleTriangles:24024,caissonAndFourGoldColumns:'RETAINED_NOT_DUPLICATED'},ceilingOpenings:holes,ceilingY,ceilingPanels,removedLegacyMeshCount:removed.length,removedLegacyProxyCount:oldProxyCount,interiorPolicy:'PRESERVE_EXISTING_ART_ASSET_AND_EXACT_FALLBACK_ONLY_NEW_SOURCE_NINE_BAY_ARCHITECTURE_AND_COFFER_OPENINGS'});
+ const result=finish(c,{southFront,originalBays:oldBays,actualFacadeBays:9,legacyFallbackContract:{meshRole:'huangji-kit-throne-fallback',parts:fallback.map(m=>m.userData.fallbackPart),width:tw,throneZ:tz,colliderLocal:{min:throneLocal.min.toArray(),max:throneLocal.max.toArray()},colliderWorld:{min:throneWorld.min.toArray(),max:throneWorld.max.toArray()},loaderOwner:'SHARED_INTERIOR_LOADER_ATOMIC_SWITCH_REQUIRED'},existingGLB:{asset:'huangji-aligned-0a79ec49e8cd.glb',sha256:'0a79ec49e8cd442d363fdc6bccf4074d9e214ef3b0f3b56eba618297c1e88cc6',visibleTriangles:24024,caissonAndFourGoldColumns:'RETAINED_NOT_DUPLICATED'},ceilingOpenings:holes,ceilingY,ceilingPanels,removedLegacyMeshCount:removed.length,removedLegacyProxyCount:oldProxyCount,interiorPolicy:'PRESERVE_EXISTING_ART_ASSET_AND_EXACT_FALLBACK_ONLY_NEW_SOURCE_NINE_BAY_ARCHITECTURE_AND_COFFER_OPENINGS'});
  result.PW=built.PW;result.PD=built.PD;result.top=built.top;return result;
 }
 

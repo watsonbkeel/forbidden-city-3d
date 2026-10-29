@@ -1,3 +1,5 @@
+import {canCrossFubiPool} from '../scene/garden/FubiArchPool.js';
+import {canCrossLinxiPool} from '../scene/palace/special/LinxiBridgePool.js';
 import {cloneXiqingSurface,xiqingSurfaceFootContact,xiqingSurfaceBodyIntersects,xiqingSurfaceSweep} from '../controls/XiqingRoofSurface.js';
 import {cloneFurnitureMotionScope,furnitureScope,furnitureContact,furnitureTryStep,resolveFurnitureVertical} from '../controls/FurnitureMotion.js';
 import {duixiuScope,duixiuContact,duixiuTryStep,resolveDuixiuVertical} from '../scene/garden/DuixiuMotion.js';
@@ -54,6 +56,7 @@ export class CollisionManager {
     if (triangleSupport && (object.duixiuTerrain === true && this._duixiuBatchIds
       ? this._duixiuBatchIds.has(triangleSupport.id)
       : this.colliders.some(c => c.triangleSupport?.id === triangleSupport.id))) throw new TypeError('Duplicate triangle owner');
+    if(furnitureMotionScope?.kind==='xishang-roof-transom'&&this.colliders.some(c=>c.furnitureMotionScope?.kind==='xishang-roof-transom'))throw new TypeError('Duplicate Xishang original anchor');
     if (!box.isEmpty()) this.colliders.push({ mesh: object, box, tag, ...(overhead ? {overhead} : {}), ...(triangleSupport ? {triangleSupport} : {}), ...(xiqingRoofSurface ? {xiqingRoofSurface} : {}), ...(object.duixiuTerrain === true ? {duixiuTerrain:true} : {}), ...(furnitureMotionScope ? {furnitureMotionScope} : {}) });
     if (!box.isEmpty() && triangleSupport && this._duixiuBatchIds) this._duixiuBatchIds.add(triangleSupport.id);
   }
@@ -351,7 +354,7 @@ export class CollisionManager {
   }
 
   checkRiverCrossing(position, radius, from = null) {
-    return this.rivers.every(river => canCrossPalaceWater(river, position, radius)) &&
+    return canCrossFubiPool(position, radius) && canCrossLinxiPool(position, radius) && this.rivers.every(river => canCrossPalaceWater(river, position, radius)) &&
       this.moats.every(moat => from ? canTraverseOuterMoat(moat, from, position, radius) : canCrossOuterMoat(moat, position, radius));
   }
 
@@ -379,7 +382,7 @@ export class CollisionManager {
     let furnitureFeet=motion?.feetY??(motion?.kind==='kinematic'?feetY:airFeet??feetY)??(currentPosition.y-PLAYER.HEIGHT);
     const tryMove = (x, z) => {
       const proposed = new THREE.Vector3(x,valid.y,z);
-      if(furnitureScope(this,valid,proposed,radius)) {
+      if(furnitureScope(this,valid,proposed,radius,motion?.kind==='player'?furnitureFeet:undefined)) {
         const fromFeet=new THREE.Vector3(valid.x,furnitureFeet,valid.z),toFeet=new THREE.Vector3(x,furnitureFeet,z);
         const result=furnitureTryStep(this,fromFeet,toFeet,radius,stepUp,motion);
         if(!result.accepted)return false;
@@ -418,7 +421,9 @@ export class CollisionManager {
     if (collider) {
       const box = object.isBox3 ? object.clone() : new THREE.Box3().setFromObject(object);
       if(collider.furnitureMotionScope&&object.furnitureMotionScope===undefined)throw new TypeError('Furniture scope cannot disappear');
+      if(collider.furnitureMotionScope?.kind==='xishang-roof-transom'&&(object.furnitureMotionScope?.kind!=='xishang-roof-transom'||object.furnitureMotionScope?.id!==collider.furnitureMotionScope.id))throw new TypeError('Xishang anchor ownership cannot change');
       const furnitureMotionScope=cloneFurnitureMotionScope(object.furnitureMotionScope,box);
+      if(furnitureMotionScope?.kind==='xishang-roof-transom'&&this.colliders.some(c=>c!==collider&&c.furnitureMotionScope?.kind==='xishang-roof-transom'))throw new TypeError('Duplicate Xishang original anchor');
       if (collider.overhead && object.overhead === undefined) throw new TypeError('Scoped overhead shape cannot disappear during an update');
       const overhead = object.overhead === undefined ? null : cloneOverheadShape(object.overhead, box);
       if(collider.xiqingRoofSurface&&object.xiqingRoofSurface?.id!==collider.xiqingRoofSurface.id)throw new TypeError('Xiqing surface ownership cannot disappear');

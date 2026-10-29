@@ -1,0 +1,35 @@
+✔ five hanging spans and five-sector two-ring ceiling have honest source metadata (147.3627ms)
+✔ all old roofs finial columns rails platform and east steps remain exact with no navigation changes (154.421861ms)
+✔ all new canopy work clears original platform player head and has finite actual triangles (74.943224ms)
+✔ registered contact vertices are exact transformed source geometry including unchanged legacy sign (124.94385ms)
+✔ ten ceiling sectors are visible from below and five hanging headers terminate inside retained column bounds (68.352036ms)
+✔ every other remaining Ningshou hall is byte-identical with canopy switch on/off (1438.681432ms)
+✖ each pierced branch network is physically attached to hanging side returns rather than floating (86.003215ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2330.673683
+
+✖ failing tests:
+
+test at tests/major-pilots/biluo/geometry.test.mjs:9:1
+✖ each pierced branch network is physically attached to hanging side returns rather than floating (86.003215ms)
+  AssertionError [ERR_ASSERTION]: {"i":0,"t":0,"distance":0.05335864074842943}
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/biluo/geometry.test.mjs:9:621)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

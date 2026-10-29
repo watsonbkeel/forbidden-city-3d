@@ -1,0 +1,54 @@
+✔ whole Chengrui envelope activates one joined roof, shaped finial and both ceiling fields; Fubi never selected (126.851811ms)
+✔ all non-target pavilion geometry and original collision/walkable references remain exact (78.026544ms)
+✔ joined roof is closed consistently oriented with finite positive-area triangles and downward underside (85.888469ms)
+✖ all new geometry triangles are finite and nondegenerate, with bounded complete-package cost (56.675248ms)
+✖ bad source vertices, transformed host and repeat apply reject before mutation (42.498975ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 3
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 590.69149
+
+✖ failing tests:
+
+test at tests/major-pilots/chengrui/whole-envelope.test.mjs:10:1
+✖ all new geometry triangles are finite and nondegenerate, with bounded complete-package cost (56.675248ms)
+  AssertionError [ERR_ASSERTION]: chengrui-finial-base
+      at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/chengrui/whole-envelope.test.mjs:10:478
+      at Mesh.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7600:3)
+      at Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)
+      at Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/chengrui/whole-envelope.test.mjs:10:190)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/major-pilots/chengrui/whole-envelope.test.mjs:11:1
+✖ bad source vertices, transformed host and repeat apply reject before mutation (42.498975ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/chengrui/whole-envelope.test.mjs:11:383)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /Chengrui/,
+    operator: 'throws',
+    diff: 'simple'
+  }
