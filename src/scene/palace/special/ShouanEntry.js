@@ -26,7 +26,7 @@ function paintedBox(w,h,d,pattern){
 }
 export function buildShouanEntry(kit,item,zoneId){
  const g=shouanEntryGeometry(item,zoneId),f=kit.frame(g.x,g.z,0);f.name='寿安门入口群';f.userData.structure=g;f.userData.gateGeometry=g;
- const painted=new T.MeshStandardMaterial({name:'shouan_entry_flush_photo_fit',color:0xffffff,vertexColors:true,roughness:.78});kit.owned.push(painted);
+ const painted=new T.MeshStandardMaterial({name:'shouan_entry_flush_photo_fit',color:0xffffff,vertexColors:true,roughness:.78});painted.userData.shouanEntryVertexColors=true;kit.owned.push(painted);
  const solids=[],surfaces=[],tag=(m,role)=>{m.name='shouan-entry-'+role;m.userData.role=m.name;m.userData.shouanEntry=true;return m;};
  const block=(role,w,h,d,x,y,z,material='wall_red',pattern=null,walk=false)=>{const m=pattern?kit.mesh(f,paintedBox(w,h,d,pattern),painted,x,y,z):kit.mesh(f,paintedBox(w,h,d,null),kit.lib.material(material),x,y,z);tag(m,role);solids.push({m,walk});return m;};
  const slab=(role,w,h,d,x,z)=>block(role,w,h,d,x,0,z,'stone_slab',null,true);

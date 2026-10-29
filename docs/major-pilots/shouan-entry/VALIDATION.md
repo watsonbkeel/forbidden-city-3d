@@ -43,3 +43,5 @@ node --test --test-concurrency=1 --test-reporter=tap tests/r100-xishang-movement
 2026-10-29追加：在cbf33b9最终生产源码上，完整原共享命令再次串行运行，shared-final.tap **161/161**（300.4秒）；这是整组全量绿测，独立于前述160+单项重跑。无代码变化、未覆盖或删除原失败日志。
 
 2026-10-29 慈荫真实合并复查发现既有缺口：MergeUtils.normalizeAttributes 删除 color；本寿安彩面材质 vertexColors=true，而 finish 后颜色属性为零。复现 `node tests/major-pilots/shouan-entry/color-loss.diagnostic.mjs`，结果保留在 ../ciyin/shouan-color-loss.json。此前几何源面覆盖与19/19、161/161不包含最终顶点色保留，不能证明屏门/墙面彩色纹样已交付；这项渲染缺口现明确未修复。慈荫局部按单色材质拆分，不把共享合并器改动混入其范围；既有原始测试结果保留，GPU视觉依然未验。
+
+2026-10-29 后续已受控修复上述寿安color丢失：详见COLOR-REPAIR.md。只该自有材质三重opt-in保留原Float32 RGB；其他材质/几何/物理旧行为不变。最终寿安+慈荫专项52/52、完整原共享161/161，独立终审通过。最终仍10 mesh/51938三角/73碰撞/10walkable，颜色属性新增1,661,184字节。此记录替代前述“寿安仍未修复”状态，但不改写原失败、原诊断或GPU未验边界。

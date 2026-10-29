@@ -1,6 +1,14 @@
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 
+// Deliberate, private opt-in for the already-authored Shouan entrance only.
+// Other vertex-color users retain the historical normalization contract.
+const preservesShouanColor = material => material?.name === 'shouan_entry_flush_photo_fit' && material.vertexColors === true && material.userData?.shouanEntryVertexColors === true;
+function validateShouanColor(geometry) {
+  const p = geometry?.attributes?.position, c = geometry?.attributes?.color;
+  if (!p || !c || c.isBufferAttribute !== true || c.isInterleavedBufferAttribute === true || c.itemSize !== 3 || c.count !== p.count || c.normalized !== false || !(c.array instanceof Float32Array) || c.array.length !== c.count * 3 || !c.array.every(Number.isFinite)) throw new TypeError('Shouan vertex color requires finite, matching, unnormalized Float32 RGB');
+}
+
 /**
  * 把一个对象树内的所有 Mesh 按材质合并成少量 Mesh，减少绘制调用（draw call）。
  *
@@ -14,6 +22,10 @@ import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js
  * @returns {THREE.Group} 新的 Group（继承 root 的变换与 name）
  */
 export function mergeByMaterial(root, { castShadow = true, receiveShadow = true, name } = {}) {
+  // Fail before cloning, merging or disposing any source, including other buckets.
+  root.traverse(child => {
+    if (child !== root && child.isMesh && !child.isInstancedMesh && !child.userData.noMerge && !Array.isArray(child.material) && preservesShouanColor(child.material)) validateShouanColor(child.geometry);
+  });
   root.updateMatrixWorld(true);
   const inverseRoot = new THREE.Matrix4().copy(root.matrixWorld).invert();
   const buckets = new Map();
@@ -50,7 +62,7 @@ export function mergeByMaterial(root, { castShadow = true, receiveShadow = true,
   group.userData = { ...root.userData };
 
   for (const { material, geometries, cast, receive } of buckets.values()) {
-    normalizeAttributes(geometries);
+    normalizeAttributes(geometries, preservesShouanColor(material));
     const merged = mergeGeometries(geometries, false);
     geometries.forEach(g => g.dispose());
     if (!merged) continue;
@@ -93,14 +105,14 @@ function flipWinding(geometry) {
   }
 }
 
-function normalizeAttributes(geometries) {
+function normalizeAttributes(geometries, preserveColor = false) {
   const names = new Set();
   geometries.forEach(g => Object.keys(g.attributes).forEach(n => names.add(n)));
   for (const g of geometries) {
     if (names.has('normal') && !g.attributes.normal) g.computeVertexNormals();
     if (names.has('uv') && !g.attributes.uv) g.setAttribute('uv', new THREE.Float32BufferAttribute(new Float32Array(g.attributes.position.count * 2), 2));
     for (const n of Object.keys(g.attributes)) {
-      if (n !== 'position' && n !== 'normal' && n !== 'uv') g.deleteAttribute(n);
+      if (n !== 'position' && n !== 'normal' && n !== 'uv' && !(preserveColor && n === 'color')) g.deleteAttribute(n);
     }
     g.morphAttributes = {};
   }

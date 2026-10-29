@@ -1,0 +1,31 @@
+TAP version 13
+# THREE.BufferGeometryUtils: .mergeAttributes() failed. BufferAttribute.gpuType must be consistent across matching attributes.
+# THREE.BufferGeometryUtils: .mergeGeometries() failed while trying to merge the color attribute.
+# Subtest: opt-in rejects interleaved color instead of expanding the shared packed winding contract
+not ok 1 - opt-in rejects interleaved color instead of expanding the shared packed winding contract
+  ---
+  duration_ms: 5.322536
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shouan-entry/color-scope.test.mjs:12:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shouan-entry/color-scope.test.mjs:12:404)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 109.381165
