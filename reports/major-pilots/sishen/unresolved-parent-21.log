@@ -1,0 +1,35 @@
+TAP version 13
+# Subtest: R63 candidate: compound 24 10Hz S sprint
+not ok 1 - R63 candidate: compound 24 10Hz S sprint
+  ---
+  duration_ms: 1393.5017
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/current-state/r63-west-rear-compound-routes.test.mjs:10:118'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"arrived":false,"stuckAt":[110.5,442.5],"startFeet":0.4699999988079071,"maxFeet":0.4699999988079071,"maxSpeed":0,"driver":{"crossings":[],"brakingFrames":0,"endpointSettleSeconds":2},"end":[110.5,440,0.4699999988079071]}
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    replayWestRearSouthDoorInWorld (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/lib/r63-west-rear-windows-world-check.mjs:59:151)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/current-state/r63-west-rear-compound-routes.test.mjs:10:259)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1863.966727

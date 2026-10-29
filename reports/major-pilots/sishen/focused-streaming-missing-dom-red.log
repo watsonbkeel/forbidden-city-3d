@@ -1,0 +1,57 @@
+✔ duplicate west builder fails before touching retained frame physics or ownership (81.044322ms)
+✔ late map publication failure rolls back only candidate geometry physics and private resources (29.926889ms)
+✔ four private plain-fit materials dispose exactly once after merging without taking library ownership (38.25282ms)
+✔ every authored shell has positive outward signed volume, without reversed roof faces (61.728714ms)
+✔ every rendered shell is finite and closed with exactly paired opposite directed edges (56.259898ms)
+✔ standing/seated/moving NPC on both bypasses cannot become a false landing or jump reset (258.60187ms)
+✔ all four dispatch boundaries preserve .3/.5 kinematic bodies across ULP offsets both directions (87.658532ms)
+✔ small .3 and player .5 bodies cross the real paving edges after witnessed-ground handoff without legacy early-lift lock (97.226937ms)
+✔ original Four Gods shrine has one complete north-annex octagonal named assembly, not inventory-only or generic gazebo (454.61245ms)
+✔ Sishen circulation is finite visible paving with no overlap of west-well paving or the shrine footprint exclusion (56.895813ms)
+✔ platform and every visible surface reject downgrade and wrong ownership and unload/reload cleanly (125.533595ms)
+✔ sishen witness requires the unique live actual ground and invalidates geometry transforms detach and unbind (85.957843ms)
+✔ north stair and three exterior sides permit real-controller walk/run/jump at 10/60 Hz without visible-source intrusion (1133.062579ms)
+✔ source-visible paired front rail panels flank a real opening; both stair cheeks are continuous slopes not stair blocks (59.543809ms)
+✔ all Sishen visible meshes own exactly matching final Float32 physical sources (63.613632ms)
+✔ every shrine triangle source matches an actual post-merge final Float32 render triangle (64.069218ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,228, 树木=34棵, 碰撞器=2034
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,216, 树木=34棵, 碰撞器=2034
+garden-preserved {"beforeMeshes":49,"afterMeshes":49,"beforeTriangles":266228,"afterTriangles":266216,"treeGroups":12}
+✔ entire garden zone excluding only Sishen profile is byte-geometrically and physically identical to parent (1371.441855ms)
+✔ all 34 tree instance buffers and all old GardenBuilder physics except the exact one tree source stay exact; all non-ground geometry stays exact and ground samples outside cut preserve material/height/UV (6638.177088ms)
+✔ one immutable finite Sishen motion domain is owned by its visible north step (52.554128ms)
+✔ sishen exact anchor registers once and rejects moved source ownership (76.241619ms)
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+✖ actual streaming garden preserves independent west-well and shrine sources across combined unload/reload and clears witness on disposal (120.542723ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,216, 树木=34棵, 碰撞器=2034
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,216, 树木=34棵, 碰撞器=2034
+✔ only conflict tree uses complete actual retained trunk triangles instead of inadequate low AABB (1276.367848ms)
+✔ retained tree source fails closed for changed draw transform geometry range or groups (9.407744ms)
+✔ normal garden requires exactly one matched original tree, never silent fallback or duplicate (0.364778ms)
+✔ complete retained trunk bounds plus .6m fit wholly inside the strict domain, not across its dispatch seam (958.0879ms)
+✔ actual player falls onto main octagonal roof finial and north annex at 10/60 Hz without surface penetration (5904.493591ms)
+✔ north-annex jump stops at the actual low ceiling and lands back on the platform (230.995749ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 26
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 23359.745475
+
+✖ failing tests:
+
+test at tests/major-pilots/sishen/streaming.test.mjs:2:1
+✖ actual streaming garden preserves independent west-well and shrine sources across combined unload/reload and clears witness on disposal (120.542723ms)
+  ReferenceError: document is not defined
+      at createGatePlaque (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/palace/special/GatePlaques.js:64:18)
+      at buildKunningGate (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/palace/special/KunningGate.js:77:15)
+      at CourtKit.gate (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/palace/kit.js:278:43)
+      at ZoneBase.buildGate (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/zones/ZoneBase.js:375:28)
+      at ZoneBase.build (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/zones/ZoneBase.js:99:24)
+      at ZoneManager.init (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/zones/ZoneManager.js:100:28)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/sishen/streaming.test.mjs:2:529)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)

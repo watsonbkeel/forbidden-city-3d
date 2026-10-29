@@ -1,0 +1,30 @@
+✖ source-visible paired front rail panels flank a real opening; both stair cheeks are continuous slopes not stair blocks (56.832415ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 340.061469
+
+✖ failing tests:
+
+test at tests/major-pilots/sishen/photo-topology.test.mjs:2:1
+✖ source-visible paired front rail panels flank a real opening; both stair cheeks are continuous slopes not stair blocks (56.832415ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(rails.length>=6)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/sishen/photo-topology.test.mjs:2:326)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

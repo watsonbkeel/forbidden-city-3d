@@ -1,0 +1,30 @@
+✖ all Sishen visible meshes own exactly matching final Float32 physical sources (32.081068ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 269.527787
+
+✖ failing tests:
+
+test at tests/major-pilots/sishen/physical-source.test.mjs:2:1
+✖ all Sishen visible meshes own exactly matching final Float32 physical sources (32.081068ms)
+  AssertionError [ERR_ASSERTION]: sishen-octagonal-platform
+      at file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/sishen/physical-source.test.mjs:2:293
+      at Mesh.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7600:3)
+      at Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/sishen/physical-source.test.mjs:2:162)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

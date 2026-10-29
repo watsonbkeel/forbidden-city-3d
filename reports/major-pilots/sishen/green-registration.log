@@ -1,0 +1,152 @@
+THREE.BufferGeometry.computeBoundingBox(): Computed min/max have NaN values. The "position" attribute is likely to have NaN values. BufferGeometry {
+  isBufferGeometry: true,
+  uuid: '11f3e786-210b-4392-811a-75753a275c7a',
+  name: '',
+  type: 'BufferGeometry',
+  index: null,
+  attributes: {
+    position: BufferAttribute {
+      isBufferAttribute: true,
+      name: '',
+      array: [Float32Array],
+      itemSize: 3,
+      count: 48192,
+      normalized: false,
+      usage: 35044,
+      _updateRange: [Object],
+      updateRanges: [],
+      gpuType: 1015,
+      version: 0
+    },
+    uv: BufferAttribute {
+      isBufferAttribute: true,
+      name: '',
+      array: [Float32Array],
+      itemSize: 2,
+      count: 48192,
+      normalized: false,
+      usage: 35044,
+      _updateRange: [Object],
+      updateRanges: [],
+      gpuType: 1015,
+      version: 0
+    },
+    normal: BufferAttribute {
+      isBufferAttribute: true,
+      name: '',
+      array: [Float32Array],
+      itemSize: 3,
+      count: 48192,
+      normalized: false,
+      usage: 35044,
+      _updateRange: [Object],
+      updateRanges: [],
+      gpuType: 1015,
+      version: 0
+    }
+  },
+  morphAttributes: {},
+  morphTargetsRelative: false,
+  groups: [],
+  boundingBox: Box3 {
+    isBox3: true,
+    min: Vector3 { x: NaN, y: NaN, z: NaN },
+    max: Vector3 { x: NaN, y: NaN, z: NaN }
+  },
+  boundingSphere: null,
+  drawRange: { start: 0, count: Infinity },
+  userData: {}
+}
+THREE.BufferGeometry.computeBoundingSphere(): Computed radius is NaN. The "position" attribute is likely to have NaN values. BufferGeometry {
+  isBufferGeometry: true,
+  uuid: '11f3e786-210b-4392-811a-75753a275c7a',
+  name: '',
+  type: 'BufferGeometry',
+  index: null,
+  attributes: {
+    position: BufferAttribute {
+      isBufferAttribute: true,
+      name: '',
+      array: [Float32Array],
+      itemSize: 3,
+      count: 48192,
+      normalized: false,
+      usage: 35044,
+      _updateRange: [Object],
+      updateRanges: [],
+      gpuType: 1015,
+      version: 0
+    },
+    uv: BufferAttribute {
+      isBufferAttribute: true,
+      name: '',
+      array: [Float32Array],
+      itemSize: 2,
+      count: 48192,
+      normalized: false,
+      usage: 35044,
+      _updateRange: [Object],
+      updateRanges: [],
+      gpuType: 1015,
+      version: 0
+    },
+    normal: BufferAttribute {
+      isBufferAttribute: true,
+      name: '',
+      array: [Float32Array],
+      itemSize: 3,
+      count: 48192,
+      normalized: false,
+      usage: 35044,
+      _updateRange: [Object],
+      updateRanges: [],
+      gpuType: 1015,
+      version: 0
+    }
+  },
+  morphAttributes: {},
+  morphTargetsRelative: false,
+  groups: [],
+  boundingBox: Box3 {
+    isBox3: true,
+    min: Vector3 { x: NaN, y: NaN, z: NaN },
+    max: Vector3 { x: NaN, y: NaN, z: NaN }
+  },
+  boundingSphere: Sphere {
+    isSphere: true,
+    center: Vector3 { x: NaN, y: NaN, z: NaN },
+    radius: NaN
+  },
+  drawRange: { start: 0, count: Infinity },
+  userData: {}
+}
+✖ original Four Gods shrine has one complete north-annex octagonal named assembly, not inventory-only or generic gazebo (673.160517ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1351.156366
+
+✖ failing tests:
+
+test at tests/major-pilots/sishen/geometry.test.mjs:2:1
+✖ original Four Gods shrine has one complete north-annex octagonal named assembly, not inventory-only or generic gazebo (673.160517ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/sishen/geometry.test.mjs:2:400)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

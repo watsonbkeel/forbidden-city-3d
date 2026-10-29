@@ -1,0 +1,82 @@
+{
+  "parentCommit": "71a9d7a5dffe8507709fc6c072491aaf42b32a59",
+  "sourceFreezeVerified": true,
+  "focused": {
+    "tests": 27,
+    "pass": 27,
+    "fail": 0
+  },
+  "wholeWorldLocalRoutes": {
+    "cases": 32,
+    "passed": 32,
+    "oracleSources": 406
+  },
+  "treeApproaches": {
+    "cases": 32,
+    "penetrations": 0,
+    "oracleSources": 406,
+    "consistentSnappedStarts": true
+  },
+  "treeHighExits": {
+    "cases": 16,
+    "penetrations": 0,
+    "allGroundedBeyondTree": true,
+    "oracleSources": 406,
+    "gameplayReachabilityProven": false
+  },
+  "neighbourTrajectories": {
+    "cases": 96,
+    "identical": 80,
+    "localPavingDifferences": 16,
+    "parentArrivals": 72,
+    "candidateArrivals": 72
+  },
+  "narrowRegression": {
+    "tests": 76,
+    "pass": 71,
+    "fail": 5,
+    "parentHistoricalFailures": 2,
+    "intentionalNewScopeSnapshots": 3
+  },
+  "aggregateOriginalReceipt": {
+    "tests": 1257,
+    "pass": 1039,
+    "fail": 218,
+    "allGreen": false,
+    "fileLevelTerminationHidIndividualTests": true
+  },
+  "parentFailureAccounting": {
+    "directMatchedIdentities": 191,
+    "isolatedR63MatchedIdentities": 26,
+    "zhaode": {
+      "parent": {
+        "file": "unresolved-parent-26.log",
+        "tests": 75,
+        "pass": 74,
+        "fail": 1,
+        "failedNames": [
+          "V7 historical routes retain exact descriptors with only the later Qin’an and R6 Ningshou replacements isolated"
+        ],
+        "libAspectFailure": true
+      },
+      "candidate": {
+        "file": "zhaode-candidate-final-tap.log",
+        "tests": 75,
+        "pass": 74,
+        "fail": 1,
+        "failedNames": [
+          "V7 historical routes retain exact descriptors with only the later Qin’an and R6 Ningshou replacements isolated"
+        ],
+        "libAspectFailure": true
+      }
+    },
+    "unresolvedCandidateFailureIdentities": 0,
+    "note": "This is focused replay accounting, not a newly rerun all-green aggregate. Zhaode file-level receipt is superseded by full isolated 75-test runs on both versions."
+  },
+  "rootPathBuildPassed": true,
+  "independentReview": "conditional approval fulfilled by final checks",
+  "wholeObjectAccepted": false,
+  "gpuDeviceVerified": false,
+  "deploy": false,
+  "mainChanged": false
+}

@@ -1,0 +1,29 @@
+file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/RoofBuilder.js:53
+    aspect: { dougong: lib.aspect('dougong_band'), caihua: lib.aspect('caihua_beam') },
+                           ^
+
+TypeError: lib.aspect is not a function
+    at makeCtx (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/RoofBuilder.js:53:28)
+    at buildWallCap (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/RoofBuilder.js:759:15)
+    at buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/palace/special/AxisFirewalls.js:34:15)
+    at PalaceBuilder.buildComplex (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/PalaceBuilder.js:541:7)
+    at captureTaiheFrontTiers (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/lib/taihe-front-route.mjs:10:5)
+    at buildRoutes (/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/stepwalk.cjs:77:37)
+    at async /workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/stepwalk.cjs:187:40
+
+Node.js v24.19.0
+✖ tests/current-state/zhaode-gate-routes.test.mjs (106479.989256ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 106488.387415
+
+✖ failing tests:
+
+test at tests/current-state/zhaode-gate-routes.test.mjs:1:1
+✖ tests/current-state/zhaode-gate-routes.test.mjs (106479.989256ms)
+  'test failed'
