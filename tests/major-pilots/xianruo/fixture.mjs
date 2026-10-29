@@ -1,0 +1,2 @@
+import fs from 'node:fs';import {CourtKit} from '../../../src/scene/palace/kit.js';import {library} from '../../lib/inner-palace-fixture.mjs';import {buildRitualHall} from '../../../src/scene/palace/special/RitualHalls.js';
+export function make(enabled=true,name='咸若馆'){const kit=new CourtKit(library(),'outer-west');kit.xianruoFrontFit=enabled;const item=JSON.parse(fs.readFileSync('data/zones/outer-west.json')).items.find(i=>i.name===name);return{kit,item,...buildRitualHall(kit,item)}}

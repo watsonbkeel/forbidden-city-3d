@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: every inset part touches retained backing; actual Float32 merged envelope equals original closed window
+ok 1 - every inset part touches retained backing; actual Float32 merged envelope equals original closed window
+  ---
+  duration_ms: 315.488321
+  type: 'test'
+  ...
+# Subtest: 48 two-storey side windows are source bounded without changing original navigation or physics
+ok 2 - 48 two-storey side windows are source bounded without changing original navigation or physics
+  ---
+  duration_ms: 151.373467
+  type: 'test'
+  ...
+# Subtest: gold outline is in front of underlying red frame, not hidden inside it
+ok 3 - gold outline is in front of underlying red frame, not hidden inside it
+  ---
+  duration_ms: 62.289803
+  type: 'test'
+  ...
+# Subtest: all 2112 fitted source meshes have nondegenerate faces and balanced merge/disposal
+ok 4 - all 2112 fitted source meshes have nondegenerate faces and balanced merge/disposal
+  ---
+  duration_ms: 201.189325
+  type: 'test'
+  ...
+# Subtest: whole-world production controller retains retained lower entry and upper-floor central passages without inventing a stair at 10/60 Hz
+ok 5 - whole-world production controller retains retained lower entry and upper-floor central passages without inventing a stair at 10/60 Hz
+  ---
+  duration_ms: 6356.415783
+  type: 'test'
+  ...
+# Subtest: walk run jump toward closed fitted windows preserve original controller traces at 10/60 Hz
+ok 6 - walk run jump toward closed fitted windows preserve original controller traces at 10/60 Hz
+  ---
+  duration_ms: 219.913354
+  type: 'test'
+  ...
+# Subtest: eight open door leaves rails upper floor roof and niche framework remain unchanged
+ok 7 - eight open door leaves rails upper floor roof and niche framework remain unchanged
+  ---
+  duration_ms: 164.10785
+  type: 'test'
+  ...
+# Subtest: 慈荫楼 shared builder ignores Jiyun switch
+ok 8 - 慈荫楼 shared builder ignores Jiyun switch
+  ---
+  duration_ms: 66.185188
+  type: 'test'
+  ...
+# Subtest: 宝相楼 shared builder ignores Jiyun switch
+ok 9 - 宝相楼 shared builder ignores Jiyun switch
+  ---
+  duration_ms: 121.992034
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 8555.527754

@@ -1,3 +1,4 @@
+import {buildXianruoFrontFit} from './XianruoFrontFit.js';
 import {buildYinghuaSouthLattice} from './YinghuaSouthLattice.js';
 import * as THREE from 'three';
 const PAGE=n=>`https://www.dpm.org.cn/explore/building/${n}.html`;
@@ -67,5 +68,6 @@ export function buildRitualHall(kit,item){
   kit._lastFurnish={cover:[],spawns:[{x:0,z:0}]};kit.registerRoom(f,{name:p.name,kind:'xianruo-main-viewing-region',x0:-9.8,x1:9.8,z0:-3.8,z1:6.5,y,h:H,doors:[{x:0,z:-3.8}]});
   kit._lastFurnish={cover:[],spawns:[{x:0,z:-6}]};kit.registerRoom(f,{name:p.name,kind:'xianruo-enclosed-baoxia-viewing-region',x0:-AF+.3,x1:AF-.3,z0:-8.8,z1:-3.8,y,h:5.2,doors:[{x:0,z:-8.8},{x:0,z:-3.8}]});
  }
+ if(key==='xianruo'&&kit.xianruoFrontFit!==false)buildXianruoFrontFit(kit,f,g,mats);
  f.userData.structure=g;f.name=p.name+'·佛堂布局局部拟合';return{...built,g};
 }

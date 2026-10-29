@@ -1,3 +1,5 @@
+import {buildJiyunFrontFit} from './JiyunFrontFit.js';
+import {buildDafotangFrontFit} from './DafotangFrontFit.js';
 import {addYanchunSouthVessels} from './YanchunSouthVessels.js';
 import {buildWenyuanUpperFrame} from './WenyuanUpperFrame.js';
 import { buildNanxunCaissonRings } from './NanxunCaissonRings.js';
@@ -891,6 +893,7 @@ function buildTempleTower(kit,item,p) {
     }
     g.circulationStatus='TWO_REAL_LEVELS__STAIR_POSITION_UNVERIFIED_NO_INVENTED_GROUND_CONNECTION';
   }
+  if(p.key==='jiyun'&&kit.jiyunFrontFit!==false)buildJiyunFrontFit(c);
   if(p.key==='ciyin')retainLegacyFurniture(c);
   rail(c,p.key+'-upper-front-rail',-A+.15,A-.15,-d/2+.12,-d/2+.12,g.upperY);
   for(const side of[-1,1])rail(c,p.key+'-upper-balcony-end',side*(A-.15),side*(A-.15),-d/2+.12,g.front,g.upperY);
@@ -929,6 +932,7 @@ function buildCeremonialHall(kit,item,p) {
     face(-A+i*bay,-A+(i+1)*bay,z,g.y,g.h-.5,{door,opened:middle,role:p.key+'-front',sill:1.05});
     if(shouan)face(-A+i*bay,-A+(i+1)*bay,g.rear,g.y,g.h-.5,{door:middle,opened:middle,role:p.key+'-rear',sill:1.05});
   }
+  if(p.key==='dafotang'&&kit.dafotangFrontFit!==false)buildDafotangFrontFit(c);
   if(!shouan)wallZ(g.rear,-A,A,g.y,g.h-.5);
   if(cining)buildCiningModernDisplay(c);else retainLegacyFurniture(c);
   if(p.key==='dafotang'){g.warmRoomPartitions=[-1,1].map(side=>({x:side*bay*1.5,doorZ:g.front+2.2,doorW:1.8,doorH:2.65}));for(const part of g.warmRoomPartitions)c.partition(part.x,g.front,g.rear,g.y,g.h-.5,part.doorZ,part.doorW,'dafotang-fitted-warm-room-partition');g.partitionEvidence='THREE_SECTIONS_OFFICIAL__3_2_2_BAY_SPLIT_AND_DOOR_LOCATIONS_FITTED';}
