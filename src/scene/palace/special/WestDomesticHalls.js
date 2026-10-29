@@ -1,3 +1,4 @@
+import {applyChangchunWestInterior} from './ChangchunWestInterior.js';
 import * as THREE from 'three';
 import { buildChangchunEastAlcove } from './ChangchunEastAlcove.js';
 const page=n=>`https://www.dpm.org.cn/explore/building/${n}.html`;
@@ -85,5 +86,6 @@ export function buildWestDomesticHall(kit,item){
   kit.registerRoom(f,{name:`${item.name}·观览区${i+1}`,kind:'source-domestic-viewing-zone',x0,x1,z0:-item.d/2,z1:item.d/2,y,h:item.colH-.8,doors});
  }
  f.userData.structure={...f.userData.structure,...p,roomInterpretation:'NAVIGATION_ZONES_NOT_COMPLETE_HISTORICAL_ROOM_COUNT',retainedEnvelope:{w:item.w,d:item.d,bays:5},furnitureStatus:ownSeat?'SOURCE_PHOTO_FITTED_CENTRAL_SEAT_NOT_FULL_INVENTORY':'ATTESTED_SEAT_CLASS_WITH_GENERIC_FALLBACK_SHAPE'};
+ if(ownSeat)applyChangchunWestInterior(kit,item,f);
  return {...built,p};
 }

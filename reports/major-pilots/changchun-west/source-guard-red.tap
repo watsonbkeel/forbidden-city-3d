@@ -1,0 +1,112 @@
+TAP version 13
+# Subtest: reject changed retained west-kang-post before any source removal
+ok 1 - reject changed retained west-kang-post before any source removal
+  ---
+  duration_ms: 39.526944
+  type: 'test'
+  ...
+# Subtest: reject changed retained west-boundary-post before any source removal
+ok 2 - reject changed retained west-boundary-post before any source removal
+  ---
+  duration_ms: 11.437051
+  type: 'test'
+  ...
+# Subtest: late final-source rejection preserves old valance and all host ownership atomically
+ok 3 - late final-source rejection preserves old valance and all host ownership atomically
+  ---
+  duration_ms: 15.024408
+  type: 'test'
+  ...
+# Subtest: reject retained index before mutation
+not ok 4 - reject retained index before mutation
+  ---
+  duration_ms: 17.111932
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/changchun-west/guard.test.mjs:4:75'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/changchun-west/guard.test.mjs:4:513)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: reject retained drawRange before mutation
+not ok 5 - reject retained drawRange before mutation
+  ---
+  duration_ms: 14.834608
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/changchun-west/guard.test.mjs:4:75'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/changchun-west/guard.test.mjs:4:513)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: reject retained boundary-transform before mutation
+not ok 6 - reject retained boundary-transform before mutation
+  ---
+  duration_ms: 14.158001
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/changchun-west/guard.test.mjs:4:75'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/changchun-west/guard.test.mjs:4:513)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: reject retained material before mutation
+not ok 7 - reject retained material before mutation
+  ---
+  duration_ms: 11.78916
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/changchun-west/guard.test.mjs:4:75'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/changchun-west/guard.test.mjs:4:513)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 3
+# fail 4
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 383.211925

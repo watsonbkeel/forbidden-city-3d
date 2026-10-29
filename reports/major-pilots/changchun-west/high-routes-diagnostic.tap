@@ -1,0 +1,118 @@
+TAP version 13
+# Subtest: ground-supported kang repeated jumping toward shell 10Hz 0,1
+ok 1 - ground-supported kang repeated jumping toward shell 10Hz 0,1
+  ---
+  duration_ms: 94.995168
+  type: 'test'
+  ...
+# Subtest: ground-supported kang repeated jumping toward shell 10Hz 1,0
+not ok 2 - ground-supported kang repeated jumping toward shell 10Hz 1,0
+  ---
+  duration_ms: 47.511104
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/changchun-west/high-routes.test.mjs:4:88'
+  failureType: 'testCodeFailure'
+  error: '{"feet":1.1399999856948853,"position":[162.27498081274138,2.8399999856948854,384.2]}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/changchun-west/high-routes.test.mjs:4:772
+    withTerrainController (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/lib/r91-controller-clock.mjs:3:633)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/changchun-west/high-routes.test.mjs:4:194)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: ground-supported kang repeated jumping toward shell 10Hz -1,0
+ok 3 - ground-supported kang repeated jumping toward shell 10Hz -1,0
+  ---
+  duration_ms: 37.852972
+  type: 'test'
+  ...
+# Subtest: ground-supported kang repeated jumping toward shell 10Hz 1,1
+ok 4 - ground-supported kang repeated jumping toward shell 10Hz 1,1
+  ---
+  duration_ms: 28.828774
+  type: 'test'
+  ...
+# Subtest: ground-supported kang repeated jumping toward shell 10Hz -1,1
+ok 5 - ground-supported kang repeated jumping toward shell 10Hz -1,1
+  ---
+  duration_ms: 30.453859
+  type: 'test'
+  ...
+# Subtest: ground-supported kang repeated jumping toward shell 10Hz 0,-1
+ok 6 - ground-supported kang repeated jumping toward shell 10Hz 0,-1
+  ---
+  duration_ms: 21.877348
+  type: 'test'
+  ...
+# Subtest: ground-supported kang repeated jumping toward shell 60Hz 0,1
+ok 7 - ground-supported kang repeated jumping toward shell 60Hz 0,1
+  ---
+  duration_ms: 75.758214
+  type: 'test'
+  ...
+# Subtest: ground-supported kang repeated jumping toward shell 60Hz 1,0
+not ok 8 - ground-supported kang repeated jumping toward shell 60Hz 1,0
+  ---
+  duration_ms: 77.333334
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/changchun-west/high-routes.test.mjs:4:88'
+  failureType: 'testCodeFailure'
+  error: '{"feet":1.1399999856948853,"position":[162.29740480575836,2.8399999856948854,384.2]}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/changchun-west/high-routes.test.mjs:4:772
+    withTerrainController (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/lib/r91-controller-clock.mjs:3:633)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/changchun-west/high-routes.test.mjs:4:194)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: ground-supported kang repeated jumping toward shell 60Hz -1,0
+ok 9 - ground-supported kang repeated jumping toward shell 60Hz -1,0
+  ---
+  duration_ms: 77.97314
+  type: 'test'
+  ...
+# Subtest: ground-supported kang repeated jumping toward shell 60Hz 1,1
+ok 10 - ground-supported kang repeated jumping toward shell 60Hz 1,1
+  ---
+  duration_ms: 68.116206
+  type: 'test'
+  ...
+# Subtest: ground-supported kang repeated jumping toward shell 60Hz -1,1
+ok 11 - ground-supported kang repeated jumping toward shell 60Hz -1,1
+  ---
+  duration_ms: 57.46569
+  type: 'test'
+  ...
+# Subtest: ground-supported kang repeated jumping toward shell 60Hz 0,-1
+ok 12 - ground-supported kang repeated jumping toward shell 60Hz 0,-1
+  ---
+  duration_ms: 57.262014
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 10
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 961.733577
