@@ -1,0 +1,50 @@
+✖ duplicate west builder fails before touching retained frame physics or ownership (86.856431ms)
+✖ late map publication failure rolls back only candidate geometry physics and private resources (18.93553ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 441.630629
+
+✖ failing tests:
+
+test at tests/major-pilots/west-well/atomic.test.mjs:4:1
+✖ duplicate west builder fails before touching retained frame physics or ownership (86.856431ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/west-well/atomic.test.mjs:4:149)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /Duplicate/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/major-pilots/west-well/atomic.test.mjs:5:1
+✖ late map publication failure rolls back only candidate geometry physics and private resources (18.93553ms)
+  AssertionError [ERR_ASSERTION]: children
+  
+  1 !== 0
+  
+      at unchanged (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/west-well/atomic.test.mjs:3:63)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/west-well/atomic.test.mjs:5:401)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

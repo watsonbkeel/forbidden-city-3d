@@ -1,0 +1,49 @@
+✔ west has independently painted bamboo soffits, cylindrical covered well and water-lift fit (55.112964ms)
+✔ west keeps four exact .24m columns and physically open octagonal center (30.537873ms)
+✔ standing/seated/moving NPC on both bypasses cannot become a false landing or jump reset (206.824934ms)
+✔ all four dispatch boundaries preserve .3/.5 kinematic bodies across ULP offsets both directions (84.046598ms)
+✔ small .3 and player .5 bodies cross the real paving edges after witnessed-ground handoff without legacy early-lift lock (81.375057ms)
+✔ original west-well object has one dedicated complete runtime assembly rather than name-only inventory (285.178154ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,256, 树木=34棵, 碰撞器=2034
+✔ actual old raised bed and stone edge are visibly cut away at west well, not buried (1227.155588ms)
+✔ platform and every visible surface reject downgrade and wrong ownership and unload/reload cleanly (148.58863ms)
+✔ west-well witness requires the unique live actual ground and invalidates geometry transforms detach and unbind (83.220955ms)
+west-well-full-height-census 113
+✖ both west-well bypasses preserve original north-south lane with walk run jump at 10/60Hz both ways (8444.333496ms)
+✔ all-height west-well region plus 1.25m has exactly the one retained preflight tree plus new well sources (2.825526ms)
+✔ garden builds one source-bounded west well distinct from retained east well (357.795727ms)
+✔ west-well exact anchor registers once and rejects moved source ownership (60.273697ms)
+west-well-source-faces 3760
+west-well-closed-shells 62 exact-zero-area-source-faces 320
+✔ every physical triangle is the exact final merged F32 visible source, including degenerate source provenance (83.30712ms)
+✔ private beam paint and source/final geometries dispose exactly once while shared library is untouched (25.979031ms)
+✔ each authored solid shell is closed after F32 welding; split roof exterior plus bamboo soffit has no missing edge (28.771957ms)
+✔ 10/60Hz actual player lands on visible outer roof and cannot fall through the too-small center opening (3707.918705ms)
+✔ 10/60Hz jump from actual rail top into hanging bearing stops the head against actual visible triangles (1156.848234ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 18679.852577
+
+✖ failing tests:
+
+test at tests/major-pilots/west-well/motion.test.mjs:2:1
+✖ both west-well bypasses preserve original north-south lane with walk run jump at 10/60Hz both ways (8444.333496ms)
+  AssertionError [ERR_ASSERTION]: {"fps":10,"run":false,"jump":false,"index":0,"target":[41.15,460.2],"feet":0.03999999910593033,"p":[41.14999999999999,1.7399999991059303,459.58605042307556]}
+      at file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/west-well/motion-helper.mjs:3:964
+      at withTerrainController (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/lib/r91-controller-clock.mjs:3:633)
+      at travel (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/west-well/motion-helper.mjs:3:90)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/west-well/motion.test.mjs:2:355)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

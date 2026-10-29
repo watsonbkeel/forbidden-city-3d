@@ -1,0 +1,26 @@
+{
+  "parent": "1b5adc79",
+  "candidateAggregate": {
+    "tests": 1331,
+    "pass": 1113,
+    "fail": 218
+  },
+  "parentReplayBatches": [
+    216,
+    2
+  ],
+  "requestedFailures": 218,
+  "reproducedFailures": 218,
+  "missing": [],
+  "extra": [],
+  "differentInitialErrorBodies": [
+    "src/scene/zones/ZoneBase.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+    "src/utils/Collision.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+    "tests/lib/world.mjs: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+    "src/scene/zones/ZoneBase.js: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation",
+    "src/scene/zones/ZoneBase.js: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input",
+    "tests/lib/world.mjs: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input",
+    "src/scene/zones/ZoneBase.js: raw R35 bytes restore only the independently frozen R34 identity and reject every mutated candidate"
+  ],
+  "note": "Named-failure replay, not a green full parent aggregate. Initial error body excludes stack traces; raw logs retained."
+}

@@ -1,3 +1,4 @@
+import {buildWestWellPavilion} from '../palace/special/WestWellPavilion.js';
 import {buildEastWellPavilion} from '../palace/special/EastWellPavilion.js';
 import {registerShoukangRetainedPerimeter} from '../palace/special/ShoukangRetainedPerimeter.js';
 import {buildShoukangEntry,validateShoukangEntryCourtWall} from '../palace/special/ShoukangEntry.js';
@@ -141,6 +142,7 @@ export class ZoneBase {
     if (this.zoneJson.hongdeProfile !== undefined) buildHongdeCourt(this.kit,this.zoneJson);
     if (this.zoneJson.zhaorenProfile !== undefined) buildZhaorenCourt(this.kit,this.zoneJson);
     if (this.zoneJson.eastWellProfile !== undefined) buildEastWellPavilion(this.kit,this.zoneJson);
+    if (this.zoneJson.westWellProfile !== undefined) buildWestWellPavilion(this.kit,this.zoneJson);
     if (this.zoneJson.yangxinEntranceProfile !== undefined) buildYangxinCourtEntrance(this.kit,this.zoneJson);
 
     buildChengqianCourtyardGroup(this.kit,this.zoneJson);

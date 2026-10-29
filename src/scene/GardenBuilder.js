@@ -1,3 +1,5 @@
+import {westWellRetainedTreeSource,validateWestWellTreeCount} from './garden/WestWellTreeSource.js';
+import {clipWestWellBedRectangle} from './garden/WestWellGroundFit.js';
 import {clipEastWellBedRectangle} from './garden/EastWellGroundFit.js';
 import {clipFubiPoolRectangle} from './garden/FubiArchPool.js';
 import * as THREE from 'three';
@@ -213,14 +215,14 @@ export class GardenBuilder {
     // 花坛：汉白玉围边 + 草顶
     const bedTops = [];
     for (const [a, b, c, e] of beds) {
-      for(const [x0,x1,z0,z1] of clipTianyiBedRectangle([a+.2,b-.2,c+.2,e-.2]).flatMap(clipFubiPoolRectangle).flatMap(clipEastWellBedRectangle))bedTops.push(quadGeometry(x0,x1,z0,z1,BED_H-.03,lib.tileSize('grass')));
+      for(const [x0,x1,z0,z1] of clipTianyiBedRectangle([a+.2,b-.2,c+.2,e-.2]).flatMap(clipFubiPoolRectangle).flatMap(clipEastWellBedRectangle).flatMap(clipWestWellBedRectangle))bedTops.push(quadGeometry(x0,x1,z0,z1,BED_H-.03,lib.tileSize('grass')));
       const t = 0.3;
       const parts = [
         [(a + b) / 2, c + t / 2, b - a, t], [(a + b) / 2, e - t / 2, b - a, t],
         [a + t / 2, (c + e) / 2, t, e - c - 2 * t], [b - t / 2, (c + e) / 2, t, e - c - 2 * t],
       ];
       for (const [x, z, sx, sz] of parts) {
-        const original=[x-sx/2,x+sx/2,z-sz/2,z+sz/2],pieces=clipTianyiBedRectangle(original).flatMap(clipFubiPoolRectangle).flatMap(before=>clipEastWellBedRectangle(before).map(r=>({r,before})));
+        const original=[x-sx/2,x+sx/2,z-sz/2,z+sz/2],pieces=clipTianyiBedRectangle(original).flatMap(clipFubiPoolRectangle).flatMap(before=>clipEastWellBedRectangle(before).flatMap(clipWestWellBedRectangle).map(r=>({r,before})));
         for(const {r,before} of pieces){
           const unchanged=r===original,w=unchanged?sx:r[1]-r[0],d=unchanged?sz:r[3]-r[2];
           const m=new THREE.Mesh(applyBoxUV(new THREE.BoxGeometry(w,BED_H,d),lib.tileSize('marble')),marble);
@@ -569,6 +571,7 @@ export class GardenBuilder {
     const m = new THREE.Matrix4();
     const q = new THREE.Quaternion();
     const s = new THREE.Vector3();
+    let westWellTreeCount=0;
     for (const t of placed) {
       const vi = pick();
       const v = variants[vi];
@@ -578,8 +581,10 @@ export class GardenBuilder {
       m.compose(new THREE.Vector3(t.x, BED_H - 0.02, t.z), q, s);
       v.items.push(m.clone());
       const rr = THREE.MathUtils.clamp(v.trunkRadius * sc * 1.25, 0.5, 0.8);
-      this.addCollider(new THREE.Box3(new THREE.Vector3(t.x - rr, 0, t.z - rr), new THREE.Vector3(t.x + rr, 3, t.z + rr)));
+      const treeSource=westWellRetainedTreeSource(v.trunk,m,v.kind);if(treeSource)westWellTreeCount++;
+      this.addCollider(treeSource ?? new THREE.Box3(new THREE.Vector3(t.x - rr, 0, t.z - rr), new THREE.Vector3(t.x + rr, 3, t.z + rr)));
     }
+    if(this.bounds.x0===-68&&this.bounds.x1===68&&this.hallPos.z===493.1)validateWestWellTreeCount(westWellTreeCount);
     const barkMat = lib.material('bark', { roughness: 0.95, normalScale: 1.5 });
     const foliageMat = this.own(createFoliageMaterial(lib, this.windTime));
     let tris = 0;
