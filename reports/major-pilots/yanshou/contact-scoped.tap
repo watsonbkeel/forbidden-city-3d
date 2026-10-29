@@ -1,0 +1,38 @@
+TAP version 13
+# Subtest: front house to rear house and real courtyard steps keep full body outside new source solids at 10/60Hz
+not ok 1 - front house to rear house and real courtyard steps keep full body outside new source solids at 10/60Hz
+  ---
+  duration_ms: 160.160485
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/yanshou/contact.test.mjs:5:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"label":{"fps":10,"run":false,"jump":false,"index":0,"i":0,"target":[277.03333333333336,92.5]},"feet":0.4,"p":[277.03333333333336,2.1,96.5],"owner":{"kind":"visible-box","index":7,"role":"yanshou-rear-floor"}}
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    inspect (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/yanshou/contact.test.mjs:3:342)
+    file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/yanshou/contact.test.mjs:4:900
+    withTerrainController (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r91-controller-clock.mjs:3:633)
+    travel (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/yanshou/contact.test.mjs:4:90)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/yanshou/contact.test.mjs:5:621)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 366.993065

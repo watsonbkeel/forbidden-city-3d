@@ -1,0 +1,44 @@
+TAP version 13
+# Subtest: Yanshou source compound has a real rear house east connector and uncovered courtyard instead of front-house-only
+ok 1 - Yanshou source compound has a real rear house east connector and uncovered courtyard instead of front-house-only
+  ---
+  duration_ms: 98.638006
+  type: 'test'
+  ...
+# Subtest: new actual stone floors and courtyard steps begin at exact ground without Float32 negative tails
+not ok 2 - new actual stone floors and courtyard steps begin at exact ground without Float32 negative tails
+  ---
+  duration_ms: 47.635711
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/yanshou/geometry.test.mjs:3:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + -2.9802322831784522e-9
+    - 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: -2.9802322831784522e-9
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/yanshou/geometry.test.mjs:3:301)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 1
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 308.018579

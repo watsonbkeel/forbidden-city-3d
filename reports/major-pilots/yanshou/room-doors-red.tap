@@ -1,0 +1,73 @@
+TAP version 13
+# Subtest: Yanshou source compound has a real rear house east connector and uncovered courtyard instead of front-house-only
+ok 1 - Yanshou source compound has a real rear house east connector and uncovered courtyard instead of front-house-only
+  ---
+  duration_ms: 104.177483
+  type: 'test'
+  ...
+# Subtest: new actual stone floors and courtyard steps begin at exact ground without Float32 negative tails
+ok 2 - new actual stone floors and courtyard steps begin at exact ground without Float32 negative tails
+  ---
+  duration_ms: 64.169425
+  type: 'test'
+  ...
+# Subtest: runtime map and rooms describe the actual added rear house without retaining front-only claims
+ok 3 - runtime map and rooms describe the actual added rear house without retaining front-only claims
+  ---
+  duration_ms: 37.855177
+  type: 'test'
+  ...
+# Subtest: front room and source connector expose the new actual door interfaces to room consumers
+not ok 4 - front room and source connector expose the new actual door interfaces to room consumers
+  ---
+  duration_ms: 50.935134
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/yanshou/geometry.test.mjs:5:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        {
+          x: 280.3,
+          z: 80.1
+        },
+    -   {
+    -     x: 277.03,
+    -     z: 90.5
+    -   }
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0:
+      x: 280.3
+      z: 80.1
+    1:
+      x: 277.03
+      z: 90.5
+  actual:
+    0:
+      x: 280.3
+      z: 80.1
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/yanshou/geometry.test.mjs:5:266)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 3
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 408.471577

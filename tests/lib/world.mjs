@@ -1,3 +1,4 @@
+import {bindYanshouCompoundEnvironmentWitness} from '../../src/controls/YanshouCompoundEnvironmentWitness.js';
 import {bindCiningGateEnvironmentWitness} from '../../src/controls/CiningGateEnvironmentWitness.js';
 import {ciningGateGeometry} from '../../src/scene/palace/special/CiningGate.js';
 import {bindCiyinFacadeEnvironmentWitness} from '../../src/controls/CiyinFacadeEnvironmentWitness.js';
@@ -276,7 +277,7 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true, reta
   }
 
   let environmentScene=null;
-  if(cm.colliders.some(c=>['cining-gate','ciyin-front','shouan-entry'].includes(c.furnitureMotionScope?.kind))){const {Environment}=await src('scene/Environment.js');environmentScene=new THREE.Scene();const env=new Environment(environmentScene,null,lib);env.setupGround();environmentScene.updateMatrixWorld(true);bindShouanEntryEnvironmentWitness(cm,environmentScene);bindCiyinFacadeEnvironmentWitness(cm,environmentScene);bindCiningGateEnvironmentWitness(cm,environmentScene);}
+  if(cm.colliders.some(c=>['yanshou-compound','cining-gate','ciyin-front','shouan-entry'].includes(c.furnitureMotionScope?.kind))){const {Environment}=await src('scene/Environment.js');environmentScene=new THREE.Scene();const env=new Environment(environmentScene,null,lib);env.setupGround();environmentScene.updateMatrixWorld(true);bindShouanEntryEnvironmentWitness(cm,environmentScene);bindCiyinFacadeEnvironmentWitness(cm,environmentScene);bindCiningGateEnvironmentWitness(cm,environmentScene);bindYanshouCompoundEnvironmentWitness(cm,environmentScene);}
   const gates = [], halls = [];
   for (const { json } of zones) for (const item of json.items) {
     if (item.kind === 'gate' || item.kind === 'cityGate') gates.push({ zone: json.id, item, ...gateGeom(item) });

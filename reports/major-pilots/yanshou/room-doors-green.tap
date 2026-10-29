@@ -1,0 +1,34 @@
+TAP version 13
+# Subtest: Yanshou source compound has a real rear house east connector and uncovered courtyard instead of front-house-only
+ok 1 - Yanshou source compound has a real rear house east connector and uncovered courtyard instead of front-house-only
+  ---
+  duration_ms: 90.429323
+  type: 'test'
+  ...
+# Subtest: new actual stone floors and courtyard steps begin at exact ground without Float32 negative tails
+ok 2 - new actual stone floors and courtyard steps begin at exact ground without Float32 negative tails
+  ---
+  duration_ms: 48.212668
+  type: 'test'
+  ...
+# Subtest: runtime map and rooms describe the actual added rear house without retaining front-only claims
+ok 3 - runtime map and rooms describe the actual added rear house without retaining front-only claims
+  ---
+  duration_ms: 39.962791
+  type: 'test'
+  ...
+# Subtest: front room and source connector expose the new actual door interfaces to room consumers
+ok 4 - front room and source connector expose the new actual door interfaces to room consumers
+  ---
+  duration_ms: 35.390637
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 373.583426

@@ -1,3 +1,4 @@
+import {buildYanshouCompound} from './YanshouCompound.js';
 import {buildCiyinFacade} from './CiyinFacade.js';
 import {buildJiyunLowerPanels} from './JiyunLowerPanels.js';
 import {buildJiyunRailFit} from './JiyunRailFit.js';
@@ -518,7 +519,7 @@ function gardenFrontGeometry(p) {
 function fittedMapFootprint(p) {
   if(!['hanqing','yanshou'].includes(p.key))return null;
   const g=gardenFrontGeometry(p);
-  return Object.freeze({x:p.x,z:g.centerZ,w:g.w+2*g.pad,d:g.d+2*g.pad,kind:'hall'});
+  return Object.freeze({x:p.x,z:p.key==='yanshou'?89.3:g.centerZ,w:g.w+2*g.pad,d:p.key==='yanshou'?18.4+2*g.pad:g.d+2*g.pad,kind:'hall'});
 }
 
 export const REMAINING_OUTER_PROFILES = Object.freeze(RECORDS.map(p => Object.freeze({
@@ -1018,7 +1019,8 @@ function buildGardenFrontHouse(kit,item,p) {
   for(let k=1;k<=2;k++)box(p.key+'-front-house-valley-bearing','timber',g.w-.25,.24,.28,0,g.y+g.h-.08,g.front+k*g.d/3,false,{constructionStatus:'FITTED_VALLEY_BEAM_BEARING_ON_FULL_HEIGHT_SIDE_WALLS'});
   kit.plaque(c.f,item.name,0,g.y+g.h-.75,g.front-.25,.75,1.2);
   c.register(item.name+'·前房',-A+.35,A-.35,g.front,g.rear,g.y,g.h-.55,[{x:0,z:g.front}],{x:0,z:g.front+1.3});
-  return finish(c,{compoundStatus:'FRONT_HOUSE_ONLY_REAR_COURT_AND_CONNECTOR_WITHHELD',sourceFrontHouse:'THREE_BAY_NEAR_SQUARE_TRIPLE_ROLLED_HARD_GABLE',frontDoorWorld:{x:item.x,z:item.z-item.d/2},originalIdentityAnchor:{x:item.x,z:item.z},fittedFrontHouseCenter:{x:item.x,z:g.centerZ},frontHouseWorldWallBounds:{minX:item.x-A,maxX:item.x+A,minZ:item.z-item.d/2,maxZ:item.z-item.d/2+g.d},unknown:['Rear courtyard, rear house and side connector omitted pending full neighbor/route fit','Flexible interior screens, flower-window placement and complete furnishing positions unresolved','Official building page and architecture paper differ in front depth-bay description; numeric depth is a model fit'],facadeDetailStatus:'CENTRAL_DOOR_SIDE_SILL_LIFT_WINDOWS_SOURCED__LEAF_COUNT_PATTERN_FITTED'});
+  if(p.key==='yanshou')buildYanshouCompound(c,rolledRoof);
+  return finish(c,{compoundStatus:g.yanshouCompound?'SOURCE_TOPOLOGY_COMPOUND_MODEL_FIT':'FRONT_HOUSE_ONLY_REAR_COURT_AND_CONNECTOR_WITHHELD',sourceFrontHouse:'THREE_BAY_NEAR_SQUARE_TRIPLE_ROLLED_HARD_GABLE',frontDoorWorld:{x:item.x,z:item.z-item.d/2},originalIdentityAnchor:{x:item.x,z:item.z},fittedFrontHouseCenter:{x:item.x,z:g.centerZ},frontHouseWorldWallBounds:{minX:item.x-A,maxX:item.x+A,minZ:item.z-item.d/2,maxZ:item.z-item.d/2+g.d},unknown:[...(g.yanshouCompound?['Rear compound dimensions and unseen facade details are model fits, not measured'] : ['Rear courtyard, rear house and side connector omitted pending full neighbor/route fit']),'Flexible interior screens, flower-window placement and complete furnishing positions unresolved','Official building page and architecture paper differ in front depth-bay description; numeric depth is a model fit'],facadeDetailStatus:'CENTRAL_DOOR_SIDE_SILL_LIFT_WINDOWS_SOURCED__LEAF_COUNT_PATTERN_FITTED'});
 }
 
 function buildNanxunHall(kit,item,p) {
