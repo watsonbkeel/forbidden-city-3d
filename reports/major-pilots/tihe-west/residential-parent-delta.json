@@ -1,0 +1,28 @@
+{
+  "safeParent": "0a8f35f075cf1a2a15b598d82a8ab13aa69bc347",
+  "candidateReportedTests": 195,
+  "candidatePass": 184,
+  "candidateFail": 11,
+  "parentReportedTests": 195,
+  "parentPass": 185,
+  "parentFail": 10,
+  "sharedFailures": [
+    "R48 Chonghua fitted baoxia roof does not extend inside its retained main hall",
+    "R48 Chonghua every clipped auxiliary-roof edge vertex contacts a real retained wall or beam",
+    "R48 Chonghua fitted auxiliary roof has outward roof/underside faces and closed raised gables",
+    "R48 Chonghua has source-oriented east gourd-cover and west partition with original furniture retained",
+    "R48 Yangxin central ceiling and exterior retain existing furniture, room identity and GLB contract",
+    "R48 Yangxin octagonal envelope is clear of decoded existing GLB triangles",
+    "R48 Yangxin all new facade and baoxia volumes avoid decoded GLB triangle surfaces",
+    "tests/r48-review-residential-central.test.mjs",
+    "both connected palace pairs are walkable through rear halls and old gate points in both directions",
+    "historical west-six data retains only eight evidence-bound items and four provisional perimeter joins after exact R32 source restoration"
+  ],
+  "addedFailures": [
+    "R48 Tihe retains a central through-passage between two connected bays on each side"
+  ],
+  "removedFailures": [],
+  "classification": "Only added failure demands removed original r48-tihe-west-tea-table/chair names; current scoped composition + exact retained navigation tested separately. All ten remaining failures reproduce with actual parent module. No original golden/legacy assertion modified.",
+  "finalCandidateLog": "rc-residential-full.tap",
+  "finalCandidateFailureNamesIdentical": true
+}

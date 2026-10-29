@@ -1,3 +1,4 @@
+import {applyTiheWestInterior} from './TiheWestInterior.js';
 import {buildChengqianFrontFields} from './ChengqianSouthWindows.js';
 import {withholdHUnknownInventory} from './HUnknownInventory.js';
 import {buildChonghuaSouthKnees} from './ChonghuaSouthKnees.js';
@@ -216,6 +217,7 @@ export function buildRemainingHall(kit, item, p) {
     built.f.userData.structure.retainedUnverified = ['exact-column-spacing', 'carving-and-painting', 'room-boundaries'];
     built.f.userData.structure.limitations[1] = 'The four generic throne components are withheld; this is not evidence of a historically empty room.';
   }
+  if(p.key==='tihe-through-hall')applyTiheWestInterior(kit,item,built.f,p);
   return { ...built, p };
 }
 

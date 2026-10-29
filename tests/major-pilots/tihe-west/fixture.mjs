@@ -1,0 +1,7 @@
+import fs from'node:fs';import{ZoneBase}from'../../../src/scene/zones/ZoneBase.js';import{library}from'../../lib/inner-palace-fixture.mjs';
+export const data=JSON.parse(fs.readFileSync(new URL('../../../data/zones/west-six.json',import.meta.url))),item=data.items.find(i=>i.name==='翊坤宫后殿');
+export function make(){const b=new ZoneBase(library(),data),r=b.buildHall(item);b.kit.root.updateMatrixWorld(true);return{b,kit:b.kit,...r,item,dispose:()=>b.kit.dispose(b.kit.root)}}
+import{execFileSync}from'node:child_process';import{applySourceGuidedNameboardMount}from'../../../src/scene/palace/special/SourceGuidedNameboardMounts.js';
+const path='src/scene/palace/special/RemainingResidentialHalls.js',url=new URL('../../../'+path,import.meta.url),code=execFileSync('git',['show','0a8f35f0:'+path],{encoding:'utf8'}).replace(/from\s+(['"])([^'"]+)\1/g,(_,q,s)=>'from '+q+(s.startsWith('.')?new URL(s,url).href:import.meta.resolve(s))+q),parentModule=await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'));
+export function buildParentHall(kit,it){return applySourceGuidedNameboardMount(kit,'west-six',it,parentModule.buildRemainingHall(kit,it,parentModule.resolveRemainingProfile('west-six',it)));}
+export function full(parent=false){class Parent extends ZoneBase{buildHall(it){return it.name===item.name?buildParentHall(this.kit,it):super.buildHall(it)}}const b=new(parent?Parent:ZoneBase)(library(),data);b.kit.finish=()=>b.kit.root;const built=b.build();b.kit.root.updateMatrixWorld(true);return{b,built,dispose:()=>b.dispose()};}
