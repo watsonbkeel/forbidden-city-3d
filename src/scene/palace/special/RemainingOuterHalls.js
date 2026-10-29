@@ -1,3 +1,5 @@
+import {buildJiyunRailFit} from './JiyunRailFit.js';
+import {buildCiningFrontFit} from './CiningFrontFit.js';
 import {buildJiyunFrontFit} from './JiyunFrontFit.js';
 import {buildDafotangFrontFit} from './DafotangFrontFit.js';
 import {addYanchunSouthVessels} from './YanchunSouthVessels.js';
@@ -897,6 +899,7 @@ function buildTempleTower(kit,item,p) {
   if(p.key==='ciyin')retainLegacyFurniture(c);
   rail(c,p.key+'-upper-front-rail',-A+.15,A-.15,-d/2+.12,-d/2+.12,g.upperY);
   for(const side of[-1,1])rail(c,p.key+'-upper-balcony-end',side*(A-.15),side*(A-.15),-d/2+.12,g.front,g.upperY);
+  if(p.key==='jiyun'&&kit.jiyunRailFit!==false)buildJiyunRailFit(c);
   plainCeiling(c,g.upperY+g.upperH-.12);
   g.roof=rolledRoof(c,{yy:g.upperY+g.upperH,rise:2.1});
   if(p.key==='jiyun')buildJiyunNamePlaque(kit,c.f,g);
@@ -932,6 +935,7 @@ function buildCeremonialHall(kit,item,p) {
     face(-A+i*bay,-A+(i+1)*bay,z,g.y,g.h-.5,{door,opened:middle,role:p.key+'-front',sill:1.05});
     if(shouan)face(-A+i*bay,-A+(i+1)*bay,g.rear,g.y,g.h-.5,{door:middle,opened:middle,role:p.key+'-rear',sill:1.05});
   }
+  if(p.key==='cining'&&kit.ciningFrontFit!==false)buildCiningFrontFit(c);
   if(p.key==='dafotang'&&kit.dafotangFrontFit!==false)buildDafotangFrontFit(c);
   if(!shouan)wallZ(g.rear,-A,A,g.y,g.h-.5);
   if(cining)buildCiningModernDisplay(c);else retainLegacyFurniture(c);
