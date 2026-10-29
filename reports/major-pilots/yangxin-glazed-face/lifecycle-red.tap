@@ -1,0 +1,41 @@
+TAP version 13
+# Subtest: final architecture provenance retains bounded front revision and still-unaccepted inherited whole profile
+not ok 1 - final architecture provenance retains bounded front revision and still-unaccepted inherited whole profile
+  ---
+  duration_ms: 52.884525
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/yangxin-glazed-face/lifecycle.test.mjs:2:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + undefined
+    - 'THREE_PART_FRONT_SURFACES_ONLY'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'THREE_PART_FRONT_SURFACES_ONLY'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/yangxin-glazed-face/lifecycle.test.mjs:2:281)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: real-material merge retains five private finishes and unload releases raw/final geometry/material/texture exactly once
+ok 2 - real-material merge retains five private finishes and unload releases raw/final geometry/material/texture exactly once
+  ---
+  duration_ms: 21.484686
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 1
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 268.270154

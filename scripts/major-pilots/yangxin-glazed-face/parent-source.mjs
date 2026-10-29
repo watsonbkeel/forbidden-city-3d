@@ -1,0 +1,1 @@
+import{registerHooks}from'node:module';import{execFileSync}from'node:child_process';const path='src/scene/palace/special/YangxinCourtEntrance.js',url=new URL('../../../'+path,import.meta.url).href,source=execFileSync('git',['show','bb430800:'+path],{encoding:'utf8'});registerHooks({load(u,c,n){return u===url?{format:'module',source,shortCircuit:true}:n(u,c)}});

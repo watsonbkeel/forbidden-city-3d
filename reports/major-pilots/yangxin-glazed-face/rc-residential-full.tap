@@ -1,0 +1,1366 @@
+TAP version 13
+# Subtest: R48 太极殿后殿 annex has visible downward-facing underside in physical contact with its front bearing
+ok 1 - R48 太极殿后殿 annex has visible downward-facing underside in physical contact with its front bearing
+  ---
+  duration_ms: 57.119072
+  type: 'test'
+  ...
+# Subtest: R48 养心殿 annex has visible downward-facing underside in physical contact with its front bearing
+ok 2 - R48 养心殿 annex has visible downward-facing underside in physical contact with its front bearing
+  ---
+  duration_ms: 114.033469
+  type: 'test'
+  ...
+# Subtest: R48 Tiyuan stage roof stops at the exterior rear beam rather than protruding below the hall ceiling
+ok 3 - R48 Tiyuan stage roof stops at the exterior rear beam rather than protruding below the hall ceiling
+  ---
+  duration_ms: 17.781931
+  type: 'test'
+  ...
+# Subtest: R48 Chonghua fitted baoxia roof does not extend inside its retained main hall
+not ok 4 - R48 Chonghua fitted baoxia roof does not extend inside its retained main hall
+  ---
+  duration_ms: 140.866744
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/r48-residential-annex-support.test.mjs:13:1'
+  failureType: 'testCodeFailure'
+  error: 'roof enters main hall to -3.85558154582975'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/r48-residential-annex-support.test.mjs:13:216)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 Yangxin roll-roof gables close both sides with outward FrontSide triangles, not DoubleSide masking
+ok 5 - R48 Yangxin roll-roof gables close both sides with outward FrontSide triangles, not DoubleSide masking
+  ---
+  duration_ms: 80.807882
+  type: 'test'
+  ...
+# Subtest: R48 Tiyuan roll-roof gables and front edge close the exposed ends
+ok 6 - R48 Tiyuan roll-roof gables and front edge close the exposed ends
+  ---
+  duration_ms: 10.173793
+  type: 'test'
+  ...
+# Subtest: R48 Tiyuan trimmed roof edge physically meets the retained rear beam side
+ok 7 - R48 Tiyuan trimmed roof edge physically meets the retained rear beam side
+  ---
+  duration_ms: 7.295488
+  type: 'test'
+  ...
+# Subtest: R48 Chonghua every clipped auxiliary-roof edge vertex contacts a real retained wall or beam
+not ok 8 - R48 Chonghua every clipped auxiliary-roof edge vertex contacts a real retained wall or beam
+  ---
+  duration_ms: 100.806526
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/r48-residential-annex-support.test.mjs:17:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(hit.distance<=.101&&hit.distance>=.01)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/r48-residential-annex-support.test.mjs:17:782
+    Mesh.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7600:3)
+    Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/r48-residential-annex-support.test.mjs:17:403)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 Chonghua real visible stairs exactly support the relocated front approach
+ok 9 - R48 Chonghua real visible stairs exactly support the relocated front approach
+  ---
+  duration_ms: 92.041056
+  type: 'test'
+  ...
+# Subtest: R48 太极殿后殿 new roll-roof upper and lower normals are independently FrontSide visible
+ok 10 - R48 太极殿后殿 new roll-roof upper and lower normals are independently FrontSide visible
+  ---
+  duration_ms: 7.579389
+  type: 'test'
+  ...
+# Subtest: R48 养心殿 new roll-roof upper and lower normals are independently FrontSide visible
+ok 11 - R48 养心殿 new roll-roof upper and lower normals are independently FrontSide visible
+  ---
+  duration_ms: 84.675307
+  type: 'test'
+  ...
+# Subtest: R48 Chonghua fitted auxiliary roof has outward roof/underside faces and closed raised gables
+not ok 12 - R48 Chonghua fitted auxiliary roof has outward roof/underside faces and closed raised gables
+  ---
+  duration_ms: 128.835842
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/r48-residential-annex-support.test.mjs:20:1'
+  failureType: 'testCodeFailure'
+  error: 'closed gable wall must exist behind any rake board'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/r48-residential-annex-support.test.mjs:20:866)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 Chonghua auxiliary beam and four posts physically bear its retained flat underside
+ok 13 - R48 Chonghua auxiliary beam and four posts physically bear its retained flat underside
+  ---
+  duration_ms: 73.86891
+  type: 'test'
+  ...
+# Subtest: R48 Chonghua is an explicit catalog-name fit, not the three-court complex
+ok 14 - R48 Chonghua is an explicit catalog-name fit, not the three-court complex
+  ---
+  duration_ms: 183.694706
+  type: 'test'
+  ...
+# Subtest: R48 Chonghua has source-oriented east gourd-cover and west partition with original furniture retained
+not ok 15 - R48 Chonghua has source-oriented east gourd-cover and west partition with original furniture retained
+  ---
+  duration_ms: 143.186
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/r48-residential-completion.test.mjs:14:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    1 !== 4
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 4
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/r48-residential-completion.test.mjs:14:532)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: R48 Chonghua baoxia stairs and asymmetric rooms remain traversable at 10 Hz
+ok 16 - R48 Chonghua baoxia stairs and asymmetric rooms remain traversable at 10 Hz
+  ---
+  duration_ms: 115.005388
+  type: 'test'
+  ...
+# Subtest: R48 Chonghua baoxia stairs and asymmetric rooms remain traversable at 60 Hz
+ok 17 - R48 Chonghua baoxia stairs and asymmetric rooms remain traversable at 60 Hz
+  ---
+  duration_ms: 142.307256
+  type: 'test'
+  ...
+# Subtest: R48 Yangxin central ceiling and exterior retain existing furniture, room identity and GLB contract
+not ok 18 - R48 Yangxin central ceiling and exterior retain existing furniture, room identity and GLB contract
+  ---
+  duration_ms: 118.892504
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/r48-residential-completion.test.mjs:21:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    6 !== 3
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 3
+  actual: 6
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/r48-residential-completion.test.mjs:21:247)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 Yangxin octagonal envelope is clear of decoded existing GLB triangles
+not ok 19 - R48 Yangxin octagonal envelope is clear of decoded existing GLB triangles
+  ---
+  duration_ms: 199.055968
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/r48-residential-completion.test.mjs:22:1'
+  failureType: 'testCodeFailure'
+  error: "Cannot read properties of undefined (reading 'KHR_draco_mesh_compression')"
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    readYangxinEnvelope (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/r48-residential-glb-envelope.mjs:9:73)
+    async TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/r48-residential-completion.test.mjs:22:270)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 Yangxin caisson has roof clearance and no residual flat ceiling across its opening
+ok 20 - R48 Yangxin caisson has roof clearance and no residual flat ceiling across its opening
+  ---
+  duration_ms: 71.584821
+  type: 'test'
+  ...
+# Subtest: R48 all twelve profiles resolve exactly and preserve first-pass accepted identities
+ok 21 - R48 all twelve profiles resolve exactly and preserve first-pass accepted identities
+  ---
+  duration_ms: 0.367832
+  type: 'test'
+  ...
+# Subtest: R48 Yanxi review cannot invent current ceramic patches or alter the dedicated ruin
+ok 22 - R48 Yanxi review cannot invent current ceramic patches or alter the dedicated ruin
+  ---
+  duration_ms: 34.13422
+  type: 'test'
+  ...
+# Subtest: R48 Yangxin and Chonghua metadata survive merging and materials dispose once
+ok 23 - R48 Yangxin and Chonghua metadata survive merging and materials dispose once
+  ---
+  duration_ms: 169.89907
+  type: 'test'
+  ...
+# Subtest: R48 Chonghua retained throne placeholder fits between the newly evidenced side partitions
+ok 24 - R48 Chonghua retained throne placeholder fits between the newly evidenced side partitions
+  ---
+  duration_ms: 68.336705
+  type: 'test'
+  ...
+# Subtest: R48 翊坤宫后殿 has distinct architecture without rewriting its catalog identity
+ok 25 - R48 翊坤宫后殿 has distinct architecture without rewriting its catalog identity
+  ---
+  duration_ms: 94.932683
+  type: 'test'
+  ...
+# Subtest: R48 翊坤宫后殿 source rooms admit repeated traversal at 10 Hz
+ok 26 - R48 翊坤宫后殿 source rooms admit repeated traversal at 10 Hz
+  ---
+  duration_ms: 89.261944
+  type: 'test'
+  ...
+# Subtest: R48 翊坤宫后殿 source rooms admit repeated traversal at 60 Hz
+ok 27 - R48 翊坤宫后殿 source rooms admit repeated traversal at 60 Hz
+  ---
+  duration_ms: 99.134611
+  type: 'test'
+  ...
+# Subtest: R48 翊坤宫后殿 owned materials and new transforms survive final merge
+ok 28 - R48 翊坤宫后殿 owned materials and new transforms survive final merge
+  ---
+  duration_ms: 55.761956
+  type: 'test'
+  ...
+# Subtest: R48 太极殿 has distinct architecture without rewriting its catalog identity
+ok 29 - R48 太极殿 has distinct architecture without rewriting its catalog identity
+  ---
+  duration_ms: 9.701284
+  type: 'test'
+  ...
+# Subtest: R48 太极殿 source rooms admit repeated traversal at 10 Hz
+ok 30 - R48 太极殿 source rooms admit repeated traversal at 10 Hz
+  ---
+  duration_ms: 15.429253
+  type: 'test'
+  ...
+# Subtest: R48 太极殿 source rooms admit repeated traversal at 60 Hz
+ok 31 - R48 太极殿 source rooms admit repeated traversal at 60 Hz
+  ---
+  duration_ms: 29.943614
+  type: 'test'
+  ...
+# Subtest: R48 太极殿 owned materials and new transforms survive final merge
+ok 32 - R48 太极殿 owned materials and new transforms survive final merge
+  ---
+  duration_ms: 9.544179
+  type: 'test'
+  ...
+# Subtest: R48 太极殿后殿 has distinct architecture without rewriting its catalog identity
+ok 33 - R48 太极殿后殿 has distinct architecture without rewriting its catalog identity
+  ---
+  duration_ms: 11.657135
+  type: 'test'
+  ...
+# Subtest: R48 太极殿后殿 source rooms admit repeated traversal at 10 Hz
+ok 34 - R48 太极殿后殿 source rooms admit repeated traversal at 10 Hz
+  ---
+  duration_ms: 11.352168
+  type: 'test'
+  ...
+# Subtest: R48 太极殿后殿 source rooms admit repeated traversal at 60 Hz
+ok 35 - R48 太极殿后殿 source rooms admit repeated traversal at 60 Hz
+  ---
+  duration_ms: 23.751669
+  type: 'test'
+  ...
+# Subtest: R48 太极殿后殿 owned materials and new transforms survive final merge
+ok 36 - R48 太极殿后殿 owned materials and new transforms survive final merge
+  ---
+  duration_ms: 8.586662
+  type: 'test'
+  ...
+# Subtest: R48 长春宫后殿 has distinct architecture without rewriting its catalog identity
+ok 37 - R48 长春宫后殿 has distinct architecture without rewriting its catalog identity
+  ---
+  duration_ms: 5.347388
+  type: 'test'
+  ...
+# Subtest: R48 长春宫后殿 source rooms admit repeated traversal at 10 Hz
+ok 38 - R48 长春宫后殿 source rooms admit repeated traversal at 10 Hz
+  ---
+  duration_ms: 9.249326
+  type: 'test'
+  ...
+# Subtest: R48 长春宫后殿 source rooms admit repeated traversal at 60 Hz
+ok 39 - R48 长春宫后殿 source rooms admit repeated traversal at 60 Hz
+  ---
+  duration_ms: 26.123409
+  type: 'test'
+  ...
+# Subtest: R48 长春宫后殿 owned materials and new transforms survive final merge
+ok 40 - R48 长春宫后殿 owned materials and new transforms survive final merge
+  ---
+  duration_ms: 4.98865
+  type: 'test'
+  ...
+# Subtest: R48 Tihe retains a central through-passage between two connected bays on each side
+not ok 41 - R48 Tihe retains a central through-passage between two connected bays on each side
+  ---
+  duration_ms: 42.181642
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/r48-residential-domestic.test.mjs:19:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/r48-residential-domestic.test.mjs:19:340)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 Tiyuan has four virtual boundaries, a closed west-end room, and a north three-bay stage
+ok 42 - R48 Tiyuan has four virtual boundaries, a closed west-end room, and a north three-bay stage
+  ---
+  duration_ms: 5.76139
+  type: 'test'
+  ...
+# Subtest: R48 Taiji has documented late-Qing/early-Republic plaster ceiling without asserted cover orientation
+ok 43 - R48 Taiji has documented late-Qing/early-Republic plaster ceiling without asserted cover orientation
+  ---
+  duration_ms: 11.33686
+  type: 'test'
+  ...
+# Subtest: R48 Changchun rear is not a second copy of Changchun front sleeping furniture
+ok 44 - R48 Changchun rear is not a second copy of Changchun front sleeping furniture
+  ---
+  duration_ms: 3.332614
+  type: 'test'
+  ...
+# Subtest: R48 Tiyuan north-stage to hall through-route at 10 Hz sprint=false
+ok 45 - R48 Tiyuan north-stage to hall through-route at 10 Hz sprint=false
+  ---
+  duration_ms: 9.324329
+  type: 'test'
+  ...
+# Subtest: R48 Tiyuan north-stage to hall through-route at 10 Hz sprint=true
+ok 46 - R48 Tiyuan north-stage to hall through-route at 10 Hz sprint=true
+  ---
+  duration_ms: 7.9997
+  type: 'test'
+  ...
+# Subtest: R48 Tiyuan north-stage to hall through-route at 60 Hz sprint=false
+ok 47 - R48 Tiyuan north-stage to hall through-route at 60 Hz sprint=false
+  ---
+  duration_ms: 26.77673
+  type: 'test'
+  ...
+# Subtest: R48 Tiyuan north-stage to hall through-route at 60 Hz sprint=true
+ok 48 - R48 Tiyuan north-stage to hall through-route at 60 Hz sprint=true
+  ---
+  duration_ms: 15.777336
+  type: 'test'
+  ...
+# Subtest: R48 翊坤宫后殿 removes actual old side-wall vertices instead of relying on lost BoxGeometry parameters
+ok 49 - R48 翊坤宫后殿 removes actual old side-wall vertices instead of relying on lost BoxGeometry parameters
+  ---
+  duration_ms: 87.099958
+  type: 'test'
+  ...
+# Subtest: R48 翊坤宫后殿 final merged rear porch has clear visible and collidable lateral passage
+ok 50 - R48 翊坤宫后殿 final merged rear porch has clear visible and collidable lateral passage
+  ---
+  duration_ms: 83.432848
+  type: 'test'
+  ...
+# Subtest: R48 太极殿 removes actual old side-wall vertices instead of relying on lost BoxGeometry parameters
+ok 51 - R48 太极殿 removes actual old side-wall vertices instead of relying on lost BoxGeometry parameters
+  ---
+  duration_ms: 10.419813
+  type: 'test'
+  ...
+# Subtest: R48 太极殿 final merged rear porch has clear visible and collidable lateral passage
+ok 52 - R48 太极殿 final merged rear porch has clear visible and collidable lateral passage
+  ---
+  duration_ms: 11.63641
+  type: 'test'
+  ...
+# Subtest: R48 Tihe rear threshold moves with its real recessed rear door
+ok 53 - R48 Tihe rear threshold moves with its real recessed rear door
+  ---
+  duration_ms: 45.915242
+  type: 'test'
+  ...
+# Subtest: R48 residential resolver matches only approved exact identities, never generic hall names
+ok 54 - R48 residential resolver matches only approved exact identities, never generic hall names
+  ---
+  duration_ms: 1.741504
+  type: 'test'
+  ...
+# Subtest: R48 承乾宫 source-bound shell changes retain unresolved furnishing and finite geometry
+ok 55 - R48 承乾宫 source-bound shell changes retain unresolved furnishing and finite geometry
+  ---
+  duration_ms: 128.455615
+  type: 'test'
+  ...
+# Subtest: R48 承乾宫 retains repeatable entry and exit at 10 Hz
+ok 56 - R48 承乾宫 retains repeatable entry and exit at 10 Hz
+  ---
+  duration_ms: 53.084116
+  type: 'test'
+  ...
+# Subtest: R48 承乾宫 retains repeatable entry and exit at 60 Hz
+ok 57 - R48 承乾宫 retains repeatable entry and exit at 60 Hz
+  ---
+  duration_ms: 63.202731
+  type: 'test'
+  ...
+# Subtest: R48 承乾宫 survives material merging and releases every owned resource once
+ok 58 - R48 承乾宫 survives material merging and releases every owned resource once
+  ---
+  duration_ms: 49.78002
+  type: 'test'
+  ...
+# Subtest: R48 景阳宫 source-bound shell changes retain unresolved furnishing and finite geometry
+ok 59 - R48 景阳宫 source-bound shell changes retain unresolved furnishing and finite geometry
+  ---
+  duration_ms: 12.240411
+  type: 'test'
+  ...
+# Subtest: R48 景阳宫 retains repeatable entry and exit at 10 Hz
+ok 60 - R48 景阳宫 retains repeatable entry and exit at 10 Hz
+  ---
+  duration_ms: 12.121914
+  type: 'test'
+  ...
+# Subtest: R48 景阳宫 retains repeatable entry and exit at 60 Hz
+ok 61 - R48 景阳宫 retains repeatable entry and exit at 60 Hz
+  ---
+  duration_ms: 25.430409
+  type: 'test'
+  ...
+# Subtest: R48 景阳宫 survives material merging and releases every owned resource once
+ok 62 - R48 景阳宫 survives material merging and releases every owned resource once
+  ---
+  duration_ms: 6.049362
+  type: 'test'
+  ...
+# Subtest: R48 永寿宫 source-bound shell changes retain unresolved furnishing and finite geometry
+ok 63 - R48 永寿宫 source-bound shell changes retain unresolved furnishing and finite geometry
+  ---
+  duration_ms: 16.926497
+  type: 'test'
+  ...
+# Subtest: R48 永寿宫 retains repeatable entry and exit at 10 Hz
+ok 64 - R48 永寿宫 retains repeatable entry and exit at 10 Hz
+  ---
+  duration_ms: 13.181459
+  type: 'test'
+  ...
+# Subtest: R48 永寿宫 retains repeatable entry and exit at 60 Hz
+ok 65 - R48 永寿宫 retains repeatable entry and exit at 60 Hz
+  ---
+  duration_ms: 29.96437
+  type: 'test'
+  ...
+# Subtest: R48 永寿宫 survives material merging and releases every owned resource once
+ok 66 - R48 永寿宫 survives material merging and releases every owned resource once
+  ---
+  duration_ms: 14.764035
+  type: 'test'
+  ...
+# Subtest: R48 永寿宫后殿 source-bound shell changes retain unresolved furnishing and finite geometry
+ok 67 - R48 永寿宫后殿 source-bound shell changes retain unresolved furnishing and finite geometry
+  ---
+  duration_ms: 12.339005
+  type: 'test'
+  ...
+# Subtest: R48 永寿宫后殿 retains repeatable entry and exit at 10 Hz
+ok 68 - R48 永寿宫后殿 retains repeatable entry and exit at 10 Hz
+  ---
+  duration_ms: 8.622735
+  type: 'test'
+  ...
+# Subtest: R48 永寿宫后殿 retains repeatable entry and exit at 60 Hz
+ok 69 - R48 永寿宫后殿 retains repeatable entry and exit at 60 Hz
+  ---
+  duration_ms: 21.196243
+  type: 'test'
+  ...
+# Subtest: R48 永寿宫后殿 survives material merging and releases every owned resource once
+ok 70 - R48 永寿宫后殿 survives material merging and releases every owned resource once
+  ---
+  duration_ms: 6.073168
+  type: 'test'
+  ...
+# Subtest: R48 咸福宫 source-bound shell changes retain unresolved furnishing and finite geometry
+ok 71 - R48 咸福宫 source-bound shell changes retain unresolved furnishing and finite geometry
+  ---
+  duration_ms: 6.631085
+  type: 'test'
+  ...
+# Subtest: R48 咸福宫 retains repeatable entry and exit at 10 Hz
+ok 72 - R48 咸福宫 retains repeatable entry and exit at 10 Hz
+  ---
+  duration_ms: 13.318495
+  type: 'test'
+  ...
+# Subtest: R48 咸福宫 retains repeatable entry and exit at 60 Hz
+ok 73 - R48 咸福宫 retains repeatable entry and exit at 60 Hz
+  ---
+  duration_ms: 26.359369
+  type: 'test'
+  ...
+# Subtest: R48 咸福宫 survives material merging and releases every owned resource once
+ok 74 - R48 咸福宫 survives material merging and releases every owned resource once
+  ---
+  duration_ms: 12.181118
+  type: 'test'
+  ...
+# Subtest: R48 Chengqian and Jingyang have different source-specific window and ceiling families
+ok 75 - R48 Chengqian and Jingyang have different source-specific window and ceiling families
+  ---
+  duration_ms: 26.61384
+  type: 'test'
+  ...
+# Subtest: R48 Yongshou has front/back central doors and diamond sill windows, unlike Xianfu rear solid wall
+ok 76 - R48 Yongshou has front/back central doors and diamond sill windows, unlike Xianfu rear solid wall
+  ---
+  duration_ms: 11.99591
+  type: 'test'
+  ...
+# Subtest: R48 Yongshou rear corrects seven automatic bays to five and uses an evidenced flush hard-gable
+ok 77 - R48 Yongshou rear corrects seven automatic bays to five and uses an evidenced flush hard-gable
+  ---
+  duration_ms: 2.453704
+  type: 'test'
+  ...
+# Subtest: R48 residential builder rejects altered sizes and foreign profile objects before any allocation
+ok 78 - R48 residential builder rejects altered sizes and foreign profile objects before any allocation
+  ---
+  duration_ms: 0.678408
+  type: 'test'
+  ...
+# {"fps":10,"arrived":false,"hits":0}
+# {"fps":10,"arrived":false,"hits":0}
+# {"fps":10,"arrived":false,"hits":0}
+# {"fps":10,"arrived":false,"hits":0}
+# {"fps":60,"arrived":false,"hits":0}
+# {"fps":60,"arrived":false,"hits":0}
+# {"fps":60,"arrived":false,"hits":0}
+# {"fps":60,"arrived":false,"hits":0}
+# Subtest: R48 opened leaf blocks real residential doorway body 10/false/false
+ok 79 - R48 opened leaf blocks real residential doorway body 10/false/false
+  ---
+  duration_ms: 81.753942
+  type: 'test'
+  ...
+# Subtest: R48 opened leaf blocks real residential doorway body 10/false/true
+ok 80 - R48 opened leaf blocks real residential doorway body 10/false/true
+  ---
+  duration_ms: 39.004317
+  type: 'test'
+  ...
+# Subtest: R48 opened leaf blocks real residential doorway body 10/true/false
+ok 81 - R48 opened leaf blocks real residential doorway body 10/true/false
+  ---
+  duration_ms: 33.494806
+  type: 'test'
+  ...
+# Subtest: R48 opened leaf blocks real residential doorway body 10/true/true
+ok 82 - R48 opened leaf blocks real residential doorway body 10/true/true
+  ---
+  duration_ms: 23.722765
+  type: 'test'
+  ...
+# Subtest: R48 opened leaf blocks real residential doorway body 60/false/false
+ok 83 - R48 opened leaf blocks real residential doorway body 60/false/false
+  ---
+  duration_ms: 36.882086
+  type: 'test'
+  ...
+# Subtest: R48 opened leaf blocks real residential doorway body 60/false/true
+ok 84 - R48 opened leaf blocks real residential doorway body 60/false/true
+  ---
+  duration_ms: 30.617786
+  type: 'test'
+  ...
+# Subtest: R48 opened leaf blocks real residential doorway body 60/true/false
+ok 85 - R48 opened leaf blocks real residential doorway body 60/true/false
+  ---
+  duration_ms: 22.109082
+  type: 'test'
+  ...
+# Subtest: R48 opened leaf blocks real residential doorway body 60/true/true
+ok 86 - R48 opened leaf blocks real residential doorway body 60/true/true
+  ---
+  duration_ms: 23.400116
+  type: 'test'
+  ...
+# Subtest: R48 real-library outward rear leaves preserve 永寿宫 through passage 10/false/false
+ok 87 - R48 real-library outward rear leaves preserve 永寿宫 through passage 10/false/false
+  ---
+  duration_ms: 1091.377119
+  type: 'test'
+  ...
+# Subtest: R48 real-library outward rear leaves preserve 永寿宫 through passage 10/false/true
+ok 88 - R48 real-library outward rear leaves preserve 永寿宫 through passage 10/false/true
+  ---
+  duration_ms: 725.412531
+  type: 'test'
+  ...
+# Subtest: R48 real-library outward rear leaves preserve 永寿宫 through passage 10/true/false
+ok 89 - R48 real-library outward rear leaves preserve 永寿宫 through passage 10/true/false
+  ---
+  duration_ms: 630.889158
+  type: 'test'
+  ...
+# Subtest: R48 real-library outward rear leaves preserve 永寿宫 through passage 10/true/true
+ok 90 - R48 real-library outward rear leaves preserve 永寿宫 through passage 10/true/true
+  ---
+  duration_ms: 703.860611
+  type: 'test'
+  ...
+# Subtest: R48 real-library outward rear leaves preserve 永寿宫 through passage 60/false/false
+ok 91 - R48 real-library outward rear leaves preserve 永寿宫 through passage 60/false/false
+  ---
+  duration_ms: 630.791788
+  type: 'test'
+  ...
+# Subtest: R48 real-library outward rear leaves preserve 永寿宫 through passage 60/false/true
+ok 92 - R48 real-library outward rear leaves preserve 永寿宫 through passage 60/false/true
+  ---
+  duration_ms: 622.139693
+  type: 'test'
+  ...
+# Subtest: R48 real-library outward rear leaves preserve 永寿宫 through passage 60/true/false
+ok 93 - R48 real-library outward rear leaves preserve 永寿宫 through passage 60/true/false
+  ---
+  duration_ms: 584.266589
+  type: 'test'
+  ...
+# Subtest: R48 real-library outward rear leaves preserve 永寿宫 through passage 60/true/true
+ok 94 - R48 real-library outward rear leaves preserve 永寿宫 through passage 60/true/true
+  ---
+  duration_ms: 521.544249
+  type: 'test'
+  ...
+# Subtest: R48 real-library outward rear leaves preserve 咸福宫 through passage 10/false/false
+ok 95 - R48 real-library outward rear leaves preserve 咸福宫 through passage 10/false/false
+  ---
+  duration_ms: 493.184122
+  type: 'test'
+  ...
+# Subtest: R48 real-library outward rear leaves preserve 咸福宫 through passage 10/false/true
+ok 96 - R48 real-library outward rear leaves preserve 咸福宫 through passage 10/false/true
+  ---
+  duration_ms: 468.616114
+  type: 'test'
+  ...
+# Subtest: R48 real-library outward rear leaves preserve 咸福宫 through passage 10/true/false
+ok 97 - R48 real-library outward rear leaves preserve 咸福宫 through passage 10/true/false
+  ---
+  duration_ms: 509.695707
+  type: 'test'
+  ...
+# Subtest: R48 real-library outward rear leaves preserve 咸福宫 through passage 10/true/true
+ok 98 - R48 real-library outward rear leaves preserve 咸福宫 through passage 10/true/true
+  ---
+  duration_ms: 565.329802
+  type: 'test'
+  ...
+# Subtest: R48 real-library outward rear leaves preserve 咸福宫 through passage 60/false/false
+ok 99 - R48 real-library outward rear leaves preserve 咸福宫 through passage 60/false/false
+  ---
+  duration_ms: 562.72986
+  type: 'test'
+  ...
+# Subtest: R48 real-library outward rear leaves preserve 咸福宫 through passage 60/false/true
+ok 100 - R48 real-library outward rear leaves preserve 咸福宫 through passage 60/false/true
+  ---
+  duration_ms: 537.113374
+  type: 'test'
+  ...
+# Subtest: R48 real-library outward rear leaves preserve 咸福宫 through passage 60/true/false
+ok 101 - R48 real-library outward rear leaves preserve 咸福宫 through passage 60/true/false
+  ---
+  duration_ms: 478.218509
+  type: 'test'
+  ...
+# Subtest: R48 real-library outward rear leaves preserve 咸福宫 through passage 60/true/true
+ok 102 - R48 real-library outward rear leaves preserve 咸福宫 through passage 60/true/true
+  ---
+  duration_ms: 486.033617
+  type: 'test'
+  ...
+# Subtest: R48 太极殿 both real-radius rear-porch exits retain at least 0.40m centerline tolerance
+ok 103 - R48 太极殿 both real-radius rear-porch exits retain at least 0.40m centerline tolerance
+  ---
+  duration_ms: 62.860744
+  type: 'test'
+  ...
+# Subtest: R48 太极殿 four lateral exit directions at 10 Hz sprint=false backward=false
+ok 104 - R48 太极殿 four lateral exit directions at 10 Hz sprint=false backward=false
+  ---
+  duration_ms: 49.224961
+  type: 'test'
+  ...
+# Subtest: R48 太极殿 four lateral exit directions at 10 Hz sprint=false backward=true
+ok 105 - R48 太极殿 four lateral exit directions at 10 Hz sprint=false backward=true
+  ---
+  duration_ms: 26.326165
+  type: 'test'
+  ...
+# Subtest: R48 太极殿 four lateral exit directions at 10 Hz sprint=true backward=false
+ok 106 - R48 太极殿 four lateral exit directions at 10 Hz sprint=true backward=false
+  ---
+  duration_ms: 25.582451
+  type: 'test'
+  ...
+# Subtest: R48 太极殿 four lateral exit directions at 10 Hz sprint=true backward=true
+ok 107 - R48 太极殿 four lateral exit directions at 10 Hz sprint=true backward=true
+  ---
+  duration_ms: 16.770297
+  type: 'test'
+  ...
+# Subtest: R48 太极殿 four lateral exit directions at 60 Hz sprint=false backward=false
+ok 108 - R48 太极殿 four lateral exit directions at 60 Hz sprint=false backward=false
+  ---
+  duration_ms: 44.563703
+  type: 'test'
+  ...
+# Subtest: R48 太极殿 four lateral exit directions at 60 Hz sprint=false backward=true
+ok 109 - R48 太极殿 four lateral exit directions at 60 Hz sprint=false backward=true
+  ---
+  duration_ms: 45.205467
+  type: 'test'
+  ...
+# Subtest: R48 太极殿 four lateral exit directions at 60 Hz sprint=true backward=false
+ok 110 - R48 太极殿 four lateral exit directions at 60 Hz sprint=true backward=false
+  ---
+  duration_ms: 24.621134
+  type: 'test'
+  ...
+# Subtest: R48 太极殿 four lateral exit directions at 60 Hz sprint=true backward=true
+ok 111 - R48 太极殿 four lateral exit directions at 60 Hz sprint=true backward=true
+  ---
+  duration_ms: 26.100971
+  type: 'test'
+  ...
+# Subtest: R48 翊坤宫后殿 both real-radius rear-porch exits retain at least 0.40m centerline tolerance
+ok 112 - R48 翊坤宫后殿 both real-radius rear-porch exits retain at least 0.40m centerline tolerance
+  ---
+  duration_ms: 100.340756
+  type: 'test'
+  ...
+# Subtest: R48 翊坤宫后殿 four lateral exit directions at 10 Hz sprint=false backward=false
+ok 113 - R48 翊坤宫后殿 four lateral exit directions at 10 Hz sprint=false backward=false
+  ---
+  duration_ms: 80.718037
+  type: 'test'
+  ...
+# Subtest: R48 翊坤宫后殿 four lateral exit directions at 10 Hz sprint=false backward=true
+ok 114 - R48 翊坤宫后殿 four lateral exit directions at 10 Hz sprint=false backward=true
+  ---
+  duration_ms: 66.019344
+  type: 'test'
+  ...
+# Subtest: R48 翊坤宫后殿 four lateral exit directions at 10 Hz sprint=true backward=false
+ok 115 - R48 翊坤宫后殿 four lateral exit directions at 10 Hz sprint=true backward=false
+  ---
+  duration_ms: 71.255095
+  type: 'test'
+  ...
+# Subtest: R48 翊坤宫后殿 four lateral exit directions at 10 Hz sprint=true backward=true
+ok 116 - R48 翊坤宫后殿 four lateral exit directions at 10 Hz sprint=true backward=true
+  ---
+  duration_ms: 112.182696
+  type: 'test'
+  ...
+# Subtest: R48 翊坤宫后殿 four lateral exit directions at 60 Hz sprint=false backward=false
+ok 117 - R48 翊坤宫后殿 four lateral exit directions at 60 Hz sprint=false backward=false
+  ---
+  duration_ms: 152.69735
+  type: 'test'
+  ...
+# Subtest: R48 翊坤宫后殿 four lateral exit directions at 60 Hz sprint=false backward=true
+ok 118 - R48 翊坤宫后殿 four lateral exit directions at 60 Hz sprint=false backward=true
+  ---
+  duration_ms: 139.274197
+  type: 'test'
+  ...
+# Subtest: R48 翊坤宫后殿 four lateral exit directions at 60 Hz sprint=true backward=false
+ok 119 - R48 翊坤宫后殿 four lateral exit directions at 60 Hz sprint=true backward=false
+  ---
+  duration_ms: 68.984887
+  type: 'test'
+  ...
+# Subtest: R48 翊坤宫后殿 four lateral exit directions at 60 Hz sprint=true backward=true
+ok 120 - R48 翊坤宫后殿 four lateral exit directions at 60 Hz sprint=true backward=true
+  ---
+  duration_ms: 66.023416
+  type: 'test'
+  ...
+# Subtest: R48 Taiji two explicit visitor-access stairs provide visible treads beneath their real ramps
+ok 121 - R48 Taiji two explicit visitor-access stairs provide visible treads beneath their real ramps
+  ---
+  duration_ms: 8.083456
+  type: 'test'
+  ...
+# Subtest: R48 whole WestSix 太极殿 rear-porch access 10 Hz sprint=false backward=false
+ok 122 - R48 whole WestSix 太极殿 rear-porch access 10 Hz sprint=false backward=false
+  ---
+  duration_ms: 783.576398
+  type: 'test'
+  ...
+# Subtest: R48 whole WestSix 太极殿 rear-porch access 10 Hz sprint=false backward=true
+ok 123 - R48 whole WestSix 太极殿 rear-porch access 10 Hz sprint=false backward=true
+  ---
+  duration_ms: 619.80912
+  type: 'test'
+  ...
+# Subtest: R48 whole WestSix 太极殿 rear-porch access 10 Hz sprint=true backward=false
+ok 124 - R48 whole WestSix 太极殿 rear-porch access 10 Hz sprint=true backward=false
+  ---
+  duration_ms: 557.264195
+  type: 'test'
+  ...
+# Subtest: R48 whole WestSix 太极殿 rear-porch access 10 Hz sprint=true backward=true
+ok 125 - R48 whole WestSix 太极殿 rear-porch access 10 Hz sprint=true backward=true
+  ---
+  duration_ms: 576.158632
+  type: 'test'
+  ...
+# Subtest: R48 whole WestSix 太极殿 rear-porch access 60 Hz sprint=false backward=false
+ok 126 - R48 whole WestSix 太极殿 rear-porch access 60 Hz sprint=false backward=false
+  ---
+  duration_ms: 592.566685
+  type: 'test'
+  ...
+# Subtest: R48 whole WestSix 太极殿 rear-porch access 60 Hz sprint=false backward=true
+ok 127 - R48 whole WestSix 太极殿 rear-porch access 60 Hz sprint=false backward=true
+  ---
+  duration_ms: 567.908128
+  type: 'test'
+  ...
+# Subtest: R48 whole WestSix 太极殿 rear-porch access 60 Hz sprint=true backward=false
+ok 128 - R48 whole WestSix 太极殿 rear-porch access 60 Hz sprint=true backward=false
+  ---
+  duration_ms: 593.268002
+  type: 'test'
+  ...
+# Subtest: R48 whole WestSix 太极殿 rear-porch access 60 Hz sprint=true backward=true
+ok 129 - R48 whole WestSix 太极殿 rear-porch access 60 Hz sprint=true backward=true
+  ---
+  duration_ms: 531.941356
+  type: 'test'
+  ...
+# Subtest: R48 whole WestSix 翊坤宫后殿 rear-porch access 10 Hz sprint=false backward=false
+ok 130 - R48 whole WestSix 翊坤宫后殿 rear-porch access 10 Hz sprint=false backward=false
+  ---
+  duration_ms: 794.559767
+  type: 'test'
+  ...
+# Subtest: R48 whole WestSix 翊坤宫后殿 rear-porch access 10 Hz sprint=false backward=true
+ok 131 - R48 whole WestSix 翊坤宫后殿 rear-porch access 10 Hz sprint=false backward=true
+  ---
+  duration_ms: 1023.943066
+  type: 'test'
+  ...
+# Subtest: R48 whole WestSix 翊坤宫后殿 rear-porch access 10 Hz sprint=true backward=false
+ok 132 - R48 whole WestSix 翊坤宫后殿 rear-porch access 10 Hz sprint=true backward=false
+  ---
+  duration_ms: 683.216036
+  type: 'test'
+  ...
+# Subtest: R48 whole WestSix 翊坤宫后殿 rear-porch access 10 Hz sprint=true backward=true
+ok 133 - R48 whole WestSix 翊坤宫后殿 rear-porch access 10 Hz sprint=true backward=true
+  ---
+  duration_ms: 641.800118
+  type: 'test'
+  ...
+# Subtest: R48 whole WestSix 翊坤宫后殿 rear-porch access 60 Hz sprint=false backward=false
+ok 134 - R48 whole WestSix 翊坤宫后殿 rear-porch access 60 Hz sprint=false backward=false
+  ---
+  duration_ms: 1081.429652
+  type: 'test'
+  ...
+# Subtest: R48 whole WestSix 翊坤宫后殿 rear-porch access 60 Hz sprint=false backward=true
+ok 135 - R48 whole WestSix 翊坤宫后殿 rear-porch access 60 Hz sprint=false backward=true
+  ---
+  duration_ms: 1017.646494
+  type: 'test'
+  ...
+# Subtest: R48 whole WestSix 翊坤宫后殿 rear-porch access 60 Hz sprint=true backward=false
+ok 136 - R48 whole WestSix 翊坤宫后殿 rear-porch access 60 Hz sprint=true backward=false
+  ---
+  duration_ms: 757.741514
+  type: 'test'
+  ...
+# Subtest: R48 whole WestSix 翊坤宫后殿 rear-porch access 60 Hz sprint=true backward=true
+ok 137 - R48 whole WestSix 翊坤宫后殿 rear-porch access 60 Hz sprint=true backward=true
+  ---
+  duration_ms: 696.252699
+  type: 'test'
+  ...
+# Subtest: R48 承乾宫 main roof has actual outward top and downward underside FrontSide faces before and after merge
+ok 138 - R48 承乾宫 main roof has actual outward top and downward underside FrontSide faces before and after merge
+  ---
+  duration_ms: 124.721064
+  type: 'test'
+  ...
+# Subtest: R48 景阳宫 main roof has actual outward top and downward underside FrontSide faces before and after merge
+ok 139 - R48 景阳宫 main roof has actual outward top and downward underside FrontSide faces before and after merge
+  ---
+  duration_ms: 9.340202
+  type: 'test'
+  ...
+# Subtest: R48 养心殿 main roof has actual outward top and downward underside FrontSide faces before and after merge
+ok 140 - R48 养心殿 main roof has actual outward top and downward underside FrontSide faces before and after merge
+  ---
+  duration_ms: 114.985449
+  type: 'test'
+  ...
+# Subtest: R48 永寿宫 main roof has actual outward top and downward underside FrontSide faces before and after merge
+ok 141 - R48 永寿宫 main roof has actual outward top and downward underside FrontSide faces before and after merge
+  ---
+  duration_ms: 21.203022
+  type: 'test'
+  ...
+# Subtest: R48 永寿宫后殿 main roof has actual outward top and downward underside FrontSide faces before and after merge
+ok 142 - R48 永寿宫后殿 main roof has actual outward top and downward underside FrontSide faces before and after merge
+  ---
+  duration_ms: 7.202873
+  type: 'test'
+  ...
+# Subtest: R48 永寿宫后殿 hard-gable end planes close both attics with outward visible faces
+ok 143 - R48 永寿宫后殿 hard-gable end planes close both attics with outward visible faces
+  ---
+  duration_ms: 5.732076
+  type: 'test'
+  ...
+# Subtest: R48 翊坤宫后殿 main roof has actual outward top and downward underside FrontSide faces before and after merge
+ok 144 - R48 翊坤宫后殿 main roof has actual outward top and downward underside FrontSide faces before and after merge
+  ---
+  duration_ms: 66.439026
+  type: 'test'
+  ...
+# Subtest: R48 翊坤宫后殿 hard-gable end planes close both attics with outward visible faces
+ok 145 - R48 翊坤宫后殿 hard-gable end planes close both attics with outward visible faces
+  ---
+  duration_ms: 51.49513
+  type: 'test'
+  ...
+# Subtest: R48 太极殿 main roof has actual outward top and downward underside FrontSide faces before and after merge
+ok 146 - R48 太极殿 main roof has actual outward top and downward underside FrontSide faces before and after merge
+  ---
+  duration_ms: 15.878748
+  type: 'test'
+  ...
+# Subtest: R48 太极殿后殿 main roof has actual outward top and downward underside FrontSide faces before and after merge
+ok 147 - R48 太极殿后殿 main roof has actual outward top and downward underside FrontSide faces before and after merge
+  ---
+  duration_ms: 10.608131
+  type: 'test'
+  ...
+# Subtest: R48 太极殿后殿 hard-gable end planes close both attics with outward visible faces
+ok 148 - R48 太极殿后殿 hard-gable end planes close both attics with outward visible faces
+  ---
+  duration_ms: 17.782648
+  type: 'test'
+  ...
+# Subtest: R48 长春宫后殿 main roof has actual outward top and downward underside FrontSide faces before and after merge
+ok 149 - R48 长春宫后殿 main roof has actual outward top and downward underside FrontSide faces before and after merge
+  ---
+  duration_ms: 5.30878
+  type: 'test'
+  ...
+# Subtest: R48 长春宫后殿 hard-gable end planes close both attics with outward visible faces
+ok 150 - R48 长春宫后殿 hard-gable end planes close both attics with outward visible faces
+  ---
+  duration_ms: 8.320673
+  type: 'test'
+  ...
+# Subtest: R48 咸福宫 main roof has actual outward top and downward underside FrontSide faces before and after merge
+ok 151 - R48 咸福宫 main roof has actual outward top and downward underside FrontSide faces before and after merge
+  ---
+  duration_ms: 5.84817
+  type: 'test'
+  ...
+# Subtest: R48 重华宫 main roof has actual outward top and downward underside FrontSide faces before and after merge
+ok 152 - R48 重华宫 main roof has actual outward top and downward underside FrontSide faces before and after merge
+  ---
+  duration_ms: 116.250307
+  type: 'test'
+  ...
+# Subtest: R48 重华宫 hard-gable end planes close both attics with outward visible faces
+ok 153 - R48 重华宫 hard-gable end planes close both attics with outward visible faces
+  ---
+  duration_ms: 91.256594
+  type: 'test'
+  ...
+# Subtest: R48 承乾宫 real runtime landing resolver remains safe in the complete world
+ok 154 - R48 承乾宫 real runtime landing resolver remains safe in the complete world
+  ---
+  duration_ms: 37.908933
+  type: 'test'
+  ...
+# Subtest: R48 延禧宫 real runtime landing resolver remains safe in the complete world
+ok 155 - R48 延禧宫 real runtime landing resolver remains safe in the complete world
+  ---
+  duration_ms: 6.215912
+  type: 'test'
+  ...
+# Subtest: R48 景阳宫 real runtime landing resolver remains safe in the complete world
+ok 156 - R48 景阳宫 real runtime landing resolver remains safe in the complete world
+  ---
+  duration_ms: 4.257081
+  type: 'test'
+  ...
+# Subtest: R48 养心殿 real runtime landing resolver remains safe in the complete world
+ok 157 - R48 养心殿 real runtime landing resolver remains safe in the complete world
+  ---
+  duration_ms: 5.892086
+  type: 'test'
+  ...
+# Subtest: R48 永寿宫 real runtime landing resolver remains safe in the complete world
+ok 158 - R48 永寿宫 real runtime landing resolver remains safe in the complete world
+  ---
+  duration_ms: 15.920611
+  type: 'test'
+  ...
+# Subtest: R48 永寿宫后殿 real runtime landing resolver remains safe in the complete world
+ok 159 - R48 永寿宫后殿 real runtime landing resolver remains safe in the complete world
+  ---
+  duration_ms: 2.808076
+  type: 'test'
+  ...
+# Subtest: R48 翊坤宫后殿 real runtime landing resolver remains safe in the complete world
+ok 160 - R48 翊坤宫后殿 real runtime landing resolver remains safe in the complete world
+  ---
+  duration_ms: 10.598451
+  type: 'test'
+  ...
+# Subtest: R48 太极殿 real runtime landing resolver remains safe in the complete world
+ok 161 - R48 太极殿 real runtime landing resolver remains safe in the complete world
+  ---
+  duration_ms: 2.248996
+  type: 'test'
+  ...
+# Subtest: R48 太极殿后殿 real runtime landing resolver remains safe in the complete world
+ok 162 - R48 太极殿后殿 real runtime landing resolver remains safe in the complete world
+  ---
+  duration_ms: 22.683185
+  type: 'test'
+  ...
+# Subtest: R48 长春宫后殿 real runtime landing resolver remains safe in the complete world
+ok 163 - R48 长春宫后殿 real runtime landing resolver remains safe in the complete world
+  ---
+  duration_ms: 8.940191
+  type: 'test'
+  ...
+# Subtest: R48 咸福宫 real runtime landing resolver remains safe in the complete world
+ok 164 - R48 咸福宫 real runtime landing resolver remains safe in the complete world
+  ---
+  duration_ms: 3.29068
+  type: 'test'
+  ...
+# Subtest: R48 重华宫 real runtime landing resolver remains safe in the complete world
+ok 165 - R48 重华宫 real runtime landing resolver remains safe in the complete world
+  ---
+  duration_ms: 2.836459
+  type: 'test'
+  ...
+# Subtest: R48 承乾宫 ground-viewing grid has no visible-body penetration beyond 1 micrometre Float32 tangent noise
+ok 166 - R48 承乾宫 ground-viewing grid has no visible-body penetration beyond 1 micrometre Float32 tangent noise
+  ---
+  duration_ms: 110.222767
+  type: 'test'
+  ...
+# Subtest: R48 景阳宫 ground-viewing grid has no visible-body penetration beyond 1 micrometre Float32 tangent noise
+ok 167 - R48 景阳宫 ground-viewing grid has no visible-body penetration beyond 1 micrometre Float32 tangent noise
+  ---
+  duration_ms: 22.010054
+  type: 'test'
+  ...
+# Subtest: R48 养心殿 ground-viewing grid has no visible-body penetration beyond 1 micrometre Float32 tangent noise
+ok 168 - R48 养心殿 ground-viewing grid has no visible-body penetration beyond 1 micrometre Float32 tangent noise
+  ---
+  duration_ms: 171.312978
+  type: 'test'
+  ...
+# Subtest: R48 永寿宫 ground-viewing grid has no visible-body penetration beyond 1 micrometre Float32 tangent noise
+ok 169 - R48 永寿宫 ground-viewing grid has no visible-body penetration beyond 1 micrometre Float32 tangent noise
+  ---
+  duration_ms: 44.668425
+  type: 'test'
+  ...
+# Subtest: R48 永寿宫后殿 ground-viewing grid has no visible-body penetration beyond 1 micrometre Float32 tangent noise
+ok 170 - R48 永寿宫后殿 ground-viewing grid has no visible-body penetration beyond 1 micrometre Float32 tangent noise
+  ---
+  duration_ms: 19.813336
+  type: 'test'
+  ...
+# Subtest: R48 翊坤宫后殿 ground-viewing grid has no visible-body penetration beyond 1 micrometre Float32 tangent noise
+ok 171 - R48 翊坤宫后殿 ground-viewing grid has no visible-body penetration beyond 1 micrometre Float32 tangent noise
+  ---
+  duration_ms: 113.907685
+  type: 'test'
+  ...
+# Subtest: R48 太极殿 ground-viewing grid has no visible-body penetration beyond 1 micrometre Float32 tangent noise
+ok 172 - R48 太极殿 ground-viewing grid has no visible-body penetration beyond 1 micrometre Float32 tangent noise
+  ---
+  duration_ms: 32.521866
+  type: 'test'
+  ...
+# Subtest: R48 太极殿后殿 ground-viewing grid has no visible-body penetration beyond 1 micrometre Float32 tangent noise
+ok 173 - R48 太极殿后殿 ground-viewing grid has no visible-body penetration beyond 1 micrometre Float32 tangent noise
+  ---
+  duration_ms: 26.241396
+  type: 'test'
+  ...
+# Subtest: R48 长春宫后殿 ground-viewing grid has no visible-body penetration beyond 1 micrometre Float32 tangent noise
+ok 174 - R48 长春宫后殿 ground-viewing grid has no visible-body penetration beyond 1 micrometre Float32 tangent noise
+  ---
+  duration_ms: 16.899756
+  type: 'test'
+  ...
+# Subtest: R48 咸福宫 ground-viewing grid has no visible-body penetration beyond 1 micrometre Float32 tangent noise
+ok 175 - R48 咸福宫 ground-viewing grid has no visible-body penetration beyond 1 micrometre Float32 tangent noise
+  ---
+  duration_ms: 16.8121
+  type: 'test'
+  ...
+# Subtest: R48 重华宫 ground-viewing grid has no visible-body penetration beyond 1 micrometre Float32 tangent noise
+ok 176 - R48 重华宫 ground-viewing grid has no visible-body penetration beyond 1 micrometre Float32 tangent noise
+  ---
+  duration_ms: 157.734597
+  type: 'test'
+  ...
+# Subtest: R48 Yangxin replaces eleven-bay posts and facade with three primary bays and nine real subdivisions
+ok 177 - R48 Yangxin replaces eleven-bay posts and facade with three primary bays and nine real subdivisions
+  ---
+  duration_ms: 139.420397
+  type: 'test'
+  ...
+# Subtest: R48 Yangxin baoxia is a continuous middle/west projection, not mirrored three-part additions
+ok 178 - R48 Yangxin baoxia is a continuous middle/west projection, not mirrored three-part additions
+  ---
+  duration_ms: 93.365509
+  type: 'test'
+  ...
+# Subtest: R48 Yangxin all new facade and baoxia volumes avoid decoded GLB triangle surfaces
+not ok 179 - R48 Yangxin all new facade and baoxia volumes avoid decoded GLB triangle surfaces
+  ---
+  duration_ms: 148.394445
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/r48-residential-yangxin-facade.test.mjs:20:1'
+  failureType: 'testCodeFailure'
+  error: "Cannot read properties of undefined (reading 'KHR_draco_mesh_compression')"
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    readYangxinEnvelope (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/r48-residential-glb-envelope.mjs:9:73)
+    async TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/r48-residential-yangxin-facade.test.mjs:20:124)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 Yangxin relocated visible steps and central entry remain traversable at 10 Hz
+ok 180 - R48 Yangxin relocated visible steps and central entry remain traversable at 10 Hz
+  ---
+  duration_ms: 97.220692
+  type: 'test'
+  ...
+# Subtest: R48 Yangxin relocated visible steps and central entry remain traversable at 60 Hz
+ok 181 - R48 Yangxin relocated visible steps and central entry remain traversable at 60 Hz
+  ---
+  duration_ms: 81.83218
+  type: 'test'
+  ...
+# Subtest: R48 Yangxin front load-bearing beam reaches the actual underside of the roll roof
+ok 182 - R48 Yangxin front load-bearing beam reaches the actual underside of the roll roof
+  ---
+  duration_ms: 72.695548
+  type: 'test'
+  ...
+# Subtest: R48 Yangxin roof seam is on actual main-roof triangles with only a raised narrow cover
+ok 183 - R48 Yangxin roof seam is on actual main-roof triangles with only a raised narrow cover
+  ---
+  duration_ms: 84.327927
+  type: 'test'
+  ...
+# Subtest: R48 Yangxin visible stair support replaces, rather than covers, the old front stairs
+ok 184 - R48 Yangxin visible stair support replaces, rather than covers, the old front stairs
+  ---
+  duration_ms: 87.770816
+  type: 'test'
+  ...
+# Subtest: R48 Yangxin full WestSix shell build keeps its new projection clear of every other visible building and court wall
+ok 185 - R48 Yangxin full WestSix shell build keeps its new projection clear of every other visible building and court wall
+  ---
+  duration_ms: 855.939303
+  type: 'test'
+  ...
+# file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/r48-review-residential-central.test.mjs:29
+# for(let k=0;k<json.nodes.length;k++){const n=json.nodes[k];for(const i of n.children??[])objects[k].add(objects[i]);if(n.mesh===undefined)continue;for(const p of json.meshes[n.mesh].primitives){const c=p.extensions.KHR_draco_mesh_compression,v=json.bufferViews[c.bufferView],bytes=bin.subarray(v.byteOffset??0,(v.byteOffset??0)+v.byteLength),buf=new d.DecoderBuffer(),decoder=new d.Decoder(),mesh=new d.Mesh();buf.Init(new Int8Array(bytes),bytes.length);const status=decoder.DecodeBufferToMesh(buf,mesh);assert.ok(status.ok(),status.error_msg());const pos=new d.DracoFloat32Array(),a=decoder.GetAttributeByUniqueId(mesh,c.attributes.POSITION);decoder.GetAttributeFloatForAllPoints(mesh,a,pos);const xyz=Array.from({length:mesh.num_points()*3},(_,i)=>pos.GetValue(i)),face=new d.DracoInt32Array(),idx=[];for(let i=0;i<mesh.num_faces();i++){decoder.GetFaceFromMesh(mesh,i,face);idx.push(face.GetValue(0),face.GetValue(1),face.GetValue(2));}const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(xyz,3));geo.setIndex(idx);geo.computeVertexNormals();const m=new THREE.Mesh(geo,new THREE.MeshBasicMaterial({name:json.materials[p.material]?.name??''}));m.name=n.name;objects[k].add(m);for(const x of[face,pos,mesh,decoder,buf])d.destroy(x);}}
+#                                                                                                                                                                                                                        ^
+# TypeError: Cannot read properties of undefined (reading 'KHR_draco_mesh_compression')
+#     at decodeYangxin (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/r48-review-residential-central.test.mjs:29:216)
+#     at async file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/r48-review-residential-central.test.mjs:31:11
+# Node.js v24.19.0
+# Subtest: tests/r48-review-residential-central.test.mjs
+not ok 13 - tests/r48-review-residential-central.test.mjs
+  ---
+  duration_ms: 304.739561
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/r48-review-residential-central.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: two demolished gates retain estimated identity/map points but no invented physical gate
+ok 187 - two demolished gates retain estimated identity/map points but no invented physical gate
+  ---
+  duration_ms: 2.523849
+  type: 'test'
+  ...
+# Subtest: historic marker rejects unsupported status before suppressing geometry
+ok 188 - historic marker rejects unsupported status before suppressing geometry
+  ---
+  duration_ms: 0.640622
+  type: 'test'
+  ...
+# Subtest: historic marker rejects unproved source before suppressing geometry
+ok 189 - historic marker rejects unproved source before suppressing geometry
+  ---
+  duration_ms: 0.307742
+  type: 'test'
+  ...
+# Subtest: historic marker rejects unverified coordinate claim before suppressing geometry
+ok 190 - historic marker rejects unverified coordinate claim before suppressing geometry
+  ---
+  duration_ms: 0.257346
+  type: 'test'
+  ...
+# Subtest: source-proven through halls expose five-bay front/rear openings without invented central furniture
+ok 191 - source-proven through halls expose five-bay front/rear openings without invented central furniture
+  ---
+  duration_ms: 0.243045
+  type: 'test'
+  ...
+# Subtest: both connected palace pairs are walkable through rear halls and old gate points in both directions
+not ok 192 - both connected palace pairs are walkable through rear halls and old gate points in both directions
+  ---
+  duration_ms: 717.291876
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/west-six-current-passages.test.mjs:18:1'
+  failureType: 'testCodeFailure'
+  error: '翊坤宫后殿 1: {"reached":0,"total":15.3,"end":[94,393.85],"feet":0}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/west-six-current-passages.test.mjs:21:163)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: old-site map labels preserve the selectable original name and never draw a solid gate footprint
+ok 193 - old-site map labels preserve the selectable original name and never draw a solid gate footprint
+  ---
+  duration_ms: 23.861594
+  type: 'test'
+  ...
+# Subtest: historical west-six data retains only eight evidence-bound items and four provisional perimeter joins after exact R32 source restoration
+not ok 194 - historical west-six data retains only eight evidence-bound items and four provisional perimeter joins after exact R32 source restoration
+  ---
+  duration_ms: 2.249236
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/west-six-current-passages.test.mjs:32:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    exact R32 source candidate: data/zones/west-six.json
+    + actual - expected
+    
+    + 'a98ddde19f72fa3facc8fdfe5ec3c3130fc1ad572c3d4550661b44885a42a66e'
+    - 'cd2ce132668edd0e9df7f73a38543088d972f6056730dd205eda46a0017fc5d3'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'cd2ce132668edd0e9df7f73a38543088d972f6056730dd205eda46a0017fc5d3'
+  actual: 'a98ddde19f72fa3facc8fdfe5ec3c3130fc1ad572c3d4550661b44885a42a66e'
+  operator: 'strictEqual'
+  stack: |-
+    restorePreR32Source (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/lib/r32-source-retention.mjs:40:10)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/west-six-current-passages.test.mjs:35:27)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: formal through-hall plaque text does not rename navigation or legacy buildings
+ok 195 - formal through-hall plaque text does not rename navigation or legacy buildings
+  ---
+  duration_ms: 8.769737
+  type: 'test'
+  ...
+1..195
+# tests 195
+# suites 0
+# pass 184
+# fail 11
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 42085.437443

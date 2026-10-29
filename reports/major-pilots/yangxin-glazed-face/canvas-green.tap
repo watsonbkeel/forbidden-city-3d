@@ -1,0 +1,88 @@
+TAP version 13
+# Subtest: all live collision/navigation arrays and records retain exact identity and value
+ok 1 - all live collision/navigation arrays and records retain exact identity and value
+  ---
+  duration_ms: 59.939878
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: position
+ok 2 - source rejection before staging: position
+  ---
+  duration_ms: 13.781605
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: source vertex
+ok 3 - source rejection before staging: source vertex
+  ---
+  duration_ms: 11.120855
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: UV
+ok 4 - source rejection before staging: UV
+  ---
+  duration_ms: 14.334019
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: groups
+ok 5 - source rejection before staging: groups
+  ---
+  duration_ms: 10.092682
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: index semantics
+ok 6 - source rejection before staging: index semantics
+  ---
+  duration_ms: 8.757783
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: metadata nonwritable
+ok 7 - source rejection before staging: metadata nonwritable
+  ---
+  duration_ms: 12.573631
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: geometry nonwritable
+ok 8 - source rejection before staging: geometry nonwritable
+  ---
+  duration_ms: 10.463995
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: material colour
+ok 9 - source rejection before staging: material colour
+  ---
+  duration_ms: 11.73694
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: foreign duplicate material
+ok 10 - source rejection before staging: foreign duplicate material
+  ---
+  duration_ms: 9.744029
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: shared source geometry
+ok 11 - source rejection before staging: shared source geometry
+  ---
+  duration_ms: 12.490983
+  type: 'test'
+  ...
+# Subtest: late source extraction allocation failure cleans every partial geometry and private resource, retaining live graph
+ok 12 - late source extraction allocation failure cleans every partial geometry and private resource, retaining live graph
+  ---
+  duration_ms: 10.423789
+  type: 'test'
+  ...
+# Subtest: unavailable canvas context retains each source face base colour rather than turning glaze/base red
+ok 13 - unavailable canvas context retains each source face base colour rather than turning glaze/base red
+  ---
+  duration_ms: 14.08131
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 396.758051

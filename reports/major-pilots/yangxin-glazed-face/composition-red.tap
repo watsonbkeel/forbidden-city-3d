@@ -1,0 +1,29 @@
+TAP version 13
+# Subtest: complete three-part glazed frontage has13 existing source faces and4 distinct source-shaped fields
+not ok 1 - complete three-part glazed frontage has13 existing source faces and4 distinct source-shaped fields
+  ---
+  duration_ms: 40.384519
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/yangxin-glazed-face/composition.test.mjs:2:1'
+  failureType: 'testCodeFailure'
+  error: 'missing whole glazed front surface ensemble'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/yangxin-glazed-face/composition.test.mjs:2:178)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 226.809638
