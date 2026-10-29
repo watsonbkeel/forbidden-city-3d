@@ -1,0 +1,38 @@
+TAP version 13
+# Subtest: private south finishes survive real-material final merge and dispose textures/materials/geometries once
+ok 1 - private south finishes survive real-material final merge and dispose textures/materials/geometries once
+  ---
+  duration_ms: 62.798116
+  type: 'test'
+  ...
+# Subtest: retained band-mapped leaf geometry samples the complete private door panel rather than clamping half the face
+not ok 2 - retained band-mapped leaf geometry samples the complete private door panel rather than clamping half the face
+  ---
+  duration_ms: 12.713984
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/yongshou-front/lifecycle.test.mjs:3:1'
+  failureType: 'testCodeFailure'
+  error: 'left edge must sample panel edge, not clamp'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/yongshou-front/lifecycle.test.mjs:3:532)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 1
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 358.23513
