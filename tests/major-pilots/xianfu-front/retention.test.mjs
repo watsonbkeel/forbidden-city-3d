@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import{execFileSync}from'node:child_process';
+test('complete west-six non-target meshes and every physics/nav record equal actual 6cc0d1bd source replay',()=>{const run=args=>JSON.parse(execFileSync(process.execPath,[...args,'scripts/major-pilots/xianfu-front/whole-zone-capture.mjs'],{encoding:'utf8',maxBuffer:1024*1024})),candidate=run([]),parent=run(['--import','./scripts/major-pilots/xianfu-front/parent-retained-source.mjs']);assert.ok(candidate.retainedMeshes>1000);assert.deepEqual(candidate,parent);});
