@@ -19,7 +19,8 @@ const expected = {
   xiehe: { source: 7530, removed: 988, boxes: 201, posts: 72, meshes: 337, buckets: 14 },
   xihe: { source: 7614, removed: 966, boxes: 203, posts: 71, meshes: 338, buckets: 14 },
   jingyun: { source: 4014, removed: 744, boxes: 160, posts: 0, meshes: 204, buckets: 13 },
-  longzong: { source: 4014, removed: 476, boxes: 160, posts: 0, meshes: 204, buckets: 13 },
+  // Actual anchored whole-layer fit; generic relocated fixtures retain 4014 source triangles.
+  longzong: { source: 11994, removed: 1334, boxes: 236, posts: 0, meshes: 1024, buckets: 19 },
 };
 const evidence = [];
 const nodes = root => { const result = []; root.traverse(node => result.push(node)); return result; };
@@ -79,7 +80,9 @@ function fixture(profile, overrides = {}, setup = () => {}) {
   const box = kit.box.bind(kit), mapRect = kit.mapRect.bind(kit);
   kit.box = (...args) => { const mesh = box(...args); boxes.push(mesh); return mesh; };
   let before;
-  kit.mapRect = (...args) => { const result = mapRect(...args); before = snapshot(kit, args[0], boxes); return result; };
+  kit.mapRect = (...args) => { const result = mapRect(...args); // The source-bound Longzong fit replaces validated front bars before this snapshot.
+    for(let i=boxes.length-1;i>=0;i--)if(!boxes[i].parent)boxes.splice(i,1);
+    before = snapshot(kit, args[0], boxes); return result; };
   const options = { ...axis.items.find(item => item.gateProfile === profile), ...overrides };
   setup(kit);
   buildSideGate(kit, options);
@@ -132,7 +135,7 @@ for (const [profile, counts] of Object.entries(expected)) {
     assert.ok(f.boxes.every(mesh => mesh.material.map && mesh.material.normalMap && !mesh.material.transparent && mesh.material.opacity === 1 && mesh.material.alphaTest === 0));
     const report = exactInvariance(f);
     assert.equal(report.coveredTriangles, counts.removed);
-    assert.equal(meshes(f.frame).filter(mesh => mesh.userData.role === 'gate-window-bar').length, 72);
+    assert.equal(meshes(f.frame).filter(mesh => mesh.userData.role === 'gate-window-bar').length, profile === 'longzong' ? 36 : 72);
     assert.equal(nodes(f.frame).filter(node => node.userData.role === 'gate-door-leaf').length, 6);
     assert.equal(nodes(f.frame).filter(node => node.userData.role === 'gate-railing-cap').length, counts.posts);
     assert.equal(f.frame.userData.structure.portalCount, 3);
@@ -158,7 +161,7 @@ for (const profile of Object.keys(expected)) {
       const f = fixture(profile, { x: 37.25, z: -62.75, rot, open, plaque });
       const report = exactInvariance(f);
       assert.ok(report.coveredTriangles > 0);
-      assert.equal(total(f.before.baseline), expected[profile].source - (plaque ? 0 : 14));
+      assert.equal(total(f.before.baseline), (profile === 'longzong' ? 4014 : expected[profile].source) - (plaque ? 0 : 14));
       assert.equal(f.kit.plaques.length, plaque ? 1 : 0);
       assert.equal(f.frame.userData.structure.openState, open ? 'playable-open' : 'closed');
       const leaves = nodes(f.frame).filter(node => node.userData.role === 'gate-door-leaf');
@@ -294,7 +297,7 @@ function exteriorRays(before, structure) {
   return rays;
 }
 function detailRays(f) {
-  const rays = [], roles = new Set(['gate-window-bar', 'gate-painted-beam', 'gate-railing-cap', 'gate-ramp-solid', 'gate-threshold', 'gate-door-leaf']);
+  const rays = [], roles = new Set(['gate-window-bar', 'longzong-front-leaf-wood', 'gate-painted-beam', 'gate-railing-cap', 'gate-ramp-solid', 'gate-threshold', 'gate-door-leaf']);
   // Tight offsets target lattice gaps, beam/column contacts, post/cap seams,
   // wedge junctions and leaf/threshold corners; not just broad silhouette grids.
   for (const mesh of meshes(f.frame).filter(mesh => roles.has(mesh.userData.role))) {
