@@ -1,0 +1,30 @@
+✖ thin outer front band crosses the PLAYER height threshold against actual low panels at middle and end bays (7059.18019ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7287.937001
+
+✖ failing tests:
+
+test at tests/major-pilots/jiyun-lower-panels/contact.test.mjs:9:1
+✖ thin outer front band crosses the PLAYER height threshold against actual low panels at middle and end bays (7059.18019ms)
+  AssertionError [ERR_ASSERTION]: {"fps":10,"x":273.68,"panel":1,"feet":2.9999999999999996,"velocity":6.7,"i":0,"current":3.5299999999999994}
+  
+  true !== false
+  
+      at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/jiyun-lower-panels/contact.test.mjs:9:1061
+      at withTerrainController (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r91-controller-clock.mjs:3:633)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/jiyun-lower-panels/contact.test.mjs:9:397)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

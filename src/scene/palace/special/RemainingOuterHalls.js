@@ -1,3 +1,4 @@
+import {buildJiyunLowerPanels} from './JiyunLowerPanels.js';
 import {buildJiyunRailFit} from './JiyunRailFit.js';
 import {buildCiningFrontFit} from './CiningFrontFit.js';
 import {buildJiyunFrontFit} from './JiyunFrontFit.js';
@@ -899,7 +900,7 @@ function buildTempleTower(kit,item,p) {
   if(p.key==='ciyin')retainLegacyFurniture(c);
   rail(c,p.key+'-upper-front-rail',-A+.15,A-.15,-d/2+.12,-d/2+.12,g.upperY);
   for(const side of[-1,1])rail(c,p.key+'-upper-balcony-end',side*(A-.15),side*(A-.15),-d/2+.12,g.front,g.upperY);
-  if(p.key==='jiyun'&&kit.jiyunRailFit!==false)buildJiyunRailFit(c);
+  if(p.key==='jiyun'&&kit.jiyunRailFit!==false){buildJiyunRailFit(c);if(kit.jiyunLowerPanels!==false)buildJiyunLowerPanels(c);}
   plainCeiling(c,g.upperY+g.upperH-.12);
   g.roof=rolledRoof(c,{yy:g.upperY+g.upperH,rise:2.1});
   if(p.key==='jiyun')buildJiyunNamePlaque(kit,c.f,g);

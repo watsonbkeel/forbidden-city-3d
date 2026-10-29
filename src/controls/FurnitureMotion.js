@@ -96,12 +96,15 @@ export function furnitureRegionIndex(cm){
   if(source._furnitureRegionIndex?.generation===grid)return source._furnitureRegionIndex;
   return source._furnitureRegionIndex={generation:grid,regions:source.colliders.filter(c=>c.furnitureMotionScope).map(c=>c.furnitureMotionScope)};
 }
-export function furnitureScope(cm,fromFeet,toFeet,radius=.5,xishangFeet){
+export function furnitureScope(cm,fromFeet,toFeet,radius=.5,xishangFeet,jiyunUpwardFeet){
   if(!(Number.isFinite(radius)&&radius>0))throw new TypeError('Invalid furniture radius');
   return furnitureRegionIndex(cm).regions.some(r=>{
     // Xishang selects only explicit authoritative PLAYER feet, never eye/NPC vectors.
     if(r.kind==='xishang-roof-transom'&&(!Number.isFinite(xishangFeet)||xishangFeet<1.5))return false;
-    if(r.kind==='jiyun-upper-front-rail'&&(!Number.isFinite(xishangFeet)||xishangFeet<3))return false;
+    // Only the local vertical caller supplies an upward endpoint. This catches
+    // a sub-threshold head entering Jiyun low boards without lowering the
+    // downward handoff threshold or changing NPC/other-region selection.
+    if(r.kind==='jiyun-upper-front-rail'&&(!Number.isFinite(xishangFeet)||Math.max(xishangFeet,Number.isFinite(jiyunUpwardFeet)?jiyunUpwardFeet:-Infinity)<3))return false;
     // Jingqi upper-only adapter: lower ramp/entrance keep their original solver.
     if(r.kind==='jingqi-south-gallery'&&Math.max(fromFeet.y,toFeet.y)<3)return false;
     let enter=0,leave=1;
@@ -264,7 +267,8 @@ export function furnitureTryStep(cm,from,to,radius,stepUp,motion){
  * Dynamic impact stops velocity but is never a floor/jump-reset event. */
 export function resolveFurnitureVertical(cm,state,delta,radius=.5){
   const from=new THREE.Vector3(state.x,state.feetY,state.z);
-  if(!furnitureScope(cm,from,from,radius,state.feetY))return null;
+  const jiyunUpwardFeet=state.airborne&&state.feetY<3&&state.verticalVelocity>0?state.feetY+Math.max(0,state.verticalVelocity-(PLAYER.GRAVITY??14)*delta)*delta:undefined;
+  if(!furnitureScope(cm,from,from,radius,state.feetY,jiyunUpwardFeet))return null;
   const contact=furnitureContact(cm,state.x,state.z,state.feetY,radius);
   if(!state.airborne&&contact.surface?.height===state.feetY)
     return{...state,groundY:state.feetY,verticalVelocity:0,onSupport:true,landed:false,blockedPose:!contact.poseClear};

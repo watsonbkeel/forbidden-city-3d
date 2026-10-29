@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {make} from './fixture.mjs';import {PLAYER} from '../../../src/config/constants.js';
+test('every actual new low surface head contact stays strictly above the 3m downward handoff',()=>{const a=make();try{const owners=a.kit.colliders.filter(c=>c.jiyunLowerPanel);assert.equal(owners.length,46);for(const owner of owners)assert.ok(owner.min.y-PLAYER.HEIGHT>3,'after source-face head impact the player must remain in strict dispatch next frame');}finally{a.kit.dispose(a.f)}});
