@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { buildRoof } from '../../RoofBuilder.js';
+import {JIAOTAI_CROWN_CANDIDATE} from './JiaotaiCrownCandidate.js';
 import { applyPlanarUV } from '../../../utils/GeometryUV.js';
 import {buildJiaotaiRoomFrame} from './JiaotaiRoomFrame.js';
 import {buildJiaotaiCeiling} from './JiaotaiCentralInterior.js';
@@ -192,13 +193,19 @@ export function buildSquareHall(builder, parent, data, y) {
   plaque.position.set(x0, y + H - plaqueH * 0.25, z0 - d / 2 - 0.45);
   plaque.rotation.y = Math.PI;
   shell.add(plaque);
+  const canonicalJiaotai = data.name === '交泰殿' && w === 19 && d === 19 && y + H === 8.36 && x0 === 0 && z0 === 354.1;
+  const selectedJiaotaiCrown = builder.jiaotaiCrownCandidate === undefined ? (canonicalJiaotai ? JIAOTAI_CROWN_CANDIDATE : undefined) : builder.jiaotaiCrownCandidate;
   const roof = buildRoof(builder.library, {
     type: 'pavilion', width: w + 0.4, depth: d + 0.4,
     baseY: y + H, layers: spec.eaveCount, brackets: true, sides: 4,
     height: spec.roofH, overhang: spec.veranda ? 2.2 : 2.5,
+    // Cumulative canonical integration. Explicit false exists solely for
+    // retained pre-change replay; generic pavilion roofs remain unchanged.
+    ...(data.name === '交泰殿' && selectedJiaotaiCrown !== undefined && selectedJiaotaiCrown !== false ? {jiaotaiCrownCandidate:selectedJiaotaiCrown} : {}),
     ...(centralFrame ? {jiaotaiCeilingOpening:centralFrame} : {}),
     ...(data.name === '中和殿' ? { walkingBeastProfile: 'zhonghe' } : {}),
   });
+  if(roof.userData.jiaotaiCrownCandidate)parent.userData.jiaotaiCrownCandidate=roof.userData.jiaotaiCrownCandidate;
   roof.name = `${data.name}·单檐攒尖顶`;
   roof.position.set(x0, 0, z0);
   if (roof.userData.walkingBeasts) (parent.userData.hallWalkingBeasts ??= []).push({ ...roof.userData.walkingBeasts, position: roof.position.toArray() });

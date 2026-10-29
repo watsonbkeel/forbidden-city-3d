@@ -1,3 +1,5 @@
+import {addJiaotaiFrontTerminal} from './palace/special/JiaotaiFrontTerminalCandidate.js';
+import { validateJiaotaiCrownCandidate, createJiaotaiCrownGeometry } from './palace/special/JiaotaiCrownCandidate.js';
 import * as THREE from 'three';
 import { mergeByMaterial } from '../utils/MergeUtils.js';
 import { WUMEN_VERTICAL_PROFILE } from './palace/special/WumenVerticalProfile.js';
@@ -402,7 +404,7 @@ function addHip(ctx, g, pts, r, beasts, walking) {
   const dx = last[0] - prev[0], dz = last[2] - prev[2], l = Math.hypot(dx, dz) || 1;
   const tip = [last[0] + dx / l * r * 3, last[1] + r * 1.6, last[2] + dz / l * r * 3];
   const ridge = add(g, tubeGeometry([...pts, tip], r, ctx), ctx.mat.ridge);
-  if (!ctx.hd || beasts <= 0) return;
+  if (!ctx.hd || beasts <= 0) return ridge;
   // 从檐角往上按弧长摆放：仙人 + 走兽
   const cum = [0];
   for (let i = pts.length - 1; i > 0; i--) {
@@ -436,7 +438,12 @@ function addHip(ctx, g, pts, r, beasts, walking) {
       head.rotation.y = yaw;
     }
   }
-  if (walking) ctx.walkingRows.push(addWalkingBeastRow(ctx, g, ridge, pts, r, walking, add));
+  if (walking) {
+    const row=addWalkingBeastRow(ctx, g, ridge, pts, r, walking, add);
+    if(walking.jiaotaiFront)row.terminal=addJiaotaiFrontTerminal(ctx,g,ridge,pts,r,row,add);
+    ctx.walkingRows.push(row);
+  }
+  return ridge;
 }
 
 function addFinial(ctx, g, y, hf) {
@@ -499,8 +506,13 @@ function singleRoof(ctx, g, o) {
     const corners = t => polyCorners(sides, ex * t, ez * t);
     const edges = corners(1).map((_, k) => ({ k, t0: 0, t1: 1 }));
     const S = hipSurface(ctx, g, { corners, edges, Y, tw, lift, th });
-    for (let c = 0; c < S.n; c++) addHip(ctx, g, S.hipLine(c, 0.02, hr * 0.6), hr, nBeasts - 1, walkingBeastScope(ctx, o._walkingLayer ?? 'single', c));
-    top = addFinial(ctx, g, Y(0) - hr, clamp(height * 0.14, 0.5, 3));
+    for (let c = 0; c < S.n; c++) addHip(ctx, g, S.hipLine(c, 0.02, hr * 0.6), hr, nBeasts - 1, ctx.jiaotaiCrown&&c<2?{level:'single',corner:c,count:7,jiaotaiFront:true}:walkingBeastScope(ctx, o._walkingLayer ?? 'single', c));
+    if(ctx.jiaotaiCrown){
+      const baseY=Y(0)-hr, geometry=createJiaotaiCrownGeometry();
+      const crown=add(g,geometry,ctx.mat.gold);crown.position.y=baseY;
+      ctx.jiaotaiCrownResult={scope:'SOURCE_GUIDED_PARTIAL_MODEL_FIT',baseY,hipStarts:Array.from({length:S.n},(_,c)=>S.hipLine(c,.02,hr*.6)[0]),frontCorners:ctx.walkingRows??[],remaining:geometry.userData.remaining+'; rear corner counts and all statue species unverified'};
+      top=baseY+geometry.boundingBox.max.y;
+    }else top = addFinial(ctx, g, Y(0) - hr, clamp(height * 0.14, 0.5, 3));
   } else if (type === 'gable') {
     const corners = t => polyCorners(4, ex, ez * t);
     const S = hipSurface(ctx, g, { corners, edges: [{ k: 0, t0: 0, t1: 1 }, { k: 2, t0: 0, t1: 1 }], Y, tw, lift, th });
@@ -691,8 +703,11 @@ export function buildRoof(lib, opts) {
     }
   }
   if (opts._wumenUpper !== undefined) throw new Error('Internal Wumen upper-roof option is not a public override');
+  const jiaotaiCrown = validateJiaotaiCrownCandidate(opts);
   const walkingProfile = resolveWalkingBeastProfile(opts);
   const ctx = makeCtx(lib, opts.detail);
+  ctx.jiaotaiCrown = jiaotaiCrown;
+  if(jiaotaiCrown)ctx.walkingRows=[];
   if (walkingProfile) { ctx.walkingProfile = walkingProfile; ctx.walkingRows = []; }
   if (opts.baoheInteriorOpening) {
     // Opening the low soffit exposes the inside of the existing roof body.
@@ -711,6 +726,7 @@ export function buildRoof(lib, opts) {
   g.name = `roof_${opts.type ?? 'wudian'}`;
   const r = roofInto(ctx, g, opts);
   const roof = finalize(ctx, g, r.eaveY);
+  if(ctx.jiaotaiCrownResult)roof.userData.jiaotaiCrownCandidate=ctx.jiaotaiCrownResult;
   if (walkingProfile) roof.userData.walkingBeasts = {
     profile: walkingProfile.id, entityId: walkingProfile.entityId, source: walkingProfile.source,
     status: 'PARTIAL_VERIFY_PENDING', detail: opts.detail ?? 'high', countsPerCorner: walkingProfile.counts,
