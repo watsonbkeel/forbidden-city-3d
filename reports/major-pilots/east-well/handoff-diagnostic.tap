@@ -1,0 +1,30 @@
+TAP version 13
+# Subtest: all four dispatch boundaries preserve .3/.5 kinematic bodies across ULP offsets both directions
+not ok 1 - all four dispatch boundaries preserve .3/.5 kinematic bodies across ULP offsets both directions
+  ---
+  duration_ms: 88.671811
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/east-well/dynamic.test.mjs:4:1'
+  failureType: 'testCodeFailure'
+  error: '{"axis":"x","boundary":-52.4,"radius":0.3,"eps":-1.1368683772161603e-13,"sign":-1,"start":-52.60000000000011,"end":-52.80000000000011,"p":[-52.60000000000011,1.7,459.8],"feet":0}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/east-well/dynamic.test.mjs:4:695)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 354.39321

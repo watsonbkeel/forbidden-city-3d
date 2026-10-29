@@ -1,0 +1,42 @@
+TAP version 13
+# [GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,222, 树木=34棵, 碰撞器=2034
+# [GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,240, 树木=34棵, 碰撞器=2034
+# Subtest: entire garden zone excluding only east-well profile is byte-geometrically and physically identical to parent
+ok 1 - entire garden zone excluding only east-well profile is byte-geometrically and physically identical to parent
+  ---
+  duration_ms: 988.654636
+  type: 'test'
+  ...
+# Subtest: all 34 tree instance buffers and all old GardenBuilder physics stay exact; triangles outside declared bed cut stay exact
+not ok 2 - all 34 tree instance buffers and all old GardenBuilder physics stay exact; triangles outside declared bed cut stay exact
+  ---
+  duration_ms: 4645.904403
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/east-well/retention.test.mjs:7:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + '9992c628d01d55b7cebcc0dc88f5d3e38c2bb3d5a1145951da8ece0616bbb8e7'
+    - '640d168bccd1e840f0fd765e97f6612b2fc50bfeeac8196aed14dd45f9346f66'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '640d168bccd1e840f0fd765e97f6612b2fc50bfeeac8196aed14dd45f9346f66'
+  actual: '9992c628d01d55b7cebcc0dc88f5d3e38c2bb3d5a1145951da8ece0616bbb8e7'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/east-well/retention.test.mjs:7:1704)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 1
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5949.679707

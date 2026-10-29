@@ -1,0 +1,53 @@
+TAP version 13
+# Subtest: platform and every visible surface reject downgrade and wrong ownership and unload/reload cleanly
+ok 1 - platform and every visible surface reject downgrade and wrong ownership and unload/reload cleanly
+  ---
+  duration_ms: 90.499199
+  type: 'test'
+  ...
+# Subtest: east-well witness requires the unique live actual ground and invalidates geometry transforms detach and unbind
+not ok 2 - east-well witness requires the unique live actual ground and invalidates geometry transforms detach and unbind
+  ---
+  duration_ms: 59.353059
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/east-well/lifecycle.test.mjs:3:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    ambiguous rebind must not retain previous live binding
+    + actual - expected
+    
+    + {
+    +   height: 0,
+    +   owner: null,
+    +   regionId: 'east-well',
+    +   source: 'existing-environment-ground-east-well'
+    + }
+    - null
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: ~
+  actual:
+    height: 0
+    owner: ~
+    source: 'existing-environment-ground-east-well'
+    regionId: 'east-well'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/east-well/lifecycle.test.mjs:3:997)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 1
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 410.966634

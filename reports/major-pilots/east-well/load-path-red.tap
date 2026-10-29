@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: whole east well has exact four-column span, square-to-octagon support and eight open roof sectors
+ok 1 - whole east well has exact four-column span, square-to-octagon support and eight open roof sectors
+  ---
+  duration_ms: 43.424353
+  type: 'test'
+  ...
+# Subtest: octagonal roof center stays empty at every roof level rather than a hidden cap
+ok 2 - octagonal roof center stays empty at every roof level rather than a hidden cap
+  ---
+  duration_ms: 25.070695
+  type: 'test'
+  ...
+# Subtest: wrong named zone and unknown profile cannot silently create an east well
+ok 3 - wrong named zone and unknown profile cannot silently create an east well
+  ---
+  duration_ms: 13.667019
+  type: 'test'
+  ...
+# Subtest: each diagonal bearing crosses its actual column and all four hanging bearings close the octagonal load path
+not ok 4 - each diagonal bearing crosses its actual column and all four hanging bearings close the octagonal load path
+  ---
+  duration_ms: 11.272994
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/east-well/assembly.test.mjs:5:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 4
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 4
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/east-well/assembly.test.mjs:5:404)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: every bearing and hip ornament meets the visible roof rather than floating below or above it
+not ok 5 - every bearing and hip ornament meets the visible roof rather than floating below or above it
+  ---
+  duration_ms: 9.938461
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/east-well/assembly.test.mjs:6:1'
+  failureType: 'testCodeFailure'
+  error: 'east-well-diagonal-bearing: {"y":3.5719118742212768,"lo":2.88,"hi":3.080000002980232}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/east-well/assembly.test.mjs:6:575)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 3
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 347.008851

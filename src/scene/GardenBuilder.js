@@ -1,3 +1,4 @@
+import {clipEastWellBedRectangle} from './garden/EastWellGroundFit.js';
 import {clipFubiPoolRectangle} from './garden/FubiArchPool.js';
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
@@ -212,18 +213,23 @@ export class GardenBuilder {
     // 花坛：汉白玉围边 + 草顶
     const bedTops = [];
     for (const [a, b, c, e] of beds) {
-      for(const [x0,x1,z0,z1] of clipTianyiBedRectangle([a+.2,b-.2,c+.2,e-.2]).flatMap(clipFubiPoolRectangle))bedTops.push(quadGeometry(x0,x1,z0,z1,BED_H-.03,lib.tileSize('grass')));
+      for(const [x0,x1,z0,z1] of clipTianyiBedRectangle([a+.2,b-.2,c+.2,e-.2]).flatMap(clipFubiPoolRectangle).flatMap(clipEastWellBedRectangle))bedTops.push(quadGeometry(x0,x1,z0,z1,BED_H-.03,lib.tileSize('grass')));
       const t = 0.3;
       const parts = [
         [(a + b) / 2, c + t / 2, b - a, t], [(a + b) / 2, e - t / 2, b - a, t],
         [a + t / 2, (c + e) / 2, t, e - c - 2 * t], [b - t / 2, (c + e) / 2, t, e - c - 2 * t],
       ];
       for (const [x, z, sx, sz] of parts) {
-        const original=[x-sx/2,x+sx/2,z-sz/2,z+sz/2],pieces=clipTianyiBedRectangle(original).flatMap(clipFubiPoolRectangle);
-        for(const r of pieces){
+        const original=[x-sx/2,x+sx/2,z-sz/2,z+sz/2],pieces=clipTianyiBedRectangle(original).flatMap(clipFubiPoolRectangle).flatMap(before=>clipEastWellBedRectangle(before).map(r=>({r,before})));
+        for(const {r,before} of pieces){
           const unchanged=r===original,w=unchanged?sx:r[1]-r[0],d=unchanged?sz:r[3]-r[2];
           const m=new THREE.Mesh(applyBoxUV(new THREE.BoxGeometry(w,BED_H,d),lib.tileSize('marble')),marble);
           m.position.set(unchanged?x:(r[0]+r[1])/2,BED_H/2,unchanged?z:(r[2]+r[3])/2);
+          // Preserve the pre-existing texture phase on every surviving face.
+          // Splitting the local box changes its center, not the historic UV origin.
+          if(r!==before){const dx=m.position.x-(before===original?x:(before[0]+before[1])/2),dz=m.position.z-(before===original?z:(before[2]+before[3])/2),tile=lib.tileSize('marble'),uv=m.geometry.attributes.uv,n=m.geometry.attributes.normal;
+            for(let i=0;i<uv.count;i++){const ax=Math.abs(n.getX(i)),ay=Math.abs(n.getY(i)),az=Math.abs(n.getZ(i));if(ay>=ax&&ay>=az)uv.setXY(i,uv.getX(i)+dx/tile,uv.getY(i)+dz/tile);else if(ax>=az)uv.setX(i,uv.getX(i)+dz*Math.sign(n.getX(i)||1)/tile);else uv.setX(i,uv.getX(i)+dx*Math.sign(n.getZ(i)||1)/tile);}
+          }
           m.castShadow=true;root.add(m);
         }
       }

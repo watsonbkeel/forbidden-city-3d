@@ -1,0 +1,40 @@
+TAP version 13
+# [GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,222, 树木=34棵, 碰撞器=2034
+# [GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,240, 树木=34棵, 碰撞器=2034
+# Subtest: entire garden zone excluding only east-well profile is byte-geometrically and physically identical to parent
+ok 1 - entire garden zone excluding only east-well profile is byte-geometrically and physically identical to parent
+  ---
+  duration_ms: 1069.795886
+  type: 'test'
+  ...
+# Subtest: all 34 tree instance buffers and all old GardenBuilder physics stay exact; all non-ground geometry stays exact and ground samples outside cut preserve material/height/UV
+not ok 2 - all 34 tree instance buffers and all old GardenBuilder physics stay exact; all non-ground geometry stays exact and ground samples outside cut preserve material/height/UV
+  ---
+  duration_ms: 6206.799631
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/east-well/retention.test.mjs:7:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    [{"before":{"x":-43.76,"z":458.46,"y":0.32,"material":{"name":"marble_material","color":16777215,"map":"","side":0,"roughness":0.7,"vertexColors":false},"uv":[-1.18,0.005]},"after":{"x":-43.76,"z":458.46,"y":0.32,"material":{"name":"marble_material","color":16777215,"map":"","side":0,"roughness":0.7,"vertexColors":false},"uv":[-1.43,0.005]}},{"before":{"x":-42.53,"z":458.46,"y":0.32,"material":{"name":"marble_material","color":16777215,"map":"","side":0,"roughness":0.7,"vertexColors":false},"uv":[-0.565,0.005]},"after":{"x":-42.53,"z":458.46,"y":0.32,"material":{"name":"marble_material","color":16777215,"map":"","side":0,"roughness":0.7,"vertexColors":false},"uv":[-0.815,0.005]}}]
+    
+    63 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 63
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/east-well/retention.test.mjs:7:3088)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 1
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7593.414723
