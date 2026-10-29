@@ -1,0 +1,48 @@
+TAP version 13
+# Subtest: whole World all three gates, central screen and both bypasses allow 10/60Hz bidirectional walk run jump with full source body oracle
+ok 1 - whole World all three gates, central screen and both bypasses allow 10/60Hz bidirectional walk run jump with full source body oracle
+  ---
+  duration_ms: 7275.295792
+  type: 'test'
+  ...
+# Subtest: all new roof and wall-cap high falls settle on real source and exit to visible Environment ground at 10/60Hz
+not ok 2 - all new roof and wall-cap high falls settle on real source and exit to visible Environment ground at 10/60Hz
+  ---
+  duration_ms: 822.908078
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shouan-entry/motion.test.mjs:7:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 4.2417085413654885
+    - 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 4.2417085413654885
+  operator: 'strictEqual'
+  stack: |-
+    file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shouan-entry/motion.test.mjs:7:1100
+    withTerrainController (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r91-controller-clock.mjs:3:633)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shouan-entry/motion.test.mjs:7:300)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: expanded whole entrance domain has no unsupported all-height collision shapes
+ok 3 - expanded whole entrance domain has no unsupported all-height collision shapes
+  ---
+  duration_ms: 1.357819
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 2
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 8420.38268

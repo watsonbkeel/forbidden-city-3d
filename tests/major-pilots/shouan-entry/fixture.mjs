@@ -1,0 +1,2 @@
+import fs from 'node:fs';import {ZoneBase} from '../../../src/scene/zones/ZoneBase.js';import {library} from '../../lib/inner-palace-fixture.mjs';
+export function make(){const data=JSON.parse(fs.readFileSync('data/zones/outer-west.json')),zone=new ZoneBase(library(),data),item=data.items.find(i=>i.kind==='gate'&&i.name==='寿安门'),width=zone.buildGate(item),f=zone.kit.root.children[0];zone.gateWidths.set(item.name,width);zone.kit.root.updateWorldMatrix(true,true);return{zone,kit:zone.kit,data,item,width,f,dispose:()=>zone.kit.dispose(zone.kit.root)}}
