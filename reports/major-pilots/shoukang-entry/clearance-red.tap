@@ -1,0 +1,48 @@
+TAP version 13
+# Subtest: whole Shoukang entrance keeps the sole 3.6 clear portal with two low glazed shoulder walls and two distinct stone stands
+ok 1 - whole Shoukang entrance keeps the sole 3.6 clear portal with two low glazed shoulder walls and two distinct stone stands
+  ---
+  duration_ms: 69.891746
+  type: 'test'
+  ...
+# Subtest: entire south boundary has exactly one real opening rather than extra gaps or old high walls behind new shoulders
+ok 2 - entire south boundary has exactly one real opening rather than extra gaps or old high walls behind new shoulders
+  ---
+  duration_ms: 59.579922
+  type: 'test'
+  ...
+# Subtest: pier white footings leave the real 3.6m body opening and do not reduce it beneath the nominal facade width
+not ok 3 - pier white footings leave the real 3.6m body opening and do not reduce it beneath the nominal facade width
+  ---
+  duration_ms: 26.920793
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/geometry.test.mjs:4:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/geometry.test.mjs:4:262)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 2
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 398.874183

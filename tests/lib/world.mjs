@@ -1,3 +1,5 @@
+import {shoukangEntryGeometry} from '../../src/scene/palace/special/ShoukangEntry.js';
+import {bindShoukangEntryEnvironmentWitness} from '../../src/controls/ShoukangEntryEnvironmentWitness.js';
 import {bindYanshouCompoundEnvironmentWitness} from '../../src/controls/YanshouCompoundEnvironmentWitness.js';
 import {bindCiningGateEnvironmentWitness} from '../../src/controls/CiningGateEnvironmentWitness.js';
 import {ciningGateGeometry} from '../../src/scene/palace/special/CiningGate.js';
@@ -51,6 +53,7 @@ export const parseRot = r => (r === undefined || r === null ? 0 : typeof r === '
 
 /** 门通行几何；profile 的 front/rear 包含各自完整坡道，platformY 仅用于台面起点。 */
 export function gateGeom(item) {
+  if(item.gateProfile==='shoukang-entry'){const p=shoukangEntryGeometry(item);return{x:p.x,z:p.z,rot:0,dir:[0,1],half:3.15,front:1.65,rear:3.15,platformY:p.floor,profile:{...p,ramps:[],toWorld:(x,z)=>[p.x+x,p.z+z]}};}
   if (item.gateProfile === 'shunzhen') {
     const p=shunzhenProfile(item),profile={...p,rot:0,platformY:0,portalCenters:p.portals.map(o=>o.x),ramps:[],toWorld:(x,z)=>[p.x+x,p.z+z]};
     return {x:p.x,z:p.z,rot:0,dir:[0,1],half:p.depth/2,front:p.depth/2,rear:p.depth/2,platformY:0,profile};
@@ -277,7 +280,7 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true, reta
   }
 
   let environmentScene=null;
-  if(cm.colliders.some(c=>['yanshou-compound','cining-gate','ciyin-front','shouan-entry'].includes(c.furnitureMotionScope?.kind))){const {Environment}=await src('scene/Environment.js');environmentScene=new THREE.Scene();const env=new Environment(environmentScene,null,lib);env.setupGround();environmentScene.updateMatrixWorld(true);bindShouanEntryEnvironmentWitness(cm,environmentScene);bindCiyinFacadeEnvironmentWitness(cm,environmentScene);bindCiningGateEnvironmentWitness(cm,environmentScene);bindYanshouCompoundEnvironmentWitness(cm,environmentScene);}
+  if(cm.colliders.some(c=>['shoukang-entry','yanshou-compound','cining-gate','ciyin-front','shouan-entry'].includes(c.furnitureMotionScope?.kind))){const {Environment}=await src('scene/Environment.js');environmentScene=new THREE.Scene();const env=new Environment(environmentScene,null,lib);env.setupGround();environmentScene.updateMatrixWorld(true);bindShouanEntryEnvironmentWitness(cm,environmentScene);bindShoukangEntryEnvironmentWitness(cm,environmentScene);bindCiyinFacadeEnvironmentWitness(cm,environmentScene);bindCiningGateEnvironmentWitness(cm,environmentScene);bindYanshouCompoundEnvironmentWitness(cm,environmentScene);}
   const gates = [], halls = [];
   for (const { json } of zones) for (const item of json.items) {
     if (item.kind === 'gate' || item.kind === 'cityGate') gates.push({ zone: json.id, item, ...gateGeom(item) });

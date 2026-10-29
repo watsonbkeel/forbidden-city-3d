@@ -1,3 +1,5 @@
+import {registerShoukangRetainedPerimeter} from '../palace/special/ShoukangRetainedPerimeter.js';
+import {buildShoukangEntry,validateShoukangEntryCourtWall} from '../palace/special/ShoukangEntry.js';
 import {buildCiningGate} from '../palace/special/CiningGate.js';
 import {buildShouanEntry,validateShouanEntryCourtWall} from '../palace/special/ShouanEntry.js';
 import {applyFengxianFrontVats} from '../palace/special/FengxianFrontVats.js';
@@ -332,6 +334,7 @@ export class ZoneBase {
   }
 
   buildGate(item) {
+    if(item.gateProfile==='shoukang-entry'){const walls=this.zoneJson.items.filter(q=>q.kind==='courtWalls'&&q.gates?.some(r=>r.gate==='寿康门'));if(walls.length!==1)throw Error('Shoukang entry requires unique actual court wall');validateShoukangEntryCourtWall(walls[0]);const built=buildShoukangEntry(this.kit,item,this.zoneJson.id);this.gateGeometries.set(item.name,built.geometry);return built.width;}
     if(item.gateProfile==='cining-entry'){const built=buildCiningGate(this.kit,item,this.zoneJson.id);this.gateGeometries.set(item.name,built.g);return built.width;}
     if(item.gateProfile==='shouan-entry'){const walls=this.zoneJson.items.filter(q=>q.kind==='courtWalls'&&q.gates?.some(r=>r.gate==='寿安门'));if(walls.length!==1)throw Error('Shouan requires a unique actual court wall');validateShouanEntryCourtWall(walls[0]);const built=buildShouanEntry(this.kit,item,this.zoneJson.id);this.gateGeometries.set(item.name,built.geometry);return built.width;}
     if(item.gateProfile==='xiqing'){const built=buildXiqingGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,built.geometry);return built.width;}
@@ -380,6 +383,7 @@ export class ZoneBase {
   }
 
   buildCourtWalls(item) {
+    if(item.gates?.some(g=>g.gate==='寿康门')&&this.gateGeometries.get('寿康门')?.profile==='shoukang-entry'){validateShoukangEntryCourtWall(item);const {x0,x1,z0,z1}=item,start=this.kit.root.children.length;this.kit.wall(x0,z1,x1,z1);this.kit.wall(x0,z0,x0,z1);this.kit.wall(x1,z0,x1,z1);registerShoukangRetainedPerimeter(this.kit,this.kit.root.children.slice(start));return;}
     if(item.gates?.some(g=>g.gate==='寿安门')&&this.gateGeometries.get('寿安门')?.profile==='shouan-entry'){validateShouanEntryCourtWall(item);const {x0,x1,z0,z1}=item;this.kit.wall(x0,z1,x1,z1);this.kit.wall(x0,z0,x0,z1);this.kit.wall(x1,z0,x1,z1);return;}
 
     const { x0, x1, z0, z1, gates } = resolveCourtWallContract(item, this.gateWidths);

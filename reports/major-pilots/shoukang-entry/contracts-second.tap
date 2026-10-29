@@ -1,0 +1,224 @@
+TAP version 13
+# non-target-c37-render-sha256 9261d89db0a1eaeacbea3050e4f736cc6c65298c108c6b81b74ef33f7437c637
+# Subtest: actual parent gate roof all 18 columns foundation paving side walls and three old beams survive exactly
+ok 1 - actual parent gate roof all 18 columns foundation paving side walls and three old beams survive exactly
+  ---
+  duration_ms: 89.633476
+  type: 'test'
+  ...
+# Subtest: all original courtyard walls and exact 25.3 south cut remain unchanged rather than hiding screen-wall conflict
+ok 2 - all original courtyard walls and exact 25.3 south cut remain unchanged rather than hiding screen-wall conflict
+  ---
+  duration_ms: 41.465271
+  type: 'test'
+  ...
+# Subtest: historical Cining non-target outer-west data and complete graph match the actual c37 parent ZoneBase
+ok 3 - historical Cining non-target outer-west data and complete graph match the actual c37 parent ZoneBase
+  ---
+  duration_ms: 4126.177173
+  type: 'test'
+  ...
+# Subtest: single entrance low threshold and open leaves keep actual full body clear at 10/60Hz both ways
+ok 4 - single entrance low threshold and open leaves keep actual full body clear at 10/60Hz both ways
+  ---
+  duration_ms: 178.640842
+  type: 'test'
+  ...
+# Subtest: new south wall caps cannot provide access through either actual unchanged high side-wall body
+ok 5 - new south wall caps cannot provide access through either actual unchanged high side-wall body
+  ---
+  duration_ms: 4045.085607
+  type: 'test'
+  ...
+# Subtest: standing seated moving NPC blockers do not create a false landing or jump reset on entrance threshold and actual perimeter ground
+ok 6 - standing seated moving NPC blockers do not create a false landing or jump reset on entrance threshold and actual perimeter ground
+  ---
+  duration_ms: 192.282221
+  type: 'test'
+  ...
+# Subtest: generic .3/.5 callers traverse threshold and bounded perimeter ground in both directions
+ok 7 - generic .3/.5 callers traverse threshold and bounded perimeter ground in both directions
+  ---
+  duration_ms: 93.206729
+  type: 'test'
+  ...
+# Subtest: all reachable narrow strip boundaries and entry handoff survive ULP offsets in both directions for .3/.5 bodies
+ok 8 - all reachable narrow strip boundaries and entry handoff survive ULP offsets in both directions for .3/.5 bodies
+  ---
+  duration_ms: 48.992171
+  type: 'test'
+  ...
+# Subtest: 10/60Hz controls cross actual reachable perimeter and entrance domain handoffs without stale ground
+ok 9 - 10/60Hz controls cross actual reachable perimeter and entrance domain handoffs without stale ground
+  ---
+  duration_ms: 138.275035
+  type: 'test'
+  ...
+# Subtest: 12m falls land on actual central/shoulder/wall roofs and independent stone stands with no proxy intrusion
+not ok 10 - 12m falls land on actual central/shoulder/wall roofs and independent stone stands with no proxy intrusion
+  ---
+  duration_ms: 2882.112689
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/fall.test.mjs:2:1'
+  failureType: 'testCodeFailure'
+  error: '{"fps":10,"x":284.2,"z":191.4,"feet":6.044925900273818}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/fall.test.mjs:2:808
+    withTerrainController (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r91-controller-clock.mjs:3:633)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/fall.test.mjs:2:526)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: whole Shoukang entrance keeps the sole 3.6 clear portal with two low glazed shoulder walls and two distinct stone stands
+ok 11 - whole Shoukang entrance keeps the sole 3.6 clear portal with two low glazed shoulder walls and two distinct stone stands
+  ---
+  duration_ms: 67.767973
+  type: 'test'
+  ...
+# Subtest: entire south boundary has exactly one real opening rather than extra gaps or old high walls behind new shoulders
+ok 12 - entire south boundary has exactly one real opening rather than extra gaps or old high walls behind new shoulders
+  ---
+  duration_ms: 60.563597
+  type: 'test'
+  ...
+# Subtest: pier white footings leave the real 3.6m body opening and do not reduce it beneath the nominal facade width
+ok 13 - pier white footings leave the real 3.6m body opening and do not reduce it beneath the nominal facade width
+  ---
+  duration_ms: 31.007999
+  type: 'test'
+  ...
+# Subtest: named entrance and sole south boundary reject ambiguous or moved source inputs
+ok 14 - named entrance and sole south boundary reject ambiguous or moved source inputs
+  ---
+  duration_ms: 79.702638
+  type: 'test'
+  ...
+# Subtest: retained wall registration rejects changed closed source vertices material and frame before installing any partial owner
+ok 15 - retained wall registration rejects changed closed source vertices material and frame before installing any partial owner
+  ---
+  duration_ms: 13.59291
+  type: 'test'
+  ...
+# Subtest: all four exact anchors reject duplicate downgrade movement ground injection or wrong-domain ownership and unload fully
+ok 16 - all four exact anchors reject duplicate downgrade movement ground injection or wrong-domain ownership and unload fully
+  ---
+  duration_ms: 121.557103
+  type: 'test'
+  ...
+# Subtest: each entrance or perimeter witness requires unique live actual Environment and invalidates mutations
+ok 17 - each entrance or perimeter witness requires unique live actual Environment and invalidates mutations
+  ---
+  duration_ms: 74.607893
+  type: 'test'
+  ...
+# Subtest: all eleven actual surface owners reject duplicate and downgrade and tagged reload remains exact
+ok 18 - all eleven actual surface owners reject duplicate and downgrade and tagged reload remains exact
+  ---
+  duration_ms: 74.243216
+  type: 'test'
+  ...
+# Subtest: full radius plus maximum substep handoff has actual ground on both outer perimeter edges
+ok 19 - full radius plus maximum substep handoff has actual ground on both outer perimeter edges
+  ---
+  duration_ms: 42.085782
+  type: 'test'
+  ...
+# Subtest: gold outlines do not hide the source red panels or green center fields under depth bias
+ok 20 - gold outlines do not hide the source red panels or green center fields under depth bias
+  ---
+  duration_ms: 70.482091
+  type: 'test'
+  ...
+# Subtest: real TextureLibrary final merge keeps every private color face/material/depth setting without vertex-color flags or changing shared wall materials
+ok 21 - real TextureLibrary final merge keeps every private color face/material/depth setting without vertex-color flags or changing shared wall materials
+  ---
+  duration_ms: 68.742595
+  type: 'test'
+  ...
+# all-height-strip-census north 12
+# all-height-strip-census east 11
+# all-height-strip-census west 11
+# Subtest: original whole Shoukang gate to hall route walks runs and jumps both ways at 10/60Hz
+ok 22 - original whole Shoukang gate to hall route walks runs and jumps both ways at 10/60Hz
+  ---
+  duration_ms: 8295.854018
+  type: 'test'
+  ...
+# Subtest: all-height perimeter plus 1.25m handoff census contains no foreign overhead or triangle-support proxy
+ok 23 - all-height perimeter plus 1.25m handoff census contains no foreign overhead or triangle-support proxy
+  ---
+  duration_ms: 3.553424
+  type: 'test'
+  ...
+# Subtest: real ground lanes beside both complete walls and north edge remain usable both ways
+ok 24 - real ground lanes beside both complete walls and north edge remain usable both ways
+  ---
+  duration_ms: 310.496886
+  type: 'test'
+  ...
+# Subtest: retained full walls have three bounded body owners and exact long-cap exception does not relax any other source
+ok 25 - retained full walls have three bounded body owners and exact long-cap exception does not relax any other source
+  ---
+  duration_ms: 114.974657
+  type: 'test'
+  ...
+# Subtest: complete retained cap circuit walks through both north corners without penetrating real source at 10/60Hz
+ok 26 - complete retained cap circuit walks through both north corners without penetrating real source at 10/60Hz
+  ---
+  duration_ms: 13733.462309
+  type: 'test'
+  ...
+# Subtest: 12m vertical falls on full retained caps, both sides and both north corners keep real source separation
+ok 27 - 12m vertical falls on full retained caps, both sides and both north corners keep real source separation
+  ---
+  duration_ms: 2254.953481
+  type: 'test'
+  ...
+# non-target-parent-render-sha256 80466c8775584025f05f6f8e23d0ede81d464f1e26043efed481746f2f701e64
+# Subtest: actual parent central roof and three complete retained walls render unchanged while their original collision proxies remain
+ok 28 - actual parent central roof and three complete retained walls render unchanged while their original collision proxies remain
+  ---
+  duration_ms: 112.979475
+  type: 'test'
+  ...
+# Subtest: all non-target outer-west complete render physical metadata navigation and rooms equal actual parent ZoneBase excluding only gate and explicitly augmented court perimeter
+ok 29 - all non-target outer-west complete render physical metadata navigation and rooms equal actual parent ZoneBase excluding only gate and explicitly augmented court perimeter
+  ---
+  duration_ms: 4079.90405
+  type: 'test'
+  ...
+# Subtest: all entrance and retained wall source triangles survive final merge; each source box is closed outward geometry
+ok 30 - all entrance and retained wall source triangles survive final merge; each source box is closed outward geometry
+  ---
+  duration_ms: 132.503992
+  type: 'test'
+  ...
+# non-target-parent-render-sha256 aa9a2a743ca9e7eab636e648cefb098e22fb4a9633d1a6be84ced4087219a67c
+# Subtest: actual 9a front house retains roof columns south entrance platform windows and all unaffected collision bodies
+ok 31 - actual 9a front house retains roof columns south entrance platform windows and all unaffected collision bodies
+  ---
+  duration_ms: 143.392351
+  type: 'test'
+  ...
+# Subtest: historical accepted Yanshou input non-target outer-west complete render physical metadata navigation and rooms equal actual parent RemainingOuterHalls plus ZoneBase
+ok 32 - historical accepted Yanshou input non-target outer-west complete render physical metadata navigation and rooms equal actual parent RemainingOuterHalls plus ZoneBase
+  ---
+  duration_ms: 3822.982625
+  type: 'test'
+  ...
+1..32
+# tests 32
+# suites 0
+# pass 31
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 49100.691144

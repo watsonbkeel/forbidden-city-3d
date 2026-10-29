@@ -1,3 +1,4 @@
+import {bindShoukangEntryEnvironmentWitness,unbindShoukangEntryEnvironmentWitness} from '../../controls/ShoukangEntryEnvironmentWitness.js';
 import {bindYanshouCompoundEnvironmentWitness,unbindYanshouCompoundEnvironmentWitness} from '../../controls/YanshouCompoundEnvironmentWitness.js';
 import {bindCiningGateEnvironmentWitness,unbindCiningGateEnvironmentWitness} from '../../controls/CiningGateEnvironmentWitness.js';
 import {bindCiyinFacadeEnvironmentWitness,unbindCiyinFacadeEnvironmentWitness} from '../../controls/CiyinFacadeEnvironmentWitness.js';
@@ -85,7 +86,7 @@ export class ZoneManager {
     this.collisionManager = collisionManager;
     bindChengqianEnvironmentWitness(collisionManager,scene);
     bindXishangEnvironmentWitness(collisionManager,scene);
-    bindShouanEntryEnvironmentWitness(collisionManager,scene);
+    bindShouanEntryEnvironmentWitness(collisionManager,scene);bindShoukangEntryEnvironmentWitness(collisionManager,scene);
     bindCiyinFacadeEnvironmentWitness(collisionManager,scene);
     bindCiningGateEnvironmentWitness(collisionManager,scene);bindYanshouCompoundEnvironmentWitness(collisionManager,scene);
 
@@ -412,7 +413,7 @@ export class ZoneManager {
     this.silhouettes.clear();
     unbindChengqianEnvironmentWitness(this.collisionManager);
     unbindXishangEnvironmentWitness(this.collisionManager);
-    unbindShouanEntryEnvironmentWitness(this.collisionManager);
+    unbindShouanEntryEnvironmentWitness(this.collisionManager);unbindShoukangEntryEnvironmentWitness(this.collisionManager);
     unbindCiyinFacadeEnvironmentWitness(this.collisionManager);
     unbindCiningGateEnvironmentWitness(this.collisionManager);unbindYanshouCompoundEnvironmentWitness(this.collisionManager);
     delete this.scene.userData.zoneManager;

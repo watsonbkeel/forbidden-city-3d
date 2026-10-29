@@ -1,0 +1,115 @@
+TAP version 13
+# Subtest: standing seated moving NPC blockers do not create a false landing or jump reset on entrance threshold and actual perimeter ground
+not ok 1 - standing seated moving NPC blockers do not create a false landing or jump reset on entrance threshold and actual perimeter ground
+  ---
+  duration_ms: 129.037053
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/dynamic.test.mjs:3:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/dynamic.test.mjs:3:1129
+    withTerrainController (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r91-controller-clock.mjs:3:633)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/dynamic.test.mjs:3:298)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: generic .3/.5 callers traverse threshold and bounded perimeter ground in both directions
+not ok 2 - generic .3/.5 callers traverse threshold and bounded perimeter ground in both directions
+  ---
+  duration_ms: 126.74092
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/dynamic.test.mjs:4:1'
+  failureType: 'testCodeFailure'
+  error: '{"radius":0.5,"reverse":false,"axis":"x","p":[266.8500000000001,1.7,230],"feet":0}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/dynamic.test.mjs:4:660)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: all reachable narrow strip boundaries and entry handoff survive ULP offsets in both directions for .3/.5 bodies
+not ok 3 - all reachable narrow strip boundaries and entry handoff survive ULP offsets in both directions for .3/.5 bodies
+  ---
+  duration_ms: 33.002658
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/dynamic.test.mjs:5:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/dynamic.test.mjs:5:661)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: all four exact anchors reject duplicate downgrade movement ground injection or wrong-domain ownership and unload fully
+ok 4 - all four exact anchors reject duplicate downgrade movement ground injection or wrong-domain ownership and unload fully
+  ---
+  duration_ms: 109.150916
+  type: 'test'
+  ...
+# Subtest: each entrance or perimeter witness requires unique live actual Environment and invalidates mutations
+ok 5 - each entrance or perimeter witness requires unique live actual Environment and invalidates mutations
+  ---
+  duration_ms: 69.883456
+  type: 'test'
+  ...
+# Subtest: all eleven actual surface owners reject duplicate and downgrade and tagged reload remains exact
+ok 6 - all eleven actual surface owners reject duplicate and downgrade and tagged reload remains exact
+  ---
+  duration_ms: 70.071462
+  type: 'test'
+  ...
+# non-target-parent-render-sha256 80466c8775584025f05f6f8e23d0ede81d464f1e26043efed481746f2f701e64
+# Subtest: actual parent central roof and three complete retained walls render unchanged while their original collision proxies remain
+ok 7 - actual parent central roof and three complete retained walls render unchanged while their original collision proxies remain
+  ---
+  duration_ms: 108.637557
+  type: 'test'
+  ...
+# Subtest: all non-target outer-west complete render physical metadata navigation and rooms equal actual parent ZoneBase excluding only gate and explicitly augmented court perimeter
+ok 8 - all non-target outer-west complete render physical metadata navigation and rooms equal actual parent ZoneBase excluding only gate and explicitly augmented court perimeter
+  ---
+  duration_ms: 3881.819437
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 5
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5331.114149

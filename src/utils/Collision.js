@@ -58,6 +58,7 @@ export class CollisionManager {
       : this.colliders.some(c => c.triangleSupport?.id === triangleSupport.id))) throw new TypeError('Duplicate triangle owner');
     if(furnitureMotionScope?.kind==='xishang-roof-transom'&&this.colliders.some(c=>c.furnitureMotionScope?.kind==='xishang-roof-transom'))throw new TypeError('Duplicate Xishang original anchor');
     if(furnitureMotionScope?.kind==='jiyun-upper-front-rail'&&this.colliders.some(c=>c.furnitureMotionScope?.kind==='jiyun-upper-front-rail'))throw new TypeError('Duplicate Jiyun original anchor');
+    if(furnitureMotionScope?.kind==='shoukang-entry'&&this.colliders.some(c=>c.furnitureMotionScope?.kind==='shoukang-entry'&&c.furnitureMotionScope.id===furnitureMotionScope.id))throw new TypeError('Duplicate Shoukang entry original anchor');
     if(furnitureMotionScope?.kind==='shouan-entry'&&this.colliders.some(c=>c.furnitureMotionScope?.kind==='shouan-entry'))throw new TypeError('Duplicate Shouan entry original anchor');
     if(furnitureMotionScope?.kind==='ciyin-front'&&this.colliders.some(c=>c.furnitureMotionScope?.kind==='ciyin-front'))throw new TypeError('Duplicate Ciyin facade original anchor');
     if(furnitureMotionScope?.kind==='yanshou-compound'&&this.colliders.some(c=>c.furnitureMotionScope?.kind==='yanshou-compound'))throw new TypeError('Duplicate Yanshou compound original anchor');
@@ -428,6 +429,7 @@ export class CollisionManager {
       if(collider.furnitureMotionScope&&object.furnitureMotionScope===undefined)throw new TypeError('Furniture scope cannot disappear');
       if(collider.furnitureMotionScope?.kind==='xishang-roof-transom'&&(object.furnitureMotionScope?.kind!=='xishang-roof-transom'||object.furnitureMotionScope?.id!==collider.furnitureMotionScope.id))throw new TypeError('Xishang anchor ownership cannot change');
       if(collider.furnitureMotionScope?.kind==='jiyun-upper-front-rail'&&(object.furnitureMotionScope?.kind!=='jiyun-upper-front-rail'||object.furnitureMotionScope?.id!==collider.furnitureMotionScope.id))throw new TypeError('Jiyun anchor ownership cannot change');
+      if(collider.furnitureMotionScope?.kind==='shoukang-entry'&&(object.furnitureMotionScope?.kind!=='shoukang-entry'||object.furnitureMotionScope?.id!==collider.furnitureMotionScope.id))throw new TypeError('Shoukang entry anchor ownership cannot change');
       if(collider.furnitureMotionScope?.kind==='shouan-entry'&&(object.furnitureMotionScope?.kind!=='shouan-entry'||object.furnitureMotionScope?.id!==collider.furnitureMotionScope.id))throw new TypeError('Shouan entry anchor ownership cannot change');
       if(collider.furnitureMotionScope?.kind==='ciyin-front'&&(object.furnitureMotionScope?.kind!=='ciyin-front'||object.furnitureMotionScope?.id!==collider.furnitureMotionScope.id))throw new TypeError('Ciyin facade anchor ownership cannot change');
       if(collider.furnitureMotionScope?.kind==='yanshou-compound'&&(object.furnitureMotionScope?.kind!=='yanshou-compound'||object.furnitureMotionScope?.id!==collider.furnitureMotionScope.id))throw new TypeError('Yanshou compound anchor ownership cannot change');
@@ -435,6 +437,7 @@ export class CollisionManager {
       const furnitureMotionScope=cloneFurnitureMotionScope(object.furnitureMotionScope,box);
       if(furnitureMotionScope?.kind==='xishang-roof-transom'&&this.colliders.some(c=>c!==collider&&c.furnitureMotionScope?.kind==='xishang-roof-transom'))throw new TypeError('Duplicate Xishang original anchor');
       if(furnitureMotionScope?.kind==='jiyun-upper-front-rail'&&this.colliders.some(c=>c!==collider&&c.furnitureMotionScope?.kind==='jiyun-upper-front-rail'))throw new TypeError('Duplicate Jiyun original anchor');
+      if(furnitureMotionScope?.kind==='shoukang-entry'&&this.colliders.some(c=>c!==collider&&c.furnitureMotionScope?.kind==='shoukang-entry'&&c.furnitureMotionScope.id===furnitureMotionScope.id))throw new TypeError('Duplicate Shoukang entry original anchor');
       if(furnitureMotionScope?.kind==='shouan-entry'&&this.colliders.some(c=>c!==collider&&c.furnitureMotionScope?.kind==='shouan-entry'))throw new TypeError('Duplicate Shouan entry original anchor');
       if(furnitureMotionScope?.kind==='ciyin-front'&&this.colliders.some(c=>c!==collider&&c.furnitureMotionScope?.kind==='ciyin-front'))throw new TypeError('Duplicate Ciyin facade original anchor');
       if(furnitureMotionScope?.kind==='yanshou-compound'&&this.colliders.some(c=>c!==collider&&c.furnitureMotionScope?.kind==='yanshou-compound'))throw new TypeError('Duplicate Yanshou compound original anchor');

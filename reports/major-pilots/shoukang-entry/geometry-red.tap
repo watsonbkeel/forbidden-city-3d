@@ -1,0 +1,48 @@
+TAP version 13
+# Subtest: whole Shoukang entrance keeps the sole 3.6 clear portal with two low glazed shoulder walls and two distinct stone stands
+not ok 1 - whole Shoukang entrance keeps the sole 3.6 clear portal with two low glazed shoulder walls and two distinct stone stands
+  ---
+  duration_ms: 30.246562
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/geometry.test.mjs:2:1'
+  failureType: 'testCodeFailure'
+  error: 'source entrance metadata required'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/geometry.test.mjs:2:195)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: entire south boundary has exactly one real opening rather than extra gaps or old high walls behind new shoulders
+not ok 2 - entire south boundary has exactly one real opening rather than extra gaps or old high walls behind new shoulders
+  ---
+  duration_ms: 16.651891
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/geometry.test.mjs:3:1'
+  failureType: 'testCodeFailure'
+  error: "Cannot read properties of undefined (reading 'frontWall')"
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/geometry.test.mjs:3:627)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 0
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 288.45607

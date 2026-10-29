@@ -1,0 +1,38 @@
+TAP version 13
+# Subtest: single entrance low threshold and open leaves keep actual full body clear at 10/60Hz both ways
+not ok 1 - single entrance low threshold and open leaves keep actual full body clear at 10/60Hz both ways
+  ---
+  duration_ms: 100.101042
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/contact.test.mjs:2:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"label":{"fps":10,"run":false,"jump":false,"index":0,"i":11,"target":[288.6,199.5]},"feet":0,"p":[288.6000391444103,1.7,192.20901157038128],"owner":{"kind":"visible-box","index":0,"role":"shoukang-entry-threshold"}}
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    inspect (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/motion-helper.mjs:2:338)
+    file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/motion-helper.mjs:3:900
+    withTerrainController (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r91-controller-clock.mjs:3:633)
+    travel (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/motion-helper.mjs:3:90)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/contact.test.mjs:2:305)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 358.144704
