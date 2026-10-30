@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {applyShunzhenNorthFrame} from './ShunzhenNorthFrame.js';
 import {buildStuddedDoor} from '../../HallKit.js';
 
 const SOURCE='https://www.dpm.org.cn/explore/building/236543.html';
@@ -33,5 +34,6 @@ export function buildShunzhenGate(kit,item){
  // One place/card/teleport identity for all three physical portals.
  kit.mapRect(f,'gate','顺贞门',p.wallInterfaceWidth,p.depth,{gateProfile:'shunzhen',dimensionStatus:p.dimensionStatus,portalCount:3});
  f.userData.structure=p;
+ applyShunzhenNorthFrame(kit,f,p);
  return p.wallInterfaceWidth;
 }

@@ -1,3 +1,5 @@
+> R154 development backup: current runtime source0838652c557981eb309e260ada6f53f2b650c892. Earlier identities below are historical. See docs/releases/R154.md for mapping,18/18 scoped and R9011/11 checks,218 historical failures and unfinished white-stone base/GPU validation. No new raw logs/reports or major-release acceptance.
+
 > R153 development backup: current runtime sourcebc8b65aafb6e16e18d6f4093d9e50157d15dae41. Earlier identities below are historical. See docs/releases/R153.md for mapping,39/39 scoped checks,218 historical failures and whole-world7/8 with retained10Hz west-boundary stop. No new raw logs/reports or GPU/mobile acceptance.
 
 > R152 development backup: current runtime source3d1fd4956afd878de0058a8d5b0ea1536f13ea9d. Earlier identities below are historical. See docs/releases/R152.md for mapping,41/41 and6/6 scoped checks,218 historical failures and uncompleted descending segments/GPU validation. No new raw logs/reports or major-release acceptance.
