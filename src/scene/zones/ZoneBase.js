@@ -1,3 +1,4 @@
+import {buildShoukangRearSouth} from '../palace/special/ShoukangRearSouth.js';
 import {applyJingrenGateStoneFrame} from '../palace/special/JingrenGateStoneFrame.js';
 import {finishYikunInnerSouthWindows} from '../palace/special/YikunInnerSouthWindows.js';
 import {finishChangchunSouthWindows} from '../palace/special/ChangchunSouthWindows.js';
@@ -234,6 +235,8 @@ export class ZoneBase {
       if(annexContext)return applyEastUnknownAnnexInventory(this.kit,annexContext,built);
       return inventoryContext?applyEastUnknownThroneInventory(this.kit,inventoryContext,built):built;
     };
+    const shoukangRear=buildShoukangRearSouth(this.kit,item,{zoneId:this.zoneJson.id,itemIndex,zoneJson:this.zoneJson});
+    if(shoukangRear)return finish(shoukangRear);
     const fengxianRear=buildFengxianRearHall(this.kit,item,itemIndex);
     if(fengxianRear)return finish(fengxianRear);
     if(this.zoneJson.id==='east-six'&&this.zoneJson.items.indexOf(item)===38)return finish(buildJingyangRearFacade(this.kit,item,this.zoneJson.id));

@@ -1,3 +1,5 @@
+> R156 development backup: current runtime sourcee14c61911844e7aa6ce7c0251e64fd0ad61e67f4. Earlier identities below are historical. See docs/releases/R156.md for mapping,16/16 scoped checks,24 passages18press12high-drop cases,218 historical failures and rear pillars/doors/interior/GPU limits. No new raw logs/reports or major-release acceptance.
+
 > R155 development backup: current runtime source809537d21a02d1d22132900cc9b671b23a2d8221. Earlier identities below are historical. See docs/releases/R155.md for mapping,17/17 local checks and bounded controller cases,218 historical failures and old doors/roof/rear/GPU limits. No new raw logs/reports or major-release acceptance.
 
 > R154 development backup: current runtime source0838652c557981eb309e260ada6f53f2b650c892. Earlier identities below are historical. See docs/releases/R154.md for mapping,18/18 scoped and R9011/11 checks,218 historical failures and unfinished white-stone base/GPU validation. No new raw logs/reports or major-release acceptance.
