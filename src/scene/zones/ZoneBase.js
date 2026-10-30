@@ -1,3 +1,4 @@
+import {applyJingrenGateStoneFrame} from '../palace/special/JingrenGateStoneFrame.js';
 import {finishYikunInnerSouthWindows} from '../palace/special/YikunInnerSouthWindows.js';
 import {finishChangchunSouthWindows} from '../palace/special/ChangchunSouthWindows.js';
 import {finishWuyingSouthWindows} from '../palace/special/WuyingSouthWindows.js';
@@ -387,6 +388,7 @@ export class ZoneBase {
     };
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
     const width = this.kit.gate(params);
+    applyJingrenGateStoneFrame(this.kit, this.kit.root.children.at(-1), {zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     applyZuoyiDoorFront(this.kit, this.kit.root.children.at(-1), {zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     if (item.gateProfile === 'zhaode' || item.gateProfile === 'zhendu' || item.gateProfile === 'huangji') this.gateGeometries.set(item.name, this.kit.root.children.at(-1).userData.gateGeometry);
     if(this.zoneJson.id==='east-six'&&this.zoneJson.items.indexOf(item)===7)applyChengqianGateArrival(this.kit,this.kit.root.children.at(-1),item,this.zoneJson,7);
