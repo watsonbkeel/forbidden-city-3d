@@ -1,3 +1,4 @@
+import {applyKunningNorthBalustrades} from './KunningNorthBalustrades.js';
 import * as THREE from 'three';
 import {buildStuddedDoor} from '../../HallKit.js';
 import {createGatePlaque} from './GatePlaques.js';
@@ -79,6 +80,7 @@ export function buildKunningGate(kit,item){
  kit.mapRect(f,'gate','坤宁门',W,D,{gateProfile:'kunning',platformY:ph,front:'north',dimensionStatus:FIT});
  g.supports=kit.walkables.filter(w=>w.kunningGate).map(w=>w.type==='box'?{type:w.type,min:w.box.min.toArray(),max:w.box.max.toArray(),rescue:false,supportId:w.supportId}:{...w});
  f.userData.structure={...g,id:'garden/kunning-gate',x:item.x,z:item.z,gateKind:'three-bay',gateProfile:'kunning',storeys:1,eaveCount:1,portalCount:1,front:'north',dimensionStatus:FIT,accepted:false};
+ applyKunningNorthBalustrades(kit,f,item);
  return W;
 }
 function wedge(x0,x1,z0,z1,y0,y1){
