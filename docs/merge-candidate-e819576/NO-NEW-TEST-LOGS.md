@@ -1,3 +1,19 @@
+> R156 development backup: current runtime sourcee14c61911844e7aa6ce7c0251e64fd0ad61e67f4. Earlier identities below are historical. See docs/releases/R156.md for mapping,16/16 scoped checks,24 passages18press12high-drop cases,218 historical failures and rear pillars/doors/interior/GPU limits. No new raw logs/reports or major-release acceptance.
+
+> R155 development backup: current runtime source809537d21a02d1d22132900cc9b671b23a2d8221. Earlier identities below are historical. See docs/releases/R155.md for mapping,17/17 local checks and bounded controller cases,218 historical failures and old doors/roof/rear/GPU limits. No new raw logs/reports or major-release acceptance.
+
+> R154 development backup: current runtime source0838652c557981eb309e260ada6f53f2b650c892. Earlier identities below are historical. See docs/releases/R154.md for mapping,18/18 scoped and R9011/11 checks,218 historical failures and unfinished white-stone base/GPU validation. No new raw logs/reports or major-release acceptance.
+
+> R153 development backup: current runtime sourcebc8b65aafb6e16e18d6f4093d9e50157d15dae41. Earlier identities below are historical. See docs/releases/R153.md for mapping,39/39 scoped checks,218 historical failures and whole-world7/8 with retained10Hz west-boundary stop. No new raw logs/reports or GPU/mobile acceptance.
+
+> R152 development backup: current runtime source3d1fd4956afd878de0058a8d5b0ea1536f13ea9d. Earlier identities below are historical. See docs/releases/R152.md for mapping,41/41 and6/6 scoped checks,218 historical failures and uncompleted descending segments/GPU validation. No new raw logs/reports or major-release acceptance.
+
+> R151 development backup: current runtime source19a3022296fee5fb2e7c840dac3701382591dd57. Earlier identities below are historical. See docs/releases/R151.md for mapping,33/33 and5/5 scoped checks,218 historical failures and3 old frozen-test differences. No new raw logs/reports, major-release or GPU/mobile acceptance.
+
+> R150 development backup: current runtime source18fd20366508731c1b694331f8aeec7178236cd9. Earlier runtime identities below are historical. See docs/releases/R150.md for mapping, corrected R149 high-drop fixture,49/49 scoped checks and historical failures/SIGKILL limitations. No new raw logs/reports, major-release or GPU/mobile acceptance.
+
+> R149 development backup: current runtime source is dd13d7b20f959b34a8367adf070bc1e52d463f8f. All earlier runtime identities below are historical. See docs/releases/R149.md for the numeric development-backup mapping and limitations. No new raw test logs/reports; not a major release, deployment, or GPU/mobile acceptance.
+
 > Subsequent development checkpoint: this Baoyun source-only backup uses runtime bytes exactly matching local 89144ec3eb40c34736938ae4521ec08d0f9ec1a0. The e819576 and Wanchun608 identities below are historical checkpoints, not this tree. Baoyun has17 scoped tests; the218 historical aggregate failures remain and GPU/mobile/full-object acceptance is unverified. See docs/major-pilots/baoyun-porch/RESULT.md for scope. No new raw test logs or reports are included. This backup belongs on feat/whole-scope-next-20261030, without updating the delivered branch, main, or Pages.
 
 > Historical checkpoint note: the e819576 runtime identity statements below apply only to remote checkpoint 20e3e3e0e232bff7c2b0085d37391aea28c07877. The subsequent Wanchun source-only backup has runtime bytes exactly matching local 608efeae08ced76167f205e545bd07805b8bcec1; its scoped results and limitations are in docs/major-pilots/wanchun/RESULT.md. It adds no raw test logs or reports and makes no deployment, GPU/mobile, or all-green acceptance claim.

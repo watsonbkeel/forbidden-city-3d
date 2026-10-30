@@ -1,0 +1,8 @@
+# Wuying south central stair assembly — bounded plan
+
+Safe parent 89144ec, independent branch; no Hongyi or Duanhong conditional candidates. Official own gate image s5efefdd3c1950 shows central inclined stone flanked by stair treads. Retain existing 5.68 × 1.28 m footprint, .8 m rise and five tread levels as engineering fit; use .54 of stair width for central stone as disclosed photograph-proportion fit. Do not invent relief carving or claim full gate acceptance.
+
+1. Red: actual center rays must hit a continuous incline, flank rays retain horizontal treads; both must have matching physical support.
+2. Apply only after existing south windows/rail hooks. Guard the unique seven-mesh central south source group and full-width ramp before allocating. Replace five tread meshes with ten flank treads and a closed central wedge. Retain two sloping side stones and all other geometry, materials and metadata. Replace only the selected full-width support with central ramp, ten exact tread supports and a 5 cm support strip matching the retained .81 m cap overhang (all new boxes rescue:false).
+3. Test exact non-target retention, guard drift, rollback, finite geometry/UVs and budget; inspect the actual merged assembly. Run real controllers up/down all three lanes, cross-lane, toe/platform, bridge interface and high drop at 10/60 Hz. Preserve old four rail runs. Independent review.
+4. Small local checkpoint only if bounded tests pass; whole/gpu/browser/full suite status explicit. No build/large logs/cleanup/upload. README records R147/R148 remote SHA and conditional next R149 numbering, not false local ancestry or delivery.
