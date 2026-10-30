@@ -1,0 +1,1615 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> forbidden-city-3d@1.0.0 test:current-state
+> node --test tests/current-state/*.test.mjs
+
+✔ exact eligible roof solids share a batch while retaining original source objects and geometry (16.044797ms)
+✔ distinct roof materials with other name remain UUID-isolated (1.388925ms)
+✔ distinct roof materials with color remain UUID-isolated (0.70598ms)
+✔ distinct roof materials with roughness remain UUID-isolated (0.684838ms)
+✔ distinct roof materials with metalness remain UUID-isolated (2.386863ms)
+✔ distinct roof materials with side remain UUID-isolated (1.127202ms)
+✔ distinct roof materials with shadow side remain UUID-isolated (0.447542ms)
+✔ distinct roof materials with emissive remain UUID-isolated (0.774303ms)
+✔ distinct roof materials with texture remain UUID-isolated (0.519871ms)
+✔ distinct roof materials with normal scale remain UUID-isolated (0.595134ms)
+✔ distinct roof materials with environment rotation remain UUID-isolated (0.662285ms)
+✔ distinct roof materials with clipping remain UUID-isolated (0.422064ms)
+✔ distinct roof materials with shader hook remain UUID-isolated (0.269364ms)
+✔ distinct roof materials with render hook remain UUID-isolated (0.336946ms)
+✔ distinct roof materials with cache hook remain UUID-isolated (1.399001ms)
+✔ distinct roof materials with defines remain UUID-isolated (6.023873ms)
+✔ distinct roof materials with unknown property remain UUID-isolated (1.421905ms)
+✔ distinct roof materials with alpha test remain UUID-isolated (0.76575ms)
+✔ distinct roof materials with vertex colors remain UUID-isolated (0.486991ms)
+✔ distinct roof materials with polygon offset remain UUID-isolated (0.346871ms)
+✔ distinct roof materials with stencil remain UUID-isolated (1.25265ms)
+✔ distinct roof materials with invisible material remain UUID-isolated (0.417927ms)
+✔ distinct roof materials with nonfinite value remain UUID-isolated (0.564177ms)
+✔ distinct roof materials with deleted render field remain UUID-isolated (1.037687ms)
+✔ distinct roof materials with nonenumerable override remain UUID-isolated (1.199381ms)
+✔ distinct roof materials with sub-byte color difference remain UUID-isolated (0.607823ms)
+✔ distinct roof materials with custom material prototype remain UUID-isolated (0.511407ms)
+✔ unrelated equal solids and equal nondefault/textured roof materials remain UUID-isolated (0.56647ms)
+✔ new equivalence does not enroll layers (0.820322ms)
+✔ new equivalence does not enroll render order (0.375704ms)
+✔ new equivalence does not enroll unculled mesh (0.237357ms)
+✔ new equivalence does not enroll custom depth (0.786942ms)
+✔ new equivalence does not enroll custom distance (0.637987ms)
+✔ new equivalence does not enroll custom render callback (0.300311ms)
+✔ new equivalence does not enroll custom shadow callback (0.4798ms)
+✔ new equivalence does not enroll partial draw range (0.311708ms)
+✔ new equivalence does not enroll mirrored transform (0.235945ms)
+✔ new equivalence does not enroll frozen world matrix (0.354622ms)
+✔ new equivalence does not enroll child mesh (0.470186ms)
+✔ new equivalence does not enroll parent render order (0.518578ms)
+✔ new equivalence does not enroll sheared world transform (0.274052ms)
+✔ new equivalence does not enroll different attribute storage (0.455023ms)
+✔ new equivalence does not enroll custom attribute (1.294584ms)
+✔ new equivalence does not enroll integer GPU attribute interpretation (0.527372ms)
+✔ new equivalence does not enroll projective world transform (0.583707ms)
+✔ new equivalence does not enroll custom mesh prototype (0.378499ms)
+✔ new equivalence does not enroll non-scalar index (0.400341ms)
+✔ new equivalence does not enroll dynamic attributes (4.293576ms)
+✔ new equivalence does not enroll dynamic indices (0.441012ms)
+✔ changed material values, replacements, and unsupported state invalidate previous equivalence (3.461947ms)
+✔ eligible roof attribute/index updates and replacements refresh copied payloads without rebuilding unchanged frames (3.36363ms)
+✔ a transformed scene disables only new cross-material equivalence to avoid applying its transform twice (1.068944ms)
+✔ batch payload retains every source position, normal, UV and index with current world transforms (1.294222ms)
+✔ source visibility, per-object frustum culling, receive flags and shadow geometry survive (2.957039ms)
+✔ rebuild and disposal release only batch-owned buffers, never source geometry, material or textures (0.975575ms)
+✔ real Wumen reduces seven exact ridge and four finial materials to two render batches with all plaques and physics intact (689.233199ms)
+✖ 午门: six rotated ground leaves register their actual body-height world bounds exactly once (5.492034ms)
+✔ 午门 portal -17.5, leaf -1: visible inner edge blocks the fixed-radius body at feet=0 (27.456729ms)
+✔ 午门 portal -17.5, leaf -1: visible inner edge blocks the fixed-radius body at feet=1.2 (0.395303ms)
+✔ 午门 portal -17.5, leaf -1: real ground stepping cannot traverse the visible leaf's inner edge (5.823513ms)
+✔ 午门 portal -17.5, leaf 1: visible inner edge blocks the fixed-radius body at feet=0 (0.226119ms)
+✔ 午门 portal -17.5, leaf 1: visible inner edge blocks the fixed-radius body at feet=1.2 (0.216706ms)
+✔ 午门 portal -17.5, leaf 1: real ground stepping cannot traverse the visible leaf's inner edge (1.97127ms)
+✔ 午门 portal 0, leaf -1: visible inner edge blocks the fixed-radius body at feet=0 (0.203075ms)
+✔ 午门 portal 0, leaf -1: visible inner edge blocks the fixed-radius body at feet=1.2 (0.196084ms)
+✔ 午门 portal 0, leaf -1: real ground stepping cannot traverse the visible leaf's inner edge (1.537298ms)
+✔ 午门 portal 0, leaf 1: visible inner edge blocks the fixed-radius body at feet=0 (0.177326ms)
+✔ 午门 portal 0, leaf 1: visible inner edge blocks the fixed-radius body at feet=1.2 (0.195564ms)
+✔ 午门 portal 0, leaf 1: real ground stepping cannot traverse the visible leaf's inner edge (1.470548ms)
+✔ 午门 portal 17.5, leaf -1: visible inner edge blocks the fixed-radius body at feet=0 (0.145659ms)
+✔ 午门 portal 17.5, leaf -1: visible inner edge blocks the fixed-radius body at feet=1.2 (0.12625ms)
+✔ 午门 portal 17.5, leaf -1: real ground stepping cannot traverse the visible leaf's inner edge (1.688184ms)
+✔ 午门 portal 17.5, leaf 1: visible inner edge blocks the fixed-radius body at feet=0 (0.132269ms)
+✔ 午门 portal 17.5, leaf 1: visible inner edge blocks the fixed-radius body at feet=1.2 (0.099249ms)
+✔ 午门 portal 17.5, leaf 1: real ground stepping cannot traverse the visible leaf's inner edge (1.293251ms)
+✔ 午门: portal -17.5 centerline stays clear and ground-supported in both directions (167.861762ms)
+✔ 午门: portal 0 centerline stays clear and ground-supported in both directions (120.635363ms)
+✔ 午门: portal 17.5 centerline stays clear and ground-supported in both directions (88.938519ms)
+✔ 午门: side masonry still rejects a body at ground height (0.298058ms)
+✔ 午门: nonzero world X and Z offsets are each applied once to all six leaf proxies (45.207938ms)
+✖ 午门: collider registration retains every mesh, material, triangle and production render batch (92.80288ms)
+✔ 神武门: six rotated ground leaves register their actual body-height world bounds exactly once (0.716906ms)
+✔ 神武门 portal -13, leaf -1: visible inner edge blocks the fixed-radius body at feet=0 (0.117056ms)
+✔ 神武门 portal -13, leaf -1: visible inner edge blocks the fixed-radius body at feet=1.2 (0.051697ms)
+✔ 神武门 portal -13, leaf -1: real ground stepping cannot traverse the visible leaf's inner edge (1.512291ms)
+✔ 神武门 portal -13, leaf 1: visible inner edge blocks the fixed-radius body at feet=0 (0.130306ms)
+✔ 神武门 portal -13, leaf 1: visible inner edge blocks the fixed-radius body at feet=1.2 (0.162664ms)
+✔ 神武门 portal -13, leaf 1: real ground stepping cannot traverse the visible leaf's inner edge (1.015033ms)
+✔ 神武门 portal 0, leaf -1: visible inner edge blocks the fixed-radius body at feet=0 (0.117065ms)
+✔ 神武门 portal 0, leaf -1: visible inner edge blocks the fixed-radius body at feet=1.2 (0.073771ms)
+✔ 神武门 portal 0, leaf -1: real ground stepping cannot traverse the visible leaf's inner edge (0.72596ms)
+✔ 神武门 portal 0, leaf 1: visible inner edge blocks the fixed-radius body at feet=0 (0.115864ms)
+✔ 神武门 portal 0, leaf 1: visible inner edge blocks the fixed-radius body at feet=1.2 (0.0866ms)
+✔ 神武门 portal 0, leaf 1: real ground stepping cannot traverse the visible leaf's inner edge (0.810457ms)
+✔ 神武门 portal 13, leaf -1: visible inner edge blocks the fixed-radius body at feet=0 (0.126891ms)
+✔ 神武门 portal 13, leaf -1: visible inner edge blocks the fixed-radius body at feet=1.2 (0.070786ms)
+✔ 神武门 portal 13, leaf -1: real ground stepping cannot traverse the visible leaf's inner edge (0.850287ms)
+✔ 神武门 portal 13, leaf 1: visible inner edge blocks the fixed-radius body at feet=0 (0.076465ms)
+✔ 神武门 portal 13, leaf 1: visible inner edge blocks the fixed-radius body at feet=1.2 (0.056014ms)
+✔ 神武门 portal 13, leaf 1: real ground stepping cannot traverse the visible leaf's inner edge (0.780993ms)
+✔ 神武门: portal -13 centerline stays clear and ground-supported in both directions (78.325456ms)
+✔ 神武门: portal 0 centerline stays clear and ground-supported in both directions (55.764486ms)
+✔ 神武门: portal 13 centerline stays clear and ground-supported in both directions (23.547681ms)
+✔ 神武门: side masonry still rejects a body at ground height (0.137696ms)
+✔ 神武门: nonzero world X and Z offsets are each applied once to all six leaf proxies (18.323628ms)
+✔ 神武门: collider registration retains every mesh, material, triangle and production render batch (39.322062ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: exact R30 passage source: src/scene/PalaceBuilder.js
++ actual - expected
+
++ 'f709079fb470b55d57eef80665f2b77dc4d15cf826c3bca942aaa57e8f37cfb9'
+- 'bfd9e25cbb6c55ddbfa31d633e24a82acc5a86813a3d7ac1fb2da80d0705366d'
+
+    at restorePreR30Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r30-qianqing-passage-retention.mjs:23:10)
+    at restorePreR29Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r29-qianqing-retention.mjs:21:9)
+    at restorePreR28Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r28-jiaotai-central-retention.mjs:22:9)
+    at restorePreR27Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r27-jiaotai-retention.mjs:16:9)
+    at restorePreR26FriezeSource (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r26-qianqing-frieze-retention.mjs:15:9)
+    at restorePreR26Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r26-qianqing-retention.mjs:16:9)
+    at restorePreR25Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r25-nameboard-retention.mjs:17:9)
+    at restorePreR24Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r24-baohe-retention.mjs:17:9)
+    at restorePreR23Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r23-baohe-retention.mjs:17:9)
+    at restorePreR22Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r22-baohe-retention.mjs:20:9) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'f709079fb470b55d57eef80665f2b77dc4d15cf826c3bca942aaa57e8f37cfb9',
+  expected: 'bfd9e25cbb6c55ddbfa31d633e24a82acc5a86813a3d7ac1fb2da80d0705366d',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
+✖ tests/current-state/gate-ground-door-source-guard.test.mjs (241.986552ms)
+✔ real TextureLibrary production material naming initializes the Wumen plaque without changing the fitted geometry (363.880088ms)
+✔ real production materials retain both glyph ink cells visibility from frozen C3 and unchanged actual entry (316.738844ms)
+✔ surface validation uses cached object identity even when the display name changes (205.321753ms)
+✔ an unrelated same-name roof material is rejected rather than accepted by a label alias (275.839979ms)
+✔ whole production buildGate and finish merge preserve the plaque and exact physics with real TextureLibrary (328.389233ms)
+✔ one exact material-object guard substitution restores immutable 8f74 source bytes (1.274573ms)
+✔ material identity guard rejects missing (2.112451ms)
+✔ material identity guard rejects duplicated (1.041193ms)
+✔ material identity guard rejects modified (0.528844ms)
+✔ material identity guard rejects unrelated-byte (0.511377ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: exact R30 passage source: src/scene/PalaceBuilder.js
++ actual - expected
+
++ 'f709079fb470b55d57eef80665f2b77dc4d15cf826c3bca942aaa57e8f37cfb9'
+- 'bfd9e25cbb6c55ddbfa31d633e24a82acc5a86813a3d7ac1fb2da80d0705366d'
+
+    at restorePreR30Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r30-qianqing-passage-retention.mjs:23:10)
+    at restorePreR29Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r29-qianqing-retention.mjs:21:9)
+    at restorePreR28Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r28-jiaotai-central-retention.mjs:22:9)
+    at restorePreR27Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r27-jiaotai-retention.mjs:16:9)
+    at restorePreR26FriezeSource (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r26-qianqing-frieze-retention.mjs:15:9)
+    at restorePreR26Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r26-qianqing-retention.mjs:16:9)
+    at restorePreR25Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r25-nameboard-retention.mjs:17:9)
+    at restorePreR24Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r24-baohe-retention.mjs:17:9)
+    at restorePreR23Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r23-baohe-retention.mjs:17:9)
+    at restorePreR22Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r22-baohe-retention.mjs:20:9) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'f709079fb470b55d57eef80665f2b77dc4d15cf826c3bca942aaa57e8f37cfb9',
+  expected: 'bfd9e25cbb6c55ddbfa31d633e24a82acc5a86813a3d7ac1fb2da80d0705366d',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
+✖ tests/current-state/gate-plaque-source-guard.test.mjs (258.129506ms)
+✔ one finite Wumen mounting delta restores exact rejected V11 source; unrelated plaques stay exact (2.566553ms)
+✔ visibility source guard rejects missing (1.465681ms)
+✔ visibility source guard rejects duplicated (0.364107ms)
+✔ visibility source guard rejects modified (0.592599ms)
+✔ visibility source guard rejects unrelated-byte (0.358558ms)
+✖ src/scene/RoofBuilder.js: no roof/builder/camera-constant edit in the visibility fix after exact V14 leaf normalization (2.067193ms)
+✖ src/scene/PalaceBuilder.js: no roof/builder/camera-constant edit in the visibility fix after exact V14 leaf normalization (1.844479ms)
+✔ src/config/constants.js: no roof/builder/camera-constant edit in the visibility fix after exact V14 leaf normalization (0.322194ms)
+✔ C3: both glyph centers and conservative ink cells are unoccluded by retained roof/fascia (54.764475ms)
+✔ unchanged-actual-entry: both glyph centers and conservative ink cells are unoccluded by retained roof/fascia (31.113228ms)
+✔ F1: both glyph centers and conservative ink cells are unoccluded by retained roof/fascia (46.93707ms)
+✔ south-ground-line-of-sight: both glyph centers and conservative ink cells are unoccluded by retained roof/fascia (28.255939ms)
+✔ entire plaque stays below actual central upper-eave fascia and above the actual lower roof surface (8.876265ms)
+✔ the rejected old mounting reproduces the exact upper rafter fascia occlusion (1.349416ms)
+✔ historical old spawn occlusion is retained on the exact old generic roof (2.170599ms)
+✔ historical-C1 remains unchanged and honestly reports 3 of 18 ink cells blocked (35.659283ms)
+✔ historical-close-cardinal remains unchanged and honestly reports 3 of 18 ink cells blocked (21.993948ms)
+✔ actual-entry: every front-frame vertex clears the actual roof without camera tuning (133.811854ms)
+✔ C3: every front-frame vertex clears the actual roof without camera tuning (98.69746ms)
+✔ exactly one evidence-labelled plaque is built on each supported cardinal facade (1.31884ms)
+✔ lettering is confined to the outward-facing front; sides and backs are unlettered (0.608944ms)
+✔ Wumen fits actual lower roof and upper fascia, independently of roof topY (0.314111ms)
+✔ Shenwu institution plaque clears the retained opening and top strip, with no invented canopy (0.298027ms)
+✔ production merge retains both semantic plaque identity and explicit deferred upper north sign (150.57547ms)
+✔ actual Canvas text calls read left-to-right north and top-to-bottom south, with upright UVs (4.811523ms)
+✔ gate-local cache distinguishes text, layout, style and dimensions; exact repeat reuses material (2.312522ms)
+✔ Wumen mounting depends on generated local band and remains separated from actual roof surfaces (28.31617ms)
+✔ only new plaque maps are disposed with their owned face materials (0.873221ms)
+✖ 午门: explicit candidate budget replaces one mesh, adds one material, and preserves physics (1.437778ms)
+✔ 神武门: explicit candidate budget replaces one mesh, adds one material, and preserves physics (0.791558ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: only Wumen child 27 is in ascent scope
+
+44 !== 41
+
+    at scope (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/wumen-ascent-retention.mjs:51:10)
+    at restorePreWumenAscent (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/wumen-ascent-retention.mjs:82:7)
+    at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/current-state/gate-rail-capless.test.mjs:40:10
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 44,
+  expected: 41,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
+✖ tests/current-state/gate-rail-capless.test.mjs (776.787695ms)
+✔ Shenwu preserves the independent raw chains, pooled assembly and drawn outline reference endpoints (6.368221ms)
+✔ Wumen provisional registration is explicit and bounded, with no invented extra door bays (0.900472ms)
+✔ Wumen fixed body retains a connected inner veranda at setback 2.6m (107.056177ms)
+✔ Wumen fixed body retains a connected inner veranda at setback 2.9m (66.481295ms)
+✔ Wumen fixed body retains a connected inner veranda at setback 3.2m (34.894636ms)
+✔ Wumen every body-height obstacle collider equals its visible mesh bounds (10.386492ms)
+✔ Shenwu every body-height obstacle collider equals its visible mesh bounds (15.275312ms)
+✖ Wumen preserves all geometry outside the finite reviewed main-tower profile (2.225361ms)
+✔ Wumen outer columns retain horizontal axes and radius parameters while approved heights change (1.229566ms)
+✖ Wumen historical top and ramp support golden survives only the exact folded-ascent restoration (0.395724ms)
+✔ Wumen upper doors use lattice leaves on both sides, never ground-gate studded boards (1.164117ms)
+✔ Wumen gable outside depth ends at the recessed enclosure faces (0.378929ms)
+✔ 午门 production material merge preserves metadata, visible openings and finite geometry (289.875815ms)
+✔ 神武门 production material merge preserves metadata, visible openings and finite geometry (68.247176ms)
+✔ Wumen fixed-width body completes both recessed verandas and four corners (379.525591ms)
+✔ Wumen central south and north architectural openings form a real supported through route (33.086411ms)
+✔ Wumen south outer strip stays blocked at actual eave columns (2.609157ms)
+✔ Shenwu nominal city platform is coherent with layout, visible deck, top support and relocated ramps (2.587995ms)
+✔ Shenwu has explicit source-sized nonuniform outer grid, two inner rows and cardinal door groups (0.570587ms)
+✔ Shenwu drawn local outline is separate from city base and preserves endpoint adoption policy (0.327462ms)
+✔ Shenwu fixed body completes four-sided recessed veranda and outer city-platform loop (356.251932ms)
+✔ Shenwu all six north/south door groups and both board doors are actually traversable (124.055988ms)
+✔ Shenwu both real ramps connect ground to outer loop and central south entrance without rescue (106.80428ms)
+✔ Shenwu three ground tunnels remain supported at ground; closed bays and inner balustrade remain solid (58.807173ms)
+✔ Shenwu flanking door bays do not create undocumented extra balustrade gaps (1.71139ms)
+✔ only the finite approved Shenwu nominal boundary/provenance replacement is accepted (6.522091ms)
+✔ constants guard rejects missing-anchor (1.835615ms)
+✔ constants guard rejects duplicate-anchor (0.321142ms)
+✔ constants guard rejects historical-extra-byte (0.545238ms)
+✔ constants guard rejects candidate no migration (14.380729ms)
+✔ constants guard rejects candidate width only omitted (0.383596ms)
+✔ constants guard rejects candidate depth only omitted (0.903226ms)
+✔ constants guard rejects candidate provenance missing (0.561934ms)
+✔ constants guard rejects candidate anchor changed (0.530356ms)
+✔ constants guard rejects candidate physics changed (0.470216ms)
+✔ constants guard rejects candidate arbitrary extra bytes (1.328444ms)
+✔ constants guard rejects candidate another historical constant changed (0.299469ms)
+✔ the single separate first-entry position is 24m farther south on existing ground (3.357932ms)
+✔ actual camera and control initialization agree at eye height 1.7 with unchanged FOV and horizontal north (12646.169047ms)
+✔ zone initialization consumes the same first-entry coordinates before controls (0.460982ms)
+✖ existing ground mesh, logical support, body and head are clear inside unchanged bounds (111.01451ms)
+✔ real collision world permits all 54m forward to the existing pre-gate approach without raised support (30.347219ms)
+✔ real controls walk the added approach at 10Hz, sprint=false (28.941038ms)
+✔ real controls walk the added approach at 10Hz, sprint=true (30.990585ms)
+✔ real controls walk the added approach at 60Hz, sprint=false (49.544228ms)
+✔ real controls walk the added approach at 60Hz, sprint=true (14.124024ms)
+✔ actual central roof fits a 16:9 initial frame without changing FOV or pitch (59.005712ms)
+✔ the original perf harness and all six computed point/yaw tuples stay byte-exact (2.371921ms)
+✖ unhooked experimental caps reproduce jump penetration at 10Hz (318.125419ms)
+✖ unhooked experimental caps reproduce rail-walk penetration at 10Hz (132.135959ms)
+✖ unhooked experimental caps reproduce jump penetration at 60Hz (220.917993ms)
+✖ unhooked experimental caps reproduce rail-walk penetration at 60Hz (200.390826ms)
+✔ a full-cap AABB creates unsupported diagonal apex-height support (50.200113ms)
+✔ flat peak-height walkable would hover above real low-collar edge (58.659452ms)
+✖ height-preserving local replacement exposes inherited support gap at 10Hz (437.03689ms)
+✔ height-preserving local replacement exposes inherited support gap at 60Hz (430.011744ms)
+✔ all88 replacement tips preserve old total height while inherited rail envelopes remain measurable (113.338018ms)
+✔ prototype only changes retained side-shaft top vertices and cap Y matrices (149.508359ms)
+✖ only the four side bridges receive caps on their 88 existing posts (265.173886ms)
+✔ same-profile matrices are translated once and cap geometry stays within the retained post footprint (3.232363ms)
+✔ non-inner-Jinshui or missing target profiles fail closed, never decorate other bridges (0.649616ms)
+✔ unchanged bridge support and pure W crossing with added visual caps at 10 Hz reverse=false (226.351039ms)
+✔ unchanged bridge support and pure W crossing with added visual caps at 10 Hz reverse=true (151.165436ms)
+✔ unchanged bridge support and pure W crossing with added visual caps at 60 Hz reverse=false (189.503612ms)
+✔ unchanged bridge support and pure W crossing with added visual caps at 60 Hz reverse=true (130.771324ms)
+✔ read-only existing-W consumer checks actual caps and bridge support without rebuilding (176.549519ms)
+✔ existing-W consumer rejects missing duplicate hidden and displaced finials (511.40209ms)
+✔ ordinary PalaceBuilder disposal releases instancing resources once and retains library marble (90.50487ms)
+✔ real shared-deck approach crosses the south door and exits in reverse, 60fps speed5 (917.107024ms)
+✔ real east end passage reaches low rear lip in both directions, 60fps speed5 (58.342807ms)
+✔ real west end passage reaches low rear lip in both directions, 60fps speed5 (83.250425ms)
+✔ real shared-deck approach crosses the south door and exits in reverse, 60fps speed12 (6.865887ms)
+✔ real east end passage reaches low rear lip in both directions, 60fps speed12 (19.280956ms)
+✔ real west end passage reaches low rear lip in both directions, 60fps speed12 (26.236358ms)
+✔ real shared-deck approach crosses the south door and exits in reverse, 10fps speed5 (9.280492ms)
+✔ real east end passage reaches low rear lip in both directions, 10fps speed5 (25.150066ms)
+✔ real west end passage reaches low rear lip in both directions, 10fps speed5 (7.440019ms)
+✔ real shared-deck approach crosses the south door and exits in reverse, 10fps speed12 (1.944349ms)
+✔ real east end passage reaches low rear lip in both directions, 10fps speed12 (7.016904ms)
+✔ real west end passage reaches low rear lip in both directions, 10fps speed12 (7.685057ms)
+✔ south-center legacy path stays blocked at its actual enclosure, direction-1 (4.077591ms)
+✔ south-center legacy path stays blocked at its actual enclosure, direction1 (1.75901ms)
+✔ north-center legacy path stays blocked at its actual enclosure, direction-1 (1.115464ms)
+✔ north-center legacy path stays blocked at its actual enclosure, direction1 (4.734558ms)
+✔ legacy-rear-x4.7 legacy path stays blocked at its actual enclosure, direction-1 (0.888824ms)
+✔ legacy-rear-x4.7 legacy path stays blocked at its actual enclosure, direction1 (3.972073ms)
+✔ Kunning authoritative profile and adapter exist (2.055886ms)
+✔ final production triangles close south center and north legacy openings (169.45953ms)
+✔ real east-first-secondary doorway and three radius0.5 body tracks remain open (4.251683ms)
+✔ door is narrower than a full bay; jambs, adjacent sill windows and folded leaves are solid (2.419162ms)
+✔ recessed south porch and both separate end passages are physically clear (7.674201ms)
+✔ shared semantic profile counts include passages and retain inherited frame and uncertainty (1.262635ms)
+✔ bay lookup supports explicit nonuniform coordinates without re-deriving width/9 (0.841393ms)
+✔ profile identity is a canonical SHA256 shared by both asset consumers (1.594474ms)
+✔ builder preserves parent offsets, shares world transform once, and retains fixed-open portal metadata (0.540341ms)
+✔ nonuniform resolved profile drives real B doorway and barriers rather than an envelope/9 copy (88.777512ms)
+✔ straight window bars and outward upper flaps survive the final material merge (6.764194ms)
+✔ inherited provisional post list preserves all V5 positions and radii exactly without claiming a surveyed grid (0.441053ms)
+✔ door jambs close the narrow upper transom-side gaps in actual final triangles (1.406261ms)
+✔ recessed south and north room enclosure meets the inherited ceiling, without an open top strip (9.895646ms)
+✔ only the two touching internal box faces are removed, with exact surviving attributes (23.651927ms)
+✔ coincident exposed faces are retained rather than deleting both overlapping skins (4.133996ms)
+✔ a buried face is removed only when one actual rotated box encloses the entire triangle (2.040723ms)
+✔ a face crossing an uncovered gap is preserved even when all its corners are in the union of boxes (5.84806ms)
+✔ only explicit opaque solid-box occluders are accepted (1.299711ms)
+✔ nonuniformly scaled rotated solid boxes use their exact local volume (0.829596ms)
+✔ alpha-tested boxes cannot justify removing geometry behind their cutouts (0.605689ms)
+✔ shared source geometry stays alive if any unchanged instance retains it (1.209115ms)
+✔ shared source geometry is disposed only once after all of its instances are replaced (0.888664ms)
+✔ deck paving and substrate partition the same solid without adding or moving any triangles (1.323387ms)
+✖ hongyi: hidden faces give a bounded triangle reduction while all 28 lattice leaves keep their bars (447.808642ms)
+✔ hongyi: brick paving never promotes the shared flat-floor bucket to a shadow caster (487.573127ms)
+✔ tiren: hidden faces give a bounded triangle reduction while all 28 lattice leaves keep their bars (331.78416ms)
+✔ tiren: brick paving never promotes the shared flat-floor bucket to a shadow caster (325.680116ms)
+✔ mirrored coincident solid boxes retain their outward skins (0.643506ms)
+✔ a sphere bounding box is never accepted as an opaque solid box (0.351438ms)
+✔ unsupported hidden-parent input is rejected before any source is changed (0.565429ms)
+✔ unsupported hidden-material input is rejected before any source is changed (3.544791ms)
+✔ unsupported back-side input is rejected before any source is changed (0.309725ms)
+✔ unsupported partial-range input is rejected before any source is changed (0.217837ms)
+✔ unsupported interleaved input is rejected before any source is changed (0.295724ms)
+✔ unsupported multi-material input is rejected before any source is changed (0.658138ms)
+✔ unsupported non-casting-occluder input is rejected before any source is changed (0.249435ms)
+✔ hongyi: exterior, terrace and playable-interior rays retain the same first physical surface (3768.738218ms)
+✔ tiren: exterior, terrace and playable-interior rays retain the same first physical surface (3302.873508ms)
+✔ duplicating one triangular half of a box face cannot masquerade as a complete opaque face (0.77241ms)
+✔ singular transforms are rejected before source geometry changes (0.372058ms)
+✔ InstancedMesh is rejected because its rendered vertices need more than matrixWorld (0.813902ms)
+✔ SkinnedMesh is rejected because its rendered vertices need more than matrixWorld (0.31925ms)
+✔ Qianqing Gate has a dedicated builder export (2.426963ms)
+✔ the merged object preserves its world anchor and supported 1.5 m base (373.968479ms)
+✔ six by four physical column lines define five by three bays (0.698669ms)
+✔ three separated approaches retain outer flights and central stone flank stairs (25.957318ms)
+✔ each stair has raised stone side rails in the actual merged geometry (3.941437ms)
+✔ gate leaves occur at the rear eave only and end bays have sill walls and grid windows (4.475749ms)
+✔ the main roof is single-eave xieshan with one continuous front roof surface (2.029196ms)
+✔ angled screen walls have solid thickness and leave east/west lateral access (36.95564ms)
+✔ raised connector is horizontal, solid, and meets the retained palace front ramp without jumping (51.579259ms)
+✔ real Qianqing Gate replaces exactly six solid materials with one draw and preserves all structural data (341.02355ms)
+✔ real builder disposes old/new resources exactly once while cached library materials remain owned by the library (164.010159ms)
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 39 个 region, 32 个 mapItem
+[ZoneManager] 加载区域 qinan-test-origin（undefined），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 进入区域: garden
+[ZoneManager] 卸载区域 qinan-test-origin
+[ZoneManager] 卸载区域 garden
+✔ Qinan map landing remains exterior while its dedicated virtual side routes avoid the generic doorway adapter (3.359934ms)
+✔ Qinan teleport consumes the one profile viewpoint and true look-at instead of the inherited facade depth (12005.218653ms)
+✔ real full-world Qin’an viewpoint accepts only resident collision geometry and remains on world ground (37.806897ms)
+✔ missing actual Qin’an support rejects viewpoint validation even when cached map and loaded ids remain (0.965058ms)
+✔ blocked or elevated viewpoint fails closed with one candidate and no lateral/platform fallback (50.560083ms)
+✔ a real occluding wall between ground viewpoint and annex rejects the view (31.113949ms)
+✔ minimap draws two separate physical footprints, keeps inherited label anchor, and identifies the exterior action (1.194854ms)
+✔ settings disclose virtual side entry, missing south stonework, and unknown modern access (7.618287ms)
+✔ stale resident profile identity cannot validate the current source viewpoint (0.834022ms)
+✔ real ZoneManager loads and registers Qin’an before the first collision query, then real controls land at ground view (3801.803332ms)
+✔ browser teleport harness isolates the exterior view while every original entrance-target statement stays byte-exact (6.146907ms)
+✔ target-containing occluder cannot inherit the observed facade exemption, even with the garden tag (23.171206ms)
+✔ source-bounded facade termination accepts the actual thin panel at an oblique angle (25.226141ms)
+✔ missing, enlarged or foreign-tagged target facade cannot validate the view (47.113029ms)
+✔ duplicate or moved source facade identity fails closed instead of blessing an ambiguous terminal surface (20.519225ms)
+file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/auto-routes.mjs:408
+      const go = [front.zToe - 2, front.zToe, front.zTop, rear.zTop, rear.zToe, rear.zToe + 2].map(z => g.toWorld(x, z));
+                        ^
+
+TypeError: Cannot read properties of undefined (reading 'zToe')
+    at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/auto-routes.mjs:408:25
+    at Array.map (<anonymous>)
+    at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/auto-routes.mjs:407:28
+    at Array.flatMap (<anonymous>)
+    at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/auto-routes.mjs:393:133
+    at Array.flatMap (<anonymous>)
+    at profileGateRoutes (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/auto-routes.mjs:393:16)
+    at buildAutoRoutes (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/auto-routes.mjs:458:89)
+    at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/current-state/qinan-exterior-routes.test.mjs:21:33
+
+Node.js v24.19.0
+✖ tests/current-state/qinan-exterior-routes.test.mjs (13028.767251ms)
+✖ tests/current-state/qinan-exterior-stair-safety.test.mjs (21547.735359ms)
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 2 个 region, 1 个 mapItem
+[ZoneManager] 加载区域 garden（Qinan lifecycle fixture），耗时 0.0ms
+[ZoneManager] 卸载区域 garden
+[ZoneManager] 加载区域 garden（Qinan lifecycle fixture），耗时 41.4ms
+[ZoneManager] 卸载区域 garden
+[ZoneManager] 加载区域 garden（Qinan lifecycle fixture），耗时 73.6ms
+[ZoneManager] 卸载区域 garden
+✔ Qinan dispatch is dedicated, unequal five-bay, no generic roof, throne or north-through flags (3.736791ms)
+✔ profile provenance keeps column-base datum separate from floor and source periods (6.035741ms)
+✔ bad transform, missing annex and generic overrides fail before any geometry registration (5.704514ms)
+✔ actual assembly owns the low annex, closed north wall, two dedicated lighting rooms and no generic furniture (301.060816ms)
+✖ explicit role accounting records R48 golden columns and R49 split side doors without counting alternative LOD twice (34.361515ms)
+✔ roof has a separate wooden board, truncated top tile cover and visible non-floating bracket aprons (86.955462ms)
+✔ all physical stair and deck supports match visible surfaces, retain IDs and cannot rescue from ground (161.67886ms)
+✔ finite geometry, bounds and alternative silhouette contain both real roof volumes (162.626247ms)
+✔ source geometries, merged geometries and owned materials dispose once; library resources remain shared (110.822772ms)
+✔ actual ZoneManager three-cycle lifecycle preserves deterministic metadata and zone ownership (254.686527ms)
+✔ profileHash is a deterministic SHA256 content digest independent of revision and detects stale parameters (2.069206ms)
+✔ annex roof interfaces and crowned cover meet exactly with no zero-area roof triangles (56.735874ms)
+✔ bracket apron triangles face outward and actually bridge the column-head-to-roof interval (37.587929ms)
+✔ annex front and side enclosure stays visibly closed all the way to the actual roof underside (69.286512ms)
+✔ all actual apron triangle normals point outward; coincident railing corner posts are not duplicated (54.060333ms)
+✔ invalid dependent dimensions and degenerate sampling fail in the pure adapter before building (23.866139ms)
+✔ exposed rear ends of annex side hips have real tile-thickness caps (69.648349ms)
+✔ an explicitly null rotation is malformed rather than an omitted zero default (0.702916ms)
+✔ both mirrored annex outer eave caps are visible from exterior with FrontSide material (85.746817ms)
+✔ every outer, inner and rear roof cap triangle points away from its own convex patch interior (52.285168ms)
+✔ all vertical painted apron triangles sample a full-height noncollapsed band on every orientation (26.175035ms)
+✔ all vertical tile-thickness cap triangles have noncollapsed UVs without changing outward geometry (24.104437ms)
+✖ new Qin’an lattice panels and painted beam boxes use full-height band UVs, not cropped box sampling (26.565381ms)
+✔ painted apron U uses the library band period continuously along each perimeter (38.53477ms)
+✔ Nanxun circular stepped bracket courses are actual source-bounded geometry; rejected dragon is not installed (146.358976ms)
+✔ all original Nanxun meshes/materials and physical/navigation arrays remain byte-equivalent to frozen R136 (226.473438ms)
+✔ ring solids are finite closed outward volumes above the actual player body envelope (62.24212ms)
+✔ identity or source drift fails before allocating ring geometry (79.021631ms)
+✔ actual merged geometry exposes ring relief to upward room rays and releases reused material once per lifecycle (802.389414ms)
+✔ Taihe source-observed inner scrolls are real gold geometry within the unchanged full plaque envelope (83.971237ms)
+✔ every new shallow gold vertex is supported by the actual cloud body, never floating outside its concave outline (36.370381ms)
+✔ actual Taihe mount retains roof clearance, every unrelated hall mesh and all physical arrays against frozen R136 (1048.034328ms)
+✔ repeated actual mount/dispose releases the original owned materials exactly once with no extra textures (567.265845ms)
+✖ tests/current-state/r138-source-bounded-details.test.mjs (11761.115529ms)
+✔ Fanhua upper front source balustrade replaces generic poles without pretending entire hall acceptance (185.460852ms)
+✔ Guhua source-visible front central nested lattice is physical open geometry, not photo sheet (35.412743ms)
+✖ Fanhua only previous front rail is replaced: all other meshes, floor holes, rooms and navigation preserved (446.697392ms)
+✔ Guhua only central-front old five rods replaced; every other original mesh and all room/floor metadata retained (58.463999ms)
+✔ Fanhua curved balusters are closed positive-volume source-bounded solids with same triangle contact owner (101.523602ms)
+✔ R139 all owned materials/textures release through existing kit lifecycle on three rebuilds (330.584868ms)
+✔ Guhua source grids preserve central physical route, front/back, walk/run and 10/60Hz (205.132334ms)
+✔ Fanhua foreign identity or transformed frame rejects before allocating (75.812053ms)
+✔ Fanhua new geometry instances release exactly once each through normal unload (87.265648ms)
+✔ frozen R138 fixtures are pinned, not regenerated from candidate (0.886751ms)
+✔ Guhua every new physical bar matches visible box and all non-target old colliders remain byte-identical (37.996662ms)
+✔ Shoukang source three southern stair groups replace old single front ramp with actual discrete treads (245.261608ms)
+✔ independent outer city wall bodies and outer crenels use grey brick without redefining shared red material (91.867521ms)
+✔ Shoukang three southern group access: four flights and actual central stone up/down, walk/run/backward, 10/60Hz (1615.548261ms)
+✔ Shoukang retains original non-front-stair geometry, rooms, map, old back ramp and exact old body contacts (108.678473ms)
+✔ Enclosure only intended material/UV changes; all original triangle positions/normals/world physics preserved (1388.781217ms)
+✔ new slope stones are closed positive-volume and collide with exact rendered triangles; treads match real discrete tops (47.093068ms)
+✔ R140 source baseline fixtures pinned (0.32011ms)
+✔ source-visible four city corner support bodies also join grey walls without repainting tower wood (138.501931ms)
+✔ finite airborne initial pose lands on each real sloping stone and exits to ground at 10/60Hz (2967.977628ms)
+✔ R140 precise surface/dispatch identities and transformed host reject, without mutating shared physical owners (63.13118ms)
+✔ three successive stair rebuilds release every new render geometry once without releasing shared marble (197.760912ms)
+✔ Beijing calendar fields use fixed UTC+8 across local midnight and year rollover (2.943179ms)
+✔ Beijing calendar handles leap days and Gregorian century boundaries (0.350627ms)
+✔ output is independent of the host time zone, including DST locales (656.152507ms)
+✔ compass bearings map to west-positive X, north-positive Z, and up-positive Y (3.86309ms)
+✔ equinox and solstice near-noon elevations follow Beijing latitude and axial tilt (2.306082ms)
+✔ summer early morning and winter early morning do not share a fixed 06:00 sunrise (0.320461ms)
+✔ morning and afternoon sun use the east and west half of the model respectively (0.896867ms)
+✔ night retains zero sun, darker sky and lower total lighting with R34 readable ambient (0.644207ms)
+✔ phase labels include separate sunrise and sunset intervals driven by solar elevation (8.53966ms)
+✔ solar vectors and all lighting values remain finite and bounded over every hour of leap and common years (417.408042ms)
+✔ sky and light outputs stay continuous through a full day and calendar boundaries (186.984709ms)
+✔ calls are deterministic, do not mutate Date inputs, and return independently owned data (0.5662ms)
+✔ invalid dates and non-finite compass input fail explicitly instead of emitting NaN (0.87255ms)
+✔ preview uses Beijing date across year midnight and restores live time without changing system clock (10.745932ms)
+✔ clock and flight details share ordinary flow and named exclusive group, with complete owned cleanup (4.719616ms)
+✔ historical-lamp activation reflects rejection and successful explicit selection (3.886585ms)
+✔ mobile minimap reserves a separate tool lane; styles are owned and removed with last tool (1.374864ms)
+✔ real r162 setupIBL has one borrowed geometry and separately scaled material/uniform ownership (10.33135ms)
+✔ sun compares independently with date and compass, preserving camera tracking/fog/exposure (3.611452ms)
+✔ changed sky bucket waits exactly30s; same bucket does not bake, explicit preview does (2.543528ms)
+✔ preview defensively copies date; disposal releases each owned resource once (4.540065ms)
+✔ current dynamic environment retains both exact quality/frustum/bias contracts except night shadow enable (2.427104ms)
+✔ finite pilot camera at every near-boundary aircraft pose; heading unchanged (58.640403ms)
+✔ finite follow camera at every near-boundary aircraft pose; heading unchanged (3.793405ms)
+✔ finite overhead camera at every near-boundary aircraft pose; heading unchanged (21.464042ms)
+✔ grounded overhead exit resets up before walking orientation and preserves valid walking position (10.153343ms)
+✔ actual parked collision does not enclose dismounted walker at yaw 0 (18.59777ms)
+✔ actual parked collision does not enclose dismounted walker at yaw 0.3 (6.104985ms)
+✔ actual parked collision does not enclose dismounted walker at yaw 0.7853981633974483 (4.321157ms)
+✔ actual parked collision does not enclose dismounted walker at yaw 1.5707963267948966 (3.076499ms)
+✔ actual parked collision does not enclose dismounted walker at yaw 3.141592653589793 (5.315469ms)
+✔ actual parked collision does not enclose dismounted walker at yaw 1.8288 (3.478382ms)
+✔ actual parked collision does not enclose dismounted walker at yaw -1.0471975511965976 (4.779345ms)
+✔ triangle projection covers roof independent of player collision (2.620333ms)
+✔ all transformed instances and invisible LOD levels retain clearance (1.060261ms)
+✔ thin obstacle and swept rotor tail cannot be tunneled at high speed (0.471978ms)
+✔ water, bounds and raised platforms reject landing (0.347402ms)
+✔ nan/unbounded movement fails closed, no mutation of product geometry (15.640901ms)
+✔ manual freedom, takeover and views-independent heading (2.299903ms)
+✔ five minute recycle only unoccupied and with clear spawn (1.603367ms)
+✔ manual landing supported on open ground; invalid target cannot start (0.385549ms)
+✔ maximum altitude and clock cap are invariant (0.378248ms)
+✔ auto landing completion reports the committed ground position, not prior airborne height (1.603347ms)
+✔ manual key immediately takes over auto, key release clears and map key remains available (3.839013ms)
+✔ native form edits and Space button activation are not stolen; owned release still clears (6.278406ms)
+✔ blur, page hiding and modifiers do not leave latched controls (0.820552ms)
+✔ boarding UI owns its mobile hint class and clears it with walking state (1.071288ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,222, 树木=34棵, 碰撞器=2034
+✔ all actual exterior/instanced/tree/roof geometry captured once, including unloaded zones (2.443179ms)
+✔ home and all offered virtual landing pads have full rotor/body and safe dismount ground (35.767531ms)
+✔ entire default tour including takeoff and landing stays clear in actual world (14.44002ms)
+✔ selected landing routes preserve actual buildings and reach clear pads (3.475969ms)
+✔ unsafe Qianqing draft point and roofs cannot be landed on (0.21309ms)
+✔ R15 exposes a self-contained procedural helicopter factory (1.026631ms)
+✔ model exposes explicit local coordinates, ground-aligned bounds, and safe exit offsets (39.21416ms)
+✔ procedural geometry remains finite, closed, normally lit, and within the mobile budget (33.031278ms)
+✔ documented bounds contain every static vertex and analytic full rotor sweep (29.58184ms)
+✔ cockpit has forward visibility and a visible lower dashboard (12.930652ms)
+✔ rotors animate only around their own axes, clamp RPM, and reject invalid deltas (34.549877ms)
+✔ disposal is idempotent and releases only this instance’s owned resources (15.465628ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,222, 树木=34棵, 碰撞器=2034
+✖ tests/current-state/r15-historical-lamps.test.mjs (13910.98791ms)
+✔ flight suspension invalidates in-flight loads using real unload, retaining untagged architecture (2.539082ms)
+✔ loaded visual groups are disposed once on suspension and are not rebuilt until walking resumes (1.180482ms)
+✔ flight map includes every tour point and outer flight envelope in correct north/east orientation (11.640245ms)
+✔ legacy callers retain exact walking map bounds and invalid override fails closed (11.112262ms)
+node:internal/test_runner/harness:124
+      throw err;
+      ^
+
+AssertionError [ERR_ASSERTION]: exact R29 central source: src/scene/interior/InteriorLoader.js
++ actual - expected
+
++ 'ec3d850676c8757407215c680aa035d1c1662c2088a8de76b62762d028d7e2f0'
+- '218d2c1ee607979779f4802b74d3c1dbfd08b0b93fe326d753c6a5a957d17a90'
+
+    at restorePreR29Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r29-qianqing-retention.mjs:22:10)
+    at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/current-state/r15-source-retention.test.mjs:5:75
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'ec3d850676c8757407215c680aa035d1c1662c2088a8de76b62762d028d7e2f0',
+  expected: '218d2c1ee607979779f4802b74d3c1dbfd08b0b93fe326d753c6a5a957d17a90',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
+✖ tests/current-state/r15-source-retention.test.mjs (398.747073ms)
+✔ native tour disclosure and label clicks never lock walking pointer; canvas still locks (3.662729ms)
+✖ R31 combines only the ten reviewed source changes and four added product files against 2be1751 (37.386296ms)
+✖ R31 restores exact R30 PalaceBuilder before the untouched older source chain (2.310769ms)
+✖ R31 aliases retain exact older R6 catalog and source contracts without changing old fixtures (36.973376ms)
+✔ native unlock alone opens clickable paused operations and preserves the auto route (37.637704ms)
+✔ Escape before or after unlock is idempotent; repeated Escape cannot resume flight (9.33861ms)
+✔ map release alone keeps flight moving; panel with map wins until explicit resume (39.43352ms)
+✔ resume requests pointer lock once, stays paused until actual success, clears stale repeats (11.553394ms)
+✔ pointer lock failure retains visible paused controls and permits a fresh click retry (30.516453ms)
+✔ manual descent opens operations only after airborne aircraft stops on ground (15.469875ms)
+✔ auto descent opens operations only after airborne aircraft stops on ground (10.395687ms)
+✔ real exit from operations restores walking camera, clears input, remains outside parked collision, can reboard (18.636277ms)
+✔ airborne exit rejected, settings pause keeps input clear, and mobile explicit resume needs no lock (6.952217ms)
+✔ all three view switches leave paused pose and route unchanged (9.993774ms)
+✔ Space on a focused operations button retains native click activation (7.525738ms)
+✔ a missing pointer lock result expires only the request, never silently resumes (6.291125ms)
+✔ own unlock preserves landing notice and duplicate notifications do not reset resume request (22.707149ms)
+✔ map opened while lock request is pending remains unlocked when late lock succeeds (9.800413ms)
+✔ Escape on the final ground-contact frame can disembark without resuming one extra frame (5.018704ms)
+✔ a late lock cannot resume through generic settings ownership (6.180058ms)
+✔ map focus restoration outside operations is reclaimed and Tab stays in the panel (4.660517ms)
+✔ eight curated historical/current aliases retain the source-backed current cards and 159 exact bindings (12.327772ms)
+✔ optional historical aliases accept only a named source-backed field without changing name or target (9.447564ms)
+✔ catalog rejects non-list aliases (2.210639ms)
+✔ catalog rejects empty aliases (1.80482ms)
+✔ catalog rejects blank name (1.944659ms)
+✔ catalog rejects padded name (1.803107ms)
+✔ catalog rejects HTML name (2.502477ms)
+✔ catalog rejects overlong name (1.480082ms)
+✔ catalog rejects unknown alias field (3.649959ms)
+✔ catalog rejects missing source (1.756407ms)
+✔ catalog rejects empty sources (1.484398ms)
+✔ catalog rejects duplicate sources (1.797579ms)
+✔ catalog rejects duplicate names (1.641024ms)
+✔ catalog rejects redundant current name (1.679992ms)
+✔ catalog rejects unsupported name (1.889356ms)
+✔ catalog rejects unrelated official source (1.961304ms)
+✔ catalog rejects partly unrelated official sources (1.713983ms)
+✔ catalog rejects too many aliases (1.763838ms)
+✔ a canonical name cannot be redundantly added as a historical alias (4.395789ms)
+✔ JSON schema accepts named alias evidence and rejects malformed alias records (549.97619ms)
+✔ historical name input opens the current card and preserves keyboard return state (88.292579ms)
+✔ 皇极殿 search keeps two distinct card IDs and navigation targets on desktop (32.465719ms)
+✔ historical name input opens the current card and preserves touch return state (18.346462ms)
+✔ 皇极殿 search keeps two distinct card IDs and navigation targets on touch (20.746386ms)
+✔ canonical names and demolished-site explanations remain searchable without losing their identities (31.182102ms)
+✔ frozen R31 export profile remains retained provenance; current R32 placements are checked separately (4.917693ms)
+✔ private surface tiles are deterministic, sRGB, bounded and disposable, never mutate library material (69.030878ms)
+✖ historical R32 exported bytes, source/profile and all 27 collision/walking proxies remain bound (9.699462ms)
+✔ frozen R31 enamel source remains exact; R32 has one permanent display owner and rejects visible/marker mutation (2127.353661ms)
+✔ optional private lip finish reuses its original solid, exact geometry and navigation, leaving default other lips unchanged (0.981053ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: exact R32 complete capture
++ actual - expected
+
++ '0bd69d56ed8c0dc596e90a8ffbb0911021295030bb1d77354256d29b70737fe4'
+- '837008a062244fb9faad2e9bb5b2ae5963c0a4287a1bf305169e5df40706de37'
+
+    at restorePreR32Capture (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r32-scene-retention.mjs:120:10)
+    at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/current-state/r31-qianqing-scene.test.mjs:6:90 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '0bd69d56ed8c0dc596e90a8ffbb0911021295030bb1d77354256d29b70737fe4',
+  expected: '837008a062244fb9faad2e9bb5b2ae5963c0a4287a1bf305169e5df40706de37',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
+✖ tests/current-state/r31-qianqing-scene.test.mjs (9930.04388ms)
+✖ main.js: exact interaction delta restores R30 and rejects unregistered edits (2.402838ms)
+✖ src/scene/flight/FlightTour.js: exact interaction delta restores R30 and rejects unregistered edits (0.524878ms)
+✔ immutable crest registry binds exact f7f65fd geometry to independently rebuilt 8ba57d6 (35.01063ms)
+✖ near exact crest geometry reverses only five registered crowns; all other bytes remain identical (199.239347ms)
+✖ far exact crest geometry reverses only five registered crowns; all other bytes remain identical (0.446ms)
+✖ actual same-count rebuilt crest from unknown source never acquires the frozen geometry exception (0.461122ms)
+✖ independent full crest capture binds exact total budget and byte-identical navigation through every old entry point (0.424498ms)
+✖ crest scene binding rejects unknown equal-count geometry, costs, collisions, partial restoration and runtime mutations (0.443346ms)
+✔ crest registry binds only f7f65fd source/addition against 8ba57d6 and preserves all 133 old fixtures (23.051556ms)
+✔ crest registry rejects same-length corruption and missing, extra, altered source or inventory bindings (7.571887ms)
+✖ crest reverses only exact full bytes and two unique review hunks without mutating input (0.708273ms)
+✖ all historical entry chains consume crest only through exact full-byte dispatch (118.338675ms)
+✖ added crest module has one exact identity and every inventory rejects altered or missing bytes (4.295578ms)
+✖ unregistered paths and changed epochs cannot acquire a crest exception (0.798829ms)
+✖ existing product inventory adds exactly one independently bound crest runtime module (0.616756ms)
+✔ follow-through registry binds only 8542 source/additions against 86a751 and preserves every old fixture (29.123661ms)
+✖ src/scene/palace/QianqingCeiling.js: follow-through reverses only exact full bytes and seven unique review hunks (175.806464ms)
+✖ src/ui/Minimap.js: follow-through reverses only exact full bytes and seven unique review hunks (1.321344ms)
+✖ assets-src/qianqing-ceiling-paint/PROMPT.txt: follow-through added source/asset has one exact identity (1.306251ms)
+✖ assets-src/qianqing-ceiling-paint/README.md: follow-through added source/asset has one exact identity (0.251458ms)
+✖ assets-src/qianqing-ceiling-paint/generated-original-r32.png: follow-through added source/asset has one exact identity (0.414883ms)
+✖ public/textures/art/qianqing-ceiling-illustration-r32.webp: follow-through added source/asset has one exact identity (12.960196ms)
+✖ src/scene/palace/QianqingCeilingPaint.js: follow-through added source/asset has one exact identity (0.773631ms)
+✖ unregistered paths and changed epochs cannot acquire a follow-through exception (0.796506ms)
+✖ existing product inventory includes exactly the two bound follow-through product additions (0.402224ms)
+✖ R25 unchanged exact product inventory rejects extra, missing and duplicate paths (0.381893ms)
+✖ R26 unchanged exact product inventory rejects extra, missing and duplicate paths (0.201793ms)
+✖ R26 frieze unchanged exact product inventory rejects extra, missing and duplicate paths (0.202594ms)
+✖ R27 unchanged exact product inventory rejects extra, missing and duplicate paths (0.183886ms)
+✖ R28 unchanged exact product inventory rejects extra, missing and duplicate paths (0.143035ms)
+✖ R29 unchanged exact product inventory rejects extra, missing and duplicate paths (0.13291ms)
+✖ R30 unchanged exact product inventory rejects extra, missing and duplicate paths (0.228283ms)
+✔ immutable frieze metadata registry binds exact d5e1ef0 to independent 898b4e6 capture (15.948523ms)
+✖ near complete geometry including UVs remains byte-identical to independent 898b4e6 (236.217766ms)
+✖ far complete geometry including UVs remains byte-identical to independent 898b4e6 (0.508193ms)
+✖ actual frieze capture restores only metadata; all older exact scene entry points remain connected (1.750818ms)
+✖ frieze metadata binding rejects geometry, material, budget, collision, partial and runtime mutations (0.57979ms)
+✔ frieze registry binds only d5e1 source/additions against 898b4e6 and preserves every old fixture (46.612227ms)
+✖ src/scene/palace/QianqingCentralArt.js: frieze reverses only exact full bytes and three unique review hunks (136.482027ms)
+✔ src/ui/ModelFidelity.js: frieze reverses only exact full bytes and three unique review hunks (3.856289ms)
+✖ assets-src/qianqing-frieze-paint/CORRECTION-PROMPT.txt: frieze added source/asset has one exact identity (1.124268ms)
+✖ assets-src/qianqing-frieze-paint/PROMPT.txt: frieze added source/asset has one exact identity (0.335053ms)
+✖ assets-src/qianqing-frieze-paint/README.md: frieze added source/asset has one exact identity (0.594543ms)
+✖ assets-src/qianqing-frieze-paint/generated-original-r32.png: frieze added source/asset has one exact identity (0.18004ms)
+✖ public/textures/art/qianqing-five-dragon-illustration-r32.webp: frieze added source/asset has one exact identity (1.415585ms)
+✖ src/scene/palace/QianqingFriezePaint.js: frieze added source/asset has one exact identity (0.648293ms)
+✖ unregistered paths and changed epochs cannot acquire a frieze exception (0.8921ms)
+✖ existing product inventory includes exactly the two bound frieze product additions (0.367131ms)
+✖ historical R32 resident scene binds every captured byte and its retained resident cost (337.944477ms)
+✔ new distance-detail graph binds both levels, exact transforms, ordered children and visibility (2457.167256ms)
+✖ historical R32 ordered navigation retains every frozen collider and walking surface (182.647456ms)
+✔ immutable R32 scene registry binds exact R31 and R32 capture identities and cannot be edited in memory (324.61198ms)
+✖ only the exact complete R32 capture restores the complete frozen R31 capture and all earlier entrypoints (2906.33839ms)
+✔ ordered rows, mesh bytes, graph transforms and material values reject omissions, duplicates, reorders and partial restoration (17355.329275ms)
+✖ both complete capture identities reject unregistered costs, topology, fields and geometry/material identities (1618.47166ms)
+✖ registered JSON runtime exceptions retain exact R31 values and never allow arbitrary omitted fields or negative zero (2634.63221ms)
+✖ unknown ordered collisions and walking surfaces never receive historical restoration, including at the R30 bridge (379.731381ms)
+file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/auto-routes.mjs:408
+      const go = [front.zToe - 2, front.zToe, front.zTop, rear.zTop, rear.zToe, rear.zToe + 2].map(z => g.toWorld(x, z));
+                        ^
+
+TypeError: Cannot read properties of undefined (reading 'zToe')
+    at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/auto-routes.mjs:408:25
+    at Array.map (<anonymous>)
+    at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/auto-routes.mjs:407:28
+    at Array.flatMap (<anonymous>)
+    at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/auto-routes.mjs:393:133
+    at Array.flatMap (<anonymous>)
+    at profileGateRoutes (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/auto-routes.mjs:393:16)
+    at buildAutoRoutes (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/auto-routes.mjs:458:89)
+    at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/current-state/r32-route-retention.test.mjs:3:102
+
+Node.js v24.19.0
+✖ tests/current-state/r32-route-retention.test.mjs (13809.445711ms)
+✔ immutable screen registry preserves exact source provenance and separately bounded screen/ceiling epochs (22.570434ms)
+✖ near central UV restoration exactly matches independent afb geometry; all other bytes remain equal (194.009896ms)
+✖ far central UV restoration exactly matches independent afb geometry; all other bytes remain equal (0.274282ms)
+✖ exact current capture restores independently rebuilt afb then original R32; navigation and costs remain unchanged (0.322374ms)
+✖ UV and metadata bridges reject unknown fields, changed values, partial reversals and runtime exceptions (0.532118ms)
+✔ screen registry binds only a9f0 source/additions against afb369 and preserves every old fixture (35.627115ms)
+✖ src/scene/palace/QianqingCentralArt.js: screen reverses only exact full bytes and five unique review hunks (143.344505ms)
+✖ src/scene/palace/QianqingCentralSetting.js: screen reverses only exact full bytes and five unique review hunks (0.964057ms)
+✖ assets-src/qianqing-screen-paint/PROMPT.txt: screen added source/asset has one exact identity (22.14141ms)
+✖ assets-src/qianqing-screen-paint/README.md: screen added source/asset has one exact identity (0.483917ms)
+✖ assets-src/qianqing-screen-paint/generated-original-r32.png: screen added source/asset has one exact identity (0.374943ms)
+✖ public/textures/art/qianqing-screen-illustration-r32.webp: screen added source/asset has one exact identity (13.679517ms)
+✖ src/scene/palace/QianqingScreenPaint.js: screen added source/asset has one exact identity (0.767231ms)
+✖ unregistered paths and changed epochs cannot acquire a screen exception (0.891378ms)
+✖ existing product inventory includes exactly the two bound screen product additions (0.554072ms)
+✔ R32 historical source adapter and immutable exact registry are required (114.71799ms)
+✖ historical R27/R28 retained-driver guards bind all three exact R32 test-source deltas (153.517344ms)
+✖ assets-src/interiors/build_qianqing_auxiliary.py: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.629414ms)
+✖ data/interiors/qianqing.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.366385ms)
+✖ data/places/zh-CN.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (9.210012ms)
+✖ data/zones/east-six.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (1.911512ms)
+✖ data/zones/ningshou.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.385595ms)
+✖ data/zones/west-six.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.617479ms)
+✖ main.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.731829ms)
+✖ src/scene/Environment.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.569259ms)
+✖ src/scene/PalaceBuilder.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (1.836645ms)
+✖ src/scene/flight/FlightEnvelope.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.289955ms)
+✔ src/scene/interior/QianqingAuxiliaryContract.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (11.415878ms)
+✔ src/scene/interior/QianqingAuxiliaryManifest.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (9.7023ms)
+✖ src/scene/palace/QianqingCentralArt.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.535789ms)
+✖ src/scene/palace/QianqingCentralSetting.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (1.385744ms)
+✖ src/scene/palace/kit.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (7.731455ms)
+✖ src/scene/zones/ZoneBase.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.835404ms)
+✖ src/ui/Minimap.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (1.546519ms)
+✔ src/ui/PlaceInfoPanel.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (11.696054ms)
+✖ src/ui/Teleport.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (19.90253ms)
+✖ src/utils/Collision.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.619754ms)
+✖ style.css: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (14.910766ms)
+✖ tests/lib/auto-routes.mjs: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (6.749433ms)
+✖ tests/lib/world.mjs: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (0.959314ms)
+✖ tests/stepwalk.cjs: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed (7.851365ms)
+✖ assets-src/interiors/bind_qianqing_auxiliary.mjs: added R32 source has a complete fixed identity (0.844734ms)
+✖ assets-src/interiors/export_qianqing_display.mjs: added R32 source has a complete fixed identity (0.212444ms)
+✔ data/architecture/qianqing-display-geometry.json: added R32 source has a complete fixed identity (5.961449ms)
+✖ src/scene/palace/QianqingCeiling.js: added R32 source has a complete fixed identity (0.453678ms)
+✖ src/scene/palace/QianqingDisplay.js: added R32 source has a complete fixed identity (0.24938ms)
+✔ src/scene/palace/special/HuangjiGate.js: added R32 source has a complete fixed identity (0.35435ms)
+✖ src/scene/palace/special/InnerJinshui.js: added R32 source has a complete fixed identity (0.392821ms)
+✔ src/scene/palace/special/YanxiRuin.js: added R32 source has a complete fixed identity (4.17094ms)
+✔ src/scene/palace/special/YanxiRuinLOD.js: added R32 source has a complete fixed identity (0.662043ms)
+✖ src/scene/palace/special/YanxiStorehouses.js: added R32 source has a complete fixed identity (0.319167ms)
+✔ src/ui/HelpPanel.js: added R32 source has a complete fixed identity (1.06784ms)
+✔ src/ui/ModelFidelity.js: added R32 source has a complete fixed identity (6.276356ms)
+✔ unknown paths receive no R32 restoration and cannot masquerade as added sources (0.556913ms)
+✖ older source guard entry chains consume R32 only through exact full-byte dispatch (69.700145ms)
+✖ later product inventory lists only independently bound R31 and R32 additions (1.49408ms)
+✖ later product inventory rejects every missing, duplicated, appended or mutated source/asset and wrong GLB binding (0.4787ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: independent frozen R33 source: data/anchors.json
++ actual - expected
+
++ '73249fd0cd4aadb35912ed811ae14e99df49f20928270dfa68a39889d0e2a883'
+- 'c720ba58979c12b3c9eb763593bd8f27cdae59d1b21fd5a0bda70170a2ba668a'
+
+    at load (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/historical-r33-scene-dependencies.mjs:54:12)
+    at nextStep (node:internal/modules/customization_hooks:189:26)
+    at load (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/current-state/r33-flight-envelope-retention.test.mjs:14:10)
+    at nextStep (node:internal/modules/customization_hooks:189:26)
+    at loadWithHooks (node:internal/modules/customization_hooks:374:18)
+    at #loadSync (node:internal/modules/esm/loader:825:16)
+    at ModuleLoader.load (node:internal/modules/esm/loader:783:26)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:494:31)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+    at afterResolve (node:internal/modules/esm/loader:607:52) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '73249fd0cd4aadb35912ed811ae14e99df49f20928270dfa68a39889d0e2a883',
+  expected: 'c720ba58979c12b3c9eb763593bd8f27cdae59d1b21fd5a0bda70170a2ba668a',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
+✖ tests/current-state/r33-flight-envelope-retention.test.mjs (257.396906ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: independent frozen R32 source: data/anchors.json
++ actual - expected
+
++ '73249fd0cd4aadb35912ed811ae14e99df49f20928270dfa68a39889d0e2a883'
+- 'c720ba58979c12b3c9eb763593bd8f27cdae59d1b21fd5a0bda70170a2ba668a'
+
+    at load (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/historical-r32-scene-dependencies.mjs:57:12)
+    at nextStep (node:internal/modules/customization_hooks:189:26)
+    at load (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/current-state/r33-scene-retention.test.mjs:15:10)
+    at nextStep (node:internal/modules/customization_hooks:189:26)
+    at loadWithHooks (node:internal/modules/customization_hooks:374:18)
+    at #loadSync (node:internal/modules/esm/loader:825:16)
+    at ModuleLoader.load (node:internal/modules/esm/loader:783:26)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:494:31)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+    at afterResolve (node:internal/modules/esm/loader:607:52) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '73249fd0cd4aadb35912ed811ae14e99df49f20928270dfa68a39889d0e2a883',
+  expected: 'c720ba58979c12b3c9eb763593bd8f27cdae59d1b21fd5a0bda70170a2ba668a',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
+✖ tests/current-state/r33-scene-retention.test.mjs (9736.739795ms)
+✔ R33 registry binds the exact frozen checkpoint, independent Git blob identities and every prior fixture (98.142554ms)
+✔ R33 registry corruption, epoch drift and missing, duplicate or altered bindings are rejected (55.837633ms)
+✖ assets-src/interiors/bind_qianqing_auxiliary.mjs: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation (0.915555ms)
+✖ assets-src/interiors/build_qianqing_auxiliary.py: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation (0.31946ms)
+✔ data/architecture/taihe-core.json: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation (14.593651ms)
+✖ data/interiors/qianqing.json: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation (5.121859ms)
+✔ data/interiors/taihe.json: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation (10.106133ms)
+✖ data/zones/west-six.json: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation (4.814278ms)
+✖ src/scene/PalaceBuilder.js: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation (2.616158ms)
+✔ src/scene/interior/QianqingAuxiliaryContract.js: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation (3.082438ms)
+✔ src/scene/interior/QianqingAuxiliaryManifest.js: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation (1.610468ms)
+✔ src/scene/interior/TaiheCoreContract.js: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation (2.074905ms)
+✔ src/scene/palace/QianqingEndPassages.js: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation (3.71687ms)
+✖ src/scene/zones/ZoneBase.js: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation (1.509987ms)
+✖ src/ui/ModelFidelity.js: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation (7.116845ms)
+✖ existing R32 and older strict source chains dispatch only complete registered R33 identities (291.300973ms)
+✖ assets-src/interiors/fit_taihe_hanging.py: added R33 source or binary is independently byte-bound and never reversed (0.500712ms)
+✖ assets-src/interiors/taihe_hanging_fit/r32-profile.json: added R33 source or binary is independently byte-bound and never reversed (0.180551ms)
+✔ src/scene/palace/QianqingDepthGrid.js: added R33 source or binary is independently byte-bound and never reversed (0.926721ms)
+✖ src/scene/palace/special/ChuxiuHall.js: added R33 source or binary is independently byte-bound and never reversed (0.733811ms)
+✔ public/models/interiors/qianqing-r33.glb: added R33 source or binary is independently byte-bound and never reversed (4.021598ms)
+✔ public/models/interiors/taihe-hanging-fit-b032ccb094e0.glb: added R33 source or binary is independently byte-bound and never reversed (15.051458ms)
+✖ R33 product inventory admits exactly two runtime modules and two GLBs after checking all source/provenance and asset bindings (2.00447ms)
+✖ unknown paths, inherited property names and older epochs cannot acquire an R33 exception (0.330426ms)
+✔ R30 added passage-source guard accepts only exact R33 projection and still rejects all altered full bytes (1.484439ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: independent frozen R33 source: data/anchors.json
++ actual - expected
+
++ '73249fd0cd4aadb35912ed811ae14e99df49f20928270dfa68a39889d0e2a883'
+- 'c720ba58979c12b3c9eb763593bd8f27cdae59d1b21fd5a0bda70170a2ba668a'
+
+    at load (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/historical-r33-scene-dependencies.mjs:54:12)
+    at nextStep (node:internal/modules/customization_hooks:189:26)
+    at load (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/current-state/r34-flight-envelope-retention.test.mjs:12:10)
+    at nextStep (node:internal/modules/customization_hooks:189:26)
+    at loadWithHooks (node:internal/modules/customization_hooks:374:18)
+    at #loadSync (node:internal/modules/esm/loader:825:16)
+    at ModuleLoader.load (node:internal/modules/esm/loader:783:26)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:494:31)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+    at afterResolve (node:internal/modules/esm/loader:607:52) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '73249fd0cd4aadb35912ed811ae14e99df49f20928270dfa68a39889d0e2a883',
+  expected: 'c720ba58979c12b3c9eb763593bd8f27cdae59d1b21fd5a0bda70170a2ba668a',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
+✖ tests/current-state/r34-flight-envelope-retention.test.mjs (613.78315ms)
+✔ R34 night raises readable ambient and warm fill without raising sky or daylight exposure (3.207045ms)
+✖ R34 existing garden lamp faces glow only at night with no new lights, collision geometry or shadows (8.089976ms)
+✖ Frozen R34 lighting-only checkpoint reverses to R33 and rejects mutations: src/scene/Environment.js (1.373583ms)
+✔ Frozen R34 lighting-only checkpoint reverses to R33 and rejects mutations: src/scene/sky/BeijingDayCycle.js (1.607263ms)
+✔ R34 night illuminates paving, facade normals and eave undersides globally while retaining noon separation (0.427622ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: independent frozen R33 source: data/anchors.json
++ actual - expected
+
++ '73249fd0cd4aadb35912ed811ae14e99df49f20928270dfa68a39889d0e2a883'
+- 'c720ba58979c12b3c9eb763593bd8f27cdae59d1b21fd5a0bda70170a2ba668a'
+
+    at load (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/historical-r33-scene-dependencies.mjs:54:12)
+    at nextStep (node:internal/modules/customization_hooks:189:26)
+    at load (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/current-state/r34-scene-retention.test.mjs:15:10)
+    at nextStep (node:internal/modules/customization_hooks:189:26)
+    at loadWithHooks (node:internal/modules/customization_hooks:374:18)
+    at #loadSync (node:internal/modules/esm/loader:825:16)
+    at ModuleLoader.load (node:internal/modules/esm/loader:783:26)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:494:31)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+    at afterResolve (node:internal/modules/esm/loader:607:52) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '73249fd0cd4aadb35912ed811ae14e99df49f20928270dfa68a39889d0e2a883',
+  expected: 'c720ba58979c12b3c9eb763593bd8f27cdae59d1b21fd5a0bda70170a2ba668a',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
+✖ tests/current-state/r34-scene-retention.test.mjs (9124.14268ms)
+✔ R34 integrated registry binds exact historical production and keeps every R33-era fixture untouched (40.402719ms)
+✔ R34 integrated registry fails closed on corrupted identity, epoch, hunks, independent source, inventory and old-fixture bindings (39.528337ms)
+✔ data/architecture/taihe-core.json: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input (14.341041ms)
+✔ data/interiors/taihe.json: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input (2.784421ms)
+✖ data/zones/west-six.json: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input (0.437587ms)
+✔ src/render/SilhouetteBuilder.js: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input (2.674766ms)
+✖ src/scene/Environment.js: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input (0.266269ms)
+✖ src/scene/PalaceBuilder.js: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input (0.291608ms)
+✔ src/scene/interior/QianqingAuxiliaryContract.js: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input (2.008135ms)
+✔ src/scene/interior/TaiheCoreContract.js: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input (1.846773ms)
+✔ src/scene/palace/QianqingEndPassages.js: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input (1.519711ms)
+✔ src/scene/palace/special/TaiheDaisFront.js: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input (1.094583ms)
+✔ src/scene/palace/special/TaiheDisplayPairs.js: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input (1.135976ms)
+✔ src/scene/sky/BeijingDayCycle.js: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input (1.841235ms)
+✖ src/scene/zones/ZoneBase.js: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input (0.255904ms)
+✖ tests/lib/world.mjs: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input (0.578429ms)
+✖ assets-src/interiors/fit_taihe_display_grid.py: exact historical added bytes and finite inventory reject missing, duplicated or changed data (0.261583ms)
+✖ assets-src/interiors/taihe_spatial_fit/r33-profile.json: exact historical added bytes and finite inventory reject missing, duplicated or changed data (0.082954ms)
+✖ public/models/interiors/taihe-display-grid-6012719f9618.glb: exact historical added bytes and finite inventory reject missing, duplicated or changed data (17.565142ms)
+✖ src/scene/palace/QianqingFrontageGrid.js: exact historical added bytes and finite inventory reject missing, duplicated or changed data (0.518909ms)
+✖ src/scene/palace/QianqingWarmRooms.js: exact historical added bytes and finite inventory reject missing, duplicated or changed data (0.400371ms)
+✖ src/scene/palace/special/ChuxiuCourtyard.js: exact historical added bytes and finite inventory reject missing, duplicated or changed data (3.332182ms)
+✖ src/scene/palace/special/YikunSideAccess.js: exact historical added bytes and finite inventory reject missing, duplicated or changed data (0.707683ms)
+✖ R34 inventory and dispatch allow no unregistered paths, prototype properties or broad filename exceptions (0.342794ms)
+✖ later integrated fixes preserve only the exact original lighting checkpoint and never normalize unknown sources (2.454686ms)
+✖ R34 added fine asset inventory also requires its exact current config-to-binary binding (0.501192ms)
+✔ historical material snapshots execute the independently frozen R34 class without redirecting raw production imports (5.797214ms)
+✔ independent R34 module transport accepts only explicitly registered source dependencies (1.362545ms)
+✔ hd: four route surfaces use bounded response defaults, not albedo or scale changes (5.533158ms)
+✔ sd: four route surfaces use bounded response defaults, not albedo or scale changes (2.020854ms)
+✔ all other material defaults remain exactly neutral, including already mild marble (1.048704ms)
+✔ explicit roughness, color, metalness and scalar/zero/vector normal overrides win without mutating input (4.059915ms)
+✔ existing road, ground and interior roughness overrides remain authoritative (0.744057ms)
+✔ missing normal maps remain absent instead of allocating replacements or changing texture ownership (0.889185ms)
+✔ response variants reuse textures and preserve single-owner disposal with no extra resources (1.050387ms)
+✖ R35 binds the complete raw finish scope, independent R34 sources, unchanged product inventory and all previous fixtures (45.538911ms)
+✔ R35 immutable registry rejects forged epochs, source identities, finite hunks, retained paths and fixture bindings (85.369282ms)
+✔ src/render/PostProcessing.js: raw R35 bytes restore only the independently frozen R34 identity and reject every mutated candidate (3.062368ms)
+✖ src/scene/palace/kit.js: raw R35 bytes restore only the independently frozen R34 identity and reject every mutated candidate (0.798169ms)
+✖ src/scene/zones/ZoneBase.js: raw R35 bytes restore only the independently frozen R34 identity and reject every mutated candidate (0.371277ms)
+✔ src/utils/TextureLibrary.js: raw R35 bytes restore only the independently frozen R34 identity and reject every mutated candidate (3.164681ms)
+✖ every retained production and provenance file remains byte-exact, including binary assets (0.511448ms)
+✔ R35 dispatch never projects unregistered paths, prototype properties, or an unrelated source identity (1.01259ms)
+✔ ground fallback keeps the library metre-scaled UV contract instead of double-tiling (2.918522ms)
+✔ configure applies unit repeats identically to color and normal textures for every spec (0.820582ms)
+✔ all procedural fallbacks retain documented tile size and shared material ownership (5.702191ms)
+✔ failed file loading returns a correctly scaled usable fallback without changing manifest scale (5.064879ms)
+✔ legacy no-profile roof is byte-exact: baohe-high (102.397372ms)
+✔ legacy no-profile roof is byte-exact: baohe-low (32.05065ms)
+✔ legacy no-profile roof is byte-exact: zhonghe-high (17.401867ms)
+✔ legacy no-profile roof is byte-exact: zhonghe-low (3.371091ms)
+✔ legacy no-profile roof is byte-exact: taihe-high (22.145378ms)
+✔ legacy no-profile roof is byte-exact: taihe-low (3.121857ms)
+✔ legacy no-profile roof is byte-exact: wudian-1-high (19.523332ms)
+✔ legacy no-profile roof is byte-exact: wudian-1-low (2.06471ms)
+✔ legacy no-profile roof is byte-exact: wudian-2-high (13.169252ms)
+✔ legacy no-profile roof is byte-exact: wudian-2-low (3.405413ms)
+✔ legacy no-profile roof is byte-exact: xieshan-1-high (9.460834ms)
+✔ legacy no-profile roof is byte-exact: xieshan-1-low (7.728372ms)
+✔ legacy no-profile roof is byte-exact: xieshan-2-high (38.849078ms)
+✔ legacy no-profile roof is byte-exact: xieshan-2-low (6.080058ms)
+✔ legacy no-profile roof is byte-exact: pavilion-1-high (28.614922ms)
+✔ legacy no-profile roof is byte-exact: pavilion-1-low (6.887131ms)
+✔ legacy no-profile roof is byte-exact: pavilion-2-high (26.110973ms)
+✔ legacy no-profile roof is byte-exact: pavilion-2-low (4.522049ms)
+✔ legacy no-profile roof is byte-exact: gable-1-high (9.085131ms)
+✔ legacy no-profile roof is byte-exact: gable-1-low (2.247294ms)
+✔ legacy no-profile roof is byte-exact: gable-2-high (7.112198ms)
+✔ legacy no-profile roof is byte-exact: gable-2-low (2.062166ms)
+✔ legacy no-profile roof is byte-exact: octagonal (60.208125ms)
+✔ legacy no-profile roof is byte-exact: hard-gable (12.229932ms)
+✔ explicit Baohe and Zhonghe profiles emit separate walking animal / rider counts (100.520598ms)
+✔ baohe: every non-walking mesh, rider, ridge, tile and material stays byte-exact (81.120843ms)
+✔ baohe: actual submitted triangle budget counts every corner on every level (84.308649ms)
+✔ baohe: low-detail omission policy does not pretend to generate rows (17.805383ms)
+✔ zhonghe: every non-walking mesh, rider, ridge, tile and material stays byte-exact (31.869128ms)
+✔ zhonghe: actual submitted triangle budget counts every corner on every level (35.618326ms)
+✔ zhonghe: low-detail omission policy does not pretend to generate rows (6.93372ms)
+✔ baohe: all animal base vertices contact actual ridge triangles and all stations follow the actual curved hip (156.292855ms)
+✔ zhonghe: all animal base vertices contact actual ridge triangles and all stations follow the actual curved hip (49.851777ms)
+✔ profiles fail closed on changed hall dimensions or ambiguous level overrides before creating materials (1.187683ms)
+✔ temporary and submitted geometry resources and owned materials have one clear disposal owner (266.571505ms)
+✔ pure W consumer verifies existing roof fragments before and after final hall-material merge without adding a world (209.031906ms)
+✔ actual walking body/head bounds clear adjacent animals and the retained rider, not just station metadata (149.085022ms)
+✔ reviewed widths accept actual production arithmetic without rounding or changing the roof input (91.054667ms)
+ℹ Error: A resource generated asynchronous activity after the test ended. This activity created the error "Error: Hookup context changed" which triggered an uncaughtException event, caught by the test runner.
+✖ tests/current-state/r58-hall-beasts.test.mjs (2037.532829ms)
+✔ Hongyi replaces exactly six lower groups with twelve separately framed leaves and retains every non-target byte (524.00883ms)
+✔ Hongyi paired leaf envelope, original straight-bar positions and shared material remain bounded (204.987513ms)
+✔ existing Hongyi central inscription and every other non-target stream stay exact (254.269074ms)
+✔ Tiren entire assembly, materials and navigation stay exact (452.816719ms)
+✔ Hongyi helper refuses to act on Tiren or an unrelated profile (0.331407ms)
+✔ all twelve meeting stiles remain first visible surfaces from real terrace feet after production merge (382.826117ms)
+✔ Hongyi leaf surfaces have no coincident duplicate triangles and retain separated front depths (255.808421ms)
+✔ Hongyi source boxes are finite before pruning, have private geometries, and never dispose caller materials (648.407483ms)
+✔ Hongyi already-built W consumer checks twelve real merged stiles, six blocking windows and three open door rays (514.044219ms)
+✔ Hongyi consumer rejects a missing meeting stile rather than trusting role labels (243.988572ms)
+✔ Hongyi consumer rejects removed collisions or terrace support (429.92882ms)
+✔ Hongyi consumer rejects Tiren or a missing assembly (249.165531ms)
+✔ Hongyi frontLeft actual first-person round trip preserves both stairs and the original entry (581.548492ms)
+ℹ {"side":"frontLeft","frames":666,"samples":167,"minOverheadDistance":2.984999656677246}
+✔ Hongyi frontRight actual first-person round trip preserves both stairs and the original entry (529.153814ms)
+ℹ {"side":"frontRight","frames":666,"samples":167,"minOverheadDistance":2.984999656677246}
+✔ three Wuying review IDs bind to the actual three retained profile IDs, not invented aliases (622.880448ms)
+✔ Taihe explicitly realizes ten walking beasts on each of eight corners, with eight separate riders (231.554142ms)
+✔ actual production Taihe hall alone installs the reviewed profile (588.56453ms)
+✔ profile selectors reject non-string coercion instead of accepting an array or object alias (1.334327ms)
+✔ Taihe retains every non-walking mesh including all eight old riders, ridges, tiles and materials (175.882066ms)
+✔ Taihe has exactly 80 actual replacement bodies/heads, 8 separate riders and no duplicated old animals (123.69863ms)
+✔ Taihe all 320 real body corners contact submitted hip triangles and remain spaced on the true curved path (168.331358ms)
+✔ Taihe low-detail remains byte-exact to legacy omission without claiming visible animals (19.316126ms)
+✔ Taihe guard fails closed before materials for wrong type, every dimension/layer override and unknown profiles (0.681475ms)
+✔ Taihe valid real caller arithmetic and finite baseY offsets retain reviewed counts (484.327137ms)
+✔ baohe entire already-reviewed roof/profile matches c9a82aa exactly (90.292564ms)
+✔ zhonghe entire already-reviewed roof/profile matches c9a82aa exactly (34.952733ms)
+✖ 太和殿 actual hall retains baseline physics and non-target roof/nonroof bytes (175.234921ms)
+✔ 保和殿 actual hall retains baseline physics and non-target roof/nonroof bytes (535.993967ms)
+✖ 中和殿 actual hall retains baseline physics and non-target roof/nonroof bytes (179.581648ms)
+✖ 交泰殿 actual hall retains baseline physics and non-target roof/nonroof bytes (479.232668ms)
+✖ 乾清宫 actual hall retains baseline physics and non-target roof/nonroof bytes (238.714118ms)
+✔ Taihe repeated rebuild/dispose gives every temporary/final geometry and owned material one owner (457.591495ms)
+✔ three-hall pure W successor measures all 720 base/ridge-triangle contacts after actual final material merge (581.122478ms)
+✔ three-hall consumer rejects missing support even when every actual walking-body foot vertex remains (251.85569ms)
+✔ Tiren pure existing-W consumer checks twelve actual merged meeting stiles (688.289313ms)
+✔ Tiren actual first-person frontLeft round trip preserves stairs, threshold and lower entry (444.427612ms)
+ℹ {"side":"frontLeft","frames":666,"samples":167,"minOverheadDistance":3.0500001907348633}
+✔ Tiren actual first-person frontRight round trip preserves stairs, threshold and lower entry (395.961265ms)
+ℹ {"side":"frontRight","frames":666,"samples":167,"minOverheadDistance":3.0500001907348633}
+✔ Tiren replaces only six lower window groups with twelve separately framed straight-lattice leaves (640.809656ms)
+✔ all six paired windows retain their original outer envelope and use only original shared materials (224.050484ms)
+✖ Hongyi, including its six original windows and upper gallery, is byte-identical (389.633282ms)
+✔ paired meeting stiles are visible from legal terrace eye height after merge and main entry remains clear (363.16974ms)
+✔ new leaves are source-owned and their merge/disposal never frees caller materials (568.399965ms)
+✔ Tiren raw targeted boxes are nondegenerate before covered-face pruning (420.56367ms)
+✔ R58 first-batch Wumen keeps every original folded-ascent object and physical record byte-exact (17.874389ms)
+✖ R58 explicit additions explain old whole-gate child/collider totals without changing the ascent oracle (1.120763ms)
+✔ original ascent oracle still fails closed on actual geometry or collider mutation (72.415474ms)
+✔ Xihe pure existing-W consumer checks six actual merged members (240.221069ms)
+✔ Xihe actual first-person three-portal round trips at 30 fps keep body and rendered head clearance (247.516063ms)
+ℹ {"portal":1,"fps":30,"frames":594,"samples":149,"minOverheadDistance":3.2999998855590817}
+ℹ {"portal":2,"fps":30,"frames":594,"samples":149,"minOverheadDistance":3.2999998855590817}
+ℹ {"portal":3,"fps":30,"frames":594,"samples":149,"minOverheadDistance":3.2999998855590817}
+✔ Xihe actual first-person three-portal round trips at 60 fps keep body and rendered head clearance (422.820573ms)
+ℹ {"portal":1,"fps":60,"frames":1185,"samples":297,"minOverheadDistance":3.2999998855590817}
+ℹ {"portal":2,"fps":60,"frames":1185,"samples":297,"minOverheadDistance":3.2999998855590817}
+ℹ {"portal":3,"fps":60,"frames":1185,"samples":297,"minOverheadDistance":3.2999998855590817}
+✔ Xihe actual first-person three-portal round trips at 120 fps keep body and rendered head clearance (493.16066ms)
+ℹ {"portal":1,"fps":120,"frames":1025,"samples":257,"minOverheadDistance":3.2999998855590817}
+ℹ {"portal":2,"fps":120,"frames":1025,"samples":257,"minOverheadDistance":3.2999998855590817}
+ℹ {"portal":3,"fps":120,"frames":1025,"samples":257,"minOverheadDistance":3.2999998855590817}
+✖ raw pre-pruning source and final corbel triangles are all nondegenerate (457.252579ms)
+✖ six curved Xihe rear corbels are added while all baseline geometry, materials and registrations stay exact (187.264452ms)
+✖ xiehe remains byte-identical and gets no copied Xihe silhouette (195.859301ms)
+✔ jingyun remains byte-identical and gets no copied Xihe silhouette (99.418767ms)
+✔ longzong remains byte-identical and gets no copied Xihe silhouette (65.726661ms)
+✔ curved silhouette has a real undercut and legal-eye visibility before and after actual material merge (103.827596ms)
+✔ all three actual open routes keep body and rendered head clearance at every cardinal rotation (358.90953ms)
+✔ corbels have fresh owned geometry; merge and disposal free geometry once and never free shared materials (141.09972ms)
+✔ Zhendu independently declares documentary envelope, local PHOTO_FIT ranges and unaccepted unknowns (7.58531ms)
+✔ invalid topology and numeric input fail before geometry registration (5.206198ms)
+✔ independent profile and builder never import or call Zhaode implementations (0.860372ms)
+✔ real independent assembly owns one open portal, a high solid deck and two sloping surfaces (310.288178ms)
+✔ merged real triangles match deck and ramps, retain underside, and never fill the aperture (385.272455ms)
+✔ closed leaves stop the same central physical aperture without adding a fictitious rear leaf pair (141.653107ms)
+✔ cardinally transformed real triangles and collision supports stay coincident (310.480519ms)
+✔ production merge and disposal retain finite attributes and never dispose shared material ownership (75.705494ms)
+✔ lateral veranda occupies real space between core enclosure and outer column line (54.739877ms)
+✖ only the three explicit declarations change from the frozen R57 axis data (8.514704ms)
+✔ production ZoneBase dispatch registers the independent Zhendu and trims both declared wing ends (215.950667ms)
+✔ navigation fixture consumes the same actual Zhendu deck and independent ramp endpoints (0.855705ms)
+✔ consumer finds one existing assembly before and after production merge, verifies actual triangles and owned supports (290.089197ms)
+✔ consumer rejects missing, duplicate and shifted actual supports rather than trusting metadata (242.309557ms)
+✔ real controller crosses Zhendu front 10Hz walk forward on own supports (171.204816ms)
+✔ real controller crosses Zhendu front 10Hz walk backward on own supports (170.423308ms)
+✔ real controller crosses Zhendu front 10Hz sprint forward on own supports (135.94727ms)
+✔ real controller crosses Zhendu front 10Hz sprint backward on own supports (136.342323ms)
+✔ real controller crosses Zhendu front 60Hz walk forward on own supports (262.08018ms)
+✔ real controller crosses Zhendu front 60Hz walk backward on own supports (303.437229ms)
+✔ real controller crosses Zhendu front 60Hz sprint forward on own supports (126.31625ms)
+✔ real controller crosses Zhendu front 60Hz sprint backward on own supports (100.359288ms)
+✔ real controller crosses Zhendu rear 10Hz walk forward on own supports (96.894066ms)
+✔ real controller crosses Zhendu rear 10Hz walk backward on own supports (64.06718ms)
+✔ real controller crosses Zhendu rear 10Hz sprint forward on own supports (56.251526ms)
+✔ real controller crosses Zhendu rear 10Hz sprint backward on own supports (55.885886ms)
+✔ real controller crosses Zhendu rear 60Hz walk forward on own supports (158.931649ms)
+✔ real controller crosses Zhendu rear 60Hz walk backward on own supports (209.847874ms)
+✔ real controller crosses Zhendu rear 60Hz sprint forward on own supports (105.993167ms)
+✔ real controller crosses Zhendu rear 60Hz sprint backward on own supports (94.633232ms)
+✔ support substitution can arrive in XY but fails the real primitive provenance test (91.742382ms)
+✔ solid retaining sides, bay panels, columns and wing caps stop actual body movement (112.514824ms)
+✔ actual low 2: zero legacy animals becomes four rows of five, plus four separate riders (98.58133ms)
+✔ actual low 2: every original mesh, material, physics and nav stays exact (154.797172ms)
+✔ actual low 2: real foot vertices touch corresponding original ridge triangles; outward facing and no neighboring envelope overlap (37.230868ms)
+✔ actual low 16: zero legacy animals becomes four rows of five, plus four separate riders (32.206665ms)
+✔ actual low 16: every original mesh, material, physics and nav stays exact (44.7251ms)
+✔ actual low 16: real foot vertices touch corresponding original ridge triangles; outward facing and no neighboring envelope overlap (21.716925ms)
+✔ non-target indexes/zones are no-ops; exact target dimension/rotation/scale/mesh drift fails before mutation (896.123904ms)
+✔ reapplication is rejected without mutation; final production merge retains actual contact vertices and fixed budget (137.317768ms)
+✔ new source/intermediate/temporary geometry has exactly one disposal owner, with no new material (62.511936ms)
+✔ pure existing-world consumer survives final material merge and detects metadata-only contacts (133.552354ms)
+✔ new merged ornament batch submits no zero-area triangles (25.129258ms)
+✔ zero-area filter preserves every positive-area triangle position/normal/UV and foot contact (101.97889ms)
+✔ whole-zone root uses bounded foot-query maps, never retaining every zone vertex (125.516304ms)
+✔ raw and merged actual triangles have identical sill, pale lower, short upper step and recessed surfaces (354.655082ms)
+✔ existing-W consumer detects removed generated solids, removed collision and absent target (554.975732ms)
+✔ 10Hz real controller repeats south-door exterior/interior return with actual support and head clearance (159.581004ms)
+ℹ {"fps":10,"frames":88,"maxFeet":0.45,"headClearance":{"samples":22,"minOverheadDistance":3.630399799346924}}
+✔ 60Hz real controller repeats south-door exterior/interior return with actual support and head clearance (200.469343ms)
+ℹ {"fps":60,"frames":501,"maxFeet":0.45,"headClearance":{"samples":126,"minOverheadDistance":2.5803199768066407}}
+✔ four Jingren rear closed bays get high sills, three pale lower fields and upper short step grilles (185.518046ms)
+✔ R39 roof, columns, doors, floor, generic furniture and all navigation stay byte-exact; only four old geometries disposed (257.175021ms)
+✔ main Jingren hall, other rear halls and malformed item/frame/root identity reject atomically (699.607646ms)
+✔ incomplete, duplicated, moved, shared, edited or hidden source panels and removed collider reject atomically (472.240508ms)
+✔ new triangle positions/normals have finite area and merged world bounds equal raw bounds (144.191543ms)
+✔ window cleanup owns four new materials and does not dispose the shared lattice material (49.855613ms)
+✔ frame union does not duplicate any geometric triangle, including frame-to-motif contacts (105.893818ms)
+✔ consumer measures four merged high sills, broad grid solids, narrow diagonal solids and retained closed windows (173.848595ms)
+✔ consumer rejects absent broad bars, narrow diamonds, collision and assembly, not just trusting metadata (158.030245ms)
+✔ 10Hz actual controller south repeated exterior-interior-exterior route preserves support and head clearance (69.785606ms)
+ℹ {"fps":10,"side":"south","frames":105,"headClearance":{"samples":27,"minOverheadDistance":4.193599891662598},"maxFeet":0.6}
+✔ 10Hz actual controller north repeated exterior-interior-exterior route preserves support and head clearance (39.883336ms)
+ℹ {"fps":10,"side":"north","frames":77,"headClearance":{"samples":20,"minOverheadDistance":3.030880165100098},"maxFeet":0.6}
+✔ 60Hz actual controller south repeated exterior-interior-exterior route preserves support and head clearance (93.595128ms)
+ℹ {"fps":60,"side":"south","frames":630,"headClearance":{"samples":158,"minOverheadDistance":2.654239845275879},"maxFeet":0.6}
+✔ 60Hz actual controller north repeated exterior-interior-exterior route preserves support and head clearance (79.799421ms)
+ℹ {"fps":60,"side":"north","frames":462,"headClearance":{"samples":116,"minOverheadDistance":3.030880165100098},"maxFeet":0.6}
+✔ four closed south panels become high masonry sills, broad square grids and paired narrow diamond fields (93.058657ms)
+✔ all non-target geometry, R40 rear glazing, doors, columns, roof, throne and physics remain byte-exact (504.323608ms)
+✔ foreign hall identity and malformed item, frame, or parent transform reject without side effects (1941.239888ms)
+✔ missing, moved, extra, shared, stale-transform or modified source panels and collisions fail atomically (734.110164ms)
+✔ actual generated solids have finite positive-area triangles and survive merged world-space bounds (127.474044ms)
+✔ R63 successor keeps all six rear identities and five bays, selecting only Tongdao for the evidence-bounded xieshan correction (353.019471ms)
+✔ R63 successor: jingren-rear retains both flush gable planes and final merged tile bounds (109.422335ms)
+✔ R63 successor: chengqian-rear retains both flush gable planes and final merged tile bounds (61.775479ms)
+✔ R63 successor: zhongcui-rear retains both flush gable planes and final merged tile bounds (25.737332ms)
+✔ R63 successor: yonghe-rear retains both flush gable planes and final merged tile bounds (11.378203ms)
+✔ R63 successor: lijingxuan retains both flush gable planes and final merged tile bounds (48.793017ms)
+✔ Tongdao fails atomically for kit-wide same BufferGeometry (75.20314ms)
+✔ Tongdao fails atomically for kit-wide same position BufferAttribute (59.73534ms)
+✔ Tongdao fails atomically for kit-wide new attribute with same typed array (24.710199ms)
+✔ Tongdao fails atomically for kit-wide new typed-array view with same ArrayBuffer (18.725414ms)
+✔ Tongdao fails atomically for kit-wide interleaved attribute borrowing source payload (22.606891ms)
+✔ Tongdao fails atomically for kit-wide index view borrowing source payload (27.387504ms)
+✔ Tongdao fails atomically for kit-wide morph attribute borrowing source payload (37.7184ms)
+✔ Tongdao fails atomically for kit-wide hidden nested line borrowing source payload (12.223372ms)
+✔ independently cloned payload is not borrowed and retains identical successful roof output (19.797394ms)
+✔ actual Tongdao builder roof changes from flush hard gable to lower hipped returns and inset upper gables only (93.168452ms)
+✔ all lower meshes, materials, transforms, furniture, rooms, collision, walkables and map retain exact fingerprints (38.153743ms)
+✔ all submitted replacement roof triangles are finite and strictly positive-area (22.532069ms)
+✔ off-target index or zone stays untouched and repeat invocation rejects before mutation (35.771547ms)
+✔ changed identity, parent, orientation, roof envelope or source mesh rejects atomically (172.605118ms)
+✔ old roof-only geometry disposes once; retained bearing band and shared materials survive until normal kit finish (30.57854ms)
+✔ already-built world consumer checks actual lower hip tiles and inset upper gable surfaces before and after production merge (42.983585ms)
+✔ world consumer rejects original gable or removed actual roof surfaces despite retained metadata (41.553428ms)
+✔ exact minimal shared hookup reaches the actual ZoneBase target builder and merged consumer (150.616925ms)
+✔ production material suffixes do not prevent the exact roof guard or real-surface consumer (114.68723ms)
+✖ R62 baseline: old isolated Lijing start remains blocked by actual Chuxiu north wall (1161.712872ms)
+✖ R62 baseline: compound 24 10Hz W walk (727.028473ms)
+✖ R62 baseline: compound 24 10Hz W sprint (636.045577ms)
+✖ R62 baseline: compound 24 10Hz S walk (430.441364ms)
+✖ R62 baseline: compound 24 10Hz S sprint (450.650439ms)
+✖ R62 baseline: compound 24 60Hz W walk (742.985594ms)
+✖ R62 baseline: compound 24 60Hz W sprint (676.978806ms)
+✖ R62 baseline: compound 24 60Hz S walk (351.978278ms)
+✖ R62 baseline: compound 24 60Hz S sprint (371.94534ms)
+✖ R62 baseline: compound 47 10Hz W walk (412.58653ms)
+✖ R62 baseline: compound 47 10Hz W sprint (334.119613ms)
+✖ R62 baseline: compound 47 10Hz S walk (418.040337ms)
+✖ R62 baseline: compound 47 10Hz S sprint (349.946716ms)
+✖ R62 baseline: compound 47 60Hz W walk (619.688719ms)
+✖ R62 baseline: compound 47 60Hz W sprint (584.277762ms)
+✖ R62 baseline: compound 47 60Hz S walk (479.888226ms)
+✖ R62 baseline: compound 47 60Hz S sprint (248.991327ms)
+✖ R63 candidate: old isolated Lijing start remains blocked by actual Chuxiu north wall (990.904033ms)
+✖ R63 candidate: compound 24 10Hz W walk (855.040624ms)
+✖ R63 candidate: compound 24 10Hz W sprint (783.153052ms)
+✖ R63 candidate: compound 24 10Hz S walk (664.132281ms)
+✖ R63 candidate: compound 24 10Hz S sprint (643.342867ms)
+✖ R63 candidate: compound 24 60Hz W walk (653.541194ms)
+✖ R63 candidate: compound 24 60Hz W sprint (620.297889ms)
+✖ R63 candidate: compound 24 60Hz S walk (662.130478ms)
+✖ R63 candidate: compound 24 60Hz S sprint (724.340687ms)
+✔ R63 candidate: compound 47 10Hz W walk (545.110559ms)
+ℹ {"label":"R63 candidate","index":47,"fps":10,"backward":false,"sprint":false,"frames":84,"end":[149.29999792775862,441.0262094876734,0],"maxFeet":0.45,"headClearance":{"samples":21,"minOverheadDistance":3.630399799346924}}
+✔ R63 candidate: compound 47 10Hz W sprint (487.533995ms)
+ℹ {"label":"R63 candidate","index":47,"fps":10,"backward":false,"sprint":true,"frames":46,"end":[149.2999955765972,441.0034308275248,0],"maxFeet":0.45,"headClearance":{"samples":12,"minOverheadDistance":3.630399799346924}}
+✔ R63 candidate: compound 47 10Hz S walk (432.047297ms)
+ℹ {"label":"R63 candidate","index":47,"fps":10,"backward":true,"sprint":false,"frames":84,"end":[149.29999792775862,441.0262094876734,0],"maxFeet":0.45,"headClearance":{"samples":21,"minOverheadDistance":3.630399799346924}}
+✔ R63 candidate: compound 47 10Hz S sprint (414.770468ms)
+ℹ {"label":"R63 candidate","index":47,"fps":10,"backward":true,"sprint":true,"frames":46,"end":[149.2999955765972,441.0034308275248,0],"maxFeet":0.45,"headClearance":{"samples":12,"minOverheadDistance":3.630399799346924}}
+✔ R63 candidate: compound 47 60Hz W walk (940.009082ms)
+ℹ {"label":"R63 candidate","index":47,"fps":60,"backward":false,"sprint":false,"frames":477,"end":[149.3,441.0081405722357,0],"maxFeet":0.45,"headClearance":{"samples":120,"minOverheadDistance":2.243360137939453}}
+✔ R63 candidate: compound 47 60Hz W sprint (601.247796ms)
+ℹ {"label":"R63 candidate","index":47,"fps":60,"backward":false,"sprint":true,"frames":264,"end":[149.29999995207916,440.96303236537,0],"maxFeet":0.45,"headClearance":{"samples":66,"minOverheadDistance":2.243360137939453}}
+✔ R63 candidate: compound 47 60Hz S walk (822.644426ms)
+ℹ {"label":"R63 candidate","index":47,"fps":60,"backward":true,"sprint":false,"frames":477,"end":[149.3,441.0081405722357,0],"maxFeet":0.45,"headClearance":{"samples":120,"minOverheadDistance":2.243360137939453}}
+✔ R63 candidate: compound 47 60Hz S sprint (552.046319ms)
+ℹ {"label":"R63 candidate","index":47,"fps":60,"backward":true,"sprint":true,"frames":264,"end":[149.29999995207916,440.96303236537,0],"maxFeet":0.45,"headClearance":{"samples":66,"minOverheadDistance":2.243360137939453}}
+✔ 24: merged actual triangles establish sill, glazing, lattice and unchanged closed-window/open-door states (248.436996ms)
+✔ 24: 10Hz W walk repeated facade center route (103.141105ms)
+ℹ {"index":24,"fps":10,"backward":false,"sprint":false,"frames":97,"maxFeet":0.45,"maxSpeed":5.000000000000135,"headClearance":{"samples":25,"minOverheadDistance":2.5803199768066407}}
+✔ 24: 10Hz W sprint input repeated facade center route (100.750887ms)
+ℹ {"index":24,"fps":10,"backward":false,"sprint":true,"frames":53,"maxFeet":0.45,"maxSpeed":11.994480013639421,"headClearance":{"samples":14,"minOverheadDistance":3.630399799346924}}
+✔ 24: 10Hz S walk repeated facade center route (99.910405ms)
+ℹ {"index":24,"fps":10,"backward":true,"sprint":false,"frames":97,"maxFeet":0.45,"maxSpeed":5.000000000000135,"headClearance":{"samples":25,"minOverheadDistance":2.5803199768066407}}
+✔ 24: 10Hz S sprint input repeated facade center route (50.268703ms)
+ℹ {"index":24,"fps":10,"backward":true,"sprint":true,"frames":53,"maxFeet":0.45,"maxSpeed":11.994480013639421,"headClearance":{"samples":14,"minOverheadDistance":3.630399799346924}}
+✔ 24: 60Hz W walk repeated facade center route (62.559616ms)
+ℹ {"index":24,"fps":60,"backward":false,"sprint":false,"frames":582,"maxFeet":0.45,"maxSpeed":5.0000000000014495,"headClearance":{"samples":146,"minOverheadDistance":2.5803199768066407}}
+✔ 24: 60Hz W sprint input repeated facade center route (47.449601ms)
+ℹ {"index":24,"fps":60,"backward":false,"sprint":true,"frames":308,"maxFeet":0.45,"maxSpeed":11.990338601961886,"headClearance":{"samples":77,"minOverheadDistance":2.5803199768066407}}
+✔ 24: 60Hz S walk repeated facade center route (76.003561ms)
+ℹ {"index":24,"fps":60,"backward":true,"sprint":false,"frames":582,"maxFeet":0.45,"maxSpeed":5.0000000000014495,"headClearance":{"samples":146,"minOverheadDistance":2.5803199768066407}}
+✔ 24: 60Hz S sprint input repeated facade center route (65.907693ms)
+ℹ {"index":24,"fps":60,"backward":true,"sprint":true,"frames":308,"maxFeet":0.45,"maxSpeed":11.990338601961886,"headClearance":{"samples":77,"minOverheadDistance":2.5803199768066407}}
+✔ 47: merged actual triangles establish sill, glazing, lattice and unchanged closed-window/open-door states (257.645376ms)
+✔ 47: 10Hz W walk repeated facade center route (75.139034ms)
+ℹ {"index":47,"fps":10,"backward":false,"sprint":false,"frames":97,"maxFeet":0.45,"maxSpeed":5.000000000000135,"headClearance":{"samples":25,"minOverheadDistance":2.5803199768066407}}
+✔ 47: 10Hz W sprint input repeated facade center route (57.880307ms)
+ℹ {"index":47,"fps":10,"backward":false,"sprint":true,"frames":53,"maxFeet":0.45,"maxSpeed":11.994480013639421,"headClearance":{"samples":14,"minOverheadDistance":3.630399799346924}}
+✔ 47: 10Hz S walk repeated facade center route (66.865084ms)
+ℹ {"index":47,"fps":10,"backward":true,"sprint":false,"frames":97,"maxFeet":0.45,"maxSpeed":5.000000000000135,"headClearance":{"samples":25,"minOverheadDistance":2.5803199768066407}}
+✔ 47: 10Hz S sprint input repeated facade center route (49.661784ms)
+ℹ {"index":47,"fps":10,"backward":true,"sprint":true,"frames":53,"maxFeet":0.45,"maxSpeed":11.994480013639421,"headClearance":{"samples":14,"minOverheadDistance":3.630399799346924}}
+✔ 47: 60Hz W walk repeated facade center route (84.644444ms)
+ℹ {"index":47,"fps":60,"backward":false,"sprint":false,"frames":582,"maxFeet":0.45,"maxSpeed":5.0000000000014495,"headClearance":{"samples":146,"minOverheadDistance":2.5803199768066407}}
+✔ 47: 60Hz W sprint input repeated facade center route (94.383847ms)
+ℹ {"index":47,"fps":60,"backward":false,"sprint":true,"frames":308,"maxFeet":0.45,"maxSpeed":11.990338601961886,"headClearance":{"samples":77,"minOverheadDistance":2.5803199768066407}}
+✔ 47: 60Hz S walk repeated facade center route (127.856015ms)
+ℹ {"index":47,"fps":60,"backward":true,"sprint":false,"frames":582,"maxFeet":0.45,"maxSpeed":5.0000000000014495,"headClearance":{"samples":146,"minOverheadDistance":2.5803199768066407}}
+✔ 47: 60Hz S sprint input repeated facade center route (53.596181ms)
+ℹ {"index":47,"fps":60,"backward":true,"sprint":true,"frames":308,"maxFeet":0.45,"maxSpeed":11.990338601961886,"headClearance":{"samples":77,"minOverheadDistance":2.5803199768066407}}
+✔ triangle consumer rejects removed actual components and missing collision, not only metadata (362.12723ms)
+✔ default parent consumer checks both distinct halls in one existing scene (333.381846ms)
+✔ Tongdao supplied-world consumer rejects the exact 5,344-triangle upper-interior removal (53.130337ms)
+✔ Tongdao supplied-world consumer rejects upper-interior deletion in window 0 alone (76.391837ms)
+✔ Tongdao supplied-world consumer rejects upper-interior deletion in window 1 alone (107.512468ms)
+✔ Tongdao supplied-world consumer rejects upper-interior deletion in window 2 alone (93.52503ms)
+✔ Tongdao supplied-world consumer rejects upper-interior deletion in window 3 alone (74.702603ms)
+✔ Tongdao supplied-world consumer samples every upper rectangular grille and interconnection (179.015463ms)
+✔ every Tongdao upper horizontal interconnection is independently required by actual front triangles (2715.556478ms)
+✔ 24: replaces exactly four closed panels with sill, upper lattice and lower glazing subdivisions (220.718945ms)
+✔ 24: original central leaves, roof, columns, furniture and complete physics remain byte-exact (190.216355ms)
+✔ 24: all generated geometry is finite, positive-area and contained by the original closed-panel envelope and collision depth (122.23984ms)
+✔ 47: replaces exactly four closed panels with sill, upper lattice and lower glazing subdivisions (78.97018ms)
+✔ 47: original central leaves, roof, columns, furniture and complete physics remain byte-exact (299.43867ms)
+✔ 47: all generated geometry is finite, positive-area and contained by the original closed-panel envelope and collision depth (81.092453ms)
+✔ exact item index, identity, retained envelope and transforms gate both halls without side effects (861.840605ms)
+✔ missing, moved, duplicate, shared or modified panels and collision changes fail atomically (748.689394ms)
+✔ Tongdao upper rectangular lattice is an interconnected grille, not isolated rectangular ornaments (52.827821ms)
+✔ unwritable or intercepted result metadata rejects before any source mesh or owned material mutation (147.793695ms)
+✖ xiehe: real production materials achieve only the exact bounded covered-face reduction (299.38178ms)
+✖ xihe: real production materials achieve only the exact bounded covered-face reduction (161.981037ms)
+✔ jingyun: real production materials achieve only the exact bounded covered-face reduction (115.684128ms)
+✔ longzong: real production materials achieve only the exact bounded covered-face reduction (93.451477ms)
+✖ xiehe: all cardinal rotations, open/closed leaves and plaque modes keep exact premerge state (238.188627ms)
+✖ xihe: all cardinal rotations, open/closed leaves and plaque modes keep exact premerge state (378.563349ms)
+✔ jingyun: all cardinal rotations, open/closed leaves and plaque modes keep exact premerge state (1274.586412ms)
+✔ longzong: all cardinal rotations, open/closed leaves and plaque modes keep exact premerge state (896.363332ms)
+✔ integrated gate rejects transparent before replacing or disposing any source (85.398764ms)
+✔ integrated gate rejects alpha-tested before replacing or disposing any source (61.527163ms)
+✔ integrated gate rejects partial-opacity before replacing or disposing any source (105.224358ms)
+✔ integrated gate rejects wireframe before replacing or disposing any source (69.388148ms)
+✔ integrated gate rejects no-depth-write before replacing or disposing any source (87.805963ms)
+✔ integrated gate rejects displacement before replacing or disposing any source (82.567244ms)
+✔ integrated gate rejects back-side before replacing or disposing any source (64.787751ms)
+✔ integrated gate rejects non-casting before replacing or disposing any source (56.933071ms)
+✔ integrated gate rejects hidden-parent before replacing or disposing any source (70.135138ms)
+✔ integrated gate rejects layer-mismatch before replacing or disposing any source (87.165951ms)
+✔ integrated gate rejects incomplete-box before replacing or disposing any source (65.041969ms)
+✔ integrated gate rejects partial-draw-range before replacing or disposing any source (59.590786ms)
+✔ integrated gate rejects multi-material before replacing or disposing any source (51.440882ms)
+✖ the gate never touches sibling assemblies or patches shared CourtKit methods (117.151046ms)
+✖ fresh gates own disjoint geometry; merging and unloading never dispose shared library materials (421.114223ms)
+✖ xiehe: final material merging retains exact surviving triangle streams and first surfaces (3498.200358ms)
+✖ xihe: final material merging retains exact surviving triangle streams and first surfaces (3311.519102ms)
+✔ jingyun: final material merging retains exact surviving triangle streams and first surfaces (1300.632245ms)
+✔ longzong: final material merging retains exact surviving triangle streams and first surfaces (1630.231386ms)
+✔ four records explicitly dispatch independent five-bay profiles and preserve their anchors (2.842087ms)
+✔ xiehe: five timber bays, three portals, end windows and no full-depth masonry piers (381.054176ms)
+✔ xiehe: all three actual geometric clearances and door-leaf collisions survive merging (150.94941ms)
+✔ xiehe: three doors close independently of the persistent openings (83.762981ms)
+✔ xiehe: all portals and both ramps walk continuously in all four cardinal orientations (609.324918ms)
+✔ xiehe: real ramp solids match exact tapered walk boundaries at all cardinal rotations (326.578814ms)
+✔ xihe: five timber bays, three portals, end windows and no full-depth masonry piers (97.277974ms)
+✔ xihe: all three actual geometric clearances and door-leaf collisions survive merging (98.609908ms)
+✔ xihe: three doors close independently of the persistent openings (53.411442ms)
+✔ xihe: all portals and both ramps walk continuously in all four cardinal orientations (602.240538ms)
+✔ xihe: real ramp solids match exact tapered walk boundaries at all cardinal rotations (244.637273ms)
+✔ jingyun: five timber bays, three portals, end windows and no full-depth masonry piers (22.321979ms)
+✔ jingyun: all three actual geometric clearances and door-leaf collisions survive merging (33.187676ms)
+✔ jingyun: three doors close independently of the persistent openings (30.050824ms)
+✔ jingyun: all portals and both ramps walk continuously in all four cardinal orientations (232.66729ms)
+✔ jingyun: real ramp solids match exact tapered walk boundaries at all cardinal rotations (89.61604ms)
+✔ longzong: five timber bays, three portals, end windows and no full-depth masonry piers (12.911751ms)
+✔ longzong: all three actual geometric clearances and door-leaf collisions survive merging (16.778668ms)
+✔ longzong: three doors close independently of the persistent openings (15.227031ms)
+✔ longzong: all portals and both ramps walk continuously in all four cardinal orientations (91.513807ms)
+✔ longzong: real ramp solids match exact tapered walk boundaries at all cardinal rotations (76.733752ms)
+✔ independent evidence dimensions and correct courtyard flare directions are retained (292.600726ms)
+✔ finite geometry, shared materials, ownership disposal, and complete gate metadata survive CourtKit.finish (99.600509ms)
+✔ full axis zone cuts each wall and map to the real gate width, with only four adjacent corridor endpoints adjusted (653.893884ms)
+✔ full scene collision construction retains every three-passage side gate (9025.93684ms)
+✔ Xiehe main ridge cap uses the platform datum while the grey base remains an additional 2.62 m (72.340223ms)
+✔ high-gate railings follow flared edges and block sideways exits without closing any passage (99.422612ms)
+✔ ramp wedges reject ground-level body penetration and platform sides never rescue visitors upward (479.471004ms)
+✔ explicit malformed side profiles never fall back to legacy gate geometry (8.769068ms)
+✔ dedicated side gates reject malformed and noncardinal rotations before creating geometry (5.944541ms)
+✔ cardinal overrides record actual facing separately from the source-facing evidence (328.625991ms)
+✔ omitted dedicated transforms agree between profile, CourtKit and ZoneBase defaults (223.301597ms)
+✔ dedicated side gates reject nonfinite and nonnumeric placement before creating geometry (2.049626ms)
+✔ skyline renders only its inward-visible back face without changing forceSinglePass (5.021179ms)
+✔ skyline retains all 128 outward-wound side triangles and their native UVs (2.786654ms)
+✔ skyline preserves shared hd texture, alpha, fog and non-lighting state (1.996277ms)
+✔ skyline preserves shared sd texture, alpha, fog and non-lighting state (0.725499ms)
+✔ skyline preserves shared missing dimensions texture, alpha, fog and non-lighting state (2.294835ms)
+✔ origin, pre-update spawn and every palace-boundary corner see back faces only (5.858435ms)
+✔ actual environment recentering keeps ground and bird-eye cameras behind every face at any height (31.824156ms)
+✔ actual animate body recenters after controls and before render (streaming, high) (5.89463ms)
+✔ actual animate body recenters after controls and before render (streaming, low) (3.971463ms)
+✔ actual animate body recenters after controls and before render (all zones, high) (14.051587ms)
+✔ actual animate body recenters after controls and before render (all zones, low) (7.10028ms)
+✔ quality changes preserve the ring, map, geometry, transform and non-casting state (1.730608ms)
+✔ skyline stays out of runtime batches and shadow-LOD promotion (1.540813ms)
+✔ outside-ring direct renders are explicitly outside the equivalence contract (3.41647ms)
+✔ installed r162 PMREM remains at origin and baseline transparent path uses BackSide first (3.337571ms)
+✔ solid material batching has a dedicated, explicit helper (3.1088ms)
+✔ all triangles, transformed positions, normals, UVs and original linear colors/roughness survive (19.992932ms)
+✔ post-finish identity geometry retains every position and normal bit exactly (2.064241ms)
+✔ common standard material scalars and render flags survive, with a stable shader cache key (3.774166ms)
+✔ source geometries are disposed once, source materials remain caller-owned, and unrelated resources stay live (11.130969ms)
+✔ rejects texture without changing the source tree or disposing resources (5.331881ms)
+✔ rejects transparency without changing the source tree or disposing resources (0.925239ms)
+✔ rejects opacity without changing the source tree or disposing resources (0.983927ms)
+✔ rejects alpha test without changing the source tree or disposing resources (2.240778ms)
+✔ rejects existing vertex colors without changing the source tree or disposing resources (0.758207ms)
+✔ rejects incompatible metalness without changing the source tree or disposing resources (0.832719ms)
+✔ rejects incompatible shadows without changing the source tree or disposing resources (0.694931ms)
+✔ rejects custom before-shadow callback without changing the source tree or disposing resources (0.623913ms)
+✔ rejects custom after-shadow callback without changing the source tree or disposing resources (0.564524ms)
+✔ rejects independently frozen world transform without changing the source tree or disposing resources (0.708161ms)
+✔ rejects custom shader without changing the source tree or disposing resources (0.572085ms)
+✔ rejects unknown material feature without changing the source tree or disposing resources (2.352476ms)
+✔ rejects partial draw range without changing the source tree or disposing resources (0.616181ms)
+✔ rejects existing geometry colors without changing the source tree or disposing resources (0.572306ms)
+✔ rejects morph geometry without changing the source tree or disposing resources (0.597744ms)
+✔ rejects singular transform without changing the source tree or disposing resources (0.776815ms)
+✔ Zhonghe has a real four-sided veranda outside an inset 3×3 enclosure (177.119457ms)
+✔ Zhonghe has four central portals and closed adjacent bays (47.333874ms)
+✔ open folded door leaves block visitors at their inward tips without closing the central portal (201.497264ms)
+✔ Zhonghe front has twelve real leaves while its other faces and Jiaotai have four (85.499386ms)
+✔ Jiaotai has a central south door with solid sill-window side bays (70.677282ms)
+✔ Jiaotai side and rear facades each have one central portal and two walls (87.778773ms)
+✔ square-hall roofs have explicit moderate heights instead of default steep cones (78.884971ms)
+✔ Zhonghe plinth has physical east and west stairs and matching side openings (46.826217ms)
+✔ integrated Zhonghe plinth retains six walking flights and excludes the two central carved stones (925.398469ms)
+✔ ZoneBase preserves explicit hall bay count instead of silently inferring from width (58.581259ms)
+✔ explicit five-bay gate does not depend on crossing a 20m width threshold (15.130486ms)
+✔ a wide wall gate is not silently converted into a five-bay hall (27.685538ms)
+✔ unknown gate, roof, item, and unsupported multi-storey types fail explicitly (1.426447ms)
+✔ eave count is independent of structural storey count (32.774261ms)
+✔ passing a hall interior preset does not duplicate furniture around an explicit throne (17.923348ms)
+✔ object-level architecture evidence survives material batching (434.993932ms)
+✔ historical R13 fixed-sun: initial real directional light is the southwest candidate before the PMREM boundary (32.895404ms)
+✔ historical R13 fixed-sun: runtime real light retains the candidate at translated and elevated cameras (6.772389ms)
+✔ initial setup and runtime consume the same offset rather than separate hardcoded sun positions (13.071297ms)
+✔ candidate preserves V7 light distance, elevation, unoccluded ground incidence and flat-ground shadow length (2.092023ms)
+✔ model compass uses west-positive X and north-positive Z for light and shadow directions (15.249496ms)
+✔ non-azimuth settings match V7 except the separately accepted exact-output skyline side (6.02499ms)
+✔ both quality shadow configurations and restoration retain V7 values (2.306247ms)
+✔ untouched Environment methods preserve IBL intensity and setup plus all non-direction behavior (0.533527ms)
+✖ protected sources match V7 with only the exact accepted skyline, V9 map/gate, V10 lifecycle and V13 entry deltas (2.365065ms)
+✔ unused legacy getSunPosition API behavior stays unchanged and is not the active sun vector (1.992543ms)
+✔ source snapshot guard rejects unrelated side effects on the sun-placement line (0.698296ms)
+✔ independent lower and upper centerline chains retain source asymmetry and separate shells (4.091185ms)
+✔ invalid profiles, datum overrides, and non-cardinal transforms fail explicitly (2.299707ms)
+✔ hongyi: generated floor, eave and ridge vertices honor independent survey references (462.918347ms)
+✔ hongyi: nine lower bays, seven upper openings with closed ends, and physical rear enclosure (234.751822ms)
+✔ hongyi: both real 32-step flights reach the single lower room and exclude the royal strip (210.43188ms)
+✔ tiren: generated floor, eave and ridge vertices honor independent survey references (205.010512ms)
+✔ tiren: nine lower bays, seven upper openings with closed ends, and physical rear enclosure (239.461055ms)
+✔ tiren: both real 32-step flights reach the single lower room and exclude the royal strip (231.145316ms)
+✔ source records dispatch independently and metadata survives batching without owning shared materials (963.178317ms)
+✔ guarded side connections have usable non-rescuing runs and landings, stopping before unresolved neighbors (430.267442ms)
+✔ waist short-column endpoint spans evaluate to each independent support grid (271.521482ms)
+✔ lower roof has a supported bracket ring rather than an unsupported eave gap (441.418663ms)
+✔ wall replacements and only four trimmed corridor endpoints match the exact helper boundary (627.766906ms)
+✔ pavilion disposal releases all merged geometry and kit-owned resources, never shared textures/materials (210.475025ms)
+✔ every waist post bears on connected provisional framing instead of floating above the lower floor (338.174851ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: exact retained R29 dependency: data/anchors.json
++ actual - expected
+
++ '73249fd0cd4aadb35912ed811ae14e99df49f20928270dfa68a39889d0e2a883'
+- 'c720ba58979c12b3c9eb763593bd8f27cdae59d1b21fd5a0bda70170a2ba668a'
+
+    at assertR30RetainedSource (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r30-qianqing-passage-retention.mjs:41:10)
+    at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/historical-r29-qianqing-fixture.mjs:11:56
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '73249fd0cd4aadb35912ed811ae14e99df49f20928270dfa68a39889d0e2a883',
+  expected: 'c720ba58979c12b3c9eb763593bd8f27cdae59d1b21fd5a0bda70170a2ba668a',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
+✖ tests/current-state/taihe-core-geometry.test.mjs (599.935869ms)
+✔ actual south plinth and hall entry reaches current supported lower-stair viewpoint, 60fps speed5 (33.166912ms)
+✔ fixed side-view route and return stay clear, side-1, 60fps speed5 (38.866428ms)
+✔ fixed side-view route and return stay clear, side1, 60fps speed5 (30.262581ms)
+✔ actual south plinth and hall entry reaches current supported lower-stair viewpoint, 60fps speed12 (3.325545ms)
+✔ fixed side-view route and return stay clear, side-1, 60fps speed12 (9.903303ms)
+✔ fixed side-view route and return stay clear, side1, 60fps speed12 (10.192839ms)
+✔ actual south plinth and hall entry reaches current supported lower-stair viewpoint, 20fps speed5 (2.245579ms)
+✔ fixed side-view route and return stay clear, side-1, 20fps speed5 (5.213295ms)
+✔ fixed side-view route and return stay clear, side1, 20fps speed5 (8.56559ms)
+✔ actual south plinth and hall entry reaches current supported lower-stair viewpoint, 20fps speed12 (2.172299ms)
+✔ fixed side-view route and return stay clear, side-1, 20fps speed12 (3.425945ms)
+✔ fixed side-view route and return stay clear, side1, 20fps speed12 (3.195279ms)
+✔ actual south plinth and hall entry reaches current supported lower-stair viewpoint, 10fps speed5 (12.673412ms)
+✔ fixed side-view route and return stay clear, side-1, 10fps speed5 (2.141763ms)
+✔ fixed side-view route and return stay clear, side1, 10fps speed5 (4.282935ms)
+✔ actual south plinth and hall entry reaches current supported lower-stair viewpoint, 10fps speed12 (1.526808ms)
+✔ fixed side-view route and return stay clear, side-1, 10fps speed12 (4.802146ms)
+✔ fixed side-view route and return stay clear, side1, 10fps speed12 (4.378139ms)
+✔ permanent dais blocks a route through the throne even when no S asset is loaded (6.002523ms)
+✔ six permanent gold-column collisions use actual base radius and preserve source-maximal column clearance (0.761145ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: exact R30 passage source: src/scene/PalaceBuilder.js
++ actual - expected
+
++ 'f709079fb470b55d57eef80665f2b77dc4d15cf826c3bca942aaa57e8f37cfb9'
+- 'bfd9e25cbb6c55ddbfa31d633e24a82acc5a86813a3d7ac1fb2da80d0705366d'
+
+    at restorePreR30Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r30-qianqing-passage-retention.mjs:23:10)
+    at restorePreR29Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r29-qianqing-retention.mjs:21:9)
+    at restorePreR28Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r28-jiaotai-central-retention.mjs:22:9)
+    at restorePreR27Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r27-jiaotai-retention.mjs:16:9)
+    at restorePreR26FriezeSource (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r26-qianqing-frieze-retention.mjs:15:9)
+    at restorePreR26Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r26-qianqing-retention.mjs:16:9)
+    at restorePreR25Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r25-nameboard-retention.mjs:17:9)
+    at restorePreR24Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r24-baohe-retention.mjs:17:9)
+    at restorePreR23Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r23-baohe-retention.mjs:17:9)
+    at restorePreR22Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r22-baohe-retention.mjs:20:9) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'f709079fb470b55d57eef80665f2b77dc4d15cf826c3bca942aaa57e8f37cfb9',
+  expected: 'bfd9e25cbb6c55ddbfa31d633e24a82acc5a86813a3d7ac1fb2da80d0705366d',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
+✖ tests/current-state/taihe-core-source-guard.test.mjs (398.192051ms)
+✔ tapered x ramp ascending excludes trapezoid wings (2.603097ms)
+✔ tapered x ramp descending excludes trapezoid wings (0.496447ms)
+✔ tapered z ramp ascending excludes trapezoid wings (0.481525ms)
+✔ tapered z ramp descending excludes trapezoid wings (0.224658ms)
+✔ ordinary ramps and boxes preserve previous height and rescue behavior (0.467683ms)
+✔ partial, nonfinite, and inverted taper fields fail instead of silently becoming a rectangle (0.716207ms)
+✔ three-hall waist has exactly six physical x-ramp flights derived from its inherited tiers (152.084226ms)
+✔ ground-origin east approach ascends all three flights and returns to ground (94.683039ms)
+✔ ground-origin west approach ascends all three flights and returns to ground (43.610037ms)
+✔ retaining wall stays solid outside waist opening: side -1, z 52 (35.816519ms)
+✔ retaining wall stays solid outside waist opening: side -1, z 64 (37.174453ms)
+✔ retaining wall stays solid outside waist opening: side -1, z 72 (31.371881ms)
+✔ retaining wall stays solid outside waist opening: side 1, z 52 (47.686521ms)
+✔ retaining wall stays solid outside waist opening: side 1, z 64 (37.996154ms)
+✔ retaining wall stays solid outside waist opening: side 1, z 72 (34.730976ms)
+✔ six new flights are true closed 17-tread profiles with matching openings and provisional metadata (43.345469ms)
+✔ only side flights and six rail splits change geometry; every existing terrace body face stays exact (687.819853ms)
+✔ every stair is a nondegenerate closed manifold with outward faces and metric UVs (31.47824ms)
+✔ all tread tops, exposed risers, stepped sides, head, underside and visible cheeks raycast (74.230021ms)
+✔ cheeks, diagonal entry and under-platform bypass stay blocked on side -1 (36.666829ms)
+✔ cheeks, diagonal entry and under-platform bypass stay blocked on side 1 (85.689055ms)
+✔ post-batch front-face ray hits and normals preserve both sides without mirrored winding (386.959895ms)
+✖ new terrace metadata, colliders and owned geometry dispose cleanly, and rebuild without duplicates (49.702686ms)
+✔ Tiren has two separately framed, floored structural storeys (353.156597ms)
+✔ upper veranda has 24 square eave supports and a continuous four-sided walkable ring (296.839647ms)
+✖ lower nine bays are brick, three windows, double plank door, three windows, brick (216.236847ms)
+✔ explicit entry opens only the central double door, never side or rear bays (338.881064ms)
+✔ upper seven-bay front has 28 physical lattice leaves and solid wooden side/rear walls (264.304651ms)
+✔ preserves placement, faces west, and uses a single hip roof over genuine storeys (259.15331ms)
+✔ lower waist-roof exterior faces upward and leaves the centre open (296.068762ms)
+✔ veranda circulation connects its corners without rescuing visitors from the lower floor (306.568943ms)
+✔ does not invent an unverified physical name plaque by default (258.589351ms)
+✔ explicit lower central entry is reachable through either flanking front flight (139.858377ms)
+✔ explicit entry registers only the playable lower room and its west-facing central door (110.252975ms)
+✔ closed-reference state registers no publicly playable lower or upper room (112.97094ms)
+file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/RoofBuilder.js:53
+    aspect: { dougong: lib.aspect('dougong_band'), caihua: lib.aspect('caihua_beam') },
+                           ^
+
+TypeError: lib.aspect is not a function
+    at makeCtx (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/RoofBuilder.js:53:28)
+    at buildWallCap (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/RoofBuilder.js:759:15)
+    at buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/palace/special/AxisFirewalls.js:34:15)
+    at PalaceBuilder.buildComplex (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/PalaceBuilder.js:541:7)
+    at captureZhongheApproaches (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/zhonghe-approach-route.mjs:11:4)
+    at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/current-state/walkable-four-buildings.test.mjs:8:27
+
+Node.js v24.19.0
+✖ tests/current-state/walkable-four-buildings.test.mjs (9561.129954ms)
+✔ reviewed Wumen lower body and registered central eave replace the old 13m body (2.132569ms)
+✔ Wumen plaque uses the reviewed 3 percent panel ratio and fixed one-metre stand-off (2.035563ms)
+✔ non-opt-in roof stays byte-exact: {"type":"wudian","layers":1,"detail":"high","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (25.213994ms)
+✔ non-opt-in roof stays byte-exact: {"type":"wudian","layers":1,"detail":"high","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (23.644222ms)
+✔ non-opt-in roof stays byte-exact: {"type":"wudian","layers":1,"detail":"low","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (3.410443ms)
+✔ non-opt-in roof stays byte-exact: {"type":"wudian","layers":1,"detail":"low","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (12.847344ms)
+✔ non-opt-in roof stays byte-exact: {"type":"wudian","layers":2,"detail":"high","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (34.278645ms)
+✔ non-opt-in roof stays byte-exact: {"type":"wudian","layers":2,"detail":"high","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (26.869916ms)
+✔ non-opt-in roof stays byte-exact: {"type":"wudian","layers":2,"detail":"low","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (7.704404ms)
+✔ non-opt-in roof stays byte-exact: {"type":"wudian","layers":2,"detail":"low","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (9.246464ms)
+✔ non-opt-in roof stays byte-exact: {"type":"xieshan","layers":1,"detail":"high","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (8.039148ms)
+✔ non-opt-in roof stays byte-exact: {"type":"xieshan","layers":1,"detail":"high","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (10.946453ms)
+✔ non-opt-in roof stays byte-exact: {"type":"xieshan","layers":1,"detail":"low","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (2.251949ms)
+✔ non-opt-in roof stays byte-exact: {"type":"xieshan","layers":1,"detail":"low","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (2.202935ms)
+✔ non-opt-in roof stays byte-exact: {"type":"xieshan","layers":2,"detail":"high","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (13.657753ms)
+✔ non-opt-in roof stays byte-exact: {"type":"xieshan","layers":2,"detail":"high","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (13.676892ms)
+✔ non-opt-in roof stays byte-exact: {"type":"xieshan","layers":2,"detail":"low","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (6.005488ms)
+✔ non-opt-in roof stays byte-exact: {"type":"xieshan","layers":2,"detail":"low","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (5.455489ms)
+✔ non-opt-in roof stays byte-exact: {"type":"pavilion","layers":1,"detail":"high","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (7.530553ms)
+✔ non-opt-in roof stays byte-exact: {"type":"pavilion","layers":1,"detail":"high","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (8.048782ms)
+✔ non-opt-in roof stays byte-exact: {"type":"pavilion","layers":1,"detail":"low","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (1.887801ms)
+✔ non-opt-in roof stays byte-exact: {"type":"pavilion","layers":1,"detail":"low","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (2.103025ms)
+✔ non-opt-in roof stays byte-exact: {"type":"pavilion","layers":2,"detail":"high","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (16.265157ms)
+✔ non-opt-in roof stays byte-exact: {"type":"pavilion","layers":2,"detail":"high","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (25.278551ms)
+✔ non-opt-in roof stays byte-exact: {"type":"pavilion","layers":2,"detail":"low","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (8.179559ms)
+✔ non-opt-in roof stays byte-exact: {"type":"pavilion","layers":2,"detail":"low","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (4.276556ms)
+✔ non-opt-in roof stays byte-exact: {"type":"gable","layers":1,"detail":"high","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (11.219784ms)
+✔ non-opt-in roof stays byte-exact: {"type":"gable","layers":1,"detail":"high","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (7.277482ms)
+✔ non-opt-in roof stays byte-exact: {"type":"gable","layers":1,"detail":"low","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (2.335084ms)
+✔ non-opt-in roof stays byte-exact: {"type":"gable","layers":1,"detail":"low","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (3.271403ms)
+✔ non-opt-in roof stays byte-exact: {"type":"gable","layers":2,"detail":"high","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (8.160029ms)
+✔ non-opt-in roof stays byte-exact: {"type":"gable","layers":2,"detail":"high","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (7.522911ms)
+✔ non-opt-in roof stays byte-exact: {"type":"gable","layers":2,"detail":"low","brackets":true,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (2.199199ms)
+✔ non-opt-in roof stays byte-exact: {"type":"gable","layers":2,"detail":"low","brackets":false,"width":37.6,"depth":19.8,"baseY":12.3,"height":9} (3.171943ms)
+✖ all unscoped Wumen geometry, materials, wings, platform and portals stay byte-exact (1.682492ms)
+✔ Shenwu whole gate remains byte-exact (42.419395ms)
+✔ Wumen floor, thresholds and open leaves stay byte-exact (0.623919ms)
+✔ Wumen column count, plan, radii and horizontal tessellation remain fixed (0.607705ms)
+✔ profile opt-in cannot be reused for a different building or silently accept a modified card (1.041928ms)
+✔ high: the complete plaque silhouette and thickness have no triangle intersections with any roof or band (16.26737ms)
+✔ high: all upper bearing/fan and eave/fascia seams meet around four faces and corners (124.84211ms)
+✔ high: upper soffit stays beneath actual upper tile triangles with nonnegative separation (258.463241ms)
+✔ high: actual central tile, band and underside landmarks match frozen datums (3.829513ms)
+✔ low: the complete plaque silhouette and thickness have no triangle intersections with any roof or band (0.618451ms)
+✔ low: all upper bearing/fan and eave/fascia seams meet around four faces and corners (9.198873ms)
+✔ low: upper soffit stays beneath actual upper tile triangles with nonnegative separation (6.077806ms)
+✔ low: actual central tile, band and underside landmarks match frozen datums (0.760835ms)
+✖ after exact folded-ascent restoration, all old physics retains only the 46 keyed submicrometre foot deltas (0.585822ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: exact R30 passage source: src/scene/PalaceBuilder.js
++ actual - expected
+
++ 'f709079fb470b55d57eef80665f2b77dc4d15cf826c3bca942aaa57e8f37cfb9'
+- 'bfd9e25cbb6c55ddbfa31d633e24a82acc5a86813a3d7ac1fb2da80d0705366d'
+
+    at restorePreR30Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r30-qianqing-passage-retention.mjs:23:10)
+    at restorePreR29Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r29-qianqing-retention.mjs:21:9)
+    at restorePreR28Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r28-jiaotai-central-retention.mjs:22:9)
+    at restorePreR27Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r27-jiaotai-retention.mjs:16:9)
+    at restorePreR26FriezeSource (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r26-qianqing-frieze-retention.mjs:15:9)
+    at restorePreR26Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r26-qianqing-retention.mjs:16:9)
+    at restorePreR25Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r25-nameboard-retention.mjs:17:9)
+    at restorePreR24Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r24-baohe-retention.mjs:17:9)
+    at restorePreR23Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r23-baohe-retention.mjs:17:9)
+    at restorePreR22Source (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r22-baohe-retention.mjs:20:9) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'f709079fb470b55d57eef80665f2b77dc4d15cf826c3bca942aaa57e8f37cfb9',
+  expected: 'bfd9e25cbb6c55ddbfa31d633e24a82acc5a86813a3d7ac1fb2da80d0705366d',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
+✖ tests/current-state/wumen-vertical-source-guard.test.mjs (332.204901ms)

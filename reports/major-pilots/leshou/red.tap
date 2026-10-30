@@ -1,0 +1,55 @@
+✖ own-source Leshou south front uses three distinct bands in six window bays and four central folded leaves (110.584995ms)
+✖ south approach has one outward plain stone incline and two broad six-tread flights on inherited floor height (59.168864ms)
+✔ rollback restores old front while room plan roof datum rear and side meshes remain exact (120.97107ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 1
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 480.761859
+
+✖ failing tests:
+
+test at tests/major-pilots/leshou/front.test.mjs:6:1
+✖ own-source Leshou south front uses three distinct bands in six window bays and four central folded leaves (110.584995ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'FC-C715F850DA'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/leshou/front.test.mjs:6:152)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'FC-C715F850DA',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/major-pilots/leshou/front.test.mjs:7:1
+✖ south approach has one outward plain stone incline and two broad six-tread flights on inherited floor height (59.168864ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/leshou/front.test.mjs:7:204)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

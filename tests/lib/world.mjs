@@ -1,3 +1,14 @@
+import {bindSishenEnvironmentWitness,unbindSishenEnvironmentWitness} from '../../src/controls/SishenEnvironmentWitness.js';
+import {bindWestWellEnvironmentWitness,unbindWestWellEnvironmentWitness} from '../../src/controls/WestWellEnvironmentWitness.js';
+import {bindEastWellEnvironmentWitness} from '../../src/controls/EastWellEnvironmentWitness.js';
+import {shoukangEntryGeometry} from '../../src/scene/palace/special/ShoukangEntry.js';
+import {bindShoukangEntryEnvironmentWitness} from '../../src/controls/ShoukangEntryEnvironmentWitness.js';
+import {bindYanshouCompoundEnvironmentWitness} from '../../src/controls/YanshouCompoundEnvironmentWitness.js';
+import {bindCiningGateEnvironmentWitness} from '../../src/controls/CiningGateEnvironmentWitness.js';
+import {ciningGateGeometry} from '../../src/scene/palace/special/CiningGate.js';
+import {bindCiyinFacadeEnvironmentWitness} from '../../src/controls/CiyinFacadeEnvironmentWitness.js';
+import {shouanEntryGeometry} from '../../src/scene/palace/special/ShouanEntry.js';
+import {bindShouanEntryEnvironmentWitness} from '../../src/controls/ShouanEntryEnvironmentWitness.js';
 import {shunzhenProfile} from '../../src/scene/palace/special/ShunzhenGate.js';
 import{resolveRemainingProfile as resolveOuter}from'../../src/scene/palace/special/RemainingOuterHalls.js';
 import {resolveRemainingProfile as resolveNingshou} from '../../src/scene/palace/special/RemainingNingshouHalls.js';
@@ -45,6 +56,7 @@ export const parseRot = r => (r === undefined || r === null ? 0 : typeof r === '
 
 /** 门通行几何；profile 的 front/rear 包含各自完整坡道，platformY 仅用于台面起点。 */
 export function gateGeom(item) {
+  if(item.gateProfile==='shoukang-entry'){const p=shoukangEntryGeometry(item);return{x:p.x,z:p.z,rot:0,dir:[0,1],half:3.15,front:1.65,rear:3.15,platformY:p.floor,profile:{...p,ramps:[],toWorld:(x,z)=>[p.x+x,p.z+z]}};}
   if (item.gateProfile === 'shunzhen') {
     const p=shunzhenProfile(item),profile={...p,rot:0,platformY:0,portalCenters:p.portals.map(o=>o.x),ramps:[],toWorld:(x,z)=>[p.x+x,p.z+z]};
     return {x:p.x,z:p.z,rot:0,dir:[0,1],half:p.depth/2,front:p.depth/2,rear:p.depth/2,platformY:0,profile};
@@ -106,6 +118,8 @@ export function gateGeom(item) {
     const profile=huangjiGateGeometry(item);
     return {x:profile.x,z:profile.z,rot:0,dir:[0,1],half:2.4,front:profile.front,rear:profile.rear,platformY:0,profile};
   }
+  if(item.gateProfile==='cining-entry'){const profile=ciningGateGeometry(item);return{x:profile.x,z:profile.z,rot:0,dir:[0,1],half:5.235,front:5.235,rear:4.595,platformY:.45,profile};}
+  if(item.gateProfile==='shouan-entry'){const profile=shouanEntryGeometry(item);return{x:profile.x,z:profile.z,rot:0,dir:[0,1],half:7.7,front:2.85,rear:7.7,platformY:.36,profile};}
   if (item.gateProfile === 'xiqing') {
     const profile = xiqingGeometry(item, 'ningshou', 0);
     return { x: profile.x, z: profile.z, rot: profile.rot, dir: [Math.sin(profile.rot), Math.cos(profile.rot)],
@@ -268,13 +282,15 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true, reta
     } finally { console.log = log; }
   }
 
+  let environmentScene=null;
+  if(cm.colliders.some(c=>['sishen','west-well','east-well','shoukang-entry','yanshou-compound','cining-gate','ciyin-front','shouan-entry'].includes(c.furnitureMotionScope?.kind))){const {Environment}=await src('scene/Environment.js');environmentScene=new THREE.Scene();const env=new Environment(environmentScene,null,lib);env.setupGround();environmentScene.updateMatrixWorld(true);bindShouanEntryEnvironmentWitness(cm,environmentScene);bindShoukangEntryEnvironmentWitness(cm,environmentScene);bindEastWellEnvironmentWitness(cm,environmentScene);bindWestWellEnvironmentWitness(cm,environmentScene);bindSishenEnvironmentWitness(cm,environmentScene);bindCiyinFacadeEnvironmentWitness(cm,environmentScene);bindCiningGateEnvironmentWitness(cm,environmentScene);bindYanshouCompoundEnvironmentWitness(cm,environmentScene);}
   const gates = [], halls = [];
   for (const { json } of zones) for (const item of json.items) {
     if (item.kind === 'gate' || item.kind === 'cityGate') gates.push({ zone: json.id, item, ...gateGeom(item) });
     if (item.kind === 'hall') halls.push({ zone: json.id, item, g: hallGeom(item) });
   }
   return {
-    THREE, cm, zones, gates, halls, rooms, mapItems, terraceProfiles, taiheSouthTiers, baoheNorthTiers,
+    THREE, cm, zones, gates, halls, rooms, mapItems, environmentScene, terraceProfiles, taiheSouthTiers, baoheNorthTiers,
     ...(retainScene ? { scene: retainedScene } : {}),
     ownerOf: c => owner.get(c.mesh) ?? { zone: c.tag ?? '?', item: { kind: '?' } },
   };

@@ -1,0 +1,32 @@
+✔ nine south bays receive fitted gold partition outlines while three entrances stay open (153.726308ms)
+✔ rollback retains roof platform rear doors interior fallback and every existing physical contract (147.727506ms)
+✔ upper fields have explicitly simplified fine grid and all source collision triangles match actual meshes (167.446972ms)
+✖ every fitted front part embeds into its retained backing plane rather than floating (82.616682ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 725.750693
+
+✖ failing tests:
+
+test at tests/major-pilots/huangji/geometry.test.mjs:6:1
+✖ every fitted front part embeds into its retained backing plane rather than floating (82.616682ms)
+  AssertionError [ERR_ASSERTION]: huangji-front-gold-stile rear -11.51999999985099 behind -11.477500000000001
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/huangji/geometry.test.mjs:6:354)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

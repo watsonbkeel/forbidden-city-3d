@@ -1,0 +1,32 @@
+✖ all new roof and wall-cap high falls settle on real source and exit to visible Environment ground at 10/60Hz (7449.014384ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7715.679039
+
+✖ failing tests:
+
+test at tests/major-pilots/shouan-entry/motion.test.mjs:7:1
+✖ all new roof and wall-cap high falls settle on real source and exit to visible Environment ground at 10/60Hz (7449.014384ms)
+  AssertionError [ERR_ASSERTION]: {"fps":10,"x":277,"z":368,"exitZ":365.5,"at":[276.99123163762795,5.941708541365489,365.3515912945418],"ground":4.2417085413654885}
+  + actual - expected
+  
+  + 4.2417085413654885
+  - 0
+  
+      at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shouan-entry/motion.test.mjs:7:1100
+      at withTerrainController (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r91-controller-clock.mjs:3:633)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shouan-entry/motion.test.mjs:7:300)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 4.2417085413654885,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

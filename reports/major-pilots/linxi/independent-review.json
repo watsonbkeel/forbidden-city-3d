@@ -1,0 +1,20 @@
+{
+  "reviewScope": "Read-only Linxi bridge/pool package, six actual CPU views and two official source images",
+  "independentTests": "6/6 bridge-pool + ground-opening passed before later additions",
+  "findings": [
+    {
+      "issue": "Staged construction exception cleanup",
+      "resolution": "Injected tileSize error red then cleanup test passes; 65 geometries and 1 owned water material released, old host untouched"
+    },
+    {
+      "issue": "Jump across rail onto phantom y=0 pool ground",
+      "reproducer": "getValidPosition((270.2,3.4,46.7),(267.7,3.4,46.7),.5,0,.6,1.7) crossed rail; no registered walkable at target",
+      "resolution": "Radius-aware two-pool exclusion in existing non-swimmable water policy; raised-foot actual sweep and bridge/distant-region tests pass"
+    }
+  ],
+  "scopeLimits": [
+    "No claim full pavilion, roof, lattice, painting or calligraphy acceptance",
+    "CPU only, no GPU/mobile results"
+  ],
+  "productWriter": "sole parent implementer; reviewer read-only"
+}

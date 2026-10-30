@@ -1,0 +1,44 @@
+✔ six source-confirmed title/couplet faces have explicit readable text, orientation and non-calligraphy status (108.2755ms)
+✔ source-visible west stair flanks have two low exterior rows below terrace rail, not invented interiors (1146.906582ms)
+✔ front triangles are partitioned without changing any physical surface or non-front UV (215.079762ms)
+✔ six faces share one owned atlas, merged rendering retains it and lifecycle releases it once (207.520152ms)
+✔ identity and duplicate application reject before any allocation or UV mutation (229.920778ms)
+✔ native Canvas2D atlas contains actual nonempty distinct glyph pixels with visible margins (448.719141ms)
+✖ all previous palace geometry and contacts retained; no extra flat walkable added (5239.831639ms)
+✔ roof is closed positive-volume corrugation with exact triangle bounds and non-flat foot support (859.508254ms)
+✔ real controller retains both stairs and west exterior bypass at 10/60Hz walk/run/backward (1015.807641ms)
+✔ finite airborne initial state lands on each actual roof and walks down to courtyard without hover (4235.261298ms)
+✔ only two named low-roof scopes accepted; transformed binding and unknown surface IDs reject (769.954019ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 10
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14753.994399
+
+✖ failing tests:
+
+test at tests/r138/jiaotai-low-rooms.test.mjs:10:1
+✖ all previous palace geometry and contacts retained; no extra flat walkable added (5239.831639ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '41d06ae8223d2cbdabb276e2eaf217ca7393d3e7147adde6f1425a8da01e69b6'
+  - 'a3231312716f9b660db84d6e8b209a521e664b4c20487db32f2356b88a5005b9'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r138/jiaotai-low-rooms.test.mjs:10:136)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '41d06ae8223d2cbdabb276e2eaf217ca7393d3e7147adde6f1425a8da01e69b6',
+    expected: 'a3231312716f9b660db84d6e8b209a521e664b4c20487db32f2356b88a5005b9',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,3 +1,5 @@
+import {applyFubiWholeEnvelope} from './FubiWholeEnvelope.js';
+import {applyChengruiWholeEnvelope} from './ChengruiWholeEnvelope.js';
 import * as THREE from 'three';
 import {addYujingSouthRail} from './GardenSilhouetteDetails.js';
 import anchors from '../../../data/anchors.json' with {type:'json'};
@@ -105,6 +107,8 @@ export function buildBridgeGardenPavilion(builder,root,input){const p=bridgeGard
  box('bridge-annex-ceiling',7.6,.1,2.4,0,4.02,-5,beam,false);
  const finial=new THREE.Mesh(new THREE.SphereGeometry(.25,12,8),yellow);finial.name='bridge-finial';finial.position.set(0,7.65,0);g.add(finial);
  addBridgeCeilingRelief(builder,g,p);
+ applyChengruiWholeEnvelope(builder,g,p);
+ applyFubiWholeEnvelope(builder,g,p);
  g.userData.bridgePavilion=p;builder.group.userData.bridgePavilions??=[];builder.group.userData.bridgePavilions.push(p);return g;
 }
 

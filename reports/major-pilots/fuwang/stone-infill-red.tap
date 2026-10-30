@@ -1,0 +1,41 @@
+✔ Fuwang own south package has four lower folded leaves and source-visible recessed upper closure/front balustrade only (97.997984ms)
+✔ source-visible central stair is broader than old approach and has two physical sloping stone side rails without narrowing actual 3.2m door (48.439816ms)
+✔ rollback removes only source package and retains original stair-core void and closed upper navigation (90.245925ms)
+✔ new lower transom clears the unchanged lower-front beam underside (48.699967ms)
+✔ every non-target roof waist stair-core rear side and interior mesh is exact, and all inherited walking rows survive (103.097128ms)
+✔ all added geometry finite nondegenerate with bounded cost; sloping stone handrails have actual-envelope collision rows (67.128894ms)
+✔ own south metadata survives merge and original owned resources dispose once (70.483424ms)
+✔ upper balustrade has a real foot rail touching original floor and supporting every baluster (41.23576ms)
+✔ recessed upper window rails clear the unchanged eave beam instead of clipping its underside (33.334666ms)
+✖ stone stair sides include closed inclined plain infill between posts, not only open handrails (34.812728ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 9
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 818.393515
+
+✖ failing tests:
+
+test at tests/major-pilots/fuwang/front.test.mjs:14:1
+✖ stone stair sides include closed inclined plain infill between posts, not only open handrails (34.812728ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 4
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/fuwang/front.test.mjs:14:188)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 4,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

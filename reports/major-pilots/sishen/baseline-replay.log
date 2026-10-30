@@ -1,0 +1,79 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
++ [
++   'R62 baseline: old isolated Lijing start remains blocked by actual Chuxiu north wall',
++   'R62 baseline: compound 24 10Hz W walk',
++   'R62 baseline: compound 24 10Hz W sprint',
++   'R62 baseline: compound 24 10Hz S walk',
++   'R62 baseline: compound 24 10Hz S sprint',
++   'R62 baseline: compound 24 60Hz W walk',
++   'R62 baseline: compound 24 60Hz W sprint',
++   'R62 baseline: compound 24 60Hz S walk',
++   'R62 baseline: compound 24 60Hz S sprint',
++   'R62 baseline: compound 47 10Hz W walk',
++   'R62 baseline: compound 47 10Hz W sprint',
++   'R62 baseline: compound 47 10Hz S walk',
++   'R62 baseline: compound 47 10Hz S sprint',
++   'R62 baseline: compound 47 60Hz W walk',
++   'R62 baseline: compound 47 60Hz W sprint',
++   'R62 baseline: compound 47 60Hz S walk',
++   'R62 baseline: compound 47 60Hz S sprint',
++   'R63 candidate: old isolated Lijing start remains blocked by actual Chuxiu north wall',
++   'R63 candidate: compound 24 10Hz W walk',
++   'R63 candidate: compound 24 10Hz W sprint',
++   'R63 candidate: compound 24 10Hz S walk',
++   'R63 candidate: compound 24 10Hz S sprint',
++   'R63 candidate: compound 24 60Hz W walk',
++   'R63 candidate: compound 24 60Hz W sprint',
++   'R63 candidate: compound 24 60Hz S walk',
++   'R63 candidate: compound 24 60Hz S sprint',
++   'tests/current-state/zhaode-gate-routes.test.mjs'
++ ]
+- []
+
+    at file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/scripts/major-pilots/sishen/baseline-failed-checks.mjs:18:43
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [
+    'R62 baseline: old isolated Lijing start remains blocked by actual Chuxiu north wall',
+    'R62 baseline: compound 24 10Hz W walk',
+    'R62 baseline: compound 24 10Hz W sprint',
+    'R62 baseline: compound 24 10Hz S walk',
+    'R62 baseline: compound 24 10Hz S sprint',
+    'R62 baseline: compound 24 60Hz W walk',
+    'R62 baseline: compound 24 60Hz W sprint',
+    'R62 baseline: compound 24 60Hz S walk',
+    'R62 baseline: compound 24 60Hz S sprint',
+    'R62 baseline: compound 47 10Hz W walk',
+    'R62 baseline: compound 47 10Hz W sprint',
+    'R62 baseline: compound 47 10Hz S walk',
+    'R62 baseline: compound 47 10Hz S sprint',
+    'R62 baseline: compound 47 60Hz W walk',
+    'R62 baseline: compound 47 60Hz W sprint',
+    'R62 baseline: compound 47 60Hz S walk',
+    'R62 baseline: compound 47 60Hz S sprint',
+    'R63 candidate: old isolated Lijing start remains blocked by actual Chuxiu north wall',
+    'R63 candidate: compound 24 10Hz W walk',
+    'R63 candidate: compound 24 10Hz W sprint',
+    'R63 candidate: compound 24 10Hz S walk',
+    'R63 candidate: compound 24 10Hz S sprint',
+    'R63 candidate: compound 24 60Hz W walk',
+    'R63 candidate: compound 24 60Hz W sprint',
+    'R63 candidate: compound 24 60Hz S walk',
+    'R63 candidate: compound 24 60Hz S sprint',
+    'tests/current-state/zhaode-gate-routes.test.mjs'
+  ],
+  expected: [],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

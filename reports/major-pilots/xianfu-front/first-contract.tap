@@ -1,0 +1,66 @@
+TAP version 13
+# Subtest: Xianfu whole south enclosure fits two four-field windows and retained operational door leaves
+ok 1 - Xianfu whole south enclosure fits two four-field windows and retained operational door leaves
+  ---
+  duration_ms: 67.587023
+  type: 'test'
+  ...
+# Subtest: every existing physics/nav record retains identity/value; new window visual stays inside original final-F32 envelope
+ok 2 - every existing physics/nav record retains identity/value; new window visual stays inside original final-F32 envelope
+  ---
+  duration_ms: 66.108239
+  type: 'test'
+  ...
+# Subtest: canonical full original source guard rejects mutation before changing live scene
+ok 3 - canonical full original source guard rejects mutation before changing live scene
+  ---
+  duration_ms: 73.072964
+  type: 'test'
+  ...
+# Subtest: late detached mesh construction failure disposes staged geometry only, without any scene/physics/leaf mutation
+ok 4 - late detached mesh construction failure disposes staged geometry only, without any scene/physics/leaf mutation
+  ---
+  duration_ms: 9.259161
+  type: 'test'
+  ...
+# Subtest: drawing groups and index interpretation are exact canonical source semantics
+not ok 5 - drawing groups and index interpretation are exact canonical source semantics
+  ---
+  duration_ms: 10.847956
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/xianfu-front/contract.test.mjs:9:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/xianfu-front/contract.test.mjs:9:300)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: private south finishes survive real-material final merge and dispose textures/materials/geometries once
+ok 6 - private south finishes survive real-material final merge and dispose textures/materials/geometries once
+  ---
+  duration_ms: 71.206182
+  type: 'test'
+  ...
+# Subtest: retained band-mapped leaf geometry samples the complete private door panel rather than clamping half the face
+ok 7 - retained band-mapped leaf geometry samples the complete private door panel rather than clamping half the face
+  ---
+  duration_ms: 15.152774
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 6
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 504.540631

@@ -1,0 +1,34 @@
+✖ whole north ground frontage has two source-contact rails three painted fields and explicit fitted passage (98.451795ms)
+✔ all existing non-front rail geometry upper stages voids roofs stairs and original routes survive (90.532068ms)
+✔ central passage keeps actual 2.8m body clearance and new overhead work clears ground player (38.778507ms)
+✔ every rail surface face is an actual finite positive-area transformed source triangle (46.1874ms)
+✔ two retained outer-column scopes reject forged identity owner and enlarged region, and never capture central ramp (88.398561ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 551.098831
+
+✖ failing tests:
+
+test at tests/major-pilots/changyin/geometry.test.mjs:3:1
+✖ whole north ground frontage has two source-contact rails three painted fields and explicit fitted passage (98.451795ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  1 !== 0
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/changyin/geometry.test.mjs:3:462)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

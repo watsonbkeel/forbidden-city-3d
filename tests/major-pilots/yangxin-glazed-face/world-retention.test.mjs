@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import fs from'node:fs';
+test('96 actualWorld floor/preset traces retain every parent frame and outcome, not96 successful passages',()=>{const load=mode=>JSON.parse(fs.readFileSync(new URL(`../../../reports/major-pilots/yangxin-glazed-face/world-${mode}.json`,import.meta.url))),a=load('candidate'),p=load('parent');assert.equal(a.rows.length,96);assert.deepEqual(a,p);assert.equal(a.rows.filter(r=>!r.legalStart).length,0);assert.equal(a.rows.filter(r=>r.arrived).length,56);});

@@ -1,0 +1,42 @@
+TAP version 13
+# Subtest: R48 modern Cining target disables only the inferred throne overlay while all five other live bindings and rollback bytes remain exact
+not ok 1 - R48 modern Cining target disables only the inferred throne overlay while all five other live bindings and rollback bytes remain exact
+  ---
+  duration_ms: 2.275937
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-cining-modern-binding.test.mjs:3:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    qianqing
+    + actual - expected
+    
+    + '071e8088cb8d5e2fc1949c2c833d1fcd0cf88bb223e97d6399efc6176ea4fd06'
+    - '17463dc3afb308590961be41ac0b4f3c9f6566b08c4f930b034f9e2b67a63882'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '17463dc3afb308590961be41ac0b4f3c9f6566b08c4f930b034f9e2b67a63882'
+  actual: '071e8088cb8d5e2fc1949c2c833d1fcd0cf88bb223e97d6399efc6176ea4fd06'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-cining-modern-binding.test.mjs:3:295)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: R48 runtime loader cannot request the retired Cining inferred GLB near the modern display target
+ok 2 - R48 runtime loader cannot request the retired Cining inferred GLB near the modern display target
+  ---
+  duration_ms: 0.805629
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 1
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 155.655504

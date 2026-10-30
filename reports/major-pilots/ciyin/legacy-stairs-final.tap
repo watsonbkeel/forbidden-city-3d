@@ -1,0 +1,226 @@
+TAP version 13
+# Subtest: R48 whole-outer-zone 宝相楼 physical stair round trip fps=10 sprint=false backward=false
+ok 1 - R48 whole-outer-zone 宝相楼 physical stair round trip fps=10 sprint=false backward=false
+  ---
+  duration_ms: 224.973063
+  type: 'test'
+  ...
+# Subtest: R48 whole-outer-zone 宝相楼 physical stair round trip fps=10 sprint=false backward=true
+ok 2 - R48 whole-outer-zone 宝相楼 physical stair round trip fps=10 sprint=false backward=true
+  ---
+  duration_ms: 255.349115
+  type: 'test'
+  ...
+# Subtest: R48 whole-outer-zone 宝相楼 physical stair round trip fps=10 sprint=true backward=false
+ok 3 - R48 whole-outer-zone 宝相楼 physical stair round trip fps=10 sprint=true backward=false
+  ---
+  duration_ms: 112.583828
+  type: 'test'
+  ...
+# Subtest: R48 whole-outer-zone 宝相楼 physical stair round trip fps=10 sprint=true backward=true
+ok 4 - R48 whole-outer-zone 宝相楼 physical stair round trip fps=10 sprint=true backward=true
+  ---
+  duration_ms: 109.122131
+  type: 'test'
+  ...
+# Subtest: R48 whole-outer-zone 宝相楼 physical stair round trip fps=60 sprint=false backward=false
+ok 5 - R48 whole-outer-zone 宝相楼 physical stair round trip fps=60 sprint=false backward=false
+  ---
+  duration_ms: 614.402831
+  type: 'test'
+  ...
+# Subtest: R48 whole-outer-zone 宝相楼 physical stair round trip fps=60 sprint=false backward=true
+ok 6 - R48 whole-outer-zone 宝相楼 physical stair round trip fps=60 sprint=false backward=true
+  ---
+  duration_ms: 644.326714
+  type: 'test'
+  ...
+# Subtest: R48 whole-outer-zone 宝相楼 physical stair round trip fps=60 sprint=true backward=false
+ok 7 - R48 whole-outer-zone 宝相楼 physical stair round trip fps=60 sprint=true backward=false
+  ---
+  duration_ms: 357.637307
+  type: 'test'
+  ...
+# Subtest: R48 whole-outer-zone 宝相楼 physical stair round trip fps=60 sprint=true backward=true
+ok 8 - R48 whole-outer-zone 宝相楼 physical stair round trip fps=60 sprint=true backward=true
+  ---
+  duration_ms: 356.071797
+  type: 'test'
+  ...
+# Subtest: R48 whole-outer-zone 慈荫楼 physical stair round trip fps=10 sprint=false backward=false
+not ok 9 - R48 whole-outer-zone 慈荫楼 physical stair round trip fps=10 sprint=false backward=false
+  ---
+  duration_ms: 67.882859
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:8:126'
+  failureType: 'testCodeFailure'
+  error: 'invisible floor and no exact visible selected footprint support {"time":0.2,"x":268.18,"z":120.54839263779597,"feet":0.23999999463558197,"ground":0.23999999463558197,"speed":4.323323583817,"sprintInput":false,"waypoint":1}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:8:2267)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 whole-outer-zone 慈荫楼 physical stair round trip fps=10 sprint=false backward=true
+not ok 10 - R48 whole-outer-zone 慈荫楼 physical stair round trip fps=10 sprint=false backward=true
+  ---
+  duration_ms: 52.732075
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:8:126'
+  failureType: 'testCodeFailure'
+  error: 'invisible floor and no exact visible selected footprint support {"time":0.2,"x":268.18,"z":120.54839263779597,"feet":0.23999999463558197,"ground":0.23999999463558197,"speed":4.323323583817,"sprintInput":false,"waypoint":1}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:8:2267)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 whole-outer-zone 慈荫楼 physical stair round trip fps=10 sprint=true backward=false
+not ok 11 - R48 whole-outer-zone 慈荫楼 physical stair round trip fps=10 sprint=true backward=false
+  ---
+  duration_ms: 42.94422
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:8:126'
+  failureType: 'testCodeFailure'
+  error: 'invisible floor and no exact visible selected footprint support {"time":0.1,"x":268.18,"z":120.55854467059429,"feet":0.23999999463558197,"ground":0.23999999463558197,"speed":7.5854467059429,"sprintInput":true,"waypoint":1}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:8:2267)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 whole-outer-zone 慈荫楼 physical stair round trip fps=10 sprint=true backward=true
+not ok 12 - R48 whole-outer-zone 慈荫楼 physical stair round trip fps=10 sprint=true backward=true
+  ---
+  duration_ms: 48.220191
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:8:126'
+  failureType: 'testCodeFailure'
+  error: 'invisible floor and no exact visible selected footprint support {"time":0.1,"x":268.18,"z":120.55854467059429,"feet":0.23999999463558197,"ground":0.23999999463558197,"speed":7.5854467059429,"sprintInput":true,"waypoint":1}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:8:2267)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 whole-outer-zone 慈荫楼 physical stair round trip fps=60 sprint=false backward=false
+not ok 13 - R48 whole-outer-zone 慈荫楼 physical stair round trip fps=60 sprint=false backward=false
+  ---
+  duration_ms: 65.272
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:8:126'
+  failureType: 'testCodeFailure'
+  error: 'invisible floor and no exact visible selected footprint support {"time":0.16666666666666666,"x":268.18,"z":120.2606296175913,"feet":0.11999999731779099,"ground":0.11999999731779099,"speed":4.055621985812084,"sprintInput":false,"waypoint":1}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:8:2267)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 whole-outer-zone 慈荫楼 physical stair round trip fps=60 sprint=false backward=true
+not ok 14 - R48 whole-outer-zone 慈荫楼 physical stair round trip fps=60 sprint=false backward=true
+  ---
+  duration_ms: 68.552576
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:8:126'
+  failureType: 'testCodeFailure'
+  error: 'invisible floor and no exact visible selected footprint support {"time":0.16666666666666666,"x":268.18,"z":120.2606296175913,"feet":0.11999999731779099,"ground":0.11999999731779099,"speed":4.055621985812084,"sprintInput":false,"waypoint":1}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:8:2267)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 whole-outer-zone 慈荫楼 physical stair round trip fps=60 sprint=true backward=false
+not ok 15 - R48 whole-outer-zone 慈荫楼 physical stair round trip fps=60 sprint=true backward=false
+  ---
+  duration_ms: 53.254038
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:8:126'
+  failureType: 'testCodeFailure'
+  error: 'invisible floor and no exact visible selected footprint support {"time":0.10000000000000002,"x":268.18,"z":120.30291230722237,"feet":0.11999999731779099,"ground":0.11999999731779099,"speed":7.585446705942898,"sprintInput":true,"waypoint":1}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:8:2267)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 whole-outer-zone 慈荫楼 physical stair round trip fps=60 sprint=true backward=true
+not ok 16 - R48 whole-outer-zone 慈荫楼 physical stair round trip fps=60 sprint=true backward=true
+  ---
+  duration_ms: 58.38371
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:8:126'
+  failureType: 'testCodeFailure'
+  error: 'invisible floor and no exact visible selected footprint support {"time":0.10000000000000002,"x":268.18,"z":120.30291230722237,"feet":0.11999999731779099,"ground":0.11999999731779099,"speed":7.585446705942898,"sprintInput":true,"waypoint":1}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:8:2267)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 8
+# fail 8
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5273.220606

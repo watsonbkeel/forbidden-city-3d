@@ -1,0 +1,6 @@
+import fs from'node:fs';import path from'node:path';import {execFileSync}from'node:child_process';import {sourceFingerprint,verifyBuildSource}from'../build-identity.mjs';
+const expected='e81957643183358f0113e3fb25fbbfec250eca20';
+const root=process.cwd(),fingerprint=sourceFingerprint(root),commit=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),builds=[];
+if(commit!==expected)throw Error('Unexpected source checkpoint '+commit);
+for(const [base,name]of[['/gugong/','gugong'],['/forbidden-city-3d/','pages'],['/','root']]){const dir=path.resolve('../merge-candidate-e819576-build-'+name);if(fs.existsSync(dir))throw Error('No overwrite '+dir);execFileSync(process.execPath,['node_modules/vite/bin/vite.js','build','--base',base,'--outDir',dir],{stdio:'inherit'});const info=verifyBuildSource({root,dist:dir,expectedBase:base});if(info.sourceFingerprint!==fingerprint||info.sourceCommit!==commit||info.sourceDirty||info.base!==base||info.release!=='R146-fix')throw Error('build identity');builds.push({base,directory:dir,info});}
+if(sourceFingerprint(root)!==fingerprint)throw Error('source changed');fs.writeFileSync('reports/merge-candidate-e819576/build-manifest.json',JSON.stringify({sourceCommit:commit,sourceFingerprint:fingerprint,sourceAfter:sourceFingerprint(root),builds},null,2));

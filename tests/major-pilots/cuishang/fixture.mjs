@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import * as THREE from 'three';import {CourtKit} from '../../../src/scene/palace/kit.js';import {library} from '../../lib/inner-palace-fixture.mjs';import {resolveRemainingProfile,buildRemainingHall} from '../../../src/scene/palace/special/RemainingNingshouHalls.js';
+const items=JSON.parse(fs.readFileSync('data/zones/ningshou.json')).items;
+export function make(enabled=true,name='萃赏楼'){const item=items.find(q=>q.name===name),kit=new CourtKit(library(),'ningshou');kit.cuishangSouthFront=enabled;const p=resolveRemainingProfile('ningshou',item);return{kit,p,...buildRemainingHall(kit,item,p)}}

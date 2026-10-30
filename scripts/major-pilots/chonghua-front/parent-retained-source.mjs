@@ -1,0 +1,2 @@
+import{registerHooks}from'node:module';import{execFileSync}from'node:child_process';
+const paths=['src/scene/palace/special/RemainingResidentialHalls.js','src/scene/zones/ZoneBase.js'],sources=new Map(paths.map(path=>[new URL('../../../'+path,import.meta.url).href,execFileSync('git',['show','b1763cba2002d0f8b7f5cb1a4266a4a995338075:'+path],{encoding:'utf8'})]));registerHooks({load(u,context,next){return sources.has(u)?{format:'module',source:sources.get(u),shortCircuit:true}:next(u,context)}});

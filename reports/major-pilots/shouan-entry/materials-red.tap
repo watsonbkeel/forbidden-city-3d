@@ -1,0 +1,31 @@
+TAP version 13
+# Subtest: production TextureLibrary resolves every entrance material and merges the actual source assembly
+not ok 1 - production TextureLibrary resolves every entrance material and merges the actual source assembly
+  ---
+  duration_ms: 60.600988
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shouan-entry/materials.test.mjs:2:1'
+  failureType: 'testCodeFailure'
+  error: '未知贴图 wood'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TextureLibrary.color (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/utils/TextureLibrary.js:159:37)
+    TextureLibrary.material (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/utils/TextureLibrary.js:181:17)
+    block (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/palace/special/ShouanEntry.js:31:189)
+    buildShouanEntry (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/palace/special/ShouanEntry.js:55:95)
+    ZoneBase.buildGate (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/zones/ZoneBase.js:334:271)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shouan-entry/materials.test.mjs:2:258)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 277.344172

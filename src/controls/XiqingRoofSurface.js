@@ -1,16 +1,34 @@
+import {SHOUKANG_PERIMETER,shoukangPerimeterId} from './ShoukangRetainedPerimeterSupport.js';
 import {QIANQING_ASSEMBLY_IDS} from './QianqingAssemblySupport.js';
 import * as THREE from 'three';
 import { exactSquareWitness, ceilingExact, exactDouble, compareExact, serializeExact, intervalSurfaceIntersects, exactSurfaceIntersects, exactSurfaceSweep } from './XiqingRoofExact.js';
 const COURTYARD_IDS=['chengqian-main-finished-columns','tihe-finished-access','lijing-finished-access','chuxiu-gallery-finished-access','chuxiu-main-finished-access','chuxiu-yanghe-entry','chuxiu-suifu-entry','chengqian-main-finished-access'];
 const ARRIVAL_IDS=['chengqian-rear-floor','chengqian-rear-cheek-east','chengqian-rear-cheek-west'];
+const CUISHANG_RAIL_IDS=Array.from({length:4},(_,i)=>'cuishang-south-panel-'+i);
+const XUNYAN_CHEEK_IDS=['xunyan-south-cheek-east','xunyan-south-cheek-west'];
+const SUICHU_CHEEK_IDS=['suichu-south-cheek-east','suichu-south-cheek-west'];
+const SUICHU_BASIN_IDS=['east','west'].flatMap(side=>['plinth','support','basin'].map(role=>`suichu-front-${role}-${side}`));
 const YANCHUN_VESSEL_IDS=['east','west'].flatMap(side=>Array.from({length:12},(_,i)=>`yanchun-front-vessel-${side}-${i}`));
 const FENGXIAN_VAT_IDS=['fengxian-front-vat-west','fengxian-front-vat-east','fengxian-front-plinth-west','fengxian-front-plinth-east'];
 const CHENGRUI_SEAT_IDS=Array.from({length:20},(_,i)=>'chengrui-south-seat-'+i);
 const SHOUKANG_SOUTH_SLOPE_IDS=Array.from({length:7},(_,i)=>'shoukang-south-slope-'+i);
 const JIAOTAI_LOW_ROOF_IDS=['jiaotai-low-west-south-roof','jiaotai-low-west-north-roof'];
 const WUMEN_LINK_IDS=['wumen-transverse-link-east','wumen-transverse-link-west'];
-const IDS=new Set([...WUMEN_LINK_IDS,...YANCHUN_VESSEL_IDS,...FENGXIAN_VAT_IDS,...CHENGRUI_SEAT_IDS,...SHOUKANG_SOUTH_SLOPE_IDS,...JIAOTAI_LOW_ROOF_IDS,...COURTYARD_IDS,...ARRIVAL_IDS,'chuxiu-main-floor','chengqian-west-court-roof','xiqing-roof-south','xiqing-roof-middle','xiqing-roof-north',...QIANQING_ASSEMBLY_IDS,...Array.from({length:4},(_,i)=>'qianqing-display-vessel-'+i)]);
-const surfaceKind=id=>WUMEN_LINK_IDS.includes(id)?'wumen-transverse-link-surface':YANCHUN_VESSEL_IDS.includes(id)?'yanchun-front-vessel-surface':FENGXIAN_VAT_IDS.includes(id)?'fengxian-front-vat-surface':CHENGRUI_SEAT_IDS.includes(id)?'chengrui-seat-surface':SHOUKANG_SOUTH_SLOPE_IDS.includes(id)?'shoukang-south-stone-surface':JIAOTAI_LOW_ROOF_IDS.includes(id)?'jiaotai-low-roof-surface':COURTYARD_IDS.includes(id)?'retained-courtyard-surface':ARRIVAL_IDS.includes(id)?'chengqian-arrival-surface':id==='chuxiu-main-floor'?'chuxiu-main-floor-surface':id==='chengqian-west-court-roof'?'chengqian-court-roof-surface':id.startsWith('qianqing-display-')?'qianqing-display-surface':QIANQING_ASSEMBLY_IDS.includes(id)?'qianqing-assembly-surface':'xiqing-roof-surface';
+const JINGQI_GALLERY_IDS=Array.from({length:7},(_,i)=>'jingqi-south-gallery-'+i);
+const CHANGYIN_FRONT_IDS=['changyin-front-rail-0','changyin-front-rail-1','changyin-north-header'];
+const JIYUN_LOWER_PANEL_IDS=Array.from({length:46},(_,i)=>'jiyun-front-lower-panel-'+i);
+const JIYUN_RAIL_IDS=Array.from({length:180},(_,i)=>'jiyun-front-rail-fit-'+i);
+const SHOUKANG_PERIMETER_CAPS=Object.fromEntries(Object.entries(SHOUKANG_PERIMETER).map(([side,c])=>[shoukangPerimeterId(side)+'-cap',c.cap]));
+const SHOUKANG_ENTRY_IDS=['central-roof','east-shoulder-roof','west-shoulder-roof','wall-cap-0','wall-cap-1','stone-stand-0','stone-stand-1','nameboard'].map(id=>'shoukang-entry-'+id);
+const YANSHOU_IDS=['yanshou-rear-roof','yanshou-connector-roof'];
+const CINING_GATE_IDS=Array.from({length:8},(_,i)=>'cining-gate-source-'+i);
+const SHOUAN_ENTRY_IDS=['east-roof','central-roof','west-roof','screen-roof','wall-cap-0','wall-cap-1','wall-cap-2','wall-cap-3','nameboard'].map(id=>'shouan-entry-'+id);
+const SISHEN_IDS=Array.from({length:283},(_,i)=>'sishen-surface-'+i);
+const WEST_WELL_IDS=Array.from({length:70},(_,i)=>'west-well-surface-'+i);
+const EAST_WELL_IDS=Array.from({length:68},(_,i)=>'east-well-surface-'+i);
+const TIHE_WEST_IDS=['tihe-west-photo-curves','tihe-west-retained-ceiling','tihe-west-retained-columns'];
+const IDS=new Set(['sishen-retained-tree-trunk',...SISHEN_IDS,'west-well-retained-tree-trunk',...WEST_WELL_IDS,...TIHE_WEST_IDS,...EAST_WELL_IDS,...Object.keys(SHOUKANG_PERIMETER_CAPS),...SHOUKANG_ENTRY_IDS,...YANSHOU_IDS,...CINING_GATE_IDS,...SHOUAN_ENTRY_IDS,...JIYUN_LOWER_PANEL_IDS,...JIYUN_RAIL_IDS,'xishang-roof-transom',...CHANGYIN_FRONT_IDS,...JINGQI_GALLERY_IDS,'yanqu-photo-niche',...CUISHANG_RAIL_IDS,...XUNYAN_CHEEK_IDS,...SUICHU_CHEEK_IDS,...SUICHU_BASIN_IDS,...WUMEN_LINK_IDS,...YANCHUN_VESSEL_IDS,...FENGXIAN_VAT_IDS,...CHENGRUI_SEAT_IDS,...SHOUKANG_SOUTH_SLOPE_IDS,...JIAOTAI_LOW_ROOF_IDS,...COURTYARD_IDS,...ARRIVAL_IDS,'chuxiu-main-floor','chengqian-west-court-roof','xiqing-roof-south','xiqing-roof-middle','xiqing-roof-north',...QIANQING_ASSEMBLY_IDS,...Array.from({length:4},(_,i)=>'qianqing-display-vessel-'+i)]);
+const surfaceKind=id=>id==='sishen-retained-tree-trunk'?'sishen-retained-tree-source':SISHEN_IDS.includes(id)?'sishen-visible-surface':id==='west-well-retained-tree-trunk'?'west-well-retained-tree-source':WEST_WELL_IDS.includes(id)?'west-well-visible-surface':TIHE_WEST_IDS.includes(id)?'tihe-west-actual-source-surface':EAST_WELL_IDS.includes(id)?'east-well-visible-surface':SHOUKANG_PERIMETER_CAPS[id]?'shoukang-retained-perimeter-cap':SHOUKANG_ENTRY_IDS.includes(id)?'shoukang-entry-visible-surface':YANSHOU_IDS.includes(id)?'yanshou-compound-roof':CINING_GATE_IDS.includes(id)?'cining-gate-visible-surface':SHOUAN_ENTRY_IDS.includes(id)?'shouan-entry-visible-surface':JIYUN_LOWER_PANEL_IDS.includes(id)?'jiyun-front-lower-panel-surface':JIYUN_RAIL_IDS.includes(id)?'jiyun-upper-front-rail-surface':id==='xishang-roof-transom'?'xishang-roof-transom-surface':CHANGYIN_FRONT_IDS.includes(id)?'changyin-north-front-surface':JINGQI_GALLERY_IDS.includes(id)?'jingqi-south-gallery-surface':id==='yanqu-photo-niche'?'yanqu-photo-niche-surface':CUISHANG_RAIL_IDS.includes(id)?'cuishang-south-pierced-rail-surface':XUNYAN_CHEEK_IDS.includes(id)?'xunyan-south-cheek-surface':SUICHU_CHEEK_IDS.includes(id)?'suichu-south-cheek-surface':SUICHU_BASIN_IDS.includes(id)?'suichu-front-basin-surface':WUMEN_LINK_IDS.includes(id)?'wumen-transverse-link-surface':YANCHUN_VESSEL_IDS.includes(id)?'yanchun-front-vessel-surface':FENGXIAN_VAT_IDS.includes(id)?'fengxian-front-vat-surface':CHENGRUI_SEAT_IDS.includes(id)?'chengrui-seat-surface':SHOUKANG_SOUTH_SLOPE_IDS.includes(id)?'shoukang-south-stone-surface':JIAOTAI_LOW_ROOF_IDS.includes(id)?'jiaotai-low-roof-surface':COURTYARD_IDS.includes(id)?'retained-courtyard-surface':ARRIVAL_IDS.includes(id)?'chengqian-arrival-surface':id==='chuxiu-main-floor'?'chuxiu-main-floor-surface':id==='chengqian-west-court-roof'?'chengqian-court-roof-surface':id.startsWith('qianqing-display-')?'qianqing-display-surface':QIANQING_ASSEMBLY_IDS.includes(id)?'qianqing-assembly-surface':'xiqing-roof-surface';
 const basis=[new THREE.Vector3(1,0,0),new THREE.Vector3(0,1,0),new THREE.Vector3(0,0,1)];
 const axesCache=new WeakMap(),gridCache=new WeakMap();
 const freezeBox=b=>{Object.freeze(b.min);Object.freeze(b.max);return Object.freeze(b);};
@@ -32,7 +50,9 @@ export function createXiqingSurface(faces,id){
   const box=new THREE.Box3().setFromPoints([triangle.a,triangle.b,triangle.c]);bounds.union(box);triangles.push(Object.freeze({triangle:Object.freeze(triangle),normal:Object.freeze(normal),box:freezeBox(box),source:map}));
  }
  if(!triangles.length)throw new TypeError('Roof requires a positive-area face');
- if(bounds.max.x-bounds.min.x>32||bounds.max.z-bounds.min.z>32)throw new TypeError('Xiqing roof exceeds bounded local surface domain');freezeBox(bounds);
+ const retainedCap=SHOUKANG_PERIMETER_CAPS[id];
+ if(retainedCap){if(faces.length!==76||triangles.length!==76||omitted.length||bounds.min.toArray().some((v,i)=>v!==retainedCap[0][i])||bounds.max.toArray().some((v,i)=>v!==retainedCap[1][i]))throw new TypeError('Shoukang retained cap requires exact complete original wall source bounds');}
+ else if(bounds.max.x-bounds.min.x>32||bounds.max.z-bounds.min.z>32)throw new TypeError('Xiqing roof exceeds bounded local surface domain');freezeBox(bounds);
  return Object.freeze({kind:surfaceKind(id),id,template:Object.freeze({triangles:Object.freeze(triangles),omitted:Object.freeze(omitted),sourceFaces:Object.freeze(sourceFaces),bounds}),box:freezeBox(bounds.clone())});
 }
 export function cloneXiqingSurface(input,box){

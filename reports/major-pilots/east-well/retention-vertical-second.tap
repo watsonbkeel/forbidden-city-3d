@@ -1,0 +1,60 @@
+TAP version 13
+# [GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,222, 树木=34棵, 碰撞器=2034
+# [GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,240, 树木=34棵, 碰撞器=2034
+# garden-preserved {"beforeMeshes":49,"afterMeshes":49,"beforeTriangles":266222,"afterTriangles":266240,"treeGroups":12}
+# Subtest: entire garden zone excluding only east-well profile is byte-geometrically and physically identical to parent
+ok 1 - entire garden zone excluding only east-well profile is byte-geometrically and physically identical to parent
+  ---
+  duration_ms: 1007.120464
+  type: 'test'
+  ...
+# Subtest: all 34 tree instance buffers and all old GardenBuilder physics stay exact; all non-ground geometry stays exact and ground samples outside cut preserve material/height/UV
+ok 2 - all 34 tree instance buffers and all old GardenBuilder physics stay exact; all non-ground geometry stays exact and ground samples outside cut preserve material/height/UV
+  ---
+  duration_ms: 6167.175411
+  type: 'test'
+  ...
+# Subtest: 10/60Hz actual player lands on visible outer roof and cannot fall through the too-small center opening
+ok 3 - 10/60Hz actual player lands on visible outer roof and cannot fall through the too-small center opening
+  ---
+  duration_ms: 2672.848864
+  type: 'test'
+  ...
+# Subtest: 10/60Hz jump from actual column footing into corner bearing stops the head against actual visible triangles
+not ok 4 - 10/60Hz jump from actual column footing into corner bearing stops the head against actual visible triangles
+  ---
+  duration_ms: 31.636426
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/east-well/vertical.test.mjs:4:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"label":{"fps":10,"i":0},"owner":{"kind":"visible-surface","index":7,"role":"column"}}
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    inspect (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/east-well/motion-helper.mjs:2:571)
+    file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/east-well/vertical.test.mjs:4:498
+    withTerrainController (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r91-controller-clock.mjs:3:633)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/east-well/vertical.test.mjs:4:165)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 3
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 10391.688041

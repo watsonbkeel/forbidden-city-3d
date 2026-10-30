@@ -1,0 +1,36 @@
+TAP version 13
+# Subtest: outdoor high fall and legal rail and rear-inner column cap drops cannot tunnel through source surfaces at 10/60Hz
+not ok 1 - outdoor high fall and legal rail and rear-inner column cap drops cannot tunnel through source surfaces at 10/60Hz
+  ---
+  duration_ms: 118.867887
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/cining-gate/fall.test.mjs:4:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"x":224.73,"z":156.965,"start":7.15,"reason":"legal start","camera":[224.73,8.750000190734863,156.965]}
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/cining-gate/fall.test.mjs:4:453
+    withTerrainController (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r91-controller-clock.mjs:3:633)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/cining-gate/fall.test.mjs:4:299)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 349.5558

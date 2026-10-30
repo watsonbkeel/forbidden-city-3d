@@ -1,0 +1,396 @@
+✔ pointer-lock mouse turn moves along the latest view on the next update (17.518563ms)
+✔ touch turn moves along the latest view on the next update (3.656761ms)
+✔ map KeyQ turn is used by movement in the same update (3.898524ms)
+✔ map KeyE turn is used by movement in the same update (1.899282ms)
+✔ touchend then same-frame joystick reacquisition starts a fresh run delay (3.039504ms)
+✔ touchcancel then same-frame joystick reacquisition starts a fresh run delay (3.022889ms)
+✔ blur then same-frame joystick reacquisition starts a fresh run delay (2.538311ms)
+✔ blur cancels an unconsumed jump request (0.789856ms)
+✔ unlock cancels an unconsumed jump request (0.780732ms)
+✔ desktop ordinary release retains natural braking at 16.666666666666668 ms (37.081799ms)
+ℹ {"mobile":false,"interval":16.666666666666668,"releaseSpeed":11.999999999999995,"brakingMetres":1.1017708906238335,"settleFrames":43,"wallTimeToSettleMs":716.6666666666667}
+✔ desktop ordinary release retains natural braking at 33.333333333333336 ms (14.082926ms)
+ℹ {"mobile":false,"interval":33.333333333333336,"releaseSpeed":11.999999999999998,"brakingMetres":1.0101685939889609,"settleFrames":22,"wallTimeToSettleMs":733.3333333333334}
+✔ desktop ordinary release retains natural braking at 100 ms (9.646675ms)
+ℹ {"mobile":false,"interval":100,"releaseSpeed":12,"brakingMetres":0.6977352153671514,"settleFrames":8,"wallTimeToSettleMs":800}
+✔ desktop ordinary release retains natural braking at 666.6 ms (8.635216ms)
+ℹ {"mobile":false,"interval":666.6,"releaseSpeed":12,"brakingMetres":0.6977352153671514,"settleFrames":8,"wallTimeToSettleMs":5332.8}
+✔ mobile ordinary release retains natural braking at 16.666666666666668 ms (16.219042ms)
+ℹ {"mobile":true,"interval":16.666666666666668,"releaseSpeed":8.999999999999995,"brakingMetres":0.8260297964847451,"settleFrames":41,"wallTimeToSettleMs":683.3333333333334}
+✔ mobile ordinary release retains natural braking at 33.333333333333336 ms (6.523075ms)
+ℹ {"mobile":true,"interval":33.333333333333336,"releaseSpeed":8.999999999999998,"brakingMetres":0.7573528809020542,"settleFrames":21,"wallTimeToSettleMs":700}
+✔ mobile ordinary release retains natural braking at 100 ms (2.63076ms)
+ℹ {"mobile":true,"interval":100,"releaseSpeed":9,"brakingMetres":0.5224807177563644,"settleFrames":7,"wallTimeToSettleMs":700}
+✔ mobile ordinary release retains natural braking at 666.6 ms (3.589029ms)
+ℹ {"mobile":true,"interval":666.6,"releaseSpeed":9,"brakingMetres":0.5224807177563644,"settleFrames":7,"wallTimeToSettleMs":4666.2}
+✔ desktop walk/diagonal normalization and wall-clock auto-run keep their original thresholds (1.027963ms)
+✔ frozen input component retains exactly the historical controller plus its four approved V9 insertions (1.609016ms)
+✔ V9 source guard rejects missing or duplicate exact context anchor 1 (1.506693ms)
+✔ V9 source guard rejects missing or duplicate exact context anchor 2 (0.479009ms)
+✔ V9 source guard rejects missing or duplicate exact context anchor 3 (1.210297ms)
+✔ V9 source guard rejects missing or duplicate exact context anchor 4 (0.505078ms)
+✔ V9 source guard rejects unrelated historical edits and arbitrary current whitespace (12.800901ms)
+✔ V9 source guard rejects omitted additions, changed physics, and a matrix sync moved ahead of Q/E (166.306298ms)
+✔ latest mouse yaw preserves horizontal speed at pitch extreme -1, strafe -1 (15.533925ms)
+✔ latest mouse yaw preserves horizontal speed at pitch extreme -1, strafe 0 (1.356787ms)
+✔ latest mouse yaw preserves horizontal speed at pitch extreme -1, strafe 1 (1.027433ms)
+✔ latest mouse yaw preserves horizontal speed at pitch extreme 1, strafe -1 (0.769796ms)
+✔ latest mouse yaw preserves horizontal speed at pitch extreme 1, strafe 0 (1.007342ms)
+✔ latest mouse yaw preserves horizontal speed at pitch extreme 1, strafe 1 (0.842885ms)
+✔ latest touch yaw preserves horizontal speed at pitch extreme -1, strafe -1 (1.557409ms)
+✔ latest touch yaw preserves horizontal speed at pitch extreme -1, strafe 0 (0.654242ms)
+✔ latest touch yaw preserves horizontal speed at pitch extreme -1, strafe 1 (0.77236ms)
+✔ latest touch yaw preserves horizontal speed at pitch extreme 1, strafe -1 (0.868233ms)
+✔ latest touch yaw preserves horizontal speed at pitch extreme 1, strafe 0 (0.948379ms)
+✔ latest touch yaw preserves horizontal speed at pitch extreme 1, strafe 1 (0.644047ms)
+✔ map KeyQ diagonal turn at 16.666666666666668 ms uses current yaw and the original delta cap (1.068365ms)
+✔ map KeyQ diagonal turn at 100 ms uses current yaw and the original delta cap (1.716147ms)
+✔ map KeyQ diagonal turn at 666.6 ms uses current yaw and the original delta cap (0.569836ms)
+✔ map KeyE diagonal turn at 16.666666666666668 ms uses current yaw and the original delta cap (0.507442ms)
+✔ map KeyE diagonal turn at 100 ms uses current yaw and the original delta cap (0.634733ms)
+✔ map KeyE diagonal turn at 666.6 ms uses current yaw and the original delta cap (0.591498ms)
+✔ fresh mouse yaw reaches a collision corner without shrinking the 1 m body at 16.666666666666668 ms (20.875851ms)
+✔ fresh mouse yaw reaches a collision corner without shrinking the 1 m body at 100 ms (7.700431ms)
+✔ fresh mouse yaw reaches a collision corner without shrinking the 1 m body at 666.6 ms (1.067643ms)
+✔ touchend, new finger ID: new ownership keeps the full 2 s run delay (3.135849ms)
+✔ touchend, reused finger ID: new ownership keeps the full 2 s run delay (2.304541ms)
+✔ touchcancel, new finger ID: new ownership keeps the full 2 s run delay (2.780195ms)
+✔ touchcancel, reused finger ID: new ownership keeps the full 2 s run delay (2.938262ms)
+✔ blur, new finger ID: new ownership keeps the full 2 s run delay (1.950789ms)
+✔ blur, reused finger ID: new ownership keeps the full 2 s run delay (1.950228ms)
+✔ unrelated touchend neither releases joystick ownership nor restarts its run timer (1.22528ms)
+✔ unrelated touchcancel neither releases joystick ownership nor restarts its run timer (1.396617ms)
+✔ several release/reacquire cycles between frames still belong to the final ownership session (2.354104ms)
+✔ direction and magnitude changes retain their existing mobile run reset policy (2.125331ms)
+✔ stop cancels only an unconsumed jump (0.463226ms)
+✔ stop preserves airborne vertical velocity and subsequent gravity (1.543688ms)
+✔ blur cancels only an unconsumed jump (0.490747ms)
+✔ blur preserves airborne vertical velocity and subsequent gravity (0.881363ms)
+✔ pointer-lock loss cancels only an unconsumed jump (0.348824ms)
+✔ pointer-lock loss preserves airborne vertical velocity and subsequent gravity (0.870788ms)
+✔ explicit unlock cancels only an unconsumed jump (0.398498ms)
+✔ explicit unlock preserves airborne vertical velocity and subsequent gravity (0.72639ms)
+✔ free-move cancellation cancels only an unconsumed jump (0.280421ms)
+✔ free-move cancellation preserves airborne vertical velocity and subsequent gravity (0.77246ms)
+✔ Space keyup leaves a valid tap queued; free-move unlock event preserves accepted map inputs (0.384468ms)
+✔ settings cancels queued desktop jump but preserves an airborne jump across pause/resume (1.047793ms)
+✔ settings cancels queued mobile jump but preserves an airborne jump across pause/resume (0.506541ms)
+✔ mobile settings resume and same-frame reacquisition start a new run session (1.226813ms)
+✔ whole east well has exact four-column span, square-to-octagon support and eight open roof sectors (40.255342ms)
+✔ octagonal roof center stays empty at every roof level rather than a hidden cap (21.487183ms)
+✔ wrong named zone and unknown profile cannot silently create an east well (14.137647ms)
+✔ each diagonal bearing crosses its actual column and all four hanging bearings close the octagonal load path (12.480139ms)
+✔ every bearing and hip ornament meets the visible roof rather than floating below or above it (14.812872ms)
+✔ photographed red roof soffits are separate from yellow exterior glazing, without a new cap over the opening (11.090021ms)
+✔ standing/seated/moving NPC on both bypasses cannot become a false landing or jump reset (208.289902ms)
+✔ all four dispatch boundaries preserve .3/.5 kinematic bodies across ULP offsets both directions (62.783418ms)
+✔ small .3 and player .5 bodies cross the real paving edges after witnessed-ground handoff without legacy early-lift lock (79.159969ms)
+✔ original east-well object has one dedicated complete runtime assembly rather than name-only inventory (246.385843ms)
+✔ east-well ground keeps nonlocal rectangle identity and all four surviving fragments (1.31864ms)
+✔ east-well ground rejects inverted/nonfinite rectangles (0.259099ms)
+✔ platform and every visible surface reject downgrade and wrong ownership and unload/reload cleanly (87.348504ms)
+✔ east-well witness requires the unique live actual ground and invalidates geometry transforms detach and unbind (58.057242ms)
+✔ east-well uses registered materials, never undefined-key white fallback (39.445778ms)
+east-well-full-height-census 98
+✔ both east-well bypasses preserve original north-south lane with walk run jump at 10/60Hz both ways (8908.013538ms)
+✔ all-height east-well region plus 1.25m contains only new well ordinary boxes and source surfaces (3.592413ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,222, 树木=34棵, 碰撞器=2034
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,228, 树木=34棵, 碰撞器=2034
+✖ entire garden zone excluding only east-well profile is byte-geometrically and physically identical to parent (38.275938ms)
+✖ all 34 tree instance buffers and all old GardenBuilder physics stay exact; all non-ground geometry stays exact and ground samples outside cut preserve material/height/UV (6757.188708ms)
+✔ east-well exact anchor registers once and rejects moved source ownership (64.64938ms)
+east-well-source-faces 3504
+east-well-closed-shells 60 exact-zero-area-source-faces 320
+✔ every physical triangle is the exact final merged F32 visible source, including degenerate source provenance (105.088662ms)
+✔ private beam paint and source/final geometries dispose exactly once while shared library is untouched (20.967118ms)
+✔ each authored solid shell is closed after F32 welding; split roof exterior plus red soffit has no missing edge (29.263254ms)
+✔ 10/60Hz actual player lands on visible outer roof and cannot fall through the too-small center opening (2852.563076ms)
+✔ 10/60Hz jump from actual rail top into hanging bearing stops the head against actual visible triangles (1181.995687ms)
+✔ duplicate west builder fails before touching retained frame physics or ownership (54.049428ms)
+✔ late map publication failure rolls back only candidate geometry physics and private resources (29.563069ms)
+✔ west has independently painted bamboo soffits, cylindrical covered well and water-lift fit (56.05604ms)
+✔ west keeps four exact .24m columns and physically open octagonal center (26.296977ms)
+✔ private bamboo texture and both private materials dispose once without library ownership transfer (35.376156ms)
+✔ standing/seated/moving NPC on both bypasses cannot become a false landing or jump reset (213.047778ms)
+✔ all four dispatch boundaries preserve .3/.5 kinematic bodies across ULP offsets both directions (93.300281ms)
+✔ small .3 and player .5 bodies cross the real paving edges after witnessed-ground handoff without legacy early-lift lock (106.028628ms)
+✔ original west-well object has one dedicated complete runtime assembly rather than name-only inventory (323.984719ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,228, 树木=34棵, 碰撞器=2034
+✔ actual old raised bed and stone edge are visibly cut away at west well, not buried (1387.271964ms)
+✔ platform and every visible surface reject downgrade and wrong ownership and unload/reload cleanly (96.003939ms)
+✔ west-well witness requires the unique live actual ground and invalidates geometry transforms detach and unbind (64.815149ms)
+west-well-full-height-census 113
+✔ both west-well fitted local north-south circuits stay traversable with walk run jump at 10/60Hz both ways (10980.729779ms)
+✔ all-height west-well region plus 1.25m has exactly the one source-corrected retained preflight tree plus new well sources (3.146644ms)
+✔ garden builds one source-bounded west well distinct from retained east well (438.724526ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,240, 树木=34棵, 碰撞器=2034
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,228, 树木=34棵, 碰撞器=2034
+garden-preserved {"beforeMeshes":49,"afterMeshes":49,"beforeTriangles":266240,"afterTriangles":266228,"treeGroups":12}
+✔ entire garden zone excluding only west-well profile is byte-geometrically and physically identical to parent (1285.35846ms)
+✔ all 34 tree instance buffers and all old GardenBuilder physics except the exact one tree source stay exact; all non-ground geometry stays exact and ground samples outside cut preserve material/height/UV (7092.236926ms)
+✔ west-well exact anchor registers once and rejects moved source ownership (58.816085ms)
+west-well-source-faces 3760
+west-well-closed-shells 62 exact-zero-area-source-faces 320
+✔ every physical triangle is the exact final merged F32 visible source, including degenerate source provenance (84.616106ms)
+✔ private beam paint and source/final geometries dispose exactly once while shared library is untouched (22.611614ms)
+✔ each authored solid shell is closed after F32 welding; split roof exterior plus bamboo soffit has no missing edge (37.559836ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,228, 树木=34棵, 碰撞器=2034
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,228, 树木=34棵, 碰撞器=2034
+✔ only conflict tree uses complete actual retained trunk triangles instead of inadequate low AABB (1232.691066ms)
+✔ retained tree source fails closed for changed draw transform geometry range or groups (11.15759ms)
+✔ normal garden requires exactly one matched original tree, never silent fallback or duplicate (0.356415ms)
+✔ complete retained trunk bounds plus .6m fit wholly inside the strict domain, not across its dispatch seam (883.944373ms)
+✔ 10/60Hz actual player lands on visible outer roof and cannot fall through the too-small center opening (4206.980606ms)
+✔ 10/60Hz jump from actual rail top into hanging bearing stops the head against actual visible triangles (1210.626806ms)
+✔ R104 explicit open surface owner never supplies support/collision from empty bbox corners (12.919496ms)
+✔ R104 ordinary and roof surfaces combine in one vertical contact, upward head impact never lands (36.038328ms)
+✔ R104 surface registry clones input, rejects identity/bounds mutation atomically and removes all ownership (1.389936ms)
+✔ R104 descending actual sloped-face contact becomes stable support with the exact witness, not a post-solver clamp (92.745864ms)
+✔ R104 three actual roofs register exactly their 988 positive production-quantized world faces and twenty zero-face source mappings (68.213796ms)
+✔ R104 actual three roof pressure descents land on visible upward source rather than the lower lintel (1166.881286ms)
+✔ R104 owned roof triangles match actual finished production Float32 render triangles exactly (35.146982ms)
+✔ R104 held navigation clone uses live roof generation on same-count source update and removal without cloning per frame (1.934764ms)
+✔ R104 roof-only vertical safe-prefix solver does not recompute identical binary64 body queries (32.707701ms)
+✔ R104 local static memo preserves complete vertical results across roof, box, +/-zero and mixed moving NPC states (844.777179ms)
+✔ R104 memo never survives another call or skips dynamic decisions, including source same-count update (197.604567ms)
+✔ R104 surface square footprint has a real witness and upper roof does not hide reachable lower face (2.868326ms)
+✔ R104 open sheet blocks both directions but has no imaginary parity volume (4.767878ms)
+✔ R104 surface input keeps all positive faces, filters only exact zero with source map, rejects invalid source/id (1.017738ms)
+✔ R104 surface registration snapshot preserves zero-face provenance and rejects altered source bounds (0.340631ms)
+✔ R104 roof source deep immutability and bounded fine query retain exact face order (1.101123ms)
+✔ R104 actual production sloped-edge contact rounds toward a provably clear representable foot, not a broad epsilon (1.314003ms)
+✔ R104 exact roof height is the least representable upper bound across signs, not a fixed uplift (12.580466ms)
+✔ R104 actual source-double SAT separates a conservative foot and still rejects real 1nm penetration (1.749156ms)
+✔ R104 distinct Xiqing ordinary-box scope kind is accepted; unrelated kinds remain rejected (1.134804ms)
+✔ R104 actual three-gate owner marks only its finite ordinary-box domain (119.300447ms)
+✔ R104 new south pier high descent stays clear in the scoped domain and escapes new solids; legacy exterior overlaps recorded (42236.460936ms)
+✔ R104 actual Xiqing consists of three distinct hipped roof gate groups, not one generic gateHall (150.810864ms)
+✔ R104 only Xiqing caller changes; Lianxi old full local snapshot and stable catalog identity remain (15.481952ms)
+✔ R104 actual wall cuts are three clear passages with solid interstitials, headers and unshifted central floor (101.044336ms)
+✔ R104 independent roof envelopes do not interpenetrate one another or reach adjacent south/cross walls (58.144421ms)
+✔ R104 source guards reject wrong caller and wrong wall before geometry allocation (4.275479ms)
+✔ R104 all new registered solid meshes and open leaves own their exact world box, central depth stays original (51.767937ms)
+✔ R104 glazed fields replace solid front faces without projecting new thin landing ledges (16.369936ms)
+✔ R104 painted box front partitions cover exactly one original face without geometric or UV degeneracy (24.049965ms)
+✔ R104 whole-world gate metadata uses actual Xiqing profile without generic side-gate substitution (1.509486ms)
+✔ R104 merged gate owns and releases new materials and merged geometries once per build (85.581947ms)
+✔ R104 existing actual-mesh flight collector covers all three roofs after production material merge (35.79027ms)
+✔ R104 actually open leaves are not buried inside masonry pier solids (27.799375ms)
+✔ source-owned stair kind is accepted only for two IDs (1.790328ms)
+✔ full square ramp maximum rather than center, no artificial maxTop cut (1.509256ms)
+✔ real platform top wins at ramp junction; floor retained when NPC blocks pose (1.043186ms)
+✔ ramp ascent lifts exact feet and checks source low beam, never airborne autostep (0.976606ms)
+✔ real gravity lands on existing ramp witness, not on NPC or a cut plane (0.706391ms)
+✔ airborne horizontal ascent cannot cross downward through the engineering ramp, though below-sheet initial poses are not closed solids (0.202574ms)
+✔ wide platform front edge stays in full-body scope through lateral movement and input release (43.386174ms)
+✔ held navigation follows exact ramp copy, source translation, same-count update and unload (9.15249ms)
+✔ invalid ramp update atomically retains prior generation and rejects tapered surface (0.565299ms)
+✔ complete square support ends at side contact not at center edge; no phantom ramp outside (0.325569ms)
+✔ thin post between clear endpoints blocks the complete translate segment (1.018359ms)
+✔ dynamic actor stops descent without becoming floor; removing actor next call restores ramp landing (2.679242ms)
+✔ failed step keeps physical floor while moving low beam and NPC are queried fresh (0.690076ms)
+✔ exact unequal Float32 source floors merge without filling omitted volume or open edges (4.942089ms)
+✔ all 738 actual side-region cells retain exact nonzero bottoms across closed source-row base unions (1180.767673ms)
+{ baselineClearProtectedSweeps: 323, poses: 2697 }
+✔ unchanged routes cave and apron retain every baseline-clear full-body stance and jump sweep (1058.529284ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,228, 树木=34棵, 碰撞器=2034
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,228, 树木=34棵, 碰撞器=2034
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,228, 树木=34棵, 碰撞器=2034
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,228, 树木=34棵, 碰撞器=2034
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,228, 树木=34棵, 碰撞器=2034
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,228, 树木=34棵, 碰撞器=2034
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,228, 树木=34棵, 碰撞器=2034
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,228, 树木=34棵, 碰撞器=2034
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,228, 树木=34棵, 碰撞器=2034
+✔ R94 controlled outer rock summit air-drop exits by both real routes and cave jump does not eject 10Hz (1706.07398ms)
+✔ R94 controlled outer rock summit air-drop exits by both real routes and cave jump does not eject 30Hz (1692.777216ms)
+✔ R94 controlled outer rock summit air-drop exits by both real routes and cave jump does not eject 60Hz (1864.277475ms)
+✔ R94 controlled outer rock exterior summit ring avoids closed pavilion doors and balustrades 10Hz (1664.707625ms)
+✔ R94 controlled outer rock exterior summit ring avoids closed pavilion doors and balustrades 60Hz (1745.095366ms)
+✔ R94 controlled outer rock center and open-door edge landings use actual 1.42m southern exit 10Hz (1552.413162ms)
+✔ R94 controlled outer rock center and open-door edge landings use actual 1.42m southern exit 30Hz (1569.17064ms)
+✔ R94 controlled outer rock center and open-door edge landings use actual 1.42m southern exit 60Hz (1658.933647ms)
+✔ R91 square-foot cap support has a real witness distinct from rail-blocked poses (1571.968956ms)
+✔ R91 scoped terrain east physical ascent and return 10Hz (842.548162ms)
+✔ R91 scoped terrain west physical ascent and return 10Hz (584.722639ms)
+✔ R91 scoped terrain east physical ascent and return 30Hz (515.790779ms)
+✔ R91 scoped terrain west physical ascent and return 30Hz (425.949858ms)
+✔ R91 scoped terrain east physical ascent and return 60Hz (618.523302ms)
+✔ R91 scoped terrain west physical ascent and return 60Hz (608.631947ms)
+✔ outer-rock replacement retains accepted front and side relief positions exactly (1263.143047ms)
+✔ every natural owner has exact closed consistently oriented manifold and visible vertices (490.148139ms)
+✔ outer foot uses only actual source footprint with source-bounded top faces and exact world-ground toe (502.799994ms)
+✔ explicit terrain batch validates duplicate IDs without per-owner full-list scans (17.765021ms)
+✔ terrain batch preserves duplicate rejection, partial registration and clean reload after error (0.482915ms)
+✔ unmarked triangle batch keeps existing duplicate-validation path (1.641845ms)
+✔ scoped sweep includes low ordinary boxes ignored by old foot exemption (2.919293ms)
+✔ scoped full-height head sweep rejects ceiling along lift arc (0.292409ms)
+✔ scoped square body catches NPC corner beyond old circle and swept short chord (1.990138ms)
+✔ 108 recreated routine-navigation clones borrow one source spatial generation (5.965156ms)
+✔ routine path explicitly steps at actual NPC footprint rather than player radius (23.1071ms)
+✔ daily duty navigation uses supported kinematic step for its existing .36m caller (1.376696ms)
+✔ Teleport Infinity placement and supported forward probe remain distinct (1.862937ms)
+✔ Duixiu exact square bottom contacts a real corner beyond old circular foot (2.077489ms)
+✔ Duixiu footprint rejects empty bounding-box corner and unreachable top (0.244036ms)
+✔ Duixiu sloping top returns its real clipped highest witness, not broadphase height (0.386831ms)
+✔ Duixiu reachable floor is not hidden by a higher roof up-face (0.352409ms)
+✔ physical floor contact survives a too-low roof; pose admission is separate (0.354212ms)
+✔ real controller climbs exact marked stairs with no old walkables 10Hz (20.909522ms)
+✔ real controller climbs exact marked stairs with no old walkables 60Hz (12.741689ms)
+✔ real gravity uses square corner witness without lateral bbox slide (6.639909ms)
+✔ explicit actual-radius kinematic step works without changing no-context caller policy (1.178078ms)
+✔ outside terrain ordinary movement results remain exact with distant registered domain (4.502309ms)
+✔ real ordinary static top inside terrain domain permits grounded landing rather than NPC-like hover (13.723733ms)
+✔ static navigation terrain index stays live after same-count owner update and unload/reload (1.509155ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=267,648, 树木=34棵, 碰撞器=3063
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=267,648, 树木=34棵, 碰撞器=3063
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=267,648, 树木=34棵, 碰撞器=3063
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=267,648, 树木=34棵, 碰撞器=3063
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=267,648, 树木=34棵, 碰撞器=3063
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=267,648, 树木=34棵, 碰撞器=3063
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=267,648, 树木=34棵, 碰撞器=3063
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=267,648, 树木=34棵, 碰撞器=3063
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=267,648, 树木=34棵, 碰撞器=3063
+✔ R91 scoped terrain summit air-drop exits by both real routes and cave jump does not eject 10Hz (1745.843155ms)
+✔ R91 scoped terrain summit air-drop exits by both real routes and cave jump does not eject 30Hz (1451.565275ms)
+✔ R91 scoped terrain summit air-drop exits by both real routes and cave jump does not eject 60Hz (1446.894877ms)
+✔ R91 scoped terrain exterior summit ring avoids closed pavilion doors and balustrades 10Hz (1445.307262ms)
+✔ R91 scoped terrain exterior summit ring avoids closed pavilion doors and balustrades 60Hz (1448.830888ms)
+✔ R91 scoped terrain center and open-door edge landings use actual 1.42m southern exit 10Hz (1519.749062ms)
+✔ R91 scoped terrain center and open-door edge landings use actual 1.42m southern exit 30Hz (1489.969391ms)
+✔ R91 scoped terrain center and open-door edge landings use actual 1.42m southern exit 60Hz (1446.860397ms)
+✔ R91 square-foot cap support has a real witness distinct from rail-blocked poses (1241.065778ms)
+✔ Duixiu fine grid returns exact owners in stable order equal brute force (16.684323ms)
+✔ physics-only mountain keeps every visible buffer unchanged and removes every legacy support shortcut (891.040729ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=267,648, 树木=34棵, 碰撞器=3063
+✔ actual 5.2m pavilion base and 5.4m cap are physical terrain, without old cap walkable fallback (1659.401547ms)
+✔ real cave floor remains contact with high roof and valid pose (4.639425ms)
+✔ low roof blocks standing pose but never erases physical floor (1.618179ms)
+✔ NPC at landing blocks pose while retaining real floor contact (1.277267ms)
+✔ scope follows swept footprint rather than endpoints/centers and keeps altitude independent (0.43939ms)
+✔ explicit terrain owner is preserved and fine-query removes remote same-bin owners (14.491786ms)
+✔ terrain marker without exact closed ownership is rejected (0.788655ms)
+✔ R91 scoped terrain east physical ascent and return 10Hz (561.827678ms)
+✔ R91 scoped terrain west physical ascent and return 10Hz (410.001866ms)
+✔ R91 scoped terrain east physical ascent and return 30Hz (384.940172ms)
+✔ R91 scoped terrain west physical ascent and return 30Hz (333.447458ms)
+✔ R91 scoped terrain east physical ascent and return 60Hz (322.885413ms)
+✔ R91 scoped terrain west physical ascent and return 60Hz (333.424915ms)
+✔ grounded step lifts then translates to true footprint support without riser penetration (4.883714ms)
+✔ lift arc low ceiling rejects otherwise valid final step pose (1.45864ms)
+✔ airborne and unannotated callers cannot borrow step-up (1.759712ms)
+✔ unsupported kinematic actor cannot invent a grounded starting state (1.189315ms)
+✔ step taller than limit blocks and dynamic body in lift arc blocks (2.745773ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,228, 树木=34棵, 碰撞器=2034
+{ fps: 10, points: 4, trapped: [], embedded: [] }
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,228, 树木=34棵, 碰撞器=2034
+{ fps: 60, points: 4, trapped: [], embedded: [] }
+✔ Duixiu exact tangency production gravity + eight-way escape retained failure/boundary poses 10Hz (2237.385937ms)
+✔ Duixiu exact tangency production gravity + eight-way escape retained failure/boundary poses 60Hz (4450.077368ms)
+✔ exact side tangency is not body penetration; leaving and tangent travel remain legal (6.470534ms)
+✔ corner contact remains nonpenetrating until motion enters both incident half-spaces (1.245189ms)
+✔ sloping real facet tangent does not block separation, but genuine penetration still blocks (2.834736ms)
+✔ body wholly inside a closed terrain solid is still rejected by volume containment (0.628083ms)
+✔ continuous crossing blocks even with both endpoints outside, and exact tangent parallel sweep does not (0.65227ms)
+✔ no-input airborne state never snaps upward to a higher reachable step (6.752279ms)
+✔ real downward sweep lands on physical floor beneath high roof (7.018279ms)
+✔ NPC body-only vertical impact stops penetration without grounded jump reset (21.364412ms)
+✔ airborne outside-domain handoff does not rewrite state (1.74463ms)
+ℹ tests 252
+ℹ suites 0
+ℹ pass 250
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 157569.299706
+
+✖ failing tests:
+
+test at tests/major-pilots/east-well/retention.test.mjs:6:1
+✖ entire garden zone excluding only east-well profile is byte-geometrically and physically identical to parent (38.275938ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      bounds: {
+        x0: -68.75,
+        x1: 68.75,
+        z0: 205,
+  ...
+      ],
+  +   westWellProfile: 'west-well-source-fit',
+      zhaorenProfile: 'zhaoren-exterior-photo-fit-r74'
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/east-well/retention.test.mjs:6:398)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: {
+      westWellProfile: 'west-well-source-fit',
+      hongdeProfile: 'hongde-exterior-photo-fit-r75',
+      zhaorenProfile: 'zhaoren-exterior-photo-fit-r74',
+      id: 'garden',
+      name: '内廷中路与御花园',
+      bounds: { x0: -68.75, x1: 68.75, z0: 205, z1: 525.8 },
+      neighbors: [ 'axis-courts', 'east-six', 'west-six' ],
+      items: [
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object]
+      ]
+    },
+    expected: {
+      hongdeProfile: 'hongde-exterior-photo-fit-r75',
+      zhaorenProfile: 'zhaoren-exterior-photo-fit-r74',
+      id: 'garden',
+      name: '内廷中路与御花园',
+      bounds: { x0: -68.75, x1: 68.75, z0: 205, z1: 525.8 },
+      neighbors: [ 'axis-courts', 'east-six', 'west-six' ],
+      items: [
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object]
+      ]
+    },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/major-pilots/east-well/retention.test.mjs:7:1
+✖ all 34 tree instance buffers and all old GardenBuilder physics stay exact; all non-ground geometry stays exact and ground samples outside cut preserve material/height/UV (6757.188708ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '51958c736f5627f14d4131699a5afdf38accd31a6b397864ae4e793f63f46f05'
+  - '9936cd5bb514cee1876a741d7f54f309a2d31246a033eacf7585bb7e3d364787'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/east-well/retention.test.mjs:7:2689)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '51958c736f5627f14d4131699a5afdf38accd31a6b397864ae4e793f63f46f05',
+    expected: '9936cd5bb514cee1876a741d7f54f309a2d31246a033eacf7585bb7e3d364787',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

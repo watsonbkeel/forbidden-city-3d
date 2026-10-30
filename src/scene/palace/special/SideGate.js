@@ -4,6 +4,7 @@ import { sideGateGeometry } from './SideGateProfiles.js';
 import { buildXiheCourtyardCorbels } from './SideGateExteriorDetails.js';
 import { buildXieheCourtyardKnees } from './XieheCourtyardKnees.js';
 import { buildCourtyardWindowLeaves } from './CourtyardWindowLeaves.js';
+import { buildLongzongHallFrontFit } from './LongzongHallFrontFit.js';
 import { prunePavilionCoveredFaces } from '../../../render/PavilionRenderGeometry.js';
 
 const tag=(o,role,data={})=>{o.name=role;Object.assign(o.userData,{role,...data});return o;};
@@ -129,6 +130,7 @@ export function buildSideGate(kit,opts) {
   if(opts.plaque!==false)kit.plaque(f,g.name,0,ph+h-.9,plaqueZ,.8,1.4);
   if(g.profile==='xihe')buildXiheCourtyardCorbels(kit,f,g);
   if(g.profile==='xiehe')buildXieheCourtyardKnees(kit,f,g);
+  buildLongzongHallFrontFit(kit,f,g,renderBoxes);
   kit.mapRect(f,'gate',opts.name??g.name,w,d,{gateProfile:g.profile,portalCount:3,platformY:ph});
   const point=(x,y,z)=>{const [wx,wz]=g.toWorld(x,z);return {x:wx,y,z:wz};};
   f.userData.structure={

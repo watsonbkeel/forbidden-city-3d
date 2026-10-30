@@ -1,0 +1,180 @@
+TAP version 13
+# Subtest: single entrance low threshold and open leaves keep actual full body clear at 10/60Hz both ways
+ok 1 - single entrance low threshold and open leaves keep actual full body clear at 10/60Hz both ways
+  ---
+  duration_ms: 188.505308
+  type: 'test'
+  ...
+# Subtest: new south wall caps cannot provide access through either actual unchanged high side-wall body
+ok 2 - new south wall caps cannot provide access through either actual unchanged high side-wall body
+  ---
+  duration_ms: 3887.432197
+  type: 'test'
+  ...
+# Subtest: standing seated moving NPC blockers do not create a false landing or jump reset on entrance threshold and actual perimeter ground
+ok 3 - standing seated moving NPC blockers do not create a false landing or jump reset on entrance threshold and actual perimeter ground
+  ---
+  duration_ms: 196.211036
+  type: 'test'
+  ...
+# Subtest: generic .3/.5 callers traverse threshold and bounded perimeter ground in both directions
+ok 4 - generic .3/.5 callers traverse threshold and bounded perimeter ground in both directions
+  ---
+  duration_ms: 85.148442
+  type: 'test'
+  ...
+# Subtest: all reachable narrow strip boundaries and entry handoff survive ULP offsets in both directions for .3/.5 bodies
+ok 5 - all reachable narrow strip boundaries and entry handoff survive ULP offsets in both directions for .3/.5 bodies
+  ---
+  duration_ms: 59.206166
+  type: 'test'
+  ...
+# Subtest: whole Shoukang entrance keeps the sole 3.6 clear portal with two low glazed shoulder walls and two distinct stone stands
+ok 6 - whole Shoukang entrance keeps the sole 3.6 clear portal with two low glazed shoulder walls and two distinct stone stands
+  ---
+  duration_ms: 72.372847
+  type: 'test'
+  ...
+# Subtest: entire south boundary has exactly one real opening rather than extra gaps or old high walls behind new shoulders
+ok 7 - entire south boundary has exactly one real opening rather than extra gaps or old high walls behind new shoulders
+  ---
+  duration_ms: 52.87514
+  type: 'test'
+  ...
+# Subtest: pier white footings leave the real 3.6m body opening and do not reduce it beneath the nominal facade width
+ok 8 - pier white footings leave the real 3.6m body opening and do not reduce it beneath the nominal facade width
+  ---
+  duration_ms: 31.435204
+  type: 'test'
+  ...
+# Subtest: named entrance and sole south boundary reject ambiguous or moved source inputs
+ok 9 - named entrance and sole south boundary reject ambiguous or moved source inputs
+  ---
+  duration_ms: 62.382676
+  type: 'test'
+  ...
+# Subtest: retained wall registration rejects changed closed source vertices material and frame before installing any partial owner
+ok 10 - retained wall registration rejects changed closed source vertices material and frame before installing any partial owner
+  ---
+  duration_ms: 13.022085
+  type: 'test'
+  ...
+# Subtest: all four exact anchors reject duplicate downgrade movement ground injection or wrong-domain ownership and unload fully
+ok 11 - all four exact anchors reject duplicate downgrade movement ground injection or wrong-domain ownership and unload fully
+  ---
+  duration_ms: 108.172445
+  type: 'test'
+  ...
+# Subtest: each entrance or perimeter witness requires unique live actual Environment and invalidates mutations
+ok 12 - each entrance or perimeter witness requires unique live actual Environment and invalidates mutations
+  ---
+  duration_ms: 66.44098
+  type: 'test'
+  ...
+# Subtest: all eleven actual surface owners reject duplicate and downgrade and tagged reload remains exact
+ok 13 - all eleven actual surface owners reject duplicate and downgrade and tagged reload remains exact
+  ---
+  duration_ms: 72.026377
+  type: 'test'
+  ...
+# Subtest: full radius plus maximum substep handoff has actual ground on both outer perimeter edges
+ok 14 - full radius plus maximum substep handoff has actual ground on both outer perimeter edges
+  ---
+  duration_ms: 42.523394
+  type: 'test'
+  ...
+# Subtest: gold outlines do not hide the source red panels or green center fields under depth bias
+ok 15 - gold outlines do not hide the source red panels or green center fields under depth bias
+  ---
+  duration_ms: 60.061831
+  type: 'test'
+  ...
+# Subtest: real TextureLibrary final merge keeps every private color face/material/depth setting without vertex-color flags or changing shared wall materials
+not ok 16 - real TextureLibrary final merge keeps every private color face/material/depth setting without vertex-color flags or changing shared wall materials
+  ---
+  duration_ms: 53.669111
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/materials.test.mjs:5:1'
+  failureType: 'testCodeFailure'
+  error: "Cannot read properties of null (reading 'name')"
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/materials.test.mjs:5:514
+    Mesh.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7600:3)
+    Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/materials.test.mjs:5:475)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# all-height-strip-census north 12
+# all-height-strip-census east 11
+# all-height-strip-census west 11
+# Subtest: original whole Shoukang gate to hall route walks runs and jumps both ways at 10/60Hz
+ok 17 - original whole Shoukang gate to hall route walks runs and jumps both ways at 10/60Hz
+  ---
+  duration_ms: 8724.505472
+  type: 'test'
+  ...
+# Subtest: all-height perimeter plus 1.25m handoff census contains no foreign overhead or triangle-support proxy
+ok 18 - all-height perimeter plus 1.25m handoff census contains no foreign overhead or triangle-support proxy
+  ---
+  duration_ms: 4.079165
+  type: 'test'
+  ...
+# Subtest: real ground lanes beside both complete walls and north edge remain usable both ways
+ok 19 - real ground lanes beside both complete walls and north edge remain usable both ways
+  ---
+  duration_ms: 312.403529
+  type: 'test'
+  ...
+# Subtest: retained full walls have three bounded body owners and exact long-cap exception does not relax any other source
+ok 20 - retained full walls have three bounded body owners and exact long-cap exception does not relax any other source
+  ---
+  duration_ms: 121.199696
+  type: 'test'
+  ...
+# Subtest: complete retained cap circuit walks through both north corners without penetrating real source at 10/60Hz
+ok 21 - complete retained cap circuit walks through both north corners without penetrating real source at 10/60Hz
+  ---
+  duration_ms: 12223.615918
+  type: 'test'
+  ...
+# Subtest: 12m vertical falls on full retained caps, both sides and both north corners keep real source separation
+ok 22 - 12m vertical falls on full retained caps, both sides and both north corners keep real source separation
+  ---
+  duration_ms: 2407.947364
+  type: 'test'
+  ...
+# non-target-parent-render-sha256 80466c8775584025f05f6f8e23d0ede81d464f1e26043efed481746f2f701e64
+# Subtest: actual parent central roof and three complete retained walls render unchanged while their original collision proxies remain
+ok 23 - actual parent central roof and three complete retained walls render unchanged while their original collision proxies remain
+  ---
+  duration_ms: 125.941921
+  type: 'test'
+  ...
+# Subtest: all non-target outer-west complete render physical metadata navigation and rooms equal actual parent ZoneBase excluding only gate and explicitly augmented court perimeter
+ok 24 - all non-target outer-west complete render physical metadata navigation and rooms equal actual parent ZoneBase excluding only gate and explicitly augmented court perimeter
+  ---
+  duration_ms: 4016.892985
+  type: 'test'
+  ...
+# Subtest: all entrance and retained wall source triangles survive final merge; each source box is closed outward geometry
+ok 25 - all entrance and retained wall source triangles survive final merge; each source box is closed outward geometry
+  ---
+  duration_ms: 129.896657
+  type: 'test'
+  ...
+1..25
+# tests 25
+# suites 0
+# pass 24
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 35848.628703

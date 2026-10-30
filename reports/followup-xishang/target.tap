@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: Xishang three front bays contain actual open transom bars rather than a closed sheet
+ok 1 - Xishang three front bays contain actual open transom bars rather than a closed sheet
+  ---
+  duration_ms: 95.252224
+  type: 'test'
+  ...
+# Subtest: all preexisting visible geometry and physical sources survive; each new contact exactly bounds a real timber bar
+ok 2 - all preexisting visible geometry and physical sources survive; each new contact exactly bounds a real timber bar
+  ---
+  duration_ms: 136.994976
+  type: 'test'
+  ...
+# Subtest: all nine fitted lattice cells have actual ray-open holes and every bar connects to the old front beam/columns
+ok 3 - all nine fitted lattice cells have actual ray-open holes and every bar connects to the old front beam/columns
+  ---
+  duration_ms: 28.662139
+  type: 'test'
+  ...
+# Subtest: all added geometries are owned per mesh and disposed once through three normal rebuilds
+ok 4 - all added geometries are owned per mesh and disposed once through three normal rebuilds
+  ---
+  duration_ms: 74.844702
+  type: 'test'
+  ...
+# Subtest: mutated original front beam geometry rejects before adding structural bars
+ok 5 - mutated original front beam geometry rejects before adding structural bars
+  ---
+  duration_ms: 19.658433
+  type: 'test'
+  ...
+# Subtest: front lattice header is below the retained ceiling grid while end hangers still reach the original beam
+ok 6 - front lattice header is below the retained ceiling grid while end hangers still reach the original beam
+  ---
+  duration_ms: 20.643272
+  type: 'test'
+  ...
+# Subtest: Xishang normal ground jumps do not penetrate solid transoms (real head impact allowed) at 10/60Hz
+ok 7 - Xishang normal ground jumps do not penetrate solid transoms (real head impact allowed) at 10/60Hz
+  ---
+  duration_ms: 5217.719982
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5964.506958

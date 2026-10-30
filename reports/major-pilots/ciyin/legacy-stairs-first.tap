@@ -1,0 +1,274 @@
+TAP version 13
+# stair-replay-failure 慈荫楼 10 false false [ 258.5, 123.55 ] [ 258.49878859261975, 124.3327717141679, 0.6 ]
+# stair-replay-failure 慈荫楼 10 false true [ 258.5, 123.55 ] [ 258.49878859261986, 124.3327717141679, 0.6 ]
+# stair-replay-failure 慈荫楼 10 true false [ 258.5, 123.55 ] [ 258.499994070906, 124.32874951015594, 0.6 ]
+# stair-replay-failure 慈荫楼 10 true true [ 258.5, 123.55 ] [ 258.499994070906, 124.32874951015594, 0.6 ]
+# stair-replay-failure 慈荫楼 60 false false [ 258.5, 123.55 ] [ 258.499151800553, 124.33330329431514, 0.6 ]
+# stair-replay-failure 慈荫楼 60 false true [ 258.5, 123.55 ] [ 258.499151800553, 124.33330329431514, 0.6 ]
+# stair-replay-failure 慈荫楼 60 true false [ 258.5, 123.55 ] [ 258.4999983085826, 124.33484300662032, 0.6 ]
+# stair-replay-failure 慈荫楼 60 true true [ 258.5, 123.55 ] [ 258.4999983085826, 124.33484300662032, 0.6 ]
+# Subtest: R48 whole-outer-zone 宝相楼 physical stair round trip fps=10 sprint=false backward=false
+ok 1 - R48 whole-outer-zone 宝相楼 physical stair round trip fps=10 sprint=false backward=false
+  ---
+  duration_ms: 216.340429
+  type: 'test'
+  ...
+# Subtest: R48 whole-outer-zone 宝相楼 physical stair round trip fps=10 sprint=false backward=true
+ok 2 - R48 whole-outer-zone 宝相楼 physical stair round trip fps=10 sprint=false backward=true
+  ---
+  duration_ms: 250.314424
+  type: 'test'
+  ...
+# Subtest: R48 whole-outer-zone 宝相楼 physical stair round trip fps=10 sprint=true backward=false
+ok 3 - R48 whole-outer-zone 宝相楼 physical stair round trip fps=10 sprint=true backward=false
+  ---
+  duration_ms: 115.610878
+  type: 'test'
+  ...
+# Subtest: R48 whole-outer-zone 宝相楼 physical stair round trip fps=10 sprint=true backward=true
+ok 4 - R48 whole-outer-zone 宝相楼 physical stair round trip fps=10 sprint=true backward=true
+  ---
+  duration_ms: 105.435683
+  type: 'test'
+  ...
+# Subtest: R48 whole-outer-zone 宝相楼 physical stair round trip fps=60 sprint=false backward=false
+ok 5 - R48 whole-outer-zone 宝相楼 physical stair round trip fps=60 sprint=false backward=false
+  ---
+  duration_ms: 579.335307
+  type: 'test'
+  ...
+# Subtest: R48 whole-outer-zone 宝相楼 physical stair round trip fps=60 sprint=false backward=true
+ok 6 - R48 whole-outer-zone 宝相楼 physical stair round trip fps=60 sprint=false backward=true
+  ---
+  duration_ms: 571.147474
+  type: 'test'
+  ...
+# Subtest: R48 whole-outer-zone 宝相楼 physical stair round trip fps=60 sprint=true backward=false
+ok 7 - R48 whole-outer-zone 宝相楼 physical stair round trip fps=60 sprint=true backward=false
+  ---
+  duration_ms: 327.328473
+  type: 'test'
+  ...
+# Subtest: R48 whole-outer-zone 宝相楼 physical stair round trip fps=60 sprint=true backward=true
+ok 8 - R48 whole-outer-zone 宝相楼 physical stair round trip fps=60 sprint=true backward=true
+  ---
+  duration_ms: 322.251349
+  type: 'test'
+  ...
+# Subtest: R48 whole-outer-zone 慈荫楼 physical stair round trip fps=10 sprint=false backward=false
+not ok 9 - R48 whole-outer-zone 慈荫楼 physical stair round trip fps=10 sprint=false backward=false
+  ---
+  duration_ms: 77.887481
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:7:126'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"name":"慈荫楼","stair":0,"arrived":false,"stuckAt":[258.5,123.55],"startFeet":0,"maxFeet":4.8,"maxSpeed":5.000000000000517,"driver":{"crossings":[{"index":1,"point":[258.5,120.74],"hit":[258.5,120.74],"lateralDistance":0},{"index":2,"point":[258.5,121.69999999999999],"hit":[258.5,121.69999999999999],"lateralDistance":0},{"index":3,"point":[258.5,123.55],"hit":[258.5,123.55],"lateralDistance":0},{"index":4,"point":[258.5,125.5],"hit":[258.5,125.5],"lateralDistance":0},{"index":5,"point":[267.87,125.5],"hit":[267.87,125.5],"lateralDistance":0},{"index":6,"point":[267.87,125.1],"hit":[267.87,125.1],"lateralDistance":0},{"index":7,"point":[269.62,125.1],"hit":[269.62,125.08058352431723],"lateralDistance":0.019416475682760392},{"index":8,"point":[269.62,125.39999999999999],"hit":[269.7426769061793,125.39999999999999],"lateralDistance":0.12267690617932203},{"index":9,"point":[269.62,125.85],"hit":[269.73559939236134,125.85],"lateralDistance":0.11559939236133232},{"index":10,"point":[269.62,132.54999999999998],"hit":[269.63022307551495,132.54999999999998],"lateralDistance":0.010223075514943503},{"index":11,"point":[269.62,133.2],"hit":[269.62,133.2],"lateralDistance":0},{"index":12,"point":[268.2,133.2],"hit":[268.2,133.2],"lateralDistance":0},{"index":13,"point":[268.2,128.1],"hit":[268.2,128.1],"lateralDistance":0},{"index":14,"point":[258.5,128.1],"hit":[258.5,128.1],"lateralDistance":0},{"index":15,"point":[268.2,128.1],"hit":[268.2,128.1],"lateralDistance":0},{"index":16,"point":[268.2,133.2],"hit":[268.19986279382374,133.2],"lateralDistance":0.00013720617624812803},{"index":17,"point":[269.62,133.2],"hit":[269.62,133.20000000000002],"lateralDistance":2.842170943040401e-14},{"index":18,"point":[269.62,132.54999999999998],"hit":[269.674412915987,132.54999999999998],"lateralDistance":0.05441291598697262},{"index":19,"point":[269.62,125.85],"hit":[269.6254778103344,125.85],"lateralDistance":0.00547781033441197},{"index":20,"point":[269.62,125.39999999999999],"hit":[269.6221911241338,125.39999999999999],"lateralDistance":0.0021911241337875254},{"index":21,"point":[269.62,125.1],"hit":[269.62,125.1],"lateralDistance":0},{"index":22,"point":[267.87,125.1],"hit":[267.87,125.1],"lateralDistance":0},{"index":23,"point":[267.87,125.5],"hit":[267.87000000000006,125.5],"lateralDistance":5.684341886080802e-14},{"index":24,"point":[258.5,125.5],"hit":[258.5,125.5],"lateralDistance":0}],"brakingFrames":0,"endpointSettleSeconds":2},"end":[258.49878859261975,124.3327717141679,0.6]}
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:7:1190)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 whole-outer-zone 慈荫楼 physical stair round trip fps=10 sprint=false backward=true
+not ok 10 - R48 whole-outer-zone 慈荫楼 physical stair round trip fps=10 sprint=false backward=true
+  ---
+  duration_ms: 49.877937
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:7:126'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"name":"慈荫楼","stair":0,"arrived":false,"stuckAt":[258.5,123.55],"startFeet":0,"maxFeet":4.8,"maxSpeed":5.000000000000517,"driver":{"crossings":[{"index":1,"point":[258.5,120.74],"hit":[258.5,120.74],"lateralDistance":0},{"index":2,"point":[258.5,121.69999999999999],"hit":[258.5,121.69999999999999],"lateralDistance":0},{"index":3,"point":[258.5,123.55],"hit":[258.5,123.55],"lateralDistance":0},{"index":4,"point":[258.5,125.5],"hit":[258.5,125.5],"lateralDistance":0},{"index":5,"point":[267.87,125.5],"hit":[267.87,125.5],"lateralDistance":0},{"index":6,"point":[267.87,125.1],"hit":[267.87,125.1],"lateralDistance":0},{"index":7,"point":[269.62,125.1],"hit":[269.62,125.08058352431723],"lateralDistance":0.019416475682760392},{"index":8,"point":[269.62,125.39999999999999],"hit":[269.7426769061793,125.39999999999999],"lateralDistance":0.12267690617932203},{"index":9,"point":[269.62,125.85],"hit":[269.73559939236134,125.85],"lateralDistance":0.11559939236133232},{"index":10,"point":[269.62,132.54999999999998],"hit":[269.63022307551495,132.54999999999998],"lateralDistance":0.010223075514943503},{"index":11,"point":[269.62,133.2],"hit":[269.62,133.2],"lateralDistance":0},{"index":12,"point":[268.2,133.2],"hit":[268.2,133.2],"lateralDistance":0},{"index":13,"point":[268.2,128.1],"hit":[268.2,128.1],"lateralDistance":0},{"index":14,"point":[258.5,128.1],"hit":[258.5,128.1],"lateralDistance":0},{"index":15,"point":[268.2,128.1],"hit":[268.2,128.1],"lateralDistance":0},{"index":16,"point":[268.2,133.2],"hit":[268.19986279382374,133.2],"lateralDistance":0.00013720617624812803},{"index":17,"point":[269.62,133.2],"hit":[269.62,133.20000000000002],"lateralDistance":2.842170943040401e-14},{"index":18,"point":[269.62,132.54999999999998],"hit":[269.674412915987,132.54999999999998],"lateralDistance":0.05441291598697262},{"index":19,"point":[269.62,125.85],"hit":[269.62547781033436,125.85],"lateralDistance":0.0054778103343551265},{"index":20,"point":[269.62,125.39999999999999],"hit":[269.6221911241338,125.39999999999999],"lateralDistance":0.0021911241337875254},{"index":21,"point":[269.62,125.1],"hit":[269.62,125.1],"lateralDistance":0},{"index":22,"point":[267.87,125.1],"hit":[267.87,125.1],"lateralDistance":0},{"index":23,"point":[267.87,125.5],"hit":[267.87000000000006,125.5],"lateralDistance":5.684341886080802e-14},{"index":24,"point":[258.5,125.5],"hit":[258.5,125.5],"lateralDistance":0}],"brakingFrames":0,"endpointSettleSeconds":2},"end":[258.49878859261986,124.3327717141679,0.6]}
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:7:1190)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 whole-outer-zone 慈荫楼 physical stair round trip fps=10 sprint=true backward=false
+not ok 11 - R48 whole-outer-zone 慈荫楼 physical stair round trip fps=10 sprint=true backward=false
+  ---
+  duration_ms: 63.903144
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:7:126'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"name":"慈荫楼","stair":0,"arrived":false,"stuckAt":[258.5,123.55],"startFeet":0,"maxFeet":4.8,"maxSpeed":11.993934340998129,"driver":{"crossings":[{"index":1,"point":[258.5,120.74],"hit":[258.5,120.74],"lateralDistance":0},{"index":2,"point":[258.5,121.69999999999999],"hit":[258.5,121.69999999999999],"lateralDistance":0},{"index":3,"point":[258.5,123.55],"hit":[258.5,123.55],"lateralDistance":0},{"index":4,"point":[258.5,125.5],"hit":[258.5,125.5],"lateralDistance":0},{"index":5,"point":[267.87,125.5],"hit":[267.87,125.49930693193237],"lateralDistance":0.0006930680676333623},{"index":6,"point":[267.87,125.1],"hit":[267.87000000000006,125.1],"lateralDistance":5.684341886080802e-14},{"index":7,"point":[269.62,125.1],"hit":[269.62,125.10078623750981],"lateralDistance":0.0007862375098142138},{"index":8,"point":[269.62,125.39999999999999],"hit":[269.6979953616149,125.39999999999999],"lateralDistance":0.07799536161491005},{"index":9,"point":[269.62,125.85],"hit":[269.693495629214,125.85],"lateralDistance":0.07349562921399411},{"index":10,"point":[269.62,132.54999999999998],"hit":[269.62649961346773,132.54999999999998],"lateralDistance":0.00649961346772443},{"index":11,"point":[269.62,133.2],"hit":[269.61999999999995,133.2],"lateralDistance":5.684341886080802e-14},{"index":12,"point":[268.2,133.2],"hit":[268.2,133.20000000000002],"lateralDistance":2.842170943040401e-14},{"index":13,"point":[268.2,128.1],"hit":[268.2,128.1],"lateralDistance":0},{"index":14,"point":[258.5,128.1],"hit":[258.5,128.09999999999997],"lateralDistance":2.842170943040401e-14},{"index":15,"point":[268.2,128.1],"hit":[268.2,128.10000000000002],"lateralDistance":2.842170943040401e-14},{"index":16,"point":[268.2,133.2],"hit":[268.19999999999993,133.2],"lateralDistance":5.684341886080802e-14},{"index":17,"point":[269.62,133.2],"hit":[269.62,133.19999999999996],"lateralDistance":2.842170943040401e-14},{"index":18,"point":[269.62,132.54999999999998],"hit":[269.7104627239174,132.54999999999998],"lateralDistance":0.0904627239173692},{"index":19,"point":[269.62,125.85],"hit":[269.6291069856292,125.85],"lateralDistance":0.009106985629216524},{"index":20,"point":[269.62,125.39999999999999],"hit":[269.6236427942517,125.39999999999999],"lateralDistance":0.003642794251675241},{"index":21,"point":[269.62,125.1],"hit":[269.62000000000006,125.1],"lateralDistance":5.684341886080802e-14},{"index":22,"point":[267.87,125.1],"hit":[267.87,125.1],"lateralDistance":0},{"index":23,"point":[267.87,125.5],"hit":[267.87,125.5],"lateralDistance":0},{"index":24,"point":[258.5,125.5],"hit":[258.5,125.5],"lateralDistance":0}],"brakingFrames":43,"endpointSettleSeconds":2},"end":[258.499994070906,124.32874951015594,0.6]}
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:7:1190)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 whole-outer-zone 慈荫楼 physical stair round trip fps=10 sprint=true backward=true
+not ok 12 - R48 whole-outer-zone 慈荫楼 physical stair round trip fps=10 sprint=true backward=true
+  ---
+  duration_ms: 54.564463
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:7:126'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"name":"慈荫楼","stair":0,"arrived":false,"stuckAt":[258.5,123.55],"startFeet":0,"maxFeet":4.8,"maxSpeed":11.993934340998129,"driver":{"crossings":[{"index":1,"point":[258.5,120.74],"hit":[258.5,120.74],"lateralDistance":0},{"index":2,"point":[258.5,121.69999999999999],"hit":[258.5,121.69999999999999],"lateralDistance":0},{"index":3,"point":[258.5,123.55],"hit":[258.5,123.55],"lateralDistance":0},{"index":4,"point":[258.5,125.5],"hit":[258.5,125.5],"lateralDistance":0},{"index":5,"point":[267.87,125.5],"hit":[267.87,125.49930693193237],"lateralDistance":0.0006930680676333623},{"index":6,"point":[267.87,125.1],"hit":[267.87000000000006,125.1],"lateralDistance":5.684341886080802e-14},{"index":7,"point":[269.62,125.1],"hit":[269.62,125.10078623750981],"lateralDistance":0.0007862375098142138},{"index":8,"point":[269.62,125.39999999999999],"hit":[269.6979953616149,125.39999999999999],"lateralDistance":0.07799536161491005},{"index":9,"point":[269.62,125.85],"hit":[269.693495629214,125.85],"lateralDistance":0.07349562921399411},{"index":10,"point":[269.62,132.54999999999998],"hit":[269.62649961346773,132.54999999999998],"lateralDistance":0.00649961346772443},{"index":11,"point":[269.62,133.2],"hit":[269.61999999999995,133.2],"lateralDistance":5.684341886080802e-14},{"index":12,"point":[268.2,133.2],"hit":[268.2,133.20000000000002],"lateralDistance":2.842170943040401e-14},{"index":13,"point":[268.2,128.1],"hit":[268.2,128.1],"lateralDistance":0},{"index":14,"point":[258.5,128.1],"hit":[258.5,128.09999999999997],"lateralDistance":2.842170943040401e-14},{"index":15,"point":[268.2,128.1],"hit":[268.2,128.10000000000002],"lateralDistance":2.842170943040401e-14},{"index":16,"point":[268.2,133.2],"hit":[268.19999999999993,133.2],"lateralDistance":5.684341886080802e-14},{"index":17,"point":[269.62,133.2],"hit":[269.62,133.19999999999996],"lateralDistance":2.842170943040401e-14},{"index":18,"point":[269.62,132.54999999999998],"hit":[269.7104627239174,132.54999999999998],"lateralDistance":0.0904627239173692},{"index":19,"point":[269.62,125.85],"hit":[269.6291069856292,125.85],"lateralDistance":0.009106985629216524},{"index":20,"point":[269.62,125.39999999999999],"hit":[269.6236427942517,125.39999999999999],"lateralDistance":0.003642794251675241},{"index":21,"point":[269.62,125.1],"hit":[269.62000000000006,125.1],"lateralDistance":5.684341886080802e-14},{"index":22,"point":[267.87,125.1],"hit":[267.87,125.1],"lateralDistance":0},{"index":23,"point":[267.87,125.5],"hit":[267.87,125.5],"lateralDistance":0},{"index":24,"point":[258.5,125.5],"hit":[258.5,125.5],"lateralDistance":0}],"brakingFrames":43,"endpointSettleSeconds":2},"end":[258.499994070906,124.32874951015594,0.6]}
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:7:1190)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 whole-outer-zone 慈荫楼 physical stair round trip fps=60 sprint=false backward=false
+not ok 13 - R48 whole-outer-zone 慈荫楼 physical stair round trip fps=60 sprint=false backward=false
+  ---
+  duration_ms: 92.513581
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:7:126'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"name":"慈荫楼","stair":0,"arrived":false,"stuckAt":[258.5,123.55],"startFeet":0,"maxFeet":4.8,"maxSpeed":5.000000000000841,"driver":{"crossings":[{"index":1,"point":[258.5,120.74],"hit":[258.5,120.74],"lateralDistance":0},{"index":2,"point":[258.5,121.69999999999999],"hit":[258.5,121.69073797351177],"lateralDistance":0.009262026488215724},{"index":3,"point":[258.5,123.55],"hit":[258.5,123.55],"lateralDistance":0},{"index":4,"point":[258.5,125.5],"hit":[258.5,125.5],"lateralDistance":0},{"index":5,"point":[267.87,125.5],"hit":[267.87,125.5],"lateralDistance":0},{"index":6,"point":[267.87,125.1],"hit":[267.87,125.1],"lateralDistance":0},{"index":7,"point":[269.62,125.1],"hit":[269.618314350848,125.09998655081378],"lateralDistance":0.0016857028042705253},{"index":8,"point":[269.62,125.39999999999999],"hit":[269.6183767849932,125.39999999999999],"lateralDistance":0.001623215006816281},{"index":9,"point":[269.62,125.85],"hit":[269.6184704292105,125.84998653457342],"lateralDistance":0.0015296300591340966},{"index":10,"point":[269.62,132.54999999999998],"hit":[269.61986473208265,132.54999999999998],"lateralDistance":0.00013526791735785082},{"index":11,"point":[269.62,133.2],"hit":[269.62,133.2],"lateralDistance":0},{"index":12,"point":[268.2,133.2],"hit":[268.2049052331157,133.20023024331587],"lateralDistance":0.004910633757884828},{"index":13,"point":[268.2,128.1],"hit":[268.2,128.1],"lateralDistance":0},{"index":14,"point":[258.5,128.1],"hit":[258.5,128.1],"lateralDistance":0},{"index":15,"point":[268.2,128.1],"hit":[268.2,128.1],"lateralDistance":0},{"index":16,"point":[268.2,133.2],"hit":[268.2,133.2],"lateralDistance":0},{"index":17,"point":[269.62,133.2],"hit":[269.61510582254834,133.2002297732116],"lateralDistance":0.004899568211292991},{"index":18,"point":[269.62,132.54999999999998],"hit":[269.61549869287217,132.54999999999998],"lateralDistance":0.004501307127839027},{"index":19,"point":[269.62,125.85],"hit":[269.6195468482755,125.85],"lateralDistance":0.00045315172451410035},{"index":20,"point":[269.62,125.39999999999999],"hit":[269.6198187393102,125.39999999999999],"lateralDistance":0.0001812606898283775},{"index":21,"point":[269.62,125.1],"hit":[269.62,125.1],"lateralDistance":0},{"index":22,"point":[267.87,125.1],"hit":[267.87129976777214,125.09995065793436],"lateralDistance":0.001300704002043393},{"index":23,"point":[267.87,125.5],"hit":[267.87,125.5],"lateralDistance":0},{"index":24,"point":[258.5,125.5],"hit":[258.5,125.5],"lateralDistance":0}],"brakingFrames":0,"endpointSettleSeconds":2},"end":[258.499151800553,124.33330329431514,0.6]}
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:7:1190)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 whole-outer-zone 慈荫楼 physical stair round trip fps=60 sprint=false backward=true
+not ok 14 - R48 whole-outer-zone 慈荫楼 physical stair round trip fps=60 sprint=false backward=true
+  ---
+  duration_ms: 78.647012
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:7:126'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"name":"慈荫楼","stair":0,"arrived":false,"stuckAt":[258.5,123.55],"startFeet":0,"maxFeet":4.8,"maxSpeed":5.000000000000841,"driver":{"crossings":[{"index":1,"point":[258.5,120.74],"hit":[258.5,120.74],"lateralDistance":0},{"index":2,"point":[258.5,121.69999999999999],"hit":[258.5,121.69073797351177],"lateralDistance":0.009262026488215724},{"index":3,"point":[258.5,123.55],"hit":[258.5,123.55],"lateralDistance":0},{"index":4,"point":[258.5,125.5],"hit":[258.5,125.5],"lateralDistance":0},{"index":5,"point":[267.87,125.5],"hit":[267.87,125.5],"lateralDistance":0},{"index":6,"point":[267.87,125.1],"hit":[267.87,125.1],"lateralDistance":0},{"index":7,"point":[269.62,125.1],"hit":[269.618314350848,125.09998655081378],"lateralDistance":0.0016857028042705253},{"index":8,"point":[269.62,125.39999999999999],"hit":[269.6183767849932,125.39999999999999],"lateralDistance":0.001623215006816281},{"index":9,"point":[269.62,125.85],"hit":[269.6184704292105,125.84998653457342],"lateralDistance":0.0015296300591340966},{"index":10,"point":[269.62,132.54999999999998],"hit":[269.61986473208265,132.54999999999998],"lateralDistance":0.00013526791735785082},{"index":11,"point":[269.62,133.2],"hit":[269.62,133.2],"lateralDistance":0},{"index":12,"point":[268.2,133.2],"hit":[268.2049052331157,133.20023024331587],"lateralDistance":0.004910633757884828},{"index":13,"point":[268.2,128.1],"hit":[268.2,128.1],"lateralDistance":0},{"index":14,"point":[258.5,128.1],"hit":[258.5,128.1],"lateralDistance":0},{"index":15,"point":[268.2,128.1],"hit":[268.2,128.1],"lateralDistance":0},{"index":16,"point":[268.2,133.2],"hit":[268.2,133.2],"lateralDistance":0},{"index":17,"point":[269.62,133.2],"hit":[269.61510582254834,133.2002297732116],"lateralDistance":0.004899568211292991},{"index":18,"point":[269.62,132.54999999999998],"hit":[269.61549869287217,132.54999999999998],"lateralDistance":0.004501307127839027},{"index":19,"point":[269.62,125.85],"hit":[269.6195468482755,125.85],"lateralDistance":0.00045315172451410035},{"index":20,"point":[269.62,125.39999999999999],"hit":[269.6198187393102,125.39999999999999],"lateralDistance":0.0001812606898283775},{"index":21,"point":[269.62,125.1],"hit":[269.62,125.1],"lateralDistance":0},{"index":22,"point":[267.87,125.1],"hit":[267.87129976777214,125.09995065793436],"lateralDistance":0.001300704002043393},{"index":23,"point":[267.87,125.5],"hit":[267.87,125.5],"lateralDistance":0},{"index":24,"point":[258.5,125.5],"hit":[258.5,125.5],"lateralDistance":0}],"brakingFrames":0,"endpointSettleSeconds":2},"end":[258.499151800553,124.33330329431514,0.6]}
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:7:1190)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 whole-outer-zone 慈荫楼 physical stair round trip fps=60 sprint=true backward=false
+not ok 15 - R48 whole-outer-zone 慈荫楼 physical stair round trip fps=60 sprint=true backward=false
+  ---
+  duration_ms: 66.420383
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:7:126'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"name":"慈荫楼","stair":0,"arrived":false,"stuckAt":[258.5,123.55],"startFeet":0,"maxFeet":4.8,"maxSpeed":11.994059973661434,"driver":{"crossings":[{"index":1,"point":[258.5,120.74],"hit":[258.5,120.74],"lateralDistance":0},{"index":2,"point":[258.5,121.69999999999999],"hit":[258.5,121.69999999999999],"lateralDistance":0},{"index":3,"point":[258.5,123.55],"hit":[258.5,123.55],"lateralDistance":0},{"index":4,"point":[258.5,125.5],"hit":[258.5,125.5],"lateralDistance":0},{"index":5,"point":[267.87,125.5],"hit":[267.87,125.5],"lateralDistance":0},{"index":6,"point":[267.87,125.1],"hit":[267.87,125.1],"lateralDistance":0},{"index":7,"point":[269.62,125.1],"hit":[269.62,125.1],"lateralDistance":0},{"index":8,"point":[269.62,125.39999999999999],"hit":[269.6305762188994,125.39999999999999],"lateralDistance":0.01057621889941629},{"index":9,"point":[269.62,125.85],"hit":[269.6299660524245,125.85],"lateralDistance":0.009966052424488225},{"index":10,"point":[269.62,132.54999999999998],"hit":[269.62088135157495,132.54999999999998],"lateralDistance":0.0008813515749466205},{"index":11,"point":[269.62,133.2],"hit":[269.62,133.2],"lateralDistance":0},{"index":12,"point":[268.2,133.2],"hit":[268.2,133.2],"lateralDistance":0},{"index":13,"point":[268.2,128.1],"hit":[268.1999666247848,128.10567536943302],"lateralDistance":0.00567546756719306},{"index":14,"point":[258.5,128.1],"hit":[258.5,128.1],"lateralDistance":0},{"index":15,"point":[268.2,128.1],"hit":[268.2,128.1],"lateralDistance":0},{"index":16,"point":[268.2,133.2],"hit":[268.2,133.2],"lateralDistance":0},{"index":17,"point":[269.62,133.2],"hit":[269.62,133.2],"lateralDistance":0},{"index":18,"point":[269.62,132.54999999999998],"hit":[269.6536939207418,132.54999999999998],"lateralDistance":0.03369392074176858},{"index":19,"point":[269.62,125.85],"hit":[269.6224902167963,125.85],"lateralDistance":0.0024902167962750354},{"index":20,"point":[269.62,125.39999999999999],"hit":[269.62099608671855,125.39999999999999],"lateralDistance":0.0009960867185441202},{"index":21,"point":[269.62,125.1],"hit":[269.62,125.1],"lateralDistance":0},{"index":22,"point":[267.87,125.1],"hit":[267.87,125.1],"lateralDistance":0},{"index":23,"point":[267.87,125.5],"hit":[267.87,125.5],"lateralDistance":0},{"index":24,"point":[258.5,125.5],"hit":[258.5,125.5],"lateralDistance":0}],"brakingFrames":236,"endpointSettleSeconds":2},"end":[258.4999983085826,124.33484300662032,0.6]}
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:7:1190)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 whole-outer-zone 慈荫楼 physical stair round trip fps=60 sprint=true backward=true
+not ok 16 - R48 whole-outer-zone 慈荫楼 physical stair round trip fps=60 sprint=true backward=true
+  ---
+  duration_ms: 64.816977
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:7:126'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"name":"慈荫楼","stair":0,"arrived":false,"stuckAt":[258.5,123.55],"startFeet":0,"maxFeet":4.8,"maxSpeed":11.994059973661434,"driver":{"crossings":[{"index":1,"point":[258.5,120.74],"hit":[258.5,120.74],"lateralDistance":0},{"index":2,"point":[258.5,121.69999999999999],"hit":[258.5,121.69999999999999],"lateralDistance":0},{"index":3,"point":[258.5,123.55],"hit":[258.5,123.55],"lateralDistance":0},{"index":4,"point":[258.5,125.5],"hit":[258.5,125.5],"lateralDistance":0},{"index":5,"point":[267.87,125.5],"hit":[267.87,125.5],"lateralDistance":0},{"index":6,"point":[267.87,125.1],"hit":[267.87,125.1],"lateralDistance":0},{"index":7,"point":[269.62,125.1],"hit":[269.62,125.1],"lateralDistance":0},{"index":8,"point":[269.62,125.39999999999999],"hit":[269.6305762188994,125.39999999999999],"lateralDistance":0.01057621889941629},{"index":9,"point":[269.62,125.85],"hit":[269.6299660524245,125.85],"lateralDistance":0.009966052424488225},{"index":10,"point":[269.62,132.54999999999998],"hit":[269.62088135157495,132.54999999999998],"lateralDistance":0.0008813515749466205},{"index":11,"point":[269.62,133.2],"hit":[269.62,133.2],"lateralDistance":0},{"index":12,"point":[268.2,133.2],"hit":[268.2,133.2],"lateralDistance":0},{"index":13,"point":[268.2,128.1],"hit":[268.1999666247848,128.10567536943302],"lateralDistance":0.00567546756719306},{"index":14,"point":[258.5,128.1],"hit":[258.5,128.1],"lateralDistance":0},{"index":15,"point":[268.2,128.1],"hit":[268.2,128.1],"lateralDistance":0},{"index":16,"point":[268.2,133.2],"hit":[268.2,133.2],"lateralDistance":0},{"index":17,"point":[269.62,133.2],"hit":[269.62,133.2],"lateralDistance":0},{"index":18,"point":[269.62,132.54999999999998],"hit":[269.6536939207418,132.54999999999998],"lateralDistance":0.03369392074176858},{"index":19,"point":[269.62,125.85],"hit":[269.6224902167963,125.85],"lateralDistance":0.0024902167962750354},{"index":20,"point":[269.62,125.39999999999999],"hit":[269.62099608671855,125.39999999999999],"lateralDistance":0.0009960867185441202},{"index":21,"point":[269.62,125.1],"hit":[269.62,125.1],"lateralDistance":0},{"index":22,"point":[267.87,125.1],"hit":[267.87,125.1],"lateralDistance":0},{"index":23,"point":[267.87,125.5],"hit":[267.87,125.5],"lateralDistance":0},{"index":24,"point":[258.5,125.5],"hit":[258.5,125.5],"lateralDistance":0}],"brakingFrames":236,"endpointSettleSeconds":2},"end":[258.4999983085826,124.33484300662032,0.6]}
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-stairs.test.mjs:7:1190)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 8
+# fail 8
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5104.414995

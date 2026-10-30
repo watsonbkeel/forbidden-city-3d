@@ -1,0 +1,25 @@
+diff --git a/src/scene/palace/special/RemainingNingshouHalls.js b/src/scene/palace/special/RemainingNingshouHalls.js
+index 797b9daa..0c0bad9b 100644
+--- a/src/scene/palace/special/RemainingNingshouHalls.js
++++ b/src/scene/palace/special/RemainingNingshouHalls.js
+@@ -1,3 +1,4 @@
++import {buildXishangFrontTransom,registerXishangExistingRoof} from './XishangFrontTransom.js';
+ import {fitBiluoFinialSurface} from './BiluoFinialSurface.js';
+ import {fitFanhuaFloorFascia} from './FanhuaFloorFascia.js';
+ import {buildFanhuaFrontBalustrade} from './FanhuaFrontBalustrade.js';
+@@ -368,6 +369,7 @@ function buildJingfu(c) {
+ function buildXishang(c) {
+  const{p}=c,w=p.localW,d=p.localD;platform(c);const mainW=w*.66,mainD=d*.7;
+  frame(c,{w:mainW,d:mainD,bays:3,depthBays:3});
++ buildXishangFrontTransom(c,{mainW,mainD});
+  // Front, north and south projecting roofs form a convex cross. The retained
+  // world envelope is unchanged; all projection lengths are explicit fits.
+  ordinaryRoof(c,{type:'cuanjian',w:mainW*.65,d:mainD*.85,height:2.1,y:p.ph+p.colH});
+@@ -378,6 +380,7 @@ function buildXishang(c) {
+  const channel=buildXishangChannel(c);
+  const stoneRails=buildXishangStoneRails(c,{mainW,mainD});
+  ceiling(c,{x0:-mainW/2,x1:mainW/2,z0:-mainD/2,z1:mainD/2,nx:3,nz:3});
++ registerXishangExistingRoof(c);
+  return finish(c,{planForm:'convex-cross-three-projections',streamLengthHistoricalMetres:27,streamLengthModelStatus:'MEASURED_MODEL_CURVE_NOT_27M_SITE_REPLICA',channel,stoneRails,interiorPolicy:'STONE_CHANNEL_AND_REAR_SCREEN_NO_FURNITURE'});
+ }
+ function petalRoof(c,{y,radius,rise,tile,trim}) {

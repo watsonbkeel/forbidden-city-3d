@@ -1,0 +1,133 @@
+TAP version 13
+# Subtest: Biluo source-visible ice-crackle and five-petal pattern belongs only to its existing finial
+ok 1 - Biluo source-visible ice-crackle and five-petal pattern belongs only to its existing finial
+  ---
+  duration_ms: 88.416733
+  type: 'test'
+  ...
+# Subtest: only one finial material changes; every original geometry, matrix and physical source remains identical
+not ok 2 - only one finial material changes; every original geometry, matrix and physical source remains identical
+  ---
+  duration_ms: 99.433017
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-biluo/details.test.mjs:11:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + '9eed5c90464ac7fd04a508e2cbffbab3331b5ea7068a0268214be3246e8ab9fc'
+    - '3ef9a5b27888d76db0e2a5796a3a8abcb75ee550011bccad26e06f3395b66729'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '3ef9a5b27888d76db0e2a5796a3a8abcb75ee550011bccad26e06f3395b66729'
+  actual: '9eed5c90464ac7fd04a508e2cbffbab3331b5ea7068a0268214be3246e8ab9fc'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-biluo/details.test.mjs:11:315)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+    run (node:internal/test_runner/harness:398:12)
+    test (node:internal/test_runner/harness:407:12)
+    file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-biluo/details.test.mjs:11:1
+  ...
+# Subtest: real Canvas contains deterministic irregular pale network and five-petal flowers; wrapped seam remains bounded
+ok 3 - real Canvas contains deterministic irregular pale network and five-petal flowers; wrapped seam remains bounded
+  ---
+  duration_ms: 729.174021
+  type: 'test'
+  ...
+# Subtest: owned motif material and map dispose once across three rebuilds without polluting original blue lower neck
+ok 4 - owned motif material and map dispose once across three rebuilds without polluting original blue lower neck
+  ---
+  duration_ms: 133.19354
+  type: 'test'
+  ...
+# Subtest: foreign frame, transformed or mutated original sphere rejects before owning artwork
+ok 5 - foreign frame, transformed or mutated original sphere rejects before owning artwork
+  ---
+  duration_ms: 153.61364
+  type: 'test'
+  ...
+# Subtest: Biluo retained east-side route uses full static collision world at 10/60 Hz, walking and running
+ok 6 - Biluo retained east-side route uses full static collision world at 10/60 Hz, walking and running
+  ---
+  duration_ms: 5016.545689
+  type: 'test'
+  ...
+# Subtest: Fanhua source front floor-edge scroll surface is present without claiming whole-object restoration
+ok 7 - Fanhua source front floor-edge scroll surface is present without claiming whole-object restoration
+  ---
+  duration_ms: 88.389046
+  type: 'test'
+  ...
+# Subtest: only one existing front-band visual changes; all original physics, six openings and non-target mesh bytes stay identical
+ok 8 - only one existing front-band visual changes; all original physics, six openings and non-target mesh bytes stay identical
+  ---
+  duration_ms: 301.14452
+  type: 'test'
+  ...
+# Subtest: actual Canvas has green field and gold curls and only south face uses full pattern
+ok 9 - actual Canvas has green field and gold curls and only south face uses full pattern
+  ---
+  duration_ms: 318.149576
+  type: 'test'
+  ...
+# Subtest: three build/unload cycles release private pattern material and map once and do not replace shared green material
+ok 10 - three build/unload cycles release private pattern material and map once and do not replace shared green material
+  ---
+  duration_ms: 118.670819
+  type: 'test'
+  ...
+# Subtest: duplicate, foreign and transformed identity reject before allocating or changing band
+ok 11 - duplicate, foreign and transformed identity reject before allocating or changing band
+  ---
+  duration_ms: 30.636997
+  type: 'test'
+  ...
+# Subtest: fitted band stays attached to retained structural beam and cannot introduce a floor, opening or reachable upper platform
+ok 12 - fitted band stays attached to retained structural beam and cannot introduce a floor, opening or reachable upper platform
+  ---
+  duration_ms: 31.059812
+  type: 'test'
+  ...
+# Subtest: mutated real band buffers reject even when constructor parameters and bounding envelope remain unchanged
+ok 13 - mutated real band buffers reject even when constructor parameters and bounding envelope remain unchanged
+  ---
+  duration_ms: 147.826753
+  type: 'test'
+  ...
+# Subtest: BiLuo sourced stacked finial replaces cylinder without changing roof or physics
+not ok 14 - BiLuo sourced stacked finial replaces cylinder without changing roof or physics
+  ---
+  duration_ms: 120.005163
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r68-j-biluo-finial.test.mjs:3:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    6 !== 5
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 5
+  actual: 6
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/r68-j-biluo-finial.test.mjs:3:317)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 12
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 8076.763882

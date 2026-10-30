@@ -1,0 +1,73 @@
+TAP version 13
+# Subtest: Xishang three front bays contain actual open transom bars rather than a closed sheet
+ok 1 - Xishang three front bays contain actual open transom bars rather than a closed sheet
+  ---
+  duration_ms: 77.985512
+  type: 'test'
+  ...
+# Subtest: all preexisting visible geometry and physical sources survive; each new contact exactly bounds a real timber bar
+ok 2 - all preexisting visible geometry and physical sources survive; each new contact exactly bounds a real timber bar
+  ---
+  duration_ms: 119.572548
+  type: 'test'
+  ...
+# Subtest: all nine fitted lattice cells have actual ray-open holes and every bar connects to the old front beam/columns
+ok 3 - all nine fitted lattice cells have actual ray-open holes and every bar connects to the old front beam/columns
+  ---
+  duration_ms: 25.708187
+  type: 'test'
+  ...
+# Subtest: all added geometries are owned per mesh and disposed once through three normal rebuilds
+ok 4 - all added geometries are owned per mesh and disposed once through three normal rebuilds
+  ---
+  duration_ms: 62.310955
+  type: 'test'
+  ...
+# Subtest: mutated original front beam geometry rejects before adding structural bars
+not ok 5 - mutated original front beam geometry rejects before adding structural bars
+  ---
+  duration_ms: 30.528573
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-xishang/details.test.mjs:12:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /buffer|binding/. Input:
+    
+    'TypeError: c.box is not a function'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+  error: 'c.box is not a function'
+  name: 'TypeError'
+  stack: |-
+    bar (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/src/scene/palace/special/XishangFrontTransom.js:12:43)
+    buildXishangFrontTransom (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/src/scene/palace/special/XishangFrontTransom.js:15:3)
+    file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-xishang/details.test.mjs:12:297
+    getActual (node:assert:611:5)
+    strict.throws (node:assert:759:24)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-xishang/details.test.mjs:12:286)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-xishang/details.test.mjs:12:286)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 4
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 479.228265

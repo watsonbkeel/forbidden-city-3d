@@ -1,0 +1,1512 @@
+✔ front/rear courts use an open connected compound instead of two malformed closed rectangles (1.544979ms)
+✔ actual compound builds, preserves both lateral passages and the street behind Ningshou (11460.117476ms)
+✔ 保泰门 preserves the documented cardinal facing east (1.094242ms)
+✔ 履顺门 preserves the documented cardinal facing west (0.155033ms)
+✔ 敛禧门 preserves the documented cardinal facing east (0.117136ms)
+✔ 蹈和门 preserves the documented cardinal facing west (0.10022ms)
+✔ all named Ningshou perimeter openings physically meet both gate jambs (1.096396ms)
+✔ existing named anchors stay fixed while the approximate east perimeter is reconciled (1.353562ms)
+✔ independent geometric winding, genuine floors and clear shafts 皇极殿 (146.242878ms)
+✔ independent geometric winding, genuine floors and clear shafts 养性殿 (190.892754ms)
+✔ independent geometric winding, genuine floors and clear shafts 乐寿堂 (158.892115ms)
+✔ independent geometric winding, genuine floors and clear shafts 符望阁 (121.097239ms)
+✔ independent geometric winding, genuine floors and clear shafts 倦勤斋 (103.553677ms)
+✔ independent geometric winding, genuine floors and clear shafts 畅音阁 (114.574998ms)
+皇极殿 10 actual reached; penetrating frames 0 []
+皇极殿 10 actual reached; penetrating frames 0 []
+皇极殿 10 actual reached; penetrating frames 0 []
+皇极殿 10 actual reached; penetrating frames 0 []
+皇极殿 60 actual reached; penetrating frames 0 []
+皇极殿 60 actual reached; penetrating frames 0 []
+皇极殿 60 actual reached; penetrating frames 0 []
+皇极殿 60 actual reached; penetrating frames 0 []
+皇极殿 10 actual reached; penetrating frames 0 []
+皇极殿 10 actual reached; penetrating frames 0 []
+皇极殿 10 actual reached; penetrating frames 0 []
+皇极殿 10 actual reached; penetrating frames 0 []
+皇极殿 60 actual reached; penetrating frames 0 []
+皇极殿 60 actual reached; penetrating frames 0 []
+✖ tests/r48-independent-ningshou-final-huangji-body.test.mjs (18632.167818ms)
+[InteriorLoader] 皇极殿 GLB 加载失败（/models/interiors/huangji-aligned-0a79ec49e8cd.glb），保留 B 档： injected network error
+[InteriorLoader] 皇极殿 安装失败，保留 B 档： Error: Huangji asset mesh inventory mismatch
+    at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/interior/HuangjiFallbackContract.js:22:82
+    at Mesh.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7600:3)
+    at Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)
+    at validateHuangjiLayer (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/interior/HuangjiFallbackContract.js:19:8)
+    at InteriorLoader._install (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/interior/InteriorLoader.js:180:7)
+    at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/interior/InteriorLoader.js:131:16
+    at loader.gltf.load (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-independent-ningshou-final-huangji-lifecycle.test.mjs:13:120)
+    at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/interior/InteriorLoader.js:128:17
+    at new Promise (<anonymous>)
+    at InteriorLoader.load (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/interior/InteriorLoader.js:127:17)
+[InteriorLoader] 皇极殿 安装失败，保留 B 档： Error: injected after two collider mutations
+    at cm.addColliders (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-independent-ningshou-final-huangji-lifecycle.test.mjs:14:314)
+    at InteriorLoader._install (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/interior/InteriorLoader.js:220:14)
+    at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/interior/InteriorLoader.js:131:16
+    at loader.gltf.load (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-independent-ningshou-final-huangji-lifecycle.test.mjs:14:120)
+    at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/interior/InteriorLoader.js:128:17
+    at new Promise (<anonymous>)
+    at InteriorLoader.load (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/interior/InteriorLoader.js:127:17)
+    at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-independent-ningshou-final-huangji-lifecycle.test.mjs:14:481)
+    at async Test.run (node:internal/test_runner/test:1389:7)
+    at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+[InteriorLoader] 皇极殿 安装失败，保留 B 档： Error: injected after scene mutation
+    at scene.add (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-independent-ningshou-final-huangji-lifecycle.test.mjs:14:414)
+    at InteriorLoader._install (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/interior/InteriorLoader.js:244:16)
+    at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/interior/InteriorLoader.js:131:16
+    at loader.gltf.load (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-independent-ningshou-final-huangji-lifecycle.test.mjs:14:120)
+    at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/interior/InteriorLoader.js:128:17
+    at new Promise (<anonymous>)
+    at InteriorLoader.load (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/interior/InteriorLoader.js:127:17)
+    at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-independent-ningshou-final-huangji-lifecycle.test.mjs:14:481)
+    at async Test.run (node:internal/test_runner/test:1389:7)
+    at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+✖ tests/r48-independent-ningshou-final-huangji-lifecycle.test.mjs (18613.496638ms)
+✔ R48 final physical 养性殿: every new custom roof shell contacts anchored plain framing (206.398447ms)
+✔ R48 final physical YangXing caisson has an actual ceiling aperture, connected octagonal rings and no roof penetration (100.772698ms)
+✔ R48 YangXing fitted west loft floor has an actual floor-to-beam-to-ground-post bearing chain (56.819897ms)
+✔ R48 YangXing fitted loft bearings preserve normal entrance, west-room and Moyun side doors fps=10 sprint=false backward=false (243.733662ms)
+✔ R48 YangXing fitted loft bearings preserve normal entrance, west-room and Moyun side doors fps=10 sprint=false backward=true (123.539158ms)
+✔ R48 YangXing fitted loft bearings preserve normal entrance, west-room and Moyun side doors fps=10 sprint=true backward=false (192.298884ms)
+✔ R48 YangXing fitted loft bearings preserve normal entrance, west-room and Moyun side doors fps=10 sprint=true backward=true (116.259099ms)
+✔ R48 YangXing fitted loft bearings preserve normal entrance, west-room and Moyun side doors fps=60 sprint=false backward=false (274.651913ms)
+✔ R48 YangXing fitted loft bearings preserve normal entrance, west-room and Moyun side doors fps=60 sprint=false backward=true (344.032346ms)
+✔ R48 YangXing fitted loft bearings preserve normal entrance, west-room and Moyun side doors fps=60 sprint=true backward=false (216.662794ms)
+✔ R48 YangXing fitted loft bearings preserve normal entrance, west-room and Moyun side doors fps=60 sprint=true backward=true (168.050547ms)
+✖ R48 current full Ningshou executes the formerly masked four-reload photo/plaque resource ownership tail (2416.863051ms)
+file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/auto-routes.mjs:408
+      const go = [front.zToe - 2, front.zToe, front.zTop, rear.zTop, rear.zToe, rear.zToe + 2].map(z => g.toWorld(x, z));
+                        ^
+
+TypeError: Cannot read properties of undefined (reading 'zToe')
+    at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/auto-routes.mjs:408:25
+    at Array.map (<anonymous>)
+    at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/auto-routes.mjs:407:28
+    at Array.flatMap (<anonymous>)
+    at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/auto-routes.mjs:393:133
+    at Array.flatMap (<anonymous>)
+    at profileGateRoutes (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/auto-routes.mjs:393:16)
+    at buildAutoRoutes (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/auto-routes.mjs:458:89)
+    at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-compound-glb-route.test.mjs:6:15
+
+Node.js v24.19.0
+✖ tests/r48-ningshou-compound-glb-route.test.mjs (13075.375668ms)
+✔ R48 final physical 乐寿堂: actual transformed highest roof obeys declared height datum (182.147922ms)
+✔ R48 final physical 畅音阁: actual transformed highest roof obeys declared height datum (62.236188ms)
+✔ R48 final physical 养性殿: every new custom roof shell contacts anchored plain framing (106.187637ms)
+✔ R48 final physical 倦勤斋: every new custom roof shell contacts anchored plain framing (41.236583ms)
+✔ R48 final physical 畅音阁: every new custom roof shell contacts anchored plain framing (61.053863ms)
+✔ R48 final physical 符望阁: every new custom roof shell contacts anchored plain framing (41.382132ms)
+✔ R48 final physical 符望阁: every visible fitted stair tread has two real sloping stringers (81.080616ms)
+✔ R48 final physical 畅音阁: every visible fitted stair tread has two real sloping stringers (101.942194ms)
+✔ R48 final physical ChangYin diagonal beams join two perpendicular eave beams, not corner-to-centre sticks (90.490473ms)
+✔ R48 final physical YangXing caisson has an actual ceiling aperture, connected octagonal rings and no roof penetration (96.282878ms)
+✔ R48 final physical 乐寿堂: floor and void samples are actual FrontSide geometry, not labels (92.885107ms)
+✔ R48 final physical 符望阁: floor and void samples are actual FrontSide geometry, not labels (55.377782ms)
+✔ R48 final physical 倦勤斋: floor and void samples are actual FrontSide geometry, not labels (144.125663ms)
+✔ R48 final physical 畅音阁: floor and void samples are actual FrontSide geometry, not labels (50.146594ms)
+✔ R48 YangXing fitted west loft floor has an actual floor-to-beam-to-ground-post bearing chain (65.222191ms)
+✔ R48 final 皇极殿 every outer/upper perimeter column centre has actual FrontSide roof coverage (254.937898ms)
+✔ R48 final 养性殿 every outer/upper perimeter column centre has actual FrontSide roof coverage (209.353227ms)
+✔ R48 final 乐寿堂 every outer/upper perimeter column centre has actual FrontSide roof coverage (97.262659ms)
+✔ R48 final 符望阁 every outer/upper perimeter column centre has actual FrontSide roof coverage (86.597202ms)
+✔ R48 final 倦勤斋 every outer/upper perimeter column centre has actual FrontSide roof coverage (74.680209ms)
+✔ R48 final 畅音阁 every outer/upper perimeter column centre has actual FrontSide roof coverage (81.026124ms)
+✔ R48 final-world 养性殿 portal=0:front fps=10 sprint=false backward=false (164.729213ms)
+✔ R48 final-world 养性殿 portal=0:front fps=10 sprint=false backward=true (36.816426ms)
+✔ R48 final-world 养性殿 portal=0:front fps=10 sprint=true backward=false (16.907812ms)
+✔ R48 final-world 养性殿 portal=0:front fps=10 sprint=true backward=true (31.289628ms)
+✔ R48 final-world 养性殿 portal=0:front fps=60 sprint=false backward=false (154.954766ms)
+✔ R48 final-world 养性殿 portal=0:front fps=60 sprint=false backward=true (172.136617ms)
+✔ R48 final-world 养性殿 portal=0:front fps=60 sprint=true backward=false (96.874443ms)
+✔ R48 final-world 养性殿 portal=0:front fps=60 sprint=true backward=true (84.86546ms)
+✔ R48 final-world 养性殿 portal=1:rear fps=10 sprint=false backward=false (32.104026ms)
+✔ R48 final-world 养性殿 portal=1:rear fps=10 sprint=false backward=true (19.569018ms)
+✔ R48 final-world 养性殿 portal=1:rear fps=10 sprint=true backward=false (26.113493ms)
+✔ R48 final-world 养性殿 portal=1:rear fps=10 sprint=true backward=true (29.672696ms)
+✔ R48 final-world 养性殿 portal=1:rear fps=60 sprint=false backward=false (136.339755ms)
+✔ R48 final-world 养性殿 portal=1:rear fps=60 sprint=false backward=true (204.285785ms)
+✔ R48 final-world 养性殿 portal=1:rear fps=60 sprint=true backward=false (74.152547ms)
+✔ R48 final-world 养性殿 portal=1:rear fps=60 sprint=true backward=true (86.537684ms)
+✔ R48 final-world 乐寿堂 portal=0:front fps=10 sprint=false backward=false (146.200914ms)
+✔ R48 final-world 乐寿堂 portal=0:front fps=10 sprint=false backward=true (128.002144ms)
+✔ R48 final-world 乐寿堂 portal=0:front fps=10 sprint=true backward=false (63.273489ms)
+✔ R48 final-world 乐寿堂 portal=0:front fps=10 sprint=true backward=true (55.554387ms)
+✔ R48 final-world 乐寿堂 portal=0:front fps=60 sprint=false backward=false (527.957989ms)
+✔ R48 final-world 乐寿堂 portal=0:front fps=60 sprint=false backward=true (419.217652ms)
+✔ R48 final-world 乐寿堂 portal=0:front fps=60 sprint=true backward=false (262.535362ms)
+✔ R48 final-world 乐寿堂 portal=0:front fps=60 sprint=true backward=true (327.765379ms)
+✔ R48 final-world 乐寿堂 portal=1:rear fps=10 sprint=false backward=false (93.989903ms)
+✔ R48 final-world 乐寿堂 portal=1:rear fps=10 sprint=false backward=true (93.981441ms)
+✔ R48 final-world 乐寿堂 portal=1:rear fps=10 sprint=true backward=false (42.566353ms)
+✔ R48 final-world 乐寿堂 portal=1:rear fps=10 sprint=true backward=true (75.648377ms)
+✔ R48 final-world 乐寿堂 portal=1:rear fps=60 sprint=false backward=false (396.343291ms)
+✔ R48 final-world 乐寿堂 portal=1:rear fps=60 sprint=false backward=true (406.031787ms)
+✔ R48 final-world 乐寿堂 portal=1:rear fps=60 sprint=true backward=false (208.656647ms)
+✔ R48 final-world 乐寿堂 portal=1:rear fps=60 sprint=true backward=true (227.319644ms)
+✔ R48 final-world 符望阁 portal=0:front fps=10 sprint=false backward=false (65.92469ms)
+✔ R48 final-world 符望阁 portal=0:front fps=10 sprint=false backward=true (57.566322ms)
+✔ R48 final-world 符望阁 portal=0:front fps=10 sprint=true backward=false (38.019858ms)
+✔ R48 final-world 符望阁 portal=0:front fps=10 sprint=true backward=true (37.200057ms)
+✔ R48 final-world 符望阁 portal=0:front fps=60 sprint=false backward=false (287.489173ms)
+✔ R48 final-world 符望阁 portal=0:front fps=60 sprint=false backward=true (287.427413ms)
+✔ R48 final-world 符望阁 portal=0:front fps=60 sprint=true backward=false (157.790354ms)
+✔ R48 final-world 符望阁 portal=0:front fps=60 sprint=true backward=true (165.590938ms)
+✔ R48 final-world 符望阁 portal=1:rear fps=10 sprint=false backward=false (54.198214ms)
+✔ R48 final-world 符望阁 portal=1:rear fps=10 sprint=false backward=true (55.193127ms)
+✔ R48 final-world 符望阁 portal=1:rear fps=10 sprint=true backward=false (28.692023ms)
+✔ R48 final-world 符望阁 portal=1:rear fps=10 sprint=true backward=true (33.166957ms)
+✔ R48 final-world 符望阁 portal=1:rear fps=60 sprint=false backward=false (271.965923ms)
+✔ R48 final-world 符望阁 portal=1:rear fps=60 sprint=false backward=true (239.750834ms)
+✔ R48 final-world 符望阁 portal=1:rear fps=60 sprint=true backward=false (161.968293ms)
+✔ R48 final-world 符望阁 portal=1:rear fps=60 sprint=true backward=true (164.847042ms)
+✔ R48 final-world 符望阁 portal=2:east fps=10 sprint=false backward=false (55.997544ms)
+✔ R48 final-world 符望阁 portal=2:east fps=10 sprint=false backward=true (54.764664ms)
+✔ R48 final-world 符望阁 portal=2:east fps=10 sprint=true backward=false (35.213167ms)
+✔ R48 final-world 符望阁 portal=2:east fps=10 sprint=true backward=true (30.811923ms)
+✔ R48 final-world 符望阁 portal=2:east fps=60 sprint=false backward=false (287.696368ms)
+✔ R48 final-world 符望阁 portal=2:east fps=60 sprint=false backward=true (243.47671ms)
+✔ R48 final-world 符望阁 portal=2:east fps=60 sprint=true backward=false (105.844609ms)
+✔ R48 final-world 符望阁 portal=2:east fps=60 sprint=true backward=true (146.965626ms)
+✔ R48 final-world 符望阁 portal=3:west fps=10 sprint=false backward=false (79.774321ms)
+✔ R48 final-world 符望阁 portal=3:west fps=10 sprint=false backward=true (53.920252ms)
+✔ R48 final-world 符望阁 portal=3:west fps=10 sprint=true backward=false (33.171296ms)
+✔ R48 final-world 符望阁 portal=3:west fps=10 sprint=true backward=true (33.087499ms)
+✔ R48 final-world 符望阁 portal=3:west fps=60 sprint=false backward=false (252.909067ms)
+✔ R48 final-world 符望阁 portal=3:west fps=60 sprint=false backward=true (204.148389ms)
+✔ R48 final-world 符望阁 portal=3:west fps=60 sprint=true backward=false (140.702908ms)
+✔ R48 final-world 符望阁 portal=3:west fps=60 sprint=true backward=true (115.486684ms)
+✔ R48 final-world 倦勤斋 portal=0:front fps=10 sprint=false backward=false (20.425692ms)
+✔ R48 final-world 倦勤斋 portal=0:front fps=10 sprint=false backward=true (15.879928ms)
+✔ R48 final-world 倦勤斋 portal=0:front fps=10 sprint=true backward=false (9.004157ms)
+✔ R48 final-world 倦勤斋 portal=0:front fps=10 sprint=true backward=true (7.696895ms)
+✔ R48 final-world 倦勤斋 portal=0:front fps=60 sprint=false backward=false (80.814515ms)
+✔ R48 final-world 倦勤斋 portal=0:front fps=60 sprint=false backward=true (79.730327ms)
+✔ R48 final-world 倦勤斋 portal=0:front fps=60 sprint=true backward=false (53.423096ms)
+✔ R48 final-world 倦勤斋 portal=0:front fps=60 sprint=true backward=true (46.123809ms)
+✔ R48 final-world 畅音阁 portal=0:front fps=10 sprint=false backward=false (23.636441ms)
+✔ R48 final-world 畅音阁 portal=0:front fps=10 sprint=false backward=true (18.599842ms)
+✔ R48 final-world 畅音阁 portal=0:front fps=10 sprint=true backward=false (15.937515ms)
+✔ R48 final-world 畅音阁 portal=0:front fps=10 sprint=true backward=true (28.045631ms)
+✔ R48 final-world 畅音阁 portal=0:front fps=60 sprint=false backward=false (108.984163ms)
+✔ R48 final-world 畅音阁 portal=0:front fps=60 sprint=false backward=true (109.25586ms)
+✔ R48 final-world 畅音阁 portal=0:front fps=60 sprint=true backward=false (103.44006ms)
+✔ R48 final-world 畅音阁 portal=0:front fps=60 sprint=true backward=true (72.735292ms)
+✔ R48 final-world 皇极殿 portal=0:front fps=10 sprint=false backward=false (40.117683ms)
+✔ R48 final-world 皇极殿 portal=0:front fps=10 sprint=false backward=true (36.114589ms)
+✔ R48 final-world 皇极殿 portal=0:front fps=10 sprint=true backward=false (31.933668ms)
+✔ R48 final-world 皇极殿 portal=0:front fps=10 sprint=true backward=true (24.480268ms)
+✔ R48 final-world 皇极殿 portal=0:front fps=60 sprint=false backward=false (195.005443ms)
+✔ R48 final-world 皇极殿 portal=0:front fps=60 sprint=false backward=true (224.090345ms)
+✔ R48 final-world 皇极殿 portal=0:front fps=60 sprint=true backward=false (76.079247ms)
+✔ R48 final-world 皇极殿 portal=0:front fps=60 sprint=true backward=true (115.330208ms)
+✔ R48 final-world 皇极殿 portal=1:rear fps=10 sprint=false backward=false (27.025199ms)
+✔ R48 final-world 皇极殿 portal=1:rear fps=10 sprint=false backward=true (33.046358ms)
+✔ R48 final-world 皇极殿 portal=1:rear fps=10 sprint=true backward=false (23.114078ms)
+✔ R48 final-world 皇极殿 portal=1:rear fps=10 sprint=true backward=true (27.808395ms)
+✔ R48 final-world 皇极殿 portal=1:rear fps=60 sprint=false backward=false (110.17094ms)
+✔ R48 final-world 皇极殿 portal=1:rear fps=60 sprint=false backward=true (147.916286ms)
+✔ R48 final-world 皇极殿 portal=1:rear fps=60 sprint=true backward=false (94.410564ms)
+✔ R48 final-world 皇极殿 portal=1:rear fps=60 sprint=true backward=true (83.905785ms)
+✔ R48 final-world 皇极殿 portal=2:front fps=10 sprint=false backward=false (46.755637ms)
+✔ R48 final-world 皇极殿 portal=2:front fps=10 sprint=false backward=true (40.734869ms)
+✔ R48 final-world 皇极殿 portal=2:front fps=10 sprint=true backward=false (83.645796ms)
+✔ R48 final-world 皇极殿 portal=2:front fps=10 sprint=true backward=true (26.189514ms)
+✔ R48 final-world 皇极殿 portal=2:front fps=60 sprint=false backward=false (159.997216ms)
+✔ R48 final-world 皇极殿 portal=2:front fps=60 sprint=false backward=true (148.163707ms)
+✔ R48 final-world 皇极殿 portal=2:front fps=60 sprint=true backward=false (71.169577ms)
+✔ R48 final-world 皇极殿 portal=2:front fps=60 sprint=true backward=true (68.932709ms)
+✔ R48 final-world 皇极殿 portal=3:rear fps=10 sprint=false backward=false (15.858516ms)
+✔ R48 final-world 皇极殿 portal=3:rear fps=10 sprint=false backward=true (15.507008ms)
+✔ R48 final-world 皇极殿 portal=3:rear fps=10 sprint=true backward=false (14.66208ms)
+✔ R48 final-world 皇极殿 portal=3:rear fps=10 sprint=true backward=true (17.269775ms)
+✔ R48 final-world 皇极殿 portal=3:rear fps=60 sprint=false backward=false (98.918672ms)
+✔ R48 final-world 皇极殿 portal=3:rear fps=60 sprint=false backward=true (98.505823ms)
+✔ R48 final-world 皇极殿 portal=3:rear fps=60 sprint=true backward=false (71.287894ms)
+✔ R48 final-world 皇极殿 portal=3:rear fps=60 sprint=true backward=true (71.548927ms)
+✔ R48 final-world 皇极殿 portal=4:front fps=10 sprint=false backward=false (44.468344ms)
+✔ R48 final-world 皇极殿 portal=4:front fps=10 sprint=false backward=true (41.011565ms)
+✔ R48 final-world 皇极殿 portal=4:front fps=10 sprint=true backward=false (28.210158ms)
+✔ R48 final-world 皇极殿 portal=4:front fps=10 sprint=true backward=true (22.467427ms)
+✔ R48 final-world 皇极殿 portal=4:front fps=60 sprint=false backward=false (197.836724ms)
+✔ R48 final-world 皇极殿 portal=4:front fps=60 sprint=false backward=true (201.704811ms)
+✔ R48 final-world 皇极殿 portal=4:front fps=60 sprint=true backward=false (104.40927ms)
+✔ R48 final-world 皇极殿 portal=4:front fps=60 sprint=true backward=true (70.621363ms)
+✔ R48 final-world 皇极殿 portal=5:rear fps=10 sprint=false backward=false (34.271271ms)
+✔ R48 final-world 皇极殿 portal=5:rear fps=10 sprint=false backward=true (23.987769ms)
+✔ R48 final-world 皇极殿 portal=5:rear fps=10 sprint=true backward=false (20.474887ms)
+✔ R48 final-world 皇极殿 portal=5:rear fps=10 sprint=true backward=true (20.094144ms)
+✔ R48 final-world 皇极殿 portal=5:rear fps=60 sprint=false backward=false (94.830396ms)
+✔ R48 final-world 皇极殿 portal=5:rear fps=60 sprint=false backward=true (74.607187ms)
+✔ R48 final-world 皇极殿 portal=5:rear fps=60 sprint=true backward=false (49.949652ms)
+✔ R48 final-world 皇极殿 portal=5:rear fps=60 sprint=true backward=true (74.167301ms)
+✔ R48 final 养性殿 exact identity produces actual named architecture and safe ground record (223.528234ms)
+✔ R48 final 乐寿堂 exact identity produces actual named architecture and safe ground record (160.618728ms)
+✔ R48 final 符望阁 exact identity produces actual named architecture and safe ground record (111.542099ms)
+✔ R48 final 倦勤斋 exact identity produces actual named architecture and safe ground record (100.263847ms)
+✔ R48 final 畅音阁 exact identity produces actual named architecture and safe ground record (52.891277ms)
+✔ R48 final 皇极殿 exact identity produces actual named architecture and safe ground record (61.552338ms)
+✔ R48 YangXing is three main bays subdivided nine, four front annex bays and one retained throne (52.770125ms)
+✔ R48 LeShou has two double-height halls with a transverse upper gallery, not a full opaque second floor (112.990122ms)
+✔ R48 FuWang has one evidenced north intermediate floor and a set-back three-bay open upper hall beneath two eaves (97.986933ms)
+✔ R48 JuanQin separates east five and west four bays with two-level audience/stage architecture (95.14388ms)
+✔ R48 ChangYin is north-facing with three real stages, connected voids and no ground interior columns (27.538985ms)
+✔ R48 final-six ground routes are reversible with correct support at 10 Hz (401.149041ms)
+✔ R48 final-six ground routes are reversible with correct support at 60 Hz (439.121941ms)
+✔ R48 final-six finite nondegenerate components preserve owned-resource disposal (646.561775ms)
+✔ R48 NingShou first seven profiles guard exact identities and do not claim completed inventories (6.036503ms)
+✔ R48 宁寿宫 creates finite fitted structure, one map identity and no generic furnishing preset (184.766642ms)
+✔ R48 遂初堂 creates finite fitted structure, one map identity and no generic furnishing preset (164.033634ms)
+✔ R48 寻沿书屋 creates finite fitted structure, one map identity and no generic furnishing preset (34.633425ms)
+✔ R48 庆寿堂 creates finite fitted structure, one map identity and no generic furnishing preset (19.467767ms)
+✔ R48 景福宫 creates finite fitted structure, one map identity and no generic furnishing preset (83.218086ms)
+✔ R48 禊赏亭 creates finite fitted structure, one map identity and no generic furnishing preset (103.266535ms)
+✔ R48 碧螺亭 creates finite fitted structure, one map identity and no generic furnishing preset (124.267533ms)
+✔ R48 NingShou has seven bays and an east secondary-bay entrance, never a recreated kang (54.297577ms)
+✔ R48 XiShang is east-facing, composite-roofed and contains a true shallow channel (32.009716ms)
+✔ R48 JingFu has three connected rolled roof volumes, not one generic xieshan (58.711443ms)
+✔ R48 BiLuo is one occupied level with five columns, five petals and two colored eaves (97.223682ms)
+✔ R48 XiShang channel is recessed into segmented paving, not painted over an opaque slab (52.409012ms)
+✔ R48 all registered first-batch portals are on supported ground floors with no rescue teleport (338.510377ms)
+✔ R48 first seven actual controller routes enter and leave their real portals at 60 Hz (421.436935ms)
+✖ R48 preserves unverified legacy furnishings unless a sourced plan or pavilion use conflicts (46.381574ms)
+✔ R48 own surfaces are finite nondegenerate triangles and survive merge/resource disposal (501.004423ms)
+✔ R48 every published approach path is reversibly traversable by the real controller (327.360749ms)
+✔ R48 approachPoints feetY equals actual support even at low-platform edge endpoints (165.677938ms)
+✔ Huangji original four fallback meshes and single collider survive nine-bay augmentation and merge (173.338546ms)
+✔ Huangji retained throne collider is inside actual decoded existing GLB proxy and visible dais footprint, not widened by new bays (53.139491ms)
+✔ Huangji fitted coffer boards do not intersect actual decoded caisson or gold pillar triangles (106.742298ms)
+✔ Huangji GLB world uses actual installed proxies and the original kit collider without hiding collisions (4.380977ms)
+✔ Huangji GLB-on real-world portal=0:front fps=10 sprint=false backward=false (579.211924ms)
+✔ Huangji GLB-on real-world portal=0:front fps=10 sprint=false backward=true (553.300195ms)
+✔ Huangji GLB-on real-world portal=0:front fps=10 sprint=true backward=false (206.113397ms)
+✔ Huangji GLB-on real-world portal=0:front fps=10 sprint=true backward=true (267.383076ms)
+✔ Huangji GLB-on real-world portal=0:front fps=60 sprint=false backward=false (2646.929783ms)
+✔ Huangji GLB-on real-world portal=0:front fps=60 sprint=false backward=true (2937.867338ms)
+✔ Huangji GLB-on real-world portal=0:front fps=60 sprint=true backward=false (1630.672224ms)
+✔ Huangji GLB-on real-world portal=0:front fps=60 sprint=true backward=true (1676.87595ms)
+✔ Huangji GLB-on real-world portal=1:rear fps=10 sprint=false backward=false (251.447995ms)
+✔ Huangji GLB-on real-world portal=1:rear fps=10 sprint=false backward=true (248.932194ms)
+✔ Huangji GLB-on real-world portal=1:rear fps=10 sprint=true backward=false (155.489423ms)
+✔ Huangji GLB-on real-world portal=1:rear fps=10 sprint=true backward=true (189.38306ms)
+✔ Huangji GLB-on real-world portal=1:rear fps=60 sprint=false backward=false (1232.929986ms)
+✔ Huangji GLB-on real-world portal=1:rear fps=60 sprint=false backward=true (1195.315133ms)
+✔ Huangji GLB-on real-world portal=1:rear fps=60 sprint=true backward=false (967.57801ms)
+✔ Huangji GLB-on real-world portal=1:rear fps=60 sprint=true backward=true (807.719538ms)
+✔ Huangji GLB-on real-world portal=2:front fps=10 sprint=false backward=false (403.948813ms)
+✔ Huangji GLB-on real-world portal=2:front fps=10 sprint=false backward=true (366.717685ms)
+✔ Huangji GLB-on real-world portal=2:front fps=10 sprint=true backward=false (141.41117ms)
+✔ Huangji GLB-on real-world portal=2:front fps=10 sprint=true backward=true (140.481626ms)
+✔ Huangji GLB-on real-world portal=2:front fps=60 sprint=false backward=false (1967.63514ms)
+✔ Huangji GLB-on real-world portal=2:front fps=60 sprint=false backward=true (2102.452963ms)
+✔ Huangji GLB-on real-world portal=2:front fps=60 sprint=true backward=false (1103.641109ms)
+✔ Huangji GLB-on real-world portal=2:front fps=60 sprint=true backward=true (1008.998055ms)
+✔ Huangji GLB-on real-world portal=3:rear fps=10 sprint=false backward=false (188.105293ms)
+✔ Huangji GLB-on real-world portal=3:rear fps=10 sprint=false backward=true (228.520694ms)
+✔ Huangji GLB-on real-world portal=3:rear fps=10 sprint=true backward=false (193.580659ms)
+✔ Huangji GLB-on real-world portal=3:rear fps=10 sprint=true backward=true (180.062449ms)
+✔ Huangji GLB-on real-world portal=3:rear fps=60 sprint=false backward=false (1265.987227ms)
+✔ Huangji GLB-on real-world portal=3:rear fps=60 sprint=false backward=true (1055.438422ms)
+✔ Huangji GLB-on real-world portal=3:rear fps=60 sprint=true backward=false (757.69362ms)
+✔ Huangji GLB-on real-world portal=3:rear fps=60 sprint=true backward=true (733.467098ms)
+✔ Huangji GLB-on real-world portal=4:front fps=10 sprint=false backward=false (343.040062ms)
+✔ Huangji GLB-on real-world portal=4:front fps=10 sprint=false backward=true (335.040223ms)
+✔ Huangji GLB-on real-world portal=4:front fps=10 sprint=true backward=false (197.234493ms)
+✔ Huangji GLB-on real-world portal=4:front fps=10 sprint=true backward=true (162.035027ms)
+✔ Huangji GLB-on real-world portal=4:front fps=60 sprint=false backward=false (2060.058927ms)
+✔ Huangji GLB-on real-world portal=4:front fps=60 sprint=false backward=true (1905.520143ms)
+✔ Huangji GLB-on real-world portal=4:front fps=60 sprint=true backward=false (1023.864532ms)
+✔ Huangji GLB-on real-world portal=4:front fps=60 sprint=true backward=true (1084.942826ms)
+✔ Huangji GLB-on real-world portal=5:rear fps=10 sprint=false backward=false (193.342689ms)
+✔ Huangji GLB-on real-world portal=5:rear fps=10 sprint=false backward=true (198.384969ms)
+✔ Huangji GLB-on real-world portal=5:rear fps=10 sprint=true backward=false (152.698277ms)
+✔ Huangji GLB-on real-world portal=5:rear fps=10 sprint=true backward=true (149.984557ms)
+✔ Huangji GLB-on real-world portal=5:rear fps=60 sprint=false backward=false (1242.514003ms)
+✔ Huangji GLB-on real-world portal=5:rear fps=60 sprint=false backward=true (1188.553185ms)
+✔ Huangji GLB-on real-world portal=5:rear fps=60 sprint=true backward=false (695.507534ms)
+✔ Huangji GLB-on real-world portal=5:rear fps=60 sprint=true backward=true (903.072074ms)
+✔ R48 景祺阁 is two actual enclosed levels, never two eaves used as storeys (163.368882ms)
+✔ R48 延趣楼 is two actual enclosed levels, never two eaves used as storeys (94.073522ms)
+✔ R48 萃赏楼 is two actual enclosed levels, never two eaves used as storeys (65.269107ms)
+✔ R48 阅是楼 is two actual enclosed levels, never two eaves used as storeys (26.579535ms)
+✔ R48 佛日楼 is two actual enclosed levels, never two eaves used as storeys (33.921635ms)
+✖ R48 梵华楼 is two actual enclosed levels, never two eaves used as storeys (1.255965ms)
+✖ R48 FanHua has six real upper floor voids with perimeter rails, seven lower rooms and dated altar outlines only (0.356395ms)
+✔ R48 JingQi has a structural stair opening and a concave west secondary-bay stage (63.313732ms)
+✔ R48 YanQu is east-facing and the removed 1817 bridge is not restored (40.736164ms)
+✔ R48 CuiShang exposes four upper gallery bays and encloses the west end only (68.419996ms)
+✔ R48 YueShi has one rolled upper roof for two floors and does not restore removed terraces (48.579106ms)
+✔ R48 JingQi actual stair ascends and descends at 10 Hz without rescue (82.914843ms)
+✔ R48 JingQi actual stair ascends and descends at 60 Hz without rescue (176.495114ms)
+✔ R48 JingQi stair has physical headroom, guardrails and no upper rescue under the real floor (45.851492ms)
+✖ R48 new six ground entrances are reversible at 10 Hz with correctly labelled approach heights (157.097399ms)
+✖ R48 new six ground entrances are reversible at 60 Hz with correctly labelled approach heights (169.167155ms)
+✖ R48 new six geometries have nondegenerate triangles and owned materials survive merge/dispose (411.807933ms)
+✔ R48 physical 皇极殿: FrontSide roof faces, closed custom shells and real bearing (230.644991ms)
+✔ R48 physical 宁寿宫: FrontSide roof faces, closed custom shells and real bearing (148.47687ms)
+✔ R48 physical 养性殿: FrontSide roof faces, closed custom shells and real bearing (174.016575ms)
+✔ R48 physical 乐寿堂: FrontSide roof faces, closed custom shells and real bearing (124.841669ms)
+✔ R48 physical 景祺阁: FrontSide roof faces, closed custom shells and real bearing (50.652378ms)
+✔ R48 physical 禊赏亭: FrontSide roof faces, closed custom shells and real bearing (97.873886ms)
+✖ R48 physical 遂初堂: FrontSide roof faces, closed custom shells and real bearing (163.122963ms)
+✔ R48 physical 延趣楼: FrontSide roof faces, closed custom shells and real bearing (41.574543ms)
+✔ R48 physical 萃赏楼: FrontSide roof faces, closed custom shells and real bearing (56.546045ms)
+✔ R48 physical 碧螺亭: FrontSide roof faces, closed custom shells and real bearing (177.936227ms)
+✔ R48 physical 符望阁: FrontSide roof faces, closed custom shells and real bearing (98.087857ms)
+✔ R48 physical 倦勤斋: FrontSide roof faces, closed custom shells and real bearing (88.586894ms)
+✔ R48 physical 畅音阁: FrontSide roof faces, closed custom shells and real bearing (77.616295ms)
+✔ R48 physical 阅是楼: FrontSide roof faces, closed custom shells and real bearing (48.84467ms)
+✔ R48 physical 寻沿书屋: FrontSide roof faces, closed custom shells and real bearing (24.92488ms)
+✔ R48 physical 庆寿堂: FrontSide roof faces, closed custom shells and real bearing (79.641726ms)
+✔ R48 physical 景福宫: FrontSide roof faces, closed custom shells and real bearing (161.545367ms)
+✔ R48 physical 佛日楼: FrontSide roof faces, closed custom shells and real bearing (69.615323ms)
+✔ R48 皇极殿 preserves original model identification text once, separate from source-specific inscriptions (205.633221ms)
+✔ R48 宁寿宫 preserves original model identification text once, separate from source-specific inscriptions (105.441519ms)
+✔ R48 养性殿 preserves original model identification text once, separate from source-specific inscriptions (145.64803ms)
+✔ R48 乐寿堂 preserves original model identification text once, separate from source-specific inscriptions (175.116187ms)
+✔ R48 景祺阁 preserves original model identification text once, separate from source-specific inscriptions (89.42317ms)
+✔ R48 禊赏亭 preserves original model identification text once, separate from source-specific inscriptions (74.943171ms)
+✔ R48 遂初堂 preserves original model identification text once, separate from source-specific inscriptions (91.077114ms)
+✔ R48 延趣楼 preserves original model identification text once, separate from source-specific inscriptions (35.939906ms)
+✔ R48 萃赏楼 preserves original model identification text once, separate from source-specific inscriptions (43.958534ms)
+✔ R48 碧螺亭 preserves original model identification text once, separate from source-specific inscriptions (134.173114ms)
+✔ R48 符望阁 preserves original model identification text once, separate from source-specific inscriptions (98.214699ms)
+✔ R48 倦勤斋 preserves original model identification text once, separate from source-specific inscriptions (64.389628ms)
+✔ R48 畅音阁 preserves original model identification text once, separate from source-specific inscriptions (95.182893ms)
+✔ R48 阅是楼 preserves original model identification text once, separate from source-specific inscriptions (32.696847ms)
+✔ R48 寻沿书屋 preserves original model identification text once, separate from source-specific inscriptions (49.200945ms)
+✔ R48 庆寿堂 preserves original model identification text once, separate from source-specific inscriptions (20.721179ms)
+✔ R48 景福宫 preserves original model identification text once, separate from source-specific inscriptions (74.546236ms)
+✔ R48 佛日楼 preserves original model identification text once, separate from source-specific inscriptions (29.774571ms)
+✖ R48 梵华楼 preserves original model identification text once, separate from source-specific inscriptions (6.338516ms)
+✔ R48 ChangYin preserved name sign follows sourced upper eave, stays under real roof and touches its actual eave beam (26.194015ms)
+✔ R48 actual materials 皇极殿: original stub geometry, material values and navigation remain byte-exact (405.617191ms)
+✔ R48 actual materials 皇极殿: real production library has identical physical and semantic output (589.524596ms)
+✔ R48 actual materials 皇极殿: actual finish return is merged, agrees and releases correct resources (913.352857ms)
+✖ R48 actual materials 宁寿宫: original stub geometry, material values and navigation remain byte-exact (188.492697ms)
+✔ R48 actual materials 宁寿宫: real production library has identical physical and semantic output (297.968893ms)
+✔ R48 actual materials 宁寿宫: actual finish return is merged, agrees and releases correct resources (461.305105ms)
+✖ R48 actual materials 养性殿: original stub geometry, material values and navigation remain byte-exact (258.690382ms)
+✔ R48 actual materials 养性殿: real production library has identical physical and semantic output (473.228678ms)
+✔ R48 actual materials 养性殿: actual finish return is merged, agrees and releases correct resources (1457.734291ms)
+✖ R48 actual materials 乐寿堂: original stub geometry, material values and navigation remain byte-exact (479.847688ms)
+✔ R48 actual materials 乐寿堂: real production library has identical physical and semantic output (788.649072ms)
+✔ R48 actual materials 乐寿堂: actual finish return is merged, agrees and releases correct resources (1458.66073ms)
+✖ R48 actual materials 景祺阁: original stub geometry, material values and navigation remain byte-exact (204.13574ms)
+✔ R48 actual materials 景祺阁: real production library has identical physical and semantic output (301.291024ms)
+✔ R48 actual materials 景祺阁: actual finish return is merged, agrees and releases correct resources (565.429023ms)
+✖ R48 actual materials 禊赏亭: original stub geometry, material values and navigation remain byte-exact (125.475876ms)
+✔ R48 actual materials 禊赏亭: real production library has identical physical and semantic output (208.674499ms)
+✔ R48 actual materials 禊赏亭: actual finish return is merged, agrees and releases correct resources (507.323987ms)
+✖ R48 actual materials 遂初堂: original stub geometry, material values and navigation remain byte-exact (149.272403ms)
+✔ R48 actual materials 遂初堂: real production library has identical physical and semantic output (279.161531ms)
+✔ R48 actual materials 遂初堂: actual finish return is merged, agrees and releases correct resources (654.653544ms)
+✖ R48 actual materials 延趣楼: original stub geometry, material values and navigation remain byte-exact (101.550055ms)
+✔ R48 actual materials 延趣楼: real production library has identical physical and semantic output (236.369972ms)
+✔ R48 actual materials 延趣楼: actual finish return is merged, agrees and releases correct resources (834.157658ms)
+✖ R48 actual materials 萃赏楼: original stub geometry, material values and navigation remain byte-exact (137.241826ms)
+✔ R48 actual materials 萃赏楼: real production library has identical physical and semantic output (288.106428ms)
+✔ R48 actual materials 萃赏楼: actual finish return is merged, agrees and releases correct resources (549.782635ms)
+✖ R48 actual materials 碧螺亭: original stub geometry, material values and navigation remain byte-exact (115.686954ms)
+✔ R48 actual materials 碧螺亭: real production library has identical physical and semantic output (178.379306ms)
+✔ R48 actual materials 碧螺亭: actual finish return is merged, agrees and releases correct resources (349.588206ms)
+✖ R48 actual materials 符望阁: original stub geometry, material values and navigation remain byte-exact (203.056495ms)
+✔ R48 actual materials 符望阁: real production library has identical physical and semantic output (469.765025ms)
+✔ R48 actual materials 符望阁: actual finish return is merged, agrees and releases correct resources (962.784571ms)
+✖ R48 actual materials 倦勤斋: original stub geometry, material values and navigation remain byte-exact (116.931011ms)
+✔ R48 actual materials 倦勤斋: real production library has identical physical and semantic output (227.74764ms)
+✔ R48 actual materials 倦勤斋: actual finish return is merged, agrees and releases correct resources (677.996564ms)
+✖ R48 actual materials 畅音阁: original stub geometry, material values and navigation remain byte-exact (86.823806ms)
+✔ R48 actual materials 畅音阁: real production library has identical physical and semantic output (225.123845ms)
+✔ R48 actual materials 畅音阁: actual finish return is merged, agrees and releases correct resources (536.310301ms)
+✖ R48 actual materials 阅是楼: original stub geometry, material values and navigation remain byte-exact (55.211041ms)
+✔ R48 actual materials 阅是楼: real production library has identical physical and semantic output (122.828906ms)
+✔ R48 actual materials 阅是楼: actual finish return is merged, agrees and releases correct resources (287.029258ms)
+✖ R48 actual materials 寻沿书屋: original stub geometry, material values and navigation remain byte-exact (49.403294ms)
+✔ R48 actual materials 寻沿书屋: real production library has identical physical and semantic output (101.651983ms)
+✔ R48 actual materials 寻沿书屋: actual finish return is merged, agrees and releases correct resources (292.125772ms)
+✖ R48 actual materials 庆寿堂: original stub geometry, material values and navigation remain byte-exact (64.850226ms)
+✔ R48 actual materials 庆寿堂: real production library has identical physical and semantic output (135.420002ms)
+✔ R48 actual materials 庆寿堂: actual finish return is merged, agrees and releases correct resources (379.03533ms)
+✖ R48 actual materials 景福宫: original stub geometry, material values and navigation remain byte-exact (123.066954ms)
+✔ R48 actual materials 景福宫: real production library has identical physical and semantic output (198.587527ms)
+✔ R48 actual materials 景福宫: actual finish return is merged, agrees and releases correct resources (671.274393ms)
+✔ R48 actual materials 佛日楼: original stub geometry, material values and navigation remain byte-exact (50.972544ms)
+✔ R48 actual materials 佛日楼: real production library has identical physical and semantic output (93.509826ms)
+✔ R48 actual materials 佛日楼: actual finish return is merged, agrees and releases correct resources (298.600405ms)
+✖ R48 actual materials 梵华楼: original stub geometry, material values and navigation remain byte-exact (0.334572ms)
+✖ R48 actual materials 梵华楼: real production library has identical physical and semantic output (0.103606ms)
+✖ R48 actual materials 梵华楼: actual finish return is merged, agrees and releases correct resources (0.080932ms)
+✖ tests/r48-ningshou-regressions.test.mjs (113134.028493ms)
+✔ independent 寻沿书屋 actual roof assembly must contact actual body, allowing 1 mm (113.732752ms)
+✔ independent 庆寿堂 actual roof assembly must contact actual body, allowing 1 mm (76.633266ms)
+✔ independent Biluo upper eave must contact a real architectural bearer, not only floating finial (139.379027ms)
+✔ independent 景福宫 all outer corner columns have roof coverage (67.180802ms)
+✔ independent 禊赏亭 all outer corner columns have roof coverage (126.781669ms)
+✔ Biluo actual octagonal bearer caps stay below the FrontSide tile surface (144.88165ms)
+✔ R48 room clearance 乐寿堂: independently reproduced visible penetration point is physically rejected (304.042271ms)
+✔ R48 room clearance 畅音阁: independently reproduced visible penetration point is physically rejected (104.769117ms)
+✔ R48 room clearance 皇极殿: all production-permitted 40 cm ground-grid samples avoid actual body triangles (264.584326ms)
+✔ R48 room clearance 养性殿: all production-permitted 40 cm ground-grid samples avoid actual body triangles (293.484353ms)
+✔ R48 room clearance 乐寿堂: all production-permitted 40 cm ground-grid samples avoid actual body triangles (376.217823ms)
+✔ R48 room clearance 符望阁: all production-permitted 40 cm ground-grid samples avoid actual body triangles (251.39904ms)
+✔ R48 room clearance 倦勤斋: all production-permitted 40 cm ground-grid samples avoid actual body triangles (64.391601ms)
+✔ R48 room clearance 畅音阁: all production-permitted 40 cm ground-grid samples avoid actual body triangles (170.671295ms)
+✔ R48 cylinder proxy 皇极殿: every solid tapered cylinder uses its actual vertex envelope (71.144957ms)
+✔ R48 cylinder proxy 宁寿宫: every solid tapered cylinder uses its actual vertex envelope (75.152643ms)
+✔ R48 cylinder proxy 养性殿: every solid tapered cylinder uses its actual vertex envelope (92.35556ms)
+✔ R48 cylinder proxy 乐寿堂: every solid tapered cylinder uses its actual vertex envelope (159.681949ms)
+✔ R48 cylinder proxy 景祺阁: every solid tapered cylinder uses its actual vertex envelope (44.531743ms)
+✔ R48 cylinder proxy 禊赏亭: every solid tapered cylinder uses its actual vertex envelope (117.526187ms)
+✔ R48 cylinder proxy 遂初堂: every solid tapered cylinder uses its actual vertex envelope (109.899828ms)
+✔ R48 cylinder proxy 延趣楼: every solid tapered cylinder uses its actual vertex envelope (74.13473ms)
+✔ R48 cylinder proxy 萃赏楼: every solid tapered cylinder uses its actual vertex envelope (50.073122ms)
+✔ R48 cylinder proxy 碧螺亭: every solid tapered cylinder uses its actual vertex envelope (194.267195ms)
+✔ R48 cylinder proxy 符望阁: every solid tapered cylinder uses its actual vertex envelope (89.78453ms)
+✔ R48 cylinder proxy 倦勤斋: every solid tapered cylinder uses its actual vertex envelope (42.76392ms)
+✔ R48 cylinder proxy 畅音阁: every solid tapered cylinder uses its actual vertex envelope (193.020141ms)
+✔ R48 cylinder proxy 阅是楼: every solid tapered cylinder uses its actual vertex envelope (45.833658ms)
+✔ R48 cylinder proxy 寻沿书屋: every solid tapered cylinder uses its actual vertex envelope (42.002436ms)
+✔ R48 cylinder proxy 庆寿堂: every solid tapered cylinder uses its actual vertex envelope (45.796853ms)
+✔ R48 cylinder proxy 景福宫: every solid tapered cylinder uses its actual vertex envelope (99.309704ms)
+✔ R48 cylinder proxy 佛日楼: every solid tapered cylinder uses its actual vertex envelope (31.989314ms)
+✖ R48 cylinder proxy 梵华楼: every solid tapered cylinder uses its actual vertex envelope (1.364759ms)
+✔ R48 ChangYin short timber proxies cover all actual vertices without a whole staircase prism (365.939894ms)
+✔ R48 room excursion 畅音阁 fps=10 sprint=false backward=false: visible obstacle stops body, actual retreat and nearby clear aisle stay open (149.85509ms)
+✔ R48 room excursion 畅音阁 fps=10 sprint=false backward=true: visible obstacle stops body, actual retreat and nearby clear aisle stay open (118.085555ms)
+✔ R48 room excursion 畅音阁 fps=10 sprint=true backward=false: visible obstacle stops body, actual retreat and nearby clear aisle stay open (99.576846ms)
+✔ R48 room excursion 畅音阁 fps=10 sprint=true backward=true: visible obstacle stops body, actual retreat and nearby clear aisle stay open (96.190357ms)
+✔ R48 room excursion 畅音阁 fps=60 sprint=false backward=false: visible obstacle stops body, actual retreat and nearby clear aisle stay open (414.874567ms)
+✔ R48 room excursion 畅音阁 fps=60 sprint=false backward=true: visible obstacle stops body, actual retreat and nearby clear aisle stay open (375.906363ms)
+✔ R48 room excursion 畅音阁 fps=60 sprint=true backward=false: visible obstacle stops body, actual retreat and nearby clear aisle stay open (309.888977ms)
+✔ R48 room excursion 畅音阁 fps=60 sprint=true backward=true: visible obstacle stops body, actual retreat and nearby clear aisle stay open (289.586315ms)
+✔ R48 room excursion 乐寿堂 fps=10 sprint=false backward=false: visible obstacle stops body, actual retreat and nearby clear aisle stay open (121.604807ms)
+✔ R48 room excursion 乐寿堂 fps=10 sprint=false backward=true: visible obstacle stops body, actual retreat and nearby clear aisle stay open (170.187984ms)
+✔ R48 room excursion 乐寿堂 fps=10 sprint=true backward=false: visible obstacle stops body, actual retreat and nearby clear aisle stay open (144.134218ms)
+✔ R48 room excursion 乐寿堂 fps=10 sprint=true backward=true: visible obstacle stops body, actual retreat and nearby clear aisle stay open (151.17678ms)
+✔ R48 room excursion 乐寿堂 fps=60 sprint=false backward=false: visible obstacle stops body, actual retreat and nearby clear aisle stay open (316.726156ms)
+✔ R48 room excursion 乐寿堂 fps=60 sprint=false backward=true: visible obstacle stops body, actual retreat and nearby clear aisle stay open (300.07518ms)
+✔ R48 room excursion 乐寿堂 fps=60 sprint=true backward=false: visible obstacle stops body, actual retreat and nearby clear aisle stay open (202.521031ms)
+✔ R48 room excursion 乐寿堂 fps=60 sprint=true backward=true: visible obstacle stops body, actual retreat and nearby clear aisle stay open (237.940154ms)
+✔ R48 YangXing fitted loft bearings preserve normal entrance, west-room and Moyun side doors fps=10 sprint=false backward=false (96.630556ms)
+✔ R48 YangXing fitted loft bearings preserve normal entrance, west-room and Moyun side doors fps=10 sprint=false backward=true (98.40905ms)
+✔ R48 YangXing fitted loft bearings preserve normal entrance, west-room and Moyun side doors fps=10 sprint=true backward=false (69.127077ms)
+✔ R48 YangXing fitted loft bearings preserve normal entrance, west-room and Moyun side doors fps=10 sprint=true backward=true (53.426808ms)
+✔ R48 YangXing fitted loft bearings preserve normal entrance, west-room and Moyun side doors fps=60 sprint=false backward=false (165.998914ms)
+✔ R48 YangXing fitted loft bearings preserve normal entrance, west-room and Moyun side doors fps=60 sprint=false backward=true (185.692275ms)
+✔ R48 YangXing fitted loft bearings preserve normal entrance, west-room and Moyun side doors fps=60 sprint=true backward=false (117.82821ms)
+✔ R48 YangXing fitted loft bearings preserve normal entrance, west-room and Moyun side doors fps=60 sprint=true backward=true (145.71406ms)
+✔ R48 source-state tail retains NingShou removed-kang and unlocated-stove boundaries after real architectural updates (227.745605ms)
+✔ R48 body triangle negative control detects visible ceiling-coffer even with zero collision proxies (9.510508ms)
+✔ R48 body triangle negative control detects visible upper-floor-slab even with zero collision proxies (6.753097ms)
+✔ R48 body triangle negative control detects visible legacy-unverified-bench even with zero collision proxies (1.11897ms)
+✔ R48 body triangle ground exemption is bounded by actual production STEP_UP, not any same-named high plane (3.153364ms)
+✔ R48 exact known support plum-platform-core: only actual triangles below feet + STEP_UP are exempt (3.011751ms)
+✔ R48 exact known support plum-platform-petal: only actual triangles below feet + STEP_UP are exempt (2.920615ms)
+✔ R48 exact known support fitted-east-viewing-step: only actual triangles below feet + STEP_UP are exempt (2.513874ms)
+✔ R48 exact known support juanqin-stage-step: only actual triangles below feet + STEP_UP are exempt (0.905009ms)
+✔ R48 exact known support juanqin-west-stage: only actual triangles below feet + STEP_UP are exempt (1.445871ms)
+✔ R48 whole-world 宁寿宫 current Teleport.isSafe follows the real profile entry (32.53532ms)
+✖ R48 whole-world 遂初堂 current Teleport.isSafe follows the real profile entry (12.186603ms)
+✔ R48 whole-world 寻沿书屋 current Teleport.isSafe follows the real profile entry (5.963031ms)
+✔ R48 whole-world 庆寿堂 current Teleport.isSafe follows the real profile entry (3.454065ms)
+✔ R48 whole-world 景福宫 current Teleport.isSafe follows the real profile entry (30.577547ms)
+✔ R48 whole-world 禊赏亭 current Teleport.isSafe follows the real profile entry (2.59811ms)
+✔ R48 whole-world 碧螺亭 current Teleport.isSafe follows the real profile entry (3.213604ms)
+✔ R48 whole-world 景祺阁 current Teleport.isSafe follows the real profile entry (4.202118ms)
+✔ R48 whole-world 延趣楼 current Teleport.isSafe follows the real profile entry (1.980773ms)
+✔ R48 whole-world 萃赏楼 current Teleport.isSafe follows the real profile entry (2.500754ms)
+✔ R48 whole-world 阅是楼 current Teleport.isSafe follows the real profile entry (2.195215ms)
+✔ R48 whole-world 佛日楼 current Teleport.isSafe follows the real profile entry (4.321858ms)
+✖ R48 whole-world 梵华楼 current Teleport.isSafe follows the real profile entry (2.259381ms)
+✔ R48 whole-world 养性殿 current Teleport.isSafe follows the real profile entry (2.635736ms)
+✔ R48 whole-world 乐寿堂 current Teleport.isSafe follows the real profile entry (3.44407ms)
+✔ R48 whole-world 符望阁 current Teleport.isSafe follows the real profile entry (3.235518ms)
+✔ R48 whole-world 倦勤斋 current Teleport.isSafe follows the real profile entry (1.986993ms)
+✔ R48 whole-world 畅音阁 current Teleport.isSafe follows the real profile entry (3.694857ms)
+✔ R48 whole-world 皇极殿 current Teleport.isSafe follows the real profile entry (8.936615ms)
+✔ R48 BiLuo whole-world east approach and retreat at 10 Hz backward=false (29.493755ms)
+✔ R48 BiLuo whole-world east approach and retreat at 10 Hz backward=true (21.596149ms)
+✔ R48 BiLuo whole-world east approach and retreat at 60 Hz backward=false (28.105712ms)
+✔ R48 BiLuo whole-world east approach and retreat at 60 Hz backward=true (29.059203ms)
+✔ R48 JingQi whole-world real stair round trip at 10 Hz (53.110897ms)
+✔ R48 JingQi whole-world real stair round trip at 60 Hz (112.734788ms)
+✔ R67 six closed NingShou front bays have three transoms and three straight-lattice leaves (192.256806ms)
+✔ R67 NingShou windows leave every collision, floor, navigation and non-target mesh exact (269.833118ms)
+ℹ tests 471
+ℹ suites 0
+ℹ pass 436
+ℹ fail 35
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 125876.949105
+
+✖ failing tests:
+
+test at tests/r48-independent-ningshou-final-huangji-body.test.mjs:1:1
+✖ tests/r48-independent-ningshou-final-huangji-body.test.mjs (18632.167818ms)
+  'test failed'
+
+test at tests/r48-independent-ningshou-final-huangji-lifecycle.test.mjs:1:1
+✖ tests/r48-independent-ningshou-final-huangji-lifecycle.test.mjs (18613.496638ms)
+  'test failed'
+
+test at tests/r48-ningshou-atlas-resource-tail.test.mjs:39:1
+✖ R48 current full Ningshou executes the formerly masked four-reload photo/plaque resource ownership tail (2416.863051ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-atlas-resource-tail.test.mjs:51:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-ningshou-compound-glb-route.test.mjs:1:1
+✖ tests/r48-ningshou-compound-glb-route.test.mjs (13075.375668ms)
+  'test failed'
+
+test at tests/r48-ningshou-halls.test.mjs:43:1
+✖ R48 preserves unverified legacy furnishings unless a sourced plan or pavilion use conflicts (46.381574ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-halls.test.mjs:44:72)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-ningshou-levels.test.mjs:13:25
+✖ R48 梵华楼 is two actual enclosed levels, never two eaves used as storeys (1.255965ms)
+  AssertionError [ERR_ASSERTION]: 梵华楼 exact profile
+      at make (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-levels.test.mjs:12:141)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-levels.test.mjs:13:127)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r48-ningshou-levels.test.mjs:14:1
+✖ R48 FanHua has six real upper floor voids with perimeter rails, seven lower rooms and dated altar outlines only (0.356395ms)
+  AssertionError [ERR_ASSERTION]: 梵华楼 exact profile
+      at make (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-levels.test.mjs:12:141)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-levels.test.mjs:14:140)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r48-ningshou-levels.test.mjs:22:25
+✖ R48 new six ground entrances are reversible at 10 Hz with correctly labelled approach heights (157.097399ms)
+  AssertionError [ERR_ASSERTION]: 梵华楼 exact profile
+      at make (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-levels.test.mjs:12:141)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-levels.test.mjs:22:240)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r48-ningshou-levels.test.mjs:22:25
+✖ R48 new six ground entrances are reversible at 60 Hz with correctly labelled approach heights (169.167155ms)
+  AssertionError [ERR_ASSERTION]: 梵华楼 exact profile
+      at make (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-levels.test.mjs:12:141)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-levels.test.mjs:22:240)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r48-ningshou-levels.test.mjs:23:1
+✖ R48 new six geometries have nondegenerate triangles and owned materials survive merge/dispose (411.807933ms)
+  AssertionError [ERR_ASSERTION]: 梵华楼 exact profile
+      at make (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-levels.test.mjs:12:141)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-levels.test.mjs:23:147)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r48-ningshou-physical.test.mjs:19:2
+✖ R48 physical 遂初堂: FrontSide roof faces, closed custom shells and real bearing (163.122963ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(Math.abs(h-q.feetY)<.03)
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-physical.test.mjs:39:125)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r48-ningshou-plaques.test.mjs:3:23
+✖ R48 梵华楼 preserves original model identification text once, separate from source-specific inscriptions (6.338516ms)
+  TypeError: Cannot read properties of null (reading 'mode')
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-plaques.test.mjs:3:404)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r48-ningshou-real-materials.test.mjs:13:2
+✖ R48 actual materials 宁寿宫: original stub geometry, material values and navigation remain byte-exact (188.492697ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+  +   exactStubGeometry: '2c74a34374336263a13c3dbfa5d212199d68230831839f7670a1aed6257a0077',
+  -   exactStubGeometry: 'a25da31d6828a56f261b0004586cd1b5cfab62a1b976e807233325385bcca283',
+      huangjiRemoved: null,
+      id: 'place-ningshou-e66dfe768f',
+  +   meshes: 378,
+  -   meshes: 564,
+      name: '宁寿宫',
+      navigation: '212d211f2ce6aa2e595ff6da6205cebdfa28096959fc1ea42264b6c4d38ce30d',
+  +   physicalSemanticGeometry: '93b63ee6edfadb8d8d1851acfe98f12b2e0195ecc3fa15ee2839dceec178e654',
+  -   physicalSemanticGeometry: 'a65418ae92619dd6d3c8f98f7ab6a5c14df7211eeb8332237bc36ecee284ee4f',
+      roof: [
+        {
+          materials: [
+            {
+              color: [
+  ...
+      ],
+  +   triangles: 15006
+  -   triangles: 11838
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-real-materials.test.mjs:13:246)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { id: 'place-ningshou-e66dfe768f', name: '宁寿宫', meshes: 378, triangles: 15006, exactStubGeometry: '2c74a34374336263a13c3dbfa5d212199d68230831839f7670a1aed6257a0077', physicalSemanticGeometry: '93b63ee6edfadb8d8d1851acfe98f12b2e0195ecc3fa15ee2839dceec178e654', navigation: '212d211f2ce6aa2e595ff6da6205cebdfa28096959fc1ea42264b6c4d38ce30d', roof: [ [Object] ], huangjiRemoved: null },
+    expected: { id: 'place-ningshou-e66dfe768f', name: '宁寿宫', meshes: 564, triangles: 11838, exactStubGeometry: 'a25da31d6828a56f261b0004586cd1b5cfab62a1b976e807233325385bcca283', physicalSemanticGeometry: 'a65418ae92619dd6d3c8f98f7ab6a5c14df7211eeb8332237bc36ecee284ee4f', navigation: '212d211f2ce6aa2e595ff6da6205cebdfa28096959fc1ea42264b6c4d38ce30d', roof: [ [Object] ], huangjiRemoved: null },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-ningshou-real-materials.test.mjs:13:2
+✖ R48 actual materials 养性殿: original stub geometry, material values and navigation remain byte-exact (258.690382ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+  +   exactStubGeometry: '92d3479ed7991ca7d84010828820cf93735c684cee784e01b44f7707d1eef9ed',
+  -   exactStubGeometry: 'f99cdb7cde36e004ac8a51e17d40745d7d6df5dcc9349d1f682fee20e8244e72',
+      huangjiRemoved: null,
+      id: 'place-ningshou-e32471b7c3',
+  +   meshes: 1108,
+  -   meshes: 522,
+      name: '养性殿',
+  +   navigation: 'ed39e3a00bf88e3c561d480ed9a4531ebdf4f4b12673630568949b2c6f129621',
+  +   physicalSemanticGeometry: '4b943dfa68bf32ed57be879ed15e6a7363e8feaee699fe49e07fecd539a9e4e5',
+  -   navigation: '4a2a0be5b237ceaffba8a741b38003333cedacab27f07ed1f4b601a492ba9718',
+  -   physicalSemanticGeometry: '7c778fb5d053f33c89f0be750bfc953d644cdcc597b25ec2c6da62faf8832ba2',
+      roof: [
+        {
+          materials: [
+            {
+              color: [
+  ...
+      ],
+  +   triangles: 30730
+  -   triangles: 14198
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-real-materials.test.mjs:13:246)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { id: 'place-ningshou-e32471b7c3', name: '养性殿', meshes: 1108, triangles: 30730, exactStubGeometry: '92d3479ed7991ca7d84010828820cf93735c684cee784e01b44f7707d1eef9ed', physicalSemanticGeometry: '4b943dfa68bf32ed57be879ed15e6a7363e8feaee699fe49e07fecd539a9e4e5', navigation: 'ed39e3a00bf88e3c561d480ed9a4531ebdf4f4b12673630568949b2c6f129621', roof: [ [Object], [Object] ], huangjiRemoved: null },
+    expected: { id: 'place-ningshou-e32471b7c3', name: '养性殿', meshes: 522, triangles: 14198, exactStubGeometry: 'f99cdb7cde36e004ac8a51e17d40745d7d6df5dcc9349d1f682fee20e8244e72', physicalSemanticGeometry: '7c778fb5d053f33c89f0be750bfc953d644cdcc597b25ec2c6da62faf8832ba2', navigation: '4a2a0be5b237ceaffba8a741b38003333cedacab27f07ed1f4b601a492ba9718', roof: [ [Object], [Object] ], huangjiRemoved: null },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-ningshou-real-materials.test.mjs:13:2
+✖ R48 actual materials 乐寿堂: original stub geometry, material values and navigation remain byte-exact (479.847688ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+  +   exactStubGeometry: '3a524756cc744e73972058bd085caa8ef1bda6aac2480d0d11d0e00e06af0d10',
+  -   exactStubGeometry: '695500d523460590fd9ef3ad25141763fabd80c5b61a7067b7f8a9e18d8a54b1',
+      huangjiRemoved: null,
+      id: 'place-ningshou-c715f850da',
+  +   meshes: 2485,
+  -   meshes: 2493,
+      name: '乐寿堂',
+  +   navigation: '7016e8ba5c0473f041ff24c901403688d85bd7e69883b9818d2b2c1935208943',
+  +   physicalSemanticGeometry: '63f2abb465c4a02317dd991d68a85f64d3071216c065672a667f2856ac1eab21',
+  -   navigation: '059edc85d511b3628a04def70628b765a8b4b2e6de94c999802db0e948e7b501',
+  -   physicalSemanticGeometry: '8d0004c6a4f31343940372f695f934355a52e8a3cf029c13fd269a974f65f16a',
+      roof: [
+        {
+          materials: [
+            {
+              color: [
+  ...
+      ],
+  +   triangles: 34062
+  -   triangles: 34158
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-real-materials.test.mjs:13:246)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { id: 'place-ningshou-c715f850da', name: '乐寿堂', meshes: 2485, triangles: 34062, exactStubGeometry: '3a524756cc744e73972058bd085caa8ef1bda6aac2480d0d11d0e00e06af0d10', physicalSemanticGeometry: '63f2abb465c4a02317dd991d68a85f64d3071216c065672a667f2856ac1eab21', navigation: '7016e8ba5c0473f041ff24c901403688d85bd7e69883b9818d2b2c1935208943', roof: [ [Object] ], huangjiRemoved: null },
+    expected: { id: 'place-ningshou-c715f850da', name: '乐寿堂', meshes: 2493, triangles: 34158, exactStubGeometry: '695500d523460590fd9ef3ad25141763fabd80c5b61a7067b7f8a9e18d8a54b1', physicalSemanticGeometry: '8d0004c6a4f31343940372f695f934355a52e8a3cf029c13fd269a974f65f16a', navigation: '059edc85d511b3628a04def70628b765a8b4b2e6de94c999802db0e948e7b501', roof: [ [Object] ], huangjiRemoved: null },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-ningshou-real-materials.test.mjs:13:2
+✖ R48 actual materials 景祺阁: original stub geometry, material values and navigation remain byte-exact (204.13574ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+  +   exactStubGeometry: '4c9df9b854a85e36de3a798a539ca4900250d98cfe98b5fd75d2fb5d7e6041b8',
+  -   exactStubGeometry: '5e0e7988489941321a4abb384fb98ddd983a96609326f88d55f0d3cf381efcb6',
+      huangjiRemoved: null,
+      id: 'place-ningshou-15c0d4e6bc',
+  +   meshes: 1161,
+  -   meshes: 1005,
+      name: '景祺阁',
+  +   navigation: '3ddd996e06955317dafb958cd605f6833273e14e0338f12db17fd3cecf4ac907',
+  +   physicalSemanticGeometry: '7317fa3fd4c087fbb668d620fa4ad0ce558212beb4fbd898e1122fc636b63bf7',
+  -   navigation: 'a3cddf516cc663d20097fc042fbf27fe62ad0226c93fa169a35b3c4f38d4d68e',
+  -   physicalSemanticGeometry: '29a0a940b85f2a7b231e5949428b1f27868763a13a1be76f2f2fd5b385bcda70',
+      roof: [
+        {
+          materials: [
+            {
+              color: [
+  ...
+      ],
+  +   triangles: 17718
+  -   triangles: 15846
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-real-materials.test.mjs:13:246)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { id: 'place-ningshou-15c0d4e6bc', name: '景祺阁', meshes: 1161, triangles: 17718, exactStubGeometry: '4c9df9b854a85e36de3a798a539ca4900250d98cfe98b5fd75d2fb5d7e6041b8', physicalSemanticGeometry: '7317fa3fd4c087fbb668d620fa4ad0ce558212beb4fbd898e1122fc636b63bf7', navigation: '3ddd996e06955317dafb958cd605f6833273e14e0338f12db17fd3cecf4ac907', roof: [ [Object] ], huangjiRemoved: null },
+    expected: { id: 'place-ningshou-15c0d4e6bc', name: '景祺阁', meshes: 1005, triangles: 15846, exactStubGeometry: '5e0e7988489941321a4abb384fb98ddd983a96609326f88d55f0d3cf381efcb6', physicalSemanticGeometry: '29a0a940b85f2a7b231e5949428b1f27868763a13a1be76f2f2fd5b385bcda70', navigation: 'a3cddf516cc663d20097fc042fbf27fe62ad0226c93fa169a35b3c4f38d4d68e', roof: [ [Object] ], huangjiRemoved: null },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-ningshou-real-materials.test.mjs:13:2
+✖ R48 actual materials 禊赏亭: original stub geometry, material values and navigation remain byte-exact (125.475876ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+  +   exactStubGeometry: 'ea2c73d34fb38745348f7b155e75d4c95c7e8f6da19219f662d7a6c93dc03a8d',
+  -   exactStubGeometry: '2dab3f8ddb20bc8bfe415541427bbecfd4b16e5adc6140198f12aaddbdf0a3e0',
+      huangjiRemoved: null,
+      id: 'place-ningshou-fadd286b97',
+  +   meshes: 192,
+  -   meshes: 234,
+      name: '禊赏亭',
+  +   navigation: 'a7e2a5911e119b46059fd6eedf800e7e1d5a5ca35a50c9aebd86b31d0214767e',
+  +   physicalSemanticGeometry: 'b1e9ec0b0215828740ca65a80c92cae8f65f718596e98db32d8be52a8d2b3f48',
+  -   navigation: '255e497f5e5ea832d1bd5d14b2fc9147393fee96eac09ec317fb60347a2a4c4c',
+  -   physicalSemanticGeometry: 'e5ed1211be5599807b4b304255c9fde3dee7be3c2115198d383399a989e144cd',
+      roof: [
+        {
+          materials: [
+            {
+              color: [
+  ...
+      ],
+  +   triangles: 13986
+  -   triangles: 10730
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-real-materials.test.mjs:13:246)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { id: 'place-ningshou-fadd286b97', name: '禊赏亭', meshes: 192, triangles: 13986, exactStubGeometry: 'ea2c73d34fb38745348f7b155e75d4c95c7e8f6da19219f662d7a6c93dc03a8d', physicalSemanticGeometry: 'b1e9ec0b0215828740ca65a80c92cae8f65f718596e98db32d8be52a8d2b3f48', navigation: 'a7e2a5911e119b46059fd6eedf800e7e1d5a5ca35a50c9aebd86b31d0214767e', roof: [ [Object], [Object], [Object], [Object] ], huangjiRemoved: null },
+    expected: { id: 'place-ningshou-fadd286b97', name: '禊赏亭', meshes: 234, triangles: 10730, exactStubGeometry: '2dab3f8ddb20bc8bfe415541427bbecfd4b16e5adc6140198f12aaddbdf0a3e0', physicalSemanticGeometry: 'e5ed1211be5599807b4b304255c9fde3dee7be3c2115198d383399a989e144cd', navigation: '255e497f5e5ea832d1bd5d14b2fc9147393fee96eac09ec317fb60347a2a4c4c', roof: [ [Object], [Object], [Object], [Object] ], huangjiRemoved: null },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-ningshou-real-materials.test.mjs:13:2
+✖ R48 actual materials 遂初堂: original stub geometry, material values and navigation remain byte-exact (149.272403ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+  +   exactStubGeometry: '0bede8fd6980ed8335eb002eeb469b1808d6a0cafc480f1ef2bd512278714726',
+  -   exactStubGeometry: '52d97ab00936c0d80b5831bc382d6d53dac49901069907ac6d8593c196ee5826',
+      huangjiRemoved: null,
+      id: 'place-ningshou-e604d58704',
+  +   meshes: 435,
+  -   meshes: 423,
+      name: '遂初堂',
+  +   navigation: '955c7c5d0c299a678a53b8a5f7722c898682ff6593cc46f193a97ed7addf6329',
+  +   physicalSemanticGeometry: 'fd36434363cabef61456168349cb921777fc135ecf5cebf79353f93a24140504',
+  -   navigation: 'ff4d1b9cc21b1581576321847e314a98104a2a18cf550faa3618ce37743cc0f1',
+  -   physicalSemanticGeometry: '7ae52678ea0ae5502d7098afec7fcdeb06f30710049f8c92825f551c10d479b3',
+      roof: [
+        {
+          materials: [
+            {
+              color: [
+  ...
+      ],
+  +   triangles: 14774
+  -   triangles: 11754
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-real-materials.test.mjs:13:246)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { id: 'place-ningshou-e604d58704', name: '遂初堂', meshes: 435, triangles: 14774, exactStubGeometry: '0bede8fd6980ed8335eb002eeb469b1808d6a0cafc480f1ef2bd512278714726', physicalSemanticGeometry: 'fd36434363cabef61456168349cb921777fc135ecf5cebf79353f93a24140504', navigation: '955c7c5d0c299a678a53b8a5f7722c898682ff6593cc46f193a97ed7addf6329', roof: [ [Object] ], huangjiRemoved: null },
+    expected: { id: 'place-ningshou-e604d58704', name: '遂初堂', meshes: 423, triangles: 11754, exactStubGeometry: '52d97ab00936c0d80b5831bc382d6d53dac49901069907ac6d8593c196ee5826', physicalSemanticGeometry: '7ae52678ea0ae5502d7098afec7fcdeb06f30710049f8c92825f551c10d479b3', navigation: 'ff4d1b9cc21b1581576321847e314a98104a2a18cf550faa3618ce37743cc0f1', roof: [ [Object] ], huangjiRemoved: null },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-ningshou-real-materials.test.mjs:13:2
+✖ R48 actual materials 延趣楼: original stub geometry, material values and navigation remain byte-exact (101.550055ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+  +   exactStubGeometry: 'efe1f73093bb0cdf949ecfd801264ef7b9e7bf808da06a4f9489f3dff792976c',
+  -   exactStubGeometry: 'a72fc14e434f69bf4b09f2cc8368c32453244a9722bbd433a6458d016c55087e',
+      huangjiRemoved: null,
+      id: 'place-ningshou-c7215a0eda',
+  +   meshes: 1006,
+  -   meshes: 1012,
+      name: '延趣楼',
+  +   navigation: '307c1acadc196d1a82968863a99e8dc98b4ccccaa51fc1a3657bfa13da3656da',
+  +   physicalSemanticGeometry: '28b63edb272828575868311da5629b79593fe537d01fceb55290b274ab05c94e',
+  -   navigation: '16ac213fc809b8847e5fb9e1a6e224e5bce23952311e8e808ce1d410d1b871fa',
+  -   physicalSemanticGeometry: '34b9cfae85d7fa5d43c71e1556ddbe8a08058d0e853ccbfae981728862dd40ce',
+      roof: [
+        {
+          materials: [
+            {
+              color: [
+  ...
+      ],
+  +   triangles: 18378
+  -   triangles: 18450
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-real-materials.test.mjs:13:246)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { id: 'place-ningshou-c7215a0eda', name: '延趣楼', meshes: 1006, triangles: 18378, exactStubGeometry: 'efe1f73093bb0cdf949ecfd801264ef7b9e7bf808da06a4f9489f3dff792976c', physicalSemanticGeometry: '28b63edb272828575868311da5629b79593fe537d01fceb55290b274ab05c94e', navigation: '307c1acadc196d1a82968863a99e8dc98b4ccccaa51fc1a3657bfa13da3656da', roof: [ [Object] ], huangjiRemoved: null },
+    expected: { id: 'place-ningshou-c7215a0eda', name: '延趣楼', meshes: 1012, triangles: 18450, exactStubGeometry: 'a72fc14e434f69bf4b09f2cc8368c32453244a9722bbd433a6458d016c55087e', physicalSemanticGeometry: '34b9cfae85d7fa5d43c71e1556ddbe8a08058d0e853ccbfae981728862dd40ce', navigation: '16ac213fc809b8847e5fb9e1a6e224e5bce23952311e8e808ce1d410d1b871fa', roof: [ [Object] ], huangjiRemoved: null },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-ningshou-real-materials.test.mjs:13:2
+✖ R48 actual materials 萃赏楼: original stub geometry, material values and navigation remain byte-exact (137.241826ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+  +   exactStubGeometry: '85199857c74e1b0c1276e1060979a33583d0819547d2a60fe6f5c51b54694d46',
+  -   exactStubGeometry: 'b1dfd1fd653b17983abb37db10f373821ceb279279631ad5b363d4eaeac91ded',
+      huangjiRemoved: null,
+      id: 'place-ningshou-b6cde8615b',
+  +   meshes: 1106,
+  -   meshes: 1114,
+      name: '萃赏楼',
+  +   navigation: 'ec3a60c82243638a20ac883c6e58c36a1a2e3f4820fcad2dd282d7c27f30aad9',
+  +   physicalSemanticGeometry: '386e2d32876416096a562be6a578e306004118b055717ae6fd5ed83373198122',
+  -   navigation: 'b6fa563bf3cdf34f2040819437dbbd37bcf771dbf677043fedf87c1740f15d3d',
+  -   physicalSemanticGeometry: '55f523b87397581d8e771d01bb784b4c4069e856ffb565608f781d3d345f31aa',
+      roof: [
+        {
+          materials: [
+            {
+              color: [
+  ...
+      ],
+  +   triangles: 21162
+  -   triangles: 21258
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-real-materials.test.mjs:13:246)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { id: 'place-ningshou-b6cde8615b', name: '萃赏楼', meshes: 1106, triangles: 21162, exactStubGeometry: '85199857c74e1b0c1276e1060979a33583d0819547d2a60fe6f5c51b54694d46', physicalSemanticGeometry: '386e2d32876416096a562be6a578e306004118b055717ae6fd5ed83373198122', navigation: 'ec3a60c82243638a20ac883c6e58c36a1a2e3f4820fcad2dd282d7c27f30aad9', roof: [ [Object] ], huangjiRemoved: null },
+    expected: { id: 'place-ningshou-b6cde8615b', name: '萃赏楼', meshes: 1114, triangles: 21258, exactStubGeometry: 'b1dfd1fd653b17983abb37db10f373821ceb279279631ad5b363d4eaeac91ded', physicalSemanticGeometry: '55f523b87397581d8e771d01bb784b4c4069e856ffb565608f781d3d345f31aa', navigation: 'b6fa563bf3cdf34f2040819437dbbd37bcf771dbf677043fedf87c1740f15d3d', roof: [ [Object] ], huangjiRemoved: null },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-ningshou-real-materials.test.mjs:13:2
+✖ R48 actual materials 碧螺亭: original stub geometry, material values and navigation remain byte-exact (115.686954ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+  +   exactStubGeometry: '3ce88e07990e61abe16124c9fe72c27a69d9641069ab7ee726ec5e824af5c657',
+  -   exactStubGeometry: 'c1d19577a35902595bc46517443ba957d365e423c9d3d075cf266c34fb642337',
+      huangjiRemoved: null,
+      id: 'place-ningshou-47ec73915d',
+  +   meshes: 83,
+  -   meshes: 79,
+      name: '碧螺亭',
+      navigation: 'b8dee1c98ec0e63c98946bb4ec7747382217cbb11f5c7df06d195ef4a8fed43d',
+  +   physicalSemanticGeometry: '46e62de94559c778dbd158ac685ae689d5810063286f8264b6d43e4cdeb52bc9',
+  -   physicalSemanticGeometry: '0bd3650a95fa43fbf74d4841a04d4369133c4573140dc629b8e8d6d8e924d711',
+      roof: [
+        {
+          materials: [
+            {
+              color: [
+  ...
+      ],
+  +   triangles: 9826
+  -   triangles: 8818
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-real-materials.test.mjs:13:246)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { id: 'place-ningshou-47ec73915d', name: '碧螺亭', meshes: 83, triangles: 9826, exactStubGeometry: '3ce88e07990e61abe16124c9fe72c27a69d9641069ab7ee726ec5e824af5c657', physicalSemanticGeometry: '46e62de94559c778dbd158ac685ae689d5810063286f8264b6d43e4cdeb52bc9', navigation: 'b8dee1c98ec0e63c98946bb4ec7747382217cbb11f5c7df06d195ef4a8fed43d', roof: [ [Object], [Object] ], huangjiRemoved: null },
+    expected: { id: 'place-ningshou-47ec73915d', name: '碧螺亭', meshes: 79, triangles: 8818, exactStubGeometry: 'c1d19577a35902595bc46517443ba957d365e423c9d3d075cf266c34fb642337', physicalSemanticGeometry: '0bd3650a95fa43fbf74d4841a04d4369133c4573140dc629b8e8d6d8e924d711', navigation: 'b8dee1c98ec0e63c98946bb4ec7747382217cbb11f5c7df06d195ef4a8fed43d', roof: [ [Object], [Object] ], huangjiRemoved: null },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-ningshou-real-materials.test.mjs:13:2
+✖ R48 actual materials 符望阁: original stub geometry, material values and navigation remain byte-exact (203.056495ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+  +   exactStubGeometry: 'd49d4eda7cf8f77502abf3157236f5254dabe203a5e554fd054d0cc413dac250',
+  -   exactStubGeometry: 'd03a2bd38b779dfc9ba0e20faed2ad0f3f1915c1b60d1f34ec477a00679d56a0',
+      huangjiRemoved: null,
+      id: 'place-ningshou-722e40e471',
+  +   meshes: 1747,
+  -   meshes: 1755,
+      name: '符望阁',
+  +   navigation: '2a968fcd84837613438f426d33b7f3a4146b24a5dc47355b54db79cdfd67fc50',
+  +   physicalSemanticGeometry: '0b369731c1b25029c054ee2b72e1651477335a896f24822f565b1c3e55d92395',
+  -   navigation: 'cbe3557acdf0441d669e27f86e3cf1b312f473d91ae8cf32a0bd9a820bcf3767',
+  -   physicalSemanticGeometry: '281ba05db143e209caef08c0b08867b13531ac1eb613a290e3af0f60a8d6a78d',
+      roof: [
+        {
+          materials: [
+            {
+              color: [
+  ...
+      ],
+  +   triangles: 24714
+  -   triangles: 24810
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-real-materials.test.mjs:13:246)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { id: 'place-ningshou-722e40e471', name: '符望阁', meshes: 1747, triangles: 24714, exactStubGeometry: 'd49d4eda7cf8f77502abf3157236f5254dabe203a5e554fd054d0cc413dac250', physicalSemanticGeometry: '0b369731c1b25029c054ee2b72e1651477335a896f24822f565b1c3e55d92395', navigation: '2a968fcd84837613438f426d33b7f3a4146b24a5dc47355b54db79cdfd67fc50', roof: [ [Object] ], huangjiRemoved: null },
+    expected: { id: 'place-ningshou-722e40e471', name: '符望阁', meshes: 1755, triangles: 24810, exactStubGeometry: 'd03a2bd38b779dfc9ba0e20faed2ad0f3f1915c1b60d1f34ec477a00679d56a0', physicalSemanticGeometry: '281ba05db143e209caef08c0b08867b13531ac1eb613a290e3af0f60a8d6a78d', navigation: 'cbe3557acdf0441d669e27f86e3cf1b312f473d91ae8cf32a0bd9a820bcf3767', roof: [ [Object] ], huangjiRemoved: null },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-ningshou-real-materials.test.mjs:13:2
+✖ R48 actual materials 倦勤斋: original stub geometry, material values and navigation remain byte-exact (116.931011ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+  +   exactStubGeometry: '708012bdbbe2fe330a6a2bdd7596b26f43874b9f7fd543ebf1eeb40bf704fe95',
+  -   exactStubGeometry: 'bf94ff286a03de218d4440e7c4e0a03a6e284f285f599f2e363109de0794e26b',
+      huangjiRemoved: null,
+      id: 'place-ningshou-f4d12b27e6',
+  +   meshes: 713,
+  -   meshes: 720,
+      name: '倦勤斋',
+  +   navigation: '1bbe3285da9fd37d94af8023c7fd44ac03150f8e44c2d5c1e6f265c1c8d14bef',
+  +   physicalSemanticGeometry: 'd8c70d37d2c522b8cb61517f8a65dcd8e01a1125739deaf5a9916afec04a1187',
+  -   navigation: '12e8d8e4d5bbcf06cdf8188fc67fa667336c433987fed2a8e284425187c2cd88',
+  -   physicalSemanticGeometry: '1c6938324a60c62dbe9ea917904cb77e9a1cd904a8e6faa04dc5305486b7870c',
+      roof: [
+        {
+          materials: [
+            {
+              color: [
+  ...
+      ],
+  +   triangles: 22282
+  -   triangles: 22366
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-real-materials.test.mjs:13:246)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { id: 'place-ningshou-f4d12b27e6', name: '倦勤斋', meshes: 713, triangles: 22282, exactStubGeometry: '708012bdbbe2fe330a6a2bdd7596b26f43874b9f7fd543ebf1eeb40bf704fe95', physicalSemanticGeometry: 'd8c70d37d2c522b8cb61517f8a65dcd8e01a1125739deaf5a9916afec04a1187', navigation: '1bbe3285da9fd37d94af8023c7fd44ac03150f8e44c2d5c1e6f265c1c8d14bef', roof: [ [Object] ], huangjiRemoved: null },
+    expected: { id: 'place-ningshou-f4d12b27e6', name: '倦勤斋', meshes: 720, triangles: 22366, exactStubGeometry: 'bf94ff286a03de218d4440e7c4e0a03a6e284f285f599f2e363109de0794e26b', physicalSemanticGeometry: '1c6938324a60c62dbe9ea917904cb77e9a1cd904a8e6faa04dc5305486b7870c', navigation: '12e8d8e4d5bbcf06cdf8188fc67fa667336c433987fed2a8e284425187c2cd88', roof: [ [Object] ], huangjiRemoved: null },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-ningshou-real-materials.test.mjs:13:2
+✖ R48 actual materials 畅音阁: original stub geometry, material values and navigation remain byte-exact (86.823806ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+  +   exactStubGeometry: 'f981b5c8ba1627b696005d8e59cd1ed781a572f87aeba4fbfc5173bb88cd2273',
+  -   exactStubGeometry: 'ffb32b114c7f9c8558a2840d20f6904f9868e68fba454a1cc9951d95f6024308',
+      huangjiRemoved: null,
+      id: 'place-ningshou-82e7771bd4',
+  +   meshes: 971,
+  -   meshes: 979,
+      name: '畅音阁',
+  +   navigation: '1c79917ead6d0336ecb2d046af92b5c3f1ba88d3020fe7706b54dc55be329d94',
+  +   physicalSemanticGeometry: '89527a2523d41ede9c6e29d6ea09dbebdf090c111d487f941d709ca0ba633eeb',
+  -   navigation: '7cae65f2f29d4c458f6bf031a3336e0a3de62346cec5b80f9be2553cf55fa0df',
+  -   physicalSemanticGeometry: '7a69f534e2309c300cba374409b0065cf4a81ba7f20a04de871605f40245cc40',
+      roof: [
+        {
+          materials: [
+            {
+              color: [
+  ...
+      ],
+  +   triangles: 17990
+  -   triangles: 18086
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-real-materials.test.mjs:13:246)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { id: 'place-ningshou-82e7771bd4', name: '畅音阁', meshes: 971, triangles: 17990, exactStubGeometry: 'f981b5c8ba1627b696005d8e59cd1ed781a572f87aeba4fbfc5173bb88cd2273', physicalSemanticGeometry: '89527a2523d41ede9c6e29d6ea09dbebdf090c111d487f941d709ca0ba633eeb', navigation: '1c79917ead6d0336ecb2d046af92b5c3f1ba88d3020fe7706b54dc55be329d94', roof: [ [Object] ], huangjiRemoved: null },
+    expected: { id: 'place-ningshou-82e7771bd4', name: '畅音阁', meshes: 979, triangles: 18086, exactStubGeometry: 'ffb32b114c7f9c8558a2840d20f6904f9868e68fba454a1cc9951d95f6024308', physicalSemanticGeometry: '7a69f534e2309c300cba374409b0065cf4a81ba7f20a04de871605f40245cc40', navigation: '7cae65f2f29d4c458f6bf031a3336e0a3de62346cec5b80f9be2553cf55fa0df', roof: [ [Object] ], huangjiRemoved: null },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-ningshou-real-materials.test.mjs:13:2
+✖ R48 actual materials 阅是楼: original stub geometry, material values and navigation remain byte-exact (55.211041ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+  +   exactStubGeometry: '92aafd56a7b23c516c5c94505fde818df716a86745424bc0b9b9a2ce8ce7c2ef',
+  -   exactStubGeometry: '386eb201bb7d28a157c890a54e1a3a3804018ae976ab12e5226c46d98079942b',
+      huangjiRemoved: null,
+      id: 'place-ningshou-78e6a34c2d',
+  +   meshes: 519,
+  -   meshes: 525,
+      name: '阅是楼',
+  +   navigation: '41d6b8a2c70af5129cab126cf2b6756830ae2c049ef8e0b50c854a89e949483d',
+  +   physicalSemanticGeometry: '14e1ad7c0a7c811d72b7e0d13e1ce3e25e7d711c148d14068857b64a505b7644',
+  -   navigation: 'a4df60b780bd2971175ea7cfe452060f683dec90553f47fab3de216f3da10184',
+  -   physicalSemanticGeometry: 'd29f9f8e7c18f0d3ae00c91cb2f60fc4b42ce7930176f158438420a25c879cad',
+      roof: [
+        {
+          materials: [
+            {
+              color: [
+  ...
+      ],
+  +   triangles: 13958
+  -   triangles: 13662
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-real-materials.test.mjs:13:246)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { id: 'place-ningshou-78e6a34c2d', name: '阅是楼', meshes: 519, triangles: 13958, exactStubGeometry: '92aafd56a7b23c516c5c94505fde818df716a86745424bc0b9b9a2ce8ce7c2ef', physicalSemanticGeometry: '14e1ad7c0a7c811d72b7e0d13e1ce3e25e7d711c148d14068857b64a505b7644', navigation: '41d6b8a2c70af5129cab126cf2b6756830ae2c049ef8e0b50c854a89e949483d', roof: [ [Object] ], huangjiRemoved: null },
+    expected: { id: 'place-ningshou-78e6a34c2d', name: '阅是楼', meshes: 525, triangles: 13662, exactStubGeometry: '386eb201bb7d28a157c890a54e1a3a3804018ae976ab12e5226c46d98079942b', physicalSemanticGeometry: 'd29f9f8e7c18f0d3ae00c91cb2f60fc4b42ce7930176f158438420a25c879cad', navigation: 'a4df60b780bd2971175ea7cfe452060f683dec90553f47fab3de216f3da10184', roof: [ [Object] ], huangjiRemoved: null },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-ningshou-real-materials.test.mjs:13:2
+✖ R48 actual materials 寻沿书屋: original stub geometry, material values and navigation remain byte-exact (49.403294ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+  +   exactStubGeometry: 'ad81359dea4420afb2772fb2f1741e21871c1592b111edbe9962bededfc59411',
+  -   exactStubGeometry: '1c40d84365f908e0e7255f139fec20a88b7e85267a1cb4a0468d9ee9319f43d5',
+      huangjiRemoved: null,
+      id: 'place-ningshou-9a08e177bc',
+  +   meshes: 418,
+  -   meshes: 422,
+      name: '寻沿书屋',
+  +   navigation: '03996bd73afd7148e4c27467cce1c0b11cff0d9ec000c3e6c49e1ba3a2e0b1ac',
+  +   physicalSemanticGeometry: 'd9ba8fab5c131298608d73723e84819e9e9f5019fc26203781423aca3654af39',
+  -   navigation: '05c591344ffe67773679dce8a624bb395fd5321e2dd44cc93b818eedc202da7b',
+  -   physicalSemanticGeometry: '4b975ec5ca4f5c9c3ed5676ea700032a106d34cbc5ab83c596544a9d596b3fd3',
+      roof: [
+        {
+          materials: [
+            {
+              color: [
+  ...
+      ],
+  +   triangles: 13138
+  -   triangles: 13186
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-real-materials.test.mjs:13:246)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { id: 'place-ningshou-9a08e177bc', name: '寻沿书屋', meshes: 418, triangles: 13138, exactStubGeometry: 'ad81359dea4420afb2772fb2f1741e21871c1592b111edbe9962bededfc59411', physicalSemanticGeometry: 'd9ba8fab5c131298608d73723e84819e9e9f5019fc26203781423aca3654af39', navigation: '03996bd73afd7148e4c27467cce1c0b11cff0d9ec000c3e6c49e1ba3a2e0b1ac', roof: [ [Object] ], huangjiRemoved: null },
+    expected: { id: 'place-ningshou-9a08e177bc', name: '寻沿书屋', meshes: 422, triangles: 13186, exactStubGeometry: '1c40d84365f908e0e7255f139fec20a88b7e85267a1cb4a0468d9ee9319f43d5', physicalSemanticGeometry: '4b975ec5ca4f5c9c3ed5676ea700032a106d34cbc5ab83c596544a9d596b3fd3', navigation: '05c591344ffe67773679dce8a624bb395fd5321e2dd44cc93b818eedc202da7b', roof: [ [Object] ], huangjiRemoved: null },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-ningshou-real-materials.test.mjs:13:2
+✖ R48 actual materials 庆寿堂: original stub geometry, material values and navigation remain byte-exact (64.850226ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+  +   exactStubGeometry: 'c1fc5fe041a4c6c72a8ece35f516d3c40277776e5432edb4ec7f3ef5d5dd4a8f',
+  -   exactStubGeometry: '391c037ae19dc631403d7d18958ce02bf45f0bbdf3d65374330ec9aa8d17913b',
+      huangjiRemoved: null,
+      id: 'place-ningshou-0d5f3d5831',
+  +   meshes: 385,
+  -   meshes: 389,
+      name: '庆寿堂',
+  +   navigation: 'd95c248a9f4e21ef848fd226e38b57744dc17cf979e18e2445950c9fa3b4460b',
+  +   physicalSemanticGeometry: '0da7d6f0a852981e8fa4691cb2941b2eb64fd931f36fb44c2d079caec163d58a',
+  -   navigation: '871ea281e0bdcac715d3a16e30c419a084daf2e905c8e848c021b0b05cb71d0c',
+  -   physicalSemanticGeometry: '6d58ede403b4468ffe71b9c65b12340331be6b3ae90894eee098c2b6c665a10e',
+      roof: [
+        {
+          materials: [
+            {
+              color: [
+  ...
+      ],
+  +   triangles: 12610
+  -   triangles: 12658
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-real-materials.test.mjs:13:246)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { id: 'place-ningshou-0d5f3d5831', name: '庆寿堂', meshes: 385, triangles: 12610, exactStubGeometry: 'c1fc5fe041a4c6c72a8ece35f516d3c40277776e5432edb4ec7f3ef5d5dd4a8f', physicalSemanticGeometry: '0da7d6f0a852981e8fa4691cb2941b2eb64fd931f36fb44c2d079caec163d58a', navigation: 'd95c248a9f4e21ef848fd226e38b57744dc17cf979e18e2445950c9fa3b4460b', roof: [ [Object] ], huangjiRemoved: null },
+    expected: { id: 'place-ningshou-0d5f3d5831', name: '庆寿堂', meshes: 389, triangles: 12658, exactStubGeometry: '391c037ae19dc631403d7d18958ce02bf45f0bbdf3d65374330ec9aa8d17913b', physicalSemanticGeometry: '6d58ede403b4468ffe71b9c65b12340331be6b3ae90894eee098c2b6c665a10e', navigation: '871ea281e0bdcac715d3a16e30c419a084daf2e905c8e848c021b0b05cb71d0c', roof: [ [Object] ], huangjiRemoved: null },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-ningshou-real-materials.test.mjs:13:2
+✖ R48 actual materials 景福宫: original stub geometry, material values and navigation remain byte-exact (123.066954ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+  +   exactStubGeometry: 'aaf594d5751aaaf69e99ccdf0da74b969b0373406abcd5135e14da04bad23bfa',
+  -   exactStubGeometry: 'bc32200b227af988258ca55ac952555d62bf75d788d908f710548f8dc0da5808',
+      huangjiRemoved: null,
+      id: 'place-ningshou-7616c3b4b6',
+  +   meshes: 904,
+  -   meshes: 912,
+      name: '景福宫',
+  +   navigation: '608795fb37914ce7e288181119a53156634712960ce508432088609effaefa0f',
+  +   physicalSemanticGeometry: 'a1f246df84df196d60b73f32cae3fbacec6372958d497ed0b8a2881eb24aec80',
+  -   navigation: 'ad6a498db2062abe35c3e81b59cafeb444ced1e6186904399e47ebfd7bee9de1',
+  -   physicalSemanticGeometry: '3ce8660eacdea23510cff0e12e4b7d7f72163cce949e4033d12ce7cc172508c3',
+      roof: [
+        {
+          materials: [
+            {
+              color: [
+  ...
+      ],
+  +   triangles: 30676
+  -   triangles: 30772
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-real-materials.test.mjs:13:246)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { id: 'place-ningshou-7616c3b4b6', name: '景福宫', meshes: 904, triangles: 30676, exactStubGeometry: 'aaf594d5751aaaf69e99ccdf0da74b969b0373406abcd5135e14da04bad23bfa', physicalSemanticGeometry: 'a1f246df84df196d60b73f32cae3fbacec6372958d497ed0b8a2881eb24aec80', navigation: '608795fb37914ce7e288181119a53156634712960ce508432088609effaefa0f', roof: [ [Object], [Object], [Object] ], huangjiRemoved: null },
+    expected: { id: 'place-ningshou-7616c3b4b6', name: '景福宫', meshes: 912, triangles: 30772, exactStubGeometry: 'bc32200b227af988258ca55ac952555d62bf75d788d908f710548f8dc0da5808', physicalSemanticGeometry: '3ce8660eacdea23510cff0e12e4b7d7f72163cce949e4033d12ce7cc172508c3', navigation: 'ad6a498db2062abe35c3e81b59cafeb444ced1e6186904399e47ebfd7bee9de1', roof: [ [Object], [Object], [Object] ], huangjiRemoved: null },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-ningshou-real-materials.test.mjs:13:2
+✖ R48 actual materials 梵华楼: original stub geometry, material values and navigation remain byte-exact (0.334572ms)
+  TypeError: Cannot read properties of null (reading 'mode')
+      at make (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-real-materials.test.mjs:7:166)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-real-materials.test.mjs:13:129)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r48-ningshou-real-materials.test.mjs:14:2
+✖ R48 actual materials 梵华楼: real production library has identical physical and semantic output (0.103606ms)
+  TypeError: Cannot read properties of null (reading 'mode')
+      at make (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-real-materials.test.mjs:7:166)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-real-materials.test.mjs:14:123)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r48-ningshou-real-materials.test.mjs:15:2
+✖ R48 actual materials 梵华楼: actual finish return is merged, agrees and releases correct resources (0.080932ms)
+  TypeError: Cannot read properties of null (reading 'mode')
+      at make (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-real-materials.test.mjs:7:166)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-real-materials.test.mjs:16:11)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r48-ningshou-regressions.test.mjs:1:1
+✖ tests/r48-ningshou-regressions.test.mjs (113134.028493ms)
+  'test failed'
+
+test at tests/r48-ningshou-room-clearance.test.mjs:16:24
+✖ R48 cylinder proxy 梵华楼: every solid tapered cylinder uses its actual vertex envelope (1.364759ms)
+  TypeError: Cannot read properties of null (reading 'mode')
+      at make (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-room-clearance.test.mjs:13:164)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-room-clearance.test.mjs:16:137)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/r48-ningshou-wholeworld.test.mjs:18:44
+✖ R48 whole-world 遂初堂 current Teleport.isSafe follows the real profile entry (12.186603ms)
+  AssertionError [ERR_ASSERTION]: {"g":{"name":"遂初堂","cx":-253.1,"cz":422.1,"frontX":-253.1,"frontZ":418.3,"entryProfile":"place-ningshou-e604d58704","approachPoints":[{"localX":0,"localZ":-7.949999999999999,"x":-253.1,"z":414.15000000000003,"feetY":0,"y":0},{"localX":0,"localZ":-7.549999999999999,"x":-253.1,"z":414.55,"feetY":0,"y":0},{"localX":0,"localZ":-4.8999999999999995,"x":-253.1,"z":417.20000000000005,"feetY":0.5,"y":0.5},{"localX":0,"localZ":-3.8,"x":-253.1,"z":418.3,"feetY":0.5,"y":0.5},{"localX":0,"localZ":-3.0999999999999996,"x":-253.1,"z":419,"feetY":0.5,"y":0.5}],"requiredZone":"ningshou"},"landing":{"name":"遂初堂","x":-253.1,"z":414.15000000000003,"lookAtX":-253.1,"lookAtZ":418.3,"distance":4.149999999999977,"lateral":0,"entryProfile":"place-ningshou-e604d58704"}}
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-wholeworld.test.mjs:18:368)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r48-ningshou-wholeworld.test.mjs:18:44
+✖ R48 whole-world 梵华楼 current Teleport.isSafe follows the real profile entry (2.259381ms)
+  AssertionError [ERR_ASSERTION]: {"g":{"name":"梵华楼","cx":-340,"cz":511.05,"frontX":-340,"frontZ":507.85,"entryProfile":"place-ningshou-d40cef5893","approachPoints":[{"localX":0,"localZ":-5.85,"x":-340,"z":505.2,"feetY":0,"y":0},{"localX":0,"localZ":-4.85,"x":-340,"z":506.2,"feetY":0,"y":0},{"localX":0,"localZ":-4.6499999999999995,"x":-340,"z":506.40000000000003,"feetY":0.5,"y":0.5},{"localX":0,"localZ":-3.1999999999999997,"x":-340,"z":507.85,"feetY":0.5,"y":0.5},{"localX":0,"localZ":-2.5,"x":-340,"z":508.55,"feetY":0.5,"y":0.5}],"requiredZone":"ningshou"},"landing":{"name":"梵华楼","x":-340,"z":505.2,"lookAtX":-340,"lookAtZ":507.85,"distance":2.650000000000034,"lateral":0,"entryProfile":"place-ningshou-d40cef5893"}}
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-wholeworld.test.mjs:18:368)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

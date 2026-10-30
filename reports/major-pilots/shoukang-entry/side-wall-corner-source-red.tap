@@ -1,0 +1,36 @@
+TAP version 13
+# Subtest: new south wall caps cannot provide access through either actual unchanged high side-wall body
+not ok 1 - new south wall caps cannot provide access through either actual unchanged high side-wall body
+  ---
+  duration_ms: 165.681708
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/corners.test.mjs:3:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"fps":10,"start":270.5,"i":2,"feet":5.289000034332275,"p":[269.27650089638803,6.989000034332276,193.9],"wall":{"min":{"x":268.1300048828125,"y":1,"z":193.89999389648438},"max":{"x":269.1300048828125,"y":6.5,"z":273.0199890136719}}}
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/corners.test.mjs:3:1210
+    withTerrainController (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r91-controller-clock.mjs:3:633)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/corners.test.mjs:3:668)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 450.695374

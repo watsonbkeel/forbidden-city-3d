@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: west viewing-side curtain frame has its own complete upper register and edged raised valance
+not ok 1 - west viewing-side curtain frame has its own complete upper register and edged raised valance
+  ---
+  duration_ms: 36.995175
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/changchun-west/composition.test.mjs:2:1'
+  failureType: 'testCodeFailure'
+  error: 'western upper register missing'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/changchun-west/composition.test.mjs:2:160)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: west north-kang cover is a source-specific continuous frame and window backdrop, not four generic poles
+not ok 2 - west north-kang cover is a source-specific continuous frame and window backdrop, not four generic poles
+  ---
+  duration_ms: 10.9962
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/changchun-west/composition.test.mjs:3:1'
+  failureType: 'testCodeFailure'
+  error: 'western canopy register missing'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/changchun-west/composition.test.mjs:3:171)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 0
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 283.733283

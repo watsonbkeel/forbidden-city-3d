@@ -1,0 +1,39 @@
+✖ atomic reject manual old source matrix (134.028332ms)
+✔ atomic reject normalized old index (23.124392ms)
+✔ atomic reject hidden root (11.61822ms)
+✔ atomic reject hidden retained material (38.752407ms)
+✔ atomic reject hidden old material (7.738168ms)
+✔ atomic reject invisible old color write (16.744905ms)
+✔ atomic reject retained position normalization (14.87787ms)
+✔ atomic reject hidden old source (23.461504ms)
+✔ atomic reject removed draw group (8.750156ms)
+✔ atomic reject scope carrying old collider (5.081002ms)
+✔ atomic reject moved retained column (21.686244ms)
+✔ atomic reject missing retained window (26.298553ms)
+✔ atomic reject duplicate material owner (8.920213ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 12
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 679.865546
+
+✖ failing tests:
+
+test at tests/major-pilots/tihe-west/guard.test.mjs:5:3
+✖ atomic reject manual old source matrix (134.028332ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/tihe-west/guard.test.mjs:5:303)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }

@@ -1,0 +1,66 @@
+TAP version 13
+# Subtest: standing seated moving NPC blockers do not create a false landing or jump reset on entrance threshold and actual perimeter ground
+ok 1 - standing seated moving NPC blockers do not create a false landing or jump reset on entrance threshold and actual perimeter ground
+  ---
+  duration_ms: 206.58373
+  type: 'test'
+  ...
+# Subtest: generic .3/.5 callers traverse threshold and bounded perimeter ground in both directions
+ok 2 - generic .3/.5 callers traverse threshold and bounded perimeter ground in both directions
+  ---
+  duration_ms: 93.936478
+  type: 'test'
+  ...
+# Subtest: all reachable narrow strip boundaries and entry handoff survive ULP offsets in both directions for .3/.5 bodies
+ok 3 - all reachable narrow strip boundaries and entry handoff survive ULP offsets in both directions for .3/.5 bodies
+  ---
+  duration_ms: 49.045859
+  type: 'test'
+  ...
+# Subtest: 10/60Hz controls cross actual reachable perimeter and entrance domain handoffs without stale ground
+ok 4 - 10/60Hz controls cross actual reachable perimeter and entrance domain handoffs without stale ground
+  ---
+  duration_ms: 147.447757
+  type: 'test'
+  ...
+# Subtest: generic .3/.5 bodies actually enter and leave all accessible narrow dispatch edges
+ok 5 - generic .3/.5 bodies actually enter and leave all accessible narrow dispatch edges
+  ---
+  duration_ms: 65.234568
+  type: 'test'
+  ...
+# Subtest: 12m roof falls and 3m under-eave stone-stand falls stay on real source without intrusion
+not ok 6 - 12m roof falls and 3m under-eave stone-stand falls stay on real source without intrusion
+  ---
+  duration_ms: 2706.908046
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/fall.test.mjs:2:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    initial body clear of actual roof source
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/fall.test.mjs:2:714
+    withTerrainController (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r91-controller-clock.mjs:3:633)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/fall.test.mjs:2:522)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 5
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3725.346673

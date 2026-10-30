@@ -1,0 +1,32 @@
+✖ five hanging spans and five-sector two-ring ceiling have honest source metadata (185.617629ms)
+✔ all old roofs finial columns rails platform and east steps remain exact with no navigation changes (195.257375ms)
+✔ all new canopy work clears original platform player head and has finite actual triangles (109.280243ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 697.901917
+
+✖ failing tests:
+
+test at tests/major-pilots/biluo/geometry.test.mjs:3:1
+✖ five hanging spans and five-sector two-ring ceiling have honest source metadata (185.617629ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  6 !== 7
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/biluo/geometry.test.mjs:3:455)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 6,
+    expected: 7,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

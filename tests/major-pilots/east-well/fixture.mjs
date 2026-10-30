@@ -1,0 +1,2 @@
+import fs from 'node:fs';import {ZoneBase} from '../../../src/scene/zones/ZoneBase.js';import {library} from '../../lib/inner-palace-fixture.mjs';import {buildEastWellPavilion} from '../../../src/scene/palace/special/EastWellPavilion.js';
+export function make(lib=library()){const data=JSON.parse(fs.readFileSync('data/zones/garden.json')),zone=new ZoneBase(lib,data),built=buildEastWellPavilion(zone.kit,data);return{zone,kit:zone.kit,data,f:built.frame,g:built.geometry,dispose(){zone.kit.dispose(zone.kit.root)}}}

@@ -1,0 +1,27 @@
+✖ all six plain blue bands intersect the actual vase outer source at every lathe sector midpoint (106.989573ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 394.081429
+
+✖ failing tests:
+
+test at tests/major-pilots/tihe-west/vase-bands.test.mjs:2:1
+✖ all six plain blue bands intersect the actual vase outer source at every lathe sector midpoint (106.989573ms)
+  AssertionError [ERR_ASSERTION]: {"y":1.8099999999999998,"angle":4.71238898038469,"outer":0.19737188303909647,"band":[0.19441667199134827]}
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/tihe-west/vase-bands.test.mjs:2:868)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

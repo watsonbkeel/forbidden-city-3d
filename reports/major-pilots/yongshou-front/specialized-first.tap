@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: whole south visual ensemble has four source-field windows and only finishes retained open leaves
+ok 1 - whole south visual ensemble has four source-field windows and only finishes retained open leaves
+  ---
+  duration_ms: 39.721214
+  type: 'test'
+  ...
+# Subtest: every existing physics/nav record retains identity/value; new window visual stays inside original final-F32 envelope
+ok 2 - every existing physics/nav record retains identity/value; new window visual stays inside original final-F32 envelope
+  ---
+  duration_ms: 49.13532
+  type: 'test'
+  ...
+# Subtest: canonical full original source guard rejects mutation before changing live scene
+ok 3 - canonical full original source guard rejects mutation before changing live scene
+  ---
+  duration_ms: 47.59246
+  type: 'test'
+  ...
+# Subtest: late detached mesh construction failure disposes staged geometry only, without any scene/physics/leaf mutation
+ok 4 - late detached mesh construction failure disposes staged geometry only, without any scene/physics/leaf mutation
+  ---
+  duration_ms: 7.553379
+  type: 'test'
+  ...
+# Subtest: private south finishes survive real-material final merge and dispose textures/materials/geometries once
+ok 5 - private south finishes survive real-material final merge and dispose textures/materials/geometries once
+  ---
+  duration_ms: 57.434161
+  type: 'test'
+  ...
+# Subtest: complete west-six non-target render sources and ALL physics/navigation records equal actual safe parent
+ok 6 - complete west-six non-target render sources and ALL physics/navigation records equal actual safe parent
+  ---
+  duration_ms: 1758.360137
+  type: 'test'
+  ...
+# Subtest: 96 actual World/controller trajectory hashes and outcomes equal actual cb455649 replay, including inherited failures
+ok 7 - 96 actual World/controller trajectory hashes and outcomes equal actual cb455649 replay, including inherited failures
+  ---
+  duration_ms: 2.348883
+  type: 'test'
+  ...
+# Subtest: actual World south-portal walk/run-with-final-braking/jump both directions at10/60
+ok 8 - actual World south-portal walk/run-with-final-braking/jump both directions at10/60
+  ---
+  duration_ms: 157.293099
+  type: 'test'
+  ...
+# Subtest: actual World north-portal walk/run-with-final-braking/jump both directions at10/60
+ok 9 - actual World north-portal walk/run-with-final-braking/jump both directions at10/60
+  ---
+  duration_ms: 86.675382
+  type: 'test'
+  ...
+# Subtest: actual World south-court walk/run-with-final-braking/jump both directions at10/60
+ok 10 - actual World south-court walk/run-with-final-braking/jump both directions at10/60
+  ---
+  duration_ms: 157.421892
+  type: 'test'
+  ...
+# Subtest: actual World generic kinematic radii .3/.5 retain central and transverse floor routes
+ok 11 - actual World generic kinematic radii .3/.5 retain central and transverse floor routes
+  ---
+  duration_ms: 45.199934
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 11698.516743

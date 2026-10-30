@@ -1,0 +1,386 @@
+TAP version 13
+# Subtest: every inset part touches retained backing; actual Float32 merged envelope equals original closed leaf
+ok 1 - every inset part touches retained backing; actual Float32 merged envelope equals original closed leaf
+  ---
+  duration_ms: 190.521074
+  type: 'test'
+  ...
+# Subtest: 24 photo-fitted closed leaf assemblies retain original physical and open-door contracts
+ok 2 - 24 photo-fitted closed leaf assemblies retain original physical and open-door contracts
+  ---
+  duration_ms: 103.842699
+  type: 'test'
+  ...
+# Subtest: whole-world production controller retains central and warm-room passages at 10/60 Hz
+ok 3 - whole-world production controller retains central and warm-room passages at 10/60 Hz
+  ---
+  duration_ms: 6453.330061
+  type: 'test'
+  ...
+# Subtest: walk run jump toward closed fitted leaves preserve original controller traces at 10/60 Hz
+ok 4 - walk run jump toward closed fitted leaves preserve original controller traces at 10/60 Hz
+  ---
+  duration_ms: 102.764302
+  type: 'test'
+  ...
+# Subtest: roof platform interiors partitions and every unrelated mesh remain byte-for-byte geometry-equivalent
+ok 5 - roof platform interiors partitions and every unrelated mesh remain byte-for-byte geometry-equivalent
+  ---
+  duration_ms: 116.656632
+  type: 'test'
+  ...
+# Subtest: 慈宁宫 shared ceremonial builder ignores Dafotang switch
+ok 6 - 慈宁宫 shared ceremonial builder ignores Dafotang switch
+  ---
+  duration_ms: 43.044034
+  type: 'test'
+  ...
+# Subtest: 寿安宫 shared ceremonial builder ignores Dafotang switch
+ok 7 - 寿安宫 shared ceremonial builder ignores Dafotang switch
+  ---
+  duration_ms: 43.24791
+  type: 'test'
+  ...
+# Subtest: R46 independent 英华殿 unchanged actual platform, south stairs, supports and intentional roof change
+ok 8 - R46 independent 英华殿 unchanged actual platform, south stairs, supports and intentional roof change
+  ---
+  duration_ms: 63.576054
+  type: 'test'
+  ...
+# Subtest: R46 independent 英华殿 raw triangles finite and nondegenerate, merged flight and ownership
+ok 9 - R46 independent 英华殿 raw triangles finite and nondegenerate, merged flight and ownership
+  ---
+  duration_ms: 68.139072
+  type: 'test'
+  ...
+# Subtest: R46 independent 英华殿 real central entry, closed window barriers and upper clearance
+ok 10 - R46 independent 英华殿 real central entry, closed window barriers and upper clearance
+  ---
+  duration_ms: 34.516362
+  type: 'test'
+  ...
+# Subtest: R46 independent 咸若馆 unchanged actual platform, south stairs, supports and intentional roof change
+ok 11 - R46 independent 咸若馆 unchanged actual platform, south stairs, supports and intentional roof change
+  ---
+  duration_ms: 29.540018
+  type: 'test'
+  ...
+# Subtest: R46 independent 咸若馆 raw triangles finite and nondegenerate, merged flight and ownership
+ok 12 - R46 independent 咸若馆 raw triangles finite and nondegenerate, merged flight and ownership
+  ---
+  duration_ms: 75.011255
+  type: 'test'
+  ...
+# Subtest: R46 independent 咸若馆 real central entry, closed window barriers and upper clearance
+ok 13 - R46 independent 咸若馆 real central entry, closed window barriers and upper clearance
+  ---
+  duration_ms: 21.750931
+  type: 'test'
+  ...
+# Subtest: R46 independent Xianruo three fitted U cabinet tiers meet ceiling, preserve aisle and do not overlap facade windows
+ok 14 - R46 independent Xianruo three fitted U cabinet tiers meet ceiling, preserve aisle and do not overlap facade windows
+  ---
+  duration_ms: 16.67332
+  type: 'test'
+  ...
+# Subtest: R46 independent Xianruo roof overlap is covered, noncoplanar and rear termination hidden by higher main roof
+ok 15 - R46 independent Xianruo roof overlap is covered, noncoplanar and rear termination hidden by higher main roof
+  ---
+  duration_ms: 25.763482
+  type: 'test'
+  ...
+# Subtest: R46 independent 英华殿 visible barrier boxes exactly match registered solid bounds
+ok 16 - R46 independent 英华殿 visible barrier boxes exactly match registered solid bounds
+  ---
+  duration_ms: 19.24162
+  type: 'test'
+  ...
+# Subtest: R46 independent 咸若馆 visible barrier boxes exactly match registered solid bounds
+not ok 17 - R46 independent 咸若馆 visible barrier boxes exactly match registered solid bounds
+  ---
+  duration_ms: 15.22944
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r46-independent-ritual-halls.test.mjs:21:33'
+  failureType: 'testCodeFailure'
+  error: 'xianruo-window-leaf'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r46-independent-ritual-halls.test.mjs:21:403
+    Mesh.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7600:3)
+    Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r46-independent-ritual-halls.test.mjs:21:172)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R46 independent 英华殿 material merge preserves actual triangle counts and world envelopes
+ok 18 - R46 independent 英华殿 material merge preserves actual triangle counts and world envelopes
+  ---
+  duration_ms: 29.607399
+  type: 'test'
+  ...
+# Subtest: R46 independent 咸若馆 material merge preserves actual triangle counts and world envelopes
+ok 19 - R46 independent 咸若馆 material merge preserves actual triangle counts and world envelopes
+  ---
+  duration_ms: 28.956231
+  type: 'test'
+  ...
+# Subtest: R46 independent Xianruo front columns bear on fitted caps in exact contact with piecewise curved underside
+ok 20 - R46 independent Xianruo front columns bear on fitted caps in exact contact with piecewise curved underside
+  ---
+  duration_ms: 17.168715
+  type: 'test'
+  ...
+# Subtest: R46 Yinghua five bays wudian four-leaf front door replaces generic office, not seven invented shrines
+ok 21 - R46 Yinghua five bays wudian four-leaf front door replaces generic office, not seven invented shrines
+  ---
+  duration_ms: 59.80801
+  type: 'test'
+  ...
+# Subtest: R46 Xianruo enclosed three-bay annex opens into five-bay main hall with dated plain ENW cabinet contours
+ok 22 - R46 Xianruo enclosed three-bay annex opens into five-bay main hall with dated plain ENW cabinet contours
+  ---
+  duration_ms: 29.830335
+  type: 'test'
+  ...
+# Subtest: R46 actual whole-zone xianruo entry interior circulation and return 10Hz W sprint
+ok 23 - R46 actual whole-zone xianruo entry interior circulation and return 10Hz W sprint
+  ---
+  duration_ms: 1104.925207
+  type: 'test'
+  ...
+# Subtest: R46 actual whole-zone xianruo entry interior circulation and return 10Hz S sprint
+ok 24 - R46 actual whole-zone xianruo entry interior circulation and return 10Hz S sprint
+  ---
+  duration_ms: 842.696488
+  type: 'test'
+  ...
+# Subtest: R46 actual whole-zone xianruo entry interior circulation and return 60Hz W sprint
+ok 25 - R46 actual whole-zone xianruo entry interior circulation and return 60Hz W sprint
+  ---
+  duration_ms: 900.955404
+  type: 'test'
+  ...
+# Subtest: R46 actual whole-zone xianruo entry interior circulation and return 60Hz S sprint
+ok 26 - R46 actual whole-zone xianruo entry interior circulation and return 60Hz S sprint
+  ---
+  duration_ms: 813.686564
+  type: 'test'
+  ...
+# Subtest: R46 actual whole-zone yinghua entry interior circulation and return 10Hz W sprint
+ok 27 - R46 actual whole-zone yinghua entry interior circulation and return 10Hz W sprint
+  ---
+  duration_ms: 868.851187
+  type: 'test'
+  ...
+# Subtest: R46 actual whole-zone yinghua entry interior circulation and return 10Hz S sprint
+ok 28 - R46 actual whole-zone yinghua entry interior circulation and return 10Hz S sprint
+  ---
+  duration_ms: 806.034758
+  type: 'test'
+  ...
+# Subtest: R46 actual whole-zone yinghua entry interior circulation and return 60Hz W sprint
+ok 29 - R46 actual whole-zone yinghua entry interior circulation and return 60Hz W sprint
+  ---
+  duration_ms: 824.458235
+  type: 'test'
+  ...
+# Subtest: R46 actual whole-zone yinghua entry interior circulation and return 60Hz S sprint
+ok 30 - R46 actual whole-zone yinghua entry interior circulation and return 60Hz S sprint
+  ---
+  duration_ms: 767.43984
+  type: 'test'
+  ...
+# Subtest: R46 all actual registered portals and spawns are clear while Xianruo false front shoulders remain blocked
+ok 31 - R46 all actual registered portals and spawns are clear while Xianruo false front shoulders remain blocked
+  ---
+  duration_ms: 43.683496
+  type: 'test'
+  ...
+# Subtest: R46 exact target profiles reject mismatched shell and overrides before allocation
+ok 32 - R46 exact target profiles reject mismatched shell and overrides before allocation
+  ---
+  duration_ms: 1.849749
+  type: 'test'
+  ...
+# Subtest: R46 all120 non-target hall full geometry material navigation signatures retain R45
+not ok 33 - R46 all120 non-target hall full geometry material navigation signatures retain R45
+  ---
+  duration_ms: 215.361644
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r46-ritual-layout.test.mjs:10:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    axis-courts/24
+    + actual - expected
+    
+      {
+    +   geometry: '1ce8c1f26cd95b2be18b9b59381f4bf55b597fcd2baedb147c70e9265a597ca0',
+    -   geometry: '451dedf64f19f2a996b64b7680b69f5a96fcae5e7ef382c9e0e488eafe621161',
+        navigation: '3b76de2608446648ba564e0ebdb646e3feec8a2b9df0bc25eadfa0c13085a950'
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    geometry: '451dedf64f19f2a996b64b7680b69f5a96fcae5e7ef382c9e0e488eafe621161'
+    navigation: '3b76de2608446648ba564e0ebdb646e3feec8a2b9df0bc25eadfa0c13085a950'
+  actual:
+    geometry: '1ce8c1f26cd95b2be18b9b59381f4bf55b597fcd2baedb147c70e9265a597ca0'
+    navigation: '3b76de2608446648ba564e0ebdb646e3feec8a2b9df0bc25eadfa0c13085a950'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r46-ritual-layout.test.mjs:10:570)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R66 existing Yinghua gate receives one real arched aperture, never three copied from separate shanmen
+ok 34 - R66 existing Yinghua gate receives one real arched aperture, never three copied from separate shanmen
+  ---
+  duration_ms: 26.046565
+  type: 'test'
+  ...
+# Subtest: R66 actual Yinghua arch triangles and full-footprint collision agree without ceiling support
+ok 35 - R66 actual Yinghua arch triangles and full-footprint collision agree without ceiling support
+  ---
+  duration_ms: 11.695933
+  type: 'test'
+  ...
+# Subtest: R66 Yinghua real north/south return 10Hz S=false sprint=false
+ok 36 - R66 Yinghua real north/south return 10Hz S=false sprint=false
+  ---
+  duration_ms: 14.12929
+  type: 'test'
+  ...
+# Subtest: R66 Yinghua real north/south return 10Hz S=false sprint=true
+ok 37 - R66 Yinghua real north/south return 10Hz S=false sprint=true
+  ---
+  duration_ms: 7.378106
+  type: 'test'
+  ...
+# Subtest: R66 Yinghua real north/south return 10Hz S=true sprint=false
+ok 38 - R66 Yinghua real north/south return 10Hz S=true sprint=false
+  ---
+  duration_ms: 6.935761
+  type: 'test'
+  ...
+# Subtest: R66 Yinghua real north/south return 10Hz S=true sprint=true
+ok 39 - R66 Yinghua real north/south return 10Hz S=true sprint=true
+  ---
+  duration_ms: 5.582989
+  type: 'test'
+  ...
+# Subtest: R66 Yinghua real north/south return 60Hz S=false sprint=false
+ok 40 - R66 Yinghua real north/south return 60Hz S=false sprint=false
+  ---
+  duration_ms: 12.892131
+  type: 'test'
+  ...
+# Subtest: R66 Yinghua real north/south return 60Hz S=false sprint=true
+ok 41 - R66 Yinghua real north/south return 60Hz S=false sprint=true
+  ---
+  duration_ms: 8.108012
+  type: 'test'
+  ...
+# Subtest: R66 Yinghua real north/south return 60Hz S=true sprint=false
+ok 42 - R66 Yinghua real north/south return 60Hz S=true sprint=false
+  ---
+  duration_ms: 17.315055
+  type: 'test'
+  ...
+# Subtest: R66 Yinghua real north/south return 60Hz S=true sprint=true
+ok 43 - R66 Yinghua real north/south return 60Hz S=true sprint=true
+  ---
+  duration_ms: 9.756349
+  type: 'test'
+  ...
+# Subtest: R66 Yinghua 5Hz full-body jump/diagonal/entry-edge/drop
+ok 44 - R66 Yinghua 5Hz full-body jump/diagonal/entry-edge/drop
+  ---
+  duration_ms: 38.437353
+  type: 'test'
+  ...
+# Subtest: R66 Yinghua 10Hz full-body jump/diagonal/entry-edge/drop
+ok 45 - R66 Yinghua 10Hz full-body jump/diagonal/entry-edge/drop
+  ---
+  duration_ms: 34.017392
+  type: 'test'
+  ...
+# Subtest: R66 Yinghua 60Hz full-body jump/diagonal/entry-edge/drop
+ok 46 - R66 Yinghua 60Hz full-body jump/diagonal/entry-edge/drop
+  ---
+  duration_ms: 121.423391
+  type: 'test'
+  ...
+# Subtest: R66 arch lifecycle unload clears all owned physics, bad host cannot allocate
+ok 47 - R66 arch lifecycle unload clears all owned physics, bad host cannot allocate
+  ---
+  duration_ms: 4.419199
+  type: 'test'
+  ...
+# Subtest: R66 Yinghua sixteen source-visible window leaves have three-direction lattice not generic rectangular grids
+ok 48 - R66 Yinghua sixteen source-visible window leaves have three-direction lattice not generic rectangular grids
+  ---
+  duration_ms: 58.623953
+  type: 'test'
+  ...
+# Subtest: R66 Yinghua lattice leaves every non-grid byte, collision/support and room/map unchanged
+ok 49 - R66 Yinghua lattice leaves every non-grid byte, collision/support and room/map unchanged
+  ---
+  duration_ms: 27.293309
+  type: 'test'
+  ...
+# Subtest: R66 Yinghua opt-in never touches Xianruo complete geometry/physics
+not ok 50 - R66 Yinghua opt-in never touches Xianruo complete geometry/physics
+  ---
+  duration_ms: 45.412513
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r66-h-yinghua-windows.test.mjs:5:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'b5d4e5dc2165bd709050092d486fdf394fe26226d903356c7b041d409eebc77f'
+    - '647ddf8f0c68be0d998de4a46794454441d3dbfe1449abd1f40f15aac9ff835d'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '647ddf8f0c68be0d998de4a46794454441d3dbfe1449abd1f40f15aac9ff835d'
+  actual: 'b5d4e5dc2165bd709050092d486fdf394fe26226d903356c7b041d409eebc77f'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r66-h-yinghua-windows.test.mjs:5:120)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R66 diagonal bars terminate in each of the sixteen physical window-leaf frames
+ok 51 - R66 diagonal bars terminate in each of the sixteen physical window-leaf frames
+  ---
+  duration_ms: 32.524148
+  type: 'test'
+  ...
+1..51
+# tests 51
+# suites 0
+# pass 48
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 16776.909313

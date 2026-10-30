@@ -1,0 +1,10 @@
+file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/scripts/followup-suichu/audit-existing.mjs:3
+for(const c of W.cm.colliders){if(centers.some(([x,z])=>c.min.x<x+.75&&c.max.x>x-.75&&c.min.z<z+.75&&c.max.z>z-.75)&&c.max.y>0&&c.min.y<2)rows.push({bounds:[c.min.toArray(),c.max.toArray()],owner:W.ownerOf(c)});}
+                                                              ^
+
+TypeError: Cannot read properties of undefined (reading 'x')
+    at file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/scripts/followup-suichu/audit-existing.mjs:3:63
+    at Array.some (<anonymous>)
+    at file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/scripts/followup-suichu/audit-existing.mjs:3:43
+
+Node.js v24.19.0

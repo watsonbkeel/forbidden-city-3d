@@ -1,3 +1,4 @@
+import {linxiPoolGroundPath} from './palace/special/LinxiBridgePool.js';
 import {registerViewFollowingVisual,revokeViewFollowingVisual} from './sky/EnvironmentVisualOwnership.js';
 import {fubiPoolGroundPath} from './garden/FubiArchPool.js';
 import { outerMoatGroundPath, buildOuterMoat } from './palace/special/OuterMoat.js';
@@ -108,6 +109,8 @@ export class Environment {
     const moat = PALACE_LAYOUT.find(item => item.type === 'moat');
     if (moat) shape.holes.push(outerMoatGroundPath(moat));
     shape.holes.push(fubiPoolGroundPath());
+    // Dedicated source-bounded Linxi bridge/pool; false is diagnostic rollback.
+    if (this.linxiBridgePool !== false) shape.holes.push(linxiPoolGroundPath());
     // Permanent dry-pool opening matches the dedicated current-state ruin.
     // It is protected by physical guards; it does not create an entry route.
     const cut = YANXI_RUIN_GROUND_CUTOUT, poolHole = new THREE.Path();

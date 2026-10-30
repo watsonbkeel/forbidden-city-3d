@@ -1,0 +1,73 @@
+✔ own porch has source bounded fields and coffers without copied artwork (56.615502ms)
+✔ all collision navigation and non-target geometry exact with independent rollback (70.896755ms)
+✔ porch ceiling only above three open bays and all additions finite and clear of player volume (35.581992ms)
+✔ R43 independent source topology: shoulder enclosure, open rear join and closed unbuilt connector (74.738026ms)
+✔ R43 independent Suian asymmetric vestibule and two necks have real width, not point-only apertures (32.878059ms)
+✔ R43 independent replacement geometry is finite and releases owned resources without shared materials (40.000355ms)
+✔ R43 independent retained roof platform front stair and support signature exactly match frozen R42 target (29.793675ms)
+✖ R43 independent whole Ningshou merger preserves each Yihe material count and world bounds (1559.512989ms)
+✔ R43 Yihe has distinct seven main and five annex bay axes with three open front bays (85.244732ms)
+✔ R43 full-zone Yihe central entry and west-facing Suian turn-in route at10Hz W sprint (1694.80792ms)
+✔ R43 full-zone Yihe central entry and west-facing Suian turn-in route at10Hz S sprint (1142.068116ms)
+✔ R43 full-zone Yihe central entry and west-facing Suian turn-in route at60Hz W sprint (1033.858265ms)
+✔ R43 full-zone Yihe central entry and west-facing Suian turn-in route at60Hz S sprint (1109.236172ms)
+✔ R43 Suian window remains blocked while west-facing vestibule aperture is genuinely open (12.394346ms)
+✔ R43 Yihe malformed profiles reject before geometry (1.58551ms)
+✖ R43 all121 non-target halls retain independent R42 geometry material and navigation signatures (235.318477ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 14
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5707.660415
+
+✖ failing tests:
+
+test at tests/r43-independent-yihe-plan.test.mjs:54:1
+✖ R43 independent whole Ningshou merger preserves each Yihe material count and world bounds (1559.512989ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  10 !== 4
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r43-independent-yihe-plan.test.mjs:58:136)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 10,
+    expected: 4,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r43-yihe-layout.test.mjs:24:1
+✖ R43 all121 non-target halls retain independent R42 geometry material and navigation signatures (235.318477ms)
+  AssertionError [ERR_ASSERTION]: axis-courts/24
+  + actual - expected
+  
+    {
+  +   geometry: '1ce8c1f26cd95b2be18b9b59381f4bf55b597fcd2baedb147c70e9265a597ca0',
+  -   geometry: '451dedf64f19f2a996b64b7680b69f5a96fcae5e7ef382c9e0e488eafe621161',
+      navigation: '3b76de2608446648ba564e0ebdb646e3feec8a2b9df0bc25eadfa0c13085a950'
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r43-yihe-layout.test.mjs:25:545)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: { geometry: '1ce8c1f26cd95b2be18b9b59381f4bf55b597fcd2baedb147c70e9265a597ca0', navigation: '3b76de2608446648ba564e0ebdb646e3feec8a2b9df0bc25eadfa0c13085a950' },
+    expected: { geometry: '451dedf64f19f2a996b64b7680b69f5a96fcae5e7ef382c9e0e488eafe621161', navigation: '3b76de2608446648ba564e0ebdb646e3feec8a2b9df0bc25eadfa0c13085a950' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

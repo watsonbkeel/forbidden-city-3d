@@ -1,0 +1,24 @@
+import '../lib/inner-palace-fixture.mjs';
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import * as T from 'three';
+import {buildWorld} from '../lib/world.mjs';import {FirstPersonControls} from '../../src/controls/FirstPerson.js';import {PLAYER} from '../../src/config/constants.js';import {CourtKit} from '../../src/scene/palace/kit.js';import {library} from '../lib/inner-palace-fixture.mjs';import {buildRemainingHall,resolveRemainingProfile} from '../../src/scene/palace/special/RemainingNingshouHalls.js';
+test('Xishang continuous and moving jump contact diagnostics',async t=>{
+ const W=await buildWorld({realMaterials:true}),item=JSON.parse(fs.readFileSync('data/zones/ningshou.json')).items.find(x=>x.name==='禊赏亭'),kit=new CourtKit(library(),'ningshou'),h=buildRemainingHall(kit,item,resolveRemainingProfile('ningshou',item));h.f.updateMatrixWorld(true);
+ const bars=[],roof=[];h.f.traverse(m=>{if(!m.isMesh)return;const target=m.userData.xishangFrontTransom?bars:/roof|ceiling|coffer/.test(m.userData.role??'')?roof:null;if(!target)return;const p=m.geometry.attributes.position,ix=m.geometry.index,n=ix?.count??p.count;for(let i=0;i<n;i+=3){const tri=new T.Triangle(...[0,1,2].map(k=>new T.Vector3().fromBufferAttribute(p,ix?ix.getX(i+k):i+k).applyMatrix4(m.matrixWorld)));target.push({tri,box:new T.Box3().setFromPoints([tri.a,tri.b,tri.c])});}});
+ if(process.env.XISHANG_BASELINE==='1'){W.cm.colliders=W.cm.colliders.filter(c=>!c.triangleSupport?.id.startsWith('xishang-front-transom:'));W.cm._grid=null;}
+ const oldDoc=globalThis.document,oldWin=globalThis.window,noop=()=>{};globalThis.document={...oldDoc,addEventListener:noop,removeEventListener:noop,exitPointerLock:noop};globalThis.window={addEventListener:noop,removeEventListener:noop};const rows=[];
+ try{for(const fps of[10,60])for(const mode of['repeat','move-in','move-out','drop'])for(const x of[-2.728,0,2.728]){
+ let now=0;const clock=t.mock.method(performance,'now',()=>now),camera=new T.PerspectiveCamera(),c=new FirstPersonControls(camera,{ownerDocument:globalThis.document,addEventListener:noop,removeEventListener:noop},W.cm);c.controls.isLocked=true;
+ const start=new T.Vector3(x,.7,mode==='move-in'?-3.25:mode==='move-out'?-1.3:-2.345).applyMatrix4(h.f.matrixWorld);c.setPosition(start.x,2.4,start.z);
+ if(mode==='drop'){c.feetY=9;c.groundY=.7;c.airborne=true;c.verticalVelocity=0;camera.position.y=10.7;}
+ const target=new T.Vector3(x,.7,mode==='move-in'?-1.3:-3.25).applyMatrix4(h.f.matrixWorld);let cross=0,roofCross=0,maxFeet=c.feetY;const frames=[];
+ try{for(let i=0;i<fps*5;i++){
+ if(mode==='repeat'&&i%fps===0)c.jump();if(mode.startsWith('move')&&i===0)c.jump();
+ c.moveForward=mode.startsWith('move')&&i>fps*.15&&Math.hypot(camera.position.x-target.x,camera.position.z-target.z)>.08;
+ if(c.moveForward){camera.position.sub(c.bobOffset);camera.lookAt(target.x,camera.position.y,target.z);camera.position.add(c.bobOffset);camera.updateMatrixWorld(true);}
+ now+=1000/fps;c.update();const p=camera.position.clone().sub(c.bobOffset),body=new T.Box3(new T.Vector3(p.x-.5,c.feetY,p.z-.5),new T.Vector3(p.x+.5,c.feetY+PLAYER.HEIGHT,p.z+.5));
+ const hit=bars.some(q=>body.intersectsBox(q.box)&&body.intersectsTriangle(q.tri)),rh=roof.some(q=>body.intersectsBox(q.box)&&body.intersectsTriangle(q.tri));if(hit)cross++;if(rh)roofCross++;maxFeet=Math.max(maxFeet,c.feetY);if(hit||rh)frames.push({i,feet:c.feetY,x:p.x,z:p.z,bar:hit,roof:rh});
+ }rows.push({fps,mode,x,cross,roofCross,maxFeet,endFeet:c.feetY,airborne:c.airborne,end:[camera.position.x,camera.position.z],frames:frames.slice(0,4)});
+ }finally{c.dispose();clock.mock.restore();}
+ }}finally{globalThis.document=oldDoc;globalThis.window=oldWin;kit.dispose(kit.root);}
+ fs.writeFileSync('reports/followup-xishang/motion'+(process.env.XISHANG_BASELINE==='1'?'-baseline':'')+'.json',JSON.stringify({scope:'Full static world; unchanged body and original roof/ceiling triangles included',rows},null,2));for(const r of rows){assert.equal(r.cross,0,JSON.stringify(r));assert.equal(r.roofCross,0,JSON.stringify(r));assert.equal(r.airborne,false,JSON.stringify(r));}
+});

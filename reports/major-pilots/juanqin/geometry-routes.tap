@@ -1,0 +1,39 @@
+✔ own east-five frontage has 16 upper/lower fields, four open leaves, two seats and five low stone steps (84.027124ms)
+✔ official green roof and yellow edge differ only in palette, no roof shape change (72.042118ms)
+✔ source-bounded doorway keeps old actual3.2m jamb positions and upper navigation stays view only (62.047684ms)
+✔ all non-target meshes including west-four facade and interior remain exact; existing physics/walks retained (88.238465ms)
+✔ new stair panels have positive volume, new geometry finite nondegenerate and within bounded cost (53.035985ms)
+✔ actual seat/support/post boxes are physical, hangings clear players and sit below old eave (72.997101ms)
+✔ new own-source metadata survives merge and disposal releases owned resources once (78.509178ms)
+✔ real zone assets loaded, Juanqin east frontage provenance retained, and no new upper navigation (1.284679ms)
+✔ original east-five central ground portals remain reversible 10/60Hz walk/run forward/backward (55.174822ms)
+✖ both fixed-seat gallery sides remain traversable from the original east-five entry (3.989031ms)
+✔ new stair left and right usable lanes clear stone rail and return to ground (43.278053ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 10
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2138.76148
+
+✖ failing tests:
+
+test at tests/major-pilots/juanqin/routes.test.mjs:5:1
+✖ both fixed-seat gallery sides remain traversable from the original east-five entry (3.989031ms)
+  AssertionError [ERR_ASSERTION]: {"fps":10,"sprint":false,"backward":false,"r":{"arrived":false,"stuckAt":[-267.5,509.75],"startFeet":0,"minFeet":0,"maxFeet":0.5,"maxSpeed":4.999995842356791,"driver":{"crossings":[{"index":1,"point":[-259.6,508.65000000000003],"hit":[-259.6,508.65000000000003],"lateralDistance":0},{"index":2,"point":[-259.6,508.85],"hit":[-259.6,508.85],"lateralDistance":0},{"index":3,"point":[-259.6,510.3],"hit":[-259.6,510.3],"lateralDistance":0},{"index":4,"point":[-259.6,511],"hit":[-259.6,511],"lateralDistance":0},{"index":5,"point":[-259.6,509.75],"hit":[-259.6,509.75],"lateralDistance":0}],"brakingFrames":0,"endpointSettleSeconds":2},"end":[-260.59877716974586,509.7084114652783,0.5]}}
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/juanqin/routes.test.mjs:5:491)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

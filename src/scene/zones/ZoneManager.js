@@ -1,3 +1,12 @@
+import {bindSishenEnvironmentWitness,unbindSishenEnvironmentWitness} from '../../controls/SishenEnvironmentWitness.js';
+import {bindWestWellEnvironmentWitness,unbindWestWellEnvironmentWitness} from '../../controls/WestWellEnvironmentWitness.js';
+import {bindEastWellEnvironmentWitness,unbindEastWellEnvironmentWitness} from '../../controls/EastWellEnvironmentWitness.js';
+import {bindShoukangEntryEnvironmentWitness,unbindShoukangEntryEnvironmentWitness} from '../../controls/ShoukangEntryEnvironmentWitness.js';
+import {bindYanshouCompoundEnvironmentWitness,unbindYanshouCompoundEnvironmentWitness} from '../../controls/YanshouCompoundEnvironmentWitness.js';
+import {bindCiningGateEnvironmentWitness,unbindCiningGateEnvironmentWitness} from '../../controls/CiningGateEnvironmentWitness.js';
+import {bindCiyinFacadeEnvironmentWitness,unbindCiyinFacadeEnvironmentWitness} from '../../controls/CiyinFacadeEnvironmentWitness.js';
+import {bindShouanEntryEnvironmentWitness,unbindShouanEntryEnvironmentWitness} from '../../controls/ShouanEntryEnvironmentWitness.js';
+import {bindXishangEnvironmentWitness,unbindXishangEnvironmentWitness} from '../../controls/XishangEnvironmentWitness.js';
 import {bindChengqianEnvironmentWitness,unbindChengqianEnvironmentWitness} from '../../controls/ChengqianEnvironmentWitness.js';
 import {InactiveZoneCache,zoneRetainedResourceCost} from './InactiveZoneCache.js';
 import {buildingDetailQuality} from '../../render/BuildingDetailQuality.js';
@@ -79,6 +88,10 @@ export class ZoneManager {
     this.library = library;
     this.collisionManager = collisionManager;
     bindChengqianEnvironmentWitness(collisionManager,scene);
+    bindXishangEnvironmentWitness(collisionManager,scene);
+    bindShouanEntryEnvironmentWitness(collisionManager,scene);bindShoukangEntryEnvironmentWitness(collisionManager,scene);bindEastWellEnvironmentWitness(collisionManager,scene);bindWestWellEnvironmentWitness(collisionManager,scene);bindSishenEnvironmentWitness(collisionManager,scene);
+    bindCiyinFacadeEnvironmentWitness(collisionManager,scene);
+    bindCiningGateEnvironmentWitness(collisionManager,scene);bindYanshouCompoundEnvironmentWitness(collisionManager,scene);
 
     // 收集所有区的 regions 和 mapItems（dry 模式：只构建不加入场景）
     console.log('[ZoneManager] 收集所有区的 regions 和 mapItems...');
@@ -402,6 +415,10 @@ export class ZoneManager {
     }
     this.silhouettes.clear();
     unbindChengqianEnvironmentWitness(this.collisionManager);
+    unbindXishangEnvironmentWitness(this.collisionManager);
+    unbindShouanEntryEnvironmentWitness(this.collisionManager);unbindShoukangEntryEnvironmentWitness(this.collisionManager);unbindEastWellEnvironmentWitness(this.collisionManager);unbindWestWellEnvironmentWitness(this.collisionManager);unbindSishenEnvironmentWitness(this.collisionManager);
+    unbindCiyinFacadeEnvironmentWitness(this.collisionManager);
+    unbindCiningGateEnvironmentWitness(this.collisionManager);unbindYanshouCompoundEnvironmentWitness(this.collisionManager);
     delete this.scene.userData.zoneManager;
     this.zones.clear();
     this.buildQueue.length = 0;

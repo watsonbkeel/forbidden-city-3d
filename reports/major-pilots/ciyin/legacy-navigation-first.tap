@@ -1,0 +1,126 @@
+TAP version 13
+# Subtest: R48 宝相楼 explicit primary entry follows actual whole-zone ground, ramp, door and inside
+ok 1 - R48 宝相楼 explicit primary entry follows actual whole-zone ground, ramp, door and inside
+  ---
+  duration_ms: 1752.337459
+  type: 'test'
+  ...
+# Subtest: R48 吉云楼 explicit primary entry follows actual whole-zone ground, ramp, door and inside
+ok 2 - R48 吉云楼 explicit primary entry follows actual whole-zone ground, ramp, door and inside
+  ---
+  duration_ms: 1416.908684
+  type: 'test'
+  ...
+# Subtest: R48 慈荫楼 explicit primary entry follows actual whole-zone ground, ramp, door and inside
+not ok 3 - R48 慈荫楼 explicit primary entry follows actual whole-zone ground, ramp, door and inside
+  ---
+  duration_ms: 1512.330728
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-navigation.test.mjs:17:25'
+  failureType: 'testCodeFailure'
+  error: '慈荫楼 segment 1 t=0 expected feet 0 actual ground 0.11999999731779099 at 248.82,120.44'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-navigation.test.mjs:26:16)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 慈宁宫 explicit primary entry follows actual whole-zone ground, ramp, door and inside
+ok 4 - R48 慈宁宫 explicit primary entry follows actual whole-zone ground, ramp, door and inside
+  ---
+  duration_ms: 1386.461941
+  type: 'test'
+  ...
+# Subtest: R48 大佛堂 explicit primary entry follows actual whole-zone ground, ramp, door and inside
+ok 5 - R48 大佛堂 explicit primary entry follows actual whole-zone ground, ramp, door and inside
+  ---
+  duration_ms: 1310.327548
+  type: 'test'
+  ...
+# Subtest: R48 寿安宫 explicit primary entry follows actual whole-zone ground, ramp, door and inside
+ok 6 - R48 寿安宫 explicit primary entry follows actual whole-zone ground, ramp, door and inside
+  ---
+  duration_ms: 1290.854287
+  type: 'test'
+  ...
+# Subtest: R48 Jiyun north approach real controller walks and sprints both directions at 10/60 Hz with lateral offsets
+ok 7 - R48 Jiyun north approach real controller walks and sprints both directions at 10/60 Hz with lateral offsets
+  ---
+  duration_ms: 1604.7884
+  type: 'test'
+  ...
+# Subtest: R48 宝相楼 actual primary approach round trip uses real controller in all 8 modes
+ok 8 - R48 宝相楼 actual primary approach round trip uses real controller in all 8 modes
+  ---
+  duration_ms: 1378.701734
+  type: 'test'
+  ...
+# Subtest: R48 吉云楼 actual primary approach round trip uses real controller in all 8 modes
+ok 9 - R48 吉云楼 actual primary approach round trip uses real controller in all 8 modes
+  ---
+  duration_ms: 1532.182769
+  type: 'test'
+  ...
+# Subtest: R48 慈荫楼 actual primary approach round trip uses real controller in all 8 modes
+not ok 10 - R48 慈荫楼 actual primary approach round trip uses real controller in all 8 modes
+  ---
+  duration_ms: 1457.958397
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-navigation.test.mjs:44:25'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 0.11999999731779099
+    - 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 0.11999999731779099
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-outer-navigation.test.mjs:44:700)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: R48 慈宁宫 actual primary approach round trip uses real controller in all 8 modes
+ok 11 - R48 慈宁宫 actual primary approach round trip uses real controller in all 8 modes
+  ---
+  duration_ms: 1424.162933
+  type: 'test'
+  ...
+# Subtest: R48 大佛堂 actual primary approach round trip uses real controller in all 8 modes
+ok 12 - R48 大佛堂 actual primary approach round trip uses real controller in all 8 modes
+  ---
+  duration_ms: 1377.523613
+  type: 'test'
+  ...
+# Subtest: R48 寿安宫 actual primary approach round trip uses real controller in all 8 modes
+ok 13 - R48 寿安宫 actual primary approach round trip uses real controller in all 8 modes
+  ---
+  duration_ms: 1501.898738
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 11
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 19255.751722

@@ -1,0 +1,20 @@
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,216, 树木=34棵, 碰撞器=2034
+{"cases":32,"hits":[{"start":[27.5,4.3,462.5],"fps":10,"run":false,"jump":false,"oracleSources":406,"initialLegal":true,"hit":{"phase":"initial-start","frame":0,"feet":4.3,"position":[27.5,6.118706669648548,462.5],"source":"sishen-surface-275","triangle":24}},{"start":[27.5,4.3,462.5],"fps":10,"run":false,"jump":true,"oracleSources":406,"initialLegal":true,"hit":{"phase":"initial-start","frame":0,"feet":4.3,"position":[27.5,6.118706669648548,462.5],"source":"sishen-surface-275","triangle":24}},{"start":[27.5,4.3,462.5],"fps":10,"run":true,"jump":false,"oracleSources":406,"initialLegal":true,"hit":{"phase":"initial-start","frame":0,"feet":4.3,"position":[27.5,6.118706669648548,462.5],"source":"sishen-surface-275","triangle":24}},{"start":[27.5,4.3,462.5],"fps":10,"run":true,"jump":true,"oracleSources":406,"initialLegal":true,"hit":{"phase":"initial-start","frame":0,"feet":4.3,"position":[27.5,6.118706669648548,462.5],"source":"sishen-surface-275","triangle":24}},{"start":[27.5,4.3,462.5],"fps":60,"run":false,"jump":false,"oracleSources":406,"initialLegal":true,"hit":{"phase":"initial-start","frame":0,"feet":4.3,"position":[27.5,6.118706669648548,462.5],"source":"sishen-surface-275","triangle":24}},{"start":[27.5,4.3,462.5],"fps":60,"run":false,"jump":true,"oracleSources":406,"initialLegal":true,"hit":{"phase":"initial-start","frame":0,"feet":4.3,"position":[27.5,6.118706669648548,462.5],"source":"sishen-surface-275","triangle":24}},{"start":[27.5,4.3,462.5],"fps":60,"run":true,"jump":false,"oracleSources":406,"initialLegal":true,"hit":{"phase":"initial-start","frame":0,"feet":4.3,"position":[27.5,6.118706669648548,462.5],"source":"sishen-surface-275","triangle":24}},{"start":[27.5,4.3,462.5],"fps":60,"run":true,"jump":true,"oracleSources":406,"initialLegal":true,"hit":{"phase":"initial-start","frame":0,"feet":4.3,"position":[27.5,6.118706669648548,462.5],"source":"sishen-surface-275","triangle":24}}]}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert.ok(rows.every(r=>r.hit===null))
+
+    at file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/scripts/major-pilots/sishen/tree-motion.mjs:6:78 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

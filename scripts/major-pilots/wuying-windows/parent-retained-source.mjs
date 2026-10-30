@@ -1,0 +1,2 @@
+import{registerHooks}from'node:module';import{execFileSync}from'node:child_process';
+const paths=['src/scene/palace/special/RemainingOuterHalls.js','src/scene/zones/ZoneBase.js'],sources=new Map(paths.map(path=>[new URL('../../../'+path,import.meta.url).href,execFileSync('git',['show','f89260c551b8a234b55c7d3653fd5cc6ea1b1358:'+path],{encoding:'utf8'})]));registerHooks({load(u,context,next){return sources.has(u)?{format:'module',source:sources.get(u),shortCircuit:true}:next(u,context)}});

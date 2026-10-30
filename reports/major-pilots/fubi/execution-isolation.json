@@ -1,0 +1,30 @@
+{
+  "firstRun": {
+    "command": "node --test --test-concurrency=4 tests/current-state/*.test.mjs",
+    "tests": 1280,
+    "passed": 1062,
+    "failed": 218,
+    "extraFileFailures": [
+      "qinan-exterior-stair-safety.test.mjs",
+      "r15-flight-world.test.mjs"
+    ],
+    "concurrentOtherHeavyTest": true,
+    "terminationCause": "UNCONFIRMED_NO_PRODUCT_ASSERTION_DIAGNOSIS"
+  },
+  "isolated": {
+    "command": "node --test --test-concurrency=1 --test-reporter=tap <two files>",
+    "tests": 53,
+    "passed": 53,
+    "failed": 0,
+    "productSourceChanged": false
+  },
+  "final": {
+    "command": "node --test --test-concurrency=2 --test-reporter=tap tests/current-state/*.test.mjs",
+    "tests": 1331,
+    "passed": 1115,
+    "failed": 216,
+    "otherHeavyJobs": false,
+    "failureNamesEqualBaseline": true
+  },
+  "note": "No product fix or baseline rewrite was used to hide execution-level failures. All three logs retained."
+}

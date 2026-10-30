@@ -1,0 +1,44 @@
+{
+  "parentCommit": "e7ff5d21a5eb0af561dea3a338571ee9c878b446",
+  "childCommit": "ed1244e6c374ad2f2e79783d850ccc6dbfbf604c",
+  "sameFullSuiteCommand": "node --test --test-reporter=tap --test-concurrency=2 tests/current-state/*.test.mjs",
+  "parent": {
+    "tests": 1331,
+    "pass": 1115,
+    "fail": 216,
+    "log": "../fubi/current-state-final.tap"
+  },
+  "child": {
+    "tests": 1331,
+    "pass": 1115,
+    "fail": 216,
+    "log": "current-state-concurrency2.tap"
+  },
+  "failureNamesIdentical": true,
+  "newFailures": [],
+  "resolvedFailures": [],
+  "original217Difference": {
+    "addedFileLevel": [
+      "tests/current-state/qinan-exterior-stair-safety.test.mjs",
+      "tests/current-state/r138-source-bounded-details.test.mjs"
+    ],
+    "collapsedExistingAssertion": "all previous palace geometry and contacts retained; no extra flat walkable added"
+  },
+  "sameConditionFocusedParentChild": {
+    "r138": {
+      "bothTests": 11,
+      "bothPass": 10,
+      "bothFail": 1,
+      "sameFailureName": "all previous palace geometry and contacts retained; no extra flat walkable added",
+      "sameActualHash": "41d06ae8223d2cbdabb276e2eaf217ca7393d3e7147adde6f1425a8da01e69b6",
+      "sameExpectedHash": "a3231312716f9b660db84d6e8b209a521e664b4c20487db32f2356b88a5005b9"
+    },
+    "qinan": {
+      "bothTests": 48,
+      "bothPass": 48,
+      "bothFail": 0
+    },
+    "parentMethod": "pinned parent RemainingNingshouHalls source loader; no baseline fixture changes; parent-source-hook.mjs"
+  },
+  "conclusion": "Not Yangxing golden hash; initial net +1 caused by file-level execution failures masking one old assertion. Same concurrency full suite exact 216 failure names, no new regression found."
+}

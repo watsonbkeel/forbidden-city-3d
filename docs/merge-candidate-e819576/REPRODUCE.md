@@ -1,0 +1,8 @@
+# Reproduce and identity boundaries
+Production freeze is e81957643183358f0113e3fb25fbbfec250eca20. QA files may be committed later without changing runtime inputs. Existing package manifests deliberately retain e819576 as sourceCommit, not the later evidence commit.
+
+Build script must be run with HEAD at the exact frozen source, runtime input status clean, and QA scripts available as untracked non-runtime tooling; it refuses another HEAD and refuses overwriting its three output directories. Reproduction therefore needs a separate authorized workspace/export and new output names, not resetting the WIP-containing writer checkout. Do not delete the preserved packages merely to rerun. Reuse verifyBuildSource against retained source bytes and all-file HTTP readback for verification without rebuilding.
+
+Critical serial tests use the existing JSON hook (`--import ./tests/r141-fix/json-hooks.mjs`), TAP output and concurrency1. Exact main-equivalent baseline is an independent `git archive e3efba2b src data scripts tests public package.json package-lock.json main.js index.html style.css release.json vite.config.js` export with only node_modules linked; tests/scripts must not symlink back to candidate. Main objects remain unavailable; this is exact content-equivalent main, not a fabricated remote commit.
+
+Full major-pilot serial runner uses relocate-test-output.mjs solely to redirect fs.writeFileSync report paths into suite-output and create missing output directories. It does not alter assertions, reads, production functions or module imports. Preserve initial failure logs; compare rerun results, never silently drop failed files. First broad run had56 report-output ENOENTs,15 assertions and2 file-level failures; later exact results recorded separately.

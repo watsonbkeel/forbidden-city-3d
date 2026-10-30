@@ -1,0 +1,108 @@
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,222, 树木=34棵, 碰撞器=2034
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,228, 树木=34棵, 碰撞器=2034
+✖ entire garden zone excluding only east-well profile is byte-geometrically and physically identical to parent (46.641288ms)
+✖ all 34 tree instance buffers and all old GardenBuilder physics stay exact; all non-ground geometry stays exact and ground samples outside cut preserve material/height/UV (6794.609317ms)
+✔ original west-well object has one dedicated complete runtime assembly rather than name-only inventory (237.576123ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,240, 树木=34棵, 碰撞器=2034
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,228, 树木=34棵, 碰撞器=2034
+garden-preserved {"beforeMeshes":49,"afterMeshes":49,"beforeTriangles":266240,"afterTriangles":266228,"treeGroups":12}
+✔ entire garden zone excluding only west-well profile is byte-geometrically and physically identical to parent (1206.108127ms)
+✔ all 34 tree instance buffers and all old GardenBuilder physics except the exact one tree source stay exact; all non-ground geometry stays exact and ground samples outside cut preserve material/height/UV (6719.536966ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 3
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15942.79316
+
+✖ failing tests:
+
+test at tests/major-pilots/east-well/retention.test.mjs:6:1
+✖ entire garden zone excluding only east-well profile is byte-geometrically and physically identical to parent (46.641288ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      bounds: {
+        x0: -68.75,
+        x1: 68.75,
+        z0: 205,
+  ...
+      ],
+  +   westWellProfile: 'west-well-source-fit',
+      zhaorenProfile: 'zhaoren-exterior-photo-fit-r74'
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/east-well/retention.test.mjs:6:398)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: {
+      westWellProfile: 'west-well-source-fit',
+      hongdeProfile: 'hongde-exterior-photo-fit-r75',
+      zhaorenProfile: 'zhaoren-exterior-photo-fit-r74',
+      id: 'garden',
+      name: '内廷中路与御花园',
+      bounds: { x0: -68.75, x1: 68.75, z0: 205, z1: 525.8 },
+      neighbors: [ 'axis-courts', 'east-six', 'west-six' ],
+      items: [
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object]
+      ]
+    },
+    expected: {
+      hongdeProfile: 'hongde-exterior-photo-fit-r75',
+      zhaorenProfile: 'zhaoren-exterior-photo-fit-r74',
+      id: 'garden',
+      name: '内廷中路与御花园',
+      bounds: { x0: -68.75, x1: 68.75, z0: 205, z1: 525.8 },
+      neighbors: [ 'axis-courts', 'east-six', 'west-six' ],
+      items: [
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        [Object]
+      ]
+    },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/major-pilots/east-well/retention.test.mjs:7:1
+✖ all 34 tree instance buffers and all old GardenBuilder physics stay exact; all non-ground geometry stays exact and ground samples outside cut preserve material/height/UV (6794.609317ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '51958c736f5627f14d4131699a5afdf38accd31a6b397864ae4e793f63f46f05'
+  - '9936cd5bb514cee1876a741d7f54f309a2d31246a033eacf7585bb7e3d364787'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/east-well/retention.test.mjs:7:2689)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '51958c736f5627f14d4131699a5afdf38accd31a6b397864ae4e793f63f46f05',
+    expected: '9936cd5bb514cee1876a741d7f54f309a2d31246a033eacf7585bb7e3d364787',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

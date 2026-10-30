@@ -1,0 +1,32 @@
+TAP version 13
+# Subtest: east-well exact anchor registers once and rejects moved source ownership
+not ok 1 - east-well exact anchor registers once and rejects moved source ownership
+  ---
+  duration_ms: 40.997995
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/east-well/source-guard.test.mjs:2:1'
+  failureType: 'testCodeFailure'
+  error: 'Furniture scope requires finite ordered ordinary-box ownership'
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    cloneFurnitureMotionScope (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/controls/FurnitureMotion.js:80:3025)
+    CollisionManager.addCollider (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/utils/Collision.js:46:32)
+    file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/utils/Collision.js:72:38
+    Array.forEach (<anonymous>)
+    CollisionManager.addColliders (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/utils/Collision.js:72:15)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/east-well/source-guard.test.mjs:2:195)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 283.467074

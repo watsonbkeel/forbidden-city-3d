@@ -1,0 +1,67 @@
+✔ duplicate west builder fails before touching retained frame physics or ownership (59.146734ms)
+✔ late map publication failure rolls back only candidate geometry physics and private resources (30.017758ms)
+✔ west has independently painted bamboo soffits, cylindrical covered well and water-lift fit (61.745755ms)
+✔ west keeps four exact .24m columns and physically open octagonal center (27.754096ms)
+✔ private bamboo texture and both private materials dispose once without library ownership transfer (29.690007ms)
+✔ standing/seated/moving NPC on both bypasses cannot become a false landing or jump reset (251.79537ms)
+✔ all four dispatch boundaries preserve .3/.5 kinematic bodies across ULP offsets both directions (105.220199ms)
+✔ small .3 and player .5 bodies cross the real paving edges after witnessed-ground handoff without legacy early-lift lock (108.810823ms)
+✔ original west-well object has one dedicated complete runtime assembly rather than name-only inventory (376.84595ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,228, 树木=34棵, 碰撞器=2034
+✔ actual old raised bed and stone edge are visibly cut away at west well, not buried (1493.639372ms)
+✔ platform and every visible surface reject downgrade and wrong ownership and unload/reload cleanly (113.392776ms)
+✔ west-well witness requires the unique live actual ground and invalidates geometry transforms detach and unbind (73.149848ms)
+west-well-full-height-census 113
+✖ both west-well fitted local north-south circuits stay traversable with walk run jump at 10/60Hz both ways (9270.672539ms)
+✔ all-height west-well region plus 1.25m has exactly the one source-corrected retained preflight tree plus new well sources (2.066261ms)
+✔ garden builds one source-bounded west well distinct from retained east well (415.949601ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,240, 树木=34棵, 碰撞器=2034
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,228, 树木=34棵, 碰撞器=2034
+garden-preserved {"beforeMeshes":49,"afterMeshes":49,"beforeTriangles":266240,"afterTriangles":266228,"treeGroups":12}
+✔ entire garden zone excluding only west-well profile is byte-geometrically and physically identical to parent (1247.414977ms)
+✔ all 34 tree instance buffers and all old GardenBuilder physics except the exact one tree source stay exact; all non-ground geometry stays exact and ground samples outside cut preserve material/height/UV (6527.293374ms)
+✔ west-well exact anchor registers once and rejects moved source ownership (69.618582ms)
+west-well-source-faces 3760
+west-well-closed-shells 62 exact-zero-area-source-faces 320
+✔ every physical triangle is the exact final merged F32 visible source, including degenerate source provenance (80.660107ms)
+✔ private beam paint and source/final geometries dispose exactly once while shared library is untouched (22.767576ms)
+✔ each authored solid shell is closed after F32 welding; split roof exterior plus bamboo soffit has no missing edge (33.853587ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,228, 树木=34棵, 碰撞器=2034
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,228, 树木=34棵, 碰撞器=2034
+✔ only conflict tree uses complete actual retained trunk triangles instead of inadequate low AABB (1219.073244ms)
+✔ retained tree source fails closed for changed draw transform geometry range or groups (8.610395ms)
+✔ normal garden requires exactly one matched original tree, never silent fallback or duplicate (0.330557ms)
+✔ complete retained trunk bounds plus .6m fit wholly inside the strict domain, not across its dispatch seam (912.125175ms)
+✔ 10/60Hz actual player lands on visible outer roof and cannot fall through the too-small center opening (3920.404038ms)
+✔ 10/60Hz jump from actual rail top into hanging bearing stops the head against actual visible triangles (1270.787796ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 26
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31358.770679
+
+✖ failing tests:
+
+test at tests/major-pilots/west-well/motion.test.mjs:2:1
+✖ both west-well fitted local north-south circuits stay traversable with walk run jump at 10/60Hz both ways (9270.672539ms)
+  AssertionError [ERR_ASSERTION]: {"label":{"fps":10,"run":false,"jump":false,"index":0,"i":0,"target":[35.45,460.2]},"feet":0,"p":[38.7,1.7,457.9],"owner":{"kind":"visible-box","index":1,"role":"bypass-paving"}}
+  
+  true !== false
+  
+      at inspect (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/west-well/motion-helper.mjs:2:328)
+      at file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/west-well/motion-helper.mjs:3:900
+      at withTerrainController (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/lib/r91-controller-clock.mjs:3:633)
+      at travel (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/west-well/motion-helper.mjs:3:90)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/west-well/motion.test.mjs:2:361)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

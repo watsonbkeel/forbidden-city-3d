@@ -1,0 +1,23 @@
+{
+  "observedAtUTC": "2026-10-28T09:12:01Z",
+  "baselineCommit": "a62a3ed2fd7e4a8aecbf4fab21994b87690e92bd",
+  "recordedAtUTC": "2026-10-28T09:24:12Z",
+  "recordPolicy": "Transcribed exact earlier tool outputs; not rerun against current candidate",
+  "centers": [[-256.25,415.8],[-249.95,415.8]],
+  "unmergedNingshouMeshes": {
+    "queryHalfWidth": 0.75,
+    "queryY": [0,2],
+    "rows": [
+      {"name":"suichu-platform-base","role":"platform-base","b":[[-262.1500001907349,0,416.54999980926516],[-244.04999980926513,0.5,427.6500001907349]]},
+      {"name":"suichu-platform-paving","role":"platform-paving","b":[[-262.1500001907349,0.42999999985098836,416.54999980926516],[-244.04999980926513,0.5000000001490116,427.6500001907349]]},
+      {"name":"suichu-platform-base","role":"platform-base","b":[[-262.10263977050784,0.033921122550964355,416.54999980926516],[-244.0976053237915,0.4522315561771393,416.54999980926516]]}
+    ],
+    "interpretation": "Only baseline platform/paving/stone facing at northern query boundary; no old vessel mesh in queried NingShou zone. Does not claim all non-zone static decorative mesh audit."
+  },
+  "fullWorldCollision": {
+    "observedAtUTC":"2026-10-28T09:11:51Z",
+    "queryHalfWidth":0.75,"queryY":[0,3],
+    "rows":[{"x":-256.25,"z":415.8,"nearby":[],"ground":0},{"x":-249.95,"z":415.8,"nearby":[],"ground":0}]
+  },
+  "limitations":["Baseline only; no candidate collision acceptance","CPU construction, not GPU/mobile","Ground queried using getGroundHeight(x,z,0,.6)"]
+}

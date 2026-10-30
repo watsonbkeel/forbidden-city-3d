@@ -1,0 +1,33 @@
+✖ full World preserves east passage to rear doorway (north ground exit remains unclosed), both source end entrances and side-room access at 10/60Hz walk run jump both ways (11070.25863ms)
+✔ source west entry connects retained west stair both ways and the entire upper gallery remains full-body walkable (1755.896248ms)
+✔ complete source front domain and handoff query radius census excludes unhandled all-height special shapes (1.03828ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13076.721733
+
+✖ failing tests:
+
+test at tests/major-pilots/ciyin/motion.test.mjs:5:1
+✖ full World preserves east passage to rear doorway (north ground exit remains unclosed), both source end entrances and side-room access at 10/60Hz walk run jump both ways (11070.25863ms)
+  AssertionError [ERR_ASSERTION]: {"fps":60,"run":true,"jump":false,"points":[[248.82,133.4],[248.82,128.1],[248.82,119.8]],"at":[248.82106010021974,1.7,119.07931461331313],"solidSupports":[],"supports":[]}
+  
+  0 !== 0.6
+  
+      at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/ciyin/motion.test.mjs:4:1494
+      at withTerrainController (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r91-controller-clock.mjs:3:633)
+      at travel (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/ciyin/motion.test.mjs:4:81)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/ciyin/motion.test.mjs:5:607)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 0.6,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

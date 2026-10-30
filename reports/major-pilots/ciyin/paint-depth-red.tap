@@ -1,0 +1,42 @@
+TAP version 13
+# Subtest: real production TextureLibrary and plaque atlas merge all facade color fields without array-material loss
+ok 1 - real production TextureLibrary and plaque atlas merge all facade color fields without array-material loss
+  ---
+  duration_ms: 128.502957
+  type: 'test'
+  ...
+# Subtest: merged coplanar dark backgrounds cannot overdraw red lattice or gilding regardless of material sort order
+not ok 2 - merged coplanar dark backgrounds cannot overdraw red lattice or gilding regardless of material sort order
+  ---
+  duration_ms: 73.807435
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/ciyin/materials.test.mjs:3:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(fields.get('gold')[attr]<fields.get(key)[attr])
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/ciyin/materials.test.mjs:3:474)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 1
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 373.051388

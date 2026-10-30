@@ -1,0 +1,76 @@
+✔ photo-bounded entire west tea group includes table/chairs console/backdrop and carpet relationship (99.336363ms)
+✔ actual retained downward ceiling source owner exists without a synthetic walkable (66.599393ms)
+✔ atomic reject hidden old source (45.036604ms)
+✔ atomic reject removed draw group (11.86072ms)
+✔ atomic reject scope carrying old collider (11.780595ms)
+✔ atomic reject moved retained column (19.165201ms)
+✔ atomic reject missing retained window (16.943496ms)
+✔ atomic reject duplicate material owner (4.363981ms)
+✔ actual World retained source no penetration: floor-to-chair (64657.042251ms)
+✔ actual World retained source no penetration: new-chair-preset (80715.979403ms)
+✖ full west-six exact non-target meshes navigation and R130 source retention (1899.00688ms)
+✖ all new and retained physical sources survive final Float32 merge; no extra new-material triangles (125.397125ms)
+✔ all six plain blue bands intersect the actual vase outer source at two interior angles per lathe sector (111.851382ms)
+✔ actual World central walk/run-with-final-braking/jump both directions at10/60 (1836.378613ms)
+✖ actual World transverse walk/run-with-final-braking/jump both directions at10/60 (514.334453ms)
+✔ actual World west-view walk/run-with-final-braking/jump both directions at10/60 (1853.985201ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 13
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 170590.046669
+
+✖ failing tests:
+
+test at tests/major-pilots/tihe-west/retention.test.mjs:2:1
+✖ full west-six exact non-target meshes navigation and R130 source retention (1899.00688ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/tihe-west/retention.test.mjs:2:1066)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/major-pilots/tihe-west/source.test.mjs:3:1
+✖ all new and retained physical sources survive final Float32 merge; no extra new-material triangles (125.397125ms)
+  TypeError: Cannot read properties of null (reading 'name')
+      at file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/tihe-west/source.test.mjs:3:658
+      at Array.filter (<anonymous>)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/tihe-west/source.test.mjs:3:628)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at tests/major-pilots/tihe-west/world.test.mjs:3:152
+✖ actual World transverse walk/run-with-final-braking/jump both directions at10/60 (514.334453ms)
+  AssertionError [ERR_ASSERTION]: {"label":"transverse","fps":10,"run":true,"jump":false,"reverse":false,"feet":1.090000033378601,"position":[104.5991654423416,2.7900000333786013,400.2873214182087]}
+      at file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/tihe-west/world.test.mjs:3:1458
+      at withTerrainController (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/lib/r91-controller-clock.mjs:3:633)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/tihe-west/world.test.mjs:3:360)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

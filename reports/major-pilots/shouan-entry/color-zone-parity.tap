@@ -1,0 +1,31 @@
+TAP version 13
+# Subtest: whole outer-west real-material final graph differs from actual parent merge only in opted-in Shouan color attribute
+not ok 1 - whole outer-west real-material final graph differs from actual parent merge only in opted-in Shouan color attribute
+  ---
+  duration_ms: 766.95768
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shouan-entry/color-zone-parity.test.mjs:5:1'
+  failureType: 'testCodeFailure'
+  error: 'document is not defined'
+  code: 'ERR_TEST_FAILURE'
+  name: 'ReferenceError'
+  stack: |-
+    buildJiyunNamePlaque (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/palace/special/JiyunNamePlaque.js:8:16)
+    buildTempleTower (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/palace/special/RemainingOuterHalls.js:918:22)
+    Object.buildRemainingHall [as build] (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/palace/special/RemainingOuterHalls.js:1144:64)
+    ZoneBase.buildHall (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/zones/ZoneBase.js:223:129)
+    ZoneBase.build (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/scene/zones/ZoneBase.js:102:16)
+    run (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shouan-entry/color-zone-parity.test.mjs:5:425)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shouan-entry/color-zone-parity.test.mjs:5:615)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1019.518221

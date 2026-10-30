@@ -1,0 +1,50 @@
+✔ R48 room clearance 乐寿堂: independently reproduced visible penetration point is physically rejected (148.645722ms)
+✔ R48 room clearance 畅音阁: independently reproduced visible penetration point is physically rejected (60.550188ms)
+✔ R48 room clearance 皇极殿: all production-permitted 40 cm ground-grid samples avoid actual body triangles (186.509451ms)
+✔ R48 room clearance 养性殿: all production-permitted 40 cm ground-grid samples avoid actual body triangles (81.768198ms)
+✔ R48 room clearance 乐寿堂: all production-permitted 40 cm ground-grid samples avoid actual body triangles (220.12684ms)
+✔ R48 room clearance 符望阁: all production-permitted 40 cm ground-grid samples avoid actual body triangles (138.288739ms)
+✔ R48 room clearance 倦勤斋: all production-permitted 40 cm ground-grid samples avoid actual body triangles (55.134662ms)
+✔ R48 room clearance 畅音阁: all production-permitted 40 cm ground-grid samples avoid actual body triangles (96.520468ms)
+✔ R48 cylinder proxy 皇极殿: every solid tapered cylinder uses its actual vertex envelope (41.298891ms)
+✔ R48 cylinder proxy 宁寿宫: every solid tapered cylinder uses its actual vertex envelope (39.483766ms)
+✔ R48 cylinder proxy 养性殿: every solid tapered cylinder uses its actual vertex envelope (33.316768ms)
+✔ R48 cylinder proxy 乐寿堂: every solid tapered cylinder uses its actual vertex envelope (55.538653ms)
+✔ R48 cylinder proxy 景祺阁: every solid tapered cylinder uses its actual vertex envelope (36.125715ms)
+✔ R48 cylinder proxy 禊赏亭: every solid tapered cylinder uses its actual vertex envelope (57.198916ms)
+✔ R48 cylinder proxy 遂初堂: every solid tapered cylinder uses its actual vertex envelope (52.188989ms)
+✔ R48 cylinder proxy 延趣楼: every solid tapered cylinder uses its actual vertex envelope (29.983674ms)
+✔ R48 cylinder proxy 萃赏楼: every solid tapered cylinder uses its actual vertex envelope (42.63339ms)
+✔ R48 cylinder proxy 碧螺亭: every solid tapered cylinder uses its actual vertex envelope (89.368525ms)
+✔ R48 cylinder proxy 符望阁: every solid tapered cylinder uses its actual vertex envelope (52.708385ms)
+✔ R48 cylinder proxy 倦勤斋: every solid tapered cylinder uses its actual vertex envelope (36.784233ms)
+✔ R48 cylinder proxy 畅音阁: every solid tapered cylinder uses its actual vertex envelope (56.224933ms)
+✔ R48 cylinder proxy 阅是楼: every solid tapered cylinder uses its actual vertex envelope (19.529469ms)
+✔ R48 cylinder proxy 寻沿书屋: every solid tapered cylinder uses its actual vertex envelope (22.967551ms)
+✔ R48 cylinder proxy 庆寿堂: every solid tapered cylinder uses its actual vertex envelope (14.643283ms)
+✔ R48 cylinder proxy 景福宫: every solid tapered cylinder uses its actual vertex envelope (45.937359ms)
+✔ R48 cylinder proxy 佛日楼: every solid tapered cylinder uses its actual vertex envelope (19.942169ms)
+✖ R48 cylinder proxy 梵华楼: every solid tapered cylinder uses its actual vertex envelope (0.390626ms)
+✔ R48 ChangYin short timber proxies cover all actual vertices without a whole staircase prism (201.524568ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 27
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2182.262562
+
+✖ failing tests:
+
+test at tests/r48-ningshou-room-clearance.test.mjs:16:24
+✖ R48 cylinder proxy 梵华楼: every solid tapered cylinder uses its actual vertex envelope (0.390626ms)
+  TypeError: Cannot read properties of null (reading 'mode')
+      at make (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-room-clearance.test.mjs:13:164)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r48-ningshou-room-clearance.test.mjs:16:137)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)

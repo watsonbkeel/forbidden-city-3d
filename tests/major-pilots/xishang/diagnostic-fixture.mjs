@@ -1,0 +1,10 @@
+// Reconstruct ONLY the archived rejected local experiment against current source
+// in memory. It is not imported by the application and changes no product files.
+import fs from 'node:fs';import {execFileSync} from 'node:child_process';import {pathToFileURL} from 'node:url';import {CourtKit} from '../../../src/scene/palace/kit.js';import {library} from '../../lib/inner-palace-fixture.mjs';
+const root=process.cwd(),url=p=>pathToFileURL(root+'/'+p).href,original=url('src/scene/palace/special/RemainingNingshouHalls.js');
+const rewrite=(text,location)=>text.replace(/from\s+(['"])([^'"]+)\1/g,(_,q,id)=>`from ${q}${id==='three'?url('node_modules/three/build/three.module.js'):new URL(id,location).href}${q}`),data=s=>'data:text/javascript;base64,'+Buffer.from(s).toString('base64');
+const archived=execFileSync('git',['show','9e4159c30b33816f7f0e6f59579287357deb6d05:reports/followup-xishang/rejected-candidate/XishangFrontTransom.js.txt'],{encoding:'utf8'}),helper=data(rewrite(archived,url('src/scene/palace/special/XishangFrontTransom.js')));
+let source=execFileSync('git',['show','9e4159c30b33816f7f0e6f59579287357deb6d05:src/scene/palace/special/RemainingNingshouHalls.js'],{encoding:'utf8'});const a='frame(c,{w:mainW,d:mainD,bays:3,depthBays:3});',b="return finish(c,{planForm:'convex-cross-three-projections'";
+if(source.split(a).length!==2||source.split(b).length!==2)throw Error('Exact current Xishang hooks changed');source=source.replace(a,a+"if(c.kit.xishangDiagnostic!=='baseline')buildXishangFrontTransom(c,{mainW,mainD});").replace(b,"if(c.kit.xishangDiagnostic==='roof')registerXishangExistingRoof(c);"+b);
+const M=await import(data(`import {buildXishangFrontTransom,registerXishangExistingRoof} from '${helper}';\n`+rewrite(source,original))),item=JSON.parse(fs.readFileSync('data/zones/ningshou.json')).items.find(i=>i.name==='禊赏亭');
+export function make(mode='roof'){const kit=new CourtKit(library(),'ningshou');kit.xishangDiagnostic=mode;const p=M.resolveRemainingProfile('ningshou',item);return{kit,p,...M.buildRemainingHall(kit,item,p)}}

@@ -1,0 +1,71 @@
+✔ own-photo entrance has a continuous stone incline, two stair flights and recessed annex coffers (84.570032ms)
+✔ rollback removes only the new package while preserving prior room plan and rear facade (66.118715ms)
+✔ central four glass leaves preserve the clear opening and transom clears the annex beam (33.138546ms)
+✔ central incline is outward oriented with upward visible walking face (34.820055ms)
+✔ blue coffer fields use own source-bounded deep blue rather than shared turquoise (31.620985ms)
+✖ source limits survive the architectural record used by production merge (29.56876ms)
+✖ all non-target hall mesh geometry, positions, materials and physical rows remain unchanged (112.508812ms)
+✔ all inherited walking surfaces remain exact and only two adjacent stair ramps are added (39.980923ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 6
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 632.461236
+
+✖ failing tests:
+
+test at tests/major-pilots/yangxing/entrance.test.mjs:18:1
+✖ source limits survive the architectural record used by production merge (29.56876ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   cofferGrid: [
+  -     12,
+  -     3
+  -   ],
+  -   dimensions: 'MODEL_FIT_NOT_SURVEY',
+  -   doorPose: 'RETAINED_OPEN_FOR_MODEL_CIRCULATION_NOT_PHOTO_STATE',
+  -   missing: [
+  -     'stone relief',
+  -     'coffer dragons and flowers',
+  -     'Su-style painted narratives',
+  -     'unseen interiors'
+  -   ],
+  -   object: 'FC-E32471B7C3',
+  -   source: 'https://www.dpm.org.cn/explore/building/236458.html',
+  -   state: 'SOURCE_BOUNDED_SOUTH_ENTRANCE_NOT_WHOLE_INTERIOR_ACCEPTANCE'
+  - }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/yangxing/entrance.test.mjs:18:119)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { source: 'https://www.dpm.org.cn/explore/building/236458.html', object: 'FC-E32471B7C3', state: 'SOURCE_BOUNDED_SOUTH_ENTRANCE_NOT_WHOLE_INTERIOR_ACCEPTANCE', dimensions: 'MODEL_FIT_NOT_SURVEY', cofferGrid: [ 12, 3 ], missing: [ 'stone relief', 'coffer dragons and flowers', 'Su-style painted narratives', 'unseen interiors' ], doorPose: 'RETAINED_OPEN_FOR_MODEL_CIRCULATION_NOT_PHOTO_STATE' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/major-pilots/yangxing/entrance.test.mjs:19:1
+✖ all non-target hall mesh geometry, positions, materials and physical rows remain unchanged (112.508812ms)
+  TypeError: Cannot read properties of null (reading 'name')
+      at file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/yangxing/entrance.test.mjs:19:325
+      at Mesh.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7600:3)
+      at Group.traverse (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:7606:18)
+      at rows (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/yangxing/entrance.test.mjs:19:223)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/yangxing/entrance.test.mjs:19:466)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)

@@ -1,0 +1,55 @@
+✖ Fuwang own south package has four lower folded leaves and source-visible recessed upper closure/front balustrade only (78.157477ms)
+✖ source-visible central stair is broader than old approach and has two physical stone side flights without narrowing actual 3.2m door (41.123345ms)
+✔ rollback removes only source package and retains original stair-core void and closed upper navigation (74.924481ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 1
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 384.251868
+
+✖ failing tests:
+
+test at tests/major-pilots/fuwang/front.test.mjs:5:1
+✖ Fuwang own south package has four lower folded leaves and source-visible recessed upper closure/front balustrade only (78.157477ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'FC-722E40E471'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/fuwang/front.test.mjs:5:166)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'FC-722E40E471',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/major-pilots/fuwang/front.test.mjs:6:1
+✖ source-visible central stair is broader than old approach and has two physical stone side flights without narrowing actual 3.2m door (41.123345ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 7
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/fuwang/front.test.mjs:6:218)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 7,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

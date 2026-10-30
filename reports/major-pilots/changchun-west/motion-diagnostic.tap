@@ -1,0 +1,34 @@
+✖ main hall to complete west inspection route preserves both directions at10/60 walk run jump (113.498805ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 369.565617
+
+✖ failing tests:
+
+test at tests/major-pilots/changchun-west/motion.test.mjs:4:1
+✖ main hall to complete west inspection route preserves both directions at10/60 walk run jump (113.498805ms)
+  AssertionError [ERR_ASSERTION]: {"fps":10,"run":true,"jump":false,"reverse":false,"position":[160.89048179323333,2.800000023841858,382.6394531113434]}
+  + actual - expected
+  
+  + 1.100000023841858
+  - 0.6
+  
+      at file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/changchun-west/motion.test.mjs:4:1389
+      at withTerrainController (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/lib/r91-controller-clock.mjs:3:633)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/changchun-west/motion.test.mjs:4:241)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1.100000023841858,
+    expected: 0.6,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

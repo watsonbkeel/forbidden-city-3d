@@ -1,0 +1,30 @@
+TAP version 13
+# Subtest: test-only square support high drops settle then exit six directions without real triangle penetration
+not ok 1 - test-only square support high drops settle then exit six directions without real triangle penetration
+  ---
+  duration_ms: 42022.559853
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/xishang/exit-hypothesis.diagnostic.mjs:2:1'
+  failureType: 'testCodeFailure'
+  error: '{"fps":10,"xx":-2.728,"dir":0,"settled":true,"end":[-243.045,5.525411278324875,374.128],"airborne":false,"travel":0,"bad":null}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/xishang/exit-hypothesis.diagnostic.mjs:2:2021)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 42247.763844

@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: real finish retains every source triangle vertex color paired with its exact baked position and unchanged owned material
+ok 1 - real finish retains every source triangle vertex color paired with its exact baked position and unchanged owned material
+  ---
+  duration_ms: 344.510867
+  type: 'test'
+  ...
+# Subtest: all non-opted-in and partial/spoofed materials match actual parent merger for every attribute and transform
+ok 2 - all non-opted-in and partial/spoofed materials match actual parent merger for every attribute and transform
+  ---
+  duration_ms: 24.811112
+  type: 'test'
+  ...
+# Subtest: exact opted-in bucket preserves only original color while all other normalization remains unchanged
+ok 3 - exact opted-in bucket preserves only original color while all other normalization remains unchanged
+  ---
+  duration_ms: 0.725559
+  type: 'test'
+  ...
+# Subtest: opted-in color rejects missing mismatched nonfinite nonfloat and normalized sources before merge
+ok 4 - opted-in color rejects missing mismatched nonfinite nonfloat and normalized sources before merge
+  ---
+  duration_ms: 1.999221
+  type: 'test'
+  ...
+# Subtest: opted-in mirrored and rotated sources preserve exact position-color pairing with corrected winding
+ok 5 - opted-in mirrored and rotated sources preserve exact position-color pairing with corrected winding
+  ---
+  duration_ms: 1.328125
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 698.772827

@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: standing seated moving NPC blockers do not create a false landing or jump reset in the gate and actual outdoor ground
+ok 1 - standing seated moving NPC blockers do not create a false landing or jump reset in the gate and actual outdoor ground
+  ---
+  duration_ms: 153.194135
+  type: 'test'
+  ...
+# Subtest: generic callers with both actual radii use all three passages in either direction
+ok 2 - generic callers with both actual radii use all three passages in either direction
+  ---
+  duration_ms: 111.685376
+  type: 'test'
+  ...
+# Subtest: all four finite domain edges plus ULP .01 .25 perturbations cross both ways without synthetic support
+ok 3 - all four finite domain edges plus ULP .01 .25 perturbations cross both ways without synthetic support
+  ---
+  duration_ms: 75.812068
+  type: 'test'
+  ...
+# Subtest: outdoor high fall and legal rail and rear-inner column cap drops cannot tunnel through source surfaces at 10/60Hz
+ok 4 - outdoor high fall and legal rail and rear-inner column cap drops cannot tunnel through source surfaces at 10/60Hz
+  ---
+  duration_ms: 1090.122831
+  type: 'test'
+  ...
+# Subtest: rear folded door edges block the complete body rather than letting it cross their .25m thickness
+ok 5 - rear folded door edges block the complete body rather than letting it cross their .25m thickness
+  ---
+  duration_ms: 64.281167
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1938.426351

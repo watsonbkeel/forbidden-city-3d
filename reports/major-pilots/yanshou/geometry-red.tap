@@ -1,0 +1,29 @@
+TAP version 13
+# Subtest: Yanshou source compound has a real rear house east connector and uncovered courtyard instead of front-house-only
+not ok 1 - Yanshou source compound has a real rear house east connector and uncovered courtyard instead of front-house-only
+  ---
+  duration_ms: 51.261147
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/yanshou/geometry.test.mjs:2:1'
+  failureType: 'testCodeFailure'
+  error: 'source compound contract required'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/yanshou/geometry.test.mjs:2:180)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 232.232132

@@ -1,0 +1,67 @@
+{
+  "parent": "1b5adc7945c31fdfea9e0751eefef5707218f8ff",
+  "status": "local bounded candidate; not deployed; GPU and real-device review pending",
+  "specializedAndShared": {
+    "tests": 252,
+    "passed": 250,
+    "failed": 2,
+    "failures": "east-well whole-garden historic snapshots; safe parent 2/2 pass; west-specific retained-source checks pass"
+  },
+  "currentState": {
+    "tests": 1331,
+    "passed": 1113,
+    "failed": 218,
+    "safeParentNamedFailuresReproduced": 218,
+    "sameInitialErrorBody": 211,
+    "changedHistoricalSourceHashBodies": 7
+  },
+  "treeMotionCases": 32,
+  "directedTreeExitCases": 16,
+  "neighbourTraceCases": 96,
+  "neighbourTraceDifferences": 0,
+  "build": "vite root production passed; 503 modules; 5.42s; output /tmp/west-well-resume-build",
+  "rawEvidence": {
+    "resume-regression.log": {
+      "bytes": 34260,
+      "sha256": "4b53d1611afcd6e39db475fa750f0211a19158bd971dee9390a4433251041787"
+    },
+    "resume-current-state.log": {
+      "bytes": 2204410,
+      "sha256": "dada55e47f4fa6933944c0306d740443f5926904509cc784087df0d634a5d8b8"
+    },
+    "resume-current-state-parent-failures.log": {
+      "bytes": 2079240,
+      "sha256": "ff88c9b495ed7e1445285d45a2c5fba7aadad4c1812ecea8bd5e78664fd6f761"
+    },
+    "resume-current-state-parent-imported.log": {
+      "bytes": 2946,
+      "sha256": "6b5095dc8d57c096b17eae99b01288e55947d9a9f56c42f05f45d7f9643927fd"
+    },
+    "resume-build.log": {
+      "bytes": 1186,
+      "sha256": "547eaf89050ef06c4409e03af97d45f82521de157ebd0f54a0ab3943fd3f9cec"
+    },
+    "tree-motion.json": {
+      "bytes": 5123,
+      "sha256": "aa3303bfa1250e46ecebdbd1204e7d52da1f311bdd2cf5e8bd6f123ecc24a2c4"
+    },
+    "tree-boundary-directed-terminal.json": {
+      "bytes": 4138,
+      "sha256": "c64b13832d221ed34ca9c260ae25a368437789692dde98124f83af1c2bebfa4e"
+    },
+    "world-parent.json": {
+      "bytes": 35865,
+      "sha256": "94a2d82c53e78b69bb9103fd9320b2aa77636a6a31d7635e154199e5ea071f2a"
+    },
+    "world-candidate.json": {
+      "bytes": 35865,
+      "sha256": "94a2d82c53e78b69bb9103fd9320b2aa77636a6a31d7635e154199e5ea071f2a"
+    },
+    "world-comparison.json": {
+      "bytes": 78,
+      "sha256": "331764dbbc6b9df2b63d549df59fd8deb5070edf711b898375b03d78f0458517"
+    }
+  },
+  "largeLogs": "resume-current-state.log and resume-current-state-parent-failures.log retained locally but excluded from small-file commit",
+  "generatedUnrelatedReports": "six tracked reports/r104-xiqing and reports/r58-a-bridge-replacement-prototype files changed by regression; kept unstaged; initial WIP not reset"
+}

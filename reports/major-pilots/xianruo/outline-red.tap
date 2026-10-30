@@ -1,0 +1,42 @@
+TAP version 13
+# Subtest: eight annex closed windows are source bounded without changing original navigation or physics
+ok 1 - eight annex closed windows are source bounded without changing original navigation or physics
+  ---
+  duration_ms: 72.068758
+  type: 'test'
+  ...
+# Subtest: gold outline is in front of underlying red frame, not hidden inside it
+not ok 2 - gold outline is in front of underlying red frame, not hidden inside it
+  ---
+  duration_ms: 24.995135
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/xianruo/geometry.test.mjs:3:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(Math.max(...lines.map(m=>m.geometry.boundingBox.min.z))<Math.min(...frames.map(m=>m.geometry.boundingBox.min.z)))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/xianruo/geometry.test.mjs:3:473)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 1
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 228.350041

@@ -1,0 +1,60 @@
+✔ whole Chengrui envelope activates one joined roof, shaped finial and both ceiling fields; Fubi never selected (243.893812ms)
+✔ all non-target pavilion geometry and original collision/walkable references remain exact (164.981182ms)
+✔ joined roof is closed consistently oriented with finite positive-area triangles and downward underside (165.333987ms)
+✖ all new geometry triangles are finite and nondegenerate, with bounded complete-package cost (129.013235ms)
+✔ bad source vertices, transformed host and repeat apply reject before mutation (99.955573ms)
+✔ both finial components are closed positive-volume solids and all new overhead details retain walking headroom (107.947898ms)
+✔ three rebuild/dispose cycles release every live new geometry and owned material once; borrowed materials untouched (254.714573ms)
+✔ blue coffer fields are recessed above their green frame faces rather than hanging below them (58.166711ms)
+✔ each support upper triangle is clipped to the rendered underside with bounded 15mm hidden overlap (202.209972ms)
+✖ all coffer layers have physical contact to the ceiling/frame and partial cells do not become a large blank square (70.983185ms)
+✔ photographed red curved gable apron is a closed fitted solid on each annex end, without carved motif claims (56.795943ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 9
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1743.150814
+
+✖ failing tests:
+
+test at tests/major-pilots/chengrui/whole-envelope.test.mjs:10:1
+✖ all new geometry triangles are finite and nondegenerate, with bounded complete-package cost (129.013235ms)
+  AssertionError [ERR_ASSERTION]: 28208
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/chengrui/whole-envelope.test.mjs:10:549)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/major-pilots/chengrui/whole-envelope.test.mjs:16:1
+✖ all coffer layers have physical contact to the ceiling/frame and partial cells do not become a large blank square (70.983185ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert.ok(ray.intersectObject(field).length)
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/chengrui/whole-envelope.test.mjs:16:830)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

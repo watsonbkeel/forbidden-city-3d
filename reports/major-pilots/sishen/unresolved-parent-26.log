@@ -1,0 +1,550 @@
+TAP version 13
+# file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/RoofBuilder.js:53
+#     aspect: { dougong: lib.aspect('dougong_band'), caihua: lib.aspect('caihua_beam') },
+#                            ^
+# TypeError: lib.aspect is not a function
+#     at makeCtx (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/RoofBuilder.js:53:28)
+#     at buildWallCap (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/RoofBuilder.js:759:15)
+#     at buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/palace/special/AxisFirewalls.js:34:15)
+#     at PalaceBuilder.buildComplex (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/PalaceBuilder.js:541:7)
+#     at captureTaiheFrontTiers (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/lib/taihe-front-route.mjs:10:5)
+#     at buildRoutes (/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/stepwalk.cjs:77:37)
+#     at async /workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/stepwalk.cjs:187:40
+# Node.js v24.19.0
+# Subtest: 昭德 route geometry dispatches its explicit three-bay profile and independent approaches
+ok 1 - 昭德 route geometry dispatches its explicit three-bay profile and independent approaches
+  ---
+  duration_ms: 4.103902
+  type: 'test'
+  ...
+# Subtest: V7 historical routes retain exact descriptors with only the later Qin’an and R6 Ningshou replacements isolated
+not ok 2 - V7 historical routes retain exact descriptors with only the later Qin’an and R6 Ningshou replacements isolated
+  ---
+  duration_ms: 515.235945
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/current-state/zhaode-gate-routes.test.mjs:35:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Command failed: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node tests/stepwalk.cjs 60 0 all
+    file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/RoofBuilder.js:53
+        aspect: { dougong: lib.aspect('dougong_band'), caihua: lib.aspect('caihua_beam') },
+                               ^
+    
+    TypeError: lib.aspect is not a function
+        at makeCtx (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/RoofBuilder.js:53:28)
+        at buildWallCap (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/RoofBuilder.js:759:15)
+        at buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/palace/special/AxisFirewalls.js:34:15)
+        at PalaceBuilder.buildComplex (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/PalaceBuilder.js:541:7)
+        at captureTaiheFrontTiers (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/lib/taihe-front-route.mjs:10:5)
+        at buildRoutes (/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/stepwalk.cjs:77:37)
+        at async /workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/stepwalk.cjs:187:40
+    
+    Node.js v24.19.0
+    
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    makeCtx (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/RoofBuilder.js:53:28)
+    buildWallCap (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/RoofBuilder.js:759:15)
+    buildTaiheEastFirewall (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/palace/special/AxisFirewalls.js:34:15)
+    PalaceBuilder.buildComplex (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/PalaceBuilder.js:541:7)
+    captureTaiheFrontTiers (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/lib/taihe-front-route.mjs:10:5)
+    buildRoutes (/workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/stepwalk.cjs:77:37)
+    async /workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/stepwalk.cjs:187:40
+    genericNodeError (node:internal/errors:985:15)
+    wrappedFn (node:internal/errors:539:14)
+    checkExecSyncError (node:child_process:942:11)
+    execFileSync (node:child_process:978:15)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/current-state/zhaode-gate-routes.test.mjs:36:17)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+  ...
+# Subtest: 昭德 true support front origin 60Hz walk forward rescueDisabled=false
+ok 3 - 昭德 true support front origin 60Hz walk forward rescueDisabled=false
+  ---
+  duration_ms: 11048.541734
+  type: 'test'
+  ...
+# {"queries":1532,"maxFeet":3.216,"maxSpeed":5.0000000000007505,"maxFeetGroundSeparation":0.08654814920028575,"maxUpwardQuery":0.016242424242426168,"end":[-62.4,-243.70134963303974,0]}
+# Subtest: 昭德 true support front origin 60Hz walk backward rescueDisabled=false
+ok 4 - 昭德 true support front origin 60Hz walk backward rescueDisabled=false
+  ---
+  duration_ms: 1882.096513
+  type: 'test'
+  ...
+# {"queries":1532,"maxFeet":3.216,"maxSpeed":5.0000000000007505,"maxFeetGroundSeparation":0.08654814920028575,"maxUpwardQuery":0.016242424242426168,"end":[-62.4,-243.70134963303974,0]}
+# Subtest: 昭德 true support front origin 60Hz sprint forward rescueDisabled=false
+ok 5 - 昭德 true support front origin 60Hz sprint forward rescueDisabled=false
+  ---
+  duration_ms: 1638.627369
+  type: 'test'
+  ...
+# {"queries":727,"maxFeet":3.216,"maxSpeed":12.000000000000806,"maxFeetGroundSeparation":0.25662449799198916,"maxUpwardQuery":0.03898181503851905,"end":[-62.4,-243.7068641554175,0]}
+# Subtest: 昭德 true support front origin 60Hz sprint backward rescueDisabled=false
+ok 6 - 昭德 true support front origin 60Hz sprint backward rescueDisabled=false
+  ---
+  duration_ms: 1434.97857
+  type: 'test'
+  ...
+# {"queries":727,"maxFeet":3.216,"maxSpeed":12.000000000000806,"maxFeetGroundSeparation":0.25662449799198916,"maxUpwardQuery":0.03898181503851905,"end":[-62.4,-243.7068641554175,0]}
+# Subtest: 昭德 true support front origin 10Hz walk forward rescueDisabled=false
+ok 7 - 昭德 true support front origin 10Hz walk forward rescueDisabled=false
+  ---
+  duration_ms: 1561.49136
+  type: 'test'
+  ...
+# {"queries":493,"maxFeet":3.216,"maxSpeed":5,"maxFeetGroundSeparation":0.03189792698092786,"maxUpwardQuery":0.04872727272727273,"end":[-62.4,-243.78125541885476,0]}
+# Subtest: 昭德 true support front origin 10Hz walk backward rescueDisabled=false
+ok 8 - 昭德 true support front origin 10Hz walk backward rescueDisabled=false
+  ---
+  duration_ms: 1771.482377
+  type: 'test'
+  ...
+# {"queries":493,"maxFeet":3.216,"maxSpeed":5,"maxFeetGroundSeparation":0.03189792698092786,"maxUpwardQuery":0.04872727272727273,"end":[-62.4,-243.78125541885476,0]}
+# Subtest: 昭德 true support front origin 10Hz sprint forward rescueDisabled=false
+ok 9 - 昭德 true support front origin 10Hz sprint forward rescueDisabled=false
+  ---
+  duration_ms: 1962.542751
+  type: 'test'
+  ...
+# {"queries":519,"maxFeet":3.216,"maxSpeed":12.000000000000455,"maxFeetGroundSeparation":0.17096385542168702,"maxUpwardQuery":0.04677817655399341,"end":[-62.4,-243.82177002344352,0]}
+# Subtest: 昭德 true support front origin 10Hz sprint backward rescueDisabled=false
+ok 10 - 昭德 true support front origin 10Hz sprint backward rescueDisabled=false
+  ---
+  duration_ms: 1700.002951
+  type: 'test'
+  ...
+# {"queries":519,"maxFeet":3.216,"maxSpeed":12.000000000000455,"maxFeetGroundSeparation":0.17096385542168702,"maxUpwardQuery":0.04677817655399341,"end":[-62.4,-243.82177002344352,0]}
+# Subtest: 昭德 true support rear origin 60Hz walk forward rescueDisabled=false
+ok 11 - 昭德 true support rear origin 60Hz walk forward rescueDisabled=false
+  ---
+  duration_ms: 1687.182863
+  type: 'test'
+  ...
+# {"queries":1532,"maxFeet":3.216,"maxSpeed":5.0000000000007505,"maxFeetGroundSeparation":0.08654814920032561,"maxUpwardQuery":0.01624242424242639,"end":[-62.4,-184.19865036696024,0]}
+# Subtest: 昭德 true support rear origin 60Hz walk backward rescueDisabled=false
+ok 12 - 昭德 true support rear origin 60Hz walk backward rescueDisabled=false
+  ---
+  duration_ms: 1641.247478
+  type: 'test'
+  ...
+# {"queries":1532,"maxFeet":3.216,"maxSpeed":5.0000000000007505,"maxFeetGroundSeparation":0.08654814920032561,"maxUpwardQuery":0.01624242424242639,"end":[-62.4,-184.19865036696024,0]}
+# Subtest: 昭德 true support rear origin 60Hz sprint forward rescueDisabled=false
+ok 13 - 昭德 true support rear origin 60Hz sprint forward rescueDisabled=false
+  ---
+  duration_ms: 1390.434146
+  type: 'test'
+  ...
+# {"queries":727,"maxFeet":3.216,"maxSpeed":12.000000000000806,"maxFeetGroundSeparation":0.2953714859437806,"maxUpwardQuery":0.038981815406889275,"end":[-62.4,-184.19313584458249,0]}
+# Subtest: 昭德 true support rear origin 60Hz sprint backward rescueDisabled=false
+ok 14 - 昭德 true support rear origin 60Hz sprint backward rescueDisabled=false
+  ---
+  duration_ms: 1501.977415
+  type: 'test'
+  ...
+# {"queries":727,"maxFeet":3.216,"maxSpeed":12.000000000000806,"maxFeetGroundSeparation":0.2953714859437806,"maxUpwardQuery":0.038981815406889275,"end":[-62.4,-184.19313584458249,0]}
+# Subtest: 昭德 true support rear origin 10Hz walk forward rescueDisabled=false
+ok 15 - 昭德 true support rear origin 10Hz walk forward rescueDisabled=false
+  ---
+  duration_ms: 1811.059864
+  type: 'test'
+  ...
+# {"queries":493,"maxFeet":3.216,"maxSpeed":5,"maxFeetGroundSeparation":0.03189792698092786,"maxUpwardQuery":0.048727272727273174,"end":[-62.4,-184.11874458114522,0]}
+# Subtest: 昭德 true support rear origin 10Hz walk backward rescueDisabled=false
+ok 16 - 昭德 true support rear origin 10Hz walk backward rescueDisabled=false
+  ---
+  duration_ms: 1531.34951
+  type: 'test'
+  ...
+# {"queries":493,"maxFeet":3.216,"maxSpeed":5,"maxFeetGroundSeparation":0.03189792698092786,"maxUpwardQuery":0.048727272727273174,"end":[-62.4,-184.11874458114522,0]}
+# Subtest: 昭德 true support rear origin 10Hz sprint forward rescueDisabled=false
+ok 17 - 昭德 true support rear origin 10Hz sprint forward rescueDisabled=false
+  ---
+  duration_ms: 1442.496889
+  type: 'test'
+  ...
+# {"queries":519,"maxFeet":3.216,"maxSpeed":12.000000000000455,"maxFeetGroundSeparation":0.17096385542168702,"maxUpwardQuery":0.04677817890028946,"end":[-62.4,-184.07822997655646,0]}
+# Subtest: 昭德 true support rear origin 10Hz sprint backward rescueDisabled=false
+ok 18 - 昭德 true support rear origin 10Hz sprint backward rescueDisabled=false
+  ---
+  duration_ms: 1345.897424
+  type: 'test'
+  ...
+# {"queries":519,"maxFeet":3.216,"maxSpeed":12.000000000000455,"maxFeetGroundSeparation":0.17096385542168702,"maxUpwardQuery":0.04677817890028946,"end":[-62.4,-184.07822997655646,0]}
+# Subtest: 昭德 true support front origin 60Hz walk forward rescueDisabled=true
+ok 19 - 昭德 true support front origin 60Hz walk forward rescueDisabled=true
+  ---
+  duration_ms: 1586.72682
+  type: 'test'
+  ...
+# {"queries":1532,"maxFeet":3.216,"maxSpeed":5.0000000000007505,"maxFeetGroundSeparation":0.08654814920028575,"maxUpwardQuery":0.016242424242426168,"end":[-62.4,-243.70134963303974,0]}
+# Subtest: 昭德 true support front origin 60Hz walk backward rescueDisabled=true
+ok 20 - 昭德 true support front origin 60Hz walk backward rescueDisabled=true
+  ---
+  duration_ms: 1564.176691
+  type: 'test'
+  ...
+# {"queries":1532,"maxFeet":3.216,"maxSpeed":5.0000000000007505,"maxFeetGroundSeparation":0.08654814920028575,"maxUpwardQuery":0.016242424242426168,"end":[-62.4,-243.70134963303974,0]}
+# Subtest: 昭德 true support front origin 60Hz sprint forward rescueDisabled=true
+ok 21 - 昭德 true support front origin 60Hz sprint forward rescueDisabled=true
+  ---
+  duration_ms: 1474.933149
+  type: 'test'
+  ...
+# {"queries":727,"maxFeet":3.216,"maxSpeed":12.000000000000806,"maxFeetGroundSeparation":0.25662449799198916,"maxUpwardQuery":0.03898181503851905,"end":[-62.4,-243.7068641554175,0]}
+# Subtest: 昭德 true support front origin 60Hz sprint backward rescueDisabled=true
+ok 22 - 昭德 true support front origin 60Hz sprint backward rescueDisabled=true
+  ---
+  duration_ms: 1812.740665
+  type: 'test'
+  ...
+# {"queries":727,"maxFeet":3.216,"maxSpeed":12.000000000000806,"maxFeetGroundSeparation":0.25662449799198916,"maxUpwardQuery":0.03898181503851905,"end":[-62.4,-243.7068641554175,0]}
+# Subtest: 昭德 true support front origin 10Hz walk forward rescueDisabled=true
+ok 23 - 昭德 true support front origin 10Hz walk forward rescueDisabled=true
+  ---
+  duration_ms: 1386.007121
+  type: 'test'
+  ...
+# {"queries":493,"maxFeet":3.216,"maxSpeed":5,"maxFeetGroundSeparation":0.03189792698092786,"maxUpwardQuery":0.04872727272727273,"end":[-62.4,-243.78125541885476,0]}
+# Subtest: 昭德 true support front origin 10Hz walk backward rescueDisabled=true
+ok 24 - 昭德 true support front origin 10Hz walk backward rescueDisabled=true
+  ---
+  duration_ms: 1348.978539
+  type: 'test'
+  ...
+# {"queries":493,"maxFeet":3.216,"maxSpeed":5,"maxFeetGroundSeparation":0.03189792698092786,"maxUpwardQuery":0.04872727272727273,"end":[-62.4,-243.78125541885476,0]}
+# Subtest: 昭德 true support front origin 10Hz sprint forward rescueDisabled=true
+ok 25 - 昭德 true support front origin 10Hz sprint forward rescueDisabled=true
+  ---
+  duration_ms: 1378.501847
+  type: 'test'
+  ...
+# {"queries":519,"maxFeet":3.216,"maxSpeed":12.000000000000455,"maxFeetGroundSeparation":0.17096385542168702,"maxUpwardQuery":0.04677817655399341,"end":[-62.4,-243.82177002344352,0]}
+# Subtest: 昭德 true support front origin 10Hz sprint backward rescueDisabled=true
+ok 26 - 昭德 true support front origin 10Hz sprint backward rescueDisabled=true
+  ---
+  duration_ms: 1383.450672
+  type: 'test'
+  ...
+# {"queries":519,"maxFeet":3.216,"maxSpeed":12.000000000000455,"maxFeetGroundSeparation":0.17096385542168702,"maxUpwardQuery":0.04677817655399341,"end":[-62.4,-243.82177002344352,0]}
+# Subtest: 昭德 true support rear origin 60Hz walk forward rescueDisabled=true
+ok 27 - 昭德 true support rear origin 60Hz walk forward rescueDisabled=true
+  ---
+  duration_ms: 1560.958364
+  type: 'test'
+  ...
+# {"queries":1532,"maxFeet":3.216,"maxSpeed":5.0000000000007505,"maxFeetGroundSeparation":0.08654814920032561,"maxUpwardQuery":0.01624242424242639,"end":[-62.4,-184.19865036696024,0]}
+# Subtest: 昭德 true support rear origin 60Hz walk backward rescueDisabled=true
+ok 28 - 昭德 true support rear origin 60Hz walk backward rescueDisabled=true
+  ---
+  duration_ms: 1727.321293
+  type: 'test'
+  ...
+# {"queries":1532,"maxFeet":3.216,"maxSpeed":5.0000000000007505,"maxFeetGroundSeparation":0.08654814920032561,"maxUpwardQuery":0.01624242424242639,"end":[-62.4,-184.19865036696024,0]}
+# Subtest: 昭德 true support rear origin 60Hz sprint forward rescueDisabled=true
+ok 29 - 昭德 true support rear origin 60Hz sprint forward rescueDisabled=true
+  ---
+  duration_ms: 2041.082235
+  type: 'test'
+  ...
+# {"queries":727,"maxFeet":3.216,"maxSpeed":12.000000000000806,"maxFeetGroundSeparation":0.2953714859437806,"maxUpwardQuery":0.038981815406889275,"end":[-62.4,-184.19313584458249,0]}
+# Subtest: 昭德 true support rear origin 60Hz sprint backward rescueDisabled=true
+ok 30 - 昭德 true support rear origin 60Hz sprint backward rescueDisabled=true
+  ---
+  duration_ms: 1837.14965
+  type: 'test'
+  ...
+# {"queries":727,"maxFeet":3.216,"maxSpeed":12.000000000000806,"maxFeetGroundSeparation":0.2953714859437806,"maxUpwardQuery":0.038981815406889275,"end":[-62.4,-184.19313584458249,0]}
+# Subtest: 昭德 true support rear origin 10Hz walk forward rescueDisabled=true
+ok 31 - 昭德 true support rear origin 10Hz walk forward rescueDisabled=true
+  ---
+  duration_ms: 1493.728191
+  type: 'test'
+  ...
+# {"queries":493,"maxFeet":3.216,"maxSpeed":5,"maxFeetGroundSeparation":0.03189792698092786,"maxUpwardQuery":0.048727272727273174,"end":[-62.4,-184.11874458114522,0]}
+# Subtest: 昭德 true support rear origin 10Hz walk backward rescueDisabled=true
+ok 32 - 昭德 true support rear origin 10Hz walk backward rescueDisabled=true
+  ---
+  duration_ms: 1541.8043
+  type: 'test'
+  ...
+# {"queries":493,"maxFeet":3.216,"maxSpeed":5,"maxFeetGroundSeparation":0.03189792698092786,"maxUpwardQuery":0.048727272727273174,"end":[-62.4,-184.11874458114522,0]}
+# Subtest: 昭德 true support rear origin 10Hz sprint forward rescueDisabled=true
+ok 33 - 昭德 true support rear origin 10Hz sprint forward rescueDisabled=true
+  ---
+  duration_ms: 1466.879719
+  type: 'test'
+  ...
+# {"queries":519,"maxFeet":3.216,"maxSpeed":12.000000000000455,"maxFeetGroundSeparation":0.17096385542168702,"maxUpwardQuery":0.04677817890028946,"end":[-62.4,-184.07822997655646,0]}
+# Subtest: 昭德 true support rear origin 10Hz sprint backward rescueDisabled=true
+ok 34 - 昭德 true support rear origin 10Hz sprint backward rescueDisabled=true
+  ---
+  duration_ms: 1461.033752
+  type: 'test'
+  ...
+# {"queries":519,"maxFeet":3.216,"maxSpeed":12.000000000000455,"maxFeetGroundSeparation":0.17096385542168702,"maxUpwardQuery":0.04677817890028946,"end":[-62.4,-184.07822997655646,0]}
+# Subtest: both clear-aperture sides are physically usable: -1, front
+ok 35 - both clear-aperture sides are physically usable: -1, front
+  ---
+  duration_ms: 1818.144549
+  type: 'test'
+  ...
+# Subtest: both clear-aperture sides are physically usable: -1, rear
+ok 36 - both clear-aperture sides are physically usable: -1, rear
+  ---
+  duration_ms: 1546.872512
+  type: 'test'
+  ...
+# Subtest: both clear-aperture sides are physically usable: 1, front
+ok 37 - both clear-aperture sides are physically usable: 1, front
+  ---
+  duration_ms: 1398.168033
+  type: 'test'
+  ...
+# Subtest: both clear-aperture sides are physically usable: 1, rear
+ok 38 - both clear-aperture sides are physically usable: 1, rear
+  ---
+  duration_ms: 1398.20428
+  type: 'test'
+  ...
+# Subtest: support mutation delete front ramp is rejected with rescueDisabled=false
+ok 39 - support mutation delete front ramp is rejected with rescueDisabled=false
+  ---
+  duration_ms: 1405.623212
+  type: 'test'
+  ...
+# XY arrived=false; physical support correctly rejected delete:zhaode-front-ramp
+# Subtest: support mutation shift front ramp is rejected with rescueDisabled=false
+ok 40 - support mutation shift front ramp is rejected with rescueDisabled=false
+  ---
+  duration_ms: 1469.874278
+  type: 'test'
+  ...
+# XY arrived=false; physical support correctly rejected shift:zhaode-front-ramp
+# Subtest: support mutation delete rear ramp is rejected with rescueDisabled=false
+ok 41 - support mutation delete rear ramp is rejected with rescueDisabled=false
+  ---
+  duration_ms: 1472.269013
+  type: 'test'
+  ...
+# XY arrived=false; physical support correctly rejected delete:zhaode-rear-ramp
+# Subtest: support mutation shift rear ramp is rejected with rescueDisabled=false
+ok 42 - support mutation shift rear ramp is rejected with rescueDisabled=false
+  ---
+  duration_ms: 1677.926151
+  type: 'test'
+  ...
+# XY arrived=false; physical support correctly rejected shift:zhaode-rear-ramp
+# Subtest: support mutation delete front ramp is rejected with rescueDisabled=true
+ok 43 - support mutation delete front ramp is rejected with rescueDisabled=true
+  ---
+  duration_ms: 1418.302178
+  type: 'test'
+  ...
+# XY arrived=false; physical support correctly rejected delete:zhaode-front-ramp
+# Subtest: support mutation shift front ramp is rejected with rescueDisabled=true
+ok 44 - support mutation shift front ramp is rejected with rescueDisabled=true
+  ---
+  duration_ms: 1456.749217
+  type: 'test'
+  ...
+# XY arrived=false; physical support correctly rejected shift:zhaode-front-ramp
+# Subtest: support mutation delete rear ramp is rejected with rescueDisabled=true
+ok 45 - support mutation delete rear ramp is rejected with rescueDisabled=true
+  ---
+  duration_ms: 1525.954431
+  type: 'test'
+  ...
+# XY arrived=false; physical support correctly rejected delete:zhaode-rear-ramp
+# Subtest: support mutation shift rear ramp is rejected with rescueDisabled=true
+ok 46 - support mutation shift rear ramp is rejected with rescueDisabled=true
+  ---
+  duration_ms: 1566.907202
+  type: 'test'
+  ...
+# XY arrived=false; physical support correctly rejected shift:zhaode-rear-ramp
+# Subtest: endpoint arrival cannot hide deleted front support behind an unowned substitute, noRescue=false
+ok 47 - endpoint arrival cannot hide deleted front support behind an unowned substitute, noRescue=false
+  ---
+  duration_ms: 1455.612169
+  type: 'test'
+  ...
+# Subtest: endpoint arrival cannot hide shiftd front support behind an unowned substitute, noRescue=false
+ok 48 - endpoint arrival cannot hide shiftd front support behind an unowned substitute, noRescue=false
+  ---
+  duration_ms: 1429.50187
+  type: 'test'
+  ...
+# Subtest: endpoint arrival cannot hide deleted rear support behind an unowned substitute, noRescue=false
+ok 49 - endpoint arrival cannot hide deleted rear support behind an unowned substitute, noRescue=false
+  ---
+  duration_ms: 1825.3486
+  type: 'test'
+  ...
+# Subtest: endpoint arrival cannot hide shiftd rear support behind an unowned substitute, noRescue=false
+ok 50 - endpoint arrival cannot hide shiftd rear support behind an unowned substitute, noRescue=false
+  ---
+  duration_ms: 1446.287445
+  type: 'test'
+  ...
+# Subtest: endpoint arrival cannot hide deleted front support behind an unowned substitute, noRescue=true
+ok 51 - endpoint arrival cannot hide deleted front support behind an unowned substitute, noRescue=true
+  ---
+  duration_ms: 1371.066571
+  type: 'test'
+  ...
+# Subtest: endpoint arrival cannot hide shiftd front support behind an unowned substitute, noRescue=true
+ok 52 - endpoint arrival cannot hide shiftd front support behind an unowned substitute, noRescue=true
+  ---
+  duration_ms: 1510.106105
+  type: 'test'
+  ...
+# Subtest: endpoint arrival cannot hide deleted rear support behind an unowned substitute, noRescue=true
+ok 53 - endpoint arrival cannot hide deleted rear support behind an unowned substitute, noRescue=true
+  ---
+  duration_ms: 1456.337853
+  type: 'test'
+  ...
+# Subtest: endpoint arrival cannot hide shiftd rear support behind an unowned substitute, noRescue=true
+ok 54 - endpoint arrival cannot hide shiftd rear support behind an unowned substitute, noRescue=true
+  ---
+  duration_ms: 1466.000532
+  type: 'test'
+  ...
+# Subtest: side retaining walls, platform rails, side panels, columns and closed wing caps block independent shortcuts
+ok 55 - side retaining walls, platform rails, side panels, columns and closed wing caps block independent shortcuts
+  ---
+  duration_ms: 201.49399
+  type: 'test'
+  ...
+# Subtest: a deliberately shut leaf physically blocks the unique central aperture
+ok 56 - a deliberately shut leaf physically blocks the unique central aperture
+  ---
+  duration_ms: 16.573262
+  type: 'test'
+  ...
+# Subtest: ground support ends at the actual ramp polygon with no invisible raised shelf
+ok 57 - ground support ends at the actual ramp polygon with no invisible raised shelf
+  ---
+  duration_ms: 0.715414
+  type: 'test'
+  ...
+# Subtest: additive browser dispatch leaves both published old driver bodies byte-exact
+ok 58 - additive browser dispatch leaves both published old driver bodies byte-exact
+  ---
+  duration_ms: 2.884961
+  type: 'test'
+  ...
+# Subtest: shared live-app helper uses actual production controller: 60/false/false/front
+ok 59 - shared live-app helper uses actual production controller: 60/false/false/front
+  ---
+  duration_ms: 1782.089612
+  type: 'test'
+  ...
+# Subtest: shared live-app helper uses actual production controller: 60/false/false/rear
+ok 60 - shared live-app helper uses actual production controller: 60/false/false/rear
+  ---
+  duration_ms: 1948.722856
+  type: 'test'
+  ...
+# Subtest: shared live-app helper uses actual production controller: 60/false/true/front
+ok 61 - shared live-app helper uses actual production controller: 60/false/true/front
+  ---
+  duration_ms: 1804.567822
+  type: 'test'
+  ...
+# Subtest: shared live-app helper uses actual production controller: 60/false/true/rear
+ok 62 - shared live-app helper uses actual production controller: 60/false/true/rear
+  ---
+  duration_ms: 1657.3938
+  type: 'test'
+  ...
+# Subtest: shared live-app helper uses actual production controller: 60/true/false/front
+ok 63 - shared live-app helper uses actual production controller: 60/true/false/front
+  ---
+  duration_ms: 1367.467083
+  type: 'test'
+  ...
+# Subtest: shared live-app helper uses actual production controller: 60/true/false/rear
+ok 64 - shared live-app helper uses actual production controller: 60/true/false/rear
+  ---
+  duration_ms: 1527.47291
+  type: 'test'
+  ...
+# Subtest: shared live-app helper uses actual production controller: 60/true/true/front
+ok 65 - shared live-app helper uses actual production controller: 60/true/true/front
+  ---
+  duration_ms: 1487.16114
+  type: 'test'
+  ...
+# Subtest: shared live-app helper uses actual production controller: 60/true/true/rear
+ok 66 - shared live-app helper uses actual production controller: 60/true/true/rear
+  ---
+  duration_ms: 1809.375903
+  type: 'test'
+  ...
+# Subtest: shared live-app helper uses actual production controller: 10/false/false/front
+ok 67 - shared live-app helper uses actual production controller: 10/false/false/front
+  ---
+  duration_ms: 1473.803738
+  type: 'test'
+  ...
+# Subtest: shared live-app helper uses actual production controller: 10/false/false/rear
+ok 68 - shared live-app helper uses actual production controller: 10/false/false/rear
+  ---
+  duration_ms: 1487.263311
+  type: 'test'
+  ...
+# Subtest: shared live-app helper uses actual production controller: 10/false/true/front
+ok 69 - shared live-app helper uses actual production controller: 10/false/true/front
+  ---
+  duration_ms: 1446.071289
+  type: 'test'
+  ...
+# Subtest: shared live-app helper uses actual production controller: 10/false/true/rear
+ok 70 - shared live-app helper uses actual production controller: 10/false/true/rear
+  ---
+  duration_ms: 1447.441636
+  type: 'test'
+  ...
+# Subtest: shared live-app helper uses actual production controller: 10/true/false/front
+ok 71 - shared live-app helper uses actual production controller: 10/true/false/front
+  ---
+  duration_ms: 1490.003836
+  type: 'test'
+  ...
+# Subtest: shared live-app helper uses actual production controller: 10/true/false/rear
+ok 72 - shared live-app helper uses actual production controller: 10/true/false/rear
+  ---
+  duration_ms: 1473.582893
+  type: 'test'
+  ...
+# Subtest: shared live-app helper uses actual production controller: 10/true/true/front
+ok 73 - shared live-app helper uses actual production controller: 10/true/true/front
+  ---
+  duration_ms: 1769.036668
+  type: 'test'
+  ...
+# Subtest: shared live-app helper uses actual production controller: 10/true/true/rear
+ok 74 - shared live-app helper uses actual production controller: 10/true/true/rear
+  ---
+  duration_ms: 1435.523159
+  type: 'test'
+  ...
+# Subtest: compiled-app diagnostic injection bundles only hashed observers and the unchanged waypoint helper
+ok 75 - compiled-app diagnostic injection bundles only hashed observers and the unchanged waypoint helper
+  ---
+  duration_ms: 6.337134
+  type: 'test'
+  ...
+1..75
+# tests 75
+# suites 0
+# pass 74
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 117404.310072

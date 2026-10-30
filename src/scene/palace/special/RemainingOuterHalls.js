@@ -1,3 +1,11 @@
+import {applyBaoyunMainPorch} from './BaoyunMainPorch.js';
+import {buildYanshouCompound} from './YanshouCompound.js';
+import {buildCiyinFacade} from './CiyinFacade.js';
+import {buildJiyunLowerPanels} from './JiyunLowerPanels.js';
+import {buildJiyunRailFit} from './JiyunRailFit.js';
+import {buildCiningFrontFit} from './CiningFrontFit.js';
+import {buildJiyunFrontFit} from './JiyunFrontFit.js';
+import {buildDafotangFrontFit} from './DafotangFrontFit.js';
 import {addYanchunSouthVessels} from './YanchunSouthVessels.js';
 import {buildWenyuanUpperFrame} from './WenyuanUpperFrame.js';
 import { buildNanxunCaissonRings } from './NanxunCaissonRings.js';
@@ -486,6 +494,16 @@ function primaryNavigation(p) {
   const world=(x,z,yy=y)=>({x:p.x+Math.cos(rotation)*x+Math.sin(rotation)*z,y:yy,z:centerZ-Math.sin(rotation)*x+Math.cos(rotation)*z});
   const normal={x:-Math.sin(rotation),z:-Math.cos(rotation)},primaryEntry=world(0,front),outside=world(0,-D/2-old.pad-y*1.6-(p.key==='baoxiang'?.3:.6),0);
   let approachPoints=[outside,world(0,-D/2-old.pad-y*1.6,0),world(0,-D/2-old.pad),primaryEntry,world(0,front+1.3)];
+  if(p.key==='ciyin'){
+    // Official 2020-gallery front: lower central three bays are sill windows.
+    // The lower public model route enters the source east through-bay instead.
+    const x=-p.w/2+p.w/10,west=-x,edge=-D/2-old.pad,sourceFront=front+.10;
+    // Full-body step contact starts half a metre before each visible riser.
+    // Paired points encode discrete rises, not a fictitious interpolated ramp.
+    const stairPoints=[];for(let i=0;i<5;i++){const contact=i<4?edge-.96+i*.24-.5:edge+.05-.5;stairPoints.push(world(x,contact-.0001,y*i/5),world(x,contact+.0001,y*(i+1)/5));}
+    approachPoints=[world(x,edge-1.90,0),...stairPoints,world(x,edge+.25),world(x,sourceFront),world(x,sourceFront+1.3),world(x,0),world(-p.w/2+p.w/5+1,0)];
+    return Object.freeze({id:'ciyin-actual-primary-entry',runtimeReady:true,status:'SOURCE_END_DOOR_REPLACES_FALSE_CENTRAL_MODEL_DOOR__NOT_VISITOR_PERMISSION',primaryEntry:world(x,sourceFront),secondaryEntry:world(west,sourceFront),outwardNormal:normal,center:{x:p.x,z:centerZ},localWidth:p.w,localDepth:D,bays:5,pad:old.pad,floorY:y,rotation,approachPoints});
+  }
   if(p.key==='jiyun'){
     // The source-facing east doorway is opposite Xianruo's west side. Approach
     // through the retained northern gap, not through the neighboring hall.
@@ -502,7 +520,7 @@ function gardenFrontGeometry(p) {
 function fittedMapFootprint(p) {
   if(!['hanqing','yanshou'].includes(p.key))return null;
   const g=gardenFrontGeometry(p);
-  return Object.freeze({x:p.x,z:g.centerZ,w:g.w+2*g.pad,d:g.d+2*g.pad,kind:'hall'});
+  return Object.freeze({x:p.x,z:p.key==='yanshou'?89.3:g.centerZ,w:g.w+2*g.pad,d:p.key==='yanshou'?18.4+2*g.pad:g.d+2*g.pad,kind:'hall'});
 }
 
 export const REMAINING_OUTER_PROFILES = Object.freeze(RECORDS.map(p => Object.freeze({
@@ -828,6 +846,7 @@ function buildTempleTower(kit,item,p) {
   for(const yy of[g.y,g.upperY]){
     const H=yy===g.y?4.05:g.upperH-.1;
     for(let i=0;i<bays;i++){
+      if(p.key==='ciyin')continue;
       const isPassage=p.key==='ciyin'&&yy===g.y&&i===0;
       face(-A+i*bay,-A+(i+1)*bay,g.front,yy,H,{door:i===Math.floor(bays/2)||isPassage,opened:i===Math.floor(bays/2)||isPassage,role:p.key+(yy===g.y?'-front':'-upper-front')});
     }
@@ -891,13 +910,16 @@ function buildTempleTower(kit,item,p) {
     }
     g.circulationStatus='TWO_REAL_LEVELS__STAIR_POSITION_UNVERIFIED_NO_INVENTED_GROUND_CONNECTION';
   }
+  if(p.key==='jiyun'&&kit.jiyunFrontFit!==false)buildJiyunFrontFit(c);
   if(p.key==='ciyin')retainLegacyFurniture(c);
   rail(c,p.key+'-upper-front-rail',-A+.15,A-.15,-d/2+.12,-d/2+.12,g.upperY);
   for(const side of[-1,1])rail(c,p.key+'-upper-balcony-end',side*(A-.15),side*(A-.15),-d/2+.12,g.front,g.upperY);
+  if(p.key==='jiyun'&&kit.jiyunRailFit!==false){buildJiyunRailFit(c);if(kit.jiyunLowerPanels!==false)buildJiyunLowerPanels(c);}
   plainCeiling(c,g.upperY+g.upperH-.12);
   g.roof=rolledRoof(c,{yy:g.upperY+g.upperH,rise:2.1});
   if(p.key==='jiyun')buildJiyunNamePlaque(kit,c.f,g);
-  c.register(item.name,-A+.35,A-.35,g.front,g.rear,g.y,3.65,[{x:0,z:g.front}],{x:0,z:g.front+1.2});
+  if(p.key==='ciyin')buildCiyinFacade(c);
+  c.register(item.name,-A+.35,A-.35,g.front,g.rear,g.y,3.65,p.key==='ciyin'?[-A+bay/2,A-bay/2].map(x=>({x,z:g.ciyinFacade.front})):[{x:0,z:g.front}],{x:0,z:g.front+1.2});
   // Upper navigation is deliberately not a historical room-count claim.
   if(p.key!=='jiyun')c.register(item.name+'·二层观览区',-A+.35,A-.35,g.front,g.rear,g.upperY,3.2,[{x:0,z:g.front}],{x:0,z:g.front+.55});
   const toWorld=(x,y,z)=>{const v=new THREE.Vector3(x,y,z).applyMatrix4(c.f.matrixWorld);return{x:v.x,y:v.y,z:v.z};};
@@ -929,6 +951,8 @@ function buildCeremonialHall(kit,item,p) {
     face(-A+i*bay,-A+(i+1)*bay,z,g.y,g.h-.5,{door,opened:middle,role:p.key+'-front',sill:1.05});
     if(shouan)face(-A+i*bay,-A+(i+1)*bay,g.rear,g.y,g.h-.5,{door:middle,opened:middle,role:p.key+'-rear',sill:1.05});
   }
+  if(p.key==='cining'&&kit.ciningFrontFit!==false)buildCiningFrontFit(c);
+  if(p.key==='dafotang'&&kit.dafotangFrontFit!==false)buildDafotangFrontFit(c);
   if(!shouan)wallZ(g.rear,-A,A,g.y,g.h-.5);
   if(cining)buildCiningModernDisplay(c);else retainLegacyFurniture(c);
   if(p.key==='dafotang'){g.warmRoomPartitions=[-1,1].map(side=>({x:side*bay*1.5,doorZ:g.front+2.2,doorW:1.8,doorH:2.65}));for(const part of g.warmRoomPartitions)c.partition(part.x,g.front,g.rear,g.y,g.h-.5,part.doorZ,part.doorW,'dafotang-fitted-warm-room-partition');g.partitionEvidence='THREE_SECTIONS_OFFICIAL__3_2_2_BAY_SPLIT_AND_DOOR_LOCATIONS_FITTED';}
@@ -996,7 +1020,8 @@ function buildGardenFrontHouse(kit,item,p) {
   for(let k=1;k<=2;k++)box(p.key+'-front-house-valley-bearing','timber',g.w-.25,.24,.28,0,g.y+g.h-.08,g.front+k*g.d/3,false,{constructionStatus:'FITTED_VALLEY_BEAM_BEARING_ON_FULL_HEIGHT_SIDE_WALLS'});
   kit.plaque(c.f,item.name,0,g.y+g.h-.75,g.front-.25,.75,1.2);
   c.register(item.name+'·前房',-A+.35,A-.35,g.front,g.rear,g.y,g.h-.55,[{x:0,z:g.front}],{x:0,z:g.front+1.3});
-  return finish(c,{compoundStatus:'FRONT_HOUSE_ONLY_REAR_COURT_AND_CONNECTOR_WITHHELD',sourceFrontHouse:'THREE_BAY_NEAR_SQUARE_TRIPLE_ROLLED_HARD_GABLE',frontDoorWorld:{x:item.x,z:item.z-item.d/2},originalIdentityAnchor:{x:item.x,z:item.z},fittedFrontHouseCenter:{x:item.x,z:g.centerZ},frontHouseWorldWallBounds:{minX:item.x-A,maxX:item.x+A,minZ:item.z-item.d/2,maxZ:item.z-item.d/2+g.d},unknown:['Rear courtyard, rear house and side connector omitted pending full neighbor/route fit','Flexible interior screens, flower-window placement and complete furnishing positions unresolved','Official building page and architecture paper differ in front depth-bay description; numeric depth is a model fit'],facadeDetailStatus:'CENTRAL_DOOR_SIDE_SILL_LIFT_WINDOWS_SOURCED__LEAF_COUNT_PATTERN_FITTED'});
+  if(p.key==='yanshou')buildYanshouCompound(c,rolledRoof);
+  return finish(c,{compoundStatus:g.yanshouCompound?'SOURCE_TOPOLOGY_COMPOUND_MODEL_FIT':'FRONT_HOUSE_ONLY_REAR_COURT_AND_CONNECTOR_WITHHELD',sourceFrontHouse:'THREE_BAY_NEAR_SQUARE_TRIPLE_ROLLED_HARD_GABLE',frontDoorWorld:{x:item.x,z:item.z-item.d/2},originalIdentityAnchor:{x:item.x,z:item.z},fittedFrontHouseCenter:{x:item.x,z:g.centerZ},frontHouseWorldWallBounds:{minX:item.x-A,maxX:item.x+A,minZ:item.z-item.d/2,maxZ:item.z-item.d/2+g.d},unknown:[...(g.yanshouCompound?['Rear compound dimensions and unseen facade details are model fits, not measured'] : ['Rear courtyard, rear house and side connector omitted pending full neighbor/route fit']),'Flexible interior screens, flower-window placement and complete furnishing positions unresolved','Official building page and architecture paper differ in front depth-bay description; numeric depth is a model fit'],facadeDetailStatus:'CENTRAL_DOOR_SIDE_SILL_LIFT_WINDOWS_SOURCED__LEAF_COUNT_PATTERN_FITTED'});
 }
 
 function buildNanxunHall(kit,item,p) {
@@ -1419,7 +1444,8 @@ function augmentBaoyunFacade(kit,item,built,p) {
   for(const x of[-.37,.37])box('baoyun-photo-green-inscription-frame',green,.06,1.54,.025,x,11.08,7.7125,false,info);
   for(const y of[10.34,11.82])box('baoyun-photo-green-inscription-frame',green,.68,.06,.025,0,y,7.7125,false,info);
   const nameInscription=buildBaoyunNameInscription(kit,f,panel,source);
-  return finishAugment(kit,item,built,p,{exteriorChanged:true,interiorChanged:false,facadeDetail:{source,photographyDate:null,eventDate:'2024-12-27',verticalJoints:joints,roundels:7,nameInscription,scope:'VISIBLE_MAIN_FRONT_AND_PORCH_ONLY'},currentInteriorStatus:'EVIDENCE_BLOCKED__MODEL_ACCESS_CLOSED_NOT_CLAIM_ABOUT_CURRENT_USE',wholeBuildingComplete:false});
+  const mainPorch=applyBaoyunMainPorch(kit,item,built);
+  return finishAugment(kit,item,built,p,{exteriorChanged:true,interiorChanged:false,facadeDetail:{mainPorch,source,photographyDate:null,eventDate:'2024-12-27',verticalJoints:joints,roundels:7,nameInscription,scope:'VISIBLE_MAIN_FRONT_AND_PORCH_ONLY'},currentInteriorStatus:'EVIDENCE_BLOCKED__MODEL_ACCESS_CLOSED_NOT_CLAIM_ABOUT_CURRENT_USE',wholeBuildingComplete:false});
 }
 
 const HEYI_2022='https://ggzlquanjing.dpm.org.cn/scene/wPIRwsKstn5bVoDoqCG426Sfykpnc2hK/20220207_hyzg/';

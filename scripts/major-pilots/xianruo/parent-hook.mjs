@@ -1,0 +1,1 @@
+import {registerHooks} from 'node:module';import {execFileSync} from 'node:child_process';const source=execFileSync('git',['show','c16795e7:src/scene/palace/special/RitualHalls.js'],{encoding:'utf8'});registerHooks({load(url,context,next){return url.endsWith('/src/scene/palace/special/RitualHalls.js')?{format:'module',source,shortCircuit:true}:next(url,context)}});

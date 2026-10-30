@@ -1,0 +1,108 @@
+✔ R45 Arrow source door groups and fitted outer gallery replace incorrect open nine-bay shell (58.278907ms)
+✔ R45 Linxi four four-leaf doors, two-leaf flank windows, flat ceiling and water-side barriers (40.073454ms)
+✔ R45 actual arrow axial/gallery roundtrip 10Hz W sprint (358.934558ms)
+✔ R45 actual arrow axial/gallery roundtrip 10Hz S sprint (249.519133ms)
+✔ R45 actual arrow axial/gallery roundtrip 60Hz W sprint (226.540524ms)
+✔ R45 actual arrow axial/gallery roundtrip 60Hz S sprint (201.214612ms)
+✔ R45 actual linxi axial/gallery roundtrip 10Hz W sprint (1036.311737ms)
+✔ R45 actual linxi axial/gallery roundtrip 10Hz S sprint (878.202646ms)
+✔ R45 actual linxi axial/gallery roundtrip 60Hz W sprint (887.933023ms)
+✔ R45 actual linxi axial/gallery roundtrip 60Hz S sprint (891.710843ms)
+✔ R45 closed side boundaries and open central doors agree with registered clear points (27.953254ms)
+✔ R45 profiles reject incompatible identities metrics and overrides before geometry (2.579933ms)
+✖ R45 all120 non-target halls retain complete R44 geometry and navigation signatures (242.575932ms)
+✔ R45 independent 箭亭 retains actual R44 roof/platform and established supports (76.848542ms)
+✖ R45 independent 临溪亭 retains actual R44 roof/platform and established supports (46.214372ms)
+✔ R45 independent 箭亭 actual merged geometry is finite, flight-covered and exactly disposed (56.024903ms)
+✔ R45 independent 临溪亭 actual merged geometry is finite, flight-covered and exactly disposed (118.253088ms)
+✔ R45 independent Arrow real facade has five south and three north multi-leaf groups, twenty perimeter columns and windowless side walls (17.978191ms)
+✔ R45 independent Linxi two window leaves per flank are not mistaken for openings; central four-leaf N/S passages and E/W barriers differ (23.20578ms)
+✔ R45 independent 箭亭 every new solid box collider is its visible mesh envelope (10.542448ms)
+✔ R45 independent 临溪亭 every new solid box collider is its visible mesh envelope (13.90146ms)
+✔ R45 independent Linxi approved 0.8-run stairs have actual visible treads and matched ground support on both approaches (22.221532ms)
+✖ R69 dedicated Linxi finial and unchanged Arrow 临溪亭 (93.819246ms)
+✔ R69 dedicated Linxi finial and unchanged Arrow 箭亭 (55.44059ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 21
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5481.026369
+
+✖ failing tests:
+
+test at tests/r45-enclosure-layout.test.mjs:20:1
+✖ R45 all120 non-target halls retain complete R44 geometry and navigation signatures (242.575932ms)
+  AssertionError [ERR_ASSERTION]: axis-courts/24
+  + actual - expected
+
+    {
+  +   geometry: '1ce8c1f26cd95b2be18b9b59381f4bf55b597fcd2baedb147c70e9265a597ca0',
+  -   geometry: '451dedf64f19f2a996b64b7680b69f5a96fcae5e7ef382c9e0e488eafe621161',
+      navigation: '3b76de2608446648ba564e0ebdb646e3feec8a2b9df0bc25eadfa0c13085a950'
+    }
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r45-enclosure-layout.test.mjs:20:578)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: { geometry: '1ce8c1f26cd95b2be18b9b59381f4bf55b597fcd2baedb147c70e9265a597ca0', navigation: '3b76de2608446648ba564e0ebdb646e3feec8a2b9df0bc25eadfa0c13085a950' },
+    expected: { geometry: '451dedf64f19f2a996b64b7680b69f5a96fcae5e7ef382c9e0e488eafe621161', navigation: '3b76de2608446648ba564e0ebdb646e3feec8a2b9df0bc25eadfa0c13085a950' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r45-independent-enclosures.test.mjs:14:30
+✖ R45 independent 临溪亭 retains actual R44 roof/platform and established supports (46.214372ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    {
+  +   count: 8,
+  +   hash: '60f4f14ae9d2f880d9ed3d7c327f29339e45f8e5bf42c4840911a58b7ea34882'
+  -   count: 5,
+  -   hash: '27f6e95c9633ed3a552236ebe1f50592199a94deed59d4433fa0e9695149897c'
+    }
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r45-independent-enclosures.test.mjs:14:228)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { count: 8, hash: '60f4f14ae9d2f880d9ed3d7c327f29339e45f8e5bf42c4840911a58b7ea34882' },
+    expected: { count: 5, hash: '27f6e95c9633ed3a552236ebe1f50592199a94deed59d4433fa0e9695149897c' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r69-k-linxi-finial.test.mjs:4:31
+✖ R69 dedicated Linxi finial and unchanged Arrow 临溪亭 (93.819246ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + '343e89b77c9c0d3410901d4a4a6a1f518473358662bb336b126a35992ef49bb5'
+  - 'b6b765dd1a93dd694c8f56f90a618d73396505e3688cbd01bae3883ee3b48621'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/r69-k-linxi-finial.test.mjs:4:223)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '343e89b77c9c0d3410901d4a4a6a1f518473358662bb336b126a35992ef49bb5',
+    expected: 'b6b765dd1a93dd694c8f56f90a618d73396505e3688cbd01bae3883ee3b48621',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

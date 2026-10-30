@@ -1,0 +1,2 @@
+import fs from 'node:fs';import {CourtKit} from '../../../src/scene/palace/kit.js';import {library} from '../../lib/inner-palace-fixture.mjs';import {buildRemainingHall,resolveRemainingProfile} from '../../../src/scene/palace/special/RemainingOuterHalls.js';
+export function make(enabled=true,name='大佛堂'){const kit=new CourtKit(library(),'outer-west');kit.dafotangFrontFit=enabled;const item=JSON.parse(fs.readFileSync('data/zones/outer-west.json')).items.find(i=>i.name===name),p=resolveRemainingProfile('outer-west',item);return{kit,item,p,...buildRemainingHall(kit,item,p)}}

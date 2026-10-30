@@ -1,0 +1,29 @@
+file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/palace/special/TiheWestInterior.js:31
+ if(sourceMeshes.some(m=>{for(let q=m;q&&q!==kit.root;q=q.parent)if(!q.visible)return true;return false})||JSON.stringify(sourceMeshes.map(record))!==JSON.stringify(retainedContract))throw Error('Tihe exact retained whole-hall source contract changed');
+                                                                                                                                                                                             ^
+
+Error: Tihe exact retained whole-hall source contract changed
+    at applyTiheWestInterior (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/palace/special/TiheWestInterior.js:31:190)
+    at Object.buildRemainingHall [as build] (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/palace/special/RemainingResidentialHalls.js:220:34)
+    at ZoneBase.buildHall (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/zones/ZoneBase.js:228:129)
+    at zb.<computed> [as buildHall] (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/lib/world.mjs:243:24)
+    at ZoneBase.build (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/src/scene/zones/ZoneBase.js:106:16)
+    at buildWorld (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/lib/world.mjs:248:21)
+    at async file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/tihe-west/world.test.mjs:2:308
+
+Node.js v24.19.0
+✖ tests/major-pilots/tihe-west/world.test.mjs (5152.883635ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5166.401546
+
+✖ failing tests:
+
+test at tests/major-pilots/tihe-west/world.test.mjs:1:1
+✖ tests/major-pilots/tihe-west/world.test.mjs (5152.883635ms)
+  'test failed'

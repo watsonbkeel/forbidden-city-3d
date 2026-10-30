@@ -1,0 +1,6 @@
+# Independent read-only review
+2026-10-30. Reviewer `/root/resume_wuying_windows/yikun_review` against3987742a.
+All three official reference images and actual generated texture personally inspected. Two-inner-bay source boundary approved; no identical-four-bay copy. Initial blocking finding: lower gold-tone border front faces were coplanar with overlapping glass faces. Geometric regression was added and failed; glass front recessed0.002 within original bounds, preserving whole envelope. Reviewer inspected correction and freshly ran35 tests, approved with no remaining blocker. Author then reran expanded36-test suite including explicit two outer slabs byte-exact/no metadata regression:36/36 pass.
+All other geometry, central route, interiors and physical/nav arrays retained. Exact glyph carving, operable-leaf count, outer covered-window geometry and browser/GPU acceptance remain unverified. Reviewer performed no edits/commits/publication.
+
+Harness correction: initial test-copy imports accidentally named a nonexistent r54-yikun helper and retained a4-group loop. Corrected to the unchanged generic mesh-record helpers and actual2-group scope; these errors were harness failures, not ignored passes. Final logs supersede initial incomplete run.

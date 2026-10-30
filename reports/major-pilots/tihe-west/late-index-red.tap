@@ -1,0 +1,61 @@
+✔ failed staged composition preserves original resources: late-invalid-curved-source (100.056871ms)
+✖ failed staged composition preserves original resources: mesh-construction-throws (39.145811ms)
+✖ atomic reject normalized old index (114.448191ms)
+✔ atomic reject hidden root (17.603661ms)
+✔ atomic reject hidden retained material (23.925062ms)
+✔ atomic reject hidden old material (15.316718ms)
+✔ atomic reject invisible old color write (6.494321ms)
+✔ atomic reject retained position normalization (18.445566ms)
+✔ atomic reject hidden old source (8.274639ms)
+✔ atomic reject removed draw group (6.895082ms)
+✔ atomic reject scope carrying old collider (9.451581ms)
+✔ atomic reject moved retained column (17.513014ms)
+✔ atomic reject missing retained window (15.782411ms)
+✔ atomic reject duplicate material owner (4.844513ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 12
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1045.027435
+
+✖ failing tests:
+
+test at tests/major-pilots/tihe-west/atomic-late.test.mjs:2:76
+✖ failed staged composition preserves original resources: mesh-construction-throws (39.145811ms)
+  AssertionError [ERR_ASSERTION]: new geometry disposed exactly once
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/tihe-west/atomic-late.test.mjs:2:1190)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/major-pilots/tihe-west/guard.test.mjs:5:3
+✖ atomic reject normalized old index (114.448191ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/tihe-west/guard.test.mjs:5:303)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }

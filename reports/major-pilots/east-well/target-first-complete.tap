@@ -1,0 +1,169 @@
+TAP version 13
+# Subtest: whole east well has exact four-column span, square-to-octagon support and eight open roof sectors
+ok 1 - whole east well has exact four-column span, square-to-octagon support and eight open roof sectors
+  ---
+  duration_ms: 41.553333
+  type: 'test'
+  ...
+# Subtest: octagonal roof center stays empty at every roof level rather than a hidden cap
+ok 2 - octagonal roof center stays empty at every roof level rather than a hidden cap
+  ---
+  duration_ms: 19.780275
+  type: 'test'
+  ...
+# Subtest: wrong named zone and unknown profile cannot silently create an east well
+ok 3 - wrong named zone and unknown profile cannot silently create an east well
+  ---
+  duration_ms: 12.211743
+  type: 'test'
+  ...
+# Subtest: each diagonal bearing crosses its actual column and all four hanging bearings close the octagonal load path
+ok 4 - each diagonal bearing crosses its actual column and all four hanging bearings close the octagonal load path
+  ---
+  duration_ms: 10.151451
+  type: 'test'
+  ...
+# Subtest: every bearing and hip ornament meets the visible roof rather than floating below or above it
+ok 5 - every bearing and hip ornament meets the visible roof rather than floating below or above it
+  ---
+  duration_ms: 10.57104
+  type: 'test'
+  ...
+# Subtest: photographed red roof soffits are separate from yellow exterior glazing, without a new cap over the opening
+ok 6 - photographed red roof soffits are separate from yellow exterior glazing, without a new cap over the opening
+  ---
+  duration_ms: 9.017468
+  type: 'test'
+  ...
+# Subtest: standing/seated/moving NPC on both bypasses cannot become a false landing or jump reset
+ok 7 - standing/seated/moving NPC on both bypasses cannot become a false landing or jump reset
+  ---
+  duration_ms: 159.789318
+  type: 'test'
+  ...
+# Subtest: all four dispatch boundaries preserve .3/.5 kinematic bodies across ULP offsets both directions
+not ok 8 - all four dispatch boundaries preserve .3/.5 kinematic bodies across ULP offsets both directions
+  ---
+  duration_ms: 39.335764
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/east-well/dynamic.test.mjs:4:1'
+  failureType: 'testCodeFailure'
+  error: '{"axis":"x","boundary":-44.4,"radius":0.3,"eps":-1.1368683772161603e-13,"sign":-1,"start":-44.000000000000114,"end":-44.20000000000012,"p":[-44.080000000000126,1.7399999991059303,459.8],"feet":0.03999999910593033}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/east-well/dynamic.test.mjs:4:932)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: original east-well object has one dedicated complete runtime assembly rather than name-only inventory
+ok 9 - original east-well object has one dedicated complete runtime assembly rather than name-only inventory
+  ---
+  duration_ms: 231.060325
+  type: 'test'
+  ...
+# Subtest: east-well ground keeps nonlocal rectangle identity and all four surviving fragments
+ok 10 - east-well ground keeps nonlocal rectangle identity and all four surviving fragments
+  ---
+  duration_ms: 1.313292
+  type: 'test'
+  ...
+# Subtest: east-well ground rejects inverted/nonfinite rectangles
+ok 11 - east-well ground rejects inverted/nonfinite rectangles
+  ---
+  duration_ms: 0.260572
+  type: 'test'
+  ...
+# Subtest: platform and every visible surface reject downgrade and wrong ownership and unload/reload cleanly
+ok 12 - platform and every visible surface reject downgrade and wrong ownership and unload/reload cleanly
+  ---
+  duration_ms: 86.618788
+  type: 'test'
+  ...
+# Subtest: east-well witness requires the unique live actual ground and invalidates geometry transforms detach and unbind
+ok 13 - east-well witness requires the unique live actual ground and invalidates geometry transforms detach and unbind
+  ---
+  duration_ms: 50.805643
+  type: 'test'
+  ...
+# Subtest: east-well uses registered materials, never undefined-key white fallback
+ok 14 - east-well uses registered materials, never undefined-key white fallback
+  ---
+  duration_ms: 43.250385
+  type: 'test'
+  ...
+# east-well-full-height-census 98
+# Subtest: both east-well bypasses preserve original north-south lane with walk run jump at 10/60Hz both ways
+ok 15 - both east-well bypasses preserve original north-south lane with walk run jump at 10/60Hz both ways
+  ---
+  duration_ms: 7546.394049
+  type: 'test'
+  ...
+# Subtest: all-height east-well region plus 1.25m contains only new well ordinary boxes and source surfaces
+ok 16 - all-height east-well region plus 1.25m contains only new well ordinary boxes and source surfaces
+  ---
+  duration_ms: 2.83762
+  type: 'test'
+  ...
+# [GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,222, 树木=34棵, 碰撞器=2034
+# [GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,240, 树木=34棵, 碰撞器=2034
+# garden-preserved {"beforeMeshes":49,"afterMeshes":49,"beforeTriangles":266222,"afterTriangles":266240,"treeGroups":12}
+# Subtest: entire garden zone excluding only east-well profile is byte-geometrically and physically identical to parent
+ok 17 - entire garden zone excluding only east-well profile is byte-geometrically and physically identical to parent
+  ---
+  duration_ms: 1047.932911
+  type: 'test'
+  ...
+# Subtest: all 34 tree instance buffers and all old GardenBuilder physics stay exact; all non-ground geometry stays exact and ground samples outside cut preserve material/height/UV
+ok 18 - all 34 tree instance buffers and all old GardenBuilder physics stay exact; all non-ground geometry stays exact and ground samples outside cut preserve material/height/UV
+  ---
+  duration_ms: 6225.06444
+  type: 'test'
+  ...
+# Subtest: east-well exact anchor registers once and rejects moved source ownership
+ok 19 - east-well exact anchor registers once and rejects moved source ownership
+  ---
+  duration_ms: 52.845875
+  type: 'test'
+  ...
+# east-well-source-faces 3504
+# Subtest: every physical triangle is the exact final merged F32 visible source, including degenerate source provenance
+ok 20 - every physical triangle is the exact final merged F32 visible source, including degenerate source provenance
+  ---
+  duration_ms: 66.404704
+  type: 'test'
+  ...
+# Subtest: private beam paint and source/final geometries dispose exactly once while shared library is untouched
+ok 21 - private beam paint and source/final geometries dispose exactly once while shared library is untouched
+  ---
+  duration_ms: 17.17144
+  type: 'test'
+  ...
+# Subtest: 10/60Hz actual player lands on visible outer roof and cannot fall through the too-small center opening
+ok 22 - 10/60Hz actual player lands on visible outer roof and cannot fall through the too-small center opening
+  ---
+  duration_ms: 2702.50142
+  type: 'test'
+  ...
+# Subtest: 10/60Hz jump from actual rail top into hanging bearing stops the head against actual visible triangles
+ok 23 - 10/60Hz jump from actual rail top into hanging bearing stops the head against actual visible triangles
+  ---
+  duration_ms: 1114.42768
+  type: 'test'
+  ...
+1..23
+# tests 23
+# suites 0
+# pass 22
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 21953.040271

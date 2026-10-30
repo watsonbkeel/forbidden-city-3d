@@ -1,3 +1,4 @@
+import {applyLinxiBridgePool} from './LinxiBridgePool.js';
 import {buildArrowSouthKnees} from './ArrowSouthKnees.js';
 import * as THREE from 'three';
 
@@ -100,6 +101,7 @@ export function buildEnclosedPavilion(kit,item) {
     add('round-crown',new THREE.SphereGeometry(H*.30,24,16),Y+H*.70);
     g.finialFit=fit;
   }
+  if(key==='linxi')applyLinxiBridgePool(kit,f,item,g);
   kit._lastFurnish={cover:[],spawns:[{x:0,z:0}]};
   kit.registerRoom(f,{name:item.name,kind:key+'-viewing-region',x0:-A+.25,x1:A-.25,z0:-B,z1:B,y,h:H,doors:[{x:0,z:-B},{x:0,z:B}]});
   f.userData.structure=g;f.name=item.name+'·有围护布局局部拟合';return{...built,g};

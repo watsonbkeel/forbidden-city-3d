@@ -1,0 +1,37 @@
+TAP version 13
+# Subtest: real source end steps lift the complete player body at 10 and 60Hz without foot clearance penetration
+not ok 1 - real source end steps lift the complete player body at 10 and 60Hz without foot clearance penetration
+  ---
+  duration_ms: 105.240782
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/ciyin/entry.test.mjs:3:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"label":{"fps":10,"i":1},"position":[248.82,1.7,120.54839263779597],"feet":0,"role":"ciyin-photo-entry-step","min":[247.1199951171875,1.3411045607369942e-9,120.73999786376953],"max":[250.52000427246094,0.11999999731779099,120.9800033569336]}
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    inspect (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/ciyin/entry.test.mjs:2:242)
+    file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/ciyin/entry.test.mjs:3:547
+    withTerrainController (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/r91-controller-clock.mjs:3:633)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/ciyin/entry.test.mjs:3:250)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 280.605327

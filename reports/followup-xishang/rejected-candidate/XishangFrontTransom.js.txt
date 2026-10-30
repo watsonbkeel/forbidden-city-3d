@@ -1,0 +1,54 @@
+import {createTriangleTemplate,triangleInstance} from '../../../utils/TriangleSupport.js';
+import * as THREE from 'three';
+const SOURCES=['https://img.dpm.org.cn/Uploads/Picture/dc/2671[1024].jpg','https://img.dpm.org.cn/Uploads/Picture/2017/04/26/s58ffed5fbf403.jpg'];
+/** Source-visible open timber family, fitted to the retained three front bays.
+ * No glass, photographic plane, rear/side extrapolation or hidden full panel. */
+export function buildXishangFrontTransom(c,{mainW,mainD}){
+ const{p,f,kit}=c;
+ if(p.key!=='xishang'||p.id!=='place-ningshou-fadd286b97'||p.localW!==12.4||p.localD!==6.7||p.ph!==.5||p.colH!==4.5||p.rot!==Math.PI/2||mainW!==p.localW*.66||mainD!==p.localD*.7||f.parent!==kit.root||f.position.x!==p.x||f.position.y!==0||f.position.z!==p.z||f.rotation.x||f.rotation.y!==p.rot||f.rotation.z||!f.scale.equals(new THREE.Vector3(1,1,1))||f.userData.xishangFrontTransom)throw Error('Xishang transom requires retained original front frame');
+ const z=-mainD/2,beam=f.children.filter(m=>m.userData.role==='eave-beam'&&Math.abs(m.position.x)<1e-10&&Math.abs(m.position.z-z)<1e-10&&Math.abs(m.position.y-4.82)<1e-10);
+ const columns=f.children.filter(m=>m.userData.role==='column'&&Math.abs(m.position.z-z)<1e-10).sort((a,b)=>a.position.x-b.position.x);
+ if(beam.length!==1||columns.length!==4||columns.some((m,i)=>Math.abs(m.position.x-(-mainW/2+i*mainW/3))>1e-10||m.position.y!==2.75)||beam[0].geometry.parameters.width!==mainW+.2||beam[0].geometry.parameters.height!==.36||beam[0].geometry.parameters.depth!==.28)throw Error('Xishang transom original beam/column binding mismatch');
+ const boxSource=new THREE.BoxGeometry(mainW+.2,.36,.28),columnSource=new THREE.CylinderGeometry(.16,.16*1.03,4.5,12);
+ try{for(const [m,expected] of [[beam[0],boxSource],...columns.map(m=>[m,columnSource])]){if(m.rotation.x||m.rotation.y||m.rotation.z||!m.scale.equals(new THREE.Vector3(1,1,1)))throw Error('Xishang original frame binding transform mismatch');for(const key of ['position','normal','uv','index']){const a=key==='index'?m.geometry.index:m.geometry.attributes[key],b=key==='index'?expected.index:expected.attributes[key];if(!a||a.count!==b.count||a.itemSize!==b.itemSize||a.array.some((v,i)=>!Object.is(v,b.array[i])))throw Error('Xishang original frame ordered buffer mismatch');}}}finally{boxSource.dispose();columnSource.dispose();}
+ // Header sits below the retained ceiling grid; end hangers alone rise
+ // through the existing column-edge space to the original beam.
+ const first=kit.colliders.length,parts=[];
+ const bar=(role,w,h,x,y,bay)=>{const m=c.box('front-transom-'+role,'wood',w,h,.06,x,y,z,true);m.userData.xishangFrontTransom=true;m.userData.transomBay=bay;const col=kit.colliders.at(-1);col.xishangFrontTransom=true;col.transomBay=bay;
+  // Use exact world-space rendered vertices (Float64 intermediate avoids
+  // rounding translated world coordinates to Float32). Existing triangle
+  // support handles upward head impact and downward foot contact; no solver edit.
+  m.updateWorldMatrix(true,false);const actual=new THREE.BufferGeometry();actual.setAttribute('position',new THREE.BufferAttribute(new Float64Array(m.geometry.attributes.position.array),3));actual.setIndex(m.geometry.index.clone());actual.applyMatrix4(m.matrixWorld);const support=triangleInstance(createTriangleTemplate(actual),[0,0,0],`xishang-front-transom:${parts.length}`);actual.dispose();col.copy(support.box);col.triangleSupport=support;m.userData.contact='SAME_CLOSED_RENDER_TRIANGLES';parts.push(m);return m;};
+ for(let bay=0;bay<3;bay++){
+  const left=-mainW/2+bay*mainW/3+.12,right=-mainW/2+(bay+1)*mainW/3-.12,w=right-left;
+  bar('top',w,.06,(left+right)/2,4.42,bay);bar('bottom',w,.06,(left+right)/2,3.95,bay);
+  for(const x of[left,right])bar('side',.06,.76,x,4.30,bay);
+  const cell=w/3;for(let j=1;j<3;j++)bar('divider',.035,.47,left+j*cell,4.185,bay);
+  for(let j=0;j<3;j++){
+   const x=left+j*cell;
+   bar('upper-return',cell*.65,.025,x+cell*.325,4.27,bay);
+   bar('upper-drop',.025,.085,x+cell*.65,4.2275,bay);
+   bar('middle-return',cell*.30,.025,x+cell*.50,4.185,bay);
+   bar('lower-drop',.025,.085,x+cell*.35,4.1425,bay);
+   bar('lower-return',cell*.65,.025,x+cell*.675,4.10,bay);
+  }
+ }
+ return f.userData.xishangFrontTransom={originalObjectId:'FC-FADD286B97',sources:SOURCES,scope:'THREE_MAIN_LOCAL_FRONT_BAYS_ONLY',worldFacing:'EAST_NEGATIVE_WORLD_X_FROM_RETAINED_ROTATION',bays:3,geometryCount:parts.length,colliderCount:kit.colliders.length-first,lowerEdge:3.92,retainedFloor:.5,dimensionStatus:'PHOTO_RELATIONSHIP_RETAINED_MODEL_FIT_NOT_SURVEY',patternStatus:'SIMPLIFIED_RECTANGULAR_RETURN_BARS_NOT_EXACT_JOINERY',openingPolicy:'REAL_OPEN_HOLES_EACH_SOLID_BAR_HAS_EXACT_TRIANGLE_CONTACT',wholeObjectAccepted:false,remaining:['Exact source lattice counts/joinery and fine shapes','Side and rear ornament independently unimplemented','Complete pavilion/roof/site relationship and watercourse acceptance']};
+}
+
+/** Necessary fall safety for this new overhead structure: register only the
+ * existing, unmodified pavilion roof's actual rendered triangles. No floor,
+ * broad support rectangle, controller dispatch, or invented roof geometry. */
+export function registerXishangExistingRoof(c){
+ const {p,f,kit}=c;if(p.key!=='xishang'||!f.userData.xishangFrontTransom||f.userData.xishangExistingRoof)throw Error('Xishang front transom roof binding required');
+ const roles=new Set(['roof-surface','roof-hip-skirt','roof-curved-gable','glazed-eave-edge','fitted-bearing-eave-purlin','fitted-bearing-crossbeam','fitted-bearing-tie-beam','roof-tile-rib','roof_pavilion_rafters','roof_pavilion_roof_ridge_glaze','roof_pavilion_roof_finial_gold']);
+ const meshes=[];f.traverse(m=>{if(m.isMesh&&(roles.has(m.userData.role)||['roof_pavilion_rafters','roof_pavilion_rafters_material','roof_pavilion_roof_ridge_glaze','roof_pavilion_roof_finial_gold'].includes(m.name)))meshes.push(m);});
+ if(meshes.length!==78)throw Error('Xishang retained roof inventory changed: '+meshes.length);
+ let triangles=0;for(let i=0;i<meshes.length;i++){
+ const m=meshes[i];m.updateWorldMatrix(true,false);const actual=new THREE.BufferGeometry(),p=m.geometry.attributes.position,ix=m.geometry.index,count=ix?.count??p.count,indices=[];
+ actual.setAttribute('position',new THREE.BufferAttribute(new Float64Array(p.array),3));actual.applyMatrix4(m.matrixWorld);
+ for(let j=0;j<count;j+=3){const ids=[0,1,2].map(k=>ix?ix.getX(j+k):j+k),v=ids.map(k=>new THREE.Vector3().fromBufferAttribute(actual.attributes.position,k));if(new THREE.Triangle(...v).getArea()>=1e-12)indices.push(...ids);}
+ actual.setIndex(indices);const support=triangleInstance(createTriangleTemplate(actual),[0,0,0],`xishang-existing-roof:${i}`);actual.dispose();const col=support.box.clone();col.triangleSupport=support;col.xishangExistingRoof=true;kit.colliders.push(col);triangles+=indices.length/3;
+ }
+ return f.userData.xishangExistingRoof={source:'EXISTING_VISIBLE_ROOF_GEOMETRY_UNCHANGED',contacts:meshes.length,triangles,newFloor:false,controllerChanges:false};
+}

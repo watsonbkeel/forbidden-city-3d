@@ -1,0 +1,67 @@
+TAP version 13
+# Subtest: real source end steps lift the complete player body at 10 and 60Hz without foot clearance penetration
+ok 1 - real source end steps lift the complete player body at 10 and 60Hz without foot clearance penetration
+  ---
+  duration_ms: 206.443493
+  type: 'test'
+  ...
+# Subtest: complete upper front gallery permits full-size traversal between all five bays without shrinking the body
+ok 2 - complete upper front gallery permits full-size traversal between all five bays without shrinking the body
+  ---
+  duration_ms: 220.452697
+  type: 'test'
+  ...
+# Subtest: official whole facade has two lower end doors three lower windows and one upper central door four upper windows
+ok 3 - official whole facade has two lower end doors three lower windows and one upper central door four upper windows
+  ---
+  duration_ms: 126.806168
+  type: 'test'
+  ...
+# Subtest: complete frontage has lattice transoms painted beam fields rail drop forms low panels and photo plaque without changing the source rear through passage
+ok 4 - complete frontage has lattice transoms painted beam fields rail drop forms low panels and photo plaque without changing the source rear through passage
+  ---
+  duration_ms: 49.986499
+  type: 'test'
+  ...
+# Subtest: source end door replaces the false central primary navigation and room metadata without dropping upstairs access
+not ok 5 - source end door replaces the false central primary navigation and room metadata without dropping upstairs access
+  ---
+  duration_ms: 120.400124
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/ciyin/navigation.test.mjs:2:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 123.64999999999999
+    - 123.65
+           ^
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 123.65
+  actual: 123.64999999999999
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/ciyin/navigation.test.mjs:2:203)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: all new closed solids equal final Float32 boxes, flush details remain in their real backing and every source triangle reaches final merged render
+ok 6 - all new closed solids equal final Float32 boxes, flush details remain in their real backing and every source triangle reaches final merged render
+  ---
+  duration_ms: 298.869639
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 5
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1680.143134

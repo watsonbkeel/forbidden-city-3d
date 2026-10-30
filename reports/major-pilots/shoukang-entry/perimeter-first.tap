@@ -1,0 +1,59 @@
+TAP version 13
+# Subtest: retained full walls have three bounded body owners and exact long-cap exception does not relax any other source
+not ok 1 - retained full walls have three bounded body owners and exact long-cap exception does not relax any other source
+  ---
+  duration_ms: 125.188121
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/perimeter.test.mjs:3:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /Duplicate/. Input:
+    
+    'TypeError: Furniture scope requires finite ordered ordinary-box ownership'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+  error: 'Furniture scope requires finite ordered ordinary-box ownership'
+  name: 'TypeError'
+  stack: |-
+    cloneFurnitureMotionScope (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/controls/FurnitureMotion.js:80:3025)
+    CollisionManager.addCollider (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/utils/Collision.js:46:32)
+    file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/utils/Collision.js:72:38
+    Array.forEach (<anonymous>)
+    CollisionManager.addColliders (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/utils/Collision.js:72:15)
+    file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/perimeter.test.mjs:3:1001
+    getActual (node:assert:611:5)
+    strict.throws (node:assert:759:24)
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/perimeter.test.mjs:3:985)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shoukang-entry/perimeter.test.mjs:3:985)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: complete retained cap circuit walks through both north corners without penetrating real source at 10/60Hz
+ok 2 - complete retained cap circuit walks through both north corners without penetrating real source at 10/60Hz
+  ---
+  duration_ms: 13289.000477
+  type: 'test'
+  ...
+# Subtest: 12m vertical falls on full retained caps, both sides and both north corners keep real source separation
+ok 3 - 12m vertical falls on full retained caps, both sides and both north corners keep real source separation
+  ---
+  duration_ms: 2225.855867
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 2
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 15912.839336

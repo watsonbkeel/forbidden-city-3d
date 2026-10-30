@@ -1,0 +1,14 @@
+# Independent read-only review and evidenced rulings
+Reviewer `/root/resume_huangji_front/review_huangji`,2026-10-29; no writes or concurrent heavy tests.
+
+Design: source front/residual split preferable to changing shared merge. Required actual negative-local-Z selection, complete final position/normal/UV triangle multiset and non-front material/shadow retention, source uniqueness, lifecycle and honest surface-only boundary. These are now explicit tests. No material arrays or global merge change.
+
+Normal-parent code inspection found no face-extraction loss:13 source boxes split6/30 vertices with all attributes copied; uniquely referenced original geometry disposed after detached replacements ready. Raw and real-material merged comparison covers the full gate, not just bounds. Source/metadata rejection and detached-allocation cleanup verified; arbitrary commit events/dispose callbacks not rolled back and never claimed.
+
+Reviewer suggested finite fixed draw-state guards for original pure-colour material fields. Eleven red mutations (side,colorWrite,wireframe,transparent,clipping,map/normal/bump/displacement,alphaTest,depthWrite) failed rejection before fix; originalDrawState plus original material identity/colour/roughness guards now make contract25/25 green. No shared material mutation. Custom arbitrary shader/callback behavior is outside this canonical-parent contract.
+
+Builder's subsequent natural-size official image review corrected whole-field relationships: four portal-head hexagonal rims instead of flower rosettes; single vertical lobed medallion instead of three stacked framed medallions; long plain outlined lintel centre instead of repeated central rosettes. Recorded draw-operation red/green tests prove the implemented pattern structure, not rendered pixel fidelity. Seven fitted floral clusters and corner tendrils remain simplified and not exact botanical/carving identification. No geometry/UV/physics changed by these corrections. Final fullgroups run after them, earlier logs retained.
+
+Ruling: colour textures only, no bump/displacement or actual sculptural depth, preserving original normals and exact triangle surface. Body/roof closure and dimensions remain inherited unaccepted; partial inner wood screen not extrapolated into survey or complete decoration. Renderer cost reported, GPU/pixels unverified. Sourceprofile accepted:false retained; new bounded metadata survives final architecture merge.
+
+Final reviewer read the frozen scope/results: no new deterministic blocker or overclaim; only dedicated module and unique gate hook, no shared physics/merge changes. Drawing tests explicitly not pixel acceptance. Final shared log completed161/161 at16:46UTC,375.80s, after reviewer pending-stage check. All other final groups already terminal; no subsequent source change.

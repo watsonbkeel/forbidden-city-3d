@@ -1,0 +1,43 @@
+TAP version 13
+# Subtest: exact visible stair ownership rejects duplicates scope downgrade moved anchor synthetic ground and unloads
+ok 1 - exact visible stair ownership rejects duplicates scope downgrade moved anchor synthetic ground and unloads
+  ---
+  duration_ms: 51.745508
+  type: 'test'
+  ...
+# Subtest: ground witness uses actual unmodified live Environment and floor witness uses unique original live walkable within finite handoff
+ok 2 - ground witness uses actual unmodified live Environment and floor witness uses unique original live walkable within finite handoff
+  ---
+  duration_ms: 40.992585
+  type: 'test'
+  ...
+# Subtest: generic source pruning refuses reordered shifted or rescaled old door/piers instead of removing an unproved component
+not ok 3 - generic source pruning refuses reordered shifted or rescaled old door/piers instead of removing an unproved component
+  ---
+  duration_ms: 29.145715
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/cining-gate/guards.test.mjs:4:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/cining-gate/guards.test.mjs:4:480)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 2
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 385.675898

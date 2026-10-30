@@ -1,0 +1,46 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> forbidden-city-3d@1.0.0 test:zones
+> node tests/zone-lint.cjs
+
+检查 7 个 zone 文件...
+
+⚠️  bounds 缝隙：axis-courts ↔ east-six 沿 z 相距 0.4 m（公共边段 60.85 m，互为 neighbors）——缝隙内的街巷不属于任何区，进入时不会触发分区加载
+⚠️  bounds 缝隙：axis-courts ↔ garden 沿 z 相距 0.4 m（公共边段 137.5 m，互为 neighbors）——缝隙内的街巷不属于任何区，进入时不会触发分区加载
+⚠️  bounds 缝隙：axis-courts ↔ outer-east 沿 x 相距 1.95 m（公共边段 511.5 m，互为 neighbors）——缝隙内的街巷不属于任何区，进入时不会触发分区加载
+⚠️  bounds 缝隙：axis-courts ↔ outer-west 沿 x 相距 20.55 m（公共边段 559.84 m，互为 neighbors）——缝隙内的街巷不属于任何区，进入时不会触发分区加载
+⚠️  bounds 缝隙：axis-courts ↔ west-six 沿 z 相距 28.9 m（公共边段 88.35 m）——缝隙内的街巷不属于任何区，进入时不会触发分区加载
+⚠️  bounds 缝隙：east-six ↔ garden 沿 x 相距 0.4 m（公共边段 320.8 m，互为 neighbors）——缝隙内的街巷不属于任何区，进入时不会触发分区加载
+⚠️  bounds 缝隙：east-six ↔ ningshou 沿 x 相距 0.95 m（公共边段 321.5 m，互为 neighbors）——缝隙内的街巷不属于任何区，进入时不会触发分区加载
+⚠️  bounds 缝隙：garden ↔ west-six 沿 x 相距 0.4 m（公共边段 278.6 m，互为 neighbors）——缝隙内的街巷不属于任何区，进入时不会触发分区加载
+⚠️  bounds 缝隙：outer-west ↔ west-six 沿 x 相距 0.4 m（公共边段 278.6 m，互为 neighbors）——缝隙内的街巷不属于任何区，进入时不会触发分区加载
+
+几何检查：碰撞体 29487、可行走面 1339（7 区 + 中轴静态场景，7308 ms）
+⚠️  east-six: gate「承乾门」(-93.3, 360.2) 北侧 出门净空 2.1 m（< 4 m），挡路：（台基/地形）
+⚠️  east-six: gate「钟粹门」(-93.6, 413.7) 南侧 出门净空 2.1 m（< 4 m），挡路：east-six:courtWalls[-114.6,-72.6]×[360.2,409.7]
+⚠️  east-six: gate「景阳门」(-148.6, 411.7) 南侧 出门净空 2.1 m（< 4 m），挡路：east-six:courtWalls[-170,-128]×[359.8,407.7]
+⚠️  east-six: gate「乾东五所」(-142, 466) 南侧 出门净空 2.3 m（< 4 m），挡路：east-six:courtWalls[-170.5,-128.5]×[411.7,461.7]
+⚠️  garden: gate「琼苑东门」(-68, 429.7) 东侧 出门净空 2.3 m（< 4 m），挡路：east-six:courtWalls[-114.4,-72.4]×[413.7,462]
+⚠️  garden: gate「琼苑西门」(68, 429.7) 西侧 出门净空 3.7 m（< 4 m），挡路：west-six:courtWalls[73.8,115.8]×[414.8,456]
+❌ outer-west: gate「武英门」(220.8, -249.8) 北侧 出门 0.7 m 处即被挡（站不下玩家）
+⚠️  outer-west: gate「英华门」(277.2, 454.9) 南侧 出门净空 2.6 m（< 4 m），挡路：outer-west:courtWalls[256.02,297.78]×[362,450]
+❌ outer-west: gate「寿安门」(277, 362) 南侧 出门净空 0.0 m（< 1.5 m，被封死），挡路：（台基/地形）
+❌ outer-west: gate「寿安门」(277, 362) 北侧 出门净空 0.0 m（< 1.5 m，被封死），挡路：（台基/地形）
+⚠️  west-six: gate「永寿门」(95.4, 303.6) 南侧 出门净空 3.7 m（< 4 m），挡路：west-six:courtWalls[70,148]×[240,298]
+⚠️  west-six: gate「翊坤门」(94.6, 359.5) 南侧 出门净空 2.1 m（< 4 m），挡路：west-six:hall「永寿宫后殿」
+⚠️  west-six: gate「储秀门」(94.8, 414.8) 南侧 出门净空 1.5 m（< 4 m），挡路：（台基/地形）
+TypeError: Unsupported furniture-domain shape
+    at furnitureStaticContact (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/controls/FurnitureMotion.js:61:52)
+    at furnitureContact (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/controls/FurnitureMotion.js:235:17)
+    at CollisionManager.getGroundHeight (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/src/utils/Collision.js:136:97)
+    at Module.reachFrom (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/lib/world.mjs:353:20)
+    at lintGeometry (/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/zone-lint.cjs:351:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async /workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/zone-lint.cjs:457:57
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
+
+EXIT_CODE=2

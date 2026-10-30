@@ -1,0 +1,34 @@
+✔ Shouan source entrance replaces the generic single opening with three gates and one four-leaf screen (87.579563ms)
+✔ three real south-wall apertures stay clear and intervening or outer wall cannot become a fourth opening (73.962396ms)
+✖ the whole entrance south wall has four source-bounded low segments instead of inherited high walls through the side roofs (41.415473ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 449.569225
+
+✖ failing tests:
+
+test at tests/major-pilots/shouan-entry/geometry.test.mjs:7:1
+✖ the whole entrance south wall has four source-bounded low segments instead of inherited high walls through the side roofs (41.415473ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 4
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/shouan-entry/geometry.test.mjs:7:253)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 4,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

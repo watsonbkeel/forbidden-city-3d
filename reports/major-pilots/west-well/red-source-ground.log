@@ -1,0 +1,51 @@
+✖ west has independently painted bamboo soffits, cylindrical covered well and water-lift fit (59.704134ms)
+✔ west keeps four exact .24m columns and physically open octagonal center (38.694272ms)
+[GardenBuilder] 已构建御花园：CPU mesh objects=49, 三角面=266,240, 树木=34棵, 碰撞器=2034
+✖ actual old raised bed and stone edge are visibly cut away at west well, not buried (1532.187792ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 1
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2221.915373
+
+✖ failing tests:
+
+test at tests/major-pilots/west-well/distinct-source.test.mjs:2:1
+✖ west has independently painted bamboo soffits, cylindrical covered well and water-lift fit (59.704134ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - '8018'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/west-well/distinct-source.test.mjs:2:275)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: '8018',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/major-pilots/west-well/ground-cut.test.mjs:2:1
+✖ actual old raised bed and stone edge are visibly cut away at west well, not buried (1532.187792ms)
+  AssertionError [ERR_ASSERTION]: {"x":38.3,"z":463.7,"y":0.28999999165534973}
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/ningshou-entry-safe-8311/tests/major-pilots/west-well/ground-cut.test.mjs:2:417)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

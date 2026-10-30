@@ -1,0 +1,55 @@
+✖ own five-bay front has fitted four open leaves and eight upper/lower window fields (84.927428ms)
+✔ rollback preserves all source basins steps stone facing roof side rear and through navigation exactly (84.932525ms)
+✖ actual old3.12m central jamb and all folded leaf fields retain real clearance (49.631229ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 1
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 419.716202
+
+✖ failing tests:
+
+test at tests/major-pilots/suichu/geometry.test.mjs:5:1
+✖ own five-bay front has fitted four open leaves and eight upper/lower window fields (84.927428ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'FC-E604D58704'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/suichu/geometry.test.mjs:5:122)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'FC-E604D58704',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/major-pilots/suichu/geometry.test.mjs:7:1
+✖ actual old3.12m central jamb and all folded leaf fields retain real clearance (49.631229ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/suichu/geometry.test.mjs:7:276)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

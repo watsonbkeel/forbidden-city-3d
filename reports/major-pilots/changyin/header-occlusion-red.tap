@@ -1,0 +1,38 @@
+✔ whole north ground frontage has two source-contact rails three painted fields and explicit fitted passage (138.092449ms)
+✔ all existing non-front rail geometry upper stages voids roofs stairs and original routes survive (112.948789ms)
+✔ central passage keeps actual 2.8m body clearance and new overhead work clears ground player (42.111725ms)
+✔ every rail surface face is an actual finite positive-area transformed source triangle (53.166222ms)
+✔ two retained outer-column scopes reject forged identity owner and enlarged region, and never capture central ramp (103.308875ms)
+✔ every other remaining Ningshou hall is byte-identical with north-front switch on/off (1637.353036ms)
+✖ all three painted fields face outward before retained waist beam and remain backed into it (58.257715ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2401.175105
+
+✖ failing tests:
+
+test at tests/major-pilots/changyin/geometry.test.mjs:9:1
+✖ all three painted fields face outward before retained waist beam and remain backed into it (58.257715ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert.ok(ray.intersectObject(a.f,true)[0].object.userData.role.startsWith('changyin-north-painted-'))
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/changyin/geometry.test.mjs:9:381)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

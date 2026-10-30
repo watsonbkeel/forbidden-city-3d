@@ -1,0 +1,5 @@
+import{applySourceGuidedNameboardMount}from'../../../src/scene/palace/special/SourceGuidedNameboardMounts.js';
+import{execFileSync}from'node:child_process';import{ZoneBase}from'../../../src/scene/zones/ZoneBase.js';import{library}from'../../lib/inner-palace-fixture.mjs';import{data,item}from'../../lib/r54-changchun-capture.mjs';
+const path='src/scene/palace/special/WestDomesticHalls.js',url=new URL('../../../'+path,import.meta.url),code=execFileSync('git',['show','8311edf8:'+path],{encoding:'utf8'}).replace(/from\s+(['"])([^'"]+)\1/g,(_,q,s)=>'from '+q+(s.startsWith('.')?new URL(s,url).href:import.meta.resolve(s))+q),old=(await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'))).buildWestDomesticHall;
+export function make({parent=false}={}){const b=new ZoneBase(library(),data),built=parent?applySourceGuidedNameboardMount(b.kit,data.id,item,old(b.kit,item)):b.buildHall(item);b.kit.root.updateMatrixWorld(true);return{b,f:built.f,item,dispose:()=>b.kit.dispose(b.kit.root)}}
+export function buildParentHall(kit,item,zoneId='west-six'){return applySourceGuidedNameboardMount(kit,zoneId,item,old(kit,item));}

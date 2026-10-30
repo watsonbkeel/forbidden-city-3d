@@ -1,0 +1,71 @@
+✔ Cuishang photo-visible four front gallery bays have lower framed panels and real waisted timber balusters (79.471137ms)
+✖ only 25 old front rods replaced; original continuous top, lower rail, west bay and all other geometry/physical data preserved except explicit cap triangle registration (159.204106ms)
+✔ waisted wood bodies are closed positive solids and each support triangle equals transformed visible source (33.813564ms)
+✔ new material and each geometry release once in three normal rebuild/unload cycles (80.177902ms)
+✖ foreign frame and same-envelope modified old rod reject without partial deletion (99.114732ms)
+✖ retained continuous cap keeps original visible geometry while its collision uses exact source triangles and bounds (22.296558ms)
+✔ Cuishang original three ground entries remain traversable in full static world at 10/60Hz walk/run (5458.868587ms)
+✖ Cuishang actual rail top fall, stable contact, exit to original upper slab and jumping across rail preserve full body (5091.341078ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 4
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11431.608189
+
+✖ failing tests:
+
+test at tests/followup-cuishang/details.test.mjs:10:1
+✖ only 25 old front rods replaced; original continuous top, lower rail, west bay and all other geometry/physical data preserved except explicit cap triangle registration (159.204106ms)
+  TypeError: Cannot read properties of undefined (reading 'updateWorldMatrix')
+      at Box3.expandByObject (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:4693:10)
+      at Box3.setFromObject (file:///workspace/scratch/02a8023d1a85/r36-integrated/node_modules/three/build/three.module.js:4613:15)
+      at file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-cuishang/details.test.mjs:10:753
+      at Array.map (<anonymous>)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-cuishang/details.test.mjs:10:733)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+      at run (node:internal/test_runner/harness:398:12)
+
+test at tests/followup-cuishang/details.test.mjs:13:1
+✖ foreign frame and same-envelope modified old rod reject without partial deletion (99.114732ms)
+  TypeError: Cannot read properties of undefined (reading 'geometry')
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-cuishang/details.test.mjs:13:466)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/followup-cuishang/details.test.mjs:15:1
+✖ retained continuous cap keeps original visible geometry while its collision uses exact source triangles and bounds (22.296558ms)
+  TypeError: Cannot read properties of undefined (reading 'geometry')
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-cuishang/details.test.mjs:15:413)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/followup-cuishang/world-motion.test.mjs:4:1
+✖ Cuishang actual rail top fall, stable contact, exit to original upper slab and jumping across rail preserve full body (5091.341078ms)
+  AssertionError [ERR_ASSERTION]: {"fps":10,"mode":"drop-exit","x":-8.246875,"cross":47,"stable":{"feet":5.212499998807907,"airborne":false},"jumped":false,"endFeet":4.3,"airborne":false,"end":[-269.06516833380925,451.48880524987214],"target":[-268.946875,451.5],"frames":[{"i":23,"feet":5.212499988947907,"x":-269.0461478334125,"z":451.49426408903025},{"i":24,"feet":5.072499988947907,"x":-268.5718324453534,"z":451.5216696817182},{"i":25,"feet":4.792499988947907,"x":-269.06185734734265,"z":451.4933564049219},{"i":26,"feet":4.372499988947907,"x":-268.56605323814756,"z":451.4933564049219},{"i":27,"feet":4.3,"x":-269.0647379823181,"z":451.49770628699764}]}
+  
+  47 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r127-r136-cumulative/tests/followup-cuishang/world-motion.test.mjs:20:328)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 47,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

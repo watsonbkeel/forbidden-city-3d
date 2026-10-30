@@ -1,0 +1,502 @@
+TAP version 13
+# Subtest: R100 real fall and along-rail stop never enter the new post at 10Hz
+ok 1 - R100 real fall and along-rail stop never enter the new post at 10Hz
+  ---
+  duration_ms: 75.302605
+  type: 'test'
+  ...
+# Subtest: R100 real fall and along-rail stop never enter the new post at 30Hz
+ok 2 - R100 real fall and along-rail stop never enter the new post at 30Hz
+  ---
+  duration_ms: 61.322745
+  type: 'test'
+  ...
+# Subtest: R100 real fall and along-rail stop never enter the new post at 60Hz
+ok 3 - R100 real fall and along-rail stop never enter the new post at 60Hz
+  ---
+  duration_ms: 86.539531
+  type: 'test'
+  ...
+# Subtest: R100 replaces only the two thin open side rails with eight solid stone panels and ten broad posts
+ok 4 - R100 replaces only the two thin open side rails with eight solid stone panels and ten broad posts
+  ---
+  duration_ms: 73.878473
+  type: 'test'
+  ...
+# Subtest: R100 every rail collider is the exact world envelope of its own visible box, never a hidden span
+ok 5 - R100 every rail collider is the exact world envelope of its own visible box, never a hidden span
+  ---
+  duration_ms: 43.245573
+  type: 'test'
+  ...
+# Subtest: R100 preserves every non-rail attribute, collider, support, map and actual channel sample exactly
+ok 6 - R100 preserves every non-rail attribute, collider, support, map and actual channel sample exactly
+  ---
+  duration_ms: 38.712929
+  type: 'test'
+  ...
+# Subtest: R100 retains a real uninterrupted equal-height top rail across the entire side span
+ok 7 - R100 retains a real uninterrupted equal-height top rail across the entire side span
+  ---
+  duration_ms: 23.959456
+  type: 'test'
+  ...
+# Subtest: R104 local static memo preserves complete vertical results across roof, box, +/-zero and mixed moving NPC states
+ok 8 - R104 local static memo preserves complete vertical results across roof, box, +/-zero and mixed moving NPC states
+  ---
+  duration_ms: 792.728206
+  type: 'test'
+  ...
+# Subtest: R104 memo never survives another call or skips dynamic decisions, including source same-count update
+ok 9 - R104 memo never survives another call or skips dynamic decisions, including source same-count update
+  ---
+  duration_ms: 231.312484
+  type: 'test'
+  ...
+# Subtest: R104 surface square footprint has a real witness and upper roof does not hide reachable lower face
+ok 10 - R104 surface square footprint has a real witness and upper roof does not hide reachable lower face
+  ---
+  duration_ms: 3.593241
+  type: 'test'
+  ...
+# Subtest: R104 open sheet blocks both directions but has no imaginary parity volume
+ok 11 - R104 open sheet blocks both directions but has no imaginary parity volume
+  ---
+  duration_ms: 7.851923
+  type: 'test'
+  ...
+# Subtest: R104 surface input keeps all positive faces, filters only exact zero with source map, rejects invalid source/id
+ok 12 - R104 surface input keeps all positive faces, filters only exact zero with source map, rejects invalid source/id
+  ---
+  duration_ms: 1.745384
+  type: 'test'
+  ...
+# Subtest: R104 surface registration snapshot preserves zero-face provenance and rejects altered source bounds
+ok 13 - R104 surface registration snapshot preserves zero-face provenance and rejects altered source bounds
+  ---
+  duration_ms: 0.524519
+  type: 'test'
+  ...
+# Subtest: R104 roof source deep immutability and bounded fine query retain exact face order
+ok 14 - R104 roof source deep immutability and bounded fine query retain exact face order
+  ---
+  duration_ms: 1.881018
+  type: 'test'
+  ...
+# Subtest: R104 actual production sloped-edge contact rounds toward a provably clear representable foot, not a broad epsilon
+ok 15 - R104 actual production sloped-edge contact rounds toward a provably clear representable foot, not a broad epsilon
+  ---
+  duration_ms: 2.216061
+  type: 'test'
+  ...
+# Subtest: R104 exact roof height is the least representable upper bound across signs, not a fixed uplift
+ok 16 - R104 exact roof height is the least representable upper bound across signs, not a fixed uplift
+  ---
+  duration_ms: 22.481624
+  type: 'test'
+  ...
+# Subtest: R104 actual source-double SAT separates a conservative foot and still rejects real 1nm penetration
+ok 17 - R104 actual source-double SAT separates a conservative foot and still rejects real 1nm penetration
+  ---
+  duration_ms: 2.376873
+  type: 'test'
+  ...
+# Subtest: R104 distinct Xiqing ordinary-box scope kind is accepted; unrelated kinds remain rejected
+ok 18 - R104 distinct Xiqing ordinary-box scope kind is accepted; unrelated kinds remain rejected
+  ---
+  duration_ms: 1.514025
+  type: 'test'
+  ...
+# Subtest: R104 actual three-gate owner marks only its finite ordinary-box domain
+ok 19 - R104 actual three-gate owner marks only its finite ordinary-box domain
+  ---
+  duration_ms: 119.329554
+  type: 'test'
+  ...
+# Subtest: R104 new south pier high descent stays clear in the scoped domain and escapes new solids; legacy exterior overlaps recorded
+ok 20 - R104 new south pier high descent stays clear in the scoped domain and escapes new solids; legacy exterior overlaps recorded
+  ---
+  duration_ms: 33386.055862
+  type: 'test'
+  ...
+# Subtest: real PC KeyW, standing, walk, 10 fps blocks without tunnelling
+ok 21 - real PC KeyW, standing, walk, 10 fps blocks without tunnelling
+  ---
+  duration_ms: 13.862835
+  type: 'test'
+  ...
+# Subtest: real PC KeyS, standing, walk, 10 fps blocks without tunnelling
+ok 22 - real PC KeyS, standing, walk, 10 fps blocks without tunnelling
+  ---
+  duration_ms: 3.815574
+  type: 'test'
+  ...
+# Subtest: real PC KeyA, standing, walk, 10 fps blocks without tunnelling
+ok 23 - real PC KeyA, standing, walk, 10 fps blocks without tunnelling
+  ---
+  duration_ms: 2.140857
+  type: 'test'
+  ...
+# Subtest: real PC KeyD, standing, walk, 10 fps blocks without tunnelling
+ok 24 - real PC KeyD, standing, walk, 10 fps blocks without tunnelling
+  ---
+  duration_ms: 1.736059
+  type: 'test'
+  ...
+# Subtest: real PC KeyW, standing, sprint, 10 fps blocks without tunnelling
+ok 25 - real PC KeyW, standing, sprint, 10 fps blocks without tunnelling
+  ---
+  duration_ms: 3.653251
+  type: 'test'
+  ...
+# Subtest: real PC KeyS, standing, sprint, 10 fps blocks without tunnelling
+ok 26 - real PC KeyS, standing, sprint, 10 fps blocks without tunnelling
+  ---
+  duration_ms: 3.409885
+  type: 'test'
+  ...
+# Subtest: real PC KeyA, standing, sprint, 10 fps blocks without tunnelling
+ok 27 - real PC KeyA, standing, sprint, 10 fps blocks without tunnelling
+  ---
+  duration_ms: 3.317105
+  type: 'test'
+  ...
+# Subtest: real PC KeyD, standing, sprint, 10 fps blocks without tunnelling
+ok 28 - real PC KeyD, standing, sprint, 10 fps blocks without tunnelling
+  ---
+  duration_ms: 3.225908
+  type: 'test'
+  ...
+# Subtest: real PC KeyW, seated, walk, 10 fps blocks without tunnelling
+ok 29 - real PC KeyW, seated, walk, 10 fps blocks without tunnelling
+  ---
+  duration_ms: 2.104033
+  type: 'test'
+  ...
+# Subtest: real PC KeyS, seated, walk, 10 fps blocks without tunnelling
+ok 30 - real PC KeyS, seated, walk, 10 fps blocks without tunnelling
+  ---
+  duration_ms: 1.279943
+  type: 'test'
+  ...
+# Subtest: real PC KeyA, seated, walk, 10 fps blocks without tunnelling
+ok 31 - real PC KeyA, seated, walk, 10 fps blocks without tunnelling
+  ---
+  duration_ms: 1.490881
+  type: 'test'
+  ...
+# Subtest: real PC KeyD, seated, walk, 10 fps blocks without tunnelling
+ok 32 - real PC KeyD, seated, walk, 10 fps blocks without tunnelling
+  ---
+  duration_ms: 1.060174
+  type: 'test'
+  ...
+# Subtest: real PC KeyW, seated, sprint, 10 fps blocks without tunnelling
+ok 33 - real PC KeyW, seated, sprint, 10 fps blocks without tunnelling
+  ---
+  duration_ms: 2.882493
+  type: 'test'
+  ...
+# Subtest: real PC KeyS, seated, sprint, 10 fps blocks without tunnelling
+ok 34 - real PC KeyS, seated, sprint, 10 fps blocks without tunnelling
+  ---
+  duration_ms: 3.08034
+  type: 'test'
+  ...
+# Subtest: real PC KeyA, seated, sprint, 10 fps blocks without tunnelling
+ok 35 - real PC KeyA, seated, sprint, 10 fps blocks without tunnelling
+  ---
+  duration_ms: 2.991827
+  type: 'test'
+  ...
+# Subtest: real PC KeyD, seated, sprint, 10 fps blocks without tunnelling
+ok 36 - real PC KeyD, seated, sprint, 10 fps blocks without tunnelling
+  ---
+  duration_ms: 3.048372
+  type: 'test'
+  ...
+# Subtest: real PC KeyW, standing, walk, 60 fps blocks without tunnelling
+ok 37 - real PC KeyW, standing, walk, 60 fps blocks without tunnelling
+  ---
+  duration_ms: 3.712189
+  type: 'test'
+  ...
+# Subtest: real PC KeyS, standing, walk, 60 fps blocks without tunnelling
+ok 38 - real PC KeyS, standing, walk, 60 fps blocks without tunnelling
+  ---
+  duration_ms: 2.250092
+  type: 'test'
+  ...
+# Subtest: real PC KeyA, standing, walk, 60 fps blocks without tunnelling
+ok 39 - real PC KeyA, standing, walk, 60 fps blocks without tunnelling
+  ---
+  duration_ms: 2.509612
+  type: 'test'
+  ...
+# Subtest: real PC KeyD, standing, walk, 60 fps blocks without tunnelling
+ok 40 - real PC KeyD, standing, walk, 60 fps blocks without tunnelling
+  ---
+  duration_ms: 2.060026
+  type: 'test'
+  ...
+# Subtest: real PC KeyW, standing, sprint, 60 fps blocks without tunnelling
+ok 41 - real PC KeyW, standing, sprint, 60 fps blocks without tunnelling
+  ---
+  duration_ms: 5.084323
+  type: 'test'
+  ...
+# Subtest: real PC KeyS, standing, sprint, 60 fps blocks without tunnelling
+ok 42 - real PC KeyS, standing, sprint, 60 fps blocks without tunnelling
+  ---
+  duration_ms: 2.247818
+  type: 'test'
+  ...
+# Subtest: real PC KeyA, standing, sprint, 60 fps blocks without tunnelling
+ok 43 - real PC KeyA, standing, sprint, 60 fps blocks without tunnelling
+  ---
+  duration_ms: 3.996827
+  type: 'test'
+  ...
+# Subtest: real PC KeyD, standing, sprint, 60 fps blocks without tunnelling
+ok 44 - real PC KeyD, standing, sprint, 60 fps blocks without tunnelling
+  ---
+  duration_ms: 2.832897
+  type: 'test'
+  ...
+# Subtest: real PC KeyW, seated, walk, 60 fps blocks without tunnelling
+ok 45 - real PC KeyW, seated, walk, 60 fps blocks without tunnelling
+  ---
+  duration_ms: 2.256902
+  type: 'test'
+  ...
+# Subtest: real PC KeyS, seated, walk, 60 fps blocks without tunnelling
+ok 46 - real PC KeyS, seated, walk, 60 fps blocks without tunnelling
+  ---
+  duration_ms: 2.003812
+  type: 'test'
+  ...
+# Subtest: real PC KeyA, seated, walk, 60 fps blocks without tunnelling
+ok 47 - real PC KeyA, seated, walk, 60 fps blocks without tunnelling
+  ---
+  duration_ms: 2.06951
+  type: 'test'
+  ...
+# Subtest: real PC KeyD, seated, walk, 60 fps blocks without tunnelling
+ok 48 - real PC KeyD, seated, walk, 60 fps blocks without tunnelling
+  ---
+  duration_ms: 2.033016
+  type: 'test'
+  ...
+# Subtest: real PC KeyW, seated, sprint, 60 fps blocks without tunnelling
+ok 49 - real PC KeyW, seated, sprint, 60 fps blocks without tunnelling
+  ---
+  duration_ms: 2.315881
+  type: 'test'
+  ...
+# Subtest: real PC KeyS, seated, sprint, 60 fps blocks without tunnelling
+ok 50 - real PC KeyS, seated, sprint, 60 fps blocks without tunnelling
+  ---
+  duration_ms: 2.269802
+  type: 'test'
+  ...
+# Subtest: real PC KeyA, seated, sprint, 60 fps blocks without tunnelling
+ok 51 - real PC KeyA, seated, sprint, 60 fps blocks without tunnelling
+  ---
+  duration_ms: 3.151687
+  type: 'test'
+  ...
+# Subtest: real PC KeyD, seated, sprint, 60 fps blocks without tunnelling
+ok 52 - real PC KeyD, seated, sprint, 60 fps blocks without tunnelling
+  ---
+  duration_ms: 2.713869
+  type: 'test'
+  ...
+# Subtest: real mouse yaw changes WASD direction before same-frame dynamic collision at 10 fps
+ok 53 - real mouse yaw changes WASD direction before same-frame dynamic collision at 10 fps
+  ---
+  duration_ms: 2.412266
+  type: 'test'
+  ...
+# Subtest: real mouse yaw changes WASD direction before same-frame dynamic collision at 60 fps
+ok 54 - real mouse yaw changes WASD direction before same-frame dynamic collision at 60 fps
+  ---
+  duration_ms: 1.722308
+  type: 'test'
+  ...
+# Subtest: real controller movement rejects a short grazing chord whose two endpoints are clear
+ok 55 - real controller movement rejects a short grazing chord whose two endpoints are clear
+  ---
+  duration_ms: 0.842586
+  type: 'test'
+  ...
+# Subtest: real jump hits standing lower body from below at 10 fps
+ok 56 - real jump hits standing lower body from below at 10 fps
+  ---
+  duration_ms: 1.194956
+  type: 'test'
+  ...
+# Subtest: real jump hits standing lower body from below at 60 fps
+ok 57 - real jump hits standing lower body from below at 60 fps
+  ---
+  duration_ms: 1.098391
+  type: 'test'
+  ...
+# Subtest: real jump hits seated lower body from below at 10 fps
+ok 58 - real jump hits seated lower body from below at 10 fps
+  ---
+  duration_ms: 0.444919
+  type: 'test'
+  ...
+# Subtest: real jump hits seated lower body from below at 60 fps
+ok 59 - real jump hits seated lower body from below at 60 fps
+  ---
+  duration_ms: 0.860513
+  type: 'test'
+  ...
+# Subtest: downward standing contact is not ground or a jump reset at 10 fps
+ok 60 - downward standing contact is not ground or a jump reset at 10 fps
+  ---
+  duration_ms: 1.858744
+  type: 'test'
+  ...
+# Subtest: downward standing contact is not ground or a jump reset at 60 fps
+ok 61 - downward standing contact is not ground or a jump reset at 60 fps
+  ---
+  duration_ms: 3.692169
+  type: 'test'
+  ...
+# Subtest: downward seated contact is not ground or a jump reset at 10 fps
+ok 62 - downward seated contact is not ground or a jump reset at 10 fps
+  ---
+  duration_ms: 1.393915
+  type: 'test'
+  ...
+# Subtest: downward seated contact is not ground or a jump reset at 60 fps
+ok 63 - downward seated contact is not ground or a jump reset at 60 fps
+  ---
+  duration_ms: 3.310766
+  type: 'test'
+  ...
+# Subtest: real controller can traverse another floor above a person at 10 fps
+ok 64 - real controller can traverse another floor above a person at 10 fps
+  ---
+  duration_ms: 0.957339
+  type: 'test'
+  ...
+# Subtest: real controller can traverse another floor above a person at 60 fps
+ok 65 - real controller can traverse another floor above a person at 60 fps
+  ---
+  duration_ms: 1.427405
+  type: 'test'
+  ...
+# Subtest: dynamic contact leaves normal ground jump and landing behavior intact
+ok 66 - dynamic contact leaves normal ground jump and landing behavior intact
+  ---
+  duration_ms: 1.66321
+  type: 'test'
+  ...
+# Subtest: actual FlightTour exit skips 1 NPC-blocked candidate and chooses next safe exit
+ok 67 - actual FlightTour exit skips 1 NPC-blocked candidate and chooses next safe exit
+  ---
+  duration_ms: 20.014271
+  type: 'test'
+  ...
+# Subtest: actual FlightTour exit skips 3 NPC-blocked candidates and chooses next safe exit
+ok 68 - actual FlightTour exit skips 3 NPC-blocked candidates and chooses next safe exit
+  ---
+  duration_ms: 8.661207
+  type: 'test'
+  ...
+# Subtest: actual FlightTour rejects disembarkation when all four candidates are occupied by NPCs
+ok 69 - actual FlightTour rejects disembarkation when all four candidates are occupied by NPCs
+  ---
+  duration_ms: 5.598635
+  type: 'test'
+  ...
+# Subtest: actual FlightTour exit ignores a different-floor NPC rather than rejecting a safe ground exit
+ok 70 - actual FlightTour exit ignores a different-floor NPC rather than rejecting a safe ground exit
+  ---
+  duration_ms: 4.213113
+  type: 'test'
+  ...
+# Subtest: production main callback passes null in every actual flight view and restores feet, not follow-camera body
+ok 71 - production main callback passes null in every actual flight view and restores feet, not follow-camera body
+  ---
+  duration_ms: 7.042765
+  type: 'test'
+  ...
+# Subtest: combined sprint and jump never penetrates standing body at 10 fps
+ok 72 - combined sprint and jump never penetrates standing body at 10 fps
+  ---
+  duration_ms: 4.160052
+  type: 'test'
+  ...
+# Subtest: combined sprint and jump never penetrates standing body at 60 fps
+ok 73 - combined sprint and jump never penetrates standing body at 60 fps
+  ---
+  duration_ms: 4.301995
+  type: 'test'
+  ...
+# Subtest: combined sprint and jump never penetrates seated body at 10 fps
+ok 74 - combined sprint and jump never penetrates seated body at 10 fps
+  ---
+  duration_ms: 2.253687
+  type: 'test'
+  ...
+# Subtest: combined sprint and jump never penetrates seated body at 60 fps
+ok 75 - combined sprint and jump never penetrates seated body at 60 fps
+  ---
+  duration_ms: 2.687189
+  type: 'test'
+  ...
+# Subtest: real controls escape an existing overlap outward without crossing the body at 10 fps
+ok 76 - real controls escape an existing overlap outward without crossing the body at 10 fps
+  ---
+  duration_ms: 1.331742
+  type: 'test'
+  ...
+# Subtest: real controls escape an existing overlap outward without crossing the body at 60 fps
+ok 77 - real controls escape an existing overlap outward without crossing the body at 60 fps
+  ---
+  duration_ms: 1.279754
+  type: 'test'
+  ...
+# Subtest: default head bob does not accumulate or turn an NPC into ground while movement is blocked
+ok 78 - default head bob does not accumulate or turn an NPC into ground while movement is blocked
+  ---
+  duration_ms: 6.747071
+  type: 'test'
+  ...
+# Subtest: no-input airborne state never snaps upward to a higher reachable step
+ok 79 - no-input airborne state never snaps upward to a higher reachable step
+  ---
+  duration_ms: 5.438434
+  type: 'test'
+  ...
+# Subtest: real downward sweep lands on physical floor beneath high roof
+ok 80 - real downward sweep lands on physical floor beneath high roof
+  ---
+  duration_ms: 5.857343
+  type: 'test'
+  ...
+# Subtest: NPC body-only vertical impact stops penetration without grounded jump reset
+ok 81 - NPC body-only vertical impact stops penetration without grounded jump reset
+  ---
+  duration_ms: 19.181519
+  type: 'test'
+  ...
+# Subtest: airborne outside-domain handoff does not rewrite state
+ok 82 - airborne outside-domain handoff does not rewrite state
+  ---
+  duration_ms: 1.460355
+  type: 'test'
+  ...
+1..82
+# tests 82
+# suites 0
+# pass 82
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 42514.529537

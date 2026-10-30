@@ -1,0 +1,160 @@
+TAP version 13
+# Subtest: all live collision/navigation arrays and records retain exact identity and value
+ok 1 - all live collision/navigation arrays and records retain exact identity and value
+  ---
+  duration_ms: 48.1425
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: position
+ok 2 - source rejection before staging: position
+  ---
+  duration_ms: 14.425902
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: source vertex
+ok 3 - source rejection before staging: source vertex
+  ---
+  duration_ms: 16.09318
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: UV
+ok 4 - source rejection before staging: UV
+  ---
+  duration_ms: 10.263258
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: groups
+ok 5 - source rejection before staging: groups
+  ---
+  duration_ms: 12.930738
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: index semantics
+ok 6 - source rejection before staging: index semantics
+  ---
+  duration_ms: 8.735564
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: metadata nonwritable
+ok 7 - source rejection before staging: metadata nonwritable
+  ---
+  duration_ms: 14.456412
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: geometry nonwritable
+ok 8 - source rejection before staging: geometry nonwritable
+  ---
+  duration_ms: 13.599396
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: material colour
+ok 9 - source rejection before staging: material colour
+  ---
+  duration_ms: 8.050305
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: foreign duplicate material
+ok 10 - source rejection before staging: foreign duplicate material
+  ---
+  duration_ms: 13.887614
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: shared source geometry
+ok 11 - source rejection before staging: shared source geometry
+  ---
+  duration_ms: 14.195307
+  type: 'test'
+  ...
+# Subtest: late source extraction allocation failure cleans every partial geometry and private resource, retaining live graph
+ok 12 - late source extraction allocation failure cleans every partial geometry and private resource, retaining live graph
+  ---
+  duration_ms: 24.259083
+  type: 'test'
+  ...
+# Subtest: unavailable canvas context retains each source face base colour rather than turning glaze/base red
+ok 13 - unavailable canvas context retains each source face base colour rather than turning glaze/base red
+  ---
+  duration_ms: 13.633804
+  type: 'test'
+  ...
+# Subtest: late canvas creation exception releases already staged private textures/materials without changing source
+ok 14 - late canvas creation exception releases already staged private textures/materials without changing source
+  ---
+  duration_ms: 15.301135
+  type: 'test'
+  ...
+# Subtest: reject modified original draw state before separating source: side
+ok 15 - reject modified original draw state before separating source: side
+  ---
+  duration_ms: 8.47898
+  type: 'test'
+  ...
+# Subtest: reject modified original draw state before separating source: colorWrite
+ok 16 - reject modified original draw state before separating source: colorWrite
+  ---
+  duration_ms: 11.939824
+  type: 'test'
+  ...
+# Subtest: reject modified original draw state before separating source: wireframe
+ok 17 - reject modified original draw state before separating source: wireframe
+  ---
+  duration_ms: 12.513095
+  type: 'test'
+  ...
+# Subtest: reject modified original draw state before separating source: transparent
+ok 18 - reject modified original draw state before separating source: transparent
+  ---
+  duration_ms: 6.913619
+  type: 'test'
+  ...
+# Subtest: reject modified original draw state before separating source: clippingPlanes
+ok 19 - reject modified original draw state before separating source: clippingPlanes
+  ---
+  duration_ms: 7.28358
+  type: 'test'
+  ...
+# Subtest: reject modified original draw state before separating source: map
+ok 20 - reject modified original draw state before separating source: map
+  ---
+  duration_ms: 7.204906
+  type: 'test'
+  ...
+# Subtest: reject modified original draw state before separating source: normalMap
+ok 21 - reject modified original draw state before separating source: normalMap
+  ---
+  duration_ms: 6.544905
+  type: 'test'
+  ...
+# Subtest: reject modified original draw state before separating source: bumpMap
+ok 22 - reject modified original draw state before separating source: bumpMap
+  ---
+  duration_ms: 9.943198
+  type: 'test'
+  ...
+# Subtest: reject modified original draw state before separating source: displacementMap
+ok 23 - reject modified original draw state before separating source: displacementMap
+  ---
+  duration_ms: 8.345378
+  type: 'test'
+  ...
+# Subtest: reject modified original draw state before separating source: alphaTest
+ok 24 - reject modified original draw state before separating source: alphaTest
+  ---
+  duration_ms: 10.810088
+  type: 'test'
+  ...
+# Subtest: reject modified original draw state before separating source: depthWrite
+ok 25 - reject modified original draw state before separating source: depthWrite
+  ---
+  duration_ms: 13.000037
+  type: 'test'
+  ...
+1..25
+# tests 25
+# suites 0
+# pass 25
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 563.444949

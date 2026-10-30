@@ -1,0 +1,7 @@
+# 皇极殿南九开间槅扇局部
+
+Parent 5d511019. User authorized continued source-bounded work, relayed by parent on 2026-10-28. Official building/236476 and its front image s5efef346e4a8b.jpg support nine bays, central three door bays and remaining sill walls; visible gold-outlined tall fields, waist rails and lower panel fields. Dimensions, leaf subdivisions, muted color and simple rectangular ornament are model fits, not measured original lattice or carved/painted dragon reproduction. No current inventory acceptance.
+
+Chosen: isolated replacement of only generic south window ornament with fitted gold framed partitions, retaining existing backing geometry/physical envelope and every old portal. Add real triangle collision for outward ornament. Rollback via kit.huangjiSouthFront=false. Additive overlay on old lattice rejected because it retains contradictory generic pattern; entire building replacement rejected as unrelated/risky. Rear doors, old roof/platform, steps, interior/four gold columns/caisson GLB and fallback contract untouched. No copied closed photo doors, plaque rewrite, upper destinations or shared solver changes.
+
+Verification: failing feature test first, exact retention, actual transformed new triangles, all six original portal routes at 10/60Hz walk/run and forward/back, visible CPU source/candidate review, cumulative/current-state baseline failure comparison and three-base code-only build. Reuse build caches, no public copies/deletion/push/deploy/main. Stop large outputs below 500 MiB available.

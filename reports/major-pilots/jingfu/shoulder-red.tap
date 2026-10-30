@@ -1,0 +1,36 @@
+✔ own source south gallery has four sill windows, 40 plain ceiling fields and six uncarved column shoulders (103.746878ms)
+✔ rollback retains original navigation, all walking surfaces and every non-target mesh (108.532762ms)
+✔ south fitted door retains exact old jamb inner faces and no low overhead gallery collision (68.730262ms)
+✔ new geometry finite nondegenerate bounded and owned resources release exactly once (108.192741ms)
+✖ each added plain column-base shoulder has an exact actual-geometry physical envelope (58.681276ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 659.931555
+
+✖ failing tests:
+
+test at tests/major-pilots/jingfu/front.test.mjs:9:1
+✖ each added plain column-base shoulder has an exact actual-geometry physical envelope (58.681276ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(kit.colliders.some(q=>q.min.distanceTo(b.min)<1e-7&&q.max.distanceTo(b.max)<1e-7))
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/jingfu/front.test.mjs:9:251)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

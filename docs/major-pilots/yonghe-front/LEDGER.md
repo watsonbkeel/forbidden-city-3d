@@ -1,0 +1,13 @@
+# Execution ledger
+
+Resumed at exact safe parent ddb9bc87. Prior worker left PLAN, tests and scripts only; production unchanged. Preserved all prior WIP and six dirty reports without reset.
+
+Observed composition RED against unchanged source: missing complete Yonghe ensemble. Implemented dedicated exact-host module and owner hook. Initial isolated checks 12/12 green, full-zone retention RED: `east_plain_window_panel_fit` lookup selected earlier Zhongcui material. Actual parent full zone confirmed two same-named private materials; fixed selection to most recently constructed host-private material. Full-zone test then passed, with exact ordinary non-target meshes, actual Yanxi LOD and all physics/navigation.
+
+Independent reviewer reproduced throwing graph callback atomicity problem. Added red-first live graph and retired-geometry callback tests; fail-closed preflight rejects those hosts before allocation/mutation. Independent re-review approves, no remaining Important findings. Final focused 17/17 includes all guards, borrowing/morph/index semantics, staged cleanup, resource disposal, real final F32 envelopes, leaf UV coverage, executed drawing layout and exact 96 World trajectory retention.
+
+Actual World parent/candidate: 96 identical cases; 20 arrivals and 16 illegal starts each, explicitly retained rather than upgraded to route success. Inherited high-start presets do not establish continuous roof reachability or physical closure. CPU isolated mesh cost 439→395 and triangles 7457→6929, plus 786432 nominal private RGBA8 bytes (three 256² canvases, no mip/GPU overhead estimate). Not GPU performance evidence.
+
+Two aggregate validation runs inadvertently overlapped while recovering integration failure; both interrupted, their shared summary is non-authoritative. Clean single serial run uses `validation-clean-final.log` and replaces suite logs. No overlapping receipt is used for final claims. Reference image network fetch timed out; existing official-source private cache was visually inspected, no copied source pixels shipped.
+
+Final clean serial verification complete: navigation32/32, shared161/161. Residential195/184/11, household30/16/14 and east143/136/7 compare identical failed names/locations against exact-parent receipts/replay. Current-state1331/1113/218 exactly matches hash-verified ddb9bc87 frozen Tihe receipt in counts and every failed name/location. Aggregate remains red, not a green project claim. All three real-entry bases compile513 modules with HTML/JS/build-info identity validated in memory. Final96 World traces match. Independent review approves. Scope remains CPU-only, no raster/GPU/browser or whole-object acceptance.

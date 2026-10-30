@@ -1,0 +1,256 @@
+TAP version 13
+# Subtest: complete three-part glazed frontage has13 existing source faces and4 distinct source-shaped fields
+ok 1 - complete three-part glazed frontage has13 existing source faces and4 distinct source-shaped fields
+  ---
+  duration_ms: 42.87263
+  type: 'test'
+  ...
+# Subtest: all live collision/navigation arrays and records retain exact identity and value
+ok 2 - all live collision/navigation arrays and records retain exact identity and value
+  ---
+  duration_ms: 54.657081
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: position
+ok 3 - source rejection before staging: position
+  ---
+  duration_ms: 12.919867
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: source vertex
+ok 4 - source rejection before staging: source vertex
+  ---
+  duration_ms: 11.538403
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: UV
+ok 5 - source rejection before staging: UV
+  ---
+  duration_ms: 8.354924
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: groups
+ok 6 - source rejection before staging: groups
+  ---
+  duration_ms: 8.920622
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: index semantics
+ok 7 - source rejection before staging: index semantics
+  ---
+  duration_ms: 8.116806
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: metadata nonwritable
+ok 8 - source rejection before staging: metadata nonwritable
+  ---
+  duration_ms: 15.020916
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: geometry nonwritable
+ok 9 - source rejection before staging: geometry nonwritable
+  ---
+  duration_ms: 14.18751
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: material colour
+ok 10 - source rejection before staging: material colour
+  ---
+  duration_ms: 9.264458
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: foreign duplicate material
+ok 11 - source rejection before staging: foreign duplicate material
+  ---
+  duration_ms: 7.730466
+  type: 'test'
+  ...
+# Subtest: source rejection before staging: shared source geometry
+ok 12 - source rejection before staging: shared source geometry
+  ---
+  duration_ms: 7.224691
+  type: 'test'
+  ...
+# Subtest: late source extraction allocation failure cleans every partial geometry and private resource, retaining live graph
+ok 13 - late source extraction allocation failure cleans every partial geometry and private resource, retaining live graph
+  ---
+  duration_ms: 9.986293
+  type: 'test'
+  ...
+# Subtest: unavailable canvas context retains each source face base colour rather than turning glaze/base red
+ok 14 - unavailable canvas context retains each source face base colour rather than turning glaze/base red
+  ---
+  duration_ms: 12.957753
+  type: 'test'
+  ...
+# Subtest: late canvas creation exception releases already staged private textures/materials without changing source
+ok 15 - late canvas creation exception releases already staged private textures/materials without changing source
+  ---
+  duration_ms: 10.639794
+  type: 'test'
+  ...
+# Subtest: reject modified original draw state before separating source: side
+ok 16 - reject modified original draw state before separating source: side
+  ---
+  duration_ms: 7.092889
+  type: 'test'
+  ...
+# Subtest: reject modified original draw state before separating source: colorWrite
+ok 17 - reject modified original draw state before separating source: colorWrite
+  ---
+  duration_ms: 8.788073
+  type: 'test'
+  ...
+# Subtest: reject modified original draw state before separating source: wireframe
+ok 18 - reject modified original draw state before separating source: wireframe
+  ---
+  duration_ms: 7.26337
+  type: 'test'
+  ...
+# Subtest: reject modified original draw state before separating source: transparent
+ok 19 - reject modified original draw state before separating source: transparent
+  ---
+  duration_ms: 7.732208
+  type: 'test'
+  ...
+# Subtest: reject modified original draw state before separating source: clippingPlanes
+ok 20 - reject modified original draw state before separating source: clippingPlanes
+  ---
+  duration_ms: 8.781794
+  type: 'test'
+  ...
+# Subtest: reject modified original draw state before separating source: map
+ok 21 - reject modified original draw state before separating source: map
+  ---
+  duration_ms: 7.752328
+  type: 'test'
+  ...
+# Subtest: reject modified original draw state before separating source: normalMap
+ok 22 - reject modified original draw state before separating source: normalMap
+  ---
+  duration_ms: 7.760321
+  type: 'test'
+  ...
+# Subtest: reject modified original draw state before separating source: bumpMap
+ok 23 - reject modified original draw state before separating source: bumpMap
+  ---
+  duration_ms: 7.586169
+  type: 'test'
+  ...
+# Subtest: reject modified original draw state before separating source: displacementMap
+ok 24 - reject modified original draw state before separating source: displacementMap
+  ---
+  duration_ms: 7.405258
+  type: 'test'
+  ...
+# Subtest: reject modified original draw state before separating source: alphaTest
+ok 25 - reject modified original draw state before separating source: alphaTest
+  ---
+  duration_ms: 8.45281
+  type: 'test'
+  ...
+# Subtest: reject modified original draw state before separating source: depthWrite
+ok 26 - reject modified original draw state before separating source: depthWrite
+  ---
+  duration_ms: 11.504407
+  type: 'test'
+  ...
+# Subtest: final architecture provenance retains bounded front revision and still-unaccepted inherited whole profile
+ok 27 - final architecture provenance retains bounded front revision and still-unaccepted inherited whole profile
+  ---
+  duration_ms: 57.422058
+  type: 'test'
+  ...
+# Subtest: real-material merge retains five private finishes and unload releases raw/final geometry/material/texture exactly once
+ok 28 - real-material merge retains five private finishes and unload releases raw/final geometry/material/texture exactly once
+  ---
+  duration_ms: 22.054895
+  type: 'test'
+  ...
+# Subtest: thirteen uniquely owned original source geometries release once at replacement, never again at final unload
+ok 29 - thirteen uniquely owned original source geometries release once at replacement, never again at final unload
+  ---
+  duration_ms: 18.334185
+  type: 'test'
+  ...
+# Subtest: official enlarged head has four open hexagonal rims, not four invented flower rosettes
+ok 30 - official enlarged head has four open hexagonal rims, not four invented flower rosettes
+  ---
+  duration_ms: 47.65542
+  type: 'test'
+  ...
+# Subtest: each central vertical field uses one outer medallion, not three separately framed stacked medallions
+ok 31 - each central vertical field uses one outer medallion, not three separately framed stacked medallions
+  ---
+  duration_ms: 16.012921
+  type: 'test'
+  ...
+# Subtest: large lintel bands preserve a long plain outlined centre rather than repetitive central rosettes
+ok 32 - large lintel bands preserve a long plain outlined centre rather than repetitive central rosettes
+  ---
+  duration_ms: 13.109151
+  type: 'test'
+  ...
+# Subtest: complete west-six non-target meshes and every physics/nav record equal actual bb430800 source replay
+ok 33 - complete west-six non-target meshes and every physics/nav record equal actual bb430800 source replay
+  ---
+  duration_ms: 2596.33879
+  type: 'test'
+  ...
+# Subtest: exact raw entire gate triangle position/normal/UV multiset and all non-front material/shadow assignments retained
+ok 34 - exact raw entire gate triangle position/normal/UV multiset and all non-front material/shadow assignments retained
+  ---
+  duration_ms: 179.747324
+  type: 'test'
+  ...
+# Subtest: exact real-material merged entire gate triangle position/normal/UV multiset and all non-front material/shadow assignments retained
+ok 35 - exact real-material merged entire gate triangle position/normal/UV multiset and all non-front material/shadow assignments retained
+  ---
+  duration_ms: 122.593119
+  type: 'test'
+  ...
+# Subtest: each decorated face is precisely original south side and covers0..1 UV without material arrays
+ok 36 - each decorated face is precisely original south side and covers0..1 UV without material arrays
+  ---
+  duration_ms: 13.901229
+  type: 'test'
+  ...
+# Subtest: 96 actualWorld floor/preset traces retain every parent frame and outcome, not96 successful passages
+ok 37 - 96 actualWorld floor/preset traces retain every parent frame and outcome, not96 successful passages
+  ---
+  duration_ms: 2.15844
+  type: 'test'
+  ...
+# Subtest: actual World gate-and-screen walk/run-with-final-braking/jump both directions at10/60
+ok 38 - actual World gate-and-screen walk/run-with-final-braking/jump both directions at10/60
+  ---
+  duration_ms: 247.332086
+  type: 'test'
+  ...
+# Subtest: actual World west-screen-bypass walk/run-with-final-braking/jump both directions at10/60
+ok 39 - actual World west-screen-bypass walk/run-with-final-braking/jump both directions at10/60
+  ---
+  duration_ms: 81.957488
+  type: 'test'
+  ...
+# Subtest: actual World east-screen-bypass walk/run-with-final-braking/jump both directions at10/60
+ok 40 - actual World east-screen-bypass walk/run-with-final-braking/jump both directions at10/60
+  ---
+  duration_ms: 75.819102
+  type: 'test'
+  ...
+# Subtest: actual World generic kinematic radii .3/.5 retain central and transverse floor routes
+ok 41 - actual World generic kinematic radii .3/.5 retain central and transverse floor routes
+  ---
+  duration_ms: 48.773699
+  type: 'test'
+  ...
+1..41
+# tests 41
+# suites 0
+# pass 41
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 14152.707762

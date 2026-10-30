@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import fs from'node:fs';
+test('96 actual World/controller trajectory hashes and outcomes equal actual 6cc0d1bd replay, including inherited failures',()=>{const load=mode=>JSON.parse(fs.readFileSync(new URL(`../../../reports/major-pilots/xianfu-front/world-${mode}.json`,import.meta.url))),a=load('candidate'),p=load('parent');assert.equal(a.rows.length,96);assert.deepEqual(a,p);});

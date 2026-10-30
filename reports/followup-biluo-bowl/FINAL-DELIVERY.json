@@ -1,0 +1,101 @@
+{
+  "status": "CHECKED_LOCAL_DEVELOPMENT_FOLLOWUP_NOT_NEW_NUMBERED_RELEASE",
+  "sourceCommit": "693eb148869be1e4c249a40862910d53fdf25ed9",
+  "sourceFingerprint": "12b7516f4b5b1187b9aea7c68bca4a9a1a0e7f5abcc3dffb7569403118b52ff1",
+  "branch": "feat/original-scope-followup-20261028",
+  "baseLocalBiluo": "f0829e7c2be0be399f1fb7a01619479bdac8df35",
+  "baseRemoteBiluo": "3ac3a4ba494f96b055bfe306e2ba548fd1ca7b09",
+  "targets": {
+    "tests": 8,
+    "pass": 8,
+    "fail": 0,
+    "independent": true
+  },
+  "retained": {
+    "tests": 14,
+    "pass": 12,
+    "fail": 2,
+    "reasons": [
+      "Previous Biluo assertion permits only ovoid material change; new bowl side material/index partition intentionally changes its non-target hash; original assertion preserved",
+      "Existing R68 PLAIN_SILHOUETTE marker assertion retained and fails since preceding ovoid followup"
+    ]
+  },
+  "standard": {
+    "tests": 1332,
+    "pass": 1116,
+    "fail": 216,
+    "failureNamesSameAsBiluo": true
+  },
+  "resources": [
+    {
+      "quality": "high",
+      "ningshouDelta": {
+        "meshes": 1,
+        "triangles": 0,
+        "geometryBytes": 0,
+        "materials": 1,
+        "textures": 1
+      },
+      "physicalSame": true,
+      "palaceSame": true,
+      "actualImageRequests": {
+        "pending": 0,
+        "requests": 46,
+        "errors": [],
+        "loadedColors": 22,
+        "loadedNormals": 21
+      },
+      "sourceFingerprint": "12b7516f4b5b1187b9aea7c68bca4a9a1a0e7f5abcc3dffb7569403118b52ff1"
+    },
+    {
+      "quality": "low",
+      "ningshouDelta": {
+        "meshes": 1,
+        "triangles": 0,
+        "geometryBytes": 0,
+        "materials": 1,
+        "textures": 1
+      },
+      "physicalSame": true,
+      "palaceSame": true,
+      "actualImageRequests": {
+        "pending": 0,
+        "requests": 46,
+        "errors": [],
+        "loadedColors": 22,
+        "loadedNormals": 21
+      },
+      "sourceFingerprint": "12b7516f4b5b1187b9aea7c68bca4a9a1a0e7f5abcc3dffb7569403118b52ff1"
+    }
+  ],
+  "build": {
+    "base": "/forbidden-city-3d/",
+    "files": 137,
+    "httpAllHashesMatch": true,
+    "newReleaseAssigned": false,
+    "deployment": false
+  },
+  "originalScope": {
+    "id": "FC-47EC73915D",
+    "partialOnly": true,
+    "newDistinctObjects": 0,
+    "newWholeObjectAcceptances": 0,
+    "distinctPartiallyChangedSinceR137": 15,
+    "mandatoryObjects": 397,
+    "expandedGroups": 7
+  },
+  "withdrawnNotDelivered": [
+    "FC-FADD286B97 Xishang",
+    "FC-B6CDE8615B Cuishang"
+  ],
+  "pending": [
+    "GPU/browser/mobile/far mipmaps",
+    "Real raised bowl ornament and bowl curvature",
+    "Separate raised petal crown",
+    "Neck/foot ornaments and unseen rear exact motif",
+    "Entire original 397 objects and 7 expanded groups"
+  ],
+  "mainChanged": false,
+  "frozenR146Changed": false,
+  "remoteUpload": "PENDING_SEPARATE_SERIAL_OWNER"
+}

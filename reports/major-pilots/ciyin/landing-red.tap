@@ -1,0 +1,36 @@
+TAP version 13
+# Subtest: cross-floor downward steps land on the original 4.8 top rather than the thin 4.65 underside proxy at 10/60Hz and all three front floor pieces
+not ok 1 - cross-floor downward steps land on the original 4.8 top rather than the thin 4.65 underside proxy at 10/60Hz and all three front floor pieces
+  ---
+  duration_ms: 116.718177
+  type: 'test'
+  location: '/workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/ciyin/landing.test.mjs:2:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"fps":10,"x":258.5,"r":{"x":258.5,"z":124.5,"feetY":4.6499999999999995,"groundY":4.6499999999999995,"airborne":false,"verticalVelocity":0,"onSupport":true,"landed":true,"blockedPose":false}}
+    + actual - expected
+    
+    + 4.6499999999999995
+    - 4.8
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 4.8
+  actual: 4.6499999999999995
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r141-major-clean-jiaotai/tests/major-pilots/ciyin/landing.test.mjs:2:472)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 295.002547
