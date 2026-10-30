@@ -1,3 +1,4 @@
+import {applyAxialNorthPanels,applyAxialPlainDoorBacks} from './AxialNorthPanels.js';
 import * as THREE from 'three';
 import { buildStuddedDoor } from '../../HallKit.js';
 import { zhaodeGateGeometry } from './ZhaodeGateProfile.js';
@@ -107,9 +108,11 @@ export function buildZhaodeGate(kit,opts) {
     openState:open?'playable-open':'closed',visitorPolicy:'Playable route is not museum visitor access permission.',
     dimensions:{status:'provisional',documentary:g.documentary,derived:g.derived,digitized:g.digitized,assumptions:g.provisional},
     roofBounds:{min:roofBounds.min.toArray(),max:roofBounds.max.toArray(),space:'world',ornamentalMaximumY:roofBounds.max.y,mainRidgeCapY:g.roof.ridgeWorldY},
-    comparisonStatus:'south-source-compared; north and wing interfaces provisional'};
+    comparisonStatus:'south-source-compared; own north paint/plain back fitted; depth and wing interfaces provisional'};
+  applyAxialPlainDoorBacks(kit,f);
   f.userData.structure.pruning=prunePavilionCoveredFaces(f,boxes);
   applyZhaodeSouthPanels(kit,f);
+  f.userData.structure.northPanelApplied=applyAxialNorthPanels(kit,f);
   return g.wallGapWidth;
 
   function railing(from,to) {

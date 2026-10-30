@@ -38,6 +38,6 @@ export function createTaiheEastFirewallProfile({hall,rect,layers,lh,setback,link
     terminalJoin:{x:outerJoinX,z,height:terminalHeight,item:'axis-courts/items/13',gate:'中左门'},
     hallJoin:{x:innerJoinX,z},source:{url:AXIS_FIREWALL_SOURCE,featurePages:[5,6],eastIdentityPage:6,photographDate:'UNSPECIFIED'},
     inherited:{hallWidth:halfWidth*2,terraceUpperHalfWidth:rect.hw,layers,lh,setback},
-    remaining:['west-side-unreviewed','exact-metric-survey-unknown','outer-end-detail-unreviewed','door-finish-unreviewed','browser-matched-views-pending'],
+    remaining:['west-side-unreviewed','exact-metric-survey-unknown','outer-end-detail-unreviewed','own-east-frame-fitted-door-leaves-and-state-unreviewed','browser-matched-views-pending'],
   };
 }

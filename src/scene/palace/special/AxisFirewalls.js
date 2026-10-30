@@ -1,3 +1,4 @@
+import {addTaiheEastWallDoor,validateTaiheEastWallDoorProfile} from './TaiheEastWallDoor.js';
 import * as THREE from 'three';
 import {buildWallCap} from '../../RoofBuilder.js';
 
@@ -10,6 +11,7 @@ export function buildTaiheEastFirewall(builder,parent,profile) {
   const p=profile.passage,spans=profile.spans,last=spans?.at(-1);
   const numbers=[profile.z,profile.thickness,profile.terminalJoin?.x,profile.hallJoin?.x,p?.centerX,p?.floorY,p?.clearWidth,p?.clearHeight];
   if(!numbers.every(Number.isFinite)||profile.thickness<=0||p.clearWidth<=0||p.clearHeight<=0||!Array.isArray(spans)||spans.length<3||spans.length>4||spans.some((s,i)=>![s.x0,s.x1,s.floorY,s.topY].every(Number.isFinite)||s.x1<=s.x0||s.x1>=0||s.topY<=s.floorY||s.floorY<0||(i&&Math.abs(s.x0-spans[i-1].x1)>1e-8))||last.id!=='tier-3'||p.floorY!==last.floorY||p.centerX-p.clearWidth/2<=last.x0||p.centerX+p.clearWidth/2>=last.x1||p.floorY+p.clearHeight>=last.topY||profile.terminalJoin.x!==spans[0].x0||profile.hallJoin.x!==last.x1)throw Error('Malformed Taihe firewall dimensions or opening');
+  validateTaiheEastWallDoorProfile(profile);
   if(parent.getObjectByName(profile.id))throw Error('Taihe east firewall is already installed');
   if(builder.ox!==0||builder.oz!==0)throw Error('Taihe firewall requires the existing zero-origin three-hall group');
   const group=new THREE.Group();group.name=profile.id;group.userData.structure=structuredClone(profile);
@@ -36,5 +38,6 @@ export function buildTaiheEastFirewall(builder,parent,profile) {
     cap.traverse(m=>{if(m.isMesh){m.castShadow=m.receiveShadow=true;m.userData.firewallPart='glazed-cap';}});
     builder.ownedMaterials.push(...(cap.userData.ownedMaterials??[]));group.add(cap);
   }
+  addTaiheEastWallDoor(builder,group,profile);
   parent.add(group);return group;
 }

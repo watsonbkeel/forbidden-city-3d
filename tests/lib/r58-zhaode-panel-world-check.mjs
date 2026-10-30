@@ -25,7 +25,8 @@ export function assertZhaodePanelsInWorld(W){
   paintProbes.push({local:[sign*x,6.117,-4.424],paletteTexel:i,color:color.toString(16),actualHit:hit.point.toArray()});
  }
  for(const sign of [-1,1]){
-  for(const [z,direction] of [[0,-1],[7,-1]])assert.match(ray([sign*5.21,6.117,z],[0,0,direction],5)[0].object.material.name,/wall_red/,'inside/rear retained');
+  assert.match(ray([sign*5.21,6.117,0],[0,0,-1],5)[0].object.material.name,/wall_red/,'inside retained');
+  assert.equal(ray([sign*5.21,6.117,7],[0,0,-1],5)[0].object.material.name,'zhaode_north_panel_paint','R157 own-source north surface');
   assert.match(ray([sign*5.21,p.platformY+.4,-5],[0,0,1],1)[0].object.material.name,/wall_brick/,'original foot retained');
   assert.match(ray([sign*8.93,p.platformY+2.1,-5],[0,0,1],1)[0].object.material.name,/door_studded/,'unresolved lateral panel not silently replaced');
   const [x,z]=p.toWorld(sign*5.21,p.core.frontZ);assert.equal(W.cm.checkCollision(new THREE.Vector3(x,p.platformY+1.7,z),.5),true);

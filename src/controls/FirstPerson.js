@@ -566,6 +566,24 @@ export class FirstPersonControls {
     } else {
       // 下落：重力加速，落到地面即停
       this.verticalVelocity = Math.max(this.verticalVelocity - 9.8 * delta, -12);
+      // A short drop can lose its foot witness while the wider body still
+      // overlaps a pointed triangle owner. Keep the old 9.8 trajectory, but
+      // apply the same continuous body guard used by airborne descent.
+      const targetFeet=Math.max(groundY,this.feetY+this.verticalVelocity*delta);
+      const impact=targetFeet<this.feetY ? this.collisionManager.resolveTriangleVertical?.(
+        this.camera.position.x,this.camera.position.z,this.feetY,targetFeet,delta,.5,PLAYER.HEIGHT) : null;
+      if(impact){
+        this.camera.position.x=impact.x;this.camera.position.z=impact.z;
+        this.feetY=impact.feet;this.verticalVelocity=0;
+        this.airborne=!impact.landed;this.onSupport=!!impact.landed;
+        if(impact.landed){this.groundY=impact.feet;this._landed=true;}
+        else{
+          const nextWalk=this.collisionManager.getGroundHeight(impact.x,impact.z,impact.feet,PLAYER.STEP_UP??.6);
+          const nextSupport=this.collisionManager.supportHeight?.(impact.x,impact.z,impact.feet+.05)??-Infinity;
+          this.groundY=Math.max(nextWalk,nextSupport);
+        }
+        return;
+      }
       this.feetY += this.verticalVelocity * delta;
       if (this.feetY <= groundY) {
         this.feetY = groundY;

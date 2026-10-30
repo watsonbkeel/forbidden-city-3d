@@ -69,7 +69,7 @@ test('both closed ramp wedges match their own exact supports through cardinal tr
 test('railing, cheek, column, closed leaves and cap solids block with matching visible geometry',()=>{
  const f=fixture();for(const [x,z,y] of [[-12.2,-8,3.216],[12.2,8,3.216],[-5.1,-18,1.75],[5.1,18,1.8],[-3,-6.624,3.216],[-11,0,3.216],[11,0,3.216]])assert.equal(f.blocked(x,z,y),true,`${x}/${z}`);
  for(const leaf of nodes(f.frame,'zhaode-door-leaf'))assert.equal(f.blocked(leaf.position.x,leaf.position.z),true);
- const shut=fixture({open:false});assert.equal(shut.blocked(0,shut.g.core.frontZ),true);assert.ok(ray(shut.frame,[0,4.5,-8],[0,0,1],8).some(h=>h.object.userData.role==='zhaode-door-leaf'));
+ const shut=fixture({open:false});assert.equal(shut.blocked(0,shut.g.core.frontZ),true);assert.ok(ray(shut.frame,[0,4.5,-8],[0,0,1],8).some(h=>(h.object.userData.role==='zhaode-door-leaf'||h.object.userData.role==='zhaode-door-front'&&h.object.parent.userData.role==='zhaode-door-leaf')));
 });
 test('ridge datum is documentary while actual roof bounds and ornament maximum are explicit',()=>{
  const f=fixture(),roof=nodes(f.frame,'zhaode-roof')[0];const ridge=ray(roof,[0,30,0],[0,-1,0]).filter(h=>h.object.material===f.kit.ridge);assert.ok(ridge.length);close(ridge[0].point.y,16.16);const box=new THREE.Box3().setFromObject(roof);const info=f.frame.userData.structure.roofBounds;assert.ok(info);close(info.min[0],box.min.x);close(info.max[1],box.max.y);assert.ok(box.min.x<-f.g.building.width/2);assert.ok(f.g.roof.overhang>0);

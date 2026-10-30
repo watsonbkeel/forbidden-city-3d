@@ -35,9 +35,9 @@ export function zhaodeGateGeometry(item={}) {
     platformWidth:24.4,platformDepth:21,frontRun:16.5,rearRun:17,approachOuterWidth:11.2,approachTravelWidth:9.2,clearPortalWidth:4.8,
     railHeight:1.05,railMaximumSpacing:2,railMemberWidth:.2,cheekWidth:1,roofOverhang:1.6,wallThickness:.4,
     recessedPanelClosure:'Conservative engineering closure to the existing door-head top; not a newly documented historical panel-head detail.',
-    northElevation:'Provisional closed side panels and aligned exit; no second photographed leaf pair.',
+    northElevation:'Own group 8 north view observes ochre panels and plain red leaf backs; retained panel depth and door-plane relationship remain provisional; no second pair.',
     wingContacts:'Closed caps only. Entire inherited south-open wing orientation remains unresolved; no playable lateral floor connection.'};
-  const unknowns=['Contemporary north elevation and north materials','Individual surveyed bays, door plane and aperture','Exact masonry outline, slope profile, landings, crossfall and current ground datum','Full wing interfaces and wing south-solid reconstruction','Railing measurements and ornament','Present-day visitor access and smooth accessible strip geometry'];
+  const unknowns=['Complete measured north elevation, panel depth and door-plane relationship','Individual surveyed bays, door plane and aperture','Exact masonry outline, slope profile, landings, crossfall and current ground datum','Full wing interfaces and wing south-solid reconstruction','Railing measurements and ornament','Present-day visitor access and smooth accessible strip geometry'];
   const coreWidth=provisional.coreBayWidths.reduce((a,b)=>a+b,0);
   const coreColumns=[-coreWidth/2];
   for(const width of provisional.coreBayWidths)coreColumns.push(coreColumns.at(-1)+width);

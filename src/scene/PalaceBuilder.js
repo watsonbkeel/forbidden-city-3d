@@ -1,3 +1,4 @@
+import {refineWumenNorthEnclosure} from './palace/special/WumenNorthEnclosure.js';
 import {buildWumenTransverseLinks} from './palace/special/WumenTransverseLinks.js';
 import {buildJiaotaiLowRooms} from './palace/special/JiaotaiLowRooms.js';
 import {registerQianqingFoldedLeaves} from './palace/QianqingAssemblyPhysics.js';
@@ -1202,7 +1203,10 @@ export class PalaceBuilder {
       for (const pz of [pS, pN]) {
         const pb = buildHallBody(this.library, { width: P, depth: P, height: 7.5, bays: 3, facade: 'lattice' });
         pb.position.set(s * hx, top, pz);
-        if (s === -1 && pz === pN) refineWumenPavilionNorthColumns(pb, { instanceId: WUMEN_NORTHEAST_PAVILION_ID });
+        if (s === -1 && pz === pN) {
+          refineWumenPavilionNorthColumns(pb, { instanceId: WUMEN_NORTHEAST_PAVILION_ID });
+          refineWumenNorthEnclosure(this,pb,{instanceId:WUMEN_NORTHEAST_PAVILION_ID});
+        }
         g.add(pb);
         const pr = buildRoof(this.library, { type: 'pavilion', width: P + 0.4, depth: P + 0.4, baseY: top + pb.userData.topY, layers: 2, brackets: true, detail: 'low' });
         pr.position.set(s * hx, 0, pz);

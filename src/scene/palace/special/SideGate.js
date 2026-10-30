@@ -1,3 +1,5 @@
+import {buildXieheEastRampRails} from './XieheEastRampRails.js';
+import {fitXieheVisibleHall} from './XieheVisibleHall.js';
 import * as THREE from 'three';
 import { buildStuddedDoor } from '../../HallKit.js';
 import { sideGateGeometry } from './SideGateProfiles.js';
@@ -17,6 +19,7 @@ export function buildSideGate(kit,opts) {
   // Only actual closed kit.box primitives can prove a face is buried. Keep
   // this registry local to the gate; roof/wedge/sphere bounds are not solids.
   const renderBoxes=[];
+  let registerEastRailTriangles=null;
   const box=(role,mat,W,H,D,x,y,z)=>{
     const o=tag(kit.box(f,mat,W,H,D,x,y,z),role);renderBoxes.push(o);return o;
   };
@@ -49,15 +52,16 @@ export function buildSideGate(kit,opts) {
       const z=r.zTop+(r.zToe-r.zTop)*t,y=r.yTop*(1-t);
       box('gate-ramp-score','wall_brick',r.rightTop-r.leftTop,.012,.025,(r.leftTop+r.rightTop)/2,y+.003,z);
     }
-    if(g.railings) for(const edge of ['left','right']) {
+    if(g.railings&&g.profile==='xiehe'&&r===g.ramps[0]) registerEastRailTriangles=buildXieheEastRampRails(kit,f,g,r);
+    else if(g.railings) for(const edge of ['left','right']) {
       railing(kit,f,[r[edge+'Top'],ph,r.zTop],[r[edge+'Toe'],0,r.zToe],renderBoxes);
     }
   }
   if(g.railings) {
     for(const side of [-1,1]) railing(kit,f,[side*g.platformWidth/2,ph,-g.platformDepth/2],[side*g.platformWidth/2,ph,g.platformDepth/2],renderBoxes);
     for(const r of g.ramps) {
-      railing(kit,f,[-g.platformWidth/2,ph,r.zTop],[r.leftTop,ph,r.zTop],renderBoxes);
-      railing(kit,f,[r.rightTop,ph,r.zTop],[g.platformWidth/2,ph,r.zTop],renderBoxes);
+      railing(kit,f,[-g.platformWidth/2,ph,r.zTop],[r.leftTop,ph,r.zTop],renderBoxes,{skipEnd:g.profile==='xiehe'&&r===g.ramps[0]});
+      railing(kit,f,[r.rightTop,ph,r.zTop],[g.platformWidth/2,ph,r.zTop],renderBoxes,{skipStart:g.profile==='xiehe'&&r===g.ramps[0]});
     }
   }
 
@@ -71,12 +75,18 @@ export function buildSideGate(kit,opts) {
   for(const z of g.columnZs) box('gate-painted-beam','caihua_beam',w+.4,.65,.48,0,ph+h-.325,z);
   for(const side of [-1,1]) box('gate-painted-beam','caihua_beam',.48,.65,d+.4,side*w/2,ph+h-.325,0);
 
-  // Both end bays are physical sill walls and lattice windows at the two eaves.
+  // Xiehe own east photographs show solid end bays; keep the west lattice.
+  // Other profiles retain their original two-face window arrangement.
   // For gates other than Xihe, the unseen reverse detailing is conservative and
   // explicitly provisional; it is not a photographic acceptance claim.
   const sill=.85,windowH=h-1.65;
   for(const i of [0,4]) for(const z of [-d/2,d/2]) {
     const cx=g.bayCenters[i],bw=g.bayWidths[i],clear=bw-2*g.radius;
+    if(g.profile==='xiehe'&&z<0) {
+      solid('xiehe-east-end-stone-base','stone_slab',bw,sill,.48,cx,ph+sill/2,z);
+      solid('xiehe-east-end-wall','wall_red',bw,h-.65-sill,.48,cx,ph+sill+(h-.65-sill)/2,z);
+      continue;
+    }
     solid('gate-window-sill','wall_brick',bw,sill,.48,cx,ph+sill/2,z);
     const pane=tag(new THREE.Group(),'gate-window',{bay:i,side:z<0?'front':'rear'}); f.add(pane);
     tag(kit.mesh(pane,new THREE.BoxGeometry(clear,windowH,.08),kit.lacquer,cx,ph+sill+windowH/2,z),'gate-window-shadow');
@@ -90,6 +100,23 @@ export function buildSideGate(kit,opts) {
     }
     box('gate-window-head','caihua_beam',bw,.5,.48,cx,ph+h-.9,z);
     kit.col(f,cx-bw/2,ph,z-.24,cx+bw/2,ph+h-.65,z+.24);
+  }
+  if(g.profile==='xiehe') {
+    // Own east near view (sphere 2054726937421385730): ochre end
+    // partitions run into the vestibule, not across its three open portals.
+    // Existing column/depth envelope is an engineering fit, not a survey.
+    const plaster=new THREE.MeshStandardMaterial({color:0x8b6046,roughness:.94,name:'xiehe-vestibule-ochre-fit'});
+    const edging=new THREE.MeshStandardMaterial({color:0xbfa682,roughness:.9,name:'xiehe-vestibule-border-fit'});
+    kit.owned.push(plaster,edging);
+    for(const x of[g.columnXs[1],g.columnXs[4]]) {
+      const length=d/2,thick=.32,bottom=ph+sill,height=h-.65-sill,z=-d/4;
+      solid('xiehe-east-vestibule-stone-base','wall_brick',thick,sill,length,x,ph+sill/2,z);
+      tag(kit.mesh(f,new THREE.BoxGeometry(thick,height,length),plaster,x,bottom+height/2,z),'xiehe-east-vestibule-end-wall');
+      kit.col(f,x-thick/2,bottom,-d/2,x+thick/2,ph+h-.65,0);
+      const face=x<0?x+thick/2+.002:x-thick/2-.002;
+      for(const zz of[-d/2+.13,-.13]) tag(kit.mesh(f,new THREE.BoxGeometry(.008,height-.24,.03),edging,face,bottom+height/2,zz),'xiehe-vestibule-panel-edge');
+      for(const yy of[bottom+.12,bottom+height-.12]) tag(kit.mesh(f,new THREE.BoxGeometry(.008,.03,length-.26),edging,face,yy,z),'xiehe-vestibule-panel-edge');
+    }
   }
   // Outer mountain walls are short-width enclosure, never inter-portal piers.
   for(const side of [-1,1]) {
@@ -109,11 +136,12 @@ export function buildSideGate(kit,opts) {
     box('gate-threshold','wood_column',p.clearWidth,.12,.28,p.centerX,ph+.06,g.doorZ);
     box('gate-door-lintel','caihua_beam',p.clearWidth,.65,.35,p.centerX,ph+doorH+.325,g.doorZ);
     for(const side of [-1,1]) {
-      const leaf=tag(buildStuddedDoor(kit.lib,{width:leafW,height:doorH}),'gate-door-leaf',{bay:p.bay,open});
+      const leaf=tag(g.profile==='xiehe'?buildXieheLeaf(kit,leafW,doorH):buildStuddedDoor(kit.lib,{width:leafW,height:doorH}),'gate-door-leaf',{bay:p.bay,open});
       leaf.position.set(open?p.centerX+side*(p.clearWidth/2-.03):p.centerX+side*(leafW/2+.02),ph,open?g.doorZ-leafW/2:g.doorZ);
       if(open) leaf.rotation.y=Math.PI/2;
       f.add(leaf);
-      const dx=open?.125:leafW/2,dz=open?leafW/2:.125;
+      const halfThickness=g.profile==='xiehe'?.175:.125;
+      const dx=open?halfThickness:leafW/2,dz=open?leafW/2:halfThickness;
       kit.col(f,leaf.position.x-dx,ph,leaf.position.z-dz,leaf.position.x+dx,ph+doorH,leaf.position.z+dz);
     }
   }
@@ -125,6 +153,7 @@ export function buildSideGate(kit,opts) {
   const roofHeight=g.ridgeAbovePlatform-h-bracketH-3.324*hr;
   const roof=kit.roof(f,{type:'xieshan',width:roofW,depth:roofD,baseY:ph+h,height:roofHeight,layers:1,brackets:true});
   tag(roof,'side-gate-roof');
+  fitXieheVisibleHall(kit,f,g,roof);
   // Xiehe only: move the complete plaque clear of the painted beam (engineering fit).
   const plaqueZ=-d/2-.29-(g.profile==='xiehe'?.07:0);
   if(opts.plaque!==false)kit.plaque(f,g.name,0,ph+h-.9,plaqueZ,.8,1.4);
@@ -145,6 +174,7 @@ export function buildSideGate(kit,opts) {
     ramps:g.ramps.map(r=>({...r,topLeft:point(r.leftTop,ph,r.zTop),topRight:point(r.rightTop,ph,r.zTop),toeLeft:point(r.leftToe,0,r.zToe),toeRight:point(r.rightToe,0,r.zToe)})),
   };
   prunePavilionCoveredFaces(f,renderBoxes);
+  registerEastRailTriangles?.();
   return w;
 }
 
@@ -177,11 +207,12 @@ function registerRamp(kit,f,r) {
     crossMin0:Math.min(a[cross],b[cross]),crossMax0:Math.max(a[cross],b[cross]),crossMin1:Math.min(c[cross],d[cross]),crossMax1:Math.max(c[cross],d[cross])});
 }
 
-function railing(kit,f,from,to,renderBoxes) {
+function railing(kit,f,from,to,renderBoxes,{skipStart=false,skipEnd=false}={}) {
   const a=new THREE.Vector3(...from),b=new THREE.Vector3(...to),delta=b.clone().sub(a),len=delta.length();
   if(len<.01)return;
   const n=Math.max(1,Math.ceil(len/2));
   for(let i=0;i<=n;i++) {
+    if((i===0&&skipStart)||(i===n&&skipEnd))continue;
     const p=a.clone().lerp(b,i/n);
     renderBoxes.push(tag(kit.box(f,'marble',.24,.95,.24,p.x,p.y+.475,p.z),'gate-railing-post'));
     tag(kit.mesh(f,new THREE.SphereGeometry(.16,6,4),kit.lib.material('marble'),p.x,p.y+1,p.z),'gate-railing-cap');
@@ -197,4 +228,23 @@ function railing(kit,f,from,to,renderBoxes) {
     const p=a.clone().lerp(b,i/pieces),q=a.clone().lerp(b,(i+1)/pieces);
     kit.col(f,Math.min(p.x,q.x)-.1,Math.min(p.y,q.y),Math.min(p.z,q.z)-.1,Math.max(p.x,q.x)+.1,Math.max(p.y,q.y)+.95,Math.max(p.z,q.z)+.1);
   }
+}
+
+// East stud skin / red plain west back from own opposite-face photographs.
+// Battens belong to each leaf, so opening never leaves a bar across a portal.
+function buildXieheLeaf(kit,width,height) {
+  const geometry=new THREE.BoxGeometry(width,height,.25).translate(0,height/2,0);
+  // BoxGeometry's final six indices are the -Z face: the stud skin replaces
+  // those triangles, not a tiny depth-offset overlay that can shimmer.
+  geometry.setIndex(Array.from(geometry.index.array).slice(0,-6));geometry.clearGroups();
+  const body=new THREE.Mesh(geometry,kit.lacquer);
+  body.castShadow=body.receiveShadow=true;
+  const front=new THREE.Mesh(new THREE.PlaneGeometry(width,height),kit.lib.material('door_studded'));
+  front.position.set(0,height/2,-.125);front.rotation.y=Math.PI;
+  tag(front,'xiehe-door-studded-east-face');body.add(front);
+  for(const y of[.12,height*.28,height-.12]) {
+    const bar=tag(new THREE.Mesh(new THREE.BoxGeometry(width*.94,.10,.045),kit.lacquer),'xiehe-door-back-batten');
+    bar.position.set(0,y,.1475);bar.castShadow=bar.receiveShadow=true;body.add(bar);
+  }
+  return body;
 }

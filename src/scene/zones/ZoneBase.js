@@ -1,3 +1,5 @@
+import {applyMiddleAxisFacades} from '../palace/special/MiddleAxisFacades.js';
+import {buildRearAxisGate} from '../palace/special/RearAxisGate.js';
 import {buildShoukangRearSouth} from '../palace/special/ShoukangRearSouth.js';
 import {applyJingrenGateStoneFrame} from '../palace/special/JingrenGateStoneFrame.js';
 import {finishYikunInnerSouthWindows} from '../palace/special/YikunInnerSouthWindows.js';
@@ -358,6 +360,7 @@ export class ZoneBase {
   }
 
   buildGate(item) {
+    if(item.rearAxisGate!==undefined){const b=buildRearAxisGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,b.geometry);return b.width;}
     if(item.gateProfile==='shoukang-entry'){const walls=this.zoneJson.items.filter(q=>q.kind==='courtWalls'&&q.gates?.some(r=>r.gate==='寿康门'));if(walls.length!==1)throw Error('Shoukang entry requires unique actual court wall');validateShoukangEntryCourtWall(walls[0]);const built=buildShoukangEntry(this.kit,item,this.zoneJson.id);this.gateGeometries.set(item.name,built.geometry);return built.width;}
     if(item.gateProfile==='cining-entry'){const built=buildCiningGate(this.kit,item,this.zoneJson.id);this.gateGeometries.set(item.name,built.g);return built.width;}
     if(item.gateProfile==='shouan-entry'){const walls=this.zoneJson.items.filter(q=>q.kind==='courtWalls'&&q.gates?.some(r=>r.gate==='寿安门'));if(walls.length!==1)throw Error('Shouan requires a unique actual court wall');validateShouanEntryCourtWall(walls[0]);const built=buildShouanEntry(this.kit,item,this.zoneJson.id);this.gateGeometries.set(item.name,built.geometry);return built.width;}
@@ -391,6 +394,7 @@ export class ZoneBase {
     };
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
     const width = this.kit.gate(params);
+    applyMiddleAxisFacades(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     applyJingrenGateStoneFrame(this.kit, this.kit.root.children.at(-1), {zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     applyZuoyiDoorFront(this.kit, this.kit.root.children.at(-1), {zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     if (item.gateProfile === 'zhaode' || item.gateProfile === 'zhendu' || item.gateProfile === 'huangji') this.gateGeometries.set(item.name, this.kit.root.children.at(-1).userData.gateGeometry);

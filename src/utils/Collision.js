@@ -1,3 +1,4 @@
+import {canRecoverInwardFromWuyingRail} from '../scene/palace/special/WuyingThreeBridgeRails.js';
 import {canCrossFubiPool} from '../scene/garden/FubiArchPool.js';
 import {canCrossLinxiPool} from '../scene/palace/special/LinxiBridgePool.js';
 import {cloneXiqingSurface,xiqingSurfaceFootContact,xiqingSurfaceBodyIntersects,xiqingSurfaceSweep} from '../controls/XiqingRoofSurface.js';
@@ -204,7 +205,7 @@ export class CollisionManager {
   }
 
   checkCollision(position, radius = DEFAULT_PLAYER_RADIUS, dynamicFrom = null) {
-    if (!this.checkBoundary(position, radius) || !this.checkRiverCrossing(position, radius, dynamicFrom)) return true;
+    if (!this.checkBoundary(position, radius) || !this.checkRiverCrossing(position, radius, dynamicFrom, position.y-PLAYER.HEIGHT, dynamicFrom ? dynamicFrom.y-PLAYER.HEIGHT : null)) return true;
     // 视点是头部（脚面 + PLAYER.HEIGHT）；碰撞体从脚面上方 STEP_CLEARANCE 到头顶，矮台阶可直接跨过。
     const feetY = position.y - PLAYER.HEIGHT;
     const bottom = feetY + STEP_CLEARANCE;
@@ -363,8 +364,8 @@ export class CollisionManager {
       position.z - radius >= minZ && position.z + radius <= maxZ;
   }
 
-  checkRiverCrossing(position, radius, from = null) {
-    return canCrossFubiPool(position, radius) && canCrossLinxiPool(position, radius) && this.rivers.every(river => canCrossPalaceWater(river, position, radius)) &&
+  checkRiverCrossing(position, radius, from = null, feetY = null, fromFeetY = null) {
+    return canCrossFubiPool(position, radius) && canCrossLinxiPool(position, radius) && this.rivers.every(river => canCrossPalaceWater(river, position, radius) || canRecoverInwardFromWuyingRail(this,river,from,position,radius,fromFeetY,feetY)) &&
       this.moats.every(moat => from ? canTraverseOuterMoat(moat, from, position, radius) : canCrossOuterMoat(moat, position, radius));
   }
 

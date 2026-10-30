@@ -33,15 +33,30 @@ export function buildBaoheEastFirewall(builder,parent,p) {
     const start=s.id==='lower'?p.terminalJoin.x:s.x0;
     const cap=buildWallCap(builder.library,{length:s.x1-start,thickness:p.thickness});cap.position.set((start+s.x1)/2,s.topY,p.z);cap.name=`${p.id}:${s.id}:coping`;builder.ownedMaterials.push(...(cap.userData.ownedMaterials??[]));g.add(cap);
   }
-  // Only the photographed south face receives the gray stone surround.
-  // Engineering trim thickness0.12m projects0.08m from the masonry face;
-  // it never consumes the stated1.6x2.6 clear opening or adds a threshold.
-  const a=d.centerX-d.clearWidth/2,b=d.centerX+d.clearWidth/2,
-    front=p.z-p.thickness/2,z0=front-.08,z1=front+.02,top=d.floorY+d.clearHeight;
-  for(const [id,x0,x1,y0,y1] of [['left',a-.12,a,d.floorY,top],['right',b,b+.12,d.floorY,top],['head',a-.12,b+.12,top,top+.16]]) {
-    const m=builder.libBox(g,'stone_slab',x1-x0,y1-y0,z1-z0,(x0+x1)/2,(y0+y1)/2,(z0+z1)/2);
-    m.name=`${p.id}:south-door-surround:${id}`;m.userData.firewallPart='door-surround';
-    builder.col(x0,y0,z0,x1,y1,z1);
+  // Own named south/north panorama views establish timber, not an all-stone
+  // surround. Keep the inherited aperture/coordinates as engineering fit.
+  const a=d.centerX-d.clearWidth/2,b=d.centerX+d.clearWidth/2,top=d.floorY+d.clearHeight;
+  const part=(role,id,mat,w,h,depth,x,y,z)=>{const m=builder.libBox(g,mat,w,h,depth,x,y,z);m.name=`${p.id}:${id}`;m.userData.firewallPart=role;return m;};
+  for(const sign of [-1,1]){
+    const face=p.z+sign*p.thickness/2,z0=sign<0?face-.08:face-.02,z1=sign<0?face+.02:face+.08,side=sign<0?'south':'north';
+    for(const [id,x0,x1,y0,y1] of [['left',a-.12,a,d.floorY,top],['right',b,b+.12,d.floorY,top],['head',a-.12,b+.12,top,top+.16]]) {
+      // Wood and small stone foot abut, never overlap as full opaque boxes.
+      const foot=id==='head'?0:.14;
+      part(sign<0?'door-surround':'north-door-support',`${side}-door-surround:${id}`,'wood_column',x1-x0,y1-y0-foot,z1-z0,(x0+x1)/2,(y0+foot+y1)/2,(z0+z1)/2);
+      if(foot)part('door-stone-foot',`${side}-door-stone-foot:${id}`,'stone_slab',x1-x0,foot,z1-z0,(x0+x1)/2,y0+foot/2,(z0+z1)/2);
+      // Original three south boxes remain exact; north independently bounded.
+      builder.col(x0,y0,z0,x1,y1,z1);
+    }
+    const width=d.clearWidth+.9,height=.28,cy=top+.30,depth=.10,cz=face+sign*.03;
+    part('door-painted-lintel',`${side}-painted-lintel`,'caihua_beam',width,height,depth,d.centerX,cy,cz);
+    builder.col(d.centerX-width/2,cy-height/2,cz-depth/2,d.centerX+width/2,cy+height/2,cz+depth/2);
+    if(sign<0)for(let i=0;i<4;i++){
+      const x=d.centerX+(i-1.5)*d.clearWidth/4,y=top+.08,z=face-.10;
+      const pin=new THREE.Mesh(new THREE.CylinderGeometry(.065,.065,.10,6),builder.library.material('wood_column'));
+      pin.rotation.x=Math.PI/2;pin.position.set(x,y,z);pin.name=`${p.id}:south-door-pin:${i}`;pin.userData.firewallPart='south-door-pin';pin.castShadow=pin.receiveShadow=true;g.add(pin);
+      builder.col(x-.065,y-.065,z-.05,x+.065,y+.065,z+.05);
+    }
   }
+  g.userData.structure.doorObservation={south:{vp:'1766',sph:'1943166966322479104'},north:{vp:'2013451112382566400',sph:'2013472884427427840'},scope:'OWN_TIMBER_FRAME_AND_LINTEL_ONLY',fit:'Inherited aperture/position; frame/stone-foot/hex-pin sizes visual fit, not survey',wholeObjectAccepted:false,unresolved:['door leaves and opening state','complete steps and wall ends','exact measurements','GPU runtime']};
   parent.add(g);return g;
 }
