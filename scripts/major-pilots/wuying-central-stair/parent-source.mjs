@@ -1,0 +1,2 @@
+import {registerHooks} from 'node:module';import {execFileSync} from 'node:child_process';
+const path='src/scene/palace/special/SouthCourtGates.js',url=new URL('../../../'+path,import.meta.url).href,source=execFileSync('git',['show','89144ec3eb40c34736938ae4521ec08d0f9ec1a0:'+path],{encoding:'utf8'});registerHooks({load(u,c,next){return u===url?{format:'module',source,shortCircuit:true}:next(u,c);}});
