@@ -174,7 +174,7 @@
         "五间二进深、单檐歇山；礓磋慢道沿河放宽，三道门与斗栱、霸王拳近景。；现存保留明代构造，不能和清代重建的熙和门完全复制。",
         "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
       ],
-      "currentBatchProgress": "98cfd572：自身东端实墙、纵墙、单面门钉/红门背与局部露梁椽；西侧细部、完整梁架栏坡与实机仍未验。；东慢道两栏粗型/真三角及共享小降防穿透已通过限定回归/父版对照，仍非整项。"
+      "currentBatchProgress": "98cfd572：自身东端实墙、纵墙、单面门钉/红门背与局部露梁椽；西侧细部、完整梁架栏坡与实机仍未验。；东慢道两栏粗型/真三角及共享小降防穿透已通过限定回归/父版对照，仍非整项。；完整自身7-f/b分别确认两端窄槅门，西端间真隔墙/窄门/开放格条三角碰撞候选已测，低台沿与完整西栏屋架仍未闭合。"
     },
     {
       "id": "FC-06B1BADE77",
@@ -761,13 +761,18 @@
       ],
       "wholeObjectAccepted": false,
       "exteriorReview": "PARTIAL_OWN_SOURCE_THIS_BATCH_NOT_WHOLE_ACCEPTED",
-      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "interiorReview": "SOURCE_EXPLICIT_NO_ENCLOSED_ROOM_MASTER_LINE376_NO_FURNITURE_TASK",
       "runtimeVisual": "BLOCKED_RUNTIME",
       "remaining": [
-        "康熙重建时太和殿两侧斜廊改为阶梯状封火墙；此墙随高差成阶梯，不应套用连廊屋顶。；照片只显示太和殿的一侧；两侧长度、级数和端头细节仍需当前全景补证。",
-        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+        "Precise metric validation and obscured lower feet remain source-limited; visible fine painted patterns and leaf hardware not fully reproduced.",
+        "Real browser/GPU before/after visual acceptance and final affected-runtime validation remain outstanding; CPU/route/collider checks do not replace them."
       ],
-      "currentBatchProgress": "自身东随墙门两面木框/石脚/彩绘额及南金边四簪已局部修正；西侧生产地坪/门实例绑定、全阶梯墙和实机未验。"
+      "currentBatchProgress": "东西各自身完整cube绑定的三帽两落连续墙、上下端接、砖脚与双面真实门叶、帽三角接触、六处隐蔽栏杆裁切已实现；138952cd门墙比例P1已纠正为真实2.1×2.25孔，原门楣增加精确头碰撞。90/90批次通过；纠正后全量1331/1113通过218失败，与旧218失败名称完全一致，非全绿，尚未整项验收。",
+      "evidenceFiles": [
+        "TAIHE-WHOLE-WALLS-PLAN.md",
+        "TAIHE-WHOLE-WALLS-SOURCES.json",
+        "TAIHE-WHOLE-WALLS-REGRESSION.json"
+      ]
     },
     {
       "id": "FC-526ABE19BB",
@@ -1024,6 +1029,89 @@
         "cancelled": 0,
         "durationSeconds": 501.79,
         "comparison": "Same218 failure names as saved prior parent-controller full run; not green; see MIDDLE-NORTH-REGRESSION.json for complete names and comparison limits"
+      }
+    },
+    "xieheWestEndPartitions": {
+      "parent": "6ffd4ebc",
+      "status": "LOCAL_WIP_VERIFIED_NOT_WHOLE_ACCEPTED",
+      "wholeObjectAccepted": false,
+      "source": "Own sphere2054726937396219918 full640 cubes7-f/7-b; original512 files were partial first tiles",
+      "scope": "Both west end-room partitions and closed narrow lattice leaves; no floor/ramp/river change",
+      "focused": "5/5",
+      "actualRoutes": "36/36 candidate and36/36 parent, all3portals centre/near-jamb10/60Hz walk/sprint throughbothramps",
+      "cost": {
+        "triangles": [
+          20504,
+          21592
+        ],
+        "mergedMeshes": [
+          16,
+          16
+        ],
+        "geometryBytes": [
+          1968384,
+          2072832
+        ]
+      },
+      "remaining": [
+        "West hall roof frame hidden by source beams",
+        "Single low porch edge height datum and linked outer platform/ramp/rail heights",
+        "All west/platform/side rail assemblies",
+        "Real browser/GPU acceptance"
+      ],
+      "targetedRegression": "77/77 batch; historical side-gate60 candidate/parent each52pass8fail with identical failure names",
+      "fullCurrentState": {
+        "tests": 1331,
+        "pass": 1113,
+        "fail": 218,
+        "cancelled": 0,
+        "durationSeconds": 473.58,
+        "comparison": "Same218 failure names as saved middle-north full run; fresh parent-targeted60 also matches8 fail names; not all green"
+      }
+    },
+    "taiheWholeWallPair": {
+      "parent": "4d146747",
+      "status": "CORRECTED_VERIFIED_LOCAL_WIP_NOT_WHOLE_ACCEPTED",
+      "objectId": "FC-1ABC6622CB",
+      "wholeObjectAccepted": false,
+      "scope": "Both own-source three-cap/two-drop wall chains, brick foot partition, double-faced door frames and real leaves, cap triangle contact and exactly six concealed rail cuts",
+      "focused": "15/15; all batch87/87",
+      "worldRoutes": "24/24 parent and candidate; candidate24/24 rerun after rail cut",
+      "highDrops": "36 main+72 independent near-end same-flank exits; zero cap penetration; original invalid straight/cross-wall targets preserved",
+      "independent": "Both P2 preflight/rail-overlap findings red-tested and fixed;2490 outside-rail samples unchanged; lifecycle once",
+      "remaining": [
+        "Exact metrics and obscured lower feet",
+        "Fine painted patterns and complete leaf hardware",
+        "Real browser/GPU acceptance"
+      ],
+      "fullCurrentState": {
+        "tests": 1331,
+        "pass": 1113,
+        "fail": 218,
+        "cancelled": 0,
+        "durationSeconds": 474.78,
+        "comparison": "Final frozen-tree run; same218 names as saved previous fullrun; not all green"
+      },
+      "build": "Three bases544modules each in-memory, no deployment",
+      "supportPreservation": "All101 three-hall walkables byte-identical to fresh4d146747 parent fixture",
+      "priorCheckpoint": "138952cd: subsequent source-ratio P1; prior review no-proportion-blocker retracted; do not release",
+      "correction": {
+        "wallDoorRatio": "4.333/3=1.444 rejected; source1.8–2.05; actual2.1x2.25 aperture gives1.926",
+        "brickFeet": "east1.05 west1.15 source-relative fits",
+        "physics": "original lintel/head/paintedbeam/pin boxes gain exact flat overhead; no shared controller change",
+        "focused": "18/18; batch90/90",
+        "fullCurrentState": {
+          "tests": 1331,
+          "pass": 1113,
+          "fail": 218,
+          "cancelled": 0,
+          "durationSeconds": 473.512,
+          "comparison": "All218 failure names exactly match saved138952cd prior fullrun; no new or removed failures. Four frozen production hashes unchanged. Not all green; fresh parent fullsuite not rerun.",
+          "addedFailures": [],
+          "removedFailures": []
+        },
+        "independentHeadContact": "36real whole-world edge/pin/air jumps after zone loading and merging; all18metadata owners retained; portable replaypasses36",
+        "walkablePreservation": "All101three-hall and511PalaceBuilder walkables equal138952cd by value/order"
       }
     }
   },

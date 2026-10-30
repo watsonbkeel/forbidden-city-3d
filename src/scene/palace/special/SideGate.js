@@ -1,3 +1,4 @@
+import {buildXieheWestEndPartitions} from './XieheWestEndPartitions.js';
 import {buildXieheEastRampRails} from './XieheEastRampRails.js';
 import {fitXieheVisibleHall} from './XieheVisibleHall.js';
 import * as THREE from 'three';
@@ -20,6 +21,7 @@ export function buildSideGate(kit,opts) {
   // this registry local to the gate; roof/wedge/sphere bounds are not solids.
   const renderBoxes=[];
   let registerEastRailTriangles=null;
+  let xieheInteriorMaterials=null;
   const box=(role,mat,W,H,D,x,y,z)=>{
     const o=tag(kit.box(f,mat,W,H,D,x,y,z),role);renderBoxes.push(o);return o;
   };
@@ -108,6 +110,7 @@ export function buildSideGate(kit,opts) {
     const plaster=new THREE.MeshStandardMaterial({color:0x8b6046,roughness:.94,name:'xiehe-vestibule-ochre-fit'});
     const edging=new THREE.MeshStandardMaterial({color:0xbfa682,roughness:.9,name:'xiehe-vestibule-border-fit'});
     kit.owned.push(plaster,edging);
+    xieheInteriorMaterials={plaster,border:edging};
     for(const x of[g.columnXs[1],g.columnXs[4]]) {
       const length=d/2,thick=.32,bottom=ph+sill,height=h-.65-sill,z=-d/4;
       solid('xiehe-east-vestibule-stone-base','wall_brick',thick,sill,length,x,ph+sill/2,z);
@@ -129,6 +132,8 @@ export function buildSideGate(kit,opts) {
       solid('gate-side-door-head','wall_red',.45,h-.65-doorH,doorW,side*w/2,ph+doorH+(h-.65-doorH)/2,0);
     } else solid('gate-side-wall','wall_red',.45,h-.65,d,side*w/2,ph+(h-.65)/2,0);
   }
+
+  const registerWestEndTriangles=buildXieheWestEndPartitions(kit,f,g,renderBoxes,xieheInteriorMaterials);
 
   const open=opts.open!==false,doorH=h-1;
   for(const p of g.portals) {
@@ -175,6 +180,7 @@ export function buildSideGate(kit,opts) {
   };
   prunePavilionCoveredFaces(f,renderBoxes);
   registerEastRailTriangles?.();
+  registerWestEndTriangles?.();
   return w;
 }
 

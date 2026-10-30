@@ -9,8 +9,8 @@ import { buildBaoheDaisApproach, registerBaoheDaisFurnishingSolids } from './pal
 import {buildBaoheWarmRooms} from './palace/BaoheWarmRooms.js';
 import { taihemenSouthProfile, buildTaihemenSouthApproach } from './palace/TaihemenSouthApproach.js';
 import { buildSouthWaterSystem } from './palace/special/SouthWaterSystem.js';
-import {createTaiheEastFirewallProfile} from './palace/special/AxisFirewallProfiles.js';
-import {buildTaiheEastFirewall} from './palace/special/AxisFirewalls.js';
+import {createTaiheEastFirewallProfile,createTaiheWestFirewallProfile} from './palace/special/AxisFirewallProfiles.js';
+import {buildTaiheEastFirewall,buildTaiheWestFirewall,validateTaiheFirewall} from './palace/special/AxisFirewalls.js';
 import axisCourts from '../../data/zones/axis-courts.json' with {type:'json'};
 import * as THREE from 'three';
 import { QIANQING_SURFACE, qianqingSurfaceMaterial } from './palace/QianqingSurface.js';
@@ -242,13 +242,24 @@ export class PalaceBuilder {
   }
 
   /** 汉白玉栏杆一段（沿 X 或 Z），带碰撞 */
-  rail(g, x0, z0, x1, z1, y, h = 1.1) {
+  rail(g, x0, z0, x1, z1, y, h = 1.1, excludeZ = null) {
     const len = Math.hypot(x1 - x0, z1 - z0);
     if (len < 0.6) return;
     const r = buildBalustrade(this.library, { length: len, height: h });
     r.position.set((x0 + x1) / 2, y, (z0 + z1) / 2);
     r.rotation.y = Math.abs(z1 - z0) > Math.abs(x1 - x0) ? Math.PI / 2 : 0;
     g.add(r);
+    if(excludeZ&&x0===x1&&excludeZ[0]>Math.min(z0,z1)&&excludeZ[1]<Math.max(z0,z1)){
+      // Six source-bound Taihe rail crossings only. Preserve original local
+      // coordinates/UV phase outside the masonry; do not rebuild/re-space rails.
+      const panel=r.children[0],original=panel.geometry,center=(z0+z1)/2,band=this.library.tileSize('balustrade')*(h/1.1),segments=[[Math.min(z0,z1),excludeZ[0]],[excludeZ[1],Math.max(z0,z1)]];
+      r.remove(panel);r.userData.colliders=[];
+      for(const[lo,hi]of segments){const mesh=panel.clone(),geometry=original.clone(),p=geometry.attributes.position,n=geometry.attributes.normal,uv=geometry.attributes.uv,a=center-hi,b=center-lo;
+        for(let i=0;i<p.count;i++){const x=p.getX(i)<0?a:b;p.setX(i,x);if(Math.abs(n.getX(i))<.5)uv.setX(i,x/band);}geometry.computeBoundingBox();geometry.computeBoundingSphere();mesh.geometry=geometry;r.add(mesh);r.userData.colliders.push(new THREE.Box3(new THREE.Vector3(a,0,-.12),new THREE.Vector3(b,h,.12)));
+        this.col(x0-.15,y+.2,lo===Math.min(z0,z1)?lo-.15:lo,x0+.15,y+h+.3,hi===Math.max(z0,z1)?hi+.15:hi);
+      }
+      original.dispose();r.userData.taiheWallCut={z:[...excludeZ],scope:'ONLY_HIDDEN_MASONRY_INTERVAL_ORIGINAL_UV_OUTSIDE'};return;
+    }
     this.col(Math.min(x0, x1) - 0.15, y + 0.2, Math.min(z0, z1) - 0.15,
       Math.max(x0, x1) + 0.15, y + h + 0.3, Math.max(z0, z1) + 0.15);
   }
@@ -347,7 +358,7 @@ export class PalaceBuilder {
    * rects: [{ hw, z0, z1 }]（顶层，局部坐标），每下一层 hw 与首尾 z 向外扩 setback。
    * 只在首块南边、末块北边设台阶；矩形交界处宽出的部分设挡墙与栏杆。
    */
-  buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile = null, taiheSouth = false, taihemenSouth = false, innerPalace = false, baoheNorth = null, baoheEast = null }) {
+  buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile = null, taiheSouth = false, taihemenSouth = false, innerPalace = false, baoheNorth = null, baoheEast = null, taiheWalls = [] }) {
     const half = stairW / 2;
     const t = 0.5;
     const last = rects.length - 1;
@@ -386,7 +397,7 @@ export class PalaceBuilder {
           for (const [z0, z1] of wallIntervals) this.col(sideX, y0, z0, sideX - s * t, y0 + ch, z1);
           for (const [z0, z1] of railIntervals) {
             if (innerPalace && k > 0) buildInnerTerraceRail(this, g, s * (r.hw - 0.2), z0, s * (r.hw - 0.2), z1, y1);
-            else this.rail(g, sideX - s * 0.2, z0, sideX - s * 0.2, z1, y1);
+            else {const wall=k===0?taiheWalls.find(p=>p.side===(s<0?'east':'west')):null;this.rail(g, sideX - s * 0.2, z0, sideX - s * 0.2, z1, y1,1.1,wall?[wall.z-wall.thickness/2,wall.z+wall.thickness/2]:null);}
           }
           if (flight) {
             if (innerPalace) buildInnerTerraceStair(this, g, flight);
@@ -501,7 +512,23 @@ export class PalaceBuilder {
     const baoheNorth = name === '三台' ? createBaoheNorthDetail() : null;
     const baoheEast = name === '三台' ? baoheEastTerraceProfile(rects,{layers,lh}) : null;
     if(baoheEast)g.userData.baoheEastTerrace=baoheEast;
-    const top = this.buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile, taiheSouth: name === '三台', taihemenSouth: name === '太和门', innerPalace: name === '后三宫', baoheNorth, baoheEast });
+    let taiheWalls=[];
+    if(name==='三台'){
+      const hallIndex = halls.findIndex(h => h.name === '太和殿');
+      const candidates = axisCourts.items.filter(i => i.kind === 'wall' && i.from?.[0] < 0 &&
+        i.gaps?.some(gap => gap.gate === '中左门'));
+      if (hallIndex < 0 || candidates.length !== 1) throw new Error('Ambiguous Taihe east firewall binding');
+      const profile = createTaiheEastFirewallProfile({
+        hall: halls[hallIndex], rect: rects[hallIndex], layers, lh, setback, linkWall: candidates[0],
+      });
+      const westLinks=axisCourts.items.filter(i=>i.kind==='wall'&&i.from?.[0]>0&&i.gaps?.some(gap=>gap.gate==='中右门'));
+      if(westLinks.length!==1)throw Error('Ambiguous Taihe west firewall binding');
+      const westProfile=createTaiheWestFirewallProfile({hall:halls[hallIndex],rect:rects[hallIndex],layers,lh,setback,linkWall:westLinks[0]});
+      // Both source-bound contracts are checked before either wall mutates.
+      validateTaiheFirewall(this,g,profile);validateTaiheFirewall(this,g,westProfile);
+      taiheWalls=[profile,westProfile];
+    }
+    const top = this.buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile, taiheSouth: name === '三台', taihemenSouth: name === '太和门', innerPalace: name === '后三宫', baoheNorth, baoheEast, taiheWalls });
 
     if (halls.length > 1) {
       // Individual supports are source-specific: high stairs belong to the
@@ -532,14 +559,7 @@ export class PalaceBuilder {
     if (name === '后三宫') buildJiaotaiLowRooms(this,g,rects,sideStairProfile);
     if (name === '三台') this.terraceOrnaments(g, rects[0], top);
     if (name === '三台') {
-      const hallIndex = halls.findIndex(h => h.name === '太和殿');
-      const candidates = axisCourts.items.filter(i => i.kind === 'wall' && i.from?.[0] < 0 &&
-        i.gaps?.some(gap => gap.gate === '中左门'));
-      if (hallIndex < 0 || candidates.length !== 1) throw new Error('Ambiguous Taihe east firewall binding');
-      const profile = createTaiheEastFirewallProfile({
-        hall: halls[hallIndex], rect: rects[hallIndex], layers, lh, setback, linkWall: candidates[0],
-      });
-      buildTaiheEastFirewall(this, g, profile);
+      for(const profile of taiheWalls)(profile.side==='east'?buildTaiheEastFirewall:buildTaiheWestFirewall)(this,g,profile);
       const baoheLinks=axisCourts.items.filter(i=>i.kind==='wall'&&i.from?.[0]<0&&i.gaps?.some(gap=>gap.gate==='后左门'));
       if(baoheLinks.length!==1)throw Error('Ambiguous Baohe east wall binding');
       buildBaoheEastFirewall(this,g,createBaoheEastFirewallProfile({terrace:baoheEast,linkWall:baoheLinks[0]}));
