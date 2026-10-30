@@ -1,3 +1,4 @@
+import {applyWanchunInteriorEnclosure} from './WanchunInteriorEnclosure.js';
 import * as THREE from 'three';
 import { applyBoxUV, scaleCylinderUV } from '../../utils/GeometryUV.js';
 import {addQianqiuFinial} from './GardenSilhouetteDetails.js';
@@ -87,5 +88,6 @@ export function buildCrossGardenPavilion(builder,root,{name,x,z}){
   if(name==='千秋亭')addQianqiuFinial(builder,g);
   else mesh('round-upper-finial',new THREE.SphereGeometry(.23,12,8),builder.goldMat,0,8.25,0);
   g.userData.crossPavilion=crossPavilionProfile(name);builder.group.userData.crossPavilions??=[];builder.group.userData.crossPavilions.push(g.userData.crossPavilion);
+  if(name==='万春亭'&&builder.wanchunInterior!==false)applyWanchunInteriorEnclosure(builder,g,{name,x,z},root);
   return g;
 }

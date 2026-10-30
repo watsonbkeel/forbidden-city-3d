@@ -1,3 +1,5 @@
+> Historical checkpoint note: the e819576 runtime identity statements below apply only to remote checkpoint 20e3e3e0e232bff7c2b0085d37391aea28c07877. The subsequent Wanchun source-only backup has runtime bytes exactly matching local 608efeae08ced76167f205e545bd07805b8bcec1; its scoped results and limitations are in docs/major-pilots/wanchun/RESULT.md. It adds no raw test logs or reports and makes no deployment, GPU/mobile, or all-green acceptance claim.
+
 # No-new-test-logs review candidate
 
 Runtime source: e81957643183358f0113e3fb25fbbfec250eca20. QA source: ee0f31e1583ebe16dfc743f37cca0ecd6be42327. Remote baseline: 38c12c0511e8b0f8b755299f374525cd603ebd3c.
