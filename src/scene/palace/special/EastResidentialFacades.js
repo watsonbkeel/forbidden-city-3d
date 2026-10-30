@@ -1,3 +1,5 @@
+import {applyYongheSouthVisual} from './YongheSouthVisual.js';
+import {applyZhongcuiSouthVisual} from './ZhongcuiSouthVisual.js';
 import {applyJingrenSouthWindows} from './JingrenSouthWindows.js';
 import {fitCanopyToMainRoof} from './CanopyRoofSurfaceJoint.js';
 import {buildYongheCanopyKnees} from './YongheCanopyKnees.js';
@@ -135,5 +137,7 @@ export function buildEastResidentialFacade(kit,item){
   result.f.updateWorldMatrix(true,false);
   if(!applyJingrenSouthWindows(kit,result.f,item))throw Error('Jingren south window profile failed closed');
  }
+ if(p.profile==='zhongcui-front-veranda')applyZhongcuiSouthVisual(kit,item,result.f,p);
+ if(p.profile==='yonghe-open-baoxia')applyYongheSouthVisual(kit,item,result.f,p);
  return{...result,p};
 }

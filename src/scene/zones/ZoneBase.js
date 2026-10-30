@@ -1,3 +1,10 @@
+import {finishYikunInnerSouthWindows} from '../palace/special/YikunInnerSouthWindows.js';
+import {finishChangchunSouthWindows} from '../palace/special/ChangchunSouthWindows.js';
+import {finishWuyingSouthWindows} from '../palace/special/WuyingSouthWindows.js';
+import {finishWenhuaSouthWindows} from '../palace/special/WenhuaSouthWindows.js';
+import {finishWenyuanUpperSeat} from '../palace/special/WenyuanUpperSeat.js';
+import {finishTiyuanCoverVisual} from '../palace/special/TiyuanCoverVisual.js';
+import {finishTiheSouthVisual} from '../palace/special/TiheSouthVisual.js';
 import {buildSishenShrine} from '../palace/special/SishenShrine.js';
 import {buildWestWellPavilion} from '../palace/special/WestWellPavilion.js';
 import {buildEastWellPavilion} from '../palace/special/EastWellPavilion.js';
@@ -155,6 +162,13 @@ export class ZoneBase {
     registerRetainedCourtyardAccess(this.kit,this.zoneJson);
     registerChuxiuMainFinishedAccess(this.kit,this.zoneJson);
     registerChuxiuFrontWingFinishedAccess(this.kit,this.zoneJson);
+    finishTiheSouthVisual(this.kit);
+    finishTiyuanCoverVisual(this.kit);
+    finishWenyuanUpperSeat(this.kit);
+    finishWenhuaSouthWindows(this.kit);
+    finishWuyingSouthWindows(this.kit);
+    finishChangchunSouthWindows(this.kit);
+    finishYikunInnerSouthWindows(this.kit);
 
     // Keep distance levels out of the ordinary recursive material merge.
     const yanxiFrames = detachYanxiRuinFrames(this.kit.root);

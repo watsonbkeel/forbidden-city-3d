@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import fs from'node:fs';
+test('96 actual World traces and outcomes exactly equal safe parent including inherited failures and explicitly forced high starts',()=>{const load=m=>JSON.parse(fs.readFileSync(new URL(`../../../reports/major-pilots/tihe-front/world-${m}.json`,import.meta.url))),a=load('candidate'),p=load('parent');assert.equal(a.parentCommit,'f320ad5cd39aa57320e9d7774a2e32190a495a10');assert.equal(a.rows.length,96);assert.deepEqual(a,p);});

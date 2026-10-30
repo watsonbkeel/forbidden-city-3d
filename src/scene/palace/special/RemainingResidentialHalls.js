@@ -1,4 +1,9 @@
+import {applyChonghuaSouthVisual} from './ChonghuaSouthVisual.js';
+import {stageTiyuanCoverVisual} from './TiyuanCoverVisual.js';
+import {stageTiheSouthVisual} from './TiheSouthVisual.js';
 import {applyXianfuSouthVisual} from './XianfuSouthVisual.js';
+import {applyJingyangSouthVisual} from './JingyangSouthVisual.js';
+import {applyTaijiSouthVisual} from './TaijiSouthVisual.js';
 import {applyYongshouSouthVisual} from './YongshouSouthVisual.js';
 import {applyTiheWestInterior} from './TiheWestInterior.js';
 import {buildChengqianFrontFields} from './ChengqianSouthWindows.js';
@@ -219,9 +224,13 @@ export function buildRemainingHall(kit, item, p) {
     built.f.userData.structure.retainedUnverified = ['exact-column-spacing', 'carving-and-painting', 'room-boundaries'];
     built.f.userData.structure.limitations[1] = 'The four generic throne components are withheld; this is not evidence of a historically empty room.';
   }
+  if(p.key==='chonghua-middle-name-fit')applyChonghuaSouthVisual(kit,item,built.f,p);
+  if(p.key==='tiyuan-through-stage')stageTiyuanCoverVisual(kit,item,built.f,p);
   if(p.key==='xianfu-front')applyXianfuSouthVisual(kit,item,built.f,p);
+  if(p.key==='jingyang-front')applyJingyangSouthVisual(kit,item,built.f,p);
+  if(p.key==='taiji-front')applyTaijiSouthVisual(kit,item,built.f,p);
   if(p.key==='yongshou-front')applyYongshouSouthVisual(kit,item,built.f,p);
-  if(p.key==='tihe-through-hall')applyTiheWestInterior(kit,item,built.f,p);
+  if(p.key==='tihe-through-hall'){applyTiheWestInterior(kit,item,built.f,p);stageTiheSouthVisual(kit,item,built.f,p);}
   return { ...built, p };
 }
 
