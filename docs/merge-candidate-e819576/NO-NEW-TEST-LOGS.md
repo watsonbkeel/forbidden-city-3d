@@ -1,3 +1,5 @@
+> Subsequent development checkpoint: this Baoyun source-only backup uses runtime bytes exactly matching local 89144ec3eb40c34736938ae4521ec08d0f9ec1a0. The e819576 and Wanchun608 identities below are historical checkpoints, not this tree. Baoyun has17 scoped tests; the218 historical aggregate failures remain and GPU/mobile/full-object acceptance is unverified. See docs/major-pilots/baoyun-porch/RESULT.md for scope. No new raw test logs or reports are included. This backup belongs on feat/whole-scope-next-20261030, without updating the delivered branch, main, or Pages.
+
 > Historical checkpoint note: the e819576 runtime identity statements below apply only to remote checkpoint 20e3e3e0e232bff7c2b0085d37391aea28c07877. The subsequent Wanchun source-only backup has runtime bytes exactly matching local 608efeae08ced76167f205e545bd07805b8bcec1; its scoped results and limitations are in docs/major-pilots/wanchun/RESULT.md. It adds no raw test logs or reports and makes no deployment, GPU/mobile, or all-green acceptance claim.
 
 # No-new-test-logs review candidate

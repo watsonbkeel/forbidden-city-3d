@@ -1,3 +1,4 @@
+import {applyBaoyunMainPorch} from './BaoyunMainPorch.js';
 import {buildYanshouCompound} from './YanshouCompound.js';
 import {buildCiyinFacade} from './CiyinFacade.js';
 import {buildJiyunLowerPanels} from './JiyunLowerPanels.js';
@@ -1443,7 +1444,8 @@ function augmentBaoyunFacade(kit,item,built,p) {
   for(const x of[-.37,.37])box('baoyun-photo-green-inscription-frame',green,.06,1.54,.025,x,11.08,7.7125,false,info);
   for(const y of[10.34,11.82])box('baoyun-photo-green-inscription-frame',green,.68,.06,.025,0,y,7.7125,false,info);
   const nameInscription=buildBaoyunNameInscription(kit,f,panel,source);
-  return finishAugment(kit,item,built,p,{exteriorChanged:true,interiorChanged:false,facadeDetail:{source,photographyDate:null,eventDate:'2024-12-27',verticalJoints:joints,roundels:7,nameInscription,scope:'VISIBLE_MAIN_FRONT_AND_PORCH_ONLY'},currentInteriorStatus:'EVIDENCE_BLOCKED__MODEL_ACCESS_CLOSED_NOT_CLAIM_ABOUT_CURRENT_USE',wholeBuildingComplete:false});
+  const mainPorch=applyBaoyunMainPorch(kit,item,built);
+  return finishAugment(kit,item,built,p,{exteriorChanged:true,interiorChanged:false,facadeDetail:{mainPorch,source,photographyDate:null,eventDate:'2024-12-27',verticalJoints:joints,roundels:7,nameInscription,scope:'VISIBLE_MAIN_FRONT_AND_PORCH_ONLY'},currentInteriorStatus:'EVIDENCE_BLOCKED__MODEL_ACCESS_CLOSED_NOT_CLAIM_ABOUT_CURRENT_USE',wholeBuildingComplete:false});
 }
 
 const HEYI_2022='https://ggzlquanjing.dpm.org.cn/scene/wPIRwsKstn5bVoDoqCG426Sfykpnc2hK/20220207_hyzg/';
