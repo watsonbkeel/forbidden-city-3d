@@ -52,7 +52,7 @@ export class SharedRestRoutine {
    eye.y=floor+PLAYER.HEIGHT;proposed.position=[eye.x,floor,eye.z];
    const travel=Math.hypot(eye.x-old.position[0],eye.z-old.position[2]),a=characterBody(state.actor,old),b=characterBody(state.actor,proposed),lift=Math.max(old.position[1],floor);
    const before=new THREE.Vector3(...old.position),raised=new THREE.Vector3(old.position[0],lift,old.position[2]),across=new THREE.Vector3(eye.x,lift,eye.z),settled=new THREE.Vector3(eye.x,floor,eye.z);
-   const scoped=furnitureScope(nav,fromEye,eye,radius),blockedStep=scoped&&(furnitureBodySweep(nav,before,raised,radius)||furnitureBodySweep(nav,raised,across,radius)||furnitureBodySweep(nav,across,settled,radius));
+   const scoped=furnitureScope(nav,fromEye,eye,radius,undefined,undefined,before.y),blockedStep=scoped&&(furnitureBodySweep(nav,before,raised,radius)||furnitureBodySweep(nav,raised,across,radius)||furnitureBodySweep(nav,across,settled,radius));
    if(blockedStep||travel<.0001||floor-old.position[1]>PLAYER.STEP_UP+.001||nav.checkCollision(eye,radius)||sweptBodyIntersectsPlayer(a,b,this.owner.playerState())||this.states.some(s=>s!==state&&s.binding&&sweptBodiesIntersect(a,b,characterBody(s.actor,this.owner.current(s))))){wait();return;}
    state.routineSample=proposed;remaining-=travel;if(Math.hypot(eye.x-target[0],eye.z-target[2])<.015)r.index+=r.direction;
   }

@@ -137,7 +137,7 @@ export class CollisionManager {
    */
   getGroundHeight(x, z, feetY = 0, stepUp = 0.6, radius = .5) {
     const furniturePoint=new THREE.Vector3(x,feetY,z);
-    if(Number.isFinite(feetY)&&furnitureScope(this,furniturePoint,furniturePoint,radius))return furnitureContact(this,x,z,feetY+stepUp,radius).surface?.height??0;
+    if(Number.isFinite(feetY)&&furnitureScope(this,furniturePoint,furniturePoint,radius,undefined,undefined,feetY))return furnitureContact(this,x,z,feetY+stepUp,radius).surface?.height??0;
     let ground = 0;
     let rescue = 0;
     const limit = feetY + stepUp;
@@ -392,7 +392,7 @@ export class CollisionManager {
     let furnitureFeet=motion?.feetY??(motion?.kind==='kinematic'?feetY:airFeet??feetY)??(currentPosition.y-PLAYER.HEIGHT);
     const tryMove = (x, z) => {
       const proposed = new THREE.Vector3(x,valid.y,z);
-      if(furnitureScope(this,valid,proposed,radius,motion?.kind==='player'?furnitureFeet:undefined)) {
+      if(furnitureScope(this,valid,proposed,radius,motion?.kind==='player'?furnitureFeet:undefined,undefined,furnitureFeet)) {
         const fromFeet=new THREE.Vector3(valid.x,furnitureFeet,valid.z),toFeet=new THREE.Vector3(x,furnitureFeet,z);
         const result=furnitureTryStep(this,fromFeet,toFeet,radius,stepUp,motion);
         if(!result.accepted)return false;

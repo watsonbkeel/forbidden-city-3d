@@ -1,3 +1,5 @@
+> R151 development backup: current runtime source19a3022296fee5fb2e7c840dac3701382591dd57. Earlier identities below are historical. See docs/releases/R151.md for mapping,33/33 and5/5 scoped checks,218 historical failures and3 old frozen-test differences. No new raw logs/reports, major-release or GPU/mobile acceptance.
+
 > R150 development backup: current runtime source18fd20366508731c1b694331f8aeec7178236cd9. Earlier runtime identities below are historical. See docs/releases/R150.md for mapping, corrected R149 high-drop fixture,49/49 scoped checks and historical failures/SIGKILL limitations. No new raw logs/reports, major-release or GPU/mobile acceptance.
 
 > R149 development backup: current runtime source is dd13d7b20f959b34a8367adf070bc1e52d463f8f. All earlier runtime identities below are historical. See docs/releases/R149.md for the numeric development-backup mapping and limitations. No new raw test logs/reports; not a major release, deployment, or GPU/mobile acceptance.
