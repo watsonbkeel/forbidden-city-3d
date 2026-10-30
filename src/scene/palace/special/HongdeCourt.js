@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {applyHongdeSillWindows} from './HongdeSillWindows.js';
 import profile from '../../../../data/architecture/hongde-court.json' with {type:'json'};
 const freeze=o=>{if(o&&typeof o==='object'){Object.values(o).forEach(freeze);Object.freeze(o);}return o;};
 export const HONGDE=freeze(profile);
@@ -30,5 +31,5 @@ export function buildHongdeCourt(k,zone){
  k.plaque(f,'弘德殿',0,y+3.8,p.facadeZ-.22,1.8,.5);k.plaques.at(-1).layout='horizontal';
  k._lastFurnish=null;k.registerRoom(f,{name:'弘德殿',kind:'interpretive-empty-shell',x0:-half+.3,x1:half-.3,z0:p.facadeZ,z1:p.rearZ-.3,y,h:H,doors:[{x:0,z:p.facadeZ}]});
  Object.assign(k.rooms.at(-1),{spawns:[],cover:[],inventoryStatus:'UNMODELLED',lightingStatus:'VIRTUAL_TOUR_NOT_HISTORICAL_LAMPS'});
- k.mapRect(f,'hall','弘德殿',p.width,depth);return f;
+ k.mapRect(f,'hall','弘德殿',p.width,depth);applyHongdeSillWindows(k,f,p);return f;
 }

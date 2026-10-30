@@ -1,4 +1,4 @@
-## 版本记录 R147–R151 与 R152 本地开发检查点
+## 版本记录 R147–R152 与 R153 本地开发检查点
 
 | 编号 | 提交（完整 SHA；本地/远端明确区分） | 状态与限制 |
 |---|---|---|
@@ -7,10 +7,13 @@
 | R149 | `9298bb6f628ecf8a74f27c38d2d643d50bda2869` | 已远端备份，含武英门中央坡石＋两侧踏步；218 项历史套测失败、GPU 未验，非整门验收。 |
 | R150 | 远端 `74c77e2874dc26ff0bc2a24fff4875eb09c17430` | 乾清门影壁短/主墙分段与前面、基座、局部帽面接触；218 项历史失败，GPU 与整门未验。独立开发备份分支 `feat/r150-qianqing-screens-20261030`。 |
 | R151 | 远端 `3fcfb2d4c957acc3e2108520d0cc88a191b8fcc3`；本地 `19a3022296fee5fb2e7c840dac3701382591dd57` | 武英门中央双侧坡栏；独立备份分支 `feat/r151-wuying-balustrades-20261030`。218 项历史失败，GPU 与整门未验；远端省略新增原始 reports，非完整树一致声明。 |
+| R152 | 本地 `3d1fd4956afd878de0058a8d5b0ea1536f13ea9d` | 坤宁门北侧双水平黄绿栏与白石基座；斜降段延期，218 项历史失败，GPU 与整门未验。远端状态以实际备份回读另报。 |
 
 远端 R147/R148 分别与本地 `608efeae`/`89144ec` 的运行源对应；R149 的本地安全源码父为 `dd13d7b20f959b34a8367adf070bc1e52d463f8f`，远端为不含原始新增 reports 的精简树，**不是完整树相同或远端 SHA 属于本地祖先的声明**。R150 远端以 R149 远端为父，与本地 `18fd20366508731c1b694331f8aeec7178236cd9` 运行源相同、但不含新增 reports；不把远端 SHA 冒称本地祖先。R150 乾清门屏墙本地开发直接基于该本地安全父，不混入弘义 `90d09eb2` 或断虹短支承 `a3e7e36f` 条件候选。
 
-当前坤宁门北面双水平黄绿矮栏与白石基座开发直接基于本地 R151 `19a3022296fee5fb2e7c840dac3701382591dd57`，本次本地开发检查点为 **R152**，不是已交付或整门完成声明。斜降端的墙身证据不足，墙身和帽面一并留待核验；不补猜测空栏或白板。范围、拟合及测试边界见[专项记录](docs/major-pilots/kunning-north-balustrades/RESULT.md)。保留[武英坡栏结果](docs/major-pilots/wuying-central-balustrades/RESULT.md)及[乾清屏墙结果](docs/major-pilots/qianqing-screens/RESULT.md)，不混入弘义或断虹条件候选，不上传原始新增测试日志。
+当前弘德殿两侧完整槛窗组开发直接基于本地 R152 `3d1fd4956afd878de0058a8d5b0ea1536f13ea9d`，本次本地开发检查点为 **R153**，不是已交付或整殿完成声明。每侧三扇、上下两格，纵长回纹内核与错位连接只是公开简化拟合；保原两窗盒与全部原物理、中央虚拟开门，不补未知院落台高。上方小亮窗、中央门旁板及整立面仍未完成。范围与验证见[专项记录](docs/major-pilots/hongde-windows/RESULT.md)。
+
+保留[坤宁北栏](docs/major-pilots/kunning-north-balustrades/RESULT.md)、[武英坡栏](docs/major-pilots/wuying-central-balustrades/RESULT.md)及[乾清屏墙](docs/major-pilots/qianqing-screens/RESULT.md)各自范围和未验，不混入弘义或断虹条件候选，不上传新增原始测试日志。
 
 用户已自行将 R148 合并到 main：`0898e809f173dcaf2b7d9062ddf8e7ce796ce3de`，其树与 R148 相同；后续远端候选应以实际父树与该用户合并关系核对，不覆盖 main。这里的本地/远端 SHA 明确区分，不冒称远端提交是本地祖先，也不修改既有交付分支或 main/Pages。R149 高落夹具显式起高更正仅属验证修正，不改变其生产阶陛。
 
