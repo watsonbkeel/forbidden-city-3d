@@ -1,6 +1,7 @@
 import * as THREE from 'three';
+import {buildQianqingGateScreens} from './QianqingGateScreens.js';
 import { DIMENSIONS, LAYOUT } from '../../../config/constants.js';
-import { buildRoof, buildWallCap } from '../../RoofBuilder.js';
+import { buildRoof } from '../../RoofBuilder.js';
 import { batchSolidMaterials } from '../../../render/SolidMaterialBatch.js';
 import { buildQianqingImperialStair } from './QianqingImperialStair.js';
 import { buildQianqingGatePlaque } from './QianqingGatePlaque.js';
@@ -191,59 +192,7 @@ export function buildQianqingGate(builder, data) {
     builder.rail(g, s * connectorHalfW, landingNorth - 0.15, s * (landingHalfW - 0.15), landingNorth - 0.15, y);
   }
 
-  // Two folded glazed screens. The 8 m / 9.7 m values are quoted by the
-  // museum, but their measurement basis and this 30-degree fold are provisional.
-  const glaze = builder.ownMat('qianqing_glaze_green', { name: 'qianqing_glaze_green', color: 0x237b61, roughness: 0.36 });
-  const gold = builder.ownMat('qianqing_glaze_gold', { name: 'qianqing_glaze_gold', color: 0xbf922b, roughness: 0.38 });
-  const pink = builder.ownMat('qianqing_screen_center', { name: 'qianqing_screen_center', color: 0xa85c4d, roughness: 0.85 });
-  for (const side of [-1, 1]) {
-    const p0 = { x: side * halfW, z: -d / 2 };
-    const p1 = { x: p0.x + side * 3.1, z: p0.z };
-    const p2 = { x: p1.x + side * 6.6 * Math.cos(Math.PI / 6), z: p1.z - 6.6 * Math.sin(Math.PI / 6) };
-    const thickness = 0.8;
-    for (const [a, b] of [[p0, p1], [p1, p2]]) {
-      const dx = b.x - a.x, dz = b.z - a.z, length = Math.hypot(dx, dz);
-      const f = new THREE.Group();
-      f.position.set((a.x + b.x) / 2, 0, (a.z + b.z) / 2);
-      f.rotation.y = -Math.atan2(dz, dx);
-      g.add(f);
-      builder.libBox(f, 'wall_brick', length, 0.65, thickness + 0.2, 0, 0.325, 0);
-      builder.box(f, pink, length, 6.85, thickness, 0, 4.075, 0);
-      for (const z of [-thickness / 2 - 0.04, thickness / 2 + 0.04]) {
-        for (const yy of [0.85, 7.25]) builder.box(f, gold, length, 0.2, 0.12, 0, yy, z);
-        for (const yy of [1.08, 6.98]) builder.box(f, glaze, length, 0.23, 0.13, 0, yy, z);
-        for (const s of [-1, 1]) {
-          builder.box(f, gold, 0.16, 6.5, 0.12, s * (length / 2 - 0.12), 4.05, z);
-          builder.box(f, glaze, 0.22, 6.1, 0.13, s * (length / 2 - 0.32), 4.05, z);
-        }
-        const motif = new THREE.Mesh(new THREE.CircleGeometry(Math.min(1.05, length * 0.24), 24), glaze);
-        motif.position.set(0, 4.05, z + Math.sign(z) * 0.08);
-        if (z < 0) motif.rotation.y = Math.PI;
-        f.add(motif);
-        // Abstract radial glaze, not a claim to reproduce historical relief.
-        for (let k = 0; k < 8; k++) {
-          const angle = k * Math.PI / 4;
-          const m = builder.box(f, gold, 0.18, 0.55, 0.09, Math.cos(angle) * 0.55, 4.05 + Math.sin(angle) * 0.55, z + Math.sign(z) * 0.1);
-          m.rotation.z = angle - Math.PI / 2;
-        }
-      }
-      const cap = buildWallCap(builder.library, { length, thickness });
-      cap.position.y = 8 - cap.userData.topY;
-      f.add(cap);
-      builder.ownedMaterials.push(...(cap.userData.ownedMaterials ?? []));
-      // Short aligned boxes approximate the rotated solid without falsely
-      // blocking the triangular empty region behind a large screen-wall AABB.
-      const segments = Math.ceil(length / 0.4);
-      for (let k = 0; k < segments; k++) {
-        const ax = a.x + dx * k / segments, az = a.z + dz * k / segments;
-        const bx = a.x + dx * (k + 1) / segments, bz = a.z + dz * (k + 1) / segments;
-        builder.col(Math.min(ax, bx) - thickness / 2, 0, Math.min(az, bz) - thickness / 2,
-          Math.max(ax, bx) + thickness / 2, 8, Math.max(az, bz) + thickness / 2);
-      }
-    }
-    info.screens.push({ start: worldPoint(p0.x, p0.z), fold: worldPoint(p1.x, p1.z), end: worldPoint(p2.x, p2.z),
-      thickness, officialHeight: 8, officialLength: 9.7, measurementBasis: 'provisional', angleDegrees: 30 });
-  }
+  const [glaze, gold, pink] = buildQianqingGateScreens(builder, g, {halfW, d, info, worldPoint});
   g.userData.qianqingPorchCoffers = buildQianqingGatePorchCoffers(builder,g,{width:w,depth:d});
   g.userData.qianqingGate = info;
   const finished = builder.finish(g);
