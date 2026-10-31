@@ -1,6 +1,6 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
 import {captureRightLeaf,retainedSignature,digest} from '../../lib/wumen-right-leaf-fixture.mjs';
-import {portalPriorComparison} from '../../lib/wumen-side-portal-prior-comparison.mjs';import {portalFaceGroups} from '../../lib/wumen-side-portal-fixture.mjs';
+import {portalPriorComparison} from '../../lib/wumen-left-leaf-prior-comparison.mjs';import {portalFaceGroups} from '../../lib/wumen-side-portal-fixture.mjs';
 const before=JSON.parse(fs.readFileSync(new URL('../../fixtures/r157-wumen-side-portal/before-db1.json',import.meta.url)));
 test('two authenticated front owners alone are removed from a read-only comparison clone in both leaf states',()=>{
  for(const open of [true,false]){const c=captureRightLeaf(open);c.tower=c.group.children.find(o=>o.userData.structure?.id==='axis/wumen-upper-tower');try{const raw=digest(retainedSignature(c)),p=portalPriorComparison(c);

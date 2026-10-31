@@ -1,3 +1,4 @@
+import {attachWumenLeftLeafStuds} from './WumenLeftLeafStuds.js';
 import * as T from 'three';
 import {attachWumenSidePortalFaces} from './WumenSidePortalFaces.js';
 import {attachWumenRightLeafStuds} from './WumenRightLeafStuds.js';
@@ -132,10 +133,11 @@ export function buildWumenLowerBase(builder,parent,data){
   for(const side of[-1,1]){
    const hinge=new T.Group();hinge.position.x=side*(o.width/2-.12);hinge.rotation.y=g.open?side*Math.PI/2:0;frame.add(hinge);
    const leaf=new T.Mesh(new T.BoxGeometry(width,height,.22),lacquer);leaf.position.set(-side*width/2,height/2,0);leaf.userData.wumenLowerPart='door-solid';leaf.castShadow=leaf.receiveShadow=true;hinge.add(leaf);
-   // Central generic type retained. Only one separately registered lateral
-   // photo face is detailed below; never mirror hardware to hidden backs.
+   // Central generic type retained. Each lateral near face has its own
+   // source registration; never mirror hardware or fill occluded sites.
    if(o.kind==='central'){const face=new T.Mesh(new T.PlaneGeometry(width,height),builder.library.material('door_studded'));face.position.set(-side*width/2,height/2,-.111);face.rotation.y=Math.PI;hinge.add(face);}
    attachWumenRightLeafStuds(builder,leaf,{portalId:o.id,side,width,height});
+   attachWumenLeftLeafStuds(builder,leaf,{portalId:o.id,side,width,height});
    triangleBody(builder,leaf,`${o.id}/leaf/${side}`);
   }
  }

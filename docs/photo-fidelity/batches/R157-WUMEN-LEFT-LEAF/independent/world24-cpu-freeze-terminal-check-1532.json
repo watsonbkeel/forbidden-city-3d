@@ -1,0 +1,91 @@
+{
+  "width24": {
+    "routes": 24,
+    "exactCartesianSet": true,
+    "arrived": 16,
+    "expectedBlocked": 8,
+    "frames": 1188,
+    "colliders": 30882,
+    "supports": 1365,
+    "reviewedChangedRows": 88
+  },
+  "freezes": {
+    "source-final-1527.json": {
+      "count": 592,
+      "sha256": "07f0da6a6b846915e647ebdb82d3dbc502e9b8492be59c6fad88469c46fdc2bf",
+      "allCurrentBytesExact": true
+    },
+    "qa-final-1529.json": {
+      "count": 4368,
+      "sha256": "685222aefa4d7079ae31b50a3cfa243e82866d7f1b2ccc01b11f685b0ff008f2",
+      "allCurrentBytesExact": true
+    }
+  },
+  "resources": {
+    "left-world-40-1530": {
+      "command": [
+        "node",
+        "--expose-gc",
+        "--max-old-space-size=1024",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=1",
+        "tests/photo-fidelity/batches/wumen-left-leaf-world.test.mjs"
+      ],
+      "cwd": "/workspace/scratch/02a8023d1a85/r157-restored-411214",
+      "returncode": 0,
+      "elapsedSeconds": 31.050948586998857,
+      "maxRSSKiB": 1696036,
+      "userSeconds": 84.008875,
+      "systemSeconds": 1.496851
+    },
+    "width-world-24-1530": {
+      "command": [
+        "node",
+        "--expose-gc",
+        "--max-old-space-size=1024",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=1",
+        "tests/photo-fidelity/batches/wumen-main-width-world.test.mjs"
+      ],
+      "cwd": "/workspace/scratch/02a8023d1a85/r157-restored-411214",
+      "returncode": 0,
+      "elapsedSeconds": 28.983642856999722,
+      "maxRSSKiB": 1672764,
+      "userSeconds": 41.523079,
+      "systemSeconds": 1.451835
+    },
+    "prior-cpu-allfaces-1530": {
+      "command": [
+        "node",
+        "--expose-gc",
+        "--max-old-space-size=1024",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=1",
+        "tests/photo-fidelity/batches/wumen-main-width-cpu-export.test.mjs",
+        "tests/photo-fidelity/batches/wumen-side-portal-cpu-export.test.mjs"
+      ],
+      "cwd": "/workspace/scratch/02a8023d1a85/r157-restored-411214",
+      "returncode": 0,
+      "elapsedSeconds": 17.829012204998435,
+      "maxRSSKiB": 733076,
+      "userSeconds": 20.738143,
+      "systemSeconds": 1.629462
+    }
+  },
+  "cpuTotals": {
+    "tests": "2",
+    "pass": "2",
+    "fail": "0",
+    "cancelled": "0",
+    "skipped": "0"
+  },
+  "artifactSHA256": {
+    "width-world-24-1530.json": "87ae4b00ad31127d247c0084eef8647c0f2ab194d3ccbab1229b648b00e38cf3",
+    "width-world-24-1530.tap": "813b218065d1c3bad5a7169beaa4e4d1f0635b990baf89b6d387301e151aac1a",
+    "prior-cpu-allfaces-1530.tap": "140ea0a683d5c143dc307a4191c4f2751ac16dc7cc280c7c3822d1b458c08cc8",
+    "world-and-cpu-1530.finished.json": "3c52c66bc674f4f54936286d4e8fa4a9c160c1f65bfe18584a695781b7c1bbbc"
+  }
+}

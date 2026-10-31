@@ -1,3 +1,4 @@
+import {leftPriorComparison} from '../../lib/wumen-left-leaf-prior-comparison.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {captureRightLeaf} from '../../lib/wumen-right-leaf-fixture.mjs';
@@ -16,9 +17,9 @@ const baseline=JSON.parse(fs.readFileSync(new URL('../../fixtures/r157-wumen-sid
 test('both real leaf poses preserve every original recorded object and all 452 physical rows/16 supports',()=>{
  for(const open of [true,false]){const c=captureRightLeaf(open);try{
   const all=faces(c);assert.equal(all.length,2);verifyStudFace(c);
-  const copy=c.group.clone(true),remove=[];copy.traverse(o=>{if(o.userData.wumenSidePortalFace)remove.push(o);});assert.equal(remove.length,2);for(const g of remove)g.removeFromParent();
+  const left=leftPriorComparison(c);try{const copy=left.view.group.clone(true),remove=[];copy.traverse(o=>{if(o.userData.wumenSidePortalFace)remove.push(o);});assert.equal(remove.length,2);for(const g of remove)g.removeFromParent();
   assert.equal(digest(retainedSignature({...c,group:copy})),digest(baseline[open?'open':'closed']));
-  assert.equal(faces(c).length,2,'original actual scene remains installed');
+  assert.equal(faces(c).length,2,'original actual scene remains installed');}finally{left.assertUnchanged();}
  }finally{c.builder.dispose();}}
 });
 import {attachWumenSidePortalFaces} from '../../../src/scene/palace/special/WumenSidePortalFaces.js';

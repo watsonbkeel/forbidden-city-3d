@@ -1,0 +1,63 @@
+{
+  "contract-migration-final-1526.tap": {
+    "sha256": "d5e7852e8aa5419aea656825aa90ed1f36658aad4f997147602e52123e2f7467",
+    "totals": {
+      "tests": "50",
+      "pass": "50",
+      "fail": "0",
+      "cancelled": "0",
+      "skipped": "0"
+    },
+    "failedTopLevel": []
+  },
+  "history-guard-green-1524.tap": {
+    "sha256": "09656de8035e9d0192a463eb8a28bcf9dae184c4470d268834330033c494432e",
+    "totals": {
+      "tests": "6",
+      "pass": "6",
+      "fail": "0",
+      "cancelled": "0",
+      "skipped": "0"
+    },
+    "failedTopLevel": []
+  },
+  "comparison-green-1524.tap": {
+    "sha256": "c1c10513bf1ce1bb7e7eb1130d29367eda200cab12a33ba56470349bfab0db5d",
+    "totals": {
+      "tests": "3",
+      "pass": "3",
+      "fail": "0",
+      "cancelled": "0",
+      "skipped": "0"
+    },
+    "failedTopLevel": []
+  },
+  "history-guard-1524.tap": {
+    "sha256": "c317c304c609e73ceee53f579e140d914226fd3fb7f2d5e60a18c92f60bdecb6",
+    "totals": {
+      "tests": "6",
+      "pass": "3",
+      "fail": "3",
+      "cancelled": "0",
+      "skipped": "0"
+    },
+    "failedTopLevel": [
+      "not ok 4 - actual592 history guard rejects extra-source without modifying files",
+      "not ok 5 - actual592 history guard rejects missing-source without modifying files",
+      "not ok 6 - actual592 history guard rejects symlink-source without modifying files"
+    ]
+  },
+  "contract-migration-first-1524.tap": {
+    "sha256": "69dd01652f6b8f21256e140883a322ae7f4af259389311dda03296aeba8458ee",
+    "totals": {
+      "tests": "43",
+      "pass": "42",
+      "fail": "1",
+      "cancelled": "0",
+      "skipped": "0"
+    },
+    "failedTopLevel": [
+      "not ok 32 - finite target leaf closure rejects not-a-real-mesh"
+    ]
+  }
+}
