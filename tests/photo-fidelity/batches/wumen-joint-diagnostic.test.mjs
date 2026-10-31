@@ -1,0 +1,13 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
+import {WUMEN_PLAN_REGISTRATION as plan} from '../../../src/scene/palace/special/WumenPlanRegistration.js';
+const url=new URL('../../../scripts/photo-fidelity/batches/r157-a37/wumen-joint-diagnostic.mjs',import.meta.url);
+const make=async origin=>{assert.ok(fs.existsSync(url),'Explicit non-runtime joint model diagnostic must exist');return(await import(url)).buildWumenJointPlanDiagnostic({origin});};
+test('Joint source-axis model contains all four pavilion corner sets and both24-interior wing sets without duplicated shared endpoints',async()=>{
+ const h=await make([0,-419.6]);try{const nodes=h.group.children.filter(o=>o.userData.sourceAxis);assert.equal(nodes.length,64);assert.equal(new Set(nodes.map(o=>o.userData.sourceAxis.id)).size,64);assert.equal(new Set(nodes.map(o=>o.position.x+','+o.position.z)).size,64);for(const p of plan.pavilions)for(const c of p.cornerColumns){const m=nodes.find(o=>o.userData.sourceAxis.id===c.id);assert.ok(m);assert.equal(m.position.x,c.localXZ[0]);assert.equal(m.position.z,c.localXZ[1]);assert.equal(m.userData.sourceAxis.ownerId,p.id);}assert.equal(h.group.userData.runtimeEnabled,false);assert.deepEqual(h.colliders,[]);assert.deepEqual(h.walkables,[]);}finally{h.dispose();}
+});
+test('One explicit common origin transforms the entire joint model without changing local axes, engineering heights or original registration',async()=>{
+ const before=JSON.stringify(plan),a=await make([0,-419.6]),b=await make([-.1625848942364101,-379.5659919422423]);try{assert.deepEqual(a.group.children.map(o=>o.position.toArray()),b.group.children.map(o=>o.position.toArray()));assert.deepEqual(b.group.position.toArray(),[-.1625848942364101,0,-379.5659919422423]);assert.equal(JSON.stringify(plan),before);assert.equal(b.group.userData.wholeObjectAccepted,false);assert.equal(b.group.userData.heightBasis,'RETAINED_ENGINEERING_NOT_SOURCE_ELEVATION');}finally{a.dispose();b.dispose();}
+});
+test('No silent default origin and owned diagnostic resources dispose exactly once without touching production builders',async()=>{
+ const {buildWumenJointPlanDiagnostic:build}=await import(url);for(const origin of[undefined,[0],['0',-419.6],[Infinity,0]])assert.throws(()=>build({origin}),/origin/);const h=build({origin:[0,-419.6]});let geo=0,mat=0;for(const g of h.ownedGeometries)g.addEventListener('dispose',()=>geo++);for(const m of h.ownedMaterials)m.addEventListener('dispose',()=>mat++);h.dispose();h.dispose();assert.equal(geo,h.ownedGeometries.length);assert.equal(mat,h.ownedMaterials.length);assert.equal(fs.readFileSync(new URL('../../../src/scene/PalaceBuilder.js',import.meta.url),'utf8').includes('wumen-joint-diagnostic'),false);
+});

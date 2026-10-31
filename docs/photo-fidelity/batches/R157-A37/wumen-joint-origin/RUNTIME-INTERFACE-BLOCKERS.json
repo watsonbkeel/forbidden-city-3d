@@ -1,0 +1,214 @@
+{
+  "status": "UNRESOLVED_RUNTIME_INTERFACES_DEFAULT_OFF_REQUIRED",
+  "screenSource": "southern-world-screen.json",
+  "originalWorldColliders": 30837,
+  "exactOldSouthernEnclosureBoxesExcluded": 6,
+  "reports": [
+    {
+      "way": 156149069,
+      "role": "east-south-wall-footprint",
+      "hitCount": 19,
+      "ownerCounts": [
+        {
+          "owner": {
+            "item": {
+              "from": [
+                -106.47,
+                -416
+              ],
+              "gaps": [
+                {
+                  "at": -300.3,
+                  "gate": "协和门"
+                },
+                {
+                  "at": -53.1,
+                  "gate": "左翼门"
+                },
+                {
+                  "at": 174.1,
+                  "gate": "景运门"
+                },
+                {
+                  "at": -109.3,
+                  "pavilionProfile": "tiren",
+                  "source": "pavilion-rear-shell-interface",
+                  "w": 43.212
+                }
+              ],
+              "h": 7,
+              "kind": "wall",
+              "to": [
+                -106.47,
+                203.85
+              ]
+            },
+            "zone": "axis-courts"
+          },
+          "count": 1
+        },
+        {
+          "owner": {
+            "item": {
+              "facing": "x+",
+              "from": [
+                -103.37,
+                -415.5
+              ],
+              "furnishingPolicy": {
+                "mode": "unknown-inventory",
+                "runtimeInventoryId": "RI-1DCBD55D5B90",
+                "target": "axis-courts/items/26"
+              },
+              "kind": "corridor",
+              "to": [
+                -103.37,
+                -314.5
+              ]
+            },
+            "zone": "axis-courts"
+          },
+          "count": 8
+        },
+        {
+          "owner": {
+            "item": {
+              "kind": "static",
+              "name": "PalaceBuilder"
+            },
+            "zone": "static"
+          },
+          "count": 10
+        }
+      ],
+      "edgeSamples": 521,
+      "waterRestrictedSamples": 18,
+      "boundaryRestrictedSamples": 0
+    },
+    {
+      "way": 638206927,
+      "role": "west-south-wall-footprint",
+      "hitCount": 5,
+      "ownerCounts": [
+        {
+          "owner": {
+            "item": {
+              "from": [
+                110.7,
+                -416
+              ],
+              "gaps": [
+                {
+                  "at": -301.1,
+                  "gate": "熙和门"
+                },
+                {
+                  "at": -52.8,
+                  "gate": "右翼门"
+                },
+                {
+                  "at": 173.7,
+                  "gate": "隆宗门"
+                },
+                {
+                  "at": -110.4,
+                  "pavilionProfile": "hongyi",
+                  "source": "pavilion-rear-shell-interface",
+                  "w": 43.18
+                }
+              ],
+              "h": 7,
+              "kind": "wall",
+              "to": [
+                110.7,
+                203.85
+              ]
+            },
+            "zone": "axis-courts"
+          },
+          "count": 1
+        },
+        {
+          "owner": {
+            "item": {
+              "facing": "x-",
+              "from": [
+                107.6,
+                -415.5
+              ],
+              "furnishingPolicy": {
+                "mode": "unknown-inventory",
+                "runtimeInventoryId": "RI-2555B6BDA0A9",
+                "target": "axis-courts/items/32"
+              },
+              "kind": "corridor",
+              "to": [
+                107.6,
+                -315.1
+              ]
+            },
+            "zone": "axis-courts"
+          },
+          "count": 4
+        }
+      ],
+      "edgeSamples": 520,
+      "waterRestrictedSamples": 0,
+      "boundaryRestrictedSamples": 0
+    },
+    {
+      "way": 156146468,
+      "role": "southeast-corner-platform-not-tower",
+      "hitCount": 0,
+      "ownerCounts": [],
+      "edgeSamples": 111,
+      "waterRestrictedSamples": 0,
+      "boundaryRestrictedSamples": 0
+    },
+    {
+      "way": 156145763,
+      "role": "southwest-corner-platform-not-tower",
+      "hitCount": 0,
+      "ownerCounts": [],
+      "edgeSamples": 117,
+      "waterRestrictedSamples": 0,
+      "boundaryRestrictedSamples": 0
+    }
+  ],
+  "newBoundedReviewDependencies": [
+    {
+      "interface": "axis-courts south wall/corridor ends",
+      "currentEndsZ": [
+        -416,
+        -415.5
+      ],
+      "sourceWays": [
+        638218799,
+        638218812,
+        638238303,
+        638238358
+      ],
+      "sourceApproxSouthEndsZ": [
+        -379.84,
+        -379.09
+      ],
+      "action": "Verify own original bodies/photographs and bound any endpoint repair; do not translate whole courts or discard all owners."
+    },
+    {
+      "interface": "east-wenhua water reach crossing south wall near x=-303,z=-385",
+      "sourceTopology": "Official museum drainage papers describe southeast culvert discharging to south moat",
+      "sources": [
+        "https://www.dpm.org.cn/Uploads/pdf/1564/T00019_00.pdf",
+        "https://www.dpm.org.cn/Uploads/pdf/2800/T00153_00.pdf"
+      ],
+      "unknown": [
+        "precise present culvert position",
+        "mouth/soffit form and dimensions",
+        "relation to existing fitted river path"
+      ],
+      "action": "Keep existing river and routes frozen; do not move water, seal outlet, invent a playable tunnel or assert an accepted wall gap."
+    }
+  ],
+  "runtimeActivated": false,
+  "wholeObjectAccepted": false
+}
