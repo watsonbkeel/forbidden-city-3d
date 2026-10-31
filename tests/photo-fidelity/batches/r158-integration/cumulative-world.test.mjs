@@ -7,7 +7,7 @@ test('Uninjected cumulative World retains Wenhua/Donghua/Wenyuan hooks and expli
   const records=[];W.scene.traverse(g=>records.push(...(g.userData.architecture??[])));
   const own=id=>{const a=records.filter(r=>r.id===id);assert.equal(a.length,1,id);return a[0];};
   assert.equal(own('outer-east/wenhua-front').wenhuaCentralDoors.leaves,6);assert.equal(own('city-gates/donghua').donghuaExteriorEnvelope.visibleWindowGroups,5);
-  assert.equal(W.cm.colliders.filter(c=>c.triangleSupport?.id.startsWith('wenyuan-pond-rails:')).length,34);assert.equal(W.cm.colliders.length,30837);
+  assert.equal(W.cm.colliders.filter(c=>c.triangleSupport?.id.startsWith('wenyuan-pond-rails:')).length,34);const instruments=W.cm.colliders.filter(c=>c.triangleSupport?.id.startsWith('taihe-terrace-instrument:'));assert.equal(instruments.length,29);assert.equal(W.cm.colliders.length-instruments.length+2,30837,'original total retained after exact 2 old boxes -> 29 source solids');assert.equal(W.cm.colliders.length,30864);
   assert.equal(records.filter(r=>r.id==='axis/taihemen-south-ceiling').length,0);const frame=own('axis/taihemen-nameboard-frame');assert.ok(frame);
   const summary={scope:'ACTUAL_WHOLE_WORLD_UNINJECTED_ALL_FOUR_INTEGRATIONS',colliders:W.cm.colliders.length,wenyuanOwners:34,taihemen:report,wholeObjectAccepted:false};if(process.env.R158_CUMULATIVE_WORLD_OUT)fs.writeFileSync(process.env.R158_CUMULATIVE_WORLD_OUT,JSON.stringify(summary,null,2));console.log(JSON.stringify(summary));
  }finally{W.dispose();}

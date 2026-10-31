@@ -1,0 +1,27 @@
+{
+  "baseCommit": "de1090c8",
+  "independentReviewFinding": "P2_LATTICE_EXCEPTION_ATOMICITY",
+  "firstEightFaultsBeforeFix": "8/8 RED",
+  "afterFix": "48/48 targeted tests pass",
+  "stagedMeshes": 16,
+  "stagedGeometries": 16,
+  "stagedMaterials": 2,
+  "failureKeepsOriginalGeometryUndisposed": true,
+  "originalOwnerArrayIdentityRetained": true,
+  "originalChildArrayIdentityRetained": true,
+  "retrySameHostWithoutDuplicateInfill": true,
+  "extraFaultCases": [
+    "frozen ownership array",
+    "frozen children array",
+    "secondary cleanup listener exception",
+    "temporary strip cleanup exception"
+  ],
+  "sourceFiles": {
+    "src/scene/palace/special/ArrowSouthDoorLattice.js": "566e52b49c957ff368aa6495a5bb7a4950040d136d88dc64481eb29774ed9bcb",
+    "tests/r158-arrow-south-lattice-atomicity.test.mjs": "cc15b4993a4b8928181adfbb280d943658d181fcc81a60e0bd6dfc770f888590"
+  },
+  "geometryPayloadUnchanged": true,
+  "productionHookInstalled": false,
+  "browserAcceptance": false,
+  "wholeObjectAccepted": false
+}

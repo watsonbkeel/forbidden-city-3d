@@ -1,3 +1,4 @@
+import {buildTaiheTerraceInstruments} from './palace/special/TaiheTerraceInstruments.js';
 import {refineWumenOuterSideColumns} from './palace/special/WumenOuterSideColumns.js';
 import {refineWumenNorthwestNorthColumns, WUMEN_NORTHWEST_PAVILION_ID} from './palace/special/WumenNorthwestColumns.js';
 import {refineWumenWingPavilionInstances} from './palace/special/WumenWingPavilionInstances.js';
@@ -697,15 +698,7 @@ export class PalaceBuilder {
       this.col(s * 9 - 0.8, y, zf + 0.2, s * 9 + 0.8, y + 3, zf + 1.8);
       this.col(s * 13 - 0.8, y, zf + 0.2, s * 13 + 0.8, y + 3, zf + 1.8);
     }
-    // 日晷：东侧（本场景东 = -X 方向不确定时以中轴对称处理）
-    const dial = new THREE.Mesh(new THREE.CylinderGeometry(1.1, 1.1, 0.15, 32), marble);
-    dial.rotation.x = Math.PI / 4;
-    dial.position.set(-17, y + 1.9, zf + 1);
-    g.add(dial);
-    this.box(g, marble, 1.4, 1.4, 1.4, -17, y + 0.7, zf + 1, { box: 2 });
-    this.box(g, bronze, 1.2, 1.0, 1.2, 17, y + 1.9, zf + 1);
-    this.box(g, marble, 1.4, 1.4, 1.4, 17, y + 0.7, zf + 1, { box: 2 });
-    for (const x of [-17, 17]) this.col(x - 0.8, y, zf + 0.2, x + 0.8, y + 3, zf + 1.8);
+    buildTaiheTerraceInstruments(this, g, {y, zf});
   }
 
   tripod(g, mat, x, y, z) {

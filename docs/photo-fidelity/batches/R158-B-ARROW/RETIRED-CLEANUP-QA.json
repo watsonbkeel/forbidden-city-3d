@@ -1,0 +1,18 @@
+{
+  "baseCommit": "76fd244a",
+  "finding": "P2_POST_COMMIT_RETIRED_GEOMETRY_CLEANUP",
+  "before": "first/middle/last disposal listener exceptions: 3 RED",
+  "after": "51/51 targeted tests pass",
+  "retiredResourcesAttemptedOnce": 64,
+  "committedStateRetained": true,
+  "postCommitErrorCode": "ARROW_LATTICE_COMMITTED_CLEANUP_ERROR",
+  "rollbackClaimed": false,
+  "retryRejectedBeforeAllocation": true,
+  "sourceFiles": {
+    "src/scene/palace/special/ArrowSouthDoorLattice.js": "65a5b42065c3c8e0f5a286d3b261cf9590d235ed5957353e38d84412131fc004",
+    "tests/r158-arrow-south-lattice-atomicity.test.mjs": "053dd7307cc19ab023e59a2763d793e1086fc44f1dbd2f3c21a40ae223471975"
+  },
+  "productionHookInstalled": false,
+  "browserAcceptance": false,
+  "wholeObjectAccepted": false
+}

@@ -1,0 +1,36 @@
+{
+  "scope": "Taihe instruments cumulative live current-state suite versus complete Arrow0451; no claim all green or identical underlying failure causes",
+  "baselineLog": "/workspace/scratch/02a8023d1a85/r158-arrow-integration-evidence-0441/full-current-state-0451.log",
+  "baselineLogSHA256": "a600dbbb23faf5442e881338f12f919c38626d51e82e3b700dfcbc347685a468",
+  "candidateLog": "/workspace/scratch/02a8023d1a85/r157-taihe-integration-evidence-0503/full-current-state-0510.log",
+  "candidateLogSHA256": "faefb0466b96045a4bf7c4aaa7bcb1f5e5d961aad390d15379b5a5a61796ac81",
+  "baseline": {
+    "tests": 1313,
+    "pass": 1103,
+    "fail": 210,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "candidate": {
+    "tests": 1192,
+    "pass": 981,
+    "fail": 211,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "newFailureNames": [
+    "tests/current-state/qinan-exterior-stair-safety.test.mjs",
+    "tests/current-state/zhaode-gate-routes.test.mjs"
+  ],
+  "removedFailureNames": [
+    "V7 historical routes retain exact descriptors with only the later Qin’an and R6 Ningshou replacements isolated"
+  ],
+  "sourceManifest": "source-final.json",
+  "sameTestCount": false,
+  "status": "INCOMPLETE_TWO_FILE_SIGKILL_NOT_FULL_REGRESSION_ACCEPTANCE",
+  "missingExecutedTestsVsBaseline": 121,
+  "interruptedFiles": [
+    "tests/current-state/qinan-exterior-stair-safety.test.mjs",
+    "tests/current-state/zhaode-gate-routes.test.mjs"
+  ]
+}

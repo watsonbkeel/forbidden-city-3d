@@ -1,0 +1,37 @@
+{
+  "status": "COMPLETE_PARTITIONED_REPLAY_NOT_A_SINGLE_SUCCESSFUL_MONOLITHIC_RUN",
+  "baselineLogSHA256": "a600dbbb23faf5442e881338f12f919c38626d51e82e3b700dfcbc347685a468",
+  "initialIncompleteLogSHA256": "faefb0466b96045a4bf7c4aaa7bcb1f5e5d961aad390d15379b5a5a61796ac81",
+  "initialResultUnmodified": true,
+  "replacedFileLevelKillWrappers": [
+    "tests/current-state/qinan-exterior-stair-safety.test.mjs",
+    "tests/current-state/zhaode-gate-routes.test.mjs"
+  ],
+  "isolatedShards": [
+    {
+      "file": "tests/current-state/qinan-exterior-stair-safety.test.mjs",
+      "log": "/workspace/scratch/02a8023d1a85/r157-taihe-integration-evidence-0503/qinan-isolated-768-0519.tap",
+      "sha256": "a16db4128492d2243ebb063cb805534817cf7811537986bf58e8f7e0ef8d8d9b",
+      "tests": 48,
+      "pass": 48,
+      "fail": 0,
+      "NODE_OPTIONS": "--max-old-space-size=768"
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "log": "/workspace/scratch/02a8023d1a85/r157-taihe-integration-evidence-0503/zhaode-isolated-768-0521.tap",
+      "sha256": "f6a465ffd82d58b2206dbbeda912c3b2182dc09bba3ac56ba533aa85a3650202",
+      "tests": 75,
+      "pass": 74,
+      "fail": 1,
+      "NODE_OPTIONS": "--max-old-space-size=768"
+    }
+  ],
+  "executedTestTitleMultisetExactlyMatchesBaseline": true,
+  "tests": 1313,
+  "pass": 1103,
+  "fail": 210,
+  "newFailureNames": [],
+  "removedFailureNames": [],
+  "scope": "Initial unchanged-source run completed all other cases. Only two SIGKILL file wrappers replaced by full original-file replays under explicit bounded V8 old-space; no test/assertion/source rewrites, no dropped cases. Titles do not independently prove identical roots for all existing failures."
+}
