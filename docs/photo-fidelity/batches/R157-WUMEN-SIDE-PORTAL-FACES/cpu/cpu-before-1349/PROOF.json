@@ -1,0 +1,162 @@
+{
+  "accepted": false,
+  "scope": "REAL_BUILD_GATE_WHOLE_WUMEN_PREMERGE_CPU_BASE_COLOR_NO_GPU",
+  "mode": "before",
+  "baseline": "db1f6d26ac02338f65e99b220ea922418a3a54a7",
+  "actualPortalFaceGroups": 0,
+  "views": {
+    "east-front": {
+      "camera": {
+        "position": [
+          -29,
+          4.4,
+          -16.5
+        ],
+        "target": [
+          -40.6,
+          4.4,
+          -16.5
+        ],
+        "fov": 48,
+        "matrixWorldInverse": [
+          2.220446049250313e-16,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          -1,
+          0,
+          2.220446049250313e-16,
+          0,
+          -16.499999999999993,
+          -4.4,
+          29.000000000000004,
+          1
+        ]
+      },
+      "triangles": 49152,
+      "file": "wumen-side-portals-east-front-before.json.gz",
+      "sha256": "93d5ba86fb3b9aa3fdf5e3d70b38ca00ee2bcca65eaebc494f034724b043f124"
+    },
+    "west-front": {
+      "camera": {
+        "position": [
+          29,
+          4.4,
+          -16.5
+        ],
+        "target": [
+          40.6,
+          4.4,
+          -16.5
+        ],
+        "fov": 48,
+        "matrixWorldInverse": [
+          2.220446049250313e-16,
+          0,
+          -1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          2.220446049250313e-16,
+          0,
+          16.499999999999993,
+          -4.4,
+          29.000000000000004,
+          1
+        ]
+      },
+      "triangles": 49152,
+      "file": "wumen-side-portals-west-front-before.json.gz",
+      "sha256": "689e4300ddf9062773bc1d98981371272e9abc5acd07a6ab32c160c6fbe218b2"
+    },
+    "east-oblique": {
+      "camera": {
+        "position": [
+          -28,
+          4.6,
+          -10
+        ],
+        "target": [
+          -40.6,
+          4.3,
+          -16.5
+        ],
+        "fov": 46,
+        "matrixWorldInverse": [
+          0.4584632458915777,
+          -0.01880082611563873,
+          0.8885144799630045,
+          0,
+          3.469446951953614e-18,
+          0.9997762056890329,
+          0.02115510666578581,
+          0,
+          -0.888713368959058,
+          -0.009698838869178711,
+          0.4583606444253596,
+          0,
+          3.9498371953735965,
+          -5.222382066099223,
+          29.36469839255511,
+          1
+        ]
+      },
+      "triangles": 49152,
+      "file": "wumen-side-portals-east-oblique-before.json.gz",
+      "sha256": "c0cb6127fafd51e5706cc31afd02c55588b7ce73901513a1379027c2c6d53d5f"
+    },
+    "west-oblique": {
+      "camera": {
+        "position": [
+          28,
+          4.6,
+          -10
+        ],
+        "target": [
+          40.6,
+          4.3,
+          -16.5
+        ],
+        "fov": 46,
+        "matrixWorldInverse": [
+          0.4584632458915777,
+          0.01880082611563873,
+          -0.8885144799630045,
+          0,
+          -3.469446951953614e-18,
+          0.9997762056890329,
+          0.02115510666578581,
+          0,
+          0.888713368959058,
+          -0.009698838869178711,
+          0.4583606444253596,
+          0,
+          -3.9498371953735965,
+          -5.222382066099223,
+          29.36469839255511,
+          1
+        ]
+      },
+      "triangles": 49152,
+      "file": "wumen-side-portals-west-oblique-before.json.gz",
+      "sha256": "2ceb410c70907c6c7bae1f29524ecdf2ac27ed1e9e5f4f256112305a3283dbfa"
+    }
+  },
+  "sourceHashes": {
+    "src/scene/palace/special/WumenLowerBase.js": "7ae6df03668ff6e6a1a655e714922a615985954283681cbb7ac6aa2602b0ec4a",
+    "src/scene/palace/special/WumenSidePortalFaces.js": "NOT_LOADED"
+  },
+  "limitations": [
+    "Same retained roof/base/origin; does not approve macro layout",
+    "No historical or live GPU material/light acceptance",
+    "Before uses exact SHA-pinned db1 LowerBase predecessor, other production sources unchanged"
+  ]
+}

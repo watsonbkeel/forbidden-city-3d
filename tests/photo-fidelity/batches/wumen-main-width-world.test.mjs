@@ -1,6 +1,6 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
 import {buildR52World} from '../../lib/r52-world.mjs';import {captureGate,meshFingerprint} from '../../lib/gate-tower-fixture.mjs';import {PalaceBuilder} from '../../../src/scene/PalaceBuilder.js';
-import {renderStateHash} from '../../lib/r157-wumen-main-signature.mjs';import {verifyWidthContract} from '../../lib/wumen-main-width-contract.mjs';
+import {renderStateHash} from '../../lib/r157-wumen-main-signature.mjs';import {verifyWidthContract} from '../../lib/wumen-side-portal-prior-comparison.mjs';
 import {taiheWorldPhysics} from '../../lib/r157-taihe-world-retention.mjs';import {physicalNonmutationFingerprint} from '../../lib/r159-physical-nonmutation-fingerprint.mjs';
 import {wumenMainWidthPriorComparison,wumenWidthThenJiaotaiPriorComparison} from '../../lib/wumen-main-width-world-comparison.mjs';import {wuying55PhysicsView} from '../../lib/r158-wuying-55-physics-view.mjs';import {replayKunning} from '../../lib/kunning-walk.mjs';
 const before=JSON.parse(fs.readFileSync(new URL('../../fixtures/r157-wumen-main-width/before-411214.json',import.meta.url))).snapshot;

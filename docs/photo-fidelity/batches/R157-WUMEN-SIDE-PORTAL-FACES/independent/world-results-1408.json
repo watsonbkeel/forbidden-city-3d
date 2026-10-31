@@ -1,0 +1,55 @@
+{
+  "world-40-1406": {
+    "routes": 40,
+    "arrived": {
+      "True": 40
+    },
+    "totalFrameAssertions": 8222,
+    "tapSHA256": "f7d3fb8dd7a63528a4bf2f82260eab387756701c5d7a37084760e19e1abb5ad3",
+    "jsonSHA256": "b534c3e57470bbd4b852858c57f11743604218ea5b77e6315a094652fcb8eacc",
+    "resource": {
+      "command": [
+        "node",
+        "--expose-gc",
+        "--max-old-space-size=1024",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=1",
+        "tests/photo-fidelity/batches/wumen-side-portal-world.test.mjs"
+      ],
+      "cwd": "/workspace/scratch/02a8023d1a85/r157-restored-411214",
+      "returncode": 0,
+      "elapsedSeconds": 30.184696714000893,
+      "maxRSSKiB": 1723664,
+      "userSeconds": 83.9082,
+      "systemSeconds": 1.454749
+    }
+  },
+  "width-world-24-1406": {
+    "routes": 24,
+    "arrived": {
+      "False": 8,
+      "True": 16
+    },
+    "totalFrameAssertions": 1188,
+    "tapSHA256": "e4822e2a58e568343f29f4db81e50b47af99f450ea3d49c2a6840f2d527b8806",
+    "jsonSHA256": "87ae4b00ad31127d247c0084eef8647c0f2ab194d3ccbab1229b648b00e38cf3",
+    "resource": {
+      "command": [
+        "node",
+        "--expose-gc",
+        "--max-old-space-size=1024",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=1",
+        "tests/photo-fidelity/batches/wumen-main-width-world.test.mjs"
+      ],
+      "cwd": "/workspace/scratch/02a8023d1a85/r157-restored-411214",
+      "returncode": 0,
+      "elapsedSeconds": 26.247336443999302,
+      "maxRSSKiB": 1723664,
+      "userSeconds": 121.926213,
+      "systemSeconds": 2.826514
+    }
+  }
+}

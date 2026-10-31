@@ -1,4 +1,5 @@
 import * as T from 'three';
+import {attachWumenSidePortalFaces} from './WumenSidePortalFaces.js';
 import {attachWumenRightLeafStuds} from './WumenRightLeafStuds.js';
 import {applyBoxUV} from '../../../utils/GeometryUV.js';
 import {createTriangleTemplate,triangleInstance} from '../../../utils/TriangleSupport.js';
@@ -138,6 +139,7 @@ export function buildWumenLowerBase(builder,parent,data){
    triangleBody(builder,leaf,`${o.id}/leaf/${side}`);
   }
  }
+ attachWumenSidePortalFaces(builder,root,p);
  return {...g,root,platform};
 }
 

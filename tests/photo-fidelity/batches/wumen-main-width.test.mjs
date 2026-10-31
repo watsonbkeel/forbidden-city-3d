@@ -12,7 +12,7 @@ test('Wumen main actual common axes fit the reviewed 1.43 centre ratio inside th
 });
 import fs from 'node:fs';
 import {captureGate} from '../../lib/gate-tower-fixture.mjs';
-import {verifyWidthContract,expectedWidthAxes} from '../../lib/wumen-main-width-contract.mjs';
+import {verifyWidthContract,expectedWidthAxes} from '../../lib/wumen-side-portal-prior-comparison.mjs';
 const before=JSON.parse(fs.readFileSync(new URL('../../fixtures/r157-wumen-main-width/before-411214.json',import.meta.url))).snapshot;
 test('actual main shell changes only the 88 authorized geometric parts and 88 actual collider bounds',()=>{const c=captureGate();assert.deepEqual(verifyWidthContract(c,before),{meshCount:105,changedGeometry:88,localColliders:98,changedColliders:88});c.builder.dispose();});
 test('bounded width contract rejects target/nontarget visibility geometry UV physical and support drift',()=>{
@@ -39,7 +39,7 @@ test('all nine actual facade midpoint rays retain only the central architectural
   assert.equal(ray.intersectObject(c.tower,true).length>0,i!==4,`side${sign} bay${i+1}`);
  }c.builder.dispose();
 });
-import {priorWidthComparison} from '../../lib/wumen-main-width-contract.mjs';
+import {priorWidthComparison} from '../../lib/wumen-side-portal-prior-comparison.mjs';
 import {captureRightLeaf,retainedSignature,digest} from '../../lib/wumen-right-leaf-fixture.mjs';
 const closed=JSON.parse(fs.readFileSync(new URL('../../fixtures/r157-wumen-main-width/closed-outside-411214.json',import.meta.url)));
 const originalGate=JSON.parse(fs.readFileSync(new URL('../../fixtures/r157-wumen-right-leaf/retained-be395.json',import.meta.url)));

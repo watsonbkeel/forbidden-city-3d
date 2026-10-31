@@ -9,7 +9,7 @@ function realTriangles(c){const rows=[],T=c.THREE;c.group.updateMatrixWorld(true
 test('actual CPU export retains every real material-group triangle including all single-material box and cylinder faces',()=>{
  const root=fs.mkdtempSync(path.join(os.tmpdir(),'wumen-width-cpu-')),out=path.join(root,'export');const env={...process.env};delete env.NODE_TEST_CONTEXT;
  try{const child=spawnSync(process.execPath,['--max-old-space-size=768','scripts/photo-fidelity/batches/r157-wumen-main-width/export-cpu.mjs',out,'after'],{cwd:fileURLToPath(new URL('../../../',import.meta.url)),env,encoding:'utf8',timeout:60000,maxBuffer:1024*1024});assert.equal(child.status,0,child.stderr);assert.equal(child.signal,null);
- const c=captureGate();try{const expected=realTriangles(c),proof=JSON.parse(fs.readFileSync(path.join(out,'PROOF.json')));assert.equal(expected.length,49152);
+ const c=captureGate();try{const expected=realTriangles(c),proof=JSON.parse(fs.readFileSync(path.join(out,'PROOF.json')));assert.equal(expected.length,49536);
  for(const v of Object.values(proof.views)){const data=JSON.parse(zlib.gunzipSync(fs.readFileSync(path.join(out,v.file))));assert.equal(data.triangles.length,expected.length,'actual all-face count, not a renamed proof label');assert.equal(digest(data.triangles),digest(expected),'all actual vertex/normal/color/material-side rows in order');const bad=structuredClone(data.triangles);bad.pop();assert.notEqual(digest(bad),digest(expected));}
  }finally{c.builder.dispose();}
  }finally{fs.rmSync(root,{recursive:true,force:true});}

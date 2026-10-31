@@ -1,4 +1,4 @@
-import {runWidthPredecessor} from '../../lib/wumen-main-width-historical-runner.mjs';
+import {runWidthPredecessor} from '../../lib/wumen-side-portal-historical-runner.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
 import {captureRightLeaf,retainedSignature} from '../../lib/wumen-right-leaf-fixture.mjs';
 const baseline=JSON.parse(fs.readFileSync(new URL('../../fixtures/r157-wumen-right-leaf/retained-be395.json',import.meta.url)));
