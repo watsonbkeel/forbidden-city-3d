@@ -1,0 +1,13 @@
+import fs from 'node:fs';import path from 'node:path';import zlib from 'node:zlib';import crypto from 'node:crypto';
+import {captureRightLeaf,retainedSignature} from '../../../../tests/lib/wumen-right-leaf-fixture.mjs';
+const out=process.argv[2];if(!out||fs.existsSync(out))throw Error('New output directory required');fs.mkdirSync(out,{recursive:true});
+const proof={accepted:false,scope:'ACTUAL_BUILD_GATE_SINGLE_WEST_DOOR_COMPONENT_PREMERGE_CPU_NO_TEXTURE_NO_GPU',views:{},priorView:'Counterfactual omit exactly new cap group; prior geometry preservation independently pinned to be395'};
+for(const [name,open,oblique]of [['open-front',true,0],['open-oblique',true,1],['closed-front',false,0]]){
+ const c=captureRightLeaf(open),T=c.THREE;try{const frame=c.group.getObjectByName('wumen-lower-door/west-yemen');let target;frame.traverse(o=>{if(o.userData.wumenRightLeafStuds)target=o;});const center=target.getWorldPosition(new T.Vector3()),eye=new T.Vector3(oblique,.1,open?-2.5:-5).applyMatrix4(target.matrixWorld),camera=new T.PerspectiveCamera(open?100:62,600/800,.03,100);camera.position.copy(eye);camera.lookAt(center);camera.updateMatrixWorld(true);
+ const cam={position:camera.position.toArray(),target:center.toArray(),fov:camera.fov,matrixWorldInverse:camera.matrixWorldInverse.toArray()},rows={before:[],after:[]};
+ frame.traverse(m=>{if(!m.isMesh)return;const a=m.geometry.attributes,idx=m.geometry.index,norm=new T.Matrix3().getNormalMatrix(m.matrixWorld),color=m.material.color.toArray(),isCap=m.parent===target;for(let i=0;i<(idx?.count??a.position.count);i+=3){const ids=[0,1,2].map(k=>idx?idx.getX(i+k):i+k),row={v:ids.map(j=>new T.Vector3().fromBufferAttribute(a.position,j).applyMatrix4(m.matrixWorld).toArray()),n:ids.map(j=>new T.Vector3().fromBufferAttribute(a.normal,j).applyNormalMatrix(norm).toArray()),c:[color,color,color],side:m.material.side,character:false};rows.after.push(row);if(!isCap)rows.before.push(row);}});
+ proof.views[name]={camera:cam,physical:retainedSignature(c),triangles:{before:rows.before.length,after:rows.after.length}};
+ for(const state of ['before','after']){const label=`right-yemen-${name}-${state}`,data={label,kind:proof.scope,diagnosticSize:[600,800],camera:cam,triangles:rows[state],sourceCharacterInstances:0};fs.writeFileSync(path.join(out,label+'.json.gz'),zlib.gzipSync(JSON.stringify(data)));}
+ }finally{c.builder.dispose();}}
+for(const p of ['src/scene/palace/special/WumenLowerBase.js','src/scene/palace/special/WumenRightLeafStuds.js','tests/lib/wumen-right-leaf-fixture.mjs']){proof.sourceHashes??={};proof.sourceHashes[p]=crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');}
+fs.writeFileSync(path.join(out,'PROOF.json'),JSON.stringify(proof,null,2)+'\n');
