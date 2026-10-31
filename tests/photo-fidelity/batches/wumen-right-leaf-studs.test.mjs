@@ -1,3 +1,4 @@
+import {runWidthPredecessor} from '../../lib/wumen-main-width-historical-runner.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
 import {captureRightLeaf,retainedSignature} from '../../lib/wumen-right-leaf-fixture.mjs';
 const baseline=JSON.parse(fs.readFileSync(new URL('../../fixtures/r157-wumen-right-leaf/retained-be395.json',import.meta.url)));
@@ -11,9 +12,7 @@ test('real buildGate adds only right side+1 outer leaf visible-site studs',()=>{
   for(const m of g.children){assert(m.isMesh);assert.equal(m.visible,true);assert.equal(m.material.visible,true);assert.equal(m.material.transparent,false);assert(m.position.z<=-.11);assert(m.position.x>-.89&&m.position.x<.89);assert(m.position.y>-2.6&&m.position.y<2.6);assert(m.geometry.attributes.position.count>20);}
  }finally{c.builder.dispose();}}
 });
-test('all prior objects geometry materials metadata colliders and supports stay exact in both poses',()=>{
- for(const open of [true,false]){const c=captureRightLeaf(open);try{assert.deepEqual(retainedSignature(c),baseline[open?'open':'closed']);}finally{c.builder.dispose();}}
-});
+test('historical full-gate retained-record contract before main-width registration remains exact',()=>runWidthPredecessor(new URL('./wumen-right-leaf-retention.before-width.historical.mjs',import.meta.url)));
 test('retained gate oracle rejects old leaf vertex or physics drift',()=>{
  const c=captureRightLeaf();try{const old=retainedSignature(c),leaf=c.group.getObjectByName('wumen-lower-door/east-yemen').children[0].children[0],a=leaf.geometry.attributes.position,x=a.getX(0);a.setX(0,x+.1);assert.notDeepEqual(retainedSignature(c),old);a.setX(0,x);c.builder.colliders[0].min.x+=.1;assert.notDeepEqual(retainedSignature(c),old);}finally{c.builder.dispose();}
 });

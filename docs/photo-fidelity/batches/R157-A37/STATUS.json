@@ -116,6 +116,39 @@
           "GPUAccepted": false,
           "remoteBackupStatus": "PENDING"
         }
+      },
+      "mainWidthFollowup": {
+        "status": "REVIEWED_LIMITED_DEV_CANDIDATE_OPEN_P1_HISTORY_COVERAGE",
+        "wholeObjectAccepted": false,
+        "baseline": "411214d091723b3a5078bbb9499321c2c5c3d354",
+        "scope": "工程拟合中央/侧跨1.43；52柱共十轴，48柱+40围护几何及88碰撞改变；四端柱几何/60.05×25包络/原点/台基/屋顶/支承保留，52柱来源状态均明确非测绘。",
+        "focused": "55/55，含真实World与8南排组件控制器；历史子TAP不重复计数",
+        "fullCurrentState": {
+          "baseline": [
+            1313,
+            1103,
+            210
+          ],
+          "candidate": [
+            1313,
+            1100,
+            213
+          ],
+          "delta": "仅3条旧等距/旧接触阈值合同转红，原117字节保留；不称全绿"
+        },
+        "batch": {
+          "filesRequested": 92,
+          "actualTopLevel": 524,
+          "pass": 514,
+          "fail": 10,
+          "priorTitlesNotExecuted": 38,
+          "blocker": "10个旧Git身份依赖缺失；8文件占位红+2实际历史保全红；不能用后继新专项冒充完整batch"
+        },
+        "buildBasesPassed": 3,
+        "GPUAccepted": false,
+        "remoteBackupStatus": "PENDING",
+        "evidence": "../R157-WUMEN-MAIN-WIDTH/CUMULATIVE-RESULT.json",
+        "independentReview": "../R157-WUMEN-MAIN-WIDTH/independent/REVIEW-TERMINAL-1304.md"
       }
     },
     {
@@ -1381,6 +1414,12 @@
         "characterClearance": "6clear/150renderedground/6negative probes with actual CharacterWorldAdapter; no crowd-simulation claim",
         "headProbes": "52actualwholeworld frame/pin/beam/air jumps pass"
       }
+    },
+    "wumenMainWidthFollowup": {
+      "kind": "SOURCE_BOUNDED_ACTUAL_MAIN_GRID_NOT_WHOLE_ACCEPTANCE",
+      "wholeObjectsAdded": 0,
+      "evidence": "../R157-WUMEN-MAIN-WIDTH/README.md",
+      "remaining": "历史batch P1缺口、完整木构/逐扇围护、午门整体坐标与翼亭比例、GPU/实机验收未闭合。"
     }
   },
   "remoteMainObservation": {

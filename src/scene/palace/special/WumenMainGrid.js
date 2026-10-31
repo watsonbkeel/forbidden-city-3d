@@ -1,8 +1,9 @@
 /** Main-tower horizontal reconstruction only. Diagram registration is not a
- * survey; the existing equally divided transverse grid is deliberately retained.
+ * survey; the centre-to-side ratio is a simplified fit within the retained envelope.
  * Reference photos/PDFs remain external and are never runtime assets. */
 export function wumenMainGrid({width,depth,bays,wallAxisZ,enclosureWidth}) {
-  const xAxes=Array.from({length:bays+1},(_,i)=>-width/2+i/bays*width);
+  const centreToSide=1.43,sideSpan=width/(8+centreToSide);
+  const xAxes=Array.from({length:10},(_,i)=>i<=4?-width/2+i*sideSpan:width/2-(9-i)*sideSpan);
   const innerAxis=3.2;
   const depthAxes=[-depth/2,-wallAxisZ,-innerAxis,innerAxis,wallAxisZ,depth/2];
   const facadeBays=[];
@@ -13,7 +14,13 @@ export function wumenMainGrid({width,depth,bays,wallAxisZ,enclosureWidth}) {
       operation:i===4?'RETAINED_CENTRAL_ARCHITECTURAL_PREVIEW':'CLOSED_UNVERIFIED'});
   }
   return {xAxes,depthAxes,facadeBays,metadata:{
-    depthBays:5,depthAxes,widthBaySpacing:'RETAINED_EQUAL_DIVISION_NOT_SURVEYED',
+    depthBays:5,depthAxes,widthBaySpacing:'SIMPLIFIED_SOURCE_RATIO_WITHIN_RETAINED_ENVELOPE_NOT_SURVEYED',
+    widthRegistration:{centreToSide,retainedEnvelopeM:width,columnAxisTotalSurveyed:false,equalSideBaysAreSimplification:true,
+      status:'GRAPHICAL_RATIO_FIT_NOT_INDIVIDUAL_BAY_MEASUREMENTS',
+      observedRatio:{publication2005:[1.44127,1.44153],publication2021:[1.43001,1.43071]},
+      limitations:'Source centres are graphical readings (at least about 1–2 pixels uncertainty); page-seam span excluded. End side bays appear slightly narrower. Publications may share a base drawing. No exhibition fixtures adopted.',
+      endpoints:'Retained model outer axes; published overall width does not expressly establish column-centre endpoints.',
+      sources:['https://img.dpm.org.cn/Uploads/pdf/4884/T00124_00.pdf','https://www.dpm.org.cn/Uploads/File/2021/11/23/u619c5a27422d3.pdf']},
     status:'SIX_DEPTH_AXES_SOURCE_REGISTERED_NOT_SURVEYED',completeTimberFrame:false,
     enclosureColumnVisibility:'OCCLUDED_BY_RETAINED_WALL_THICKNESS_NOT_FULL_VISUAL_RECONSTRUCTION',
     omitted:'Concealed intermediate gable columns and full-height timber/joinery are not reconstructed.',

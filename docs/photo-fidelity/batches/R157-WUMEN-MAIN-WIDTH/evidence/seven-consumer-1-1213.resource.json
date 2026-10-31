@@ -1,0 +1,23 @@
+{
+  "command": [
+    "node",
+    "--expose-gc",
+    "--max-old-space-size=1024",
+    "--test",
+    "--test-reporter=tap",
+    "--test-concurrency=1",
+    "tests/r159/cumulative-world.test.mjs"
+  ],
+  "exit": 0,
+  "elapsedSeconds": 26.969661782999992,
+  "maxRSSKiB": 1667356,
+  "node": "v24.22.1",
+  "head": "411214d091723b3a5078bbb9499321c2c5c3d354",
+  "sourceFreeze": "source-freeze-1210.json",
+  "qaFreeze": "qa-freeze-1210.json",
+  "runtimeDirty": [
+    "src/scene/palace/special/GateTowerMeasurements.js",
+    "src/scene/palace/special/GateTowerProfiles.js",
+    "src/scene/palace/special/WumenMainGrid.js"
+  ]
+}

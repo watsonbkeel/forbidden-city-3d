@@ -1,0 +1,49 @@
+{
+  "source-freeze-1210.json": {
+    "count": 590,
+    "exactActualPathSetAndSHA": true,
+    "manifestSHA": "7f7f367246658b099393767e0f617aea54abfe859529b2e8cd23b362fecc2278"
+  },
+  "qa-freeze-1259.json": {
+    "count": 4334,
+    "exactActualPathSetAndSHA": true,
+    "manifestSHA": "f9af57fb779dbfb9b795350d5542a94dba087bea6af829de3a297cecb3b16a8d"
+  },
+  "qaDelta": {
+    "added": [
+      "tests/photo-fidelity/batches/wumen-main-width-south-strip.test.mjs"
+    ],
+    "removed": [],
+    "modified": []
+  },
+  "focused": {
+    "counts": {
+      "tests": 55,
+      "pass": 55,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "logSHA": "b1aad25a8954be82d83ea9b7c9ea51eda780afd2ab202765e07aa8eb9cd29d7a",
+    "command": [
+      "node",
+      "--expose-gc",
+      "--max-old-space-size=1024",
+      "--test",
+      "--test-reporter=tap",
+      "--test-concurrency=1",
+      "tests/photo-fidelity/batches/wumen-main-width-cpu-export.test.mjs",
+      "tests/photo-fidelity/batches/wumen-main-width-movement.test.mjs",
+      "tests/photo-fidelity/batches/wumen-main-width-south-strip.test.mjs",
+      "tests/photo-fidelity/batches/wumen-main-width-world-comparison.test.mjs",
+      "tests/photo-fidelity/batches/wumen-main-width-world.test.mjs",
+      "tests/photo-fidelity/batches/wumen-main-width.test.mjs",
+      "tests/photo-fidelity/batches/wumen-main-grid.test.mjs",
+      "tests/photo-fidelity/batches/wumen-main-integration-equivalence.test.mjs",
+      "tests/photo-fidelity/batches/wumen-main-object-state.test.mjs",
+      "tests/photo-fidelity/batches/wumen-right-leaf-studs.test.mjs"
+    ],
+    "elapsedSeconds": 48.655579905000195,
+    "maxRSSKiB": 1702472
+  }
+}

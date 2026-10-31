@@ -1,7 +1,7 @@
 import {readWenhua493Gzip} from '../../../lib/r158-wenhua-world-fixture.mjs';
 import {physicalNonmutationFingerprint} from '../../../lib/r159-physical-nonmutation-fingerprint.mjs';
 // R159 comparison-only: authenticate six new solids before removing them from NEW aligned arrays; all movement stays raw W.
-import {r159JiaotaiPriorComparison} from '../../../lib/r159-jiaotai-prior-comparison.mjs';
+import {wumenWidthThenJiaotaiPriorComparison as r159JiaotaiPriorComparison} from '../../../lib/wumen-main-width-world-comparison.mjs';
 // Comparison only: authenticate raw new126 Wuying owners, restore old126 in a NEW view. All movement uses raw W.cm.
 import {wuying55PhysicsView} from '../../../lib/r158-wuying-55-physics-view.mjs';
 import {wenhua493PhysicsView} from '../../../lib/r158-wenhua-493-physics-view.mjs';

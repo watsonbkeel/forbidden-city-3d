@@ -1,0 +1,148 @@
+{
+  "status": "REVIEWED_LIMITED_DEVELOPMENT_CANDIDATE_WITH_OPEN_P1_HISTORY_COVERAGE_BLOCKER",
+  "accepted": false,
+  "releaseAccepted": false,
+  "wholeObjectCompleted": false,
+  "wholeObjectsAdded": 0,
+  "GPUAccepted": false,
+  "remoteBackupStatus": "PENDING",
+  "baseline": "411214d091723b3a5078bbb9499321c2c5c3d354",
+  "sourceCount": 590,
+  "changedProductionFiles": [
+    "src/scene/palace/special/GateTowerMeasurements.js",
+    "src/scene/palace/special/GateTowerProfiles.js",
+    "src/scene/palace/special/WumenMainGrid.js"
+  ],
+  "sourceFreeze": "evidence/source-freeze-1210.json",
+  "qaFreeze": "evidence/qa-freeze-1259.json",
+  "qaCount": 4334,
+  "geometry": {
+    "centreSideRatio": 1.43,
+    "surveyed": false,
+    "sideBaysEqualSimplification": true,
+    "retainedEnvelope": [
+      60.05,
+      25
+    ],
+    "mainMeshCount": 105,
+    "changedGeometryParts": 88,
+    "changedLocalColliders": 88,
+    "localColliderCount": 98,
+    "columnStatusChanges": 52,
+    "geometryFixedEndColumnsWithStatusChange": 4
+  },
+  "physical": {
+    "actualWorldColliders": 30882,
+    "actualWorldSupports": 1365,
+    "comparisonOnlyRowsMapped": 88,
+    "rawWorldQueriesUnchanged": true,
+    "nonTargetRetention": "Exact old full-row/support/water chained hashes; not merely count equality"
+  },
+  "actualWorldFirstTrace": {
+    "testPass": 1,
+    "northXSideCombinations": 24,
+    "arrived": 16,
+    "expectedBlocked": 8,
+    "recordedFrames": 1188,
+    "evidence": "evidence/world-first.json",
+    "note": "Initial frozen actual World trace; later World reruns are not added as unique route counts"
+  },
+  "sevenConsumers": {
+    "files": 7,
+    "topLevelPassed": 11,
+    "onlyImportLineChanged": true
+  },
+  "focusedFinal": {
+    "files": 10,
+    "topLevel": 55,
+    "pass": 55,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "newWidthTopLevel": 42,
+    "retainedRightLeafLive": 9,
+    "historyWrappers": 4,
+    "originalHistoricalChildrenExecuted": 10,
+    "note": "Do not add historical child TAP again as live coverage",
+    "resource": "evidence/focused-final-1259.resource.json"
+  },
+  "southStrip": {
+    "scope": "COMPONENT_RAW_CONTROLLER_NOT_WORLD",
+    "candidatePassed": 8,
+    "oldThreeSourceCounterfactualFailed": 8,
+    "frames": 840,
+    "stopDistanceRangeM": [
+      3.407606342002306,
+      3.6239736062849888
+    ],
+    "expectedFirstContactM": 3.632751817396059,
+    "maxSubstepToleranceM": 0.26,
+    "toleranceReason": "Collision.js splits travel into <= max(radius*.5,.05)=.25m for radius.5; window adds .01m numerical allowance",
+    "feetY": 12.3
+  },
+  "fullCurrentState": {
+    "scope": "Fresh restored-environment clean baseline and fully materialized candidate, each original117 files in three original commands",
+    "baseline": {
+      "tests": 1313,
+      "pass": 1103,
+      "fail": 210
+    },
+    "candidate": {
+      "tests": 1313,
+      "pass": 1100,
+      "fail": 213
+    },
+    "cancelled": 0,
+    "skipped": 0,
+    "changedStatusTitles": 3,
+    "classification": "Two old equal-X assertions and one old <3m south-strip threshold; originals remain red and untouched; bounded successors verified",
+    "completeCounters": "evidence/full-restored-ab-comparison-1247.json",
+    "oldLostLogsRecovered": false,
+    "recordMeaning": "TAP top-level records include inherited file-level failures; not a claim that every historical nested assertion executed or passed"
+  },
+  "batch": {
+    "requestedFiles": 92,
+    "actualTopLevel": 524,
+    "pass": 514,
+    "fail": 10,
+    "cancelled": 0,
+    "skipped": 0,
+    "expectedIfHistoryAvailable": 554,
+    "fileFailurePlaceholders": 8,
+    "actualHistoricalTestsFailed": 2,
+    "priorTitlesNotExecuted": 38,
+    "newWidthTopLevelExecutedPassed": 34,
+    "complete": false,
+    "blocker": "Ten direct original Git refs absent; first three remote refs also unavailable. No substituted historical source, no assertion deletion",
+    "comparison": "independent/batch-terminal-independent-1300.json"
+  },
+  "build": {
+    "bases": [
+      "/gugong/",
+      "/forbidden-city-3d/",
+      "/"
+    ],
+    "pass": 3,
+    "modulesEach": 568,
+    "sourceCommitDuringBuild": "411214d091723b3a5078bbb9499321c2c5c3d354",
+    "sourceDirty": true,
+    "runtimeFingerprint": "9e5929eda9b12b24c243c26060e0dae9114b864777133187d0d2a74292057ae1",
+    "entryIntegrity": "evidence/build-entry-integrity-1220.json"
+  },
+  "cpu": {
+    "actualTrianglesEachFinalView": 49152,
+    "changedTriangles": 2784,
+    "sameCameras": true,
+    "oldIncompleteTriangles": 40684,
+    "oldImagesAccepted": false,
+    "GPU": false,
+    "scope": "Actual full gate premerge CPU base color; retained walls occlude internal columns; not complete visual/fidelity acceptance"
+  },
+  "independentReview": "independent/REVIEW-TERMINAL-1304.md",
+  "remaining": [
+    "P1 full legacy batch history coverage:38 old titles not executed",
+    "Original three current-state grid/contact assumptions remain red, not retroactively rewritten",
+    "Full timber/through-columns, per-leaf doors/windows, macro origin/wing proportions unresolved",
+    "GPU/real-device visual and performance/NPC simulation acceptance not established"
+  ]
+}

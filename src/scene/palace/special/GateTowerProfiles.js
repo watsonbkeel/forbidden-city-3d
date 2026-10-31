@@ -3,7 +3,7 @@ import {WUMEN_VERTICAL_PROFILE} from './WumenVerticalProfile.js';
 import {wumenMainGrid} from './WumenMainGrid.js';
 const PROVISIONAL='PROVISIONAL_PREVIEW_NOT_SURVEYED';
 /** Wumen's six depth axes and per-bay enclosure are evidence-bounded previews.
- * Exterior transverse axes, vertical profile and central door topology remain.
+ * Transverse axes share a source-bounded fit; vertical profile and central doors remain.
  * gallerySetback is an axis distance, not a surveyed clear gallery width. */
 export function wumenTowerGeometry({gallerySetback=2.9}={}) {
   if(!Number.isFinite(gallerySetback)||gallerySetback<2.6||gallerySetback>3.2)throw new Error('Wumen gallery axis setback must stay within the approved 2.6–3.2m model band');
@@ -14,8 +14,8 @@ export function wumenTowerGeometry({gallerySetback=2.9}={}) {
   const grid=wumenMainGrid({width,depth,bays,wallAxisZ,enclosureWidth});
   // Two main interior rows and two recessed enclosure rows. Gable-concealed
   // intermediate shafts are deferred rather than invented outside the old wall.
-  for(const x of grid.xAxes.slice(1,-1))for(const z of grid.depthAxes.slice(1,-1))columns.push({kind:'interior-column',x,z,radius:.42,bottomRadius:.42*1.05,height:wallH,status:'SOURCE_REGISTERED_DEPTH_RETAINED_WIDTH_AND_SHAFT_PREVIEW'});
-  for(let i=0;i<=bays;i++)for(const z of [-depth/2,depth/2])columns.push({kind:'outer-column',x:-width/2+i/bays*width,z,radius:outerRadius,bottomRadius:outerRadius*1.05,height:wallH,status:'RETAINED_PLAN_SOURCE_REGISTERED_HEIGHT_NOT_SURVEYED'});
+  for(const x of grid.xAxes.slice(1,-1))for(const z of grid.depthAxes.slice(1,-1))columns.push({kind:'interior-column',x,z,radius:.42,bottomRadius:.42*1.05,height:wallH,status:'SOURCE_BOUNDED_WIDTH_AND_DEPTH_SHAFT_PREVIEW_NOT_SURVEYED'});
+  for(const x of grid.xAxes)for(const z of [-depth/2,depth/2])columns.push({kind:'outer-column',x,z,radius:outerRadius,bottomRadius:outerRadius*1.05,height:wallH,status:'SOURCE_BOUNDED_WIDTH_RETAINED_HEIGHT_NOT_SURVEYED'});
   return {id:'axis/wumen-upper-tower',name:'午门',width,depth,height,bays,beamH,wallH,T,columns,xAxes:grid.xAxes,facadeBays:grid.facadeBays,
     enclosure:{width:enclosureWidth,outerZ,wallAxisZ,innerZ:wallAxisZ-T/2},
     openings:[{side:'north',sign:1,...door},{side:'south',sign:-1,...door}],

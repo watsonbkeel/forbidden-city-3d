@@ -1,4 +1,4 @@
-import {r159JiaotaiPriorComparison} from '../lib/r159-jiaotai-prior-comparison.mjs';
+import {wumenWidthThenJiaotaiPriorComparison as r159JiaotaiPriorComparison} from '../lib/wumen-main-width-world-comparison.mjs';
 import test from'node:test';import assert from'node:assert/strict';import fs from'node:fs';
 import{buildR52World}from'../lib/r52-world.mjs';import{taiheWorldPhysics}from'../lib/r157-taihe-world-retention.mjs';import{wuying55PhysicsView}from'../lib/r158-wuying-55-physics-view.mjs';
 import{assertJiaotaiDisplayInWorld,replayJiaotaiDisplayRoute}from'../lib/r54-jiaotai-world-check.mjs';

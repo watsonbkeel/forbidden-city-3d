@@ -1,5 +1,5 @@
 // R159 comparison-only: authenticate six new solids before removing them from NEW aligned arrays; all movement stays raw W.
-import {r159JiaotaiPriorComparison} from '../../../lib/r159-jiaotai-prior-comparison.mjs';
+import {wumenWidthThenJiaotaiPriorComparison as r159JiaotaiPriorComparison} from '../../../lib/wumen-main-width-world-comparison.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
 import {buildR52World} from '../../../lib/r52-world.mjs';import {taiheWorldPhysics} from '../../../lib/r157-taihe-world-retention.mjs';import {assertWuying55PhysicsProof} from './physics-proof.mjs';
 test('Actual cumulative World authenticates126 reviewed Wuying owners, retains30750 other colliders and1365 supports, and rejects seven physical drifts without mutating runtime',async()=>{

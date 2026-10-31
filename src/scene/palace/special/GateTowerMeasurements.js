@@ -2,7 +2,7 @@
  * Values describe their stated endpoints, never historical usable clear widths. */
 export const GATE_TOWER_MEASUREMENTS = Object.freeze({
   wumen: {
-    grid: { width:60.05, depth:25, status:'OFFICIAL_COLUMN_AXIS_TOTAL', source:'https://www.dpm.org.cn/explore/building/236454.html' },
+    grid: { width:60.05, depth:25, status:'OFFICIAL_OVERALL_DIMENSIONS_AXIS_ENDPOINTS_UNSPECIFIED', source:'https://www.dpm.org.cn/explore/building/236454.html' },
     gallery: { axisSetback:2.9, modelUncertainty:.3, status:'PROVISIONAL_DIAGRAM_REGISTERED_NOT_SURVEYED', endpoints:'outer eave-column axis to inner enclosure axis',
       sources:['https://img.dpm.org.cn/Uploads/pdf/4884/T00124_00.pdf','https://img.dpm.org.cn/Uploads/pdf/4884/T00114_00.pdf'],
       registrationM:[2.8846153846,2.8205128205,2.9310344828,2.9885057471],
