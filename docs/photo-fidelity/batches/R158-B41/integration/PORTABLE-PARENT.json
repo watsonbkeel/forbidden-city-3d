@@ -1,0 +1,54 @@
+{
+  "status": "INDEPENDENTLY_REVIEWED_QA_ONLY_PORTABLE_PARENT",
+  "productionCommitUnchanged": "c5dcaffafb534f51008c5c8b500a0ca6222293a4",
+  "sourceCommit": "c9b25a712e286877f2abbc88f4522add3fc0caea",
+  "scope": "Exactly two historically selected parent files, using the same current imports as the original tests; NOT a complete historical dependency closure",
+  "reader": "Existing reviewed Git-first missing-commit-only reader unchanged",
+  "originalAssertions": {
+    "retention.test.mjs": "Only reader import and historical source acquisition changed; all remaining bytes exact",
+    "scope.test.mjs": "Only reader import and historical source acquisition changed; all remaining bytes exact",
+    "cpu-diagnostic.mjs": "Only reader import and historical source acquisition changed; all remaining bytes exact"
+  },
+  "originalGit": {
+    "tests": 5,
+    "pass": 5
+  },
+  "noHistoryIsolation": {
+    "beforeFailedFiles": 2,
+    "afterTests": 5,
+    "afterPass": 5,
+    "isActualRemoteClone": false
+  },
+  "sharedReaderNegativeControls": {
+    "tests": 9,
+    "pass": 9
+  },
+  "logSHA256": {
+    "portable-no-history-focused-0310.log": "d28edd9746bdff6132cb382bce3912145f3287a202d8b262d2a202288881d196",
+    "portable-pin-red-0308.log": "2bbf8d457fa56ba5184c4b99d2475d1be4a0406923d8a465d55fb15581ae8b01",
+    "portable-shared-reader-0309.log": "fa026674903f36cc5a9bbdb649c7f61a2a25f4fbeabc9981a8961114c691fd84",
+    "portable-original-git-0309.log": "42ec3e6e72dd4e98495c934c00dbd9b6a72b1c9e0462649b960fba2bc30e46ad",
+    "portable-focused-0310.log": "c1bb7c0df1b83def9cd2c4ba1e51b2ca0f07ee8763e39fdea97161191570a04e",
+    "portable-no-history-0309.log": "47a2e37839a3f85c7d7252810b9c0478f6a09a9a46cb04f4ed45a83bbabca4a9",
+    "portable-parent-red-0308.log": "062f95ba48fc38c0f664c06666b0f159603eecba5c49b48a7c889d17dfc02856"
+  },
+  "finalFocused": {
+    "originalGit": {
+      "tests": 27,
+      "pass": 27
+    },
+    "isolatedNoHistory": {
+      "tests": 27,
+      "pass": 27
+    }
+  },
+  "independentReview": {
+    "result": "APPROVED_NO_P0_P1_P2",
+    "originalGitPass": 5,
+    "sharedNegativeControlPass": 9,
+    "emptyGitObjectDatabasePass": 5,
+    "scope": "Verified original commit+6 tree objects+2 blobs against Git, unchanged assertion bytes and reader logic,575 production hashes; thread attestation, not author log attribution",
+    "wholeHistoricalClosure": false,
+    "actualRemoteClone": false
+  }
+}

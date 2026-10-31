@@ -79,8 +79,8 @@ export const PALACE_LAYOUT = [
     position: { x: 0, y: 0, z: LAYOUT.TAIHE_GATE_Z },
     dimensions: { ...DIMENSIONS.TAIHE_GATE },
     features: {
-      roofType: 'wudian',
-      roofLayers: 1,
+      roofType: 'xieshan',
+      roofLayers: 2,
     },
   },
   

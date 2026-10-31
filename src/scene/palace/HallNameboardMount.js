@@ -1,7 +1,9 @@
 import * as THREE from 'three';
+import {refineTaihemenNameboard} from './special/TaihemenNameboardFrame.js';
 
-// Official front photographs place these three nameboards between roof tiers.
-// Existing board size/art is deliberately retained: neither is surveyed here.
+// Official front photographs place these nameboards between roof tiers.
+// Existing board size/art is retained for other halls. Taihemen alone applies
+// its own photographed frame silhouette after this unchanged safe mounting fit.
 export const DOUBLE_EAVE_NAMEBOARDS = Object.freeze(['太和殿','保和殿','乾清宫','太和门','坤宁宫','皇极殿','慈宁宫','奉先殿']);
 export const HALL_NAMEBOARD_MOUNT = Object.freeze({
   wallGap: .12, surfaceMargin: .03,
@@ -10,6 +12,7 @@ export const HALL_NAMEBOARD_MOUNT = Object.freeze({
 
 export function positionHallNameboard(plaque, roof, name, {fitSizeToBand=false}={}) {
   if (!DOUBLE_EAVE_NAMEBOARDS.includes(name)) return false;
+  if (name === '太和门' && plaque.userData.taihemenFrame) { refineTaihemenNameboard(plaque, roof); return true; }
   const band=roof.userData.doubleEaveMountingBand;
   const {width,height,depth}=plaque.geometry.parameters;
   if (!band || ![width,height,depth,band.lowerY,band.upperY,band.halfDepth].every(Number.isFinite)
@@ -52,5 +55,6 @@ export function positionHallNameboard(plaque, roof, name, {fitSizeToBand=false}=
     sizeScale,sizeFitStatus:sizeScale===1?'ORIGINAL_SIZE_RETAINED':'EXPLICIT_SOURCE_GUIDED_MODEL_FIT_NOT_SURVEY',
     appearanceStatus:name==='乾清宫'?'SIMPLIFIED_HAN_ONLY_MANCHU_AND_CARVED_FRAME_UNRESOLVED':'SIMPLIFIED_SYSTEM_FONT_AND_RECTANGULAR_FRAME',
   };
+  if (name === '太和门') refineTaihemenNameboard(plaque, roof);
   return true;
 }

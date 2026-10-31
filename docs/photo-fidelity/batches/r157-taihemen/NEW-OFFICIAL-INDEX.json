@@ -1,0 +1,770 @@
+{
+  "queriedAt": "2026-10-31",
+  "discoveryChain": [
+    {
+      "method": "GET",
+      "url": "https://pano.dpm.org.cn/",
+      "result": "Current official app.8f4d2108.js and chunk-5b0687ef.404dc544.js disclose public read endpoints/payload names."
+    },
+    {
+      "method": "POST",
+      "url": "https://api-pano.dpm.org.cn/panorama/api/panorama/getIndexData",
+      "body": {},
+      "result": "region20/vp2038 group4 from index, not invented"
+    },
+    {
+      "method": "POST",
+      "url": "https://api-pano.dpm.org.cn/panorama/api/panorama/vpDetail",
+      "body": {
+        "id": "2038"
+      },
+      "result": "Named太和门 hotspot targetSphPicId1943123793533517824"
+    },
+    {
+      "method": "POST",
+      "url": "https://api-pano.dpm.org.cn/panorama/api/panorama/sphPicDetail",
+      "body": {
+        "id": "1943123793533517824"
+      },
+      "result": "viewpoint2805, group9, own name太和门"
+    },
+    {
+      "method": "POST",
+      "url": "https://api-pano.dpm.org.cn/panorama/api/panorama/vpGroupDetail",
+      "body": {
+        "id": "9",
+        "viewpointId": "2805"
+      },
+      "result": "Own9 drawings, gate/prop/frame photos and29 named viewpoints"
+    }
+  ],
+  "currentBrowserEntry": "https://pano.dpm.org.cn/#/panorama?regionId=20&secondAreaId=9&vpId=2805&sphPicId=1943123793533517824",
+  "full360Viewed": false,
+  "protectedTileBoundary": "Public ordinary JPEG photo/drawing URLs only. No protected tile-token generation, CAPTCHA bypass or credential use attempted.",
+  "sources": [
+    {
+      "id": "T-OPEN-NORTH",
+      "url": "https://file-pano.dpm.org.cn/hotspotImage/2026/06/25/9a2e7efc895746a5b5ebe19eabee1008.jpg",
+      "hotspotId": "2041412287598530560",
+      "kind": "own_gate_photo",
+      "actuallyViewedPixelsThisReview": true,
+      "pixelSize": [
+        1920,
+        1280
+      ],
+      "sha256": "e941b9cb8a2f10df4b6c8d8b01f950f46c27f8ef17b1926a240de1e0b1f926d6",
+      "localResearchFile": "open-taihemen.jpg",
+      "photographyDate": null,
+      "uploadPathDate": "2026-06-25",
+      "drawingDate": null,
+      "drawingDateBasis": null,
+      "use": "从太和门看向北面太和殿的中央门口。可见开启的门钉板门、四门簪、红金围框、门槛及穿越方向；只证明可见中央门，不是完整门叶/家具库存。",
+      "redistributionAuthorized": false,
+      "includedInPublicPackage": false,
+      "currentFabricAcceptance": false,
+      "apiReportedPixelSize": [
+        8533,
+        5689
+      ],
+      "resolutionCaution": "实际返回并看的是1920×1280，不冒称已看原标记高分辨率。"
+    },
+    {
+      "id": "T-DRAW-01",
+      "url": "https://file-pano.dpm.org.cn/hotspotImage/2026/06/25/9ffe7efdc99049fcac1671c0c4875493.jpg",
+      "hotspotId": "2033458171295404032",
+      "kind": "historical_architectural_drawing",
+      "actuallyViewedPixelsThisReview": true,
+      "pixelSize": [
+        1920,
+        1302
+      ],
+      "sha256": "807ae48cd0e37340687e2db56929c6e309a8ebd5aa8d27488855a183880767ea",
+      "localResearchFile": "drawing-01.jpg",
+      "photographyDate": null,
+      "uploadPathDate": "2026-06-25",
+      "drawingDate": "1941-08",
+      "drawingDateBasis": "图签“中华民国三十年”及月，非URL日期",
+      "use": "正面九开间、两层歇山、端间封护及三门、基座/前阶关系；可与现代正面比较，不直接当现状验收。",
+      "redistributionAuthorized": false,
+      "includedInPublicPackage": false,
+      "currentFabricAcceptance": false,
+      "printedScaleLegibility": "图签有比例尺与公尺单位，但很多细尺寸在本次实际1920px响应中不可可靠辨读；不转抄猜数。"
+    },
+    {
+      "id": "T-DRAW-02",
+      "url": "https://file-pano.dpm.org.cn/hotspotImage/2026/06/25/4ea29baa8d8e4defb80881118d0379a0.jpg",
+      "hotspotId": "2033458171295404032",
+      "kind": "historical_architectural_drawing",
+      "actuallyViewedPixelsThisReview": true,
+      "pixelSize": [
+        1920,
+        1326
+      ],
+      "sha256": "7496ce4f3af2c5bed1b66859b9ea98877ab20b2824b4ee090154827051f91758",
+      "localResearchFile": "drawing-02.jpg",
+      "photographyDate": null,
+      "uploadPathDate": "2026-06-25",
+      "drawingDate": "1941-09",
+      "drawingDateBasis": "图签“中华民国三十年”及月，非URL日期",
+      "use": "沿面阔方向纵剖，三门围框、内壁/砖下碱和上部梁架层次；不是所有隐蔽构造的现代测绘。",
+      "redistributionAuthorized": false,
+      "includedInPublicPackage": false,
+      "currentFabricAcceptance": false,
+      "printedScaleLegibility": "图签有比例尺与公尺单位，但很多细尺寸在本次实际1920px响应中不可可靠辨读；不转抄猜数。"
+    },
+    {
+      "id": "T-DRAW-03",
+      "url": "https://file-pano.dpm.org.cn/hotspotImage/2026/06/25/6b1b0f95af92476181f0afd6e89b8ee8.jpg",
+      "hotspotId": "2033458171295404032",
+      "kind": "historical_architectural_drawing",
+      "actuallyViewedPixelsThisReview": true,
+      "pixelSize": [
+        1920,
+        1299
+      ],
+      "sha256": "c5a024de7a23b07ba44f740a3fe5a031d310eee9b8667219b50b0979fa9e850a",
+      "localResearchFile": "drawing-03.jpg",
+      "photographyDate": null,
+      "uploadPathDate": "2026-06-25",
+      "drawingDate": "1941-08",
+      "drawingDateBasis": "图签“中华民国三十年”及月，非URL日期",
+      "use": "两山外轮廓与相接廊庑的高低关系、台基侧阶；不是可自动复制的侧门通路。",
+      "redistributionAuthorized": false,
+      "includedInPublicPackage": false,
+      "currentFabricAcceptance": false,
+      "printedScaleLegibility": "图签有比例尺与公尺单位，但很多细尺寸在本次实际1920px响应中不可可靠辨读；不转抄猜数。"
+    },
+    {
+      "id": "T-DRAW-04",
+      "url": "https://file-pano.dpm.org.cn/hotspotImage/2026/06/25/37fc1269702c4969bd669a69c7f29c1f.jpg",
+      "hotspotId": "2033458171295404032",
+      "kind": "historical_architectural_drawing",
+      "actuallyViewedPixelsThisReview": true,
+      "pixelSize": [
+        1920,
+        1339
+      ],
+      "sha256": "7c5b052f76efaa7bc161b11047cadc68bf45a733c323dbfa0bb4518a8ae3b366",
+      "localResearchFile": "drawing-04.jpg",
+      "photographyDate": null,
+      "uploadPathDate": "2026-06-25",
+      "drawingDate": "1941-08",
+      "drawingDateBasis": "图签“中华民国三十年”及月，非URL日期",
+      "use": "深度方向横剖，屋架/斗栱/柱层与台阶高差。须辨实际柱、剖切构件和中轴/尺寸线；不可把每条细线建成落地柱。",
+      "redistributionAuthorized": false,
+      "includedInPublicPackage": false,
+      "currentFabricAcceptance": false,
+      "printedScaleLegibility": "图签有比例尺与公尺单位，但很多细尺寸在本次实际1920px响应中不可可靠辨读；不转抄猜数。"
+    },
+    {
+      "id": "T-DRAW-05",
+      "url": "https://file-pano.dpm.org.cn/hotspotImage/2026/06/25/ee278e30161e4815a2abdb4eeb952281.jpg",
+      "hotspotId": "2033458171295404032",
+      "kind": "historical_architectural_drawing",
+      "actuallyViewedPixelsThisReview": true,
+      "pixelSize": [
+        1920,
+        1326
+      ],
+      "sha256": "72fdfb35eb7daba9058cb9910ad41b5b1509960e5b7098bc8235a174db21a4a0",
+      "localResearchFile": "drawing-05.jpg",
+      "photographyDate": null,
+      "uploadPathDate": "2026-06-25",
+      "drawingDate": "1941-08",
+      "drawingDateBasis": "图签“中华民国三十年”及月，非URL日期",
+      "use": "四分图并列表达不同层的天花/屋架平面，包含方格分区；不等于画面左上单象限是实际唯一有顶区域，也不能不读注记直接镜像。",
+      "redistributionAuthorized": false,
+      "includedInPublicPackage": false,
+      "currentFabricAcceptance": false,
+      "printedScaleLegibility": "图签有比例尺与公尺单位，但很多细尺寸在本次实际1920px响应中不可可靠辨读；不转抄猜数。"
+    },
+    {
+      "id": "T-DRAW-06",
+      "url": "https://file-pano.dpm.org.cn/hotspotImage/2026/06/25/fd3247c5b9bc43cca0efc494accc5470.jpg",
+      "hotspotId": "2033458171295404032",
+      "kind": "historical_architectural_drawing",
+      "actuallyViewedPixelsThisReview": true,
+      "pixelSize": [
+        1920,
+        1334
+      ],
+      "sha256": "a216af919ef25fc6d5b14c179acb1975a280d3b94d8d89305bd18bd97943593e",
+      "localResearchFile": "drawing-06.jpg",
+      "photographyDate": null,
+      "uploadPathDate": "2026-06-25",
+      "drawingDate": "1941-09",
+      "drawingDateBasis": "图签“中华民国三十年”及月，非URL日期",
+      "use": "主门独立平面，四个进深区间、非均匀柱间、近北内门线、两端围护与前后/侧阶。须逐柱读占位和墙柱嵌合，不直接从“4进深”变10×5满格。",
+      "redistributionAuthorized": false,
+      "includedInPublicPackage": false,
+      "currentFabricAcceptance": false,
+      "printedScaleLegibility": "图签有比例尺与公尺单位，但很多细尺寸在本次实际1920px响应中不可可靠辨读；不转抄猜数。"
+    },
+    {
+      "id": "T-DRAW-07",
+      "url": "https://file-pano.dpm.org.cn/hotspotImage/2026/06/25/340508d297d6402fa178d66bad95d27f.jpg",
+      "hotspotId": "2033458171295404032",
+      "kind": "historical_architectural_drawing",
+      "actuallyViewedPixelsThisReview": true,
+      "pixelSize": [
+        1920,
+        1337
+      ],
+      "sha256": "601e2136fac726c2583a377e43428b84a16041b79aeaa19742cd33defb915675",
+      "localResearchFile": "drawing-07.jpg",
+      "photographyDate": null,
+      "uploadPathDate": "2026-06-25",
+      "drawingDate": "1941-08",
+      "drawingDateBasis": "图签“中华民国三十年”及月，非URL日期",
+      "use": "太和门与昭德/贞度、崇楼、廊庑的正/后立面总关系，名称同页但实体分别保留。",
+      "redistributionAuthorized": false,
+      "includedInPublicPackage": false,
+      "currentFabricAcceptance": false,
+      "printedScaleLegibility": "图签有比例尺与公尺单位，但很多细尺寸在本次实际1920px响应中不可可靠辨读；不转抄猜数。"
+    },
+    {
+      "id": "T-DRAW-08",
+      "url": "https://file-pano.dpm.org.cn/hotspotImage/2026/06/25/b004f2014fb34af795c3dd25f976574a.jpg",
+      "hotspotId": "2033458171295404032",
+      "kind": "historical_architectural_drawing",
+      "actuallyViewedPixelsThisReview": true,
+      "pixelSize": [
+        1920,
+        1336
+      ],
+      "sha256": "3153c7011acf22399a228adfd96e65429e8c67df29d8eaf2ba9f27ee352915bf",
+      "localResearchFile": "drawing-08.jpg",
+      "photographyDate": null,
+      "uploadPathDate": "2026-06-25",
+      "drawingDate": "1941-10",
+      "drawingDateBasis": "图签“中华民国三十年”及月，非URL日期",
+      "use": "太和门广场总平面、五桥/河道、两侧门庑及主门前设施关系；不是项目地图position直接转米制的依据。",
+      "redistributionAuthorized": false,
+      "includedInPublicPackage": false,
+      "currentFabricAcceptance": false,
+      "printedScaleLegibility": "图签有比例尺与公尺单位，但很多细尺寸在本次实际1920px响应中不可可靠辨读；不转抄猜数。"
+    },
+    {
+      "id": "T-DRAW-09",
+      "url": "https://file-pano.dpm.org.cn/hotspotImage/2026/06/25/6c6a5b8c76e2435cb63fdec1b8a02cf7.jpg",
+      "hotspotId": "2033458171295404032",
+      "kind": "historical_architectural_drawing",
+      "actuallyViewedPixelsThisReview": true,
+      "pixelSize": [
+        1920,
+        1341
+      ],
+      "sha256": "57216074f95461986bc3c82b3ab1fd19b0335e9621f929218814437a7e6dc2a6",
+      "localResearchFile": "drawing-09.jpg",
+      "photographyDate": null,
+      "uploadPathDate": "2026-06-25",
+      "drawingDate": "1941-09",
+      "drawingDateBasis": "图签“中华民国三十年”及月，非URL日期",
+      "use": "总侧剖，主门与熙和门、河/拱桥及长廊的高差/纵向关系。不得凭历史总图重建未知消失设施。",
+      "redistributionAuthorized": false,
+      "includedInPublicPackage": false,
+      "currentFabricAcceptance": false,
+      "printedScaleLegibility": "图签有比例尺与公尺单位，但很多细尺寸在本次实际1920px响应中不可可靠辨读；不转抄猜数。"
+    },
+    {
+      "id": "T-INCENSE-CLOSE",
+      "url": "https://file-pano.dpm.org.cn/hotspotImage/2026/06/25/c5535279e693460aaa7469b9eaad72f2.jpg",
+      "hotspotId": "2013434917277241344",
+      "kind": "own_object_close_photo",
+      "actuallyViewedPixelsThisReview": true,
+      "pixelSize": [
+        1280,
+        1920
+      ],
+      "sha256": "f206d75585a9ec73a5835a27a6d37a1bf2d3aa83ba1fdd034c2d25060bc560a9",
+      "localResearchFile": "bronze-incense.jpg",
+      "photographyDate": null,
+      "uploadPathDate": "2026-06-25",
+      "use": "可见双檐盖、圆腹三足、双曲耳及镂空圆石座；仅这一件视角，不足以指定四炉全部朝向/背面/位置。",
+      "redistributionAuthorized": false,
+      "includedInPublicPackage": false,
+      "currentFabricAcceptance": false
+    },
+    {
+      "id": "T-STONE-PAVILION",
+      "url": "https://file-pano.dpm.org.cn/hotspotImage/2026/06/25/eefa8391178b42d7a3425a34f486b95b.jpg",
+      "hotspotId": "2013434618500190208",
+      "kind": "own_object_close_photo",
+      "actuallyViewedPixelsThisReview": true,
+      "pixelSize": [
+        1280,
+        1920
+      ],
+      "sha256": "963dddc7113704e547cd7a1044ac789b12242c0e2af3e0eb1516c311c42ba250",
+      "localResearchFile": "stone-pavilion.jpg",
+      "photographyDate": null,
+      "uploadPathDate": "2026-06-25",
+      "use": "可见小型石质亭式构件、顶、开口和多层基座；不可当普通园林凉亭或可进入建筑。",
+      "redistributionAuthorized": false,
+      "includedInPublicPackage": false,
+      "currentFabricAcceptance": false
+    },
+    {
+      "id": "T-STONE-BOX",
+      "url": "https://file-pano.dpm.org.cn/hotspotImage/2026/06/25/40c764efb40748d489b377ebf83589cd.jpg",
+      "hotspotId": "2013434459028557824",
+      "kind": "own_object_close_photo",
+      "actuallyViewedPixelsThisReview": true,
+      "pixelSize": [
+        1920,
+        1280
+      ],
+      "sha256": "1f687638fec37a62aaac767eb1e621cf966123c97ff9037c8908c3ee6c3f0c48",
+      "localResearchFile": "stone-box.jpg",
+      "photographyDate": null,
+      "uploadPathDate": "2026-06-25",
+      "use": "可见石盒/石匮与独立盖、残损顶部构件及卷纹底座；破损原貌不凭对称补雕。",
+      "redistributionAuthorized": false,
+      "includedInPublicPackage": false,
+      "currentFabricAcceptance": false
+    },
+    {
+      "id": "T-NAMEBOARD-CLOSE",
+      "url": "https://file-pano.dpm.org.cn/hotspotImage/2026/06/25/581b39ceebc04fd5a1a7e77249fe0c5b.jpg",
+      "hotspotId": "2013431467143434240",
+      "kind": "own_object_close_photo",
+      "actuallyViewedPixelsThisReview": true,
+      "pixelSize": [
+        1280,
+        1920
+      ],
+      "sha256": "2602c52db66b1e99900d43adb29a9bc831752f106e71b8cfd7ad46d91ab93b85",
+      "localResearchFile": "nameboard.jpg",
+      "photographyDate": null,
+      "uploadPathDate": "2026-06-25",
+      "use": "蓝底金字、红色宽展上翼、波曲侧框和下托卷边；旧矩形边框确有差异，现有挂位/屋面不因此可任意移动。",
+      "redistributionAuthorized": false,
+      "includedInPublicPackage": false,
+      "currentFabricAcceptance": false
+    }
+  ],
+  "viewpoints": [
+    {
+      "viewpointId": "2805",
+      "name": "太和门",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/b1b4235eda8e4188a6faa3cc51e9431f.jpg",
+          "isDefault": 1,
+          "sphPicId": "2054726937329111058",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2054754002535288832",
+      "name": "太和门东侧铜狮",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/4677fbcfc69a4c13ae2f58356f185e88.jpg",
+          "isDefault": 1,
+          "sphPicId": "2054726937333305361",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2054753203218386944",
+      "name": "太和门西侧铜狮",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/29/880d1a65b1d2465ba0e98758fddc2a4d.jpg",
+          "isDefault": 1,
+          "sphPicId": "2054726937329111043",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2054761071153876992",
+      "name": "太和门东庑（协和门北）",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/29/3a54c2badf144524affa0d6256bd67c2.jpg",
+          "isDefault": 1,
+          "sphPicId": "2054726937425580034",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2054756189139210240",
+      "name": "太和门西南",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/bdbc0162ee114305a61e58905ce66baf.jpg",
+          "isDefault": 1,
+          "sphPicId": "2054726937337499668",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2054756047577255936",
+      "name": "太和门西南",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/44bc1a3bf2bc4504a6f9c1e107a7d868.jpg",
+          "isDefault": 1,
+          "sphPicId": "2054726937337499677",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2054755729376382976",
+      "name": "太和门东",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/500af536639c4b86b1d8fbf3291cfc7a.jpg",
+          "isDefault": 1,
+          "sphPicId": "2054726937337499662",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2054755588883976192",
+      "name": "太和门前",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/e1a4ffae9dc6415e912dcc1eee25b980.jpg",
+          "isDefault": 1,
+          "sphPicId": "2054726937337499659",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2054755355303186432",
+      "name": "太和门西",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/3633053ef1de4773ba63c29512921711.jpg",
+          "isDefault": 1,
+          "sphPicId": "2054726937337499653",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2054755213019811840",
+      "name": "太和门南",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/61633c8b57614a1a929c28c891c6f8d6.jpg",
+          "isDefault": 1,
+          "sphPicId": "2054726937333305376",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2054755114466250752",
+      "name": "太和门南",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/042012e20c93465cafe096f123d26262.jpg",
+          "isDefault": 1,
+          "sphPicId": "2054726937333305379",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2054755001853382656",
+      "name": "太和门东南",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/8e0a916635724da091dd6d56cfb5f050.jpg",
+          "isDefault": 1,
+          "sphPicId": "2054726937333305367",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2054754571350020096",
+      "name": "太和门东南侧",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/29/0a0dd564070c48ebb165f625207562e7.jpg",
+          "isDefault": 1,
+          "sphPicId": "2054726937333305370",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2054754436259876864",
+      "name": "太和门东南侧",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/12081bcf11454307bea1009d2648fdc3.jpg",
+          "isDefault": 1,
+          "sphPicId": "2054726937333305373",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2054754303157833728",
+      "name": "太和门东南侧",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/29/7db55a6172754011965b066431de70ac.jpg",
+          "isDefault": 1,
+          "sphPicId": "2054726937333305364",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2054753869299027968",
+      "name": "太和门东南侧",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/29/fb1f3b19b9ea4d198c75a81605c835df.jpg",
+          "isDefault": 1,
+          "sphPicId": "2054726937333305352",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2054753523285725184",
+      "name": "太和门南侧台阶",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/1c50e27cdc5e453ab8f7bf778d7543ea.jpg",
+          "isDefault": 1,
+          "sphPicId": "2054726937333305349",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2054753056606490624",
+      "name": "太和门西南侧",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/ceaace9f69714613877c043633f11981.jpg",
+          "isDefault": 1,
+          "sphPicId": "2054726937329111040",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2054752859172212736",
+      "name": "太和门西南侧",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/e84b7c13b0af497dbf43a7b79ddb8a59.jpg",
+          "isDefault": 1,
+          "sphPicId": "2054726937329111049",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2054752071821660160",
+      "name": "太和门西南侧",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/29/5ed9fac182a5421d978e6bd1db5e4d5c.jpg",
+          "isDefault": 1,
+          "sphPicId": "2054726937337499656",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2054746164702318592",
+      "name": "太和门广场东侧",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/29/6cc5d6db4b514baabda727d952fbeb90.jpg",
+          "isDefault": 1,
+          "sphPicId": "2054726937345888259",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2054745857515687936",
+      "name": "太和门广场东侧",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/c9cd3d1622fb4587b3d01c3d2ce23245.jpg",
+          "isDefault": 1,
+          "sphPicId": "2054726937345888256",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2804",
+      "name": "太和门南",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/9937b67b667c4ccdbafbc00990557428.jpg",
+          "isDefault": 1,
+          "sphPicId": "1943123424178913280",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2042",
+      "name": "太和门内",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/033c51b70a53465894a3d8e9c20f34f4.jpg",
+          "isDefault": 1,
+          "sphPicId": "1943139094442590208",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2506",
+      "name": "太和门北侧",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/40c06df337534e868e26107fc693ca54.jpg",
+          "isDefault": 1,
+          "sphPicId": "1943138726014926848",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2085",
+      "name": "太和门北侧丹陛东侧踏跺",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/ce4c40782e1f4ae39feb341a409d8dcf.jpg",
+          "isDefault": 1,
+          "sphPicId": "1943145606384762880",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "2087",
+      "name": "太和门北侧丹陛西侧踏跺",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/598f084b4cb6420a9ec66a328cdef3cb.jpg",
+          "isDefault": 1,
+          "sphPicId": "1943145800996274176",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "1996",
+      "name": "太和门西北侧",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/4e84d937a29f42ceb2957df3922dcb30.jpg",
+          "isDefault": 1,
+          "sphPicId": "1943133695878414336",
+          "sphPicTagNameList": null
+        }
+      ]
+    },
+    {
+      "viewpointId": "1999",
+      "name": "太和门西北侧",
+      "sphericalPictures": [
+        {
+          "coverImagePath": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/a75ccdae660e4dfba011293bf2661f2b.jpg",
+          "isDefault": 1,
+          "sphPicId": "1943134211094134784",
+          "sphPicTagNameList": null
+        }
+      ]
+    }
+  ],
+  "previewsViewed": [
+    {
+      "viewpointId": "2042",
+      "name": "太和门内",
+      "url": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/033c51b70a53465894a3d8e9c20f34f4.jpg",
+      "pixelSize": [
+        240,
+        240
+      ],
+      "sha256": "784989eeada7a73838cc25ea3f752cb47aa4d1f3a490552ff1db9835fdff7fda",
+      "actuallyViewed": true,
+      "boundary": "240px forward preview mostly looks north towardTaiheHall; NOT rotated panorama or Taihemen reverse/side verification."
+    },
+    {
+      "viewpointId": "2506",
+      "name": "太和门北侧",
+      "url": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/40c06df337534e868e26107fc693ca54.jpg",
+      "pixelSize": [
+        240,
+        240
+      ],
+      "sha256": "f41d7a3a534c8bfabaf56424d6c31df8f712f1b9e9e0b355699afc71816237db",
+      "actuallyViewed": true,
+      "boundary": "240px forward preview mostly looks north towardTaiheHall; NOT rotated panorama or Taihemen reverse/side verification."
+    },
+    {
+      "viewpointId": "2085",
+      "name": "太和门北侧丹陛东侧踏跺",
+      "url": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/ce4c40782e1f4ae39feb341a409d8dcf.jpg",
+      "pixelSize": [
+        240,
+        240
+      ],
+      "sha256": "814b94c86db6b5119be7e54178cb5977f43c3e4ae493ab61d82bb6c4cedf5e69",
+      "actuallyViewed": true,
+      "boundary": "240px forward preview mostly looks north towardTaiheHall; NOT rotated panorama or Taihemen reverse/side verification."
+    },
+    {
+      "viewpointId": "2087",
+      "name": "太和门北侧丹陛西侧踏跺",
+      "url": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/598f084b4cb6420a9ec66a328cdef3cb.jpg",
+      "pixelSize": [
+        240,
+        240
+      ],
+      "sha256": "550dfc8fdca09df2ebcedcfc2cdc03c7153450bdb89fcc980aab4dee67f648ef",
+      "actuallyViewed": true,
+      "boundary": "240px forward preview mostly looks north towardTaiheHall; NOT rotated panorama or Taihemen reverse/side verification."
+    },
+    {
+      "viewpointId": "1996",
+      "name": "太和门西北侧",
+      "url": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/4e84d937a29f42ceb2957df3922dcb30.jpg",
+      "pixelSize": [
+        240,
+        240
+      ],
+      "sha256": "f858b898d74d30e0367eeabdc3096274244a0975dcf0704c98b32b46ee5fa029",
+      "actuallyViewed": true,
+      "boundary": "240px forward preview mostly looks north towardTaiheHall; NOT rotated panorama or Taihemen reverse/side verification."
+    },
+    {
+      "viewpointId": "1999",
+      "name": "太和门西北侧",
+      "url": "https://file-pano.dpm.org.cn/sphPic/2026/10/28/a75ccdae660e4dfba011293bf2661f2b.jpg",
+      "pixelSize": [
+        240,
+        240
+      ],
+      "sha256": "1c697eb70a1e18ca987f1ddf22e289467d4c4a7238231f787574792cd125028a",
+      "actuallyViewed": true,
+      "boundary": "240px forward preview mostly looks north towardTaiheHall; NOT rotated panorama or Taihemen reverse/side verification."
+    }
+  ]
+}

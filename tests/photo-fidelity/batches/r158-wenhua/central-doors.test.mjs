@@ -1,0 +1,107 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import * as T from 'three';
+import {applyWenhuaSouthWindows} from '../../../../src/scene/palace/special/WenhuaSouthWindows.js';
+import {ZoneBase} from '../../../../src/scene/zones/ZoneBase.js';
+import {library} from '../../../lib/inner-palace-fixture.mjs';
+import {realTextureLibrary} from '../../../lib/r48-real-texture-library.mjs';
+import {CollisionManager} from '../../../../src/utils/Collision.js';
+import {replayTerrace,traceTerraceGround} from '../../../lib/terrace-walk.mjs';
+import {FirstPersonControls} from '../../../../src/controls/FirstPerson.js';
+const url=new URL('../../../../src/scene/palace/special/WenhuaCentralDoors.js',import.meta.url);
+const api=fs.existsSync(url)?await import(process.env.WENHUA_CENTRAL_DOOR_MODULE??url.href):{};
+const zone=JSON.parse(fs.readFileSync(new URL('../../../../data/zones/outer-east.json',import.meta.url)));
+// Controlled current-integration A/B, NOT a frozen historical whole-source run.
+// Keep every existing +6 collider/support/room/merge assertion unchanged. Only
+// the baseline omits this one newly installed finalizer; candidate is uninjected.
+const zoneURL=new URL('../../../../src/scene/zones/ZoneBase.js',import.meta.url);
+const currentZoneSource=fs.readFileSync(zoneURL,'utf8');
+const hookImport="import {finishWenhuaCentralDoors} from '../palace/special/WenhuaCentralDoors.js';";
+const hookCall='    finishWenhuaCentralDoors(this.kit);';
+const centralHookInstalled=currentZoneSource.includes(hookImport);
+let ZoneWithoutCentralHook=ZoneBase;
+if(centralHookInstalled){assert.equal(currentZoneSource.split(hookImport).length,2);assert.equal(currentZoneSource.split(hookCall).length,2);const baselineSource=currentZoneSource.replace(hookImport,'').replace(hookCall,'').replace(/(from\s+['"])(\.[^'"]+)(['"])/g,(_,a,x,b)=>a+new URL(x,zoneURL).href+b).replace(/from 'three'/g,"from '"+import.meta.resolve('three')+"'");ZoneWithoutCentralHook=(await import('data:text/javascript;base64,'+Buffer.from(baselineSource).toString('base64'))).ZoneBase;}
+
+const item=zone.items.find(i=>i.southCourtProfile==='wenhua-front');
+function fixture(lib=library()){const b=new ZoneBase(lib,zone);const result=b.buildHall(item);return{b,kit:b.kit,...result,dispose:()=>b.kit.dispose(b.kit.root)}}
+const oldLeaves=a=>a.f.children.filter(m=>m.isMesh&&m.material===a.kit.lib.material('lattice_doors')&&m.rotation.y===Math.PI/2&&m.position.z<0);
+const meshes=o=>{const a=[];o.traverse(m=>{if(m.isMesh)a.push(m)});return a};
+const snapshot=a=>JSON.stringify({colliders:a.kit.colliders.map(b=>[b.min.toArray(),b.max.toArray()]),walkables:a.kit.walkables,rooms:a.kit.rooms,regions:a.kit.regions,mapItems:a.kit.mapItems});
+const geometry=m=>[m.name,m.position.toArray(),m.rotation.toArray(),Array.isArray(m.material)?m.material.map(x=>x?.uuid):m.material?.uuid,Object.fromEntries(Object.entries(m.geometry.attributes).map(([k,a])=>[k,Array.from(a.array)])),m.geometry.index?Array.from(m.geometry.index.array):null];
+
+test('Wenhua central finalizer composes six independent source-counted leaves, not two generic sheets',()=>{
+ assert.equal(typeof api.applyWenhuaCentralDoors,'function','dedicated six-leaf central door helper is missing');
+ const a=fixture();try{assert.equal(oldLeaves(a).length,2);api.applyWenhuaCentralDoors(a.kit,a.f);const gs=a.f.children.filter(o=>o.userData.wenhuaCentralDoorLeaf!==undefined);assert.equal(gs.length,6);assert.equal(oldLeaves(a).length,0);assert.deepEqual(gs.map(o=>o.userData.wenhuaCentralDoorLeaf),[0,1,2,3,4,5]);for(const g of gs){assert.equal(g.children.filter(o=>o.userData.wenhuaDoorRole==='continuous-leaf-backing').length,1);assert.equal(g.children.filter(o=>o.userData.wenhuaDoorRole==='lower-panel').length,1);assert.equal(g.children.filter(o=>o.userData.wenhuaDoorRole==='stile').length,2);assert.deepEqual([...new Set(g.children.filter(o=>o.userData.wenhuaDoorRole==='lattice-bar').map(o=>o.userData.direction))].sort((a,b)=>a-b),[-60,0,60]);}assert.equal(a.f.userData.wenhuaCentralDoors.leaves,6);assert.equal(a.f.userData.wenhuaCentralDoors.accepted,false);assert.match(a.f.userData.wenhuaCentralDoors.pose,/FIT/);}finally{a.dispose()}
+});
+
+test('door replacement retains all non-target meshes, existing collisions, floors, room spawns and dated gallery displays',()=>{
+ assert.equal(typeof api.applyWenhuaCentralDoors,'function');const a=fixture();try{const old=new Set(oldLeaves(a)),before=meshes(a.f).filter(m=>!old.has(m)).map(geometry),physics=snapshot(a),colliders=[...a.kit.colliders],owned=[...a.kit.owned];api.applyWenhuaCentralDoors(a.kit,a.f);assert.deepEqual(meshes(a.f).filter(m=>m.userData.wenhuaDoorRole===undefined).map(geometry),before);assert.deepEqual(a.kit.colliders.slice(0,colliders.length),colliders);assert.equal(a.kit.colliders.length,colliders.length+6);const tail=a.kit.colliders.splice(colliders.length);assert.equal(snapshot(a),physics);a.kit.colliders.push(...tail);assert.deepEqual(a.kit.owned.slice(0,owned.length),owned);assert.equal(a.kit.owned.length,owned.length+3);let display=0;a.f.traverse(o=>{if(o.userData.role==='wenhua-display-case')display++});assert.ok(display>0);}finally{a.dispose()}
+});
+
+for(const[label,mutate]of[
+ ['shared material tint',a=>oldLeaves(a)[0].material.color.setHex(0xff0000)],
+ ['shared material normal map',a=>oldLeaves(a)[0].material.normalMap=new T.Texture()],
+ ['shared material map',a=>oldLeaves(a)[0].material.map=new T.Texture()],
+ ['host profile',a=>a.f.userData.structure.profile='wenhua-rear'],
+ ['host coordinates',a=>a.f.position.x+=.001],
+ ['leaf pose',a=>oldLeaves(a)[0].position.z+=.001],
+ ['leaf vertex',a=>oldLeaves(a)[0].geometry.attributes.position.array[0]+=.001],
+ ['leaf metadata',a=>oldLeaves(a)[0].userData.fake=true],
+ ['shared geometry',a=>a.f.add(new T.Mesh(oldLeaves(a)[0].geometry,oldLeaves(a)[0].material))],
+ ['shared buffer',a=>{const m=oldLeaves(a)[0],g=m.geometry.clone();g.attributes.position.array=new Float32Array(m.geometry.attributes.position.array.buffer);a.f.add(new T.Points(g,new T.PointsMaterial()));}],
+ ['eventful source',a=>oldLeaves(a)[0].addEventListener('removed',()=>{throw Error('must not remove')})],
+ ['getter-only existing centralDoors',a=>{applyWenhuaSouthWindows(a.kit,a.f);Object.defineProperty(a.f.userData.wenhuaSouthWindows,'centralDoors',{get:()=>"unchanged getter value",configurable:true,enumerable:true})}],
+ ['inherited getter-only centralDoors',a=>{applyWenhuaSouthWindows(a.kit,a.f);const m=a.f.userData.wenhuaSouthWindows;delete m.centralDoors;Object.setPrototypeOf(m,{get centralDoors(){return 'unchanged inherited getter'}})}],
+ ['setter-only existing centralDoors',a=>{applyWenhuaSouthWindows(a.kit,a.f);Object.defineProperty(a.f.userData.wenhuaSouthWindows,'centralDoors',{set:()=>{throw Error('must not call metadata setter')},configurable:true,enumerable:true})}],
+ ['inherited finalizer metadata setter',a=>Object.setPrototypeOf(a.f.userData,{set wenhuaCentralDoors(_){throw Error('must not call inherited setter')}})],
+ ['frozen existing south-window metadata',a=>{applyWenhuaSouthWindows(a.kit,a.f);Object.freeze(a.f.userData.wenhuaSouthWindows)}],
+ ['frozen metadata',a=>Object.freeze(a.f.userData)]
+])test('invalid '+label+' rejects without mutation',()=>{assert.equal(typeof api.applyWenhuaCentralDoors,'function');const a=fixture();try{mutate(a);const children=[...a.f.children],before=meshes(a.f).map(geometry),p=snapshot(a),owned=[...a.kit.owned],metadata=Object.getOwnPropertyDescriptors(a.f.userData),structure=Object.getOwnPropertyDescriptors(a.f.userData.structure),windowMeta=a.f.userData.wenhuaSouthWindows,windowDescriptors=windowMeta?Object.getOwnPropertyDescriptors(windowMeta):null,windowPrototype=windowMeta?Object.getPrototypeOf(windowMeta):null;assert.throws(()=>api.applyWenhuaCentralDoors(a.kit,a.f),/Wenhua/);assert.deepEqual(a.f.children,children);assert.deepEqual(meshes(a.f).map(geometry),before);assert.equal(snapshot(a),p);assert.deepEqual(a.kit.owned,owned);assert.deepEqual(Object.getOwnPropertyDescriptors(a.f.userData),metadata);assert.deepEqual(Object.getOwnPropertyDescriptors(a.f.userData.structure),structure);if(windowMeta){assert.deepEqual(Object.getOwnPropertyDescriptors(windowMeta),windowDescriptors);assert.equal(Object.getPrototypeOf(windowMeta),windowPrototype)}}finally{for(const m of oldLeaves(a)){m._listeners={};m.geometry._listeners={}}a.dispose()}});
+
+test('single-use and no-target finalizer are explicit',()=>{assert.equal(typeof api.finishWenhuaCentralDoors,'function');assert.equal(api.finishWenhuaCentralDoors({root:new T.Group()}),false);const a=fixture();try{api.finishWenhuaCentralDoors(a.kit);assert.throws(()=>api.finishWenhuaCentralDoors(a.kit),/Wenhua/);}finally{a.dispose()}});
+
+for(const fps of[10,60])test(`six-leaf aperture retains real-controller Wenhua / connector / Zhujing round trip at ${fps}Hz`,t=>{
+ assert.equal(typeof api.applyWenhuaCentralDoors,'function');const b=new ZoneBase(library(),zone);for(const i of zone.items.filter(i=>i.southCourtProfile?.startsWith('wenhua')))b.buildHall(i);const f=b.kit.root.children.find(f=>f.userData.structure?.profile==='wenhua-front');api.applyWenhuaCentralDoors(b.kit,f);const cm=new CollisionManager();cm.addColliders(b.kit.colliders);cm.addWalkables(b.kit.walkables);const x=item.x,go=[[x,-213],[x,-205.3],[x+11,-205.3],[x+11,-193.3],[x,-193.3],[x,-172],[x+2.3,-172],[x+2.3,-167.5],[x,-167.5]],points=[...go,...go.slice(0,-1).reverse()];const trace=traceTerraceGround(cm,{flights:[]}),placed=t.mock.method(FirstPersonControls.prototype,'setPosition');try{const result=replayTerrace(t,{THREE:T,cm},points,{fps,sprint:true,recordFrames:true});assert.equal(placed.mock.callCount(),1);assert.equal(result.arrived,true,JSON.stringify({end:result.end,stuckAt:result.stuckAt}));assert.equal(result.startFeet,0);assert.equal(trace.samples.some(p=>['rescue','unverified'].includes(p.source)),false);const doorway=result.frames.filter(p=>Math.abs(p.z+207.5)<.5);assert.ok(doorway.length>0&&doorway.every(p=>Math.abs(p.ground-1.2)<1e-6));for(const o of b.kit.colliders.slice(-6)){const p=o.getCenter(new T.Vector3());assert.equal(cm.checkCollision(new T.Vector3(p.x,2.9,p.z),.01),true);}assert.equal(cm.checkCollision(new T.Vector3(x,2.9,-207.5),.45),false);}finally{placed.mock.restore();trace.restore();b.kit.dispose(b.kit.root)}
+});
+
+test('real full outer-east terminal merge exposes the six-leaf architecture metadata and only six new colliders',()=>{
+ assert.equal(typeof api.finishWenhuaCentralDoors,'function');const baseline=new ZoneWithoutCentralHook(library(),zone),candidate=new ZoneBase(library(),zone);if(!centralHookInstalled){const finish=candidate.kit.finish.bind(candidate.kit);candidate.kit.finish=()=>{api.finishWenhuaCentralDoors(candidate.kit);return finish()};}let p,a;try{p=baseline.build();a=candidate.build();assert.equal(a.colliders.length,p.colliders.length+6);assert.deepEqual(a.colliders.slice(0,p.colliders.length),p.colliders);assert.deepEqual(a.walkables,p.walkables);assert.deepEqual(a.rooms,p.rooms);assert.deepEqual(a.regions,p.regions);const record=a.group.userData.architecture.find(s=>s.profile==='wenhua-front');assert.equal(record.wenhuaCentralDoors.leaves,6);assert.equal(record.wenhuaSouthWindows.centralDoors,'SIX_SOURCE_COUNTED_LEAVES_FITTED_OPEN_POSE_SEE_WENHUA_CENTRAL_DOORS');const doorMeshes=meshes(a.group).filter(m=>m.material?.name?.startsWith('wenhua-central-door-'));assert.equal(doorMeshes.length,3);for(const m of doorMeshes)for(const v of Object.values(m.geometry.attributes))assert.ok([...v.array].every(Number.isFinite));assert.ok(doorMeshes.reduce((n,m)=>n+(m.geometry.index?.count??m.geometry.attributes.position.count)/3,0)<6000);}finally{if(p)baseline.dispose();if(a)candidate.dispose();}
+});
+
+for(const fps of[10,60])for(const offset of[-1.05,0,1.05])test(`central leaf gap admits real-controller left/centre/right ${offset}m south-north-south at ${fps}Hz`,t=>{
+ assert.equal(typeof api.applyWenhuaCentralDoors,'function');const a=fixture();api.applyWenhuaCentralDoors(a.kit,a.f);const cm=new CollisionManager();cm.addColliders(a.kit.colliders);cm.addWalkables(a.kit.walkables);const x=item.x,points=[[x,-213],[x,-209.6],[x+offset,-209.6],[x+offset,-205.5],[x,-205.5],[x+offset,-205.5],[x+offset,-209.6],[x,-209.6],[x,-213]],trace=traceTerraceGround(cm,{flights:[]}),placed=t.mock.method(FirstPersonControls.prototype,'setPosition');try{const unique=points.filter((p,i)=>!i||p.some((v,k)=>v!==points[i-1][k]));const result=replayTerrace(t,{THREE:T,cm},unique,{fps,sprint:true,recordFrames:true});assert.equal(result.arrived,true,JSON.stringify({end:result.end,stuckAt:result.stuckAt}));assert.equal(placed.mock.callCount(),1);assert.equal(trace.samples.some(p=>['rescue','unverified'].includes(p.source)),false);assert.ok(result.frames.filter(p=>Math.abs(p.z+207.5)<.3).every(p=>Math.abs(p.ground-1.2)<1e-6));}finally{placed.mock.restore();trace.restore();a.dispose()}
+});
+
+test('staging failure releases private geometry/materials and preserves the live scene and physics',()=>{
+ assert.equal(typeof api.applyWenhuaCentralDoors,'function');const a=fixture(),add=T.Group.prototype.add,gd=T.BufferGeometry.prototype.dispose,md=T.Material.prototype.dispose;const disposed=[],materials=[],children=[...a.f.children],p=snapshot(a),owned=[...a.kit.owned],sourceGeometry=new Set(oldLeaves(a).map(m=>m.geometry));let n=0;try{T.Group.prototype.add=function(...args){if(this.name.startsWith('wenhua-central-six-leaf-')&&++n===12)throw Error('staging injection');return add.apply(this,args)};T.BufferGeometry.prototype.dispose=function(){disposed.push(this);return gd.call(this)};T.Material.prototype.dispose=function(){materials.push(this);return md.call(this)};assert.throws(()=>api.applyWenhuaCentralDoors(a.kit,a.f),/staging injection/);assert.equal(n,12);assert.deepEqual(a.f.children,children);assert.equal(snapshot(a),p);assert.deepEqual(a.kit.owned,owned);assert.ok(disposed.length>=12);assert.equal(new Set(disposed).size,disposed.length);assert.ok(disposed.every(g=>!sourceGeometry.has(g)));assert.equal(materials.length,3);assert.equal(a.f.userData.wenhuaCentralDoors,undefined);}finally{T.Group.prototype.add=add;T.BufferGeometry.prototype.dispose=gd;T.Material.prototype.dispose=md;a.dispose()}
+});
+
+test('all six opaque leaf envelopes agree with their physical thin bounds',()=>{const a=fixture();try{api.applyWenhuaCentralDoors(a.kit,a.f);a.kit.root.updateMatrixWorld(true);const gs=a.f.children.filter(o=>o.userData.wenhuaCentralDoorLeaf!==undefined),cs=a.kit.colliders.slice(-6);for(let i=0;i<6;i++){const box=new T.Box3().setFromObject(gs[i]);for(const k of['min','max'])assert.ok(box[k].distanceTo(cs[i][k])<1e-6);for(const m of meshes(gs[i])){assert.equal(m.material.transparent,false);assert.equal(m.material.opacity,1)}}}finally{a.dispose()}});
+
+test('actual merge and unload release new geometry and the three private materials exactly once',()=>{for(let run=0;run<3;run++){const a=fixture();api.applyWenhuaCentralDoors(a.kit,a.f);const materials=new Map(a.kit.owned.filter(m=>m.name.startsWith('wenhua-central-door-')).map(m=>[m,0]));for(const m of materials.keys())m.addEventListener('dispose',()=>materials.set(m,materials.get(m)+1));const gs=new Map(meshes(a.f).filter(m=>m.userData.wenhuaDoorRole!==undefined).map(m=>[m.geometry,0]));for(const g of gs.keys())g.addEventListener('dispose',()=>gs.set(g,gs.get(g)+1));const root=a.kit.finish(),merged=new Map(meshes(root).filter(m=>m.material.name.startsWith('wenhua-central-door-')).map(m=>[m.geometry,0]));for(const g of merged.keys())g.addEventListener('dispose',()=>merged.set(g,merged.get(g)+1));assert.equal(merged.size,3);for(const n of gs.values())assert.equal(n,1);a.kit.dispose(root);for(const n of merged.values())assert.equal(n,1);for(const n of materials.values())assert.equal(n,1);}});
+
+test('production TextureLibrary albedo/normal cache identity remains compatible without shared tint or map changes',()=>{const lib=realTextureLibrary(),a=fixture(lib),m=lib.material('lattice_doors'),map=m.map,normal=m.normalMap,color=m.color.getHex();try{api.applyWenhuaCentralDoors(a.kit,a.f);assert.equal(a.f.userData.wenhuaCentralDoors.leaves,6);assert.equal(m.map,map);assert.equal(m.normalMap,normal);assert.equal(m.color.getHex(),color);}finally{a.dispose();lib.dispose()}});
+
+
+// Physical vertex contracts, independent of role metadata, claimed leaf count
+// and constructor parameters. These dimensions are the reversible fit's stated
+// contract, NOT a claim that the photograph is a measured drawing.
+const leafBoxes=a=>{a.kit.root.updateMatrixWorld(true);return a.f.children.filter(o=>o.userData.wenhuaCentralDoorLeaf!==undefined).map(g=>({g,box:new T.Box3().setFromObject(g)}))};
+test('geometric contract: six actual leaves form distinct bilateral 3+3 leaves without positive-volume overlap',()=>{
+ const a=fixture();try{api.applyWenhuaCentralDoors(a.kit,a.f);const rows=leafBoxes(a),W=5.48/6,H=5.464,half=5.48/2;assert.equal(rows.length,6);assert.equal(rows.filter(r=>r.box.max.x<a.f.position.x).length,3,'three actual leaf bodies must be left of the host axis');assert.equal(rows.filter(r=>r.box.min.x>a.f.position.x).length,3,'three actual leaf bodies must be right of the host axis');
+ for(let i=0;i<6;i++){const{g,box}=rows[i],side=i<3?-1:1,part=i%3,center=box.getCenter(new T.Vector3()),size=box.getSize(new T.Vector3());assert.ok(Math.abs(center.x-(a.f.position.x+side*(part===0?half-W/2:half-W+.06+(part-1)*.14)))<1e-6,'actual leaf X location '+i);assert.ok(Math.abs(center.y-(1.2+H/2))<1e-6,'actual leaf floor datum '+i);assert.ok(Math.abs(center.z-(a.f.position.z+(part===0?-8.5:-8.5+W/2+.05)))<1e-6,'actual leaf depth '+i);assert.ok(size.distanceTo(new T.Vector3(part===0?W:.1,H,part===0?.1:W))<1e-6,'actual leaf dimensions '+i);assert.ok(Math.abs(g.rotation.y-(part===0?0:side*Math.PI/2))<1e-10,'fitted open angle '+i);}
+ for(let i=0;i<6;i++)for(let j=i+1;j<6;j++){const intersection=rows[i].box.clone().intersect(rows[j].box),size=intersection.getSize(new T.Vector3());assert.ok(size.x<=1e-6||size.y<=1e-6||size.z<=1e-6,'distinct leaf bodies may touch but not overlap: '+i+','+j);}
+ const left=Math.max(...rows.slice(0,3).map(r=>r.box.max.x)),right=Math.min(...rows.slice(3).map(r=>r.box.min.x));assert.ok(right-left>3.65&&right-left<3.66,'actual aperture width, not metadata');
+ }finally{a.dispose()}
+});
+
+function fieldIntersections(normal,offset,hx,hy){const points=[],near=(a,b)=>Math.abs(a-b)<1e-8,add=(x,y)=>{if(x>=-hx-1e-8&&x<=hx+1e-8&&y>=-hy-1e-8&&y<=hy+1e-8&&!points.some(p=>near(p[0],x)&&near(p[1],y)))points.push([x,y])};if(Math.abs(normal[1])>1e-8)for(const x of[-hx,hx])add(x,(offset-normal[0]*x)/normal[1]);if(Math.abs(normal[0])>1e-8)for(const y of[-hy,hy])add((offset-normal[1]*y)/normal[0],y);return points;}
+test('geometric contract: every lattice direction spans the actual field with full clipped bars and distributed coverage',()=>{
+ const a=fixture();try{api.applyWenhuaCentralDoors(a.kit,a.f);const W=5.48/6,H=5.464,hx=W/2-.08,hy=(H*.72-.065)/2-.025,cy=H*.14;
+ for(const{g}of leafBoxes(a)){const bars=g.children.filter(m=>m.userData.wenhuaDoorRole==='lattice-bar'),actual=new Map([-60,0,60].map(d=>[d,[]]));assert.ok(bars.length>30,'not merely three direction labels');
+ for(const m of bars){const p=m.geometry.attributes.position,points=Array.from({length:p.count},(_,i)=>new T.Vector3().fromBufferAttribute(p,i).applyMatrix4(m.matrix)),center=points.reduce((v,p)=>v.add(p),new T.Vector3()).multiplyScalar(1/points.length);let xx=0,xy=0,yy=0;for(const p of points){const x=p.x-center.x,y=p.y-center.y;xx+=x*x;xy+=x*y;yy+=y*y}const angle=Math.atan2(2*xy,xx-yy)/2*180/Math.PI,direction=[-60,0,60].find(d=>Math.abs(angle-d)<.01);assert.notEqual(direction,undefined,'actual bar principal axis must be 0/+60/-60 degrees, not metadata');const theta=direction*Math.PI/180,axis=[Math.cos(theta),Math.sin(theta)],normal=[-axis[1],axis[0]],project=v=>v.x*axis[0]+(v.y-cy)*axis[1],offset=center.x*normal[0]+(center.y-cy)*normal[1],range=points.map(project),length=Math.max(...range)-Math.min(...range),intersections=fieldIntersections(normal,offset,hx,hy);assert.equal(intersections.length,2,'each bar intersects both field boundaries');const expected=intersections.map(v=>v[0]*axis[0]+v[1]*axis[1]).sort((a,b)=>a-b);assert.ok(Math.abs(Math.min(...range)-expected[0])<2e-5&&Math.abs(Math.max(...range)-expected[1])<2e-5,'actual full clipped bar endpoints/length, not a tiny marker');assert.ok(length>=.02-1e-6,'minimum actual retained bar length');assert.ok(Math.abs(offset/.19-Math.round(offset/.19))<1e-5,'actual repeated pitch');actual.get(direction).push(offset);}
+ for(const direction of[-60,0,60]){const theta=direction*Math.PI/180,normal=[-Math.sin(theta),Math.cos(theta)],reach=Math.abs(normal[0])*hx+Math.abs(normal[1])*hy,expected=[];for(let k=Math.ceil(-reach/.19);k<=Math.floor(reach/.19);k++){const intersections=fieldIntersections(normal,k*.19,hx,hy);if(intersections.length===2&&Math.hypot(intersections[1][0]-intersections[0][0],intersections[1][1]-intersections[0][1])>=.02)expected.push(k*.19)}const found=actual.get(direction).sort((a,b)=>a-b);assert.equal(found.length,expected.length,'complete distributed row count for actual direction '+direction);for(let i=0;i<found.length;i++)assert.ok(Math.abs(found[i]-expected[i])<1e-5,'full-field coverage at row '+i+' / '+direction);}
+ }
+ }finally{a.dispose()}
+});

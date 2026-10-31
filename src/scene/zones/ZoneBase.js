@@ -7,6 +7,7 @@ import {finishYikunInnerSouthWindows} from '../palace/special/YikunInnerSouthWin
 import {finishChangchunSouthWindows} from '../palace/special/ChangchunSouthWindows.js';
 import {finishWuyingSouthWindows} from '../palace/special/WuyingSouthWindows.js';
 import {finishWenhuaSouthWindows} from '../palace/special/WenhuaSouthWindows.js';
+import {finishWenhuaCentralDoors} from '../palace/special/WenhuaCentralDoors.js';
 import {finishWenyuanUpperSeat} from '../palace/special/WenyuanUpperSeat.js';
 import {finishTiyuanCoverVisual} from '../palace/special/TiyuanCoverVisual.js';
 import {finishTiheSouthVisual} from '../palace/special/TiheSouthVisual.js';
@@ -44,6 +45,7 @@ import {validateEastUnknownThroneInventoryPolicy,applyEastUnknownThroneInventory
 import {applyFengxianFrontWindows} from '../palace/special/FengxianFrontWindows.js';
 import {buildJingyangRearFacade} from '../palace/special/JingyangRearFacade.js';
 import {applyDonghuaCentralDoorFront} from '../palace/special/DonghuaCentralDoorFront.js';
+import {applyDonghuaExteriorEnvelope} from '../palace/special/DonghuaExteriorEnvelope.js';
 import {validateNansansuoInventoryPolicy} from '../palace/NansansuoInventoryPolicy.js';
 import { applyZuoyiDoorFront } from '../palace/special/ZuoyiDoorFront.js';
 import {resolveRemainingProfile as resolveNingshou,buildRemainingHall as buildNingshou,augmentRemainingHall as augmentNingshou} from '../palace/special/RemainingNingshouHalls.js';
@@ -171,6 +173,7 @@ export class ZoneBase {
     finishTiyuanCoverVisual(this.kit);
     finishWenyuanUpperSeat(this.kit);
     finishWenhuaSouthWindows(this.kit);
+    finishWenhuaCentralDoors(this.kit);
     finishWuyingSouthWindows(this.kit);
     finishChangchunSouthWindows(this.kit);
     finishYikunInnerSouthWindows(this.kit);
@@ -465,6 +468,7 @@ export class ZoneBase {
     if (item.cityGateProfile !== undefined) {
       const frame=buildEastWestCityGate(this.kit,item);
       applyDonghuaCentralDoorFront(this.kit,frame,{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
+      applyDonghuaExteriorEnvelope(this.kit,frame,{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
       return frame;
     }
     const params = {

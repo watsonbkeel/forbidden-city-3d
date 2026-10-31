@@ -1,0 +1,151 @@
+{
+  "disposition": "PARTIAL_ACTIVE_NAMEBOARD_FRAME_CEILING_REMAINS_WITHDRAWN",
+  "productionActiveChange": "Taihemen roof declaration plus own-source front nameboard geometry only; retained anchor, unrelated geometry and physics unchanged",
+  "checks": [
+    {
+      "command": "node --test tests/photo-fidelity/batches/taihemen-*.test.mjs tests/r58-taihemen-*.test.mjs",
+      "pass": 55,
+      "fail": 0,
+      "scope": "38 retained Taihemen tests,13 withdrawn hypothesis diagnostics,3 scope guards,1 production withdrawal guard"
+    },
+    {
+      "command": "npm run build -- --outDir /tmp/r157-taihemen-withdrawal-build",
+      "exitCode": 0,
+      "warning": "Vite inherited large chunk warning retained"
+    },
+    {
+      "command": "node --test tests/photo-fidelity/batches/taihemen-*.test.mjs tests/r58-taihemen-*.test.mjs",
+      "pass": 72,
+      "fail": 0,
+      "skip": 0,
+      "scope": "38 retained+13 isolated-hypothesis+4 full-scope+1 production-boundary+16 active nameboard tests",
+      "log": "/tmp/r157-taihemen-evidence/NAMEBOARD-TARGETED.txt"
+    },
+    {
+      "command": "npm run build -- --outDir /tmp/r157-taihemen-nameboard-build",
+      "exitCode": 0,
+      "warning": "Inherited Vite large chunk warning retained",
+      "log": "/tmp/r157-taihemen-evidence/NAMEBOARD-BUILD.txt"
+    },
+    {
+      "command": "node --test tests/photo-fidelity/batches/taihemen-*.test.mjs tests/r58-taihemen-*.test.mjs",
+      "pass": 75,
+      "fail": 0,
+      "skip": 0,
+      "scope": "72 previous cases plus3 UV collapse/mirror/vertical-flip negative controls",
+      "log": "/tmp/r157-taihemen-evidence/NAMEBOARD-TARGETED-UV.txt"
+    },
+    {
+      "command": "node --test tests/photo-fidelity/batches/taihemen-plaque-frame.test.mjs",
+      "pass": 19,
+      "fail": 0,
+      "skip": 0,
+      "scope": "Post sourceText/modelText distinction and visible front-corner UV validation",
+      "log": "/tmp/r157-taihemen-evidence/NAMEBOARD-UV-GREEN.txt"
+    }
+  ],
+  "knownInheritedFailures": [
+    "R38 frozen root hashes (baseline and candidate)",
+    "canonical route old Taihe Hall fixture lib.aspect missing (baseline and candidate)"
+  ],
+  "browserGPU": "NOT_VERIFIED; CUA lacksWebGL,local Chromium sandbox socket denied,not retried",
+  "baselineCommit": "c9b25a712e286877f2abbc88f4522add3fc0caea",
+  "historicalWithdrawalReview": {
+    "agent": "/root/review_taihemen",
+    "model": "Astra as assigned by parent",
+    "geometryComparison": "Real c9 git archive:8 of8 roots identical, all geometry attrs/matrix/material and all collider/walkable same after withdrawal",
+    "fixedP2": "New63 physical secondary-frame probes reject drawRange8*36 with trim retained",
+    "sourceBoundary": "Withdrawn all source-space-unregistered ceiling geometry/hook; full20 scope retained",
+    "scope": "af10afde withdrawn-ceiling state only, before later actual nameboard frame"
+  },
+  "actualWorldNameboard": {
+    "frameSurfaceProbes": 7,
+    "textSightlines": 3,
+    "textUVCorners": 4,
+    "roofSurfaceProbes": 12,
+    "minimumRoofGap": 0.02999866594355427,
+    "groundFrameSightlines": [
+      {
+        "x": -0.43,
+        "y": 0.445,
+        "expectedMaterial": "taihemen-nameboard-red",
+        "firstMaterial": "rafters_material",
+        "visible": false
+      },
+      {
+        "x": 0.43,
+        "y": 0.445,
+        "expectedMaterial": "taihemen-nameboard-red",
+        "firstMaterial": "rafters_material",
+        "visible": false
+      },
+      {
+        "x": -0.3,
+        "y": 0,
+        "expectedMaterial": "taihemen-nameboard-red",
+        "firstMaterial": "taihemen-nameboard-red",
+        "visible": true
+      },
+      {
+        "x": 0.3,
+        "y": 0,
+        "expectedMaterial": "taihemen-nameboard-red",
+        "firstMaterial": "taihemen-nameboard-red",
+        "visible": true
+      },
+      {
+        "x": 0,
+        "y": -0.47,
+        "expectedMaterial": "taihemen-nameboard-red",
+        "firstMaterial": "taihemen-nameboard-red",
+        "visible": true
+      },
+      {
+        "x": -0.218,
+        "y": 0.025,
+        "expectedMaterial": "taihemen-nameboard-gold",
+        "firstMaterial": "taihemen-nameboard-gold",
+        "visible": true
+      },
+      {
+        "x": 0.218,
+        "y": 0.025,
+        "expectedMaterial": "taihemen-nameboard-gold",
+        "firstMaterial": "taihemen-nameboard-gold",
+        "visible": true
+      }
+    ],
+    "wholeFrameGroundVisible": false,
+    "status": "PARTIAL_FRAME_GEOMETRY_TOP_WINGS_OCCLUDED_AT_RETAINED_MOUNT_BROWSER_PENDING"
+  },
+  "nameboardCostDelta": {
+    "meshes": 2,
+    "triangles": 304,
+    "geometryBytes": 29184,
+    "materials": 2
+  },
+  "nativeTextBoundary": "Test-only local CJK font registered as SimSun for @napi-rs/canvas pixel-core check; production original Canvas/font stack not modified. Not browser/GPU calligraphy/readability acceptance.",
+  "currentIndependentReview": {
+    "agent": "/root/review_taihemen",
+    "reviewedCommit": "ce13851fce88c7ddd868a0720ff4b79f8a9dfff5",
+    "pass": 19,
+    "fail": 0,
+    "captureSourceHashesMatch": 5,
+    "denseClearanceProbeCount": 410,
+    "denseClearanceMinimumGap": 0.030000000000014,
+    "missingClearanceSurfaces": 0,
+    "nativeGlyphCoreSightlinesVisible": 429,
+    "nativeGlyphBoundary": "Current system glyph only, not source-text equivalence or GPU",
+    "status": "PARTIAL_SOURCE_FRAME_CANDIDATE_NOT_WHOLE_FRAME_OR_OBJECT_ACCEPTED",
+    "remaining": [
+      "Both upper wings occluded from south ground at inherited safe mount",
+      "Source 太和門 vs model 太和门 remains unmatched",
+      "Exact contour/calligraphy/paint and GPU/source-camera acceptance pending"
+    ],
+    "additionalInheritedFailures": "Old shared-mount7 tests:2 pass5 fail, same in real c9 archive. r25 obsolete3-name-list/fixtures/material assertions; r85 absent reports directory. Baseline log /tmp/r157-review-nameboard-old-mount-baseline.txt. No old assertion changed."
+  },
+  "reviewFixes": [
+    "Independent review P2 reproduced: collapsed and mirror UVs falsely passed; actual front-face4 corner mapping now rejects collapse/mirror/vertical flip. No normal geometry changed.",
+    "Source text 太和門 differs from retained model 太和门. Separate metadata and explicit substantive difference; original Canvas retained as instructed."
+  ]
+}

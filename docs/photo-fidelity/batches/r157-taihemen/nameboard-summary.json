@@ -1,0 +1,130 @@
+{
+  "kind": "ACTUAL_GATE_MERGE_CPU_DIAGNOSTIC_NOT_BROWSER",
+  "captureHEAD": "1be93f6d8ee12d9bc1f6d111196bb16d78ed358f",
+  "sourceHashes": {
+    "src/scene/palace/HallNameboardMount.js": "17bda7af962d3d173bfc143d22d4635f8605cb662021e7b4cb4f7ca73e15fe37",
+    "src/scene/palace/special/TaihemenNameboardFrame.js": "71c0fb6d506c8ce4c515e3290233a3627fe7e68cdb2c8741512e17b3e30dc861",
+    "src/scene/PalaceBuilder.js": "cbdb47c33a2726701bb76ba75a9eb35f2bbd1145ad2c2af75d682dd277211f97",
+    "src/scene/Layout.js": "bf1165d6d0c8fd2cad21d5ae6d99fe2d6af6ec66983282b6a2537c05de6427f2",
+    "tests/lib/r157-taihemen-nameboard-world-check.mjs": "0753508abac2f7671fe0d091c4c421d976ed83137833d59446c890673482bf11"
+  },
+  "baselineMethod": "Current code with only the dedicated nameboard frame call removed in memory. The withdrawn ceiling is not imported or restored in either state.",
+  "gpuAcceptance": false,
+  "sourceCameraMatched": false,
+  "states": {
+    "before": {
+      "meshes": 18,
+      "triangles": 16824,
+      "geometryBytes": 1614792,
+      "materials": 18,
+      "buildMergeSamplesMs": [
+        65.11859400000003,
+        63.438012000000015,
+        50.069209,
+        41.38034000000005,
+        61.77729999999997
+      ],
+      "buildMergeMedianMs": 61.77729999999997,
+      "retainedGeometryHash": "c87c1cbb24c7231323ac0bc0967bea67c89fedde91a612e09ef7528ffd74f659",
+      "collidersHash": "1838e78c09419fe842e5b40cfaf079d8d5b370e1ce96a6e974f64dda370ffe70",
+      "walkablesHash": "5bc9a6ff88b090d3e10b4b2344722b2f2fe7b66a5642782df16b71e3ff0be214"
+    },
+    "after": {
+      "meshes": 20,
+      "triangles": 17128,
+      "geometryBytes": 1643976,
+      "materials": 20,
+      "buildMergeSamplesMs": [
+        47.85812099999998,
+        49.06218899999999,
+        47.63024999999993,
+        48.668387000000166,
+        48.06426099999999
+      ],
+      "buildMergeMedianMs": 48.06426099999999,
+      "retainedGeometryHash": "c87c1cbb24c7231323ac0bc0967bea67c89fedde91a612e09ef7528ffd74f659",
+      "collidersHash": "1838e78c09419fe842e5b40cfaf079d8d5b370e1ce96a6e974f64dda370ffe70",
+      "walkablesHash": "5bc9a6ff88b090d3e10b4b2344722b2f2fe7b66a5642782df16b71e3ff0be214",
+      "actualWorld": {
+        "frameSurfaceProbes": 7,
+        "textSightlines": 3,
+        "textUVCorners": 4,
+        "roofSurfaceProbes": 12,
+        "minimumRoofGap": 0.02999866594355427,
+        "groundFrameSightlines": [
+          {
+            "x": -0.43,
+            "y": 0.445,
+            "expectedMaterial": "taihemen-nameboard-red",
+            "firstMaterial": "rafters_material",
+            "visible": false
+          },
+          {
+            "x": 0.43,
+            "y": 0.445,
+            "expectedMaterial": "taihemen-nameboard-red",
+            "firstMaterial": "rafters_material",
+            "visible": false
+          },
+          {
+            "x": -0.3,
+            "y": 0,
+            "expectedMaterial": "taihemen-nameboard-red",
+            "firstMaterial": "taihemen-nameboard-red",
+            "visible": true
+          },
+          {
+            "x": 0.3,
+            "y": 0,
+            "expectedMaterial": "taihemen-nameboard-red",
+            "firstMaterial": "taihemen-nameboard-red",
+            "visible": true
+          },
+          {
+            "x": 0,
+            "y": -0.47,
+            "expectedMaterial": "taihemen-nameboard-red",
+            "firstMaterial": "taihemen-nameboard-red",
+            "visible": true
+          },
+          {
+            "x": -0.218,
+            "y": 0.025,
+            "expectedMaterial": "taihemen-nameboard-gold",
+            "firstMaterial": "taihemen-nameboard-gold",
+            "visible": true
+          },
+          {
+            "x": 0.218,
+            "y": 0.025,
+            "expectedMaterial": "taihemen-nameboard-gold",
+            "firstMaterial": "taihemen-nameboard-gold",
+            "visible": true
+          }
+        ],
+        "wholeFrameGroundVisible": false,
+        "status": "PARTIAL_FRAME_GEOMETRY_TOP_WINGS_OCCLUDED_AT_RETAINED_MOUNT_BROWSER_PENDING"
+      }
+    }
+  },
+  "delta": {
+    "meshes": 2,
+    "triangles": 304,
+    "geometryBytes": 29184,
+    "materials": 2
+  },
+  "retained": {
+    "retainedGeometryHash": true,
+    "collidersHash": true,
+    "walkablesHash": true
+  },
+  "costBoundary": "Node single-gate build+merge only, not actual GPU draw calls/frame time or whole-scene speed",
+  "artifactStatus": "ACTIVE_NAMEBOARD_PARTIAL_GEOMETRY_CAPTURE_WITH_SOURCE_HASHES_AT_PRECOMMIT_HEAD",
+  "wholeObjectAccepted": false,
+  "textDifference": {
+    "sourceText": "太和門",
+    "modelText": "太和门",
+    "matched": false
+  },
+  "knownGroundDefect": "Both top wings occluded by inherited upper rafters; safe mount intentionally unchanged."
+}

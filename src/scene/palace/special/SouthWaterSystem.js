@@ -1,3 +1,4 @@
+import {buildWenyuanPondBridgeRails} from './WenyuanPondBridgeRails.js';
 import {buildWuyingThreeBridgeRails} from './WuyingThreeBridgeRails.js';
 import * as THREE from 'three';
 import { innerJinshuiProfile, innerJinshuiGroundPath, canCrossInnerJinshui, INNER_JINSHUI } from './InnerJinshui.js';
@@ -71,7 +72,7 @@ export function canCrossPalaceWater(river,position,radius=.5){if(!Number.isFinit
 export function buildSouthWaterSystem(library,river,waterMaterial){
  const profile=southWaterProfile(river);if(!profile)return null;
  const group=new THREE.Group(),masonry=new THREE.Group(),water=new THREE.Group(),colliders=[],walkables=[];group.name='south-water-system';water.name='south-water-surface';
- const wuyingRails=[];
+ const wuyingRails=[],wenyuanRails=[];
  const marble=library.material('marble'),brick=library.material('wall_brick'),stone=library.material('stone_slab');
  const mesh=(geo,mat)=>{const m=new THREE.Mesh(geo,mat);m.castShadow=m.receiveShadow=true;masonry.add(m);return m;};
  const box=(mat,w,h,d,x,y,z)=>{const m=mesh(applyBoxUV(new THREE.BoxGeometry(w,h,d),library.tileSize('marble')),mat);m.position.set(x,y,z);return m;};
@@ -105,6 +106,7 @@ export function buildSouthWaterSystem(library,river,waterMaterial){
   if(b.axis==='z')for(let k=0;k<verts.length;k+=9)for(let j=0;j<3;j++){const v=verts[k+3+j];verts[k+3+j]=verts[k+6+j];verts[k+6+j]=v;}
   const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(verts,3));geo.computeVertexNormals();const m=mesh(applyBoxUV(geo,library.tileSize('marble')),marble);m.userData.bridgeId=b.id;
   if(culvert)return;
+  if(b.id==='wenyuan-pond'){const fitted=buildWenyuanPondBridgeRails(library,b);masonry.add(fitted.group);colliders.push(...fitted.colliders);wenyuanRails.push(fitted.metadata);return;}
   if(b.family==='wuying'){const fitted=buildWuyingThreeBridgeRails(library,b);masonry.add(fitted.group);colliders.push(...fitted.colliders);wuyingRails.push(fitted.metadata);return;}
   for(const side of b.railSides)for(let i=2;i<samples.length-1;i++){const a=samples[i-1],c=samples[i];if(a.a<-b.length/2+(b.railEndInset??.4)||c.a>b.length/2-(b.railEndInset??.4))continue;const pa=world(b,side*(a.half-.12),a.a,a.top),pc=world(b,side*(c.half-.12),c.a,c.top);for(const[h,off]of[[.44,.4],[.12,1.01]]){const rail=box(marble,.22,h,Math.hypot(pc.x-pa.x,pc.z-pa.z),(pa.x+pc.x)/2,(pa.y+pc.y)/2+off,(pa.z+pc.z)/2);rail.rotation.y=Math.atan2(pc.x-pa.x,pc.z-pa.z);}if(i%3===0)box(marble,.25,1.13,.25,pa.x,pa.y+.56,pa.z);col(Math.min(pa.x,pc.x)-.125,Math.min(pa.y,pc.y),Math.min(pa.z,pc.z)-.125,Math.max(pa.x,pc.x)+.125,Math.max(pa.y,pc.y)+1.13,Math.max(pa.z,pc.z)+.125);}
  };
@@ -118,5 +120,5 @@ export function buildSouthWaterSystem(library,river,waterMaterial){
   const geo=new THREE.ExtrudeGeometry(shape,{depth:c.length,steps:1,bevelEnabled:false});geo.rotateY(Math.PI/2);geo.translate(c.x-c.length/2,0,c.z);mesh(applyBoxUV(geo,library.tileSize('marble')),marble).userData.culvertId=c.id;
  }
 
- group.add(mergeByMaterial(masonry,{name:'south-water-masonry'}),water);group.userData.structure={id:profile.id,status:profile.status,bridges:profile.bridges.map(b=>b.id)};group.userData.southWater=profile;group.userData.wuyingBridgeRails=wuyingRails;return{group,water,profile,colliders,walkables};
+ group.add(mergeByMaterial(masonry,{name:'south-water-masonry'}),water);group.userData.structure={id:profile.id,status:profile.status,bridges:profile.bridges.map(b=>b.id)};group.userData.southWater=profile;group.userData.wuyingBridgeRails=wuyingRails;group.userData.wenyuanPondRails=wenyuanRails;return{group,water,profile,colliders,walkables};
 }

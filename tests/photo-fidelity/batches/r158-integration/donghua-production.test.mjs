@@ -1,0 +1,11 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';
+import {ZoneBase} from '../../../../src/scene/zones/ZoneBase.js';
+import {library,east} from '../../../lib/r59-donghua-door-fixture.mjs';
+const hash=a=>createHash('sha256').update(a).digest('hex');let hdPixels;
+for(const quality of['hd','sd'])test(`Uninjected ${quality} outer-east production dispatch owns Donghua observed east face, without physical changes`,async()=>{
+ const lib=await library(quality),b=new ZoneBase(lib,east);let result;
+ try{result=b.build();const records=result.group.userData.architecture.filter(a=>a.id==='city-gates/donghua');assert.equal(records.length,1);assert.equal(records[0].donghuaExteriorEnvelope?.visibleWindowGroups,5);assert.equal(records[0].donghuaExteriorEnvelope.accepted,false);
+  const windows=[],stone=[];result.group.traverse(m=>{if(m.isMesh&&m.material.name==='donghua_front_five_window_groups')windows.push(m);if(m.isMesh&&m.material.name==='donghua_front_stone_plinth')stone.push(m);});assert.equal(windows.length,1);assert.equal(stone.length,1);const texture=windows[0].material.map;assert.ok(texture.isDataTexture);assert.equal(texture.image.width,1024);assert.equal(texture.image.height,256);const pixels=hash(texture.image.data);if(quality==='hd')hdPixels=pixels;else assert.equal(pixels,hdPixels,'quality cannot alter the independent source-bounded procedural fit');
+  for(const m of[...windows,...stone])for(const a of Object.values(m.geometry.attributes))assert.ok(a.array.every(Number.isFinite));assert.equal(result.colliders.length,1065);assert.equal(result.walkables.length,61);console.log(JSON.stringify({quality,textureSHA256:pixels,colliders:result.colliders.length,walkables:result.walkables.length,hook:'UNINJECTED_PRODUCTION'}));
+ }finally{if(result)b.dispose();else b.kit.dispose(b.kit.root);lib.dispose();}
+});

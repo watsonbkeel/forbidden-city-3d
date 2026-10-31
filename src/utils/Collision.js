@@ -1,3 +1,4 @@
+import {canRecoverInwardFromWenyuanRail} from '../scene/palace/special/WenyuanPondBridgeRails.js';
 import {canRecoverInwardFromWuyingRail} from '../scene/palace/special/WuyingThreeBridgeRails.js';
 import {canCrossFubiPool} from '../scene/garden/FubiArchPool.js';
 import {canCrossLinxiPool} from '../scene/palace/special/LinxiBridgePool.js';
@@ -365,7 +366,7 @@ export class CollisionManager {
   }
 
   checkRiverCrossing(position, radius, from = null, feetY = null, fromFeetY = null) {
-    return canCrossFubiPool(position, radius) && canCrossLinxiPool(position, radius) && this.rivers.every(river => canCrossPalaceWater(river, position, radius) || canRecoverInwardFromWuyingRail(this,river,from,position,radius,fromFeetY,feetY)) &&
+    return canCrossFubiPool(position, radius) && canCrossLinxiPool(position, radius) && this.rivers.every(river => canCrossPalaceWater(river, position, radius) || canRecoverInwardFromWuyingRail(this,river,from,position,radius,fromFeetY,feetY) || canRecoverInwardFromWenyuanRail(this,river,from,position,radius,fromFeetY,feetY)) &&
       this.moats.every(moat => from ? canTraverseOuterMoat(moat, from, position, radius) : canCrossOuterMoat(moat, position, radius));
   }
 

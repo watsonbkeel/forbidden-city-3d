@@ -1,0 +1,76 @@
+{
+  "status": "LIMITED_DONGHUA_PRODUCTION_HOOK_CHECKPOINT_NOT_WHOLE_GATE",
+  "priorIntegratedCommit": "4730d285a4922b6c06c874d654313b3a7db6f50e",
+  "originalCandidateCommits": [
+    "6a2d25ab",
+    "28e98ff7",
+    "3a5aa3bf",
+    "d7f41b3b"
+  ],
+  "localImportedCommits": [
+    "4b987630",
+    "37e27ca8",
+    "e866649e",
+    "374f66b4"
+  ],
+  "productionHashes": {
+    "src/scene/zones/ZoneBase.js": "cf7755d3615fc2d79ebb806d1c9ace74b3e4ad274366c5b1d5087e0969946df4",
+    "src/scene/palace/special/DonghuaExteriorEnvelope.js": "290e02691bb0e76bb0d459dd7b2eaf1a9fca9b9a1cbed55142b25dce5ecc47b9"
+  },
+  "hookScope": "one import and one apply call after existing Donghua central-door finalizer in ZoneBase.buildCityGate; no physics or shared Collision edits",
+  "hdSdProduction": {
+    "beforeHookFail": 2,
+    "afterHookPass": 2,
+    "noInjectedAdapter": true,
+    "outerEastColliders": 1065,
+    "outerEastSupports": 61,
+    "proceduralFitPixelsSameAcrossQualities": true
+  },
+  "focusedTests": {
+    "tests": 9,
+    "pass": 9,
+    "includes": "2 actual HD/SD production tests and7 own-module retention/resource/atomic rollback tests"
+  },
+  "wholeWorldController": {
+    "tests": 1,
+    "pass": 1,
+    "environment": "R158_DONGHUA_PRODUCTION_HOOK=1",
+    "dispatchMode": "PRODUCTION_HOOK_REQUIRED",
+    "portalRoutes": 18,
+    "masonryRoutes": 16,
+    "openLeafRoutes": 12,
+    "fps": [
+      10,
+      30,
+      60
+    ]
+  },
+  "inheritedEntryCourtRegression": {
+    "tests": 80,
+    "pass": 78,
+    "fail": 2,
+    "failures": [
+      "nine-row skin retains every original triangle, normal, UV, leaf pose and physics record",
+      "horizontal eight-column positions remain inherited, not a newly claimed count"
+    ],
+    "classification": "Both are untouched Zuoyi tests, independently reproduced on exact1f6baseline source with15total/13pass/2fail and unchanged public assets. Original assertions not weakened."
+  },
+  "priorFullSuite": "4730d285stage1313/1090/223 only; not relabelled as a post-Donghua full run. Final cumulative suite follows remaining approved integration.",
+  "independentReview": "Original d7f41b3b module approved by Astra; final cumulative integration review pending",
+  "wholeObjectAccepted": false,
+  "gpuAccepted": false,
+  "release": false,
+  "limits": [
+    "Observed east face only; no unseen-side claim",
+    "Five visible window groups source-backed; exact spacing/motif/colors/profile are reversible model fits",
+    "Maximum stone recess8cm is a visual fit inside original solid/collider envelope, not a measured moulding",
+    "No main or Pages changes"
+  ],
+  "logHashes": {
+    "inherited-entry-and-court-regression.log": "897d796b0d4aea2a0ced515af6d0920d4f0047256f6aa4aa2b6668fadbeea6ae",
+    "zuoyi-baseline-1f6.log": "d8c5ff15948ba2865f828061af5d6ac26a8a9facd275dec9631062550bd12141",
+    "production-hd-sd-red.log": "631d2a15aa14c4cbf5811f4ca7e1094ba6e9dc9c353bbd74e6c305d6963326f8",
+    "focused-production-green.log": "800f3452bd0876f19a9309a546e90e72b025152db36d1620c63b3f0e5b5a892e",
+    "controller-production.log": "8ddbdcc600cc4d1993a832d8cdded021884d2ab6df9946f7d3c67c67a3aca705"
+  }
+}

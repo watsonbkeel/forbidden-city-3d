@@ -1,0 +1,20 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;width:100%;height:100%;overflow:hidden}canvas{display:block}</style></head><body><script type="module">
+import * as THREE from 'three';
+import {TextureLibrary} from '../src/utils/TextureLibrary.js';
+import {CourtKit} from '../src/scene/palace/kit.js';
+import {buildEastWestCityGate} from '../src/scene/palace/special/EastWestCityGate.js';
+import {applyDonghuaCentralDoorFront} from '../src/scene/palace/special/DonghuaCentralDoorFront.js';
+import {applyDonghuaExteriorEnvelope} from '../src/scene/palace/special/DonghuaExteriorEnvelope.js';
+const item={kind:'cityGate',cityGateProfile:'east-west',name:'东华门',x:-365.8,z:-257,rot:'east'},binding={zoneId:'outer-east',itemIndex:21,item};
+const scene=new THREE.Scene();scene.background=new THREE.Color(0xa4bdca);
+scene.add(new THREE.HemisphereLight(0xc8e0ff,0x756c53,2));const sun=new THREE.DirectionalLight(0xffeed5,3);sun.position.set(-400,50,-300);scene.add(sun);
+const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(1);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1;document.body.appendChild(renderer.domElement);
+const lib=new TextureLibrary({quality:'hd'});await lib.load();
+const kit=new CourtKit(lib),frame=buildEastWestCityGate(kit,item);applyDonghuaCentralDoorFront(kit,frame,binding);
+if(new URLSearchParams(location.search).get('candidate')==='1'&&!applyDonghuaExteriorEnvelope(kit,frame,binding))throw Error('Candidate did not dispatch');
+scene.add(kit.finish());
+const ground=new THREE.Mesh(new THREE.PlaneGeometry(400,400),new THREE.MeshStandardMaterial({color:0x7d8272,roughness:1}));ground.rotation.x=-Math.PI/2;ground.position.set(-365.8,-.02,-257);scene.add(ground);
+const camera=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,.1,1000),local=(x,y,z)=>new THREE.Vector3(x,y,z).applyMatrix4(frame.matrixWorld);
+camera.position.copy(local(0,1.7,-30));camera.lookAt(local(0,10.2,0));camera.updateMatrixWorld();renderer.render(scene,camera);
+window.r158Evidence={ready:true,kind:'ACTUAL_CHROMIUM_WEBGL_PRODUCTION_COMPONENT_NOT_FULL_GAME',candidate:new URLSearchParams(location.search).get('candidate')==='1',camera:camera.position.toArray(),lookAt:local(0,10.2,0).toArray(),fov:60,cameraRole:'FREE_COMPONENT_CAMERA_AT_REVIEWED_GROUND_POINT_NOT_GAME_PLAYER',quality:'hd',light:'fixed hemi2/sun3 ACES exposure1',loadedTextures:lib.loadedFromFile.size,drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,record:frame.userData.donghuaExteriorEnvelope??null};
+</script></body></html>
