@@ -1,0 +1,41 @@
+{
+  "command": [
+    "node",
+    "--max-old-space-size=768",
+    "--test",
+    "--test-reporter=tap",
+    "--test-concurrency=1",
+    "tests/photo-fidelity/batches/wumen-joint-layout/ascent-contact.test.mjs",
+    "tests/photo-fidelity/batches/wumen-joint-layout/connected-boundaries.test.mjs",
+    "tests/photo-fidelity/batches/wumen-joint-layout/connected-step.test.mjs",
+    "tests/photo-fidelity/batches/wumen-joint-layout/fit-definition.test.mjs",
+    "tests/photo-fidelity/batches/wumen-joint-layout/footprint-coverage.test.mjs",
+    "tests/photo-fidelity/batches/wumen-joint-layout/ground-authentication.test.mjs",
+    "tests/photo-fidelity/batches/wumen-joint-layout/ground-entry-player.test.mjs",
+    "tests/photo-fidelity/batches/wumen-joint-layout/ground-entry-step.test.mjs",
+    "tests/photo-fidelity/batches/wumen-joint-layout/ground-step.test.mjs",
+    "tests/photo-fidelity/batches/wumen-joint-layout/ground-witness.test.mjs",
+    "tests/photo-fidelity/batches/wumen-joint-layout/ordinary-sweep.test.mjs",
+    "tests/photo-fidelity/batches/wumen-joint-layout/owner-index.test.mjs",
+    "tests/photo-fidelity/batches/wumen-joint-layout/owner-registration.test.mjs",
+    "tests/photo-fidelity/batches/wumen-joint-layout/player-interior.test.mjs",
+    "tests/photo-fidelity/batches/wumen-joint-layout/profile.test.mjs",
+    "tests/photo-fidelity/batches/wumen-joint-layout/ramp-solid.test.mjs",
+    "tests/photo-fidelity/batches/wumen-joint-layout/shared-entry.test.mjs",
+    "tests/photo-fidelity/batches/wumen-joint-layout/shared-outside.test.mjs",
+    "tests/photo-fidelity/batches/wumen-joint-layout/test-ground.test.mjs"
+  ],
+  "cwd": "/workspace/scratch/02a8023d1a85/r157-wumen-joint-layout-1622",
+  "environment": {
+    "CONTACT_PROBE_RESULT": "../wumen-joint-recovery-1607/ground-entry-1904/task4/formal-positive.json"
+  },
+  "exit": 0,
+  "elapsedSeconds": 21.998593125001207,
+  "maxRssKiB": 220524,
+  "resourceMethod": "wait4 per command, not prior cumulative process maximum",
+  "head": "3b2d95ae544d41d348a536a41a4f89026d62e24b",
+  "dirty": true,
+  "sourceFreeze": "../task3/source-freeze-1917.json",
+  "selectedFreeze": "selected-freeze-1921.json",
+  "driverSHA256": "126649832cbebb938f2628656be8066db9a527491f9e109f191c2f401ef195ca"
+}

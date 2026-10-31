@@ -1,10 +1,12 @@
 import {WUMEN_JOINT_ASCENT_FIT} from './WumenJointAscentFit.js';
-import {validateWumenJointAscentBinding} from './WumenJointAscentContact.js';
+import {validateWumenJointAscentBinding,wumenJointAscentBindingIdentity} from './WumenJointAscentContact.js';
 import {pathFootprintCovered} from './WumenJointAscentCoverage.js';
 import {wumenJointBodySweep} from './WumenJointAscentSweep.js';
+import {WUMEN_JOINT_GROUND_FIT} from './WumenJointGround.js';
 
-// Isolated connected-rig grounded substep only. No shared controller hook,
-// ground entry, landing or release-to-air is implemented here.
+// Pure grounded substep for an explicitly registered local experiment.
+// No installer, landing or release-to-air is implemented here. Optional local ground entry
+// consumes only authenticated subsets of the one visible ground witness.
 const sameHeight=(a,b)=>Math.abs(a-b)<=64*Number.EPSILON*Math.max(1,Math.abs(a),Math.abs(b));
 const refused=status=>({status,accepted:false,releaseImplemented:false});
 const contains=(p,x,z)=>x>=p.minX&&x<=p.maxX&&z>=p.minZ&&z<=p.maxZ;
@@ -39,7 +41,9 @@ function pathEvents(branch,from,to){
 export function tryWumenJointGroundStep(cm,from,to,state,radius=.5){
  if(![from,to].every(p=>p?.isVector3&&p.toArray().every(Number.isFinite))||!Number.isFinite(radius)||radius<=0||!state||typeof state.airborne!=='boolean')throw TypeError('Wumen joint step requires finite feet and explicit movement state');
  // Fixed expected domain does not shrink when a real owner has been removed.
- const domain=WUMEN_JOINT_ASCENT_FIT.pieces.filter(p=>intersectsFootprintPath(p,from,to,radius));
+ const registered=wumenJointAscentBindingIdentity(cm);
+ const expectedDomain=registered?.groundSourceID===WUMEN_JOINT_GROUND_FIT.id?[...WUMEN_JOINT_ASCENT_FIT.pieces,...WUMEN_JOINT_GROUND_FIT.patches]:WUMEN_JOINT_ASCENT_FIT.pieces;
+ const domain=expectedDomain.filter(p=>intersectsFootprintPath(p,from,to,radius));
  if(!domain.length)return{status:'OUTSIDE'};
  const binding=validateWumenJointAscentBinding(cm);
  if(!binding)return{status:'OUTSIDE'};
@@ -47,7 +51,7 @@ export function tryWumenJointGroundStep(cm,from,to,state,radius=.5){
  if(state.kind!=='player')return refused('UNSUPPORTED_ACTOR');
  if(state.airborne)return refused('AIRBORNE_UNHANDLED');
  if(Math.hypot(to.x-from.x,to.z-from.z)>radius*.5)return refused('SUBSTEP_TOO_LONG');
- const live=WUMEN_JOINT_ASCENT_FIT.pieces.filter(p=>binding.ownerIDs.includes(p.id)),starts=live.filter(p=>contains(p,from.x,from.z)),ends=live.filter(p=>contains(p,to.x,to.z));
+ const live=[...WUMEN_JOINT_ASCENT_FIT.pieces.filter(p=>binding.ownerIDs.includes(p.id)),...WUMEN_JOINT_GROUND_FIT.patches.filter(p=>binding.groundPatchIDs?.includes(p.id))],starts=live.filter(p=>contains(p,from.x,from.z)),ends=live.filter(p=>contains(p,to.x,to.z));
  if(!starts.length||!ends.length)return refused('UNSUPPORTED');
  // Tiny numeric round-trip allowance only; never choose a lower implicit floor.
  const matching=starts.filter(p=>sameHeight(height(p,from.x,from.z),from.y));

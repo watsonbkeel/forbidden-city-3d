@@ -1,0 +1,118 @@
+{
+  "status": "LIMITED_UNINSTALLED_LOCAL_GROUND_ENTRY_CHECKPOINT_REVIEWED",
+  "parent": "3b2d95ae544d41d348a536a41a4f89026d62e24b",
+  "testedRuntimeIdentity": "3b2d95ae + frozen source WIP, not clean3b",
+  "sourceFiles": 600,
+  "qaFiles": 4399,
+  "selectedInputs": 40,
+  "accepted": false,
+  "releaseAccepted": false,
+  "wholeObjectAccepted": false,
+  "wholeObjectsAdded": 0,
+  "runtimeOwnerRegistration": false,
+  "worldInstalled": false,
+  "architecturalRouteAcceptance": false,
+  "localEngineeringRigGroundRouteContractPassed": true,
+  "fixture": {
+    "visibleSolids": 15,
+    "ordinaryBodyRows": 545,
+    "rampSupports": 14,
+    "flatGroundSupports": 1,
+    "approachPatches": 2,
+    "patchAddedPhysicsRows": 0,
+    "deltaVersusInternalRig": {
+      "visibleMesh": 1,
+      "body": 1,
+      "flatSupport": 1
+    }
+  },
+  "tests": {
+    "local": {
+      "tests": 179,
+      "pass": 179,
+      "fail": 0,
+      "skip": 0
+    },
+    "legacyControlFiles": {
+      "files": 6,
+      "tests": 55,
+      "pass": 55
+    },
+    "groundRoutesIncludedInLocal": {
+      "cases": 16,
+      "frames": 6334,
+      "maxFinalDistance": 0.07097741469282867,
+      "nominalStoppedSeconds": 1,
+      "bodyHits": 0,
+      "footprintMissing": 0,
+      "onSupportMissing": 0,
+      "airFrames": 0,
+      "feetGroundError": 0,
+      "verticalSpeed": 0
+    },
+    "sourceRemovalNegatives": [
+      {
+        "mode": "missing-ground-body",
+        "selected": 1,
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "skip": 0,
+        "unselected": 15
+      },
+      {
+        "mode": "wrong-ground-name",
+        "selected": 1,
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "skip": 0,
+        "unselected": 15
+      },
+      {
+        "mode": "missing-neck",
+        "selected": 1,
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "skip": 0,
+        "unselected": 15
+      }
+    ]
+  },
+  "independentReview": {
+    "report": "evidence/independent/independent-wumen-ground-routes-1920/REVIEW-1925.md",
+    "sha256": "e9aff43b7818cd9c5212ad33a1054560dc0bc2f5e6325899a643012b2f77e131",
+    "scope": "limited local candidate; no new P0/P1 blockage; not original full suite or World"
+  },
+  "runtimeDeltaFromParent": {
+    "modified": [
+      "src/controls/WumenJointAscentContact.js",
+      "src/controls/WumenJointAscentMotion.js"
+    ],
+    "added": [
+      "src/controls/WumenJointGround.js",
+      "src/controls/WumenJointOrdinarySurface.js"
+    ],
+    "CollisionFirstPersonHandoff": "byte-identical parent"
+  },
+  "unrunForThisSuccessor": [
+    "original full suite",
+    "original full batch",
+    "World",
+    "three-base builds",
+    "GPU"
+  ],
+  "remaining": [
+    "actual mapped ground/platform/horseway/south-wall/pavilion interfaces",
+    "arbitrary authorization-window departure and gravity/landing/release",
+    "unresolved eight upper interface identities",
+    "full historical QA closure: ten missing refs and38 unexecuted old titles"
+  ],
+  "knownEarlierRuntimeFailures": {
+    "full": 213,
+    "batch": 10,
+    "notProvedToBeOnlyCurrentFailures": true
+  },
+  "remoteBackup": "PENDING"
+}

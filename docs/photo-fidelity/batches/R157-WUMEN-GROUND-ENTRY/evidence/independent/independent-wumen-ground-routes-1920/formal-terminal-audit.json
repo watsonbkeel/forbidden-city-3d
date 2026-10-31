@@ -1,0 +1,235 @@
+{
+  "finalSelectedCount": 40,
+  "finalSourceCount": 600,
+  "allSHAEqual": true,
+  "formalPositiveEqualsFirstGreenBytes": true,
+  "positiveSHA256": "8c06251bf2e417283b5ad955b8c83c78fa681754268e669cf41cba86ab70967b",
+  "formalDriverSHA256": "126649832cbebb938f2628656be8066db9a527491f9e109f191c2f401ef195ca",
+  "rounds": {
+    "formal-local-179": {
+      "counts": {
+        "tests": 179,
+        "pass": 179,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "exit": 0,
+      "logSHA256": "23c96208e92bfd5217743fc1aeee08f52896376397cf30141bef189fc5f9c209",
+      "jsonRows": null,
+      "command": [
+        "node",
+        "--max-old-space-size=768",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=1",
+        "tests/photo-fidelity/batches/wumen-joint-layout/ascent-contact.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/connected-boundaries.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/connected-step.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/fit-definition.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/footprint-coverage.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/ground-authentication.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/ground-entry-player.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/ground-entry-step.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/ground-step.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/ground-witness.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/ordinary-sweep.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/owner-index.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/owner-registration.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/player-interior.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/profile.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/ramp-solid.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/shared-entry.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/shared-outside.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/test-ground.test.mjs"
+      ],
+      "elapsedSeconds": 21.998593125001207,
+      "maxRssKiB": 220524
+    },
+    "legacy-55": {
+      "counts": {
+        "tests": 55,
+        "pass": 55,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "exit": 0,
+      "logSHA256": "22de782456fba2df96c94f83c5bf3dcde6c40e0f7b86b7b4efca7c5a622fb80c",
+      "jsonRows": null,
+      "command": [
+        "node",
+        "--max-old-space-size=768",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=1",
+        "tests/r157-small-descent-triangle.test.mjs",
+        "tests/r87-triangle-support.test.mjs",
+        "tests/r87-collision-dispatch.test.mjs",
+        "tests/r65-character-bodies.test.mjs",
+        "tests/r65-mutual-character-interaction.test.mjs",
+        "tests/r81-water-collision.test.mjs"
+      ],
+      "elapsedSeconds": 10.572704043002886,
+      "maxRssKiB": 680416
+    },
+    "negative-missing-ground-body": {
+      "counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "exit": 1,
+      "logSHA256": "715f72a70e46962f49714e67a91614d533947883ce1583168351d1dea2a44762",
+      "jsonRows": 0,
+      "command": [
+        "node",
+        "--max-old-space-size=768",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=1",
+        "--test-name-pattern=east up 10Hz walk$",
+        "tests/photo-fidelity/batches/wumen-joint-layout/ground-entry-player.test.mjs"
+      ],
+      "elapsedSeconds": 0.24660648300050525,
+      "maxRssKiB": 61444
+    },
+    "negative-wrong-ground-name": {
+      "counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "exit": 1,
+      "logSHA256": "c9c27c8d330c07bec452c2e00f06418dac12df10b2ba841fe2596803ea47a6ee",
+      "jsonRows": 0,
+      "command": [
+        "node",
+        "--max-old-space-size=768",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=1",
+        "--test-name-pattern=east up 10Hz walk$",
+        "tests/photo-fidelity/batches/wumen-joint-layout/ground-entry-player.test.mjs"
+      ],
+      "elapsedSeconds": 0.24768352400133153,
+      "maxRssKiB": 60960
+    },
+    "negative-missing-neck": {
+      "counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "exit": 1,
+      "logSHA256": "eb37a7970fb465af73396299fcd7bbc7402a19757c5a941a94d279e391a2d20a",
+      "jsonRows": 1,
+      "command": [
+        "node",
+        "--max-old-space-size=768",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=1",
+        "--test-name-pattern=east up 10Hz walk$",
+        "tests/photo-fidelity/batches/wumen-joint-layout/ground-entry-player.test.mjs"
+      ],
+      "elapsedSeconds": 3.133710850997886,
+      "maxRssKiB": 133108
+    }
+  },
+  "negativeScope": "Only one selected east/up/10Hz/walk per mode. 15 others unselected, not skipped.",
+  "163to179": {
+    "added16": [
+      [
+        "ok",
+        "AUTHENTICATED_REAL_GROUND_ENTRY_STOP east up 10Hz walk"
+      ],
+      [
+        "ok",
+        "AUTHENTICATED_REAL_GROUND_ENTRY_STOP east up 10Hz run"
+      ],
+      [
+        "ok",
+        "AUTHENTICATED_REAL_GROUND_ENTRY_STOP east up 60Hz walk"
+      ],
+      [
+        "ok",
+        "AUTHENTICATED_REAL_GROUND_ENTRY_STOP east up 60Hz run"
+      ],
+      [
+        "ok",
+        "AUTHENTICATED_REAL_GROUND_ENTRY_STOP east down 10Hz walk"
+      ],
+      [
+        "ok",
+        "AUTHENTICATED_REAL_GROUND_ENTRY_STOP east down 10Hz run"
+      ],
+      [
+        "ok",
+        "AUTHENTICATED_REAL_GROUND_ENTRY_STOP east down 60Hz walk"
+      ],
+      [
+        "ok",
+        "AUTHENTICATED_REAL_GROUND_ENTRY_STOP east down 60Hz run"
+      ],
+      [
+        "ok",
+        "AUTHENTICATED_REAL_GROUND_ENTRY_STOP west up 10Hz walk"
+      ],
+      [
+        "ok",
+        "AUTHENTICATED_REAL_GROUND_ENTRY_STOP west up 10Hz run"
+      ],
+      [
+        "ok",
+        "AUTHENTICATED_REAL_GROUND_ENTRY_STOP west up 60Hz walk"
+      ],
+      [
+        "ok",
+        "AUTHENTICATED_REAL_GROUND_ENTRY_STOP west up 60Hz run"
+      ],
+      [
+        "ok",
+        "AUTHENTICATED_REAL_GROUND_ENTRY_STOP west down 10Hz walk"
+      ],
+      [
+        "ok",
+        "AUTHENTICATED_REAL_GROUND_ENTRY_STOP west down 10Hz run"
+      ],
+      [
+        "ok",
+        "AUTHENTICATED_REAL_GROUND_ENTRY_STOP west down 60Hz walk"
+      ],
+      [
+        "ok",
+        "AUTHENTICATED_REAL_GROUND_ENTRY_STOP west down 60Hz run"
+      ]
+    ],
+    "removed": []
+  },
+  "legacyExactHEAD": {
+    "tests/r157-small-descent-triangle.test.mjs": true,
+    "tests/r87-triangle-support.test.mjs": true,
+    "tests/r87-collision-dispatch.test.mjs": true,
+    "tests/r65-character-bodies.test.mjs": true,
+    "tests/r65-mutual-character-interaction.test.mjs": true,
+    "tests/r81-water-collision.test.mjs": true
+  },
+  "task3Local163": {
+    "counts": {
+      "tests": 163,
+      "pass": 163,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "exit": 0,
+    "logSHA256": "52c05a8bfecb3e33835691984466f1707a9f3b3d4fce5159c5327d77eaa55c34"
+  }
+}

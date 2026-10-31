@@ -1,0 +1,22 @@
+{
+  "command": [
+    "node",
+    "--max-old-space-size=768",
+    "--import",
+    "./tests/photo-fidelity/batches/wumen-joint-layout/shared-entry-parent-hook.mjs",
+    "--test",
+    "--test-reporter=tap",
+    "--test-concurrency=1",
+    "../wumen-joint-recovery-1607/contact-controller/probe-authenticated-stop-1841.test.mjs"
+  ],
+  "cwd": "/workspace/scratch/02a8023d1a85/r157-wumen-joint-layout-1622",
+  "head": "3b2d95ae544d41d348a536a41a4f89026d62e24b",
+  "environment": {
+    "CONTACT_PROBE_RESULT": "../wumen-joint-recovery-1607/contact-controller/authenticated-stop-parent-1843.json"
+  },
+  "driverSHA256": "78ae4b2a48b4f38bf2d625ad5cec03d52989e3d4528833fdd5536ba46d0d64f5",
+  "exit": 1,
+  "elapsedSeconds": 0.7311180229989986,
+  "maxRssKiB": 155800,
+  "scope": "EXACT_PARENT_COLLISION_NEGATIVE_NEW_INTERIOR_STOP_NOT_HISTORICAL_WORLD"
+}

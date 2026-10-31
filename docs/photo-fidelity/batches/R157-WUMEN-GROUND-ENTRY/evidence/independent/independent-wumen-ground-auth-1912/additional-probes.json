@@ -1,0 +1,52 @@
+{
+  "mutationProbes": [
+    {
+      "name": "normal",
+      "rejected": true,
+      "error": "TypeError: Wumen joint ground: actual canonical whole visible ground geometry"
+    },
+    {
+      "name": "indexCount",
+      "rejected": true,
+      "error": "TypeError: Wumen joint ground: actual canonical whole visible ground geometry"
+    },
+    {
+      "name": "roughness",
+      "rejected": true,
+      "error": "TypeError: Wumen joint: visible ordinary surface wumen-joint/test-ground"
+    },
+    {
+      "name": "hiddenParent",
+      "rejected": true,
+      "error": "TypeError: Wumen joint: local identity and effective visibility wumen-joint/test-ground"
+    },
+    {
+      "name": "detached",
+      "rejected": true,
+      "error": "TypeError: Wumen joint ground: registered ground source identity changed"
+    },
+    {
+      "name": "bodyTag",
+      "rejected": true,
+      "error": "TypeError: Wumen joint ground: registered ground source identity changed"
+    },
+    {
+      "name": "supportTag",
+      "rejected": true,
+      "error": "TypeError: Wumen joint ground: registered ground source identity changed"
+    },
+    {
+      "name": "sourceBody",
+      "rejected": true,
+      "error": "TypeError: Wumen joint ground: unique live ground body"
+    }
+  ],
+  "noGroundPublicPatchIDsAbsent": true,
+  "optInPatchIDs": [
+    "east/ground-approach",
+    "west/ground-approach"
+  ],
+  "noGroundMotion": "OUTSIDE",
+  "groundOptInMotionStillUnimplemented": "OUTSIDE",
+  "physicalContentAndAllRowIdentitiesUnchanged": true
+}

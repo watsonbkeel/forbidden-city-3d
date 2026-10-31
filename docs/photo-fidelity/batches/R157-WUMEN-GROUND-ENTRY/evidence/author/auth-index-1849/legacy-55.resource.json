@@ -1,0 +1,21 @@
+{
+  "command": [
+    "node",
+    "--max-old-space-size=768",
+    "--test",
+    "--test-reporter=tap",
+    "--test-concurrency=1",
+    "tests/r157-small-descent-triangle.test.mjs",
+    "tests/r87-triangle-support.test.mjs",
+    "tests/r87-collision-dispatch.test.mjs",
+    "tests/r65-character-bodies.test.mjs",
+    "tests/r65-mutual-character-interaction.test.mjs",
+    "tests/r81-water-collision.test.mjs"
+  ],
+  "cwd": "/workspace/scratch/02a8023d1a85/r157-wumen-joint-layout-1622",
+  "environment": {},
+  "exit": 0,
+  "elapsedSeconds": 10.571392703001038,
+  "maxRssKiB": 680412,
+  "rssScope": "maximum children so far in sequential runner"
+}

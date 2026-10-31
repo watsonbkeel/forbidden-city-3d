@@ -1,0 +1,114 @@
+{
+  "scope": "STATIC_DESIGN_GEOMETRY_ONLY_NO_AUTHORITY_OR_ROUTE_IMPLEMENTATION",
+  "ground": {
+    "bounds": [
+      [
+        -110,
+        -0.25,
+        -40
+      ],
+      [
+        110,
+        0,
+        40
+      ]
+    ],
+    "supportBounds": [
+      [
+        -110,
+        0,
+        -40
+      ],
+      [
+        110,
+        0,
+        40
+      ]
+    ],
+    "flatSupportIsEmpty": false,
+    "rescue": false,
+    "positions": 24,
+    "indices": 36
+  },
+  "patches": [
+    {
+      "id": "east/approach",
+      "minX": -70.15745033112583,
+      "maxX": -63.601158940397355,
+      "minZ": 17.864238410596027,
+      "maxZ": 19.864238410596027,
+      "y": 0,
+      "withinActualGround": true,
+      "entrySharedLength": 6.556291390728475,
+      "entryNorthHeight": 0,
+      "positiveAreaOverlaps": [],
+      "start": [
+        -66.8793046357616,
+        0,
+        18.864238410596027
+      ],
+      "startFullFootprint": true
+    },
+    {
+      "id": "west/approach",
+      "minX": 63.46870860927152,
+      "maxX": 70.28990066225165,
+      "minZ": 17.59933774834437,
+      "maxZ": 19.59933774834437,
+      "y": 0,
+      "withinActualGround": true,
+      "entrySharedLength": 6.82119205298013,
+      "entryNorthHeight": 0,
+      "positiveAreaOverlaps": [],
+      "start": [
+        66.87930463576159,
+        0,
+        18.59933774834437
+      ],
+      "startFullFootprint": true
+    }
+  ],
+  "patchesOverlap": 0,
+  "missingHighFaces": [
+    {
+      "id": "east/neck",
+      "highCenter": [
+        -62.44221854304636,
+        12.100000000000001,
+        -9.950331125827816
+      ],
+      "restrictedPatchUnionFillsGap": false,
+      "unqualifiedWholeGroundWouldCoverXZ": true
+    },
+    {
+      "id": "east/receiver",
+      "highCenter": [
+        -61.01837748344371,
+        12.3,
+        -9.950331125827816
+      ],
+      "restrictedPatchUnionFillsGap": false,
+      "unqualifiedWholeGroundWouldCoverXZ": true
+    },
+    {
+      "id": "west/neck",
+      "highCenter": [
+        62.475331125827815,
+        12.100000000000001,
+        -11.407284768211921
+      ],
+      "restrictedPatchUnionFillsGap": false,
+      "unqualifiedWholeGroundWouldCoverXZ": true
+    },
+    {
+      "id": "west/receiver",
+      "highCenter": [
+        61.01837748344371,
+        12.3,
+        -11.407284768211921
+      ],
+      "restrictedPatchUnionFillsGap": false,
+      "unqualifiedWholeGroundWouldCoverXZ": true
+    }
+  ]
+}
