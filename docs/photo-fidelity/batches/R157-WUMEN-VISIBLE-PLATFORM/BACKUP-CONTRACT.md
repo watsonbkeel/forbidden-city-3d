@@ -1,0 +1,8 @@
+# Limited development backup contract — PENDING
+Use the new exact local commit after independent tail review; parent49b and its verified09ef remote stay rollback. Do not modify main/Pages or overwrite other worktrees. This directory contains generated CPU images, not private original photographs/PDFs.
+
+Required: exact600src/data and4406tests/scripts inventories; seven new offline code/test files; this complete evidence index; all raw status/title Counter data and original failure evidence. Preserve the prior430 and205 evidence packages and their old indices unchanged. `.tap`, `.log`, six historical `.test.mjs` snapshots and three large audit JSONs are gzip wrappers identified by receipt; reconstructing raw bytes must match rawSHA256.
+
+Real remote clone should verify the entire intended Git tree/changed blobs and these logical inventories, then rerun the selected56 command. No need to pretend a World test exists for this uninstalled visible candidate. Exporter2 verifies actual complete drawn faces; optional independent CPU outputs must use new directories and not overwrite archived2015 evidence.
+
+Keep inherited10missing-ref/38unexecutedP1 and oldfull213/batch10red boundaries. This selected backup is not the entire no-history test closure and does not grant source coordinate migration, upper assembly/actual-platform FP/World/build/GPU acceptance. Historical6portable adapters already exist in parent and must not be blindly reapplied. Required inherited asset: public/textures/hd/manifest.json. Parent clone previously failed controls due to sparse omission, then passed after exact file restoration; no golden was regenerated.

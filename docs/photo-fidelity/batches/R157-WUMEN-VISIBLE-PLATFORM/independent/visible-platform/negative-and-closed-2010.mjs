@@ -1,0 +1,16 @@
+import fs from 'node:fs';
+import {captureGate} from '../r157-wumen-joint-layout-1622/tests/lib/gate-tower-fixture.mjs';
+import {buildWumenJointVisiblePlatform} from '../r157-wumen-joint-layout-1622/scripts/photo-fidelity/batches/wumen-joint-layout/visible-platform.mjs';
+import {PalaceBuilder} from '../r157-wumen-joint-layout-1622/src/scene/PalaceBuilder.js';
+import {CollisionManager} from '../r157-wumen-joint-layout-1622/src/utils/Collision.js';
+import {wumenLowerGeometry} from '../r157-wumen-joint-layout-1622/src/scene/palace/special/WumenLowerBase.js';
+const results=[];
+for(const [name,mutate] of [
+ ['hidden lower parent',c=>c.group.children.find(o=>o.userData.structure?.id==='axis/wumen-lower-base').visible=false],
+ ['translated lower parent',c=>c.group.children.find(o=>o.userData.structure?.id==='axis/wumen-lower-base').position.y=2],
+ ['missing one north jamb',c=>{const r=c.group.children.find(o=>o.userData.structure?.id==='axis/wumen-lower-base');r.remove(r.children.find(o=>o.userData.wumenLowerPart==='north-vertical-jamb-lining'));}],
+ ['missing actual 64-cap child',c=>{let g;c.group.traverse(o=>{if(o.userData.wumenLeftLeafStuds)g=o});g.remove(g.children[0]);}],
+]){const c=captureGate();mutate(c);let a,err=null;try{a=buildWumenJointVisiblePlatform(c)}catch(e){err=String(e)};results.push({name,accepted:!!a,error:err});a?.dispose();c.builder.dispose();}
+const c=captureGate(),T=c.THREE,a=buildWumenJointVisiblePlatform(c);let oldRail;c.group.traverse(o=>{if(o.name==='retained-platform-rail')oldRail??=o});const rail=a.rails[0].mesh;const material=m=>({alphaTest:m.material.alphaTest,side:m.material.side,transparent:m.material.transparent,vertices:m.geometry.index?.count??m.geometry.attributes.position.count,hasHorizontal:Array.from({length:m.geometry.attributes.normal.count},(_,i)=>Math.abs(m.geometry.attributes.normal.getY(i))).some(v=>v>.5)});const band=o=>{const g=o.geometry,p=g.attributes.position,n=g.attributes.normal,u=g.attributes.uv;return Array.from({length:p.count},(_,i)=>i).filter(i=>Math.abs(n.getY(i))<.5).map(i=>u.getY(i));};let oldBand;c.group.traverse(o=>{if(o.userData.wumenLowerPart==='base-band')oldBand??=o});const newBand=a.group.children.find(o=>o.material?.name==='sumeru_band');const oldV=band(oldBand),newV=band(newBand);const presentation={rail:{before:material(oldRail),candidate:material(rail)},bandV:{before:[Math.min(...oldV),Math.max(...oldV)],candidate:[Math.min(...newV),Math.max(...newV)]}};
+a.dispose();
+const data=structuredClone(c.data);data.lowerDoorsOpen=false;const b=new PalaceBuilder(new T.Scene(),c.lib);let group;b.finish=g=>{group=g;g.updateMatrixWorld(true);return g;};b.buildGate(data);const closed={...c,data,builder:b,group},ac=buildWumenJointVisiblePlatform(closed),cm=new CollisionManager();cm.addColliders(ac.colliders);cm.addWalkables(ac.walkables);const closedDoors=wumenLowerGeometry(data).routes.map(r=>{const x=r.kind==='central'?r.x:r.sign*40.6,z=r.kind==='central'?-12.3:r.sideZ;return{id:r.id,collision:cm.checkCollision(new T.Vector3(x,1.7,z),.5)}});ac.dispose();b.dispose();c.builder.dispose();const out={malformedInput:results,presentation,closedDoors};fs.writeFileSync(new URL('./negative-and-closed-2010.json',import.meta.url),JSON.stringify(out,null,2)+'\n');console.log(JSON.stringify(out,null,2));

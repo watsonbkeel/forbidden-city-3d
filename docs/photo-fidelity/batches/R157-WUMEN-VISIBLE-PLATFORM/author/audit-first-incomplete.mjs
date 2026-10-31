@@ -1,0 +1,15 @@
+import fs from 'node:fs';
+import {pathToFileURL} from 'node:url';
+const at=p=>pathToFileURL(process.cwd()+'/'+p).href;
+const {captureGate}=await import(at('tests/lib/gate-tower-fixture.mjs'));
+const {createWumenJointProfile}=await import(at('scripts/photo-fidelity/batches/wumen-joint-layout/profile.mjs'));
+const {WUMEN_JOINT_ASCENT_FIT:fit}=await import(at('src/controls/WumenJointAscentFit.js'));
+const c=captureGate(),T=c.THREE,profile=createWumenJointProfile();
+const box=b=>({min:b.min.toArray(),max:b.max.toArray()});
+const local=b=>b.clone().translate(new T.Vector3(-c.data.position.x,0,-c.data.position.z));
+const slabs=[];c.group.traverse(o=>{if(o.isMesh&&['retained-main-top','retained-wing-top'].includes(o.name))slabs.push({name:o.name,actualBounds:box(new T.Box3().setFromObject(o)),geometryType:o.geometry.type,triangles:o.geometry.index.count/3});});
+const north=c.group.children.filter(o=>/NORTH-PAVILION$/.test(o.userData.structure?.id??''));
+const pavilions=north.map(o=>({id:o.userData.structure.id,position:o.position.toArray(),visibleBounds:box(new T.Box3().setFromObject(o)),meshCount:(()=>{let n=0;o.traverse(q=>{if(q.isMesh)n++});return n})(),closedRuntimeBoxes:c.builder.colliders.map(local).filter(b=>b.min.y===12.3&&b.max.y===15.3&&Math.abs((b.min.x+b.max.x)/2-o.position.x)<1e-7&&Math.abs(b.max.x-b.min.x-11)<1e-7).map(box)}));
+const receivers=fit.pieces.filter(p=>p.id.endsWith('/receiver')).map(p=>{const side=p.id.split('/')[0],s=side==='east'?-1:1,inner=s<0?p.maxX:p.minX;const target=profile.pavilions.find(q=>q.id.includes(side.toUpperCase()+'-NORTH'));const overlapX=Math.max(0,Math.min(p.maxX,target.referenceBounds.x[1])-Math.max(p.minX,target.referenceBounds.x[0]));const overlapZ=Math.max(0,Math.min(p.maxZ,target.referenceBounds.z[1])-Math.max(p.minZ,target.referenceBounds.z[0]));return {...p,oldMainSlabGap:Math.abs(inner)-60.2,referenceAxisRectangleOverlap:{x:overlapX,z:overlapZ,NOT_A_SUPPORT_CERTIFICATE:true},sampleRealSlab:(()=>{const z=(p.minZ+p.maxZ)/2;return [inner, s*60.2,s*59.7].map(x=>({x,z,hits:new T.Raycaster(new T.Vector3(x,12.31,z),new T.Vector3(0,-1,0),0,.02).intersectObjects(c.group.children,true).filter(h=>h.object.name==='retained-main-top'||h.object.name==='retained-wing-top').map(h=>({y:h.point.y,name:h.object.name}))}))})()};});
+const out={scope:'READ_ONLY_ACTUAL_COMPONENT_NOT_WORLD_NOT_NEW_GEOMETRY',basis:'captured finish suppressed: mesh coordinates WUMEN_LOCAL; physics translated back from Layout anchor',anchor:c.data.position,slabs,pavilions,receivers,counts:{colliders:c.builder.colliders.length,walkables:c.builder.walkables.length},uncertainty:'referenceBounds are nominal registered outer axes, not platform edges or door openings; receiver is engineering test solid, not pavilion floor'};
+fs.writeFileSync(process.argv[2],JSON.stringify(out,null,2)+'\n');c.builder.dispose();

@@ -1,0 +1,163 @@
+{
+  "scope": "READ_ONLY_ACTUAL_COMPONENT_NOT_WORLD_NOT_NEW_GEOMETRY",
+  "basis": "captured finish suppressed: mesh coordinates WUMEN_LOCAL; physics translated back from Layout anchor",
+  "anchor": {
+    "x": 0,
+    "y": 0,
+    "z": -419.6
+  },
+  "slabs": [],
+  "pavilions": [
+    {
+      "id": "INSTANCE-A-WUMEN-EAST-NORTH-PAVILION",
+      "position": [
+        -47.7,
+        12.3,
+        -6
+      ],
+      "visibleBounds": {
+        "min": [
+          -53.462499988079074,
+          12.29999997138977,
+          -11.762499988079071
+        ],
+        "max": [
+          -41.93750001192093,
+          19.799999988079072,
+          -0.23750001192092896
+        ]
+      },
+      "meshCount": 61,
+      "closedRuntimeBoxes": [
+        {
+          "min": [
+            -53.2,
+            12.3,
+            -11.5
+          ],
+          "max": [
+            -42.2,
+            15.3,
+            -0.5
+          ]
+        }
+      ]
+    },
+    {
+      "id": "INSTANCE-A-WUMEN-WEST-NORTH-PAVILION",
+      "position": [
+        47.7,
+        12.3,
+        -6
+      ],
+      "visibleBounds": {
+        "min": [
+          41.93750001192093,
+          12.29999997138977,
+          -11.762499988079071
+        ],
+        "max": [
+          53.462499988079074,
+          19.799999988079072,
+          -0.23750001192092896
+        ]
+      },
+      "meshCount": 18,
+      "closedRuntimeBoxes": [
+        {
+          "min": [
+            42.2,
+            12.3,
+            -11.5
+          ],
+          "max": [
+            53.2,
+            15.3,
+            -0.5
+          ]
+        }
+      ]
+    }
+  ],
+  "receivers": [
+    {
+      "id": "east/receiver",
+      "axis": "x",
+      "minX": -61.68062913907285,
+      "maxX": -60.356125827814566,
+      "minZ": -12.599337748344372,
+      "maxZ": -7.301324503311259,
+      "a0": -61.68062913907285,
+      "a1": -60.356125827814566,
+      "y0": 12.3,
+      "y1": 12.3,
+      "baseY": 0,
+      "bodySlice": 0.25,
+      "oldMainSlabGap": 0.15612582781456297,
+      "referenceAxisRectangleOverlap": {
+        "x": 0.06622516556291203,
+        "z": 1.7880794701986744,
+        "NOT_A_SUPPORT_CERTIFICATE": true
+      },
+      "sampleRealSlab": [
+        {
+          "x": -60.356125827814566,
+          "z": -9.950331125827816,
+          "hits": []
+        },
+        {
+          "x": -60.2,
+          "z": -9.950331125827816,
+          "hits": []
+        },
+        {
+          "x": -59.7,
+          "z": -9.950331125827816,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "id": "west/receiver",
+      "axis": "x",
+      "minX": 60.356125827814566,
+      "maxX": 61.68062913907285,
+      "minZ": -14.188741721854306,
+      "maxZ": -8.625827814569536,
+      "a0": 60.356125827814566,
+      "a1": 61.68062913907285,
+      "y0": 12.3,
+      "y1": 12.3,
+      "baseY": 0,
+      "bodySlice": 0.25,
+      "oldMainSlabGap": 0.15612582781456297,
+      "referenceAxisRectangleOverlap": {
+        "x": 0.19867549668874318,
+        "z": 0.5298013245033104,
+        "NOT_A_SUPPORT_CERTIFICATE": true
+      },
+      "sampleRealSlab": [
+        {
+          "x": 60.356125827814566,
+          "z": -11.407284768211921,
+          "hits": []
+        },
+        {
+          "x": 60.2,
+          "z": -11.407284768211921,
+          "hits": []
+        },
+        {
+          "x": 59.7,
+          "z": -11.407284768211921,
+          "hits": []
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "colliders": 452,
+    "walkables": 16
+  },
+  "uncertainty": "referenceBounds are nominal registered outer axes, not platform edges or door openings; receiver is engineering test solid, not pavilion floor"
+}

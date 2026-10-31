@@ -1,0 +1,74 @@
+{
+  "malformedInput": [
+    {
+      "name": "hidden lower parent",
+      "accepted": false,
+      "error": "Error: original retained parent pose/visibility changed"
+    },
+    {
+      "name": "translated lower parent",
+      "accepted": false,
+      "error": "Error: original retained parent pose/visibility changed"
+    },
+    {
+      "name": "missing one north jamb",
+      "accepted": false,
+      "error": "Error: retained five portal objects missing"
+    },
+    {
+      "name": "missing actual 64-cap child",
+      "accepted": false,
+      "error": "Error: retained near-leaf cap inventory changed"
+    }
+  ],
+  "presentation": {
+    "rail": {
+      "before": {
+        "alphaTest": 0.5,
+        "side": 2,
+        "transparent": false,
+        "vertices": 24,
+        "hasHorizontal": true
+      },
+      "candidate": {
+        "alphaTest": 0.5,
+        "side": 2,
+        "transparent": false,
+        "vertices": 24,
+        "hasHorizontal": true
+      }
+    },
+    "bandV": {
+      "before": [
+        0,
+        1
+      ],
+      "candidate": [
+        0,
+        1
+      ]
+    }
+  },
+  "closedDoors": [
+    {
+      "id": "east-wang",
+      "collision": true
+    },
+    {
+      "id": "emperor",
+      "collision": true
+    },
+    {
+      "id": "west-wang",
+      "collision": true
+    },
+    {
+      "id": "east-yemen",
+      "collision": true
+    },
+    {
+      "id": "west-yemen",
+      "collision": true
+    }
+  ]
+}
