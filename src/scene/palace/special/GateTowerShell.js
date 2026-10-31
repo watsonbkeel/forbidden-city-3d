@@ -16,11 +16,17 @@ export function buildGateTowerShell(lib,p) {
   const {T,wallH,enclosure:e}=p;
   if(p.id==='axis/wumen-upper-tower'){
   for(const s of [-1,1])box(T,wallH,e.outerZ*2,s*(e.width/2-T/2),wallH/2,0,'wall_red','gable-wall');
-  for(const opening of p.openings){const {sign,side,width:dw,height:dh}=opening,sideLen=(e.width-dw)/2;
-    for(const s of [-1,1]){
-      const x=s*(dw/2+sideLen/2);
-      box(sideLen,wallH,T,x,wallH/2,sign*e.wallAxisZ,'wall_red','facade-wall',true,false,{geographicSide:side});
-      box(sideLen,wallH*.9,p.veneer.thickness,x,wallH*.45,sign*(e.outerZ+p.veneer.thickness/2),'lattice_doors','closed-lattice-panel',true,true,{geographicSide:side});
+  for(const opening of p.openings){const {sign,side,width:dw,height:dh}=opening;
+    for(const bay of p.facadeBays.filter(b=>b.side===side)){
+      const extra={geographicSide:side,facadeBayId:bay.id,parameterStatus:bay.type,leafCount:bay.leafCount};
+      const spans=bay.open?[[bay.minX,-dw/2],[dw/2,bay.maxX]]:[[bay.minX,bay.maxX]];
+      for(const [a,b] of spans){
+        const width=b-a,x=(a+b)/2;
+        box(width,wallH,T,x,wallH/2,sign*e.wallAxisZ,'wall_red','facade-wall',true,false,extra);
+        // Recess the existing lattice finish within each independently identified
+        // bay. Do not infer individual leaf counts from these distant photos.
+        box(width-.24,wallH*.9,p.veneer.thickness,x,wallH*.45,sign*(e.outerZ+p.veneer.thickness/2),'lattice_doors','closed-lattice-panel',true,true,extra);
+      }
     }
     box(dw,wallH-dh,T,0,dh+(wallH-dh)/2,sign*e.wallAxisZ,'wall_red','door-lintel',false);
     for(const s of [-1,1]){

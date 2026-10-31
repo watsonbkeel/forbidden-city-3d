@@ -1,0 +1,150 @@
+{
+  "status": "PASS_WITH_EXPLICIT_AUTHORIZED_DELTAS_NOT_WHOLE_R157_ACCEPTANCE",
+  "baselineCommit": "36908b2c07c7050e1de0dffd504e68a67c83f205",
+  "snapshotSource": "current-final-source.sha256",
+  "nonTarget": {
+    "rawMergeInputGroups": 543,
+    "rawMeshVisitsNotUnique": 94496,
+    "finalGroups": 17,
+    "finalMeshCount": 967,
+    "outsideWumenRegisteredColliders": 30393,
+    "outsideWumenRegisteredSupports": 1354,
+    "wumenRetainedMeshParts": {
+      "main-roof": {
+        "meshCount": 6,
+        "exactMultiset": true,
+        "orderedAlsoEqual": true
+      },
+      "main-south-plaque": {
+        "meshCount": 1,
+        "exactMultiset": true,
+        "orderedAlsoEqual": true
+      },
+      "folded-ascent-and-platform-rails": {
+        "meshCount": 182,
+        "exactMultiset": true,
+        "orderedAlsoEqual": true
+      },
+      "top-slab/east": {
+        "meshCount": 1,
+        "exactMultiset": true,
+        "orderedAlsoEqual": true
+      },
+      "top-slab/west": {
+        "meshCount": 1,
+        "exactMultiset": true,
+        "orderedAlsoEqual": true
+      },
+      "top-slab/main": {
+        "meshCount": 1,
+        "exactMultiset": true,
+        "orderedAlsoEqual": true
+      },
+      "wing-hall/east": {
+        "meshCount": 36,
+        "exactMultiset": true,
+        "orderedAlsoEqual": true
+      },
+      "pavilion-roof/east/south": {
+        "meshCount": 7,
+        "exactMultiset": true,
+        "orderedAlsoEqual": true
+      },
+      "pavilion-nontarget/east/south": {
+        "meshCount": 10,
+        "exactMultiset": true,
+        "orderedAlsoEqual": false
+      },
+      "pavilion-roof/east/north": {
+        "meshCount": 7,
+        "exactMultiset": true,
+        "orderedAlsoEqual": true
+      },
+      "pavilion-nontarget/east/north": {
+        "meshCount": 57,
+        "exactMultiset": true,
+        "orderedAlsoEqual": true
+      },
+      "transverse-link/east": {
+        "meshCount": 19,
+        "exactMultiset": true,
+        "orderedAlsoEqual": true
+      },
+      "wing-hall/west": {
+        "meshCount": 36,
+        "exactMultiset": true,
+        "orderedAlsoEqual": true
+      },
+      "pavilion-roof/west/south": {
+        "meshCount": 7,
+        "exactMultiset": true,
+        "orderedAlsoEqual": true
+      },
+      "pavilion-nontarget/west/south": {
+        "meshCount": 10,
+        "exactMultiset": true,
+        "orderedAlsoEqual": false
+      },
+      "pavilion-roof/west/north": {
+        "meshCount": 7,
+        "exactMultiset": true,
+        "orderedAlsoEqual": true
+      },
+      "pavilion-nontarget/west/north": {
+        "meshCount": 10,
+        "exactMultiset": true,
+        "orderedAlsoEqual": false
+      },
+      "transverse-link/west": {
+        "meshCount": 19,
+        "exactMultiset": true,
+        "orderedAlsoEqual": true
+      }
+    },
+    "wumenRetainedRegisteredColliders": 284,
+    "wumenRetainedOriginalSupports": 13,
+    "wumenRetainedPhysicsOrderAlsoExact": true
+  },
+  "authorizedDeltas": {
+    "mainColliders": [
+      50,
+      98
+    ],
+    "lowerColliders": [
+      15,
+      70
+    ],
+    "newAuthoredSlabSupportCount": 3,
+    "newSupportRescue": false,
+    "totalWumenColliders": [
+      349,
+      452
+    ],
+    "totalWumenSupports": [
+      13,
+      16
+    ]
+  },
+  "negativeControls": [
+    "missing duplicate outside collider",
+    "changed retained roof hash",
+    "extra retained Wumen collider",
+    "changed original floor",
+    "extra synthetic support",
+    "actual retained roof parent visible=false"
+  ],
+  "hashes": {
+    "outsideRaw": "fa965da33d74f58a07beb0a4ca1409bb5a9077d364608a415f9f0e6bc4273d06",
+    "outsideFinal": "ffd7835eda658b0c9ca7e6ba2967eb53ba0f244eed824b8f75f2d3728fe2ea72",
+    "outsidePhysics": "c026996d377c7d42d24ed1303606a2ea18ea7bb30868080f1a8799ac1f2e0855",
+    "retainedWumenPhysics": "111a51259807d198f739d5857c11ce934fdeea70d10abef573b15df7f83cd16b",
+    "retainedWumenSupports": "a0514a1614fb002244bab7d5d517bb0cf3c63e30ea35edf390da4f584b8a5083"
+  },
+  "limits": [
+    "Raw merge visits include nested captures; not unique object count.",
+    "Real TextureLibrary material/spec/cache with inert offline textures. No loaded-image sampling/GPU or screenshot acceptance.",
+    "Only mesh geometry/material/render/transform and registered physical shape multisets are compared; authorized new evidence metadata is not visual reconstruction.",
+    "Finite explicit source output boundary isolates lower changes; no bounding-box exclusion of all Wumen.",
+    "Historical lower source15 vs current70 and main50 vs98 are intentionally different; no golden updated."
+  ]
+}

@@ -1,26 +1,30 @@
 import {GATE_TOWER_MEASUREMENTS} from './GateTowerMeasurements.js';
 import {WUMEN_VERTICAL_PROFILE} from './WumenVerticalProfile.js';
+import {wumenMainGrid} from './WumenMainGrid.js';
 const PROVISIONAL='PROVISIONAL_PREVIEW_NOT_SURVEYED';
-/** Wumen retains its horizontal frame/enclosure and door topology; only the
- * reviewed main-tower vertical profile changes. gallerySetback is an axis distance. */
+/** Wumen's six depth axes and per-bay enclosure are evidence-bounded previews.
+ * Exterior transverse axes, vertical profile and central door topology remain.
+ * gallerySetback is an axis distance, not a surveyed clear gallery width. */
 export function wumenTowerGeometry({gallerySetback=2.9}={}) {
   if(!Number.isFinite(gallerySetback)||gallerySetback<2.6||gallerySetback>3.2)throw new Error('Wumen gallery axis setback must stay within the approved 2.6–3.2m model band');
   const width=60.05,depth=25,height=WUMEN_VERTICAL_PROFILE.body.height,bays=9,beamH=WUMEN_VERTICAL_PROFILE.body.beamHeight,wallH=height-beamH,T=.9;
   const enclosureWidth=width-1.6,wallAxisZ=depth/2-gallerySetback,outerZ=wallAxisZ+T/2;
   const door={width:5,height:5.2,leafWidth:2.3,leafThickness:.25,leafCountPerOpening:2,openingRadians:Math.PI/2,status:PROVISIONAL,type:'lattice'};
   const outerRadius=width/bays*.06,columns=[];
-  // Retained horizontal interior positions; column heights follow the reviewed body.
-  const innerWidth=width-1.6-1.8,legacyDepth=depth-1.6;
-  for(let i=1;i<bays;i++)for(const z of [-legacyDepth*.18,legacyDepth*.18])columns.push({kind:'interior-column',x:-innerWidth/2+i*innerWidth/bays,z,radius:.42,bottomRadius:.42*1.05,height:wallH,status:'RETAINED_PLAN_SOURCE_REGISTERED_HEIGHT_NOT_SURVEYED'});
+  const grid=wumenMainGrid({width,depth,bays,wallAxisZ,enclosureWidth});
+  // Two main interior rows and two recessed enclosure rows. Gable-concealed
+  // intermediate shafts are deferred rather than invented outside the old wall.
+  for(const x of grid.xAxes.slice(1,-1))for(const z of grid.depthAxes.slice(1,-1))columns.push({kind:'interior-column',x,z,radius:.42,bottomRadius:.42*1.05,height:wallH,status:'SOURCE_REGISTERED_DEPTH_RETAINED_WIDTH_AND_SHAFT_PREVIEW'});
   for(let i=0;i<=bays;i++)for(const z of [-depth/2,depth/2])columns.push({kind:'outer-column',x:-width/2+i/bays*width,z,radius:outerRadius,bottomRadius:outerRadius*1.05,height:wallH,status:'RETAINED_PLAN_SOURCE_REGISTERED_HEIGHT_NOT_SURVEYED'});
-  return {id:'axis/wumen-upper-tower',name:'午门',width,depth,height,bays,beamH,wallH,T,columns,
+  return {id:'axis/wumen-upper-tower',name:'午门',width,depth,height,bays,beamH,wallH,T,columns,xAxes:grid.xAxes,facadeBays:grid.facadeBays,
     enclosure:{width:enclosureWidth,outerZ,wallAxisZ,innerZ:wallAxisZ-T/2},
     openings:[{side:'north',sign:1,...door},{side:'south',sign:-1,...door}],
     floor:{width:enclosureWidth-2*T,depth:2*(wallAxisZ-T/2),visualOffset:.04,support:'retained-main-platform'},
     veneer:{thickness:.12,status:'RETAINED_PREVIEW_THICKNESS'},
     metadata:{id:'axis/wumen-upper-tower',status:'EVIDENCE_BOUNDED_PREVIEW',galleryAxisSetback:gallerySetback,gallerySource:GATE_TOWER_MEASUREMENTS.wumen.gallery,
       wallThickness:{value:T,status:'RETAINED_PREVIEW_NOT_SURVEYED'},upperDoor:door,otherBayOperation:'CLOSED_UNVERIFIED',publicAccess:GATE_TOWER_MEASUREMENTS.publicAccess,
-      verticalGeometry:{status:WUMEN_VERTICAL_PROFILE.status,profileId:WUMEN_VERTICAL_PROFILE.id,body:WUMEN_VERTICAL_PROFILE.body,provenance:WUMEN_VERTICAL_PROFILE.provenance},retainedInteriorColumns:'Legacy horizontal placeholders, not recomputed from recessed wall depth; vertical height follows the reviewed exterior profile'},
+      verticalGeometry:{status:WUMEN_VERTICAL_PROFILE.status,profileId:WUMEN_VERTICAL_PROFILE.id,body:WUMEN_VERTICAL_PROFILE.body,provenance:WUMEN_VERTICAL_PROFILE.provenance},horizontalGrid:grid.metadata,facadeBays:grid.facadeBays,
+      interior:{fixedDecoration:'UNKNOWN_NOT_RECONSTRUCTED',temporaryExhibitionReproduced:false,visibleScope:'Retained provisional floor/ceiling, recessed enclosure and source-bounded column rows only; not a historic interior or current exhibition reconstruction.'}},
   };
 }
 

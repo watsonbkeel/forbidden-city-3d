@@ -1,0 +1,20 @@
+/**
+ * S 档内景注册表：data/interiors/*.json 静态导入（Vite 打包进 bundle，生产环境无需额外请求）。
+ * 新增一座 S 档殿：在 data/interiors/ 放 <hallId>.json，再在这里 import 并加入 INTERIORS。
+ */
+import taihe from '../../../data/interiors/taihe.json';
+import qianqing from '../../../data/interiors/qianqing.json';
+import huangji from '../../../data/interiors/huangji.json';
+import yangxin from '../../../data/interiors/yangxin.json';
+import kunning from '../../../data/interiors/kunning.json';
+// R48: Cining targets the official modern sculpture-gallery panorama (scene 009).
+// The older inferred throne GLB and its config remain on disk for rollback, but are not loaded.
+import { KUNNING_PROFILE, KUNNING_CONTRACT, KUNNING_INTERIOR_FRAME } from '../palace/special/KunningProfile.js';
+
+export const INTERIORS = { taihe, qianqing, huangji, yangxin, kunning: {
+  ...kunning,
+  frame: KUNNING_INTERIOR_FRAME,
+  architectureContract: KUNNING_CONTRACT,
+  placementRegions: KUNNING_PROFILE.placementRegions,
+  protectedVolumes: KUNNING_PROFILE.protectedVolumes,
+} };

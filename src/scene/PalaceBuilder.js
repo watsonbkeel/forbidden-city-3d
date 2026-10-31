@@ -1,3 +1,6 @@
+import {refineWumenOuterSideColumns} from './palace/special/WumenOuterSideColumns.js';
+import {refineWumenNorthwestNorthColumns, WUMEN_NORTHWEST_PAVILION_ID} from './palace/special/WumenNorthwestColumns.js';
+import {refineWumenWingPavilionInstances} from './palace/special/WumenWingPavilionInstances.js';
 import {refineWumenNorthEnclosure} from './palace/special/WumenNorthEnclosure.js';
 import {buildWumenTransverseLinks} from './palace/special/WumenTransverseLinks.js';
 import {buildJiaotaiLowRooms} from './palace/special/JiaotaiLowRooms.js';
@@ -18,8 +21,7 @@ import { COLORS } from '../config/constants.js';
 import { taiheFloorMaterial, TAIHE_FLOOR } from './palace/special/TaiheFloorMaterial.js';
 import { buildGateAscent, toWorld } from './palace/gateAscent.js';
 import { buildWumenAscent } from './palace/special/WumenAscent.js';
-import { buildWumenNorthPortal, registerWumenNorthPortalOverheads } from './palace/special/WumenNorthPortal.js';
-import { buildWumenSouthPortalCanopies } from './palace/special/WumenSouthPortalCanopies.js';
+import { buildWumenLowerBase, buildWumenLowerSouthCanopies } from './palace/special/WumenLowerBase.js';
 import { refineWumenPavilionNorthColumns, WUMEN_NORTHEAST_PAVILION_ID } from './palace/special/WumenPavilionColumns.js';
 import { wumenTowerGeometry, shenwuTowerGeometry } from './palace/special/GateTowerProfiles.js';
 import { buildGateTowerShell } from './palace/special/GateTowerShell.js';
@@ -1117,9 +1119,9 @@ export class PalaceBuilder {
   /**
    * 午门（P1-Z-axis A1）：凹形墩台（平面"凹"字，开口朝南）+ 正楼 + 两翼雁翅楼 + 四角重檐攒尖方亭。
    * 局部坐标原点 = 正楼中心（LAYOUT.WUMEN_Z），+Z 北。尺寸见 DIMENSIONS.WUMEN（dimensions.md:79–82）。
-   * - 主墩台 x ∈ ±W/2，z ∈ [platformSouth, platformNorth]，开三门洞（中门 9 m，左右掖门 5 m @ ±17.5）
-   * - 两翼墩台 x ∈ ±[wingInnerX, W/2]，z ∈ [wingSouth, platformSouth]，实心
-   * - 回归约束：x=0 中门洞贯通；(15, 0) 为中门与掖门间实墙；(40, −14) 在凹口内为空地
+   * - 主墩台 x ∈ ±W/2，z ∈ [platformSouth, platformNorth]，明三门＋相向侧口折北的两掖门（条件工程拟合，非测绘）
+   * - 两翼墩台 x ∈ ±[wingInnerX, W/2]，z ∈ [wingSouth, platformSouth]，近内转角有掖门侧口
+   * - 回归约束：保留全城锚点、城台外廓、台顶与马道；五口共同修正，未知洞内细部不复原
    */
   buildWumen(data) {
     const g = this.begin(data);
@@ -1134,48 +1136,7 @@ export class PalaceBuilder {
     const zc = (zS + zN) / 2;
     const band = 1.2;
 
-    // 主墩台：门洞之间的实墙段
-    const openings = [{ x: -17.5, w: 5 }, { x: 0, w: 9 }, { x: 17.5, w: 5 }];
-    let prev = -W / 2;
-    const segs = [];
-    for (const o of openings) {
-      segs.push([prev, o.x - o.w / 2]);
-      prev = o.x + o.w / 2;
-    }
-    segs.push([prev, W / 2]);
-    for (const [a, b] of segs) {
-      this.libBox(g, 'wall_red', b - a, PH - band, D, (a + b) / 2, band + (PH - band) / 2, zc, 'box');
-      this.libBox(g, 'sumeru_band', b - a + 0.2, band, D + 0.2, (a + b) / 2, band / 2, zc, 'band');
-      this.col(a, 0, zS, b, 3, zN);
-    }
-    for (const o of openings) {
-      const tunnelH = o.w >= 8 ? 8 : 6.5;
-      buildWumenNorthPortal(this, g, {
-        x: o.x, width: o.w, tunnelHeight: tunnelH,
-        platformHeight: PH, southZ: zS, northZ: zN,
-      });
-      for (const s of [-1, 1]) {
-        const leaf = buildStuddedDoor(this.library, { width: o.w * 0.48, height: tunnelH - 0.5 });
-        leaf.position.set(o.x + s * (o.w / 2 - 0.15), 0, zS + 2 + o.w * 0.24);
-        leaf.rotation.y = Math.PI / 2;
-        g.add(leaf);
-        // Match upper-door proxies: transformed leaf bounds, limited to body height.
-        leaf.updateMatrixWorld(true);
-        const b = new THREE.Box3().setFromObject(leaf);
-        this.col(b.min.x, Math.max(0, b.min.y), b.min.z, b.max.x, Math.min(3, b.max.y), b.max.z);
-      }
-    }
-    // 两翼墩台（实心，顶面不开放）
-    const wL = zS - wS;
-    for (const s of [-1, 1]) {
-      const wx = s * (wIn + W / 2) / 2;
-      const ww = W / 2 - wIn;
-      this.libBox(g, 'wall_red', ww, PH - band, wL, wx, band + (PH - band) / 2, wS + wL / 2, 'box');
-      this.libBox(g, 'sumeru_band', ww + 0.2, band, wL + 0.2, wx, band / 2, wS + wL / 2, 'band');
-      this.libBox(g, 'stone_slab', ww + 0.4, 0.3, wL + 0.2, wx, PH + 0.15, wS + wL / 2 - 0.1, 'box');
-      this.col(s * wIn, 0, wS, s * W / 2, 3, zS);
-    }
-    this.libBox(g, 'stone_slab', W + 0.4, 0.3, D + 0.4, 0, PH + 0.15, zc, 'box');
+    const lower = buildWumenLowerBase(this, g, data);
 
     // 午门专属三跑折返马道：官方平面支持拓扑；高度和配准为明确的模型拟合。
     // 直接使用门局部原点，不沿用旧直坡子组的 zc 偏移。
@@ -1199,6 +1160,7 @@ export class PalaceBuilder {
       wumenVerticalProfile: WUMEN_VERTICAL_PROFILE,
     });
     g.add(roof);
+    const linkEndpoints = [body, roof];
     this.ownedMaterials.push(...(roof.userData.ownedMaterials ?? []));
     this.wumenTopY = roof.userData.topY - PH; // 沿用模型相对高度；公布总高与城台顶起算标高的对应关系未核定
     g.add(buildWumenSouthPlaque(this, roof));
@@ -1231,21 +1193,22 @@ export class PalaceBuilder {
         const pr = buildRoof(this.library, { type: 'pavilion', width: P + 0.4, depth: P + 0.4, baseY: top + pb.userData.topY, layers: 2, brackets: true, detail: 'low' });
         pr.position.set(s * hx, 0, pz);
         g.add(pr);
+        if (pz === pN) linkEndpoints.push(pb, pr);
         this.ownedMaterials.push(...(pr.userData.ownedMaterials ?? []));
       }
       // 北方亭坐在可登临的主墩台顶上：登记亭身碰撞
       this.col(s * hx - P / 2, top, pN - P / 2, s * hx + P / 2, top + 3, pN + P / 2);
     }
-    registerWumenNorthPortalOverheads(this, {
-      openings, southZ: zS, northZ: zN, platformHeight: PH,
-    });
-    // Append after the historical four pavilions; do not shift their child slots.
-    buildWumenSouthPortalCanopies(this, g, {
-      openings, southZ: zS, platformHeight: PH,
-    });
+    // Own corrected three south mouths; lower builder owns all five north heads.
+    buildWumenLowerSouthCanopies(this, g, lower);
     // Source-specific fit only at the retained original anchor. Generic
     // translated gate fixtures keep their previous body/door construction.
-    if(this.ox===0&&this.oz===-419.6)buildWumenTransverseLinks(this, g);
+    if(this.ox===0&&this.oz===-419.6){
+      buildWumenTransverseLinks(this, g, {endpoints:linkEndpoints,platform:lower.platform});
+      refineWumenWingPavilionInstances(this, g);
+      refineWumenNorthwestNorthColumns(g.children.find(o=>o.userData.structure?.id===WUMEN_NORTHWEST_PAVILION_ID), {instanceId:WUMEN_NORTHWEST_PAVILION_ID});
+      refineWumenOuterSideColumns(this, g);
+    }
     this.finish(g);
   }
 

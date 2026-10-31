@@ -1,0 +1,2 @@
+import{registerHooks}from'node:module';
+registerHooks({load(u,c,next){const r=next(u,c);if(u.endsWith('/src/utils/MergeUtils.js')){const needle='export function mergeByMaterial(root, { castShadow = true, receiveShadow = true, name } = {}) {';let s=String(r.source);if(!s.includes(needle))throw Error('Exact merge capture boundary absent');s=s.replace(needle,needle+'\n  globalThis.__R157_RAW_CAPTURE?.(root,{castShadow,receiveShadow,name});');return{...r,source:s};}return r;}});

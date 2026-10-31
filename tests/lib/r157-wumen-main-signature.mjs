@@ -1,0 +1,8 @@
+import crypto from 'node:crypto';
+const hash=x=>crypto.createHash('sha256').update(JSON.stringify(x)).digest('hex');
+export function renderStateHash(group){const rows=[];group.traverse(m=>{if(!m.isMesh)return;const material=(Array.isArray(m.material)?m.material:[m.material]).map(mat=>{const textures=Object.entries(mat).filter(([,v])=>v?.isTexture),meta={textures:Object.fromEntries(textures.map(([,t])=>[t.uuid,{}])),images:{}};const {uuid,...data}=mat.toJSON(meta);for(const [key,t]of textures)data[key]={name:t.name,wrap:[t.wrapS,t.wrapT],repeat:t.repeat.toArray(),offset:t.offset.toArray(),colorSpace:t.colorSpace};return data;});rows.push({material,flags:[m.castShadow,m.receiveShadow,m.visible,m.frustumCulled,m.renderOrder],groups:m.geometry.groups,drawRange:m.geometry.drawRange});});return hash(rows);}
+export function mainSignature(c,meshFingerprint){const tower=c.tower;
+ const world=tower.userData.colliders.map(b=>b.clone().translate(new c.THREE.Vector3(c.data.position.x,tower.position.y,c.data.position.z)));
+ const pending=[...c.builder.colliders];for(const b of world){const i=pending.findIndex(v=>v.equals(b));if(i<0)throw Error('Main tower collider missing from real integrated builder');pending.splice(i,1);}
+ return {geometry:meshFingerprint(tower),renderState:renderStateHash(tower),structure:hash(tower.userData.structure),localColliders:hash(tower.userData.colliders),registeredWorldColliders:hash(world),pose:{anchor:c.data.position,position:tower.position.toArray(),quaternion:tower.quaternion.toArray(),scale:tower.scale.toArray()},ownedMaterialCount:tower.userData.ownedMaterials.length};
+}

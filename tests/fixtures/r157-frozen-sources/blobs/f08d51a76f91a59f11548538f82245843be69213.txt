@@ -1,0 +1,122 @@
+[
+  {
+    "id": "taihe-throne-seat",
+    "zoneRef": "static",
+    "anchorRef": "taihe-hall",
+    "geometrySource": "src/scene/palace/special/TaiheCore.js#buildTaiheCoreFallback; data/architecture/taihe-core.json#/throne",
+    "surfaceRef": "taihe-hall-floor",
+    "localPelvisMeters": [
+      0,
+      12.7775,
+      9.05
+    ],
+    "seatTopHeightMeters": 12.6975,
+    "seatBoundsLocalMeters": [
+      -0.7,
+      0.7,
+      8.865,
+      9.655
+    ],
+    "forwardLocal": [
+      0,
+      0,
+      -1
+    ],
+    "footSupport": {
+      "localContactsMeters": [
+        [
+          -0.12,
+          12.5075,
+          8.43
+        ],
+        [
+          0.12,
+          12.5075,
+          8.43
+        ]
+      ],
+      "heightToleranceMeters": 0.03
+    },
+    "maxPelvisClearanceMeters": 0.02,
+    "readiness": {
+      "interiorRef": "taihe",
+      "acceptVisibleFallback": true
+    },
+    "evidenceRefs": [
+      "H1",
+      "H3",
+      "F1"
+    ],
+    "status": "actual-model-front-seat-contact; visual-pose-pending-C1",
+    "seatVariant": "throne-front-perch",
+    "localSeatContactMeters": [
+      0,
+      12.6975,
+      9.05
+    ],
+    "maxSeatContactGapMeters": 0.02,
+    "seatContactHalfExtentsMeters": [
+      0.185,
+      0.175
+    ]
+  },
+  {
+    "id": "chuxiu-west-north-kang",
+    "zoneRef": "west-six",
+    "anchorRef": "chuxiu-hall",
+    "geometrySource": "src/scene/palace/special/ChuxiuHall.js#CHUXIU_RESTORED_KANG/west-next-north",
+    "surfaceRef": "chuxiu-floor",
+    "localPelvisMeters": [
+      5.42,
+      1.13,
+      3.9
+    ],
+    "seatTopHeightMeters": 1.05,
+    "seatBoundsLocalMeters": [
+      3.37,
+      7.47,
+      3.7,
+      6.1
+    ],
+    "forwardLocal": [
+      0,
+      0,
+      -1
+    ],
+    "footSupport": {
+      "localContactsMeters": [
+        [
+          5.3,
+          0.62,
+          3.325
+        ],
+        [
+          5.54,
+          0.62,
+          3.325
+        ]
+      ],
+      "heightToleranceMeters": 0.003
+    },
+    "seatVariant": "kang-low",
+    "maxPelvisClearanceMeters": 0.02,
+    "readiness": {
+      "loadedZoneRequired": true
+    },
+    "evidenceRefs": [
+      "D4",
+      "H6"
+    ],
+    "status": "1971-restored-display-described-1982-plain-kang-fit-not-Qianlong-furniture-inventory",
+    "localSeatContactMeters": [
+      5.42,
+      1.05,
+      3.9
+    ],
+    "maxSeatContactGapMeters": 0.02,
+    "seatContactHalfExtentsMeters": [
+      0.185,
+      0.175
+    ]
+  }
+]
