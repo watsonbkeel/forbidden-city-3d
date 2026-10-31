@@ -1,0 +1,53 @@
+{
+  "status": "LIMITED_OFFLINE_SURFACE_CHECKPOINT_REVIEWED",
+  "parent": "b9863902bd7370b84d1b3ec2582976c0d119c896",
+  "accepted": false,
+  "runtimeInstalled": false,
+  "routeAccepted": false,
+  "wholeObjectsAdded": 0,
+  "worldVerified": false,
+  "gpuVerified": false,
+  "releaseApproved": false,
+  "remote": "PENDING",
+  "sourceCount": 600,
+  "productionChanges": 0,
+  "qaCount": 4416,
+  "newQAFiles": 4,
+  "focused": {
+    "files": 5,
+    "tests": 48,
+    "pass": 48,
+    "fail": 0,
+    "skip": 0,
+    "cancel": 0,
+    "resource": {
+      "command": [
+        "node",
+        "--max-old-space-size=384",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=1",
+        "tests/photo-fidelity/batches/wumen-joint-layout/roof-section-evaluator.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/roof-section-surfaces.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/upper-contract.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/upper-baseline.test.mjs",
+        "tests/photo-fidelity/batches/wumen-lower-five-portals.test.mjs"
+      ],
+      "cwd": "/workspace/scratch/02a8023d1a85/r157-wumen-joint-layout-1622",
+      "node": "v24.22.1",
+      "startUTC": "2026-10-31T22:04:03.513849+00:00",
+      "endUTC": "2026-10-31T22:04:09.684781+00:00",
+      "wallSeconds": 6.170952772998135,
+      "maxRSSKiB": 336472,
+      "exit": 0
+    }
+  },
+  "eachMode": {
+    "layers": 10,
+    "meshes": 120,
+    "positiveTriangles": 7160,
+    "removedAnalyticT0Triangles": 200
+  },
+  "scope": "PARTIAL_TILE_SOFFIT_FASCIA_NOT_TRIM_BUILDING_SUPPORT_OR_WORLD",
+  "inheritedMissingHistoryP1Unchanged": true
+}

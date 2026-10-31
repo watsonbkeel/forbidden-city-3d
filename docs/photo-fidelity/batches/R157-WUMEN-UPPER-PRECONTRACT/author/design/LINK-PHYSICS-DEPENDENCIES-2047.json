@@ -1,0 +1,89 @@
+{
+  "status": "READ_ONLY_OLD_DEPENDENCY_INVENTORY_NOT_NEW_PHYSICS_APPROVAL",
+  "sources": {
+    "src/scene/palace/special/WumenTransverseLinks.js": "dff442a3df86cf4511605652ebb6994ca6ba2fec6d61378bc5ef19d5b587dabd",
+    "src/controls/WumenLinkSupport.js": "8d12357fe966725fdb153049a81cf37ac273f6333edbe302bce651e4822b4401",
+    "src/controls/XiqingRoofSurface.js": "e584020a18480c465bc6afa9c445c7c988b3ccfbde4ba40f62340faf77c2f7cc"
+  },
+  "eachOldLink": {
+    "visiblePosts": 12,
+    "postParameters": [
+      0.19,
+      0.22,
+      4.1,
+      12
+    ],
+    "localPostXsAbsolute": [
+      30.7,
+      34.2,
+      38.2,
+      41.7
+    ],
+    "localOuterPostZs": [
+      -9.4,
+      -2.6
+    ],
+    "innerPostXsAbsolute": [
+      34.2,
+      38.2
+    ],
+    "innerPostZs": [
+      -7.1,
+      -4.9
+    ],
+    "ordinaryBeamRows": 6,
+    "surfaceRows": 1,
+    "surfaceContent": "all actual triangles of 12 columns + low closed roof, includes original world offset",
+    "scopeOwner": "second longitudinal beam ordinary row only",
+    "scopeKind": "wumen-transverse-links",
+    "scopeFields": [
+      "floor",
+      "minOffsetX",
+      "maxOffsetX",
+      "minOffsetZ",
+      "maxOffsetZ"
+    ]
+  },
+  "oldFloor": {
+    "X": [
+      -60,
+      60
+    ],
+    "Z": [
+      -432.90000000000003,
+      -401.0
+    ],
+    "height": 12.3,
+    "exactWalkableRequired": "box rescue=false, minY=maxY=12.3; generic actual main slab NOT automatically equivalent"
+  },
+  "oldRegions": {
+    "east": {
+      "X": [
+        -43.4,
+        -28.4
+      ],
+      "Z": [
+        -430.65000000000003,
+        -419.55
+      ]
+    },
+    "west": {
+      "X": [
+        28.4,
+        43.4
+      ],
+      "Z": [
+        -430.65000000000003,
+        -419.55
+      ]
+    }
+  },
+  "migrationRule": "New visible geometry, ordinary rows, special surface actual triangles, floor witness and bounded region must be separately proposed. No old whole-platform floor may be inserted merely to pass old registration. No production helper mutation in this stage.",
+  "unknowns": [
+    "new link endpoints and reference pixel registration",
+    "shared endpoint owner identity",
+    "new floor authority binding to 187 cell actual union",
+    "new special surface and scope contract",
+    "all actual upper geometry FP"
+  ]
+}
