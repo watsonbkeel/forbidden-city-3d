@@ -1,0 +1,496 @@
+{
+  "kind": "ISOLATED_REAL_PRODUCTION_GATE_SAME_CAMERA_CPU_FLAT_CATEGORY_ONLY_NOT_GPU",
+  "parent": "3e9d5c9216ae4fbbc5056b5820bf0acff36cfccc",
+  "sourceHashes": {
+    "src/scene/palace/special/WenhuaGateApproaches.js": "ad8ef7b81cec85194bc8e8d622a2c7e7e652af3b755e9d0807bd5a5f85a6a3ee",
+    "src/controls/WenhuaGateApproachSupport.js": "d0673fbcbb42e27a0f85b7c997447732a736405f5a540940b03d19be62af6c85",
+    "src/scene/palace/special/SouthCourtGates.js": "0875bb556caca543615e9212865648fda3b8edcf9f634a33e2287838a66e6152",
+    "src/controls/XiqingRoofSurface.js": "c4cf51d99ecd071e1e20e287cb2f00a59a0f1ceb32b1e15a36127b5c71024769",
+    "src/controls/FurnitureMotion.js": "201dc788ca46cb01571320239b59393107f73c01fac2fa792dd1bab8e52dd223",
+    "tests/photo-fidelity/batches/r158-wenhua-gate/shared-hooks.mjs": "aa5ea772e045c8ebcabb90fb9dc8f8109ff94dd3ba0a34499f2fc8359430446c"
+  },
+  "views": [
+    [
+      "south-whole",
+      [
+        0,
+        6,
+        -34
+      ],
+      [
+        0,
+        3.8,
+        0
+      ],
+      55
+    ],
+    [
+      "north-whole",
+      [
+        0,
+        7,
+        36
+      ],
+      [
+        0,
+        3.3,
+        1
+      ],
+      55
+    ],
+    [
+      "south-approach",
+      [
+        11,
+        7,
+        -21
+      ],
+      [
+        0,
+        1,
+        -10
+      ],
+      55
+    ],
+    [
+      "north-approach",
+      [
+        16,
+        11,
+        28
+      ],
+      [
+        0,
+        0.8,
+        12
+      ],
+      58
+    ]
+  ],
+  "states": [
+    {
+      "mode": "parent",
+      "triangles": 2826,
+      "mergedMeshes": 17,
+      "colliders": 27,
+      "walkables": 7,
+      "geometryHash": "003353e34a892e75b6b7101ce3e69bf9a159b8ff31b3f277a12c1eb301958fb0",
+      "meta": null
+    },
+    {
+      "mode": "candidate",
+      "triangles": 3350,
+      "mergedMeshes": 18,
+      "colliders": 30,
+      "walkables": 1,
+      "geometryHash": "a08bf0be7040ed9d619f3003248dbeac9bdfc48bee0b626498b480160bf2f67e",
+      "meta": {
+        "objectId": "FC-5652FA389B",
+        "status": "VERIFY_PENDING",
+        "accepted": false,
+        "scope": "SOUTH_AND_NORTH_APPROACH_ASSEMBLIES_ONLY",
+        "dimensionStatus": "REVERSIBLE_PHOTO_FIT_NOT_SURVEY",
+        "sources": [
+          "https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5efefc7fb9a3d.jpg",
+          "https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5efefcb74c188.jpg",
+          "https://ggzlquanjing.dpm.org.cn/scene/wPIRwsKstn5bVoDoqCG426Sfykpnc2hK/20220207_hyzg/panos/1.tiles/b/l1/01/l1_b_01_01.jpg"
+        ],
+        "photographyDate": null,
+        "stepCountMeaning": "TEN_LEVEL_LOW_POLY_DISCRETIZATION_NOT_PHOTOGRAPH_COUNT",
+        "south": {
+          "stoneWidth": 2.66,
+          "outerWidth": 5.32,
+          "run": 2.56,
+          "centralRoute": "TWO_STAIR_FLANKS_AROUND_REAL_TERMINAL_STONE_PANELS"
+        },
+        "north": {
+          "run": 8,
+          "topWidth": 19.86,
+          "toeWidth": 29.6,
+          "flankingStairs": 2
+        },
+        "remaining": "Fine carved stone profiles, exact dimensions/tread inventory, full gate elevations/room and GPU view not accepted.",
+        "addedColliders": 3
+      }
+    }
+  ],
+  "captures": [
+    {
+      "mode": "parent",
+      "view": "south-whole",
+      "file": "wenhua-gate-parent-south-whole.json.gz",
+      "png": "wenhua-gate-parent-south-whole.png",
+      "camera": {
+        "position": [
+          -186.3,
+          6,
+          -279.2
+        ],
+        "matrixWorldInverse": [
+          -0.9999999999999996,
+          0,
+          0,
+          0,
+          0,
+          0.9979131251885902,
+          0.06457084927690877,
+          0,
+          0,
+          0.06457084927690877,
+          -0.9979131251885899,
+          0,
+          -186.29999999999998,
+          12.040702366981387,
+          -279.00476964831574,
+          1
+        ],
+        "fov": 55,
+        "localEye": [
+          0,
+          6,
+          -34
+        ],
+        "localTarget": [
+          0,
+          3.8,
+          0
+        ]
+      },
+      "sha256": "6d8ee7c4be14b7d69908ad6153e00a6a39fdfa73e9394a40610a2e0d3f4e76db"
+    },
+    {
+      "mode": "parent",
+      "view": "north-whole",
+      "file": "wenhua-gate-parent-north-whole.json.gz",
+      "png": "wenhua-gate-parent-north-whole.png",
+      "camera": {
+        "position": [
+          -186.3,
+          7,
+          -209.2
+        ],
+        "matrixWorldInverse": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0.9944586474649073,
+          0.10512848558914735,
+          0,
+          0,
+          -0.10512848558914735,
+          0.9944586474649073,
+          0,
+          186.3,
+          -28.954089717503972,
+          207.30484965053458,
+          1
+        ],
+        "fov": 55,
+        "localEye": [
+          0,
+          7,
+          36
+        ],
+        "localTarget": [
+          0,
+          3.3,
+          1
+        ]
+      },
+      "sha256": "b987430b184373468528c5b069e56b5a67307ae514f5a9200b61399a8333ca2f"
+    },
+    {
+      "mode": "parent",
+      "view": "south-approach",
+      "file": "wenhua-gate-parent-south-approach.json.gz",
+      "png": "wenhua-gate-parent-south-approach.png",
+      "camera": {
+        "position": [
+          -175.3,
+          7,
+          -266.2
+        ],
+        "matrixWorldInverse": [
+          -0.7071067811865476,
+          -0.2544566789039913,
+          0.6597361582944739,
+          0,
+          2.7755575615628914e-17,
+          0.9330078226479681,
+          0.3598560863424404,
+          0,
+          -0.7071067811865476,
+          0.25445667890399126,
+          -0.6597361582944737,
+          0,
+          -312.18764389386075,
+          16.59905735383702,
+          -62.48900939336471,
+          1
+        ],
+        "fov": 55,
+        "localEye": [
+          11,
+          7,
+          -21
+        ],
+        "localTarget": [
+          0,
+          1,
+          -10
+        ]
+      },
+      "sha256": "cb20e1ad8537819fbb844de5f41fdb5f367e9910740128787598ea55147cb51f"
+    },
+    {
+      "mode": "parent",
+      "view": "north-approach",
+      "file": "wenhua-gate-parent-north-approach.json.gz",
+      "png": "wenhua-gate-parent-north-approach.png",
+      "camera": {
+        "position": [
+          -170.3,
+          11,
+          -217.2
+        ],
+        "matrixWorldInverse": [
+          0.7071067811865476,
+          -0.2905900353838247,
+          0.644637441772992,
+          0,
+          -2.7755575615628914e-17,
+          0.9116550129688615,
+          0.41095636913028244,
+          0,
+          -0.7071067811865477,
+          -0.29059003538382466,
+          0.6446374417729919,
+          0,
+          -33.163308037649074,
+          -122.63184385388954,
+          245.27648862660124,
+          1
+        ],
+        "fov": 58,
+        "localEye": [
+          16,
+          11,
+          28
+        ],
+        "localTarget": [
+          0,
+          0.8,
+          12
+        ]
+      },
+      "sha256": "642313cf46fa336fd48298ca32f48884b564e3c24a99a83fd41f8d9721af259b"
+    },
+    {
+      "mode": "candidate",
+      "view": "south-whole",
+      "file": "wenhua-gate-candidate-south-whole.json.gz",
+      "png": "wenhua-gate-candidate-south-whole.png",
+      "camera": {
+        "position": [
+          -186.3,
+          6,
+          -279.2
+        ],
+        "matrixWorldInverse": [
+          -0.9999999999999996,
+          0,
+          0,
+          0,
+          0,
+          0.9979131251885902,
+          0.06457084927690877,
+          0,
+          0,
+          0.06457084927690877,
+          -0.9979131251885899,
+          0,
+          -186.29999999999998,
+          12.040702366981387,
+          -279.00476964831574,
+          1
+        ],
+        "fov": 55,
+        "localEye": [
+          0,
+          6,
+          -34
+        ],
+        "localTarget": [
+          0,
+          3.8,
+          0
+        ]
+      },
+      "sha256": "5e62dbee32929ce88652e1a86121e920c21f64b8376df2ca69d622eef91db3ab"
+    },
+    {
+      "mode": "candidate",
+      "view": "north-whole",
+      "file": "wenhua-gate-candidate-north-whole.json.gz",
+      "png": "wenhua-gate-candidate-north-whole.png",
+      "camera": {
+        "position": [
+          -186.3,
+          7,
+          -209.2
+        ],
+        "matrixWorldInverse": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0.9944586474649073,
+          0.10512848558914735,
+          0,
+          0,
+          -0.10512848558914735,
+          0.9944586474649073,
+          0,
+          186.3,
+          -28.954089717503972,
+          207.30484965053458,
+          1
+        ],
+        "fov": 55,
+        "localEye": [
+          0,
+          7,
+          36
+        ],
+        "localTarget": [
+          0,
+          3.3,
+          1
+        ]
+      },
+      "sha256": "971cc815115aca3a67b9d7551d8f4f2dd3847866120950accc39ff9a144718e0"
+    },
+    {
+      "mode": "candidate",
+      "view": "south-approach",
+      "file": "wenhua-gate-candidate-south-approach.json.gz",
+      "png": "wenhua-gate-candidate-south-approach.png",
+      "camera": {
+        "position": [
+          -175.3,
+          7,
+          -266.2
+        ],
+        "matrixWorldInverse": [
+          -0.7071067811865476,
+          -0.2544566789039913,
+          0.6597361582944739,
+          0,
+          2.7755575615628914e-17,
+          0.9330078226479681,
+          0.3598560863424404,
+          0,
+          -0.7071067811865476,
+          0.25445667890399126,
+          -0.6597361582944737,
+          0,
+          -312.18764389386075,
+          16.59905735383702,
+          -62.48900939336471,
+          1
+        ],
+        "fov": 55,
+        "localEye": [
+          11,
+          7,
+          -21
+        ],
+        "localTarget": [
+          0,
+          1,
+          -10
+        ]
+      },
+      "sha256": "7adfb3b6d1c06686afb46cba0636c223fd3cbd3ae00b168d64873f84c439b058"
+    },
+    {
+      "mode": "candidate",
+      "view": "north-approach",
+      "file": "wenhua-gate-candidate-north-approach.json.gz",
+      "png": "wenhua-gate-candidate-north-approach.png",
+      "camera": {
+        "position": [
+          -170.3,
+          11,
+          -217.2
+        ],
+        "matrixWorldInverse": [
+          0.7071067811865476,
+          -0.2905900353838247,
+          0.644637441772992,
+          0,
+          -2.7755575615628914e-17,
+          0.9116550129688615,
+          0.41095636913028244,
+          0,
+          -0.7071067811865477,
+          -0.29059003538382466,
+          0.6446374417729919,
+          0,
+          -33.163308037649074,
+          -122.63184385388954,
+          245.27648862660124,
+          1
+        ],
+        "fov": 58,
+        "localEye": [
+          16,
+          11,
+          28
+        ],
+        "localTarget": [
+          0,
+          0.8,
+          12
+        ]
+      },
+      "sha256": "8aa709a9defd25c6468a6583b4794936943e695af277f2f1c6398c9518579af1"
+    }
+  ],
+  "captureMetadataCorrection": "Initial helper hashed JSON-encoded byte strings. Replaced by raw-byte SHA256 without changing geometry/camera/image content. Support constants were deep-frozen after capture; numeric values and geometry unchanged.",
+  "postCaptureNonGeometryChange": {
+    "path": "src/controls/WenhuaGateApproachSupport.js",
+    "captureSha256": "d0673fbcbb42e27a0f85b7c997447732a736405f5a540940b03d19be62af6c85",
+    "currentSha256": "9b76dd48304427001fc001f2bb6e05ed25561a92528c6ccdb908ea1d16fb45cf",
+    "change": "Deep-freeze min/max numeric arrays only; retained original capture digest above. No coordinate/geometry change or re-render."
+  },
+  "captureIsFinalGeometry": false,
+  "postCaptureGeometryReviewFixes": [
+    "Removed three redundant 5cm cap-overlap strips (-36 rendered triangles).",
+    "Expanded six south side stones by 5cm each side to contact real tread-edge triangles.",
+    "Unified tracked non-indexed prism generation so normal/UV failure releases owned geometry before throwing. Same stone-box envelopes; face ordering may differ."
+  ],
+  "finalComponentCounts": {
+    "kind": "ISOLATED_PRODUCTION_GATE_FINAL_COMPONENT_NOT_WHOLE_WORLD",
+    "triangles": 3314,
+    "mergedMeshes": 18,
+    "colliders": 30,
+    "walkables": 1
+  },
+  "finalSourceHashes": {
+    "src/scene/palace/special/WenhuaGateApproaches.js": "3056d4818217ce3482958aa2f7dc3b8fc8bfec3dd30e9b01320392c5018eabac",
+    "src/controls/WenhuaGateApproachSupport.js": "9b76dd48304427001fc001f2bb6e05ed25561a92528c6ccdb908ea1d16fb45cf",
+    "tests/photo-fidelity/batches/r158-wenhua-gate/shared-hooks.mjs": "af52177d148bc46b55136728cfa65132346bde35c5d5edec2672616f0c504e95",
+    "tests/photo-fidelity/batches/r158-wenhua-gate/approaches.test.mjs": "bd83ba0e64900f5077923870f1b9d9c4fd76500ae6641f4a499fc1b11a325a04",
+    "tests/photo-fidelity/batches/r158-wenhua-gate/preinstalled-production-loader.mjs": "2c4b7fd538f7afa08d47b3a6f59ad0e3f870cde5c830c6e31eef7476d1b57e6b",
+    "tests/photo-fidelity/batches/r158-wenhua-gate/preinstalled-scope-probe.mjs": "ec5cac48a3acbe10d3d7393f36c90fe549b50b8e54674ad38835d0f209d7ae27",
+    "tests/photo-fidelity/batches/r158-wenhua-gate/preinstalled-hooks.test.mjs": "66c04cff31359e573d09f385307a7c7caee49b55353ca1d74746699b8d9cfac9"
+  },
+  "postCaptureNonGeometryReviewFixes": [
+    "Explicit committed-phase cleanup and aggregate retirement errors; success/failure records do not change rendered geometry.",
+    "Negative control injection remains active when the actual production FurnitureMotion import is already installed."
+  ]
+}

@@ -1,4 +1,10 @@
 import {readTaihemenWorldFixture} from '../../lib/r157-taihemen-world-fixture.mjs';
+import {physicalNonmutationFingerprint} from '../../lib/r159-physical-nonmutation-fingerprint.mjs';
+// R159 comparison-only: authenticate six new solids before removing them from NEW aligned arrays; all movement stays raw W.
+import {r159JiaotaiPriorComparison} from '../../lib/r159-jiaotai-prior-comparison.mjs';
+// Comparison only: authenticate raw new126 Wuying owners, restore old126 in a NEW view. All movement uses raw W.cm.
+import {wuying55PhysicsView} from '../../lib/r158-wuying-55-physics-view.mjs';
+import {wenhua493PhysicsView} from '../../lib/r158-wenhua-493-physics-view.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import * as T from 'three';
 import {buildTaiheInstrumentWorld} from '../../lib/r157-taihe-instruments-fixture.mjs';
 import {FirstPersonControls} from '../../../src/controls/FirstPerson.js';
@@ -64,10 +70,12 @@ import {taiheWorldPhysics,compareTaiheWorldPhysics} from '../../lib/r157-taihe-w
 test('complete uninjected World preserves exact instrument-baseline physics outside both explicit instrument and observed-approach source products',()=>{
  const raw=zlib.gunzipSync(fs.readFileSync(new URL('../../fixtures/r157-taihe-integration/world-physics-055947.json.gz',import.meta.url))),provenance=JSON.parse(fs.readFileSync(new URL('../../fixtures/r157-taihe-integration/provenance.json',import.meta.url)));
  assert.equal(crypto.createHash('sha256').update(raw).digest('hex'),provenance.worldPhysicsUncompressedSHA256);
- const baseline=JSON.parse(raw),actual=taiheWorldPhysics(W),approachRaw=zlib.gunzipSync(readTaihemenWorldFixture());assert.equal(crypto.createHash('sha256').update(approachRaw).digest('hex'),'dbda1e6e18635d7a80425b25e46337280a716f393c70b0b88dfaa9141f2904b4');const approach=JSON.parse(approachRaw),compare=a=>compareInstrumentsWithObservedApproach(W,a,baseline,approach);assertTaihemenFacilitiesCInWorld(W,{production:true});const r=compare(actual);
+ const baseline=JSON.parse(raw),rawPhysical=taiheWorldPhysics(W),comparison=r159JiaotaiPriorComparison(W,rawPhysical),actual=wenhua493PhysicsView(comparison.world,wuying55PhysicsView(comparison.physics)),approachRaw=zlib.gunzipSync(readTaihemenWorldFixture());assert.equal(crypto.createHash('sha256').update(approachRaw).digest('hex'),'dbda1e6e18635d7a80425b25e46337280a716f393c70b0b88dfaa9141f2904b4');const approach=JSON.parse(approachRaw),compare=a=>compareInstrumentsWithObservedApproach(comparison.world,a,baseline,approach);assertTaihemenFacilitiesCInWorld(W,{production:true});const r=compare(actual);
  assert.deepEqual(r,{targetCount:29,total:30873,retainedCount:30767,retainedExact:true,walkablesExact:true,riversExact:true,observedSourceColliders:77,observedSourceSupports:3});
- const row=actual.rows.find((c,i)=>!c.triangleSupport?.id.startsWith('taihe-terrace-instrument:')&&!W.cm.colliders[i].mesh.taihemenObservedSource),old=row.min[0];row.min[0]+=.001;
+ const row=actual.rows.find((c,i)=>!c.triangleSupport?.id.startsWith('taihe-terrace-instrument:')&&!comparison.world.cm.colliders[i].mesh.taihemenObservedSource),old=row.min[0];row.min[0]+=.001;
  assert.equal(compare(actual).retainedExact,false,'actual retained physical drift must reject');row.min[0]=old;
- const support=structuredClone(actual);support.walkables.pop();assert.equal(compare(support).walkablesExact,false,'missing old support rejects');
- if(process.env.TAIHE_INSTRUMENT_WORLD_OUT)fs.writeFileSync(process.env.TAIHE_INSTRUMENT_WORLD_OUT,JSON.stringify({scope:'UNINJECTED_PRODUCTION_ALL_WORLD_PHYSICS_AND_ORIGINAL_16_ROUTES_4_DROPS',...r,accepted:false},null,2)+'\n');
+ const beforeFingerprint=physicalNonmutationFingerprint(actual),supportCount=actual.walkables.length,supportDigest=crypto.createHash('sha256').update(JSON.stringify(actual.walkables)).digest('hex');
+ const support={...actual,walkables:structuredClone(actual.walkables)};assert.equal(support.rows,actual.rows);assert.equal(support.rivers,actual.rivers);assert.notEqual(support.walkables,actual.walkables);assert.notEqual(support.walkables[0],actual.walkables[0]);support.walkables.pop();assert.equal(compare(support).walkablesExact,false,'missing old support rejects');
+ assert.equal(actual.walkables.length,supportCount);assert.equal(crypto.createHash('sha256').update(JSON.stringify(actual.walkables)).digest('hex'),supportDigest);assert.equal(physicalNonmutationFingerprint(actual),beforeFingerprint,'support negative cannot mutate any shared actual physics');
+ if(process.env.TAIHE_INSTRUMENT_WORLD_OUT)fs.writeFileSync(process.env.TAIHE_INSTRUMENT_WORLD_OUT,JSON.stringify({scope:'UNINJECTED_LIVE_WORLD_ORIGINAL_ROUTES_WITH_EXPLICIT_493_PHYSICS_COMPARISON_VIEW',rawTotal:rawPhysical.rows.length,rawSupports:rawPhysical.walkables.length,projectedTotal:actual.rows.length,projectedSupports:actual.walkables.length,...r,accepted:false},null,2)+'\n');
 });

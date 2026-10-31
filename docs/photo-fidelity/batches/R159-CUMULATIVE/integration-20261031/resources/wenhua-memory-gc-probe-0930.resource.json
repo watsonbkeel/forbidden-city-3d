@@ -1,0 +1,17 @@
+{
+  "command": [
+    "node",
+    "--expose-gc",
+    "--max-old-space-size=896",
+    "--import",
+    "/tmp/r159-cumulative-evidence-0854/wenhua-memory-gc-probe.mjs",
+    "--test",
+    "--test-reporter=tap",
+    "tests/photo-fidelity/batches/r158-wenhua-gate-production/world.test.mjs"
+  ],
+  "returncode": 1,
+  "elapsedSeconds": 15.171034005004913,
+  "maxRSSKiB": 1797968,
+  "userSeconds": 27.989397,
+  "systemSeconds": 1.279012
+}

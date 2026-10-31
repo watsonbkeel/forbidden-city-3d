@@ -1,0 +1,11 @@
+import re,json,pathlib,hashlib,collections,sys
+E=pathlib.Path(__file__).resolve().parent;P=E.parent/'r158-wenhua-gate-integration-evidence-0643'
+def parse(p):
+ b=p.read_bytes();s=b.decode(); totals={k:int(v[-1]) for k in ('tests','pass','fail','cancelled','skipped') if (v:=re.findall(r'^# '+k+r' (\d+)$',s,re.M))}; assert all(k in totals for k in ['tests','pass','fail','cancelled']),str(p)+' no terminal'; rows=re.findall(r'^(ok|not ok) \d+ - (.+?)(?: # (?:SKIP|TODO).*)?$',s,re.M);assert len(rows)==totals['tests'],(p,len(rows),totals);return {'path':str(p),'sha256':hashlib.sha256(b).hexdigest(),'totals':totals,'all':collections.Counter(n for _,n in rows),'fail':collections.Counter(n for status,n in rows if status=='not ok')}
+def compare(name,old,new):
+ a=[parse(p) for p in old];b=[parse(p) for p in new]; count=lambda rs,k:sum((r[k] for r in rs),collections.Counter());aa,bb=count(a,'all'),count(b,'all');af,bf=count(a,'fail'),count(b,'fail');summary=lambda rs:{k:sum(r['totals'].get(k,0) for r in rs) for k in ['tests','pass','fail','cancelled','skipped']}; strip=lambda rs:[{k:v for k,v in r.items() if k not in ['all','fail']} for r in rs];out={'scope':'EXACT_TOP_LEVEL_EXECUTED_AND_FAILURE_TITLE_MULTISETS_NOT_EQUAL_ROOT_CAUSES_OR_ALL_GREEN','baseline':strip(a),'candidate':strip(b),'baselineTotals':summary(a),'candidateTotals':summary(b),'executedAdded':dict(bb-aa),'executedRemoved':dict(aa-bb),'failuresAdded':dict(bf-af),'failuresRemoved':dict(af-bf)};(E/(name+'-comparison-0819.json')).write_text(json.dumps(out,indent=2,ensure_ascii=False)+'\n');print(name,json.dumps({k:out[k] for k in ['baselineTotals','candidateTotals','executedAdded','executedRemoved','failuresAdded','failuresRemoved']},ensure_ascii=False))
+if sys.argv[1]=='full':compare('full',[P/'full-main-0717.tap',P/'qinan-0717/output.tap',P/'zhaode-0717/output.tap'],[E/'full-main-0819.tap',E/'qinan-0819.tap',E/'zhaode-0819.tap'])
+elif sys.argv[1]=='batch':compare('batch',[P/'batch-main-0736.tap',P/'batch-wuying-0736.tap'],[E/'batch-0819.tap'])
+elif sys.argv[1]=='batch-final':
+ compare('batch-final',[P/'batch-main-0736.tap',P/'batch-wuying-0736.tap'],[E/'batch-0838.tap'])
+ compare('batch-fixture-repair',[E/'batch-0819.tap'],[E/'batch-0838.tap'])

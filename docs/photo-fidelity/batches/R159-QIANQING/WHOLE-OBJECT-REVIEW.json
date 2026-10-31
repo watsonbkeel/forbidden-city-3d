@@ -1,0 +1,262 @@
+{
+  "entityId": "FC-38B23747E9",
+  "name": "乾清宫",
+  "baseline": "493a13c7",
+  "scope": "整栋乾清宫外观/室内/固定装修/陈设及直接月台设施；邻殿/乾清门独立实体不重复计数",
+  "overallExterior": "PARTIAL",
+  "overallInterior": "PARTIAL",
+  "acceptedWholeObject": false,
+  "productionRegistryChanged": false,
+  "items": [
+    {
+      "featureId": "identity",
+      "name": "身份/格局",
+      "implementationFinding": "retained",
+      "status": "PARTIAL",
+      "binding": "Layout.js 乾清宫，后三宫南端，既有单实体绑定",
+      "sourceVisible": "现有嘉庆重建建筑；不按明代27床寝宫重建",
+      "remaining": "全院子项另列，不把乾清门/昭仁弘德合成同一建筑"
+    },
+    {
+      "featureId": "envelope",
+      "name": "九间五进深与减柱",
+      "implementationFinding": "retained",
+      "status": "PARTIAL",
+      "binding": "QianqingFrontageGrid / DepthGrid / PalaceBuilder",
+      "sourceVisible": "九间五进深与前明间减柱有自身官文支持",
+      "remaining": "46×25与分站位置是既有模型拟合，非测绘；其他减柱为避让保留"
+    },
+    {
+      "featureId": "roof-shape",
+      "name": "重檐庑殿黄瓦",
+      "implementationFinding": "retained",
+      "status": "PARTIAL",
+      "binding": "RoofBuilder 重檐wudian",
+      "sourceVisible": "正面/斜照支持二层四坡屋顶",
+      "remaining": "坡度、挑角、瓦件比例/分件与背面未全校"
+    },
+    {
+      "featureId": "roof-count",
+      "name": "上下檐角脊九兽",
+      "implementationFinding": "candidate",
+      "status": "VERIFY_PENDING",
+      "binding": "QianqingWalkingBeasts 专用profile，未接生产hook",
+      "sourceVisible": "官文9兽；自身南/斜照观察两层成排小兽",
+      "remaining": "32→72候选；后侧数量依建筑总描述，非北面照片验收；实机未验"
+    },
+    {
+      "featureId": "roof-species",
+      "name": "兽形/顺序/仙人/垂兽",
+      "implementationFinding": "missing-detail",
+      "status": "BLOCKED_SOURCE",
+      "binding": "通用简化方体/锥体，不是种类模型",
+      "sourceVisible": "照片仅足够行列/数目拓扑，雕塑像素不够",
+      "remaining": "需乾清宫本殿近景核各兽种类、顺序、末端垂兽；不借他殿"
+    },
+    {
+      "featureId": "roof-main-ridge",
+      "name": "正脊/大吻",
+      "implementationFinding": "retained",
+      "status": "PARTIAL",
+      "binding": "RoofBuilder 既有正脊与正吻",
+      "sourceVisible": "正面/斜照显示实体大吻",
+      "remaining": "现形为通用示意，缺精细纹饰与体量同机位复核"
+    },
+    {
+      "featureId": "brackets",
+      "name": "上下层斗栱",
+      "implementationFinding": "missing-detail",
+      "status": "PARTIAL",
+      "binding": "RoofBuilder 通用dougong带",
+      "sourceVisible": "官文区分上七踩/下五踩；已见彩绘构件",
+      "remaining": "目前不表示两层真实逐件七踩/五踩斗栱；待专图/测绘"
+    },
+    {
+      "featureId": "paint",
+      "name": "梁枋与上层彩画",
+      "implementationFinding": "retained",
+      "status": "PARTIAL",
+      "binding": "QianqingUpperEnclosure 南面专用材质重分配",
+      "sourceVisible": "中央南照支持彩画带，不是纯红木面",
+      "remaining": "现用既有atlas简化；东/西/北上身与真实纹样未核"
+    },
+    {
+      "featureId": "front-doors",
+      "name": "中央三门及门扇",
+      "implementationFinding": "retained",
+      "status": "PARTIAL",
+      "binding": "QianqingFrontEnclosure / AssemblyPhysics",
+      "sourceVisible": "三中央门间、每间四叶有近照",
+      "remaining": "保留开放折叶玩法姿态，不称博物馆当前开放；门画/文字未仿制"
+    },
+    {
+      "featureId": "front-windows",
+      "name": "两侧四窗及下槛墙",
+      "implementationFinding": "retained",
+      "status": "PARTIAL",
+      "binding": "QianqingFrontEnclosure windowBays 1/2/6/7",
+      "sourceVisible": "正面/斜照与旧专用模块支持四窗带",
+      "remaining": "纹理现简化交叉格，不是准确三交六椀；需近照图案拟合"
+    },
+    {
+      "featureId": "nameboard",
+      "name": "乾清宫外匾",
+      "implementationFinding": "missing-detail",
+      "status": "PARTIAL",
+      "binding": "HallNameboardMount 安全层间挂位",
+      "sourceVisible": "自身近照为满汉双行蓝底金字+红曲边框",
+      "remaining": "既有汉字简化矩形匾；满文转写/字形/雕边未补，不将漏字当完成"
+    },
+    {
+      "featureId": "end-passages",
+      "name": "两尽间穿堂",
+      "implementationFinding": "retained",
+      "status": "PARTIAL",
+      "binding": "QianqingEndPassages",
+      "sourceVisible": "文字与外照支持两端前后通路",
+      "remaining": "开口坐标、墙厚、廊距为拟合；保留现通行，不封堵"
+    },
+    {
+      "featureId": "side-walls",
+      "name": "东西侧山墙/下碱",
+      "implementationFinding": "retained",
+      "status": "PARTIAL",
+      "binding": "PalaceBuilder + EndPassages",
+      "sourceVisible": "斜照可见西侧红墙粗轮廓",
+      "remaining": "东侧与完整山面开口/墙身细节未完整核定"
+    },
+    {
+      "featureId": "rear",
+      "name": "北立面/后檐门窗",
+      "implementationFinding": "retained-unverified",
+      "status": "BLOCKED_SOURCE",
+      "binding": "PalaceBuilder 通用后檐门窗仍存在",
+      "sourceVisible": "本批未取得北面完整官图",
+      "remaining": "不得用南门窗复制判定北面正确；不猜改原通路"
+    },
+    {
+      "featureId": "terrace",
+      "name": "单层石台/月台/丹陛/甬路",
+      "implementationFinding": "retained",
+      "status": "PARTIAL",
+      "binding": "inner-palace terrace / lip / stairs",
+      "sourceVisible": "南/斜照及官文支持单台与轴向甬路",
+      "remaining": "已有2m公台与低唇、踏步/栏杆，非本轮新增；需全高差同机位验收"
+    },
+    {
+      "featureId": "burners",
+      "name": "前列四鎏金香炉",
+      "implementationFinding": "retained",
+      "status": "PARTIAL",
+      "binding": "QianqingTerraceBurners 四实例",
+      "sourceVisible": "南照及官文支持四座",
+      "remaining": "具体足/耳/盖兽/铭文与米制位置未知；已有接触物理，不重加"
+    },
+    {
+      "featureId": "instruments",
+      "name": "月台日晷/嘉量",
+      "implementationFinding": "missing-model",
+      "status": "DIFFED",
+      "binding": "未找到乾清宫专属实例；太和专用器不能算乾清宫",
+      "sourceVisible": "自身南/斜照可见两侧石亭式支座；官文列存在",
+      "remaining": "下一可执行：补本殿近景、按自身台基独立拟合和物理；不直接复制太和"
+    },
+    {
+      "featureId": "animals",
+      "name": "月台铜龟/铜鹤",
+      "implementationFinding": "missing-model",
+      "status": "BLOCKED_SOURCE",
+      "binding": "未找到乾清宫专属实例",
+      "sourceVisible": "官文确认有，外景被栏杆遮挡严重",
+      "remaining": "先取本殿左右设施近景，核类别/朝向/脚座/真实位置"
+    },
+    {
+      "featureId": "court-auxiliary",
+      "name": "外月台下铜缸及侧院/廊庑接口",
+      "implementationFinding": "retained-unverified",
+      "status": "PARTIAL",
+      "binding": "分区/Decorations全局对象未作完整逐个匹配",
+      "sourceVisible": "斜照可见台下铜缸与两侧院墙",
+      "remaining": "仅登记新增待核点，不从缺专属名称断言场景中缺失；昭仁弘德另实体队列"
+    },
+    {
+      "featureId": "central",
+      "name": "明间及两次间中央陈列",
+      "implementationFinding": "retained",
+      "status": "PARTIAL",
+      "binding": "QianqingCentralSetting / Display",
+      "sourceVisible": "1523中央图有宝座、五扇屏、前案、三跑阶/四栏、六前景器",
+      "remaining": "既有专用实现保留；尺寸/折角/布色为照片拟合，非整宫现存库存核定"
+    },
+    {
+      "featureId": "interior-plaque",
+      "name": "正大光明与龙带",
+      "implementationFinding": "retained",
+      "status": "PARTIAL",
+      "binding": "QianqingCentralArt / Setting",
+      "sourceVisible": "1523自身中央图可见主匾与其下龙带",
+      "remaining": "主匾与龙带比例已R120修正；字形/细雕/挂高与景深仍拟合，不在本轮重做"
+    },
+    {
+      "featureId": "column-couplets",
+      "name": "中央四条金底柱联",
+      "implementationFinding": "missing-model",
+      "status": "DIFFED",
+      "binding": "PalaceBuilder未调用乾清宫柱联；CentralSetting/Art无柱联；qianqing-r33.glb清单仅floor_base/floor_tiles",
+      "sourceVisible": "1523官图可见前后两对共四条竖联；不得误记为已有",
+      "remaining": "需独立核文字/书体、与四柱站位/朝向/高度配准后实施，不能借保和殿联文"
+    },
+    {
+      "featureId": "ceiling",
+      "name": "连续平顶/格心",
+      "implementationFinding": "retained",
+      "status": "PARTIAL",
+      "binding": "QianqingCeiling 23×12浅格，不设藻井",
+      "sourceVisible": "自身中央图可见连续天花",
+      "remaining": "23×12格数与纹理为既有拟合/自制示意，不是真实全部彩画复刻"
+    },
+    {
+      "featureId": "floor",
+      "name": "金砖地",
+      "implementationFinding": "retained",
+      "status": "PARTIAL",
+      "binding": "QianqingSurface 内地面/院落材质独立",
+      "sourceVisible": "1523内图深色铺地反光",
+      "remaining": "金砖规格/铺排/粗糙度及现灯光未完成实机同视角校验"
+    },
+    {
+      "featureId": "warm-rooms",
+      "name": "东西暖阁",
+      "implementationFinding": "retained-unverified",
+      "status": "BLOCKED_SOURCE",
+      "binding": "QianqingWarmRooms 两边木隔断边界",
+      "sourceVisible": "官文有暖阁，非所选中央图全览",
+      "remaining": "只保留既有简化闭合边界；无房间总览/固定装修/家具陈设来源"
+    },
+    {
+      "featureId": "xianlou",
+      "name": "后檐仙楼",
+      "implementationFinding": "missing-model",
+      "status": "BLOCKED_SOURCE",
+      "binding": "未有现状楼层/楼梯/陈设重建",
+      "sourceVisible": "官文记存在，但中央图看不见",
+      "remaining": "不得凭历史床数或他殿增楼梯/房间；需现状剖面与室内图"
+    },
+    {
+      "featureId": "runtime",
+      "name": "实机/手机/路径体验",
+      "implementationFinding": "retained-unverified",
+      "status": "VERIFY_PENDING",
+      "binding": "本轮CPU屋顶+hook非屋顶/物理字节一致",
+      "sourceVisible": "单元测试证明局部几何与继承，非实机视觉",
+      "remaining": "真实浏览器同机位、手机/飞行/远近档完整运行未做"
+    }
+  ],
+  "counts": {
+    "candidate": 1,
+    "missing-detail": 3,
+    "missing-model": 4,
+    "retained": 15,
+    "retained-unverified": 4
+  }
+}

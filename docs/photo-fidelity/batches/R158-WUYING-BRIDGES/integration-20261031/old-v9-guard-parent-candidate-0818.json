@@ -1,0 +1,27 @@
+{
+  "scope": "UNCHANGED_OLD_V9_GUARD_ALREADY_FAILS_ON55_NOT_NEW_WUYING_REGRESSION",
+  "expectedBytes": 27742,
+  "expectedSHA256": "50b625af7fdec90b2e9a6a9d2c25433e58e7977fb99856de0bf02c3b988f0c36",
+  "rows": [
+    {
+      "commit": "55cafc25",
+      "bytes": 33071,
+      "sha256": "268c3711213cd075787dd55b22ab1c8dff347271e9c61787f295d7bbd125580c",
+      "failure": {
+        "code": "ERR_ASSERTION",
+        "message": "FirstPerson must equal historical bytes plus the frozen input and finite map deltas\n+ actual - expected\n\n+ 'Buffer[33071]'\n- 'Buffer[27742]'\n          ^\n"
+      }
+    },
+    {
+      "commit": "56574ef7",
+      "bytes": 33730,
+      "sha256": "c90de689a5710d1ed272482429b25b14774591eb0f6dd09731cf6bc8c4d5c61c",
+      "failure": {
+        "code": "ERR_ASSERTION",
+        "message": "FirstPerson must equal historical bytes plus the frozen input and finite map deltas\n+ actual - expected\n\n+ 'Buffer[33730]'\n- 'Buffer[27742]'\n          ^\n"
+      }
+    }
+  ],
+  "originalFullSuiteFileExitsEarlier": "g.profile?.toWorld is not a function",
+  "currentStateOriginalTestsUnchanged": true
+}

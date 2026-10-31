@@ -934,6 +934,7 @@ export class PalaceBuilder {
       sides: 4,
       ...(baoheFrame ? { baoheInteriorOpening: baoheFrame } : {}),
       ...(data.name === '保和殿' ? { walkingBeastProfile: 'baohe' } : {}),
+      ...(data.name === '乾清宫' ? { walkingBeastProfile: 'qianqing' } : {}),
     });
     roof.position.set(x0, 0, z0);
     if (roof.userData.walkingBeasts) (g.userData.hallWalkingBeasts ??= []).push({ ...roof.userData.walkingBeasts, position: roof.position.toArray() });

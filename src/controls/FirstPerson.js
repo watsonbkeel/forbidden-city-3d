@@ -1,3 +1,4 @@
+import {attachWuyingCrownRecovery} from '../scene/palace/special/WuyingThreeBridgeRails.js';
 import * as THREE from 'three';
 import { PointerLockControls } from 'three/examples/jsm/controls/PointerLockControls.js';
 import { PLAYER } from '../config/constants.js';
@@ -97,6 +98,7 @@ export class FirstPersonControls {
     this._turnAxis = new THREE.Vector3(0, 1, 0);
     
     this.setupEventListeners();
+    try{this._wuyingRecovery = attachWuyingCrownRecovery(this);}catch(error){this.dispose();throw error;}
   }
   
   /**
@@ -302,6 +304,7 @@ export class FirstPersonControls {
   }
 
   stop() {
+    this._wuyingRecovery?.cancel();
     // 取消尚未消费的输入，不改已经起跳后的竖直速度或重力。
     this.jumpQueued = false;
     this.pressedKeys.clear();
@@ -404,15 +407,17 @@ export class FirstPersonControls {
     this.camera.position.sub(this.bobOffset);
     this.bobOffset.set(0, 0, 0);
     
-    // 起跳：只有站在地面上才能跳（空中不能二段跳）
+    this._wuyingRecovery.observe({forward:targetForward,right:targetRight});
+    // Ordinary grounded jumping stays unchanged; isolated crown capability only.
     this._landed = false;
     if (this.jumpQueued) {
+      const recoveryLift=this._wuyingRecovery.tryJump();
       this.jumpQueued = false;
       const onGround = !this.airborne && this.feetY >= (this.groundY ?? 0) - 0.08;
-      if (onGround) {
+      if (onGround || recoveryLift !== null) {
         this.airborne = true;
-        this.verticalVelocity = PLAYER.JUMP_VELOCITY ?? 6.7;
-        this.groundY = this.feetY;
+        this.verticalVelocity = onGround ? (PLAYER.JUMP_VELOCITY ?? 6.7) : recoveryLift;
+        if(onGround)this.groundY = this.feetY;
       }
     }
     const air = this.airborne;
@@ -439,7 +444,7 @@ export class FirstPersonControls {
       const newPosition = this.camera.position.clone();
       newPosition.y = eyeY;
       // 逐小步贴合地面（传入脚面），低帧率/快走一帧跨度大时也能正常上下台阶
-      const validPosition = this.collisionManager.getValidPosition(
+      const validPosition = this._wuyingRecovery.withMovement(currentPosition,newPosition,()=>this.collisionManager.getValidPosition(
         currentPosition,
         newPosition,
         0.5,
@@ -447,7 +452,7 @@ export class FirstPersonControls {
         PLAYER.STEP_UP ?? 0.6,
         (air || this.onSupport) ? this.feetY : null,
         {kind:'player',airborne:air,feetY:this.feetY}
-      );
+      ));
       this._trackedGround = this.collisionManager.lastGroundY ?? null;
       
       this.camera.position.copy(validPosition);
@@ -529,6 +534,7 @@ export class FirstPersonControls {
         ? this.collisionManager.limitUpwardFeet?.(this.camera.position.x, this.camera.position.z,
           this.feetY, targetFeet, 0.5, PLAYER.HEIGHT) ?? targetFeet
         : targetFeet;
+      allowedFeet=this._wuyingRecovery.limitVertical(this.feetY,allowedFeet);
       const triangleImpact=this.collisionManager.resolveTriangleVertical?.(
         this.camera.position.x,this.camera.position.z,this.feetY,allowedFeet,delta,.5,PLAYER.HEIGHT);
       if(triangleImpact){
@@ -675,6 +681,7 @@ export class FirstPersonControls {
    * 设置位置
    */
   setPosition(x, y, z) {
+    this._wuyingRecovery?.reset();
     this.camera.position.set(x, y, z);
     this.bobOffset.set(0, 0, 0);
     this.bobAmplitude = 0;
@@ -766,6 +773,7 @@ export class FirstPersonControls {
    * 销毁
    */
   dispose() {
+    this._wuyingRecovery?.dispose();
     this.stop();
     window.removeEventListener('blur', this._onStop);
     document.removeEventListener('focusin', this._onInputFocus);

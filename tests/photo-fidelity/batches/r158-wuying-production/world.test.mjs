@@ -1,0 +1,7 @@
+// R159 comparison-only: authenticate six new solids before removing them from NEW aligned arrays; all movement stays raw W.
+import {r159JiaotaiPriorComparison} from '../../../lib/r159-jiaotai-prior-comparison.mjs';
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
+import {buildR52World} from '../../../lib/r52-world.mjs';import {taiheWorldPhysics} from '../../../lib/r157-taihe-world-retention.mjs';import {assertWuying55PhysicsProof} from './physics-proof.mjs';
+test('Actual cumulative World authenticates126 reviewed Wuying owners, retains30750 other colliders and1365 supports, and rejects seven physical drifts without mutating runtime',async()=>{
+ const W=await buildR52World();try{global.gc?.();const raw=taiheWorldPhysics(W),comparison=r159JiaotaiPriorComparison(W,raw),colliders=W.cm.colliders,supports=W.cm.walkables,summary=assertWuying55PhysicsProof(comparison.physics),report={scope:"ACTUAL_RAW_R159_WORLD_AND_EXPLICIT_PRIOR_WUYING_CONTRACT",rawWorldColliders:raw.rows.length,priorWuyingContract:summary};assert.equal(W.cm.colliders,colliders);assert.equal(W.cm.walkables,supports);assert.equal(W.cm.colliders.length,30882);assert.equal(comparison.world.cm.colliders.length,summary.rawColliders);assert.equal(W.cm.walkables.length,summary.rawSupports);if(process.env.WUYING_CUMULATIVE_PROOF_OUT)fs.writeFileSync(process.env.WUYING_CUMULATIVE_PROOF_OUT,JSON.stringify(report,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify(report));}finally{W.dispose();}
+});

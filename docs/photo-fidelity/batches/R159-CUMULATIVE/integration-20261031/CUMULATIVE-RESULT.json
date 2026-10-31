@@ -1,0 +1,53 @@
+{
+  "status": "APPROVED_LIMITED_DEVELOPMENT_CHECKPOINT_NOT_RELEASE_OR_WHOLE_OBJECT_ACCEPTANCE",
+  "runtimeCommit": "ed3784c8b94e071a9dae86199d60e380fe20e8bc",
+  "rollbackCommit": "453837918e2d324ce406382333730cad1b1b26f2",
+  "sourceFiles": 589,
+  "qaFiles": 4250,
+  "accepted": false,
+  "release": false,
+  "wholeObjectCompleted": false,
+  "wholeObjectCompletionIncrement": 0,
+  "full": {
+    "tests": 1313,
+    "pass": 1103,
+    "fail": 210,
+    "sameStatusTitleMultisetAs453": true
+  },
+  "originalFinalBatch": {
+    "files": 84,
+    "tests": 513,
+    "pass": 510,
+    "fail": 3,
+    "exitCode": 1
+  },
+  "compositeCoverage": {
+    "files": 85,
+    "tests": 515,
+    "pass": 515,
+    "fail": 0,
+    "singleGreenBatchCommand": false,
+    "details": "FINAL-COMPOSITE-COVERAGE-0942.json"
+  },
+  "builds": {
+    "bases": [
+      "/gugong/",
+      "/forbidden-city-3d/",
+      "/"
+    ],
+    "modulesEach": 567,
+    "exitCodes": [
+      0,
+      0,
+      0
+    ],
+    "runtimeSourceDirty": false
+  },
+  "gpu": "NOT_RUN",
+  "remoteRecovery": "NOT_VERIFIED_FOR_THIS_CHECKPOINT",
+  "independentReview": {
+    "file": "INDEPENDENT-REVIEW.md",
+    "sha256": "a975f81113045177124c5c0baa85e7611fbdf5920c89a88e9151adf3f9dc2d74",
+    "scope": "No unresolved P0/P1/P2 code or QA blocker in this bounded integration; not a global fidelity acceptance"
+  }
+}

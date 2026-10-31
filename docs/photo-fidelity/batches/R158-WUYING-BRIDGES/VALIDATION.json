@@ -1,0 +1,112 @@
+{
+  "schema": 1,
+  "status": "isolated integration candidate; whole-object not accepted",
+  "recordedAtUTC": "2026-10-31T06:44:15.521582+00:00",
+  "runtimeSourceFingerprint": "b510a45c40bef8d89c8b2e3776334aa352ce004a4696aa2e9dd198d750537094",
+  "sourceSha256": {
+    "src/controls/FirstPerson.js": "c90de689a5710d1ed272482429b25b14774591eb0f6dd09731cf6bc8c4d5c61c",
+    "src/scene/palace/special/WuyingThreeBridgeRails.js": "3af151fef0f9571c18ec6195568d0bcd83cf67d15b00832e84761406e36788a5",
+    "src/scene/palace/special/WuyingBridgePlinths.js": "a09c673407f2d4dc858db0631cf092e4f26c2fa8465f065facf944903b8ebcf2",
+    "src/scene/palace/special/WuyingCrownRecovery.js": "0151263526af46739c7bb4a0d5b764cde07adb365e410ff07bddef7182d5681e",
+    "src/utils/Collision.js": "a95f492cc78317515d31470df050b170691db5e3642a79d68ec5971d26a4cf67",
+    "src/scene/palace/special/SouthWaterSystem.js": "dd2fe998643640a185e70640e37da988a709c77c41313774602a3b813452958b",
+    "tests/photo-fidelity/batches/wuying-three-bridge-rails.historical.mjs": "c1cdb916acca9707943c8060921e6ac923388e583a05f0ee6e29c79b0ebd1142",
+    "scripts/photo-fidelity/batches/r158-wuying-bridges/world-crown-recovery.test.mjs": "69a6f4f80d6c0ee52ff0583f9198266d5331366dd73631bd7c9a4caae1e7b243"
+  },
+  "privateEvidenceSha256": {
+    "production-hook-first-light.txt": "11224e4a7592b8479b7f5e050834afd22af1b8d99fcaf1551310fc27a87366b9",
+    "production-recovery-matrix.txt": "0c3761053c13b3db07fbff65a671d3efccda01ba02bfd6277b14930baab79e04",
+    "production-final-shape-history.txt": "239f64dd9ab936960a473f568cb8c76152692ba1ccb67005a590b83884bbfb81",
+    "no-history-production-core.txt": "1025edae1b1b70c0aedda1781f583446ab6cddf4cfffe0d9d50f1636d6ce4b50",
+    "production-world-central-1024-tap.txt": "26213f6a45ae79e4e76ec24661214cd3c75418dc546d2d6c8178b89b4d25b945",
+    "production-world-wuying-near-rail-routes.txt": "4db68f972ace854976b9f635bf61e3ca2a4dd2da58182f8d476ed6ca5a5df5bf",
+    "production-world-wuying-body-press.txt": "5e27782c37fa5c3df9431cf0251e5a857b632d71f44211f4d12e3428da6fb0ed",
+    "production-world-wuying-bridge-high-drop.txt": "3f86d5bbf015e98dd315e1e4670193005deb6280222ceb5be918a6ffb21b706f",
+    "production-world-crown.txt": "b2a43da4e7822b902921abc3478aaa64a9fe13c30283a39d98ac4d7d5679ca7a",
+    "compile-memory.json": "2eb72beb4fc2ea6bbdba768180c27d7ac094b611e49738c89335f81f46b3490a",
+    "final-source-contract.txt": "3ff66478cf47e4b5862463d00eb555fea0e8bb5dcbf176901daf493bf4a2e299"
+  },
+  "lightSuites": {
+    "productionFirstHook": {
+      "pass": 67,
+      "fail": 0
+    },
+    "productionRecoveryMatrix": {
+      "pass": 9,
+      "fail": 0,
+      "otherBridgeBankRoutes": 81
+    },
+    "shapeHistoryBanksSouthWater": {
+      "pass": 27,
+      "fail": 0
+    },
+    "noGitHistoryCore": {
+      "pass": 11,
+      "fail": 0,
+      "originalAssertionsReplayedUnchangedInFullClosure": 10
+    },
+    "finalSourceNoOp": {
+      "pass": 2,
+      "fail": 0
+    }
+  },
+  "world": {
+    "scope": "CPU production full World; actual controls, collision, rivers and walkables; no NPC system in this fixture",
+    "originalFiles": {
+      "centralRoutes": 18,
+      "nearRailRoutes": 36,
+      "bodyPressRoutes": 18,
+      "sixMeterDropRoutes": 54
+    },
+    "outerCrown": {
+      "cases": 42,
+      "frames": 6991,
+      "targetOwnerPenetrations": 0,
+      "bankExits": 18,
+      "inwardOrDiagonalEscapesAtReviewPoint": 9,
+      "outwardOrAlongWaterRejectionsAtReviewPoint": 15,
+      "bankScope": "Two crown sides per bridge/fps paired to opposite bank signs; not both banks from every crown start",
+      "penetrationScope": "126 real Wuying rail owners; NPC negatives are separate production matrix evidence"
+    }
+  },
+  "compile": {
+    "bases": [
+      "/",
+      "/forbidden-city-3d/",
+      "/gugong/"
+    ],
+    "write": false,
+    "publicCopied": false,
+    "htmlJsMetadataIdentityMatched": true,
+    "scope": "Frozen runtime bytes compiled before candidate commit; sourceCommit=51bd681d and sourceDirty=true retained; no deployable bundle claim"
+  },
+  "retainedIncompleteAttempts": [
+    {
+      "log": "production-world-central.txt",
+      "status": "V8 heap OOM at 768MB; not passed"
+    },
+    {
+      "log": "production-world-central-clock-diagnostic.txt",
+      "status": "same OOM; 16 route clock/memory records, not passed"
+    },
+    {
+      "log": "production-browser.txt",
+      "status": "Chromium startup socket Operation not permitted then SIGABRT; no page loaded"
+    },
+    {
+      "log": "production-browser-escalated.txt",
+      "status": "approval wrapper failed before command execution: bwrap read-only protected session path; no bypass/retry"
+    }
+  ],
+  "limitations": [
+    "No browser screenshot, hardware GPU or deployed runtime validation",
+    "No whole-object or hidden bridge-side/vault/underside acceptance",
+    "No MASTER closure count increment",
+    "No main change or deployment"
+  ],
+  "sharedSourceEdits": {
+    "Collision.js": false,
+    "SouthWaterSystem.js": false
+  },
+  "independentReview": "Astra accepted geometry fixes, isolated safety contract, finite production hooks and CPU World 42-case evidence; no GPU or whole-object acceptance"
+}
