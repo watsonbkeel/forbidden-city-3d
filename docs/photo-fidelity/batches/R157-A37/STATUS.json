@@ -429,10 +429,113 @@
       "interiorReview": "PARTIAL_VISIBLE_ONLY_HIDDEN_STRUCTURE_UNVERIFIED",
       "runtimeVisual": "BLOCKED_RUNTIME",
       "remaining": [
-        "官方报道明确指出该门名称及相对于大殿的方位；属于三大殿旁的游览通道。 另有清代位置与明代位置比较图（《清代的紫禁城》PDF第6页），图注明确东侧为左门、西侧为右门。；未找到独立官方建筑条目及明确归属的公开室内图；待补完整外观。",
-        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+        "北近门扇联合拟合已修正明显过窄：左源边残差<.5px、右自由端约3px，125度/3m为工程条件族而非测绘；本轮完整回归已终态。",
+        "整门工程候选的代码/真实运行/资源/非目标回归已记录；完整1331项仍有218历史失败，不称全绿。",
+        "真实浏览器/GPU前后对照、材质与运行性能仍阻塞；CPU仅几何诊断，不计wholeObjectAccepted。",
+        "名义瓦面边与脊帽/角件最外端须区分；北外轮廓少量残差保留。顶回栏精确跨数、浮雕/走兽与精确标高/开叶角度未作测绘认证，隐藏梁架不虚构。"
       ],
-      "currentBatchProgress": "9e17ef00：自身南透窗/北实板/门叶局部已修；继承北廊/隔墙尺寸与完整屋架栏坡仍未验。；自身北中央局部平盖裁开并拟合露明粗梁椽，原柱门/瓦面与物理保留；精确梁架/纹样和实机未验。"
+      "currentBatchProgress": "9e17ef00：自身南透窗/北实板/门叶局部已修；继承北廊/隔墙尺寸与完整屋架栏坡仍未验。；自身北中央局部平盖裁开并拟合露明粗梁椽，原柱门/瓦面与物理保留；精确梁架/纹样和实机未验。；本轮专用整门工程候选替换旧壳：自身六轴、完整双坡栏/屋面/共享厅、灰板与真实门窗/高墙接点和脊饰三角接触；完整回归及资源验证见MIDDLE-RIGHT-WHOLE-REGRESSION.json，未整项验收。",
+      "wholeCandidateProgress": {
+        "state": "VERIFIED_WHOLE_ENGINEERING_CANDIDATE_RUNTIME_PENDING",
+        "rollbackParent": "d70a4a02",
+        "plan": "MIDDLE-RIGHT-WHOLE-PLAN.md",
+        "source": "Own1665/1623/1615 full18 faces; independent rail census and two-sided conditional projection, not surveyed",
+        "implemented": [
+          "six column axes / central three bays plus two narrow end aisles",
+          "own complete roof and visible open common hall, no hidden joinery invention",
+          "south real lattice windows / north solid panels / north-opening real closed-state leaves",
+          "distinct hall/north porch level, minimal threshold and separate modern removable board",
+          "both complete solid ramps, four9-bay10-postrails with single center/end-bracket openings and low scrolls",
+          "retained adjoining seven-metre wall actual collision at raised gate junction",
+          "actual individual roof ridge/cap/chiwen triangle solids; not tile-only contact",
+          "source-neutral modern board material and coarse swollen rail-crown outline instead of red column texture and bare spikes",
+          "joint narrower fixed red frame/over-open leaf family; actual oblique leaf triangle solids retain side air"
+        ],
+        "sharedChange": "Optional inclusive edges/endpoints only for vertical triangle SAT; default horizontal semantics unchanged. Independent ordinary12jump traces exact vs old modules,80Wumenjump routes pass. One existing Xiehe retention assertion also fails on parent physics.",
+        "pending": [
+          "real browser/GPU source-view, material and performance acceptance",
+          "unverified precise top-return census, relief/roof animals and exact survey dimensions"
+        ],
+        "notAccepted": [
+          "real browser/GPU material/view/performance acceptance unavailable",
+          "roof actual ornament outer contour20.30 vs nominal corner19.79 residual retained",
+          "top return rail census and exact relief/roof animal details unverified; no hidden timber joints fabricated"
+        ],
+        "priorNeutralCrownValidation": {
+          "focused": 17,
+          "edgeSweep": 4,
+          "batchPlusTriangle": {
+            "pass": 142,
+            "fail": 0
+          },
+          "worldRoutes": 12,
+          "worldHighDrops": 30,
+          "worldWallJumps": 8,
+          "character": {
+            "renderedSupports": 528,
+            "clearSegments": 600,
+            "negativeBarriers": 4
+          },
+          "resources": "owned geometry/materials dispose once; borrowed library material survives",
+          "retention": "middle-left/other2gates/2adjacentcorridors geometry+colliders+supports and PalaceBuilder511 supports/static colliders match parent",
+          "threeBaseBuilds": {
+            "passed": 3,
+            "modulesEach": 546,
+            "memoryCondition": "separate run capped at3072MB after first concurrent run exit137"
+          },
+          "ridgeIndependentGrid": {
+            "total": 561,
+            "solid": 145,
+            "air": 416,
+            "mismatches": 0
+          },
+          "twoMiddleGatesFinalRoutes": 24,
+          "fullCurrentState": {
+            "tests": 1331,
+            "pass": 1113,
+            "fail": 218,
+            "cancelled": 0,
+            "addedFailureNames": [],
+            "removedFailureNames": [],
+            "reference": "MIDDLE-RIGHT-WHOLE-REGRESSION.json",
+            "scope": "final neutral-board/crown frozen production; not all green"
+          },
+          "scope": "2353 neutral-crown PRE-LEAF only; retained historical verification"
+        },
+        "validatedSoFar": {
+          "focused": 24,
+          "batchPlusTriangle": {
+            "pass": 144,
+            "fail": 0
+          },
+          "worldRoutes": 12,
+          "twoMiddleGatesFinalRoutes": 24,
+          "worldHighDrops": 30,
+          "worldWallJumps": 8,
+          "character": {
+            "renderedSupports": 528,
+            "clearSegments": 600,
+            "negativeBarriers": 6
+          },
+          "threeBaseBuilds": {
+            "passed": 3,
+            "modulesEach": 546
+          },
+          "retention": "Exact parent geometry/colliders/walkables for gates2/3/12,corridors36/37,Palace511 supports/static colliders",
+          "fullCurrentState": {
+            "tests": 1331.0,
+            "pass": 1113.0,
+            "fail": 218.0,
+            "cancelled": 0.0,
+            "duration_ms": 455326.96218,
+            "addedFailureNames": [],
+            "removedFailureNames": [],
+            "scope": "leaf-joint0021 final7hashes unchanged; not all green",
+            "reference": "MIDDLE-RIGHT-WHOLE-REGRESSION.json:northLeafJointCandidate"
+          },
+          "independentLeafGrid": "Open/closed1007points each0mismatch on offset grid; original5 tangent numeric differences all blocked by fixed frame, disclosed in report"
+        }
+      }
     },
     {
       "id": "FC-E3F4369B07",
@@ -533,7 +636,32 @@
       "remaining": [
         "1991年官方古建保养修缮记录明确列名。；此来源仅证明确有该建筑名及修缮范围；精确位置、现状屋面和内外图均待补，不能据常见宫门样式生成。",
         "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
-      ]
+      ],
+      "sourceReviewProgress": {
+        "state": "OWN_VIEWS_BOUND_PRIVATE_WHOLE_PROXY_NOT_PRODUCTION_APPROVED",
+        "plan": "YOUYI-WHOLE-GATE-PLAN.md",
+        "views": [
+          "3807 west: six full640 faces + r1280",
+          "2017 east-near: six full640 faces + f1280",
+          "2049 east-far: six full640 faces + l/b1280",
+          "2006 near platform: f/l full640",
+          "1674 north adjacent court: b/l full640"
+        ],
+        "resolved": [
+          "own five bays, three door pairs, differentiated east/west faces and end windows",
+          "both ramp toes, including corrected transverse east stone-band identity across cube faces",
+          "common conditional main-roof/column envelope; no assumed visitor eye height",
+          "north gable small stone arch and low step/side-strip topology, not blank wall"
+        ],
+        "stillUnresolved": [
+          "same-geometry north gallery ridge/endwall/support interfaces; inherited4.2-depth shell not source-confirmed",
+          "separate actual gallery/side-strip/gate floors, no invented common2.8 datum",
+          "full real rendered before/after, physical routes/NPC/lifecycle and resource acceptance"
+        ],
+        "productionChanged": false,
+        "boundedSupplementComplete": true,
+        "nextBatchWork": "Original middle-right gate FC-85E0528ECA full-envelope source check; not a new release or acceptance."
+      }
     },
     {
       "id": "FC-E32F3D1CA3",
@@ -621,13 +749,15 @@
         "src/scene/palace/special/SouthWaterSystem.js"
       ],
       "wholeObjectAccepted": false,
-      "exteriorReview": "UNREVIEWED_THIS_BATCH_PRIOR_WORK_PRESERVED",
+      "exteriorReview": "SOURCE_IDENTITY_ADVANCED_NOT_GEOMETRY_ACCEPTED",
       "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
       "runtimeVisual": "BLOCKED_RUNTIME",
       "remaining": [
         "桥文明确记只在一面有石栏板，通向箭亭前空地。；正文确认，未将该文无细分图注的照片强行分配到此桥；需补明确归属的外观。室内不适用。",
         "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
-      ]
+      ],
+      "currentBatchProgress": "官方1982自身图文及现桥上全景/四面1280已补，确认为南北桥/东单栏，旧(-140,-266)横桥与东朝房脱离；已完成桥—涵—北庑房联合方案及两独审，生产零改。当前东拱腹、草带下接合及两侧高程/尺寸仍缺直接约束，不原地旋转、不改河凑栏。",
+      "sourceInvestigationPlan": "BANBI-WHOLE-BRIDGE-PLAN.md"
     },
     {
       "id": "FC-17AFD38428",
@@ -767,7 +897,7 @@
         "Precise metric validation and obscured lower feet remain source-limited; visible fine painted patterns and leaf hardware not fully reproduced.",
         "Real browser/GPU before/after visual acceptance and final affected-runtime validation remain outstanding; CPU/route/collider checks do not replace them."
       ],
-      "currentBatchProgress": "东西各自身完整cube绑定的三帽两落连续墙、上下端接、砖脚与双面真实门叶、帽三角接触、六处隐蔽栏杆裁切已实现；138952cd门墙比例P1已纠正为真实2.1×2.25孔，原门楣增加精确头碰撞。90/90批次通过；纠正后全量1331/1113通过218失败，与旧218失败名称完全一致，非全绿，尚未整项验收。",
+      "currentBatchProgress": "东西各自身完整cube绑定的三帽两落连续墙、上下端接、砖脚与双面真实门叶、帽三角接触、六处隐蔽栏杆裁切已实现；138952cd门墙比例P1已纠正为真实2.1×2.25孔，原门楣增加精确头碰撞。90/90批次通过；纠正后全量1331/1113通过218失败，与旧218失败名称完全一致，非全绿，尚未整项验收。；自身1280补固定南框Π描金并联动纠正门头/门簪/彩绘梁层次，北框独立；21/21定向、93/93批次，52全世界头碰撞/空气反例通过，最新全量仍1113通过218失败同名。细彩画/五金、精确尺寸及GPU仍未整项验收。",
       "evidenceFiles": [
         "TAIHE-WHOLE-WALLS-PLAN.md",
         "TAIHE-WHOLE-WALLS-SOURCES.json",
@@ -1112,6 +1242,25 @@
         },
         "independentHeadContact": "36real whole-world edge/pin/air jumps after zone loading and merging; all18metadata owners retained; portable replaypasses36",
         "walkablePreservation": "All101three-hall and511PalaceBuilder walkables equal138952cd by value/order"
+      },
+      "activeHeaderCandidate": {
+        "parent": "064ecb27",
+        "status": "VERIFIED_LOCAL_WIP_NOT_WHOLE_ACCEPTED",
+        "batch": "93/93",
+        "scope": "Own1280 southfixedΠ and coupledheader/pin/beam correction, independentlydifferentnorthheader; realhole/wall/terrace/leaves unchanged",
+        "wholeObjectAccepted": false,
+        "fullCurrentState": {
+          "tests": 1331,
+          "pass": 1113,
+          "fail": 218,
+          "cancelled": 0,
+          "durationSeconds": 474.967,
+          "comparison": "All218 failure names match saved064ecb27 full run; no added/removed failures. Fourproductionhashes stayed frozen. Not all green; freshparentfull not rerun.",
+          "addedFailures": [],
+          "removedFailures": []
+        },
+        "characterClearance": "6clear/150renderedground/6negative probes with actual CharacterWorldAdapter; no crowd-simulation claim",
+        "headProbes": "52actualwholeworld frame/pin/beam/air jumps pass"
       }
     }
   },

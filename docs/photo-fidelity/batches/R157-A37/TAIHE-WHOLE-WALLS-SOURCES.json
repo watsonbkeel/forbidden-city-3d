@@ -111,6 +111,65 @@
       "eastBrickFoot": 1.05,
       "westBrickFoot": 1.15
     },
-    "limits": "Own image-relative fit, not surveyed metres or GPU acceptance; no camera-height inference"
+    "limits": "Own image-relative fit, not surveyed metres or GPU acceptance; no camera-height inference",
+    "boundaryDefinition": "Photo ratio uses visible door/frame clear face and adjacent wall, not a measured concealed structural brick-opening edge. Actual model2.25 is passable clear height; hidden timber/brick joinery is not surveyed or certified."
+  },
+  "own1280HeaderCompletion": {
+    "sourceFiles": [
+      "independent-leaf-1906-f1280.png",
+      "independent-leaf-1931-f1280.png",
+      "independent-leaf-1701-b1280.png",
+      "independent-leaf-1714-b1280.png"
+    ],
+    "southFrontPixelPicks": {
+      "1906": {
+        "openingTop": 502,
+        "openingBottom": 741,
+        "goldLine": 498,
+        "pinCenter": 478,
+        "pinBottom": [
+          489,
+          491
+        ],
+        "paintedBeamBottom": 460
+      },
+      "1931": {
+        "openingTop": 514,
+        "openingBottom": 750,
+        "goldLine": 509,
+        "pinCenter": 490,
+        "pinBottom": [
+          500,
+          502
+        ],
+        "paintedBeamBottom": [
+          473,
+          475
+        ]
+      }
+    },
+    "pixelUncertainty": "Typically2–4px manual visible-boundary picks; not surveyed dimensions or calibrated camera solve",
+    "fit": {
+      "east": {
+        "southHeader": 0.395,
+        "southBeamBottom": 0.395,
+        "pinCenter": 0.225,
+        "pinRadius": 0.105,
+        "goldTop": 0.038
+      },
+      "west": {
+        "southHeader": 0.38,
+        "southBeamBottom": 0.38,
+        "pinCenter": 0.23,
+        "pinRadius": 0.105,
+        "goldTop": 0.048
+      },
+      "northOwnViews": {
+        "head": 0.18,
+        "beamBottom": 0.3
+      },
+      "allHeightsRelativeToActualClearTop": true
+    },
+    "excluded": "No goldbottom orcentralseam, no four-sidedleafgold, no goldnorthcopy, no invented fullwidthrearbar; rearlock/patches and exactpaintstillpending"
   }
 }

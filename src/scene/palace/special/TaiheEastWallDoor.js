@@ -14,23 +14,34 @@ export function validateTaiheWestWallDoorProfile(p){
 export function addTaiheEastWallDoor(builder,group,p){validateTaiheEastWallDoorProfile(p);return addOwnWallDoor(builder,group,p);}
 export function addTaiheWestWallDoor(builder,group,p){validateTaiheWestWallDoorProfile(p);return addOwnWallDoor(builder,group,p);}
 function addOwnWallDoor(builder,group,p){
+ const west=p.side==='west',southBeamBottom=west?.38:.395,pinHeight=west?.23:.225,goldTop=west?.048:.038;
  const d=p.passage,a=d.centerX-d.clearWidth/2,b=d.centerX+d.clearWidth/2,top=d.floorY+d.clearHeight;
  const part=(role,id,mat,w,h,depth,x,y,z)=>{const m=builder.libBox(group,mat,w,h,depth,x,y,z);m.name=`${p.id}:${id}`;m.userData.firewallPart=role;return m;};
  for(const sign of[-1,1]){
   const face=p.z+sign*p.thickness/2,z0=sign<0?face-.09:face-.02,z1=sign<0?face+.02:face+.09,side=sign<0?'south':'north';
-  for(const[id,x0,x1,y0,y1]of[['left',a-.15,a,d.floorY,top],['right',b,b+.15,d.floorY,top],['head',a-.15,b+.15,top,top+.18]]){
+  for(const[id,x0,x1,y0,y1]of[['left',a-.15,a,d.floorY,top],['right',b,b+.15,d.floorY,top],['head',a-.15,b+.15,top,top+(sign<0?southBeamBottom:.18)]]){
    const foot=id==='head'?0:.14;
    part('taihe-door-frame',`${side}-timber:${id}`,'wood_column',x1-x0,y1-y0-foot,z1-z0,(x0+x1)/2,(y0+foot+y1)/2,(z0+z1)/2);
    if(foot)part('taihe-door-stone-foot',`${side}-foot:${id}`,'stone_slab',x1-x0,foot,z1-z0,(x0+x1)/2,y0+foot/2,(z0+z1)/2);
    builder.col(x0,y0,z0,x1,y1,z1);
    if(id==='head')tagTaiheOverhead(builder.colliders.at(-1),`${p.id}:${side}-timber:head`);
   }
-  const w=d.clearWidth+1.4,h=.30,y=top+.33,z=face+sign*.035;
+  if(sign===-1){
+   // Own1906/1931 full1280: one fixed south-frame Π, NOT gilded moving
+   // leaves, a bottom bar or a gold centre seam. Thin paint planes stay on
+   // the existing timber; dimensions are relative fits, not surveyed metres.
+   const line=.018,offset=.03,bottom=d.floorY+.14,topCenter=top+goldTop,end=topCenter-line/2;
+   const material=builder.ownMat('taihe-east-pin-gold-fit',{color:0xb7a66b,roughness:.86,metalness:0});
+   for(const[id,x,y,w,h]of[['left',a-offset,(bottom+end)/2,line,end-bottom],['right',b+offset,(bottom+end)/2,line,end-bottom],['top',d.centerX,topCenter,d.clearWidth+2*offset+line,line]]){
+    const m=new T.Mesh(new T.PlaneGeometry(w,h),material);m.rotation.y=Math.PI;m.position.set(x,y,z0-.001);m.name=`${p.id}:south-frame-gilt:${id}`;m.userData.firewallPart='taihe-south-frame-gilt';m.receiveShadow=true;group.add(m);
+   }
+  }
+  const w=d.clearWidth+1.4,h=.30,y=top+(sign<0?southBeamBottom:.30)+h/2,z=face+sign*.035;
   part('taihe-door-painted-lintel',`${side}-painted-lintel`,'caihua_beam',w,h,.11,d.centerX,y,z);
   builder.col(d.centerX-w/2,y-h/2,z-.055,d.centerX+w/2,y+h/2,z+.055);
   tagTaiheOverhead(builder.colliders.at(-1),`${p.id}:${side}-painted-lintel`);
   if(sign===-1)for(let i=0;i<4;i++){
-   const x=d.centerX+(i-1.5)*d.clearWidth/4,cy=top+.09,cz=face-.11,r=.085,inner=.067;
+   const x=d.centerX+(i-1.5)*d.clearWidth/4,cy=top+pinHeight,cz=face-.11,r=.105,inner=.083;
    const geo=new T.CylinderGeometry(r,r,.10,6),keep=[];
    for(let k=0;k<geo.index.count;k+=3){const ids=[0,1,2].map(j=>geo.index.getX(k+j));if(!ids.every(j=>geo.attributes.normal.getY(j)===-1))keep.push(...ids);}geo.setIndex(keep);geo.clearGroups();
    const pin=new T.Mesh(geo,builder.library.material('wood_column'));pin.rotation.x=Math.PI/2;pin.position.set(x,cy,cz);pin.name=`${p.id}:south-pin:${i}`;pin.userData.firewallPart='taihe-south-door-pin';pin.castShadow=pin.receiveShadow=true;group.add(pin);
@@ -51,6 +62,5 @@ function addOwnWallDoor(builder,group,p){
   const hinge=new T.Group();hinge.position.set(d.centerX+sign*(d.clearWidth/2+.08),0,hingeZ);hinge.rotation.y=open?sign*Math.PI/2:0;group.add(hinge);
   const leaf=builder.libBox(hinge,'wood_column',leafWidth,d.clearHeight-.02,leafDepth,-sign*leafWidth/2,d.floorY+(d.clearHeight-.02)/2,0);leaf.name=`${p.id}:leaf:${sign}`;leaf.userData.firewallPart='taihe-wall-door-leaf';hinge.updateMatrixWorld(true);const box=new T.Box3().setFromObject(leaf);builder.col(box.min.x,box.min.y,box.min.z,box.max.x,box.max.y,box.max.z);
  }
- const west=p.side==='west';
  group.userData.structure.doorObservation={south:{vp:west?'1931':'1906',sph:west?'1943192924463087616':'1943187762877087744'},north:{vp:west?'1714':'1701',sph:west?'1943159747552002048':'1943158148205166592'},gameplayState:open?'open':'closed',photographedState:'closed',scope:'OWN_DOUBLE_FACED_FRAMES_PINS_AND_REAL_PAIRED_LEAVES',metricStatus:'INHERITED_APERTURE_AND_NEW_VISUAL_FITS_NOT_SURVEY',wholeObjectAccepted:false,unresolved:['exact fine painted pattern and leaf fittings','hidden lower foot heights and exact metrics','GPU runtime']};
 }

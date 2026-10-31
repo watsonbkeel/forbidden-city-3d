@@ -263,7 +263,7 @@ export class CollisionManager {
     const start=make(x,z,fromFeet),target=make(x,z,toFeet),shapes=this.queryBox(start.clone().union(target)).filter(c=>c.triangleSupport);
     if(!shapes.length)return null;
     let fraction=null,impacted=null;
-    for(const c of shapes){const t=triangleBodySweepFraction(c.triangleSupport,start,target);if(t!==null&&(fraction===null||t<fraction)){fraction=t;impacted=c;}}
+    for(const c of shapes){const t=triangleBodySweepFraction(c.triangleSupport,start,target,{includeBoundary:true});if(t!==null&&(fraction===null||t<fraction)){fraction=t;impacted=c;}}
     if(fraction===null)return null;
     const feet=fromFeet+(toFeet-fromFeet)*Math.max(0,fraction-1e-9);
     if(toFeet>=fromFeet)return {x,z,feet,landed:false,kind:'head-impact'};

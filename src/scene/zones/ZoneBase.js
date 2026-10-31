@@ -1,3 +1,4 @@
+import {buildMiddleRightGate} from '../palace/special/MiddleRightGate.js';
 import {applyMiddleAxisFacades} from '../palace/special/MiddleAxisFacades.js';
 import {buildRearAxisGate} from '../palace/special/RearAxisGate.js';
 import {buildShoukangRearSouth} from '../palace/special/ShoukangRearSouth.js';
@@ -360,6 +361,7 @@ export class ZoneBase {
   }
 
   buildGate(item) {
+    if(item.middleRightGate!==undefined){const b=buildMiddleRightGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,b.geometry);return b.width;}
     if(item.rearAxisGate!==undefined){const b=buildRearAxisGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,b.geometry);return b.width;}
     if(item.gateProfile==='shoukang-entry'){const walls=this.zoneJson.items.filter(q=>q.kind==='courtWalls'&&q.gates?.some(r=>r.gate==='寿康门'));if(walls.length!==1)throw Error('Shoukang entry requires unique actual court wall');validateShoukangEntryCourtWall(walls[0]);const built=buildShoukangEntry(this.kit,item,this.zoneJson.id);this.gateGeometries.set(item.name,built.geometry);return built.width;}
     if(item.gateProfile==='cining-entry'){const built=buildCiningGate(this.kit,item,this.zoneJson.id);this.gateGeometries.set(item.name,built.g);return built.width;}
@@ -408,7 +410,13 @@ export class ZoneBase {
     const gaps = item.gaps?.some(g=>g.gate==='锡庆门') ? xiqingWallGaps(item,this.gateGeometries.get('锡庆门'),this.gateWidths) : this.resolveGaps(item.gaps);
     const params = { h: item.h, t: item.t, gaps };
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
+    // The own raised middle-right gate meets this exact retained 7m wall.
+    // Generic wall physics is historically only 3m; do not change other walls.
+    const ownMiddleRight=this.zoneJson.id==='axis-courts'&&this.zoneJson.items.indexOf(item)===15&&this.gateGeometries.get('中右门')?.profile==='own-three-bay-end-aisles';
+    if(ownMiddleRight&&(JSON.stringify(item.from)!=='[65.5,-12.2]'||JSON.stringify(item.to)!=='[110.7,-12.2]'||item.h!==7||item.t!==undefined||gaps.length!==1||gaps[0].at!==80||gaps[0].w!==16.4))throw Error('Invalid own middle-right adjoining wall');
+    const colliderStart=this.kit.colliders.length;
     this.kit.wall(x1, z1, x2, z2, params);
+    if(ownMiddleRight)for(const collider of this.kit.colliders.slice(colliderStart))collider.max.y=7;
   }
 
   buildCourtWalls(item) {
