@@ -1,0 +1,136 @@
+{
+  "pieceCount": 14,
+  "positiveAreaOverlaps": [],
+  "edges": [
+    {
+      "owners": [
+        "east/entry",
+        "east/innerTurn"
+      ],
+      "length": 6.556291390728475,
+      "maxHeightDifference": 0
+    },
+    {
+      "owners": [
+        "east/innerTurn",
+        "east/outward"
+      ],
+      "length": 8.211920529801326,
+      "maxHeightDifference": 0
+    },
+    {
+      "owners": [
+        "east/outward",
+        "east/outerFold"
+      ],
+      "length": 8.211920529801326,
+      "maxHeightDifference": 0
+    },
+    {
+      "owners": [
+        "east/outerFold",
+        "east/return"
+      ],
+      "length": 5.827814569536424,
+      "maxHeightDifference": 0
+    },
+    {
+      "owners": [
+        "east/return",
+        "east/neck"
+      ],
+      "length": 4.304635761589404,
+      "maxHeightDifference": 0
+    },
+    {
+      "owners": [
+        "east/neck",
+        "east/receiver"
+      ],
+      "length": 5.298013245033113,
+      "maxHeightDifference": 0
+    },
+    {
+      "owners": [
+        "west/entry",
+        "west/innerTurn"
+      ],
+      "length": 6.82119205298013,
+      "maxHeightDifference": 0
+    },
+    {
+      "owners": [
+        "west/innerTurn",
+        "west/outward"
+      ],
+      "length": 8.211920529801326,
+      "maxHeightDifference": 0
+    },
+    {
+      "owners": [
+        "west/outward",
+        "west/outerFold"
+      ],
+      "length": 8.211920529801326,
+      "maxHeightDifference": 0
+    },
+    {
+      "owners": [
+        "west/outerFold",
+        "west/return"
+      ],
+      "length": 5.827814569536424,
+      "maxHeightDifference": 0
+    },
+    {
+      "owners": [
+        "west/return",
+        "west/neck"
+      ],
+      "length": 2.9801324503311264,
+      "maxHeightDifference": 0
+    },
+    {
+      "owners": [
+        "west/neck",
+        "west/receiver"
+      ],
+      "length": 5.56291390728477,
+      "maxHeightDifference": 0
+    }
+  ],
+  "radii": [
+    {
+      "radius": 0.5,
+      "result": {
+        "status": "PARTIAL_SUPPORT",
+        "accepted": false,
+        "releaseImplemented": false
+      }
+    },
+    {
+      "radius": 0.1,
+      "result": {
+        "status": "SUPPORTED",
+        "accepted": true,
+        "feetY": 10,
+        "position": {
+          "x": -89.14274834437086,
+          "y": 10,
+          "z": -4.453642384105961
+        },
+        "ownerID": "east/outerFold",
+        "branchIDs": [
+          "east/outerFold",
+          "east/outward",
+          "east/return",
+          "east/innerTurn",
+          "east/neck",
+          "east/entry",
+          "east/receiver"
+        ],
+        "routeAcceptance": false
+      }
+    }
+  ]
+}

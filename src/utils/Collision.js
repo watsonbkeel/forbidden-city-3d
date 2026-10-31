@@ -1,3 +1,4 @@
+import {beginWumenJointCall,tryWumenJointCallStep,acceptedWumenJointStep,acceptedWumenJointLegacyStep,endWumenJointCall,abortWumenJointCall,resolveWumenJointVertical} from '../controls/WumenJointAscentHandoff.js';
 import {canRecoverInwardFromWenyuanRail} from '../scene/palace/special/WenyuanPondBridgeRails.js';
 import {canRecoverInwardFromWuyingRail} from '../scene/palace/special/WuyingThreeBridgeRails.js';
 import {canCrossFubiPool} from '../scene/garden/FubiArchPool.js';
@@ -378,6 +379,7 @@ export class CollisionManager {
    * 结果的地面高度写入 this.lastGroundY。
    */
   getValidPosition(currentPosition, targetPosition, radius = DEFAULT_PLAYER_RADIUS, feetY = null, stepUp = PLAYER.STEP_UP ?? 0.6, airFeet = null, motion = null) {
+    beginWumenJointCall(this,motion,feetY);
     this.lastDuixiuStepFeet = null;
     this.lastFurnitureStepFeet = null;
     // airFeet：空中（跳跃/下落）时的实际脚面高度。碰撞按身体真实高度判定（可越过矮栏杆），
@@ -392,7 +394,16 @@ export class CollisionManager {
     let ground = track ? feetY : 0;
     const air = track && airFeet !== null && airFeet !== undefined;
     let furnitureFeet=motion?.feetY??(motion?.kind==='kinematic'?feetY:airFeet??feetY)??(currentPosition.y-PLAYER.HEIGHT);
+    let wumenFeet=motion?.feetY??feetY??(currentPosition.y-PLAYER.HEIGHT);
     const tryMove = (x, z) => {
+      const joint=tryWumenJointCallStep(this,new THREE.Vector3(valid.x,wumenFeet,valid.z),new THREE.Vector3(x,wumenFeet,z),radius);
+      if(joint){
+        if(!joint.accepted)return false;
+        wumenFeet=joint.feetY;furnitureFeet=joint.feetY;ground=joint.feetY;
+        valid.set(joint.position.x,joint.feetY+PLAYER.HEIGHT,joint.position.z);
+        acceptedWumenJointStep(this,joint);
+        return true;
+      }
       const proposed = new THREE.Vector3(x,valid.y,z);
       if(furnitureScope(this,valid,proposed,radius,motion?.kind==='player'?furnitureFeet:undefined,undefined,furnitureFeet)) {
         const fromFeet=new THREE.Vector3(valid.x,furnitureFeet,valid.z),toFeet=new THREE.Vector3(x,furnitureFeet,z);
@@ -402,6 +413,7 @@ export class CollisionManager {
         // Every accepted local substep carries the final exact feet scalar; a
         // later plain segment must not erase a lift accepted earlier this call.
         this.lastFurnitureStepFeet=result.feetY;
+        wumenFeet=valid.y-PLAYER.HEIGHT;acceptedWumenJointLegacyStep(this);
         return true;
       }
       if(duixiuScope(this,valid,proposed,radius)) {
@@ -409,6 +421,7 @@ export class CollisionManager {
         if(!result.accepted)return false;
         valid.copy(result.position);ground=result.groundY;
         this.lastDuixiuStepFeet=result.settled?result.feetY:null;
+        wumenFeet=valid.y-PLAYER.HEIGHT;acceptedWumenJointLegacyStep(this);
         return true;
       }
       const g = track ? this.getGroundHeight(x, z, air ? Math.max(airFeet, ground) : ground, stepUp) : 0;
@@ -417,13 +430,17 @@ export class CollisionManager {
       if (this.checkCollision(candidate, radius, valid)) return false;
       valid.copy(candidate);
       if (track) ground = g;
+      wumenFeet=valid.y-PLAYER.HEIGHT;acceptedWumenJointLegacyStep(this);
       return true;
     };
+    try {
     for (let i = 0; i < steps; i++) {
       if (tryMove(valid.x + dx, valid.z + dz)) continue;
       tryMove(valid.x + dx, valid.z);
       tryMove(valid.x, valid.z + dz);
     }
+    } catch(error) {abortWumenJointCall(this);throw error;}
+    endWumenJointCall(this);
     this.lastGroundY = ground;
     return valid;
   }
@@ -491,7 +508,7 @@ export class CollisionManager {
     if(!source._grid||source._grid.count!==source.colliders.length)source._buildGrid();
     return source._grid;
   }
-  resolveFurnitureVertical(state,delta,radius=.5) { return resolveFurnitureVertical(this,state,delta,radius); }
+  resolveFurnitureVertical(state,delta,radius=.5) { return resolveWumenJointVertical(this,state,delta,radius) ?? resolveFurnitureVertical(this,state,delta,radius); }
   resolveDuixiuVertical(state, delta, radius=.5) { return resolveDuixiuVertical(this,state,delta,radius); }
   duixiuContact(x,z,maxTop,radius=.5) { return duixiuContact(this,x,z,maxTop,radius); }
 

@@ -1,0 +1,68 @@
+{
+  "status": "LIMITED_UNINSTALLED_LOCAL_CONTACT_CANDIDATE",
+  "rollback": "48a6dcf7c94dd1233e1135e8fbf4f12f837e1074",
+  "wholeObjectsAdded": 0,
+  "wholeObjectAccepted": false,
+  "runtimeOwnerRegistration": false,
+  "routeAcceptance": false,
+  "gpuAccepted": false,
+  "releaseAccepted": false,
+  "source": {
+    "total": 598,
+    "inherited": 592,
+    "inheritedChanged": [
+      "src/utils/Collision.js"
+    ],
+    "newHelpers": 6,
+    "FirstPersonUnchanged": true
+  },
+  "terminalLocal": {
+    "tests": 114,
+    "pass": 114,
+    "fail": 0,
+    "skip": 0,
+    "cancel": 0,
+    "log": "evidence/author-stages/local-checkpoint-1829.tap.gz",
+    "scope": "source/profile, geometry, registration, component step, shared handoff,16 real single-slope interior FirstPerson cases and20-scenario parent/current A/B; not main suite"
+  },
+  "independentRelated": {
+    "tests": 26,
+    "pass": 26,
+    "countsOverlapLocal": true,
+    "lifecycleGenerationP1": "CLOSED_IN_LIMITED_SCOPE"
+  },
+  "outsideAB": {
+    "scenarios": 20,
+    "records": 920,
+    "exactSerializedBytesEqual": true,
+    "scope": "raw noncandidate actor CM movement and real outside ground/jump; not full NPC World"
+  },
+  "originalFoldedRoutes": {
+    "strictCases": 16,
+    "lastDiagnosis": "RED",
+    "notRerunOrReplaced": true,
+    "groundEntryExitUnresolved": true
+  },
+  "unrun": [
+    "World",
+    "original full1313",
+    "full batch",
+    "3-base builds",
+    "GPU",
+    "architectural assembly"
+  ],
+  "inheritedFailuresNotRerun": {
+    "full": 213,
+    "batch": 10,
+    "unexecutedTitles": 38,
+    "missingHistoryRefs": 10,
+    "severity": "P1"
+  },
+  "remoteBackup": "PENDING",
+  "diffCheck": {
+    "fullExit": 2,
+    "reason": "Inherited exact parent FirstPerson fixture trailing whitespace; SHA-identical source snapshot intentionally preserved",
+    "excludingOnlyExactFixtureExit": 0,
+    "attributeOrGoldenRelaxation": false
+  }
+}
