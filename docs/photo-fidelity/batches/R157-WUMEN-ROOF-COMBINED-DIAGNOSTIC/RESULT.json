@@ -1,0 +1,60 @@
+{
+  "status": "LIMITED_UNINSTALLED_ROOF_DIAGNOSTIC_REVIEWED",
+  "parent": "db00683a0ca825062faa6ed92f62c981e3a38dc9",
+  "accepted": false,
+  "runtimeInstalled": false,
+  "supportVerified": false,
+  "routeAccepted": false,
+  "wholeObjectsAdded": 0,
+  "worldVerified": false,
+  "gpuVerified": false,
+  "releaseApproved": false,
+  "remote": "PENDING",
+  "sourceCount": 600,
+  "productionChanges": 0,
+  "qaCount": 4423,
+  "newQAFiles": 5,
+  "selected": {
+    "files": 8,
+    "tests": 65,
+    "pass": 65,
+    "fail": 0,
+    "skip": 0,
+    "cancel": 0,
+    "resource": {
+      "command": [
+        "node",
+        "--max-old-space-size=384",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=1",
+        "tests/photo-fidelity/batches/wumen-joint-layout/roof-section-evaluator.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/roof-section-surfaces.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/roof-section-trims.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/upper-contract.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/upper-baseline.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/roof-combined.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/roof-combined-cpu.test.mjs",
+        "tests/photo-fidelity/batches/wumen-lower-five-portals.test.mjs"
+      ],
+      "cwd": "/workspace/scratch/02a8023d1a85/r157-wumen-joint-layout-1622",
+      "startUTC": "2026-10-31T22:34:04.108754+00:00",
+      "endUTC": "2026-10-31T22:34:15.431638+00:00",
+      "wallSeconds": 11.322908358997665,
+      "maxRSSKiB": 380428,
+      "exit": 0,
+      "node": "v24.22.1"
+    }
+  },
+  "eachMode": {
+    "layers": 10,
+    "meshes": 172,
+    "drawnTriangles": 10288,
+    "hips": 40,
+    "rings": 360,
+    "strips": 320,
+    "unresolvedPairCount": 32
+  },
+  "cpuImages": 6,
+  "inheritedMissingHistoryP1Unchanged": true
+}
