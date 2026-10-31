@@ -96,19 +96,22 @@
     {
       "id": "terrace_steps_imperial_ramp_rails_posts",
       "finding": "TaihemenSouthApproach owns two real closed stair flights, solid non-walkable central imperial body and sloped rails; retained baseH3.44.",
-      "remainingDifference": "Central carving, rail/post detail, exact widths/steps and north approach not visually accepted.",
-      "nextAction": "Need measured/current sides and north approach plus matched browser views; no copying detailed carvings from another gate.",
+      "remainingDifference": "两狮未建，四炉仅自身观测类别形体重复；细雕/背面/精确尺寸、现状通行与GPU未验。",
+      "nextAction": "保留两狮、四炉个体/细部及2026施工后现状未知；待整体源图/实机GPU验收。",
       "reviewEvidenceIds": [
         "T-FRONT",
         "T-CLOSE-3",
-        "T-CLOSE-4"
+        "T-CLOSE-4",
+        "T-DRAW-06",
+        "T-STONE-JOURNAL-2025"
       ],
       "facet": "exterior",
       "inheritedStatus": "PARTIAL",
       "status": "PARTIAL",
       "wholeObjectAccepted": false,
-      "implementedThisPass": false,
-      "currentFinding": "保留既有结果与本条未完成边界；本轮不以未修改当作已验收。"
+      "implementedThisPass": true,
+      "currentFinding": "C统一柱距图证拟合已接真实生产：复合帝道/两肩阶、两侧踏道、真实南台延伸、四炉及东亭西匮。不是现状测绘或整项完成。",
+      "newEvidenceFinding": "生产提升与原审C全部合并和未合并几何/材质/物理精确等价。实际累计World8路线与93面探针通过；其余30796碰撞/1368支承和水系精确不变。"
     },
     {
       "id": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
@@ -149,8 +152,8 @@
     {
       "id": "unique_courtyard_facilities_locations",
       "finding": "Main gate buildComplex/body/approach path has no dedicated Taihemen lion or four-tripod inventory; generic temple forecourt ornaments are not enabled by Taihemen throne=false.",
-      "remainingDifference": "Required own courtyard inventory is not fully bound to runtime objects; detailed lions/pedestals and all four tripod locations remain open.",
-      "nextAction": "先在整场已有对象中逐实例绑东/西狮及四鼎，定位四鼎并补可见形体，建立专属带幼狮/绣球及各自基座的可审候选；不得借太和殿炉组或假定四鼎等距。",
+      "remainingDifference": "两狮未建，四炉仅自身观测类别形体重复；细雕/背面/精确尺寸、现状通行与GPU未验。",
+      "nextAction": "保留两狮、四炉个体/细部及2026施工后现状未知；待整体源图/实机GPU验收。",
       "reviewEvidenceIds": [
         "T-PAGE",
         "T-FRONT",
@@ -160,15 +163,19 @@
         "T-STONE-PAVILION",
         "T-STONE-BOX",
         "T-DRAW-06",
-        "T-DRAW-08"
+        "T-DRAW-08",
+        "T-STONE-JOURNAL-2025",
+        "T-STONE-THREE-VIEW",
+        "T-BRONZE-LION-MEASURES",
+        "T-ANNOUNCE-2026-WORKS"
       ],
       "facet": "exterior",
       "inheritedStatus": "DIFFED",
-      "status": "DIFFED",
+      "status": "PARTIAL",
       "wholeObjectAccepted": false,
-      "currentFinding": "已实际看官方东/西两铜狮近景，确认东西对象不能互当镜像同一狮；官网四鼎总数明确。现太和门构建无专用狮/四鼎库存；本轮没有证实所有四鼎独立位置或整场环境道具去重。",
-      "implementedThisPass": false,
-      "newEvidenceFinding": "本门新版图集已实际看到铜香炉、石亭、石盒独立近景，旧只列狮对/四鼎不完整。新增石亭/石盒成组子任务；数量/位置仍需全场/平面逐实例注册。"
+      "currentFinding": "C统一柱距图证拟合已接真实生产：复合帝道/两肩阶、两侧踏道、真实南台延伸、四炉及东亭西匮。不是现状测绘或整项完成。",
+      "implementedThisPass": true,
+      "newEvidenceFinding": "生产提升与原审C全部合并和未合并几何/材质/物理精确等价。实际累计World8路线与93面探针通过；其余30796碰撞/1368支承和水系精确不变。"
     },
     {
       "id": "A37-required-scope-01",
@@ -358,7 +365,8 @@
       "nextAction": "Need current dated function/display and room coverage; do not manufacture imperial furniture from historical text.",
       "reviewEvidenceIds": [
         "T-PAGE",
-        "T-LOOK-SOUTH"
+        "T-LOOK-SOUTH",
+        "T-ANNOUNCE-2026-WORKS"
       ],
       "facet": "interior",
       "inheritedStatus": "BLOCKED_SOURCE",
@@ -388,12 +396,12 @@
     "requiredFeatures": 20,
     "exteriorIncludingRequiredSubscopes": 14,
     "interior": 6,
-    "implementedThisPassRequirements": 2,
+    "implementedThisPassRequirements": 4,
     "acceptedRequirements": 0,
     "statuses": {
-      "PARTIAL": 11,
-      "DIFFED": 2,
-      "BLOCKED_SOURCE": 7
+      "PARTIAL": 12,
+      "BLOCKED_SOURCE": 7,
+      "DIFFED": 1
     },
     "newRequiredComponentGroups": 2
   },
@@ -430,35 +438,45 @@
   "newlyIdentifiedRequiredComponents": [
     {
       "id": "AUX-FC-B3B12CF397-STONE-PAVILIONS",
-      "name": "太和门前石亭（组，数量待逐实例核）",
+      "name": "太和门前东侧石亭",
       "parent": "FC-B3B12CF397",
-      "status": "SOURCED",
+      "status": "PARTIAL_PRODUCTION_SOURCE_FIT",
       "sourceIds": [
         "T-STONE-PAVILION",
         "T-DRAW-06",
-        "T-DRAW-08"
+        "T-DRAW-08",
+        "T-STONE-JOURNAL-2025",
+        "T-STONE-THREE-VIEW"
       ],
-      "implemented": false,
+      "implemented": true,
       "accepted": false,
-      "nextAction": "以自身近景与总平面确认各实例位置/数量及基座；不是可进入亭，不自动给碰撞/传送。"
+      "nextAction": "生产已按自身图证拟合接入；保持细部/背面/现状施工后的未知项，待独立整项图证与GPU验收。",
+      "quantity": 1,
+      "quantityStatus": "OWN_2025_CURRENT_DESCRIPTION_ONE_ON_EACH_DISTINCT_SIDE",
+      "knownSide": "EAST"
     },
     {
       "id": "AUX-FC-B3B12CF397-STONE-BOXES",
-      "name": "太和门前石盒/石匮（组，数量待逐实例核）",
+      "name": "太和门前西侧石匮（石盒别名）",
       "parent": "FC-B3B12CF397",
-      "status": "SOURCED",
+      "status": "PARTIAL_PRODUCTION_SOURCE_FIT",
       "sourceIds": [
         "T-STONE-BOX",
         "T-DRAW-06",
-        "T-DRAW-08"
+        "T-DRAW-08",
+        "T-STONE-JOURNAL-2025",
+        "T-STONE-THREE-VIEW"
       ],
-      "implemented": false,
+      "implemented": true,
       "accepted": false,
-      "nextAction": "区分现存残损、盖/底座与石亭/狮基座；先逐实例绑定，不按一个近景镜像复制。"
+      "nextAction": "生产已按自身图证拟合接入；保持细部/背面/现状施工后的未知项，待独立整项图证与GPU验收。",
+      "quantity": 1,
+      "quantityStatus": "OWN_2025_CURRENT_DESCRIPTION_ONE_ON_EACH_DISTINCT_SIDE",
+      "knownSide": "WEST"
     }
   ],
   "currentProduction": {
-    "active": "Layout roof declaration plus Taihemen-only front frame silhouette fit",
+    "active": "Layout roof declaration, partial front frame, and promoted source-fit C approach plus six fixtures",
     "ceilingHypothesisActive": false,
     "wholeObjectAccepted": false,
     "geometryDelta": {
@@ -467,13 +485,119 @@
       "geometryBytes": 29184,
       "materials": 2
     },
-    "physicsChanged": false,
+    "physicsChanged": true,
     "retainedSafeNameboardPose": true,
     "knownDefect": "Two top wings hidden behind inherited upper rafters from south ground; exact frame/text/browser match pending.",
     "textDifference": {
       "sourceText": "太和門",
       "modelText": "太和门",
       "matched": false
+    },
+    "facilitiesAHypothesisActive": false,
+    "facilitiesCHypothesisActive": false,
+    "observedFacilitiesCActive": true,
+    "facilitiesIntegration": {
+      "status": "PRODUCTION_C_SOURCE_FIT_LIMITED_REVIEW_APPROVED",
+      "accepted": false,
+      "oldOwnedColliders": 68,
+      "newOwnedColliders": 77,
+      "oldOwnedSupports": 2,
+      "newOwnedSupports": 3,
+      "retainedOtherColliders": 30796,
+      "retainedOtherSupports": 1368,
+      "globalRetentionExact": true,
+      "actualEndpointRoundTrips": 8,
+      "actualVisibleSurfaceProbes": 93,
+      "cpuViews": 9,
+      "gpuAccepted": false,
+      "fullSuite": {
+        "tests": 1313,
+        "pass": 1103,
+        "fail": 210,
+        "newFailureNames": 0,
+        "partitioned": true
+      },
+      "cumulativeBatch": {
+        "tests": 404,
+        "pass": 403,
+        "fail": 1,
+        "newFailureNames": 0,
+        "partitioned": true
+      },
+      "rollbackCleanupFaultFixed": true,
+      "independentIntegrationReview": "APPROVED_LIMITED_DEVELOPMENT_NO_NEW_P0_P1_KNOWN_FIDELITY_DEBT"
+    },
+    "geometryDeltaScope": "Existing geometryDelta is prior frame-only change, not combined facilities delta; facilities retain isolatedC.geometryDelta via exact promotion equivalence."
+  },
+  "facilityResearch": {
+    "source": "T-STONE-JOURNAL-2025",
+    "existingVersion": "Selected existing-image form;paper published2025,photo dates unspecified;post2026 closure works form/access unknown",
+    "counts": {
+      "stonePavilionEast": 1,
+      "stoneBoxWest": 1,
+      "bronzeIncenseBurners": 4,
+      "bronzeLions": 2
+    },
+    "fourCenserRelations": [
+      "east outer: behind east stone pavilion",
+      "west outer: behind west stone box",
+      "east inner: beside imperial stone",
+      "west inner: beside imperial stone"
+    ],
+    "coordinatesStatus": "PRODUCTION_1941_PLAN_COMMON_COLUMN_SCALE_FIT_NOT_SURVEY_OR_POST_WORK_ACCEPTANCE",
+    "sourceLevelDedupe": "Six unique AUX identities in actual merged Taihemen and actual registered physical owners; Taihe Hall instruments remain distinct and retained. Two lions not built.",
+    "isolatedA": {
+      "productionActive": false,
+      "localChecksPass": 16,
+      "originalRoutesPass": 8,
+      "sourceGate": "FAIL",
+      "retainedEnvelopeWidth": 11.748,
+      "retainedColumnWidth": 48.06,
+      "modelRatio": 0.2444444444444444,
+      "own1941PlanApproximateRatio": 0.3726937269372694,
+      "reason": "Retained old stair envelope is too narrow relative to main gate; local route and gap existence cannot count as source registration. No furnaces/pavilion/box built.",
+      "nextDecision": "Re-register full approach width and fixture coordinates from own plan/current photos,then retest original routes; do not shrink fixtures into A merely to pass."
+    },
+    "isolatedC": {
+      "productionActive": false,
+      "geometryCandidateBuilt": true,
+      "accepted": false,
+      "fixtures": 6,
+      "sourceWidthRatio": 0.3712212817412333,
+      "registration": "Uniform own1941 plan south-column span;modern photos and2025 current inventory cross-check;manual pixel fit,not survey",
+      "geometryDelta": {
+        "meshes": 3,
+        "triangles": 13292,
+        "geometryBytes": 1276032,
+        "materials": 3,
+        "colliders": 9,
+        "trianglePhysicalOwners": 10,
+        "trianglePhysicalPrimitives": 1220,
+        "walkables": 1
+      },
+      "checksPass": 52,
+      "originalEndpointRouteVariants": 8,
+      "fullAdjacentEndpointRouteVariants": 8,
+      "actualAdjacentBlockersAtThisCapture": 6684,
+      "actualAdjacentWalkablesAtThisCapture": 71,
+      "visibleOriginalGroundContacts": 6,
+      "northFacesAndMainHallPreserved": true,
+      "fourCenserIdentity": "Four own-plan/current-description positions,one observed class form repeated;which individual close photo and fine/rear variation remain unaccepted",
+      "independentReview": "7acc P1s verified and corrected in isolated candidate;final independent recheck pending",
+      "newWalkableBoundary": "Only1 corresponding visible south-platform-extension top;fixtures0 and central0 explicit walkables;central solid contact uses actual rendered triangles,no rescue support",
+      "sourceVersionBoundary": "No automatic reconstruction of full1941 hall or hidden box contents;two lions still missing candidates",
+      "status": "P1_P2_CORRECTIONS_ISOLATED_PENDING_ASTRA_RECHECK",
+      "priorSelfChecksMissed": [
+        "Visible censer-gap facade lacked collider,real actor entered platform24 frames",
+        "115px central group incorrectly rendered as one smooth imperial slab;shoulder steps/independent toe absent"
+      ],
+      "frontGapReviewFix": "Two narrow visible-facade closures;14 regression cases passed,no new floor;independent recheck pending",
+      "targetVersion": "Selected existing-image form;post2026 closure works fabric/access unknown",
+      "centralReviewFix": "115px composite=52px stone+two stepped shoulders,independent1049px toe;10 exact-rendered-triangle physical owners,0 central NAV ramp;25step count is fit",
+      "pavilionReviewFix": "Four closed front/rear flank panels,narrow opening/body~0.38 fit;not merely detail carving",
+      "historical7accSelfChecks": 30,
+      "consumerVisibleSurfaceProbes": 93,
+      "historicalScope": "Original source-stage report retained verbatim; production promoted copy tracked separately under currentProduction.facilitiesIntegration."
     }
   }
 }

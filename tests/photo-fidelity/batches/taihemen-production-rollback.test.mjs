@@ -1,0 +1,20 @@
+import test from 'node:test';import assert from 'node:assert/strict';import * as T from 'three';
+import {withTaihemenCandidateTransaction as transaction} from '../../../src/scene/palace/TaihemenObservedTransaction.js';
+for(const kind of ['geometry','material'])test(`production transaction restores all state and attempts every owned cleanup despite throwing ${kind} disposal`,()=>{
+ const parent=new T.Group(),retained=new T.Mesh(new T.BoxGeometry(),new T.MeshBasicMaterial()),profile={fixtures:[{id:'retained',accepted:false}]},oldMeta={retained:true};parent.add(retained);parent.userData=oldMeta;
+ const builder={colliders:[{old:true}],walkables:[{old:true}],ownedMaterials:[retained.material],_own:new Map([['retained',retained.material]])},events=[],original=new Error('original build failure');let caught;
+ try{transaction(builder,parent,profile,()=>{
+  for(let i=0;i<3;i++){const geometry=new T.BoxGeometry(),material=new T.MeshBasicMaterial();geometry.addEventListener('dispose',()=>{events.push('g'+i);assert.equal(builder.colliders.length,1);assert.equal(builder.walkables.length,1);assert.equal(profile.fixtures[0].productionBinding,undefined);if(kind==='geometry'&&i===1)throw Error('cleanup geometry');});material.addEventListener('dispose',()=>{events.push('m'+i);assert.equal(builder.ownedMaterials.length,1);assert.equal(builder._own.size,1);if(kind==='material'&&i===1)throw Error('cleanup material');});parent.add(new T.Mesh(geometry,material));builder.ownedMaterials.push(material);builder._own.set('new'+i,material);}
+  builder.colliders.push({ghost:true});builder.walkables.push({ghost:true});profile.fixtures[0].productionBinding='uncommitted';parent.userData.uncommitted=true;throw original;
+ });}catch(e){caught=e;}
+ assert.equal(caught?.cause,original,'original construction error retained as cause');assert.match(caught.message,/original build failure/);assert.deepEqual(caught.errors.map(e=>e.message),['original build failure','cleanup '+kind]);
+ assert.deepEqual(parent.children,[retained]);assert.deepEqual(builder.colliders,[{old:true}]);assert.deepEqual(builder.walkables,[{old:true}]);assert.deepEqual(builder.ownedMaterials,[retained.material]);assert.deepEqual([...builder._own],[['retained',retained.material]]);assert.deepEqual(profile,{fixtures:[{id:'retained',accepted:false}]});assert.deepEqual(parent.userData,{retained:true});assert.deepEqual(events.sort(),['g0','g1','g2','m0','m1','m2']);retained.geometry.dispose();retained.material.dispose();
+});
+import {PalaceBuilder} from '../../../src/scene/PalaceBuilder.js';import {library} from '../../lib/inner-palace-fixture.mjs';
+import {taihemenSouthProfile,buildTaihemenSouthApproach} from '../../../src/scene/palace/TaihemenObservedApproach.js';
+test('actual production approach restores its source profiles and physical arrays after late build plus disposal failure',()=>{
+ const b=new PalaceBuilder(new T.Scene(),library()),g=new T.Group();g.name='太和门';const retained=new T.Mesh(new T.BoxGeometry(),b.ownMat('retained',{color:0x123456}));g.add(retained);
+ const p=taihemenSouthProfile({zEdge:-225.47,y0:0,y1:3.44,run:5.504,width:11.748,halfWidth:25.03}),before=structuredClone(p),col=b.col.bind(b);let fired=0;
+ b.col=(...a)=>{if(Math.abs(a[1]-2.65)<1e-8&&Math.abs(a[4]-2.79)<1e-8){const extension=g.getObjectByName('taihemen-c-real-south-platform-extension');let mesh;extension.traverse(o=>{if(o.isMesh&&!mesh)mesh=o;});mesh.geometry.addEventListener('dispose',()=>{fired++;throw Error('late cleanup listener fault');});throw Error('late production construction failure');}return col(...a);};
+ try{assert.throws(()=>buildTaihemenSouthApproach(b,g,p),e=>e instanceof AggregateError&&e.cause.message==='late production construction failure');assert.equal(fired,1);assert.deepEqual(g.children,[retained]);assert.equal(b.colliders.length,0);assert.equal(b.walkables.length,0);assert.equal(b.ownedMaterials.length,1);assert.equal(b._own.size,1);assert.deepEqual(p,before);assert.equal(g.userData.taihemenSouth,undefined);}finally{retained.geometry.dispose();b.dispose();}
+});

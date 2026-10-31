@@ -42,6 +42,29 @@
       "skip": 0,
       "scope": "Post sourceText/modelText distinction and visible front-corner UV validation",
       "log": "/tmp/r157-taihemen-evidence/NAMEBOARD-UV-GREEN.txt"
+    },
+    {
+      "command": "node --test tests/photo-fidelity/batches/taihemen-*.test.mjs tests/r58-taihemen-*.test.mjs",
+      "pass": 92,
+      "fail": 0,
+      "skip": 0,
+      "scope": "38 retained+13 isolated ceiling+5 full-scope+1 production ceiling boundary+19 active plaque+16 isolated A. Source-width standalone red is NOT counted as acceptance.",
+      "log": "/tmp/r157-taihemen-evidence/FACILITIES-A-COMBINED.txt"
+    },
+    {
+      "command": "node --test tests/photo-fidelity/batches/taihemen-*.test.mjs tests/r58-taihemen-*.test.mjs",
+      "pass": 123,
+      "fail": 0,
+      "skip": 0,
+      "scope": "38 retained+13 isolated ceiling+6 scope+1 production ceiling boundary+19 active plaque+16 failed-source A diagnostics+30 isolated C diagnostics. No source/whole-object acceptance implied.",
+      "log": "/tmp/r157-taihemen-evidence/FACILITIES-C-COMBINED.txt"
+    },
+    {
+      "command": "npm run build -- --outDir /tmp/r157-taihemen-current-production-build",
+      "exitCode": 0,
+      "scope": "Current production src only;C is intentionally not bundled",
+      "warning": "Inherited Vite large chunk warning",
+      "log": "/tmp/r157-taihemen-evidence/FACILITIES-C-PRODUCTION-BUILD.txt"
     }
   ],
   "knownInheritedFailures": [
@@ -147,5 +170,161 @@
   "reviewFixes": [
     "Independent review P2 reproduced: collapsed and mirror UVs falsely passed; actual front-face4 corner mapping now rejects collapse/mirror/vertical flip. No normal geometry changed.",
     "Source text 太和門 differs from retained model 太和门. Separate metadata and explicit substantive difference; original Canvas retained as instructed."
-  ]
+  ],
+  "facilitiesIsolatedA": {
+    "command": "node --test tests/photo-fidelity/batches/taihemen-facilities-a.test.mjs",
+    "pass": 16,
+    "fail": 0,
+    "log": "/tmp/r157-taihemen-evidence/FACILITIES-A-GREEN.txt",
+    "meaning": "Local topology,original8 controller routes,closed solids and7 non-target geometry/away physics only. Not complete fixtures or source acceptance.",
+    "sourceRed": [
+      {
+        "command": "node scripts/photo-fidelity/batches/r157-taihemen/hypothesis/facilities/source-width-red.mjs",
+        "expectedAndObservedExit": 1,
+        "state": "ACTUAL_PRODUCTION"
+      },
+      {
+        "command": "node scripts/photo-fidelity/batches/r157-taihemen/hypothesis/facilities/source-width-red.mjs --candidate",
+        "expectedAndObservedExit": 1,
+        "state": "ISOLATED_A"
+      }
+    ],
+    "sourceRatioActual": 0.2444444444444444,
+    "sourceRatioApproximateOwnPlan": 0.3726937269372694,
+    "productionChanged": false,
+    "fixturesBuilt": 0,
+    "independentReview": "Pending parent decision/assignment; never integrate A while source width gate is red"
+  },
+  "facilitiesIsolatedC": {
+    "disposition": "HISTORICAL_SELF_CHECKS_MISSED2P1_NOT_SOURCE_ACCEPTANCE",
+    "command": "node --test tests/photo-fidelity/batches/taihemen-facilities-c.test.mjs",
+    "pass": 30,
+    "fail": 0,
+    "skip": 0,
+    "log": "/tmp/r157-taihemen-evidence/FACILITIES-C-GREEN.txt",
+    "actualWorld": {
+      "fixtures": 6,
+      "censers": 4,
+      "surfaceProbes": 80,
+      "renderedGroundContacts": 6,
+      "sourceWidthRatio": 0.3712212817412333,
+      "boxContentsBuilt": false,
+      "closeCenserIndividualIdentityAccepted": false,
+      "accepted": false,
+      "status": "ISOLATED_C_CLASS_FORM_SOURCE_FIT_LOCAL_PHYSICS_NOT_GPU_OR_OBJECT_ACCEPTANCE"
+    },
+    "delta": {
+      "meshes": 2,
+      "triangles": 12044,
+      "geometryBytes": 1156224,
+      "materials": 2,
+      "colliders": 25,
+      "walkables": 1
+    },
+    "context": {
+      "actualEnclosureAndAxisColliders": 6684,
+      "actualAxisWalkables": 71,
+      "fixturesAndExtensionOverlaps": 0,
+      "routeVariantsWithoutAndWithContext": 16,
+      "unchangedMapAndGateAnchor": true
+    },
+    "unknown": [
+      "Individual four-censer close-photo assignment,back/fine decoration",
+      "Exact stone carving and current survey",
+      "Two bronze lions still absent",
+      "Browser/GPU,full-flight and whole-object acceptance"
+    ],
+    "independentReview": "PENDING_PARENT_ASTRA_ASSIGNMENT",
+    "sourceHashBinding": "facilities-c-summary16 source hashes,actual precommit bytes bound;captureHEAD may be earlier than this evidence-only commit"
+  },
+  "facilitiesCIndependentP1": {
+    "reviewedCommit": "7acc8637deb1dd3731bc592331715262a030cd23",
+    "frontGap": {
+      "reproduced": "Both signs:60fps walk24 inside-solid frames,10fps walk4,sprint3/14 frames",
+      "fix": "2 narrow0.5m-deep facade strips matching existing visible solid,not a new floor",
+      "regressionPass": 14,
+      "source": "/tmp/r157-c-independent-review/front-gap-repro.mjs",
+      "log": "/tmp/r157-taihemen-evidence/FACILITIES-C-P1-FACADE-GREEN.txt",
+      "independentRecheck": "PENDING"
+    },
+    "centralGroup": {
+      "status": "SOURCE_COMPOSITE_CORRECTED_ISOLATED_PENDING_ASTRA",
+      "finding": "115px composite includes2 shoulder flights,and toeY1048–1050 vs outer1024",
+      "sourceStonePixels": 52,
+      "sourceCompositePixels": 115,
+      "shoulderFlights": 2,
+      "sourceToeFit": 1049,
+      "sourceOuterToe": 1024,
+      "exactRenderedTriangleOwners": 10,
+      "centralExplicitWalkables": 0,
+      "stepCountStatus": "25 pitch-fit,not source count",
+      "positiveRed": "FACILITIES-C-P1-CENTRAL-RED.txt:4 Assertion failures",
+      "consumerRed": "FACILITIES-C-P1-CONSUMER-RED.txt:4 Missing expected exception failures",
+      "green": "FACILITIES-C-P1-CENTRAL-GREEN.txt:52 pass0 fail"
+    },
+    "stonePavilion": {
+      "status": "FOUR_FRONT_REAR_FLANK_PANELS_ADDED_ISOLATED_PENDING_ASTRA",
+      "finding": "Current broad front opening lacks flanking closed panels;not merely unknown carving",
+      "openingBodyFit": 0.3820224719101124
+    },
+    "productionHook": false,
+    "combination": {
+      "command": "node --test tests/photo-fidelity/batches/taihemen-facilities-c-p1.test.mjs tests/photo-fidelity/batches/taihemen-facilities-c.test.mjs",
+      "pass": 52,
+      "fail": 0,
+      "skip": 0,
+      "oldCases": 30,
+      "independentRegressionCases": 22,
+      "log": "/tmp/r157-taihemen-evidence/FACILITIES-C-P1-CENTRAL-GREEN.txt",
+      "accepted": false
+    },
+    "priorWrongDiagonalExpectation": "Old must-block depended on wrong broad smooth central body;actual corrected route safely arrives,maxFeet3.44,0 solid penetration/no rescue. Test preserves these physics invariants,not unsupported blockage.",
+    "capture": {
+      "summary": "facilities-c-p1-summary.json",
+      "sourceHashesMatch": 19,
+      "actualWorld": {
+        "centralCompositeShoulders": 2,
+        "centralExactPhysicalShapes": 10,
+        "centralNavRamps": 0,
+        "frontGapPhysicalClosures": 2,
+        "fixtures": 6,
+        "censers": 4,
+        "surfaceProbes": 93,
+        "renderedGroundContacts": 6,
+        "sourceWidthRatio": 0.3712212817412333,
+        "boxContentsBuilt": false,
+        "closeCenserIndividualIdentityAccepted": false,
+        "accepted": false,
+        "status": "ISOLATED_C_CLASS_FORM_SOURCE_FIT_LOCAL_PHYSICS_NOT_GPU_OR_OBJECT_ACCEPTANCE"
+      },
+      "delta": {
+        "meshes": 3,
+        "triangles": 13292,
+        "geometryBytes": 1276032,
+        "materials": 3,
+        "colliders": 9,
+        "trianglePhysicalOwners": 10,
+        "trianglePhysicalPrimitives": 1220,
+        "walkables": 1
+      },
+      "cpuFlatViews": 13,
+      "cpuNormalTintViews": 3,
+      "sourceCameraMatched": false,
+      "gpuAccepted": false
+    },
+    "fullTargeted": {
+      "command": "node --test tests/photo-fidelity/batches/taihemen-*.test.mjs tests/r58-taihemen-*.test.mjs",
+      "pass": 147,
+      "fail": 0,
+      "skip": 0,
+      "log": "/tmp/r157-taihemen-evidence/FACILITIES-C-P1-ALL-TARGETED.txt",
+      "meaning": "Object-scoped suites including isolated hypotheses,not global regression or source acceptance"
+    },
+    "productionBuild": {
+      "command": "npm run build",
+      "exitCode": 0,
+      "log": "/tmp/r157-taihemen-evidence/FACILITIES-C-P1-BUILD.txt",
+      "boundary": "Unchanged production without C hook;does not prove isolated C browser/GPU behavior"
+    }
+  }
 }

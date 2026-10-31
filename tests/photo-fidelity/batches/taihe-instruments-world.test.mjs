@@ -1,3 +1,4 @@
+import {readTaihemenWorldFixture} from '../../lib/r157-taihemen-world-fixture.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import * as T from 'three';
 import {buildTaiheInstrumentWorld} from '../../lib/r157-taihe-instruments-fixture.mjs';
 import {FirstPersonControls} from '../../../src/controls/FirstPerson.js';
@@ -57,14 +58,16 @@ test('ordinary 1m-wide bodies cannot walk through photographed narrow stone aper
 test.after(()=>W.dispose());
 
 import fs from 'node:fs';import zlib from 'node:zlib';import crypto from 'node:crypto';
+import {compareInstrumentsWithObservedApproach} from '../../lib/r157-taihemen-cumulative-physics.mjs';
+import {assertTaihemenFacilitiesCInWorld} from '../../lib/r157-taihemen-facilities-c-check.mjs';
 import {taiheWorldPhysics,compareTaiheWorldPhysics} from '../../lib/r157-taihe-world-retention.mjs';
-test('complete uninjected World preserves all 30835 non-target collision records and all support/water state against pre-hook055947',()=>{
+test('complete uninjected World preserves exact instrument-baseline physics outside both explicit instrument and observed-approach source products',()=>{
  const raw=zlib.gunzipSync(fs.readFileSync(new URL('../../fixtures/r157-taihe-integration/world-physics-055947.json.gz',import.meta.url))),provenance=JSON.parse(fs.readFileSync(new URL('../../fixtures/r157-taihe-integration/provenance.json',import.meta.url)));
  assert.equal(crypto.createHash('sha256').update(raw).digest('hex'),provenance.worldPhysicsUncompressedSHA256);
- const baseline=JSON.parse(raw),actual=taiheWorldPhysics(W),r=compareTaiheWorldPhysics(actual,baseline);
- assert.deepEqual(r,{targetCount:29,total:30864,retainedCount:30835,retainedExact:true,walkablesExact:true,riversExact:true});
- const row=actual.rows.find(c=>!c.triangleSupport?.id.startsWith('taihe-terrace-instrument:')),old=row.min[0];row.min[0]+=.001;
- assert.equal(compareTaiheWorldPhysics(actual,baseline).retainedExact,false,'actual retained physical drift must reject');row.min[0]=old;
- const support=structuredClone(actual);support.walkables.pop();assert.equal(compareTaiheWorldPhysics(support,baseline).walkablesExact,false,'missing old support rejects');
+ const baseline=JSON.parse(raw),actual=taiheWorldPhysics(W),approachRaw=zlib.gunzipSync(readTaihemenWorldFixture());assert.equal(crypto.createHash('sha256').update(approachRaw).digest('hex'),'dbda1e6e18635d7a80425b25e46337280a716f393c70b0b88dfaa9141f2904b4');const approach=JSON.parse(approachRaw),compare=a=>compareInstrumentsWithObservedApproach(W,a,baseline,approach);assertTaihemenFacilitiesCInWorld(W,{production:true});const r=compare(actual);
+ assert.deepEqual(r,{targetCount:29,total:30873,retainedCount:30767,retainedExact:true,walkablesExact:true,riversExact:true,observedSourceColliders:77,observedSourceSupports:3});
+ const row=actual.rows.find((c,i)=>!c.triangleSupport?.id.startsWith('taihe-terrace-instrument:')&&!W.cm.colliders[i].mesh.taihemenObservedSource),old=row.min[0];row.min[0]+=.001;
+ assert.equal(compare(actual).retainedExact,false,'actual retained physical drift must reject');row.min[0]=old;
+ const support=structuredClone(actual);support.walkables.pop();assert.equal(compare(support).walkablesExact,false,'missing old support rejects');
  if(process.env.TAIHE_INSTRUMENT_WORLD_OUT)fs.writeFileSync(process.env.TAIHE_INSTRUMENT_WORLD_OUT,JSON.stringify({scope:'UNINJECTED_PRODUCTION_ALL_WORLD_PHYSICS_AND_ORIGINAL_16_ROUTES_4_DROPS',...r,accepted:false},null,2)+'\n');
 });

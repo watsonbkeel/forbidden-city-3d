@@ -11,7 +11,7 @@ import {createBaoheEastFirewallProfile,buildBaoheEastFirewall} from './palace/Ba
 import {baoheEastTerraceProfile} from './palace/BaoheEastTerrace.js';
 import { buildBaoheDaisApproach, registerBaoheDaisFurnishingSolids } from './palace/BaoheDaisApproach.js';
 import {buildBaoheWarmRooms} from './palace/BaoheWarmRooms.js';
-import { taihemenSouthProfile, buildTaihemenSouthApproach } from './palace/TaihemenSouthApproach.js';
+import { taihemenSouthProfile, buildTaihemenSouthApproach, assertObservedTaihemenHost } from './palace/TaihemenObservedApproach.js';
 import { buildSouthWaterSystem } from './palace/special/SouthWaterSystem.js';
 import {createTaiheEastFirewallProfile,createTaiheWestFirewallProfile} from './palace/special/AxisFirewallProfiles.js';
 import {buildTaiheEastFirewall,buildTaiheWestFirewall,validateTaiheFirewall} from './palace/special/AxisFirewalls.js';
@@ -362,6 +362,7 @@ export class PalaceBuilder {
    * 只在首块南边、末块北边设台阶；矩形交界处宽出的部分设挡墙与栏杆。
    */
   buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile = null, taiheSouth = false, taihemenSouth = false, innerPalace = false, baoheNorth = null, baoheEast = null, taiheWalls = [] }) {
+    if (taihemenSouth) assertObservedTaihemenHost(g, rects);
     const half = stairW / 2;
     const t = 0.5;
     const last = rects.length - 1;
