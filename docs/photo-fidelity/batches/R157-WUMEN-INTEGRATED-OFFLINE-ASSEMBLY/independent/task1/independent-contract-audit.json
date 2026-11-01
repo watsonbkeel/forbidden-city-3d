@@ -1,0 +1,95 @@
+{
+  "head": "5610acf44554d3b2a83cd89f33df8782810cd6d4",
+  "checks": {
+    "freeze-2304": {
+      "count": 3,
+      "errors": []
+    },
+    "source-2304": {
+      "count": 600,
+      "errors": []
+    },
+    "qa-2304": {
+      "count": 4426,
+      "errors": []
+    },
+    "shaftsExactUpperRoles": true,
+    "all600SourceEqualGit": true,
+    "sourceExactPathSet": true,
+    "counts": {
+      "PRESERVE_COMPLETE_NON_TARGET": 52,
+      "REMOVE_ENGINEERING_SHAFT_IN_PROPOSAL_ONLY": 24,
+      "MOVE_ONLY_PRESERVE_COLUMN_GEOMETRY_MATERIAL": 88,
+      "REBUILD_LINK_POSITION_PENDING_SEPARATE_SOURCE_AND_PHYSICS_CONTRACT": 24,
+      "ADD_SOURCE_READ_NON_INTERFACE_SHAFT": 16
+    }
+  },
+  "routeFindings": [
+    {
+      "id": "INSTANCE-A-WUMEN-EAST-SOUTH-PAVILION/closed-body-probe",
+      "start": [
+        -50.91903973509933,
+        12.3,
+        -73.78741721854306
+      ],
+      "otherOwner": "FC-B0439D9BED",
+      "closedWingWorldXZ": [
+        [
+          -59.62235099337748,
+          -73.58741721854305
+        ],
+        [
+          -42.215728476821184,
+          -9.889403973509932
+        ]
+      ],
+      "strictInside": false,
+      "insideToSouthSkin": -0.20000000000000284,
+      "playerRadius": 0.5
+    },
+    {
+      "id": "INSTANCE-A-WUMEN-WEST-SOUTH-PAVILION/closed-body-probe",
+      "start": [
+        51.08460264900662,
+        12.3,
+        -73.91986754966888
+      ],
+      "otherOwner": "FC-FB99F593DB",
+      "closedWingWorldXZ": [
+        [
+          42.414403973509934,
+          -73.71986754966888
+        ],
+        [
+          59.754801324503305,
+          -9.955629139072844
+        ]
+      ],
+      "strictInside": false,
+      "insideToSouthSkin": -0.20000000000000284,
+      "playerRadius": 0.5
+    },
+    {
+      "id": "east/receiver/actual-platform-transition",
+      "surface": "east/neck",
+      "endpoint": [
+        -62,
+        12.3,
+        -9.950331125827816
+      ],
+      "surfaceY": 12.21613043478261,
+      "heightError": 0.08386956521739108
+    },
+    {
+      "id": "west/receiver/actual-platform-transition",
+      "surface": "west/neck",
+      "endpoint": [
+        62,
+        12.3,
+        -11.407284768211921
+      ],
+      "surfaceY": 12.219625,
+      "heightError": 0.08037500000000009
+    }
+  ]
+}
