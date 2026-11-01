@@ -1,0 +1,5 @@
+import fs from'node:fs';import * as T from'three';import{fixture}from'../r157-youyi-rails/fixture.mjs';
+export function capture(){const{z,f}=fixture();const upper=[];f.traverse(o=>{const role=o.userData.role;if(role==='youyi-roof'||role==='youyi-door-leaf')o.traverse(m=>{if(m.isMesh)push(m,role)});else if(o.isMesh&&role&&!['youyi-platform','youyi-paving','youyi-approach','youyi-rail','youyi-stone-head','youyi-stone-panel','youyi-platform-edge-guard'].includes(role))push(o,role);});
+function push(m,role){const a=m.geometry.attributes.position;upper.push({role,points:Array.from({length:a.count},(_,i)=>new T.Vector3().fromBufferAttribute(a,i).applyMatrix4(m.matrixWorld).toArray())});}
+const beforeC=z.kit.colliders.length,beforeW=z.kit.walkables.length;const axis=z.zoneJson;z.buildCorridor(axis.items[35]);z.buildCorridor(axis.items[36]);const neighbours={colliders:z.kit.colliders.slice(beforeC),walkables:z.kit.walkables.slice(beforeW)};z.kit.dispose();return JSON.parse(JSON.stringify({upper,neighbours}));}
+if(process.argv[2])fs.writeFileSync(process.argv[2],JSON.stringify(capture()));

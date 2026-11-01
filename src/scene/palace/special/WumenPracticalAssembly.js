@@ -1,3 +1,4 @@
+import {authorizeWumenSouthDeckSources} from './WumenSouthDeckBoundary.js';
 import * as THREE from 'three';
 import {WUMEN_PRACTICAL_FIT as FIT} from './WumenPracticalFit.js';
 import {buildWumenJointVisiblePlatform} from './WumenPracticalPlatform.js';
@@ -36,6 +37,7 @@ export function installWumenPracticalAssembly(builder,parent,data,{colliderStart
   upper=buildWumenPracticalUpper(captured);
   const colliders=platform.colliders.map(row=>worldCollider(row,offset));
   const supports=platform.walkables.map(row=>worldSupport(row,offset));
+  authorizeWumenSouthDeckSources(supports);
   // Main body keeps its inherited finite three-metre gameplay proxies; its
   // complete render model, original rooms, open doors and roof are unchanged.
   for(const row of main.userData.colliders??[])colliders.push(worldCollider(row.clone().translate(main.position),offset));
