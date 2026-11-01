@@ -1,3 +1,4 @@
+import {buildYouyiFreshGate} from '../palace/special/YouyiFreshGate.js';
 import {sideGateGalleryOptions,validateSideGateGalleryDeck} from '../palace/special/SideGateGalleryProfiles.js';
 import {buildBaoheLinkedGallery} from '../palace/BaoheLinkedGalleries.js';
 import {buildMiddleRightGate} from '../palace/special/MiddleRightGate.js';
@@ -366,6 +367,7 @@ export class ZoneBase {
   }
 
   buildGate(item) {
+    if(this.zoneJson.id==='axis-courts'&&item.name==='右翼门'){const b=buildYouyiFreshGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,b.geometry);return b.width;}
     if(item.middleRightGate!==undefined){const b=buildMiddleRightGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,b.geometry);return b.width;}
     if(item.rearAxisGate!==undefined){const b=buildRearAxisGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,b.geometry);return b.width;}
     if(item.gateProfile==='shoukang-entry'){const walls=this.zoneJson.items.filter(q=>q.kind==='courtWalls'&&q.gates?.some(r=>r.gate==='寿康门'));if(walls.length!==1)throw Error('Shoukang entry requires unique actual court wall');validateShoukangEntryCourtWall(walls[0]);const built=buildShoukangEntry(this.kit,item,this.zoneJson.id);this.gateGeometries.set(item.name,built.geometry);return built.width;}
