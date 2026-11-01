@@ -1,0 +1,4503 @@
+{
+  "schemaVersion": 2,
+  "unit": "meter",
+  "actors": [
+    {
+      "id": "taihe-emperor-01",
+      "templateId": "emperor-ceremonial",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1",
+          "H3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "seat",
+        "seatRef": "taihe-throne-seat",
+        "referenceFrame": "seat-local",
+        "offsetMeters": [
+          0,
+          0,
+          0
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "seated",
+        "seed": 31000,
+        "ceremonyRef": "taihe-audience",
+        "seatVariant": "throne-front-perch"
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "essential",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe"
+    },
+    {
+      "id": "taihe-official-east-01-01",
+      "templateId": "official-ceremonial",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1",
+          "H3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -12,
+          0,
+          -80
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 31001,
+        "ceremonyRef": "taihe-audience",
+        "formationSide": "east",
+        "formationRow": 0,
+        "formationColumn": 0
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe",
+      "formation": {
+        "side": "left",
+        "index": 0
+      }
+    },
+    {
+      "id": "taihe-official-east-01-02",
+      "templateId": "official-ceremonial",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1",
+          "H3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -19,
+          0,
+          -80
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 31002,
+        "ceremonyRef": "taihe-audience",
+        "formationSide": "east",
+        "formationRow": 0,
+        "formationColumn": 1
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe",
+      "formation": {
+        "side": "left",
+        "index": 1
+      }
+    },
+    {
+      "id": "taihe-official-east-02-01",
+      "templateId": "official-ceremonial",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1",
+          "H3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -12,
+          0,
+          -87
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 31003,
+        "ceremonyRef": "taihe-audience",
+        "formationSide": "east",
+        "formationRow": 1,
+        "formationColumn": 0
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe",
+      "formation": {
+        "side": "left",
+        "index": 2
+      }
+    },
+    {
+      "id": "taihe-official-east-02-02",
+      "templateId": "official-ceremonial",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1",
+          "H3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -19,
+          0,
+          -87
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 31004,
+        "ceremonyRef": "taihe-audience",
+        "formationSide": "east",
+        "formationRow": 1,
+        "formationColumn": 1
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe",
+      "formation": {
+        "side": "left",
+        "index": 3
+      }
+    },
+    {
+      "id": "taihe-official-east-03-01",
+      "templateId": "official-ceremonial",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1",
+          "H3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -12,
+          0,
+          -94
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 31005,
+        "ceremonyRef": "taihe-audience",
+        "formationSide": "east",
+        "formationRow": 2,
+        "formationColumn": 0
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe",
+      "formation": {
+        "side": "left",
+        "index": 4
+      }
+    },
+    {
+      "id": "taihe-official-east-03-02",
+      "templateId": "official-ceremonial",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1",
+          "H3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -19,
+          0,
+          -94
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 31006,
+        "ceremonyRef": "taihe-audience",
+        "formationSide": "east",
+        "formationRow": 2,
+        "formationColumn": 1
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe",
+      "formation": {
+        "side": "left",
+        "index": 5
+      }
+    },
+    {
+      "id": "taihe-official-east-04-01",
+      "templateId": "official-ceremonial",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1",
+          "H3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -12,
+          0,
+          -101
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 31007,
+        "ceremonyRef": "taihe-audience",
+        "formationSide": "east",
+        "formationRow": 3,
+        "formationColumn": 0
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe",
+      "formation": {
+        "side": "left",
+        "index": 6
+      }
+    },
+    {
+      "id": "taihe-official-east-04-02",
+      "templateId": "official-ceremonial",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1",
+          "H3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -19,
+          0,
+          -101
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 31008,
+        "ceremonyRef": "taihe-audience",
+        "formationSide": "east",
+        "formationRow": 3,
+        "formationColumn": 1
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe",
+      "formation": {
+        "side": "left",
+        "index": 7
+      }
+    },
+    {
+      "id": "taihe-official-west-01-01",
+      "templateId": "official-ceremonial",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1",
+          "H3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          12,
+          0,
+          -80
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 31009,
+        "ceremonyRef": "taihe-audience",
+        "formationSide": "west",
+        "formationRow": 0,
+        "formationColumn": 0
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe",
+      "formation": {
+        "side": "right",
+        "index": 0
+      }
+    },
+    {
+      "id": "taihe-official-west-01-02",
+      "templateId": "official-ceremonial",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1",
+          "H3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          19,
+          0,
+          -80
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 31010,
+        "ceremonyRef": "taihe-audience",
+        "formationSide": "west",
+        "formationRow": 0,
+        "formationColumn": 1
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe",
+      "formation": {
+        "side": "right",
+        "index": 1
+      }
+    },
+    {
+      "id": "taihe-official-west-02-01",
+      "templateId": "official-ceremonial",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1",
+          "H3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          12,
+          0,
+          -87
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 31011,
+        "ceremonyRef": "taihe-audience",
+        "formationSide": "west",
+        "formationRow": 1,
+        "formationColumn": 0
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe",
+      "formation": {
+        "side": "right",
+        "index": 2
+      }
+    },
+    {
+      "id": "taihe-official-west-02-02",
+      "templateId": "official-ceremonial",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1",
+          "H3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          19,
+          0,
+          -87
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 31012,
+        "ceremonyRef": "taihe-audience",
+        "formationSide": "west",
+        "formationRow": 1,
+        "formationColumn": 1
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe",
+      "formation": {
+        "side": "right",
+        "index": 3
+      }
+    },
+    {
+      "id": "taihe-official-west-03-01",
+      "templateId": "official-ceremonial",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1",
+          "H3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          12,
+          0,
+          -94
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 31013,
+        "ceremonyRef": "taihe-audience",
+        "formationSide": "west",
+        "formationRow": 2,
+        "formationColumn": 0
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe",
+      "formation": {
+        "side": "right",
+        "index": 4
+      }
+    },
+    {
+      "id": "taihe-official-west-03-02",
+      "templateId": "official-ceremonial",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1",
+          "H3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          19,
+          0,
+          -94
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 31014,
+        "ceremonyRef": "taihe-audience",
+        "formationSide": "west",
+        "formationRow": 2,
+        "formationColumn": 1
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe",
+      "formation": {
+        "side": "right",
+        "index": 5
+      }
+    },
+    {
+      "id": "taihe-official-west-04-01",
+      "templateId": "official-ceremonial",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1",
+          "H3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          12,
+          0,
+          -101
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 31015,
+        "ceremonyRef": "taihe-audience",
+        "formationSide": "west",
+        "formationRow": 3,
+        "formationColumn": 0
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe",
+      "formation": {
+        "side": "right",
+        "index": 6
+      }
+    },
+    {
+      "id": "taihe-official-west-04-02",
+      "templateId": "official-ceremonial",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1",
+          "H3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          19,
+          0,
+          -101
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 31016,
+        "ceremonyRef": "taihe-audience",
+        "formationSide": "west",
+        "formationRow": 3,
+        "formationColumn": 1
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe",
+      "formation": {
+        "side": "right",
+        "index": 7
+      }
+    },
+    {
+      "id": "taihe-attendant-east-01",
+      "templateId": "ritual-attendant",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-hall-floor",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -2.2,
+          0,
+          2
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 31017,
+        "ceremonyRef": "taihe-audience"
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe"
+    },
+    {
+      "id": "taihe-attendant-west-01",
+      "templateId": "ritual-attendant",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-hall-floor",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          2.2,
+          0,
+          2
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 31018,
+        "ceremonyRef": "taihe-audience"
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe"
+    },
+    {
+      "id": "taihe-guard-east-01",
+      "templateId": "guard-duty",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -30,
+          0,
+          -63
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 31019
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe"
+    },
+    {
+      "id": "taihe-guard-east-02",
+      "templateId": "guard-duty",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -30,
+          0,
+          -72
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 31020
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe"
+    },
+    {
+      "id": "taihe-guard-west-01",
+      "templateId": "guard-duty",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          30,
+          0,
+          -63
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 31021
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe"
+    },
+    {
+      "id": "taihe-guard-west-02",
+      "templateId": "guard-duty",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          30,
+          0,
+          -72
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 31022
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe"
+    },
+    {
+      "id": "wumen-guard-east-01",
+      "templateId": "guard-duty",
+      "zoneRef": "static",
+      "sceneRef": "gates",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "wumen-south-ground",
+        "anchorRef": "wumen-gate",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -5.5,
+          0,
+          -17
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 31023
+      },
+      "schedule": "guard-duty",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "gates"
+    },
+    {
+      "id": "wumen-guard-west-01",
+      "templateId": "guard-duty",
+      "zoneRef": "static",
+      "sceneRef": "gates",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "wumen-south-ground",
+        "anchorRef": "wumen-gate",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          5.5,
+          0,
+          -17
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 31024
+      },
+      "schedule": "guard-duty",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "gates"
+    },
+    {
+      "id": "shenwu-guard-east-01",
+      "templateId": "guard-duty",
+      "zoneRef": "static",
+      "sceneRef": "gates",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "shenwu-south-ground",
+        "anchorRef": "shenwu-gate",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -6,
+          0,
+          -16
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 31025
+      },
+      "schedule": "guard-duty",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "gates"
+    },
+    {
+      "id": "shenwu-guard-west-01",
+      "templateId": "guard-duty",
+      "zoneRef": "static",
+      "sceneRef": "gates",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "shenwu-south-ground",
+        "anchorRef": "shenwu-gate",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          6,
+          0,
+          -16
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 31026
+      },
+      "schedule": "guard-duty",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "gates"
+    },
+    {
+      "id": "qianqing-guard-east-01",
+      "templateId": "guard-duty",
+      "zoneRef": "static",
+      "sceneRef": "gates",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "qianqing-south-ground",
+        "anchorRef": "qianqing-gate",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -12,
+          0,
+          -19
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 31027
+      },
+      "schedule": "guard-duty",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "gates"
+    },
+    {
+      "id": "qianqing-guard-west-01",
+      "templateId": "guard-duty",
+      "zoneRef": "static",
+      "sceneRef": "gates",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "qianqing-south-ground",
+        "anchorRef": "qianqing-gate",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          12,
+          0,
+          -19
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 31028
+      },
+      "schedule": "guard-duty",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "gates"
+    },
+    {
+      "id": "west-lane-guard-01",
+      "templateId": "guard-duty",
+      "zoneRef": "west-six",
+      "sceneRef": "lane",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "west-second-lane-patrol",
+        "surfaceRef": "west-second-lane-ground"
+      },
+      "behavior": {
+        "type": "patrol",
+        "basePose": "standing",
+        "seed": 31029,
+        "speedMetersPerSecond": 0.75,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.4,
+        "patrolGroup": "west-lane-group"
+      },
+      "schedule": "guard-duty",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "lane"
+    },
+    {
+      "id": "west-lane-guard-02",
+      "templateId": "guard-duty",
+      "zoneRef": "west-six",
+      "sceneRef": "lane",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "west-second-lane-patrol",
+        "surfaceRef": "west-second-lane-ground"
+      },
+      "behavior": {
+        "type": "patrol",
+        "basePose": "standing",
+        "seed": 31030,
+        "speedMetersPerSecond": 0.75,
+        "pauseSeconds": 3,
+        "followerIndex": 1,
+        "followerSpacingMeters": 1.4,
+        "patrolGroup": "west-lane-group"
+      },
+      "schedule": "guard-duty",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "lane"
+    },
+    {
+      "id": "west-lane-guard-03",
+      "templateId": "guard-duty",
+      "zoneRef": "west-six",
+      "sceneRef": "lane",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "west-second-lane-patrol",
+        "surfaceRef": "west-second-lane-ground"
+      },
+      "behavior": {
+        "type": "patrol",
+        "basePose": "standing",
+        "seed": 31031,
+        "speedMetersPerSecond": 0.75,
+        "pauseSeconds": 3,
+        "followerIndex": 2,
+        "followerSpacingMeters": 1.4,
+        "patrolGroup": "west-lane-group"
+      },
+      "schedule": "guard-duty",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "lane"
+    },
+    {
+      "id": "chuxiu-consort-01",
+      "templateId": "consort-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "chuxiu",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H4",
+          "H6",
+          "D4"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "seat",
+        "seatRef": "chuxiu-west-north-kang",
+        "referenceFrame": "seat-local",
+        "offsetMeters": [
+          0,
+          0,
+          0
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "seated",
+        "seed": 31032,
+        "seatVariant": "kang-low"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "chuxiu"
+    },
+    {
+      "id": "chuxiu-maid-01",
+      "templateId": "maid-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "chuxiu",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H4",
+          "H7",
+          "D4"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "chuxiu-floor",
+        "anchorRef": "chuxiu-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          5.42,
+          0,
+          1.2
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 31033
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "chuxiu"
+    },
+    {
+      "id": "yikun-consort-01",
+      "templateId": "consort-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "yikun",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H4",
+          "H6",
+          "D2"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "yikun-court-ground",
+        "anchorRef": "yikun-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -3,
+          0,
+          -13
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 31034
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "yikun"
+    },
+    {
+      "id": "yikun-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "yikun",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H6",
+          "D2"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "yikun-court-ground",
+        "anchorRef": "yikun-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -4.7,
+          0,
+          -13
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 31035
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "yikun"
+    },
+    {
+      "id": "yongshou-consort-01",
+      "templateId": "consort-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "yongshou",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H4",
+          "H6",
+          "D3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "yongshou-courtyard-stroll",
+        "surfaceRef": "yongshou-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 31036,
+        "speedMetersPerSecond": 0.6,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "yongshou-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "yongshou"
+    },
+    {
+      "id": "yongshou-maid-01",
+      "templateId": "maid-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "yongshou",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H4",
+          "H7",
+          "D3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "yongshou-court-ground",
+        "anchorRef": "yongshou-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -6,
+          0,
+          -15
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 31037
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "yongshou"
+    },
+    {
+      "id": "taihe-official-east-05-01",
+      "templateId": "official-ceremonial",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1",
+          "H3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -12,
+          0,
+          -108
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 52020,
+        "ceremonyRef": "taihe-audience",
+        "formationSide": "east",
+        "formationRow": 4,
+        "formationColumn": 0
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe",
+      "formation": {
+        "side": "left",
+        "index": 8
+      }
+    },
+    {
+      "id": "taihe-official-east-05-02",
+      "templateId": "official-ceremonial",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1",
+          "H3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -19,
+          0,
+          -108
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 52021,
+        "ceremonyRef": "taihe-audience",
+        "formationSide": "east",
+        "formationRow": 4,
+        "formationColumn": 1
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe",
+      "formation": {
+        "side": "left",
+        "index": 9
+      }
+    },
+    {
+      "id": "taihe-official-east-06-01",
+      "templateId": "official-ceremonial",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1",
+          "H3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -12,
+          0,
+          -115
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 52022,
+        "ceremonyRef": "taihe-audience",
+        "formationSide": "east",
+        "formationRow": 5,
+        "formationColumn": 0
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe",
+      "formation": {
+        "side": "left",
+        "index": 10
+      }
+    },
+    {
+      "id": "taihe-official-east-06-02",
+      "templateId": "official-ceremonial",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1",
+          "H3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -19,
+          0,
+          -115
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 52023,
+        "ceremonyRef": "taihe-audience",
+        "formationSide": "east",
+        "formationRow": 5,
+        "formationColumn": 1
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe",
+      "formation": {
+        "side": "left",
+        "index": 11
+      }
+    },
+    {
+      "id": "taihe-official-west-05-01",
+      "templateId": "official-ceremonial",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1",
+          "H3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          12,
+          0,
+          -108
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 52024,
+        "ceremonyRef": "taihe-audience",
+        "formationSide": "west",
+        "formationRow": 4,
+        "formationColumn": 0
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe",
+      "formation": {
+        "side": "right",
+        "index": 8
+      }
+    },
+    {
+      "id": "taihe-official-west-05-02",
+      "templateId": "official-ceremonial",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1",
+          "H3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          19,
+          0,
+          -108
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 52025,
+        "ceremonyRef": "taihe-audience",
+        "formationSide": "west",
+        "formationRow": 4,
+        "formationColumn": 1
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe",
+      "formation": {
+        "side": "right",
+        "index": 9
+      }
+    },
+    {
+      "id": "taihe-official-west-06-01",
+      "templateId": "official-ceremonial",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1",
+          "H3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          12,
+          0,
+          -115
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 52026,
+        "ceremonyRef": "taihe-audience",
+        "formationSide": "west",
+        "formationRow": 5,
+        "formationColumn": 0
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe",
+      "formation": {
+        "side": "right",
+        "index": 10
+      }
+    },
+    {
+      "id": "taihe-official-west-06-02",
+      "templateId": "official-ceremonial",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1",
+          "H3"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          19,
+          0,
+          -115
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 52027,
+        "ceremonyRef": "taihe-audience",
+        "formationSide": "west",
+        "formationRow": 5,
+        "formationColumn": 1
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe",
+      "formation": {
+        "side": "right",
+        "index": 11
+      }
+    },
+    {
+      "id": "taihe-attendant-east-02",
+      "templateId": "ritual-attendant",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-hall-floor",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -4.2,
+          0,
+          2
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 52028,
+        "ceremonyRef": "taihe-audience"
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "ambient",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe"
+    },
+    {
+      "id": "taihe-attendant-west-02",
+      "templateId": "ritual-attendant",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H1"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-hall-floor",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          4.2,
+          0,
+          2
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ceremony-participant",
+        "basePose": "standing",
+        "seed": 52029,
+        "ceremonyRef": "taihe-audience"
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "ambient",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe"
+    },
+    {
+      "id": "taihe-guard-east-03",
+      "templateId": "guard-duty",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -30,
+          0,
+          -81
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 52030
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "ambient",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe"
+    },
+    {
+      "id": "taihe-guard-east-04",
+      "templateId": "guard-duty",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -30,
+          0,
+          -90
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 52031
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "ambient",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe"
+    },
+    {
+      "id": "taihe-guard-west-03",
+      "templateId": "guard-duty",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          30,
+          0,
+          -81
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 52032
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "ambient",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe"
+    },
+    {
+      "id": "taihe-guard-west-04",
+      "templateId": "guard-duty",
+      "zoneRef": "static",
+      "sceneRef": "taihe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taihe-court-ground",
+        "anchorRef": "taihe-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          30,
+          0,
+          -90
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 52033
+      },
+      "schedule": "ceremony-daylight",
+      "priority": "ambient",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "taihe"
+    },
+    {
+      "id": "donghua-guard-north-01",
+      "templateId": "guard-duty",
+      "zoneRef": "outer-east",
+      "sceneRef": "gates",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "donghua-gate-side-ground",
+        "anchorRef": "donghua-gate",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -4.2,
+          0,
+          9
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 52000
+      },
+      "schedule": "guard-duty",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "gates"
+    },
+    {
+      "id": "donghua-guard-south-01",
+      "templateId": "guard-duty",
+      "zoneRef": "outer-east",
+      "sceneRef": "gates",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "donghua-gate-side-ground",
+        "anchorRef": "donghua-gate",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          4.2,
+          0,
+          9
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 52001
+      },
+      "schedule": "guard-duty",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "gates"
+    },
+    {
+      "id": "xihua-guard-north-01",
+      "templateId": "guard-duty",
+      "zoneRef": "outer-west",
+      "sceneRef": "gates",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "xihua-gate-side-ground",
+        "anchorRef": "xihua-gate",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          4.2,
+          0,
+          9
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 52002
+      },
+      "schedule": "guard-duty",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "gates"
+    },
+    {
+      "id": "xihua-guard-south-01",
+      "templateId": "guard-duty",
+      "zoneRef": "outer-west",
+      "sceneRef": "gates",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "xihua-gate-side-ground",
+        "anchorRef": "xihua-gate",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -4.2,
+          0,
+          9
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 52003
+      },
+      "schedule": "guard-duty",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "gates"
+    },
+    {
+      "id": "longzong-guard-north-01",
+      "templateId": "guard-duty",
+      "zoneRef": "axis-courts",
+      "sceneRef": "gates",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "longzong-gate-side-ground",
+        "anchorRef": "longzong-gate",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          9.2,
+          0,
+          -10.8
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 52004
+      },
+      "schedule": "guard-duty",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "gates"
+    },
+    {
+      "id": "longzong-guard-south-01",
+      "templateId": "guard-duty",
+      "zoneRef": "axis-courts",
+      "sceneRef": "gates",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "longzong-gate-side-ground",
+        "anchorRef": "longzong-gate",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -9.2,
+          0,
+          -10.8
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 52005
+      },
+      "schedule": "guard-duty",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "gates"
+    },
+    {
+      "id": "east-lane-guard-01",
+      "templateId": "guard-duty",
+      "zoneRef": "east-six",
+      "sceneRef": "lane",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "east-second-lane-patrol",
+        "surfaceRef": "east-second-lane-ground"
+      },
+      "behavior": {
+        "type": "patrol",
+        "basePose": "standing",
+        "seed": 52006,
+        "speedMetersPerSecond": 0.75,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.4,
+        "patrolGroup": "east-lane-group"
+      },
+      "schedule": "guard-duty",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "lane"
+    },
+    {
+      "id": "east-lane-guard-02",
+      "templateId": "guard-duty",
+      "zoneRef": "east-six",
+      "sceneRef": "lane",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "east-second-lane-patrol",
+        "surfaceRef": "east-second-lane-ground"
+      },
+      "behavior": {
+        "type": "patrol",
+        "basePose": "standing",
+        "seed": 52007,
+        "speedMetersPerSecond": 0.75,
+        "pauseSeconds": 3,
+        "followerIndex": 1,
+        "followerSpacingMeters": 1.4,
+        "patrolGroup": "east-lane-group"
+      },
+      "schedule": "guard-duty",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "lane"
+    },
+    {
+      "id": "east-lane-guard-03",
+      "templateId": "guard-duty",
+      "zoneRef": "east-six",
+      "sceneRef": "lane",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H3",
+          "H8"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "east-second-lane-patrol",
+        "surfaceRef": "east-second-lane-ground"
+      },
+      "behavior": {
+        "type": "patrol",
+        "basePose": "standing",
+        "seed": 52008,
+        "speedMetersPerSecond": 0.75,
+        "pauseSeconds": 3,
+        "followerIndex": 2,
+        "followerSpacingMeters": 1.4,
+        "patrolGroup": "east-lane-group"
+      },
+      "schedule": "guard-duty",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval",
+      "sceneId": "lane"
+    },
+    {
+      "id": "changchun-consort-01",
+      "templateId": "consort-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "changchun",
+      "sceneId": "changchun",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H4",
+          "H6"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "changchun-r52-courtyard-stroll",
+        "surfaceRef": "changchun-r52-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 52040,
+        "speedMetersPerSecond": 0.5,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "changchun-r52-courtyard-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "changchun-maid-01",
+      "templateId": "maid-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "changchun",
+      "sceneId": "changchun",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H4",
+          "H7"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "changchun-r52-court-ground",
+        "anchorRef": "changchun-r52-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -6,
+          0,
+          -12
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 52041
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "chengqian-consort-01",
+      "templateId": "consort-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "chengqian",
+      "sceneId": "chengqian",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H4",
+          "H6"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "chengqian-r52-court-ground",
+        "anchorRef": "chengqian-r52-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          3.5,
+          0,
+          -14
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 52042
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "chengqian-maid-01",
+      "templateId": "maid-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "chengqian",
+      "sceneId": "chengqian",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H4",
+          "H7"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "chengqian-r52-court-ground",
+        "anchorRef": "chengqian-r52-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          6,
+          0,
+          -16
+        ],
+        "forwardLocal": [
+          -1,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 52043
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "zhongcui-consort-01",
+      "templateId": "consort-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "zhongcui",
+      "sceneId": "zhongcui",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H4",
+          "H6"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "zhongcui-r52-court-ground",
+        "anchorRef": "zhongcui-r52-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -4.8,
+          0,
+          -13
+        ],
+        "forwardLocal": [
+          1,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 52044
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "zhongcui-maid-01",
+      "templateId": "maid-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "zhongcui",
+      "sceneId": "zhongcui",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H4",
+          "H7"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "zhongcui-r52-court-ground",
+        "anchorRef": "zhongcui-r52-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -6.7,
+          0,
+          -14.6
+        ],
+        "forwardLocal": [
+          1,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 52045
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "jingren-maid-01",
+      "templateId": "maid-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "jingren",
+      "sceneId": "jingren",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H4",
+          "H7"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "jingren-r52-courtyard-service",
+        "surfaceRef": "jingren-r52-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 52046,
+        "speedMetersPerSecond": 0.6,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "jingren-r52-courtyard-service"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "jingren-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "jingren",
+      "sceneId": "jingren",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H6"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "jingren-r52-court-ground",
+        "anchorRef": "jingren-r52-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -4.5,
+          0,
+          -15.5
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 52047
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "yonghe-maid-01",
+      "templateId": "maid-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "yonghe",
+      "sceneId": "yonghe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H4",
+          "H7"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "yonghe-r52-court-ground",
+        "anchorRef": "yonghe-r52-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          4,
+          0,
+          -12.8
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 52048
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "yonghe-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "yonghe",
+      "sceneId": "yonghe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-Qianlong-themed",
+        "evidenceRefs": [
+          "H6"
+        ],
+        "namedIdentity": false
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "yonghe-r52-court-ground",
+        "anchorRef": "yonghe-r52-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          6.5,
+          0,
+          -15
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 52049
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "xianfu-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "xianfu",
+      "sceneId": "xianfu",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R53-xianfu",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "In Qianlong times the building was sometimes used by the emperor; no named occupant or staff placement is reconstructed."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "xianfu-r53-front-support",
+        "anchorRef": "xianfu-r53-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          5,
+          0.62,
+          -3
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 53001
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "xianfu-maid-01",
+      "templateId": "maid-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "xianfu",
+      "sceneId": "xianfu",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R53-xianfu",
+          "H6",
+          "H4",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "In Qianlong times the building was sometimes used by the emperor; no named occupant or staff placement is reconstructed."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "xianfu-r53-courtyard-service",
+        "surfaceRef": "xianfu-r53-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 53002,
+        "speedMetersPerSecond": 0.4,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "xianfu-r53-courtyard-service"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "taiji-maid-01",
+      "templateId": "maid-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "taiji",
+      "sceneId": "taiji",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R53-taiji",
+          "H6",
+          "H4",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "The museum describes a domestic original-state exhibit and late-Qing/early-Republic ceiling. These switchable anonymous roles do not represent present exhibit occupants or a single period inventory."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "taiji-r53-front-support",
+        "anchorRef": "taiji-r53-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -5,
+          0.61,
+          -6.25
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 53003
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "taiji-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "taiji",
+      "sceneId": "taiji",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R53-taiji",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "The museum describes a domestic original-state exhibit and late-Qing/early-Republic ceiling. These switchable anonymous roles do not represent present exhibit occupants or a single period inventory."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "taiji-r53-courtyard-service",
+        "surfaceRef": "taiji-r53-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 53004,
+        "speedMetersPerSecond": 0.4,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "taiji-r53-courtyard-service"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "jingyang-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "jingyang",
+      "sceneId": "jingyang",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R53-jingyang",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "The building was changed to book storage in Qing times, not treated here as a Qing consort residence. Generic service roles carry no books and do not enact a documented archive procedure."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "jingyang-r53-front-support",
+        "anchorRef": "jingyang-r53-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -5,
+          0.62,
+          -3
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 53005
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "jingyang-eunuch-02",
+      "templateId": "eunuch-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "jingyang",
+      "sceneId": "jingyang",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R53-jingyang",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "The building was changed to book storage in Qing times, not treated here as a Qing consort residence. Generic service roles carry no books and do not enact a documented archive procedure."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "jingyang-r53-courtyard-service",
+        "surfaceRef": "jingyang-r53-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 53006,
+        "speedMetersPerSecond": 0.4,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "jingyang-r53-courtyard-service"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "chuxiu-maid-02",
+      "templateId": "maid-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "chuxiu",
+      "sceneId": "chuxiu",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R54-chuxiu",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Present building and original-state display include late-Qing and restored layers. The courtyard staff are anonymous interpretation, not a named resident or Qianlong inventory."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "chuxiu-maid-02-r54-stroll",
+        "surfaceRef": "chuxiu-r54-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 54001,
+        "speedMetersPerSecond": 0.48,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "chuxiu-maid-02-r54-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "chuxiu-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "chuxiu",
+      "sceneId": "chuxiu",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R54-chuxiu",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Present building and original-state display include late-Qing and restored layers. The courtyard staff are anonymous interpretation, not a named resident or Qianlong inventory."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "chuxiu-r54-court-ground",
+        "anchorRef": "chuxiu-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -6,
+          0,
+          -14
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 54002
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "yikun-maid-01",
+      "templateId": "maid-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "yikun",
+      "sceneId": "yikun",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R54-yikun",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Domestic use is documented; late-Qing connected-court and current original-state display do not establish these staff numbers or daily movements."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "yikun-maid-01-r54-stroll",
+        "surfaceRef": "yikun-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 54003,
+        "speedMetersPerSecond": 0.5,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "yikun-maid-01-r54-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "yikun-eunuch-02",
+      "templateId": "eunuch-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "yikun",
+      "sceneId": "yikun",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R54-yikun",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Domestic use is documented; late-Qing connected-court and current original-state display do not establish these staff numbers or daily movements."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "yikun-eunuch-02-r54-stroll",
+        "surfaceRef": "yikun-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 54004,
+        "speedMetersPerSecond": 0.42,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "yikun-eunuch-02-r54-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "yongshou-maid-02",
+      "templateId": "maid-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "yongshou",
+      "sceneId": "yongshou",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R54-yongshou",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Historical domestic use is documented. Current museum exhibition use remains distinct; no actor is a present-day gallery attendant or enters artifact display space."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "yongshou-maid-02-r54-stroll",
+        "surfaceRef": "yongshou-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 54005,
+        "speedMetersPerSecond": 0.46,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "yongshou-maid-02-r54-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "yongshou-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "yongshou",
+      "sceneId": "yongshou",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R54-yongshou",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Historical domestic use is documented. Current museum exhibition use remains distinct; no actor is a present-day gallery attendant or enters artifact display space."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "yongshou-court-ground",
+        "anchorRef": "yongshou-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          5.5,
+          0,
+          -16.5
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 54006
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "chengqian-maid-02",
+      "templateId": "maid-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "chengqian",
+      "sceneId": "chengqian",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R54-chengqian",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Historical domestic building identity supports context only. The unnamed courtyard roles do not reconstruct a named resident, service staffing or a specific historical date."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "chengqian-maid-02-r54-stroll",
+        "surfaceRef": "chengqian-r52-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 54007,
+        "speedMetersPerSecond": 0.48,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "chengqian-maid-02-r54-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "chengqian-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "chengqian",
+      "sceneId": "chengqian",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R54-chengqian",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Historical domestic building identity supports context only. The unnamed courtyard roles do not reconstruct a named resident, service staffing or a specific historical date."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "chengqian-r52-court-ground",
+        "anchorRef": "chengqian-r52-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -3,
+          0,
+          -17
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 54008
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "changchun-maid-02",
+      "templateId": "maid-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "changchun",
+      "sceneId": "changchun",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R55-changchun",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Building use supports context only. Exact role numbers, route, pose, clothing and daylight schedule are model choices, not a documented staffing roster, timetable or present exhibition workforce."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "changchun-maid-02-r55-stroll",
+        "surfaceRef": "changchun-r52-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 55001,
+        "speedMetersPerSecond": 0.46,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "changchun-maid-02-r55-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "changchun-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "changchun",
+      "sceneId": "changchun",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R55-changchun",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Building use supports context only. Exact role numbers, route, pose, clothing and daylight schedule are model choices, not a documented staffing roster, timetable or present exhibition workforce."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "changchun-r52-court-ground",
+        "anchorRef": "changchun-r52-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -6,
+          0,
+          -16.5
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 55002
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "zhongcui-maid-02",
+      "templateId": "maid-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "zhongcui",
+      "sceneId": "zhongcui",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R55-zhongcui",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Building use supports context only. Exact role numbers, route, pose, clothing and daylight schedule are model choices, not a documented staffing roster, timetable or present exhibition workforce."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "zhongcui-r52-court-ground",
+        "anchorRef": "zhongcui-r52-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          3,
+          0,
+          -16
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 55003
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "zhongcui-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "zhongcui",
+      "sceneId": "zhongcui",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R55-zhongcui",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Building use supports context only. Exact role numbers, route, pose, clothing and daylight schedule are model choices, not a documented staffing roster, timetable or present exhibition workforce."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "zhongcui-eunuch-01-r55-stroll",
+        "surfaceRef": "zhongcui-r52-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 55004,
+        "speedMetersPerSecond": 0.44,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "zhongcui-eunuch-01-r55-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "jingren-maid-02",
+      "templateId": "maid-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "jingren",
+      "sceneId": "jingren",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R55-jingren",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Building use supports context only. Exact role numbers, route, pose, clothing and daylight schedule are model choices, not a documented staffing roster, timetable or present exhibition workforce."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "jingren-maid-02-r55-stroll",
+        "surfaceRef": "jingren-r52-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 55005,
+        "speedMetersPerSecond": 0.42,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "jingren-maid-02-r55-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "jingren-eunuch-02",
+      "templateId": "eunuch-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "jingren",
+      "sceneId": "jingren",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R55-jingren",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Building use supports context only. Exact role numbers, route, pose, clothing and daylight schedule are model choices, not a documented staffing roster, timetable or present exhibition workforce."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "jingren-r52-court-ground",
+        "anchorRef": "jingren-r52-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -6.5,
+          0,
+          -12.8
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 55006
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "yonghe-maid-02",
+      "templateId": "maid-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "yonghe",
+      "sceneId": "yonghe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R55-yonghe",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Building use supports context only. Exact role numbers, route, pose, clothing and daylight schedule are model choices, not a documented staffing roster, timetable or present exhibition workforce."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "yonghe-maid-02-r55-stroll",
+        "surfaceRef": "yonghe-r52-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 55007,
+        "speedMetersPerSecond": 0.44,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "yonghe-maid-02-r55-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "yonghe-eunuch-02",
+      "templateId": "eunuch-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "yonghe",
+      "sceneId": "yonghe",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R55-yonghe",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Building use supports context only. Exact role numbers, route, pose, clothing and daylight schedule are model choices, not a documented staffing roster, timetable or present exhibition workforce."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "yonghe-r52-court-ground",
+        "anchorRef": "yonghe-r52-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -6,
+          0,
+          -17
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 55008
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "shoukang-maid-01",
+      "templateId": "maid-daily",
+      "zoneRef": "outer-west",
+      "sceneRef": "shoukang",
+      "sceneId": "shoukang",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R56-shoukang",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Sources establish broad building use only. Counts, duties, positions, costume and schedule are model interpretation, not documented staffing. 原状陈列与宫廷演绎分层；不新增太后/后妃，不称今日展厅工作人员。"
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "shoukang-r56-court-ground",
+        "anchorRef": "shoukang-r56-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -8,
+          0,
+          -19
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 56001
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "shoukang-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "outer-west",
+      "sceneRef": "shoukang",
+      "sceneId": "shoukang",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R56-shoukang",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Sources establish broad building use only. Counts, duties, positions, costume and schedule are model interpretation, not documented staffing. 原状陈列与宫廷演绎分层；不新增太后/后妃，不称今日展厅工作人员。"
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "shoukang-eunuch-01-r56-stroll",
+        "surfaceRef": "shoukang-r56-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 56002,
+        "speedMetersPerSecond": 0.42,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "shoukang-eunuch-01-r56-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "cining-maid-01",
+      "templateId": "maid-daily",
+      "zoneRef": "outer-west",
+      "sceneRef": "cining",
+      "sceneId": "cining",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R56-cining",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Sources establish broad building use only. Counts, duties, positions, costume and schedule are model interpretation, not documented staffing. 不重现寿典、上徽号、奉册宝或丧仪；不进现代雕塑馆，不把古装人物称为现代馆员。"
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "cining-r56-court-ground",
+        "anchorRef": "cining-r56-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -12,
+          0,
+          -28
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 56003
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "cining-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "outer-west",
+      "sceneRef": "cining",
+      "sceneId": "cining",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R56-cining",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Sources establish broad building use only. Counts, duties, positions, costume and schedule are model interpretation, not documented staffing. 不重现寿典、上徽号、奉册宝或丧仪；不进现代雕塑馆，不把古装人物称为现代馆员。"
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "cining-eunuch-01-r56-stroll",
+        "surfaceRef": "cining-r56-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 56004,
+        "speedMetersPerSecond": 0.42,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "cining-eunuch-01-r56-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "shouan-maid-01",
+      "templateId": "maid-daily",
+      "zoneRef": "outer-west",
+      "sceneRef": "shouan",
+      "sceneId": "shouan",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R56-shouan",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Sources establish broad building use only. Counts, duties, positions, costume and schedule are model interpretation, not documented staffing. 不混合官学、特定寿庆和旧戏台时期，不添加演出；不把古装角色解释成1925年后图书馆人员。"
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "shouan-r56-court-ground",
+        "anchorRef": "shouan-r56-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -8,
+          0,
+          -16
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 56005
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "shouan-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "outer-west",
+      "sceneRef": "shouan",
+      "sceneId": "shouan",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R56-shouan",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Sources establish broad building use only. Counts, duties, positions, costume and schedule are model interpretation, not documented staffing. 不混合官学、特定寿庆和旧戏台时期，不添加演出；不把古装角色解释成1925年后图书馆人员。"
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "shouan-eunuch-01-r56-stroll",
+        "surfaceRef": "shouan-r56-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 56006,
+        "speedMetersPerSecond": 0.42,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "shouan-eunuch-01-r56-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "yangxin-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "yangxin",
+      "sceneId": "yangxin",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R56-yangxin",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Sources establish broad building use only. Counts, duties, positions, costume and schedule are model interpretation, not documented staffing. 模型点位在现有内院，不是已证实的养心门外；不引用门外值宿记载证明此处具体岗位。避开抱厦、西暖阁与所有展陈，不演奉旨、奏对或侍寝。"
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "yangxin-r56-court-ground",
+        "anchorRef": "yangxin-r56-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -12,
+          0,
+          -19
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 56007
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "yangxin-eunuch-02",
+      "templateId": "eunuch-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "yangxin",
+      "sceneId": "yangxin",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R56-yangxin",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Sources establish broad building use only. Counts, duties, positions, costume and schedule are model interpretation, not documented staffing. 模型点位在现有内院，不是已证实的养心门外；不引用门外值宿记载证明此处具体岗位。避开抱厦、西暖阁与所有展陈，不演奉旨、奏对或侍寝。"
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "yangxin-eunuch-02-r56-stroll",
+        "surfaceRef": "yangxin-r56-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 56008,
+        "speedMetersPerSecond": 0.42,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "yangxin-eunuch-02-r56-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "yangxing-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "ningshou",
+      "sceneRef": "yangxing",
+      "sceneId": "yangxing",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R57-yangxing",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Anonymous Qing-themed switchable interpretation, not one dated historical snapshot. Official architectural functions do not establish any of these7 people, duties, sexes, counts, exact locations or schedules. Do not claim Qianlong occupied the retirement suite. No food/book props, temple staff, named consorts or modern exhibition workers."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "yangxing-r57-ground",
+        "anchorRef": "yangxing-r57-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -12,
+          0,
+          -20
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 57001
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "yangxing-eunuch-02",
+      "templateId": "eunuch-daily",
+      "zoneRef": "ningshou",
+      "sceneRef": "yangxing",
+      "sceneId": "yangxing",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R57-yangxing",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Anonymous Qing-themed switchable interpretation, not one dated historical snapshot. Official architectural functions do not establish any of these7 people, duties, sexes, counts, exact locations or schedules. Do not claim Qianlong occupied the retirement suite. No food/book props, temple staff, named consorts or modern exhibition workers."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "yangxing-eunuch-02-r57-stroll",
+        "surfaceRef": "yangxing-r57-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 57002,
+        "speedMetersPerSecond": 0.42,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "yangxing-eunuch-02-r57-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "leshou-maid-01",
+      "templateId": "maid-daily",
+      "zoneRef": "ningshou",
+      "sceneRef": "leshou",
+      "sceneId": "leshou",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R57-leshou",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Anonymous Qing-themed switchable interpretation, not one dated historical snapshot. Official architectural functions do not establish any of these7 people, duties, sexes, counts, exact locations or schedules. Do not claim Qianlong occupied the retirement suite. No food/book props, temple staff, named consorts or modern exhibition workers."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "leshou-r57-ground",
+        "anchorRef": "leshou-r57-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -12,
+          0,
+          -21
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 57003
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "leshou-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "ningshou",
+      "sceneRef": "leshou",
+      "sceneId": "leshou",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R57-leshou",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Anonymous Qing-themed switchable interpretation, not one dated historical snapshot. Official architectural functions do not establish any of these7 people, duties, sexes, counts, exact locations or schedules. Do not claim Qianlong occupied the retirement suite. No food/book props, temple staff, named consorts or modern exhibition workers."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "leshou-eunuch-01-r57-stroll",
+        "surfaceRef": "leshou-r57-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 57004,
+        "speedMetersPerSecond": 0.42,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "leshou-eunuch-01-r57-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "jingfu-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "ningshou",
+      "sceneRef": "jingfu",
+      "sceneId": "jingfu",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R57-jingfu",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Anonymous Qing-themed switchable interpretation, not one dated historical snapshot. Official architectural functions do not establish any of these7 people, duties, sexes, counts, exact locations or schedules. Do not claim Qianlong occupied the retirement suite. No food/book props, temple staff, named consorts or modern exhibition workers."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "jingfu-r57-ground",
+        "anchorRef": "jingfu-r57-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -5,
+          0,
+          -22
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 57005
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "chonghua-maid-01",
+      "templateId": "maid-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "chonghua",
+      "sceneId": "chonghua",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R57-chonghua",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Anonymous Qing-themed switchable interpretation, not one dated historical snapshot. Official architectural functions do not establish any of these7 people, duties, sexes, counts, exact locations or schedules. Do not claim Qianlong occupied the retirement suite. No food/book props, temple staff, named consorts or modern exhibition workers."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "chonghua-r57-ground",
+        "anchorRef": "chonghua-r57-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -10,
+          0,
+          -20
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 57006
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "chonghua-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "chonghua",
+      "sceneId": "chonghua",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or one dated reconstruction",
+        "evidenceRefs": [
+          "R57-chonghua",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Anonymous Qing-themed switchable interpretation, not one dated historical snapshot. Official architectural functions do not establish any of these7 people, duties, sexes, counts, exact locations or schedules. Do not claim Qianlong occupied the retirement suite. No food/book props, temple staff, named consorts or modern exhibition workers."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "chonghua-eunuch-01-r57-stroll",
+        "surfaceRef": "chonghua-r57-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 57007,
+        "speedMetersPerSecond": 0.42,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "chonghua-eunuch-01-r57-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    }
+  ]
+}

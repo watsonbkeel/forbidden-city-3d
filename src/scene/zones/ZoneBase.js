@@ -1,9 +1,17 @@
+import {sideConnectionTargets} from '../palace/special/PavilionSideConnections.js';
+import {buildYouyiFreshGate} from '../palace/special/YouyiFreshGate.js';
+import {sideGateGalleryOptions,validateSideGateGalleryDeck} from '../palace/special/SideGateGalleryProfiles.js';
+import {buildBaoheLinkedGallery} from '../palace/BaoheLinkedGalleries.js';
+import {buildMiddleRightGate} from '../palace/special/MiddleRightGate.js';
+import {applyMiddleAxisFacades} from '../palace/special/MiddleAxisFacades.js';
+import {buildRearAxisGate} from '../palace/special/RearAxisGate.js';
 import {buildShoukangRearSouth} from '../palace/special/ShoukangRearSouth.js';
 import {applyJingrenGateStoneFrame} from '../palace/special/JingrenGateStoneFrame.js';
 import {finishYikunInnerSouthWindows} from '../palace/special/YikunInnerSouthWindows.js';
 import {finishChangchunSouthWindows} from '../palace/special/ChangchunSouthWindows.js';
 import {finishWuyingSouthWindows} from '../palace/special/WuyingSouthWindows.js';
 import {finishWenhuaSouthWindows} from '../palace/special/WenhuaSouthWindows.js';
+import {finishWenhuaCentralDoors} from '../palace/special/WenhuaCentralDoors.js';
 import {finishWenyuanUpperSeat} from '../palace/special/WenyuanUpperSeat.js';
 import {finishTiyuanCoverVisual} from '../palace/special/TiyuanCoverVisual.js';
 import {finishTiheSouthVisual} from '../palace/special/TiheSouthVisual.js';
@@ -41,6 +49,7 @@ import {validateEastUnknownThroneInventoryPolicy,applyEastUnknownThroneInventory
 import {applyFengxianFrontWindows} from '../palace/special/FengxianFrontWindows.js';
 import {buildJingyangRearFacade} from '../palace/special/JingyangRearFacade.js';
 import {applyDonghuaCentralDoorFront} from '../palace/special/DonghuaCentralDoorFront.js';
+import {applyDonghuaExteriorEnvelope} from '../palace/special/DonghuaExteriorEnvelope.js';
 import {validateNansansuoInventoryPolicy} from '../palace/NansansuoInventoryPolicy.js';
 import { applyZuoyiDoorFront } from '../palace/special/ZuoyiDoorFront.js';
 import {resolveRemainingProfile as resolveNingshou,buildRemainingHall as buildNingshou,augmentRemainingHall as augmentNingshou} from '../palace/special/RemainingNingshouHalls.js';
@@ -168,6 +177,7 @@ export class ZoneBase {
     finishTiyuanCoverVisual(this.kit);
     finishWenyuanUpperSeat(this.kit);
     finishWenhuaSouthWindows(this.kit);
+    finishWenhuaCentralDoors(this.kit);
     finishWuyingSouthWindows(this.kit);
     finishChangchunSouthWindows(this.kit);
     finishYikunInnerSouthWindows(this.kit);
@@ -325,6 +335,7 @@ export class ZoneBase {
       upperStoreyH: item.upperStoreyH,
       structure: item.structure,
       pavilionProfile: item.pavilionProfile,
+      sideGalleryConnections: sideConnectionTargets(this.zoneJson,item),
       qinanProfile: item.qinanProfile,
       interiorFloorWorldY: item.interiorFloorWorldY,
       bays: item.bays,
@@ -358,6 +369,9 @@ export class ZoneBase {
   }
 
   buildGate(item) {
+    if(this.zoneJson.id==='axis-courts'&&item.name==='右翼门'){const b=buildYouyiFreshGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,b.geometry);return b.width;}
+    if(item.middleRightGate!==undefined){const b=buildMiddleRightGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,b.geometry);return b.width;}
+    if(item.rearAxisGate!==undefined){const b=buildRearAxisGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,b.geometry);return b.width;}
     if(item.gateProfile==='shoukang-entry'){const walls=this.zoneJson.items.filter(q=>q.kind==='courtWalls'&&q.gates?.some(r=>r.gate==='寿康门'));if(walls.length!==1)throw Error('Shoukang entry requires unique actual court wall');validateShoukangEntryCourtWall(walls[0]);const built=buildShoukangEntry(this.kit,item,this.zoneJson.id);this.gateGeometries.set(item.name,built.geometry);return built.width;}
     if(item.gateProfile==='cining-entry'){const built=buildCiningGate(this.kit,item,this.zoneJson.id);this.gateGeometries.set(item.name,built.g);return built.width;}
     if(item.gateProfile==='shouan-entry'){const walls=this.zoneJson.items.filter(q=>q.kind==='courtWalls'&&q.gates?.some(r=>r.gate==='寿安门'));if(walls.length!==1)throw Error('Shouan requires a unique actual court wall');validateShouanEntryCourtWall(walls[0]);const built=buildShouanEntry(this.kit,item,this.zoneJson.id);this.gateGeometries.set(item.name,built.geometry);return built.width;}
@@ -391,6 +405,7 @@ export class ZoneBase {
     };
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
     const width = this.kit.gate(params);
+    applyMiddleAxisFacades(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     applyJingrenGateStoneFrame(this.kit, this.kit.root.children.at(-1), {zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     applyZuoyiDoorFront(this.kit, this.kit.root.children.at(-1), {zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     if (item.gateProfile === 'zhaode' || item.gateProfile === 'zhendu' || item.gateProfile === 'huangji') this.gateGeometries.set(item.name, this.kit.root.children.at(-1).userData.gateGeometry);
@@ -403,8 +418,29 @@ export class ZoneBase {
     const [x2, z2] = item.to;
     const gaps = item.gaps?.some(g=>g.gate==='锡庆门') ? xiqingWallGaps(item,this.gateGeometries.get('锡庆门'),this.gateWidths) : this.resolveGaps(item.gaps);
     const params = { h: item.h, t: item.t, gaps };
+    // Existing courtyard south boundary: appearance-only masonry split,
+    // estimated against the retained gate platform, not a surveyed repair datum.
+    const southBoundaryIndex=this.zoneJson.id==='axis-courts'?this.zoneJson.items.indexOf(item):-1;
+    if([9,11].includes(southBoundaryIndex)){
+      const east=southBoundaryIndex===9,gate=east?'昭德门':'贞度门';
+      if(item.h!==7||item.t!==undefined||JSON.stringify(item.from)!==JSON.stringify([east?-25:25,-214.2])||JSON.stringify(item.to)!==JSON.stringify([east?-106.47:110.7,-214.2])||item.gaps?.length!==1||item.gaps[0].gate!==gate)throw Error('Changed south boundary wall source');
+      const geometry=this.gateGeometries.get(gate);
+      if(!geometry||geometry.platform.topY!==3.216)throw Error('Missing retained south boundary gate platform');
+      params.baseHeight=geometry.platform.topY;
+    }
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
+    // The own raised middle-right gate meets this exact retained 7m wall.
+    // Generic wall physics is historically only 3m; do not change other walls.
+    const ownMiddleRight=this.zoneJson.id==='axis-courts'&&this.zoneJson.items.indexOf(item)===15&&this.gateGeometries.get('中右门')?.profile==='own-three-bay-end-aisles';
+    if(ownMiddleRight&&(JSON.stringify(item.from)!=='[65.5,-12.2]'||JSON.stringify(item.to)!=='[110.7,-12.2]'||item.h!==7||item.t!==undefined||gaps.length!==1||gaps[0].at!==80||gaps[0].w!==16.4))throw Error('Invalid own middle-right adjoining wall');
+    const ownBaoheWall=this.zoneJson.id==='axis-courts'&&[17,19].includes(this.zoneJson.items.indexOf(item));
+    if(ownBaoheWall){
+      const west=this.zoneJson.items.indexOf(item)===19;
+      if(item.h!==7||item.t!==undefined||JSON.stringify(item.from)!==JSON.stringify([west?64.85:-64.97666666666667,123])||JSON.stringify(item.to)!==JSON.stringify([west?110.7:-106.47,123])||item.gaps?.length!==1||item.gaps[0].gate!==(west?'后右门':'后左门'))throw Error('Invalid own Baohe adjoining wall');
+    }
+    const colliderStart=this.kit.colliders.length;
     this.kit.wall(x1, z1, x2, z2, params);
+    if(ownMiddleRight||ownBaoheWall)for(const collider of this.kit.colliders.slice(colliderStart))collider.max.y=7;
   }
 
   buildCourtWalls(item) {
@@ -418,6 +454,7 @@ export class ZoneBase {
   }
 
   buildCorridor(item) {
+    if(this.zoneJson.id==='axis-courts'&&[31,37].includes(this.zoneJson.items.indexOf(item)))return buildBaoheLinkedGallery(this.kit,item,this.zoneJson.items.indexOf(item));
     let from = item.from, to = item.to, contact;
     if (item.gateJoin !== undefined) {
       const ref = item.gateJoin;
@@ -436,13 +473,22 @@ export class ZoneBase {
     const [x1, z1] = from;
     const [x2, z2] = to;
     const params = { facing: item.facing, depth: item.depth, colH: item.colH, name: item.name };
+    const gallery = sideGateGalleryOptions(this.zoneJson.id,this.zoneJson.items.indexOf(item),item);
+    if(gallery) Object.assign(params,gallery);
     if (item.furnishingPolicy !== undefined) {
       params.furnishingPolicy = item.furnishingPolicy;
       params.furnishingTarget = `${this.zoneJson.id}/items/${this.zoneJson.items.indexOf(item)}`;
       params.furnishingKind = item.kind;
     }
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
+    const galleryWalkableStart=this.kit.walkables.length;
     this.kit.corridor(x1, z1, x2, z2, item.facing, params);
+    if(gallery&&[27,33].includes(this.zoneJson.items.indexOf(item))){
+      const deck=this.kit.walkables.slice(galleryWalkableStart).find(w=>w.type==='box'&&w.box.min.y===2.4&&w.box.max.y===2.4);
+      if(!deck)throw Error('Actual north gallery deck missing');
+      deck.sideGateGalleryDeck=validateSideGateGalleryDeck(gallery.objectId,deck.box);
+    }
+    if(gallery) this.kit.root.children.at(-1).userData.sideGateGallery = {...gallery,scope:'VISIBLE_PRIMARY_BODY_AND_FRONT_PORCH_ENGINEERING_FIT',inventory:'UNKNOWN_NOT_FURNISHED'};
     if (contact) this.kit.root.children.at(-1).userData.gateJoin = {
       ...item.gateJoin, boundary: [...contact.world], effectiveFrom: [...from], effectiveTo: [...to],
       provisional: true, status: contact.status,
@@ -453,6 +499,7 @@ export class ZoneBase {
     if (item.cityGateProfile !== undefined) {
       const frame=buildEastWestCityGate(this.kit,item);
       applyDonghuaCentralDoorFront(this.kit,frame,{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
+      applyDonghuaExteriorEnvelope(this.kit,frame,{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
       return frame;
     }
     const params = {

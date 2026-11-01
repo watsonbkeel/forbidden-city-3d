@@ -1,0 +1,30 @@
+# Task2 complete visible component — review candidate, NOT installation
+
+Inputs: parent 5610acf44554d3b2a83cd89f33df8782810cd6d4; frozen Task1 2317 contract; original 600 runtime files unchanged. New implementation lives only under scripts; no runtime import, CollisionManager creation/registration, FirstPerson execution, World, CPU export, build, or publication in this stage.
+
+The builder requires the actual pinned default-open PalaceBuilder capture. It creates an independent B capture and checks that entire predecessor before replacing target roots. It retains the exact main body/roof/plaque subtree records and effective world matrices; assembly root identity/metadata is explicitly new. It installs the reviewed visible U-platform *within the offline group*, six fitted closed bodies, 104 perimeter shafts, 24 link shafts and two mapped low roofs, eight non-column line references, the already reviewed 10 surface/trim layers, and 28 underside/side-shell roles. Original B target roots are detached, not overlaid. It does not assert a historical interior or reconstruct hidden junctions.
+
+## Preservation / aliases / resources
+
+Two actual captures proved insufficient: source `structure.sources` metadata was genuinely aliased. A strict own-object graph audit now includes nodes, geometry/attributes/backing buffers, materials/textures, metadata and source physical arrays. Only shared plain B metadata is copied, with descriptors/values retained; the complete predecessor signature is then still exact. A first whole `structuredClone(userData)` attempt changed recorded serialization and failed; it was NOT retained. Functions, prototypes and event-listener internals are not a JS security sandbox. The PALACE_LAYOUT data object is explicitly a shared read-only input, not cloned or edited. Canonical deeply frozen assembly input is used after caller input verification.
+
+A remains caller-owned. B fixture library materials are explicitly owned by the B ledger, although borrowed by its sub-builders. Source A disposal events stay zero during candidate retirement; B resources retire once on success and injected body/roof failure. GatePlaques material retirement already retires its canvas texture; an initial double-disposal failure was fixed by actual event tracking and material-before-texture retirement, not by ignoring texture ownership.
+
+Old builder collider/walkable arrays remain exact, separate, NONREGISTERED source evidence. They do NOT describe the new visible object's physical shape and must not be installed. The later owner-aware Task4 must remove/replace all corresponding old broad supports and bodies; there is no implicit 112-live-column assumption.
+
+## Geometry / appearance boundaries
+
+- New actual fan perimeters and soffit `tw` perimeter points match exactly after Float32 conversion and identical world matrices, for all ten layers. This proves these two visible boundaries only; fans are downward surfaces, NOT solid beams or walkables.
+- Actual original RoofBuilder ridge/finial materials and role materials are borrowed from B. The initial white diagnostic palette was a real failure, fixed. Shadow flags also had an actual RED before restoration. This remains the tile1/white-library component fixture, not real TextureLibrary pixel or GPU verification.
+- All 28 roles have explicit actual full grid indices/attributes, finite/unit normals, orientation and fixture UV policy. Original inward prism winding was a real RED and corrected.
+- 104 shaft buffers/radii and 24 link shaft dimensions stay fixed; they are not scaled by the new span. Two link roof geometries preserve original index topology and original-parameter Y at all 84 mapped vertices, with new metric UV and normals.
+- NE retains all original box Y/depth/material/buffer records and 2/3/2 coarse lower subdivisions, while X extents/face position follow the reviewed fit. No fine lattice or historical interior was invented.
+- Entire visible platform subtree is compared to the already reviewed platform builder output; five default-open mouths, left/right studs and side portal faces are not replaced by a slab-only surrogate. Closed-door whole-assembly state is NOT newly tested by this default-open builder.
+- Existing fitted outline residuals, prior 34 positive/20 threshold-level bearing gaps and 330 Float32 edge residuals remain open; this stage has not recomputed bearing for the new 180-shaft assembly. No original platform overhang was silently restored.
+- Pavilion–wing and main/link intersection classification, new actual registered collision deltas, safe route starts, closed-owner contact probes, full-platform FP and real one-second stopping remain subsequent gates. No cross-instance trimming, hiding, support bridge or new acceptance tolerance was introduced.
+
+## Actual TDD record interpretation
+
+`missing-builder-red` is one module-load file failure, not four executed assertion failures. `first-4` is 3/4 with texture retirement failure; `dispose-green-4` is 4/4. `material-winding-red-7` is 5/7; material-only correction 6/7; final correction 7/7. Isolation goes 7/8 (missing audit), then 1/8 genuine shared metadata, then 1/8 rejected broad cloning, then 8/8 selective metadata detachment. `preservation-10` is 9/10 because the test attempted a Group-only signature API on the plaque Mesh; the corrected full-root subset test is 10/10. `shadow-red` is one selected test, 0/1, not 12 skipped tests; later 13/13. `ne-uv-18` is 17/18 because the test mistakenly used pavilion .6 bracket height for wing .67; it was corrected from the already frozen contract, not a geometry relaxation.
+
+Six SHA-bound loader negatives exercise missing fan triangle, role scale, hidden NE, disabled alias rejection, altered link Y, and mutated caller main. All must fail on their actual selected assertion, not a loader error. Their logs are separate from positive counts. Earlier shell TAPs have actual exit files but no retrospective peak-resource claim; the final-run.py command has its own contemporaneous resource receipt and freeze.

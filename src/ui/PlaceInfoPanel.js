@@ -1,4 +1,4 @@
-import {modelFidelityFor} from './ModelFidelity.js';
+import {modelFidelityFor,bridgeFacilityInfoFor} from './ModelFidelity.js';
 const element = (tag, text, className) => {
   const node = document.createElement(tag);
   if (text !== undefined) node.textContent = text;
@@ -20,7 +20,9 @@ export class PlaceInfoPanel {
     this.element.hidden = this.element.inert = true;
   }
 
-  render({ place, name, sources = [], canTravel, onTravel }) {
+  render({ place, name, facility, sources = [], canTravel, onTravel }) {
+    const facilityInfo=!place&&typeof name==='string'?bridgeFacilityInfoFor(facility?.id,name):null;
+    const displaySources=place?sources:facilityInfo?.sources??[];
     // Remove nodes (rather than repurpose old buttons) so queued events cannot
     // acquire a newer destination. The caller also checks selection generation.
     while (this.element.children.length) this.element.children[0].remove();
@@ -30,10 +32,10 @@ export class PlaceInfoPanel {
     if (evidenceLabels[place?.evidenceStatus]) this.element.appendChild(element('p', evidenceLabels[place.evidenceStatus], 'place-note'));
     if (place?.canonicalName && place.canonicalName !== name) this.element.appendChild(element('p', `资料所用名称：${place.canonicalName}`, 'place-note'));
     if (place?.evidenceNote) this.element.appendChild(element('p', factText(place.evidenceNote), 'place-note'));
-    this.element.appendChild(element('p', place?.summary.text ?? '此地点的详细介绍尚未收录。', 'place-summary'));
+    this.element.appendChild(element('p', place?.summary.text ?? facilityInfo?.intro ?? '此地点的详细介绍尚未收录。', 'place-summary'));
     const fidelity=modelFidelityFor(name,place?.id)??modelFidelityFor(place?.canonicalName);
-    if(fidelity){this.element.appendChild(element('h3','本版模型说明'));this.element.appendChild(element('p',fidelity.detail,'place-note'));}
-    if (canTravel) {
+    if(facilityInfo||fidelity){this.element.appendChild(element('h3','本版模型说明'));this.element.appendChild(element('p',facilityInfo?.detail??fidelity.detail,'place-note'));}
+    if (canTravel && !facilityInfo) {
       const button = element('button', place?.modelExperience.actionLabel ?? '前往此处');
       button.id = 'place-travel'; button.type = 'button';
       button.setAttribute('aria-label', `前往${name}${place?.modelExperience.navigationMode === 'exterior-view' ? '外观观览点' : ''}`);
@@ -90,11 +92,11 @@ export class PlaceInfoPanel {
     if (place?.siteAccess.notice) {
       this.element.appendChild(element('p', `${place.siteAccess.notice.text} 这是一则历史公告，不能据此判断今天是否开放；请查看最新公告。`, 'place-note'));
     }
-    if (sources.length) {
+    if (displaySources.length) {
       this.element.appendChild(element('h3', '资料来源'));
-      this.element.appendChild(element('p', `历史资料核对：${place.reviewedAt}。来源链接在新标签页打开。`, 'place-note'));
+      this.element.appendChild(element('p', `历史资料核对：${place?.reviewedAt??facilityInfo.reviewedAt}。来源链接在新标签页打开。`, 'place-note'));
       const list = element('ul');
-      for (const source of sources) {
+      for (const source of displaySources) {
         const li = element('li'), a = element('a', `${source.publisher} · ${source.id === 'announcements' ? '查看最新公告' : source.title}${source.publishedAt ? `（${source.publishedAt}）` : ''}`);
         a.setAttribute('href', source.url); a.setAttribute('target', '_blank'); a.setAttribute('rel', 'noopener noreferrer');
         li.appendChild(a); list.appendChild(li);

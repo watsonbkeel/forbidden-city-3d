@@ -1,0 +1,135 @@
+{
+  "scope": "BOUNDED_VISIBLE_FRONT_EDGE_AND_FEET_CAMERA_FIT_NOT_SURVEY_OR_FULL_ROOM_CALIBRATION",
+  "sourceImage": "https://file-pano.dpm.org.cn/hotspotImage/2026/03/20/13ecc40ac5cb4d2088f3b95fbaf234b7.jpg",
+  "imageSize": [
+    1365,
+    1720
+  ],
+  "photographyDate": null,
+  "controlPointMethod": "independent reviewer and author eye-read original pixels; ranges, not measured landmarks",
+  "sourceControls": {
+    "lowFrontEdgeLeft": [
+      272,
+      1327
+    ],
+    "lowFrontEdgeRight": [
+      1091,
+      1325
+    ],
+    "leftVesselTip": [
+      325,
+      1154
+    ],
+    "leftVesselFoot": [
+      327,
+      1322
+    ],
+    "rightVesselFootApprox": [
+      1033,
+      1317
+    ],
+    "leftFootOuterLeftApprox": [
+      307,
+      1322
+    ],
+    "leftFootOuterRightApprox": [
+      350,
+      1321
+    ]
+  },
+  "sourceUncertainty": {
+    "tipY": [
+      1145,
+      1160
+    ],
+    "footY": [
+      1315,
+      1327
+    ],
+    "heightToFrontEdgeWidth": [
+      0.19,
+      0.22
+    ],
+    "footDiameterToFrontEdgeWidth": [
+      0.04,
+      0.06
+    ],
+    "footDiameterPixelRange": [
+      35,
+      49
+    ]
+  },
+  "camera": {
+    "position": [
+      0.3,
+      3.86,
+      343.8
+    ],
+    "pitchDegrees": 6.21513954,
+    "yawDegrees": -1.47044264,
+    "verticalFovDegrees": 47.78157574,
+    "aspect": 0.7936046511627907,
+    "floorRelativeEyeHeight": 1.47
+  },
+  "cameraAssumptions": [
+    "camera ground distance bounded7.5..11.5 model metres",
+    "camera eye1.47 above inherited platform surface is an assumption, not photographed survey",
+    "fov35..85deg, pitch-10..20deg, lateral offset±.3 and yaw±2deg",
+    "back platform corners are obscured; DO NOT CLAIM four-corner or unique camera calibration",
+    "only common front shape corrected; inherited room/furniture proportions remain partial"
+  ],
+  "fitGroundControls": {
+    "frontEdgeLeft": [
+      268.01299089,
+      1327.40834055
+    ],
+    "frontEdgeRight": [
+      1094.15350332,
+      1324.64396271
+    ],
+    "leftFoot": [
+      331.63789145,
+      1320.60374158
+    ],
+    "rightFoot": [
+      1029.19113676,
+      1318.3297917
+    ],
+    "maximumAbsolutePixelResidual": 4.638
+  },
+  "rejectedFirstCandidate": {
+    "commit": "c0b230d3",
+    "height": 1.45,
+    "radialScale": 1.0,
+    "matchedProjectionHeightToFrontWidth": 0.2975520095,
+    "matchedFootDiameterToFrontWidth": 0.0737414941,
+    "status": "REJECTED_PROPORTION_AND_PHYSICAL_REGISTRATION",
+    "retainedEvidence": "git:c0b230d3 docs/major-pilots/jiaotai-r159/EVIDENCE/; older private captures preserved"
+  },
+  "revisedCandidate": {
+    "height": 1.0,
+    "radialScale": 0.75,
+    "dimensionStatus": "PHOTO_FIT_TO_RETAINED_PLATFORM_NOT_SURVEYED",
+    "matchedProjectionHeightToFrontWidth": 0.2060678544,
+    "matchedFootDiameterToFrontWidth": 0.05530612,
+    "status": "CANDIDATE_PENDING_INDEPENDENT_REVIEW_GPU_AND_EXACT_CARVING_UNKNOWN"
+  },
+  "notChanged": [
+    "low platform geometry/position",
+    "chair and covered rows",
+    "clock/clepsydra",
+    "roof and adjacent halls"
+  ],
+  "unknown": [
+    "exact physical height",
+    "specific metal and historical object name",
+    "engraving and pierced details",
+    "hidden rear",
+    "photography/exhibition dates"
+  ],
+  "controlPointAttribution": {
+    "heightAndLowFrontEdge": "independent Astra reviewer original-size eye read, author visually crosschecked",
+    "footOuterDiameter": "author original-size approximate eye read with explicit35..49px range",
+    "none": "survey or calibrated photogrammetry"
+  }
+}

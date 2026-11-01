@@ -1,0 +1,524 @@
+{
+  "schemaVersion": 2,
+  "unit": "meter",
+  "baselineCommit": "55623124b2f5fbab83673ddfc03b3c2d5da0f074",
+  "scopeNote": "Eight approved-template anonymous courtyard candidates; exact counts, routes and schedules are interpretive. No new consort, named occupant, props or ritual. All77 prior actor/binding/Kit records retained. Required actual-world acceptance remains separate from registration.",
+  "actors": [
+    {
+      "id": "chuxiu-maid-02",
+      "templateId": "maid-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "chuxiu",
+      "sceneId": "chuxiu",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R54-chuxiu",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Present building and original-state display include late-Qing and restored layers. The courtyard staff are anonymous interpretation, not a named resident or Qianlong inventory."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "chuxiu-maid-02-r54-stroll",
+        "surfaceRef": "chuxiu-r54-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 54001,
+        "speedMetersPerSecond": 0.48,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "chuxiu-maid-02-r54-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "chuxiu-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "chuxiu",
+      "sceneId": "chuxiu",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R54-chuxiu",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Present building and original-state display include late-Qing and restored layers. The courtyard staff are anonymous interpretation, not a named resident or Qianlong inventory."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "chuxiu-r54-court-ground",
+        "anchorRef": "chuxiu-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -6,
+          0,
+          -14
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 54002
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "yikun-maid-01",
+      "templateId": "maid-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "yikun",
+      "sceneId": "yikun",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R54-yikun",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Domestic use is documented; late-Qing connected-court and current original-state display do not establish these staff numbers or daily movements."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "yikun-maid-01-r54-stroll",
+        "surfaceRef": "yikun-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 54003,
+        "speedMetersPerSecond": 0.5,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "yikun-maid-01-r54-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "yikun-eunuch-02",
+      "templateId": "eunuch-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "yikun",
+      "sceneId": "yikun",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R54-yikun",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Domestic use is documented; late-Qing connected-court and current original-state display do not establish these staff numbers or daily movements."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "yikun-eunuch-02-r54-stroll",
+        "surfaceRef": "yikun-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 54004,
+        "speedMetersPerSecond": 0.42,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "yikun-eunuch-02-r54-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "yongshou-maid-02",
+      "templateId": "maid-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "yongshou",
+      "sceneId": "yongshou",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R54-yongshou",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Historical domestic use is documented. Current museum exhibition use remains distinct; no actor is a present-day gallery attendant or enters artifact display space."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "yongshou-maid-02-r54-stroll",
+        "surfaceRef": "yongshou-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 54005,
+        "speedMetersPerSecond": 0.46,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "yongshou-maid-02-r54-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "yongshou-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "west-six",
+      "sceneRef": "yongshou",
+      "sceneId": "yongshou",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R54-yongshou",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Historical domestic use is documented. Current museum exhibition use remains distinct; no actor is a present-day gallery attendant or enters artifact display space."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "yongshou-court-ground",
+        "anchorRef": "yongshou-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          5.5,
+          0,
+          -16.5
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 54006
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "chengqian-maid-02",
+      "templateId": "maid-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "chengqian",
+      "sceneId": "chengqian",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R54-chengqian",
+          "H7"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Historical domestic building identity supports context only. The unnamed courtyard roles do not reconstruct a named resident, service staffing or a specific historical date."
+      },
+      "placement": {
+        "mode": "path",
+        "pathRef": "chengqian-maid-02-r54-stroll",
+        "surfaceRef": "chengqian-r52-court-ground"
+      },
+      "behavior": {
+        "type": "stroll",
+        "basePose": "standing",
+        "seed": 54007,
+        "speedMetersPerSecond": 0.48,
+        "pauseSeconds": 3,
+        "followerIndex": 0,
+        "followerSpacingMeters": 1.2,
+        "patrolGroup": "chengqian-maid-02-r54-stroll"
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    },
+    {
+      "id": "chengqian-eunuch-01",
+      "templateId": "eunuch-daily",
+      "zoneRef": "east-six",
+      "sceneRef": "chengqian",
+      "sceneId": "chengqian",
+      "required": true,
+      "history": {
+        "presentation": "interpretive",
+        "era": "Qing-themed anonymous interpretation; not current exhibit or a single dated reconstruction",
+        "evidenceRefs": [
+          "R54-chengqian",
+          "H6"
+        ],
+        "namedIdentity": false,
+        "scopeBoundary": "Historical domestic building identity supports context only. The unnamed courtyard roles do not reconstruct a named resident, service staffing or a specific historical date."
+      },
+      "placement": {
+        "mode": "surface",
+        "surfaceRef": "chengqian-r52-court-ground",
+        "anchorRef": "chengqian-r52-hall",
+        "referenceFrame": "anchor-local",
+        "offsetMeters": [
+          -3,
+          0,
+          -17
+        ],
+        "forwardLocal": [
+          0,
+          0,
+          -1
+        ]
+      },
+      "behavior": {
+        "type": "ambient",
+        "basePose": "standing",
+        "seed": 54008
+      },
+      "schedule": "daily-daylight",
+      "priority": "core",
+      "releaseStage": "after-c1-visual-approval"
+    }
+  ],
+  "anchors": [],
+  "surfaces": [
+    {
+      "id": "chuxiu-r54-court-ground",
+      "zoneRef": "west-six",
+      "anchorRef": "chuxiu-hall",
+      "kind": "ground",
+      "localBoundsMeters": [
+        -8,
+        8,
+        -18,
+        -11
+      ],
+      "expectedHeightMeters": 0,
+      "heightToleranceMeters": 0.003,
+      "source": "src/scene/Environment.js#setupGround",
+      "verification": "Independent open courtyard ground, never the raised .62m interior or .46m return corridor. Must bind current visible geometry, clear full body and pass every route sample in the current zone generation."
+    }
+  ],
+  "paths": [
+    {
+      "id": "chuxiu-maid-02-r54-stroll",
+      "zoneRef": "west-six",
+      "surfaceRef": "chuxiu-r54-court-ground",
+      "anchorRef": "chuxiu-hall",
+      "pointsLocalMeters": [
+        [
+          3,
+          0,
+          -15.3
+        ],
+        [
+          7,
+          0,
+          -15.3
+        ]
+      ],
+      "radiusMeters": 0.32,
+      "safetyMarginMeters": 0.1,
+      "validationSpacingMeters": 0.25,
+      "allowedDoorRefs": [],
+      "forbiddenAreaRefs": [
+        "yanxi-water-palace",
+        "helicopter-clearance"
+      ],
+      "crossZone": false,
+      "turningRadiusMeters": 0.5,
+      "description": "Short disjoint courtyard route; no NPC avoidance is claimed. Must retain swept separation from all other roles at every phase.",
+      "formationSize": 1
+    },
+    {
+      "id": "yikun-maid-01-r54-stroll",
+      "zoneRef": "west-six",
+      "surfaceRef": "yikun-court-ground",
+      "anchorRef": "yikun-hall",
+      "pointsLocalMeters": [
+        [
+          3,
+          0,
+          -15.8
+        ],
+        [
+          6,
+          0,
+          -15.8
+        ]
+      ],
+      "radiusMeters": 0.32,
+      "safetyMarginMeters": 0.1,
+      "validationSpacingMeters": 0.25,
+      "allowedDoorRefs": [],
+      "forbiddenAreaRefs": [
+        "yanxi-water-palace",
+        "helicopter-clearance"
+      ],
+      "crossZone": false,
+      "turningRadiusMeters": 0.5,
+      "description": "Short disjoint courtyard route; no NPC avoidance is claimed. Must retain swept separation from all other roles at every phase.",
+      "formationSize": 1
+    },
+    {
+      "id": "yikun-eunuch-02-r54-stroll",
+      "zoneRef": "west-six",
+      "surfaceRef": "yikun-court-ground",
+      "anchorRef": "yikun-hall",
+      "pointsLocalMeters": [
+        [
+          -6,
+          0,
+          -17.4
+        ],
+        [
+          -3,
+          0,
+          -17.4
+        ]
+      ],
+      "radiusMeters": 0.32,
+      "safetyMarginMeters": 0.1,
+      "validationSpacingMeters": 0.25,
+      "allowedDoorRefs": [],
+      "forbiddenAreaRefs": [
+        "yanxi-water-palace",
+        "helicopter-clearance"
+      ],
+      "crossZone": false,
+      "turningRadiusMeters": 0.5,
+      "description": "Short disjoint courtyard route; no NPC avoidance is claimed. Must retain swept separation from all other roles at every phase.",
+      "formationSize": 1
+    },
+    {
+      "id": "yongshou-maid-02-r54-stroll",
+      "zoneRef": "west-six",
+      "surfaceRef": "yongshou-court-ground",
+      "anchorRef": "yongshou-hall",
+      "pointsLocalMeters": [
+        [
+          -4,
+          0,
+          -18.5
+        ],
+        [
+          0,
+          0,
+          -18.5
+        ]
+      ],
+      "radiusMeters": 0.32,
+      "safetyMarginMeters": 0.1,
+      "validationSpacingMeters": 0.25,
+      "allowedDoorRefs": [],
+      "forbiddenAreaRefs": [
+        "yanxi-water-palace",
+        "helicopter-clearance"
+      ],
+      "crossZone": false,
+      "turningRadiusMeters": 0.5,
+      "description": "Short disjoint courtyard route; no NPC avoidance is claimed. Must retain swept separation from all other roles at every phase.",
+      "formationSize": 1
+    },
+    {
+      "id": "chengqian-maid-02-r54-stroll",
+      "zoneRef": "east-six",
+      "surfaceRef": "chengqian-r52-court-ground",
+      "anchorRef": "chengqian-r52-hall",
+      "pointsLocalMeters": [
+        [
+          -7,
+          0,
+          -13.5
+        ],
+        [
+          -3,
+          0,
+          -13.5
+        ]
+      ],
+      "radiusMeters": 0.32,
+      "safetyMarginMeters": 0.1,
+      "validationSpacingMeters": 0.25,
+      "allowedDoorRefs": [],
+      "forbiddenAreaRefs": [
+        "yanxi-water-palace",
+        "helicopter-clearance"
+      ],
+      "crossZone": false,
+      "turningRadiusMeters": 0.5,
+      "description": "Short disjoint courtyard route; no NPC avoidance is claimed. Must retain swept separation from all other roles at every phase.",
+      "formationSize": 1
+    }
+  ],
+  "seats": [],
+  "evidence": [
+    {
+      "id": "R54-chuxiu",
+      "title": "储秀宫",
+      "url": "https://www.dpm.org.cn/explore/building/236486.html",
+      "supportedDetails": "Present building and original-state display include late-Qing and restored layers. The courtyard staff are anonymous interpretation, not a named resident or Qianlong inventory.",
+      "era": "Building-specific context; no single-period staffing reconstruction",
+      "referenceImageOrPage": "Official Palace Museum building article checked 2026-10-22; no image bundled as a runtime asset",
+      "simplifications": "Existing approved self-authored maid/eunuch templates only. Exact staff numbers, posts, paths, clothing and schedule are anonymous model choices, not historical or present-exhibit facts."
+    },
+    {
+      "id": "R54-yikun",
+      "title": "翊坤宫",
+      "url": "https://www.dpm.org.cn/explore/building/236517.html",
+      "supportedDetails": "Domestic use is documented; late-Qing connected-court and current original-state display do not establish these staff numbers or daily movements.",
+      "era": "Building-specific context; no single-period staffing reconstruction",
+      "referenceImageOrPage": "Official Palace Museum building article checked 2026-10-22; no image bundled as a runtime asset",
+      "simplifications": "Existing approved self-authored maid/eunuch templates only. Exact staff numbers, posts, paths, clothing and schedule are anonymous model choices, not historical or present-exhibit facts."
+    },
+    {
+      "id": "R54-yongshou",
+      "title": "永寿宫",
+      "url": "https://www.dpm.org.cn/explore/building/236450.html",
+      "supportedDetails": "Historical domestic use is documented. Current museum exhibition use remains distinct; no actor is a present-day gallery attendant or enters artifact display space.",
+      "era": "Building-specific context; no single-period staffing reconstruction",
+      "referenceImageOrPage": "Official Palace Museum building article checked 2026-10-22; no image bundled as a runtime asset",
+      "simplifications": "Existing approved self-authored maid/eunuch templates only. Exact staff numbers, posts, paths, clothing and schedule are anonymous model choices, not historical or present-exhibit facts."
+    },
+    {
+      "id": "R54-chengqian",
+      "title": "承乾宫",
+      "url": "https://www.dpm.org.cn/explore/building/236438.html",
+      "supportedDetails": "Historical domestic building identity supports context only. The unnamed courtyard roles do not reconstruct a named resident, service staffing or a specific historical date.",
+      "era": "Building-specific context; no single-period staffing reconstruction",
+      "referenceImageOrPage": "Official Palace Museum building article checked 2026-10-22; no image bundled as a runtime asset",
+      "simplifications": "Existing approved self-authored maid/eunuch templates only. Exact staff numbers, posts, paths, clothing and schedule are anonymous model choices, not historical or present-exhibit facts."
+    }
+  ]
+}

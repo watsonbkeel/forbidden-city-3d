@@ -1,0 +1,5 @@
+# Open design review points — no shared code implemented
+- Astra17:20: tri-state OUTSIDE/unregistered vs domain INVALID/UNSUPPORTED mandatory. Fixed expected domain must not shrink when a real owner is removed; no null fallback that lets stale ramp/implicitground rescue the route.
+- Original checkCollision(position,radius,from) only sweeps triangle/dynamic objects; ordinary boxes are endpoint AABB. Candidate full motion/descent requires real swept ordinary-box proof, not an inaccurately named endpoint check.
+- Author question17:21: hard refusal of an authentic missing-surface step could create an invisible anti-fall wall. Prefer considering an explicit validated RELEASE_TO_AIR state (same feet, correct raw sweep, airborne flag, real ground gravity), NOT fallback null or invented support. Wrong/mutated owners still invalid/rejected. This is unresolved, no implementation or success claim.
+- Snapshot control: frozen1706 design/coverage identity remains provider-design-coverage-freeze-1719.json; these new review points are separate, not silent changes to frozen input.

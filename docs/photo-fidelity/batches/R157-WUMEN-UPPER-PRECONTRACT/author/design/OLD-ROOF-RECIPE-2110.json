@@ -1,0 +1,232 @@
+{
+  "status": "PINNED_OLD_NUMERIC_RECIPE_PROPOSAL_NOT_GENERATOR_IMPLEMENTED",
+  "coordinateSpace": "pavilion is WUMEN_COMPONENT_Y; wingSingle is WING_PARENT_LOCAL_Y then parent translation12.3 AFTER Float32 geometry creation",
+  "sources": {
+    "src/scene/RoofBuilder.js": "fd87d5a9b766e04f68023b9cba5a78ba2e0f0cef93980e169bfedc947f613623",
+    "src/scene/HallKit.js": "f238e69d23efd1c1b95f9f2529b5f0a8b5ba8f1ec7d15fbdd6de04147a9b4edd",
+    "src/scene/PalaceBuilder.js": "614b27c4406e6effedb6f06534d7fc2e680dd5272ba02e7e0600d85ce75bb1c1"
+  },
+  "independentFormulaSource": {
+    "file": "/workspace/scratch/02a8023d1a85/independent-wumen-upper-design-2038/roof-formula-sensitivity.json",
+    "sha256": "08bb14cdad9f1f3883a83d2936060b00e85ddb81abba47cbe0e984da2dc630fd"
+  },
+  "pavilionLower": {
+    "W": 11.4,
+    "D": 11.4,
+    "baseY": 19.8,
+    "bracketHeight": 0.6,
+    "fanY": 20.400000000000002,
+    "inset": 1.3679999999999999,
+    "overhang": 1.3679999999999999,
+    "innerHalf": 4.332000000000001,
+    "eaveHalf": 7.068,
+    "tw": 0.5,
+    "thickness": 0.15,
+    "H": 1.2311999999999999,
+    "eaveY": 20.07291,
+    "profileCoefficient": 0.55,
+    "lift": {
+      "L": 0.342,
+      "O": 0.47879999999999995,
+      "D": 4.3776
+    },
+    "hr": 0.1026,
+    "sampleCounts": {
+      "nT": 4,
+      "nU": 10,
+      "hipLineSteps": 6,
+      "tubeSegments": 8,
+      "radial": 4
+    },
+    "mountingGap": 0.8,
+    "caihuaHeight": 0.35,
+    "upperBodyTopY": 22.454110000000004,
+    "anchors": [
+      {
+        "t": 0,
+        "baseY": 21.30411
+      },
+      {
+        "t": 0.5,
+        "baseY": 20.55
+      },
+      {
+        "t": 1,
+        "baseY": 20.07291
+      }
+    ]
+  },
+  "pavilionUpper": {
+    "W": 8.664000000000001,
+    "D": 8.664000000000001,
+    "baseY": 22.454110000000004,
+    "bracketHeight": 0.6,
+    "fanY": 23.054110000000005,
+    "overhang": 1.2,
+    "eaveHalf": [
+      5.532000000000001,
+      5.532000000000001
+    ],
+    "profileCoefficient": 0.36,
+    "profileFormula": "a*(1-t)+(1-a)*(1-t)^2",
+    "tw": 0.7830802603036876,
+    "heightInput": 4.332000000000001,
+    "H": 4.689422619707163,
+    "eaveY": 22.696687380292843,
+    "anchors": [
+      {
+        "t": 0,
+        "baseY": 27.386110000000006
+      },
+      {
+        "t": 0.7830802603036876,
+        "baseY": 23.204110000000007
+      },
+      {
+        "t": 1,
+        "baseY": 22.696687380292843
+      }
+    ],
+    "thickness": 0.15,
+    "lift": {
+      "L": 0.30324000000000007,
+      "O": 0.42,
+      "D": 2.7660000000000005
+    },
+    "hr": 0.1,
+    "ridgeHalf": null,
+    "finial": {
+      "hf": 0.6064800000000001,
+      "baseY": 27.286110000000004,
+      "profileRH": [
+        [
+          0,
+          0
+        ],
+        [
+          0.5,
+          0
+        ],
+        [
+          0.5,
+          0.1
+        ],
+        [
+          0.32,
+          0.18
+        ],
+        [
+          0.46,
+          0.36
+        ],
+        [
+          0.42,
+          0.52
+        ],
+        [
+          0.2,
+          0.64
+        ],
+        [
+          0.3,
+          0.78
+        ],
+        [
+          0.26,
+          0.92
+        ],
+        [
+          0.08,
+          1.04
+        ],
+        [
+          0.03,
+          1.16
+        ],
+        [
+          0,
+          1.18
+        ]
+      ],
+      "radiusScale": 0.55
+    },
+    "ridgeBox": null,
+    "hipTip": {
+      "extensionRadii": 3,
+      "YRaiseRadii": 1.6
+    },
+    "lowDetail": true,
+    "sampleCounts": {
+      "nT": 6,
+      "nU": 10,
+      "tube": 8,
+      "radial": 4,
+      "lathe": 6
+    },
+    "actualDerivedYPolicy": "base profile anchors fixed; lift/tube sampled actual Y delta measured separately"
+  },
+  "wingSingle": {
+    "W": 39.8,
+    "D": 13.4,
+    "baseY": 6.5,
+    "bracketHeight": 0.67,
+    "fanY": 7.17,
+    "overhang": 1.6079999999999999,
+    "eaveHalf": [
+      21.508,
+      8.308
+    ],
+    "profileCoefficient": 0.48,
+    "profileFormula": "a*(1-t)+(1-a)*(1-t)^2",
+    "tw": 0.8064516129032259,
+    "heightInput": 6.03,
+    "H": 6.612310902696366,
+    "eaveY": 6.587689097303634,
+    "anchors": [
+      {
+        "t": 0,
+        "baseY": 13.2
+      },
+      {
+        "t": 0.8064516129032259,
+        "baseY": 7.330799999999999
+      },
+      {
+        "t": 1,
+        "baseY": 6.587689097303634
+      }
+    ],
+    "thickness": 0.1608,
+    "lift": {
+      "L": 0.4690000000000001,
+      "O": 0.5628,
+      "D": 4.154
+    },
+    "hr": 0.1474,
+    "ridgeHalf": 13.2,
+    "finial": null,
+    "ridgeBox": {
+      "height": 0.50116,
+      "width": 0.32428,
+      "capRadius": 0.1361976,
+      "baseY": 13.0526
+    },
+    "hipTip": {
+      "extensionRadii": 3,
+      "YRaiseRadii": 1.6
+    },
+    "lowDetail": true,
+    "sampleCounts": {
+      "nT": 6,
+      "nU": 10,
+      "tube": 8,
+      "radial": 4,
+      "lathe": 6
+    },
+    "actualDerivedYPolicy": "base profile anchors fixed; lift/tube sampled actual Y delta measured separately",
+    "coordinateSpace": "WING_PARENT_LOCAL_Y",
+    "parentTranslationY": 12.3,
+    "generationOrder": "compute local double positions -> Float32BufferAttribute -> parent matrix translation12.3; never generate at18.8 as byte-identical predecessor"
+  },
+  "policy": "Explicit named roles and original parameters; source pin governs remaining generator algorithm. Need independent arithmetic audit before use. Actual2056 is positions/bounds only; full predecessor baseline remains pending."
+}

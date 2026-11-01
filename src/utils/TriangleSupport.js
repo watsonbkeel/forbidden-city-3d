@@ -60,8 +60,10 @@ export function triangleBodyIntersects(shape,worldBox){
  return hits.length%2===1;
 }
 /** Continuous SAT for a translating, fixed-size player AABB versus triangles.
- * Every accepted horizontal segment is checked, not just sampled endpoints. */
-export function triangleBodySweepFraction(shape,fromWorld,toWorld){
+ * Every accepted horizontal segment is checked, not just sampled endpoints.
+ * Vertical callers opt into inclusive edges/endpoints to match body contact;
+ * default horizontal tangent semantics remain unchanged. */
+export function triangleBodySweepFraction(shape,fromWorld,toWorld,{includeBoundary=false}={}){
  const union=fromWorld.clone().union(toWorld);if(!union.intersectsBox(shape.box))return null;
  if(triangleBodyIntersects(shape,fromWorld))return 0;
  const from=fromWorld.clone().translate(shape.offset.clone().negate()),to=toWorld.clone().translate(shape.offset.clone().negate()),center=from.getCenter(new THREE.Vector3()),end=to.getCenter(new THREE.Vector3()),velocity=end.sub(center),half=from.getSize(new THREE.Vector3()).multiplyScalar(.5),other=to.getSize(new THREE.Vector3()).multiplyScalar(.5);
@@ -71,10 +73,10 @@ export function triangleBodySweepFraction(shape,fromWorld,toWorld){
  for(const q of shape.template.triangles){if(!bounds.intersectsBox(q.box))continue;
   const {a,b,c}=q.triangle,edges=[b.clone().sub(a),c.clone().sub(b),a.clone().sub(c)],axes=[...basis,q.normal,...edges.flatMap(e=>basis.map(v=>e.clone().cross(v)))];let enter=0,exit=1;
   for(const axis of axes){if(axis.lengthSq()<1e-18)continue;const values=[a.dot(axis),b.dot(axis),c.dot(axis)],radius=Math.abs(axis.x)*half.x+Math.abs(axis.y)*half.y+Math.abs(axis.z)*half.z,origin=center.dot(axis),speed=velocity.dot(axis),low=Math.min(...values)-radius,high=Math.max(...values)+radius;
-   if(Math.abs(speed)<1e-12){if(origin<=low+1e-12||origin>=high-1e-12){enter=2;break;}}
-   else{const t0=(low-origin)/speed,t1=(high-origin)/speed;enter=Math.max(enter,Math.min(t0,t1));exit=Math.min(exit,Math.max(t0,t1));if(enter>=exit-1e-12)break;}
+   if(Math.abs(speed)<1e-12){if(includeBoundary ? origin<low-1e-12||origin>high+1e-12 : origin<=low+1e-12||origin>=high-1e-12){enter=2;break;}}
+   else{const t0=(low-origin)/speed,t1=(high-origin)/speed;enter=Math.max(enter,Math.min(t0,t1));exit=Math.min(exit,Math.max(t0,t1));if(includeBoundary ? enter>exit+1e-12 : enter>=exit-1e-12)break;}
   }
-  if(enter<exit-1e-12&&enter<1&&exit>0)earliest=Math.min(earliest??1,Math.max(0,enter));
+  if(includeBoundary ? enter<=exit+1e-12&&enter<=1&&exit>=0 : enter<exit-1e-12&&enter<1&&exit>0)earliest=Math.min(earliest??1,Math.max(0,enter));
  }
  return earliest;
 }

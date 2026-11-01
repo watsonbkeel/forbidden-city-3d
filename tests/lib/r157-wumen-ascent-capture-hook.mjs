@@ -1,0 +1,3 @@
+if(process.env.R157_FROZEN_SOURCE_COMMIT)throw Error('Live ascent oracle must not freeze historical source');
+import{registerHooks}from'node:module';
+registerHooks({load(u,c,next){const r=next(u,c);if(!u.endsWith('/src/scene/palace/special/WumenAscent.js'))return r;const needle='  return { group, geometry, counts };',s=String(r.source);if(s.split(needle).length!==2)throw Error('Original source-owned ascent return boundary changed');return{...r,source:s.replace(needle,'  globalThis.__R157_ASCENT_CAPTURE?.({builder,group,parent,colliders:builder.colliders.slice(beforeC),walkables:builder.walkables.slice(beforeW)});\n'+needle)};}});

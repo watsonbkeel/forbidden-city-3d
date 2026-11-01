@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {captureRightLeaf,retainedSignature,digest} from '../../lib/wumen-right-leaf-fixture.mjs';
+const p=JSON.parse(fs.readFileSync(new URL('./before-db1.json',import.meta.url)));
+for(const open of[true,false])test('exact pinned db1 LowerBase replays the real pre-change '+(open?'open':'closed')+' whole-gate recorded fields',()=>{const c=captureRightLeaf(open);try{let n=0;c.group.traverse(o=>{if(o.userData.wumenSidePortalFace)n++;});assert.equal(n,0);assert.equal(digest(retainedSignature(c)),digest(p[open?'open':'closed']));}finally{c.builder.dispose();}});

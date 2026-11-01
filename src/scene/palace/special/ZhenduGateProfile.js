@@ -34,7 +34,7 @@ export function zhenduGateGeometry(item={}) {
     frontRun:{value:17.8,range:[14,21]},rearRun:{value:16.8,range:[13,22]},
     clearPortalWidth:{value:4.65,range:[4.1,5.2]},rampTravelWidth:{value:9,range:[7.5,10.5]},cheekWidth:{value:.9,range:[.6,1.3]},
     doorHeight:5.1,wallThickness:.4,roofOverhang:1.55,railMaximumSpacing:1.85,
-    north:'Aligned open outlet and closed side panels preserve gameplay; rear facade and leaf arrangement are unobserved.',
+    north:'Own group 11 north view observes ochre panels and plain red backs; retained enclosure depth/door plane unverified; game opening differs from photographed closed state.',
     lateralBays:'Core side walls are inset from outer columns; narrow front/rear bay closures are conservative unknown access, not observed additional portals.',
     wings:'Closed contacts at inherited corridor centreline only; no invented lateral floor connection.',
     envelope:'Width/depth/ramp projections are bounded engineering choices, NOT measurements from the cropped photo.'};
@@ -59,7 +59,7 @@ export function zhenduGateGeometry(item={}) {
   const supports={platform:{type:'box',supportId:platform.supportId,min:[Math.min(...corners.map(p=>p[0])),platform.topY,Math.min(...corners.map(p=>p[1]))],max:[Math.max(...corners.map(p=>p[0])),platform.topY,Math.max(...corners.map(p=>p[1]))],rescue:false},
     ramps:ramps.map(r=>{const a=toWorld(r.leftTop,r.zTop),b=toWorld(r.rightTop,r.zTop),cc=toWorld(r.leftToe,r.zToe),d=toWorld(r.rightToe,r.zToe),ai=quadrant%2?0:1,ci=1-ai;
       return{type:'ramp',supportId:r.supportId,axis:ai?'z':'x',minX:Math.min(a[0],b[0],cc[0],d[0]),maxX:Math.max(a[0],b[0],cc[0],d[0]),minZ:Math.min(a[1],b[1],cc[1],d[1]),maxZ:Math.max(a[1],b[1],cc[1],d[1]),a0:a[ai],a1:cc[ai],y0:r.yTop,y1:r.yToe,crossMin0:Math.min(a[ci],b[ci]),crossMax0:Math.max(a[ci],b[ci]),crossMin1:Math.min(cc[ci],d[ci]),crossMax1:Math.max(cc[ci],d[ci])};})};
-  const unknowns=['Current north/rear facade and leaf arrangement','Complete modern plan, platform edges and pavement datum','Exact individual bays and door plane','Full roof framing and ceiling interior','Entire wing interfaces and south-solid orientation','Ramp profile, rail carving and surveyed dimensions','Current visitor access'];
+  const unknowns=['Complete measured north facade, enclosure depth and door-plane relationship','Complete modern plan, platform edges and pavement datum','Exact individual bays and door plane','Full roof framing and ceiling interior','Entire wing interfaces and south-solid orientation','Ramp profile, rail carving and surveyed dimensions','Current visitor access'];
   return {profile:'zhendu',id:'axis-courts/obj-012',objectId:'FC-9252CFFDAB',name:'贞度门',x,z,rot,toWorld,transform:{x,z,rot},documentary,derived,photoFit,assumptions,unknowns,
     acceptance:{exterior:'VERIFY_PENDING',interior:'BLOCKED_SOURCE',accepted:false},building,core,platform,roof,portals,portalCenters:[0],ramps,joins,supports,routeContacts,
     front:{ground:routeContacts.frontGround,toe:routeContacts.frontToe,top:routeContacts.frontTop},rear:{ground:routeContacts.rearGround,toe:routeContacts.rearToe,top:routeContacts.rearTop},

@@ -1,0 +1,52 @@
+{
+  "scope": "STATIC_EXISTING_UPPER_DEPENDENCY_MAP_NOT_APPROVED_GEOMETRY_FIT",
+  "sourceHashes": {
+    "src/scene/PalaceBuilder.js": "614b27c4406e6effedb6f06534d7fc2e680dd5272ba02e7e0600d85ce75bb1c1",
+    "src/scene/palace/special/WumenWingPavilionInstances.js": "56f1892650d72c3e7cfa6b63df4a59122357c2b818740ee8e8393051d96d641a",
+    "src/scene/palace/special/WumenOuterSideColumns.js": "ddeb38460a2a73a56f841fe5bef959c4e2e330c6769194c77d4bd13ec192d947",
+    "src/scene/palace/special/WumenNorthEnclosure.js": "968b5917a7ee99e20d2b9c1652e1bbf10dd7766b4bca20384ec7b8d03d47fdac",
+    "src/scene/palace/special/WumenTransverseLinks.js": "dff442a3df86cf4511605652ebb6994ca6ba2fec6d61378bc5ef19d5b587dabd"
+  },
+  "bindings": [
+    {
+      "part": "main",
+      "existing": "1.43 grid/52 shafts; body local Y12.3; matched retained main roof and south plaque",
+      "policy": "retain actual geometry/materials; no silent stretch or column-height change"
+    },
+    {
+      "part": "four pavilion bodies",
+      "existing": "P11m/height7.5m; centres x±47.7,z−6/−56.4; explicit separately read column-row fits in old11m basis",
+      "dependency": "source nominal19m reference is not a safe uniform scale; retain column diameters and map axes explicitly, separately bind facade/roof"
+    },
+    {
+      "part": "four pavilion roofs",
+      "existing": "width/depthP+0.4=11.4; two-layer pavilion type; roof geometry has absolute vertical baseY, position.y=0",
+      "dependency": "body and roof cannot share an assumed arbitrary pivot transform; source eaves/vertical interface requires explicit fit"
+    },
+    {
+      "part": "two wings",
+      "existing": "rotYπ/2, width39.4m between old pavilion endpoints, depth13m,13bays; body+roof local pair",
+      "dependency": "new longitudinal reference cannot move only pavilion endpoints and leave wing gap; each side fit and end interfaces independently"
+    },
+    {
+      "part": "NE enclosure",
+      "existing": "photo-bounded3groups fit9.42×5.94m on retained body face, stone foot0.42",
+      "dependency": "cannot blanket stretch observed frames/gold trim/studs with pavilion; facade dimensions must be re-registered or explicitly kept as separate retained detail"
+    },
+    {
+      "part": "two transverse links",
+      "existing": "12posts each, fitted x30.7/34.2/38.2/41.7,z−9.4/−2.6 and internal rows; old closed endpoints remain",
+      "dependency": "must bind actual main/pavilion endpoints and shared support; north-gallery enclosure source still unresolved in depth, do not open arbitrary door"
+    },
+    {
+      "part": "source-specific refinements",
+      "existing": "this.ox===0 && this.oz===−419.6; downstream guards also require exact old body positions",
+      "dependency": "plain Layout change disables or throws; isolated new assembly cannot call old refinements with wrong pose and pretend retained result"
+    },
+    {
+      "part": "runtime building bounds",
+      "existing": "north pavilion registered whole-body AABB only; wing/south source object collisions differ from component local collider records",
+      "dependency": "new body cannot merely move old metadata; actual runtime physical inventory must be separately authored and audited before installation"
+    }
+  ]
+}

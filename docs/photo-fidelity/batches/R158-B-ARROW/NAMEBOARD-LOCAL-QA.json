@@ -1,0 +1,33 @@
+{
+  "entityId": "FC-AF36D75128",
+  "baseCommit": "30089e76",
+  "productionHookInstalled": false,
+  "scope": "EXACT_OLD_CENTRAL_GENERIC_NAMEBOARD_ONLY",
+  "captureDate": null,
+  "photographedStateOnly": true,
+  "testResult": "36/36 targeted tests passed, no full-repository suite run",
+  "removed": {
+    "meshes": 2,
+    "triangles": 14,
+    "atlasRecords": 1
+  },
+  "addedResources": 0,
+  "rollbackTests": [
+    "after actual Object3D partial detach",
+    "after actual atlas queue splice"
+  ],
+  "nonTargetExact": true,
+  "otherSameNameRecordsRetained": true,
+  "postAtlasRejectedBeforeMutation": true,
+  "sourceFiles": {
+    "src/scene/palace/special/ArrowSouthNameboard.js": "81c86147ab94509c6a1df5453bd63ac30c8dc49a5b766da89aae983ec4435925",
+    "tests/r158-arrow-south-nameboard.test.mjs": "4fb45d6855caef0517528785d349483bf718f5c6d4299b0ba7df0bf646d9dc38",
+    "tests/lib/r158-arrow-nameboard-world-check.mjs": "60a29ca1100a332391e566289eb67b4ebfdfcab7d8e6057a619859af089749ab",
+    "tests/lib/r158-arrow-south-lattice-fixture.mjs": "8b9700ff7cd3b4a2df88656108bc58a758ac71d92bb68e6f938a40fd705cd91a",
+    "scripts/photo-fidelity/batches/r158-arrow/export-local-cpu.mjs": "41a965be61151c23533b45e24e96f9eb612d1f477abbd0751b8230af9988f658"
+  },
+  "cpuProof": "NAMEBOARD-CPU-PROOF.json",
+  "browserAcceptance": false,
+  "wholeObjectAccepted": false,
+  "visualAcceptance": "VERIFY_PENDING"
+}

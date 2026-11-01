@@ -1,0 +1,170 @@
+{
+  "baselineCommit": "493a13c7",
+  "vesselModuleSHA256": "cbcf968f3a427969daa91cd0138c47216180d97e4af375d07323c7a770da2dc0",
+  "moduleTests": {
+    "command": "node --test --test-concurrency=1 tests/r159/jiaotai-front-vessels.test.mjs",
+    "pass": 5,
+    "fail": 0
+  },
+  "threePalace": {
+    "command": "node scripts/r159/jiaotai-three-palace-proof.mjs . /private/path/result.json",
+    "scope": "REAL_THREE_PALACE_READY_SCENE_NO_FULL_WORLD_NO_GPU",
+    "mode": "manual authoring hook after buildHall before real merge, same module geometry as proposed display-end hook",
+    "geometryHashWithoutNewMaterial": "65b3bccad548194ef04e949a8df9cd254aff33eca1a87ce3eb1fc64ab1a49766",
+    "originalPhysicalRowsHash": "7bef54642125ef17902804b92f0498cf0daab5d88c1a6d3f3262b1125015736b",
+    "allWalkablesHash": "0ac721fde47bd31f9e45cf5d45a13c60e7b6b13edadbb0b35a6f79ae53e5ba63",
+    "oldColliderCount": 572,
+    "newColliderCount": 578,
+    "fourDoorClockClepsydraRearLoopCases": 6,
+    "sideStairsAndWestBypassCases": 24,
+    "newFrontPlatformCases": 8,
+    "allArrived": true
+  },
+  "visual": {
+    "before": {
+      "label": "baseline",
+      "cameras": [
+        [
+          "interior-front",
+          [
+            0,
+            4.1,
+            -8.1
+          ],
+          [
+            0,
+            5.7,
+            3.02
+          ],
+          68
+        ],
+        [
+          "front-vessels",
+          [
+            0,
+            3.6,
+            -2.8
+          ],
+          [
+            0,
+            3.5,
+            3.1
+          ],
+          72
+        ],
+        [
+          "west-oblique",
+          [
+            5,
+            4.1,
+            -3
+          ],
+          [
+            0,
+            3.6,
+            3
+          ],
+          72
+        ]
+      ],
+      "sourceCommit": "493a13c7bd5765c1866ee23e25d2d653ebd11054",
+      "sourceDirty": true,
+      "sourceFingerprint": "01d29ff0da04d63803b701f71586262ee09c7ed665546858544be02c29ff401a",
+      "vesselModuleSHA256": "cbcf968f3a427969daa91cd0138c47216180d97e4af375d07323c7a770da2dc0",
+      "candidateHook": "none; current493a13c7default",
+      "scope": "real three-palace actual textures; selected Jiaotai triangles X[-11,11] Z[343,366], Z origin shifted354.1; CPU albedo only, NOT GPU/browser or full-scene acceptance",
+      "triangles": 16547,
+      "materials": 27,
+      "geometrySHA256": "bb99ad64664d67f90d9683849a9715be21dc77a7fa18876a59fd18952b5dfe28"
+    },
+    "candidate": {
+      "label": "candidate",
+      "cameras": [
+        [
+          "interior-front",
+          [
+            0,
+            4.1,
+            -8.1
+          ],
+          [
+            0,
+            5.7,
+            3.02
+          ],
+          68
+        ],
+        [
+          "front-vessels",
+          [
+            0,
+            3.6,
+            -2.8
+          ],
+          [
+            0,
+            3.5,
+            3.1
+          ],
+          72
+        ],
+        [
+          "west-oblique",
+          [
+            5,
+            4.1,
+            -3
+          ],
+          [
+            0,
+            3.6,
+            3
+          ],
+          72
+        ]
+      ],
+      "sourceCommit": "493a13c7bd5765c1866ee23e25d2d653ebd11054",
+      "sourceDirty": true,
+      "sourceFingerprint": "01d29ff0da04d63803b701f71586262ee09c7ed665546858544be02c29ff401a",
+      "vesselModuleSHA256": "cbcf968f3a427969daa91cd0138c47216180d97e4af375d07323c7a770da2dc0",
+      "candidateHook": "manual after buildHall before real finish/merge",
+      "scope": "real three-palace actual textures; selected Jiaotai triangles X[-11,11] Z[343,366], Z origin shifted354.1; CPU albedo only, NOT GPU/browser or full-scene acceptance",
+      "triangles": 18211,
+      "materials": 28,
+      "geometrySHA256": "fc8954376ab3002a9b023ff12d189c6dd77dd704a008d443ec6a5a6a337a7de3"
+    },
+    "inspectedViews": [
+      "front-vessels before/after",
+      "candidate west-oblique",
+      "candidate interior-front"
+    ],
+    "status": "CPU_DIAGNOSTIC_NOT_GPU_OR_BROWSER_ACCEPTANCE"
+  },
+  "notRun": [
+    "full repository current-state suite (parent directed no concurrent full World)",
+    "production build (unhooked independent module)",
+    "GPU/browser screenshot",
+    "phone",
+    "whole-building acceptance"
+  ],
+  "focusedRegression": {
+    "command": "node --test --test-concurrency=1 tests/r159/jiaotai-front-vessels.test.mjs tests/major-pilots/jiaotai/crown-profile.test.mjs tests/major-pilots/jiaotai/front-corners.test.mjs tests/major-pilots/jiaotai/roof-integration.test.mjs",
+    "pass": 13,
+    "fail": 0
+  },
+  "reviewDisposition": {
+    "status": "REJECTED_DO_NOT_USE_AS_CONTACT_ACCEPTANCE",
+    "p1": "Six added collider coordinates were local origin due stale parent matrices; the original comparator read the same stale matrices. Tests13/13 and38route arrivals were real outcomes but did not prove intended actual vessel contact.",
+    "p2": [
+      "AABB-only platform guard accepted same-bounds vertex deformation",
+      "middle col failure left partial state",
+      "old1.45/1.0 radial scale too large in control-matched photo projection"
+    ],
+    "validRemainingEvidence": [
+      "old non-target geometry/physical rows retention",
+      "six captured CPU images identify the old now-rejected visual candidate",
+      "actual controller route arrivals away from vessel edges"
+    ],
+    "supersededBy": "REVIEW-CORRECTIONS.md and revised VALIDATION.json"
+  }
+}

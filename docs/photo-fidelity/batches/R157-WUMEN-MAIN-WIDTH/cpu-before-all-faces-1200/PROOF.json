@@ -1,0 +1,127 @@
+{
+  "accepted": false,
+  "scope": "REAL_BUILD_GATE_WHOLE_WUMEN_PREMERGE_CPU_BASE_COLOR_NO_GPU",
+  "mode": "before",
+  "baseline": "411214d091723b3a5078bbb9499321c2c5c3d354",
+  "actualWidthStatus": "RETAINED_EQUAL_DIVISION_NOT_SURVEYED",
+  "views": {
+    "north-front": {
+      "camera": {
+        "position": [
+          0,
+          17,
+          83
+        ],
+        "target": [
+          0,
+          16.5,
+          0
+        ],
+        "fov": 48,
+        "matrixWorldInverse": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0.9999818556252085,
+          0.006023987082079569,
+          0,
+          0,
+          -0.006023987082079569,
+          0.9999818556252085,
+          0,
+          0,
+          -16.49970061781594,
+          -83.10090179728765,
+          1
+        ]
+      },
+      "triangles": 49152,
+      "file": "wumen-main-width-north-front-before.json.gz",
+      "sha256": "f6446f39dd2a9be978a3f9741ef240f966f0feb91de3bec37207172da5826de7"
+    },
+    "north-oblique": {
+      "camera": {
+        "position": [
+          55,
+          23,
+          72
+        ],
+        "target": [
+          0,
+          16.5,
+          0
+        ],
+        "fov": 49,
+        "matrixWorldInverse": [
+          0.7946710073917613,
+          -0.043438122468854895,
+          0.6054842025415234,
+          0,
+          6.93889390390723e-18,
+          0.9974364960750483,
+          0.0715572239367255,
+          0,
+          -0.6070403528687064,
+          -0.0568644512319555,
+          0.792633865145267,
+          0,
+          -7.105427357601003e-15,
+          -16.45770218523829,
+          -92.0170855807877,
+          1
+        ]
+      },
+      "triangles": 49152,
+      "file": "wumen-main-width-north-oblique-before.json.gz",
+      "sha256": "a70247e4d6bd0954132762a35acd4b65d0f73ea98fa01a80134e644ad5ace826"
+    },
+    "south-front": {
+      "camera": {
+        "position": [
+          0,
+          17,
+          -87
+        ],
+        "target": [
+          0,
+          16.5,
+          0
+        ],
+        "fov": 48,
+        "matrixWorldInverse": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0.999983485677953,
+          0.005747031526884787,
+          0,
+          0,
+          0.005747031526884787,
+          -0.9999834856779528,
+          0,
+          0,
+          -16.499727513686224,
+          -87.09626278993895,
+          1
+        ]
+      },
+      "triangles": 49152,
+      "file": "wumen-main-width-south-front-before.json.gz",
+      "sha256": "21db163449c3a6ebd61037d9d6180b8e2f744c303f0b12f7ffc9fd52b8b4aeaa"
+    }
+  },
+  "sourceHashes": {
+    "src/scene/palace/special/WumenMainGrid.js": "9d245eeb1581f050654952825a183724f32fbdfbe6ca3b2338bde9b4d09edb92",
+    "src/scene/palace/special/GateTowerProfiles.js": "cc82ac5027be43248e29800f3aaf7483599587d87dd365046fb37f53736e3fc8",
+    "src/scene/palace/special/GateTowerMeasurements.js": "21dc4f2c2c3be3221d2b20dd95784f0277852dbdfe7ea79b43fdba888753034b"
+  },
+  "limitations": [
+    "Same retained roof/base/origin; does not approve macro layout",
+    "No historical or live GPU material/light acceptance",
+    "Before uses exact three-source predecessor, other production sources unchanged"
+  ]
+}

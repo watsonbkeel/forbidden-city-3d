@@ -1,0 +1,12 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
+import {captureRightLeaf,digest} from '../../lib/wumen-right-leaf-fixture.mjs';
+import {leftStudGroups,recordedGateSignature} from '../../lib/wumen-left-leaf-fixture.mjs';
+import {leftPriorComparison} from '../../lib/wumen-left-leaf-prior-comparison.mjs';
+const before=JSON.parse(fs.readFileSync(new URL('../../fixtures/r157-wumen-left-leaf/before-eec.json',import.meta.url)));
+test('authenticated left64 alone is removed from comparison clones in both poses while genuine predecessor records remain',()=>{for(const open of [true,false]){const c=captureRightLeaf(open);try{const p=leftPriorComparison(c);assert.equal(leftStudGroups(p.view).length,0);assert.equal(leftStudGroups(c).length,1);assert.notEqual(p.view.group,c.group);assert.equal(p.view.tower.parent,p.view.group);assert.notEqual(p.view.builder.colliders,c.builder.colliders);assert.equal(p.view.builder.checkCollision,undefined);assert.equal(digest(recordedGateSignature(p.view)),digest(before[open?'open':'closed']));p.assertUnchanged();}finally{c.builder.dispose();}}});
+test('left comparison rejects unknown nested hidden moved and recolored target content before removing it',()=>{for(const mutate of [g=>g.removeFromParent(),g=>g.parent.add(g.clone(true)),g=>g.children[0].add(g.children[1].clone()),g=>g.visible=false,g=>g.position.x+=.1,g=>g.children[0].material.emissive.setHex(0x00ff00)]){const c=captureRightLeaf();try{mutate(leftStudGroups(c)[0]);assert.throws(()=>leftPriorComparison(c));}finally{c.builder.dispose();}}});
+test('left view preserves non-target drift and catches subsequent shared physics mutation',()=>{const c=captureRightLeaf();try{c.builder.colliders[0].min.x+=.1;const p=leftPriorComparison(c);assert.notEqual(digest(recordedGateSignature(p.view)),digest(before.open));p.assertUnchanged();p.view.builder.colliders[0].min.x+=.1;assert.throws(p.assertUnchanged);}finally{c.builder.dispose();}});
+
+import {portalPriorComparison} from '../../lib/wumen-left-leaf-prior-comparison.mjs';
+import {portalFaceGroups} from '../../lib/wumen-side-portal-fixture.mjs';
+test('composed view authenticates real portal mesh identity before clone and after any consumer',()=>{const c=captureRightLeaf();try{const q=portalPriorComparison(c);portalFaceGroups(c)[0].children[0].isMesh=false;assert.throws(q.assertUnchanged);assert.throws(()=>portalPriorComparison(c));}finally{c.builder.dispose();}});

@@ -1,0 +1,39 @@
+{
+  "scope": "Arrow cumulative live current-state suite versus prior complete 0255; no claim all green or identical underlying failure causes",
+  "baselineLog": "/workspace/scratch/02a8023d1a85/r158-court-integration-evidence/full-current-state-final-0255.log",
+  "baselineLogSHA256": "2df990abb6973d1dad427f5186b4e13634fdb3b6fd052abb15660e792baabb6b",
+  "candidateLog": "/workspace/scratch/02a8023d1a85/r158-arrow-integration-evidence-0441/full-current-state-0451.log",
+  "candidateLogSHA256": "a600dbbb23faf5442e881338f12f919c38626d51e82e3b700dfcbc347685a468",
+  "baseline": {
+    "tests": 1313,
+    "pass": 1090,
+    "fail": 223,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "candidate": {
+    "tests": 1313,
+    "pass": 1103,
+    "fail": 210,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "newFailureNames": [],
+  "removedFailureNames": [
+    "assets-src/interiors/build_qianqing_auxiliary.py: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+    "assets-src/interiors/bind_qianqing_auxiliary.mjs: added R32 source has a complete fixed identity",
+    "assets-src/interiors/export_qianqing_display.mjs: added R32 source has a complete fixed identity",
+    "assets-src/interiors/bind_qianqing_auxiliary.mjs: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation",
+    "assets-src/interiors/build_qianqing_auxiliary.py: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation",
+    "assets-src/interiors/fit_taihe_hanging.py: added R33 source or binary is independently byte-bound and never reversed",
+    "assets-src/interiors/taihe_hanging_fit/r32-profile.json: added R33 source or binary is independently byte-bound and never reversed",
+    "assets-src/interiors/fit_taihe_display_grid.py: exact historical added bytes and finite inventory reject missing, duplicated or changed data",
+    "assets-src/interiors/taihe_spatial_fit/r33-profile.json: exact historical added bytes and finite inventory reject missing, duplicated or changed data",
+    "public/models/interiors/taihe-display-grid-6012719f9618.glb: exact historical added bytes and finite inventory reject missing, duplicated or changed data",
+    "src/scene/palace/QianqingFrontageGrid.js: exact historical added bytes and finite inventory reject missing, duplicated or changed data",
+    "src/scene/palace/QianqingWarmRooms.js: exact historical added bytes and finite inventory reject missing, duplicated or changed data",
+    "three Wuying review IDs bind to the actual three retained profile IDs, not invented aliases"
+  ],
+  "sourceManifest": "source-freeze-light58.json",
+  "sameTestCount": true
+}

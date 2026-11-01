@@ -51,7 +51,8 @@ for(const id of ids) {
   test(`${id}: five timber bays, three portals, end windows and no full-depth masonry piers`,()=>{
     const {frame,g,blocked}=fixture(id);
     assert.equal(g.bayWidths.length,5); assert.equal(g.portals.length,3);
-    assert.equal(nodes(frame,'gate-window').length,4);
+    assert.equal(nodes(frame,'gate-window').length,id==='xiehe'?2:4);
+    if(id==='xiehe')assert.equal(nodes(frame,'xiehe-east-end-wall').length,2);
     assert.equal(nodes(frame,'gate-column').length>=18,true);
     for(const p of g.portals) for(const z of [-g.depth/2,0,g.depth/2]) assert.equal(blocked(p.centerX,z),false);
     for(const x of [g.bayCenters[0],g.bayCenters[4]]) for(const z of [-g.depth/2,g.depth/2]) assert.equal(blocked(x,z),true);
@@ -86,11 +87,26 @@ for(const id of ids) {
     for(const rot of Object.values(FACE)) {
       const f=fixture(id,rot);
       assert.equal(nodes(f.frame,'gate-ramp-solid').length,2);
+      // Exact ramp outlines are independent of later real rail-top support.
+      // Keep the old 3cm-outside boundary assertion on the actual walkables.
+      const rampOnly=new CollisionManager();rampOnly.rivers=[];rampOnly.addWalkables(f.kit.walkables);
       for(const ramp of f.g.ramps) for(const t of [.1,.5,.9]) {
         const z=ramp.zTop+(ramp.zToe-ramp.zTop)*t;
         const left=ramp.leftTop+(ramp.leftToe-ramp.leftTop)*t,right=ramp.rightTop+(ramp.rightToe-ramp.rightTop)*t;
-        for(const [x,expected] of [[left-.03,0],[right+.03,0],[(left+right)/2,ramp.yTop*(1-t)]]) {
-          const [wx,wz]=f.world(x,z);assert.ok(Math.abs(f.cm.getGroundHeight(wx,wz,f.g.platformY)-expected)<1e-6,'outside flared wing is never phantom walkable');
+        // Straddle the boundary by 10 micrometres; exact rotated endpoints
+        // inherit sub-ulp matrix/broadphase rounding, not a widened ramp.
+        const rampY=ramp.yTop*(1-t);
+        for(const [x,expected] of [[left-.03,0],[right+.03,0],[left-1e-5,0],[right+1e-5,0],[left+1e-5,rampY],[right-1e-5,rampY],[(left+right)/2,rampY]]) {
+          const [wx,wz]=f.world(x,z);assert.ok(Math.abs(rampOnly.getGroundHeight(wx,wz,f.g.platformY)-expected)<1e-6,'outside flared wing is never phantom walkable');
+          const actual=f.cm.getGroundHeight(wx,wz,f.g.platformY);
+          if(actual>expected+1e-6){
+            const contact=f.cm.supportContact(wx,wz,f.g.platformY+.6);
+            assert.ok(id==='xiehe'&&ramp.side==='front'&&contact?.instanceId.startsWith('xiehe-east-rail:'),'outside ramp support requires its actual visible east rail');
+            assert.ok(Math.abs(actual-contact.height)<1e-6&&Math.hypot(wx-contact.witness.x,wz-contact.witness.z)<=.300001,'positive height has an exact foot witness, not a rail bounding-box top');
+          }else assert.ok(Math.abs(actual-expected)<1e-6);
+        }
+        for(const offset of[.441,.7])for(const x of[left-offset,right+offset]){
+          const [wx,wz]=f.world(x,z);assert.equal(f.cm.getGroundHeight(wx,wz,f.g.platformY),0,'beyond both the actual rail and foot disk remains ground');
         }
         const [wx,wz]=f.world((left+right)/2,z);
         const ray=new THREE.Raycaster(new THREE.Vector3(wx,10,wz),new THREE.Vector3(0,-1,0));
@@ -125,7 +141,7 @@ test('finite geometry, shared materials, ownership disposal, and complete gate m
   const shared=[...f.lib.materials.values()];for(const m of shared)watch(m);
   const merged=f.kit.finish();
   for(const o of source)assert.equal(watched.get(o),1,'each source geometry disposed once');
-  assert.ok(merged.children.length<=13,'shared material budget');
+  assert.ok(merged.children.length<=17,'shared material budget: retained 13 plus two vestibule and two visible roof finishes');
   for(const mesh of merged.children){for(const a of Object.values(mesh.geometry.attributes))for(const n of a.array)assert.ok(Number.isFinite(n));watch(mesh.geometry);}
   f.kit.dispose(merged);
   for(const m of shared)assert.equal(watched.get(m),0,'library materials remain owned by library');

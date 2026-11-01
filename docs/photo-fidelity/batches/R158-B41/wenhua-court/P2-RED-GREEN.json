@@ -1,0 +1,108 @@
+{
+  "scope": "ISOLATED_REAL_IMPLEMENTATION_MODULE_LOADER_NEGATIVE_CONTROLS_NOT_SYNTHETIC_REPLACEMENT_GEOMETRY",
+  "sourceSHA256": "f89fcb8c4dea871992020c7854ac227bf6f54f82f4a28512670f259f16cdf5ca",
+  "sourceUnmodifiedByControls": true,
+  "rows": [
+    {
+      "id": "all-six-leaves-right",
+      "exactMutation": {
+        "from": "const side=leaf<3?-1:1",
+        "to": "const side=1"
+      },
+      "mutatedSourceSHA256": "5e6a16ada5676be68fc912e99831dc32ae60c60500182b552123ecd01ea631d4",
+      "runs": [
+        {
+          "legacyOnly": true,
+          "exit": 0,
+          "log": "all-six-leaves-right-legacy29-green.tap",
+          "sha256": "42624e7d42eaf1e2540ea4350b6ea381afcaa909c3f93de2a9e371d0fd3c3f84"
+        },
+        {
+          "legacyOnly": false,
+          "exit": 1,
+          "log": "all-six-leaves-right-new-contract-red.tap",
+          "sha256": "b18cd0bc6fd41f82204b11ddde261f365062a86981f02e381a29a1ff236effa1"
+        }
+      ]
+    },
+    {
+      "id": "all-lattice-bars-one-mm",
+      "exactMutation": {
+        "from": "new T.BoxGeometry(hi-lo,.018,.025)",
+        "to": "new T.BoxGeometry(.001,.018,.025)"
+      },
+      "mutatedSourceSHA256": "ae3cea59bc2f58be61ece17dc16a813823053c636711d322e0cf6254f18f55ef",
+      "runs": [
+        {
+          "legacyOnly": true,
+          "exit": 0,
+          "log": "all-lattice-bars-one-mm-legacy29-green.tap",
+          "sha256": "338e5c2f094a634e23f3992953e98bccb57334469ea423387d87ce857352b584"
+        },
+        {
+          "legacyOnly": false,
+          "exit": 1,
+          "log": "all-lattice-bars-one-mm-new-contract-red.tap",
+          "sha256": "d4567e21da61d0203479a0a80350e05245771744e37f5e40ab48914339828ec0"
+        }
+      ]
+    }
+  ],
+  "regressionEvidence": [
+    {
+      "name": "p2-all-red.tap",
+      "sha256": "b2ed2145d3a6bea594ec9b2b2ea3c0be630ec39e94a23b1ce84a3c8a2a0b8777",
+      "gzipSHA256": "075a20c364470325a49d6ad48effe395573b1d032a9f670994a509e0a5166335"
+    },
+    {
+      "name": "p2-green35.tap",
+      "sha256": "432564aa3dbbbe5b8cd9f9dfbec3a15072936f5b987e8f4ad0d19880115d8fa6",
+      "gzipSHA256": "da75d11cfa25926790d3bedc8aed26479da9378c83f9af9ff800065c90775485"
+    },
+    {
+      "name": "p2-focused77-green.tap",
+      "sha256": "262e803810935c2e8b0182dbea230013cc16137b5d7421202ae0cff2586f61c7",
+      "gzipSHA256": "5c43711e67a35abafa67b5c228d8d086402da54b4146c2477b987eaebb784597"
+    },
+    {
+      "name": "all-six-leaves-right-legacy29-green.tap",
+      "sha256": "42624e7d42eaf1e2540ea4350b6ea381afcaa909c3f93de2a9e371d0fd3c3f84",
+      "gzipSHA256": "201a8dc5468228df4ae3bec90d4d39b77ad89bfd103c2bf8e6d111e953972bf3"
+    },
+    {
+      "name": "all-six-leaves-right-new-contract-red.tap",
+      "sha256": "b18cd0bc6fd41f82204b11ddde261f365062a86981f02e381a29a1ff236effa1",
+      "gzipSHA256": "864253294c34cdc49f3f0d8c0837f37f3ceb167e26ed4eb8eebc3f8f048f836f"
+    },
+    {
+      "name": "all-lattice-bars-one-mm-legacy29-green.tap",
+      "sha256": "338e5c2f094a634e23f3992953e98bccb57334469ea423387d87ce857352b584",
+      "gzipSHA256": "307a7874c31a6162d8d39bc6aa758d0862e79c30bd4bf289211abab50ed4cafe"
+    },
+    {
+      "name": "all-lattice-bars-one-mm-new-contract-red.tap",
+      "sha256": "d4567e21da61d0203479a0a80350e05245771744e37f5e40ab48914339828ec0",
+      "gzipSHA256": "e6cf866c0c38c21b64ca112cd112d2fb09a1b45cf5284ca6de4b8e8b8e0abeed"
+    }
+  ],
+  "unmodifiedCandidate": {
+    "dedicatedPassed": 35,
+    "focusedPassed": 77,
+    "failed": 0
+  },
+  "initialRed": {
+    "passed": 30,
+    "failed": 5,
+    "classes": [
+      "own getter-only centralDoors",
+      "inherited getter-only centralDoors",
+      "own setter-only centralDoors",
+      "inherited new-finalizer metadata setter",
+      "actual leaf geometry contact-depth contract"
+    ]
+  },
+  "actualFix": {
+    "metadata": "Reject any accessor or nonwritable inherited/own centralDoors before allocation or mutation; reject inherited finalizer-key descriptors",
+    "geometry": "Shift only four folded leaves +0.03m local Z: closed and folded solids meet at one plane instead of overlapping; actual gap, floor and old equipment unchanged"
+  }
+}

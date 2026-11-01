@@ -1,0 +1,6 @@
+# Limited backup contract
+Freeze the eventual commit, not the live working tree. Base remote may include the already reviewed a32 CPU transport-only 121 docs successor: preserve its 100 chunks and logical reader, do not blindly restore/upload the eight omitted physical gzip originals. Preserve rollback refs; do not modify main/Pages.
+
+Required current source600/QA4416 bytes, all four new offline files, prior upper-contract and predecessor-v2 fixture, complete source-registration/profile closure, package-lock dependencies. The prior v2 fixture is 323488 bytes, compressed SHA b582e5625227fbd5983e8dcca8800734e280451e3494a2da4fc83a3b5643b329. Prior controls replay additionally needs public/textures/hd/manifest.json; do not infer source failure from sparse absence.
+
+Verify logical evidence index and raw/decompressed receipt hashes, actual fresh-clone selected48 command, complete status/title Counter and explicit red controls if run. This is selected offline closure, not all QA: 10 old unavailable Git refs and 38 unexecuted old titles remain P1. Do not manufacture historical objects, weaken original assertions, claim World/GPU/installed support, or infer full green from selected48. Remote status stays PENDING until actual remote ref/tree/blob recovery and real clone validation succeed.

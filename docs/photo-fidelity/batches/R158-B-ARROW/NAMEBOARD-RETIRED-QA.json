@@ -1,0 +1,25 @@
+{
+  "baseCommit": "dcd25459",
+  "finding": "P2_NAMEBOARD_POST_COMMIT_RETIRED_RESOURCE_CLEANUP",
+  "before": "face/border/both real dispose listeners: 3 RED",
+  "after": "54/54 targeted tests pass",
+  "retiredResourcesAttemptedOnce": 2,
+  "aggregateErrorCounts": {
+    "face": 1,
+    "border": 1,
+    "both": 2
+  },
+  "committedStateRetained": true,
+  "errorCode": "ARROW_NAMEBOARD_COMMITTED_CLEANUP_ERROR",
+  "rollbackClaimed": false,
+  "retryRejectedBeforeMutation": true,
+  "otherPlaqueAndAtlasRetained": true,
+  "sharedGoldOwnedUntilNormalTeardown": true,
+  "sourceFiles": {
+    "src/scene/palace/special/ArrowSouthNameboard.js": "b83bac1025ea7c55720c076aecd919dc1fa400bc053d1c9c485351003faf6b95",
+    "tests/r158-arrow-south-nameboard.test.mjs": "508243e5bbb5027bd1d12adc183718cf51b3780bb99b6376435df954c1296ecb"
+  },
+  "productionHookInstalled": false,
+  "browserAcceptance": false,
+  "wholeObjectAccepted": false
+}

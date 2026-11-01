@@ -1,0 +1,32 @@
+{
+  "predecessor": "db1f6d26ac02338f65e99b220ea922418a3a54a7",
+  "testedRuntime": "predecessor + frozen production WIP; later commit does not retroactively make builds clean",
+  "sourceManifest": {
+    "path": "evidence/source-final-1403.json",
+    "sha256": "a17447008cccd56751578d76ac14e326fa6399447d54944b712d05d1f50be383",
+    "count": 591
+  },
+  "qaManifest": {
+    "path": "evidence/qa-final-1403.json",
+    "sha256": "3b80ae6d7387114494aa3409d105e0f442f1e5c2f49ccd4769052f5a7c0d2b1b",
+    "count": 4349
+  },
+  "productionDelta": [
+    {
+      "path": "src/scene/palace/special/WumenLowerBase.js",
+      "candidateSHA256": "d85a585607578f25cfb4e25b8f2db2ba39cd806241498bae1792344c8f52c1f6",
+      "predecessorSHA256": "7ae6df03668ff6e6a1a655e714922a615985954283681cbb7ac6aa2602b0ec4a"
+    },
+    {
+      "path": "src/scene/palace/special/WumenSidePortalFaces.js",
+      "candidateSHA256": "8267ba10d21fe4c8b69a0df1112e9170317b8dfd3a5a3e906aca39dd3f5ea92e",
+      "predecessorSHA256": null
+    }
+  ],
+  "physics": "No new physical rows; actual World complete predecessor hash chain preserved",
+  "goldenPolicy": "All previous golden fixtures unchanged. New before-db1 was captured before production edits and independently replayed from exact pinned predecessor LowerBase.",
+  "historicalPolicy": "Original590-source guard unchanged; new591-source guard verifies exact path set/hashes and fourth predecessor override before strict original historic children. Ten other direct refs remain unavailable.",
+  "cpu": "1349 original label-error round preserved;1353 exact same geometric rows with corrected footer and new source identity. No GPU claims.",
+  "oldQAAdaptations": "7 exact old-test paths changed narrowly:4 runner imports,2 width-comparison imports,1 CPU triangle expected count49152\u219249536. Original assertions otherwise retained; see independent successor-scope audit.",
+  "readbackPending": true
+}

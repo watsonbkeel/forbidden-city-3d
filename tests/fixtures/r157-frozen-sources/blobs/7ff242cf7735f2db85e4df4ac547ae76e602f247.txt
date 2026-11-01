@@ -1,0 +1,12 @@
+import actors from './actors.json' with {type:'json'};
+import templates from './templates.json' with {type:'json'};
+import anchors from './anchors.json' with {type:'json'};
+import surfaces from './surfaces.json' with {type:'json'};
+import seats from './seats.json' with {type:'json'};
+import paths from './paths.json' with {type:'json'};
+import ceremonies from './ceremonies.json' with {type:'json'};
+import evidence from './evidence.json' with {type:'json'};
+import scope from './scope.json' with {type:'json'};
+const freeze=value=>{if(value&&typeof value==='object'){Object.values(value).forEach(freeze);Object.freeze(value);}return value;};
+export const CHARACTER_REGISTRY=freeze({...actors,templates,anchors,surfaces,seats,paths,ceremonies,evidence,scope});
+export default CHARACTER_REGISTRY;

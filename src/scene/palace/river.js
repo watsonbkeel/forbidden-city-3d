@@ -6,8 +6,10 @@
  *
  * 数据（docs/research/dimensions.md:85，D1 量算，conf 中）：
  * - 中桥中心 (0.7, −310.8)；其余四桥 x = ±13、±30
- * - 单桥宽 6.1–8.1、桥长 20.6–23.0（未分桥给出）→ 桥宽统一取下限 6.1（中桥 ±3.05 时 regression 的
- *   BRIDGE_RAIL_X = 2.5 仍落在桥栏碰撞内），桥长取 21
+ * - 单桥宽 6.1–8.1、桥长 20.6–23.0（未分桥给出）。1982年故宫桥文与自身俯视图明确
+ *   中御桥最宽、最长、最高；中央8.1×23 / crest1.05仅为这个可见等级关系的工程拟合，非测绘。
+ *   四侧桥仍6.1×21 / crest.9；不以旧regression固定x2.5探针反推中央栏位。
+ * - 中桥bankSamplingWidth保留旧6.1，仅锁住既有河岸采样节点，不限制实际桥宽/通行。
  * - 河道东西长 / 南北宽、弓形河身：未查到实测，估（Layout.js 河段 100 × 15）
  */
 
@@ -15,7 +17,7 @@
 export const JINSHUI_BRIDGES = [
   { dx: -30, width: 6.1 },
   { dx: -13, width: 6.1 },
-  { dx: 0, width: 6.1 },
+  { dx: 0, width: 8.1, length: 23, crest: 1.05, bankSamplingWidth: 6.1 },
   { dx: 13, width: 6.1 },
   { dx: 30, width: 6.1 },
 ];

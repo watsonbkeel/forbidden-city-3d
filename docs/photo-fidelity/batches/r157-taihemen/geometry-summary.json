@@ -1,0 +1,80 @@
+{
+  "kind": "ACTUAL_PRODUCTION_GATE_MERGE_CPU_DIAGNOSTIC_NOT_BROWSER",
+  "base": "c9b25a71",
+  "captureHEAD": "c9b25a712e286877f2abbc88f4522add3fc0caea",
+  "sourceHashes": {
+    "src/scene/Layout.js": "bf1165d6d0c8fd2cad21d5ae6d99fe2d6af6ec66983282b6a2537c05de6427f2",
+    "src/scene/palace/special/TaihemenEnclosure.js": "f5841a1ae00028891301afb24553e955054643bb7a3fd6cb90be25c640260f16",
+    "src/scene/palace/special/TaihemenSouthCeiling.js": "9ced3edd9fc15b419b46bce91a511efb7e818f0a76d9e030aa0dd62711799ab7",
+    "src/scene/PalaceBuilder.js": "cbdb47c33a2726701bb76ba75a9eb35f2bbd1145ad2c2af75d682dd277211f97",
+    "src/utils/MergeUtils.js": "c05e4cb0447433b83c7d14c0c5996e96a5b080fa474f667a87c93d6f3f1011c6"
+  },
+  "baselineMethod": "Current production code with only the single new ceiling call removed in memory; no model repair or old roof substitution.",
+  "gpuAcceptance": false,
+  "sourceCameraMatched": false,
+  "states": {
+    "before": {
+      "meshes": 18,
+      "triangles": 16824,
+      "geometryBytes": 1614792,
+      "materials": 18,
+      "buildMergeSamplesMs": [
+        47.604085999999995,
+        44.081368,
+        45.32441399999999,
+        43.809349999999995,
+        40.241224000000045
+      ],
+      "buildMergeMedianMs": 44.081368,
+      "geometryHash": "c0b40b8089076cb74e1f4fd8e5c092ae9e711043de66521056cefeadeb855ae9",
+      "retainedTrianglesHash": "c0b40b8089076cb74e1f4fd8e5c092ae9e711043de66521056cefeadeb855ae9",
+      "collidersHash": "1838e78c09419fe842e5b40cfaf079d8d5b370e1ce96a6e974f64dda370ffe70",
+      "walkablesHash": "5bc9a6ff88b090d3e10b4b2344722b2f2fe7b66a5642782df16b71e3ff0be214"
+    },
+    "after": {
+      "meshes": 21,
+      "triangles": 18516,
+      "geometryBytes": 1777224,
+      "materials": 21,
+      "buildMergeSamplesMs": [
+        41.93423500000006,
+        44.83190400000001,
+        45.79143499999998,
+        44.22606499999995,
+        45.788531000000035
+      ],
+      "buildMergeMedianMs": 44.83190400000001,
+      "geometryHash": "578199e10fa9fdb783e93ed118174f85cbe6faa5463d4f36d0c87f9e7652a7d1",
+      "retainedTrianglesHash": "c0b40b8089076cb74e1f4fd8e5c092ae9e711043de66521056cefeadeb855ae9",
+      "collidersHash": "1838e78c09419fe842e5b40cfaf079d8d5b370e1ce96a6e974f64dda370ffe70",
+      "walkablesHash": "5bc9a6ff88b090d3e10b4b2344722b2f2fe7b66a5642782df16b71e3ff0be214",
+      "existingWorld": {
+        "fieldProbes": 7,
+        "primaryFrameProbes": 8,
+        "minimumRecess": 0.1120004653930664,
+        "minimumHeadroom": 6.808383522033692,
+        "scope": "SOUTH_PORCH_TOPOLOGY_FIT_ONLY_NO_BROWSER_OR_WHOLE_HALL_ACCEPTANCE"
+      }
+    }
+  },
+  "delta": {
+    "meshes": 3,
+    "triangles": 1692,
+    "geometryBytes": 162432,
+    "materials": 3
+  },
+  "retained": {
+    "retainedTrianglesHash": true,
+    "collidersHash": true,
+    "walkablesHash": true
+  },
+  "costBoundary": "Node component construction+merge only; not browser/GPU draw calls, frame rate, device memory or whole-scene speed",
+  "disposition": "WITHDRAWN_6665a502_CANDIDATE_ONLY_NOT_CURRENT_PRODUCTION",
+  "withdrawalReason": "Foreground coffer longitudinal placement and seven-bay extent not source-registered; physical rendering in production was removed by parent decision.",
+  "currentProductionGeometryDelta": {
+    "meshes": 0,
+    "triangles": 0,
+    "geometryBytes": 0,
+    "materials": 0
+  }
+}

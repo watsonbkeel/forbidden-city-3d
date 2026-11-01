@@ -1,0 +1,29 @@
+{
+  "scope": "Taihemen C cumulative live current-state suite versus complete Arrow0451 (prior instruments partitioned suite independently confirmed identical failure multiset); no claim all green or identical underlying failure causes",
+  "baselineLog": "/workspace/scratch/02a8023d1a85/r158-arrow-integration-evidence-0441/full-current-state-0451.log",
+  "baselineLogSHA256": "a600dbbb23faf5442e881338f12f919c38626d51e82e3b700dfcbc347685a468",
+  "candidateLog": "/workspace/scratch/02a8023d1a85/r157-taihemen-c-integration-evidence-0537/full-current-state-0601.log",
+  "candidateLogSHA256": "5003401e76bff3727f1775955adb7dcffbccce842476026f5effa9466969ee74",
+  "baseline": {
+    "tests": 1313,
+    "pass": 1103,
+    "fail": 210,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "candidate": {
+    "tests": 1239,
+    "pass": 1029,
+    "fail": 210,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "newFailureNames": [
+    "tests/current-state/zhaode-gate-routes.test.mjs"
+  ],
+  "removedFailureNames": [
+    "V7 historical routes retain exact descriptors with only the later Qin’an and R6 Ningshou replacements isolated"
+  ],
+  "sourceManifest": "source-live-0556.json",
+  "sameTestCount": false
+}

@@ -1,0 +1,11 @@
+from pathlib import Path
+import json,hashlib,subprocess,datetime,time,resource
+r=Path.cwd();out=r.parent/'wumen-joint-recovery-1607/upper-reassembly-2034/assembly-task2-2323';head=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip();H=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+files=['scripts/photo-fidelity/batches/wumen-joint-layout/'+n for n in ['assembly-contract.json','assembly-contract.mjs','upper-assembly.mjs','upper-baseline.mjs','upper-contract.json','upper-contract.mjs','roof-section-evaluator.mjs','roof-section-surfaces.mjs','roof-section-trims.mjs','visible-platform.mjs']]+['tests/photo-fidelity/batches/wumen-joint-layout/'+n for n in ['assembly-contract.test.mjs','upper-assembly.test.mjs']]+['tests/lib/gate-tower-fixture.mjs','tests/fixtures/wumen-joint-layout/upper-predecessor-a32-v2.json.gz']
+for name,paths in [('freeze-2347',files),('source-2347',[str(p.relative_to(r)) for d in ['src','data'] for p in (r/d).rglob('*') if p.is_file()]),('qa-2347',[str(p.relative_to(r)) for d in ['tests','scripts'] for p in (r/d).rglob('*') if p.is_file()])]:
+ assert all(not (r/p).is_symlink() for p in paths)
+ data={'head':head,'count':len(paths),'files':{p:H(r/p) for p in sorted(paths)}};(out/(name+'.json')).write_text(json.dumps(data,indent=2)+'\n')
+cmd=['node','--max-old-space-size=384','--test','--test-reporter=tap','--test-concurrency=1','tests/photo-fidelity/batches/wumen-joint-layout/assembly-contract.test.mjs','tests/photo-fidelity/batches/wumen-joint-layout/upper-assembly.test.mjs'];started=datetime.datetime.now(datetime.timezone.utc).isoformat();t=time.monotonic()
+with (out/'final-36.tap').open('wb') as f: proc=subprocess.run(cmd,cwd=r,stdout=f,stderr=subprocess.STDOUT)
+(out/'final-36.exit').write_text(str(proc.returncode)+'\n');(out/'final-36.resource.json').write_text(json.dumps({'command':cmd,'cwd':str(r),'started':started,'elapsedSeconds':time.monotonic()-t,'exit':proc.returncode,'maxRSSKiB':resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss,'node':subprocess.check_output(['node','--version'],text=True).strip(),'scope':'UNINSTALLED_COMPLETE_VISIBLE_COMPONENT_NO_CM_REGISTRATION_FP_WORLD_CPU'},indent=2)+'\n')
+print(proc.returncode)

@@ -1,3 +1,4 @@
+import {buildJiaotaiFrontVessels} from './JiaotaiFrontVessels.js';
 import * as THREE from 'three';
 import {buildJiaotaiBackdrop} from './JiaotaiCentralInterior.js';
 import {installJiaotaiTextileMaps,jiaotaiClothUV} from './JiaotaiTextileSurfaces.js';
@@ -138,5 +139,8 @@ export function buildJiaotaiDisplaySetting(builder,shell,{x0,y,ztb0,ztb1,thW}) {
   const screenBounds=new THREE.Box3().setFromObject(screen);
   builder.col(...screenBounds.min.toArray(),...screenBounds.max.toArray());
   record.colliders.push({owner:screen.name,min:screenBounds.min.toArray(),max:screenBounds.max.toArray()});
+  if (x0 === 0 && y === 2.16 && z0 === 354.1) {
+    buildJiaotaiFrontVessels(builder, shell);
+  }
   return record;
 }

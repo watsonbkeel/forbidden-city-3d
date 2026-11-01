@@ -1,0 +1,17 @@
+{
+  "command": [
+    "node",
+    "--expose-gc",
+    "--max-old-space-size=896",
+    "--import",
+    "/tmp/r159-cumulative-evidence-0854/instrument-memory-observer.mjs",
+    "--test",
+    "--test-reporter=tap",
+    "tests/photo-fidelity/batches/taihe-instruments-world.test.mjs"
+  ],
+  "returncode": 1,
+  "elapsedSeconds": 20.9134537470527,
+  "maxRSSKiB": 1744584,
+  "userSeconds": 45.38367,
+  "systemSeconds": 1.148812
+}

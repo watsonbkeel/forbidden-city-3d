@@ -1,0 +1,221 @@
+{
+  "scope": "Independent postprocessing of frozen author actual-0019 records; no reconstruction/World",
+  "inputSHA256": {
+    "pairs.ndjson": "07b19d590be9c9e9246142065e6a508aac30639f56f61ce3410b989b4af2afec",
+    "entities.ndjson": "2dd345f68eb9690aaace00486db260c8c4a071a4a7ae3f783878306969dcb176",
+    "summary.json": "47bc91194b5bdb583151eff7f07c156effc38bc2516f6c68f8b280eb7caf97ed"
+  },
+  "entityCounts": {
+    "axis/wumen-upper-tower": {
+      "triangles": 16624,
+      "degenerate": 84
+    },
+    "INSTANCE-A-WUMEN-EAST-NORTH-PAVILION": {
+      "triangles": 3676,
+      "degenerate": 0
+    },
+    "INSTANCE-A-WUMEN-EAST-SOUTH-PAVILION": {
+      "triangles": 3160,
+      "degenerate": 0
+    },
+    "INSTANCE-A-WUMEN-WEST-NORTH-PAVILION": {
+      "triangles": 3160,
+      "degenerate": 0
+    },
+    "INSTANCE-A-WUMEN-WEST-SOUTH-PAVILION": {
+      "triangles": 3160,
+      "degenerate": 0
+    },
+    "FC-B0439D9BED": {
+      "triangles": 2384,
+      "degenerate": 0
+    },
+    "FC-FB99F593DB": {
+      "triangles": 2384,
+      "degenerate": 0
+    },
+    "wumen-transverse-link-east": {
+      "triangles": 812,
+      "degenerate": 0
+    },
+    "wumen-transverse-link-west": {
+      "triangles": 812,
+      "degenerate": 0
+    }
+  },
+  "pairs": [
+    {
+      "id": "INSTANCE-A-WUMEN-EAST-NORTH-PAVILION/wing-junction",
+      "total": 8763584,
+      "candidates": 1653,
+      "recordSetEqual": true,
+      "classes": {
+        "SEPARATED_STABLE": 1244,
+        "TRANSVERSE_INTERSECTION": 361,
+        "NUMERIC_BOUNDARY_UNRESOLVED": 48
+      },
+      "minimumAllTriangleAABBSquaredDistance": null,
+      "minimumBoundPair": null
+    },
+    {
+      "id": "INSTANCE-A-WUMEN-EAST-SOUTH-PAVILION/wing-junction",
+      "total": 7533440,
+      "candidates": 1653,
+      "recordSetEqual": true,
+      "classes": {
+        "SEPARATED_STABLE": 1257,
+        "TRANSVERSE_INTERSECTION": 361,
+        "NUMERIC_BOUNDARY_UNRESOLVED": 35
+      },
+      "minimumAllTriangleAABBSquaredDistance": null,
+      "minimumBoundPair": null
+    },
+    {
+      "id": "INSTANCE-A-WUMEN-WEST-NORTH-PAVILION/wing-junction",
+      "total": 7533440,
+      "candidates": 1653,
+      "recordSetEqual": true,
+      "classes": {
+        "SEPARATED_STABLE": 1271,
+        "TRANSVERSE_INTERSECTION": 361,
+        "NUMERIC_BOUNDARY_UNRESOLVED": 21
+      },
+      "minimumAllTriangleAABBSquaredDistance": null,
+      "minimumBoundPair": null
+    },
+    {
+      "id": "INSTANCE-A-WUMEN-WEST-SOUTH-PAVILION/wing-junction",
+      "total": 7533440,
+      "candidates": 1653,
+      "recordSetEqual": true,
+      "classes": {
+        "SEPARATED_STABLE": 1271,
+        "TRANSVERSE_INTERSECTION": 361,
+        "NUMERIC_BOUNDARY_UNRESOLVED": 21
+      },
+      "minimumAllTriangleAABBSquaredDistance": null,
+      "minimumBoundPair": null
+    },
+    {
+      "id": "wumen-transverse-link-east/main",
+      "total": 13498688,
+      "candidates": 0,
+      "recordSetEqual": true,
+      "classes": {},
+      "minimumAllTriangleAABBSquaredDistance": 0.030624870658057902,
+      "minimumBoundPair": [
+        "axis/wumen-upper-tower|main-body|0|group-1|index6",
+        "wumen-transverse-link-east|link|18|group-1|index288"
+      ]
+    },
+    {
+      "id": "wumen-transverse-link-east/pavilion",
+      "total": 2984912,
+      "candidates": 368,
+      "recordSetEqual": true,
+      "classes": {
+        "TRANSVERSE_INTERSECTION": 188,
+        "SEPARATED_STABLE": 180
+      },
+      "minimumAllTriangleAABBSquaredDistance": null,
+      "minimumBoundPair": null
+    },
+    {
+      "id": "wumen-transverse-link-west/main",
+      "total": 13498688,
+      "candidates": 0,
+      "recordSetEqual": true,
+      "classes": {},
+      "minimumAllTriangleAABBSquaredDistance": 0.030624870658057902,
+      "minimumBoundPair": [
+        "axis/wumen-upper-tower|main-body|1|group-1|index0",
+        "wumen-transverse-link-west|link|18|group-1|index0"
+      ]
+    },
+    {
+      "id": "wumen-transverse-link-west/pavilion",
+      "total": 2565920,
+      "candidates": 368,
+      "recordSetEqual": true,
+      "classes": {
+        "SEPARATED_STABLE": 180,
+        "TRANSVERSE_INTERSECTION": 188
+      },
+      "minimumAllTriangleAABBSquaredDistance": null,
+      "minimumBoundPair": null
+    }
+  ],
+  "independentStablePlaneCut": [
+    {
+      "author": "SEPARATED",
+      "independent": "SEPARATED",
+      "count": 5403
+    },
+    {
+      "author": "INTERSECTION",
+      "independent": "INTERSECTION",
+      "count": 1820
+    }
+  ],
+  "stableDisagreements": [],
+  "authorUnresolvedRetained": 125,
+  "distanceWitnesses": [
+    {
+      "pair": [
+        "axis/wumen-upper-tower",
+        "wumen-transverse-link-east"
+      ],
+      "distance": 0.1749996304512038,
+      "allTriangleAABBSquaredLowerBound": 0.030624870658057902,
+      "witnessSquaredDistance": 0.030624870658057902,
+      "boundEqualsWitness": true,
+      "barycentricWitnesses": [
+        {
+          "barycentric": [
+            0.5322558585850179,
+            0.2881619095912788,
+            0.1795822318237033
+          ],
+          "planeResidual": 0.0
+        },
+        {
+          "barycentric": [
+            2.220446049250313e-16,
+            -2.0738659411737363e-16,
+            1.0
+          ],
+          "planeResidual": 0.0
+        }
+      ]
+    },
+    {
+      "pair": [
+        "axis/wumen-upper-tower",
+        "wumen-transverse-link-west"
+      ],
+      "distance": 0.1749996304512038,
+      "allTriangleAABBSquaredLowerBound": 0.030624870658057902,
+      "witnessSquaredDistance": 0.030624870658057902,
+      "boundEqualsWitness": true,
+      "barycentricWitnesses": [
+        {
+          "barycentric": [
+            -2.220446049250313e-16,
+            0.2881619095912788,
+            0.7118380904087214
+          ],
+          "planeResidual": 0.0
+        },
+        {
+          "barycentric": [
+            0.1953482030142355,
+            0.8046517969857645,
+            2.7195285274511323e-17
+          ],
+          "planeResidual": 0.0
+        }
+      ]
+    }
+  ],
+  "seconds": 4.602252024000336
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="description" content="独立、非官方的故宫3D浏览器漫游项目，由陈华山与陈诺创作。查看项目范围、资料依据、拟合限制和开源贡献方式。">
+  <link rel="canonical" href="https://tour.bkeel.com/gugong/">
+  <meta property="og:title" content="故宫3D虚拟游览 | Forbidden City 3D Tour">
+  <meta property="og:description" content="Independent, unofficial browser-based Forbidden City tour. Explore the project, its evidence and modelling limits.">
+  <meta property="og:url" content="https://tour.bkeel.com/gugong/">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "故宫3D虚拟游览 / Forbidden City 3D Tour", "url": "https://tour.bkeel.com/gugong/", "applicationCategory": "GameApplication", "operatingSystem": "Web browser", "description": "Independent, unofficial browser-based virtual tour using procedural architecture and optional bundled GLB interiors. Modelling fits are not measured restoration.", "author": [{"@type": "Person", "name": "陈华山"}, {"@type": "Person", "name": "陈诺"}], "sameAs": "https://github.com/watsonbkeel/forbidden-city-3d", "license": "https://github.com/watsonbkeel/forbidden-city-3d/blob/main/LICENSE", "inLanguage": ["zh-CN", "en"]}</script>
+  <title>故宫 3D 虚拟游览 | Forbidden City 3D Tour</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23a3201c'/%3E%3Cpath d='M4 13h24l-3-5H7z' fill='%23e8b33a'/%3E%3Crect x='7' y='14' width='18' height='12' fill='%23e8b33a'/%3E%3Crect x='13' y='18' width='6' height='8' fill='%23a3201c'/%3E%3C/svg%3E">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.js",
+        "three/examples/jsm/": "https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module" crossorigin src="/forbidden-city-3d/assets/index-DJPJQCb0.js"></script>
+  <link rel="stylesheet" crossorigin href="/forbidden-city-3d/assets/index-B1n7_wTD.css">
+  <meta name="palace-build-id" content="R146-fix-479261a4c4e0">
+  <meta name="palace-source-fingerprint" content="a5983c3a8b140b5693d6327a97f4c42cbc47345cb9a1e867f20e2146a2a1c996">
+  <meta name="palace-build-base" content="/forbidden-city-3d/">
+</head>
+<body>
+  <!-- 加载界面 -->
+  <div id="loading-screen">
+    <div class="loading-content">
+      <h1>故宫 3D 虚拟游览</h1>
+      <div class="progress-container">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+      <p id="progress-text">加载中... 0%</p>
+      <p id="release-loading">R146-fix · 构建 479261a4c4e0</p>
+    </div>
+  </div>
+
+  <!-- 欢迎提示（桌面端） -->
+  <div id="welcome-overlay" class="welcome-overlay">
+    <div class="welcome-content">
+      <h2>欢迎来到故宫</h2>
+      <p class="project-summary">独立、非官方的故宫3D虚拟游览，由陈华山与陈诺创作。官方资料、照片拟合与游戏改编分别标注，不等于测绘复原。</p>
+      <p class="project-summary" lang="en">An independent, unofficial Forbidden City browser tour. Read the evidence and modelling limits, or contribute a correction.</p>
+      <nav class="project-discovery" aria-label="项目说明与贡献"><a href="./about.html" target="_blank" rel="noopener">项目与资料 / About</a><a href="./contribute.html" target="_blank" rel="noopener">参与改进 / Contribute</a></nav>
+      <p>点击屏幕开始游览</p>
+      <div class="controls-hint">
+        <div class="hint-item">
+          <strong>WASD / 方向键</strong>
+          <span>移动</span>
+        </div>
+        <div class="hint-item">
+          <strong>鼠标</strong>
+          <span>视角</span>
+        </div>
+        <div class="hint-item">
+          <strong>Shift</strong>
+          <span>冲刺</span>
+        </div>
+        <div class="hint-item">
+          <strong>空格</strong>
+          <span>跳跃</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <noscript><section class="no-script-project"><h1>故宫3D虚拟游览</h1><p>独立、非官方项目，作者陈华山、陈诺。交互漫游需要JavaScript与WebGL，项目说明无需启用脚本。</p><p lang="en">The interactive tour requires JavaScript and WebGL. Project information and contribution guidance remain readable without scripts.</p><a href="./about.html">项目说明 / About</a> · <a href="./contribute.html">参与改进 / Contribute</a></section></noscript>
+
+  <!-- 主场景容器 -->
+  <div id="scene-container"></div>
+
+  <!-- Three.js 核心库 -->
+
+
+  <!-- 主程序入口 -->
+</body>
+</html>

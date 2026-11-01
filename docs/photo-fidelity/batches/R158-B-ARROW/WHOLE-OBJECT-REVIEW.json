@@ -1,0 +1,140 @@
+{
+  "entityId": "FC-AF36D75128",
+  "baseCommit": "3e9d5c92",
+  "sourceAuditPath": "docs/photo-fidelity/B-REVIEW/required-feature-audit/R59-B-REQUIRED-FEATURE-MATRIX.json.gz",
+  "originalActualChanges": [
+    {
+      "internalBatch": "R59-B-1",
+      "productionCheckpoint": "799390a",
+      "worldFunctionalResult": "PASS",
+      "browserAccepted": false,
+      "wholeObjectAccepted": false,
+      "changeId": "south-central-paired-knees",
+      "scope": "Two observed south central knees, +88 actual triangles; same structural colliders/supports. Full exterior/interior and browser acceptance remain open.",
+      "evidence": "reports/r59-arrow-south-knees",
+      "validatedSourceCommit": "5708d459aeb4da1f10409823c8dab5c3ab881c3a",
+      "worldEvidence": "reports/r59-b-batch1/one-world-validation.json.gz",
+      "sourceManifest": "data/characters/world-source-freeze-r59-b-batch1.json",
+      "worldSummary": "reports/r59-b-batch1/SUMMARY.json"
+    }
+  ],
+  "wholeObjectAccepted": false,
+  "status": "PARTIAL_VERIFY_PENDING",
+  "originalStatesChanged": false,
+  "newImplementedScope": "Eight retained south secondary closed-leaf upper surface cues only; 64 old orthogonal meshes replaced with eight diagonal and eight opaque dark meshes; exact pattern and glazing unresolved",
+  "features": {
+    "exterior": [
+      {
+        "featureId": "footprint_orientation_court_connections",
+        "originalState": "UNREVIEWED",
+        "accepted": false,
+        "classification": "EXISTING_REQUIRES_BROWSER",
+        "stateChangeProposed": null
+      },
+      {
+        "featureId": "storeys_roof_type_ridge_pitch_eaves_colour",
+        "originalState": "UNREVIEWED",
+        "accepted": false,
+        "classification": "EXISTING_REQUIRES_BROWSER",
+        "stateChangeProposed": null
+      },
+      {
+        "featureId": "bays_columns_brackets_beams_paint_zones",
+        "originalState": "DIFFED",
+        "accepted": false,
+        "classification": "EXISTING_REQUIRES_BROWSER",
+        "stateChangeProposed": null
+      },
+      {
+        "featureId": "doors_windows_openings_walls_screens",
+        "originalState": "UNREVIEWED",
+        "accepted": false,
+        "classification": "EXISTING_REQUIRES_BROWSER",
+        "stateChangeProposed": null
+      },
+      {
+        "featureId": "terrace_steps_imperial_ramp_rails_posts",
+        "originalState": "UNREVIEWED",
+        "accepted": false,
+        "classification": "EXISTING_REQUIRES_BROWSER",
+        "stateChangeProposed": null
+      },
+      {
+        "featureId": "porches_corridors_ear_rooms_rear_halls_vertical_joins",
+        "originalState": "UNREVIEWED",
+        "accepted": false,
+        "classification": "EXISTING_REQUIRES_BROWSER",
+        "stateChangeProposed": null
+      },
+      {
+        "featureId": "plaques_text_placement_orientation_occlusion",
+        "originalState": "UNREVIEWED",
+        "accepted": false,
+        "classification": "EXISTING_REQUIRES_BROWSER",
+        "stateChangeProposed": null
+      },
+      {
+        "featureId": "unique_courtyard_facilities_locations",
+        "originalState": "UNREVIEWED",
+        "accepted": false,
+        "classification": "EXISTING_REQUIRES_BROWSER",
+        "stateChangeProposed": null
+      },
+      {
+        "featureId": "south-central-paired-knees",
+        "originalState": "PARTIAL",
+        "accepted": false,
+        "classification": "IMPLEMENTED_VERIFY_PENDING",
+        "stateChangeProposed": null
+      }
+    ],
+    "interior": [
+      {
+        "featureId": "room_partitions_portals_column_grid_levels_steps_floor",
+        "originalState": "UNREVIEWED",
+        "accepted": false,
+        "classification": "EXISTING_REQUIRES_BROWSER",
+        "stateChangeProposed": null
+      },
+      {
+        "featureId": "ceilings_caissons_frames_paint_screens_fixed_joinery",
+        "originalState": "UNREVIEWED",
+        "accepted": false,
+        "classification": "FEATURE_SOURCE_GAP",
+        "stateChangeProposed": null
+      },
+      {
+        "featureId": "principal_furniture_type_count_location_facing_scale",
+        "originalState": "UNREVIEWED",
+        "accepted": false,
+        "classification": "FEATURE_SOURCE_GAP",
+        "stateChangeProposed": null
+      },
+      {
+        "featureId": "pictures_couplets_mirrors_lights_curtains_ornament_relations",
+        "originalState": "UNREVIEWED",
+        "accepted": false,
+        "classification": "FEATURE_SOURCE_GAP",
+        "stateChangeProposed": null
+      },
+      {
+        "featureId": "function_specificity_worship_library_residential_exhibition",
+        "originalState": "UNREVIEWED",
+        "accepted": false,
+        "classification": "FEATURE_SOURCE_GAP",
+        "stateChangeProposed": null
+      },
+      {
+        "featureId": "visible_missing_objects_and_unsupported_model_objects",
+        "originalState": "UNREVIEWED",
+        "accepted": false,
+        "classification": "EXISTING_REQUIRES_BROWSER",
+        "stateChangeProposed": null
+      }
+    ]
+  },
+  "reviewTable": "REVIEW.md",
+  "browserAcceptance": false,
+  "additionalImplementedScope": "Independent removal of unsupported generic central Arrow label: two source meshes, 14 triangles and one atlas record only; dated photographed state, not live present-day assertion; museum sign remains unlocated and unbuilt",
+  "additionalReview": "NAMEBOARD-REVIEW.md"
+}

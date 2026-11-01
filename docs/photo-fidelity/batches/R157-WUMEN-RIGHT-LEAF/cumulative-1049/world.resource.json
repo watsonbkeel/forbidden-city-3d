@@ -1,0 +1,18 @@
+{
+  "command": [
+    "node",
+    "--expose-gc",
+    "--max-old-space-size=1024",
+    "--test",
+    "--test-reporter=tap",
+    "--test-concurrency=1",
+    "tests/photo-fidelity/batches/wumen-right-leaf-world.test.mjs",
+    "tests/r159/cumulative-world.test.mjs"
+  ],
+  "cwd": "/workspace/scratch/02a8023d1a85/r158-arrow-integrate",
+  "returncode": 0,
+  "elapsedSeconds": 27.27063043299131,
+  "maxRSSKiB": 1659864,
+  "userSeconds": 48.90018,
+  "systemSeconds": 2.385346
+}

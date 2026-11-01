@@ -1,3 +1,4 @@
+import {applyAxialNorthPanels,applyAxialPlainDoorBacks} from './AxialNorthPanels.js';
 import * as THREE from 'three';
 import {buildStuddedDoor} from '../../HallKit.js';
 import {prunePavilionCoveredFaces} from '../../../render/PavilionRenderGeometry.js';
@@ -78,8 +79,10 @@ export function buildZhenduGate(kit,item) {
   f.userData.structure={...serializable,gateKind:'three-bay',streamLayer:'B',storeys:1,eaveCount:1,coreBayCount:3,portalCount:1,surroundingVeranda:true,provisionalLateralBayClosures:true,
     openState:open?'playable-open':'closed',visitorPolicy:'Playable continuity is not museum access permission.',
     dimensions:{status:'HISTORIC_DOCUMENT_PLUS_PHOTO_FIT',documentary:g.documentary,derived:g.derived,photoFit:g.photoFit,assumptions:g.assumptions},
-    roofBounds:{min:bounds.min.toArray(),max:bounds.max.toArray(),space:'world',mainRidgeCapY:g.roof.ridgeWorldY},comparisonStatus:'VERIFY_PENDING; cropped source only, rear/plan/interior unresolved'};
+    roofBounds:{min:bounds.min.toArray(),max:bounds.max.toArray(),space:'world',mainRidgeCapY:g.roof.ridgeWorldY},comparisonStatus:'VERIFY_PENDING; own north paint/plain back fitted; full plan, door depth and interior unresolved'};
+  applyAxialPlainDoorBacks(kit,f);
   f.userData.structure.pruning=prunePavilionCoveredFaces(f,boxes);
+  f.userData.structure.northPanelApplied=applyAxialNorthPanels(kit,f);
   return g.wallGapWidth;
 
   function rail(from,to){

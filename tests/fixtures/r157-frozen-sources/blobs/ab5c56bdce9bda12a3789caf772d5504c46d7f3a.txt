@@ -1,0 +1,17 @@
+import * as T from 'three';
+/** Local flat photo-color fit on real backing faces. No bitmap, pierced holes,
+ * relief claim, vertex-color opt-in, shared material mutation or new support. */
+export function ciningGatePaint(kit){
+ const palette={red:0x9b4735,dark:0x342b22,gold:0xbd9f5b,green:0x3c7d6a,blue:0x2f527c},body={},paint={};
+ for(const [name,color]of Object.entries(palette)){body[name]=new T.MeshStandardMaterial({name:`cining_gate_${name}_photo_fit`,color,roughness:.82});paint[name]=new T.MeshStandardMaterial({name:`cining_gate_flush_${name}`,color,roughness:.82,side:T.DoubleSide,polygonOffset:true,polygonOffsetFactor:name==='gold'?-3:-1,polygonOffsetUnits:name==='gold'?-3:-1});kit.owned.push(body[name],paint[name]);}
+ function draw(owner){owner.geometry.computeBoundingBox();const b=owner.geometry.boundingBox,rows=new Map();function polygon(q,color){if(q.length<3)return;if(!rows.has(color))rows.set(color,[]);const p=rows.get(color);for(let i=1;i<q.length-1;i++)for(const [x,y]of[q[0],q[i],q[i+1]])p.push(x,y,b.min.z);}
+  function rect(x,y,w,h,color){polygon([[x-w/2,y-h/2],[x+w/2,y-h/2],[x+w/2,y+h/2],[x-w/2,y+h/2]],color)}
+  function line(x0,y0,x1,y1,width,color,clip){const dx=x1-x0,dy=y1-y0,l=Math.hypot(dx,dy);if(!l)return;const nx=-dy/l*width/2,ny=dx/l*width/2;let q=[[x0+nx,y0+ny],[x1+nx,y1+ny],[x1-nx,y1-ny],[x0-nx,y0-ny]];for(const [axis,limit,sign]of[[0,clip.x0,1],[0,clip.x1,-1],[1,clip.y0,1],[1,clip.y1,-1]]){const next=[];for(let i=0;i<q.length;i++){const a=q[i],v=q[(i+1)%q.length],ia=sign*(a[axis]-limit)>=0,iv=sign*(v[axis]-limit)>=0;if(ia)next.push(a);if(ia!==iv){const t=(limit-a[axis])/(v[axis]-a[axis]);next.push([a[0]+(v[0]-a[0])*t,a[1]+(v[1]-a[1])*t]);}}q=next;if(!q.length)return;}polygon(q,color);}
+  function frame(x,y,w,h,color,width=.02){rect(x,y-h/2+width/2,w,width,color);rect(x,y+h/2-width/2,w,width,color);rect(x-w/2+width/2,y,width,h,color);rect(x+w/2-width/2,y,width,h,color);}
+  function finish(){for(const [color,points]of rows){const geometry=new T.BufferGeometry();geometry.setAttribute('position',new T.Float32BufferAttribute(points,3));geometry.computeVertexNormals();const m=new T.Mesh(geometry,paint[color]);m.userData={role:'cining-gate-flat-photo-field',ciningGate:true,ciningGatePaint:color,representation:'FLAT_COLOR_FIT_NOT_EXACT_CARVING_OR_PIERCED_LATTICE'};owner.add(m);}}
+  return{b,rect,line,frame,finish};
+ }
+ function window(owner){owner.material=body.red;const d=draw(owner),b=d.b,w=b.max.x-b.min.x,h=b.max.y-b.min.y,cx=(b.min.x+b.max.x)/2,cy=(b.min.y+b.max.y)/2;d.frame(cx,cy,w-.04,h-.04,'gold',.018);const clip={x0:b.min.x+.10,x1:b.max.x-.10,y0:b.min.y+.23,y1:b.max.y-.10},height=clip.y1-clip.y0;d.rect(cx,(clip.y0+clip.y1)/2,clip.x1-clip.x0,height,'dark');for(const sign of[-1,1])for(let off=-height;off<w+height;off+=.25)d.line(b.min.x+off,clip.y0,b.min.x+off+sign*height*.48,clip.y1,.014,'gold',clip);d.frame(cx,(clip.y0+clip.y1)/2,clip.x1-clip.x0,height,'gold');d.frame(cx,b.min.y+.115,w-.20,.12,'gold',.014);d.finish();}
+ function beam(owner,n=1){owner.material=body.green;const d=draw(owner),b=d.b,w=b.max.x-b.min.x,h=b.max.y-b.min.y,cy=(b.min.y+b.max.y)/2;d.frame((b.min.x+b.max.x)/2,cy,w-.02,h-.02,'gold',.025);for(let i=0;i<n;i++){const x=b.min.x+(i+.5)*w/n,ww=w/n-.12,hh=h-.14,clip={x0:x-ww/2,x1:x+ww/2,y0:cy-hh/2,y1:cy+hh/2};d.rect(x,cy,ww,hh,i%2?'green':'blue');d.frame(x,cy,ww,hh,'gold',.015);for(const sign of[-1,1]){d.line(x-ww*.38,cy,x,cy+sign*hh*.32,.017,'gold',clip);d.line(x,cy+sign*hh*.32,x+ww*.38,cy,.017,'gold',clip);}}d.finish();}
+ return{body,window,beam};
+}

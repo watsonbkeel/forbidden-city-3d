@@ -1,0 +1,130 @@
+{
+  "baseline": "2cb15fdece44c98aa60fa35e17668c6b1f0b0951",
+  "verifiedUTC": "2026-11-01T01:53:25Z",
+  "evidenceLocation": "outside repository: ../r157-bridges-e-evidence/",
+  "tests": [
+    {
+      "localRawEvidence": "baseline-component.tap",
+      "rawSha256": "72752dc3a79f1fba1a20e9a1d4c6322be913d3ff5106be9d171a7f8a1dbccb2c",
+      "command": "node --max-old-space-size=768 --test --test-concurrency=1 tests/inner-jinshui.test.mjs tests/r36-south-water.test.mjs",
+      "tests": 27,
+      "passed": 26,
+      "failed": 1,
+      "exitCode": 1,
+      "scope": "Baseline before numeric edits; original exact-translation failure"
+    },
+    {
+      "localRawEvidence": "principal-red.tap",
+      "rawSha256": "07e33f8b35bba69043f9038f97a5fd43b0b6a35c84129ce5c091b0327a889276",
+      "command": "node --max-old-space-size=768 --test --test-concurrency=1 tests/r157-bridges-e/principal-bridge.test.mjs",
+      "tests": 8,
+      "passed": 1,
+      "failed": 7,
+      "exitCode": 1,
+      "scope": "TDD RED at unchanged 2cb15fde"
+    },
+    {
+      "localRawEvidence": "principal-green.tap",
+      "rawSha256": "7d5dd506a0d922d785e9c7526af4ed1aa81f9b1cbe2ffcb182d8c36906660d29",
+      "command": "node --max-old-space-size=768 --test --test-concurrency=1 tests/r157-bridges-e/principal-bridge.test.mjs",
+      "tests": 8,
+      "passed": 8,
+      "failed": 0,
+      "exitCode": 0,
+      "scope": "GREEN after fix/test assertion correction"
+    },
+    {
+      "localRawEvidence": "current-component.tap",
+      "rawSha256": "d216c1f9fcaf6e83a1ed2f172da720b7a92ff4deb1f933900f52980df5bf4c60",
+      "command": "node --max-old-space-size=768 --test --test-concurrency=1 tests/inner-jinshui.test.mjs tests/r36-south-water.test.mjs tests/r157-bridges-e/principal-bridge.test.mjs",
+      "tests": 35,
+      "passed": 30,
+      "failed": 5,
+      "exitCode": 1,
+      "scope": "Final sources: 4 obsolete old-central assertions + same 1 pre-existing exact-translation failure"
+    },
+    {
+      "localRawEvidence": "principal-world.tap",
+      "rawSha256": "1a1e2d22058373dace5ecf7ad7ffcb836bc323c6e561cde9f197b35ebfe8dce3",
+      "command": "EVIDENCE_OUT=... node --max-old-space-size=1024 --test --test-concurrency=1 tests/r157-bridges-e/principal-world.test.mjs",
+      "tests": 1,
+      "passed": 1,
+      "failed": 0,
+      "exitCode": 0,
+      "scope": "Actual full World,28 roundtrips; not browser/NPC"
+    },
+    {
+      "localRawEvidence": "wuying-current-world.tap",
+      "rawSha256": "0b1913e49cd8372ee5e432b11a580e6f05c65bb6d0a01cf84515f93c539f9f66",
+      "command": "EVIDENCE_OUT=... node --max-old-space-size=1024 --test --test-concurrency=1 scripts/photo-fidelity/batches/r158-wuying-bridges/world-crown-recovery.test.mjs",
+      "tests": 1,
+      "passed": 1,
+      "failed": 0,
+      "exitCode": 0,
+      "scope": "Actual full World,42 cases; not browser/NPC"
+    }
+  ],
+  "build": {
+    "exitCode": 0,
+    "modulesPerBase": 578,
+    "bases": [
+      {
+        "base": "/",
+        "buildId": "R146-fix-719152918c1c",
+        "sourceFingerprint": "0ea2e61592a0f9050b6d29cd2d9573d31cee72d0c27145f583423d8add241615"
+      },
+      {
+        "base": "/forbidden-city-3d/",
+        "buildId": "R146-fix-c5b52797fe6c",
+        "sourceFingerprint": "0ea2e61592a0f9050b6d29cd2d9573d31cee72d0c27145f583423d8add241615"
+      },
+      {
+        "base": "/gugong/",
+        "buildId": "R146-fix-6b5db5472ec8",
+        "sourceFingerprint": "0ea2e61592a0f9050b6d29cd2d9573d31cee72d0c27145f583423d8add241615"
+      }
+    ],
+    "writtenBundles": false,
+    "publicCopied": false,
+    "standaloneDeployable": false
+  },
+  "translation": [
+    {
+      "stage": "before",
+      "baseline": "2cb15fde",
+      "sameColliderCount": true,
+      "count": 352,
+      "exactMismatchCount": 22,
+      "maxAbsoluteCoordinateDelta": 1.7763568394002505e-15
+    },
+    {
+      "stage": "after",
+      "baseline": "2cb15fde",
+      "sameColliderCount": true,
+      "count": 348,
+      "exactMismatchCount": 22,
+      "maxAbsoluteCoordinateDelta": 1.7763568394002505e-15
+    }
+  ],
+  "visual": {
+    "actualProductionMergedGeometry": true,
+    "sameCameraBeforeAfter": true,
+    "views": [
+      "five-overview",
+      "principal"
+    ],
+    "trianglesBefore": 16516,
+    "trianglesAfter": 16372,
+    "personallyViewed": true,
+    "browserGPU": false,
+    "texturesVerified": false
+  },
+  "limits": [
+    "Original legacy tests unchanged; do not summarize as all affected tests passing.",
+    "Full historical suite not rerun in this isolated branch.",
+    "Actual World ran before source metadata/comment-only final edits; numeric geometry sources unchanged.",
+    "No browser/GPU/user device acceptance.",
+    "No completion count or currentCycleAccepted change.",
+    "External independent whole-group review pending at freeze."
+  ]
+}

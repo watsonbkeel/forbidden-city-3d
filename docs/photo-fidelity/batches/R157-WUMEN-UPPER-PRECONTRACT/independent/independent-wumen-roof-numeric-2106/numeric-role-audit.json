@@ -1,0 +1,375 @@
+{
+  "scope": "STATIC_NUMERIC_REVIEW_NOT_ENTITY_IMPLEMENTATION",
+  "frozenPaths": [
+    {
+      "path": "ROOF-SECTION-DESIGN-2103.md",
+      "sha256": "1b5167322f607dd0341fbe427daf380fdc0f19f3fa68b589a6472c2a30de022a"
+    },
+    {
+      "path": "make-roof-knots.py",
+      "sha256": "253b693707df00e11b7257c804238dc5b74626e81787eee06ede28aba39fce9f"
+    },
+    {
+      "path": "ROOF-KNOT-PROPOSAL-2104.json",
+      "sha256": "c9f602f383b2363fdbf29e8a1b676ce9e17b59191f9b82b215aaf75f427780c7"
+    },
+    {
+      "path": "SHAFT-ROLE-PROPOSAL-2104.json",
+      "sha256": "c047c51545e08898d128917c39302bea5263ca0a5f6abaff6749ccb77bc416dc"
+    },
+    {
+      "path": "OLD-UPPER-ACTUAL-2056.json",
+      "sha256": "8e9d065d81ce89f6f43d3cde904e72c47a717cc05197243d32aa2ac7b9b10843"
+    },
+    {
+      "path": "NE-PLANE-PROPOSAL-2048.json",
+      "sha256": "b7ec4a6bf8d0941c1af89b6a8f696e2330e199285d408d325220e7319c923e26"
+    }
+  ],
+  "sixInstanceArithmetic": [
+    {
+      "id": "INSTANCE-A-WUMEN-EAST-NORTH-PAVILION",
+      "independentHorizontalArithmeticMaxError": 0.0,
+      "positiveKnots": true
+    },
+    {
+      "id": "INSTANCE-A-WUMEN-EAST-SOUTH-PAVILION",
+      "independentHorizontalArithmeticMaxError": 0.0,
+      "positiveKnots": true
+    },
+    {
+      "id": "INSTANCE-A-WUMEN-WEST-NORTH-PAVILION",
+      "independentHorizontalArithmeticMaxError": 0.0,
+      "positiveKnots": true
+    },
+    {
+      "id": "INSTANCE-A-WUMEN-WEST-SOUTH-PAVILION",
+      "independentHorizontalArithmeticMaxError": 0.0,
+      "positiveKnots": true
+    },
+    {
+      "id": "FC-B0439D9BED",
+      "independentHorizontalArithmeticMaxError": 0.0,
+      "positiveKnots": true
+    },
+    {
+      "id": "FC-FB99F593DB",
+      "independentHorizontalArithmeticMaxError": 0.0,
+      "positiveKnots": true
+    }
+  ],
+  "wingRidgeMissingDefinition": [
+    {
+      "id": "FC-B0439D9BED",
+      "oldRidgeHalfX": 13.2,
+      "examplePiecewiseLinearMapRidgeHalfX": 21.78929082498586,
+      "exampleDefaultHippedRelationRidgeHalfX": 23.145695364238414,
+      "difference": 1.356404539252555,
+      "status": "AMBIGUOUS_UNTIL_MAPPING_AND_RIDGE_ENDPOINT_ARE_EXPLICIT_NOT_TWO_APPROVED_OPTIONS"
+    },
+    {
+      "id": "FC-FB99F593DB",
+      "oldRidgeHalfX": 13.2,
+      "examplePiecewiseLinearMapRidgeHalfX": 21.811254950247932,
+      "exampleDefaultHippedRelationRidgeHalfX": 23.211920529801326,
+      "difference": 1.4006655795533938,
+      "status": "AMBIGUOUS_UNTIL_MAPPING_AND_RIDGE_ENDPOINT_ARE_EXPLICIT_NOT_TWO_APPROVED_OPTIONS"
+    }
+  ],
+  "roleRows": 204,
+  "uniqueExistingPaths": 188,
+  "knownPerimeterProposedSites": 104,
+  "uniqueProposedSiteCoordinates": 104,
+  "actions": {
+    "PRESERVE_COMPLETE_NON_TARGET": 52,
+    "REMOVE_ENGINEERING_SHAFT_IN_PROPOSAL_ONLY": 24,
+    "MOVE_ONLY_PRESERVE_COLUMN_GEOMETRY_MATERIAL": 88,
+    "REBUILD_LINK_POSITION_PENDING_SEPARATE_SOURCE_AND_PHYSICS_CONTRACT": 24,
+    "ADD_SOURCE_READ_NON_INTERFACE_SHAFT": 16
+  },
+  "conditionalAfterRemoval": 180,
+  "role2104ChangesOnlyTwelveRowsAnnotationPlusPredecessor": true,
+  "southernOnePixelDisclosure": [
+    {
+      "path": [
+        6,
+        3
+      ],
+      "oldSourceReadUV": {
+        "page": 152,
+        "u": 1126,
+        "v": 2723,
+        "status": "approximate source + explicit shared endpoint fit"
+      },
+      "newUV": {
+        "page": 152,
+        "u": 1126,
+        "v": 2724,
+        "status": "approximate source + explicit shared endpoint fit"
+      },
+      "delta": {
+        "vPixels": 1,
+        "zMetres": -0.06622516556291391,
+        "status": "EXPLICIT_ENGINEERING_COMMON_ENDPOINT_WITHIN_PIXEL_READING_BAND_NOT_MEASURED_IDENTITY"
+      }
+    },
+    {
+      "path": [
+        6,
+        7
+      ],
+      "oldSourceReadUV": {
+        "page": 152,
+        "u": 839,
+        "v": 2723,
+        "status": "approximate source + explicit shared endpoint fit"
+      },
+      "newUV": {
+        "page": 152,
+        "u": 839,
+        "v": 2724,
+        "status": "approximate source + explicit shared endpoint fit"
+      },
+      "delta": {
+        "vPixels": 1,
+        "zMetres": -0.06622516556291391,
+        "status": "EXPLICIT_ENGINEERING_COMMON_ENDPOINT_WITHIN_PIXEL_READING_BAND_NOT_MEASURED_IDENTITY"
+      }
+    },
+    {
+      "path": [
+        6,
+        10
+      ],
+      "oldSourceReadUV": {
+        "page": 152,
+        "u": 1089,
+        "v": 2723,
+        "status": "approximate source + explicit shared endpoint fit"
+      },
+      "newUV": {
+        "page": 152,
+        "u": 1089,
+        "v": 2724,
+        "status": "approximate source + explicit shared endpoint fit"
+      },
+      "delta": {
+        "vPixels": 1,
+        "zMetres": -0.06622516556291391,
+        "status": "EXPLICIT_ENGINEERING_COMMON_ENDPOINT_WITHIN_PIXEL_READING_BAND_NOT_MEASURED_IDENTITY"
+      }
+    },
+    {
+      "path": [
+        6,
+        11
+      ],
+      "oldSourceReadUV": {
+        "page": 152,
+        "u": 1028,
+        "v": 2723,
+        "status": "approximate source + explicit shared endpoint fit"
+      },
+      "newUV": {
+        "page": 152,
+        "u": 1028,
+        "v": 2724,
+        "status": "approximate source + explicit shared endpoint fit"
+      },
+      "delta": {
+        "vPixels": 1,
+        "zMetres": -0.06622516556291391,
+        "status": "EXPLICIT_ENGINEERING_COMMON_ENDPOINT_WITHIN_PIXEL_READING_BAND_NOT_MEASURED_IDENTITY"
+      }
+    },
+    {
+      "path": [
+        6,
+        12
+      ],
+      "oldSourceReadUV": {
+        "page": 152,
+        "u": 938,
+        "v": 2723,
+        "status": "approximate source + explicit shared endpoint fit"
+      },
+      "newUV": {
+        "page": 152,
+        "u": 938,
+        "v": 2724,
+        "status": "approximate source + explicit shared endpoint fit"
+      },
+      "delta": {
+        "vPixels": 1,
+        "zMetres": -0.06622516556291391,
+        "status": "EXPLICIT_ENGINEERING_COMMON_ENDPOINT_WITHIN_PIXEL_READING_BAND_NOT_MEASURED_IDENTITY"
+      }
+    },
+    {
+      "path": [
+        6,
+        13
+      ],
+      "oldSourceReadUV": {
+        "page": 152,
+        "u": 877,
+        "v": 2723,
+        "status": "approximate source + explicit shared endpoint fit"
+      },
+      "newUV": {
+        "page": 152,
+        "u": 877,
+        "v": 2724,
+        "status": "approximate source + explicit shared endpoint fit"
+      },
+      "delta": {
+        "vPixels": 1,
+        "zMetres": -0.06622516556291391,
+        "status": "EXPLICIT_ENGINEERING_COMMON_ENDPOINT_WITHIN_PIXEL_READING_BAND_NOT_MEASURED_IDENTITY"
+      }
+    },
+    {
+      "path": [
+        11,
+        3
+      ],
+      "oldSourceReadUV": {
+        "page": 153,
+        "u": 1885,
+        "v": 2725,
+        "status": "approximate source + explicit shared endpoint fit"
+      },
+      "newUV": {
+        "page": 153,
+        "u": 1885,
+        "v": 2726,
+        "status": "approximate source + explicit shared endpoint fit"
+      },
+      "delta": {
+        "vPixels": 1,
+        "zMetres": -0.06622516556291391,
+        "status": "EXPLICIT_ENGINEERING_COMMON_ENDPOINT_WITHIN_PIXEL_READING_BAND_NOT_MEASURED_IDENTITY"
+      }
+    },
+    {
+      "path": [
+        11,
+        7
+      ],
+      "oldSourceReadUV": {
+        "page": 153,
+        "u": 1599,
+        "v": 2725,
+        "status": "approximate source + explicit shared endpoint fit"
+      },
+      "newUV": {
+        "page": 153,
+        "u": 1599,
+        "v": 2726,
+        "status": "approximate source + explicit shared endpoint fit"
+      },
+      "delta": {
+        "vPixels": 1,
+        "zMetres": -0.06622516556291391,
+        "status": "EXPLICIT_ENGINEERING_COMMON_ENDPOINT_WITHIN_PIXEL_READING_BAND_NOT_MEASURED_IDENTITY"
+      }
+    },
+    {
+      "path": [
+        11,
+        10
+      ],
+      "oldSourceReadUV": {
+        "page": 153,
+        "u": 1849,
+        "v": 2725,
+        "status": "approximate source + explicit shared endpoint fit"
+      },
+      "newUV": {
+        "page": 153,
+        "u": 1849,
+        "v": 2726,
+        "status": "approximate source + explicit shared endpoint fit"
+      },
+      "delta": {
+        "vPixels": 1,
+        "zMetres": -0.06622516556291391,
+        "status": "EXPLICIT_ENGINEERING_COMMON_ENDPOINT_WITHIN_PIXEL_READING_BAND_NOT_MEASURED_IDENTITY"
+      }
+    },
+    {
+      "path": [
+        11,
+        11
+      ],
+      "oldSourceReadUV": {
+        "page": 153,
+        "u": 1787,
+        "v": 2725,
+        "status": "approximate source + explicit shared endpoint fit"
+      },
+      "newUV": {
+        "page": 153,
+        "u": 1787,
+        "v": 2726,
+        "status": "approximate source + explicit shared endpoint fit"
+      },
+      "delta": {
+        "vPixels": 1,
+        "zMetres": -0.06622516556291391,
+        "status": "EXPLICIT_ENGINEERING_COMMON_ENDPOINT_WITHIN_PIXEL_READING_BAND_NOT_MEASURED_IDENTITY"
+      }
+    },
+    {
+      "path": [
+        11,
+        12
+      ],
+      "oldSourceReadUV": {
+        "page": 153,
+        "u": 1697,
+        "v": 2725,
+        "status": "approximate source + explicit shared endpoint fit"
+      },
+      "newUV": {
+        "page": 153,
+        "u": 1697,
+        "v": 2726,
+        "status": "approximate source + explicit shared endpoint fit"
+      },
+      "delta": {
+        "vPixels": 1,
+        "zMetres": -0.06622516556291391,
+        "status": "EXPLICIT_ENGINEERING_COMMON_ENDPOINT_WITHIN_PIXEL_READING_BAND_NOT_MEASURED_IDENTITY"
+      }
+    },
+    {
+      "path": [
+        11,
+        13
+      ],
+      "oldSourceReadUV": {
+        "page": 153,
+        "u": 1636,
+        "v": 2725,
+        "status": "approximate source + explicit shared endpoint fit"
+      },
+      "newUV": {
+        "page": 153,
+        "u": 1636,
+        "v": 2726,
+        "status": "approximate source + explicit shared endpoint fit"
+      },
+      "delta": {
+        "vPixels": 1,
+        "zMetres": -0.06622516556291391,
+        "status": "EXPLICIT_ENGINEERING_COMMON_ENDPOINT_WITHIN_PIXEL_READING_BAND_NOT_MEASURED_IDENTITY"
+      }
+    }
+  ],
+  "noNodeCaptureWorldTests": true,
+  "all104ProposedCoordinatesExactlyRecomputedFromOwnSourceSite": true,
+  "new16MatchIndependentlyReviewedInwardSites": true,
+  "all52MainCoordinatesUnchanged": true,
+  "all24RemovalAnd24LinkPendingPositionsNull": true
+}

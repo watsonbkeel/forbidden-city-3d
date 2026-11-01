@@ -1,0 +1,3079 @@
+{
+  "currentSummary": {
+    "tests": 556,
+    "pass": 546,
+    "fail": 10,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "previousSummary": {
+    "tests": 524,
+    "pass": 514,
+    "fail": 10,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "currentLogSHA256": "de303f9ed28dd1156874ed7c87d59dc64ec9011bcb31fefa24ac0e826c732288",
+  "previousLogSHA256": "5d79ffbc2a019171645b5d7cb36be3bf92015bae652e297dc3e69be3dafa4f8b",
+  "addedGreen": 32,
+  "removed": 0,
+  "failuresSame": true,
+  "resource": {
+    "command": [
+      "node",
+      "--expose-gc",
+      "--max-old-space-size=1024",
+      "--test",
+      "--test-reporter=tap",
+      "--test-concurrency=1",
+      "tests/photo-fidelity/batches/baohe-east-wall-door.test.mjs",
+      "tests/photo-fidelity/batches/middle-axis-facades.test.mjs",
+      "tests/photo-fidelity/batches/middle-north-visible-hall.test.mjs",
+      "tests/photo-fidelity/batches/middle-right-roof-edge.test.mjs",
+      "tests/photo-fidelity/batches/middle-right-whole.test.mjs",
+      "tests/photo-fidelity/batches/r157-portable-frozen-source.test.mjs",
+      "tests/photo-fidelity/batches/r158-arrow-integration/cumulative-world.test.mjs",
+      "tests/photo-fidelity/batches/r158-arrow-integration/production-hooks.test.mjs",
+      "tests/photo-fidelity/batches/r158-integration/cumulative-world.test.mjs",
+      "tests/photo-fidelity/batches/r158-integration/donghua-production.test.mjs",
+      "tests/photo-fidelity/batches/r158-integration/production-hooks.test.mjs",
+      "tests/photo-fidelity/batches/r158-integration/wenhua-world.test.mjs",
+      "tests/photo-fidelity/batches/r158-integration/wenyuan-portable-parent.test.mjs",
+      "tests/photo-fidelity/batches/r158-wenhua-gate-production/parent-controls.test.mjs",
+      "tests/photo-fidelity/batches/r158-wenhua-gate-production/production-hook.test.mjs",
+      "tests/photo-fidelity/batches/r158-wenhua-gate-production/world.test.mjs",
+      "tests/photo-fidelity/batches/r158-wenhua-gate/approaches.test.mjs",
+      "tests/photo-fidelity/batches/r158-wenhua-gate/isolation.test.mjs",
+      "tests/photo-fidelity/batches/r158-wenhua-gate/preinstalled-hooks.test.mjs",
+      "tests/photo-fidelity/batches/r158-wenhua/central-doors.test.mjs",
+      "tests/photo-fidelity/batches/r158-wenyuan/drop.test.mjs",
+      "tests/photo-fidelity/batches/r158-wenyuan/pond-rails.test.mjs",
+      "tests/photo-fidelity/batches/r158-wenyuan/retention.test.mjs",
+      "tests/photo-fidelity/batches/r158-wenyuan/routes.test.mjs",
+      "tests/photo-fidelity/batches/r158-wenyuan/scope.test.mjs",
+      "tests/photo-fidelity/batches/r158-wuying-bridges/bank-contact.test.mjs",
+      "tests/photo-fidelity/batches/r158-wuying-bridges/crown-edge.test.mjs",
+      "tests/photo-fidelity/batches/r158-wuying-bridges/historical-closure.test.mjs",
+      "tests/photo-fidelity/batches/r158-wuying-bridges/isolated-recovery.test.mjs",
+      "tests/photo-fidelity/batches/r158-wuying-bridges/plinths.test.mjs",
+      "tests/photo-fidelity/batches/r158-wuying-bridges/production-recovery.test.mjs",
+      "tests/photo-fidelity/batches/r158-wuying-bridges/recovery-contract.test.mjs",
+      "tests/photo-fidelity/batches/r158-wuying-bridges/recovery-nontarget.test.mjs",
+      "tests/photo-fidelity/batches/r158-wuying-bridges/recovery-review-regressions.test.mjs",
+      "tests/photo-fidelity/batches/r158-wuying-bridges/retention.test.mjs",
+      "tests/photo-fidelity/batches/r158-wuying-production/finite-controller-delta.test.mjs",
+      "tests/photo-fidelity/batches/r158-wuying-production/fixture-transport.test.mjs",
+      "tests/photo-fidelity/batches/r158-wuying-production/ground-fixture.test.mjs",
+      "tests/photo-fidelity/batches/r158-wuying-production/world.test.mjs",
+      "tests/photo-fidelity/batches/rear-axis-gates.test.mjs",
+      "tests/photo-fidelity/batches/taihe-east-wall-door.test.mjs",
+      "tests/photo-fidelity/batches/taihe-instruments-production.test.mjs",
+      "tests/photo-fidelity/batches/taihe-instruments-world.test.mjs",
+      "tests/photo-fidelity/batches/taihe-south-frame-gilt.test.mjs",
+      "tests/photo-fidelity/batches/taihe-terrace-instruments.test.mjs",
+      "tests/photo-fidelity/batches/taihe-whole-walls.test.mjs",
+      "tests/photo-fidelity/batches/taihemen-complete-scope.test.mjs",
+      "tests/photo-fidelity/batches/taihemen-facilities-a.test.mjs",
+      "tests/photo-fidelity/batches/taihemen-facilities-c-p1.test.mjs",
+      "tests/photo-fidelity/batches/taihemen-facilities-c.test.mjs",
+      "tests/photo-fidelity/batches/taihemen-facilities-production-world.test.mjs",
+      "tests/photo-fidelity/batches/taihemen-facilities-production.test.mjs",
+      "tests/photo-fidelity/batches/taihemen-plaque-frame.test.mjs",
+      "tests/photo-fidelity/batches/taihemen-production-boundary.test.mjs",
+      "tests/photo-fidelity/batches/taihemen-production-rollback.test.mjs",
+      "tests/photo-fidelity/batches/taihemen-south-ceiling.test.mjs",
+      "tests/photo-fidelity/batches/wumen-ascent-integration-inheritance.test.mjs",
+      "tests/photo-fidelity/batches/wumen-live-integration-equivalence.test.mjs",
+      "tests/photo-fidelity/batches/wumen-lower-five-portals.test.mjs",
+      "tests/photo-fidelity/batches/wumen-main-grid.test.mjs",
+      "tests/photo-fidelity/batches/wumen-main-integration-equivalence.test.mjs",
+      "tests/photo-fidelity/batches/wumen-main-movement.test.mjs",
+      "tests/photo-fidelity/batches/wumen-main-object-state.test.mjs",
+      "tests/photo-fidelity/batches/wumen-main-retention.test.mjs",
+      "tests/photo-fidelity/batches/wumen-ne-north-enclosure.test.mjs",
+      "tests/photo-fidelity/batches/wumen-nw-north-columns.test.mjs",
+      "tests/photo-fidelity/batches/wumen-outer-side-columns.test.mjs",
+      "tests/photo-fidelity/batches/wumen-wing-pavilion-instances.test.mjs",
+      "tests/photo-fidelity/batches/wuying-rail-uv-ownership.test.mjs",
+      "tests/photo-fidelity/batches/wuying-three-bridge-rails.test.mjs",
+      "tests/photo-fidelity/batches/xiehe-envelope.test.mjs",
+      "tests/photo-fidelity/batches/xiehe-visible-hall.test.mjs",
+      "tests/photo-fidelity/batches/xiehe-west-ends.test.mjs",
+      "tests/photo-fidelity/batches/zhaode-zhendu-north.test.mjs",
+      "tests/r157-small-descent-triangle.test.mjs",
+      "tests/r87-triangle-support.test.mjs",
+      "tests/r159/cumulative-world.test.mjs",
+      "tests/r159/jiaotai-front-vessels.test.mjs",
+      "tests/r159/jiaotai-production.test.mjs",
+      "tests/r159/prior-comparison.test.mjs",
+      "tests/r159/qianqing-contact-review.test.mjs",
+      "tests/r159/qianqing-hook.test.mjs",
+      "tests/r159/qianqing-production.test.mjs",
+      "tests/r159/qianqing-roof.test.mjs",
+      "tests/r159/physical-fingerprint.test.mjs",
+      "tests/photo-fidelity/batches/wumen-right-leaf-studs.test.mjs",
+      "tests/photo-fidelity/batches/wumen-right-leaf-world.test.mjs",
+      "tests/photo-fidelity/batches/wumen-main-width-cpu-export.test.mjs",
+      "tests/photo-fidelity/batches/wumen-main-width-movement.test.mjs",
+      "tests/photo-fidelity/batches/wumen-main-width-world-comparison.test.mjs",
+      "tests/photo-fidelity/batches/wumen-main-width-world.test.mjs",
+      "tests/photo-fidelity/batches/wumen-main-width.test.mjs",
+      "tests/photo-fidelity/batches/wumen-main-width-south-strip.test.mjs",
+      "tests/photo-fidelity/batches/wumen-side-portal-comparison.test.mjs",
+      "tests/photo-fidelity/batches/wumen-side-portal-cpu-export.test.mjs",
+      "tests/photo-fidelity/batches/wumen-side-portal-faces.test.mjs",
+      "tests/photo-fidelity/batches/wumen-side-portal-history-guard.test.mjs",
+      "tests/photo-fidelity/batches/wumen-side-portal-world.test.mjs"
+    ],
+    "cwd": "/workspace/scratch/02a8023d1a85/r157-restored-411214",
+    "returncode": 1,
+    "elapsedSeconds": 713.6816793380003,
+    "maxRSSKiB": 1726364,
+    "userSeconds": 919.230359,
+    "systemSeconds": 35.253784
+  },
+  "added": [
+    {
+      "status": "ok",
+      "title": "Wumen south outer strip raw controller meets shifted column side-1 10Hz run",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen south outer strip raw controller meets shifted column side-1 10Hz walk",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen south outer strip raw controller meets shifted column side-1 60Hz run",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen south outer strip raw controller meets shifted column side-1 60Hz walk",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen south outer strip raw controller meets shifted column side1 10Hz run",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen south outer strip raw controller meets shifted column side1 10Hz walk",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen south outer strip raw controller meets shifted column side1 60Hz run",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen south outer strip raw controller meets shifted column side1 60Hz walk",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "actual Wumen production entry builds two independently identified eleven-panel side-portal finishes",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "actual front finishes match all authored vertices/normal/UV, independent identities and courtyard wall planes",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "actual matrix and effective front material mutations are rejected rather than trusting local pose fields",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "both real leaf poses preserve every original recorded object and all 452 physical rows/16 supports",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "comparison admission rejects invented target metadata or texture state before removing new owners",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "duplicate and invalid owners reject without allocation; detached fault retirement attempts all resources",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "face verifier rejects omitted/hidden/scaled/flipped/material/geometry and source identity mutations",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "finite target leaf closure rejects nested-foreign-mesh",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "finite target leaf closure rejects not-a-real-mesh",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "frozen host rejects before resource allocation or registration",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "host add failure rolls back all newly owned resources and leaves the original host intact",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "missing duplicate unknown misplaced target owners cannot be removed as approved additions",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "non-target scene or physics drift survives the view and fails the unchanged predecessor contract",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "precise successor history guard rejects candidate-face without modifying files",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "precise successor history guard rejects extra-source without modifying files",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "precise successor history guard rejects missing-source without modifying files",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "precise successor history guard rejects old-contract without modifying files",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "precise successor history guard rejects predecessor-lower without modifying files",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "precise successor history guard rejects symlink-source without modifying files",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "real canonical finish retains all 384 new face triangles, two identities and the unchanged physical rows",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "side-portal CPU export includes all 49536 actual full-gate triangles with correct single-material face handling",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "stale explicit group or ancestor world matrices cannot be authenticated then hidden by cloning",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "two authenticated front owners alone are removed from a read-only comparison clone in both leaf states",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "unmodified World keeps both side-portal finish identities, exact merged face geometry and all five raw controller passages",
+      "count": 1
+    }
+  ],
+  "currentCounter": [
+    {
+      "status": "not ok",
+      "title": "Rear-gate historical delta plus explicit later middle-right binding preserve every other record and wall endpoint",
+      "count": 1
+    },
+    {
+      "status": "not ok",
+      "title": "West end additions retain roof, primary leaves, columns, walk surfaces and all original physical bounds",
+      "count": 1
+    },
+    {
+      "status": "not ok",
+      "title": "tests/photo-fidelity/batches/baohe-east-wall-door.test.mjs",
+      "count": 1
+    },
+    {
+      "status": "not ok",
+      "title": "tests/photo-fidelity/batches/middle-axis-facades.test.mjs",
+      "count": 1
+    },
+    {
+      "status": "not ok",
+      "title": "tests/photo-fidelity/batches/middle-north-visible-hall.test.mjs",
+      "count": 1
+    },
+    {
+      "status": "not ok",
+      "title": "tests/photo-fidelity/batches/taihe-east-wall-door.test.mjs",
+      "count": 1
+    },
+    {
+      "status": "not ok",
+      "title": "tests/photo-fidelity/batches/taihe-south-frame-gilt.test.mjs",
+      "count": 1
+    },
+    {
+      "status": "not ok",
+      "title": "tests/photo-fidelity/batches/xiehe-envelope.test.mjs",
+      "count": 1
+    },
+    {
+      "status": "not ok",
+      "title": "tests/photo-fidelity/batches/xiehe-visible-hall.test.mjs",
+      "count": 1
+    },
+    {
+      "status": "not ok",
+      "title": "tests/photo-fidelity/batches/zhaode-zhendu-north.test.mjs",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "3e9d5c92 parent water/bridge decks/shore/culverts and all non-Wuying physical owners remain exact",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "A ceiling or NPC introduced after takeoff cannot be crossed by subsequent vertical recovery frames",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "A is explicitly isolated,unaccepted and keeps the retained outer approach envelope",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "A profile rejects wrong envelopes before mutation",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "A retains ORIGINAL ground-start path -1/10/false",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "A retains ORIGINAL ground-start path -1/10/true",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "A retains ORIGINAL ground-start path -1/60/false",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "A retains ORIGINAL ground-start path -1/60/true",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "A retains ORIGINAL ground-start path 1/10/false",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "A retains ORIGINAL ground-start path 1/10/true",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "A retains ORIGINAL ground-start path 1/60/false",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "A retains ORIGINAL ground-start path 1/60/true",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "A still blocks central imperial ascent and never introduces a central ramp support",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Absent original commit reads byte-exact frozen source and reports its original identity",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Actual Arrow production dispatch installs lattice and removes unsupported centre label before merge",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Actual Wumen north masonry has five distinct low entrance openings",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Actual active joystick targets authorize inward recovery; inactive or reversed joystick inertia does not",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Actual adjoining seven-metre wall blocks airborne bodies above the raised platform without a false doorway",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Actual cumulative World authenticates126 reviewed Wuying owners, retains30750 other colliders and1365 supports, and rejects seven physical drifts without mutating runtime",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Actual opened-leaf depth preserves the full 3.6m clear width, including both near-jamb paths",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Actual production material merge releases each owned geometry/material once and preserves borrowed library material",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Actual rail-top body contact permits only an inward recovery across the old planar water margin",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Actual visible main ridge and end ornaments are physical solids, not decorative bodies that a roof landing penetrates",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "All integration-parent bridge-deck supports and non-Wuying physical owners survive exactly",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "All owned middle-right resources dispose once after merge without disposing borrowed library materials",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "All ten actual leaf bodies match render transforms and clear exterior probes: open=false, anchor=0,-419.6",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "All ten actual leaf bodies match render transforms and clear exterior probes: open=false, anchor=73.25,80.875",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "All ten actual leaf bodies match render transforms and clear exterior probes: open=true, anchor=0,-419.6",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "All ten actual leaf bodies match render transforms and clear exterior probes: open=true, anchor=73.25,80.875",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "All three bridge instances on both outside sides recover to real deck at 10/30/60Hz",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "All three own-source bridge instances have full fitted solid-and-open rail runs, one central short support per panel and pointed crowns",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "All twelve wider end feet remain on dry bank interfaces, with 6m body drops and outward bank exits at 10/30/60Hz",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "An active authentic ticket changes no other bridge, ground water edge, culvert or remote water decision",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "An indexed Wuying rail input and its converted output each release once if UV generation throws",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Approach map rectangles use each rendered slope center rather than the gate center",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Available original Git object takes precedence over corrupt fallback blob",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "BLOCKING: real pointed-crown outer-edge 6m drops must permit reliable inward escape at every frame rate",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Both closed source states are real blockers and opened states leave the original capsule passage",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Both full approach slopes have rendered ground matching registered physical support beyond the old short platform",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Both original gzip and absent-original small chunks return exactly the independently pinned55 baseline bytes",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Both own-source Taihe stepped walls exist as continuous three-level physical structures",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Both real closed end doors block bodies while every west vestibule portal remains open at cardinal rotations",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Both retained open leaves stand on the true .45m floor and their studded faces turn into the portal",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Boundary handling preserves a clearly separated roof footprint during ascent and descent",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Boundary option does not inflate roof outside its rendered edge",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "C censer collider covers the actually rendered curved-ear X envelope without intruding on either tread",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "C consumer rejects body-only bronze and ear-less bronze despite intact metadata/colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "C diagonal landing transit never rescues or enters the platform solid;wrong old smooth-body blockage is not frozen",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "C imperial remains physically blocked and source fixture coordinates do not masquerade as old center route",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "C is clear of full actual enclosure+axis-courts blockers and preserves effective routes/map identity",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "C leaves seven other palace roots raw attributes/matrices/materials and all away physics exact",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "C preserves all actual main-gate hall parts,roof,plaque,column and north interior source attributes",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "C real endpoint-preserving ground roundtrip -1/10/false",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "C real endpoint-preserving ground roundtrip -1/10/true",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "C real endpoint-preserving ground roundtrip -1/60/false",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "C real endpoint-preserving ground roundtrip -1/60/true",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "C real endpoint-preserving ground roundtrip 1/10/false",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "C real endpoint-preserving ground roundtrip 1/10/true",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "C real endpoint-preserving ground roundtrip 1/60/false",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "C real endpoint-preserving ground roundtrip 1/60/true",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "C source host validation rejects nonfinite/changed legacy inputs and registration arrays are immutable",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "C south correction preserves exact actual north-face triangles UVs and north physical records",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "C stays explicitly isolated while full-source width/run/front share one column-distance scale",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Candidate changes only old Wenyuan rail: all water, deck supports, other bridge geometry and colliders exact",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Capability requires actual crown body contact, explicit inward jump input, no velocity or foot-ground fiction",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Changed manifest fails before any source is read",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Closed rear gate leaves block only their actual central portal",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Cloud opening heads retain visible curved dips and all solid rail bases meet the declared 0.10m stone seat",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Constructor setup failure leaves no scene lock; attach failure releases installed DOM/control listeners",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Controls outside a real palace manager receive no capability and preserve original movement/height passthrough",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Current FirstPerson is exactly55 parent plus nine reviewed finite Wuying hook contexts; old V9 historical guard is not redefined",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Damaged existing original must fail, never silently fall back to intact blocks",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Duplicate lower-base installation rejects before allocation",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Each hidden lateral portal has a real mutually-facing wing-wall mouth near the inner north corner",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Each independently observed main slope rail has ten posts and one scroll terminal, with real body contact",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Each main rail bay uses one shaped central support and two end brackets rather than two straight bars",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Each of six glazed wall caps has an actual visible-triangle contact owner",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Each own wall passage has two real open leaves with plain backs and no fixed cross-passage bar",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Each side rejects wrong terminal identity, tier ordering, detached feet and stale terrace metadata atomically",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Even a valid ticket grants no other caller a manager-wide river exception outside its player movement transaction",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Even in-envelope spans must match an original post/panel/end interval; caller cannot create a new wide shelf",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Every column has an exposed uniquely visible plinth face below its seated shaft, not coincident or buried surfaces",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Every physical triangle exists in visible solids with finite geometry, not bounding-box fillers",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Every retained source in all pinned identity manifests is readable in an isolated no-original-object repository",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Exact full-body tangent matches vertical resolver boundary semantics; outside epsilon is not contact",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Expiry, stop, cancel, owner loss and scene/camera replacement retain residual special-hop ceiling safety",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Explicit vertical boundary sweep cannot miss a roof edge subsequently classified as solid",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Failure after geometry allocation releases each new geometry once and never disposes borrowed marble",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Failure after the first indexed plinth converts to UV geometry releases input and converted output exactly once",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Fallback corrupt blob fails closed",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Fallback missing blob fails closed",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Fallback symlink blob fails closed",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Final real-material batch contains every exact new source triangle; costs remain bounded",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "First tile lookup failure releases its already allocated input geometry, never borrowed marble",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Five portals own distinct identities and open/closed physical leaves rather than hidden base blockers",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Ground-only QA probe constructs real controls with actual manager binding and production capability interface, then releases DOM listeners",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Grounded small descent cannot lower body through a real pointed rail after foot disk leaves apex",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Hall frame stays inside its own east three-bay evidence window without adding columns or floor supports",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Headroom and NPC overhead are checked using full upward body sweep before any grant",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Houyou photograph-right pale window maps to local -X/east when viewing northward from south",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "ISOLATED candidate: real pointed-crown outer-edge drops permit inward escape without changing production controls",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Identity drift fails closed before library allocation",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Integrated actual merged lattice cannot be hidden while metadata remains present",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Jialiang photographed stone window is bounded by substantial sill and head bands, not an almost open four-post pavilion",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Keyboard nonrepeat Space and the same mobile jump action can request recovery; focused/repeated input cannot",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "LIVE NE enclosure, its six original north columns/local proxies and actual closed-body collider equal independent enclosure candidate",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "LIVE equivalence negative controls detect group hiding, a moved column and material state changes",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "LIVE integrated Wumen preserves all 12 independent wing/pavilion/link/roof target signatures, 16 scoped colliders and 280 real foot contacts",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Lattice triangles match visible world geometry and do not fill real grille holes after final merge",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Legacy Wuying rail-recovery body remains byte-exact beside the explicit separately tested crown capability",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Middle gate 12 has own south windows and distinct north solid panels",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Middle gate 14 has own south windows and distinct north solid panels",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Missing, changed, swapped, duplicate-manifest and symlinked chunk evidence are rejected",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Modern north board owns a neutral matte finish rather than borrowing red-painted column texture",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Narrow end aisles do not bypass the courtyard dividing wall",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "New portal solids and three protective canopies retain architectural shadow flags",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "New wet-span plinth projection stays beneath existing upper solids, so no new outside low-ledge body trap is created",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Nonfinite velocity and malformed mutable scene state fail closed before or after issuance",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Normal jumping and walking on every other bridge and its two banks stay frame-exact with original controls",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Normal-generation failure releases the helper-owned plinth before it reaches the caller allocation set",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "North-neck split brick faces share one vertical atlas phase across the retained band height",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Observed rail crowns have a coarse swollen body below the tip, not forty bare cone spikes",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Old outer lanes become real blocked jamb probes, not silently weakened passing routes",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Only four exact Arrow import/call lines differ from independently frozen pre-integration host SHA",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Only inward horizontal contact at this bridge with complete unmutated owner/deck provenance is eligible",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Only real authenticated rail-top contact can relax water margin inward; mutated or absent owners reject",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Only the source-visible north neck vertical jambs receive brick lining, not the unknown deep tunnel",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Open leaves occupy the north porch and their south studded faces turn into the central passage",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Original rail shapes survive only the declared 0.10m seating translation; added physical triangles are visible plinths",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Original ten R157 assertions remain byte-exact and pass with the full frozen production source closure",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Other bridges and non-bridge river positions retain exact parent water/collision decisions",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Other side gates do not inherit Xiehe west partition additions",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Over-open leaves use real triangle bodies: side air inside the broad box remains clear",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Own Baohe east wall door has red wood frames, painted lintels and four south-only hexagonal pins",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Own Taihe east door adds separately bound north/south timber and gold-edged south hex pins",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Own complete roof spans both narrow aisles with the two-view deep-eave and ridge envelope",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Own eastern three-bay hall is open above the beams, not a retained flat ceiling",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Own front/back source ratios bound the real upper wall, aperture and brick foot together",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Own middle-right gate has six actual front column axes, central three bays and two narrow end aisles",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Own north studded faces have the observed substantial projected width, not the thin ninety-degree sliver",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Own north-end close views require non-straight volute end silhouettes, not plain diagonal plates",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Own roof refuses an unrelated Baohe interior override rather than silently mixing profiles",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Own two-sided wall caps retain yellow tiles over a green glazed band, not red-wall cap panels",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Own-source Wenyuan entire two rail runs replace generic bars with real openings and cylindrical crowns",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Owner mutation, duplicate owner, missing deck, river replacement and elapsed time all revoke capabilities",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "P1 actual central shoulder surfaces have plateaus/risers and reach farther south than outer stair toe",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "P1 both visible censer-gap platform facades have matching narrow physical closure",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "P1 central core physics are exact owners of rendered closed geometry,not a broad forbidden box or false ramp",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "P1 outside-ground return remains blocked after an actual ground start -1/10/true",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "P1 outside-ground return remains blocked after an actual ground start -1/60/false",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "P1 outside-ground return remains blocked after an actual ground start 1/10/true",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "P1 outside-ground return remains blocked after an actual ground start 1/60/false",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "P1 own central115px group is narrow52px stone plus two visible stair shoulders,with independent1049px toe",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "P1 pure existing-world consumer rejects removed gap closures while visible facade remains",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "P1 real drop/reverse cannot enter visible platform through gap -1/10/false",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "P1 real drop/reverse cannot enter visible platform through gap -1/10/true",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "P1 real drop/reverse cannot enter visible platform through gap -1/60/false",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "P1 real drop/reverse cannot enter visible platform through gap -1/60/true",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "P1 real drop/reverse cannot enter visible platform through gap 1/10/false",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "P1 real drop/reverse cannot enter visible platform through gap 1/10/true",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "P1 real drop/reverse cannot enter visible platform through gap 1/60/false",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "P1 real drop/reverse cannot enter visible platform through gap 1/60/true",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "P1/P2 pure consumer rejects hidden central shoulder with unchanged source metadata",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "P1/P2 pure consumer rejects hidden photographed central barrier with unchanged source metadata",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "P1/P2 pure consumer rejects missing exact central physics with unchanged source metadata",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "P1/P2 pure consumer rejects missing pavilion front panels with unchanged source metadata",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "P2 stone pavilion has visible front/rear flanking closed panels,not only four posts and EW side slabs",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "PRODUCTION: A ceiling or NPC introduced after takeoff cannot be crossed by subsequent vertical recovery frames",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "PRODUCTION: Actual active joystick targets authorize inward recovery; inactive or reversed joystick inertia does not",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "PRODUCTION: All three bridge instances on both outside sides recover to real deck at 10/30/60Hz",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "PRODUCTION: Expiry, stop, cancel, owner loss and scene/camera replacement retain residual special-hop ceiling safety",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "PRODUCTION: Normal jumping and walking on every other bridge and its two banks stay frame-exact with original controls",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "PRODUCTION: Real released/reversed keyboard input never inherits inward intent from smoothed velocity",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "PRODUCTION: Tall inward walls and actual NPC capsules remain solid throughout every recovery frame at 10/30/60Hz",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Present original commit with missing source blob fails rather than falling back",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Private ticket cannot be forged, passed to another manager/river/factory, or used outside its monotonic inward segment",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Production controls contain only the exact independently reviewed hooks over frozen 3e9 source bytes",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Production material merge retains brick jamb faces and the unchanged five clear north apertures",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Production material merge retains exact existing-instance identity, source and unaccepted scope",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "R157 live ascent binds original frozen oracle and its mutation negatives",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "R157 main tower does not alter Shenwu geometry/material/physics",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "R157 main tower preserves exact d70a4a02 outside-body geometry/material/physics and every support primitive",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "R159 Qianqing emits 72 actual body/head pairs and 8 distinct riders across both eave levels",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "R159 actual complete body+head bounds clear preceding/following animals and retained riders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "R159 all 288 contact corners belong to real raw ridge triangles and actual submitted Float32 body vertices",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "R159 dry profile refuses other halls and malformed shape overrides before allocating material resources",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "R159 entire underside triangles lie within individual actual ridge triangles and survive final batching",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "R159 exact PalaceBuilder hook rehearsal retains every non-roof part and all Qianqing physics",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "R159 exact final batch budget replaces 32 generic animals by 72 without extra draw materials or textures",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "R159 geometric negative controls reject reversed heads and sagging bottoms while original corner metadata is unchanged",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "R159 low detail retains the exact previous roof without pretending that omitted animals exist",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "R159 non-target roof fingerprint retained: baohe/high",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "R159 non-target roof fingerprint retained: baohe/low",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "R159 non-target roof fingerprint retained: qianqing/high",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "R159 non-target roof fingerprint retained: qianqing/low",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "R159 non-target roof fingerprint retained: taihe/high",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "R159 non-target roof fingerprint retained: taihe/low",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "R159 non-target roof fingerprint retained: zhonghe/high",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "R159 non-target roof fingerprint retained: zhonghe/low",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "R159 only walking animals change; all ridges, tiles, riders, brackets and roof-body attributes retain exact current source",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "R159 reviewer regression: 3024 actual underside samples match the top ridge surface, not only four corners",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "R159 reviewer regression: all 72 actual heads face the geometric eave end, not inward along the ridge",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "R159 source/intermediate/final geometries and private materials retain one disposal owner",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "R159 target-source default arithmetic reaches the reviewed profile without rounding roof geometry",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Rail recovery fails closed for absent, duplicated, moved or mutated physical owners and missing deck",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Real 6m rail drops never enter solids and permit inward recovery to the actual bridge deck and bank",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Real World Wenyuan pond roundtrip reaches retained ground-floor entry, with all 32 deck faces",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Real controller cannot traverse either photographed closed-leaf state",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Real full-body crown impact may recover even when it is not a circular-foot landing",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Real jumps under each refitted lintel stop the head and land without trapping",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Real material batching preserves every registered source triangle and finite nondegenerate new solids",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Real material merge retains all triangles and releases sources once, without disposing borrowed library materials",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Real outside crown contact beyond the former 2.2m center bound can recover inward",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Real released/reversed keyboard input never inherits inward intent from smoothed velocity",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Real retained12.3m ascent landing can enter the top slab without Float32 world-bake lip",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Rear gate 16: own roofed single portal replaces masonry gate without changing ground",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Rear gate 18: own roofed single portal replaces masonry gate without changing ground",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Recovery is only a water decision: visible rail, static wall and actual NPC capsule still stop it",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Recovery is rate limited after cancellation, and normal input clearing never invents a second airborne jump",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Removing real constructor-initialized capability reproduces the original ordinary updateGround TypeError; no no-op recovery is injected",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Retained band atlas uses its original full-height band mapping, not tiled box UVs",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Retained exterior and inner-wing base band keeps its original0.1m visible projection",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Retained three upper slabs keep the authored exact12.3 support datum without a competing quantized triangle floor",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Revocation inside an executing move cannot release its busy lock for another authenticated same-scene session",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Same-scene controllers remain constructible but cannot nest or borrow another player movement window",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Separate own south photos retain the right covered pane only at Houyou; battens move with leaves",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Six retained terrace rails are clipped only within solid wall thickness, in both geometry and physics",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Source guard rejects ordinary friction drift, missing capability, altered jump and unauthorized appended code",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Source-bound rear gate identities reject cross-gate name or moved retained anchor",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Source-fitted inner door frame blocks near-jamb bodies while leaving the honest narrower central lanes clear",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "South front retains three distinct mouths with source-bounded centre width and side spacing",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "South lattices contain real sight openings while north side panels remain solid and physically closed",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Successful UV conversion disposes each indexed input exactly once",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Successful conversion frees indexed input geometry exactly once; final visible resources remain live",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Taihemen declaration agrees with its already-rendered double-eave xieshan, not another hall",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Tall inward walls and actual NPC capsules remain solid throughout every recovery frame at 10/30/60Hz",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "The central passage obeys actual leaf open and closed states",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "The movement window attests actual frame origin and proposed camera target and closes on throw",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Three authored slab floors are real bounded non-rescue surfaces; original13 supports remain separately registered",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Three own-source bridges have six continuous low plinth runs and twelve extended end feet, not a floating rescue floor",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Transformed wall parents reject before resource or collider mutation",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "UV assignment failure after indexed conversion disposes input and converted geometry each exactly once",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Unchanged ordinary support trajectory 10 Hz feet 2.4 distant triangle false",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Unchanged ordinary support trajectory 10 Hz feet 2.4 distant triangle true",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Unchanged ordinary support trajectory 10 Hz feet 2.62 distant triangle false",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Unchanged ordinary support trajectory 10 Hz feet 2.62 distant triangle true",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Unchanged ordinary support trajectory 10 Hz feet 2.8 distant triangle false",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Unchanged ordinary support trajectory 10 Hz feet 2.8 distant triangle true",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Unchanged ordinary support trajectory 10 Hz feet 3.1 distant triangle false",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Unchanged ordinary support trajectory 10 Hz feet 3.1 distant triangle true",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Unchanged ordinary support trajectory 10 Hz feet 3.4 distant triangle false",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Unchanged ordinary support trajectory 10 Hz feet 3.4 distant triangle true",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Unchanged ordinary support trajectory 60 Hz feet 2.4 distant triangle false",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Unchanged ordinary support trajectory 60 Hz feet 2.4 distant triangle true",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Unchanged ordinary support trajectory 60 Hz feet 2.62 distant triangle false",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Unchanged ordinary support trajectory 60 Hz feet 2.62 distant triangle true",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Unchanged ordinary support trajectory 60 Hz feet 2.8 distant triangle false",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Unchanged ordinary support trajectory 60 Hz feet 2.8 distant triangle true",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Unchanged ordinary support trajectory 60 Hz feet 3.1 distant triangle false",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Unchanged ordinary support trajectory 60 Hz feet 3.1 distant triangle true",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Unchanged ordinary support trajectory 60 Hz feet 3.4 distant triangle false",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Unchanged ordinary support trajectory 60 Hz feet 3.4 distant triangle true",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Uninjected complete outer-east production path installs six Wenhua leaves once before merge",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Uninjected cumulative World consumes actual Arrow lattice nameboard removal and retained knees with earlier four integrations",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Uninjected cumulative World retains Wenhua/Donghua/Wenyuan hooks and explicitly partial Taihemen frame without ceiling hypothesis",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Uninjected hd outer-east production dispatch owns Donghua observed east face, without physical changes",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Uninjected production water path replaces only Wenyuan rails with34 owned triangles and retains32 deck supports",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Uninjected sd outer-east production dispatch owns Donghua observed east face, without physical changes",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Uninjected whole World admits Wenhua six-leaf side/centre entry and rear connector round trips at10/60Hz",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Unknown commit, path traversal, missing mapped path and non-repository root reject",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Unknown or altered bridge identities reject before allocating geometry",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Unrelated Linxi actual geometry materials physics and names remain exactly pre-hook",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Vertical boundary sweep includes an exact end-of-step face contact and upward eave contact",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Visible flat circular top covers all four square-shaft corners, not only axial radii",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wenhua central finalizer composes six independent source-counted leaves, not two generic sheets",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wenhua dispatch cannot be transplanted or expanded to another gate/slope",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wenyuan historical two-file parent remains pinned, not substituted from live source",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Whole walls expose a bounded brick foot rather than red paint extending to every terrace",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wrong bridge, side or nonfinite/out-of-envelope span fails before geometry is allocated",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wrong own identity is rejected before allocating a partial gate or colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen main actual common axes fit the reviewed 1.43 centre ratio inside the retained envelope",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen main east 4m internal drop and exit at 10Hz uses actual controller and retained support",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen main east 4m internal drop and exit at 60Hz uses actual controller and retained support",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen main east floor crossing at 10Hz uses actual controller and retained support",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen main east floor crossing at 60Hz uses actual controller and retained support",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen main north 4m internal drop and exit at 10Hz uses actual controller and retained support",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen main north 4m internal drop and exit at 60Hz uses actual controller and retained support",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen main north floor crossing at 10Hz uses actual controller and retained support",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen main north floor crossing at 60Hz uses actual controller and retained support",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen main south 4m internal drop and exit at 10Hz uses actual controller and retained support",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen main south 4m internal drop and exit at 60Hz uses actual controller and retained support",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen main south floor crossing at 10Hz uses actual controller and retained support",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen main south floor crossing at 60Hz uses actual controller and retained support",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen main west 4m internal drop and exit at 10Hz uses actual controller and retained support",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen main west 4m internal drop and exit at 60Hz uses actual controller and retained support",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen main west floor crossing at 10Hz uses actual controller and retained support",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen main west floor crossing at 60Hz uses actual controller and retained support",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen south outer strip raw controller meets shifted column side-1 10Hz run",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen south outer strip raw controller meets shifted column side-1 10Hz walk",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen south outer strip raw controller meets shifted column side-1 60Hz run",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen south outer strip raw controller meets shifted column side-1 60Hz walk",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen south outer strip raw controller meets shifted column side1 10Hz run",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen south outer strip raw controller meets shifted column side1 10Hz walk",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen south outer strip raw controller meets shifted column side1 60Hz run",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen south outer strip raw controller meets shifted column side1 60Hz walk",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen width near-edge-clear side-1 10Hz run uses real controller and raw colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen width near-edge-clear side-1 10Hz walk uses real controller and raw colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen width near-edge-clear side-1 60Hz run uses real controller and raw colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen width near-edge-clear side-1 60Hz walk uses real controller and raw colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen width near-edge-clear side1 10Hz run uses real controller and raw colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen width near-edge-clear side1 10Hz walk uses real controller and raw colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen width near-edge-clear side1 60Hz run uses real controller and raw colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen width near-edge-clear side1 60Hz walk uses real controller and raw colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen width new-axis-blocked side-1 10Hz run uses real controller and raw colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen width new-axis-blocked side-1 10Hz walk uses real controller and raw colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen width new-axis-blocked side-1 60Hz run uses real controller and raw colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen width new-axis-blocked side-1 60Hz walk uses real controller and raw colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen width new-axis-blocked side1 10Hz run uses real controller and raw colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen width new-axis-blocked side1 10Hz walk uses real controller and raw colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen width new-axis-blocked side1 60Hz run uses real controller and raw colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen width new-axis-blocked side1 60Hz walk uses real controller and raw colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen width old-axis-clear side-1 10Hz run uses real controller and raw colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen width old-axis-clear side-1 10Hz walk uses real controller and raw colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen width old-axis-clear side-1 60Hz run uses real controller and raw colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen width old-axis-clear side-1 60Hz walk uses real controller and raw colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen width old-axis-clear side1 10Hz run uses real controller and raw colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen width old-axis-clear side1 10Hz walk uses real controller and raw colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen width old-axis-clear side1 60Hz run uses real controller and raw colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Wumen width old-axis-clear side1 60Hz walk uses real controller and raw colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "Xiehe own north AND south west-hall views produce closed end-room partitions with inset lattice doors",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "active ledger binds only six actual partial facilities, leaves two lions and all20 acceptance requirements open",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "actual CPU export retains every real material-group triangle including all single-material box and cylinder faces",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "actual Qianqing buildHall installs one source-bounded 72-beast and 8-rider record",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "actual Taihemen plaque has source-specific broad red wings,scalloped sides and gold inner border",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "actual Wumen production entry builds two independently identified eleven-panel side-portal finishes",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "actual approach owns exactly77 physical records and3 real supports via explicit provenance, not a spatial exclusion box",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "actual canonical Jiaotai production entry equals independently installed reviewed module and preserves all other local geometry/physics",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "actual cap axes keep photo-left ordering, outward hemisphere and omitted-site locations in both poses",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "actual cumulative R159 World registers exactly six reviewed Jiaotai solids, preserves all prior physics and carries Qianqing roof records",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "actual front finishes match all authored vertices/normal/UV, independent identities and courtyard wall planes",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "actual isolated A flank tread meshes remain finite closed positive-volume solids",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "actual main shell changes only the 88 authorized geometric parts and 88 actual collider bounds",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "actual matrix and effective front material mutations are rejected rather than trusting local pose fields",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "actual merge and unload release new geometry and the three private materials exactly once",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "actual production approach restores its source profiles and physical arrays after late build plus disposal failure",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "actual production exactly preserves corrected isolated C geometry/material/render/metadata/physics, with narrow binding adaptation",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "actual production global retention and eight route consumers",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "actual production target visibility, pose and registered bound drift cannot pass",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "actual uninjected production dispatch owns six source-registered partial fixtures without accepting them",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "actual unmodified World builds reviewed Wumen width geometry, preserves all other prior physics and uses raw controller contact",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "all 15 original Jiaotai unit contracts execute with exact unhooked setup; production proof is separate",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "all nine actual facade midpoint rays retain only the central architectural preview route",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "all six opaque leaf envelopes agree with their physical thin bounds",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "all visible main-tower shafts meet the retained lower beam and share the inherited floor datum",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "all visible parts are closed nondegenerate solids with exact independently translated triangle owners",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "all20 features keep resolvable evidence IDs and isolated ceiling cannot masquerade as active plaque geometry",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "approach joints do not add positive-area coplanar skins over the retained platform cap",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "batch retains all canonical20 Taihemen requirements and the separately owned side gates",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "blue text face is forward-visible and all glyph UVs remain within the original blue field",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "both independent source identities retain original centers and disclose every fitted or hidden scope",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "both instruments preserve existing external square bypasses at 10/60Hz walking and running",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "both real leaf poses preserve every original recorded object and all 452 physical rows/16 supports",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "both real lower-leaf poses keep the original 723 recorded object and physical contract after ONLY authenticated main-width normalization",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "both source frame rings are closed,positive-volume,finite solids and silhouette notches are real openings",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "bounded physical fingerprint preserves exact clone and all fields without claiming digest equality to old encoding",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "bounded width contract rejects target/nontarget visibility geometry UV physical and support drift",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "canonical finish keeps actual merged cap triangles and bounded evidence identity",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "cap equator physically touches the unchanged wood face without a hidden air gap",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "ceiling solids are finite closed outward boxes and never manufacture unknown paint motifs",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "central leaf gap admits real-controller left/centre/right -1.05m south-north-south at 10Hz",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "central leaf gap admits real-controller left/centre/right -1.05m south-north-south at 60Hz",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "central leaf gap admits real-controller left/centre/right 0m south-north-south at 10Hz",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "central leaf gap admits real-controller left/centre/right 0m south-north-south at 60Hz",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "central leaf gap admits real-controller left/centre/right 1.05m south-north-south at 10Hz",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "central leaf gap admits real-controller left/centre/right 1.05m south-north-south at 60Hz",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "closed shape body detects surface and fully contained box, not broadphase gaps",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "closed-pose non-main metadata and leaf geometry drift cannot be hidden by the main-only comparison",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "comparison admission rejects invented target metadata or texture state before removing new owners",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "complete uninjected World preserves exact instrument-baseline physics outside both explicit instrument and observed-approach source products",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "conditional shared mount leaves all7 other PalaceBuilder roots and all physics exact",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "consumer rejects collapsed blue UVs despite metadata",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "consumer rejects hidden red despite metadata",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "consumer rejects mirrored blue UVs despite metadata",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "consumer rejects shifted blue UVs despite metadata",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "consumer rejects vertically flipped blue UVs despite metadata",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "consumer rejects zero gold drawRange despite metadata",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "continuous impact time is exact, not repeated binary body probes",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "dedicated source-bound module exists without depending on production PalaceBuilder",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "door replacement retains all non-target meshes, existing collisions, floors, room spawns and dated gallery displays",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "duplicate and invalid owners reject without allocation; detached fault retirement attempts all resources",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "each actual new solid owns exact post-merge Float32 triangles, with no proxy floor outside the north flare",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "every C fixture part is finite,nondegenerate,closed and positive-volume,including actual roof/ears/knob hole",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "every actual cap triangle has finite nonzero area and an outward normal; geometry is not a flat decal",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "existing-W rejects detached transverse frame despite unchanged metadata",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "existing-W rejects hidden ancestor despite unchanged metadata",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "existing-W rejects hidden frame material despite unchanged metadata",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "existing-W rejects missing field triangles despite unchanged metadata",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "existing-W rejects retained trim with all secondary frame triangles removed from actual drawRange",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "face verifier rejects omitted/hidden/scaled/flipped/material/geometry and source identity mutations",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "finite target leaf closure rejects nested-foreign-mesh",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "finite target leaf closure rejects not-a-real-mesh",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "flat triangle has witness at edge but square-only corner misses",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "frame preserves safe anchor,roof,all unrelated geometry and physical registrations exactly",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "frozen host rejects before resource allocation or registration",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "full .5m square foot reaches the real uphill edge; .3m-foot negative control demonstrably penetrates the slope",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "geometric contract: every lattice direction spans the actual field with full clipped bars and distributed coverage",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "geometric contract: six actual leaves form distinct bilateral 3+3 leaves without positive-volume overlap",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "ground visibility diagnostic exposes both occluded top wings instead of claiming a complete visible silhouette",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "historical full-gate retained-record contract before main-width registration remains exact",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "historical pre-integration: C independent P1 corrections remain unaccepted and actual-source residuals are retained",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "historical pre-integration: C six-geometry diagnostic remains isolated with unaccepted individual burner identity and no production bindings",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "historical pre-integration: new current facility inventory is explicit but source-failed A cannot become implemented production",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "historical wumen-main-grid contract remains exact on the hash-locked width predecessor",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "historical wumen-main-integration-equivalence contract remains exact on the hash-locked width predecessor",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "historical wumen-main-object-state contract remains exact on the hash-locked width predecessor",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "host add failure rolls back all newly owned resources and leaves the original host intact",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "in-memory A substitution leaves all7 non-target roots and their actual physics unchanged",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "independent C source correction preserves composite/stone separation,independent toe and unknown current works",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "invalid and degenerate geometry rejected; downward triangle not support",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "invalid eventful source rejects without mutation",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "invalid frozen existing south-window metadata rejects without mutation",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "invalid frozen metadata rejects without mutation",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "invalid getter-only existing centralDoors rejects without mutation",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "invalid host coordinates rejects without mutation",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "invalid host profile rejects without mutation",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "invalid inherited finalizer metadata setter rejects without mutation",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "invalid inherited getter-only centralDoors rejects without mutation",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "invalid leaf metadata rejects without mutation",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "invalid leaf pose rejects without mutation",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "invalid leaf vertex rejects without mutation",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "invalid setter-only existing centralDoors rejects without mutation",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "invalid shared buffer rejects without mutation",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "invalid shared geometry rejects without mutation",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "invalid shared material map rejects without mutation",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "invalid shared material normal map rejects without mutation",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "invalid shared material tint rejects without mutation",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "invalid, duplicate and translated host calls preserve atomic ownership and exact offset",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "invalid/wrong-host frame input rejects before new allocations or writes",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "late master approach failure restores pre-existing root,physical arrays,private ownership and source profiles",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "live controls preserve actual493 Wuying and ordinary-slope traces, not merely installed off/on proposal replay",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "mid-build injected collider failure rolls all new fixture objects/physics/material/cache/profile fields back",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "missing duplicate unknown misplaced target owners cannot be removed as approved additions",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "new helper refuses duplicate or wrong physical leaf before allocations",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "new main-tower geometry is released during production merge and final builder disposal",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "new official9 drawings are actually inspected1941 sources, never recast as2026 current survey",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "no-scope negative control remains active when the production FurnitureMotion hook is already installed",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "non-target scene or physics drift survives the view and fails the unchanged predecessor contract",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "normal-generation failure releases every allocated source geometry and leaves the original gate intact",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "observed production approach rejects wrong multi-rect or nonfinite front datum before creating any terrace objects",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "observed south porch has physical transverse frames and recessed square-ish fields, not only painted plane",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "old whole-JSON and bounded encoding both reject every row/order/nested/support/water drift; root shape fails closed",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "ordinary 1m-wide bodies cannot walk through photographed narrow stone apertures at either update rate",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "original rendered Canvas characters are unchanged and entirely inside the cropped blue UV field",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "photographed pale stair side-stones and north flare borders are actual solids, not omitted approach boundaries",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "photographed south stone barriers collide while the three real door apertures stay hollow after merge",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "precise successor history guard rejects candidate-face without modifying files",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "precise successor history guard rejects extra-source without modifying files",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "precise successor history guard rejects missing-source without modifying files",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "precise successor history guard rejects old-contract without modifying files",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "precise successor history guard rejects predecessor-lower without modifying files",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "precise successor history guard rejects symlink-source without modifying files",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "private frame geometry and materials dispose once with actual TextureLibrary and repeated builder teardown",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "production TextureLibrary albedo/normal cache identity remains compatible without shared tint or map changes",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "production merging preserves all eighteen facade identities and their unknown leaf evidence",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "production source never imports rejected A or the hypothesis directory",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "production transaction restores all state and attempts every owned cleanup despite throwing geometry disposal",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "production transaction restores all state and attempts every owned cleanup despite throwing material disposal",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "promotion oracle rejects hidden groups, shifted geometry, material change and missing real physics",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "pure C consumer rejects floating rendered stone despite source metadata",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "pure C consumer rejects frozen pre-integration production and sees6 distinct real ground fixtures in explicit candidate",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "pure C consumer rejects hidden bronze despite source metadata",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "pure C consumer rejects hidden original ground despite source metadata",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "pure C consumer rejects missing fixture collider despite source metadata",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "pure C consumer rejects shifted rendered bronze despite source metadata",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "pure C consumer rejects zero bronze drawRange despite source metadata",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "pure existing-W ceiling consumer verifies real surfaces and never builds or mutates the supplied world",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "pure production consumer observes all reviewed visible/physical facilities and rejects an isolated identity",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "raw pre-merge object hierarchy also equals reviewed C and detects a hidden fixture group",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "read-only actual-world consumer proves real red/gold surfaces and all3 front text sightlines",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "real FirstPerson -1 portal two-way approach at 10 Hz uses real stair flanks and north incline",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "real FirstPerson -1 portal two-way approach at 60 Hz uses real stair flanks and north incline",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "real FirstPerson 0 portal two-way approach at 10 Hz uses real stair flanks and north incline",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "real FirstPerson 0 portal two-way approach at 60 Hz uses real stair flanks and north incline",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "real FirstPerson 1 portal two-way approach at 10 Hz uses real stair flanks and north incline",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "real FirstPerson 1 portal two-way approach at 60 Hz uses real stair flanks and north incline",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "real TextureLibrary material path and builder disposal own the three added materials exactly once",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "real buildGate adds only right side+1 outer leaf visible-site studs",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "real buildGate lifecycle disposes shared cap geometry and owned material exactly once",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "real canonical finish retains all 384 new face triangles, two identities and the unchanged physical rows",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "real full outer-east terminal merge exposes the six-leaf architecture metadata and only six new colliders",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "real high falls land on visible instrument triangles and can leave them without body penetration or rescue pads",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "real material merge preserves visible hits and disposal owns every original and merged resource once",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "real producer equals reviewed isolated target and leaves the Wuying producer exactly unchanged",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "real production SouthCourtGates installs source-owned approaches once and preserves the existing incomplete window status",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "real world replaces only four legacy meshes/two air boxes and preserves every other ornament and support",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "real-library candidate teardown frees private bronze/material geometry once,not borrowed stone",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "repeat mount cannot return success for a detached replacement roof or invalid current band",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "retained gate oracle rejects old leaf vertex or physics drift",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "retired geometry cleanup failure at 0 preserves the committed entrance and attempts every retired resource once",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "retired geometry cleanup failure at 21 preserves the committed entrance and attempts every retired resource once",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "retired stairs and successful merged source resources are released once; shared library materials remain owned by the library",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "same-plaque mount/refine repeats never duplicate or move the safe board",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "shared face verifier rejects group visibility/scale, column flip, dropped visible and invented absent site",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "shared-hook proposal leaves parent Wuying/ordinary tapered slope queries and 10/60 Hz control traces byte-identical",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "side-portal CPU export includes all 49536 actual full-gate triangles with correct single-material face handling",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "single-use and no-target finalizer are explicit",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "six real registered target rows authenticate; comparison arrays are separate, aligned and have no query methods",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "six south side stones physically touch the stair-side tread midpoints rather than leaving an air slit",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "six-leaf aperture retains real-controller Wenhua / connector / Zhujing round trip at 10Hz",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "six-leaf aperture retains real-controller Wenhua / connector / Zhujing round trip at 60Hz",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "small real probes see air through both frames while stone and normal-size bodies remain physical",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "source ledger binds five inspected original photos to verified bytes without redistributing them",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "source-observed asymmetric approaches replace all six generic stairs without replacing the gate",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "source-visible sundial and stone Jialiang shapes replace empty primitives with physical open frames",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "source-width RED remains an explicit blocker for frozen pre-integration production and A; local route success cannot close it",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "staging failure releases private geometry/materials and preserves the live scene and physics",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "stale explicit group or ancestor world matrices cannot be authenticated then hidden by cloning",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "strict target projection rejects missing/duplicate/foreign owners, bounds and every additional physics field",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "sundial photographed twin columns are near the clear gap width, not thin posts around a broad doorway",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "swept body detects intermediate corner strike with clear endpoints",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "synthetic world-array wrapper authenticates actual component 88 complete rows and preserves comparison index/constructor/nonmutation contracts",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "synthetic wrapper rejects missing/duplicate/forged provider, actual bounds and every physical metadata drift",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "target leaf, ancestor and material hiding must fail actual visibility contract",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "tilted disk maximum has an actual triangle/foot witness, not apex clamp",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "two A gaps are actual unoccupied ground,not elevated imperial/tread solids or phantom supports",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "two authenticated front owners alone are removed from a read-only comparison clone in both leaf states",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "uninjected cumulative World keeps every old collider and all but six identified ramps; actual three portals remain traversable",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "uninjected cumulative World retains one actual right Wumen stud face with unchanged physics counts",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "uninjected production terrace method replaces exactly old four meshes/two boxes with 29 real solids, preserving every other local primitive",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "unmodified World keeps both side-portal finish identities, exact merged face geometry and all five raw controller passages",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "unregistered ceiling hypothesis is absent from every production module and actual merged Taihemen",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "unsafe shifted frame fails before replacing glyph geometry or adding any frame material",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "unsupported LAST fixture and duplicate build reject before mutating geometry/materials/physics",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "uv-generation failure releases every allocated source geometry and leaves the original gate intact",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "withdrawn in-memory candidate retains all old triangles,40 columns,doors,roof,plaque and navigation exactly",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "withdrawn in-memory ceiling path never changes another palace root or existing physics registration",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "wrong envelope, missing numbers and head-clearance failures reject before allocations or mutation",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "wrong identity, changed/shared source geometry, frozen metadata and a repeated finalizer never partially mutate",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "wumen-ne-north-enclosure: complete independent candidate preservation contract",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "wumen-nw-north-columns: complete independent candidate preservation contract",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "wumen-outer-side-columns: complete independent candidate preservation contract",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "wumen-wing-pavilion-instances: complete independent candidate preservation contract",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "zhaode own north panels and plain-backed closed leaves",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "zhaode own north panels and plain-backed open leaves",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "zhendu own north panels and plain-backed closed leaves",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "zhendu own north panels and plain-backed open leaves",
+      "count": 1
+    }
+  ]
+}

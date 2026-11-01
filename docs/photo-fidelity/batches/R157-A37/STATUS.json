@@ -1,0 +1,1611 @@
+{
+  "release": "R157",
+  "batch": "A37",
+  "safeLocalParent": "e14c61911844e7aa6ce7c0251e64fd0ad61e67f4",
+  "safeRemoteParent": "612288a1e01668a7984b871e3e5f15ca001965e4",
+  "baselineInventorySnapshot": "bc8b65aafb6e16e18d6f4093d9e50157d15dae41",
+  "scopeCount": 37,
+  "wholeObjectAcceptedCount": 0,
+  "countMeaning": "No full-object acceptance established in this batch; preserves prior partial work, not a reset of implemented geometry.",
+  "protectedExperiment": {
+    "sha": "7b8369997769e3f5d2511cf56086985252ea1d48",
+    "name": "Yongshou rear provisional pre-batch R157 WIP",
+    "included": false,
+    "reason": "Unvalidated real-material triangle registration; old internal number does not denote formal A37 release."
+  },
+  "runtimeBlock": {
+    "dateUTC": "2026-10-30",
+    "action": "Installed Chromium blank local page/WebGL capability launch",
+    "normalResult": "socket() Operation not permitted before browser page",
+    "escalatedResult": "bwrap cannot create file in read-only runner session directory; no browser page established",
+    "state": "BLOCKED_RUNTIME_NOT_AN_APPROVAL_DENIAL",
+    "constraint": "No access/change to forbidden session directory and no retries around restriction."
+  },
+  "objects": [
+    {
+      "id": "FC-AD4377DF51",
+      "name": "午门",
+      "sourceLine": 341,
+      "requiredScope": "凹字形城台、三明门与两掖门；正楼九间五进深、重檐庑殿；两翼各13间廊庑及四角方亭、钟鼓亭。；楼内现行展厅未核；外观图中的太和门门厅不能误记成午门室内。",
+      "priorEvidenceClassification": "部分实现（静态代码证据）",
+      "priorImplementedScope": "原文ID出现在可从入口沿字面导入到达的源码中；仅证明限定实现/元数据，不证明完整对象或场景已验收。",
+      "priorEvidenceFiles": [
+        "src/scene/palace/special/WumenNorthPortal.js",
+        "src/scene/palace/special/WumenSouthPortalCanopies.js",
+        "src/scene/palace/special/WumenTransverseLinks.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "PARTIAL_SOURCE_REVIEW_ACTUAL_PAVILION_LAYOUT_DEFECT_REMAINS",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "ACTUAL_DEFECT: Four pavilion plan depth, north/south centre spacing and roof silhouettes are substantially undersized/misregistered against official upper plan and own north/south photographs. Must register whole tower/wing/platform/ascent arrangement jointly; do not merely raise roofs or move pavilions alone.",
+        "ACTUAL_INCOMPLETE: Main tower individual door/window leaves, full through-column/timber frame and source-verified complete wing13-bay contracts are not established by partial axis/column work.",
+        "SOURCE_UNKNOWN: Lower inner elbow/vault dimensions and finish, exact side-mouth setback and modern opening/access state remain explicitly conditional; upper exhibition plan is not a lower tunnel plan.",
+        "SOURCE_UNKNOWN: Current interior exhibition layout/details need own current evidence; unrelated Taihemen photos cannot serve as Wumen interior.",
+        "VERIFIED_LIMITED_SCOPE: Independent final review permits only a rollback-safe development candidate. Full current-state1313/1090/223, builds/non-target retention and physical successors recorded; the five extra old contracts remain red, not all-green or whole acceptance.",
+        "BLOCKED_RUNTIME: Actual browser/GPU visual, shadows and runtime/performance acceptance not established; CPU images and actual controller tests do not replace it."
+      ],
+      "currentCandidate": {
+        "integrationParent": "36908b2c07c7050e1de0dffd504e68a67c83f205",
+        "upperIntegrationHead": "4e846948",
+        "state": "LIMITED_INTEGRATION_REVIEW_COMPLETE_NOT_WHOLE_OBJECT_ACCEPTED",
+        "implemented": [
+          "Five distinct north openings, three central straight identities and two mutually-facing side mouths with northward engineering L routes; actual masonry/body cuts,10 solid open/closed leaves",
+          "Main tower six depth-axis contract and nine front-bay identities; explicitly not a full timber frame/window reconstruction",
+          "Eight wing/pavilion/link instance bindings and selected source-backed pavilion column rows",
+          "North entrance near-neck brick arch/vertical lining limited to1.2m, preserving unknown deep finish",
+          "Actual veranda solver integration repaired within lower object:3axis-aligned slab bodies plus3real non-rescue top surfaces; original13supports preserved (16total), shared controller unchanged."
+        ],
+        "evidence": "WUMEN-WHOLE-REGRESSION.json",
+        "focusedTests": {
+          "pass": 195,
+          "fail": 0,
+          "evidence": "WUMEN-WHOLE-REGRESSION.json",
+          "scope": "All batch/triangle tests plus actual lower routes/vertical/actor; not whole-object acceptance"
+        }
+      },
+      "rightYemenVisibleLeafPartial": {
+        "base": "be395c519ddf9a9050382a2cabb770c1f0d10a23",
+        "state": "LIMITED_LOCAL_CUMULATIVE_CHECKPOINT_REVIEWED_NOT_WHOLE_GATE",
+        "portalId": "west-yemen",
+        "hingeSide": 1,
+        "face": "LOCAL_MINUS_Z",
+        "visibleCaps": 69,
+        "photoAbsentSites": [
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            8
+          ]
+        ],
+        "photoUnobservedSites": [
+          [
+            9,
+            1
+          ]
+        ],
+        "wholeObjectAccepted": false,
+        "visualCapProjectionMeters": 0.015,
+        "newPhysics": false,
+        "independentTests": {
+          "pass": 29,
+          "fail": 0,
+          "scope": "10 new component/canonical finish+19 original lower; no World/full/build/GPU"
+        },
+        "extraOriginalMainWingTests": {
+          "pass": 5,
+          "fail": 0
+        },
+        "evidence": "../R157-WUMEN-RIGHT-LEAF/README.md",
+        "independentReview": "../R157-WUMEN-RIGHT-LEAF/INDEPENDENT-FINAL-REVIEW.md",
+        "cumulativeValidation": {
+          "worldPassed": 2,
+          "fullTests": 1313,
+          "fullPassed": 1103,
+          "knownBaselineFailures": 210,
+          "batchFiles": 87,
+          "batchPassed": 526,
+          "batchFailed": 0,
+          "buildBasesPassed": 3,
+          "runtimeSourceCommit": "f43b874a44c05247cd5431bac4141bcd1bab5a2b",
+          "evidence": "../R157-WUMEN-RIGHT-LEAF/cumulative-1049/CUMULATIVE-RESULT.json",
+          "GPUAccepted": false,
+          "remoteBackupStatus": "PENDING"
+        }
+      },
+      "mainWidthFollowup": {
+        "status": "REVIEWED_LIMITED_DEV_CANDIDATE_OPEN_P1_HISTORY_COVERAGE",
+        "wholeObjectAccepted": false,
+        "baseline": "411214d091723b3a5078bbb9499321c2c5c3d354",
+        "scope": "工程拟合中央/侧跨1.43；52柱共十轴，48柱+40围护几何及88碰撞改变；四端柱几何/60.05×25包络/原点/台基/屋顶/支承保留，52柱来源状态均明确非测绘。",
+        "focused": "55/55，含真实World与8南排组件控制器；历史子TAP不重复计数",
+        "fullCurrentState": {
+          "baseline": [
+            1313,
+            1103,
+            210
+          ],
+          "candidate": [
+            1313,
+            1100,
+            213
+          ],
+          "delta": "仅3条旧等距/旧接触阈值合同转红，原117字节保留；不称全绿"
+        },
+        "batch": {
+          "filesRequested": 92,
+          "actualTopLevel": 524,
+          "pass": 514,
+          "fail": 10,
+          "priorTitlesNotExecuted": 38,
+          "blocker": "10个旧Git身份依赖缺失；8文件占位红+2实际历史保全红；不能用后继新专项冒充完整batch"
+        },
+        "buildBasesPassed": 3,
+        "GPUAccepted": false,
+        "remoteBackupStatus": "PENDING",
+        "evidence": "../R157-WUMEN-MAIN-WIDTH/CUMULATIVE-RESULT.json",
+        "independentReview": "../R157-WUMEN-MAIN-WIDTH/independent/REVIEW-TERMINAL-1304.md"
+      }
+    },
+    {
+      "id": "FC-B3B12CF397",
+      "name": "太和门",
+      "sourceLine": 342,
+      "requiredScope": "九间四进深、重檐歇山、汉白玉台基；东西分列昭德门与贞度门。；本页无完整室内图；借午门页照片可看通廊柱子和天花局部。",
+      "priorEvidenceClassification": "部分实现（静态代码证据）",
+      "priorImplementedScope": "原文ID出现在可从入口沿字面导入到达的源码中；仅证明限定实现/元数据，不证明完整对象或场景已验收。",
+      "priorEvidenceFiles": [
+        "src/scene/palace/special/TaihemenProfile.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "PARTIAL_OWN_SOURCE_PRODUCTION_C_LIMITED_REVIEW_PASSED_NOT_WHOLE_ACCEPTED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "九间四进深、重檐歇山、汉白玉台基；东西分列昭德门与贞度门。；本页无完整室内图；借午门页照片可看通廊柱子和天花局部。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ],
+      "currentBatchProgress": {
+        "scope": "Source-fit C south approach and six facilities promoted; no whole-gate acceptance",
+        "productionModules": [
+          "TaihemenObservedApproach.js",
+          "TaihemenObservedSolids.js",
+          "TaihemenObservedFixtures.js",
+          "TaihemenObservedTransaction.js"
+        ],
+        "implementedFacilities": 6,
+        "acceptedFacilities": 0,
+        "missingFacilities": "Two individually sourced lions remain unbuilt",
+        "actualWorld": {
+          "newSourceColliders": 77,
+          "oldSourceColliders": 68,
+          "newSourceSupports": 3,
+          "oldSourceSupports": 2,
+          "retainedOtherColliders": 30796,
+          "retainedOtherSupports": 1368,
+          "retainedExact": true,
+          "roundTrips": 8,
+          "visibleProbes": 93
+        },
+        "cpuViews": 9,
+        "gpuAccepted": false,
+        "integrationReview": "INDEPENDENT_LIMITED_APPROVAL_NO_NEW_P0_P1_KNOWN_P2_FIDELITY_REMAINS",
+        "fullSuite": "COMPLETE_PARTITIONED_1313_1103_PASS_210_KNOWN_FAILURE_NAMES_NO_NEW",
+        "limitations": [
+          "Four censers repeat one observed class form, individual close-photo identities/fine and rear details unaccepted",
+          "Source plan common-scale fit, not survey or post2026 works state",
+          "Existing upper-frame wings occluded and source 門 vs model 门 remain",
+          "All interior and canonical20 whole-gate requirements remain unaccepted"
+        ],
+        "rollbackRepair": "Independent original-red/final-green with6 simultaneous cleanup failures;authoritative state restored before listeners",
+        "cumulativeBatch": "COMPLETE_PARTITIONED_404_403_PASS_1_KNOWN_NON_WUYING_FAILURE",
+        "builds": "THREE_BASES_560_MODULES_EXIT0_PRECOMMIT_DIRTY_SOURCE_IDENTITY_VERIFIED",
+        "evidence": "docs/photo-fidelity/batches/r157-taihemen/production-integration-20261031/CUMULATIVE-RESULT.json",
+        "independentReport": "docs/photo-fidelity/batches/r157-taihemen/production-integration-20261031/independent-review/REVIEW.md"
+      }
+    },
+    {
+      "id": "FC-A478209231",
+      "name": "太和殿",
+      "sourceLine": 343,
+      "requiredScope": "十一间五进深、重檐庑殿、三层台基；图可核宝座、金龙柱、藻井及台基栏板、嘉量、日晷、铜龟铜鹤和脊兽。；内景只覆盖中央礼仪空间；背面、侧间、隐藏构架仍需逐角度证据。",
+      "priorEvidenceClassification": "部分实现（静态代码证据）",
+      "priorImplementedScope": "原文ID出现在可从入口沿字面导入到达的源码中；仅证明限定实现/元数据，不证明完整对象或场景已验收。",
+      "priorEvidenceFiles": [
+        "src/scene/palace/special/HallWalkingBeasts.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "PARTIAL_OWN_SOURCE_THIS_BATCH_NOT_WHOLE_ACCEPTED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "十一间五进深、重檐庑殿、三层台基；图可核宝座、金龙柱、藻井及台基栏板、嘉量、日晷、铜龟铜鹤和脊兽。；内景只覆盖中央礼仪空间；背面、侧间、隐藏构架仍需逐角度证据。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ],
+      "currentBatchProgress": "已将自身官方照片约束的日晷双柱通孔/倾盘针、嘉量可见开窗石罩接入真实生产；仅替旧4可见图元/2整盒为29封闭实体及29精确三角碰撞，不造隐藏量器/刻字。原16绕行、4高坠/离开石座和窄孔负控通过；30835非目标碰撞、1370支承及1水系完整保留。独审有限范围无P0–P2；CPU六图仅诊断。完整分片current-state1313/1103通过/210旧失败、batch320/319通过/1旧失败；原SIGKILL/OOM运行保留，不称单次全绿。精确尺寸/后雕/刻度/朝向、GPU和整殿其余原合同仍未验收。",
+      "currentBatchEvidence": [
+        "docs/photo-fidelity/batches/r157-a37/taihe-instruments-integration-20261031/README.md",
+        "docs/photo-fidelity/batches/r157-a37/taihe-instruments-integration-20261031/partitioned-current-state-result.json",
+        "docs/photo-fidelity/batches/r157-a37/taihe-instruments-integration-20261031/partitioned-batch-result.json"
+      ]
+    },
+    {
+      "id": "FC-5FAA15AE5C",
+      "name": "中和殿",
+      "sourceLine": 344,
+      "requiredScope": "平面正方形，深广各三间；四角攒尖单檐、铜鎏金宝顶、四面出廊；内景有地屏宝座及陈设。 2020年官方刊物实景及图解明确，其南北位置在三层大台基中心偏北，殿堂两侧未与台基踏步中心对中。；不能用交泰殿替代其门窗和内陈；室内照片非完整环视。",
+      "priorEvidenceClassification": "部分实现（静态代码证据）",
+      "priorImplementedScope": "原文ID出现在可从入口沿字面导入到达的源码中；仅证明限定实现/元数据，不证明完整对象或场景已验收。",
+      "priorEvidenceFiles": [
+        "src/scene/palace/special/HallWalkingBeasts.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "UNREVIEWED_THIS_BATCH_PRIOR_WORK_PRESERVED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "平面正方形，深广各三间；四角攒尖单檐、铜鎏金宝顶、四面出廊；内景有地屏宝座及陈设。 2020年官方刊物实景及图解明确，其南北位置在三层大台基中心偏北，殿堂两侧未与台基踏步中心对中。；不能用交泰殿替代其门窗和内陈；室内照片非完整环视。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ]
+    },
+    {
+      "id": "FC-58A3300503",
+      "name": "保和殿",
+      "sourceLine": 345,
+      "requiredScope": "九间五进深、重檐歇山；中央宝座、天花与暖阁构成可核，文本记前檐减金柱六根。；两梢间暖阁、屋面背面、完整柱网仍有缺口。",
+      "priorEvidenceClassification": "部分实现（静态代码证据）",
+      "priorImplementedScope": "原文ID出现在可从入口沿字面导入到达的源码中；仅证明限定实现/元数据，不证明完整对象或场景已验收。",
+      "priorEvidenceFiles": [
+        "src/scene/palace/BaoheDaisApproach.js",
+        "src/scene/palace/special/HallWalkingBeasts.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "UNREVIEWED_THIS_BATCH_PRIOR_WORK_PRESERVED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "九间五进深、重檐歇山；中央宝座、天花与暖阁构成可核，文本记前檐减金柱六根。；两梢间暖阁、屋面背面、完整柱网仍有缺口。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ]
+    },
+    {
+      "id": "FC-8C6502DA44",
+      "name": "体仁阁",
+      "sourceLine": 346,
+      "requiredScope": "两层楼阁、中间腰檐和平座、黄色琉璃瓦庑殿顶；下层九间、上层七间，前檐直棂窗及上层栏杆。；未找到本次范围内公开室内图；本页高25m，与弘义阁页23.8m并列保留，不能强行镜像等高。",
+      "priorEvidenceClassification": "部分实现（登记与绑定证据）",
+      "priorImplementedScope": "原登记映射候选中存在partial记录，当前JSON绑定解析到同名对象；仍非照片逐面验收。",
+      "priorEvidenceFiles": [],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "UNREVIEWED_THIS_BATCH_PRIOR_WORK_PRESERVED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "两层楼阁、中间腰檐和平座、黄色琉璃瓦庑殿顶；下层九间、上层七间，前檐直棂窗及上层栏杆。；未找到本次范围内公开室内图；本页高25m，与弘义阁页23.8m并列保留，不能强行镜像等高。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ]
+    },
+    {
+      "id": "FC-A43B1DAB0B",
+      "name": "弘义阁",
+      "sourceLine": 347,
+      "requiredScope": "面东，与体仁阁相对；两层之间腰檐和平座，上为单檐庑殿；外观和匾额可核。；未找到本次范围内公开室内图；官方称与体仁阁形式相同但高度记载有差异，测量基准待核。",
+      "priorEvidenceClassification": "部分实现（静态代码证据）",
+      "priorImplementedScope": "原文ID出现在可从入口沿字面导入到达的源码中；仅证明限定实现/元数据，不证明完整对象或场景已验收。",
+      "priorEvidenceFiles": [
+        "src/scene/palace/special/HongyiLowerWindowLeaves.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "UNREVIEWED_THIS_BATCH_PRIOR_WORK_PRESERVED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "面东，与体仁阁相对；两层之间腰檐和平座，上为单檐庑殿；外观和匾额可核。；未找到本次范围内公开室内图；官方称与体仁阁形式相同但高度记载有差异，测量基准待核。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ]
+    },
+    {
+      "id": "FC-9E59B14A3C",
+      "name": "协和门",
+      "sourceLine": 348,
+      "requiredScope": "五间二进深、单檐歇山；礓磋慢道沿河放宽，三道门与斗栱、霸王拳近景。；现存保留明代构造，不能和清代重建的熙和门完全复制。",
+      "priorEvidenceClassification": "部分实现（静态代码证据）",
+      "priorImplementedScope": "原文ID出现在可从入口沿字面导入到达的源码中；仅证明限定实现/元数据，不证明完整对象或场景已验收。",
+      "priorEvidenceFiles": [
+        "src/scene/palace/special/XieheCourtyardKnees.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "PARTIAL_OWN_SOURCE_THIS_BATCH_NOT_WHOLE_ACCEPTED",
+      "interiorReview": "PARTIAL_VISIBLE_ONLY_HIDDEN_STRUCTURE_UNVERIFIED",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "五间二进深、单檐歇山；礓磋慢道沿河放宽，三道门与斗栱、霸王拳近景。；现存保留明代构造，不能和清代重建的熙和门完全复制。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ],
+      "currentBatchProgress": "98cfd572：自身东端实墙、纵墙、单面门钉/红门背与局部露梁椽；西侧细部、完整梁架栏坡与实机仍未验。；东慢道两栏粗型/真三角及共享小降防穿透已通过限定回归/父版对照，仍非整项。；完整自身7-f/b分别确认两端窄槅门，西端间真隔墙/窄门/开放格条三角碰撞候选已测，低台沿与完整西栏屋架仍未闭合。"
+    },
+    {
+      "id": "FC-06B1BADE77",
+      "name": "熙和门",
+      "sourceLine": 349,
+      "requiredScope": "五间二进深、单檐歇山；慢道、门扉、雀替、霸王拳和彩画有图。；虽与协和门形制相仿，构件与彩画仍应分别核；无完整门厅内景。",
+      "priorEvidenceClassification": "部分实现（静态代码证据）",
+      "priorImplementedScope": "原文ID出现在可从入口沿字面导入到达的源码中；仅证明限定实现/元数据，不证明完整对象或场景已验收。",
+      "priorEvidenceFiles": [
+        "src/scene/palace/special/SideGateExteriorDetails.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "UNREVIEWED_THIS_BATCH_PRIOR_WORK_PRESERVED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "五间二进深、单檐歇山；慢道、门扉、雀替、霸王拳和彩画有图。；虽与协和门形制相仿，构件与彩画仍应分别核；无完整门厅内景。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ]
+    },
+    {
+      "id": "FC-B0439D9BED",
+      "name": "东雁翅楼",
+      "sourceLine": 350,
+      "requiredScope": "午门两翼廊庑之一，各13间，两端有重檐攒尖方亭。；父页可确认名称/关系；完整立面、屋面细节、尺寸及室内尚缺专门图证。",
+      "priorEvidenceClassification": "限定部分实现",
+      "priorImplementedScope": "尚无足够本轮对象级实现证据；不得由未找到映射推断未实现。",
+      "priorEvidenceFiles": [
+        "src/scene/PalaceBuilder.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "UNREVIEWED_THIS_BATCH_PRIOR_WORK_PRESERVED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "午门两翼廊庑之一，各13间，两端有重檐攒尖方亭。；父页可确认名称/关系；完整立面、屋面细节、尺寸及室内尚缺专门图证。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ]
+    },
+    {
+      "id": "FC-FB99F593DB",
+      "name": "西雁翅楼",
+      "sourceLine": 351,
+      "requiredScope": "午门两翼廊庑之一，各13间，两端有重檐攒尖方亭。；父页可确认名称/关系；完整立面、屋面细节、尺寸及室内尚缺专门图证。",
+      "priorEvidenceClassification": "限定部分实现",
+      "priorImplementedScope": "尚无足够本轮对象级实现证据；不得由未找到映射推断未实现。",
+      "priorEvidenceFiles": [
+        "src/scene/PalaceBuilder.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "UNREVIEWED_THIS_BATCH_PRIOR_WORK_PRESERVED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "午门两翼廊庑之一，各13间，两端有重檐攒尖方亭。；父页可确认名称/关系；完整立面、屋面细节、尺寸及室内尚缺专门图证。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ]
+    },
+    {
+      "id": "FC-08AF02314B",
+      "name": "午门钟鼓亭",
+      "sourceLine": 352,
+      "requiredScope": "正楼两侧各三间钟鼓亭；正文作为合称记载。；两亭具体东西归属、立面与室内现陈缺图；不把方角亭和钟鼓亭自动视为同一单体。",
+      "priorEvidenceClassification": "待核定（禁止借相似对象充数）",
+      "priorImplementedScope": "尚无足够本轮对象级实现证据；不得由未找到映射推断未实现。",
+      "priorEvidenceFiles": [
+        "docs/photo-fidelity/MASTER-PROMPT.md"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "UNREVIEWED_THIS_BATCH_PRIOR_WORK_PRESERVED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "正楼两侧各三间钟鼓亭；正文作为合称记载。；两亭具体东西归属、立面与室内现陈缺图；不把方角亭和钟鼓亭自动视为同一单体。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ]
+    },
+    {
+      "id": "FC-86C9330D65",
+      "name": "午门四角方亭",
+      "sourceLine": 353,
+      "requiredScope": "雁翅楼廊庑两端建重檐攒尖方亭，与正楼组成五凤楼轮廓。；四亭需按位置分别建立对象；不能只做一个模板后视为四亭细节已核。",
+      "priorEvidenceClassification": "部分实现（静态代码证据）",
+      "priorImplementedScope": "原文ID出现在可从入口沿字面导入到达的源码中；仅证明限定实现/元数据，不证明完整对象或场景已验收。",
+      "priorEvidenceFiles": [
+        "src/scene/palace/special/WumenPavilionColumns.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "PARTIAL_OWN_SOURCE_THIS_BATCH_NOT_WHOLE_ACCEPTED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "雁翅楼廊庑两端建重檐攒尖方亭，与正楼组成五凤楼轮廓。；四亭需按位置分别建立对象；不能只做一个模板后视为四亭细节已核。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ],
+      "currentBatchProgress": "已有东北北六柱保留；其北内围护三组红金框/下粗分格局部拟合，南面/其余三亭/物理不动；进深、细格和全午门仍未验。"
+    },
+    {
+      "id": "FC-F838FEF7AB",
+      "name": "昭德门",
+      "sourceLine": 354,
+      "requiredScope": "太和门东侧配门，晚清与太和门、贞度门同时重建。；父页可确认名称/关系；完整立面、屋面细节、尺寸及室内尚缺专门图证。",
+      "priorEvidenceClassification": "部分实现（静态代码证据）",
+      "priorImplementedScope": "原文ID出现在可从入口沿字面导入到达的源码中；仅证明限定实现/元数据，不证明完整对象或场景已验收。",
+      "priorEvidenceFiles": [
+        "src/scene/palace/special/ZhaodeSouthPanels.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "PARTIAL_OWN_SOURCE_THIS_BATCH_NOT_WHOLE_ACCEPTED",
+      "interiorReview": "PARTIAL_VISIBLE_ONLY_HIDDEN_STRUCTURE_UNVERIFIED",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "太和门东侧配门，晚清与太和门、贞度门同时重建。；父页可确认名称/关系；完整立面、屋面细节、尺寸及室内尚缺专门图证。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ],
+      "currentBatchProgress": "自身北色板/门背已部分修正，源图解除旧未观察缺口；门线深度、梁架/栏坡/尺寸/实机仍未验。"
+    },
+    {
+      "id": "FC-9252CFFDAB",
+      "name": "贞度门",
+      "sourceLine": 355,
+      "requiredScope": "太和门西侧配门，晚清与太和门、昭德门同时重建。；父页可确认名称/关系；完整立面、屋面细节、尺寸及室内尚缺专门图证。",
+      "priorEvidenceClassification": "部分实现（静态代码证据）",
+      "priorImplementedScope": "原文ID出现在可从入口沿字面导入到达的源码中；仅证明限定实现/元数据，不证明完整对象或场景已验收。",
+      "priorEvidenceFiles": [
+        "src/scene/palace/special/ZhenduGateProfile.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "PARTIAL_OWN_SOURCE_THIS_BATCH_NOT_WHOLE_ACCEPTED",
+      "interiorReview": "PARTIAL_VISIBLE_ONLY_HIDDEN_STRUCTURE_UNVERIFIED",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "太和门西侧配门，晚清与太和门、昭德门同时重建。；父页可确认名称/关系；完整立面、屋面细节、尺寸及室内尚缺专门图证。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ],
+      "currentBatchProgress": "自身北色板/门背已部分修正，源图解除旧未观察缺口；门线深度、梁架/栏坡/尺寸/实机仍未验。"
+    },
+    {
+      "id": "FC-2D6DB6F0EC",
+      "name": "协和门北庑房",
+      "sourceLine": 356,
+      "requiredScope": "门北官方建筑页记11间（另有13间记载，见缺项）东朝房；黄瓦，前出廊、后风火檐。；父页可确认名称/关系；完整立面、屋面细节、尺寸及室内尚缺专门图证。",
+      "priorEvidenceClassification": "待定位/独立实现未证实",
+      "priorImplementedScope": "尚无足够本轮对象级实现证据；不得由未找到映射推断未实现。",
+      "priorEvidenceFiles": [
+        "docs/photo-fidelity/MASTER-PROMPT.md"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "UNREVIEWED_THIS_BATCH_PRIOR_WORK_PRESERVED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "门北官方建筑页记11间（另有13间记载，见缺项）东朝房；黄瓦，前出廊、后风火檐。；父页可确认名称/关系；完整立面、屋面细节、尺寸及室内尚缺专门图证。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ]
+    },
+    {
+      "id": "FC-3489F3B25A",
+      "name": "协和门南庑房",
+      "sourceLine": 357,
+      "requiredScope": "门南官方建筑页记11间（另有13间记载，见缺项）东朝房；黄瓦，前出廊、后风火檐。；父页可确认名称/关系；完整立面、屋面细节、尺寸及室内尚缺专门图证。",
+      "priorEvidenceClassification": "待定位/独立实现未证实",
+      "priorImplementedScope": "尚无足够本轮对象级实现证据；不得由未找到映射推断未实现。",
+      "priorEvidenceFiles": [
+        "docs/photo-fidelity/MASTER-PROMPT.md"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "UNREVIEWED_THIS_BATCH_PRIOR_WORK_PRESERVED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "门南官方建筑页记11间（另有13间记载，见缺项）东朝房；黄瓦，前出廊、后风火檐。；父页可确认名称/关系；完整立面、屋面细节、尺寸及室内尚缺专门图证。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ]
+    },
+    {
+      "id": "FC-E9A79B1E5E",
+      "name": "熙和门北庑房",
+      "sourceLine": 358,
+      "requiredScope": "门北官方建筑页记11间（另有13间记载，见缺项）西朝房；黄瓦，前出廊、后风火檐。；父页可确认名称/关系；完整立面、屋面细节、尺寸及室内尚缺专门图证。",
+      "priorEvidenceClassification": "待定位/独立实现未证实",
+      "priorImplementedScope": "尚无足够本轮对象级实现证据；不得由未找到映射推断未实现。",
+      "priorEvidenceFiles": [
+        "docs/photo-fidelity/MASTER-PROMPT.md"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "UNREVIEWED_THIS_BATCH_PRIOR_WORK_PRESERVED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "门北官方建筑页记11间（另有13间记载，见缺项）西朝房；黄瓦，前出廊、后风火檐。；父页可确认名称/关系；完整立面、屋面细节、尺寸及室内尚缺专门图证。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ]
+    },
+    {
+      "id": "FC-069E407017",
+      "name": "熙和门南庑房",
+      "sourceLine": 359,
+      "requiredScope": "门南官方建筑页记11间（另有13间记载，见缺项）西朝房；黄瓦，前出廊、后风火檐。；父页可确认名称/关系；完整立面、屋面细节、尺寸及室内尚缺专门图证。",
+      "priorEvidenceClassification": "待定位/独立实现未证实",
+      "priorImplementedScope": "尚无足够本轮对象级实现证据；不得由未找到映射推断未实现。",
+      "priorEvidenceFiles": [
+        "docs/photo-fidelity/MASTER-PROMPT.md"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "UNREVIEWED_THIS_BATCH_PRIOR_WORK_PRESERVED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "门南官方建筑页记11间（另有13间记载，见缺项）西朝房；黄瓦，前出廊、后风火檐。；父页可确认名称/关系；完整立面、屋面细节、尺寸及室内尚缺专门图证。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ]
+    },
+    {
+      "id": "FC-DFB682AF14",
+      "name": "中左门",
+      "sourceLine": 360,
+      "requiredScope": "官方报道明确指出该门名称及相对于大殿的方位；属于三大殿旁的游览通道。 另有清代位置与明代位置比较图（《清代的紫禁城》PDF第6页），图注明确东侧为左门、西侧为右门。；未找到独立官方建筑条目及明确归属的公开室内图；待补完整外观。",
+      "priorEvidenceClassification": "通用模型占位，未完成本体修订",
+      "priorImplementedScope": "尚无足够本轮对象级实现证据；不得由未找到映射推断未实现。",
+      "priorEvidenceFiles": [
+        "data/zones/axis-courts.json",
+        "main.js",
+        "src/scene/palace/kit.js",
+        "src/scene/zones/ZoneBase.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "PARTIAL_OWN_SOURCE_THIS_BATCH_NOT_WHOLE_ACCEPTED",
+      "interiorReview": "PARTIAL_VISIBLE_ONLY_HIDDEN_STRUCTURE_UNVERIFIED",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "官方报道明确指出该门名称及相对于大殿的方位；属于三大殿旁的游览通道。 另有清代位置与明代位置比较图（《清代的紫禁城》PDF第6页），图注明确东侧为左门、西侧为右门。；未找到独立官方建筑条目及明确归属的公开室内图；待补完整外观。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ],
+      "currentBatchProgress": "9e17ef00：自身南透窗/北实板/门叶局部已修；继承北廊/隔墙尺寸与完整屋架栏坡仍未验。；自身北中央局部平盖裁开并拟合露明粗梁椽，原柱门/瓦面与物理保留；精确梁架/纹样和实机未验。"
+    },
+    {
+      "id": "FC-85E0528ECA",
+      "name": "中右门",
+      "sourceLine": 361,
+      "requiredScope": "官方报道明确指出该门名称及相对于大殿的方位；属于三大殿旁的游览通道。 另有清代位置与明代位置比较图（《清代的紫禁城》PDF第6页），图注明确东侧为左门、西侧为右门。；未找到独立官方建筑条目及明确归属的公开室内图；待补完整外观。",
+      "priorEvidenceClassification": "通用模型占位，未完成本体修订",
+      "priorImplementedScope": "尚无足够本轮对象级实现证据；不得由未找到映射推断未实现。",
+      "priorEvidenceFiles": [
+        "data/zones/axis-courts.json",
+        "main.js",
+        "src/scene/palace/kit.js",
+        "src/scene/zones/ZoneBase.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "PARTIAL_OWN_SOURCE_THIS_BATCH_NOT_WHOLE_ACCEPTED",
+      "interiorReview": "PARTIAL_VISIBLE_ONLY_HIDDEN_STRUCTURE_UNVERIFIED",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "北近门扇联合拟合已修正明显过窄：左源边残差<.5px、右自由端约3px，125度/3m为工程条件族而非测绘；本轮完整回归已终态。",
+        "整门工程候选的代码/真实运行/资源/非目标回归已记录；完整1331项仍有218历史失败，不称全绿。",
+        "真实浏览器/GPU前后对照、材质与运行性能仍阻塞；CPU仅几何诊断，不计wholeObjectAccepted。",
+        "名义瓦面边与脊帽/角件最外端须区分；北外轮廓少量残差保留。顶回栏精确跨数、浮雕/走兽与精确标高/开叶角度未作测绘认证，隐藏梁架不虚构。"
+      ],
+      "currentBatchProgress": "9e17ef00：自身南透窗/北实板/门叶局部已修；继承北廊/隔墙尺寸与完整屋架栏坡仍未验。；自身北中央局部平盖裁开并拟合露明粗梁椽，原柱门/瓦面与物理保留；精确梁架/纹样和实机未验。；本轮专用整门工程候选替换旧壳：自身六轴、完整双坡栏/屋面/共享厅、灰板与真实门窗/高墙接点和脊饰三角接触；完整回归及资源验证见MIDDLE-RIGHT-WHOLE-REGRESSION.json，未整项验收。",
+      "wholeCandidateProgress": {
+        "state": "VERIFIED_WHOLE_ENGINEERING_CANDIDATE_RUNTIME_PENDING",
+        "rollbackParent": "d70a4a02",
+        "plan": "MIDDLE-RIGHT-WHOLE-PLAN.md",
+        "source": "Own1665/1623/1615 full18 faces; independent rail census and two-sided conditional projection, not surveyed",
+        "implemented": [
+          "six column axes / central three bays plus two narrow end aisles",
+          "own complete roof and visible open common hall, no hidden joinery invention",
+          "south real lattice windows / north solid panels / north-opening real closed-state leaves",
+          "distinct hall/north porch level, minimal threshold and separate modern removable board",
+          "both complete solid ramps, four9-bay10-postrails with single center/end-bracket openings and low scrolls",
+          "retained adjoining seven-metre wall actual collision at raised gate junction",
+          "actual individual roof ridge/cap/chiwen triangle solids; not tile-only contact",
+          "source-neutral modern board material and coarse swollen rail-crown outline instead of red column texture and bare spikes",
+          "joint narrower fixed red frame/over-open leaf family; actual oblique leaf triangle solids retain side air"
+        ],
+        "sharedChange": "Optional inclusive edges/endpoints only for vertical triangle SAT; default horizontal semantics unchanged. Independent ordinary12jump traces exact vs old modules,80Wumenjump routes pass. One existing Xiehe retention assertion also fails on parent physics.",
+        "pending": [
+          "real browser/GPU source-view, material and performance acceptance",
+          "unverified precise top-return census, relief/roof animals and exact survey dimensions"
+        ],
+        "notAccepted": [
+          "real browser/GPU material/view/performance acceptance unavailable",
+          "roof actual ornament outer contour20.30 vs nominal corner19.79 residual retained",
+          "top return rail census and exact relief/roof animal details unverified; no hidden timber joints fabricated"
+        ],
+        "priorNeutralCrownValidation": {
+          "focused": 17,
+          "edgeSweep": 4,
+          "batchPlusTriangle": {
+            "pass": 142,
+            "fail": 0
+          },
+          "worldRoutes": 12,
+          "worldHighDrops": 30,
+          "worldWallJumps": 8,
+          "character": {
+            "renderedSupports": 528,
+            "clearSegments": 600,
+            "negativeBarriers": 4
+          },
+          "resources": "owned geometry/materials dispose once; borrowed library material survives",
+          "retention": "middle-left/other2gates/2adjacentcorridors geometry+colliders+supports and PalaceBuilder511 supports/static colliders match parent",
+          "threeBaseBuilds": {
+            "passed": 3,
+            "modulesEach": 546,
+            "memoryCondition": "separate run capped at3072MB after first concurrent run exit137"
+          },
+          "ridgeIndependentGrid": {
+            "total": 561,
+            "solid": 145,
+            "air": 416,
+            "mismatches": 0
+          },
+          "twoMiddleGatesFinalRoutes": 24,
+          "fullCurrentState": {
+            "tests": 1331,
+            "pass": 1113,
+            "fail": 218,
+            "cancelled": 0,
+            "addedFailureNames": [],
+            "removedFailureNames": [],
+            "reference": "MIDDLE-RIGHT-WHOLE-REGRESSION.json",
+            "scope": "final neutral-board/crown frozen production; not all green"
+          },
+          "scope": "2353 neutral-crown PRE-LEAF only; retained historical verification"
+        },
+        "validatedSoFar": {
+          "focused": 24,
+          "batchPlusTriangle": {
+            "pass": 144,
+            "fail": 0
+          },
+          "worldRoutes": 12,
+          "twoMiddleGatesFinalRoutes": 24,
+          "worldHighDrops": 30,
+          "worldWallJumps": 8,
+          "character": {
+            "renderedSupports": 528,
+            "clearSegments": 600,
+            "negativeBarriers": 6
+          },
+          "threeBaseBuilds": {
+            "passed": 3,
+            "modulesEach": 546
+          },
+          "retention": "Exact parent geometry/colliders/walkables for gates2/3/12,corridors36/37,Palace511 supports/static colliders",
+          "fullCurrentState": {
+            "tests": 1331.0,
+            "pass": 1113.0,
+            "fail": 218.0,
+            "cancelled": 0.0,
+            "duration_ms": 455326.96218,
+            "addedFailureNames": [],
+            "removedFailureNames": [],
+            "scope": "leaf-joint0021 final7hashes unchanged; not all green",
+            "reference": "MIDDLE-RIGHT-WHOLE-REGRESSION.json:northLeafJointCandidate"
+          },
+          "independentLeafGrid": "Open/closed1007points each0mismatch on offset grid; original5 tangent numeric differences all blocked by fixed frame, disclosed in report"
+        }
+      }
+    },
+    {
+      "id": "FC-E3F4369B07",
+      "name": "后左门",
+      "sourceLine": 362,
+      "requiredScope": "官方报道明确指出该门名称及相对于大殿的方位；属于三大殿旁的游览通道。 另有清代位置与明代位置比较图（《清代的紫禁城》PDF第6页），图注明确东侧为左门、西侧为右门。；未找到独立官方建筑条目及明确归属的公开室内图；待补完整外观。",
+      "priorEvidenceClassification": "通用模型占位，未完成本体修订",
+      "priorImplementedScope": "尚无足够本轮对象级实现证据；不得由未找到映射推断未实现。",
+      "priorEvidenceFiles": [
+        "data/zones/axis-courts.json",
+        "main.js",
+        "src/scene/palace/kit.js",
+        "src/scene/zones/ZoneBase.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "PARTIAL_OWN_SOURCE_THIS_BATCH_NOT_WHOLE_ACCEPTED",
+      "interiorReview": "PARTIAL_VISIBLE_ONLY_HIDDEN_STRUCTURE_UNVERIFIED",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "官方报道明确指出该门名称及相对于大殿的方位；属于三大殿旁的游览通道。 另有清代位置与明代位置比较图（《清代的紫禁城》PDF第6页），图注明确东侧为左门、西侧为右门。；未找到独立官方建筑条目及明确归属的公开室内图；待补完整外观。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ],
+      "newEvidence": {
+        "officialPanoramaGroup": 21,
+        "finding": "Own roofed gate with one central opening; south lattice vs north ochre side planes; documentary 连廊共5间 does not establish five core bays",
+        "originalResearchGap": "Original no-own-image statement is superseded by newly located own panorama; original requirement text retained verbatim",
+        "limits": "No surveyed dimensions or complete corridor/ramps/rails; no GPU acceptance"
+      },
+      "currentBatchPartial": "Retained anchor and ground, fitted roofed envelope, single 3.6m clear portal, south/north difference, own source metadata survives merge; not whole-object closure.",
+      "currentBatchProgress": "3dcafeb6：自身屋宇门厅与单通口替代旧墙门；完整连廊/栏坡/内梁及测量仍未验。"
+    },
+    {
+      "id": "FC-48D7D69238",
+      "name": "后右门",
+      "sourceLine": 363,
+      "requiredScope": "官方报道明确指出该门名称及相对于大殿的方位；属于三大殿旁的游览通道。 另有清代位置与明代位置比较图（《清代的紫禁城》PDF第6页），图注明确东侧为左门、西侧为右门。；未找到独立官方建筑条目及明确归属的公开室内图；待补完整外观。",
+      "priorEvidenceClassification": "通用模型占位，未完成本体修订",
+      "priorImplementedScope": "尚无足够本轮对象级实现证据；不得由未找到映射推断未实现。",
+      "priorEvidenceFiles": [
+        "data/zones/axis-courts.json",
+        "main.js",
+        "src/scene/palace/kit.js",
+        "src/scene/zones/ZoneBase.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "PARTIAL_OWN_SOURCE_THIS_BATCH_NOT_WHOLE_ACCEPTED",
+      "interiorReview": "PARTIAL_VISIBLE_ONLY_HIDDEN_STRUCTURE_UNVERIFIED",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "官方报道明确指出该门名称及相对于大殿的方位；属于三大殿旁的游览通道。 另有清代位置与明代位置比较图（《清代的紫禁城》PDF第6页），图注明确东侧为左门、西侧为右门。；未找到独立官方建筑条目及明确归属的公开室内图；待补完整外观。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ],
+      "newEvidence": {
+        "officialPanoramaGroup": 15,
+        "finding": "Own roofed gate with one central opening; south lattice vs north ochre side planes; documentary 连廊共5间 does not establish five core bays",
+        "originalResearchGap": "Original no-own-image statement is superseded by newly located own panorama; original requirement text retained verbatim",
+        "limits": "No surveyed dimensions or complete corridor/ramps/rails; no GPU acceptance"
+      },
+      "currentBatchPartial": "Retained anchor and ground, fitted roofed envelope, single 3.6m clear portal, south/north difference, own source metadata survives merge; not whole-object closure.",
+      "currentBatchProgress": "3dcafeb6：自身屋宇门厅与单通口替代旧墙门，独立侧窗差异保留；完整连廊/栏坡/内梁及测量仍未验。"
+    },
+    {
+      "id": "FC-BC06FBAC15",
+      "name": "左翼门",
+      "sourceLine": 364,
+      "requiredScope": "1991年官方古建保养修缮记录明确列名。；此来源仅证明确有该建筑名及修缮范围；精确位置、现状屋面和内外图均待补，不能据常见宫门样式生成。",
+      "priorEvidenceClassification": "部分实现（静态代码证据）",
+      "priorImplementedScope": "原文ID出现在可从入口沿字面导入到达的源码中；仅证明限定实现/元数据，不证明完整对象或场景已验收。",
+      "priorEvidenceFiles": [
+        "src/scene/palace/special/ZuoyiDoorFront.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "UNREVIEWED_THIS_BATCH_PRIOR_WORK_PRESERVED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "1991年官方古建保养修缮记录明确列名。；此来源仅证明确有该建筑名及修缮范围；精确位置、现状屋面和内外图均待补，不能据常见宫门样式生成。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ]
+    },
+    {
+      "id": "FC-E2A42F047A",
+      "name": "右翼门",
+      "sourceLine": 365,
+      "requiredScope": "1991年官方古建保养修缮记录明确列名。；此来源仅证明确有该建筑名及修缮范围；精确位置、现状屋面和内外图均待补，不能据常见宫门样式生成。",
+      "priorEvidenceClassification": "通用模型占位，未完成本体修订",
+      "priorImplementedScope": "尚无足够本轮对象级实现证据；不得由未找到映射推断未实现。",
+      "priorEvidenceFiles": [
+        "data/zones/axis-courts.json",
+        "main.js",
+        "src/scene/palace/kit.js",
+        "src/scene/zones/ZoneBase.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "UNREVIEWED_THIS_BATCH_PRIOR_WORK_PRESERVED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "1991年官方古建保养修缮记录明确列名。；此来源仅证明确有该建筑名及修缮范围；精确位置、现状屋面和内外图均待补，不能据常见宫门样式生成。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ],
+      "sourceReviewProgress": {
+        "state": "OWN_VIEWS_BOUND_PRIVATE_WHOLE_PROXY_NOT_PRODUCTION_APPROVED",
+        "plan": "YOUYI-WHOLE-GATE-PLAN.md",
+        "views": [
+          "3807 west: six full640 faces + r1280",
+          "2017 east-near: six full640 faces + f1280",
+          "2049 east-far: six full640 faces + l/b1280",
+          "2006 near platform: f/l full640",
+          "1674 north adjacent court: b/l full640"
+        ],
+        "resolved": [
+          "own five bays, three door pairs, differentiated east/west faces and end windows",
+          "both ramp toes, including corrected transverse east stone-band identity across cube faces",
+          "common conditional main-roof/column envelope; no assumed visitor eye height",
+          "north gable small stone arch and low step/side-strip topology, not blank wall"
+        ],
+        "stillUnresolved": [
+          "same-geometry north gallery ridge/endwall/support interfaces; inherited4.2-depth shell not source-confirmed",
+          "separate actual gallery/side-strip/gate floors, no invented common2.8 datum",
+          "full real rendered before/after, physical routes/NPC/lifecycle and resource acceptance"
+        ],
+        "productionChanged": false,
+        "boundedSupplementComplete": true,
+        "nextBatchWork": "Original middle-right gate FC-85E0528ECA full-envelope source check; not a new release or acceptance."
+      }
+    },
+    {
+      "id": "FC-E32F3D1CA3",
+      "name": "太和殿南庑",
+      "sourceLine": 366,
+      "requiredScope": "1991年官方古建保养修缮记录明确列名。；此来源仅证明确有该建筑名及修缮范围；精确位置、现状屋面和内外图均待补，不能据常见宫门样式生成。",
+      "priorEvidenceClassification": "待定位/独立实现未证实",
+      "priorImplementedScope": "尚无足够本轮对象级实现证据；不得由未找到映射推断未实现。",
+      "priorEvidenceFiles": [
+        "docs/photo-fidelity/MASTER-PROMPT.md"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "UNREVIEWED_THIS_BATCH_PRIOR_WORK_PRESERVED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "1991年官方古建保养修缮记录明确列名。；此来源仅证明确有该建筑名及修缮范围；精确位置、现状屋面和内外图均待补，不能据常见宫门样式生成。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ]
+    },
+    {
+      "id": "FC-D156902D78",
+      "name": "内金水桥",
+      "sourceLine": 367,
+      "requiredScope": "五座汉白玉石拱桥组成一组；俯视图可核五桥相对间距、中央御路与河道弧线。；每座桥仍须独立对象和近景；不能只放一座模板或把断虹桥石狮复制过来。桥为室外设施，室内不适用。",
+      "priorEvidenceClassification": "限定部分实现",
+      "priorImplementedScope": "尚无足够本轮对象级实现证据；不得由未找到映射推断未实现。",
+      "priorEvidenceFiles": [
+        "src/scene/Layout.js",
+        "src/scene/PalaceBuilder.js",
+        "src/scene/palace/special/InnerJinshui.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "UNREVIEWED_THIS_BATCH_PRIOR_WORK_PRESERVED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "五座汉白玉石拱桥组成一组；俯视图可核五桥相对间距、中央御路与河道弧线。；每座桥仍须独立对象和近景；不能只放一座模板或把断虹桥石狮复制过来。桥为室外设施，室内不适用。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ]
+    },
+    {
+      "id": "FC-B9097C61D8",
+      "name": "武英门前三座石桥",
+      "sourceLine": 368,
+      "requiredScope": "桥文明确记三座石桥；需各桥独立定位。；正文确认，未将该文无细分图注的照片强行分配到此桥；需补明确归属的外观。室内不适用。",
+      "priorEvidenceClassification": "限定部分实现",
+      "priorImplementedScope": "尚无足够本轮对象级实现证据；不得由未找到映射推断未实现。",
+      "priorEvidenceFiles": [
+        "src/scene/Layout.js",
+        "src/scene/PalaceBuilder.js",
+        "src/scene/palace/special/SouthWaterSystem.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "PARTIAL_THREE_OWN_BRIDGE_RAIL_GROUPS_IMPLEMENTED_NOT_FULL_BRIDGE",
+      "interiorReview": "NA_OPEN_AIR_BRIDGE_BUT_VAULT_UNDERSIDE_REQUIRED",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "Full rail/post census, exact carving and dimensions remain unverified.",
+        "Own vault sides/undersides and complete abutment detail not established; no other bridge copied.",
+        "Actual browser/GPU/lifecycle/visual acceptance remains blocked."
+      ],
+      "batchImplementedScope": "Three retained instances: full dual rail runs, cloud openings, one drum short support per panel, pointed coarse caps, curved descending ends; counts and sizes fitted.",
+      "batchValidation": {
+        "focused": 10,
+        "centralRoutes": 18,
+        "nearRailRoutes": 36,
+        "bodyPressRetreat": 18,
+        "actual6mFalls": 54,
+        "threeBaseInMemoryCompile": true,
+        "fullStandard": "RUNNING",
+        "browserGPU": "BLOCKED"
+      }
+    },
+    {
+      "id": "FC-74F8C30390",
+      "name": "半壁桥",
+      "sourceLine": 369,
+      "requiredScope": "桥文明确记只在一面有石栏板，通向箭亭前空地。；正文确认，未将该文无细分图注的照片强行分配到此桥；需补明确归属的外观。室内不适用。",
+      "priorEvidenceClassification": "限定部分实现",
+      "priorImplementedScope": "尚无足够本轮对象级实现证据；不得由未找到映射推断未实现。",
+      "priorEvidenceFiles": [
+        "src/scene/Layout.js",
+        "src/scene/PalaceBuilder.js",
+        "src/scene/palace/special/SouthWaterSystem.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "SOURCE_IDENTITY_ADVANCED_NOT_GEOMETRY_ACCEPTED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "桥文明确记只在一面有石栏板，通向箭亭前空地。；正文确认，未将该文无细分图注的照片强行分配到此桥；需补明确归属的外观。室内不适用。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ],
+      "currentBatchProgress": "官方1982自身图文及现桥上全景/四面1280已补，确认为南北桥/东单栏，旧(-140,-266)横桥与东朝房脱离；已完成桥—涵—北庑房联合方案及两独审，生产零改。当前东拱腹、草带下接合及两侧高程/尺寸仍缺直接约束，不原地旋转、不改河凑栏。",
+      "sourceInvestigationPlan": "BANBI-WHOLE-BRIDGE-PLAN.md"
+    },
+    {
+      "id": "FC-17AFD38428",
+      "name": "三座门外三座石桥",
+      "sourceLine": 370,
+      "requiredScope": "桥文确认通向南三所的三座门外另有三座桥；不可和武英门前三桥或内金水五桥混合。；正文确认，未将该文无细分图注的照片强行分配到此桥；需补明确归属的外观。室内不适用。",
+      "priorEvidenceClassification": "待核定（禁止借相似对象充数）",
+      "priorImplementedScope": "尚无足够本轮对象级实现证据；不得由未找到映射推断未实现。",
+      "priorEvidenceFiles": [
+        "docs/photo-fidelity/MASTER-PROMPT.md"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "UNREVIEWED_THIS_BATCH_PRIOR_WORK_PRESERVED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "桥文确认通向南三所的三座门外另有三座桥；不可和武英门前三桥或内金水五桥混合。；正文确认，未将该文无细分图注的照片强行分配到此桥；需补明确归属的外观。室内不适用。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ]
+    },
+    {
+      "id": "FC-35BF29ABCB",
+      "name": "三台（外朝三大殿台基）",
+      "sourceLine": 371,
+      "requiredScope": "三层白石台基承托三大殿；图版明确台基几何中心与中和殿南北位置、两侧踏步中心不重合，完整关系应据图核验。；台基应作为连续复合体，按各殿月台、甬路、踏跺、御路、栏板及排水螭首逐段核；勿为对称而强行移动中和殿。室内不适用。",
+      "priorEvidenceClassification": "限定部分实现",
+      "priorImplementedScope": "尚无足够本轮对象级实现证据；不得由未找到映射推断未实现。",
+      "priorEvidenceFiles": [
+        "src/scene/PalaceBuilder.js",
+        "src/scene/palace/ThreeHallTerrace.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "UNREVIEWED_THIS_BATCH_PRIOR_WORK_PRESERVED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "三层白石台基承托三大殿；图版明确台基几何中心与中和殿南北位置、两侧踏步中心不重合，完整关系应据图核验。；台基应作为连续复合体，按各殿月台、甬路、踏跺、御路、栏板及排水螭首逐段核；勿为对称而强行移动中和殿。室内不适用。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ]
+    },
+    {
+      "id": "FC-CA9102BFFB",
+      "name": "太和殿东联庑",
+      "sourceLine": 372,
+      "requiredScope": "康熙重建后，太和殿前东西联庑在左翼门、右翼门、体仁阁、弘义阁等门阁处中断，以厚墙连接；不可绘制成绕过这些门阁而不断开的木廊。；官方刊物明确关系和防火分段方式；未取得本侧全长立面、逐间尺寸及现状内景。",
+      "priorEvidenceClassification": "部分实现（静态代码证据）",
+      "priorImplementedScope": "原文ID出现在可从入口沿字面导入到达的源码中；仅证明限定实现/元数据，不证明完整对象或场景已验收。",
+      "priorEvidenceFiles": [
+        "data/zones/axis-courts.json",
+        "src/scene/palace/GalleryInventoryPolicy.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "UNREVIEWED_THIS_BATCH_PRIOR_WORK_PRESERVED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "康熙重建后，太和殿前东西联庑在左翼门、右翼门、体仁阁、弘义阁等门阁处中断，以厚墙连接；不可绘制成绕过这些门阁而不断开的木廊。；官方刊物明确关系和防火分段方式；未取得本侧全长立面、逐间尺寸及现状内景。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ]
+    },
+    {
+      "id": "FC-0D3F161564",
+      "name": "保和殿东联庑",
+      "sourceLine": 373,
+      "requiredScope": "官方刊物记在保和殿前东西联庑中加设封火山墙并分段；封火墙开有券门。；正文记“封火山墙七道、联庑六段”；未厘清端墙计入方式及每侧计数，建模前需按现状逐段核实。",
+      "priorEvidenceClassification": "部分实现（静态代码证据）",
+      "priorImplementedScope": "原文ID出现在可从入口沿字面导入到达的源码中；仅证明限定实现/元数据，不证明完整对象或场景已验收。",
+      "priorEvidenceFiles": [
+        "data/zones/axis-courts.json",
+        "src/scene/palace/GalleryInventoryPolicy.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "UNREVIEWED_THIS_BATCH_PRIOR_WORK_PRESERVED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "官方刊物记在保和殿前东西联庑中加设封火山墙并分段；封火墙开有券门。；正文记“封火山墙七道、联庑六段”；未厘清端墙计入方式及每侧计数，建模前需按现状逐段核实。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ]
+    },
+    {
+      "id": "FC-B31A272965",
+      "name": "太和殿西联庑",
+      "sourceLine": 374,
+      "requiredScope": "康熙重建后，太和殿前东西联庑在左翼门、右翼门、体仁阁、弘义阁等门阁处中断，以厚墙连接；不可绘制成绕过这些门阁而不断开的木廊。；官方刊物明确关系和防火分段方式；未取得本侧全长立面、逐间尺寸及现状内景。",
+      "priorEvidenceClassification": "部分实现（静态代码证据）",
+      "priorImplementedScope": "原文ID出现在可从入口沿字面导入到达的源码中；仅证明限定实现/元数据，不证明完整对象或场景已验收。",
+      "priorEvidenceFiles": [
+        "data/zones/axis-courts.json",
+        "src/scene/palace/GalleryInventoryPolicy.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "UNREVIEWED_THIS_BATCH_PRIOR_WORK_PRESERVED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "康熙重建后，太和殿前东西联庑在左翼门、右翼门、体仁阁、弘义阁等门阁处中断，以厚墙连接；不可绘制成绕过这些门阁而不断开的木廊。；官方刊物明确关系和防火分段方式；未取得本侧全长立面、逐间尺寸及现状内景。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ]
+    },
+    {
+      "id": "FC-86FF7FC2AB",
+      "name": "保和殿西联庑",
+      "sourceLine": 375,
+      "requiredScope": "官方刊物记在保和殿前东西联庑中加设封火山墙并分段；封火墙开有券门。；正文记“封火山墙七道、联庑六段”；未厘清端墙计入方式及每侧计数，建模前需按现状逐段核实。",
+      "priorEvidenceClassification": "部分实现（静态代码证据）",
+      "priorImplementedScope": "原文ID出现在可从入口沿字面导入到达的源码中；仅证明限定实现/元数据，不证明完整对象或场景已验收。",
+      "priorEvidenceFiles": [
+        "data/zones/axis-courts.json",
+        "src/scene/palace/GalleryInventoryPolicy.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "UNREVIEWED_THIS_BATCH_PRIOR_WORK_PRESERVED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "官方刊物记在保和殿前东西联庑中加设封火山墙并分段；封火墙开有券门。；正文记“封火山墙七道、联庑六段”；未厘清端墙计入方式及每侧计数，建模前需按现状逐段核实。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ]
+    },
+    {
+      "id": "FC-1ABC6622CB",
+      "name": "太和殿两侧阶梯状封火墙",
+      "sourceLine": 376,
+      "requiredScope": "康熙重建时太和殿两侧斜廊改为阶梯状封火墙；此墙随高差成阶梯，不应套用连廊屋顶。；照片只显示太和殿的一侧；两侧长度、级数和端头细节仍需当前全景补证。",
+      "priorEvidenceClassification": "部分实现（静态代码证据）",
+      "priorImplementedScope": "原文ID出现在可从入口沿字面导入到达的源码中；仅证明限定实现/元数据，不证明完整对象或场景已验收。",
+      "priorEvidenceFiles": [
+        "src/scene/palace/special/AxisFirewallProfiles.js",
+        "src/scene/palace/special/AxisFirewalls.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "PARTIAL_OWN_SOURCE_THIS_BATCH_NOT_WHOLE_ACCEPTED",
+      "interiorReview": "SOURCE_EXPLICIT_NO_ENCLOSED_ROOM_MASTER_LINE376_NO_FURNITURE_TASK",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "Precise metric validation and obscured lower feet remain source-limited; visible fine painted patterns and leaf hardware not fully reproduced.",
+        "Real browser/GPU before/after visual acceptance and final affected-runtime validation remain outstanding; CPU/route/collider checks do not replace them."
+      ],
+      "currentBatchProgress": "东西各自身完整cube绑定的三帽两落连续墙、上下端接、砖脚与双面真实门叶、帽三角接触、六处隐蔽栏杆裁切已实现；138952cd门墙比例P1已纠正为真实2.1×2.25孔，原门楣增加精确头碰撞。90/90批次通过；纠正后全量1331/1113通过218失败，与旧218失败名称完全一致，非全绿，尚未整项验收。；自身1280补固定南框Π描金并联动纠正门头/门簪/彩绘梁层次，北框独立；21/21定向、93/93批次，52全世界头碰撞/空气反例通过，最新全量仍1113通过218失败同名。细彩画/五金、精确尺寸及GPU仍未整项验收。",
+      "evidenceFiles": [
+        "TAIHE-WHOLE-WALLS-PLAN.md",
+        "TAIHE-WHOLE-WALLS-SOURCES.json",
+        "TAIHE-WHOLE-WALLS-REGRESSION.json"
+      ]
+    },
+    {
+      "id": "FC-526ABE19BB",
+      "name": "保和殿两侧阶梯状封火墙",
+      "sourceLine": 377,
+      "requiredScope": "官方刊物明确保和殿两侧斜廊改为阶梯状封火墙；与庑内开券门的封火山墙为不同构造分项。；本次未取得能独立定位到保和殿两侧阶梯墙的专门照片；不可误把东联庑券门照作此墙照片。",
+      "priorEvidenceClassification": "部分实现（静态代码证据）",
+      "priorImplementedScope": "原文ID出现在可从入口沿字面导入到达的源码中；仅证明限定实现/元数据，不证明完整对象或场景已验收。",
+      "priorEvidenceFiles": [
+        "src/scene/palace/BaoheEastFirewall.js"
+      ],
+      "wholeObjectAccepted": false,
+      "exteriorReview": "PARTIAL_OWN_SOURCE_THIS_BATCH_NOT_WHOLE_ACCEPTED",
+      "interiorReview": "UNREVIEWED_THIS_BATCH_NOT_AUTOMATIC_NA",
+      "runtimeVisual": "BLOCKED_RUNTIME",
+      "remaining": [
+        "官方刊物明确保和殿两侧斜廊改为阶梯状封火墙；与庑内开券门的封火山墙为不同构造分项。；本次未取得能独立定位到保和殿两侧阶梯墙的专门照片；不可误把东联庑券门照作此墙照片。",
+        "Exact real-browser before/after visual comparison and affected routes/NPC/lifecycle required; prior local scope tests not whole-object acceptance."
+      ],
+      "currentBatchProgress": "自身南北随墙门木框/小石脚/彩绘门额及南4门簪局部修正；门扇、全阶梯/墙端与实机未验。"
+    }
+  ],
+  "internalCheckpoint": {
+    "kind": "LOCAL_WIP_NOT_R157_RELEASE",
+    "dateUTC": "2026-10-30",
+    "wholeObjectsAdded": 0,
+    "bridgeFocusedRecheck": "12/12; independent expanded 156 drop cases exit without penetration",
+    "bridgeParentComparison": "94 tests: both candidate and R156 52 pass / 42 fail, identical failure names",
+    "xieheEnvelope": "East end solid wall/stone base, real vestibule end partitions, studded east skin/red plain back with leaf-local battens; 6 focused tests plus 33 side-gate route/lifecycle tests",
+    "remaining": "Whole-object source/runtime verification remains open; partial Xiehe hall, rear gates and middle gate facades recorded below, not accepted as complete objects",
+    "runtime": "No new browser launch; prior runtime block remains, no GPU/mobile acceptance",
+    "standardCurrentState": {
+      "tests": 1331,
+      "pass": 1113,
+      "fail": 218,
+      "cancelled": 0,
+      "durationSeconds": 330.52,
+      "meaning": "Aggregate is not green; historical source/snapshot failures remain. Focused parent comparisons do not establish every aggregate failure is pre-existing.",
+      "appliesTo": "d2592770 envelope checkpoint only; later visible hall delta has focused verification, full suite not rerun yet"
+    },
+    "visibleEastHall": {
+      "scope": "Only own eastern three-portal roof window; not complete seven-purlin structure",
+      "ceilingOpeningM2": 75.15,
+      "newFrameTriangles": 9102,
+      "wholeGateTriangles": 18716,
+      "mergedMeshesBefore": 14,
+      "mergedMeshesAfter": 16,
+      "sourceMeshesBefore": 575,
+      "sourceMeshesAfter": 641,
+      "mergedGeometryBytesBefore": 921600,
+      "mergedGeometryBytesAfter": 1796736,
+      "instancedInstances": 0,
+      "nodeCpuMedianBuildAndMergeMs": {
+        "parent": 58.1,
+        "candidate": 69.73,
+        "samplesEach": 5
+      },
+      "runtime": "Actual render draw calls, browser load, frame time and GPU unmeasured",
+      "remaining": "Full transverse framing, joints, west half, exact measurements, steps and rail details remain unaccepted"
+    },
+    "rearAxisGates": {
+      "scope": "Two existing masonry gates replaced by own-source single-portal roofed envelope, not complete courts",
+      "ids": [
+        "FC-E3F4369B07",
+        "FC-48D7D69238"
+      ],
+      "wholeObjectsAdded": 0,
+      "sourceGroups": [
+        21,
+        15
+      ],
+      "groundY": 0,
+      "clearPortalWidth": 3.6,
+      "finalFocusedTests": "10/10",
+      "worldRoutes": "Parent and candidate each 24 centre/near-jamb 10/60Hz walk/sprint roundtrips",
+      "firewallAndRoutes": "20/20 before final material-side-only correction",
+      "unresolved": "Long ramps/rails, full connected corridor count, hidden timber, exact dimensions and GPU/mobile",
+      "anchorCheck": "114 compared; only unchanged Shenwumen reports 11m against 5m tolerance; both rear gates 0.2m and pass",
+      "costPerGate": {
+        "oldTriangles": 1258,
+        "candidateTriangles": 2892,
+        "oldMergedBytes": 120768,
+        "candidateMergedBytes": 277632,
+        "oldMergedMeshes": 10,
+        "candidateMergedMeshes": [
+          12,
+          13
+        ]
+      },
+      "costBoundary": "Node component/opaque-pass mesh estimate only, not measured GPU draw calls or frame performance"
+    },
+    "middleAxisGates": {
+      "scope": "Own south perforated windows, retained north solid enclosure, floor-correct single-face open leaves with real collisions",
+      "sourceGroups": [
+        25,
+        19
+      ],
+      "wholeObjectsAdded": 0,
+      "focusedTests": "7/7",
+      "combinedComponents": "29/29",
+      "worldRoutes": "Parent and candidate 24 each",
+      "inMemoryBuild": "Three bases, 538 modules each",
+      "independentReview": "Each gate: 1170/1764 window rays cross real holes before and after merge; lifecycle disposal verified; no blocker",
+      "costPerGate": {
+        "trianglesBefore": 1790,
+        "trianglesAfter": 5822,
+        "sourceMeshesBefore": 38,
+        "sourceMeshesAfter": 378,
+        "mergedMeshesBefore": 13,
+        "mergedMeshesAfter": 16,
+        "mergedGeometryBytesBefore": 171840,
+        "mergedGeometryBytesAfter": 558912,
+        "instancedInstances": 0
+      },
+      "costBoundary": "Node mesh/buffer estimates; actual draw calls/browser loading/frame/GPU unmeasured",
+      "unresolved": "Inherited north-porch depth and partitions, full shape measurements, roof framing, ramp/rails, GPU/mobile"
+    },
+    "axialNorth": {
+      "scope": "Own north paint partitions and plain backs on existing leaves; door-depth discrepancy remains unverified",
+      "sourceGroups": [
+        8,
+        11
+      ],
+      "wholeObjectsAdded": 0,
+      "focused": "10/10 plus south consumer and real support routes: 14/14",
+      "independentReview": "Prune-order free-end defect red-tested and corrected; final no blocker; material/texture ownership once",
+      "costPerGate": {
+        "addedTriangles": 64,
+        "addedSourceMeshes": 4,
+        "addedMergedMeshes": 2,
+        "addedMergedGeometryBytes": 6144,
+        "instancedInstances": 0
+      },
+      "runtime": "No GPU draw-call/load/frame measurement",
+      "remaining": "Door plane versus rear panels, back framing, complete north geometry, rails, steps, hidden roof and modern measurements",
+      "existingFiveSuites": "Parent and candidate each 122 tests / 118 pass / same 4 failures; final serial rerun after restart",
+      "allBatchFocused": "49/49 before next wall-door red test was introduced",
+      "inMemoryBuild": "Three bases, 539 modules each"
+    },
+    "baoheEastWallDoor": {
+      "scope": "Own-source south timber/stone-foot frame, four south hex pins, separate north support and painted lintels; no new leaf or changed opening",
+      "wholeObjectsAdded": 0,
+      "focused": "12/12 including six real controller walk/sprint roundtrips; all batch plus R92 61/61",
+      "inMemoryBuild": "Three bases, 539 modules each",
+      "cost": {
+        "trianglesBefore": 336,
+        "trianglesAfter": 540,
+        "sourceMeshesBefore": 18,
+        "sourceMeshesAfter": 31,
+        "mergedMeshesBefore": 6,
+        "mergedMeshesAfter": 8,
+        "mergedGeometryBytesBefore": 32256,
+        "mergedGeometryBytesAfter": 51840,
+        "instancedInstances": 0
+      },
+      "remaining": "Door leaves/state, full stepped wall/terrace dimensions, exact source calibration, runtime/GPU"
+    },
+    "taiheEastWallDoor": {
+      "scope": "Own two-faced timber frames and feet, painted lintels, south-only gold-edged hex pins, no leaf or changed passage",
+      "wholeObjectsAdded": 0,
+      "focused": "5/5 including 12 actual controller roundtrips; all batch plus R92 66/66",
+      "legacyR58": "Candidate and fde9a95b parent same 26 fixed-baseline fixture failures; no golden changes",
+      "cost": {
+        "trianglesBefore": 300,
+        "trianglesAfter": 588,
+        "sourceMeshesBefore": 15,
+        "sourceMeshesAfter": 39,
+        "mergedMeshesBefore": 5,
+        "mergedMeshesAfter": 9,
+        "mergedGeometryBytesBefore": 28800,
+        "mergedGeometryBytesAfter": 56448,
+        "instancedInstances": 0
+      },
+      "remaining": "West instance/landing binding; door leaves/state, full wall/steps, precise metrics, GPU",
+      "inMemoryBuild": "Three bases, 540 modules each"
+    },
+    "wumenNeNorthEnclosure": {
+      "scope": "One NE closed north enclosure only; 3 own-source groups, lower coarse 2/3/2; upper grid unconfirmed",
+      "wholeObjectsAdded": 0,
+      "focused": "6/6; parent and candidate four real deck routes each; full batch plus R92 72/72",
+      "existingSuites": "Parent/candidate 43 each: 37 pass, same six historical or missing-baseline failures",
+      "inMemoryBuild": "Three bases, 541 modules each",
+      "costWholeWumen": {
+        "trianglesBefore": 35652,
+        "trianglesAfter": 36168,
+        "sourceMeshesBefore": 464,
+        "sourceMeshesAfter": 507,
+        "sourceGeometriesBefore": 374,
+        "sourceGeometriesAfter": 375,
+        "mergedMeshesBefore": 25,
+        "mergedMeshesAfter": 27,
+        "mergedGeometryBytesBefore": 3423336,
+        "mergedGeometryBytesAfter": 3472872,
+        "sourceGeometryBytesAdded": 840,
+        "instancedInstances": 0
+      },
+      "remaining": "Measured north enclosure depth, upper/fine grids, all other pavilion faces/interiors, whole Wumen/runtime"
+    },
+    "xieheEastSlopeRails": {
+      "status": "CHECKED_INTERNAL_WIP_NOT_RELEASED",
+      "scope": "Two own-source east slope rail runs; 38 exact visible-triangle owners; old horizontal return geometry/physics retained except two duplicate endpoint columns removed",
+      "wholeObjectsAdded": 0,
+      "focused": "27/27; 76 real high drops zero triangle penetration; 12 real near-rail/central routes each parent/candidate",
+      "sharedPhysics": "Parent/candidate 105/105; real small grounded descent now uses existing continuous triangle vertical guard only on actual impact; ordinary trajectories equal",
+      "costWholeGate": {
+        "trianglesBefore": 18716,
+        "trianglesAfter": 20504,
+        "sourceMeshesBefore": 641,
+        "sourceMeshesAfter": 761,
+        "mergedMeshesBefore": 16,
+        "mergedMeshesAfter": 16,
+        "mergedGeometryBytesBefore": 1796736,
+        "mergedGeometryBytesAfter": 1968384,
+        "instancedInstances": 0
+      },
+      "remaining": "Historical218 current-state failures; platform/side/west rails, low steps, exact west narrow door, full structure and GPU/runtime",
+      "componentRegression": "99/99 including isolated original roof-refinement physics test and R92; library/geometry lifecycle verified",
+      "inMemoryBuild": "Three bases, 542 modules each",
+      "priorWuyingRegression": "156 real high drops and centre/near-rail route suites passed",
+      "fullCurrentState": "Candidate raw1331:1112 pass219 fail; only extra old rail-support assertion corrected33/33. Parent controller full1331:1113 pass218 fail; same218 names asd259. Final candidate entire suite not re-labelled/recounted after the isolated consumer correction.",
+      "rollbackParent": "4d614c22"
+    },
+    "middleNorthVisibleHall": {
+      "status": "CHECKED_INTERNAL_WIP_NOT_RELEASED",
+      "scope": "Own north central porch only; retained exterior roof and every original collider/walkable exact",
+      "rollbackParent": "f88dc035",
+      "sourceGroups": [
+        25,
+        19
+      ],
+      "wholeObjectsAdded": 0,
+      "focused": "17/17 middle components; all batch components72/72",
+      "worldRoutes": "24/24 parent and24/24 candidate; real centre/near-jamb10/60Hz walk/sprint roundtrips",
+      "independentReview": "Two failure-path findings red-tested: transformed intermediate roof owners now reject; roof validation now precedes facade mutation. No other blockers; whole-object source/runtime acceptance not established.",
+      "inMemoryBuild": "Three bases,543 modules each",
+      "costPerGate": {
+        "trianglesBefore": 5822,
+        "trianglesAfter": 9858,
+        "sourceMeshesBefore": 378,
+        "sourceMeshesAfter": 400,
+        "mergedMeshesBefore": 16,
+        "mergedMeshesAfter": 17,
+        "mergedGeometryBytesBefore": 558912,
+        "mergedGeometryBytesAfter": 946368,
+        "instancedInstances": 0
+      },
+      "costBoundary": "Node component/opaque-pass mesh estimates; not actual GPU draw calls or frame performance",
+      "runtime": "CPU base-color north/up views inspected for both parent and candidate; actual browser/GPU remains blocked, not retried",
+      "remaining": "Unmeasured porch depth, side bays, exact layered frame/paint/bracket/hidden joints, ramps/rails, whole-gate runtime acceptance",
+      "fullCurrentState": {
+        "tests": 1331,
+        "pass": 1113,
+        "fail": 218,
+        "cancelled": 0,
+        "durationSeconds": 501.79,
+        "comparison": "Same218 failure names as saved prior parent-controller full run; not green; see MIDDLE-NORTH-REGRESSION.json for complete names and comparison limits"
+      }
+    },
+    "xieheWestEndPartitions": {
+      "parent": "6ffd4ebc",
+      "status": "LOCAL_WIP_VERIFIED_NOT_WHOLE_ACCEPTED",
+      "wholeObjectAccepted": false,
+      "source": "Own sphere2054726937396219918 full640 cubes7-f/7-b; original512 files were partial first tiles",
+      "scope": "Both west end-room partitions and closed narrow lattice leaves; no floor/ramp/river change",
+      "focused": "5/5",
+      "actualRoutes": "36/36 candidate and36/36 parent, all3portals centre/near-jamb10/60Hz walk/sprint throughbothramps",
+      "cost": {
+        "triangles": [
+          20504,
+          21592
+        ],
+        "mergedMeshes": [
+          16,
+          16
+        ],
+        "geometryBytes": [
+          1968384,
+          2072832
+        ]
+      },
+      "remaining": [
+        "West hall roof frame hidden by source beams",
+        "Single low porch edge height datum and linked outer platform/ramp/rail heights",
+        "All west/platform/side rail assemblies",
+        "Real browser/GPU acceptance"
+      ],
+      "targetedRegression": "77/77 batch; historical side-gate60 candidate/parent each52pass8fail with identical failure names",
+      "fullCurrentState": {
+        "tests": 1331,
+        "pass": 1113,
+        "fail": 218,
+        "cancelled": 0,
+        "durationSeconds": 473.58,
+        "comparison": "Same218 failure names as saved middle-north full run; fresh parent-targeted60 also matches8 fail names; not all green"
+      }
+    },
+    "taiheWholeWallPair": {
+      "parent": "4d146747",
+      "status": "CORRECTED_VERIFIED_LOCAL_WIP_NOT_WHOLE_ACCEPTED",
+      "objectId": "FC-1ABC6622CB",
+      "wholeObjectAccepted": false,
+      "scope": "Both own-source three-cap/two-drop wall chains, brick foot partition, double-faced door frames and real leaves, cap triangle contact and exactly six concealed rail cuts",
+      "focused": "15/15; all batch87/87",
+      "worldRoutes": "24/24 parent and candidate; candidate24/24 rerun after rail cut",
+      "highDrops": "36 main+72 independent near-end same-flank exits; zero cap penetration; original invalid straight/cross-wall targets preserved",
+      "independent": "Both P2 preflight/rail-overlap findings red-tested and fixed;2490 outside-rail samples unchanged; lifecycle once",
+      "remaining": [
+        "Exact metrics and obscured lower feet",
+        "Fine painted patterns and complete leaf hardware",
+        "Real browser/GPU acceptance"
+      ],
+      "fullCurrentState": {
+        "tests": 1331,
+        "pass": 1113,
+        "fail": 218,
+        "cancelled": 0,
+        "durationSeconds": 474.78,
+        "comparison": "Final frozen-tree run; same218 names as saved previous fullrun; not all green"
+      },
+      "build": "Three bases544modules each in-memory, no deployment",
+      "supportPreservation": "All101 three-hall walkables byte-identical to fresh4d146747 parent fixture",
+      "priorCheckpoint": "138952cd: subsequent source-ratio P1; prior review no-proportion-blocker retracted; do not release",
+      "correction": {
+        "wallDoorRatio": "4.333/3=1.444 rejected; source1.8–2.05; actual2.1x2.25 aperture gives1.926",
+        "brickFeet": "east1.05 west1.15 source-relative fits",
+        "physics": "original lintel/head/paintedbeam/pin boxes gain exact flat overhead; no shared controller change",
+        "focused": "18/18; batch90/90",
+        "fullCurrentState": {
+          "tests": 1331,
+          "pass": 1113,
+          "fail": 218,
+          "cancelled": 0,
+          "durationSeconds": 473.512,
+          "comparison": "All218 failure names exactly match saved138952cd prior fullrun; no new or removed failures. Four frozen production hashes unchanged. Not all green; fresh parent fullsuite not rerun.",
+          "addedFailures": [],
+          "removedFailures": []
+        },
+        "independentHeadContact": "36real whole-world edge/pin/air jumps after zone loading and merging; all18metadata owners retained; portable replaypasses36",
+        "walkablePreservation": "All101three-hall and511PalaceBuilder walkables equal138952cd by value/order"
+      },
+      "activeHeaderCandidate": {
+        "parent": "064ecb27",
+        "status": "VERIFIED_LOCAL_WIP_NOT_WHOLE_ACCEPTED",
+        "batch": "93/93",
+        "scope": "Own1280 southfixedΠ and coupledheader/pin/beam correction, independentlydifferentnorthheader; realhole/wall/terrace/leaves unchanged",
+        "wholeObjectAccepted": false,
+        "fullCurrentState": {
+          "tests": 1331,
+          "pass": 1113,
+          "fail": 218,
+          "cancelled": 0,
+          "durationSeconds": 474.967,
+          "comparison": "All218 failure names match saved064ecb27 full run; no added/removed failures. Fourproductionhashes stayed frozen. Not all green; freshparentfull not rerun.",
+          "addedFailures": [],
+          "removedFailures": []
+        },
+        "characterClearance": "6clear/150renderedground/6negative probes with actual CharacterWorldAdapter; no crowd-simulation claim",
+        "headProbes": "52actualwholeworld frame/pin/beam/air jumps pass"
+      }
+    },
+    "wumenMainWidthFollowup": {
+      "kind": "SOURCE_BOUNDED_ACTUAL_MAIN_GRID_NOT_WHOLE_ACCEPTANCE",
+      "wholeObjectsAdded": 0,
+      "evidence": "../R157-WUMEN-MAIN-WIDTH/README.md",
+      "remaining": "历史batch P1缺口、完整木构/逐扇围护、午门整体坐标与翼亭比例、GPU/实机验收未闭合。"
+    },
+    "wumenSidePortalFacesFollowup": {
+      "kind": "BOUNDED_ACTUAL_STATIC_EXTERIOR_FRONT_FINISH_NOT_WHOLE_ACCEPTANCE",
+      "status": "INDEPENDENTLY_REVIEWED_LIMITED_DEVELOPMENT_HISTORY_P1_OPEN",
+      "wholeObjectsAdded": 0,
+      "evidence": "../R157-WUMEN-SIDE-PORTAL-FACES/README.md",
+      "scope": "Two static front finish groups;32 meshes/384 triangles, no new physics; east11 visible divisions, west11 fit with2 weak boundaries; no inscription glyphs.",
+      "full": "1313/1100/213, complete status/title Counter unchanged from db1",
+      "batch": "98files556/546/10, +32passing/0removed, inherited10missing refs and38unexecuted remain P1",
+      "remaining": "石额文字/真实深度与材质、完整门洞与午门整体比例/木构、GPU与整项验收未闭合；远端后继备份待完成。"
+    },
+    "wumenLeftNearLeafFollowup": {
+      "kind": "SOURCE_BOUNDED_ACTUAL_EAST_NEAR_LEAF_VISIBLE_CAPS_NOT_WHOLE_ACCEPTANCE",
+      "status": "INDEPENDENTLY_REVIEWED_LIMITED_DEVELOPMENT_HISTORY_P1_OPEN",
+      "wholeObjectsAdded": 0,
+      "evidence": "../R157-WUMEN-LEFT-LEAF/README.md",
+      "scope": "64 own-photo visible hats;8 occluded unknown;0 confirmed absent. 15mm visual hemispheres, no additional physics. Opposite leaf/back/handles/patina not reconstructed.",
+      "world": "40/40 ground arrivals8222 frames;24 width combinations16 arrivals8 expected blocks1188 frames;actual30882colliders1365supports preserved",
+      "full": "1313/1100/213 complete status/title Counter unchanged from eec",
+      "batch": "105files581/571/10;32added/7removed exact30new+guard6to1+CPUtitle mapping;10missing-history failures unchanged",
+      "build": "3bases570modules exit0;actual eec+dirty fingerprint691f0ea0ea8f132ebded2d5e08930c2e3860bdea59ba1e33ebf0a18b70603a4f",
+      "remaining": "Inherited10missing refs/38unexecuted P1; whole Wumen structure/proportions, unseen hardware/patina and GPU/current-site acceptance remain open. Remote successor recovery pending."
+    },
+    "wumenJointContactCandidate": {
+      "status": "LIMITED_UNINSTALLED_LOCAL_CONTACT_CANDIDATE",
+      "rollback": "48a6dcf7c94dd1233e1135e8fbf4f12f837e1074",
+      "evidence": "docs/photo-fidelity/batches/R157-WUMEN-JOINT-LAYOUT/CANDIDATE-RESULT.json",
+      "wholeObjectsAdded": 0,
+      "runtimeOwnerRegistration": false,
+      "wholeObjectAccepted": false,
+      "routeAcceptance": false,
+      "localTests": "114/114; not original full/batch or World",
+      "limits": [
+        "map/photo/engineering levels separate; pavilion/neck identities unknown",
+        "original full16 strict folded routes remain unresolved",
+        "ground entry/exit and release-to-air unimplemented",
+        "shared entry only explicit local candidate; no PalaceBuilder binding",
+        "World/full/build/GPU not run for candidate",
+        "inherited10 missing refs/38 unexecuted P1 unchanged"
+      ],
+      "remoteBackup": "PENDING"
+    },
+    "wumenLocalGroundEntryFollowup": {
+      "status": "LIMITED_UNINSTALLED_LOCAL_GROUND_ENTRY_CHECKPOINT_REVIEWED",
+      "rollback": "3b2d95ae544d41d348a536a41a4f89026d62e24b",
+      "evidence": "docs/photo-fidelity/batches/R157-WUMEN-GROUND-ENTRY/CANDIDATE-RESULT.json",
+      "wholeObjectsAdded": 0,
+      "runtimeOwnerRegistration": false,
+      "wholeObjectAccepted": false,
+      "architecturalRouteAcceptance": false,
+      "localEngineeringGroundRoutes": "16/16,6334frames; real test-ground, not Environment or pavilion entrance",
+      "localTests": "179/179 plus separate55 legacy controls; not original full/batch/World",
+      "limits": [
+        "actual mapped ground/platform/horseway/south-wall/pavilion interfaces",
+        "arbitrary authorization-window departure and gravity/landing/release",
+        "unresolved eight upper interface identities",
+        "full historical QA closure: ten missing refs and38 unexecuted old titles",
+        "World/full/build/GPU not run for successor"
+      ],
+      "remoteBackup": "PENDING"
+    },
+    "wumenVisiblePlatformGeometry": {
+      "status": "LIMITED_UNINSTALLED_GEOMETRY_CHECKPOINT",
+      "evidence": "docs/photo-fidelity/batches/R157-WUMEN-VISIBLE-PLATFORM",
+      "runtimeInstalled": false,
+      "sourceChanges": 0,
+      "sourceFiles": 600,
+      "qaFiles": 4406,
+      "focusedTests": "56/56",
+      "wholeObjectsAdded": 0,
+      "retainedHistoryGapP1": true,
+      "remaining": [
+        "upper assembly reference mismatch",
+        "actual platform FP and provider not implemented",
+        "world/anchor/walls not migrated",
+        "fullsuite/build/GPU not run"
+      ],
+      "backup": "PENDING"
+    },
+    "wumenUpperPrecontract": {
+      "status": "LIMITED_OFFLINE_NUMERIC_AND_PREDECESSOR_RECORD",
+      "evidence": "docs/photo-fidelity/batches/R157-WUMEN-UPPER-PRECONTRACT",
+      "productionChanges": 0,
+      "sourceCount": 600,
+      "qaCount": 4412,
+      "selectedTests": 30,
+      "selectedPass": 30,
+      "wholeObjectsAdded": 0,
+      "accepted": false,
+      "runtimeInstalled": false,
+      "worldVerified": false,
+      "gpuVerified": false,
+      "remote": "PENDING",
+      "remaining": "New entity/actual roof geometry and complete upper platform FP unverified; inherited missing-history P1 unchanged."
+    },
+    "wumenRoofOfflineSurfaceStages": {
+      "report": "docs/photo-fidelity/batches/R157-WUMEN-ROOF-OFFLINE-SURFACES/README.md",
+      "productionChanges": 0,
+      "sourceCount": 600,
+      "qaCount": 4416,
+      "selectedTests": 48,
+      "selectedPass": 48,
+      "wholeObjectsAdded": 0,
+      "accepted": false,
+      "runtimeInstalled": false,
+      "worldVerified": false,
+      "gpuVerified": false,
+      "remote": "PENDING",
+      "remaining": "Only partial offline tile/soffit/fascia; trim/actual upper support/platform FP/World/full/build/GPU and inherited missing-history P1 remain."
+    },
+    "wumenRoofOfflineTrims": {
+      "report": "docs/photo-fidelity/batches/R157-WUMEN-ROOF-OFFLINE-TRIMS/README.md",
+      "productionChanges": 0,
+      "sourceCount": 600,
+      "qaCount": 4418,
+      "selectedTests": 58,
+      "selectedPass": 58,
+      "wholeObjectsAdded": 0,
+      "accepted": false,
+      "runtimeInstalled": false,
+      "worldVerified": false,
+      "gpuVerified": false,
+      "remote": "PENDING",
+      "remaining": "Offline trim only; combined boundary/CPU, actual support/upper-platform FP/World/full/build/GPU and inherited missing-history P1 remain."
+    },
+    "wumenRoofCombinedDiagnostic": {
+      "report": "docs/photo-fidelity/batches/R157-WUMEN-ROOF-COMBINED-DIAGNOSTIC/README.md",
+      "productionChanges": 0,
+      "sourceCount": 600,
+      "qaCount": 4423,
+      "selectedTests": 65,
+      "selectedPass": 65,
+      "wholeObjectsAdded": 0,
+      "accepted": false,
+      "runtimeInstalled": false,
+      "supportVerified": false,
+      "worldVerified": false,
+      "gpuVerified": false,
+      "remote": "PENDING",
+      "remaining": "Uninstalled roof/trim CPU diagnostic only;32 unresolved numerical pairs per mode, end extensions, cross-instance/structural bearing/full-upper-platform FP/World/full/build/GPU and inherited missing-history P1 remain."
+    },
+    "wumenIntegratedOfflineAssembly": {
+      "report": "docs/photo-fidelity/batches/R157-WUMEN-INTEGRATED-OFFLINE-ASSEMBLY/README.md",
+      "productionChanges": 0,
+      "sourceCount": 600,
+      "qaCount": 4428,
+      "selectedTests": 105,
+      "selectedPass": 105,
+      "wholeObjectsAdded": 0,
+      "accepted": false,
+      "runtimeInstalled": false,
+      "supportVerified": false,
+      "routeAccepted": false,
+      "worldVerified": false,
+      "gpuVerified": false,
+      "remote": "PENDING",
+      "remaining": "Complete default-open visible offline group only; cross-instance contacts, new180 bearings, actual physical migration, full-platform FP, closed state, new whole CPU/World/full/build/GPU and inherited missing-history P1 remain."
+    },
+    "wumenActualJunctionsAndBearingDiagnostic": {
+      "date": "2026-11-01",
+      "scope": "UNINSTALLED_COMPLETE_CANDIDATE_DIAGNOSTICS_NOT_OBJECT_ACCEPTANCE",
+      "evidence": "../R157-WUMEN-ACTUAL-JUNCTIONS-BEARING",
+      "sourceCommit": "1e0a5a8e3284ed7613cfc94b29a5a933a12d246d",
+      "selectedTests": "130/130 plus separate docs transport4",
+      "runtimeSourceFiles": 600,
+      "qaFiles": 4432,
+      "wholeObjectsAdded": 0,
+      "accepted": false,
+      "runtimeInstalled": false,
+      "supportVerified": false,
+      "routeAccepted": false,
+      "geometryP1Open": [
+        "main-link gaps",
+        "body and roof penetrations",
+        "125 numerical unresolved pairs",
+        "16 positive actual shaft-footprint gaps"
+      ],
+      "historicalP1": "10 missing historical refs / 38 unexecuted; earlier full213 and batch10 failures remain",
+      "worldVerified": false,
+      "gpuVerified": false,
+      "remoteBackup": "PENDING"
+    }
+  },
+  "remoteMainObservation": {
+    "sha": "4c97325a3af66539a63289f6930a91f795e88957",
+    "source": "Parent read-only remote check 2026-10-30",
+    "status": "R147-R156 merged externally; cumulative base comparison required before any future release; main not modified here"
+  }
+}

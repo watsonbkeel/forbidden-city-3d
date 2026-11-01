@@ -1,0 +1,250 @@
+{
+  "base": "70ab7daeecad884404050619f223a055816460db",
+  "scope": "Four engineering-fit visible guarded links; no gallery/building relocation",
+  "sources": [
+    {
+      "url": "https://img.dpm.org.cn/Uploads/Picture/dc/1980%5B1024%5D.jpg",
+      "sha256": "73a695882b0bfed222cb8893459a5218fccf1c2c26ee1d19e04228e2ff169205",
+      "pixelsViewed": true
+    },
+    {
+      "url": "https://img.dpm.org.cn/Uploads/Picture/dc/1534%5B1024%5D.jpg",
+      "sha256": "8754a179efd12d10002c5f549a5e6d01070bacff4f62696953deeff1249cb8af",
+      "pixelsViewed": true
+    }
+  ],
+  "world": {
+    "topLevelTests": 1,
+    "routes": 28,
+    "arrived": 28,
+    "frames": 7994,
+    "peakAbsoluteFootGround": 0.222666666666667,
+    "beforeContactPeak": 0.6102777777777768,
+    "matrix": "4 links*10/60Hz*walk/run=16; two retained front entrances*4=8; Youyi central*4=4. Each round trip."
+  },
+  "component": {
+    "finalSelected": {
+      "pass": 22,
+      "fail": 0
+    },
+    "initialRetained": {
+      "pass": 14,
+      "fail": 1,
+      "failure": "old exact allowlist count expects57, now65. Parent authorized updated count plus exact57 baseline and specified8 additions, all other assertions retained."
+    }
+  },
+  "build": {
+    "command": "npm run build",
+    "exit": 0,
+    "modules": 599,
+    "metadata": {
+      "schema": 1,
+      "release": "R146-fix",
+      "buildId": "R146-fix-03aa2d098583",
+      "sourceFingerprint": "0711b4f7aeb2f2c299fdc47059cca6d5531a731fbba0633d1567e91f7e60866b",
+      "sourceCommit": "70ab7daeecad884404050619f223a055816460db",
+      "sourceDirty": true,
+      "base": "/gugong/"
+    },
+    "note": "precommit candidate build: sourceCommit70ab/sourceDirtytrue; sourceFingerprint binds actual code, not clean70ab runtime; default /gugong/ base, not root /"
+  },
+  "runtimeFiles": {
+    "src/scene/palace/special/PavilionSideConnections.js": "e48993ff81eea7b220319485a0f237630cc7bc185afe3e95ca918d0264406e1b",
+    "src/scene/palace/special/SurveyedPavilion.js": "7bb521098af0e81b533251f7a4e5d1a8497d314a39d12c663c50a7bdecea5ba6",
+    "src/scene/zones/ZoneBase.js": "8ff4ced700a3fb4e2af4693da17510eef0fe03036534a27f3ff0b742986139af",
+    "data/architecture/b-practical-stair-contacts.json": "230ebeb75b3d600d3853f296995ab19a285099d9f6a21417b8365b8b4a6f75a7"
+  },
+  "cpu": {
+    "views": 8,
+    "flatCategoryColors": true,
+    "notGPU": true,
+    "finalExportRowsAndCameraEqualCaptured": {
+      "after-tiren.json.gz": true,
+      "before-tiren.json.gz": true,
+      "before-hongyi.json.gz": true,
+      "before-hongyi-north.json.gz": true,
+      "after-hongyi.json.gz": true,
+      "before-tiren-south.json.gz": true,
+      "after-tiren-south.json.gz": true,
+      "after-hongyi-north.json.gz": true
+    }
+  },
+  "archive": [
+    {
+      "file": "component-red.tap",
+      "rawSHA256": "e146b1369c1fd2f774e9665cbd614ce348c45e6cf0b73bf9ecae0e87b00c33aa",
+      "storedSHA256": "e146b1369c1fd2f774e9665cbd614ce348c45e6cf0b73bf9ecae0e87b00c33aa"
+    },
+    {
+      "file": "component-red.exit",
+      "rawSHA256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "storedSHA256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "file": "component-first.tap",
+      "rawSHA256": "661bd1f7a95be5a72aaccc472092daa14e6c6e670309cf786ac4c73abc2ee8ed",
+      "storedSHA256": "661bd1f7a95be5a72aaccc472092daa14e6c6e670309cf786ac4c73abc2ee8ed"
+    },
+    {
+      "file": "component-first.exit",
+      "rawSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "storedSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "file": "contact-red.tap",
+      "rawSHA256": "f97d91ac8f3091fb14c58706d4aab61642e082cd009fb5e10efda2b8e55b46bc",
+      "storedSHA256": "f97d91ac8f3091fb14c58706d4aab61642e082cd009fb5e10efda2b8e55b46bc"
+    },
+    {
+      "file": "contact-red.exit",
+      "rawSHA256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "storedSHA256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "file": "contact-first.tap",
+      "rawSHA256": "2e9c9234bd90e23a864ffa784e3254454a5de7ac12eed598f1c767201202f63f",
+      "storedSHA256": "2e9c9234bd90e23a864ffa784e3254454a5de7ac12eed598f1c767201202f63f"
+    },
+    {
+      "file": "contact-first.exit",
+      "rawSHA256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "storedSHA256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "file": "contact-second.tap",
+      "rawSHA256": "2843aa72140d5fa5279bdb6a3c487c986e4b43ec6dccbecc111a394e3c93a590",
+      "storedSHA256": "2843aa72140d5fa5279bdb6a3c487c986e4b43ec6dccbecc111a394e3c93a590"
+    },
+    {
+      "file": "contact-second.exit",
+      "rawSHA256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "storedSHA256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "file": "contact-final.tap",
+      "rawSHA256": "0a0d1c67f82b1097f49d6b9d61bd3a185caf7c4138f92e96655fd0c40c56f44a",
+      "storedSHA256": "0a0d1c67f82b1097f49d6b9d61bd3a185caf7c4138f92e96655fd0c40c56f44a"
+    },
+    {
+      "file": "contact-final.exit",
+      "rawSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "storedSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "file": "selected-7.tap",
+      "rawSHA256": "89844590870275a28cf51773c0a8574df55ae5b4e80538635cd9fa19f5a20e5a",
+      "storedSHA256": "89844590870275a28cf51773c0a8574df55ae5b4e80538635cd9fa19f5a20e5a"
+    },
+    {
+      "file": "selected-7.exit",
+      "rawSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "storedSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "file": "retained-15.tap",
+      "rawSHA256": "4fdec44a09d72031220db5c7889c9a7eead8f0816faca7822b468942553b52a2",
+      "storedSHA256": "4fdec44a09d72031220db5c7889c9a7eead8f0816faca7822b468942553b52a2"
+    },
+    {
+      "file": "retained-15.exit",
+      "rawSHA256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "storedSHA256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "file": "final-22.tap",
+      "rawSHA256": "00b2ca09ad7e46fbe87e2590599a5a181041400311ce83008aaae27617a4a548",
+      "storedSHA256": "00b2ca09ad7e46fbe87e2590599a5a181041400311ce83008aaae27617a4a548"
+    },
+    {
+      "file": "final-22.exit",
+      "rawSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "storedSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "file": "world-first.json.gz",
+      "rawSHA256": "e44e6a9ca7eabd9ff328fca5dcb955ec41b7db3d541403579ce015c07b331da7",
+      "storedSHA256": "0e45d455e64c536aefc7181e6799ab33bf7e3e6d037d281492430d2d091c728b"
+    },
+    {
+      "file": "world-first.tap",
+      "rawSHA256": "1021ee84e759d230a7a3f4c3527c6ef15ba1a3839340d8ce8f77944020e2b04e",
+      "storedSHA256": "1021ee84e759d230a7a3f4c3527c6ef15ba1a3839340d8ce8f77944020e2b04e"
+    },
+    {
+      "file": "world-first.exit",
+      "rawSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "storedSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "file": "world-contact.json.gz",
+      "rawSHA256": "0678a786767c7e056e23d3e1d2b16bc6dd09a06af6865bc29a28002939458fc4",
+      "storedSHA256": "0288be4c18ee8b16fb3e632b966f69abb0c3ad39549135f5f119fce6b5619d12"
+    },
+    {
+      "file": "world-contact.tap",
+      "rawSHA256": "ff6f0be069396519297c147dab3d4d7da212eb01dc8ee3f4647dbb87ff858fe6",
+      "storedSHA256": "ff6f0be069396519297c147dab3d4d7da212eb01dc8ee3f4647dbb87ff858fe6"
+    },
+    {
+      "file": "world-contact.exit",
+      "rawSHA256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "storedSHA256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "file": "world-final.json.gz",
+      "rawSHA256": "8166f5e5a478165d7811ce46ee66154559d7ed99f80bb50b950a83790d100b00",
+      "storedSHA256": "a9d752a3a11c111ea02943c6c62e06b4780a359b35b73b7db9d67bcec403d45e"
+    },
+    {
+      "file": "world-final.tap",
+      "rawSHA256": "e5c5a7cce417d98969b1d9a64fb550145f111c1bce6ce96cc911c5340d7fe13d",
+      "storedSHA256": "e5c5a7cce417d98969b1d9a64fb550145f111c1bce6ce96cc911c5340d7fe13d"
+    },
+    {
+      "file": "world-final.exit",
+      "rawSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "storedSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "file": "build.log",
+      "rawSHA256": "43cfb1e3997a251fb12cf41aaa27ae572cfdb255ea02a6c0ca6381745ad35975",
+      "storedSHA256": "43cfb1e3997a251fb12cf41aaa27ae572cfdb255ea02a6c0ca6381745ad35975"
+    },
+    {
+      "file": "build.exit",
+      "rawSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "storedSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "file": "FREEZE-1040.json",
+      "rawSHA256": "daeb744585c845fd989caa1039c9709e0b8a980454b110352222434bec2dafd0",
+      "storedSHA256": "daeb744585c845fd989caa1039c9709e0b8a980454b110352222434bec2dafd0"
+    },
+    {
+      "file": "existing-side-surface-capture.json",
+      "rawSHA256": "e015ac85dd8526583b99da53ff8acab2048e8355bdacfc90aeaa37e4231d309c",
+      "storedSHA256": "e015ac85dd8526583b99da53ff8acab2048e8355bdacfc90aeaa37e4231d309c"
+    },
+    {
+      "file": "cpu-final-identity.json",
+      "rawSHA256": "e0fbf26ac7e70d50f8f5c8045cfbac1040f874aae91d5d796b8f791ec75c9ec6",
+      "storedSHA256": "e0fbf26ac7e70d50f8f5c8045cfbac1040f874aae91d5d796b8f791ec75c9ec6"
+    }
+  ],
+  "notVerified": [
+    "GPU",
+    "mobile",
+    "historical connector geometry",
+    "all city routes",
+    "user acceptance"
+  ],
+  "noChange": [
+    "main",
+    "gallery data/anchors/buildings",
+    "front stairs",
+    "Youyi own module",
+    "Collision",
+    "FirstPerson",
+    "BPrincipalStairContact runtime logic"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "status": "COMPLETE_EXPLICIT_PARTITIONED_REPLAY_NOT_MONOLITHIC",
+  "scope": "Final582-source frozen suite;116-file1536MB primary, replacing only incomplete Qinan48 file wrapper with original TAP768MB replay; original Zhaode75 TAP768MB separately. No skipped tests/assertion changes. Failure titles do not prove identical underlying causes.",
+  "sourceManifest": "source-final-0610.json",
+  "tests": 1313,
+  "pass": 1103,
+  "fail": 210,
+  "titleMultisetExactlyMatches1313Baseline": true,
+  "newFailureNames": [],
+  "removedFailureNames": [],
+  "parts": [
+    {
+      "path": "full-final-main-0611.log",
+      "sha256": "8c2bda36d941d99aa95bf0cb122dc297a437eb757c40719cdbc814ba5310339f",
+      "tests": 1191,
+      "pass": 981,
+      "fail": 210
+    },
+    {
+      "path": "zhaode-tap-observed-0622/output.tap",
+      "sha256": "cc7371ce3b24c0713e1da40acce3eb2637ddcc80422aafa2d799b6c50df002a7",
+      "tests": 75,
+      "pass": 74,
+      "fail": 1
+    },
+    {
+      "path": "qinan-tap-observed-0626/output.tap",
+      "sha256": "b21bfbd1c6e93a705134db396997bee1bd41a5a5ad85433be16e420c9c1600d7",
+      "tests": 48,
+      "pass": 48,
+      "fail": 0
+    }
+  ],
+  "baselineLog": "/workspace/scratch/02a8023d1a85/r158-arrow-integration-evidence-0441/full-current-state-0451.log",
+  "baselineSHA256": "a600dbbb23faf5442e881338f12f919c38626d51e82e3b700dfcbc347685a468",
+  "priorIncompleteRound": "full-current-state-0601.log retained separately, not included in final aggregate"
+}

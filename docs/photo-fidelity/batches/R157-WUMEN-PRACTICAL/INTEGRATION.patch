@@ -1,0 +1,17 @@
+--- a/src/scene/PalaceBuilder.js
++++ b/src/scene/PalaceBuilder.js
+@@ -0,0 +1 @@
++import {installWumenPracticalAssembly} from './palace/special/WumenPracticalAssembly.js';
+@@ -1120,0 +1122,2 @@
++  finalizeWumenPractical(group,data,starts) { return installWumenPracticalAssembly(this,group,data,starts); }
++
+@@ -1121,0 +1125 @@
++    const starts={colliderStart:this.colliders.length,walkableStart:this.walkables.length};
+@@ -1206,0 +1211 @@
++    this.finalizeWumenPractical(g,data,starts);
+--- a/src/scene/Enclosure.js
++++ b/src/scene/Enclosure.js
+@@ -0,0 +1 @@
++import {installWumenPracticalWallJunction} from './palace/special/WumenPracticalWallJunction.js';
+@@ -109,0 +111 @@
++    if (installWumenPracticalWallJunction(this,parent,{x1,x2,z,h,t,brickH,wumenCapFit,outwardSide})) return;

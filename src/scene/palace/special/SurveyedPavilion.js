@@ -1,3 +1,5 @@
+import {connectionPlan,buildSideConnection} from './PavilionSideConnections.js';
+import {registerBPrincipalStairs} from '../BPrincipalStairContact.js';
 import * as THREE from 'three';
 import { pavilionGeometry } from './PavilionProfiles.js';
 import { buildTirenLowerWindowLeaves } from './PavilionLowerWindowLeaves.js';
@@ -10,10 +12,12 @@ const part=(parent,role,data={})=>{const group=tag(new THREE.Group(),role,data);
 
 /** One reusable assembly, two independently transcribed surveys. Front is -Z. */
 export function buildSurveyedPavilion(kit,opts={}) {
+  const stairContactStart=kit.walkables.length;
   const g=pavilionGeometry(opts),f=kit.frame(g.x,g.z,g.rot),name=opts.name??g.name;
   f.name=name;
   const enter=opts.enter===true,lo=g.lower,up=g.upper,p=g.platform;
   const renderBoxes=[];
+  const sidePlans=opts.sideGalleryConnections?.map(t=>connectionPlan(g,g.sideConnections.find(s=>s.direction===t.direction),t))??[];
   const box=(parent,role,mat,w,h,d,x,y,z,data={})=>{
     const mesh=tag(kit.box(parent,mat,w,h,d,x,y,z),role,data);renderBoxes.push(mesh);return mesh;
   };
@@ -86,7 +90,8 @@ export function buildSurveyedPavilion(kit,opts={}) {
     const axis=Math.abs(b[0]-a[0])>=Math.abs(b[1]-a[1])?'x':'z',index=axis==='x'?0:1;
     kit.walkables.push({type:'ramp',axis,minX:Math.min(...corners.map(p=>p[0])),maxX:Math.max(...corners.map(p=>p[0])),minZ:Math.min(...corners.map(p=>p[1])),maxZ:Math.max(...corners.map(p=>p[1])),a0:a[index],a1:b[index],y0:s.yTop,y1:s.yLanding,rescue:false});
     walk(s.xLanding,s.zCenter-s.width/2,s.xOuter,s.zCenter+s.width/2,s.yLanding);
-    railing(kit,f,[s.xOuter,s.yLanding,s.zCenter-s.width/2],[s.xOuter,s.yLanding,s.zCenter+s.width/2],{role:'side-landing-guard',status:s.guardStatus},renderBoxes);
+    const joined=sidePlans.find(p=>p.direction===s.direction);
+    for(const [a,b]of joined?[[-s.width/2,-joined.halfWidth],[joined.halfWidth,s.width/2]]:[[-s.width/2,s.width/2]])railing(kit,f,[s.xOuter,s.yLanding,s.zCenter+a],[s.xOuter,s.yLanding,s.zCenter+b],{role:'side-landing-guard',status:joined?'ENGINEERING_CONNECTION_OPENING':s.guardStatus},renderBoxes);
     for(const edge of [-1,1])railing(kit,f,[s.xTop,s.yTop,s.zCenter+edge*s.width/2],[s.xOuter,s.yLanding,s.zCenter+edge*s.width/2],{role:'side-connector-guard',status:s.guardStatus},renderBoxes);
     const ends=[[p.z0,s.zCenter-s.width/2],[s.zCenter+s.width/2,p.z1]];
     for(const [z0,z1]of ends)railing(kit,f,[s.sign*p.width/2,p.y,z0],[s.sign*p.width/2,p.y,z1],{role:'terrace-side-guard'},renderBoxes);
@@ -259,6 +264,9 @@ export function buildSurveyedPavilion(kit,opts={}) {
     dimensions:{status:'mixed-evidence',measurements:g.measurements,assumptions:g.assumptions,officialOverallHeight:g.measurements.overview_height.value,generatedTopY:roof.userData.topY,currentCondition2026Accepted:false},
     elevations:g.elevations,waist:g.waist,platform:g.platform,frontFlights:g.frontFlights,approaches:g.approaches,roomBounds:g.roomBounds,sideConnections:g.sideConnections,interface:g.interface,
     rearAcceptance:'UNKNOWN_2026',visitorPolicy:'Playable lower entry is a game choice, not museum access permission.'};
+  registerBPrincipalStairs(kit,f,g.profile,stairContactStart);
+  sidePlans.forEach(plan=>buildSideConnection(kit,plan));
+  if(sidePlans.length)f.userData.pavilion.sideGalleryConnections=sidePlans.map(p=>({id:p.id,route:p.route,status:'ENGINEERING_VISIBLE_GUARDED_LINK',historicalReconstruction:false}));
   const renderGeometry=prunePavilionCoveredFaces(f,renderBoxes);
   return {f,group:f,PW:p.width,PD:p.depth,top:p.y,geometry:g,renderGeometry};
 }

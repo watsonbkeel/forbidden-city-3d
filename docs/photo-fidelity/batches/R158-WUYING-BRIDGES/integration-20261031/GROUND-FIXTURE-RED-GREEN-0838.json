@@ -1,0 +1,34 @@
+{
+  "firstBatchSHA256": "d92fefeb36f76e52bba16153b9fcf27fcfd8d566d238fb1b83ff55ba09f3a1eb",
+  "firstBatchTotals": {
+    "tests": 481,
+    "pass": 473,
+    "fail": 8
+  },
+  "failures": [
+    "Unchanged ordinary support trajectory 10 Hz feet 2.4 distant triangle false",
+    "Unchanged ordinary support trajectory 10 Hz feet 2.4 distant triangle true",
+    "Unchanged ordinary support trajectory 10 Hz feet 3.4 distant triangle false",
+    "Unchanged ordinary support trajectory 10 Hz feet 3.4 distant triangle true",
+    "Unchanged ordinary support trajectory 60 Hz feet 2.4 distant triangle false",
+    "Unchanged ordinary support trajectory 60 Hz feet 2.4 distant triangle true",
+    "Unchanged ordinary support trajectory 60 Hz feet 3.4 distant triangle false",
+    "Unchanged ordinary support trajectory 60 Hz feet 3.4 distant triangle true"
+  ],
+  "cause": "Prototype-only unit probes skipped actual constructor, missing _wuyingRecovery; production not changed",
+  "fix": "Both legacy and current unit probes run actual constructors/dispose, with only DOM test environment. Original assertion lines and all20 per-frame cases retained.",
+  "micro27": "21 original + six triangle tests",
+  "micro29": "same27 + real binding/delete-interface negative",
+  "productionChanged": false,
+  "completeBatchRerunPending": false,
+  "completeBatchRerun": {
+    "tests": 483,
+    "pass": 483,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "rawLog": "batch-0838.tap",
+    "rawLogSHA256": "7aada3a734c3f1a96ae9544a8c10828c9fb8c901a86579240cd434fefee78ea6",
+    "qaFreeze": "qa-freeze-0838.json"
+  }
+}

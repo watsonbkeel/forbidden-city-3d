@@ -1,0 +1,17 @@
+import fs from'node:fs';import path from'node:path';import{pathToFileURL}from'node:url';import{createHash}from'node:crypto';import assert from'node:assert/strict';
+const root=path.resolve(process.argv[2]),output=process.argv[3],at=p=>pathToFileURL(path.join(root,p)).href;
+const T=await import(at('node_modules/three/build/three.module.js'));const{realTextureLibrary}=await import(at('tests/lib/r48-real-texture-library.mjs'));const{PalaceBuilder}=await import(at('src/scene/PalaceBuilder.js'));const{PALACE_LAYOUT}=await import(at('src/scene/Layout.js'));const{CollisionManager}=await import(at('src/utils/Collision.js'));
+const ctx=new Proxy({},{get:()=>()=>({data:[]}),set:()=>true});globalThis.document={createElement:()=>({getContext:()=>ctx,width:0,height:0}),createElementNS:()=>({addEventListener(){},removeEventListener(){}})};
+const stable=x=>x===undefined?undefined:x===null||typeof x!=='object'?x:Array.isArray(x)?x.map(stable):Object.fromEntries(Object.keys(x).filter(k=>!['uuid','wumenLowerSlab','r145WumenLink'].includes(k)).sort().map(k=>[k,stable(x[k])]));const hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
+function shape(c){const b=c.box??c;return stable({box:{min:b.min,max:b.max},overhead:c.overhead??null,triangleSupport:c.triangleSupport??null,xiqingRoofSurface:c.xiqingRoofSurface??null,duixiuTerrain:c.duixiuTerrain??false,furnitureMotionScope:c.furnitureMotionScope??null});}
+const lower=[],newSupports=[],segments=[];globalThis.__R157_LOWER_SEGMENTS=(name,cols,walks)=>{segments.push({name,colliders:cols.length,walkables:walks.length});lower.push(...cols);newSupports.push(...walks);};
+const builder=new PalaceBuilder(new T.Scene(),realTextureLibrary());let group;builder.finish=g=>{group=g;return g;};const data=PALACE_LAYOUT.find(x=>x.name==='午门');builder.buildGate(data);const tower=group.children.find(g=>g.userData.structure?.id==='axis/wumen-upper-tower');assert(tower);
+const cm=new CollisionManager();cm.addColliders(builder.colliders,'wumen');cm.addWalkables(builder.walkables,'wumen');
+const pool=[...cm.colliders];function take(box){const i=pool.findIndex(c=>c.box.equals(box));assert(i>=0,'registered collider absent');return pool.splice(i,1)[0];}
+const main=tower.userData.colliders.map(b=>take(b.clone().translate(new T.Vector3(data.position.x,tower.position.y,data.position.z))));
+const lowerRegistered=lower.map(b=>{const i=pool.findIndex(c=>c.mesh===b);assert(i>=0,'lower collider identity missing or double-owned');return pool.splice(i,1)[0];});
+assert.equal(builder.walkables.length-newSupports.length,13);const news=new Set(newSupports);const retainedWalkables=builder.walkables.filter(w=>!news.has(w));
+const newSlabs=builder.colliders.filter(b=>b.wumenLowerSlab);assert(newSlabs.length===0||newSlabs.length===3);
+const pack=a=>{const rows=a.map(shape),multiset=rows.map(hash).sort();return{count:a.length,hash:hash(multiset),multiset,rows};};
+const walkPack=a=>{const rows=a.map(stable),multiset=rows.map(hash).sort();return{count:a.length,hash:hash(multiset),multiset,rows};};
+fs.writeFileSync(output,JSON.stringify({root,sourceBoundaries:segments,main:pack(main),authorizedLower:pack(lowerRegistered),retainedRuntime:pack(pool),retainedWalkables:walkPack(retainedWalkables),newSlabSupports:walkPack(newSupports),newSlabColliders:pack(newSlabs),total:{colliders:cm.colliders.length,walkables:cm.walkables.length}},null,2)+'\n');console.log(JSON.stringify({segments,retained:pool.length,oldWalk:retainedWalkables.length,newWalk:newSupports.length,total:cm.colliders.length}));

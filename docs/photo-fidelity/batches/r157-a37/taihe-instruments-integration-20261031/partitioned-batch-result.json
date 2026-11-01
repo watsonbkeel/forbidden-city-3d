@@ -1,0 +1,25 @@
+{
+  "status": "COMPLETE_PARTITIONED_BATCH_REPLAY_NOT_SINGLE_MONOLITHIC_SUCCESS",
+  "tests": 320,
+  "pass": 319,
+  "fail": 1,
+  "inheritedBatchTests": 278,
+  "explicitRootRegressions": 27,
+  "newInstrumentCases": 15,
+  "executedTestTitleMultisetEqualsInherited278PlusRoot27PlusNew15": true,
+  "newFailureNames": [],
+  "remainingFailureNames": [
+    "All existing bridge-deck supports and non-Wuying physical owners survive exactly"
+  ],
+  "replacedFileWrapper": "tests/photo-fidelity/batches/taihe-instruments-world.test.mjs",
+  "initialHeapMiB": 768,
+  "isolatedWholeWorldHeapMiB": 1536,
+  "reason": "Explicit V8 heap exhaustion at768; entire unchanged five-case real World file completes at1536. Original failed run preserved.",
+  "logHashes": {
+    "batch-0525.log": "1062e40a861659f77f3f878e4f2a667747ec08866ffa8509b60d2136a4e0e82b",
+    "world-live-1536-0527.tap": "bf116460227745e1c32db96b9c199ad9e5664a8892c7bed2c339e68d23fff2d3",
+    "batch-0459.log": "c2adf387e2a48c280def2bb1f4f1a477a59400d52b6935b32f1498bbd46caffb",
+    "shared-regression-055947-0506-with-history.log": "77d115db31d94b7eb07cfa778501bbdae9069e5fcbea3f586315379e828c2a49",
+    "local10-final.log": "15b32978b47b09f4bc310de300081233d761aba7ec286774389ff28922a130a9"
+  }
+}

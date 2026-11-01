@@ -1,0 +1,83 @@
+{
+  "head": "3b2d95ae544d41d348a536a41a4f89026d62e24b",
+  "node": "v24.22.1",
+  "postRunBindingsEveryHashMatches": true,
+  "inputOutputBindings": {
+    "contact-controller/probe-authenticated-interior-1818.test.mjs": true,
+    "contact-controller/authenticated-interior-1835b.json": true,
+    "contact-controller/authenticated-interior-1835b.tap": true,
+    "contact-controller/authenticated-interior-1835b.exit": true,
+    "contact-controller/authenticated-interior-1835b.resource.json": true,
+    "shared-entry-freeze-1824.json": true,
+    "source-shared-1824.json": true
+  },
+  "freezes": {
+    "shared-entry-freeze-1824.json": {
+      "count": 33,
+      "mismatch": [],
+      "gitMismatch": []
+    },
+    "source-shared-1824.json": {
+      "count": 598,
+      "mismatch": [],
+      "gitMismatch": []
+    }
+  },
+  "oldRedArchives": [
+    {
+      "name": "probe-interior-unique.test.mjs",
+      "sha256": "52c280a0028930a927c2470ff4aec14ebc4cc8b6626789feb0db4e6de21e3b2f",
+      "archiveExact": true
+    },
+    {
+      "name": "probe-interior-unique-1705.json",
+      "sha256": "49b42825fa3ed856ecb9cfe7681b5315658e5c49eebfce9bc1b69178f5a7273c",
+      "archiveExact": true
+    },
+    {
+      "name": "probe-interior-unique-1705.tap",
+      "sha256": "c3abb2706e101791863f622f7ad8f77b39f0dced52488b09ff50d8288016792d",
+      "archiveExact": true
+    },
+    {
+      "name": "probe-interior-unique-1705.exit",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "archiveExact": true
+    },
+    {
+      "name": "probe-strict-1704.tap",
+      "sha256": "18c78ee10522643f74458b5fba152aa0e24e2770e4095f649a32f13e4964767c",
+      "archiveExact": true
+    },
+    {
+      "name": "probe-strict-1704.json",
+      "sha256": "e94ecf51b3e3c612897aff2b65b1be198ca32c432baa3ceefb4fa3dee01e4294",
+      "archiveExact": true
+    }
+  ],
+  "fixtureAndDependencyInputs": [
+    {
+      "name": "tests/lib/r72-player-fixture.mjs",
+      "sha256": "551da0719a290d4bd1986db72003f16279d6cc81971623913f13d45338d4d33f",
+      "gitExact": true
+    },
+    {
+      "name": "tests/lib/ui-dom.mjs",
+      "sha256": "8ddfda8cc9c62b8c6bf3701e9bef17040508b098a563df8beb11bf1f93716cdb",
+      "gitExact": true
+    },
+    {
+      "name": "package.json",
+      "sha256": "9a107f6414392f7728159875bb75c4341fd0c7fc06ca1fba40b968930a49c9e4",
+      "gitExact": true
+    },
+    {
+      "name": "package-lock.json",
+      "sha256": "e89d1c2e5f46fcd8571433e059f23b26463d9c0f317d78c09636190ab2d21b5c",
+      "gitExact": true
+    }
+  ],
+  "originalFailedLaunchExit": "127",
+  "originalFailedLaunchReason": "/bin/bash: line 1: /usr/bin/time: No such file or directory",
+  "currentRealRunExit": "0"
+}

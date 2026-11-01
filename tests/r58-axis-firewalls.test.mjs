@@ -31,7 +31,8 @@ test('Taihe upper-wall door is a real gap in rendered masonry, with solid sides 
  assert.equal(ray(p.passage.centerX,p.passage.floorY+1).length,0);
  assert.ok(ray(p.passage.centerX-p.passage.clearWidth/2-.7,p.passage.floorY+1).length>0);
  assert.ok(ray(p.passage.centerX,p.passage.floorY+p.passage.clearHeight+.3).length>0);
- for(const name of ['wood_column','caihua_beam','lattice_doors'])assert.equal(W.group.children.filter(m=>m.material?.name===name).length,0,'masonry is not a timber gallery');
+ assert.equal(W.group.children.filter(m=>m.material?.name==='lattice_doors').length,0,'masonry is not a timber gallery');
+ for(const m of W.group.children.filter(m=>['wood_column','caihua_beam'].includes(m.material?.name)))assert.match(m.userData.firewallPart,/^taihe-(door|south)/,'only the independently sourced door receives timber');
 });
 test('actual CollisionManager crosses the wall door both ways but rejects adjacent solid masonry',()=>{
  const W=fixture(),p=W.profile;

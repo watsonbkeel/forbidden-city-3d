@@ -1,0 +1,2 @@
+import fs from 'node:fs';import {readHistoricalSource} from '../r158-arrow-integrate/tests/lib/historical-sources.mjs';import {assertV9MapFirstPersonBytes} from '../r158-arrow-integrate/tests/lib/v9-map-source-delta.mjs';
+const baseline=JSON.parse(fs.readFileSync(new URL('../r158-arrow-integrate/tests/fixtures/v7-qinan-route-baseline.json',import.meta.url)));assertV9MapFirstPersonBytes(readHistoricalSource(baseline.commit,'src/controls/FirstPerson.js'),fs.readFileSync(new URL('../r158-arrow-integrate/src/controls/FirstPerson.js',import.meta.url)));

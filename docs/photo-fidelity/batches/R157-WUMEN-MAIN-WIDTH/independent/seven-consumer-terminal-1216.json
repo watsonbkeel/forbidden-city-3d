@@ -1,0 +1,298 @@
+[
+  {
+    "i": 1,
+    "resource": {
+      "command": [
+        "node",
+        "--expose-gc",
+        "--max-old-space-size=1024",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=1",
+        "tests/r159/cumulative-world.test.mjs"
+      ],
+      "exit": 0,
+      "elapsedSeconds": 26.969661782999992,
+      "maxRSSKiB": 1667356,
+      "node": "v24.22.1",
+      "head": "411214d091723b3a5078bbb9499321c2c5c3d354",
+      "sourceFreeze": "source-freeze-1210.json",
+      "qaFreeze": "qa-freeze-1210.json",
+      "runtimeDirty": [
+        "src/scene/palace/special/GateTowerMeasurements.js",
+        "src/scene/palace/special/GateTowerProfiles.js",
+        "src/scene/palace/special/WumenMainGrid.js"
+      ]
+    },
+    "counts": {
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "titles": [
+      [
+        "ok",
+        "actual cumulative R159 World registers exactly six reviewed Jiaotai solids, preserves all prior physics and carries Qianqing roof records"
+      ]
+    ],
+    "tapSHA256": "f7ad878e8f8d88792848835d422a8bc629b6844507154fba193650e9f5f43db6"
+  },
+  {
+    "i": 2,
+    "resource": {
+      "command": [
+        "node",
+        "--expose-gc",
+        "--max-old-space-size=1024",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=1",
+        "tests/photo-fidelity/batches/r158-wenhua-gate-production/world.test.mjs"
+      ],
+      "exit": 0,
+      "elapsedSeconds": 26.875652116999845,
+      "maxRSSKiB": 1666044,
+      "node": "v24.22.1",
+      "head": "411214d091723b3a5078bbb9499321c2c5c3d354",
+      "sourceFreeze": "source-freeze-1210.json",
+      "qaFreeze": "qa-freeze-1210.json",
+      "runtimeDirty": [
+        "src/scene/palace/special/GateTowerMeasurements.js",
+        "src/scene/palace/special/GateTowerProfiles.js",
+        "src/scene/palace/special/WumenMainGrid.js"
+      ]
+    },
+    "counts": {
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "titles": [
+      [
+        "ok",
+        "uninjected cumulative World keeps every old collider and all but six identified ramps; actual three portals remain traversable"
+      ]
+    ],
+    "tapSHA256": "7324fa09ecd610607654754130a26db1847f9a33b147025586e47d242ad3273f"
+  },
+  {
+    "i": 3,
+    "resource": {
+      "command": [
+        "node",
+        "--expose-gc",
+        "--max-old-space-size=1024",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=1",
+        "tests/photo-fidelity/batches/taihemen-facilities-production-world.test.mjs"
+      ],
+      "exit": 0,
+      "elapsedSeconds": 19.341007898000043,
+      "maxRSSKiB": 1663504,
+      "node": "v24.22.1",
+      "head": "411214d091723b3a5078bbb9499321c2c5c3d354",
+      "sourceFreeze": "source-freeze-1210.json",
+      "qaFreeze": "qa-freeze-1210.json",
+      "runtimeDirty": [
+        "src/scene/palace/special/GateTowerMeasurements.js",
+        "src/scene/palace/special/GateTowerProfiles.js",
+        "src/scene/palace/special/WumenMainGrid.js"
+      ]
+    },
+    "counts": {
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "titles": [
+      [
+        "ok",
+        "actual production global retention and eight route consumers"
+      ]
+    ],
+    "tapSHA256": "23a569c3f7f4578d3c3504625544be33d5071c216ca3e08913275be7643298c4"
+  },
+  {
+    "i": 4,
+    "resource": {
+      "command": [
+        "node",
+        "--expose-gc",
+        "--max-old-space-size=1024",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=1",
+        "tests/photo-fidelity/batches/r158-integration/cumulative-world.test.mjs"
+      ],
+      "exit": 0,
+      "elapsedSeconds": 16.585447224999825,
+      "maxRSSKiB": 1654768,
+      "node": "v24.22.1",
+      "head": "411214d091723b3a5078bbb9499321c2c5c3d354",
+      "sourceFreeze": "source-freeze-1210.json",
+      "qaFreeze": "qa-freeze-1210.json",
+      "runtimeDirty": [
+        "src/scene/palace/special/GateTowerMeasurements.js",
+        "src/scene/palace/special/GateTowerProfiles.js",
+        "src/scene/palace/special/WumenMainGrid.js"
+      ]
+    },
+    "counts": {
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "titles": [
+      [
+        "ok",
+        "Uninjected cumulative World retains Wenhua/Donghua/Wenyuan hooks and explicitly partial Taihemen frame without ceiling hypothesis"
+      ]
+    ],
+    "tapSHA256": "d1d26363b37d1ad731ddaaadcee3cbdaff650f2e15d7afcf7d0ea7e40ad9b799"
+  },
+  {
+    "i": 5,
+    "resource": {
+      "command": [
+        "node",
+        "--expose-gc",
+        "--max-old-space-size=1024",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=1",
+        "tests/photo-fidelity/batches/r158-wuying-production/world.test.mjs"
+      ],
+      "exit": 0,
+      "elapsedSeconds": 19.194911588000195,
+      "maxRSSKiB": 1624124,
+      "node": "v24.22.1",
+      "head": "411214d091723b3a5078bbb9499321c2c5c3d354",
+      "sourceFreeze": "source-freeze-1210.json",
+      "qaFreeze": "qa-freeze-1210.json",
+      "runtimeDirty": [
+        "src/scene/palace/special/GateTowerMeasurements.js",
+        "src/scene/palace/special/GateTowerProfiles.js",
+        "src/scene/palace/special/WumenMainGrid.js"
+      ]
+    },
+    "counts": {
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "titles": [
+      [
+        "ok",
+        "Actual cumulative World authenticates126 reviewed Wuying owners, retains30750 other colliders and1365 supports, and rejects seven physical drifts without mutating runtime"
+      ]
+    ],
+    "tapSHA256": "25c0b0c40eb5932e5a321e000f742beedb9bc9a65fda27a5857541c12ab0ac13"
+  },
+  {
+    "i": 6,
+    "resource": {
+      "command": [
+        "node",
+        "--expose-gc",
+        "--max-old-space-size=1024",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=1",
+        "tests/photo-fidelity/batches/r158-arrow-integration/cumulative-world.test.mjs"
+      ],
+      "exit": 0,
+      "elapsedSeconds": 15.808513112000128,
+      "maxRSSKiB": 1718060,
+      "node": "v24.22.1",
+      "head": "411214d091723b3a5078bbb9499321c2c5c3d354",
+      "sourceFreeze": "source-freeze-1210.json",
+      "qaFreeze": "qa-freeze-1210.json",
+      "runtimeDirty": [
+        "src/scene/palace/special/GateTowerMeasurements.js",
+        "src/scene/palace/special/GateTowerProfiles.js",
+        "src/scene/palace/special/WumenMainGrid.js"
+      ]
+    },
+    "counts": {
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "titles": [
+      [
+        "ok",
+        "Uninjected cumulative World consumes actual Arrow lattice nameboard removal and retained knees with earlier four integrations"
+      ]
+    ],
+    "tapSHA256": "7483071c8870ff0d0a6dc1d1c0e0f68ded168c8c4ef0ea12665443a18fb0605a"
+  },
+  {
+    "i": 7,
+    "resource": {
+      "command": [
+        "node",
+        "--expose-gc",
+        "--max-old-space-size=1024",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=1",
+        "tests/photo-fidelity/batches/taihe-instruments-world.test.mjs"
+      ],
+      "exit": 0,
+      "elapsedSeconds": 22.026164590999997,
+      "maxRSSKiB": 1726680,
+      "node": "v24.22.1",
+      "head": "411214d091723b3a5078bbb9499321c2c5c3d354",
+      "sourceFreeze": "source-freeze-1210.json",
+      "qaFreeze": "qa-freeze-1210.json",
+      "runtimeDirty": [
+        "src/scene/palace/special/GateTowerMeasurements.js",
+        "src/scene/palace/special/GateTowerProfiles.js",
+        "src/scene/palace/special/WumenMainGrid.js"
+      ]
+    },
+    "counts": {
+      "tests": 5,
+      "pass": 5,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "titles": [
+      [
+        "ok",
+        "real world replaces only four legacy meshes/two air boxes and preserves every other ornament and support"
+      ],
+      [
+        "ok",
+        "both instruments preserve existing external square bypasses at 10/60Hz walking and running"
+      ],
+      [
+        "ok",
+        "real high falls land on visible instrument triangles and can leave them without body penetration or rescue pads"
+      ],
+      [
+        "ok",
+        "ordinary 1m-wide bodies cannot walk through photographed narrow stone apertures at either update rate"
+      ],
+      [
+        "ok",
+        "complete uninjected World preserves exact instrument-baseline physics outside both explicit instrument and observed-approach source products"
+      ]
+    ],
+    "tapSHA256": "4488f7551c1974c620f4576c3152a1a665f7b090527c923f4162a86d8033c527"
+  }
+]

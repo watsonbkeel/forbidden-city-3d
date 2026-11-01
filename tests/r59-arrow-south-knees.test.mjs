@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {existsSync,readFileSync} from 'node:fs';
 import * as THREE from 'three';
 import {ZoneBase} from '../src/scene/zones/ZoneBase.js';
+import {buildHistoricalArrowHost} from './lib/r59-arrow-historical-host.mjs';
 import {library} from './lib/inner-palace-fixture.mjs';
 import {CollisionManager} from '../src/utils/Collision.js';
 import {FirstPersonControls} from '../src/controls/FirstPerson.js';
@@ -12,15 +13,16 @@ import {KNEE_ROLE,meshes,arrowKneeSnapshot,auditArrowSouthKnees,kneeMeshHealth} 
 const url=new URL('../src/scene/palace/special/ArrowSouthKnees.js',import.meta.url),api=existsSync(url)?await import(url):{};
 const data=JSON.parse(readFileSync(new URL('../data/zones/outer-east.json',import.meta.url))),item=data.items.find(i=>i.name==='箭亭');
 const frozen=JSON.parse(readFileSync(new URL('./fixtures/r59-arrow-knees-baseline.json',import.meta.url)));
-function fixture(add=true){
- const builder=new ZoneBase(library(),data),{f:frame}=builder.buildHall(item),kit=builder.kit;
+function fixture(add=true,{historical=false}={}){
+ const builder=new ZoneBase(library(),data),kit=builder.kit;
+ const {f:frame}=historical?buildHistoricalArrowHost(kit,item):builder.buildHall(item);
  if(add){assert.equal(typeof api.buildArrowSouthKnees,'function','bounded Arrow knee builder must exist');if(!meshes(frame).some(m=>m.userData.role===KNEE_ROLE))api.buildArrowSouthKnees(kit,frame,item);}
  kit.root.updateMatrixWorld(true);const cm=new CollisionManager();cm.rivers=[];cm.addColliders(kit.colliders);cm.addWalkables(kit.walkables);
  return{kit,frame,cm,dispose:()=>kit.dispose(kit.root)};
 }
 
 test('only two inward south-central gray knee solids are added; all old mesh bytes and registrations remain exact',()=>{
- const f=fixture();try{const qa=auditArrowSouthKnees({...f,baseline:frozen.snapshot});assert.equal(qa.kneeCount,2);assert.equal(qa.oldColumnCount,20);assert.equal(qa.retainedExact,true);assert.equal(qa.kneeMaterialOwnedExactlyOnce,true);
+ const f=fixture(true,{historical:true});try{const qa=auditArrowSouthKnees({...f,baseline:frozen.snapshot});assert.equal(qa.kneeCount,2);assert.equal(qa.oldColumnCount,20);assert.equal(qa.retainedExact,true);assert.equal(qa.kneeMaterialOwnedExactlyOnce,true);
  const knees=meshes(f.frame).filter(m=>m.userData.role===KNEE_ROLE);assert.deepEqual(knees.map(m=>m.userData.columnX),[-2.75,2.75]);assert.deepEqual(knees.map(m=>m.userData.inward),[1,-1]);
  for(const m of knees){assert.equal(m.position.z,-8.8);assert.equal(m.userData.entityId,'FC-AF36D75128');assert.equal(m.userData.visualAcceptance,'VERIFY_PENDING');assert.equal(m.userData.captureDate,null);assert.equal(m.material.map,null);assert.equal(m.material.side,THREE.FrontSide);assert.equal(m.material.emissive.getHex(),0);assert.ok(m.castShadow&&m.receiveShadow);}
  }finally{f.dispose();}

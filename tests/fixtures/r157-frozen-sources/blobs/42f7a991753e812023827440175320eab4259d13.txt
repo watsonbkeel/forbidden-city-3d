@@ -1,0 +1,22 @@
+import * as THREE from 'three';
+// Exact generated placeholders only. UNKNOWN does not mean an empty historic
+// room; photographs of Leshantang/Yizhai cannot furnish the middle Chonghua hall.
+const HOSTS={
+ '重华宫':{id:'FC-DC1832BAF2',x:118.9,z:498.3,w:21.5,d:8.6,ph:.75,colH:5.49,role:'retained-throne-component',rows:[[5,.5,2.4,0,1,1.72,'lacquer',.74],[1.4,.6,1,0,1.55,1.72,'gold',1],[1.5,1.2,.2,0,2.35,2.22,'gold',1],[4,2.6,.25,0,2.55,2.87,'gold',.74]],colliders:[[-1.85,.75,.52,1.85,3.75,3.02]]},
+ '延春阁':{id:'FC-12BEB1BB0E',x:216,z:485.5,w:23.5,d:24.3,ph:.75,colH:10.24,role:'r48-retained-unverified-furniture',rows:[[2.4,.85,.8,0,1.175,10.85,'furn_wood',1],[2.16,.06,.06,0,1.64,11.23,'gold',1],[.6,1.1,.6,-.72,1.3,9.95,'lacquer',1],[.6,1.1,.6,.72,1.3,9.95,'lacquer',1],[1.2,2.1,.55,-10.6,1.8,11.45,'furn_wood',1],[.5,.48,2.4,-11,.99,0,'lacquer',1],[1.2,2.1,.55,10.6,1.8,11.45,'furn_wood',1],[.5,.48,2.4,11,.99,0,'lacquer',1]]},
+};
+const near=(a,b)=>Math.abs(a-b)<1e-7;
+function exactBox(g,[w,h,d,,,,,sx]){const e=new THREE.BoxGeometry(w,h,d);if(sx!==1)e.scale(sx,1,1);try{return g?.type===e.type&&Object.keys(g.attributes).length===Object.keys(e.attributes).length&&JSON.stringify(g.groups)===JSON.stringify(e.groups)&&g.drawRange.start===0&&g.drawRange.count===Infinity&&Object.keys(e.attributes).every(k=>{const a=g.attributes[k],b=e.attributes[k];return a?.itemSize===b.itemSize&&a.count===b.count&&a.array.constructor===b.array.constructor&&a.array.every((v,i)=>v===b.array[i])})&&g.index?.count===e.index.count&&g.index.array.every((v,i)=>v===e.index.array[i]);}finally{e.dispose()}}
+function exactMaterial(m,kind){const spec={lacquer:[0x7a1d12,.4,.1],gold:[0xe2b048,.28,.8],furn_wood:[0x5a2f1c,.55,.05]}[kind];return !!spec&&m?.isMeshStandardMaterial&&m.name==='kit_'+kind&&m.color.getHex()===spec[0]&&m.roughness===spec[1]&&m.metalness===spec[2]&&m.opacity===1&&!m.transparent&&m.side===THREE.FrontSide&&m.visible&&m.colorWrite&&m.depthWrite&&m.depthTest&&m.alphaTest===0&&m.emissive.getHex()===0&&!m.vertexColors&&!m.wireframe&&['map','normalMap','roughnessMap','metalnessMap','alphaMap','emissiveMap','aoMap','bumpMap','displacementMap','envMap','lightMap'].every(k=>m[k]===null);}
+export function withholdHUnknownInventory(kit,item,f){
+ const h=HOSTS[item?.name];if(!h||['x','z','w','d','ph','colH'].some(k=>item[k]!==h[k])||item.kind!=='hall'||f.position.x!==h.x||f.position.z!==h.z||f.rotation.y!==0||f.userData.hUnknownInventory)throw Error('H inventory exact host/duplicate mismatch');
+ const nodes=f.children.filter(m=>m.isMesh&&m.userData.role===h.role);if(nodes.length!==h.rows.length)throw Error('H inventory exact component count drift');
+ for(let i=0;i<nodes.length;i++){const m=nodes[i],r=h.rows[i];if(!exactBox(m.geometry,r)||!m.position.toArray().every((v,k)=>near(v,r[k+3]))||!m.quaternion.equals(new THREE.Quaternion())||!m.scale.equals(new THREE.Vector3(1,1,1))||!exactMaterial(m.material,r[6])||!m.visible)throw Error('H inventory exact component geometry/material drift '+i);}
+ const bounds=h.colliders??h.rows.map(([w,h,d,x,y,z])=>[x-w/2,y-h/2,z-d/2,x+w/2,y+h/2,z+d/2]),remove=[];
+ for(const b of bounds){const matches=kit.colliders.filter(c=>near(c.min.x,h.x+b[0])&&near(c.min.y,b[1])&&near(c.min.z,h.z+b[2])&&near(c.max.x,h.x+b[3])&&near(c.max.y,b[4])&&near(c.max.z,h.z+b[5]));if(matches.length!==1||remove.includes(matches[0]))throw Error('H inventory exact collider ownership drift');remove.push(matches[0]);}
+ const rooms=kit.rooms.filter(r=>r.name===item.name||r.name?.startsWith(item.name+'·'));if(!rooms.length||rooms.some(r=>r.cover?.length))throw Error('H inventory room or cover metadata drift');
+ // All guards precede any scene or collision mutation. Shared materials stay.
+ for(const m of nodes){m.removeFromParent();m.geometry.dispose();}kit.colliders.splice(0,kit.colliders.length,...kit.colliders.filter(c=>!remove.includes(c)));
+ const inventory={entityId:h.id,status:'UNKNOWN',knownEmpty:false,accepted:false,displayDate:null,missingEvidence:['CURRENT_ROOM_INVENTORY','PLACEMENT','PERIOD_MAPPING'],removedMeshCount:nodes.length,removedColliderCount:remove.length,priorStatus:'GENERIC_PLACEHOLDER_NOT_SOURCE_RECONSTRUCTION',notProofOfEmptyRoom:true,roomBounds:'UNVERIFIED_RETAINED_MODEL_BOUNDS'};
+ f.userData.hUnknownInventory=inventory;for(const r of rooms){r.inventory={...inventory};r.layout={status:'UNVERIFIED_RETAINED_MODEL_BOUNDS',physicalBoundsUnchanged:true};}return inventory;
+}

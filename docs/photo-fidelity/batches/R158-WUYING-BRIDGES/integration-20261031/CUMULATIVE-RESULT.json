@@ -1,0 +1,132 @@
+{
+  "status": "APPROVED_LIMITED_DEVELOPMENT_CHECKPOINT_NOT_WHOLE_OBJECT_OR_RELEASE",
+  "accepted": false,
+  "release": false,
+  "wholeObjectCompleted": false,
+  "original397WholeAcceptanceIncrement": 0,
+  "rollbackCommit": "55cafc255caa4d361a5d8ce3b2d6081a49a1ba3c",
+  "productionCommit": "842fe747b5f14bf4aceee280af21f412baebae4b",
+  "productionSourceCount": 586,
+  "productionSourceManifest": "source-live-0801.json",
+  "productionSourceManifestSHA256": "300717be1c54464653d373686f3be0cc85e5202827ad5a3cb04f49eb915678d4",
+  "qaBeforeFixtureRepair": {
+    "file": "qa-freeze-0819.json",
+    "count": 4229,
+    "sha256": "3983425861b96e6f130369cf7563e99ea04d4e3d3b98ade823561032073f1a4f"
+  },
+  "qaFinal": {
+    "file": "qa-freeze-0838.json",
+    "count": 4231,
+    "sha256": "767690266a2d0b5edac2589930b8674ce12a5a11221a891a8e8b917474b6bd4d"
+  },
+  "fullCurrentState": {
+    "tests": 1313,
+    "pass": 1103,
+    "fail": 210,
+    "cancelled": 0,
+    "executedTitlesAdded": 0,
+    "executedTitlesRemoved": 0,
+    "failureTitlesAdded": 0,
+    "failureTitlesRemoved": 0,
+    "comparison": "full-comparison-0819.json",
+    "boundary": "0819 before three QA-only ground-fixture paths; original current-state tests and all production unchanged afterward",
+    "doesNotProveIdenticalFailureRootCauses": true
+  },
+  "firstBatch": {
+    "tests": 481,
+    "pass": 473,
+    "fail": 8,
+    "comparison": "batch-comparison-0819.json",
+    "preserved": true
+  },
+  "finalBatch": {
+    "files": 76,
+    "tests": 483,
+    "pass": 483,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "comparison": "batch-final-comparison-0819.json",
+    "comparedCandidateLog": "batch-0838.tap",
+    "versus55TitlesAdded": 55,
+    "versus55TitlesRemoved": 2,
+    "titleRemovalsAreDocumentedLiveContractMigrations": true,
+    "comparedWithFirstBatch": "batch-fixture-repair-comparison-0819.json"
+  },
+  "world": {
+    "actualCumulativeFiles": 6,
+    "topLevelAssertions": 10,
+    "originalBridgeFiles": 5,
+    "sourceByteExactReviewed": true,
+    "centralRoutes": 18,
+    "nearRailRoutes": 36,
+    "bodyCases": 18,
+    "highDrops": 54,
+    "crownCases": 42,
+    "crownBankRoutes": 18,
+    "crownAdditionalInwardDeckRoutes": 9,
+    "crownNegativeOutwardAlongRoutes": 15,
+    "nonTargetCollidersExact55": 30750,
+    "reviewedTargetOwnersExact": 126,
+    "rawColliders": 30876,
+    "rawSupports": 1365,
+    "supportsAndWaterExact55": true,
+    "comparisonViewsNeverMutateLivePhysics": true
+  },
+  "builds": {
+    "bases": [
+      "/gugong/",
+      "/forbidden-city-3d/",
+      "/"
+    ],
+    "modulesEach": 564,
+    "exitCodes": [
+      0,
+      0,
+      0
+    ],
+    "runtimeFingerprint": "d6f9e5d535d943c7a3ac712019c97ffd37f366c58871bce07080437e96d9d0b9",
+    "sourceCommit": "842fe747b5f14bf4aceee280af21f412baebae4b",
+    "sourceDirty": false,
+    "repositoryHadQaWip": true,
+    "boundary": "0819 real-output builds; not labelled as a later QA-repair rebuild"
+  },
+  "independentReview": {
+    "agent": "review_chunked_qa (Astra)",
+    "status": "APPROVED_LIMITED_DEVELOPMENT",
+    "noRemainingNewP0P1P2IntegrationBlockers": true,
+    "receipt": "INDEPENDENT-REVIEW-RECEIPT.md",
+    "independentWorldRerun": false,
+    "independentRawPhysicsStreamingVerification": true,
+    "originalReport": "INDEPENDENT-REVIEW.md",
+    "originalReportSHA256": "e710d68d7cc29d161d72356dd91d9ce0050e0245bf015d5a10fa5d2847e8670c"
+  },
+  "cpu": {
+    "actualFullWorldViews": 3,
+    "proof": "cpu-world-0819/PROOF.json",
+    "gpu": false,
+    "runtimeTexturesLightingShadows": false
+  },
+  "preservedFailures": [
+    "raw-world-0805 log: exit137 after writing complete raw-world-0803.json.gz; second0806 exits0 with same raw hash",
+    "near-rail1024 SIGKILL,768 V8 OOM,private observer stops after29;896 original test passes",
+    "missing /usr/bin/time launcher127 before Node",
+    "firstCPU0818 missing label KeyError",
+    "firstBatch8 prototype-only fixture failures",
+    "independent oldV9 Node137 unfinished probe; low-memory alternative and compact writer checks kept"
+  ],
+  "remaining": [
+    "210 inherited complete-suite failures",
+    "Photograph-fit dimensions/counts, not surveyed individual stone census",
+    "Hidden bridge vault/underside and fine carving not accepted",
+    "Browser/GPU and2026 condition unverified",
+    "Inherited Taihemen plaque upper-wing occlusion and 門/门 mismatch remain outside this change",
+    "Current new gzip block transport does not by itself make all old QA history-free; C/Wenhua old gzip adapters and4d614 historical retrieval remain explicit follow-up"
+  ],
+  "remoteBackup": {
+    "thisCheckpointVerified": false,
+    "owner": "prepare_r157_backup",
+    "contract": "BACKUP-CONTRACT.md"
+  },
+  "mainOrPagesChanged": false
+}

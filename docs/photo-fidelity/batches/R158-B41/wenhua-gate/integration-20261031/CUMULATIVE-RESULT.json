@@ -1,0 +1,97 @@
+{
+  "status": "APPROVED_LIMITED_DEVELOPMENT_CHECKPOINT_WITH_KNOWN_PARTIAL_FIDELITY",
+  "accepted": false,
+  "release": false,
+  "wholeObjectCompleted": false,
+  "objectId": "FC-5652FA389B",
+  "rollback": "493a13c7bd5765c1866ee23e25d2d653ebd11054",
+  "authorCommits": [
+    "c81037c2",
+    "1bdb4b26"
+  ],
+  "importedCommits": [
+    "bd7b72c4",
+    "2af03d5f"
+  ],
+  "sourceFiles": 584,
+  "sourceManifest": "source-live-0702.json",
+  "runtimeFingerprint": "b9bbfbc8f210e41f254bd13b227abebc1482cc0dedd784d4ba5f23946977cc70",
+  "full": {
+    "tests": 1313,
+    "pass": 1103,
+    "fail": 210
+  },
+  "fullExecutedTitlesEqual": true,
+  "fullFailureTitlesEqual": true,
+  "batch": {
+    "tests": 430,
+    "pass": 429,
+    "fail": 1
+  },
+  "oldBatchTitlesAllRetained": true,
+  "addedBatchTitles": 26,
+  "batchFailureTitlesEqual": true,
+  "liveWorld": {
+    "colliders": 30876,
+    "supports": 1365,
+    "allOldCollidersRetained": 30873,
+    "exactRemovedOldRamps": 6,
+    "routes": 6,
+    "completeBodyFrames": 2393
+  },
+  "priorPhysicsComparisonView": {
+    "colliders": 30873,
+    "supports": 1371,
+    "neverUsedForLiveQueries": true
+  },
+  "worldRegression": {
+    "tests": 9,
+    "pass": 9
+  },
+  "builds": {
+    "bases": [
+      "/gugong/",
+      "/forbidden-city-3d/",
+      "/"
+    ],
+    "modulesEach": 562,
+    "exitCodes": [
+      0,
+      0,
+      0
+    ],
+    "identity": "2af03d5f+dirty; production fingerprint equals final source"
+  },
+  "cpu": {
+    "fullActualOuterEast": true,
+    "views": 4,
+    "sourceTextureLightingShadows": false,
+    "GPU": false,
+    "northObliqueTreeOcclusion": true
+  },
+  "remaining": [
+    "precise metric survey",
+    "photographic tread census",
+    "fine carved stone",
+    "full elevations/interior",
+    "contemporary access",
+    "GPU/whole gate acceptance"
+  ],
+  "historicalFailedRound": "batch-comparison-0717.json",
+  "qaRevision": "full/builds QA4145; final batch QA4146; only local Donghua QA helper/test changed; all production and current-state test bytes unchanged",
+  "independentReview": {
+    "agent": "/root/review_wenhua_gate",
+    "terminalDecision": "NO_NEW_P0_P2_INTEGRATION_BLOCKER_LIMITED_CHECKPOINT_ONLY",
+    "freshIndependentProducerTests": 2,
+    "worldEvidenceReadNotIndependentlyRerun": true,
+    "fullBatchCountersSourceQABuildsCPUArchiveIndependentlyVerified": true,
+    "receipt": "INDEPENDENT-REVIEW-RECEIPT.md",
+    "receiptProvenance": "implementation-writer transcription of independent agent final response; not reviewer-authored filesystem report"
+  },
+  "precommitFocused": {
+    "tests": 5,
+    "pass": 5,
+    "generatedBy": "implementation writer",
+    "log": "logs/precommit-focused-0745.tap.gz"
+  }
+}

@@ -1,3 +1,4 @@
+import {installWumenPracticalWallJunction} from './palace/special/WumenPracticalWallJunction.js';
 import * as THREE from 'three';
 import { buildRoof, buildWallCap, buildCornerTower } from './RoofBuilder.js';
 import { buildHallBody } from './HallKit.js';
@@ -107,6 +108,7 @@ export class Enclosure {
    * 添加一段沿 X 方向的墙（x1 到 x2，固定 z）
    */
   addWallSegment(parent, { x1, x2, z, h, t, brickH, wumenCapFit, outwardSide = -1 }, redMat, brickMat) {
+    if (installWumenPracticalWallJunction(this,parent,{x1,x2,z,h,t,brickH,wumenCapFit,outwardSide})) return;
     const len = Math.abs(x2 - x1);
     const cx = (x1 + x2) / 2;
     

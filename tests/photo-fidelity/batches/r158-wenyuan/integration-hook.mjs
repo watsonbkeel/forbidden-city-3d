@@ -1,0 +1,8 @@
+// QA-only exact integration preview. Production shared files stay untouched.
+import {registerHooks} from 'node:module';
+export function installWenyuanPreview({recovery=true}={}){if(process.env.WENYUAN_LIVE_ONLY==='1')return {deregister(){}};return registerHooks({load(url,context,next){const out=next(url,context);if(!url.endsWith('/SouthWaterSystem.js')&&!url.endsWith('/Collision.js'))return out;let source=String(out.source);if(url.endsWith('/SouthWaterSystem.js')){
+ if(/import\s*\{\s*buildWenyuanPondBridgeRails\b/.test(source))return out;
+ const insert="  if(b.family==='wuying'){";if(!source.includes(insert))throw Error('Wenyuan preview water anchor missing');
+ source="import {buildWenyuanPondBridgeRails} from './WenyuanPondBridgeRails.js';\n"+source.replace('const wuyingRails=[];','const wuyingRails=[],wenyuanRails=[];').replace(insert,"  if(b.id==='wenyuan-pond'){const fitted=buildWenyuanPondBridgeRails(library,b);masonry.add(fitted.group);colliders.push(...fitted.colliders);wenyuanRails.push(fitted.metadata);return;}\n"+insert).replace('group.userData.wuyingBridgeRails=wuyingRails;','group.userData.wuyingBridgeRails=wuyingRails;group.userData.wenyuanPondRails=wenyuanRails;');
+ }else if(recovery){if(/import\s*\{\s*canRecoverInwardFromWenyuanRail\b/.test(source))return out;source="import {canRecoverInwardFromWenyuanRail} from '../scene/palace/special/WenyuanPondBridgeRails.js';\n"+source.replace('canRecoverInwardFromWuyingRail(this,river,from,position,radius,fromFeetY,feetY)','canRecoverInwardFromWuyingRail(this,river,from,position,radius,fromFeetY,feetY) || canRecoverInwardFromWenyuanRail(this,river,from,position,radius,fromFeetY,feetY)');}
+ return{...out,source};}});}

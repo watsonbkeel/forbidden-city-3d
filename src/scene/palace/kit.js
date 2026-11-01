@@ -216,7 +216,8 @@ export class CourtKit {
   /**
    * 轴对齐红墙（灰砖下碱 + 黄琉璃墙帽）。gaps: [{ at, w }]，at 为沿墙方向的世界坐标。
    */
-  wall(x1, z1, x2, z2, { h = 6.5, t = 1, gaps = [] } = {}) {
+  wall(x1, z1, x2, z2, { h = 6.5, t = 1, gaps = [], baseHeight = 1 } = {}) {
+    if (!Number.isFinite(baseHeight) || baseHeight <= 0 || baseHeight >= h) throw Error('Invalid wall material base height');
     const alongX = Math.abs(x2 - x1) >= Math.abs(z2 - z1);
     const a0 = alongX ? Math.min(x1, x2) : Math.min(z1, z2);
     const a1 = alongX ? Math.max(x1, x2) : Math.max(z1, z2);
@@ -233,8 +234,8 @@ export class CourtKit {
       const len = p1 - p0;
       const mid = (p0 + p1) / 2;
       const f = alongX ? this.frame(mid, c, 0) : this.frame(c, mid, Math.PI / 2);
-      this.box(f, 'wall_brick', len, 1.0, t + 0.12, 0, 0.5, 0);
-      this.box(f, 'wall_red', len, h - 1.0, t, 0, 1.0 + (h - 1) / 2, 0);
+      this.box(f, 'wall_brick', len, baseHeight, t + 0.12, 0, baseHeight / 2, 0);
+      this.box(f, 'wall_red', len, h - baseHeight, t, 0, baseHeight + (h - baseHeight) / 2, 0);
       const cap = this.adopt(buildWallCap(this.lib, { length: len, thickness: t }));
       cap.position.y = h;
       f.add(cap);
@@ -512,10 +513,12 @@ export class CourtKit {
       enter: enterOpt, backDoor = false, open = false, throne = false,
       name, plaque = true, plaqueText = name, map = 'hall', bays,
       interior, roomBays = 0,
-      frontEnclosureInset = 0, frontSteps = true, panelBuilder, ceilingBuilder,
+      frontEnclosureInset = 0, frontSteps = true, panelBuilder, ceilingBuilder, continuousFrontPorch = false,
     } = o;
     if (!Number.isFinite(frontEnclosureInset) || frontEnclosureInset < 0 || frontEnclosureInset >= d / 3) throw Error('Invalid hall front enclosure inset');
     if (typeof frontSteps !== 'boolean' || (panelBuilder !== undefined && typeof panelBuilder !== 'function') || (ceilingBuilder !== undefined && typeof ceilingBuilder !== 'function')) throw Error('Invalid hall fitted facade option');
+    if(typeof continuousFrontPorch!=='boolean') throw Error('Invalid porch policy');
+    const enclosedDepth=d-(continuousFrontPorch?frontEnclosureInset:0), enclosedZ=continuousFrontPorch?frontEnclosureInset/2:0;
     const layers = o.eaveCount ?? o.layers ?? 1;
     // 默认所有殿座都可进入（open 敞厅本来就能穿行）
     const enter = !open && enterOpt !== false;
@@ -573,8 +576,8 @@ export class CourtKit {
     if (!open) {
       // 两山墙
       for (const s of [-1, 1]) {
-        this.box(f, 'wall_red', 0.7, colH - beamH, d, s * w / 2, y0 + (colH - beamH) / 2, 0);
-        if (enter) this.col(f, s * w / 2 - 0.35, y0, -d / 2, s * w / 2 + 0.35, y0 + 3, d / 2);
+        this.box(f, 'wall_red', 0.7, colH - beamH, enclosedDepth, s * w / 2, y0 + (colH - beamH) / 2, enclosedZ);
+        if (enter) this.col(f, s * w / 2 - 0.35, y0, -d / 2+(continuousFrontPorch?frontEnclosureInset:0), s * w / 2 + 0.35, y0 + 3, d / 2);
       }
       // 前后檐
       for (const side of [-1, 1]) {
@@ -608,8 +611,8 @@ export class CourtKit {
       if (enter) {
         for (let k = 1; k < segs.length; k++) {
           const xb = -w / 2 + segs[k][0] * bay;
-          this.box(f, 'wall_red', 0.3, colH - beamH, d - 0.2, xb, y0 + (colH - beamH) / 2, 0);
-          this.col(f, xb - 0.15, y0, -d / 2, xb + 0.15, y0 + 3, d / 2);
+          this.box(f, 'wall_red', 0.3, colH - beamH, enclosedDepth - 0.2, xb, y0 + (colH - beamH) / 2, enclosedZ);
+          this.col(f, xb - 0.15, y0, -d / 2+(continuousFrontPorch?frontEnclosureInset:0), xb + 0.15, y0 + 3, d / 2);
         }
       }
       if (!enter) this.col(f, -w / 2 - 0.3, y0, -d / 2 - 0.3, w / 2 + 0.3, y0 + 3, d / 2 + 0.3);
@@ -679,7 +682,7 @@ export class CourtKit {
   }
 
   /** 庑房（廊房）：沿 x1→x2 或 z1→z2 的长条，正面朝 facing（'x+'|'x-'|'z+'|'z-'），每 3 间隔成一个可进入的房间 */
-  corridor(x1, z1, x2, z2, facing, { depth = 4.2, colH = 3.6, name, furnishingPolicy, furnishingTarget, furnishingKind } = {}) {
+  corridor(x1, z1, x2, z2, facing, { depth = 4.2, colH = 3.6, name, furnishingPolicy, furnishingTarget, furnishingKind, platformHeight = .45, frontEnclosureInset = 0, continuousFrontPorch = false } = {}) {
     const inventoryPolicy = validateGalleryInventoryPolicy(furnishingPolicy, {
       zone: this.root.name, target: furnishingTarget, kind: furnishingKind,
     });
@@ -688,7 +691,7 @@ export class CourtKit {
     if (len < 4) return;
     const rot = { 'z-': 0, 'z+': Math.PI, 'x+': -Math.PI / 2, 'x-': Math.PI / 2 }[facing];
     this.hall({
-      x: (x1 + x2) / 2, z: (z1 + z2) / 2, rot, w: len - 1.0, d: depth, pad: 0.5, ph: 0.45, colH,
+      x: (x1 + x2) / 2, z: (z1 + z2) / 2, rot, w: len - 1.0, d: depth, pad: 0.5, ph: platformHeight, colH, frontEnclosureInset, continuousFrontPorch,
       roof: 'gable', brackets: false, enter: true, roomBays: 3, interior: 'room', plaque: false, name: name ?? '庑房',
       map: 'corridor', bays: Math.max(3, Math.round(len / 3.4) | 1),
       ...(inventoryPolicy === undefined ? {} : { [GALLERY_POLICY]: inventoryPolicy }),

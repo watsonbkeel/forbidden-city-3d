@@ -1,0 +1,61 @@
+✔ unchanged principal south stairs have bounded contact on a real round trip 10/false (1026.04146ms)
+✔ unchanged principal south stairs have bounded contact on a real round trip 10/true (560.823613ms)
+✔ unchanged principal south stairs have bounded contact on a real round trip 60/false (543.876454ms)
+✔ unchanged principal south stairs have bounded contact on a real round trip 60/true (542.009574ms)
+✔ exact allowlist marks 43 genuine slopes and 14 existing landings, not dais, closed side inclines or upper floors (455.519064ms)
+✔ jump, high fall, high/stale position and fast teleport keep native physics (446.905536ms)
+✔ missing, duplicated and changed registrations disable only the affected group (471.611313ms)
+✔ side departure cannot acquire a lower terrace and ordinary foreign ground remains unmodified (496.797304ms)
+✔ real thin solid and registered NPC remain authoritative (444.788051ms)
+✖ only the four already-built side ramps and four landings acquire additional local contact identities (409.679916ms)
+✖ side contact stays on actual support and rejects jumping, high falling, missing or altered owner (426.839298ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 9
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5261.844643
+
+✖ failing tests:
+
+test at tests/r157-pavilion-side/contact.test.mjs:2:1
+✖ only the four already-built side ramps and four landings acquire additional local contact identities (409.679916ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 8
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r157-pavilion-side-1029/tests/r157-pavilion-side/contact.test.mjs:2:210)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 8,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r157-pavilion-side/contact.test.mjs:3:1
+✖ side contact stays on actual support and rejects jumping, high falling, missing or altered owner (426.839298ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 4
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r157-pavilion-side-1029/tests/r157-pavilion-side/contact.test.mjs:3:223)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 4,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,81 @@
+{
+  "scope": "ONE ACTUAL LOCAL HALL; CPU NOT BROWSER OR ACCEPTANCE",
+  "photographyDate": null,
+  "sourceFiles": {
+    "src/scene/palace/special/ArrowSouthDoorLattice.js": "b532292379c163cb86c77b85aba430188d3a2e691b9811d154d72594068c5cd1",
+    "src/scene/palace/special/EnclosedPavilions.js": "57872a85c3bd173865c469f13ded4b93bd01539a35a087e19fb887967b6687c1",
+    "src/scene/palace/special/ArrowSouthKnees.js": "c5fc042d324e34b80f7746bb7f138f37f10681326245d92ff910c428a59298fb",
+    "data/zones/outer-east.json": "5327bf3dbaff2b102c62363d70fbbad3e39eaa08e966040cb26acd33e3398b7e",
+    "tests/lib/r158-arrow-south-lattice-fixture.mjs": "388528d32c3ef26ef75a898ceafe839968e13efb6eadb3284eeb33abfa6ca1aa"
+  },
+  "views": [
+    {
+      "name": "south-secondary-detail",
+      "camera": [
+        5.5,
+        4.6,
+        -14.5
+      ],
+      "target": [
+        5.5,
+        4.5,
+        -6.8
+      ],
+      "fov": 42,
+      "images": {
+        "before": {
+          "file": "south-secondary-detail-before.png",
+          "sha256": "d12ba23200929a1bb6d0ffba8dcf4439eafbd6eb3b9f165a0aaf6a039daab6fe"
+        },
+        "after": {
+          "file": "south-secondary-detail-after.png",
+          "sha256": "e54172a4ece88c529b017fefba77ef7d86fbd22f8cc4f1714d7d3b70cadf848f"
+        }
+      }
+    },
+    {
+      "name": "south-wide",
+      "camera": [
+        0,
+        2.8,
+        -35
+      ],
+      "target": [
+        0,
+        6.2,
+        -6.8
+      ],
+      "fov": 55,
+      "images": {
+        "before": {
+          "file": "south-wide-before.png",
+          "sha256": "34abb077e15724523f9fe72723e19edd1a1388bf57b99767c02a9e4e366589e9"
+        },
+        "after": {
+          "file": "south-wide-after.png",
+          "sha256": "7fd0def23416f9d38a60b257030624ff32ebb92795ecd8efde523673403a721d"
+        }
+      }
+    }
+  ],
+  "states": {
+    "before": {
+      "triangles": 5420,
+      "meshes": 312,
+      "materials": 17,
+      "geometrySha256": "09c082c79b3bb5d5a87d920430436d26c9e2964a22640ba180811f66c3d96f87"
+    },
+    "after": {
+      "triangles": 6476,
+      "meshes": 264,
+      "materials": 19,
+      "geometrySha256": "f175bf2b571550b91231c067f5990394d62a05f11846ddb51f2a9be6e5e8eb48"
+    }
+  },
+  "limitations": [
+    "No production PBR/shadow/postprocess/GPU result.",
+    "Reference photograph remains external/private and is not republished.",
+    "Direction/colour cue only; intricate pattern, glazing/openwork and exact dimensions remain unresolved."
+  ],
+  "privateEvidenceRoot": "/workspace/scratch/02a8023d1a85/r158-arrow-evidence/cpu"
+}

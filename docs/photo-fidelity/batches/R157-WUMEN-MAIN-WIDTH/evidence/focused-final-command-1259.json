@@ -1,0 +1,18 @@
+[
+  "node",
+  "--expose-gc",
+  "--max-old-space-size=1024",
+  "--test",
+  "--test-reporter=tap",
+  "--test-concurrency=1",
+  "tests/photo-fidelity/batches/wumen-main-width-cpu-export.test.mjs",
+  "tests/photo-fidelity/batches/wumen-main-width-movement.test.mjs",
+  "tests/photo-fidelity/batches/wumen-main-width-south-strip.test.mjs",
+  "tests/photo-fidelity/batches/wumen-main-width-world-comparison.test.mjs",
+  "tests/photo-fidelity/batches/wumen-main-width-world.test.mjs",
+  "tests/photo-fidelity/batches/wumen-main-width.test.mjs",
+  "tests/photo-fidelity/batches/wumen-main-grid.test.mjs",
+  "tests/photo-fidelity/batches/wumen-main-integration-equivalence.test.mjs",
+  "tests/photo-fidelity/batches/wumen-main-object-state.test.mjs",
+  "tests/photo-fidelity/batches/wumen-right-leaf-studs.test.mjs"
+]

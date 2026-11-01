@@ -1,0 +1,53 @@
+{
+  "status": "LIMITED_OFFLINE_TRIM_CHECKPOINT_REVIEWED",
+  "parent": "3e66485fdaf67419c1fee94908f84431ab238500",
+  "accepted": false,
+  "runtimeInstalled": false,
+  "routeAccepted": false,
+  "wholeObjectsAdded": 0,
+  "worldVerified": false,
+  "gpuVerified": false,
+  "releaseApproved": false,
+  "remote": "PENDING",
+  "sourceCount": 600,
+  "productionChanges": 0,
+  "qaCount": 4418,
+  "newQAFiles": 2,
+  "selected": {
+    "files": 6,
+    "tests": 58,
+    "pass": 58,
+    "fail": 0,
+    "skip": 0,
+    "cancel": 0,
+    "resource": {
+      "command": [
+        "node",
+        "--max-old-space-size=384",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=1",
+        "tests/photo-fidelity/batches/wumen-joint-layout/roof-section-evaluator.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/roof-section-surfaces.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/roof-section-trims.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/upper-contract.test.mjs",
+        "tests/photo-fidelity/batches/wumen-joint-layout/upper-baseline.test.mjs",
+        "tests/photo-fidelity/batches/wumen-lower-five-portals.test.mjs"
+      ],
+      "cwd": "/workspace/scratch/02a8023d1a85/r157-wumen-joint-layout-1622",
+      "startUTC": "2026-10-31T22:17:26.079353+00:00",
+      "endUTC": "2026-10-31T22:17:32.319371+00:00",
+      "wallSeconds": 6.240020139004628,
+      "maxRSSKiB": 332556,
+      "exit": 0,
+      "node": "v24.22.1"
+    }
+  },
+  "eachMode": {
+    "layers": 10,
+    "meshes": 52,
+    "positiveTriangles": 3128,
+    "removedLathePoleTriangles": 48
+  },
+  "inheritedMissingHistoryP1Unchanged": true
+}

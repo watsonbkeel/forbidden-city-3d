@@ -1,0 +1,246 @@
+{
+  "scope": "INDEPENDENT_FIXED_RIG_GEOMETRY_READ_ONLY_NO_CONTROLLER",
+  "pieces": [
+    {
+      "id": "east/entry",
+      "triangles": 8,
+      "volume": 164.05921109289574,
+      "minArea": 10.817877803890951,
+      "colliderCount": 60,
+      "verticalDeficit": 0.054098360655738364,
+      "maximumFloat32XYZError": 0.0000025161844234844466,
+      "maximumPlaneResidual": 7.001593660405092e-8
+    },
+    {
+      "id": "east/innerTurn",
+      "triangles": 12,
+      "volume": 177.67110500424235,
+      "minArea": 10.817877803890951,
+      "colliderCount": 27,
+      "verticalDeficit": 0,
+      "maximumFloat32XYZError": 0.0000025161844234844466,
+      "maximumPlaneResidual": 4.7683715642676816e-8
+    },
+    {
+      "id": "east/outward",
+      "triangles": 12,
+      "volume": 676.2871932030326,
+      "minArea": 13.549668628885257,
+      "colliderCount": 67,
+      "verticalDeficit": 0.10000000000000497,
+      "maximumFloat32XYZError": 0.0000025161844234844466,
+      "maximumPlaneResidual": 0.000001313612424169719
+    },
+    {
+      "id": "east/outerFold",
+      "triangles": 12,
+      "volume": 975.7463345752149,
+      "minArea": 34.10594940185547,
+      "colliderCount": 28,
+      "verticalDeficit": 0,
+      "maximumFloat32XYZError": 0.000001151988044512109,
+      "maximumPlaneResidual": 0
+    },
+    {
+      "id": "east/return",
+      "triangles": 12,
+      "volume": 1234.0300384873776,
+      "minArea": 29.139070510864258,
+      "colliderCount": 78,
+      "verticalDeficit": 0.02435897435897516,
+      "maximumFloat32XYZError": 0.000001020620985059395,
+      "maximumPlaneResidual": 3.928876903813716e-7
+    },
+    {
+      "id": "east/neck",
+      "triangles": 12,
+      "volume": 97.64479338272153,
+      "minArea": 4.034908849269414,
+      "colliderCount": 7,
+      "verticalDeficit": 0.057142857142858716,
+      "maximumFloat32XYZError": 5.911517604317851e-7,
+      "maximumPlaneResidual": 4.119873047159217e-7
+    },
+    {
+      "id": "east/receiver",
+      "triangles": 12,
+      "volume": 86.31210505452773,
+      "minArea": 3.508622102280242,
+      "colliderCount": 6,
+      "verticalDeficit": 0,
+      "maximumFloat32XYZError": 9.498848783096037e-7,
+      "maximumPlaneResidual": 1.9073486257070726e-7
+    },
+    {
+      "id": "west/entry",
+      "triangles": 8,
+      "volume": 167.70650816164155,
+      "minArea": 11.254969434232862,
+      "colliderCount": 59,
+      "verticalDeficit": 0.055000000000000604,
+      "maximumFloat32XYZError": 0.0000010711467837154487,
+      "maximumPlaneResidual": 7.04129532458353e-8
+    },
+    {
+      "id": "west/innerTurn",
+      "triangles": 12,
+      "volume": 184.84982844323537,
+      "minArea": 11.254969434232862,
+      "colliderCount": 28,
+      "verticalDeficit": 0,
+      "maximumFloat32XYZError": 0.0000010711467837154487,
+      "maximumPlaneResidual": 4.7683715642676816e-8
+    },
+    {
+      "id": "west/outward",
+      "triangles": 12,
+      "volume": 694.3695981119506,
+      "minArea": 13.549668628885257,
+      "colliderCount": 67,
+      "verticalDeficit": 0.1000000000000032,
+      "maximumFloat32XYZError": 0.000002132188399173174,
+      "maximumPlaneResidual": 0.0000011235078147819877
+    },
+    {
+      "id": "west/outerFold",
+      "triangles": 12,
+      "volume": 871.5402882003402,
+      "minArea": 30.46356201171875,
+      "colliderCount": 25,
+      "verticalDeficit": 0,
+      "maximumFloat32XYZError": 0.000002132188399173174,
+      "maximumPlaneResidual": 0
+    },
+    {
+      "id": "west/return",
+      "triangles": 12,
+      "volume": 1259.3867750816564,
+      "minArea": 29.139070510864258,
+      "colliderCount": 79,
+      "verticalDeficit": 0.02405063291139342,
+      "maximumFloat32XYZError": 0.000002132188399173174,
+      "maximumPlaneResidual": 2.1997234256332376e-7
+    },
+    {
+      "id": "west/neck",
+      "triangles": 12,
+      "volume": 106.98485340362394,
+      "minArea": 4.4208617457370565,
+      "colliderCount": 7,
+      "verticalDeficit": 0.057142857142858716,
+      "maximumFloat32XYZError": 0.0000016774562823229644,
+      "maximumPlaneResidual": 3.395080554469132e-7
+    },
+    {
+      "id": "west/receiver",
+      "triangles": 12,
+      "volume": 90.62771069567043,
+      "minArea": 3.6840532231835823,
+      "colliderCount": 6,
+      "verticalDeficit": 0,
+      "maximumFloat32XYZError": 9.498848783096037e-7,
+      "maximumPlaneResidual": 1.9073486257070726e-7
+    }
+  ],
+  "seams": [
+    {
+      "from": "east/entry",
+      "to": "east/innerTurn",
+      "actualTriangleSharedEdgeSamples": 5,
+      "maximumYGap": 0
+    },
+    {
+      "from": "east/innerTurn",
+      "to": "east/outward",
+      "actualTriangleSharedEdgeSamples": 5,
+      "maximumYGap": 0
+    },
+    {
+      "from": "east/outward",
+      "to": "east/outerFold",
+      "actualTriangleSharedEdgeSamples": 5,
+      "maximumYGap": 1.7763568394002505e-15
+    },
+    {
+      "from": "east/outerFold",
+      "to": "east/return",
+      "actualTriangleSharedEdgeSamples": 5,
+      "maximumYGap": 0
+    },
+    {
+      "from": "east/return",
+      "to": "east/neck",
+      "actualTriangleSharedEdgeSamples": 5,
+      "maximumYGap": 0
+    },
+    {
+      "from": "east/neck",
+      "to": "east/receiver",
+      "actualTriangleSharedEdgeSamples": 5,
+      "maximumYGap": 0
+    },
+    {
+      "from": "west/entry",
+      "to": "west/innerTurn",
+      "actualTriangleSharedEdgeSamples": 5,
+      "maximumYGap": 0
+    },
+    {
+      "from": "west/innerTurn",
+      "to": "west/outward",
+      "actualTriangleSharedEdgeSamples": 5,
+      "maximumYGap": 2.220446049250313e-15
+    },
+    {
+      "from": "west/outward",
+      "to": "west/outerFold",
+      "actualTriangleSharedEdgeSamples": 5,
+      "maximumYGap": 5.329070518200751e-15
+    },
+    {
+      "from": "west/outerFold",
+      "to": "west/return",
+      "actualTriangleSharedEdgeSamples": 5,
+      "maximumYGap": 1.7763568394002505e-15
+    },
+    {
+      "from": "west/return",
+      "to": "west/neck",
+      "actualTriangleSharedEdgeSamples": 5,
+      "maximumYGap": 1.7763568394002505e-15
+    },
+    {
+      "from": "west/neck",
+      "to": "west/receiver",
+      "actualTriangleSharedEdgeSamples": 5,
+      "maximumYGap": 1.7763568394002505e-15
+    }
+  ],
+  "totalColliders": 544,
+  "primitiveGenericRepresentabilityCounterexamples": [
+    {
+      "input": {
+        "minX": 100000000,
+        "maxX": 100000001,
+        "a0": 100000000,
+        "a1": 100000001
+      },
+      "rejected": false,
+      "nonfinitePosition": 0,
+      "degenerateTriangles": 6,
+      "warnings": 0,
+      "representationError": "1"
+    },
+    {
+      "input": {
+        "minZ": 1e+40,
+        "maxZ": 1.0000000001000001e+40
+      },
+      "rejected": false,
+      "nonfinitePosition": 36,
+      "degenerateTriangles": 12,
+      "warnings": 1,
+      "representationError": "Infinity"
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+# 午门完整上层 / U 承台隔离装配 Implementation Plan
+
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans. Single writer; Astra independently reviews each consequential contract. Steps use checkbox syntax. This document is for review, NOT permission to implement before parent approval.
+
+**Goal:** Produce one complete visible, physically auditable Wumen component candidate with retained main tower, re-registered four pavilions/two wings/two links, real U platform and retained five portals; expose rather than hide unresolved joints, then test limited actual-platform controller routes.
+
+**Architecture:** Reuse the locked role/roof recipes and verified surface/trim primitives inside ONE assembly builder. The missing28 roof construction roles, body/beam/enclosure, all shaft roles and links are not released as separate miniature checkpoints. Keep source fixture A immutable; candidate construction owns an independently captured fixture B and its new geometry, so retaining main-tower objects does not mutate or JSON-clone A's metadata. Old historical golden and production source remain unchanged during geometric construction.
+
+**Tech Stack:** Existing Three.js, actual CollisionManager/FirstPerson, Node built-in test, existing fixture/CPU tools; no new dependency.
+
+**Spec:** READ-ONLY-FINDINGS-2244.md, read-only-junctions-2243.json, parent22:45 choice of integrated candidate; independent-wumen-upper-assembly-2244/READ-ONLY-REVIEW.md. Immutable numeric/source contract is upper-contract.json, original baseline upper-predecessor-a32-v2.json.gz; HEAD5610acf44554d3b2a83cd89f33df8782810cd6d4 rollback.
+
+## Global constraints
+- No production installer, Layout/World/Enclosure/PalaceBuilder modification, main branch or Pages. 600 runtime source remains unchanged for Tasks1–4. Any shared-contact source change required by Task5 is a separate explicit approval gate, not implicit in this plan.
+- Actual main tower52 shafts,1.43grid,shell/roof/plaque and original recorded state remain non-target. No stretching columns, no assumed8 interface pillars, no invented door/open interior/hidden support.
+-104 known perimeter shafts,8 unresolved reference areas,24 link fitted posts are distinct; roles88move/24remove/16add remain explicit.188 old shafts are NOT188 unchanged new shafts.
+- Existing closed solid bodies remain closed with explicit engineering resize; NE three unequal groups and recorded2/3/2 coarse division/material/vertical bands retained under approved X/Z/length changes. Other sides do not inherit invented NE fine detail.
+- Heights remain existing fitted values with explicit permitted derived roofY and actual Float32 ledger.28 missing roles are merge-before underside/side shells, NOT28 existing final meshes, structural load proof or walkables.
+- All original roof faces stay. No clipping/hidden caps/epsilon welding to conceal a collision or gap. No conclusion of watertightness/continuous support from a few intersection samples.
+- Preserve five real tunnel voids, door states,69west/64east visible hats,8eastunknown positions, exterior lintels, south canopies; north-head−4.1m migration remains explicitly declared by visible-platform predecessor.
+- Source map/plan registration, photo fit and unknown hidden joints remain labeled. No surveyed-dimension or actual-entry claims from the chosen engineering values.
+- Heavy tasks are serial and coordinated; full selected regressions and actual command/source hashes retained. Source photos/PDFs remain private.
+
+## Review focus
+1. Shared geometry/material aliases or retirement can silently damage retained main/door components: Task2 tests immutable A and retained B records before/after/failure.
+2. Same nominal Y can conceal Float32 gaps, frame duplication and one-sided fan misuse: Tasks2/4 check actual boundary coordinates/planes and do not authorize fan as a walkable.
+3. Moved closed pavilions/links can leave original blockers/floors behind: Task4 matches complete rows/owners and removes all approved obsolete families, no index-only deletion.
+4. Pair intersection/occlusion can mask an invented hidden roof connection: Task3 keeps raw pairs, numerical ambiguity and predefined region violations without automatic acceptance.
+5. Path convenience can bypass unsupported footprint, rail safety or original red outcomes: Task5 records every actual FP frame/stop state, independent full radius.5 coverage and raw body contact; missing-source negatives cannot fall back to old floor.
+
+## File map (new offline files unless stated)
+All under scripts/photo-fidelity/batches/wumen-joint-layout/: `assembly-contract.json/.mjs` (full immutable target/delta/source/route-domain contract), `upper-assembly.mjs` (visible complete candidate and ownership), `assembly-junctions.mjs` (actual directed pair classification only), `assembly-physics.mjs` (complete physical replacement ledger), `assembly-controller.mjs` (real isolated CM/FP fixture; no fake recovery), `assembly-cpu.mjs` (complete actual-face export). Matching tests under tests/photo-fidelity/batches/wumen-joint-layout/. Reuse existing CPU renderer with a separately named correctly labeled assembly renderer if full-building images are approved.
+
+Existing upper-contract, original baseline, roof primitives and visible-platform are NOT silently rewritten. If actual platform Float32 support must be corrected, introduce a separately named successor helper with an explicit authored→actual delta, keep current187-cell candidate and34 positive-gap evidence intact. Do not broaden a shared runtime provider until separately reviewed.
+
+### Task1: Freeze the whole assembly delta and source regions, not another visual study
+**Files:** assembly-contract.json/.mjs, assembly-contract.test.mjs.
+**Consumes:** immutable upper-contract/profile/platform-fit; actual frozen baseline892nodes/188shafts/452colliders/16walkables; NE source registration2048; original current main/links.
+**Produces:** `createWumenAssemblyContract()` immutable document, `verifyAssemblyInputs(input)` fail-closed source and field closure. `targets` names every replaced group and all approved geometry/metadata/physics deltas; `junctionRegions` independently defined BEFORE new geometry; `routes` author-defined engineering diagnostic routes, not historical paths.
+- [ ] Add RED for missing/extra role, duplicated shaft, mistaken104→112/interface assignment, wrong source/frame/negative-zero handling, any main change, unstated enclosure/portal delta, dynamic-derived acceptance region.
+- [ ] Register BOTH low-link endpoint regions against unchanged main face and moved north-pavilion face using each page independently. Explicitly pin remaining engineering choice of12posts/link, retained radius/height and vertical section; do not claim the plan proves that count. No generic old−6 centre or stale−419.6 world transform inherited silently.
+- [ ] Pin28 construction roles, each footprint/base/bracket/fan/wood/caihua Y/UV/material policy. Require actual `ring(tw)` same source of boundary coordinates, not column-axis or red-wall bounds. Upper/wing double rounding differences remain recorded, not normalized into evidence.
+- [ ] Pin4 pavilion–wing and main/link/pavilion adjacency pairs. Region bounds come from source-registered endpoint/footprint planes and declared roof overhangs, not the observed intersection bounding box. These regions are reporting bins, NOT blanket permissions to intersect.
+- [ ] Freeze a candidate spatial/physical target list and diagnostic route endpoints before route execution; include expected blocked closed-door/closed-pavilion cases. If endpoints cannot be stated without inventing a door, keep them outside and mark no entry.
+- [ ] Run `node --max-old-space-size=384 --test --test-reporter=tap tests/photo-fidelity/batches/wumen-joint-layout/assembly-contract.test.mjs`; mathematical/source RED then GREEN. Astra must accept exact endpoint/role/delta contract before Task2. No automatic approval of a number merely because JSON validates.
+
+### Task2: One visible complete assembly, with actual lower/upper relation
+**Files:** upper-assembly.mjs, upper-assembly.test.mjs.
+**Interfaces:** `buildWumenAssemblyCandidate(contract)` → `{group, originalReference, candidateSource, platform, upperInstances, links, retained, ownership, diagnostics, dispose}`. Builder creates two genuinely independent capture fixtures A/B; A is untouched evidence, B is candidate-owned mutable construction. Never JSON-clone A's all-node record or reparent A's main into a new root.
+- [ ] Write real preimplementation RED: missing28roles,104shaft role set,8nonshaft markers,NE closure,links,main/portal preservation and visible U187cells/12slopes in the same root. Assert no old target remains layered behind new target.
+- [ ] Use fixed old column geometry templates without radius/height/UV scale change. Build target closed bodies and beams from declared footprint planes; clone/rebuild only approved geometry. Preserve semantic fields and effective matrices/materials/render flags. Removed geometry is retired only if no retained reference shares it.
+- [ ] Build28 roles with actual Float32 shared edges. Down fan vs soffit edge must agree geometrically under real frame; bracket top/bottom meets declared beam/fan edge. Side-only shells stay side-only; no new invisible volume. Lock full attributes/index/winding/normal/UV/drawRange and explicit parent matrix. Borrowed materials are not disposed; owned handles retire exactly once including mid-factory failure.
+- [ ] Insert accepted roof surfaces/trim with all original faces. Add complete re-registered links and visible platform, not just receiver rectangles. Keep retained main source B records exactly equivalent to A, with same intended coordinates; no main resize to eliminate conflict.
+- [ ] Test hidden/scale/parent/normal/UV/index deletion/inventedpillar/double-original-root negatives. Verify immutable A full signature and raw physical data unchanged after build and dispose; force failure after one new body and after first roof to test complete cleanup.
+- [ ] Run targeted tests plus original upper-baseline/65 selected set. Result is a complete DIAGNOSTIC assembly, not yet geometrically accepted or production-installed. Keep build/open/closed-door captures separate.
+
+### Task3: Real intersections and declared unresolved joints
+**Files:** assembly-junctions.mjs, assembly-junctions.test.mjs.
+**Interface:** `classifyAssemblyJunctions(candidate,contract)` returns per named pair actual transformed triangle IDs/vertices, intersection segments or unresolved predicates, inside/outside reporting region, separations and independent bounds; no `accepted:true` derived from counts.
+- [ ] RED tests using known crossing/separated/coplanar/tangent/degenerate cases plus actual shifted-root and removed-face negatives. Keep raw IEEE/library results and independent stable-case oracle; numerical-ambiguity classification never becomes a gap tolerance.
+- [ ] Evaluate all four pavilion–wing pairs AND links against unchanged main/adjacent pavilion. Also actual fan/soffit/bracket interfaces. No extrapolation from the old40hip own-layer diagnostic.
+- [ ] Preserve each full original roof surface. For any interference outside the predeclared region, unexpected visible gap, or unclassifiable boundary, leave the candidate blocked. Within-region overlap is not automatically good: report penetration/occlusion with original source view and require a separate explicit ENGINEERING_TUCK decision. Hidden cutting/valley creation is NOT authorized by this plan.
+- [ ] Actual complete-face assembly CPU must include main, all lower/upper bodies and rails, not only roofs. Keep old/new same camera and whole-frame coverage plus seam closeups; label engineering values and material simplification. Do not use a camera crop to hide a conflict.
+- [ ] Astra checks actual pair records and images. If source cannot support a visible joint decision, preserve the blocked integrated candidate; do not produce another accepted fan-only checkpoint or claim structure complete.
+
+### Task4: One coherent actual-geometry physical candidate and bearing gate
+**Files:** assembly-physics.mjs, assembly-physics.test.mjs. A separately named platform shared-grid successor is allowed only after review of its explicit quantization/delta contract.
+**Interface:** `buildAssemblyPhysics(candidate,contract)` → `{colliders,walkables,ownerLedger,removedPriorRows,remainingDiagnostics}`; independent `verifyAssemblyPhysicalDelta(reference,candidate,rows,contract)` authenticates full rows/metadata/owners and exact retained records. No production registration.
+- [ ] RED for stale old main-platform support families, old closed pavilion AABB, old112shaft collision rows, leftover old ascent, duplicate link surface/region, fake fan walkable, missing roof/body/rail partner. Match by complete records+authenticated owner, not earlier array indices.
+- [ ] Preserve main and retained non-target physics exactly. New shafts/body proxies derive from actual permitted new geometry; any inherited3m clipping/gameplay height remains explicit and not called full-height geometric collision. Both real rail geometry and safety proxy move together.
+- [ ] Link ordinary beam rows, actual Xiqing roof/post surface, furnitureMotionScope and floor/region authority migrate coherently. Existing WumenLinkSupport fixed original floor is not re-used under false IDs or stale offsets. Do not touch shared source in this task; if isolated currentCM cannot express new link authority, mark that functionality blocked for a separate reviewed adapter.
+- [ ] Audit EVERY actual shaft footprint against actual new slab top faces, exact per-piece support/overlap; include four unchanged main end columns. Preserve earlier34positive/20threshold gaps and330edge residuals as original evidence. Do not round them away.
+- [ ] If strict bearing/route coverage fails due to cell transforms, stop and review a visible shared-coordinate mesh successor, rather than padding collisions. A shared-grid fix must use one declared Float32 coordinate grid for adjacent slab boundaries and derive physical height/bounds from those actual faces; quantify any quantization/Y/UV/index delta. Update adjoining real ramp edges coherently or retain failure. No hidden bridge or expanded support rectangle.
+- [ ] Actual five tunnels remain void; open40 combinations and closed expected blocks tested against actual rawCM with only declared north-head shift. Whole assembly source/rows remain unchanged by tests.
+
+### Task5: Real platform FP, NOT the earlier receiver-block proof
+**Files:** assembly-controller.mjs, assembly-controller.test.mjs, assembly-negative.test.mjs.
+**Interfaces:** `createAssemblyControllerFixture(candidate,physics,contract)` uses actual CollisionManager/FirstPerson, original clock/damping/radius.5/body policy, no test recovery or movement teleport. Supports are ONLY authenticated real platform cell/real ramp faces. There is no stand-alone receiver rectangle or whole-U rescue floor.
+- [ ] Freeze exact routes from Task1: exposed north/side platform connectors and receiver-to-real-platform transitions, in both directions,10/60fps,walk/run. Preserve all prior internal/ground-rig16 results separately; they are not this assembly's baseline. Closed pavilion entry is expected blocked, never relabeled arrived.
+- [ ] Red→green actual route requires per-frame raw body safe, ground/feet/onSupport/airborne/vertical speed, full.5footprint on authenticated visible support, actual accepted displacement, final≤.12m, zero velocity/motionSpeed and stable1second. Source removal/duplicate/wrongowner/movedactualmesh/rail changes/neck deletion must be real negatives, not import errors or skipped variants.
+- [ ] Plain flat-platform boxes may use existing CM behavior but independent support checks are mandatory. Real slope/receiver transitions may NOT impersonate existing14-ownerLOCAL_CONTACT_RIG or two ground patches. If current strict provider rejects new actual platform owners, that RED remains: write a narrow assembly binding/entry design, obtain parent+Astra approval before any of600runtime source changes, then apply exact source identity/generation/fail-closed/outside-preservation regressions. This plan does not grant that shared-source edit implicitly.
+- [ ] Domain outside verified support, unsupported edge/release, eight unresolved interfaces and real architectural entry remain explicit blocked gates. Never pass by lowering radius, inflating tolerance, altering velocity/clock or accepting a conservative halt as arrival.
+
+### Task6: Integration decision, not an automatic production hook
+**Files:** integrated evidence package and STATUS limited key only after final review; any production files require a later authorized plan.
+- [ ] Run all selected original+new tests serially under final full source/QA freeze; retain complete Counter and original RED logs, CPU and geometry source identities. RealTextureLibrary/finish merge and material lifecycle must be tested separately before production, because the current capture fixture uses tile/aspect1 and replacesfinish.
+- [ ] Astra reviews one assembly result: role preservation,actual contacts/interferences,bearing,rawFP and unresolved decisions together. A green static subset is not a completed building. Save rollback/dev checkpoint only with exact remaining gates; wholeObjectsAdded stays0 until whole-object criteria are actually met.
+- [ ] Production gate must separately cover joint anchor−419.6→proposedmain registration, actual southwall/corner/ascent interfaces, placement guards and all oldcontracts; no standalone LAYOUT edit. No threshold/oldgold rewrite. Full World/non-target preservation, regression/build/realGPU and history portability remain required as applicable.
+- [ ] Backup fixed Git objects via current authorized independent agent, retain121doc oldCPUtransport/100chunks and all originalreds. Never modify main/Pages as part of this candidate.
+
+## Stop/approval map
+Task1 numeric roles/endpoints require Astra and parent approval before bodies are made. Task2–4 can establish an integrated *diagnostic* candidate; a real seam conflict is a gate, not a reason to erase faces. Task5 shared-binding changes need separate explicit permission. Final production installation is outside this plan. These are necessary gates towards one usable object, not an excuse to count static fragments as object completion.

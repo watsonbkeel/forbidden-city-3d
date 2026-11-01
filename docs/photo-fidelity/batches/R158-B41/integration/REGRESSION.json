@@ -1,0 +1,256 @@
+{
+  "status": "LIMITED_INTEGRATION_CHECKPOINT_NOT_WHOLE_OBJECT_OR_RELEASE",
+  "baseCommit": "1f6b58d10c4269111f26ebd991f94a88fce345bd",
+  "importedCommits": {
+    "d504f1ab": "91d4b4bb5c1402ea1766dbe5d83dd32bd714b181",
+    "d0e0e378": "e3d2de30f84afca521f09d94423b9caca6b747c1",
+    "c916e5fa0afc219e1ad441635924ce411497a132": "bdb2a532bbcb232bd776480db222da68cdeb7535"
+  },
+  "productionHashes": {
+    "src/scene/zones/ZoneBase.js": "77d78b75cb8ac127f7caa11342cec364989feb7895ab48f9a21aeabe8635f677",
+    "src/scene/palace/special/SouthWaterSystem.js": "dd2fe998643640a185e70640e37da988a709c77c41313774602a3b813452958b",
+    "src/utils/Collision.js": "a95f492cc78317515d31470df050b170691db5e3642a79d68ec5971d26a4cf67",
+    "src/scene/palace/special/WenhuaCentralDoors.js": "f89fcb8c4dea871992020c7854ac227bf6f54f82f4a28512670f259f16cdf5ca",
+    "src/scene/palace/special/WenyuanPondBridgeRails.js": "5c7132fbe5c7e764c474098db5659f8fbf744cd1a9a60a5fd97c425483b99dad"
+  },
+  "productionHookTests": {
+    "tests": 2,
+    "pass": 2,
+    "noLoaderInjection": true,
+    "redBeforeHook": 2
+  },
+  "wenhuaComponent": {
+    "tests": 35,
+    "pass": 35,
+    "fullMergeAB": "current baseline omits only central finalizer; real candidate uninjected; all former assertions preserved"
+  },
+  "wenyuanFocused": {
+    "tests": 15,
+    "pass": 15,
+    "noLoaderInjection": true,
+    "exactNonTargetWaterAndBodyComparisons": 3456,
+    "oldRailColliders": 48,
+    "newTriangleOwners": 34,
+    "unchangedWaterSupports": 224
+  },
+  "wenyuanWorld": {
+    "tests": 2,
+    "pass": 2,
+    "roundTrips": 12,
+    "arrivals": 12,
+    "sixMetreDrops": 96,
+    "penetrationFrames": 0,
+    "noLoaderInjection": true
+  },
+  "wenhuaWorld": {
+    "tests": 1,
+    "pass": 1,
+    "actualWorldRoutes": 8,
+    "arrivals": 8,
+    "noLoaderInjection": true
+  },
+  "fullCurrentState": {
+    "scope": "Actual current-state candidate vs frozen unchanged-production Wumen0124 baseline; not all green",
+    "baseline": {
+      "tests": 1313,
+      "pass": 1090,
+      "fail": 223,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "candidate": {
+      "tests": 1313,
+      "pass": 1090,
+      "fail": 223,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "newFailureNames": [],
+    "removedFailureNames": [],
+    "baselineFailuresRemaining": 223,
+    "productionHashManifest": "production-0234.sha256",
+    "baselineLog": "/workspace/scratch/02a8023d1a85/audit-wumen-completion-20261031/integration-full-current-state-0124.log",
+    "baselineLogSHA256": "8e758611cd68da7648a4d85d1c8433147b84ebd5f3ac031210578d5308b9483e",
+    "candidateLogSHA256": "b9120784f5304f95668d4df87dad3a0d59f42c7cc6bbc3adbdb71a3d6953b8ab",
+    "baselineProductionCommit": "c9b25a712e286877f2abbc88f4522add3fc0caea",
+    "qaOnlyBaseCommit": "1f6b58d10c4269111f26ebd991f94a88fce345bd",
+    "baselineProductionManifest": "/workspace/scratch/02a8023d1a85/audit-wumen-completion-20261031/integration-production-0123.sha256",
+    "interpretation": "Same failure-title multiset; not a claim that every failure root cause is independently identical"
+  },
+  "sharedTargeted": {
+    "tests": 59,
+    "pass": 57,
+    "fail": 2,
+    "explanations": [
+      "Xiehe historical exact retention assertion also fails on exact1f6 snapshot (5/6)",
+      "Original Wuying all-non-Wuying retention assertion includes now-authorized Wenyuan replacement; retained unchanged. New Wenyuan exact non-target geometry/collision preservation test passes."
+    ]
+  },
+  "independentReview": {
+    "reviewer": "/root/review_wenyuan_bridge",
+    "receipt": "Thread attestation, not an independently authored log file",
+    "tests": 52,
+    "pass": 52,
+    "scope": "five source hashes, precise hooks, unchanged Wenhua AB assertion tail, 223-title failure multiset, live-only focused and real production entrance",
+    "remainingP0P2InReviewedScope": false,
+    "cpuFinalPosePending": false,
+    "finalCPUReceipt": "Reviewer personally inspected0243central/reverse/oblique images; no new closure or obvious solid interpenetration in this diagnostic scope; not GPU/hinge/ornament acceptance."
+  },
+  "cpu": {
+    "scope": "UNINJECTED_FULL_PRODUCTION_OUTER_EAST_FINAL_POSE_CPU_BASE_COLORS_ONLY_NOT_GPU",
+    "cameras": [
+      [
+        "south-whole",
+        [
+          0,
+          3.1,
+          -24
+        ],
+        [
+          0,
+          4,
+          -2
+        ],
+        48
+      ],
+      [
+        "south-central",
+        [
+          0,
+          3.2,
+          -17
+        ],
+        [
+          0,
+          4,
+          -8.5
+        ],
+        48
+      ],
+      [
+        "south-oblique",
+        [
+          -6,
+          3.5,
+          -15
+        ],
+        [
+          0,
+          3.8,
+          -8.5
+        ],
+        48
+      ],
+      [
+        "north-reverse",
+        [
+          0,
+          3.3,
+          -4.5
+        ],
+        [
+          0,
+          3.8,
+          -8.5
+        ],
+        65
+      ]
+    ],
+    "doorRecord": {
+      "entityId": "FC-CD0B5AC9DE",
+      "sourcePage": "https://www.dpm.org.cn/explore/building/236531.html",
+      "photo": "https://img.dpm.org.cn/Uploads/Picture/2024/02/21/s65d5b70481d5f.jpg",
+      "photographyDate": null,
+      "scope": "SOUTH_CENTRAL_SIX_LEAF_ENSEMBLE_ONLY",
+      "leaves": 6,
+      "countAuthority": "OFFICIAL_BUILDING_TEXT_SIX_DOORS_NOT_A_WINDOW_COUNT",
+      "pose": "TWO_OUTER_CLOSED_FOUR_FOLDED_REVERSIBLE_ACCESS_FIT_NOT_MEASURED_PHOTO_POSE",
+      "lattice": "THREE_DIRECTION_OUTLINE_NOT_EXACT_CARVED_SIX_BOWL",
+      "dimensions": "RETAINED_BAY_AND_HEIGHT_ENVELOPE_DIVIDED_IN_SIX_NOT_SURVEY",
+      "surface": "RED_OUTER_AND_TWO_VISIBLE_WEATHERED_INNER_LEAF_COLOR_FIT_HIDDEN_LEAF_SURFACES_UNVERIFIED",
+      "physics": "SIX_MATCHING_THIN_LEAF_BOXES_ADDED_EXISTING_COLLIDERS_AND_ALL_FLOORS_RETAINED",
+      "clearWidth": 3.6533333333333333,
+      "accepted": false,
+      "visualAcceptance": "VERIFY_PENDING",
+      "unverified": [
+        "exact hinge angles and hidden-leaf pose",
+        "exact carved repeat-unit topology and paint",
+        "side/rear facades and current exhibition inventory",
+        "GPU/device performance and whole-courtyard acceptance"
+      ]
+    },
+    "colliders": 1065,
+    "walkables": 61,
+    "hashes": {
+      "north-reverse.json": "b3fa40bae50507e34a90efa2a7402f4dbdd82be6d6b0b715409219d346123224",
+      "north-reverse.json.gz": "d85e8e06ab831698104149d150f397eac31ede2ea5af524dd5ad87aa17a70547",
+      "north-reverse.png": "9f8086d740e20587a86d4c4885d51455b1abc7f24e32297f936c65fa2d317617",
+      "south-central.json": "ebfed0a959f40a018704730004e470a71f87a563eb8fac35ba466d4c690dace5",
+      "south-central.json.gz": "15aeba426d72f5e029da075c04c84adcc7ba9e95c37e3dc0f941f0a8a4d36027",
+      "south-central.png": "9a614d8c39fe09744ce678f4f41993bada2321db794e203157aeb75cd66d5744",
+      "south-oblique.json": "d6bc4dd9024a63c953c2bbae97a699d9bbab2f199e236be0e451a89cffe7f4c4",
+      "south-oblique.json.gz": "5b0ba5ec423dde989cf2043783ec8942288157dc7dce659beeb65370ae2eeaa9",
+      "south-oblique.png": "7a10ebf01a908ccf806a8002ed70311a754af096ce2530fb891c34fa1530f66c",
+      "south-whole.json": "5814354fe59c59d50e36475c8dc196c8fd669fa2a611164c46745de196e65fc4",
+      "south-whole.json.gz": "1ca7273984fee61721a58ea52e54c8fe24e87b9ebdffb88995f008d1034c7435",
+      "south-whole.png": "551e2d2d70cf08576cb2db5573ac1b3f8d139b9d6ae0f42571e4112714309a2f"
+    }
+  },
+  "cpuFirstAttempt": {
+    "status": "renderer exited1 because diagnostic label field missing; no production failure",
+    "retainedEvidence": "wenhua-production-cpu-0241.log",
+    "correction": "added label only, reran in new0243directory"
+  },
+  "wholeObjectAccepted": false,
+  "release": false,
+  "mainOrPagesChanged": false,
+  "limits": [
+    "Engineering fitted open-leaf pose; not measured hinge angles or current visitor permission",
+    "Pond rail quantities/metrics are fits; unseen backs, arch detail and carved details unresolved",
+    "No browser/GPU/mobile acceptance",
+    "Full suite retains223failed tests; matching titles do not independently establish identical root causes"
+  ],
+  "inheritedBatch": {
+    "tests": 204,
+    "pass": 203,
+    "fail": 1,
+    "cancelled": 0,
+    "failure": "All existing bridge-deck supports and non-Wuying physical owners survive exactly",
+    "reason": "Original broad non-Wuying retention contract includes Wenyuan; preserved unchanged, superseded only for the explicitly authorized48→34rail owners. New exact non-target retention15/15passed.",
+    "assertionFormatting": "isDeepStrictEqual predicate unchanged; private compact diff formatter avoids huge failed-object rendering"
+  },
+  "builds": [
+    {
+      "base": "/",
+      "exitCode": 0,
+      "modules": 551,
+      "logSHA256": "80bbaf504bca8c92e7ae7174f512aeae11ef0b07e813fa0cd97d0e321d61260d"
+    },
+    {
+      "base": "/forbidden-city-3d/",
+      "exitCode": 0,
+      "modules": 551,
+      "logSHA256": "baaf980bd0209cf87dd9b4a2b0cad2b4bd99f7344f74c3a9e341f4eb3662dbd4"
+    },
+    {
+      "base": "/gugong/",
+      "exitCode": 0,
+      "modules": 551,
+      "logSHA256": "bb77751ddb8d21ac4eab37473926a1584712f96bcf1eaed3c5d477c762fb5469"
+    }
+  ],
+  "evidenceLogSHA256": {
+    "production-hooks-red.log": "5fbb8e865566c077f9dfa6b2991d668ae1a7d529e80f4210a2362590679c892a",
+    "production-hooks-green.log": "8d76edcb6e8c5fd28e664183ef60b6529ae66d199099d71181d83ba74f037cb4",
+    "wenhua-component-live-2.log": "bee9f9ae88c26f06649513ff7f903e78b1caec6f8075150a38029aa3ccf8f4df",
+    "wenyuan-focused-live.log": "05685b3d233b4d3b548a9aaf8e26e89a999f82c5baa1646c7dee347c801328e4",
+    "wenyuan-world-live.log": "62d06b1dc1def9a6469739ccc488bb619365ece4db75ad5f81dd2d9c9dd3ee88",
+    "wenhua-world-live.log": "9a077bb0a20c45ed54f7e9dd187614ad72931d60971363a752a8778fe015049f",
+    "full-current-state-0232.log": "b9120784f5304f95668d4df87dad3a0d59f42c7cc6bbc3adbdb71a3d6953b8ab",
+    "inherited-batch-0243.log": "5664633636578dac094e73c84267c9f8f5bb21b809f7cf4d081973d8f5052f69",
+    "shared-targeted.log": "582c6c145bfc4d6082e8400699ec09323a764d31abfff77b8146da6d5037d441",
+    "xiehe-baseline-1f6-complete-history.log": "0e9dd0d7e49b42f3b96934a5cb2746894ed0375fe5c99fb49316b630f490191f",
+    "baseline-label-guard-red.log": "7df2b38ee8dcd8f047f1b360abbc54eb8dca569aaed1bd6bb72780465c695143",
+    "no-recovery-label-guard-red.log": "410a3cb3fe5d8b2ed405c534398682c5e3ff228c423fbd6b15d080ba593fcaed"
+  }
+}

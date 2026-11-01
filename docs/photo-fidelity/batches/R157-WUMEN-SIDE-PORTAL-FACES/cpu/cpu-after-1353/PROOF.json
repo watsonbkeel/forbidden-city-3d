@@ -1,0 +1,162 @@
+{
+  "accepted": false,
+  "scope": "REAL_BUILD_GATE_WHOLE_WUMEN_PREMERGE_CPU_BASE_COLOR_NO_GPU",
+  "mode": "after",
+  "baseline": "db1f6d26ac02338f65e99b220ea922418a3a54a7",
+  "actualPortalFaceGroups": 2,
+  "views": {
+    "east-front": {
+      "camera": {
+        "position": [
+          -29,
+          4.4,
+          -16.5
+        ],
+        "target": [
+          -40.6,
+          4.4,
+          -16.5
+        ],
+        "fov": 48,
+        "matrixWorldInverse": [
+          2.220446049250313e-16,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          -1,
+          0,
+          2.220446049250313e-16,
+          0,
+          -16.499999999999993,
+          -4.4,
+          29.000000000000004,
+          1
+        ]
+      },
+      "triangles": 49536,
+      "file": "wumen-side-portals-east-front-after.json.gz",
+      "sha256": "e62c7b6fa63ee9b27a54a778e175fae989ca4362484ef6420d8f4a4fd1dc3705"
+    },
+    "west-front": {
+      "camera": {
+        "position": [
+          29,
+          4.4,
+          -16.5
+        ],
+        "target": [
+          40.6,
+          4.4,
+          -16.5
+        ],
+        "fov": 48,
+        "matrixWorldInverse": [
+          2.220446049250313e-16,
+          0,
+          -1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          2.220446049250313e-16,
+          0,
+          16.499999999999993,
+          -4.4,
+          29.000000000000004,
+          1
+        ]
+      },
+      "triangles": 49536,
+      "file": "wumen-side-portals-west-front-after.json.gz",
+      "sha256": "daa2c973e85524cab5f34d24f49fb735c2a8a0e43f68926b5fc2da59e0ba2c06"
+    },
+    "east-oblique": {
+      "camera": {
+        "position": [
+          -28,
+          4.6,
+          -10
+        ],
+        "target": [
+          -40.6,
+          4.3,
+          -16.5
+        ],
+        "fov": 46,
+        "matrixWorldInverse": [
+          0.4584632458915777,
+          -0.01880082611563873,
+          0.8885144799630045,
+          0,
+          3.469446951953614e-18,
+          0.9997762056890329,
+          0.02115510666578581,
+          0,
+          -0.888713368959058,
+          -0.009698838869178711,
+          0.4583606444253596,
+          0,
+          3.9498371953735965,
+          -5.222382066099223,
+          29.36469839255511,
+          1
+        ]
+      },
+      "triangles": 49536,
+      "file": "wumen-side-portals-east-oblique-after.json.gz",
+      "sha256": "96127397d06a0bd6ae9018b06a0eba6fe00ee6208f4b5d9b7189cab5b3a2cdba"
+    },
+    "west-oblique": {
+      "camera": {
+        "position": [
+          28,
+          4.6,
+          -10
+        ],
+        "target": [
+          40.6,
+          4.3,
+          -16.5
+        ],
+        "fov": 46,
+        "matrixWorldInverse": [
+          0.4584632458915777,
+          0.01880082611563873,
+          -0.8885144799630045,
+          0,
+          -3.469446951953614e-18,
+          0.9997762056890329,
+          0.02115510666578581,
+          0,
+          0.888713368959058,
+          -0.009698838869178711,
+          0.4583606444253596,
+          0,
+          -3.9498371953735965,
+          -5.222382066099223,
+          29.36469839255511,
+          1
+        ]
+      },
+      "triangles": 49536,
+      "file": "wumen-side-portals-west-oblique-after.json.gz",
+      "sha256": "7d037c533c1e5c451278c7ecf28326f16ab3b1dce48930ced4c799f41afbb84e"
+    }
+  },
+  "sourceHashes": {
+    "src/scene/palace/special/WumenLowerBase.js": "d85a585607578f25cfb4e25b8f2db2ba39cd806241498bae1792344c8f52c1f6",
+    "src/scene/palace/special/WumenSidePortalFaces.js": "8267ba10d21fe4c8b69a0df1112e9170317b8dfd3a5a3e906aca39dd3f5ea92e"
+  },
+  "limitations": [
+    "Same retained roof/base/origin; does not approve macro layout",
+    "No historical or live GPU material/light acceptance",
+    "Before uses exact SHA-pinned db1 LowerBase predecessor, other production sources unchanged"
+  ]
+}

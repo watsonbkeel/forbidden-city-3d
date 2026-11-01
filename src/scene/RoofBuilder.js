@@ -1,3 +1,4 @@
+import {validateMiddleRightRoof} from './palace/special/MiddleRightRoofProfile.js';
 import {addJiaotaiFrontTerminal} from './palace/special/JiaotaiFrontTerminalCandidate.js';
 import { validateJiaotaiCrownCandidate, createJiaotaiCrownGeometry } from './palace/special/JiaotaiCrownCandidate.js';
 import * as THREE from 'three';
@@ -383,7 +384,7 @@ function addChiwen(ctx, g, x, y, h, mirror) {
 }
 
 /** 正脊（含两端吻兽），沿 X 从 -half 到 half，脊身底部 yBase */
-function addMainRidge(ctx, g, half, yBase, hr, chiwenH) {
+function addMainRidge(ctx, g, half, yBase, hr, chiwenH, ownCoarseChiwen = false) {
   const hR = hr * 3.4, wR = hr * 2.2;
   const ridge = add(g, new THREE.BoxGeometry(half * 2 + hr * 2, hR, wR), ctx.mat.ridge);
   ridge.position.y = yBase + hR / 2;
@@ -391,7 +392,7 @@ function addMainRidge(ctx, g, half, yBase, hr, chiwenH) {
   const cap = add(g, new THREE.CylinderGeometry(wR * 0.42, wR * 0.42, half * 2 + hr * 2, ctx.seg.radial), ctx.mat.ridge);
   cap.rotation.z = Math.PI / 2;
   cap.position.y = yBase + hR;
-  if (ctx.hd && chiwenH > 0) {
+  if ((ctx.hd || ownCoarseChiwen) && chiwenH > 0) {
     addChiwen(ctx, g, half - chiwenH * 0.12, yBase + hR * 0.25, chiwenH, false);
     addChiwen(ctx, g, -half + chiwenH * 0.12, yBase + hR * 0.25, chiwenH, true);
   }
@@ -470,36 +471,40 @@ function addBrackets(ctx, g, poly, y0, minDim, explicitHeight) {
 /* ------------------------------------------------------------------ */
 
 function singleRoof(ctx, g, o) {
-  const type = o.type ?? 'wudian', vertical = o._wumenUpper;
+  const type = o.type ?? 'wudian', vertical = o._wumenUpper, own = o.middleRightRoof;
   const W = o.width, D = o.depth;
   const sides = type === 'pavilion' && o.sides === 8 ? 8 : 4;
-  const ovh = o.overhang ?? defaultOverhang(W, D);
+  const ovh = own ? own.eaveHalfDepth-D/2 : o.overhang ?? defaultOverhang(W, D);
   const height = o.height ?? Math.min(W, D) * (type === 'pavilion' ? 0.6 : type === 'gable' ? 0.4 : 0.45);
   const liftScale = o._lift ?? 1;
   const minD = Math.min(W, D);
   const footprint = polyCorners(sides, W / 2, D / 2);
   let y0 = o.baseY ?? 0;
-  if (o.brackets ?? true) y0 = addBrackets(ctx, g, footprint, y0, minD, vertical?.upperBracketHeight);
+  if (o.brackets ?? true) {
+    const t=own ? (D/2)/own.eaveHalfDepth : 0;
+    const bearing=own ? own.eaveY+(own.ridgeY-own.eaveY)*profile(.48)(t)-own.thickness : 0;
+    y0 = addBrackets(ctx, g, footprint, y0, minD, own ? bearing-y0 : vertical?.upperBracketHeight);
+  }
   if (o.jiaotaiCeilingOpening && (type !== 'pavilion' || sides !== 4)) throw Error('Jiaotai opening requires its four-sided pavilion roof');
-  add(g, o.jiaotaiCeilingOpening ? jiaotaiCeilingRing({W,D,y:y0,tile:ctx.tile.rafters,opening:o.jiaotaiCeilingOpening}) : fanGeometry(footprint, y0, ctx.tile.rafters), ctx.mat.rafters);
+  if(!own?.openSoffit) add(g, o.jiaotaiCeilingOpening ? jiaotaiCeilingRing({W,D,y:y0,tile:ctx.tile.rafters,opening:o.jiaotaiCeilingOpening}) : fanGeometry(footprint, y0, ctx.tile.rafters), ctx.mat.rafters);
 
-  const th = vertical?.upperRafterEndThickness ?? clamp(ovh * 0.1, 0.15, 0.45);
-  const ex = vertical ? WUMEN_VERTICAL_PROFILE.retained.upperEaveHalfWidth : W / 2 + (type === 'gable' ? (o.hardGableEnd ? 0 : 0.3) : ovh);
-  const ez = vertical?.upperEaveHalfDepth ?? D / 2 + ovh;
+  const th = own?.thickness ?? vertical?.upperRafterEndThickness ?? clamp(ovh * 0.1, 0.15, 0.45);
+  const ex = own?.eaveHalfWidth ?? (vertical ? WUMEN_VERTICAL_PROFILE.retained.upperEaveHalfWidth : W / 2 + (type === 'gable' ? (o.hardGableEnd ? 0 : 0.3) : ovh));
+  const ez = own?.eaveHalfDepth ?? vertical?.upperEaveHalfDepth ?? D / 2 + ovh;
   const tw = (D / 2) / ez;
   const P = profile(type === 'pavilion' ? 0.36 : type === 'gable' ? 0.62 : 0.48);
-  const H = vertical?.upperTileRise ?? (height - th) / (1 - P(tw));
-  const yb = vertical?.upperEaveY ?? y0 + height - H;
+  const H = own ? own.ridgeY-own.eaveY : vertical?.upperTileRise ?? (height - th) / (1 - P(tw));
+  const yb = own?.eaveY ?? vertical?.upperEaveY ?? y0 + height - H;
   const bearingSoffit = vertical ? { footprint, wallY: y0, eaveY: yb - th } : undefined;
   const Y = t => yb + H * P(t);
-  const lift = type === 'gable' ? null : {
+  const lift = own ? {L:own.cornerLift,O:own.cornerPlan,D:Math.min(ex,ez)*.5} : type === 'gable' ? null : {
     L: clamp(minD * 0.035, 0.3, 1.5) * liftScale,
     O: clamp(ovh * 0.35, 0.2, 1.4) * liftScale,
     D: clamp(Math.min(ex, ez) * 0.5, 1.2, 12),
   };
   const hr = clamp(minD * 0.011, 0.1, 0.42);
   const chiwenH = clamp(height * 0.18, 0.5, 3.4);
-  const nBeasts = W >= 40 ? 5 : W >= 20 ? 4 : 3;
+  const nBeasts = own ? 0 : W >= 40 ? 5 : W >= 20 ? 4 : 3;
   let top = yb + H;
 
   if (type === 'pavilion') {
@@ -531,7 +536,7 @@ function singleRoof(ctx, g, o) {
       add(g, rakeBoard(sx * (ex + (o.hardGableEnd ? 0 : 0.02)), rake, th * 2.5, sx, ctx.tile.wall), ctx.mat.wall);
     }
   } else {
-    const rx = vertical ? WUMEN_VERTICAL_PROFILE.retained.upperRidgeHalfWidth : Math.max(ex - ez, W * 0.04);
+    const rx = own ? 2*own.ridgeHalfWidth-ex : vertical ? WUMEN_VERTICAL_PROFILE.retained.upperRidgeHalfWidth : Math.max(ex - ez, W * 0.04);
     const hx = t => rx + (ex - rx) * t;
     if (type === 'xieshan') {
       const ts = 0.5;
@@ -549,7 +554,7 @@ function singleRoof(ctx, g, o) {
         });
         addHip(ctx, g, pts, hr, nBeasts, walkingBeastScope(ctx, o._walkingLayer ?? 'single', c));
       }
-      top = addMainRidge(ctx, g, G - hr * 1.4, Y(0) - hr, hr, chiwenH);
+      top = addMainRidge(ctx, g, G - hr * 1.4, Y(0) - hr, hr, own?.chiwenHeight ?? chiwenH, !!own);
       // 山花（收山 δ）、博风板、博脊
       const delta = clamp(ovh * 0.12, 0.15, 0.5);
       const steps = Math.max(4, Math.round(ctx.seg.nT * ts));
@@ -703,6 +708,7 @@ export function buildRoof(lib, opts) {
     }
   }
   if (opts._wumenUpper !== undefined) throw new Error('Internal Wumen upper-roof option is not a public override');
+  validateMiddleRightRoof(opts); // reject before allocating resources or touching shared materials
   const jiaotaiCrown = validateJiaotaiCrownCandidate(opts);
   const walkingProfile = resolveWalkingBeastProfile(opts);
   const ctx = makeCtx(lib, opts.detail);

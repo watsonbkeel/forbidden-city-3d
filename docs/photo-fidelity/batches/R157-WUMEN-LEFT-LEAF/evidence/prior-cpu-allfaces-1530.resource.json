@@ -1,0 +1,18 @@
+{
+  "command": [
+    "node",
+    "--expose-gc",
+    "--max-old-space-size=1024",
+    "--test",
+    "--test-reporter=tap",
+    "--test-concurrency=1",
+    "tests/photo-fidelity/batches/wumen-main-width-cpu-export.test.mjs",
+    "tests/photo-fidelity/batches/wumen-side-portal-cpu-export.test.mjs"
+  ],
+  "cwd": "/workspace/scratch/02a8023d1a85/r157-restored-411214",
+  "returncode": 0,
+  "elapsedSeconds": 17.829012204998435,
+  "maxRSSKiB": 733076,
+  "userSeconds": 20.738143,
+  "systemSeconds": 1.629462
+}

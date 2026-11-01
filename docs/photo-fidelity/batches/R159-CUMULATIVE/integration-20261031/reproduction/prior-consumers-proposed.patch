@@ -1,0 +1,128 @@
+--- a/tests/photo-fidelity/batches/r158-integration/cumulative-world.test.mjs
++++ b/tests/photo-fidelity/batches/r158-integration/cumulative-world.test.mjs
+@@ -1,3 +1,5 @@
++// R159 comparison-only: authenticate six new solids before removing them from NEW aligned arrays; all movement stays raw W.
++import {r159JiaotaiPriorComparison} from '../../../lib/r159-jiaotai-prior-comparison.mjs';
+ // Comparison only: authenticate raw new126 Wuying owners, restore old126 in a NEW view. All movement uses raw W.cm.
+ import {wuying55PhysicsView} from '../../../lib/r158-wuying-55-physics-view.mjs';
+ import {wenhua493PhysicsView} from '../../../lib/r158-wenhua-493-physics-view.mjs';
+@@ -7,12 +9,12 @@
+ import {buildR52World} from '../../../lib/r52-world.mjs';
+ import {assertTaihemenNameboardFrameInWorld} from '../../../lib/r157-taihemen-nameboard-world-check.mjs';
+ test('Uninjected cumulative World retains Wenhua/Donghua/Wenyuan hooks and explicitly partial Taihemen frame without ceiling hypothesis',async()=>{
+- const W=await buildR52World();try{const priorPhysics=wenhua493PhysicsView(W,wuying55PhysicsView(taiheWorldPhysics(W)));
++ const W=await buildR52World();try{const comparison=r159JiaotaiPriorComparison(W,taiheWorldPhysics(W)),priorPhysics=wenhua493PhysicsView(comparison.world,wuying55PhysicsView(comparison.physics));
+   const report=assertTaihemenNameboardFrameInWorld(W);assert.equal(report.wholeFrameGroundVisible,false);assert.equal(report.groundFrameSightlines.filter(x=>x.visible).length,5);assert.match(report.status,/PARTIAL/);
+   const records=[];W.scene.traverse(g=>records.push(...(g.userData.architecture??[])));
+   const own=id=>{const a=records.filter(r=>r.id===id);assert.equal(a.length,1,id);return a[0];};
+   assert.equal(own('outer-east/wenhua-front').wenhuaCentralDoors.leaves,6);assert.equal(own('city-gates/donghua').donghuaExteriorEnvelope.visibleWindowGroups,5);
+-  assert.equal(W.cm.colliders.filter(c=>c.triangleSupport?.id.startsWith('wenyuan-pond-rails:')).length,34);const instruments=W.cm.colliders.filter(c=>c.triangleSupport?.id.startsWith('taihe-terrace-instrument:'));assert.equal(instruments.length,29);const facilities=assertTaihemenFacilitiesCInWorld(W,{production:true}),observed=W.cm.colliders.filter(c=>c.mesh.taihemenObservedSource==='axis/taihemen-observed-approach');assert.equal(observed.length,77);assert.equal(facilities.accepted,false);assert.equal(priorPhysics.rows.length-instruments.length+2-observed.length+68,30837,'original total after exact instrument 2->29 and observed approach 68->77 source-owned changes');assert.equal(priorPhysics.rows.length,30873);assert.equal(W.cm.colliders.length,30876);
++  assert.equal(W.cm.colliders.filter(c=>c.triangleSupport?.id.startsWith('wenyuan-pond-rails:')).length,34);const instruments=W.cm.colliders.filter(c=>c.triangleSupport?.id.startsWith('taihe-terrace-instrument:'));assert.equal(instruments.length,29);const facilities=assertTaihemenFacilitiesCInWorld(W,{production:true}),observed=W.cm.colliders.filter(c=>c.mesh.taihemenObservedSource==='axis/taihemen-observed-approach');assert.equal(observed.length,77);assert.equal(facilities.accepted,false);assert.equal(priorPhysics.rows.length-instruments.length+2-observed.length+68,30837,'original total after exact instrument 2->29 and observed approach 68->77 source-owned changes');assert.equal(priorPhysics.rows.length,30873);assert.equal(W.cm.colliders.length,30882);assert.equal(comparison.world.cm.colliders.length,30876);
+   assert.equal(records.filter(r=>r.id==='axis/taihemen-south-ceiling').length,0);const frame=own('axis/taihemen-nameboard-frame');assert.ok(frame);
+   const summary={scope:'ACTUAL_WHOLE_WORLD_UNINJECTED_ALL_FOUR_INTEGRATIONS',colliders:W.cm.colliders.length,prior493ComparisonColliders:priorPhysics.rows.length,wenyuanOwners:34,taihemen:report,wholeObjectAccepted:false};if(process.env.R158_CUMULATIVE_WORLD_OUT)fs.writeFileSync(process.env.R158_CUMULATIVE_WORLD_OUT,JSON.stringify(summary,null,2));console.log(JSON.stringify(summary));
+  }finally{W.dispose();}
+--- a/tests/photo-fidelity/batches/r158-arrow-integration/cumulative-world.test.mjs
++++ b/tests/photo-fidelity/batches/r158-arrow-integration/cumulative-world.test.mjs
+@@ -1,3 +1,5 @@
++// R159 comparison-only: authenticate six new solids before removing them from NEW aligned arrays; all movement stays raw W.
++import {r159JiaotaiPriorComparison} from '../../../lib/r159-jiaotai-prior-comparison.mjs';
+ // Comparison only: authenticate raw new126 Wuying owners, restore old126 in a NEW view. All movement uses raw W.cm.
+ import {wuying55PhysicsView} from '../../../lib/r158-wuying-55-physics-view.mjs';
+ import {wenhua493PhysicsView} from '../../../lib/r158-wenhua-493-physics-view.mjs';
+@@ -8,7 +10,7 @@
+ import {assertArrowCentralNameboardRemovedInWorld} from '../../../lib/r158-arrow-nameboard-world-check.mjs';
+ import {assertTaihemenNameboardFrameInWorld} from '../../../lib/r157-taihemen-nameboard-world-check.mjs';
+ test('Uninjected cumulative World consumes actual Arrow lattice nameboard removal and retained knees with earlier four integrations',async()=>{
+- const W=await buildR52World();try{const priorPhysics=wenhua493PhysicsView(W,wuying55PhysicsView(taiheWorldPhysics(W)));
++ const W=await buildR52World();try{const comparison=r159JiaotaiPriorComparison(W,taiheWorldPhysics(W)),priorPhysics=wenhua493PhysicsView(comparison.world,wuying55PhysicsView(comparison.physics));
+   // The one nameboard consumer also executes the real lattice and knee consumers;
+   // do not rebuild W or count their nested probes as separate completed objects.
+   const arrow=assertArrowCentralNameboardRemovedInWorld(W),taihemen=assertTaihemenNameboardFrameInWorld(W);
+@@ -16,7 +18,7 @@
+   assert.equal(taihemen.wholeFrameGroundVisible,false);assert.equal(taihemen.groundFrameSightlines.filter(x=>x.visible).length,5);assert.match(taihemen.status,/PARTIAL/);
+   const records=[];W.scene.traverse(g=>records.push(...(g.userData.architecture??[])));const own=id=>{const a=records.filter(r=>r.id===id);assert.equal(a.length,1,id);return a[0];};
+   assert.equal(own('outer-east/wenhua-front').wenhuaCentralDoors.leaves,6);assert.equal(own('city-gates/donghua').donghuaExteriorEnvelope.visibleWindowGroups,5);
+-  assert.equal(W.cm.colliders.filter(c=>c.triangleSupport?.id.startsWith('wenyuan-pond-rails:')).length,34);const instruments=W.cm.colliders.filter(c=>c.triangleSupport?.id.startsWith('taihe-terrace-instrument:'));assert.equal(instruments.length,29);const facilities=assertTaihemenFacilitiesCInWorld(W,{production:true}),observed=W.cm.colliders.filter(c=>c.mesh.taihemenObservedSource==='axis/taihemen-observed-approach');assert.equal(observed.length,77);assert.equal(facilities.accepted,false);assert.equal(priorPhysics.rows.length-instruments.length+2-observed.length+68,30837,'original total after exact instrument 2->29 and observed approach 68->77 source-owned changes');assert.equal(priorPhysics.rows.length,30873);assert.equal(W.cm.colliders.length,30876);
++  assert.equal(W.cm.colliders.filter(c=>c.triangleSupport?.id.startsWith('wenyuan-pond-rails:')).length,34);const instruments=W.cm.colliders.filter(c=>c.triangleSupport?.id.startsWith('taihe-terrace-instrument:'));assert.equal(instruments.length,29);const facilities=assertTaihemenFacilitiesCInWorld(W,{production:true}),observed=W.cm.colliders.filter(c=>c.mesh.taihemenObservedSource==='axis/taihemen-observed-approach');assert.equal(observed.length,77);assert.equal(facilities.accepted,false);assert.equal(priorPhysics.rows.length-instruments.length+2-observed.length+68,30837,'original total after exact instrument 2->29 and observed approach 68->77 source-owned changes');assert.equal(priorPhysics.rows.length,30873);assert.equal(W.cm.colliders.length,30882);assert.equal(comparison.world.cm.colliders.length,30876);
+   assert.equal(records.filter(r=>r.id==='axis/taihemen-south-ceiling').length,0);assert.ok(own('axis/taihemen-nameboard-frame'));
+   const summary={scope:'ONE_ACTUAL_WHOLE_WORLD_UNINJECTED_FIVE_INTEGRATIONS',colliders:W.cm.colliders.length,prior493ComparisonColliders:priorPhysics.rows.length,arrow,taihemen,wholeObjectAccepted:false};
+   if(process.env.R158_ARROW_WORLD_OUT){assert.equal(fs.existsSync(process.env.R158_ARROW_WORLD_OUT),false,'No evidence overwrite');fs.writeFileSync(process.env.R158_ARROW_WORLD_OUT,JSON.stringify(summary,null,2)+'\n');}console.log(JSON.stringify(summary));
+--- a/tests/photo-fidelity/batches/r158-wenhua-gate-production/world.test.mjs
++++ b/tests/photo-fidelity/batches/r158-wenhua-gate-production/world.test.mjs
+@@ -1,3 +1,5 @@
++// R159 comparison-only: authenticate six new solids before removing them from NEW aligned arrays; all movement stays raw W.
++import {r159JiaotaiPriorComparison} from '../../../lib/r159-jiaotai-prior-comparison.mjs';
+ // Comparison only: authenticate raw new126 Wuying owners, restore old126 in a NEW view. All movement uses raw W.cm.
+ import {wuying55PhysicsView} from '../../../lib/r158-wuying-55-physics-view.mjs';
+ import {wenhua493PhysicsView} from '../../../lib/r158-wenhua-493-physics-view.mjs';
+@@ -6,15 +8,15 @@
+ const sha=x=>crypto.createHash('sha256').update(x).digest('hex'),hash=x=>sha(JSON.stringify(x)),close=(a,b)=>assert.ok(Math.abs(a-b)<2e-5,`${a} != ${b}`);
+ test('uninjected cumulative World keeps every old collider and all but six identified ramps; actual three portals remain traversable',async t=>{
+  const bytes=gunzipSync(fs.readFileSync(new URL('../../../fixtures/r158-wenhua-gate-integration/world-493-before.json.gz',import.meta.url)));assert.equal(sha(bytes),'d23fc4371477397c49378352fdb66194f8368ce5e33e616b8c8020588fccd8f5');const base=JSON.parse(bytes),W=await buildR52World();
+- try{const rawPhysics=taiheWorldPhysics(W),p=wuying55PhysicsView(rawPhysics),owned=new Set(W.cm.colliders.flatMap((c,i)=>c.mesh.wenhuaGateApproach?[i]:[]));assert.equal(owned.size,3);assert.equal(p.rows.length,30876);assert.equal(p.walkables.length,1365);assert.equal(hash(p.rows.filter((_,i)=>!owned.has(i)).map(hash).sort()),hash(base.colliderHashes),'all 30873 old registered colliders remain exact, with duplicate counts');assert.equal(hash(p.walkables),hash(base.retainedSupports),'only six source-identified old ramps removed');assert.equal(hash(p.rivers),hash(base.rivers));
+- const rawHash=hash(p),colliderIdentity=W.cm.colliders,supportIdentity=W.cm.walkables,prior=wenhua493PhysicsView(W,p);assert.equal(prior.rows.length,30873);assert.equal(prior.walkables.length,1371);
+- const retained=p.rows.findIndex((_,i)=>!owned.has(i)),drift={...p,rows:p.rows.map((r,i)=>i===retained?{...r,min:[r.min[0]+.001,...r.min.slice(1)]}:r)};assert.throws(()=>wenhua493PhysicsView(W,drift),/prior collider records/);assert.throws(()=>wenhua493PhysicsView(W,{...p,rows:p.rows.slice(1)}));
+- const supportDrift={...p,walkables:p.walkables.map((w,i)=>i===0?{...w,rescue:!w.rescue}:w)};assert.throws(()=>wenhua493PhysicsView(W,supportDrift),/retained supports/);
+- const surfaceIndex=[...owned].find(i=>W.cm.colliders[i].xiqingRoofSurface),badOwner={...W,cm:{...W.cm,colliders:W.cm.colliders.map((c,i)=>i===surfaceIndex?{...c,xiqingRoofSurface:{...c.xiqingRoofSurface,id:'wrong-owner'}}:c)}};assert.throws(()=>wenhua493PhysicsView(badOwner,p));
+- const missingOwner={...W,cm:{...W.cm,colliders:W.cm.colliders.map((c,i)=>i===surfaceIndex?{...c,mesh:{...c.mesh,wenhuaGateApproach:undefined}}:c)}};assert.throws(()=>wenhua493PhysicsView(missingOwner,p),/exactly three/);
++ try{const rawPhysics=taiheWorldPhysics(W),comparison=r159JiaotaiPriorComparison(W,rawPhysics),p=wuying55PhysicsView(comparison.physics),owned=new Set(comparison.world.cm.colliders.flatMap((c,i)=>c.mesh.wenhuaGateApproach?[i]:[]));assert.equal(owned.size,3);assert.equal(p.rows.length,30876);assert.equal(p.walkables.length,1365);assert.equal(hash(p.rows.filter((_,i)=>!owned.has(i)).map(hash).sort()),hash(base.colliderHashes),'all 30873 old registered colliders remain exact, with duplicate counts');assert.equal(hash(p.walkables),hash(base.retainedSupports),'only six source-identified old ramps removed');assert.equal(hash(p.rivers),hash(base.rivers));
++ const rawHash=hash(p),colliderIdentity=W.cm.colliders,supportIdentity=W.cm.walkables,prior=wenhua493PhysicsView(comparison.world,p);assert.equal(prior.rows.length,30873);assert.equal(prior.walkables.length,1371);
++ const retained=p.rows.findIndex((_,i)=>!owned.has(i)),drift={...p,rows:p.rows.map((r,i)=>i===retained?{...r,min:[r.min[0]+.001,...r.min.slice(1)]}:r)};assert.throws(()=>wenhua493PhysicsView(comparison.world,drift),/prior collider records/);assert.throws(()=>wenhua493PhysicsView(comparison.world,{...p,rows:p.rows.slice(1)}));
++ const supportDrift={...p,walkables:p.walkables.map((w,i)=>i===0?{...w,rescue:!w.rescue}:w)};assert.throws(()=>wenhua493PhysicsView(comparison.world,supportDrift),/retained supports/);
++ const surfaceIndex=[...owned].find(i=>comparison.world.cm.colliders[i].xiqingRoofSurface),badOwner={...comparison.world,cm:{...comparison.world.cm,colliders:comparison.world.cm.colliders.map((c,i)=>i===surfaceIndex?{...c,xiqingRoofSurface:{...c.xiqingRoofSurface,id:'wrong-owner'}}:c)}};assert.throws(()=>wenhua493PhysicsView(badOwner,p));
++ const missingOwner={...comparison.world,cm:{...comparison.world.cm,colliders:comparison.world.cm.colliders.map((c,i)=>i===surfaceIndex?{...c,mesh:{...c.mesh,wenhuaGateApproach:undefined}}:c)}};assert.throws(()=>wenhua493PhysicsView(missingOwner,p),/exactly three/);
+  assert.equal(hash(p),rawHash,'projection and negatives do not mutate raw records');assert.equal(W.cm.colliders,colliderIdentity);assert.equal(W.cm.walkables,supportIdentity);
+  const x=-186.3,z=-245.2+13.35,c=furnitureContact(W.cm,x,z,2,.5),n=furnitureContact(W.cm,x,z,2,.3);assert.equal(c.poseClear,true);close(c.surface.height,.455625);close(W.cm.getGroundHeight(x,z,0),.455625);close(n.surface.height,.435375);const bad=new THREE.Vector3(x,n.surface.height,z);assert.ok(furnitureBodySweep(W.cm,bad,bad,.5));const tri=c.surface.owner.xiqingRoofSurface.template.triangles[c.surface.triangleId].triangle;assert.ok(tri.closestPointToPoint(c.surface.witness,new THREE.Vector3()).distanceTo(c.surface.witness)<1e-7);close(c.surface.witness.z,z-.5);
+  const routes=[];for(const fps of[10,60])for(const bay of[-1,0,1]){const x=bay*6.62,sx=bay?x:2.12,local=[[sx,-13],[sx,-9.5],[x,-7],[x,-2],[x,2],[x,8],[x,18.3]],go=local.map(([x,z])=>[-186.3+x,-245.2+z]);const r=replayTerrace(t,W,[...go,...go.slice(0,-1).reverse()],{fps,recordFrames:true,sprint:fps===10});assert.equal(r.arrived,true,JSON.stringify({bay,fps,end:r.end,stuck:r.stuckAt}));assert.equal(r.startFeet,0);close(r.end[2],0);assert.ok(r.maxFeet>.79);for(const v of r.frames){const feet=new THREE.Vector3(v.x,v.feet,v.z);assert.equal(furnitureBodySweep(W.cm,feet,feet,.5),null,'full frame body sweep');}routes.push({bay,fps,frames:r.frames.length,maxFeet:r.maxFeet,end:r.end});}
+- const result={scope:'ACTUAL_UNINJECTED_CUMULATIVE_WORLD',colliders:p.rows.length,supports:p.walkables.length,retainedColliders:base.colliderHashes.length,removedSourceRamps:base.removedSupportIndices,retention:true,narrowFootNegative:true,routes};if(process.env.WENHUA_PRODUCTION_WORLD_OUT)fs.writeFileSync(process.env.WENHUA_PRODUCTION_WORLD_OUT,JSON.stringify(result,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify(result));
++ const result={scope:'ACTUAL_UNINJECTED_CUMULATIVE_WORLD_WITH_EXPLICIT_R159_PRIOR_COMPARISON',rawColliders:rawPhysics.rows.length,colliders:p.rows.length,supports:p.walkables.length,retainedColliders:base.colliderHashes.length,removedSourceRamps:base.removedSupportIndices,retention:true,narrowFootNegative:true,routes};if(process.env.WENHUA_PRODUCTION_WORLD_OUT)fs.writeFileSync(process.env.WENHUA_PRODUCTION_WORLD_OUT,JSON.stringify(result,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify(result));
+  }finally{W.dispose();}
+ });
+--- a/tests/photo-fidelity/batches/taihe-instruments-world.test.mjs
++++ b/tests/photo-fidelity/batches/taihe-instruments-world.test.mjs
+@@ -1,3 +1,5 @@
++// R159 comparison-only: authenticate six new solids before removing them from NEW aligned arrays; all movement stays raw W.
++import {r159JiaotaiPriorComparison} from '../../lib/r159-jiaotai-prior-comparison.mjs';
+ // Comparison only: authenticate raw new126 Wuying owners, restore old126 in a NEW view. All movement uses raw W.cm.
+ import {wuying55PhysicsView} from '../../lib/r158-wuying-55-physics-view.mjs';
+ import {wenhua493PhysicsView} from '../../lib/r158-wenhua-493-physics-view.mjs';
+@@ -66,9 +68,9 @@
+ test('complete uninjected World preserves exact instrument-baseline physics outside both explicit instrument and observed-approach source products',()=>{
+  const raw=zlib.gunzipSync(fs.readFileSync(new URL('../../fixtures/r157-taihe-integration/world-physics-055947.json.gz',import.meta.url))),provenance=JSON.parse(fs.readFileSync(new URL('../../fixtures/r157-taihe-integration/provenance.json',import.meta.url)));
+  assert.equal(crypto.createHash('sha256').update(raw).digest('hex'),provenance.worldPhysicsUncompressedSHA256);
+- const baseline=JSON.parse(raw),rawPhysical=taiheWorldPhysics(W),actual=wenhua493PhysicsView(W,wuying55PhysicsView(rawPhysical)),approachRaw=zlib.gunzipSync(fs.readFileSync(new URL('../../fixtures/r157-taihemen-integration/world-physics-5d8c713e.json.gz',import.meta.url)));assert.equal(crypto.createHash('sha256').update(approachRaw).digest('hex'),'dbda1e6e18635d7a80425b25e46337280a716f393c70b0b88dfaa9141f2904b4');const approach=JSON.parse(approachRaw),compare=a=>compareInstrumentsWithObservedApproach(W,a,baseline,approach);assertTaihemenFacilitiesCInWorld(W,{production:true});const r=compare(actual);
++ const baseline=JSON.parse(raw),rawPhysical=taiheWorldPhysics(W),comparison=r159JiaotaiPriorComparison(W,rawPhysical),actual=wenhua493PhysicsView(comparison.world,wuying55PhysicsView(comparison.physics)),approachRaw=zlib.gunzipSync(fs.readFileSync(new URL('../../fixtures/r157-taihemen-integration/world-physics-5d8c713e.json.gz',import.meta.url)));assert.equal(crypto.createHash('sha256').update(approachRaw).digest('hex'),'dbda1e6e18635d7a80425b25e46337280a716f393c70b0b88dfaa9141f2904b4');const approach=JSON.parse(approachRaw),compare=a=>compareInstrumentsWithObservedApproach(comparison.world,a,baseline,approach);assertTaihemenFacilitiesCInWorld(W,{production:true});const r=compare(actual);
+  assert.deepEqual(r,{targetCount:29,total:30873,retainedCount:30767,retainedExact:true,walkablesExact:true,riversExact:true,observedSourceColliders:77,observedSourceSupports:3});
+- const row=actual.rows.find((c,i)=>!c.triangleSupport?.id.startsWith('taihe-terrace-instrument:')&&!W.cm.colliders[i].mesh.taihemenObservedSource),old=row.min[0];row.min[0]+=.001;
++ const row=actual.rows.find((c,i)=>!c.triangleSupport?.id.startsWith('taihe-terrace-instrument:')&&!comparison.world.cm.colliders[i].mesh.taihemenObservedSource),old=row.min[0];row.min[0]+=.001;
+  assert.equal(compare(actual).retainedExact,false,'actual retained physical drift must reject');row.min[0]=old;
+  const support=structuredClone(actual);support.walkables.pop();assert.equal(compare(support).walkablesExact,false,'missing old support rejects');
+  if(process.env.TAIHE_INSTRUMENT_WORLD_OUT)fs.writeFileSync(process.env.TAIHE_INSTRUMENT_WORLD_OUT,JSON.stringify({scope:'UNINJECTED_LIVE_WORLD_ORIGINAL_ROUTES_WITH_EXPLICIT_493_PHYSICS_COMPARISON_VIEW',rawTotal:rawPhysical.rows.length,rawSupports:rawPhysical.walkables.length,projectedTotal:actual.rows.length,projectedSupports:actual.walkables.length,...r,accepted:false},null,2)+'\n');
+--- a/tests/photo-fidelity/batches/taihemen-facilities-production-world.test.mjs
++++ b/tests/photo-fidelity/batches/taihemen-facilities-production-world.test.mjs
+@@ -1,3 +1,5 @@
++// R159 comparison-only: authenticate six new solids before removing them from NEW aligned arrays; all movement stays raw W.
++import {r159JiaotaiPriorComparison} from '../../lib/r159-jiaotai-prior-comparison.mjs';
+ // Comparison only: authenticate raw new126 Wuying owners, restore old126 in a NEW view. All movement uses raw W.cm.
+ import {wuying55PhysicsView} from '../../lib/r158-wuying-55-physics-view.mjs';
+ import {wenhua493PhysicsView} from '../../lib/r158-wenhua-493-physics-view.mjs';
+@@ -11,7 +13,7 @@
+ test('actual production global retention and eight route consumers',async t=>{
+ const bytes=gunzipSync(fs.readFileSync(new URL('../../fixtures/r157-taihemen-integration/world-physics-5d8c713e.json.gz',import.meta.url)));assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),'dbda1e6e18635d7a80425b25e46337280a716f393c70b0b88dfaa9141f2904b4','immutable pre-hook full-world fixture');const baseline=JSON.parse(bytes),W=await buildR52World();try{
+  console.log('STAGE world-built',process.memoryUsage());global.gc?.();
+- const rawPhysical=taiheWorldPhysics(W),physical=wenhua493PhysicsView(W,wuying55PhysicsView(rawPhysical)),source='axis/taihemen-observed-approach',indices=new Set(W.cm.colliders.flatMap((c,i)=>c.mesh.taihemenObservedSource===source?[i]:[])),raw=W.palaceBuilder.getWalkables(),probe=new W.cm.constructor();probe.addWalkables(raw,'static');assert.equal(probe.walkables.length,raw.length);assert.equal(sha(probe.walkables),sha(W.cm.walkables.slice(0,raw.length)),'builder support registration prefix');console.log('STAGE physics-captured',process.memoryUsage());const supports=new Set(raw.flatMap((w,i)=>w.taihemenObservedSource===source?[i]:[]));
++ const rawPhysical=taiheWorldPhysics(W),comparison=r159JiaotaiPriorComparison(W,rawPhysical),physical=wenhua493PhysicsView(comparison.world,wuying55PhysicsView(comparison.physics)),source='axis/taihemen-observed-approach',indices=new Set(comparison.world.cm.colliders.flatMap((c,i)=>c.mesh.taihemenObservedSource===source?[i]:[])),raw=W.palaceBuilder.getWalkables(),probe=new W.cm.constructor();probe.addWalkables(raw,'static');assert.equal(probe.walkables.length,raw.length);assert.equal(sha(probe.walkables),sha(W.cm.walkables.slice(0,raw.length)),'builder support registration prefix');console.log('STAGE physics-captured',process.memoryUsage());const supports=new Set(raw.flatMap((w,i)=>w.taihemenObservedSource===source?[i]:[]));
+  assert.equal(indices.size,77);assert.equal(supports.size,3);assert.equal(physical.rows.length,30873);assert.equal(physical.walkables.length,1371);
+  assert.equal(sha(physical.rows.filter((_,i)=>!indices.has(i)).map(sha).sort()),sha(baseline.retainedColliderHashes),'all 30796 non-target collider records exact multiset');assert.equal(sha(physical.walkables.filter((_,i)=>!supports.has(i))),sha(baseline.retainedSupports),'all 1368 non-target supports exact');assert.deepEqual(physical.rivers,baseline.rivers);
+  console.log('STAGE retention-passed',process.memoryUsage());
+--- a/tests/photo-fidelity/batches/r158-wuying-production/world.test.mjs
++++ b/tests/photo-fidelity/batches/r158-wuying-production/world.test.mjs
+@@ -1,5 +1,7 @@
++// R159 comparison-only: authenticate six new solids before removing them from NEW aligned arrays; all movement stays raw W.
++import {r159JiaotaiPriorComparison} from '../../../lib/r159-jiaotai-prior-comparison.mjs';
+ import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
+ import {buildR52World} from '../../../lib/r52-world.mjs';import {taiheWorldPhysics} from '../../../lib/r157-taihe-world-retention.mjs';import {assertWuying55PhysicsProof} from './physics-proof.mjs';
+ test('Actual cumulative World authenticates126 reviewed Wuying owners, retains30750 other colliders and1365 supports, and rejects seven physical drifts without mutating runtime',async()=>{
+- const W=await buildR52World();try{global.gc?.();const raw=taiheWorldPhysics(W),colliders=W.cm.colliders,supports=W.cm.walkables,summary=assertWuying55PhysicsProof(raw);assert.equal(W.cm.colliders,colliders);assert.equal(W.cm.walkables,supports);assert.equal(W.cm.colliders.length,summary.rawColliders);assert.equal(W.cm.walkables.length,summary.rawSupports);if(process.env.WUYING_CUMULATIVE_PROOF_OUT)fs.writeFileSync(process.env.WUYING_CUMULATIVE_PROOF_OUT,JSON.stringify(summary,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify(summary));}finally{W.dispose();}
++ const W=await buildR52World();try{global.gc?.();const raw=taiheWorldPhysics(W),comparison=r159JiaotaiPriorComparison(W,raw),colliders=W.cm.colliders,supports=W.cm.walkables,summary=assertWuying55PhysicsProof(comparison.physics),report={scope:"ACTUAL_RAW_R159_WORLD_AND_EXPLICIT_PRIOR_WUYING_CONTRACT",rawWorldColliders:raw.rows.length,priorWuyingContract:summary};assert.equal(W.cm.colliders,colliders);assert.equal(W.cm.walkables,supports);assert.equal(W.cm.colliders.length,30882);assert.equal(comparison.world.cm.colliders.length,summary.rawColliders);assert.equal(W.cm.walkables.length,summary.rawSupports);if(process.env.WUYING_CUMULATIVE_PROOF_OUT)fs.writeFileSync(process.env.WUYING_CUMULATIVE_PROOF_OUT,JSON.stringify(report,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify(report));}finally{W.dispose();}
+ });

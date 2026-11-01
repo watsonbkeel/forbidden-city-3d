@@ -1,0 +1,4 @@
+import a from 'node:assert/strict';import loose from 'node:assert';import {syncBuiltinESMExports}from'node:module';
+const original=a.strictEqual;for(const[x,y]of[[0,-0],[NaN,NaN],[1,1],[null,{}],[undefined,null],[{},{}]]){let ok=true;try{original(x,y)}catch{ok=false}if(ok!==Object.is(x,y))throw Error('semantic calibration failed')}
+function compact(x,y,message){if(Object.is(x,y))return;if(message instanceof Error)throw message;const repr=v=>v===null?'null':typeof v==='object'?{type:v.constructor?.name,keys:Object.keys(v).slice(0,12),owner:v.mesh?.triangleSupport?.id??v.mesh?.name}:v;throw new a.AssertionError({message:message??'Strict equality failed (compact diagnostic)',actual:repr(x),expected:repr(y),operator:'strictEqual',stackStartFn:compact})}
+a.equal=compact;a.strictEqual=compact;loose.strictEqual=compact;syncBuiltinESMExports();console.log('DIAGNOSTIC strictEqual Object.is calibrated; source/test unchanged');

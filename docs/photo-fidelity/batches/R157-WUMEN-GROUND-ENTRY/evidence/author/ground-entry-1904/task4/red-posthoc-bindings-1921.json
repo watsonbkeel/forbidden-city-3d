@@ -1,0 +1,28 @@
+{
+  "recordKind": "POST_HOC_COMMAND_AND_INPUT_BINDING_RECONSTRUCTED_FROM_EXECUTED_TOOL_CALL",
+  "notContemporaneousResourceCapture": true,
+  "command": [
+    "node",
+    "--max-old-space-size=768",
+    "--test",
+    "--test-reporter=tap",
+    "--test-concurrency=1",
+    "../wumen-joint-recovery-1607/ground-entry-1904/task4/ground-entry-player.draft.test.mjs"
+  ],
+  "cwd": "/workspace/scratch/02a8023d1a85/r157-wumen-joint-layout-1622",
+  "environment": {
+    "CONTACT_PROBE_RESULT": "../wumen-joint-recovery-1607/ground-entry-1904/task4/red.json"
+  },
+  "sourceFreeze": "../task2/source-freeze-1908.json",
+  "sourceFreezeSHA256": "1e10437db7361871dd00c314a3db980c4d8e866350cc69cee4e0d988177450d6",
+  "motionBeforeGroundSHA256": "fa04e15f5805255a8db2c50490f5062c27afc6f6ca1663080c80745b77036fb2",
+  "driverSHA256": "2f62a881ea22f173b7d1ab141145df370cb696ccab2801008698c52812d1ab6b",
+  "exit": 1,
+  "tapSHA256": "2b9c43c8ce2fd86d8d22f2f7b46648f7982f9fcf5ad07094e787fd0378cc8c81",
+  "outputSHA256": "e53bb7fc51420b844e183267970eb50177c3de2800e88016cc8aca5aae970b20",
+  "elapsedSeconds": null,
+  "maxRssKiB": null,
+  "tapReportedDurationMs": 93928.507085,
+  "scope": "task4 RED used authenticated ground source but pre-approach Motion; not old parentCollision stop run",
+  "orderingEvidence": "Original executed shell ran Task3 RED then this driver; source patch applied only after session23257 terminal. Task2 38/600 freeze and reviewer release precede these runs."
+}

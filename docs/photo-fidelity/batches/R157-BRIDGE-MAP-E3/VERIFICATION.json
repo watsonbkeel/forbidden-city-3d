@@ -1,0 +1,127 @@
+{
+  "base": "5be900075db7d63977f8efd9e090ffd5176807d1",
+  "verifiedUTC": "2026-11-01T04:23:19Z",
+  "scope": "THREE_UI_FILES_ONLY_NO_WORLD_OR_SCENE_CPU",
+  "tests": [
+    {
+      "rawLocal": "red.tap",
+      "sha256": "c25bad39454c90be87a469db6fbdae0acff2755e5b113ac62b14d06657f55243",
+      "command": "node --max-old-space-size=512 --test --test-concurrency=1 tests/r157-bridge-map-e3/discoverability.test.mjs",
+      "tests": 6,
+      "passed": 1,
+      "failed": 5,
+      "scope": "Unchanged5be RED; missing bridge facility UI/paint"
+    },
+    {
+      "rawLocal": "green-first.tap",
+      "sha256": "fe1eee6194896e2d4f0010d56236aaeb92962bc6f4c79ba5c5ebddc088102a73",
+      "command": "node --max-old-space-size=512 --test --test-concurrency=1 tests/r157-bridge-map-e3/discoverability.test.mjs",
+      "tests": 6,
+      "passed": 4,
+      "failed": 2,
+      "scope": "FirstGREEN4/6; test-only official www URL regex omission retained"
+    },
+    {
+      "rawLocal": "registry-red.tap",
+      "sha256": "9b1492a476accb1082d16d388bbab60f4da33037a6283d8204d62d3975700b33",
+      "command": "node --max-old-space-size=512 --test --test-name-pattern='prototype/inherited' tests/r157-bridge-map-e3/discoverability.test.mjs",
+      "tests": 1,
+      "passed": 0,
+      "failed": 1,
+      "scope": "Inherited-property ID admission RED, fixed by string/Object.hasOwn"
+    },
+    {
+      "rawLocal": "final-light-ui.tap",
+      "sha256": "257f789f8821add92a271eb3e265b9f02165de1c3e2b00038e8b3ec4175d7e34",
+      "command": "node --max-old-space-size=512 --test --test-concurrency=1 tests/r157-bridge-map-e3/discoverability.test.mjs tests/map-place-directory.test.mjs tests/map-place-selection.test.mjs tests/map-compact.test.mjs tests/map-gestures.test.mjs tests/map-inputs.test.mjs tests/map-location-css.test.mjs tests/place-catalog.test.mjs",
+      "tests": 126,
+      "passed": 126,
+      "failed": 0,
+      "scope": "Final selected lightweight UI/input/catalog suite; noWorld"
+    },
+    {
+      "rawLocal": "retained-directory159.tap",
+      "sha256": "902905f54053f2b8b04569520bd992b52d8787c7f0381dc568e51c13e46275a3",
+      "command": "node --max-old-space-size=512 --test --test-name-pattern='159 information buttons' tests/map-four-place-cards.test.mjs",
+      "tests": 1,
+      "passed": 1,
+      "failed": 0,
+      "scope": "Only retained directory-contract test; World-constructing tests in same file not run"
+    },
+    {
+      "rawLocal": "light-ui-green.tap",
+      "sha256": "e1a6adfd3d9c3be61b40c85df18ab9e548fa3fbfb80d2bdf05eb9ae5979444e3",
+      "command": "same final selection plus tests/place-catalog-complete.test.mjs tests/place-catalog-four-cards.test.mjs",
+      "tests": 134,
+      "passed": 132,
+      "failed": 2,
+      "scope": "Broader134: two original catalog failures retained, not whole-suite green"
+    },
+    {
+      "rawLocal": "base-two-catalog.tap",
+      "sha256": "6c4e8d91397644cc36f303308e8ae75eb13685fe8444d8ec9f232cd63cf80027",
+      "command": "node --max-old-space-size=512 --import ../r157-bridge-map-e3-evidence/base-ui-hook.mjs --test --test-concurrency=1 tests/place-catalog-complete.test.mjs tests/place-catalog-four-cards.test.mjs",
+      "tests": 8,
+      "passed": 6,
+      "failed": 2,
+      "scope": "Exact5be UI source hook reproduces both original garden Tianyi binding and frozen Taihe-guide SHA failures"
+    }
+  ],
+  "newFocusedTests": 7,
+  "finalLightUiPassed": 126,
+  "historicalCards": 159,
+  "quickTravelTargets": 8,
+  "bridgeFacilityGroups": 4,
+  "actualBridgeFootprints": 15,
+  "visibleCoverFootprints": 1,
+  "original37DenominatorChanged": false,
+  "physicalSourceChanged": false,
+  "dataOrPlaceCatalogSchemaChanged": false,
+  "teleportTargetsAdded": false,
+  "build": {
+    "exitCode": 0,
+    "modulesPerBase": 597,
+    "writtenBundles": false,
+    "publicCopied": false,
+    "standaloneDeployable": false,
+    "bases": [
+      {
+        "base": "/",
+        "buildId": "R146-fix-4d9590114af9",
+        "sourceFingerprint": "4643fbe2385cdc2a5f4ed95d9cdb0f38c68425b3740e9a6d9d2916a21ae7cf8f",
+        "sourceCommit": "5be900075db7d63977f8efd9e090ffd5176807d1",
+        "sourceDirty": true
+      },
+      {
+        "base": "/forbidden-city-3d/",
+        "buildId": "R146-fix-db46c102bd50",
+        "sourceFingerprint": "4643fbe2385cdc2a5f4ed95d9cdb0f38c68425b3740e9a6d9d2916a21ae7cf8f",
+        "sourceCommit": "5be900075db7d63977f8efd9e090ffd5176807d1",
+        "sourceDirty": true
+      },
+      {
+        "base": "/gugong/",
+        "buildId": "R146-fix-93bb5bd544bc",
+        "sourceFingerprint": "4643fbe2385cdc2a5f4ed95d9cdb0f38c68425b3740e9a6d9d2916a21ae7cf8f",
+        "sourceCommit": "5be900075db7d63977f8efd9e090ffd5176807d1",
+        "sourceDirty": true
+      }
+    ]
+  },
+  "independentReview": {
+    "reviewer": "fresh gpt-6-astra",
+    "critical": 0,
+    "important": 0,
+    "deferredMinors": [
+      "Separate facility section uses native/minimal presentation rather than old directory theme.",
+      "Actual browser touch/key activation, responsive layout and GPU not verified; automated tests use programmatic clicks and viewport fixtures."
+    ]
+  },
+  "limits": [
+    "No new World or scene CPU test run.",
+    "No browser/GPU/user-device acceptance claim.",
+    "Two exact-base historical catalog failures are unchanged, no golden/data modified.",
+    "No remote/main/Pages or acceptance-counter writes.",
+    "Raw logs remain outside repository; this file is a concise receipt."
+  ]
+}

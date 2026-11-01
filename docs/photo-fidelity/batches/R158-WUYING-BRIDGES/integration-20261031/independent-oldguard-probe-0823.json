@@ -1,0 +1,21 @@
+{
+  "scope": "Independent read-only review diagnostic; no World construction and no repository edits",
+  "timeUTC": "2026-10-31T08:23:39Z",
+  "cwd": "/workspace/scratch/02a8023d1a85/r158-arrow-integrate",
+  "operation": "node --input-type=module; import frozen historical-source registry plus original v9-map-source-delta; call assertV9MapFirstPersonBytes(historical, git-show55/56574 Buffer)",
+  "terminalExit": 137,
+  "signalMessage": "Killed",
+  "producedVerdict": false,
+  "classification": "Unfinished diagnostic, not a passing test. Integrator identifies large unequal-Buffer assertion formatting as previously observed cause; no attribution to production behavior.",
+  "directAssertionRetried": false,
+  "lowMemoryAlternative": "Independent Python reconstruction from SHA-pinned historical-sources registry, exact four V9 input additions, and original v9-map-source-delta JSON; compare exact bytes without assertion diff formatting",
+  "alternativeResult": {
+    "expectedBytes": 27742,
+    "expectedSHA256": "50b625af7fdec90b2e9a6a9d2c25433e58e7977fb99856de0bf02c3b988f0c36",
+    "parent55Bytes": 33071,
+    "parent55EqualsExpected": false,
+    "reviewed56574Bytes": 33730,
+    "reviewed56574EqualsExpected": false
+  },
+  "notClaimed": "The killed Node diagnostic was not rerun and is not counted as passed."
+}

@@ -1,0 +1,873 @@
+{
+  "schemaVersion": 8,
+  "baselineCommit": "a125fc964fc004886a3c3aa8282a91de1f030e9e",
+  "purpose": "R55 cumulative bounded Zhonghe low display and actual Kunning S three-pot low stove. All93 logical actors require fresh world and interior generations. Preserve accepted R54 and earlier cumulative changes; no Jingyun experiment or GPU/full-restoration claim.",
+  "provenance": {
+    "previousBaselineCommit": "edd1d6de15ad1393a45d6da8712e37ac3d8dc388",
+    "previousRemoteCommit": "a370cf34381c0e3a513165fe25070df625272d05",
+    "previousManifestPath": "data/characters/world-source-freeze-r54.json",
+    "previousManifestSha256": "0fe2886dcdb18e10302a07d2fa27dbe7ac856eee75c9e541dfd6b9c7962a0873",
+    "previousFileCount": 190,
+    "changedProductionPaths": [
+      "assets-src/interiors/kunning.py",
+      "data/interiors/kunning.json",
+      "public/models/interiors/kunning-v6-5adbf53a3114.glb",
+      "src/scene/palace/special/SquareHalls.js",
+      "src/scene/palace/special/ZhongheDisplaySetting.js"
+    ],
+    "changedPreviouslyTrackedSources": [
+      {
+        "path": "src/scene/palace/special/SquareHalls.js",
+        "previousSha256": "db0a524c48be97d2754dd5d7b7a69724d064c1973050fe749def01332ba88186",
+        "currentSha256": "342e6d68a2cc619e1329f6b2254fe29e900aa6c9de967c977a3b0c97ea4ff732"
+      }
+    ],
+    "newlyTrackedSources": [
+      {
+        "path": "assets-src/interiors/kunning.py",
+        "sha256": "6272fa1b84bb7be1cde033594cc519f0a53949b1c16449aa5518f88781d7e8b4",
+        "previouslyTrackedByWorldManifest": false,
+        "existingInR54": true,
+        "previousSha256": "9a640d5c04436303f3c59cb9bb84e54fa2d070df9453f816e59d2cfccc0189fe"
+      },
+      {
+        "path": "data/interiors/kunning.json",
+        "sha256": "e6ca35c2a0892e59ea00cdec6dfdbc0102c30c152d17cba8bac837d86415d61b",
+        "previouslyTrackedByWorldManifest": false,
+        "existingInR54": true,
+        "previousSha256": "02beb5b84b4ba1d119c57bb224974477b941856a8a9b2546f972920e1233c61d"
+      },
+      {
+        "path": "public/models/interiors/kunning-v6-0c83b4364eef.glb",
+        "sha256": "0c83b4364eef7febe30f976158c8a015bab49dcc3f40989f510c98e8edd6a9e4",
+        "previouslyTrackedByWorldManifest": false,
+        "existingInR54": true,
+        "previousSha256": "0c83b4364eef7febe30f976158c8a015bab49dcc3f40989f510c98e8edd6a9e4"
+      },
+      {
+        "path": "public/models/interiors/kunning-v6-5adbf53a3114.glb",
+        "sha256": "5adbf53a311452221a3184198875958eb55436bd261253a75486516bfdc87553",
+        "previouslyTrackedByWorldManifest": false,
+        "existingInR54": false,
+        "previousSha256": null
+      },
+      {
+        "path": "src/scene/palace/special/ZhongheDisplaySetting.js",
+        "sha256": "df757aff3acc6c7d47236c3c4109bb02f0935bfb168008fbae679e8543a5b678",
+        "previouslyTrackedByWorldManifest": false,
+        "existingInR54": false,
+        "previousSha256": null
+      }
+    ],
+    "inheritedByteExactCount": 189,
+    "retainedSourceRuntimeExceptions": [
+      {
+        "source": "src/scene/palace/special/JiaotaiCentralInterior.js",
+        "appliedBy": "src/scene/palace/special/JiaotaiDisplaySetting.js",
+        "meshCounts": {
+          "jiaotai-red-rear-screen": 1,
+          "jiaotai-screen-side-frame": 2
+        },
+        "preservesEntireRuntimeGeometry": false,
+        "change": "Only lower vertices extend to rear visible floor; upper screen, plaque, UVs, material and other meshes retained. No invented tall supporting box.",
+        "evidence": "docs/validation/r54-jiaotai-display/base-materials/geometry-and-navigation.json#backdropRevision",
+        "reverseDifferenceTest": "tests/r54-jiaotai-display.test.mjs"
+      }
+    ],
+    "newRuntimeExceptions": [
+      {
+        "source": "src/scene/palace/special/SquareHalls.js",
+        "appliedBy": "src/scene/palace/special/ZhongheDisplaySetting.js",
+        "change": "Only Zhonghe central legacy high furniture replaced; old Jiaotai, four doors, continuous ceiling, plaque and two tripods retained.",
+        "evidence": "docs/current-state/r55-zhonghe-display/SCOPE.md"
+      },
+      {
+        "source": "data/interiors/kunning.json",
+        "change": "Optional S asset points to the actual regenerated GLB; old asset kept. Only stove geometry/proxy changes, no Loader or B architecture change.",
+        "evidence": "docs/current-state/r55-kunning-low-stoves/SCOPE.md"
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": "assets-src/interiors/kunning.py",
+      "sha256": "6272fa1b84bb7be1cde033594cc519f0a53949b1c16449aa5518f88781d7e8b4"
+    },
+    {
+      "path": "data/architecture/building-fidelity.json",
+      "sha256": "27166adc4fcf2b5c434f76656ee8a299e8fa147a85aedaf0c734b8ca7d79e3a2"
+    },
+    {
+      "path": "data/architecture/kunning.json",
+      "sha256": "7bdb8d8fa694c889966aa2ca6c6dbf016826f7f53bed36194e8518cd79769e32"
+    },
+    {
+      "path": "data/architecture/qianqing-display-geometry.json",
+      "sha256": "7731dcca764b1faac93d9b81d25f591c4e40b6b6dc1034be17a07a377e482fa4"
+    },
+    {
+      "path": "data/architecture/qianqing-material.json",
+      "sha256": "50e52fa4f3f18e946a9d836568a10356dda1a8479ff91744c8107957dc868b7e"
+    },
+    {
+      "path": "data/architecture/qinan.json",
+      "sha256": "69fe986ca692449ad1347c8ba7e34e705e448e0a9ee240d4d089649fd08682c1"
+    },
+    {
+      "path": "data/architecture/taihe-column-grid.json",
+      "sha256": "b74888f5df7fd14b98cff556cedef8d9a4aa0ceca1142290a055a1210bb2c33b"
+    },
+    {
+      "path": "data/architecture/taihe-core.json",
+      "sha256": "3231824944864fab352fb0bb9aacd5a3a3513148fac37786d20db847e7e9ff13"
+    },
+    {
+      "path": "data/architecture/taihe-dais-front.json",
+      "sha256": "79be23e9b728cae9127795e1d6d8ec6ce2140b4e4c76a1b3d0f7389b00d34aa2"
+    },
+    {
+      "path": "data/architecture/wuying-2021-cases.json",
+      "sha256": "c382ffc8ea2fdc595e648332f632cc9a5c640765e25798a959554eb28b6a05fc"
+    },
+    {
+      "path": "data/interiors/kunning.json",
+      "sha256": "e6ca35c2a0892e59ea00cdec6dfdbc0102c30c152d17cba8bac837d86415d61b"
+    },
+    {
+      "path": "data/zones/axis-courts.json",
+      "sha256": "12c716967cdf966f5348c2c9846ed6f85c231bd1d4f1a525be312a760b9a6c85"
+    },
+    {
+      "path": "data/zones/east-six.json",
+      "sha256": "08526251d18aca894684286addae0464814b1ef437310331049573aa81959926"
+    },
+    {
+      "path": "data/zones/garden.json",
+      "sha256": "baad5210a941a11ee2b58f63e86f85c9eaaddd16cdd5fb68f795ad4a2919a0c2"
+    },
+    {
+      "path": "data/zones/index.js",
+      "sha256": "ed7d0b6154aed0af1460d9f96a1349fdf54764c00ae6f30b7eb9a175d20f3def"
+    },
+    {
+      "path": "data/zones/ningshou.json",
+      "sha256": "2ff1bbaaf36346493728987e1feca79814902ff0dd06668413f56ee6882a5c67"
+    },
+    {
+      "path": "data/zones/outer-east.json",
+      "sha256": "969ff2f5b824d3e419e5dc5379374fc54e09d6d0dfdfa44930aede7f4bb060dc"
+    },
+    {
+      "path": "data/zones/outer-west.json",
+      "sha256": "cc13ee65c637d6b6bd899eb68adac72923ab88311956a4ae724598bd015c1e8e"
+    },
+    {
+      "path": "data/zones/west-six.json",
+      "sha256": "042285c8053df6586233b7827fefcbf0353bb08ada141e5c4a9784a8a61d72b7"
+    },
+    {
+      "path": "public/models/interiors/kunning-v6-0c83b4364eef.glb",
+      "sha256": "0c83b4364eef7febe30f976158c8a015bab49dcc3f40989f510c98e8edd6a9e4"
+    },
+    {
+      "path": "public/models/interiors/kunning-v6-5adbf53a3114.glb",
+      "sha256": "5adbf53a311452221a3184198875958eb55436bd261253a75486516bfdc87553"
+    },
+    {
+      "path": "src/config/constants.js",
+      "sha256": "19dfcca52781c69acf46e537661c9110c25b4eee88ea4522b21561f9dd47da7d"
+    },
+    {
+      "path": "src/scene/Enclosure.js",
+      "sha256": "1d4e5e32db5426bc095b57157e80af4e3743c9ffa98d64b3ae922ff6f7620fab"
+    },
+    {
+      "path": "src/scene/Environment.js",
+      "sha256": "0a2739d5714ccf4ac2d0ae84fb5cb1881eb614ab83890be016817a718d88b361"
+    },
+    {
+      "path": "src/scene/GardenBuilder.js",
+      "sha256": "3577bab50cf78f376b6c266b8f8e432348a5025c0c8f2fc2b368857ccf67269e"
+    },
+    {
+      "path": "src/scene/HallKit.js",
+      "sha256": "f238e69d23efd1c1b95f9f2529b5f0a8b5ba8f1ec7d15fbdd6de04147a9b4edd"
+    },
+    {
+      "path": "src/scene/Layout.js",
+      "sha256": "6855bd05bc1895595f0238c34b28cd22b5b45fb11656ceb958cdba60ce4482d0"
+    },
+    {
+      "path": "src/scene/PalaceBuilder.js",
+      "sha256": "cbb83acc8ddb4226b86247a777e2177735839be9a7a38533830448d0fbc690b1"
+    },
+    {
+      "path": "src/scene/RoofBuilder.js",
+      "sha256": "6e579857170abb426539decd1b8f4609f9ef8f92653e669fb18cc126a9bcc72c"
+    },
+    {
+      "path": "src/scene/flight/FlightEnvelope.js",
+      "sha256": "7eaffeab8a20f67c3c1d9cbc73195d7e60540b3295a93f83a5aac9e8bab59334"
+    },
+    {
+      "path": "src/scene/flight/FlightState.js",
+      "sha256": "24a1d82aa01b0578b34b21ff4681f23653d483a0e571bf35ad558bce18bdf6a4"
+    },
+    {
+      "path": "src/scene/flight/FlightTour.js",
+      "sha256": "7836d8b2f1e4953b560babc95c70785ecef3523c50c2caaa07a7ced53ddde2d1"
+    },
+    {
+      "path": "src/scene/flight/HelicopterModel.js",
+      "sha256": "ea20024558cf5f3aa4c8a9ad8ad5d73b98a4b62d45747a4324dc1d673dc59170"
+    },
+    {
+      "path": "src/scene/garden/CrossGardenPavilions.js",
+      "sha256": "fa4dcda745555ffadc8fd32e275f55da4c4afd63e70c6491b790234c14c55443"
+    },
+    {
+      "path": "src/scene/garden/RemainingGardenPavilions.js",
+      "sha256": "d0774d1ee9af0c3957769b7d1857be42d6379d5b8ec2296d36c50f6a5799b263"
+    },
+    {
+      "path": "src/scene/garden/noise.js",
+      "sha256": "81349b85712bf58bc2836878271df1119eb8ee659ef56442dd3aa7e3aed15dd7"
+    },
+    {
+      "path": "src/scene/garden/rocks.js",
+      "sha256": "da0ece7d880c27ca8a80637724db003ca34414a376e7f5c8fd11fafac0d6facd"
+    },
+    {
+      "path": "src/scene/garden/shapes.js",
+      "sha256": "d0f116330e36079633e9fe4c532f3b67f6000028dbc4b97951635e7fba1c1508"
+    },
+    {
+      "path": "src/scene/garden/trees.js",
+      "sha256": "5f19c4482c9e560f6c1b63a697a7c85edca8f0a7876a58a9f9b689dc74d5e1a7"
+    },
+    {
+      "path": "src/scene/interior/HuangjiColumnSafety.js",
+      "sha256": "b906bdf926385752eadf09d3ef0f2c386da19ee70b3b1e6e0a401a7fe2802869"
+    },
+    {
+      "path": "src/scene/interior/HuangjiFallbackContract.js",
+      "sha256": "14552dc58151b1a377abc7f6e83a4b42bac592ae638a647ec948d1d3a822344d"
+    },
+    {
+      "path": "src/scene/interior/InteriorLoader.js",
+      "sha256": "2e5a890a99f0aee02405ef09607f9171de96ea07d3586dcb7d424bdbc66bc9d8"
+    },
+    {
+      "path": "src/scene/interior/QianqingAuxiliaryContract.js",
+      "sha256": "50f47bb1841639cdded37e23551d86e34628183bba5f9f9834b28a0e97a55da2"
+    },
+    {
+      "path": "src/scene/interior/QianqingAuxiliaryManifest.js",
+      "sha256": "d75de2471c7dc1f81b4b48ae8673f5fc44842c25fbb1bcef7ae4fc2e0de69870"
+    },
+    {
+      "path": "src/scene/interior/QianqingAuxiliarySignature.js",
+      "sha256": "05cb8ceca7330a7d4b1a4745a971cb49c09f61c7a8b83a4583672f8fc3acc84a"
+    },
+    {
+      "path": "src/scene/interior/TaiheCoreContract.js",
+      "sha256": "bf8290a6b5c30a461f8944bd7549ede7146893c7c3f9ab77c86be4e6316731e8"
+    },
+    {
+      "path": "src/scene/interior/registry.js",
+      "sha256": "b54dda906f9d9d22aff60bc1edb1ac74be86f528c932cba9aaacae549bc309aa"
+    },
+    {
+      "path": "src/scene/palace/BaoheColumnCouplets.js",
+      "sha256": "ed34e039f66cce0c1f2f32690e03f0b9f5af1578af6b2d576cf8399a1fe3047d"
+    },
+    {
+      "path": "src/scene/palace/BaoheColumnGrid.js",
+      "sha256": "e243974819d421142bb049a442e8a3ef23af2a90025de645ea6f16988835fb40"
+    },
+    {
+      "path": "src/scene/palace/BaoheColumnIdentity.js",
+      "sha256": "6e2811a98710bafc5bcddd569ddb232242745e3a5e6384ccde77d98614abd1dd"
+    },
+    {
+      "path": "src/scene/palace/BaoheDepthGrid.js",
+      "sha256": "131fae972ee3e69ac69e3896af25d4345da7134b2a92594172ead01fc006199a"
+    },
+    {
+      "path": "src/scene/palace/BaoheFrontDoors.js",
+      "sha256": "2ba95f1528e89d38e0e3c10c527ce51c2bef0311d9d8d5d23e236a8c6674d3fc"
+    },
+    {
+      "path": "src/scene/palace/BaoheFrontEnclosure.js",
+      "sha256": "7bad380887061e82b615e53784ae410a7efa0d4913fe9b61bf96c0b2bac69aea"
+    },
+    {
+      "path": "src/scene/palace/BaoheHallPlinth.js",
+      "sha256": "5b4053277626e03fcd1918f75a0f4bf62460bbf2f82ef203b923714747af9b19"
+    },
+    {
+      "path": "src/scene/palace/BaoheInteriorFrame.js",
+      "sha256": "b5bff0478f5e10967ee7ec46cfd007ab2c9b03a197c61bc964e0b27472917668"
+    },
+    {
+      "path": "src/scene/palace/BaoheNorthApproaches.js",
+      "sha256": "4339e0e6a8b2227dab5a4f443554d0cb3679c63770855a21a88bb74b7cc27d90"
+    },
+    {
+      "path": "src/scene/palace/BaoheRearEnclosure.js",
+      "sha256": "ece32654572852cae16dc899b440f5e9232bb05429c8c883fd2760121dc630fa"
+    },
+    {
+      "path": "src/scene/palace/BaoheThroneScreen.js",
+      "sha256": "0b3d8414788e87e9a99682b5e48706d617664bcda0965683eb2b6e805cf1f1fe"
+    },
+    {
+      "path": "src/scene/palace/BaoheWarmRooms.js",
+      "sha256": "209a551bcdf4a0c60cb27f52fb80822d7ad653243384a940b8a2fbaa9dd06800"
+    },
+    {
+      "path": "src/scene/palace/HallNameboardMount.js",
+      "sha256": "4cd6644ed425919b4131198aceb389814d12af7c31d6165f0f7f14b0643c3881"
+    },
+    {
+      "path": "src/scene/palace/QianqingCeiling.js",
+      "sha256": "5aeedc1627bb7b00f35b32d69d144f7b08d61dfdc2658d6652ba46ca0b6a1a60"
+    },
+    {
+      "path": "src/scene/palace/QianqingCeilingPaint.js",
+      "sha256": "45532383fbfe106c4f0ad0016297dd921dd1a8265b7c6c9f4b220abc8cc41be9"
+    },
+    {
+      "path": "src/scene/palace/QianqingCentralArt.js",
+      "sha256": "80fdf121a4c4e3598bc34346b44defee51e7223173a17a6b6b59792a73648e77"
+    },
+    {
+      "path": "src/scene/palace/QianqingCentralSetting.js",
+      "sha256": "8831a0f208190ddad53b1d2f196449c0ef5fb701bace98fec749cfc76f16d926"
+    },
+    {
+      "path": "src/scene/palace/QianqingDepthGrid.js",
+      "sha256": "bd9f65ea765f8530e0afaeae5b9a7f235118bb68ad744d1437e33342e7d6ed13"
+    },
+    {
+      "path": "src/scene/palace/QianqingDisplay.js",
+      "sha256": "1066882fa79171ae478eaa2003fb3b639f6cf73b29d321d2576ee069191a2e95"
+    },
+    {
+      "path": "src/scene/palace/QianqingEndPassages.js",
+      "sha256": "7ea4a20fe9a491f0d7017994f7ecc16cbe6bb5d46d32c62d71bbaeee58fcd2e0"
+    },
+    {
+      "path": "src/scene/palace/QianqingFriezePaint.js",
+      "sha256": "1a932bf6f61cf0a5b378f4a314ab00a89bf0db39c843927d51d2a925b96bddd0"
+    },
+    {
+      "path": "src/scene/palace/QianqingFrontEnclosure.js",
+      "sha256": "22658632d85d3c83de4fe04e72b87f77d7bb7eefe251cc550ecb550e5a71f264"
+    },
+    {
+      "path": "src/scene/palace/QianqingFrontageGrid.js",
+      "sha256": "f4e3f4998dea7bb5e78f83dd22d1af58315eaab215e5ff93e52b5bad567b8b6d"
+    },
+    {
+      "path": "src/scene/palace/QianqingScreenCrest.js",
+      "sha256": "466df9aadbb98b9965839ce0289794289e7cd3b8a63bc2e8f99d295b5a75061f"
+    },
+    {
+      "path": "src/scene/palace/QianqingScreenPaint.js",
+      "sha256": "4369465704a7b7e3399235cd6b600b3e3bf33b939f4e0176e35b8f8042360258"
+    },
+    {
+      "path": "src/scene/palace/QianqingSurface.js",
+      "sha256": "fbba26e17faeac68f2e7f8c939d36ad2edc7477ef1a54eddb09cd5240584bda2"
+    },
+    {
+      "path": "src/scene/palace/QianqingUpperEnclosure.js",
+      "sha256": "37db7d677cf22073be552f9e835cf4cfc1ccab50372705eca2ba8cca1e7461ea"
+    },
+    {
+      "path": "src/scene/palace/QianqingWarmRooms.js",
+      "sha256": "112f0bdbc900283dff9791b964c91f01d2a6ec33731b8b94c64163a5cfdf7da1"
+    },
+    {
+      "path": "src/scene/palace/TaiheFrontApproaches.js",
+      "sha256": "8e886f1c9f03b4cedd920a993c9f34dbb9e110197195cbd1adf50f1e136d1e53"
+    },
+    {
+      "path": "src/scene/palace/TaihemenSouthApproach.js",
+      "sha256": "1c46fd7c055f64cc3e2cedf5d651c1adbd3bb14ee337d9cf6240812845b9ad03"
+    },
+    {
+      "path": "src/scene/palace/ThreeHallTerrace.js",
+      "sha256": "9b5103df2058368a0c97f07aa184868f6de043dd8aaaf50f6ad6cb769b18aeec"
+    },
+    {
+      "path": "src/scene/palace/ZhongheImperialApproach.js",
+      "sha256": "558d9f6d5091832ae5d111c140c7211bd4dd7180e9eefdaf0b9df9cf41163db2"
+    },
+    {
+      "path": "src/scene/palace/colliders.js",
+      "sha256": "a2a113cc4bde03855b10b90b7de134af84f0d3248eaaf0477e950c300afd9b67"
+    },
+    {
+      "path": "src/scene/palace/gate.js",
+      "sha256": "7efa71591664acc45c6e96985a4f920840193ce4eec9b7d7f60a41d1e8330341"
+    },
+    {
+      "path": "src/scene/palace/gateAscent.js",
+      "sha256": "06a329993ef7b255231e571856dd2716c638b08efb13d03c7074496f34b43852"
+    },
+    {
+      "path": "src/scene/palace/gateRailFacade.js",
+      "sha256": "c52110d99a97e52926b1ad0b574ad522ee9e977b486aa8bd55be0b70684d3fe5"
+    },
+    {
+      "path": "src/scene/palace/interiors.js",
+      "sha256": "9bdbf87e324ca46c8a853ee4e336d4d7bd1b7c65a5a8b634882c7475fa12d3c0"
+    },
+    {
+      "path": "src/scene/palace/kit.js",
+      "sha256": "6fa15b49d44a8ff0290056cecc6e5793736009f4379d8d428d3fcd79e2fade69"
+    },
+    {
+      "path": "src/scene/palace/river.js",
+      "sha256": "ab35cc9cc4b012bf1ba80b04a8acf2dea637741b5a6ba5513565251dd721e7d5"
+    },
+    {
+      "path": "src/scene/palace/special/BaoyunStorehouse.js",
+      "sha256": "0859e5d97d1f56484fcc2369fd334ba42067d0331917e16bad3ff1e44980fe30"
+    },
+    {
+      "path": "src/scene/palace/special/CanopyRoofSurfaceJoint.js",
+      "sha256": "d91cd99d70ea61b2b836c5e9ea57295464bba6d16b3fb8f639a6edebdf268d6a"
+    },
+    {
+      "path": "src/scene/palace/special/ChangchunEastAlcove.js",
+      "sha256": "d71d6399cb6cdb173f3a6f63c7f8f5fa187caf4d7c9509cd1b802754dd14ccc4"
+    },
+    {
+      "path": "src/scene/palace/special/ChuxiuCourtyard.js",
+      "sha256": "50f9bedda75da00eaa8d487e64acd46a319f06312e923237bf95f5657d48ee0e"
+    },
+    {
+      "path": "src/scene/palace/special/ChuxiuHall.js",
+      "sha256": "10c5d3d875e530e2913d12668b3f4a2f8a7c85da716b52f34f1ab9ee4adfe343"
+    },
+    {
+      "path": "src/scene/palace/special/EastResidentialFacades.js",
+      "sha256": "10685a888adade27cf3dbfca94564567db9d3d56d01eb233bfd09ffb86007406"
+    },
+    {
+      "path": "src/scene/palace/special/EastWestCityGate.js",
+      "sha256": "c9881ef23d355492eb0def07cf774546e7bef36eaca32d06f4b22480a05ecfd1"
+    },
+    {
+      "path": "src/scene/palace/special/EnclosedPavilions.js",
+      "sha256": "5381da26d16d981cd113e03e0f8cbaa245fee61e2ab24cdedc698377d320bd6a"
+    },
+    {
+      "path": "src/scene/palace/special/FittedNameboardMount.js",
+      "sha256": "8c4a83bec6eab5ae67f2c0bac7ebaa7fe45f86e33360ee0bb8a09d94f6a7c53f"
+    },
+    {
+      "path": "src/scene/palace/special/GatePlaques.js",
+      "sha256": "348d4371f8493fcdbaf5ee9fc108f6f2ecf5f89c41d7a77895435d573f021b33"
+    },
+    {
+      "path": "src/scene/palace/special/GateTowerMeasurements.js",
+      "sha256": "21dc4f2c2c3be3221d2b20dd95784f0277852dbdfe7ea79b43fdba888753034b"
+    },
+    {
+      "path": "src/scene/palace/special/GateTowerProfiles.js",
+      "sha256": "405e271e96c7a0b07a44451a4be903a39a010e7b56f902cdff23543b68ed18d5"
+    },
+    {
+      "path": "src/scene/palace/special/GateTowerShell.js",
+      "sha256": "ed9a21dcd7a79614262bb73131d020f84df796e51671d270def94db5168bd379"
+    },
+    {
+      "path": "src/scene/palace/special/GuhuaPavilion.js",
+      "sha256": "c8a1a3aa6c2f202f38eba7d10d347a01ed708a3ee52819ab66f9e12804ae9753"
+    },
+    {
+      "path": "src/scene/palace/special/HorizontalNameboardAtlas.js",
+      "sha256": "96c4e35960c24dcb835ed3ed4653ffab590beed22ffe8d9548788af8e11d853a"
+    },
+    {
+      "path": "src/scene/palace/special/HuangjiGate.js",
+      "sha256": "b8b078f1a09d265f50d18fe8eec6222198824be3c840357e93677291a8d06696"
+    },
+    {
+      "path": "src/scene/palace/special/InnerJinshui.js",
+      "sha256": "6f2efa66c5afa01d52a1e7e4c22e7b8c1c5b38e86c99fa456b7c730a9a3cdc95"
+    },
+    {
+      "path": "src/scene/palace/special/InnerPalaceGlazeLOD.js",
+      "sha256": "1e11881c7a33aac2196a5389dc5c2f8c843a5c34922f54440c9c1c30adc19c38"
+    },
+    {
+      "path": "src/scene/palace/special/InnerPalaceLevels.js",
+      "sha256": "0091008d78e1b77b0e1bc86ac8d6d7da3f118f90fa3541e4cf27e6b573d3affe"
+    },
+    {
+      "path": "src/scene/palace/special/InnerPalaceTerrace.js",
+      "sha256": "36ecb0a7429f9421947b1653711272bb7233101ec56890a3b43372c7b53730f1"
+    },
+    {
+      "path": "src/scene/palace/special/JiaotaiCeilingFrame.js",
+      "sha256": "aaa6ee6bf890db83d88dc2e915684c37d814797ee09bbbf3e6982663a9b22520"
+    },
+    {
+      "path": "src/scene/palace/special/JiaotaiCentralArt.js",
+      "sha256": "bd10262c65545e6c082b36017cf184b3a6ad17b06742e5148f86b35e8380e5bc"
+    },
+    {
+      "path": "src/scene/palace/special/JiaotaiCentralInterior.js",
+      "sha256": "55562a8949dd512a8903cdfdc3f658470201cdd45993a222c3b30daa843ac5cd"
+    },
+    {
+      "path": "src/scene/palace/special/JiaotaiDisplaySetting.js",
+      "sha256": "17ab6019c1beb32d65698536b96b41586f5f8cc9211006eb3c30490fc31997e3"
+    },
+    {
+      "path": "src/scene/palace/special/JiaotaiLandmarkArt.js",
+      "sha256": "76a8ae56aa8665c363f0d4b26cf665bdf94d918ef42d7fe01a089c267c08509b"
+    },
+    {
+      "path": "src/scene/palace/special/JiaotaiLandmarks.js",
+      "sha256": "07b089a8258564b0d83c75b613004def8926b48014edddeed65c871218f75aa0"
+    },
+    {
+      "path": "src/scene/palace/special/JiyunNamePlaque.js",
+      "sha256": "523a568b962f1b4a4a69e1c7ea4657c6e40b832f429c84e735133202408b226a"
+    },
+    {
+      "path": "src/scene/palace/special/KunningPalace.js",
+      "sha256": "7ee38ea47a86a588757bf5a0198684de806367d4ebf79c30daa4f324ca38bc7b"
+    },
+    {
+      "path": "src/scene/palace/special/KunningProfile.js",
+      "sha256": "ac0bfc5e60acec68e9f06f47af888876328a41ea2d79a84a1a87f219704bed03"
+    },
+    {
+      "path": "src/scene/palace/special/PavilionMeasurements.js",
+      "sha256": "944a6b69756696e48b3352e547c1e47b46e90c0ced4b6be04d1e1896c380d7fc"
+    },
+    {
+      "path": "src/scene/palace/special/PavilionProfiles.js",
+      "sha256": "c8d068c60c80e4ed7bc5221e94c9a8ec6979be69b26f5a30cd9bb666ab353ab4"
+    },
+    {
+      "path": "src/scene/palace/special/QianqingGate.js",
+      "sha256": "81a0b40ce40f0a635977bd112c2ad107ad9095214ae07b566d95dd6695ebe7b3"
+    },
+    {
+      "path": "src/scene/palace/special/QianqingGatePlaque.js",
+      "sha256": "42d692296187ad16c89aaa73e87506af87ce19957930f8d13790eda2e4716145"
+    },
+    {
+      "path": "src/scene/palace/special/QianqingImperialStair.js",
+      "sha256": "5455ec101de5d0b2e49eec3f96fb698d9eb4138f9d280a1d866d6c1813190745"
+    },
+    {
+      "path": "src/scene/palace/special/QinanHall.js",
+      "sha256": "d5f4c0780df323ea91e16556f58c9a83b1182b46d0fd83abce3932579446f333"
+    },
+    {
+      "path": "src/scene/palace/special/QinanNamePlaque.js",
+      "sha256": "a56260ff0face4def040df31ec9ba5a79229bfac7454cb0820c1f1654b50afe1"
+    },
+    {
+      "path": "src/scene/palace/special/QinanProfile.js",
+      "sha256": "3d6475e011397ae7771cefdbc80a61eb354d33ee39d9269709f24d1545ea9851"
+    },
+    {
+      "path": "src/scene/palace/special/QinanRoof.js",
+      "sha256": "38ca60dc40b3a04d92f17a333a6dfadeb72058d10bddb604b7f7b0bb77776490"
+    },
+    {
+      "path": "src/scene/palace/special/RearHallProfiles.js",
+      "sha256": "5f5b2e121444606e80617a4a84ac1481b1c135835a612618bb1a736fe39e0cfb"
+    },
+    {
+      "path": "src/scene/palace/special/RemainingNingshouHalls.js",
+      "sha256": "9de1e108436206653878f024dccdc81193f4ae8b08075d359f02b1829e275a55"
+    },
+    {
+      "path": "src/scene/palace/special/RemainingOuterHalls.js",
+      "sha256": "2c49eb1dafee12b4ee47848f45cdccd35360bb0607940ab3cad14c83036cbba3"
+    },
+    {
+      "path": "src/scene/palace/special/RemainingResidentialHalls.js",
+      "sha256": "0e9c32f33c9df590dba98f8fc32990bbb8f601f7d17cc80b9013ec7d28bfeba8"
+    },
+    {
+      "path": "src/scene/palace/special/RitualHalls.js",
+      "sha256": "d4a80a8d144997842d33793317be9035b91669aca1f2b26970f501277c4cc0cc"
+    },
+    {
+      "path": "src/scene/palace/special/ShoukangEastWarmRoom.js",
+      "sha256": "cd6b913c5458bbb565b43457c64dcb2d8a701c4b9b1981ed7b05836cb2995ac7"
+    },
+    {
+      "path": "src/scene/palace/special/ShoukangHall.js",
+      "sha256": "f6d513a59923cccd6263b67fbc515eb466d303a6891e1d7fc93c83e6883c5167"
+    },
+    {
+      "path": "src/scene/palace/special/SideGate.js",
+      "sha256": "928d65c5cffe33e31b3c14145f25fec3568b6fce289bcc6d9111ae08e7c2b62f"
+    },
+    {
+      "path": "src/scene/palace/special/SideGateProfiles.js",
+      "sha256": "11e346096666822682d3efc9f92da0c96c8fb9e8322ccac2d7234a62ba9acea4"
+    },
+    {
+      "path": "src/scene/palace/special/SourceGuidedNameboardMounts.js",
+      "sha256": "b1da50adbc66309d78afbcf03e9351b5858e9b18ecf4d2c93ddce019c0c99df2"
+    },
+    {
+      "path": "src/scene/palace/special/SourcedNameInscriptions.js",
+      "sha256": "111a306ffb5d03d519d20cbee0ffafdd1a4f4fc2a0a2740c70969a754454b6ee"
+    },
+    {
+      "path": "src/scene/palace/special/SouthCourtGates.js",
+      "sha256": "10bc98e9b77ab2ab16b8bac8a2bc5881b01761d023e0c3b56a52e4ef5f185f5a"
+    },
+    {
+      "path": "src/scene/palace/special/SouthCourtHalls.js",
+      "sha256": "f05627af99e0cfbe0f34139e26188eeb5620367f9b929e4b6a8658940a19d0d0"
+    },
+    {
+      "path": "src/scene/palace/special/SouthCourtProfiles.js",
+      "sha256": "c56a3ea0b3ff822798ed6cba2b21ec1df85583de365086696ac17fe3ce7e40be"
+    },
+    {
+      "path": "src/scene/palace/special/SouthCourtTrees.js",
+      "sha256": "a7f252952a2eb5d3aa83251e6828544d8cf73c81450e279ebfc008bd8f67f4e3"
+    },
+    {
+      "path": "src/scene/palace/special/SouthGalleryDisplays.js",
+      "sha256": "ab16155ec7f478d09da486ecee306a4fed24cbb17a306aff1e2cfe7141d5446d"
+    },
+    {
+      "path": "src/scene/palace/special/SouthWaterSystem.js",
+      "sha256": "1df723ef5261d7a37447fb8566c089f16a7335c2e9e254a5d386b1fbb7440a83"
+    },
+    {
+      "path": "src/scene/palace/special/SquareHalls.js",
+      "sha256": "342e6d68a2cc619e1329f6b2254fe29e900aa6c9de967c977a3b0c97ea4ff732"
+    },
+    {
+      "path": "src/scene/palace/special/SurveyedPavilion.js",
+      "sha256": "2581e92bbbba1f385d730107ca766868b36909f97debd95b1f6d64d5c7b86983"
+    },
+    {
+      "path": "src/scene/palace/special/TaiheBeamFrame.js",
+      "sha256": "df33fb63145d2b0723da59a96c6deb52d70b1940fb83dae21843fa7bb877a3c0"
+    },
+    {
+      "path": "src/scene/palace/special/TaiheCaissonDetail.js",
+      "sha256": "272160b14f498416a267739166c93c78d41e27917713287a3ec288890a41d7e4"
+    },
+    {
+      "path": "src/scene/palace/special/TaiheCaissonFallbackData.js",
+      "sha256": "d7bfaa6102a0bcb10f27c4c7f720d16a3778324376e1ef2550cd05f6880587c6"
+    },
+    {
+      "path": "src/scene/palace/special/TaiheCeilingArtwork.js",
+      "sha256": "9bc20790ca358d2c9687aa1686a9baf8068648943fbab805f8a64c844f714d2e"
+    },
+    {
+      "path": "src/scene/palace/special/TaiheCeilingMaterial.js",
+      "sha256": "37241e7e704da8626e2ac30fa9fc401f0cf4ec0f97b09b9fd44baa237be8785c"
+    },
+    {
+      "path": "src/scene/palace/special/TaiheCofferFrame.js",
+      "sha256": "0bea87272e7e56f814a7e4c58eae9f59ed68a18db59cf0ef2e5263046de7f4f2"
+    },
+    {
+      "path": "src/scene/palace/special/TaiheColumnGrid.js",
+      "sha256": "d25a24645f155bb507bec1a26192c90d590f578caea688953e9b9e6ea185e19f"
+    },
+    {
+      "path": "src/scene/palace/special/TaiheColumnIntensityData.js",
+      "sha256": "617bcb83a2c24e0ab242a143b3fc840a324896dd438b8105002d7907157d370e"
+    },
+    {
+      "path": "src/scene/palace/special/TaiheColumnResponse.js",
+      "sha256": "3b681fe2d7224e09a3051c8dc04c1e4afeb6290815443881760fbb2294569719"
+    },
+    {
+      "path": "src/scene/palace/special/TaiheColumnSurface.js",
+      "sha256": "861549429e8bedcae7779bdd1bd11de62db3eb79b8c435c078965771add9d54b"
+    },
+    {
+      "path": "src/scene/palace/special/TaiheCore.js",
+      "sha256": "b85352829bcab1db8ebe3730a6da0014903092e81ab3f292d0ccc91bee3dfd44"
+    },
+    {
+      "path": "src/scene/palace/special/TaiheCoreProfile.js",
+      "sha256": "61eb7e9bf0f946b60d7effd3a0e16d4731c00dd02d8476000757ccd32257609d"
+    },
+    {
+      "path": "src/scene/palace/special/TaiheDaisFallbackData.js",
+      "sha256": "e2a154e3dd005079fc8100284a9b2d20c55805b3278bb19f949aa6ad24b3bdfc"
+    },
+    {
+      "path": "src/scene/palace/special/TaiheDaisFront.js",
+      "sha256": "44f5f07437d201a830d5a311153bb9f17cf5272b12cb38a299bfb016f651468d"
+    },
+    {
+      "path": "src/scene/palace/special/TaiheDisplayFallbackData.js",
+      "sha256": "9f581400cc6053186d98c1b34353b06853b23fa677fb8d5c8d79a727e22e953c"
+    },
+    {
+      "path": "src/scene/palace/special/TaiheDisplayPairs.js",
+      "sha256": "5b1f5da0bcf36c12ebec7a14c841908ebd84fadea88f4289861173976525d264"
+    },
+    {
+      "path": "src/scene/palace/special/TaiheFloorMaterial.js",
+      "sha256": "6d13b73952cda1df0ddcc0de5269dccbebd41f83045651f60f7fadf2db541c57"
+    },
+    {
+      "path": "src/scene/palace/special/TaiheFurnishingSurface.js",
+      "sha256": "9659b7c86b3751f0f4e042419aa1dcb3aa6ea6e82513e251e5f27a1491e246c4"
+    },
+    {
+      "path": "src/scene/palace/special/TaihePlaqueFrame.js",
+      "sha256": "ad56be2bd3fc865b6e54af9e402825fa85df55a674071d79b329cc6d1d2cf1e0"
+    },
+    {
+      "path": "src/scene/palace/special/TaiheRearEnclosure.js",
+      "sha256": "a292419be8ba541e3ea1cdb33984c9787208eaf855419472a96a7bb227612a53"
+    },
+    {
+      "path": "src/scene/palace/special/TirenPavilion.js",
+      "sha256": "246e56761a6b105db33b6623daaffe7ce517db9805e5d05016c0da1b54000c9f"
+    },
+    {
+      "path": "src/scene/palace/special/WenyuanPavilion.js",
+      "sha256": "32c63bf14745eb123d848be7f43779fb0e17732f9741fdf0f70317635ac6b866"
+    },
+    {
+      "path": "src/scene/palace/special/WestDomesticHalls.js",
+      "sha256": "3bd9990e7efa35e552c99b6520e772cfca9f3171840968732cb288ac7791c3bc"
+    },
+    {
+      "path": "src/scene/palace/special/WumenAscent.js",
+      "sha256": "c7d88a0d550437b30ba36fefac9be03f9edf708c9135cd7da9eff02430e24251"
+    },
+    {
+      "path": "src/scene/palace/special/WumenAscentProfile.js",
+      "sha256": "654fc67f01cab0e347d75c453e3405e5221c73fa3c7962cfbf498fa78e830a97"
+    },
+    {
+      "path": "src/scene/palace/special/WumenLandingWallTop.js",
+      "sha256": "803759e5ec6f8feb8dfeffcacd1cb4d5667f0925487dc56c919123a5bd7981f2"
+    },
+    {
+      "path": "src/scene/palace/special/WumenVerticalProfile.js",
+      "sha256": "00b07b455e4201cd55ca9762633c994e708243581920ca79ef5ebeb53bee7eb6"
+    },
+    {
+      "path": "src/scene/palace/special/WumenWallCapFit.js",
+      "sha256": "01bfb9f17673fd203ab78954ae4001aa07ce023c08b7e1e00ee633f7957d99db"
+    },
+    {
+      "path": "src/scene/palace/special/WuyingMoonTerrace.js",
+      "sha256": "6fabf5ccb42343511142245dca333e260630e86229de58233b2d7c8fd9ce4dfd"
+    },
+    {
+      "path": "src/scene/palace/special/WuyingObservedCases.js",
+      "sha256": "d1061a7173b1827454b289af1b159d8bdfbeb85c34f0044b68b51c4b21ebefc5"
+    },
+    {
+      "path": "src/scene/palace/special/WuyingRepresentativeDetails.js",
+      "sha256": "1492927ff309655bbdadf8624090700d4cc9614d2e7cc41f7d5ce76491da5e3d"
+    },
+    {
+      "path": "src/scene/palace/special/YangxinWestWarmRooms.js",
+      "sha256": "65f1e7bcfe098071ea5ec7a05bc3233c038e829d6ce147c0d8e0f4e0f18ed6a5"
+    },
+    {
+      "path": "src/scene/palace/special/YanxiRuin.js",
+      "sha256": "f3cf2e06ba345d5ed911927aeac95aec7a451470d1b5dcbf82e0c68ec275dffa"
+    },
+    {
+      "path": "src/scene/palace/special/YanxiRuinLOD.js",
+      "sha256": "39b481cd4362a97ba9418699457cfeaf1a9039a3e714bfe4d9ec16dd2c09816f"
+    },
+    {
+      "path": "src/scene/palace/special/YanxiStorehouses.js",
+      "sha256": "037ac719a101bc92f8b8b2945a8c589735fb7288868ef49676cdd05f0c0e73e6"
+    },
+    {
+      "path": "src/scene/palace/special/YiheHall.js",
+      "sha256": "e3c06b3982f6fb14a4d4b976b7b682470db4a9ceca22fe562dcb4f492b928ff4"
+    },
+    {
+      "path": "src/scene/palace/special/YikunSideAccess.js",
+      "sha256": "7372203703cff7b3ceaf1fc4d148c9645813b859f2d2f5e341f5977ade3d5331"
+    },
+    {
+      "path": "src/scene/palace/special/YudeBath.js",
+      "sha256": "de5a3ea6e3f5cc070321894323d4fc0a9b81636dc799d6eac0c1bdb926b94afa"
+    },
+    {
+      "path": "src/scene/palace/special/ZhaodeGate.js",
+      "sha256": "008d6c919a137d9416c9b0dd0ca060e8e7345a607dcefe3a300cc52aa799b15e"
+    },
+    {
+      "path": "src/scene/palace/special/ZhaodeGateProfile.js",
+      "sha256": "bb3b121f5ce00da6ea234237745bd28b4e020cfbb016dd05339ce7b95704ea0d"
+    },
+    {
+      "path": "src/scene/palace/special/ZhongheDisplaySetting.js",
+      "sha256": "df757aff3acc6c7d47236c3c4109bb02f0935bfb168008fbae679e8543a5b678"
+    },
+    {
+      "path": "src/scene/palace/towerShell.js",
+      "sha256": "fbe7c5b990cb2d0d2def6957d023a65250b5179f3160c8acb2b0e79965cc2ebb"
+    },
+    {
+      "path": "src/scene/sky/BeijingDayCycle.js",
+      "sha256": "a4c1d856596904d17afb80d58fd37cd25f376fc3d21bca4c634e166e3259b216"
+    },
+    {
+      "path": "src/scene/sky/HistoricalSkyLamps.js",
+      "sha256": "fbb1f0957d22f7c92a75f1db0e02ab0d2955173072293990746afaf562254317"
+    },
+    {
+      "path": "src/scene/sky/SkyDome.js",
+      "sha256": "fce040c9ebb96b4aa2065db4f4589d2f388106aab0e8296be9747139def69201"
+    },
+    {
+      "path": "src/scene/sky/SkySetup.js",
+      "sha256": "db842eb2ad37a63d5fd78d7f54782c6d119f6fc1f7f823a6c2fc10bf9e4a2cce"
+    },
+    {
+      "path": "src/scene/sky/Skyline.js",
+      "sha256": "938c59be0e2fc13d69d364011cfe1d579defacf83ae3b2d63feb57c2b71871d0"
+    },
+    {
+      "path": "src/scene/zones/CourtWallContract.js",
+      "sha256": "cd865e2cf4477c060a168966b653db0cf7f7fbfc0e42908d4c90947eeccce7f6"
+    },
+    {
+      "path": "src/scene/zones/HistoricalGateSites.js",
+      "sha256": "8cd6c8943b06ff4186de61d92b2b1ebdbcb5ffbdb71a9126a5e15b98c4906c9e"
+    },
+    {
+      "path": "src/scene/zones/ZoneBase.js",
+      "sha256": "728403bfb02b669822c9fd987de5563c77d703b7bcd0ed43b3ddc90087237e6f"
+    },
+    {
+      "path": "src/scene/zones/ZoneManager.js",
+      "sha256": "6aa58f0d1eea2774480d98e53486b345638ff2409d25f309ad03be527a803aca"
+    },
+    {
+      "path": "src/utils/Collision.js",
+      "sha256": "6e6916d8a7124352ee8dec68bebd6721ef645cbfe9154117e7ad09e224a7ff78"
+    }
+  ]
+}

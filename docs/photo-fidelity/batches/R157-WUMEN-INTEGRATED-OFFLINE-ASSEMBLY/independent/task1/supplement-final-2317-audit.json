@@ -1,0 +1,161 @@
+{
+  "freeze": {
+    "count": 3,
+    "errors": []
+  },
+  "source": {
+    "count": 600,
+    "errors": []
+  },
+  "qa": {
+    "count": 4426,
+    "errors": []
+  },
+  "changedFrom2316": [
+    "routes",
+    "routePolicy"
+  ],
+  "routePolicy": {
+    "playerRadius": 0.5,
+    "frameRates": [
+      10,
+      60
+    ],
+    "modes": [
+      "walk",
+      "run"
+    ],
+    "bothDirections": true,
+    "finalDistance": 0.12,
+    "stableElapsedSeconds": 1,
+    "useNominalFrameCountAsElapsedTime": false,
+    "requiresActualSupport": true,
+    "receiverBlocksCannotSubstitutePlatform": true,
+    "appliesTo": "TRAVERSAL_ROUTES_ONLY"
+  },
+  "routes": [
+    {
+      "id": "north-deck-centre",
+      "expected": "DIAGNOSTIC_NOT_PREACCEPTED",
+      "execution": {
+        "kind": "TRAVERSAL",
+        "reverse": true,
+        "arrivalRequired": true,
+        "finalDistance": 0.12,
+        "stableElapsedSeconds": 1,
+        "stop": "ACTUAL_ZERO_VELOCITY_AND_TIMESTAMP_SPAN",
+        "expectedOwner": null
+      },
+      "expectedBlockedOwner": null,
+      "otherOwnerBlockCannotPass": null
+    },
+    {
+      "id": "INSTANCE-A-WUMEN-EAST-NORTH-PAVILION/closed-body-probe",
+      "expected": "BLOCKED_CLOSED_BODY_NOT_ENTRY",
+      "execution": {
+        "kind": "EXPECTED_BLOCK",
+        "reverse": false,
+        "arrivalRequired": false,
+        "finalDistance": null,
+        "stableElapsedSeconds": null,
+        "stop": "FIRST_CONTACT_WITH_EXPECTED_OWNER_WITHOUT_ENTERING",
+        "expectedOwner": "INSTANCE-A-WUMEN-EAST-NORTH-PAVILION",
+        "endMeaning": "DIRECTION_REFERENCE_INSIDE_BODY_NOT_ARRIVAL_OR_START",
+        "otherOwnerContactPasses": false
+      },
+      "expectedBlockedOwner": "INSTANCE-A-WUMEN-EAST-NORTH-PAVILION",
+      "otherOwnerBlockCannotPass": true
+    },
+    {
+      "id": "INSTANCE-A-WUMEN-EAST-SOUTH-PAVILION/closed-body-probe",
+      "expected": "BLOCKED_CLOSED_BODY_NOT_ENTRY",
+      "execution": {
+        "kind": "EXPECTED_BLOCK",
+        "reverse": false,
+        "arrivalRequired": false,
+        "finalDistance": null,
+        "stableElapsedSeconds": null,
+        "stop": "FIRST_CONTACT_WITH_EXPECTED_OWNER_WITHOUT_ENTERING",
+        "expectedOwner": "INSTANCE-A-WUMEN-EAST-SOUTH-PAVILION",
+        "endMeaning": "DIRECTION_REFERENCE_INSIDE_BODY_NOT_ARRIVAL_OR_START",
+        "otherOwnerContactPasses": false
+      },
+      "expectedBlockedOwner": "INSTANCE-A-WUMEN-EAST-SOUTH-PAVILION",
+      "otherOwnerBlockCannotPass": true
+    },
+    {
+      "id": "INSTANCE-A-WUMEN-WEST-NORTH-PAVILION/closed-body-probe",
+      "expected": "BLOCKED_CLOSED_BODY_NOT_ENTRY",
+      "execution": {
+        "kind": "EXPECTED_BLOCK",
+        "reverse": false,
+        "arrivalRequired": false,
+        "finalDistance": null,
+        "stableElapsedSeconds": null,
+        "stop": "FIRST_CONTACT_WITH_EXPECTED_OWNER_WITHOUT_ENTERING",
+        "expectedOwner": "INSTANCE-A-WUMEN-WEST-NORTH-PAVILION",
+        "endMeaning": "DIRECTION_REFERENCE_INSIDE_BODY_NOT_ARRIVAL_OR_START",
+        "otherOwnerContactPasses": false
+      },
+      "expectedBlockedOwner": "INSTANCE-A-WUMEN-WEST-NORTH-PAVILION",
+      "otherOwnerBlockCannotPass": true
+    },
+    {
+      "id": "INSTANCE-A-WUMEN-WEST-SOUTH-PAVILION/closed-body-probe",
+      "expected": "BLOCKED_CLOSED_BODY_NOT_ENTRY",
+      "execution": {
+        "kind": "EXPECTED_BLOCK",
+        "reverse": false,
+        "arrivalRequired": false,
+        "finalDistance": null,
+        "stableElapsedSeconds": null,
+        "stop": "FIRST_CONTACT_WITH_EXPECTED_OWNER_WITHOUT_ENTERING",
+        "expectedOwner": "INSTANCE-A-WUMEN-WEST-SOUTH-PAVILION",
+        "endMeaning": "DIRECTION_REFERENCE_INSIDE_BODY_NOT_ARRIVAL_OR_START",
+        "otherOwnerContactPasses": false
+      },
+      "expectedBlockedOwner": "INSTANCE-A-WUMEN-WEST-SOUTH-PAVILION",
+      "otherOwnerBlockCannotPass": true
+    },
+    {
+      "id": "east/receiver/actual-platform-transition",
+      "expected": "DIAGNOSTIC_NOT_PREACCEPTED_NECK_TO_REAL_PLATFORM",
+      "execution": {
+        "kind": "TRAVERSAL",
+        "reverse": true,
+        "arrivalRequired": true,
+        "finalDistance": 0.12,
+        "stableElapsedSeconds": 1,
+        "stop": "ACTUAL_ZERO_VELOCITY_AND_TIMESTAMP_SPAN",
+        "expectedOwner": null
+      },
+      "expectedBlockedOwner": null,
+      "otherOwnerBlockCannotPass": null
+    },
+    {
+      "id": "west/receiver/actual-platform-transition",
+      "expected": "DIAGNOSTIC_NOT_PREACCEPTED_NECK_TO_REAL_PLATFORM",
+      "execution": {
+        "kind": "TRAVERSAL",
+        "reverse": true,
+        "arrivalRequired": true,
+        "finalDistance": 0.12,
+        "stableElapsedSeconds": 1,
+        "stop": "ACTUAL_ZERO_VELOCITY_AND_TIMESTAMP_SPAN",
+        "expectedOwner": null
+      },
+      "expectedBlockedOwner": null,
+      "otherOwnerBlockCannotPass": null
+    }
+  ],
+  "finalFreeze": {
+    "head": "5610acf44554d3b2a83cd89f33df8782810cd6d4",
+    "count": 3,
+    "files": {
+      "scripts/photo-fidelity/batches/wumen-joint-layout/assembly-contract.json": "24cba162d28a8bbca9aa5308594ef937e00a51eef1b5099f43285b8022e21ca5",
+      "scripts/photo-fidelity/batches/wumen-joint-layout/assembly-contract.mjs": "96b58fd6a7bb4628a0cc0e3dfd4e5b4ad150c30b91bdf7368af7fea6053b7d43",
+      "tests/photo-fidelity/batches/wumen-joint-layout/assembly-contract.test.mjs": "ffb9ff3c340f30a843edff20fc246c66155f2800097d41e52b973a9787afd11d"
+    }
+  },
+  "old4423Preserved": true
+}

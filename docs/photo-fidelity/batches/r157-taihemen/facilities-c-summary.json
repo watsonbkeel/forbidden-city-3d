@@ -1,0 +1,405 @@
+{
+  "kind": "ISOLATED_C_COUNTERFACTUAL_ACTUAL_MERGED_TRIANGLES_NOT_PRODUCTION_OR_GPU",
+  "captureHEAD": "e3c78a6a69b05c5052bd1500b180d202390be087",
+  "sourceHashes": {
+    "scripts/photo-fidelity/batches/r157-taihemen/hypothesis/facilities/capture-c.mjs": "6c5ccdd61ff1f5a608277808183c07169d9bbbccbbe565007710c8db2a3b8ae8",
+    "tests/photo-fidelity/batches/taihemen-facilities-c.test.mjs": "af0c6ef5b58344a2f960c90314dcda101e848b0fc92f44eb2f11ed24535372f9",
+    "src/scene/Enclosure.js": "31ec78a3afcaf92db6916eb020a4fefe0fa8a6904ac38329d19d41e869b2f514",
+    "src/scene/zones/ZoneBase.js": "ff373366cbda9b5cedcc616d9f7204f0319f23ef126e151b7ce8799ca1891c11",
+    "data/zones/axis-courts.json": "0dad2b5aed49adb7953f15750db28f3482b6685f835ba967916b42ea4fc2a4aa",
+    "data/places/zh-CN.json": "34638faeb0b5979b136ed51177408ba3b982b1d4d28a8ca86519a76d29970b7c",
+    "src/scene/Layout.js": "bf1165d6d0c8fd2cad21d5ae6d99fe2d6af6ec66983282b6a2537c05de6427f2",
+    "src/scene/Environment.js": "fc26eae6af11106f383a2b2409f9f3855ce5555a533ae5466d1b274b60324991",
+    "src/scene/PalaceBuilder.js": "cbdb47c33a2726701bb76ba75a9eb35f2bbd1145ad2c2af75d682dd277211f97",
+    "src/scene/palace/TaihemenSouthApproach.js": "1c46fd7c055f64cc3e2cedf5d651c1adbd3bb14ee337d9cf6240812845b9ad03",
+    "scripts/photo-fidelity/batches/r157-taihemen/hypothesis/facilities/TaihemenApproachC.mjs": "ce472bebc819628913f8646dfb7690f022f88f92e80ba40d23b7f485666ab209",
+    "scripts/photo-fidelity/batches/r157-taihemen/hypothesis/facilities/TaihemenFixturesC.mjs": "d6a9ccdd0fffddaa6f66fb3455d3e04044bf22f3418867e4368a789c13177c62",
+    "scripts/photo-fidelity/batches/r157-taihemen/hypothesis/facilities/TaihemenCandidateTransaction.mjs": "9296330f4d390d91a7882832e596d4ec1b34ed43c4d251ce4a58f095560452fc",
+    "tests/lib/r157-taihemen-facilities-c-world.mjs": "325d4ad56235ef16c0e4d0e7d235dcd2cab3936862b23347b56838e78483968e",
+    "tests/lib/r157-taihemen-facilities-c-check.mjs": "157fe4122c768354f25010a5e180e58c95ab18c167850c0be4f96076857c75e0",
+    "docs/photo-fidelity/batches/r157-taihemen/FACILITIES-C-CONTROLS.json": "2f77b415bac3c1bdce9cc9c4edb71e8d38b7a86ebc3276604ac389cc8cbd0108"
+  },
+  "photographicCameraMatched": false,
+  "gpuAcceptance": false,
+  "accepted": false,
+  "context": "Unchanged actual Environment.setupGround ground/moat/road triangles included in views,but excluded from gate cost delta. Not a synthesized floor.",
+  "measurementOrder": "6 interleaved before/after cycles,alternate order;first cycle warmup excluded;local Node build/merge only",
+  "states": {
+    "before": {
+      "samplesMs": [
+        60.13779299999999,
+        61.85330299999998,
+        60.46103299999993,
+        59.77377200000001,
+        80.01092700000027
+      ],
+      "meshes": 20,
+      "triangles": 17128,
+      "geometryBytes": 1643976,
+      "materials": 20,
+      "colliders": 142,
+      "walkables": 4,
+      "collidersHash": "1838e78c09419fe842e5b40cfaf079d8d5b370e1ce96a6e974f64dda370ffe70",
+      "walkablesHash": "5bc9a6ff88b090d3e10b4b2344722b2f2fe7b66a5642782df16b71e3ff0be214",
+      "medianMs": 60.46103299999993
+    },
+    "after": {
+      "samplesMs": [
+        81.31133,
+        94.04501300000004,
+        79.138868,
+        82.660665,
+        82.984872
+      ],
+      "meshes": 22,
+      "triangles": 29172,
+      "geometryBytes": 2800200,
+      "materials": 22,
+      "colliders": 167,
+      "walkables": 5,
+      "collidersHash": "ac2384c5b85636435f1f5bf4451cec239e489c363f567f82ba04b898ba7d0fea",
+      "walkablesHash": "01b03ef7b97a3d67d56bc048f200c48f943341ddd1ffd9a907fd9886b5da7079",
+      "actualWorld": {
+        "fixtures": 6,
+        "censers": 4,
+        "surfaceProbes": 80,
+        "renderedGroundContacts": 6,
+        "sourceWidthRatio": 0.3712212817412333,
+        "boxContentsBuilt": false,
+        "closeCenserIndividualIdentityAccepted": false,
+        "accepted": false,
+        "status": "ISOLATED_C_CLASS_FORM_SOURCE_FIT_LOCAL_PHYSICS_NOT_GPU_OR_OBJECT_ACCEPTANCE"
+      },
+      "profile": {
+        "id": "taihemen-south-separated-approach",
+        "zEdge": -229.29343409915356,
+        "zToe": -239.98634824667474,
+        "y0": 0,
+        "y1": 3.44,
+        "run": 10.69291414752118,
+        "width": 17.840894800483674,
+        "halfWidth": 25.03,
+        "imperialWidth": 6.6830713422007255,
+        "cheekWidth": 0.35,
+        "dimensionStatus": "UNIFORM_OWN_PLAN_COLUMN_REGISTRATION_PHOTO_FIT_NOT_SURVEY",
+        "currentVisitorAccess": "UNKNOWN",
+        "imperialWalkingPolicy": "NO_GAMEPLAY_WALKABLE",
+        "sources": [
+          {
+            "url": "https://www.dpm.org.cn/explore/building/236439.html",
+            "use": "Official Taihemen building page"
+          },
+          {
+            "url": "https://img.dpm.org.cn/Uploads/Picture/2020/04/16/s5e980c931a533.jpg",
+            "uploadPathDate": "2020-04-16",
+            "photographyDate": null,
+            "use": "Two flanking stairs, broad central imperial stone and sloped stone rails"
+          }
+        ],
+        "flights": [
+          {
+            "id": "taihemen-south-separated-approach:-1",
+            "centerX": -6.8719407496977025,
+            "zEdge": -229.29343409915356,
+            "zToe": -239.98634824667474,
+            "y0": 0,
+            "y1": 3.44,
+            "run": 10.69291414752118,
+            "width": 4.097013301088271,
+            "cheekWidth": 0.35,
+            "treadCount": 22,
+            "ramp": {
+              "type": "ramp",
+              "axis": "z",
+              "minX": -8.570447400241838,
+              "maxX": -5.173434099153567,
+              "minZ": -239.98634824667474,
+              "maxZ": -229.29343409915356,
+              "a0": -229.29343409915356,
+              "a1": -239.98634824667474,
+              "y0": 3.44,
+              "y1": 0
+            }
+          },
+          {
+            "id": "taihemen-south-separated-approach:1",
+            "centerX": 6.8719407496977025,
+            "zEdge": -229.29343409915356,
+            "zToe": -239.98634824667474,
+            "y0": 0,
+            "y1": 3.44,
+            "run": 10.69291414752118,
+            "width": 4.097013301088271,
+            "cheekWidth": 0.35,
+            "treadCount": 22,
+            "ramp": {
+              "type": "ramp",
+              "axis": "z",
+              "minX": 5.173434099153567,
+              "maxX": 8.570447400241838,
+              "minZ": -239.98634824667474,
+              "maxZ": -229.29343409915356,
+              "a0": -229.29343409915356,
+              "a1": -239.98634824667474,
+              "y0": 3.44,
+              "y1": 0
+            }
+          }
+        ],
+        "platformExtension": {
+          "oldEdge": -225.47,
+          "newEdge": -229.29343409915356,
+          "halfWidth": 25.03,
+          "height": 3.44
+        },
+        "groundGapWidth": 1.4818984280532044,
+        "fixtures": [
+          {
+            "id": "AUX-FC-B3B12CF397-CENSER-WEST-OUTER",
+            "type": "censer",
+            "role": "outer",
+            "sourcePixel": [
+              770,
+              924
+            ],
+            "x": 11.186880290205561,
+            "z": -234.17498186215235,
+            "accepted": false,
+            "implementedInProduction": false,
+            "sourceIds": [
+              "T-STONE-JOURNAL-2025",
+              "T-INCENSE-CLOSE",
+              "T-DRAW-06"
+            ],
+            "closePhotoIndividualIdentityAccepted": false,
+            "modelHeight": 2.1285,
+            "modelRadius": 0.64,
+            "shapeStatus": "ONE_OWN_OBSERVED_CLASS_FORM_REPEAT_NOT4_INDIVIDUAL_CARVING_REPLICAS",
+            "unknown": [
+              "Which4 close-photo instance",
+              "Exact vents/pier count,rear,fine carving and ear section",
+              "Metric censer height/width"
+            ],
+            "groundY": 0,
+            "newWalkables": 0
+          },
+          {
+            "id": "AUX-FC-B3B12CF397-CENSER-WEST-INNER",
+            "type": "censer",
+            "role": "inner",
+            "sourcePixel": [
+              891,
+              924
+            ],
+            "x": 4.155126964933494,
+            "z": -234.17498186215235,
+            "accepted": false,
+            "implementedInProduction": false,
+            "sourceIds": [
+              "T-STONE-JOURNAL-2025",
+              "T-INCENSE-CLOSE",
+              "T-DRAW-06"
+            ],
+            "closePhotoIndividualIdentityAccepted": false,
+            "modelHeight": 2.1285,
+            "modelRadius": 0.64,
+            "shapeStatus": "ONE_OWN_OBSERVED_CLASS_FORM_REPEAT_NOT4_INDIVIDUAL_CARVING_REPLICAS",
+            "unknown": [
+              "Which4 close-photo instance",
+              "Exact vents/pier count,rear,fine carving and ear section",
+              "Metric censer height/width"
+            ],
+            "groundY": 0,
+            "newWalkables": 0
+          },
+          {
+            "id": "AUX-FC-B3B12CF397-CENSER-EAST-INNER",
+            "type": "censer",
+            "role": "inner",
+            "sourcePixel": [
+              1033,
+              924
+            ],
+            "x": -4.097013301088271,
+            "z": -234.17498186215235,
+            "accepted": false,
+            "implementedInProduction": false,
+            "sourceIds": [
+              "T-STONE-JOURNAL-2025",
+              "T-INCENSE-CLOSE",
+              "T-DRAW-06"
+            ],
+            "closePhotoIndividualIdentityAccepted": false,
+            "modelHeight": 2.1285,
+            "modelRadius": 0.64,
+            "shapeStatus": "ONE_OWN_OBSERVED_CLASS_FORM_REPEAT_NOT4_INDIVIDUAL_CARVING_REPLICAS",
+            "unknown": [
+              "Which4 close-photo instance",
+              "Exact vents/pier count,rear,fine carving and ear section",
+              "Metric censer height/width"
+            ],
+            "groundY": 0,
+            "newWalkables": 0
+          },
+          {
+            "id": "AUX-FC-B3B12CF397-CENSER-EAST-OUTER",
+            "type": "censer",
+            "role": "outer",
+            "sourcePixel": [
+              1157,
+              924
+            ],
+            "x": -11.303107617896009,
+            "z": -234.17498186215235,
+            "accepted": false,
+            "implementedInProduction": false,
+            "sourceIds": [
+              "T-STONE-JOURNAL-2025",
+              "T-INCENSE-CLOSE",
+              "T-DRAW-06"
+            ],
+            "closePhotoIndividualIdentityAccepted": false,
+            "modelHeight": 2.1285,
+            "modelRadius": 0.64,
+            "shapeStatus": "ONE_OWN_OBSERVED_CLASS_FORM_REPEAT_NOT4_INDIVIDUAL_CARVING_REPLICAS",
+            "unknown": [
+              "Which4 close-photo instance",
+              "Exact vents/pier count,rear,fine carving and ear section",
+              "Metric censer height/width"
+            ],
+            "groundY": 0,
+            "newWalkables": 0
+          },
+          {
+            "id": "AUX-FC-B3B12CF397-STONE-BOX-WEST",
+            "type": "stone-box",
+            "role": "west",
+            "sourcePixel": [
+              720,
+              1018
+            ],
+            "x": 14.092563482466748,
+            "z": -239.6376662636034,
+            "accepted": false,
+            "implementedInProduction": false,
+            "sourceIds": [
+              "T-STONE-JOURNAL-2025",
+              "T-STONE-BOX",
+              "T-STONE-THREE-VIEW",
+              "T-DRAW-06"
+            ],
+            "closePhotoIndividualIdentityAccepted": false,
+            "modelHeight": 1.275,
+            "modelRadius": 0.665,
+            "shapeStatus": "OLD_DIMENSION_BOUND_CLOSED_MASS_LOW_KNOB_HOLE_FINE_DRAGON_CLOUD_RELIEF_UNREPRODUCED",
+            "boxContentsBuilt": false,
+            "unknown": [
+              "Exact coiled-dragon/cloud surface",
+              "Footprint depth fit,not separately measured",
+              "2026 survey"
+            ],
+            "groundY": 0,
+            "newWalkables": 0
+          },
+          {
+            "id": "AUX-FC-B3B12CF397-STONE-PAVILION-EAST",
+            "type": "stone-pavilion",
+            "role": "east",
+            "sourcePixel": [
+              1213,
+              1014
+            ],
+            "x": -14.557472793228536,
+            "z": -239.4052116082225,
+            "accepted": false,
+            "implementedInProduction": false,
+            "sourceIds": [
+              "T-STONE-JOURNAL-2025",
+              "T-STONE-PAVILION",
+              "T-STONE-THREE-VIEW",
+              "T-DRAW-06"
+            ],
+            "closePhotoIndividualIdentityAccepted": false,
+            "modelHeight": 3.49,
+            "modelRadius": 0.8,
+            "shapeStatus": "SMALL_STONE_FIXTURE_EW_CLOSED_NS_THROUGH_TWO_SLOTS_TWO_SOUTH_STEPS_NOT_ENTERABLE_HALL",
+            "unknown": [
+              "Exact bracket/ridge/relief profiles",
+              "Metric subdivision from approximate3.5m total",
+              "Current access"
+            ],
+            "groundY": 0,
+            "newWalkables": 0
+          }
+        ],
+        "fixtureIds": [
+          "AUX-FC-B3B12CF397-CENSER-WEST-OUTER",
+          "AUX-FC-B3B12CF397-CENSER-WEST-INNER",
+          "AUX-FC-B3B12CF397-CENSER-EAST-INNER",
+          "AUX-FC-B3B12CF397-CENSER-EAST-OUTER",
+          "AUX-FC-B3B12CF397-STONE-BOX-WEST",
+          "AUX-FC-B3B12CF397-STONE-PAVILION-EAST"
+        ],
+        "candidateStatus": "ISOLATED_C_SOURCE_FIT_NOT_SURVEY",
+        "accepted": false,
+        "registration": {
+          "source": "T-DRAW-06",
+          "sourceSize": [
+            1920,
+            1334
+          ],
+          "drawingDate": "1941-09",
+          "sourceColumnX": [
+            549,
+            1376
+          ],
+          "sourceColumnY": 757,
+          "scale": 0.0581136638452237,
+          "axisX": 962.5,
+          "modelSouthColumnZ": -224.47,
+          "readoutUncertaintyPixels": 3,
+          "accepted": false
+        },
+        "smallBilateralFit": "Manual stair differences within3px approximated symmetrically,not exact asymmetry",
+        "unverified": [
+          "Historical plan present-fabric correspondence",
+          "Individual4 censer close-photo assignment/rear/fine variations",
+          "Exact carving/finish",
+          "GPU/source-camera acceptance"
+        ]
+      },
+      "medianMs": 82.660665
+    }
+  },
+  "delta": {
+    "meshes": 2,
+    "triangles": 12044,
+    "geometryBytes": 1156224,
+    "materials": 2,
+    "colliders": 25,
+    "walkables": 1
+  },
+  "costBoundary": "Node local gate construction+merge plus unchanged Environment.setupGround only,not GPU draw calls/FPS or whole-scene performance. C helper import may be cached;timings not a speed claim.",
+  "disposition": "HISTORICAL_7acc_SELF_CAPTURE_SUPERSEDED_TWO_INDEPENDENT_P1_FINDINGS",
+  "actuallyViewedCPUImages": [
+    "box-close-after.png",
+    "censer-close-after.png",
+    "east-oblique-after.png",
+    "east-oblique-before.png",
+    "pavilion-close-after.png",
+    "south-front-after.png",
+    "south-front-before.png",
+    "south-top-after.png",
+    "south-top-before.png",
+    "west-oblique-after.png",
+    "west-oblique-before.png"
+  ],
+  "fieldOfViewSourceMatched": false,
+  "independentReview": "PENDING_PARENT_ASTRA_ASSIGNMENT",
+  "historicalCodeCommit": "7acc8637deb1dd3731bc592331715262a030cd23",
+  "knownMissedP1": [
+    "Censer-gap visible front facade collision absent",
+    "Central115px composite falsely treated as a smooth stone ramp,missing shoulder steps/longer toe"
+  ],
+  "currentCapture": "facilities-c-p1-summary.json"
+}

@@ -1,0 +1,58 @@
+{
+  "status": "COMPLETE_PARTITIONED_EXECUTION",
+  "scope": "Exact executed/failure title multisets only; does not prove same underlying failure causes or all-green. No test titles silently discarded.",
+  "sourceManifest": "source-live-0702.json",
+  "sourceManifestSHA256": "c4133225f8132e9647a882d5137f5ddfb8f484da9fabeebe8d6c2b4ff73621a6",
+  "qaManifestSHA256": "f1f61d7364d33c5322eb5e1fc0d18f90e7693076fc6e3cf97b663afa758d928d",
+  "baseline": {
+    "tests": 1313,
+    "pass": 1103,
+    "fail": 210
+  },
+  "candidate": {
+    "tests": 1313,
+    "pass": 1103,
+    "fail": 210
+  },
+  "missingExecutedTitles": [],
+  "addedExecutedTitles": [],
+  "newFailureTitles": [],
+  "removedFailureTitles": [],
+  "parts": [
+    {
+      "path": "/workspace/scratch/02a8023d1a85/r158-wenhua-gate-integration-evidence-0643/full-main-0717.tap",
+      "sha256": "255c6e8eb153c17f2da779ef1086c60db7ca7d28f42eb0e8f5a8ff489d88ef2c",
+      "tests": 1190,
+      "pass": 981,
+      "fail": 209
+    },
+    {
+      "path": "/workspace/scratch/02a8023d1a85/r158-wenhua-gate-integration-evidence-0643/qinan-0717/output.tap",
+      "sha256": "2cb736a74d14b1f3d2ba5a143f9a5afdbae23fe11b5730cc85ac4a0dc3074281",
+      "tests": 48,
+      "pass": 48,
+      "fail": 0
+    },
+    {
+      "path": "/workspace/scratch/02a8023d1a85/r158-wenhua-gate-integration-evidence-0643/zhaode-0717/output.tap",
+      "sha256": "355354c6e3536178c8e24ffb5f3f759fc9922f690d2d8ca701cb68a928794b34",
+      "tests": 75,
+      "pass": 74,
+      "fail": 1
+    }
+  ],
+  "baselineParts": [
+    {
+      "path": "/workspace/scratch/02a8023d1a85/r157-taihemen-c-integration-evidence-0537/full-final-main-0611.log",
+      "sha256": "8c2bda36d941d99aa95bf0cb122dc297a437eb757c40719cdbc814ba5310339f"
+    },
+    {
+      "path": "/workspace/scratch/02a8023d1a85/r157-taihemen-c-integration-evidence-0537/zhaode-tap-observed-0622/output.tap",
+      "sha256": "cc7371ce3b24c0713e1da40acce3eb2637ddcc80422aafa2d799b6c50df002a7"
+    },
+    {
+      "path": "/workspace/scratch/02a8023d1a85/r157-taihemen-c-integration-evidence-0537/qinan-tap-observed-0626/output.tap",
+      "sha256": "b21bfbd1c6e93a705134db396997bee1bd41a5a5ad85433be16e420c9c1600d7"
+    }
+  ]
+}
