@@ -1,0 +1,9 @@
+# Own Zuoyi five-bay practical candidate
+
+Parent authorized next priority after middle-left, base cumulative8fa. Own official group2013779953911173120/vp1977 cover has five bays, three central paired doors, end lattice windows, raised grey base and broad white-railed slope. Own1932 longitudinal section and plan corroborate topology, not current measured dimensions. They are not Youyi source evidence.
+
+Retain item2(-106.47,-53.1), east orientation and existing13.6m gap between gallery29/30. A measured-width enlargement would require moving neighbours, so choose a disclosed compact12.6m body with bay widths2.1/2.7/3/2.7/2.1, rather than copying Youyi equal bays. Trial1.6m platform and11.2m approaches (.142857 slope); halfwidth5m. Existing fullWorld body scan in both approach footprints has0hits. No global controller or neighbouring gallery edits.
+
+Replace only this generic three-bay shell via one ZoneBase dispatch. Visible closed wedge, actual slope support and conservative solid slices; sloping rails/proxies, platform perimeter rail except approaches. Keep single shared central hall, three actual portals and solid end rooms. Door front uses the already retained Zuoyi nine-row pixel remap through an explicit validated material helper on the six new leaves; old two-leaf geometry guard is not falsely claimed to apply. Other faces use lacquer. Reuse original library ownership; no shared source pixels mutated. Unavailable texture fixtures must not claim corrected count.
+
+TDD actual three geometry/navigation tests and six-leaf real HD/SD nine-row test first RED; then new component, old material ownership tests, fullWorld three lanes both ways/10,60Hz/walk,run and nearby Tiren/own gallery checks. Same-camera whole images show actual gate/neighbours, not GPU. One final build, Astra review, separate independent backup. Userbranches/main frozen. No claim historical whole restoration or measured height/width.

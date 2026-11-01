@@ -6,8 +6,8 @@ import {buildStuddedDoor} from '../../HallKit.js';
 // they are engineering fits, not measured architectural dimensions.
 export function buildYouyiFreshGate(kit,item,zoneId,index){
  if(zoneId!=='axis-courts'||index!==3||item.name!=='右翼门'||item.x!==110.7||item.z!==-52.8||item.rot!=='west'||item.style!=='hall')throw Error('Unexpected Youyi binding');
- const f=kit.frame(item.x,item.z,-Math.PI/2),ph=.45,top=4.85;
- f.name=item.name;const g={profile:'youyi-five-bay-fresh',objectId:'FC-E2A42F047A',bayCount:5,portalCount:3,portalCenters:[-2.52,0,2.52],clearWidth:2,platformY:ph,width:12.6,depth:6.4,wallGap:13.2,dimensionStatus:'COMPACT_EXISTING_INTERFACE_ENGINEERING_FIT_NOT_SURVEY',wholeObjectAccepted:false};
+ const f=kit.frame(item.x,item.z,-Math.PI/2),ph=1.8,rise=1.35,run=12,top=4.85+rise;
+ f.name=item.name;const g={profile:'youyi-five-bay-fresh',objectId:'FC-E2A42F047A',bayCount:5,portalCount:3,portalCenters:[-2.52,0,2.52],clearWidth:2,platformY:ph,approachRun:run,width:12.6,depth:6.4,wallGap:13.2,dimensionStatus:'COMPACT_GATE_HIGH_PLATFORM_LONG_APPROACH_ENGINEERING_FIT_NOT_SURVEY',wholeObjectAccepted:false};
  f.userData.gateGeometry=g;f.userData.structure={...g,id:'axis-courts/items/3',sourceViews:['3807','2017'],sideConnectionsChanged:false};
  const tag=(o,role)=>{o.name=role;o.userData.role=role;return o;};
  const box=(role,mat,w,h,d,x,y,z)=>tag(kit.box(f,mat,w,h,d,x,y,z),role);
@@ -15,15 +15,33 @@ export function buildYouyiFreshGate(kit,item,zoneId,index){
  solid('youyi-platform','wall_brick',13.2,ph,8,0,ph/2,0);
  box('youyi-paving','stone_slab',13.2,.06,8,0,ph-.03,0);kit.walkBox(f,-6.6,-4,6.6,4,ph);kit.walkables.at(-1).rescue=false;
  for(const s of[-1,1]){
-  tag(kit.mesh(f,wedge(5.4,s*4,s*7,ph),kit.lib.material('stone_slab'),0,0,0),'youyi-approach');kit.walkRamp(f,-5.4,5.4,s*4,s*7,ph,0);
+  tag(kit.mesh(f,wedge(5.4,s*4,s*(4+run),ph),kit.lib.material('stone_slab'),0,0,0),'youyi-approach');kit.walkRamp(f,-5.4,5.4,s*4,s*(4+run),ph,0);
   // Conservative inscribed solid slices match the visible wedge, no hidden floor.
-  for(let i=0;i<15;i++){const z0=s*(4+i*.2),z1=s*(4+(i+1)*.2),y=ph*(1-(i+1)/15);if(y>0)kit.col(f,-5.4,0,z0,5.4,y,z1);}
+  for(let i=0;i<60;i++){const z0=s*(4+i*.2),z1=s*(4+(i+1)*.2),y=ph*(1-(i+1)/60);if(y>0)kit.col(f,-5.4,0,z0,5.4,y,z1);}
   for(const x of[-5.55,5.55]){
-   for(let i=0;i<=4;i++){const z=s*(4+i*.75),y=ph*(1-i/4);solid('youyi-rail','marble',.18,.9,.18,x,y+.45,z);}
-   const m=box('youyi-rail','marble',.14,.16,Math.hypot(3,ph),x,ph/2+.72,s*5.5);m.rotation.x=s*Math.atan2(ph,3);
-   kit.col(f,x-.09,0,s*4,x+.09,1.3,s*7);
+   // Own public west view: lower stone panels and rounded post heads.
+   // Compact visual fit inside the retained rail proxy, not measured carving.
+   for(let i=0;i<=16;i++){
+    const z=s*(4+i*.75),y=ph*(1-i/16),cy=y+.45;
+    // Keep original .18 x .9 x .18 post collision arithmetic exactly.
+    kit.col(f,x-.18/2,cy-.9/2,z-.18/2,x+.18/2,cy+.9/2,z+.18/2);
+    box('youyi-rail','marble',.13,.72,.13,x,y+.36,z);
+    const head=new T.LatheGeometry([[.065,0],[.085,.025],[.09,.07],[.075,.12],[.035,.165],[0,.18]].map(p=>new T.Vector2(...p)),12);
+    tag(kit.mesh(f,head,kit.lib.material('marble'),x,y+.72,z),'youyi-stone-head');
+   }
+   for(let i=0;i<16;i++){
+    const z=s*(4+(i+.5)*.75),y=ph*(1-(i+.5)/16);
+    const panel=box('youyi-stone-panel','marble',.12,.48,Math.hypot(.57,.57*ph/run),x,y+.34,z);
+    panel.rotation.x=s*Math.atan2(ph,run);
+   }
+   const m=box('youyi-rail','marble',.14,.16,Math.hypot(run,ph),x,ph/2+.72,s*(4+run/2));m.rotation.x=s*Math.atan2(ph,run);
+   // Short proxies follow the actual stone rail, never a full-height side wall.
+   for(let i=0;i<48;i++){const a=4+i*.25,b=a+.25,y0=ph*(1-i/48),y1=ph*(1-(i+1)/48);kit.col(f,x-.09,y1,s*a,x+.09,y0+.9,s*b);}
   }
  }
+ // Preserve the approach opening; close only the exposed outer platform margins.
+ for(const x of[-6.51,6.51])for(const s of[-1,1])solid('youyi-platform-edge-guard','marble',.18,.9,.8,x,ph+.45,s*3.6);
+ for(const s of[-1,1])for(const x of[-6.075,6.075])solid('youyi-platform-edge-guard','marble',1.05,.9,.18,x,ph+.45,s*3.91);
  const col=new T.CylinderGeometry(.16,.18,top-ph,10);
  for(const x of[-6.3,-3.78,-1.26,1.26,3.78,6.3])for(const z of[-3.2,3.2]){
   tag(kit.mesh(f,col,kit.lib.material('wood_column'),x,(top+ph)/2,z),'youyi-main-column');kit.col(f,x-.18,ph,z-.18,x+.18,top,z+.18);
@@ -33,10 +51,10 @@ export function buildYouyiFreshGate(kit,item,zoneId,index){
  for(const s of[-1,1]){
   solid('youyi-end-room','wall_red',2.52,top-ph,6.4,s*5.04,(top+ph)/2,0);
   for(const z of[-3.22,3.22]){
-   box('youyi-window-sill','wood_column',2.2,.12,.12,s*5.04,1.15,z);
-   box('youyi-end-window','wood_column',2.2,.14,.12,s*5.04,3.9,z);
-   for(let i=0;i<10;i++)box('youyi-window-lattice','wood_column',.035,2.65,.09,s*5.04-1.05+i*.2333,2.525,z);
-   for(let i=0;i<10;i++)box('youyi-window-lattice','wood_column',2.2,.035,.09,s*5.04,1.2+i*.3,z);
+   box('youyi-window-sill','wood_column',2.2,.12,.12,s*5.04,1.15+rise,z);
+   box('youyi-end-window','wood_column',2.2,.14,.12,s*5.04,3.9+rise,z);
+   for(let i=0;i<10;i++)box('youyi-window-lattice','wood_column',.035,2.65,.09,s*5.04-1.05+i*.2333,2.525+rise,z);
+   for(let i=0;i<10;i++)box('youyi-window-lattice','wood_column',2.2,.035,.09,s*5.04,1.2+i*.3+rise,z);
   }
  }
  for(const x of g.portalCenters){

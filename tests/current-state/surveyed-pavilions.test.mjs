@@ -90,7 +90,9 @@ for(const key of ['hongyi','tiren']) {
     assert.ok(tilePeak<g.elevations.ridge-.4,'tile peak must not be substituted for cap crest');
     const eave=roofVertices.filter(p=>Math.abs(p.x)<1e-5&&Math.abs(p.z-g.roof.front)<1e-5);assert.ok(eave.length);near(Math.max(...eave.map(p=>p.y)),g.elevations.upper_eave,'actual upper eave midpoint');
     assert.equal(roof.userData.ridgeReferenceObject,'central-main-ridge-cap-crest');
-    assert.equal(roof.userData.ornamentFidelity,'LOW_DETAIL_CHIWEN_OMITTED');
+    assert.equal(roof.userData.ornamentFidelity,'COARSE_END_CHIWEN_PHOTO_SILHOUETTE_NOT_SURVEYED');
+    assert.equal(roof.userData.pavilionChiwen.profile,key);
+    assert.equal(roof.userData.pavilionChiwen.count,2);
     assert.equal(root.userData.pavilion.dimensions.currentCondition2026Accepted,false);
   });
 

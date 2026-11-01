@@ -1,0 +1,291 @@
+{
+  "base": "5b83065fd660fa5f7c68e8cbfa5266aa779a80e1",
+  "sourcePins": {
+    "src/scene/palace/special/RearRightPlatform.js": "eca55b2728e13ec7dca7f470a4db03d5ed7f2ea69d18fcdaab61aef42ead14a3",
+    "src/scene/palace/special/RearAxisGate.js": "69758e2792a03fd89abdaaa07c1bf7008ad63388bae4a3495c4ac9bf2fdaca5c",
+    "src/scene/zones/ZoneBase.js": "e60ca289c5c7e4fb695a8b9eb0e70932fa3dab639d3cb7913a804c1b301d2086",
+    "src/scene/palace/special/YouyiFreshGate.js": "6288b85ac9b11c7659b431314b020b62ad633b2a64a5985d2a64d4e0f2be9781",
+    "src/scene/palace/special/MiddleLeftPlatform.js": "34d06604041db5fead9f74d4e98e8c23ea973537b206a65fc426bc7eef310f8e",
+    "src/utils/Collision.js": "00b009c114fd11bbd45234ced0de906d7780cd89428377dedc4efc8a5b4e3c56",
+    "src/controls/FirstPerson.js": "c90de689a5710d1ed272482429b25b14774591eb0f6dd09731cf6bc8c4d5c61c",
+    "data/zones/axis-courts.json": "4f4aeac4786e0452929edfbb8bc5dc29c5b67c734b9ff5e671116126772b593f",
+    "tests/photo-fidelity/batches/rear-axis-gates.test.mjs": "794deb094ef654f45d117acf01c105c14d9e738e494177a7651f4c1c465442d6",
+    "tests/r157-houyou-high/capture.mjs": "20ae2cd7fe267beb7e2c192e3802148c739580eb4ded7fb91ad91c8918caf14e",
+    "tests/r157-houyou-high/component.test.mjs": "0425bba3957a9e46bec7448338422c586d5f63da365695fdb9f045420ce79dd0",
+    "tests/r157-houyou-high/export-cpu.mjs": "f95cd4e8cd714e3a7f21f0748ab66f53d89ee93e506bc39a4e2ef1dc069451a3",
+    "tests/r157-houyou-high/fixture.mjs": "a16e6970889881abc4c5abf4233a892a06995dbe8fdfdb5bcd45b1059f7372f2",
+    "tests/r157-houyou-high/occupancy.mjs": "ed38347c9c2aa82f7d26e648c09a7276aced169a1e97ae42fe54e548a8096db7",
+    "tests/r157-houyou-high/render-cpu.py": "5379783889eeeab66a61556cdac470e68c24708a39a15a1da383c2e4565e384b",
+    "tests/r157-houyou-high/retained-5b.json.gz": "9a9565364af3759b518b48cfc0d958825507954390fd1e07300fb7a767b80d2e",
+    "tests/r157-houyou-high/world.test.mjs": "7c1a5beef0588ba5d72c612c389421befbf3824655a0d690f9f6cc6a1b801588"
+  },
+  "archive": [
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/build.exit",
+      "stored": "archive/build.exit.gz",
+      "rawBytes": 2,
+      "rawSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "storedSHA256": "cabc3a30b39528db601f65ca3ced008dd775595c901102d08ac8ae8976b29bcf"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/build.log",
+      "stored": "archive/build.log.gz",
+      "rawBytes": 1097,
+      "rawSHA256": "432ec4ee89bd74bff50568b81c68ac965f112c02537014e9cf166c8d5685e44c",
+      "storedSHA256": "692c71bb2b9c50286672146a2f3ae215db9f3fa1290c8a76013b3cbac89dbfea"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/cpu/after-north.json.gz",
+      "stored": "archive/cpu_after-north.json.gz",
+      "rawBytes": 93355,
+      "rawSHA256": "cee4f2a09a1f8870d4506bc39cd3bbede31c84f70364214978e5b077b69dc8c4",
+      "storedSHA256": "cee4f2a09a1f8870d4506bc39cd3bbede31c84f70364214978e5b077b69dc8c4"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/cpu/after-north.png",
+      "stored": "views/after-north.png",
+      "rawBytes": 33952,
+      "rawSHA256": "709206e944678007be9183815e571f8d88be454f0f9ce6a75330fbb2dcce4b1b",
+      "storedSHA256": "709206e944678007be9183815e571f8d88be454f0f9ce6a75330fbb2dcce4b1b"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/cpu/after-south.json.gz",
+      "stored": "archive/cpu_after-south.json.gz",
+      "rawBytes": 93394,
+      "rawSHA256": "bbc0b683076a2c5ff327b1ffd49d1668312d3a52e04ccf25c4cb73da7de85d81",
+      "storedSHA256": "bbc0b683076a2c5ff327b1ffd49d1668312d3a52e04ccf25c4cb73da7de85d81"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/cpu/after-south.png",
+      "stored": "views/after-south.png",
+      "rawBytes": 32508,
+      "rawSHA256": "4a118f245888766a59bcf56dbd5b7e1e1065dec14c6ce111547118666f28f80c",
+      "storedSHA256": "4a118f245888766a59bcf56dbd5b7e1e1065dec14c6ce111547118666f28f80c"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/cpu/before-north.json.gz",
+      "stored": "archive/cpu_before-north.json.gz",
+      "rawBytes": 31525,
+      "rawSHA256": "ee3f25dfa4cc7166a21516470982fe38b795668a602805ffc8e9f632723b9462",
+      "storedSHA256": "ee3f25dfa4cc7166a21516470982fe38b795668a602805ffc8e9f632723b9462"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/cpu/before-north.png",
+      "stored": "views/before-north.png",
+      "rawBytes": 27081,
+      "rawSHA256": "f6d27b835abe70ac39391c1c4aa9f9c30e1fce38cc8aaba0ab4774bbd2ff7725",
+      "storedSHA256": "f6d27b835abe70ac39391c1c4aa9f9c30e1fce38cc8aaba0ab4774bbd2ff7725"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/cpu/before-south.json.gz",
+      "stored": "archive/cpu_before-south.json.gz",
+      "rawBytes": 31559,
+      "rawSHA256": "3dd59caa827f012ef1e2818d96fc1413e3a012e158acd4015a97f8e56e92fd01",
+      "storedSHA256": "3dd59caa827f012ef1e2818d96fc1413e3a012e158acd4015a97f8e56e92fd01"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/cpu/before-south.png",
+      "stored": "views/before-south.png",
+      "rawBytes": 27330,
+      "rawSHA256": "f0763add10546a8a2c3351463ff59df2d916fab474ca5af1113822dd4a6256f7",
+      "storedSHA256": "f0763add10546a8a2c3351463ff59df2d916fab474ca5af1113822dd4a6256f7"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/green.exit",
+      "stored": "archive/green.exit.gz",
+      "rawBytes": 2,
+      "rawSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "storedSHA256": "cabc3a30b39528db601f65ca3ced008dd775595c901102d08ac8ae8976b29bcf"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/green.tap",
+      "stored": "archive/green.tap.gz",
+      "rawBytes": 625,
+      "rawSHA256": "9767a94cc8c0dfc52906dcd1c3c7f5ce4035ffc0ca8f39db789207c5b9c95ffd",
+      "storedSHA256": "21c14060b1457a086a5b74cda33ef6f526cef57fc721e2f8edc2b45c3b343172"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/history-parent-missing.exit",
+      "stored": "archive/history-parent-missing.exit.gz",
+      "rawBytes": 4,
+      "rawSHA256": "56292515f7d3a7110811eb8de26b3f75f82a0766aa5a1fd66ebcfcb84fe6d5ff",
+      "storedSHA256": "b305f9a219f8f539eb9e3e95f7fc45babf4dee6e219124f4f48f8d306b1044cc"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/history-parent-missing.log",
+      "stored": "archive/history-parent-missing.log.gz",
+      "rawBytes": 39,
+      "rawSHA256": "0dcf65877d86c38f2274bf8adbb40685ad4126669c6f8749b89f2a2793452264",
+      "storedSHA256": "94051c27c49f7634400882d74508c158853b914df8d81b07128216c99e5ed001"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/occupancy-before.exit",
+      "stored": "archive/occupancy-before.exit.gz",
+      "rawBytes": 2,
+      "rawSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "storedSHA256": "cabc3a30b39528db601f65ca3ced008dd775595c901102d08ac8ae8976b29bcf"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/occupancy-before.json",
+      "stored": "archive/occupancy-before.json.gz",
+      "rawBytes": 75,
+      "rawSHA256": "62ec9eb6fc84125b81457bac514efdece5392d5f6272f9353f7252173ca8b493",
+      "storedSHA256": "b89275d431de6078592782c1422feee690063bf4400f1edbdec66827d0ab8d55"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/occupancy-before.log",
+      "stored": "archive/occupancy-before.log.gz",
+      "rawBytes": 1091,
+      "rawSHA256": "b4fcdaca7754731ec21f4dfd63175c857b234da8572f3e8ead8014565957ed73",
+      "storedSHA256": "b2d2c0e177588dcc567cc581e65200e483e4aa3a76bbfedaf503f5610b19c5df"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/red.exit",
+      "stored": "archive/red.exit.gz",
+      "rawBytes": 2,
+      "rawSHA256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "storedSHA256": "d381e5a9b7c1c71b5fb3fef202103bf4b6098ce288f148735de1ecf61d4e3b75"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/red.tap",
+      "stored": "archive/red.tap.gz",
+      "rawBytes": 4851,
+      "rawSHA256": "2956b0b8ddc6260d7224782cce9a01cf5c4a8209e83b12baec09850f967d8d11",
+      "storedSHA256": "7db938b8b9cc2c40f73ba7a39e6ea840e431a072b2f8a77fd06f31b7d8a7b22c"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/related-filter-miss.exit",
+      "stored": "archive/related-filter-miss.exit.gz",
+      "rawBytes": 2,
+      "rawSHA256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "storedSHA256": "d381e5a9b7c1c71b5fb3fef202103bf4b6098ce288f148735de1ecf61d4e3b75"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/related-filter-miss.tap",
+      "stored": "archive/related-filter-miss.tap.gz",
+      "rawBytes": 3092,
+      "rawSHA256": "8b6ab2eff1cc1793f630821f79eb5b7e5933c04e639bfb7ac680f57a164b25b4",
+      "storedSHA256": "94839485e4165bba9c77b6a0aff1d4e4411f8dd5800645f8a2cdc987a2aaa89d"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/related-final.exit",
+      "stored": "archive/related-final.exit.gz",
+      "rawBytes": 2,
+      "rawSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "storedSHA256": "cabc3a30b39528db601f65ca3ced008dd775595c901102d08ac8ae8976b29bcf"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/related-final.tap",
+      "stored": "archive/related-final.tap.gz",
+      "rawBytes": 1717,
+      "rawSHA256": "528805162afa7d5081e2d1ce79a29913829f37005d12c56d4fecffb9e847c551",
+      "storedSHA256": "6125599f4e1d9cf2584790c3674a1567a371875da98f646a22599c59f81d7905"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/related-first.exit",
+      "stored": "archive/related-first.exit.gz",
+      "rawBytes": 2,
+      "rawSHA256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "storedSHA256": "d381e5a9b7c1c71b5fb3fef202103bf4b6098ce288f148735de1ecf61d4e3b75"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/related-first.tap",
+      "stored": "archive/related-first.tap.gz",
+      "rawBytes": 5000,
+      "rawSHA256": "4fd9914a385976d119ce58106bb1aec0aaaa04c556f581fd3099cb02a1f348bc",
+      "storedSHA256": "96f4bdd3e9df0ea730fa7b1da9e879de6aca4504be707b0230503b6653ab5ae9"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/render-final.exit",
+      "stored": "archive/render-final.exit.gz",
+      "rawBytes": 2,
+      "rawSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "storedSHA256": "cabc3a30b39528db601f65ca3ced008dd775595c901102d08ac8ae8976b29bcf"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/render-final.log",
+      "stored": "archive/render-final.log.gz",
+      "rawBytes": 552,
+      "rawSHA256": "9fcd5d55a6393a5700fc0faa1636483eb5d761256e006b88b96c0d64ced6cf1a",
+      "storedSHA256": "5f546233db190c43288229d2c526d1a50f510ca44ffc9c56efbfd7e1929b2c4e"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/render.exit",
+      "stored": "archive/render.exit.gz",
+      "rawBytes": 2,
+      "rawSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "storedSHA256": "cabc3a30b39528db601f65ca3ced008dd775595c901102d08ac8ae8976b29bcf"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/render.log",
+      "stored": "archive/render.log.gz",
+      "rawBytes": 552,
+      "rawSHA256": "9fcd5d55a6393a5700fc0faa1636483eb5d761256e006b88b96c0d64ced6cf1a",
+      "storedSHA256": "5f546233db190c43288229d2c526d1a50f510ca44ffc9c56efbfd7e1929b2c4e"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/world-final.exit",
+      "stored": "archive/world-final.exit.gz",
+      "rawBytes": 2,
+      "rawSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "storedSHA256": "cabc3a30b39528db601f65ca3ced008dd775595c901102d08ac8ae8976b29bcf"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/world-final.json",
+      "stored": "archive/world-final.json.gz",
+      "rawBytes": 1779426,
+      "rawSHA256": "da2809f3a2dad157795183ba26a3c8ae8d6b6e5d8b622bfe85b65f9b6742c9a5",
+      "storedSHA256": "5c4809bc905d137a9a4393c121a12772204964ed88041eb6d3557c8b64234feb"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-houyou-evidence-1346/world-final.tap",
+      "stored": "archive/world-final.tap.gz",
+      "rawBytes": 1266,
+      "rawSHA256": "fdc95c401334606688ec2e27d717d910de579b22de1ea5153508f0cadeba920e",
+      "storedSHA256": "ebf20c0007d545acfa8273757b530fa1c29d15dd5015111c3b6daa926fe738a0"
+    }
+  ],
+  "world": {
+    "rear-right": {
+      "records": 24,
+      "arrived": 24,
+      "frames": 8004,
+      "maxAbsFeetGround": 0.15033333333333676
+    },
+    "retained-middle-right": {
+      "records": 4,
+      "arrived": 4,
+      "frames": 2096,
+      "maxAbsFeetGround": 0.21277777777777862
+    },
+    "retained-rear-left": {
+      "records": 4,
+      "arrived": 4,
+      "frames": 987,
+      "maxAbsFeetGround": 0
+    }
+  },
+  "components": {
+    "total": 15,
+    "passed": 15,
+    "omittedHistoricalTest": 1
+  },
+  "build": {
+    "schema": 1,
+    "release": "R146-fix",
+    "buildId": "R146-fix-b62b02795abd",
+    "sourceFingerprint": "765bf450d8bfa194ee5332981b61c715e53e61eb7d6b2c4da5c3b2098b338c8f",
+    "sourceCommit": "5b83065fd660fa5f7c68e8cbfa5266aa779a80e1",
+    "sourceDirty": true,
+    "base": "/gugong/"
+  },
+  "sourcePhotos": {
+    "houyou-photo-1.jpg": "c3765f5619c0bf0b5b8ca3c38b07bd709515e0a8ca09cff4e8c7a00b947d3c24",
+    "houzuo.json": "197a4a10d15914c1d70f804a2320ca317826d6fbed9013d8e52f530d10728ab5",
+    "houyou.json": "06d0c4125e1281d70e91c73a823224248046de23c09353e4e17952eecfd72f66",
+    "houyou.jpg": "950795f6dd5477c2f18b75226c0a7e407ec13f27bf54ddb56bd4a4cf2092cda5",
+    "houzuo.jpg": "971063f8a0c6bc0e839aa10df12b257490bae1eb50b1dcd5b4c03cfb0591051d",
+    "houyou-photo-0.jpg": "587d79914a40b466ac78e91b42566d8636ea3074b3376800f4df56839cf1e942",
+    "SOURCE-MANIFEST.json": "0f285c94dd490aa99cdf4778d9c79d97372b200825743748872fbf0c505f3847"
+  }
+}

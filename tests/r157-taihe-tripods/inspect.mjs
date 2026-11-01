@@ -1,0 +1,2 @@
+import fs from'node:fs';import * as T from'three';import{library}from'../lib/inner-palace-fixture.mjs';import{PALACE_LAYOUT}from'../../src/scene/Layout.js';import{PalaceBuilder}from'../../src/scene/PalaceBuilder.js';
+const b=new PalaceBuilder(new T.Scene(),library());try{b.buildPalaces(PALACE_LAYOUT.filter(p=>['太和殿','中和殿','保和殿'].includes(p.name)));console.log(JSON.stringify({tiers:b.taiheSouthTiers,boxes:b.walkables.filter(r=>r.type==='box').map(x=>({min:x.box?.min,max:x.box?.max}))},null,2));}finally{b.dispose()}

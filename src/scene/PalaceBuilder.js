@@ -1,3 +1,5 @@
+import {buildTaiheEighteenTripods} from './palace/special/TaiheEighteenTripods.js';
+import {buildTaiheBronze} from './palace/special/TaiheBronzeSilhouettes.js';
 import {registerBPrincipalStairs} from './palace/BPrincipalStairContact.js';
 import {registerTaihemenStairContact} from './palace/TaihemenStairContact.js';
 import {installWumenPracticalAssembly} from './palace/special/WumenPracticalAssembly.js';
@@ -576,7 +578,7 @@ export class PalaceBuilder {
     }
     if (name === '太和门') { buildTaihemenBronzeLions(this,g); registerTaihemenStairContact(this,g); }
     if (name === '后三宫') buildJiaotaiLowRooms(this,g,rects,sideStairProfile);
-    if (name === '三台') this.terraceOrnaments(g, rects[0], top);
+    if (name === '三台') this.terraceOrnaments(g, rects[0], top, this.taiheSouthTiers);
     if (name === '三台') {
       for(const profile of taiheWalls)(profile.side==='east'?buildTaiheEastFirewall:buildTaiheWestFirewall)(this,g,profile);
       const baoheLinks=axisCourts.items.filter(i=>i.kind==='wall'&&i.from?.[0]<0&&i.gaps?.some(gap=>gap.gate==='后左门'));
@@ -699,26 +701,22 @@ export class PalaceBuilder {
   }
 
   /** 太和殿月台陈设：铜鼎、日晷（东）、嘉量（西）、铜龟铜鹤 */
-  terraceOrnaments(g, r, y) {
+  terraceOrnaments(g, r, y, actualSouthTiers = null) {
     const bronze = this.ownMat('bronze', { color: 0x4a3b28, metalness: 0.7, roughness: 0.45 });
     const marble = this.library.material('marble');
     const zf = r.z0 + 3;
     for (const s of [-1, 1]) {
-      for (let k = 0; k < 3; k++) this.tripod(g, bronze, s * (r.hw - 3), y, zf + k * 3.8);
+      if (!actualSouthTiers) for (let k = 0; k < 3; k++) this.tripod(g, bronze, s * (r.hw - 3), y, zf + k * 3.8);
       this.box(g, marble, 1.6, 1.2, 1.6, s * 9, y + 0.6, zf + 1, { box: 2 });
       // 铜龟 / 铜鹤
-      const turtle = new THREE.Mesh(new THREE.SphereGeometry(0.9, 16, 10), bronze);
-      turtle.scale.set(1, 0.6, 1.3);
-      turtle.position.set(s * 9, y + 1.6, zf + 1);
-      g.add(turtle);
+      buildTaiheBronze(g,bronze,{kind:'turtle',x:s*9,y,z:zf+1});
       this.box(g, marble, 1.6, 1.2, 1.6, s * 13, y + 0.6, zf + 1, { box: 2 });
-      const crane = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.35, 2.2, 8), bronze);
-      crane.position.set(s * 13, y + 2.3, zf + 1);
-      g.add(crane);
+      buildTaiheBronze(g,bronze,{kind:'crane',x:s*13,y,z:zf+1});
       this.col(s * 9 - 0.8, y, zf + 0.2, s * 9 + 0.8, y + 3, zf + 1.8);
       this.col(s * 13 - 0.8, y, zf + 0.2, s * 13 + 0.8, y + 3, zf + 1.8);
     }
     buildTaiheTerraceInstruments(this, g, {y, zf});
+    if (actualSouthTiers) buildTaiheEighteenTripods(this, g, bronze, actualSouthTiers);
   }
 
   tripod(g, mat, x, y, z) {

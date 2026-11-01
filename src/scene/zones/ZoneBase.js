@@ -1,3 +1,5 @@
+import {buildZuoyiOwnGate} from '../palace/special/ZuoyiOwnGate.js';
+import {raiseMiddleLeftPlatform} from '../palace/special/MiddleLeftPlatform.js';
 import {sideConnectionTargets} from '../palace/special/PavilionSideConnections.js';
 import {buildYouyiFreshGate} from '../palace/special/YouyiFreshGate.js';
 import {sideGateGalleryOptions,validateSideGateGalleryDeck} from '../palace/special/SideGateGalleryProfiles.js';
@@ -369,6 +371,7 @@ export class ZoneBase {
   }
 
   buildGate(item) {
+    if(this.zoneJson.id==='axis-courts'&&item.name==='左翼门'){const b=buildZuoyiOwnGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,b.geometry);return b.width;}
     if(this.zoneJson.id==='axis-courts'&&item.name==='右翼门'){const b=buildYouyiFreshGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,b.geometry);return b.width;}
     if(item.middleRightGate!==undefined){const b=buildMiddleRightGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,b.geometry);return b.width;}
     if(item.rearAxisGate!==undefined){const b=buildRearAxisGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,b.geometry);return b.width;}
@@ -404,8 +407,10 @@ export class ZoneBase {
       eaveCount: item.eaveCount,
     };
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
+    const ownGateColliderStart=this.kit.colliders.length,ownGateWalkableStart=this.kit.walkables.length;
     const width = this.kit.gate(params);
     applyMiddleAxisFacades(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
+    raiseMiddleLeftPlatform(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item,colliderStart:ownGateColliderStart,walkableStart:ownGateWalkableStart});
     applyJingrenGateStoneFrame(this.kit, this.kit.root.children.at(-1), {zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     applyZuoyiDoorFront(this.kit, this.kit.root.children.at(-1), {zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     if (item.gateProfile === 'zhaode' || item.gateProfile === 'zhendu' || item.gateProfile === 'huangji') this.gateGeometries.set(item.name, this.kit.root.children.at(-1).userData.gateGeometry);
@@ -433,6 +438,8 @@ export class ZoneBase {
     // Generic wall physics is historically only 3m; do not change other walls.
     const ownMiddleRight=this.zoneJson.id==='axis-courts'&&this.zoneJson.items.indexOf(item)===15&&this.gateGeometries.get('中右门')?.profile==='own-three-bay-end-aisles';
     if(ownMiddleRight&&(JSON.stringify(item.from)!=='[65.5,-12.2]'||JSON.stringify(item.to)!=='[110.7,-12.2]'||item.h!==7||item.t!==undefined||gaps.length!==1||gaps[0].at!==80||gaps[0].w!==16.4))throw Error('Invalid own middle-right adjoining wall');
+    const ownMiddleLeft=this.zoneJson.id==='axis-courts'&&this.zoneJson.items.indexOf(item)===13;
+    if(ownMiddleLeft&&(JSON.stringify(item.from)!=='[-65.5,-12.2]'||JSON.stringify(item.to)!=='[-106.47,-12.2]'||item.h!==7||gaps.length!==1||gaps[0].at!==-77||gaps[0].w!==12.4))throw Error('Invalid own middle-left adjoining wall');
     const ownBaoheWall=this.zoneJson.id==='axis-courts'&&[17,19].includes(this.zoneJson.items.indexOf(item));
     if(ownBaoheWall){
       const west=this.zoneJson.items.indexOf(item)===19;
@@ -440,7 +447,7 @@ export class ZoneBase {
     }
     const colliderStart=this.kit.colliders.length;
     this.kit.wall(x1, z1, x2, z2, params);
-    if(ownMiddleRight||ownBaoheWall)for(const collider of this.kit.colliders.slice(colliderStart))collider.max.y=7;
+    if(ownMiddleRight||ownMiddleLeft||ownBaoheWall)for(const collider of this.kit.colliders.slice(colliderStart))collider.max.y=7;
   }
 
   buildCourtWalls(item) {

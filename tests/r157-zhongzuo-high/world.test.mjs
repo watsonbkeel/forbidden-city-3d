@@ -1,0 +1,7 @@
+import test from'node:test';import assert from'node:assert/strict';import fs from'node:fs';import{buildR52World}from'../lib/r52-world.mjs';import{replayKunning}from'../lib/kunning-walk.mjs';import{withBoundedQaMocks}from'../lib/bounded-qa-clock.mjs';
+test('middle-left actual ground-to-ground wide approaches plus retained gate neighbours',async t=>{const w=await buildR52World(),rows=[];try{
+ for(const lane of[-.85,0,.85])for(const fps of[10,60])for(const sprint of[false,true])for(const reverse of[false,true]){const x=-77+lane,points=reverse?[[x,5],[x,-29.4],[x,5]]:[[x,-29.4],[x,5],[x,-29.4]];rows.push({name:'middle-left',lane,fps,sprint,reverse,...withBoundedQaMocks(t,c=>replayKunning(c,w,points,{fps,sprint,startFeet:0,recordFrames:true}))})}
+ for(const [name,x,a,b]of[['retained-middle-right',80,-40,12],['retained-rear-left',-76.4,111,135]])for(const fps of[10,60])for(const sprint of[false,true])rows.push({name,fps,sprint,...withBoundedQaMocks(t,c=>replayKunning(c,w,[[x,a],[x,b],[x,a]],{fps,sprint,startFeet:0,recordFrames:true}))});
+ const negatives=[];for(const x of[-86,-68])negatives.push({x,blocked:w.cm.checkCollision(new w.THREE.Vector3(x,4,-12.2),.5)});
+ fs.writeFileSync(process.env.EVIDENCE_OUT??'/tmp/zhongzuo-world.json',JSON.stringify({rows,negatives}));for(const r of rows)assert.ok(r.arrived,JSON.stringify({name:r.name,lane:r.lane,fps:r.fps,sprint:r.sprint,reverse:r.reverse,end:r.end}));for(const n of negatives)assert.equal(n.blocked,true,'visible retained horizontal wall remains solid at elevated player height');
+ }finally{w.dispose()}});

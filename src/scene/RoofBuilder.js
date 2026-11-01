@@ -571,7 +571,9 @@ function singleRoof(ctx, g, o) {
       const corners = t => polyCorners(4, hx(t), ez * t);
       const S = hipSurface(ctx, g, { corners, Y, tw, lift, th, bearingSoffit, edges: [0, 1, 2, 3].map(k => ({ k, t0: 0, t1: 1 })) });
       for (let c = 0; c < 4; c++) addHip(ctx, g, S.hipLine(c, 0, hr * 0.6), hr, nBeasts, walkingBeastScope(ctx, o._walkingLayer ?? 'single', c));
-      top = addMainRidge(ctx, g, rx, Y(0) - hr, hr, chiwenH);
+      // Only the two explicitly named court pavilions retain their coarse
+      // skyline ends at low detail; other roofs keep their previous defaults.
+      top = addMainRidge(ctx, g, rx, Y(0) - hr, hr, o.pavilionChiwen ? 1.25 : chiwenH, !!o.pavilionChiwen);
     }
   }
   return { eaveY: yb, top, wallSoffitY: y0,
@@ -699,6 +701,10 @@ export function buildRoof(lib, opts) {
   if (!['wudian', 'xieshan', 'pavilion', 'gable'].includes(type)) throw new Error(`Unsupported roof type: ${type}`);
   if(opts.hardGableEnd!==undefined&&(typeof opts.hardGableEnd!=='boolean'||opts.hardGableEnd&&type!=='gable'))throw Error('Hard-gable end profile requires a gable roof and boolean option');
   opts = { ...opts, type, layers: opts.eaveCount ?? opts.layers };
+  if (opts.pavilionChiwen !== undefined &&
+      (!['tiren', 'hongyi'].includes(opts.pavilionChiwen) || type !== 'wudian' || opts.layers !== 1)) {
+    throw new Error('Named pavilion chiwen requires tiren/hongyi and a single hip roof');
+  }
   if (opts.wumenVerticalProfile !== undefined) {
     const p = WUMEN_VERTICAL_PROFILE;
     if (opts.wumenVerticalProfile !== p || type !== 'wudian' || opts.layers !== 2 || opts.brackets !== true ||
@@ -732,6 +738,11 @@ export function buildRoof(lib, opts) {
   g.name = `roof_${opts.type ?? 'wudian'}`;
   const r = roofInto(ctx, g, opts);
   const roof = finalize(ctx, g, r.eaveY);
+  if (opts.pavilionChiwen) roof.userData.pavilionChiwen = {
+    profile: opts.pavilionChiwen, count: 2, height: 1.25,
+    status: 'PHOTO_SILHOUETTE_ENGINEERING_FIT',
+    limits: 'Coarse mirrored end silhouettes only; no surveyed size, species carving or hip-beast rows',
+  };
   if(ctx.jiaotaiCrownResult)roof.userData.jiaotaiCrownCandidate=ctx.jiaotaiCrownResult;
   if (walkingProfile) roof.userData.walkingBeasts = {
     profile: walkingProfile.id, entityId: walkingProfile.entityId, source: walkingProfile.source,

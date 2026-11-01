@@ -1,3 +1,4 @@
+import {preserveWumenSouthDeckOwner,canUseWumenSouthDeckBoundary} from '../scene/palace/special/WumenSouthDeckBoundary.js';
 import {preserveBPrincipalStairOwner,resolveBPrincipalStairContact} from '../scene/palace/BPrincipalStairContact.js';
 import {preserveTaihemenStairContactOwner,resolveTaihemenStairContact} from '../scene/palace/TaihemenStairContact.js';
 import {preserveWumenPracticalDescentOwner,resolveWumenPracticalDescent} from '../scene/palace/special/WumenPracticalDescent.js';
@@ -97,6 +98,7 @@ export class CollisionManager {
       const box = walkable.box.isBox3 ? walkable.box.clone() : new THREE.Box3().setFromObject(walkable.box);
       // rescue: false —— 不做"钻进台基托回台面"（城台顶面下方有门洞，从门洞穿过时不能被托上城台）
       if (!box.isEmpty()) this.walkables.push({ type: 'box', box, rescue: walkable.rescue !== false, tag, ...(walkable.sideGateGalleryDeck===undefined?{}:{sideGateGalleryDeck:validateSideGateGalleryDeck(walkable.sideGateGalleryDeck,box)}) });
+      if (!box.isEmpty()) preserveWumenSouthDeckOwner(this.walkables.at(-1),walkable);
       if (!box.isEmpty()) preserveTaihemenStairContactOwner(this.walkables.at(-1),walkable);
       if (!box.isEmpty()) preserveBPrincipalStairOwner(this.walkables.at(-1),walkable);
       return;
@@ -372,7 +374,8 @@ export class CollisionManager {
   checkBoundary(position, radius = DEFAULT_PLAYER_RADIUS) {
     const { minX, maxX, minZ, maxZ } = LAYOUT.BOUNDARY;
     return position.x - radius >= minX && position.x + radius <= maxX &&
-      position.z - radius >= minZ && position.z + radius <= maxZ;
+      position.z + radius <= maxZ &&
+      (position.z - radius >= minZ || canUseWumenSouthDeckBoundary(this,position,radius));
   }
 
   checkRiverCrossing(position, radius, from = null, feetY = null, fromFeetY = null) {
