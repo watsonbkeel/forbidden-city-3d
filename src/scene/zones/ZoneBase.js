@@ -14,7 +14,9 @@ import {finishChangchunSouthWindows} from '../palace/special/ChangchunSouthWindo
 import {finishWuyingSouthWindows} from '../palace/special/WuyingSouthWindows.js';
 import {finishWenhuaSouthWindows} from '../palace/special/WenhuaSouthWindows.js';
 import {finishWenhuaCentralDoors} from '../palace/special/WenhuaCentralDoors.js';
+import {finishArrowSouthHeadBands} from '../palace/special/ArrowSouthHeadBands.js';
 import {finishWenyuanUpperSeat} from '../palace/special/WenyuanUpperSeat.js';
+import {finishWenyuanSouthVeranda} from '../palace/special/WenyuanSouthVeranda.js';
 import {finishTiyuanCoverVisual} from '../palace/special/TiyuanCoverVisual.js';
 import {finishTiheSouthVisual} from '../palace/special/TiheSouthVisual.js';
 import {buildSishenShrine} from '../palace/special/SishenShrine.js';
@@ -178,11 +180,13 @@ export class ZoneBase {
     finishTiheSouthVisual(this.kit);
     finishTiyuanCoverVisual(this.kit);
     finishWenyuanUpperSeat(this.kit);
+    finishWenyuanSouthVeranda(this.kit);
     finishWenhuaSouthWindows(this.kit);
     finishWenhuaCentralDoors(this.kit);
     finishWuyingSouthWindows(this.kit);
     finishChangchunSouthWindows(this.kit);
     finishYikunInnerSouthWindows(this.kit);
+    finishArrowSouthHeadBands(this.kit,this.zoneJson);
 
     // Keep distance levels out of the ordinary recursive material merge.
     const yanxiFrames = detachYanxiRuinFrames(this.kit.root);

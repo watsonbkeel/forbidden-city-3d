@@ -1,3 +1,4 @@
+import {buildDonghuaMadao} from './DonghuaMadao.js';
 import { applyXihuaOuterWindowBand } from './XihuaOuterWindowBand.js';
 import * as THREE from 'three';
 import { applyBoxUV } from '../../../utils/GeometryUV.js';
@@ -76,7 +77,7 @@ export function buildEastWestCityGate(kit,item) {
   for(const x of [-bw/2,bw/2])for(let i=1;i<3;i++)column(x,-bd/2+bd*i/3);
   const roof=kit.roof(f,{type:'wudian',width:bw+2.8,depth:bd+2.8,baseY:y+bh,layers:2,brackets:true});
   const railMat=kit.lib.material('balustrade',{alphaTest:.5,side:THREE.DoubleSide});
-  for(const [rw,rd,rx,rz] of [[W,.16,0,-D/2],[W,.16,0,D/2],[.16,D,-W/2,0],[.16,D,W/2,0]]){
+  for(const [rw,rd,rx,rz] of (p.name==='东华门'?[]:[[W,.16,0,-D/2],[W,.16,0,D/2],[.16,D,-W/2,0],[.16,D,W/2,0]])){
     const geo=applyBoxUV(new THREE.BoxGeometry(rw,1.05,rd),kit.lib.tileSize('balustrade'));gateRailFacade(geo,true);
     kit.mesh(f,geo,railMat,rx,y+.525,rz);
   }
@@ -92,5 +93,6 @@ export function buildEastWestCityGate(kit,item) {
   f.userData.cityGate={...p,portalCount:3,bays:5,depthBays:3,eaveCount:2,roof:'wudian',upperAccess:false};
   f.userData.structure={id:`city-gates/${p.name==='东华门'?'donghua':'xihua'}`,...f.userData.cityGate,plaqueMount:f.userData.plaqueMount};
   applyXihuaOuterWindowBand(kit,f,item);
+  buildDonghuaMadao(kit,f,p);
   return f;
 }

@@ -7,13 +7,13 @@ const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-6,`${a} != ${b}`);
 const localTriangles=m=>triangles(m).map(t=>t.map(v=>new THREE.Vector3(...v.position).applyMatrix4(m.matrix)));
 const pointOnTriangle=(p,t)=>{const tri=new THREE.Triangle(...t);return tri.closestPointToPoint(p,new THREE.Vector3()).distanceTo(p)<1e-6;};
 
-test('three observed red division cores use normalized photograph controls, not invented fine lattice or leaf counts',()=>{
+test('three observed red division cores use normalized photograph controls, with explicitly fitted fine lattice and unknown leaf counts',()=>{
  const f=fixture('wenhua',true),d=divisions(f);assert.equal(d.length,3,'coarse production currently has no major divisions');
  const fit=f.g.wenhuaSouthWindow.majorDivisions;assert.equal(fit.status,'PHOTO_FIT_NOT_SURVEYED');assert.deepEqual(fit.fitSpanPx,[768,872]);
  assert.deepEqual(fit.centersPx,[792,819,845]);assert.deepEqual(fit.coreWidthsPx,[4,4,3]);
  const red=parts(f).find(m=>m.userData.wenhuaGateSouthWindow.role==='red-frame').material;
  for(let i=0;i<3;i++){const m=d[i],u=(fit.centersPx[i]-768)/104;near(fit.normalizedCenters[i],u);near(m.position.x,-10.79-4.9*u);near(m.geometry.parameters.width,4.9*fit.coreWidthsPx[i]/104);assert.equal(m.material,red);assert.ok(m.geometry.parameters.width<.2);}
- assert.equal(fit.windowLeafCount,null);assert.equal(fit.fineGridModeled,false);assert.match(f.g.wenhuaSouthWindow.remainingVisualDifferences,/fine grille/i);dispose(f);
+ assert.equal(fit.windowLeafCount,null);assert.equal(fit.fineGridModeled,true);assert.match(f.g.wenhuaSouthWindow.remainingVisualDifferences,/fine.*grille/i);dispose(f);
 });
 
 test('actual division corners meet retained rail triangles at both ends and closed backing without coincident new end/back faces',()=>{
@@ -31,10 +31,10 @@ test('actual division corners meet retained rail triangles at both ends and clos
  dispose(f);
 });
 
-test('successor preserves every coarse triangle, material and collider, adds only 18 triangles and no new owned resource',()=>{
+test('successor preserves every coarse triangle, material and collider, adds 18 division triangles plus 72 fitted bars and no new owned material',()=>{
  const before=coarseFixture(),after=fixture('wenhua',true);assert.equal(divisions(before).length,0);assert.equal(divisions(after).length,3);
  assert.equal(retainedCoarseHash(after),retainedCoarseHash(before));for(const k of ['nonTarget','otherFiveFaces','physics'])assert.equal(snapshot(after)[k],snapshot(before)[k]);
- assert.equal(snapshot(after).triangles-snapshot(before).triangles,18);assert.equal(after.kit.owned.length,before.kit.owned.length);
+ assert.equal(snapshot(after).triangles-snapshot(before).triangles,18+72*12);assert.equal(after.kit.owned.length,before.kit.owned.length);
  for(const m of divisions(after)){const b=new THREE.Box3().setFromObject(m);assert.ok(b.min.x>=after.g.x-16.05&&b.max.x<=after.g.x-10.43&&b.min.y>=.8&&b.max.y<=7.3&&b.min.z>=after.g.z-.3&&b.max.z<=after.g.z+.3);assert.equal(after.cm.checkCollision(new THREE.Vector3(after.g.x+m.position.x,4,after.g.z),.5),true);}
  assert.equal(hash(physical(after.kit)),hash(physical(before.kit)));dispose(before);dispose(after);
 });

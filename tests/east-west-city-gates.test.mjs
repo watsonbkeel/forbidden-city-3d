@@ -45,7 +45,7 @@ test('profile rejects unknown labels, mismatched orientation and nonfinite ancho
  for(const delta of [{name:'猜测门'},{rot:'west'},{x:NaN},{cityGateProfile:'generic'}])assert.throws(()=>eastWestCityGateGeometry({...valid,...delta}),/profile|anchor/);
 });
 test('all six portals pass the actual controller both ways and masonry remains blocking',async()=>{
- const W=await buildWorld();
+ const W=await buildWorld({realMaterials:true});
  for(const gate of W.gates.filter(g=>g.item.cityGateProfile==='east-west')){
   const p=eastWestCityGateGeometry(gate.item),c=Math.cos(p.rot),s=Math.sin(p.rot);
   const toW=(x,z)=>[p.x+x*c+z*s,p.z-x*s+z*c];

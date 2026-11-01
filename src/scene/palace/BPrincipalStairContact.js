@@ -1,22 +1,27 @@
 import * as THREE from 'three';
 import {PLAYER} from '../../config/constants.js';
 import source from '../../../data/architecture/b-practical-stair-contacts.json' with {type:'json'};
+import donghuaSource from '../../../data/architecture/donghua-madao-contacts.json' with {type:'json'};
 import {pathFootprintCovered} from '../../controls/WumenJointAscentCoverage.js';
 import {wumenJointBodySweep} from '../../controls/WumenJointAscentSweep.js';
 
 // An allowlist of existing builder-authored surfaces, not generated supports.
-// All dimensions come from the unchanged e640 runtime inventory. Neither this
+// Original group dimensions come from the unchanged e640 runtime inventory;
+// the separately host-bound Donghua group comes from its c0f5548b built surfaces. Neither this
 // module nor its hooks allocate a mesh, collider, walkable or alternative ground.
-const all=new Map(source.groups.flatMap(g=>g.surfaces.map(p=>[p.id,p]))),previous=new WeakMap();
+const groups=[...source.groups,donghuaSource];
+const all=new Map(groups.flatMap(g=>g.surfaces.map(p=>[p.id,p]))),previous=new WeakMap();
 const near=(a,b)=>Number.isFinite(a)&&Math.abs(a-b)<1e-8;
 const rect=w=>w.type==='ramp'?w:{minX:w.box.min.x,maxX:w.box.max.x,minZ:w.box.min.z,maxZ:w.box.max.z};
 const inside=(p,x,z)=>x>=p.minX&&x<=p.maxX&&z>=p.minZ&&z<=p.maxZ;
 const height=(w,x,z)=>w.type==='box'?w.box.max.y:w.y0+(w.y1-w.y0)*((w.axis==='x'?x:z)-w.a0)/(w.a1-w.a0);
 function matches(w,p){return w?.type===p.type&&(p.type==='ramp'?w.axis===p.axis&&['minX','maxX','minZ','maxZ','a0','a1','y0','y1'].every(k=>near(w[k],p[k])):w.box?.isBox3&&p.min.every((v,i)=>near(w.box.min.getComponent(i),v))&&p.max.every((v,i)=>near(w.box.max.getComponent(i),v)));}
 export function registerBPrincipalStairs(builder,parent,groupId,walkableStart){
- const group=source.groups.find(p=>p.id===groupId);
+ const group=groups.find(p=>p.id===groupId);
  if(!group||!Number.isInteger(walkableStart)||walkableStart<0||walkableStart>builder.walkables.length)return false;
- if(groupId==='three-halls'?(parent?.name!=='三台'||builder.ox!==0||builder.oz!==0):parent?.userData.pavilion?.profile!==groupId)return false;
+ if(groupId==='donghua-madao'){
+  if(parent?.name!=='city-gate-东华门'||parent.position.x!==-365.8||parent.position.z!==-257||parent.rotation.y!==Math.PI/2||parent.userData.donghuaMadao?.objectId!=='FC-C8AD5BD621'||parent.userData.cityGate?.portalCount!==3||!builder.root?.children.includes(parent))return false;
+ }else if(groupId==='three-halls'?(parent?.name!=='三台'||builder.ox!==0||builder.oz!==0):parent?.userData.pavilion?.profile!==groupId)return false;
  const owned=builder.walkables.slice(walkableStart),rows=group.surfaces.map(p=>owned.filter(w=>matches(w,p)));
  // Partial test fragments and changed future geometry retain native policy;
  // they cannot silently borrow the complete current assembly's contact grant.
@@ -42,7 +47,7 @@ function toeRect(r){
 export function resolveBPrincipalStairContact(cm,state,delta,radius=.5){
  const prior=previous.get(cm);previous.delete(cm);
  if(!state||state.airborne!==false||state.verticalVelocity>0||radius!==.5||![state.x,state.z,state.feetY,state.groundY,state.verticalVelocity,delta].every(Number.isFinite)||delta<=0||delta>.100001)return null;
- const group=source.groups.find(g=>g.surfaces.some(p=>p.type==='ramp'&&state.x>=p.minX-1.5&&state.x<=p.maxX+1.5&&state.z>=p.minZ-1.5&&state.z<=p.maxZ+1.5));if(!group)return null;
+ const group=groups.find(g=>g.surfaces.some(p=>p.type==='ramp'&&state.x>=p.minX-1.5&&state.x<=p.maxX+1.5&&state.z>=p.minZ-1.5&&state.z<=p.maxZ+1.5));if(!group)return null;
  const rows=live(cm,group);if(!rows)return null;
  const ramps=rows.filter(w=>w.type==='ramp'),toes=ramps.map(toeRect).filter(Boolean);
  // At 10 Hz a legitimate sprint crosses more than one 0.6 m substep. Query

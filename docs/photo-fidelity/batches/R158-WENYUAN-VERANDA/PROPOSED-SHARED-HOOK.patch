@@ -1,0 +1,9 @@
+--- a/src/scene/zones/ZoneBase.js
++++ b/src/scene/zones/ZoneBase.js
+@@
+ import {finishWenyuanUpperSeat} from '../palace/special/WenyuanUpperSeat.js';
++import {finishWenyuanSouthVeranda} from '../palace/special/WenyuanSouthVeranda.js';
+@@
+     finishWenyuanUpperSeat(this.kit);
++    finishWenyuanSouthVeranda(this.kit);
+     finishWenhuaSouthWindows(this.kit);

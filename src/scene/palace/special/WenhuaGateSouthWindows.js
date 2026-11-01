@@ -62,7 +62,7 @@ export function applyWenhuaGateSouthWindows(kit,frame) {
   const meta={objectId:'FC-5652FA389B',source:SOURCE,photographyDate:null,status:'VERIFY_PENDING',accepted:false,
     scope:'PHOTO_RIGHT_END_BAY_SOUTH_ONLY',dimensionStatus:'REVERSIBLE_PHOTO_FIT_NOT_SURVEYED',
     unknown:'Fine grille repeat-unit topology/count, full joined band widths, window-leaf count and material identity behind grille; no copied template.',
-    remainingVisualDifferences:'Photograph contains red fine grille members; these are not modeled. Coarse frame/sill and three division cores are not a complete window repair.',
+    remainingVisualDifferences:'Fine red crossed grille is a bounded visual fit; exact repeat motif/count, joints and occluded leaves remain unverified.',
     oldGeometryException:'Only two original south-facing skin triangles removed; five other faces retained exactly.',
     localBounds:{min:[-16.05,.8,-.3],max:[-10.43,7.3,.3]},stoneTop:2.66,frameTop:6.95,
     closedWindowNotPassage:true};
@@ -89,7 +89,7 @@ export function applyWenhuaGateSouthWindows(kit,frame) {
     spanBoundsPx:[[768,774],[869,876]],centersPx:[792,819,845],centerTolerancePx:2,
     coreWidthsPx:[4,4,3],coreWidthBoundsPx:[[3,5],[3,5],[2,4]],
     widthMeaning:'Conservative visible red cores; broader joined/blurred band widths remain unknown.',
-    rightBoundConfidence:'LOW_TREE_OCCLUDED',fineGridModeled:false,windowLeafCount:null};
+    rightBoundConfidence:'LOW_TREE_OCCLUDED',fineGridModeled:true,windowLeafCount:null};
   const span=fit.fitSpanPx[1]-fit.fitSpanPx[0],innerWidth=x1-x0-2*t;
   fit.normalizedCenters=fit.centersPx.map(p=>(p-fit.fitSpanPx[0])/span);
   fit.normalizedCoreWidths=fit.coreWidthsPx.map(p=>p/span);
@@ -104,6 +104,26 @@ export function applyWenhuaGateSouthWindows(kit,frame) {
       if(tri.every(j=>Math.abs(geo.attributes.normal.getY(j))<.5&&geo.attributes.normal.getZ(j)<.5))ids.push(...tri);}
     geo.setIndex(ids);m.userData.wenhuaGateSouthWindow.sourceDivisionIndex=i;
   }
+  // Photograph shows repeated fine crossed red work, not blank dark panes.
+  // Fit a readable diamond rhythm INSIDE the existing four apertures; this is
+  // not a claim about the exact traditional motif, repeat count or leaf count.
+  const cores=fit.normalizedCenters.map((c,i)=>({x:x1-t-innerWidth*c,w:innerWidth*fit.normalizedCoreWidths[i]})).sort((a,b)=>a.x-b.x);
+  const gaps=[];let left=x0+t;
+  for(const core of cores){gaps.push([left,core.x-core.w/2]);left=core.x+core.w/2;}
+  gaps.push([left,x1-t]);
+  for(let pane=0;pane<gaps.length;pane++){
+    const [lo,hi]=gaps[pane],inset=.035,xa=lo+inset,xb=hi-inset,ya=y0+t+inset,yb=y1-t-inset;
+    const w=xb-xa,h=yb-ya,slope=h/(4*w),step=h/8;
+    for(const sign of [-1,1])for(let k=-2;k<=10;k++){
+      const b=k*step,m=sign*slope;
+      const ax=Math.max(0,Math.min(-b/m,(h-b)/m)),bx=Math.min(w,Math.max(-b/m,(h-b)/m));
+      if(bx-ax<1e-8)continue;
+      const ay=m*ax+b,by=m*bx+b,dx=bx-ax,dy=by-ay,len=Math.hypot(dx,dy);
+      const bar=box('red-fine-grille',red,len,.028,.055,xa+(ax+bx)/2,ya+(ay+by)/2,-.235);
+      bar.rotation.z=Math.atan2(dy,dx);bar.userData.wenhuaGateSouthWindow.pane=pane;
+    }
+  }
+  meta.fineGrille={status:'PHOTO_REASONABLE_FIT_NOT_SURVEYED',pattern:'CROSSED_DIAGONAL_RHYTHM',repeatCountVerified:false,thickness:.028,panes:4};
   old.geometry=replacement;geometry.dispose();
   g.wenhuaSouthWindow=meta;
   return true;

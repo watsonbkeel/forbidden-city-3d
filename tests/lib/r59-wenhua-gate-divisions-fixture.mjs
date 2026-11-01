@@ -9,4 +9,4 @@ const source=bytes.toString('utf8').replace("from 'three'",`from '${import.meta.
 const coarseAPI=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
 export function coarseFixture(){const f=fixture();if(!coarseAPI.applyWenhuaGateSouthWindows(f.kit,f.frame))throw Error('Coarse fixture refused');f.frame.updateMatrixWorld(true);return f;}
 export const divisions=f=>meshes(f.frame).filter(m=>m.userData.wenhuaGateSouthWindow?.role==='red-major-division');
-export const retainedCoarseHash=f=>hash(meshes(f.frame).filter(m=>m.userData.wenhuaGateSouthWindow?.role!=='red-major-division').map(row));
+export const retainedCoarseHash=f=>hash(meshes(f.frame).filter(m=>!['red-major-division','red-fine-grille'].includes(m.userData.wenhuaGateSouthWindow?.role)).map(row));

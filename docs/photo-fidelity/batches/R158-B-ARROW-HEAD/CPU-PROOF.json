@@ -1,0 +1,80 @@
+{
+  "sourceCommit": "8564214293cf7ab028f19668097fc79f8c4b360a",
+  "sourceHashes": {
+    "src/scene/palace/special/ArrowSouthHeadBands.js": "45411e045a9cd9810fcc0f0552ac5276356f040fea668666488a96f709af1f22",
+    "src/scene/palace/special/EnclosedPavilions.js": "24df1266906dcaa9624230ecce57c48db9bd8b0771bc8780bbeed41f47cf8f4d",
+    "src/scene/palace/special/ArrowSouthDoorLattice.js": "65a5b42065c3c8e0f5a286d3b261cf9590d235ed5957353e38d84412131fc004",
+    "src/scene/palace/special/ArrowSouthNameboard.js": "b83bac1025ea7c55720c076aecd919dc1fa400bc053d1c9c485351003faf6b95",
+    "data/zones/outer-east.json": "5327bf3dbaff2b102c62363d70fbbad3e39eaa08e966040cb26acd33e3398b7e"
+  },
+  "scope": "ACTUAL_CURRENT_LOCAL_PRODUCTION_ARROW_SOURCE_WITH_ONLY_NEW_FINALIZER_AFTER_BUILD; CPU_NOT_GPU",
+  "views": [
+    {
+      "name": "south-wide",
+      "camera": [
+        0,
+        2.8,
+        -35
+      ],
+      "target": [
+        0,
+        6.2,
+        -6.8
+      ],
+      "fov": 55,
+      "images": {
+        "before": {
+          "file": "south-wide-before.png",
+          "sha256": "72a9eeaaf498fbbbf4959545a3824fbe7f6804d879f24619498b34129f8187a2"
+        },
+        "after": {
+          "file": "south-wide-after.png",
+          "sha256": "7557325f89779b21a2fa22bdb216f9a8d4413f9479d422e0af1b5dfd76a6d933"
+        }
+      }
+    },
+    {
+      "name": "south-head-detail",
+      "camera": [
+        -5.5,
+        7.1,
+        -16
+      ],
+      "target": [
+        -5.5,
+        7.15,
+        -6.8
+      ],
+      "fov": 42,
+      "images": {
+        "before": {
+          "file": "south-head-detail-before.png",
+          "sha256": "6dfd6128b242b61418fea3646db03bb39ef4a39bbae5a2ea962247cb15b2875a"
+        },
+        "after": {
+          "file": "south-head-detail-after.png",
+          "sha256": "5067ea34ddbd5fed21497bb2922ad65960ee5db4fac865227824dbd5fe75448b"
+        }
+      }
+    }
+  ],
+  "states": {
+    "before": {
+      "triangles": 6462,
+      "meshes": 262,
+      "materials": 17,
+      "geometrySha256": "475e5282561abcbaac93526cb5cef5789d5aef4823aeaa497bd0dddbe7ba0ea2"
+    },
+    "after": {
+      "triangles": 6524,
+      "meshes": 264,
+      "materials": 19,
+      "geometrySha256": "648402069d79127b3535599a2a4c55380317d800dda2980dcaf54a09e0da657b"
+    }
+  },
+  "limitations": [
+    "Plain grey-blue fields are a colour/composition cue, not exact painted motifs or historical pigments.",
+    "Source footprint/height and unseen/occluded bays are not corrected.",
+    "No production hook installed in this tree."
+  ]
+}
