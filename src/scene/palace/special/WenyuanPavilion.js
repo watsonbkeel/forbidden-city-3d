@@ -3,6 +3,8 @@ import {fitRegisteredNameboard} from './FittedNameboardMount.js';
 import * as THREE from 'three';
 import { buildRoof } from '../../RoofBuilder.js';
 import { applyBoxUV } from '../../../utils/GeometryUV.js';
+const builtWenyuanStairFrames=new WeakSet();
+export const isBuiltWenyuanStairFrame=f=>builtWenyuanStairFrames.has(f);
 export function wenyuanGeometry(item){if(item?.structure!=='wenyuan-pavilion'||item.name!=='文渊阁'||item.x!==-186.5||item.z!==-132.8||item.w!==40.5||item.d!==17.9||item.bays!==6||item.ph!==.5||item.pad!==.5)throw new Error('Wenyuan requires its explicit six-bay retained-envelope fit');return{id:'wenyuan-pavilion',x:item.x,z:item.z,w:item.w,d:item.d,ph:.5,pad:.5,bays:6,exteriorStoreys:2,historicalInternalLevels:3,lowerHeight:4.45,upperFloor:5.5,upperHeight:3.6,entry:{x:item.x-item.w/12,z:item.z-item.d/2},navigation:{id:'wenyuan-pond-approach',status:'FITTED_MODEL_ROUTE_NOT_CURRENT_VISITOR_PERMISSION',points:[{x:-186.5,z:-156.3,y:0},{x:-186.5,z:-143.2,y:.041},{x:item.x-item.w/12,z:-143.2,y:0},{x:item.x-item.w/12,z:item.z-item.d/2+1,y:.5}]},status:'OFFICIAL_TOPOLOGY_REVERSIBLE_MODEL_FIT',source:'https://www.dpm.org.cn/explore/building/236513.html',interiorPolicy:'UNFURNISHED_UNSURVEYED_NO_INVENTED_BOOKCASES',limitations:['Six bays, external two storeys/internal three levels and black tiles with green trim are official.','The third historical internal level and western end stair are not fabricated from an exterior photograph.','Envelope uses retained D1/OSM fit; storey heights, setbacks and roof rise are not surveyed.']};}
 export function buildWenyuanPavilion(kit,item){const g=wenyuanGeometry(item),{structure,...plain}=item;
  const{f}=kit.hall({...plain,colH:g.lowerHeight,layers:1,interior:'empty',throne:false,enter:true});
@@ -19,5 +21,5 @@ export function buildWenyuanPavilion(kit,item){const g=wenyuanGeometry(item),{st
  const proxy=Object.create(kit.lib);proxy.material=n=>n==='roof_tile'?dark:kit.lib.material(n);const roof=buildRoof(proxy,{detail:'low',type:'xieshan',width:uw+.5,depth:ud+.5,baseY:uy+H,layers:1,brackets:true});
  roof.traverse(n=>{if(n.isMesh&&n.material.name==='roof_ridge_glaze')n.material=green;});for(const mat of roof.userData.ownedMaterials??[])if(mat.name==='roof_ridge_glaze')mat.dispose();else kit.owned.push(mat);roof.userData.ownedMaterials=[];f.add(roof);
  g.nameboardMount=fitRegisteredNameboard(kit,f,item.name,{z:-g.d/2-.5,reason:'Retained model label in front of, never inside, the true central column; historic plaque position unverified'});
- f.userData.structure=g;applyWenyuanUpperSouthWindows(kit,f,item);return{f,g};
+ f.userData.structure=g;applyWenyuanUpperSouthWindows(kit,f,item);builtWenyuanStairFrames.add(f);return{f,g};
 }
