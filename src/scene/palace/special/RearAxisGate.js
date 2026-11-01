@@ -1,4 +1,5 @@
 import * as T from 'three';
+import {raiseRearLeftPlatform} from './RearLeftPlatform.js';
 import {raiseRearRightPlatform} from './RearRightPlatform.js';
 const RECORDS=Object.freeze({
  houzuo:{index:16,name:'后左门',objectId:'FC-E3F4369B07',x:-76.4,z:123,group:21,northPanel:0x80593d,paleSouthRight:false},
@@ -63,5 +64,6 @@ export function buildRearAxisGate(kit,item,zoneId,index){
  f.userData.rearAxisGate={objectId:g.objectId,scope:'OWN_ROOFED_GATE_ENVELOPE_NOT_COMPLETE_COURT',northSouthIndependent:true,sourceGroup:g.group,notReconstructed:['adjoining corridor count/limits','long ramps and balustrades','full interior timber','Houyou demolished instrument store'],openState:open?'GAME_PLAYABLE_NOT_ACCESS_POLICY':'closed'};
  Object.assign(f.userData.structure,{id:`axis-courts/items/${g.index}`,objectId:g.objectId,...f.userData.rearAxisGate});
  if(raiseRearRightPlatform(kit,f,{item,colliderStart}))g.floorY=1.8;
+ if(raiseRearLeftPlatform(kit,f,{item,colliderStart}))g.floorY=1.8;
  return{width:g.width,geometry:g,frame:f};
 }
