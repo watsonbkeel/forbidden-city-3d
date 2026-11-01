@@ -418,6 +418,16 @@ export class ZoneBase {
     const [x2, z2] = item.to;
     const gaps = item.gaps?.some(g=>g.gate==='锡庆门') ? xiqingWallGaps(item,this.gateGeometries.get('锡庆门'),this.gateWidths) : this.resolveGaps(item.gaps);
     const params = { h: item.h, t: item.t, gaps };
+    // Existing courtyard south boundary: appearance-only masonry split,
+    // estimated against the retained gate platform, not a surveyed repair datum.
+    const southBoundaryIndex=this.zoneJson.id==='axis-courts'?this.zoneJson.items.indexOf(item):-1;
+    if([9,11].includes(southBoundaryIndex)){
+      const east=southBoundaryIndex===9,gate=east?'昭德门':'贞度门';
+      if(item.h!==7||item.t!==undefined||JSON.stringify(item.from)!==JSON.stringify([east?-25:25,-214.2])||JSON.stringify(item.to)!==JSON.stringify([east?-106.47:110.7,-214.2])||item.gaps?.length!==1||item.gaps[0].gate!==gate)throw Error('Changed south boundary wall source');
+      const geometry=this.gateGeometries.get(gate);
+      if(!geometry||geometry.platform.topY!==3.216)throw Error('Missing retained south boundary gate platform');
+      params.baseHeight=geometry.platform.topY;
+    }
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
     // The own raised middle-right gate meets this exact retained 7m wall.
     // Generic wall physics is historically only 3m; do not change other walls.

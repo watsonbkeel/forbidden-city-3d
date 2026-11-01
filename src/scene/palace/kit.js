@@ -216,7 +216,8 @@ export class CourtKit {
   /**
    * 轴对齐红墙（灰砖下碱 + 黄琉璃墙帽）。gaps: [{ at, w }]，at 为沿墙方向的世界坐标。
    */
-  wall(x1, z1, x2, z2, { h = 6.5, t = 1, gaps = [] } = {}) {
+  wall(x1, z1, x2, z2, { h = 6.5, t = 1, gaps = [], baseHeight = 1 } = {}) {
+    if (!Number.isFinite(baseHeight) || baseHeight <= 0 || baseHeight >= h) throw Error('Invalid wall material base height');
     const alongX = Math.abs(x2 - x1) >= Math.abs(z2 - z1);
     const a0 = alongX ? Math.min(x1, x2) : Math.min(z1, z2);
     const a1 = alongX ? Math.max(x1, x2) : Math.max(z1, z2);
@@ -233,8 +234,8 @@ export class CourtKit {
       const len = p1 - p0;
       const mid = (p0 + p1) / 2;
       const f = alongX ? this.frame(mid, c, 0) : this.frame(c, mid, Math.PI / 2);
-      this.box(f, 'wall_brick', len, 1.0, t + 0.12, 0, 0.5, 0);
-      this.box(f, 'wall_red', len, h - 1.0, t, 0, 1.0 + (h - 1) / 2, 0);
+      this.box(f, 'wall_brick', len, baseHeight, t + 0.12, 0, baseHeight / 2, 0);
+      this.box(f, 'wall_red', len, h - baseHeight, t, 0, baseHeight + (h - baseHeight) / 2, 0);
       const cap = this.adopt(buildWallCap(this.lib, { length: len, thickness: t }));
       cap.position.y = h;
       f.add(cap);
