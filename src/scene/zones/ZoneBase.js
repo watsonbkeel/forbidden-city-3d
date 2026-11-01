@@ -1,3 +1,4 @@
+import {buildNeigeSouthConnectingGate} from '../palace/special/NeigeSouthConnectingGate.js';
 import {finishNansansuoCourtyardGates} from '../palace/special/NansansuoCourtyardGates.js';
 import {buildJingxingGate} from '../palace/special/JingxingGate.js';
 import {finishNansansuoFrontHalls} from '../palace/special/NansansuoFrontFinalizer.js';
@@ -204,6 +205,7 @@ export class ZoneBase {
     const yanxiFrames = detachYanxiRuinFrames(this.kit.root);
     buildNeigeCourt(this.kit, this.zoneJson);
     buildNeigeStorehouse(this.kit, this.zoneJson);
+    buildNeigeSouthConnectingGate(this.kit, this.zoneJson);
     buildWenyuanStelePavilion(this.kit, this.zoneJson);
     buildChuanxinHall(this.kit, this.zoneJson);
     buildJingxingGate(this.kit, this.zoneJson);
