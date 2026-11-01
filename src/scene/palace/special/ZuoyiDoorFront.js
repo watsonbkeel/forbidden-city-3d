@@ -68,6 +68,14 @@ export function applyZuoyiDoorFront(kit,frame,binding){
  return true;
 }
 
+/** Explicit material-only reuse for the separately authored current six-leaf gate.
+ * The legacy two-leaf geometry mutation/identity guard above remains unchanged. */
+export function zuoyiNineRowFrontMaterial(lib){
+ const base=lib.material('door_studded'),sizes=lib.quality==='hd'?[[762,1024],[381,512]]:lib.quality==='sd'?[[381,512],[190,256]]:null;
+ if(!(lib.materials instanceof Map&&lib.colors instanceof Map&&lib.normals instanceof Map&&lib.has?.('door_studded')===true&&sizes&&base.map===lib.colors.get('door_studded')&&base.normalMap===lib.normals.get('door_studded')&&[base.map,base.normalMap].every((t,i)=>t?.image?.width===sizes[i][0]&&t.image.height===sizes[i][1])))return null;
+ return frontMaterial(lib,base);
+}
+
 function frontMaterial(lib,base){
  const cached=lib.materials.get(KEY);if(cached)return cached;
  const map=remap(base.map,`${KEY}_color`),normalMap=base.normalMap?remap(base.normalMap,`${KEY}_normal`):null;

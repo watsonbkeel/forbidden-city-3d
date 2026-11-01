@@ -1,0 +1,3 @@
+import fs from'node:fs';import path from'node:path';import * as T from'three';import'../lib/inner-palace-fixture.mjs';
+export async function capture(root=process.cwd()){const{ZoneBase}=await import(path.resolve(root,'src/scene/zones/ZoneBase.js')),data=JSON.parse(fs.readFileSync(path.resolve(root,'data/zones/axis-courts.json'))),m=new Map(),lib={material:n=>{if(!m.has(n))m.set(n,new T.MeshStandardMaterial({name:n}));return m.get(n);},tileSize:()=>1,aspect:()=>1},z=new ZoneBase(lib,data);try{for(const i of[29,30])z.buildCorridor(data.items[i]);return JSON.parse(JSON.stringify({colliders:z.kit.colliders,walkables:z.kit.walkables}));}finally{z.kit.dispose()}}
+if(process.argv[2])fs.writeFileSync(process.argv[2],JSON.stringify(await capture(process.argv[3])));
