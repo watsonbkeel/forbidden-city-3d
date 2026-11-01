@@ -4,6 +4,8 @@ import {PLAYER} from '../../../config/constants.js';
 // No global rectangle/floor or cached permission survives support unloading.
 const sources=new WeakMap(),registered=new WeakMap();
 const EPS=1e-7,TOP=12.3,FOOT_TOLERANCE=.08;
+// Existing player ballistic apex, not a new flight height or support surface.
+const MAX_JUMP_RISE=(PLAYER.JUMP_VELOCITY??6.7)**2/(2*(PLAYER.GRAVITY??14));
 const snapshot=b=>[b.min.x,b.min.y,b.min.z,b.max.x,b.max.y,b.max.z];
 const same=(b,a)=>b?.isBox3&&snapshot(b).every((v,i)=>v===a[i]);
 
@@ -22,11 +24,13 @@ export function preserveWumenSouthDeckOwner(target,source){
  if(bounds&&target?.type==='box'&&same(source.box,bounds)&&same(target.box,bounds))registered.set(target,{source,bounds});
 }
 
-/** Only a grounded body fully above the union of live authored slabs may cross
+/** Only a standing/ordinary-jumping body fully above live authored slabs may cross
  * the old south limit. Called after the normal X and north bounds are checked.
  * Adjacent cells count jointly; tiny numerical seams do not become air walls. */
 export function canUseWumenSouthDeckBoundary(manager,position,radius){
- if(![position.x,position.y,position.z,radius].every(Number.isFinite)||radius<=0||radius>1||Math.abs(position.y-PLAYER.HEIGHT-TOP)>FOOT_TOLERANCE)return false;
+ if(![position.x,position.y,position.z,radius].every(Number.isFinite)||radius<=0||radius>1)return false;
+ const rise=position.y-PLAYER.HEIGHT-TOP;
+ if(rise< -FOOT_TOLERANCE||rise>MAX_JUMP_RISE+FOOT_TOLERANCE)return false;
  const x0=position.x-radius,x1=position.x+radius,z0=position.z-radius,z1=position.z+radius;
  const rectangles=[];
  for(const w of manager.walkables){

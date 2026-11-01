@@ -30,9 +30,9 @@ test('native player reaches both southern pavilion fronts along the existing vis
  }
  console.log(JSON.stringify({scope:'PRODUCTION_WUMEN_PLUS_REAL_ENCLOSURE_NOT_FULL_WORLD_OR_GPU',routes:rows}));
 });
-test('ground, air, central hollow and footprint beyond visible edges remain outside boundary',()=>{
+test('ground, above-jump air, central hollow and footprint beyond visible edges remain outside boundary',()=>{
  const W=fixture();
- for(const [x,z,feet]of[[62,-505,0],[62,-505,11.8],[62,-505,13],[0,-505,12.3],[64,-505,12.3],[62,-515.4,12.3],[62,-516,12.3]])
+ for(const [x,z,feet]of[[62,-505,0],[62,-505,11.8],[62,-505,14.3],[0,-505,12.3],[64,-505,12.3],[62,-515.4,12.3],[62,-516,12.3]])
   assert.equal(W.cm.checkBoundary(point(W,x,z,feet),.5),false,JSON.stringify({x,z,feet}));
  for(const [x,z]of[[401,0],[-401,0],[0,561]])assert.equal(W.cm.checkBoundary(point(W,x,z),.5),false);
  assert.equal(W.cm.checkBoundary(point(W,0,0,0),.5),true,'old valid ground unchanged');
