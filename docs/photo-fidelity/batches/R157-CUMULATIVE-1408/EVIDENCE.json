@@ -1,0 +1,333 @@
+{
+  "runtimeCommit": "40ba814002ee6ece7ef2c926da219c122cb96c73",
+  "base": "5b83065fd660fa5f7c68e8cbfa5266aa779a80e1",
+  "sourcePins": {
+    "src/scene/PalaceBuilder.js": "404c30681d84778bc14a7beffc4ddb3c8d7fc8a17f52619c18d403a31bfb1f3c",
+    "src/scene/palace/special/RearAxisGate.js": "69758e2792a03fd89abdaaa07c1bf7008ad63388bae4a3495c4ac9bf2fdaca5c",
+    "src/scene/palace/special/RearRightPlatform.js": "eca55b2728e13ec7dca7f470a4db03d5ed7f2ea69d18fcdaab61aef42ead14a3",
+    "src/scene/palace/special/TaiheBronzeSilhouettes.js": "69296c09ed76895ea8a62c221a9c40c965ce360f800f5d8d714f9a9473f5b9c2",
+    "src/scene/palace/special/ZhongheDisplaySetting.js": "57cb9facd06fcf8e9e7e3ba64fbbbf158993b158865a3cbdcee61c415d84674a",
+    "src/scene/palace/special/ZhongheDisplayStands.js": "45282929a182f0e8ee44cc29ccd223b2994a5711c1956551a76127b993f6c9a9",
+    "src/utils/Collision.js": "00b009c114fd11bbd45234ced0de906d7780cd89428377dedc4efc8a5b4e3c56",
+    "src/controls/FirstPerson.js": "c90de689a5710d1ed272482429b25b14774591eb0f6dd09731cf6bc8c4d5c61c",
+    "data/zones/axis-courts.json": "4f4aeac4786e0452929edfbb8bc5dc29c5b67c734b9ff5e671116126772b593f",
+    "tests/r157-cumulative-1408/world.test.mjs": "3441e1eb3ce9c88602e66b3a34909f585cb27f609cd4a808e02b2e213dfc23c9",
+    "tests/r157-houyou-high/component.test.mjs": "0425bba3957a9e46bec7448338422c586d5f63da365695fdb9f045420ce79dd0",
+    "tests/r157-taihe-bronze/component.test.mjs": "f0103e365b33cd0356829d50cf95d5f2db9a2bcc32f06025938f29c8d63ee1e4",
+    "tests/photo-fidelity/batches/r157-zhonghe-stands.test.mjs": "b8d9172438e1f0160d8d5d865bcb59439b651e6be174bd286eaaa0f74e34590a"
+  },
+  "archive": [
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-cumulative-evidence-1408/build.exit",
+      "stored": "archive/r157-cumulative-evidence-1408__build.exit.compressed.gz",
+      "rawBytes": 2,
+      "rawSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "storedSHA256": "cabc3a30b39528db601f65ca3ced008dd775595c901102d08ac8ae8976b29bcf"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-cumulative-evidence-1408/build.log",
+      "stored": "archive/r157-cumulative-evidence-1408__build.log.compressed.gz",
+      "rawBytes": 1097,
+      "rawSHA256": "531057543893b7d8edc036ad38b8c3561d7dc0b97e604de687eb6b15a3d49d19",
+      "storedSHA256": "4545a0f2513f11206fb7cd153e0ca2f7cfb751a03f4304e2815e21d431d4af51"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-cumulative-evidence-1408/related76.exit",
+      "stored": "archive/r157-cumulative-evidence-1408__related76.exit.compressed.gz",
+      "rawBytes": 2,
+      "rawSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "storedSHA256": "cabc3a30b39528db601f65ca3ced008dd775595c901102d08ac8ae8976b29bcf"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-cumulative-evidence-1408/related76.tap",
+      "stored": "archive/r157-cumulative-evidence-1408__related76.tap.compressed.gz",
+      "rawBytes": 7885,
+      "rawSHA256": "e98c455ae93f7adcd62a36505ac4b8b78043313bf80fd0ca076a9b1581dbe896",
+      "storedSHA256": "ce318010ed1c634092915ee928dc06a4b7103b6fbed9bf9abe3107eae3cf1aab"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-cumulative-evidence-1408/world52.exit",
+      "stored": "archive/r157-cumulative-evidence-1408__world52.exit.compressed.gz",
+      "rawBytes": 2,
+      "rawSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "storedSHA256": "cabc3a30b39528db601f65ca3ced008dd775595c901102d08ac8ae8976b29bcf"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-cumulative-evidence-1408/world52.json",
+      "stored": "archive/r157-cumulative-evidence-1408__world52.json.compressed.gz",
+      "rawBytes": 2296661,
+      "rawSHA256": "d6913a8125f092f6f189b953d7d4378380c1737dfdea2b9c00a3ddece0a16958",
+      "storedSHA256": "69c9e3aec69b1dd358dac7e46af666dc00fc422a1b572172144a6bad9d0b7e90"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-cumulative-evidence-1408/world52.tap",
+      "stored": "archive/r157-cumulative-evidence-1408__world52.tap.compressed.gz",
+      "rawBytes": 1271,
+      "rawSHA256": "64c26ab961c87c3937ebd6c403073d3b5aad4a211583d984817ac2ff3d748342",
+      "storedSHA256": "5f3824b6efd7bd10c41d9de5834022cabb2d2cb961890afd862f88a3ff8dee71"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/historical-baseline.tap",
+      "stored": "archive/r157-threehall-audit-1345__historical-baseline.tap.compressed.gz",
+      "rawBytes": 109086,
+      "rawSHA256": "0819964f582af3954bf2f29320687825ef3722639298136e432b38e9d1ca675c",
+      "storedSHA256": "31ac4535efc11887579be3189a79164121f5ffe1159bbf2c054f5ef89d02420d"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/historical-candidate.tap",
+      "stored": "archive/r157-threehall-audit-1345__historical-candidate.tap.compressed.gz",
+      "rawBytes": 120971,
+      "rawSHA256": "536284a2042b3b9447fe7280deb466bdfc3309857a002ae79a93a8b849206ae5",
+      "storedSHA256": "2a7ca5a3f2eab4883be9cbf8d79986d2c8e927b9965200947f7c71a7116fa756"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-after/front.json",
+      "stored": "archive/r157-threehall-audit-1345__stands-after__front.json.compressed.gz",
+      "rawBytes": 1205,
+      "rawSHA256": "8017aecb9f4d38937d69e79586bd5a7ec42368d5fc6942de58113a409ad21425",
+      "storedSHA256": "cf99bd529b3b516bcad84155acf34f0d0b35e0c0fedf5c21bdeb04d6f5fe96c1"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-after/front.json.gz",
+      "stored": "archive/r157-threehall-audit-1345__stands-after__front.json.gz.original.gz",
+      "rawBytes": 114522,
+      "rawSHA256": "2b015bdc76200ad6916a48b8aed9aa32a8c5c8e1a1c0ac0cdf4478563dfe7234",
+      "storedSHA256": "2b015bdc76200ad6916a48b8aed9aa32a8c5c8e1a1c0ac0cdf4478563dfe7234"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-after/front.png",
+      "stored": "archive/r157-threehall-audit-1345__stands-after__front.png.compressed.gz",
+      "rawBytes": 30900,
+      "rawSHA256": "f09607f63833eb0eefa6d4489eab95c4e965b357348043462c9aa47d32868e8e",
+      "storedSHA256": "ce8d9cd13cd3b892f9e985f8f948ecd8b5678cdc495a8d5c7747fbd5f33c5583"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-after/geometry-and-navigation.json",
+      "stored": "archive/r157-threehall-audit-1345__stands-after__geometry-and-navigation.json.compressed.gz",
+      "rawBytes": 126926,
+      "rawSHA256": "894c0ef58d2f23cfc906291c489a4927b398014d69cc4ee33ac591d135ed7e31",
+      "storedSHA256": "e30d49404a5aaaa7a02ed00bb07c74d18749f2b2fe49f2447b736547c8522639"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-after/left-oblique.json",
+      "stored": "archive/r157-threehall-audit-1345__stands-after__left-oblique.json.compressed.gz",
+      "rawBytes": 1345,
+      "rawSHA256": "f91b8cb768d5df68d5ad441d03065bc1ddb13d2b731f8f2f58fb30abbcc5892e",
+      "storedSHA256": "0330c703c88aaa5c4ed43bf3383dad16cb9b1fd49c3c904b08280ce449dd4814"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-after/left-oblique.json.gz",
+      "stored": "archive/r157-threehall-audit-1345__stands-after__left-oblique.json.gz.original.gz",
+      "rawBytes": 85784,
+      "rawSHA256": "d19fd47066b4e9a87cf3eec44d0fa4d51c34c1365f80d5d39f241a8085f53ee5",
+      "storedSHA256": "d19fd47066b4e9a87cf3eec44d0fa4d51c34c1365f80d5d39f241a8085f53ee5"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-after/left-oblique.png",
+      "stored": "archive/r157-threehall-audit-1345__stands-after__left-oblique.png.compressed.gz",
+      "rawBytes": 38556,
+      "rawSHA256": "85d044b6688ad62ae57abe75d932f59cbd9e00639a203fb0108a41435a393217",
+      "storedSHA256": "3e9ad7afe9b42e2180f7894dc5930aeed1edc9125a052b10116a6714e0021df5"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-after/rear-clearance.json",
+      "stored": "archive/r157-threehall-audit-1345__stands-after__rear-clearance.json.compressed.gz",
+      "rawBytes": 1219,
+      "rawSHA256": "520d8278605916ec43b064f3eed92dca8d6c2dd5afafd6f6e30640b02a3e61a1",
+      "storedSHA256": "718e0531b77dd1c784538f43b2bf45b3fdafc6552b3b50e4fd2897315256e3e2"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-after/rear-clearance.json.gz",
+      "stored": "archive/r157-threehall-audit-1345__stands-after__rear-clearance.json.gz.original.gz",
+      "rawBytes": 135752,
+      "rawSHA256": "43c0da36186cc30fb28509435637993310c0ac6ee5e57949430f37b5f1308794",
+      "storedSHA256": "43c0da36186cc30fb28509435637993310c0ac6ee5e57949430f37b5f1308794"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-after/rear-clearance.png",
+      "stored": "archive/r157-threehall-audit-1345__stands-after__rear-clearance.png.compressed.gz",
+      "rawBytes": 24921,
+      "rawSHA256": "0f55912cf14179f93003515816a20273737bb371b1ef00ad5fdee63803e6a58e",
+      "storedSHA256": "ccafa2b9781626e0849a4991b5e56b08893bf969fd30c7c0404c64ea51e46cb4"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-after/right-oblique.json.gz",
+      "stored": "archive/r157-threehall-audit-1345__stands-after__right-oblique.json.gz.original.gz",
+      "rawBytes": 86283,
+      "rawSHA256": "a410ec172b9f2f85d74b4f1cd658f1dc0472ae3dd92a6fefffa820f2434629ea",
+      "storedSHA256": "a410ec172b9f2f85d74b4f1cd658f1dc0472ae3dd92a6fefffa820f2434629ea"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-before/front.json",
+      "stored": "archive/r157-threehall-audit-1345__stands-before__front.json.compressed.gz",
+      "rawBytes": 1207,
+      "rawSHA256": "4faaf81375fb87ee8c929f136223053f4229e9ae91c009dfd198db0b63e1c2cd",
+      "storedSHA256": "0983293c6fd885b0a9fbe4807ceeeeeab7c77ae03c8fb004bbdbafe8eb22171b"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-before/front.json.gz",
+      "stored": "archive/r157-threehall-audit-1345__stands-before__front.json.gz.original.gz",
+      "rawBytes": 99261,
+      "rawSHA256": "ab51649beb6df886ed7b9a4bc555e0b0fc9651237aa94e49ed93322921467e26",
+      "storedSHA256": "ab51649beb6df886ed7b9a4bc555e0b0fc9651237aa94e49ed93322921467e26"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-before/front.png",
+      "stored": "archive/r157-threehall-audit-1345__stands-before__front.png.compressed.gz",
+      "rawBytes": 31598,
+      "rawSHA256": "cb2f2df9098388e231b3f7ed301bd7802cd0572e45087b5b117041bfb8a200cb",
+      "storedSHA256": "1481d2d6b747239e22db8cad757ad5f1439d20409478dc3b16368336d17d9242"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-before/geometry-and-navigation.json",
+      "stored": "archive/r157-threehall-audit-1345__stands-before__geometry-and-navigation.json.compressed.gz",
+      "rawBytes": 114733,
+      "rawSHA256": "cd4611a0d2f826646a82da37127c2ae7bb9c49ea3fc1a3127cef4bf6b75e89bb",
+      "storedSHA256": "06f1ce81ae5d0100dc4f55b6b44f7450a12e0dff4537bebb829dfda4bca755d8"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-before/left-oblique.json",
+      "stored": "archive/r157-threehall-audit-1345__stands-before__left-oblique.json.compressed.gz",
+      "rawBytes": 1347,
+      "rawSHA256": "1733ed6c5d65481207d90f6129274e2c39bca8104df89dbdb6975b5870b53db8",
+      "storedSHA256": "239700fc8970cce7b64d96b980759df74fdd411fe142d1cb1f435b3cb4567b79"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-before/left-oblique.json.gz",
+      "stored": "archive/r157-threehall-audit-1345__stands-before__left-oblique.json.gz.original.gz",
+      "rawBytes": 76721,
+      "rawSHA256": "d212f7a3a67b92d6c5d8259925f9d1107473505b751f687aec3499aeca5ef5b9",
+      "storedSHA256": "d212f7a3a67b92d6c5d8259925f9d1107473505b751f687aec3499aeca5ef5b9"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-before/left-oblique.png",
+      "stored": "archive/r157-threehall-audit-1345__stands-before__left-oblique.png.compressed.gz",
+      "rawBytes": 37345,
+      "rawSHA256": "4a9144065877b08b0afcf38bce3832f0fa3fcdba7a1fa75aca3c682e0a3adf59",
+      "storedSHA256": "9e37cc52c5fcef881ee1f8785a6eb4106af3c74ccb67e8dcd4bf2109b3bd1804"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-before/rear-clearance.json",
+      "stored": "archive/r157-threehall-audit-1345__stands-before__rear-clearance.json.compressed.gz",
+      "rawBytes": 1221,
+      "rawSHA256": "61e7e3010d64930b352564390b8f67ed463b7487112fb2b58e172b59445e6b6e",
+      "storedSHA256": "ffe2d627b09f5572b50fa392e8804aca30d2f3bb33970085f7c75a671ad7c68d"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-before/rear-clearance.json.gz",
+      "stored": "archive/r157-threehall-audit-1345__stands-before__rear-clearance.json.gz.original.gz",
+      "rawBytes": 120571,
+      "rawSHA256": "eed6ef6e81cc85eef4715ee93f06acc125f7079ac53f4a99da5ec0e547e733b3",
+      "storedSHA256": "eed6ef6e81cc85eef4715ee93f06acc125f7079ac53f4a99da5ec0e547e733b3"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-before/rear-clearance.png",
+      "stored": "archive/r157-threehall-audit-1345__stands-before__rear-clearance.png.compressed.gz",
+      "rawBytes": 24921,
+      "rawSHA256": "0f55912cf14179f93003515816a20273737bb371b1ef00ad5fdee63803e6a58e",
+      "storedSHA256": "ccafa2b9781626e0849a4991b5e56b08893bf969fd30c7c0404c64ea51e46cb4"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-before/right-oblique.json.gz",
+      "stored": "archive/r157-threehall-audit-1345__stands-before__right-oblique.json.gz.original.gz",
+      "rawBytes": 76945,
+      "rawSHA256": "b7d631926819ab7d29014c6bdd380948ca234414f724ae006fc23993900c4fa9",
+      "storedSHA256": "b7d631926819ab7d29014c6bdd380948ca234414f724ae006fc23993900c4fa9"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-final-manifest.json",
+      "stored": "archive/r157-threehall-audit-1345__stands-final-manifest.json.compressed.gz",
+      "rawBytes": 2103,
+      "rawSHA256": "64736cf4549baa1c2bd257282cfe755bab13fe96ffc3ea0ba88b78554cf97092",
+      "storedSHA256": "9137d9b1cebb6f9e205fbc2551e67b6e36577d60decd982418e16599d1abeaf8"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-final-targeted.tap",
+      "stored": "archive/r157-threehall-audit-1345__stands-final-targeted.tap.compressed.gz",
+      "rawBytes": 4790,
+      "rawSHA256": "7355953c9bc3aaf00c360ba4b5acfe63bb2f7fdd2645521e926be1f3ec1c17fb",
+      "storedSHA256": "f66d8f9eaee75f758f60f942e36c68290f469c5439c696367d0de3377837edd2"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-green-first.tap",
+      "stored": "archive/r157-threehall-audit-1345__stands-green-first.tap.compressed.gz",
+      "rawBytes": 1989,
+      "rawSHA256": "586e9044e5335a18a49527928e17dfe66da03c9a7528d38b4007b632f665711a",
+      "storedSHA256": "ef8e45500116ccba996cefc1a84735e908568e8fba22c1ed8e75bd81567d5bed"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-input-sha256.txt",
+      "stored": "archive/r157-threehall-audit-1345__stands-input-sha256.txt.compressed.gz",
+      "rawBytes": 876,
+      "rawSHA256": "a4ac6b5156182a2d516755691cc2a783e5b98f1e1c838ca19e15cbd9dd30613c",
+      "storedSHA256": "57a7d034761393eaaf1ae872bf7d30d529b69038ad5cfceda0c06923ddaa7091"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-module-build.log",
+      "stored": "archive/r157-threehall-audit-1345__stands-module-build.log.compressed.gz",
+      "rawBytes": 411,
+      "rawSHA256": "336559389ef4c295296da2b9c380ca133417346d653930cf74b689d19a80615b",
+      "storedSHA256": "5ee52270176d66194935fd21a6a883537ec47b21fee0dfb0e71f5e8c61daf13f"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/stands-red.tap",
+      "stored": "archive/r157-threehall-audit-1345__stands-red.tap.compressed.gz",
+      "rawBytes": 6558,
+      "rawSHA256": "18c45fb03cc5eb9b4880f66c9c2c3ce340ebd4ed82f81b4f04dd9e7830e6dcfe",
+      "storedSHA256": "445ee92e3718821c4d42756ec1fd5411244846ec3bcb2f34d17c1da669df39d1"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-threehall-audit-1345/zhonghe-baseline.tap",
+      "stored": "archive/r157-threehall-audit-1345__zhonghe-baseline.tap.compressed.gz",
+      "rawBytes": 4189,
+      "rawSHA256": "e9c078ef5fe42dea045391ea457eb2678dfabe49e25bf40db26674b7d79b07b0",
+      "storedSHA256": "00febc8c046511f2645b73c9e2cf76797f7485732009e172a872b3d09766d25b"
+    }
+  ],
+  "world": {
+    "rear-right": {
+      "records": 24,
+      "arrived": 24,
+      "frames": 8004,
+      "peak": 0.15033333333333676
+    },
+    "retained-middle-right": {
+      "records": 4,
+      "arrived": 4,
+      "frames": 2096,
+      "peak": 0.21277777777777862
+    },
+    "retained-rear-left": {
+      "records": 4,
+      "arrived": 4,
+      "frames": 987,
+      "peak": 0
+    },
+    "zhonghe-four-doors": {
+      "records": 4,
+      "arrived": 4,
+      "frames": 2122,
+      "peak": 0
+    },
+    "taihe-bronze-bypass": {
+      "records": 16,
+      "arrived": 16,
+      "frames": 1172,
+      "peak": 0
+    }
+  },
+  "components": {
+    "passed": 76,
+    "total": 76,
+    "historicalTestExcluded": 1
+  },
+  "build": {
+    "schema": 1,
+    "release": "R146-fix",
+    "buildId": "R146-fix-8a9989f65d6a",
+    "sourceFingerprint": "9ff1ee398e68612c9171f2ddff809045bd2d6925a7aa0817b0c7143cf479b601",
+    "sourceCommit": "40ba814002ee6ece7ef2c926da219c122cb96c73",
+    "sourceDirty": false,
+    "base": "/gugong/"
+  }
+}

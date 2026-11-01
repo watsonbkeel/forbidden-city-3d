@@ -1,4 +1,5 @@
 import * as T from 'three';
+import {raiseRearRightPlatform} from './RearRightPlatform.js';
 const RECORDS=Object.freeze({
  houzuo:{index:16,name:'后左门',objectId:'FC-E3F4369B07',x:-76.4,z:123,group:21,northPanel:0x80593d,paleSouthRight:false},
  houyou:{index:18,name:'后右门',objectId:'FC-48D7D69238',x:79.4,z:123,group:15,northPanel:0x896448,paleSouthRight:true},
@@ -13,6 +14,7 @@ export function rearAxisGateGeometry(item,zoneId,index){
  * Ground/portal are retained. Long ramps, rail census and adjoining five-bay
  * corridor extent are NOT invented by this bounded roofed-envelope correction. */
 export function buildRearAxisGate(kit,item,zoneId,index){
+ const colliderStart=kit.colliders.length;
  const g=rearAxisGateGeometry(item,zoneId,index),f=kit.frame(g.x,g.z,0),h=g.columnH;f.name=g.name;
  const box=(role,material,w,t,d,x,y,z)=>tag(kit.box(f,material,w,t,d,x,y,z),role);
  const solid=(role,material,w,t,d,x,y,z)=>{const m=box(role,material,w,t,d,x,y,z);kit.col(f,x-w/2,y-t/2,z-d/2,x+w/2,y+t/2,z+d/2);return m;};
@@ -60,5 +62,6 @@ export function buildRearAxisGate(kit,item,zoneId,index){
  f.userData.structure={profile:g.profile,gateKind:'three-bay',portalCount:1,eaveCount:1,roof:'xieshan',sourceGroup:g.group,sourceFacing:'south',floorY:0,dimensions:'RETAINED_ANCHOR_AND_CLEAR_PORTAL; ALL NEW ENVELOPE_DIMENSIONS_ARE_PHOTO_FIT_NOT_SURVEY',documentaryBayCount:'连廊共5间; not five core bays and not three portals',wholeObjectAccepted:false};
  f.userData.rearAxisGate={objectId:g.objectId,scope:'OWN_ROOFED_GATE_ENVELOPE_NOT_COMPLETE_COURT',northSouthIndependent:true,sourceGroup:g.group,notReconstructed:['adjoining corridor count/limits','long ramps and balustrades','full interior timber','Houyou demolished instrument store'],openState:open?'GAME_PLAYABLE_NOT_ACCESS_POLICY':'closed'};
  Object.assign(f.userData.structure,{id:`axis-courts/items/${g.index}`,objectId:g.objectId,...f.userData.rearAxisGate});
+ if(raiseRearRightPlatform(kit,f,{item,colliderStart}))g.floorY=1.8;
  return{width:g.width,geometry:g,frame:f};
 }

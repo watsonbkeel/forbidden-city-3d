@@ -1,3 +1,4 @@
+import {buildTaiheBronze} from './palace/special/TaiheBronzeSilhouettes.js';
 import {registerBPrincipalStairs} from './palace/BPrincipalStairContact.js';
 import {registerTaihemenStairContact} from './palace/TaihemenStairContact.js';
 import {installWumenPracticalAssembly} from './palace/special/WumenPracticalAssembly.js';
@@ -707,14 +708,9 @@ export class PalaceBuilder {
       for (let k = 0; k < 3; k++) this.tripod(g, bronze, s * (r.hw - 3), y, zf + k * 3.8);
       this.box(g, marble, 1.6, 1.2, 1.6, s * 9, y + 0.6, zf + 1, { box: 2 });
       // 铜龟 / 铜鹤
-      const turtle = new THREE.Mesh(new THREE.SphereGeometry(0.9, 16, 10), bronze);
-      turtle.scale.set(1, 0.6, 1.3);
-      turtle.position.set(s * 9, y + 1.6, zf + 1);
-      g.add(turtle);
+      buildTaiheBronze(g,bronze,{kind:'turtle',x:s*9,y,z:zf+1});
       this.box(g, marble, 1.6, 1.2, 1.6, s * 13, y + 0.6, zf + 1, { box: 2 });
-      const crane = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.35, 2.2, 8), bronze);
-      crane.position.set(s * 13, y + 2.3, zf + 1);
-      g.add(crane);
+      buildTaiheBronze(g,bronze,{kind:'crane',x:s*13,y,z:zf+1});
       this.col(s * 9 - 0.8, y, zf + 0.2, s * 9 + 0.8, y + 3, zf + 1.8);
       this.col(s * 13 - 0.8, y, zf + 0.2, s * 13 + 0.8, y + 3, zf + 1.8);
     }

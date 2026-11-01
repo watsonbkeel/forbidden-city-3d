@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {buildZhongheDisplayStands} from './ZhongheDisplayStands.js';
 
 /** A bounded visible-form correction from one 400 x 313 official photograph.
  * The second official encoding is the same view, not corroborating geometry.
@@ -29,16 +30,15 @@ export function buildZhongheDisplaySetting(builder,shell,{x0,z0,y,H,ztb0,ztb1,th
  if(shell.userData.structure.displaySetting)throw Error('Zhonghe display already installed');
  const depth=ztb1-ztb0,zc=(ztb0+ztb1)/2;
  const record={...structuredClone(ZHONGHE_DISPLAY),frame:{x:x0,y,z:z0},inheritedAnchors:{ztb0,ztb1,thW,bayW},colliders:[],walkables:[],
-  replacement:{call:'SquareHalls/Zhonghe/throneArea',removed:['legacy-double-high-platform-and-three-stairs','legacy-solid-gold-chair','legacy-high-screen-and-three-flat-caps','legacy-high-furniture-envelope'],retained:['all-shell-and-four-doors','continuous-flat-ceiling','original-plaque','two-inherited-unverified-tripods']},
+  replacement:{call:'SquareHalls/Zhonghe/throneArea',removed:['legacy-double-high-platform-and-three-stairs','legacy-solid-gold-chair','legacy-high-screen-and-three-flat-caps','legacy-high-furniture-envelope','legacy-two-foreground-tripods'],retained:['all-shell-and-four-doors','continuous-flat-ceiling','original-plaque']},
   supportRevision:{retainedHighScreen:false,oldScreenBottomRelativeToFloor:1.25,newScreenBottomRelativeToFloor:.21,reason:'The legacy screen depended on the removed high dais. Replace the entire target screen with an independently grounded low-platform screen; do not add a pedestal to preserve obsolete bytes.'},
   fit:{platformThickness:.18,platformWidth:thW,platformDepth:depth,visibleFloorOffset:.03,chairCenterLocalZ:zc-z0+.38,screenLocalZ:ztb1-z0-.52,screenTopRelativeToFloor:3.13},
-  retainedFurnishingStatus:'Legacy tripods retained unchanged, not newly identified or verified from this photograph'};
+  retainedFurnishingStatus:'Two legacy tripods replaced by separately registered source-bound slender stands; all other R55 display retained'};
  shell.userData.structure.displaySetting=record;
 
- // Exact retained legacy calls: position, dimensions, geometry, material,
- // shadow flags and two original tripod colliders are left unchanged.
- const bronze=builder.ownMat('bronze',{color:0x4a3b28,metalness:.7,roughness:.45});
- for(const s of [-1,1])builder.tripod(shell,bronze,x0+s*thW*.35,y,ztb0-2.2);
+ // Replace only the two acknowledged wrong-form foreground objects.
+ // Their centers remain; their old enclosing air boxes are never generated.
+ buildZhongheDisplayStands(builder,shell,{x0,y,ztb0,thW});
  const plaque=builder.plaqueMesh('允执厥中',4.2,1.3,false);
  plaque.position.set(x0,y+H-1.1,ztb0-.5);plaque.rotation.y=Math.PI;shell.add(plaque);
 
