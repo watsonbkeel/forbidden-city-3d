@@ -61,7 +61,7 @@ test('invalid identity/dimensions, a missing host, and duplicate additions rejec
 });
 
 for(const fps of[10,60])for(const backward of[false,true])test(`unchanged real controller traverses Arrow N/S doors and both galleries at ${fps} Hz ${backward?'S':'W'}`,t=>{
- const f=fixture();try{const points=[[0,-13],[0,-7.8],[14.65,-7.8],[14.65,7.8],[0,7.8],[0,13],[0,0],[0,-7.8],[-14.65,-7.8],[-14.65,7.8],[0,7.8],[0,-13]].map(([x,z])=>[x+item.x,z+item.z]);const r=replayTerrace(t,{THREE,cm:f.cm},points,{fps,backward,sprint:true,recordFrames:true});assert.equal(r.arrived,true);assert.ok(r.frames.every(p=>Number.isFinite(p.feet)&&Number.isFinite(p.ground)));assert.equal(arrowKneeSnapshot(f).physics,frozen.snapshot.physics);
+ const f=fixture();try{const points=[[0,-13],[0,-7.8],[14.65,-7.8],[14.65,7.8],[0,7.8],[0,13],[0,0],[0,-7.8],[-14.65,-7.8],[-14.65,7.8],[0,7.8],[0,-13]].map(([x,z])=>[x+item.x,z+item.z]);const r=replayTerrace(t,{THREE,cm:f.cm},points,{fps,backward,sprint:true,recordFrames:true});assert.equal(r.arrived,true);assert.ok(r.frames.every(p=>Number.isFinite(p.feet)&&Number.isFinite(p.ground)));assert.deepEqual(f.kit.walkables.map(w=>w.bPrincipalStairId),['arrow-existing-stairs/platform','arrow-existing-stairs/south-ramp','arrow-existing-stairs/north-ramp'],'exact three new contact labels only');const originalShapeKit={...f.kit,walkables:f.kit.walkables.map(({bPrincipalStairId,...surface})=>surface)};assert.equal(arrowKneeSnapshot({...f,kit:originalShapeKit}).physics,frozen.snapshot.physics,'original physical golden unchanged apart from explicitly asserted contact labels');
  }finally{f.dispose();}
 });
 

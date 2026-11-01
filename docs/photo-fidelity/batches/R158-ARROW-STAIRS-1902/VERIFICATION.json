@@ -1,0 +1,410 @@
+{
+  "runtimeCommit": "4ce87b727049d79f9bb389e534e4f0a3fa67524c",
+  "baseRemote": "92c8a7650c6fbac2e72efc2190dadb4a7b019364",
+  "baseLocal": "6f7188c1270b2eeedeb8506f9be7a3ccb0f2fc64",
+  "sourcePins": [
+    {
+      "path": "src/scene/palace/BPrincipalStairContact.js",
+      "bytes": 8000,
+      "sha256": "a48ded1e0564eec6470894de6e0d4eca855498f1976c3b4ce4987b75bca626b3"
+    },
+    {
+      "path": "src/scene/palace/special/EnclosedPavilions.js",
+      "bytes": 11468,
+      "sha256": "450c5490ca3bac819c2ade8b2c9adac2bcd8ef1decfb51b9ca1e102e4b95ea5b"
+    },
+    {
+      "path": "src/scene/palace/special/ArrowStairHost.js",
+      "bytes": 2673,
+      "sha256": "44b66ab294f4deb357ea22194cee85469babab71c6f78477c21016ec4d7c1543"
+    },
+    {
+      "path": "data/architecture/arrow-existing-stair-contacts.json",
+      "bytes": 1058,
+      "sha256": "6c9e167ff070c4a2de56ab9ddf9a3bfb9628a95a3f59d2ada0e70777ff832cab"
+    },
+    {
+      "path": "tests/r158-arrow-stair-contact/contact.test.mjs",
+      "bytes": 5318,
+      "sha256": "c688850449b16ea351a06c2b9d2615120d7f0bb8e00b67eec55248e7ad2b8850"
+    },
+    {
+      "path": "tests/r158-arrow-stair-contact/world.test.mjs",
+      "bytes": 1579,
+      "sha256": "ebf4abe70a3a23a50d96278e293312a7024bff71e3e49ee13579d99b87088e6e"
+    },
+    {
+      "path": "tests/r158-arrow-stair-contact/capture.mjs",
+      "bytes": 1508,
+      "sha256": "45a3ecb43124ab829a6249e2a7ecfc72d5460970768c951465ce1006754371a1"
+    },
+    {
+      "path": "tests/r59-arrow-south-knees.test.mjs",
+      "bytes": 9755,
+      "sha256": "3905af36c61a2763aeadf793ce2f7ac80b9a5d64fb68b2ab2bd4fe2b476dc701"
+    }
+  ],
+  "build": {
+    "schema": 1,
+    "release": "R146-fix",
+    "buildId": "R146-fix-d7f2c5d3c901",
+    "sourceFingerprint": "87cdcd1c4215a41288468471ca05dbc2e5974a71aca46528872a213507dfcff9",
+    "sourceCommit": "4ce87b727049d79f9bb389e534e4f0a3fa67524c",
+    "sourceDirty": false,
+    "base": "/gugong/"
+  },
+  "modules": 628,
+  "related": {
+    "total": 133,
+    "passed": 133,
+    "skipped": 0
+  },
+  "localComponents": {
+    "tests": 13,
+    "passed": 13,
+    "routes": 8,
+    "frames": 2132,
+    "maxAbsFootGap": 0.0055703681393407985
+  },
+  "worldBefore": {
+    "routes": 4,
+    "frames": 1066,
+    "maxAbsFootGap": 0.8494444444444447
+  },
+  "worldAfter": {
+    "routes": 4,
+    "frames": 1066,
+    "maxAbsFootGap": 0.0055703681393407985
+  },
+  "sameWaypointsAndFullXZTrajectories": true,
+  "geometryAndPhysicalCaptureExact": true,
+  "beforeCapture": {
+    "sourceSurfaces": [
+      {
+        "type": "box",
+        "min": [
+          -171.45,
+          0.9,
+          69
+        ],
+        "max": [
+          -137.95,
+          0.9,
+          88.6
+        ]
+      },
+      {
+        "type": "ramp",
+        "minX": -156.5375,
+        "maxX": -152.86249999999998,
+        "minZ": 67.56,
+        "maxZ": 69,
+        "axis": "z",
+        "a0": 69,
+        "a1": 67.56,
+        "y0": 0.9,
+        "y1": 0
+      },
+      {
+        "type": "ramp",
+        "minX": -156.5375,
+        "maxX": -152.86249999999998,
+        "minZ": 88.6,
+        "maxZ": 90.03999999999999,
+        "axis": "z",
+        "a0": 88.6,
+        "a1": 90.03999999999999,
+        "y0": 0.9,
+        "y1": 0
+      }
+    ],
+    "pins": {
+      "geometry": "ad349f030dfae447df52431b2130ab7fe28f45a659862b3cd37b8c5b74beca65",
+      "colliders": "479c78fe4fa1df1e46e20ea3de35ba72a45924faedd68347133d0f2a1ca114fa",
+      "supports": "1348c566c4b6e73e4418caf595fc7e6a5a1ece238d42555102c276285edbbbbc",
+      "rooms": "e455fece34d2b0cb76b8254ea4d57630fd8521e1199217c6bb33cd716f28717a",
+      "mapItems": "e242b7e1b93e83ea36464d01c29fa6726065d20b2d97970e49a2572dfbd76fa4"
+    },
+    "geometryCount": 262,
+    "colliderCount": 87,
+    "walkableCount": 3,
+    "authorized": 0
+  },
+  "afterCapture": {
+    "sourceSurfaces": [
+      {
+        "type": "box",
+        "min": [
+          -171.45,
+          0.9,
+          69
+        ],
+        "max": [
+          -137.95,
+          0.9,
+          88.6
+        ]
+      },
+      {
+        "type": "ramp",
+        "minX": -156.5375,
+        "maxX": -152.86249999999998,
+        "minZ": 67.56,
+        "maxZ": 69,
+        "axis": "z",
+        "a0": 69,
+        "a1": 67.56,
+        "y0": 0.9,
+        "y1": 0
+      },
+      {
+        "type": "ramp",
+        "minX": -156.5375,
+        "maxX": -152.86249999999998,
+        "minZ": 88.6,
+        "maxZ": 90.03999999999999,
+        "axis": "z",
+        "a0": 88.6,
+        "a1": 90.03999999999999,
+        "y0": 0.9,
+        "y1": 0
+      }
+    ],
+    "pins": {
+      "geometry": "ad349f030dfae447df52431b2130ab7fe28f45a659862b3cd37b8c5b74beca65",
+      "colliders": "479c78fe4fa1df1e46e20ea3de35ba72a45924faedd68347133d0f2a1ca114fa",
+      "supports": "1348c566c4b6e73e4418caf595fc7e6a5a1ece238d42555102c276285edbbbbc",
+      "rooms": "e455fece34d2b0cb76b8254ea4d57630fd8521e1199217c6bb33cd716f28717a",
+      "mapItems": "e242b7e1b93e83ea36464d01c29fa6726065d20b2d97970e49a2572dfbd76fa4"
+    },
+    "geometryCount": 262,
+    "colliderCount": 87,
+    "walkableCount": 3,
+    "authorized": 3
+  },
+  "protectedInputs": [
+    {
+      "path": "src/utils/Collision.js",
+      "sha256": "00b009c114fd11bbd45234ced0de906d7780cd89428377dedc4efc8a5b4e3c56",
+      "unchanged": true
+    },
+    {
+      "path": "src/controls/FirstPerson.js",
+      "sha256": "c90de689a5710d1ed272482429b25b14774591eb0f6dd09731cf6bc8c4d5c61c",
+      "unchanged": true
+    },
+    {
+      "path": "src/scene/palace/kit.js",
+      "sha256": "c85a88ceb2cb45d8defb0c6a6ffd6929e1a1611276ea0bb1df88bf35508d8ac5",
+      "unchanged": true
+    },
+    {
+      "path": "data/architecture/b-practical-stair-contacts.json",
+      "sha256": "230ebeb75b3d600d3853f296995ab19a285099d9f6a21417b8365b8b4a6f75a7",
+      "unchanged": true
+    },
+    {
+      "path": "data/architecture/donghua-madao-contacts.json",
+      "sha256": "f9a879d8d997ff07a0e824bdbf581dfd08ebef87dbd0cfac5a980a5532829930",
+      "unchanged": true
+    },
+    {
+      "path": "data/architecture/nansansuo-front-stair-contacts.json",
+      "sha256": "90ca1834f1fbab5f7a57a2712eaa683c60ea26ec80274b0263215b70203ffe08",
+      "unchanged": true
+    },
+    {
+      "path": "data/architecture/wenhua-front-stair-contacts.json",
+      "sha256": "314c9a7d77570ba1d4861125ba1ae5c8e2b156f5ec4ab7f8a01fbe37f2e1de94",
+      "unchanged": true
+    },
+    {
+      "path": "BPrincipalStairContact resolve function",
+      "sha256": "715687e5fc70e5a09ee115b7150b652a9cdc7f7be7ff6d1ab351e170b6ea2792",
+      "unchanged": true
+    }
+  ],
+  "localOnlyEvidence": [
+    {
+      "path": "../r158-arrow-route-evidence-1902/baseline-BPrincipalStairContact.js",
+      "bytes": 7531,
+      "sha256": "c6cff08b6e9331b78a3610c3047731fc018e5882b1adb257b04666c56670f9dc"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/baseline-EnclosedPavilions.js",
+      "bytes": 10931,
+      "sha256": "24df1266906dcaa9624230ecce57c48db9bd8b0771bc8780bbeed41f47cf8f4d"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/baseline-loader.mjs",
+      "bytes": 1193,
+      "sha256": "a8e8bed2e358a320b2894932e2a7a15afe4f756197c8c6dd04d8e8c496b6d89e"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/baseline-source-pins.json",
+      "bytes": 691,
+      "sha256": "9655c1c0a3bd896d55de38a63ad853ee42a5ef15e50f0aa9cd3cf90a4e5f8e7c"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/build-verification.json",
+      "bytes": 279,
+      "sha256": "201a89567ee44ba008c6f421e1d87bdc444294efb78d299c4741524c3b9fa6a0"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/build.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/build.log",
+      "bytes": 743,
+      "sha256": "dcc8b523fbe4a2dd8ad6d402f48958716c4ad1e69445890f8046211f74ce6570"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/component-green.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/component-green.json",
+      "bytes": 201122,
+      "sha256": "1f4dfcc6edfb4e0f2b917174a3631ee79d153f770ed85fdf4733b67f95203aa0"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/component-green.tap",
+      "bytes": 1118,
+      "sha256": "00843c3fe803997be697fd80a42a62a17127fde9da531ff0b7844dd0504375d4"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/component-red.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/component-red.json",
+      "bytes": 205059,
+      "sha256": "e79326ff2b4df364d2bfee231c79136c2824554267693b1ba8af546b140aa628"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/component-red.tap",
+      "bytes": 12298,
+      "sha256": "84f9a982ee47fcd922220a5a5212f611fc7700b624f9bbb3a2b65a4b91631e99"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/probe-dom-fixture-error.tap",
+      "bytes": 1198,
+      "sha256": "e00e7a46871d4ede9f2802afeb6162e49f9e9621eb9d5ac73eb7299d2a8f8e4d"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/probe.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/probe.json",
+      "bytes": 157283,
+      "sha256": "147a3f3bb1b7f8881765f750e6250a57126b822ac789fe1402df61be4914617f"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/probe.tap",
+      "bytes": 269,
+      "sha256": "3ef2e5bf6cbd17648039b7b8f9d5cf07a24962f78bdda2d81f92fcfdd875aeb8"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/probe.test.mjs",
+      "bytes": 1823,
+      "sha256": "62305bb386687a99da50dce426d2ac9db45680a2c48133f076aaf74a2b28688d"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/protected-pins.json",
+      "bytes": 1343,
+      "sha256": "8794c0662de0636304142e6c8a4cf1ec76922df02c561c79d3ab2e68454162d9"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/r59-original-test.mjs",
+      "bytes": 9334,
+      "sha256": "5cf72a2d125560d9ee5521c4d4316ab38c13f64fab35d884e7dd25a42fdf82ec"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/r59-parent.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/r59-parent.tap",
+      "bytes": 1932,
+      "sha256": "5297f2a99a2d0c0347e7467a0f0d92aef34121cf872842e166b62406b34f72d3"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/related-final.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/related-final.tap",
+      "bytes": 14313,
+      "sha256": "bf17feca8d8653fc4372e00d08156924212c4c6d19148fba3cbdb05149b6f8e0"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/related-original-label-contract.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/related-original-label-contract.tap",
+      "bytes": 19142,
+      "sha256": "44981db09c75101863dea864ba70b6b3f4539a92d4dafbec7b6090c7eff3a6f7"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/related-sparse-fixture-error.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/related-sparse-fixture-error.tap",
+      "bytes": 14138,
+      "sha256": "25a553a9b405bd60d4a3393e34c9cd8b0862c8222b6e325271ba334dec9ea06e"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/source-after.json",
+      "bytes": 1182,
+      "sha256": "99fb8fe264a7d50e93694c91f6396ec7a6c129d74f99a5e5a7cb280d90bda0da"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/source-before.json",
+      "bytes": 1182,
+      "sha256": "3d059ba8be9a86cc95a0c99cf5f7ae7a5bc273c1139eae8a4687c5bee91dba2d"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/world-baseline.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/world-baseline.json",
+      "bytes": 157452,
+      "sha256": "57a9668cf8cab9a9391169b6808485b901a64e7587d154726a7be8cee37124a6"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/world-baseline.tap",
+      "bytes": 1052,
+      "sha256": "3a8e07abb5cb4b64ad34bad1d20fb2b85424011499aa2f03aec1dbb7856e3022"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/world-final.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/world-final.json",
+      "bytes": 155415,
+      "sha256": "c227254d49e494355a39f7a985b2736013ce819e12b6707664e175fa9c5861af"
+    },
+    {
+      "path": "../r158-arrow-route-evidence-1902/world-final.tap",
+      "bytes": 582,
+      "sha256": "fc92a6d284eb03243980cae65f4c887bd37a4c1d07b4496d4918a8072bab2b7d"
+    }
+  ],
+  "scope": "NORMAL_ZONEBASE_ACTUAL_WORLD_OUTER_EAST_LOADALL_FALSE; exact-parent2-source SHA-locked override is baseline only; current source has no injection/fallback; NOT_GPU_OR_MOBILE"
+}

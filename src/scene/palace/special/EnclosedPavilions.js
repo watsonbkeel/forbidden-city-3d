@@ -1,9 +1,13 @@
+import {authorizeArrowStairHost,revokeArrowStairHost} from './ArrowStairHost.js';
+import {registerBPrincipalStairs} from '../BPrincipalStairContact.js';
 import {applyLinxiBridgePool} from './LinxiBridgePool.js';
 import {buildArrowSouthKnees} from './ArrowSouthKnees.js';
 import {applyArrowSouthDoorLattice} from './ArrowSouthDoorLattice.js';
 import {removeArrowUnsupportedCentralNameboard} from './ArrowSouthNameboard.js';
 import * as THREE from 'three';
 
+const builtArrowFrames=new WeakSet();
+export const isBuiltArrowFrame=f=>builtArrowFrames.has(f);
 const PROFILES = {
   arrow: {name:'箭亭',zone:'outer-east',profile:'arrow-enclosed-gallery-fit-v1',x:-154.7,z:78.8,w:31.5,d:17.6,colH:8,ph:.9,pad:1,roof:'xieshan',bays:5,source:'https://www.dpm.org.cn/explore/building/236578.html',photo:'https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d4c87b554a.jpg'},
   linxi: {name:'临溪亭',zone:'outer-west',profile:'linxi-enclosed-flat-ceiling-fit-v1',x:259.2,z:46.7,w:9,d:8.4,colH:4.8,ph:.5,pad:.3,roof:'pavilion',bays:3,source:'https://www.dpm.org.cn/explore/building/236537.html',photo:'https://img.dpm.org.cn/Uploads/Picture/2020/07/15/s5f0ebf845b521.jpg'},
@@ -19,6 +23,7 @@ export function enclosedPavilionGeometry(item) {
 }
 
 export function buildEnclosedPavilion(kit,item) {
+  const walkableStart=kit.walkables.length;
   const g=enclosedPavilionGeometry(item),p=PROFILES[g.key],key=g.key,y=p.ph,H=p.colH-.5,doorH=key==='arrow'?4.6:3.35,cs=kit.colliders.length;
   const {structure,enclosureProfile,...shell}=item;
   // Build the exact old open shell first, retaining its roof, platform, floor,
@@ -108,5 +113,10 @@ export function buildEnclosedPavilion(kit,item) {
   if(key==='linxi')applyLinxiBridgePool(kit,f,item,g);
   kit._lastFurnish={cover:[],spawns:[{x:0,z:0}]};
   kit.registerRoom(f,{name:item.name,kind:key+'-viewing-region',x0:-A+.25,x1:A-.25,z0:-B,z1:B,y,h:H,doors:[{x:0,z:-B},{x:0,z:B}]});
-  f.userData.structure=g;f.name=item.name+'·有围护布局局部拟合';return{...built,g};
+  f.userData.structure=g;f.name=item.name+'·有围护布局局部拟合';
+  if(key==='arrow'){
+    builtArrowFrames.add(f);
+    if(authorizeArrowStairHost(kit,f,kit.walkables.slice(walkableStart,walkableStart+3))&&!registerBPrincipalStairs(kit,f,'arrow-existing-stairs',walkableStart))revokeArrowStairHost(f);
+  }
+  return{...built,g};
 }
